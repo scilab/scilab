@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2014-01-23 11:33+0100\n"
+"Revision-Date: 2014-02-10 16:23+0100\n"
 
 # File: sci_gateway/c/gw_preferences.c, line: 38
 #, c-format
@@ -128,8 +128,28 @@ msgid "Invalid preferences file:"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/preferences/XConfigManager.java, line: 103
+# File: src/java/org/scilab/modules/preferences/XConfigManager.java, line: 67
+msgid "Are you sure you want to restore the default layout at next startup?"
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/preferences/XConfigManager.java, line: 68
+msgid "Reset layout"
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/preferences/XConfigManager.java, line: 112
 msgid "Scilab Preferences"
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/preferences/XConfigManager.java, line: 368
+msgid "Are you sure you want to reset all settings to the default values?"
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/preferences/XConfigManager.java, line: 368
+msgid "Reset"
 msgstr ""
 
 #

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2014-01-23 11:33+0100\n"
+"Revision-Date: 2014-02-10 16:23+0100\n"
 
 # File: sci_gateway/c/gw_csv_helpers.c, line: 72
 # File: sci_gateway/c/gw_csv_helpers.c, line: 133
@@ -36,14 +36,14 @@ msgstr ""
 # File: sci_gateway/c/gw_csv_helpers.c, line: 447
 # File: sci_gateway/c/sci_csvDefault.c, line: 143
 # File: sci_gateway/c/sci_csvDefault.c, line: 293
-# File: sci_gateway/c/sci_csvRead.c, line: 288
-# File: sci_gateway/c/sci_csvRead.c, line: 315
-# File: sci_gateway/c/sci_csvRead.c, line: 353
-# File: sci_gateway/c/sci_csvRead.c, line: 379
-# File: sci_gateway/c/sci_csvRead.c, line: 397
-# File: sci_gateway/c/sci_csvRead.c, line: 411
-# File: sci_gateway/c/sci_csvRead.c, line: 437
-# File: sci_gateway/c/sci_csvRead.c, line: 457
+# File: sci_gateway/c/sci_csvRead.c, line: 304
+# File: sci_gateway/c/sci_csvRead.c, line: 331
+# File: sci_gateway/c/sci_csvRead.c, line: 369
+# File: sci_gateway/c/sci_csvRead.c, line: 395
+# File: sci_gateway/c/sci_csvRead.c, line: 413
+# File: sci_gateway/c/sci_csvRead.c, line: 438
+# File: sci_gateway/c/sci_csvRead.c, line: 464
+# File: sci_gateway/c/sci_csvRead.c, line: 484
 # File: sci_gateway/c/sci_csvStringToDouble.c, line: 80
 # File: sci_gateway/c/sci_csvStringToDouble.c, line: 105
 # File: sci_gateway/c/sci_csvTextScan.c, line: 204
@@ -121,14 +121,14 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_csvRead.c, line: 81
+# File: sci_gateway/c/sci_csvRead.c, line: 93
 # File: sci_gateway/c/sci_csvTextScan.c, line: 79
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Four entries expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_csvRead.c, line: 88
+# File: sci_gateway/c/sci_csvRead.c, line: 100
 # File: sci_gateway/c/sci_csvTextScan.c, line: 86
 #, c-format
 msgid ""
@@ -136,20 +136,20 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_csvRead.c, line: 99
+# File: sci_gateway/c/sci_csvRead.c, line: 111
 # File: sci_gateway/c/sci_csvTextScan.c, line: 97
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Inconsistent range.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_csvRead.c, line: 156
+# File: sci_gateway/c/sci_csvRead.c, line: 172
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_csvRead.c, line: 181
+# File: sci_gateway/c/sci_csvRead.c, line: 197
 # File: sci_gateway/c/sci_csvTextScan.c, line: 114
 # File: sci_gateway/c/sci_csvTextScan.c, line: 135
 #, c-format
@@ -157,13 +157,13 @@ msgid "%s: Wrong value for input argument #%d: '%s' or '%s' string expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_csvRead.c, line: 255
+# File: sci_gateway/c/sci_csvRead.c, line: 271
 #, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_csvRead.c, line: 261
+# File: sci_gateway/c/sci_csvRead.c, line: 277
 # File: sci_gateway/c/sci_csvTextScan.c, line: 183
 # File: sci_gateway/c/sci_csvWrite.c, line: 268
 #, c-format
@@ -171,15 +171,15 @@ msgid "%s: separator and decimal must have different values.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_csvRead.c, line: 284
-# File: sci_gateway/c/sci_csvRead.c, line: 349
+# File: sci_gateway/c/sci_csvRead.c, line: 300
+# File: sci_gateway/c/sci_csvRead.c, line: 365
 #, c-format
 msgid "%s: Range row or/and column left indice(s) out of bounds.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_csvRead.c, line: 311
-# File: sci_gateway/c/sci_csvRead.c, line: 387
+# File: sci_gateway/c/sci_csvRead.c, line: 327
+# File: sci_gateway/c/sci_csvRead.c, line: 403
 # File: sci_gateway/c/sci_csvStringToDouble.c, line: 76
 # File: sci_gateway/c/sci_csvStringToDouble.c, line: 112
 # File: sci_gateway/c/sci_csvTextScan.c, line: 223
@@ -189,26 +189,26 @@ msgid "%s: can not convert data.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_csvRead.c, line: 425
+# File: sci_gateway/c/sci_csvRead.c, line: 452
 #, c-format
 msgid "%s: %s does not exist.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_csvRead.c, line: 431
+# File: sci_gateway/c/sci_csvRead.c, line: 458
 # File: sci_gateway/c/sci_csvWrite.c, line: 280
 #, c-format
 msgid "%s: can not open file %s.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_csvRead.c, line: 443
+# File: sci_gateway/c/sci_csvRead.c, line: 470
 #, c-format
 msgid "%s: can not read file %s: Error in the column structure\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_csvRead.c, line: 450
+# File: sci_gateway/c/sci_csvRead.c, line: 477
 #, c-format
 msgid "%s: can not read file %s.\n"
 msgstr ""
@@ -348,7 +348,7 @@ msgid "%s: End of file.\n"
 msgstr ""
 
 #
-# File: src/c/csvRead.c, line: 354
+# File: src/c/csvRead.c, line: 358
 #, c-format
 msgid ""
 "%s: Inconsistency found in the columns. At line %d, found %d columns while "
@@ -356,7 +356,7 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/csvRead.c, line: 354
+# File: src/c/csvRead.c, line: 358
 msgid "Warning"
 msgstr ""
 

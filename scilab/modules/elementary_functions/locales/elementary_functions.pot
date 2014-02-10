@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2014-01-23 13:36+0100\n"
+"Revision-Date: 2014-02-10 16:23+0100\n"
 
 # File: sci_gateway/c/sci_base2dec.c, line: 41
 # File: sci_gateway/c/sci_base2dec.c, line: 54
@@ -257,6 +257,16 @@ msgstr ""
 # File: macros/%_gsort.sci, line: 50
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ['d' 'i'] expected.\n"
+msgstr ""
+
+#
+# File: macros/%_unwrap.sci, line: 20
+msgid "unwrap() & unfold: 1D examples "
+msgstr ""
+
+#
+# File: macros/%_unwrap.sci, line: 100
+msgid "unwrap(): 2D examples"
 msgstr ""
 
 #
@@ -963,6 +973,7 @@ msgstr ""
 
 #
 # File: macros/perms.sci, line: 29
+# File: macros/unwrap.sci, line: 91
 # File: macros/vectorfind.sci, line: 31
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
@@ -1053,7 +1064,7 @@ msgstr ""
 
 #
 # File: macros/resize_matrix.sci, line: 43
-msgid "TYPE <Enter> to see an example with POLYNOMIALS:"
+msgid "Type <Enter> to see an example with polynomials:"
 msgstr ""
 
 #
@@ -1068,12 +1079,12 @@ msgstr ""
 
 #
 # File: macros/resize_matrix.sci, line: 59
-msgid "TYPE <Enter> to see an example with character strings:"
+msgid "Type <Enter> to see an example with character strings:"
 msgstr ""
 
 #
 # File: macros/resize_matrix.sci, line: 72
-msgid "NOTE: Hypermatrices of character strings can't be converted"
+msgid "Hypermatrices of character strings can't be converted.\n"
 msgstr ""
 
 #
@@ -1132,6 +1143,43 @@ msgstr ""
 msgid ""
 "%s: Wrong values for input arguments #%d and #%d: c(1) must be equal to "
 "r(1).\n"
+msgstr ""
+
+#
+# File: macros/unwrap.sci, line: 34
+msgid "Press return to display 2D examples"
+msgstr ""
+
+#
+# File: macros/unwrap.sci, line: 41
+# File: macros/unwrap.sci, line: 55
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real expected.\n"
+msgstr ""
+
+#
+# File: macros/unwrap.sci, line: 49
+# File: macros/unwrap.sci, line: 69
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set  {%s}.\n"
+msgstr ""
+
+#
+# File: macros/unwrap.sci, line: 64
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+
+#
+# File: macros/unwrap.sci, line: 84
+#, c-format
+msgid "%s: not enough tall input argument #%d: must have at least 4 rows\n"
+msgstr ""
+
+#
+# File: macros/unwrap.sci, line: 86
+#, c-format
+msgid "%s: too narrow input argument #%d: must have at least 4 columns\n"
 msgstr ""
 
 #

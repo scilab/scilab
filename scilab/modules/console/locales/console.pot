@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2014-01-23 11:33+0100\n"
+"Revision-Date: 2014-02-10 16:23+0100\n"
 
 # File: sci_gateway/c/sci_clc.c, line: 41
 # File: sci_gateway/c/sci_lines.c, line: 206
@@ -1200,88 +1200,93 @@ msgid "Save layout on exiting"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 698
-msgid "Keys binding"
+# File: scilab_fake_localization_file.c, line: 691
+msgid "Reset layout"
 msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 701
+msgid "Keys binding"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 704
 msgid "Filter on action name: "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 711
+# File: scilab_fake_localization_file.c, line: 714
 msgid "Component"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 723
+# File: scilab_fake_localization_file.c, line: 726
 msgid "Name: "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 729
+# File: scilab_fake_localization_file.c, line: 732
 msgid "Description: "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 735
+# File: scilab_fake_localization_file.c, line: 738
 msgid "Binding: "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 767
+# File: scilab_fake_localization_file.c, line: 770
 msgid "Action name"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 768
+# File: scilab_fake_localization_file.c, line: 771
 msgid "Key binding"
 msgstr ""
 
 #
-# File: src/c/cmdLine/autoCompletionCli.c, line: 227
+# File: src/c/cmdLine/autoCompletionCli.c, line: 225
 # File: src/c/windows/TermCompletion.c, line: 60
 # File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 60
 msgid "File or Directory"
 msgstr ""
 
 #
-# File: src/c/cmdLine/autoCompletionCli.c, line: 488
+# File: src/c/cmdLine/autoCompletionCli.c, line: 494
 # File: src/c/windows/TermCompletion.c, line: 195
 msgid "Scilab Fields"
 msgstr ""
 
 #
-# File: src/c/cmdLine/autoCompletionCli.c, line: 522
+# File: src/c/cmdLine/autoCompletionCli.c, line: 528
 # File: src/c/windows/TermCompletion.c, line: 223
 # File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 74
 msgid "Scilab Function"
 msgstr ""
 
 #
-# File: src/c/cmdLine/autoCompletionCli.c, line: 523
+# File: src/c/cmdLine/autoCompletionCli.c, line: 529
 # File: src/c/windows/TermCompletion.c, line: 224
 # File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 71
 msgid "Scilab Command"
 msgstr ""
 
 #
-# File: src/c/cmdLine/autoCompletionCli.c, line: 524
+# File: src/c/cmdLine/autoCompletionCli.c, line: 530
 # File: src/c/windows/TermCompletion.c, line: 225
 # File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 80
 msgid "Scilab Macro"
 msgstr ""
 
 #
-# File: src/c/cmdLine/autoCompletionCli.c, line: 525
+# File: src/c/cmdLine/autoCompletionCli.c, line: 531
 # File: src/c/windows/TermCompletion.c, line: 226
 # File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 83
 msgid "Scilab Variable"
 msgstr ""
 
 #
-# File: src/c/cmdLine/autoCompletionCli.c, line: 527
+# File: src/c/cmdLine/autoCompletionCli.c, line: 533
 # File: src/c/windows/TermCompletion.c, line: 227
 # File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 77
 msgid "Graphics handle field"

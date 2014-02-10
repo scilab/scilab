@@ -16,7 +16,7 @@ function answ = edit_error(clearerror)
     [str, n, line, func] = lasterror(clearerror);
     if (n > 0) then
         if (func == "") then
-            answ = gettext("The last error did not occur inside a library function.");
+            answ = gettext("The last error did not occur inside a Scilab macro.");
         else
             p = get_function_path(func);
             if (p <> []) then

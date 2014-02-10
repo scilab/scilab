@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2014-01-23 11:33+0100\n"
+"Revision-Date: 2014-02-10 16:23+0100\n"
 
 # File: src/cpp/api_boolean.cpp, line: 35
 # File: src/cpp/api_boolean_sparse.cpp, line: 33
@@ -875,5 +875,5 @@ msgstr ""
 #
 # File: tests/unit_tests/hypermatIntExample.c, line: 166
 #, c-format
-msgid "%s: Wrong type for input argument %d: An integer expected.\n"
+msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
 msgstr ""

@@ -40,7 +40,7 @@ function mat = resize_matrix(mat, varargin)
             execstr("disp("+c+")")
         end
 
-        halt(ascii(10)+_("TYPE <Enter> to see an example with POLYNOMIALS:"))
+        halt(ascii(10)+_("Type <Enter> to see an example with polynomials:"))
         x = poly(0, "x")
         P = (1-x)^grand(4, 2, "uin", 0, 3)
         disp("P = ")
@@ -56,7 +56,7 @@ function mat = resize_matrix(mat, varargin)
         disp(_("The unknown variable of added values is forced to the P''s one"))
         disp(_("Polynomials can''t be converted"))
 
-        halt(ascii(10)+_("TYPE <Enter> to see an example with character strings:"))
+        halt(ascii(10)+_("Type <Enter> to see an example with character strings:"))
         T = string(grand(4, 3, 2, "unf", 0, 1)*100)
         disp("T = ")
         disp(T)
@@ -69,7 +69,7 @@ function mat = resize_matrix(mat, varargin)
             disp(c)
             execstr("disp("+c+")")
         end
-        disp(_("NOTE: Hypermatrices of character strings can''t be converted"))
+        warning(msprintf(_("Hypermatrices of character strings can''t be converted.\n")))
 
         mat = []
         return

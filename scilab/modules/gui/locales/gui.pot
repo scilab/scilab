@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2014-01-23 11:33+0100\n"
+"Revision-Date: 2014-02-10 16:23+0100\n"
 
 # File: sci_gateway/c/gw_gui.c, line: 86
 #, c-format
@@ -32,9 +32,9 @@ msgstr ""
 # File: sci_gateway/c/sci_setmenu.c, line: 119
 # File: sci_gateway/c/sci_setmenu.c, line: 139
 # File: sci_gateway/c/sci_setmenu.c, line: 221
-# File: sci_gateway/c/sci_uicontrol.c, line: 360
-# File: sci_gateway/c/sci_uicontrol.c, line: 404
-# File: sci_gateway/c/sci_uicontrol.c, line: 497
+# File: sci_gateway/c/sci_uicontrol.c, line: 422
+# File: sci_gateway/c/sci_uicontrol.c, line: 466
+# File: sci_gateway/c/sci_uicontrol.c, line: 597
 # File: sci_gateway/c/sci_uigetcolor.c, line: 89
 # File: sci_gateway/c/sci_uigetcolor.c, line: 116
 # File: sci_gateway/c/sci_uigetcolor.c, line: 182
@@ -57,9 +57,10 @@ msgstr ""
 # File: sci_gateway/c/sci_getcallbackobject.c, line: 75
 # File: sci_gateway/c/sci_messagebox.c, line: 290
 # File: sci_gateway/c/sci_progressionbar.c, line: 165
-# File: sci_gateway/c/sci_toolbar.c, line: 209
+# File: sci_gateway/c/sci_toolbar.c, line: 219
 # File: sci_gateway/c/sci_uicontextmenu.c, line: 51
-# File: sci_gateway/c/sci_uicontrol.c, line: 575
+# File: sci_gateway/c/sci_uicontrol.c, line: 182
+# File: sci_gateway/c/sci_uicontrol.c, line: 675
 # File: sci_gateway/c/sci_uigetcolor.c, line: 331
 # File: sci_gateway/c/sci_uigetcolor.c, line: 346
 # File: sci_gateway/c/sci_uigetcolor.c, line: 356
@@ -116,7 +117,7 @@ msgstr ""
 # File: sci_gateway/c/sci_ClipBoard.c, line: 102
 # File: sci_gateway/c/sci_ClipBoard.c, line: 134
 # File: sci_gateway/c/sci_ClipBoard.c, line: 411
-# File: sci_gateway/c/sci_toolbar.c, line: 184
+# File: sci_gateway/c/sci_toolbar.c, line: 192
 # File: sci_gateway/cpp/sci_datatip_manager_mode.cpp, line: 128
 # File: sci_gateway/cpp/sci_datatip_manager_mode.cpp, line: 238
 #, c-format
@@ -138,9 +139,11 @@ msgstr ""
 # File: sci_gateway/c/sci_messagebox.c, line: 227
 # File: sci_gateway/c/sci_setmenu.c, line: 53
 # File: sci_gateway/c/sci_setmenu.c, line: 228
-# File: sci_gateway/c/sci_toolbar.c, line: 190
-# File: sci_gateway/c/sci_uicontrol.c, line: 345
-# File: sci_gateway/c/sci_uicontrol.c, line: 410
+# File: sci_gateway/c/sci_toolbar.c, line: 169
+# File: sci_gateway/c/sci_toolbar.c, line: 198
+# File: sci_gateway/c/sci_uicontrol.c, line: 156
+# File: sci_gateway/c/sci_uicontrol.c, line: 407
+# File: sci_gateway/c/sci_uicontrol.c, line: 472
 # File: sci_gateway/c/sci_uigetcolor.c, line: 122
 # File: sci_gateway/c/sci_uigetfont.c, line: 78
 # File: sci_gateway/c/sci_uimenu.c, line: 151
@@ -181,8 +184,7 @@ msgstr ""
 # File: sci_gateway/c/sci_messagebox.c, line: 215
 # File: sci_gateway/c/sci_progressionbar.c, line: 85
 # File: sci_gateway/c/sci_progressionbar.c, line: 138
-# File: sci_gateway/c/sci_toolbar.c, line: 165
-# File: sci_gateway/c/sci_uicontrol.c, line: 485
+# File: sci_gateway/c/sci_uicontrol.c, line: 585
 # File: sci_gateway/c/sci_uigetfont.c, line: 64
 # File: sci_gateway/c/sci_waitbar.c, line: 90
 # File: sci_gateway/c/sci_waitbar.c, line: 151
@@ -210,9 +212,12 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_ClipBoard.c, line: 246
 # File: sci_gateway/c/sci_ClipBoard.c, line: 263
-# File: sci_gateway/c/sci_figure.c, line: 74
-# File: sci_gateway/c/sci_figure.c, line: 127
-# File: sci_gateway/c/sci_uicontrol.c, line: 205
+# File: sci_gateway/c/sci_figure.c, line: 80
+# File: sci_gateway/c/sci_figure.c, line: 125
+# File: sci_gateway/c/sci_figure.c, line: 159
+# File: sci_gateway/c/sci_figure.c, line: 196
+# File: sci_gateway/c/sci_uicontrol.c, line: 163
+# File: sci_gateway/c/sci_uicontrol.c, line: 265
 # File: sci_gateway/cpp/sci_getinstalledlookandfeels.cpp, line: 82
 # File: sci_gateway/cpp/sci_getlookandfeel.cpp, line: 76
 # File: sci_gateway/cpp/sci_setlookandfeel.cpp, line: 65
@@ -233,8 +238,8 @@ msgstr ""
 # File: sci_gateway/c/sci_setmenu.c, line: 156
 # File: sci_gateway/c/sci_setmenu.c, line: 192
 # File: sci_gateway/c/sci_setmenu.c, line: 246
-# File: sci_gateway/c/sci_uicontrol.c, line: 245
-# File: sci_gateway/c/sci_uicontrol.c, line: 471
+# File: sci_gateway/c/sci_uicontrol.c, line: 305
+# File: sci_gateway/c/sci_uicontrol.c, line: 571
 # File: sci_gateway/c/sci_uigetcolor.c, line: 67
 # File: sci_gateway/c/sci_uigetcolor.c, line: 141
 # File: sci_gateway/c/sci_uigetcolor.c, line: 211
@@ -254,7 +259,7 @@ msgstr ""
 # File: sci_gateway/cpp/sci_printfigure.cpp, line: 59
 # File: sci_gateway/cpp/sci_raise_window.cpp, line: 49
 #, c-format
-msgid "%s: Wrong type for argument %d: A real expected.\n"
+msgid "%s: Wrong type for argument #%d: A real expected.\n"
 msgstr ""
 
 #
@@ -264,7 +269,7 @@ msgstr ""
 # File: sci_gateway/c/sci_setmenu.c, line: 163
 # File: sci_gateway/c/sci_setmenu.c, line: 199
 # File: sci_gateway/c/sci_setmenu.c, line: 253
-# File: sci_gateway/c/sci_toolbar.c, line: 77
+# File: sci_gateway/c/sci_toolbar.c, line: 81
 # File: sci_gateway/c/sci_uigetcolor.c, line: 217
 # File: sci_gateway/c/sci_uigetcolor.c, line: 248
 # File: sci_gateway/c/sci_uigetcolor.c, line: 279
@@ -315,7 +320,7 @@ msgstr ""
 # File: sci_gateway/c/sci_delmenu.c, line: 78
 # File: sci_gateway/c/sci_setmenu.c, line: 205
 # File: sci_gateway/c/sci_setmenu.c, line: 259
-# File: sci_gateway/c/sci_toolbar.c, line: 71
+# File: sci_gateway/c/sci_toolbar.c, line: 75
 # File: sci_gateway/c/sci_uigetcolor.c, line: 223
 # File: sci_gateway/c/sci_uigetcolor.c, line: 254
 # File: sci_gateway/c/sci_uigetcolor.c, line: 285
@@ -332,10 +337,10 @@ msgstr ""
 # File: sci_gateway/c/sci_exportUI.c, line: 57
 # File: sci_gateway/c/sci_progressionbar.c, line: 63
 # File: sci_gateway/c/sci_progressionbar.c, line: 119
-# File: sci_gateway/c/sci_toolbar.c, line: 120
-# File: sci_gateway/c/sci_uicontrol.c, line: 151
-# File: sci_gateway/c/sci_uicontrol.c, line: 299
-# File: sci_gateway/c/sci_uicontrol.c, line: 514
+# File: sci_gateway/c/sci_toolbar.c, line: 124
+# File: sci_gateway/c/sci_uicontrol.c, line: 211
+# File: sci_gateway/c/sci_uicontrol.c, line: 360
+# File: sci_gateway/c/sci_uicontrol.c, line: 614
 # File: sci_gateway/c/sci_uimenu.c, line: 231
 # File: sci_gateway/c/sci_uiwait.c, line: 55
 # File: sci_gateway/c/sci_waitbar.c, line: 201
@@ -371,9 +376,15 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_figure.c, line: 115
-# File: sci_gateway/c/sci_figure.c, line: 170
-# File: sci_gateway/c/sci_figure.c, line: 196
+# File: sci_gateway/c/sci_figure.c, line: 113
+# File: sci_gateway/c/sci_figure.c, line: 184
+# File: sci_gateway/c/sci_figure.c, line: 221
+# File: sci_gateway/c/sci_figure.c, line: 243
+# File: sci_gateway/c/sci_figure.c, line: 365
+# File: sci_gateway/c/sci_figure.c, line: 401
+# File: sci_gateway/c/sci_uicontrol.c, line: 140
+# File: sci_gateway/c/sci_uicontrol.c, line: 497
+# File: sci_gateway/c/sci_uicontrol.c, line: 505
 # File: sci_gateway/cpp/sci_datatip_manager_mode.cpp, line: 137
 # File: sci_gateway/cpp/sci_datatip_manager_mode.cpp, line: 163
 # File: sci_gateway/cpp/sci_datatip_set_display.cpp, line: 54
@@ -402,16 +413,29 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_figure.c, line: 121
+# File: sci_gateway/c/sci_figure.c, line: 119
+# File: sci_gateway/c/sci_figure.c, line: 190
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_figure.c, line: 176
-# File: sci_gateway/c/sci_figure.c, line: 234
+# File: sci_gateway/c/sci_figure.c, line: 227
+# File: sci_gateway/c/sci_figure.c, line: 248
+# File: sci_gateway/c/sci_figure.c, line: 371
+# File: sci_gateway/c/sci_figure.c, line: 439
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_figure.c, line: 264
+# File: sci_gateway/c/sci_figure.c, line: 282
+# File: sci_gateway/c/sci_figure.c, line: 300
+# File: sci_gateway/c/sci_figure.c, line: 318
+# File: sci_gateway/c/sci_figure.c, line: 336
+#, c-format
+msgid "Wrong value for '%s' property: '%s' or '%s' expected."
 msgstr ""
 
 #
@@ -434,7 +458,7 @@ msgstr ""
 # File: sci_gateway/c/sci_messagebox.c, line: 97
 # File: sci_gateway/c/sci_messagebox.c, line: 221
 # File: sci_gateway/c/sci_setmenu.c, line: 66
-# File: sci_gateway/c/sci_toolbar.c, line: 172
+# File: sci_gateway/c/sci_toolbar.c, line: 176
 # File: sci_gateway/c/sci_uigetfont.c, line: 72
 # File: sci_gateway/c/sci_x_choose.c, line: 125
 # File: sci_gateway/c/sci_x_choose_modeless.c, line: 128
@@ -447,7 +471,7 @@ msgstr ""
 # File: sci_gateway/c/sci_uigetfont.c, line: 136
 # File: sci_gateway/c/sci_uigetfont.c, line: 173
 #, c-format
-msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
 msgstr ""
 
 #
@@ -546,9 +570,9 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_progressionbar.c, line: 69
 # File: sci_gateway/c/sci_progressionbar.c, line: 125
-# File: sci_gateway/c/sci_toolbar.c, line: 126
-# File: sci_gateway/c/sci_uicontrol.c, line: 145
-# File: sci_gateway/c/sci_uicontrol.c, line: 239
+# File: sci_gateway/c/sci_toolbar.c, line: 130
+# File: sci_gateway/c/sci_uicontrol.c, line: 205
+# File: sci_gateway/c/sci_uicontrol.c, line: 299
 # File: sci_gateway/c/sci_uiwait.c, line: 61
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A graphic handle expected.\n"
@@ -576,13 +600,13 @@ msgid "%s: Wrong input arguments: '%s' or '%s' expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_toolbar.c, line: 84
+# File: sci_gateway/c/sci_toolbar.c, line: 88
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be > %d expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_toolbar.c, line: 92
+# File: sci_gateway/c/sci_toolbar.c, line: 96
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: 'Graphic Window Number %d' does not "
@@ -590,36 +614,37 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_toolbar.c, line: 134
+# File: sci_gateway/c/sci_toolbar.c, line: 138
 #, c-format
 msgid "%s: Wrong value for input argument #%d: this handle does not exist.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_toolbar.c, line: 141
+# File: sci_gateway/c/sci_toolbar.c, line: 145
+# File: sci_gateway/c/sci_toolbar.c, line: 151
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A real or a Figure handle expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_toolbar.c, line: 147
+# File: sci_gateway/c/sci_uicontrol.c, line: 172
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A real or Figure handle expected.\n"
+msgid "%s: can not read file %s.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_uicontrol.c, line: 174
-# File: sci_gateway/c/sci_uicontrol.c, line: 528
+# File: sci_gateway/c/sci_uicontrol.c, line: 234
+# File: sci_gateway/c/sci_uicontrol.c, line: 518
+# File: sci_gateway/c/sci_uicontrol.c, line: 628
 # File: sci_gateway/c/sci_uimenu.c, line: 254
 #, c-format
 msgid "%s: Could not set property '%s'.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_uicontrol.c, line: 180
-# File: sci_gateway/c/sci_uicontrol.c, line: 187
+# File: sci_gateway/c/sci_uicontrol.c, line: 240
+# File: sci_gateway/c/sci_uicontrol.c, line: 247
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A '%s', '%s' or '%s' handle "
@@ -627,33 +652,39 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_uicontrol.c, line: 253
-# File: sci_gateway/c/sci_uicontrol.c, line: 264
-# File: sci_gateway/c/sci_uicontrol.c, line: 274
-# File: sci_gateway/c/sci_uicontrol.c, line: 306
-# File: sci_gateway/c/sci_uicontrol.c, line: 316
+# File: sci_gateway/c/sci_uicontrol.c, line: 313
+# File: sci_gateway/c/sci_uicontrol.c, line: 325
+# File: sci_gateway/c/sci_uicontrol.c, line: 335
+# File: sci_gateway/c/sci_uicontrol.c, line: 367
+# File: sci_gateway/c/sci_uicontrol.c, line: 378
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A '%s' or a '%s' handle expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_uicontrol.c, line: 292
+# File: sci_gateway/c/sci_uicontrol.c, line: 353
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A '%s' or a '%s' handle expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_uicontrol.c, line: 384
+# File: sci_gateway/c/sci_uicontrol.c, line: 446
 #, c-format
 msgid "%s: Unknown property: %s for '%s' handles.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_uicontrol.c, line: 420
+# File: sci_gateway/c/sci_uicontrol.c, line: 482
 #, c-format
 msgid "%s: Could not create 'Uicontrol' handle.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_uicontrol.c, line: 511
+#, c-format
+msgid "%s: Wrong type for argument #%d: A tlist expected.\n"
 msgstr ""
 
 #
@@ -1583,7 +1614,7 @@ msgstr ""
 #
 # File: scilab_fake_localization_file.c, line: 108
 # File: scilab_fake_localization_file.c, line: 120
-# File: src/java/org/scilab/modules/gui/helpbrowser/ScilabHelpBrowser.java, line: 93
+# File: src/java/org/scilab/modules/gui/helpbrowser/ScilabHelpBrowser.java, line: 91
 msgid "Help Browser"
 msgstr ""
 
@@ -1849,6 +1880,7 @@ msgstr ""
 
 #
 # File: src/cpp/GetConsoleShowHiddenHandles.cpp, line: 35
+# File: src/cpp/GetConsoleShowHiddenHandles.cpp, line: 59
 # File: src/cpp/GetUicontrolBackgroundColor.cpp, line: 26
 # File: src/cpp/GetUicontrolFontAngle.cpp, line: 26
 # File: src/cpp/GetUicontrolFontName.cpp, line: 26
@@ -1872,6 +1904,7 @@ msgstr ""
 # File: src/cpp/GetUiobjectEnable.cpp, line: 26
 # File: src/cpp/GetUiobjectForegroundColor.cpp, line: 26
 # File: src/cpp/SetConsoleShowHiddenHandles.cpp, line: 45
+# File: src/cpp/SetConsoleShowHiddenHandles.cpp, line: 69
 # File: src/cpp/SetUicontrolBackgroundColor.cpp, line: 84
 # File: src/cpp/SetUicontrolFontAngle.cpp, line: 55
 # File: src/cpp/SetUicontrolFontName.cpp, line: 42
@@ -2209,17 +2242,17 @@ msgid "Wrong value for '%s' property: '%s', '%s', or '%s' expected.\n"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 793
+# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 757
 msgid "Console Font..."
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 812
+# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 776
 msgid "Console Background..."
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 946
+# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 910
 msgid "No print service found."
 msgstr ""
 
@@ -2505,7 +2538,7 @@ msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowser.java, line: 100
-# File: src/java/org/scilab/modules/gui/helpbrowser/ScilabHelpBrowser.java, line: 167
+# File: src/java/org/scilab/modules/gui/helpbrowser/ScilabHelpBrowser.java, line: 165
 msgid "Loading help browser..."
 msgstr ""
 
@@ -2547,7 +2580,7 @@ msgid "Tree Overview"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/datatip/DatatipManagerMode.java, line: 32
+# File: src/java/org/scilab/modules/gui/datatip/DatatipManagerMode.java, line: 33
 msgid ""
 "Left click on the curve creates a datatip and right click on the datatip "
 "removes it."
@@ -2784,7 +2817,7 @@ msgstr ""
 #
 # File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 23
 # File: src/java/org/scilab/modules/gui/plotbrowser/MessagesPlotBrowser.java, line: 23
-# File: src/java/org/scilab/modules/gui/utils/ScilabAboutBox.java, line: 161
+# File: src/java/org/scilab/modules/gui/utils/ScilabAboutBox.java, line: 162
 msgid "Close"
 msgstr ""
 
@@ -3900,13 +3933,28 @@ msgid "About Scilab..."
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/utils/ScilabAboutBox.java, line: 170
+# File: src/java/org/scilab/modules/gui/utils/ScilabAboutBox.java, line: 171
 msgid "Acknowledgements"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/utils/WebBrowser.java, line: 37
 msgid "Could not open: "
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/gui/utils/WindowsConfigurationManager.java, line: 70
+msgid "Restoration error"
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/gui/utils/WindowsConfigurationManager.java, line: 71
+msgid "The configuration file has been corrupted and reset to the default one."
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/gui/utils/WindowsConfigurationManager.java, line: 72
+msgid "The configuration file has been corrupted. Scilab needs to restart."
 msgstr ""
 
 #
