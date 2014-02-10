@@ -77,9 +77,13 @@ function [la,lb]=lattn(n,p,mat_cov)
     end
 
 
-    a=eye(d);b=eye(d);
-    z=poly(0,"z");la=list();lb=list();
-    no=p-n-1;cv=mat_cov;
+    a=eye(d);
+    b=eye(d);
+    z=poly(0,"z");
+    la=list();
+    lb=list();
+    no=p-n-1;
+    cv=mat_cov;
 
     if -no >= floor(l/d) then
         error(msprintf(gettext("%s: Wrong values for input arguments #%d and #%d.\n"),"lattn",1, 2))
@@ -95,16 +99,18 @@ function [la,lb]=lattn(n,p,mat_cov)
     end
 
     for j=0:n-1,
-        jd=jmat(j+1,d);
-        r1=jd*cv((p+1)*d+1:(p+2+j)*d,:);
-        r2=jd*cv(p*d+1:(p+1+j)*d,:);
-        r3=jd*cv((p-1-j)*d+1:p*d,:);
-        r4=jd*cv((p-j)*d+1:(p+1)*d,:);
-        c1=coeff(a);c2=coeff(b);
+        r1=flipdim(cv((p+1)*d+1:(p+2+j)*d,:), 1, d);
+        r2=flipdim(cv(p*d+1:(p+1+j)*d,:), 1, d);
+        r3=flipdim(cv((p-1-j)*d+1:p*d,:), 1, d);
+        r4=flipdim(cv((p-j)*d+1:(p+1)*d,:), 1, d);
+        c1=coeff(a);
+        c2=coeff(b);
         k1=(c1*r1)*inv(c2*r2);
         k2=(c2*r3)*inv(c1*r4);
         a1=a-k1*z*b;
-        b=-k2*a+z*b;a=a1;
-        la(j+1)=a;lb(j+1)=b;
+        b=-k2*a+z*b;
+        a=a1;
+        la(j+1)=a;
+        lb(j+1)=b;
     end;
 endfunction

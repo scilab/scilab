@@ -67,23 +67,23 @@ function [la, sig, lb] = levin(n, Cov)
     end
     for j=0:n-1
         //
-        //   Bloc permutation matrix
-        //
-        jd = jmat(j+1, d);
-        //
         //   Levinson algorithm
         //
-        r1 = jd*cv((p+1)*d+1:(p+2+j)*d, :);
-        r2 = jd*cv(p*d+1:(p+1+j)*d, :);
-        r3 = jd*cv((p-1-j)*d+1:p*d, :);
-        r4 = jd*cv((p-j)*d+1:(p+1)*d, :);
-        c1 = coeff(a); c2 = coeff(b);
-        sig1 = c1*r4; gam1 = c2*r2;
+        r1 = flipdim(cv((p+1)*d+1:(p+2+j)*d, :), 1, d);
+        r2 = flipdim(cv(p*d+1:(p+1+j)*d, :),     1, d);
+        r3 = flipdim(cv((p-1-j)*d+1:p*d, :),     1, d);
+        r4 = flipdim(cv((p-j)*d+1:(p+1)*d, :),   1, d);
+        c1 = coeff(a);
+        c2 = coeff(b);
+        sig1 = c1*r4;
+        gam1 = c2*r2;
         k1 = (c1*r1)*inv(gam1);
         k2 = (c2*r3)*inv(sig1);
         a1 = a-k1*z*b;
         b = -k2*a+z*b;
         a = a1;
-        la(j+1) = a; lb(j+1) = b; sig(j+1) = sig1;
+        la(j+1) = a;
+        lb(j+1) = b;
+        sig(j+1) = sig1;
     end
 endfunction

@@ -52,6 +52,9 @@ Obsolete & Removed Functions
 * %asn tagged as obsolete. Will be removed in Scilab 5.5.1.
   Please use delip instead.
 
+* jmat tagged as obsolete. Will be removed in Scilab 5.5.1.
+  Please use flipdim instead
+
 
 Compilation
 ============
@@ -272,6 +275,8 @@ Scilab Bug Fixes
 * Bug #12082 fixed - convstr function did not work with non-ASCII symbols.
 
 * Bug #12121 fixed - inv function did not work for complex sparse matrices.
+
+* Bug #12130 fixed - flipdim can now flip blocks, thus making jmat obsolete.
 
 * Bug #12145 fixed - Internal function demo_mdialog removed.
 

@@ -14,6 +14,7 @@ function [j]=jmat(n,m)
     //   n   : number of block rows or block columns of the matrix
     //   m   : size of the (square) blocks
     //!
+    warnobsolete("flipdim", "5.5.1");
     j=[];
     for k=1:n,j(k,n-k+1)=1;end;
     j=j.*.eye(m,m);
