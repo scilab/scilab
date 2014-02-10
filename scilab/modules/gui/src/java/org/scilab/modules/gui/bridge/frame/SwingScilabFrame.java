@@ -715,12 +715,9 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
                 Container parent = getParent();
                 if (parent instanceof SwingScilabTabGroup) {
                     SwingScilabTabGroup tab = (SwingScilabTabGroup) parent;
-                    Component[] components = tab.getComponents();
-                    for (int i = 0; i < components.length ; ++i) {
-                        if (components[i] instanceof SwingScilabFrame && this.getId() == ((SwingScilabFrame) components[i]).getId()) {
-                            tab.setTitleAt(i, ((String[]) value)[0]);
-                            break;
-                        }
+                    int index = tab.indexOfComponent(this);
+                    if (index != -1) {
+                        tab.setTitleAt(index, ((String[]) value)[0]);
                     }
                 }
                 break;
