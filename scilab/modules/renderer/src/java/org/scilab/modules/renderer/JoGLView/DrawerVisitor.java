@@ -418,12 +418,12 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 Appearance trianglesAppearance = new Appearance();
                 drawingTools.draw(triangles, trianglesAppearance);
                 /*} catch (ObjectRemovedException e) {
-                        invalidate(grayplot, e);
-                    } catch (SciRendererException e) {
-                        invalidate(grayplot, e);
-                    } catch (OutOfMemoryException e) {
-                        invalidate(grayplot, e);
-                }*/
+                  invalidate(grayplot, e);
+                  } catch (SciRendererException e) {
+                  invalidate(grayplot, e);
+                  } catch (OutOfMemoryException e) {
+                  invalidate(grayplot, e);
+                  }*/
             } catch (Exception e) {
                 System.err.println(e);
                 e.printStackTrace();
@@ -910,7 +910,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         if (id != figure.getIdentifier() &&  (type == GraphicObjectProperties.__GO_UICONTROL__ || type == GraphicObjectProperties.__GO_UIMENU__)) {
             return;
         }
-        
+
         if (property == GraphicObjectProperties.__GO_CHILDREN__) {
             if (id != figure.getIdentifier()) {
                 /* Ignore children that are not mine */
@@ -1033,7 +1033,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                             axes.getTitle().equals(id)) {
                         labelManager.update(id, property);
                         axesDrawer.computeMargins(axes);
-                    } else if (object instanceof Legend && property == GraphicObjectProperties.__GO_LEGEND_LOCATION__) {
+                    } else if (object instanceof Legend && (property == GraphicObjectProperties.__GO_LEGEND_LOCATION__ || property == GraphicObjectProperties.__GO_LINE_WIDTH__)) {
                         legendDrawer.update(id, property);
                         axesDrawer.computeMargins(axes);
                     }
@@ -1087,7 +1087,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         if (type == GraphicObjectProperties.__GO_UICONTROL__ || type == GraphicObjectProperties.__GO_UIMENU__) {
             return; // Not of my managed openGL children
         }
-        
+
         openGLChildren.remove(id);
 
         if (isImmediateDrawing(id)) {

@@ -248,7 +248,9 @@ static setHashTableCouple propertySetTable[] =
     {"title_scroll", set_title_scroll_property},
     {"default_axes", set_default_axes_property},
     {"scrollable", set_scrollable_property},
-    {"icon", SetUicontrolIcon}
+    {"icon", SetUicontrolIcon},
+    {"line_width", set_line_width_property},
+    {"marks_count", set_marks_count_property}
 };
 
 /*--------------------------------------------------------------------------*/

@@ -29,7 +29,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
  */
 public class Legend extends ClippableTextObject {
     /** Legend properties names */
-    private enum LegendProperty { LINKS, LINKSCOUNT, LEGENDLOCATION, POSITION , SIZE};
+    private enum LegendProperty { LINKS, LINKSCOUNT, LEGENDLOCATION, POSITION , SIZE, MARKSCOUNT, LINEWIDTH};
 
     /** Legend location */
     public enum LegendLocation { IN_UPPER_RIGHT, IN_UPPER_LEFT, IN_LOWER_RIGHT, IN_LOWER_LEFT,
@@ -83,6 +83,12 @@ public class Legend extends ClippableTextObject {
     /** 2D size relative to the parent axes bounds */
     private double[] size;
 
+    /** Number of marks to draw */
+    private Integer marksCount;
+
+    /** Line width in axes coordinates (percentage) */
+    private Double lineWidth;
+
     /** Constructor */
     public Legend() {
         super();
@@ -90,6 +96,8 @@ public class Legend extends ClippableTextObject {
         this.legendLocation = LegendLocation.LOWER_CAPTION;
         position = new double[2];
         size = new double[2];
+        marksCount = 3;
+        lineWidth = 0.1;
     }
 
     @Override
@@ -114,6 +122,10 @@ public class Legend extends ClippableTextObject {
                 return LegendProperty.POSITION;
             case __GO_SIZE__ :
                 return LegendProperty.SIZE;
+            case __GO_MARKS_COUNT__ :
+                return LegendProperty.MARKSCOUNT;
+            case __GO_LINE_WIDTH__ :
+                return LegendProperty.LINEWIDTH;
             default :
                 return super.getPropertyFromName(propertyName);
         }
@@ -139,6 +151,10 @@ public class Legend extends ClippableTextObject {
             return getValidTextStrings();
         } else if (property == LegendProperty.SIZE) {
             return getSize();
+        } else if (property == LegendProperty.MARKSCOUNT) {
+            return getMarksCount();
+        } else if (property == LegendProperty.LINEWIDTH) {
+            return getLineWidth();
         } else {
             return super.getProperty(property);
         }
@@ -157,6 +173,10 @@ public class Legend extends ClippableTextObject {
             setLegendLocation((Integer) value);
         } else if (property == LegendProperty.POSITION) {
             setPosition((Double[]) value);
+        } else if (property == LegendProperty.MARKSCOUNT) {
+            setMarksCount((Integer) value);
+        } else if (property == LegendProperty.LINEWIDTH) {
+            setLineWidth((Double) value);
         } else {
             return super.setProperty(property, value);
         }
@@ -263,6 +283,46 @@ public class Legend extends ClippableTextObject {
     }
 
     /**
+     * @return the marks count
+     */
+    public Integer getMarksCount() {
+        return marksCount;
+    }
+
+    /**
+     * @param marksCount the marks count
+     */
+    public UpdateStatus setMarksCount(Integer marksCount) {
+        if (!this.marksCount.equals(marksCount)) {
+            this.marksCount = marksCount;
+
+            return UpdateStatus.Success;
+        }
+
+        return UpdateStatus.NoChange;
+    }
+
+    /**
+     * @return the line width
+     */
+    public Double getLineWidth() {
+        return lineWidth;
+    }
+
+    /**
+     * @param lineWidth the line width
+     */
+    public UpdateStatus setLineWidth(Double lineWidth) {
+        if (!this.lineWidth.equals(lineWidth)) {
+            this.lineWidth = lineWidth;
+
+            return UpdateStatus.Success;
+        }
+
+        return UpdateStatus.NoChange;
+    }
+
+    /**
      * Returns the dimensions of the text array, taking into account only valid links.
      * @return the dimensions of the text array
      */
@@ -332,8 +392,8 @@ public class Legend extends ClippableTextObject {
     }
 
     /**
-    * @param size the size to set
-    */
+     * @param size the size to set
+     */
     public UpdateStatus setSize(Double[] size) {
         this.size[0] = size[0];
         this.size[1] = size[1];

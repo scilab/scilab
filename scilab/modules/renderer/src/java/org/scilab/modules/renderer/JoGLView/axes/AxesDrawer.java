@@ -264,13 +264,13 @@ public class AxesDrawer {
                                     // 1/8 of LINE_WIDTH is xOffset
                                     // see legendDims[0] = ... in LegendDrawer::draw
                                     // we add 2*xoffset to have a little space around the box
-                                    C = LegendDrawer.LINE_WIDTH * (3. / 8. + 1 + 2. / 8.);
+                                    C = legend.getLineWidth() + LegendDrawer.LINE_WIDTH * (3. / 8. + 2. / 8.);
                                     m[0] = Math.max(ma[0] + mt[0], DEFAULT_MARGIN);
                                     m[1] = Math.max(((legDims.width + 2) / (axesBounds[2] * size[0]) + C * (1 - m[0])) / (1 + C) + ma[1] + mt[1], DEFAULT_MARGIN);
                                     break;
                                 case OUT_UPPER_LEFT:
                                 case OUT_LOWER_LEFT:
-                                    C = LegendDrawer.LINE_WIDTH * (3. / 8. + 1 + 2. / 8.);
+                                    C = legend.getLineWidth() + LegendDrawer.LINE_WIDTH * (3. / 8. + 2. / 8.);
                                     m[1] = Math.max(ma[1] + mt[1], DEFAULT_MARGIN);
                                     m[0] = Math.max(((legDims.width + 2) / (axesBounds[2] * size[0]) + C * (1 - m[1])) / (1 + C) + ma[0] + mt[0], DEFAULT_MARGIN);
                                     break;

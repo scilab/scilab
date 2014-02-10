@@ -307,9 +307,11 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="src\c\getHandleProperty\get_light_type_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_line_mode_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_line_style_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_line_width_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_links_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_log_flags_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_margins_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_marks_count_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_mark_background_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_mark_foreground_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_mark_mode_property.c" />
@@ -362,6 +364,8 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="src\c\getHandleProperty\set_layout_options_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_layout_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_light_type_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_line_width_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_marks_count_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_mark_offset_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_mark_stride_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_material_shininess_property.c" />

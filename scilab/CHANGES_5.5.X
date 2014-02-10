@@ -165,6 +165,8 @@ Scilab Bug Fixes
 
 * Bug #8060 fixed - Display of a list improved in the variable browser.
 
+* Bug #8131 fixed - It was not possible to choose the number of marks and the line width in legends.
+
 * Bug #8133 fixed - Ticks disappeared in planar 3D view.
 
 * Bug #8196 fixed - Wrong error message with negative thickness.

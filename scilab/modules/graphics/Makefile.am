@@ -340,6 +340,10 @@ src/c/getHandleProperty/get_tabtitle_property.c \
 src/c/getHandleProperty/set_tabtitle_property.c \
 src/c/getHandleProperty/get_scrollable_property.c \
 src/c/getHandleProperty/set_scrollable_property.c \
+src/c/getHandleProperty/get_marks_count_property.c \
+src/c/getHandleProperty/set_marks_count_property.c \
+src/c/getHandleProperty/get_line_width_property.c \
+src/c/getHandleProperty/set_line_width_property.c \
 src/c/DefaultCommandArg.c \
 src/c/Axes.c \
 src/c/sciMatrix.c \

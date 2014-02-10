@@ -253,9 +253,9 @@ public class LegendDrawer {
         double[] axesPos = new double[2];
         double[] axesDims = new double[2];
 
-        lineWidth = LINE_WIDTH * (axesBounds[2]) * (1.0 - margins[0] - margins[1]);
+        lineWidth = legend.getLineWidth() * (axesBounds[2]) * (1.0 - margins[0] - margins[1]);
 
-        double xOffset = lineWidth / 8.0;
+        double xOffset = LINE_WIDTH * (axesBounds[2]) * (1.0 - margins[0] - margins[1]) / 8.0;
         double yOffset = (Y_OFFSET * (axesBounds[3]) * (1.0 - margins[2] - margins[3]));
 
         /*
@@ -420,11 +420,11 @@ public class LegendDrawer {
         lineVertexData[0] = (float) (legendCorner[0] + xOffset);
         lineVertexData[1] = (float) (legendCorner[1] + normSpriteMargin + yOffset);
 
+        lineVertexData[4] = lineVertexData[0] + 0.5f * (float) lineWidth;
+        lineVertexData[5] = lineVertexData[1];
+
         lineVertexData[8] = lineVertexData[0] + (float) lineWidth;
         lineVertexData[9] = lineVertexData[1];
-
-        lineVertexData[4] = 0.5f * (lineVertexData[0] + lineVertexData[8]);
-        lineVertexData[5] = lineVertexData[1];
 
         float deltaHeight = 0.0f;
 
@@ -460,7 +460,7 @@ public class LegendDrawer {
         for (Integer link : links) {
             Polyline currentLine = (Polyline) GraphicController.getController().getObjectFromId(link);
 
-            drawLegendItem(drawingTools, colorMap, currentLine, barVertexData, lineVertexData);
+            drawLegendItem(legend, drawingTools, colorMap, currentLine, barVertexData, lineVertexData);
 
             /* Update the vertex data's vertical position */
             lineVertexData[1] += deltaHeight;
@@ -507,6 +507,7 @@ public class LegendDrawer {
     /**
      * Draw the legend item corresponding to the given polyline.
      * It draws either a horizontal line or bar depending on the polyline's properties (style, fill and line modes).
+     * @param legend the Legend.
      * @param drawingTools the DrawingTools {@see DrawingTools} used to draw the Legend.
      * @param colorMap the colorMap used.
      * @param polyline the given polyline.
@@ -514,7 +515,7 @@ public class LegendDrawer {
      * @param lineVertexData a line's vertex data (3 consecutive (x,y,z,w) quadruplets: left, middle and right vertices).
      * @throws org.scilab.forge.scirenderer.SciRendererException if the draw fail.
      */
-    private void drawLegendItem(DrawingTools drawingTools, ColorMap colorMap, Polyline polyline, float[] barVertexData, float[] lineVertexData) throws SciRendererException {
+    private void drawLegendItem(Legend legend, DrawingTools drawingTools, ColorMap colorMap, Polyline polyline, float[] barVertexData, float[] lineVertexData) throws SciRendererException {
         int polylineStyle = polyline.getPolylineStyle();
 
         int lineColor = polyline.getLineColor();
@@ -592,10 +593,30 @@ public class LegendDrawer {
             if (barDrawn) {
                 drawingTools.draw(markTexture, AnchorPosition.CENTER, barVertices);
             } else {
-                drawingTools.draw(markTexture, AnchorPosition.CENTER, lineVertices);
+                int marksCount = legend.getMarksCount();
+                float[] data;
+                if (marksCount != 0) {
+                    switch (marksCount) {
+                        case 1:
+                            data = new float[] {lineVertexData[4], lineVertexData[5], lineVertexData[6], lineVertexData[7]};
+                            break;
+                        case 2:
+                            data = new float[] {lineVertexData[0], lineVertexData[1], lineVertexData[2], lineVertexData[3],
+                                                lineVertexData[8], lineVertexData[9], lineVertexData[10], lineVertexData[11]
+                                           };
+                            break;
+                        default:
+                            data = new float[] {lineVertexData[0], lineVertexData[1], lineVertexData[2], lineVertexData[3],
+                                                lineVertexData[4], lineVertexData[5], lineVertexData[6], lineVertexData[7],
+                                                lineVertexData[8], lineVertexData[9], lineVertexData[10], lineVertexData[11]
+                                           };
+                            break;
+                    }
+                    lineVertices.setData(data, 4);
+                    drawingTools.draw(markTexture, AnchorPosition.CENTER, lineVertices);
+                }
             }
         }
-
     }
 
     /**
