@@ -14,7 +14,7 @@
     <refnamediv>
         <refname>relocate_handle</refname>
         <refpurpose>Move handles inside the graphic
-            hierarchy.
+            hierarchy. <emphasis role="bold">This function is obsolete.</emphasis>
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
@@ -91,5 +91,16 @@ relocate_handle( poly2bis, axes1 ) ;
                 <link linkend="swap_handles">swap_handles</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revdescription>
+                    Function tagged as obsolete. Will be removed in 5.5.1.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

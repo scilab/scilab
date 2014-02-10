@@ -23,6 +23,8 @@ New Features
 Obsolete & Removed Functions
 ============================
 
+* relocate_handle tagged as obsolete. Will be removed in Scilab 5.5.1.
+
 * msd and st_deviation tagged as obsolete (See bug #7593). Will be removed in Scilab 5.5.1.
   Please use stdev instead.
 
