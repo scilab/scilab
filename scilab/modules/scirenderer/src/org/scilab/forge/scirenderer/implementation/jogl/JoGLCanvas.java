@@ -174,6 +174,12 @@ public final class JoGLCanvas implements Canvas, GLEventListener {
 
     @Override
     public void redrawAndWait() {
+        if (SwingUtilities.isEventDispatchThread()) {
+            if (autoDrawable!= null) {
+                autoDrawable.display();
+            }
+            return;
+        }
         try {
             SwingUtilities.invokeAndWait(new Runnable() {
                 public void run() {

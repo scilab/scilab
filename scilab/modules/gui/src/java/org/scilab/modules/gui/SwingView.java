@@ -330,7 +330,6 @@ public final class SwingView implements GraphicView {
                     @Override
                     public void run() {
                         newSVObject[0] = CreateObjectFromType(enumType, id);
-
                     }
                 });
             } catch (InterruptedException e) {
@@ -1027,7 +1026,7 @@ public final class SwingView implements GraphicView {
                 int childType = (Integer) GraphicController.getController().getProperty(childId, __GO_TYPE__);
 
                 /* Add an uicontrol */
-                if (childType == __GO_UICONTROL__) {
+                if (childType == __GO_UICONTROL__ || childType == __GO_AXES__) {
                     updatedComponent.addMember(allObjects.get(childId).getValue());
                     needRevalidate = true;
                 }

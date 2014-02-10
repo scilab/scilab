@@ -14,6 +14,7 @@
 package org.scilab.modules.gui.bridge.frame;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHILDREN__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_POSITION__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ENABLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING__;
 
@@ -25,12 +26,16 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 
+import org.scilab.modules.graphic_objects.axes.AxesContainer;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicModel.GraphicModel;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
 import org.scilab.modules.gui.SwingView;
 import org.scilab.modules.gui.SwingViewObject;
@@ -44,6 +49,7 @@ import org.scilab.modules.gui.bridge.listbox.SwingScilabListBox;
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.bridge.radiobutton.SwingScilabRadioButton;
 import org.scilab.modules.gui.bridge.slider.SwingScilabScroll;
+import org.scilab.modules.gui.bridge.tab.SwingScilabAxes;
 import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTabGroup;
 import org.scilab.modules.gui.bridge.textbox.SwingScilabTextBox;
@@ -78,7 +84,7 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
 
     private static final long serialVersionUID = -7401084975837285447L;
 
-    private Integer uid;
+    private Integer uid = -1;
 
     /**
      * Constructor
@@ -87,6 +93,26 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
         super();
         // the Default layout is null so we have to set a Position and a Size of every Dockable we add to it
         super.setLayout(null);
+        addComponentListener(new ComponentListener() {
+            public void componentShown(ComponentEvent e) { }
+            
+            public void componentResized(ComponentEvent e) { 
+                if (getId() != -1) {
+                    Double[] newPosition = new Double[4];
+                    Double[] positions = (Double[]) GraphicController.getController().getProperty(getId(), GraphicObjectProperties.__GO_POSITION__);
+                    newPosition[0] = positions[0];
+                    newPosition[1] = positions[1];
+                    newPosition[2] = getSize().getWidth();
+                    newPosition[3] = getSize().getHeight();
+                    invalidate();
+                    GraphicController.getController().setProperty(getId(), GraphicObjectProperties.__GO_POSITION__, newPosition);
+                }
+            }
+            
+            public void componentMoved(ComponentEvent e) { }
+            
+            public void componentHidden(ComponentEvent e) { }
+        });
     }
 
     /**
@@ -140,6 +166,13 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
      * @param member the member to add
      */
     public void addMember(SwingViewObject member) {
+        if (member instanceof SwingScilabAxes) {
+            AxesContainer frame = (AxesContainer) GraphicModel.getModel().getObjectFromId(getId());
+            SwingScilabCanvas canvas = new SwingScilabCanvas(frame);
+            setLayout(new BorderLayout());
+            add(canvas, BorderLayout.CENTER);
+            return;
+        }
         Uicontrol uicontrol = (Uicontrol) GraphicModel.getModel().getObjectFromId(member.getId());
         if (getLayout() instanceof BorderLayout) {
             switch (uicontrol.getBorderPositionAsEnum()) {
@@ -721,6 +754,9 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
                     }
                 }
                 break;
+            case __GO_POSITION__:
+                revalidate();
+                doLayout();
             default :
                 break;
         }

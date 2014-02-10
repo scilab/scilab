@@ -370,11 +370,11 @@ public final class Builder {
     }
 
     public final static int createSubWin(int parentFigure) {
-        GraphicController controller = GraphicController.getController();
-        GraphicObject parent = controller.getObjectFromId(parentFigure);
-        if (parent.getType() != GraphicObjectProperties.__GO_FIGURE__) {
-            return 0;
-        }
+        //GraphicController controller = GraphicController.getController();
+        //GraphicObject parent = controller.getObjectFromId(parentFigure);
+        //if (parent.getType() != GraphicObjectProperties.__GO_FIGURE__) {
+        //    return 0;
+        //}
 
         return cloneAxesModel(parentFigure);
     }

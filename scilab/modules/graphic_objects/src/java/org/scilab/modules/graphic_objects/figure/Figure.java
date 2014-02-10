@@ -48,6 +48,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 
 import java.util.Arrays;
 
+import org.scilab.modules.graphic_objects.axes.AxesContainer;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
@@ -56,7 +57,7 @@ import org.scilab.modules.graphic_objects.utils.LayoutType;
  * Figure class
  * @author Manuel JULIACHS
  */
-public class Figure extends GraphicObject {
+public class Figure extends GraphicObject implements AxesContainer {
     /** Figure properties names */
     private enum FigureProperty {
         INFOMESSAGE, COLORMAP, COLORMAPSIZE, BACKGROUND, ROTATIONTYPE,

@@ -39,6 +39,7 @@ import javax.swing.JPanel;
 import org.scilab.forge.scirenderer.Canvas;
 import org.scilab.forge.scirenderer.implementation.jogl.JoGLCanvas;
 import org.scilab.forge.scirenderer.implementation.jogl.JoGLCanvasFactory;
+import org.scilab.modules.graphic_objects.axes.AxesContainer;
 import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.gui.SwingViewObject;
@@ -66,7 +67,7 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
     private final Canvas rendererCanvas;
 
     /** The drawn figure */
-    private Figure figure;
+    private AxesContainer figure;
 
     /** The drawer visitor used to draw the figure */
     private DrawerVisitor drawerVisitor;
@@ -84,7 +85,7 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
         }
     }
 
-    public SwingScilabCanvas(final Figure figure) {
+    public SwingScilabCanvas(final AxesContainer figure) {
         super(new PanelLayout());
         this.figure = figure;
 
@@ -147,7 +148,7 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
      * figure getter.
      * @return the MVC figure.
      */
-    public Figure getFigure() {
+    public AxesContainer getFigure() {
         return figure;
     }
 

@@ -17,13 +17,18 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import javax.swing.UIDefaults;
 import javax.swing.UIManager;
 
+import org.scilab.modules.graphic_objects.axes.AxesContainer;
 import org.scilab.modules.graphic_objects.console.Console;
+import org.scilab.modules.graphic_objects.figure.ColorMap;
+import org.scilab.modules.graphic_objects.figure.Figure;
+import org.scilab.modules.graphic_objects.graphicModel.GraphicModel;
+import org.scilab.modules.graphic_objects.graphicObject.Visitor;
 import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
 
 /**
  * @author Vincent COUVERT
  */
-public class Frame extends Uicontrol {
+public class Frame extends Uicontrol implements AxesContainer {
 
     /**
      * Constructor
@@ -46,4 +51,35 @@ public class Frame extends Uicontrol {
             setVerticalAlignment("middle");
         }
     }
+
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
+    }
+
+    public Integer getAntialiasing() {
+        return 0;
+    }
+
+    public Integer getBackground() {
+        Figure figure = (Figure) GraphicModel.getModel().getObjectFromId(getParentFigure());
+        if (figure != null) {
+            return figure.getBackground();
+        }
+        return -2;
+    }
+
+    public ColorMap getColorMap() {
+        Figure figure = (Figure) GraphicModel.getModel().getObjectFromId(getParentFigure());
+        if (figure != null) {
+            return figure.getColorMap();
+        }
+
+        return new ColorMap();
+    }
+
+    public Integer[] getAxesSize() {
+        Double[] pos = getUiPosition();
+        return new Integer[] {pos[2].intValue(), pos[3].intValue()};
+    }
+
 }
