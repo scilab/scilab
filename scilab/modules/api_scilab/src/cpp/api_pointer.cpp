@@ -129,7 +129,7 @@ SciErr createNamedPointer(void* _pvCtx, const char* _pstName, int* _pvPtr)
 
     if (!checkNamedVarFormat(_pvCtx, _pstName))
     {
-        addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name."), "createNamedPointer");
+        addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name: %s."), "createNamedPointer", _pstName);
         return sciErr;
     }
 
