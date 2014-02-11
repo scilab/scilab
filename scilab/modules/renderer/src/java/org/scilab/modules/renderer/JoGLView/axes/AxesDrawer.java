@@ -33,6 +33,7 @@ import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.ClippableProperty;
 import org.scilab.modules.graphic_objects.graphicObject.ClippableProperty.ClipStateType;
 import org.scilab.modules.graphic_objects.figure.ColorMap;
+import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.legend.Legend;
 import org.scilab.modules.graphic_objects.legend.Legend.LegendLocation;
 import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
@@ -158,7 +159,8 @@ public class AxesDrawer {
      * @param axes the axes
      */
     public void computeRulers(Axes axes) {
-        ColorMap colorMap = visitor.getColorMap();
+        Figure figure = (Figure) GraphicController.getController().getObjectFromId(axes.getParentFigure());
+        final ColorMap colorMap = figure.getColorMap();
         try {
             Integer[] size = visitor.getFigure().getAxesSize();
             double w = ((double) (int) size[0]) / 2;

@@ -28,6 +28,7 @@ import org.scilab.forge.scirenderer.tranformations.TransformationStack;
 import org.scilab.forge.scirenderer.tranformations.Vector3d;
 import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.figure.ColorMap;
+import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.legend.Legend;
@@ -149,7 +150,8 @@ public class LegendDrawer {
         LegendLocation loc = legend.getLegendLocationAsEnum();
         if (loc != LegendLocation.IN_UPPER_RIGHT && loc != LegendLocation.IN_UPPER_LEFT &&
                 loc != LegendLocation.IN_LOWER_RIGHT && loc != LegendLocation.IN_LOWER_LEFT) {
-            final ColorMap colorMap = visitor.getColorMap();
+            Figure figure = (Figure) GraphicController.getController().getObjectFromId(parentAxes.getParentFigure());
+            final ColorMap colorMap = figure.getColorMap();
             final Integer[] links = legend.getLinks();
             final int nbValidLinks = getNumberValidLinks(legend);
             if (nbValidLinks < links.length) {
