@@ -467,6 +467,8 @@ Scilab Bug Fixes
 
 * Bug #13174 fixed - Scilab crashed after XML element removal.
 
+* Bug #13177 fixed - Error when changing x_ticks.locations on axes fixed.
+
 * Bug #13185 fixed - When the "checked" option of an uimenu was set to "on" for
                      the first time, the display order of others uimenus was changed.
 
