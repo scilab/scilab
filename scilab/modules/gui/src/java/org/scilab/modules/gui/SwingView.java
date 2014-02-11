@@ -716,6 +716,8 @@ public final class SwingView implements GraphicView {
             return;
         }
 
+        /* Do not update axes on EDT to avoid dead locks between SwingView & DrawerVisitor */
+        /* Test which freezes without this condition: bug_1257.tst in graphics */
         int type = (Integer) GraphicController.getController().getProperty(id, __GO_TYPE__);
         if (type == __GO_AXES__) {
             if (property == __GO_PARENT__) {
