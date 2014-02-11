@@ -1044,6 +1044,7 @@ int C2F(intihm)()
     {
         if (! create_index_vector(i, dec + i, &mn, A.dims[i - 1], &ind_max))
         {
+            Scierror(999, _("%s: Invalid index #%d in hypermatrix insertion.\n"), "hmops", i);
             return 0;
         }
         if ( mn == 0 )   /* the i th index vector is [] */
