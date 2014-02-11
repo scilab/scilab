@@ -716,6 +716,20 @@ public final class SwingView implements GraphicView {
             return;
         }
 
+        int type = (Integer) GraphicController.getController().getProperty(id, __GO_TYPE__);
+        if (type == __GO_AXES__) {
+            if (property == __GO_PARENT__) {
+                Integer parentId = (Integer) GraphicController.getController().getProperty(id, __GO_PARENT__);
+                TypedObject registeredParent = allObjects.get(parentId);
+                if (registeredParent == null) {
+                    allObjects.remove(id);
+                } else {
+                    ((SwingScilabAxes) allObjects.get(id).getValue()).update(property, parentId);
+                }
+            }
+            return;
+        }
+
         if (SwingUtilities.isEventDispatchThread()) {
             updateObjectOnEDT(registeredObject, id, property);
         } else {
