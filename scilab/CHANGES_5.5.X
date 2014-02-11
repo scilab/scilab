@@ -44,6 +44,12 @@ Obsolete & Removed Functions
 
 * draw removed.
 
+* regress tagged as obsolete. Will be removed in Scilab 5.5.1.
+  Please use reglin instead.
+
+* %asn tagged as obsolete. Will be removed in Scilab 5.5.1.
+  Please use delip instead.
+
 
 Compilation
 ============
@@ -706,12 +712,6 @@ Obsolete & Removed Functions
 
 * fprintf removed, please use mfprintf for files opened with mopen or write for files
   opened with file instead.
-
-* regress tagged as obsolete. Will be removed in Scilab 5.5.1.
-  Please use reglin instead.
-
-* %asn tagged as obsolete. Will be removed in Scilab 5.5.1.
-  Please use delip instead.
 
 
 Scilab Bug Fixes
