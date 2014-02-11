@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2013 - Scilab Enterprises - Paul Bignier: added mean squared deviation
+ *                                                         (third input argument)
+ * Copyright (C) 2000 - INRIA -
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ -->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="stdev">
+    
+    <refnamediv>
+        
+        <refname>stdev</refname>
+        
+        <refpurpose>
+            
+            ベクトル/行列エントリの標準偏差 (行または列毎)
+            
+        </refpurpose>
+        
+    </refnamediv>
+    
+    <refsynopsisdiv>
+        
+        <title>呼び出し手順</title>
+        
+        <synopsis>
+            
+            y = stdev(x)
+            
+            y = stdev(x, '*')
+            
+            y = stdev(x, 'r')
+            
+            y = stdev(x, 'c')
+            
+            y = stdev(x, orien, m)
+            
+        </synopsis>
+        
+    </refsynopsisdiv>
+    
+    <refsection>
+        
+        <title>引数</title>
+        
+        <variablelist>
+            
+            <varlistentry>
+                
+                <term>x, y</term>
+                
+                <listitem>
+                    
+                    <para>実数のベクトル, 行列またはハイパー行列</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>y</term>
+                
+                <listitem>
+                    
+                    <para>実数のベクトル, 行列またはハイパー行列</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>orien</term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        文字列スカラーまたは正の整数であり,
+                        
+                        <literal>"*"</literal>, <literal>"r"</literal>
+                        
+                        (または<literal>1</literal>)または
+                        
+                        <literal>"c"</literal> (または <literal>2</literal>)を指定可能
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>m</term>
+                
+                <listitem>
+                    
+                    <para>実数のスカラー, ベクトルまたはハイパー行列, 先験平均</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+        </variablelist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>説明</title>
+        
+        <para>
+            
+            stdev は "標本" 標準偏差を計算します.
+            
+            この値は, Nを数列長としてN-1で正規化されます.
+            
+            <varname>m</varname> が指定された場合, <code>stdev</code> は
+            
+            <varname>m</varname>で定義された先験平均を用いて
+            
+            (Nにより正規化された)平均二乗偏差を計算します.
+            
+        </para>
+        
+        <para>
+            
+            <literal>x</literal>がベクトルまたは行列の場合, <literal>y=stdev(x)</literal> は
+            
+            スカラー<literal>y</literal>に<literal>x</literal>の全エントリの
+            
+            標準偏差を返します.
+            
+        </para>
+        
+        <para>
+            
+            <literal>y=stdev(x,'r')</literal> (または, 等価的に,
+            
+            <literal>y=stdev(x,1)</literal>) は行毎の標準偏差です.
+            
+            これは,行ベクトル<literal>y</literal>の各エントリに
+            
+            <literal>x</literal>の各列の標準偏差を返します.
+            
+        </para>
+        
+        <para>
+            
+            <literal>y=stdev(x,'c')</literal> (または, 等価的に,
+            
+            <literal>y=stdev(x,2)</literal>) は列毎の標準偏差です.
+            
+            これは,行ベクトル<literal>y</literal>の各エントリに
+            
+            <literal>x</literal>の各行の標準偏差を返します.
+            
+        </para>
+        
+        <para>
+            
+            拡張表現として,正の整数<literal>n</literal>を指定して<literal>y=stdev(x,n)</literal>と
+            
+            すると,<literal>n</literal>番目の次元に沿った
+            
+            標準偏差を返します.
+            
+            <literal>n>ndims(x)</literal>の場合,
+            
+            <literal>stdev(x,n)</literal> は <literal>zeros(x)</literal>を返します.
+            
+        </para>
+        
+        <note>
+            
+            <varname>m</varname> がスカラーの場合, 
+            
+            <literal>n</literal>番目の次元方向が
+            
+            <code>mean(x)</code> の大きさに一致するように拡張されます.
+            
+        </note>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>例</title>
+        
+        <programlisting role="example"><![CDATA[
+A = [1 2 10; 7 7.1 7.01];
+stdev(A)
+stdev(A, 'r')
+stdev(A, 'c')
+stdev(A, 'c', mean(A,'c'))
+stdev(A, 'c', 1)
+ ]]></programlisting>
+        
+    </refsection>
+    
+    <refsection role="see also">
+        
+        <title>参照</title>
+        
+        <simplelist type="inline">
+            
+            <member>
+                
+                <link linkend="nanstdev">nanstdev</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="stdevf">stdevf</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="sum">sum</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="median">median</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="mean">mean</link>
+                
+            </member>
+            
+        </simplelist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>履歴</title>
+        
+        <revhistory>
+            
+            <revision>
+                
+                <revnumber>5.5.0</revnumber>
+                
+                <revdescription>
+                    
+                    <varname>m</varname>により定義された
+                    
+                    先験平均を用いて平均二乗偏差を計算できるようになりました
+                    
+                </revdescription>
+                
+            </revision>
+            
+        </revhistory>
+        
+    </refsection>
+    
+</refentry>
+
