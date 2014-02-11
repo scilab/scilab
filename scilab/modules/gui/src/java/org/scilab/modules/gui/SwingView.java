@@ -671,7 +671,7 @@ public final class SwingView implements GraphicView {
 
     @Override
     public void updateObject(final Integer id, final int property) {
-        TypedObject registeredObject = allObjects.get(id);
+        final TypedObject registeredObject = allObjects.get(id);
 
         if (property == __GO_SIZE__ && (headless || GraphicsEnvironment.isHeadless())) {
             int objectType = (Integer) GraphicController.getController().getProperty(id, __GO_TYPE__);
@@ -683,14 +683,13 @@ public final class SwingView implements GraphicView {
 
         if (registeredObject != null && property == __GO_VALID__ && ((Boolean) GraphicController.getController().getProperty(id, __GO_VALID__))) {
             if (registeredObject.getValue() instanceof SwingScilabDockablePanel) {
-                final TypedObject finalRegisteredObject = registeredObject;
                 final Runnable r = new Runnable() {
                     @Override
                     public void run() {
-                        ((SwingScilabDockablePanel) finalRegisteredObject.getValue()).getParentWindow().setVisible(true);
-                        ((SwingScilabDockablePanel) finalRegisteredObject.getValue()).setVisible(true);
+                        ((SwingScilabDockablePanel) registeredObject.getValue()).getParentWindow().setVisible(true);
+                        ((SwingScilabDockablePanel) registeredObject.getValue()).setVisible(true);
                         Integer[] figureSize = (Integer[]) GraphicController.getController().getProperty(id, __GO_SIZE__);
-                        ((SwingScilabDockablePanel) finalRegisteredObject.getValue()).getParentWindow().setDims(new Size(figureSize[0], figureSize[1]));
+                        ((SwingScilabDockablePanel) registeredObject.getValue()).getParentWindow().setDims(new Size(figureSize[0], figureSize[1]));
                     }
                 };
 
@@ -716,7 +715,28 @@ public final class SwingView implements GraphicView {
             allObjects.put(id, CreateObjectFromType(style, id));
             return;
         }
-        
+
+        if (SwingUtilities.isEventDispatchThread()) {
+            updateObjectOnEDT(registeredObject, id, property);
+        } else {
+            try {
+                SwingUtilities.invokeAndWait(new Runnable() {
+                    @Override
+                    public void run() {
+                        updateObjectOnEDT(registeredObject, id, property);
+                    }
+                });
+            } catch (InterruptedException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void updateObjectOnEDT(TypedObject registeredObject, final Integer id, final int property) {
         /* Removes the swing object if its parent is not display */
         if (registeredObject != null && property == __GO_PARENT__) {
             Integer parentId = (Integer) GraphicController.getController().getProperty(id, __GO_PARENT__);
