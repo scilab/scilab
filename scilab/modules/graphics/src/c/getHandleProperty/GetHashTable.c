@@ -246,7 +246,8 @@ static getHashTableCouple propertyGetTable[] =
     {"groupname", get_groupname_property},
     {"title_position", get_title_position_property},
     {"title_scroll", get_title_scroll_property},
-    {"scrollable", get_scrollable_property}
+    {"scrollable", get_scrollable_property},
+    {"icon", GetUicontrolIcon}
 };
 
 /*--------------------------------------------------------------------------*/

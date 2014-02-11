@@ -13,24 +13,22 @@
 
 package org.scilab.modules.ui_data.variablebrowser.actions;
 
-import org.scilab.modules.ui_data.variablebrowser.SwingScilabVariableBrowser;
-import javax.swing.ImageIcon;
-
-import org.scilab.modules.ui_data.utils.UiDataMessages;
-import org.scilab.modules.ui_data.BrowseVar;
-
 import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.asynchronousScilabExec;
 
-import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
+import javax.swing.ImageIcon;
 
-import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
+import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
+import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
+import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.pushbutton.ScilabPushButton;
-import org.scilab.modules.gui.utils.ScilabSwingUtilities;
+import org.scilab.modules.ui_data.BrowseVar;
+import org.scilab.modules.ui_data.utils.UiDataMessages;
+import org.scilab.modules.ui_data.variablebrowser.SwingScilabVariableBrowser;
 
 /**
  * Manage Delete Actions
@@ -40,7 +38,7 @@ public final class DeleteAction extends CommonCallBack {
 
     private static final long serialVersionUID = 1L;
 
-    private static ImageIcon icon = new ImageIcon(ScilabSwingUtilities.findIcon("edit-delete"));
+    private static ImageIcon icon = new ImageIcon(FindIconHelper.findIcon("edit-delete"));
 
     private static final char MNEMONIC = 'D';
 

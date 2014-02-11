@@ -53,6 +53,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_PUSHBUTTON__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_RADIOBUTTON__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_RELIEF__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SCROLLABLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SLIDERSTEP__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SLIDER__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING_COLNB__;
@@ -69,9 +70,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE_SIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VERTICALALIGNMENT__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TITLE_POSITION__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TITLE_SCROLL__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SCROLLABLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ICON__;
 
 import java.awt.Font;
 import java.util.Arrays;
@@ -305,6 +304,7 @@ public class Uicontrol extends GraphicObject {
     private String[] tooltipString = {""};
     private String units = "pixels";
     private Double[] value;
+    private Boolean scrollable = false;
     private LayoutType layout = LayoutType.NONE;
     private Double[] margins = new Double[] {0.0, 0.0, 0.0, 0.0};
     private Integer[] gridbagGrid = new Integer[] { -1, -1, 1, 1};
@@ -313,6 +313,7 @@ public class Uicontrol extends GraphicObject {
     private AnchorType gridbagAnchor = AnchorType.CENTER;
     private Integer[] gridbagPadding = new Integer[] {0, 0};
     private BorderLayoutType borderPosition = BorderLayoutType.CENTER;
+    private String icon = "";
 
     /** layout options */
     private Integer[] gridOptGrid = new Integer[] {0, 0};
@@ -329,8 +330,6 @@ public class Uicontrol extends GraphicObject {
     private Boolean titleScroll = false;
     private TitlePositionType titlePosition = TitlePositionType.TOP;
 
-    /** Scrollable */
-    private Boolean scrollable = false;
 
     /**
      * All uicontrol properties
@@ -380,7 +379,8 @@ public class Uicontrol extends GraphicObject {
         GROUPNAME,
         TITLE_POSITION,
         TITLE_SCROLL,
-        SCROLLABLE
+        SCROLLABLE,
+        ICON
     };
 
     /**
@@ -605,6 +605,8 @@ public class Uicontrol extends GraphicObject {
                 return UicontrolProperty.TITLE_SCROLL;
             case __GO_UI_SCROLLABLE__:
                 return UicontrolProperty.SCROLLABLE;
+            case __GO_UI_ICON__:
+                return UicontrolProperty.ICON;
             default :
                 return super.getPropertyFromName(propertyName);
         }
@@ -702,6 +704,8 @@ public class Uicontrol extends GraphicObject {
             return getTitleScroll();
         } else if (property == UicontrolProperty.SCROLLABLE) {
             return getScrollable();
+        } else if (property == UicontrolProperty.ICON) {
+            return getIcon();
         } else {
             return super.getProperty(property);
         }
@@ -796,6 +800,8 @@ public class Uicontrol extends GraphicObject {
                 return setTitleScroll((Boolean) value);
             case SCROLLABLE:
                 return setScrollable((Boolean) value);
+            case ICON:
+                return setIcon((String) value);
             default:
                 return super.setProperty(property, value);
         }
@@ -1462,6 +1468,19 @@ public class Uicontrol extends GraphicObject {
         } else {
             setFontWeight("normal");
         }
+    }
+
+    public UpdateStatus setIcon(String icon) {
+        if (this.icon.equals(icon)) {
+            return UpdateStatus.NoChange;
+        }
+
+        this.icon = icon;
+        return UpdateStatus.Success;
+    }
+
+    public String getIcon() {
+        return icon;
     }
 
     public void accept(Visitor visitor) {

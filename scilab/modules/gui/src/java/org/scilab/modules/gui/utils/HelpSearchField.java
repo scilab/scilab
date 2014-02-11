@@ -42,6 +42,7 @@ import javax.swing.text.Document;
 import javax.swing.text.JTextComponent;
 
 import org.scilab.modules.commons.ScilabConstants;
+import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.commons.gui.ScilabKeyStroke;
 
 /**
@@ -56,8 +57,8 @@ public class HelpSearchField extends JPanel implements FocusListener, KeyListene
     private static final String F3 = "F3";
     private static final String KEY = "help-search-field";
     private static final ImageIcon CLOSEICON = new ImageIcon(SCI + "/modules/gui/images/icons/close-tab.png");
-    private static final ImageIcon TOPICON = new ImageIcon(ScilabSwingUtilities.findIcon("go-top"));
-    private static final ImageIcon BOTICON = new ImageIcon(ScilabSwingUtilities.findIcon("go-bottom"));
+    private static final ImageIcon TOPICON = new ImageIcon(FindIconHelper.findIcon("go-top"));
+    private static final ImageIcon BOTICON = new ImageIcon(FindIconHelper.findIcon("go-bottom"));
     private static final int BUTTONSIZE = 28;
 
     private String text;

@@ -19,11 +19,11 @@ import java.io.OutputStreamWriter;
 import java.nio.charset.Charset;
 import java.util.Iterator;
 
-import org.xml.sax.SAXException;
 import org.scilab.modules.commons.ScilabCommonsUtils;
 import org.scilab.modules.commons.ScilabConstants;
-import org.scilab.modules.gui.utils.ScilabSwingUtilities;
+import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.helptools.image.ImageConverter;
+import org.xml.sax.SAXException;
 
 /**
  * Class to convert DocBook to JavaHelp
@@ -64,13 +64,13 @@ public class JavaHelpDocbookTagConverter extends HTMLDocbookTagConverter {
     public void install() {
         super.install();
 
-        ScilabCommonsUtils.copyFile(new File(ScilabSwingUtilities.findIcon("media-playback-start")), new File(outImages + "/ScilabExecute.png"));
-        ScilabCommonsUtils.copyFile(new File(ScilabSwingUtilities.findIcon("accessories-text-editor")), new File(outImages + "/ScilabEdit.png"));
-        ScilabCommonsUtils.copyFile(new File(ScilabSwingUtilities.findIcon("dialog-information")), new File(outImages + "/ScilabNote.png"));
-        ScilabCommonsUtils.copyFile(new File(ScilabSwingUtilities.findIcon("dialog-warning")), new File(outImages + "/ScilabWarning.png"));
-        ScilabCommonsUtils.copyFile(new File(ScilabSwingUtilities.findIcon("dialog-warning")), new File(outImages + "/ScilabCaution.png"));
-        ScilabCommonsUtils.copyFile(new File(ScilabSwingUtilities.findIcon("dialog-information")), new File(outImages + "/ScilabTip.png"));
-        ScilabCommonsUtils.copyFile(new File(ScilabSwingUtilities.findIcon("emblem-important")), new File(outImages + "/ScilabImportant.png"));
+        ScilabCommonsUtils.copyFile(new File(FindIconHelper.findIcon("media-playback-start")), new File(outImages + "/ScilabExecute.png"));
+        ScilabCommonsUtils.copyFile(new File(FindIconHelper.findIcon("accessories-text-editor")), new File(outImages + "/ScilabEdit.png"));
+        ScilabCommonsUtils.copyFile(new File(FindIconHelper.findIcon("dialog-information")), new File(outImages + "/ScilabNote.png"));
+        ScilabCommonsUtils.copyFile(new File(FindIconHelper.findIcon("dialog-warning")), new File(outImages + "/ScilabWarning.png"));
+        ScilabCommonsUtils.copyFile(new File(FindIconHelper.findIcon("dialog-warning")), new File(outImages + "/ScilabCaution.png"));
+        ScilabCommonsUtils.copyFile(new File(FindIconHelper.findIcon("dialog-information")), new File(outImages + "/ScilabTip.png"));
+        ScilabCommonsUtils.copyFile(new File(FindIconHelper.findIcon("emblem-important")), new File(outImages + "/ScilabImportant.png"));
         if (!isToolbox) {
             ScilabCommonsUtils.copyFile(new File(SCI + "/modules/helptools/data/pages/error.html"), new File(outName + "/ScilabErrorPage.html"));
             File homepage = new File(SCI + "/modules/helptools/data/pages/homepage-" + language + ".html");

@@ -35,6 +35,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UICHILDMENU__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UIMENU__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UIPARENTMENU__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ICON__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VISIBLE__;
 
 import java.awt.BorderLayout;
@@ -43,9 +44,15 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JLayeredPane;
 
+import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.figure.Figure.BarType;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
@@ -236,6 +243,19 @@ public class SwingScilabCommonPanel {
                 Integer[] padding = (Integer[]) GraphicController.getController().getProperty(component.getId(), __GO_BORDER_OPT_PADDING__);
                 component.getWidgetPane().setLayout(new BorderLayout(padding[0], padding[1]));
                 component.getWidgetPane().setLayout(new BorderLayout());
+            }
+            case __GO_UI_ICON__ : {
+                File file = new File((String)value);
+                if (file.exists() == false) {
+                    String filename = FindIconHelper.findImage((String)value);
+                    file = new File(filename);
+                }
+
+                try {
+                    BufferedImage icon = ImageIO.read(file);
+                    component.getParentWindow().setIconImage(new ImageIcon(icon).getImage());
+                } catch (IOException e) {
+                }
             }
         }
     }

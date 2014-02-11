@@ -48,6 +48,7 @@
 #include "SetUimenuChecked.h"
 #include "SetConsoleShowHiddenHandles.h"
 #include "SetUicontrolTooltipString.h"
+#include "SetUicontrol.h"
 
 
 int set_color_map_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);

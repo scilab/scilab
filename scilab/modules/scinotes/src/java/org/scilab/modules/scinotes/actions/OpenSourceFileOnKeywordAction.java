@@ -37,8 +37,8 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.JTextComponent;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
+import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.scinotes.KeywordEvent;
 import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.ScilabDocument;
@@ -165,7 +165,7 @@ public class OpenSourceFileOnKeywordAction extends DefaultAction {
 
         mainFrame = new JFrame();
         mainFrame.setAlwaysOnTop(true);
-        mainFrame.setIconImage(new ImageIcon(ScilabSwingUtilities.findIcon("scilab")).getImage());
+        mainFrame.setIconImage(new ImageIcon(FindIconHelper.findIcon("scilab")).getImage());
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         windowAlreadyExist = true;

@@ -182,17 +182,19 @@ am__v_lt_1 =
 libscicommons_la_LIBADD =
 am__libscicommons_la_SOURCES_DIST = src/jni/ScilabCommons_wrap.c \
 	src/jni/CommonFileUtils_wrap.c src/c/fileutils.c \
-	src/fortran/empty.f src/jni/GiwsException.cpp
+	src/fortran/empty.f src/jni/FindIconHelper.cpp \
+	src/jni/GiwsException.cpp
 am__dirstamp = $(am__leading_dot)dirstamp
 am__objects_1 = src/jni/libscicommons_la-ScilabCommons_wrap.lo \
 	src/jni/libscicommons_la-CommonFileUtils_wrap.lo \
 	src/c/libscicommons_la-fileutils.lo
 am__objects_2 = src/fortran/empty.lo
-@NEED_JAVA_TRUE@am__objects_3 =  \
+am__objects_3 = src/jni/libscicommons_la-FindIconHelper.lo
+@NEED_JAVA_TRUE@am__objects_4 =  \
 @NEED_JAVA_TRUE@	src/jni/libscicommons_la-GiwsException.lo
-am__objects_4 = $(am__objects_3)
+am__objects_5 = $(am__objects_4)
 am_libscicommons_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
-	$(am__objects_4)
+	$(am__objects_3) $(am__objects_5)
 libscicommons_la_OBJECTS = $(am_libscicommons_la_OBJECTS)
 @GUI_TRUE@am_libscicommons_la_rpath = -rpath $(pkglibdir)
 AM_V_P = $(am__v_P_@AM_V@)
@@ -578,6 +580,7 @@ libscicommons_la_etc_DATA = \
 	etc/commons.quit \
 	etc/commons.start
 
+COMMONS_JNI_SOURCES = src/jni/FindIconHelper.cpp
 COMMONS_C_SOURCES = src/jni/ScilabCommons_wrap.c \
 		     src/jni/CommonFileUtils_wrap.c \
 		     src/c/fileutils.c
@@ -603,6 +606,7 @@ INCLUDE_FLAGS = $(libscicommons_la_CPPFLAGS)
 SWIG_WRAPPERS = src/jni/ScilabCommons.i \
                 src/jni/CommonFileUtils.i
 
+GIWS_WRAPPERS = src/jni/FindIconHelper.giws.xml
 BUILT_SOURCES = $(am__append_3) $(am__append_4)
 
 #### commons : gateway declaration ####
@@ -782,6 +786,8 @@ src/fortran/$(DEPDIR)/$(am__dirstamp):
 	@: > src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/empty.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/jni/libscicommons_la-FindIconHelper.lo: src/jni/$(am__dirstamp) \
+	src/jni/$(DEPDIR)/$(am__dirstamp)
 src/jni/libscicommons_la-GiwsException.lo: src/jni/$(am__dirstamp) \
 	src/jni/$(DEPDIR)/$(am__dirstamp)
 
@@ -802,6 +808,7 @@ distclean-compile:
 
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicommons_la-fileutils.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libscicommons_la-CommonFileUtils_wrap.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libscicommons_la-FindIconHelper.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libscicommons_la-GiwsException.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libscicommons_la-ScilabCommons_wrap.Plo@am__quote@
 
@@ -873,6 +880,13 @@ src/c/libscicommons_la-fileutils.lo: src/c/fileutils.c
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LTCXXCOMPILE) -c -o $@ $<
+
+src/jni/libscicommons_la-FindIconHelper.lo: src/jni/FindIconHelper.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicommons_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/jni/libscicommons_la-FindIconHelper.lo -MD -MP -MF src/jni/$(DEPDIR)/libscicommons_la-FindIconHelper.Tpo -c -o src/jni/libscicommons_la-FindIconHelper.lo `test -f 'src/jni/FindIconHelper.cpp' || echo '$(srcdir)/'`src/jni/FindIconHelper.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/jni/$(DEPDIR)/libscicommons_la-FindIconHelper.Tpo src/jni/$(DEPDIR)/libscicommons_la-FindIconHelper.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/jni/FindIconHelper.cpp' object='src/jni/libscicommons_la-FindIconHelper.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicommons_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/jni/libscicommons_la-FindIconHelper.lo `test -f 'src/jni/FindIconHelper.cpp' || echo '$(srcdir)/'`src/jni/FindIconHelper.cpp
 
 src/jni/libscicommons_la-GiwsException.lo: src/jni/GiwsException.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicommons_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/jni/libscicommons_la-GiwsException.lo -MD -MP -MF src/jni/$(DEPDIR)/libscicommons_la-GiwsException.Tpo -c -o src/jni/libscicommons_la-GiwsException.lo `test -f 'src/jni/GiwsException.cpp' || echo '$(srcdir)/'`src/jni/GiwsException.cpp

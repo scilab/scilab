@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -84,7 +84,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;../jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../includes;../../../core/includes;../../../fileio/includes;../../../graphics/includes;../../../graphic_export/includes;../../../graphics/src/c/getHandleProperty;../../../renderer/src/cpp;../../../renderer/src/jni;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../../libs/intl;;../../../string/includes;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../renderer/includes;../cpp;../../../api_scilab/includes;../../../commons/src/jni;../../../graphic_objects/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../includes;../../../core/includes;../../../fileio/includes;../../../graphics/includes;../../../graphic_export/includes;../../../graphics/src/c/getHandleProperty;../../../renderer/src/cpp;../../../renderer/src/jni;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../../libs/intl;../../../string/includes;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../renderer/includes;../cpp;../../../api_scilab/includes;../../../commons/src/jni;../../../graphic_objects/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;GUI_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -112,7 +112,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;../jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../includes;../../../core/includes;../../../fileio/includes;../../../graphics/includes;../../../graphic_export/includes;../../../graphics/src/c/getHandleProperty;../../../renderer/src/cpp;../../../renderer/src/jni;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../../libs/intl;;../../../string/includes;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../renderer/includes;../cpp;../../../api_scilab/includes;../../../commons/src/jni;../../../graphic_objects/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../includes;../../../core/includes;../../../fileio/includes;../../../graphics/includes;../../../graphic_export/includes;../../../graphics/src/c/getHandleProperty;../../../renderer/src/cpp;../../../renderer/src/jni;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../../libs/intl;../../../string/includes;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../renderer/includes;../cpp;../../../api_scilab/includes;../../../commons/src/jni;../../../graphic_objects/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;GUI_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -138,7 +138,7 @@
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;../jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../includes;../../../core/includes;../../../fileio/includes;../../../graphics/includes;../../../graphic_export/includes;../../../graphics/src/c/getHandleProperty;../../../renderer/src/cpp;../../../renderer/src/jni;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../../libs/intl;;../../../string/includes;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../renderer/includes;../cpp;../../../api_scilab/includes;../../../commons/src/jni;../../../graphic_objects/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../includes;../../../core/includes;../../../fileio/includes;../../../graphics/includes;../../../graphic_export/includes;../../../graphics/src/c/getHandleProperty;../../../renderer/src/cpp;../../../renderer/src/jni;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../../libs/intl;../../../string/includes;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../renderer/includes;../cpp;../../../api_scilab/includes;../../../commons/src/jni;../../../graphic_objects/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;GUI_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -171,7 +171,7 @@
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;../jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../includes;../../../core/includes;../../../fileio/includes;../../../graphics/includes;../../../graphic_export/includes;../../../graphics/src/c/getHandleProperty;../../../renderer/src/cpp;../../../renderer/src/jni;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../../libs/intl;;../../../string/includes;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../renderer/includes;../cpp;../../../api_scilab/includes;../../../commons/src/jni;../../../graphic_objects/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../includes;../../../core/includes;../../../fileio/includes;../../../graphics/includes;../../../graphic_export/includes;../../../graphics/src/c/getHandleProperty;../../../renderer/src/cpp;../../../renderer/src/jni;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../../libs/intl;../../../string/includes;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../renderer/includes;../cpp;../../../api_scilab/includes;../../../commons/src/jni;../../../graphic_objects/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;GUI_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -211,9 +211,12 @@
     <ClCompile Include="..\..\sci_gateway\cpp\sci_openged.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_datatipcreate.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_datatipremove.cpp" />
+    <ClCompile Include="..\cpp\CreateUIControl.cpp" />
     <ClCompile Include="..\cpp\GetConsoleShowHiddenHandles.cpp" />
+    <ClCompile Include="..\cpp\GetUicontrolIcon.cpp" />
     <ClCompile Include="..\cpp\GetUicontrolTooltipString.cpp" />
     <ClCompile Include="..\cpp\SetConsoleShowHiddenHandles.cpp" />
+    <ClCompile Include="..\cpp\SetUicontrolIcon.cpp" />
     <ClCompile Include="..\jni\DatatipCreate.cpp" />
     <ClCompile Include="..\jni\DatatipSetStyle.cpp" />
     <ClCompile Include="..\jni\DatatipDelete.cpp" />
@@ -239,7 +242,6 @@
     <ClCompile Include="..\jni\CallScilabBridge.cpp" />
     <ClCompile Include="checkColorRange.c" />
     <ClCompile Include="..\cpp\ContextMenu.cpp" />
-    <ClCompile Include="CreateUIControl.c" />
     <ClCompile Include="CreateUimenu.c" />
     <ClCompile Include="..\cpp\displaytree.cpp" />
     <ClCompile Include="DllmainGUI.c" />
@@ -418,6 +420,8 @@
     <ClInclude Include="..\..\includes\exportUserInterface.hxx" />
     <ClInclude Include="..\..\includes\GetConsoleShowHiddenHandles.h" />
     <ClInclude Include="..\..\includes\GetScreenProperty.h" />
+    <ClInclude Include="..\..\includes\GetUicontrol.h" />
+    <ClInclude Include="..\..\includes\SetUicontrol.h" />
     <ClInclude Include="..\..\includes\GetUicontrolBackgroundColor.h" />
     <ClInclude Include="..\..\includes\GetUicontrolFontAngle.h" />
     <ClInclude Include="..\..\includes\GetUicontrolFontName.h" />
@@ -470,6 +474,7 @@
     <ClInclude Include="..\..\includes\SetUiobjectForegroundColor.h" />
     <ClInclude Include="..\..\includes\TerminateGui.h" />
     <ClInclude Include="..\..\includes\Widget.h" />
+    <ClInclude Include="..\cpp\CreateUIControl.h" />
     <ClInclude Include="..\jni\DatatipCreate.hxx" />
     <ClInclude Include="..\jni\DatatipSetStyle.hxx" />
     <ClInclude Include="..\jni\DatatipDelete.hxx" />
@@ -547,7 +552,6 @@
     <ClInclude Include="..\jni\SwingView.hxx" />
     <ClInclude Include="buildMainWindowTitle.h" />
     <ClInclude Include="checkColorRange.h" />
-    <ClInclude Include="CreateUIControl.h" />
     <ClInclude Include="CreateUimenu.h" />
     <ClInclude Include="getMainWindowTitle.h" />
     <ClInclude Include="iconifyMainWindow.h" />

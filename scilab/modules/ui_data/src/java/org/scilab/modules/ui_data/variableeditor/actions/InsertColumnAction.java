@@ -16,11 +16,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JMenuItem;
 import javax.swing.JTable;
 
+import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.pushbutton.ScilabPushButton;
-import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.ui_data.datatable.SwingEditvarTableModel;
 import org.scilab.modules.ui_data.variableeditor.TableVariableEditor;
 
@@ -68,7 +68,7 @@ public final class InsertColumnAction extends CommonCallBack {
         PushButton button = ScilabPushButton.createPushButton();
         ((SwingScilabPushButton) button.getAsSimplePushButton()).addActionListener(new InsertColumnAction(table, title));
         button.setToolTipText(title);
-        ImageIcon imageIcon = new ImageIcon(ScilabSwingUtilities.findIcon("short"));
+        ImageIcon imageIcon = new ImageIcon(FindIconHelper.findIcon("short"));
         ((SwingScilabPushButton) button.getAsSimplePushButton()).setIcon(imageIcon);
 
         return button;

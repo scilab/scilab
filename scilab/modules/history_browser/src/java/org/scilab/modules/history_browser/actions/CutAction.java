@@ -16,6 +16,7 @@ import java.lang.reflect.InvocationTargetException;
 
 import javax.swing.ImageIcon;
 
+import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.commons.gui.ScilabKeyStroke;
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
@@ -23,7 +24,6 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.pushbutton.ScilabPushButton;
-import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.history_browser.CommandHistory;
 import org.scilab.modules.history_browser.CommandHistoryMessages;
 
@@ -36,7 +36,7 @@ public final class CutAction extends CommonCallBack {
     private static final long serialVersionUID = 1L;
 
     private static final String LABEL = CommandHistoryMessages.CUT;
-    private static final String ICON = ScilabSwingUtilities.findIcon("edit-cut");
+    private static final String ICON = FindIconHelper.findIcon("edit-cut");
     private static final char MNEMONIC = 'U';
 
     private static final String KEY = "OSSCKEY X";

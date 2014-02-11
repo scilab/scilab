@@ -15,6 +15,7 @@ package org.scilab.modules.ui_data.variableeditor.actions;
 import javax.swing.ImageIcon;
 import javax.swing.JTable;
 
+import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.commons.gui.ScilabKeyStroke;
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
@@ -23,7 +24,6 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.pushbutton.ScilabPushButton;
-import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.ui_data.variableeditor.SwingScilabVariableEditor;
 import org.scilab.modules.ui_data.variableeditor.TableVariableEditor;
 
@@ -77,7 +77,7 @@ public final class SizeColumnsToFitAction extends CommonCallBack {
         PushButton button = ScilabPushButton.createPushButton();
         ((SwingScilabPushButton) button.getAsSimplePushButton()).addActionListener(new SizeColumnsToFitAction(editor, title));
         button.setToolTipText(title);
-        ImageIcon imageIcon = new ImageIcon(ScilabSwingUtilities.findIcon("SizeColumnsToFit"));
+        ImageIcon imageIcon = new ImageIcon(FindIconHelper.findIcon("SizeColumnsToFit"));
         ((SwingScilabPushButton) button.getAsSimplePushButton()).setIcon(imageIcon);
 
         return button;

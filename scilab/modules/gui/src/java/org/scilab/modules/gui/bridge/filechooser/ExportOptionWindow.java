@@ -30,12 +30,12 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.SwingUtilities;
 
+import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.graphic_export.ExportParams;
 import org.scilab.modules.graphic_export.FileExporter;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
 import org.scilab.modules.gui.tab.SimpleTab;
-import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.localization.Messages;
 
 /**
@@ -73,7 +73,7 @@ public class ExportOptionWindow implements ActionListener {
         parentWindow = (Window) SwingUtilities.getAncestorOfClass(Window.class, (JComponent) tab);
         optionDialog = new JDialog(parentWindow);
         optionDialog.setTitle(String.format(Messages.gettext("Option for %s format"), exportData.getExportExtension().toUpperCase()));
-        optionDialog.setIconImage(new ImageIcon(ScilabSwingUtilities.findIcon("scilab")).getImage());
+        optionDialog.setIconImage(new ImageIcon(FindIconHelper.findIcon("scilab")).getImage());
     }
 
     /**

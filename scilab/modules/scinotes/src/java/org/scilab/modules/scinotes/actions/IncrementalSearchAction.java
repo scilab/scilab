@@ -38,9 +38,9 @@ import javax.swing.JTextField;
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.commons.ScilabConstants;
+import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
-import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.ScilabDocument;
 import org.scilab.modules.scinotes.ScilabEditorPane;
@@ -56,8 +56,8 @@ public final class IncrementalSearchAction extends DefaultAction {
     private static final String SCI = ScilabConstants.SCI.getPath();
     private static final String TAB = "tab";
     private static final ImageIcon CLOSEICON = new ImageIcon(SCI + "/modules/gui/images/icons/close-tab.png");
-    private static final ImageIcon TOPICON = new ImageIcon(ScilabSwingUtilities.findIcon("go-top"));
-    private static final ImageIcon BOTICON = new ImageIcon(ScilabSwingUtilities.findIcon("go-bottom"));
+    private static final ImageIcon TOPICON = new ImageIcon(FindIconHelper.findIcon("go-top"));
+    private static final ImageIcon BOTICON = new ImageIcon(FindIconHelper.findIcon("go-bottom"));
     private static final int BUTTONSIZE = 28;
 
     private static Map<SciNotes, SearchField> fields = new HashMap<SciNotes, SearchField>();

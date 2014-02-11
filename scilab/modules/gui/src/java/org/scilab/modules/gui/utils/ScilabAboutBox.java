@@ -28,6 +28,7 @@ import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JToggleButton;
 
+import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.localization.Messages;
 
@@ -40,7 +41,7 @@ public class ScilabAboutBox {
 
     public static final String SCIDIR = System.getenv("SCI");
     public static final String IMAGEPATH = SCIDIR + "/modules/gui/images/icons/aboutscilab.png";
-    private static Icon scilabIcon = new ImageIcon(ScilabSwingUtilities.findIcon("scilab", "256x256"));
+    private static Icon scilabIcon = new ImageIcon(FindIconHelper.findIcon("scilab", "256x256"));
     private static Image imageForIcon = ((ImageIcon) scilabIcon).getImage();
 
     /**

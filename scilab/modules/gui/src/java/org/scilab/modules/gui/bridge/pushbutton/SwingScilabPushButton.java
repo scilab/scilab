@@ -14,16 +14,23 @@
 
 package org.scilab.modules.gui.bridge.pushbutton;
 
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ICON__;
+
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.image.BufferedImage;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.UIManager;
 
+import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.console.utils.ScilabSpecialTextUtilities;
 import org.scilab.modules.graphic_objects.console.Console;
 import org.scilab.modules.gui.SwingViewObject;
@@ -305,7 +312,24 @@ public class SwingScilabPushButton extends JButton implements SwingViewObject, S
      * @param value property value
      */
     public void update(int property, Object value) {
-        SwingViewWidget.update(this, property, value);
+        switch (property) {
+            case __GO_UI_ICON__ : {
+                File file = new File((String)value);
+                if (file.exists() == false) {
+                    String filename = FindIconHelper.findImage((String)value);
+                    file = new File(filename);
+                }
+
+                try {
+                    BufferedImage icon = ImageIO.read(file);
+                    setIcon(new ImageIcon(icon));
+                } catch (IOException e) {
+                }
+            }
+            default : {
+                SwingViewWidget.update(this, property, value);
+            }
+        }
     }
 
     public void setBackground(Color color) {

@@ -27,9 +27,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 
+import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.console.ScilabConsole;
-import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.waitbar.SimpleWaitBar;
 
 /**
@@ -51,7 +51,7 @@ public class SwingScilabWaitBar extends JFrame implements SwingViewObject, Simpl
 
     private final JLabel messageLabel;
 
-    private final ImageIcon scilabIcon = new ImageIcon(ScilabSwingUtilities.findIcon("scilab"));
+    private final ImageIcon scilabIcon = new ImageIcon(FindIconHelper.findIcon("scilab"));
 
     /**
      * Default constructor

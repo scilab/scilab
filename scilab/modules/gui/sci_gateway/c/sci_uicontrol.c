@@ -74,7 +74,8 @@ static const char* propertiesNames[] =
     "groupname",
     "title_position",
     "title_scroll",
-    "scrollable"
+    "scrollable",
+    "icon"
 };
 
 /*--------------------------------------------------------------------------*/

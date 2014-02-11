@@ -12,6 +12,8 @@
 
 package org.scilab.modules.ui_data.variableeditor.actions;
 
+import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.asynchronousScilabExec;
+
 import java.awt.Component;
 import java.util.HashMap;
 import java.util.Map;
@@ -20,25 +22,22 @@ import javax.swing.ImageIcon;
 import javax.swing.JPopupMenu;
 import javax.swing.JTable;
 
-import org.scilab.modules.types.ScilabTypeEnumDescription;
-import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
+import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
+import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.pushbutton.ScilabPushButton;
-import org.scilab.modules.gui.utils.ScilabSwingUtilities;
+import org.scilab.modules.types.ScilabTypeEnumDescription;
 import org.scilab.modules.ui_data.BrowseVar;
 import org.scilab.modules.ui_data.EditVar;
 import org.scilab.modules.ui_data.datatable.SwingEditvarTableModel;
-import org.scilab.modules.ui_data.variableeditor.SwingScilabVariableEditor;
 import org.scilab.modules.ui_data.variablebrowser.SwingScilabVariableBrowser;
-
-import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.asynchronousScilabExec;
-
-import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
+import org.scilab.modules.ui_data.variableeditor.SwingScilabVariableEditor;
 
 
 /**
@@ -238,7 +237,7 @@ public final class PlotAction extends CommonCallBack {
     public static PushButton createButton(SwingScilabDockablePanel editor, String title) {
         final PushButton button = ScilabPushButton.createPushButton();
         button.setToolTipText(title);
-        ImageIcon imageIcon = new ImageIcon(ScilabSwingUtilities.findIcon("plot"));
+        ImageIcon imageIcon = new ImageIcon(FindIconHelper.findIcon("plot"));
         ((SwingScilabPushButton) button.getAsSimplePushButton()).setIcon(imageIcon);
 
         final JPopupMenu popup = new JPopupMenu() {
@@ -288,7 +287,7 @@ public final class PlotAction extends CommonCallBack {
         MenuItem menu = ScilabMenuItem.createMenuItem();
         menu.setCallback(new PlotAction(editor, title, onSelection));
         menu.setText(title);
-        ((SwingScilabMenuItem) menu.getAsSimpleMenuItem()).setIcon(new ImageIcon(ScilabSwingUtilities.findIcon(IMG[map.get(title)])));
+        ((SwingScilabMenuItem) menu.getAsSimpleMenuItem()).setIcon(new ImageIcon(FindIconHelper.findIcon(IMG[map.get(title)])));
 
         return menu;
     }

@@ -13,15 +13,20 @@
  */
 package org.scilab.modules.gui.bridge.label;
 
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FRAME_BORDER__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ICON__;
 
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JEditorPane;
 import javax.swing.JLabel;
@@ -35,9 +40,8 @@ import javax.swing.event.HyperlinkListener;
 import javax.swing.text.html.HTMLDocument;
 import javax.swing.text.html.StyleSheet;
 
+import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.console.utils.ScilabSpecialTextUtilities;
-import org.scilab.modules.graphic_objects.graphicController.GraphicController;
-import org.scilab.modules.graphic_objects.uicontrol.frame.border.FrameBorderType;
 import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.SwingViewWidget;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
@@ -484,7 +488,28 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
      * @param value property value
      */
     public void update(int property, Object value) {
-        SwingViewWidget.update(this, property, value);
+        switch (property) {
+            case __GO_UI_ICON__ : {
+                if (isJLabel) {
+                    File file = new File((String)value);
+                    if (file.exists() == false) {
+                        String filename = FindIconHelper.findImage((String)value);
+                        file = new File(filename);
+                    }
+
+                    try {
+                        BufferedImage icon = ImageIO.read(file);
+                        ((JLabel) label).setIcon(new ImageIcon(icon));
+                    } catch (IOException e) {
+                    }
+                } else {
+                    //Icon in JEditorPane ?
+                }
+            }
+            default : {
+                SwingViewWidget.update(this, property, value);
+            }
+        }
     }
 
     public void resetBackground() {

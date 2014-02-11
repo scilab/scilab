@@ -17,13 +17,13 @@ import java.lang.reflect.InvocationTargetException;
 import javax.swing.ImageIcon;
 
 import org.scilab.modules.commons.ScilabGeneralPrefs;
+import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.pushbutton.ScilabPushButton;
-import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.history_browser.CommandHistoryMessages;
 
 /**
@@ -35,7 +35,7 @@ public final class PrefsAction extends CommonCallBack {
     private static final long serialVersionUID = 1L;
 
     private static final String LABEL = CommandHistoryMessages.SCILAB_PREFS;
-    private static final String ICON = ScilabSwingUtilities.findIcon("preferences-system");
+    private static final String ICON = FindIconHelper.findIcon("preferences-system");
     private static final char MNEMONIC = 'P';
 
     /**

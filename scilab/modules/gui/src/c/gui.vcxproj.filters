@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
@@ -60,9 +60,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\cpp\ContextMenu.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CreateUIControl.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CreateUimenu.c">
@@ -452,6 +449,15 @@
     <ClCompile Include="..\..\sci_gateway\c\sci_figure.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\cpp\GetUicontrolIcon.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\SetUicontrolIcon.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\CreateUIControl.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="core_import.def">
@@ -474,9 +480,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="checkColorRange.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CreateUIControl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CreateUimenu.h">
@@ -921,6 +924,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\jni\DatatipOrientation.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\SetUicontrol.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\GetUicontrol.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cpp\CreateUIControl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

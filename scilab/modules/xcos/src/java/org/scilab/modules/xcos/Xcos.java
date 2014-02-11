@@ -34,6 +34,7 @@ import javax.swing.ImageIcon;
 import javax.swing.SwingUtilities;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
+import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.commons.xml.XConfiguration;
 import org.scilab.modules.core.Scilab;
 import org.scilab.modules.graph.actions.base.GraphActionManager;
@@ -49,7 +50,6 @@ import org.scilab.modules.gui.tabfactory.AbstractScilabTabFactory;
 import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
 import org.scilab.modules.gui.utils.BarUpdater;
 import org.scilab.modules.gui.utils.ClosingOperationsManager;
-import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.WindowsConfigurationManager;
 import org.scilab.modules.localization.Messages;
 import org.scilab.modules.xcos.actions.ExternalAction;
@@ -92,7 +92,7 @@ public final class Xcos {
      * The current Xcos tradename
      */
     public static final String TRADENAME = "Xcos";
-    public static final ImageIcon ICON = new ImageIcon(ScilabSwingUtilities.findIcon("utilities-system-monitor", "256x256"));
+    public static final ImageIcon ICON = new ImageIcon(FindIconHelper.findIcon("utilities-system-monitor", "256x256"));
 
     private static final String LOAD_XCOS_LIBS_LOAD_SCICOS = "prot=funcprot(); funcprot(0); loadXcosLibs(); loadScicos(); funcprot(prot); clear prot";
 

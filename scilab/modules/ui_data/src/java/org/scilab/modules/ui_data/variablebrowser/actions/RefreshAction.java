@@ -19,6 +19,7 @@ import javax.swing.ImageIcon;
 
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
+import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
@@ -26,7 +27,6 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.pushbutton.ScilabPushButton;
-import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 
 /**
  * RefreshAction class
@@ -40,7 +40,7 @@ public final class RefreshAction extends CommonCallBack {
     /** Accelerator key for the action */
     public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
 
-    private static ImageIcon icon = new ImageIcon(ScilabSwingUtilities.findIcon("view-refresh"));
+    private static ImageIcon icon = new ImageIcon(FindIconHelper.findIcon("view-refresh"));
 
     /**
      * Constructor

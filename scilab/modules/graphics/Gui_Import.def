@@ -68,3 +68,5 @@ SetUimenuLabel
 SetUiobjectEnable
 GetConsoleUseDeprecatedLF
 SetConsoleUseDeprecatedLF
+GetUicontrolIcon
+SetUicontrolIcon

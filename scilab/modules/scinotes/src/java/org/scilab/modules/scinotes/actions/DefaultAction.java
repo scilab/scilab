@@ -19,6 +19,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 
+import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
@@ -26,7 +27,6 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.pushbutton.ScilabPushButton;
-import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.utils.SciNotesMessages;
 
@@ -82,7 +82,7 @@ public class DefaultAction extends CommonCallBack {
         if (icon == null) {
             button.setText(title);
         } else {
-            ((SwingScilabPushButton) button.getAsSimplePushButton()).setIcon(new ImageIcon(ScilabSwingUtilities.findIcon(icon)));
+            ((SwingScilabPushButton) button.getAsSimplePushButton()).setIcon(new ImageIcon(FindIconHelper.findIcon(icon)));
         }
         return button;
     }

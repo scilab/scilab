@@ -59,6 +59,7 @@ import javax.swing.event.HyperlinkListener;
 import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.text.html.StyleSheet;
 
+import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.messagebox.SimpleMessageBox;
 import org.scilab.modules.gui.tab.SimpleTab;
@@ -98,9 +99,9 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
     /**
      * Icons
      */
-    private final Icon scilabIcon = new ImageIcon(ScilabSwingUtilities.findIcon("scilab", "48x48"));
-    private final Icon passwdIcon = new ImageIcon(ScilabSwingUtilities.findIcon("emblem-readonly", "48x48"));
-    private final Icon hourglassIcon = new ImageIcon(ScilabSwingUtilities.findIcon("process-working"));
+    private final Icon scilabIcon = new ImageIcon(FindIconHelper.findIcon("scilab", "48x48"));
+    private final Icon passwdIcon = new ImageIcon(FindIconHelper.findIcon("emblem-readonly", "48x48"));
+    private final Icon hourglassIcon = new ImageIcon(FindIconHelper.findIcon("process-working"));
 
     private int elementId;
 

@@ -57,8 +57,8 @@ import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 
+import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
-import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.ScilabEditorPane;
 import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
@@ -74,7 +74,7 @@ public class RestoreOpenedFilesAction extends DefaultCheckAction {
 
     private static final int GAP = 10;
     private static final String ESCAPE = "ESCAPE";
-    private static final Icon SCILAB_ICON = new ImageIcon(ScilabSwingUtilities.findIcon("scilab"));
+    private static final Icon SCILAB_ICON = new ImageIcon(FindIconHelper.findIcon("scilab"));
     private static List<File> selectedFiles;
 
     /**

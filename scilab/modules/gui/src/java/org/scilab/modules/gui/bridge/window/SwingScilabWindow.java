@@ -39,6 +39,7 @@ import javax.swing.WindowConstants;
 
 import org.flexdock.docking.DockingPort;
 import org.scilab.modules.action_binding.InterpreterManagement;
+import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.commons.gui.ScilabKeyStroke;
 import org.scilab.modules.gui.bridge.menubar.SwingScilabMenuBar;
 import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
@@ -53,7 +54,6 @@ import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.SimpleToolBar;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Position;
-import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.window.SimpleWindow;
 
@@ -106,7 +106,7 @@ public abstract class SwingScilabWindow extends JFrame implements SimpleWindow {
         // TODO : Only for testing : Must be removed
         this.setDims(new Size(DEFAULTWIDTH, DEFAULTHEIGHT));
         this.setTitle("Scilab");
-        setIconImage(new ImageIcon(ScilabSwingUtilities.findIcon("scilab", "256x256")).getImage());
+        setIconImage(new ImageIcon(FindIconHelper.findIcon("scilab", "256x256")).getImage());
 
         /* defining the Layout */
         super.setLayout(new java.awt.BorderLayout());
@@ -192,7 +192,7 @@ public abstract class SwingScilabWindow extends JFrame implements SimpleWindow {
             OSXAdapter.setAboutHandler(this, getClass().getMethod("macosxAbout", (Class[]) null));
             OSXAdapter.setQuitHandler(this, getClass().getMethod("macosxQuit", (Class[]) null));
             OSXAdapter.setPreferencesHandler(this, getClass().getMethod("macosxPreferences", (Class[]) null));
-            OSXAdapter.setDockIcon(new ImageIcon(ScilabSwingUtilities.findIcon("puffin", "256x256")));
+            OSXAdapter.setDockIcon(new ImageIcon(FindIconHelper.findIcon("puffin", "256x256")));
         } catch (java.lang.NoSuchMethodException e) {
             System.err.println("OSXAdapter could not find the method: " + e.getLocalizedMessage());
         }

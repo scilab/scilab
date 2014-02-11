@@ -182,7 +182,6 @@ am__objects_1 = src/c/libscigui_algo_la-buildMainWindowTitle.lo \
 	src/c/libscigui_algo_la-InitializeGUI.lo \
 	src/c/libscigui_algo_la-setMainWindowTitle.lo \
 	src/c/libscigui_algo_la-addmenu.lo \
-	src/c/libscigui_algo_la-CreateUIControl.lo \
 	src/c/libscigui_algo_la-CreateUimenu.lo \
 	src/c/libscigui_algo_la-checkColorRange.lo \
 	src/c/libscigui_algo_la-messageboxoptions.lo \
@@ -190,6 +189,7 @@ am__objects_1 = src/c/libscigui_algo_la-buildMainWindowTitle.lo \
 	src/jni/libscigui_algo_la-ScilabTermination_wrap.lo
 am__objects_2 = src/cpp/libscigui_algo_la-InitUIMenu.lo \
 	src/jni/libscigui_algo_la-CallScilabBridge.lo \
+	src/cpp/libscigui_algo_la-CreateUIControl.lo \
 	src/jni/libscigui_algo_la-Jxclick.lo \
 	src/jni/libscigui_algo_la-SwingView.lo \
 	src/cpp/libscigui_algo_la-CallJxclick.lo \
@@ -246,6 +246,8 @@ am__objects_2 = src/cpp/libscigui_algo_la-InitUIMenu.lo \
 	src/cpp/libscigui_algo_la-GetUicontrolVerticalAlignment.lo \
 	src/cpp/libscigui_algo_la-SetUicontrolSliderStep.lo \
 	src/cpp/libscigui_algo_la-GetUicontrolSliderStep.lo \
+	src/cpp/libscigui_algo_la-SetUicontrolIcon.lo \
+	src/cpp/libscigui_algo_la-GetUicontrolIcon.lo \
 	src/cpp/libscigui_algo_la-SetConsoleShowHiddenHandles.lo \
 	src/cpp/libscigui_algo_la-GetConsoleShowHiddenHandles.lo \
 	src/cpp/libscigui_algo_la-UnitsConversion.lo \
@@ -726,7 +728,6 @@ src/c/getMainWindowTitle.c \
 src/c/InitializeGUI.c \
 src/c/setMainWindowTitle.c \
 src/c/addmenu.c \
-src/c/CreateUIControl.c \
 src/c/CreateUimenu.c \
 src/c/checkColorRange.c \
 src/c/messageboxoptions.c \
@@ -736,6 +737,7 @@ src/jni/ScilabTermination_wrap.c
 GUI_CXX_SOURCES = \
 src/cpp/InitUIMenu.cpp \
 src/jni/CallScilabBridge.cpp \
+src/cpp/CreateUIControl.cpp \
 src/jni/Jxclick.cpp \
 src/jni/SwingView.cpp \
 src/cpp/CallJxclick.cpp \
@@ -792,6 +794,8 @@ src/cpp/SetUicontrolVerticalAlignment.cpp \
 src/cpp/GetUicontrolVerticalAlignment.cpp \
 src/cpp/SetUicontrolSliderStep.cpp \
 src/cpp/GetUicontrolSliderStep.cpp \
+src/cpp/SetUicontrolIcon.cpp \
+src/cpp/GetUicontrolIcon.cpp \
 src/cpp/SetConsoleShowHiddenHandles.cpp \
 src/cpp/GetConsoleShowHiddenHandles.cpp \
 src/cpp/UnitsConversion.cpp \
@@ -1241,8 +1245,6 @@ src/c/libscigui_algo_la-setMainWindowTitle.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscigui_algo_la-addmenu.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
-src/c/libscigui_algo_la-CreateUIControl.lo: src/c/$(am__dirstamp) \
-	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscigui_algo_la-CreateUimenu.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscigui_algo_la-checkColorRange.lo: src/c/$(am__dirstamp) \
@@ -1269,6 +1271,8 @@ src/cpp/libscigui_algo_la-InitUIMenu.lo: src/cpp/$(am__dirstamp) \
 	src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/jni/libscigui_algo_la-CallScilabBridge.lo:  \
 	src/jni/$(am__dirstamp) src/jni/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscigui_algo_la-CreateUIControl.lo: src/cpp/$(am__dirstamp) \
+	src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/jni/libscigui_algo_la-Jxclick.lo: src/jni/$(am__dirstamp) \
 	src/jni/$(DEPDIR)/$(am__dirstamp)
 src/jni/libscigui_algo_la-SwingView.lo: src/jni/$(am__dirstamp) \
@@ -1380,6 +1384,10 @@ src/cpp/libscigui_algo_la-GetUicontrolVerticalAlignment.lo:  \
 src/cpp/libscigui_algo_la-SetUicontrolSliderStep.lo:  \
 	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscigui_algo_la-GetUicontrolSliderStep.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscigui_algo_la-SetUicontrolIcon.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscigui_algo_la-GetUicontrolIcon.lo:  \
 	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscigui_algo_la-SetConsoleShowHiddenHandles.lo:  \
 	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
@@ -1672,7 +1680,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_uiputfile.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_usecanvas.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_useeditor.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscigui_algo_la-CreateUIControl.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscigui_algo_la-CreateUimenu.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscigui_algo_la-InitializeGUI.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscigui_algo_la-ScilabTermination.Plo@am__quote@
@@ -1691,6 +1698,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscigui_algo_la-CallJxgetmouse.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscigui_algo_la-CallMessageBox.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscigui_algo_la-ContextMenu.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscigui_algo_la-CreateUIControl.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscigui_algo_la-GetConsoleShowHiddenHandles.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscigui_algo_la-GetScreenProperty.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscigui_algo_la-GetUicontrolBackgroundColor.Plo@am__quote@
@@ -1700,6 +1708,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscigui_algo_la-GetUicontrolFontUnits.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscigui_algo_la-GetUicontrolFontWeight.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscigui_algo_la-GetUicontrolHorizontalAlignment.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscigui_algo_la-GetUicontrolIcon.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscigui_algo_la-GetUicontrolListboxTop.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscigui_algo_la-GetUicontrolMax.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscigui_algo_la-GetUicontrolMin.Plo@am__quote@
@@ -1725,6 +1734,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscigui_algo_la-SetUicontrolFontUnits.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscigui_algo_la-SetUicontrolFontWeight.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscigui_algo_la-SetUicontrolHorizontalAlignment.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscigui_algo_la-SetUicontrolIcon.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscigui_algo_la-SetUicontrolListboxTop.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscigui_algo_la-SetUicontrolMax.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscigui_algo_la-SetUicontrolMin.Plo@am__quote@
@@ -1821,13 +1831,6 @@ src/c/libscigui_algo_la-addmenu.lo: src/c/addmenu.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/addmenu.c' object='src/c/libscigui_algo_la-addmenu.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscigui_algo_la-addmenu.lo `test -f 'src/c/addmenu.c' || echo '$(srcdir)/'`src/c/addmenu.c
-
-src/c/libscigui_algo_la-CreateUIControl.lo: src/c/CreateUIControl.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscigui_algo_la-CreateUIControl.lo -MD -MP -MF src/c/$(DEPDIR)/libscigui_algo_la-CreateUIControl.Tpo -c -o src/c/libscigui_algo_la-CreateUIControl.lo `test -f 'src/c/CreateUIControl.c' || echo '$(srcdir)/'`src/c/CreateUIControl.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscigui_algo_la-CreateUIControl.Tpo src/c/$(DEPDIR)/libscigui_algo_la-CreateUIControl.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/CreateUIControl.c' object='src/c/libscigui_algo_la-CreateUIControl.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscigui_algo_la-CreateUIControl.lo `test -f 'src/c/CreateUIControl.c' || echo '$(srcdir)/'`src/c/CreateUIControl.c
 
 src/c/libscigui_algo_la-CreateUimenu.lo: src/c/CreateUimenu.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscigui_algo_la-CreateUimenu.lo -MD -MP -MF src/c/$(DEPDIR)/libscigui_algo_la-CreateUimenu.Tpo -c -o src/c/libscigui_algo_la-CreateUimenu.lo `test -f 'src/c/CreateUimenu.c' || echo '$(srcdir)/'`src/c/CreateUimenu.c
@@ -2083,6 +2086,13 @@ src/jni/libscigui_algo_la-CallScilabBridge.lo: src/jni/CallScilabBridge.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/jni/CallScilabBridge.cpp' object='src/jni/libscigui_algo_la-CallScilabBridge.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/jni/libscigui_algo_la-CallScilabBridge.lo `test -f 'src/jni/CallScilabBridge.cpp' || echo '$(srcdir)/'`src/jni/CallScilabBridge.cpp
+
+src/cpp/libscigui_algo_la-CreateUIControl.lo: src/cpp/CreateUIControl.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscigui_algo_la-CreateUIControl.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscigui_algo_la-CreateUIControl.Tpo -c -o src/cpp/libscigui_algo_la-CreateUIControl.lo `test -f 'src/cpp/CreateUIControl.cpp' || echo '$(srcdir)/'`src/cpp/CreateUIControl.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscigui_algo_la-CreateUIControl.Tpo src/cpp/$(DEPDIR)/libscigui_algo_la-CreateUIControl.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/CreateUIControl.cpp' object='src/cpp/libscigui_algo_la-CreateUIControl.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscigui_algo_la-CreateUIControl.lo `test -f 'src/cpp/CreateUIControl.cpp' || echo '$(srcdir)/'`src/cpp/CreateUIControl.cpp
 
 src/jni/libscigui_algo_la-Jxclick.lo: src/jni/Jxclick.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/jni/libscigui_algo_la-Jxclick.lo -MD -MP -MF src/jni/$(DEPDIR)/libscigui_algo_la-Jxclick.Tpo -c -o src/jni/libscigui_algo_la-Jxclick.lo `test -f 'src/jni/Jxclick.cpp' || echo '$(srcdir)/'`src/jni/Jxclick.cpp
@@ -2475,6 +2485,20 @@ src/cpp/libscigui_algo_la-GetUicontrolSliderStep.lo: src/cpp/GetUicontrolSliderS
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/GetUicontrolSliderStep.cpp' object='src/cpp/libscigui_algo_la-GetUicontrolSliderStep.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscigui_algo_la-GetUicontrolSliderStep.lo `test -f 'src/cpp/GetUicontrolSliderStep.cpp' || echo '$(srcdir)/'`src/cpp/GetUicontrolSliderStep.cpp
+
+src/cpp/libscigui_algo_la-SetUicontrolIcon.lo: src/cpp/SetUicontrolIcon.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscigui_algo_la-SetUicontrolIcon.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscigui_algo_la-SetUicontrolIcon.Tpo -c -o src/cpp/libscigui_algo_la-SetUicontrolIcon.lo `test -f 'src/cpp/SetUicontrolIcon.cpp' || echo '$(srcdir)/'`src/cpp/SetUicontrolIcon.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscigui_algo_la-SetUicontrolIcon.Tpo src/cpp/$(DEPDIR)/libscigui_algo_la-SetUicontrolIcon.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/SetUicontrolIcon.cpp' object='src/cpp/libscigui_algo_la-SetUicontrolIcon.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscigui_algo_la-SetUicontrolIcon.lo `test -f 'src/cpp/SetUicontrolIcon.cpp' || echo '$(srcdir)/'`src/cpp/SetUicontrolIcon.cpp
+
+src/cpp/libscigui_algo_la-GetUicontrolIcon.lo: src/cpp/GetUicontrolIcon.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscigui_algo_la-GetUicontrolIcon.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscigui_algo_la-GetUicontrolIcon.Tpo -c -o src/cpp/libscigui_algo_la-GetUicontrolIcon.lo `test -f 'src/cpp/GetUicontrolIcon.cpp' || echo '$(srcdir)/'`src/cpp/GetUicontrolIcon.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscigui_algo_la-GetUicontrolIcon.Tpo src/cpp/$(DEPDIR)/libscigui_algo_la-GetUicontrolIcon.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/GetUicontrolIcon.cpp' object='src/cpp/libscigui_algo_la-GetUicontrolIcon.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscigui_algo_la-GetUicontrolIcon.lo `test -f 'src/cpp/GetUicontrolIcon.cpp' || echo '$(srcdir)/'`src/cpp/GetUicontrolIcon.cpp
 
 src/cpp/libscigui_algo_la-SetConsoleShowHiddenHandles.lo: src/cpp/SetConsoleShowHiddenHandles.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscigui_algo_la-SetConsoleShowHiddenHandles.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscigui_algo_la-SetConsoleShowHiddenHandles.Tpo -c -o src/cpp/libscigui_algo_la-SetConsoleShowHiddenHandles.lo `test -f 'src/cpp/SetConsoleShowHiddenHandles.cpp' || echo '$(srcdir)/'`src/cpp/SetConsoleShowHiddenHandles.cpp

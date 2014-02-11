@@ -28,6 +28,7 @@ import javax.swing.event.ChangeListener;
 import javax.swing.event.EventListenerList;
 import javax.xml.bind.JAXBException;
 
+import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.xcos.modelica.model.Model;
 import org.scilab.modules.xcos.modelica.model.Model.Identifiers;
@@ -134,7 +135,7 @@ public final class ModelicaController {
         dialog.setTitle(ModelicaMessages.MODELICA_SETTINGS);
         dialog.setAlwaysOnTop(false);
 
-        final ImageIcon icon = new ImageIcon(ScilabSwingUtilities.findIcon("scilab"));
+        final ImageIcon icon = new ImageIcon(FindIconHelper.findIcon("scilab"));
         dialog.setIconImage(icon.getImage());
 
         ModelicaController controller;

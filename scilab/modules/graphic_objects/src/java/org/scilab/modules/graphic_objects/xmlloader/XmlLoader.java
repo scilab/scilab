@@ -27,7 +27,6 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TABLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TAB__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TEXT__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VISIBLE__;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -44,6 +43,7 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+import org.scilab.modules.commons.gui.FindIconHelper;
 import org.xml.sax.Attributes;
 import org.xml.sax.Locator;
 import org.xml.sax.SAXException;
@@ -156,6 +156,12 @@ public class XmlLoader extends DefaultHandler {
     public int parse(String filename) throws SAXException {
         this.filename = filename;
         File f = new File(filename);
+        //add filename filepath in ScilabSwingUtilities paths
+        String absoluteFilePath = f.getAbsolutePath();
+        String path = absoluteFilePath.substring(0,
+                      absoluteFilePath.lastIndexOf(File.separator));
+        FindIconHelper.addThemePath(path);
+
         FileInputStream in = null;
         try {
             in = new FileInputStream(f);

@@ -21,7 +21,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultTreeCellRenderer;
 
-import org.scilab.modules.gui.utils.ScilabSwingUtilities;
+import org.scilab.modules.commons.gui.FindIconHelper;
 
 /**
  * Class define the Scilab tree renderer
@@ -36,9 +36,9 @@ public class ScilabTreeCellRenderer extends DefaultTreeCellRenderer {
      * Images
      */
     public static Toolkit toolkit = Toolkit.getDefaultToolkit();
-    public static Image plus = toolkit.getImage(ScilabSwingUtilities.findIcon("list-add"));
-    public static Image minus = toolkit.getImage(ScilabSwingUtilities.findIcon("list-remove"));
-    public static Image scilab = toolkit.getImage(ScilabSwingUtilities.findIcon("scilab"));
+    public static Image plus = toolkit.getImage(FindIconHelper.findIcon("list-add"));
+    public static Image minus = toolkit.getImage(FindIconHelper.findIcon("list-remove"));
+    public static Image scilab = toolkit.getImage(FindIconHelper.findIcon("scilab"));
 
     public static Image myNewPlus = plus.getScaledInstance(IMAGE_SIZE, IMAGE_SIZE, Image.SCALE_DEFAULT);
     public static Image myNewMinus = minus.getScaledInstance(IMAGE_SIZE, IMAGE_SIZE, Image.SCALE_DEFAULT);

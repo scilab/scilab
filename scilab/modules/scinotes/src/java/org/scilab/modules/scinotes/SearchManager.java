@@ -32,8 +32,8 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 import javax.swing.tree.DefaultMutableTreeNode;
 
+import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.commons.xml.ScilabXMLUtilities;
-import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.scinotes.utils.SciNotesMessages;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -45,10 +45,10 @@ import org.w3c.dom.NodeList;
  */
 public class SearchManager {
 
-    private static final ImageIcon FILEIMAGE = new ImageIcon(ScilabSwingUtilities.findIcon("stock_search"));
-    private static final ImageIcon SCILABFILEIMAGE = new ImageIcon(ScilabSwingUtilities.findIcon("scilab_search"));
-    private static final ImageIcon FOLDERIMAGE = new ImageIcon(ScilabSwingUtilities.findIcon("folder-saved-search"));
-    private static final ImageIcon LINEICON = new ImageIcon(ScilabSwingUtilities.findIcon("line-found"));
+    private static final ImageIcon FILEIMAGE = new ImageIcon(FindIconHelper.findIcon("stock_search"));
+    private static final ImageIcon SCILABFILEIMAGE = new ImageIcon(FindIconHelper.findIcon("scilab_search"));
+    private static final ImageIcon FOLDERIMAGE = new ImageIcon(FindIconHelper.findIcon("folder-saved-search"));
+    private static final ImageIcon LINEICON = new ImageIcon(FindIconHelper.findIcon("line-found"));
 
     /**
      * FIND AND REPLACE START

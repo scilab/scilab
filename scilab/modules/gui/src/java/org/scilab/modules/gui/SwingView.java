@@ -366,7 +366,7 @@ public final class SwingView implements GraphicView {
                 edit.setId(id);
                 setDefaultProperties(edit, id);
                 return edit;
-            case Figure:
+            case Figure: {
                 Figure figure = (Figure) GraphicController.getController().getObjectFromId(id);
                 String figureTitle = figure.getName();
                 Integer figureId = figure.getId();
@@ -429,11 +429,18 @@ public final class SwingView implements GraphicView {
                 }
                 tab.update(__GO_SIZE__, GraphicController.getController().getProperty(id, __GO_SIZE__));
                 tab.update(__GO_POSITION__, GraphicController.getController().getProperty(id, __GO_POSITION__));
+
+                String icon = (String)GraphicController.getController().getProperty(id, __GO_UI_ICON__);
+                if (icon != null && icon.equals("") == false) {
+                    tab.update(__GO_UI_ICON__, icon);
+                }
+
                 // TODO set other default properties
 
                 window.setVisible(figure.getVisible());
                 window.pack();
                 return tab;
+            }
             case Axes:
                 SwingScilabAxes axes = new SwingScilabAxes();
                 return axes;
@@ -479,11 +486,17 @@ public final class SwingView implements GraphicView {
                 progressbar.setIndeterminateMode(true);
                 progressbar.setId(id);
                 return progressbar;
-            case PushButton:
+            case PushButton: {
                 SwingScilabPushButton pushButton = new SwingScilabPushButton();
                 pushButton.setId(id);
                 setDefaultProperties(pushButton, id);
+                String icon = (String)GraphicController.getController().getProperty(id, __GO_UI_ICON__);
+                if (icon != null && icon.equals("") == false) {
+                    pushButton.update(__GO_UI_ICON__, icon);
+                }
+
                 return pushButton;
+            }
             case RadioButton:
                 SwingScilabRadioButton radioButton = new SwingScilabRadioButton();
                 radioButton.setId(id);
@@ -506,11 +519,16 @@ public final class SwingView implements GraphicView {
                 table.setId(id);
                 setDefaultProperties(table, id);
                 return table;
-            case Text:
+            case Text: {
                 SwingScilabLabel text = new SwingScilabLabel();
                 text.setId(id);
                 setDefaultProperties(text, id);
+                String icon = (String)GraphicController.getController().getProperty(id, __GO_UI_ICON__);
+                if (icon != null && icon.equals("") == false) {
+                    text.update(__GO_UI_ICON__, icon);
+                }
                 return text;
+            }
             case Uimenu:
                 throw new UnsupportedOperationException();
             case UiParentMenu: /* SwingView internal type */

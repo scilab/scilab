@@ -27,13 +27,13 @@ import java.awt.Color;
 
 import javax.swing.ImageIcon;
 
+import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.commons.gui.ScilabKeyStroke;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.gui.bridge.checkboxmenuitem.SwingScilabCheckBoxMenuItem;
 import org.scilab.modules.gui.bridge.menu.SwingScilabMenu;
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
-import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.widget.Widget;
 
 /**
@@ -86,7 +86,7 @@ public final class SwingViewMenu {
                 break;
             case __GO_UI_ICON__ :
                 if (!((String) value).equals("")) {
-                    ((SwingScilabMenuItem) uimenu).setIcon(new ImageIcon(ScilabSwingUtilities.findIcon((String) value, "16x16")));
+                    ((SwingScilabMenuItem) uimenu).setIcon(new ImageIcon(FindIconHelper.findIcon((String) value, "16x16")));
                 }
                 break;
             case __GO_UI_LABEL__ :

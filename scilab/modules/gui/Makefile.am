@@ -53,7 +53,6 @@ src/c/getMainWindowTitle.c \
 src/c/InitializeGUI.c \
 src/c/setMainWindowTitle.c \
 src/c/addmenu.c \
-src/c/CreateUIControl.c \
 src/c/CreateUimenu.c \
 src/c/checkColorRange.c \
 src/c/messageboxoptions.c \
@@ -63,6 +62,7 @@ src/jni/ScilabTermination_wrap.c
 GUI_CXX_SOURCES = \
 src/cpp/InitUIMenu.cpp \
 src/jni/CallScilabBridge.cpp \
+src/cpp/CreateUIControl.cpp \
 src/jni/Jxclick.cpp \
 src/jni/SwingView.cpp \
 src/cpp/CallJxclick.cpp \
@@ -119,6 +119,8 @@ src/cpp/SetUicontrolVerticalAlignment.cpp \
 src/cpp/GetUicontrolVerticalAlignment.cpp \
 src/cpp/SetUicontrolSliderStep.cpp \
 src/cpp/GetUicontrolSliderStep.cpp \
+src/cpp/SetUicontrolIcon.cpp \
+src/cpp/GetUicontrolIcon.cpp \
 src/cpp/SetConsoleShowHiddenHandles.cpp \
 src/cpp/GetConsoleShowHiddenHandles.cpp \
 src/cpp/UnitsConversion.cpp \

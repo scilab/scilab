@@ -36,6 +36,7 @@ import javax.swing.ListSelectionModel;
 
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
+import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.xcos.actions.DebugLevelAction;
 import org.scilab.modules.xcos.actions.DebugLevelAction.DebugLevel;
@@ -68,7 +69,7 @@ public class DebugLevelDialog extends JDialog {
     public DebugLevelDialog(Component parent, ScicosParameters parameters) {
         this.parameters = parameters;
 
-        ImageIcon scilabIcon = new ImageIcon(ScilabSwingUtilities.findIcon("scilab"));
+        ImageIcon scilabIcon = new ImageIcon(FindIconHelper.findIcon("scilab"));
         Image imageForIcon = scilabIcon.getImage();
         setLayout(new GridBagLayout());
         setIconImage(imageForIcon);

@@ -314,6 +314,7 @@ lib /DEF:"$(ProjectDir)Console_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
     <ClInclude Include="includes\createtempfilename.h" />
     <ClInclude Include="includes\deleteafile.h" />
     <ClInclude Include="includes\diary.h" />
+    <ClInclude Include="includes\fullpath.h" />
     <ClInclude Include="includes\getshortpathname.h" />
     <ClInclude Include="includes\mgetl.h" />
     <ClInclude Include="includes\readline.h" />
@@ -333,7 +334,6 @@ lib /DEF:"$(ProjectDir)Console_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
     <ClInclude Include="includes\findfiles.h" />
     <ClInclude Include="src\c\fprintfMat.h" />
     <ClInclude Include="src\c\fscanfMat.h" />
-    <ClInclude Include="src\c\fullpath.h" />
     <ClInclude Include="src\c\getdrives.h" />
     <ClInclude Include="includes\getfiledesc.h" />
     <ClInclude Include="includes\getfileinfo.h" />

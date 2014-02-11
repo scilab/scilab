@@ -45,6 +45,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TOOLBAR_VISIBLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TOOLBAR__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VIEWPORT__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ICON__;
 
 import java.util.Arrays;
 
@@ -62,7 +63,7 @@ public class Figure extends GraphicObject {
         INFOMESSAGE, COLORMAP, COLORMAPSIZE, BACKGROUND, ROTATIONTYPE,
         RESIZEFCN, CLOSEREQUESTFCN, RESIZE, TOOLBAR, TOOLBAR_VISIBLE,
         MENUBAR, MENUBAR_VISIBLE, INFOBAR_VISIBLE, DOCKABLE, LAYOUT, LAYOUT_SET,
-        GRIDOPT_GRID, GRIDOPT_PADDING, BORDEROPT_PADDING, DEFAULT_AXES
+        GRIDOPT_GRID, GRIDOPT_PADDING, BORDEROPT_PADDING, DEFAULT_AXES, ICON
     };
 
     /** Specifies whether rotation applies to a single subwindow or to all the figure's subwindows */
@@ -406,6 +407,8 @@ public class Figure extends GraphicObject {
     /** default axes management */
     private Boolean defaultAxes;
 
+    private String icon = "";
+
     /** Constructor */
     public Figure() {
         super();
@@ -530,6 +533,8 @@ public class Figure extends GraphicObject {
                 return FigureProperty.BORDEROPT_PADDING;
             case __GO_DEFAULT_AXES__ :
                 return FigureProperty.DEFAULT_AXES;
+            case __GO_UI_ICON__ :
+                return FigureProperty.ICON;
             default :
                 return super.getPropertyFromName(propertyName);
         }
@@ -607,6 +612,8 @@ public class Figure extends GraphicObject {
             return getBorderOptPadding();
         } else if (property == FigureProperty.DEFAULT_AXES) {
             return hasDefaultAxes();
+        } else if (property == FigureProperty.ICON) {
+            return getIcon();
         } else {
             return super.getProperty(property);
         }
@@ -659,6 +666,8 @@ public class Figure extends GraphicObject {
                     return setBorderOptPadding((Integer[]) value);
                 case DEFAULT_AXES:
                     return setDefaultAxes((Boolean) value);
+                case ICON:
+                    return setIcon((String) value);
                 default:
                     break;
             }
@@ -1402,6 +1411,20 @@ public class Figure extends GraphicObject {
         }
 
         defaultAxes = status;
+        return UpdateStatus.Success;
+    }
+
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public UpdateStatus setIcon(String icon) {
+        if (this.icon.equals(icon)) {
+            return UpdateStatus.NoChange;
+        }
+
+        this.icon = icon;
         return UpdateStatus.Success;
     }
 

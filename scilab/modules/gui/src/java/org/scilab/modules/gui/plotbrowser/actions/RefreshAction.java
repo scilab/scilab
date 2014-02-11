@@ -14,6 +14,7 @@ package org.scilab.modules.gui.plotbrowser.actions;
 
 import javax.swing.ImageIcon;
 
+import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.plotbrowser.PlotBrowser;
@@ -21,7 +22,6 @@ import org.scilab.modules.gui.plotbrowser.StartPlotBrowser;
 import org.scilab.modules.gui.plotbrowser.SwingPlotBrowser;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.pushbutton.ScilabPushButton;
-import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 
 /**
  * Refresh action class
@@ -57,7 +57,7 @@ public final class RefreshAction extends CommonCallBack {
         PushButton button = ScilabPushButton.createPushButton();
         ((SwingScilabPushButton) button.getAsSimplePushButton()).addActionListener(new RefreshAction(title));
         button.setToolTipText(title);
-        ImageIcon imageIcon = new ImageIcon(ScilabSwingUtilities.findIcon("view-refresh"));
+        ImageIcon imageIcon = new ImageIcon(FindIconHelper.findIcon("view-refresh"));
         ((SwingScilabPushButton) button.getAsSimplePushButton()).setIcon(imageIcon);
 
         return button;

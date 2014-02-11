@@ -58,6 +58,7 @@ import org.flexdock.view.Titlebar;
 import org.flexdock.view.View;
 import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.commons.ScilabConstants;
+import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.gui.SwingViewObject;
@@ -75,7 +76,6 @@ import org.scilab.modules.gui.bridge.popupmenu.SwingScilabPopupMenu;
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.bridge.radiobutton.SwingScilabRadioButton;
 import org.scilab.modules.gui.bridge.slider.SwingScilabScroll;
-import org.scilab.modules.gui.bridge.toolbar.SwingScilabToolBar;
 import org.scilab.modules.gui.bridge.tree.SwingScilabTree;
 import org.scilab.modules.gui.bridge.uidisplaytree.SwingScilabUiDisplayTree;
 import org.scilab.modules.gui.bridge.uiimage.SwingScilabUiImage;
@@ -113,7 +113,6 @@ import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.SciClosingAction;
 import org.scilab.modules.gui.utils.SciHelpOnComponentAction;
 import org.scilab.modules.gui.utils.SciUndockingAction;
-import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.Size;
 
 /**
@@ -129,7 +128,7 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
 
 
 
-    private static final Image SCILAB_ICON = new ImageIcon(ScilabSwingUtilities.findIcon("scilab", "256x256")).getImage();
+    private static final Image SCILAB_ICON = new ImageIcon(FindIconHelper.findIcon("scilab", "256x256")).getImage();
 
     private static final long serialVersionUID = 1L;
 
@@ -416,7 +415,7 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
      * @param iconName window icon associated with this tab
      */
     public void setWindowIcon(String iconName) {
-        setWindowIcon(new ImageIcon(ScilabSwingUtilities.findIcon(iconName, "256x256")).getImage());
+        setWindowIcon(new ImageIcon(FindIconHelper.findIcon(iconName, "256x256")).getImage());
     }
 
     /**

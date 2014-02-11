@@ -44,6 +44,7 @@
 #include "GetUimenuChecked.h"
 #include "GetConsoleShowHiddenHandles.h"
 #include "GetUicontrolTooltipString.h"
+#include "GetUicontrol.h"
 
 int get_figures_id_property(void* _pvCtx, int iObjUID);
 int get_visible_property(void* _pvCtx, int iObjUID);
@@ -218,5 +219,6 @@ int get_groupname_property(void* _pvCtx, int iObjUID);
 int get_title_position_property(void* _pvCtx, int iObjUID);
 int get_title_scroll_property(void* _pvCtx, int iObjUID);
 int get_scrollable_property(void* _pvCtx, int iObjUID);
+int get_icon_property(void* _pvCtx, int iObjUID);
 
 #endif /* _GET_HANDLE_PROPERTY_H_ */
