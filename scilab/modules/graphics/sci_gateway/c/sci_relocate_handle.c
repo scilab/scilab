@@ -23,6 +23,7 @@
 #include "HandleManagement.h"
 #include "localization.h"
 #include "Scierror.h"
+#include "sciprint.h"
 #include "warningmode.h"
 /*--------------------------------------------------------------------------*/
 
