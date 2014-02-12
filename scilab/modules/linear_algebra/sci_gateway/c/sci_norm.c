@@ -204,7 +204,7 @@ int C2F(intnorm)(char *fname, unsigned long fname_len)
         }
 
         // Call the norm functions.
-        if (isinf(flagVal) == 1) // flag = %inf
+        if (isinf(flagVal) == 1 && flagVal > 0) // flag = %inf
         {
             if (isComplex)
             {

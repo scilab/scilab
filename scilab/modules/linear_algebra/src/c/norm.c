@@ -116,8 +116,12 @@ double normP (double *A, int iRows, int iCols, double p)
         return ret;
     }
 
-    if (isinf(p) == -1) // p = -%inf is a special case, return min(abs(A)).
+    //
+    // /!\ isinf return only 0 or 1 on non Linux platforms
+    //
+    if (isinf(p) != 0 && p < 0) // p = -%inf is a special case, return min(abs(A)).
     {
+      
         minA = Abs(A[0]);
         for (i = 0; i < iRows; ++i)
         {
@@ -234,7 +238,8 @@ double normPC (doublecomplex *A, int iRows, int iCols, double p)
         ret = (a - b) / (a - b);
         return ret;
     }
-    if (isinf(p) == -1) // p = -%inf is a special case, return min(abs(A)).
+    
+    if (isinf(p) != 0 && p < 0) // p = -%inf is a special case, return min(abs(A)).
     {
         minA = sqrt(A[0].r * A[0].r + A[0].i * A[0].i); // Retrieving A[0] modulus.
         for (i = 0; i < iRows; ++i)
