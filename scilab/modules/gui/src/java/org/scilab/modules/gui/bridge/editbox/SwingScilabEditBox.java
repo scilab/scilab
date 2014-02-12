@@ -18,11 +18,13 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import javax.swing.AbstractAction;
 import javax.swing.InputMap;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
@@ -73,7 +75,6 @@ public class SwingScilabEditBox extends JScrollPane implements SwingViewObject, 
     private CommonCallBack callback;
 
     private FocusListener focusListener;
-    private KeyListener keyListener;
 
     private StyledDocument doc;
     private SimpleAttributeSet docAttributes = new SimpleAttributeSet();
@@ -81,7 +82,8 @@ public class SwingScilabEditBox extends JScrollPane implements SwingViewObject, 
     private JTextPane textPane = new JTextPane();
 
     private Object enterKeyAction;
-
+    private Object tabKeyAction;
+    
     private class EditBoxView extends BoxView {
         public EditBoxView(Element elem, int axis) {
             super(elem, axis);
@@ -157,29 +159,37 @@ public class SwingScilabEditBox extends JScrollPane implements SwingViewObject, 
             }
 
             public void focusLost(FocusEvent arg0) {
-                // Validates user input
-                if (getParent() != null) { // To avoid to execute the callback when then parent figure is destroyed
-
-                    String[] stringProperty = getText().split("\n");
-                    GraphicController.getController().setProperty(uid, __GO_UI_STRING__, stringProperty);
-
-                    if (SwingView.getFromId(uid) != null && callback != null) {
-                        callback.actionPerformed(null);
-                    }
-                }
+                validateUserInput();
             }
         };
         textPane.addFocusListener(focusListener);
         KeyStroke enterKey = KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0);
+        KeyStroke tabKey = KeyStroke.getKeyStroke(KeyEvent.VK_TAB, 0);
         InputMap map = textPane.getInputMap();
         enterKeyAction = map.get(enterKey);
-
+        tabKeyAction = map.get(tabKey);
+        
         if (Console.getConsole().getUseDeprecatedLF() == false) {
             setEditFont(getFont());
         }
-        //StyleConstants.setAlignment(docAttributes, StyleConstants.ALIGN_CENTER);
     }
 
+    /**
+     * Validate UserInput and call Scilab Callback if needed
+     */
+    private void validateUserInput() {
+        // Validates user input
+        if (getParent() != null) { // To avoid to execute the callback when then parent figure is destroyed
+
+            String[] stringProperty = getText().split("\n");
+            GraphicController.getController().setProperty(uid, __GO_UI_STRING__, stringProperty);
+
+            if (SwingView.getFromId(uid) != null && callback != null) {
+                callback.actionPerformed(null);
+            }
+        }
+    }
+    
     /**
      * Draws a swing Scilab EditBox
      * @see org.scilab.modules.gui.uielement.UIElement#draw()
@@ -437,14 +447,24 @@ public class SwingScilabEditBox extends JScrollPane implements SwingViewObject, 
 
     public void setMultiLineText(boolean enable) {
         KeyStroke enterKey = KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0);
+        KeyStroke tabKey = KeyStroke.getKeyStroke(KeyEvent.VK_TAB, 0);
         if (enable) {
             setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
             textPane.getInputMap().remove(enterKey);
+            textPane.getInputMap().remove(tabKey);
             textPane.getInputMap().put(enterKey, enterKeyAction);
+            textPane.getInputMap().put(tabKey, tabKeyAction);
         } else {
             setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+            AbstractAction validateUserInput = new AbstractAction() {
+                public void actionPerformed(ActionEvent e) {
+                    validateUserInput();
+                }
+            };
             textPane.getInputMap().remove(enterKey);
-            textPane.getInputMap().put(enterKey, "none");
+            textPane.getInputMap().remove(tabKey);
+            textPane.getInputMap().put(enterKey, validateUserInput);
+            textPane.getInputMap().put(tabKey, validateUserInput);
         }
     }
 
