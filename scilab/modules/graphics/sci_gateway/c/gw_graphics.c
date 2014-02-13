@@ -51,7 +51,6 @@ static gw_generic_table Tab[] =
     {sci_xarrows, "xarrows"},
     {sci_drawaxis, "drawaxis"},
     {sci_xchange, "xchange"},
-    {NULL, ""}, // show_pixmap: removed
     {sci_xclick, "xclick"},
     {sci_xdel, "xdel"},
     {sci_xarc, "xfarc"},
@@ -60,7 +59,6 @@ static gw_generic_table Tab[] =
     {sci_xfpolys, "xfpolys"},
     {sci_xrect, "xfrect"},
     {sci_xget, "xget"},
-    {NULL, ""}, // xgetech: moved as Scilab Macro
     {sci_xgetmouse, "xgetmouse"},
     {sci_xgrid, "xgrid"},
     {sci_xlfont, "xlfont"},
@@ -71,12 +69,10 @@ static gw_generic_table Tab[] =
     {sci_xsegs, "xsegs"},
     {sci_show_window, "show_window"},
     {sci_xset, "xset"},
-    {NULL, ""}, // xsetech: moved as Scilab Macro
     {sci_xstring, "xstring"},
     {sci_xtitle, "xtitle"},
     {sci_xgraduate, "xgraduate"},
     {sci_xname, "xname"},
-    {NULL, ""}, // clear_pixmap: removed
     {sci_zoom_rect, "zoom_rect"},
     {sci_unzoom, "unzoom"},
     {sci_stringbox, "stringbox"},
@@ -85,8 +81,6 @@ static gw_generic_table Tab[] =
     {sci_unglue, "unglue"},
     {sci_drawnow, "drawnow"},
     {sci_drawlater, "drawlater"},
-    {NULL, ""}, // draw
-    {NULL, ""}, // was addcb, unusable.
     {sci_copy, "copy"},
     {sci_delete, "delete"},
     {sci_get, "get"},
