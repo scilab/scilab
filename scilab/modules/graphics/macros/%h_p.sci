@@ -335,6 +335,7 @@ function %h_p(h)
             "layout = "+sci2exp(h.layout)
             "layout_options = "+sci2exp(l)
             "default_axes = "+sci2exp(h.default_axes)
+            "icon = "+fmtuser_data(h.icon)
             "tag = "+sci2exp(h.tag)
             ]
 
@@ -1019,6 +1020,7 @@ function %h_p(h)
                 "Margins = "+sci2exp(h.margins)
                 "Groupname = "+sci2exp(h.groupname)
                 "Scrollable = "+sci2exp(h.scrollable)
+                "Icon = "+fmtuser_data(h.icon)
                 "Userdata = "+fmtuser_data(u)
                 "Tag = "+h.tag
                 ]
