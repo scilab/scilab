@@ -57,7 +57,7 @@ int C2F(intnorm)(char *fname, unsigned long fname_len)
     sciErr = getVarType(pvApiCtx, pAAddr, &iType); // Retrieving A type.
     if (iType != sci_matrix)
     {
-        Scierror(52, _("%s: Wrong type for input argument #%d: Real or complex matrix expected.\n"), fname, 1);
+        OverLoad(1);
         return 0;
     }
 

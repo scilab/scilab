@@ -15,8 +15,14 @@
 // <-- Short Description -->
 // norm() now calls Lapack.
 
+// Checking sparse compatibility
+rand("seed", 0);
+A = rand(10, 10);
+n = norm(sparse(A));
+assert_checkalmostequal(n, 5.0884897363846);
+
 //---------------------------------------------------
-// In this test, we make sure that the new implementation
+// Now, we make sure that the new implementation
 // of norm() yiels the same results as the old one,
 // with respect to the machine precision.
 

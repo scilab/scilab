@@ -32,7 +32,7 @@ function res=%sp_norm(S,flag)
             S1 = S;
         end
 
-        tol=%eps;
+        tol=2*%eps;
         x = sum(abs(S1),1)';
         res = norm(x);
         if res==0 then return,end
