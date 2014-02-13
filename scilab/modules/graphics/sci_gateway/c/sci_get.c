@@ -292,6 +292,7 @@ int sci_get(char *fname, unsigned long fname_len)
             }
             else
             {
+                l2 = pstFirst;
                 hdl = 0;
             }
             break;
