@@ -534,6 +534,8 @@ Scilab Bug Fixes
 
 * Bug #13227 fixed - Invalid windowsConfiguration.xml file could avoid Scilab's startup.
 
+* Bug #13233 fixed - Wrong result for simulation of step response csim('step',t,H) fixed.
+
 
 Xcos
 ====
