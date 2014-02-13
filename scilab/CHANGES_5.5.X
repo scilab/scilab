@@ -255,6 +255,8 @@ Scilab Bug Fixes
 
 * Bug #11814 fixed - Typo in the CACSD help chapter fixed.
 
+* Bug #11953 fixed - Scilab crashed when global("") was entered.
+
 * Bug #11996 fixed - eye extended to hypermatrix.
 
 * Bug #12073 fixed - Width of code examples has been decreased in XML help pages.

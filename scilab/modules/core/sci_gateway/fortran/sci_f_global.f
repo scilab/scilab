@@ -27,6 +27,11 @@ c
       do 10 i=1,rhs
 c     .  get the variable name
          if(.not.getsmat('global',topk,top,m,n,1,1,lr,nn)) return
+         if(nn.le.0) then
+            err=rhs+1-i
+            call error(116)
+            return
+         endif
          if(.not.checkval('global',m*n,1)) return
 c     .  check if it is a correct variable name
          ch=abs(istk(lr))
