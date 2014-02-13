@@ -213,7 +213,7 @@ for typ=T
     assert_checkequal(prod(i, 1, typ(:)), hypermat([1,2,2],uint8([254;90;1;1])));
     assert_checkequal(prod(i, 2, typ(:)), hypermat([2,1,2],uint8([10;238;1;1])));
     assert_checkequal(prod(i, 3, typ(:)), uint8([1,10;254,9]));
-    assert_checkequal(prod(i, 5, typ(:)), double(i));
+    assert_checkequal(prod(i, 5, typ(:)), i);
 end
 
 assert_checkequal(prod(i, "double"), 22860);
