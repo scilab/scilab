@@ -41,12 +41,12 @@
             retornar um resultado que depende do ambiente!
         </para>
         <para>
-            <literal>exists(name,'local')</literal> retorna <literal>1</literal>
+            <literal>exists(name,'l')</literal> retorna <literal>1</literal>
             se a variável chamada <literal>name</literal> existe no ambiente local da
             função corrente e <literal>0</literal> , em caso contrário.
         </para>
         <para>
-            <literal>exists(name,'nolocal')</literal> retorna
+            <literal>exists(name,'n')</literal> retorna
             <literal>1</literal> se a variável chamada <literal>name</literal> existe
             em qualquer nível do ambiente de chamamento (incluindo o nível principal
             do shell do Scilab) da função corrente e <literal>0</literal> , em caso
@@ -60,16 +60,16 @@
         <title>Exemplos</title>
         <programlisting role="example"><![CDATA[ 
 deff('foo(x)',..
-['disp([exists(''a12''),exists(''a12'',''local'')])'
- 'disp([exists(''x''),exists(''x'',''local'')])'])
+['disp([exists(''a12''),exists(''a12'',''l'')])'
+ 'disp([exists(''x''),exists(''x'',''l'')])'])
 foo(1)
 a12=[];foo(1)
 
 function level1()
   function level2()
-    disp(exists("a","all"));
-    disp(exists("a","local"));
-    disp(exists("a","nolocal"));
+    disp(exists("a","a"));
+    disp(exists("a","l"));
+    disp(exists("a","n"));
   endfunction
   level2()
 endfunction

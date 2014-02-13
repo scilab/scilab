@@ -229,6 +229,8 @@ Scilab Bug Fixes
 
 * Bug #10816 fixed - Typo in part error message fixed.
 
+* Bug #10833 fixed - Help page of exists updated.
+
 * Bug #10856 fixed - analpf did not return the right result.
 
 * Bug #10936 fixed - Scilab hung with invalid strf in plot2d.

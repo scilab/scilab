@@ -49,12 +49,12 @@
             renvoyer un résultat dépendant de l'environnement courant !
         </para>
         <para>
-            <literal>exists(name,'local')</literal> renvoie <literal>1</literal> si la variable
+            <literal>exists(name,'l')</literal> renvoie <literal>1</literal> si la variable
             nommée <literal>name</literal> existe dans l'environnement de la fonction
             courante et <literal>0</literal> sinon.
         </para>
         <para>
-            <literal>exists(name,'nolocal')</literal> renvoie <literal>1</literal> si la
+            <literal>exists(name,'n')</literal> renvoie <literal>1</literal> si la
             variable nommée <literal>name</literal> existe dans l'environnement appelant (y
             compris le niveau du shell Scilab) de la fonction courante et <literal>0</literal>
             sinon.
@@ -68,16 +68,16 @@
         <title>Exemples</title>
         <programlisting role="example"><![CDATA[ 
 deff('foo(x)',..
-['disp([exists(''a12''),exists(''a12'',''local'')])'
- 'disp([exists(''x''),exists(''x'',''local'')])'])
+['disp([exists(''a12''),exists(''a12'',''l'')])'
+ 'disp([exists(''x''),exists(''x'',''l'')])'])
 foo(1)
 a12=[];foo(1)
 
 function level1()
   function level2()
-    disp(exists(["a", "b"],"all"));
-    disp(exists(["a", "b"],"local"));
-    disp(exists(["a", "b"],"nolocal"));
+    disp(exists(["a", "b"],"a"));
+    disp(exists(["a", "b"],"l"));
+    disp(exists(["a", "b"],"n"));
   endfunction
   level2()
 endfunction

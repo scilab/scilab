@@ -42,13 +42,13 @@
             環境に依存する結果を返す可能性があります!
         </para>
         <para>
-            <literal>exists(name,'local')</literal> は,
+            <literal>exists(name,'l')</literal> は,
             <literal>name</literal>という名前の変数がカレントの関数の
             環境に存在する場合に <literal>1</literal>,
             それ以外の場合に <literal>0</literal> を返します.
         </para>
         <para>
-            <literal>exists(name,'nolocal')</literal> は,
+            <literal>exists(name,'n')</literal> は,
             <literal>name</literal>という名前の変数が関数の呼び出し元の
             環境(Scilabシェルメインレベルを含む)に存在する場合に <literal>1</literal>,
             それ以外の場合に <literal>0</literal> を返します.
@@ -62,16 +62,16 @@
         <title>例</title>
         <programlisting role="example"><![CDATA[ 
 deff('foo(x)',..
-['disp([exists(''a12''),exists(''a12'',''local'')])'
- 'disp([exists(''x''),exists(''x'',''local'')])'])
+['disp([exists(''a12''),exists(''a12'',''l'')])'
+ 'disp([exists(''x''),exists(''x'',''l'')])'])
 foo(1)
 a12=[];foo(1)
 
 function level1()
   function level2()
-    disp(exists("a","all"));
-    disp(exists("a","local"));
-    disp(exists("a","nolocal"));
+    disp(exists("a","a"));
+    disp(exists("a","l"));
+    disp(exists("a","n"));
   endfunction
   level2()
 endfunction
