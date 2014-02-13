@@ -505,6 +505,7 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
                 } else {
                     //Icon in JEditorPane ?
                 }
+                break;
             }
             default : {
                 SwingViewWidget.update(this, property, value);

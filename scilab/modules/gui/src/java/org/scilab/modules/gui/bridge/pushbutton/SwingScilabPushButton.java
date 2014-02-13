@@ -325,6 +325,7 @@ public class SwingScilabPushButton extends JButton implements SwingViewObject, S
                     setIcon(new ImageIcon(icon));
                 } catch (IOException e) {
                 }
+                break;
             }
             default : {
                 SwingViewWidget.update(this, property, value);

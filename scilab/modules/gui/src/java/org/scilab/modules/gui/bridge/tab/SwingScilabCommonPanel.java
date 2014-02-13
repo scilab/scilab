@@ -256,6 +256,7 @@ public class SwingScilabCommonPanel {
                     component.getParentWindow().setIconImage(new ImageIcon(icon).getImage());
                 } catch (IOException e) {
                 }
+                break;
             }
         }
     }
