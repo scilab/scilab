@@ -410,19 +410,19 @@ int sci_set(char *fname, unsigned long fname_len)
                 Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, iPos + 1);
                 return 1;
             }
+        }
 
-            setStatus = callSetProperty(pvApiCtx, iObjUID, pvData, iType3, iRows3, iCols3, pstProperty);
-            if (iType3 == sci_strings)
+        setStatus = callSetProperty(pvApiCtx, iObjUID, pvData, iType3, iRows3, iCols3, pstProperty);
+        if (iType3 == sci_strings)
+        {
+            //free allacted data
+            if (isMatrixOfString == 1)
             {
-                //free allacted data
-                if (isMatrixOfString == 1)
-                {
-                    freeAllocatedMatrixOfString(iRows3, iCols3, (char**)pvData);
-                }
-                else
-                {
-                    freeAllocatedSingleString((char*)pvData);
-                }
+                freeAllocatedMatrixOfString(iRows3, iCols3, (char**)pvData);
+            }
+            else
+            {
+                freeAllocatedSingleString((char*)pvData);
             }
         }
     }
