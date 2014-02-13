@@ -21,6 +21,9 @@
 #include "api_scilab.h"
 #include "MALLOC.h"
 #include "callFunctionFromGateway.h"
+#include "scilabmode.h"
+#include "localization.h"
+#include "Scierror.h"
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[] =
 {
@@ -29,6 +32,12 @@ static gw_generic_table Tab[] =
 /*--------------------------------------------------------------------------*/
 int gw_history_browser(void)
 {
+    if ( getScilabMode() == SCILAB_NWNI)
+    {
+        Scierror(999, _("Scilab '%s' module disabled in -nogui or -nwni mode.\n"), "history_browser");
+        return 0;
+    }
+
     Rhs = Max(0, Rhs);
 
     if (pvApiCtx == NULL)

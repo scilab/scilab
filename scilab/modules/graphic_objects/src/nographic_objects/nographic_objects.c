@@ -19,10 +19,22 @@
 #include "deleteGraphicObject.h"
 #include "getGraphicObjectProperty.h"
 #include "setGraphicObjectProperty.h"
+#ifndef _MSC_VER
+#include "scilabmode.h"
+#endif
 /*--------------------------------------------------------------------------*/
 int gw_graphic_objects(void)
 {
-    Scierror(999, _("Scilab '%s' module not installed.\n"), "graphic_objects");
+#ifndef _MSC_VER
+    if (getScilabMode() == SCILAB_NWNI)
+    {
+        Scierror(999, _("Scilab '%s' module disabled in -nogui or -nwni mode.\n"), "graphic_objects");
+    }
+    else
+#endif
+    {
+        Scierror(999, _("Scilab '%s' module not installed.\n"), "graphic_objects");
+    }
     return 0;
 }
 /*--------------------------------------------------------------------------*/

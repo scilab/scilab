@@ -128,7 +128,7 @@ int gw_graphics(void)
         }
         else
         {
-            Scierror(999, _("Scilab graphic module disabled -nogui or -nwni mode.\n"));
+            Scierror(999, _("Scilab '%s' module disabled in -nogui or -nwni mode.\n"), "graphics");
         }
     }
 

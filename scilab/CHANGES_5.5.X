@@ -232,6 +232,8 @@ Scilab Bug Fixes
 
 * Bug #10391 fixed - Error when using completion after a global variable clear fixed.
 
+* Bug #10428 fixed - Java based components of Scilab shew a library load error in CLI mode.
+
 * Bug #10645 fixed - File encoding could not be given as argument in xmlRead.
 
 * Bug #10816 fixed - Typo in part error message fixed.

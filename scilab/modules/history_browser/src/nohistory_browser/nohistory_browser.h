@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2009 - DIGITEO - Allan CORNET
+ * Copyright (C) 2014 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -10,21 +10,10 @@
  *
  */
 /*--------------------------------------------------------------------------*/
-#include "noscinotes.h"
-#include "Scierror.h"
-#include "localization.h"
-#include "scilabmode.h"
-/*--------------------------------------------------------------------------*/
-int gw_scinotes(void)
-{
-    if (getScilabMode() == SCILAB_NWNI)
-    {
-        Scierror(999, _("Scilab '%s' module disabled in -nogui or -nwni mode.\n"), "scinotes");
-    }
-    else
-    {
-        Scierror(999, _("Scilab '%s' module not installed.\n"), "scinotes");
-    }
-    return 0;
-}
+/**
+ * This function is a wrapper / fake when Scilab is compiled without history_browser
+ *
+ * @return 0
+ */
+int gw_history_browser(void);
 /*--------------------------------------------------------------------------*/

@@ -10,11 +10,20 @@
  *
  */
 
+/*--------------------------------------------------------------------------*/
 #include "Scierror.h"
 #include "localization.h"
-
+#include "scilabmode.h"
+/*--------------------------------------------------------------------------*/
 int gw_action_binding()
 {
-    Scierror(999, _("Scilab '%s' module not installed.\n"), "action_binding");
+    if (getScilabMode() == SCILAB_NWNI)
+    {
+        Scierror(999, _("Scilab '%s' module disabled in -nogui or -nwni mode.\n"), "action_binding");
+    }
+    else
+    {
+        Scierror(999, _("Scilab '%s' module not installed.\n"), "action_binding");
+    }
     return 0;
 }

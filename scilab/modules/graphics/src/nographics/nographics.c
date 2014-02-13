@@ -39,6 +39,7 @@
 #include "MALLOC.h"
 #include "Interaction.h"
 #include "InitObjects.h"
+#include "scilabmode.h"
 
 /*--------------------------------------------------------------------------*/
 
@@ -77,7 +78,14 @@ int gw_graphics(void)
     }
     else
     {
-        Scierror(999, _("Scilab Graphics module not installed.\n"));
+        if (getScilabMode() == SCILAB_NWNI)
+        {
+            Scierror(999, _("Scilab '%s' module disabled in -nogui or -nwni mode.\n"), "graphics");
+        }
+        else
+        {
+            Scierror(999, _("Scilab '%s' module not installed.\n"), "graphics");
+        }
     }
     return 0;
 }

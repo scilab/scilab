@@ -73,7 +73,7 @@ int gw_graphic_export(void)
     }
     else
     {
-        Scierror(999, _("Scilab graphic module disabled -nogui or -nwni mode.\n"));
+        Scierror(999, _("Scilab '%s' module disabled in -nogui or -nwni mode.\n"), "graphic_export");
     }
     return 0;
 }

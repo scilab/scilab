@@ -271,6 +271,7 @@ int gw_dynamic_functions(void)
 /*--------------------------------------------------------------------------*/
 /* xcos module */
 #define XCOS_MODULE_NAME "xcos"
+#define XCOS_DISABLE_MODULE_NAME "xcos-disable"
 static DynLibHandle hXcosLib = NULL;
 static PROC_GATEWAY ptr_gw_xcos = NULL;
 static char* dynlibname_xcos = NULL;
@@ -278,6 +279,13 @@ static char* gatewayname_xcos = NULL;
 /*--------------------------------------------------------------------------*/
 int gw_dynamic_xcos(void)
 {
+#ifndef _MSC_VER
+    if (getScilabMode() == SCILAB_NWNI && !dynlibname_xcos)
+    {
+        dynlibname_xcos = buildModuleDynLibraryName(XCOS_DISABLE_MODULE_NAME, DYNLIB_NAME_FORMAT_AUTO);
+    }
+#endif
+
     return gw_dynamic_generic(XCOS_MODULE_NAME,
                               &dynlibname_xcos,
                               &gatewayname_xcos,
@@ -287,6 +295,7 @@ int gw_dynamic_xcos(void)
 /*--------------------------------------------------------------------------*/
 /* scinotes module */
 #define SCINOTES_MODULE_NAME "scinotes"
+#define SCINOTES_DISABLE_MODULE_NAME "scinotes-disable"
 static DynLibHandle hSciNotesLib = NULL;
 static PROC_GATEWAY ptr_gw_scinotes = NULL;
 static char* dynlibname_scinotes = NULL;
@@ -299,7 +308,15 @@ int gw_dynamic_scinotes(void)
     {
         dynlibname_scinotes = buildModuleDynLibraryName(SCINOTES_MODULE_NAME, DYNLIB_NAME_FORMAT_2);
     }
+#else
+
+    if (getScilabMode() == SCILAB_NWNI && !dynlibname_scinotes)
+    {
+        dynlibname_scinotes = buildModuleDynLibraryName(SCINOTES_DISABLE_MODULE_NAME, DYNLIB_NAME_FORMAT_AUTO);
+    }
+
 #endif
+
     return gw_dynamic_generic(SCINOTES_MODULE_NAME,
                               &dynlibname_scinotes,
                               &gatewayname_scinotes,
@@ -309,6 +326,7 @@ int gw_dynamic_scinotes(void)
 /*--------------------------------------------------------------------------*/
 /* graphic_exports module */
 #define GRAPHIC_EXPORT_MODULE_NAME "graphic_export"
+#define GRAPHIC_EXPORT_DISABLE_MODULE_NAME "graphic_export-disable"
 static DynLibHandle hGraphic_exportLib = NULL;
 static PROC_GATEWAY ptr_gw_graphic_export = NULL;
 static char* dynlibname_graphic_export = NULL;
@@ -321,6 +339,13 @@ int gw_dynamic_graphic_export(void)
     {
         dynlibname_graphic_export = buildModuleDynLibraryName(GRAPHIC_EXPORT_MODULE_NAME, DYNLIB_NAME_FORMAT_2);
     }
+#else
+
+    if (getScilabMode() == SCILAB_NWNI && !dynlibname_graphic_export)
+    {
+        dynlibname_graphic_export = buildModuleDynLibraryName(GRAPHIC_EXPORT_DISABLE_MODULE_NAME, DYNLIB_NAME_FORMAT_AUTO);
+    }
+
 #endif
     return gw_dynamic_generic(GRAPHIC_EXPORT_MODULE_NAME,
                               &dynlibname_graphic_export,
@@ -331,6 +356,7 @@ int gw_dynamic_graphic_export(void)
 /*--------------------------------------------------------------------------*/
 /* graphic_exports module */
 #define ACTION_BINDING_MODULE_NAME "action_binding"
+#define ACTION_BINDING_DISABLE_MODULE_NAME "action_binding-disable"
 static DynLibHandle hAction_bindingLib = NULL;
 static PROC_GATEWAY ptr_gw_action_binding = NULL;
 static char* dynlibname_action_binding = NULL;
@@ -343,6 +369,13 @@ int gw_dynamic_action_binding(void)
     {
         dynlibname_action_binding = buildModuleDynLibraryName(ACTION_BINDING_MODULE_NAME, DYNLIB_NAME_FORMAT_2);
     }
+#else
+
+    if (getScilabMode() == SCILAB_NWNI && !dynlibname_action_binding)
+    {
+        dynlibname_action_binding = buildModuleDynLibraryName(ACTION_BINDING_DISABLE_MODULE_NAME, DYNLIB_NAME_FORMAT_AUTO);
+    }
+
 #endif
     return gw_dynamic_generic(ACTION_BINDING_MODULE_NAME,
                               &dynlibname_action_binding,
@@ -353,6 +386,7 @@ int gw_dynamic_action_binding(void)
 /*--------------------------------------------------------------------------*/
 /* ui_data module */
 #define UI_DATA_MODULE_NAME "ui_data"
+#define UI_DATA_DISABLE_MODULE_NAME "ui_data-disable"
 static DynLibHandle hUi_dataLib = NULL;
 static PROC_GATEWAY ptr_gw_ui_data = NULL;
 static char* dynlibname_ui_data = NULL;
@@ -365,6 +399,13 @@ int gw_dynamic_ui_data(void)
     {
         dynlibname_ui_data = buildModuleDynLibraryName(UI_DATA_MODULE_NAME, DYNLIB_NAME_FORMAT_2);
     }
+#else
+
+    if (getScilabMode() == SCILAB_NWNI && !dynlibname_ui_data)
+    {
+        dynlibname_ui_data = buildModuleDynLibraryName(UI_DATA_DISABLE_MODULE_NAME, DYNLIB_NAME_FORMAT_AUTO);
+    }
+
 #endif
 
     return gw_dynamic_generic(UI_DATA_MODULE_NAME,
@@ -426,6 +467,7 @@ int gw_dynamic_xml(void)
 /*--------------------------------------------------------------------------*/
 /* graphic_objects module */
 #define GRAPHIC_OBJECTS_MODULE_NAME "graphic_objects"
+#define GRAPHIC_OBJECTS_DISABLE_MODULE_NAME "graphic_objects-disable"
 static DynLibHandle hGraphic_objectsLib = NULL;
 static PROC_GATEWAY ptr_gw_graphic_objects = NULL;
 static char* dynlibname_graphic_objects = NULL;
@@ -438,6 +480,13 @@ int gw_dynamic_graphic_objects(void)
     {
         dynlibname_graphic_objects = buildModuleDynLibraryName(GRAPHIC_OBJECTS_MODULE_NAME, DYNLIB_NAME_FORMAT_2);
     }
+#else
+
+    if (getScilabMode() == SCILAB_NWNI && !dynlibname_graphic_objects)
+    {
+        dynlibname_graphic_objects = buildModuleDynLibraryName(GRAPHIC_OBJECTS_DISABLE_MODULE_NAME, DYNLIB_NAME_FORMAT_AUTO);
+    }
+
 #endif
 
     return gw_dynamic_generic(GRAPHIC_OBJECTS_MODULE_NAME,
@@ -449,6 +498,7 @@ int gw_dynamic_graphic_objects(void)
 /*--------------------------------------------------------------------------*/
 /* history_browser module */
 #define HISTORY_BROWSER_MODULE_NAME "history_browser"
+#define HISTORY_BROWSER_DISABLE_MODULE_NAME "history_browser-disable"
 static DynLibHandle hHistory_browserLib = NULL;
 static PROC_GATEWAY ptr_gw_history_browser = NULL;
 static char* dynlibname_history_browser = NULL;
@@ -456,6 +506,13 @@ static char* gatewayname_history_browser = NULL;
 /*--------------------------------------------------------------------------*/
 int gw_dynamic_history_browser(void)
 {
+#ifndef _MSC_VER
+    if (getScilabMode() == SCILAB_NWNI && !dynlibname_history_browser)
+    {
+        dynlibname_history_browser = buildModuleDynLibraryName(HISTORY_BROWSER_DISABLE_MODULE_NAME, DYNLIB_NAME_FORMAT_AUTO);
+    }
+#endif
+
     return gw_dynamic_generic(HISTORY_BROWSER_MODULE_NAME,
                               &dynlibname_history_browser,
                               &gatewayname_history_browser,

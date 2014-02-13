@@ -172,7 +172,8 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscihistory_browser_disable_la_LIBADD =
 am__dirstamp = $(am__leading_dot)dirstamp
-am__objects_1 = src/nohistory_browser/libscihistory_browser_disable_la-CommandHistory_Wrap_Fake.lo
+am__objects_1 = src/nohistory_browser/libscihistory_browser_disable_la-CommandHistory_Wrap_Fake.lo \
+	src/nohistory_browser/libscihistory_browser_disable_la-nohistory_browser.lo
 am_libscihistory_browser_disable_la_OBJECTS = $(am__objects_1)
 libscihistory_browser_disable_la_OBJECTS =  \
 	$(am_libscihistory_browser_disable_la_OBJECTS)
@@ -587,12 +588,18 @@ libscihistory_browser_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 -I$(top_srcdir)/modules/api_scilab/includes/ \
 -I$(top_srcdir)/modules/jvm/includes/ \
 -I$(top_srcdir)/modules/commons/src/jni/ \
+-I$(top_srcdir)/modules/localization/includes/ \
+-I$(top_srcdir)/modules/output_stream/includes/ \
 $(AM_CPPFLAGS)
 
 
 # Without the history_browser module 
-libscihistory_browser_disable_la_CPPFLAGS = -I$(srcdir)/includes/ $(AM_CPPFLAGS)
-HISTORY_BROWSER_DISABLE_C_SOURCES = src/nohistory_browser/CommandHistory_Wrap_Fake.c
+libscihistory_browser_disable_la_CPPFLAGS = -I$(srcdir)/includes/ \
+    -I$(top_srcdir)/modules/localization/includes/ \
+    -I$(top_srcdir)/modules/output_stream/includes/ \
+     $(AM_CPPFLAGS)
+
+HISTORY_BROWSER_DISABLE_C_SOURCES = src/nohistory_browser/CommandHistory_Wrap_Fake.c src/nohistory_browser/nohistory_browser.c
 libscihistory_browser_disable_la_SOURCES = $(HISTORY_BROWSER_DISABLE_C_SOURCES)
 pkglib_LTLIBRARIES = libscihistory_browser-disable.la $(am__append_1)
 libscihistory_browser_la_LDFLAGS = $(X_LIBS) $(X_EXTRA_LIBS) $(AM_LDFLAGS)
@@ -762,6 +769,9 @@ src/nohistory_browser/$(DEPDIR)/$(am__dirstamp):
 src/nohistory_browser/libscihistory_browser_disable_la-CommandHistory_Wrap_Fake.lo:  \
 	src/nohistory_browser/$(am__dirstamp) \
 	src/nohistory_browser/$(DEPDIR)/$(am__dirstamp)
+src/nohistory_browser/libscihistory_browser_disable_la-nohistory_browser.lo:  \
+	src/nohistory_browser/$(am__dirstamp) \
+	src/nohistory_browser/$(DEPDIR)/$(am__dirstamp)
 
 libscihistory_browser-disable.la: $(libscihistory_browser_disable_la_OBJECTS) $(libscihistory_browser_disable_la_DEPENDENCIES) $(EXTRA_libscihistory_browser_disable_la_DEPENDENCIES) 
 	$(AM_V_CCLD)$(LINK) -rpath $(pkglibdir) $(libscihistory_browser_disable_la_OBJECTS) $(libscihistory_browser_disable_la_LIBADD) $(LIBS)
@@ -819,6 +829,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscihistory_browser_la-CommandHistory_Wrap.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libscihistory_browser_la-CommandHistory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/nohistory_browser/$(DEPDIR)/libscihistory_browser_disable_la-CommandHistory_Wrap_Fake.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/nohistory_browser/$(DEPDIR)/libscihistory_browser_disable_la-nohistory_browser.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/nohistory_browser/$(DEPDIR)/libscihistory_browser_la-CommandHistory_Wrap_Fake.Plo@am__quote@
 
 .c.o:
@@ -851,6 +862,13 @@ src/nohistory_browser/libscihistory_browser_disable_la-CommandHistory_Wrap_Fake.
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/nohistory_browser/CommandHistory_Wrap_Fake.c' object='src/nohistory_browser/libscihistory_browser_disable_la-CommandHistory_Wrap_Fake.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_browser_disable_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/nohistory_browser/libscihistory_browser_disable_la-CommandHistory_Wrap_Fake.lo `test -f 'src/nohistory_browser/CommandHistory_Wrap_Fake.c' || echo '$(srcdir)/'`src/nohistory_browser/CommandHistory_Wrap_Fake.c
+
+src/nohistory_browser/libscihistory_browser_disable_la-nohistory_browser.lo: src/nohistory_browser/nohistory_browser.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_browser_disable_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/nohistory_browser/libscihistory_browser_disable_la-nohistory_browser.lo -MD -MP -MF src/nohistory_browser/$(DEPDIR)/libscihistory_browser_disable_la-nohistory_browser.Tpo -c -o src/nohistory_browser/libscihistory_browser_disable_la-nohistory_browser.lo `test -f 'src/nohistory_browser/nohistory_browser.c' || echo '$(srcdir)/'`src/nohistory_browser/nohistory_browser.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/nohistory_browser/$(DEPDIR)/libscihistory_browser_disable_la-nohistory_browser.Tpo src/nohistory_browser/$(DEPDIR)/libscihistory_browser_disable_la-nohistory_browser.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/nohistory_browser/nohistory_browser.c' object='src/nohistory_browser/libscihistory_browser_disable_la-nohistory_browser.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_browser_disable_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/nohistory_browser/libscihistory_browser_disable_la-nohistory_browser.lo `test -f 'src/nohistory_browser/nohistory_browser.c' || echo '$(srcdir)/'`src/nohistory_browser/nohistory_browser.c
 
 src/nohistory_browser/libscihistory_browser_la-CommandHistory_Wrap_Fake.lo: src/nohistory_browser/CommandHistory_Wrap_Fake.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_browser_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/nohistory_browser/libscihistory_browser_la-CommandHistory_Wrap_Fake.lo -MD -MP -MF src/nohistory_browser/$(DEPDIR)/libscihistory_browser_la-CommandHistory_Wrap_Fake.Tpo -c -o src/nohistory_browser/libscihistory_browser_la-CommandHistory_Wrap_Fake.lo `test -f 'src/nohistory_browser/CommandHistory_Wrap_Fake.c' || echo '$(srcdir)/'`src/nohistory_browser/CommandHistory_Wrap_Fake.c
