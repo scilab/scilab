@@ -11,8 +11,12 @@
  */
 package org.scilab.modules.graphic_objects.graphicView;
 
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_ID__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHILDREN__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TAG__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_PARENT__;
+
 import org.scilab.modules.graphic_objects.ScilabNativeView;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 
 public class ScilabView extends ScilabNativeView implements GraphicView {
 
@@ -37,8 +41,17 @@ public class ScilabView extends ScilabNativeView implements GraphicView {
     }
 
     public void updateObject(Integer id, int property) {
-        if (property == GraphicObjectProperties.__GO_ID__) {
-            ScilabNativeView__updateObject(id, property);
+        switch (property) {
+            case __GO_ID__ :
+            case __GO_CHILDREN__ :
+            case __GO_PARENT__ :
+            case __GO_TAG__ : {
+                ScilabNativeView__updateObject(id, property);
+                break;
+            }
+            default : {
+                break;
+            }
         }
     }
 }

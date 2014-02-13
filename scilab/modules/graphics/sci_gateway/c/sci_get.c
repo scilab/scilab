@@ -38,6 +38,9 @@
 #include "GetScreenProperty.h"
 #include "freeArrayOfString.h"
 #include "api_scilab.h"
+#include "FigureList.h"
+#include "MALLOC.h"
+
 /*--------------------------------------------------------------------------*/
 int sciGet(void* _pvCtx, int iObjUID, char *marker)
 {
@@ -166,7 +169,7 @@ int sci_get(char *fname, unsigned long fname_len)
             return 0;
             break;
         case sci_handles:          /* scalar argument (hdl + string) */
-            CheckInputArgument(pvApiCtx, 2, 2);
+            CheckInputArgument(pvApiCtx, 1, 2);
             sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddrl1);
             if (sciErr.iErr)
             {
@@ -189,6 +192,26 @@ int sci_get(char *fname, unsigned long fname_len)
                 OverLoad(1);
                 return 0;
             }
+
+            if (nbInputArgument(pvApiCtx) == 1)
+            {
+                //get path from handle
+                int uic = getObjectFromHandle((long) * l1);
+                char* path = get_path(uic);
+                if (path[0] == '\0')
+                {
+                    Scierror(999, _("%s: Unable to get useful path from this handle.\n"), fname);
+                    return 1;
+                }
+
+                createSingleString(pvApiCtx, nbInputArgument(pvApiCtx) + 1, path);
+                FREE(path);
+
+                AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
+                ReturnArguments(pvApiCtx);
+                return 0;
+            }
+
             sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddrl2);
             if (sciErr.iErr)
             {
@@ -206,8 +229,11 @@ int sci_get(char *fname, unsigned long fname_len)
             hdl = (long) * l1; /* on recupere le pointeur d'objet par le handle */
             break;
         case sci_strings:          /* string argument (string) */
-            CheckInputArgument(pvApiCtx, 1, 1);
-            sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddrl2);
+        {
+            int* piAddr = NULL;
+            char* pstFirst = NULL;
+            CheckInputArgument(pvApiCtx, 1, 2);
+            sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
@@ -215,39 +241,61 @@ int sci_get(char *fname, unsigned long fname_len)
             }
 
             // Retrieve a matrix of double at position 1.
-            if (getAllocatedSingleString(pvApiCtx, piAddrl2, &l2))
+            if (getAllocatedSingleString(pvApiCtx, piAddr, &pstFirst))
             {
                 Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 1);
                 return 1;
             }
 
-            if (strcmp((l2), "default_figure") != 0 && strcmp((l2), "default_axes") != 0)
+            if (strcmp(pstFirst, "default_figure") != 0 && strcmp(pstFirst, "default_axes") != 0)
             {
-                if (strcmp((l2), "current_figure") == 0 || strcmp((l2), "current_axes") == 0 || strcmp((l2), "current_entity") == 0
-                        || strcmp((l2), "hdl") == 0 || strcmp((l2), "figures_id") == 0)
+                if (strcmp(pstFirst, "current_figure") == 0 || strcmp(pstFirst, "current_axes") == 0 || strcmp(pstFirst, "current_entity") == 0
+                        || strcmp(pstFirst, "hdl") == 0 || strcmp(pstFirst, "figures_id") == 0)
                 {
                     hdl = 0;
+                    l2 = pstFirst;
                 }
                 else
                 {
-                    /* Test debug F.Leray 13.04.04 */
-                    if ((strcmp((l2), "children") != 0) && (strcmp((l2), "zoom_") != 0) && (strcmp((l2), "clip_box") != 0)
-                            && (strcmp((l2), "auto_") != 0))
+                    int uid = search_path(pstFirst);
+                    if (uid != 0)
                     {
-                        getOrCreateDefaultSubwin();
-                        hdl = getHandle(getCurrentObject());
+                        freeAllocatedSingleString(pstFirst);
+                        hdl = getHandle(uid);
+
+                        if (nbInputArgument(pvApiCtx) == 1)
+                        {
+                            createScalarHandle(pvApiCtx, nbInputArgument(pvApiCtx) + 1, hdl);
+                            AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
+                            ReturnArguments(pvApiCtx);
+                            return 0;
+                        }
+
+                        sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddrl2);
+                        if (sciErr.iErr)
+                        {
+                            printError(&sciErr, 0);
+                            return 1;
+                        }
+
+                        if (getAllocatedSingleString(pvApiCtx, piAddrl2, &l2))
+                        {
+                            Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 2);
+                            return 1;
+                        }
                     }
                     else
                     {
-                        hdl = getHandle(getCurrentSubWin());    /* on recupere le pointeur d'objet par le handle */
+                        l2 = pstFirst;
                     }
-                }                   /* DJ.A 08/01/04 */
+                }
             }
             else
             {
                 hdl = 0;
             }
             break;
+        }
         default:
             //lw = 1 + nbArgumentOnStack(pvApiCtx) - nbInputArgument(pvApiCtx);
             OverLoad(1);

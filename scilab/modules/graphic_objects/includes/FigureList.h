@@ -53,4 +53,8 @@ GRAPHIC_OBJECTS_IMPEXP BOOL sciHasFigures(void);
  */
 GRAPHIC_OBJECTS_IMPEXP int getFigureFromIndex(int figNum);
 
+GRAPHIC_OBJECTS_IMPEXP int search_path(char* _pstPath);
+GRAPHIC_OBJECTS_IMPEXP char* get_path(int uid);
+
+
 #endif /* !__FIGURE_LIST_H__ */

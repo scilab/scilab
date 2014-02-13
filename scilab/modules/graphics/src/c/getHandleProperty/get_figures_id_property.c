@@ -57,3 +57,4 @@ int get_figures_id_property(void* _pvCtx, int iObjUID)
     return status;
 }
 /*------------------------------------------------------------------------*/
+
