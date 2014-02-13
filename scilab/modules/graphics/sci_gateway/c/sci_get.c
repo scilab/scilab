@@ -286,7 +286,10 @@ int sci_get(char *fname, unsigned long fname_len)
                     }
                     else
                     {
-                        l2 = pstFirst;
+                        createEmptyMatrix(pvApiCtx, nbInputArgument(pvApiCtx) + 1);
+                        AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
+                        ReturnArguments(pvApiCtx);
+                        return 0;
                     }
                 }
             }
