@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Pedro Arthur dos S. Souza
  * Copyright (C) 2012 - Caio Lucas dos S. Souza
+ * Copyright (C) 2014 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,7 +13,6 @@
  */
 
 package org.scilab.modules.gui.editor;
-
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
@@ -26,16 +26,14 @@ import org.scilab.modules.renderer.JoGLView.axes.AxesDrawer;
 import org.scilab.modules.renderer.CallRenderer;
 import org.scilab.modules.graphic_objects.axes.Axes;
 
-
-
 /**
-* Implements all polyline manipulation functions for the editor.
-*
-* @author Caio Souza <caioc2bolado@gmail.com>
-* @author Pedro Souza <bygrandao@gmail.com>
-*
-* @since 2012-06-01
-*/
+ * Implements all polyline manipulation functions for the editor.
+ *
+ * @author Caio Souza <caioc2bolado@gmail.com>
+ * @author Pedro Souza <bygrandao@gmail.com>
+ *
+ * @since 2012-06-01
+ */
 
 public class PolylineHandler {
 
@@ -52,10 +50,10 @@ public class PolylineHandler {
     }
 
     /**
-    * Deletes all child entities from the given object.
-    *
-    * @param uid Object unique identifier.
-    */
+     * Deletes all child entities from the given object.
+     *
+     * @param uid Object unique identifier.
+     */
     public void deleteAll(Integer uid) {
 
         Integer type = (Integer)GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_TYPE__);
@@ -80,24 +78,21 @@ public class PolylineHandler {
 
     }
 
-
     private Integer[] searchCompound(Integer uid) {
         return (new ObjectSearcher()).search(uid, GraphicObjectProperties.__GO_COMPOUND__);
     }
 
-
     /**
-    * Drag the given polyline, add the difference of the click position to the polyline data
-    *
-    * @param polyline The uid of the polyline
-    * @param position The click position
-    * @param nextPosition The drag position
-    */
+     * Drag the given polyline, add the difference of the click position to the polyline data
+     *
+     * @param polyline The uid of the polyline
+     * @param position The click position
+     * @param nextPosition The drag position
+     */
     public void dragPolyline(Integer polyline, Integer[] position, Integer[] nextPosition) {
 
         Integer axes = (Integer) GraphicController.getController().getProperty(polyline, GraphicObjectProperties.__GO_PARENT_AXES__);
         if (polyline != null && axes != null) {
-
             double[] datax = (double[])PolylineData.getDataX(polyline);
             double[] datay = (double[])PolylineData.getDataY(polyline);
             double[] dataz = (double[])PolylineData.getDataZ(polyline);
@@ -106,10 +101,10 @@ public class PolylineHandler {
             Vector3d planePoint = new Vector3d(datax[0], datay[0], dataz[0]);
             Vector3d planeNorm = new Vector3d(0.0, 0.0, 1.0);
             //2d coords for current click
-            double[] pos = {1.0 * nextPosition[0], 1.0 * nextPosition[1], 1.0};
+            double[] pos = {nextPosition[0].doubleValue(), nextPosition[1].doubleValue(), 1.0};
             double[] c2d = CallRenderer.get2dViewFromPixelCoordinates(axes, pos);
             //2d position for last click
-            double[] pos2 = {1.0 * position[0], 1.0 * position[1], 1.0};
+            double[] pos2 = {position[0].doubleValue(), position[1].doubleValue(), 1.0};
             double[] c2d2 = CallRenderer.get2dViewFromPixelCoordinates(axes, pos2);
 
             Axes axesObj = AxesHandler.getAxesFromUid(axes);
@@ -144,15 +139,8 @@ public class PolylineHandler {
             Vector3d pointOld = wdir.times(w);
             pointOld = pointOld.plus(w0);
 
-            boolean[] logFlags = new boolean[] {(Boolean)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_X_AXIS_LOG_FLAG__),
-                                                (Boolean)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_Y_AXIS_LOG_FLAG__),
-                                                (Boolean)GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_Z_AXIS_LOG_FLAG__)
-                                               };
-            PolylineData.translatePolyline(polyline, pointNew.getX() - pointOld.getX(), pointNew.getY() - pointOld.getY(), 0.0, logFlags[0] ? 1 : 0, logFlags[1] ? 1 : 0, logFlags[2] ? 1 : 0);
+            PolylineData.translatePolyline(polyline, pointNew.getX() - pointOld.getX(), pointNew.getY() - pointOld.getY(), 0.0, 0, 0, 0);
             GraphicController.getController().setProperty(polyline, GraphicObjectProperties.__GO_DATA_MODEL__, polyline);
         }
     }
-
-
 }
-

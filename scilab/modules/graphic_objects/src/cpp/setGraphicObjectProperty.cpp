@@ -102,9 +102,9 @@ BOOL setGraphicObjectPropertyAndWarn(int _iID, int _iName, void const* _pvValue,
        )
     {
         BOOL ret = DataController::setGraphicObjectProperty(_iID, _iName, _pvValue, numElements);
-        if (ret && warnJava)
+        if ((ret || _iName == __GO_DATA_MODEL__) && warnJava)
         {
-            //printf("debug property value=%d\n",_iName);
+            ///printf("debug property value=%d\n",_iName);
             CallGraphicController::setGraphicObjectProperty(getScilabJavaVM(), _iID, __GO_DATA_MODEL__, _iID);
         }
         return ret;

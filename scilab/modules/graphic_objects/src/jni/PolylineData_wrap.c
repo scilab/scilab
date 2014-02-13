@@ -417,7 +417,7 @@ BOOL translatePoint(int uid, int index, double x, double y, double z, int flagX,
 
         if (flagX)
         {
-            datax[index] = pow(10., log10(datax[index]) + x);
+            datax[index] *= pow(10., x);
         }
         else
         {
@@ -426,7 +426,7 @@ BOOL translatePoint(int uid, int index, double x, double y, double z, int flagX,
 
         if (flagY)
         {
-            datay[index] = pow(10., log10(datay[index]) + y);
+            datay[index] *= pow(10., y);
         }
         else
         {
@@ -438,7 +438,7 @@ BOOL translatePoint(int uid, int index, double x, double y, double z, int flagX,
             dataz = getDataZ(uid);
             if (flagZ)
             {
-                dataz[index] = pow(10., log10(dataz[index]) + z);
+                dataz[index] *= pow(10., z);
             }
             else
             {

@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Pedro Arthur dos S. Souza
  * Copyright (C) 2012 - Caio Lucas dos S. Souza
+ * Copyright (C) 2014 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,7 +13,6 @@
  */
 
 package org.scilab.modules.gui.editor;
-
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
@@ -29,9 +29,6 @@ import org.scilab.modules.graphic_objects.SurfaceData;
 import org.scilab.modules.gui.datatip.DatatipCommon;
 import org.scilab.modules.gui.editor.CommonHandler;
 import org.scilab.modules.gui.editor.ObjectSearcher;
-
-import java.lang.Math;
-
 
 /**
  * Given a (x, y) window coord checks
@@ -401,6 +398,10 @@ public class EntityPicker {
             point = p;
             isSegment = segment;
         }
+
+        public String toString() {
+            return "Point: " + point + ", isSegment=" + isSegment;
+        }
     }
 
     /**
@@ -418,23 +419,21 @@ public class EntityPicker {
             return point;
         }
 
+        if (CommonHandler.isMarkEnabled(uid)) {
+            point.point = isOverMark(axes, uid, px, py);
+            if (point.point != -1) {
+                return point;
+            }
+        }
+
         if (CommonHandler.isLineEnabled(uid)) {
             point.point = isOverLine(axes, uid, px, py);
             point.isSegment = true;
-            return point;
-        }
-
-        if (CommonHandler.isMarkEnabled(uid)) {
-            point.point = isOverMark(axes, uid, px, py);
-            return point;
-        }
-
-        if (!CommonHandler.isLineEnabled(uid)) {
+        } else {
             point.point = isOverDot(axes, uid, px, py);
-            return point;
         }
 
-        return null;
+        return point;
     }
 
     /**

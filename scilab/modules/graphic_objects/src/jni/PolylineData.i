@@ -245,38 +245,38 @@ BOOL translatePoint(int uid, int index, double x, double y, double z, int flagX,
 
     int size = getDataSize_(uid);
 
-	if (index >= 0 && index < size) 
-	{
-		datax = getDataX(uid);
-		if (datax == NULL) return FALSE;
-		datay = getDataY(uid);
-		if (datay == NULL) return FALSE;
-
-    if (flagX) {
-		    datax[index] = pow(10.,log10(datax[index]) + x);
-    } else {
-        datax[index] += x;
-    }
-
-    if (flagY) {
-		    datay[index] = pow(10.,log10(datay[index]) + y);
-    } else {
-        datay[index] += y;
-    }
-
-		if (z != 0 && isZCoordSet(uid))
-		{
-			dataz = getDataZ(uid);
-      if (flagZ) {
-		      dataz[index] = pow(10.,log10(dataz[index]) + z);
-      } else {
-          dataz[index] += z;
-      }
-		}
+    if (index >= 0 && index < size) 
+    {
+	datax = getDataX(uid);
+	if (datax == NULL) return FALSE;
+	datay = getDataY(uid);
+	if (datay == NULL) return FALSE;
+	
+	if (flagX) {
+	    datax[index] *= pow(10., x);
+	} else {
+	    datax[index] += x;
 	}
-	/*update*/
-	setGraphicObjectProperty(uid, __GO_DATA_MODEL__, &uid, jni_int, 1);
-	return TRUE;
+	
+	if (flagY) {
+	    datay[index] *= pow(10., y);
+	} else {
+	    datay[index] += y;
+	}
+
+	if (z != 0 && isZCoordSet(uid))
+	{
+	    dataz = getDataZ(uid);
+	    if (flagZ) {
+		dataz[index] *= pow(10., z);
+	    } else {
+		dataz[index] += z;
+	    }
+	}
+    }
+    /*update*/
+    setGraphicObjectProperty(uid, __GO_DATA_MODEL__, &uid, jni_int, 1);
+    return TRUE;
 }
 
 BOOL setPointValue(int uid, int index, double x, double y, double z)
