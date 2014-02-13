@@ -257,14 +257,10 @@ cd ..
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_bool2s.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_find.c" />
-    <ClCompile Include="find.c" />
     <ClCompile Include="logic.c" />
   </ItemGroup>
   <ItemGroup>
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_bool2s.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_find.f" />
-    <f2c_rule Include="find.f" />
     <f2c_rule Include="logic.f" />
   </ItemGroup>
   <ItemGroup>

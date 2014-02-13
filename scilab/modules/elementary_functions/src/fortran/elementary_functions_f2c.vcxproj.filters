@@ -510,6 +510,12 @@
     <ClCompile Include="wwrdiv.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_find.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="find.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <f2c_rule Include="arcosh.f">
@@ -999,6 +1005,12 @@
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="wwrdiv.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="find.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_find.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
   </ItemGroup>

@@ -288,6 +288,7 @@ cd ..
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_find.c" />
     <ClCompile Include="arcosh.c" />
     <ClCompile Include="bdiag.c" />
     <ClCompile Include="cbal.c" />
@@ -333,6 +334,7 @@ cd ..
     <ClCompile Include="dwrdiv.c" />
     <ClCompile Include="entier.c" />
     <ClCompile Include="exch.c" />
+    <ClCompile Include="find.c" />
     <ClCompile Include="franck.c" />
     <ClCompile Include="gdcp2i.c" />
     <ClCompile Include="getdimfromvar.c" />
@@ -453,6 +455,7 @@ cd ..
     <ClCompile Include="wwrdiv.c" />
   </ItemGroup>
   <ItemGroup>
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_find.f" />
     <f2c_rule Include="arcosh.f" />
     <f2c_rule Include="bdiag.f" />
     <f2c_rule Include="cbal.f" />
@@ -498,6 +501,7 @@ cd ..
     <f2c_rule Include="dwrdiv.f" />
     <f2c_rule Include="entier.f" />
     <f2c_rule Include="exch.f" />
+    <f2c_rule Include="find.f" />
     <f2c_rule Include="franck.f" />
     <f2c_rule Include="gdcp2i.f" />
     <f2c_rule Include="getdimfromvar.f" />
