@@ -55,7 +55,6 @@ BOOL InitializeLocalization(void)
 
     strcpy(pathLocales, SCIpath);
     strcat(pathLocales, PATHLOCALIZATIONFILE);
-
     if (bindtextdomain(NAMELOCALIZATIONDOMAIN, pathLocales) == NULL || !isdir(pathLocales))
     {
         /* source tree and classic build */
@@ -74,6 +73,26 @@ BOOL InitializeLocalization(void)
         {
             /* when it is installed on the system for example /usr/share/locale/ */
             fprintf(stderr, "Warning: Localization issue: Error while binding the domain from %s or %s: Switch to the default language (English).\n", pathLocales, previousPathLocales);
+
+            // Set default behaviour
+            textdomain(NAMELOCALIZATIONDOMAIN);
+            bind_textdomain_codeset (NAMELOCALIZATIONDOMAIN, "UTF-8");
+#ifndef _MSC_VER
+            setlanguage("");
+#else
+            /* We look if registry value LANGUAGE exists */
+            /* If not exists the "" means that we will try to use the language of the system.*/
+            {
+                char *loadLanguage = getLanguagePreferences();
+                setlanguage(loadLanguage);
+                if (loadLanguage)
+                {
+                    FREE(loadLanguage);
+                    loadLanguage = NULL;
+                }
+            }
+#endif
+
             if (previousPathLocales)
             {
                 FREE(previousPathLocales);
