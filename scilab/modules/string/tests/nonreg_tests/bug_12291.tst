@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 //
-// <-- TEST WITH GRAPHIC --> 
+// <-- TEST WITH GRAPHIC -->
 //
 // <-- Non-regression test for bug 12291 -->
 //
@@ -15,7 +15,7 @@
 // <-- Short Description -->
 // Unable to display a list of handle as a handle userData
 //
-
+set(get(0), "usedeprecatedskin", "on");
 f=figure("figure_name","UIcontrol with an handle as a user_data","figure_id",0,"auto_resize","off");
 frame=uicontrol("parent", f,"style","frame");
 child=uicontrol("parent",frame,"style","text","string","OK");
