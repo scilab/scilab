@@ -16,8 +16,6 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Point;
 
-import org.scilab.modules.gui.bridge.tab.SwingScilabAxes;
-
 /**
  * Class used to convert Scilab position to/from Java position
  * @author Vincent COUVERT

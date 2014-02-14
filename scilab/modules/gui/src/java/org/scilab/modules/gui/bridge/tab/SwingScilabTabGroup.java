@@ -12,6 +12,7 @@
 
 package org.scilab.modules.gui.bridge.tab;
 
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_POSITION__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FONTANGLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FONTNAME__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FONTSIZE__;
@@ -30,6 +31,9 @@ import javax.swing.JTabbedPane;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
 import org.scilab.modules.gui.SwingViewObject;
+import org.scilab.modules.gui.utils.Position;
+import org.scilab.modules.gui.utils.PositionConverter;
+import org.scilab.modules.gui.utils.Size;
 
 public class SwingScilabTabGroup extends JTabbedPane implements SwingViewObject {
     private static final long serialVersionUID = 965704348405077905L;
@@ -87,6 +91,12 @@ public class SwingScilabTabGroup extends JTabbedPane implements SwingViewObject 
                     setTitleAt(i, null);
                 }
             }
+            case __GO_POSITION__ :
+                Double[] positions = (Double[]) value;
+                setSize(positions[2].intValue(), positions[3].intValue());
+                Position javaPosition = PositionConverter.scilabToJava(new Position(positions[0].intValue(), positions[1].intValue()),
+                        new Size(getSize().width, getSize().height), getParent());
+                setLocation(javaPosition.getX(), javaPosition.getY());
         }
     }
 
