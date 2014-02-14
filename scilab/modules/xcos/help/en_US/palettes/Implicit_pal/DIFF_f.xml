@@ -230,4 +230,26 @@
             </listitem>
         </itemizedlist>
     </refsection>
+    <refsection id="Example_DIFF_f">
+        <title>
+            Example: derivative of <literal>(x-10)^3</literal>
+        </title>
+        <link type="scilab" linkend="scilab.xcos/xcos/examples/implicit_pal/DIFF_f_Example.zcos">
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../../../../examples/implicit_pal/DIFF_f_Example.zcos" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+        </link>
+    </refsection>
+    <refsection id="Seealso_DIFF_f">
+        <title>See also</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="CONSTRAINT_c">CONSTRAINT_c</link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
 </refentry>

@@ -203,7 +203,17 @@
         <title>Computational function</title>
         <itemizedlist>
             <listitem>
-                <para> SCI/modules/scicos_blocks/src/fortran/constraint.f (Type 10001)</para>
+                <para> SCI/modules/scicos_blocks/src/c/constraint_c.c (Type 10001)</para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Seealso_CONSTRAINT_c">
+        <title>See also</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="DIFF_f">DIFF_f</link>
+                </para>
             </listitem>
         </itemizedlist>
     </refsection>
