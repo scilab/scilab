@@ -547,6 +547,8 @@ Scilab Bug Fixes
 
 * Bug #13233 fixed - Wrong result for simulation of step response csim('step',t,H) fixed.
 
+* Bug #13234 fixed - lmitool calling sequence clarified.
+
 
 Xcos
 ====
