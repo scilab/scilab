@@ -40,9 +40,10 @@ function ret = createConstraints(constType, varargin)
         arg3 = "none";
         arg4 = "center";
         arg5 = [0 0];
+        arg6 = [-1 -1];
 
-        if size(varargin) <> [1:5] then
-            error(msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected."), "createConstraints", 1, 6));
+        if size(varargin) <> [1:6] then
+            error(msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected."), "createConstraints", 2, 7));
         end
 
         arg1 = varargin(1);
@@ -78,7 +79,14 @@ function ret = createConstraints(constType, varargin)
             end
         end
 
-        ret = tlist(["GridBagConstraints","grid","weight","fill","anchor","padding"], arg1, arg2, arg3, arg4, arg5);
+        if size(varargin) > 5 then
+            arg6 = varargin(6);
+            if typeof(arg6) <> "constant" | size(arg6, "*") <> 2 then
+                error(999, msprintf(_("%s: Wrong type for input argument #%d: A real matrix expected.\n"), "createConstraints", 7));
+            end
+        end
+
+        ret = tlist(["GridBagConstraints","grid","weight","fill","anchor","padding","preferredsize"], arg1, arg2, arg3, arg4, arg5, arg6);
     else
         error(999, msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"), "createConstraints", 1, "none/nolayout, border, grid, gridbag"));
     end

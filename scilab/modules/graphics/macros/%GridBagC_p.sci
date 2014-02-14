@@ -7,9 +7,10 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 function %GridBagC_p(t)
     printf("GridBag Layout\n");
-    printf("  Grid    : %s\n", sci2exp(t.grid));
-    printf("  Weight  : %s\n", sci2exp(t.weight));
-    printf("  Fill    : %s\n", sci2exp(t.fill));
-    printf("  Anchor  : %s\n", sci2exp(t.anchor));
-    printf("  Padding : %s\n", sci2exp(t.padding));
+    printf("  Grid          : %s\n", sci2exp(t.grid));
+    printf("  Weight        : %s\n", sci2exp(t.weight));
+    printf("  Fill          : %s\n", sci2exp(t.fill));
+    printf("  Anchor        : %s\n", sci2exp(t.anchor));
+    printf("  Padding       : %s\n", sci2exp(t.padding));
+    printf("  PreferredSize : %s\n", sci2exp(t.preferredsize));
 endfunction

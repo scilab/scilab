@@ -132,6 +132,7 @@ int set_constraints_property(void* _pvCtx, int iObjUID, void* _pvData, int value
             //arg4 -> string -> int enum
             //arg5 -> string -> int enum
             //arg6 -> double 1x2 -> int 1*2
+            //arg7 -> double 1x2 -> int 1*2
 
             int* piAddr2 = NULL;
             int iRows2 = 0;
@@ -157,6 +158,12 @@ int set_constraints_property(void* _pvCtx, int iObjUID, void* _pvData, int value
             int iCols6 = 0;
             double* pdblPadding = NULL;
             int piPadding[2];
+
+            int* piAddr7 = NULL;
+            int iRows7 = 0;
+            int iCols7 = 0;
+            double* pdblPreferredSize = NULL;
+            int piPreferredSize[2];
 
             sciErr = getListItemAddress(_pvCtx, piAddrList, 2, &piAddr2);
             if (sciErr.iErr)
@@ -288,6 +295,18 @@ int set_constraints_property(void* _pvCtx, int iObjUID, void* _pvData, int value
                 return SET_PROPERTY_ERROR;
             }
 
+            sciErr = getListItemAddress(_pvCtx, piAddrList, 7, &piAddr7);
+            if (sciErr.iErr)
+            {
+                return SET_PROPERTY_ERROR;
+            }
+
+            sciErr = getMatrixOfDouble(_pvCtx, piAddr7, &iRows7, &iCols7, &pdblPreferredSize);
+            if (sciErr.iErr)
+            {
+                return SET_PROPERTY_ERROR;
+            }
+
             //reassign double values in int[]
             piGrid[0] = (int)pdblGrid[0];
             piGrid[1] = (int)pdblGrid[1];
@@ -297,11 +316,15 @@ int set_constraints_property(void* _pvCtx, int iObjUID, void* _pvData, int value
             piPadding[0] = (int)pdblPadding[0];
             piPadding[1] = (int)pdblPadding[1];
 
+            piPreferredSize[0] = (int)pdblPreferredSize[0];
+            piPreferredSize[1] = (int)pdblPreferredSize[1];
+
             setGraphicObjectProperty(iObjUID, __GO_UI_GRIDBAG_GRID__, piGrid, jni_int_vector, 4);
             setGraphicObjectProperty(iObjUID, __GO_UI_GRIDBAG_WEIGHT__, pdblWeight, jni_double_vector, 2);
             setGraphicObjectProperty(iObjUID, __GO_UI_GRIDBAG_FILL__, &iFill, jni_int, 1);
             setGraphicObjectProperty(iObjUID, __GO_UI_GRIDBAG_ANCHOR__, &iAnchor, jni_int, 1);
             setGraphicObjectProperty(iObjUID, __GO_UI_GRIDBAG_PADDING__, piPadding, jni_int_vector, 2);
+            setGraphicObjectProperty(iObjUID, __GO_UI_GRIDBAG_PREFERREDSIZE__, piPreferredSize, jni_int_vector, 2);
         }
         else
         {

@@ -77,6 +77,8 @@ JavaVM * jvm;
 
 protected:
 jmethodID jintLoadjstringjava_lang_StringID; // cache method id
+jmethodID jstringSavejintintjstringjava_lang_StringID; // cache method id
+jmethodID jintDomLoadjstringjava_lang_StringID; // cache method id
 
 
 
@@ -136,7 +138,11 @@ void synchronize();
 void endSynchronize();
 
 // Methods
-static int Load(JavaVM * jvm_, char const* xmlFile);
+static int Load(JavaVM * jvm_, char const* filename);
+
+static char* Save(JavaVM * jvm_, int figure, char const* filename);
+
+static int DomLoad(JavaVM * jvm_, char const* filename);
 
 
                         /**

@@ -11,6 +11,7 @@
  *
  */
 
+#include <stdio.h>
 #include <string.h>
 #include "gw_gui.h"
 #include "api_scilab.h"
@@ -74,7 +75,9 @@ static gw_generic_table Tab[] =
     {sci_datatip_set_display, "datatipSetDisplay"},
     {sci_datatip_set_interp, "datatipSetInterp"},
     {sci_datatip_set_orient, "datatipSetOrientation"},
-    {sci_figure, "figure"}
+    {sci_figure, "figure"},
+    {sci_saveGui, "saveGui"},
+    {sci_loadGui, "loadGui"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_gui(void)
@@ -99,6 +102,7 @@ int gw_gui(void)
     if (!loadedDep && (strcmp(Tab[Fin - 1].name, "uicontrol") == 0
                        || strcmp(Tab[Fin - 1].name, "uimenu") == 0
                        || strcmp(Tab[Fin - 1].name, "usecanvas") == 0
+                       || strcmp(Tab[Fin - 1].name, "loadGui") == 0
                        || strcmp(Tab[Fin - 1].name, "figure") == 0))
     {
         loadOnUseClassPath("graphics");

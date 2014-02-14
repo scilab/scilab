@@ -104,6 +104,8 @@ curEnv->DeleteLocalRef(localInstance);
 
                 /* Methods ID set to NULL */
 jintLoadjstringjava_lang_StringID=NULL;
+jstringSavejintintjstringjava_lang_StringID=NULL;
+jintDomLoadjstringjava_lang_StringID=NULL;
 
 
 }
@@ -127,6 +129,8 @@ throw GiwsException::JniObjectCreationException(curEnv, this->className());
         }
         /* Methods ID set to NULL */
         jintLoadjstringjava_lang_StringID=NULL;
+jstringSavejintintjstringjava_lang_StringID=NULL;
+jintDomLoadjstringjava_lang_StringID=NULL;
 
 
 }
@@ -146,7 +150,7 @@ throw GiwsException::JniMonitorException(getCurrentEnv(), "CallXmlLoader");
 }
 // Method(s)
 
-int CallXmlLoader::Load (JavaVM * jvm_, char const* xmlFile){
+int CallXmlLoader::Load (JavaVM * jvm_, char const* filename){
 
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
@@ -160,15 +164,88 @@ if (jintLoadjstringjava_lang_StringID == NULL) {
 throw GiwsException::JniMethodNotFoundException(curEnv, "Load");
 }
 
-jstring xmlFile_ = curEnv->NewStringUTF( xmlFile );
-if (xmlFile != NULL && xmlFile_ == NULL)
+jstring filename_ = curEnv->NewStringUTF( filename );
+if (filename != NULL && filename_ == NULL)
 {
 throw GiwsException::JniBadAllocException(curEnv);
 }
 
 
-                        jint res =  static_cast<jint>( curEnv->CallStaticIntMethod(cls, jintLoadjstringjava_lang_StringID ,xmlFile_));
-                        curEnv->DeleteLocalRef(xmlFile_);
+                        jint res =  static_cast<jint>( curEnv->CallStaticIntMethod(cls, jintLoadjstringjava_lang_StringID ,filename_));
+                        curEnv->DeleteLocalRef(filename_);
+if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+return res;
+
+}
+
+char* CallXmlLoader::Save (JavaVM * jvm_, int figure, char const* filename){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+
+static jmethodID jstringSavejintintjstringjava_lang_StringID = curEnv->GetStaticMethodID(cls, "Save", "(ILjava/lang/String;)Ljava/lang/String;" ) ;
+if (jstringSavejintintjstringjava_lang_StringID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "Save");
+}
+
+jstring filename_ = curEnv->NewStringUTF( filename );
+if (filename != NULL && filename_ == NULL)
+{
+throw GiwsException::JniBadAllocException(curEnv);
+}
+
+
+                        jstring res =  static_cast<jstring>( curEnv->CallStaticObjectMethod(cls, jstringSavejintintjstringjava_lang_StringID ,figure, filename_));
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}if (res != NULL) { 
+
+const char *tempString = curEnv->GetStringUTFChars(res, 0);
+char * myStringBuffer = new char[strlen(tempString) + 1];
+strcpy(myStringBuffer, tempString);
+curEnv->ReleaseStringUTFChars(res, tempString);
+curEnv->DeleteLocalRef(res);
+curEnv->DeleteLocalRef(filename_);
+if (curEnv->ExceptionCheck()) {
+delete[] myStringBuffer;
+                                throw GiwsException::JniCallMethodException(curEnv);
+}
+return myStringBuffer;
+ } else { 
+curEnv->DeleteLocalRef(res);
+return NULL;
+}
+}
+
+int CallXmlLoader::DomLoad (JavaVM * jvm_, char const* filename){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+
+static jmethodID jintDomLoadjstringjava_lang_StringID = curEnv->GetStaticMethodID(cls, "DomLoad", "(Ljava/lang/String;)I" ) ;
+if (jintDomLoadjstringjava_lang_StringID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "DomLoad");
+}
+
+jstring filename_ = curEnv->NewStringUTF( filename );
+if (filename != NULL && filename_ == NULL)
+{
+throw GiwsException::JniBadAllocException(curEnv);
+}
+
+
+                        jint res =  static_cast<jint>( curEnv->CallStaticIntMethod(cls, jintDomLoadjstringjava_lang_StringID ,filename_));
+                        curEnv->DeleteLocalRef(filename_);
 if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);
 }

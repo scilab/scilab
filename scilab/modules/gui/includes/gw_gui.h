@@ -67,6 +67,8 @@ GUI_IMPEXP int sci_datatip_set_display(char *fname, unsigned long fname_len);
 GUI_IMPEXP int sci_datatip_set_interp(char *fname, unsigned long fname_len);
 GUI_IMPEXP int sci_datatip_set_orient(char *fname, unsigned long fname_len);
 GUI_IMPEXP int sci_figure(char *fname, unsigned long fname_len);
+GUI_IMPEXP int sci_saveGui(char *fname, unsigned long fname_len);
+GUI_IMPEXP int sci_loadGui(char *fname, unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_GUI__ */
 /*--------------------------------------------------------------------------*/

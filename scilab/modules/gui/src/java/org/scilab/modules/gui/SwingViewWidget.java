@@ -472,6 +472,10 @@ public final class SwingViewWidget {
                         uiControl.setText(((String[]) value)[0]);
                         ((SwingScilabEditBox) uiControl).setMultiLineText(false);
                     }
+                } else if (uiControl instanceof SwingScilabLayer) {
+                    SwingScilabLayer layer = (SwingScilabLayer)uiControl;
+                    //if intValue[0] is out of bounds, do not update view but let "wrong" value in model
+                    layer.setActiveLayerFromName(((String[]) value)[0]);
                 } else {
                     uiControl.setText(((String[]) value)[0]);
                 }

@@ -26,7 +26,6 @@ import java.awt.Font;
 import java.lang.reflect.Field;
 
 import javax.swing.BorderFactory;
-import javax.swing.JLabel;
 import javax.swing.UIManager;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
@@ -51,6 +50,9 @@ public class BorderConvertor {
     public static Border getBorder(Integer borderId) {
         GraphicController controller = GraphicController.getController();
         Integer styleInt = (Integer) controller.getProperty(borderId, __GO_UI_FRAME_BORDER_STYLE__);
+        if (styleInt == null) {
+            controller.getProperty(borderId, __GO_UI_FRAME_BORDER_STYLE__);
+        }
         Border border = null;
 
         FrameBorderType style = FrameBorderType.intToEnum(styleInt);
@@ -248,8 +250,8 @@ public class BorderConvertor {
 
                                 Font defaultFont = UIManager.getFont("Button.font");
                                 Font font = new Font(fontName.equals("") == false ? fontName : defaultFont.getFontName(),
-                                        fontStyle,
-                                        fontSize != 0 ? fontSize : defaultFont.getSize());
+                                                     fontStyle,
+                                                     fontSize != 0 ? fontSize : defaultFont.getSize());
                                 border = BorderFactory.createTitledBorder(border1, title, justify, position, font, getColor(color));
                             } else {
                                 border = BorderFactory.createTitledBorder(border1, title, justify, position);

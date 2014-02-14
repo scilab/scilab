@@ -72,7 +72,10 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
 
     private boolean isJLabel = true;
 
-    private String horizontalAlignment = "left"; /* Horizontal alignment property */
+    private String horizontalAlignment = "left"; /*
+                                                  * Horizontal alignment
+                                                  * property
+                                                  */
 
     private String verticalAlignment = "middle"; /* Vertical alignment property */
 
@@ -175,7 +178,8 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
     }
 
     /**
-     * Gets the position (X-coordinate and Y-coordinate) of a swing Scilab element
+     * Gets the position (X-coordinate and Y-coordinate) of a swing Scilab
+     * element
      * @return the position of the element
      * @see org.scilab.modules.gui.uielement.UIElement#getPosition()
      */
@@ -191,11 +195,15 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
     public void setDims(Size newSize) {
         setSize(newSize.getWidth(), newSize.getHeight());
         // Need validate to force alignement to be applyed
+        setMinimumSize(new Dimension(
+                           Math.max((int)label.getMinimumSize().getWidth(), newSize.getWidth()),
+                           (int)label.getMinimumSize().getHeight()));
         validate();
     }
 
     /**
-     * Sets the position (X-coordinate and Y-coordinate) of a swing Scilab element
+     * Sets the position (X-coordinate and Y-coordinate) of a swing Scilab
+     * element
      * @param newPosition the position to set to the element
      * @see org.scilab.modules.gui.uielement.UIElement#setPosition(org.scilab.modules.gui.utils.Position)
      */
@@ -360,9 +368,8 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
     }
 
     /**
-     * Change Label type to switch between JLabel abd JEditorPane
-     * JLabel is quicker on simple text
-     * JEditorPane can enable HyperLinks
+     * Change Label type to switch between JLabel abd JEditorPane JLabel is
+     * quicker on simple text JEditorPane can enable HyperLinks
      * @param isHtmlLabel
      */
     private void changeLabelType(boolean isJLabel) {
@@ -489,11 +496,11 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
      */
     public void update(int property, Object value) {
         switch (property) {
-            case __GO_UI_ICON__ : {
+            case __GO_UI_ICON__: {
                 if (isJLabel) {
-                    File file = new File((String)value);
+                    File file = new File((String) value);
                     if (file.exists() == false) {
-                        String filename = FindIconHelper.findImage((String)value);
+                        String filename = FindIconHelper.findImage((String) value);
                         file = new File(filename);
                     }
 
@@ -507,14 +514,14 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
                 }
                 break;
             }
-            default : {
+            default: {
                 SwingViewWidget.update(this, property, value);
             }
         }
     }
 
     public void resetBackground() {
-        Color color = (Color)UIManager.getLookAndFeelDefaults().get("Label.background");
+        Color color = (Color) UIManager.getLookAndFeelDefaults().get("Label.background");
         if (color != null) {
             setBackground(color);
         }

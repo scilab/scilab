@@ -1,7 +1,9 @@
 package org.scilab.modules.graphic_objects.xmlloader;
 
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_BORDER_OPT_PADDING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DOCKABLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CALLBACK__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CALLBACKTYPE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_BORDER_OPT_PADDING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_GRID_OPT_GRID__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_GRID_OPT_PADDING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_INFOBAR_VISIBLE__;
@@ -45,19 +47,25 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_GRIDBAG_FILL__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_GRIDBAG_GRID__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_GRIDBAG_PADDING__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_GRIDBAG_PREFERREDSIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_GRIDBAG_WEIGHT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_HORIZONTALALIGNMENT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ICON__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MAX__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MIN__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_PUSHBUTTON__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SCROLLABLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TAB__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TEXT__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_EDIT__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_POPUPMENU__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LISTBOX__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_RADIOBUTTON__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_GROUP_NAME__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VISIBLE__;
 
 import java.awt.Color;
-import java.io.File;
 import java.lang.reflect.Field;
 import java.util.Map;
 
@@ -262,11 +270,20 @@ public class GOBuilder {
                         padding[0] = Integer.parseInt(XmlTools.getFromMap(map, "ipadx", "0"));
                         padding[1] = Integer.parseInt(XmlTools.getFromMap(map, "ipady", "0"));
 
+                        Integer[] preferredsize = new Integer[] { -1, -1};
+                        item = attributes.getValue("preferred-size");
+                        if (item != null) {
+                            String[] pref = item.split(",");
+                            for (int i = 0; i < pref.length && i < 4; i++) {
+                                preferredsize[i] = Integer.parseInt(pref[i]);
+                            }
+                        }
                         controller.setProperty(uic, __GO_UI_GRIDBAG_GRID__, grid);
                         controller.setProperty(uic, __GO_UI_GRIDBAG_WEIGHT__, weight);
                         controller.setProperty(uic, __GO_UI_GRIDBAG_FILL__, fill);
                         controller.setProperty(uic, __GO_UI_GRIDBAG_ANCHOR__, anchor);
                         controller.setProperty(uic, __GO_UI_GRIDBAG_PADDING__, padding);
+                        controller.setProperty(uic, __GO_UI_GRIDBAG_PREFERREDSIZE__, preferredsize);
                         break;
                     }
                     default:
@@ -276,9 +293,9 @@ public class GOBuilder {
                 // insets -> marging
                 String insets = XmlTools.getFromMap(map, "insets", "0,0,0,0");
                 Double[] margins = new Double[] { 0.0, 0.0, 0.0, 0.0 };
-                String[] insert = insets.split(",");
-                for (int i = 0; i < insert.length && i < 4; i++) {
-                    margins[i] = Double.parseDouble(insert[i]);
+                String[] inset = insets.split(",");
+                for (int i = 0; i < inset.length && i < 4; i++) {
+                    margins[i] = Double.parseDouble(inset[i]);
                 }
 
                 controller.setProperty(uic, __GO_MARGINS__, margins);
@@ -337,13 +354,47 @@ public class GOBuilder {
                     break;
                 }
                 case __GO_UI_CHECKBOX__: {
-                    controller.setProperty(uic, __GO_UI_HORIZONTALALIGNMENT__, "left");
-
                     String[] text = new String[1];
                     text[0] = attributes.getValue("text");
                     if (text[0] != null) {
                         controller.setProperty(uic, __GO_UI_STRING__, text);
                     }
+
+                    //callback
+                    item = attributes.getValue("onclick");
+                    if (item != null && item.equals("") == false) {
+                        controller.setProperty(uic, __GO_CALLBACK__, item);
+                        controller.setProperty(uic, __GO_CALLBACKTYPE__, 0);
+                    }
+
+                    //groupname
+                    item = attributes.getValue("button-group");
+                    if (item != null && item.equals("") == false) {
+                        controller.setProperty(uic, __GO_UI_GROUP_NAME__, item);
+                    }
+
+                    break;
+                }
+                case __GO_UI_RADIOBUTTON__: {
+                    String[] text = new String[1];
+                    text[0] = attributes.getValue("text");
+                    if (text[0] != null) {
+                        controller.setProperty(uic, __GO_UI_STRING__, text);
+                    }
+
+                    //callback
+                    item = attributes.getValue("onclick");
+                    if (item != null && item.equals("") == false) {
+                        controller.setProperty(uic, __GO_CALLBACK__, item);
+                        controller.setProperty(uic, __GO_CALLBACKTYPE__, 0);
+                    }
+
+                    //groupname
+                    item = attributes.getValue("button-group");
+                    if (item != null && item.equals("") == false) {
+                        controller.setProperty(uic, __GO_UI_GROUP_NAME__, item);
+                    }
+
                     break;
                 }
                 case __GO_UI_PUSHBUTTON__: {
@@ -362,9 +413,16 @@ public class GOBuilder {
                         controller.setProperty(uic, __GO_UI_ICON__, item);
                     }
 
+                    //callback
+                    item = attributes.getValue("onclick");
+                    if (item != null && item.equals("") == false) {
+                        controller.setProperty(uic, __GO_CALLBACK__, item);
+                        controller.setProperty(uic, __GO_CALLBACKTYPE__, 0);
+                    }
+
                     break;
                 }
-                case __GO_UI_TEXT__:
+                case __GO_UI_TEXT__: { //label
                     controller.setProperty(uic, __GO_UI_HORIZONTALALIGNMENT__, "left");
                     String[] text = new String[1];
                     text[0] = attributes.getValue("text");
@@ -372,17 +430,55 @@ public class GOBuilder {
                         controller.setProperty(uic, __GO_UI_STRING__, text);
                     }
 
-                    String columns = attributes.getValue("columns");
-                    if (columns != null) {
-                        controller.setProperty(uic, __GO_UI_MAX__, Double.parseDouble(columns));
-                    }
-
                     //icon
                     item = attributes.getValue("icon");
                     if (item != null) {
                         controller.setProperty(uic, __GO_UI_ICON__, item);
                     }
+
                     break;
+                }
+                case __GO_UI_EDIT__ : {
+                    //callback
+                    item = attributes.getValue("onenter");
+                    if (item != null && item.equals("") == false) {
+                        controller.setProperty(uic, __GO_CALLBACK__, item);
+                        controller.setProperty(uic, __GO_CALLBACKTYPE__, 0);
+                    }
+
+                    item = attributes.getValue("columns");
+                    if (item != null) {
+                        controller.setProperty(uic, __GO_UI_MAX__, Double.parseDouble(item));
+                    }
+
+                    break;
+                }
+                case __GO_UI_POPUPMENU__ : {
+                    //callback
+                    item = attributes.getValue("onchange");
+                    if (item != null && item.equals("") == false) {
+                        controller.setProperty(uic, __GO_CALLBACK__, item);
+                        controller.setProperty(uic, __GO_CALLBACKTYPE__, 0);
+                    }
+
+                    break;
+                }
+                case __GO_UI_LISTBOX__ : {
+                    //callback
+                    item = attributes.getValue("onclick");
+                    if (item != null && item.equals("") == false) {
+                        controller.setProperty(uic, __GO_CALLBACK__, item);
+                        controller.setProperty(uic, __GO_CALLBACKTYPE__, 0);
+                    }
+
+                    item = attributes.getValue("multiple");
+                    if (item != null && item.equals("true")) {
+                        controller.setProperty(uic, __GO_UI_MIN__, 0.0);
+                        controller.setProperty(uic, __GO_UI_MAX__, 2.0);
+                    }
+
+                    break;
+                }
             }
 
         } catch (CSSParserException e) {
@@ -507,8 +603,6 @@ public class GOBuilder {
             }
             case TITLED: {
 
-                FrameBorderType borderOut = FrameBorderType.stringToEnum(XmlTools.getFromMap(map, "border", "none"));
-                Integer out = createBorder(controller, border, borderOut, map);
                 String title = XmlTools.getFromMap(map, "title", "");
                 FrameBorder.JustificationType justify = FrameBorder.JustificationType.stringToEnum(XmlTools.getFromMap(map, "justify", "leading"));
                 String fontName = XmlTools.getFromMap(map, "font-name", "");
@@ -520,7 +614,8 @@ public class GOBuilder {
 
                 String color = XmlTools.getFromMap(map, "color", "black");
 
-                controller.setProperty(border, __GO_UI_FRAME_BORDER_OUT_BORDER__, out);
+                FrameBorderType borderOut = FrameBorderType.stringToEnum(XmlTools.getFromMap(map, "border", "none"));
+                Integer out = createBorder(controller, border, borderOut, map);
 
                 controller.setProperty(border, __GO_UI_FRAME_BORDER_TITLE__, out);
                 controller.setProperty(border, __GO_TITLE__, title);

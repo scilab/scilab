@@ -72,4 +72,6 @@ GRAPHIC_OBJECTS_IMPEXP void initSubWinTo3d(int subwin, char* legend, int* flag, 
         double* ebox, double* x, int xSize, double* y, int ySize, double* z, int zSize);
 
 GRAPHIC_OBJECTS_IMPEXP int xmlload(char* xmlfile);
+GRAPHIC_OBJECTS_IMPEXP int xmldomload(char* xmlfile);
+GRAPHIC_OBJECTS_IMPEXP char* xmlsave(int id, char* xmlfile);
 #endif /* !__CREATEGRAPHICOBJECT_H__ */

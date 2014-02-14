@@ -404,6 +404,11 @@ public class SwingScilabCommonPanel {
             constraints.ipadx = padding[0];
             constraints.ipady = padding[1];
 
+            Integer[] preferredSize = uicontrol.getGridBagPreferredSize();
+            if (preferredSize[0].equals(-1) == false && preferredSize[1].equals(-1) == false) {
+                ((Component) member).setPreferredSize(new Dimension(preferredSize[0], preferredSize[1]));
+            }
+
             component.getWidgetPane().add((Component) member, constraints);
             component.getWidgetPane().revalidate();
         } else {

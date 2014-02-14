@@ -107,8 +107,8 @@ int get_constraints_property(void* _pvCtx, int iObjUID)
         break;
         case LAYOUT_GRIDBAG :
         {
-            char * variable_tlist[] = {"GridBagConstraints", "grid", "weight", "fill", "anchor", "padding"};
-            returnedList * tList = createReturnedList(5, variable_tlist);
+            char * variable_tlist[] = {"GridBagConstraints", "grid", "weight", "fill", "anchor", "padding", "preferredsize"};
+            returnedList * tList = createReturnedList(6, variable_tlist);
             int* piGrid = NULL;
             double pdblGrid[4];
             double* pdblWeight = NULL;
@@ -120,6 +120,9 @@ int get_constraints_property(void* _pvCtx, int iObjUID)
 
             double pdblPadding[2];
             int* piPadding = NULL;
+
+            double pdblPreferredSize[2];
+            int* piPreferredSize = NULL;
 
             getGraphicObjectProperty(iObjUID, __GO_UI_GRIDBAG_GRID__, jni_int_vector, (void **)&piGrid);
             if (piGrid == NULL)
@@ -156,6 +159,13 @@ int get_constraints_property(void* _pvCtx, int iObjUID)
                 return -1;
             }
 
+            getGraphicObjectProperty(iObjUID, __GO_UI_GRIDBAG_PREFERREDSIZE__, jni_int_vector, (void **)&piPreferredSize);
+            if (piPreferredSize == NULL)
+            {
+                Scierror(999, _("'%s' property does not exist for this handle.\n"), "constraints");
+                return -1;
+            }
+
             //convert to double
             pdblGrid[0] = (double)piGrid[0];
             pdblGrid[1] = (double)piGrid[1];
@@ -164,6 +174,9 @@ int get_constraints_property(void* _pvCtx, int iObjUID)
 
             pdblPadding[0] = (double)piPadding[0];
             pdblPadding[1] = (double)piPadding[1];
+
+            pdblPreferredSize[0] = (double)piPreferredSize[0];
+            pdblPreferredSize[1] = (double)piPreferredSize[1];
 
             addRowVectorToReturnedList(tList, pdblGrid, 4);
             addRowVectorToReturnedList(tList, pdblWeight, 2);
@@ -218,6 +231,7 @@ int get_constraints_property(void* _pvCtx, int iObjUID)
             }
 
             addRowVectorToReturnedList(tList, pdblPadding, 2);
+            addRowVectorToReturnedList(tList, pdblPreferredSize, 2);
             destroyReturnedList(tList);
         }
         break;

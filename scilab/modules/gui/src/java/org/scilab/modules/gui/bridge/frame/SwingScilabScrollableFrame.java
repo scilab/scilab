@@ -21,6 +21,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -76,7 +77,6 @@ public class SwingScilabScrollableFrame extends JScrollPane implements SwingView
     public SwingScilabScrollableFrame() {
         super();
         setViewportView(panel);
-        // the Default layout is null so we have to set a Position and a Size of every Dockable we add to it
         panel.setLayout(null);
         setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
@@ -232,6 +232,11 @@ public class SwingScilabScrollableFrame extends JScrollPane implements SwingView
             constraints.ipadx = padding[0];
             constraints.ipady = padding[1];
 
+            Integer[] preferredSize = uicontrol.getGridBagPreferredSize();
+            if (preferredSize[0].equals(-1) == false && preferredSize[1].equals(-1) == false) {
+                ((Component) member).setPreferredSize(new Dimension(preferredSize[0], preferredSize[1]));
+            }
+
             panel.add((Component) member, constraints);
             revalidate();
         } else if (getLayout() instanceof GridLayout) {
@@ -246,7 +251,6 @@ public class SwingScilabScrollableFrame extends JScrollPane implements SwingView
 
         SwingScilabPanel win = (SwingScilabPanel)SwingUtilities.getAncestorOfClass(SwingScilabPanel.class, this);
         if (win != null) {
-            System.out.println("add member pack pack");
             SwingScilabWindow parentWindow = SwingScilabWindow.allScilabWindows.get(win.getParentWindowId());
             parentWindow.pack();
         }

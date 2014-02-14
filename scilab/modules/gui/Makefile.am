@@ -217,7 +217,9 @@ sci_gateway/cpp/sci_datatipmove.cpp \
 sci_gateway/cpp/sci_datatip_set_style.cpp \
 sci_gateway/cpp/sci_datatip_set_display.cpp \
 sci_gateway/cpp/sci_datatip_set_interp.cpp \
-sci_gateway/cpp/sci_datatip_set_orient.cpp
+sci_gateway/cpp/sci_datatip_set_orient.cpp \
+sci_gateway/cpp/sci_saveGui.cpp \
+sci_gateway/cpp/sci_loadGui.cpp
 
 libscigui_la_CPPFLAGS = \
 			-I$(srcdir)/includes/ \

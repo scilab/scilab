@@ -149,6 +149,7 @@ public class XmlTools {
         if (map != null) {
             String ret = map.get(field);
             if (ret != null) {
+                map.remove(field);
                 return ret;
             }
         }

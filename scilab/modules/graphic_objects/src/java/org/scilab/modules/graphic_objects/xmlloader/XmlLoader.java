@@ -12,6 +12,8 @@
 
 package org.scilab.modules.graphic_objects.xmlloader;
 
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AXES__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TYPE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHILDREN__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FIGURE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_CHECKBOX__;
@@ -24,7 +26,6 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_PUSHBUTTON__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_RADIOBUTTON__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SLIDER__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TABLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TAB__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TEXT__;
 
@@ -43,7 +44,13 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
 import org.scilab.modules.commons.gui.FindIconHelper;
+import org.scilab.modules.graphic_objects.ScilabNativeView;
+import org.scilab.modules.graphic_objects.builder.Builder;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+import org.scilab.modules.graphic_objects.graphicModel.GraphicModel;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.Type;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.xml.sax.Attributes;
 import org.xml.sax.Locator;
 import org.xml.sax.SAXException;
@@ -69,63 +76,24 @@ public class XmlLoader extends DefaultHandler {
     static {
         // init map to convert control name to id
         nameToGO.put("UIScilabWindow", __GO_FIGURE__);
-        nameToGO.put("Figure", __GO_FIGURE__);
 
         nameToGO.put("UIPanel", __GO_UI_FRAME__);
         nameToGO.put("UIFrame", __GO_UI_FRAME__);
-        nameToGO.put("Panel", __GO_UI_FRAME__);
-        nameToGO.put("Frame", __GO_UI_FRAME__);
-
         nameToGO.put("UILayer", __GO_UI_LAYER__);
-        nameToGO.put("Layer", __GO_UI_LAYER__);
-
         nameToGO.put("UIButton", __GO_UI_PUSHBUTTON__);
-        nameToGO.put("PushButton", __GO_UI_PUSHBUTTON__);
-        nameToGO.put("Button", __GO_UI_PUSHBUTTON__);
-
         nameToGO.put("UILabel", __GO_UI_TEXT__);
-        nameToGO.put("Label", __GO_UI_TEXT__);
-        nameToGO.put("Text", __GO_UI_TEXT__);
-
         nameToGO.put("UICheckbox", __GO_UI_CHECKBOX__);
-        nameToGO.put("CheckBox", __GO_UI_CHECKBOX__);
-
         nameToGO.put("UITextfield", __GO_UI_EDIT__);
-        nameToGO.put("Textfield", __GO_UI_EDIT__);
-        nameToGO.put("EditBox", __GO_UI_EDIT__);
-        nameToGO.put("Edit", __GO_UI_EDIT__);
-
         nameToGO.put("UISplashScreen", __GO_UI_IMAGE__);
-        nameToGO.put("Image", __GO_UI_IMAGE__);
-        nameToGO.put("Picture", __GO_UI_IMAGE__);
-
         nameToGO.put("UIList", __GO_UI_LISTBOX__);
-        nameToGO.put("List", __GO_UI_LISTBOX__);
-        nameToGO.put("ListBox", __GO_UI_LISTBOX__);
-
         nameToGO.put("UIComboBox", __GO_UI_POPUPMENU__);
-        nameToGO.put("ComboBox", __GO_UI_POPUPMENU__);
-        nameToGO.put("PopupMenu", __GO_UI_POPUPMENU__);
-
         nameToGO.put("UIRadio", __GO_UI_RADIOBUTTON__);
-        nameToGO.put("RadioButton", __GO_UI_RADIOBUTTON__);
-        nameToGO.put("Radio", __GO_UI_RADIOBUTTON__);
-
         nameToGO.put("UISlider", __GO_UI_SLIDER__);
-        nameToGO.put("Slider", __GO_UI_SLIDER__);
-
-        nameToGO.put("Table", __GO_UI_TABLE__);
-
-        nameToGO.put("UILabel", __GO_UI_TEXT__);
-        nameToGO.put("Text", __GO_UI_TEXT__);
-        nameToGO.put("Label", __GO_UI_TEXT__);
-
         nameToGO.put("UITab", __GO_UI_TAB__);
-
+        nameToGO.put("UIScilabPlot", __GO_AXES__);
 
         /** sdsdf*/
         nameToGO.put("UITextarea", __GO_UI_PUSHBUTTON__);
-        nameToGO.put("UIScilabPlot", __GO_UI_FRAME__);
         nameToGO.put("UIComboColor", __GO_UI_POPUPMENU__);
 
     }
@@ -240,6 +208,7 @@ public class XmlLoader extends DefaultHandler {
             if (go == null) {
             } else if (stackGO.size() > 0) {
                 Integer parent = stackGO.peek();
+
                 controller.setGraphicObjectRelationship(parent, go);
                 //controller.setProperty(go, __GO_VISIBLE__, true);
             } else {
@@ -276,6 +245,8 @@ public class XmlLoader extends DefaultHandler {
                 if (uitype == __GO_FIGURE__) {
                     // never create a new figure, clone figure model !
                     go = GOBuilder.figureBuilder(controller, attributes);
+                } else if (uitype == __GO_AXES__) {
+                    go = GraphicController.getController().askObject(Type.AXES);
                 } else {
                     int parent = 0;
                     if (stackGO.isEmpty() == false) {
@@ -336,8 +307,22 @@ public class XmlLoader extends DefaultHandler {
         Integer newGo = controller.cloneObject(root);
         Integer[] children = (Integer[]) controller.getProperty(root, __GO_CHILDREN__);
         for (int i = 0; i < children.length; i++) {
-            Integer newChild = cloneObject(children[i]);
-            controller.setGraphicObjectRelationship(newGo, newChild);
+            if ((Integer)controller.getProperty(children[i], __GO_TYPE__) == __GO_AXES__) {
+                Integer go = controller.cloneObject(GraphicModel.getAxesModel().getIdentifier());
+                Builder.createLabel(go, GraphicObjectProperties.__GO_X_AXIS_LABEL__);
+                Builder.createLabel(go, GraphicObjectProperties.__GO_Y_AXIS_LABEL__);
+                Builder.createLabel(go, GraphicObjectProperties.__GO_Z_AXIS_LABEL__);
+                Builder.createLabel(go, GraphicObjectProperties.__GO_TITLE__);
+
+                controller.setGraphicObjectRelationship(newGo, go);
+                controller.setProperty(newGo, GraphicObjectProperties.__GO_SELECTED_CHILD__, go);
+
+                ScilabNativeView.ScilabNativeView__setCurrentSubWin(go);
+                ScilabNativeView.ScilabNativeView__setCurrentObject(go);
+            } else {
+                Integer newChild = cloneObject(children[i]);
+                controller.setGraphicObjectRelationship(newGo, newChild);
+            }
         }
 
         return newGo;

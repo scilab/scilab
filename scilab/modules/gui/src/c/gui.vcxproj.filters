@@ -440,6 +440,9 @@
     <ClCompile Include="..\..\sci_gateway\cpp\sci_datatip_toggle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_saveGui.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\jni\DatatipDrag.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -457,6 +460,9 @@
     </ClCompile>
     <ClCompile Include="..\cpp\CreateUIControl.cpp">
       <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_loadGui.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

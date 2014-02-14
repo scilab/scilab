@@ -19,6 +19,7 @@ import javax.swing.UIManager;
 
 import org.scilab.modules.graphic_objects.console.Console;
 import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
+import org.scilab.modules.graphic_objects.utils.LayoutType;
 
 /**
  * @author Vincent COUVERT
@@ -44,6 +45,9 @@ public class Tab extends Uicontrol {
 
             //v-alignement
             setVerticalAlignment("middle");
+
+            //layout
+            setLayout(LayoutType.BORDER);
         }
     }
 

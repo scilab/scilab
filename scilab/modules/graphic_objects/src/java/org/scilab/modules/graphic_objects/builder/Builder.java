@@ -314,7 +314,7 @@ public final class Builder {
             }
         }
     }
-        
+
     public final static int createFigure(boolean dockable, int menubarType, int toolbarType, boolean defaultAxes, boolean visible) {
         GraphicController controller =  GraphicController.getController();
         Integer figModel = GraphicModel.getFigureModel().getIdentifier();
@@ -324,14 +324,15 @@ public final class Builder {
         figure.setMenubar(menubarType);
         figure.setToolbar(toolbarType);
         figure.setVisible(visible);
-        
+        figure.setDefaultAxes(defaultAxes);
+
         controller.objectCreated(figId);
         ScilabNativeView.ScilabNativeView__setCurrentFigure(figId);
-        
+
         if (menubarType == BarType.FIGURE.ordinal()) {
             cloneMenus(figModel, figId);
         }
-        
+
         if (defaultAxes) {
             //clone default axes
             cloneAxesModel(figId);
@@ -339,7 +340,7 @@ public final class Builder {
 
         return figId;
     }
-    
+
     public final static int createNewFigureWithAxes() {
         GraphicController controller = GraphicController.getController();
         Integer figModel  = GraphicModel.getFigureModel().getIdentifier();

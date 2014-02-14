@@ -14,19 +14,22 @@
 
 package org.scilab.modules.gui.bridge.editbox;
 
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MAX__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING__;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 import javax.swing.AbstractAction;
 import javax.swing.InputMap;
 import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextPane;
 import javax.swing.KeyStroke;
 import javax.swing.ScrollPaneConstants;
@@ -68,7 +71,7 @@ import org.scilab.modules.gui.utils.Size;
  */
 public class SwingScilabEditBox extends JScrollPane implements SwingViewObject, SimpleEditBox {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2048261239598753717L;
 
     private Integer uid;
 
@@ -83,7 +86,7 @@ public class SwingScilabEditBox extends JScrollPane implements SwingViewObject, 
 
     private Object enterKeyAction;
     private Object tabKeyAction;
-    
+
     private class EditBoxView extends BoxView {
         public EditBoxView(Element elem, int axis) {
             super(elem, axis);
@@ -118,6 +121,8 @@ public class SwingScilabEditBox extends JScrollPane implements SwingViewObject, 
     }
 
     private class EditBoxEditorKit extends StyledEditorKit {
+        private static final long serialVersionUID = -3293325523458217074L;
+
         public ViewFactory getViewFactory() {
             return new ViewFactory() {
                 public View create(Element elem) {
@@ -168,7 +173,7 @@ public class SwingScilabEditBox extends JScrollPane implements SwingViewObject, 
         InputMap map = textPane.getInputMap();
         enterKeyAction = map.get(enterKey);
         tabKeyAction = map.get(tabKey);
-        
+
         if (Console.getConsole().getUseDeprecatedLF() == false) {
             setEditFont(getFont());
         }
@@ -189,7 +194,7 @@ public class SwingScilabEditBox extends JScrollPane implements SwingViewObject, 
             }
         }
     }
-    
+
     /**
      * Draws a swing Scilab EditBox
      * @see org.scilab.modules.gui.uielement.UIElement#draw()
@@ -209,7 +214,8 @@ public class SwingScilabEditBox extends JScrollPane implements SwingViewObject, 
     }
 
     /**
-     * Gets the position (X-coordinate and Y-coordinate) of a swing Scilab EditBox
+     * Gets the position (X-coordinate and Y-coordinate) of a swing Scilab
+     * EditBox
      * @return the position of the EditBox
      * @see org.scilab.modules.gui.uielement.UIElement#getPosition()
      */
@@ -227,7 +233,8 @@ public class SwingScilabEditBox extends JScrollPane implements SwingViewObject, 
     }
 
     /**
-     * Sets the position (X-coordinate and Y-coordinate) of a swing Scilab EditBox
+     * Sets the position (X-coordinate and Y-coordinate) of a swing Scilab
+     * EditBox
      * @param newPosition the position we want to set to the EditBox
      * @see org.scilab.modules.gui.uielement.UIElement#setPosition(org.scilab.modules.gui.utils.Position)
      */
@@ -277,7 +284,10 @@ public class SwingScilabEditBox extends JScrollPane implements SwingViewObject, 
         /* (Des)Activate the callback */
         if (callback != null) {
             if (status) {
-                removeFocusListener(focusListener); /* To be sure the callback is not added two times */
+                removeFocusListener(focusListener); /*
+                                                     * To be sure the callback
+                                                     * is not added two times
+                                                     */
                 //removeActionListener(actionListener); /* To be sure the callback is not added two times */
                 addFocusListener(focusListener);
                 //addActionListener(actionListener);
@@ -438,7 +448,29 @@ public class SwingScilabEditBox extends JScrollPane implements SwingViewObject, 
      * @param value property value
      */
     public void update(int property, Object value) {
-        SwingViewWidget.update(this, property, value);
+        switch (property) {
+            case __GO_UI_MAX__ : {
+                Double columns = (Double)value;
+                Graphics g = textPane.getGraphics();
+                Integer width = 50;
+                if (g != null) {
+                    width = textPane.getGraphics().getFontMetrics(textPane.getFont()).charWidth('m');
+                }
+                Integer totalWidth = columns.intValue() * width;
+                Dimension current = textPane.getPreferredSize();
+                System.out.println("current : " + current.toString());
+                current.width = totalWidth;
+                textPane.setPreferredSize(current);
+                current = textPane.getPreferredSize();
+                System.out.println("new : " + current.toString());
+                break;
+            }
+
+            default : {
+                SwingViewWidget.update(this, property, value);
+                break;
+            }
+        }
     }
 
     public String getText() {
@@ -457,6 +489,8 @@ public class SwingScilabEditBox extends JScrollPane implements SwingViewObject, 
         } else {
             setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
             AbstractAction validateUserInput = new AbstractAction() {
+                private static final long serialVersionUID = -5286137769378297783L;
+
                 public void actionPerformed(ActionEvent e) {
                     validateUserInput();
                 }
@@ -469,7 +503,7 @@ public class SwingScilabEditBox extends JScrollPane implements SwingViewObject, 
     }
 
     public void resetBackground() {
-        Color color = (Color)UIManager.getLookAndFeelDefaults().get("TextField.background");
+        Color color = (Color) UIManager.getLookAndFeelDefaults().get("TextField.background");
         if (color != null) {
             setBackground(color);
         }

@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2011 - DIGITEO - Vincent COUVERT
+ * Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -39,9 +40,11 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_GRIDBAG_FILL__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_GRIDBAG_GRID__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_GRIDBAG_PADDING__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_GRIDBAG_PREFERREDSIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_GRIDBAG_WEIGHT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_GROUP_NAME__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_HORIZONTALALIGNMENT__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ICON__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_IMAGE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LAYER__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LISTBOXTOP_SIZE__;
@@ -70,7 +73,6 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE_SIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VERTICALALIGNMENT__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ICON__;
 
 import java.awt.Font;
 import java.util.Arrays;
@@ -312,6 +314,7 @@ public class Uicontrol extends GraphicObject {
     private FillType gridbagFill = FillType.NONE;
     private AnchorType gridbagAnchor = AnchorType.CENTER;
     private Integer[] gridbagPadding = new Integer[] {0, 0};
+    private Integer[] gridbagPreferredSize = new Integer[] { -1, -1};
     private BorderLayoutType borderPosition = BorderLayoutType.CENTER;
     private String icon = "";
 
@@ -371,6 +374,7 @@ public class Uicontrol extends GraphicObject {
         GRIDBAG_FILL,
         GRIDBAG_ANCHOR,
         GRIDBAG_PADDING,
+        GRIDBAG_PREFERREDSIZE,
         BORDER_POSITION,
         GRIDOPT_GRID,
         GRIDOPT_PADDING,
@@ -386,7 +390,7 @@ public class Uicontrol extends GraphicObject {
     /**
      * All uicontrol styles
      */
-    private enum UicontrolStyle {
+    public enum UicontrolStyle {
         CHECKBOX,
         EDIT,
         FRAME,
@@ -587,6 +591,8 @@ public class Uicontrol extends GraphicObject {
                 return UicontrolProperty.GRIDBAG_ANCHOR;
             case __GO_UI_GRIDBAG_PADDING__:
                 return UicontrolProperty.GRIDBAG_PADDING;
+            case __GO_UI_GRIDBAG_PREFERREDSIZE__:
+                return UicontrolProperty.GRIDBAG_PREFERREDSIZE;
             case __GO_UI_BORDER_POSITION__:
                 return UicontrolProperty.BORDER_POSITION;
             case __GO_GRID_OPT_GRID__:
@@ -686,6 +692,8 @@ public class Uicontrol extends GraphicObject {
             return getGridBagAnchor();
         } else if (property == UicontrolProperty.GRIDBAG_PADDING) {
             return getGridBagPadding();
+        } else if (property == UicontrolProperty.GRIDBAG_PREFERREDSIZE) {
+            return getGridBagPreferredSize();
         } else if (property == UicontrolProperty.BORDER_POSITION) {
             return getBorderPosition();
         } else if (property == UicontrolProperty.GRIDOPT_GRID) {
@@ -782,6 +790,8 @@ public class Uicontrol extends GraphicObject {
                 return setGridBagAnchor((Integer) value);
             case GRIDBAG_PADDING:
                 return setGridBagPadding((Integer[]) value);
+            case GRIDBAG_PREFERREDSIZE:
+                return setGridBagPreferredSize((Integer[]) value);
             case BORDER_POSITION:
                 return setBorderPosition((Integer) value);
             case GRIDOPT_GRID:
@@ -812,7 +822,11 @@ public class Uicontrol extends GraphicObject {
          * @return the style
          */
     public Integer getStyle() {
-        return styleEnumToInt(this.style);
+        return styleEnumToInt(style);
+    }
+
+    public UicontrolStyle getStyleAsEnum() {
+        return style;
     }
 
     /**
@@ -1226,6 +1240,26 @@ public class Uicontrol extends GraphicObject {
         for (int i = 0 ; i < value.length ; i++) {
             if (gridbagPadding[i] != value[i]) {
                 gridbagPadding[i] = value[i];
+                status = UpdateStatus.Success;
+            }
+        }
+
+        return status;
+    }
+
+    public Integer[] getGridBagPreferredSize() {
+        return gridbagPreferredSize;
+    }
+
+    public UpdateStatus setGridBagPreferredSize(Integer[] value) {
+        UpdateStatus status = UpdateStatus.NoChange;
+        if (gridbagPreferredSize.length != value.length) {
+            return UpdateStatus.Fail;
+        }
+
+        for (int i = 0 ; i < value.length ; i++) {
+            if (gridbagPreferredSize[i] != value[i]) {
+                gridbagPreferredSize[i] = value[i];
                 status = UpdateStatus.Success;
             }
         }

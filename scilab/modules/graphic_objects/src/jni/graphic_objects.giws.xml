@@ -2,7 +2,14 @@
 <package name="org.scilab.modules.graphic_objects">
     <object name="CallXmlLoader">
         <method name="Load" returnType="int" modifier="static">
-            <parameter name="xmlFile" type="String"/>
+            <parameter name="filename" type="String"/>
+        </method>
+        <method name="Save" returnType="String" modifier="static">
+            <parameter name="figure" type="int"/>
+            <parameter name="filename" type="String"/>
+        </method>
+        <method name="DomLoad" returnType="int" modifier="static">
+            <parameter name="filename" type="String"/>
         </method>
     </object>
     <object name="CallGraphicController">

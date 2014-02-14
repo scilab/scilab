@@ -18,6 +18,7 @@ import javax.swing.UIDefaults;
 import javax.swing.UIManager;
 
 import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
+import org.scilab.modules.graphic_objects.utils.LayoutType;
 
 /**
  * @author Vincent COUVERT
@@ -40,5 +41,8 @@ public class Layer extends Uicontrol {
 
         //v-alignement
         setVerticalAlignment("middle");
+
+        //layout
+        setLayout(LayoutType.BORDER);
     }
 }

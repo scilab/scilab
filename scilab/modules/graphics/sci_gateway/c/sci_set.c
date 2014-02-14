@@ -180,6 +180,7 @@ int sci_set(char *fname, unsigned long fname_len)
                     }
                     iRows2 = (int)strlen((char*)pvData);
                     iCols2 = 1;
+                    isMatrixOfString = 0;
                 }
                 break;
         }
@@ -388,6 +389,7 @@ int sci_set(char *fname, unsigned long fname_len)
                         }
                         iRows3 = (int)strlen((char*)pvData);
                         iCols3 = 1;
+                        isMatrixOfString = 0;
                     }
                     else
                     {

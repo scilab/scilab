@@ -330,7 +330,9 @@ am__objects_5 = sci_gateway/cpp/libscigui_la-sci_printsetupbox.lo \
 	sci_gateway/cpp/libscigui_la-sci_datatip_set_style.lo \
 	sci_gateway/cpp/libscigui_la-sci_datatip_set_display.lo \
 	sci_gateway/cpp/libscigui_la-sci_datatip_set_interp.lo \
-	sci_gateway/cpp/libscigui_la-sci_datatip_set_orient.lo
+	sci_gateway/cpp/libscigui_la-sci_datatip_set_orient.lo \
+	sci_gateway/cpp/libscigui_la-sci_saveGui.lo \
+	sci_gateway/cpp/libscigui_la-sci_loadGui.lo
 am_libscigui_la_OBJECTS = $(am__objects_4) $(am__objects_5)
 libscigui_la_OBJECTS = $(am_libscigui_la_OBJECTS)
 @GUI_TRUE@am_libscigui_la_rpath = -rpath $(pkglibdir)
@@ -884,7 +886,9 @@ sci_gateway/cpp/sci_datatipmove.cpp \
 sci_gateway/cpp/sci_datatip_set_style.cpp \
 sci_gateway/cpp/sci_datatip_set_display.cpp \
 sci_gateway/cpp/sci_datatip_set_interp.cpp \
-sci_gateway/cpp/sci_datatip_set_orient.cpp
+sci_gateway/cpp/sci_datatip_set_orient.cpp \
+sci_gateway/cpp/sci_saveGui.cpp \
+sci_gateway/cpp/sci_loadGui.cpp
 
 libscigui_la_CPPFLAGS = \
 			-I$(srcdir)/includes/ \
@@ -1607,6 +1611,12 @@ sci_gateway/cpp/libscigui_la-sci_datatip_set_interp.lo:  \
 sci_gateway/cpp/libscigui_la-sci_datatip_set_orient.lo:  \
 	sci_gateway/cpp/$(am__dirstamp) \
 	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscigui_la-sci_saveGui.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscigui_la-sci_loadGui.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 
 libscigui.la: $(libscigui_la_OBJECTS) $(libscigui_la_DEPENDENCIES) $(EXTRA_libscigui_la_DEPENDENCIES) 
 	$(AM_V_CXXLD)$(CXXLINK) $(am_libscigui_la_rpath) $(libscigui_la_OBJECTS) $(libscigui_la_LIBADD) $(LIBS)
@@ -1668,11 +1678,13 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_fire_closing_finished.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_getinstalledlookandfeels.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_getlookandfeel.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_loadGui.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_openged.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_plotbrowser.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_printfigure.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_printsetupbox.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_raise_window.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_saveGui.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_setlookandfeel.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_toprint.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_uigetdir.Plo@am__quote@
@@ -2821,6 +2833,20 @@ sci_gateway/cpp/libscigui_la-sci_datatip_set_orient.lo: sci_gateway/cpp/sci_data
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_datatip_set_orient.cpp' object='sci_gateway/cpp/libscigui_la-sci_datatip_set_orient.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscigui_la-sci_datatip_set_orient.lo `test -f 'sci_gateway/cpp/sci_datatip_set_orient.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_datatip_set_orient.cpp
+
+sci_gateway/cpp/libscigui_la-sci_saveGui.lo: sci_gateway/cpp/sci_saveGui.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscigui_la-sci_saveGui.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_saveGui.Tpo -c -o sci_gateway/cpp/libscigui_la-sci_saveGui.lo `test -f 'sci_gateway/cpp/sci_saveGui.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_saveGui.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_saveGui.Tpo sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_saveGui.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_saveGui.cpp' object='sci_gateway/cpp/libscigui_la-sci_saveGui.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscigui_la-sci_saveGui.lo `test -f 'sci_gateway/cpp/sci_saveGui.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_saveGui.cpp
+
+sci_gateway/cpp/libscigui_la-sci_loadGui.lo: sci_gateway/cpp/sci_loadGui.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscigui_la-sci_loadGui.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_loadGui.Tpo -c -o sci_gateway/cpp/libscigui_la-sci_loadGui.lo `test -f 'sci_gateway/cpp/sci_loadGui.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_loadGui.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_loadGui.Tpo sci_gateway/cpp/$(DEPDIR)/libscigui_la-sci_loadGui.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_loadGui.cpp' object='sci_gateway/cpp/libscigui_la-sci_loadGui.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscigui_la-sci_loadGui.lo `test -f 'sci_gateway/cpp/sci_loadGui.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_loadGui.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo

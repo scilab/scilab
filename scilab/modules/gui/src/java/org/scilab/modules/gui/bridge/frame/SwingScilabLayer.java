@@ -4,6 +4,7 @@ package org.scilab.modules.gui.bridge.frame;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VISIBLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TAG__;
 
 import java.awt.CardLayout;
 import java.awt.Component;
@@ -14,38 +15,35 @@ import org.scilab.modules.gui.SwingViewObject;
 
 public class SwingScilabLayer extends SwingScilabFrame {
     private static final long serialVersionUID = 9038916804095320758L;
-    private ArrayList<String> layerName = new ArrayList<String>();
-    private CardLayout layout = new CardLayout();
+    private ArrayList<Integer> layers = new ArrayList<Integer>();
 
     public SwingScilabLayer() {
         super();
-        setLayout(layout);
+        setLayout(new CardLayout());
     }
 
     public void addMember(SwingScilabFrame member) {
         String name = member.getId().toString();
         member.setName(name);
-        layerName.add(name);
+        layers.add(member.getId());
         add(member, name);
         revalidate();
         //active the first child
         if (getActiveLayer() == -1) {
             setActiveLayer(1);
         }
-
     }
 
     public void addMember(SwingScilabScrollableFrame member) {
         String name = member.getId().toString();
         member.setName(name);
-        layerName.add(name);
+        layers.add(member.getId());
         add(member, name);
         revalidate();
         //active the first child
         if (getActiveLayer() == -1) {
             setActiveLayer(1);
         }
-
     }
 
     public Integer getActiveLayer() {
@@ -62,7 +60,7 @@ public class SwingScilabLayer extends SwingScilabFrame {
             return -1;
         }
 
-        return layerName.indexOf(card.getName()) + 1;
+        return layers.indexOf(Integer.parseInt(card.getName())) + 1;
     }
 
     private Component getLayerFromIndex(Integer layer) {
@@ -99,7 +97,7 @@ public class SwingScilabLayer extends SwingScilabFrame {
 
 
     public void removeMember(SwingScilabScrollableFrame member) {
-        layerName.remove(member.getId().toString());
+        layers.remove(member.getId());
         remove(member);
         revalidate();
 
@@ -116,7 +114,7 @@ public class SwingScilabLayer extends SwingScilabFrame {
     }
 
     public void removeMember(SwingScilabFrame member) {
-        layerName.remove(member.getId().toString());
+        layers.remove(member.getId());
         remove(member);
         revalidate();
 
@@ -133,12 +131,12 @@ public class SwingScilabLayer extends SwingScilabFrame {
     }
 
     public boolean setActiveLayer(Integer layerPos) {
-        if (layerPos < 1 || layerPos > layerName.size()) {
+        if (layerPos < 1 || layerPos > layers.size()) {
             return false;
         }
 
         Integer previous = getActiveLayer();
-        if (setActiveLayer(layerName.get(layerPos - 1)) == false) {
+        if (setActiveLayer(layers.get(layerPos - 1).toString()) == false) {
             return false;
         }
 
@@ -149,14 +147,24 @@ public class SwingScilabLayer extends SwingScilabFrame {
 
     private boolean setActiveLayer(String layer) {
         //check existing item
-        if (layerName.contains(layer)) {
-            layout.show(this, layer);
-            return true;
-        } else {
-            return false;
-        }
+        ((CardLayout)getLayout()).show(this, layer);
+        return true;
     }
 
+    public boolean setActiveLayerFromName(String name) {
+
+        //get layer's name from property "string"
+        GraphicController controller = GraphicController.getController();
+
+        for (int i = 0 ; i < layers.size() ; i++) {
+            String string = (String)controller.getProperty(layers.get(i), __GO_TAG__);
+            if (string.equals(name)) {
+                return setActiveLayer(i + 1);
+            }
+        }
+
+        return false;
+    }
     private void updateChildrenVisible(Integer previous, Integer next) {
         SwingViewObject previousFrame = (SwingViewObject)getLayerFromIndex(previous);
         SwingViewObject nextFrame = (SwingViewObject) getLayerFromIndex(next);
