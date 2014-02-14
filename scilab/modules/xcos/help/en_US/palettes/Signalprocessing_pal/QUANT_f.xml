@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
- * 
+ *
  * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
  * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  *  (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
- * 
+ *
  * See the file ./license.txt
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="QUANT_f">
@@ -95,10 +95,33 @@
         <para>
             This block outputs the quantization of the input according to a choice
             of methods:
-            
-            
-            
         </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">1: Round</emphasis>
+                </para>
+                <para>Nearest whole number of the value at the first step</para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">2: Truncation</emphasis>
+                </para>
+                <para>The value at the first step is truncated </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">3: Floor</emphasis>
+                </para>
+                <para>The floor value of the first step is used</para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">4: Ceil</emphasis>
+                </para>
+                <para>The floor value of the first step is used</para>
+            </listitem>
+        </itemizedlist>
     </refsection>
     <refsection id="Dialogbox_QUANT_f">
         <title>Dialog box</title>
@@ -224,5 +247,17 @@
                 <para> SCI/modules/scicos_blocks/src/fortran/qzcel.f</para>
             </listitem>
         </itemizedlist>
+    </refsection>
+    <refsection id="Example_QUANT_f">
+        <title>Example of a sine quantized every 0.2 step with the Ceil method (using the ceil value between two steps):</title>
+        <para>
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/signalprocessing_pal/QUANT_f_Example.zcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata align="center" fileref="../../../../examples/signalprocessing_pal/QUANT_f_Example.zcos" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+        </para>
     </refsection>
 </refentry>
