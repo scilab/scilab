@@ -90,13 +90,15 @@ public class SwingScilabTabGroup extends JTabbedPane implements SwingViewObject 
                 for (int i = 0 ; i < getTabCount() ; i++) {
                     setTitleAt(i, null);
                 }
+                break;
             }
             case __GO_POSITION__ :
                 Double[] positions = (Double[]) value;
                 setSize(positions[2].intValue(), positions[3].intValue());
                 Position javaPosition = PositionConverter.scilabToJava(new Position(positions[0].intValue(), positions[1].intValue()),
-                        new Size(getSize().width, getSize().height), getParent());
+                                        new Size(getSize().width, getSize().height), getParent());
                 setLocation(javaPosition.getX(), javaPosition.getY());
+                break;
         }
     }
 
@@ -131,10 +133,10 @@ public class SwingScilabTabGroup extends JTabbedPane implements SwingViewObject 
 
         Font oldFont = label.getFont();
         Font font = new Font(
-                fontName.equals("") == false ? fontName : oldFont.getFontName(), 
-                        fontStyle,
-                        fontSize != 0.0 ? fontSize.intValue() : oldFont.getSize());
-        
+            fontName.equals("") == false ? fontName : oldFont.getFontName(),
+            fontStyle,
+            fontSize != 0.0 ? fontSize.intValue() : oldFont.getSize());
+
         label.setFont(font);
 
         if (title != null) {

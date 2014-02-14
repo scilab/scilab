@@ -233,6 +233,7 @@ public class DragZoomRotateInteraction extends FigureInteraction {
                         doRotation(e);
                         break;
                     }
+                    break;
                 case XY_TRANSLATION_MODIFIER:
                     if (translateEnabled) {
                         doXYTranslation(e);
