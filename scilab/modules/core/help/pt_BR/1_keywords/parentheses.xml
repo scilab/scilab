@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="parents">
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="parentheses" xml:lang="en">
     <refnamediv>
-        <refname>parents</refname>
-        <refpurpose>( ) 左および右括弧</refpurpose>
+        <refname>parentheses</refname>
+        <refpurpose>( ) par�nteses esquerdo e direito</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>呼出し手順</title>
-        <synopsis>(expression)
+        <title>Seq��ncia de Chamamento</title>
+        <synopsis>(express�o)
             [...]=func(e1,e2,...)
             [x1,x2,...]=(e1,e2,...)
             x(i,j)
@@ -15,70 +15,59 @@
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>Par�metros </title>
         <variablelist>
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>任意の型の行列</para>
+                    <para>matriz de qualquer tipo poss�vel </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>v</term>
                 <listitem>
-                    <para>任意の型の行または列ベクトル</para>
+                    <para>vetor linha ou coluna de qualquer tipo poss�vel </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>l</term>
                 <listitem>
-                    <para>リスト変数</para>
+                    <para>vari�vel tipo lista </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>func</term>
                 <listitem>
-                    <para>任意の関数名a</para>
+                    <para>qualquer nome de fun��o </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>e1,e2,...  </term>
+                <term>e1,e2,...</term>
                 <listitem>
-                    <para>任意の型の式</para>
+                    <para>qualquer tipo poss�vel de express�o</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>説明</title>
-        <para>
-            左および右括弧は以下の用途で使用されます
+        <title>Descri��o</title>
+        <para>Par�nteses esquerdo e direito s�o usados para</para>
+        <para>* Especificar ordem de avalia��o dentro de express�es,</para>
+        <para>* Formar listas de argumentos do lado direito de uma fun��o. Dentro
+            de lados direitos m�ltiplos, os argumentos devem ser separados por
+            v�rgula.
         </para>
-        <para>
-            *
-            式の中で評価の順序を指定します,
+        <para>* Selecionar elementos dentro de vetores, matrizes e listas.Ver
+            ajuda em insertion e extraction para maiores informa��es.
         </para>
-        <para>
-            *
-            関数の右辺の引数のリストを作成します.
-            複数の右辺の引数の間はカンマで区切られる必要があります.
-        </para>
-        <para>
-            ベクトル,行列およびリストの中の要素を選択します.
-            詳細にについては,
-            展開および挿入のヘルプを参照ください.
-        </para>
-        <para>
-            *
-            [x1,x2,...]=(e1,e2,...) は,まず
-            %t_1 = e1, %t_2 = e2, ...,を実行した後,
-            x1 = %t_1, x2 = %t_2, ...,　とすることに等価です.
-            ただし, 変数 %t_i, i = 1, 2, ...はユーザから不可視です.
+        <para> * [x1,x2,...]=(e1,e2,...) � equivalente a realizar primeiro %t_1 =
+            e1, %t_2 = e2, ..., e ent�o x1 = %t_1, x2 = %t_2, ..., onde as vari�veis
+            %t_i, i = 1, 2, ... s�o vis�veis ao usu�rio.
         </para>
     </refsection>
     <refsection>
-        <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[
 3^(-1)
 x=poly(0,"x");
 //
@@ -93,19 +82,19 @@ a(:,$+1)=[10;11;12]
 //
 w=ssrand(2,2,2);ssprint(w)
 ssprint(w(:,1))
-ss2tf(w(:,1)) 
+ss2tf(w(:,1))
 //
 l=list(1,2,3,4)
 [a,b,c,d]=l(:)
-l($+1)='new'
+l($+1)='novo'
 //
 v=%t([1 1 1 1 1])
 //
 [x,y,z]=(1,2,3)
  ]]></programlisting>
     </refsection>
-    <refsection role="see also">
-        <title>参照</title>
+    <refsection>
+        <title> Ver Tamb�m</title>
         <simplelist type="inline">
             <member>
                 <link linkend="colon">colon</link>

@@ -71,7 +71,7 @@
                                             от 1 до <literal>size(j,'*')</literal>.
                                         </para>
                                         <para>
-                                            Максимальное значение <literal>i</literal> (<literal>j</literal>) должно 
+                                            Максимальное значение <literal>i</literal> (<literal>j</literal>) должно
                                             быть меньше, либо равно <literal>size(x,1)</literal>
                                             (<literal>size(x,2)</literal>).
                                         </para>
@@ -86,7 +86,7 @@
                                             1 до <literal>size(i,2)</literal>.
                                         </para>
                                         <para>
-                                            Заметьте, что в этом случае индекс <literal>i</literal> корректен только 
+                                            Заметьте, что в этом случае индекс <literal>i</literal> корректен только
                                             если все её элементы равны единице.
                                         </para>
                                     </listitem>
@@ -96,10 +96,10 @@
                                             формирует вектор-строку <literal>r</literal> такую, что
                                             <literal>r(l)=x(int(i(l)))</literal> для
                                             <literal>l</literal> от 1 до
-                                            <literal>size(i,'*')</literal> 
+                                            <literal>size(i,'*')</literal>
                                         </para>
                                         <para>
-                                            Максимальное значение <literal>i</literal> 
+                                            Максимальное значение <literal>i</literal>
                                             должно быть меньше, либо равно <literal>size(x,'*')</literal>.
                                         </para>
                                     </listitem>
@@ -110,11 +110,11 @@
                                             <literal>r</literal> такой, что <literal>r(l)</literal>
                                             (<literal>l</literal> от 1 до
                                             <literal>size(i,'*')</literal>) содержит
-                                            <literal>int(i(l))</literal>-тые элементы вектор-столбца, сформированного 
+                                            <literal>int(i(l))</literal>-тые элементы вектор-столбца, сформированного
                                             конкатенацией столбцов матрицы <literal>x</literal>.
                                         </para>
                                         <para>
-                                            Максимальное значение <literal>i</literal> должно быть меньше или равно 
+                                            Максимальное значение <literal>i</literal> должно быть меньше или равно
                                             <literal>size(x,'*')</literal>.
                                         </para>
                                     </listitem>
@@ -132,7 +132,7 @@
                                 <itemizedlist>
                                     <listitem>
                                         <para>
-                                            <literal>r=x(i,:)</literal> формирует матрицу <literal>r</literal> такую, 
+                                            <literal>r=x(i,:)</literal> формирует матрицу <literal>r</literal> такую,
                                             что <literal>r(l,k)=x(int(i(l)),k))</literal> для
                                             <literal>l</literal> от 1 до
                                             <literal>size(i,'*')</literal> и <literal>k</literal>
@@ -141,7 +141,7 @@
                                     </listitem>
                                     <listitem>
                                         <para>
-                                            <literal>r=x(:,j)</literal> формирует матрицу <literal>r</literal> такую, 
+                                            <literal>r=x(:,j)</literal> формирует матрицу <literal>r</literal> такую,
                                             что <literal>r(l,k)=x(l,int(j(k)))</literal> для
                                             <literal>l</literal> от 1 до
                                             <literal>size(r,1)</literal> и <literal>k</literal> от
@@ -150,9 +150,9 @@
                                     </listitem>
                                     <listitem>
                                         <para>
-                                            <literal>r=x(:)</literal> формирует вектор-столбец <literal>r</literal>,  
-                                            сформированный постолбцовой конкатенацией столбцов матрицы 
-                                            <literal> x</literal>. Это эквивалентно инструкции 
+                                            <literal>r=x(:)</literal> формирует вектор-столбец <literal>r</literal>,
+                                            сформированный постолбцовой конкатенацией столбцов матрицы
+                                            <literal> x</literal>. Это эквивалентно инструкции
                                             <literal>matrix(x,size(x,'*'),1)</literal>.
                                         </para>
                                     </listitem>
@@ -164,7 +164,7 @@
                             <listitem>
                                 <para>
                                     Если индекс (<literal>i</literal> или <literal>j</literal>) является
-                                    вектором логических значений, то он интерпретируется как 
+                                    вектором логических значений, то он интерпретируется как
                                     <literal>find(i)</literal> или, соответственно, <literal>find(j)</literal>.
                                 </para>
                             </listitem>
@@ -173,11 +173,11 @@
                             <term>полиномом</term>
                             <listitem>
                                 <para>
-                                    Если индекс (<literal>i</literal> или <literal>j</literal>) является вектором 
-                                    полиномов или подразумевается вектором полиномов, то он интерпретируется как 
-                                    <literal>horner(i,m)</literal> или, соответственно, 
+                                    Если индекс (<literal>i</literal> или <literal>j</literal>) является вектором
+                                    полиномов или подразумевается вектором полиномов, то он интерпретируется как
+                                    <literal>horner(i,m)</literal> или, соответственно,
                                     <literal>horner(j,n)</literal> где <literal>m</literal> и
-                                    <literal>n</literal> относятся к размерам матрицы <literal>x</literal>. 
+                                    <literal>n</literal> относятся к размерам матрицы <literal>x</literal>.
                                     Даже если эта возможность работает со всеми полиномами, рекомендуется использовать для удобочитаемости символ <literal>$</literal>.
                                 </para>
                             </listitem>
@@ -192,8 +192,8 @@
                 <term>В СЛУЧАЕ СПИСКА (LIST) ИЛИ ТИПИЗИРОВАННОГО СПИСКА (TLIST)</term>
                 <listitem>
                     <para>
-                        В этом случае <literal>ki</literal> указывает путь до элемента 
-                        подсписка структуры данных <literal>l</literal>. Разрешено 
+                        В этом случае <literal>ki</literal> указывает путь до элемента
+                        подсписка структуры данных <literal>l</literal>. Разрешено
                         рекурсивное выделение без промежуточных копий. Инструкции
                     </para>
                     <para>
@@ -217,7 +217,7 @@
                         <literal>[...] = lkn(i)</literal>.
                     </para>
                     <para>
-                        А инструкции <literal>l(k1)...(kn)(i,j)</literal> и  
+                        А инструкции <literal>l(k1)...(kn)(i,j)</literal> и
                         <literal>l(list(k1,...,kn,list(i,j))</literal> интерпретируются как:
                     </para>
                     <para>
@@ -235,10 +235,10 @@
                         </literal>
                     </para>
                     <para>
-                        Когда путь указывает более одного элемента списка,то инструкция 
-                        должна иметь столько аргументов слева, сколько выбрано элементов. Однако, если 
-                        синтаксис выделения используется внутри вызывающей последовательности ввода 
-                        функции, то каждый возвращаемый элемент списка добавляется к вызывающей 
+                        Когда путь указывает более одного элемента списка,то инструкция
+                        должна иметь столько аргументов слева, сколько выбрано элементов. Однако, если
+                        синтаксис выделения используется внутри вызывающей последовательности ввода
+                        функции, то каждый возвращаемый элемент списка добавляется к вызывающей
                         последовательности функции.
                     </para>
                     <para>
@@ -254,8 +254,8 @@
                                         </term>
                                         <listitem>
                                             <para>
-                                                <literal>[r1,...rn]=l(i)</literal> выделяет элементы 
-                                                <literal>i(k)</literal> из списка <literal>l</literal> и хранит их в переменных 
+                                                <literal>[r1,...rn]=l(i)</literal> выделяет элементы
+                                                <literal>i(k)</literal> из списка <literal>l</literal> и хранит их в переменных
                                                 <literal>rk</literal>, где <literal>k</literal> от 1 до <literal>size(i,'*')</literal>.
                                             </para>
                                         </listitem>
@@ -272,7 +272,7 @@
                                         <term>вектором логических значений.</term>
                                         <listitem>
                                             <para>
-                                                Если <literal>i</literal> является вектором логических значений, то 
+                                                Если <literal>i</literal> является вектором логических значений, то
                                                 он интерпретируется как <literal>find(i)</literal>.
                                             </para>
                                         </listitem>
@@ -281,9 +281,9 @@
                                         <term>полиномом</term>
                                         <listitem>
                                             <para>
-                                                Если <literal>i</literal> является вектором полиномов или вектором неявных полиномов, 
-                                                то он интерпретируется как <literal>horner(i,m)</literal>, где 
-                                                <literal>m=size(l)</literal>. Даже если эта возможность работает со всеми полиномами, 
+                                                Если <literal>i</literal> является вектором полиномов или вектором неявных полиномов,
+                                                то он интерпретируется как <literal>horner(i,m)</literal>, где
+                                                <literal>m=size(l)</literal>. Даже если эта возможность работает со всеми полиномами,
                                                 рекомендуется использовать для удобочитаемости символ <literal>$</literal>.
                                             </para>
                                         </listitem>
@@ -305,7 +305,7 @@
                                         <term>полиномом</term>
                                         <listitem>
                                             <para>
-                                                интерпретируемым как <literal>horner(ki,m)</literal>, где 
+                                                интерпретируемым как <literal>horner(ki,m)</literal>, где
                                                 <literal>m</literal> -- соответствующий размер подсписка.
                                             </para>
                                         </listitem>
@@ -328,15 +328,15 @@
         <title>Примечания</title>
         <para>
             Для программно определяемых типов матриц, таких как рациональные функции
-            и линейные системы в пространстве состояний, синтаксис <literal>x(i)</literal> 
+            и линейные системы в пространстве состояний, синтаксис <literal>x(i)</literal>
             нельзя использовать для выделения элемента вектора из-за путаницы с выделением
-            элемнта списка. Нужно использовать синтаксис <literal>x(1,j)</literal> или 
+            элемнта списка. Нужно использовать синтаксис <literal>x(1,j)</literal> или
             <literal>x(i,1)</literal>.
         </para>
     </refsection>
     <refsection>
         <title>Примеры</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // В СЛУЧАЕ МАТРИЦЫ
 a=[1 2 3;4 5 6]
 a(1,2)
@@ -382,7 +382,7 @@ dts(2)('b')(1,2)
                 <link linkend="horner">horner</link>
             </member>
             <member>
-                <link linkend="parents">круглые скобки</link>
+                <link linkend="parentheses">круглые скобки</link>
             </member>
             <member>
                 <link linkend="insertion">вставка</link>

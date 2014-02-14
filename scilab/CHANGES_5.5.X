@@ -549,6 +549,8 @@ Scilab Bug Fixes
 
 * Bug #13234 fixed - lmitool calling sequence clarified.
 
+* Bug #13236 fixed - "parents" help page has been renamed to "parentheses".
+
 * Bug #13238 fixed - Wrong legends display fixed.
 
 

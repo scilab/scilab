@@ -75,24 +75,24 @@
                                     <listitem>
                                         <para>
                                             Если <literal>a</literal> является матрицей с размерами
-                                            <literal>(size(i,'*'),size(j,'*'))</literal>, то 
+                                            <literal>(size(i,'*'),size(j,'*'))</literal>, то
                                             <literal>x(i,j)=a</literal> возвращает новую матрицу <literal>x</literal> такую, как
                                             <literal>x(int(i(l)),int(j(k)))=a(l,k)</literal> для
                                             <literal>l</literal> от 1 до
                                             <literal>size(i,'*')</literal> и <literal>k</literal> от
-                                            1 до <literal>size(j,'*')</literal>, другие изначальные элементы  <literal>x</literal> 
-                                            остаются неизменными. 
+                                            1 до <literal>size(j,'*')</literal>, другие изначальные элементы  <literal>x</literal>
+                                            остаются неизменными.
                                         </para>
                                     </listitem>
                                     <listitem>
                                         <para>
-                                            Если <literal>a</literal> является скаляром, то 
+                                            Если <literal>a</literal> является скаляром, то
                                             <literal>x(i,j)=a</literal> возвращает новую матрицу <literal>x</literal> такую, как
                                             <literal>x(int(i(l)),int(j(k)))=a</literal> для
                                             <literal>l</literal> от 1 до
                                             <literal>size(i,'*')</literal> и <literal>k</literal> от
-                                            1 до <literal>size(j,'*')</literal>, другие изначальные элементы  <literal>x</literal> 
-                                            остаются неизменными. 
+                                            1 до <literal>size(j,'*')</literal>, другие изначальные элементы  <literal>x</literal>
+                                            остаются неизменными.
                                         </para>
                                     </listitem>
                                     <listitem>
@@ -106,9 +106,9 @@
                                     </listitem>
                                     <listitem>
                                         <para>
-                                            <literal>x(i,j)=[]</literal> удаляет строки, определённые через 
+                                            <literal>x(i,j)=[]</literal> удаляет строки, определённые через
                                             <literal>i</literal>, если <literal>j</literal> совпадает со всеми столбцами
-                                            <literal>x</literal> или удаляет столбцы, определённые через 
+                                            <literal>x</literal> или удаляет столбцы, определённые через
                                             <literal>j</literal>, если <literal>i</literal> совпадает со всеми строками
                                             <literal>x</literal>. В других случаях <literal>x(i,j)=[]</literal>
                                             формирует ошибку.
@@ -117,18 +117,18 @@
                                     <listitem>
                                         <para>
                                             <literal>x(i)=a</literal>, где <literal>a</literal> -- вектор, возвращает
-                                            новую матрицу <literal>x</literal>, такую что 
+                                            новую матрицу <literal>x</literal>, такую что
                                             <literal>x(int(i(l)))=a(l)</literal> для <literal>l</literal> от 1 до
-                                            <literal>size(i,'*')</literal>, другие изначальные элементы <literal>x</literal> 
+                                            <literal>size(i,'*')</literal>, другие изначальные элементы <literal>x</literal>
                                             являются неизменными.
                                         </para>
                                     </listitem>
                                     <listitem>
                                         <para>
-                                            <literal>x(i)=a</literal>, где <literal>a</literal> -- скаляр, возвращает 
-                                            новую матрицу <literal>x</literal>, такую что 
+                                            <literal>x(i)=a</literal>, где <literal>a</literal> -- скаляр, возвращает
+                                            новую матрицу <literal>x</literal>, такую что
                                             <literal>x(int(i(l)))=a</literal> для <literal>l</literal> от 1 до
-                                            <literal>size(i,'*')</literal>, другие изначальные элементы <literal>x</literal> 
+                                            <literal>size(i,'*')</literal>, другие изначальные элементы <literal>x</literal>
                                             являются неизменными.
                                         </para>
                                         <para>
@@ -206,21 +206,21 @@
                                 <itemizedlist>
                                     <listitem>
                                         <para>
-                                            <literal>x(i,:)=a</literal> интерпретируется как 
+                                            <literal>x(i,:)=a</literal> интерпретируется как
                                             <literal>x(i,1:size(x,2))=a</literal>
                                         </para>
                                     </listitem>
                                     <listitem>
                                         <para>
-                                            <literal>x(:,j)=a</literal> интерпретируется как 
+                                            <literal>x(:,j)=a</literal> интерпретируется как
                                             <literal>x(1:size(x,1),j)=a</literal>
                                         </para>
                                     </listitem>
                                     <listitem>
                                         <para>
-                                            <literal>x(:)=a</literal> возвращает в <literal>x</literal> 
+                                            <literal>x(:)=a</literal> возвращает в <literal>x</literal>
                                             матрицу <literal>a</literal>, элементы которой переставлены в соответсвии
-                                            с размерами <literal>x</literal>. Размер <literal>size(x,'*')</literal> 
+                                            с размерами <literal>x</literal>. Размер <literal>size(x,'*')</literal>
                                             должен быть равен размеру <literal>size(a,'*')</literal>.
                                         </para>
                                     </listitem>
@@ -232,7 +232,7 @@
                             <listitem>
                                 <para>
                                     Если индекс (<literal>i</literal> или <literal>j</literal>) задан в виде
-                                    вектора логических значений, то он интерпретируется как 
+                                    вектора логических значений, то он интерпретируется как
                                     <literal>find(i)</literal> или, соответственно, <literal>find(j)</literal>.
                                 </para>
                             </listitem>
@@ -242,11 +242,11 @@
                             <listitem>
                                 <para>
                                     Если индекс (<literal>i</literal> или <literal>j</literal>) задан в виде
-                                    полиномов или в виде неявного вектора полиномов, то он интерпретируется как 
+                                    полиномов или в виде неявного вектора полиномов, то он интерпретируется как
                                     <literal>horner(i,m)</literal> или, соответственно,
                                     <literal>horner(j,n)</literal>, где <literal>m</literal> и
                                     <literal>n</literal> связаны с размерами <literal>x</literal>.
-                                    Даже если это работает для всех полиномов, рекомендуется использовать символ 
+                                    Даже если это работает для всех полиномов, рекомендуется использовать символ
                                     <literal>$</literal> для удобочитаемости.
                                 </para>
                             </listitem>
@@ -289,7 +289,7 @@
                                 <literal>l(k1) = lk1</literal>
                             </para>
                             <para>
-                                А инструкции <literal>l(k1)...(kn)(i,j)=a</literal> и  <literal>l(list(k1,...,kn,list(i,j))=a</literal> 
+                                А инструкции <literal>l(k1)...(kn)(i,j)=a</literal> и  <literal>l(list(k1,...,kn,list(i,j))=a</literal>
                                 интерпретируется как:
                             </para>
                             <para>
@@ -321,19 +321,19 @@
                             <itemizedlist>
                                 <listitem>
                                     <para>
-                                        вещественным неотрицательным скаляром. <literal>l(0)=a</literal> 
-                                        добавляет элемент к списку "слева". <literal>l(i)=a</literal> 
-                                        присваивает элементу <literal>i</literal> списка  <literal>l</literal> 
+                                        вещественным неотрицательным скаляром. <literal>l(0)=a</literal>
+                                        добавляет элемент к списку "слева". <literal>l(i)=a</literal>
+                                        присваивает элементу <literal>i</literal> списка  <literal>l</literal>
                                         значение <literal>a</literal>. Если <literal>i&gt;size(l)</literal>, то
-                                        <literal>l</literal> сначала расширяется  элементами нулевой длины (неопределённые). 
+                                        <literal>l</literal> сначала расширяется  элементами нулевой длины (неопределённые).
                                         <literal>l(i)=null()</literal> удаляет <literal>i</literal>-тый элемент из списка.
                                     </para>
                                 </listitem>
                                 <listitem>
                                     <para>
                                         полиномом.  Если <literal>i</literal> является полиномом, то он интерпретируется как
-                                        <literal>horner(i,m)</literal>, где <literal>m=size(l)</literal>.  
-                                        Даже если это работает для всех полиномов, рекомендуется использовать символ 
+                                        <literal>horner(i,m)</literal>, где <literal>m=size(l)</literal>.
+                                        Даже если это работает для всех полиномов, рекомендуется использовать символ
                                         <literal>$</literal> для удобочитаемости.
                                     </para>
                                 </listitem>
@@ -345,7 +345,7 @@
                             </para>
                             <itemizedlist>
                                 <listitem>
-                                    <para> 
+                                    <para>
                                         вещественным положительным скаляром;
                                     </para>
                                 </listitem>
@@ -370,14 +370,14 @@
     <refsection>
         <title>Примечания</title>
         <para>
-            Для программно формируемых типов матриц, таких, как рациональные функции и линейные системы пространства состояний, 
+            Для программно формируемых типов матриц, таких, как рациональные функции и линейные системы пространства состояний,
             синтаксис <literal>x(i)</literal> нельзя использовать для вставки элементов вектора из-за путаницы со вставкой
             элемента списка. Должен использоваться синтаксис <literal>x(1,j)</literal> или <literal>x(i,1)</literal> .
         </para>
     </refsection>
     <refsection>
         <title>Примеры</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // В СЛУЧАЕ МАТРИЦЫ
 a=[1 2 3;4 5 6]
 a(1,2)=10
@@ -422,7 +422,7 @@ dts(2)('b')(1,2)=-100
                 <link linkend="horner">horner</link>
             </member>
             <member>
-                <link linkend="parents">круглые скобки</link>
+                <link linkend="parentheses">круглые скобки</link>
             </member>
             <member>
                 <link linkend="extraction">выделение</link>

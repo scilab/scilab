@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="parents">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="parentheses">
     <refnamediv>
         <refname>круглые скобки</refname>
         <refpurpose>( ) левая и правая круглые скобки</refpurpose>
@@ -61,23 +61,23 @@
         </para>
         <para>
             *
-            сформировать список выходных аргументов функции. Внутри, это множество выходных 
+            сформировать список выходных аргументов функции. Внутри, это множество выходных
             аргументов должно разделяться запятой;
         </para>
         <para>
             *
-            выбирать элементы внутри векторов, матриц и списков. См. справку по 
+            выбирать элементы внутри векторов, матриц и списков. См. справку по
             <link linkend="extraction">выделению</link> и <link linkend="insertion">вставке</link>.
         </para>
         <para>
             <literal>[x1,x2,...]=(e1,e2,...)</literal> эквивалентно тому, что сначала выполняется
-            <literal>%t_1 = e1, %t_2 = e2, ...</literal>, а затем <literal> x1 = %t_1, x2 = %t_2, ...</literal>, где 
+            <literal>%t_1 = e1, %t_2 = e2, ...</literal>, а затем <literal> x1 = %t_1, x2 = %t_2, ...</literal>, где
             переменные <literal>%t_i, i = 1, 2, ...</literal> невидимы для пользователя.
         </para>
     </refsection>
     <refsection>
         <title>Примеры</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 3^(-1)
 x=poly(0,"x");
 //
@@ -92,7 +92,7 @@ a(:,$+1)=[10;11;12]
 //
 w=ssrand(2,2,2);ssprint(w)
 ssprint(w(:,1))
-ss2tf(w(:,1)) 
+ss2tf(w(:,1))
 //
 l=list(1,2,3,4)
 [a,b,c,d]=l(:)
