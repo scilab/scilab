@@ -1,7 +1,8 @@
 package org.scilab.modules.graphic_objects.xmlloader;
 
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_ANTIALIASING__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AXES__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AUTORESIZE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_ANTIALIASING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AXES_SIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_BACKGROUND__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_BORDER_OPT_PADDING__;
@@ -156,6 +157,8 @@ public class XMLDomLoader {
         nameToGO.put("menu", __GO_UIMENU__);
         nameToGO.put("contextmenu", __GO_UICONTEXTMENU__);
 
+        nameToGO.put("axes", __GO_AXES__);
+
         nameToGO.put("borders", __GO_UI_FRAME_BORDER__);
         nameToGO.put("out", __NODE_OUT__);
         nameToGO.put("in", __NODE_IN__);
@@ -202,7 +205,7 @@ public class XMLDomLoader {
 
         //uicontrol property list
         UiPropToGO.put("position", new Pair<Integer, ModelType>(__GO_POSITION__, ModelType.INTEGER));
-        UiPropToGO.put("backgroundcolor", new Pair<Integer, ModelType>(__GO_UI_BACKGROUNDCOLOR__, ModelType.INTEGER_ARRAY));
+        UiPropToGO.put("backgroundcolor", new Pair<Integer, ModelType>(__GO_UI_BACKGROUNDCOLOR__, ModelType.DOUBLE_ARRAY));
         UiPropToGO.put("enable", new Pair<Integer, ModelType>(__GO_UI_ENABLE__, ModelType.BOOLEAN));
         UiPropToGO.put("fontangle", new Pair<Integer, ModelType>(__GO_UI_FONTANGLE__, ModelType.STRING));
         UiPropToGO.put("fontname", new Pair<Integer, ModelType>(__GO_UI_FONTNAME__, ModelType.STRING));
@@ -337,6 +340,11 @@ public class XMLDomLoader {
                     case __GO_UI_TAB__:
                     case __GO_UI_TEXT__: {
                         child = createUiControl(nodeType, parent, childNode);
+                        break;
+                    }
+
+                    case __GO_AXES__ : {
+                        child = Builder.createSubWin(parent);
                         break;
                     }
 
@@ -514,7 +522,6 @@ public class XMLDomLoader {
             attr.removeNamedItem("visible");
         }
 
-        System.out.println("default_axes : " + default_axes);
         Integer fig = Builder.createFigure(dockable, menubar, toolbar, default_axes, false);
 
         for (int i = 0 ; i < attr.getLength() ; i++) {

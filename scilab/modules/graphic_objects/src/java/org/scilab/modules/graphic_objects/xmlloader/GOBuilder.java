@@ -220,6 +220,14 @@ public class GOBuilder {
                 controller.setProperty(uic, __GO_UI_ENABLE__, false);
             }
 
+            //enabled
+            item = attributes.getValue("enabled");
+            if (item == null || item.equals("true") || item.equals("on")) {
+                controller.setProperty(uic, __GO_UI_ENABLE__, true);
+            } else {
+                controller.setProperty(uic, __GO_UI_ENABLE__, false);
+            }
+
             //backgroundcolor
             item = attributes.getValue("background");
             if (item != null) {

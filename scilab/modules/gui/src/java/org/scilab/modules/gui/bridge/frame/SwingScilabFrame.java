@@ -86,6 +86,7 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
     private static final long serialVersionUID = -7401084975837285447L;
 
     private Integer uid = -1;
+    int redraw = 0;
 
     /**
      * Constructor
@@ -98,7 +99,8 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
             public void componentShown(ComponentEvent e) { }
 
             public void componentResized(ComponentEvent e) {
-                if (getId() != -1) {
+                if (getId() != -1 && getParent() != null && getParent().getLayout() == null) {
+
                     Double[] newPosition = new Double[4];
                     Double[] positions = (Double[]) GraphicController.getController().getProperty(getId(), GraphicObjectProperties.__GO_POSITION__);
                     newPosition[0] = positions[0];
