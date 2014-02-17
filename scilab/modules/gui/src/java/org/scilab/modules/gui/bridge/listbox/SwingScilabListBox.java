@@ -81,6 +81,8 @@ public class SwingScilabListBox extends JScrollPane implements SwingViewObject, 
                 for (int i = 0; i < getList().getSelectedIndices().length; i++) {
                     scilabIndices[i] = (double) javaIndices[i] + 1;
                 }
+
+                System.out.println("scilabIndices : " + scilabIndices.length);
                 GraphicController.getController().setProperty(uid, __GO_UI_VALUE__, scilabIndices);
                 if (e.getButton() == MouseEvent.BUTTON1 && callback != null) {
                     callback.actionPerformed(null);
@@ -514,7 +516,21 @@ public class SwingScilabListBox extends JScrollPane implements SwingViewObject, 
      * @param value property value
      */
     public void update(int property, Object value) {
-        SwingViewWidget.update(this, property, value);
+        switch (property) {
+            case __GO_UI_VALUE__ : {
+                Double[] indexes = (Double[])value;
+                int[] index = new int[indexes.length];
+                for (int i = 0 ; i < indexes.length ; i++) {
+                    index[i] = indexes[i].intValue();
+                }
+                setSelectedIndices(index);
+                break;
+            }
+
+            default : {
+                SwingViewWidget.update(this, property, value);
+            }
+        }
     }
 
     public void resetBackground() {

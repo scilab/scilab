@@ -120,6 +120,24 @@ int SetUicontrolValue(void* _pvCtx, int iObjUID, void* _pvData, int valueType, i
 
     if (objectStyle == __GO_UI_POPUPMENU__ || objectStyle == __GO_UI_LISTBOX__)
     {
+        int iDataSize = 0;
+        int* piDataSize = & iDataSize;
+        getGraphicObjectProperty(iObjUID, __GO_UI_STRING_SIZE__, jni_int, (void**)&piDataSize);
+        if (piDataSize == NULL)
+        {
+            Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "Value");
+            return SET_PROPERTY_ERROR;
+        }
+
+        for (int i = 0 ; i < valueSize ; i++)
+        {
+            if (truncatedValue[i] < 0 || truncatedValue[i] > iDataSize)
+            {
+                Scierror(999, _("'%s' value must be between 0 and %d.\n"), "Value", iDataSize);
+                return SET_PROPERTY_ERROR;
+            }
+        }
+
         status = setGraphicObjectProperty(iObjUID, __GO_UI_VALUE__, truncatedValue, jni_double_vector, valueSize);
     }
     else

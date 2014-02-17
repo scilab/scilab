@@ -29,10 +29,16 @@ int GetUicontrolString(void* _pvCtx, int iObjUID)
 
     getGraphicObjectProperty(iObjUID, __GO_UI_STRING_SIZE__, jni_int, (void **) &piNbStrings);
     getGraphicObjectProperty(iObjUID, __GO_UI_STRING__, jni_string_vector, (void **) &pstString);
-
     if (pstString != NULL)
     {
-        return sciReturnStringMatrix(_pvCtx, pstString, 1, iNbStrings);
+        if (iNbStrings == 0)
+        {
+            return sciReturnEmptyMatrix(_pvCtx);
+        }
+        else
+        {
+            return sciReturnStringMatrix(_pvCtx, pstString, 1, iNbStrings);
+        }
     }
     else
     {

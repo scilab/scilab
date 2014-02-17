@@ -32,6 +32,13 @@ int SetUicontrolString(void* _pvCtx, int iObjUID, void* _pvData, int valueType, 
         return SET_PROPERTY_ERROR;
     }
 
+    //[]
+    if (valueType == sci_matrix && nbRow == 0 && nbCol == 0)
+    {
+        status = setGraphicObjectProperty(iObjUID, __GO_UI_STRING__, (char**)NULL, jni_string_vector, 0);
+        return SET_PROPERTY_ERROR;
+    }
+
     // Label must be a character string
     if (valueType != sci_strings)
     {

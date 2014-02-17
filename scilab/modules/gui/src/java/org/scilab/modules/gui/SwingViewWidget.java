@@ -521,10 +521,7 @@ public final class SwingViewWidget {
                     intValue[k] = doubleValue[k].intValue();
                 }
 
-                if (uiControl instanceof SwingScilabListBox) {
-                    // Update selected items in the listbox
-                    ((SwingScilabListBox) uiControl).setSelectedIndices(intValue);
-                } else if (uiControl instanceof SwingScilabPopupMenu) {
+                if (uiControl instanceof SwingScilabPopupMenu) {
                     // Update selected items in the popupmenu
                     ((SwingScilabPopupMenu) uiControl).setUserSelectedIndex(intValue[0]);
                 } else if (uiControl instanceof SwingScilabCheckBox) {

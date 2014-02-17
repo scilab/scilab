@@ -450,19 +450,19 @@ public class SwingScilabEditBox extends JScrollPane implements SwingViewObject, 
     public void update(int property, Object value) {
         switch (property) {
             case __GO_UI_MAX__ : {
-                Double columns = (Double)value;
-                Graphics g = textPane.getGraphics();
-                Integer width = 50;
-                if (g != null) {
-                    width = textPane.getGraphics().getFontMetrics(textPane.getFont()).charWidth('m');
-                }
-                Integer totalWidth = columns.intValue() * width;
-                Dimension current = textPane.getPreferredSize();
-                System.out.println("current : " + current.toString());
-                current.width = totalWidth;
-                textPane.setPreferredSize(current);
-                current = textPane.getPreferredSize();
-                System.out.println("new : " + current.toString());
+                //                Double columns = (Double)value;
+                //                Graphics g = textPane.getGraphics();
+                //                Integer width = 50;
+                //                if (g != null) {
+                //                    width = textPane.getGraphics().getFontMetrics(textPane.getFont()).charWidth('m');
+                //                }
+                //                Integer totalWidth = columns.intValue() * width;
+                //                Dimension current = textPane.getPreferredSize();
+                //                System.out.println("current : " + current.toString());
+                //                current.width = totalWidth;
+                //                textPane.setPreferredSize(current);
+                //                current = textPane.getPreferredSize();
+                //                System.out.println("new : " + current.toString());
                 break;
             }
 

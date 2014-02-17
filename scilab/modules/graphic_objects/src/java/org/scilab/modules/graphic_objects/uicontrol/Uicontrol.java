@@ -14,8 +14,8 @@
 
 package org.scilab.modules.graphic_objects.uicontrol;
 
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_BORDER_OPT_PADDING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_GRID_OPT_GRID__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_BORDER_OPT_PADDING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_GRID_OPT_PADDING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_LAYOUT_SET__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_LAYOUT__;
@@ -1045,7 +1045,14 @@ public class Uicontrol extends GraphicObject {
     public UpdateStatus setString(String[] string) {
         if (this.style == UicontrolStyle.LISTBOX || this.style == UicontrolStyle.POPUPMENU) {
             /* String can be set using a|b|c|d */
-            if (string.length == 1 & string[0].contains(STRING_SEPARATOR)) {
+            if (string.length == 0) {
+                if (this.string.length == 0) {
+                    return UpdateStatus.NoChange;
+                }
+
+                this.string = string;
+                return UpdateStatus.Success;
+            } else if (string.length == 1 && string[0].contains(STRING_SEPARATOR)) {
                 StringTokenizer strTok = new StringTokenizer(string[0], STRING_SEPARATOR);
                 String[] stringTab = new String[strTok.countTokens()];
                 while (strTok.hasMoreTokens()) {
@@ -1055,6 +1062,7 @@ public class Uicontrol extends GraphicObject {
                 return UpdateStatus.Success;
             }
         }
+
         this.string = string;
         return UpdateStatus.Success;
     }

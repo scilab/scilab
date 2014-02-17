@@ -31,11 +31,7 @@ public class ListBox extends Uicontrol {
     public ListBox() {
         super();
         setStyle(__GO_UI_LISTBOX__);
-
-        // Default value is the min value
-        Double[] value = new Double[1];
-        value[0] = getMin();
-        setUiValue(value);
+        setUiValue(new Double[] {});
 
         if (Console.getConsole().getUseDeprecatedLF()) {
             setRelief(RELIEF_FLAT);
@@ -53,4 +49,7 @@ public class ListBox extends Uicontrol {
         }
     }
 
+    public UpdateStatus setUiValue(Double[] value) {
+        return super.setUiValue(value);
+    }
 }
