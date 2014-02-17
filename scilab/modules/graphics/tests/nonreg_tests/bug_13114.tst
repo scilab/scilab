@@ -15,7 +15,7 @@
 // <-- Short Description -->
 // Saving and loading handles before and after the removal of "pixmap"
 
-cd SCI/modules/graphics/tests/nonreg_tests/
+cd SCI/modules/graphics/tests/nonreg_tests/;
 
 load("bug_13114_1.sod");
 
