@@ -32,7 +32,7 @@
             <varlistentry>
                 <term>dim</term>
                 <listitem>
-                    <para>a positive integer</para>
+                    <para>a positive integer, the dimension number along which the flipping should occur</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -114,7 +114,7 @@ flipdim(X, 2, 4) // => [8 9 10 11   4 5 6 7   0 1 2 3]
 flipdim(X, 2, 6) // => [6 7 8 9 10 11   0 1 2 3 4 5]
 
 // Error if sb does not divide the targeted dimension of x.
-y = flipdim(x, 2, 5)", refMsg); // size(X) = [1 12] and sb=5 does not divide 12.
+y = flipdim(x, 2, 5); // size(X) = [1 12] and sb=5 does not divide 12.
  ]]></programlisting>
     </refsection>
     <refsection>
