@@ -75,7 +75,6 @@ end
 macros_error_type_2 = ["base2dec"; ..
 "binomial"; ..
 "bitand"; ..
-"flipdim"; ..
 "ind2sub"; ..
 "intersect"; ..
 "linspace"; ..
@@ -102,5 +101,11 @@ macros_error_type_4 = ["max"; ..
 msg_error_ref_4 = _("%s: Wrong number of input argument(s).\n");
 for i=1:size(macros_error_type_4, "*")
     assert_checkerror (macros_error_type_4(i) + "()" , msg_error_ref_4 , [] , macros_error_type_4(i));
+end
+// =============================================================================
+macros_error_type_5 = ["flipdim"];
+msg_error_ref_5 = _("%s: Wrong number of input argument(s): %d to %d expected.\n");
+for i=1:size(macros_error_type_5, "*")
+    assert_checkerror (macros_error_type_5(i) + "()" , msg_error_ref_5 , [] , macros_error_type_5(i) , 2, 3);
 end
 // =============================================================================
