@@ -27,6 +27,10 @@ src/c/qsort-string.c \
 src/c/IsEqualVar.c \
 src/c/convertbase.c
 
+if IS_MACOSX
+ELEMENTARIES_FUNCTIONS_C_SOURCES += src/c/dscal.c
+endif
+
 # List of the cpp files
 ELEMENTARIES_FUNCTIONS_CXX_SOURCES =
 

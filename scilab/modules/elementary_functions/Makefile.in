@@ -100,12 +100,13 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-@MAINTAINER_MODE_TRUE@am__append_1 = libscielementary_functions-algo.la
-@MAINTAINER_MODE_FALSE@am__append_2 = libscielementary_functions-algo.la libscielementary_functions.la
+@IS_MACOSX_TRUE@am__append_1 = src/c/dscal.c
+@MAINTAINER_MODE_TRUE@am__append_2 = libscielementary_functions-algo.la
+@MAINTAINER_MODE_FALSE@am__append_3 = libscielementary_functions-algo.la libscielementary_functions.la
 DIST_COMMON = $(top_srcdir)/Makefile.incl.am $(srcdir)/Makefile.in \
 	$(srcdir)/Makefile.am $(top_srcdir)/config/mkinstalldirs \
 	$(top_srcdir)/config/depcomp
-@NEED_JAVA_TRUE@am__append_3 = java
+@NEED_JAVA_TRUE@am__append_4 = java
 subdir = modules/elementary_functions
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
@@ -177,6 +178,105 @@ am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
 am__v_lt_0 = --silent
 am__v_lt_1 = 
 libscielementary_functions_algo_la_LIBADD =
+am__libscielementary_functions_algo_la_SOURCES_DIST =  \
+	src/fortran/slatec/zwrsk.f src/fortran/slatec/d9b0mp.f \
+	src/fortran/slatec/d9b1mp.f src/fortran/slatec/d9knus.f \
+	src/fortran/slatec/d9lgmc.f src/fortran/slatec/dasyik.f \
+	src/fortran/slatec/dasyjy.f src/fortran/slatec/dbdiff.f \
+	src/fortran/slatec/dbesi0.f src/fortran/slatec/dbesi1.f \
+	src/fortran/slatec/dbesi.f src/fortran/slatec/dbesj0.f \
+	src/fortran/slatec/dbesj1.f src/fortran/slatec/dbesj.f \
+	src/fortran/slatec/dbesk0.f src/fortran/slatec/dbesk1.f \
+	src/fortran/slatec/dbesk.f src/fortran/slatec/dbesy0.f \
+	src/fortran/slatec/dbesy1.f src/fortran/slatec/dbesy.f \
+	src/fortran/slatec/dbkias.f src/fortran/slatec/dbkisr.f \
+	src/fortran/slatec/dbsi0e.f src/fortran/slatec/dbsi1e.f \
+	src/fortran/slatec/dbsk0e.f src/fortran/slatec/dbsk1e.f \
+	src/fortran/slatec/dbskes.f src/fortran/slatec/dbskin.f \
+	src/fortran/slatec/dbsknu.f src/fortran/slatec/dbsynu.f \
+	src/fortran/slatec/dcsevl.f src/fortran/slatec/dexint.f \
+	src/fortran/slatec/dgamlm.f src/fortran/slatec/dgamln.f \
+	src/fortran/slatec/dgamma.f src/fortran/slatec/dgamrn.f \
+	src/fortran/slatec/dhkseq.f src/fortran/slatec/djairy.f \
+	src/fortran/slatec/dpsixn.f src/fortran/slatec/dxlegf.f \
+	src/fortran/slatec/dyairy.f src/fortran/slatec/fdump.f \
+	src/fortran/slatec/gamma.f src/fortran/slatec/initds.f \
+	src/fortran/slatec/j4save.f src/fortran/slatec/xercnt.f \
+	src/fortran/slatec/xermsg.f src/fortran/slatec/xerprn.f \
+	src/fortran/slatec/xersve.f src/fortran/slatec/xgetua.f \
+	src/fortran/slatec/zabs.f src/fortran/slatec/zacai.f \
+	src/fortran/slatec/zacon.f src/fortran/slatec/zairy.f \
+	src/fortran/slatec/zasyi.f src/fortran/slatec/zbesh.f \
+	src/fortran/slatec/zbesi.f src/fortran/slatec/zbesj.f \
+	src/fortran/slatec/zbesk.f src/fortran/slatec/zbesy.f \
+	src/fortran/slatec/zbinu.f src/fortran/slatec/zbknu.f \
+	src/fortran/slatec/zbuni.f src/fortran/slatec/zbunk.f \
+	src/fortran/slatec/zdiv.f src/fortran/slatec/zexp.f \
+	src/fortran/slatec/zkscl.f src/fortran/slatec/zlog.f \
+	src/fortran/slatec/zmlri.f src/fortran/slatec/zmlt.f \
+	src/fortran/slatec/zrati.f src/fortran/slatec/zs1s2.f \
+	src/fortran/slatec/zseri.f src/fortran/slatec/zshch.f \
+	src/fortran/slatec/zsqrt.f src/fortran/slatec/zuchk.f \
+	src/fortran/slatec/zunhj.f src/fortran/slatec/zuni1.f \
+	src/fortran/slatec/zuni2.f src/fortran/slatec/zunik.f \
+	src/fortran/slatec/zunk1.f src/fortran/slatec/zunk2.f \
+	src/fortran/slatec/zuoik.f src/fortran/slatec/dlngam.f \
+	src/fortran/slatec/balanc.f src/fortran/slatec/dtensbs.f \
+	src/fortran/slatec/pchim.f src/fortran/linpack/dgesl.f \
+	src/fortran/linpack/wpade.f src/fortran/linpack/util.f \
+	src/fortran/linpack/dgefa.f src/fortran/linpack/dgbfa.f \
+	src/fortran/linpack/dgeco.f src/fortran/linpack/dgedi.f \
+	src/fortran/linpack/dqrdc.f src/fortran/linpack/dqrsl.f \
+	src/fortran/linpack/dqrsm.f src/fortran/linpack/hhdml.f \
+	src/fortran/linpack/wgeco.f src/fortran/linpack/wgefa.f \
+	src/fortran/linpack/wgesl.f src/fortran/linpack/dpofa.f \
+	src/fortran/eispack/balbak.f src/c/finite.c src/c/vfinite.c \
+	src/c/cmp.c src/c/vceil.c src/c/xerhlt.c src/c/vfloor.c \
+	src/c/vfrexp.c src/c/scidcopy.c src/c/int2db.c src/c/rea2db.c \
+	src/c/idmax.c src/c/idmin.c src/c/gsort.c src/c/qsort.c \
+	src/c/qsort-char.c src/c/qsort-double.c src/c/qsort-int.c \
+	src/c/qsort-short.c src/c/qsort-string.c src/c/IsEqualVar.c \
+	src/c/convertbase.c src/c/dscal.c src/fortran/wasum.f \
+	src/fortran/dexpm1.f src/fortran/wwdiv.f src/fortran/wdotcr.f \
+	src/fortran/iset.f src/fortran/franck.f src/fortran/dwpowe.f \
+	src/fortran/rcsort.f src/fortran/wddiv.f src/fortran/lnblnk.f \
+	src/fortran/entier.f src/fortran/round.f src/fortran/cortr.f \
+	src/fortran/simple.f src/fortran/split.f src/fortran/wdrdiv.f \
+	src/fortran/imcopy.f src/fortran/cbal.f src/fortran/cuproi.f \
+	src/fortran/dsum.f src/fortran/urand.f src/fortran/intp.f \
+	src/fortran/watan.f src/fortran/wipowe.f src/fortran/wacos.f \
+	src/fortran/wdpow1.f src/fortran/dmsum.f src/fortran/dlgama.f \
+	src/fortran/exch.f src/fortran/wsign.f src/fortran/kronr.f \
+	src/fortran/wrscal.f src/fortran/pythag.f src/fortran/dmmul1.f \
+	src/fortran/dwpow.f src/fortran/wmmul.f src/fortran/dsearch.f \
+	src/fortran/ddif.f src/fortran/wdiv.f src/fortran/wtan.f \
+	src/fortran/ddpow.f src/fortran/magic.f src/fortran/wcerr.f \
+	src/fortran/ivimp.f src/fortran/cupro.f src/fortran/dadd.f \
+	src/fortran/isort.f src/fortran/hilber.f src/fortran/wdpowe.f \
+	src/fortran/wmprod.f src/fortran/wscal.f src/fortran/dlblks.f \
+	src/fortran/kronc.f src/fortran/ddrdiv.f src/fortran/dipow.f \
+	src/fortran/wshrsl.f src/fortran/wwrdiv.f src/fortran/coshin.f \
+	src/fortran/iwamax.f src/fortran/dipowe.f \
+	src/fortran/getorient.f src/fortran/cusum.f \
+	src/fortran/d1mach.f src/fortran/wbdiag.f src/fortran/ddpow1.f \
+	src/fortran/vpythag.f src/fortran/isova0.f src/fortran/wswap.f \
+	src/fortran/wwpow1.f src/fortran/getdimfromvar.f \
+	src/fortran/gdcp2i.f src/fortran/drdiv.f src/fortran/wmsum.f \
+	src/fortran/corth.f src/fortran/mtran.f src/fortran/wwpow.f \
+	src/fortran/dvmul.f src/fortran/wclmat.f src/fortran/dsort.f \
+	src/fortran/cerr.f src/fortran/rcopy.f src/fortran/wdpow.f \
+	src/fortran/orthes.f src/fortran/waxpy.f src/fortran/coef.f \
+	src/fortran/dwdiv.f src/fortran/arcosh.f src/fortran/wasin.f \
+	src/fortran/wexpm1.f src/fortran/ddpowe.f \
+	src/fortran/nearfloat.f src/fortran/dmprod.f \
+	src/fortran/wwpowe.f src/fortran/wdotci.f src/fortran/dmcopy.f \
+	src/fortran/wexchn.f src/fortran/isoval.f src/fortran/dwrdiv.f \
+	src/fortran/wipow.f src/fortran/wlog.f src/fortran/infinity.f \
+	src/fortran/dwpow1.f src/fortran/wmul.f src/fortran/dad.f \
+	src/fortran/dset.f src/fortran/dtild.f src/fortran/i1mach.f \
+	src/fortran/dclmat.f src/fortran/ortran.f src/fortran/bdiag.f \
+	src/fortran/wvmul.f src/fortran/dmmul.f src/fortran/wsqrt.f \
+	src/fortran/israt.f src/fortran/rat.f src/fortran/find.f
 am__objects_1 = src/fortran/slatec/zwrsk.lo \
 	src/fortran/slatec/d9b0mp.lo src/fortran/slatec/d9b1mp.lo \
 	src/fortran/slatec/d9knus.lo src/fortran/slatec/d9lgmc.lo \
@@ -230,7 +330,8 @@ am__objects_2 = src/fortran/linpack/dgesl.lo \
 	src/fortran/linpack/wgeco.lo src/fortran/linpack/wgefa.lo \
 	src/fortran/linpack/wgesl.lo src/fortran/linpack/dpofa.lo
 am__objects_3 = src/fortran/eispack/balbak.lo
-am__objects_4 = src/c/libscielementary_functions_algo_la-finite.lo \
+@IS_MACOSX_TRUE@am__objects_4 = src/c/libscielementary_functions_algo_la-dscal.lo
+am__objects_5 = src/c/libscielementary_functions_algo_la-finite.lo \
 	src/c/libscielementary_functions_algo_la-vfinite.lo \
 	src/c/libscielementary_functions_algo_la-cmp.lo \
 	src/c/libscielementary_functions_algo_la-vceil.lo \
@@ -250,8 +351,9 @@ am__objects_4 = src/c/libscielementary_functions_algo_la-finite.lo \
 	src/c/libscielementary_functions_algo_la-qsort-short.lo \
 	src/c/libscielementary_functions_algo_la-qsort-string.lo \
 	src/c/libscielementary_functions_algo_la-IsEqualVar.lo \
-	src/c/libscielementary_functions_algo_la-convertbase.lo
-am__objects_5 = src/fortran/wasum.lo src/fortran/dexpm1.lo \
+	src/c/libscielementary_functions_algo_la-convertbase.lo \
+	$(am__objects_4)
+am__objects_6 = src/fortran/wasum.lo src/fortran/dexpm1.lo \
 	src/fortran/wwdiv.lo src/fortran/wdotcr.lo src/fortran/iset.lo \
 	src/fortran/franck.lo src/fortran/dwpowe.lo \
 	src/fortran/rcsort.lo src/fortran/wddiv.lo \
@@ -302,10 +404,10 @@ am__objects_5 = src/fortran/wasum.lo src/fortran/dexpm1.lo \
 	src/fortran/bdiag.lo src/fortran/wvmul.lo src/fortran/dmmul.lo \
 	src/fortran/wsqrt.lo src/fortran/israt.lo src/fortran/rat.lo \
 	src/fortran/find.lo
-am__objects_6 =
+am__objects_7 =
 am_libscielementary_functions_algo_la_OBJECTS = $(am__objects_1) \
-	$(am__objects_2) $(am__objects_3) $(am__objects_4) \
-	$(am__objects_5) $(am__objects_6)
+	$(am__objects_2) $(am__objects_3) $(am__objects_5) \
+	$(am__objects_6) $(am__objects_7)
 libscielementary_functions_algo_la_OBJECTS =  \
 	$(am_libscielementary_functions_algo_la_OBJECTS)
 @MAINTAINER_MODE_FALSE@am_libscielementary_functions_algo_la_rpath =
@@ -313,7 +415,7 @@ libscielementary_functions_algo_la_OBJECTS =  \
 libscielementary_functions_la_DEPENDENCIES =  \
 	libdummy-elementary_functions.la \
 	libscielementary_functions-algo.la
-am__objects_7 =  \
+am__objects_8 =  \
 	sci_gateway/c/libscielementary_functions_la-sci_isequal.lo \
 	sci_gateway/c/libscielementary_functions_la-sci_matrix.lo \
 	sci_gateway/c/libscielementary_functions_la-sci_prod.lo \
@@ -367,7 +469,7 @@ am__objects_7 =  \
 	sci_gateway/c/libscielementary_functions_la-sci_base2dec.lo \
 	sci_gateway/c/libscielementary_functions_la-sci_dec2base.lo \
 	sci_gateway/c/libscielementary_functions_la-sci_find.lo
-am__objects_8 = sci_gateway/fortran/sci_f_isequal.lo \
+am__objects_9 = sci_gateway/fortran/sci_f_isequal.lo \
 	sci_gateway/fortran/sci_f_maxi.lo \
 	sci_gateway/fortran/sci_f_testmatrix.lo \
 	sci_gateway/fortran/sci_f_prod.lo \
@@ -415,8 +517,8 @@ am__objects_8 = sci_gateway/fortran/sci_f_isequal.lo \
 	sci_gateway/fortran/sci_f_imult.lo \
 	sci_gateway/fortran/sci_f_exp.lo \
 	sci_gateway/fortran/sci_f_find.lo
-am_libscielementary_functions_la_OBJECTS = $(am__objects_7) \
-	$(am__objects_8)
+am_libscielementary_functions_la_OBJECTS = $(am__objects_8) \
+	$(am__objects_9)
 libscielementary_functions_la_OBJECTS =  \
 	$(am_libscielementary_functions_la_OBJECTS)
 @MAINTAINER_MODE_FALSE@am_libscielementary_functions_la_rpath =
@@ -475,7 +577,7 @@ SOURCES = $(libdummy_elementary_functions_la_SOURCES) \
 	$(libscielementary_functions_algo_la_SOURCES) \
 	$(libscielementary_functions_la_SOURCES)
 DIST_SOURCES = $(libdummy_elementary_functions_la_SOURCES) \
-	$(libscielementary_functions_algo_la_SOURCES) \
+	$(am__libscielementary_functions_algo_la_SOURCES_DIST) \
 	$(libscielementary_functions_la_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
@@ -776,29 +878,13 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-ELEMENTARIES_FUNCTIONS_C_SOURCES = \
-src/c/finite.c \
-src/c/vfinite.c \
-src/c/cmp.c \
-src/c/vceil.c \
-src/c/xerhlt.c \
-src/c/vfloor.c \
-src/c/vfrexp.c \
-src/c/scidcopy.c \
-src/c/int2db.c \
-src/c/rea2db.c \
-src/c/idmax.c \
-src/c/idmin.c \
-src/c/gsort.c \
-src/c/qsort.c \
-src/c/qsort-char.c \
-src/c/qsort-double.c \
-src/c/qsort-int.c \
-src/c/qsort-short.c \
-src/c/qsort-string.c \
-src/c/IsEqualVar.c \
-src/c/convertbase.c
-
+ELEMENTARIES_FUNCTIONS_C_SOURCES = src/c/finite.c src/c/vfinite.c \
+	src/c/cmp.c src/c/vceil.c src/c/xerhlt.c src/c/vfloor.c \
+	src/c/vfrexp.c src/c/scidcopy.c src/c/int2db.c src/c/rea2db.c \
+	src/c/idmax.c src/c/idmin.c src/c/gsort.c src/c/qsort.c \
+	src/c/qsort-char.c src/c/qsort-double.c src/c/qsort-int.c \
+	src/c/qsort-short.c src/c/qsort-string.c src/c/IsEqualVar.c \
+	src/c/convertbase.c $(am__append_1)
 
 # List of the cpp files
 ELEMENTARIES_FUNCTIONS_CXX_SOURCES = 
@@ -1131,8 +1217,8 @@ EISPACK_SOURCES = src/fortran/eispack/balbak.f
 
 # FIXME: why disabling optimisation ? Any bug reference ?
 # Disable optimisation of the file hqror2.f comqr3.f pade.f
-noinst_LTLIBRARIES = libdummy-elementary_functions.la $(am__append_1) \
-	$(am__append_2)
+noinst_LTLIBRARIES = libdummy-elementary_functions.la $(am__append_2) \
+	$(am__append_3)
 libdummy_elementary_functions_la_SOURCES = src/fortran/eispack/hqror2.f \
 	src/fortran/comqr3.f \
 	src/fortran/linpack/pade.f \
@@ -1200,7 +1286,7 @@ SPLINT_OPTIONS = -weak -booltype BOOL
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_3)
+TARGETS_ALL = $(am__append_4)
 
 ################ MACROS ######################
 # Rule to build a macro
@@ -1622,6 +1708,8 @@ src/c/libscielementary_functions_algo_la-qsort-string.lo:  \
 src/c/libscielementary_functions_algo_la-IsEqualVar.lo:  \
 	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscielementary_functions_algo_la-convertbase.lo:  \
+	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscielementary_functions_algo_la-dscal.lo:  \
 	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
 src/fortran/wasum.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
@@ -2244,6 +2332,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscielementary_functions_algo_la-IsEqualVar.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscielementary_functions_algo_la-cmp.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscielementary_functions_algo_la-convertbase.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscielementary_functions_algo_la-dscal.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscielementary_functions_algo_la-finite.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscielementary_functions_algo_la-gsort.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscielementary_functions_algo_la-idmax.Plo@am__quote@
@@ -2440,6 +2529,13 @@ src/c/libscielementary_functions_algo_la-convertbase.lo: src/c/convertbase.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/convertbase.c' object='src/c/libscielementary_functions_algo_la-convertbase.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscielementary_functions_algo_la-convertbase.lo `test -f 'src/c/convertbase.c' || echo '$(srcdir)/'`src/c/convertbase.c
+
+src/c/libscielementary_functions_algo_la-dscal.lo: src/c/dscal.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscielementary_functions_algo_la-dscal.lo -MD -MP -MF src/c/$(DEPDIR)/libscielementary_functions_algo_la-dscal.Tpo -c -o src/c/libscielementary_functions_algo_la-dscal.lo `test -f 'src/c/dscal.c' || echo '$(srcdir)/'`src/c/dscal.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscielementary_functions_algo_la-dscal.Tpo src/c/$(DEPDIR)/libscielementary_functions_algo_la-dscal.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/dscal.c' object='src/c/libscielementary_functions_algo_la-dscal.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscielementary_functions_algo_la-dscal.lo `test -f 'src/c/dscal.c' || echo '$(srcdir)/'`src/c/dscal.c
 
 sci_gateway/c/libscielementary_functions_la-sci_isequal.lo: sci_gateway/c/sci_isequal.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscielementary_functions_la-sci_isequal.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscielementary_functions_la-sci_isequal.Tpo -c -o sci_gateway/c/libscielementary_functions_la-sci_isequal.lo `test -f 'sci_gateway/c/sci_isequal.c' || echo '$(srcdir)/'`sci_gateway/c/sci_isequal.c
