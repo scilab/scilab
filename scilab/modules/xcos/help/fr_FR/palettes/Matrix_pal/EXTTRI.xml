@@ -98,7 +98,7 @@
             Le bloc EXTTRI extrait des éléments de la matrice d'entrée u. Les dimensions de la matrice de sortie sont les mêmes que celles de la matrice d'entrée.
         </para>
         <para>
-            Quand le paramètre <emphasis role="bold">extraction type)</emphasis> est initialisé à :
+            Quand le paramètre <emphasis role="bold">extraction type</emphasis> est initialisé à :
         </para>
         <itemizedlist>
             <listitem>
@@ -123,7 +123,7 @@
             </listitem>
         </itemizedlist>
         <para>
-            Les functions équivalentes de EXTTRI dans Scilab sont respectively (1) <link linkend="triu">triu(u)</link>,
+            Les functions équivalentes de EXTTRI dans Scilab sont respectivement (1) <link linkend="triu">triu(u)</link>,
             (2) <link linkend="tril">tril(u)</link> et (3) <link linkend="diag">diag(u)</link>
         </para>
         <para/>
@@ -271,6 +271,16 @@
                 <para>SCI/modules/scicos_blocks/src/c/extdiagz.c</para>
             </listitem>
         </itemizedlist>
+    </refsection>
+    <refsection id="Example_EXTTRI2">
+        <title>Exemple d'extraction diagonale</title>
+        <link type="scilab" linkend="scilab.xcos/xcos/examples/matrix_pal/EXTTRI_Example.zcos">
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../../../../examples/matrix_pal/EXTTRI_Example.zcos" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+        </link>
     </refsection>
     <refsection id="Seealso_EXTTRI">
         <title>Voir aussi</title>

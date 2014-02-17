@@ -239,6 +239,16 @@
             </listitem>
         </itemizedlist>
     </refsection>
+    <refsection id="Example_MATBKSL2">
+        <title>Example of left division: tan(x) = sin(x)/cos(x)</title>
+        <link type="scilab" linkend="scilab.xcos/xcos/examples/matrix_pal/MATBKSL_Example.zcos">
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../../../../examples/matrix_pal/MATBKSL_Example.zcos" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+        </link>
+    </refsection>
     <refsection id="Seealso_MATBKSL">
         <title>See also</title>
         <itemizedlist>

@@ -95,8 +95,8 @@
     <refsection id="Description_CUMSUM">
         <title>Description</title>
         <para>
-            Le bloc CUMSUM additionne les éléments d'une entrée matricielle de dimensions MxN le long des lignes, des colonnes
-            ou de la première dimension non unitaire.
+            Le bloc CUMSUM additionne cumulativement les éléments d'une entrée matricielle de dimensions MxN le long des lignes, des colonnes
+            ou de la première dimension non unitaire. La sortie est toujours de taille MxN.
         </para>
         <para>
             Quand le paramètre <emphasis role="bold">Sum along</emphasis> est
@@ -105,22 +105,20 @@
         <itemizedlist>
             <listitem>
                 <para>
-                    <emphasis role="bold">1</emphasis> : Le bloc effectue la somme des élements de chaque ligne. Le
-                    résultat en sortie sera une matrice Mx1.
+                    <emphasis role="bold">1</emphasis> : Le bloc effectue la somme progressive des élements de chaque ligne.
                 </para>
                 <para/>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">2</emphasis> : Le bloc effectue la somme des élements de chaque colonne. Le
-                    résultat en sortie sera une matrice 1xN.
+                    <emphasis role="bold">2</emphasis> : Le bloc effectue la somme progressive des élements de chaque colonne.
                 </para>
                 <para/>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">0</emphasis> : Le bloc effectue l'addition  des élements de la première dimension
-                    non unitaire. Le résultat en sortie sera un scalaire.
+                    <emphasis role="bold">0</emphasis> : Le bloc effectue l'addition progressive des élements de la première dimension
+                    non unitaire.
                 </para>
                 <para/>
             </listitem>
@@ -155,7 +153,7 @@
                     <emphasis role="bold">Sum along (0=the first non singleton dimension 1=Rows 2=Columns)</emphasis>
                 </para>
                 <para>
-                    Indique que la somme se fait sur les lignes, les colonnes, ou la première dimension non unitaire.
+                    Indique que la somme cumulative se fait sur les lignes, les colonnes, ou la première dimension non unitaire.
                 </para>
                 <para>Propriétés : Type 'vec' de taille 1.</para>
             </listitem>
@@ -164,9 +162,9 @@
     <refsection id="Example_CUMSUM">
         <title>Exemple</title>
         <programlisting role="example">
-            A=[1 2 3;4 5 6;7 8 9]
+            A = [1 2 3 ; 4 5 6 ; 7 8 9]
             Si la somme est sur les lignes, le résultat sera :
-            B=[12;15;18]
+            B = [1 2 3 ; 5 7 9 ; 12 15 18]
         </programlisting>
     </refsection>
     <refsection id="Defaultproperties_CUMSUM">
@@ -271,6 +269,16 @@
                 <para>SCI/modules/scicos_blocks/src/c/cumsumz_c.c</para>
             </listitem>
         </itemizedlist>
+    </refsection>
+    <refsection id="Example_CUMSUM2">
+        <title>Example de somme cumulative</title>
+        <link type="scilab" linkend="scilab.xcos/xcos/examples/matrix_pal/CUMSUM_Example.zcos">
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../../../../examples/matrix_pal/CUMSUM_Example.zcos" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+        </link>
     </refsection>
     <refsection id="Seealso_CUMSUM">
         <title>Voir aussi</title>

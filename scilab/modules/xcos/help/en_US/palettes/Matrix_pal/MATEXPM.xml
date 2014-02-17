@@ -103,7 +103,7 @@
     <refsection id="Description_MATEXPM">
         <title>Description</title>
         <para>
-            The MATEXPM outputs the matrix exponential of a square matrix input computed by the pade's approximants.
+            The MATEXPM outputs the matrix exponential of a square matrix input computed by the Padé's approximants.
             The output is a square matrix with the same size of the input.
         </para>
         <para>
@@ -137,8 +137,8 @@
     <refsection id="Example_MATEXPM">
         <title>Example</title>
         <programlisting role="example">
-            u=[1 2 3;2 3 1;4 2 1]
-            y=[182.612 196.518 141.735;172.973 190.770 133.577;204.677 220.063 159.067]
+            u = [1 2 3 ; 2 3 1 ; 4 2 1]
+            y = [182.612 196.518 141.735 ; 172.973 190.770 133.577 ; 204.677 220.063 159.067]
         </programlisting>
     </refsection>
     <refsection id="Defaultproperties_MATEXPM">
@@ -239,6 +239,16 @@
                 <para>SCI/modules/scicos_blocks/src/c/matz_expm.c</para>
             </listitem>
         </itemizedlist>
+    </refsection>
+    <refsection id="Example_MATEXPM2">
+        <title>Matrix Exponential example: expm([0 sin(t) ; sqrt(t) 0])</title>
+        <link type="scilab" linkend="scilab.xcos/xcos/examples/matrix_pal/MATEXPM_Example.zcos">
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../../../../examples/matrix_pal/MATEXPM_Example.zcos" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+        </link>
     </refsection>
     <refsection id="Seealso_MATEXPM">
         <title>See also</title>

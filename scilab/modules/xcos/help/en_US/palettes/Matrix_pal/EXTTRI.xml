@@ -281,6 +281,16 @@
             </listitem>
         </itemizedlist>
     </refsection>
+    <refsection id="Example_EXTTRI2">
+        <title>Example of diagonal extraction</title>
+        <link type="scilab" linkend="scilab.xcos/xcos/examples/matrix_pal/EXTTRI_Example.zcos">
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../../../../examples/matrix_pal/EXTTRI_Example.zcos" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+        </link>
+    </refsection>
     <refsection id="Seealso_EXTTRI">
         <title>See also</title>
         <itemizedlist>

@@ -163,11 +163,11 @@
     <refsection id="Example_MATEIG">
         <title>Example</title>
         <programlisting role="example">
-            A=[1 12 32;21 35 46;70 8 19]
-            When the "Decomposition type" is set to one the output is y=[-35.649;14.279;76.369]
+            A = [1 12 32 ; 21 35 46 ; 70 8 19]
+            When the "Decomposition type" is set to one the output is y = [-35.649 ; 14.279 ; 76.369]
             When the "Decomposition type" is set to two the outputs are:
-            y1=[-35.649 0.000 0.000;0.000 14.279 0.000;0.000 0.000 76.369]
-            y2=[0.557 0.080 0.349;0.330 -0.922 0.770;-0.762 0.379 0.533]
+            y1 = [-35.649 0.000 0.000 ; 0.000 14.279 0.000 ; 0.000 0.000 76.369]
+            y2 = [0.557 0.080 0.349 ; 0.330 -0.922 0.770 ; -0.762 0.379 0.533]
         </programlisting>
     </refsection>
     <refsection id="Defaultproperties_MATEIG">
@@ -266,6 +266,16 @@
                 <para>SCI/modules/scicos_blocks/src/c/matz_vpv.c</para>
             </listitem>
         </itemizedlist>
+    </refsection>
+    <refsection id="Example_MATEIG2">
+        <title>Eigenvalues example: spec([sin(t) 0; 0 t]) = [sin(t); t]</title>
+        <link type="scilab" linkend="scilab.xcos/xcos/examples/matrix_pal/MATEIG_Example.zcos">
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../../../../examples/matrix_pal/MATEIG_Example.zcos" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+        </link>
     </refsection>
     <refsection id="Seealso_MATEIG">
         <title>See also</title>

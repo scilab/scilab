@@ -133,10 +133,10 @@
     <refsection id="Example_MATDIV">
         <title>Exemple</title>
         <programlisting role="example">
-            A=[1 7 3;23 32 29]
-            B=[21 18 34;13 10 19;11 54 36]
-            talors de résultat de l'équation x*B=A est (A/B) :
-            x=[-0.475 0.712 0.156;-4.350 8.381 0.491]
+            A = [1 7 3 ; 23 32 29]
+            B = [21 18 34 ; 13 10 19 ; 11 54 36]
+            alors de résultat de l'équation x*B = A est (A/B) :
+            x = [-0.475 0.712 0.156 ; -4.350 8.381 0.491]
         </programlisting>
     </refsection>
     <refsection id="Defaultproperties_MATDIV">
@@ -232,6 +232,16 @@
                 <para>SCI/modules/scicos_blocks/src/c/matz_div.c</para>
             </listitem>
         </itemizedlist>
+    </refsection>
+    <refsection id="Example_MATDIV2">
+        <title>Exemple de division : [t sin(t)]/[0 1; 1 0] = [sin(t) t]</title>
+        <link type="scilab" linkend="scilab.xcos/xcos/examples/matrix_pal/MATDIV_Example.zcos">
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../../../../examples/matrix_pal/MATDIV_Example.zcos" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+        </link>
     </refsection>
     <refsection id="Seealso_MATDIV">
         <title>Voir aussi</title>

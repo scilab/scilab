@@ -137,8 +137,8 @@
     <refsection id="Example_MATDIAG">
         <title>Example</title>
         <programlisting role="example">
-            if the input of the block is U=ones(5,1) then the output is:
-            y=[1 0 0 0 0;0 1 0 0 0;0 0 1 0 0;0 0 0 1 0;0 0 0 0 1]
+            If the input of the block is U = ones(5, 1) then the output is:
+            y = [1 0 0 0 0 ; 0 1 0 0 0 ; 0 0 1 0 0 ; 0 0 0 1 0 ; 0 0 0 0 1]
         </programlisting>
     </refsection>
     <refsection id="Defaultproperties_MATDIAG">
@@ -231,6 +231,16 @@
                 <para>SCI/modules/scicos_blocks/src/c/matz_diag.c</para>
             </listitem>
         </itemizedlist>
+    </refsection>
+    <refsection id="Example_MATDIAG2">
+        <title>Diagonal example:</title>
+        <link type="scilab" linkend="scilab.xcos/xcos/examples/matrix_pal/MATDIAG_Example.zcos">
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../../../../examples/matrix_pal/MATDIAG_Example.zcos" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+        </link>
     </refsection>
     <refsection id="Seealso_MATDIAG">
         <title>See also</title>

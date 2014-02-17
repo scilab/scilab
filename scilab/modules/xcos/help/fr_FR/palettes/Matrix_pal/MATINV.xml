@@ -212,6 +212,16 @@
             </listitem>
         </itemizedlist>
     </refsection>
+    <refsection id="Example_MATINV">
+        <title>Exemple de Matrice inverse : inv([0 1/(sin(t)+1) ; 1/(t+1) 0])</title>
+        <link type="scilab" linkend="scilab.xcos/xcos/examples/matrix_pal/MATINV_Example.zcos">
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../../../../examples/matrix_pal/MATINV_Example.zcos" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+        </link>
+    </refsection>
     <refsection id="Seealso_MATINV">
         <title>Voir aussi</title>
         <itemizedlist>

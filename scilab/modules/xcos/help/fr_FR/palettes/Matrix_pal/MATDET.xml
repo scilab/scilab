@@ -232,6 +232,16 @@
             </listitem>
         </itemizedlist>
     </refsection>
+    <refsection id="Example_MATDET2">
+        <title>Exemple de déterminant : det([tan(x) 0 ; 0 cos(x)]) = sin(x)</title>
+        <link type="scilab" linkend="scilab.xcos/xcos/examples/matrix_pal/MATDET_Example.zcos">
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../../../../examples/matrix_pal/MATDET_Example.zcos" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+        </link>
+    </refsection>
     <refsection id="Seealso_MATDET">
         <title>Voir aussi</title>
         <itemizedlist>

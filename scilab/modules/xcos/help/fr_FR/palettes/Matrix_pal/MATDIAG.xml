@@ -129,8 +129,8 @@
     <refsection id="Example_MATDIAG">
         <title>Exemple</title>
         <programlisting role="example">
-            si l'entrée du bloc est U=ones(5,1) alors la sortie est :
-            y=[1 0 0 0 0;0 1 0 0 0;0 0 1 0 0;0 0 0 1 0;0 0 0 0 1]
+            Si l'entrée du bloc est U = ones(5, 1) alors la sortie est :
+            y = [1 0 0 0 0 ; 0 1 0 0 0 ; 0 0 1 0 0 ; 0 0 0 1 0 ; 0 0 0 0 1]
         </programlisting>
     </refsection>
     <refsection id="Defaultproperties_MATDIAG">
@@ -223,6 +223,16 @@
                 <para>SCI/modules/scicos_blocks/src/c/matz_diag.c</para>
             </listitem>
         </itemizedlist>
+    </refsection>
+    <refsection id="Example_MATDIAG2">
+        <title>Exemple de diagonale :</title>
+        <link type="scilab" linkend="scilab.xcos/xcos/examples/matrix_pal/MATDIAG_Example.zcos">
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../../../../examples/matrix_pal/MATDIAG_Example.zcos" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+        </link>
     </refsection>
     <refsection id="Seealso_MATDIAG">
         <title>Voir aussi</title>

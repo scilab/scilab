@@ -96,7 +96,7 @@
         <title>Description</title>
         <para>
             Le bloc MATEXPM sort l'exponentielle matricielle d'une matrice d'entrée carrée calculée par l'approximation
-            de Padé's. La sortie est une matrice carrée de mêmes dimensions que la matrice d'entrée.
+            de Padé. La sortie est une matrice carrée de mêmes dimensions que la matrice d'entrée.
         </para>
         <para>
             L'équivalent du bloc MATEXPM dans Scilab est <link linkend="expm">expm</link>.
@@ -129,8 +129,8 @@
     <refsection id="Example_MATEXPM">
         <title>Exemple</title>
         <programlisting role="example">
-            u=[1 2 3;2 3 1;4 2 1]
-            y=[182.612 196.518 141.735;172.973 190.770 133.577;204.677 220.063 159.067]
+            u = [1 2 3 ; 2 3 1 ; 4 2 1]
+            y = [182.612 196.518 141.735 ; 172.973 190.770 133.577 ; 204.677 220.063 159.067]
         </programlisting>
     </refsection>
     <refsection id="Defaultproperties_MATEXPM">
@@ -223,6 +223,16 @@
                 <para>SCI/modules/scicos_blocks/src/c/matz_expm.c</para>
             </listitem>
         </itemizedlist>
+    </refsection>
+    <refsection id="Example_MATEXPM2">
+        <title>Exemple d'Exponentielle matricielle : expm([0 sin(t) ; sqrt(t) 0])</title>
+        <link type="scilab" linkend="scilab.xcos/xcos/examples/matrix_pal/MATEXPM_Example.zcos">
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../../../../examples/matrix_pal/MATEXPM_Example.zcos" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+        </link>
     </refsection>
     <refsection id="Seealso_MATEXPM">
         <title>Voir aussi</title>
