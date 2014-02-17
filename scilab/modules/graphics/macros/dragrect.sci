@@ -17,7 +17,10 @@ function [rects,btn]=dragrect(varargin)
     if size(rects,1)==1 then rects=rects(:),end
     n=size(rects,2)
     f=gcf();
+    a=gca();
+    db = a.data_bounds;
     xrects(rects)
+    a.data_bounds = db;
     R=gce(); //Compound of rectangles
     rep=[rects(1),rects(2),-1]
     while rep(3)==-1 then

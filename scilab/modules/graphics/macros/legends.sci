@@ -63,7 +63,6 @@ function legends(leg, style, opt, with_box, font_size )
     //case (a little tricky)
     xsetech(wrect=[r1(1),r1(2),r1(3)/1000,r1(4)/1000],frect=[0 0 1,1]/1000,arect=[0,0,0,0])
     xmin=arect(1);xmax=1-arect(2);ymin=-1+arect(4);ymax=-arect(3);
-
     cur_ax=gca(),
     cur_ax.clip_state="off";
 
@@ -126,7 +125,6 @@ function legends(leg, style, opt, with_box, font_size )
     a.font_color=old_ax.font_color ;
     a.font_size =old_ax.font_size  ;
     a.font_style=old_ax.font_style ;
-
 
     R=[]
     if with_box then
@@ -195,6 +193,8 @@ function legends(leg, style, opt, with_box, font_size )
         y=y-bbx(k,2) ;
     end
     glue(R)
+    a=gca();
+    a.data_bounds = [0,0;0.001,0.001];
 
     set("current_axes",old_ax),
 
