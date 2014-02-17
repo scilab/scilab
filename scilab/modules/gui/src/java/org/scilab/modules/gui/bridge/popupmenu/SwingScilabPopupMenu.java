@@ -14,6 +14,7 @@
 
 package org.scilab.modules.gui.bridge.popupmenu;
 
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE__;
 
 import java.awt.Color;
@@ -24,8 +25,8 @@ import javax.swing.JComboBox;
 import javax.swing.UIManager;
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
-import org.scilab.modules.gui.SwingViewWidget;
 import org.scilab.modules.gui.SwingViewObject;
+import org.scilab.modules.gui.SwingViewWidget;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.popupmenu.SimplePopupMenu;
@@ -67,7 +68,6 @@ public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, 
                 if (callback != null) {
                     callback.actionPerformed(null);
                 }
-
 
             }
         };
@@ -338,13 +338,15 @@ public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, 
     }
 
     /**
-     * Class created as a workaround for bug: http://bugzilla.scilab.org/show_bug.cgi?id=7898
-     * This bug is a Java bug: http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=4133743
+     * Class created as a workaround for bug:
+     * http://bugzilla.scilab.org/show_bug.cgi?id=7898 This bug is a Java bug:
+     * http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=4133743
      *
      * This workaround has been proposed by a user on Java bug tracker.
      *
-     * The toString method will be used to display the elements, but because the class inherits its
-     * equals method from Object instead of String, none of the elements are considered duplicates.
+     * The toString method will be used to display the elements, but because the
+     * class inherits its equals method from Object instead of String, none of
+     * the elements are considered duplicates.
      *
      */
     private class SwingScilabPopupMenuItem {
@@ -392,11 +394,35 @@ public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, 
      * @param value property value
      */
     public void update(int property, Object value) {
-        SwingViewWidget.update(this, property, value);
+        switch (property) {
+            case __GO_UI_STRING__: {
+                setText((String[]) value);
+                break;
+            }
+            case __GO_UI_VALUE__: {
+                Double[] doubleValue = ((Double[]) value);
+                if (doubleValue.length == 0) {
+                    return;
+                }
+
+                int[] intValue = new int[doubleValue.length];
+                for (int k = 0; k < doubleValue.length; k++) {
+                    intValue[k] = doubleValue[k].intValue();
+                }
+
+                // Update selected items in the popupmenu
+                setUserSelectedIndex(intValue[0]);
+                break;
+            }
+            default: {
+                SwingViewWidget.update(this, property, value);
+                break;
+            }
+        }
     }
 
     public void resetBackground() {
-        Color color = (Color)UIManager.getLookAndFeelDefaults().get("ComboBox.background");
+        Color color = (Color) UIManager.getLookAndFeelDefaults().get("ComboBox.background");
         if (color != null) {
             setBackground(color);
         }

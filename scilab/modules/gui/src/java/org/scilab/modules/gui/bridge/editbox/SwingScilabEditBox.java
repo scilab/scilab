@@ -15,12 +15,11 @@
 package org.scilab.modules.gui.bridge.editbox;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MAX__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MIN__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING__;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
@@ -29,7 +28,6 @@ import java.awt.event.KeyEvent;
 import javax.swing.AbstractAction;
 import javax.swing.InputMap;
 import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 import javax.swing.JTextPane;
 import javax.swing.KeyStroke;
 import javax.swing.ScrollPaneConstants;
@@ -67,7 +65,6 @@ import org.scilab.modules.gui.utils.Size;
 /**
  * Swing implementation for Scilab EditBox in GUIs
  * @author Vincent COUVERT
- * @author Marouane BEN JELLOUL
  */
 public class SwingScilabEditBox extends JScrollPane implements SwingViewObject, SimpleEditBox {
 
@@ -448,25 +445,46 @@ public class SwingScilabEditBox extends JScrollPane implements SwingViewObject, 
      * @param value property value
      */
     public void update(int property, Object value) {
+        GraphicController controller = GraphicController.getController();
+
         switch (property) {
-            case __GO_UI_MAX__ : {
-                //                Double columns = (Double)value;
-                //                Graphics g = textPane.getGraphics();
-                //                Integer width = 50;
-                //                if (g != null) {
-                //                    width = textPane.getGraphics().getFontMetrics(textPane.getFont()).charWidth('m');
-                //                }
-                //                Integer totalWidth = columns.intValue() * width;
-                //                Dimension current = textPane.getPreferredSize();
-                //                System.out.println("current : " + current.toString());
-                //                current.width = totalWidth;
-                //                textPane.setPreferredSize(current);
-                //                current = textPane.getPreferredSize();
-                //                System.out.println("new : " + current.toString());
+            case __GO_UI_MAX__: {
+                double min = ((Double) controller.getProperty(uid, __GO_UI_MIN__));
+                double max = ((Double) controller.getProperty(uid, __GO_UI_MAX__));
+                if (max - min > 1.0) {
+                    setMultiLineText(true);
+                } else {
+                    setMultiLineText(false);
+                }
+                // Force String update
+                update(__GO_UI_STRING__, GraphicController.getController().getProperty(uid, __GO_UI_STRING__));
                 break;
             }
-
-            default : {
+            case __GO_UI_MIN__: {
+                Double min = ((Double) value);
+                Double max = ((Double) controller.getProperty(uid, __GO_UI_MAX__));
+                if (max - min > 1.0) {
+                    setMultiLineText(true);
+                } else {
+                    setMultiLineText(false);
+                }
+                // Force String update
+                update(__GO_UI_STRING__, GraphicController.getController().getProperty(uid, __GO_UI_STRING__));
+                break;
+            }
+            case __GO_UI_STRING__: {
+                double min = ((Double) controller.getProperty(uid, __GO_UI_MIN__));
+                double max = ((Double) controller.getProperty(uid, __GO_UI_MAX__));
+                if (max - min > 1.0) {
+                    setText((String[]) value);
+                    setMultiLineText(true);
+                } else {
+                    setText(((String[]) value)[0]);
+                    setMultiLineText(false);
+                }
+                break;
+            }
+            default: {
                 SwingViewWidget.update(this, property, value);
                 break;
             }

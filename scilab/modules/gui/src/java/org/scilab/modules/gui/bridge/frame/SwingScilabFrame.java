@@ -13,10 +13,23 @@
 
 package org.scilab.modules.gui.bridge.frame;
 
+
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHILDREN__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_BORDER_OPT_PADDING__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_GRID_OPT_GRID__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_GRID_OPT_PADDING__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_LAYOUT__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_PARENT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_POSITION__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_STYLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TYPE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UICONTROL__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ENABLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FRAME_BORDER__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LAYER__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VISIBLE__;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -32,12 +45,14 @@ import java.awt.event.ComponentListener;
 
 import javax.swing.JPanel;
 import javax.swing.UIManager;
+import javax.swing.border.Border;
 
 import org.scilab.modules.graphic_objects.axes.AxesContainer;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicModel.GraphicModel;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
+import org.scilab.modules.graphic_objects.utils.LayoutType;
 import org.scilab.modules.gui.SwingView;
 import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.SwingViewWidget;
@@ -71,10 +86,12 @@ import org.scilab.modules.gui.slider.Slider;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
+import org.scilab.modules.gui.utils.BorderConvertor;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.PositionConverter;
 import org.scilab.modules.gui.utils.ScilabRelief;
 import org.scilab.modules.gui.utils.Size;
+import org.scilab.modules.gui.widget.Widget;
 
 /**
  * Swing implementation for Scilab frames in GUI
@@ -749,9 +766,26 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
      * @param value property value
      */
     public void update(int property, Object value) {
-        SwingViewWidget.update(this, property, value);
+        GraphicController controller = GraphicController.getController();
+
         switch (property) {
-            case __GO_UI_STRING__:
+            case __GO_UI_VALUE__: {
+                Double[] doubleValue = ((Double[]) value);
+                if (doubleValue.length == 0) {
+                    return;
+                }
+
+                int[] intValue = new int[doubleValue.length];
+                for (int k = 0; k < doubleValue.length; k++) {
+                    intValue[k] = doubleValue[k].intValue();
+                }
+
+                SwingScilabLayer layer = (SwingScilabLayer) this;
+                //if intValue[0] is out of bounds, do not update view but let "wrong" value in model
+                layer.setActiveLayer(intValue[0]);
+                break;
+            }
+            case __GO_UI_STRING__: {
                 // Update tab title
                 Container parent = getParent();
                 if (parent instanceof SwingScilabTabGroup) {
@@ -761,12 +795,84 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
                         tab.setTitleAt(index, ((String[]) value)[0]);
                     }
                 }
+
+                if (this instanceof SwingScilabLayer) {
+                    SwingScilabLayer layer = (SwingScilabLayer) this;
+                    //if intValue[0] is out of bounds, do not update view but let "wrong" value in model
+                    layer.setActiveLayerFromName(((String[]) value)[0]);
+                }
                 break;
-            case __GO_POSITION__:
+            }
+            case __GO_POSITION__: {
+                SwingViewWidget.updatePosition(this, uid, value);
                 revalidate();
                 doLayout();
                 break;
-            default :
+            }
+            case __GO_UI_FRAME_BORDER__: {
+                Integer borderId = (Integer) value;
+                Border border = BorderConvertor.getBorder(borderId);
+                setBorder(border);
+                break;
+            }
+            case __GO_LAYOUT__: {
+                LayoutType newLayout = LayoutType.intToEnum((Integer) value);
+                switch (newLayout) {
+                    case BORDER: {
+                        Integer[] padding = (Integer[]) controller.getProperty(getId(), __GO_BORDER_OPT_PADDING__);
+                        setLayout(new BorderLayout(padding[0], padding[1]));
+                        break;
+                    }
+                    case GRIDBAG:
+                        setLayout(new GridBagLayout());
+                        break;
+                    case GRID: {
+                        Integer[] padding = (Integer[]) controller.getProperty(getId(), __GO_GRID_OPT_PADDING__);
+                        Integer[] grid = (Integer[]) controller.getProperty(getId(), __GO_GRID_OPT_GRID__);
+                        if (grid[0] == 0 && grid[1] == 0) {
+                            grid[0] = 1;
+                        }
+
+                        setLayout(new GridLayout(grid[0], grid[1], padding[0], padding[1]));
+                        break;
+                    }
+                    case NONE:
+                    default: {
+                        setLayout(null);
+                        break;
+                    }
+                }
+                break;
+            }
+            case __GO_VISIBLE__: {
+                boolean needUpdate = true;
+                Integer parent = (Integer) controller.getProperty(uid, __GO_PARENT__);
+                if (parent != 0) {
+                    Integer type = (Integer) controller.getProperty(parent, __GO_TYPE__);
+                    if (type == __GO_UICONTROL__) {
+                        Integer style = (Integer) controller.getProperty(parent, __GO_STYLE__);
+                        if (style == __GO_UI_LAYER__) {
+                            //no no no don't touch visible on layer children !
+                            Boolean visible = (Boolean) value;
+                            SwingScilabLayer layer = (SwingScilabLayer) SwingView.getFromId(parent);
+                            Boolean isActive = layer.isLayerActive(this);
+                            if (isActive != visible) {
+                                controller.setProperty(uid, __GO_VISIBLE__, isActive);
+                            }
+
+                            needUpdate = false;
+                        }
+                    }
+                }
+
+                if (needUpdate) {
+                    setVisible(((Boolean) value).booleanValue());
+                }
+
+                break;
+            }
+            default:
+                SwingViewWidget.update(this, property, value);
                 break;
         }
     }

@@ -13,8 +13,10 @@
 
 package org.scilab.modules.gui.bridge.slider;
 
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_POSITION__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MAX__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MIN__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SLIDERSTEP__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE__;
 
 import java.awt.Color;
@@ -25,8 +27,8 @@ import javax.swing.JScrollBar;
 import javax.swing.UIManager;
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
-import org.scilab.modules.gui.SwingViewWidget;
 import org.scilab.modules.gui.SwingViewObject;
+import org.scilab.modules.gui.SwingViewWidget;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.slider.SimpleSlider;
@@ -65,7 +67,8 @@ public class SwingScilabScroll extends JScrollBar implements SwingViewObject, Si
         super();
         // needed to have slider working with GLCanvas
         setOpaque(true);
-        setFocusable(true); /* Enable to manage the slider using keyboard (See bug #10840) */
+        /* Enable to manage the slider using keyboard (See bug #10840) */
+        setFocusable(true);
         setMinimum(MINIMUM_VALUE);
         setMaximum(MAXIMUM_VALUE + getVisibleAmount());
         adjustmentListener = new AdjustmentListener() {
@@ -98,7 +101,8 @@ public class SwingScilabScroll extends JScrollBar implements SwingViewObject, Si
     }
 
     /**
-     * Gets the position (X-coordinate and Y-coordinate) of a swing Scilab Slider
+     * Gets the position (X-coordinate and Y-coordinate) of a swing Scilab
+     * Slider
      * @return the position of the Slider
      * @see org.scilab.modules.gui.uielement.UIElement#getPosition()
      */
@@ -117,7 +121,8 @@ public class SwingScilabScroll extends JScrollBar implements SwingViewObject, Si
     }
 
     /**
-     * Sets the position (X-coordinate and Y-coordinate) of a swing Scilab Slider
+     * Sets the position (X-coordinate and Y-coordinate) of a swing Scilab
+     * Slider
      * @param newPosition the position to set to the Slider
      * @see org.scilab.modules.gui.uielement.UIElement#setPosition(org.scilab.modules.gui.utils.Position)
      */
@@ -343,7 +348,64 @@ public class SwingScilabScroll extends JScrollBar implements SwingViewObject, Si
      * @param value property value
      */
     public void update(int property, Object value) {
-        SwingViewWidget.update(this, property, value);
+        GraphicController controller = GraphicController.getController();
+
+        switch (property) {
+            case __GO_UI_MAX__: {
+                Double maxValue = (Double) value;
+                // Update the slider properties
+                Double minValue = (Double) controller.getProperty(uid, __GO_UI_MIN__);
+                setMaximumValue(maxValue);
+                Double[] sliderStep = ((Double[]) controller.getProperty(uid, __GO_UI_SLIDERSTEP__));
+                double minorSliderStep = sliderStep[0].doubleValue();
+                double majorSliderStep = sliderStep[1].doubleValue();
+                if (minValue <= maxValue) {
+                    setMinorTickSpacing(minorSliderStep);
+                    setMajorTickSpacing(majorSliderStep);
+                }
+                break;
+            }
+            case __GO_UI_MIN__: {
+                Double minValue = (Double) value;
+                // Update the slider properties
+                Double maxValue = (Double) controller.getProperty(uid, __GO_UI_MAX__);
+                setMinimumValue(minValue);
+                Double[] sliderStep = ((Double[]) controller.getProperty(uid, __GO_UI_SLIDERSTEP__));
+                double minorSliderStep = sliderStep[0].doubleValue();
+                double majorSliderStep = sliderStep[1].doubleValue();
+                if (minValue <= maxValue) {
+                    setMinorTickSpacing(minorSliderStep);
+                    setMajorTickSpacing(majorSliderStep);
+                }
+                break;
+            }
+            case __GO_POSITION__: {
+                Double[] dblValues = SwingViewWidget.updatePosition(this, uid, value);
+                if (dblValues[0].intValue() > dblValues[1].intValue()) {
+                    setHorizontal();
+                } else {
+                    setVertical();
+                }
+                break;
+            }
+            case __GO_UI_SLIDERSTEP__: {
+                Double[] sliderStep = ((Double[]) value);
+                double minorSliderStep = sliderStep[0].doubleValue();
+                double majorSliderStep = sliderStep[1].doubleValue();
+                setMinorTickSpacing(minorSliderStep);
+                setMajorTickSpacing(majorSliderStep);
+                break;
+            }
+            case __GO_UI_VALUE__: {
+                Double[] doubleValue = ((Double[]) value);
+                setUserValue(doubleValue[0]);
+                break;
+            }
+            default: {
+                SwingViewWidget.update(this, property, value);
+                break;
+            }
+        }
     }
 
     /**
@@ -358,7 +420,7 @@ public class SwingScilabScroll extends JScrollBar implements SwingViewObject, Si
     }
 
     public void resetBackground() {
-        Color color = (Color)UIManager.getLookAndFeelDefaults().get("ScrollBar.background");
+        Color color = (Color) UIManager.getLookAndFeelDefaults().get("ScrollBar.background");
         if (color != null) {
             setBackground(color);
         }

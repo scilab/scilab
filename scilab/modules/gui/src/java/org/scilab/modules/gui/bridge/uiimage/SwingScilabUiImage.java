@@ -12,6 +12,8 @@
  */
 package org.scilab.modules.gui.bridge.uiimage;
 
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE__;
+
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -67,7 +69,6 @@ public class SwingScilabUiImage extends JLabel implements SwingViewObject, Simpl
         shear = new double[2];
     }
 
-
     /**
      * Draws a swing Scilab Image
      * @see org.scilab.modules.gui.uielement.UIElement#draw()
@@ -87,7 +88,8 @@ public class SwingScilabUiImage extends JLabel implements SwingViewObject, Simpl
     }
 
     /**
-     * Gets the position (X-coordinate and Y-coordinate) of a swing Scilab element
+     * Gets the position (X-coordinate and Y-coordinate) of a swing Scilab
+     * element
      * @return the position of the element
      * @see org.scilab.modules.gui.uielement.UIElement#getPosition()
      */
@@ -105,7 +107,8 @@ public class SwingScilabUiImage extends JLabel implements SwingViewObject, Simpl
     }
 
     /**
-     * Sets the position (X-coordinate and Y-coordinate) of a swing Scilab element
+     * Sets the position (X-coordinate and Y-coordinate) of a swing Scilab
+     * element
      * @param newPosition the position to set to the element
      * @see org.scilab.modules.gui.uielement.UIElement#setPosition(org.scilab.modules.gui.utils.Position)
      */
@@ -293,11 +296,63 @@ public class SwingScilabUiImage extends JLabel implements SwingViewObject, Simpl
      * @param value property value
      */
     public void update(int property, Object value) {
-        SwingViewWidget.update(this, property, value);
+
+        switch (property) {
+            case __GO_UI_VALUE__: {
+                Double[] doubleValue = ((Double[]) value);
+                if (doubleValue.length == 0) {
+                    return;
+                }
+
+                // Update the image parameters
+                double[] imageParams = new double[5];
+                if (doubleValue.length < 1) {
+                    imageParams[0] = 1.0;
+                } else {
+                    imageParams[0] = doubleValue[0];
+                }
+                if (doubleValue.length < 2) {
+                    imageParams[1] = 1.0;
+                } else {
+                    imageParams[1] = doubleValue[1];
+                }
+                if (doubleValue.length < 3) {
+                    imageParams[2] = 0.0;
+                } else {
+                    imageParams[2] = doubleValue[2];
+                }
+                if (doubleValue.length < 4) {
+                    imageParams[3] = 0.0;
+                } else {
+                    imageParams[3] = doubleValue[3];
+                }
+                if (doubleValue.length < 5) {
+                    imageParams[4] = 0.0;
+                } else {
+                    imageParams[4] = doubleValue[4];
+                }
+
+                double[] scale = new double[2];
+                scale[0] = imageParams[0];
+                scale[1] = imageParams[1];
+                setScale(scale);
+
+                double[] shear = new double[2];
+                shear[0] = imageParams[2];
+                shear[1] = imageParams[3];
+                setShear(shear);
+                setRotate(imageParams[4]);
+                break;
+            }
+            default: {
+                SwingViewWidget.update(this, property, value);
+                break;
+            }
+        }
     }
 
     public void resetBackground() {
-        Color color = (Color)UIManager.getLookAndFeelDefaults().get("Label.background");
+        Color color = (Color) UIManager.getLookAndFeelDefaults().get("Label.background");
         if (color != null) {
             setBackground(color);
         }

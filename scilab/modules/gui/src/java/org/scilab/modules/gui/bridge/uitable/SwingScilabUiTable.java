@@ -12,22 +12,26 @@
  */
 package org.scilab.modules.gui.bridge.uitable;
 
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING_COLNB__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE__;
+
 import java.awt.Color;
 import java.awt.Font;
 
-import javax.swing.JList;
-import javax.swing.JTable;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.UIManager;
 
-import org.scilab.modules.gui.SwingViewWidget;
+import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.gui.SwingViewObject;
+import org.scilab.modules.gui.SwingViewWidget;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
-import org.scilab.modules.gui.uitable.SimpleUiTable;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
+import org.scilab.modules.gui.uitable.SimpleUiTable;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.PositionConverter;
 import org.scilab.modules.gui.utils.ScilabAlignment;
@@ -125,8 +129,8 @@ public class SwingScilabUiTable extends JScrollPane implements SwingViewObject, 
 
     /**
      * Sets the visibility status of an UIElement
-     * @param newVisibleState the visibility status we want to set for the UIElement
-     *                      (true if the UIElement is visible, false if not)
+     * @param newVisibleState the visibility status we want to set for the
+     * UIElement (true if the UIElement is visible, false if not)
      */
     public void setVisible(boolean newVisibleState) {
         super.setVisible(newVisibleState);
@@ -143,7 +147,8 @@ public class SwingScilabUiTable extends JScrollPane implements SwingViewObject, 
     }
 
     /**
-     * Gets the position (X-coordinate and Y-coordinate) of a swing Scilab element
+     * Gets the position (X-coordinate and Y-coordinate) of a swing Scilab
+     * element
      * @return the position of the element
      * @see org.scilab.modules.gui.uielement.UIElement#getPosition()
      */
@@ -161,7 +166,8 @@ public class SwingScilabUiTable extends JScrollPane implements SwingViewObject, 
     }
 
     /**
-     * Sets the position (X-coordinate and Y-coordinate) of a swing Scilab element
+     * Sets the position (X-coordinate and Y-coordinate) of a swing Scilab
+     * element
      * @param newPosition the position to set to the element
      * @see org.scilab.modules.gui.uielement.UIElement#setPosition(org.scilab.modules.gui.utils.Position)
      */
@@ -353,8 +359,8 @@ public class SwingScilabUiTable extends JScrollPane implements SwingViewObject, 
 
     /**
      * Sets the Data for uitable
-     * @param text the String that contains row data delimited by a '|'
-     *        and column data delimited by " ". Example: 1.26 3.47 | a b | d e | a b
+     * @param text the String that contains row data delimited by a '|' and
+     * column data delimited by " ". Example: 1.26 3.47 | a b | d e | a b
      */
     public void setData(String[] text) {
         //initializes data structure with number of rows and columns
@@ -418,11 +424,50 @@ public class SwingScilabUiTable extends JScrollPane implements SwingViewObject, 
      * @param value property value
      */
     public void update(int property, Object value) {
-        SwingViewWidget.update(this, property, value);
+        GraphicController controller = GraphicController.getController();
+
+        switch (property) {
+            case __GO_UI_VALUE__: {
+                // Update column names
+                String[] stringValue = (String[]) value;
+                int colNb = ((Integer) controller.getProperty(uid, __GO_UI_STRING_COLNB__));
+                String[] colNames = new String[colNb - 1];
+                for (int k = 1; k < colNb; k++) {
+                    colNames[k - 1] = stringValue[k * (stringValue.length / colNb)];
+                }
+
+                setColumnNames(colNames);
+
+                // Update row names
+                String[] rowNames = new String[stringValue.length / colNb - 1];
+                for (int k = 1; k < stringValue.length / colNb; k++) {
+                    rowNames[k - 1] = stringValue[k];
+                }
+
+                setRowNames(rowNames);
+
+                // Update data
+                String[] tableData = new String[rowNames.length * colNames.length];
+                int kData = 0;
+                for (int kCol = 1; kCol <= colNames.length; kCol++) {
+                    for (int kRow = 1; kRow <= rowNames.length; kRow++) {
+                        tableData[kData++] = stringValue[kCol * (stringValue.length / colNb) + kRow];
+                    }
+                }
+
+                if (tableData.length != 0) {
+                    setData(tableData);
+                }
+                break;
+            }
+            default: {
+                SwingViewWidget.update(this, property, value);
+            }
+        }
     }
 
     public void resetBackground() {
-        Color color = (Color)UIManager.getLookAndFeelDefaults().get("ScrollPane.background");
+        Color color = (Color) UIManager.getLookAndFeelDefaults().get("ScrollPane.background");
         if (color != null) {
             setBackground(color);
         }

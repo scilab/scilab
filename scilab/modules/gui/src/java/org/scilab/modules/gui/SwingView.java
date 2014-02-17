@@ -45,7 +45,6 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FONTWEIGHT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FOREGROUNDCOLOR__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FRAME_BORDER__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FRAME_SCROLLABLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FRAME__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_HORIZONTALALIGNMENT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ICON__;
@@ -59,6 +58,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_PUSHBUTTON__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_RADIOBUTTON__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_RELIEF__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SCROLLABLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SEPARATOR__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SLIDER__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING__;
@@ -69,7 +69,6 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VALID__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VISIBLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_WAITBAR__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SCROLLABLE__;
 import static org.scilab.modules.gui.utils.Debug.DEBUG;
 
 import java.awt.Component;
@@ -103,8 +102,8 @@ import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
 import org.scilab.modules.gui.bridge.contextmenu.SwingScilabContextMenu;
 import org.scilab.modules.gui.bridge.editbox.SwingScilabEditBox;
 import org.scilab.modules.gui.bridge.frame.SwingScilabFrame;
-import org.scilab.modules.gui.bridge.frame.SwingScilabScrollableFrame;
 import org.scilab.modules.gui.bridge.frame.SwingScilabLayer;
+import org.scilab.modules.gui.bridge.frame.SwingScilabScrollableFrame;
 import org.scilab.modules.gui.bridge.label.SwingScilabLabel;
 import org.scilab.modules.gui.bridge.listbox.SwingScilabListBox;
 import org.scilab.modules.gui.bridge.menu.SwingScilabMenu;
@@ -591,29 +590,29 @@ public final class SwingView implements GraphicView {
      * @param uiControlObject the uicontrol
      * @param id the uicontrol id
      */
-    private void setDefaultProperties(Widget uiControlObject, Integer id) {
+    private void setDefaultProperties(SwingViewObject uiControlObject, Integer id) {
 
         /*
          * Visible property is set first to avoid to see the object rendered
          * before all its properties to be set (See bug #10346)
          */
-        SwingViewWidget.update(uiControlObject, __GO_VISIBLE__, GraphicController.getController().getProperty(id, __GO_VISIBLE__));
-        SwingViewWidget.update(uiControlObject, __GO_UI_BACKGROUNDCOLOR__, GraphicController.getController().getProperty(id, __GO_UI_BACKGROUNDCOLOR__));
-        SwingViewWidget.update(uiControlObject, __GO_UI_ENABLE__, GraphicController.getController().getProperty(id, __GO_UI_ENABLE__));
-        SwingViewWidget.update(uiControlObject, __GO_UI_FONTANGLE__, GraphicController.getController().getProperty(id, __GO_UI_FONTANGLE__));
-        SwingViewWidget.update(uiControlObject, __GO_UI_FONTNAME__, GraphicController.getController().getProperty(id, __GO_UI_FONTNAME__));
-        SwingViewWidget.update(uiControlObject, __GO_UI_FONTUNITS__, GraphicController.getController().getProperty(id, __GO_UI_FONTUNITS__));
-        SwingViewWidget.update(uiControlObject, __GO_UI_FONTSIZE__, GraphicController.getController().getProperty(id, __GO_UI_FONTSIZE__));
-        SwingViewWidget.update(uiControlObject, __GO_UI_FONTWEIGHT__, GraphicController.getController().getProperty(id, __GO_UI_FONTWEIGHT__));
-        SwingViewWidget.update(uiControlObject, __GO_UI_FOREGROUNDCOLOR__, GraphicController.getController().getProperty(id, __GO_UI_FOREGROUNDCOLOR__));
-        SwingViewWidget.update(uiControlObject, __GO_UI_HORIZONTALALIGNMENT__, GraphicController.getController().getProperty(id, __GO_UI_HORIZONTALALIGNMENT__));
-        SwingViewWidget.update(uiControlObject, __GO_UI_RELIEF__, GraphicController.getController().getProperty(id, __GO_UI_RELIEF__));
-        SwingViewWidget.update(uiControlObject, __GO_UI_STRING__, GraphicController.getController().getProperty(id, __GO_UI_STRING__));
-        SwingViewWidget.update(uiControlObject, __GO_UI_VERTICALALIGNMENT__, GraphicController.getController().getProperty(id, __GO_UI_VERTICALALIGNMENT__));
-        SwingViewWidget.update(uiControlObject, __GO_POSITION__, GraphicController.getController().getProperty(id, __GO_POSITION__));
-        SwingViewWidget.update(uiControlObject, __GO_LAYOUT__, GraphicController.getController().getProperty(id, __GO_LAYOUT__));
-        SwingViewWidget.update(uiControlObject, __GO_UI_MIN__, GraphicController.getController().getProperty(id, __GO_UI_MIN__));
-        SwingViewWidget.update(uiControlObject, __GO_UI_MAX__, GraphicController.getController().getProperty(id, __GO_UI_MAX__));
+        uiControlObject.update(__GO_VISIBLE__, GraphicController.getController().getProperty(id, __GO_VISIBLE__));
+        uiControlObject.update(__GO_UI_BACKGROUNDCOLOR__, GraphicController.getController().getProperty(id, __GO_UI_BACKGROUNDCOLOR__));
+        uiControlObject.update(__GO_UI_ENABLE__, GraphicController.getController().getProperty(id, __GO_UI_ENABLE__));
+        uiControlObject.update(__GO_UI_FONTANGLE__, GraphicController.getController().getProperty(id, __GO_UI_FONTANGLE__));
+        uiControlObject.update(__GO_UI_FONTNAME__, GraphicController.getController().getProperty(id, __GO_UI_FONTNAME__));
+        uiControlObject.update(__GO_UI_FONTUNITS__, GraphicController.getController().getProperty(id, __GO_UI_FONTUNITS__));
+        uiControlObject.update(__GO_UI_FONTSIZE__, GraphicController.getController().getProperty(id, __GO_UI_FONTSIZE__));
+        uiControlObject.update(__GO_UI_FONTWEIGHT__, GraphicController.getController().getProperty(id, __GO_UI_FONTWEIGHT__));
+        uiControlObject.update(__GO_UI_FOREGROUNDCOLOR__, GraphicController.getController().getProperty(id, __GO_UI_FOREGROUNDCOLOR__));
+        uiControlObject.update(__GO_UI_HORIZONTALALIGNMENT__, GraphicController.getController().getProperty(id, __GO_UI_HORIZONTALALIGNMENT__));
+        uiControlObject.update(__GO_UI_RELIEF__, GraphicController.getController().getProperty(id, __GO_UI_RELIEF__));
+        uiControlObject.update(__GO_UI_STRING__, GraphicController.getController().getProperty(id, __GO_UI_STRING__));
+        uiControlObject.update(__GO_UI_VERTICALALIGNMENT__, GraphicController.getController().getProperty(id, __GO_UI_VERTICALALIGNMENT__));
+        uiControlObject.update(__GO_POSITION__, GraphicController.getController().getProperty(id, __GO_POSITION__));
+        uiControlObject.update(__GO_LAYOUT__, GraphicController.getController().getProperty(id, __GO_LAYOUT__));
+        uiControlObject.update(__GO_UI_MIN__, GraphicController.getController().getProperty(id, __GO_UI_MIN__));
+        uiControlObject.update(__GO_UI_MAX__, GraphicController.getController().getProperty(id, __GO_UI_MAX__));
     }
 
     public void deleteObject(Integer id) {

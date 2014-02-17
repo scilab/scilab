@@ -36,5 +36,6 @@ function r=%h_e(i,h)
     else
         error("Invalid path")
     end
+
     if type(r)==10 then r=stripblanks(r),end
 endfunction

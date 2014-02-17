@@ -12,6 +12,7 @@
 
 package org.scilab.modules.gui.bridge.slider;
 
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_POSITION__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MAX__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MIN__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SLIDERSTEP__;
@@ -44,8 +45,7 @@ import org.scilab.modules.gui.utils.Size;
 
 /**
  * Swing implementation for Scilab Slider in GUIs
- * @author Vincent COUVERT
- * @author Marouane BEN JELLOUL
+ * @author Antoine ELIAS
  */
 public class SwingScilabSlider extends JSlider implements SwingViewObject, SimpleSlider {
 
@@ -412,7 +412,64 @@ public class SwingScilabSlider extends JSlider implements SwingViewObject, Simpl
      * @param value property value
      */
     public void update(int property, Object value) {
-        SwingViewWidget.update(this, property, value);
+        GraphicController controller = GraphicController.getController();
+
+        switch (property) {
+            case __GO_UI_MAX__: {
+                Double maxValue = (Double) value;
+                // Update the slider properties
+                Double minValue = (Double) controller.getProperty(uid, __GO_UI_MIN__);
+                setMaximumValue(maxValue);
+                Double[] sliderStep = ((Double[]) controller.getProperty(uid, __GO_UI_SLIDERSTEP__));
+                double minorSliderStep = sliderStep[0].doubleValue();
+                double majorSliderStep = sliderStep[1].doubleValue();
+                if (minValue <= maxValue) {
+                    setMinorTickSpacing(minorSliderStep);
+                    setMajorTickSpacing(majorSliderStep);
+                }
+                break;
+            }
+            case __GO_UI_MIN__ : {
+                Double minValue = (Double)value;
+                // Update the slider properties
+                Double maxValue = (Double) controller.getProperty(uid, __GO_UI_MAX__);
+                setMinimumValue(minValue);
+                Double[] sliderStep = ((Double[]) controller.getProperty(uid, __GO_UI_SLIDERSTEP__));
+                double minorSliderStep = sliderStep[0].doubleValue();
+                double majorSliderStep = sliderStep[1].doubleValue();
+                if (minValue <= maxValue) {
+                    setMinorTickSpacing(minorSliderStep);
+                    setMajorTickSpacing(majorSliderStep);
+                }
+                break;
+            }
+            case __GO_POSITION__ : {
+                Double[] dblValues = SwingViewWidget.updatePosition(this, uid, value);
+                if (dblValues[0].intValue() > dblValues[1].intValue()) {
+                    setHorizontal();
+                } else {
+                    setVertical();
+                }
+                break;
+            }
+            case __GO_UI_SLIDERSTEP__ : {
+                Double[] sliderStep = ((Double[]) value);
+                double minorSliderStep = sliderStep[0].doubleValue();
+                double majorSliderStep = sliderStep[1].doubleValue();
+                setMinorTickSpacing(minorSliderStep);
+                setMajorTickSpacing(majorSliderStep);
+                break;
+            }
+            case __GO_UI_VALUE__ : {
+                Double[] doubleValue = ((Double[]) value);
+                setUserValue(doubleValue[0]);
+                break;
+            }
+            default: {
+                SwingViewWidget.update(this, property, value);
+                break;
+            }
+        }
     }
 
     /**

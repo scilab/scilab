@@ -81,16 +81,16 @@ public class SwingScilabCheckBox extends JCheckBox implements SwingViewObject, S
                     if (groupname != null && groupname.equals("") == false) {
                         Enumeration<AbstractButton> elements = GroupManager.getGroupManager().getGroupElements(groupname);
                         while (elements.hasMoreElements()) {
-                            AbstractButton aButton =  elements.nextElement();
+                            AbstractButton aButton = elements.nextElement();
                             if (aButton == e.getSource()) {
                                 continue;
                             }
 
                             Integer id = 0;
                             if (aButton instanceof SwingScilabRadioButton) {
-                                id = ((SwingScilabRadioButton)aButton).getId();
+                                id = ((SwingScilabRadioButton) aButton).getId();
                             } else if (aButton instanceof SwingScilabRadioButton) {
-                                id = ((SwingScilabCheckBox)aButton).getId();
+                                id = ((SwingScilabCheckBox) aButton).getId();
                             } else {
                                 continue;
                             }
@@ -101,7 +101,6 @@ public class SwingScilabCheckBox extends JCheckBox implements SwingViewObject, S
                         }
                     }
                 }
-
 
                 GraphicController.getController().setProperty(uid, __GO_UI_VALUE__, value);
                 if (callback != null) {
@@ -131,7 +130,8 @@ public class SwingScilabCheckBox extends JCheckBox implements SwingViewObject, S
     }
 
     /**
-     * Gets the position (X-coordinate and Y-coordinate) of a swing Scilab CheckBox
+     * Gets the position (X-coordinate and Y-coordinate) of a swing Scilab
+     * CheckBox
      * @return the position of the CheckBox
      * @see org.scilab.modules.gui.uielement.UIElement#getPosition()
      */
@@ -149,7 +149,8 @@ public class SwingScilabCheckBox extends JCheckBox implements SwingViewObject, S
     }
 
     /**
-     * Sets the position (X-coordinate and Y-coordinate) of a swing Scilab CheckBox
+     * Sets the position (X-coordinate and Y-coordinate) of a swing Scilab
+     * CheckBox
      * @param newPosition the position we want to set to the CheckBox
      * @see org.scilab.modules.gui.uielement.UIElement#setPosition(org.scilab.modules.gui.utils.Position)
      */
@@ -241,11 +242,11 @@ public class SwingScilabCheckBox extends JCheckBox implements SwingViewObject, S
                 boolean selected = false;
 
                 if (aButton instanceof SwingScilabRadioButton) {
-                    id = ((SwingScilabRadioButton)aButton).getId();
-                    selected = ((SwingScilabRadioButton)aButton).isSelected();
+                    id = ((SwingScilabRadioButton) aButton).getId();
+                    selected = ((SwingScilabRadioButton) aButton).isSelected();
                 } else if (aButton instanceof SwingScilabCheckBox) {
-                    id = ((SwingScilabCheckBox)aButton).getId();
-                    selected = ((SwingScilabCheckBox)aButton).isSelected();
+                    id = ((SwingScilabCheckBox) aButton).getId();
+                    selected = ((SwingScilabCheckBox) aButton).isSelected();
                 } else {
                     continue;
                 }
@@ -336,11 +337,55 @@ public class SwingScilabCheckBox extends JCheckBox implements SwingViewObject, S
      * @param value property value
      */
     public void update(int property, Object value) {
-        SwingViewWidget.update(this, property, value);
+        GraphicController controller = GraphicController.getController();
+        switch (property) {
+            case __GO_UI_GROUP_NAME__: {
+                String groupName = (String) value;
+                if (groupName == null || groupName.equals("")) {
+                    //remove rb from buttonGroup Map
+                    GroupManager.getGroupManager().removeFromGroup(this);
+                } else {
+                    GroupManager.getGroupManager().addToGroup(groupName, this);
+                }
+                break;
+            }
+            case __GO_UI_MAX__: {
+                Double maxValue = ((Double) value);
+                Double[] allValues = (Double[]) controller.getProperty(uid, __GO_UI_VALUE__);
+                if ((allValues == null) || (allValues.length == 0)) {
+                    return;
+                }
+
+                double uicontrolValue = allValues[0];
+                // Check/Uncheck the CheckBox
+                setChecked(maxValue == uicontrolValue);
+                break;
+            }
+            case __GO_UI_VALUE__: {
+                Double[] doubleValue = ((Double[]) value);
+                if (doubleValue.length == 0) {
+                    return;
+                }
+
+                int[] intValue = new int[doubleValue.length];
+                for (int k = 0; k < doubleValue.length; k++) {
+                    intValue[k] = doubleValue[k].intValue();
+                }
+
+                // Check the checkbox if the value is equal to MAX property
+                Integer maxValue = ((Double) controller.getProperty(uid, __GO_UI_MAX__)).intValue();
+                setChecked(maxValue == intValue[0]);
+                break;
+            }
+            default: {
+                SwingViewWidget.update(this, property, value);
+                break;
+            }
+        }
     }
 
     public void resetBackground() {
-        Color color = (Color)UIManager.getLookAndFeelDefaults().get("CheckBox.background");
+        Color color = (Color) UIManager.getLookAndFeelDefaults().get("CheckBox.background");
         if (color != null) {
             setBackground(color);
         }

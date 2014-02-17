@@ -61,10 +61,6 @@ import org.scilab.modules.gui.helpbrowser.SimpleHelpBrowser;
 import org.scilab.modules.gui.label.Label;
 import org.scilab.modules.gui.label.ScilabLabelBridge;
 import org.scilab.modules.gui.label.SimpleLabel;
-import org.scilab.modules.gui.layout.BorderLayout;
-import org.scilab.modules.gui.layout.FlowLayout;
-import org.scilab.modules.gui.layout.ScilabBorderLayoutBridge;
-import org.scilab.modules.gui.layout.ScilabFlowLayoutBridge;
 import org.scilab.modules.gui.listbox.ListBox;
 import org.scilab.modules.gui.listbox.ScilabListBoxBridge;
 import org.scilab.modules.gui.listbox.SimpleListBox;
@@ -4755,28 +4751,6 @@ public class ScilabBridge {
      */
     public static void requestFocus(PopupMenu popupMenu) {
         ScilabPopupMenuBridge.requestFocus(popupMenu);
-    }
-
-    /*********************/
-    /* FlowLayout Bridge */
-    /*********************/
-    /**
-     * Creates a new FlowLayout
-     * @return the created FlowLayout
-     */
-    public static FlowLayout createFlowLayout() {
-        return ScilabFlowLayoutBridge.createFlowLayout();
-    }
-
-    /***********************/
-    /* BorderLayout Bridge */
-    /***********************/
-    /**
-     * Creates a new BorderLayout
-     * @return the created BorderLayout
-     */
-    public static BorderLayout createBorderLayout() {
-        return ScilabBorderLayoutBridge.createBorderLayout();
     }
 
     /***********************/

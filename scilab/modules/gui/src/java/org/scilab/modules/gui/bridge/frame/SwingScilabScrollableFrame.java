@@ -13,9 +13,7 @@
 
 package org.scilab.modules.gui.bridge.frame;
 
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHILDREN__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ENABLE__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -39,6 +37,7 @@ import javax.swing.border.Border;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicModel.GraphicModel;
 import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
+import org.scilab.modules.graphic_objects.utils.LayoutType;
 import org.scilab.modules.gui.SwingView;
 import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.SwingViewWidget;
@@ -52,6 +51,7 @@ import org.scilab.modules.gui.frame.SimpleFrame;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
+import org.scilab.modules.gui.utils.BorderConvertor;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.PositionConverter;
 import org.scilab.modules.gui.utils.ScilabRelief;
@@ -242,11 +242,7 @@ public class SwingScilabScrollableFrame extends JScrollPane implements SwingView
         } else if (getLayout() instanceof GridLayout) {
             this.panel.add((Component) member, 0);
         } else {
-            //define width and height for panel
-            //and set preferred size
-
             panel.add((Component) member);
-            updateChildPosition((JComponent)member);
         }
 
         SwingScilabPanel win = (SwingScilabPanel)SwingUtilities.getAncestorOfClass(SwingScilabPanel.class, this);
@@ -412,6 +408,8 @@ public class SwingScilabScrollableFrame extends JScrollPane implements SwingView
      * @param value property value
      */
     public void update(int property, Object value) {
+        GraphicController controller = GraphicController.getController();
+
         switch (property) {
             case __GO_UI_STRING__: {
                 // Update tab title
@@ -419,7 +417,7 @@ public class SwingScilabScrollableFrame extends JScrollPane implements SwingView
                 if (parent instanceof SwingScilabTabGroup) {
                     SwingScilabTabGroup tab = (SwingScilabTabGroup) parent;
                     Component[] components = tab.getComponents();
-                    for (int i = 0; i < components.length ; ++i) {
+                    for (int i = 0; i < components.length; ++i) {
                         if (components[i] instanceof SwingScilabScrollableFrame && this.getId() == ((SwingScilabScrollableFrame) components[i]).getId()) {
                             tab.setTitleAt(i, ((String[]) value)[0]);
                             break;
@@ -428,7 +426,68 @@ public class SwingScilabScrollableFrame extends JScrollPane implements SwingView
                 }
                 break;
             }
-            default :
+            case __GO_UI_FRAME_BORDER__: {
+                Integer borderId = (Integer) value;
+                Border border = BorderConvertor.getBorder(borderId);
+                setBorder(border);
+                break;
+            }
+            case __GO_LAYOUT__ : {
+                LayoutType newLayout = LayoutType.intToEnum((Integer) value);
+                switch (newLayout) {
+                    case BORDER: {
+                        Integer[] padding = (Integer[]) controller.getProperty(getId(), __GO_BORDER_OPT_PADDING__);
+                        setLayout(new BorderLayout(padding[0], padding[1]));
+                        break;
+                    }
+                    case GRIDBAG:
+                        setLayout(new GridBagLayout());
+                        break;
+                    case GRID: {
+                        Integer[] padding = (Integer[]) controller.getProperty(getId(), __GO_GRID_OPT_PADDING__);
+                        Integer[] grid = (Integer[]) controller.getProperty(getId(), __GO_GRID_OPT_GRID__);
+                        if (grid[0] == 0 && grid[1] == 0) {
+                            grid[0] = 1;
+                        }
+                        setLayout(new GridLayout(grid[0], grid[1], padding[0], padding[1]));
+                        break;
+                    }
+                    case NONE:
+                    default: {
+                        setLayout(null);
+                        break;
+                    }
+                }
+                break;
+            }
+            case __GO_VISIBLE__ : {
+                boolean needUpdate = true;
+                Integer parent = (Integer) controller.getProperty(uid, __GO_PARENT__);
+                if (parent != 0) {
+                    Integer type = (Integer) controller.getProperty(parent, __GO_TYPE__);
+                    if (type == __GO_UICONTROL__) {
+                        Integer style = (Integer) controller.getProperty(parent, __GO_STYLE__);
+                        if (style == __GO_UI_LAYER__) {
+                            //no no no don't touch visible on layer children !
+                            Boolean visible = (Boolean)value;
+                            SwingScilabLayer layer = (SwingScilabLayer) SwingView.getFromId(parent);
+                            Boolean isActive = layer.isLayerActive(this);
+                            if (isActive != visible ) {
+                                controller.setProperty(uid, __GO_VISIBLE__, isActive);
+                            }
+
+                            needUpdate = false;
+                        }
+                    }
+                }
+
+                if (needUpdate) {
+                    setVisible(((Boolean) value).booleanValue());
+                }
+
+                break;
+            }
+            default:
                 SwingViewWidget.update(this, property, value);
                 break;
         }
@@ -474,42 +533,6 @@ public class SwingScilabScrollableFrame extends JScrollPane implements SwingView
             return panel.getLayout();
         }
         return null;
-    }
-
-    public void updateChildPosition(JComponent child) {
-        /*        System.out.println("updateChildPosition");
-                Dimension size = child.getSize();
-                System.out.println("child size : " + size.toString());
-                Point loc = child.getLocation();
-                System.out.println("child loc : " + loc.toString());
-                if(Math.abs(loc.x + size.width) > panelSize.width) {
-                    System.out.println("update width from " + panelSize.width + " to " + Math.abs(loc.x + size.width));
-                    panelSize.width = Math.abs(loc.x + size.width);
-                }
-
-                if(Math.abs(loc.y + size.height) > panelSize.height) {
-                    System.out.println("update height from " + panelSize.height + " to " + Math.abs(loc.y + size.height));
-                    panelSize.height = Math.abs(loc.y + size.height);
-                }
-
-                if(loc.x < panelLoc.x) {
-                    System.out.println("update x from " + panelLoc.x + " to " + loc.x);
-                    panelLoc.x = loc.x;
-                }
-
-                if(loc.y < panelLoc.y) {
-                    System.out.println("update y from " + panelLoc.y + " to " + loc.y);
-                    panelLoc.y = loc.y;
-                }
-
-                panel.setPreferredSize(panelSize);
-                panel.setLocation(panelLoc);
-                Point newLoc = panel.getLocation();
-                System.out.println("newLoc : " + newLoc.toString());
-                System.out.println("view port location : " + getViewport().getViewPosition().toString());
-                System.out.println("view port size : " + getViewport().getViewSize().toString());
-                revalidate();
-        */
     }
 
     public void setBorder(Border border) {

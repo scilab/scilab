@@ -1,7 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Vincent Couvert
- * Copyright (C) 2007 - INRIA - Marouane BEN JELLOUL
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -82,16 +81,16 @@ public class SwingScilabRadioButton extends JRadioButton implements SwingViewObj
                     if (groupname != null && groupname.equals("") == false) {
                         Enumeration<AbstractButton> elements = GroupManager.getGroupManager().getGroupElements(groupname);
                         while (elements.hasMoreElements()) {
-                            AbstractButton aButton =  elements.nextElement();
+                            AbstractButton aButton = elements.nextElement();
                             if (aButton == e.getSource()) {
                                 continue;
                             }
 
                             Integer id = 0;
                             if (aButton instanceof SwingScilabRadioButton) {
-                                id = ((SwingScilabRadioButton)aButton).getId();
+                                id = ((SwingScilabRadioButton) aButton).getId();
                             } else if (aButton instanceof SwingScilabRadioButton) {
-                                id = ((SwingScilabCheckBox)aButton).getId();
+                                id = ((SwingScilabCheckBox) aButton).getId();
                             } else {
                                 continue;
                             }
@@ -131,7 +130,8 @@ public class SwingScilabRadioButton extends JRadioButton implements SwingViewObj
     }
 
     /**
-     * Gets the position (X-coordinate and Y-coordinate) of a swing Scilab RadioButton
+     * Gets the position (X-coordinate and Y-coordinate) of a swing Scilab
+     * RadioButton
      * @return the position of the RadioButton
      * @see org.scilab.modules.gui.uielement.UIElement#getPosition()
      */
@@ -149,7 +149,8 @@ public class SwingScilabRadioButton extends JRadioButton implements SwingViewObj
     }
 
     /**
-     * Sets the position (X-coordinate and Y-coordinate) of a swing Scilab RadioButton
+     * Sets the position (X-coordinate and Y-coordinate) of a swing Scilab
+     * RadioButton
      * @param newPosition the position to set to the RadioButton
      * @see org.scilab.modules.gui.uielement.UIElement#setPosition(org.scilab.modules.gui.utils.Position)
      */
@@ -228,7 +229,6 @@ public class SwingScilabRadioButton extends JRadioButton implements SwingViewObj
             removeActionListener(actListener);
         }
 
-
         String groupname = (String) GraphicController.getController().getProperty(uid, __GO_UI_GROUP_NAME__);
         if (groupname != null && groupname.equals("") == false) {
             // use setSelected of ButtonGroup instead of JRadioButton
@@ -243,11 +243,11 @@ public class SwingScilabRadioButton extends JRadioButton implements SwingViewObj
                 boolean selected = false;
 
                 if (aButton instanceof SwingScilabRadioButton) {
-                    id = ((SwingScilabRadioButton)aButton).getId();
-                    selected = ((SwingScilabRadioButton)aButton).isSelected();
+                    id = ((SwingScilabRadioButton) aButton).getId();
+                    selected = ((SwingScilabRadioButton) aButton).isSelected();
                 } else if (aButton instanceof SwingScilabCheckBox) {
-                    id = ((SwingScilabCheckBox)aButton).getId();
-                    selected = ((SwingScilabCheckBox)aButton).isSelected();
+                    id = ((SwingScilabCheckBox) aButton).getId();
+                    selected = ((SwingScilabCheckBox) aButton).isSelected();
                 } else {
                     continue;
                 }
@@ -332,16 +332,58 @@ public class SwingScilabRadioButton extends JRadioButton implements SwingViewObj
     }
 
     /**
-    * Generic update method
-    * @param property property name
-    * @param value property value
-    */
+     * Generic update method
+     * @param property property name
+     * @param value property value
+     */
     public void update(int property, Object value) {
-        SwingViewWidget.update(this, property, value);
+        GraphicController controller = GraphicController.getController();
+        switch (property) {
+            case __GO_UI_GROUP_NAME__: {
+                String groupName = (String) value;
+                if (groupName == null || groupName.equals("")) {
+                    //remove rb from buttonGroup Map
+                    GroupManager.getGroupManager().removeFromGroup(this);
+                } else {
+                    GroupManager.getGroupManager().addToGroup(groupName, this);
+                }
+                break;
+            }
+            case __GO_UI_MAX__: {
+                Double maxValue = ((Double) value);
+                Double[] allValues = (Double[]) controller.getProperty(uid, __GO_UI_VALUE__);
+                if ((allValues == null) || (allValues.length == 0)) {
+                    return;
+                }
+                double uicontrolValue = allValues[0];
+                // Check/Uncheck the RadioButton
+                setChecked(maxValue == uicontrolValue);
+                break;
+            }
+            case __GO_UI_VALUE__: {
+                Double[] doubleValue = ((Double[]) value);
+                if (doubleValue.length == 0) {
+                    return;
+                }
+
+                int[] intValue = new int[doubleValue.length];
+                for (int k = 0; k < doubleValue.length; k++) {
+                    intValue[k] = doubleValue[k].intValue();
+                }
+
+                // Check the radiobutton if the value is equal to MAX property
+                Integer maxValue = ((Double) controller.getProperty(uid, __GO_UI_MAX__)).intValue();
+                setChecked(maxValue == intValue[0]);
+                break;
+            }
+            default: {
+                SwingViewWidget.update(this, property, value);
+            }
+        }
     }
 
     public void resetBackground() {
-        Color color = (Color)UIManager.getLookAndFeelDefaults().get("RadioButton.background");
+        Color color = (Color) UIManager.getLookAndFeelDefaults().get("RadioButton.background");
         if (color != null) {
             setBackground(color);
         }
