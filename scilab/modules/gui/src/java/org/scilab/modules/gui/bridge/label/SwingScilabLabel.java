@@ -42,6 +42,7 @@ import javax.swing.text.html.StyleSheet;
 
 import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.console.utils.ScilabSpecialTextUtilities;
+import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.SwingViewWidget;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
@@ -99,8 +100,9 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
     public SwingScilabLabel() {
         super();
         alignmentPanel.setLayout(alignmentLayout);
-        alignmentPanel.add(label);
-        getViewport().add(alignmentPanel);
+        //alignmentPanel.add(label);
+        //getViewport().add(label);
+        setViewportView(label);
         setBorder(BorderFactory.createEmptyBorder());
         setViewportBorder(BorderFactory.createEmptyBorder());
         setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
@@ -359,6 +361,9 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
             if (!ScilabSpecialTextUtilities.setText(label, newText)) {
                 // Normal Text
                 ((JLabel) label).setText(newText);
+                ((JLabel) label).invalidate();
+                invalidate();
+
             } else {
                 // Latex or MathML : Rendering will be done using Icon
                 ((JLabel) label).setText(null);
@@ -380,8 +385,6 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
         Dimension dims = label.getSize();
         label.setVisible(false);
 
-        alignmentPanel.remove(label);
-
         if (!isJLabel) {
             JTextPane newLabel = new JTextPane();
             newLabel.addHyperlinkListener(urlOpener);
@@ -400,9 +403,18 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
             } else {
                 styleSheet.addRule("body {font-style:normal;}");
             }
+
             label = newLabel;
+            alignmentPanel.add(label);
+            alignmentPanel.revalidate();
+            setViewportView(alignmentPanel);
         } else {
+            alignmentPanel.remove(label);
             label = new JLabel();
+            setViewportView(label);
+            //refresh icon
+            update(__GO_UI_ICON__, GraphicController.getController().getProperty(getId(), __GO_UI_ICON__));
+            setAlignment();
         }
 
         label.setBackground(bgColor);
@@ -410,14 +422,18 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
         label.setFont(font);
         label.setSize(dims);
         label.setVisible(true);
-        alignmentPanel.add(label);
-        alignmentPanel.revalidate();
     }
 
     /**
      * Set alignment of the text component
      */
     private void setAlignment() {
+
+        if (isJLabel) {
+            ((JLabel)label).setVerticalAlignment(ScilabAlignment.toSwingAlignment(verticalAlignment));
+            ((JLabel)label).setHorizontalAlignment(ScilabAlignment.toSwingAlignment(horizontalAlignment));
+            return;
+        }
         GridBagConstraints gbc = new GridBagConstraints();
 
         gbc.gridx = 0;
@@ -505,8 +521,7 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
                     }
 
                     try {
-                        BufferedImage icon = ImageIO.read(file);
-                        ((JLabel) label).setIcon(new ImageIcon(icon));
+                        ((JLabel) label).setIcon(new ImageIcon(ImageIO.read(file)));
                     } catch (IOException e) {
                     }
                 } else {
