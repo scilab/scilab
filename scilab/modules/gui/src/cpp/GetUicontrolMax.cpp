@@ -12,7 +12,10 @@
  *
  */
 
-#include "GetUicontrolMax.hxx"
+extern "C"
+{
+#include "GetUicontrol.h"
+}
 
 int GetUicontrolMax(void* _pvCtx, int iObjUID)
 {

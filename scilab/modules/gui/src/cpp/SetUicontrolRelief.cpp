@@ -12,7 +12,10 @@
  *
  */
 
-#include "SetUicontrolRelief.hxx"
+extern "C"
+{
+#include "SetUicontrol.h"
+}
 
 int SetUicontrolRelief(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {

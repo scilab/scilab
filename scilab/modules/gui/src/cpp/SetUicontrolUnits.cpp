@@ -12,16 +12,10 @@
  *
  */
 
-#include "SetUicontrolUnits.hxx"
-
 extern "C"
 {
-#include "graphicObjectProperties.h"
-#include "setGraphicObjectProperty.h"
-#include "getGraphicObjectProperty.h"
+#include "SetUicontrol.h"
 }
-
-using namespace org_scilab_modules_gui_bridge;
 
 int SetUicontrolUnits(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {

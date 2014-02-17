@@ -20,30 +20,6 @@
 #ifndef _GET_HANDLE_PROPERTY_H_
 #define _GET_HANDLE_PROPERTY_H_
 
-#include "GetUimenuLabel.h"
-#include "GetUicontrolString.h"
-#include "GetUicontrolStyle.h"
-#include "GetUicontrolPosition.h"
-#include "GetUicontrolBackgroundColor.h"
-#include "GetUiobjectForegroundColor.h"
-#include "GetUicontrolFontWeight.h"
-#include "GetUicontrolFontUnits.h"
-#include "GetUicontrolFontSize.h"
-#include "GetUicontrolFontAngle.h"
-#include "GetUiobjectEnable.h"
-#include "GetUicontrolMin.h"
-#include "GetUicontrolMax.h"
-#include "GetUicontrolUnits.h"
-#include "GetUicontrolListboxTop.h"
-#include "GetUicontrolValue.h"
-#include "GetUicontrolRelief.h"
-#include "GetUicontrolHorizontalAlignment.h"
-#include "GetUicontrolVerticalAlignment.h"
-#include "GetUicontrolFontName.h"
-#include "GetUicontrolSliderStep.h"
-#include "GetUimenuChecked.h"
-#include "GetConsoleShowHiddenHandles.h"
-#include "GetUicontrolTooltipString.h"
 #include "GetUicontrol.h"
 
 int get_figures_id_property(void* _pvCtx, int iObjUID);

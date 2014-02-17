@@ -11,15 +11,10 @@
  *
  */
 
-#include "GetUicontrolTooltipString.hxx"
-
 extern "C"
 {
-#include "graphicObjectProperties.h"
-#include "getGraphicObjectProperty.h"
+#include "GetUicontrol.h"
 }
-
-using namespace org_scilab_modules_gui_bridge;
 
 int GetUicontrolTooltipString(void* _pvCtx, int iObjUID)
 {

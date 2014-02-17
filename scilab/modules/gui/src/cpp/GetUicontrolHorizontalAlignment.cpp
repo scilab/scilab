@@ -12,7 +12,10 @@
  *
  */
 
-#include "GetUicontrolHorizontalAlignment.hxx"
+extern "C"
+{
+#include "GetUicontrol.h"
+}
 
 int GetUicontrolHorizontalAlignment(void* _pvCtx, int iObjUID)
 {

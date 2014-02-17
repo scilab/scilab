@@ -12,11 +12,11 @@
  *
  */
 
-#include <math.h>
-
-#include "GetUicontrolStyle.hxx"
-#include "SetUicontrolValue.hxx"
-#include "stack-c.h"
+extern "C"
+{
+#include <stdio.h>
+#include "GetUicontrol.h"
+}
 
 int SetUicontrolValue(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {

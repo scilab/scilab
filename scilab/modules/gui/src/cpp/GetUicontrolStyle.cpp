@@ -11,12 +11,9 @@
 *
 */
 
-#include "GetUicontrolStyle.hxx"
-
 extern "C"
 {
-#include "graphicObjectProperties.h"
-#include "getGraphicObjectProperty.h"
+#include "GetUicontrol.h"
 }
 
 /**

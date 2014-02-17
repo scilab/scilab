@@ -29,7 +29,7 @@
 #include "GetProperty.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "SetUicontrolPosition.h"
+#include "SetUicontrol.h"
 
 #include "getGraphicObjectProperty.h"
 #include "setGraphicObjectProperty.h"

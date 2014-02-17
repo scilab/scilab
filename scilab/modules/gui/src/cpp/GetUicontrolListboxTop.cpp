@@ -13,7 +13,10 @@
  *
  */
 
-#include "GetUicontrolListboxTop.hxx"
+extern "C"
+{
+#include "GetUicontrol.h"
+}
 
 int GetUicontrolListboxTop(void* _pvCtx, int iObjUID)
 {

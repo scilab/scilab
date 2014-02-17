@@ -12,7 +12,10 @@
  *
  */
 
-#include "GetUicontrolRelief.hxx"
+extern "C"
+{
+#include "GetUicontrol.h"
+}
 
 int GetUicontrolRelief(void* _pvCtx, int iObjUID)
 {

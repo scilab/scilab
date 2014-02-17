@@ -12,7 +12,10 @@
  *
  */
 
-#include "SetUicontrolFontWeight.hxx"
+extern "C"
+{
+#include "SetUicontrol.h"
+}
 
 int SetUicontrolFontWeight(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {

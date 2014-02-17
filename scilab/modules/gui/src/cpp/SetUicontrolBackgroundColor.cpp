@@ -13,14 +13,17 @@
  *
  */
 
-#include "SetUicontrolBackgroundColor.hxx"
-#include "stack-c.h"
+extern "C"
+{
+#include "SetUicontrol.h"
+}
+
 int SetUicontrolBackgroundColor(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     /* Color can be [R, G, B] or "R|G|B" */
 
     double* allColors = NULL;
-    BOOL status = FALSE;;
+    BOOL status = FALSE;
     int nbValues = 0;
 
     if (valueType == sci_strings)

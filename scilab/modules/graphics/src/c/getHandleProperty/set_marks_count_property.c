@@ -30,7 +30,7 @@
 int set_marks_count_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
-    int marksCount = 0.;
+    int marksCount = 0;
 
     if (valueType != sci_matrix)
     {

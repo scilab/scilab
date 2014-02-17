@@ -12,8 +12,10 @@
  *
  */
 
-#include "SetUicontrolPosition.hxx"
-#include "stack-c.h"
+extern "C"
+{
+#include "SetUicontrol.h"
+}
 
 int SetUicontrolPosition(int iObjUID, void* pvData, int valueType, int nbRow, int nbCol)
 {

@@ -12,7 +12,10 @@
  *
  */
 
-#include "GetUicontrolFontAngle.hxx"
+extern "C"
+{
+#include "GetUicontrol.h"
+}
 
 int GetUicontrolFontAngle(void* _pvCtx, int iObjUID)
 {

@@ -12,7 +12,10 @@
  *
  */
 
-#include "GetUicontrolMin.hxx"
+extern "C"
+{
+#include "GetUicontrol.h"
+}
 
 int GetUicontrolMin(void* _pvCtx, int iObjUID)
 {

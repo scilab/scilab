@@ -12,15 +12,7 @@
 
 extern "C"
 {
-#include "GetConsoleShowHiddenHandles.h"
-#include "SetPropertyStatus.h"
-#include "localization.h"
-#include "Scierror.h"
-#include "returnProperty.h"
-#include "BOOL.h"
-
-#include "getGraphicObjectProperty.h"
-#include "graphicObjectProperties.h"
+#include "GetUicontrol.h"
 }
 
 int GetConsoleShowHiddenHandles(void* _pvCtx, int iObjUID)

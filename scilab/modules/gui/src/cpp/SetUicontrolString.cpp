@@ -12,9 +12,10 @@
  *
  */
 
-#include "SetUicontrolString.hxx"
-
-using namespace org_scilab_modules_gui_bridge;
+extern "C"
+{
+#include "SetUicontrol.h"
+}
 
 int SetUicontrolString(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {

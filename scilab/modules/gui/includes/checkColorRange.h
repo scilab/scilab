@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2007 - INRIA - Vincent COUVERT
+ * Copyright (C) 2010 - Calixte DENIZET
+ * Return the style name corresponding to the int value from UicontrolStyle enum
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -10,17 +11,4 @@
  *
  */
 
-#ifndef __GET_UIMENU_LABEL_H__
-#define __GET_UIMENU_LABEL_H__
-#include "dynlib_gui.h"
-#include "returnProperty.h"
-
-/**
- * Get the label of an uimenu
- *
- * @param pobjUID UID of the uimenu
- * @return the label
- */
-GUI_IMPEXP int GetUimenuLabel(void* _pvCtx, int iObjUID);
-
-#endif /* __GET_UIMENU_LABEL_H__ */
+int checkColorRange(double r, double g, double b);
