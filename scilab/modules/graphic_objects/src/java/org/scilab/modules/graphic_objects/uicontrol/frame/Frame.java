@@ -52,6 +52,10 @@ public class Frame extends Uicontrol implements AxesContainer {
         }
     }
 
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
+    }
+
     public Integer getAntialiasing() {
         return 0;
     }

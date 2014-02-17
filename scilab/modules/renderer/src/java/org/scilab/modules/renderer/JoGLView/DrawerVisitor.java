@@ -286,11 +286,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     @Override
     public void draw(DrawingTools drawingTools) {
         this.drawingTools = drawingTools;
-        if (figure instanceof Figure) {
-            visit((Figure) figure);
-        } else {
-            visit((Frame) figure);
-        }
+        figure.accept(this);
 
         for (PostRendered postRendered : postRenderedList) {
             try {
@@ -418,11 +414,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 drawingTools.clear(ColorFactory.createColor(colorMap, frame.getBackground()));
                 drawingTools.clearDepthBuffer();
                 if (frame.isValid() && frame.getVisible()) {
-                    DrawerVisitor visitor = visitorMap.get(frame.getIdentifier());
-                    if (visitor != null) {
-                        visitor.setDrawingTools(drawingTools);
-                        visitor.askAcceptVisitor(frame.getChildren());
-                    }
+                    askAcceptVisitor(frame.getChildren());
                 }
             } catch (Exception e) {
                 System.err.println(e);
@@ -968,7 +960,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         }
         try {
             if (needUpdate(id, property)) {
-                if (GraphicObjectProperties.__GO_COLORMAP__ == property) {
+                if (GraphicObjectProperties.__GO_COLORMAP__ == property && figure.getIdentifier().equals(id)) {
                     labelManager.disposeAll();
                     dataManager.disposeAllColorBuffers();
                     dataManager.disposeAllTextureCoordinatesBuffers();
@@ -1107,12 +1099,9 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
             }
 
             return true;
+        } else {
+            return false;
         }
-        // Special case if top level figure colormap has been updated, force redraw
-        if (property == GraphicObjectProperties.__GO_COLORMAP__  && id.intValue() == figure.getParentFigure().intValue()) {
-            return true;
-        }
-        return false;
     }
 
     private boolean isImmediateDrawing(Integer id) {
@@ -1182,10 +1171,13 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         if (id.intValue() == figure.getIdentifier().intValue()) {
             return true;
         }
-
+        
         Integer parentUID = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_PARENT__);
-        if (figure.getIdentifier().intValue() == parentUID.intValue()) {
-            return true;
+        while (parentUID != 0) {
+            if (figure.getIdentifier().intValue() == parentUID.intValue()) {
+                return true;
+            }
+            parentUID = (Integer) GraphicController.getController().getProperty(parentUID, GraphicObjectProperties.__GO_PARENT__);
         }
         return false;
     }
