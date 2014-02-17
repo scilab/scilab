@@ -576,6 +576,8 @@ Xcos
 
 * Bug #13172 fixed - Logic bloc help file had some typo.
 
+* Bug #13239 fixed - Grid was not shown in zoomed log scale.
+
 
                  Changes between version 5.4.1 and 5.5.0-beta-1
                  ==============================================
