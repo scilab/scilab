@@ -104,4 +104,9 @@ public class DocbookElement {
     public DocbookElement getParent() {
         return null;
     }
+
+    @Override
+    public String toString() {
+        return "<" + name + ">:" + attributes;
+    }
 }
