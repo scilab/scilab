@@ -203,10 +203,15 @@ public class SwingScilabCommonPanel {
                     case GRID : {
                         Integer[] padding = (Integer[]) GraphicController.getController().getProperty(component.getId(), __GO_GRID_OPT_PADDING__);
                         Integer[] grid = (Integer[]) GraphicController.getController().getProperty(component.getId(), __GO_GRID_OPT_GRID__);
-                        if (grid[0] == 0 && grid[1] == 0) {
-                            grid[0] = 1;
+                        Integer[] localGrid = new Integer[] {0, 0};
+                        localGrid[0] = grid[0];
+                        localGrid[1] = grid[1];
+
+                        if (localGrid[0] == 0 && localGrid[1] == 0) {
+                            localGrid[0] = 1;
                         }
-                        component.getWidgetPane().setLayout(new GridLayout(grid[0], grid[1], padding[0], padding[1]));
+
+                        component.getWidgetPane().setLayout(new GridLayout(localGrid[0], localGrid[1], padding[0], padding[1]));
                         break;
                     }
                     case NONE :
@@ -225,11 +230,17 @@ public class SwingScilabCommonPanel {
                 }
 
                 Integer[] padding = (Integer[]) GraphicController.getController().getProperty(component.getId(), __GO_GRID_OPT_PADDING__);
+
                 Integer[] grid = (Integer[]) GraphicController.getController().getProperty(component.getId(), __GO_GRID_OPT_GRID__);
-                if (grid[0] == 0 && grid[1] == 0) {
-                    grid[0] = 1;
+                Integer[] localGrid = new Integer[] {0, 0};
+                localGrid[0] = grid[0];
+                localGrid[1] = grid[1];
+
+                if (localGrid[0] == 0 && localGrid[1] == 0) {
+                    localGrid[0] = 1;
                 }
-                component.getWidgetPane().setLayout(new GridLayout(grid[0], grid[1], padding[0], padding[1]));
+
+                component.getWidgetPane().setLayout(new GridLayout(localGrid[0], localGrid[1], padding[0], padding[1]));
                 break;
             }
             case __GO_BORDER_OPT_PADDING__ : {
