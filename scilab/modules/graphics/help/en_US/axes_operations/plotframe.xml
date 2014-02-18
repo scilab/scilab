@@ -74,7 +74,10 @@
                                 <para>vector of 3 strings
                                     <literal>[title,x-leg,y-leg]</literal> corresponding
                                     respectively to the title of the plot and the captions on the
-                                    x-axis and the y-axis. Warning: the upper-case "C" is important.
+                                    x-axis and the y-axis.
+                                </para>
+                                <para>
+                                    <warning>The upper-case "C" is important.</warning>
                                 </para>
                             </listitem>
                         </varlistentry>

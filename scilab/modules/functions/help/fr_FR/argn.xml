@@ -19,8 +19,10 @@
             et de sortie <varname>lhs</varname>. Elle permet d'utiliser des arguments optionnels.
         </para>
         <para>
-            Notez que <varname>lhs</varname> est toujours supérieur ou égal à 1. Autrement dit, même si une
-            fonction est appelée sans avoir mentionné un argument de sortie, <varname>lhs</varname> sera égal à 1.
+            <note>
+                Notez que <varname>lhs</varname> est toujours supérieur ou égal à 1. Autrement dit, même si une
+                fonction est appelée sans avoir mentionné un argument de sortie, <varname>lhs</varname> sera égal à 1.
+            </note>
         </para>
     </refsection>
     <refsection>

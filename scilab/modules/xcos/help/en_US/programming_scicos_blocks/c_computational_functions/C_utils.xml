@@ -75,7 +75,13 @@
                 <para>
                     <emphasis role="bold">void do_cold_restart();</emphasis>
                 </para>
-                <para> This function forces the solver to do a cold restart. It should be used in situations where the block creates a non smooth signal. Note that in most situations, non smooth situations are detected by zero-crossings and this function is not needed. This block is used in very exceptional situations. </para>
+                <para> This function forces the solver to do a cold restart. It should be used in situations where the block creates a non smooth signal.
+                </para>
+                <para>
+                    <note>
+                        Note that in most situations, non smooth situations are detected by zero-crossings and this function is not needed. This block is used in very exceptional situations.
+                    </note>
+                </para>
             </listitem>
             <listitem>
                 <para>

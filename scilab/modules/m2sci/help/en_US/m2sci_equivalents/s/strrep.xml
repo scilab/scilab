@@ -43,7 +43,9 @@ strsubst
     <refsection>
         <title>Particular cases</title>
         <para>
-            Note that Matlab <emphasis role="bold">strrep</emphasis> can be use with not string inputs, what Scilab <emphasis role="bold">strsubst</emphasis> can not. In this case use <emphasis role="bold">mtlb_strrep</emphasis> instead. 
+            <note>
+                Note that Matlab <emphasis role="bold">strrep</emphasis> can be use with not string inputs, what Scilab <emphasis role="bold">strsubst</emphasis> can not. In this case use <emphasis role="bold">mtlb_strrep</emphasis> instead.
+            </note>
         </para>
     </refsection>
 </refentry>

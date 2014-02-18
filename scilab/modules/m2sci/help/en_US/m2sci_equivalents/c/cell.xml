@@ -43,7 +43,9 @@ cell
     <refsection>
         <title>Particular cases</title>
         <para>
-            Note that in Matlab, input can contain complex values (in these cases, only real part of it is taken in account), what Scilab function do not tolerate.
+            <note>
+                Note that in Matlab, input can contain complex values (in these cases, only real part of it is taken in account), what Scilab function do not tolerate.
+            </note>
         </para>
     </refsection>
 </refentry>

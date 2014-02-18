@@ -109,9 +109,11 @@ end
 A = 2;select A case 1 then disp(1); case 2 then disp(2); else  disp(3); end
 ]]></programlisting>
         <para>
-            Warning: the number of characters used to define the body of any
-            conditional instruction (if while for or select/case) must be limited to
-            16k.
+            <warning>
+                Warning: the number of characters used to define the body of any
+                conditional instruction (if while for or select/case) must be limited to
+                16k.
+            </warning>
         </para>
     </refsection>
     <refsection>

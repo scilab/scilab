@@ -46,6 +46,11 @@
         <para>
             Renvoie dans <literal>num</literal> le numéro de l'article choisi.
         </para>
+        <para>
+            <warning>
+                ATTENTION: la boîte de dialogue n'était pas modale avant Scilab 5.0, il vaudrait mieux utiliser x_choose_modeless pour la compatibilité ascendante.
+            </warning>
+        </para>
     </refsection>
     <refsection>
         <title>Exemples</title>

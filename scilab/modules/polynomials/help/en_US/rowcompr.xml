@@ -62,7 +62,9 @@
             thee rows of <literal>A</literal>. <literal>rk</literal> is the normal rank of A.
         </para>
         <para>
-            Warning: elimination of "small" terms (use with care!).
+            <warning>
+                Warning: elimination of "small" terms (use with care!).
+            </warning>
         </para>
     </refsection>
     <refsection role="see also">

@@ -110,7 +110,9 @@ end
 A = 2;select A case 1 then disp(1); case 2 then disp(2); else  disp(3); end
 ]]></programlisting>
         <para>
-            Attention : le nombre de caractères constituant le corps d'une instruction conditionnelle (if while for ou select/case) est limité à 16k..
+            <warning>
+                Attention : le nombre de caractères constituant le corps d'une instruction conditionnelle (if while for ou select/case) est limité à 16k.
+            </warning>
         </para>
     </refsection>
     <refsection>

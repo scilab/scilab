@@ -52,7 +52,9 @@
             The result is the same as <literal>Sl=LFT([0,I;I,-Sl2],Sl1)</literal>.
         </para>
         <para>
-            Caution: do not use with decimal point (e.g. <literal>1/.1</literal> is ambiguous!)
+            <warning>
+                Caution: do not use with decimal point (e.g. <literal>1/.1</literal> is ambiguous!)
+            </warning>
         </para>
     </refsection>
     <refsection>

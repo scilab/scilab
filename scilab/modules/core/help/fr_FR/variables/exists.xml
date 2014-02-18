@@ -16,7 +16,9 @@
             <varlistentry>
                 <term>ve</term>
                 <listitem>
-                    <para>une matrice de même taille que <varname>name</varname> dont les éléments prennent comme valeur 0 ou 1</para>
+                    <para>
+                        une matrice de même taille que <varname>name</varname> dont les éléments prennent comme valeur 0 ou 1
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -60,8 +62,10 @@
             sinon.
         </para>
         <para>
-            Attention: la fonction <literal>exists</literal> ne teste
-            pas si une variable existe dans l'espace de nom <link linkend="global">global</link>.
+            <warning>
+                Attention: la fonction <literal>exists</literal> ne teste
+                pas si une variable existe dans l'espace de nom <link linkend="global">global</link>.
+            </warning>
         </para>
     </refsection>
     <refsection>

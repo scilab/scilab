@@ -142,11 +142,16 @@
         <para>This function uses the lapack routine dlamch to get the machine
             parameters (the names (radix, digit, huge, etc...) are those recommended
             by the LIA 1 standard and are different from the corresponding lapack's
-            ones) ; CAUTION: sometimes you can see the following definition for the
-            epsilon machine : <latex>$eps = b^{1-p}$</latex> but in this function we
-            use the traditional one (see prop = "eps" before) and so <latex>$eps = \dfrac{b^{1-p}}{2}$</latex>
-            if normal rounding occurs and <latex>$eps = b^{1-p}$</latex>
-            if not.
+            ones).
+        </para>
+        <para>
+            <warning>
+                CAUTION: sometimes you can see the following definition for the
+                epsilon machine : <latex>$eps = b^{1-p}$</latex> but in this function we
+                use the traditional one (see prop = "eps" before) and so <latex>$eps = \dfrac{b^{1-p}}{2}$</latex>
+                if normal rounding occurs and <latex>$eps = b^{1-p}$</latex>
+                if not.
+            </warning>
         </para>
     </refsection>
     <refsection>

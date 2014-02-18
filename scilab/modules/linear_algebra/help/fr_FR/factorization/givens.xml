@@ -66,7 +66,9 @@
             <literal>U*xy=[r;0]=c</literal>.
         </para>
         <para>
-            Notez que <literal>givens(x,y)</literal> et <literal>givens([x;y])</literal> sont équivalents.
+            <note>
+                Notez que <literal>givens(x,y)</literal> et <literal>givens([x;y])</literal> sont équivalents.
+            </note>
         </para>
     </refsection>
     <refsection>

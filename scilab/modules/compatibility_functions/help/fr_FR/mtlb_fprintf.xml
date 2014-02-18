@@ -28,7 +28,9 @@
             <literal>mtlb_fprintf</literal> par des appels à <link linkend="mfprintf">mfprintf</link>.
         </para>
         <para>
-            Attention : <literal>mtlb_fprintf</literal> ne doit pas être utilisée pour une programmation manuelle.
+            <warning>
+                Attention : <literal>mtlb_fprintf</literal> ne doit pas être utilisée pour une programmation manuelle.
+            </warning>
         </para>
     </refsection>
     <refsection role="see also">

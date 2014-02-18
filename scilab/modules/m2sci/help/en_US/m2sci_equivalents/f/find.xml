@@ -46,7 +46,9 @@ find
             Matlab function can work with complex values what is not possible in Scilab, however, using <emphasis role="bold">abs</emphasis> it is very easy to have the same results.
         </para>
         <para>
-            Note that Scilab function can only return two output values and Matlab one can return a third value that can be computed according to the first two output matrices as explained in Matlab help.
+            <note>
+                Note that Scilab function can only return two output values and Matlab one can return a third value that can be computed according to the first two output matrices as explained in Matlab help.
+            </note>
         </para>
         <para>
             For example, in <emphasis role="bold">[i,j,v]=find(X)</emphasis>, <emphasis role="bold">v</emphasis> is equal to: <emphasis role="bold">X(i+(j-1))*size(X,1)</emphasis>.

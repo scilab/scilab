@@ -39,9 +39,14 @@
             l'interpréteur de commande (sh sous Unix, ou cmd.com sous Windows). La
             sortie standard et les erreurs sont reportées dans la variable
             <literal>rep</literal>. Les erreurs se produisant dans l'interpréteur de commande
-            sont interceptées; notez que la *dernière erreur uniquement* est signalée
-            quand <literal>command-name</literal> est une suite de commandes séparées par des
-            ";". 
+            sont interceptées.
+        </para>
+        <para>
+            <warning>
+                Notez que la *dernière erreur uniquement* est signalée
+                quand <literal>command-name</literal> est une suite de commandes séparées par des
+                ";". 
+            </warning>
         </para>
     </refsection>
     <refsection>

@@ -62,7 +62,9 @@
             <literal>Ar=A*U</literal>
         </para>
         <para>
-            Warning: there is an elimination of "small" terms (see function code).
+            <warning>
+                Warning: there is an elimination of "small" terms (see function code).
+            </warning>
         </para>
     </refsection>
     <refsection>

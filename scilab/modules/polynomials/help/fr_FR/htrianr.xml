@@ -53,6 +53,11 @@
         <para>
             <literal>Ar=A*U</literal>
         </para>
+        <para>
+            <warning>
+                Attention: il y a une élimination des "petits" termes (voir le code la fonction).
+            </warning>
+        </para>
     </refsection>
     <refsection>
         <title>Exemples</title>

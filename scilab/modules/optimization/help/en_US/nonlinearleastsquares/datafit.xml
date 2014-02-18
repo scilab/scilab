@@ -32,9 +32,12 @@
                         <literal>imp=0</literal> nothing (execpt errors) is reported,
                         <literal>imp=1</literal> initial and final reports,
                         <literal>imp=2</literal> adds a report per iteration,
-                        <literal>imp&gt;2</literal> add reports on linear search. Warning,
-                        most of these reports are written on the Scilab standard
-                        output.
+                        <literal>imp&gt;2</literal> add reports on linear search.
+                    </para>
+                    <para>
+                        <warning>
+                            Warning: most of these reports are written on the Scilab standard output.
+                        </warning>
                     </para>
                 </listitem>
             </varlistentry>

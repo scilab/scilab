@@ -77,9 +77,11 @@
       i = 0; while i<5 disp("i"); i = i + 1; end
 ]]></programlisting>
         <para>
-            Attention : le nombre de caractères constituant le corps d'une
-            instruction conditionnelle (if while for ou select/case) est limité à
-            16k..
+            <warning>
+                Attention : le nombre de caractères constituant le corps d'une
+                instruction conditionnelle (if while for ou select/case) est limité à
+                16k.
+            </warning>
         </para>
     </refsection>
     <refsection>

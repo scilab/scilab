@@ -42,10 +42,14 @@
             "The most  efficient design is  to make all  samples the
             same  size n.   However when  this is  nor  feasible, it
             still  is possible  to modify  the  ANOVA calculations."
-            Note  that  the  definition  of  xbarbar  is  no  longer
-            mean(xbar), but  rather a weighted  average with weights
-            ni.  Additionally  it gives (in  p) the p-value  of the
-            computed Fisher ratio.
+        </para>
+        <para>
+            <note>
+                Note  that  the  definition  of  xbarbar  is  no  longer
+                mean(xbar), but  rather a weighted  average with weights
+                ni.  Additionally  it gives (in  p) the p-value  of the
+                computed Fisher ratio.
+            </note>
         </para>
         <para>
             Given a number  a of samples each of  them composed of n_i

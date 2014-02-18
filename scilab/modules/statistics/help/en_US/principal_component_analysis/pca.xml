@@ -26,10 +26,15 @@
                 <term>x</term>
                 <listitem>
                     <para> is a nxp (n individuals, p variables) real
-                        matrix. Note that <literal>pca</literal> center and
-                        normalize the columns of <literal>x</literal> to produce
-                        principal components analysis with standardized
-                        variables.
+                        matrix.
+                    </para>
+                    <para>
+                        <note>
+                            Note that <literal>pca</literal> center and
+                            normalize the columns of <literal>x</literal> to produce
+                            principal components analysis with standardized
+                            variables.
+                        </note>
                     </para>
                 </listitem>
             </varlistentry>

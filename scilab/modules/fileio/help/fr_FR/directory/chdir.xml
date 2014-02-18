@@ -43,9 +43,14 @@
     <refsection>
         <title>Description</title>
         <para>Change le répertoire courrant de Scilab par celui donné par la
-            variable <literal>path</literal>. Notez que le chemin fourni est converti. Ainsi
-            <literal>SCI/modules/fileio/macros</literal> est un chemin valide pour Unix et Windows. Si
-            path est vide , le chemin de destination est alors "home".
+            variable <literal>path</literal>.
+        </para>
+        <para>
+            <note>
+                Notez que le chemin fourni est converti. Ainsi
+                <literal>SCI/modules/fileio/macros</literal> est un chemin valide pour Unix et Windows. Si
+                path est vide , le chemin de destination est alors "home".
+            </note>
         </para>
     </refsection>
     <refsection>

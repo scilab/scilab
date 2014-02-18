@@ -43,7 +43,9 @@
     <refsection>
         <title>Particular cases</title>
         <para>
-            Note that Matlab seems to have a bug for <emphasis role="bold">X^(Y)</emphasis> when <emphasis role="bold">X</emphasis> is a character and that in Scilab operations such as <emphasis role="bold">X^(Y)</emphasis> with <emphasis role="bold">X</emphasis> a scalar and <emphasis role="bold">Y</emphasis> a matrix is equivalent to <emphasis role="bold">X.^(Y)</emphasis> (Will change in next Scilab versions...).
+            <note>
+                Note that Matlab seems to have a bug for <emphasis role="bold">X^(Y)</emphasis> when <emphasis role="bold">X</emphasis> is a character and that in Scilab operations such as <emphasis role="bold">X^(Y)</emphasis> with <emphasis role="bold">X</emphasis> a scalar and <emphasis role="bold">Y</emphasis> a matrix is equivalent to <emphasis role="bold">X.^(Y)</emphasis> (Will change in next Scilab versions...).
+            </note>
         </para>
     </refsection>
 </refentry>

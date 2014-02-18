@@ -47,7 +47,12 @@
                 <term>Empty matrix and subtraction</term>
                 <listitem>
                     <para>
-                        In Matlab, subtraction can only be made if the operands have the same size unless one is a scalar. For exemple, empty matrices can only be subtracted to another empty matrix or a scalar. Note that when you subtract an empty matrix to a scalar and inversely, Matlab result is always an empty matrix while in Scilab, result is equal to the scalar.
+                        In Matlab, subtraction can only be made if the operands have the same size unless one is a scalar. For exemple, empty matrices can only be subtracted to another empty matrix or a scalar.
+                    </para>
+                    <para>
+                        <note>
+                            Note that when you subtract an empty matrix to a scalar and inversely, Matlab result is always an empty matrix while in Scilab, result is equal to the scalar.
+                        </note>
                     </para>
                 </listitem>
             </varlistentry>

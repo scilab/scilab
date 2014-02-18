@@ -55,7 +55,9 @@
             simplified in <literal>H1</literal>).
         </para>
         <para>
-            Caution:
+            <warning>
+                Caution:
+            </warning>
         </para>
         <para>
             -no threshold is given i.e. <literal>simp</literal> cannot forces a

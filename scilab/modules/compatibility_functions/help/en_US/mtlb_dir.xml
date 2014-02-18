@@ -36,7 +36,9 @@
             <literal>L=dir;file_name=L(1).name;</literal> is <literal>L=dir();file_name=L.name(1);</literal>.
         </para>
         <para>
-            Caution: <literal>mtlb_dir</literal> has not to be used for hand coded functions.
+            <warning>
+                Caution: <literal>mtlb_dir</literal> has not to be used for hand coded functions.
+            </warning>
         </para>
     </refsection>
 </refentry>

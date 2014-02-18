@@ -38,8 +38,11 @@
             To enable back the <literal>immediate_drawing</literal> for the current
             figure, you can use <literal>drawnow</literal> function.
         </para>
-        <para>Warning : note that between drawlater and drawnow calls, the current
-            figure may have changed. Therefore, this must be used carefully.
+        <para>
+            <warning>
+                Warning : note that between drawlater and drawnow calls, the current
+                figure may have changed. Therefore, this must be used carefully.
+            </warning>
         </para>
     </refsection>
     <refsection>

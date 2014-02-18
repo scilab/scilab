@@ -71,8 +71,10 @@
         <para>
             If format contains only  <literal>a</literal> descriptors the function tries to
             read character strings (the result is a character string column
-            vector). In this case n must be equal to 1. Warning: The character strings are
-            truncated when they are longuer than 4093.
+            vector). In this case n must be equal to 1.
+        </para>
+        <para>
+            <warning>Warning: The character strings are truncated when they are longuer than 4093.</warning>
         </para>
         <para>
             Examples for <literal>format</literal>:

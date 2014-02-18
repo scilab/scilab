@@ -46,7 +46,9 @@ diag
             Due to the fact that strings or not considered in the same way in Matlab and in Scilab, results are not equal if <emphasis role="bold">A</emphasis> is a string matrix or vector in <emphasis role="bold">diag(A)</emphasis> or <emphasis role="bold">diag(A,k)</emphasis>.
         </para>
         <para>
-            Note that <emphasis role="bold">mtlb_diag</emphasis> can emulate this particularity in Scilab.
+            <note>
+                Note that <emphasis role="bold">mtlb_diag</emphasis> can emulate this particularity in Scilab.
+            </note>
         </para>
     </refsection>
     <refsection>

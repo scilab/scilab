@@ -17,8 +17,12 @@
     </refnamediv>
     <refsection>
         <title>Description</title>
-        <para>You will find below the names of the colors known by Scilab. The RGB values are given after the name. Note
-            that sometimes colors have more than 1 name.
+        <para>You will find below the names of the colors known by Scilab. The RGB values are given after the name.
+        </para>
+        <para>
+            <note>
+                Note that sometimes colors have more than 1 name.
+            </note>
         </para>
         <informaltable border="1">
             <tr>

@@ -54,9 +54,11 @@
             the cell array <literal>c</literal>.
         </para>
         <para>
-            Note that if the components of the cell array input <literal>c</literal>
-            are strings then <literal>cell2mat(c)</literal> returns a column
-            vector of strings concatenation.
+            <note>
+                Note that if the components of the cell array input <literal>c</literal>
+                are strings then <literal>cell2mat(c)</literal> returns a column
+                vector of strings concatenation.
+            </note>
         </para>
     </refsection>
     <refsection>

@@ -27,7 +27,9 @@
             determine the correct semantic at run time. There is no replacement possibility for it.
         </para>
         <para>
-            Caution: <literal>mtlb_is</literal> has not to be used for hand coded functions.
+            <warning>
+                Caution: <literal>mtlb_is</literal> has not to be used for hand coded functions.
+            </warning>
         </para>
     </refsection>
     <refsection role="see also">

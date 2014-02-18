@@ -33,9 +33,14 @@
                         </literal>
                         .Par exemple, <literal>C = A ./ B</literal> est la matrice dont les
                         éléments sont <literal>c(i,j) = a(i,j)/b(i,j)</literal>. Le produit de Kronecker est
-                        noté <literal>.*.</literal>. Notez que lorsqu'un point suit un nombre entier il est
-                        considéré comme en faisant partie. Ainsi <literal>2.*x</literal> est évalué comme <literal>2.0*x</literal>
-                        et <literal>2 .*x</literal> est évalué comme <literal>(2).*x</literal>.
+                        noté <literal>.*.</literal>.
+                    </para>
+                    <para>
+                        <note>
+                            Notez que lorsqu'un point suit un nombre entier il est
+                            considéré comme en faisant partie. Ainsi <literal>2.*x</literal> est évalué comme <literal>2.0*x</literal>
+                            et <literal>2 .*x</literal> est évalué comme <literal>(2).*x</literal>.
+                        </note>
                     </para>
                 </listitem>
             </varlistentry>

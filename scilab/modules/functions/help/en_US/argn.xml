@@ -21,8 +21,10 @@
             optional arguments.
         </para>
         <para>
-            Note that <varname>lhs</varname> is always greater than or equal to 1. That is to say, even if a function
-            is called without having mentioned an output argument, <varname>lhs</varname> will be equal to 1.
+            <note>
+                Note that <varname>lhs</varname> is always greater than or equal to 1. That is to say, even if a function
+                is called without having mentioned an output argument, <varname>lhs</varname> will be equal to 1.
+            </note>
         </para>
     </refsection>
     <refsection>

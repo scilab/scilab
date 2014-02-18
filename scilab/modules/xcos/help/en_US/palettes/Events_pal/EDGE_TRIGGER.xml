@@ -88,7 +88,12 @@
     <refsection id="Description_EDGE_TRIGGER">
         <title>Description</title>
         <para>
-            This block generates an event on rising, falling or both edges of the input signal (depending on block parameter). A rising edge is a change in value from strictly negative to positive or zero, or a change in value from zero to strictly positive. A falling edge is the opposite. Note that this block only generates an event if the input jumps due to an event. The generated event is synchronous with the event causing the jump. This block does not detect continuous-time zero-crossings.  
+            This block generates an event on rising, falling or both edges of the input signal (depending on block parameter). A rising edge is a change in value from strictly negative to positive or zero, or a change in value from zero to strictly positive. A falling edge is the opposite.
+        </para>
+        <para>
+            <note>
+                Note that this block only generates an event if the input jumps due to an event. The generated event is synchronous with the event causing the jump. This block does not detect continuous-time zero-crossings.
+            </note>
         </para>
         <para>
         </para>

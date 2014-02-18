@@ -23,8 +23,11 @@
         <para>This fonction is provided in call_scilab. This function send many
             tasks which will be proccessed by the Scilab engine.
         </para>
-        <para>Note that the ending ";" is not mandatory at the end of a
-            command.
+        <para>
+            <note>
+                Note that the ending ";" is not mandatory at the end of a
+                command.
+            </note>
         </para>
     </refsection>
     <refsection>

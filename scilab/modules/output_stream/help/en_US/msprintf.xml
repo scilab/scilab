@@ -58,8 +58,10 @@
             under control of the format operand.
         </para>
         <para>
-            Note that, in this case, the escape sequences (<literal>"\n"</literal>) (in format)
-            split string to a matrix of string (see example)
+            <note>
+                Note that, in this case, the escape sequences (<literal>"\n"</literal>) (in format)
+                split string to a matrix of string (see example).
+            </note>
         </para>
     </refsection>
     <refsection>

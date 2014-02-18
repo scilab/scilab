@@ -43,7 +43,9 @@ tohome
     <refsection>
         <title>Particular cases</title>
         <para>
-            Note that Matlab function has no effect in no window mode under Unix/Linux while Scilab one clears the terminal display as if you were using "clear" command.
+            <note>
+                Note that Matlab function has no effect in no window mode under Unix/Linux while Scilab one clears the terminal display as if you were using "clear" command.
+            </note>
         </para>
     </refsection>
 </refentry>

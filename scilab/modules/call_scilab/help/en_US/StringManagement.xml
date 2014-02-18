@@ -27,7 +27,9 @@
             pages.
         </para>
         <para>
-            Note: Access to variables is done through <link linkend="api_scilab">api Scilab</link> (named variable).
+            <note>
+                Note: Access to variables is done through <link linkend="api_scilab">api Scilab</link> (named variable).
+            </note>
         </para>
     </refsection>
     <refsection>

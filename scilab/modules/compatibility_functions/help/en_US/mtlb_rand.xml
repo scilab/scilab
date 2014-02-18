@@ -50,7 +50,9 @@
             </listitem>
         </itemizedlist>
         <para>
-            Caution: <literal>mtlb_rand</literal> has not to be used for hand coded functions.
+            <warning>
+                Caution: <literal>mtlb_rand</literal> has not to be used for hand coded functions.
+            </warning>
         </para>
     </refsection>
 </refentry>

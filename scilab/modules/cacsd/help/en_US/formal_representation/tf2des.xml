@@ -58,9 +58,11 @@ E*xdot = A*x+B*u
 y = C*x + D*u
  ]]></programlisting>
         <para>
-            Note that <literal>D=0</literal> if the optional parameter flag=<literal>"withD"</literal> is not
-            given. Otherwise a maximal rank <literal>D</literal> matrix is returned in the fifth
-            entry of the list <literal>S</literal>
+            <note>
+                Note that <literal>D=0</literal> if the optional parameter flag=<literal>"withD"</literal> is not
+                given. Otherwise a maximal rank <literal>D</literal> matrix is returned in the fifth
+                entry of the list <literal>S</literal>.
+            </note>
         </para>
     </refsection>
     <refsection>

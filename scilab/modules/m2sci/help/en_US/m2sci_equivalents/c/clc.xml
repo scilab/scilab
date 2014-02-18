@@ -43,10 +43,14 @@ clc([nblines])
     <refsection>
         <title>Particular cases</title>
         <para>
-            Note that Scilab function allows to clear only a set of lines above the cursor using <emphasis role="bold">clc(nblines)</emphasis>.
+            <note>
+                Note that Scilab function allows to clear only a set of lines above the cursor using <emphasis role="bold">clc(nblines)</emphasis>.
+            </note>
         </para>
         <para>
-            Note that Scilab function can not be used in no window mode under Unix/Linux while Matlab one clears the terminal display as if you were using "clear" command.
+            <note>
+                Note that Scilab function can not be used in no window mode under Unix/Linux while Matlab one clears the terminal display as if you were using "clear" command.
+            </note>
         </para>
     </refsection>
 </refentry>

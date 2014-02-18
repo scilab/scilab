@@ -43,7 +43,9 @@
             Result is the Scilab equivalent for a Matlab string.
         </para>
         <para>
-            Caution: <literal>mstr2sci</literal> has not to be used for hand coded functions.
+            <warning>
+                Caution: <literal>mstr2sci</literal> has not to be used for hand coded functions.
+            </warning>
         </para>
     </refsection>
     <refsection role="see also">

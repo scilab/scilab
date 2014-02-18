@@ -80,10 +80,12 @@
             where a is the shape and r is the rate.
         </para>
         <para>
-            Caution. As opposed to other technical computing languages,
-            this function makes use of the rate parameter, and not the
-            scale parameter.
-            The rate parameter is linked to the scale parameter with the equation rate=1/scale.
+            <warning>
+                Caution. As opposed to other technical computing languages,
+                this function makes use of the rate parameter, and not the
+                scale parameter.
+                The rate parameter is linked to the scale parameter with the equation rate=1/scale.
+            </warning>
         </para>
         <para>
             Computation of parameters such as X, Shape or Rate involve a search for a value that

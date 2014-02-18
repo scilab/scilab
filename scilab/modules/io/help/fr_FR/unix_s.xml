@@ -34,7 +34,12 @@
         <title>Description</title>
         <para>
             Envoie la chaîne <literal>command-name</literal> à l'interpréteur de commande
-            (sh sous Unix, ou command.com sous DOS). La sortie standard et les erreurs ne sont pas reportées (redirection vers /dev/null sous Unix); notez que la *dernière erreur uniquement* est signalée quand <literal>command-name</literal> est une suite de commandes séparées par des ";".
+            (sh sous Unix, ou command.com sous DOS). La sortie standard et les erreurs ne sont pas reportées (redirection vers /dev/null sous Unix).
+        </para>
+        <para>
+            <warning>
+                Notez que la *dernière erreur uniquement* est signalée quand <literal>command-name</literal> est une suite de commandes séparées par des ";".
+            </warning>
         </para>
     </refsection>
     <refsection>

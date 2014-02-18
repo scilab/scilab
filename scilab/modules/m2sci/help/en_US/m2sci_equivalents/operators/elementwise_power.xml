@@ -43,10 +43,14 @@
     <refsection>
         <title>Particular cases</title>
         <para>
-            Note that Matlab seems to have a bug when exposant is a character.
+            <note>
+                Note that Matlab seems to have a bug when exposant is a character.
+            </note>
         </para>
         <para>
-            WARNING: Expressions like <emphasis role="bold">X.^.23</emphasis> are interpreted in Matlab as <emphasis role="bold">X</emphasis> to the power of <emphasis role="bold">0.23</emphasis> while Scilab executes <emphasis role="bold">X</emphasis> elementwisely powered to <emphasis role="bold">23</emphasis>, to have the same result, insert a blank between ^ and <emphasis role="bold">.23</emphasis>.
+            <warning>
+                Expressions like <emphasis role="bold">X.^.23</emphasis> are interpreted in Matlab as <emphasis role="bold">X</emphasis> to the power of <emphasis role="bold">0.23</emphasis> while Scilab executes <emphasis role="bold">X</emphasis> elementwisely powered to <emphasis role="bold">23</emphasis>, to have the same result, insert a blank between ^ and <emphasis role="bold">.23</emphasis>.
+            </warning>
         </para>
     </refsection>
 </refentry>

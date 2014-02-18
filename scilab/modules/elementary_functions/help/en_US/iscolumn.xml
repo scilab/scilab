@@ -43,8 +43,12 @@
                 iscolumn(<varname>x</varname>)
             </literal>
             returns true if <varname>x</varname>
-            is a column vector. Scalars are considered as columns. Note that <literal>iscolumn([])</literal>
-            returns false.
+            is a column vector. Scalars are considered as columns.
+        </para>
+        <para>
+            <note>
+                Note that <literal>iscolumn([])</literal> returns false.
+            </note>
         </para>
     </refsection>
     <refsection>

@@ -37,8 +37,12 @@
         <para>
             <code>gstacksize(n)</code> allows the user to increase or decrease the size of
             this stack. The maximum allowed size depends on the amount of
-            free memory and swap space available at the time. Note that Scilab can
-            increase automatically the global stacksize when needed.
+            free memory and swap space available at the time.
+        </para>
+        <para>
+            <note>
+                Note that Scilab can increase automatically the global stacksize when needed.
+            </note>
         </para>
         <para>
             <code>sz=gstacksize()</code> returns a 2-vector which contains  the current

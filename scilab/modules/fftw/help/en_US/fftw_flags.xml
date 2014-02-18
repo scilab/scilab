@@ -61,9 +61,11 @@
             determine an efficient way to compute the fft.
         </para>
         <para>
-            Warning: the default value "FFTW_MEASURE" gives
-            quite efficient plans. Try to change it only if the fft efficiency is
-            really important and you have a lot of simmilar calls to do.
+            <warning>
+                Warning: the default value "FFTW_MEASURE" gives
+                quite efficient plans. Try to change it only if the fft efficiency is
+                really important and you have a lot of simmilar calls to do.
+            </warning>
         </para>
         
         <para>Accepted entries are :</para>

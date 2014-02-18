@@ -43,7 +43,9 @@
     <refsection>
         <title>Particular cases</title>
         <para>
-            WARNING: Expressions like <emphasis role="bold">X.\.23</emphasis> are interpreted in Matlab as the elementwise division of <emphasis role="bold">0.23</emphasis> by <emphasis role="bold">X</emphasis> while Scilab computes the Kronecker left division of <emphasis role="bold">X</emphasis> and <emphasis role="bold">23</emphasis>, to have the same result, insert a blank between <emphasis role="bold">\</emphasis> and <emphasis role="bold">.23</emphasis>
+            <warning>
+                WARNING: Expressions like <emphasis role="bold">X.\.23</emphasis> are interpreted in Matlab as the elementwise division of <emphasis role="bold">0.23</emphasis> by <emphasis role="bold">X</emphasis> while Scilab computes the Kronecker left division of <emphasis role="bold">X</emphasis> and <emphasis role="bold">23</emphasis>, to have the same result, insert a blank between <emphasis role="bold">\</emphasis> and <emphasis role="bold">.23</emphasis>.
+            </warning>
         </para>
     </refsection>
 </refentry>

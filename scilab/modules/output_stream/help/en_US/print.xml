@@ -27,8 +27,10 @@
             the variables. All types of variables may be "<literal>print</literal>"'ed
         </para>
         <para>
-            Note : <literal>xi</literal> must be a named variable, with expressions variable
-            name part of the display is unpredictable.
+            <note>
+                Note : <literal>xi</literal> must be a named variable, with expressions variable
+                name part of the display is unpredictable.
+            </note>
         </para>
         <para>
             <literal>print(%io(2),...)</literal> prints on Scilab's window. this syntax may be
