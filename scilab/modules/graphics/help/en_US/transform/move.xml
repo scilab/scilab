@@ -90,9 +90,6 @@ move(p,t);
                 <link linkend="set">set</link>
             </member>
             <member>
-                <link linkend="draw">draw</link>
-            </member>
-            <member>
                 <link linkend="figure_properties">figure_properties</link>
             </member>
             <member>
