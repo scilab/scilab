@@ -247,56 +247,53 @@ int sci_get(char *fname, unsigned long fname_len)
                 return 1;
             }
 
-            if (strcmp(pstFirst, "default_figure") != 0 && strcmp(pstFirst, "default_axes") != 0)
+            if (strcmp(pstFirst, "default_figure") == 0 ||
+                    strcmp(pstFirst, "default_axes") == 0 ||
+                    strcmp(pstFirst, "current_figure") == 0 ||
+                    strcmp(pstFirst, "current_axes") == 0 ||
+                    strcmp(pstFirst, "current_entity") == 0 ||
+                    strcmp(pstFirst, "hdl") == 0 ||
+                    strcmp(pstFirst, "figures_id") == 0)
             {
-                if (strcmp(pstFirst, "current_figure") == 0 || strcmp(pstFirst, "current_axes") == 0 || strcmp(pstFirst, "current_entity") == 0
-                        || strcmp(pstFirst, "hdl") == 0 || strcmp(pstFirst, "figures_id") == 0)
+                hdl = 0;
+                l2 = pstFirst;
+            }
+            else
+            {
+                int uid = search_path(pstFirst);
+                if (uid != 0)
                 {
-                    hdl = 0;
-                    l2 = pstFirst;
-                }
-                else
-                {
-                    int uid = search_path(pstFirst);
-                    if (uid != 0)
+                    freeAllocatedSingleString(pstFirst);
+                    hdl = getHandle(uid);
+
+                    if (nbInputArgument(pvApiCtx) == 1)
                     {
-                        freeAllocatedSingleString(pstFirst);
-                        hdl = getHandle(uid);
-
-                        if (nbInputArgument(pvApiCtx) == 1)
-                        {
-                            createScalarHandle(pvApiCtx, nbInputArgument(pvApiCtx) + 1, hdl);
-                            AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
-                            ReturnArguments(pvApiCtx);
-                            return 0;
-                        }
-
-                        sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddrl2);
-                        if (sciErr.iErr)
-                        {
-                            printError(&sciErr, 0);
-                            return 1;
-                        }
-
-                        if (getAllocatedSingleString(pvApiCtx, piAddrl2, &l2))
-                        {
-                            Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 2);
-                            return 1;
-                        }
-                    }
-                    else
-                    {
-                        createEmptyMatrix(pvApiCtx, nbInputArgument(pvApiCtx) + 1);
+                        createScalarHandle(pvApiCtx, nbInputArgument(pvApiCtx) + 1, hdl);
                         AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
                         ReturnArguments(pvApiCtx);
                         return 0;
                     }
+
+                    sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddrl2);
+                    if (sciErr.iErr)
+                    {
+                        printError(&sciErr, 0);
+                        return 1;
+                    }
+
+                    if (getAllocatedSingleString(pvApiCtx, piAddrl2, &l2))
+                    {
+                        Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 2);
+                        return 1;
+                    }
                 }
-            }
-            else
-            {
-                l2 = pstFirst;
-                hdl = 0;
+                else
+                {
+                    createEmptyMatrix(pvApiCtx, nbInputArgument(pvApiCtx) + 1);
+                    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
+                    ReturnArguments(pvApiCtx);
+                    return 0;
+                }
             }
             break;
         }

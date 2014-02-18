@@ -63,7 +63,7 @@
         </para>
         <para>
             <literal>get</literal> function can be also called with only a property as argument. In this case,
-            the property must be one of the following:
+            the property must be one of the following (called with other properties names, <literal>get</literal> will return <literal>[]</literal>):
         </para>
         <variablelist>
             <varlistentry>
