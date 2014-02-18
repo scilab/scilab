@@ -18,10 +18,12 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LISTBOXTOP__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MAX__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MIN__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING_COLNB__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE__;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
@@ -29,8 +31,10 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.DefaultListModel;
+import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
+import javax.swing.ListCellRenderer;
 import javax.swing.ListSelectionModel;
 import javax.swing.UIManager;
 import javax.swing.border.Border;
@@ -43,11 +47,14 @@ import org.scilab.modules.gui.listbox.SimpleListBox;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
+import org.scilab.modules.gui.utils.ColorBox;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.PositionConverter;
 import org.scilab.modules.gui.utils.ScilabRelief;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.Size;
+import org.scilab.modules.gui.utils.SwingScilabColorItem;
+import org.scilab.modules.gui.utils.SwingScilabTextItem;
 
 /**
  * Swing implementation for Scilab ListBox in GUIs
@@ -75,12 +82,33 @@ public class SwingScilabListBox extends JScrollPane implements SwingViewObject, 
      */
     private JList list;
 
+    private ListCellRenderer defaultRenderer = null;
+    private ListCellRenderer textRenderer = null;
+    private ListCellRenderer colorRenderer = null;
+
+    private boolean colorBox = false;
+
     /**
      * Constructor
      */
     public SwingScilabListBox() {
         super();
         getViewport().add(getList());
+        defaultRenderer = getList().getCellRenderer();
+
+        textRenderer = new ListCellRenderer() {
+            public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+                JLabel label = (JLabel) defaultRenderer.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+                if (value instanceof SwingScilabTextItem) {
+                    label.setText(value.toString());
+                    label.setIcon(null);
+                }
+                return label;
+            }
+        };
+
+        getList().setCellRenderer(textRenderer);
+
 
         mouseListener = new MouseListener() {
             public void mouseClicked(MouseEvent e) {
@@ -300,7 +328,7 @@ public class SwingScilabListBox extends JScrollPane implements SwingViewObject, 
     public String[] getAllItemsText() {
         String[] retValue = new String[getList().getModel().getSize()];
         for (int i = 0; i < getList().getModel().getSize(); i++) {
-            retValue[i] = (String) getList().getModel().getElementAt(i);
+            retValue[i] = getList().getModel().getElementAt(i).toString();
         }
         return retValue;
     }
@@ -332,28 +360,76 @@ public class SwingScilabListBox extends JScrollPane implements SwingViewObject, 
      * @see org.scilab.modules.gui.widget.Widget#setText(java.lang.String)
      */
     public void setText(String[] text) {
-        /* Do we need to update the strings */
-        /* Test performed to avoid loops when the model is updated from here */
-        boolean updateNeeded = false;
-        String[] previousText = getAllItemsText();
-        if (previousText.length != text.length) {
-            updateNeeded = true;
-        } else {
-            for (int k = 0; k < text.length; k++) {
-                if (text[k].equals(previousText[k]) == false) {
-                    updateNeeded = true;
-                    break;
+        DefaultListModel model = new DefaultListModel();
+
+        // check numbers of columns
+        GraphicController controller = GraphicController.getController();
+        Integer nbCol = (Integer)controller.getProperty(getId(), __GO_UI_STRING_COLNB__);
+
+        colorBox  = false;
+        if (nbCol == 2) {
+            //combocolor ?
+            colorBox = true;
+
+            if (colorRenderer == null) {
+                colorRenderer = new ListCellRenderer() {
+                    public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+                        JLabel label = (JLabel) defaultRenderer.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+
+                        if (value instanceof SwingScilabColorItem) {
+                            SwingScilabColorItem item = (SwingScilabColorItem)value;
+                            String text = item.toString();
+                            label.setText(text);
+                            label.setIcon(ColorBox.createColorBox(16, 16, item.getColor()));
+                        }
+                        return label;
+                    }
+                };
+
+            }
+
+            getList().setCellRenderer(colorRenderer);
+
+            int colorOffset = text.length / 2;
+            try {
+                for (int i = 0 ; i < colorOffset ; i++) {
+                    Color color = Color.decode(text[colorOffset + i]);
+                    //add item in combobox
+                    model.addElement(new SwingScilabColorItem(text[i], color));
                 }
+
+            } catch (NumberFormatException e) {
+                model.clear();
+                colorBox = false;
             }
         }
-        if (!updateNeeded) {
-            return;
+
+        //default case or colorBox failed
+        if (colorBox == false) {
+            getList().setCellRenderer(textRenderer);
+            /* Do we need to update the strings */
+            /* Test performed to avoid loops when the model is updated from here */
+            boolean updateNeeded = false;
+            String[] previousText = getAllItemsText();
+            if (previousText.length != text.length) {
+                updateNeeded = true;
+            } else {
+                for (int k = 0; k < text.length; k++) {
+                    if (text[k].equals(previousText[k]) == false) {
+                        updateNeeded = true;
+                        break;
+                    }
+                }
+            }
+            if (!updateNeeded) {
+                return;
+            }
+
+            for (int i = 0; i < text.length; i++) {
+                model.addElement(new SwingScilabTextItem(text[i]));
+            }
         }
 
-        DefaultListModel model = new DefaultListModel();
-        for (int i = 0; i < text.length; i++) {
-            model.addElement(text[i]);
-        }
         getList().setModel(model);
         getList().revalidate();
         revalidate();

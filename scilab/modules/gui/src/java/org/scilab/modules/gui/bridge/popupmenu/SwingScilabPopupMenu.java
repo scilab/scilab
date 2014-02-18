@@ -14,14 +14,19 @@
 
 package org.scilab.modules.gui.bridge.popupmenu;
 
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING_COLNB__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE__;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.ListCellRenderer;
 import javax.swing.UIManager;
 import javax.swing.border.Border;
 
@@ -33,11 +38,14 @@ import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.popupmenu.SimplePopupMenu;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
+import org.scilab.modules.gui.utils.ColorBox;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.PositionConverter;
 import org.scilab.modules.gui.utils.ScilabRelief;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.Size;
+import org.scilab.modules.gui.utils.SwingScilabColorItem;
+import org.scilab.modules.gui.utils.SwingScilabTextItem;
 
 /**
  * Swing implementation for Scilab PopupMenu in GUIs
@@ -56,11 +64,30 @@ public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, 
 
     private Border defaultBorder = null;
 
+    private boolean colorBox = false;
+
+    private ListCellRenderer defaultRenderer = null;
+    private ListCellRenderer textRenderer = null;
+    private ListCellRenderer colorRenderer = null;
+
     /**
      * Constructor
      */
     public SwingScilabPopupMenu() {
         super();
+        defaultRenderer = getRenderer();
+        textRenderer = new ListCellRenderer() {
+            public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+                JLabel label = (JLabel) defaultRenderer.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+                if (value instanceof SwingScilabTextItem) {
+                    label.setText(value.toString());
+                    label.setIcon(null);
+                }
+                return label;
+            }
+        };
+
+        setRenderer(textRenderer);
         /* Bug 3635 fixed: allow arrow keys to browse items */
         putClientProperty("JComboBox.isTableCellEditor", Boolean.TRUE);
         defaultActionListener = new ActionListener() {
@@ -71,7 +98,6 @@ public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, 
                 if (callback != null) {
                     callback.actionPerformed(null);
                 }
-
             }
         };
         addActionListener(defaultActionListener);
@@ -263,46 +289,101 @@ public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, 
      * @param text the text of the items
      */
     public void setText(String[] text) {
-        /* Do we need to update the strings */
-        /* Test performed to avoid loops when the model is updated from here */
-        boolean updateNeeded = false;
-        String[] previousText = getAllItemsText();
-        if (previousText.length != text.length) {
-            updateNeeded = true;
-        } else {
-            for (int k = 0; k < text.length; k++) {
-                if (!text[k].equals(previousText[k])) {
-                    updateNeeded = true;
+
+        // check numbers of columns
+        GraphicController controller = GraphicController.getController();
+        Integer nbCol = (Integer)controller.getProperty(getId(), __GO_UI_STRING_COLNB__);
+
+        colorBox = false;
+        if (nbCol == 2) {
+            //combocolor ?
+            colorBox = true;
+
+            if (colorRenderer == null) {
+                colorRenderer = new ListCellRenderer() {
+                    public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+                        JLabel label = (JLabel) defaultRenderer.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+
+                        if (value instanceof SwingScilabColorItem) {
+                            SwingScilabColorItem item = (SwingScilabColorItem)value;
+                            String text = item.toString();
+                            label.setText(text);
+                            label.setIcon(ColorBox.createColorBox(16, 16, item.getColor()));
+                        }
+                        return label;
+                    }
+                };
+
+            }
+
+            setRenderer(colorRenderer);
+
+            /* Remove the listener to avoid the callback to be executed */
+            if (callback != null) {
+                removeActionListener(callback);
+            }
+
+            /* Clear previous items */
+            removeAllItems();
+
+            int colorOffset = text.length / 2;
+            for (int i = 0 ; i < colorOffset ; i++) {
+                try {
+                    Color color = Color.decode(text[colorOffset + i]);
+                    //add item in combobox
+                    addItem(new SwingScilabColorItem(text[i], color));
+                } catch (NumberFormatException e) {
+                    removeAllItems();
+                    colorBox = false;
                     break;
                 }
             }
-        }
-        if (!updateNeeded) {
-            return;
-        }
 
-        /* Remove the listener to avoid the callback to be executed */
-        if (this.callback != null) {
-            removeActionListener(this.callback);
-        }
-
-        /* Clear previous items */
-        removeAllItems();
-
-        if (text.length == 1 & text[0].length() == 0) {
-            /* Clear the popup items */
-            return;
-        } else {
-            for (int i = 0; i < text.length; i++) {
-                addItem(new SwingScilabPopupMenuItem(text[i]));
+            /* Remove the listener to avoid the callback to be executed */
+            if (callback != null) {
+                addActionListener(callback);
             }
         }
 
-        /* Remove the listener to avoid the callback to be executed */
-        if (this.callback != null) {
-            addActionListener(this.callback);
-        }
+        //default case or colorBox failed
+        if (colorBox == false) {
+            setRenderer(textRenderer);
+            /* Do we need to update the strings */
+            /* Test performed to avoid loops when the model is updated from here */
+            boolean updateNeeded = false;
+            String[] previousText = getAllItemsText();
+            if (previousText.length != text.length) {
+                updateNeeded = true;
+            } else {
+                for (int k = 0; k < text.length; k++) {
+                    if (!text[k].equals(previousText[k])) {
+                        updateNeeded = true;
+                        break;
+                    }
+                }
+            }
+            if (!updateNeeded) {
+                return;
+            }
 
+            /* Clear previous items */
+            removeAllItems();
+
+            if (text.length == 1 & text[0].length() == 0) {
+                /* Clear the popup items */
+                return;
+            } else {
+                for (int i = 0; i < text.length; i++) {
+                    addItem(new SwingScilabTextItem(text[i]));
+                }
+            }
+
+            /* Remove the listener to avoid the callback to be executed */
+            if (callback != null) {
+                addActionListener(callback);
+            }
+        } else {
+        }
     }
 
     /**
@@ -341,40 +422,6 @@ public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, 
         throw new UnsupportedOperationException();
     }
 
-    /**
-     * Class created as a workaround for bug:
-     * http://bugzilla.scilab.org/show_bug.cgi?id=7898 This bug is a Java bug:
-     * http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=4133743
-     *
-     * This workaround has been proposed by a user on Java bug tracker.
-     *
-     * The toString method will be used to display the elements, but because the
-     * class inherits its equals method from Object instead of String, none of
-     * the elements are considered duplicates.
-     *
-     */
-    private class SwingScilabPopupMenuItem {
-
-        private String textOfItem;
-
-        /**
-         * Constructor
-         * @param text the text displayed in the item
-         */
-        public SwingScilabPopupMenuItem(String text) {
-            textOfItem = text;
-        }
-
-        /**
-         * Overload Object toString() method
-         * @return the item converted to String
-         * @see java.lang.Object#toString()
-         */
-        @Override
-        public String toString() {
-            return textOfItem;
-        }
-    }
 
     /**
      * Set the UID

@@ -49,22 +49,57 @@ int SetUicontrolString(void* _pvCtx, int iObjUID, void* _pvData, int valueType, 
 
     // Check size according to uicontrol style
     getGraphicObjectProperty(iObjUID, __GO_STYLE__, jni_int, (void**) &piObjectStyle);
-    if (objectStyle == __GO_UI_LISTBOX__ || objectStyle == __GO_UI_POPUPMENU__ || objectStyle == __GO_UI_EDIT__)
+
+    switch (objectStyle)
     {
-        // Value can be string or a string vector
-        if (nbCol > 1 && nbRow > 1)
+        case __GO_UI_EDIT__ :
         {
-            Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: A string or a vector of strings expected.\n")), "String");
-            return SET_PROPERTY_ERROR;
+            // Value can be string or a string vector
+            if (nbCol > 1 && nbRow > 1)
+            {
+                Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: A string or a vector of strings expected.\n")), "String");
+                return SET_PROPERTY_ERROR;
+            }
+            break;
         }
-    }
-    else if (objectStyle != __GO_UI_TABLE__) // All other styles except 'Table'
-    {
-        // Value must be only one string
-        if (nbCol * nbRow > 1)
+        case __GO_UI_TABLE__ :
         {
-            Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: A string expected.\n")), "String");
-            return SET_PROPERTY_ERROR;
+            // Value must be only one string
+            if (nbCol * nbRow > 1)
+            {
+                Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: A string expected.\n")), "String");
+                return SET_PROPERTY_ERROR;
+            }
+            break;
+        }
+        case __GO_UI_LISTBOX__ :
+        case __GO_UI_POPUPMENU__ :
+        {
+            ////combo and list color
+
+            //// ["white",    "#FFFFFF";
+            ////  "black",    "#000000";
+            ////  "red",      "#FF0000";
+            ////  "green",    "#00FF00";
+            ////  "blue",     "#0000FF"]
+
+            ////Matrix must be n*2
+            //if(nbCol == 2)
+            //{
+            //    if (setGraphicObjectProperty(iObjUID, __GO_UI_STRING_COLNB__, &nbCol, jni_int, 1) == FALSE)
+            //    {
+            //        Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "String");
+            //        return SET_PROPERTY_ERROR;
+            //    }
+
+            //    if(setGraphicObjectProperty(iObjUID, __GO_UI_STRING__, (char**)_pvData, jni_string_vector, nbRow * nbCol) == FALSE)
+            //    {
+            //        Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "String");
+            //        return SET_PROPERTY_ERROR;
+            //    }
+
+            //    return SET_PROPERTY_SUCCEED;
+            //}
         }
     }
 
