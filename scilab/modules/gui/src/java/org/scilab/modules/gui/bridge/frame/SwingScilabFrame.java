@@ -14,9 +14,8 @@
 package org.scilab.modules.gui.bridge.frame;
 
 
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHILDREN__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_BORDER_OPT_PADDING__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHILDREN__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_GRID_OPT_GRID__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_GRID_OPT_PADDING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_LAYOUT__;
@@ -29,6 +28,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FRAME_BORDER__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LAYER__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VISIBLE__;
 
 import java.awt.BorderLayout;
@@ -91,7 +91,6 @@ import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.PositionConverter;
 import org.scilab.modules.gui.utils.ScilabRelief;
 import org.scilab.modules.gui.utils.Size;
-import org.scilab.modules.gui.widget.Widget;
 
 /**
  * Swing implementation for Scilab frames in GUI
@@ -116,7 +115,7 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
             public void componentShown(ComponentEvent e) { }
 
             public void componentResized(ComponentEvent e) {
-                if (getId() != -1 && getParent() != null && getParent().getLayout() == null) {
+                if (getId() != -1 && getParent() != null && getParent().getLayout() != null) {
 
                     Double[] newPosition = new Double[4];
                     Double[] positions = (Double[]) GraphicController.getController().getProperty(getId(), GraphicObjectProperties.__GO_POSITION__);
@@ -770,19 +769,21 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
 
         switch (property) {
             case __GO_UI_VALUE__: {
-                Double[] doubleValue = ((Double[]) value);
-                if (doubleValue.length == 0) {
-                    return;
-                }
+                if (this instanceof SwingScilabLayer) {
+                    SwingScilabLayer layer = (SwingScilabLayer) this;
+                    Double[] doubleValue = ((Double[]) value);
+                    if (doubleValue.length == 0) {
+                        return;
+                    }
 
-                int[] intValue = new int[doubleValue.length];
-                for (int k = 0; k < doubleValue.length; k++) {
-                    intValue[k] = doubleValue[k].intValue();
-                }
+                    int[] intValue = new int[doubleValue.length];
+                    for (int k = 0; k < doubleValue.length; k++) {
+                        intValue[k] = doubleValue[k].intValue();
+                    }
 
-                SwingScilabLayer layer = (SwingScilabLayer) this;
-                //if intValue[0] is out of bounds, do not update view but let "wrong" value in model
-                layer.setActiveLayer(intValue[0]);
+                    //if intValue[0] is out of bounds, do not update view but let "wrong" value in model
+                    layer.setActiveLayer(intValue[0]);
+                }
                 break;
             }
             case __GO_UI_STRING__: {
