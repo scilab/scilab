@@ -26,6 +26,7 @@ import javax.swing.JScrollBar;
 import javax.swing.JSlider;
 import javax.swing.KeyStroke;
 import javax.swing.UIManager;
+import javax.swing.border.Border;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
@@ -59,6 +60,8 @@ public class SwingScilabSlider extends JSlider implements SwingViewObject, Simpl
     private CommonCallBack callback;
 
     private ChangeListener changeListener;
+
+    private Border defaultBorder = null;
 
     class CtrlLeftAction extends AbstractAction {
         private static final long serialVersionUID = -3289281207742516486L;
@@ -304,9 +307,10 @@ public class SwingScilabSlider extends JSlider implements SwingViewObject, Simpl
      * @param reliefType the type of the relief to set (See ScilabRelief.java)
      */
     public void setRelief(String reliefType) {
-        if (reliefType.equals("") == false) {
-            setBorder(ScilabRelief.getBorderFromRelief(reliefType));
+        if (defaultBorder == null) {
+            defaultBorder = getBorder();
         }
+        setBorder(ScilabRelief.getBorderFromRelief(reliefType, defaultBorder));
     }
 
     /**

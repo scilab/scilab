@@ -23,6 +23,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JComboBox;
 import javax.swing.UIManager;
+import javax.swing.border.Border;
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.gui.SwingViewObject;
@@ -52,6 +53,8 @@ public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, 
     private CommonCallBack callback;
 
     private ActionListener defaultActionListener;
+
+    private Border defaultBorder = null;
 
     /**
      * Constructor
@@ -307,9 +310,10 @@ public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, 
      * @param reliefType the type of the relief to set (See ScilabRelief.java)
      */
     public void setRelief(String reliefType) {
-        if (reliefType.equals("") == false) {
-            setBorder(ScilabRelief.getBorderFromRelief(reliefType));
+        if (defaultBorder == null) {
+            defaultBorder = getBorder();
         }
+        setBorder(ScilabRelief.getBorderFromRelief(reliefType, defaultBorder));
     }
 
     /**

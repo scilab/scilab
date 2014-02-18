@@ -80,8 +80,8 @@ public class SwingScilabScrollableFrame extends JScrollPane implements SwingView
 
     private Integer uid;
     private JPanel panel = new JPanel();
-    //    private Dimension panelSize = new Dimension(0, 0);
-    //    private Point panelLoc = new Point(0, 0);
+
+    private Border defaultBorder = null;
 
     /**
      * Constructor
@@ -351,9 +351,10 @@ public class SwingScilabScrollableFrame extends JScrollPane implements SwingView
      * @param reliefType the type of the relief to set (See ScilabRelief.java)
      */
     public void setRelief(String reliefType) {
-        if (org.scilab.modules.graphic_objects.console.Console.getConsole().getUseDeprecatedLF()) {
-            setBorder(ScilabRelief.getBorderFromRelief(reliefType));
+        if (defaultBorder == null) {
+            defaultBorder = getBorder();
         }
+        setBorder(ScilabRelief.getBorderFromRelief(reliefType, defaultBorder));
     }
 
     /**

@@ -23,6 +23,7 @@ import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.UIManager;
+import javax.swing.border.Border;
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.gui.SwingViewObject;
@@ -48,6 +49,8 @@ public class SwingScilabUiTable extends JScrollPane implements SwingViewObject, 
     private static final long serialVersionUID = -5497171010652701217L;
 
     private Integer uid;
+
+    private Border defaultBorder = null;
 
     private JTable uiTable;
     private JList rowHeader;
@@ -241,7 +244,10 @@ public class SwingScilabUiTable extends JScrollPane implements SwingViewObject, 
      * @param reliefType the type of the relief to set (See ScilabRelief.java)
      */
     public void setRelief(String reliefType) {
-        setBorder(ScilabRelief.getBorderFromRelief(reliefType));
+        if (defaultBorder == null) {
+            defaultBorder = getBorder();
+        }
+        setBorder(ScilabRelief.getBorderFromRelief(reliefType, defaultBorder));
     }
 
     /**

@@ -32,6 +32,7 @@ import javax.swing.JTextPane;
 import javax.swing.KeyStroke;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.UIManager;
+import javax.swing.border.Border;
 import javax.swing.text.AbstractDocument;
 import javax.swing.text.BoxView;
 import javax.swing.text.ComponentView;
@@ -75,6 +76,8 @@ public class SwingScilabEditBox extends JScrollPane implements SwingViewObject, 
     private CommonCallBack callback;
 
     private FocusListener focusListener;
+
+    private Border defaultBorder = null;
 
     private StyledDocument doc;
     private SimpleAttributeSet docAttributes = new SimpleAttributeSet();
@@ -372,9 +375,10 @@ public class SwingScilabEditBox extends JScrollPane implements SwingViewObject, 
      * @param reliefType the type of the relief to set (See ScilabRelief.java)
      */
     public void setRelief(String reliefType) {
-        if (reliefType.equals("") == false) {
-            textPane.setBorder(ScilabRelief.getBorderFromRelief(reliefType));
+        if (defaultBorder == null) {
+            defaultBorder = textPane.getBorder();
         }
+        textPane.setBorder(ScilabRelief.getBorderFromRelief(reliefType, defaultBorder));
     }
 
     /**

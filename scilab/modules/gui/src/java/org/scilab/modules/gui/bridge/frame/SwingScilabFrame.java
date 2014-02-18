@@ -104,6 +104,8 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
     private Integer uid = -1;
     int redraw = 0;
 
+    private Border defaultBorder = null;
+
     /**
      * Constructor
      */
@@ -696,9 +698,10 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
      * @param reliefType the type of the relief to set (See ScilabRelief.java)
      */
     public void setRelief(String reliefType) {
-        if (org.scilab.modules.graphic_objects.console.Console.getConsole().getUseDeprecatedLF()) {
-            setBorder(ScilabRelief.getBorderFromRelief(reliefType));
+        if (defaultBorder == null) {
+            defaultBorder = getBorder();
         }
+        setBorder(ScilabRelief.getBorderFromRelief(reliefType, defaultBorder));
     }
 
     /**

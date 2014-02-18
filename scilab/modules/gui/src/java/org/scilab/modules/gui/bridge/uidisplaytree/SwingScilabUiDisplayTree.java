@@ -17,20 +17,21 @@ import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.UIManager;
+import javax.swing.border.Border;
 
+import org.scilab.modules.gui.bridge.tree.SwingScilabTree;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
-import org.scilab.modules.gui.uidisplaytree.SimpleUiDisplayTree;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
+import org.scilab.modules.gui.tree.ScilabDisplayTree;
+import org.scilab.modules.gui.uidisplaytree.SimpleUiDisplayTree;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.PositionConverter;
 import org.scilab.modules.gui.utils.ScilabAlignment;
 import org.scilab.modules.gui.utils.ScilabRelief;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.Size;
-import org.scilab.modules.gui.bridge.tree.SwingScilabTree;
-import org.scilab.modules.gui.tree.ScilabDisplayTree;
 
 /**
  * Swing implementation for Scilab UiDisplayTree in GUIs
@@ -42,6 +43,8 @@ public class SwingScilabUiDisplayTree extends JScrollPane implements SimpleUiDis
 
     private JLabel label;
     private SwingScilabTree sst;
+
+    private Border defaultBorder = null;
 
     /**
      * Constructor
@@ -218,7 +221,10 @@ public class SwingScilabUiDisplayTree extends JScrollPane implements SimpleUiDis
      * @param reliefType the type of the relief to set (See ScilabRelief.java)
      */
     public void setRelief(String reliefType) {
-        setBorder(ScilabRelief.getBorderFromRelief(reliefType));
+        if (defaultBorder == null) {
+            defaultBorder = getBorder();
+        }
+        setBorder(ScilabRelief.getBorderFromRelief(reliefType, defaultBorder));
     }
 
     /**

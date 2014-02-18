@@ -20,7 +20,6 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
@@ -35,6 +34,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
+import javax.swing.border.Border;
 import javax.swing.event.HyperlinkEvent;
 import javax.swing.event.HyperlinkListener;
 import javax.swing.text.html.HTMLDocument;
@@ -71,12 +71,11 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
 
     private JComponent label = new JLabel();
 
+    private Border defaultBorder = null;
+
     private boolean isJLabel = true;
 
-    private String horizontalAlignment = "left"; /*
-                                                  * Horizontal alignment
-                                                  * property
-                                                  */
+    private String horizontalAlignment = "left"; /* Horizontal alignment property */
 
     private String verticalAlignment = "middle"; /* Vertical alignment property */
 
@@ -282,9 +281,10 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
      * @param reliefType the type of the relief to set (See ScilabRelief.java)
      */
     public void setRelief(String reliefType) {
-        if (reliefType.equals("") == false) {
-            setBorder(ScilabRelief.getBorderFromRelief(reliefType));
+        if (defaultBorder == null) {
+            defaultBorder = getBorder();
         }
+        setBorder(ScilabRelief.getBorderFromRelief(reliefType, defaultBorder));
     }
 
     /**

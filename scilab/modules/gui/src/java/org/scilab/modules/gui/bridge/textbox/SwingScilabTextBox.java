@@ -16,6 +16,7 @@ import java.awt.Color;
 
 import javax.swing.JTextArea;
 import javax.swing.UIManager;
+import javax.swing.border.Border;
 
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
@@ -35,6 +36,8 @@ import org.scilab.modules.gui.utils.Size;
 public class SwingScilabTextBox extends JTextArea implements SimpleTextBox {
 
     private static final long serialVersionUID = 3632560416759268432L;
+
+    private Border defaultBorder = null;
 
     /**
      * Constructor
@@ -179,7 +182,10 @@ public class SwingScilabTextBox extends JTextArea implements SimpleTextBox {
      * @param reliefType the type of the relief to set (See ScilabRelief.java)
      */
     public void setRelief(String reliefType) {
-        setBorder(ScilabRelief.getBorderFromRelief(reliefType));
+        if (defaultBorder == null) {
+            defaultBorder = getBorder();
+        }
+        setBorder(ScilabRelief.getBorderFromRelief(reliefType, defaultBorder));
     }
 
     /**

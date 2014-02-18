@@ -270,8 +270,11 @@
             <varlistentry>
                 <term>Relief</term>
                 <listitem>
-                    <para>flat | groove | raised | ridge | solid | sunken</para>
-                    <para>Appearance of the border of the uicontrol:</para>
+                    <para>{default} | flat | groove | raised | ridge | solid | sunken</para>
+                    <para>
+                        Appearance of the border of the uicontrol. <literal>"default"</literal> means that the application look and feel will be used to set the relief.
+                    </para>
+                    <para>When using the deprecated skin for uicontrols, default values are related to uicontrol style:</para>
                     <itemizedlist>
                         <listitem>
                             <para>PushButtons: the default value for "Relief" property is

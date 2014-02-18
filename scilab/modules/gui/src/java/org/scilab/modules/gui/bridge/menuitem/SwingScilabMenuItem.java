@@ -21,6 +21,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JMenuItem;
 import javax.swing.UIManager;
+import javax.swing.border.Border;
 
 import org.scilab.modules.commons.utils.StringBlockingResult;
 import org.scilab.modules.console.utils.ScilabSpecialTextUtilities;
@@ -58,6 +59,8 @@ public class SwingScilabMenuItem extends JMenuItem implements SwingViewObject, S
     private boolean checkedState;
     private boolean autoCheckedMode = true;
     private String text = "";
+
+    private Border defaultBorder = null;
 
     private Integer uid;
 
@@ -236,7 +239,10 @@ public class SwingScilabMenuItem extends JMenuItem implements SwingViewObject, S
      * @param reliefType the type of the relief to set (See ScilabRelief.java)
      */
     public void setRelief(String reliefType) {
-        setBorder(ScilabRelief.getBorderFromRelief(reliefType));
+        if (defaultBorder == null) {
+            defaultBorder = getBorder();
+        }
+        setBorder(ScilabRelief.getBorderFromRelief(reliefType, defaultBorder));
     }
 
     /**

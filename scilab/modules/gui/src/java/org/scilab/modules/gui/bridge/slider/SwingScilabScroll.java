@@ -25,6 +25,7 @@ import java.awt.event.AdjustmentListener;
 
 import javax.swing.JScrollBar;
 import javax.swing.UIManager;
+import javax.swing.border.Border;
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.gui.SwingViewObject;
@@ -59,6 +60,8 @@ public class SwingScilabScroll extends JScrollBar implements SwingViewObject, Si
     private CommonCallBack callback;
 
     private AdjustmentListener adjustmentListener;
+
+    private Border defaultBorder = null;
 
     /**
      * Constructor
@@ -231,9 +234,10 @@ public class SwingScilabScroll extends JScrollBar implements SwingViewObject, Si
      * @param reliefType the type of the relief to set (See ScilabRelief.java)
      */
     public void setRelief(String reliefType) {
-        if (reliefType.equals("") == false) {
-            setBorder(ScilabRelief.getBorderFromRelief(reliefType));
+        if (defaultBorder == null) {
+            defaultBorder = getBorder();
         }
+        setBorder(ScilabRelief.getBorderFromRelief(reliefType, defaultBorder));
     }
 
     /**

@@ -19,6 +19,7 @@ import java.awt.MouseInfo;
 
 import javax.swing.JPopupMenu;
 import javax.swing.UIManager;
+import javax.swing.border.Border;
 import javax.swing.event.PopupMenuEvent;
 import javax.swing.event.PopupMenuListener;
 
@@ -51,6 +52,8 @@ public class SwingScilabContextMenu extends JPopupMenu implements SwingViewObjec
     private Integer uid;
 
     private boolean checkedState;
+
+    private Border defaultBorder = null;
 
     /**
      * Constructor
@@ -233,7 +236,10 @@ public class SwingScilabContextMenu extends JPopupMenu implements SwingViewObjec
      * @param reliefType the type of the relief to set (See ScilabRelief.java)
      */
     public void setRelief(String reliefType) {
-        setBorder(ScilabRelief.getBorderFromRelief(reliefType));
+        if (defaultBorder == null) {
+            defaultBorder = getBorder();
+        }
+        setBorder(ScilabRelief.getBorderFromRelief(reliefType, defaultBorder));
     }
 
     /**

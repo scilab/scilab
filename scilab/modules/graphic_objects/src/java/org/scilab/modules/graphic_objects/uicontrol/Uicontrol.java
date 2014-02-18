@@ -261,7 +261,7 @@ public class Uicontrol extends GraphicObject {
         }
     }
 
-    protected static final String RELIEF_NONE   = "";
+    protected static final String RELIEF_DEFAULT   = "default";
     protected static final String RELIEF_FLAT   = "flat";
     protected static final String RELIEF_RAISED = "raised";
     protected static final String RELIEF_SUNKEN = "sunken";
@@ -299,7 +299,7 @@ public class Uicontrol extends GraphicObject {
     private double max = 1.0;
     private double min;
     private Double[] position = {DEFAULT_X, DEFAULT_Y, DEFAULT_WIDTH, DEFAULT_HEIGHT};
-    private String relief = RELIEF_NONE;
+    private String relief = RELIEF_DEFAULT;
     private Double[] sliderStep = {0.01, 0.1};
     private String[] string = {""};
     private int stringColNb = 1; // Used for tables

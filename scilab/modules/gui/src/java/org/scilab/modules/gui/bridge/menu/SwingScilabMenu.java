@@ -20,6 +20,7 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JMenu;
 import javax.swing.UIManager;
+import javax.swing.border.Border;
 
 import org.scilab.modules.console.utils.ScilabSpecialTextUtilities;
 import org.scilab.modules.gui.SwingViewMenu;
@@ -54,6 +55,7 @@ public class SwingScilabMenu extends JMenu implements SwingViewObject, SimpleMen
     private MouseListener customedMouseListener;
     private boolean checkedState;
     private String text = "";
+    private Border defaultBorder = null;
 
     private Integer uid;
 
@@ -372,7 +374,10 @@ public class SwingScilabMenu extends JMenu implements SwingViewObject, SimpleMen
      * @param reliefType the type of the relief to set (See ScilabRelief.java)
      */
     public void setRelief(String reliefType) {
-        setBorder(ScilabRelief.getBorderFromRelief(reliefType));
+        if (defaultBorder == null) {
+            defaultBorder = getBorder();
+        }
+        setBorder(ScilabRelief.getBorderFromRelief(reliefType, defaultBorder));
     }
 
     /**

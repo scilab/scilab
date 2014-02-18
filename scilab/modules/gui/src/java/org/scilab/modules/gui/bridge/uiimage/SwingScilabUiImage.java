@@ -22,6 +22,7 @@ import java.awt.image.BufferedImage;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.UIManager;
+import javax.swing.border.Border;
 
 import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.SwingViewWidget;
@@ -57,6 +58,8 @@ public class SwingScilabUiImage extends JLabel implements SwingViewObject, Simpl
     private double[] scale;
     private double[] shear;
     private double angle;
+
+    private Border defaultBorder = null;
 
     /**
      * Constructor
@@ -182,7 +185,10 @@ public class SwingScilabUiImage extends JLabel implements SwingViewObject, Simpl
      * @param reliefType the type of the relief to set (See ScilabRelief.java)
      */
     public void setRelief(String reliefType) {
-        setBorder(ScilabRelief.getBorderFromRelief(reliefType));
+        if (defaultBorder == null) {
+            defaultBorder = getBorder();
+        }
+        setBorder(ScilabRelief.getBorderFromRelief(reliefType, defaultBorder));
     }
 
     /**

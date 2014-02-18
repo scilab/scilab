@@ -29,6 +29,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.UIManager;
+import javax.swing.border.Border;
 
 import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.console.utils.ScilabSpecialTextUtilities;
@@ -62,6 +63,8 @@ public class SwingScilabPushButton extends JButton implements SwingViewObject, S
     private String text = "";
     private boolean isLaTeX;
     private int fontSize;
+
+    private Border defaultBorder = null;
 
     /**
      * Constructor
@@ -260,9 +263,10 @@ public class SwingScilabPushButton extends JButton implements SwingViewObject, S
      * @param reliefType the type of the relief to set (See ScilabRelief.java)
      */
     public void setRelief(String reliefType) {
-        if (reliefType.equals("") == false) {
-            setBorder(ScilabRelief.getBorderFromRelief(reliefType));
+        if (defaultBorder == null) {
+            defaultBorder = getBorder();
         }
+        setBorder(ScilabRelief.getBorderFromRelief(reliefType, defaultBorder));
     }
 
     /**
