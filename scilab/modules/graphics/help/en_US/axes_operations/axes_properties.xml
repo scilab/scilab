@@ -269,13 +269,15 @@
                                                 is a text vector containing the labels to be displayed in front of each related graduation. As for Locations of ticks, Labels can be addressed with (e.g. along y) <literal>Haxes.y_ticks.labels = Labels</literal> or <literal>Haxes.y_ticks.labels(j) = newLabelJ</literal>
                                             </listitem>
                                         </varlistentry>
-                                        <warning>
-                                            For an axis, <literal>Locations</literal> and <literal>Labels</literal> vectors must have the same number of components.
-                                        </warning>
-                                        <warning>
-                                            When the number of ticks must be changed, their positions AND labels must be changed at once, in order to avoid any mismatch: The syntax (e.g. along x) <literal>Haxes.x_ticks = tlist(["ticks" "locations", "labels"], newLocations, newLabels)</literal> must then be used.
-                                        </warning>
                                     </variablelist>
+                                    <warning>
+                                        <para>
+                                            For an axis, <literal>Locations</literal> and <literal>Labels</literal> vectors must have the same number of components.
+                                        </para>
+                                        <para>
+                                            When the number of ticks must be changed, their positions AND labels must be changed at once, in order to avoid any mismatch: The syntax (e.g. along x) <literal>Haxes.x_ticks = tlist(["ticks" "locations", "labels"], newLocations, newLabels)</literal> must then be used.
+                                        </para>
+                                    </warning>
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -484,7 +486,7 @@
                             <term>auto_margins: </term>
                             <listitem>
                                 <para>A property to allow the automatic computation of the margins accordint to their contents.
-				If value is <literal>"on"</literal>, then the automatic computation is activated.
+                                    If value is <literal>"on"</literal>, then the automatic computation is activated.
                                 </para>
                             </listitem>
                         </varlistentry>

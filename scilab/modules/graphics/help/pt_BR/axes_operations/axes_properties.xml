@@ -249,74 +249,58 @@
                             </listitem>
                         </varlistentry>
                         <varlistentry>
-                            <term>x_ticks.locations:</term>
+                            <term>x_ticks, y_ticks, z_ticks: </term>
                             <listitem>
-                                <para>um vetor de reais contendo a localização das graduações
-                                    sobre o eixo x. Esta propriedade pode ser editada
-                                    especificando-se um novo vetor de reais (de mesmo tamanho).
-                                    Para especificar graduações maiores ou menores, pode-se agir
-                                    no tlist <literal>x_ticks</literal> definindo também um vetor
-                                    de strings <literal>x_ticks.labels</literal>.
+                                <para>Cada uma dessas propriedades é um tlist do tipo "ticks" com dois campos chamados "locations" e "labels":
+                                    tlist <literal> (["ticks" "locations", "labels"], Locations, Labels)</literal>, onde
+                                    <variablelist>
+                                        <varlistentry>
+                                            <term>Locations</term>
+                                            <listitem>
+                                                é um vetor de reais contendo os locais de grandes formaturas junto e de acordo com a escala de dados dos dados x ou eixo y ou z.
+                                                Quando o número de grandes formaturas não tem que ser mudado, a sua localização pode ser definida ou alterada através
+                                                a sintaxe (por exemplo, ao longo de x) <literal>Haxes.x_ticks.locations = Locations</literal>, onde
+                                                <literal>Haxes = gca ();</literal> e <literal>Locations</literal> é o vetor completo de posições atualizados formaturas.
+                                                Para alterar apenas a localização om, basta usar: <literal>Haxes.x_ticks.locations(i) = newLoc</literal>
+                                            </listitem>
+                                        </varlistentry>
+                                        <varlistentry>
+                                            <term>Labels</term>
+                                            <listitem>
+                                                é um vetor de textos contendo as etiquetas a serem exibidos na frente de cada um dos principais graduação relacionados. Quanto aos locais de formaturas, Locations podem ser tratadas com (por exemplo, ao longo de y)
+                                                <literal>Haxes.y_ticks.labels = Labels</literal> ou <literal>Haxes.y_ticks.labels(j) = newLabelJ</literal>
+                                            </listitem>
+                                        </varlistentry>
+                                    </variablelist>
+                                    <warning>
+                                        <para>
+                                            Para um eixo, <literal>Locations</literal> e <literal>Labels</literal> vetores devem ter o mesmo número de componentes.
+                                        </para>
+                                        <para>Quando o número de grandes formaturas deve ser mudado, as suas posições E as etiquetas devem ser alteradas em uma só vez, a fim de
+                                            evitar qualquer incompatibilidade: A sintaxe (por exemplo, ao longo de x) <literal>Haxes.x_ticks = tlist(["ticks" "locations", "labels"],
+                                                newLocations, newLabels)
+                                            </literal>
+                                            deve, então, ser usado.
+                                        </para>
+                                    </warning>
                                 </para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
-                            <term>y_ticks.locations:</term>
+                            <term>x_ticks.locations, y_ticks.locations, z_ticks.locations:</term>
                             <listitem>
-                                <para>um vetor de reais contendo a localização das graduações
-                                    sobre o eixo y. Esta propriedade pode ser editada
-                                    especificando-se um novo vetor de reais (de mesmo tamanho).
-                                    Para especificar graduações maiores ou menores, pode-se agir
-                                    no tlist <literal>y_ticks</literal> definindo também um vetor
-                                    de strings <literal>y_ticks.labels</literal>.
+                                <para>Cada uma destas propriedades é um vector real, com as localizações das graduações nos x relacionados ou eixo y ou z.
+                                    <varname>x_ticks.locations</varname> deve ter o mesmo número de componentes como <varname>x_ticks.labels</varname>.
+                                    Veja <varname>x_ticks</varname> aqui acima para mais detalhes.
                                 </para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
-                            <term>z_ticks.locations:</term>
+                            <term>x_ticks.labels, y_ticks.labels, z_ticks.labels:</term>
                             <listitem>
-                                <para>um vetor de reais contendo a localização das graduações
-                                    sobre o eixo z. Esta propriedade pode ser editada
-                                    especificando-se um novo vetor de reais (de mesmo tamanho).
-                                    Para especificar graduações maiores ou menores, pode-se agir
-                                    no tlist <literal>z_ticks</literal> definindo também um vetor
-                                    de strings <literal>z_ticks.labels</literal>.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>x_ticks.labels:</term>
-                            <listitem>
-                                <para>um vetor de strings contendo rótulos para as graduações
-                                    no eixo x. Esta propriedade pode ser editada especificando-se
-                                    um novo vetor (de mesmo tamanho). Para especificar graduações
-                                    menores ou maiores, pode se agir no tlist
-                                    <literal>x_ticks</literal> definindo também um vetor de reais
-                                    <literal>x_ticks.locations</literal> .
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>y_ticks.labels:</term>
-                            <listitem>
-                                <para>um vetor de strings contendo rótulos para as graduações
-                                    no eixo y. Esta propriedade pode ser editada especificando-se
-                                    um novo vetor (de mesmo tamanho). Para especificar graduações
-                                    menores ou maiores, pode se agir no tlist
-                                    <literal>y_ticks</literal> definindo também um vetor de reais
-                                    <literal>y_ticks.locations</literal> .
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>z_ticks.labels:</term>
-                            <listitem>
-                                <para>um vetor de strings contendo rótulos para as graduações
-                                    no eixo z. Esta propriedade pode ser editada especificando-se
-                                    um novo vetor (de mesmo tamanho). Para especificar graduações
-                                    menores ou maiores, pode se agir no tlist
-                                    <literal>z_ticks</literal> definindo também um vetor de reais
-                                    <literal>z_ticks.locations</literal> .
+                                <para>
+                                    Cada uma destas propriedades é um vector que contém o texto de etiquetas a serem expostos na frente de grandes carrapatos no eixo x relacionada ou y ou z. <varname>x_ticks.labels</varname> deve ter o mesmo número de componentes como <varname>x_ticks.locations</varname>.
+                                    Veja <varname>x_ticks</varname> aqui acima para mais detalhes.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -953,6 +937,12 @@ sda() // de volta aos eixos modelos padrões
         <title>Ver Também </title>
         <simplelist type="inline">
             <member>
+                <link linkend="axis_properties">axis_properties</link>
+            </member>
+            <member>
+                <link linkend="graphics_entities">graphics_entities</link>
+            </member>
+            <member>
                 <link linkend="lines">lines</link>
             </member>
             <member>
@@ -978,9 +968,6 @@ sda() // de volta aos eixos modelos padrões
             </member>
             <member>
                 <link linkend="scf">scf</link>
-            </member>
-            <member>
-                <link linkend="graphics_entities">graphics_entities</link>
             </member>
         </simplelist>
     </refsection>
