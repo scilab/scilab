@@ -158,6 +158,8 @@ public final class FindAction extends DefaultAction implements WindowFocusListen
     private boolean comboReplaceCanceled;
     private boolean comboFindCanceled;
 
+    private Document previousDocument;
+
     /**
      * Constructor
      * @param name the name of the action
@@ -1067,8 +1069,11 @@ public final class FindAction extends DefaultAction implements WindowFocusListen
         wordToFind = (String) comboFind.getEditor().getItem();
 
         String strregexp = SearchManager.generatePattern(wordToFind, caseSensitive, wholeWord, useRegexp).toString();
-        if (!previousRegexp.equals(strregexp)) {
+        if (doc != previousDocument || !previousRegexp.equals(strregexp)) {
             previousRegexp = strregexp;
+            if (doc != previousDocument) {
+                previousDocument = doc;
+            }
             if (onlySelectedLines) {
                 foundOffsets = SearchManager.findWord(doc, wordToFind, startSelectedLines, endSelectedLines, caseSensitive, wholeWord, useRegexp);
             } else {
