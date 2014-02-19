@@ -44,12 +44,7 @@ public final class HelpAction extends DefaultAction {
      * doAction
      */
     public void doAction() {
-        String selection = getEditor().getTextPane().getSelectedText();
-        if (selection == null || selection.equals("")) {
-            InterpreterManagement.requestScilabExec("help('scinotes')");
-        } else {
-            InterpreterManagement.requestScilabExec("help('" + selection + "')");
-        }
+        InterpreterManagement.requestScilabExec("help('scinotes')");
     }
 
     /**
