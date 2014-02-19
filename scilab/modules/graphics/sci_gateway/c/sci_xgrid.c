@@ -68,7 +68,7 @@ int sci_xgrid(char *fname, unsigned long fname_len)
 
         if (mn == 0 || mn > 3)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A real scalar or row expected.\n"), fname, 1);
+            Scierror(999, _("%s: Wrong size for input argument #%d: A real scalar or a row vector expected.\n"), fname, 1);
             return 1;
         }
 
@@ -115,7 +115,7 @@ int sci_xgrid(char *fname, unsigned long fname_len)
 
         if (mn == 0 || mn > 3)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A real scalar or row expected.\n"), fname, 2);
+            Scierror(999, _("%s: Wrong size for input argument #%d: A real scalar or a row vector expected.\n"), fname, 2);
             return 1;
         }
 
@@ -160,7 +160,7 @@ int sci_xgrid(char *fname, unsigned long fname_len)
 
         if (mn == 0 || mn > 3)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A real scalar or row expected.\n"), fname, 3);
+            Scierror(999, _("%s: Wrong size for input argument #%d: A real scalar or a row vector expected.\n"), fname, 3);
             return 1;
         }
 

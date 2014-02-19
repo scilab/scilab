@@ -24,7 +24,7 @@ function demo_plotyyy()
     y1=sin(x/2);
     plot2d(x,y1)
     xtitle([gettext("Plot with 3 different Y scales at shared X");" "],..
-    gettext("Common X axis"),gettext("Scale n°1"));
+    gettext("Common X axis"),gettext("Scale #1"));
 
     // Axis y2
     c=color("blue");
