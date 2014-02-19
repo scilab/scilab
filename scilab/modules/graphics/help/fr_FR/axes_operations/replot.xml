@@ -1,64 +1,132 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * Copyright (C) 2012 - Scilab Enterprises
+ * Copyright (C) 2013 - Samuel GOUGEON
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ -->
+
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="replot">
+    
     <refnamediv>
+        
         <refname>replot</refname>
-        <refpurpose>redessine la fenêtre graphique courante en
-            changeant les bornes
+        
+        <refpurpose>recadre la zone affichée d'un ou plusieurs repères graphiques
+            
         </refpurpose>
+        
     </refnamediv>
+    
     <refsynopsisdiv>
+        
         <title>Séquence d'appel</title>
-        <synopsis>replot(rect)</synopsis>
+        
+        <synopsis>replot(area)</synopsis>
+        
+        <synopsis>replot(area, axesHandles)</synopsis>
+        
     </refsynopsisdiv>
+    
     <refsection>
+        
         <title>Paramètres</title>
+        
         <variablelist>
+            
             <varlistentry>
-                <term>rect</term>
+                
+                <term>area</term>
+                
                 <listitem>
-                    <para>vecteur ligne de taille 4.</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>handle</term>
-                <listitem>
-                    <para>argument optionnel. Handle(s) graphiques de type Axes
-                        définissant le(s) axe(s) auxquels les nouvelles bornes s'appliquent.
+                    
+                    <para>vecteur [xmin ymin xmax ymax] ou [xmin ymin zmin xmax ymax zmax]: nouvelles bornes de la zone à réafficher. 
+                        
+                        Utiliser <literal>%nan</literal> pour conserver une borne telle quelle.
                     </para>
+                    
                 </listitem>
+                
             </varlistentry>
+            
+            <varlistentry>
+                
+                <term>axesHandles</term>
+                
+                <listitem>
+                    
+                    <para>Vecteur d'identifiants graphiques de type Axes: repères graphiques à retailler. Par défaut, le repère graphique actif de la fenêtre graphique active est considéré.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
         </variablelist>
+        
     </refsection>
+    
     <refsection>
+        
         <title>Description</title>
+        
         <para>
-            <literal>replot</literal> est utilisée pour redessiner la fenêtre graphique
-            courante en changeant les bornes, données sous la forme
-            <literal>rect=[xmin,ymin,xmax,ymax]</literal>. En ancien mode graphique,
-            fonctionne uniquement avec le pilote <literal>"Rec"</literal>.
+            
+            <literal>replot</literal> est utilisée pour recadrer les repères graphiques spécifiés par <literal>axesHandles</literal> 
+            
+            (ou par défaut le repère graphique actif de la fenêtre graphique active) en changeant leurs bornes communes spécifiées sous la forme
+            
+            <literal>rect = [xmin,ymin, xmax,ymax]</literal> ou <literal>rect = [xmin,ymin,zmin, xmax,ymax,zmax]</literal>.
+            
         </para>
-        <para>En mode graphique, cette transformation s'applique aux axes
-            spécifiés par <literal>handle</literal> Si <literal>handle</literal> n'est pas
-            renseigné, la transformation s'applique à  l'axe courant de la figure
-            courante. La transformation change les valeurs <literal>data_bounds</literal>
-            des axes. A noter que la propriété <literal>tight_limits</literal> de l'axe doit
-            être mise à  <literal>"on"</literal> pour selectionner strictement ces bornes
-            (voir <link linkend="axes_properties">axes_properties</link>).<literal/>
+        
+        <para>
+            <varname>replot</varname> modifie les valeurs <literal>data_bounds</literal> des repères. 
+            
+            <note>
+                La propriété <literal>tight_limits</literal> des repères doit
+                
+                être mise à  <literal>"on"</literal> pour sélectionner strictement ces bornes
+                
+                (voir <link linkend="axes_properties">axes_properties</link>).
+                
+            </note>
+            
         </para>
+        
     </refsection>
+    
     <refsection>
+        
         <title>Exemples</title>
+        
         <programlisting role="example"><![CDATA[ 
       // Premier exemple
       x=[0:0.1:2*%pi]';
       plot2d(x,sin(x))
       replot([-1,-1,10,2])
  ]]></programlisting>
+        
         <scilab:image>
+            
             x=[0:0.1:2*%pi]';
+            
             plot2d(x,sin(x))
+            
             replot([-1,-1,10,2])
+            
         </scilab:image>
+        
+        
         
         <programlisting role="example"><![CDATA[ 
 // second exemple
@@ -68,21 +136,137 @@ f=gcf();
 replot([-1,-1,10,2],f.children(1)) // specify axes handle's value
 replot([-3,-2,8,4],f.children(2)) 
  ]]></programlisting>
+        
         <scilab:image>
+            
             xdel(winsid());
+            
             plot()
+            
             f2=gcf();
+            
             replot([-1,-1,10,2],f2.children(1))
+            
             replot([-3,-2,8,4],f2.children(2))
+            
         </scilab:image>
         
+        <programlisting role="example"><![CDATA[
+// Les bornes signalées par la valeur %nan ne sont pas modifiées :
+x = linspace(0,360,200).';
+clf
+plot2d(x,[sind(x) tand(x)])
+ax = gca();
+ax.data_bounds				// bornes initiales
+replot([%nan,-10,%nan,10])	// Seules Ymin and Ymax sont modifiées
+ax.data_bounds				// nouvelles bornes
+
+// En 3D, les bornes en Z peuvent également être modifiées :
+clf
+x = linspace(-4,4,100);
+X = meshgrid(x);
+R = (X-0.5).^2 + (X.'+0.7).^2;
+Z = sinc(R);
+surf(x-0.5,x+0.7,Z)
+f = gcf();
+f.color_map = autumncolormap(100);
+ax = gca();
+ax.data_bounds
+sleep(3000)
+replot([-5 0 -0.4 0 5 0.5])
+ax.data_bounds
+
+// Plusieurs repères graphiques peuvent être simultanément recadrés :
+clf
+x = linspace(-%pi,%pi,400);
+subplot(2,2,1)
+plot2d(x,sin(1 ./sqrt(abs(x))))
+ax1 = gca();
+subplot(2,2,2)
+plot2d(x,sinh(sqrt(abs(x))))
+subplot(2,1,2)
+plot2d(x,cos(1 ./sqrt(abs(x))))
+ax2 = gca();
+sleep(4000)
+f = gcf();
+replot([-1 %nan 1.5 %nan], [ax1 ax2])
+      ]]></programlisting>
+        
+        
+        
     </refsection>
+    
     <refsection role="see also">
+        
         <title>Voir aussi</title>
+        
         <simplelist type="inline">
+            
             <member>
-                <link linkend="clf">clf</link>
+                
+                <link linkend="zoom_rect">zoom_rect</link>
+                
             </member>
+            
+            <member>
+                
+                <link linkend="rubberbox">rubberbox</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="axes_properties">axes_properties</link>
+                
+            </member>
+            
         </simplelist>
+        
     </refsection>
+    
+    <refsection>
+        
+        <title>Historique</title>
+        
+        <revhistory>
+            
+            <revision>
+                
+                <revnumber>5.5.0</revnumber>
+                
+                <revdescription>
+                    
+                    <itemizedlist>
+                        
+                        <listitem>
+                            
+                            <para>Extension en 3D</para>
+                            
+                        </listitem>
+                        
+                        <listitem>
+                            
+                            <para>Plusieurs repères graphiques peuvent être désormais redimensionnés simultanément</para>
+                            
+                        </listitem>
+                        
+                        <listitem>
+                            
+                            <para>
+                                <literal>%nan</literal> peut être utilisé pour spécifier une borne inchangée.
+                            </para>
+                            
+                        </listitem>
+                        
+                    </itemizedlist>
+                    
+                </revdescription>
+                
+            </revision>
+            
+        </revhistory>
+        
+    </refsection>
+    
 </refentry>
+
