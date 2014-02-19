@@ -12,7 +12,9 @@
 
 package org.scilab.modules.gui.utils;
 
+import java.awt.Component;
 import java.awt.GraphicsEnvironment;
+import java.awt.KeyboardFocusManager;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -696,9 +698,17 @@ public class ClosingOperationsManager {
             };
 
             if (question != null) {
+                final Component focused = KeyboardFocusManager.getCurrentKeyboardFocusManager().getFocusOwner();
                 if (ScilabModalDialog.show(window, new String[] { question }, EXIT, IconType.WARNING_ICON, ButtonType.YES_NO, DONT_SHOW, action) == AnswerOption.NO_OPTION) {
                     if (checked[0]) {
                         XConfiguration.set(XConfiguration.getXConfigurationDocument(), CONFIRMATION_PATH + "/@state", "unchecked");
+                    }
+                    if (focused != null) {
+                        SwingUtilities.invokeLater(new Runnable() {
+                            public void run() {
+                                focused.requestFocus();
+                            }
+                        });
                     }
                     return false;
                 }
