@@ -138,7 +138,7 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
 
         //Title for preview panel
         TitledBorder titlePreview;
-        titlePreview = BorderFactory.createTitledBorder(Messages.gettext("Preview"));
+        titlePreview = BorderFactory.createTitledBorder(Messages.gettext("Preview selected image file"));
         panelPreview.setBorder(titlePreview);
 
         //add preview image
