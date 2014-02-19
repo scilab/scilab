@@ -166,6 +166,8 @@ Scilab Bug Fixes
 
 * Bug #7986 fixed - spec gateway remaned from sci_eig.c to sci_spec.c.
 
+* Bug #7999 fixed - SwingScilabFileChooser.getFilterIndex() was unusable.
+
 * Bug #8031 fixed - cdfgam error message fixed.
 
 * Bug #8060 fixed - Display of a list improved in the variable browser.

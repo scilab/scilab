@@ -4862,15 +4862,6 @@ public class ScilabBridge {
     }
 
     /**
-     * Get the filter index
-     * @param fileChooser the file chooser we want to get the filter indexs
-     * @return the filter index
-     */
-    public static int getFilterIndex(FileChooser fileChooser) {
-        return ScilabFileChooserBridge.getFilterIndex(fileChooser);
-    }
-
-    /**
      * Set the dialog type (save or open a file ?)
      * @param fileChooser the file chooser we want to get the filter indexs
      * @param dialogType the dialog type
