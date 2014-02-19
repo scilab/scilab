@@ -256,6 +256,8 @@ Scilab Bug Fixes
 
 * Bug #11305 fixed - Performances improved with a better way to update data.
 
+* Bug #11523 fixed - In Scinotes, 'whereami line numbering' was not clear enough.
+
 * Bug #11571 fixed - x_mdialog did not let the Look&Feel select the window size.
 
 * Bug #11575 fixed - There was no preview of GIF files in exportUI dialog.

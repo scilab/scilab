@@ -5,7 +5,7 @@
     </body>
     <display title="_(Display)">
         <body>
-            <scinotes-display highlight-current-line="false" current-line-color="#FACADE" show-line-numbers="true" wrap-lines="true" keywords-colorization="true" highlight-brackets="true" brackets-color="#E40087" brackets-highlightment="Framed" brackets-onmouseover="true" highlight-keywords="true" keywords-color="#FFF3D2" keywords-highlightment="Filled" keywords-onmouseover="true" whereami="false" tab-size="4" tab-representation="chevrons" use-spaces="true" indent-size="4" automatic-indent="true" auto-complete-openers="true" auto-complete-keywords="true" background-color="#FFFFFF" caret-color="#000000"/>
+            <scinotes-display highlight-current-line="false" current-line-color="#FACADE" show-line-numbers="true" wrap-lines="true" keywords-colorization="true" highlight-brackets="true" brackets-color="#E40087" brackets-highlightment="Framed" brackets-onmouseover="true" highlight-keywords="true" keywords-color="#FFF3D2" keywords-highlightment="Filled" keywords-onmouseover="true" whereami="true" tab-size="4" tab-representation="chevrons" use-spaces="true" indent-size="4" automatic-indent="true" auto-complete-openers="true" auto-complete-keywords="true" background-color="#FFFFFF" caret-color="#000000"/>
         </body>
     </display>
     <header title="_(Header)">
