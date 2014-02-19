@@ -62,14 +62,14 @@ int sci_matfile_varwrite(char *fname, unsigned long fname_len)
         getScalarDouble(pvApiCtx, fd_addr, &tmp_dbl);
         if (!isScalar(pvApiCtx, fd_addr))
         {
-            Scierror(999, _("%s: Wrong size for first input argument: Single double expected.\n"), fname);
+            Scierror(999, _("%s: Wrong size for first input argument: An integer value expected.\n"), fname);
             return FALSE;
         }
         fileIndex = (int)tmp_dbl;
     }
     else
     {
-        Scierror(999, _("%s: Wrong type for first input argument: Double expected.\n"), fname);
+        Scierror(999, _("%s: Wrong type for first input argument: An integer value expected.\n"), fname);
         return FALSE;
     }
 
@@ -102,7 +102,7 @@ int sci_matfile_varwrite(char *fname, unsigned long fname_len)
         }
         if (nbCol != 1)
         {
-            Scierror(999, _("%s: Wrong size for second input argument: Single string expected.\n"), fname);
+            Scierror(999, _("%s: Wrong size for second input argument: A string expected.\n"), fname);
 
             freeAllocatedSingleString(varname);
 
@@ -111,7 +111,7 @@ int sci_matfile_varwrite(char *fname, unsigned long fname_len)
     }
     else
     {
-        Scierror(999, _("%s: Wrong type for second input argument: Single string expected.\n"), fname);
+        Scierror(999, _("%s: Wrong type for second input argument: A string expected.\n"), fname);
 
         freeAllocatedSingleString(varname);
 
@@ -142,7 +142,7 @@ int sci_matfile_varwrite(char *fname, unsigned long fname_len)
         getScalarBoolean(pvApiCtx, cp_flag_addr, &compressionFlag);
         if (!isScalar(pvApiCtx, cp_flag_addr))
         {
-            Scierror(999, _("%s: Wrong size for fourth input argument: Single boolean expected.\n"), fname);
+            Scierror(999, _("%s: Wrong size for fourth input argument: A boolean expected.\n"), fname);
 
             freeAllocatedSingleString(varname);
 
@@ -151,7 +151,7 @@ int sci_matfile_varwrite(char *fname, unsigned long fname_len)
     }
     else
     {
-        Scierror(999, _("%s: Wrong type for fourth input argument: Single boolean expected.\n"), fname);
+        Scierror(999, _("%s: Wrong type for fourth input argument: A boolean expected.\n"), fname);
 
         freeAllocatedSingleString(varname);
 

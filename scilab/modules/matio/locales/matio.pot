@@ -14,12 +14,11 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2014-02-10 16:24+0100\n"
+"Revision-Date: 2014-02-19 14:30+0100\n"
 
 # File: sci_gateway/c/sci_matfile_close.c, line: 63
 # File: sci_gateway/c/sci_matfile_listvar.c, line: 62
 # File: sci_gateway/c/sci_matfile_varreadnext.c, line: 61
-# File: sci_gateway/c/sci_matfile_varwrite.c, line: 65
 #, c-format
 msgid "%s: Wrong size for first input argument: Single double expected.\n"
 msgstr ""
@@ -28,7 +27,6 @@ msgstr ""
 # File: sci_gateway/c/sci_matfile_close.c, line: 70
 # File: sci_gateway/c/sci_matfile_listvar.c, line: 69
 # File: sci_gateway/c/sci_matfile_varreadnext.c, line: 68
-# File: sci_gateway/c/sci_matfile_varwrite.c, line: 72
 #, c-format
 msgid "%s: Wrong type for first input argument: Double expected.\n"
 msgstr ""
@@ -116,20 +114,20 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_matfile_open.c, line: 67
 #, c-format
-msgid "%s: Wrong size for first input argument: Single string expected.\n"
+msgid "%s: Wrong size for first input argument: A string expected.\n"
 msgstr ""
 
 #
 # File: sci_gateway/c/sci_matfile_open.c, line: 74
 #, c-format
-msgid "%s: Wrong type for first input argument: Single string expected.\n"
+msgid "%s: Wrong type for first input argument: A string expected.\n"
 msgstr ""
 
 #
 # File: sci_gateway/c/sci_matfile_open.c, line: 107
 # File: sci_gateway/c/sci_matfile_varwrite.c, line: 105
 #, c-format
-msgid "%s: Wrong size for second input argument: Single string expected.\n"
+msgid "%s: Wrong size for second input argument: A string expected.\n"
 msgstr ""
 
 #
@@ -142,13 +140,13 @@ msgstr ""
 # File: sci_gateway/c/sci_matfile_open.c, line: 133
 # File: sci_gateway/c/sci_matfile_varwrite.c, line: 114
 #, c-format
-msgid "%s: Wrong type for second input argument: Single string expected.\n"
+msgid "%s: Wrong type for second input argument: A string expected.\n"
 msgstr ""
 
 #
 # File: sci_gateway/c/sci_matfile_open.c, line: 173
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
 
 #
@@ -158,15 +156,27 @@ msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
 
 #
+# File: sci_gateway/c/sci_matfile_varwrite.c, line: 65
+#, c-format
+msgid "%s: Wrong size for first input argument: An integer value expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_matfile_varwrite.c, line: 72
+#, c-format
+msgid "%s: Wrong type for first input argument: An integer value expected.\n"
+msgstr ""
+
+#
 # File: sci_gateway/c/sci_matfile_varwrite.c, line: 145
 #, c-format
-msgid "%s: Wrong size for fourth input argument: Single boolean expected.\n"
+msgid "%s: Wrong size for fourth input argument: A boolean expected.\n"
 msgstr ""
 
 #
 # File: sci_gateway/c/sci_matfile_varwrite.c, line: 154
 #, c-format
-msgid "%s: Wrong type for fourth input argument: Single boolean expected.\n"
+msgid "%s: Wrong type for fourth input argument: A boolean expected.\n"
 msgstr ""
 
 #
