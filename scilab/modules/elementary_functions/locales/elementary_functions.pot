@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2014-02-10 16:23+0100\n"
+"Revision-Date: 2014-02-19 14:44+0100\n"
 
 # File: sci_gateway/c/sci_base2dec.c, line: 41
 # File: sci_gateway/c/sci_base2dec.c, line: 54
@@ -261,12 +261,12 @@ msgstr ""
 
 #
 # File: macros/%_unwrap.sci, line: 20
-msgid "unwrap() & unfold: 1D examples "
+msgid ": 1-D examples "
 msgstr ""
 
 #
 # File: macros/%_unwrap.sci, line: 100
-msgid "unwrap(): 2D examples"
+msgid ": 2-D examples"
 msgstr ""
 
 #
@@ -413,7 +413,6 @@ msgstr ""
 # File: macros/factor.sci, line: 25
 # File: macros/factorial.sci, line: 19
 # File: macros/fix.sci, line: 18
-# File: macros/flipdim.sci, line: 26
 # File: macros/hex2dec.sci, line: 29
 # File: macros/ind2sub.sci, line: 23
 # File: macros/intersect.sci, line: 16
@@ -775,15 +774,38 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/flipdim.sci, line: 31
+# File: macros/flipdim.sci, line: 27
+# File: macros/resize_matrix.sci, line: 91
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
+
+#
+# File: macros/flipdim.sci, line: 32
+# File: macros/flipdim.sci, line: 40
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A positive integer expected.\n"
 msgstr ""
 
 #
-# File: macros/flipdim.sci, line: 34
+# File: macros/flipdim.sci, line: 35
+# File: macros/flipdim.sci, line: 43
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A positive integer expected.\n"
+msgstr ""
+
+#
+# File: macros/flipdim.sci, line: 46
+#, c-format
+msgid "%s: Cannot flip hypermatrix blockwise. %d input arguments expected.\n"
+msgstr ""
+
+#
+# File: macros/flipdim.sci, line: 67
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A divisor of the selected dimension "
+"size expected.\n"
 msgstr ""
 
 #
@@ -1085,12 +1107,6 @@ msgstr ""
 #
 # File: macros/resize_matrix.sci, line: 72
 msgid "Hypermatrices of character strings can't be converted.\n"
-msgstr ""
-
-#
-# File: macros/resize_matrix.sci, line: 91
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr ""
 
 #

@@ -12,17 +12,17 @@ function %_unwrap(typexample)
         typexample = ""
     end
     if convstr(typexample)~="2d" then
-        // 1D EXAMPLES
+        // 1-D EXAMPLES
         // -----------
         f = scf();
         f.figure_size = [800 1000];
         f.figure_position(2) = 0;
-        f.figure_name = _("unwrap() & ""unfold"": 1D examples ");
+        f.figure_name = "unwrap() & ""unfold""" + _(": 1-D examples ");
         ax = gda();
         ax.y_label.font_size=2;
         drawlater()
 
-        // Original 1D profile
+        // Original 1-D profile
         t = linspace(-4,4.2,800);
         alpha = t.^2 + t -1;
         subplot(5,2,1)
@@ -97,7 +97,7 @@ function %_unwrap(typexample)
         f.color_map = hotcolormap(100);
         f.figure_size = [475 1050];
         f.figure_position(2) = 0;
-        f.figure_name = _("unwrap(): 2D examples");
+        f.figure_name = "unwrap()" + _(": 2-D examples");
         drawlater()
 
         nx = 300;
