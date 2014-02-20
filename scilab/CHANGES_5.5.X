@@ -563,6 +563,8 @@ Scilab Bug Fixes
 
 * Bug #13238 fixed - Wrong legends display fixed.
 
+* Bug #13243 fixed - optim with "gc" option failed when imp<0.
+
 
 Xcos
 ====
