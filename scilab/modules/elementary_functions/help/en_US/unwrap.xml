@@ -155,7 +155,7 @@ for i=1:4
         // Wrapping by modulo() + Y-shift
         c = (rand(1,1)-0.5)*4;
         ralpha = pmodulo(alpha, 5) + c;
-        ylabel("$modulo(\alpha,\ 5)"+sprintf("%+5.2f",c)+"$")
+        ylabel("$modulo(\alpha,\ 5)"+msprintf("%+5.2f",c)+"$")
         [u, K] = unwrap(ralpha, 0);
         t2 = "$\text{unwrap(Y, 0)}$";
     elseif i==3
