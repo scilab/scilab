@@ -604,6 +604,8 @@ Xcos
 
 * Bug #13239 fixed - Grid was not shown in zoomed log scale.
 
+* Bug #13250 fixed - CLSS wrongly handled scalar values.
+
 
                  Changes between version 5.4.1 and 5.5.0-beta-1
                  ==============================================
