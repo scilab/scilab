@@ -64,12 +64,6 @@ int SetUicontrolString(void* _pvCtx, int iObjUID, void* _pvData, int valueType, 
         }
         case __GO_UI_TABLE__ :
         {
-            // Value must be only one string
-            if (nbCol * nbRow > 1)
-            {
-                Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: A string expected.\n")), "String");
-                return SET_PROPERTY_ERROR;
-            }
             break;
         }
         case __GO_UI_LISTBOX__ :
@@ -100,6 +94,17 @@ int SetUicontrolString(void* _pvCtx, int iObjUID, void* _pvData, int valueType, 
 
             //    return SET_PROPERTY_SUCCEED;
             //}
+            break;
+        }
+        default:
+        {
+            // Value must be only one string
+            if (nbCol * nbRow > 1)
+            {
+                Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: A string expected.\n")), "String");
+                return SET_PROPERTY_ERROR;
+            }
+            break;
         }
     }
 
