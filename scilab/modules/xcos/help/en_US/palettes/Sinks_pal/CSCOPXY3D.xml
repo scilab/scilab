@@ -98,7 +98,9 @@
     <refsection id="Description_CSCOPXY3D">
         <title>Description</title>
         <para>
-            This block realizes the visualization of the evolution of the three regular inputs signals by drawing the third input as a function of the two others at instants of events on the event input port. When a point is drawn on screen it stays until the simulation is finished.
+            This block realizes the visualization of the evolution of the three regular inputs signals
+            by drawing the third input as a function of the two others at instants of events on the event input port.
+            When a point is drawn on screen it stays until the simulation is finished.
         </para>
         <para>
         </para>

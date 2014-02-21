@@ -14,7 +14,7 @@
    width="40"
    version="1.1"
    inkscape:version="0.48.3.1 r9886"
-   sodipodi:docname="CSCOPXY.svg">
+   sodipodi:docname="CSCOPXY3D.svg">
   <metadata
      id="metadata17">
     <rdf:RDF>
@@ -42,8 +42,8 @@
      inkscape:zoom="5.9"
      inkscape:cx="20"
      inkscape:cy="20"
-     inkscape:window-x="524"
-     inkscape:window-y="263"
+     inkscape:window-x="978"
+     inkscape:window-y="267"
      inkscape:window-maximized="0"
      inkscape:current-layer="svg2873" />
   <defs
@@ -137,14 +137,26 @@
        y="11.432591">x</tspan></text>
   <text
      xml:space="preserve"
-     style="font-size:10.85655975px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-     x="1.9081794"
-     y="39.433331"
+     style="font-size:12.30455589px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+     x="1.5335083"
+     y="24.0536"
      id="text3002-1"
      sodipodi:linespacing="125%"
-     transform="scale(1.1816932,0.84624335)"><tspan
+     transform="scale(1.1202757,0.8926374)"><tspan
        sodipodi:role="line"
        id="tspan3004-1"
-       x="1.9081794"
-       y="39.433331">y</tspan></text>
+       x="1.5335083"
+       y="24.0536">y</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:14.16885567px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+     x="1.793227"
+     y="38.364738"
+     id="text3002-1-6"
+     sodipodi:linespacing="125%"
+     transform="scale(1.0978146,0.91090062)"><tspan
+       sodipodi:role="line"
+       id="tspan3004-1-7"
+       x="1.793227"
+       y="38.364738">z</tspan></text>
 </svg>
