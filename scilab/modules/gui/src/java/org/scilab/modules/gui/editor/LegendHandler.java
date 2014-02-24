@@ -90,7 +90,7 @@ public class LegendHandler {
         links.add(polyline);
         String[] textToSet = new String[texts.size()];
         texts.toArray(textToSet);
-        String[] linksToSet = new String[links.size()];
+        Integer[] linksToSet = new Integer[links.size()];
         links.toArray(linksToSet);
         dimension[0] = linksToSet.length;
         dimension[1] = 1;
@@ -140,7 +140,7 @@ public class LegendHandler {
         }
         String[] textToSet = new String[texts.size()];
         texts.toArray(textToSet);
-        String[] linksToSet = new String[links.size()];
+        Integer[] linksToSet = new Integer[links.size()];
         links.toArray(linksToSet);
         dimension[0] = linksToSet.length;
         dimension[1] = 1;
