@@ -22,7 +22,7 @@ a.view = "3d";
 xstring(-1,-1,alphabet);
 e = gce();
 // very large font size
-e.font_size = 130;
+e.font_size = 100;
 // rotate
 for i=1:360,
   a.rotation_angles(2) = i;
