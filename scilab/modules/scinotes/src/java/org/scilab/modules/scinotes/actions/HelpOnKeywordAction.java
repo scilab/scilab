@@ -74,7 +74,7 @@ public class HelpOnKeywordAction extends DefaultAction {
      * @return MenuItem
      */
     public static MenuItem createMenu(String label, final SciNotes editor, KeyStroke key) {
-        StringTokenizer token = new StringTokenizer(label, ";");
+        StringTokenizer token = new StringTokenizer(label, ";\uff1b");
         final String label1 = token.nextToken();
         final String label2 = token.nextToken();
         return createMenu(label1, label2, editor, key, new HelpOnKeywordAction(label1 + SciNotesMessages.DOTS, editor));

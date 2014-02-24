@@ -75,7 +75,7 @@ public final class SplitAction extends DefaultAction {
      * @return createMenu
      */
     public static Menu createMenu(String label, final SciNotes editor, KeyStroke key) {
-        StringTokenizer tokens = new StringTokenizer(label, ";");
+        StringTokenizer tokens = new StringTokenizer(label, ";\uff1b");
         String labelSplitView = tokens.nextToken();
         String labelOff = tokens.nextToken();
         String labelH = tokens.nextToken();

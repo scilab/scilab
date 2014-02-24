@@ -278,6 +278,8 @@ Scilab Bug Fixes
 
 * Bug #11996 fixed - eye extended to hypermatrix.
 
+* Bug #12037 fixed - Simplified Chinese version of SciNotes displayed warnings at startup.
+
 * Bug #12073 fixed - Width of code examples has been decreased in XML help pages.
 
 * Bug #12082 fixed - convstr function did not work with non-ASCII symbols.

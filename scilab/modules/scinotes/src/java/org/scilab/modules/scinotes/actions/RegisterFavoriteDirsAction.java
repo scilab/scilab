@@ -58,7 +58,7 @@ public final class RegisterFavoriteDirsAction extends DefaultAction {
      * @return the menu
      */
     public static Object createMenu(String label, final SciNotes editor, KeyStroke key) {
-        StringTokenizer token = new StringTokenizer(label, ";");
+        StringTokenizer token = new StringTokenizer(label, ";\uff1b");
         String label1 = token.nextToken();
         String label2 = token.nextToken();
         String label3 = token.nextToken();

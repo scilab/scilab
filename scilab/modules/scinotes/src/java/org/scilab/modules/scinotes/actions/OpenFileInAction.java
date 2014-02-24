@@ -87,7 +87,7 @@ public final class OpenFileInAction extends OpenAction {
      * @return PushButton
      */
     public static PushButton createButton(String tooltip, String icon, SciNotes editor) {
-        StringTokenizer token = new StringTokenizer(tooltip, ";");
+        StringTokenizer token = new StringTokenizer(tooltip, ";\uff1b");
         String tt = token.nextToken();
         String path = token.nextToken();
         if (path.equals(SCI)) {

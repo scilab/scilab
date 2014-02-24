@@ -74,7 +74,7 @@ public final class EvaluateSelectionAction extends DefaultAction {
      * @return MenuItem
      */
     public static MenuItem createMenu(String label, final SciNotes editor, KeyStroke key) {
-        StringTokenizer token = new StringTokenizer(label, ";");
+        StringTokenizer token = new StringTokenizer(label, ";\uff1b");
         final String label1 = token.nextToken();
         final String label2 = token.nextToken();
         final MenuItem menuitem = createMenu(label1, null, new EvaluateSelectionAction(label1, editor), key);
