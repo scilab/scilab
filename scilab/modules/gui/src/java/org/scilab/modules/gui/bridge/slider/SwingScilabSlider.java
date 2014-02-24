@@ -449,7 +449,7 @@ public class SwingScilabSlider extends JSlider implements SwingViewObject, Simpl
             }
             case __GO_POSITION__ : {
                 Double[] dblValues = SwingViewWidget.updatePosition(this, uid, value);
-                if (dblValues[0].intValue() > dblValues[1].intValue()) {
+                if (dblValues[2].intValue() > dblValues[3].intValue()) {
                     setHorizontal();
                 } else {
                     setVertical();
