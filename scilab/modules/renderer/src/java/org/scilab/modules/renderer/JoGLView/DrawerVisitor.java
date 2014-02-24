@@ -179,13 +179,6 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         this.colorMapTextureDataProvider = new ColorMapTextureDataProvider();
         this.datatipTextDrawer = new DatatipTextDrawer(canvas.getTextureManager());
 
-        /*
-         * Forces font loading from the main thread. This is done because
-         * if getSciFontManager (thus, font loading) is concurrently accessed from
-         * 2 different threads (the AWT's and the main one), freezing may occur.
-         */
-        FontManager.getSciFontManager();
-
         visitorMap.put(figure.getIdentifier(), this);
     }
 

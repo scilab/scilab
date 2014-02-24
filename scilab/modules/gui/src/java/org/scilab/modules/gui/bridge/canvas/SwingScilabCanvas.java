@@ -40,9 +40,7 @@ import org.scilab.forge.scirenderer.Canvas;
 import org.scilab.forge.scirenderer.implementation.jogl.JoGLCanvas;
 import org.scilab.forge.scirenderer.implementation.jogl.JoGLCanvasFactory;
 import org.scilab.modules.graphic_objects.axes.AxesContainer;
-import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
-import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.bridge.tab.SwingScilabAxes;
 import org.scilab.modules.gui.canvas.SimpleCanvas;
 import org.scilab.modules.gui.events.GlobalEventWatcher;
@@ -77,14 +75,6 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
 
     private Integer id;
 
-    static {
-        try {
-            System.loadLibrary("gluegen2-rt");
-        } catch (Exception e) {
-            System.err.println(e);
-        }
-    }
-
     public SwingScilabCanvas(final AxesContainer figure) {
         super(new PanelLayout());
         this.figure = figure;
@@ -108,7 +98,7 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
                 SwingScilabCanvas.this.requestFocus();
             }
         });
-        
+
         drawerVisitor = new DrawerVisitor(drawableComponent, rendererCanvas, figure);
         rendererCanvas.setMainDrawer(drawerVisitor);
         drawableComponent.addMouseListener(new MouseAdapter() {
@@ -397,7 +387,7 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
     }
 
     public void setId(Integer id) {
-       this.id = id;
+        this.id = id;
     }
 
     public Integer getId() {

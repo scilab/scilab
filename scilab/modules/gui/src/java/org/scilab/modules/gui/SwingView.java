@@ -83,6 +83,10 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
+import javax.media.opengl.GL;
+import javax.media.opengl.GLCapabilities;
+import javax.media.opengl.GLProfile;
+import javax.media.opengl.awt.GLCanvas;
 import javax.swing.JComponent;
 import javax.swing.JSeparator;
 import javax.swing.SwingUtilities;
@@ -91,6 +95,7 @@ import org.flexdock.docking.Dockable;
 import org.flexdock.docking.DockingManager;
 import org.flexdock.docking.activation.ActiveDockableTracker;
 import org.scilab.modules.graphic_export.Driver;
+import org.scilab.modules.graphic_objects.DataLoader;
 import org.scilab.modules.graphic_objects.console.Console;
 import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
@@ -135,6 +140,7 @@ import org.scilab.modules.gui.utils.ClosingOperationsManager;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.utils.WindowsConfigurationManager;
 import org.scilab.modules.gui.widget.Widget;
+import org.scilab.modules.renderer.utils.textRendering.FontManager;
 
 /**
  * @author Bruno JOFRET
@@ -147,12 +153,38 @@ public final class SwingView implements GraphicView {
     private static boolean headless;
     private Map<Integer, TypedObject> allObjects;
 
+    static {
+        try {
+            System.loadLibrary("gluegen2-rt");
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+    }
+
     /**
      * Constructor
      */
     private SwingView() {
         GraphicController.getController().register(this);
         allObjects = Collections.synchronizedMap(new HashMap<Integer, TypedObject>());
+
+        try {
+            GLCanvas tmpCanvas = new GLCanvas(new GLCapabilities(GLProfile.getDefault()));
+            tmpCanvas.getContext().makeCurrent();
+            GL gl = tmpCanvas.getGL();
+            DataLoader.setABGRExt(gl.isExtensionAvailable("GL_EXT_abgr") ? 1 : 0);
+            tmpCanvas.getContext().release();
+            tmpCanvas = null;
+
+            /*
+             * Forces font loading from the main thread. This is done because if
+             * getSciFontManager (thus, font loading) is concurrently accessed
+             * from 2 different threads (the AWT's and the main one), freezing
+             * may occur.
+             */
+            FontManager.getSciFontManager();
+        } catch (Exception e) {
+        }
     }
 
     public static void registerSwingView() {
