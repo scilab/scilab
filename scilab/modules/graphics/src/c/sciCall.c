@@ -162,10 +162,13 @@ void Objpoly (double  * x     ,
 
     checkRedrawing();
 
-    MiniMaxi(x, n, rect, rect + 1);
-    MiniMaxi(y, n, rect + 2, rect + 3);
+    if (n)
+    {
+        MiniMaxi(x, n, rect, rect + 1);
+        MiniMaxi(y, n, rect + 2, rect + 3);
 
-    updateXYDataBounds(iSubwinUID, rect);
+        updateXYDataBounds(iSubwinUID, rect);
+    }
 
     if (mark <= 0)
     {
@@ -215,10 +218,13 @@ void Objfpoly (double  * x    ,
 
     checkRedrawing();
 
-    MiniMaxi(x, n, rect, rect + 1);
-    MiniMaxi(y, n, rect + 2, rect + 3);
+    if (n)
+    {
+        MiniMaxi(x, n, rect, rect + 1);
+        MiniMaxi(y, n, rect + 2, rect + 3);
 
-    updateXYDataBounds(iSubwinUID, rect);
+        updateXYDataBounds(iSubwinUID, rect);
+    }
 
     if (shading == 2)
     {
@@ -285,17 +291,20 @@ void Objsegs (int * style,
     checkRedrawing();
     iSubwinUID = getCurrentSubWin();
 
-    MiniMaxi(x, n1, rect, rect + 1);
-    MiniMaxi(y, n1, rect + 2, rect + 3);
+    if (n1)
+    {
+        MiniMaxi(x, n1, rect, rect + 1);
+        MiniMaxi(y, n1, rect + 2, rect + 3);
 
-    if (z)
-    {
-        MiniMaxi(z, n1, rect + 4, rect + 5);
-        updateXYZDataBounds(iSubwinUID, rect);
-    }
-    else
-    {
-        updateXYDataBounds(iSubwinUID, rect);
+        if (z)
+        {
+            MiniMaxi(z, n1, rect + 4, rect + 5);
+            updateXYZDataBounds(iSubwinUID, rect);
+        }
+        else
+        {
+            updateXYDataBounds(iSubwinUID, rect);
+        }
     }
 
     iObjUID = createSegs(iSubwinUID, x, n1, y, n1, z, (z == NULL ? 0 : n1), style, flag == 0 ? 1 : n1, arsize);
