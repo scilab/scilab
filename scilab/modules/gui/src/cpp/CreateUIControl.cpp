@@ -36,6 +36,7 @@ void initStyleMap()
     styleMap["checkbox"] = __GO_UI_CHECKBOX__;
     styleMap["edit"] = __GO_UI_EDIT__;
     styleMap["frame"] = __GO_UI_FRAME__;
+    styleMap["framescrollable"] = __GO_UI_FRAME_SCROLLABLE__;
     styleMap["listbox"] = __GO_UI_LISTBOX__;
     styleMap["image"] = __GO_UI_IMAGE__;
     styleMap["popupmenu"] = __GO_UI_POPUPMENU__;
