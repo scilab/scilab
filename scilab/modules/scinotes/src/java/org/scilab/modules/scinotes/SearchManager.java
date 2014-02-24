@@ -18,6 +18,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FilenameFilter;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -293,8 +294,15 @@ public class SearchManager {
     public static MatchingPositions searchWordInFile(File f, Pattern pat) {
         if (f.exists() && f.canRead()) {
             MatchingPositions pos = new MatchingPositions(f.getAbsolutePath());
+            String charset;
             try {
-                Scanner scanner = new Scanner(f);
+                charset = ScilabEditorKit.tryToGuessEncoding(f).name();
+            } catch (Exception e) {
+                charset = Charset.defaultCharset().name();
+            }
+
+            try {
+                Scanner scanner = new Scanner(f, charset);
                 int occ = 0;
                 int line = 0;
                 while (scanner.hasNextLine()) {
@@ -328,8 +336,15 @@ public class SearchManager {
     public static MatchingPositions searchWordInFileIgnoringCR(File f, Pattern pat) {
         if (f.exists() && f.canRead()) {
             MatchingPositions pos = new MatchingPositions(f.getAbsolutePath());
+            String charset;
             try {
-                Scanner scanner = new Scanner(f);
+                charset = ScilabEditorKit.tryToGuessEncoding(f).name();
+            } catch (Exception e) {
+                charset = Charset.defaultCharset().name();
+            }
+
+            try {
+                Scanner scanner = new Scanner(f, charset);
                 int occ = 0;
                 while (scanner.findWithinHorizon(pat, 0) != null) {
                     occ++;

@@ -370,6 +370,8 @@ Scilab Bug Fixes
 
 * Bug #12951 fixed - Interactive zoom was broken.
 
+* Bug #12952 fixed - It was not always possible to search a word in a file with SciNotes.
+
 * Bug #12956 fixed - splitURL with no protocol in URL provokes an access
                      violation exception.
 
