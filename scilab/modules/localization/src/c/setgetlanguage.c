@@ -72,9 +72,14 @@ BOOL setlanguage(char *lang)
             {
 #endif
                 /* Load the locale from the system */
-#if !defined(_MSC_VER) && !defined(__APPLE__)
+#if !defined(_MSC_VER)
                 //for mbstowcs
                 char *newlang = NULL;
+#ifdef __APPLE__
+                /* Load the user locale from the system */
+                lang = getLocaleUserInfo();
+#endif
+
                 char *ret = setlocale(LC_CTYPE, lang);
                 if (ret == NULL)
                 {
@@ -158,7 +163,7 @@ BOOL setlanguage(char *lang)
                     }
                     else
                     {
-#if !defined(_MSC_VER) && !defined(__APPLE__)
+#if !defined(_MSC_VER)
                         if (newlang)
                         {
                             setenvc("LANG", newlang);
