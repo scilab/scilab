@@ -37,7 +37,7 @@ function ret = createFontBorder(varargin)
         end
 
         if fontweight <> ["normal", "bold"] then
-            error(999, msprintf(_("%s: Wrong value for input argument #%d: %s or %sexpected.\n"), "createBorders", 3, "normal", "bold"));
+            error(999, msprintf(_("%s: Wrong value for input argument #%d: %s or %s expected.\n"), "createBorders", 3, "normal", "bold"));
         end
     end
 
@@ -48,7 +48,7 @@ function ret = createFontBorder(varargin)
         end
 
         if fontangle <> ["normal", "italic"] then
-            error(999, msprintf(_("%s: Wrong value for input argument #%d: %s or %sexpected.\n"), "createBorders", 4, "normal", "italic"));
+            error(999, msprintf(_("%s: Wrong value for input argument #%d: %s or %s expected.\n"), "createBorders", 4, "normal", "italic"));
         end
     end
 

@@ -248,7 +248,7 @@ int sci_set(char *fname, unsigned long fname_len)
     /*  set or create a graphic window */
     if (isHandleType(pvApiCtx, piAddr1) == 0 && isStringType(pvApiCtx, piAddr1) == 0)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: handle or expected.\n"), fname, 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A handle or a string expected.\n"), fname, 1);
         return 0;
     }
 
