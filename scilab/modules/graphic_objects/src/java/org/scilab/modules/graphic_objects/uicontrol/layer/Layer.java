@@ -13,6 +13,8 @@
 package org.scilab.modules.graphic_objects.uicontrol.layer;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LAYER__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TAB_STRING__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TAB_VALUE__;
 
 import javax.swing.UIDefaults;
 import javax.swing.UIManager;
@@ -24,6 +26,11 @@ import org.scilab.modules.graphic_objects.utils.LayoutType;
  * @author Vincent COUVERT
  */
 public class Layer extends Uicontrol {
+    private enum LayerProperty {
+        LAYER_VALUE,
+        LAYER_STRING
+    };
+
 
     /**
      * Constructor
@@ -45,4 +52,41 @@ public class Layer extends Uicontrol {
         //layout
         setLayout(LayoutType.BORDER);
     }
+
+    public Object  getPropertyFromName(int property) {
+        if (property == __GO_UI_TAB_VALUE__) {
+            return LayerProperty.LAYER_VALUE;
+        } else if (property == __GO_UI_TAB_STRING__) {
+            return LayerProperty.LAYER_STRING;
+        } else {
+            return super.getPropertyFromName(property);
+        }
+    }
+
+    public UpdateStatus setProperty(Object property, Object value) {
+        if (!(property instanceof LayerProperty)) {
+            return super.setProperty(property, value);
+        }
+
+        LayerProperty p = (LayerProperty) property;
+        switch (p) {
+            case LAYER_STRING:
+                return setUiTabString((String[])value);
+            case LAYER_VALUE:
+                return setUiTabValue((Double[])value);
+            default:
+                return super.setProperty(property, value);
+        }
+    }
+
+    public UpdateStatus setUiTabString(String[] value) {
+        setString(value);
+        return UpdateStatus.NoChange;
+    }
+
+    public UpdateStatus setUiTabValue(Double[] value) {
+        setUiValue(value);
+        return UpdateStatus.NoChange;
+    }
+
 }

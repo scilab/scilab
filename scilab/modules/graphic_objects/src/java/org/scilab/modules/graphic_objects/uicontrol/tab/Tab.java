@@ -12,6 +12,8 @@
 
 package org.scilab.modules.graphic_objects.uicontrol.tab;
 
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TAB_STRING__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TAB_VALUE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TAB__;
 
 import javax.swing.UIDefaults;
@@ -25,6 +27,10 @@ import org.scilab.modules.graphic_objects.utils.LayoutType;
  * @author Vincent COUVERT
  */
 public class Tab extends Uicontrol {
+    private enum TabProperty {
+        TAB_VALUE,
+        TAB_STRING
+    };
 
     /**
      * Constructor
@@ -51,4 +57,39 @@ public class Tab extends Uicontrol {
         }
     }
 
+    public Object  getPropertyFromName(int property) {
+        if (property == __GO_UI_TAB_VALUE__) {
+            return TabProperty.TAB_VALUE;
+        } else if (property == __GO_UI_TAB_STRING__) {
+            return TabProperty.TAB_STRING;
+        } else {
+            return super.getPropertyFromName(property);
+        }
+    }
+
+    public UpdateStatus setProperty(Object property, Object value) {
+        if (!(property instanceof TabProperty)) {
+            return super.setProperty(property, value);
+        }
+
+        TabProperty p = (TabProperty) property;
+        switch (p) {
+            case TAB_STRING:
+                return setUiTabString((String[])value);
+            case TAB_VALUE:
+                return setUiTabValue((Double[])value);
+            default:
+                return super.setProperty(property, value);
+        }
+    }
+
+    public UpdateStatus setUiTabString(String[] value) {
+        setString(value);
+        return UpdateStatus.NoChange;
+    }
+
+    public UpdateStatus setUiTabValue(Double[] value) {
+        setUiValue(value);
+        return UpdateStatus.NoChange;
+    }
 }

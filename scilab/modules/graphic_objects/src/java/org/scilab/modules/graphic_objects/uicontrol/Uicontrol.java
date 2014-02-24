@@ -1043,6 +1043,39 @@ public class Uicontrol extends GraphicObject {
      * @param string the string
      */
     public UpdateStatus setString(String[] string) {
+        //update needed ?
+
+        //both null or same object
+        if (this.string == string) {
+            return UpdateStatus.NoChange;
+        }
+
+        boolean needUpdate = false;
+        if (this.string.length == string.length) {
+            for (int i = 0 ; i < string.length ; i++) {
+
+                if (this.string[i] == null && string[i] == null) {
+                    continue;
+                }
+
+                //only one null
+                if ((this.string[i] == null || string[i] == null) &&
+                        this.string[i] != string[i]) {
+                    needUpdate = true;
+                    break;
+                }
+
+                if (this.string[i].equals(string[i]) == false) {
+                    needUpdate = true;
+                    break;
+                }
+            }
+        }
+
+        if (needUpdate == false) {
+            return UpdateStatus.NoChange;
+        }
+
         if (this.style == UicontrolStyle.LISTBOX || this.style == UicontrolStyle.POPUPMENU) {
             /* String can be set using a|b|c|d */
             if (string.length == 0) {

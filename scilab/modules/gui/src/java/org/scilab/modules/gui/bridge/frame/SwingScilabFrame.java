@@ -19,14 +19,10 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_GRID_OPT_GRID__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_GRID_OPT_PADDING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_LAYOUT__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_PARENT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_POSITION__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_STYLE__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TYPE__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UICONTROL__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TAG__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ENABLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FRAME_BORDER__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LAYER__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VISIBLE__;
@@ -194,6 +190,7 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
             add(canvas, BorderLayout.CENTER);
             return;
         }
+
         Uicontrol uicontrol = (Uicontrol) GraphicModel.getModel().getObjectFromId(member.getId());
         if (getLayout() instanceof BorderLayout) {
             switch (uicontrol.getBorderPositionAsEnum()) {
@@ -302,6 +299,9 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
         } else {
             this.add((Component) member);
         }
+
+        //force update position
+        member.update(__GO_POSITION__, GraphicController.getController().getProperty(member.getId(), __GO_POSITION__));
     }
 
     /**
@@ -779,13 +779,10 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
                         return;
                     }
 
-                    int[] intValue = new int[doubleValue.length];
-                    for (int k = 0; k < doubleValue.length; k++) {
-                        intValue[k] = doubleValue[k].intValue();
-                    }
+                    Integer val = doubleValue[0].intValue();
 
                     //if intValue[0] is out of bounds, do not update view but let "wrong" value in model
-                    layer.setActiveLayer(intValue[0]);
+                    layer.setActiveLayer(val);
                 }
                 break;
             }
@@ -850,29 +847,43 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
             }
             case __GO_VISIBLE__: {
                 boolean needUpdate = true;
-                Integer parent = (Integer) controller.getProperty(uid, __GO_PARENT__);
-                if (parent != 0) {
-                    Integer type = (Integer) controller.getProperty(parent, __GO_TYPE__);
-                    if (type == __GO_UICONTROL__) {
-                        Integer style = (Integer) controller.getProperty(parent, __GO_STYLE__);
-                        if (style == __GO_UI_LAYER__) {
-                            //no no no don't touch visible on layer children !
-                            Boolean visible = (Boolean) value;
-                            SwingScilabLayer layer = (SwingScilabLayer) SwingView.getFromId(parent);
-                            Boolean isActive = layer.isLayerActive(this);
-                            if (isActive != visible) {
-                                controller.setProperty(uid, __GO_VISIBLE__, isActive);
-                            }
-
-                            needUpdate = false;
-                        }
+                Component parent = ((SwingScilabFrame)this).getParent();
+                if (parent instanceof SwingScilabLayer) {
+                    //no no no don't touch visible on layer children !
+                    Boolean visible = (Boolean) value;
+                    SwingScilabLayer layer = (SwingScilabLayer) parent;
+                    Boolean isActive = layer.isLayerActive(this);
+                    if (isActive != visible) {
+                        controller.setProperty(uid, __GO_VISIBLE__, isActive);
                     }
+
+                    needUpdate = false;
+                } else if (parent instanceof SwingScilabTabGroup) {
+                    //no no no don't touch visible on layer children !
+                    Boolean visible = (Boolean) value;
+                    SwingScilabTabGroup layer = (SwingScilabTabGroup) parent;
+                    Boolean isActive = layer.isTabActive(this);
+                    if (isActive != visible) {
+                        controller.setProperty(uid, __GO_VISIBLE__, isActive);
+                    }
+
+                    needUpdate = false;
                 }
 
                 if (needUpdate) {
                     setVisible(((Boolean) value).booleanValue());
                 }
 
+                break;
+            }
+            case __GO_TAG__ : {
+                Component parent = ((SwingScilabFrame)this).getParent();
+                if (parent instanceof SwingScilabLayer) {
+                    SwingScilabLayer layer = (SwingScilabLayer)parent;
+                    layer.updateModelProperties(null, layer.getActiveLayer());
+                } else if (parent instanceof SwingScilabTabGroup) {
+                    ((SwingScilabTabGroup)parent).updateModelProperties();
+                }
                 break;
             }
             default:

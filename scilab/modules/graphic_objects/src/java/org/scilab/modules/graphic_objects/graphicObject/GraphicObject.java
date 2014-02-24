@@ -591,6 +591,10 @@ public abstract class GraphicObject implements Cloneable {
      * @return TODO
      */
     public UpdateStatus setTag(String tag) {
+        if (this.tag.equals(tag)) {
+            return UpdateStatus.NoChange;
+        }
+
         this.tag = tag;
         return UpdateStatus.Success;
     }

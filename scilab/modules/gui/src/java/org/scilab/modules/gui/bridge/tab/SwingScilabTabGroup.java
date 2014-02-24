@@ -12,18 +12,21 @@
 
 package org.scilab.modules.gui.bridge.tab;
 
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CALLBACKTYPE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CALLBACK__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CALLBACKTYPE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_POSITION__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FONTANGLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FONTNAME__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FONTSIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FONTWEIGHT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TAB_STRING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TITLE_POSITION__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TITLE_SCROLL__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TAB_VALUE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VISIBLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TAG__;
 
 import java.awt.Component;
 import java.awt.Font;
@@ -54,20 +57,8 @@ public class SwingScilabTabGroup extends JTabbedPane implements SwingViewObject 
 
         listener = new ChangeListener() {
             public void stateChanged(ChangeEvent e) {
-                GraphicController controller = GraphicController.getController();
-                SwingScilabTabGroup me = (SwingScilabTabGroup)e.getSource();
-                int index = me.getSelectedIndex();
-
-                //get current id
-                Double[] prev = (Double[])controller.getProperty(me.getId(), __GO_UI_VALUE__);
-                Integer previous = null;
-                if (prev != null && prev[0] != null) {
-                    previous = ((SwingViewObject)getComponentAt(prev[0].intValue() - 1)).getId();
-                }
-                //get next id
-                Integer next = ((SwingViewObject)getComponentAt(index)).getId();
                 //update value, string and children visible
-                updateModelProperties(previous, next, index);
+                updateModelProperties();
 
                 //call callback function if exists
                 if (callback != null) {
@@ -89,11 +80,11 @@ public class SwingScilabTabGroup extends JTabbedPane implements SwingViewObject 
 
     public void update(int property, Object value) {
         switch (property) {
-            case __GO_VISIBLE__ :
+            case __GO_VISIBLE__:
                 setVisible((Boolean) value);
                 break;
-            case __GO_UI_TITLE_POSITION__ :
-                Integer pos = (Integer)value;
+            case __GO_UI_TITLE_POSITION__:
+                Integer pos = (Integer) value;
                 switch (Uicontrol.TitlePositionType.intToEnum(pos)) {
                     case BOTTOM:
                         setTabPlacement(JTabbedPane.BOTTOM);
@@ -110,27 +101,26 @@ public class SwingScilabTabGroup extends JTabbedPane implements SwingViewObject 
                         break;
                 }
                 break;
-            case __GO_UI_TITLE_SCROLL__ :
-                if ((Boolean)value) {
+            case __GO_UI_TITLE_SCROLL__:
+                if ((Boolean) value) {
                     setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
                 } else {
                     setTabLayoutPolicy(JTabbedPane.WRAP_TAB_LAYOUT);
                 }
                 break;
-            case __GO_UI_FONTNAME__ :
-            case __GO_UI_FONTANGLE__ :
-            case __GO_UI_FONTSIZE__ :
-            case __GO_UI_FONTWEIGHT__ : {
-                for (int i = 0 ; i < getTabCount() ; i++) {
+            case __GO_UI_FONTNAME__:
+            case __GO_UI_FONTANGLE__:
+            case __GO_UI_FONTSIZE__:
+            case __GO_UI_FONTWEIGHT__: {
+                for (int i = 0; i < getTabCount(); i++) {
                     setTitleAt(i, null);
                 }
                 break;
             }
-            case __GO_POSITION__ : {
+            case __GO_POSITION__: {
                 Double[] positions = (Double[]) value;
                 setSize(positions[2].intValue(), positions[3].intValue());
-                Position javaPosition = PositionConverter.scilabToJava(new Position(positions[0].intValue(), positions[1].intValue()),
-                                        new Size(getSize().width, getSize().height), getParent());
+                Position javaPosition = PositionConverter.scilabToJava(new Position(positions[0].intValue(), positions[1].intValue()), new Size(getSize().width, getSize().height), getParent());
                 setLocation(javaPosition.getX(), javaPosition.getY());
                 break;
             }
@@ -140,22 +130,18 @@ public class SwingScilabTabGroup extends JTabbedPane implements SwingViewObject 
                     return;
                 }
 
-                int[] intValue = new int[doubleValue.length];
-                for (int k = 0; k < doubleValue.length; k++) {
-                    intValue[k] = doubleValue[k].intValue();
-                }
-
+                Integer val = doubleValue[0].intValue();
                 //if intValue[0] is out of bounds, do not update view but let "wrong" value in model
-                if (intValue[0] > 0 && intValue[0] <= getTabCount()) {
-                    setSelectedIndex(intValue[0] - 1);
+                if (val > 0 && val <= getTabCount()) {
+                    setSelectedIndex(val - 1);
                 }
                 break;
             }
             case __GO_UI_STRING__: {
                 //set tab by his name
-                String name = ((String[])value)[0];
-                for (int i = 0 ; i < getTabCount() ; i++) {
-                    JLabel current = (JLabel)getTabComponentAt(i);
+                String name = ((String[]) value)[0];
+                for (int i = 0; i < getTabCount(); i++) {
+                    JLabel current = (JLabel) getTabComponentAt(i);
                     if (current != null && current.getText() != null && current.getText().equals(name)) {
                         setSelectedIndex(i);
                         break;
@@ -178,7 +164,7 @@ public class SwingScilabTabGroup extends JTabbedPane implements SwingViewObject 
                 }
                 break;
             }
-            default : {
+            default: {
             }
         }
     }
@@ -186,10 +172,26 @@ public class SwingScilabTabGroup extends JTabbedPane implements SwingViewObject 
     public void insertTab(String title, Icon icon, Component component, String tooltip, int index) {
         super.insertTab(title, icon, component, tooltip, index);
         setTitleAt(index, title);
+        setSelectedIndex(index);
     }
 
-    private void updateModelProperties(Integer previous, Integer next, Integer newIndex) {
+    public void updateModelProperties() {
         GraphicController controller = GraphicController.getController();
+
+        int index = getSelectedIndex();
+
+        //get current id
+        Double[] prev = (Double[]) controller.getProperty(getId(), __GO_UI_VALUE__);
+        Integer previous = null;
+        if (prev != null && prev[0] != null) {
+            if (prev[0] == 0) {
+                prev[0] = 1.0;
+            }
+            previous = ((SwingViewObject) getComponentAt(prev[0].intValue() - 1)).getId();
+        }
+        //get next id
+        Integer next = ((SwingViewObject) getComponentAt(index)).getId();
+
         if (previous != null && previous != 0) {
             //set visible false en previous selected children
             controller.setProperty(previous, __GO_VISIBLE__, false);
@@ -201,19 +203,18 @@ public class SwingScilabTabGroup extends JTabbedPane implements SwingViewObject 
         }
 
         //update value with new selected tab index ( 1-indexed )
-        controller.setProperty(getId(), __GO_UI_VALUE__, new Double[] {(double)(newIndex + 1)});
+        controller.setProperty(getId(), __GO_UI_TAB_VALUE__, new Double[] { (double) (index + 1) });
         //update string with new selected tab name
-        String[] tabName = (String[])controller.getProperty(next, __GO_UI_STRING__);
-        controller.setProperty(getId(), __GO_UI_STRING__, tabName);
-
+        String tabName = (String) controller.getProperty(next, __GO_TAG__);
+        controller.setProperty(getId(), __GO_UI_TAB_STRING__, new String[] {tabName});
     }
 
     public void setTitleAt(int index, String title) {
         //super.setTitleAt(index, title);
-        String fontName = (String)GraphicController.getController().getProperty(getId(), __GO_UI_FONTNAME__);
-        Double fontSize = (Double)GraphicController.getController().getProperty(getId(), __GO_UI_FONTSIZE__);
-        String fontAngle = (String)GraphicController.getController().getProperty(getId(), __GO_UI_FONTANGLE__);
-        String fontWeight = (String)GraphicController.getController().getProperty(getId(), __GO_UI_FONTWEIGHT__);
+        String fontName = (String) GraphicController.getController().getProperty(getId(), __GO_UI_FONTNAME__);
+        Double fontSize = (Double) GraphicController.getController().getProperty(getId(), __GO_UI_FONTSIZE__);
+        String fontAngle = (String) GraphicController.getController().getProperty(getId(), __GO_UI_FONTANGLE__);
+        String fontWeight = (String) GraphicController.getController().getProperty(getId(), __GO_UI_FONTWEIGHT__);
 
         int fontStyle = Font.PLAIN;
         if (fontAngle.equals("italic")) {
@@ -227,16 +228,13 @@ public class SwingScilabTabGroup extends JTabbedPane implements SwingViewObject 
         JLabel label = null;
         Component comp = getTabComponentAt(index);
         if (comp instanceof JLabel) {
-            label = (JLabel)comp;
+            label = (JLabel) comp;
         } else {
             label = new JLabel();
         }
 
         Font oldFont = label.getFont();
-        Font font = new Font(
-            fontName.equals("") == false ? fontName : oldFont.getFontName(),
-            fontStyle,
-            fontSize != 0.0 ? fontSize.intValue() : oldFont.getSize());
+        Font font = new Font(fontName.equals("") == false ? fontName : oldFont.getFontName(), fontStyle, fontSize != 0.0 ? fontSize.intValue() : oldFont.getSize());
 
         label.setFont(font);
 
@@ -245,5 +243,14 @@ public class SwingScilabTabGroup extends JTabbedPane implements SwingViewObject 
         }
         setTabComponentAt(index, label);
     }
+
+    public Boolean isTabActive(Component tab) {
+        if (getSelectedComponent() == tab) {
+            return true;
+        }
+
+        return false;
+    }
+
 
 }

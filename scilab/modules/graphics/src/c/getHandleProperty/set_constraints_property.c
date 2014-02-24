@@ -54,6 +54,13 @@ int set_constraints_property(void* _pvCtx, int iObjUID, void* _pvData, int value
         char** pstField = NULL;
         char* pstType = NULL;
 
+
+        if (valueType != sci_tlist)
+        {
+            Scierror(999, _("Wrong type for '%s' property: '%s' expected.\n"), "constraints", "tlist");
+            return 1;
+        }
+
         sciErr = getListItemAddress(_pvCtx, piAddrList, 1, &piAddr);
         if (sciErr.iErr)
         {
