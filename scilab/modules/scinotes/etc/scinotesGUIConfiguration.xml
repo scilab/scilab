@@ -119,7 +119,7 @@
             <separator/>
             <menuitem action="scinotes-selection-new-tab" label="Copy selection in a new tab"/>
             <separator/>
-            <menuitem action="scinotes-split" label="Split View;Off;Horizontally;Vertically"/>
+            <menuitem action="scinotes-split" label="Split View;Off;Split in two columns;Split in two rows"/>
         </menu>
         
         <menu label="Execute" mnemonic="X">

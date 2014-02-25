@@ -240,6 +240,8 @@ Scilab Bug Fixes
 
 * Bug #10445 fixed - In SciNotes, CTRL+Drag&Drop moved text rather than copying it.
 
+* Bug #10470 fixed - In SciNotes, split "Horizontally" or "Vertically" was meaningless.
+
 * Bug #10645 fixed - File encoding could not be given as argument in xmlRead.
 
 * Bug #10816 fixed - Typo in part error message fixed.
