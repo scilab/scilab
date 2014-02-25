@@ -233,6 +233,85 @@
                                 <para>When this property is set, the "figure closed" event (-1000) will no more be trapped by the event handler function.</para>
                             </listitem>
                         </varlistentry>
+                        <varlistentry>
+                            <term>resize: </term>
+                            <listitem>
+                                <para>
+                                    This property locks the figure size. Its value can be <literal>"on"</literal> (default value) or <literal>"off"</literal> (the figure can not be resized neither through <link linkend="set">set</link> nor mouse events).
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>menubar_visible: </term>
+                            <listitem>
+                                <para>
+                                    This property controls the figure menubar visibility. Its value can be <literal>"on"</literal> (default value) or <literal>"off"</literal>.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>toolbar_visible: </term>
+                            <listitem>
+                                <para>
+                                    This property controls the figure toolbar visibility. Its value can be <literal>"on"</literal> (default value) or <literal>"off"</literal>.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>infobar_visible: </term>
+                            <listitem>
+                                <para>
+                                    This property controls the figure status bar visibility. Its value can be <literal>"on"</literal> (default value) or <literal>"off"</literal>.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>visible: </term>
+                            <listitem>
+                                <para>
+                                    When the figure <literal>"dockable"</literal> property is <literal>"off"</literal>, setting the <literal>"Visible"</literal> property affects the whole figure including its window decorations.
+                                </para>
+                                <para>
+                                    When the figure <literal>"dockable"</literal> property is <literal>"on"</literal> and the figure is docked with an other one inside the same parent window, this field concerns only the figure children (See dedicated part below). If the figure is not docked with an other one, then the <literal>"Visible"</literal> property behaves as if the figure <literal>"dockable"</literal> property was set to <literal>"off"</literal>.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>layout: </term>
+                            <listitem>
+                                <para>
+                                    This property sets the layout used to dispose the figure children. See <link linked="layouts">layouts</link> page for more information about available layouts.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>layout_options: </term>
+                            <listitem>
+                                <para>
+                                    This property sets the options of the layout used to dispose the figure children. See <link linked="layout">layouts</link> page for more information about available options.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>icon: </term>
+                            <listitem>
+                                <para>This field can be used to customize the icon of a Scilab figure.</para>
+                                <para>
+                                    Its value is a character string containing the (absolute or relaitve to Scilab <link linkend="pwd">current working directory.</link> path of the image file containing the icon.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>default_axes: </term>
+                            <listitem>
+                                <para>
+                                    This property enables to manage axes creation in figures. Its value can be <literal>"on"</literal> (default value) or <literal>"off"</literal>.
+                                </para>
+                                <para>
+                                    If its value is <literal>"on"</literal>, an axes will be created at figure creation and each time the latest axes of the figure is deleted, a new one will be created. If its value is <literal>"off"</literal>, no axes will be initialized at figure creation but an axes can be added in the figure using <link linkend="newaxes">newaxes</link> function.
+                                </para>
+                            </listitem>
+                        </varlistentry>
                     </variablelist>
                 </listitem>
             </varlistentry>
@@ -244,15 +323,16 @@
                     <variablelist>
                         <varlistentry>
                             <term>visible: </term>
+                            <para>{"on"} | "off"</para>
                             <listitem>
                                 <para>This field sets if the contents of the figure (axes and uicontrols) has to be
-                                    redrawn. Its value should be <literal>"on"</literal> or
-                                    <literal>"off"</literal>.
+                                    redrawn. Its value should be <literal>"on"</literal> or <literal>"off"</literal>.
                                 </para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
                             <term>rotation_style: </term>
+                            <para>{"unary"} | "multiple"</para>
                             <listitem>
                                 <para>This field is related to the "3D Rot" button. It takes
                                     <literal>unary</literal> as value (default) in the aim to rotate only
@@ -264,8 +344,46 @@
                     </variablelist>
                 </listitem>
             </varlistentry>
+        </variablelist>
+        <variablelist>
             <varlistentry>
-                <term>Note on default values :</term>
+                <term>Creation related properties: </term>
+                <para>
+                    Some properties must be set at creation time using the <link linkend="figure">figure</link> function and will be then read-only.
+                </para>
+                <listitem>
+                    <variablelist>
+                        <varlistentry>
+                            <term>dockable</term>
+                            <listitem>
+                                <para>
+                                    This property determines if created window can be docked inside Scilab environnment. If its value is <literal>"on"</literal> then the window will have a bar enabling the user to dock/undock it. Else the window will look like a standard OS window. This value can only be set at creation.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>menubar</term>
+                            <listitem>
+                                <para>{"figure"} | "none"</para>
+                                <para>
+                                    This property determines the type of the menubar of the figure. If its value is <literal>"none"</literal> then the window will not have any menubar until a menu is added using <link linkend="uimenu">uimenu function</link>. Else the window will be created with default figure menus. This value can only be set at creation.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>toolbar</term>
+                            <listitem>
+                                <para>{"figure"} | "none"</para>
+                                <para>
+                                    This property determines the type of the toolbar of the figure. If its value is <literal>"none"</literal> then the window will not have any menubar. Else the window will be created with a default figure toolbar. This value can only be set at creation.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Note on default values: </term>
                 <listitem>
                     <variablelist>
                         <varlistentry>
@@ -363,7 +481,18 @@ plot3d(t,t,sin(t)'*cos(t),35,45,'X@Y@Z',[15,2,4]);
         <revhistory>
             <revision>
                 <revnumber>5.5.0</revnumber>
-                <revremark>"visible" property also applies to uicontrols.</revremark>
+                <revremark>"visible" property meaning changed (uicontrols managed and the whole figure can be made invisible in some cases.</revremark>
+                <revremark>"icon" property added to allow figure icon change.</revremark>
+                <revremark>"menubar_visible" property added.</revremark>
+                <revremark>"toolbar_visible" property added.</revremark>
+                <revremark>"infobar_visible" property added.</revremark>
+                <revremark>"resize" property added.</revremark>
+                <revremark>"dockable" property added.</revremark>
+                <revremark>"menubar" property added.</revremark>
+                <revremark>"toolbar" property added.</revremark>
+                <revremark>"default_axes" property added.</revremark>
+                <revremark>"layout" property added.</revremark>
+                <revremark>"layout_options" property added.</revremark>
             </revision>
             <revision>
                 <revnumber>5.4.0</revnumber>

@@ -90,7 +90,7 @@
             <varlistentry>
                 <term>Userdata</term>
                 <listitem>
-                    <para>this can be used to associate some Scilab objects to a fugure.</para>
+                    <para>this can be used to associate some Scilab objects to a figure.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
