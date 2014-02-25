@@ -573,6 +573,8 @@ Scilab Bug Fixes
 
 * Bug #13243 fixed - optim with "gc" option failed when imp<0.
 
+* Bug #13247 fixed - Hypermatrix in structure definition did not work properly.
+
 * Bug #13252 fixed - Minor typos fixed.
 
 

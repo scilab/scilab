@@ -15,10 +15,16 @@ function M=%hm_i_s(varargin)
     N=varargin(rhs-1)//inserted hypermatrix
     dims=size(M)'
 
+    if isempty(M) & rhs == 3 & type(varargin(1)) == 10 then
+        // Fix for bug 13247
+        // the matrix is empty and the index is a field name, so we create a struct
+        M = struct(varargin(1), N)
+        return;
+    end
+
     v=M(:)
-
-
     nd=size(dims,"*")
+
     if rhs-2>nd then dims(nd+1:rhs-2)=1;end
 
     //convert N-dimensional indexes to 1-D
