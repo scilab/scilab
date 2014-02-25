@@ -372,7 +372,7 @@ Bug Fixes
 * [#12431](http://bugzilla.scilab.org/show_bug.cgi?id=12431): The page describing the `%helps` variable needed clarification.
 * [#12453](http://bugzilla.scilab.org/show_bug.cgi?id=12453): The left panel of the palette browser keeps its size when some category is enabled or disabled.
 * [#12897](http://bugzilla.scilab.org/show_bug.cgi?id=12897): Renamed optim's "imp" argument to "iprint".
-* [#13794](http://bugzilla.scilab.org/show_bug.cgi?id=13794): Added polyline property "datatip_display_mode", allowing datatips to be displayed "always", "mouseclick" or "mouseover".
+* [#13217](http://bugzilla.scilab.org/show_bug.cgi?id=13217): Fixed augment return when flag2="i"
 * [#13166](http://bugzilla.scilab.org/show_bug.cgi?id=13166): `l` and `b` endian flags used with `mget` and `mgeti` were sticky
 * [#13375](http://bugzilla.scilab.org/show_bug.cgi?id=13375): If (Max - Min) == 1, then the multiple selection is not allowed.
 * [#13401](http://bugzilla.scilab.org/show_bug.cgi?id=13401): Scilab became a ghost process when it was closed while an input() or halt() instruction was being performed in a callback of an undockable figure.
@@ -383,6 +383,7 @@ Bug Fixes
 * [#13651](http://bugzilla.scilab.org/show_bug.cgi?id=13651): It was not possible to `copy` an axes into an uicontrol frame.
 * [#13757](http://bugzilla.scilab.org/show_bug.cgi?id=13757): The toolbox menu dit not load properly ATOMS modules not autoloaded.
 * [#13759](http://bugzilla.scilab.org/show_bug.cgi?id=13759): Atoms modules do not start, randomly.
+* [#13794](http://bugzilla.scilab.org/show_bug.cgi?id=13794): Added polyline property "datatip_display_mode", allowing datatips to be displayed "always", "mouseclick" or "mouseover".
 * [#13856](http://bugzilla.scilab.org/show_bug.cgi?id=13856): `messagebox` crashed under Windows in 5.5 Scilab version and updated in version 6.
 * [#13877](http://bugzilla.scilab.org/show_bug.cgi?id=13877): `<` characters included in `<screen>` areas were not rendered in the help browser.
 * [#13878](http://bugzilla.scilab.org/show_bug.cgi?id=13878): tokens([]) returns [].
