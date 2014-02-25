@@ -238,6 +238,8 @@ Scilab Bug Fixes
 
 * Bug #10428 fixed - Java based components of Scilab shew a library load error in CLI mode.
 
+* Bug #10445 fixed - In SciNotes, CTRL+Drag&Drop moved text rather than copying it.
+
 * Bug #10645 fixed - File encoding could not be given as argument in xmlRead.
 
 * Bug #10816 fixed - Typo in part error message fixed.
