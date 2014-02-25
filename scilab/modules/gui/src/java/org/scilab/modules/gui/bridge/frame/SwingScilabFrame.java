@@ -847,7 +847,7 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
             }
             case __GO_VISIBLE__: {
                 boolean needUpdate = true;
-                Component parent = ((SwingScilabFrame)this).getParent();
+                Component parent = getParent();
                 if (parent instanceof SwingScilabLayer) {
                     //no no no don't touch visible on layer children !
                     Boolean visible = (Boolean) value;
@@ -877,7 +877,7 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
                 break;
             }
             case __GO_TAG__ : {
-                Component parent = ((SwingScilabFrame)this).getParent();
+                Component parent = getParent();
                 if (parent instanceof SwingScilabLayer) {
                     SwingScilabLayer layer = (SwingScilabLayer)parent;
                     layer.updateModelProperties(null, layer.getActiveLayer());
@@ -913,6 +913,16 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
             Component[] components = getComponents();
             for (int compIndex = 0; compIndex < components.length; compIndex++) {
                 components[compIndex].setEnabled(false);
+            }
+        }
+
+        //if parent is a tab enable/disable children tab
+        Component parent = getParent();
+        if (parent instanceof SwingScilabTabGroup) {
+            SwingScilabTabGroup tab = (SwingScilabTabGroup)parent;
+            Integer index = tab.getIndex(this);
+            if (index != -1) {
+                tab.setEnabledAt(index, status);
             }
         }
     }

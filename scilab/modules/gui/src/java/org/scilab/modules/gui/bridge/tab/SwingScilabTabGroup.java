@@ -252,5 +252,20 @@ public class SwingScilabTabGroup extends JTabbedPane implements SwingViewObject 
         return false;
     }
 
+    public Integer getIndex(Component component) {
+        for (int i = 0 ; i < getTabCount() ; i++) {
+            if (getComponentAt(i) == component) {
+                return i;
+            }
+        }
 
+        return -1;
+    }
+
+    @Override
+    public void setEnabledAt(int index, boolean enabled) {
+        super.setEnabledAt(index, enabled);
+        //update tab label to show enabled state
+        getTabComponentAt(index).setEnabled(enabled);
+    }
 }

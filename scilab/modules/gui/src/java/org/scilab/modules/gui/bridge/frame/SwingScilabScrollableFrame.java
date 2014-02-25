@@ -18,13 +18,9 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_GRID_OPT_GRID__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_GRID_OPT_PADDING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_LAYOUT__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_PARENT__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_STYLE__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TYPE__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UICONTROL__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TAG__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ENABLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FRAME_BORDER__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LAYER__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VISIBLE__;
 
@@ -429,12 +425,9 @@ public class SwingScilabScrollableFrame extends JScrollPane implements SwingView
                 Container parent = getParent();
                 if (parent instanceof SwingScilabTabGroup) {
                     SwingScilabTabGroup tab = (SwingScilabTabGroup) parent;
-                    Component[] components = tab.getComponents();
-                    for (int i = 0; i < components.length; ++i) {
-                        if (components[i] instanceof SwingScilabScrollableFrame && this.getId() == ((SwingScilabScrollableFrame) components[i]).getId()) {
-                            tab.setTitleAt(i, ((String[]) value)[0]);
-                            break;
-                        }
+                    int index = tab.indexOfComponent(this);
+                    if (index != -1) {
+                        tab.setTitleAt(index, ((String[]) value)[0]);
                     }
                 }
                 break;
@@ -475,29 +468,43 @@ public class SwingScilabScrollableFrame extends JScrollPane implements SwingView
             }
             case __GO_VISIBLE__ : {
                 boolean needUpdate = true;
-                Integer parent = (Integer) controller.getProperty(uid, __GO_PARENT__);
-                if (parent != 0) {
-                    Integer type = (Integer) controller.getProperty(parent, __GO_TYPE__);
-                    if (type == __GO_UICONTROL__) {
-                        Integer style = (Integer) controller.getProperty(parent, __GO_STYLE__);
-                        if (style == __GO_UI_LAYER__) {
-                            //no no no don't touch visible on layer children !
-                            Boolean visible = (Boolean)value;
-                            SwingScilabLayer layer = (SwingScilabLayer) SwingView.getFromId(parent);
-                            Boolean isActive = layer.isLayerActive(this);
-                            if (isActive != visible ) {
-                                controller.setProperty(uid, __GO_VISIBLE__, isActive);
-                            }
-
-                            needUpdate = false;
-                        }
+                Component parent = getParent();
+                if (parent instanceof SwingScilabLayer) {
+                    //no no no don't touch visible on layer children !
+                    Boolean visible = (Boolean) value;
+                    SwingScilabLayer layer = (SwingScilabLayer) parent;
+                    Boolean isActive = layer.isLayerActive(this);
+                    if (isActive != visible) {
+                        controller.setProperty(uid, __GO_VISIBLE__, isActive);
                     }
+
+                    needUpdate = false;
+                } else if (parent instanceof SwingScilabTabGroup) {
+                    //no no no don't touch visible on layer children !
+                    Boolean visible = (Boolean) value;
+                    SwingScilabTabGroup layer = (SwingScilabTabGroup) parent;
+                    Boolean isActive = layer.isTabActive(this);
+                    if (isActive != visible) {
+                        controller.setProperty(uid, __GO_VISIBLE__, isActive);
+                    }
+
+                    needUpdate = false;
                 }
 
                 if (needUpdate) {
                     setVisible(((Boolean) value).booleanValue());
                 }
 
+                break;
+            }
+            case __GO_TAG__ : {
+                Component parent = getParent();
+                if (parent instanceof SwingScilabLayer) {
+                    SwingScilabLayer layer = (SwingScilabLayer)parent;
+                    layer.updateModelProperties(null, layer.getActiveLayer());
+                } else if (parent instanceof SwingScilabTabGroup) {
+                    ((SwingScilabTabGroup)parent).updateModelProperties();
+                }
                 break;
             }
             default:
@@ -527,6 +534,16 @@ public class SwingScilabScrollableFrame extends JScrollPane implements SwingView
             Component[] components = getComponents();
             for (int compIndex = 0; compIndex < components.length; compIndex++) {
                 components[compIndex].setEnabled(false);
+            }
+        }
+
+        //if parent is a tab enable/disable children tab
+        Component parent = getParent();
+        if (parent instanceof SwingScilabTabGroup) {
+            SwingScilabTabGroup tab = (SwingScilabTabGroup)parent;
+            Integer index = tab.getIndex(this);
+            if (index != -1) {
+                tab.setEnabledAt(index, status);
             }
         }
     }
