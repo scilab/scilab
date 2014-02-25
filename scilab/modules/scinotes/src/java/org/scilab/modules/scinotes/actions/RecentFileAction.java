@@ -58,6 +58,13 @@ public class RecentFileAction extends DefaultAction {
     }
 
     /**
+     * Clean
+     */
+    public static void close(SciNotes ed) {
+        menus.remove(ed);
+    }
+
+    /**
      * createMenu
      * @param editor SciNotes
      * @param f File

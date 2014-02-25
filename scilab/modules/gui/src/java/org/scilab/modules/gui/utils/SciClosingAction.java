@@ -63,6 +63,11 @@ public class SciClosingAction extends AbstractAction {
         return action;
     }
 
+    public void clean() {
+        this.associatedTab = null;
+        this.action = null;
+    }
+
     /**
      * What do I have to do when the event accurs
      * @param arg0 the event

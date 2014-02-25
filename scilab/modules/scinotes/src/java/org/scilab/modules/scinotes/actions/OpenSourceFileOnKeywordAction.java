@@ -87,6 +87,13 @@ public class OpenSourceFileOnKeywordAction extends DefaultAction {
     }
 
     /**
+     * Clean
+     */
+    public static void close() {
+        mainFrame = null;
+    }
+
+    /**
      * doAction
      */
     @Override

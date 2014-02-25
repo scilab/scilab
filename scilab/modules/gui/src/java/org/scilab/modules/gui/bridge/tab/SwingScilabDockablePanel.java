@@ -1390,6 +1390,14 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
             ((Titlebar) getTitlePane()).removeAction(HELP);
         }
 
+        if (closeAction != null) {
+            getTitlebar().removeAction(closeAction);
+            if (closeAction instanceof SciClosingAction) {
+                ((SciClosingAction) closeAction).clean();
+            }
+            closeAction = null;
+        }
+
         setMenuBar(null);
         setToolBar(null);
         setInfoBar(null);

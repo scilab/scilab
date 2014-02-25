@@ -53,6 +53,14 @@ public class SciNotesCaret extends ScilabCaret {
         this.pane = pane;
     }
 
+    public void clean() {
+        pane = null;
+        filter = null;
+        saveFilter = null;
+        selections = null;
+        positions = null;
+    }
+
     /**
      * @param protect true to avoid the highlight removal
      */

@@ -544,7 +544,9 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 requestFocus();
-                setCaretPosition(pos);
+                if (getCaret() != null) {
+                    setCaretPosition(pos);
+                }
             }
         });
     }
@@ -556,6 +558,10 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         FocusListener[] l = getFocusListeners();
         for (int i = 0; i < l.length; i++) {
             removeFocusListener(l[i]);
+        }
+        if (getCaret() instanceof SciNotesCaret) {
+            ((SciNotesCaret) getCaret()).clean();
+            super.setCaret(null);
         }
     }
 
@@ -736,6 +742,12 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         tab = null;
         com = null;
         trailingWhite = null;
+        editor = null;
+        lexer = null;
+        helpOnTyping = null;
+        xln = null;
+        rightTextPane = null;
+        edComponent = null;
         enableMatchingKeywords(false);
         enableMatchingOpeners(false);
         if (matchLR != null) {
@@ -746,16 +758,14 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
             matchRL.desactivateMouseOver();
             matchRL = null;
         }
+        kwListeners = null;
     }
 
     /**
      * Destroy this component
      */
     public void destroy() {
-        FocusListener[] fls = getFocusListeners();
-        for (FocusListener fl : fls) {
-            removeFocusListener(fl);
-        }
+        close();
         disableAll();
     }
 
@@ -1469,6 +1479,13 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
      */
     public static ScilabEditorPane getFocusedPane() {
         return focused;
+    }
+
+    /**
+     * clean
+     */
+    public static void clean() {
+        focused = null;
     }
 
     /**

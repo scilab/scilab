@@ -74,6 +74,13 @@ public class EndOfLineAction extends DefaultCheckAction {
     }
 
     /**
+     * Clean
+     */
+    public static void close() {
+        radioEolTypes = null;
+    }
+
+    /**
      * doAction
      */
     public void doAction() {

@@ -98,6 +98,7 @@ import org.scilab.modules.scinotes.actions.InsertOverwriteAction;
 import org.scilab.modules.scinotes.actions.LineBeautifierAction;
 import org.scilab.modules.scinotes.actions.OpenSourceFileOnKeywordAction;
 import org.scilab.modules.scinotes.actions.RecentFileAction;
+import org.scilab.modules.scinotes.actions.RegisterFavoriteDirsAction;
 import org.scilab.modules.scinotes.actions.RemoveTrailingWhiteAction;
 import org.scilab.modules.scinotes.actions.RestoreOpenedFilesAction;
 import org.scilab.modules.scinotes.actions.SciNotesCompletionAction;
@@ -751,6 +752,7 @@ public class SciNotes extends SwingScilabDockablePanel {
                 editor.setParentWindow();
                 ConfigSciNotesManager.saveEditorUUID(editor.getPersistentId());
                 SciNotesGUI.init(editor.getParentWindow(), editor, SCINOTES);
+                WindowsConfigurationManager.unregisterEndedRestoration(editor);
             }
         }
 
@@ -821,6 +823,7 @@ public class SciNotes extends SwingScilabDockablePanel {
 
         FindAction.close();
         IncrementalSearchAction.close(this);
+        RecentFileAction.close(this);
         OpenSourceFileOnKeywordAction.closeOpenSourceWindow();
         SearchWordInFilesAction.closeWindow();
 
@@ -832,9 +835,17 @@ public class SciNotes extends SwingScilabDockablePanel {
         scinotesList.remove(this);
         if (scinotesList.size() == 0) {
             SciNotesAutosave.stopAutosave();
+            ScilabEditorPane.clean();
+            RegisterFavoriteDirsAction.close();
+            OpenSourceFileOnKeywordAction.close();
+            EncodingAction.close();
+            EndOfLineAction.close();
+            HelpOnTypingManager.close();
         }
 
         editor = null;
+        SciNotesGUI.clean(this);
+        close();
         ConfigSciNotesManager.resetDocument();
     }
 
@@ -952,7 +963,6 @@ public class SciNotes extends SwingScilabDockablePanel {
             navigator.removePane(textPaneAt);
         }
 
-        textPaneAt.close();
         tabPane.remove(indexTab);
 
         textPaneAt = getTextPane();

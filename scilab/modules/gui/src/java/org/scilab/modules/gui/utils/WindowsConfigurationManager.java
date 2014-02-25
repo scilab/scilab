@@ -299,6 +299,14 @@ public class WindowsConfigurationManager implements XConfigurationListener {
     }
 
     /**
+     * Unregister an EndedRestoration.
+     * @param tab the associated tab
+     */
+    public static void unregisterEndedRestoration(SwingScilabDockablePanel tab) {
+        endedRestoration.remove(tab);
+    }
+
+    /**
      * Register an EndedRestoration, op.finish() will be executed when the tab restoration will be finished.
      * @param tab the associated tab
      * @param ended the closing operation
@@ -450,6 +458,8 @@ public class WindowsConfigurationManager implements XConfigurationListener {
         win.toFront();
         win.setIsRestoring(false);
 
+        endedRestoration.remove(tab);
+
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
@@ -471,7 +481,6 @@ public class WindowsConfigurationManager implements XConfigurationListener {
      */
     public static SwingScilabWindow restoreWindow(String uuid, String defaultTabUuid, boolean restoreTab, boolean requestFocus) {
         readDocument();
-
         final boolean nullUUID = uuid.equals(NULLUUID);
 
         // create the window and preserve the uuid if not null
@@ -516,7 +525,7 @@ public class WindowsConfigurationManager implements XConfigurationListener {
                 EndedRestoration ended = endedRestoration.get(tab);
                 if (ended != null) {
                     ended.finish();
-                    endedRestoration.remove(ended);
+                    endedRestoration.remove(tab);
                 }
             }
 

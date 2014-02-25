@@ -608,6 +608,9 @@ public class ClosingOperationsManager {
                     if (!tab.getPersistentId().equals(NULLUUID)) {
                         try {
                             closingOps.get(tab).destroy();
+                            if (tab != console) {
+                                closingOps.remove(tab);
+                            }
                         } catch (Exception e) {
                             // An error can occurred during the destroy operation
                             // We show it but it mustn't avoid the window
@@ -661,6 +664,7 @@ public class ClosingOperationsManager {
                 if (console != null) {
                     try {
                         closingOps.get(console).destroy();
+                        closingOps.remove(console);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }

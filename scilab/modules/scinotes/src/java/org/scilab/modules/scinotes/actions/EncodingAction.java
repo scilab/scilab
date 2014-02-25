@@ -142,6 +142,14 @@ public class EncodingAction extends DefaultCheckAction {
     }
 
     /**
+     * Clean
+     */
+    public static void close() {
+        radioTypes = null;
+        menuLang = null;
+    }
+
+    /**
      * createRadioButtonMenuItem
      * @param editor SciNotes
      * @return JRadioButtonMenuItem

@@ -105,6 +105,13 @@ public final class SciNotesGUI {
         editorInstance.setInfoBar(generateInfoBar(editorInstance));
     }
 
+    public static void clean(SciNotes editorInstance) {
+        mapMenuBar.remove(editorInstance);
+        mapToolBar.remove(editorInstance);
+        mapPopup.remove(editorInstance);
+        mapInfoBar.remove(editorInstance);
+    }
+
     /**
      * Initialize SciNotes
      * @param editorInstance SciNotes

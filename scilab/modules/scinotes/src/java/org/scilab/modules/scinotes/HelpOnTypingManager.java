@@ -25,7 +25,7 @@ import org.scilab.modules.commons.xml.XConfiguration;
  */
 public final class HelpOnTypingManager implements KeyListener {
 
-    private static HelpOnTypingManager instance = new HelpOnTypingManager();
+    private static HelpOnTypingManager instance;
     private static boolean openers;
     private static boolean keywords;
 
@@ -40,9 +40,20 @@ public final class HelpOnTypingManager implements KeyListener {
     }
 
     /**
+     * Clean
+     */
+    public static void close() {
+        instance = null;
+    }
+
+    /**
      * @return the singleton instance of HelpOnTypingManager
      */
     public static HelpOnTypingManager getInstance() {
+        if (instance == null) {
+            instance = new HelpOnTypingManager();
+        }
+
         return instance;
     }
 

@@ -51,6 +51,14 @@ public final class RegisterFavoriteDirsAction extends DefaultAction {
     }
 
     /**
+     * Clean
+     */
+    public static void close() {
+        addDir = null;
+        rmDir = null;
+    }
+
+    /**
      * Create a menu to add to SciNotes menu bar
      * @param label label of the menu
      * @param editor associated SciNotes instance
