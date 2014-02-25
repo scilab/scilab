@@ -5,6 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- ENGLISH IMPOSED -->
 // <-- TEST WITH GRAPHIC -->
 // <-- Non-regression test for bug 954 -->
 //
