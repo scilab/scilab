@@ -1029,15 +1029,10 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
                 Axes axes = (Axes) object;
 
-                if (axes.getXAxisAutoTicks() && X_AXIS_TICKS_PROPERTIES.contains(property)) {
-                    return false;
-                }
-
-                if (axes.getYAxisAutoTicks() && Y_AXIS_TICKS_PROPERTIES.contains(property)) {
-                    return false;
-                }
-
-                if (axes.getZAxisAutoTicks() && Z_AXIS_TICKS_PROPERTIES.contains(property)) {
+                if ((axes.getXAxisAutoTicks() && X_AXIS_TICKS_PROPERTIES.contains(property)) ||
+                        (axes.getYAxisAutoTicks() && Y_AXIS_TICKS_PROPERTIES.contains(property)) ||
+                        (axes.getZAxisAutoTicks() && Z_AXIS_TICKS_PROPERTIES.contains(property))) {
+                    axesDrawer.computeMargins(axes);
                     return false;
                 }
 
