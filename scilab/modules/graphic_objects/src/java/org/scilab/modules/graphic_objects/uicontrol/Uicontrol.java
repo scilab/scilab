@@ -14,8 +14,8 @@
 
 package org.scilab.modules.graphic_objects.uicontrol;
 
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_GRID_OPT_GRID__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_BORDER_OPT_PADDING__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_GRID_OPT_GRID__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_GRID_OPT_PADDING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_LAYOUT_SET__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_LAYOUT__;
@@ -25,6 +25,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UICONTROL__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_BACKGROUNDCOLOR__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_BORDER_POSITION__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_BORDER_PREFERREDSIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_CHECKBOX__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_EDIT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ENABLE__;
@@ -316,6 +317,7 @@ public class Uicontrol extends GraphicObject {
     private Integer[] gridbagPadding = new Integer[] {0, 0};
     private Integer[] gridbagPreferredSize = new Integer[] { -1, -1};
     private BorderLayoutType borderPosition = BorderLayoutType.CENTER;
+    private Integer[] borderPreferredSize = new Integer[] { -1, -1};
     private String icon = "";
 
     /** layout options */
@@ -376,6 +378,7 @@ public class Uicontrol extends GraphicObject {
         GRIDBAG_PADDING,
         GRIDBAG_PREFERREDSIZE,
         BORDER_POSITION,
+        BORDER_PREFERREDSIZE,
         GRIDOPT_GRID,
         GRIDOPT_PADDING,
         BORDEROPT_PADDING,
@@ -595,6 +598,8 @@ public class Uicontrol extends GraphicObject {
                 return UicontrolProperty.GRIDBAG_PREFERREDSIZE;
             case __GO_UI_BORDER_POSITION__:
                 return UicontrolProperty.BORDER_POSITION;
+            case __GO_UI_BORDER_PREFERREDSIZE__:
+                return UicontrolProperty.BORDER_PREFERREDSIZE;
             case __GO_GRID_OPT_GRID__:
                 return UicontrolProperty.GRIDOPT_GRID;
             case __GO_GRID_OPT_PADDING__:
@@ -696,6 +701,8 @@ public class Uicontrol extends GraphicObject {
             return getGridBagPreferredSize();
         } else if (property == UicontrolProperty.BORDER_POSITION) {
             return getBorderPosition();
+        } else if (property == UicontrolProperty.BORDER_PREFERREDSIZE) {
+            return getBorderPreferredSize();
         } else if (property == UicontrolProperty.GRIDOPT_GRID) {
             return getGridOptGrid();
         } else if (property == UicontrolProperty.GRIDOPT_PADDING) {
@@ -794,6 +801,8 @@ public class Uicontrol extends GraphicObject {
                 return setGridBagPreferredSize((Integer[]) value);
             case BORDER_POSITION:
                 return setBorderPosition((Integer) value);
+            case BORDER_PREFERREDSIZE:
+                return setBorderPreferredSize((Integer[]) value);
             case GRIDOPT_GRID:
                 return setGridOptGrid((Integer[]) value);
             case GRIDOPT_PADDING:
@@ -1303,6 +1312,26 @@ public class Uicontrol extends GraphicObject {
         for (int i = 0 ; i < value.length ; i++) {
             if (gridbagPreferredSize[i] != value[i]) {
                 gridbagPreferredSize[i] = value[i];
+                status = UpdateStatus.Success;
+            }
+        }
+
+        return status;
+    }
+
+    public Integer[] getBorderPreferredSize() {
+        return borderPreferredSize;
+    }
+
+    public UpdateStatus setBorderPreferredSize(Integer[] value) {
+        UpdateStatus status = UpdateStatus.NoChange;
+        if (borderPreferredSize.length != value.length) {
+            return UpdateStatus.Fail;
+        }
+
+        for (int i = 0 ; i < value.length ; i++) {
+            if (borderPreferredSize[i] != value[i]) {
+                borderPreferredSize[i] = value[i];
                 status = UpdateStatus.Success;
             }
         }

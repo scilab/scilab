@@ -165,6 +165,11 @@ public class SwingScilabScrollableFrame extends JScrollPane implements SwingView
                 default:
                     break;
             }
+
+            Integer[] preferredSize = uicontrol.getBorderPreferredSize();
+            if (preferredSize[0].equals(-1) == false && preferredSize[1].equals(-1) == false) {
+                ((Component) member).setPreferredSize(new Dimension(preferredSize[0], preferredSize[1]));
+            }
         } else if (getLayout() instanceof GridBagLayout) {
             GridBagConstraints constraints = new GridBagConstraints();
 

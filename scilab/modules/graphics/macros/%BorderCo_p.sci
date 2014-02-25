@@ -7,5 +7,6 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 function %BorderCo_p(t)
     printf("Border Layout\n");
-    printf("  Position : %s\n", sci2exp(t.position));
+    printf("  Position      : %s\n", sci2exp(t.position));
+    printf("  PreferredSize : %s\n", sci2exp(t.preferredsize));
 endfunction

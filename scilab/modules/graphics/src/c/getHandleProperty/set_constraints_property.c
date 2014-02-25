@@ -81,10 +81,17 @@ int set_constraints_property(void* _pvCtx, int iObjUID, void* _pvData, int value
         else if (strcmp(pstType, "BorderConstraint") == 0)
         {
             //arg2 -> string -> int enum
+            //arg3 -> double[] -> int[]
 
             int* piAddr2 = NULL;
             char* pstPos = NULL;
             int iPos = 0;
+
+            int* piAddr3 = NULL;
+            int iRows3 = 0;
+            int iCols3 = 0;
+            double* pdblPreferredSize = NULL;
+            int piPreferredSize[2];
 
             sciErr = getListItemAddress(_pvCtx, piAddrList, 2, &piAddr2);
             if (sciErr.iErr)
@@ -125,8 +132,25 @@ int set_constraints_property(void* _pvCtx, int iObjUID, void* _pvData, int value
                 return SET_PROPERTY_ERROR;
             }
 
+            sciErr = getListItemAddress(_pvCtx, piAddrList, 3, &piAddr3);
+            if (sciErr.iErr)
+            {
+                return SET_PROPERTY_ERROR;
+            }
+
+            sciErr = getMatrixOfDouble(_pvCtx, piAddr3, &iRows3, &iCols3, &pdblPreferredSize);
+            if (sciErr.iErr)
+            {
+                return SET_PROPERTY_ERROR;
+            }
+
+            //reassign double values in int[]
+            piPreferredSize[0] = (int)pdblPreferredSize[0];
+            piPreferredSize[1] = (int)pdblPreferredSize[1];
+
             freeAllocatedSingleString(pstPos);
             setGraphicObjectProperty(iObjUID, __GO_UI_BORDER_POSITION__, &iPos, jni_int, 1);
+            setGraphicObjectProperty(iObjUID, __GO_UI_BORDER_PREFERREDSIZE__, piPreferredSize, jni_int_vector, 2);
         }
         else if (strcmp(pstType, "GridConstraints") == 0)
         {

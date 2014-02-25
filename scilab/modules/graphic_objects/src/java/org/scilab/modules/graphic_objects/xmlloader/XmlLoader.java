@@ -13,9 +13,9 @@
 package org.scilab.modules.graphic_objects.xmlloader;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AXES__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TYPE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHILDREN__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FIGURE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TYPE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_CHECKBOX__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_EDIT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FRAME__;
@@ -48,7 +48,6 @@ import org.scilab.modules.graphic_objects.ScilabNativeView;
 import org.scilab.modules.graphic_objects.builder.Builder;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicModel.GraphicModel;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.Type;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.xml.sax.Attributes;
@@ -82,6 +81,7 @@ public class XmlLoader extends DefaultHandler {
         nameToGO.put("UILayer", __GO_UI_LAYER__);
         nameToGO.put("UIButton", __GO_UI_PUSHBUTTON__);
         nameToGO.put("UILabel", __GO_UI_TEXT__);
+        nameToGO.put("UILaTeXLabel", -1);
         nameToGO.put("UICheckbox", __GO_UI_CHECKBOX__);
         nameToGO.put("UITextfield", __GO_UI_EDIT__);
         nameToGO.put("UISplashScreen", __GO_UI_IMAGE__);
@@ -241,7 +241,7 @@ public class XmlLoader extends DefaultHandler {
         } else {
             Integer uitype = getTypeFromName(localName);
             Integer go = 0;
-            if (uitype != null && uitype.intValue() > 0) {
+            if (uitype != null) {
                 if (uitype == __GO_FIGURE__) {
                     // never create a new figure, clone figure model !
                     go = GOBuilder.figureBuilder(controller, attributes);

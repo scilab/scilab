@@ -70,11 +70,15 @@ int get_constraints_property(void* _pvCtx, int iObjUID)
         break;
         case LAYOUT_BORDER :
         {
-            char * variable_tlist[] = {"BorderConstraint", "position"};
-            returnedList * tList = createReturnedList(1, variable_tlist);
+            char * variable_tlist[] = {"BorderConstraint", "position", "preferredsize"};
+            returnedList * tList = createReturnedList(2, variable_tlist);
 
             int iBorder = 0;
             int* piBorder = &iBorder;
+
+            double pdblPreferredSize[2];
+            int* piPreferredSize = NULL;
+
             getGraphicObjectProperty(iObjUID, __GO_UI_BORDER_POSITION__, jni_int, (void **)&piBorder);
             if (piBorder == NULL)
             {
@@ -101,6 +105,19 @@ int get_constraints_property(void* _pvCtx, int iObjUID)
                     addStringToReturnedList(tList, "right");
                     break;
             }
+
+            getGraphicObjectProperty(iObjUID, __GO_UI_BORDER_PREFERREDSIZE__, jni_int_vector, (void **)&piPreferredSize);
+            if (piPreferredSize == NULL)
+            {
+                Scierror(999, _("'%s' property does not exist for this handle.\n"), "constraints");
+                return -1;
+            }
+
+            //convert to double
+            pdblPreferredSize[0] = (double)piPreferredSize[0];
+            pdblPreferredSize[1] = (double)piPreferredSize[1];
+
+            addRowVectorToReturnedList(tList, pdblPreferredSize, 2);
 
             destroyReturnedList(tList);
         }

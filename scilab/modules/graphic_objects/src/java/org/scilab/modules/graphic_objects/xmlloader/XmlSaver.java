@@ -346,6 +346,7 @@ public class XmlSaver {
             setAttribute(elemUi, "gridbagpreferredsize", createAttribute(uic.getGridBagPreferredSize()), createAttribute(defaultUi.getGridBagPreferredSize()));
         } else if (layout == LayoutType.BORDER) {
             setAttribute(elemUi, "borderposition", createAttribute(uic.getBorderPosition()), createAttribute(defaultUi.getBorderPosition()));
+            setAttribute(elemUi, "borderpreferredsize", createAttribute(uic.getBorderPreferredSize()), createAttribute(defaultUi.getBorderPreferredSize()));
         } else if (layout == LayoutType.NONE) {
             //Position
             setAttribute(elemUi, "position", createAttribute(uic.getUiPosition()), createAttribute(defaultUi.getUiPosition()));

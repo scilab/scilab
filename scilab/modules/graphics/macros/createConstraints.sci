@@ -24,8 +24,10 @@ function ret = createConstraints(constType, varargin)
         ret = tlist(["GridConstraints"]);
     elseif constType == "border" then
         arg1 = "center"
-        if size(varargin) <> 1 then
-            error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected."), "createConstraints", 2));
+        arg2 = [-1 -1];
+
+        if size(varargin) <> [1 2] then
+            error(msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected."), "createConstraints", 2, 3));
         end
 
         arg1 = varargin(1);
@@ -33,7 +35,14 @@ function ret = createConstraints(constType, varargin)
             error(999, msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"), "createConstraints", 2));
         end
 
-        ret = tlist(["BorderConstraint","position"], arg1);
+        if size(varargin) > 1 then
+            arg2 = varargin(2);
+            if typeof(arg2) <> "constant" | size(arg2, "*") <> 2 then
+                error(999, msprintf(_("%s: Wrong type for input argument #%d: A real matrix expected.\n"), "createConstraints", 3));
+            end
+        end
+
+        ret = tlist(["BorderConstraint","position", "preferredsize"], arg1, arg2);
     elseif constType == "gridbag" then
         arg1 = [0 0 0 0];
         arg2 = [0 0];
