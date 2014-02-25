@@ -26,4 +26,5 @@ public interface AxesContainer {
     public Integer getBackground();
     public ColorMap getColorMap();
     public Integer getParentFigure();
+    public Boolean getVisible();
 }

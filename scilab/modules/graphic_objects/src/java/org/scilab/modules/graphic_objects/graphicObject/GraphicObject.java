@@ -644,14 +644,14 @@ public abstract class GraphicObject implements Cloneable {
     public Integer getParentFigure() {
         if (this instanceof Figure) {
             return getIdentifier();
-        } else {
-            if (getParent() != 0 && GraphicController.getController().getObjectFromId(getParent()) != null) {
-                return GraphicController.getController().getObjectFromId(getParent()).getParentFigure();
-            } else {
-                /* No parent Figure found */
-                return 0;
-            }
         }
+
+        if (getParent() != 0 && GraphicController.getController().getObjectFromId(getParent()) != null) {
+            return GraphicController.getController().getObjectFromId(getParent()).getParentFigure();
+        }
+        
+        /* No parent Figure found */
+        return 0;
     }
 
     /**

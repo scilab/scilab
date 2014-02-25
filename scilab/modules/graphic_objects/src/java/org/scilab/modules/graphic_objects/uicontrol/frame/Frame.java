@@ -22,7 +22,6 @@ import org.scilab.modules.graphic_objects.console.Console;
 import org.scilab.modules.graphic_objects.figure.ColorMap;
 import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.graphicModel.GraphicModel;
-import org.scilab.modules.graphic_objects.graphicObject.Visitor;
 import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
 
 /**

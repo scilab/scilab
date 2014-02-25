@@ -115,7 +115,7 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
             public void componentShown(ComponentEvent e) { }
 
             public void componentResized(ComponentEvent e) {
-                if (getId() != -1 && getParent() != null && getParent().getLayout() != null) {
+                if (getId() != -1 && getParent() != null) {
 
                     Double[] newPosition = new Double[4];
                     Double[] positions = (Double[]) GraphicController.getController().getProperty(getId(), GraphicObjectProperties.__GO_POSITION__);
@@ -123,8 +123,14 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
                     newPosition[1] = positions[1];
                     newPosition[2] = getSize().getWidth();
                     newPosition[3] = getSize().getHeight();
+                    positions[2] = getSize().getWidth();
+                    positions[3] = getSize().getHeight();
                     invalidate();
-                    GraphicController.getController().setProperty(getId(), GraphicObjectProperties.__GO_POSITION__, newPosition);
+                    if (getParent() != null && getParent().getLayout() == null) {
+                        GraphicController.getController().setProperty(getId(), GraphicObjectProperties.__GO_POSITION__, newPosition);
+                    } else {
+                        GraphicController.getController().setProperty(getId(), GraphicObjectProperties.__GO_POSITION__, positions);
+                    }
                 }
             }
 

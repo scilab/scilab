@@ -54,9 +54,9 @@ public abstract class FigureInteraction {
      */
     protected Axes getUnderlyingAxes(Point point) {
         Axes underlyingAxes = null;
-        Integer[] size = drawerVisitor.getFigure().getAxesSize();
-        double x = point.getX() / size[0];
-        double y = point.getY() / size[1];
+        Dimension size = drawerVisitor.getCanvas().getDimension();
+        double x = point.getX() / size.getWidth();
+        double y = point.getY() / size.getHeight();
         for (Integer childId : drawerVisitor.getFigure().getChildren()) {
             GraphicObject child = GraphicController.getController().getObjectFromId(childId);
             if (child instanceof Axes) {
