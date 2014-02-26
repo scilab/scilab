@@ -15,6 +15,8 @@
 #include "struct.hxx"
 #include "bool.hxx"
 #include "string.hxx"
+#include "tlist.hxx"
+#include "mlist.hxx"
 
 extern "C"
 {
@@ -23,48 +25,61 @@ extern "C"
 #include "charEncoding.h"
 }
 
-using namespace types;
-
-Function::ReturnValue sci_isfield(typed_list &in, int _iRetCount, typed_list &out)
+types::Function::ReturnValue sci_isfield(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     if (_iRetCount != 1)
     {
         Scierror(999, _("%s: Wrong number of output argument(s): %d expected.\n"), "isfield", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (in.size() != 2)
     {
         Scierror(999, _("%s: Wrong number of input argument(s): %d expected.\n"), "isfield", 2);
-        return Function::Error;
+        return types::Function::Error;
     }
 
-    if (in[0]->isStruct() == false)
+    if (in[0]->isStruct() == false &&
+        in[0]->isTList()  == false &&
+        in[0]->isMList()  == false)
     {
-        Scierror(999, _("%s:  Wrong type for input argument #%d: struct array expected.\n"), "isfield", 1);
-        return Function::Error;
+        Scierror(999, _("%s: Wrong type for input argument #%d: struct array or tlist or mlist expected.\n"), "isfield", 1);
+        return types::Function::Error;
     }
 
     if (in[1]->isString() == false)
     {
-        Scierror(999, _("%s:  Wrong type for input argument #%d: A string expected.\n"), "isfield", 2);
-        return Function::Error;
+        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "isfield", 2);
+        return types::Function::Error;
     }
 
-    Struct *pInStruct = in[0]->getAs<Struct>();
-    String *pInString = in[1]->getAs<types::String>();
+    types::String *pInString = in[1]->getAs<types::String>();
+    wchar_t** wcsStr = pInString->get();
+    types::Bool *pOutBool = new types::Bool(pInString->getRows(), pInString->getCols());
 
-    Bool *pOutBool = new Bool(pInString->getRows(), pInString->getCols());
-
-    for (int i = 0 ; i < pInString->getRows() ; ++i)
+    switch(in[0]->getType())
     {
-        for (int j = 0 ; j < pInString->getCols() ; ++j)
+        case types::GenericType::RealStruct :
         {
-            pOutBool->set(i, j, pInStruct->exists(std::wstring(pInString->get(i, j))));
+            types::Struct* pStruct = in[0]->getAs<types::Struct>();
+            for(int i = 0; i < pInString->getSize(); i++)
+            {
+                pOutBool->set(i, pStruct->exists(std::wstring(wcsStr[i])));
+            }
+            break;
+        }
+        case types::GenericType::RealTList :
+        case types::GenericType::RealMList :
+        {
+            types::TList* pTL = in[0]->getAs<types::TList>();
+            for(int i = 0; i < pInString->getSize(); i++)
+            {
+                pOutBool->set(i, pTL->exists(std::wstring(wcsStr[i])));
+            }
+            break;
         }
     }
 
     out.push_back(pOutBool);
-
-    return Function::OK;
+    return types::Function::OK;
 }
