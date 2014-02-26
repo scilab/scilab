@@ -493,6 +493,12 @@ public class GOBuilder {
                         controller.setProperty(uic, __GO_CALLBACKTYPE__, 0);
                     }
 
+                    item = attributes.getValue("onfocusloss");
+                    if (item != null && item.equals("") == false) {
+                        controller.setProperty(uic, __GO_CALLBACK__, item);
+                        controller.setProperty(uic, __GO_CALLBACKTYPE__, 0);
+                    }
+
                     break;
                 }
                 case __GO_UI_POPUPMENU__ : {
