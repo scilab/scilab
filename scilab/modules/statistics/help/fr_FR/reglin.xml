@@ -11,44 +11,44 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr_FR" xml:id="reglin">
-<refnamediv>
-    <refname>reglin</refname>
-    <refpurpose>Régréssion linéaire</refpurpose>
-</refnamediv>
-<refsynopsisdiv>
-    <title>Séquence d'appel</title>
-    <synopsis>[a,b,sig]=reglin(x,y)</synopsis>
-</refsynopsisdiv>
-<refsection>
-    <title>Paramètres</title>
-    <variablelist>
-        <varlistentry>
-            <term>x, y, a, b, sig</term>
-            <listitem>
-                <para>Vecteurs or Matrices numériques.</para>
-            </listitem>
-        </varlistentry>
-    </variablelist>
-</refsection>
-<refsection>
-    <title>Description</title>
-    <para>
-        Résout le problème de régréssion <literal>y=a*x+b</literal> au sens des moindres carrés.
-        <literal>sig</literal> est l'écart-type du résidu. <literal>x</literal> et <literal>y</literal>
-        sont deux matrices de taille <literal>x(p,n)</literal> et <literal>y(q,n)</literal>, où <literal>n</literal>
-        est le nombre d'échantillons.
-    </para>
-    <para>
-        L'estimateur <literal>a</literal> est une matrice de taille <literal>(q,p)</literal> et <literal>b</literal> est un
-        vecteur de taille <literal>(q,1)</literal>.
-    </para>
-    <para>
-        Si <literal>x</literal> ou <literal>y</literal> contient des NaN, utilisez <link linkend="nanreglin">nanreglin</link>.
-    </para>
-</refsection>
-<refsection>
-    <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <refnamediv>
+        <refname>reglin</refname>
+        <refpurpose>Régréssion linéaire</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>[a,b,sig]=reglin(x,y)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Paramètres</title>
+        <variablelist>
+            <varlistentry>
+                <term>x, y, a, b, sig</term>
+                <listitem>
+                    <para>Vecteurs or Matrices numériques.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Résout le problème de régréssion <literal>y=a*x+b</literal> au sens des moindres carrés.
+            <literal>sig</literal> est l'écart-type du résidu. <literal>x</literal> et <literal>y</literal>
+            sont deux matrices de taille <literal>x(p,n)</literal> et <literal>y(q,n)</literal>, où <literal>n</literal>
+            est le nombre d'échantillons.
+        </para>
+        <para>
+            L'estimateur <literal>a</literal> est une matrice de taille <literal>(q,p)</literal> et <literal>b</literal> est un
+            vecteur de taille <literal>(q,1)</literal>.
+        </para>
+        <para>
+            Si <literal>x</literal> ou <literal>y</literal> contient des NaN, utilisez <link linkend="nanreglin">nanreglin</link>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[
 // Simulation de données pour a(3, 5) et b(3, 1)
 x  = rand(5, 100);
 aa = testmatrix("magi", 5); aa = aa(1:3, :);
@@ -65,10 +65,10 @@ f = 1:100; x = [f.*f; f];
 y = [2 3]*x + 10*ones(f) + 0.1*rand(f);
 [a, b] = reglin(x, y)
  ]]></programlisting>
-    <para>
-        Exemple graphique :
-    </para>
-    <programlisting role="example"><![CDATA[
+        <para>
+            Exemple graphique :
+        </para>
+        <programlisting role="example"><![CDATA[
 // Génération d'une fonction impaire (symétrique à l'origine)
 x = -30:30;
 y = x.^3;
@@ -78,17 +78,17 @@ y = x.^3;
 plot(x, y, "red")
 plot(x, a*x+b)
  ]]></programlisting>
-    <scilab:image>
-        x = -30:30;
-        y = x.^3;
-        [a, b] = reglin(x, y);
-        plot(x, y, "red")
-        plot(x, a*x+b)
-    </scilab:image>
-    <para>
-        Exemple avec un NaN :
-    </para>
-    <programlisting role="example"><![CDATA[
+        <scilab:image>
+            x = -30:30;
+            y = x.^3;
+            [a, b] = reglin(x, y);
+            plot(x, y, "red")
+            plot(x, a*x+b)
+        </scilab:image>
+        <para>
+            Exemple avec un NaN :
+        </para>
+        <programlisting role="example"><![CDATA[
 // Mêmes valeurs que dans l'exemple précédent, mais avec un NaN
 x = -30:30;
 y = x.^3;
@@ -100,30 +100,30 @@ plot(x, y, "red")
 plot(x, a*x+b)
 // Le point [x(10), y(10)] a été ignoré, résultant en une valeur non-nulle pour b.
  ]]></programlisting>
-    <scilab:image>
-        x = -30:30;
-        y = x.^3;
-        y(10) = %nan;
-        [a, b] = reglin(x, y);
-        plot(x, y, "red")
-        plot(x, a*x+b)
-    </scilab:image>
-</refsection>
-<refsection role="see also">
-    <title>Vori aussi</title>
-    <simplelist type="inline">
-        <member>
-            <link linkend="nanreglin">nanreglin</link>
-        </member>
-        <member>
-            <link linkend="pinv">pinv</link>
-        </member>
-        <member>
-            <link linkend="leastsq">leastsq</link>
-        </member>
-        <member>
-            <link linkend="qr">qr</link>
-        </member>
-    </simplelist>
-</refsection>
+        <scilab:image>
+            x = -30:30;
+            y = x.^3;
+            y(10) = %nan;
+            [a, b] = nanreglin(x, y);
+            plot(x, y, "red")
+            plot(x, a*x+b)
+        </scilab:image>
+    </refsection>
+    <refsection role="see also">
+        <title>Vori aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="nanreglin">nanreglin</link>
+            </member>
+            <member>
+                <link linkend="pinv">pinv</link>
+            </member>
+            <member>
+                <link linkend="leastsq">leastsq</link>
+            </member>
+            <member>
+                <link linkend="qr">qr</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>
