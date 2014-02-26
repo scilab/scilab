@@ -33,6 +33,11 @@ void sciGetFiguresId(int ids[])
     return ScilabView::getFiguresId(ids);
 }
 
+int getValidDefaultFigureId()
+{
+    return ScilabView::getValidDefaultFigureId();
+}
+
 BOOL sciIsExistingFigure(int id)
 {
     return (ScilabView::existsFigureId(id) == true ? TRUE : FALSE);

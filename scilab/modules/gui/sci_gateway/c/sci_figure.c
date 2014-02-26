@@ -37,7 +37,6 @@
 /*--------------------------------------------------------------------------*/
 void setDefaultProperties(int _iFig);
 int addColor(int _iFig, double* _pdblColor);
-int cloneGDFWithId(int _iId);
 /*--------------------------------------------------------------------------*/
 int sci_figure(char * fname, unsigned long fname_len)
 {
@@ -68,32 +67,8 @@ int sci_figure(char * fname, unsigned long fname_len)
     // figure()
     if (iRhs == 0) // Auto ID
     {
-        //get highest value of winsid to create the new windows @ + 1
-        int nbFigure = sciGetNbFigure();
-
-        if (nbFigure)
-        {
-            int * ids = (int*)MALLOC(nbFigure * sizeof(int));
-
-            if (ids == NULL)
-            {
-                Scierror(999, _("%s: No more memory.\n"), fname);
-                return 0;
-            }
-            sciGetFiguresId(ids);
-
-            //find highest value
-            for (i = 0 ; i < nbFigure ; i++)
-            {
-                if (ids[i] > iNewId)
-                {
-                    iNewId = ids[i];
-                }
-            }
-        }
-        //use next value
-        iNewId = iNewId + 1;
-        iFig = cloneGDFWithId(iNewId);
+        iFig = createNewFigureWithAxes();
+        setDefaultProperties(iFig);
         createScalarHandle(pvApiCtx, iRhs + 1, getHandle(iFig));
         AssignOutputVariable(pvApiCtx, 1) = iRhs + 1;
         ReturnArguments(pvApiCtx);
@@ -102,9 +77,6 @@ int sci_figure(char * fname, unsigned long fname_len)
 
     if (iRhs == 1)
     {
-        int iNewId = -1;
-        int iAxes = 0;
-        int* piAxes = &iAxes;
         //figure(x);
         sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
         if (sciErr.iErr)
@@ -132,11 +104,11 @@ int sci_figure(char * fname, unsigned long fname_len)
         iFig = getFigureFromIndex(iId);
         if (iFig == 0) // Figure does not exists, create a new one
         {
-            iFig = cloneGDFWithId(iId);
+            iFig = createNewFigureWithAxes();
+            setGraphicObjectProperty(iFig, __GO_ID__, &iId, jni_int,  1);
+            setDefaultProperties(iFig);
         }
-        setCurrentFigure(iFig);
-        getGraphicObjectProperty(iFig, __GO_SELECTED_CHILD__, jni_int,  (void**)&piAxes);
-        setCurrentSubWin(iAxes);
+
         createScalarHandle(pvApiCtx, iRhs + 1, getHandle(iFig));
         AssignOutputVariable(pvApiCtx, 1) = iRhs + 1;
         ReturnArguments(pvApiCtx);
@@ -147,31 +119,8 @@ int sci_figure(char * fname, unsigned long fname_len)
     if (iRhs % 2 == 0)
     {
         //get highest value of winsid to create the new windows @ + 1
-        int nbFigure = sciGetNbFigure();
+        iNewId = getValidDefaultFigureId();
         iPos = 0;
-
-        if (nbFigure)
-        {
-            int * ids = (int*)MALLOC(nbFigure * sizeof(int));
-
-            if (ids == NULL)
-            {
-                Scierror(999, _("%s: No more memory.\n"), fname);
-                return 0;
-            }
-            sciGetFiguresId(ids);
-
-            //find highest value
-            for (i = 0 ; i < nbFigure ; i++)
-            {
-                if (ids[i] > iNewId)
-                {
-                    iNewId = ids[i];
-                }
-            }
-        }
-        //use next value
-        iNewId = iNewId + 1;
     }
     else
     {
@@ -479,24 +428,6 @@ int sci_figure(char * fname, unsigned long fname_len)
     AssignOutputVariable(pvApiCtx, 1) = iRhs + 1;
     ReturnArguments(pvApiCtx);
     return 0;
-}
-/*--------------------------------------------------------------------------*/
-int cloneGDFWithId(int _iID)
-{
-    int iAxes;
-    int *piAxes = &iAxes;
-    //create a new window with id = iNewId
-    int iFig = createNewFigureWithAxes();
-    setGraphicObjectProperty(iFig, __GO_ID__, &_iID, jni_int, 1);
-    setCurrentFigure(iFig);
-
-    getGraphicObjectProperty(iFig, __GO_SELECTED_CHILD__, jni_int,  (void**)&piAxes);
-    setCurrentSubWin(iAxes);
-
-    //setting up new figure
-    setDefaultProperties(iFig);
-
-    return iFig;
 }
 /*--------------------------------------------------------------------------*/
 void setDefaultProperties(int _iFig)

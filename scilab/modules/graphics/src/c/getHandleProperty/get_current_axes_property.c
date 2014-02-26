@@ -45,15 +45,7 @@ int get_current_axes_property(void* _pvCtx, int iObjUID)
         return -1;
     }
 
-    iSubWinUID = getCurrentSubWin();
-
-    if (iSubWinUID == 0)
-    {
-        iFigureUID = createNewFigureWithAxes();
-        setCurrentFigure(iFigureUID);
-    }
-
-
+    iSubWinUID = getOrCreateDefaultSubwin();
     return sciReturnHandle(_pvCtx, getHandle(getCurrentSubWin()));
 }
 /*------------------------------------------------------------------------*/

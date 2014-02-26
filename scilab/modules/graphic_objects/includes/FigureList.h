@@ -22,6 +22,11 @@
 GRAPHIC_OBJECTS_IMPEXP int sciGetNbFigure(void);
 
 /**
+ * @return the next free figure id.
+ */
+GRAPHIC_OBJECTS_IMPEXP int getValidDefaultFigureId();
+
+/**
  * Fill the array Ids with all the figure ids currently used by Scilab.
  * @param ids should be as long as there are figures.
  */
