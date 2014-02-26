@@ -86,11 +86,12 @@ public class SwingScilabLayer extends SwingScilabFrame {
 
     public Boolean isLayerActive(Component layer) {
         Integer index = getLayerIndex(layer);
+        System.out.println("isLayerActive : " + index);
         if (index == -1) {
             return false;
         }
 
-        return isLayerActive(index);
+        return isLayerActive(getComponentCount() - (index - 1));
     }
 
 
@@ -163,12 +164,16 @@ public class SwingScilabLayer extends SwingScilabFrame {
         SwingViewObject previousFrame = (SwingViewObject)getLayerFromIndex(previous);
         SwingViewObject nextFrame = (SwingViewObject) getLayerFromIndex(next);
 
+        System.out.println("previous : " + previous);
+        System.out.println("next : " + next);
         String name = null;
         if (previousFrame != null) {
+            System.out.println("visible false : " + previousFrame.getId());
             GraphicController.getController().setProperty(previousFrame.getId(), __GO_VISIBLE__, false);
         }
 
         if (nextFrame != null) {
+            System.out.println("visible true : " + nextFrame.getId());
             GraphicController.getController().setProperty(nextFrame.getId(), __GO_VISIBLE__, true);
             name = (String)GraphicController.getController().getProperty(nextFrame.getId(), __GO_TAG__);
         }

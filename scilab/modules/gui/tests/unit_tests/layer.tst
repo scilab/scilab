@@ -43,10 +43,10 @@ assert_checkequal(layer.children.visible, visible1);
 delete(gcf());
 layer = create_layer(4);
 
-visible1 = ['off' 'off' 'off' 'on'];
-visible2 = ['off' 'off' 'on' 'off'];
-visible3 = ['off' 'on' 'off' 'off'];
-visible4 = ['on' 'off' 'off' 'off'];
+visible1 = ['on' 'off' 'off' 'off'];
+visible2 = ['off' 'on' 'off' 'off'];
+visible3 = ['off' 'off' 'on' 'off'];
+visible4 = ['off' 'off' 'off' 'on'];
 
 assert_checkequal(layer.value, 1);
 assert_checkequal(layer.children.visible, visible1);
