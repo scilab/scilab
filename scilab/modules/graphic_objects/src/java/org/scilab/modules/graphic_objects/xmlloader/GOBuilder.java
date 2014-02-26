@@ -462,6 +462,16 @@ public class GOBuilder {
                     break;
                 }
                 case __GO_UI_POPUPMENU__ : {
+                    item = attributes.getValue("items");
+                    if (item != null && item.equals("") == false) {
+                        controller.setProperty(uic, __GO_UI_STRING__, new String[] {item});
+                    }
+
+                    item = attributes.getValue("prototype-display-value");
+                    if (item != null && item.equals("") == false) {
+                        controller.setProperty(uic, __GO_UI_MAX__, new Double(item.length()));
+                    }
+
                     //callback
                     item = attributes.getValue("onchange");
                     if (item != null && item.equals("") == false) {

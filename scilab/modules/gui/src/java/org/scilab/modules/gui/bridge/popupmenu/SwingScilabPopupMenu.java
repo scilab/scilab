@@ -14,6 +14,7 @@
 
 package org.scilab.modules.gui.bridge.popupmenu;
 
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MAX__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING_COLNB__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE__;
@@ -22,6 +23,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -448,6 +450,13 @@ public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, 
         switch (property) {
             case __GO_UI_STRING__: {
                 setText((String[]) value);
+                break;
+            }
+            case __GO_UI_MAX__: {
+                char[] chars = new char[((Double)value).intValue()];
+                Arrays.fill(chars, '*');
+                String proto = new String(chars);
+                setPrototypeDisplayValue(proto);
                 break;
             }
             case __GO_UI_VALUE__: {
