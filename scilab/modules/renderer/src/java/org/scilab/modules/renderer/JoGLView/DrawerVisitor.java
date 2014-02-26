@@ -1170,7 +1170,8 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
             return true;
         }
 
-        Integer parentUID = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_PARENT__);
+        Object parentObject = GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_PARENT__);
+        Integer parentUID = parentObject == null ? 0 : (Integer) parentObject;
         while (parentUID != 0) {
 
             if (figure.getIdentifier().intValue() == parentUID.intValue()) {
@@ -1183,7 +1184,8 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 return false;
             }
 
-            parentUID = (Integer) GraphicController.getController().getProperty(parentUID, GraphicObjectProperties.__GO_PARENT__);
+            parentObject = GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_PARENT__);
+            parentUID = parentObject == null ? 0 : (Integer) parentObject;
 
         }
         return false;
