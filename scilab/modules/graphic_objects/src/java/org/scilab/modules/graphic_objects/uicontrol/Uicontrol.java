@@ -1070,6 +1070,8 @@ public class Uicontrol extends GraphicObject {
                     break;
                 }
             }
+        } else {
+            needUpdate = true;
         }
 
         if (needUpdate == false) {

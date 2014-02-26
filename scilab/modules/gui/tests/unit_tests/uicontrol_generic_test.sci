@@ -333,7 +333,8 @@ function ierr = uicontrol_generic_test(uicontrol_style)
     // Constraints
     h.parent.layout = "border";
     assert_checkequal(get(h, "constraints"), createConstraints("border", "center")); // Default value
-    set(h, "constraints", "left");
+    set(h, "constraints", createConstraints("border", "left"));
+    assert_checkequal(get(h, "constraints"), createConstraints("border", "left"));
     // TODO test with wrong values & different layouts
 
 endfunction

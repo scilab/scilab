@@ -57,7 +57,7 @@ int set_constraints_property(void* _pvCtx, int iObjUID, void* _pvData, int value
 
         if (valueType != sci_tlist)
         {
-            Scierror(999, _("Wrong type for '%s' property: '%s' expected.\n"), "constraints", "tlist");
+            Scierror(999, _("Wrong type for '%s' property: A '%s' expected.\n"), "constraints", "tlist");
             return 1;
         }
 
