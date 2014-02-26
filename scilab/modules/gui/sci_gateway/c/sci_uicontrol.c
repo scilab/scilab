@@ -102,6 +102,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
 
     int nbRow = 0, nbCol = 0, k = 0;
     int setStatus = SET_PROPERTY_SUCCEED;
+    int PARENT_NOT_FOUND = -2;
     int NOT_FOUND = -1;
     int inputIndex = 0, beginIndex = 0;
     char *propertyName = NULL;
@@ -545,13 +546,20 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
             {
                 iCurrentFigure = createNewFigureWithAxes();
             }
-            setGraphicObjectRelationship(iCurrentFigure, iUicontrol);
+
+            propertiesValuesIndices[parent_property] = PARENT_NOT_FOUND;
         }
 
         /* Read and set all properties */
         for (inputIndex = 1; inputIndex < iPropertiesCount; inputIndex++)   /* Style has already been set */
         {
-            if (propertiesValuesIndices[inputIndex] != NOT_FOUND)
+            if (propertiesValuesIndices[inputIndex] == PARENT_NOT_FOUND)
+            {
+                //special case for not specified parent
+                //but set relationship at the good moment.
+                setGraphicObjectRelationship(iCurrentFigure, iUicontrol);
+            }
+            else if (propertiesValuesIndices[inputIndex] != NOT_FOUND)
             {
                 int* piAddr = NULL;
                 sciErr = getVarAddressFromPosition(pvApiCtx, propertiesValuesIndices[inputIndex], &piAddr);
