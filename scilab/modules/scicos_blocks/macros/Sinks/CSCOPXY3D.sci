@@ -43,7 +43,7 @@ function [x,y,typ]=CSCOPXY3D(job,arg1,arg2)
             "Zmin and Zmax";
             "Alpha and Theta";
             "Buffer size"],..
-            list("vec",1,"vec",-1,"vec",-1,"vec",1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",-1,"vec",1),..
+            list("vec",1,"vec",-1,"vec",-1,"vec",1,"vec",-1,"vec",-1,"vec",2,"vec",2,"vec",2,"vec",2,"vec",1),..
             exprs)
             if ~ok then
                 break,
