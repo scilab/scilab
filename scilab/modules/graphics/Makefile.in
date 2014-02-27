@@ -297,6 +297,8 @@ am__objects_1 = src/c/libscigraphics_algo_la-GetCommandArg.lo \
 	src/c/getHandleProperty/libscigraphics_algo_la-get_y_ticks_property.lo \
 	src/c/getHandleProperty/libscigraphics_algo_la-get_z_ticks_property.lo \
 	src/c/getHandleProperty/libscigraphics_algo_la-get_x_ticks_property.lo \
+	src/c/getHandleProperty/libscigraphics_algo_la-get_ticks_format_property.lo \
+	src/c/getHandleProperty/libscigraphics_algo_la-get_ticks_st_property.lo \
 	src/c/getHandleProperty/libscigraphics_algo_la-setGetHashTable.lo \
 	src/c/getHandleProperty/libscigraphics_algo_la-get_segs_color_property.lo \
 	src/c/getHandleProperty/libscigraphics_algo_la-get_screen_position_property.lo \
@@ -443,6 +445,8 @@ am__objects_1 = src/c/libscigraphics_algo_la-GetCommandArg.lo \
 	src/c/getHandleProperty/libscigraphics_algo_la-set_yticks_coord_property.lo \
 	src/c/getHandleProperty/libscigraphics_algo_la-CheckTicksProperty.lo \
 	src/c/getHandleProperty/libscigraphics_algo_la-set_x_ticks_property.lo \
+	src/c/getHandleProperty/libscigraphics_algo_la-set_ticks_format_property.lo \
+	src/c/getHandleProperty/libscigraphics_algo_la-set_ticks_st_property.lo \
 	src/c/getHandleProperty/libscigraphics_algo_la-set_viewport_property.lo \
 	src/c/getHandleProperty/libscigraphics_algo_la-set_info_message_property.lo \
 	src/c/getHandleProperty/libscigraphics_algo_la-set_screen_position_property.lo \
@@ -1091,6 +1095,8 @@ src/c/getHandleProperty/get_info_message_property.c \
 src/c/getHandleProperty/get_y_ticks_property.c \
 src/c/getHandleProperty/get_z_ticks_property.c \
 src/c/getHandleProperty/get_x_ticks_property.c \
+src/c/getHandleProperty/get_ticks_format_property.c \
+src/c/getHandleProperty/get_ticks_st_property.c \
 src/c/getHandleProperty/setGetHashTable.c \
 src/c/getHandleProperty/get_segs_color_property.c \
 src/c/getHandleProperty/get_screen_position_property.c \
@@ -1237,6 +1243,8 @@ src/c/getHandleProperty/set_surface_color_property.c \
 src/c/getHandleProperty/set_yticks_coord_property.c \
 src/c/getHandleProperty/CheckTicksProperty.c \
 src/c/getHandleProperty/set_x_ticks_property.c \
+src/c/getHandleProperty/set_ticks_format_property.c \
+src/c/getHandleProperty/set_ticks_st_property.c \
 src/c/getHandleProperty/set_viewport_property.c \
 src/c/getHandleProperty/set_info_message_property.c \
 src/c/getHandleProperty/set_screen_position_property.c \
@@ -2021,6 +2029,12 @@ src/c/getHandleProperty/libscigraphics_algo_la-get_z_ticks_property.lo:  \
 src/c/getHandleProperty/libscigraphics_algo_la-get_x_ticks_property.lo:  \
 	src/c/getHandleProperty/$(am__dirstamp) \
 	src/c/getHandleProperty/$(DEPDIR)/$(am__dirstamp)
+src/c/getHandleProperty/libscigraphics_algo_la-get_ticks_format_property.lo:  \
+	src/c/getHandleProperty/$(am__dirstamp) \
+	src/c/getHandleProperty/$(DEPDIR)/$(am__dirstamp)
+src/c/getHandleProperty/libscigraphics_algo_la-get_ticks_st_property.lo:  \
+	src/c/getHandleProperty/$(am__dirstamp) \
+	src/c/getHandleProperty/$(DEPDIR)/$(am__dirstamp)
 src/c/getHandleProperty/libscigraphics_algo_la-setGetHashTable.lo:  \
 	src/c/getHandleProperty/$(am__dirstamp) \
 	src/c/getHandleProperty/$(DEPDIR)/$(am__dirstamp)
@@ -2456,6 +2470,12 @@ src/c/getHandleProperty/libscigraphics_algo_la-CheckTicksProperty.lo:  \
 	src/c/getHandleProperty/$(am__dirstamp) \
 	src/c/getHandleProperty/$(DEPDIR)/$(am__dirstamp)
 src/c/getHandleProperty/libscigraphics_algo_la-set_x_ticks_property.lo:  \
+	src/c/getHandleProperty/$(am__dirstamp) \
+	src/c/getHandleProperty/$(DEPDIR)/$(am__dirstamp)
+src/c/getHandleProperty/libscigraphics_algo_la-set_ticks_format_property.lo:  \
+	src/c/getHandleProperty/$(am__dirstamp) \
+	src/c/getHandleProperty/$(DEPDIR)/$(am__dirstamp)
+src/c/getHandleProperty/libscigraphics_algo_la-set_ticks_st_property.lo:  \
 	src/c/getHandleProperty/$(am__dirstamp) \
 	src/c/getHandleProperty/$(DEPDIR)/$(am__dirstamp)
 src/c/getHandleProperty/libscigraphics_algo_la-set_viewport_property.lo:  \
@@ -3161,6 +3181,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_text_box_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_text_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_thickness_property.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_ticks_format_property.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_ticks_st_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_tics_color_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_tics_direction_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_tics_label_property.Plo@am__quote@
@@ -3325,6 +3347,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_text_box_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_text_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_thickness_property.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_ticks_format_property.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_ticks_st_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_tics_color_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_tics_direction_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_tics_labels_property.Plo@am__quote@
@@ -4255,6 +4279,20 @@ src/c/getHandleProperty/libscigraphics_algo_la-get_x_ticks_property.lo: src/c/ge
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getHandleProperty/get_x_ticks_property.c' object='src/c/getHandleProperty/libscigraphics_algo_la-get_x_ticks_property.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/getHandleProperty/libscigraphics_algo_la-get_x_ticks_property.lo `test -f 'src/c/getHandleProperty/get_x_ticks_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_x_ticks_property.c
+
+src/c/getHandleProperty/libscigraphics_algo_la-get_ticks_format_property.lo: src/c/getHandleProperty/get_ticks_format_property.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/getHandleProperty/libscigraphics_algo_la-get_ticks_format_property.lo -MD -MP -MF src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_ticks_format_property.Tpo -c -o src/c/getHandleProperty/libscigraphics_algo_la-get_ticks_format_property.lo `test -f 'src/c/getHandleProperty/get_ticks_format_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_ticks_format_property.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_ticks_format_property.Tpo src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_ticks_format_property.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getHandleProperty/get_ticks_format_property.c' object='src/c/getHandleProperty/libscigraphics_algo_la-get_ticks_format_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/getHandleProperty/libscigraphics_algo_la-get_ticks_format_property.lo `test -f 'src/c/getHandleProperty/get_ticks_format_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_ticks_format_property.c
+
+src/c/getHandleProperty/libscigraphics_algo_la-get_ticks_st_property.lo: src/c/getHandleProperty/get_ticks_st_property.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/getHandleProperty/libscigraphics_algo_la-get_ticks_st_property.lo -MD -MP -MF src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_ticks_st_property.Tpo -c -o src/c/getHandleProperty/libscigraphics_algo_la-get_ticks_st_property.lo `test -f 'src/c/getHandleProperty/get_ticks_st_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_ticks_st_property.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_ticks_st_property.Tpo src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_ticks_st_property.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getHandleProperty/get_ticks_st_property.c' object='src/c/getHandleProperty/libscigraphics_algo_la-get_ticks_st_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/getHandleProperty/libscigraphics_algo_la-get_ticks_st_property.lo `test -f 'src/c/getHandleProperty/get_ticks_st_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_ticks_st_property.c
 
 src/c/getHandleProperty/libscigraphics_algo_la-setGetHashTable.lo: src/c/getHandleProperty/setGetHashTable.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/getHandleProperty/libscigraphics_algo_la-setGetHashTable.lo -MD -MP -MF src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-setGetHashTable.Tpo -c -o src/c/getHandleProperty/libscigraphics_algo_la-setGetHashTable.lo `test -f 'src/c/getHandleProperty/setGetHashTable.c' || echo '$(srcdir)/'`src/c/getHandleProperty/setGetHashTable.c
@@ -5277,6 +5315,20 @@ src/c/getHandleProperty/libscigraphics_algo_la-set_x_ticks_property.lo: src/c/ge
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getHandleProperty/set_x_ticks_property.c' object='src/c/getHandleProperty/libscigraphics_algo_la-set_x_ticks_property.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/getHandleProperty/libscigraphics_algo_la-set_x_ticks_property.lo `test -f 'src/c/getHandleProperty/set_x_ticks_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_x_ticks_property.c
+
+src/c/getHandleProperty/libscigraphics_algo_la-set_ticks_format_property.lo: src/c/getHandleProperty/set_ticks_format_property.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/getHandleProperty/libscigraphics_algo_la-set_ticks_format_property.lo -MD -MP -MF src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_ticks_format_property.Tpo -c -o src/c/getHandleProperty/libscigraphics_algo_la-set_ticks_format_property.lo `test -f 'src/c/getHandleProperty/set_ticks_format_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_ticks_format_property.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_ticks_format_property.Tpo src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_ticks_format_property.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getHandleProperty/set_ticks_format_property.c' object='src/c/getHandleProperty/libscigraphics_algo_la-set_ticks_format_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/getHandleProperty/libscigraphics_algo_la-set_ticks_format_property.lo `test -f 'src/c/getHandleProperty/set_ticks_format_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_ticks_format_property.c
+
+src/c/getHandleProperty/libscigraphics_algo_la-set_ticks_st_property.lo: src/c/getHandleProperty/set_ticks_st_property.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/getHandleProperty/libscigraphics_algo_la-set_ticks_st_property.lo -MD -MP -MF src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_ticks_st_property.Tpo -c -o src/c/getHandleProperty/libscigraphics_algo_la-set_ticks_st_property.lo `test -f 'src/c/getHandleProperty/set_ticks_st_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_ticks_st_property.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_ticks_st_property.Tpo src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_ticks_st_property.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getHandleProperty/set_ticks_st_property.c' object='src/c/getHandleProperty/libscigraphics_algo_la-set_ticks_st_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/getHandleProperty/libscigraphics_algo_la-set_ticks_st_property.lo `test -f 'src/c/getHandleProperty/set_ticks_st_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_ticks_st_property.c
 
 src/c/getHandleProperty/libscigraphics_algo_la-set_viewport_property.lo: src/c/getHandleProperty/set_viewport_property.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/getHandleProperty/libscigraphics_algo_la-set_viewport_property.lo -MD -MP -MF src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_viewport_property.Tpo -c -o src/c/getHandleProperty/libscigraphics_algo_la-set_viewport_property.lo `test -f 'src/c/getHandleProperty/set_viewport_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_viewport_property.c

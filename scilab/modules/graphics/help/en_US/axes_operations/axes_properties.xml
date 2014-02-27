@@ -298,6 +298,31 @@
                             </listitem>
                         </varlistentry>
                         <varlistentry>
+                            <term>ticks_format: </term>
+                            <listitem>
+                                <para>This property specifies the format to use for each axes.
+                                    It is a row vector with at most 3 columns containing strings format (as specified for <link linkend="mprintf">mprintf</link>). Each ticks position will be used to format the string used as label.
+                                </para>
+                                <para>
+                                    So, for example ticks_format="%.2e" will print ticks positions in using scientific notation with two decimals.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>ticks_st: </term>
+                            <listitem>
+                                <para>
+                                    This property specifies scale-translate factors to apply to each ticks position before to use it in the formatted string used as label. So if the factors are <literal>[x_s y_s z_s ; x_t y_t z_t]</literal> and if a x_tick is positionned at X, the value used to format the label will be <literal>x_s*(X-x_t)</literal>. It could be particulary useful when the axes bounds are too closed.
+                                    <para>
+                                        It is a matrix with 2 rows and at most 3 columns.
+                                    </para>
+                                </para>
+                                <para>
+                                    So, for example <literal>base=B</literal>, labels could be printed with <literal>ticks_format=string(base)+"%+.2e"</literal> and <literal>ticks_st=[1 base]</literal>
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
                             <term>box: </term>
                             <listitem>
                                 <para>This property specifies whether to enclose the axes in a box.
@@ -922,6 +947,14 @@ a.x_ticks = tlist(["ticks", "locations", "labels"], (0:6)', [mathml;"1";"$\sin(x
 a.y_ticks = tlist(["ticks", "locations", "labels"], (-2:0.5:2)', ["0";"1";"2";"3";"$\cos(a)$";"5";"6";mathml;"8"]);
 
  ]]></programlisting>
+        <para/>
+        <programlisting role="example"><![CDATA[
+m=[66.425514; 66.425513];
+plot([69;70], m);
+a=gca();
+a.ticks_format=["" sprintf("%.2f", m(2))+"%+.1e"];
+a.ticks_st=[1 1;0 m(2)];
+ ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>
@@ -972,6 +1005,7 @@ a.y_ticks = tlist(["ticks", "locations", "labels"], (-2:0.5:2)', ["0";"1";"2";"3
                 <revnumber>5.5.0</revnumber>
                 <revremark>line_style values 9 and 10 can be used to have respectively longblank dot and bigblank dot styles.</revremark>
                 <revremark>auto_margins property added to allow automatic computation of the margins.</revremark>
+                <revremark>ticks_format and ticks_st properties added to improve ticks labels display.</revremark>
             </revision>
         </revhistory>
     </refsection>

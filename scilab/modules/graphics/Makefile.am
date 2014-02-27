@@ -150,6 +150,8 @@ src/c/getHandleProperty/get_info_message_property.c \
 src/c/getHandleProperty/get_y_ticks_property.c \
 src/c/getHandleProperty/get_z_ticks_property.c \
 src/c/getHandleProperty/get_x_ticks_property.c \
+src/c/getHandleProperty/get_ticks_format_property.c \
+src/c/getHandleProperty/get_ticks_st_property.c \
 src/c/getHandleProperty/setGetHashTable.c \
 src/c/getHandleProperty/get_segs_color_property.c \
 src/c/getHandleProperty/get_screen_position_property.c \
@@ -296,6 +298,8 @@ src/c/getHandleProperty/set_surface_color_property.c \
 src/c/getHandleProperty/set_yticks_coord_property.c \
 src/c/getHandleProperty/CheckTicksProperty.c \
 src/c/getHandleProperty/set_x_ticks_property.c \
+src/c/getHandleProperty/set_ticks_format_property.c \
+src/c/getHandleProperty/set_ticks_st_property.c \
 src/c/getHandleProperty/set_viewport_property.c \
 src/c/getHandleProperty/set_info_message_property.c \
 src/c/getHandleProperty/set_screen_position_property.c \

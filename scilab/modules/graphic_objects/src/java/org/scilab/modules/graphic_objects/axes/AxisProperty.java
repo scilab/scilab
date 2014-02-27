@@ -501,6 +501,34 @@ public class AxisProperty {
     }
 
     /**
+     * @return the ticks labels format
+     */
+    public String getFormat() {
+        return ticks.getFormat();
+    }
+
+    /**
+     * @param format the ticks labels format set
+     */
+    public UpdateStatus setFormat(String format) {
+        return ticks.setFormat(format);
+    }
+
+    /**
+     * @return the ticks labels scale-translate factors
+     */
+    public Double[] getSTFactors() {
+        return ticks.getSTFactors();
+    }
+
+    /**
+     * @param factors the ticks labels scale-translate factors
+     */
+    public UpdateStatus setSTFactors(Double[] factors) {
+        return ticks.setSTFactors(factors);
+    }
+
+    /**
      * Supposes all ticks labels have the same font color.
      * To be corrected.
      * @return the ticks labels font color
@@ -535,5 +563,4 @@ public class AxisProperty {
     public UpdateStatus setFontFractional(Boolean fontFractional) {
         return ticks.setFontFractional(fontFractional);
     }
-
 }

@@ -113,6 +113,9 @@ public final class DefaultRulerModel implements RulerModel {
     private double lineWidth = DEFAULT_LINE_WIDTH;
 
     private int subticksNumber = -1;
+    private String format = "";
+    private double scale;
+    private double translate;
 
     /**
      * Default constructor.
@@ -399,4 +402,35 @@ public final class DefaultRulerModel implements RulerModel {
         this.subticksNumber = N;
     }
 
+    @Override
+    public String getFormat() {
+        return format;
+    }
+
+    /**
+     * Set the format.
+     * @param format the format as used in String.format.
+     */
+    public void setFormat(String format) {
+        this.format = format;
+    }
+
+    @Override
+    public double getScale() {
+        return scale;
+    }
+
+    @Override
+    public double getTranslate() {
+        return translate;
+    }
+
+    /**
+     * Set the scale-translate factors.
+     * @param .
+     */
+    public void setSTFactors(Double[] factors) {
+        this.scale = factors[0];
+        this.translate = factors[1];
+    }
 }

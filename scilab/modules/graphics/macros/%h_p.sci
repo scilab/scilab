@@ -173,6 +173,8 @@ function %h_p(h)
             "x_ticks.labels = "+labx
             "y_ticks.labels = "+laby
             "z_ticks.labels = "+labz
+            "ticks_format = "+sci2exp(h.ticks_format)
+            "ticks_st = "+sci2exp(h.ticks_st, 0)
             "box = "+sci2exp(h.box)
             "filled = " + sci2exp(h.filled)
             "sub_ticks = "+sci2exp(h.sub_ticks,0)

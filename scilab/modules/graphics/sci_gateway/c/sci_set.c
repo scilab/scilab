@@ -162,7 +162,7 @@ int sci_set(char *fname, unsigned long fname_len)
             case sci_strings :
                 if (strcmp(pstProperty, "tics_labels") == 0 || strcmp(pstProperty, "auto_ticks") == 0 ||
                         strcmp(pstProperty, "axes_visible") == 0 || strcmp(pstProperty, "axes_reverse") == 0 ||
-                        strcmp(pstProperty, "text") == 0)
+                        strcmp(pstProperty, "text") == 0 || strcmp(pstProperty, "ticks_format") == 0)
                 {
                     isMatrixOfString = 1;
                     if (getAllocatedMatrixOfString(pvApiCtx, piAddr2, &iRows2, &iCols2, (char***)&pvData))
@@ -374,7 +374,7 @@ int sci_set(char *fname, unsigned long fname_len)
                     if (strcmp(pstProperty, "tics_labels") != 0 && strcmp(pstProperty, "auto_ticks") != 0 &&
                             strcmp(pstProperty, "axes_visible") != 0 && strcmp(pstProperty, "axes_reverse") != 0 &&
                             strcmp(pstProperty, "text") != 0 && stricmp(pstProperty, "string") != 0 &&
-                            stricmp(pstProperty, "tooltipstring") != 0) /* Added for uicontrols */
+                            stricmp(pstProperty, "tooltipstring") != 0 && stricmp(pstProperty, "ticks_format") != 0) /* Added for uicontrols */
                     {
                         if (isScalar(pvApiCtx, piAddr3) == 0)
                         {

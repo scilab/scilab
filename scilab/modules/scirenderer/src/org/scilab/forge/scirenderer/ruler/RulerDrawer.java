@@ -28,6 +28,7 @@ import org.scilab.forge.scirenderer.SciRendererException;
 import org.scilab.forge.scirenderer.buffers.BuffersManager;
 import org.scilab.forge.scirenderer.buffers.ElementsBuffer;
 import org.scilab.forge.scirenderer.ruler.graduations.Graduations;
+import org.scilab.forge.scirenderer.ruler.graduations.UserDefinedFormat;
 import org.scilab.forge.scirenderer.shapes.appearance.Appearance;
 import org.scilab.forge.scirenderer.shapes.geometry.DefaultGeometry;
 import org.scilab.forge.scirenderer.shapes.geometry.Geometry;
@@ -332,6 +333,11 @@ public class RulerDrawer {
             Graduations currentGraduations = rulerModel.getGraduations();
             Graduations ticksGraduation = currentGraduations;
             DecimalFormat format = currentGraduations.getFormat();
+            String f = rulerModel.getFormat();
+            if (f != null && !f.isEmpty()) {
+                format = new UserDefinedFormat(format, f, rulerModel.getScale(), rulerModel.getTranslate());
+            }
+
             boolean canGetMore = true;
             List<PositionedSprite> newSpritesList = new LinkedList<PositionedSprite>();
             while (currentGraduations != null) {

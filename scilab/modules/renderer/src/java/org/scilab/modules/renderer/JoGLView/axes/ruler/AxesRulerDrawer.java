@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009-2010 - DIGITEO - Pierre Lando
  * Copyright (C) 2011 - DIGITEO - Manuel Juliachs
- * Copyright (C) 2013 - Scilab Enterprises - Calixte DENIZET
+ * Copyright (C) 2013-2014 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -140,6 +140,8 @@ public class AxesRulerDrawer {
 
         setRulerBounds(axes.getXAxis(), rulerModel, bounds[0], bounds[1]);
 
+        rulerModel.setFormat(axes.getXAxisFormat());
+        rulerModel.setSTFactors(axes.getXAxisSTFactors());
         rulerModel.setLogarithmic(axes.getXAxis().getLogFlag());
         rulerModel.setMinimalSubTicksDistance(axes.getXAxis().getLogFlag() ? LOG_MINIMAL_SUB_TICKS_DISTANCE : LINEAR_MINIMAL_SUB_TICKS_DISTANCE);
 
@@ -197,6 +199,8 @@ public class AxesRulerDrawer {
         }
 
         setRulerBounds(axes.getYAxis(), rulerModel, bounds[2], bounds[3]);
+        rulerModel.setFormat(axes.getYAxisFormat());
+        rulerModel.setSTFactors(axes.getYAxisSTFactors());
         rulerModel.setLogarithmic(axes.getYAxis().getLogFlag());
         rulerModel.setMinimalSubTicksDistance(axes.getYAxis().getLogFlag() ? LOG_MINIMAL_SUB_TICKS_DISTANCE : LINEAR_MINIMAL_SUB_TICKS_DISTANCE);
 
@@ -262,6 +266,8 @@ public class AxesRulerDrawer {
             }
 
             setRulerBounds(axes.getZAxis(), rulerModel, bounds[4], bounds[5]);
+            rulerModel.setFormat(axes.getZAxisFormat());
+            rulerModel.setSTFactors(axes.getZAxisSTFactors());
             rulerModel.setLogarithmic(axes.getZAxis().getLogFlag());
             rulerModel.setMinimalSubTicksDistance(axes.getZAxis().getLogFlag() ? LOG_MINIMAL_SUB_TICKS_DISTANCE : LINEAR_MINIMAL_SUB_TICKS_DISTANCE);
 

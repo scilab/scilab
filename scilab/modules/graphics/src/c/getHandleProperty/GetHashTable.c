@@ -249,7 +249,9 @@ static getHashTableCouple propertyGetTable[] =
     {"scrollable", get_scrollable_property},
     {"icon", GetUicontrolIcon},
     {"line_width", get_line_width_property},
-    {"marks_count", get_marks_count_property}
+    {"marks_count", get_marks_count_property},
+    {"ticks_format", get_ticks_format_property},
+    {"ticks_st", get_ticks_st_property},
 };
 
 /*--------------------------------------------------------------------------*/

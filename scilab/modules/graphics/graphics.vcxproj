@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -398,6 +398,8 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="src\c\getHandleProperty\get_x_location_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_x_shift_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_x_ticks_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_ticks_format_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_ticks_st_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_xtics_coord_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_y_label_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_y_location_property.c" />
@@ -606,6 +608,8 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="src\c\getHandleProperty\set_x_location_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_x_shift_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_x_ticks_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_ticks_format_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_ticks_st_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_xtics_coord_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_y_label_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_y_location_property.c" />

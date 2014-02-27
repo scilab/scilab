@@ -204,4 +204,22 @@ public interface RulerModel {
      * @return the number of subticks or -1 if the computation is automatic.
      */
     int getSubticksNumber();
+
+    /**
+     * Get the format to print the ticks label
+     * @return the format
+     */
+    String getFormat();
+
+    /**
+     * Get the scale factor to recompute label value
+     * @return the scale factor
+     */
+    double getScale();
+
+    /**
+     * Get the translate factor to recompute label value
+     * @return the translate factor
+     */
+    double getTranslate();
 }
