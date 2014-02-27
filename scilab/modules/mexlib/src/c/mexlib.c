@@ -3052,7 +3052,7 @@ int C2F(endmex)(int *nlhs, mxArray **plhs, int *nrhs, mxArray **prhs)
         }
     }
 
-    /** clear mxMalloc_m and and mxCalloc_m  **/
+    /** clear mxMalloc_m and mxCalloc_m  **/
     mxFree_m_all();
     PutLhsVar();
     return 0;

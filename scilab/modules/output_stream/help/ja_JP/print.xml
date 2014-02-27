@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
+ <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -31,13 +31,13 @@
             変数式を含む場合には表示される名前の部分は予測不能となります.
         </para>
         <para>
-            <literal>print(%io(2),...)</literal> はScilabのウインドウに出力します. 
+            <literal>print(%io(2),...)</literal> はScilabのウインドウに出力します.
             この構文はマクロの中で変数を表示する際に使用することができます.
         </para>
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 a=rand(3,3);p=poly([1,2,3],'s');l=list(1,'asdf',[1 2 3]);
 print(%io(2),a,p,l)
 write(%io(2),a)

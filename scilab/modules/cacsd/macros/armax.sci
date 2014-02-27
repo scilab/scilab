@@ -88,7 +88,7 @@ function [archap,la,lb,sig,resid]=armax(r,s,y,u,b0f,prf)
     resid=y(:,t0:n2) - coef*z;
     // The variance of the residual noise
     sig2= resid*resid'/(n2-t0+1)
-    // The standart deviation
+    // The standard deviation
     sig=sqrtm(sig2);
     a=[eye(ny,ny),-coef(:,1:r*ny)];
     if b0f==0 then

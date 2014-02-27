@@ -10,7 +10,7 @@
 
 //
 // optimsimplex_setall --
-//   Set all the coordinates and and the function values of all the vertices.
+//   Set all the coordinates and the function values of all the vertices.
 //   The given matrix is expected to have the following organization
 //   * size nbve X n+1
 //   * data is organized by row : function value, then x

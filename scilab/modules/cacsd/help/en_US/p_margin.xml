@@ -42,7 +42,7 @@
             <varlistentry>
                 <term>fr</term>
                 <listitem>
-                    <para>a number, the corresponding frequency ( in hz) or an empty matrix.</para>
+                    <para>a number, the corresponding frequency (in Hz) or an empty matrix.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -53,7 +53,7 @@
             <literal>p_margin</literal> returns <literal>phm</literal>, the
             phase margin in degree of <literal>h</literal> and
             <literal>fr</literal>, the achieved corresponding frequency in
-            hz.
+            Hz.
         </para>
         <para>The phase margin is the values of the phase at frequency
             points where the nyquist plot of <literal>h</literal> crosses the

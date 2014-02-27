@@ -21,7 +21,7 @@
 
 function [x,y,typ]=PDE(job,arg1,arg2)
     // développé par EADS-CCR
-    // fonction graphic du bloc, elle permet le dessin et l'initialisation du bloc                //
+    // fonction graphique du bloc, elle permet le dessin et l'initialisation du bloc                //
     // Reference: "Scicos user guid", http://www.scicos.org                                       //
     //--------------------------------------------------------------------------------------------//
 
