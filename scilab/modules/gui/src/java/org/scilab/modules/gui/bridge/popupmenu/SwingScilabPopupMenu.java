@@ -322,7 +322,7 @@ public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, 
 
             /* Remove the listener to avoid the callback to be executed */
             if (callback != null) {
-                removeActionListener(callback);
+                removeActionListener(defaultActionListener);
             }
 
             /* Clear previous items */
@@ -343,7 +343,7 @@ public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, 
 
             /* Remove the listener to avoid the callback to be executed */
             if (callback != null) {
-                addActionListener(callback);
+                addActionListener(defaultActionListener);
             }
         }
 
@@ -368,6 +368,11 @@ public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, 
                 return;
             }
 
+            /* Remove the listener to avoid the callback to be executed */
+            if (callback != null) {
+                removeActionListener(defaultActionListener);
+            }
+
             /* Clear previous items */
             removeAllItems();
 
@@ -382,9 +387,8 @@ public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, 
 
             /* Remove the listener to avoid the callback to be executed */
             if (callback != null) {
-                addActionListener(callback);
+                addActionListener(defaultActionListener);
             }
-        } else {
         }
     }
 
