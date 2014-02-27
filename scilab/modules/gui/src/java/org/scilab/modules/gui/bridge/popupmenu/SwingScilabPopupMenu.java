@@ -350,23 +350,6 @@ public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, 
         //default case or colorBox failed
         if (colorBox == false) {
             setRenderer(textRenderer);
-            /* Do we need to update the strings */
-            /* Test performed to avoid loops when the model is updated from here */
-            boolean updateNeeded = false;
-            String[] previousText = getAllItemsText();
-            if (previousText.length != text.length) {
-                updateNeeded = true;
-            } else {
-                for (int k = 0; k < text.length; k++) {
-                    if (!text[k].equals(previousText[k])) {
-                        updateNeeded = true;
-                        break;
-                    }
-                }
-            }
-            if (!updateNeeded) {
-                return;
-            }
 
             /* Remove the listener to avoid the callback to be executed */
             if (callback != null) {
@@ -376,7 +359,7 @@ public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, 
             /* Clear previous items */
             removeAllItems();
 
-            if (text.length == 1 & text[0].length() == 0) {
+            if (text.length == 1 && text[0].length() == 0) {
                 /* Clear the popup items */
                 return;
             } else {
@@ -457,10 +440,13 @@ public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, 
                 break;
             }
             case __GO_UI_MAX__: {
-                char[] chars = new char[((Double)value).intValue()];
-                Arrays.fill(chars, '*');
-                String proto = new String(chars);
-                setPrototypeDisplayValue(proto);
+                Integer val = ((Double)value).intValue();
+                if (val > 1) {
+                    char[] chars = new char[val];
+                    Arrays.fill(chars, '*');
+                    String proto = new String(chars);
+                    setPrototypeDisplayValue(proto);
+                }
                 break;
             }
             case __GO_UI_VALUE__: {
