@@ -201,6 +201,7 @@ public class XmlLoader extends DefaultHandler {
 
         if (localName.equals("modele")) {
             namespace = null;
+            isWaitingModelName = false;
         }
 
         if (stackGO.size() != 0) {
@@ -294,7 +295,6 @@ public class XmlLoader extends DefaultHandler {
 
                         // add root element in map model
                         models.get(namespace).put(name, new SimpleEntry<Integer, Map<String, String>>(go, attrib));
-                        isWaitingModelName = false;
                     }
                 }
             }
