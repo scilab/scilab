@@ -19,6 +19,7 @@ extern "C" {
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 #include "HandleManagement.h"
+#include "BOOL.h"
 }
 
 int sci_saveGui(char *fname, unsigned long fname_len)
@@ -33,9 +34,12 @@ int sci_saveGui(char *fname, unsigned long fname_len)
     int* piAddr2 = NULL;
     char* pstFile = NULL;
 
+    int* piAddr3 = NULL;
+    int bReserve = 0;
+
     int iRhs = nbInputArgument(pvApiCtx);
 
-    CheckInputArgument(pvApiCtx, 2, 2);
+    CheckInputArgument(pvApiCtx, 2, 3);
     CheckOutputArgument(pvApiCtx, 1, 1);
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr1);
@@ -80,10 +84,9 @@ int sci_saveGui(char *fname, unsigned long fname_len)
 
     if (isStringType(pvApiCtx, piAddr2) == 0 || isScalar(pvApiCtx, piAddr2) == 0)
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
+        Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 2);
         return 1;
     }
-
 
     if (getAllocatedSingleString(pvApiCtx, piAddr2, &pstFile))
     {
@@ -96,7 +99,30 @@ int sci_saveGui(char *fname, unsigned long fname_len)
         return 1;
     }
 
-    char* ret = xmlsave(iFig, pstFile);
+    //reverse flag
+    if (iRhs == 3)
+    {
+        sciErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddr3);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 1;
+        }
+
+        if (isBooleanType(pvApiCtx, piAddr3) == 0 || isScalar(pvApiCtx, piAddr3) == 0)
+        {
+            Scierror(999, _("%s: Wrong size for input argument #%d: A boolean expected.\n"), fname, 3);
+            return 1;
+        }
+
+        if (getScalarBoolean(pvApiCtx, piAddr3, &bReserve))
+        {
+            Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 3);
+            return 1;
+        }
+    }
+
+    char* ret = xmlsave(iFig, pstFile, (BOOL) bReserve);
     freeAllocatedSingleString(pstFile);
 
     if (ret[0] != '\0')

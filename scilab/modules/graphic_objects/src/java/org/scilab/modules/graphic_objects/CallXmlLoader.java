@@ -17,7 +17,7 @@ public class CallXmlLoader {
         return loader.parse();
     }
 
-    public static String Save(int figure, String filename) {
-        return XmlSaver.save(figure, filename);
+    public static String Save(int figure, String filename, boolean reverseChildren) {
+        return XmlSaver.save(figure, filename, reverseChildren);
     }
 }

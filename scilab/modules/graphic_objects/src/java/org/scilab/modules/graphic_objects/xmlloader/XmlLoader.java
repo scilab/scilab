@@ -306,7 +306,7 @@ public class XmlLoader extends DefaultHandler {
     Integer cloneObject(Integer root) {
         Integer newGo = controller.cloneObject(root);
         Integer[] children = (Integer[]) controller.getProperty(root, __GO_CHILDREN__);
-        for (int i = 0; i < children.length; i++) {
+        for (int i = children.length - 1; i >= 0 ; i--) {
             if ((Integer)controller.getProperty(children[i], __GO_TYPE__) == __GO_AXES__) {
                 Integer go = controller.cloneObject(GraphicModel.getAxesModel().getIdentifier());
                 Builder.createLabel(go, GraphicObjectProperties.__GO_X_AXIS_LABEL__);

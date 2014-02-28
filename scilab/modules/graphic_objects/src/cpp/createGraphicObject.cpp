@@ -206,7 +206,7 @@ int xmldomload(char* xmlfile)
     return CallXmlLoader::DomLoad(getScilabJavaVM(), xmlfile);
 }
 
-char* xmlsave(int id, char* xmlfile)
+char* xmlsave(int id, char* xmlfile, BOOL isReverse)
 {
-    return CallXmlLoader::Save(getScilabJavaVM(), id, xmlfile);
+    return CallXmlLoader::Save(getScilabJavaVM(), id, xmlfile, isReverse == 1);
 }

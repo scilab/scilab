@@ -39,7 +39,7 @@ public class XmlSaver {
     static private Figure defaultFig = null;
     static private FrameBorder defaultBorder = null;
 
-    public static String save(int figure, String filename) {
+    public static String save(int figure, String filename, boolean reverseChildren) {
         try {
             //init default values
             defaultFig = GraphicModel.getFigureModel();
@@ -59,7 +59,7 @@ public class XmlSaver {
             setAttribute(header, "usedeprecatedskin", createAttribute(Console.getConsole().getUseDeprecatedLF()), "");
 
             //figure
-            Element figureElement = createFigure(doc, figure);
+            Element figureElement = createFigure(doc, figure, reverseChildren);
             header.appendChild(figureElement);
             doc.appendChild(header);
 
@@ -85,7 +85,7 @@ public class XmlSaver {
         return ""; //all good
     }
 
-    private static Element createFigure(Document doc, int figure) {
+    private static Element createFigure(Document doc, int figure, boolean reverseChildren) {
         GraphicController controller = GraphicController.getController();
         Figure fig = (Figure)controller.getObjectFromId(figure);
         Element elemFig = doc.createElement("figure");
@@ -160,20 +160,26 @@ public class XmlSaver {
 
         //children
         Integer[] children = fig.getChildren();
-        for (int i = 0 ; i < children.length ; i++) {
-            elemFig.appendChild(createElement(doc, children[i]));
-        }
 
+        if (reverseChildren) {
+            for (int i = children.length - 1; i >= 0; i--) {
+                elemFig.appendChild(createElement(doc, children[i], reverseChildren));
+            }
+        } else {
+            for (int i = 0; i < children.length; i++) {
+                elemFig.appendChild(createElement(doc, children[i], reverseChildren));
+            }
+        }
         return elemFig;
     }
 
-    private static Element createElement(Document doc, int id) {
+    private static Element createElement(Document doc, int id, boolean reverseChildren) {
         GraphicController controller = GraphicController.getController();
         Integer type = (Integer)controller.getProperty(id, __GO_TYPE__);
 
         switch (type) {
             case __GO_UICONTROL__ : {
-                return createUicontrol(doc, id);
+                return createUicontrol(doc, id, reverseChildren);
             }
             case __GO_UIMENU__ : {
                 //Uimenu uim = (Uimenu)controller.getObjectFromId(id);
@@ -281,7 +287,7 @@ public class XmlSaver {
         return elemBorders;
     }
 
-    private static Element createUicontrol(Document doc, Integer id) {
+    private static Element createUicontrol(Document doc, Integer id, boolean reverseChildren) {
         GraphicController controller = GraphicController.getController();
         Uicontrol uic = (Uicontrol)controller.getObjectFromId(id);
         initDefaultui(uic.getStyle());
@@ -387,10 +393,15 @@ public class XmlSaver {
 
         //children
         Integer[] children = uic.getChildren();
-        for (int i = 0 ; i < children.length ; i++) {
-            elemUi.appendChild(createElement(doc, children[i]));
+        if (reverseChildren) {
+            for (int i = children.length - 1 ; i >= 0 ; i--) {
+                elemUi.appendChild(createElement(doc, children[i], reverseChildren));
+            }
+        } else {
+            for (int i = 0 ; i < children.length ; i++) {
+                elemUi.appendChild(createElement(doc, children[i], reverseChildren));
+            }
         }
-
         return elemUi;
     }
 

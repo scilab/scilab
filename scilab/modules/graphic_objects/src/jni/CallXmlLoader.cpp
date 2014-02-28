@@ -104,7 +104,7 @@ curEnv->DeleteLocalRef(localInstance);
 
                 /* Methods ID set to NULL */
 jintLoadjstringjava_lang_StringID=NULL;
-jstringSavejintintjstringjava_lang_StringID=NULL;
+jstringSavejintintjstringjava_lang_StringjbooleanbooleanID=NULL;
 jintDomLoadjstringjava_lang_StringID=NULL;
 
 
@@ -129,7 +129,7 @@ throw GiwsException::JniObjectCreationException(curEnv, this->className());
         }
         /* Methods ID set to NULL */
         jintLoadjstringjava_lang_StringID=NULL;
-jstringSavejintintjstringjava_lang_StringID=NULL;
+jstringSavejintintjstringjava_lang_StringjbooleanbooleanID=NULL;
 jintDomLoadjstringjava_lang_StringID=NULL;
 
 
@@ -180,7 +180,7 @@ return res;
 
 }
 
-char* CallXmlLoader::Save (JavaVM * jvm_, int figure, char const* filename){
+char* CallXmlLoader::Save (JavaVM * jvm_, int figure, char const* filename, bool isReverse){
 
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
@@ -189,8 +189,8 @@ if ( cls == NULL) {
 throw GiwsException::JniCallMethodException(curEnv);
 }
 
-static jmethodID jstringSavejintintjstringjava_lang_StringID = curEnv->GetStaticMethodID(cls, "Save", "(ILjava/lang/String;)Ljava/lang/String;" ) ;
-if (jstringSavejintintjstringjava_lang_StringID == NULL) {
+static jmethodID jstringSavejintintjstringjava_lang_StringjbooleanbooleanID = curEnv->GetStaticMethodID(cls, "Save", "(ILjava/lang/String;Z)Ljava/lang/String;" ) ;
+if (jstringSavejintintjstringjava_lang_StringjbooleanbooleanID == NULL) {
 throw GiwsException::JniMethodNotFoundException(curEnv, "Save");
 }
 
@@ -201,7 +201,9 @@ throw GiwsException::JniBadAllocException(curEnv);
 }
 
 
-                        jstring res =  static_cast<jstring>( curEnv->CallStaticObjectMethod(cls, jstringSavejintintjstringjava_lang_StringID ,figure, filename_));
+jboolean isReverse_ = (static_cast<bool>(isReverse) ? JNI_TRUE : JNI_FALSE);
+
+                        jstring res =  static_cast<jstring>( curEnv->CallStaticObjectMethod(cls, jstringSavejintintjstringjava_lang_StringjbooleanbooleanID ,figure, filename_, isReverse_));
                         if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);
 }if (res != NULL) { 
