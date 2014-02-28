@@ -347,6 +347,8 @@ Scilab Bug Fixes
 
 * Bug #12733 fixed - There was no way to direct graphs to nothing with driver function.
 
+* Bug #12737 fixed - In SciNotes, autosave did not create directory if it did not exist.
+
 * Bug #12769 fixed - xset("window", 1) did not set the current axes.
 
 * Bug #12784 fixed - Misleading error message in many functions when passing an integer
