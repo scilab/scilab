@@ -256,14 +256,18 @@ public class SwingScilabMenuItem extends JMenuItem implements SwingViewObject, S
             meAsAMenu.add(childMenuItem);
             if (meAsACheckBoxMenuItem == null) {
                 Container parent = getParent();
-                int index = parent.getComponentZOrder(this);
-                parent.remove(this.getComponent());
-                parent.add((SwingScilabMenu) meAsAMenu.getAsSimpleMenu(), index);
+                if (parent != null) {
+                    int index = parent.getComponentZOrder(this);
+                    parent.remove(this.getComponent());
+                    parent.add((SwingScilabMenu) meAsAMenu.getAsSimpleMenu(), index);
+                }
             } else {
                 Container parent = ((SwingScilabCheckBoxMenuItem) meAsACheckBoxMenuItem.getAsSimpleCheckBoxMenuItem()).getParent();
-                int index = parent.getComponentZOrder(((SwingScilabCheckBoxMenuItem) meAsACheckBoxMenuItem.getAsSimpleCheckBoxMenuItem()));
-                parent.remove(((SwingScilabCheckBoxMenuItem) meAsACheckBoxMenuItem.getAsSimpleCheckBoxMenuItem()).getComponent());
-                parent.add((SwingScilabMenu) meAsAMenu.getAsSimpleMenu(), index);
+                if (parent != null) {
+                    int index = parent.getComponentZOrder(((SwingScilabCheckBoxMenuItem) meAsACheckBoxMenuItem.getAsSimpleCheckBoxMenuItem()));
+                    parent.remove(((SwingScilabCheckBoxMenuItem) meAsACheckBoxMenuItem.getAsSimpleCheckBoxMenuItem()).getComponent());
+                    parent.add((SwingScilabMenu) meAsAMenu.getAsSimpleMenu(), index);
+                }
             }
         } else {
             meAsAMenu.add(childMenuItem);
@@ -282,14 +286,18 @@ public class SwingScilabMenuItem extends JMenuItem implements SwingViewObject, S
             ((SwingScilabMenu) meAsAMenu.getAsSimpleMenu()).add(childMenuItem);
             if (meAsACheckBoxMenuItem == null) {
                 Container parent = getParent();
-                int index = parent.getComponentZOrder(this);
-                parent.remove(this.getComponent());
-                parent.add((SwingScilabMenu) meAsAMenu.getAsSimpleMenu(), index);
+                if (parent != null) {
+                    int index = parent.getComponentZOrder(this);
+                    parent.remove(this.getComponent());
+                    parent.add((SwingScilabMenu) meAsAMenu.getAsSimpleMenu(), index);
+                }
             } else {
                 Container parent = ((SwingScilabCheckBoxMenuItem) meAsACheckBoxMenuItem.getAsSimpleCheckBoxMenuItem()).getParent();
-                int index = parent.getComponentZOrder(((SwingScilabCheckBoxMenuItem) meAsACheckBoxMenuItem.getAsSimpleCheckBoxMenuItem()));
-                parent.remove(((SwingScilabCheckBoxMenuItem) meAsACheckBoxMenuItem.getAsSimpleCheckBoxMenuItem()).getComponent());
-                parent.add((SwingScilabMenu) meAsAMenu.getAsSimpleMenu(), index);
+                if (parent != null) {
+                    int index = parent.getComponentZOrder(((SwingScilabCheckBoxMenuItem) meAsACheckBoxMenuItem.getAsSimpleCheckBoxMenuItem()));
+                    parent.remove(((SwingScilabCheckBoxMenuItem) meAsACheckBoxMenuItem.getAsSimpleCheckBoxMenuItem()).getComponent());
+                    parent.add((SwingScilabMenu) meAsAMenu.getAsSimpleMenu(), index);
+                }
             }
         } else {
             ((SwingScilabMenu) meAsAMenu.getAsSimpleMenu()).add(childMenuItem);
@@ -336,9 +344,11 @@ public class SwingScilabMenuItem extends JMenuItem implements SwingViewObject, S
             meAsAMenu.setText(getText());
             meAsAMenu.add(childMenu);
             Container parent = getParent();
-            int index = parent.getComponentZOrder(this);
-            parent.remove(this.getComponent());
-            parent.add((SwingScilabMenu) meAsAMenu.getAsSimpleMenu(), index);
+            if (parent != null) {
+                int index = parent.getComponentZOrder(this);
+                parent.remove(this.getComponent());
+                parent.add((SwingScilabMenu) meAsAMenu.getAsSimpleMenu(), index);
+            }
         } else {
             meAsAMenu.add(childMenu);
         }
@@ -382,9 +392,11 @@ public class SwingScilabMenuItem extends JMenuItem implements SwingViewObject, S
             meAsACheckBoxMenuItem.setChecked(status);
             meAsACheckBoxMenuItem.setCallback(getCallback());
             Container parent = getParent();
-            int index = parent.getComponentZOrder(this);
-            parent.remove(this.getComponent());
-            parent.add((SwingScilabCheckBoxMenuItem) meAsACheckBoxMenuItem.getAsSimpleCheckBoxMenuItem(), index);
+            if (parent != null) {
+                int index = parent.getComponentZOrder(this);
+                parent.remove(this.getComponent());
+                parent.add((SwingScilabCheckBoxMenuItem) meAsACheckBoxMenuItem.getAsSimpleCheckBoxMenuItem(), index);
+            }
         } else {
             meAsACheckBoxMenuItem.setChecked(status);
         }
@@ -409,9 +421,11 @@ public class SwingScilabMenuItem extends JMenuItem implements SwingViewObject, S
             meAsAMenu.setText(getText());
             meAsAMenu.add(newCheckBoxMenuItem);
             Container parent = getParent();
-            int index = parent.getComponentZOrder(this);
-            parent.remove(this.getComponent());
-            parent.add((SwingScilabMenu) meAsAMenu.getAsSimpleMenu(), index);
+            if (parent != null) {
+                int index = parent.getComponentZOrder(this);
+                parent.remove(this.getComponent());
+                parent.add((SwingScilabMenu) meAsAMenu.getAsSimpleMenu(), index);
+            }
         } else {
             meAsAMenu.add(newCheckBoxMenuItem);
         }

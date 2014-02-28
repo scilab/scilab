@@ -287,7 +287,7 @@ public class Uicontrol extends GraphicObject {
 
     private UicontrolStyle style;
     private Double[] backgroundColor = { -1.0, -1.0, -1.0};
-    private boolean enable = true;
+    private Boolean enable = true;
     private String fontAngle = "";
     private String fontName = "";
     private double fontSize = 0;
@@ -867,15 +867,15 @@ public class Uicontrol extends GraphicObject {
     }
 
     /* Enable */
-    public boolean getEnable() {
-        return this.enable;
+    public Boolean getEnable() {
+        return enable;
     }
 
-    public UpdateStatus setEnable(boolean status) {
-        if (this.enable == status) {
+    public UpdateStatus setEnable(Boolean status) {
+        if (enable.equals(status)) {
             return UpdateStatus.NoChange;
         }
-        this.enable = status;
+        enable = status;
         return UpdateStatus.Success;
     }
 

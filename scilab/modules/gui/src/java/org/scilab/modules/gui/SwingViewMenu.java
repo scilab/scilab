@@ -24,7 +24,11 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VISIBLE__;
 
 import java.awt.Color;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 import org.scilab.modules.commons.gui.FindIconHelper;
@@ -86,7 +90,31 @@ public final class SwingViewMenu {
                 break;
             case __GO_UI_ICON__ :
                 if (!((String) value).equals("")) {
-                    ((SwingScilabMenuItem) uimenu).setIcon(new ImageIcon(FindIconHelper.findIcon((String) value, "16x16")));
+                    File file = new File((String)value);
+                    if (file.exists() == false) {
+                        String filename = FindIconHelper.findImage((String)value);
+                        file = new File(filename);
+                    }
+
+                    try {
+                        BufferedImage icon = ImageIO.read(file);
+                        if (uimenu instanceof SwingScilabMenuItem) {
+                            ((SwingScilabMenuItem) uimenu).setIcon(new ImageIcon(icon));
+                        } else if (uimenu instanceof SwingScilabMenu) {
+                            ((SwingScilabMenu) uimenu).setIcon(new ImageIcon(icon));
+                        } else if (uimenu instanceof SwingScilabMenu) {
+                            ((SwingScilabCheckBoxMenuItem) uimenu).setIcon(new ImageIcon(icon));
+                        }
+                    } catch (IOException e) {
+                    }
+                } else {
+                    if (uimenu instanceof SwingScilabMenuItem) {
+                        ((SwingScilabMenuItem) uimenu).setIcon(null);
+                    } else if (uimenu instanceof SwingScilabMenu) {
+                        ((SwingScilabMenu) uimenu).setIcon(null);
+                    } else if (uimenu instanceof SwingScilabCheckBoxMenuItem) {
+                        ((SwingScilabCheckBoxMenuItem) uimenu).setIcon(null);
+                    }
                 }
                 break;
             case __GO_UI_LABEL__ :

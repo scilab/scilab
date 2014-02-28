@@ -12,6 +12,8 @@
 
 package org.scilab.modules.graphic_objects.xmlloader;
 
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TAG__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ENABLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHILDREN__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AXES__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FIGURE__;
@@ -99,7 +101,6 @@ public class XmlLoader extends DefaultHandler {
 
         nameToGO.put("UIMenu", __GO_UIMENU__);
         nameToGO.put("UIMenuItem", __GO_UIMENU__);
-        nameToGO.put("UIMenuBar", -2);
 
     }
 
@@ -212,6 +213,8 @@ public class XmlLoader extends DefaultHandler {
         if (stackGO.size() != 0) {
             Integer go = stackGO.pop();
             if (go == null) {
+                System.out.println("go == null !!!!!");
+                //nothing to do
             } else if (stackGO.size() > 0) {
                 Integer parent = stackGO.peek();
 
@@ -248,22 +251,21 @@ public class XmlLoader extends DefaultHandler {
             Integer uitype = getTypeFromName(localName);
             Integer go = 0;
             if (uitype != null) {
-                if (uitype == -2) { //menubar, nothing to do
-                    return;
-                } else if (uitype == __GO_FIGURE__) {
+                if (uitype == __GO_FIGURE__) {
                     // never create a new figure, clone figure model !
                     go = GOBuilder.figureBuilder(controller, attributes);
                 } else if (uitype == __GO_AXES__) {
                     go = GraphicController.getController().askObject(Type.AXES);
                 } else if (uitype == __GO_UIMENU__) {
-                    int parent = 0;
+                    Integer parent = 0;
                     if (stackGO.isEmpty() == false) {
                         parent = stackGO.peek();
                     }
 
-                    go = GOBuilder.uimenuUpdater(controller, attributes, parent);
+                    System.out.println("parent : " + parent);
+                    go = GOBuilder.uimenuBuilder(controller, attributes, parent);
                 } else {
-                    int parent = 0;
+                    Integer parent = 0;
                     if (stackGO.isEmpty() == false) {
                         parent = stackGO.peek();
                     }
@@ -319,7 +321,13 @@ public class XmlLoader extends DefaultHandler {
     }
 
     Integer cloneObject(Integer root) {
+        Boolean avant = (Boolean)controller.getProperty(root, __GO_UI_ENABLE__);
         Integer newGo = controller.cloneObject(root);
+        Boolean apres = (Boolean)controller.getProperty(root, __GO_UI_ENABLE__);
+        if (apres.equals(avant) == false) {
+            System.out.println("bad clone for " + (String)controller.getProperty(root, __GO_TAG__));
+        }
+
         Integer[] children = (Integer[]) controller.getProperty(root, __GO_CHILDREN__);
         for (int i = children.length - 1; i >= 0 ; i--) {
             if ((Integer)controller.getProperty(children[i], __GO_TYPE__) == __GO_AXES__) {
