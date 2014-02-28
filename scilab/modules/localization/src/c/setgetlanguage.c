@@ -77,7 +77,10 @@ BOOL setlanguage(char *lang)
                 char *newlang = NULL;
 #ifdef __APPLE__
                 /* Load the user locale from the system */
-                lang = getLocaleUserInfo();
+                if (lang == NULL || *lang == 0)
+                {
+                    lang = getLocaleUserInfo();
+                }
 #endif
 
                 char *ret = setlocale(LC_CTYPE, lang);
@@ -87,7 +90,6 @@ BOOL setlanguage(char *lang)
                     {
                         lang = getenv("LANG");
                     }
-
                     ret = setlocale(LC_CTYPE, lang);
                     if (ret == NULL)
                     {
