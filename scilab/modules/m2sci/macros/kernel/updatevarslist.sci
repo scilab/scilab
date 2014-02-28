@@ -19,6 +19,9 @@ function []=updatevarslist(instr_lhs)
 
     // Global variable for M2SCI
     global("varslist")
+    if isempty(varslist)
+        varslist = list()
+    end
     // level is declared in m2sci.sci and modified in clause2sci.sci
     level;
 
@@ -32,6 +35,7 @@ function []=updatevarslist(instr_lhs)
     // when end of conversion of a clause : merge infered data from the last two parts of clause
     levelsize=size(level,1)
     changepartclause=%F
+
     for i=size(varslist):-1:1
         if size(varslist(i).level,1)==levelsize then
             varlevel=varslist(i).level

@@ -8,22 +8,28 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function [tree]=sci_help(tree)
-    // M2SCI function
-    // Conversion function for Matlab help()
-    // Input: tree = Matlab funcall tree
-    // Ouput: tree = Scilab equivalent for tree
+// M2SCI function
+// Conversion function for Matlab help()
+// Input: tree = Matlab funcall tree
+// Ouput: tree = Scilab equivalent for tree
 
     if rhs==0 then
         tree.rhs=list()
     else
         topic=getrhs(tree)
-        k=strindex(topic.value,"/")
-        if k<>[] & min(k)<>2 then // help toolbox/
-            no_equiv(expression2code(tree));
-        elseif topic.value=="syntax" then
-            tree.rhs=Rhs_tlist("names")
+
+        if typeof(topic) == "funcall" then
+            tree.rhs=Rhs_tlist(topic.name)
         else
-            // Nothing to do
+            k=strindex(topic.value,"/")
+
+            if k<>[] & min(k)<>2 then // help toolbox/
+                no_equiv(expression2code(tree));
+            elseif topic.value=="syntax" then
+                tree.rhs=Rhs_tlist("names")
+            else
+// Nothing to do
+            end
         end
     end
 
