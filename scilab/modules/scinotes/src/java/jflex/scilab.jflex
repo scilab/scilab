@@ -200,7 +200,7 @@ controlKwds = "abort" | "break" | "quit" | "return" | "resume" | "pause" | "cont
 authors = "Calixte Denizet" | "Calixte DENIZET" | "Sylvestre Ledru" | "Sylvestre LEDRU" | "Antoine Elias" | "Antoine ELIAS" | "Bruno Jofret" | "Bruno JOFRET" | "Claude Gomez" | "Claude GOMEZ" | "Clement David" | "Clement DAVID" | "Manuel Juliachs" | "Manuel JULIACHS" | "Sheldon Cooper" | "Leonard Hofstadter" | "Serge Steer" | "Serge STEER" | "Vincent Couvert" | "Vincent COUVERT" | "Adeline Carnis" | "Adeline CARNIS" | "Charlotte Hecquet" | "Charlotte HECQUET" | "Paul Bignier" | "Paul BIGNIER" | "Alexandre Herisse" | "Alexandre HERISSE" | "Simon Marchetto" | "Simon MARCHETTO" | "Vladislav Trubkin" | "Vladislav TRUBKIN" | "Cedric Delamarre" | "Cedric DELAMARRE" | "Inria" | "INRIA" | "DIGITEO" | "Digiteo" | "Scilab Enterprises" | "ENPC"
 
 error = "Scilab Entreprises" | "Scilab Entreprise" | "Scilab Enterprise"
-todo = ("TODO" | "todo" | "Todo")[ \t:]+[^\n]*
+todo = ("TODO" | "todo" | "Todo")[ \t]*:[^\n]*
 
 break = ".."(".")*
 breakinstring = {break}[ \t]*({comment} | {eol})
@@ -227,6 +227,14 @@ latexinstring = (\"|\')"$"(([^$\'\"]*|"\\$"|([\'\"]{2}))+)"$"(\"|\')
 digit = [0-9]
 exp = [dDeE][+-]?{digit}*
 number = ({digit}+"."?{digit}*{exp}?)|("."{digit}+{exp}?)
+
+arabic_char = [\u0600-\u06FF\u0750-\u077F\uFB50-\uFDFF\uFE70-\uFEFF]
+hebrew_char = [\u0590-\u05FF\uFB1D-\uFB4F]
+nko_char = [\u07C0-\u07FF]
+thaana_char = [\u0780-\u07BF]
+rtl_char = {arabic_char}|{hebrew_char}|{nko_char}|{thaana_char}
+rtl_comment = {rtl_char}[^\n]*
+rtl_in_string = {rtl_char}(([^\'\"\r\n\.]*)|([\'\"]{2}))+
 
 %x QSTRING, COMMENT, FIELD, COMMANDS, COMMANDSWHITE, BREAKSTRING
 
@@ -446,6 +454,7 @@ number = ({digit}+"."?{digit}*{exp}?)|("."{digit}+{exp}?)
                                    return ScilabLexerConstants.TAB_STRING;
                                  }
 
+  {rtl_in_string}                |
   {string}                       |
   "."                            {
                                    return ScilabLexerConstants.STRING;
@@ -496,8 +505,12 @@ number = ({digit}+"."?{digit}*{exp}?)|("."{digit}+{exp}?)
   "\t"                           {
                                    return ScilabLexerConstants.TAB_COMMENT;
                                  }
+ 
+  {rtl_comment}                  {
+                                    return ScilabLexerConstants.COMMENT;
+                                 }
 
-  .                       	 {
+  [^ \t\n]+                      {
                                    return ScilabLexerConstants.COMMENT;
                                  }
 

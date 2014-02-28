@@ -1,4 +1,4 @@
-                 Changes between version 5.5.0-beta-1 and 5.5.0
+	                 Changes between version 5.5.0-beta-1 and 5.5.0
                  ==============================================
 
 New Features
@@ -340,6 +340,8 @@ Scilab Bug Fixes
                      input arguments of addmenu function.
 
 * Bug #12714 fixed - csvDefault("decimal", ",") returned %f while this value is accepted.
+
+* Bug #12716 fixed - In SciNotes, RTL languages were not correctly displayed.
 
 * Bug #12725 fixed - Datatips did not work in logarithmic scale.
 
