@@ -434,6 +434,8 @@ Scilab Bug Fixes
 
 * Bug #13012 fixed - Vectorial export of rotated strings was wrong.
 
+* Bug #13013 fixed - In SciNotes, the first proposed directory to save a file was not current working directory.
+
 * Bug #13014 fixed - Update of the Efficiency inner variable improved in optim_ga.
 
 * Bug #13015 fixed - Computation of Efficiency inner variable improved in optim_ga.

@@ -58,6 +58,7 @@ import javax.swing.undo.UndoManager;
 import org.w3c.dom.Document;
 
 import org.flexdock.docking.event.DockingEvent;
+import org.scilab.modules.commons.CommonFileUtils;
 import org.scilab.modules.commons.gui.ScilabKeyStroke;
 import org.scilab.modules.commons.xml.ScilabXMLUtilities;
 import org.scilab.modules.commons.xml.XConfiguration;
@@ -172,6 +173,7 @@ public class SciNotes extends SwingScilabDockablePanel {
 
     private boolean protectOpenFileList;
     private boolean restored;
+    private boolean firstOpen = true;
 
     private final List<Integer> tabList = new ArrayList<Integer>();
     private final List<Integer> closedTabList = new ArrayList<Integer>();
@@ -1220,7 +1222,12 @@ public class SciNotes extends SwingScilabDockablePanel {
             initialDirectoryPath = getTextPane().getName();
         }
         if (initialDirectoryPath == null) {
-            initialDirectoryPath = ConfigManager.getLastOpenedDirectory();
+            if (firstOpen) {
+                initialDirectoryPath = CommonFileUtils.getCWD();
+                firstOpen = false;
+            } else {
+                initialDirectoryPath = ConfigManager.getLastOpenedDirectory();
+            }
         }
 
         SciFileFilter sceFilter = new SciFileFilter(ALL_SCE_FILES, null, 0);
@@ -1235,7 +1242,6 @@ public class SciNotes extends SwingScilabDockablePanel {
 
         SwingScilabFileChooser fileChooser = ((SwingScilabFileChooser) ScilabFileChooser.createFileChooser().getAsSimpleFileChooser());
 
-        fileChooser.setInitialDirectory(ConfigManager.getLastOpenedDirectory());
         fileChooser.setAcceptAllFileFilterUsed(false);
         fileChooser.setInitialDirectory(initialDirectoryPath);
         fileChooser.setUiDialogType(Juigetfile.SAVE_DIALOG);
@@ -1356,6 +1362,7 @@ public class SciNotes extends SwingScilabDockablePanel {
             closedTabList.add(Integer.valueOf(index));
         }
 
+        firstOpen = false;
         ConfigManager.saveLastOpenedDirectory(f.getPath());
         ConfigSciNotesManager.saveToRecentOpenedFiles(f.getPath());
         ConfigSciNotesManager.renameOpenFilesItem(f.getPath(), this, getTextPane());
@@ -1698,7 +1705,7 @@ public class SciNotes extends SwingScilabDockablePanel {
      */
     public void reload(int index) {
         ScilabEditorPane textPaneAt = getTextPane(index);
-        if (textPaneAt.getName() != null) {
+        if (textPaneAt != null && textPaneAt.getName() != null) {
             if ((index == 0) && (getTabPane().getTabCount() == 1)) {
                 for (int j = 0; j < tabPane.getChangeListeners().length; j++) {
                     tabPane.removeChangeListener(tabPane.getChangeListeners()[j]);
@@ -2314,6 +2321,7 @@ public class SciNotes extends SwingScilabDockablePanel {
 
             EncodingAction.updateEncodingMenu((ScilabDocument) getTextPane().getDocument());
 
+            firstOpen = false;
             ConfigManager.saveLastOpenedDirectory(f.getPath());
             ConfigSciNotesManager.saveToRecentOpenedFiles(f.getPath());
             ConfigSciNotesManager.saveToOpenFiles(f.getPath(), this, getTextPane());
@@ -2376,6 +2384,7 @@ public class SciNotes extends SwingScilabDockablePanel {
                 }
             }
 
+            firstOpen = false;
             ConfigManager.saveLastOpenedDirectory(f.getPath());
             ConfigSciNotesManager.saveToRecentOpenedFiles(f.getPath());
             ConfigSciNotesManager.saveToOpenFiles(theTextPane.getName(), this, theTextPane);
