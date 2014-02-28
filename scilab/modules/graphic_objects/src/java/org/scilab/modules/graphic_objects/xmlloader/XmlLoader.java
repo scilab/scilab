@@ -12,9 +12,10 @@
 
 package org.scilab.modules.graphic_objects.xmlloader;
 
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AXES__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHILDREN__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AXES__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FIGURE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UIMENU__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TYPE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_CHECKBOX__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_EDIT__;
@@ -87,14 +88,18 @@ public class XmlLoader extends DefaultHandler {
         nameToGO.put("UISplashScreen", __GO_UI_IMAGE__);
         nameToGO.put("UIList", __GO_UI_LISTBOX__);
         nameToGO.put("UIComboBox", __GO_UI_POPUPMENU__);
+        nameToGO.put("UIComboColor", __GO_UI_POPUPMENU__);
         nameToGO.put("UIRadio", __GO_UI_RADIOBUTTON__);
         nameToGO.put("UISlider", __GO_UI_SLIDER__);
         nameToGO.put("UITab", __GO_UI_TAB__);
         nameToGO.put("UIScilabPlot", __GO_AXES__);
 
         /** sdsdf*/
-        nameToGO.put("UITextarea", __GO_UI_PUSHBUTTON__);
-        nameToGO.put("UIComboColor", __GO_UI_POPUPMENU__);
+        nameToGO.put("UITextarea", __GO_UI_EDIT__);
+
+        nameToGO.put("UIMenu", __GO_UIMENU__);
+        nameToGO.put("UIMenuItem", __GO_UIMENU__);
+        nameToGO.put("UIMenuBar", -2);
 
     }
 
@@ -243,16 +248,26 @@ public class XmlLoader extends DefaultHandler {
             Integer uitype = getTypeFromName(localName);
             Integer go = 0;
             if (uitype != null) {
-                if (uitype == __GO_FIGURE__) {
+                if (uitype == -2) { //menubar, nothing to do
+                    return;
+                } else if (uitype == __GO_FIGURE__) {
                     // never create a new figure, clone figure model !
                     go = GOBuilder.figureBuilder(controller, attributes);
                 } else if (uitype == __GO_AXES__) {
                     go = GraphicController.getController().askObject(Type.AXES);
+                } else if (uitype == __GO_UIMENU__) {
+                    int parent = 0;
+                    if (stackGO.isEmpty() == false) {
+                        parent = stackGO.peek();
+                    }
+
+                    go = GOBuilder.uimenuUpdater(controller, attributes, parent);
                 } else {
                     int parent = 0;
                     if (stackGO.isEmpty() == false) {
                         parent = stackGO.peek();
                     }
+
                     go = GOBuilder.uicontrolBuilder(controller, uitype, attributes, parent);
                 }
             } else { // namespace or bad name ...
