@@ -1,5 +1,6 @@
 package org.scilab.modules.graphic_objects.xmlloader;
 
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CLOSEREQUESTFCN__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_BORDER_OPT_PADDING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CALLBACKTYPE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CALLBACK__;
@@ -160,6 +161,12 @@ public class GOBuilder {
             controller.setProperty(fig, __GO_UI_ICON__, item);
         }
 
+        //callback
+        item = attributes.getValue("onclose");
+        if (item != null) {
+            controller.setProperty(fig, __GO_CLOSEREQUESTFCN__, item);
+        }
+
         // visible
         XmlTools.setPropAsBoolean(fig, __GO_VISIBLE__, attributes.getValue("visible"));
 
@@ -221,20 +228,19 @@ public class GOBuilder {
             }
 
             //enable
+            boolean enable = true;
             item = attributes.getValue("enable");
-            if (item == null || item.equals("true") || item.equals("on")) {
-                controller.setProperty(uic, __GO_UI_ENABLE__, true);
-            } else {
-                controller.setProperty(uic, __GO_UI_ENABLE__, false);
+            if (item != null && (item.equals("false") || item.equals("off"))) {
+                enable = false;
             }
 
             //enabled
             item = attributes.getValue("enabled");
-            if (item == null || item.equals("true") || item.equals("on")) {
-                controller.setProperty(uic, __GO_UI_ENABLE__, true);
-            } else {
-                controller.setProperty(uic, __GO_UI_ENABLE__, false);
+            if (item != null && (item.equals("false") || item.equals("off"))) {
+                enable = false;
             }
+
+            controller.setProperty(uic, __GO_UI_ENABLE__, enable);
 
             //backgroundcolor
             item = attributes.getValue("background");

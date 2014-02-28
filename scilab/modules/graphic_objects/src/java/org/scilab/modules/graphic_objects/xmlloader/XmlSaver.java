@@ -1,6 +1,8 @@
 package org.scilab.modules.graphic_objects.xmlloader;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AXES__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TAB__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LAYER__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_LAYOUT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_PARENT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TYPE__;
@@ -322,13 +324,19 @@ public class XmlSaver {
         //SliderStep
         setAttribute(elemUi, "sliderstep", createAttribute(uic.getSliderStep()), createAttribute(defaultUi.getSliderStep()));
         //String
-        setAttribute(elemUi, "string", createAttribute(uic.getString()), createAttribute(defaultUi.getString()));
+        //do not save string and value of tab/layer to avoid setting bad index during loading
+        if (uic.getStyle() != __GO_UI_TAB__ && uic.getStyle() != __GO_UI_LAYER__) {
+            setAttribute(elemUi, "string", createAttribute(uic.getString()), createAttribute(defaultUi.getString()));
+        }
         //TooltipString
         setAttribute(elemUi, "tooltipstring", createAttribute(uic.getTooltipString()), createAttribute(defaultUi.getTooltipString()));
         //Units
         setAttribute(elemUi, "units", createAttribute(uic.getUnits()), createAttribute(defaultUi.getUnits()));
         //Value
-        setAttribute(elemUi, "value", createAttribute(uic.getUiValue()), createAttribute(defaultUi.getUiValue()));
+        //do not save string and value of tab/layer to avoid setting bad index during loading
+        if (uic.getStyle() != __GO_UI_TAB__ && uic.getStyle() != __GO_UI_LAYER__) {
+            setAttribute(elemUi, "value", createAttribute(uic.getUiValue()), createAttribute(defaultUi.getUiValue()));
+        }
         //VerticalAlignment
         setAttribute(elemUi, "verticalalignment", createAttribute(uic.getVerticalAlignment()), createAttribute(defaultUi.getVerticalAlignment()));
         //Visible
