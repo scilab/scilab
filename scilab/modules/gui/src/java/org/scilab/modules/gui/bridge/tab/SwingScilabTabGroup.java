@@ -14,7 +14,9 @@ package org.scilab.modules.gui.bridge.tab;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CALLBACK__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CALLBACKTYPE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHILDREN__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_POSITION__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ENABLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FONTANGLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FONTNAME__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FONTSIZE__;
@@ -28,27 +30,39 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VISIBLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TAG__;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
 
 import javax.swing.Icon;
 import javax.swing.JLabel;
 import javax.swing.JTabbedPane;
+import javax.swing.UIManager;
+import javax.swing.border.Border;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.CallBack;
 import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
+import org.scilab.modules.gui.SwingView;
 import org.scilab.modules.gui.SwingViewObject;
+import org.scilab.modules.gui.SwingViewWidget;
+import org.scilab.modules.gui.dockable.Dockable;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
+import org.scilab.modules.gui.frame.SimpleFrame;
+import org.scilab.modules.gui.menubar.MenuBar;
+import org.scilab.modules.gui.textbox.TextBox;
+import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.PositionConverter;
+import org.scilab.modules.gui.utils.ScilabRelief;
 import org.scilab.modules.gui.utils.Size;
 
-public class SwingScilabTabGroup extends JTabbedPane implements SwingViewObject {
+public class SwingScilabTabGroup extends JTabbedPane implements SwingViewObject, SimpleFrame {
     private static final long serialVersionUID = 965704348405077905L;
     private Integer id;
+    private Border defaultBorder = null;
     private CommonCallBack callback = null;
     private ChangeListener listener = null;
 
@@ -165,6 +179,7 @@ public class SwingScilabTabGroup extends JTabbedPane implements SwingViewObject 
                 break;
             }
             default: {
+                SwingViewWidget.update(this, property, value);
             }
         }
     }
@@ -267,5 +282,111 @@ public class SwingScilabTabGroup extends JTabbedPane implements SwingViewObject 
         super.setEnabledAt(index, enabled);
         //update tab label to show enabled state
         getTabComponentAt(index).setEnabled(enabled);
+    }
+
+    public void setEnabled(boolean status) {
+        if (status) {
+            // Enable the frame
+            super.setEnabled(status);
+            // Enable its children according to their __GO_UI_ENABLE__ property
+            Integer[] children = (Integer[]) GraphicController.getController().getProperty(getId(), __GO_CHILDREN__);
+            for (int kChild = 0; kChild < children.length; kChild++) {
+                Boolean childStatus = (Boolean) GraphicController.getController().getProperty(children[kChild], __GO_UI_ENABLE__);
+                SwingView.getFromId(children[kChild]).update(__GO_UI_ENABLE__, childStatus);
+            }
+        } else {
+            // Disable the frame
+            super.setEnabled(status);
+            // Disable its children
+            Component[] components = getComponents();
+            for (int compIndex = 0; compIndex < components.length; compIndex++) {
+                components[compIndex].setEnabled(false);
+            }
+        }
+    }
+
+    public int addMember(Dockable member) {
+        throw new UnsupportedOperationException();
+    }
+
+    public void addToolBar(ToolBar toolBarToAdd) {
+        throw new UnsupportedOperationException();
+    }
+
+    public void addMenuBar(MenuBar menuBarToAdd) {
+        throw new UnsupportedOperationException();
+    }
+
+    public void addInfoBar(TextBox infoBarToAdd) {
+        throw new UnsupportedOperationException();
+    }
+
+    public Size getDims() {
+        return new Size(this.getSize().width, this.getSize().height);
+    }
+
+    public void setDims(Size newSize) {
+        this.setSize(newSize.getWidth(), newSize.getHeight());
+    }
+
+    public Position getPosition() {
+        return PositionConverter.javaToScilab(getLocation(), getSize(), getParent());
+    }
+
+    public void setPosition(Position newPosition) {
+        Position javaPosition = PositionConverter.scilabToJava(newPosition, getDims(), getParent());
+        setLocation(javaPosition.getX(), javaPosition.getY());
+    }
+
+    public void draw() {
+        this.setVisible(true);
+        this.doLayout();
+    }
+
+    public MenuBar getMenuBar() {
+        throw new UnsupportedOperationException();
+    }
+
+    public ToolBar getToolBar() {
+        throw new UnsupportedOperationException();
+    }
+
+    public TextBox getInfoBar() {
+        throw new UnsupportedOperationException();
+    }
+
+    public void resetBackground() {
+        Color color = (Color)UIManager.getLookAndFeelDefaults().get("TabbedPane.background");
+        if (color != null) {
+            setBackground(color);
+        }
+    }
+
+    public void setHorizontalAlignment(String alignment) {
+    }
+
+    public void setVerticalAlignment(String alignment) {
+    }
+
+    public void setText(String text) {
+    }
+
+    public String getText() {
+        return null;
+    }
+
+    public void setCallback(CommonCallBack callback) {
+    }
+
+    public void setRelief(String reliefType) {
+        if (defaultBorder == null) {
+            defaultBorder = getBorder();
+        }
+        setBorder(ScilabRelief.getBorderFromRelief(reliefType, defaultBorder));
+    }
+
+    public void destroy() {
+        getParent().remove(this);
+        this.setVisible(false);
     }
 }
