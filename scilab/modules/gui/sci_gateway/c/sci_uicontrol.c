@@ -71,6 +71,7 @@ static const char* propertiesNames[] =
     "enable",
     "callback_type",
     "tooltipstring",
+    "layout_options",
     "layout",
     "margins",
     "borders",
