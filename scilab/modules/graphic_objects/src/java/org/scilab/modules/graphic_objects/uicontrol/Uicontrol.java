@@ -242,6 +242,7 @@ public class Uicontrol extends GraphicObject {
                 if (chars[1] == 'w' || chars[1] == 'W') {
                     return UPPER_LEFT;
                 }
+                return UPPER;
             }
 
             if (chars[0] == 's' || chars[0] == 'S') {
@@ -256,6 +257,7 @@ public class Uicontrol extends GraphicObject {
                 if (chars[1] == 'w' || chars[1] == 'W') {
                     return LOWER_LEFT;
                 }
+                return LOWER;
             }
 
             return CENTER;
