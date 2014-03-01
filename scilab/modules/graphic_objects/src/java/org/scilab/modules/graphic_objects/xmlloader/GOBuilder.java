@@ -565,7 +565,6 @@ public class GOBuilder {
             map = CSSParser.parseLine(item);
             item = map.get("name");
             LayoutType layout = LayoutType.stringToEnum(item);
-            controller.setProperty(uid, __GO_LAYOUT__, layout.ordinal());
 
             // layout_options
             switch (layout) {
@@ -596,6 +595,7 @@ public class GOBuilder {
                     // nothing to do
                     break;
             }
+            controller.setProperty(uid, __GO_LAYOUT__, layout.ordinal());
         } catch (CSSParserException e) {
             e.printStackTrace();
         }
@@ -724,10 +724,12 @@ public class GOBuilder {
 
                 String color = XmlTools.getFromMap(map, "color", "black");
 
-                FrameBorderType borderOut = FrameBorderType.stringToEnum(XmlTools.getFromMap(map, "border", "none"));
-                Integer out = createBorder(controller, border, borderOut, map);
+                FrameBorderType borderOut = FrameBorderType.stringToEnum(XmlTools.getFromMap(map, "border", ""));
+                if (borderOut != null) {
+                    Integer out = createBorder(controller, border, borderOut, map);
+                    controller.setProperty(border, __GO_UI_FRAME_BORDER_TITLE__, out);
+                }
 
-                controller.setProperty(border, __GO_UI_FRAME_BORDER_TITLE__, out);
                 controller.setProperty(border, __GO_TITLE__, title);
                 controller.setProperty(border, __GO_UI_FRAME_BORDER_JUSTIFICATION__, justify.ordinal());
                 controller.setProperty(border, __GO_UI_FONTNAME__, fontName);

@@ -213,7 +213,6 @@ public class XmlLoader extends DefaultHandler {
         if (stackGO.size() != 0) {
             Integer go = stackGO.pop();
             if (go == null) {
-                System.out.println("go == null !!!!!");
                 //nothing to do
             } else if (stackGO.size() > 0) {
                 Integer parent = stackGO.peek();
@@ -262,7 +261,6 @@ public class XmlLoader extends DefaultHandler {
                         parent = stackGO.peek();
                     }
 
-                    System.out.println("parent : " + parent);
                     go = GOBuilder.uimenuBuilder(controller, attributes, parent);
                 } else {
                     Integer parent = 0;
@@ -321,13 +319,7 @@ public class XmlLoader extends DefaultHandler {
     }
 
     Integer cloneObject(Integer root) {
-        Boolean avant = (Boolean)controller.getProperty(root, __GO_UI_ENABLE__);
         Integer newGo = controller.cloneObject(root);
-        Boolean apres = (Boolean)controller.getProperty(root, __GO_UI_ENABLE__);
-        if (apres.equals(avant) == false) {
-            System.out.println("bad clone for " + (String)controller.getProperty(root, __GO_TAG__));
-        }
-
         Integer[] children = (Integer[]) controller.getProperty(root, __GO_CHILDREN__);
         for (int i = children.length - 1; i >= 0 ; i--) {
             if ((Integer)controller.getProperty(children[i], __GO_TYPE__) == __GO_AXES__) {
