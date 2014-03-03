@@ -56,7 +56,6 @@ void initStyleMap()
  */
 int CreateUIControl(char *style)
 {
-
     if (init == false)
     {
         initStyleMap();
@@ -67,12 +66,12 @@ int CreateUIControl(char *style)
         return createGraphicObject(styleMap["pushbutton"]);
     }
 
-    int iStyle = styleMap[style];
-    if (iStyle == 0)
+    std::map<std::string, int>::iterator it = styleMap.find(style);
+    if (it == styleMap.end())
     {
         return 0;
     }
-    return createGraphicObject(iStyle);
+    return createGraphicObject(it->second);
 }
 /*----------------------------------------------------------------------------*/
 
