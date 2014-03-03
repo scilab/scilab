@@ -94,9 +94,13 @@ public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, 
         putClientProperty("JComboBox.isTableCellEditor", Boolean.TRUE);
         defaultActionListener = new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Double[] scilabIndices = new Double[1];
-                scilabIndices[0] = (double) getUserSelectedIndex();
-                GraphicController.getController().setProperty(uid, __GO_UI_VALUE__, scilabIndices);
+                Double scilabIndices = (double) getUserSelectedIndex();
+                if (scilabIndices == -1) {
+                    GraphicController.getController().setProperty(uid, __GO_UI_VALUE__, new Double[] {});
+                } else {
+                    GraphicController.getController().setProperty(uid, __GO_UI_VALUE__, new Double[] {scilabIndices});
+                }
+
                 if (callback != null) {
                     callback.actionPerformed(null);
                 }
@@ -239,11 +243,9 @@ public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, 
         /* Remove the listener to avoid the callback to be executed */
         removeActionListener(defaultActionListener);
 
-        for (int i = 0; i < getItemCount(); i++) {
-            // Scilab indices in Value begin at 1 and Java indices begin at 0
-            if (i == (index - 1)) {
-                getModel().setSelectedItem(getItemAt(i));
-            }
+        // Scilab indices in Value begin at 1 and Java indices begin at 0
+        if (index >= 0 && index <= getItemCount()) {
+            setSelectedIndex(index - 1);
         }
 
         /* Put back the listener */
@@ -255,14 +257,12 @@ public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, 
      * @return the index of the item selected
      */
     public int getUserSelectedIndex() {
-        Object itemSelected = getModel().getSelectedItem();
-        for (int i = 0; i < getItemCount(); i++) {
-            if (itemSelected.equals(getItemAt(i))) {
-                // Scilab indices in Value begin at 1 and Java indices begin at 0
-                return i + 1;
-            }
+        int index = getSelectedIndex();
+        if (index == - 1) {
+            return -1;
         }
-        return -1;
+
+        return index + 1;
     }
 
     /**
@@ -341,6 +341,7 @@ public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, 
                 }
             }
 
+            controller.setProperty(uid, __GO_UI_VALUE__, new Double[] {});
             /* Remove the listener to avoid the callback to be executed */
             if (callback != null) {
                 addActionListener(defaultActionListener);
@@ -367,6 +368,8 @@ public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, 
                     addItem(new SwingScilabTextItem(text[i]));
                 }
             }
+
+            setSelectedIndex(-1);
 
             /* Remove the listener to avoid the callback to be executed */
             if (callback != null) {
@@ -451,7 +454,10 @@ public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, 
             }
             case __GO_UI_VALUE__: {
                 Double[] doubleValue = ((Double[]) value);
-                if (doubleValue.length == 0) {
+
+                //[] or 0 -> no selection
+                if (doubleValue.length == 0 || doubleValue[0] == 0) {
+                    setSelectedIndex(-1);
                     return;
                 }
 
