@@ -591,6 +591,8 @@ Scilab Bug Fixes
 
 * Bug #13252 fixed - Minor typos fixed.
 
+* Bug #13258 fixed - Bad number display in datatips fixed.
+
 
 Xcos
 ====

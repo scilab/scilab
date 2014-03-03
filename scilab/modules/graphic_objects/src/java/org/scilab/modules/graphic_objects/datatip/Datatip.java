@@ -24,6 +24,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DATATIP_INDEXES__;
 
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.graphic_objects.PolylineData;
@@ -88,7 +89,13 @@ public class Datatip extends Text {
         use3component = false;
         autoOrientation = true;
         setOrientationAsEnum(TipOrientation.TOP_RIGHT);
-        tipTextFormat = new DecimalFormat("#.####");
+        tipTextFormat = new DecimalFormat("#.####E00");
+        DecimalFormatSymbols decimalFormatSymbols = tipTextFormat.getDecimalFormatSymbols();
+        decimalFormatSymbols.setDecimalSeparator('.');
+        decimalFormatSymbols.setExponentSeparator("e");
+        decimalFormatSymbols.setGroupingSeparator('\u00A0');
+        tipTextFormat.setDecimalFormatSymbols(decimalFormatSymbols);
+
         tipBoxMode = true;
         tipLabelMode = true;
         interpMode = true;
