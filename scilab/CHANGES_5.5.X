@@ -157,6 +157,8 @@ Scilab Bug Fixes
 
 * Bug #7739 fixed - Axis position was invalid in log modes.
 
+* Bug #7771 fixed - There was no item about arrow_size in champ_properties help page.
+
 * Bug #7772 fixed - There was no description, no example about line_style property.
 
 * Bug #7858 fixed - variance and variancef can now return the mean of the input

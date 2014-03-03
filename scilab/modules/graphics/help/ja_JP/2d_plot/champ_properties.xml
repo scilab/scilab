@@ -154,9 +154,20 @@ c=a.children
 
 c.colored="on";
 c.thickness=2;
+c.arrow_size=-1;
 c.data // "scichampdata"型のtlistを表示
 a.data_bounds=[-5,-5;5,5];
  ]]></programlisting>
+        <scilab:image><![CDATA[ 
+        a=get("current_axes");
+        a.data_bounds=[-10,-10;10,10];
+        champ(-5:5,-5:5,rand(11,11),rand(11,11));
+        c=a.children;
+        c.colored="on";
+        c.thickness=2;
+        c.arrow_size=-1;
+        a.data_bounds=[-5,-5;5,5];
+        ]]></scilab:image>
     </refsection>
     <refsection role="see also">
         <title>参照</title>
