@@ -344,6 +344,7 @@ images/icons/16x16/actions/zoom-fit-selection.png \
 images/icons/16x16/actions/zoom-in.png \
 images/icons/16x16/actions/zoom-original.png \
 images/icons/16x16/actions/zoom-out.png \
+images/icons/16x16/actions/data_modify.png \
 images/icons/16x16/animations/process-working.png \
 images/icons/16x16/apps/accessories-text-editor.png \
 images/icons/16x16/apps/datatips.png \
@@ -410,7 +411,6 @@ images/icons/close-tab-on.png \
 images/icons/close-tab.png \
 images/icons/dock_help_active.png \
 images/icons/dock_help_default.png \
-images/icons/data_modify.png \
 images/icons/puff.png \
 images/icons/rotate.png \
 images/icons/scilab_close_active.png \

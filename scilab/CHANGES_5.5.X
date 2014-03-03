@@ -399,6 +399,8 @@ Scilab Bug Fixes
 
 * Bug #12962 fixed - xinfo documentation was not clear.
 
+* Bug #12967 fixed - Data editor icon was not 16x16.
+
 * Bug #12963 fixed - drawaxis did not place the axis correctly.
 
 * Bug #12966 fixed - Rotation, tool tip and other Xcos plot actions were
