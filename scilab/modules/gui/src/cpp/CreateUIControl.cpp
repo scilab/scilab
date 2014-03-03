@@ -67,7 +67,12 @@ int CreateUIControl(char *style)
         return createGraphicObject(styleMap["pushbutton"]);
     }
 
-    return createGraphicObject(styleMap[style]);
+    int iStyle = styleMap[style];
+    if (iStyle == 0)
+    {
+        return 0;
+    }
+    return createGraphicObject(iStyle);
 }
 /*----------------------------------------------------------------------------*/
 
