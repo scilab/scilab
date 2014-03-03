@@ -14,6 +14,7 @@
 
 package org.scilab.modules.gui.bridge.editbox;
 
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_BACKGROUNDCOLOR__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MAX__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MIN__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING__;
@@ -282,6 +283,16 @@ public class SwingScilabEditBox extends JScrollPane implements SwingViewObject, 
     public void setEnabled(boolean status) {
         super.setEnabled(status);
         textPane.setEnabled(status);
+
+        //force background to gray
+        if (status) {
+            SwingViewWidget.update(this, __GO_UI_BACKGROUNDCOLOR__, GraphicController.getController().getProperty(uid, __GO_UI_BACKGROUNDCOLOR__));
+        } else {
+            Color gray = new Color(0.9f,  0.9f,  0.9f);
+            setBackground(gray);
+        }
+
+
         /* (Des)Activate the callback */
         if (callback != null) {
             if (status) {
