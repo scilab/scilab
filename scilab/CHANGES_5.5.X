@@ -362,6 +362,8 @@ Scilab Bug Fixes
 
 * Bug #12826 fixed - <warning> and <note> tags were not managed in help pages.
 
+* Bug #12860 fixed - Missing semicolon in style.css added.
+
 * Bug #12880 fixed - A warning is displayed when transposing arguments of plot.
 
 * Bug #12882 fixed - Some help pages were not clear.
