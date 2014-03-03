@@ -35,6 +35,7 @@ public class XMLDomLoader {
 
     private static HashMap<String, Pair<Integer, ModelType>> figPropToGO = new HashMap<String, Pair<Integer, ModelType>>();
     private static HashMap<String, Pair<Integer, ModelType>> UiPropToGO = new HashMap<String, Pair<Integer, ModelType>>();
+    private static HashMap<String, Pair<Integer, ModelType>> MenuPropToGO = new HashMap<String, Pair<Integer, ModelType>>();
     private static HashMap<String, Pair<Integer, ModelType>> BorderPropToGO = new HashMap<String, Pair<Integer, ModelType>>();
 
 
@@ -169,6 +170,17 @@ public class XMLDomLoader {
         BorderPropToGO.put("fontname", new Pair<Integer, ModelType>(__GO_UI_FONTNAME__, ModelType.STRING));
         BorderPropToGO.put("fontsize", new Pair<Integer, ModelType>(__GO_UI_FONTSIZE__, ModelType.INTEGER));
         BorderPropToGO.put("fontweight", new Pair<Integer, ModelType>(__GO_UI_FONTWEIGHT__, ModelType.STRING));
+
+        MenuPropToGO.put("enable", new Pair<Integer, ModelType>(__GO_UI_ENABLE__, ModelType.BOOLEAN));
+        MenuPropToGO.put("foreground", new Pair<Integer, ModelType>(__GO_UI_FOREGROUNDCOLOR__, ModelType.DOUBLE_ARRAY));
+        MenuPropToGO.put("label", new Pair<Integer, ModelType>(__GO_UI_LABEL__, ModelType.STRING));
+        MenuPropToGO.put("hidden", new Pair<Integer, ModelType>(__GO_HIDDEN__, ModelType.BOOLEAN));
+        MenuPropToGO.put("visible", new Pair<Integer, ModelType>(__GO_VISIBLE__, ModelType.BOOLEAN));
+        MenuPropToGO.put("callback", new Pair<Integer, ModelType>(__GO_CALLBACK__, ModelType.STRING));
+        MenuPropToGO.put("callback_type", new Pair<Integer, ModelType>(__GO_CALLBACKTYPE__, ModelType.INTEGER));
+        MenuPropToGO.put("checked", new Pair<Integer, ModelType>(__GO_UI_CHECKED__, ModelType.BOOLEAN));
+        MenuPropToGO.put("icon", new Pair<Integer, ModelType>(__GO_UI_ICON__, ModelType.STRING));
+        MenuPropToGO.put("tag", new Pair<Integer, ModelType>(__GO_TAG__, ModelType.STRING));
     }
 
     private String filename = "";
@@ -294,8 +306,11 @@ public class XMLDomLoader {
                         break;
                     }
 
-                    case __GO_UICONTEXTMENU__:
+                    case __GO_UICONTEXTMENU__: {
+                        break;
+                    }
                     case __GO_UIMENU__: {
+                        child = createUiMenu(parent, childNode);
                         break;
                     }
 
@@ -519,6 +534,52 @@ public class XMLDomLoader {
         }
 
         return uic;
+    }
+
+    private Integer createUiMenu(Integer parent, Node node) {
+        GraphicController controller = GraphicController.getController();
+        NamedNodeMap attr = node.getAttributes();
+
+        Integer uim = GraphicController.getController().askObject(GraphicObject.getTypeFromName(__GO_UIMENU__));
+        controller.setProperty(uim, __GO_VISIBLE__, true);
+
+        for (int i = 0 ; i < attr.getLength() ; i++) {
+            Node prop = attr.item(i);
+            Pair<Integer, ModelType> pair = MenuPropToGO.get(prop.getNodeName());
+            System.out.println("node : " + prop.getNodeName());
+            ModelType modelType = pair.getSecond();
+            switch (modelType) {
+                case BOOLEAN:
+                    controller.setProperty(uim, pair.getFirst(), getAttributeAsBoolean(prop.getNodeValue()));
+                    break;
+                case BOOLEAN_ARRAY :
+                    controller.setProperty(uim, pair.getFirst(), getAttributeAsBooleanArray(prop.getNodeValue()));
+                    break;
+                case DOUBLE:
+                    controller.setProperty(uim, pair.getFirst(), getAttributeAsDouble(prop.getNodeValue()));
+                    break;
+                case DOUBLE_ARRAY:
+                    controller.setProperty(uim, pair.getFirst(), getAttributeAsDoubleArray(prop.getNodeValue()));
+                    break;
+                case INTEGER:
+                    controller.setProperty(uim, pair.getFirst(), getAttributeAsInteger(prop.getNodeValue()));
+                    break;
+                case INTEGER_ARRAY:
+                    controller.setProperty(uim, pair.getFirst(), getAttributeAsIntegerArray(prop.getNodeValue()));
+                    break;
+                case STRING:
+                    controller.setProperty(uim, pair.getFirst(), getAttributeAsString(prop.getNodeValue()));
+                    break;
+                case STRING_ARRAY:
+                    controller.setProperty(uim, pair.getFirst(), getAttributeAsStringArray(prop.getNodeValue()));
+                    break;
+                default:
+                    System.out.println("missing type");
+                    break;
+            }
+        }
+
+        return uim;
     }
 
     private Boolean getAttributeAsBoolean(String val) {

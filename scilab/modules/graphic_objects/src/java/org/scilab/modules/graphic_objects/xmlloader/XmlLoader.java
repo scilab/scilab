@@ -136,7 +136,8 @@ public class XmlLoader extends DefaultHandler {
         if (f.exists()) {
             //add filename filepath in ScilabSwingUtilities paths
             if (f.isAbsolute()) {
-                currentPath = f.getAbsolutePath();
+                String filePath = f.getAbsolutePath();
+                currentPath = filePath.substring(0, filePath.lastIndexOf(File.separator));
                 FindIconHelper.addThemePath(currentPath);
             } else {
                 String initialDirectoryPath = CommonFileUtils.getCWD();
@@ -245,7 +246,6 @@ public class XmlLoader extends DefaultHandler {
     }
 
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
-
         if (localName.equals("interface")) {
             if (isFirst) {
                 myURI = attributes.getValue("xmlns");

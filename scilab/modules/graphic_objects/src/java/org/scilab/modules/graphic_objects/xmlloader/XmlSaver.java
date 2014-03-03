@@ -1,14 +1,14 @@
 package org.scilab.modules.graphic_objects.xmlloader;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AXES__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TAB__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LAYER__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_LAYOUT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_PARENT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TYPE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UICONTEXTMENU__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UICONTROL__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UIMENU__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LAYER__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TAB__;
 
 import java.io.File;
 
@@ -31,13 +31,16 @@ import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
 import org.scilab.modules.graphic_objects.uicontrol.Uicontrol.UicontrolStyle;
 import org.scilab.modules.graphic_objects.uicontrol.frame.border.FrameBorder;
 import org.scilab.modules.graphic_objects.uicontrol.frame.border.FrameBorderType;
+import org.scilab.modules.graphic_objects.uimenu.Uimenu;
 import org.scilab.modules.graphic_objects.utils.LayoutType;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
 
 public class XmlSaver {
     static private Uicontrol defaultUi = null;
+    static private Uimenu defaultMenu = null;
     static private Figure defaultFig = null;
     static private FrameBorder defaultBorder = null;
 
@@ -62,8 +65,8 @@ public class XmlSaver {
 
             //figure
             Element figureElement = createFigure(doc, figure, reverseChildren);
-            header.appendChild(figureElement);
-            doc.appendChild(header);
+            appendChild(header, figureElement);
+            appendChild(doc, header);
 
             //write the content into xml file
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
@@ -162,17 +165,16 @@ public class XmlSaver {
 
         //children
         Integer[] children = fig.getChildren();
-
-        if (reverseChildren) {
-            for (int i = children.length - 1; i >= 0; i--) {
-                elemFig.appendChild(createElement(doc, children[i], reverseChildren));
-            }
-        } else {
-            for (int i = 0; i < children.length; i++) {
-                elemFig.appendChild(createElement(doc, children[i], reverseChildren));
-            }
+        for (int i = 0; i < children.length; i++) {
+            appendChild(elemFig, createElement(doc, children[i], reverseChildren));
         }
         return elemFig;
+    }
+
+    public static void appendChild(Node parent, Node child) {
+        if (child != null) {
+            parent.appendChild(child);
+        }
     }
 
     private static Element createElement(Document doc, int id, boolean reverseChildren) {
@@ -185,7 +187,7 @@ public class XmlSaver {
             }
             case __GO_UIMENU__ : {
                 //Uimenu uim = (Uimenu)controller.getObjectFromId(id);
-                return doc.createElement("menu");
+                return createUimenu(doc, id, reverseChildren);
             }
             case __GO_UICONTEXTMENU__ : {
                 //Uicontextmenu uicm = (Uicontextmenu)controller.getObjectFromId(id);
@@ -228,12 +230,12 @@ public class XmlSaver {
             case COMPOUND: {
                 Element out = createBorders(doc, border.getOutBorder(), "out");
                 if (out != null) {
-                    elemBorders.appendChild(out);
+                    appendChild(elemBorders, out);
                 }
 
                 Element in = createBorders(doc, border.getInBorder(), "in");
                 if (in != null) {
-                    elemBorders.appendChild(in);
+                    appendChild(elemBorders, in);
                 }
                 break;
             }
@@ -277,7 +279,7 @@ public class XmlSaver {
                 setAttribute(elemBorders, "color", createAttribute(border.getColor()), createAttribute(defaultBorder.getColor()));
                 Element title = createBorders(doc, border.getTitleBorder(), "title");
                 if (title != null) {
-                    elemBorders.appendChild(title);
+                    appendChild(elemBorders, title);
                 }
                 break;
             }
@@ -382,7 +384,7 @@ public class XmlSaver {
             Integer iBorders = uic.getFrameBorder();
             Element borders = createBorders(doc, iBorders);
             if (borders != null) {
-                elemUi.appendChild(createBorders(doc, iBorders));
+                appendChild(elemUi, createBorders(doc, iBorders));
             }
 
             //Scrollable
@@ -403,14 +405,55 @@ public class XmlSaver {
         Integer[] children = uic.getChildren();
         if (reverseChildren) {
             for (int i = children.length - 1 ; i >= 0 ; i--) {
-                elemUi.appendChild(createElement(doc, children[i], reverseChildren));
+                appendChild(elemUi, createElement(doc, children[i], reverseChildren));
             }
         } else {
             for (int i = 0 ; i < children.length ; i++) {
-                elemUi.appendChild(createElement(doc, children[i], reverseChildren));
+                appendChild(elemUi, createElement(doc, children[i], reverseChildren));
             }
         }
         return elemUi;
+    }
+
+    private static Element createUimenu(Document doc, Integer id, boolean reverseChildren) {
+        GraphicController controller = GraphicController.getController();
+        Uimenu uim = (Uimenu)controller.getObjectFromId(id);
+        //bypass hidden menu
+        if (uim.isHidden()) {
+            return null;
+        }
+
+        initDefaultMenu();
+        Element elemMenu = doc.createElement("menu");
+
+        //enable
+        setAttribute(elemMenu, "enable", createAttribute(uim.getEnable()), createAttribute(defaultMenu.getEnable()));
+        //foregroundcolor
+        setAttribute(elemMenu, "foregroundcolor", createAttribute(uim.getForegroundColor()), createAttribute(defaultMenu.getForegroundColor()));
+        //label
+        setAttribute(elemMenu, "label", createAttribute(uim.getLabel()), createAttribute(defaultMenu.getLabel()));
+        //handle_visible
+        setAttribute(elemMenu, "hidden", createAttribute(uim.isHidden()), createAttribute(defaultMenu.isHidden()));
+        //visible
+        setAttribute(elemMenu, "visible", createAttribute(uim.getVisible()), createAttribute(defaultMenu.getVisible()));
+        //callback
+        setAttribute(elemMenu, "callback", createAttribute(uim.getCallbackString()), createAttribute(defaultMenu.getCallbackString()));
+        //callback_type
+        setAttribute(elemMenu, "callback_type", createAttribute(uim.getCallbackType()), createAttribute(defaultMenu.getCallbackType()));
+        //checked
+        setAttribute(elemMenu, "checked", createAttribute(uim.getChecked()), createAttribute(defaultMenu.getChecked()));
+        //icon
+        setAttribute(elemMenu, "icon", createAttribute(uim.getIcon()), createAttribute(defaultMenu.getIcon()));
+        //tag
+        setAttribute(elemMenu, "tag", createAttribute(uim.getTag()), createAttribute(defaultMenu.getTag()));
+
+        //children
+        Integer[] children = uim.getChildren();
+        for (int i = 0; i < children.length; i++) {
+            appendChild(elemMenu, createElement(doc, children[i], reverseChildren));
+        }
+
+        return elemMenu;
     }
 
     private static String createAttribute(Boolean val) {
@@ -533,6 +576,11 @@ public class XmlSaver {
     private static void initDefaultui(Integer uicontrolStyle) {
         Integer uic = GraphicController.getController().askObject(GraphicObject.getTypeFromName(uicontrolStyle));
         defaultUi = (Uicontrol) GraphicController.getController().getObjectFromId(uic);
+    }
+
+    private static void initDefaultMenu() {
+        Integer uic = GraphicController.getController().askObject(GraphicObject.getTypeFromName(__GO_UIMENU__));
+        defaultMenu = (Uimenu) GraphicController.getController().getObjectFromId(uic);
     }
 
 }
