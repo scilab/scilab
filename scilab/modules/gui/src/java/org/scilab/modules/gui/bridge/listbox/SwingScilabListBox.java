@@ -27,8 +27,6 @@ import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
@@ -38,6 +36,8 @@ import javax.swing.ListCellRenderer;
 import javax.swing.ListSelectionModel;
 import javax.swing.UIManager;
 import javax.swing.border.Border;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.gui.SwingViewObject;
@@ -73,7 +73,7 @@ public class SwingScilabListBox extends JScrollPane implements SwingViewObject, 
 
     private CommonCallBack callback;
 
-    private MouseListener mouseListener;
+    private ListSelectionListener listListener;
 
     private AdjustmentListener adjustmentListener;
 
@@ -109,9 +109,8 @@ public class SwingScilabListBox extends JScrollPane implements SwingViewObject, 
 
         getList().setCellRenderer(textRenderer);
 
-
-        mouseListener = new MouseListener() {
-            public void mouseClicked(MouseEvent e) {
+        listListener = new ListSelectionListener() {
+            public void valueChanged(ListSelectionEvent e) {
                 // Scilab indices in Value begin at 1 and Java indices begin at 0
                 int[] javaIndices = getList().getSelectedIndices().clone();
                 Double[] scilabIndices = new Double[javaIndices.length];
@@ -120,16 +119,13 @@ public class SwingScilabListBox extends JScrollPane implements SwingViewObject, 
                 }
 
                 GraphicController.getController().setProperty(uid, __GO_UI_VALUE__, scilabIndices);
-                if (e.getButton() == MouseEvent.BUTTON1 && callback != null) {
+                if (callback != null) {
                     callback.actionPerformed(null);
                 }
             }
-            public void mouseEntered(MouseEvent arg0) { }
-            public void mouseExited(MouseEvent arg0) { }
-            public void mousePressed(MouseEvent arg0) { }
-            public void mouseReleased(MouseEvent arg0) { }
         };
-        getList().addMouseListener(mouseListener);
+        getList().addListSelectionListener(listListener);
+
         adjustmentListener = new AdjustmentListener() {
             public void adjustmentValueChanged(AdjustmentEvent arg0) {
                 int listboxtopValue = getList().getUI().locationToIndex(getList(), getViewport().getViewPosition()) + 1;
@@ -255,12 +251,12 @@ public class SwingScilabListBox extends JScrollPane implements SwingViewObject, 
             super.setEnabled(newEnableState);
             getList().setEnabled(newEnableState);
             if (newEnableState) {
-                if (mouseListener != null) {
-                    getList().addMouseListener(mouseListener);
+                if (listListener != null) {
+                    getList().addListSelectionListener(listListener);
                 }
             } else {
-                if (mouseListener != null) {
-                    getList().removeMouseListener(mouseListener);
+                if (listListener != null) {
+                    getList().removeListSelectionListener(listListener);
                 }
             }
         }
@@ -475,15 +471,15 @@ public class SwingScilabListBox extends JScrollPane implements SwingViewObject, 
         }
 
         /* Remove the listener to avoid the callback to be executed */
-        if (mouseListener != null) {
-            getList().removeMouseListener(mouseListener);
+        if (listListener != null) {
+            getList().removeListSelectionListener(listListener);
         }
 
         getList().setSelectedIndices(javaIndices);
 
         /* Put back the listener */
-        if (mouseListener != null) {
-            getList().addMouseListener(mouseListener);
+        if (listListener != null) {
+            getList().addListSelectionListener(listListener);
         }
     }
 

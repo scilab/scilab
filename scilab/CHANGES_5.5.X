@@ -1,4 +1,4 @@
-	                 Changes between version 5.5.0-beta-1 and 5.5.0
+                 Changes between version 5.5.0-beta-1 and 5.5.0
                  ==============================================
 
 New Features
@@ -352,6 +352,8 @@ Scilab Bug Fixes
 * Bug #12733 fixed - There was no way to direct graphs to nothing with driver function.
 
 * Bug #12737 fixed - In SciNotes, autosave did not create directory if it did not exist.
+
+* Bug #12763 fixed - Value of "listbox" style uicontrols was not updated when using arrow keys.
 
 * Bug #12769 fixed - xset("window", 1) did not set the current axes.
 
