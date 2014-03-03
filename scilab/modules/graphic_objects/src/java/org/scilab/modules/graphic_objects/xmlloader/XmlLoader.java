@@ -12,8 +12,8 @@
 
 package org.scilab.modules.graphic_objects.xmlloader;
 
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TAG__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ENABLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TAG__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHILDREN__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AXES__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FIGURE__;
@@ -46,6 +46,7 @@ import java.util.Stack;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
+import org.scilab.modules.commons.CommonFileUtils;
 import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.graphic_objects.ScilabNativeView;
 import org.scilab.modules.graphic_objects.builder.Builder;
@@ -96,6 +97,7 @@ public class XmlLoader extends DefaultHandler {
         nameToGO.put("UITab", __GO_UI_TAB__);
         nameToGO.put("UIScilabPlot", __GO_AXES__);
 
+
         /** sdsdf*/
         nameToGO.put("UITextarea", __GO_UI_EDIT__);
 
@@ -133,10 +135,19 @@ public class XmlLoader extends DefaultHandler {
         File f = new File(filename);
         if (f.exists()) {
             //add filename filepath in ScilabSwingUtilities paths
-            String absoluteFilePath = f.getAbsolutePath();
-            String path = absoluteFilePath.substring(0, absoluteFilePath.lastIndexOf(File.separator));
-            currentPath = path;
-            FindIconHelper.addThemePath(path);
+            if (f.isAbsolute()) {
+                currentPath = f.getAbsolutePath();
+                FindIconHelper.addThemePath(currentPath);
+            } else {
+                String initialDirectoryPath = CommonFileUtils.getCWD();
+                String filePath = "";
+                Integer index = filename.lastIndexOf(File.separator);
+                if (index != -1) {
+                    filePath = filename.substring(0, index);
+                }
+                currentPath = initialDirectoryPath + File.separator + filePath;
+                FindIconHelper.addThemePath(currentPath);
+            }
         } else {
             //try to find file in currentPath
             if (f.isAbsolute()) {
