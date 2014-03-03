@@ -41,6 +41,7 @@ import org.scilab.modules.graphic_objects.uibar.waitbar.Waitbar;
 import org.scilab.modules.graphic_objects.uicontextmenu.Uicontextmenu;
 import org.scilab.modules.graphic_objects.uicontrol.checkbox.CheckBox;
 import org.scilab.modules.graphic_objects.uicontrol.edit.Edit;
+import org.scilab.modules.graphic_objects.uicontrol.edit.Spinner;
 import org.scilab.modules.graphic_objects.uicontrol.frame.Frame;
 import org.scilab.modules.graphic_objects.uicontrol.layer.Layer;
 import org.scilab.modules.graphic_objects.uicontrol.frame.border.FrameBorder;
@@ -257,6 +258,9 @@ public final class GraphicModel {
                 break;
             case EDIT:
                 createdObject = new Edit();
+                break;
+            case SPINNER:
+                createdObject = new Spinner();
                 break;
             case FRAME:
                 createdObject = new Frame();

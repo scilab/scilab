@@ -13,6 +13,7 @@
  *
  */
 
+#include <stdio.h>
 #include "gw_gui.h"
 /*--------------------------------------------------------------------------*/
 #include "CreateUIControl.h"

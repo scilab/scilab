@@ -37,6 +37,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_CHECKBOX__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_CHECKED__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_EDIT__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SPINNER__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ENABLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FONTANGLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FONTNAME__;
@@ -106,6 +107,7 @@ import org.scilab.modules.gui.bridge.checkboxmenuitem.SwingScilabCheckBoxMenuIte
 import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
 import org.scilab.modules.gui.bridge.contextmenu.SwingScilabContextMenu;
 import org.scilab.modules.gui.bridge.editbox.SwingScilabEditBox;
+import org.scilab.modules.gui.bridge.editbox.SwingScilabSpinner;
 import org.scilab.modules.gui.bridge.frame.SwingScilabFrame;
 import org.scilab.modules.gui.bridge.frame.SwingScilabLayer;
 import org.scilab.modules.gui.bridge.frame.SwingScilabScrollableFrame;
@@ -213,7 +215,7 @@ public final class SwingView implements GraphicView {
     }
 
     private enum UielementType {
-        Console, CheckBox, Edit, Frame, Figure, Axes, Image, ListBox, PopupMenu, Progressbar, PushButton, RadioButton, Slider, Table, Text, Uimenu, UiParentMenu, UiChildMenu, UiCheckedMenu, UiContextMenu, Waitbar, Tab, Layer
+        Console, CheckBox, Edit, Spinner, Frame, Figure, Axes, Image, ListBox, PopupMenu, Progressbar, PushButton, RadioButton, Slider, Table, Text, Uimenu, UiParentMenu, UiChildMenu, UiCheckedMenu, UiContextMenu, Waitbar, Tab, Layer
     }
 
     private class TypedObject {
@@ -309,6 +311,8 @@ public final class SwingView implements GraphicView {
                 return UielementType.CheckBox;
             case __GO_UI_EDIT__:
                 return UielementType.Edit;
+            case __GO_UI_SPINNER__:
+                return UielementType.Spinner;
             case __GO_UI_FRAME__:
                 return UielementType.Frame;
             case __GO_UI_IMAGE__:
@@ -391,11 +395,18 @@ public final class SwingView implements GraphicView {
                     return consoleTab;
                 }
                 return null;
-            case Edit:
+            case Edit: {
                 SwingScilabEditBox edit = new SwingScilabEditBox();
                 edit.setId(id);
                 setDefaultProperties(edit, id);
                 return edit;
+            }
+            case Spinner : {
+                SwingScilabSpinner spin = new SwingScilabSpinner();
+                spin.setId(id);
+                setDefaultProperties(spin, id);
+                return spin;
+            }
             case Figure: {
                 Figure figure = (Figure) GraphicController.getController().getObjectFromId(id);
                 String figureTitle = figure.getName();
@@ -780,24 +791,24 @@ public final class SwingView implements GraphicView {
             return;
         }
 
-        if (SwingUtilities.isEventDispatchThread()) {
-            updateObjectOnEDT(registeredObject, id, property);
-        } else {
-            try {
-                SwingUtilities.invokeAndWait(new Runnable() {
-                    @Override
-                    public void run() {
-                        updateObjectOnEDT(registeredObject, id, property);
-                    }
-                });
-            } catch (InterruptedException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            } catch (InvocationTargetException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-        }
+        //        if (SwingUtilities.isEventDispatchThread()) {
+        updateObjectOnEDT(registeredObject, id, property);
+        //        } else {
+        //            try {
+        //                SwingUtilities.invokeAndWait(new Runnable() {
+        //                    @Override
+        //                    public void run() {
+        //                        updateObjectOnEDT(registeredObject, id, property);
+        //                    }
+        //                });
+        //            } catch (InterruptedException e) {
+        //                // TODO Auto-generated catch block
+        //                e.printStackTrace();
+        //            } catch (InvocationTargetException e) {
+        //                // TODO Auto-generated catch block
+        //                e.printStackTrace();
+        //            }
+        //        }
     }
 
     public void updateObjectOnEDT(TypedObject registeredObject, final Integer id, final int property) {

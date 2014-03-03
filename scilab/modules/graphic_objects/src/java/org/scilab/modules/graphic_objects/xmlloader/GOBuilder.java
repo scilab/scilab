@@ -1,5 +1,6 @@
 package org.scilab.modules.graphic_objects.xmlloader;
 
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SPINNER__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FIGURE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_CHECKED__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LABEL__;
@@ -549,6 +550,9 @@ public class GOBuilder {
                     }
 
                     break;
+                }
+                case __GO_UI_SPINNER__: {
+
                 }
             }
 

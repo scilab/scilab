@@ -60,6 +60,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SCROLLABLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SLIDERSTEP__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SLIDER__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SPINNER__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING_COLNB__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING_SIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING__;
@@ -409,7 +410,8 @@ public class Uicontrol extends GraphicObject {
         TEXT,
         TABGROUP,
         TAB,
-        LAYER
+        LAYER,
+        SPINNER
     };
 
     /**
@@ -469,6 +471,8 @@ public class Uicontrol extends GraphicObject {
                 return __GO_UI_TAB__;
             case LAYER:
                 return __GO_UI_LAYER__;
+            case SPINNER:
+                return __GO_UI_SPINNER__;
             default :
                 return -1;
         }
@@ -507,6 +511,8 @@ public class Uicontrol extends GraphicObject {
                 return UicontrolStyle.TAB;
             case __GO_UI_LAYER__:
                 return UicontrolStyle.LAYER;
+            case __GO_UI_SPINNER__:
+                return UicontrolStyle.SPINNER;
             default :
                 return null;
         }
