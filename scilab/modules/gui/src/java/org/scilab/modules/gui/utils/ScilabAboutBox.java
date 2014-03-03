@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009-2012 - DIGITEO - Vincent COUVERT
+ * Copyright (C) 2014 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,21 +13,30 @@
 
 package org.scilab.modules.gui.utils;
 
+import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.Window;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextPane;
 import javax.swing.JToggleButton;
+import javax.swing.GroupLayout;
+import javax.swing.SwingUtilities;
 
 import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.gui.console.ScilabConsole;
@@ -66,7 +76,6 @@ public class ScilabAboutBox {
         }
 
         createAboutBox(Messages.gettext("About Scilab..."), filename);
-
     }
 
     /**
@@ -78,13 +87,17 @@ public class ScilabAboutBox {
      *            path to acknowledgements file
      */
     public static void createAboutBox(final String aboutTitle, final String ackFile) {
-        final JFrame aboutBox = new JFrame();
+        Window win = null;
+        if (ScilabConsole.isExistingConsole()) {
+            win = (Window) SwingUtilities.getAncestorOfClass(Window.class, (Component) ScilabConsole.getConsole().getAsSimpleConsole());
+        }
+
+        final JDialog aboutBox = new JDialog(win);
         aboutBox.setIconImage(imageForIcon);
         aboutBox.setTitle(Messages.gettext(aboutTitle));
 
-        aboutBox.setAlwaysOnTop(true);
-        aboutBox.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        aboutBox.setLocationRelativeTo(null);
+        //aboutBox.setAlwaysOnTop(true);
+        aboutBox.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 
         ScilabSwingUtilities.closeOnEscape(aboutBox);
 
@@ -106,18 +119,18 @@ public class ScilabAboutBox {
     }
 
     @SuppressWarnings("serial")
-    private static final class AboutPanel extends javax.swing.JPanel {
+    private static final class AboutPanel extends JPanel {
         private static final String SCIDIR = System.getenv("SCI");
         private static final String IMAGEPATH = SCIDIR + "/modules/gui/images/icons/aboutscilab.png";
         private static final Font FONT = new Font(Font.SANS_SERIF, Font.PLAIN, 10);
 
-        final JFrame parent;
+        final JDialog parent;
         final String ackFile;
 
         final ImageIcon background = new ImageIcon(IMAGEPATH);
 
         /** Creates new form NewJPanel */
-        public AboutPanel(final JFrame parent, final String ackFile) {
+        public AboutPanel(final JDialog parent, final String ackFile) {
             this.parent = parent;
             this.ackFile = ackFile;
 
@@ -125,8 +138,7 @@ public class ScilabAboutBox {
         }
 
         private void initComponents() {
-
-            topPane = new javax.swing.JPanel() {
+            topPane = new JPanel() {
 
                 /*
                  * Override methods to paint the background image
@@ -152,77 +164,77 @@ public class ScilabAboutBox {
                     g.drawImage(background.getImage(), 0, 0, (int) getSize().getWidth(), (int) getSize().getHeight(), this);
                 }
             };
-            close = new javax.swing.JButton();
-            acknowledgements = new javax.swing.JToggleButton();
-            ackScrollPane = new javax.swing.JScrollPane();
-            ackText = new javax.swing.JTextPane();
+            close = new JButton();
+            acknowledgements = new JToggleButton();
+            ackScrollPane = new JScrollPane();
+            ackText = new JTextPane();
             ackText.setContentType("text/plain; charset=utf-8");
 
-            setLayout(new java.awt.BorderLayout());
+            setLayout(new BorderLayout());
 
             close.setText(Messages.gettext("Close"));
             close.setFont(FONT);
-            close.addActionListener(new java.awt.event.ActionListener() {
+            close.addActionListener(new ActionListener() {
                 @Override
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                public void actionPerformed(ActionEvent evt) {
                     closeActionPerformed(evt);
                 }
             });
 
             acknowledgements.setText(Messages.gettext("Acknowledgements"));
             acknowledgements.setFont(FONT);
-            acknowledgements.addActionListener(new java.awt.event.ActionListener() {
+            acknowledgements.addActionListener(new ActionListener() {
                 @Override
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                public void actionPerformed(ActionEvent evt) {
                     acknowledgementsActionPerformed(evt);
                 }
             });
 
-            javax.swing.GroupLayout topPaneLayout = new javax.swing.GroupLayout(topPane);
+            GroupLayout topPaneLayout = new GroupLayout(topPane);
             topPane.setLayout(topPaneLayout);
 
             /*
-            topPaneLayout.setHorizontalGroup(topPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(
-                    javax.swing.GroupLayout.Alignment.TRAILING,
-                    topPaneLayout.createSequentialGroup().addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addComponent(acknowledgements)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED).addComponent(close).addContainerGap()));
-            topPaneLayout.setVerticalGroup(topPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(
-                  javax.swing.GroupLayout.Alignment.TRAILING,
-                  topPaneLayout.createSequentialGroup().addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                  .addGroup(
-                      topPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE).addComponent(close)
-                      .addComponent(acknowledgements)).addContainerGap()));
+              topPaneLayout.setHorizontalGroup(topPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(
+              javax.swing.GroupLayout.Alignment.TRAILING,
+              topPaneLayout.createSequentialGroup().addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addComponent(acknowledgements)
+              .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED).addComponent(close).addContainerGap()));
+              topPaneLayout.setVerticalGroup(topPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(
+              javax.swing.GroupLayout.Alignment.TRAILING,
+              topPaneLayout.createSequentialGroup().addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+              .addGroup(
+              topPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE).addComponent(close)
+              .addComponent(acknowledgements)).addContainerGap()));
             */
 
-            topPaneLayout.setHorizontalGroup(topPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING).addGroup(
+            topPaneLayout.setHorizontalGroup(topPaneLayout.createParallelGroup(GroupLayout.Alignment.TRAILING).addGroup(
                                                  topPaneLayout.createSequentialGroup()
-                                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                 .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                  .addGroup(
-                                                         topPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                         topPaneLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                                                          .addComponent(close)
                                                          .addComponent(acknowledgements)).addGap(5)));
 
             topPaneLayout.setVerticalGroup(topPaneLayout.createSequentialGroup().addGroup(
                                                topPaneLayout.createSequentialGroup()
-                                               .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                               .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                .addComponent(acknowledgements).addGap(5)
                                                .addComponent(close).addGap(5)));
             /*
-                        javax.swing.GroupLayout.ParallelGroup horzGroup = topPaneLayout.createParallelGroup();
-                        javax.swing.GroupLayout.ParallelGroup vertGroup = topPaneLayout.createParallelGroup();
+              javax.swing.GroupLayout.ParallelGroup horzGroup = topPaneLayout.createParallelGroup();
+              javax.swing.GroupLayout.ParallelGroup vertGroup = topPaneLayout.createParallelGroup();
 
-                        horzGroup.addGroup(topPaneLayout.createSequentialGroup()
-                        		.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addComponent(acknowledgements)
-                        		.addComponent(close));
-                        topPaneLayout.setHorizontalGroup(horzGroup);
+              horzGroup.addGroup(topPaneLayout.createSequentialGroup()
+              .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addComponent(acknowledgements)
+              .addComponent(close));
+              topPaneLayout.setHorizontalGroup(horzGroup);
 
-                    	vertGroup.addGroup(topPaneLayout.createSequentialGroup()
-                        		.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addComponent(acknowledgements)
-                    			.addComponent(acknowledgements)
-                    			.addComponent(close));
-                        topPaneLayout.setVerticalGroup(vertGroup);
+              vertGroup.addGroup(topPaneLayout.createSequentialGroup()
+              .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addComponent(acknowledgements)
+              .addComponent(acknowledgements)
+              .addComponent(close));
+              topPaneLayout.setVerticalGroup(vertGroup);
             */
-            add(topPane, java.awt.BorderLayout.PAGE_START);
+            add(topPane, BorderLayout.PAGE_START);
 
             ackScrollPane.setViewportView(ackText);
             ackScrollPane.setPreferredSize(topPane.getPreferredSize());
@@ -238,13 +250,13 @@ public class ScilabAboutBox {
             ackText.setCaretPosition(0);
         }
 
-        private void closeActionPerformed(java.awt.event.ActionEvent evt) {
+        private void closeActionPerformed(ActionEvent evt) {
             parent.dispose();
         }
 
-        private void acknowledgementsActionPerformed(java.awt.event.ActionEvent evt) {
+        private void acknowledgementsActionPerformed(ActionEvent evt) {
             if (acknowledgements.isSelected()) {
-                add(ackScrollPane, java.awt.BorderLayout.CENTER);
+                add(ackScrollPane, BorderLayout.CENTER);
             } else {
                 remove(ackScrollPane);
             }
@@ -253,10 +265,10 @@ public class ScilabAboutBox {
             parent.pack();
         }
 
-        private javax.swing.JScrollPane ackScrollPane;
-        private javax.swing.JTextPane ackText;
+        private JScrollPane ackScrollPane;
+        private JTextPane ackText;
         private JToggleButton acknowledgements;
-        private javax.swing.JButton close;
-        private javax.swing.JPanel topPane;
+        private JButton close;
+        private JPanel topPane;
     }
 }

@@ -184,6 +184,8 @@ Scilab Bug Fixes
 
 * Bug #8247 fixed - regress tagged as obsolete.
 
+* Bug #8323 fixed - Scilab "About Box" did not hide Scilab main window.
+
 * Bug #8337 fixed - mtlb_rand now uses the "uniform" rule, whatever the random rule set is.
 
 * Bug #8379 fixed - It was not possible to delete the selected datatip with DELETE or BACKSPACE.
