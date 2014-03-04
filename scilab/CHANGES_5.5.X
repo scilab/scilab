@@ -1,128 +1,118 @@
-                 Changes between version 5.5.0-beta-1 and 5.5.0
-                 ==============================================
+                 Changes between version 5.5.0-beta-1 and 5.5.0-beta-2
+                 =====================================================
 
-New Features
-=============
+GUI Refactoring and Improvements
+================================
 
-* The figure "visible" property management has changed:
- - When the figure is docked, this property manages the visibility
-   of components inside the figure (uicontrols, axes, ...).
-   In previous releases, only axes were managed by this property setting.
- - When the figure is not docked, this property manages the visibility
-   of the whole figure including its decorations.
-
-* New functions introduced:
- - jcreatejar - Creates a Java archive (JAR) from a set of files / directories
- - ilib_build_jar - Builds Java packages from sources into a JAR file
- - ifftshift - inverse FFT shift
- - unwrap - unwraps/unfolds a Y(x) profile
-
-* modulo() and pmodulo() now support integers & hypermatrices (See bug #13002).
-
-* test_run() can now separate 32bits systems from 64bits ones.
-
-* pol2str(): support to polynomials with complex coefficients and hypermatrices (See bug #13109).
-
-* nanreglin(): reglin() with arguments containing NaNs (See bug #13208).
-
-* New figures properties:
- - icon: allows to customize the figure icon.
- - menubar: allows to create windows without any menubar (default menus will not be created).
- - menubar_visible: manages menubar visibility.
- - toolbar: allows to create windows without any toolbar.
- - toolbar_visible: manages toolbar visibility.
- - infobar_visible: manages infobar visibility.
- - resize: allows to lock window size.
- - dockable: allows to create dockable/standard figures.
- - default_axes: allows to manage default axes creation in figures.
-
-* New axes properties:
- - ticks_format: format of the ticks labels.
- - ticks_st: scale and translate factors applied to ticks position when formatting
-             the ticks labels.
- - auto_margins: Activated by default, this property lets Scilab compute margins
-                 needed to display axes decorations (titles, labels, ...).
- - grid_thickness: thickness of the grid plotting.
- - grid_style: style of the grid plotting.
- - label_font_style: font style used to draw the labels.
-
-* New legends properties:
- - line_width: width of the line drawn.
- - mark_count: number of marks drawn.
-
-* New polyline properties:
- - mark_offset: offset before first mark.
- - mark_stride: step betwwen consecutive marks.
- - display_function: name of the function used to customize the information
-                     displayed in all the datatips of this polyline.
-                     This function can be overloaded by setting a display
-                     function on each datatip handle.
- - display_function_data: additionnal data needed for datatips display function.
- - datatips: handles of the datatips of the polyline.
-
-* New Matplot property added :
- - rect: specifies the rectangle where the Matplot will be drawn.
-
-* New uicontrol styles:
- - tab: component which enables the user to switch between sets of uicontrol by
+* New uicontrols styles:
+ - tab: component which enables the user to switch between sets of uicontrols by
         clicking on a tab.
         The children components are "frame" uicontrols.
         Two dedicated properties have been added to configure this component:
-         - title_position: position of the tabs
-         - title_scroll: indicates if tabs must all be displayed at a time are
+         - title_position: Position of the tabs
+         - title_scroll: Indicates if tabs must all be displayed at a time or
                          managed with scroll features.
- - layer: component which enables the user to make parts of a GUI visible/invisible
+ - layer: Component which enables the user to make parts of a GUI visible/invisible
           programmatically.
- - spinner: component which enables the user to select/edit a value between bounds
+ - spinner: Component which enables the user to select/edit a value between bounds
             with a fixed step.
 
-* New uicontrol properties:
- - borders: used to set some decoration properties on "frame" uicontrols.
+* New uicontrols properties:
+ - borders: Used to set some decoration properties on "frame" uicontrols.
             These decorations can be created and initialized with the createBorder function.
- - scrollable: used to add scrolling capabilities on "frame" uicontrols.
- - groupname: used to group "radiobutton" and "checkbox" uicontrols for an easier
+ - scrollable: Used to add scrolling capabilities on "frame" uicontrols.
+ - groupname: Used to group "radiobutton" and "checkbox" uicontrols for an easier
               management.
- - icon: add an icon to "pushbutton" and "labels" uicontrols.
+ - icon: Add an icon to "pushbutton" and "labels" uicontrols.
 
 * New uimenu properties:
- - icon: add an icon on the left of the menu label.
+ - icon: add an icon on the left of the label menu.
 
-* New rendering for GUI/uicontrol:
-  In this version, uicontrol use the defaults of the OS Look & Feel.
-  Some properties default values are not set by Scilab and then differ from an
-  OS to an other.
-  To come back to the previous and deprecated behavior, you can use the related
-  property on the "Console" handle:
-  set(get(0), "UseDeprecatedSkin", "on");
-  Note that this deprecated behavior will be removed in future versions.
+* "listbox" and "popupmenu" style uicontrols can now manage colors when the
+  "String" property is set to a matrix matching the format:
+  ["Item1", "#XXXXXX"; "Item2", "#XXXXXX", ...]
+  Then the component will display a colored box on the left of the associated string.
 
-* New management of uicontrol positioning:
-  In previous versions, uicontrol position was managed in an absolute way through
+* New management of uicontrols positioning:
+  In previous versions, uicontrols position was managed in an absolute way through
   their "Position" property and the "Resizefcn" property of their parent figure.
   Using the new layout management in figures and "frame" style uicontrols, position
   is now managed in an automatic way based on Java layouts.
   New dedicated properties have been added in figure and uicontrols:
    - layout: layout type.
    - layout_options: configuration of the layout.
-  Type "help layouts" in Scilab for more information about available types abnd options.
+  Type "help layouts" in Scilab for more information about available types and options.
   Uicontrols position is then managed through the "constraints" property.
   A new createConstraints function has been added to managed these contraints.
+
+* New figures properties:
+ - icon: Allows to customize the figure icon.
+ - menubar: allows to create windows without any menu bar (default menus will not be created).
+ - menubar_visible: Manages menu bar visibility.
+ - toolbar: Allows to create windows without any toolbar.
+ - toolbar_visible: Manages toolbar visibility.
+ - infobar_visible: Manages infobar visibility.
+ - resize: Allows to lock window size.
+ - dockable: Allows to create dockable/standard figures.
+ - default_axes: Allows to manage default axes creation in figures.
+
+* The figure "visible" property management has evolved and offers new possibilities:
+ - When the figure is docked, this property manages the visibility
+   of components inside the figure (uicontrols, axes, ...).
+   In previous releases, this same property setting only managed axes.
+ - When the figure is not docked, this property manages the visibility
+   of the whole figure including its decorations.
+
+* New way to create GUI using XML files:
+ - Created GUI using the figure/uicontrol/uimenu functions can now be saved in
+   this new format using saveGui function.
+ - XML files in this format can be loaded in Scilab using the loadGui function.
+   This function aims at creating GUI in a more efficient way.
+
+* New rendering for GUI/uicontrols:
+  In this version, uicontrols use the defaults of the OS Look & Feel.
+  Some properties default values are not set by Scilab and then can be different from an
+  OS to another.
+  To come back to the previous and deprecated behavior, you can use the related
+  property on the "Console" handle:
+  set(get(0), "UseDeprecatedSkin", "on");
+  Note that this deprecated behavior will be removed in future versions.
+
+
+Graphics Evolutions
+===================
 
 * set function prototype has been modified to allow the user to set multiple
   properties at once: set(h, "Property1", Value1, "Property2", Value2, ...)
 
 * newaxes function now allows to create axes in "frame" uicontrols.
 
-* New way to create GUI using XML files:
- - GUI created using the figure/uicontrol/uimenu functions can now be saved in
-   this new format using saveGui function.
- - XML files in this format can be loaded in Scilab using the loadGui function.
-   This function aims at creating GUI in a more efficient way.
+* New axes properties:
+ - ticks_format: Format of the ticks labels.
+ - ticks_st: Scales and translates factors applied to ticks position when formatting
+             the ticks labels.
+ - auto_margins: Activated by default, this property lets Scilab compute margins
+                 needed to display axes decorations (titles, labels, ...).
+ - grid_thickness: Thickness of the grid plotting.
+ - grid_style: Style of the grid plotting.
+ - label_font_style: Font style used to draw the labels.
 
-* "listbox" and "popupmenu" style uicontrols can now manage colors when the
-  "String" property is set to a matrix matching the format:
-  ["Item1", "#XXXXXX"; "Item2", "#XXXXXX", ...]
-  Then the component will display a colored box on the left of the associated string.
+* New legends properties:
+ - line_width: Width of the drawn line.
+ - mark_count: Number of the drawn marks.
+
+* New polyline properties:
+ - mark_offset: Offset before the first mark.
+ - mark_stride: Step between consecutive marks.
+ - display_function: Name of the function used to customize the information
+                     displayed in all the datatips of this polyline.
+                     This function can be overloaded by setting a display
+                     function on each datatip handle.
+ - display_function_data: Additional data needed for datatips display function.
+ - datatips: Handles of the datatips of the polyline.
+
+* New Matplot property added :
+ - rect: specifies the rectangle where the Matplot will be drawn.
 
 * Datatips properties have been renamed for better readability:
  - tip_data --> data
@@ -133,6 +123,32 @@ New Features
  - tip_auto_orientation --> auto_orientation
  - tip_interp_mode --> interp_mode
  - tip_disp_function --> display_function
+
+
+Scilab
+======
+
+* New functions introduced:
+ - jcreatejar - Creates a Java archive (JAR) from a set of files / directories
+ - ilib_build_jar - Builds Java packages from sources into a JAR file
+ - ifftshift - Inverses FFT shift
+ - unwrap - Unwraps/unfolds a Y(x) profile
+
+* modulo() and pmodulo() now support integers & hypermatrices (See bug #13002).
+
+* test_run() can now separate 32-bit systems from 64-bit ones.
+
+* pol2str(): now handles polynomials with complex coefficients and hypermatrices (See bug #13109).
+
+* nanreglin(): reglin() with arguments containing NaNs (See bug #13208).
+
+
+Xcos
+====
+
+* xcos_debug_gui function added for a simple use of the Debug block.
+
+* tbx_build_pal_loader function added to ease external module creation (See SEP #120).
 
 
 Obsolete & Removed Functions
@@ -181,7 +197,7 @@ Scilab Bug Fixes
 ================
 
 * Bug #1253 fixed - There was no possibility to draw only few marks on a polyline which
-                    contains a lot of points.
+                    contained a lot of points.
 
 * Bug #1751 fixed - Margins were not computed according to contents.
 
@@ -193,9 +209,9 @@ Scilab Bug Fixes
 
 * Bug #4401 fixed - isnum did not recognize all constants or some complex numbers.
 
-* Bug #4490 fixed - Input argument of sinc function must be in rad: help page updated.
+* Bug #4490 fixed - Input argument of sinc function moved to rad: help page.
 
-* Bug #4649 fixed - License issue in the xs2ppm help page fixed.
+* Bug #4649 fixed - License issue in xs2ppm help page fixed.
 
 * Bug #4677 fixed - xclick did not return correct mouse position on keyboard event.
 
@@ -227,21 +243,21 @@ Scilab Bug Fixes
 * Bug #6615 fixed - ui(get|put)file did not center the file dialog on the last focused window.
 
 * Bug #6689 & #6690 fixed - grand now works with complexes, polynomials, booleans, integers, sparses and strings,
-                            and can take row vectors, matrices and hypermatrices of thoses types.
+                            and can handle row vectors, matrices and hypermatrices of thoses types.
 
 * Bug #6824 fixed - resize_matrix did not manage hypermatrices.
 
 * Bug #6832 fixed - Matrices of rationals can now be transposed via the " .' " operator.
 
-* Bug #6859 fixed - xlabel and xtitle could overlap.
+* Bug #6859 fixed - xlabel and xtitle could overlapped.
 
 * Bug #6930 fixed - Matplot handle had no rect property.
 
-* Bug #7038 fixed - Toolbar button managing datatip mode did not toggle.
+* Bug #7038 fixed - A toggle button now manages datatip mode.
 
-* Bug #7047 fixed - milk_drop is now obsolete. It will be removed in Scilab 5.5.1, but will be kept as a demo.
+* Bug #7047 fixed - milk_drop is now obsolete. It will be removed in Scilab 5.5.1, but will be kept as a demonstration.
 
-* Bug #7051 fixed - Help page of fieldnames function updated.
+* Bug #7051 fixed - fieldnames help page updated.
 
 * Bug #7084 fixed - Old, not documented and deprecated gr_menu function removed.
 
@@ -255,26 +271,25 @@ Scilab Bug Fixes
 
 * Bug #7304 fixed - exportUI did not switch filename extension when filter was changed.
 
-* Bug #7417 fixed - Auto-positionning of datatips did not take the curvature into account.
+* Bug #7417 fixed - Auto-positioning of datatips did not take the curvature into account.
 
-* Bug #7561 fixed - roots help page now explains that it uses coefficients in the contrary order of poly.
+* Bug #7561 fixed - roots help page now explains that coefficients are used in the contrary order of poly.
 
-* Bug #7570 fixed - The switch criterion on x and y is now explicited in beta() help page.
+* Bug #7570 fixed - The switch criterion on x and y is now explained in beta() help page.
 
-* Bug #7585 fixed - psi.f moved from "elementary functions" module to "special functions".
+* Bug #7585 fixed - psi.f moved from "elementary functions" to "special functions" module.
 
 * Bug #7593 fixed - stdev now encompasses msd and st_deviation thanks to a new optional input argument.
 
 * Bug #7650 fixed - isempty(tlist(...)) always returned false, even when all defined fields were empty.
 
-* Bug #7705 fixed - In the Genetic algorithms help pages, documented the
-                    "dimension", "minbounds" and "maxbounds" fields.
+* Bug #7705 fixed - "dimension", "minbounds" and "maxbounds" fields have been documented in Genetic algorithms help pages.
 
 * Bug #7739 fixed - Axis position was invalid in log modes.
 
 * Bug #7771 fixed - There was no item about arrow_size in champ_properties help page.
 
-* Bug #7772 fixed - There was no description, no example about line_style property.
+* Bug #7772 fixed - There was no description, no example about line_style property in polyline help page.
 
 * Bug #7858 fixed - variance and variancef can now return the mean of the input
                     in a new output argument and take the a priori mean as input.
@@ -283,21 +298,21 @@ Scilab Bug Fixes
 
 * Bug #7905 fixed - Figure icon can now be changed using dedicated property.
 
-* Bug #7916 fixed - nansum([]) returned Nan value while this function must ignore it.
+* Bug #7916 fixed - nansum([]) returned NaN value while this function had to ignore it.
 
-* Bug #7986 fixed - spec gateway remaned from sci_eig.c to sci_spec.c.
+* Bug #7986 fixed - spec gateway renamed from sci_eig.c to sci_spec.c.
 
 * Bug #7999 fixed - SwingScilabFileChooser.getFilterIndex() was unusable.
 
 * Bug #8031 fixed - cdfgam error message fixed.
 
-* Bug #8060 fixed - Display of a list improved in the variable browser.
+* Bug #8060 fixed - Improved list display in the variable browser.
 
 * Bug #8131 fixed - It was not possible to choose the number of marks and the line width in legends.
 
-* Bug #8133 fixed - Ticks disappeared in planar 3D view.
+* Bug #8133 fixed - Ticks disappeared in planar 3-D view.
 
-* Bug #8196 fixed - Wrong error message with negative thickness.
+* Bug #8196 fixed - Error messages dealing with negative thickness were not standard.
 
 * Bug #8231 fixed - xrect help page did not say that clipping property was inherited.
 
@@ -315,19 +330,19 @@ Scilab Bug Fixes
 
 * Bug #9031 fixed - Misalignment of text when using xstring with a matrix fixed.
 
-* Bug #9033 fixed - auto_dimensionning property for text handles was not documented.
+* Bug #9033 fixed - auto_dimensioning property for text handles was not documented.
 
-* Bug #9110 fixed - Examples and references to other functions added in the Statistics help pages.
+* Bug #9110 fixed - Examples and references to other functions added in Statistics help pages.
 
-* Bug #9309 fixed - Comparison help updated to document issue with empty matrix.
+* Bug #9309 fixed - comparison help page updated to document issue with empty matrix.
 
-* Bug #9319 fixed - Big polylines could not be exported in PS/EPS.
+* Bug #9319 fixed - Huge polylines could not be exported in PS/EPS.
 
 * Bug #9444 fixed - with_embedded_jre function removed.
 
 * Bug #9627 fixed - Arguments checking added in optimsimplex_* functions.
 
-* Bug #9697 fixed - Printed information for optim "qn" and "gc" with bounds and imp=1 fixed.
+* Bug #9697 fixed - Displayed information for optim "qn" and "gc" with bounds and imp=1 fixed.
 
 * Bug #9701 fixed - optim with "qn" option was failing for large problems.
 
@@ -339,11 +354,11 @@ Scilab Bug Fixes
 
 * Bug #10083 fixed - plot3d could not be used with only one input argument.
 
-* Bug #10122 fixed - Function replot could not be used in 3-D.
+* Bug #10122 fixed - replot could not be used in 3-D.
 
 * Bug #10175 fixed - Clearer example added for sp2adj to adj2sp conversion (and backwards conversion).
 
-* Bug #10214 fixed - Update help page of evstr function to mention that input argument must not be composed of
+* Bug #10214 fixed - evstr help page updated to mention that input argument must not be composed of
                      continuation marks (..).
 
 * Bug #10221 fixed - ifftshift function did not exist in Scilab.
@@ -353,13 +368,13 @@ Scilab Bug Fixes
 * Bug #10243 fixed - fun2string(X) called X before returning its code.
 
 * Bug #10271 fixed - ordmmd now checks the consistency of the third input argument with the
-                     input matrix defined by the two first input arguments.
+                     input matrix defined by the first two input arguments.
 
 * Bug #10273 fixed - spchol help page now displays an example showing how to use its output arguments.
 
 * Bug #10391 fixed - Error when using completion after a global variable clear fixed.
 
-* Bug #10428 fixed - Java based components of Scilab shew a library load error in CLI mode.
+* Bug #10428 fixed - Java based components of Scilab showed a library load error in CLI mode.
 
 * Bug #10445 fixed - In SciNotes, CTRL+Drag&Drop moved text rather than copying it.
 
@@ -375,7 +390,7 @@ Scilab Bug Fixes
 
 * Bug #10830 fixed - Hypermatrix insertion with a negative index returned a wrong error message.
 
-* Bug #10833 fixed - Help page of exists updated.
+* Bug #10833 fixed - exists help page updated.
 
 * Bug #10840 fixed - Keyboard arrows were disabled on 'slider' type uicontrols.
 
@@ -387,13 +402,13 @@ Scilab Bug Fixes
 
 * Bug #11001 fixed - exists and isdef did not work with primitives.
 
-* Bug #11007, #11008 & #11009 fixed - New function conjgrad (Conjugate Gradient methods "pcg", "cgs", "bicg" and "bicgstab").
+* Bug #11007, #11008 & #11009 fixed - New conjgrad function (Conjugate Gradient methods "pcg", "cgs", "bicg" and "bicgstab").
 
-* Bug #11303 fixed - Exception while searching with multiple tabs in Scinotes fixed.
+* Bug #11303 fixed - Exception while searching with multiple tabs in SciNotes fixed.
 
-* Bug #11305 fixed - Performances improved with a better way to update data.
+* Bug #11305 fixed - Performances improved with a better way to update data in Graphics.
 
-* Bug #11523 fixed - In Scinotes, 'whereami line numbering' was not clear enough.
+* Bug #11523 fixed - In SciNotes, 'whereami line numbering' was not clear enough.
 
 * Bug #11571 fixed - x_mdialog did not let the Look&Feel select the window size.
 
@@ -401,17 +416,17 @@ Scilab Bug Fixes
 
 * Bug #11576 fixed - exportUI did not propose gcf().figure_name as default file name.
 
-* Bug #11616 fixed - Figure's menubar could not be toggled on/off
+* Bug #11616 fixed - Figure menubar could not be made invisible.
 
-* Bug #11629 fixed - Interactive zoom misworked in datatip mode.
+* Bug #11629 fixed - Interactive zoom did not work properly in datatip mode.
 
 * Bug #11680 fixed - GUI functions in Scilab 5.4.X were much slower than in Scilab 5.3.3.
 
 * Bug #11714 fixed - help_from_sci sometimes failed when input function had "<imagedata>" comments.
 
-* Bug #11814 fixed - Typo in the CACSD help chapter fixed.
+* Bug #11814 fixed - Typo in CACSD help chapter fixed.
 
-* Bug #11953 fixed - Scilab crashed when global("") was entered.
+* Bug #11953 fixed - Scilab crashed when global("") was typed.
 
 * Bug #11996 fixed - eye extended to hypermatrix.
 
@@ -425,17 +440,17 @@ Scilab Bug Fixes
 
 * Bug #12130 fixed - flipdim can now flip blocks, thus making jmat obsolete.
 
-* Bug #12145 fixed - Internal function demo_mdialog removed.
+* Bug #12145 fixed - demo_mdialog internal function removed.
 
-* Bug #12156 fixed - Closing a Scilab session in Javasci could lead to a HDF5 error message.
+* Bug #12156 fixed - Closing a Scilab session in Javasci could led to a HDF5 error message.
 
-* Bug #12306 fixed - Invalid free on completion in NWNI mode fixed.
+* Bug #12306 fixed - Invalid memory free on completion in NWNI mode fixed.
 
 * Bug #12308 fixed - create_palette help page removed (function removed).
 
 * Bug #12334 fixed - Mark color in legend was invalid.
 
-* Bug #12412 fixed - Typo fixed.
+* Bug #12412 fixed - Typo fixed in some error messages.
 
 * Bug #12439 fixed - edit_error returned a wrong message when there was no recorded error.
 
@@ -451,11 +466,11 @@ Scilab Bug Fixes
 
 * Bug #12492 fixed - Exported EPS files were invalid when dash patterns were too long.
 
-* Bug #12496 fixed - zoom_rect could lead to a crash in log scale.
+* Bug #12496 fixed - zoom_rect could led to a crash in log scale.
 
-* Bug #12535 fixed - In french version, comma was used as decimal separator when zooming (rather than point).
+* Bug #12535 fixed - In a French localized Scilab, comma was used as decimal separator when zooming (rather than point).
 
-* Bug #12567 fixed - Some error messages fixed in ricc.
+* Bug #12567 fixed - Error messages fixed in ricc.
 
 * Bug #12622 fixed - Various typos fixed in error messages.
 
@@ -468,7 +483,7 @@ Scilab Bug Fixes
 * Bug #12683 fixed - proc_name(k, gwin) callback was badly managed depending on
                      input arguments of addmenu function.
 
-* Bug #12714 fixed - csvDefault("decimal", ",") returned %f while this value is accepted.
+* Bug #12714 fixed - csvDefault("decimal", ",") returned %f while this value was valid.
 
 * Bug #12716 fixed - In SciNotes, RTL languages were not correctly displayed.
 
@@ -489,9 +504,9 @@ Scilab Bug Fixes
 
 * Bug #12803 fixed - warning(['foo','bar']) printed two 'WARNING: '.
 
-* Bug #12819 fixed - Link to contributors website page fixed in the help pages.
+* Bug #12819 fixed - Link to contributors website page fixed in the documentation.
 
-* Bug #12826 fixed - <warning> and <note> tags were not managed in help pages.
+* Bug #12826 fixed - <warning> and <note> tags were not managed in the documentation.
 
 * Bug #12860 fixed - Missing semicolon in style.css added.
 
@@ -501,23 +516,23 @@ Scilab Bug Fixes
 
 * Bug #12896 fixed - Typos fixed in XML module error messages.
 
-* Bug #12910 fixed - Some typos fixed.
+* Bug #12910 fixed - Typos fixed in several help pages.
 
-* Bug #12938 fixed - No java compiler was available in Linux binary version.
+* Bug #12938 fixed - No Java compiler was available in Linux binary version.
 
-* Bug #12943 fixed - Datatips misworked when 2D plots were rotated.
+* Bug #12943 fixed - Datatips did not work properly when 2-D plots were rotated.
 
-* Bug #12945 fixed - Datatips could not correctly dragged in zoomed axes.
+* Bug #12945 fixed - Datatips could not be dragged properly in zoomed axes.
 
-* Bug #12948 fixed - When host is not found, getURL caused a Crash To Desktop.
+* Bug #12948 fixed - When host was not found, getURL caused a crash to desktop.
 
-* Bug #12950 fixed - getURL ignored the proxy settings on Windows.
+* Bug #12950 fixed - getURL ignored the proxy settings under Windows.
 
 * Bug #12951 fixed - Interactive zoom was broken.
 
 * Bug #12952 fixed - It was not always possible to search a word in a file with SciNotes.
 
-* Bug #12956 fixed - splitURL with no protocol in URL provokes an access
+* Bug #12956 fixed - splitURL with no protocol in URL provoked an access
                      violation exception.
 
 * Bug #12957 fixed - splitURL and getURL were not declared as new 5.5 functions.
@@ -526,18 +541,18 @@ Scilab Bug Fixes
 
 * Bug #12967 fixed - Data editor icon was not 16x16.
 
-* Bug #12963 fixed - drawaxis did not place the axis correctly.
+* Bug #12963 fixed - drawaxis did not place the axis properly.
 
 * Bug #12966 fixed - Rotation, tool tip and other Xcos plot actions were
                      disabled by default.
 
-* Bug #12968 fixed - Cannot save variable named 'temp'.
+* Bug #12968 fixed - A variable named 'temp' could not be saved.
 
 * Bug #12971 fixed - getURL downloaded file name was wrong.
 
-* Bug #12973 fixed - Exception occuring when clicking on a figure at creation fixed.
+* Bug #12973 fixed - Exception occurring when clicking on a figure at creation fixed.
 
-* Bug #12976 fixed - getURL returns a file name instead of a file path.
+* Bug #12976 fixed - getURL returned a file name instead of a file path.
 
 * Bug #12978 fixed - exportUI returned an error when input argument was a figure handle.
 
@@ -545,7 +560,7 @@ Scilab Bug Fixes
 
 * Bug #12990 fixed - GED features conflicted with figure events.
 
-* Bug #12992 fixed - The sigma value was always equals to "LM" in eigs.
+* Bug #12992 fixed - The sigma value was always equal to "LM" in eigs.
 
 * Bug #12993 fixed - stdev returned value depended on 'x' being defined in the environment.
 
@@ -555,7 +570,7 @@ Scilab Bug Fixes
 
 * Bug #13003 fixed - String to enum converter added to Java external objects.
 
-* Bug #13004 fixed - Debug infos were printed on an error with eoj.
+* Bug #13004 fixed - Debug infos were displayed in case of an error with eoj.
 
 * Bug #13005 fixed - jcompile did not use the classpath to compile.
 
@@ -565,33 +580,33 @@ Scilab Bug Fixes
 
 * Bug #13010 fixed - Wrong class was returned by jcompile (with ecj).
 
-* Bug #13011 fixed - ilib_compile failed under MacOS X 10.9.
+* Bug #13011 fixed - ilib_compile failed under Mac OS X 10.9.
 
 * Bug #13012 fixed - Vectorial export of rotated strings was wrong.
 
 * Bug #13013 fixed - In SciNotes, the first proposed directory to save a file was not current working directory.
 
-* Bug #13014 fixed - Update of the Efficiency inner variable improved in optim_ga.
+* Bug #13014 fixed - Update of the efficiency inner variable improved in optim_ga.
 
-* Bug #13015 fixed - Computation of Efficiency inner variable improved in optim_ga.
+* Bug #13015 fixed - Computation of efficiency inner variable improved in optim_ga.
 
 * Bug #13022 fixed - Vectorial export did not clip large segments.
 
-* Bug #13023 fixed - xs2pdf crashed under Windows when the target file was already open.
+* Bug #13023 fixed - xs2pdf crashed under Windows when the target file was already opened.
 
 * Bug #13027 fixed - There was no autowrap into array in JIMS.
 
 * Bug #13031 fixed - Lorentz Butterfly demonstration fixed.
 
-* Bug #13032 fixed - Fixed CMATVIEW help example and created one for CMAT3D.
+* Bug #13032 fixed - CMATVIEW help page example fixed and CMAT3D help page example created.
 
 * Bug #13033 fixed - -1 could not be used as nax argument in plot2d.
 
-* Bug #13036 fixed - Help page associated to history browser was wrong.
+* Bug #13036 fixed - The help page associated to the history browser was wrong.
 
 * Bug #13041 fixed - Wrong result was returned for "integer scalar" minus "integer vector".
 
-* Bug #13042 fixed - Texts in graphics were not correctly centered.
+* Bug #13042 fixed - Texts in graphics were not properly centered.
 
 * Bug #13047 fixed - jcompile did not allow class reloading.
 
@@ -603,19 +618,16 @@ Scilab Bug Fixes
 
 * Bug #13055 fixed - Array indexing did not follow Scilab convention in JIMS.
 
-* Bug #13061 fixed - hdf5 demo failed with a read only file.
+* Bug #13061 fixed - hdf5 demonstration failed with a read-only file.
 
 * Bug #13063 fixed - Color selection in SciNotes preferences threw exceptions.
 
-* Bug #13064 fixed - Deleting a link connected to a split lead to a translated
+* Bug #13064 fixed - Deleting a link connected to a split led to a translated
                      link.
 
 * Bug #13069 fixed - Documentation for %MODELICA_USER_LIBS updated.
 
 * Bug #13066 fixed - data_bounds was not fully documented in axes_properties.
-
-* Bug #13071 fixed - Three unused functions in Xcos macros now specified as not mandatory
-                     to write new blocks.
 
 * Bug #13082 fixed - Datatip mark style was not inherited from the parent polyline.
 
@@ -623,9 +635,9 @@ Scilab Bug Fixes
 
 * Bug #13084 fixed - interp_mode property could not be set on all datatips of the same polyline.
 
-* Bug #13085 fixed - A datatip cound not be moved on a circle.
+* Bug #13085 fixed - A datatip could not be moved on a circle.
 
-* Bug #13092 fixed - Optimizations now check the user function output (must be a real).
+* Bug #13092 fixed - Optimizations now check the user function output (must be real).
 
 * Bug #13093 fixed - Removed trailing "\n" in the head_comments error message.
 
@@ -649,13 +661,13 @@ Scilab Bug Fixes
 
 * Bug #13132 fixed - There were missing graduations when data_bounds interval was too small.
 
-* Bug #13134 fixed - User defined ticks in log scale were invisible.
+* Bug #13134 fixed - User-defined ticks in log scale were invisible.
 
 * Bug #13136 fixed - exists and isdef failed for input arguments longer than 1.
 
 * Bug #13139 fixed - fft help page fixed.
 
-* Bug #13140 fixed - Various typos fixed.
+* Bug #13140 fixed - Various typos fixed in help pages.
 
 * Bug #13144 fixed - csvRead can now ignore header comments thanks to a new input argument.
 
@@ -663,7 +675,7 @@ Scilab Bug Fixes
 
 * Bug #13150 fixed - Vectorial export used too much memory for grayplot.
 
-* Bug #13152 fixed - Typo fixed in syslin french help page.
+* Bug #13152 fixed - Typo fixed in syslin French help page.
 
 * Bug #13165 fixed - Preferences reset did not show a confirmation pop-up.
 
@@ -675,8 +687,8 @@ Scilab Bug Fixes
 
 * Bug #13177 fixed - Error when changing x_ticks.locations on axes fixed.
 
-* Bug #13185 fixed - When the "checked" option of an uimenu was set to "on" for
-                     the first time, the display order of others uimenus was changed.
+* Bug #13185 fixed - When the "checked" option of a uimenu was set to "on" for
+                     the first time, the display order of other uimenus was changed.
 
 * Bug #13186 fixed - csvRead freezed Scilab if separator was an empty string.
 
@@ -694,25 +706,25 @@ Scilab Bug Fixes
 
 * Bug #13202 fixed - kernel help page improved.
 
-* Bug #13203 fixed - Some error messages typos fixed.
+* Bug #13203 fixed - Typos fixed in some error messages.
 
 * Bug #13205 fixed - group accepted continuous transfer functions.
 
-* Bug #13208 fixed - New function nanreglin to handle NaNs for reglin().
+* Bug #13208 fixed - New nanreglin function to handle NaNs for reglin().
 
-* Bug #13210 fixed - Incorrect argument description in the mseek help page.
+* Bug #13210 fixed - Incorrect argument description in mseek help page.
 
-* Bug #13213 fixed - User defined margins were reset by auto computation of the margins.
+* Bug #13213 fixed - User-defined margins were reset by auto computation of the margins.
 
 * Bug #13215 fixed - clf(1001) returned an error.
 
 * Bug #13218 fixed - Typos fixed in core module help pages.
 
-* Bug #13226 fixed - Completion with accentued chars could lead to a crash.
+* Bug #13226 fixed - Completion with accented chars could led to a crash.
 
-* Bug #13227 fixed - Invalid windowsConfiguration.xml file could avoid Scilab's startup.
+* Bug #13227 fixed - Invalid windowsConfiguration.xml file could avoid Scilab startup.
 
-* Bug #13233 fixed - Wrong result for simulation of step response csim('step',t,H) fixed.
+* Bug #13233 fixed - Wrong simulation result of step response csim('step',t,H) fixed.
 
 * Bug #13234 fixed - lmitool calling sequence clarified.
 
@@ -724,38 +736,39 @@ Scilab Bug Fixes
 
 * Bug #13247 fixed - Hypermatrix in structure definition did not work properly.
 
-* Bug #13252 fixed - Minor typos fixed.
+* Bug #13252 fixed - Minor typos fixed in Graphics messages.
 
 * Bug #13258 fixed - Bad number display in datatips fixed.
 
 
-Xcos
-====
-
-* xcos_debug_gui function added  for a simple use of the Debug block.
-
-* tbx_build_pal_loader function added to ease external module creation (See SEP #120).
+Xcos Bug Fixes
+==============
 
 * Bug #11975 fixed - Inverted Pendulum demonstration did not compile.
 
 * Bug #12423 fixed - Data types of SWITCH2_m were not documented.
 
 * Bug #12685 fixed - The lincos and steadycos functions did not load
-                     the XcosLibs so all the blocs were unknown.
+                     the XcosLibs so all the blocks were unknown.
 
 * Bug #12998 fixed - 'ans' was not ignored in the context results.
 
-* Bug #13006 fixed - Selection to superblock (in_f and out_f) was failing.
+* Bug #13006 fixed - Selection to superblock (in_f and out_f) failed.
 
 * Bug #13030 fixed - Selection to superblock did not reset the origin.
 
-* Bug #13059 fixed - Nan propagated at startup made the simulation fail.
+* Bug #13059 fixed - NaN propagated at startup made the simulation fail.
 
-* Bug #13172 fixed - Logic bloc help file had some typo.
+* Bug #13071 fixed - Three unused functions in Xcos macros now specified as not mandatory
+                     to write new blocks.
+
+* Bug #13172 fixed - Logic block help file had some typo errors.
 
 * Bug #13239 fixed - Grid was not shown in zoomed log scale.
 
 * Bug #13250 fixed - CLSS wrongly handled scalar values.
+
+
 
 
                  Changes between version 5.4.1 and 5.5.0-beta-1
