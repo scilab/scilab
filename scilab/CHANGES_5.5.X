@@ -19,7 +19,8 @@ GUI Refactoring and Improvements
 
 * New uicontrols properties:
  - borders: Used to set some decoration properties on "frame" uicontrols.
-            These decorations can be created and initialized with the createBorder function.
+            These decorations can be created and initialized with the createBorders
+            and the createFontBorder functions.
  - scrollable: Used to add scrolling capabilities on "frame" uicontrols.
  - groupname: Used to group "radiobutton" and "checkbox" uicontrols for an easier
               management.
@@ -41,6 +42,7 @@ GUI Refactoring and Improvements
   New dedicated properties have been added in figure and uicontrols:
    - layout: layout type.
    - layout_options: configuration of the layout.
+                     Options can be initialized with the createLayoutOptions function.
   Type "help layouts" in Scilab for more information about available types and options.
   Uicontrols position is then managed through the "constraints" property.
   A new createConstraints function has been added to managed these contraints.
