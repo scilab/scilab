@@ -22,6 +22,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+import org.scilab.modules.commons.CommonFileUtils;
 import org.scilab.modules.graphic_objects.console.Console;
 import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
@@ -76,7 +77,15 @@ public class XmlSaver {
             doc.getDocumentElement().normalize();
             DOMSource source = new DOMSource(doc);
 
-            StreamResult result =  new StreamResult(new File(filename));
+
+            //process filename
+            File f = new File(filename);
+            if (f.isAbsolute() == false) {
+                String initialDirectoryPath = CommonFileUtils.getCWD();
+                f = new File(initialDirectoryPath + File.separator + filename);
+            }
+
+            StreamResult result =  new StreamResult(f);
             transformer.transform(source, result);
         } catch (ParserConfigurationException pce) {
             return pce.getMessage();
