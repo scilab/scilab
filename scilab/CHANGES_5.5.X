@@ -4,8 +4,12 @@
 New Features
 =============
 
-* The figures "visible" property now also applies to uicontrols.
-  In previous releases, only axes were managed by this property setting.
+* The figure "visible" property management has changed:
+ - When the figure is docked, this property manages the visibility
+   of components inside the figure (uicontrols, axes, ...).
+   In previous releases, only axes were managed by this property setting.
+ - When the figure is not docked, this property manages the visibility
+   of the whole figure including its decorations.
 
 * New functions introduced:
  - jcreatejar - Creates a Java archive (JAR) from a set of files / directories
@@ -20,6 +24,115 @@ New Features
 * pol2str(): support to polynomials with complex coefficients and hypermatrices (See bug #13109).
 
 * nanreglin(): reglin() with arguments containing NaNs (See bug #13208).
+
+* New figures properties:
+ - icon: allows to customize the figure icon.
+ - menubar: allows to create windows without any menubar (default menus will not be created).
+ - menubar_visible: manages menubar visibility.
+ - toolbar: allows to create windows without any toolbar.
+ - toolbar_visible: manages toolbar visibility.
+ - infobar_visible: manages infobar visibility.
+ - resize: allows to lock window size.
+ - dockable: allows to create dockable/standard figures.
+ - default_axes: allows to manage default axes creation in figures.
+
+* New axes properties:
+ - ticks_format: format of the ticks labels.
+ - ticks_st: scale and translate factors applied to ticks position when formatting
+             the ticks labels.
+ - auto_margins: Activated by default, this property lets Scilab compute margins
+                 needed to display axes decorations (titles, labels, ...).
+ - grid_thickness: thickness of the grid plotting.
+ - grid_style: style of the grid plotting.
+ - label_font_style: font style used to draw the labels.
+
+* New legends properties:
+ - line_width: width of the line drawn.
+ - mark_count: number of marks drawn.
+
+* New polyline properties:
+ - mark_offset: offset before first mark.
+ - mark_stride: step betwwen consecutive marks.
+ - display_function: name of the function used to customize the information
+                     displayed in all the datatips of this polyline.
+                     This function can be overloaded by setting a display
+                     function on each datatip handle.
+ - display_function_data: additionnal data needed for datatips display function.
+ - datatips: handles of the datatips of the polyline.
+
+* New Matplot property added :
+ - rect: specifies the rectangle where the Matplot will be drawn.
+
+* New uicontrol styles:
+ - tab: component which enables the user to switch between sets of uicontrol by
+        clicking on a tab.
+        The children components are "frame" uicontrols.
+        Two dedicated properties have been added to configure this component:
+         - title_position: position of the tabs
+         - title_scroll: indicates if tabs must all be displayed at a time are
+                         managed with scroll features.
+ - layer: component which enables the user to make parts of a GUI visible/invisible
+          programmatically.
+ - spinner: component which enables the user to select/edit a value between bounds
+            with a fixed step.
+
+* New uicontrol properties:
+ - borders: used to set some decoration properties on "frame" uicontrols.
+            These decorations can be created and initialized with the createBorder function.
+ - scrollable: used to add scrolling capabilities on "frame" uicontrols.
+ - groupname: used to group "radiobutton" and "checkbox" uicontrols for an easier
+              management.
+ - icon: add an icon to "pushbutton" and "labels" uicontrols.
+
+* New uimenu properties:
+ - icon: add an icon on the left of the menu label.
+
+* New rendering for GUI/uicontrol:
+  In this version, uicontrol use the defaults of the OS Look & Feel.
+  Some properties default values are not set by Scilab and then differ from an
+  OS to an other.
+  To come back to the previous and deprecated behavior, you can use the related
+  property on the "Console" handle:
+  set(get(0), "UseDeprecatedSkin", "on");
+  Note that this deprecated behavior will be removed in future versions.
+
+* New management of uicontrol positioning:
+  In previous versions, uicontrol position was managed in an absolute way through
+  their "Position" property and the "Resizefcn" property of their parent figure.
+  Using the new layout management in figures and "frame" style uicontrols, position
+  is now managed in an automatic way based on Java layouts.
+  New dedicated properties have been added in figure and uicontrols:
+   - layout: layout type.
+   - layout_options: configuration of the layout.
+  Type "help layouts" in Scilab for more information about available types abnd options.
+  Uicontrols position is then managed through the "constraints" property.
+  A new createConstraints function has been added to managed these contraints.
+
+* set function prototype has been modified to allow the user to set multiple
+  properties at once: set(h, "Property1", Value1, "Property2", Value2, ...)
+
+* newaxes function now allows to create axes in "frame" uicontrols.
+
+* New way to create GUI using XML files:
+ - GUI created using the figure/uicontrol/uimenu functions can now be saved in
+   this new format using saveGui function.
+ - XML files in this format can be loaded in Scilab using the loadGui function.
+   This function aims at creating GUI in a more efficient way.
+
+* "listbox" and "popupmenu" style uicontrols can now manage colors when the
+  "String" property is set to a matrix matching the format:
+  ["Item1", "#XXXXXX"; "Item2", "#XXXXXX", ...]
+  Then the component will display a colored box on the left of the associated string.
+
+* Datatips properties have been renamed for better readability:
+ - tip_data --> data
+ - tip_box_mode --> box_mode
+ - tip_label_mode --> label_mode
+ - tip_orientation --> orientation
+ - tip_3component --> z_component
+ - tip_auto_orientation --> auto_orientation
+ - tip_interp_mode --> interp_mode
+ - tip_disp_function --> display_function
 
 
 Obsolete & Removed Functions
@@ -105,6 +218,8 @@ Scilab Bug Fixes
 * Bug #6306 fixed - It is now possible to compute an histogram instead of plotting it
                     with new function histc(). Besides, histplot can now return the computed data.
 
+* Bug #6363 fixed - It was not possible to create figures without menubar/toolbar.
+
 * Bug #6404 fixed - xrects help page was not clear about argument specification.
 
 * Bug #6512 fixed - %asn function tagged as obsolete.
@@ -165,6 +280,8 @@ Scilab Bug Fixes
                     in a new output argument and take the a priori mean as input.
 
 * Bug #7879 fixed - string now accepts plist type, and printing a plist displays that string.
+
+* Bug #7905 fixed - Figure icon can now be changed using dedicated property.
 
 * Bug #7916 fixed - nansum([]) returned Nan value while this function must ignore it.
 
@@ -248,13 +365,19 @@ Scilab Bug Fixes
 
 * Bug #10470 fixed - In SciNotes, split "Horizontally" or "Vertically" was meaningless.
 
+* Bug #10621 fixed - Figure without docking/undocking capabilities can now be created.
+
 * Bug #10645 fixed - File encoding could not be given as argument in xmlRead.
+
+* Bug #10718 fixed - New "Resize" property added to figures.
 
 * Bug #10816 fixed - Typo in part error message fixed.
 
 * Bug #10830 fixed - Hypermatrix insertion with a negative index returned a wrong error message.
 
 * Bug #10833 fixed - Help page of exists updated.
+
+* Bug #10840 fixed - Keyboard arrows were disabled on 'slider' type uicontrols.
 
 * Bug #10856 fixed - analpf did not return the right result.
 
@@ -277,6 +400,8 @@ Scilab Bug Fixes
 * Bug #11575 fixed - There was no preview of GIF files in exportUI dialog.
 
 * Bug #11576 fixed - exportUI did not propose gcf().figure_name as default file name.
+
+* Bug #11616 fixed - Figure's menubar could not be toggled on/off
 
 * Bug #11629 fixed - Interactive zoom misworked in datatip mode.
 
@@ -514,7 +639,7 @@ Scilab Bug Fixes
 
 * Bug #13111 fixed - sqrt returned different results when imaginary part was -0 versus 0.
 
-* Bug #13114 fixed - clear_pixmap should have been removed in Scilab 5.4.1.
+* Bug #13114 fixed - clear_pixmap/pixmap property should have been removed in Scilab 5.4.1.
 
 * Bug #13116 fixed - qpsolve now respects upper-bounds constraints.
 
@@ -625,8 +750,6 @@ Xcos
 * Bug #13030 fixed - Selection to superblock did not reset the origin.
 
 * Bug #13059 fixed - Nan propagated at startup made the simulation fail.
-
-* Bug #13114 fixed - pixmap property removed from Scilab.
 
 * Bug #13172 fixed - Logic bloc help file had some typo.
 
