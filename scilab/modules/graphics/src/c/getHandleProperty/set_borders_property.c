@@ -52,6 +52,7 @@ int set_borders_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType
     }
     else
     {
+        int iHidden = 1;
         int* piAddrList = (int*)_pvData;
 
         int iBorder = createBorder(_pvCtx, piAddrList, iObjUID);
@@ -61,6 +62,8 @@ int set_borders_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType
         }
 
         setGraphicObjectProperty(iObjUID, __GO_UI_FRAME_BORDER__, &iBorder, jni_int, 1);
+        setGraphicObjectProperty(iBorder, __GO_HIDDEN__, &iHidden, jni_bool, 1);
+        setGraphicObjectRelationship(iObjUID, iBorder);
         return SET_PROPERTY_SUCCEED;
     }
 }
@@ -781,6 +784,7 @@ int createTitledBorder(void* _pvCtx, int* _piAddrList, int _iObjUID)
     {
         if (isTListType(_pvCtx, piAddr2))
         {
+            int iHidden = 1;
             iChildBorder = createBorder(_pvCtx, piAddr2, iBorder);
             if (iChildBorder == 0)
             {
@@ -788,7 +792,8 @@ int createTitledBorder(void* _pvCtx, int* _piAddrList, int _iObjUID)
             }
 
             setGraphicObjectProperty(iBorder, __GO_UI_FRAME_BORDER_TITLE__, &iChildBorder, jni_int, 1);
-
+            setGraphicObjectProperty(iChildBorder, __GO_HIDDEN__, &iHidden, jni_bool, 1);
+            setGraphicObjectRelationship(iBorder, iChildBorder);
         }
         else //title
         {
@@ -1012,8 +1017,14 @@ int createCompoundBorder(void* _pvCtx, int* _piAddrList, int _iObjUID)
 
     if (iCount > 1)
     {
+        int iHidden = 1;
         setGraphicObjectProperty(iBorder, __GO_UI_FRAME_BORDER_OUT_BORDER__, &iChildBorderOut, jni_int, 1);
+        setGraphicObjectProperty(iChildBorderOut, __GO_HIDDEN__, &iHidden, jni_bool, 1);
+        setGraphicObjectRelationship(iBorder, iChildBorderOut);
+
         setGraphicObjectProperty(iBorder, __GO_UI_FRAME_BORDER_IN_BORDER__, &iChildBorderIn, jni_int, 1);
+        setGraphicObjectProperty(iChildBorderIn, __GO_HIDDEN__, &iHidden, jni_bool, 1);
+        setGraphicObjectRelationship(iBorder, iChildBorderIn);
     }
 
     return iBorder;

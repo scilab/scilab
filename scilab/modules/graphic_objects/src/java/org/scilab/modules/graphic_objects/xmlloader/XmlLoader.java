@@ -358,12 +358,7 @@ public class XmlLoader extends DefaultHandler {
     }
 
     private void deleteObject(Integer root) {
-        Integer[] children = (Integer[]) controller.getProperty(root, __GO_CHILDREN__);
-        for (int i = 0; i < children.length; i++) {
-            deleteObject(children[i]);
-        }
-
-        controller.deleteObject(root);
+        controller.removeRelationShipAndDelete(root);
     }
 
     private Integer getTypeFromName(String localName) {

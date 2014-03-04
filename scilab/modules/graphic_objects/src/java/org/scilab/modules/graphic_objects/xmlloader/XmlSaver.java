@@ -40,8 +40,6 @@ import org.w3c.dom.Node;
 
 
 public class XmlSaver {
-    static private Uicontrol defaultUi = null;
-    static private Uimenu defaultMenu = null;
     static private Figure defaultFig = null;
     static private FrameBorder defaultBorder = null;
 
@@ -94,7 +92,6 @@ public class XmlSaver {
         }
 
         defaultFig = null;
-        defaultUi = null;
         defaultBorder = null;
         return ""; //all good
     }
@@ -303,7 +300,7 @@ public class XmlSaver {
     private static Element createUicontrol(Document doc, Integer id, boolean reverseChildren) {
         GraphicController controller = GraphicController.getController();
         Uicontrol uic = (Uicontrol)controller.getObjectFromId(id);
-        initDefaultui(uic.getStyle());
+        Uicontrol defaultUi = initDefaultui(uic.getStyle());
         Element elemUi = doc.createElement(uic.getStyleAsEnum().toString().toLowerCase());
 
         //BackgroundColor
@@ -410,6 +407,7 @@ public class XmlSaver {
             }
         }
 
+        controller.deleteObject(defaultUi.getIdentifier());
         //children
         Integer[] children = uic.getChildren();
         if (reverseChildren) {
@@ -432,7 +430,7 @@ public class XmlSaver {
             return null;
         }
 
-        initDefaultMenu();
+        Uimenu defaultMenu = initDefaultMenu();
         Element elemMenu = doc.createElement("menu");
 
         //enable
@@ -582,14 +580,14 @@ public class XmlSaver {
         elem.setAttribute(property, value);
     }
 
-    private static void initDefaultui(Integer uicontrolStyle) {
+    private static Uicontrol initDefaultui(Integer uicontrolStyle) {
         Integer uic = GraphicController.getController().askObject(GraphicObject.getTypeFromName(uicontrolStyle));
-        defaultUi = (Uicontrol) GraphicController.getController().getObjectFromId(uic);
+        return (Uicontrol) GraphicController.getController().getObjectFromId(uic);
     }
 
-    private static void initDefaultMenu() {
+    private static Uimenu initDefaultMenu() {
         Integer uic = GraphicController.getController().askObject(GraphicObject.getTypeFromName(__GO_UIMENU__));
-        defaultMenu = (Uimenu) GraphicController.getController().getObjectFromId(uic);
+        return (Uimenu) GraphicController.getController().getObjectFromId(uic);
     }
 
 }

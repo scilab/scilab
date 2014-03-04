@@ -296,6 +296,7 @@ void ScilabView::updateObject(int iUID, int iProperty)
                 PathItem* item = (*it).second;
                 item->parent = iParent;
             }
+            break;
         }
         case __GO_TAG__ :
         {

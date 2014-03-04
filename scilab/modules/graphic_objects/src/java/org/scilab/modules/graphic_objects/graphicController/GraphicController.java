@@ -222,7 +222,7 @@ public class GraphicController {
             return 0;
         }
     }
-    
+
     /**
      * Ask the model to clone an object
      * @param id : the ID of the object to clone.
@@ -235,7 +235,7 @@ public class GraphicController {
     public Integer askObject(Type type) {
         return askObject(type, true);
     }
-    
+
     /**
      * Deletes an object
      * @param id the deleted object's id

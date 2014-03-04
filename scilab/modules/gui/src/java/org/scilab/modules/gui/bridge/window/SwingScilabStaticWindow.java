@@ -40,7 +40,8 @@ public class SwingScilabStaticWindow extends SwingScilabWindow {
                                           + ";if exists(\"%oldgcbo\") then gcbo = %oldgcbo; else clear gcbo; end;";
                     InterpreterManagement.putCommandInScilabQueue(closeCommand);
                 } else {
-                    GraphicController.getController().deleteObject(panel.getId());
+                    //GraphicController.getController().deleteObject(panel.getId());
+                    GraphicController.getController().removeRelationShipAndDelete(panel.getId());
                 }
             }
         });
