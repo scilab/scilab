@@ -44,6 +44,9 @@ function result = atomsGetConfig(field)
         end
     end
 
+    pref_attrs = ["useProxy", "proxyHost", "proxyPort", "proxyUser", "proxyPassword";
+    "enabled", "host", "port", "user", "password"];
+
     // Load Atoms Internals lib if it's not already loaded
     // =========================================================================
     if ~ exists("atomsinternalslib") then
@@ -57,6 +60,12 @@ function result = atomsGetConfig(field)
     if rhs == 0 then
         result = struct();
     else
+        i = find(pref_attrs(1, :) == field);
+        if ~isempty(i) then
+            result = getPrefValues("//web/body/proxy", pref_attrs(2, i));
+            return;
+        end
+
         result = "";
     end
 
@@ -70,6 +79,12 @@ function result = atomsGetConfig(field)
     if fileinfo(atoms_directory + "config") <> [] then
         config_lines = mgetl(atoms_directory + "config");
     else
+        if (rhs == 0)
+            values = getPrefValues("//web/body/proxy", pref_attrs(2, :));
+            for i = 1:size(pref_attrs, "c")
+                result(pref_attrs(1, i)) = values(i);
+            end
+        end
         return;
     end
 
@@ -95,6 +110,13 @@ function result = atomsGetConfig(field)
             end
         else
             error(msprintf(gettext("%s: The config file (''%s'') is not well formated at line %d\n"),"atomsGetConfig",atoms_directory+"config",i));
+        end
+    end
+
+    if (rhs == 0)
+        values = getPrefValues("//web/body/proxy", pref_attrs(2, :));
+        for i = 1:size(pref_attrs, "c")
+            result(pref_attrs(1, i)) = values(i);
         end
     end
 

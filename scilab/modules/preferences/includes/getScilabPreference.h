@@ -47,5 +47,7 @@ typedef struct
 PREFERENCES_SCILAB_IMPEXP const ScilabPreferences * getScilabPreferences(void);
 PREFERENCES_SCILAB_IMPEXP void reloadScilabPreferences(void);
 PREFERENCES_SCILAB_IMPEXP void clearScilabPreferences(void);
+PREFERENCES_SCILAB_IMPEXP char * getAttributeValue(const char * xpath, const char * attribute);
+PREFERENCES_SCILAB_IMPEXP char ** getAttributesValues(const char * xpath, const char ** attributes, const unsigned int attrLen);
 
 #endif // __GETSCILABPREFERENCES_H__
