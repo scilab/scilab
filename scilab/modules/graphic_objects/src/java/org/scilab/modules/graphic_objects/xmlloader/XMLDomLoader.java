@@ -9,6 +9,7 @@ import java.util.StringTokenizer;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import org.scilab.modules.commons.CommonFileUtils;
 import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.graphic_objects.builder.Builder;
 import org.scilab.modules.graphic_objects.console.Console;
@@ -198,19 +199,52 @@ public class XMLDomLoader {
     public int parse(String filename) {
         try {
             this.filename = filename;
-            File file = new File(filename);
+            File f = new File(filename);
+            String currentPath = "";
 
-            if (file.exists()) {
-                //add filename filepath in FindIconHelper paths
-                String absoluteFilePath = file.getAbsolutePath();
-                String path = absoluteFilePath.substring(0, absoluteFilePath.lastIndexOf(File.separator));
-                FindIconHelper.addThemePath(path);
+            if (f.exists()) {
+                //add filename filepath in ScilabSwingUtilities paths
+                if (f.isAbsolute()) {
+                    String filePath = f.getAbsolutePath();
+                    currentPath = filePath.substring(0, filePath.lastIndexOf(File.separator));
+                    FindIconHelper.addThemePath(currentPath);
+                } else {
+                    String initialDirectoryPath = CommonFileUtils.getCWD();
+                    String filePath = "";
+                    Integer index = filename.lastIndexOf(File.separator);
+                    if (index != -1) {
+                        filePath = filename.substring(0, index);
+                    }
+
+                    currentPath = initialDirectoryPath + File.separator + filePath;
+                    FindIconHelper.addThemePath(currentPath);
+
+                    f = new File(currentPath + File.separator + filename);
+                }
             } else {
-                return 1;
+                //try to find file in currentPath
+                if (f.isAbsolute()) {
+                    //failed
+                    return 1;
+                } else {
+                    String initialDirectoryPath = CommonFileUtils.getCWD();
+                    String filePath = "";
+                    Integer index = filename.lastIndexOf(File.separator);
+                    if (index != -1) {
+                        filePath = filename.substring(0, index);
+                    }
+
+                    currentPath = initialDirectoryPath + File.separator + filePath;
+                }
+
+                f = new File(currentPath + File.separator + filename);
+                if (f.exists() == false) {
+                    return 1;
+                }
             }
 
             DocumentBuilder dBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-            Document doc = dBuilder.parse(file);
+            Document doc = dBuilder.parse(f);
             doc.getDocumentElement().normalize();
 
             if (doc.hasChildNodes()) {
