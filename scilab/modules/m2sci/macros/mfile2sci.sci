@@ -208,6 +208,7 @@ function res=mfile2sci(fil,res_path,Recmode,only_double,verbose_mode,prettyprint
 
         txt($+1) = "endfunction"
         // Compilation
+        txt = [part(txt(1),kc:ksc-1);firstline;txt(2:$)]
         mputl(txt, TMPDIR+"/"+mname+".sci");
         exec(TMPDIR+"/"+mname+".sci", -1);
         funcprot(fprot);
