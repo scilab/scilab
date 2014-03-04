@@ -40,7 +40,6 @@
 #include "strdup_windows.h"
 #endif
 
-/* DO NOT CHANGE ORDER !! */
 static const char* propertiesNames[] =
 {
     "style",
@@ -72,8 +71,8 @@ static const char* propertiesNames[] =
     "enable",
     "callback_type",
     "tooltipstring",
-    "layout_options",
     "layout",
+    "layout_options",
     "margins",
     "borders",
     "groupname",
