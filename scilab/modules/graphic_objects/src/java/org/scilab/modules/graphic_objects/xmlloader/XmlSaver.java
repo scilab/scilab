@@ -1,7 +1,8 @@
 package org.scilab.modules.graphic_objects.xmlloader;
 
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AXES__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_LAYOUT__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FRAME_BORDER__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AXES__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_PARENT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TYPE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UICONTEXTMENU__;
@@ -412,11 +413,15 @@ public class XmlSaver {
         Integer[] children = uic.getChildren();
         if (reverseChildren) {
             for (int i = children.length - 1 ; i >= 0 ; i--) {
-                appendChild(elemUi, createElement(doc, children[i], reverseChildren));
+                if ((Integer)controller.getProperty(children[i], __GO_TYPE__) != __GO_UI_FRAME_BORDER__) {
+                    appendChild(elemUi, createElement(doc, children[i], reverseChildren));
+                }
             }
         } else {
             for (int i = 0 ; i < children.length ; i++) {
-                appendChild(elemUi, createElement(doc, children[i], reverseChildren));
+                if ((Integer)controller.getProperty(children[i], __GO_TYPE__) != __GO_UI_FRAME_BORDER__) {
+                    appendChild(elemUi, createElement(doc, children[i], reverseChildren));
+                }
             }
         }
         return elemUi;

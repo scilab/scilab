@@ -368,7 +368,6 @@ public class GOBuilder {
                     FrameBorderType borderType = FrameBorderType.stringToEnum(XmlTools.getFromMap(map, "name", "none"));
                     Integer border = createBorder(controller, uic, borderType, map);
                     controller.setProperty(uic, __GO_UI_FRAME_BORDER__, border);
-                    controller.setGraphicObjectRelationship(uic, border);
 
                     String[] text = new String[1];
                     text[0] = xmlAttributes.get("tab-title");
@@ -673,10 +672,8 @@ public class GOBuilder {
                 Integer in = createBorder(controller, border, borderIn, map);
 
                 controller.setProperty(border, __GO_UI_FRAME_BORDER_OUT_BORDER__, out);
-                controller.setGraphicObjectRelationship(border, out);
 
                 controller.setProperty(border, __GO_UI_FRAME_BORDER_IN_BORDER__, in);
-                controller.setGraphicObjectRelationship(border, in);
 
                 break;
             }
@@ -738,7 +735,6 @@ public class GOBuilder {
                 if (borderOut != null) {
                     Integer out = createBorder(controller, border, borderOut, map);
                     controller.setProperty(border, __GO_UI_FRAME_BORDER_TITLE__, out);
-                    controller.setGraphicObjectRelationship(border, out);
                 }
 
                 controller.setProperty(border, __GO_TITLE__, title);
@@ -757,6 +753,7 @@ public class GOBuilder {
                 break;
         }
 
+        controller.setGraphicObjectRelationship(uic, border);
         return border;
     }
 

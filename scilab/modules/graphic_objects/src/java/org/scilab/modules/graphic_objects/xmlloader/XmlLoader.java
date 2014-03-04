@@ -12,16 +12,18 @@
 
 package org.scilab.modules.graphic_objects.xmlloader;
 
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ENABLE__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TAG__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHILDREN__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AXES__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UICONTROL__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHILDREN__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FIGURE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TYPE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UIMENU__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_CHECKBOX__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_EDIT__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FRAME_BORDER__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FRAME_BORDER_OUT_BORDER__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FRAME_BORDER_IN_BORDER__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FRAME_BORDER_TITLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FRAME__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_IMAGE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LAYER__;
@@ -336,7 +338,8 @@ public class XmlLoader extends DefaultHandler {
         Integer newGo = controller.cloneObject(root);
         Integer[] children = (Integer[]) controller.getProperty(root, __GO_CHILDREN__);
         for (int i = children.length - 1; i >= 0 ; i--) {
-            if ((Integer)controller.getProperty(children[i], __GO_TYPE__) == __GO_AXES__) {
+            Integer childType = (Integer)controller.getProperty(children[i], __GO_TYPE__);
+            if (childType == __GO_AXES__) {
                 Integer go = controller.cloneObject(GraphicModel.getAxesModel().getIdentifier());
                 Builder.createLabel(go, GraphicObjectProperties.__GO_X_AXIS_LABEL__);
                 Builder.createLabel(go, GraphicObjectProperties.__GO_Y_AXIS_LABEL__);
@@ -348,6 +351,29 @@ public class XmlLoader extends DefaultHandler {
 
                 ScilabNativeView.ScilabNativeView__setCurrentSubWin(go);
                 ScilabNativeView.ScilabNativeView__setCurrentObject(go);
+            } else if (childType == __GO_UI_FRAME_BORDER__) {
+                Integer newChild = cloneObject(children[i]);
+                controller.setGraphicObjectRelationship(newGo, newChild);
+
+                Integer rootType = (Integer)controller.getProperty(root, __GO_TYPE__);
+                if (rootType == __GO_UICONTROL__) {
+                    controller.setProperty(newGo, __GO_UI_FRAME_BORDER__, newChild);
+                } else { //__GO_UI_FRAME_BORDER__
+                    Integer border = (Integer) controller.getProperty(root, __GO_UI_FRAME_BORDER_TITLE__);
+                    if (border == children[i]) {
+                        controller.setProperty(newGo, __GO_UI_FRAME_BORDER_TITLE__, newChild);
+                    } else {
+                        border = (Integer) controller.getProperty(root, __GO_UI_FRAME_BORDER_OUT_BORDER__);
+                        if (border == children[i]) {
+                            controller.setProperty(newGo, __GO_UI_FRAME_BORDER_OUT_BORDER__, newChild);
+                        } else {
+                            border = (Integer) controller.getProperty(root, __GO_UI_FRAME_BORDER_OUT_BORDER__);
+                            if (border == children[i]) {
+                                controller.setProperty(newGo, __GO_UI_FRAME_BORDER_OUT_BORDER__, newChild);
+                            }
+                        }
+                    }
+                }
             } else {
                 Integer newChild = cloneObject(children[i]);
                 controller.setGraphicObjectRelationship(newGo, newChild);

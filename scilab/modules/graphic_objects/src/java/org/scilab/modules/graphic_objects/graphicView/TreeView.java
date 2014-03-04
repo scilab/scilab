@@ -31,6 +31,7 @@ import javax.swing.tree.TreeSelectionModel;
 import org.scilab.modules.graphic_objects.contouredObject.ContouredObject;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
+import org.scilab.modules.graphic_objects.uicontrol.frame.border.FrameBorder;
 
 public abstract class TreeView implements GraphicView, TreeSelectionListener {
 
@@ -172,6 +173,12 @@ public abstract class TreeView implements GraphicView, TreeSelectionListener {
                 strBuff.append("<tr><td>STYLE</td><td>" + typeToString(uiControl.getStyle()) + "</td>");
                 strBuff.append("<tr><td>LAYOUT</td><td>" + uiControl.getLayoutAsEnum() + "</td>");
                 strBuff.append("<tr><td>GROUP NAME</td><td>" + uiControl.getGroupName() + "</td>");
+                strBuff.append("<tr><td>FRAME_BORDER</td><td>" + uiControl.getFrameBorder() + "</td>");
+            }
+
+            if (graphicObject instanceof FrameBorder) {
+                FrameBorder frameBorder = (FrameBorder) graphicObject;
+                strBuff.append("<tr><td>STYLE</td><td>" + frameBorder.getStyleAsEnum().toString() + "</td>");
             }
 
             strBuff.append("</table>");

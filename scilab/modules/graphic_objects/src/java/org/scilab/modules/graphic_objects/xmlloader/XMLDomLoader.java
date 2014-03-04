@@ -263,7 +263,6 @@ public class XMLDomLoader {
         for (int i = nodes.getLength() - 1 ; i >= 0;  i--) {
             Node childNode = nodes.item(i);
             Integer child = 0;
-            boolean makeRelationShip = true;
 
             // make sure it's element node.
             if (childNode.getNodeType() == Node.ELEMENT_NODE) {
@@ -299,30 +298,20 @@ public class XMLDomLoader {
                     }
 
                     case __GO_UI_FRAME_BORDER__: {
-                        makeRelationShip = false;
                         child = createBorder(childNode);
                         GraphicController.getController().setProperty(parent, __GO_UI_FRAME_BORDER__, child);
                         break;
                     }
 
                     case __NODE_OUT__: {
-                        makeRelationShip = false;
-                        //                        child = createBorder(childNode);
-                        //                        GraphicController.getController().setProperty(parent, __GO_UI_FRAME_BORDER_OUT_BORDER__, child);
                         break;
                     }
 
                     case __NODE_IN__: {
-                        makeRelationShip = false;
-                        //                        child = createBorder(childNode);
-                        //                        GraphicController.getController().setProperty(parent, __GO_UI_FRAME_BORDER_IN_BORDER__, child);
                         break;
                     }
 
                     case __NODE_TITLE__: {
-                        makeRelationShip = false;
-                        //                        child = createBorder(childNode);
-                        //                        GraphicController.getController().setProperty(parent, __GO_UI_FRAME_BORDER_TITLE__, child);
                         break;
                     }
 
@@ -354,7 +343,7 @@ public class XMLDomLoader {
                     }
                 }
 
-                if (makeRelationShip && parent != 0 && child != 0) {
+                if (parent != 0 && child != 0) {
                     GraphicController.getController().setGraphicObjectRelationship(parent, child);
                 }
 
@@ -378,6 +367,9 @@ public class XMLDomLoader {
             controller.setProperty(uib, __GO_UI_FRAME_BORDER_STYLE__, style);
             attr.removeNamedItem("style");
         }
+
+        //frame borders are always hidden
+        controller.setProperty(uib,  __GO_HIDDEN__, true);
 
         for (int i = 0 ; i < attr.getLength() ; i++) {
             Node prop = attr.item(i);
@@ -425,10 +417,13 @@ public class XMLDomLoader {
                     String nodeName = childNode.getNodeName();
                     if (nodeName.equals("title")) {
                         GraphicController.getController().setProperty(uib, __GO_UI_FRAME_BORDER_TITLE__, child);
+                        GraphicController.getController().setGraphicObjectRelationship(uib, child);
                     } else if (nodeName.equals("out")) {
                         GraphicController.getController().setProperty(uib, __GO_UI_FRAME_BORDER_OUT_BORDER__, child);
+                        GraphicController.getController().setGraphicObjectRelationship(uib, child);
                     } else if (nodeName.equals("in")) {
                         GraphicController.getController().setProperty(uib, __GO_UI_FRAME_BORDER_IN_BORDER__, child);
+                        GraphicController.getController().setGraphicObjectRelationship(uib, child);
                     }
                 }
             }
