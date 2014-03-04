@@ -111,6 +111,12 @@ public class SwingScilabListBox extends JScrollPane implements SwingViewObject, 
 
         listListener = new ListSelectionListener() {
             public void valueChanged(ListSelectionEvent e) {
+
+                //value not ready
+                if (e.getValueIsAdjusting()) {
+                    return;
+                }
+
                 // Scilab indices in Value begin at 1 and Java indices begin at 0
                 int[] javaIndices = getList().getSelectedIndices().clone();
                 Double[] scilabIndices = new Double[javaIndices.length];
