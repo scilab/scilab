@@ -33,6 +33,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 
 import org.w3c.dom.Document;
@@ -44,6 +45,7 @@ import org.w3c.dom.NodeList;
 import org.scilab.modules.commons.ScilabCommons;
 import org.scilab.modules.commons.ScilabCommonsUtils;
 import org.scilab.modules.commons.ScilabConstants;
+import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.commons.xml.XConfiguration;
 import org.scilab.modules.localization.Messages;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
@@ -110,6 +112,7 @@ public final class XConfigManager extends XCommonManager {
 
         // Set up Swing Side
         dialog = new JDialog(topWindow, Messages.gettext("Scilab Preferences"), true);
+        dialog.setIconImage(new ImageIcon(FindIconHelper.findIcon("preferences-system", "256x256")).getImage());
         topSwing = dialog.getContentPane();
         topSwing.setLayout(new BorderLayout());
         // AWT implies to set layout at construction time.
