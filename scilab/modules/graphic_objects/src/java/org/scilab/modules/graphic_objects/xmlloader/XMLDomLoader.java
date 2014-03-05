@@ -575,7 +575,6 @@ public class XMLDomLoader {
         for (int i = 0 ; i < attr.getLength() ; i++) {
             Node prop = attr.item(i);
             Pair<Integer, ModelType> pair = MenuPropToGO.get(prop.getNodeName());
-            System.out.println("node : " + prop.getNodeName());
             ModelType modelType = pair.getSecond();
             switch (modelType) {
                 case BOOLEAN:

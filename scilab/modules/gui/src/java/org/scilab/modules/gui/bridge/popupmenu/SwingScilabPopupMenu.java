@@ -296,6 +296,12 @@ public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, 
         GraphicController controller = GraphicController.getController();
         Integer nbCol = (Integer)controller.getProperty(getId(), __GO_UI_STRING_COLNB__);
 
+        /* Remove the listener to avoid the callback to be executed */
+        removeActionListener(defaultActionListener);
+
+        /* Clear previous items */
+        removeAllItems();
+
         colorBox = false;
         if (nbCol == 2) {
             //combocolor ?
@@ -320,14 +326,6 @@ public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, 
 
             setRenderer(colorRenderer);
 
-            /* Remove the listener to avoid the callback to be executed */
-            if (callback != null) {
-                removeActionListener(defaultActionListener);
-            }
-
-            /* Clear previous items */
-            removeAllItems();
-
             int colorOffset = text.length / 2;
             for (int i = 0 ; i < colorOffset ; i++) {
                 try {
@@ -340,42 +338,26 @@ public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, 
                     break;
                 }
             }
-
-            controller.setProperty(uid, __GO_UI_VALUE__, new Double[] {});
-            /* Remove the listener to avoid the callback to be executed */
-            if (callback != null) {
-                addActionListener(defaultActionListener);
-            }
         }
 
         //default case or colorBox failed
         if (colorBox == false) {
             setRenderer(textRenderer);
 
-            /* Remove the listener to avoid the callback to be executed */
-            if (callback != null) {
-                removeActionListener(defaultActionListener);
-            }
-
-            /* Clear previous items */
-            removeAllItems();
-
             if (text.length == 1 && text[0].length() == 0) {
                 /* Clear the popup items */
-                return;
             } else {
                 for (int i = 0; i < text.length; i++) {
                     addItem(new SwingScilabTextItem(text[i]));
                 }
             }
-
-            setSelectedIndex(-1);
-
-            /* Remove the listener to avoid the callback to be executed */
-            if (callback != null) {
-                addActionListener(defaultActionListener);
-            }
         }
+
+        setSelectedIndex(-1);
+        //take care to add listener BEFORE set Property to avoid multiple remove and multiple add
+        addActionListener(defaultActionListener);
+        controller.setProperty(uid, __GO_UI_VALUE__, new Double[] {});
+        /* Remove the listener to avoid the callback to be executed */
     }
 
     /**
@@ -457,7 +439,7 @@ public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, 
 
                 //[] or 0 -> no selection
                 if (doubleValue.length == 0 || doubleValue[0] == 0) {
-                    setSelectedIndex(-1);
+                    setUserSelectedIndex(-1);
                     return;
                 }
 
