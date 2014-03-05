@@ -104,7 +104,7 @@ public class XmlLoader extends DefaultHandler {
 
 
         /** sdsdf*/
-        nameToGO.put("UITextarea", __GO_UI_EDIT__);
+        nameToGO.put("UITextarea", -2);
 
         nameToGO.put("UIMenu", __GO_UIMENU__);
         nameToGO.put("UIMenuItem", __GO_UIMENU__);

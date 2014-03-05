@@ -192,6 +192,10 @@ public class GOBuilder {
         if (type == -1) { //label latex
             uic = controller.askObject(GraphicObject.getTypeFromName(__GO_UI_TEXT__));
             controller.setProperty(uic, __GO_UI_STRING__, new String[] {"$$"});
+        } else if (type == -2) {
+            uic = controller.askObject(GraphicObject.getTypeFromName(__GO_UI_EDIT__));
+            controller.setProperty(uic, __GO_UI_MIN__, 0.0);
+            controller.setProperty(uic, __GO_UI_MAX__, 2.0);
         } else {
             uic = controller.askObject(GraphicObject.getTypeFromName(type));
         }
@@ -278,7 +282,17 @@ public class GOBuilder {
                 controller.setProperty(uic, __GO_UI_FONTNAME__, item);
             }
 
+            item = xmlAttributes.get("fontname");
+            if (item != null) {
+                controller.setProperty(uic, __GO_UI_FONTNAME__, item);
+            }
+
             item = xmlAttributes.get("font-size");
+            if (item != null) {
+                controller.setProperty(uic, __GO_UI_FONTSIZE__, Double.parseDouble(item));
+            }
+
+            item = xmlAttributes.get("fontsize");
             if (item != null) {
                 controller.setProperty(uic, __GO_UI_FONTSIZE__, Double.parseDouble(item));
             }
@@ -472,6 +486,17 @@ public class GOBuilder {
                 }
                 case __GO_UI_TEXT__: { //label
                     controller.setProperty(uic, __GO_UI_HORIZONTALALIGNMENT__, "left");
+                    item = xmlAttributes.get("alignment");
+                    if (item != null) {
+                        if (item.equals("left")) {
+                            controller.setProperty(uic, __GO_UI_HORIZONTALALIGNMENT__, "left");
+                        } else if (item.equals("center")) {
+                            controller.setProperty(uic, __GO_UI_HORIZONTALALIGNMENT__, "center");
+                        } else if (item.equals("right")) {
+                            controller.setProperty(uic, __GO_UI_HORIZONTALALIGNMENT__, "right");
+                        }
+                    }
+
                     String[] text = new String[1];
                     text[0] = xmlAttributes.get("text");
                     if (text[0] != null) {
@@ -491,6 +516,18 @@ public class GOBuilder {
                     break;
                 }
                 case __GO_UI_EDIT__ : {
+                    controller.setProperty(uic, __GO_UI_HORIZONTALALIGNMENT__, "left");
+                    item = xmlAttributes.get("alignment");
+                    if (item != null) {
+                        if (item.equals("left")) {
+                            controller.setProperty(uic, __GO_UI_HORIZONTALALIGNMENT__, "left");
+                        } else if (item.equals("center")) {
+                            controller.setProperty(uic, __GO_UI_HORIZONTALALIGNMENT__, "center");
+                        } else if (item.equals("right")) {
+                            controller.setProperty(uic, __GO_UI_HORIZONTALALIGNMENT__, "right");
+                        }
+                    }
+
                     item = xmlAttributes.get("columns");
                     if (item != null) {
                         controller.setProperty(uic, __GO_UI_MAX__, Double.parseDouble(item));
