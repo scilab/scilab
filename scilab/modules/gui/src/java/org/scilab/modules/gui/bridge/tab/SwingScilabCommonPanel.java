@@ -44,6 +44,7 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Insets;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -413,7 +414,10 @@ public class SwingScilabCommonPanel {
             }
 
             // Insets
-            // TODO : add Insets
+            Double[] margins = uicontrol.getMargins();
+            constraints.insets = new Insets(
+                margins[0].intValue(), margins[1].intValue(),
+                margins[2].intValue(), margins[3].intValue());
 
             // Padding
             Integer[] padding = uicontrol.getGridBagPadding();
