@@ -22,7 +22,7 @@
 #include <math.h>
 #include "scicos.h"
 #include "scicos_block4.h"
-#include "sciprint.h"
+#include "scicos_print.h"
 #include "localization.h"
 #include "MALLOC.h"
 #include "dynlib_scicos_blocks.h"
@@ -47,14 +47,14 @@ SCICOS_BLOCKS_IMPEXP void gainblk_i8e(scicos_block *block, int flag)
         opar = Getint8OparPtrs(block, 1);
 
         k = pow(2, 8) / 2;
-        if (mo*no == 1)
+        if (mo * no == 1)
         {
             for (i = 0; i < ny * mu; ++i)
             {
                 D = (double)(opar[0]) * (double)(u[i]);
                 if ((D >= k) | ( D < -k))
                 {
-                    sciprint(_("overflow error"));
+                    scicos_print(_("overflow error"));
                     set_block_error(-4);
                     return;
                 }
@@ -82,7 +82,7 @@ SCICOS_BLOCKS_IMPEXP void gainblk_i8e(scicos_block *block, int flag)
                     }
                     if ((D >= k) | ( D < -k))
                     {
-                        sciprint(_("overflow error"));
+                        scicos_print(_("overflow error"));
                         set_block_error(-4);
                         return;
                     }

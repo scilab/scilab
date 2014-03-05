@@ -15,6 +15,7 @@ DISABLE_HELP_CLEAN=yes
 
 SCICOS_C_SOURCES = src/c/tree.c \
 src/c/scicos_malloc.c \
+src/c/scicos_print.c \
 src/c/import.c \
 src/c/scicos.c \
 src/c/scicos_free.c \
@@ -179,6 +180,7 @@ includes/scicos-def.h \
 includes/scicos_free.h \
 includes/scicos_malloc.h \
 includes/scicos_math.h \
+includes/scicos_print.h \
 includes/dynlib_scicos.h \
 includes/import.h
 

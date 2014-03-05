@@ -5,6 +5,7 @@ EXPORTS
 ;
 scicos_malloc
 scicos_free
+scicos_print
 get_phase_simulation
 set_block_error
 get_scicos_time
