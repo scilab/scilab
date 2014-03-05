@@ -44,6 +44,7 @@ static const char* propertiesNames[] =
 {
     "style",
     "constraints",
+    "margins",
     "parent",
     "backgroundcolor",
     "foregroundcolor",
@@ -73,7 +74,6 @@ static const char* propertiesNames[] =
     "tooltipstring",
     "layout",
     "layout_options",
-    "margins",
     "borders",
     "groupname",
     "title_position",
