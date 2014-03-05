@@ -5,12 +5,11 @@
 // you should have received as part of this distribution.  The terms
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
-function %FontBord_p(t)
-    count = size(t(1), "*");
-
-    printf("Font Border\n");
-    printf("  Name   : %s\n", sci2exp(t.name));
-    printf("  Size   : %s\n", sci2exp(t.size));
-    printf("  Weight : %s\n", sci2exp(t.weight));
-    printf("  Angle  : %s\n", sci2exp(t.angle));
+function %BorderFo_p(t)
+    printf("Border Font\n");
+    printf("===========\n");
+    printf("Name   = %s\n", sci2exp(t.name));
+    printf("Size   = %s\n", sci2exp(t.size));
+    printf("Weight = %s\n", sci2exp(t.weight));
+    printf("Angle  = %s\n", sci2exp(t.angle));
 endfunction

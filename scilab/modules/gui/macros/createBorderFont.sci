@@ -10,48 +10,48 @@
 //
 //
 
-function ret = createFontBorder(varargin)
+function ret = createBorderFont(varargin)
     [lhs,rhs]=argn(0)
 
     fontangle = "normal";
     fontweight = "normal";
 
     if rhs < 2 then
-        error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected."), "createFontBorder", 1));
+        error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected."), "createBorderFont", 1));
     end
 
     fontname = varargin(1);
     if typeof(fontname) <> "string" | size(fontname, "*") <> 1 then
-        error(999, msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"), "createBorders", 1));
+        error(999, msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"), "createBorderFont", 1));
     end
 
     fontsize = varargin(2);
     if typeof(fontsize) <> "constant" | size(fontsize, "*") <> 1 then
-        error(999, msprintf(_("%s: Wrong type for input argument #%d: A integer value expected.\n"), "createBorders", 2));
+        error(999, msprintf(_("%s: Wrong type for input argument #%d: A integer value expected.\n"), "createBorderFont", 2));
     end
 
     if rhs > 2 then
         fontweight = varargin(3);
         if typeof(fontweight) <> "string" | size(fontweight, "*") <> 1 then
-            error(999, msprintf(_("%s: Wrong type for input argument #%d: A integer value expected.\n"), "createBorders", 3));
+            error(999, msprintf(_("%s: Wrong type for input argument #%d: A integer value expected.\n"), "createBorderFont", 3));
         end
 
         if fontweight <> ["normal", "bold"] then
-            error(999, msprintf(_("%s: Wrong value for input argument #%d: %s or %s expected.\n"), "createBorders", 3, "normal", "bold"));
+            error(999, msprintf(_("%s: Wrong value for input argument #%d: %s or %s expected.\n"), "createBorderFont", 3, "normal", "bold"));
         end
     end
 
     if rhs > 3 then
         fontangle = varargin(4);
         if typeof(fontangle) <> "string" | size(fontangle, "*") <> 1 then
-            error(999, msprintf(_("%s: Wrong type for input argument #%d: A integer value expected.\n"), "createBorders", 4));
+            error(999, msprintf(_("%s: Wrong type for input argument #%d: A integer value expected.\n"), "createBorderFont", 4));
         end
 
         if fontangle <> ["normal", "italic"] then
-            error(999, msprintf(_("%s: Wrong value for input argument #%d: %s or %s expected.\n"), "createBorders", 4, "normal", "italic"));
+            error(999, msprintf(_("%s: Wrong value for input argument #%d: %s or %s expected.\n"), "createBorderFont", 4, "normal", "italic"));
         end
     end
 
-    ret = tlist(["FontBorder", "name", "size", "angle", "weight"], fontname, fontsize, fontangle, fontweight);
+    ret = tlist(["BorderFont", "name", "size", "angle", "weight"], fontname, fontsize, fontangle, fontweight);
 
 endfunction

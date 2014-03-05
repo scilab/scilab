@@ -32,8 +32,8 @@ l($+1) = createBorders("etched", "raised");
 l($+1) = createBorders("etched", "blue", "red");
 l($+1) = createBorders("etched", "lowered", "blue", "red");
 //titled
-font1 = createFontBorder("Serif", 12, "bold");
-font2 = createFontBorder("Serif", 12, "normal", "italic");
+font1 = createBorderFont("Serif", 12, "bold");
+font2 = createBorderFont("Serif", 12, "normal", "italic");
 l($+1) = createBorders("titled", "title");
 l($+1) = createBorders("titled", createBorders("empty"));
 l($+1) = createBorders("titled", createBorders("line", "blue"), "title");

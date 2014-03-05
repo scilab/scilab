@@ -20,7 +20,7 @@ GUI Refactoring and Improvements
 * New uicontrols properties:
  - borders: Used to set some decoration properties on "frame" uicontrols.
             These decorations can be created and initialized with the createBorders
-            and the createFontBorder functions.
+            and the createBorderFont functions.
  - scrollable: Used to add scrolling capabilities on "frame" uicontrols.
  - groupname: Used to group "radiobutton" and "checkbox" uicontrols for an easier
               management.
