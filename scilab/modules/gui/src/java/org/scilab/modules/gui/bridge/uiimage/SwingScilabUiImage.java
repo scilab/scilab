@@ -18,12 +18,16 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.UIManager;
 import javax.swing.border.Border;
 
+import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.SwingViewWidget;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
@@ -231,9 +235,23 @@ public class SwingScilabUiImage extends JLabel implements SwingViewObject, Simpl
      */
     public void setText(String newText) {
         imageFile = newText;
-        imi = new ImageIcon(imageFile);
-        img = imi.getImage();
-        setIcon(imi);
+
+        File file = new File(imageFile);
+        if (file.exists() == false) {
+            String filename = FindIconHelper.findImage(imageFile);
+            file = new File(filename);
+        }
+
+        try {
+            imi = new ImageIcon(ImageIO.read(file));
+            img = imi.getImage();
+            setIcon(imi);
+        } catch (IOException e) {
+        }
+
+        //        imi = new ImageIcon(imageFile);
+        //        img = imi.getImage();
+        //        setIcon(imi);
     }
 
     /**

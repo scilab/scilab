@@ -13,6 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.scilab.modules.commons.OS;
+import org.scilab.modules.commons.ScilabCommonsUtils;
 
 public final class FindIconHelper {
     /**
@@ -228,6 +229,12 @@ public final class FindIconHelper {
     }
 
     public static String findImage(final String image) {
+
+        File file = new File(ScilabCommonsUtils.getCorrectedPath(image));
+        if (file.exists()) {
+            return file.getAbsolutePath();
+        }
+
         for (String directory : THEME_BASENAME) {
             final File f = new File(directory + SEP + image);
             if (f.exists()) {

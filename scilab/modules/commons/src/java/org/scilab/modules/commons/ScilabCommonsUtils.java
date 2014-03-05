@@ -123,20 +123,26 @@ public final class ScilabCommonsUtils {
      * @return correct base directory
      */
     public static String getCorrectedPath(String path) {
+        String sciUnixStyle = "";
         path = path.trim();
+        String pathLinux = path.replace("\\", "/");
         if (path != null && !path.isEmpty()) {
-            if (path.startsWith("~" + File.separator) || path.equals("~")) {
-                return path.replaceFirst("~", ScilabConstants.USERHOME);
-            } else if (path.startsWith("SCI" + File.separator) || path.equals("SCI")) {
+            if (path.startsWith("~" + "/") || path.equals("~")) {
+                sciUnixStyle = ScilabConstants.USERHOME.replace("\\", "/");
+                return path.replaceFirst("~", sciUnixStyle);
+            } else if (path.startsWith("SCI/") || path.equals("SCI")) {
                 try {
-                    return path.replaceFirst("SCI", ScilabConstants.SCI.getCanonicalPath());
+                    sciUnixStyle = ScilabConstants.SCI.getCanonicalPath().replace("\\", "/");
                 } catch (IOException e) {
-                    return path.replaceFirst("SCI", ScilabConstants.SCI.getAbsolutePath());
+                    sciUnixStyle = ScilabConstants.SCI.getAbsolutePath().replace("\\", "/");
                 }
-            } else if (path.startsWith("SCIHOME" + File.separator) || path.equals("SCIHOME")) {
-                return path.replaceFirst("SCIHOME", ScilabConstants.SCIHOME.toString());
-            } else if (path.startsWith("TMPDIR" + File.separator) || path.equals("TMPDIR")) {
-                return path.replaceFirst("TMPDIR", ScilabCommons.getTMPDIR());
+                return pathLinux.replaceFirst("SCI", sciUnixStyle).replace("/", File.separator);
+            } else if (path.startsWith("SCIHOME/") || path.equals("SCIHOME")) {
+                sciUnixStyle = ScilabConstants.SCIHOME.toString().replace("\\", "/");
+                return path.replaceFirst("SCIHOME", sciUnixStyle).replace("/", File.separator);
+            } else if (path.startsWith("TMPDIR/") || path.equals("TMPDIR")) {
+                sciUnixStyle = ScilabCommons.getTMPDIR().replace("\\", "/");
+                return path.replaceFirst("TMPDIR", sciUnixStyle).replace("/", File.separator);
             }
         }
 
