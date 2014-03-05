@@ -48,6 +48,7 @@ libscimpi_la_SOURCES =   $(GATEWAY_C_SOURCES)  $(MPI_C_SOURCES)
 
 
 #### Target ######
+modulename=mpi
 
 #### mpi : Conf files ####
 libscimpi_la_rootdir = $(mydatadir)
