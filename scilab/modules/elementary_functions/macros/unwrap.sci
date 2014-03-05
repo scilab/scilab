@@ -81,9 +81,9 @@ function [retval, K] = unwrap(a, varargin)
     [m,n] = size(a)
     if (n < 4)
         if transposed then
-            msg = _("%s: not enough tall input argument #%d: must have at least 4 rows\n")
+            msg = _("%s: Wrong size for input argument #%d: Must have at least 4 rows.\n")
         else
-            msg = _("%s: too narrow input argument #%d: must have at least 4 columns\n")
+            msg = _("%s: Wrong size for input argument #%d: Must have at least 4 columns.\n")
         end
         error(msprintf(msg, "unwrap",1))
     end
