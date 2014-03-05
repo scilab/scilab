@@ -80,7 +80,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;src/c;../windows_tools/includes;../api_scilab/includes;../core/includes;../string/includes;../output_stream/includes;../io/includes;../localization/includes;../../libs/intl;../../libs/libxml2;../../libs/curl/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c;../windows_tools/includes;../api_scilab/includes;../core/includes;../string/includes;../output_stream/includes;../io/includes;../localization/includes;../../libs/intl;../../libs/libxml2;../../libs/curl/include;../preferences/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;FILEIO_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -91,10 +91,11 @@
 lib /DEF:"$(ProjectDir)Scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilab_windows.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Console_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)sciconsole.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)Preferences_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)preferences.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core.lib;scilab_windows.lib;scilocalization.lib;sciconsole.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;scilab_windows.lib;scilocalization.lib;sciconsole.lib;preferences.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -110,7 +111,7 @@ lib /DEF:"$(ProjectDir)Console_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;src/c;../windows_tools/includes;../api_scilab/includes;../core/includes;../string/includes;../output_stream/includes;../io/includes;../localization/includes;../../libs/intl;../../libs/libxml2;../../libs/curl/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c;../windows_tools/includes;../api_scilab/includes;../core/includes;../string/includes;../output_stream/includes;../io/includes;../localization/includes;../../libs/intl;../../libs/libxml2;../../libs/curl/include;../preferences/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;FILEIO_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -121,10 +122,11 @@ lib /DEF:"$(ProjectDir)Console_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
 lib /DEF:"$(ProjectDir)Scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilab_windows.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Console_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)sciconsole.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)Preferences_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)preferences.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core.lib;scilab_windows.lib;scilocalization.lib;sciconsole.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;scilab_windows.lib;scilocalization.lib;sciconsole.lib;preferences.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -138,7 +140,7 @@ lib /DEF:"$(ProjectDir)Console_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>includes;src/c;../windows_tools/includes;../api_scilab/includes;../core/includes;../string/includes;../output_stream/includes;../io/includes;../localization/includes;../../libs/intl;../../libs/libxml2;../../libs/curl/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c;../windows_tools/includes;../api_scilab/includes;../core/includes;../string/includes;../output_stream/includes;../io/includes;../localization/includes;../../libs/intl;../../libs/libxml2;../../libs/curl/include;../preferences/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;FILEIO_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -152,10 +154,11 @@ lib /DEF:"$(ProjectDir)Console_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
 lib /DEF:"$(ProjectDir)Scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilab_windows.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Console_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)sciconsole.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)Preferences_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)preferences.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core.lib;scilab_windows.lib;scilocalization.lib;sciconsole.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;scilab_windows.lib;scilocalization.lib;sciconsole.lib;preferences.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -174,7 +177,7 @@ lib /DEF:"$(ProjectDir)Console_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>includes;src/c;../windows_tools/includes;../api_scilab/includes;../core/includes;../string/includes;../output_stream/includes;../io/includes;../localization/includes;../../libs/intl;../../libs/libxml2;../../libs/curl/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c;../windows_tools/includes;../api_scilab/includes;../core/includes;../string/includes;../output_stream/includes;../io/includes;../localization/includes;../../libs/intl;../../libs/libxml2;../../libs/curl/include;../preferences/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;FILEIO_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -188,10 +191,11 @@ lib /DEF:"$(ProjectDir)Console_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
 lib /DEF:"$(ProjectDir)Scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilab_windows.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Console_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)sciconsole.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)Preferences_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)preferences.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core.lib;scilab_windows.lib;scilocalization.lib;sciconsole.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;scilab_windows.lib;scilocalization.lib;sciconsole.lib;preferences.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -376,6 +380,7 @@ lib /DEF:"$(ProjectDir)Console_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
     <None Include="core_import.def" />
     <None Include="locales\fileio.pot" />
     <None Include="Localization_Import.def" />
+    <None Include="preferences_Import.def" />
     <None Include="Scilab_windows_Import.def" />
     <None Include="fileio.iss" />
     <None Include="sci_gateway\fileio_gateway.xml" />

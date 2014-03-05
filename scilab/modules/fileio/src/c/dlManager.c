@@ -30,6 +30,7 @@
 #include "splitpath.h"
 #include "getScilabPreference.h"
 #include "stricmp.h"
+#include "freeArrayOfString.h"
 /* ==================================================================== */
 #ifndef HAVE_BASENAME
 static char *Curl_basename(char *path);
@@ -123,8 +124,8 @@ int getProxyValues(char **proxyHost, long *proxyPort, char **proxyUserPwd)
 
     if (stricmp(values[0]/*enabled*/, "true") == 0)
     {
-        const unsigned int ulen = strlen(values[3]);
-        const unsigned int plen = strlen(values[4]);
+        const unsigned int ulen = (const unsigned int)strlen(values[3]);
+        const unsigned int plen = (const unsigned int)strlen(values[4]);
 
         *proxyHost = values[1]; //host;
         *proxyPort = strtol(values[2], NULL, 10); //port;

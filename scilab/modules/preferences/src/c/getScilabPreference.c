@@ -230,10 +230,17 @@ char * getAttributeValue(const char * xpath, const char * attribute)
     xmlXPathContextPtr xpathCtxt = NULL;
     char * ret = NULL;
 
+    unsigned int xlen = 0;
+    unsigned int alen = 0;
+    char * query = (char *)MALLOC((xlen + alen + 2 + 1) * sizeof(char));
+
     if (!xpath || !attribute)
     {
         return NULL;
     }
+
+    xlen = strlen(xpath);
+    alen = strlen(attribute);
 
     getDocAndCtxt(&doc, &xpathCtxt);
     if (doc == NULL)
@@ -241,9 +248,6 @@ char * getAttributeValue(const char * xpath, const char * attribute)
         return NULL;
     }
 
-    const unsigned int xlen = strlen(xpath);
-    const unsigned int alen = strlen(attribute);
-    char * query = (char *)MALLOC((xlen + alen + 2 + 1) * sizeof(char));
     if (query)
     {
         sprintf(query, "%s/@%s", xpath, attribute);
@@ -265,11 +269,14 @@ char ** getAttributesValues(const char * xpath, const char ** attributes, const 
     xmlXPathContextPtr xpathCtxt = NULL;
     xmlXPathObjectPtr xpathObj = NULL;
     char ** ret = NULL;
+    unsigned int xlen = 0;
 
     if (!xpath || !attributes)
     {
         return NULL;
     }
+
+    xlen = strlen(xpath);
 
     getDocAndCtxt(&doc, &xpathCtxt);
     if (doc == NULL)
@@ -277,7 +284,6 @@ char ** getAttributesValues(const char * xpath, const char ** attributes, const 
         return NULL;
     }
 
-    const unsigned int xlen = strlen(xpath);
     ret = (char**)MALLOC(sizeof(char*) * attrLen);
     xpathObj = xmlXPathEval((const xmlChar*)xpath, xpathCtxt);
     if (xpathObj && xpathObj->nodesetval && xpathObj->nodesetval->nodeMax)

@@ -534,5 +534,8 @@
     <None Include="locales\fileio.pot">
       <Filter>localization</Filter>
     </None>
+    <None Include="preferences_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
   </ItemGroup>
 </Project>
