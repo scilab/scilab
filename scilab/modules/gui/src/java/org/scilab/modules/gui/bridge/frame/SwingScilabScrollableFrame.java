@@ -19,6 +19,8 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_GRID_OPT_PADDING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_LAYOUT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TAG__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TYPE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UICONTROL__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ENABLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FRAME_BORDER__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING__;
@@ -529,8 +531,11 @@ public class SwingScilabScrollableFrame extends JScrollPane implements SwingView
             // Enable its children according to their __GO_UI_ENABLE__ property
             Integer[] children = (Integer[]) GraphicController.getController().getProperty(uid, __GO_CHILDREN__);
             for (int kChild = 0; kChild < children.length; kChild++) {
-                Boolean childStatus = (Boolean) GraphicController.getController().getProperty(children[kChild], __GO_UI_ENABLE__);
-                SwingView.getFromId(children[kChild]).update(__GO_UI_ENABLE__, childStatus);
+                Integer type = (Integer)GraphicController.getController().getProperty(children[kChild], __GO_TYPE__);
+                if (type == __GO_UICONTROL__) {
+                    Boolean childStatus = (Boolean) GraphicController.getController().getProperty(children[kChild], __GO_UI_ENABLE__);
+                    SwingView.getFromId(children[kChild]).update(__GO_UI_ENABLE__, childStatus);
+                }
             }
         } else {
             // Disable the frame

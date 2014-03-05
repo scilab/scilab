@@ -14,8 +14,10 @@
 package org.scilab.modules.gui.bridge.frame;
 
 
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_BORDER_OPT_PADDING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHILDREN__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UICONTROL__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TYPE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_BORDER_OPT_PADDING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_GRID_OPT_GRID__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_GRID_OPT_PADDING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_LAYOUT__;
@@ -908,8 +910,11 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
             // Enable its children according to their __GO_UI_ENABLE__ property
             Integer[] children = (Integer[]) GraphicController.getController().getProperty(uid, __GO_CHILDREN__);
             for (int kChild = 0; kChild < children.length; kChild++) {
-                Boolean childStatus = (Boolean) GraphicController.getController().getProperty(children[kChild], __GO_UI_ENABLE__);
-                SwingView.getFromId(children[kChild]).update(__GO_UI_ENABLE__, childStatus);
+                Integer type = (Integer)GraphicController.getController().getProperty(children[kChild], __GO_TYPE__);
+                if (type == __GO_UICONTROL__) {
+                    Boolean childStatus = (Boolean) GraphicController.getController().getProperty(children[kChild], __GO_UI_ENABLE__);
+                    SwingView.getFromId(children[kChild]).update(__GO_UI_ENABLE__, childStatus);
+                }
             }
         } else {
             // Disable the frame
