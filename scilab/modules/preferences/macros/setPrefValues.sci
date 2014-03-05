@@ -66,7 +66,7 @@ function setPrefValues(xpath, kv, doc)
     attr = node.attributes;
     for i = 1:size(kv, "c")
         v = attr(kv(1, i));
-        if ~isempty(v) then
+        if v ~= [] then
             attr(kv(1, i)) = kv(2, i);
         else
             if rhs == 2 then

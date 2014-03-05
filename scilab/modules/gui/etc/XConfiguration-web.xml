@@ -3,5 +3,6 @@
     <body>
         <web default-browser="true" default-mailer="true" command-browser="" command-mailer=""/>
         <proxy enabled="false" host="" port="" user="" password=""/>
+        <previous-proxy enabled="false" host="" port="" user="" password=""/>
     </body>
 </web>

@@ -117,6 +117,7 @@ function nbChanges = atomsSetConfig(field, value)
     // =========================================================================
 
     prefs_kv = [];
+    proxy_changes = 0;
 
     for i=1:size(field, "*")
 
@@ -137,6 +138,7 @@ function nbChanges = atomsSetConfig(field, value)
             end
             prefs_kv = [prefs_kv [pref_attrs(2, k) ; value(i)]];
             nbChanges = nbChanges - 1;
+            proxy_changes = proxy_changes + 1;
         else
             config_struct(field(i)) = value(i);
         end;
@@ -149,6 +151,7 @@ function nbChanges = atomsSetConfig(field, value)
     // Shortcut
     // =========================================================================
     if nbChanges == 0 then
+        nbChanges = proxy_changes;
         return;
     end
 
@@ -174,4 +177,5 @@ function nbChanges = atomsSetConfig(field, value)
         atomsSystemUpdate();
     end
 
+    nbChanges = nbChanges + proxy_changes;
 endfunction

@@ -82,7 +82,14 @@ function result = atomsGetConfig(field)
         if (rhs == 0)
             values = getPrefValues("//web/body/proxy", pref_attrs(2, :));
             for i = 1:size(pref_attrs, "c")
-                result(pref_attrs(1, i)) = values(i);
+                if ~isempty(values(i)) then
+                    if values(i) == "true" then
+                        values(i) = "True";
+                    elseif values(i) == "false" then
+                        values(i) = "False";
+                    end
+                    result(pref_attrs(1, i)) = values(i);
+                end
             end
         end
         return;
@@ -116,7 +123,14 @@ function result = atomsGetConfig(field)
     if (rhs == 0)
         values = getPrefValues("//web/body/proxy", pref_attrs(2, :));
         for i = 1:size(pref_attrs, "c")
-            result(pref_attrs(1, i)) = values(i);
+            if ~isempty(values(i)) then
+                if values(i) == "true" then
+                    values(i) = "True";
+                elseif values(i) == "false" then
+                    values(i) = "False";
+                end
+                result(pref_attrs(1, i)) = values(i);
+            end
         end
     end
 
