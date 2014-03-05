@@ -8,3 +8,4 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 load(SCI+"/modules/preferences/macros/lib");
+createXConfiguration();
