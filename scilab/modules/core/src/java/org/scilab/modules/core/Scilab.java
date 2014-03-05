@@ -30,6 +30,7 @@ import org.flexdock.docking.DockingManager;
 import org.scilab.modules.commons.OS;
 import org.scilab.modules.commons.ScilabCommonsUtils;
 import org.scilab.modules.commons.ScilabConstants;
+import org.scilab.modules.commons.xml.XConfiguration;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.Type;
 import org.scilab.modules.graphic_objects.utils.MenuBarBuilder;
@@ -57,6 +58,7 @@ public class Scilab {
 
     static {
         System.setProperty("java.protocol.handler.pkgs", "org.scilab.modules.commons");
+        XConfiguration.getXConfigurationDocument();
     }
 
     /** Index of windows vista version */
