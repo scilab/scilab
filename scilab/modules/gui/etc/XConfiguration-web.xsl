@@ -142,4 +142,6 @@
             </Grid>
         </Title>
     </xsl:template>
+    
+    <xsl:template match="previous-proxy"/>
 </xsl:stylesheet>
