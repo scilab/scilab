@@ -131,9 +131,12 @@
                     </actionPerformed>
                 </Radiobutton>
                 
-                <Entry gridx="2" gridy="3" weightx="1" anchor="above_baseline"
-                       listener="EntryListener"
-                       text="{@default}">
+                <FileSelector gridx="2" gridy="3" weightx="1" anchor="above_baseline"
+                              listener="EntryListener"
+                              href="{@default}"
+                              desc="_(Default startup directory)"
+                              dir-selection="true"
+                              check-entry="true">
                     <xsl:attribute name="enable">
                         <xsl:if test="@use='default'">
                             <xsl:text>true</xsl:text>
@@ -142,7 +145,7 @@
                     <entryChanged choose="default">
                         <xsl:call-template name="context"/>
                     </entryChanged>
-                </Entry>
+                </FileSelector>
             </Grid>
         </Title>
     </xsl:template>
