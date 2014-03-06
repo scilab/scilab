@@ -158,12 +158,26 @@ function %_sodload(%__filename__, varargin)
         fields = fieldnames(figureProperties);
         fields(1) = [];
 
-        h = gcf();
-        isVisible = h.visible;
-        resizefcn = "";
-        event_handler = "";
-        h.visible = "off";
+        if or(fields=="resize") then
+            // File created by Scilab 5.5.0 or more
+            h = figure("menubar", figureProperties.menubar, ...
+            "toolbar", figureProperties.toolbar, ...
+            "dockable", figureProperties.dockable, ...
+            "default_axes", figureProperties.default_axes, ...
+            "visible", "off");
+        else
+            h = figure("visible", "off");
+        end
 
+        // Following propeties will be set after all other ones
+        isVisible = figureProperties.visible;
+        fields(fields=="visible") = [];
+        resizefcn = figureProperties.resizefcn;
+        fields(fields=="resizefcn") = [];
+        event_handler = figureProperties.event_handler;
+        fields(fields=="event_handler") = [];
+
+        // Ignore figure_id
         fields(fields=="figure_id") = [];
 
         h.figure_position=figureProperties.figure_position;
@@ -186,20 +200,14 @@ function %_sodload(%__filename__, varargin)
                     xsetech(wrect=[0 0 .1 .1])
                     createSingleHandle(c.values(i));
                 end
-            elseif fields(i) == "event_handler" then
-                event_handler = figureProperties(fields(i));
-            elseif fields(i) == "resizefcn" then
-                resizefcn = figureProperties(fields(i));
-            elseif fields(i) == "visible" then
-                isVisible = figureProperties(fields(i));// do not set visible = "true" before the end of load.
             else
                 set(h, fields(i), figureProperties(fields(i)));
             end
         end
 
-        h.visible = isVisible;
         h.resizefcn = resizefcn;
         h.event_handler = event_handler;
+        h.visible = isVisible;
     endfunction
 
     //
@@ -797,7 +805,20 @@ function %_sodload(%__filename__, varargin)
         fields = fieldnames(uicontrolProperties);
         fields(1) = [];
 
-        h = uicontrol("Style", uicontrolProperties.style);
+        if or(fields=="scrollable") then
+            // Properties added in Scilab 5.5.0
+            //  - scrollable must be set at creation (for frames)
+            //  - contraints & margins must be set before parent
+            h = uicontrol("style", uicontrolProperties.style, ...
+            "scrollable", uicontrolProperties.scrollable, ...
+            "constraints", uicontrolProperties.constraints, ...
+            "margins", uicontrolProperties.margins);
+            fields(fields=="scrollable") = [];
+            fields(fields=="constraints") = [];
+            fields(fields=="margins") = [];
+        else
+            h = uicontrol("style", uicontrolProperties.style);
+        end
         fields(fields=="style") = [];
 
         for i = 1:size(fields, "*")
