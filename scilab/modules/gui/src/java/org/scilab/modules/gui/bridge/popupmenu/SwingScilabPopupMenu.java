@@ -439,7 +439,7 @@ public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, 
 
                 //[] or 0 -> no selection
                 if (doubleValue.length == 0 || doubleValue[0] == 0) {
-                    setUserSelectedIndex(-1);
+                    setUserSelectedIndex(0);
                     return;
                 }
 
