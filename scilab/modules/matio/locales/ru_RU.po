@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 16948)\n"
 
 #, c-format
 msgid "%s: Wrong size for first input argument: Single double expected.\n"
@@ -39,22 +39,16 @@ msgid "%s: No more memory.\n"
 msgstr "%s: Недостаточно памяти.\n"
 
 #, c-format
-msgid "%s: Wrong size for first input argument: Single string expected.\n"
+msgid "%s: Wrong size for first input argument: A string expected.\n"
 msgstr ""
-"%s: Неверный размер первого входного аргумента: ожидается единственное "
-"строковое значение.\n"
 
 #, c-format
-msgid "%s: Wrong type for first input argument: Single string expected.\n"
+msgid "%s: Wrong type for first input argument: A string expected.\n"
 msgstr ""
-"%s: Неверный тип первого входного аргумента: ожидается единственное "
-"строковое значение.\n"
 
 #, c-format
-msgid "%s: Wrong size for second input argument: Single string expected.\n"
+msgid "%s: Wrong size for second input argument: A string expected.\n"
 msgstr ""
-"%s: Неверный размер второго входного аргумента: ожидается единственное "
-"строковое значение.\n"
 
 #, c-format
 msgid "%s: Wrong value for second input argument: 'r' or 'w' expected.\n"
@@ -62,22 +56,32 @@ msgstr ""
 "%s: Неверное значение второго входного аргумента: ожидалось 'r' или 'w'.\n"
 
 #, c-format
-msgid "%s: Wrong type for second input argument: Single string expected.\n"
+msgid "%s: Wrong type for second input argument: A string expected.\n"
 msgstr ""
-"%s: Неверный тип второго входного аргумента: Ожидалось единственное "
-"строковое значение.\n"
 
 #, c-format
-msgid "%s: Wrong size for fourth input argument: Single boolean expected.\n"
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
-"%s: Неверный размер четвёртого входного аргумента: ожидается единственное "
-"логическое значение.\n"
 
 #, c-format
-msgid "%s: Wrong type for fourth input argument: Single boolean expected.\n"
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
-"%s: Неверный тип четвертого входного аргумента: Ожидалось единственное "
-"логическое значение.\n"
+
+#, c-format
+msgid "%s: Wrong size for first input argument: An integer value expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for first input argument: An integer value expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for fourth input argument: A boolean expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for fourth input argument: A boolean expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: N-D arrays of chars not implemented.\n"
@@ -177,10 +181,6 @@ msgstr "%s: Невозможно открыть файл  '%s'.\n"
 #, c-format
 msgid "savematfile: could not save variable named %s.\n"
 msgstr "savematfile: не удалось сохранить переменную с именем %s.\n"
-
-#, c-format
-msgid "Version %d MAT-file not implemented."
-msgstr "Версия %d MAT-файлов не поддерживается."
 
 #, c-format
 msgid "Variable %s can not be saved in ASCII file: IGNORED."

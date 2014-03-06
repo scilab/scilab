@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-01-09 12:18+0000\n"
+"PO-Revision-Date: 2013-12-14 02:50+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 16948)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -111,7 +111,7 @@ msgid "%s: Wrong number of input arguments: at least %d expected.\n"
 msgstr "%s: 入力引数の数が間違っています:  %d 以上の引数を指定してください.\n"
 
 #, c-format
-msgid "%s: XML Element does not exist.\n"
+msgid "%s: XML element does not exist.\n"
 msgstr "%s: XML要素が存在しません.\n"
 
 #, c-format
@@ -119,7 +119,7 @@ msgid "%s: XML Namespace does not exist.\n"
 msgstr "%s: XML名前空間が存在しません.\n"
 
 #, c-format
-msgid "%s: XML Document does not exist.\n"
+msgid "%s: XML document does not exist.\n"
 msgstr "%s: XML文書が存在しません.\n"
 
 #, c-format
@@ -133,10 +133,6 @@ msgstr "%s: XMLSetまたはXMLListが存在しません.\n"
 #, c-format
 msgid "%s: Wrong dimension for input argument #%d: A string expected.\n"
 msgstr "%s: 入力引数 #%d の次元が間違っています: 文字列を指定してください.\n"
-
-#, c-format
-msgid "%s: XML document does not exist.\n"
-msgstr "%s: XML文書が存在しません.\n"
 
 #, c-format
 msgid "%s: XML validation file does not exist.\n"
@@ -177,11 +173,11 @@ msgstr "%s: XMLElem が存在しません.\n"
 msgid ""
 "%s: Wrong dimensions for input argument #%d: A single boolean or string "
 "expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の次元が間違っています: 論理値または文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Invalid number of input arguments.\n"
-msgstr ""
+msgstr "%s: 入力引数の数が間違っています.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
@@ -227,10 +223,6 @@ msgid ""
 msgstr "%s: 入力引数 #%d の大きさが間違っています: nx2またはnx3の文字列の行列を指定してください.\n"
 
 #, c-format
-msgid "%s: XML document does not exist\n"
-msgstr "%s: XML文書が存在しません\n"
-
-#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A matrix of strings or a XMLDoc "
 "expected.\n"
@@ -266,10 +258,6 @@ msgstr "%s: ファイルに書き込めません: %s\n"
 msgid ""
 "%s: Wrong type for input argument #%d: A XMLDoc or a XMLElem expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: XMLDocまたはXMLElemを指定してください.\n"
-
-#, c-format
-msgid "%s: XML element does not exist.\n"
-msgstr "%s: XML要素が存在しません.\n"
 
 #, c-format
 msgid "%s: Bad number of columns for argument #%d: two expected.\n"

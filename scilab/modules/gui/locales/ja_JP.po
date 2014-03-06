@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-12-08 11:36+0000\n"
+"PO-Revision-Date: 2014-02-17 14:50+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 16948)\n"
 "X-Poedit-Country: JAPAN\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -53,8 +53,8 @@ msgid "%s: No more memory.\n"
 msgstr "%s: メモリ不足です.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: A real expected.\n"
-msgstr "%s: 引数 %d の型が間違っています:  実数を指定してください.\n"
+msgid "%s: Wrong type for argument #%d: A real expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 実数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"
@@ -109,6 +109,22 @@ msgid ""
 msgstr "%s: 入力引数 #%d の値が間違っています: 有効な図IDを指定してください.\n"
 
 #, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s: 入力引数 #%d を読み込めません.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 整数値を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
+msgstr "%s: 入力引数 #%d の大きさに誤りがあります: 文字列を指定してください.\n"
+
+#, c-format
+msgid "Wrong value for '%s' property: '%s' or '%s' expected."
+msgstr "'%s' プロパティの値が間違っています: '%s' または '%s' を指定してください."
+
+#, c-format
 msgid "%s: Wrong type for argument #%d: Real expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 実数を指定してください.\n"
 
@@ -121,8 +137,8 @@ msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 論理値行列を指定してください.\n"
+msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
+msgstr "%s: 引数 #%d の型が間違っています: 論理値行列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
@@ -214,9 +230,8 @@ msgid ""
 msgstr "%s: 入力引数 #%d の型が間違っています: 実数またはFigureのハンドルを指定してください.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A real or Figure handle expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 実数またはFigureのハンドルを指定してください.\n"
+msgid "%s: can not read file %s.\n"
+msgstr "%s: ファイル %s を読み込めません.\n"
 
 #
 # File: sci_gateway/c/sci_uicontrol.c, line: 125
@@ -253,6 +268,10 @@ msgstr "%1$s: 未知のプロパティ: %3$s ハンドルのための '%2$s'\n"
 #, c-format
 msgid "%s: Could not create 'Uicontrol' handle.\n"
 msgstr "%s: 'UIコントロール' ハンドルを作成できません。\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: A tlist expected.\n"
+msgstr "%s: 引数 #%d の型が間違っています:  tlist を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
@@ -347,12 +366,18 @@ msgstr ""
 "%s"
 
 #, c-format
-msgid "%s: Can not read input argument #%d.\n"
-msgstr "%s: 入力引数 #%d を読み込めません.\n"
-
-#, c-format
 msgid "%s: Wrong number for input argument: %d expected.\n"
 msgstr "%s: 入力引数の数が間違っています:  %d を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A string or a macro name expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列またはマクロ名を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A string or a macro name expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列またはマクロ名を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
@@ -2305,6 +2330,16 @@ msgstr "謝辞"
 msgid "Could not open: "
 msgstr "オープンできません: "
 
+msgid "Restoration error"
+msgstr "復元エラー"
+
+msgid ""
+"The configuration file has been corrupted and reset to the default one."
+msgstr "設定ファイルが壊れており, デフォルトのファイルにリセットしました."
+
+msgid "The configuration file has been corrupted. Scilab needs to restart."
+msgstr "設定ファイルが壊れています. Scilabを再起動する必要があります."
+
 #
 # File: src/nogui/nogui.c, line: 25
 # File: src/nogui/nogui.c, line: 128
@@ -2532,15 +2567,6 @@ msgid ""
 "%s: Wrong type for input argument #%d: A graphic handle or a real expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: グラフィックのハンドルまたは実数を指定してください.\n"
 
-#
-# File: macros/figure.sci, line: 26
-# File: macros/figure.sci, line: 53
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A 'Figure' handle or a real "
-"expected.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズです: '図形' ハンドル、または 実数を想定します。\n"
-
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
@@ -2580,6 +2606,15 @@ msgstr "%s に指定された回答は間違っています: %s.\n"
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr "%s: 入力引数の数に誤りがあります: %d 個の引数を指定してください.\n"
+
+#
+# File: macros/figure.sci, line: 26
+# File: macros/figure.sci, line: 53
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A 'Figure' handle or a real "
+"expected.\n"
+msgstr "%s: 入力引数 #%d で不正なサイズです: '図形' ハンドル、または 実数を想定します。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: uitree expected.\n"

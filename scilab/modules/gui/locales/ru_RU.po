@@ -10,13 +10,13 @@ msgstr ""
 "Project-Id-Version: gui-ru\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-10-05 12:08+0000\n"
+"PO-Revision-Date: 2014-01-24 15:01+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 16948)\n"
 "Language: ru\n"
 
 #, c-format
@@ -56,8 +56,8 @@ msgid "%s: No more memory.\n"
 msgstr "%s: Не осталось доступной памяти.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: A real expected.\n"
-msgstr "%s: Неверный тип входного аргумента №%d: ожидался вещественным.\n"
+msgid "%s: Wrong type for argument #%d: A real expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"
@@ -112,10 +112,29 @@ msgstr ""
 msgid ""
 "%s: Wrong value for input argument #%d: A valid figure identifier expected.\n"
 msgstr ""
+"%s: Неверное значение входного аргумента №%d: ожидался корректный "
+"идентификатор графического окна.\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s: Не могу прочитать входной аргумент №%d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
+msgstr "%s: Неверный тип входного аргумента №%d: ожидалось целое число.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
+msgstr ""
+"%s: Неверный размер входного аргумента №%d: ожидалась одиночная строка.\n"
+
+#, c-format
+msgid "Wrong value for '%s' property: '%s' or '%s' expected."
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real expected.\n"
-msgstr ""
+msgstr "%s: Неверный тип аргумента №%d: ожидалось вещественное число.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
@@ -126,10 +145,8 @@ msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
 msgstr ""
-"%s: Неверный тип входного аргумента №%d: ожидалась матрица логических "
-"значений.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
@@ -229,11 +246,8 @@ msgstr ""
 "дескрипотор «Figure».\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A real or Figure handle expected.\n"
+msgid "%s: can not read file %s.\n"
 msgstr ""
-"%s: Неверный тип входного параметра №%d: ожидалось вещественное число или "
-"дескриптор «Figure».\n"
 
 #, c-format
 msgid "%s: Could not set property '%s'.\n"
@@ -267,6 +281,10 @@ msgstr "%s: Неизвестное свойство: %s для дескрипт�
 #, c-format
 msgid "%s: Could not create 'Uicontrol' handle.\n"
 msgstr "%s: Не удалось создать дескриптор «Uicontrol».\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: A tlist expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
@@ -378,12 +396,19 @@ msgstr ""
 "%s"
 
 #, c-format
-msgid "%s: Can not read input argument #%d.\n"
-msgstr "%s: Не могу прочитать входной аргумент №%d.\n"
-
-#, c-format
 msgid "%s: Wrong number for input argument: %d expected.\n"
 msgstr "%s: Неверное количество входных аргументов: ожидалось %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A string or a macro name expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A string or a macro name expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидалась строка или имя сценария.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
@@ -425,7 +450,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Can not create output argument #%d.\n"
-msgstr ""
+msgstr "%s: Нельзя создать выходной аргумент №%d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A handle expected.\n"
@@ -655,7 +680,7 @@ msgid "Stop curve data modification"
 msgstr "Остановить изменение данных кривой"
 
 msgid "Plot Browser"
-msgstr ""
+msgstr "Обозреватель графиков"
 
 msgid "Scilab Graphic Editor - GED"
 msgstr "Графический редактор Scilab - GED"
@@ -667,7 +692,7 @@ msgid "&MVC"
 msgstr ""
 
 msgid "&Log View (Trace all View notifications)"
-msgstr ""
+msgstr "&Логарифмический масштаб (Отслеживать все обозначения масштаба)"
 
 msgid "&All Objects View (All objects with properties)"
 msgstr "&Обзор всех объектов (все объекты со свойствами)"
@@ -1273,16 +1298,16 @@ msgstr "Вычислить выделенное без отображения к
 
 #, c-format
 msgid "Option for %s format"
-msgstr ""
+msgstr "Опция для формата %s"
 
 msgid "Portrait"
-msgstr ""
+msgstr "Портрет"
 
 msgid "Landscape"
-msgstr ""
+msgstr "Альбом"
 
 msgid "Confirm"
-msgstr ""
+msgstr "Подтвердить"
 
 msgid "Cancel"
 msgstr "Отменить"
@@ -1292,10 +1317,10 @@ msgstr "Ориентация"
 
 #, c-format
 msgid "An error occurred during export: %s"
-msgstr ""
+msgstr "Во время экспорта произошла ошибка: %s"
 
 msgid "Export error"
-msgstr ""
+msgstr "Ошибка экспорта"
 
 msgid "Windows BMP image"
 msgstr "Изображение Windows BMP"
@@ -1319,7 +1344,7 @@ msgid "Encapsulated PostScript image (EPS)"
 msgstr "Изображение Encapsulated PostScript (EPS)"
 
 msgid "PostScript image (PS)"
-msgstr ""
+msgstr "Изображение PostScript (PS)"
 
 msgid "FIG image"
 msgstr "Изображение FIG"
@@ -1359,6 +1384,8 @@ msgid ""
 "Unrecognized extension '%s'.\n"
 " Please specify a valid file format."
 msgstr ""
+"Нераспознанное расширение '%s'.\n"
+" Пожалуйста, укажите корректный формат файла."
 
 msgid "Font Chooser"
 msgstr "Выбор шрифта"
@@ -1536,7 +1563,7 @@ msgid "Paste style"
 msgstr "Вставить стиль"
 
 msgid "Paste the copied style on these axes"
-msgstr ""
+msgstr "Вставить скопированный стиль в эти оси"
 
 msgid "Enter the text"
 msgstr "Введите текст"
@@ -1584,7 +1611,7 @@ msgid "Figure"
 msgstr "Рисунок"
 
 msgid "Segs"
-msgstr ""
+msgstr "Сегменты"
 
 msgid "Surface"
 msgstr "Поверхность"
@@ -1605,13 +1632,13 @@ msgid "Matplot"
 msgstr "Matplot"
 
 msgid "Arc Drawing Method"
-msgstr ""
+msgstr "Метод построения дуг"
 
 msgid "Auto Rotation"
-msgstr ""
+msgstr "Автоповорот"
 
 msgid "Auto Position"
-msgstr ""
+msgstr "Авторасположение"
 
 msgid "Auto Ticks"
 msgstr "Автоматическая установка рисок"
@@ -1701,7 +1728,7 @@ msgid "Hidden Axis Color"
 msgstr "Цвет скрытой оси"
 
 msgid "Camera"
-msgstr ""
+msgstr "Камера"
 
 msgid "Alpha"
 msgstr "Альфа"
@@ -1939,10 +1966,10 @@ msgid "Title"
 msgstr "Название"
 
 msgid "Start Angle"
-msgstr ""
+msgstr "Начальный угол"
 
 msgid "End Angle"
-msgstr ""
+msgstr "Конечный угол"
 
 msgid "Number of current figure."
 msgstr "Номер текущего графического окна"
@@ -1963,10 +1990,10 @@ msgid "Data Editor"
 msgstr "Редактор данных"
 
 msgid "2D"
-msgstr ""
+msgstr "2D"
 
 msgid "3D"
-msgstr ""
+msgstr "3D"
 
 msgid "Control"
 msgstr "Управление"
@@ -1999,10 +2026,10 @@ msgid "Viewport"
 msgstr ""
 
 msgid "X Left"
-msgstr ""
+msgstr "X влево"
 
 msgid "Y Up"
-msgstr ""
+msgstr "Y вверх"
 
 msgid "Log Flags"
 msgstr ""
@@ -2011,25 +2038,25 @@ msgid "Tight Limits"
 msgstr ""
 
 msgid "Enter a x position."
-msgstr ""
+msgstr "Введите положение по x."
 
 msgid "Enter a y position."
-msgstr ""
+msgstr "Введите положение по y."
 
 msgid "Enter a x size."
-msgstr ""
+msgstr "Введите размер по x."
 
 msgid "Enter a y size."
-msgstr ""
+msgstr "Введите размер по y."
 
 msgid "Axis Rulers"
 msgstr ""
 
 msgid "X Location"
-msgstr ""
+msgstr "Расположение X"
 
 msgid "Y Location"
-msgstr ""
+msgstr "Расположение Y"
 
 msgid "Location"
 msgstr "Расположение"
@@ -2041,7 +2068,7 @@ msgid "middle"
 msgstr "по центру"
 
 msgid "origin"
-msgstr ""
+msgstr "исходное"
 
 msgid "top"
 msgstr "сверху"
@@ -2086,10 +2113,10 @@ msgid "Coordinates"
 msgstr "Координаты"
 
 msgid "X Coordinate"
-msgstr ""
+msgstr "Координата X"
 
 msgid "Y Coordinate"
-msgstr ""
+msgstr "Координата Y"
 
 msgid "Position"
 msgstr "Положение"
@@ -2104,7 +2131,7 @@ msgid "Shift"
 msgstr "Сдвиг"
 
 msgid "Up"
-msgstr ""
+msgstr "Вверх"
 
 msgid "Width"
 msgstr "Ширина"
@@ -2225,6 +2252,16 @@ msgstr "Благодарности"
 
 msgid "Could not open: "
 msgstr "Не удалось открыть: "
+
+msgid "Restoration error"
+msgstr ""
+
+msgid ""
+"The configuration file has been corrupted and reset to the default one."
+msgstr ""
+
+msgid "The configuration file has been corrupted. Scilab needs to restart."
+msgstr ""
 
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
@@ -2420,16 +2457,8 @@ msgstr ""
 "вещественное число.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A 'Figure' handle or a real "
-"expected.\n"
-msgstr ""
-"%s: Неверный размер входного параметра №%d: ожидался дескриптор «Figure» или "
-"вещественное число.\n"
-
-#, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
+msgstr "%s: Неверное количество входных аргументов: Ожидалось от %d до %d.\n"
 
 #, c-format
 msgid "%s: Type %s is not implemented.\n"
@@ -2463,7 +2492,15 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: Неверное количество входных аргументов: Ожидалось %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A 'Figure' handle or a real "
+"expected.\n"
 msgstr ""
+"%s: Неверный размер входного параметра №%d: ожидался дескриптор «Figure» или "
+"вещественное число.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: uitree expected.\n"

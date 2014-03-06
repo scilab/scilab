@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 16948)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -126,15 +126,15 @@ msgstr ""
 "%d.\n"
 
 #, c-format
-msgid "%s: XML Element does not exist.\n"
-msgstr "%s: Element XML nie istnieje.\n"
+msgid "%s: XML element does not exist.\n"
+msgstr "%s: element XML nie istnieje.\n"
 
 #, c-format
 msgid "%s: XML Namespace does not exist.\n"
 msgstr "%s: Przestrzeń nazw XML nie istnieje.\n"
 
 #, c-format
-msgid "%s: XML Document does not exist.\n"
+msgid "%s: XML document does not exist.\n"
 msgstr "%s: dokument XML nie istnieje.\n"
 
 #, c-format
@@ -148,10 +148,6 @@ msgstr "%s: XMLSet lub XMLList nie istnieje.\n"
 #, c-format
 msgid "%s: Wrong dimension for input argument #%d: A string expected.\n"
 msgstr ""
-
-#, c-format
-msgid "%s: XML document does not exist.\n"
-msgstr "%s: dokument XML nie istnieje.\n"
 
 #, c-format
 msgid "%s: XML validation file does not exist.\n"
@@ -241,10 +237,6 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: XML document does not exist\n"
-msgstr "%s: dokument XML nie istnieje\n"
-
-#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A matrix of strings or a XMLDoc "
 "expected.\n"
@@ -280,10 +272,6 @@ msgstr "%s: Brak możliwości zapisu do pliku: %s\n"
 msgid ""
 "%s: Wrong type for input argument #%d: A XMLDoc or a XMLElem expected.\n"
 msgstr ""
-
-#, c-format
-msgid "%s: XML element does not exist.\n"
-msgstr "%s: element XML nie istnieje.\n"
 
 #, c-format
 msgid "%s: Bad number of columns for argument #%d: two expected.\n"

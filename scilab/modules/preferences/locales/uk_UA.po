@@ -9,13 +9,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2012-09-28 15:40+0000\n"
+"PO-Revision-Date: 2014-02-23 07:55+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 16948)\n"
 "Language: uk\n"
 
 #, c-format
@@ -90,8 +90,20 @@ msgstr "Некоректний шлях:"
 msgid "Invalid preferences file:"
 msgstr "Некоректний файл налаштувань:"
 
+msgid "Are you sure you want to restore the default layout at next startup?"
+msgstr "Хочете відновити типове компонування під час наступного запуску?"
+
+msgid "Reset layout"
+msgstr "Відновити початкове компонування"
+
 msgid "Scilab Preferences"
 msgstr "Налаштування Scilab"
+
+msgid "Are you sure you want to reset all settings to the default values?"
+msgstr "Справді хочете відновити типові значення усіх параметрів?"
+
+msgid "Reset"
+msgstr "Скинути"
 
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
