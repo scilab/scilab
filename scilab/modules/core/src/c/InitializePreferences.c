@@ -90,11 +90,11 @@ void InitializePreferences()
             // Not in cwd
             if (stricmp(prefs->startup_dir_use, "previous") == 0 && prefs->startup_dir_previous && *prefs->startup_dir_previous)
             {
-                scichdir(prefs->startup_dir_previous);
+                scichdir((char*)prefs->startup_dir_previous);
             }
             else if (stricmp(prefs->startup_dir_use, "default") == 0 && prefs->startup_dir_default && *prefs->startup_dir_default)
             {
-                scichdir(prefs->startup_dir_default);
+                scichdir((char*)prefs->startup_dir_default);
             }
         }
     }

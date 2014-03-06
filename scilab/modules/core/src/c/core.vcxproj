@@ -351,6 +351,7 @@ cd ..
     <ClCompile Include="..\..\sci_gateway\c\sci_where.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_who.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_with_module.c" />
+    <ClCompile Include="saveCWDInPreferences.c" />
     <ClCompile Include="SCIHOME.c" />
     <ClCompile Include="scilabmode.c" />
     <ClCompile Include="scimem.c" />
@@ -479,6 +480,7 @@ cd ..
     <ClInclude Include="..\..\includes\stack3.h" />
     <ClInclude Include="..\..\includes\stackinfo.h" />
     <ClInclude Include="..\..\includes\storeCommand.h" />
+    <ClInclude Include="saveCWDInPreferences.h" />
     <ClInclude Include="str2sci.h" />
     <ClInclude Include="..\..\includes\syncexec.h" />
     <ClInclude Include="terme.h" />

@@ -23,16 +23,16 @@
 #include "../../../gui/includes/TerminateGui.h"
 #include "../../../jvm/includes/TerminateJVM.h"
 #include "getScilabPreference.h"
+#include "../../../gui/includes/TerminateGui.h"
+#include "scilabmode.h"
+#include "saveCWDInPreferences.h"
+
 #ifdef _MSC_VER
 #include "../../../windows_tools/includes/TerminateWindows_tools.h"
 #include "../../../windows_tools/includes/MutexClosingScilab.h"
 #include "../../../windows_tools/src/c/scilab_windows/killScilabProcess.h"
-#endif
-#include "../../../gui/includes/TerminateGui.h"
-#include "scilabmode.h"
-#ifndef _MSC_VER
+#else
 #include "initConsoleMode.h"
-#include "saveCWDInPreferences.h"
 #endif
 /*--------------------------------------------------------------------------*/
 int ExitScilab(void)

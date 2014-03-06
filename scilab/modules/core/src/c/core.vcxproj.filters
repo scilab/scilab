@@ -491,6 +491,9 @@
     <ClCompile Include="hashtable\hashtable_utility.c">
       <Filter>Source Files\hashtable</Filter>
     </ClCompile>
+    <ClCompile Include="saveCWDInPreferences.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="banier.h">
@@ -822,6 +825,9 @@
     </ClInclude>
     <ClInclude Include="..\..\includes\hashtable_utility.h">
       <Filter>Header Files\hashtable</Filter>
+    </ClInclude>
+    <ClInclude Include="saveCWDInPreferences.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

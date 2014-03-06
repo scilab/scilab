@@ -56,5 +56,6 @@ PREFERENCES_SCILAB_IMPEXP void clearScilabPreferences(void);
 PREFERENCES_SCILAB_IMPEXP char * getPrefAttributeValue(const char * xpath, const char * attribute);
 PREFERENCES_SCILAB_IMPEXP char ** getPrefAttributesValues(const char * xpath, const char ** attributes, const unsigned int attrLen);
 PREFERENCES_SCILAB_IMPEXP void setAttributesValues(const char * xpath, const char ** attributes, const unsigned int kvLen);
+PREFERENCES_SCILAB_IMPEXP void setPrefAttributesValues(const char * xpath, const char ** kv, const unsigned int kvLen);
 
 #endif // __GETSCILABPREFERENCES_H__

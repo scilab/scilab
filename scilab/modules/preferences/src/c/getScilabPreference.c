@@ -257,8 +257,8 @@ char * getPrefAttributeValue(const char * xpath, const char * attribute)
         return NULL;
     }
 
-    xlen = strlen(xpath);
-    alen = strlen(attribute);
+    xlen = (unsigned int) strlen(xpath);
+    alen = (unsigned int) strlen(attribute);
 
     getDocAndCtxt(&doc, &xpathCtxt);
     if (doc == NULL)
@@ -305,7 +305,7 @@ char ** getPrefAttributesValues(const char * xpath, const char ** attributes, co
     {
         int i;
         xmlNode * node = (xmlNode*)xpathObj->nodesetval->nodeTab[0];
-        for (i = 0; i < attrLen; i++)
+        for (i = 0; i < (int)attrLen; i++)
         {
             xmlAttr * attrs = xmlHasProp(node, (const xmlChar *)attributes[i]);
             if (attrs)
@@ -363,7 +363,7 @@ void setPrefAttributesValues(const char * xpath, const char ** kv, const unsigne
     {
         int i;
         xmlNode * node = (xmlNode*)xpathObj->nodesetval->nodeTab[0];
-        for (i = 0; i < kvLen / 2; i++)
+        for (i = 0; i < (int)kvLen / 2; i++)
         {
             xmlAttr * attrs = xmlHasProp(node, (const xmlChar *)kv[2 * i]);
             if (attrs)

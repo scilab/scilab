@@ -46,7 +46,7 @@ int C2F(sci_getscilabmode)(char *fname, unsigned long fname_len)
 
     /* Create the string matrix as return of the function */
     iRet = createSingleString(pvApiCtx, nbInputArgument(pvApiCtx) + 1, output);
-    free(output); // Data have been copied into Scilab memory
+    FREE(output); // Data have been copied into Scilab memory
     if (iRet)
     {
         return 1;
