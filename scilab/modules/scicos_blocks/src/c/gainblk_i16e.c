@@ -20,7 +20,7 @@
 */
 /*--------------------------------------------------------------------------*/
 #include <math.h>
-#include "scicos_print.h"
+#include "sciprint.h"
 #include "scicos.h"
 #include "scicos_block4.h"
 #include "localization.h"
@@ -45,14 +45,14 @@ SCICOS_BLOCKS_IMPEXP void gainblk_i16e(scicos_block *block, int flag)
         y = Getint16OutPortPtrs(block, 1);
         opar = Getint16OparPtrs(block, 1);
         k = pow(2, 16) / 2;
-        if (mo * no == 1)
+        if (mo*no == 1)
         {
             for (i = 0; i < ny * mu; ++i)
             {
                 D = (double)(opar[0]) * (double)(u[i]);
                 if ((D >= k) | ( D < -k))
                 {
-                    scicos_print(_("overflow error"));
+                    sciprint(_("overflow error"));
                     set_block_error(-4);
                     return;
                 }
@@ -80,7 +80,7 @@ SCICOS_BLOCKS_IMPEXP void gainblk_i16e(scicos_block *block, int flag)
                     }
                     if ((D >= k) | ( D < -k))
                     {
-                        scicos_print(_("overflow error"));
+                        sciprint(_("overflow error"));
                         set_block_error(-4);
                         return;
                     }

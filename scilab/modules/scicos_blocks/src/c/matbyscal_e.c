@@ -21,7 +21,7 @@
 /*--------------------------------------------------------------------------*/
 #include <math.h>
 #include <stdio.h>
-#include "scicos_print.h"
+#include "sciprint.h"
 #include "scicos.h"
 #include "scicos_block4.h"
 #include "localization.h"
@@ -51,7 +51,7 @@ SCICOS_BLOCKS_IMPEXP void matbyscal_e(scicos_block *block, int flag)
                     v = (double)u1[i] * (double)u2[0];
                     if ((v < rpar[0]) | (v > rpar[1]))
                     {
-                        scicos_print(_("overflow error"));
+                        sciprint(_("overflow error"));
                         set_block_error(-4);
                         return;
                     }
@@ -74,7 +74,7 @@ SCICOS_BLOCKS_IMPEXP void matbyscal_e(scicos_block *block, int flag)
                     v = (double)u1[i] * (double)u2[0];
                     if ((v < rpar[0]) | (v > rpar[1]))
                     {
-                        scicos_print(_("overflow error"));
+                        sciprint(_("overflow error"));
                         set_block_error(-4);
                         return;
                     }
@@ -97,7 +97,7 @@ SCICOS_BLOCKS_IMPEXP void matbyscal_e(scicos_block *block, int flag)
                     v = (double)u1[i] * (double)u2[0];
                     if ((v < rpar[0]) | (v > rpar[1]))
                     {
-                        scicos_print(_("overflow error"));
+                        sciprint(_("overflow error"));
                         set_block_error(-4);
                         return;
                     }
@@ -120,7 +120,7 @@ SCICOS_BLOCKS_IMPEXP void matbyscal_e(scicos_block *block, int flag)
                     v = (double)u1[i] * (double)u2[0];
                     if ((v < rpar[0]) | (v > rpar[1]))
                     {
-                        scicos_print(_("overflow error"));
+                        sciprint(_("overflow error"));
                         set_block_error(-4);
                         return;
                     }
@@ -143,7 +143,7 @@ SCICOS_BLOCKS_IMPEXP void matbyscal_e(scicos_block *block, int flag)
                     v = (double)u1[i] * (double)u2[0];
                     if ((v < rpar[0]) | (v > rpar[1]))
                     {
-                        scicos_print(_("overflow error"));
+                        sciprint(_("overflow error"));
                         set_block_error(-4);
                         return;
                     }
@@ -166,7 +166,7 @@ SCICOS_BLOCKS_IMPEXP void matbyscal_e(scicos_block *block, int flag)
                     v = (double)u1[i] * (double)u2[0];
                     if ((v < rpar[0]) | (v > rpar[1]))
                     {
-                        scicos_print(_("overflow error"));
+                        sciprint(_("overflow error"));
                         set_block_error(-4);
                         return;
                     }

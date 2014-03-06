@@ -21,7 +21,7 @@
 /*--------------------------------------------------------------------------*/
 #include <math.h>
 #include <stdio.h>
-#include "scicos_print.h"
+#include "sciprint.h"
 #include "scicos.h"
 #include "scicos_block4.h"
 #include "localization.h"
@@ -51,7 +51,7 @@ SCICOS_BLOCKS_IMPEXP void summation_i16e(scicos_block *block, int flag)
             }
             if ((v >= l) | (v < -l))
             {
-                scicos_print(_("overflow error"));
+                sciprint(_("overflow error"));
                 set_block_error(-4);
                 return;
             }
@@ -79,7 +79,7 @@ SCICOS_BLOCKS_IMPEXP void summation_i16e(scicos_block *block, int flag)
                 }
                 if ((v >= l) | (v < -l))
                 {
-                    scicos_print(_("overflow error"));
+                    sciprint(_("overflow error"));
                     set_block_error(-4);
                     return;
                 }

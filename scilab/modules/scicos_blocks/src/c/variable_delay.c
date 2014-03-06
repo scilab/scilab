@@ -22,7 +22,7 @@
 #include <math.h>
 #include <stdlib.h>
 #include "MALLOC.h"
-#include "scicos_print.h"
+#include "sciprint.h"
 #include "core_math.h"
 #include "scicos_block.h"
 #include "localization.h"
@@ -76,8 +76,8 @@ SCICOS_BLOCKS_IMPEXP void variable_delay(scicos_block *block, int flag)
         td = t - del;
         if (td < pw[*iw])
         {
-            scicos_print(_("delayed time=%f but last stored time=%f\n"), td, pw[*iw]);
-            scicos_print(_("Consider increasing the length of buffer in variable delay block\n"));
+            sciprint(_("delayed time=%f but last stored time=%f\n"), td, pw[*iw]);
+            sciprint(_("Consider increasing the length of buffer in variable delay block\n"));
         }
         if (t > pw[(block->ipar[0] + *iw - 1) % block->ipar[0]])
         {

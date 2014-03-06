@@ -303,7 +303,6 @@ lib /DEF:"$(ProjectDir)../differential_equations_f_Import.def" /SUBSYSTEM:WINDOW
     <ClCompile Include="..\scicos.c" />
     <ClCompile Include="..\scicos_free.c" />
     <ClCompile Include="..\scicos_malloc.c" />
-    <ClCompile Include="..\scicos_print.c" />
     <ClCompile Include="..\tree.c" />
     <ClCompile Include="..\var2sci.c" />
   </ItemGroup>
@@ -325,7 +324,6 @@ lib /DEF:"$(ProjectDir)../differential_equations_f_Import.def" /SUBSYSTEM:WINDOW
     <ClInclude Include="..\..\..\includes\scicos_free.h" />
     <ClInclude Include="..\..\..\includes\scicos_malloc.h" />
     <ClInclude Include="..\..\..\includes\scicos_math.h" />
-    <ClInclude Include="..\..\..\includes\scicos_print.h" />
     <ClInclude Include="..\sciblk2.h" />
     <ClInclude Include="..\sciblk4.h" />
     <ClInclude Include="..\tree.h" />

@@ -182,7 +182,7 @@ SCICOS_BLOCKS_IMPEXP void automat(scicos_block *block, int flag)
                 {
                     break;
                 }
-            /*      scicos_print(_("\n Warning!: In Mode=%d, the jump condition #%d has crossed zero in negative dierction"),Mi,k+1); */
+            /*      sciprint(_("\n Warning!: In Mode=%d, the jump condition #%d has crossed zero in negative dierction"),Mi,k+1); */
         }
         ui = GetRealInPortPtrs(block, Mf);
         for (i = 0; i < NX; i++)

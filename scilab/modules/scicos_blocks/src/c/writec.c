@@ -21,7 +21,7 @@
 /*--------------------------------------------------------------------------*/
 #include <stdio.h>
 #include <string.h>
-#include "scicos_print.h"
+#include "sciprint.h"
 #include "machine.h"
 #include "charEncoding.h"
 #include "cvstr.h"
@@ -104,7 +104,7 @@ ipar[7:6+lfil] = character codes for file name
         wcfopen(fd, str, "wb");
         if (!fd )
         {
-            scicos_print(_("Could not open the file!\n"));
+            sciprint(_("Could not open the file!\n"));
             *flag = -3;
             return;
         }

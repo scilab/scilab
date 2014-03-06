@@ -200,10 +200,10 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(bindir)" \
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libsciscicos_algo_la_LIBADD =
 am__libsciscicos_algo_la_SOURCES_DIST = src/c/noscicos/noscicos.c \
-	src/c/tree.c src/c/scicos_malloc.c src/c/scicos_print.c \
-	src/c/import.c src/c/scicos.c src/c/scicos_free.c \
-	src/c/sciblk2.c src/c/sciblk4.c src/c/ezxml.c src/c/il_state.c \
-	src/c/il_sim.c src/c/createblklist.c src/c/var2sci.c \
+	src/c/tree.c src/c/scicos_malloc.c src/c/import.c \
+	src/c/scicos.c src/c/scicos_free.c src/c/sciblk2.c \
+	src/c/sciblk4.c src/c/ezxml.c src/c/il_state.c src/c/il_sim.c \
+	src/c/createblklist.c src/c/var2sci.c \
 	src/c/copyvarfromlistentry.c src/c/MlistGetFieldNumber.c \
 	src/c/extractblklist.c src/c/lsodar.c src/c/ddaskr.c \
 	src/fortran/scitovv.f src/fortran/vvtosci.f \
@@ -216,7 +216,6 @@ am__dirstamp = $(am__leading_dot)dirstamp
 am__objects_1 = src/c/noscicos/libsciscicos_algo_la-noscicos.lo
 am__objects_2 = src/c/libsciscicos_algo_la-tree.lo \
 	src/c/libsciscicos_algo_la-scicos_malloc.lo \
-	src/c/libsciscicos_algo_la-scicos_print.lo \
 	src/c/libsciscicos_algo_la-import.lo \
 	src/c/libsciscicos_algo_la-scicos.lo \
 	src/c/libsciscicos_algo_la-scicos_free.lo \
@@ -852,7 +851,6 @@ DISABLE_HELP_CLEAN = yes
 #### Source listing ######
 SCICOS_C_SOURCES = src/c/tree.c \
 src/c/scicos_malloc.c \
-src/c/scicos_print.c \
 src/c/import.c \
 src/c/scicos.c \
 src/c/scicos_free.c \
@@ -992,7 +990,6 @@ includes/scicos-def.h \
 includes/scicos_free.h \
 includes/scicos_malloc.h \
 includes/scicos_math.h \
-includes/scicos_print.h \
 includes/dynlib_scicos.h \
 includes/import.h
 
@@ -1327,8 +1324,6 @@ src/c/$(DEPDIR)/$(am__dirstamp):
 src/c/libsciscicos_algo_la-tree.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libsciscicos_algo_la-scicos_malloc.lo: src/c/$(am__dirstamp) \
-	src/c/$(DEPDIR)/$(am__dirstamp)
-src/c/libsciscicos_algo_la-scicos_print.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libsciscicos_algo_la-import.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
@@ -1912,7 +1907,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciscicos_algo_la-scicos.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciscicos_algo_la-scicos_free.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciscicos_algo_la-scicos_malloc.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciscicos_algo_la-scicos_print.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciscicos_algo_la-tree.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciscicos_algo_la-var2sci.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/noscicos/$(DEPDIR)/libsciscicos_algo_la-noscicos.Plo@am__quote@
@@ -1980,13 +1974,6 @@ src/c/libsciscicos_algo_la-scicos_malloc.lo: src/c/scicos_malloc.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/scicos_malloc.c' object='src/c/libsciscicos_algo_la-scicos_malloc.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libsciscicos_algo_la-scicos_malloc.lo `test -f 'src/c/scicos_malloc.c' || echo '$(srcdir)/'`src/c/scicos_malloc.c
-
-src/c/libsciscicos_algo_la-scicos_print.lo: src/c/scicos_print.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libsciscicos_algo_la-scicos_print.lo -MD -MP -MF src/c/$(DEPDIR)/libsciscicos_algo_la-scicos_print.Tpo -c -o src/c/libsciscicos_algo_la-scicos_print.lo `test -f 'src/c/scicos_print.c' || echo '$(srcdir)/'`src/c/scicos_print.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libsciscicos_algo_la-scicos_print.Tpo src/c/$(DEPDIR)/libsciscicos_algo_la-scicos_print.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/scicos_print.c' object='src/c/libsciscicos_algo_la-scicos_print.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libsciscicos_algo_la-scicos_print.lo `test -f 'src/c/scicos_print.c' || echo '$(srcdir)/'`src/c/scicos_print.c
 
 src/c/libsciscicos_algo_la-import.lo: src/c/import.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libsciscicos_algo_la-import.lo -MD -MP -MF src/c/$(DEPDIR)/libsciscicos_algo_la-import.Tpo -c -o src/c/libsciscicos_algo_la-import.lo `test -f 'src/c/import.c' || echo '$(srcdir)/'`src/c/import.c

@@ -3,5 +3,6 @@ LIBRARY    output_stream.dll
 
 EXPORTS
 ;
-; output_stream  
+; output_stream
+sciprint  
 basout_
