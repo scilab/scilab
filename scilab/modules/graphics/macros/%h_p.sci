@@ -924,11 +924,11 @@ function %h_p(h)
             "Foregroundcolor = "+sci2exp(h.foregroundcolor,0)
             "Label = "+h.label
             "Handle_Visible = "+sci2exp(h.handle_visible)
-            //"Position = "+sci2exp(h.position,0)
             "Visible = "+sci2exp(h.visible)
             "Callback = "+h.callback
             "Callback_Type = "+sci2exp(h.callback_type,0)
             "Checked =  "+sci2exp(h.checked)
+            "Icon =  "+sci2exp(h.icon)
             "Userdata = "+fmtuser_data(u)
             "Tag = "+h.tag
             ]
