@@ -49,6 +49,7 @@ public class XMLDomLoader {
         nameToGO.put("text", __GO_UI_TEXT__);
         nameToGO.put("checkbox", __GO_UI_CHECKBOX__);
         nameToGO.put("textfield", __GO_UI_EDIT__);
+        nameToGO.put("spinner", __GO_UI_SPINNER__);
         nameToGO.put("edit", __GO_UI_EDIT__);
         nameToGO.put("image", __GO_UI_IMAGE__);
         nameToGO.put("picture", __GO_UI_IMAGE__);
@@ -287,6 +288,7 @@ public class XMLDomLoader {
                     case __GO_UI_SLIDER__:
                     case __GO_UI_TABLE__:
                     case __GO_UI_TAB__:
+                    case __GO_UI_SPINNER__:
                     case __GO_UI_TEXT__: {
                         child = createUiControl(nodeType, parent, childNode);
                         break;
