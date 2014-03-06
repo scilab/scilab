@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2014-02-10 16:24+0100\n"
+"Revision-Date: 2014-03-06 10:33+0100\n"
 
 # File: src/c/convert.c, line: 1214
 # File: src/c/convert.c, line: 1239
@@ -700,6 +700,12 @@ msgstr ""
 #
 # File: macros/IntegerOp/SRFLIPFLOP.sci, line: 44
 msgid "SR flip-flop"
+msgstr ""
+
+#
+# File: macros/Linear/CLSS.sci, line: 71
+# File: macros/Linear/DLSS.sci, line: 71
+msgid "Matrix A is not square or D has wrong dimension"
 msgstr ""
 
 #

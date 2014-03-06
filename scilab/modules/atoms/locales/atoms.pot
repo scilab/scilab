@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2014-02-10 16:23+0100\n"
+"Revision-Date: 2014-03-06 10:33+0100\n"
 
 # File: macros/atomsAutoload.sci, line: 47
 # File: macros/atomsLoad.sci, line: 38
@@ -522,7 +522,7 @@ msgid "%s: Wrong value for input argument #%d.\n"
 msgstr ""
 
 #
-# File: macros/atomsGetConfig.sci, line: 97
+# File: macros/atomsGetConfig.sci, line: 119
 #, c-format
 msgid "%s: The config file ('%s') is not well formated at line %d\n"
 msgstr ""
@@ -852,14 +852,14 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/atomsRestoreConfig.sci, line: 31
+# File: macros/atomsRestoreConfig.sci, line: 34
 #, c-format
 msgid "File %s does not exist: could not restore previous configuration."
 msgstr ""
 
 #
-# File: macros/atomsSaveConfig.sci, line: 33
-# File: macros/atomsSaveConfig.sci, line: 39
+# File: macros/atomsSaveConfig.sci, line: 36
+# File: macros/atomsSaveConfig.sci, line: 42
 #, c-format
 msgid "config file saved to %s"
 msgstr ""
@@ -877,14 +877,14 @@ msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 
 #
-# File: macros/atomsSetConfig.sci, line: 74
+# File: macros/atomsSetConfig.sci, line: 78
 #, c-format
 msgid ""
 "%s: Wrong value for input configuration argument: True or False expected.\n"
 msgstr ""
 
 #
-# File: macros/atomsSetConfig.sci, line: 85
+# File: macros/atomsSetConfig.sci, line: 89
 #, c-format
 msgid "%s: Wrong key for input configuration argument.\n"
 msgstr ""
@@ -1600,6 +1600,121 @@ msgstr ""
 # File: macros/atoms_internals/atomsGetLeftListboxElts.sci, line: 111
 # File: macros/atoms_internals/atomsGetLeftListboxElts.sci, line: 215
 msgid "Main categories"
+msgstr ""
+
+#
+# File: macros/atoms_internals/atomsGetLeftListboxElts.sci, line: 225
+msgid "Aerospace"
+msgstr ""
+
+#
+# File: macros/atoms_internals/atomsGetLeftListboxElts.sci, line: 226
+msgid "Contributed Scilab Binaries"
+msgstr ""
+
+#
+# File: macros/atoms_internals/atomsGetLeftListboxElts.sci, line: 227
+msgid "Data Analysis And Statistics"
+msgstr ""
+
+#
+# File: macros/atoms_internals/atomsGetLeftListboxElts.sci, line: 228
+msgid "Data Handling"
+msgstr ""
+
+#
+# File: macros/atoms_internals/atomsGetLeftListboxElts.sci, line: 229
+msgid "Editor Styles"
+msgstr ""
+
+#
+# File: macros/atoms_internals/atomsGetLeftListboxElts.sci, line: 230
+msgid "Education"
+msgstr ""
+
+#
+# File: macros/atoms_internals/atomsGetLeftListboxElts.sci, line: 231
+msgid "GUI"
+msgstr ""
+
+#
+# File: macros/atoms_internals/atomsGetLeftListboxElts.sci, line: 232
+msgid "Graphics"
+msgstr ""
+
+#
+# File: macros/atoms_internals/atomsGetLeftListboxElts.sci, line: 233
+msgid "Graphs"
+msgstr ""
+
+#
+# File: macros/atoms_internals/atomsGetLeftListboxElts.sci, line: 234
+msgid "Image Processing"
+msgstr ""
+
+#
+# File: macros/atoms_internals/atomsGetLeftListboxElts.sci, line: 235
+msgid "Instruments Control"
+msgstr ""
+
+#
+# File: macros/atoms_internals/atomsGetLeftListboxElts.sci, line: 236
+msgid "Linear algebra"
+msgstr ""
+
+#
+# File: macros/atoms_internals/atomsGetLeftListboxElts.sci, line: 237
+msgid "Modeling and Control Tools"
+msgstr ""
+
+#
+# File: macros/atoms_internals/atomsGetLeftListboxElts.sci, line: 238
+msgid "Number theory"
+msgstr ""
+
+#
+# File: macros/atoms_internals/atomsGetLeftListboxElts.sci, line: 239
+msgid "Numerical Maths"
+msgstr ""
+
+#
+# File: macros/atoms_internals/atomsGetLeftListboxElts.sci, line: 240
+msgid "Optimization"
+msgstr ""
+
+#
+# File: macros/atoms_internals/atomsGetLeftListboxElts.sci, line: 241
+msgid "Physics"
+msgstr ""
+
+#
+# File: macros/atoms_internals/atomsGetLeftListboxElts.sci, line: 242
+msgid "Real-Time"
+msgstr ""
+
+#
+# File: macros/atoms_internals/atomsGetLeftListboxElts.sci, line: 243
+msgid "Scilab development"
+msgstr ""
+
+#
+# File: macros/atoms_internals/atomsGetLeftListboxElts.sci, line: 244
+msgid "Signal Processing"
+msgstr ""
+
+#
+# File: macros/atoms_internals/atomsGetLeftListboxElts.sci, line: 245
+msgid "Technical"
+msgstr ""
+
+#
+# File: macros/atoms_internals/atomsGetLeftListboxElts.sci, line: 246
+msgid "Tests"
+msgstr ""
+
+#
+# File: macros/atoms_internals/atomsGetLeftListboxElts.sci, line: 247
+msgid "Xcos"
 msgstr ""
 
 #
