@@ -23,7 +23,7 @@
 #include <memory.h>
 #include "scicos.h"
 #include "scicos_block4.h"
-#include "sciprint.h"
+#include "scicos_print.h"
 #include "localization.h"
 #include "MALLOC.h"
 #include "dynlib_scicos_blocks.h"
@@ -1211,7 +1211,7 @@ SCICOS_BLOCKS_IMPEXP void convert(scicos_block *block, int flag)
                     {
                         if (flag == 1)
                         {
-                            sciprint(_("overflow error"));
+                            scicos_print(_("overflow error"));
                             set_block_error(-4);
                             return;
                         }
@@ -1236,7 +1236,7 @@ SCICOS_BLOCKS_IMPEXP void convert(scicos_block *block, int flag)
                     {
                         if (flag == 1)
                         {
-                            sciprint(_("overflow error"));
+                            scicos_print(_("overflow error"));
                             set_block_error(-4);
                             return;
                         }
@@ -1261,7 +1261,7 @@ SCICOS_BLOCKS_IMPEXP void convert(scicos_block *block, int flag)
                     {
                         if (flag == 1)
                         {
-                            sciprint(_("overflow error"));
+                            scicos_print(_("overflow error"));
                             set_block_error(-4);
                             return;
                         }
@@ -1286,7 +1286,7 @@ SCICOS_BLOCKS_IMPEXP void convert(scicos_block *block, int flag)
                     {
                         if (flag == 1)
                         {
-                            sciprint(_("overflow error"));
+                            scicos_print(_("overflow error"));
                             set_block_error(-4);
                             return;
                         }
@@ -1311,7 +1311,7 @@ SCICOS_BLOCKS_IMPEXP void convert(scicos_block *block, int flag)
                     {
                         if (flag == 1)
                         {
-                            sciprint(_("overflow error"));
+                            scicos_print(_("overflow error"));
                             set_block_error(-4);
                             return;
                         }
@@ -1336,7 +1336,7 @@ SCICOS_BLOCKS_IMPEXP void convert(scicos_block *block, int flag)
                     {
                         if (flag == 1)
                         {
-                            sciprint(_("overflow error"));
+                            scicos_print(_("overflow error"));
                             set_block_error(-4);
                             return;
                         }
@@ -1361,7 +1361,7 @@ SCICOS_BLOCKS_IMPEXP void convert(scicos_block *block, int flag)
                     {
                         if (flag == 1)
                         {
-                            sciprint(_("overflow error"));
+                            scicos_print(_("overflow error"));
                             set_block_error(-4);
                             return;
                         }
@@ -1386,7 +1386,7 @@ SCICOS_BLOCKS_IMPEXP void convert(scicos_block *block, int flag)
                     {
                         if (flag == 1)
                         {
-                            sciprint(_("overflow error"));
+                            scicos_print(_("overflow error"));
                             set_block_error(-4);
                             return;
                         }
@@ -1410,7 +1410,7 @@ SCICOS_BLOCKS_IMPEXP void convert(scicos_block *block, int flag)
                     {
                         if (flag == 1)
                         {
-                            sciprint(_("overflow error"));
+                            scicos_print(_("overflow error"));
                             set_block_error(-4);
                             return;
                         }
@@ -1435,7 +1435,7 @@ SCICOS_BLOCKS_IMPEXP void convert(scicos_block *block, int flag)
                     {
                         if (flag == 1)
                         {
-                            sciprint(_("overflow error"));
+                            scicos_print(_("overflow error"));
                             set_block_error(-4);
                             return;
                         }
@@ -1460,7 +1460,7 @@ SCICOS_BLOCKS_IMPEXP void convert(scicos_block *block, int flag)
                     {
                         if (flag == 1)
                         {
-                            sciprint(_("overflow error"));
+                            scicos_print(_("overflow error"));
                             set_block_error(-4);
                             return;
                         }
@@ -1485,7 +1485,7 @@ SCICOS_BLOCKS_IMPEXP void convert(scicos_block *block, int flag)
                     {
                         if (flag == 1)
                         {
-                            sciprint(_("overflow error"));
+                            scicos_print(_("overflow error"));
                             set_block_error(-4);
                             return;
                         }
@@ -1509,7 +1509,7 @@ SCICOS_BLOCKS_IMPEXP void convert(scicos_block *block, int flag)
                     {
                         if (flag == 1)
                         {
-                            sciprint(_("overflow error"));
+                            scicos_print(_("overflow error"));
                             set_block_error(-4);
                             return;
                         }
@@ -1533,7 +1533,7 @@ SCICOS_BLOCKS_IMPEXP void convert(scicos_block *block, int flag)
                     {
                         if (flag == 1)
                         {
-                            sciprint(_("overflow error"));
+                            scicos_print(_("overflow error"));
                             set_block_error(-4);
                             return;
                         }
@@ -1558,7 +1558,7 @@ SCICOS_BLOCKS_IMPEXP void convert(scicos_block *block, int flag)
                     {
                         if (flag == 1)
                         {
-                            sciprint(_("overflow error"));
+                            scicos_print(_("overflow error"));
                             set_block_error(-4);
                             return;
                         }
@@ -1582,7 +1582,7 @@ SCICOS_BLOCKS_IMPEXP void convert(scicos_block *block, int flag)
                     {
                         if (flag == 1)
                         {
-                            sciprint(_("overflow error"));
+                            scicos_print(_("overflow error"));
                             set_block_error(-4);
                             return;
                         }
@@ -1606,7 +1606,7 @@ SCICOS_BLOCKS_IMPEXP void convert(scicos_block *block, int flag)
                     {
                         if (flag == 1)
                         {
-                            sciprint(_("overflow error"));
+                            scicos_print(_("overflow error"));
                             set_block_error(-4);
                             return;
                         }
@@ -1630,7 +1630,7 @@ SCICOS_BLOCKS_IMPEXP void convert(scicos_block *block, int flag)
                     {
                         if (flag == 1)
                         {
-                            sciprint(_("overflow error"));
+                            scicos_print(_("overflow error"));
                             set_block_error(-4);
                             return;
                         }
@@ -1655,7 +1655,7 @@ SCICOS_BLOCKS_IMPEXP void convert(scicos_block *block, int flag)
                     {
                         if (flag == 1)
                         {
-                            sciprint(_("overflow error"));
+                            scicos_print(_("overflow error"));
                             set_block_error(-4);
                             return;
                         }
@@ -1680,7 +1680,7 @@ SCICOS_BLOCKS_IMPEXP void convert(scicos_block *block, int flag)
                     {
                         if (flag == 1)
                         {
-                            sciprint(_("overflow error"));
+                            scicos_print(_("overflow error"));
                             set_block_error(-4);
                             return;
                         }
@@ -1705,7 +1705,7 @@ SCICOS_BLOCKS_IMPEXP void convert(scicos_block *block, int flag)
                     {
                         if (flag == 1)
                         {
-                            sciprint(_("overflow error"));
+                            scicos_print(_("overflow error"));
                             set_block_error(-4);
                             return;
                         }
@@ -1730,7 +1730,7 @@ SCICOS_BLOCKS_IMPEXP void convert(scicos_block *block, int flag)
                     {
                         if (flag == 1)
                         {
-                            sciprint(_("overflow error"));
+                            scicos_print(_("overflow error"));
                             set_block_error(-4);
                             return;
                         }
@@ -1755,7 +1755,7 @@ SCICOS_BLOCKS_IMPEXP void convert(scicos_block *block, int flag)
                     {
                         if (flag == 1)
                         {
-                            sciprint(_("overflow error"));
+                            scicos_print(_("overflow error"));
                             set_block_error(-4);
                             return;
                         }
@@ -1780,7 +1780,7 @@ SCICOS_BLOCKS_IMPEXP void convert(scicos_block *block, int flag)
                     {
                         if (flag == 1)
                         {
-                            sciprint(_("overflow error"));
+                            scicos_print(_("overflow error"));
                             set_block_error(-4);
                             return;
                         }
@@ -1805,7 +1805,7 @@ SCICOS_BLOCKS_IMPEXP void convert(scicos_block *block, int flag)
                     {
                         if (flag == 1)
                         {
-                            sciprint(_("overflow error"));
+                            scicos_print(_("overflow error"));
                             set_block_error(-4);
                             return;
                         }
@@ -1830,7 +1830,7 @@ SCICOS_BLOCKS_IMPEXP void convert(scicos_block *block, int flag)
                     {
                         if (flag == 1)
                         {
-                            sciprint(_("overflow error"));
+                            scicos_print(_("overflow error"));
                             set_block_error(-4);
                             return;
                         }
@@ -1855,7 +1855,7 @@ SCICOS_BLOCKS_IMPEXP void convert(scicos_block *block, int flag)
                     {
                         if (flag == 1)
                         {
-                            sciprint(_("overflow error"));
+                            scicos_print(_("overflow error"));
                             set_block_error(-4);
                             return;
                         }

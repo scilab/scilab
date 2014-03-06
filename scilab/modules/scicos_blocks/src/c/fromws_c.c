@@ -25,7 +25,7 @@
 #include <math.h>
 #include "stack-c.h"
 #include "scicos.h"
-#include "sciprint.h"
+#include "scicos_print.h"
 #include "cvstr.h"
 #include "MALLOC.h"
 #include "mopen.h"
@@ -179,7 +179,7 @@ SCICOS_BLOCKS_IMPEXP void fromws_c(scicos_block *block, int flag)
             if (!Ishm(&fd, &Ytype, &nPoints, &mY, &nY, &YsubType))
             {
                 Coserror(_("Invalid variable type.\n"));
-                /*sciprint(_("Invalid variable type.\n"));
+                /*scicos_print(_("Invalid variable type.\n"));
                 set_block_error(-3); */
                 C2F(mclose)(&fd, &res);
                 return;
@@ -187,7 +187,7 @@ SCICOS_BLOCKS_IMPEXP void fromws_c(scicos_block *block, int flag)
             if (!((Ytype == 1) || (Ytype == 8)))
             {
                 Coserror(_("Invalid variable type.\n"));
-                /*sciprint(_("Invalid variable type.\n"));
+                /*scicos_print(_("Invalid variable type.\n"));
                 set_block_error(-3);*/
                 C2F(mclose)(&fd, &res);
                 return;
@@ -205,7 +205,7 @@ SCICOS_BLOCKS_IMPEXP void fromws_c(scicos_block *block, int flag)
         else
         {
             Coserror(_("Invalid variable type.\n"));
-            /*sciprint(_("Invalid variable type.\n"));
+            /*scicos_print(_("Invalid variable type.\n"));
             set_block_error(-3);*/
             C2F(mclose)(&fd, &res);
             return;
@@ -255,7 +255,7 @@ SCICOS_BLOCKS_IMPEXP void fromws_c(scicos_block *block, int flag)
                 case 1:
                     if (ytype != 81)
                     {
-                        sciprint(_("Output should be of int8 type.\n"));
+                        scicos_print(_("Output should be of int8 type.\n"));
                         set_block_error(-3);
                         C2F(mclose)(&fd, &res);
                         return;
@@ -465,7 +465,7 @@ SCICOS_BLOCKS_IMPEXP void fromws_c(scicos_block *block, int flag)
 
         if ((Ydim[6] != 1) | (Ydim[9] != 0))
         {
-            sciprint(_("The Time vector type is not ""double"".\n"));
+            scicos_print(_("The Time vector type is not ""double"".\n"));
             set_block_error(-3);
             *work = NULL;
             scicos_free(ptr->work);

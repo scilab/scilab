@@ -22,7 +22,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
-#include "sciprint.h"
+#include "scicos_print.h"
 #include "charEncoding.h"
 #include "mput.h"
 #include "localization.h"
@@ -123,7 +123,7 @@ ipar[7:6+lfil] = character codes for file name
         wcfopen(fd, "/dev/audio", "wb");
         if (!fd )
         {
-            sciprint(_("Could not open /dev/audio!\n"));
+            scicos_print(_("Could not open /dev/audio!\n"));
             *flag = -3;
             return;
         }
