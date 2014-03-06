@@ -14,29 +14,29 @@
 // - doc (optional): the prefs xml document where to set the values
 //                   (take care: in this case xmlWrite is not called)
 //
-function setPrefValues(xpath, kv, doc)
+function setPreferencesValue(xpath, kv, doc)
     rhs = argn(2);
 
     if (rhs ~= 2 & rhs ~= 3) then
-        error(msprintf(gettext("%s: Wrong number of input arguments: %d or %d expected.\n"), "setPrefValues", 2, 3));
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d or %d expected.\n"), "setPreferencesValue", 2, 3));
     end
 
     if type(xpath) <> 10 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"), "setPrefValues", 1));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"), "setPreferencesValue", 1));
     end
 
     if type(kv) <> 10 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"), "setPrefValues", 2));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"), "setPreferencesValue", 2));
     end
 
     if (size(kv, "r") ~= 2) then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: a 2xN maxtrix expected.\n"), "setPrefValues", 2));
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: a 2xN maxtrix expected.\n"), "setPreferencesValue", 2));
     end
 
     if rhs == 2 then
         doc = xmlRead(SCIHOME + "/XConfiguration.xml");
     elseif typeof(doc) ~= "XMLDoc" then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: A XMLDoc expected.\n"), "setPrefValues", 3));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: A XMLDoc expected.\n"), "setPreferencesValue", 3));
     end
 
     try
@@ -45,14 +45,14 @@ function setPrefValues(xpath, kv, doc)
         if rhs == 2 then
             xmlDelete(doc);
         end
-        error(msprintf(gettext("%s: Invalid XPath request.\n"), "setPrefValues"));
+        error(msprintf(gettext("%s: Invalid XPath request.\n"), "setPreferencesValue"));
     end
 
     if xp.size ~= 1 then
         if rhs == 2 then
             xmlDelete(doc);
         end
-        error(msprintf(gettext("%s: Invalid XPath request."), "setPrefValues"));
+        error(msprintf(gettext("%s: Invalid XPath request."), "setPreferencesValue"));
     end
 
     node = xp(1);
@@ -60,7 +60,7 @@ function setPrefValues(xpath, kv, doc)
         if rhs == 2 then
             xmlDelete(doc);
         end
-        error(msprintf(gettext("%s: Target node is not a XML_ELEMENT_NODE."), "setPrefValues"));
+        error(msprintf(gettext("%s: Target node is not a XML_ELEMENT_NODE."), "setPreferencesValue"));
     end
 
     attr = node.attributes;
@@ -72,7 +72,7 @@ function setPrefValues(xpath, kv, doc)
             if rhs == 2 then
                 xmlDelete(doc);
             end
-            error(msprintf(gettext("%s: Invalid attribute name: %s."), "setPrefValues", kv(1, i)));
+            error(msprintf(gettext("%s: Invalid attribute name: %s."), "setPreferencesValue", kv(1, i)));
         end
     end
 

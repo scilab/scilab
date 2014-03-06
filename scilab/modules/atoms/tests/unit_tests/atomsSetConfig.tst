@@ -46,7 +46,7 @@ assert_checkequal(atomsGetConfig(),ref);
 
 // Exhaustive key list test
 // =============================================================================
-ref=struct(	"useProxy","False",..
+ref=struct("useProxy","False",..
 "proxyUser","scilab",..
 "proxyPort","42",..
 "proxyPassword","scilab",..

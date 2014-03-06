@@ -12,25 +12,25 @@
 // - attributes is a matrix of strings containing the attributes names
 // - doc (optional): the prefs xml document where to get the values
 //
-function values = getPrefValues(xpath, attributes, doc)
+function values = getPreferencesValue(xpath, attributes, doc)
     rhs = argn(2);
 
     if (rhs ~= 2 & rhs ~= 3) then
-        error(msprintf(gettext("%s: Wrong number of input arguments: %d or %d expected.\n"), "getPrefValues", 2, 3));
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d or %d expected.\n"), "getPreferencesValue", 2, 3));
     end
 
     if type(xpath) <> 10 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"), "getPrefValues", 1));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"), "getPreferencesValue", 1));
     end
 
     if type(attributes) <> 10 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"), "getPrefValues", 2));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"), "getPreferencesValue", 2));
     end
 
     if rhs == 2 then
         doc = xmlRead(SCIHOME + "/XConfiguration.xml");
     elseif typeof(doc) ~= "XMLDoc" then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: A XMLDoc expected.\n"), "getPrefValues", 3));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: A XMLDoc expected.\n"), "getPreferencesValue", 3));
     end
 
     try
@@ -39,14 +39,14 @@ function values = getPrefValues(xpath, attributes, doc)
         if rhs == 2 then
             xmlDelete(doc);
         end
-        error(msprintf(gettext("%s: Invalid XPath request.\n"), "getPrefValues"));
+        error(msprintf(gettext("%s: Invalid XPath request.\n"), "getPreferencesValue"));
     end
 
     if xp.size ~= 1 then
         if rhs == 2 then
             xmlDelete(doc);
         end
-        error(msprintf(gettext("%s: Invalid XPath request."), "getPrefValues"));
+        error(msprintf(gettext("%s: Invalid XPath request."), "getPreferencesValue"));
     end
 
     node = xp(1);
@@ -54,7 +54,7 @@ function values = getPrefValues(xpath, attributes, doc)
         if rhs == 2 then
             xmlDelete(doc);
         end
-        error(msprintf(gettext("%s: Target node is not a XML_ELEMENT_NODE."), "getPrefValues"));
+        error(msprintf(gettext("%s: Target node is not a XML_ELEMENT_NODE."), "getPreferencesValue"));
     end
 
     attr = node.attributes;
@@ -67,7 +67,7 @@ function values = getPrefValues(xpath, attributes, doc)
             if rhs == 2 then
                 xmlDelete(doc);
             end
-            error(msprintf(gettext("%s: Invalid attribute name: %s."), "getPrefValues", a));
+            error(msprintf(gettext("%s: Invalid attribute name: %s."), "getPreferencesValue", a));
         end
     end
 

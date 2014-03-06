@@ -38,16 +38,16 @@ assert_checkerror("atomsSetConfig(""scilab"",""true"")","scilab: Wrong key for i
 assert_checkequal(atomsGetConfig(),ref);
 // Exhaustive key list test
 // =============================================================================
-ref=struct(	"useProxy","False",..
-		"proxyUser","scilab",..
-		"proxyPort","42",..
-		"proxyPassword","scilab",..
-		"proxyHost","myproxy",..
-		"offline","False",..
-		"downloadTool",config_downloadTool,..
-		"autoloadAddAfterInstall","False",..
-		"autoload","True",..
-		"Verbose","True");
+ref=struct("useProxy","False",..
+"proxyUser","scilab",..
+"proxyPort","42",..
+"proxyPassword","scilab",..
+"proxyHost","myproxy",..
+"offline","False",..
+"downloadTool",config_downloadTool,..
+"autoloadAddAfterInstall","False",..
+"autoload","True",..
+"Verbose","True");
 assert_checkequal(string(atomsSetConfig("useProxy","False")),"0");
 assert_checkequal(string(atomsSetConfig("proxyHost","myproxy")),"1");
 assert_checkequal(string(atomsSetConfig("proxyPort","42")),"1");

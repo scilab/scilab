@@ -26,7 +26,7 @@ function atomsSaveConfig(force)
     pathsystemuser = atomsPath("system", "user");
 
     proxy_attrs = ["enabled", "host", "port", "user", "password"];
-    setPrefValues("//web/body/previous-proxy", [proxy_attrs ; getPrefValues("//web/body/proxy", proxy_attrs)]);
+    setPreferencesValue("//web/body/previous-proxy", [proxy_attrs ; getPreferencesValue("//web/body/proxy", proxy_attrs)]);
 
     if isfile(pathsystemuser + "config.bak") then
         if ~force then

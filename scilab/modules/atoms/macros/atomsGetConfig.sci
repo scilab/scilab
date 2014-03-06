@@ -62,7 +62,7 @@ function result = atomsGetConfig(field)
     else
         i = find(pref_attrs(1, :) == field);
         if ~isempty(i) then
-            result = getPrefValues("//web/body/proxy", pref_attrs(2, i));
+            result = getPreferencesValue("//web/body/proxy", pref_attrs(2, i));
             return;
         end
 
@@ -80,7 +80,7 @@ function result = atomsGetConfig(field)
         config_lines = mgetl(atoms_directory + "config");
     else
         if (rhs == 0)
-            values = getPrefValues("//web/body/proxy", pref_attrs(2, :));
+            values = getPreferenceValue("//web/body/proxy", pref_attrs(2, :));
             for i = 1:size(pref_attrs, "c")
                 if ~isempty(values(i)) then
                     if values(i) == "true" then
@@ -121,7 +121,7 @@ function result = atomsGetConfig(field)
     end
 
     if (rhs == 0)
-        values = getPrefValues("//web/body/proxy", pref_attrs(2, :));
+        values = getPreferencesValue("//web/body/proxy", pref_attrs(2, :));
         for i = 1:size(pref_attrs, "c")
             if ~isempty(values(i)) then
                 if values(i) == "true" then
