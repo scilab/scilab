@@ -74,7 +74,7 @@ static const char* propertiesNames[] =
     "tooltipstring",
     "layout",
     "layout_options",
-    "borders",
+    "border",
     "groupname",
     "title_position",
     "title_scroll",

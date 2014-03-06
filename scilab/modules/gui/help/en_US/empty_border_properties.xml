@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="empty_border_properties">
+    <refnamediv>
+        <refname>Empty border properties</refname>
+        <refpurpose>Description of the empty borders properties.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            emptyBorder = createBorder("empty")
+            emptyBorder = createBorder("empty", top, left, bottom, right)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>top</term>
+                <listitem>
+                    <para>Real integer value</para>
+                    <para>The width (in pixels) of the top of the border.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>left</term>
+                <listitem>
+                    <para>Real integer value</para>
+                    <para>The width (in pixels) of the left of the border.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>bottom</term>
+                <listitem>
+                    <para>Real integer value</para>
+                    <para>The width (in pixels) of the bottom of the border.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>right</term>
+                <listitem>
+                    <para>Real integer value</para>
+                    <para>The width (in pixels) of the right of the border.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>emptyBorder</term>
+                <listitem>
+                    <para>The created border.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            This function creates an empty border for <literal>frame</literal> uicontrols. See <link linkend="uicontrol_properties">uicontrol properties</link> for more details.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="createBorder">createBorder</link>
+            </member>
+            <member>
+                <link linkend="createBorderFont">createBorderFont</link>
+            </member>
+            <member>
+                <link linkend="uicontrol">uicontrol</link>
+            </member>
+            <member>
+                <link linkend="uicontrol_properties">uicontrol_properties</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>
+                    Function <function>createBorder</function> introduced.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

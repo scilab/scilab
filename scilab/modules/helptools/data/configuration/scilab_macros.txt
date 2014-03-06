@@ -1805,7 +1805,7 @@ contour2d
 contourf
 coolcolormap
 coppercolormap
-createBorders
+createBorder
 createConstraints
 createFontBorder
 createLayoutOptions

@@ -234,7 +234,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="src\c\getHandleProperty\get_background_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_bar_layout_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_bar_width_property.c" />
-    <ClCompile Include="src\c\getHandleProperty\get_borders_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_border_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_constraints_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_datatips_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_box_property.c" />
@@ -349,7 +349,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="src\c\getHandleProperty\get_toolbar_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_use_color_material_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_ambient_color_property.c" />
-    <ClCompile Include="src\c\getHandleProperty\set_borders_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_border_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_constraints_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_default_axes_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_diffuse_color_property.c" />

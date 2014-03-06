@@ -189,7 +189,7 @@ int get_layout_property(void* _pvCtx, int iObjUID);
 int get_constraints_property(void* _pvCtx, int iObjUID);
 int get_rect_property(void* _pvCtx, int iObjUID);
 int get_layout_options_property(void* _pvCtx, int iObjUID);
-int get_borders_property(void* _pvCtx, int iObjUID);
+int get_border_property(void* _pvCtx, int iObjUID);
 int get_groupname_property(void* _pvCtx, int iObjUID);
 int get_title_position_property(void* _pvCtx, int iObjUID);
 int get_title_scroll_property(void* _pvCtx, int iObjUID);

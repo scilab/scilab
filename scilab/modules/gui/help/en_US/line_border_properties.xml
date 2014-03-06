@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="line_border_properties">
+    <refnamediv>
+        <refname>Line border properties</refname>
+        <refpurpose>Description of the line borders properties.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            lineBorder = createBorder("line", color)
+            lineBorder = createBorder("line", color, thickness)
+            lineBorder = createBorder("line", color, thickness, rounded)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>color</term>
+                <listitem>
+                    <para>String</para>
+                    <para>The name of the color of the border.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>thickness</term>
+                <listitem>
+                    <para>Real integer value</para>
+                    <para>The thickness (in pixels) of the border.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>rounded</term>
+                <listitem>
+                    <para>Boolean or String</para>
+                    <para>This property indicates if the created border angles must be rounded or not.</para>
+                    <para>Available string values are <literal>"on"</literal> and <literal>"off"</literal>.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>lineBorder</term>
+                <listitem>
+                    <para>The created border.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            This function creates a line border for <literal>frame</literal> uicontrols. See <link linkend="uicontrol_properties">uicontrol properties</link> for more details.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="createBorder">createBorder</link>
+            </member>
+            <member>
+                <link linkend="createBorderFont">createBorderFont</link>
+            </member>
+            <member>
+                <link linkend="uicontrol">uicontrol</link>
+            </member>
+            <member>
+                <link linkend="uicontrol_properties">uicontrol_properties</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>
+                    Function <function>createBorder</function> introduced.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

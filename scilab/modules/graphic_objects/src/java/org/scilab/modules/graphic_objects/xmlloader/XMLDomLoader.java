@@ -67,7 +67,7 @@ public class XMLDomLoader {
 
         nameToGO.put("axes", __GO_AXES__);
 
-        nameToGO.put("borders", __GO_UI_FRAME_BORDER__);
+        nameToGO.put("border", __GO_UI_FRAME_BORDER__);
 
         /* internal */
         nameToGO.put("out", __NODE_OUT__);

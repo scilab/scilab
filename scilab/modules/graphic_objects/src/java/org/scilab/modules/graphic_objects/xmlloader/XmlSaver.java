@@ -221,11 +221,11 @@ public class XmlSaver {
         return elemAxes;
     }
 
-    private static Element createBorders(Document doc, Integer id) {
-        return createBorders(doc, id, "borders");
+    private static Element createBorder(Document doc, Integer id) {
+        return createBorder(doc, id, "border");
     }
 
-    private static Element createBorders(Document doc, Integer id, String borderName) {
+    private static Element createBorder(Document doc, Integer id, String borderName) {
         GraphicController controller = GraphicController.getController();
         FrameBorder border = (FrameBorder)controller.getObjectFromId(id);
 
@@ -233,72 +233,72 @@ public class XmlSaver {
             return null;
         }
 
-        Element elemBorders = doc.createElement(borderName);
+        Element elemBorder = doc.createElement(borderName);
 
-        setAttribute(elemBorders, "style", createAttribute(border.getStyleAsEnum().toString().toLowerCase()), "");
+        setAttribute(elemBorder, "style", createAttribute(border.getStyleAsEnum().toString().toLowerCase()), "");
 
         switch (border.getStyleAsEnum()) {
             case BEVEL: {
-                setAttribute(elemBorders, "type", createAttribute(border.getBorderType()), createAttribute(defaultBorder.getBorderType()));
-                setAttribute(elemBorders, "hlout", createAttribute(border.getHlOut()), createAttribute(defaultBorder.getHlOut()));
-                setAttribute(elemBorders, "hlin", createAttribute(border.getHlIn()), createAttribute(defaultBorder.getHlIn()));
-                setAttribute(elemBorders, "shadowout", createAttribute(border.getShadowOut()), createAttribute(defaultBorder.getShadowOut()));
-                setAttribute(elemBorders, "shadowin", createAttribute(border.getShadowIn()), createAttribute(defaultBorder.getShadowIn()));
+                setAttribute(elemBorder, "type", createAttribute(border.getBorderType()), createAttribute(defaultBorder.getBorderType()));
+                setAttribute(elemBorder, "hlout", createAttribute(border.getHlOut()), createAttribute(defaultBorder.getHlOut()));
+                setAttribute(elemBorder, "hlin", createAttribute(border.getHlIn()), createAttribute(defaultBorder.getHlIn()));
+                setAttribute(elemBorder, "shadowout", createAttribute(border.getShadowOut()), createAttribute(defaultBorder.getShadowOut()));
+                setAttribute(elemBorder, "shadowin", createAttribute(border.getShadowIn()), createAttribute(defaultBorder.getShadowIn()));
                 break;
             }
             case COMPOUND: {
-                Element out = createBorders(doc, border.getOutBorder(), "out");
+                Element out = createBorder(doc, border.getOutBorder(), "out");
                 if (out != null) {
-                    appendChild(elemBorders, out);
+                    appendChild(elemBorder, out);
                 }
 
-                Element in = createBorders(doc, border.getInBorder(), "in");
+                Element in = createBorder(doc, border.getInBorder(), "in");
                 if (in != null) {
-                    appendChild(elemBorders, in);
+                    appendChild(elemBorder, in);
                 }
                 break;
             }
             case EMPTY: {
-                setAttribute(elemBorders, "position", createAttribute(border.getPosition()), createAttribute(defaultBorder.getPosition()));
+                setAttribute(elemBorder, "position", createAttribute(border.getPosition()), createAttribute(defaultBorder.getPosition()));
                 break;
             }
             case ETCHED: {
-                setAttribute(elemBorders, "type", createAttribute(border.getBorderType()), createAttribute(defaultBorder.getBorderType()));
-                setAttribute(elemBorders, "hl", createAttribute(border.getHlOut()), createAttribute(defaultBorder.getHlOut()));
-                setAttribute(elemBorders, "shadow", createAttribute(border.getShadowOut()), createAttribute(defaultBorder.getShadowOut()));
+                setAttribute(elemBorder, "type", createAttribute(border.getBorderType()), createAttribute(defaultBorder.getBorderType()));
+                setAttribute(elemBorder, "hl", createAttribute(border.getHlOut()), createAttribute(defaultBorder.getHlOut()));
+                setAttribute(elemBorder, "shadow", createAttribute(border.getShadowOut()), createAttribute(defaultBorder.getShadowOut()));
                 break;
             }
             case LINE: {
-                setAttribute(elemBorders, "color", createAttribute(border.getColor()), createAttribute(defaultBorder.getColor()));
-                setAttribute(elemBorders, "thickness", createAttribute(border.getThickness()), createAttribute(defaultBorder.getThickness()));
-                setAttribute(elemBorders, "rounded", createAttribute(border.getRounded()), createAttribute(defaultBorder.getRounded()));
+                setAttribute(elemBorder, "color", createAttribute(border.getColor()), createAttribute(defaultBorder.getColor()));
+                setAttribute(elemBorder, "thickness", createAttribute(border.getThickness()), createAttribute(defaultBorder.getThickness()));
+                setAttribute(elemBorder, "rounded", createAttribute(border.getRounded()), createAttribute(defaultBorder.getRounded()));
                 break;
             }
             case MATTE: {
-                setAttribute(elemBorders, "position", createAttribute(border.getPosition()), createAttribute(defaultBorder.getPosition()));
-                setAttribute(elemBorders, "color", createAttribute(border.getColor()), createAttribute(defaultBorder.getColor()));
+                setAttribute(elemBorder, "position", createAttribute(border.getPosition()), createAttribute(defaultBorder.getPosition()));
+                setAttribute(elemBorder, "color", createAttribute(border.getColor()), createAttribute(defaultBorder.getColor()));
                 break;
             }
             case SOFTBEVEL: {
-                setAttribute(elemBorders, "type", createAttribute(border.getBorderType()), createAttribute(defaultBorder.getBorderType()));
-                setAttribute(elemBorders, "hlout", createAttribute(border.getHlOut()), createAttribute(defaultBorder.getHlOut()));
-                setAttribute(elemBorders, "hlin", createAttribute(border.getHlIn()), createAttribute(defaultBorder.getHlIn()));
-                setAttribute(elemBorders, "shadowout", createAttribute(border.getShadowOut()), createAttribute(defaultBorder.getShadowOut()));
-                setAttribute(elemBorders, "shadowin", createAttribute(border.getShadowIn()), createAttribute(defaultBorder.getShadowIn()));
+                setAttribute(elemBorder, "type", createAttribute(border.getBorderType()), createAttribute(defaultBorder.getBorderType()));
+                setAttribute(elemBorder, "hlout", createAttribute(border.getHlOut()), createAttribute(defaultBorder.getHlOut()));
+                setAttribute(elemBorder, "hlin", createAttribute(border.getHlIn()), createAttribute(defaultBorder.getHlIn()));
+                setAttribute(elemBorder, "shadowout", createAttribute(border.getShadowOut()), createAttribute(defaultBorder.getShadowOut()));
+                setAttribute(elemBorder, "shadowin", createAttribute(border.getShadowIn()), createAttribute(defaultBorder.getShadowIn()));
                 break;
             }
             case TITLED: {
-                setAttribute(elemBorders, "title", createAttribute(border.getTitle()), createAttribute(defaultBorder.getTitle()));
-                setAttribute(elemBorders, "justification", createAttribute(border.getJustification()), createAttribute(defaultBorder.getJustification()));
-                setAttribute(elemBorders, "titleposition", createAttribute(border.getTitlePosition()), createAttribute(defaultBorder.getTitlePosition()));
-                setAttribute(elemBorders, "fontname", createAttribute(border.getFontName()), createAttribute(defaultBorder.getFontName()));
-                setAttribute(elemBorders, "fontangle", createAttribute(border.getFontAngle()), createAttribute(defaultBorder.getFontAngle()));
-                setAttribute(elemBorders, "fontsize", createAttribute(border.getFontSize()), createAttribute(defaultBorder.getFontSize()));
-                setAttribute(elemBorders, "fontweight", createAttribute(border.getFontWeight()), createAttribute(defaultBorder.getFontWeight()));
-                setAttribute(elemBorders, "color", createAttribute(border.getColor()), createAttribute(defaultBorder.getColor()));
-                Element title = createBorders(doc, border.getTitleBorder(), "title");
+                setAttribute(elemBorder, "title", createAttribute(border.getTitle()), createAttribute(defaultBorder.getTitle()));
+                setAttribute(elemBorder, "justification", createAttribute(border.getJustification()), createAttribute(defaultBorder.getJustification()));
+                setAttribute(elemBorder, "titleposition", createAttribute(border.getTitlePosition()), createAttribute(defaultBorder.getTitlePosition()));
+                setAttribute(elemBorder, "fontname", createAttribute(border.getFontName()), createAttribute(defaultBorder.getFontName()));
+                setAttribute(elemBorder, "fontangle", createAttribute(border.getFontAngle()), createAttribute(defaultBorder.getFontAngle()));
+                setAttribute(elemBorder, "fontsize", createAttribute(border.getFontSize()), createAttribute(defaultBorder.getFontSize()));
+                setAttribute(elemBorder, "fontweight", createAttribute(border.getFontWeight()), createAttribute(defaultBorder.getFontWeight()));
+                setAttribute(elemBorder, "color", createAttribute(border.getColor()), createAttribute(defaultBorder.getColor()));
+                Element title = createBorder(doc, border.getTitleBorder(), "title");
                 if (title != null) {
-                    appendChild(elemBorders, title);
+                    appendChild(elemBorder, title);
                 }
                 break;
             }
@@ -307,7 +307,7 @@ public class XmlSaver {
                 break;
             }
         }
-        return elemBorders;
+        return elemBorder;
     }
 
     private static Element createUicontrol(Document doc, Integer id, boolean reverseChildren) {
@@ -407,11 +407,11 @@ public class XmlSaver {
 
         //only for frame type
         if (uic.getStyleAsEnum() == UicontrolStyle.FRAME) {
-            //Borders
-            Integer iBorders = uic.getFrameBorder();
-            Element borders = createBorders(doc, iBorders);
-            if (borders != null) {
-                appendChild(elemUi, createBorders(doc, iBorders));
+            //Border
+            Integer iBorder = uic.getFrameBorder();
+            Element border = createBorder(doc, iBorder);
+            if (border != null) {
+                appendChild(elemUi, createBorder(doc, iBorder));
             }
 
             //Layout

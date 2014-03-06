@@ -31,7 +31,7 @@
 #include "graphicObjectProperties.h"
 #include "BorderLayoutType.h"
 /*------------------------------------------------------------------------*/
-int clearBorders(int iObjUID);
+int clearBorder(int iObjUID);
 int createBorder(void* _pvCtx, int* _piAddrList, int _iParent);
 int createLineBorder(void* _pvCtx, int* _piAddrList, int _iObjUID);
 int createBevelBorder(void* _pvCtx, int* _piAddrList, int _iObjUID);
@@ -43,12 +43,12 @@ int createEmptyBorder(void* _pvCtx, int* _piAddrList, int _iObjUID);
 int createCompoundBorder(void* _pvCtx, int* _piAddrList, int _iObjUID);
 int createMatteBorder(void* _pvCtx, int* _piAddrList, int _iObjUID);
 /*------------------------------------------------------------------------*/
-int set_borders_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_border_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     //[] or tlist
     if (valueType == sci_matrix)
     {
-        return clearBorders(iObjUID);
+        return clearBorder(iObjUID);
     }
     else
     {
@@ -94,7 +94,7 @@ int createBorder(void* _pvCtx, int* _piAddrList, int _iParent)
     //depend of kind of tlist
     if (strcmp(pstType, "NoBorder") == 0)
     {
-        return clearBorders(_iParent);
+        return clearBorder(_iParent);
     }
     else if (strcmp(pstType, "LineBorder") == 0)
     {
@@ -133,7 +133,7 @@ int createBorder(void* _pvCtx, int* _piAddrList, int _iParent)
     return 0;
 }
 /*------------------------------------------------------------------------*/
-int clearBorders(int iObjUID)
+int clearBorder(int iObjUID)
 {
     BOOL status = FALSE;
     int iBorder = 0;

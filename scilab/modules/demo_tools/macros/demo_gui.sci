@@ -59,9 +59,9 @@ function demo_gui()
     callback_close_str = "delete(get(""scilab_demo_fig""));";
     callback_close_str = callback_close_str + clear_vars_str + "clearglobal demolistlock demolist;";
 
-    b = get("frame_1", "borders");
+    b = get("frame_1", "border");
     b.title = _("Demonstrations");
-    set("frame_1", "borders", b);
+    set("frame_1", "border", b);
     set("listbox_1", "string", demolist(:, 1));
     set("listbox_1", "userdata", demolist);
 
@@ -120,9 +120,9 @@ function script_path = demo_gui_update()
 
         frame = get("frame_" + string(my_selframe_num+1));
 
-        b = frame.borders;
+        b = frame.border;
         b.title = my_data(my_index(1,1),1)
-        frame.borders = b;
+        frame.border = b;
 
         listbox = get("listbox_" + string(my_selframe_num+1));
         listbox.string = demo_fig.userdata.subdemolist(:, 1);

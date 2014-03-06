@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2014-03-13 10:58+0100\n"
+"Revision-Date: 2014-03-13 11:00+0100\n"
 
 # File: sci_gateway/c/gw_gui.c, line: 89
 #, c-format
@@ -4281,9 +4281,84 @@ msgid ""
 msgstr ""
 
 #
+# File: macros/createBorder.sci, line: 17
 # File: macros/createBorderFont.sci, line: 20
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected."
+msgstr ""
+
+#
+# File: macros/createBorder.sci, line: 25
+# File: macros/createBorder.sci, line: 161
+# File: macros/createBorder.sci, line: 200
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected."
+msgstr ""
+
+#
+# File: macros/createBorder.sci, line: 42
+# File: macros/createBorder.sci, line: 277
+# File: macros/createBorder.sci, line: 282
+# File: macros/createBorder.sci, line: 287
+# File: macros/createBorder.sci, line: 292
+# File: macros/createBorder.sci, line: 327
+# File: macros/createBorder.sci, line: 333
+# File: macros/createBorder.sci, line: 339
+# File: macros/createBorder.sci, line: 345
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A integer expected.\n"
+msgstr ""
+
+#
+# File: macros/createBorder.sci, line: 68
+# File: macros/createBorder.sci, line: 114
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d, %d or %d expected."
+msgstr ""
+
+#
+# File: macros/createBorder.sci, line: 172
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A integer or a string expected.\n"
+msgstr ""
+
+#
+# File: macros/createBorder.sci, line: 206
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A border or a string expected.\n"
+msgstr ""
+
+#
+# File: macros/createBorder.sci, line: 249
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A Font Border expected.\n"
+msgstr ""
+
+#
+# File: macros/createBorder.sci, line: 267
+# File: macros/createBorder.sci, line: 299
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d or %d expected."
+msgstr ""
+
+#
+# File: macros/createBorder.sci, line: 309
+# File: macros/createBorder.sci, line: 314
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A border expected.\n"
+msgstr ""
+
+#
+# File: macros/createBorder.sci, line: 321
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected."
+msgstr ""
+
+#
+# File: macros/createBorder.sci, line: 356
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr ""
 
 #

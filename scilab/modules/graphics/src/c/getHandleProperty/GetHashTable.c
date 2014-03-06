@@ -242,7 +242,7 @@ static getHashTableCouple propertyGetTable[] =
     {"constraints", get_constraints_property},
     {"rect", get_rect_property},
     {"layout_options", get_layout_options_property},
-    {"borders", get_borders_property},
+    {"border", get_border_property},
     {"groupname", get_groupname_property},
     {"title_position", get_title_position_property},
     {"title_scroll", get_title_scroll_property},

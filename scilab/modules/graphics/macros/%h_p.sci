@@ -963,7 +963,7 @@ function %h_p(h)
                 l = l(1);
                 l = l(1);
             end
-            b = h.borders;
+            b = h.border;
             if type(b) == 16 then //tlist
                 b = b(1);
                 b = b(1);
@@ -1021,7 +1021,7 @@ function %h_p(h)
                 "Layout = "+sci2exp(h.layout)
                 "Layout_options = "+sci2exp(l)
                 "Constraints = "+sci2exp(c)
-                "Borders = "+sci2exp(b)
+                "Border = "+sci2exp(b)
                 "Margins = "+sci2exp(h.margins)
                 "Groupname = "+sci2exp(h.groupname)
                 "Scrollable = "+sci2exp(h.scrollable)

@@ -52,7 +52,7 @@
     <refsection>
         <title>Description</title>
         <para>
-        This function creates a "Border Font" to customize borders in <literal>frame</literal> uicontrols. See <link linkend="border_properties">border properties</link> for more details.
+        This function creates a "Border Font" to customize borders in <literal>frame</literal> uicontrols. See <link linkend="createBorder">createBorder</link> and related pages for more details.
         </para>
     </refsection>
     <refsection>

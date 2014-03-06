@@ -1274,10 +1274,10 @@
     <ClCompile Include="src\c\getHandleProperty\get_layout_options_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\c\getHandleProperty\get_borders_property.c">
+    <ClCompile Include="src\c\getHandleProperty\get_border_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\c\getHandleProperty\set_borders_property.c">
+    <ClCompile Include="src\c\getHandleProperty\set_border_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\c\getHandleProperty\get_groupname_property.c">

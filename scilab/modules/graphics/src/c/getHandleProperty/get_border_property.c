@@ -29,19 +29,19 @@
 #include "returnPropertyList.h"
 
 /*------------------------------------------------------------------------*/
-int getBorders(void* _pvCtx, int _iVar, int* _piParent, int _iPos, int _iObjUID);
-int getNoBorders(void* _pvCtx, int _iVar, int* _piParent, int _iPos, int _iObjUID);
-int getLineBorders(void* _pvCtx, int _iVar, int* _piParent, int _iPos, int _iObjUID);
-int getBevelBorders(void* _pvCtx, int _iVar, int* _piParent, int _iPos, int _iObjUID);
-int getSoftBevelBorders(void* _pvCtx, int _iVar, int* _piParent, int _iPos, int _iObjUID);
-int getCommonBevelBorders(void* _pvCtx, int _iVar, int* _piParent, int _iPos, int _iObjUID, int _iBevel);
-int getEtchedBorders(void* _pvCtx, int _iVar, int* _piParent, int _iPos, int _iObjUID);
-int getTitledBorders(void* _pvCtx, int _iVar, int* _piParent, int _iPos, int _iObjUID);
-int getEmptyBorders(void* _pvCtx, int _iVar, int* _piParent, int _iPos, int _iObjUID);
-int getCompoundBorders(void* _pvCtx, int _iVar, int* _piParent, int _iPos, int _iObjUID);
-int getMatteBorders(void* _pvCtx, int _iVar, int* _piParent, int _iPos, int _iObjUID);
+int getBorder(void* _pvCtx, int _iVar, int* _piParent, int _iPos, int _iObjUID);
+int getNoBorder(void* _pvCtx, int _iVar, int* _piParent, int _iPos, int _iObjUID);
+int getLineBorder(void* _pvCtx, int _iVar, int* _piParent, int _iPos, int _iObjUID);
+int getBevelBorder(void* _pvCtx, int _iVar, int* _piParent, int _iPos, int _iObjUID);
+int getSoftBevelBorder(void* _pvCtx, int _iVar, int* _piParent, int _iPos, int _iObjUID);
+int getCommonBevelBorder(void* _pvCtx, int _iVar, int* _piParent, int _iPos, int _iObjUID, int _iBevel);
+int getEtchedBorder(void* _pvCtx, int _iVar, int* _piParent, int _iPos, int _iObjUID);
+int getTitledBorder(void* _pvCtx, int _iVar, int* _piParent, int _iPos, int _iObjUID);
+int getEmptyBorder(void* _pvCtx, int _iVar, int* _piParent, int _iPos, int _iObjUID);
+int getCompoundBorder(void* _pvCtx, int _iVar, int* _piParent, int _iPos, int _iObjUID);
+int getMatteBorder(void* _pvCtx, int _iVar, int* _piParent, int _iPos, int _iObjUID);
 /*------------------------------------------------------------------------*/
-int get_borders_property(void* _pvCtx, int iObjUID)
+int get_border_property(void* _pvCtx, int iObjUID)
 {
     int iBorder = 0;
     int* piBorder = &iBorder;
@@ -50,14 +50,14 @@ int get_borders_property(void* _pvCtx, int iObjUID)
     getGraphicObjectProperty(iObjUID, __GO_UI_FRAME_BORDER__, jni_int, (void **)&piBorder);
     if (piBorder == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "borders");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "border");
         return -1;
     }
 
-    return getBorders(_pvCtx, iRhs, 0, 0, iBorder);
+    return getBorder(_pvCtx, iRhs, 0, 0, iBorder);
 }
 /*------------------------------------------------------------------------*/
-int getBorders(void* _pvCtx, int _iVar, int* _piParent, int _iPos, int _iObjUID)
+int getBorder(void* _pvCtx, int _iVar, int* _piParent, int _iPos, int _iObjUID)
 {
     int iStyle = 0;
     int* piStyle = &iStyle;
@@ -65,7 +65,7 @@ int getBorders(void* _pvCtx, int _iVar, int* _piParent, int _iPos, int _iObjUID)
     getGraphicObjectProperty(_iObjUID, __GO_UI_FRAME_BORDER_STYLE__, jni_int, (void **)&piStyle);
     if (piStyle == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "borders");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "border");
         return -1;
     }
 
@@ -74,47 +74,47 @@ int getBorders(void* _pvCtx, int _iVar, int* _piParent, int _iPos, int _iObjUID)
     {
         default:
         {
-            return getNoBorders(_pvCtx, _iVar, _piParent, _iPos, _iObjUID);
+            return getNoBorder(_pvCtx, _iVar, _piParent, _iPos, _iObjUID);
         }
         break;
         case LINE :
         {
-            return getLineBorders(_pvCtx, _iVar, _piParent, _iPos, _iObjUID);
+            return getLineBorder(_pvCtx, _iVar, _piParent, _iPos, _iObjUID);
         }
         break;
         case BEVEL :
         {
-            return getBevelBorders(_pvCtx, _iVar, _piParent, _iPos, _iObjUID);
+            return getBevelBorder(_pvCtx, _iVar, _piParent, _iPos, _iObjUID);
         }
         break;
         case SOFTBEVEL :
         {
-            return getSoftBevelBorders(_pvCtx, _iVar, _piParent, _iPos, _iObjUID);
+            return getSoftBevelBorder(_pvCtx, _iVar, _piParent, _iPos, _iObjUID);
         }
         break;
         case ETCHED :
         {
-            return getEtchedBorders(_pvCtx, _iVar, _piParent, _iPos, _iObjUID);
+            return getEtchedBorder(_pvCtx, _iVar, _piParent, _iPos, _iObjUID);
         }
         break;
         case TITLED :
         {
-            return getTitledBorders(_pvCtx, _iVar, _piParent, _iPos, _iObjUID);
+            return getTitledBorder(_pvCtx, _iVar, _piParent, _iPos, _iObjUID);
         }
         break;
         case EMPTY :
         {
-            return getEmptyBorders(_pvCtx, _iVar, _piParent, _iPos, _iObjUID);
+            return getEmptyBorder(_pvCtx, _iVar, _piParent, _iPos, _iObjUID);
         }
         break;
         case COMPOUND :
         {
-            return getCompoundBorders(_pvCtx, _iVar, _piParent, _iPos, _iObjUID);
+            return getCompoundBorder(_pvCtx, _iVar, _piParent, _iPos, _iObjUID);
         }
         break;
         case MATTE :
         {
-            return getMatteBorders(_pvCtx, _iVar, _piParent, _iPos, _iObjUID);
+            return getMatteBorder(_pvCtx, _iVar, _piParent, _iPos, _iObjUID);
         }
         break;
     }
@@ -122,7 +122,7 @@ int getBorders(void* _pvCtx, int _iVar, int* _piParent, int _iPos, int _iObjUID)
     return 0;
 }
 /*------------------------------------------------------------------------*/
-int getNoBorders(void* _pvCtx, int _iVar, int* _piParent, int _iPos, int _iObjUID)
+int getNoBorder(void* _pvCtx, int _iVar, int* _piParent, int _iPos, int _iObjUID)
 {
     SciErr sciErr;
     int* piAddrList = NULL;
@@ -150,7 +150,7 @@ int getNoBorders(void* _pvCtx, int _iVar, int* _piParent, int _iPos, int _iObjUI
     return 0;
 }
 /*------------------------------------------------------------------------*/
-int getLineBorders(void* _pvCtx, int _iVar, int* _piParent, int _iPos, int _iObjUID)
+int getLineBorder(void* _pvCtx, int _iVar, int* _piParent, int _iPos, int _iObjUID)
 {
     SciErr sciErr;
     int* piAddrList = NULL;
@@ -166,7 +166,7 @@ int getLineBorders(void* _pvCtx, int _iVar, int* _piParent, int _iPos, int _iObj
     getGraphicObjectProperty(_iObjUID, __GO_UI_FRAME_BORDER_COLOR__, jni_string, (void **)&pstColor);
     if (pstColor == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "borders");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "border");
         return -1;
     }
 
@@ -231,17 +231,17 @@ int getLineBorders(void* _pvCtx, int _iVar, int* _piParent, int _iPos, int _iObj
     return 0;
 }
 /*------------------------------------------------------------------------*/
-int getBevelBorders(void* _pvCtx, int _iVar, int* _piParent, int _iPos, int _iObjUID)
+int getBevelBorder(void* _pvCtx, int _iVar, int* _piParent, int _iPos, int _iObjUID)
 {
-    return getCommonBevelBorders(_pvCtx, _iVar, _piParent, _iPos, _iObjUID, 1);
+    return getCommonBevelBorder(_pvCtx, _iVar, _piParent, _iPos, _iObjUID, 1);
 }
 /*------------------------------------------------------------------------*/
-int getSoftBevelBorders(void* _pvCtx, int _iVar, int* _piParent, int _iPos, int _iObjUID)
+int getSoftBevelBorder(void* _pvCtx, int _iVar, int* _piParent, int _iPos, int _iObjUID)
 {
-    return getCommonBevelBorders(_pvCtx, _iVar, _piParent, _iPos, _iObjUID, 2);
+    return getCommonBevelBorder(_pvCtx, _iVar, _piParent, _iPos, _iObjUID, 2);
 }
 /*------------------------------------------------------------------------*/
-int getCommonBevelBorders(void* _pvCtx, int _iVar, int* _piParent, int _iPos, int _iObjUID, int _iBevel)
+int getCommonBevelBorder(void* _pvCtx, int _iVar, int* _piParent, int _iPos, int _iObjUID, int _iBevel)
 {
     SciErr sciErr;
     int* piAddrList = NULL;
@@ -263,7 +263,7 @@ int getCommonBevelBorders(void* _pvCtx, int _iVar, int* _piParent, int _iPos, in
     getGraphicObjectProperty(_iObjUID, __GO_UI_FRAME_BORDER_TYPE__, jni_int, (void **)&piType);
     if (piType == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "borders");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "border");
         return -1;
     }
 
@@ -363,7 +363,7 @@ int getCommonBevelBorders(void* _pvCtx, int _iVar, int* _piParent, int _iPos, in
     return 0;
 }
 /*------------------------------------------------------------------------*/
-int getEtchedBorders(void* _pvCtx, int _iVar, int* _piParent, int _iPos, int _iObjUID)
+int getEtchedBorder(void* _pvCtx, int _iVar, int* _piParent, int _iPos, int _iObjUID)
 {
     SciErr sciErr;
     int* piAddrList = NULL;
@@ -451,7 +451,7 @@ int getEtchedBorders(void* _pvCtx, int _iVar, int* _piParent, int _iPos, int _iO
     return 0;
 }
 /*------------------------------------------------------------------------*/
-int getTitledBorders(void* _pvCtx, int _iVar, int* _piParent, int _iPos, int _iObjUID)
+int getTitledBorder(void* _pvCtx, int _iVar, int* _piParent, int _iPos, int _iObjUID)
 {
     SciErr sciErr;
     int* piAddrList = NULL;
@@ -534,7 +534,7 @@ int getTitledBorders(void* _pvCtx, int _iVar, int* _piParent, int _iPos, int _iO
     if (piChildBorder)
     {
         //get child information and fill current list
-        if (getBorders(_pvCtx, _iVar, piAddrList, 2, iChildBorder))
+        if (getBorder(_pvCtx, _iVar, piAddrList, 2, iChildBorder))
         {
             return -1;
         }
@@ -620,7 +620,7 @@ int getTitledBorders(void* _pvCtx, int _iVar, int* _piParent, int _iPos, int _iO
     return 0;
 }
 /*------------------------------------------------------------------------*/
-int getEmptyBorders(void* _pvCtx, int _iVar, int* _piParent, int _iPos, int _iObjUID)
+int getEmptyBorder(void* _pvCtx, int _iVar, int* _piParent, int _iPos, int _iObjUID)
 {
     SciErr sciErr;
     int* piAddrList = NULL;
@@ -680,7 +680,7 @@ int getEmptyBorders(void* _pvCtx, int _iVar, int* _piParent, int _iPos, int _iOb
     return 0;
 }
 /*------------------------------------------------------------------------*/
-int getCompoundBorders(void* _pvCtx, int _iVar, int* _piParent, int _iPos, int _iObjUID)
+int getCompoundBorder(void* _pvCtx, int _iVar, int* _piParent, int _iPos, int _iObjUID)
 {
     SciErr sciErr;
     int* piAddrList = NULL;
@@ -717,12 +717,12 @@ int getCompoundBorders(void* _pvCtx, int _iVar, int* _piParent, int _iPos, int _
     if (iListSize > 1)
     {
         //get child information and fill current list
-        if (getBorders(_pvCtx, _iVar, piAddrList, 2, iChildBorderOut))
+        if (getBorder(_pvCtx, _iVar, piAddrList, 2, iChildBorderOut))
         {
             return -1;
         }
 
-        if (getBorders(_pvCtx, _iVar, piAddrList, 3, iChildBorderIn))
+        if (getBorder(_pvCtx, _iVar, piAddrList, 3, iChildBorderIn))
         {
             return -1;
         }
@@ -731,7 +731,7 @@ int getCompoundBorders(void* _pvCtx, int _iVar, int* _piParent, int _iPos, int _
     return 0;
 }
 /*------------------------------------------------------------------------*/
-int getMatteBorders(void* _pvCtx, int _iVar, int* _piParent, int _iPos, int _iObjUID)
+int getMatteBorder(void* _pvCtx, int _iVar, int* _piParent, int _iPos, int _iObjUID)
 {
     SciErr sciErr;
     int* piAddrList = NULL;
