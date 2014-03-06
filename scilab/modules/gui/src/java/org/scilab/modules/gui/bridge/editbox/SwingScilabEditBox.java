@@ -14,11 +14,13 @@
 
 package org.scilab.modules.gui.bridge.editbox;
 
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_BACKGROUNDCOLOR__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SCROLLABLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MAX__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_BACKGROUNDCOLOR__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MIN__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING__;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -28,6 +30,7 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.AbstractAction;
 import javax.swing.InputMap;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import javax.swing.KeyStroke;
@@ -84,6 +87,8 @@ public class SwingScilabEditBox extends JScrollPane implements SwingViewObject, 
     private SimpleAttributeSet docAttributes = new SimpleAttributeSet();
 
     private JTextPane textPane = new JTextPane();
+    //use to disable wordwarp
+    private JPanel noWrapPanel = new JPanel(new BorderLayout());
 
     private Object enterKeyAction;
     private Object tabKeyAction;
@@ -500,10 +505,23 @@ public class SwingScilabEditBox extends JScrollPane implements SwingViewObject, 
                 }
                 break;
             }
+            case __GO_UI_SCROLLABLE__ : {
+                setScrollable((Boolean)value);
+                break;
+            }
             default: {
                 SwingViewWidget.update(this, property, value);
                 break;
             }
+        }
+    }
+
+    public void setScrollable(Boolean scrollable) {
+        if (scrollable) {
+            setViewportView(noWrapPanel);
+            noWrapPanel.add(textPane);
+        } else {
+            setViewportView(textPane);
         }
     }
 

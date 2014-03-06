@@ -528,9 +528,9 @@ public class GOBuilder {
                         }
                     }
 
-                    item = xmlAttributes.get("columns");
-                    if (item != null) {
-                        controller.setProperty(uic, __GO_UI_MAX__, Double.parseDouble(item));
+                    item = xmlAttributes.get("scrollable");
+                    if (item != null && (item.equals("true") || item.equals("on"))) {
+                        controller.setProperty(uic, __GO_UI_SCROLLABLE__, true);
                     }
 
                     //callback

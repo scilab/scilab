@@ -394,9 +394,6 @@ public class XmlSaver {
                 appendChild(elemUi, createBorders(doc, iBorders));
             }
 
-            //Scrollable
-            setAttribute(elemUi, "scrollable", createAttribute(uic.getScrollable()), createAttribute(defaultUi.getScrollable()));
-
             //Layout
             setAttribute(elemUi, "layout", createAttribute(uic.getLayout()), createAttribute(defaultUi.getLayout()));
             //Layout_options
@@ -406,6 +403,11 @@ public class XmlSaver {
             } else if (uic.getLayoutAsEnum() == LayoutType.BORDER) {
                 setAttribute(elemUi, "borderoptpadding", createAttribute(uic.getBorderOptPadding()), createAttribute(defaultUi.getBorderOptPadding()));
             }
+        }
+
+        if (uic.getStyleAsEnum() == UicontrolStyle.FRAME || uic.getStyleAsEnum() == UicontrolStyle.EDIT) {
+            //Scrollable
+            setAttribute(elemUi, "scrollable", createAttribute(uic.getScrollable()), createAttribute(defaultUi.getScrollable()));
         }
 
         controller.deleteObject(defaultUi.getIdentifier());
