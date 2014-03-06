@@ -318,6 +318,8 @@ char *downloadFile(char *url, char *dest, char *username, char *password, char *
             res = curl_easy_setopt(curl, CURLOPT_PROXY, proxyHost);
             if (res != CURLE_OK)
             {
+                FREE(proxyHost);
+                FREE(proxyUserPwd);
                 FREE(filename);
                 Scierror(999, _("Failed to set proxy host [%s]\n"), errorBuffer);
                 return NULL;
@@ -326,6 +328,8 @@ char *downloadFile(char *url, char *dest, char *username, char *password, char *
             res = curl_easy_setopt(curl, CURLOPT_PROXYPORT, proxyPort);
             if (res != CURLE_OK)
             {
+                FREE(proxyHost);
+                FREE(proxyUserPwd);
                 FREE(filename);
                 Scierror(999, _("Failed to set proxy port [%s]\n"), errorBuffer);
                 return NULL;
@@ -335,12 +339,16 @@ char *downloadFile(char *url, char *dest, char *username, char *password, char *
                 res = curl_easy_setopt(curl, CURLOPT_PROXYUSERPWD, proxyUserPwd);
                 if (res != CURLE_OK)
                 {
+                    FREE(proxyHost);
+                    FREE(proxyUserPwd);
                     FREE(filename);
                     Scierror(999, _("Failed to set proxy user:password [%s]\n"), errorBuffer);
                     return NULL;
                 }
             }
 
+            FREE(proxyHost);
+            FREE(proxyUserPwd);
         }
     } /* end of the set of the proxy */
 

@@ -216,9 +216,10 @@ void getDocAndCtxt(xmlDocPtr * doc, xmlXPathContextPtr * xpathCtxt)
             FREE(shortfilename_xml_conf);
             shortfilename_xml_conf = NULL;
         }
-        FREE(path);
-        path = NULL;
     }
+
+    FREE(path);
+    path = NULL;
 
     if (*doc == NULL)
     {
@@ -402,9 +403,10 @@ void setPrefAttributesValues(const char * xpath, const char ** kv, const unsigne
             FREE(shortfilename_xml_conf);
             shortfilename_xml_conf = NULL;
         }
-        FREE(path);
-        path = NULL;
     }
+
+    FREE(path);
+    path = NULL;
 
     xmlFreeDoc(doc);
 }
