@@ -23,7 +23,7 @@
 #include "HistoryManager.h"
 #include "scicurdir.h"
 
-void InitializePreferences()
+void InitializePreferences(int useCWD)
 {
     const ScilabPreferences * prefs = getScilabPreferences();
     int ieee = 0;
@@ -83,7 +83,7 @@ void InitializePreferences()
     }
 
     // Set current directory
-    if (prefs->startup_dir_use)
+    if (!useCWD && prefs->startup_dir_use)
     {
         if (stricmp(prefs->startup_dir_use, "current"))
         {

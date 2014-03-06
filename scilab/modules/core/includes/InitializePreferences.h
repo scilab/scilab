@@ -13,6 +13,6 @@
 #ifndef __INITIALIZEPREFERENCES_H__
 #define __INITIALIZEPREFERENCES_H__
 
-void InitializePreferences();
+void InitializePreferences(int useCWD);
 
 #endif // __INITIALIZEPREFERENCES_H__

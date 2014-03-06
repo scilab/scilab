@@ -158,7 +158,7 @@ int realmain(int no_startup_flag_l, char *initial_script, InitScriptType initial
     }
     /* execute the initial script and enter scilab */
 
-    InitializePreferences();
+    InitializePreferences(initial_script != NULL);
 
 #if !defined(_DEBUG) && defined(_MSC_VER)
     /* if scilab crashs by a exception , we try to quit properly */
