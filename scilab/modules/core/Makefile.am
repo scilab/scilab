@@ -94,6 +94,7 @@ src/c/setieee.c \
 src/c/setlines.c \
 src/c/setformat.c \
 src/c/InitializePreferences.c \
+src/c/saveCWDInPreferences.c \
 src/c/sci_tools.c \
 src/c/getmaxMALLOC.c \
 src/c/sci_mem_alloc.c \

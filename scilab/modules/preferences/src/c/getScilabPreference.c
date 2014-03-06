@@ -58,6 +58,9 @@ void initPrefs()
     scilabPref.format = NULL;
     scilabPref.formatWidth = NULL;
     scilabPref.language = NULL;
+    scilabPref.startup_dir_use = NULL;
+    scilabPref.startup_dir_default = NULL;
+    scilabPref.startup_dir_previous = NULL;
 }
 /*--------------------------------------------------------------------------*/
 void reloadScilabPreferences()
@@ -118,6 +121,18 @@ void clearScilabPreferences()
         {
             FREE((void*)scilabPref.language);
         }
+        if (scilabPref.startup_dir_use)
+        {
+            FREE((void*)scilabPref.startup_dir_use);
+        }
+        if (scilabPref.startup_dir_default)
+        {
+            FREE((void*)scilabPref.startup_dir_default);
+        }
+        if (scilabPref.startup_dir_previous)
+        {
+            FREE((void*)scilabPref.startup_dir_previous);
+        }
         initPrefs();
     }
     isInit = 0;
@@ -150,6 +165,9 @@ void getPrefs()
         scilabPref.format = strdup(getAttribute(doc, xpathCtxt, FORMAT_XPATH));
         scilabPref.formatWidth = strdup(getAttribute(doc, xpathCtxt, FORMATWIDTH_XPATH));
         scilabPref.language = strdup(getAttribute(doc, xpathCtxt, LANGUAGE_XPATH));
+        scilabPref.startup_dir_use = strdup(getAttribute(doc, xpathCtxt, STARTUP_DIR_USE_XPATH));
+        scilabPref.startup_dir_default = strdup(getAttribute(doc, xpathCtxt, STARTUP_DIR_DEFAULT_XPATH));
+        scilabPref.startup_dir_previous = strdup(getAttribute(doc, xpathCtxt, STARTUP_DIR_PREVIOUS_XPATH));
 
         xmlXPathFreeContext(xpathCtxt);
         xmlFreeDoc(doc);
@@ -224,7 +242,7 @@ void getDocAndCtxt(xmlDocPtr * doc, xmlXPathContextPtr * xpathCtxt)
     }
 }
 /*--------------------------------------------------------------------------*/
-char * getAttributeValue(const char * xpath, const char * attribute)
+char * getPrefAttributeValue(const char * xpath, const char * attribute)
 {
     xmlDocPtr doc = NULL;
     xmlXPathContextPtr xpathCtxt = NULL;
@@ -263,20 +281,17 @@ char * getAttributeValue(const char * xpath, const char * attribute)
     return ret;
 }
 /*--------------------------------------------------------------------------*/
-char ** getAttributesValues(const char * xpath, const char ** attributes, const unsigned int attrLen)
+char ** getPrefAttributesValues(const char * xpath, const char ** attributes, const unsigned int attrLen)
 {
     xmlDocPtr doc = NULL;
     xmlXPathContextPtr xpathCtxt = NULL;
     xmlXPathObjectPtr xpathObj = NULL;
     char ** ret = NULL;
-    unsigned int xlen = 0;
 
-    if (!xpath || !attributes)
+    if (!xpath || !attributes || !attrLen)
     {
         return NULL;
     }
-
-    xlen = strlen(xpath);
 
     getDocAndCtxt(&doc, &xpathCtxt);
     if (doc == NULL)
@@ -289,7 +304,7 @@ char ** getAttributesValues(const char * xpath, const char ** attributes, const 
     if (xpathObj && xpathObj->nodesetval && xpathObj->nodesetval->nodeMax)
     {
         int i;
-        xmlNode * node = (xmlAttrPtr)xpathObj->nodesetval->nodeTab[0];
+        xmlNode * node = (xmlNode*)xpathObj->nodesetval->nodeTab[0];
         for (i = 0; i < attrLen; i++)
         {
             xmlAttr * attrs = xmlHasProp(node, (const xmlChar *)attributes[i]);
@@ -320,4 +335,76 @@ char ** getAttributesValues(const char * xpath, const char ** attributes, const 
     xmlFreeDoc(doc);
 
     return ret;
+}
+/*--------------------------------------------------------------------------*/
+void setPrefAttributesValues(const char * xpath, const char ** kv, const unsigned int kvLen)
+{
+    xmlDocPtr doc = NULL;
+    xmlXPathContextPtr xpathCtxt = NULL;
+    xmlXPathObjectPtr xpathObj = NULL;
+    char * SCIHOME = NULL;
+    char * path = NULL;
+    BOOL bConvert = FALSE;
+    char * shortfilename_xml_conf = NULL;
+
+    if (!xpath || !kv || !kvLen)
+    {
+        return;
+    }
+
+    getDocAndCtxt(&doc, &xpathCtxt);
+    if (doc == NULL)
+    {
+        return;
+    }
+
+    xpathObj = xmlXPathEval((const xmlChar*)xpath, xpathCtxt);
+    if (xpathObj && xpathObj->nodesetval && xpathObj->nodesetval->nodeMax)
+    {
+        int i;
+        xmlNode * node = (xmlNode*)xpathObj->nodesetval->nodeTab[0];
+        for (i = 0; i < kvLen / 2; i++)
+        {
+            xmlAttr * attrs = xmlHasProp(node, (const xmlChar *)kv[2 * i]);
+            if (attrs)
+            {
+                attrs->children->content = xmlStrdup((const xmlChar *)kv[2 * i + 1]);
+            }
+            else
+            {
+                break;
+            }
+        }
+    }
+
+    if (xpathObj)
+    {
+        xmlXPathFreeObject(xpathObj);
+    }
+
+    xmlXPathFreeContext(xpathCtxt);
+
+    // Save
+    xmlThrDefIndentTreeOutput(1);
+
+    SCIHOME = getSCIHOME();
+    path = (char *)MALLOC(strlen(SCIHOME) + strlen(XCONF));
+
+    sprintf(path, XCONF, SCIHOME);
+    FREE(SCIHOME);
+
+    if (FileExist(path))
+    {
+        shortfilename_xml_conf = getshortpathname(path, &bConvert);
+        if (shortfilename_xml_conf)
+        {
+            xmlSaveFormatFile(shortfilename_xml_conf, doc, 2);
+            FREE(shortfilename_xml_conf);
+            shortfilename_xml_conf = NULL;
+        }
+        FREE(path);
+        path = NULL;
+    }
+
+    xmlFreeDoc(doc);
 }

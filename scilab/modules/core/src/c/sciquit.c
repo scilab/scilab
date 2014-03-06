@@ -32,12 +32,14 @@
 #include "scilabmode.h"
 #ifndef _MSC_VER
 #include "initConsoleMode.h"
+#include "saveCWDInPreferences.h"
 #endif
 /*--------------------------------------------------------------------------*/
 int ExitScilab(void)
 {
     scilabMode CurrentScilabMode;
 
+    saveCWDInPreferences();
     clearScilabPreferences();
     TerminateCorePart1();
 

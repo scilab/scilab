@@ -29,6 +29,9 @@ typedef struct
     const char * format;
     const char * formatWidth;
     const char * language;
+    const char * startup_dir_use;
+    const char * startup_dir_default;
+    const char * startup_dir_previous;
 } ScilabPreferences;
 
 #define HEAPSIZE_XPATH (const xmlChar*)"//general/body/java-heap-memory/@heap-size"
@@ -43,11 +46,15 @@ typedef struct
 #define FORMAT_XPATH (const xmlChar*)"//general/body/environment/@printing-format"
 #define FORMATWIDTH_XPATH (const xmlChar*)"//general/body/environment/@width"
 #define LANGUAGE_XPATH (const xmlChar*)"//general/body/languages/@lang"
+#define STARTUP_DIR_USE_XPATH (const xmlChar*)"//general/body/startup/@use"
+#define STARTUP_DIR_DEFAULT_XPATH (const xmlChar*)"//general/body/startup/@default"
+#define STARTUP_DIR_PREVIOUS_XPATH (const xmlChar*)"//general/body/startup/@previous"
 
 PREFERENCES_SCILAB_IMPEXP const ScilabPreferences * getScilabPreferences(void);
 PREFERENCES_SCILAB_IMPEXP void reloadScilabPreferences(void);
 PREFERENCES_SCILAB_IMPEXP void clearScilabPreferences(void);
-PREFERENCES_SCILAB_IMPEXP char * getAttributeValue(const char * xpath, const char * attribute);
-PREFERENCES_SCILAB_IMPEXP char ** getAttributesValues(const char * xpath, const char ** attributes, const unsigned int attrLen);
+PREFERENCES_SCILAB_IMPEXP char * getPrefAttributeValue(const char * xpath, const char * attribute);
+PREFERENCES_SCILAB_IMPEXP char ** getPrefAttributesValues(const char * xpath, const char ** attributes, const unsigned int attrLen);
+PREFERENCES_SCILAB_IMPEXP void setAttributesValues(const char * xpath, const char ** attributes, const unsigned int kvLen);
 
 #endif // __GETSCILABPREFERENCES_H__

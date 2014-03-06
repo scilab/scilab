@@ -115,7 +115,7 @@ int getProxyValues(char **proxyHost, long *proxyPort, char **proxyUserPwd)
 {
     const char * attrs[] = {"enabled", "host", "port", "user", "password"};
     const unsigned int N = sizeof(attrs) / sizeof(char*);
-    char ** values = getAttributesValues("//web/body/proxy", attrs, N);
+    char ** values = getPrefAttributesValues("//web/body/proxy", attrs, N);
 
     if (!values)
     {

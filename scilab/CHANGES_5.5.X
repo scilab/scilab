@@ -399,6 +399,8 @@ Scilab Bug Fixes
 
 * Bug #10856 fixed - analpf did not return the right result.
 
+* Bug #10932 fixed - Startup directory was not saved/restored in preferences.
+
 * Bug #10936 fixed - Scilab hung with invalid strf in plot2d.
 
 * Bug #10998 fixed - matrix*hypermatrix and hypermatrix*matrix operations failed.

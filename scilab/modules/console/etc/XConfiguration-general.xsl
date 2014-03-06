@@ -107,7 +107,44 @@
                 <Panel gridx="2" gridy="2" weightx="1" fill="both"/>
             </Grid>
         </Title>
-        
+    </xsl:template>
+    
+    <xsl:template match="startup">
+        <VSpace height="10"/>
+        <Title text="_(Start-up directory)">
+            <Grid>
+                <Radiobutton value="{@use}" expected-value="current" listener="ActionListener" text="_(Use current working directory)" gridx="1" gridy="1" fill="none" weightx="0" anchor="west">
+                    <actionPerformed choose="use">
+                        <xsl:call-template name="context"/>
+                    </actionPerformed>
+                </Radiobutton>
+                
+                <Radiobutton value="{@use}" expected-value="previous" listener="ActionListener" text="_(Use previous working directory)" gridx="1" gridy="2" fill="none" weightx="0" anchor="west">
+                    <actionPerformed choose="use">
+                        <xsl:call-template name="context"/>
+                    </actionPerformed>
+                </Radiobutton>
+                
+                <Radiobutton value="{@use}" expected-value="default" listener="ActionListener" text="_(Use default directory)" gridx="1" gridy="3" fill="none" weightx="0" anchor="west">
+                    <actionPerformed choose="use">
+                        <xsl:call-template name="context"/>
+                    </actionPerformed>
+                </Radiobutton>
+                
+                <Entry gridx="2" gridy="3" weightx="1" anchor="above_baseline"
+                       listener="EntryListener"
+                       text="{@default}">
+                    <xsl:attribute name="enable">
+                        <xsl:if test="@use='default'">
+                            <xsl:text>true</xsl:text>
+                        </xsl:if>
+                    </xsl:attribute>
+                    <entryChanged choose="default">
+                        <xsl:call-template name="context"/>
+                    </entryChanged>
+                </Entry>
+            </Grid>
+        </Title>
     </xsl:template>
     
     <xsl:template match="tools">
