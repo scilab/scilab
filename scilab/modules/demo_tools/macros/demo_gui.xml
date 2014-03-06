@@ -1,65 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <scilabgui usedeprecatedskin="off" version="1.0">
-    <figure axes_size="250,500" default_axes="off" dockable="off" figure_id="100000" figure_name="" infobar_visible="off" layout="1" menubar="0" menubar_visible="off" resizefcn="resize_demo_gui" tag="scilab_demo_fig" toolbar="0" toolbar_visible="off" visible="off" icon="applications-system">
-        <frame gridbagfill="3" gridbaggrid="10,1,1,1" gridbagpreferredsize="0,0" gridbagweight="1.0,1.0" layout="1" tag="frame_10" visible="off">
-            <borders color="black" fontangle="normal" fontname="" fontsize="12" fontweight="bold" justification="2" style="titled" title="">
+    <figure axes_size="250,500" default_axes="off" dockable="off" figure_id="100000" figure_name="" infobar_visible="off" layout="1" menubar="0" menubar_visible="off" resizefcn="resize_demo_gui" tag="scilab_demo_fig" toolbar="0" toolbar_visible="off" visible="off" icon="applications-system" >
+        <frame gridbagfill="3" gridbaggrid="10,1,1,1" gridbagpreferredsize="0,0" gridbagweight="1.0,1.0" layout="1" tag="frame_10" visible="off" backgroundcolor="1,1,1">
+            <borders color="black" fontangle="normal" fontname="" fontsize="12" fontweight="bold" justification="1" style="titled" title="">
                 <title style="empty"/>
             </borders>
             <listbox callback="script_path = demo_gui_update();if ~isempty(script_path) then exec(script_path, -1);end;clear script_path;" callback_type="0" fontsize="12.0" gridbagfill="3" gridbaggrid="1,1,1,4" gridbagweight="1.0,1.0" tag="listbox_10" value="3.0"/>
         </frame>
-        <frame gridbagfill="3" gridbaggrid="9,1,1,1" gridbagpreferredsize="0,0" gridbagweight="1.0,1.0" layout="1" tag="frame_9" visible="off">
-            <borders color="black" fontangle="normal" fontname="" fontsize="12" fontweight="bold" justification="2" style="titled" title="">
+        <frame gridbagfill="3" gridbaggrid="9,1,1,1" gridbagpreferredsize="0,0" gridbagweight="1.0,1.0" layout="1" tag="frame_9" visible="off" backgroundcolor="1,1,1">
+            <borders color="black" fontangle="normal" fontname="" fontsize="12" fontweight="bold" justification="1" style="titled" title="">
                 <title style="empty"/>
             </borders>
             <listbox callback="script_path = demo_gui_update();if ~isempty(script_path) then exec(script_path, -1);end;clear script_path;" callback_type="0" fontsize="12.0" gridbagfill="3" gridbaggrid="1,1,1,4" gridbagweight="1.0,1.0" tag="listbox_9" value="3.0"/>
         </frame>
-        <frame gridbagfill="3" gridbaggrid="8,1,1,1" gridbagpreferredsize="0,0" gridbagweight="1.0,1.0" layout="1" tag="frame_8" visible="off">
-            <borders color="black" fontangle="normal" fontname="" fontsize="12" fontweight="bold" justification="2" style="titled" title="">
+        <frame gridbagfill="3" gridbaggrid="8,1,1,1" gridbagpreferredsize="0,0" gridbagweight="1.0,1.0" layout="1" tag="frame_8" visible="off" backgroundcolor="1,1,1">
+            <borders color="black" fontangle="normal" fontname="" fontsize="12" fontweight="bold" justification="1" style="titled" title="">
                 <title style="empty"/>
             </borders>
             <listbox callback="script_path = demo_gui_update();if ~isempty(script_path) then exec(script_path, -1);end;clear script_path;" callback_type="0" fontsize="12.0" gridbagfill="3" gridbaggrid="1,1,1,4" gridbagweight="1.0,1.0" tag="listbox_8" value="3.0"/>
         </frame>
-        <frame gridbagfill="3" gridbaggrid="7,1,1,1" gridbagpreferredsize="0,0" gridbagweight="1.0,1.0" layout="1" tag="frame_7" visible="off">
-            <borders color="black" fontangle="normal" fontname="" fontsize="12" fontweight="bold" justification="2" style="titled" title="">
+        <frame gridbagfill="3" gridbaggrid="7,1,1,1" gridbagpreferredsize="0,0" gridbagweight="1.0,1.0" layout="1" tag="frame_7" visible="off" backgroundcolor="1,1,1">
+            <borders color="black" fontangle="normal" fontname="" fontsize="12" fontweight="bold" justification="1" style="titled" title="">
                 <title style="empty"/>
             </borders>
             <listbox callback="script_path = demo_gui_update();if ~isempty(script_path) then exec(script_path, -1);end;clear script_path;" callback_type="0" fontsize="12.0" gridbagfill="3" gridbaggrid="1,1,1,4" gridbagweight="1.0,1.0" tag="listbox_7" value="3.0"/>
         </frame>
-        <frame gridbagfill="3" gridbaggrid="6,1,1,1" gridbagpreferredsize="0,0" gridbagweight="1.0,1.0" layout="1" tag="frame_6" visible="off">
-            <borders color="black" fontangle="normal" fontname="" fontsize="12" fontweight="bold" justification="2" style="titled" title="">
+        <frame gridbagfill="3" gridbaggrid="6,1,1,1" gridbagpreferredsize="0,0" gridbagweight="1.0,1.0" layout="1" tag="frame_6" visible="off" backgroundcolor="1,1,1">
+            <borders color="black" fontangle="normal" fontname="" fontsize="12" fontweight="bold" justification="1" style="titled" title="">
                 <title style="empty"/>
             </borders>
             <listbox callback="script_path = demo_gui_update();if ~isempty(script_path) then exec(script_path, -1);end;clear script_path;" callback_type="0" fontsize="12.0" gridbagfill="3" gridbaggrid="1,1,1,4" gridbagweight="1.0,1.0" tag="listbox_6" value="3.0"/>
         </frame>
-        <frame gridbagfill="3" gridbaggrid="5,1,1,1" gridbagpreferredsize="0,0" gridbagweight="1.0,1.0" layout="1" tag="frame_5" visible="off">
-            <borders color="black" fontangle="normal" fontname="" fontsize="12" fontweight="bold" justification="2" style="titled" title="">
+        <frame gridbagfill="3" gridbaggrid="5,1,1,1" gridbagpreferredsize="0,0" gridbagweight="1.0,1.0" layout="1" tag="frame_5" visible="off" backgroundcolor="1,1,1">
+            <borders color="black" fontangle="normal" fontname="" fontsize="12" fontweight="bold" justification="1" style="titled" title="">
                 <title style="empty"/>
             </borders>
             <listbox callback="script_path = demo_gui_update();if ~isempty(script_path) then exec(script_path, -1);end;clear script_path;" callback_type="0" fontsize="12.0" gridbagfill="3" gridbaggrid="1,1,1,4" gridbagweight="1.0,1.0" tag="listbox_5" value="3.0"/>
         </frame>
-        <frame gridbagfill="3" gridbaggrid="4,1,1,1" gridbagpreferredsize="0,0" gridbagweight="1.0,1.0" layout="1" tag="frame_4" visible="off">
-            <borders color="black" fontangle="normal" fontname="" fontsize="12" fontweight="bold" justification="2" style="titled" title="">
+        <frame gridbagfill="3" gridbaggrid="4,1,1,1" gridbagpreferredsize="0,0" gridbagweight="1.0,1.0" layout="1" tag="frame_4" visible="off" backgroundcolor="1,1,1">
+            <borders color="black" fontangle="normal" fontname="" fontsize="12" fontweight="bold" justification="1" style="titled" title="">
                 <title style="empty"/>
             </borders>
             <listbox callback="script_path = demo_gui_update();if ~isempty(script_path) then exec(script_path, -1);end;clear script_path;" callback_type="0" fontsize="12.0" gridbagfill="3" gridbaggrid="1,1,1,4" gridbagweight="1.0,1.0" tag="listbox_74" value="3.0"/>
         </frame>
-        <frame gridbagfill="3" gridbaggrid="3,1,1,1" gridbagpreferredsize="0,0" gridbagweight="1.0,1.0" layout="1" tag="frame_3" visible="off">
-            <borders color="black" fontangle="normal" fontname="" fontsize="12" fontweight="bold" justification="2" style="titled" title="">
+        <frame gridbagfill="3" gridbaggrid="3,1,1,1" gridbagpreferredsize="0,0" gridbagweight="1.0,1.0" layout="1" tag="frame_3" visible="off" backgroundcolor="1,1,1">
+            <borders color="black" fontangle="normal" fontname="" fontsize="12" fontweight="bold" justification="1" style="titled" title="">
                 <title style="empty"/>
             </borders>
             <listbox callback="script_path = demo_gui_update();if ~isempty(script_path) then exec(script_path, -1);end;clear script_path;" callback_type="0" fontsize="12.0" gridbagfill="3" gridbaggrid="1,1,1,4" gridbagweight="1.0,1.0" tag="listbox_3" value="3.0"/>
         </frame>
-        <frame gridbagfill="3" gridbaggrid="2,1,1,1" gridbagpreferredsize="0,0" gridbagweight="1.0,1.0" layout="1" tag="frame_2" visible="off">
-            <borders color="black" fontangle="normal" fontname="" fontsize="12" fontweight="bold" justification="2" style="titled" title="">
+        <frame gridbagfill="3" gridbaggrid="2,1,1,1" gridbagpreferredsize="0,0" gridbagweight="1.0,1.0" layout="1" tag="frame_2" visible="off" backgroundcolor="1,1,1">
+            <borders color="black" fontangle="normal" fontname="" fontsize="12" fontweight="bold" justification="1" style="titled" title="">
                 <title style="empty"/>
             </borders>
             <listbox callback="script_path = demo_gui_update();if ~isempty(script_path) then exec(script_path, -1);end;clear script_path;" callback_type="0" fontsize="12.0" gridbagfill="3" gridbaggrid="1,1,1,4" gridbagweight="1.0,1.0" tag="listbox_2" value="3.0"/>
         </frame>
-        <frame gridbagfill="3" gridbaggrid="1,1,1,1" gridbagpreferredsize="0,0" gridbagweight="1.0,1.0" layout="1" tag="frame_1">
-            <borders color="black" fontangle="normal" fontname="" fontsize="12" fontweight="bold" justification="2" style="titled" title="">
+        <frame gridbagfill="3" gridbaggrid="1,1,1,1" gridbagpreferredsize="0,0" gridbagweight="1.0,1.0" layout="1" tag="frame_1" backgroundcolor="1,1,1">
+            <borders color="black" fontangle="normal" fontname="" fontsize="12" fontweight="bold" justification="1" style="titled" title="">
                 <title style="empty"/>
             </borders>
-            <image gridbagfill="3" gridbaggrid="1,5,1,1" gridbagweight="1.0,0.1" horizontalalignment="center" string="SCI/modules/demo_tools/images/logo_scilab.png" tag="scilab_logo"/>
+            <image gridbagfill="3" gridbaggrid="1,5,1,1" gridbagweight="1.0,0.1" horizontalalignment="center" string="SCI/modules/demo_tools/images/logo_scilab.png" tag="scilab_logo" backgroundcolor="1,1,1"/>
             <listbox callback="script_path = demo_gui_update();if ~isempty(script_path) then exec(script_path, -1);end;clear script_path;" callback_type="0" fontsize="12.0" gridbagfill="3" gridbaggrid="1,1,1,4" gridbagweight="1.0,1.0" tag="listbox_1" value="3.0"/>
         </frame>
     </figure>
