@@ -23,8 +23,13 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
 
+import javax.imageio.ImageIO;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -32,6 +37,8 @@ import javax.swing.ListCellRenderer;
 import javax.swing.UIManager;
 import javax.swing.border.Border;
 
+import org.apache.fop.area.inline.Image;
+import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.SwingViewWidget;
@@ -47,6 +54,7 @@ import org.scilab.modules.gui.utils.ScilabRelief;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.utils.SwingScilabColorItem;
+import org.scilab.modules.gui.utils.SwingScilabIconItem;
 import org.scilab.modules.gui.utils.SwingScilabTextItem;
 
 /**
@@ -67,10 +75,13 @@ public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, 
     private Border defaultBorder = null;
 
     private boolean colorBox = false;
+    private boolean iconBox = false;
 
     private ListCellRenderer defaultRenderer = null;
     private ListCellRenderer textRenderer = null;
     private ListCellRenderer colorRenderer = null;
+    private ListCellRenderer iconRenderer = null;
+
 
     /**
      * Constructor
@@ -303,10 +314,12 @@ public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, 
         removeAllItems();
 
         colorBox = false;
+        iconBox = false;
         if (nbCol == 2) {
             //combocolor ?
             colorBox = true;
 
+            //first try to convert 2nd col to color
             if (colorRenderer == null) {
                 colorRenderer = new ListCellRenderer() {
                     public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
@@ -317,6 +330,9 @@ public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, 
                             String text = item.toString();
                             label.setText(text);
                             label.setIcon(ColorBox.createColorBox(16, 16, item.getColor()));
+                        } else {
+                            label.setText("");
+                            label.setIcon(null);
                         }
                         return label;
                     }
@@ -327,21 +343,65 @@ public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, 
             setRenderer(colorRenderer);
 
             int colorOffset = text.length / 2;
-            for (int i = 0 ; i < colorOffset ; i++) {
-                try {
+            try {
+                for (int i = 0; i < colorOffset; i++) {
                     Color color = Color.decode(text[colorOffset + i]);
                     //add item in combobox
                     addItem(new SwingScilabColorItem(text[i], color));
-                } catch (NumberFormatException e) {
+                }
+            } catch (NumberFormatException e) {
+                //second color can be a icon
+                colorBox = false;
+                iconBox = true;
+                removeAllItems();
+            }
+
+            //try to convert 2nd col to icon ( only if color convertion failed )
+            if (iconBox) {
+                if (iconRenderer == null) {
+                    iconRenderer = new ListCellRenderer() {
+                        public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+                            JLabel label = (JLabel) defaultRenderer.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+                            if (value instanceof SwingScilabIconItem) {
+                                SwingScilabIconItem item = (SwingScilabIconItem)value;
+                                String text = item.toString();
+                                label.setText(text);
+                                label.setIcon(item.getIcon());
+                            } else {
+                                label.setText("");
+                                label.setIcon(null);
+                            }
+                            return label;
+                        }
+                    };
+                }
+
+                setRenderer(iconRenderer);
+
+                //fill items
+                int iconOffset = text.length / 2;
+                try {
+                    for (int i = 0; i < iconOffset; i++) {
+                        String iconFile = FindIconHelper.findIcon((text[iconOffset + i]));
+                        //add item in combobox
+                        File file = new File(iconFile);
+                        if (file.exists() == false) {
+                            String filename = FindIconHelper.findImage(iconFile);
+                            file = new File(filename);
+                        }
+
+                        addItem(new SwingScilabIconItem(text[i], new ImageIcon(ImageIO.read(file))));
+                    }
+                } catch (IOException e) {
                     removeAllItems();
+                    iconBox = false;
                     colorBox = false;
-                    break;
                 }
             }
         }
 
-        //default case or colorBox failed
-        if (colorBox == false) {
+        //default case or colorBox and iconBox failed
+        if (colorBox == false && iconBox == false) {
             setRenderer(textRenderer);
 
             if (text.length == 1 && text[0].length() == 0) {
@@ -357,7 +417,6 @@ public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, 
         //take care to add listener BEFORE set Property to avoid multiple remove and multiple add
         addActionListener(defaultActionListener);
         controller.setProperty(uid, __GO_UI_VALUE__, new Double[] {});
-        /* Remove the listener to avoid the callback to be executed */
     }
 
     /**

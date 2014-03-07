@@ -14,21 +14,25 @@
 
 package org.scilab.modules.gui.bridge.listbox;
 
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_BACKGROUNDCOLOR__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LISTBOXTOP__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_BACKGROUNDCOLOR__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MAX__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MIN__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING_COLNB__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING_COLNB__;
 
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
@@ -39,6 +43,7 @@ import javax.swing.border.Border;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.SwingViewWidget;
@@ -53,8 +58,9 @@ import org.scilab.modules.gui.utils.PositionConverter;
 import org.scilab.modules.gui.utils.ScilabRelief;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.Size;
-import org.scilab.modules.gui.utils.SwingScilabColorItem;
+import org.scilab.modules.gui.utils.SwingScilabIconItem;
 import org.scilab.modules.gui.utils.SwingScilabTextItem;
+import org.scilab.modules.gui.utils.SwingScilabColorItem;
 
 /**
  * Swing implementation for Scilab ListBox in GUIs
@@ -85,8 +91,10 @@ public class SwingScilabListBox extends JScrollPane implements SwingViewObject, 
     private ListCellRenderer defaultRenderer = null;
     private ListCellRenderer textRenderer = null;
     private ListCellRenderer colorRenderer = null;
+    private ListCellRenderer iconRenderer = null;
 
     private boolean colorBox = false;
+    private boolean iconBox = false;
 
     /**
      * Constructor
@@ -368,7 +376,11 @@ public class SwingScilabListBox extends JScrollPane implements SwingViewObject, 
         GraphicController controller = GraphicController.getController();
         Integer nbCol = (Integer)controller.getProperty(getId(), __GO_UI_STRING_COLNB__);
 
-        colorBox  = false;
+        /* Remove the listener to avoid the callback to be executed */
+        getList().removeListSelectionListener(listListener);
+
+        colorBox = false;
+        iconBox = false;
         if (nbCol == 2) {
             //combocolor ?
             colorBox = true;
@@ -403,11 +415,54 @@ public class SwingScilabListBox extends JScrollPane implements SwingViewObject, 
             } catch (NumberFormatException e) {
                 model.clear();
                 colorBox = false;
+                iconBox = true;
             }
+
+            //try to convert 2nd col to icon ( only if color convertion failed )
+            if (iconBox) {
+                if (iconRenderer == null) {
+                    iconRenderer = new ListCellRenderer() {
+                        public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+                            JLabel label = (JLabel) defaultRenderer.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+
+                            if (value instanceof SwingScilabIconItem) {
+                                SwingScilabIconItem item = (SwingScilabIconItem)value;
+                                label.setText(item.toString());
+                                label.setIcon(item.getIcon());
+                            }
+                            return label;
+                        }
+                    };
+                }
+
+                getList().setCellRenderer(iconRenderer);
+
+                //fill items
+                int iconOffset = text.length / 2;
+                try {
+                    for (int i = 0; i < iconOffset; i++) {
+                        String iconFile = FindIconHelper.findIcon((text[iconOffset + i]));
+                        //add item in combobox
+                        File file = new File(iconFile);
+                        if (file.exists() == false) {
+                            String filename = FindIconHelper.findImage(iconFile);
+                            file = new File(filename);
+                        }
+
+                        model.addElement(new SwingScilabIconItem(text[i], new ImageIcon(ImageIO.read(file))));
+                    }
+                } catch (IOException e) {
+                    model.clear();
+                    iconBox = false;
+                    colorBox = false;
+                }
+            }
+
         }
 
+
         //default case or colorBox failed
-        if (colorBox == false) {
+        if (colorBox == false && iconBox == false) {
             getList().setCellRenderer(textRenderer);
             /* Do we need to update the strings */
             /* Test performed to avoid loops when the model is updated from here */
@@ -435,6 +490,13 @@ public class SwingScilabListBox extends JScrollPane implements SwingViewObject, 
         getList().setModel(model);
         getList().revalidate();
         revalidate();
+
+        //reset selected index
+        getList().setSelectedIndex(-1);
+
+        //take care to add listener BEFORE set Property to avoid multiple remove and multiple add
+        getList().addListSelectionListener(listListener);
+
     }
 
     /**

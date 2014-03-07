@@ -69,31 +69,31 @@ int SetUicontrolString(void* _pvCtx, int iObjUID, void* _pvData, int valueType, 
         case __GO_UI_LISTBOX__ :
         case __GO_UI_POPUPMENU__ :
         {
-            ////combo and list color
+            //combo and list color
 
-            //// ["white",    "#FFFFFF";
-            ////  "black",    "#000000";
-            ////  "red",      "#FF0000";
-            ////  "green",    "#00FF00";
-            ////  "blue",     "#0000FF"]
+            // ["white",    "#FFFFFF";
+            //  "black",    "#000000";
+            //  "red",      "#FF0000";
+            //  "green",    "#00FF00";
+            //  "blue",     "#0000FF"]
 
-            ////Matrix must be n*2
-            //if(nbCol == 2)
-            //{
-            //    if (setGraphicObjectProperty(iObjUID, __GO_UI_STRING_COLNB__, &nbCol, jni_int, 1) == FALSE)
-            //    {
-            //        Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "String");
-            //        return SET_PROPERTY_ERROR;
-            //    }
+            //Matrix must be n*2
+            if (nbCol == 2)
+            {
+                if (setGraphicObjectProperty(iObjUID, __GO_UI_STRING_COLNB__, &nbCol, jni_int, 1) == FALSE)
+                {
+                    Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "String");
+                    return SET_PROPERTY_ERROR;
+                }
 
-            //    if(setGraphicObjectProperty(iObjUID, __GO_UI_STRING__, (char**)_pvData, jni_string_vector, nbRow * nbCol) == FALSE)
-            //    {
-            //        Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "String");
-            //        return SET_PROPERTY_ERROR;
-            //    }
+                if (setGraphicObjectProperty(iObjUID, __GO_UI_STRING__, (char**)_pvData, jni_string_vector, nbRow * nbCol) == FALSE)
+                {
+                    Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "String");
+                    return SET_PROPERTY_ERROR;
+                }
 
-            //    return SET_PROPERTY_SUCCEED;
-            //}
+                return SET_PROPERTY_SUCCEED;
+            }
             break;
         }
         default:
