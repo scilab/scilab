@@ -29,7 +29,7 @@ void saveCWDInPreferences()
             int err;
             char * cwd = scigetcwd(&err);
 
-            if (!err && cwd && strcmp(cwd, values[1]))
+            if (!err && cwd && values[1] && strcmp(cwd, values[1]))
             {
                 const char * kv[] = {"previous", cwd};
                 setPrefAttributesValues("//general/body/startup", kv, sizeof(kv) / sizeof(const char *));
@@ -40,8 +40,14 @@ void saveCWDInPreferences()
                 FREE(cwd);
             }
         }
-        FREE(values[0]);
-        FREE(values[1]);
+        if (values[0])
+        {
+            FREE(values[0]);
+        }
+        if (values[1])
+        {
+            FREE(values[1]);
+        }
         FREE(values);
     }
 }

@@ -200,6 +200,8 @@ void getDocAndCtxt(xmlDocPtr * doc, xmlXPathContextPtr * xpathCtxt)
     BOOL bConvert = FALSE;
     char * shortfilename_xml_conf = NULL;
     char * ret = NULL;
+    *doc = NULL;
+    *xpathCtxt = NULL;
 
     SCIHOME = getSCIHOME();
     path = (char *)MALLOC(strlen(SCIHOME) + strlen(XCONF));
@@ -298,27 +300,36 @@ char ** getPrefAttributesValues(const char * xpath, const char ** attributes, co
     }
 
     getDocAndCtxt(&doc, &xpathCtxt);
-    if (doc == NULL)
+    if (doc == NULL || xpathCtxt == NULL)
     {
         return NULL;
     }
 
-    ret = (char**)MALLOC(sizeof(char*) * attrLen);
     xpathObj = xmlXPathEval((const xmlChar*)xpath, xpathCtxt);
     if (xpathObj && xpathObj->nodesetval && xpathObj->nodesetval->nodeMax)
     {
-        int i;
+        unsigned int i;
         xmlNode * node = (xmlNode*)xpathObj->nodesetval->nodeTab[0];
-        for (i = 0; i < (int)attrLen; i++)
+        ret = (char**)MALLOC(sizeof(char*) * attrLen);
+        if (!ret)
+        {
+            xmlXPathFreeObject(xpathObj);
+            xmlXPathFreeContext(xpathCtxt);
+            xmlFreeDoc(doc);
+            return NULL;
+        }
+
+        for (i = 0; i < attrLen; i++)
         {
             xmlAttr * attrs = xmlHasProp(node, (const xmlChar *)attributes[i]);
             if (attrs)
             {
                 ret[i] = strdup((const char *)attrs->children->content);
             }
-            else
+
+            if (!attrs || !ret[i])
             {
-                int j;
+                unsigned int j;
                 for (j = 0; j < i; j++)
                 {
                     free(ret[j]);
