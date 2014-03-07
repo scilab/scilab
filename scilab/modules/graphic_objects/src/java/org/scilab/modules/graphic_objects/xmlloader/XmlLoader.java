@@ -18,6 +18,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FIGURE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TYPE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UIMENU__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TAG__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_CHECKBOX__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_EDIT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FRAME_BORDER__;
@@ -270,7 +271,7 @@ public class XmlLoader extends DefaultHandler {
                     // never create a new figure, clone figure model !
                     go = GOBuilder.figureBuilder(controller, attributes);
                 } else if (uitype == __GO_AXES__) {
-                    go = GraphicController.getController().askObject(Type.AXES);
+                    go = GOBuilder.axesBuilder(controller, attributes);
                 } else if (uitype == __GO_UIMENU__) {
                     Integer parent = 0;
                     if (stackGO.isEmpty() == false) {
@@ -300,7 +301,6 @@ public class XmlLoader extends DefaultHandler {
                         Integer newgo = cloneObject(go);
                         GOBuilder.uicontrolUpdater(controller, newgo, attributes, stackGO.peek(), entry.getValue());
                         go = newgo;
-
                     }
                 }
             }
@@ -348,7 +348,7 @@ public class XmlLoader extends DefaultHandler {
 
                 controller.setGraphicObjectRelationship(newGo, go);
                 controller.setProperty(newGo, GraphicObjectProperties.__GO_SELECTED_CHILD__, go);
-
+                controller.setProperty(go, GraphicObjectProperties.__GO_TAG__, controller.getProperty(children[i], __GO_TAG__));
                 ScilabNativeView.ScilabNativeView__setCurrentSubWin(go);
                 ScilabNativeView.ScilabNativeView__setCurrentObject(go);
             } else if (childType == __GO_UI_FRAME_BORDER__) {

@@ -24,6 +24,7 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
 import org.scilab.modules.commons.CommonFileUtils;
+import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.console.Console;
 import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
@@ -202,11 +203,21 @@ public class XmlSaver {
             }
             case __GO_AXES__ : {
                 //Axes axes = (Axes)controller.getObjectFromId(id);
-                return doc.createElement("axes");
+                return createAxes(doc, id, reverseChildren);
             }
         }
 
         return doc.createElement("fake");
+    }
+
+    private static Element createAxes(Document doc, Integer id, boolean reverseChildren) {
+        GraphicController controller = GraphicController.getController();
+        Axes axes = (Axes)controller.getObjectFromId(id);
+
+        Element elemAxes = doc.createElement("axes");
+        setAttribute(elemAxes, "tag", createAttribute(axes.getTag()), createAttribute(""));
+
+        return elemAxes;
     }
 
     private static Element createBorders(Document doc, Integer id) {
