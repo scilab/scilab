@@ -26,8 +26,8 @@ import org.scilab.modules.commons.xml.XConfiguration;
 public final class HelpOnTypingManager implements KeyListener {
 
     private static HelpOnTypingManager instance;
-    private static boolean openers;
-    private static boolean keywords;
+    private boolean openers;
+    private boolean keywords;
 
     /**
      * Constructor
@@ -60,7 +60,7 @@ public final class HelpOnTypingManager implements KeyListener {
     /**
      * @param b true if autocompletion on '(', '{', ...
      */
-    public static void enableOpeners(boolean b) {
+    public void enableOpeners(boolean b) {
         openers = b;
         SciNotesOptions.getSciNotesDisplay().autoCompleteOpeners = b;
         XConfiguration.set(XConfiguration.getXConfigurationDocument(), SciNotesOptions.DISPLAYPATH + "/@auto-complete-openers", Boolean.toString(b));
@@ -69,7 +69,7 @@ public final class HelpOnTypingManager implements KeyListener {
     /**
      * @param b true if autocompletion on 'if', 'function', ...
      */
-    public static void enableKeywords(boolean b) {
+    public void enableKeywords(boolean b) {
         keywords = b;
         SciNotesOptions.getSciNotesDisplay().autoCompleteKeywords = b;
         XConfiguration.set(XConfiguration.getXConfigurationDocument(), SciNotesOptions.DISPLAYPATH + "/@auto-complete-keywords", Boolean.toString(b));
@@ -78,21 +78,21 @@ public final class HelpOnTypingManager implements KeyListener {
     /**
      * @return true if help on typing is active
      */
-    public static boolean isActive() {
+    public boolean isActive() {
         return openers || keywords;
     }
 
     /**
      * @return true if help on typing for the openers is active
      */
-    public static boolean isOpenersActive() {
+    public boolean isOpenersActive() {
         return openers;
     }
 
     /**
      * @return true if help on typing for the openers is active
      */
-    public static boolean isKeywordsActive() {
+    public boolean isKeywordsActive() {
         return keywords;
     }
 
