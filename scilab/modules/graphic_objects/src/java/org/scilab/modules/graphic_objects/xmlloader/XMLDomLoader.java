@@ -118,7 +118,7 @@ public class XMLDomLoader {
         UiPropToGO.put("fontsize", new Pair<Integer, ModelType>(__GO_UI_FONTSIZE__, ModelType.DOUBLE));
         UiPropToGO.put("fontunits", new Pair<Integer, ModelType>(__GO_UI_FONTUNITS__, ModelType.STRING));
         UiPropToGO.put("fontweight", new Pair<Integer, ModelType>(__GO_UI_FONTWEIGHT__, ModelType.STRING));
-        UiPropToGO.put("foregroundcolor", new Pair<Integer, ModelType>(__GO_UI_FOREGROUNDCOLOR__, ModelType.INTEGER_ARRAY));
+        UiPropToGO.put("foregroundcolor", new Pair<Integer, ModelType>(__GO_UI_FOREGROUNDCOLOR__, ModelType.DOUBLE_ARRAY));
         UiPropToGO.put("horizontalalignment", new Pair<Integer, ModelType>(__GO_UI_HORIZONTALALIGNMENT__, ModelType.STRING));
         UiPropToGO.put("listboxtop", new Pair<Integer, ModelType>(__GO_UI_LISTBOXTOP__, ModelType.INTEGER_ARRAY));
         UiPropToGO.put("max", new Pair<Integer, ModelType>(__GO_UI_MAX__, ModelType.DOUBLE));

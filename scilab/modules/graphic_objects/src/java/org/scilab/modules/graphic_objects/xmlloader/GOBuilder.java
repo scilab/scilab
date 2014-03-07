@@ -1,7 +1,8 @@
 package org.scilab.modules.graphic_objects.xmlloader;
 
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_BORDER_OPT_PADDING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CALLBACKTYPE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FOREGROUNDCOLOR__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_BORDER_OPT_PADDING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CALLBACK__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CLOSEREQUESTFCN__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DOCKABLE__;
@@ -511,6 +512,16 @@ public class GOBuilder {
                     item = xmlAttributes.get("icon");
                     if (item != null) {
                         controller.setProperty(uic, __GO_UI_ICON__, item);
+                    }
+
+                    //color
+                    item = xmlAttributes.get("color");
+                    if (item != null) {
+                        System.out.println("Color : " + item);
+                        Color color = Color.decode(item);
+                        Double[] val = new Double[] {(double) color.getRed() / 255, (double) color.getGreen() / 255, (double) color.getBlue() / 255};
+                        System.out.println("color : [" + val[0] + "," + val[1] + "," + val[2] + "]");
+                        controller.setProperty(uic, __GO_UI_FOREGROUNDCOLOR__, val);
                     }
 
                     break;
