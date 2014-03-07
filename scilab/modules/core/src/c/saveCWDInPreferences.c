@@ -22,16 +22,26 @@ void saveCWDInPreferences()
     const char * keys[] = {"use", "previous"};
     char ** values = getPrefAttributesValues("//general/body/startup", keys, sizeof(keys) / sizeof(const char *));
 
-    if (values && values[0] && stricmp(values[0], "previous") == 0)
+    if (values)
     {
-        int err;
-        char * cwd = scigetcwd(&err);
-
-        if (!err && cwd && strcmp(cwd, values[1]))
+        if (values[0] && stricmp(values[0], "previous") == 0)
         {
-            const char * kv[] = {"previous", cwd};
-            setPrefAttributesValues("//general/body/startup", kv, sizeof(kv) / sizeof(const char *));
-            FREE(cwd);
+            int err;
+            char * cwd = scigetcwd(&err);
+
+            if (!err && cwd && strcmp(cwd, values[1]))
+            {
+                const char * kv[] = {"previous", cwd};
+                setPrefAttributesValues("//general/body/startup", kv, sizeof(kv) / sizeof(const char *));
+            }
+
+            if (cwd)
+            {
+                FREE(cwd);
+            }
         }
+        FREE(values[0]);
+        FREE(values[1]);
+        FREE(values);
     }
 }
