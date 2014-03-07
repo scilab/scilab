@@ -295,7 +295,7 @@ public class XMLDomLoader {
                     }
 
                     case __GO_AXES__ : {
-                        child = Builder.createSubWin(parent);
+                        child = createAxes(parent, childNode);
                         break;
                     }
 
@@ -355,6 +355,20 @@ public class XMLDomLoader {
 
             }
         }
+    }
+
+    private Integer createAxes(Integer parent, Node node) {
+        GraphicController controller = GraphicController.getController();
+        Integer axes = Builder.createSubWin(parent);
+
+        NamedNodeMap attr = node.getAttributes();
+        Node tagNode = attr.getNamedItem("tag");
+        if (tagNode != null) {
+            controller.setProperty(axes, __GO_TAG__, tagNode.getNodeValue());
+            attr.removeNamedItem("tag");
+        }
+
+        return axes;
     }
 
     private Integer createBorder(Node node) {
