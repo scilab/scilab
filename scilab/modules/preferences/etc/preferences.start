@@ -9,3 +9,4 @@
 
 load(SCI+"/modules/preferences/macros/lib");
 createXConfiguration();
+clear createXConfiguration
