@@ -14,8 +14,9 @@
 package org.scilab.modules.gui.bridge.frame;
 
 
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHILDREN__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ICON__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UICONTROL__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHILDREN__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TYPE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_BORDER_OPT_PADDING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_GRID_OPT_GRID__;
@@ -815,6 +816,19 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
                     //if intValue[0] is out of bounds, do not update view but let "wrong" value in model
                     layer.setActiveLayerFromName(((String[]) value)[0]);
                 }
+                break;
+            }
+            case __GO_UI_ICON__: {
+                // Update tab icon title
+                Container parent = getParent();
+                if (parent instanceof SwingScilabTabGroup) {
+                    SwingScilabTabGroup tab = (SwingScilabTabGroup) parent;
+                    int index = tab.indexOfComponent(this);
+                    if (index != -1) {
+                        tab.setIconAt(index, (String) value);
+                    }
+                }
+
                 break;
             }
             case __GO_POSITION__: {

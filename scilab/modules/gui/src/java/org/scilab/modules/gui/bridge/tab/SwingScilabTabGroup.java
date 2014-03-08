@@ -33,8 +33,12 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JTabbedPane;
 import javax.swing.UIManager;
@@ -42,6 +46,7 @@ import javax.swing.border.Border;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.CallBack;
 import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
@@ -282,6 +287,17 @@ public class SwingScilabTabGroup extends JTabbedPane implements SwingViewObject,
         super.setEnabledAt(index, enabled);
         //update tab label to show enabled state
         getTabComponentAt(index).setEnabled(enabled);
+
+        //disable current selected tab, select another enable tab if possible
+        if (enabled == false && index == getSelectedIndex()) {
+            //looking first enable tab and select it.
+            for (int i = 0 ; i < getComponentCount() ; i++) {
+                if (getComponentAt(i).isEnabled()) {
+                    setSelectedIndex(i);
+                    break;
+                }
+            }
+        }
     }
 
     public void setEnabled(boolean status) {
@@ -388,5 +404,22 @@ public class SwingScilabTabGroup extends JTabbedPane implements SwingViewObject,
     public void destroy() {
         getParent().remove(this);
         this.setVisible(false);
+    }
+
+    public void setIconAt(int index, String iconFile) {
+        try {
+            File file = new File(iconFile);
+            if (file.exists() == false) {
+                String filename = FindIconHelper.findImage(iconFile);
+                file = new File(filename);
+            }
+
+            JLabel label = (JLabel)getTabComponentAt(index);
+            if (label != null) {
+                label.setIcon(new ImageIcon(ImageIO.read(file)));
+            }
+        } catch (IOException e) {
+            super.setIconAt(index, null);
+        }
     }
 }
