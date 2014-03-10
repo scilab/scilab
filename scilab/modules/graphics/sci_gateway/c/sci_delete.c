@@ -105,6 +105,21 @@ int sci_delete(char *fname, unsigned long fname_len)
 
         switch (getInputArgumentType(pvApiCtx, 1))
         {
+            case sci_matrix:
+            {
+                if (isEmptyMatrix(pvApiCtx, piAddrl1))
+                {
+                    AssignOutputVariable(pvApiCtx, 1) = 0;
+                    ReturnArguments(pvApiCtx);
+                    return 1;
+                }
+                else
+                {
+                    Scierror(202, _("%s: Wrong type for input argument #%d: Handle matrix expected.\n"), fname, 1);
+                    return 1;
+                }
+                break;
+            }
             case sci_handles:      /* delete Entity given by a handle */
 
                 // Retrieve a matrix of handle at position 1.
