@@ -6,6 +6,7 @@ EXPORTS
 ; SEP 35
 scicos_malloc
 scicos_free
+scicos_print
 scicos_
 callf
 get_phase_simulation
