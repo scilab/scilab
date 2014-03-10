@@ -31,6 +31,7 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -104,17 +105,7 @@ public class SwingScilabListBox extends JScrollPane implements SwingViewObject, 
         getViewport().add(getList());
         defaultRenderer = getList().getCellRenderer();
 
-        textRenderer = new ListCellRenderer() {
-            public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
-                JLabel label = (JLabel) defaultRenderer.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-                if (value instanceof SwingScilabTextItem) {
-                    label.setText(value.toString());
-                    label.setIcon(null);
-                }
-                return label;
-            }
-        };
-
+        textRenderer = new DefaultListCellRenderer();
         getList().setCellRenderer(textRenderer);
 
         listListener = new ListSelectionListener() {
@@ -143,9 +134,7 @@ public class SwingScilabListBox extends JScrollPane implements SwingViewObject, 
         adjustmentListener = new AdjustmentListener() {
             public void adjustmentValueChanged(AdjustmentEvent arg0) {
                 int listboxtopValue = getList().getUI().locationToIndex(getList(), getViewport().getViewPosition()) + 1;
-                Integer[] modelValue = new Integer[1];
-                modelValue[0] = listboxtopValue;
-                GraphicController.getController().setProperty(uid, __GO_UI_LISTBOXTOP__, modelValue);
+                GraphicController.getController().setProperty(uid, __GO_UI_LISTBOXTOP__, new Integer[] {listboxtopValue});
             }
         };
         getVerticalScrollBar().addAdjustmentListener(adjustmentListener);
@@ -379,6 +368,8 @@ public class SwingScilabListBox extends JScrollPane implements SwingViewObject, 
         /* Remove the listener to avoid the callback to be executed */
         getList().removeListSelectionListener(listListener);
 
+        getList().removeAll();
+
         colorBox = false;
         iconBox = false;
         if (nbCol == 2) {
@@ -460,39 +451,19 @@ public class SwingScilabListBox extends JScrollPane implements SwingViewObject, 
 
         }
 
-
         //default case or colorBox failed
         if (colorBox == false && iconBox == false) {
             getList().setCellRenderer(textRenderer);
-            /* Do we need to update the strings */
-            /* Test performed to avoid loops when the model is updated from here */
-            boolean updateNeeded = false;
-            String[] previousText = getAllItemsText();
-            if (previousText.length != text.length) {
-                updateNeeded = true;
-            } else {
-                for (int k = 0; k < text.length; k++) {
-                    if (text[k].equals(previousText[k]) == false) {
-                        updateNeeded = true;
-                        break;
-                    }
-                }
-            }
-            if (!updateNeeded) {
-                return;
-            }
-
             for (int i = 0; i < text.length; i++) {
                 model.addElement(new SwingScilabTextItem(text[i]));
             }
         }
 
-        getList().setModel(model);
-        getList().revalidate();
-        revalidate();
-
         //reset selected index
         getList().setSelectedIndex(-1);
+        getList().setModel(model);
+        getList().revalidate();
+
 
         //take care to add listener BEFORE set Property to avoid multiple remove and multiple add
         getList().addListSelectionListener(listListener);
