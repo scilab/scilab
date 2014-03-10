@@ -17,10 +17,14 @@ function h =  findobj(propertyName, propertyValue)
 
     if rhs == 1 then
         h = get(propertyName);
-        return;
+        if h <> [] then
+            return;
+        end
     elseif strcmpi(propertyName, "tag") == 0 then
         h = get(propertyValue);
-        return;
+        if h <> [] then
+            return;
+        end
     end
 
     // Return value
