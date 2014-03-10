@@ -53,32 +53,36 @@ function clf(varargin)
     // check that all the handles are figures
     for k=1:nbHandles
         curFig = h(k);
-        if curFig.type <> "Figure" then
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: A vector of ''Figure'' handle expected."), "clf", 1));
+        if curFig.type <> "Figure" & (curFig.type <> "uicontrol" | curFig.style <> "frame") then
+            error(msprintf(gettext("%s: Wrong type for input argument #%d: A vector of ''Figure'' or ''Frame'' handle expected."), "clf", 1));
         end
     end
 
     // delete childrens
     for k=1:nbHandles
         curFig = h(k)
+        if curFig.type == "uicontrol" then
+            delete(curFig.children);
+        else
+            // drawlater
+            immediateMode = curFig.immediate_drawing;
+            curFig.immediate_drawing = "off";
 
-        // drawlater
-        immediateMode = curFig.immediate_drawing;
-        curFig.immediate_drawing = "off";
+            delete(curFig.children);
 
-        delete(curFig.children);
-
-        // drawnow
-        curFig.immediate_drawing = immediateMode;
+            // drawnow
+            curFig.immediate_drawing = immediateMode;
+        end
     end
-
-    curFig.info_message = "";
 
     // reset figures to default values if needed
     if (job == "reset") then
         defaultFig = gdf();
         for k = 1: nbHandles
             curFig = h(k);
+            if curFig.type == "uicontrol" then
+                continue;
+            end
 
             // drawlater
             immediateMode = curFig.immediate_drawing;
@@ -114,6 +118,7 @@ function clf(varargin)
             // drawnow
             curFig.immediate_drawing = immediateMode;
 
+            curFig.info_message = "";
         end
     end
 
