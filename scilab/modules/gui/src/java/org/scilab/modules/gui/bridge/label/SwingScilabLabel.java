@@ -156,6 +156,9 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
             alignmentPanel.setBackground(color);
         }
         if (label != null) {
+            if (label instanceof JLabel) {
+                ((JLabel)label).setOpaque(true);
+            }
             label.setBackground(color);
         }
     }
@@ -415,9 +418,10 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
             //refresh icon
             update(__GO_UI_ICON__, GraphicController.getController().getProperty(getId(), __GO_UI_ICON__));
             setAlignment();
+            ((JLabel)label).setOpaque(false);
         }
 
-        label.setBackground(bgColor);
+        setBackground(bgColor);
         label.setForeground(fgColor);
         label.setFont(font);
         label.setSize(dims);
@@ -538,7 +542,11 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
     public void resetBackground() {
         Color color = (Color) UIManager.getLookAndFeelDefaults().get("Label.background");
         if (color != null) {
-            setBackground(color);
+            //bypass setBackground
+            if (label instanceof JLabel) {
+                ((JLabel)label).setOpaque(false);
+            }
+            label.setBackground(color);
         }
     }
 }
