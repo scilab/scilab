@@ -451,6 +451,9 @@ Scilab Bug Fixes
 
 * Bug #10936 fixed - Scilab hung with invalid strf in plot2d.
 
+* Bug #10942 fixed - Sound function soundsec revised.
+                     Now soundsec can be used for non integer values of time.
+
 * Bug #10998 fixed - matrix*hypermatrix and hypermatrix*matrix operations failed.
 
 * Bug #11001 fixed - exists and isdef did not work with primitives.

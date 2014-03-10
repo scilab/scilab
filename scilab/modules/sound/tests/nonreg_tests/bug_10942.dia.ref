@@ -1,0 +1,2 @@
+t=[0:1:0.001*8000-1]/8000;
+assert_checkequal(soundsec(0.001,8000),t);
