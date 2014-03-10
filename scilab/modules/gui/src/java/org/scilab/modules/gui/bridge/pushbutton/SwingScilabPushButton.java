@@ -15,6 +15,7 @@
 package org.scilab.modules.gui.bridge.pushbutton;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ICON__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FOREGROUNDCOLOR__;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -34,6 +35,7 @@ import javax.swing.border.Border;
 import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.console.utils.ScilabSpecialTextUtilities;
 import org.scilab.modules.graphic_objects.console.Console;
+import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.SwingViewWidget;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
@@ -77,17 +79,16 @@ public class SwingScilabPushButton extends JButton implements SwingViewObject, S
             /* Avoid the L&F to erase user background settings */
             setContentAreaFilled(false);
             setOpaque(true);
+
+            addPropertyChangeListener(ICON_CHANGED_PROPERTY, new PropertyChangeListener() {
+                public void propertyChange(PropertyChangeEvent evt) {
+                    final Icon newIcon = (Icon) evt.getNewValue();
+                    final boolean iconEnable = newIcon != null;
+                    setContentAreaFilled(iconEnable);
+                    setOpaque(!iconEnable);
+                }
+            });
         }
-
-        addPropertyChangeListener(ICON_CHANGED_PROPERTY, new PropertyChangeListener() {
-            public void propertyChange(PropertyChangeEvent evt) {
-                final Icon newIcon = (Icon) evt.getNewValue();
-                final boolean iconEnable = newIcon != null;
-
-                setContentAreaFilled(iconEnable);
-                setOpaque(!iconEnable);
-            }
-        });
     }
 
     /**
@@ -95,7 +96,7 @@ public class SwingScilabPushButton extends JButton implements SwingViewObject, S
      * @return the text
      */
     public String getBaseText() {
-        return this.text;
+        return text;
     }
 
     /**
@@ -195,15 +196,6 @@ public class SwingScilabPushButton extends JButton implements SwingViewObject, S
      */
     public void setEnabled(boolean status) {
         super.setEnabled(status);
-        /* (Des)Activate the callback */
-        if (callback != null) {
-            if (status) {
-                removeActionListener(callback); /* To be sure the callback is not added two times */
-                addActionListener(callback);
-            } else {
-                removeActionListener(callback);
-            }
-        }
     }
 
     /**
@@ -318,16 +310,21 @@ public class SwingScilabPushButton extends JButton implements SwingViewObject, S
     public void update(int property, Object value) {
         switch (property) {
             case __GO_UI_ICON__ : {
-                File file = new File((String)value);
-                if (file.exists() == false) {
-                    String filename = FindIconHelper.findImage((String)value);
-                    file = new File(filename);
-                }
+                String iconName = (String)value;
+                if (iconName == null || iconName.equals("")) {
+                    super.setIcon(null);
+                } else {
+                    File file = new File((String)value);
+                    if (file.exists() == false) {
+                        String filename = FindIconHelper.findImage((String)value);
+                        file = new File(filename);
+                    }
 
-                try {
-                    BufferedImage icon = ImageIO.read(file);
-                    setIcon(new ImageIcon(icon));
-                } catch (IOException e) {
+                    try {
+                        BufferedImage icon = ImageIO.read(file);
+                        setIcon(new ImageIcon(icon));
+                    } catch (IOException e) {
+                    }
                 }
                 break;
             }
@@ -349,6 +346,13 @@ public class SwingScilabPushButton extends JButton implements SwingViewObject, S
             setContentAreaFilled(true);
             setOpaque(false);
             super.setBackground(color);
+        }
+    }
+
+    public void resetForeground() {
+        Color color = (Color)UIManager.getLookAndFeelDefaults().get("Button.foreground");
+        if (color != null) {
+            setForeground(color);
         }
     }
 }

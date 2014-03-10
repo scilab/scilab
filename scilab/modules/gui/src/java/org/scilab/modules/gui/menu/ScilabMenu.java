@@ -317,4 +317,9 @@ public class ScilabMenu extends ScilabWidget implements Menu {
 
     }
 
+    @Override
+    public void resetForeground() {
+        // TODO Auto-generated method stub
+
+    }
 }

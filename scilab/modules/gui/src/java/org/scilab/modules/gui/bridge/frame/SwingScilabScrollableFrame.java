@@ -602,4 +602,10 @@ public class SwingScilabScrollableFrame extends JScrollPane implements SwingView
         }
     }
 
+    public void resetForeground() {
+        Color color = (Color)UIManager.getLookAndFeelDefaults().get("ScrollPane.foreground");
+        if (color != null) {
+            super.setForeground(color);
+        }
+    }
 }

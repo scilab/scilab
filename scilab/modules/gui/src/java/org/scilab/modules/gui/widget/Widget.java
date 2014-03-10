@@ -43,6 +43,7 @@ public interface Widget extends Dockable {
      * @param color the Color
      */
     void setForeground(Color color);
+    void resetForeground();
 
     /**
      * Get the Foreground color of the widget.

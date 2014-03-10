@@ -493,4 +493,11 @@ public class SwingScilabSlider extends JSlider implements SwingViewObject, Simpl
             setBackground(color);
         }
     }
+
+    public void resetForeground() {
+        Color color = (Color)UIManager.getLookAndFeelDefaults().get("Slider.foreground");
+        if (color != null) {
+            setForeground(color);
+        }
+    }
 }

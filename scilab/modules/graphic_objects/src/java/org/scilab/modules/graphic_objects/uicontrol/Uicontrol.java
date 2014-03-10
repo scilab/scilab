@@ -296,7 +296,7 @@ public class Uicontrol extends GraphicObject {
     private double fontSize = 0;
     private String fontUnits = "points";
     private String fontWeight = "";
-    private Double[] foregroundColor = {0.0, 0.0, 0.0};
+    private Double[] foregroundColor = { -1.0, -1.0, -1.0};
     private String horizontalAlignment = "";
     private String verticalAlignment = "";
     private Integer[] listboxTop;

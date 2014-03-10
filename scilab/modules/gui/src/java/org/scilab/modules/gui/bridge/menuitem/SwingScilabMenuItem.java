@@ -482,4 +482,11 @@ public class SwingScilabMenuItem extends JMenuItem implements SwingViewObject, S
             setBackground(color);
         }
     }
+
+    public void resetForeground() {
+        Color color = (Color)UIManager.getLookAndFeelDefaults().get("MenuItem.foreground");
+        if (color != null) {
+            setForeground(color);
+        }
+    }
 }

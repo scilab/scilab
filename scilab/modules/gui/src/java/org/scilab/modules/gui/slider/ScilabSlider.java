@@ -311,4 +311,9 @@ public class ScilabSlider extends ScilabWidget implements Slider {
 
     }
 
+    @Override
+    public void resetForeground() {
+        // TODO Auto-generated method stub
+
+    }
 }

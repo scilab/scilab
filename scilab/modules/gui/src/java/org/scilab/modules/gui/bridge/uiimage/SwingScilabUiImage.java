@@ -381,4 +381,11 @@ public class SwingScilabUiImage extends JLabel implements SwingViewObject, Simpl
             setBackground(color);
         }
     }
+
+    public void resetForeground() {
+        Color color = (Color)UIManager.getLookAndFeelDefaults().get("Label.foreground");
+        if (color != null) {
+            setForeground(color);
+        }
+    }
 }

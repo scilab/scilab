@@ -435,4 +435,11 @@ public class SwingScilabCheckBoxMenuItem extends JCheckBoxMenuItem implements Sw
             setBackground(color);
         }
     }
+
+    public void resetForeground() {
+        Color color = (Color)UIManager.getLookAndFeelDefaults().get("CheckBoxMenuItem.foreground");
+        if (color != null) {
+            setForeground(color);
+        }
+    }
 }

@@ -219,4 +219,11 @@ public class SwingScilabTextBox extends JTextArea implements SimpleTextBox {
             setBackground(color);
         }
     }
+
+    public void resetForeground() {
+        Color color = (Color)UIManager.getLookAndFeelDefaults().get("TextArea.foreground");
+        if (color != null) {
+            setForeground(color);
+        }
+    }
 }

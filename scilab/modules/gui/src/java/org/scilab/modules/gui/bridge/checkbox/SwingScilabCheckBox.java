@@ -394,4 +394,11 @@ public class SwingScilabCheckBox extends JCheckBox implements SwingViewObject, S
             setBackground(color);
         }
     }
+
+    public void resetForeground() {
+        Color color = (Color)UIManager.getLookAndFeelDefaults().get("CheckBox.foreground");
+        if (color != null) {
+            setForeground(color);
+        }
+    }
 }

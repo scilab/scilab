@@ -251,4 +251,9 @@ public class ScilabEditBox extends ScilabWidget implements EditBox {
 
     }
 
+    @Override
+    public void resetForeground() {
+        // TODO Auto-generated method stub
+
+    }
 }

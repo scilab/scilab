@@ -422,4 +422,11 @@ public class SwingScilabTabGroup extends JTabbedPane implements SwingViewObject,
             super.setIconAt(index, null);
         }
     }
+
+    public void resetForeground() {
+        Color color = (Color)UIManager.getLookAndFeelDefaults().get("TabbedPane.foreground");
+        if (color != null) {
+            setForeground(color);
+        }
+    }
 }

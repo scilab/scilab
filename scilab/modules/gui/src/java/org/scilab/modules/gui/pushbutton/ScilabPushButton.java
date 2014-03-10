@@ -262,4 +262,9 @@ public class ScilabPushButton extends ScilabWidget implements PushButton {
 
     }
 
+    @Override
+    public void resetForeground() {
+        // TODO Auto-generated method stub
+
+    }
 }

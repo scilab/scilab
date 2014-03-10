@@ -194,4 +194,11 @@ public class SwingScilabSpinner extends JSpinner implements SwingViewObject, Sim
         }
     }
 
+
+    public void resetForeground() {
+        Color color = (Color)UIManager.getLookAndFeelDefaults().get("Spinner.foreground");
+        if (color != null) {
+            setForeground(color);
+        }
+    }
 }

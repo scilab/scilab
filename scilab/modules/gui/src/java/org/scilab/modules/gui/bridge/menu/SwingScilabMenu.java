@@ -478,4 +478,11 @@ public class SwingScilabMenu extends JMenu implements SwingViewObject, SimpleMen
             setBackground(color);
         }
     }
+
+    public void resetForeground() {
+        Color color = (Color)UIManager.getLookAndFeelDefaults().get("Menu.foreground");
+        if (color != null) {
+            setForeground(color);
+        }
+    }
 }

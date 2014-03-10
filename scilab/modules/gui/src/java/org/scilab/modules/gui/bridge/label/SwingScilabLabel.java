@@ -202,7 +202,6 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
         setMinimumSize(new Dimension(
                            Math.max((int)label.getMinimumSize().getWidth(), newSize.getWidth()),
                            (int)label.getMinimumSize().getHeight()));
-        validate();
     }
 
     /**
@@ -364,13 +363,14 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
             if (!ScilabSpecialTextUtilities.setText(label, newText)) {
                 // Normal Text
                 ((JLabel) label).setText(newText);
-                ((JLabel) label).invalidate();
-                invalidate();
-
             } else {
                 // Latex or MathML : Rendering will be done using Icon
                 ((JLabel) label).setText(null);
             }
+
+            ((JLabel) label).invalidate();
+            ((JLabel) label).validate();
+            ((JLabel) label).repaint();
         }
 
     }
@@ -409,7 +409,6 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
 
             label = newLabel;
             alignmentPanel.add(label);
-            alignmentPanel.revalidate();
             setViewportView(alignmentPanel);
         } else {
             alignmentPanel.remove(label);
@@ -490,7 +489,6 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
         }
 
         alignmentLayout.setConstraints(label, gbc);
-        alignmentPanel.revalidate();
     }
 
     /**
@@ -547,6 +545,13 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
                 ((JLabel)label).setOpaque(false);
             }
             label.setBackground(color);
+        }
+    }
+
+    public void resetForeground() {
+        Color color = (Color)UIManager.getLookAndFeelDefaults().get("Label.foreground");
+        if (color != null) {
+            label.setForeground(color);
         }
     }
 }

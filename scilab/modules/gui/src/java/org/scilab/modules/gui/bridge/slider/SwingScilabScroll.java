@@ -429,4 +429,11 @@ public class SwingScilabScroll extends JScrollBar implements SwingViewObject, Si
             setBackground(color);
         }
     }
+
+    public void resetForeground() {
+        Color color = (Color)UIManager.getLookAndFeelDefaults().get("ScrollBar.foreground");
+        if (color != null) {
+            setForeground(color);
+        }
+    }
 }

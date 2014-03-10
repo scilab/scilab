@@ -478,4 +478,11 @@ public class SwingScilabUiTable extends JScrollPane implements SwingViewObject, 
             setBackground(color);
         }
     }
+
+    public void resetForeground() {
+        Color color = (Color)UIManager.getLookAndFeelDefaults().get("ScrollPane.foreground");
+        if (color != null) {
+            setForeground(color);
+        }
+    }
 }

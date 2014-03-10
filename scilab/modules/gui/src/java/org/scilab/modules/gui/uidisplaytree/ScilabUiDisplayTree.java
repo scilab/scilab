@@ -256,4 +256,10 @@ public class ScilabUiDisplayTree extends ScilabWidget implements UiDisplayTree {
         // TODO Auto-generated method stub
 
     }
+
+    @Override
+    public void resetForeground() {
+        // TODO Auto-generated method stub
+
+    }
 }

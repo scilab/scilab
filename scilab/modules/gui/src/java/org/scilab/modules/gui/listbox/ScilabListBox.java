@@ -324,4 +324,10 @@ public class ScilabListBox extends ScilabWidget implements ListBox {
         // TODO Auto-generated method stub
 
     }
+
+    @Override
+    public void resetForeground() {
+        // TODO Auto-generated method stub
+
+    }
 }

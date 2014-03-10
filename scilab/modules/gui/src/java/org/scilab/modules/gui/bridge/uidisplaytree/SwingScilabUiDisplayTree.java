@@ -295,4 +295,11 @@ public class SwingScilabUiDisplayTree extends JScrollPane implements SimpleUiDis
             setBackground(color);
         }
     }
+
+    public void resetForeground() {
+        Color color = (Color)UIManager.getLookAndFeelDefaults().get("ScrollPane.foreground");
+        if (color != null) {
+            setForeground(color);
+        }
+    }
 }

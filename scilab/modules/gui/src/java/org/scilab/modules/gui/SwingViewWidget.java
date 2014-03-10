@@ -195,10 +195,16 @@ public final class SwingViewWidget {
             }
             case __GO_UI_FOREGROUNDCOLOR__ : {
                 Double[] allColors = ((Double[]) value);
-                uiControl.setForeground(new Color(
-                                            (int) (allColors[0] * COLORS_COEFF),
-                                            (int) (allColors[1] * COLORS_COEFF),
-                                            (int) (allColors[2] * COLORS_COEFF)));
+                if (allColors[0] != -1) {
+                    uiControl.setForeground(new Color(
+                                                (int) (allColors[0] * COLORS_COEFF),
+                                                (int) (allColors[1] * COLORS_COEFF),
+                                                (int) (allColors[2] * COLORS_COEFF)));
+                } else {
+                    // Do not set ForegroundColor for widgets
+                    // rely on Look and Feel
+                    uiControl.resetForeground();
+                }
                 break;
             }
             case __GO_UI_HORIZONTALALIGNMENT__ : {

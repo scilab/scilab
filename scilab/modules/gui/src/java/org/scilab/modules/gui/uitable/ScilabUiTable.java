@@ -289,4 +289,10 @@ public class ScilabUiTable extends ScilabWidget implements UiTable {
         // TODO Auto-generated method stub
 
     }
+
+    @Override
+    public void resetForeground() {
+        // TODO Auto-generated method stub
+
+    }
 }

@@ -392,4 +392,11 @@ public class SwingScilabRadioButton extends JRadioButton implements SwingViewObj
             setBackground(color);
         }
     }
+
+    public void resetForeground() {
+        Color color = (Color)UIManager.getLookAndFeelDefaults().get("RadioButton.foreground");
+        if (color != null) {
+            setForeground(color);
+        }
+    }
 }

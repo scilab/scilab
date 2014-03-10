@@ -383,4 +383,11 @@ public class SwingScilabContextMenu extends JPopupMenu implements SwingViewObjec
             setBackground(color);
         }
     }
+
+    public void resetForeground() {
+        Color color = (Color)UIManager.getLookAndFeelDefaults().get("PopupMenu.foreground");
+        if (color != null) {
+            setForeground(color);
+        }
+    }
 }

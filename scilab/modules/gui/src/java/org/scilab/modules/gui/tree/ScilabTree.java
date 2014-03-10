@@ -302,4 +302,9 @@ public class ScilabTree implements Tree {
 
     }
 
+    @Override
+    public void resetForeground() {
+        // TODO Auto-generated method stub
+
+    }
 }

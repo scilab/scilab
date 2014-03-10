@@ -265,4 +265,9 @@ public class ScilabRadioButton extends ScilabWidget implements RadioButton {
 
     }
 
+    @Override
+    public void resetForeground() {
+        // TODO Auto-generated method stub
+
+    }
 }

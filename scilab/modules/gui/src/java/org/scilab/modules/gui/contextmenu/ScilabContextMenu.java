@@ -264,4 +264,9 @@ public class ScilabContextMenu extends ScilabWidget implements ContextMenu {
 
     }
 
+    @Override
+    public void resetForeground() {
+        // TODO Auto-generated method stub
+
+    }
 }

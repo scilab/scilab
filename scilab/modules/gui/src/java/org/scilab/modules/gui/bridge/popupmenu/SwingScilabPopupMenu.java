@@ -524,4 +524,11 @@ public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, 
             setBackground(color);
         }
     }
+
+    public void resetForeground() {
+        Color color = (Color)UIManager.getLookAndFeelDefaults().get("ComboBox.foreground");
+        if (color != null) {
+            setForeground(color);
+        }
+    }
 }

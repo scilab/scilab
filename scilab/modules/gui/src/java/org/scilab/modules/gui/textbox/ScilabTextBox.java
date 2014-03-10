@@ -252,4 +252,9 @@ public class ScilabTextBox extends ScilabText implements TextBox {
 
     }
 
+    @Override
+    public void resetForeground() {
+        // TODO Auto-generated method stub
+
+    }
 }

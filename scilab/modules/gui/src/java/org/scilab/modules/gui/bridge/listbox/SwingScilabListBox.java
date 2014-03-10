@@ -726,4 +726,11 @@ public class SwingScilabListBox extends JScrollPane implements SwingViewObject, 
             getList().setBackground(color);
         }
     }
+
+    public void resetForeground() {
+        Color color = (Color)UIManager.getLookAndFeelDefaults().get("List.foreground");
+        if (color != null) {
+            getList().setForeground(color);
+        }
+    }
 }

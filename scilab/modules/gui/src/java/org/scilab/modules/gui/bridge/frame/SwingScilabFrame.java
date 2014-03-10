@@ -957,10 +957,22 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
         }
     }
 
+    //    public void setForeground(Color color) {
+    //        System.out.println((Color)UIManager.getLookAndFeelDefaults().get("Panel.foreground"));
+    //        super.setForeground((Color)UIManager.getLookAndFeelDefaults().get("Panel.foreground"));
+    //    }
+
     public void resetBackground() {
         Color color = (Color)UIManager.getLookAndFeelDefaults().get("Panel.background");
         if (color != null) {
             setBackground(color);
+        }
+    }
+
+    public void resetForeground() {
+        Color color = (Color)UIManager.getLookAndFeelDefaults().get("Panel.foreground");
+        if (color != null) {
+            setForeground(color);
         }
     }
 }

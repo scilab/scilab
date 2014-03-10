@@ -560,4 +560,11 @@ public class SwingScilabEditBox extends JScrollPane implements SwingViewObject, 
             setBackground(color);
         }
     }
+
+    public void resetForeground() {
+        Color color = (Color)UIManager.getLookAndFeelDefaults().get("TextField.foreground");
+        if (color != null) {
+            setForeground(color);
+        }
+    }
 }

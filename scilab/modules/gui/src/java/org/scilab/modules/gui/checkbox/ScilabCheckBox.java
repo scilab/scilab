@@ -265,4 +265,9 @@ public class ScilabCheckBox extends ScilabWidget implements CheckBox {
 
     }
 
+    @Override
+    public void resetForeground() {
+        // TODO Auto-generated method stub
+
+    }
 }

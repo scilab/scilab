@@ -363,4 +363,11 @@ public class SwingScilabTree extends DefaultMutableTreeNode implements SimpleTre
             setBackground(color);
         }
     }
+
+    public void resetForeground() {
+        Color color = (Color)UIManager.getLookAndFeelDefaults().get("Tree.foreground");
+        if (color != null) {
+            setForeground(color);
+        }
+    }
 }
