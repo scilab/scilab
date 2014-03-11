@@ -28,7 +28,9 @@ c
 c
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
-c     
+c
+      bintg=0.0d0
+c
 c     nordre est le numero d'ordre de cet external dans la structure
 c     de donnee,
 c     mlhs (mrhs) est le nombre de parametres de sortie (entree)

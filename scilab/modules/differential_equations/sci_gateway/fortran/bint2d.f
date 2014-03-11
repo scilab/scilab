@@ -1,19 +1,19 @@
-c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-c Copyright (C) INRIA
-c ...
-c 
-c This file must be used under the terms of the CeCILL.
-c This source file is licensed as described in the file COPYING, which
-c you should have received as part of this distribution.  The terms
-c are also available at    
-c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
-c
+c     Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c     Copyright (C) INRIA
+c     ...
+c     
+c     This file must be used under the terms of the CeCILL.
+c     This source file is licensed as described in the file COPYING, which
+c     you should have received as part of this distribution.  The terms
+c     are also available at
+c     http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+c     
       double precision function bint2d(x,y)
-c
-c ======================================================================
+c     
+c     ======================================================================
 c     gestion des macros externals pour le primitive INTG
-c ======================================================================
-c
+c     ======================================================================
+c     
       INCLUDE 'stack.h'
       integer iadr,sadr
 c     
@@ -24,14 +24,16 @@ c
 c     
       integer vol,tops,nordre
       data nordre/1/,mlhs/1/
-c
+c     
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
+c
+      bint2d=0.0d0
 c     
 c     nordre est le numero d'ordre de cet external dans la structure
 c     de donnee,
 c     mlhs (mrhs) est le nombre de parametres de sortie (entree)
-c     du simulateur 
+c     du simulateur
 c     
       iero=0
       mrhs=2
@@ -44,14 +46,14 @@ c     external is a Scilab function
 c     on return iero=1 is used to notify to the ode solver that
 c     scilab was not able to evaluate the external
       iero=1
-c     Putting Fortran arguments on Scilab stack 
+c     Putting Fortran arguments on Scilab stack
 
-c+    
+c     +
       call ftob(x,1,istk(il+1))
       if(err.gt.0.or.err1.gt.0) return
       call ftob(y,1,istk(il+2))
       if(err.gt.0.or.err1.gt.0) return
-c+    
+c     +
 c     
       tops=istk(il)
       ils=iadr(lstk(tops))
@@ -118,13 +120,13 @@ c
       rhs=ids(2,pt)
       pt=pt-1
       niv=niv-1
-c+    
+c     +
 c     transfert des variables  de sortie vers fortran
       call btof(xx,1)
       bint2d=xx
       if(err.gt.0.or.err1.gt.0) return
 c     normal return iero set to 0
-      iero=0 
+      iero=0
       return
 
 c     

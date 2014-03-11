@@ -682,6 +682,8 @@ int ScilabObjects::getArgumentId(int * addr, int * tmpvars, const bool isRef, co
             throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, gettext("Unable to wrap. Unmanaged datatype (%d) ?"), typ);
         }
     }
+
+    return -1;
 }
 
 int ScilabObjects::getMListType(int * mlist, void * pvApiCtx)
