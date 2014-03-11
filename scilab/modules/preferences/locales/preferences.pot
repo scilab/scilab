@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2014-03-06 10:33+0100\n"
+"Revision-Date: 2014-03-11 10:51+0100\n"
 
 # File: sci_gateway/c/gw_preferences.c, line: 38
 #, c-format
@@ -158,63 +158,63 @@ msgstr ""
 msgid "Scilab '%s' module not installed.\n"
 msgstr ""
 
-# File: macros/getPrefValues.sci, line: 19
-# File: macros/setPrefValues.sci, line: 21
+# File: macros/getPreferencesValue.sci, line: 19
+# File: macros/setPreferencesValue.sci, line: 21
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
 
 #
-# File: macros/getPrefValues.sci, line: 23
-# File: macros/setPrefValues.sci, line: 25
+# File: macros/getPreferencesValue.sci, line: 23
+# File: macros/setPreferencesValue.sci, line: 25
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
 
 #
-# File: macros/getPrefValues.sci, line: 27
-# File: macros/setPrefValues.sci, line: 29
+# File: macros/getPreferencesValue.sci, line: 27
+# File: macros/setPreferencesValue.sci, line: 29
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr ""
 
 #
-# File: macros/getPrefValues.sci, line: 33
-# File: macros/setPrefValues.sci, line: 39
+# File: macros/getPreferencesValue.sci, line: 33
+# File: macros/setPreferencesValue.sci, line: 39
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A XMLDoc expected.\n"
 msgstr ""
 
 #
-# File: macros/getPrefValues.sci, line: 42
-# File: macros/setPrefValues.sci, line: 48
+# File: macros/getPreferencesValue.sci, line: 42
+# File: macros/setPreferencesValue.sci, line: 48
 #, c-format
 msgid "%s: Invalid XPath request.\n"
 msgstr ""
 
 #
-# File: macros/getPrefValues.sci, line: 49
-# File: macros/setPrefValues.sci, line: 55
+# File: macros/getPreferencesValue.sci, line: 49
+# File: macros/setPreferencesValue.sci, line: 55
 #, c-format
 msgid "%s: Invalid XPath request."
 msgstr ""
 
 #
-# File: macros/getPrefValues.sci, line: 57
-# File: macros/setPrefValues.sci, line: 63
+# File: macros/getPreferencesValue.sci, line: 57
+# File: macros/setPreferencesValue.sci, line: 63
 #, c-format
 msgid "%s: Target node is not a XML_ELEMENT_NODE."
 msgstr ""
 
 #
-# File: macros/getPrefValues.sci, line: 70
-# File: macros/setPrefValues.sci, line: 75
+# File: macros/getPreferencesValue.sci, line: 70
+# File: macros/setPreferencesValue.sci, line: 75
 #, c-format
 msgid "%s: Invalid attribute name: %s."
 msgstr ""
 
 #
-# File: macros/setPrefValues.sci, line: 33
+# File: macros/setPreferencesValue.sci, line: 33
 #, c-format
-msgid "%s: Wrong size for input argument #%d: a 2xN maxtrix expected.\n"
+msgid "%s: Wrong size for input argument #%d: a 2xN matrix expected.\n"
 msgstr ""

@@ -30,7 +30,7 @@ function setPreferencesValue(xpath, kv, doc)
     end
 
     if (size(kv, "r") ~= 2) then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: a 2xN maxtrix expected.\n"), "setPreferencesValue", 2));
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: a 2xN matrix expected.\n"), "setPreferencesValue", 2));
     end
 
     if rhs == 2 then
