@@ -199,6 +199,11 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
      * @param member the member to add
      */
     public void addMember(SwingViewObject member) {
+        //forward disable status
+        if (isEnabled() == false) {
+            ((Component) member).setEnabled(false);
+        }
+
         if (member instanceof SwingScilabAxes) {
             AxesContainer frame = (AxesContainer) GraphicModel.getModel().getObjectFromId(getId());
             SwingScilabCanvas canvas = new SwingScilabCanvas(frame);

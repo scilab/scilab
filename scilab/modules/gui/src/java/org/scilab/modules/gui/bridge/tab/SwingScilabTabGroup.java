@@ -291,7 +291,7 @@ public class SwingScilabTabGroup extends JTabbedPane implements SwingViewObject,
         //disable current selected tab, select another enable tab if possible
         if (enabled == false && index == getSelectedIndex()) {
             //looking first enable tab and select it.
-            for (int i = 0 ; i < getComponentCount() ; i++) {
+            for (int i = 0 ; i < getTabCount() ; i++) {
                 if (getComponentAt(i).isEnabled()) {
                     setSelectedIndex(i);
                     break;

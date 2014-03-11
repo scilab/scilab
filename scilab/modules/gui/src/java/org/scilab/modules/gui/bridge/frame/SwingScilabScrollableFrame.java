@@ -146,6 +146,11 @@ public class SwingScilabScrollableFrame extends JScrollPane implements SwingView
      * @param member the member to add
      */
     public void addMember(SwingViewObject member) {
+        //forward disable status
+        if (isEnabled() == false) {
+            ((Component) member).setEnabled(false);
+        }
+
         Uicontrol uicontrol = (Uicontrol) GraphicModel.getModel().getObjectFromId(member.getId());
         if (getLayout() instanceof BorderLayout) {
             switch (uicontrol.getBorderPositionAsEnum()) {
