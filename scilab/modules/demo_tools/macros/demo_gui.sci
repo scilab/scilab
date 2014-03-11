@@ -37,7 +37,7 @@ function demo_gui()
 
     // Figure creation
     // =========================================================================
-    demo_fig = loadGui(SCI + "/modules/demo_tools/macros/demo_gui.xml");
+    demo_fig = loadGui(SCI + "/modules/demo_tools/gui/demo_gui.xml");
 
     // Parameters
     // =========================================================================
