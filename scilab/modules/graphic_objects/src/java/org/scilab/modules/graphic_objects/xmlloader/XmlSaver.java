@@ -12,6 +12,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TAB__;
 
 import java.io.File;
+import java.util.Arrays;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -348,14 +349,14 @@ public class XmlSaver {
         if (uic.getStyle() != __GO_UI_TAB__ && uic.getStyle() != __GO_UI_LAYER__) {
             String[] uicSstr = uic.getString();
             String[] modelStr = defaultUi.getString();
-            if (uicSstr.equals(modelStr) == false) {
+            if (Arrays.deepEquals(uicSstr, modelStr) == false) {
                 createStringArray(doc, elemUi, "string", uicSstr, uic.getStringColNb());
             }
         }
         //TooltipString
         String[] uicToolTip = uic.getTooltipString();
         String[] modelToolTip = defaultUi.getTooltipString();
-        if (uicToolTip.equals(modelToolTip) == false) {
+        if (Arrays.deepEquals(uicToolTip, modelToolTip) == false) {
             createStringArray(doc, elemUi, "tooltipstring", uicToolTip, 1);
         }
         //Units
