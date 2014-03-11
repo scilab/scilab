@@ -142,6 +142,9 @@ function resize_gui(frame_number)
     axes_w = frame_number * 250; // axes width
     demo_fig = get("scilab_demo_fig");
     demo_fig.axes_size(1) = axes_w;
-    demo_fig.children($:-1:$-(frame_number+1)).visible = "on";
+    demo_fig.children($:-1:$-(frame_number-1)).visible = "on";
+    //hide other frame
     demo_fig.children($-frame_number:-1:1).visible = "off";
+    //clean listbox
+    demo_fig.children($-frame_number:-1:1).children(1).string = "";
 endfunction

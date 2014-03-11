@@ -41,7 +41,7 @@
             <borders color="black" fontangle="normal" fontname="" fontsize="12" fontweight="bold" justification="1" style="titled" title="">
                 <title style="empty"/>
             </borders>
-            <listbox callback="script_path = demo_gui_update();if ~isempty(script_path) then exec(script_path, -1);end;clear script_path;" callback_type="0" fontsize="12.0" gridbagfill="3" gridbaggrid="1,1,1,4" gridbagweight="1.0,1.0" listboxtop="1" tag="listbox_74" value="3.0"/>
+            <listbox callback="script_path = demo_gui_update();if ~isempty(script_path) then exec(script_path, -1);end;clear script_path;" callback_type="0" fontsize="12.0" gridbagfill="3" gridbaggrid="1,1,1,4" gridbagweight="1.0,1.0" listboxtop="1" tag="listbox_4" value="3.0"/>
         </frame>
         <frame backgroundcolor="1.0,1.0,1.0" gridbagfill="3" gridbaggrid="3,1,1,1" gridbagpreferredsize="0,0" gridbagweight="1.0,1.0" layout="1" tag="frame_3" visible="off">
             <borders color="black" fontangle="normal" fontname="" fontsize="12" fontweight="bold" justification="1" style="titled" title="">
