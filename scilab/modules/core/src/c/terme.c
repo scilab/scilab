@@ -145,7 +145,10 @@ int C2F(terme)(void)
                     /*next line added to handle syntax like a*-b for Matlab compatiblity */
                     if (C2F(com).sym == plus || C2F(com).sym == minus)
                     {
-                        C2F(recu).icall = 1;    /* escape to call expr */
+                        // Fix for bug 13168: replace icall=1 by icall=3
+                        //  * icall==1 => call expr
+                        //  * icall==3 => call fact
+                        C2F(recu).icall = 3;    /* escape to call fact */
                     }
                     else
                     {
