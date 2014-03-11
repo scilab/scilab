@@ -127,18 +127,24 @@ public final class SciDocMain {
 
             switch (format) {
                 case JAVAHELP:
-                    imgConvert.loadMD5s(ScilabConstants.SCI.getPath() + "/modules/helptools/etc");
+                    if (!isToolbox) {
+                        imgConvert.loadMD5s(ScilabConstants.SCI.getPath() + "/modules/helptools/etc");
+                    }
                     converter = new JavaHelpDocbookTagConverter(sourceDoc, this, imgConvert);
                     break;
                 case HTML:
                     converter = new HTMLDocbookTagConverter(sourceDoc, this, imgConvert);
                     break;
                 case WEB:
-                    imgConvert.loadMD5s(ScilabConstants.SCI.getPath() + "/modules/helptools/etc");
+                    if (!isToolbox) {
+                        imgConvert.loadMD5s(ScilabConstants.SCI.getPath() + "/modules/helptools/etc");
+                    }
                     converter = new HTMLDocbookTagConverter(sourceDoc, this, imgConvert);
                     break;
                 case CHM:
-                    imgConvert.loadMD5s(ScilabConstants.SCI.getPath() + "/modules/helptools/etc");
+                    if (!isToolbox) {
+                        imgConvert.loadMD5s(ScilabConstants.SCI.getPath() + "/modules/helptools/etc");
+                    }
                     converter = new CHMDocbookTagConverter(sourceDoc, this, imgConvert);
                     break;
                 case FO:

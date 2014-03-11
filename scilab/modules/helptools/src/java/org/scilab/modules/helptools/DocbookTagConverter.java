@@ -314,6 +314,13 @@ public abstract class DocbookTagConverter extends DefaultHandler implements Conv
      * {@inheritDoc}
      */
     public InputSource resolveEntity(String publicId, String systemId) throws SAXException, IOException {
+        if (publicId != null) {
+            publicId = publicId.replaceAll(" ", "%20");
+        }
+        if (systemId != null) {
+            systemId = systemId.replaceAll(" ", "%20");
+        }
+
         currentFileName = systemId;
         currentBaseName = new File(systemId).getName();
 

@@ -700,6 +700,8 @@ Scilab Bug Fixes
 
 * Bug #13186 fixed - csvRead freezed Scilab if separator was an empty string.
 
+* Bug #13187 fixed - xmltoformat did not include "imageobjects" in output.
+
 * Bug #13188 fixed - The output argument of eomday function was not pre-dimensioned.
 
 * Bug #13191 fixed - isempty(rational) returned an error message.
