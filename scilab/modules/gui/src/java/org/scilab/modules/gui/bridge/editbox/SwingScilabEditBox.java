@@ -23,6 +23,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.KeyboardFocusManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
@@ -92,6 +93,7 @@ public class SwingScilabEditBox extends JScrollPane implements SwingViewObject, 
 
     private Object enterKeyAction;
     private Object tabKeyAction;
+    private Object shiftTabKeyAction;
 
     private class EditBoxView extends BoxView {
         public EditBoxView(Element elem, int axis) {
@@ -176,9 +178,11 @@ public class SwingScilabEditBox extends JScrollPane implements SwingViewObject, 
         textPane.addFocusListener(focusListener);
         KeyStroke enterKey = KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0);
         KeyStroke tabKey = KeyStroke.getKeyStroke(KeyEvent.VK_TAB, 0);
+        KeyStroke shiftTabKey = KeyStroke.getKeyStroke(KeyEvent.VK_TAB, KeyEvent.SHIFT_DOWN_MASK);
         InputMap map = textPane.getInputMap();
         enterKeyAction = map.get(enterKey);
         tabKeyAction = map.get(tabKey);
+        shiftTabKeyAction = map.get(shiftTabKey);
 
         if (Console.getConsole().getUseDeprecatedLF() == false) {
             setEditFont(getFont());
@@ -455,9 +459,11 @@ public class SwingScilabEditBox extends JScrollPane implements SwingViewObject, 
             StyleConstants.setFontSize(docAttributes, font.getSize());
             StyleConstants.setBold(docAttributes, font.isBold());
             StyleConstants.setItalic(docAttributes, font.isItalic());
-            // Force rendering
-            //setText(getText());
         }
+    }
+
+    public void setFont(Font font) {
+        setEditFont(font);
     }
 
     /**
@@ -532,12 +538,15 @@ public class SwingScilabEditBox extends JScrollPane implements SwingViewObject, 
     public void setMultiLineText(boolean enable) {
         KeyStroke enterKey = KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0);
         KeyStroke tabKey = KeyStroke.getKeyStroke(KeyEvent.VK_TAB, 0);
+        KeyStroke shiftTabKey = KeyStroke.getKeyStroke(KeyEvent.VK_TAB, KeyEvent.SHIFT_DOWN_MASK);
         if (enable) {
             setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
             textPane.getInputMap().remove(enterKey);
             textPane.getInputMap().remove(tabKey);
+            textPane.getInputMap().remove(shiftTabKey);
             textPane.getInputMap().put(enterKey, enterKeyAction);
             textPane.getInputMap().put(tabKey, tabKeyAction);
+            textPane.getInputMap().put(tabKey, shiftTabKeyAction);
         } else {
             setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
             AbstractAction validateUserInput = new AbstractAction() {
@@ -545,12 +554,25 @@ public class SwingScilabEditBox extends JScrollPane implements SwingViewObject, 
 
                 public void actionPerformed(ActionEvent e) {
                     validateUserInput();
+                    KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
+                    manager.focusNextComponent();
+                }
+            };
+            AbstractAction focusPreviousComponent = new AbstractAction() {
+                private static final long serialVersionUID = -5286137769378297783L;
+
+                public void actionPerformed(ActionEvent e) {
+                    validateUserInput();
+                    KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
+                    manager.focusPreviousComponent();
                 }
             };
             textPane.getInputMap().remove(enterKey);
             textPane.getInputMap().remove(tabKey);
+            textPane.getInputMap().remove(shiftTabKey);
             textPane.getInputMap().put(enterKey, validateUserInput);
             textPane.getInputMap().put(tabKey, validateUserInput);
+            textPane.getInputMap().put(shiftTabKey, focusPreviousComponent);
         }
     }
 
