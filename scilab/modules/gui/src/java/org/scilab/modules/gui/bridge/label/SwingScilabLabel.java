@@ -146,6 +146,13 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
         }
     }
 
+    public void setEnabled(boolean enabled) {
+        super.setEnabled(enabled);
+        if (label != null) {
+            label.setEnabled(enabled);
+        }
+    }
+
     /**
      * To set the Background color of the element.
      * @param color the Color
