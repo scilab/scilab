@@ -435,10 +435,7 @@ public class SwingScilabListBox extends JScrollPane implements SwingViewObject, 
                     for (int i = 0; i < iconOffset; i++) {
                         String iconFile = FindIconHelper.findIcon((text[iconOffset + i]), false);
                         if (iconFile == null) {
-                            model.clear();
-                            iconBox = false;
-                            colorBox = false;
-                            break;
+                            iconFile = "";
                         }
 
                         //add item in listbox
@@ -446,10 +443,7 @@ public class SwingScilabListBox extends JScrollPane implements SwingViewObject, 
                         if (file.exists() == false) {
                             String filename = FindIconHelper.findImage(iconFile, false);
                             if (filename == null) {
-                                model.clear();
-                                iconBox = false;
-                                colorBox = false;
-                                break;
+                                filename = "";
                             }
 
                             file = new File(filename);
