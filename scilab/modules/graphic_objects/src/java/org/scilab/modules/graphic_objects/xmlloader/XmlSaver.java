@@ -346,10 +346,18 @@ public class XmlSaver {
         //String
         //do not save string and value of tab/layer to avoid setting bad index during loading
         if (uic.getStyle() != __GO_UI_TAB__ && uic.getStyle() != __GO_UI_LAYER__) {
-            setAttribute(elemUi, "string", createAttribute(uic.getString()), createAttribute(defaultUi.getString()));
+            String[] uicSstr = uic.getString();
+            String[] modelStr = defaultUi.getString();
+            if (uicSstr.equals(modelStr) == false) {
+                createStringArray(doc, elemUi, "string", uicSstr, uic.getStringColNb());
+            }
         }
         //TooltipString
-        setAttribute(elemUi, "tooltipstring", createAttribute(uic.getTooltipString()), createAttribute(defaultUi.getTooltipString()));
+        String[] uicToolTip = uic.getTooltipString();
+        String[] modelToolTip = defaultUi.getTooltipString();
+        if (uicToolTip.equals(modelToolTip) == false) {
+            createStringArray(doc, elemUi, "tooltipstring", uicToolTip, 1);
+        }
         //Units
         setAttribute(elemUi, "units", createAttribute(uic.getUnits()), createAttribute(defaultUi.getUnits()));
         //Value
@@ -525,17 +533,17 @@ public class XmlSaver {
     //            return null;
     //        }
     //
-    //        StringBuilder onoff = new StringBuilder();
+    //        StringBuilder str = new StringBuilder();
     //
-    //        onoff.append(createAttribute(val[0]));
+    //        str.append(createAttribute(val[0]));
     //
     //        for(int i = 1 ; i < val.length; i++)
     //        {
-    //            onoff.append(",");
-    //            onoff.append(createAttribute(val[i]));
+    //            str.append(",");
+    //            str.append(createAttribute(val[i]));
     //        }
     //
-    //        return onoff.toString();
+    //        return str.toString();
     //    }
 
 
@@ -544,16 +552,16 @@ public class XmlSaver {
             return null;
         }
 
-        StringBuilder onoff = new StringBuilder();
+        StringBuilder str = new StringBuilder();
 
-        onoff.append(createAttribute(val[0]));
+        str.append(createAttribute(val[0]));
 
         for (int i = 1 ; i < val.length; i++) {
-            onoff.append(",");
-            onoff.append(createAttribute(val[i]));
+            str.append(",");
+            str.append(createAttribute(val[i]));
         }
 
-        return onoff.toString();
+        return str.toString();
     }
 
     private static String createAttribute(Double[] val) {
@@ -561,16 +569,16 @@ public class XmlSaver {
             return null;
         }
 
-        StringBuilder onoff = new StringBuilder();
+        StringBuilder str = new StringBuilder();
 
-        onoff.append(createAttribute(val[0]));
+        str.append(createAttribute(val[0]));
 
         for (int i = 1 ; i < val.length; i++) {
-            onoff.append(",");
-            onoff.append(createAttribute(val[i]));
+            str.append(",");
+            str.append(createAttribute(val[i]));
         }
 
-        return onoff.toString();
+        return str.toString();
     }
 
     private static String createAttribute(Integer[] val) {
@@ -578,16 +586,16 @@ public class XmlSaver {
             return null;
         }
 
-        StringBuilder onoff = new StringBuilder();
+        StringBuilder str = new StringBuilder();
 
-        onoff.append(createAttribute(val[0]));
+        str.append(createAttribute(val[0]));
 
         for (int i = 1 ; i < val.length; i++) {
-            onoff.append(",");
-            onoff.append(createAttribute(val[i]));
+            str.append(",");
+            str.append(createAttribute(val[i]));
         }
 
-        return onoff.toString();
+        return str.toString();
     }
 
     private static void setAttribute(Element elem, String property, String value, String ref) {
@@ -606,6 +614,24 @@ public class XmlSaver {
     private static Uimenu initDefaultMenu() {
         Integer uic = GraphicController.getController().askObject(GraphicObject.getTypeFromName(__GO_UIMENU__));
         return (Uimenu) GraphicController.getController().getObjectFromId(uic);
+    }
+
+    private static void createStringArray(Document doc, Element parent, String property, String[] value, Integer cols) {
+        //create a new Node to store string
+        Element elemString = doc.createElement("string");
+        Integer rows = value.length / cols;
+
+        setAttribute(elemString, "property", property, "");
+        setAttribute(elemString, "rows", rows.toString(), "");
+        setAttribute(elemString, "cols", cols.toString(), "");
+
+        for (int i = 0 ; i < rows * cols ; i++) {
+            Element elemSub = doc.createElement("stringitem");
+            setAttribute(elemSub, "value", value[i], null);
+            elemString.appendChild(elemSub);
+        }
+
+        parent.appendChild(elemString);
     }
 
 }

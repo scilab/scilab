@@ -27,10 +27,12 @@ public class XMLDomLoader {
         BOOLEAN, BOOLEAN_ARRAY, DOUBLE, DOUBLE_ARRAY, STRING, STRING_ARRAY, INTEGER, INTEGER_ARRAY;
     };
 
-    private static final int __NODE_SCILABGUI__ = -10;
-    private static final int __NODE_OUT__       = -20;
-    private static final int __NODE_IN__        = -30;
-    private static final int __NODE_TITLE__     = -40;
+    private static final int __NODE_SCILABGUI__     = -10;
+    private static final int __NODE_OUT__           = -20;
+    private static final int __NODE_IN__            = -30;
+    private static final int __NODE_TITLE__         = -40;
+    private static final int __NODE_STRING__        = -50;
+    private static final int __NODE_STRINGITEM__    = -50;
 
     private static HashMap<String, Integer> nameToGO = new HashMap<String, Integer>();
 
@@ -66,9 +68,13 @@ public class XMLDomLoader {
         nameToGO.put("axes", __GO_AXES__);
 
         nameToGO.put("borders", __GO_UI_FRAME_BORDER__);
+
+        /* internal */
         nameToGO.put("out", __NODE_OUT__);
         nameToGO.put("in", __NODE_IN__);
         nameToGO.put("title", __NODE_TITLE__);
+        nameToGO.put("string", __NODE_STRING__);
+        nameToGO.put("stringitem", __NODE_STRINGITEM__);
 
         /* system */
         nameToGO.put("scilabgui", __NODE_SCILABGUI__);
@@ -126,11 +132,11 @@ public class XMLDomLoader {
         UiPropToGO.put("position", new Pair<Integer, ModelType>(__GO_POSITION__, ModelType.DOUBLE_ARRAY));
         UiPropToGO.put("relief", new Pair<Integer, ModelType>(__GO_UI_RELIEF__, ModelType.STRING));
         UiPropToGO.put("sliderstep", new Pair<Integer, ModelType>(__GO_UI_SLIDERSTEP__, ModelType.DOUBLE_ARRAY));
-        UiPropToGO.put("string", new Pair<Integer, ModelType>(__GO_UI_STRING__, ModelType.STRING_ARRAY));
-        UiPropToGO.put("tooltipstring", new Pair<Integer, ModelType>(__GO_UI_TOOLTIPSTRING__, ModelType.STRING_ARRAY));
         UiPropToGO.put("units", new Pair<Integer, ModelType>(__GO_UI_UNITS__, ModelType.STRING));
         UiPropToGO.put("value", new Pair<Integer, ModelType>(__GO_UI_VALUE__, ModelType.DOUBLE_ARRAY));
         UiPropToGO.put("verticalalignment", new Pair<Integer, ModelType>(__GO_UI_VERTICALALIGNMENT__, ModelType.STRING));
+        UiPropToGO.put("string", new Pair<Integer, ModelType>(__GO_UI_STRING__, ModelType.STRING_ARRAY));
+        UiPropToGO.put("tooltipstring", new Pair<Integer, ModelType>(__GO_UI_TOOLTIPSTRING__, ModelType.STRING_ARRAY));
         UiPropToGO.put("visible", new Pair<Integer, ModelType>(__GO_VISIBLE__, ModelType.BOOLEAN));
         UiPropToGO.put("layout", new Pair<Integer, ModelType>(__GO_LAYOUT__, ModelType.INTEGER));
         UiPropToGO.put("callback", new Pair<Integer, ModelType>(__GO_CALLBACK__, ModelType.STRING));
@@ -305,15 +311,10 @@ public class XMLDomLoader {
                         break;
                     }
 
-                    case __NODE_OUT__: {
-                        break;
-                    }
-
-                    case __NODE_IN__: {
-                        break;
-                    }
-
-                    case __NODE_TITLE__: {
+                    case __NODE_STRING__ : {
+                        //avoid relationship
+                        child = 0;
+                        createString(parent, childNode);
                         break;
                     }
 
@@ -341,6 +342,8 @@ public class XMLDomLoader {
 
 
                     default: {
+                        //ignore TITLED, IN, OU, STRING_AARAY node
+                        System.out.println("ignored : " + childNode.getNodeName());
                         break;
                     }
                 }
@@ -354,6 +357,58 @@ public class XMLDomLoader {
                 }
 
             }
+        }
+    }
+
+    private void createString(Integer parent, Node node) {
+        NamedNodeMap attr = node.getAttributes();
+
+        Node propertyNode = attr.getNamedItem("property");
+        if (propertyNode == null) {
+            return;
+        }
+
+        String property = propertyNode.getNodeValue();
+
+        Node rowNode = attr.getNamedItem("rows");
+        if (rowNode == null) {
+            return;
+        }
+
+        Integer rows = Integer.parseInt(rowNode.getNodeValue());
+
+        Node colNode = attr.getNamedItem("cols");
+        if (colNode == null) {
+            return;
+        }
+
+        Integer cols = Integer.parseInt(colNode.getNodeValue());
+
+
+        if (node.hasChildNodes()) {
+            String[] str = new String[rows * cols];
+            NodeList list = node.getChildNodes();
+            int index = 0;
+            for (int i = 0 ; i < list.getLength() ; i++) {
+                Node childNode = list.item(i);
+                if (childNode.getNodeType() == Node.ELEMENT_NODE) {
+                    attr = childNode.getAttributes();
+                    Node valueNode = attr.getNamedItem("value");
+                    if (valueNode == null) {
+                        str[index++] = "";
+                    } else {
+                        str[index++] = valueNode.getNodeValue();
+                    }
+                }
+            }
+
+            Integer propId = UiPropToGO.get(property).getFirst();
+
+            if (propId == __GO_UI_STRING__ && cols > 1) {
+                System.out.println("set __GO_UI_STRING_COLNB__ : " + cols);
+                GraphicController.getController().setProperty(parent, __GO_UI_STRING_COLNB__, cols);
+            }
+            GraphicController.getController().setProperty(parent, propId, str);
         }
     }
 
@@ -570,7 +625,7 @@ public class XMLDomLoader {
                     controller.setProperty(uic, pair.getFirst(), getAttributeAsString(prop.getNodeValue()));
                     break;
                 case STRING_ARRAY:
-                    controller.setProperty(uic, pair.getFirst(), getAttributeAsStringArray(prop.getNodeValue()));
+                    //nothing to do, manage as node instead of attributes
                     break;
                 default:
                     System.out.println("missing type");
