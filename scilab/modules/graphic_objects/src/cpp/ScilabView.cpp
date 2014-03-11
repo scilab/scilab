@@ -12,6 +12,7 @@
 
 #include <iostream>
 #include <map>
+#include <list>
 #include <cstring>
 #include <limits.h>
 
@@ -487,21 +488,44 @@ PathItem* ScilabView::getItem(int uid)
 
 PathItem* ScilabView::getItem(std::string _pstTag)
 {
+    std::list<int> ignored;
+    return getItem(_pstTag, ignored);
+}
+
+PathItem* ScilabView::getItem(std::string _pstTag, std::list<int>& _ignoredList)
+{
+    /*
+    */
     __pathList_iterator it = m_pathList.begin();
     for (; it != m_pathList.end(); it++)
     {
         PathItem * item = it->second;
         if (item->tag == _pstTag)
         {
-            return item;
+            bool ignored = false;
+            //check if this handle is not in ignoredList
+            std::list<int>::iterator itIgnored = _ignoredList.begin();
+            for (; itIgnored != _ignoredList.end(); itIgnored++)
+            {
+                if ((*itIgnored) == item->uid)
+                {
+                    ignored = true;
+                    break;
+                }
+            }
+
+            if (ignored == false)
+            {
+                return item;
+            }
         }
     }
-
     return NULL;
 }
 
 PathItem* ScilabView::getFigureItem(std::string _pstTag)
 {
+
     __pathFigList_iterator it = m_pathFigList.find(_pstTag);
     if (it != m_pathFigList.end())
     {
@@ -513,8 +537,11 @@ PathItem* ScilabView::getFigureItem(std::string _pstTag)
 
 int ScilabView::search_path(char* _pstPath)
 {
+    //copy string to protect it against strtok
+    char* pstPath = strdup(_pstPath);
+    std::list<int> ignoredList;
     PathItem* path = NULL;
-    char* pstSubPath = strtok(_pstPath, "/");
+    char* pstSubPath = strtok(pstPath, "/");
     bool bDeep = false;
     while (pstSubPath != NULL)
     {
@@ -529,10 +556,10 @@ int ScilabView::search_path(char* _pstPath)
             //search in direct children
             if (path == NULL)
             {
-                path = ScilabView::getFigureItem(_pstPath);
+                path = ScilabView::getFigureItem(pstSubPath);
                 if (path == NULL)
                 {
-                    path = ScilabView::getItem(_pstPath);
+                    path = ScilabView::getItem(pstSubPath, ignoredList);
                     if (path == NULL)
                     {
                         break;
@@ -541,10 +568,19 @@ int ScilabView::search_path(char* _pstPath)
             }
             else
             {
-                path = search_children(path, pstSubPath, bDeep);
-                if (path == NULL)
+                PathItem* newPath = search_children(path, pstSubPath, bDeep, ignoredList);
+                if (newPath == NULL)
                 {
-                    break;
+                    //flag handle to ingnore and restart parsing
+                    ignoredList.push_back(path->uid);
+                    pstPath = strdup(_pstPath);
+                    pstSubPath = strtok(pstPath, "/");
+                    path = NULL;
+                    continue;
+                }
+                else
+                {
+                    path = newPath;
                 }
 
                 bDeep = false;
@@ -567,7 +603,7 @@ int ScilabView::search_path(char* _pstPath)
     return path->uid;
 }
 
-PathItem* ScilabView::search_children(PathItem* _path, std::string _subPath, bool _bDeep)
+PathItem* ScilabView::search_children(PathItem* _path, std::string _subPath, bool _bDeep, std::list<int>& _ignoredList)
 {
     PathItem::__child_iterator it = _path->children.begin();
     for (; it != _path->children.end() ; it++)
@@ -575,11 +611,26 @@ PathItem* ScilabView::search_children(PathItem* _path, std::string _subPath, boo
         PathItem* child = ScilabView::getItem(*it);
         if (child->tag == _subPath)
         {
-            return child;
+            bool ignored = false;
+            //check if this handle is not in ignoredList
+            std::list<int>::iterator itIgnored = _ignoredList.begin();
+            for (; itIgnored != _ignoredList.end(); itIgnored++)
+            {
+                if ((*itIgnored) == child->uid)
+                {
+                    ignored = true;
+                    break;
+                }
+            }
+
+            if (ignored == false)
+            {
+                return child;
+            }
         }
         else if (_bDeep)
         {
-            PathItem *item = search_children(child, _subPath, _bDeep);
+            PathItem *item = search_children(child, _subPath, _bDeep, _ignoredList);
             if (item)
             {
                 return item;

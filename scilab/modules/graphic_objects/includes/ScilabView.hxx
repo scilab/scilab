@@ -109,13 +109,14 @@ public :
 
     static PathItem* getItem(int uid);
     static PathItem* getItem(std::string _pstTag);
+    static PathItem* getItem(std::string _pstTag, std::list<int>& _ignoredList);
     static PathItem* getFigureItem(std::string _pstTag);
 
     static int search_path(char* _pstPath);
     static std::string get_path(int uid);
 
 private :
-    static PathItem* search_children(PathItem* _path, std::string _subPath, bool _bDeep);
+    static PathItem* search_children(PathItem* _path, std::string _subPath, bool _bDeep, std::list<int>& _ignoredList);
 
 };
 
