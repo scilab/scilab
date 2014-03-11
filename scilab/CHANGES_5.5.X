@@ -708,6 +708,8 @@ Scilab Bug Fixes
 
 * Bug #13194 fixed - part help page improved.
 
+* Bug #13199 fixed - There was a thin blue line around acknowledgements button in about box.
+
 * Bug #13200 fixed - about() ACKNOWLEDGEMENTS did not render utf-8 characters.
 
 * Bug #13201 fixed - x_mdialog entries had no margin.

@@ -68,14 +68,24 @@ public class ScilabAboutBox {
      * Display the about box
      */
     public static void displayAndWait() {
-
         String filename = SCIDIR + "/ACKNOWLEDGEMENTS"; // Source version
         if (!new File(filename).exists()) {
             filename = SCIDIR + "/../../ACKNOWLEDGEMENTS"; // Linux binary
             // version
         }
 
-        createAboutBox(Messages.gettext("About Scilab..."), filename);
+        if (SwingUtilities.isEventDispatchThread()) {
+            createAboutBox(Messages.gettext("About Scilab..."), filename);
+        } else {
+            final String fname = filename;
+            try {
+                SwingUtilities.invokeAndWait(new Runnable() {
+                    public void run() {
+                        createAboutBox(Messages.gettext("About Scilab..."), fname);
+                    }
+                });
+            } catch (Exception e) { }
+        }
     }
 
     /**
@@ -101,7 +111,8 @@ public class ScilabAboutBox {
 
         ScilabSwingUtilities.closeOnEscape(aboutBox);
 
-        aboutBox.setContentPane(new AboutPanel(aboutBox, ackFile));
+        AboutPanel ap = new AboutPanel(aboutBox, ackFile);
+        aboutBox.setContentPane(ap);
         aboutBox.setResizable(false);
 
         /*
@@ -116,6 +127,7 @@ public class ScilabAboutBox {
                                  / 2 - (aboutBox.getHeight() / 2));
         }
         aboutBox.setVisible(true);
+        ap.close.requestFocus();
     }
 
     @SuppressWarnings("serial")
@@ -268,7 +280,7 @@ public class ScilabAboutBox {
         private JScrollPane ackScrollPane;
         private JTextPane ackText;
         private JToggleButton acknowledgements;
-        private JButton close;
+        JButton close;
         private JPanel topPane;
     }
 }
