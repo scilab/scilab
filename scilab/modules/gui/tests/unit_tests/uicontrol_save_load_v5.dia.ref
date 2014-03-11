@@ -1,10 +1,10 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2008 - INRIA - Vincent COUVERT 
-// 
+// Copyright (C) 2008 - INRIA - Vincent COUVERT
+//
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 // This test check save and load functions used with uicontrols
 // The following functions are tested:
@@ -44,6 +44,7 @@ h.tag = "My uimenu tag"; // Default is ""
 save(TMPDIR + "/uicontrol.scg", h);
 hsaved = h;
 clear h;
+scf(1);
 // Load saved handle
 load(TMPDIR + "/uicontrol.scg");
 // Check if properties are equal
@@ -52,7 +53,7 @@ if or(h.backgroundcolor<>hsaved.backgroundcolor) then bugmes();quit;end
 if or(h.enable<>hsaved.enable) then bugmes();quit;end
 if or(h.fontangle<>hsaved.fontangle) then bugmes();quit;end
 if or(h.fontname<>hsaved.fontname) then bugmes();quit;end
-//if or(h.fontsize<>hsaved.fontsize) then bugmes();quit;end // TODO FIX ME !!
+if or(h.fontsize<>hsaved.fontsize) then bugmes();quit;end
 if or(h.fontunits<>hsaved.fontunits) then bugmes();quit;end
 if or(h.fontweight<>hsaved.fontweight) then bugmes();quit;end
 if or(h.foregroundcolor<>hsaved.foregroundcolor) then bugmes();quit;end
@@ -60,7 +61,7 @@ if or(h.horizontalalignment<>hsaved.horizontalalignment) then bugmes();quit;end
 if or(h.listboxtop<>hsaved.listboxtop) then bugmes();quit;end
 if or(h.max<>hsaved.max) then bugmes();quit;end
 if or(h.min<>hsaved.min) then bugmes();quit;end
-if abs(sum(h.position-hsaved.position)) > 4 then bugmes();quit;end // TODO FIX ME !! Can have a difference of 1 (point or pixel) when getting position
+if or(h.position<>hsaved.position) then bugmes();quit;end
 if or(h.relief<>hsaved.relief) then bugmes();quit;end
 if or(h.sliderstep<>hsaved.sliderstep) then bugmes();quit;end
 if or(h.string<>hsaved.string) then bugmes();quit;end

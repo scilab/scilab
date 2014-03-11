@@ -119,7 +119,7 @@ public final class UnitsConverter {
             case CENTIMETERS:
                 return value * CM_PER_INCH / POINT_PER_INCH;
             case PIXELS:
-                return value * CallScilabBridge.getScreenResolution() / POINT_PER_INCH;
+                return value * CallScilabBridge.getScreenResolution() / POINT_PER_INCH + 1;
             default:
                 return 0.0;
         }
@@ -172,13 +172,13 @@ public final class UnitsConverter {
                         refSize = parentSize[3].intValue();
                     }
                 }
-                return (int) (value * refSize * POINT_PER_INCH / CallScilabBridge.getScreenResolution());
+                return (value * refSize * POINT_PER_INCH / CallScilabBridge.getScreenResolution());
             case INCHES:
-                return (int) (value * POINT_PER_INCH);
+                return (value * POINT_PER_INCH);
             case CENTIMETERS:
-                return (int) (value * POINT_PER_INCH / CM_PER_INCH);
+                return (value * POINT_PER_INCH / CM_PER_INCH);
             case PIXELS:
-                return (int) (value * POINT_PER_INCH / CallScilabBridge.getScreenResolution());
+                return Math.round((value * POINT_PER_INCH / CallScilabBridge.getScreenResolution()));
             default:
                 return 0;
         }

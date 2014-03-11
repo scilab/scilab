@@ -219,6 +219,12 @@ public final class SwingViewWidget {
                 updatePosition(uiControl, uid, value);
                 break;
             }
+            case __GO_UI_UNITS__: {
+                /* Convert value according to units */
+                Double[] p = (Double[]) GraphicController.getController().getProperty(uid, __GO_POSITION__);
+                updatePosition(uiControl, uid, p);
+                break;
+            }
             case __GO_UI_RELIEF__: {
                 uiControl.setRelief((String) value);
                 break;

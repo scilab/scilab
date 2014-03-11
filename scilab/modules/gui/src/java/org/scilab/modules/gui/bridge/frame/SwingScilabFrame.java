@@ -90,6 +90,8 @@ import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.PositionConverter;
 import org.scilab.modules.gui.utils.ScilabRelief;
 import org.scilab.modules.gui.utils.Size;
+import org.scilab.modules.gui.utils.UnitsConverter;
+import org.scilab.modules.gui.utils.UnitsConverter.UicontrolUnits;
 
 /**
  * Swing implementation for Scilab frames in GUI
@@ -120,12 +122,17 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
 
                     Double[] newPosition = new Double[4];
                     Double[] positions = (Double[]) GraphicController.getController().getProperty(getId(), GraphicObjectProperties.__GO_POSITION__);
-                    newPosition[0] = positions[0];
-                    newPosition[1] = positions[1];
-                    newPosition[2] = getSize().getWidth();
-                    newPosition[3] = getSize().getHeight();
-                    positions[2] = getSize().getWidth();
-                    positions[3] = getSize().getHeight();
+                    if (positions == null) {
+                        // Position property not yet set
+                        return;
+                    }
+                    UicontrolUnits unitsProperty = UnitsConverter.stringToUnitsEnum((String) GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_UI_UNITS__));
+                    newPosition[0] = UnitsConverter.convertFromPixel(getPosition().getX(), unitsProperty, (SwingScilabFrame) SwingView.getFromId(uid), true);
+                    newPosition[1] = UnitsConverter.convertFromPixel(getPosition().getY(), unitsProperty, (SwingScilabFrame) SwingView.getFromId(uid), true);
+                    newPosition[2] = UnitsConverter.convertFromPixel(getWidth(), unitsProperty, (SwingScilabFrame) SwingView.getFromId(uid), true);
+                    newPosition[3] = UnitsConverter.convertFromPixel(getHeight(), unitsProperty, (SwingScilabFrame) SwingView.getFromId(uid), true);
+                    positions[2] = newPosition[2];
+                    positions[3] = newPosition[3];
                     invalidate();
                     if (getParent() != null && getParent().getLayout() == null) {
                         GraphicController.getController().setProperty(getId(), GraphicObjectProperties.__GO_POSITION__, newPosition);
