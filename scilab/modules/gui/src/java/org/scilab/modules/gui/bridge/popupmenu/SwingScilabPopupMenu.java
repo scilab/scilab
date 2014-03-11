@@ -382,11 +382,25 @@ public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, 
                 int iconOffset = text.length / 2;
                 try {
                     for (int i = 0; i < iconOffset; i++) {
-                        String iconFile = FindIconHelper.findIcon((text[iconOffset + i]));
+                        String iconFile = FindIconHelper.findIcon((text[iconOffset + i]), false);
+                        if (iconFile == null) {
+                            removeAllItems();
+                            iconBox = false;
+                            colorBox = false;
+                            break;
+                        }
+
                         //add item in combobox
                         File file = new File(iconFile);
                         if (file.exists() == false) {
-                            String filename = FindIconHelper.findImage(iconFile);
+                            String filename = FindIconHelper.findImage(iconFile, false);
+                            if (filename == null) {
+                                removeAllItems();
+                                iconBox = false;
+                                colorBox = false;
+                                break;
+                            }
+
                             file = new File(filename);
                         }
 

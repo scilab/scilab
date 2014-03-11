@@ -376,6 +376,7 @@ public class SwingScilabListBox extends JScrollPane implements SwingViewObject, 
             //combocolor ?
             colorBox = true;
 
+            //first try to convert 2nd col to color
             if (colorRenderer == null) {
                 colorRenderer = new ListCellRenderer() {
                     public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
@@ -432,11 +433,25 @@ public class SwingScilabListBox extends JScrollPane implements SwingViewObject, 
                 int iconOffset = text.length / 2;
                 try {
                     for (int i = 0; i < iconOffset; i++) {
-                        String iconFile = FindIconHelper.findIcon((text[iconOffset + i]));
-                        //add item in combobox
+                        String iconFile = FindIconHelper.findIcon((text[iconOffset + i]), false);
+                        if (iconFile == null) {
+                            model.clear();
+                            iconBox = false;
+                            colorBox = false;
+                            break;
+                        }
+
+                        //add item in listbox
                         File file = new File(iconFile);
                         if (file.exists() == false) {
-                            String filename = FindIconHelper.findImage(iconFile);
+                            String filename = FindIconHelper.findImage(iconFile, false);
+                            if (filename == null) {
+                                model.clear();
+                                iconBox = false;
+                                colorBox = false;
+                                break;
+                            }
+
                             file = new File(filename);
                         }
 

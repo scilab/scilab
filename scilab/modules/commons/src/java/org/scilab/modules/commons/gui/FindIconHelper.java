@@ -24,7 +24,11 @@ public final class FindIconHelper {
      * @return the image icon path
      */
     public static String findIcon(final String icon) {
-        return findIcon(icon, "16x16");
+        return findIcon(icon, "16x16", true);
+    }
+
+    public static String findIcon(final String icon, boolean defaultValue) {
+        return findIcon(icon, "16x16", defaultValue);
     }
 
     /**
@@ -37,6 +41,10 @@ public final class FindIconHelper {
      * @return the loaded image icon
      */
     public static String findIcon(final String icon, final String size) {
+        return findIcon(icon, size, true);
+    }
+
+    public static String findIcon(final String icon, final String size, boolean defaultValue) {
         if (icon == null || icon.isEmpty()) {
             return null;
         }
@@ -50,7 +58,7 @@ public final class FindIconHelper {
         }
 
         final String fallback = lookupFallbackIcon(icon);
-        if (fallback == null) {
+        if (defaultValue && fallback == null) {
             LOG.warning("Unable to found icon: " + icon + '[' + size + ']');
             return System.getenv("SCI") + "/modules/gui/images/icons/16x16/status/error.png";
         }
@@ -229,6 +237,10 @@ public final class FindIconHelper {
     }
 
     public static String findImage(final String image) {
+        return findImage(image, true);
+    }
+
+    public static String findImage(final String image, boolean defaulValue) {
 
         File file = new File(ScilabCommonsUtils.getCorrectedPath(image));
         if (file.exists()) {
@@ -242,7 +254,7 @@ public final class FindIconHelper {
             }
         }
 
-        return findIcon(image);
+        return findIcon(image, defaulValue);
     }
 
     private static String lookupFallbackIcon(final String icon) {
