@@ -343,7 +343,7 @@ public class XMLDomLoader {
 
                     default: {
                         //ignore TITLED, IN, OU, STRING_AARAY node
-                        System.out.println("ignored : " + childNode.getNodeName());
+                        //System.out.println("ignored : " + childNode.getNodeName());
                         break;
                     }
                 }
