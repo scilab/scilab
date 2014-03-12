@@ -486,6 +486,8 @@ Scilab Bug Fixes
 
 * Bug #11814 fixed - Typo in CACSD help chapter fixed.
 
+* Bug #11876 fixed - ilib_include_flag now returns a string when called with a string column vector.
+
 * Bug #11953 fixed - Scilab crashed when global("") was typed.
 
 * Bug #11964 fixed - uicontrol coordinates system did not take figure resizing into account.

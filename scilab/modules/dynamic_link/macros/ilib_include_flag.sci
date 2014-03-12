@@ -16,6 +16,15 @@ function ret = ilib_include_flag(path_strings)
 
     ret = "";
 
+    if and(size(path_strings)<>1) then
+        //path_strings is not a vector
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: Vector expected.\n"), "ilib_include_flag", 1));
+    else
+        //change path_strings to a line vector to have ret as a line vector
+        path_strings=path_strings(:)'
+    end
+
+
     for path = path_strings
         if ~isdir(fullpath(path)) then
             error(msprintf(gettext("%s: Failed to add include path : %s"), "ilib_include_flag", path));
