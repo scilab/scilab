@@ -75,6 +75,8 @@ function clf(varargin)
         end
     end
 
+    curFig.info_message = "";
+
     // reset figures to default values if needed
     if (job == "reset") then
         defaultFig = gdf();
@@ -117,8 +119,6 @@ function clf(varargin)
 
             // drawnow
             curFig.immediate_drawing = immediateMode;
-
-            curFig.info_message = "";
         end
     end
 
