@@ -494,13 +494,27 @@ PathItem* ScilabView::getItem(std::string _pstTag)
 
 PathItem* ScilabView::getItem(std::string _pstTag, std::list<int>& _ignoredList)
 {
+    /*
+    */
     __pathList_iterator it = m_pathList.begin();
     for (; it != m_pathList.end(); it++)
     {
         PathItem * item = it->second;
         if (item->tag == _pstTag)
         {
-            if (std::find(_ignoredList.begin(), _ignoredList.end(), item->uid) == _ignoredList.end())
+            bool ignored = false;
+            //check if this handle is not in ignoredList
+            std::list<int>::iterator itIgnored = _ignoredList.begin();
+            for (; itIgnored != _ignoredList.end(); itIgnored++)
+            {
+                if ((*itIgnored) == item->uid)
+                {
+                    ignored = true;
+                    break;
+                }
+            }
+
+            if (ignored == false)
             {
                 return item;
             }
@@ -551,19 +565,13 @@ int ScilabView::search_path(char* _pstPath)
                         break;
                     }
                 }
-
-                //if figure is in ignore list, reeturn not found
-                if (std::find(ignoredList.begin(), ignoredList.end(), path->uid) != ignoredList.end())
-                {
-                    return 0;
-                }
             }
             else
             {
                 PathItem* newPath = search_children(path, pstSubPath, bDeep, ignoredList);
                 if (newPath == NULL)
                 {
-                    //flag handle to ignore and restart parsing
+                    //flag handle to ingnore and restart parsing
                     ignoredList.push_back(path->uid);
                     pstPath = strdup(_pstPath);
                     pstSubPath = strtok(pstPath, "/");
@@ -605,7 +613,17 @@ PathItem* ScilabView::search_children(PathItem* _path, std::string _subPath, boo
         {
             bool ignored = false;
             //check if this handle is not in ignoredList
-            if (std::find(_ignoredList.begin(), _ignoredList.end(), child->uid) == _ignoredList.end())
+            std::list<int>::iterator itIgnored = _ignoredList.begin();
+            for (; itIgnored != _ignoredList.end(); itIgnored++)
+            {
+                if ((*itIgnored) == child->uid)
+                {
+                    ignored = true;
+                    break;
+                }
+            }
+
+            if (ignored == false)
             {
                 return child;
             }
