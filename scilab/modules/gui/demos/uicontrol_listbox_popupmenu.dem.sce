@@ -48,7 +48,7 @@ function f = demo_list_combo()
     uicontrol(f, "style", "listbox", "constraints", c, "margins", [5 5 5 5], "string", colors4);
 
     c = createConstraints("gridbag", [1, 2, 1, 1], [0 0], "both");
-    uicontrol(f, "style", "popupmenu", "constraints", c, "margins", [5 5 5 5], "string", colors4);
+    uicontrol(f, "style", "popupmenu", "constraints", c, "margins", [5 5 5 5], "string", colors4, "value", 1);
 
     colors4(1:4:$,1) = "go-up";
     colors4(2:4:$,1) = "go-previous";
@@ -59,7 +59,7 @@ function f = demo_list_combo()
     uicontrol(f, "style", "listbox", "constraints", c, "margins", [5 5 5 5], "string", colors4);
 
     c = createConstraints("gridbag", [1, 4, 1, 1], [0 0], "both");
-    uicontrol(f, "style", "popupmenu", "constraints", c, "margins", [5 5 5 5], "string", colors4);
+    uicontrol(f, "style", "popupmenu", "constraints", c, "margins", [5 5 5 5], "string", colors4, "value", 1);
 
     colors3_1 = [
     "#000000", "Color 01", "#D0D0D0";
@@ -94,7 +94,7 @@ function f = demo_list_combo()
     uicontrol(f, "style", "listbox", "constraints", c, "margins", [5 5 5 5], "string", colors3_1);
 
     c = createConstraints("gridbag", [2, 2, 1, 1], [0 0], "both");
-    cb3_1 = uicontrol(f, "style", "popupmenu", "constraints", c, "margins", [5 5 5 5], "string", colors3_1);
+    cb3_1 = uicontrol(f, "style", "popupmenu", "constraints", c, "margins", [5 5 5 5], "string", colors3_1, "value", 1);
 
     colors3_2 = [
     "Color 01", "#000000", "#FFFFFF";
@@ -129,7 +129,7 @@ function f = demo_list_combo()
     lst3_2 = uicontrol(f, "style", "listbox", "constraints", c, "margins", [5 5 5 5], "string", colors3_2);
 
     c = createConstraints("gridbag", [2, 4, 1, 1], [0 0], "both");
-    cb3_2 = uicontrol(f, "style", "popupmenu", "constraints", c, "margins", [5 5 5 5], "string", colors3_2);
+    cb3_2 = uicontrol(f, "style", "popupmenu", "constraints", c, "margins", [5 5 5 5], "string", colors3_2, "value", 1);
 
     colors2_1 = [
     "#000000", "Color 01";
@@ -164,7 +164,7 @@ function f = demo_list_combo()
     uicontrol(f, "style", "listbox", "constraints", c, "margins", [5 5 5 5], "string", colors2_1);
 
     c = createConstraints("gridbag", [3, 2, 1, 1], [0 0], "both");
-    uicontrol(f, "style", "popupmenu", "constraints", c, "margins", [5 5 5 5], "string", colors2_1);
+    uicontrol(f, "style", "popupmenu", "constraints", c, "margins", [5 5 5 5], "string", colors2_1, "value", 1);
 
     colors2_2 = [
     "Color 01", "#D0D0D0";
@@ -199,19 +199,19 @@ function f = demo_list_combo()
     uicontrol(f, "style", "listbox", "constraints", c, "margins", [5 5 5 5], "string", colors2_2);
 
     c = createConstraints("gridbag", [3, 4, 1, 1], [0 0], "both");
-    uicontrol(f, "style", "popupmenu", "constraints", c, "margins", [5 5 5 5], "string", colors2_2);
+    uicontrol(f, "style", "popupmenu", "constraints", c, "margins", [5 5 5 5], "string", colors2_2, "value", 1);
 
     c = createConstraints("gridbag", [4, 1, 1, 1], [1 1], "both");
     uicontrol(f, "style", "listbox", "constraints", c, "margins", [5 5 5 5], "string", colors4(:,1:2));
 
     c = createConstraints("gridbag", [4, 2, 1, 1], [0 0], "both");
-    uicontrol(f, "style", "popupmenu", "constraints", c, "margins", [5 5 5 5], "string", colors4(:,1:2));
+    uicontrol(f, "style", "popupmenu", "constraints", c, "margins", [5 5 5 5], "string", colors4(:,1:2), "value", 1);
 
     c = createConstraints("gridbag", [4, 3, 1, 1], [1 1], "both");
     uicontrol(f, "style", "listbox", "constraints", c, "margins", [5 5 5 5], "string", colors4(:,2));
 
     c = createConstraints("gridbag", [4, 4, 1, 1], [0 0], "both");
-    uicontrol(f, "style", "popupmenu", "constraints", c, "margins", [5 5 5 5], "string", colors4(:,2));
+    uicontrol(f, "style", "popupmenu", "constraints", c, "margins", [5 5 5 5], "string", colors4(:,2), "value", 1);
 
     set(f, "visible", "on");
 endfunction

@@ -99,6 +99,9 @@ public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, 
                     if (index != - 1 && isSelected == false && item.getForeground() != null) {
                         label.setForeground(item.getForeground());
                     }
+                } else {
+                    label.setText("");
+                    label.setIcon(null);
                 }
                 return label;
             }
