@@ -92,6 +92,8 @@ Graphics Evolutions
 
 * newaxes function now allows to create axes in "frame" uicontrols.
 
+* clf function now also works with "frame" uicontrols.
+
 * New axes properties:
  - ticks_format: Format of the ticks labels.
  - ticks_st: Scales and translates factors applied to ticks position when formatting
