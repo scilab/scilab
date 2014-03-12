@@ -392,6 +392,9 @@ Scilab Bug Fixes
 
 * Bug #10718 fixed - New "Resize" property added to figures.
 
+* Bug #10805 fixed - Documentation on left bracket was superfluous and is now removed.
+                     Refer to brackets for information on "[" and "]".
+
 * Bug #10816 fixed - Typo in part error message fixed.
 
 * Bug #10830 fixed - Hypermatrix insertion with a negative index returned a wrong error message.
