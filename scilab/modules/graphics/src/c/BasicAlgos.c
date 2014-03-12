@@ -24,17 +24,24 @@
 /*------------------------------------------------------------------------*/
 double sciFindStPosMin(const double x[], int n)
 {
-    double min = 0.;
+    double min = -1.0;
     int i = 0;
 
     if (n <= 0)
     {
-        return -1.0;
+        return min;
     }
 
-    min = x[0];
+    for (i = 0; i < n; i++)
+    {
+        if (x[i] > 0)
+        {
+            min = x[i];
+            break;
+        }
+    }
 
-    for (i = 1 ; i < n ; i++)
+    for (; i < n ; i++)
     {
         if (x[i] > 0.0 && x[i] < min)
         {
