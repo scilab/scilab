@@ -171,7 +171,7 @@ function ierr = uicontrol_generic_test(uicontrol_style)
 
     // --- ForegroundColor ---
     // Default value
-    assert_checkequal(get(h, "foregroundcolor"), [0 0 0]);
+    assert_checkequal(get(h, "foregroundcolor"), [-1 -1 -1]); // Set by Look&Feel
     // Vector of 'integer' values
     set(h, "foregroundcolor", [1 0 1]);
     assert_checkequal(get(h, "foregroundcolor"), [1 0 1]);
