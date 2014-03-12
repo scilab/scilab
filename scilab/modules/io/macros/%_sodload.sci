@@ -159,14 +159,27 @@ function %_sodload(%__filename__, varargin)
         fields(1) = [];
 
         if or(fields=="resize") then
-            // File created by Scilab 5.5.0 or more
-            h = figure("menubar", figureProperties.menubar, ...
-            "toolbar", figureProperties.toolbar, ...
-            "dockable", figureProperties.dockable, ...
-            "default_axes", figureProperties.default_axes, ...
-            "visible", "off");
+            if figureProperties.menubar<>"figure" ..
+                | figureProperties.toolbar<>"figure" ..
+                | figureProperties.dockable<>"on" ..
+                | figureProperties.default_axes<>"on" then
+                // File created by Scilab 5.5.0 or more
+                h = figure("menubar", figureProperties.menubar, ...
+                "toolbar", figureProperties.toolbar, ...
+                "dockable", figureProperties.dockable, ...
+                "default_axes", figureProperties.default_axes, ...
+                "visible", "off");
+            else
+                h = gcf();
+                h.visible = "off";
+            end
         else
-            h = figure("visible", "off");
+            if isempty(winsid()) then
+                h = figure("visible", "off");
+            else
+                h = gcf();
+                h.visible = "off";
+            end
         end
 
         // Following propeties will be set after all other ones
