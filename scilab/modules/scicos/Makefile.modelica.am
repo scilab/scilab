@@ -95,41 +95,39 @@ SUFFIXES += .ml .mli .mll .mly .cmo .cmi .cmx
 
 %.cmo: %.ml %.cmi
 	@if echo "$<"|grep src/translator; then \
-		echo $(OCAMLC) $(INCLUDE_modelicat)  -c $<; \
-		$(OCAMLC) $(INCLUDE_modelicat)  -c $<; \
+		echo $(OCAMLC) $(INCLUDE_modelicat) $(OCAMLCFLAGS) -c $<; \
+		$(OCAMLC) $(INCLUDE_modelicat) $(OCAMLCFLAGS) -c $<; \
 	else \
-		echo $(OCAMLC) $(INCLUDE)  -c $<; \
-		$(OCAMLC) $(INCLUDE)  -c $<; \
+		echo $(OCAMLC) $(INCLUDE) $(OCAMLCFLAGS) -c $<; \
+		$(OCAMLC) $(INCLUDE) $(OCAMLCFLAGS) -c $<; \
 	fi
 
 .ml.cmx:
 	@if echo "$<"|grep src/translator; then \
-		echo $(OCAMLOPT) $(INCLUDE_modelicat) -c $<; \
-		$(OCAMLOPT) $(INCLUDE_modelicat) -c $<; \
+		echo $(OCAMLOPT) $(INCLUDE_modelicat) $(OCAMLOPTFLAGS) -c $<; \
+		$(OCAMLOPT) $(INCLUDE_modelicat) $(OCAMLOPTFLAGS) -c $<; \
 	else \
-		echo $(OCAMLOPT) $(INCLUDE) -c $<; \
-		$(OCAMLOPT) $(INCLUDE) -c $<; \
+		echo $(OCAMLOPT) $(INCLUDE) $(OCAMLOPTFLAGS) -c $<; \
+		$(OCAMLOPT) $(INCLUDE) $(OCAMLOPTFLAGS) -c $<; \
 	fi
-
 
 .mli.cmi:
 	@if echo "$<"|grep src/translator; then \
-		echo $(OCAMLC) $(INCLUDE_modelicat) -c $<; \
-		$(OCAMLC) $(INCLUDE_modelicat) -c $<; \
+		echo $(OCAMLC) $(INCLUDE_modelicat) $(OCAMLCFLAGS) -c $<; \
+		$(OCAMLC) $(INCLUDE_modelicat) $(OCAMLCFLAGS) -c $<; \
 	else \
-		echo $(OCAMLC) $(INCLUDE) -c $<; \
-		$(OCAMLC) $(INCLUDE) -c $<; \
+		echo $(OCAMLC) $(INCLUDE) $(OCAMLCFLAGS) -c $<; \
+		$(OCAMLC) $(INCLUDE) $(OCAMLCFLAGS) -c $<; \
 	fi
 
 .ml.mli:
 	@if echo "$<"|grep src/translator; then \
-		echo $(OCAMLC) $(INCLUDE_modelicat) -i $< > $@; \
-		$(OCAMLC) $(INCLUDE_modelicat) -i $< > $@; \
+		echo $(OCAMLC) $(INCLUDE_modelicat) $(OCAMLCFLAGS) -i $< > $@; \
+		$(OCAMLC) $(INCLUDE_modelicat) $(OCAMLCFLAGS) -i $< > $@; \
 	else \
-		echo $(OCAMLC) $(INCLUDE) -i $< > $@; \
-		$(OCAMLC) $(INCLUDE) -i $< > $@; \
+		echo $(OCAMLC) $(INCLUDE) $(OCAMLCFLAGS) -i $< > $@; \
+		$(OCAMLC) $(INCLUDE) $(OCAMLCFLAGS) -i $< > $@; \
 	fi
-
 
 .mll.ml:
 	$(OCAMLLEX) $<
@@ -139,16 +137,23 @@ SUFFIXES += .ml .mli .mll .mly .cmo .cmi .cmx
 
 # Build the binaries
 
-modelicac:$(MLIS:.mli=.cmi) $(MLS:.ml=.cmo) $(MLS:.ml=.cmx)
-	$(OCAMLOPT) -o modelicac $(INCLUDE) $(OCAMLLIBS:.cma=.cmxa) $(MLS:.ml=.cmx)
+modelicac: $(MLS:.ml=.cmx)
+	$(OCAMLOPT) -o $@ $(INCLUDE) $(OCAMLOPTFLAGS) $(OCAMLLIBS:.cma=.cmxa) $^
 
+modelicac.ocamlc: $(MLS:.ml=.cmo)
+	$(OCAMLC) -o $@ $(INCLUDE) $(OCAMLOPTFLAGS) $(OCAMLLIBS) $^
 
-XML2Modelica: $(MLS_XML2Modelica:.ml=.cmo) $(MLS_XML2Modelica:.ml=.cmx) 
-	$(OCAMLOPT) -o XML2Modelica $(INCLUDE) $(OCAMLLIBS:.cma=.cmxa) $(MLS_XML2Modelica:.ml=.cmx) 
+XML2Modelica: $(MLS_XML2Modelica:.ml=.cmx) 
+	$(OCAMLOPT) -o $@ $(INCLUDE) $(OCAMLCFLAGS) $(OCAMLLIBS:.cma=.cmxa) $^
 
-modelicat: $(MLIS_modelicat:.mli=.cmi) $(MLS_modelicat:.ml=.cmo) $(MLS_modelicat:.ml=.cmx)
-	$(OCAMLOPT) -o modelicat $(INCLUDE_modelicat) $(OCAMLLIBS:.cma=.cmxa) $(MLS_SPECIFIC_PRE_modelicat:.ml=.cmx) $(MLS_modelicat:.ml=.cmx) 
+XML2Modelica.ocamlc: $(MLS_XML2Modelica:.ml=.cmo)
+	$(OCAMLC) -o $@ $(INCLUDE) $(OCAMLCFLAGS) $(OCAMLLIBS) $^
 
+modelicat: $(MLS_SPECIFIC_PRE_modelicat:.ml=.cmx) $(MLS_modelicat:.ml=.cmx)
+	$(OCAMLOPT) -o $@ $(INCLUDE_modelicat) $(OCAMLOPTFLAGS) $(OCAMLLIBS:.cma=.cmxa) $^
+
+modelicat.ocamlc: $(MLS_SPECIFIC_PRE_modelicat:.ml=.cmo) $(MLS_modelicat:.ml=.cmo)
+	$(OCAMLC) -o $@ $(INCLUDE_modelicat) $(OCAMLOPTFLAGS) $(OCAMLLIBS) $^
 
 CLEANFILES = $(BASE_PATH)/*/*.cmi \
 	$(BASE_PATH)/*/*.o \
