@@ -36,8 +36,12 @@ int SetUicontrolString(void* _pvCtx, int iObjUID, void* _pvData, int valueType, 
     //[]
     if (valueType == sci_matrix && nbRow == 0 && nbCol == 0)
     {
-        status = setGraphicObjectProperty(iObjUID, __GO_UI_STRING__, (char**)NULL, jni_string_vector, 0);
-        return SET_PROPERTY_ERROR;
+        if (setGraphicObjectProperty(iObjUID, __GO_UI_STRING__, (char**)NULL, jni_string_vector, 0) == FALSE)
+        {
+            Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "String");
+            return SET_PROPERTY_ERROR;
+        }
+        return SET_PROPERTY_SUCCEED;
     }
 
     // Label must be a character string
@@ -92,6 +96,12 @@ int SetUicontrolString(void* _pvCtx, int iObjUID, void* _pvData, int valueType, 
                     return SET_PROPERTY_ERROR;
                 }
 
+                if (setGraphicObjectProperty(iObjUID, __GO_UI_VALUE__, (double**)NULL, jni_double_vector, 0) == FALSE)
+                {
+                    Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "String");
+                    return SET_PROPERTY_ERROR;
+                }
+
                 return SET_PROPERTY_SUCCEED;
             }
             break;
@@ -108,22 +118,26 @@ int SetUicontrolString(void* _pvCtx, int iObjUID, void* _pvData, int valueType, 
         }
     }
 
-    status = setGraphicObjectProperty(iObjUID, __GO_UI_STRING_COLNB__, &nbCol, jni_int, 1);
-    if (status == FALSE)
+    if (setGraphicObjectProperty(iObjUID, __GO_UI_STRING_COLNB__, &nbCol, jni_int, 1) == FALSE)
     {
         Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "String");
         return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(iObjUID, __GO_UI_STRING__, (char**)_pvData, jni_string_vector, nbRow * nbCol);
-
-    if (status == TRUE)
-    {
-        return SET_PROPERTY_SUCCEED;
-    }
-    else
+    if (setGraphicObjectProperty(iObjUID, __GO_UI_STRING__, (char**)_pvData, jni_string_vector, nbRow * nbCol) == FALSE)
     {
         Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "String");
         return SET_PROPERTY_ERROR;
     }
+
+    //reinit value for popupmenu and listbox after setString.
+    if (objectStyle == __GO_UI_POPUPMENU__ || objectStyle == __GO_UI_LISTBOX__)
+    {
+        if (setGraphicObjectProperty(iObjUID, __GO_UI_VALUE__, (double**)NULL, jni_double_vector, 0) == FALSE)
+        {
+            Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "String");
+            return SET_PROPERTY_ERROR;
+        }
+    }
+    return SET_PROPERTY_SUCCEED;
 }
