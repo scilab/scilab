@@ -23,13 +23,11 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 
-import javax.imageio.ImageIO;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -37,7 +35,6 @@ import javax.swing.ListCellRenderer;
 import javax.swing.UIManager;
 import javax.swing.border.Border;
 
-import org.apache.fop.area.inline.Image;
 import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.gui.SwingViewObject;
@@ -53,9 +50,7 @@ import org.scilab.modules.gui.utils.PositionConverter;
 import org.scilab.modules.gui.utils.ScilabRelief;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.Size;
-import org.scilab.modules.gui.utils.SwingScilabColorItem;
-import org.scilab.modules.gui.utils.SwingScilabIconItem;
-import org.scilab.modules.gui.utils.SwingScilabTextItem;
+import org.scilab.modules.gui.utils.SwingScilabListItem;
 
 /**
  * Swing implementation for Scilab PopupMenu in GUIs
@@ -74,33 +69,42 @@ public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, 
 
     private Border defaultBorder = null;
 
-    private boolean colorBox = false;
-    private boolean iconBox = false;
 
     private ListCellRenderer defaultRenderer = null;
-    private ListCellRenderer textRenderer = null;
-    private ListCellRenderer colorRenderer = null;
-    private ListCellRenderer iconRenderer = null;
-
+    private ListCellRenderer listRenderer = null;
 
     /**
      * Constructor
      */
     public SwingScilabPopupMenu() {
         super();
+
         defaultRenderer = getRenderer();
-        textRenderer = new ListCellRenderer() {
+        listRenderer = new ListCellRenderer() {
             public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
                 JLabel label = (JLabel) defaultRenderer.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-                if (value instanceof SwingScilabTextItem) {
-                    label.setText(value.toString());
-                    label.setIcon(null);
+
+                if (value instanceof SwingScilabListItem) {
+                    SwingScilabListItem item = (SwingScilabListItem) value;
+
+                    label.setText(item.toString());
+                    label.setIcon(item.getIcon());
+
+                    //index == -1 is for selected item after click
+                    //so let standard FG and BG
+                    if (index != - 1 && isSelected == false && item.getBackground() != null) {
+                        label.setBackground(item.getBackground());
+                    }
+
+                    if (index != - 1 && isSelected == false && item.getForeground() != null) {
+                        label.setForeground(item.getForeground());
+                    }
                 }
                 return label;
             }
         };
 
-        setRenderer(textRenderer);
+        setRenderer(listRenderer);
         /* Bug 3635 fixed: allow arrow keys to browse items */
         putClientProperty("JComboBox.isTableCellEditor", Boolean.TRUE);
         defaultActionListener = new ActionListener() {
@@ -302,129 +306,110 @@ public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, 
      * @param text the text of the items
      */
     public void setText(String[] text) {
+        DefaultComboBoxModel model = new DefaultComboBoxModel();
 
-        // check numbers of columns
+        //get numbers of columns
         GraphicController controller = GraphicController.getController();
-        Integer nbCol = (Integer)controller.getProperty(getId(), __GO_UI_STRING_COLNB__);
+        Integer nbCol = (Integer) controller.getProperty(getId(), __GO_UI_STRING_COLNB__);
 
         /* Remove the listener to avoid the callback to be executed */
         removeActionListener(defaultActionListener);
 
-        /* Clear previous items */
-        removeAllItems();
+        boolean tryColorBox = true;
+        boolean tryColor = true;
+        boolean tryIcon = true;
+        int nbRow = text.length / nbCol;
 
-        colorBox = false;
-        iconBox = false;
-        if (nbCol == 2) {
-            //combocolor ?
-            colorBox = true;
+        for (int i = 0; i < nbRow; i++) {
+            Icon icon = null;
+            String str = null;
+            Color background = null;
+            Color foreground = null;
 
-            //first try to convert 2nd col to color
-            if (colorRenderer == null) {
-                colorRenderer = new ListCellRenderer() {
-                    public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
-                        JLabel label = (JLabel) defaultRenderer.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+            //4 cols :
+            // - 1st icon or colorBox
+            // - 2nd text
+            // - 3rd BG
+            // - 4th FG
 
-                        if (value instanceof SwingScilabColorItem) {
-                            SwingScilabColorItem item = (SwingScilabColorItem)value;
-                            String text = item.toString();
-                            label.setText(text);
-                            label.setIcon(ColorBox.createColorBox(16, 16, item.getColor()));
-                        } else {
-                            label.setText("");
-                            label.setIcon(null);
-                        }
-                        return label;
-                    }
-                };
+            //3 cols :  2 cases
+            // - 1st icon or colorBox
+            // - 2nd text
+            // - 3rd BG
+            //or
+            // - 1st text
+            // - 2nd BG
+            // - 3rd FG
 
-            }
+            //2 cols : 2 cases
+            // - 1st icon or colorBox
+            // - 2nd text
+            //or
+            // - 1st text
+            // - 2nd BG
 
-            setRenderer(colorRenderer);
-
-            int colorOffset = text.length / 2;
-            try {
-                for (int i = 0; i < colorOffset; i++) {
-                    Color color = Color.decode(text[colorOffset + i]);
-                    //add item in combobox
-                    addItem(new SwingScilabColorItem(text[i], color));
-                }
-            } catch (NumberFormatException e) {
-                //second color can be a icon
-                colorBox = false;
-                iconBox = true;
-                removeAllItems();
-            }
-
-            //try to convert 2nd col to icon ( only if color convertion failed )
-            if (iconBox) {
-                if (iconRenderer == null) {
-                    iconRenderer = new ListCellRenderer() {
-                        public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
-                            JLabel label = (JLabel) defaultRenderer.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-                            if (value instanceof SwingScilabIconItem) {
-                                SwingScilabIconItem item = (SwingScilabIconItem)value;
-                                String text = item.toString();
-                                label.setText(text);
-                                label.setIcon(item.getIcon());
-                            } else {
-                                label.setText("");
-                                label.setIcon(null);
-                            }
-                            return label;
-                        }
-                    };
-                }
-
-                setRenderer(iconRenderer);
-
-                //fill items
-                int iconOffset = text.length / 2;
+            if (tryColorBox) { //color
                 try {
-                    for (int i = 0; i < iconOffset; i++) {
-                        String iconFile = FindIconHelper.findIcon((text[iconOffset + i]), false);
-                        if (iconFile == null) {
-                            iconFile = "";
-                        }
+                    Color color = Color.decode(text[i]);
+                    icon = ColorBox.createColorBox(16, 16, color);
+                } catch (NumberFormatException e) {
+                    tryColorBox = false;
+                    model.removeAllElements();
+                    //restart loop with icon
+                    i = -1;
+                    continue;
+                }
+            }
 
-                        //add item in combobox
-                        File file = new File(iconFile);
-                        if (file.exists() == false) {
-                            String filename = FindIconHelper.findImage(iconFile, false);
-                            if (filename == null) {
-                                filename = "";
-                            }
-
-                            file = new File(filename);
-                        }
-
-                        addItem(new SwingScilabIconItem(text[i], new ImageIcon(ImageIO.read(file))));
-                    }
+            if (tryIcon) {
+                try {
+                    icon = FindIconHelper.loadIcon(text[i]);
                 } catch (IOException e) {
-                    removeAllItems();
-                    iconBox = false;
-                    colorBox = false;
+                    tryIcon = false;
+                    model.removeAllElements();
+                    //restart loop with text only
+                    i = -1;
+                    continue;
+                }
+            }
+
+            if (tryColor) {
+                try {
+                    int colIndex = 0;
+                    if (tryColorBox || tryIcon) {
+                        colIndex = 1;
+                    }
+
+                    str = text[(nbRow * colIndex) + i];
+                    if (nbCol > (1 + colIndex)) {
+                        background = Color.decode(text[nbRow * (1 + colIndex) + i]);
+                        if (nbCol > (2 + colIndex)) {
+                            foreground = Color.decode(text[nbRow * (2 + colIndex) + i]);
+                        }
+                    }
+
+                    //add item in list box
+                    model.addElement(new SwingScilabListItem(str, icon, background, foreground));
+                } catch (NumberFormatException e) {
+                    tryColor = false;
+                    model.removeAllElements();
+                    //restart loop with text only
+                    i = -1;
+                    continue;
+                }
+            } else { //text only
+                for (int j = 0; j < nbCol; j++) {
+                    model.addElement(new SwingScilabListItem(text[nbRow * j + i], icon, background, foreground));
                 }
             }
         }
 
-        //default case or colorBox and iconBox failed
-        if (colorBox == false && iconBox == false) {
-            setRenderer(textRenderer);
-
-            if (text.length == 1 && text[0].length() == 0) {
-                /* Clear the popup items */
-            } else {
-                for (int i = 0; i < text.length; i++) {
-                    addItem(new SwingScilabTextItem(text[i]));
-                }
-            }
-        }
-
+        //reset selected index
         setSelectedIndex(-1);
+        setModel(model);
+        invalidate();
         //take care to add listener BEFORE set Property to avoid multiple remove and multiple add
         addActionListener(defaultActionListener);
-        controller.setProperty(uid, __GO_UI_VALUE__, new Double[] {});
     }
 
     /**

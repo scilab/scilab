@@ -29,11 +29,13 @@ GUI Refactoring and Improvements
 * New uimenu properties:
  - icon: add an icon on the left of the label menu.
 
-* "listbox" and "popupmenu" style uicontrols can now manage colors and icons when the
-  "String" property is set to a matrix matching the format:
-  ["Item1", "#XXXXXX"; "Item2", "#XXXXXX", ...]
-  ["Item1", "icon_name"; "Item2", "icon_name", ...]
-  Then the component will display a colored box or icon on the left of the associated string.
+* "listbox" and "popupmenu" style uicontrols can now manage color boxes, icons, background and
+  foreground colors when the "String" property is set to a matrix matching the format:
+  ["#color1", "Item1", "#background1", "#foreground1"; "#color2", "Item2", ..., ...]
+  ["icon1", "Item1", "#background1", "#foreground1"; "icon2", "Item2", ..., ...]
+  with "#color1", "#background1" and "#foreground1" in HTML format #XXXXXX.
+  Then the component will display a colored box or icon on the left of the associated string,
+  and different background/foreground colors for items.
 
 * New management of uicontrols positioning:
   In previous versions, uicontrols position was managed in an absolute way through

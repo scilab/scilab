@@ -1,18 +1,24 @@
 package org.scilab.modules.gui.utils;
 
+import java.awt.Color;
+
 import javax.swing.Icon;
 
-public class SwingScilabIconItem {
+public class SwingScilabListItem {
     private String text;
     private Icon icon;
+    private Color background;
+    private Color foreground;
 
     /**
      * Constructor
      * @param text the text displayed in the item
      */
-    public SwingScilabIconItem(String text, Icon icon) {
+    public SwingScilabListItem(String text, Icon icon, Color background, Color foreground) {
         this.text = text;
         this.icon = icon;
+        this.background = background;
+        this.foreground = foreground;
     }
 
     /**
@@ -28,4 +34,11 @@ public class SwingScilabIconItem {
         return icon;
     }
 
+    public Color getBackground() {
+        return background;
+    }
+
+    public Color getForeground() {
+        return foreground;
+    }
 }

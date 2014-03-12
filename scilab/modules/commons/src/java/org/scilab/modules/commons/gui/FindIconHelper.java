@@ -12,6 +12,10 @@ import java.util.TreeSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.imageio.ImageIO;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+
 import org.scilab.modules.commons.OS;
 import org.scilab.modules.commons.ScilabCommonsUtils;
 
@@ -278,4 +282,24 @@ public final class FindIconHelper {
         THEME_BASENAME.add(path);
     }
 
+
+    public static Icon loadIcon(String icon) throws IOException {
+        String iconFile = findIcon(icon, false);
+        if (iconFile == null) {
+            iconFile = "";
+        }
+
+        //add item in listbox
+        File file = new File(iconFile);
+        if (file.exists() == false) {
+            String filename = findImage(iconFile, false);
+            if (filename == null) {
+                filename = "";
+            }
+
+            file = new File(filename);
+        }
+
+        return new ImageIcon(ImageIO.read(file));
+    }
 }
