@@ -57,6 +57,7 @@ src/c/CreateUimenu.c \
 src/c/checkColorRange.c \
 src/c/messageboxoptions.c \
 src/c/ScilabTermination.c \
+src/c/addColor.c \
 src/jni/ScilabTermination_wrap.c
 
 GUI_CXX_SOURCES = \

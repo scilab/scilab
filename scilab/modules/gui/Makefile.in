@@ -186,6 +186,7 @@ am__objects_1 = src/c/libscigui_algo_la-buildMainWindowTitle.lo \
 	src/c/libscigui_algo_la-checkColorRange.lo \
 	src/c/libscigui_algo_la-messageboxoptions.lo \
 	src/c/libscigui_algo_la-ScilabTermination.lo \
+	src/c/libscigui_algo_la-addColor.lo \
 	src/jni/libscigui_algo_la-ScilabTermination_wrap.lo
 am__objects_2 = src/cpp/libscigui_algo_la-InitUIMenu.lo \
 	src/jni/libscigui_algo_la-CallScilabBridge.lo \
@@ -734,6 +735,7 @@ src/c/CreateUimenu.c \
 src/c/checkColorRange.c \
 src/c/messageboxoptions.c \
 src/c/ScilabTermination.c \
+src/c/addColor.c \
 src/jni/ScilabTermination_wrap.c
 
 GUI_CXX_SOURCES = \
@@ -1258,6 +1260,8 @@ src/c/libscigui_algo_la-messageboxoptions.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscigui_algo_la-ScilabTermination.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscigui_algo_la-addColor.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
 src/jni/$(am__dirstamp):
 	@$(MKDIR_P) src/jni
 	@: > src/jni/$(am__dirstamp)
@@ -1696,6 +1700,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscigui_algo_la-CreateUimenu.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscigui_algo_la-InitializeGUI.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscigui_algo_la-ScilabTermination.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscigui_algo_la-addColor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscigui_algo_la-addmenu.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscigui_algo_la-buildMainWindowTitle.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscigui_algo_la-checkColorRange.Plo@am__quote@
@@ -1872,6 +1877,13 @@ src/c/libscigui_algo_la-ScilabTermination.lo: src/c/ScilabTermination.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/ScilabTermination.c' object='src/c/libscigui_algo_la-ScilabTermination.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscigui_algo_la-ScilabTermination.lo `test -f 'src/c/ScilabTermination.c' || echo '$(srcdir)/'`src/c/ScilabTermination.c
+
+src/c/libscigui_algo_la-addColor.lo: src/c/addColor.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscigui_algo_la-addColor.lo -MD -MP -MF src/c/$(DEPDIR)/libscigui_algo_la-addColor.Tpo -c -o src/c/libscigui_algo_la-addColor.lo `test -f 'src/c/addColor.c' || echo '$(srcdir)/'`src/c/addColor.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscigui_algo_la-addColor.Tpo src/c/$(DEPDIR)/libscigui_algo_la-addColor.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/addColor.c' object='src/c/libscigui_algo_la-addColor.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscigui_algo_la-addColor.lo `test -f 'src/c/addColor.c' || echo '$(srcdir)/'`src/c/addColor.c
 
 src/jni/libscigui_algo_la-ScilabTermination_wrap.lo: src/jni/ScilabTermination_wrap.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/jni/libscigui_algo_la-ScilabTermination_wrap.lo -MD -MP -MF src/jni/$(DEPDIR)/libscigui_algo_la-ScilabTermination_wrap.Tpo -c -o src/jni/libscigui_algo_la-ScilabTermination_wrap.lo `test -f 'src/jni/ScilabTermination_wrap.c' || echo '$(srcdir)/'`src/jni/ScilabTermination_wrap.c
