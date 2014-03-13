@@ -21,13 +21,13 @@ import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.im.InputContext;
 import java.io.IOException;
 
+import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 import javax.swing.TransferHandler;
 
 import org.scilab.modules.jvm.LoadClassPath;
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.ScilabEditorPane;
 import org.scilab.modules.scinotes.utils.HTMLCodeConverter;
@@ -82,7 +82,7 @@ public class CopyAsHTMLAction extends DefaultAction {
      * @param editor SciNotes
      * @return PushButton
      */
-    public static PushButton createButton(String tooltip, String icon, SciNotes editor) {
+    public static JButton createButton(String tooltip, String icon, SciNotes editor) {
         return createButton(tooltip, icon, new CopyAsHTMLAction(tooltip, editor));
     }
 

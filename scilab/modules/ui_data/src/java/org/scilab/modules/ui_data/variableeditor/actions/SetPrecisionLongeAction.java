@@ -13,10 +13,12 @@
 package org.scilab.modules.ui_data.variableeditor.actions;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JMenuItem;
 import javax.swing.JTable;
 
 import org.scilab.modules.commons.gui.FindIconHelper;
+import org.scilab.modules.commons.gui.ScilabLAF;
 import org.scilab.modules.commons.gui.ScilabKeyStroke;
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
@@ -73,12 +75,13 @@ public final class SetPrecisionLongeAction extends CommonCallBack {
      * @param title tooltip for the button
      * @return the button
      */
-    public static PushButton createButton(SwingScilabVariableEditor editor, String title) {
-        PushButton button = ScilabPushButton.createPushButton();
-        ((SwingScilabPushButton) button.getAsSimplePushButton()).addActionListener(new SetPrecisionLongeAction(editor, title));
+    public static JButton createButton(SwingScilabVariableEditor editor, String title) {
+        JButton button = new JButton();
+        ScilabLAF.setDefaultProperties(button);
+        button.addActionListener(new SetPrecisionLongeAction(editor, title));
         button.setToolTipText(title);
         ImageIcon imageIcon = new ImageIcon(FindIconHelper.findIcon("longe"));
-        ((SwingScilabPushButton) button.getAsSimplePushButton()).setIcon(imageIcon);
+        button.setIcon(imageIcon);
 
         return button;
     }

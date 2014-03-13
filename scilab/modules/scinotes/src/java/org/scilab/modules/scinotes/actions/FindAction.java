@@ -64,13 +64,11 @@ import javax.swing.text.Highlighter;
 import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.gui.bridge.textbox.SwingScilabTextBox;
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.ScilabDocument;
 import org.scilab.modules.scinotes.SearchManager;
 import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
 import org.scilab.modules.scinotes.utils.SciNotesMessages;
-
 
 /**
  * FindAction
@@ -246,7 +244,7 @@ public final class FindAction extends DefaultAction implements WindowFocusListen
      * @param editor SciNotes
      * @return PushButton
      */
-    public static PushButton createButton(String tooltip, String icon, SciNotes editor) {
+    public static JButton createButton(String tooltip, String icon, SciNotes editor) {
         return createButton(tooltip, icon, new FindAction(tooltip, editor));
     }
 

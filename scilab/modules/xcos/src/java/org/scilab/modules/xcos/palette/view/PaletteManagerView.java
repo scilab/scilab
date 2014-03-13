@@ -23,6 +23,7 @@ import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 
 import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
+import org.scilab.modules.gui.bridge.toolbar.SwingScilabToolBar;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
@@ -163,7 +164,8 @@ public class PaletteManagerView extends SwingScilabDockablePanel implements Simp
 
         /* Create the toolbar */
         final ToolBar toolbar = ScilabToolBar.createToolBar();
-        toolbar.add(LoadAsPalAction.createButton(null));
+        SwingScilabToolBar stb = (SwingScilabToolBar) toolbar.getAsSimpleToolBar();
+        stb.add(LoadAsPalAction.createButton(null));
 
         setToolBar(toolbar);
 

@@ -32,14 +32,12 @@ import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 
 import org.scilab.modules.commons.gui.FindIconHelper;
+import org.scilab.modules.commons.gui.ScilabLAF;
 import org.scilab.modules.commons.gui.ScilabKeyStroke;
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
-import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
-import org.scilab.modules.gui.pushbutton.PushButton;
-import org.scilab.modules.gui.pushbutton.ScilabPushButton;
 import org.scilab.modules.ui_data.UI_data;
 import org.scilab.modules.ui_data.datatable.SwingEditvarTableModel;
 import org.scilab.modules.ui_data.utils.UiDataMessages;
@@ -248,12 +246,13 @@ public final class CreateNewVariableAction extends CommonCallBack {
      * @param title tooltip for the button
      * @return the button
      */
-    public static PushButton createButton(SwingScilabVariableEditor editor, String title) {
-        PushButton button = ScilabPushButton.createPushButton();
-        ((SwingScilabPushButton) button.getAsSimplePushButton()).addActionListener(new CreateNewVariableAction(editor, title));
+    public static JButton createButton(SwingScilabVariableEditor editor, String title) {
+        JButton button = new JButton();
+        ScilabLAF.setDefaultProperties(button);
+        button.addActionListener(new CreateNewVariableAction(editor, title));
         button.setToolTipText(title);
         ImageIcon imageIcon = new ImageIcon(FindIconHelper.findIcon("variable-new"));
-        ((SwingScilabPushButton) button.getAsSimplePushButton()).setIcon(imageIcon);
+        button.setIcon(imageIcon);
 
         return button;
     }

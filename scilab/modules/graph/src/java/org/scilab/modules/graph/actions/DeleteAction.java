@@ -16,12 +16,13 @@ package org.scilab.modules.graph.actions;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
+import javax.swing.JButton;
+
 import org.scilab.modules.graph.ScilabComponent;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.OneSelectionDependantAction;
 import org.scilab.modules.graph.utils.ScilabGraphMessages;
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.gui.pushbutton.PushButton;
 
 /**
  * Delete manager
@@ -59,7 +60,7 @@ public final class DeleteAction extends OneSelectionDependantAction {
      * @param scilabGraph corresponding Scilab Graph
      * @return the button
      */
-    public static PushButton createButton(ScilabGraph scilabGraph) {
+    public static JButton createButton(ScilabGraph scilabGraph) {
         return createButton(scilabGraph, DeleteAction.class);
     }
 

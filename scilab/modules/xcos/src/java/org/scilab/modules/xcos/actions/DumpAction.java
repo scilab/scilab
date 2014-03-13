@@ -16,11 +16,12 @@ package org.scilab.modules.xcos.actions;
 
 import java.awt.event.ActionEvent;
 
+import javax.swing.JButton;
+
 import org.scilab.modules.graph.ScilabComponent;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.scicos.ScilabDirectHandler;
 import org.scilab.modules.xcos.utils.XcosMessages;
@@ -55,7 +56,7 @@ public final class DumpAction extends DefaultAction {
      *            graph
      * @return push button
      */
-    public static PushButton dumpButton(ScilabGraph scilabGraph) {
+    public static JButton dumpButton(ScilabGraph scilabGraph) {
         return createButton(scilabGraph, DumpAction.class);
     }
 

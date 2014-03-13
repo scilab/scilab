@@ -15,12 +15,11 @@ package org.scilab.modules.ui_data.filebrowser;
 import java.awt.BorderLayout;
 import java.awt.Color;
 
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
-
-import org.scilab.modules.gui.pushbutton.PushButton;
 
 /**
  * A JPanel containing the different elements composing the File Browser
@@ -75,14 +74,14 @@ public class ScilabFileBrowserComponent extends JPanel {
     /**
      * @return the next button in the history
      */
-    public PushButton getNextButton() {
+    public JButton getNextButton() {
         return stt.getNextButton();
     }
 
     /**
      * @return the previous button in the history
      */
-    public PushButton getPreviousButton() {
+    public JButton getPreviousButton() {
         return stt.getPreviousButton();
     }
 }

@@ -39,6 +39,7 @@ import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 
 import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
+import org.scilab.modules.gui.bridge.toolbar.SwingScilabToolBar;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
@@ -475,16 +476,17 @@ public final class CommandHistory extends SwingScilabDockablePanel implements Si
      */
     private static ToolBar createToolBar() {
         ToolBar toolBar = ScilabToolBar.createToolBar();
+        SwingScilabToolBar stb = (SwingScilabToolBar) toolBar.getAsSimpleToolBar();
 
-        toolBar.add(CopyAction.createPushButton());
-        toolBar.add(CutAction.createPushButton());
-        toolBar.add(DeleteAction.createPushButton());
+        stb.add(CopyAction.createPushButton());
+        stb.add(CutAction.createPushButton());
+        stb.add(DeleteAction.createPushButton());
 
-        toolBar.addSeparator();
-        toolBar.add(PrefsAction.createPushButton());
-        toolBar.addSeparator();
+        stb.addSeparator();
+        stb.add(PrefsAction.createPushButton());
+        stb.addSeparator();
 
-        toolBar.add(HelpAction.createPushButton());
+        stb.add(HelpAction.createPushButton());
 
         return toolBar;
     }

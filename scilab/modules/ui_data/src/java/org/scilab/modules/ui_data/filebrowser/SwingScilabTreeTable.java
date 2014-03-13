@@ -32,6 +32,7 @@ import java.util.regex.Pattern;
 import javax.swing.ActionMap;
 import javax.swing.ImageIcon;
 import javax.swing.InputMap;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
@@ -47,7 +48,6 @@ import javax.swing.tree.TreePath;
 
 import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
-import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.ui_data.filebrowser.actions.ChangeCWDAction;
 import org.scilab.modules.ui_data.filebrowser.actions.EditFileWithDefaultAppAction;
 import org.scilab.modules.ui_data.filebrowser.actions.ExecuteFileInConsoleAction;
@@ -217,14 +217,14 @@ public class SwingScilabTreeTable extends JTable {
     /**
      * @return the Next button used in history
      */
-    public PushButton getNextButton() {
+    public JButton getNextButton() {
         return history.getNextButton();
     }
 
     /**
      * @return the Previous button used in history
      */
-    public PushButton getPreviousButton() {
+    public JButton getPreviousButton() {
         return history.getPreviousButton();
     }
 

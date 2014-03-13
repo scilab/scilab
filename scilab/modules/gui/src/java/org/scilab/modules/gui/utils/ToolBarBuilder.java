@@ -28,6 +28,7 @@ import javax.swing.JToggleButton;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.scilab.modules.commons.gui.FindIconHelper;
+import org.scilab.modules.commons.gui.ScilabLAF;
 import org.scilab.modules.commons.xml.ScilabDocumentBuilderFactory;
 import org.scilab.modules.graphic_objects.graphicObject.CallBack;
 import org.scilab.modules.gui.bridge.toolbar.SwingScilabToolBar;
@@ -217,9 +218,7 @@ public final class ToolBarBuilder {
                             pushButton = new JButton();
                         }
 
-                        pushButton.setFocusable(false);
-                        pushButton.setContentAreaFilled(true);
-                        pushButton.setOpaque(false);
+                        ScilabLAF.setDefaultProperties(pushButton);
 
                         for (int i = 0; i < buttonAttributes.getLength(); i++) {
                             if (buttonAttributes.item(i).getNodeName().equals(ICON)) {

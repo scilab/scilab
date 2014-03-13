@@ -43,6 +43,7 @@ import java.util.UUID;
 import java.util.logging.Logger;
 
 import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -79,7 +80,6 @@ import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.AnswerOption;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.ButtonType;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
-import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.tab.SimpleTab;
 import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
 import org.scilab.modules.gui.textbox.TextBox;
@@ -171,8 +171,8 @@ public class SciNotes extends SwingScilabDockablePanel {
     private int numberOfUntitled;
     private EditorKit editorKit;
 
-    private PushButton undoButton;
-    private PushButton redoButton;
+    private JButton undoButton;
+    private JButton redoButton;
 
     private boolean protectOpenFileList;
     private boolean restored;
@@ -1655,7 +1655,7 @@ public class SciNotes extends SwingScilabDockablePanel {
      * @param button
      *            the UndoButton used in this editor
      */
-    public void setUndoButton(PushButton button) {
+    public void setUndoButton(JButton button) {
         undoButton = button;
         enableUndoButton(false);
     }
@@ -1684,7 +1684,7 @@ public class SciNotes extends SwingScilabDockablePanel {
      * @param button
      *            the RedoButton used in this editor
      */
-    public void setRedoButton(PushButton button) {
+    public void setRedoButton(JButton button) {
         redoButton = button;
         enableRedoButton(false);
     }

@@ -13,17 +13,16 @@
 package org.scilab.modules.ui_data.variableeditor.actions;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JTable;
 
 import org.scilab.modules.commons.gui.FindIconHelper;
+import org.scilab.modules.commons.gui.ScilabLAF;
 import org.scilab.modules.commons.gui.ScilabKeyStroke;
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
-import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
-import org.scilab.modules.gui.pushbutton.PushButton;
-import org.scilab.modules.gui.pushbutton.ScilabPushButton;
 import org.scilab.modules.ui_data.datatable.SwingEditvarTableModel;
 import org.scilab.modules.ui_data.variableeditor.SwingScilabVariableEditor;
 
@@ -73,12 +72,13 @@ public final class UndoAction extends CommonCallBack {
      * @param title tooltip for the button
      * @return the button
      */
-    public static PushButton createButton(SwingScilabVariableEditor editor, String title) {
-        PushButton button = ScilabPushButton.createPushButton();
-        ((SwingScilabPushButton) button.getAsSimplePushButton()).addActionListener(new UndoAction(editor, title));
+    public static JButton createButton(SwingScilabVariableEditor editor, String title) {
+        JButton button = new JButton();
+        ScilabLAF.setDefaultProperties(button);
+        button.addActionListener(new UndoAction(editor, title));
         button.setToolTipText(title);
         ImageIcon imageIcon = new ImageIcon(FindIconHelper.findIcon("edit-undo"));
-        ((SwingScilabPushButton) button.getAsSimplePushButton()).setIcon(imageIcon);
+        button.setIcon(imageIcon);
 
         return button;
     }

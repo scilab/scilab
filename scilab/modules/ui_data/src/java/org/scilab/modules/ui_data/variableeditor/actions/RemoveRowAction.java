@@ -13,14 +13,13 @@
 package org.scilab.modules.ui_data.variableeditor.actions;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JMenuItem;
 import javax.swing.JTable;
 
 import org.scilab.modules.commons.gui.FindIconHelper;
-import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
+import org.scilab.modules.commons.gui.ScilabLAF;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
-import org.scilab.modules.gui.pushbutton.PushButton;
-import org.scilab.modules.gui.pushbutton.ScilabPushButton;
 import org.scilab.modules.ui_data.datatable.SwingEditvarTableModel;
 import org.scilab.modules.ui_data.variableeditor.TableVariableEditor;
 
@@ -63,12 +62,13 @@ public final class RemoveRowAction extends CommonCallBack {
      * @param title tooltip for the button
      * @return the button
      */
-    public static PushButton createButton(JTable table, String title) {
-        PushButton button = ScilabPushButton.createPushButton();
-        ((SwingScilabPushButton) button.getAsSimplePushButton()).addActionListener(new RemoveRowAction(table, title));
+    public static JButton createButton(JTable table, String title) {
+        JButton button = new JButton();
+        ScilabLAF.setDefaultProperties(button);
+        button.addActionListener(new RemoveRowAction(table, title));
         button.setToolTipText(title);
         ImageIcon imageIcon = new ImageIcon(FindIconHelper.findIcon("short"));
-        ((SwingScilabPushButton) button.getAsSimplePushButton()).setIcon(imageIcon);
+        button.setIcon(imageIcon);
 
         return button;
     }

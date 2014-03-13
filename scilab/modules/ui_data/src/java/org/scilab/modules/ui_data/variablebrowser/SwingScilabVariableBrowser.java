@@ -19,17 +19,16 @@ import java.awt.Color;
 import java.awt.MouseInfo;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-
-import javax.swing.SwingUtilities;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
+import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
+import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableModel;
@@ -38,6 +37,7 @@ import javax.swing.table.TableRowSorter;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
+import org.scilab.modules.gui.bridge.toolbar.SwingScilabToolBar;
 import org.scilab.modules.gui.bridge.contextmenu.SwingScilabContextMenu;
 import org.scilab.modules.gui.contextmenu.ContextMenu;
 import org.scilab.modules.gui.contextmenu.ScilabContextMenu;
@@ -48,7 +48,6 @@ import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.menubar.ScilabMenuBar;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
-import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ScilabToolBar;
 import org.scilab.modules.gui.toolbar.ToolBar;
@@ -124,7 +123,7 @@ public final class SwingScilabVariableBrowser extends SwingScilabDockablePanel i
     private CheckBoxMenuItem filterIntrinsicFunctionCheckBox;
     private CheckBoxMenuItem filterMatlabSparseCheckBox;
     private CheckBoxMenuItem filterImplicitPolynomialCheckBox;
-    private PushButton filteringButton;
+    private JButton filteringButton;
 
     private boolean isSetData = false;
 
@@ -143,12 +142,13 @@ public final class SwingScilabVariableBrowser extends SwingScilabDockablePanel i
         addMenuBar(menuBar);
 
         ToolBar toolBar = ScilabToolBar.createToolBar();
-        toolBar.add(RefreshAction.createButton(UiDataMessages.REFRESH));
-        toolBar.addSeparator();
-        toolBar.add(ModifyAction.createButton(this, UiDataMessages.MODIFY));
-        toolBar.add(DeleteAction.createButton(this, UiDataMessages.DELETE));
-        toolBar.addSeparator();
-        toolBar.add(HelpAction.createButton(UiDataMessages.HELP));
+        SwingScilabToolBar stb = (SwingScilabToolBar) toolBar.getAsSimpleToolBar();
+        stb.add(RefreshAction.createButton(UiDataMessages.REFRESH));
+        stb.addSeparator();
+        stb.add(ModifyAction.createButton(this, UiDataMessages.MODIFY));
+        stb.add(DeleteAction.createButton(this, UiDataMessages.DELETE));
+        stb.addSeparator();
+        stb.add(HelpAction.createButton(UiDataMessages.HELP));
         filteringButton = ScilabVarFilteringButtonAction.createButton("Show/hide Scilab variable");
         //        toolBar.add(filteringButton);
         addToolBar(toolBar);

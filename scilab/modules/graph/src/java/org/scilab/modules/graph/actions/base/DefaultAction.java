@@ -21,20 +21,19 @@ import java.lang.ref.WeakReference;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.commons.gui.FindIconHelper;
+import org.scilab.modules.commons.gui.ScilabLAF;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.gui.bridge.checkboxmenuitem.SwingScilabCheckBoxMenuItem;
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
-import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
 import org.scilab.modules.gui.checkboxmenuitem.ScilabCheckBoxMenuItem;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
-import org.scilab.modules.gui.pushbutton.PushButton;
-import org.scilab.modules.gui.pushbutton.ScilabPushButton;
 
 import com.mxgraph.swing.mxGraphComponent;
 
@@ -149,15 +148,14 @@ public abstract class DefaultAction extends CommonCallBack {
      *            the associated klass
      * @return the push button
      */
-    protected static PushButton createButton(ScilabGraph graph, final Class <? extends DefaultAction > klass) {
+    protected static JButton createButton(ScilabGraph graph, final Class <? extends DefaultAction > klass) {
         DefaultAction action = GraphActionManager.getInstance(graph, klass);
-        PushButton item = ScilabPushButton.createPushButton();
+        JButton item = new JButton();
 
-        SwingScilabPushButton swingItem = (SwingScilabPushButton) item.getAsSimplePushButton();
-        swingItem.setAction(action);
+        item.setAction(action);
 
         // Hide the text on buttons
-        swingItem.setHideActionText(true);
+        item.setHideActionText(true);
 
         return item;
     }

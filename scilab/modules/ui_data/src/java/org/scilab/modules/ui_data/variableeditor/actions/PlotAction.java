@@ -19,26 +19,24 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JPopupMenu;
 import javax.swing.JTable;
 
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.commons.gui.FindIconHelper;
+import org.scilab.modules.commons.gui.ScilabLAF;
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
-import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
-import org.scilab.modules.gui.pushbutton.PushButton;
-import org.scilab.modules.gui.pushbutton.ScilabPushButton;
 import org.scilab.modules.types.ScilabTypeEnumDescription;
 import org.scilab.modules.ui_data.BrowseVar;
 import org.scilab.modules.ui_data.EditVar;
 import org.scilab.modules.ui_data.datatable.SwingEditvarTableModel;
 import org.scilab.modules.ui_data.variablebrowser.SwingScilabVariableBrowser;
 import org.scilab.modules.ui_data.variableeditor.SwingScilabVariableEditor;
-
 
 /**
  * RefreshAction class
@@ -234,17 +232,17 @@ public final class PlotAction extends CommonCallBack {
      * @param title tooltip for the button
      * @return the button
      */
-    public static PushButton createButton(SwingScilabDockablePanel editor, String title) {
-        final PushButton button = ScilabPushButton.createPushButton();
+    public static JButton createButton(SwingScilabDockablePanel editor, String title) {
+        final JButton button = new JButton();
+        ScilabLAF.setDefaultProperties(button);
         button.setToolTipText(title);
         ImageIcon imageIcon = new ImageIcon(FindIconHelper.findIcon("plot"));
-        ((SwingScilabPushButton) button.getAsSimplePushButton()).setIcon(imageIcon);
+        button.setIcon(imageIcon);
 
         final JPopupMenu popup = new JPopupMenu() {
             @Override
             public void show(Component c, int x, int y) {
-                SwingScilabPushButton but = (SwingScilabPushButton) button.getAsSimplePushButton();
-                super.show(but, 0, but.getBounds(null).height);
+                super.show(button, 0, button.getBounds(null).height);
             }
         };
         popup.setBorderPainted(true);
@@ -263,7 +261,7 @@ public final class PlotAction extends CommonCallBack {
 
         popup.pack();
 
-        ((SwingScilabPushButton) button.getAsSimplePushButton()).addActionListener(new CommonCallBack(null) {
+        button.addActionListener(new CommonCallBack(null) {
             @Override
             public void callBack() {
                 if (!popup.isVisible()) {

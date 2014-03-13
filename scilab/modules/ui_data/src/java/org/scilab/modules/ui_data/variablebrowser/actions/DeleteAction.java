@@ -16,16 +16,15 @@ package org.scilab.modules.ui_data.variablebrowser.actions;
 import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.asynchronousScilabExec;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.commons.gui.FindIconHelper;
+import org.scilab.modules.commons.gui.ScilabLAF;
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
-import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
-import org.scilab.modules.gui.pushbutton.PushButton;
-import org.scilab.modules.gui.pushbutton.ScilabPushButton;
 import org.scilab.modules.ui_data.BrowseVar;
 import org.scilab.modules.ui_data.utils.UiDataMessages;
 import org.scilab.modules.ui_data.variablebrowser.SwingScilabVariableBrowser;
@@ -60,11 +59,12 @@ public final class DeleteAction extends CommonCallBack {
      * @param title tooltip for the button
      * @return the button
      */
-    public static PushButton createButton(SwingScilabVariableBrowser variableBrowser, String title) {
-        PushButton button = ScilabPushButton.createPushButton();
-        ((SwingScilabPushButton) button.getAsSimplePushButton()).addActionListener(new DeleteAction(variableBrowser));
+    public static JButton createButton(SwingScilabVariableBrowser variableBrowser, String title) {
+        JButton button = new JButton();
+        ScilabLAF.setDefaultProperties(button);
+        button.addActionListener(new DeleteAction(variableBrowser));
         button.setToolTipText(title);
-        ((SwingScilabPushButton) button.getAsSimplePushButton()).setIcon(icon);
+        button.setIcon(icon);
 
         return button;
     }
@@ -82,7 +82,6 @@ public final class DeleteAction extends CommonCallBack {
         return menuItem;
     }
 
-
     /**
      * Action!
      * @see org.scilab.modules.gui.events.callback.CallBack#callBack()
@@ -97,7 +96,6 @@ public final class DeleteAction extends CommonCallBack {
     }
 
     private String getSelectedVariable() {
-
         int clickedRow = variableBrowser.getTable().getSelectedRow();
         // Does nothing if no variable selected
         if (clickedRow != -1) {

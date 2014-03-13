@@ -19,12 +19,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.lang.ref.WeakReference;
 
+import javax.swing.JButton;
+
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.ActionConstraint;
 import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.graph.utils.ScilabGraphMessages;
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.gui.pushbutton.PushButton;
 
 import com.mxgraph.util.mxEvent;
 import com.mxgraph.util.mxEventObject;
@@ -117,7 +118,7 @@ public class RedoAction extends DefaultAction {
      * @param scilabGraph corresponding Scilab Graph
      * @return the button
      */
-    public static PushButton redoButton(ScilabGraph scilabGraph) {
+    public static JButton redoButton(ScilabGraph scilabGraph) {
         return createButton(scilabGraph, RedoAction.class);
     }
 

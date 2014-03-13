@@ -17,20 +17,19 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.Action;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.commons.gui.FindIconHelper;
+import org.scilab.modules.commons.gui.ScilabLAF;
 import org.scilab.modules.graphic_objects.graphicObject.CallBack;
 import org.scilab.modules.gui.bridge.checkboxmenuitem.SwingScilabCheckBoxMenuItem;
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
-import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
 import org.scilab.modules.gui.checkboxmenuitem.ScilabCheckBoxMenuItem;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
-import org.scilab.modules.gui.pushbutton.PushButton;
-import org.scilab.modules.gui.pushbutton.ScilabPushButton;
 
 /**
  * Default action for a BrowseVar
@@ -138,19 +137,16 @@ public abstract class DefaultAction extends CommonCallBack {
      *            the associated callback
      * @return the push button
      */
-    protected static PushButton createButton(CommonCallBack callback) {
-        PushButton item = ScilabPushButton.createPushButton();
-
-        SwingScilabPushButton swingItem = (SwingScilabPushButton) item
-                                          .getAsSimplePushButton();
-        swingItem.setAction(callback);
+    protected static JButton createButton(CommonCallBack callback) {
+        JButton button = new JButton();
+        button.setAction(callback);
 
         // Not compatible with java 1.5
         // Hide the name text
-        // swingItem.setHideActionText(true);
-        swingItem.setText("");
+        // button.setHideActionText(true);
+        button.setText("");
 
-        return item;
+        return button;
     }
 
     /**

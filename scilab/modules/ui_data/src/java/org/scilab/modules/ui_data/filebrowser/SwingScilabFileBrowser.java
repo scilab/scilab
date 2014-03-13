@@ -13,6 +13,7 @@
 package org.scilab.modules.ui_data.filebrowser;
 
 import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
+import org.scilab.modules.gui.bridge.toolbar.SwingScilabToolBar;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
@@ -51,13 +52,14 @@ public final class SwingScilabFileBrowser extends SwingScilabDockablePanel {
         filebrowser = new ScilabFileBrowserComponent();
 
         ToolBar toolBar = ScilabToolBar.createToolBar();
-        toolBar.add(filebrowser.getPreviousButton());
-        toolBar.add(filebrowser.getNextButton());
-        toolBar.addSeparator();
-        toolBar.add(GoToHomeAction.createButton());
-        toolBar.add(GoToSCIAction.createButton());
-        toolBar.addSeparator();
-        toolBar.add(HelpAction.createButton(UiDataMessages.HELP));
+        SwingScilabToolBar stb = (SwingScilabToolBar) toolBar.getAsSimpleToolBar();
+        stb.add(filebrowser.getPreviousButton());
+        stb.add(filebrowser.getNextButton());
+        stb.addSeparator();
+        stb.add(GoToHomeAction.createButton());
+        stb.add(GoToSCIAction.createButton());
+        stb.addSeparator();
+        stb.add(HelpAction.createButton(UiDataMessages.HELP));
 
         addToolBar(toolBar);
         setContentPane(filebrowser);
