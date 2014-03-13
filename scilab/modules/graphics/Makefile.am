@@ -475,6 +475,7 @@ libscigraphics_la_CPPFLAGS = \
 	-I$(top_srcdir)/modules/output_stream/includes/ \
 	-I$(top_srcdir)/modules/renderer/includes/ \
 	-I$(top_srcdir)/modules/string/includes/ \
+	-I$(top_srcdir)/modules/sparse/includes/ \
 	$(AM_CPPFLAGS)
 
 libscigraphics_algo_la_SOURCES = $(GRAPHICS_C_SOURCES) $(GRAPHICS_CXX_SOURCES)

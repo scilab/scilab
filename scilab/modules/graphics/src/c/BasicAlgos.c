@@ -21,11 +21,15 @@
 #include "MALLOC.h"
 #include "core_math.h"
 #include "freeArrayOfString.h"
+
+#define spINSIDE_SPARSE
+#include "spConfig.h" // NAN definition
 /*------------------------------------------------------------------------*/
 double sciFindStPosMin(const double x[], int n)
 {
     double min = -1.0;
     int i = 0;
+    char hasNeg = 0;
 
     if (n <= 0)
     {
@@ -39,6 +43,16 @@ double sciFindStPosMin(const double x[], int n)
             min = x[i];
             break;
         }
+        else if (!hasNeg && x[i] <= 0)
+        {
+            hasNeg = 1;
+        }
+    }
+
+    if (i == n && !hasNeg)
+    {
+        // we have only NaN
+        return NAN;
     }
 
     for (; i < n ; i++)

@@ -583,7 +583,7 @@ void compute_data_bounds2(int cflag, char dataflag, char *logflags, double *x, d
     }
 
     /* back to default values for  x=[] and y = [] */
-    if (drect[2] == LARGEST_REAL || drect[3] == -LARGEST_REAL)
+    if (drect[2] == LARGEST_REAL || drect[3] == -LARGEST_REAL || isnan(drect[2]) || isnan(drect[3]))
     {
         if (logflags[1] != 'l')
         {
@@ -597,7 +597,7 @@ void compute_data_bounds2(int cflag, char dataflag, char *logflags, double *x, d
         drect[3] = 10.0;
     }
 
-    if (drect[0] == LARGEST_REAL || drect[1] == -LARGEST_REAL)
+    if (drect[0] == LARGEST_REAL || drect[1] == -LARGEST_REAL || isnan(drect[0]) || isnan(drect[1]))
     {
         if (logflags[0] != 'l')
         {

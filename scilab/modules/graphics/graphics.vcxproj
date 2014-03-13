@@ -80,7 +80,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes/handleDrawing;includes;src/c;src/c/getHandleProperty;../../java/jdk/include;../../java/jdk/include/win32;../elementary_functions/includes;../output_stream/includes;../fileio/includes;../gui/includes;../core/includes;../graphic_objects/includes;../localization/includes;../renderer/includes;../jvm/includes;../action_binding/includes;../graphic_export/includes;../string/includes;../windows_tools/includes;../api_scilab/includes;../../libs/intl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes/handleDrawing;includes;src/c;src/c/getHandleProperty;../../java/jdk/include;../../java/jdk/include/win32;../elementary_functions/includes;../output_stream/includes;../fileio/includes;../gui/includes;../core/includes;../graphic_objects/includes;../localization/includes;../renderer/includes;../jvm/includes;../action_binding/includes;../graphic_export/includes;../string/includes;../sparse/includes;../windows_tools/includes;../api_scilab/includes;../../libs/intl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;_DEBUG;_WINDOWS;_USRDLL;GRAPHICS_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -109,7 +109,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes/handleDrawing;includes;src/c;src/c/getHandleProperty;../../java/jdk/include;../../java/jdk/include/win32;../elementary_functions/includes;../output_stream/includes;../fileio/includes;../gui/includes;../core/includes;../graphic_objects/includes;../localization/includes;../renderer/includes;../jvm/includes;../action_binding/includes;../graphic_export/includes;../string/includes;../windows_tools/includes;../api_scilab/includes;../../libs/intl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes/handleDrawing;includes;src/c;src/c/getHandleProperty;../../java/jdk/include;../../java/jdk/include/win32;../elementary_functions/includes;../output_stream/includes;../fileio/includes;../gui/includes;../core/includes;../graphic_objects/includes;../localization/includes;../renderer/includes;../jvm/includes;../action_binding/includes;../graphic_export/includes;../string/includes;../sparse/includes;../windows_tools/includes;../api_scilab/includes;../../libs/intl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;_DEBUG;_WINDOWS;_USRDLL;GRAPHICS_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -135,7 +135,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <AdditionalIncludeDirectories>includes/handleDrawing;includes;src/c;src/c/getHandleProperty;../../java/jdk/include;../../java/jdk/include/win32;../elementary_functions/includes;../output_stream/includes;../fileio/includes;../gui/includes;../core/includes;../graphic_objects/includes;../localization/includes;../renderer/includes;../jvm/includes;../action_binding/includes;../graphic_export/includes;../string/includes;../windows_tools/includes;../api_scilab/includes;../../libs/intl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes/handleDrawing;includes;src/c;src/c/getHandleProperty;../../java/jdk/include;../../java/jdk/include/win32;../elementary_functions/includes;../output_stream/includes;../fileio/includes;../gui/includes;../core/includes;../graphic_objects/includes;../localization/includes;../renderer/includes;../jvm/includes;../action_binding/includes;../graphic_export/includes;../string/includes;../sparse/includes;../windows_tools/includes;../api_scilab/includes;../../libs/intl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;NDEBUG;_WINDOWS;_USRDLL;GRAPHICS_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -169,7 +169,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     </Midl>
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <AdditionalIncludeDirectories>includes/handleDrawing;includes;src/c;src/c/getHandleProperty;../../java/jdk/include;../../java/jdk/include/win32;../elementary_functions/includes;../output_stream/includes;../fileio/includes;../gui/includes;../core/includes;../graphic_objects/includes;../localization/includes;../renderer/includes;../jvm/includes;../action_binding/includes;../graphic_export/includes;../string/includes;../windows_tools/includes;../api_scilab/includes;../../libs/intl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes/handleDrawing;includes;src/c;src/c/getHandleProperty;../../java/jdk/include;../../java/jdk/include/win32;../elementary_functions/includes;../output_stream/includes;../fileio/includes;../gui/includes;../core/includes;../graphic_objects/includes;../localization/includes;../renderer/includes;../jvm/includes;../action_binding/includes;../graphic_export/includes;../string/includes;../sparse/includes;../windows_tools/includes;../api_scilab/includes;../../libs/intl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;NDEBUG;_WINDOWS;_USRDLL;GRAPHICS_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
