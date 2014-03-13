@@ -69,7 +69,7 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
 
     private Integer uid;
 
-    private JComponent label = new JLabel();
+    private JComponent label = new JLabel(" ");
 
     private Border defaultBorder = null;
 
@@ -369,7 +369,11 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
 
             if (!ScilabSpecialTextUtilities.setText(label, newText)) {
                 // Normal Text
-                ((JLabel) label).setText(newText);
+                if (!newText.isEmpty()) {
+                    ((JLabel) label).setText(newText);
+                } else {
+                    ((JLabel) label).setText(" ");
+                }
             } else {
                 // Latex or MathML : Rendering will be done using Icon
                 ((JLabel) label).setText(null);
