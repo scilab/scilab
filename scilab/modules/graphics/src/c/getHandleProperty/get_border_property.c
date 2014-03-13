@@ -569,7 +569,7 @@ int getTitledBorder(void* _pvCtx, int _iVar, int* _piParent, int _iPos, int _iOb
     {
         //create a Font Border
         int* piFont = NULL;
-        char* pstFontBorder[] = {"FontBorder", "name", "size", "angle", "weight"};
+        char* pstFontBorder[] = {"BorderFont", "name", "size", "angle", "weight"};
 
         sciErr = createTListInList(_pvCtx, _iVar, piAddrList, 6, 5, &piFont);
         if (sciErr.iErr)

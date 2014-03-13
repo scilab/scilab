@@ -237,7 +237,7 @@
                             <term>resize: </term>
                             <listitem>
                                 <para>
-                                    This property locks the figure size. Its value can be <literal>"on"</literal> (default value) or <literal>"off"</literal> (the figure can not be resized neither through <link linkend="set">set</link> nor mouse events).
+                                    This property locks the figure size. Its value can be <literal>"on"</literal> (default value) or <literal>"off"</literal> (the figure can not be resized by mouse events).
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -280,7 +280,7 @@
                             <term>layout: </term>
                             <listitem>
                                 <para>
-                                    This property sets the layout used to dispose the figure children. See <link linked="layouts">layouts</link> page for more information about available layouts.
+                                    This property sets the layout used to dispose the figure children. See <link linkend="layout">layout</link> page for more information about available layouts.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -288,7 +288,7 @@
                             <term>layout_options: </term>
                             <listitem>
                                 <para>
-                                    This property sets the options of the layout used to dispose the figure children. See <link linked="layout">layouts</link> page for more information about available options.
+                                    This property sets the options of the layout used to dispose the figure children. See <link linkend="layout">layout</link> page for more information about available options.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -467,7 +467,6 @@ plot3d(t,t,sin(t)'*cos(t),35,45,'X@Y@Z',[15,2,4]);
             <member>
                 <link linkend="axes_properties">axes_properties</link>
             </member>
-            <member/>
             <member>
                 <link linkend="hotcolormap">hotcolormap</link>
             </member>
@@ -481,18 +480,22 @@ plot3d(t,t,sin(t)'*cos(t),35,45,'X@Y@Z',[15,2,4]);
         <revhistory>
             <revision>
                 <revnumber>5.5.0</revnumber>
-                <revremark>"visible" property meaning changed (uicontrols managed and the whole figure can be made invisible in some cases.</revremark>
-                <revremark>"icon" property added to allow figure icon change.</revremark>
-                <revremark>"menubar_visible" property added.</revremark>
-                <revremark>"toolbar_visible" property added.</revremark>
-                <revremark>"infobar_visible" property added.</revremark>
-                <revremark>"resize" property added.</revremark>
-                <revremark>"dockable" property added.</revremark>
-                <revremark>"menubar" property added.</revremark>
-                <revremark>"toolbar" property added.</revremark>
-                <revremark>"default_axes" property added.</revremark>
-                <revremark>"layout" property added.</revremark>
-                <revremark>"layout_options" property added.</revremark>
+                <revremark>
+                <itemizedlist>
+                    <listitem>"visible" property meaning changed (uicontrols managed and the whole figure can be made invisible in some cases.</listitem>
+                    <listitem>"icon" property added to allow figure icon change.</listitem>
+                    <listitem>"menubar_visible" property added.</listitem>
+                    <listitem>"toolbar_visible" property added.</listitem>
+                    <listitem>"infobar_visible" property added.</listitem>
+                    <listitem>"resize" property added.</listitem>
+                    <listitem>"dockable" property added.</listitem>
+                    <listitem>"menubar" property added.</listitem>
+                    <listitem>"toolbar" property added.</listitem>
+                    <listitem>"default_axes" property added.</listitem>
+                    <listitem>"layout" property added.</listitem>
+                    <listitem>"layout_options" property added.</listitem>
+                </itemizedlist>
+                </revremark>
             </revision>
             <revision>
                 <revnumber>5.4.0</revnumber>

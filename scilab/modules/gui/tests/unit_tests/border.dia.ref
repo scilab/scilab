@@ -4,12 +4,9 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
 // <-- TEST WITH GRAPHIC -->
-
-
 l = list();
-//borders
+//border
 //none
 //l($+1) = createBorder("none");
 //empty
@@ -45,9 +42,7 @@ l($+1) = createBorder("compound");
 l($+1) = createBorder("compound", createBorder("empty"), createBorder("etched"));
 //matte
 l($+1) = createBorder("matte", 4, 3, 2, 1, "yellow");
-
 //create a window with all type of frame border.
-
 f = figure( ...
     "dockable", "off", ...
     "menubar_visible", "off", ...
@@ -57,5 +52,5 @@ f = figure( ...
     "layout_options", createLayoutOptions("grid", [4,0], [1 1]));
 for i = 1:size(l)
     u = uicontrol(f, "style", "frame", "border", l(i));
-    assert_checkequal(u.borders, l(i));
+    assert_checkequal(u.border, l(i));
 end

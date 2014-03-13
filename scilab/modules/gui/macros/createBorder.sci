@@ -245,7 +245,7 @@ function ret = createBorder(constType, varargin)
 
         //font
         arg5 = varargin(5);
-        if typeof(arg5) <> "FontBorder" then
+        if typeof(arg5) <> "BorderFont" then
             error(999, msprintf(_("%s: Wrong type for input argument #%d: A Font Border expected.\n"), "createBorder", 6));
         end
 

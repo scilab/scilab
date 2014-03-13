@@ -1039,11 +1039,11 @@ a.ticks_st=[1 1;0 m(2)];
             <revision>
                 <revnumber>5.5.0</revnumber>
                 <revremark>
-                    <itemizelist>
+                    <itemizedlist>
                         <listitem>line_style values 9 and 10 can be used to have respectively longblank dot and bigblank dot styles.</listitem>
                         <listitem>auto_margins property added to allow automatic computation of the margins.</listitem>
                         <listitem>ticks_format and ticks_st properties added to improve ticks labels display.</listitem>
-                    </itemizelist>
+                    </itemizedlist>
                 </revremark>
             </revision>
         </revhistory>

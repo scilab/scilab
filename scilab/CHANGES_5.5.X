@@ -18,7 +18,7 @@ GUI Refactoring and Improvements
             with a fixed step.
 
 * New uicontrols properties:
- - borders: Used to set some decoration properties on "frame" uicontrols.
+ - border: Used to set some decoration properties on "frame" uicontrols.
             These decorations can be created and initialized with the createBorder
             and the createBorderFont functions.
  - scrollable: Used to add scrolling capabilities on "frame" uicontrols.
