@@ -42,7 +42,7 @@
                         </listitem>
                         <listitem>
                             <para>
-                                <emphasis>"w"</emphasis>: opens the file for writing.
+                                <emphasis>"w"</emphasis>: creates an empty file or opens it for writing.
                             </para>
                         </listitem>
                     </itemizedlist>

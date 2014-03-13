@@ -510,6 +510,8 @@ Scilab Bug Fixes
 
 * Bug #12156 fixed - Closing a Scilab session in Javasci could led to a HDF5 error message.
 
+* Bug #12170 fixed - Calling matfile_listvar on an empty file returned an error.
+
 * Bug #12306 fixed - Invalid memory free on completion in NWNI mode fixed.
 
 * Bug #12308 fixed - create_palette help page removed (function removed).
