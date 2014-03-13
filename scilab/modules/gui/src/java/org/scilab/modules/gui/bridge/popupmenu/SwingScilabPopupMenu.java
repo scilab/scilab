@@ -353,6 +353,11 @@ public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, 
 
             if (tryColorBox) { //color
                 try {
+                    //format #FFFFFF
+                    if (text[i].startsWith("#") == false) {
+                        throw new NumberFormatException();
+                    }
+
                     Color color = Color.decode(text[i]);
                     icon = ColorBox.createColorBox(16, 16, color);
                 } catch (NumberFormatException e) {
@@ -385,8 +390,16 @@ public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, 
 
                     str = text[(nbRow * colIndex) + i];
                     if (nbCol > (1 + colIndex)) {
+                        if (text[nbRow * (1 + colIndex) + i].startsWith("#") == false) {
+                            throw new NumberFormatException();
+                        }
+
                         background = Color.decode(text[nbRow * (1 + colIndex) + i]);
                         if (nbCol > (2 + colIndex)) {
+                            if (text[nbRow * (2 + colIndex) + i].startsWith("#") == false) {
+                                throw new NumberFormatException();
+                            }
+
                             foreground = Color.decode(text[nbRow * (2 + colIndex) + i]);
                         }
                     }
