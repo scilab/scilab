@@ -2,6 +2,7 @@
 # Please see in SCI/tools/localization for localization management
 # Copyright (C) 2007-2008 - INRIA
 # Copyright (C) 2008-2011 - DIGITEO
+# Copyright (C) 2012-2014 - Scilab-Enterprises
 # This file is distributed under the same license as the Scilab package.
 #
 msgid ""
@@ -9,12 +10,12 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab.org>\n"
+"Last-Translator: Vincent COUVERT <vincent.couvert@scilab-enterprises.com>\n"
 "Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2014-03-06 10:33+0100\n"
+"Revision-Date: 2014-03-13 09:46+0100\n"
 
 # File: sci_gateway/c/gw_gui.c, line: 89
 #, c-format
@@ -1902,8 +1903,13 @@ msgstr ""
 # File: src/cpp/SetUicontrolRelief.cpp, line: 64
 # File: src/cpp/SetUicontrolSliderStep.cpp, line: 65
 # File: src/cpp/SetUicontrolString.cpp, line: 32
-# File: src/cpp/SetUicontrolString.cpp, line: 114
-# File: src/cpp/SetUicontrolString.cpp, line: 126
+# File: src/cpp/SetUicontrolString.cpp, line: 41
+# File: src/cpp/SetUicontrolString.cpp, line: 89
+# File: src/cpp/SetUicontrolString.cpp, line: 95
+# File: src/cpp/SetUicontrolString.cpp, line: 101
+# File: src/cpp/SetUicontrolString.cpp, line: 123
+# File: src/cpp/SetUicontrolString.cpp, line: 129
+# File: src/cpp/SetUicontrolString.cpp, line: 138
 # File: src/cpp/SetUicontrolTooltipString.cpp, line: 31
 # File: src/cpp/SetUicontrolTooltipString.cpp, line: 59
 # File: src/cpp/SetUicontrolUnits.cpp, line: 32
@@ -1921,7 +1927,7 @@ msgid "'%s' property does not exist for this handle.\n"
 msgstr ""
 
 #
-# File: src/cpp/GetUicontrolString.cpp, line: 40
+# File: src/cpp/GetUicontrolString.cpp, line: 47
 # File: src/cpp/GetUicontrolStyle.cpp, line: 73
 # File: src/cpp/GetUicontrolTooltipString.cpp, line: 34
 #, c-format
@@ -2000,7 +2006,7 @@ msgstr ""
 # File: src/cpp/SetUicontrolFontName.cpp, line: 28
 # File: src/cpp/SetUicontrolFontUnits.cpp, line: 30
 # File: src/cpp/SetUicontrolFontWeight.cpp, line: 30
-# File: src/cpp/SetUicontrolString.cpp, line: 46
+# File: src/cpp/SetUicontrolString.cpp, line: 50
 # File: src/cpp/SetUimenuLabel.cpp, line: 26
 #, c-format
 msgid "Wrong type for '%s' property: A string expected.\n"
@@ -2011,7 +2017,7 @@ msgstr ""
 # File: src/cpp/SetUicontrolFontName.cpp, line: 33
 # File: src/cpp/SetUicontrolFontUnits.cpp, line: 35
 # File: src/cpp/SetUicontrolFontWeight.cpp, line: 35
-# File: src/cpp/SetUicontrolString.cpp, line: 104
+# File: src/cpp/SetUicontrolString.cpp, line: 114
 # File: src/cpp/SetUicontrolValue.cpp, line: 64
 # File: src/cpp/SetUimenuLabel.cpp, line: 32
 #, c-format
@@ -2140,7 +2146,7 @@ msgid "Wrong size for '%s' property: A 1 x %d real row vector expected.\n"
 msgstr ""
 
 #
-# File: src/cpp/SetUicontrolString.cpp, line: 60
+# File: src/cpp/SetUicontrolString.cpp, line: 64
 # File: src/cpp/SetUicontrolTooltipString.cpp, line: 47
 #, c-format
 msgid ""
@@ -2800,7 +2806,7 @@ msgstr ""
 #
 # File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 23
 # File: src/java/org/scilab/modules/gui/plotbrowser/MessagesPlotBrowser.java, line: 23
-# File: src/java/org/scilab/modules/gui/utils/ScilabAboutBox.java, line: 175
+# File: src/java/org/scilab/modules/gui/utils/ScilabAboutBox.java, line: 187
 msgid "Close"
 msgstr ""
 
@@ -3912,11 +3918,12 @@ msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/utils/ScilabAboutBox.java, line: 78
+# File: src/java/org/scilab/modules/gui/utils/ScilabAboutBox.java, line: 84
 msgid "About Scilab..."
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/utils/ScilabAboutBox.java, line: 184
+# File: src/java/org/scilab/modules/gui/utils/ScilabAboutBox.java, line: 196
 msgid "Acknowledgements"
 msgstr ""
 
@@ -3959,9 +3966,28 @@ msgstr ""
 msgid "Error. A signal has been caught.\n"
 msgstr ""
 
-#
-# File: demos/cb_uicontrol_plot3d.dem.sci, line: 67
+# File: demos/cb_uicontrol_plot3d.dem.sci, line: 29
 msgid "Control Plot3d"
+msgstr ""
+
+#
+# File: demos/cb_uicontrol_plot3d.dem.sci, line: 46
+msgid "Control Panel"
+msgstr ""
+
+#
+# File: demos/cb_uicontrol_plot3d.dem.sci, line: 61
+msgid "Rotation angle"
+msgstr ""
+
+#
+# File: demos/cb_uicontrol_plot3d.dem.sci, line: 84
+msgid "Colormap"
+msgstr ""
+
+#
+# File: demos/cb_uicontrol_plot3d.dem.sci, line: 149
+msgid "Show / Hide"
 msgstr ""
 
 #
@@ -3992,6 +4018,12 @@ msgstr ""
 #
 # File: demos/gui.dem.gateway.sce, line: 24
 msgid "Show images with uicontrols "
+msgstr ""
+
+#
+# File: demos/gui.dem.gateway.sce, line: 27
+# File: demos/uicontrol_listbox_popupmenu.dem.sce, line: 15
+msgid "Listboxes and Popupmenus"
 msgstr ""
 
 #

@@ -72,3 +72,8 @@ msgstr ""
 # File: macros/demo_viewCode.sci, line: 33
 msgid "Open in Editor"
 msgstr ""
+
+#
+# File: macros/demo_gui.sci, line: 63
+msgid "Demonstrations"
+msgstr ""

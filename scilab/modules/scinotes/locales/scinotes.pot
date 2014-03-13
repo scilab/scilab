@@ -2,6 +2,7 @@
 # Please see in SCI/tools/localization for localization management
 # Copyright (C) 2007-2008 - INRIA
 # Copyright (C) 2008-2011 - DIGITEO
+# Copyright (C) 2012-2014 - Scilab-Enterprises
 # This file is distributed under the same license as the Scilab package.
 #
 msgid ""
@@ -9,12 +10,12 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab.org>\n"
+"Last-Translator: Vincent COUVERT <vincent.couvert@scilab-enterprises.com>\n"
 "Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2014-03-11 10:51+0100\n"
+"Revision-Date: 2014-03-13 09:46+0100\n"
 
 # File: sci_gateway/c/gw_scinotes.c, line: 37
 # File: src/noscinotes/noscinotes.c, line: 22
@@ -920,16 +921,19 @@ msgstr ""
 
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 34
+#, c-format
 msgid "File not found: %s"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 35
+#, c-format
 msgid "I/O error: %s"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 36
+#, c-format
 msgid "The file %s has been modified by an other program. Reload it ?"
 msgstr ""
 
@@ -1255,6 +1259,7 @@ msgstr ""
 
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 166
+#, c-format
 msgid "Invalid regular expression : %s"
 msgstr ""
 
@@ -1280,11 +1285,13 @@ msgstr ""
 
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 171
+#, c-format
 msgid "String %s not found"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 173
+#, c-format
 msgid "The file %s does not exist. Do you want to create it?"
 msgstr ""
 
@@ -1300,11 +1307,13 @@ msgstr ""
 
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 176
+#, c-format
 msgid "The file %s has been modified since last save. Save it?"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 177
+#, c-format
 msgid "The file %s has been modified by another program ! Overwrite it ?"
 msgstr ""
 
@@ -1433,6 +1442,7 @@ msgstr ""
 
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 208
+#, c-format
 msgid "Line %s, Column %s. Function '%s' at Line %s."
 msgstr ""
 
@@ -1443,6 +1453,7 @@ msgstr ""
 
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 210
+#, c-format
 msgid "Line %s, Column %s."
 msgstr ""
 
@@ -1468,6 +1479,7 @@ msgstr ""
 
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 219
+#, c-format
 msgid "%s is a directory."
 msgstr ""
 
@@ -1508,6 +1520,7 @@ msgstr ""
 
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 231
+#, c-format
 msgid ""
 "The file encoding is actually %s and it will be saved in using %s. Continue ?"
 msgstr ""
@@ -1524,6 +1537,7 @@ msgstr ""
 
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 235
+#, c-format
 msgid "Cannot save the file %s... stop the backup process"
 msgstr ""
 
@@ -1534,21 +1548,25 @@ msgstr ""
 
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 237
+#, c-format
 msgid "The directory %s does not exist. Do you want to create it?"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 238
+#, c-format
 msgid "The directory %s cannot be created. Please check your access rights."
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 239
+#, c-format
 msgid "Impossible to write a file in %s. Please check your access rights."
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 240
+#, c-format
 msgid "Invalid directory name: %s."
 msgstr ""
 
@@ -1559,6 +1577,7 @@ msgstr ""
 
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 243
+#, c-format
 msgid "%s occurences found."
 msgstr ""
 
@@ -1754,16 +1773,19 @@ msgstr ""
 
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 326
+#, c-format
 msgid "<html>%s <i>(%s matches)</i></html>"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 327
+#, c-format
 msgid "<html>%s <i>(%s match)</i></html>"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 328
+#, c-format
 msgid "Elapsed time: %s sec."
 msgstr ""
 

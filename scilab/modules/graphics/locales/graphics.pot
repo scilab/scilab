@@ -2,6 +2,7 @@
 # Please see in SCI/tools/localization for localization management
 # Copyright (C) 2007-2008 - INRIA
 # Copyright (C) 2008-2011 - DIGITEO
+# Copyright (C) 2012-2014 - Scilab-Enterprises
 # This file is distributed under the same license as the Scilab package.
 #
 msgid ""
@@ -9,12 +10,12 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab.org>\n"
+"Last-Translator: Vincent COUVERT <vincent.couvert@scilab-enterprises.com>\n"
 "Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2014-03-06 10:33+0100\n"
+"Revision-Date: 2014-03-13 09:46+0100\n"
 
 # File: sci_gateway/c/gw_graphics.c, line: 131
 # File: src/nographics/nographics.c, line: 83
@@ -93,8 +94,9 @@ msgstr ""
 # File: sci_gateway/c/sci_Legend.c, line: 103
 # File: sci_gateway/c/sci_copy.c, line: 71
 # File: sci_gateway/c/sci_copy.c, line: 123
-# File: sci_gateway/c/sci_delete.c, line: 115
-# File: sci_gateway/c/sci_get.c, line: 185
+# File: sci_gateway/c/sci_delete.c, line: 118
+# File: sci_gateway/c/sci_delete.c, line: 130
+# File: sci_gateway/c/sci_get.c, line: 160
 # File: sci_gateway/c/sci_glue.c, line: 74
 # File: sci_gateway/c/sci_move.c, line: 93
 # File: sci_gateway/c/sci_newaxes.c, line: 99
@@ -115,7 +117,6 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_Legend.c, line: 111
 # File: sci_gateway/c/sci_StringBox.c, line: 218
-# File: sci_gateway/c/sci_get.c, line: 134
 # File: sci_gateway/c/sci_xstring.c, line: 73
 # File: sci_gateway/c/sci_xstringb.c, line: 120
 # File: sci_gateway/c/sci_xtitle.c, line: 146
@@ -125,11 +126,13 @@ msgstr ""
 
 #
 # File: sci_gateway/c/sci_Legend.c, line: 129
-# File: sci_gateway/c/sci_delete.c, line: 133
-# File: sci_gateway/c/sci_delete.c, line: 151
-# File: sci_gateway/c/sci_get.c, line: 225
-# File: sci_gateway/c/sci_get.c, line: 246
-# File: sci_gateway/c/sci_get.c, line: 286
+# File: sci_gateway/c/sci_delete.c, line: 148
+# File: sci_gateway/c/sci_delete.c, line: 166
+# File: sci_gateway/c/sci_get.c, line: 199
+# File: sci_gateway/c/sci_get.c, line: 206
+# File: sci_gateway/c/sci_get.c, line: 226
+# File: sci_gateway/c/sci_get.c, line: 266
+# File: sci_gateway/c/sci_get.c, line: 272
 # File: sci_gateway/c/sci_move.c, line: 63
 # File: sci_gateway/c/sci_xchange.c, line: 63
 # File: sci_gateway/c/sci_xget.c, line: 74
@@ -253,7 +256,9 @@ msgstr ""
 # File: sci_gateway/c/sci_geom3d.c, line: 78
 # File: sci_gateway/c/sci_geom3d.c, line: 95
 # File: sci_gateway/c/sci_geom3d.c, line: 112
+# File: sci_gateway/c/sci_get.c, line: 96
 # File: sci_gateway/c/sci_get.c, line: 103
+# File: sci_gateway/c/sci_get.c, line: 219
 # File: sci_gateway/c/sci_grayplot.c, line: 95
 # File: sci_gateway/c/sci_grayplot.c, line: 119
 # File: sci_gateway/c/sci_grayplot.c, line: 143
@@ -377,7 +382,7 @@ msgstr ""
 
 #
 # File: sci_gateway/c/sci_StringBox.c, line: 145
-# File: sci_gateway/c/sci_delete.c, line: 219
+# File: sci_gateway/c/sci_delete.c, line: 234
 #, c-format
 msgid "%s: The handle is not valid.\n"
 msgstr ""
@@ -482,7 +487,7 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_copy.c, line: 85
 # File: sci_gateway/c/sci_copy.c, line: 131
-# File: sci_gateway/c/sci_get.c, line: 336
+# File: sci_gateway/c/sci_get.c, line: 322
 # File: sci_gateway/c/sci_glue.c, line: 121
 # File: sci_gateway/c/sci_move.c, line: 101
 # File: sci_gateway/c/sci_rotate_axes.c, line: 99
@@ -500,7 +505,7 @@ msgid "%s: Parent entity for destination should be an axes.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_delete.c, line: 195
+# File: sci_gateway/c/sci_delete.c, line: 210
 # File: sci_gateway/c/sci_move.c, line: 74
 # File: sci_gateway/c/sci_xstringb.c, line: 209
 #, c-format
@@ -508,12 +513,12 @@ msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_delete.c, line: 225
+# File: sci_gateway/c/sci_delete.c, line: 240
 msgid "This object cannot be deleted.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_delete.c, line: 241
+# File: sci_gateway/c/sci_delete.c, line: 256
 msgid "A Label object cannot be deleted.\n"
 msgstr ""
 
@@ -574,20 +579,19 @@ msgid "%s: Wrong number of columns for input argument #%d: %d expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_get.c, line: 142
-# File: sci_gateway/c/sci_get.c, line: 158
+# File: sci_gateway/c/sci_get.c, line: 134
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
+msgid "%s: Wrong type for argument #%d: Single string expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_get.c, line: 150
+# File: sci_gateway/c/sci_get.c, line: 140
 #, c-format
-msgid "%s: Could not read property '%s' for root object.\n"
+msgid "%s: Could not read property '%s' for console object.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_get.c, line: 203
+# File: sci_gateway/c/sci_get.c, line: 178
 #, c-format
 msgid "%s: Unable to get useful path from this handle.\n"
 msgstr ""
@@ -2673,7 +2677,7 @@ msgid "Imaginary part"
 msgstr ""
 
 #
-# File: demos/2d_3d_plots/plotyy.dem.sce, line: 37
+# File: demos/2d_3d_plots/plotyy.dem.sce, line: 39
 msgid "Graphics with 2 different Y-scales"
 msgstr ""
 
@@ -3329,7 +3333,8 @@ msgstr ""
 # File: macros/clf.sci, line: 57
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: A vector of 'Figure' handle expected."
+"%s: Wrong type for input argument #%d: A vector of 'Figure' or 'Frame' "
+"handle expected."
 msgstr ""
 
 #

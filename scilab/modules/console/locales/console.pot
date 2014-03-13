@@ -2,6 +2,7 @@
 # Please see in SCI/tools/localization for localization management
 # Copyright (C) 2007-2008 - INRIA
 # Copyright (C) 2008-2011 - DIGITEO
+# Copyright (C) 2012-2014 - Scilab-Enterprises
 # This file is distributed under the same license as the Scilab package.
 #
 msgid ""
@@ -9,12 +10,12 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab.org>\n"
+"Last-Translator: Vincent COUVERT <vincent.couvert@scilab-enterprises.com>\n"
 "Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2014-03-06 15:13+0100\n"
+"Revision-Date: 2014-03-13 09:46+0100\n"
 
 # File: sci_gateway/c/sci_clc.c, line: 41
 # File: sci_gateway/c/sci_lines.c, line: 206
@@ -248,7 +249,7 @@ msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 293
-# File: scilab_fake_localization_file.c, line: 676
+# File: scilab_fake_localization_file.c, line: 679
 msgid "Confirmation dialogs"
 msgstr ""
 
@@ -1201,67 +1202,72 @@ msgid "Use default directory"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 696
+# File: scilab_fake_localization_file.c, line: 662
+msgid "Default startup directory"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 699
 msgid "Desktop Layout"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 698
+# File: scilab_fake_localization_file.c, line: 701
 msgid "Select a layout"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 712
+# File: scilab_fake_localization_file.c, line: 715
 msgid "(Modify the layout requires to restart Scilab)"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 724
+# File: scilab_fake_localization_file.c, line: 727
 msgid "Save layout on exiting"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 729
+# File: scilab_fake_localization_file.c, line: 732
 msgid "Reset layout"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 739
+# File: scilab_fake_localization_file.c, line: 742
 msgid "Keys binding"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 742
+# File: scilab_fake_localization_file.c, line: 745
 msgid "Filter on action name: "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 752
+# File: scilab_fake_localization_file.c, line: 755
 msgid "Component"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 764
+# File: scilab_fake_localization_file.c, line: 767
 msgid "Name: "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 770
+# File: scilab_fake_localization_file.c, line: 773
 msgid "Description: "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 776
+# File: scilab_fake_localization_file.c, line: 779
 msgid "Binding: "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 808
+# File: scilab_fake_localization_file.c, line: 811
 msgid "Action name"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 809
+# File: scilab_fake_localization_file.c, line: 812
 msgid "Key binding"
 msgstr ""
 
