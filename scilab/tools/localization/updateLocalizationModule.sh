@@ -202,12 +202,6 @@ function process_module {
         # empty template. Kill it!
         rm $LOCALIZATION_FILE_US
     fi
-    if test -z "$(git diff $LOCALIZATION_FILE_US | grep -v "Revision-date: ")"; then
-        if test $IS_MACROS -eq 0; then
-            # Only revision date was changed ==> keep previous version
-            git checkout $LOCALIZATION_FILE_US
-        fi
-    fi
 
     if test $IS_MACROS -eq 1; then
         LOCALIZATION_FILE_NATIVE=$(echo $LOCALIZATION_FILE_US|sed -e "s|-macros||g" -e "s|_macros||g")
