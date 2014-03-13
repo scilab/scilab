@@ -21,7 +21,6 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CALLBACK__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHAMP__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHILDREN_COUNT__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SPINNER__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHILDREN__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_COMPOUND__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DATATIP__;
@@ -65,11 +64,10 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_PUSHBUTTON__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_RADIOBUTTON__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SLIDER__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SPINNER__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TABLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TAB__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TEXT__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_USER_DATA_SIZE__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_USER_DATA__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VALID__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VISIBLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_WAITBAR__;
@@ -108,7 +106,7 @@ public abstract class GraphicObject implements Cloneable {
                      };
 
     /** GraphicObject properties */
-    public enum GraphicObjectPropertyType { PARENT, CHILDREN, CHILDREN_COUNT, HIDDEN, VISIBLE, USERDATA, USERDATASIZE, TYPE, REFERENCED, VALID, DATA,
+    public enum GraphicObjectPropertyType { PARENT, CHILDREN, CHILDREN_COUNT, HIDDEN, VISIBLE, TYPE, REFERENCED, VALID, DATA,
                                             PARENT_FIGURE, PARENT_AXES, HASLEGENDCHILD, LEGENDCHILD, SELECTEDCHILD, TAG, CALLBACK, CALLBACKTYPE, UNKNOWNPROPERTY
                                           };
 
@@ -133,9 +131,6 @@ public abstract class GraphicObject implements Cloneable {
     /** Specifies if the "handle" is hidden, i.e not listed as children in Scilab view */
     private boolean hidden;
 
-    /** User data */
-    private Integer[] userData;
-
     /** Tag */
     private String tag;
 
@@ -156,7 +151,6 @@ public abstract class GraphicObject implements Cloneable {
         parent = 0;
         children = new LinkedList<Integer>();
         visible = true;
-        userData = null;
         valid = true;
         referenced = false;
         selectedChild = 0;
@@ -313,10 +307,6 @@ public abstract class GraphicObject implements Cloneable {
                 return GraphicObjectPropertyType.HIDDEN;
             case __GO_VISIBLE__ :
                 return GraphicObjectPropertyType.VISIBLE;
-            case __GO_USER_DATA__ :
-                return GraphicObjectPropertyType.USERDATA;
-            case __GO_USER_DATA_SIZE__ :
-                return GraphicObjectPropertyType.USERDATASIZE;
             case __GO_REFERENCED__ :
                 return GraphicObjectPropertyType.REFERENCED;
             case __GO_VALID__ :
@@ -371,10 +361,6 @@ public abstract class GraphicObject implements Cloneable {
                 return isHidden();
             case VISIBLE:
                 return getVisible();
-            case USERDATA:
-                return getUserData();
-            case USERDATASIZE:
-                return getUserDataSize();
             case PARENT_FIGURE:
                 return getParentFigure();
             case PARENT_AXES:
@@ -430,11 +416,6 @@ public abstract class GraphicObject implements Cloneable {
             case VISIBLE:
                 setVisible((Boolean) value);
                 break;
-            case USERDATA:
-                setUserData((Integer[]) value);
-                break;
-            case USERDATASIZE:
-                return UpdateStatus.Fail;
             case SELECTEDCHILD:
                 setSelectedChild((Integer) value);
                 break;
@@ -557,32 +538,6 @@ public abstract class GraphicObject implements Cloneable {
     }
 
     /**
-     * @return the userData
-     */
-    public Object getUserData() {
-        return userData;
-    }
-
-    /**
-     * @param userData the userData to set
-     * @return TODO
-     */
-    public UpdateStatus setUserData(Integer[] userData) {
-        this.userData = userData;
-        return UpdateStatus.Success;
-    }
-
-    /**
-     * @return the userDataSize
-     */
-    public Integer getUserDataSize() {
-        if (userData != null) {
-            return userData.length;
-        }
-        return 0;
-    }
-
-    /**
      * @return the tag
      */
     public String getTag() {
@@ -649,7 +604,7 @@ public abstract class GraphicObject implements Cloneable {
         if (getParent() != 0 && GraphicController.getController().getObjectFromId(getParent()) != null) {
             return GraphicController.getController().getObjectFromId(getParent()).getParentFigure();
         }
-        
+
         /* No parent Figure found */
         return 0;
     }

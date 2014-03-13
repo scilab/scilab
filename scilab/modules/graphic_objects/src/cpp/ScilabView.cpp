@@ -29,6 +29,7 @@ extern "C"
 #include "graphicObjectProperties.h"
 #include "getScilabJavaVM.h"
 #include "deleteGraphicObject.h"
+#include "MALLOC.h"
 }
 
 /**
@@ -175,6 +176,8 @@ void ScilabView::createObject(int iUID)
 
     m_pathList[iUID] = item;
 
+    m_userdata[iUID]; //create an empty vector<int>
+
     //get existing information from current object
     updateObject(iUID, __GO_PARENT__);
     updateObject(iUID, __GO_CHILDREN__);
@@ -235,6 +238,7 @@ void ScilabView::deleteObject(int iUID)
     deleteDataObject(iUID);
 
     m_pathList.erase(iUID);
+    m_userdata.erase(iUID);
 }
 
 void ScilabView::updateObject(int iUID, int iProperty)
@@ -666,6 +670,30 @@ std::string ScilabView::get_path(int uid)
     return path;
 }
 
+void ScilabView::setUserdata(int _id, int* _data, int _datasize)
+{
+    m_userdata[_id] = std::vector<int>(_data, _data + _datasize);
+}
+
+int ScilabView::getUserdataSize(int _id)
+{
+    return (int)m_userdata[_id].size();
+}
+
+int* ScilabView::getUserdata(int _id)
+{
+    std::vector<int> &vect = m_userdata[_id];
+    int size = (int)vect.size();
+
+    if (size != 0)
+    {
+        return &(vect[0]);
+    }
+
+    //empty userdata must be == NULL
+    return NULL;
+}
+
 /*
 ** Allocate static class variable.
 */
@@ -680,3 +708,4 @@ int ScilabView::m_figureModel;
 int ScilabView::m_axesModel;
 ScilabView::__pathList ScilabView::m_pathList = *new __pathList();
 ScilabView::__pathFigList ScilabView::m_pathFigList = *new __pathFigList();
+ScilabView::__userdata ScilabView::m_userdata = *new __userdata();

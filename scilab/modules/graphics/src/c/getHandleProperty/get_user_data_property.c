@@ -48,7 +48,6 @@ int get_user_data_property(void* _pvCtx, int iObjUID)
     else
     {
         status = sciReturnUserData(_pvCtx, piUserData, iUserDataSize);
-        free(piUserData);
     }
 
     return status;

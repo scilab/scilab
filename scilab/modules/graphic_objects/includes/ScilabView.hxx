@@ -15,6 +15,7 @@
 
 #include <map>
 #include <list>
+#include <vector>
 #include <string>
 
 #include "dynlib_graphic_objects.h"
@@ -57,6 +58,7 @@ private :
     typedef std::map<int, int>    __figureList;
     typedef __figureList::iterator          __figureList_iterator;
     typedef __figureList::reverse_iterator          __figureList_reverse_iterator;
+    typedef std::map<int, std::vector<int> >  __userdata;
 
     typedef  std::map<int, PathItem*> __pathList;
     typedef __pathList::iterator __pathList_iterator;
@@ -68,6 +70,7 @@ private :
     static __uidList        m_uidList;
     static __pathFigList    m_pathFigList;
     static __pathList       m_pathList;
+    static __userdata       m_userdata;
     static long             m_topHandleValue;
     static int              m_currentFigure;
     static int              m_currentObject;
@@ -114,6 +117,10 @@ public :
 
     static int search_path(char* _pstPath);
     static std::string get_path(int uid);
+
+    static void setUserdata(int _id, int* _data, int _datasize);
+    static int getUserdataSize(int _id);
+    static int* getUserdata(int _id);
 
 private :
     static PathItem* search_children(PathItem* _path, std::string _subPath, bool _bDeep, std::list<int>& _ignoredList);
