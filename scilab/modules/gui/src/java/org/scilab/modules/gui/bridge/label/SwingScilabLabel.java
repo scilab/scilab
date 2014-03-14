@@ -558,7 +558,7 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
         if (color != null) {
             //bypass setBackground
             if (label instanceof JLabel) {
-                ((JLabel)label).setOpaque(false);
+                ((JLabel)label).setOpaque(true);
             }
             label.setBackground(color);
         }
