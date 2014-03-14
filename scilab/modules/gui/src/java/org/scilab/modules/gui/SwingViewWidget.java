@@ -34,6 +34,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VISIBLE__;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
@@ -259,6 +260,10 @@ public final class SwingViewWidget {
             }
             case __GO_VISIBLE__ : {
                 uiControl.setVisible(((Boolean) value).booleanValue());
+                if (((Component) uiControl) != null && ((Component) uiControl).getParent() != null) {
+                    ((Component) uiControl).getParent().invalidate();
+                    ((Component) uiControl).getParent().doLayout();
+                }
                 break;
             }
             case __GO_PARENT__:
