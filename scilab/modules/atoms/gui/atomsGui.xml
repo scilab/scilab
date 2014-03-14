@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <scilabgui usedeprecatedskin="off" version="1.0">
-    <figure axes_size="900,600" background="33" default_axes="off" dockable="off" figure_position="0,0" figure_size="916,665" icon="software-update-notinstalled" infobar_visible="off" layout="3" menubar="0" tag="atomsFigure" toolbar="0" toolbar_visible="off" visible="off">
+    <figure axes_size="900,600" background="33" default_axes="off" dockable="off" figure_position="0,0" figure_size="916,665" icon="software-update-notinstalled" infobar_visible="off" layout="3" menubar="0" resizefcn="atomsResize" tag="atomsFigure" toolbar="0" toolbar_visible="off" visible="off">
         <frame backgroundcolor="1.0,1.0,1.0" borderoptpadding="5,5" layout="3" tag="MainFrame">
             <frame backgroundcolor="1.0,1.0,1.0" borderposition="0" borderpreferredsize="0,40" layout="3" margins="5.0,5.0,5.0,5.0" tag="msgFrame">
                 <border style="titled" title="">
                     <title color="black" style="line" thickness="1"/>
                 </border>
-                <text backgroundcolor="1.0,1.0,1.0" fontsize="12.0" tag="msgText"/>
+                <text backgroundcolor="1.0,1.0,1.0" fontsize="12.0" horizontalalignment="center" tag="msgText"/>
             </frame>
             <layer tag="LayerFrame">
                 <frame backgroundcolor="1.0,1.0,1.0" layout="3" tag="HomeFrame">
@@ -19,10 +19,11 @@
                     <border fontangle="normal" fontname="" fontsize="14" fontweight="normal" justification="0" style="titled" title="">
                         <title color="black" style="line" thickness="1"/>
                     </border>
-                    <frame backgroundcolor="1.0,1.0,1.0" borderposition="0" gridoptgrid="1,3" gridoptpadding="20,0" layout="2">
-                        <pushbutton callback="cbAtomsGui" callback_type="0" enable="off" fontsize="12.0" fontweight="bold" tag="updateButton"/>
-                        <pushbutton callback="cbAtomsGui" callback_type="0" enable="off" fontsize="12.0" fontweight="bold" tag="installButton"/>
-                        <pushbutton callback="cbAtomsGui" callback_type="0" enable="off" fontsize="12.0" fontweight="bold" tag="removeButton"/>
+                    <frame backgroundcolor="1.0,1.0,1.0" borderposition="0" gridoptgrid="1,4" gridoptpadding="20,0" layout="2">
+                        <checkbox backgroundcolor="1.0,1.0,1.0" callback="cbAtomsGui" callback_type="0" tag="autoloadCheck"/>
+                        <pushbutton callback="cbAtomsGui" callback_type="0" enable="off" tag="installButton"/>
+                        <pushbutton callback="cbAtomsGui" callback_type="0" enable="off" tag="removeButton"/>
+                        <pushbutton callback="cbAtomsGui" callback_type="0" tag="backButton"/>
                     </frame>
                     <text backgroundcolor="1.0,1.0,1.0" fontsize="12.0" max="2.0" sliderstep="0.02,0.2" tag="Desc"/>
                 </frame>

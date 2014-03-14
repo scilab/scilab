@@ -1,6 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009 - DIGITEO - Vincent COUVERT <vincent.couvert@scilab.org>
 // Copyright (C) 2009-2010 - DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
+// Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -8,10 +9,7 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
-// Internal function
-
 function cbAtomsGui()
-
     // Load Atoms Internals lib if it's not already loaded
     if ~ exists("atomsinternalslib") then
         load("SCI/modules/atoms/macros/atoms_internals/lib");
@@ -44,29 +42,39 @@ function cbAtomsGui()
 
     // A button has been pressed
     // =========================================================================
-    if or(UItag == ["installButton";"removeButton";"updateButton"]) then
+    if or(UItag == ["installButton";"removeButton"]) then
         // Get the module name
         module = get("DescFrame","userdata");
         // Disable callbacks
         disableAtomsGui();
     end
 
-    // Install selected module
+    // Install or Update selected module
     // =========================================================================
     if UItag == "installButton" then
-        updateStatusBar("info",_("Installing")+" &hellip;");
-        if execstr("atomsInstall("""+module+""")","errcatch")<>0 then
-            updateStatusBar();
-            messagebox(_("Installation failed!"),_("ATOMS error"),"error");
+        if get("installButton", "String") == _("Install") then
+            updateStatusBar("info",_("Installing") + "...");
+            if execstr("atomsInstall("""+module+""")","errcatch")<>0 then
+                updateStatusBar();
+                messagebox(_("Installation failed!"),_("ATOMS error"),"error");
+            else
+                updateDescFrame();
+                updateStatusBar("success",_("Installation done! Please restart Scilab to take changes into account."));
+            end
         else
-            updateDescFrame();
-            updateStatusBar("success",_("Installation done! Please restart Scilab to take changes into account."));
+            updateStatusBar("info",_("Updating") + "...");
+            if execstr("atomsUpdate("""+module+""")","errcatch")<>0 then
+                updateStatusBar();
+                messagebox(_("Update failed!"),_("ATOMS error"),"error");
+            else
+                updateDescFrame();
+                updateStatusBar("success",_("Update done! Please restart Scilab to take changes into account."));
+            end
         end
-
     // Remove selected module
     // =========================================================================
     elseif UItag == "removeButton" then // Remove selected module
-        updateStatusBar("info",_("Removing")+" &hellip;");
+        updateStatusBar("info",_("Removing")+" ...");
         if execstr("atomsRemove("""+module+""")", "errcatch")<>0 then
             updateStatusBar();
             messagebox(_("Remove failed!"),_("ATOMS error"),"error");
@@ -74,69 +82,59 @@ function cbAtomsGui()
             updateDescFrame();
             updateStatusBar("success",_("Remove done! Please restart Scilab to take changes into account. "));
         end
+    end
 
-    // Update selected module
-    // =========================================================================
-    elseif UItag == "updateButton" then // Update selected module
-        updateStatusBar("info",_("Updating")+" &hellip;");
-        if execstr("atomsUpdate("""+module+""")","errcatch")<>0 then
-            updateStatusBar();
-            messagebox(_("Update failed!"),_("ATOMS error"),"error");
+    if UItag == "autoloadCheck" then
+        module = get("DescFrame", "userdata")
+        if get("autoloadCheck", "value") == get("autoloadCheck", "max") then
+            atomsAutoloadAdd(module)
+            msg = _("The module will be automatically loaded at next startup.")
+            updateStatusBar("info", msg)
         else
-            updateDescFrame();
-            updateStatusBar("success",_("Update done! Please restart Scilab to take changes into account."));
+            atomsAutoloadDel(module)
+            msg = _("Autoload at startup is canceled. The ""Toolboxes"" menu or atomsLoad() can be used to load the module when needed.")
+            updateStatusBar("info", msg)
         end
     end
 
     // End of the button action
     // =========================================================================
-    if or(UItag == ["installButton";"removeButton";"updateButton"]) then
-        // Left listbox:
-        //  - Enable it
-        //  - Reload it
+    if or(UItag == ["installButton";"removeButton"]) then
         enableLeftListbox();
         reloadLeftListbox();
     end
 
     // Menu
     // =========================================================================
-
     // File:Home
-    if UItag == "homeMenu" then
+    if or(UItag == ["homeMenu";"backButton"]) then
         showHome();
-
     // File:Close
     elseif UItag == "closeMenu" then
         delete(findobj("Tag", "atomsFigure"));
-
     // ?:Help
     elseif UItag == "helpMenu" then
         help("atoms")
     end
 endfunction
 
-
 // =============================================================================
 // getSelected()
 //  + Return the type: category / module
 //  + Return the name selected from a listbox.
 // =============================================================================
-
 function selected = getSelected(listbox)
     index    = get(listbox, "Value");
     UserData = get(listbox, "UserData");
     selected = UserData(index,:);
 endfunction
 
-
 // =============================================================================
 // disableAtomsGui()
 //  + Disable all callback
 // =============================================================================
-
 function disableAtomsGui()
     set("installButton", "Enable", "off");
-    set("updateButton", "Enable", "off");
     set("removeButton", "Enable", "off");
     disableLeftListbox()
 endfunction
@@ -154,11 +152,9 @@ endfunction
 // =============================================================================
 // reloadLeftListbox()
 // =============================================================================
-
 function reloadLeftListbox()
     category = get("LeftFrame", "UserData");
-    LeftListbox = get("LeftListbox");
-    LeftElements            = atomsGetLeftListboxElts(category);
+    LeftElements = atomsGetLeftListboxElts(category);
     set("LeftListbox", "String", LeftElements("items_str"));
     set("LeftListbox", "UserData", LeftElements("items_mat"));
 endfunction
@@ -168,7 +164,6 @@ endfunction
 //  + Update the description frame with the selected module
 //  + does not change the description frame visibility
 // =============================================================================
-
 function updateDescFrame()
     // Operating system detection + Architecture detection
     // =========================================================================
@@ -176,17 +171,15 @@ function updateDescFrame()
 
     // Get the modules list and the selected module
     // =========================================================================
-
     allModules     = get("atomsFigure", "userdata");
     thisModuleName = get("DescFrame" ,"userdata");
 
     // Reset the message frame
     // =========================================================================
-    set("msgText", "String", "");
+    updateStatusBar();
 
     // Get the module details
     // =========================================================================
-
     modulesNames       = getfield(1, allModules);
     modulesNames (1:2) = [];
     thisModuleStruct   = allModules(thisModuleName);
@@ -204,7 +197,6 @@ function updateDescFrame()
 
     // Download Size
     // =========================================================================
-
     sizeHTML = "";
 
     if isfield(thisModuleDetails,OSNAME+ARCH+"Size") then
@@ -216,7 +208,6 @@ function updateDescFrame()
 
     // Authors
     // =========================================================================
-
     authorMat  = thisModuleDetails.Author;
     authorHTML = "";
 
@@ -231,7 +222,6 @@ function updateDescFrame()
 
     // URLs (See also)
     // =========================================================================
-
     URLs        = [];
     seeAlsoHTML = "";
 
@@ -257,7 +247,6 @@ function updateDescFrame()
 
     // Release date
     // =========================================================================
-
     dateHTML = "";
 
     if isfield(thisModuleDetails,"Date") ..
@@ -271,8 +260,6 @@ function updateDescFrame()
 
     // Build and Set the HTML code
     // =========================================================================
-
-
     htmlcode = "<html>" + ..
     "<body>" + ..
     txt2title(_("Version")) + ..
@@ -296,7 +283,6 @@ function updateDescFrame()
 
     // Description title management
     // =========================================================================
-
     descFrameHTML = thisModuleDetails.Title;
 
     border = get("DescFrame", "border");
@@ -305,39 +291,31 @@ function updateDescFrame()
 
     // Buttons
     // =========================================================================
-
     // Tests for update available
-    // --------------------------
+    set("installButton", "String", _("Install"), "Enable", "off");
+    set("removeButton", "Enable", "off");
+    set("autoloadCheck", "Value", get("autoloadCheck", "min"), "Enable", "off");
 
-    canUpdate = "off";
-    if atomsIsInstalled(thisModuleName) & atomsVersionCompare(MRVersionInstalled,MRVersionAvailable) == -1 then
-        // Not up-to-date
-        canUpdate = "on";
-        updateStatusBar("warning",sprintf(_("A new version (''%s'') of ''%s'' is available"),MRVersionAvailable,thisModuleDetails.Title));
-    end
-
-    // Can be removed
-    // --------------------------
     if atomsIsInstalled(thisModuleName) then
-        canRemove = "on";
+        if atomsVersionCompare(MRVersionInstalled,MRVersionAvailable) == -1 then
+            // Not up-to-date
+            set("installButton", "String", _("Update"), "Enable", "on");
+            updateStatusBar("warning",sprintf(_("A new version (''%s'') of ''%s'' is available"),MRVersionAvailable,thisModuleDetails.Title));
+        end
+
+        set("removeButton", "Enable", "on");
+
+        // Is autoloaded
+        // -------------
+        tmp = atomsAutoloadList()
+        if or(thisModuleName==tmp) then
+            set("autoloadCheck", "Value", get("autoloadCheck", "max"), "Enable", "on");
+        else
+            set("autoloadCheck", "Value", get("autoloadCheck", "min"), "Enable", "on");
+        end
     else
-        canRemove = "off";
+        set("installButton", "String", _("Install"), "Enable", "on");
     end
-
-    // Can be installed
-    // --------------------------
-    if ~ atomsIsInstalled(thisModuleName) then
-        canInstall = "on";
-    else
-        canInstall = "off";
-    end
-
-    // Update the buttons
-    // --------------------------
-    set("installButton", "Enable", canInstall);
-    set("updateButton", "Enable", canUpdate );
-    set("removeButton", "Enable", canRemove );
-
 endfunction
 
 // =============================================================================
@@ -364,7 +342,6 @@ endfunction
 // =============================================================================
 // hide()
 // =============================================================================
-
 function hide(tag)
     set(tag, "Visible", "Off");
 endfunction
@@ -374,16 +351,21 @@ endfunction
 // + Hide the detailed description of a module
 // + Show the home page
 // =============================================================================
-
 function showHome()
-
     // Reset the message frame
-    set("msgText", "String", "");
+    updateStatusBar();
+
+    //refresh installed listbox
+    HomeElements = atomsGetHomeListboxElts();
+    set("HomeListbox", "String", HomeElements("items_str"));
+    set("HomeListbox", "UserData", HomeElements("items_mat"));
 
     //active home layer
     set("LayerFrame", "String", "HomeFrame");
+    //reset listbox selection
+    set("HomeListbox", "value", []);
 
-    // update the left listbox
+    // reset the left listbox
     LeftElements = atomsGetLeftListboxElts("filter:main");
     set("LeftListbox", "String", LeftElements("items_str"));
     set("LeftListbox", "UserData", LeftElements("items_mat"));
@@ -394,49 +376,36 @@ endfunction
 // + Hide the home page
 // + Show the detailed description of a module
 // =============================================================================
-
 function showDesc()
-
     //active description layer
     set("LayerFrame", "String", "DescFrame");
 endfunction
-
 
 // =============================================================================
 // updateStatusBar
 // + Update the string in the msg Frame
 // =============================================================================
-
 function updateStatusBar(status,msg)
-
     rhs = argn(2);
 
     if rhs==0 then
-        set("msgText", "String", "");
+        set("msgText", "String", "", "Icon", "");
         return
     end
 
     select status
     case "warning" then
-        fontcolor = "#ff0000"; // red
-        icon      = "status/software-update-available.png";
+        fontcolor = [0.75 0 0]; // red
+        icon      = "software-update-available";
     case "success" then
-        fontcolor = "#009a1b"; // dark green
-        icon      = "emblems/emblem-default.png";
+        fontcolor = [0 0.5 0];// dark green
+        icon      = "emblem-default";
     case "info" then
-        fontcolor = "#7d7d7d"; // dark green
-        icon      = "status/dialog-information.png";
+        fontcolor = [0.5 0.5 0.5]; // dark gray
+        icon      = "dialog-information";
     end
 
-    str =       "<html>";
-    str = str + "<table><tr>";
-    str = str + "<td><img src=""file:///"+SCI+"/modules/atoms/images/icons/16x16/"+icon+""" /></td>";
-    str = str + "<td><div style=""color:"+fontcolor+";font-style:italic;"">"+msg+"</div></td>";
-    str = str + "</tr></table>";
-    str = str + "</html>";
-
-    set("msgText", "String", str);
-
+    set("msgText", "Foregroundcolor", fontcolor,  "String", msg, "Icon", icon);
 endfunction
 
 // =============================================================================
@@ -444,9 +413,7 @@ endfunction
 // + Find URLs
 // + Convert them in HTML (hyperlinks)
 // =============================================================================
-
 function txtout = processHTMLLinks(txtin)
-
     regexUrl   = "/((((H|h)(T|t)|(F|f))(T|t)(P|p)((S|s)?))\:\/\/)(www|[a-zA-Z0-9])[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,6}(\:[0-9]{1,5})*(\/($|[a-zA-Z0-9\.\,\;\?\''\\\+&amp;%\$#\=~_\-\/]+))*/";
     txtout     = "";
 
@@ -464,18 +431,14 @@ function txtout = processHTMLLinks(txtin)
     else
         txtout = txtin;
     end
-
 endfunction
 
 // =============================================================================
 // txt2title
 // =============================================================================
-
 function txtout = txt2title(txtin)
-
     txtout = "<div style=""font-weight:bold;margin-top:10px;margin-bottom:3px;"">" + ..
     txtin + ..
     "</div>";
-
 endfunction
 

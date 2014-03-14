@@ -1,8 +1,8 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2009 - DIGITEO - Vincent COUVERT <vincent.couvert@scilab.org>
-// Copyright (C) 2010 - DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
-// Copyright (C) 2012 - Samuel GOUGEON
+// Copyright (C) 2009 - DIGITEO - Vincent COUVERT
+// Copyright (C) 2010 - DIGITEO - Pierre MARECHAL
 // Copyright (C) 2012 - DIGITEO - Allan CORNET
+// Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -11,60 +11,6 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function atomsGui()
-    function elements = getHomeListboxElements(LeftFixedWidth)
-        items_str  = [];
-        items_mat  = [];
-
-        installed  = atomsGetInstalled();
-        allModules   = get("atomsFigure", "userdata");
-        AxesSize = get("atomsFigure", "axes_size");
-        Width = (AxesSize(1) - LeftFixedWidth) - 20*2; //16*2 is icon size
-
-        for i=1:size(installed(:,1), "*")
-            MRVersionAvailable = atomsGetMRVersion(installed(i,1));
-            MRVersionInstalled = atomsVersionSort(atomsGetInstalledVers(installed(i,1)),"DESC");
-            MRVersionInstalled = MRVersionInstalled(1);
-            if atomsVersionCompare(MRVersionInstalled,MRVersionAvailable) == -1 then
-                // Not up-to-date
-                icon = "software-update-notinstalled.png";
-            else
-                // The Most Recent Version is already installed
-                icon = "software-update-installed.png";
-            end
-
-            if modulo(i,2) == 0 then
-                background = "#eeeeee";
-            else
-                background = "#ffffff";
-            end
-
-            thisItem = "<html>";
-            thisItem = thisItem + "<table width=""100%"" style=""background-color:" + background + ";color:#000000;"" ><tr>";
-            thisItem = thisItem + "<td><img src=""file:///"+SCI+"/modules/atoms/images/icons/16x16/status/"+icon+""" /></td>";
-            thisItem = thisItem + "<td width=""100%"">";
-            thisItem = thisItem + "  <div width=""" + string(Width) + """>";
-            thisItem = thisItem + "  <span style=""font-weight:bold;"">"+allModules(installed(i,1))(installed(i,2)).Title+" "+installed(i,2)+"</span><br />";
-            thisItem = thisItem + "  <span>"+allModules(installed(i,1))(installed(i,2)).Summary+"</span><br />";
-            thisItem = thisItem + "  <span style=""font-style:italic;"">"+installed(i,4)+"</span>";
-            thisItem = thisItem + "  </div>";
-            thisItem = thisItem + "</td>";
-            thisItem = thisItem + "</tr></table>";
-            thisItem = thisItem + "</html>";
-
-            items_str = [items_str ; thisItem];
-            items_mat = [items_mat ; "module" installed(i,1)];
-        end
-
-        if items_str==[] then
-            elements("items_str") = "";
-        else
-            elements("items_str") = items_str;
-        end
-
-        elements("items_mat") = items_mat;
-
-    endfunction
-
     creation = %f;
     if creation then
         figwidth = 900;
@@ -81,6 +27,7 @@ function atomsGui()
             "default_axes", "off", ...
             "tag", "atomsFigure", ...
             "visible", "off", ...
+            "resizefcn", "atomsResize", ...
             "icon", "software-update-notinstalled", ...
             "position", [0 0 figwidth figheight], ...
             "layout", "border");
@@ -171,32 +118,33 @@ function atomsGui()
             "style", "frame", ...
             "backgroundcolor", [1 1 1], ...
             "constraints", createConstraints("border", "bottom"));
-            ButtonFrame.layout_options = createLayoutOptions("grid", [1 3], [20, 0]);
+            ButtonFrame.layout_options = createLayoutOptions("grid", [1 4], [20, 0]);
             ButtonFrame.layout = "grid";
+
+        backButton = uicontrol(ButtonFrame, ...
+            "Style" , "pushbutton", ...
+            "Callback", "cbAtomsGui", ...
+            "Enable", "on", ...
+            "Tag", "backButton");
 
         removeButton = uicontrol(ButtonFrame, ...
             "Style" , "pushbutton", ...
-            "FontSize", defaultFontSize, ...
-            "FontWeight", "bold", ...
             "Callback", "cbAtomsGui", ...
             "Enable", "off", ...
             "Tag", "removeButton");
 
         installButton = uicontrol(ButtonFrame, ...
             "Style" , "pushbutton", ...
-            "FontSize", defaultFontSize, ...
-            "FontWeight", "bold", ...
             "Callback", "cbAtomsGui", ...
             "Enable", "off", ...
             "Tag", "installButton");
 
-        updateButton = uicontrol(ButtonFrame, ...
-            "Style" , "pushbutton", ...
-            "FontSize", defaultFontSize, ...
-            "FontWeight", "bold", ...
+        autoloadCheck = uicontrol(ButtonFrame, ...
+            "Style" , "checkbox", ...
+            "background", [1 1 1], ...
             "Callback", "cbAtomsGui", ...
-            "Enable", "off", ...
-            "Tag", "updateButton");
+            "Enable", "on", ...
+            "Tag", "autoloadCheck");
 
         //2nd layer, installed modules
         HomeFrame = uicontrol(LayerFrame, ...
@@ -225,7 +173,7 @@ function atomsGui()
 
         msgText = uicontrol(msgFrame, ....
             "Style", "text", ...
-            "HorizontalAlignment", "left", ...
+            "HorizontalAlignment", "center", ...
             "VerticalAlignment", "middle", ...
             "FontSize", defaultFontSize, ...
             "Background", [1 1 1], ...
@@ -275,28 +223,23 @@ function atomsGui()
     set("LeftListbox", "string", LeftElements("items_str"));
     set("LeftListbox", "userdata", LeftElements("items_mat"));
 
+    set("backButton", "String", _("Back"));
     set("removeButton", "String", _("Remove"));
     set("installButton", "String", _("Install"));
-    set("updateButton", "String", _("Update"));
+    set("autoloadCheck", "String", _("Autoload"));
 
 
     homeFrame = get("HomeFrame");
     homFrame.border.title = _("List of installed modules");
 
-    //compute size of right available width
-    Constraints = get("LeftFrame", "constraints");
-    ListBoxSize = Constraints.preferredsize;
-    LayoutOptions = get("MainFrame", "layout_options");
-    Padding = LayoutOptions.padding;
-    //TLBR : right padding + left padding + LeftFrame.width
-    LeftFixedWidth = Padding(1) * 2 + ListBoxSize(1);
-
     // Build the installed module list
-    HomeElements = getHomeListboxElements(LeftFixedWidth);
+    HomeElements = atomsGetHomeListboxElts();
 
     //Update Installed Toolbox Listbox
     set("HomeListbox", "String", HomeElements("items_str"));
     set("HomeListbox", "UserData", HomeElements("items_mat"));
     set("atomsFigure", "visible", "on");
+
+    atomsResize();
 endfunction
 
