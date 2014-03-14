@@ -61,6 +61,7 @@ import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
 import org.scilab.modules.gui.bridge.checkbox.SwingScilabCheckBox;
@@ -333,6 +334,16 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
                     Integer[] newAxesSize = new Integer[] {getContentPane().getWidth(), getContentPane().getHeight()};
                     GraphicController.getController().setProperty(id, __GO_AXES_SIZE__, newAxesSize);
                 }
+
+                String resizeFcn = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_RESIZEFCN__);
+                if (resizeFcn != null && !resizeFcn.equals("")) {
+                    String resizeCommand = "if exists(\"gcbo\") then %oldgcbo = gcbo; end;"
+                                           + "gcbo = getcallbackobject(" + id + ");"
+                                           + resizeFcn
+                                           + ";if exists(\"%oldgcbo\") then gcbo = %oldgcbo; else clear gcbo; end;";
+                    InterpreterManagement.requestScilabExec(resizeCommand);
+                }
+
             }
 
             public void componentMoved(ComponentEvent arg0) {

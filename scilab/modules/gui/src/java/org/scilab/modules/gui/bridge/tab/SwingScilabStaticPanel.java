@@ -23,8 +23,10 @@ import java.awt.event.ComponentListener;
 import javax.swing.JLayeredPane;
 import javax.swing.SwingUtilities;
 
+import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
@@ -47,7 +49,7 @@ public class SwingScilabStaticPanel extends SwingScilabScrollPane implements Swi
 
     private JLayeredPane uiContentPane;
     private JLayeredPane layerdPane;
-    
+
     private SwingScilabCanvas contentCanvas;
 
     public SwingScilabStaticPanel(String figureTitle, Integer figureId, Figure figure) {
@@ -86,6 +88,15 @@ public class SwingScilabStaticPanel extends SwingScilabScrollPane implements Swi
                     /* Update the axes_size property */
                     Integer[] newAxesSize = new Integer[] { getContentPane().getWidth(), getContentPane().getHeight() };
                     GraphicController.getController().setProperty(id, __GO_AXES_SIZE__, newAxesSize);
+                }
+
+                String resizeFcn = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_RESIZEFCN__);
+                if (resizeFcn != null && !resizeFcn.equals("")) {
+                    String resizeCommand = "if exists(\"gcbo\") then %oldgcbo = gcbo; end;"
+                                           + "gcbo = getcallbackobject(" + id + ");"
+                                           + resizeFcn
+                                           + ";if exists(\"%oldgcbo\") then gcbo = %oldgcbo; else clear gcbo; end;";
+                    InterpreterManagement.requestScilabExec(resizeCommand);
                 }
             }
 
