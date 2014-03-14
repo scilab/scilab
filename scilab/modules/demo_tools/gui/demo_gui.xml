@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <scilabgui usedeprecatedskin="off" version="1.0">
-    <figure axes_size="250,526" default_axes="off" dockable="off" figure_id="100000" figure_name="" figure_size="266,565" icon="applications-system" infobar_visible="off" layout="1" menubar="0" menubar_visible="off" resizefcn="resize_demo_gui" tag="scilab_demo_fig" toolbar="0" toolbar_visible="off" visible="off">
+    <figure axes_size="250,526" default_axes="off" dockable="off" figure_id="100000" figure_name="" figure_size="266,565" icon="applications-system" infobar_visible="off" layout="1" menubar="0" menubar_visible="off" tag="scilab_demo_fig" toolbar="0" toolbar_visible="off" visible="off">
         <frame backgroundcolor="1.0,1.0,1.0" gridbagfill="3" gridbaggrid="10,1,1,1" gridbagpreferredsize="0,0" gridbagweight="1.0,1.0" layout="1" tag="frame_10" visible="off">
             <border color="black" fontangle="normal" fontname="" fontsize="12" fontweight="bold" justification="1" style="titled" title="">
                 <title style="empty"/>
