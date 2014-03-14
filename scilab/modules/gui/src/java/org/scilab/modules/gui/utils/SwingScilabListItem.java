@@ -5,10 +5,10 @@ import java.awt.Color;
 import javax.swing.Icon;
 
 public class SwingScilabListItem {
-    private String text;
-    private Icon icon;
-    private Color background;
-    private Color foreground;
+    private String text = null;
+    private Icon icon = null;
+    private Color background = null;
+    private Color foreground = null;
 
     /**
      * Constructor

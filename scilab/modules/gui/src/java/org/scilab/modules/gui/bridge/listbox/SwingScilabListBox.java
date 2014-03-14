@@ -111,6 +111,9 @@ public class SwingScilabListBox extends JScrollPane implements SwingViewObject, 
                     if (isSelected == false && item.getForeground() != null) {
                         label.setForeground(item.getForeground());
                     }
+                } else {
+                    label.setText("");
+                    label.setIcon(null);
                 }
                 return label;
             }
