@@ -189,17 +189,25 @@
         <para>
             L'exemple suivant montre l'utilisation du bloc INIMPL_f. Le Super bloc contient un circuit électrique simple avec deux entrées, une sur la résistance, l'autre pour la masse. Ces entrées sont connectées à l'environnement extérieur du bloc à travers deux blocs INIMPL_f numérotés
             1 et 2. La sortie du Super block est connectée via le bloc <link linkend="OUTIMPL_f">OUTIMPL_f</link>.
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/portaction_pal/fr_FR/INIMPL_f_fr_FR.zcos">
-                Ouvrir cet exemple dans Xcos
-            </link>
-            .
         </para>
-        <para/>
-        <mediaobject>
-            <imageobject>
-                <imagedata fileref="../../../../examples/portaction_pal/fr_FR/INIMPL_f_fr_FR.zcos"/>
-            </imageobject>
-        </mediaobject>
+        <para>
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/portaction_pal/fr_FR/INIMPL_f_fr_FR.zcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="../../../../examples/portaction_pal/fr_FR/INIMPL_f_fr_FR.zcos" align="center" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+        </para>
+        <scilab:image><![CDATA[
+// overload messagebox to avoid the "modelica compiler" message
+function [btn] = messagebox(msg, msgboxtitle, msgboxicon, buttons, ismodal)
+	btn=1;
+endfunction
+
+importXcosDiagram(SCI + "/modules/xcos/examples/portaction_pal/fr_FR/INIMPL_f_fr_FR.zcos");
+xcos_simulate(scs_m, 4);
+]]></scilab:image>
     </refsection>
     <refsection id="Interfacingfunction_INIMPL_f">
         <title>Fonction d'interfaçage</title>

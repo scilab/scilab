@@ -187,12 +187,9 @@
         </itemizedlist>
     </refsection>
     <refsection id="Examples_freq_div">
-        <title>Examples</title>
+        <title>Example</title>
         <para>
             The following example divides a frequency per three.
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/events_pal/en_US/freq_div_en_US.zcos">
-                Open this example in Xcos
-            </link>
         </para>
         <para>
             <link type="scilab" linkend="scilab.xcos/xcos/examples/events_pal/en_US/freq_div_en_US.zcos">
@@ -202,10 +199,11 @@
                     </imageobject>
                 </inlinemediaobject>
             </link>
-            <scilab:image><![CDATA[
+        </para>
+        
+        <scilab:image><![CDATA[
 importXcosDiagram(SCI + "/modules/xcos/examples/events_pal/en_US/freq_div_en_US.zcos");
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
-        </para>
     </refsection>
 </refentry>

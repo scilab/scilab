@@ -279,13 +279,19 @@
     </refsection>
     <refsection id="Example_CSCOPE">
         <title>Single display scope example</title>
-        <link type="scilab" linkend="scilab.xcos/xcos/tests/unit_tests/cscope.zcos">
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../tests/unit_tests/cscope.zcos" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </link>
+        <para>
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/sinks_pal/en_US/CSCOPE_en_US.zcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="../../../../examples/sinks_pal/en_US/CSCOPE_en_US.zcos" align="center" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+        </para>
+        <scilab:image><![CDATA[
+            importXcosDiagram(SCI + "/modules/xcos/examples/sinks_pal/en_US/CSCOPE_en_US.zcos");
+            xcos_simulate(scs_m, 4);
+        ]]></scilab:image>
     </refsection>
     <refsection id="Seealso_CSCOPE">
         <title>See also</title>

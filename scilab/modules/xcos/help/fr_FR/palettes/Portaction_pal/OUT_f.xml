@@ -205,17 +205,25 @@
         <title>Exemple</title>
         <para>
             Dans l'exemple suivant le Super bloc englobe deux non linéarités. Le bloc OUT_f est la sortie du signal non linéaire.
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/portaction_pal/fr_FR/OUT_f_fr_FR.zcos">
-                Ouvrir cet exemple dans Xcos
-            </link>
-            .
         </para>
-        <para/>
-        <mediaobject>
-            <imageobject>
-                <imagedata fileref="../../../../examples/portaction_pal/fr_FR/OUT_f_fr_FR.zcos"/>
-            </imageobject>
-        </mediaobject>
+        <para>
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/portaction_pal/fr_FR/OUT_f_fr_FR.zcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="../../../../examples/portaction_pal/fr_FR/OUT_f_fr_FR.zcos" align="center" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+        </para>
+        <scilab:image><![CDATA[
+// overload messagebox to avoid the "modelica compiler" message
+function [btn] = messagebox(msg, msgboxtitle, msgboxicon, buttons, ismodal)
+	btn=1;
+endfunction
+
+importXcosDiagram(SCI + "/modules/xcos/examples/portaction_pal/fr_FR/OUT_f_fr_FR.zcos");
+xcos_simulate(scs_m, 4);
+]]></scilab:image>
     </refsection>
     <refsection id="Interfacingfunction_OUT_f">
         <title>Fonction  d'interfaçage</title>

@@ -134,13 +134,14 @@
                     <emphasis role="bold">Output port size</emphasis>
                 </para>
                 <para> Un vecteur de deux entiers qui définit les
-                dimensions attendues du signal ([#lignes #colones]).
-                Par défaut la valeur de ce champ est [-1 -2] ce qui
-                signifie que les dimensions du signal sont héritées du
-                niveau supérieur. Il peut être nécéssaire d'imposer
-                les valeurs effectives des dimensions pour la
-                compilation séparée du super bloc (Génération de code,
-                ...). </para>
+                    dimensions attendues du signal ([#lignes #colones]).
+                    Par défaut la valeur de ce champ est [-1 -2] ce qui
+                    signifie que les dimensions du signal sont héritées du
+                    niveau supérieur. Il peut être nécéssaire d'imposer
+                    les valeurs effectives des dimensions pour la
+                    compilation séparée du super bloc (Génération de code,
+                    ...). 
+                </para>
                 <para> Properties : Type 'vec' of size -1.</para>
             </listitem>
             <listitem>
@@ -148,13 +149,14 @@
                     <emphasis role="bold">Output port type</emphasis>
                 </para>
                 <para> Un entier qui spécifie le type de signal attendu sur ce port.
-                 Par défaut la valeur de ce champ est -1 ce qui
-                signifie que le type du signal est hérité du
-                niveau supérieur. Il peut être nécéssaire d'imposer
-                une valeur effective du type pour la
-                compilation séparée du super bloc (Génération de code,
-                ...). 
-                ).</para>
+                    Par défaut la valeur de ce champ est -1 ce qui
+                    signifie que le type du signal est hérité du
+                    niveau supérieur. Il peut être nécéssaire d'imposer
+                    une valeur effective du type pour la
+                    compilation séparée du super bloc (Génération de code,
+                    ...). 
+                    ).
+                </para>
                 <para> Properties : Type 'vec' of size 1.</para>
             </listitem>
         </itemizedlist>
@@ -226,18 +228,24 @@
     <refsection id="Example_IN_f">
         <title>Exemple</title>
         <para>
-            Dans l'exemple suivant le Super bloc créé est un modulateur d'amplitude. Le bloc IN_f est utilisé comme entrée de signal de modulation. Son type de données est défini par le type d'entrée du bloc de gain qui est un scalaire de type double.
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/portaction_pal/fr_FR/IN_f_fr_FR.zcos">
-                Ouvrir cet exemple dans Xcos
-            </link>
-            .
+            Dans l'exemple suivant le Super bloc créé est un modulateur d'amplitude. 
+            Le bloc IN_f est utilisé comme entrée de signal de modulation. 
+            Son type de données est défini par le type d'entrée du bloc de gain qui est un scalaire de type double.
         </para>
-        <para/>
-        <mediaobject>
-            <imageobject>
-                <imagedata fileref="../../../../examples/portaction_pal/fr_FR/IN_f_fr_FR.zcos"/>
-            </imageobject>
-        </mediaobject>
+        <para>
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/portaction_pal/fr_FR/IN_f_fr_FR.zcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="../../../../examples/portaction_pal/fr_FR/IN_f_fr_FR.zcos" align="center" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+        </para>
+        <scilab:image>
+            <![CDATA[
+			importXcosDiagram(SCI + "/modules/xcos/examples/portaction_pal/fr_FR/IN_f_fr_FR.zcos");
+			xcos_simulate(scs_m, 4);]]>
+        </scilab:image>
     </refsection>
     <refsection id="Interfacingfunction_IN_f">
         <title>Fonction d'interfaçage</title>

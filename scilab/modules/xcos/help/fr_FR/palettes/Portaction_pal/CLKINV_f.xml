@@ -188,23 +188,15 @@
             Dans cet exemple nous créons un genérateur d'onde carrée avec deux sorties inverses l'une de l'autre.
             en utilisant un bloc SUPER_f avec le contenu décrit par la figure suivante, dans laquelle vous pouvez voir
             l'utilisation du bloc CLKINV_f comme entrée d'événement du générateur d'onde carrée. 
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/portaction_pal/fr_FR/CLKINV_f_fr_FR.zcos">
-                Ouvrir cet exemple dans Xcos
-            </link>
-            .
         </para>
-        <para/>
         <para>
-            <mediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../examples/portaction_pal/fr_FR/CLKINV_f_fr_FR.zcos"/>
-                </imageobject>
-            </mediaobject>
-            <mediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../..//examples/portaction_pal/en_US/CLKINV_f_internal_en_US.zcos"/>
-                </imageobject>
-            </mediaobject>
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/portaction_pal/fr_FR/CLKINV_f_fr_FR.zcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="../../../../examples/portaction_pal/fr_FR/CLKINV_f_fr_FR.zcos" align="center" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
         </para>
         <para>
             La figure suivante montre la sortie du Super bloc :
