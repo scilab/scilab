@@ -21,9 +21,8 @@
 #include "MALLOC.h"
 #include "core_math.h"
 #include "freeArrayOfString.h"
+#include "returnanan.h"
 
-#define spINSIDE_SPARSE
-#include "spConfig.h" // NAN definition
 /*------------------------------------------------------------------------*/
 double sciFindStPosMin(const double x[], int n)
 {
@@ -52,7 +51,7 @@ double sciFindStPosMin(const double x[], int n)
     if (i == n && !hasNeg)
     {
         // we have only NaN
-        return NAN;
+        return C2F(returnanan)();
     }
 
     for (; i < n ; i++)
