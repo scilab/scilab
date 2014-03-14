@@ -246,6 +246,8 @@ Scilab Bug Fixes
 
 * Bug #6404 fixed - xrects help page was not clear about argument specification.
 
+* Bug #6476 fixed - Matplot help did not say that the data field should be used to update data.
+
 * Bug #6512 fixed - %asn function tagged as obsolete.
 
 * Bug #6615 fixed - ui(get|put)file did not center the file dialog on the last focused window.

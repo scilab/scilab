@@ -2,11 +2,11 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -318,6 +318,11 @@
             is used to draw a small square of size 1 with center at location
             <literal>(x=j, y=(n1-i+1))</literal>.
             If a matrix entry is outside the colormap, the corresponding rectangle is not displayed.
+        </para>
+        <para>
+            <warning>
+                To update the Matplot data, the <literal>data</literal> field of the corresponding handle must be used.
+            </warning>
         </para>
         <para>
             Enter the command <code>Matplot()</code> to see a demo.
