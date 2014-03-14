@@ -56,12 +56,6 @@ function  ok = modelicac(Flat, Flat_functions, xmlfileTMP, Jacobian, Cfile, with
         JAC="";
     end
 
-    if init then
-        Errfile = ">""" + tmpdir + "imodelicac.err""";
-    else
-        Errfile = ">""" + tmpdir + "S_modelicac.err""";
-    end
-
     instr = strcat([exe, Flat, Flat_functions, XMLfiles, out, JAC, Errfile], " ");
 
     if getos() == "Windows" then
@@ -74,14 +68,13 @@ function  ok = modelicac(Flat, Flat_functions, xmlfileTMP, Jacobian, Cfile, with
         end
     end
 
-    if execstr("unix_s(instr)", "errcatch") <> 0 then
-        messagebox([_("-------Modelica compiler error (with the translator):-------");_("Please read the error message in the Scilab window")], "error", "modal");
-        if isfile(Errfile) then
-            mgetl(Errfile);
-        end
-
+    [rep,stat,err]=unix_g(instr);
+    if stat <> 0 then
+        messagebox(err, _("Modelica compiler"), "error", "modal");
         ok=%f;
         return
+    else
+        disp(rep)
     end
 
 endfunction

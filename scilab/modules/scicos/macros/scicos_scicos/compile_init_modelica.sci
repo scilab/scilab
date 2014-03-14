@@ -69,7 +69,7 @@ function   [ok]=compile_init_modelica(xmlmodel,paremb,jaco)
     // generates the computational C function associated to the flat model
     instr = exe + Flati + "" + JAC + " -with-init-in """ + strsubst(xmlfile,"\","/") + ..
     """ -with-init-out """ + strsubst(xmlfile,"\","/") + """ -o """ + ..
-    FlatCi + """ > """ + tmpdir + "imodelicac.err""";
+    FlatCi + """";
 
 
     if getos() == "Windows" then
@@ -77,7 +77,8 @@ function   [ok]=compile_init_modelica(xmlmodel,paremb,jaco)
         instr = tmpdir + "igenm.bat";
     end
 
-    if execstr("unix_s(instr)", "errcatch") == 0 then
+    [rep,stat,err]=unix_g(instr);
+    if stat == 0 then
         mprintf("%s"," Init C code   : "+FlatCi);
         mprintf("\n\r");
 
@@ -89,8 +90,7 @@ function   [ok]=compile_init_modelica(xmlmodel,paremb,jaco)
         end
 
     else
-        MSG3 = mgetl(tmpdir + "imodelicac.err");
-        disp(["-------Modelica compiler error flat2C:-------"; MSG3; "Please read the error message in the Scilab window"]);
+        messagebox(err, _("Modelica compiler (flat2C)"), "error", "modal");
         ok = %f;
         return
     end

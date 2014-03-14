@@ -390,8 +390,8 @@ public final class ModelicaController {
                 final Double notUsed2 = TerminalAccessor.getData(TerminalAccessor.WEIGHT, terminal);
                 final Double notUsed3 = TerminalAccessor.getData(TerminalAccessor.INITIAL, terminal);
 
-                final Double notUsed4 = TerminalAccessor.getData(TerminalAccessor.MAX, terminal);
-                final Double notUsed5 = TerminalAccessor.getData(TerminalAccessor.MIN, terminal);
+                //                final Double notUsed4 = TerminalAccessor.getData(TerminalAccessor.MAX, terminal);
+                //                final Double notUsed5 = TerminalAccessor.getData(TerminalAccessor.MIN, terminal);
 
             } else {
                 // recursive call
