@@ -132,7 +132,7 @@ int C2F(matlog)(void)
         matBool = (BOOL*)MALLOC(sizeof(BOOL) * mn1);
         if (matBool == NULL)
         {
-            if (Fin == or)
+            if (Fin == or )
             {
                 Scierror(999, _("%s: No more memory.\n"), "boolean operation '|'");
             }
@@ -143,17 +143,14 @@ int C2F(matlog)(void)
             return 0;
         }
 
-        if (Fin == or)
+        if (Fin == or )
         {
             for (j = 0; j <= mn1 - 1; ++j)
             {
                 int j_m_i1 = (int)(j * i1);
                 int j_m_i2 = (int)(j * i2);
 
-                int e1tmp = (int) * stk(l1 + j_m_i1);
-                int e2tmp = (int) * stk(l2 + j_m_i2);
-
-                if (e1tmp || e2tmp)
+                if (*stk(l1 + j_m_i1) || *stk(l2 + j_m_i2))
                 {
                     matBool[j] = TRUE;
                 }
@@ -170,10 +167,7 @@ int C2F(matlog)(void)
                 int j_m_i1 = (int)(j * i1);
                 int j_m_i2 = (int)(j * i2);
 
-                int e1tmp = (int) * stk(l1 + j_m_i1);
-                int e2tmp = (int) * stk(l2 + j_m_i2);
-
-                if (e1tmp && e2tmp)
+                if (*stk(l1 + j_m_i1) && *stk(l2 + j_m_i2))
                 {
                     matBool[j] = TRUE;
                 }

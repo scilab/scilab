@@ -305,6 +305,8 @@ Scilab Bug Fixes
 
 * Bug #7650 fixed - isempty(tlist(...)) always returned false, even when all defined fields were empty.
 
+* Bug #7666 fixed - Inconstencies between and/or and &/| fixed.
+
 * Bug #7705 fixed - "dimension", "minbounds" and "maxbounds" fields have been documented in Genetic algorithms help pages.
 
 * Bug #7739 fixed - Axis position was invalid in log modes.
