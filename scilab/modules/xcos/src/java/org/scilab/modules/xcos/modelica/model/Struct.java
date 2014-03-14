@@ -140,7 +140,7 @@ public class Struct {
     @XmlType(name = "", propOrder = { "structOrTerminal" })
     public static class Subnodes {
 
-        @XmlElements( { @XmlElement(name = "terminal", type = Terminal.class), @XmlElement(name = "struct", type = Struct.class) })
+        @XmlElements({ @XmlElement(name = "terminal", type = Terminal.class), @XmlElement(name = "struct", type = Struct.class) })
         protected List<Object> structOrTerminal;
 
         /**
@@ -173,19 +173,6 @@ public class Struct {
             return this.structOrTerminal;
         }
 
-    }
-
-    /*
-     * Overriden methods
-     */
-
-    /**
-     * @return the name
-     * @see java.lang.Object#toString()
-     */
-    @Override
-    public String toString() {
-        return getName();
     }
 
 }

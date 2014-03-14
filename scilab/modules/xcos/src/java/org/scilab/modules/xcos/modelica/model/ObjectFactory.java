@@ -34,7 +34,6 @@ import javax.xml.namespace.QName;
 public class ObjectFactory {
 
     private final static QName _Model_QNAME = new QName("", "model");
-    private final static QName _TerminalOutput_QNAME = new QName("", "output");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of
@@ -51,6 +50,14 @@ public class ObjectFactory {
      */
     public Model.Elements createModelElements() {
         return new Model.Elements();
+    }
+
+    /**
+     * Create an instance of {@link Model.WhenClauses }
+     *
+     */
+    public Model.WhenClauses createModelWhenClauses() {
+        return new Model.WhenClauses();
     }
 
     /**
@@ -78,11 +85,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Output.Dependencies }
+     * Create an instance of
+     * {@link org.scilab.modules.xcos.modelica.model.Output.Dependencies }
      *
      */
-    public Output.Dependencies createOutputDependencies() {
-        return new Output.Dependencies();
+    public org.scilab.modules.xcos.modelica.model.Output.Dependencies createOutputDependencies() {
+        return new org.scilab.modules.xcos.modelica.model.Output.Dependencies();
     }
 
     /**
@@ -94,11 +102,20 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Output }
+     * Create an instance of {@link Terminal.Output }
      *
      */
-    public Output createOutput() {
-        return new Output();
+    public Terminal.Output createTerminalOutput() {
+        return new Terminal.Output();
+    }
+
+    /**
+     * Create an instance of
+     * {@link org.scilab.modules.xcos.modelica.model.Output }
+     *
+     */
+    public org.scilab.modules.xcos.modelica.model.Output createOutput() {
+        return new org.scilab.modules.xcos.modelica.model.Output();
     }
 
     /**
@@ -107,14 +124,6 @@ public class ObjectFactory {
      */
     public Model.Outputs createModelOutputs() {
         return new Model.Outputs();
-    }
-
-    /**
-     * Create an instance of {@link Model.ExplicitRelations.ExplicitRelation }
-     *
-     */
-    public Model.ExplicitRelations.ExplicitRelation createModelExplicitRelationsExplicitRelation() {
-        return new Model.ExplicitRelations.ExplicitRelation();
     }
 
     /**
@@ -158,11 +167,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Model.ImplicitRelations.ImplicitRelation }
+     * Create an instance of {@link Model.ExplicitRelations.ExplicitRelation }
      *
      */
-    public Model.ImplicitRelations.ImplicitRelation createModelImplicitRelationsImplicitRelation() {
-        return new Model.ImplicitRelations.ImplicitRelation();
+    public Model.ExplicitRelations.ExplicitRelation createModelExplicitRelationsExplicitRelation() {
+        return new Model.ExplicitRelations.ExplicitRelation();
     }
 
     /**
@@ -174,21 +183,20 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link Model.ImplicitRelations.ImplicitRelation }
+     *
+     */
+    public Model.ImplicitRelations.ImplicitRelation createModelImplicitRelationsImplicitRelation() {
+        return new Model.ImplicitRelations.ImplicitRelation();
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link Model }{@code >}
      *
      */
     @XmlElementDecl(namespace = "", name = "model")
     public JAXBElement<Model> createModel(Model value) {
         return new JAXBElement<Model>(_Model_QNAME, Model.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}
-     *
-     */
-    @XmlElementDecl(namespace = "", name = "output", scope = Terminal.class)
-    public JAXBElement<String> createTerminalOutput(String value) {
-        return new JAXBElement<String>(_TerminalOutput_QNAME, String.class, Terminal.class, value);
     }
 
 }

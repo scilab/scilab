@@ -19,7 +19,8 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlType;
 
 /**
- * Modelica String assignation.
+ * Modelica String assignation. The default value is specified to ease
+ * serialization.
  *
  * <p>
  * Java class for ModelicaValue complex type.
@@ -32,7 +33,7 @@ import javax.xml.bind.annotation.XmlType;
  * &lt;complexType name="ModelicaValue">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;attribute name="value" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="value" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -45,9 +46,9 @@ import javax.xml.bind.annotation.XmlType;
 public class ModelicaValue {
 
     /*
-     * Value may not be null to ease serialization
+     * A non-null value is required by xml2modelica
      */
-    @XmlAttribute(name = "value")
+    @XmlAttribute(required = true)
     protected String value = "";
 
     /**

@@ -128,10 +128,15 @@ import javax.xml.bind.annotation.XmlType;
  *           &lt;/complexType>
  *         &lt;/element>
  *         &lt;element name="when_clauses" minOccurs="0">
- *           &lt;simpleType>
- *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
- *             &lt;/restriction>
- *           &lt;/simpleType>
+ *           &lt;complexType>
+ *             &lt;complexContent>
+ *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                 &lt;sequence>
+ *                   &lt;element name="when_clause" type="{}ModelicaValue" maxOccurs="unbounded" minOccurs="0"/>
+ *                 &lt;/sequence>
+ *               &lt;/restriction>
+ *             &lt;/complexContent>
+ *           &lt;/complexType>
  *         &lt;/element>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -159,7 +164,7 @@ public class Model {
     protected Model.Elements elements;
     protected Model.Equations equations;
     @XmlElement(name = "when_clauses")
-    protected String whenClauses;
+    protected Model.WhenClauses whenClauses;
 
     /**
      * Gets the value of the name property.
@@ -332,10 +337,10 @@ public class Model {
     /**
      * Gets the value of the whenClauses property.
      *
-     * @return possible object is {@link String }
+     * @return possible object is {@link Model.WhenClauses }
      *
      */
-    public String getWhenClauses() {
+    public Model.WhenClauses getWhenClauses() {
         return whenClauses;
     }
 
@@ -343,10 +348,10 @@ public class Model {
      * Sets the value of the whenClauses property.
      *
      * @param value
-     *            allowed object is {@link String }
+     *            allowed object is {@link Model.WhenClauses }
      *
      */
-    public void setWhenClauses(String value) {
+    public void setWhenClauses(Model.WhenClauses value) {
         this.whenClauses = value;
     }
 
@@ -962,6 +967,7 @@ public class Model {
     @XmlType(name = "", propOrder = { "output" })
     public static class Outputs {
 
+        @XmlElement(nillable = true)
         protected List<Output> output;
 
         /**
@@ -996,16 +1002,65 @@ public class Model {
 
     }
 
-    /*
-     * Overriden methods
-     */
-
     /**
-     * @return the name
-     * @see java.lang.Object#toString()
+     * <p>
+     * Java class for anonymous complex type.
+     *
+     * <p>
+     * The following schema fragment specifies the expected content contained
+     * within this class.
+     *
+     * <pre>
+     * &lt;complexType>
+     *   &lt;complexContent>
+     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *       &lt;sequence>
+     *         &lt;element name="when_clause" type="{}ModelicaValue" maxOccurs="unbounded" minOccurs="0"/>
+     *       &lt;/sequence>
+     *     &lt;/restriction>
+     *   &lt;/complexContent>
+     * &lt;/complexType>
+     * </pre>
+     *
+     *
      */
-    @Override
-    public String toString() {
-        return getName();
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = "", propOrder = { "whenClause" })
+    public static class WhenClauses {
+
+        @XmlElement(name = "when_clause", nillable = true)
+        protected List<ModelicaValue> whenClause;
+
+        /**
+         * Gets the value of the whenClause property.
+         *
+         * <p>
+         * This accessor method returns a reference to the live list, not a
+         * snapshot. Therefore any modification you make to the returned list
+         * will be present inside the JAXB object. This is why there is not a
+         * <CODE>set</CODE> method for the whenClause property.
+         *
+         * <p>
+         * For example, to add a new item, do as follows:
+         *
+         * <pre>
+         * getWhenClause().add(newItem);
+         * </pre>
+         *
+         *
+         * <p>
+         * Objects of the following type(s) are allowed in the list
+         * {@link ModelicaValue }
+         *
+         *
+         */
+        public List<ModelicaValue> getWhenClause() {
+            if (whenClause == null) {
+                whenClause = new ArrayList<ModelicaValue>();
+            }
+            return this.whenClause;
+        }
+
     }
+
 }

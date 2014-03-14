@@ -148,7 +148,7 @@ public final class Modelica {
     public void save(Model root, File file) throws JAXBException {
         try {
             final StringWriter strw = new StringWriter();
-            marshaller.marshal(unmerge(root), strw);
+            marshaller.marshal(new org.scilab.modules.xcos.modelica.model.ObjectFactory().createModel(unmerge(root)), strw);
 
             /*
              * Customize the file to be handled by the xml2modelica tool

@@ -49,6 +49,7 @@ import org.scilab.modules.xcos.modelica.listener.FixDerivativesAction;
 import org.scilab.modules.xcos.modelica.listener.FixStatesAction;
 import org.scilab.modules.xcos.modelica.listener.SolveAction;
 import org.scilab.modules.xcos.modelica.listener.StatisticsUpdater;
+import org.scilab.modules.xcos.modelica.model.Model;
 import org.scilab.modules.xcos.modelica.model.Struct;
 import org.scilab.modules.xcos.modelica.model.Terminal;
 
@@ -144,7 +145,11 @@ public final class MainPanel extends JPanel {
      */
     private TreeModel createTreeModel() {
         final DefaultMutableTreeNode rootNode = new DefaultMutableTreeNode(
-            controller.getRoot());
+        controller.getRoot()) {
+            public String toString() {
+                return ((Model) getUserObject()).getName();
+            };
+        };
         final TreeModel model = new DefaultTreeModel(rootNode);
 
         for (Struct struct : controller.getRoot().getElements().getStruct()) {
@@ -162,7 +167,11 @@ public final class MainPanel extends JPanel {
      * @return the parent node
      */
     private MutableTreeNode createNodes(Struct struct) {
-        DefaultMutableTreeNode structNode = new DefaultMutableTreeNode(struct);
+        DefaultMutableTreeNode structNode = new DefaultMutableTreeNode(struct) {
+            public String toString() {
+                return ((Struct) getUserObject()).getName();
+            };
+        };
 
         for (Object child : struct.getSubnodes().getStructOrTerminal()) {
             // recursive call

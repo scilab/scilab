@@ -13,11 +13,9 @@
 
 package org.scilab.modules.xcos.modelica.model;
 
-import javax.xml.bind.JAXBElement;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlType;
 
 /**
@@ -46,7 +44,14 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="nominal_value" type="{}ModelicaValue" minOccurs="0"/>
  *         &lt;element name="comment" type="{}ModelicaValue" minOccurs="0"/>
  *         &lt;element name="selected" type="{}ModelicaValue" minOccurs="0"/>
- *         &lt;element name="output" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="output" minOccurs="0">
+ *           &lt;complexType>
+ *             &lt;complexContent>
+ *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *               &lt;/restriction>
+ *             &lt;/complexContent>
+ *           &lt;/complexType>
+ *         &lt;/element>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -77,8 +82,7 @@ public class Terminal {
     protected ModelicaValue nominalValue;
     protected ModelicaValue comment;
     protected ModelicaValue selected;
-    @XmlElementRef(name = "output", type = JAXBElement.class)
-    protected JAXBElement<String> output;
+    protected Terminal.Output output;
 
     /**
      * Gets the value of the name property.
@@ -314,11 +318,10 @@ public class Terminal {
     /**
      * Gets the value of the output property.
      *
-     * @return possible object is {@link JAXBElement }{@code <}{@link String }
-     *         {@code >}
+     * @return possible object is {@link Terminal.Output }
      *
      */
-    public JAXBElement<String> getOutput() {
+    public Terminal.Output getOutput() {
         return output;
     }
 
@@ -326,25 +329,36 @@ public class Terminal {
      * Sets the value of the output property.
      *
      * @param value
-     *            allowed object is {@link JAXBElement }{@code <}{@link String }
-     *            {@code >}
+     *            allowed object is {@link Terminal.Output }
      *
      */
-    public void setOutput(JAXBElement<String> value) {
+    public void setOutput(Terminal.Output value) {
         this.output = value;
     }
 
-    /*
-     * Overriden methods
-     */
-
     /**
-     * @return the id
-     * @see java.lang.Object#toString()
+     * <p>
+     * Java class for anonymous complex type.
+     *
+     * <p>
+     * The following schema fragment specifies the expected content contained
+     * within this class.
+     *
+     * <pre>
+     * &lt;complexType>
+     *   &lt;complexContent>
+     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *     &lt;/restriction>
+     *   &lt;/complexContent>
+     * &lt;/complexType>
+     * </pre>
+     *
+     *
      */
-    @Override
-    public String toString() {
-        return getId();
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = "")
+    public static class Output {
+
     }
 
 }
