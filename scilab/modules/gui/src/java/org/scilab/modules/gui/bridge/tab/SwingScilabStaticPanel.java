@@ -16,6 +16,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AXES_SIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_SIZE__;
 
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
@@ -57,11 +58,10 @@ public class SwingScilabStaticPanel extends SwingScilabScrollPane implements Swi
         uiContentPane = (JLayeredPane) getUIComponent();
         layerdPane = (JLayeredPane) getGlobalComponent();
         setVisible(true);
-
         layerdPane.setLayout(null);
-        layerdPane.setOpaque(false);
+        layerdPane.setOpaque(true);
 
-        uiContentPane.setOpaque(true);
+        uiContentPane.setOpaque(false);
         uiContentPane.setLayout(null);
         layerdPane.add(uiContentPane, JLayeredPane.DEFAULT_LAYER + 1, 0);
 
@@ -120,6 +120,12 @@ public class SwingScilabStaticPanel extends SwingScilabScrollPane implements Swi
         SwingScilabCommonPanel.update(this, property, value);
     }
 
+    public void setFigureBackground(Color color) {
+        if (layerdPane != null) {
+            layerdPane.setBackground(color);
+        }
+    }
+    
     public TextBox getInfoBar() {
         return infoBar;
     }

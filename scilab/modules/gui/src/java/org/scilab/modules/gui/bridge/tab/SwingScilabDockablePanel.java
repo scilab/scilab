@@ -188,7 +188,6 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
         scrolling = null;
 
         this.setVisible(true);
-        setOpaque(true);
         
         getTitlebar().addFocusListener(this);
         addFocusListener(this);
@@ -221,7 +220,6 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
         //setContentPane(scrolling.getAsContainer());
 
         this.setVisible(true);
-        setOpaque(true);
         
         getTitlebar().addFocusListener(this);
         addFocusListener(this);
@@ -282,9 +280,11 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
         layerdPane = new JLayeredPane();
         layerdPane.setLayout(null);
         layerdPane.setBorder(null);
+        layerdPane.setOpaque(true);
+        
         //layerdPane.add(canvas, JLayeredPane.FRAME_CONTENT_LAYER);
         uiContentPane = new JLayeredPane();
-        uiContentPane.setOpaque(true);
+        uiContentPane.setOpaque(false);
         uiContentPane.setLayout(null);
         uiContentPane.setBorder(null);
         layerdPane.add(uiContentPane, JLayeredPane.DEFAULT_LAYER + 1, 0);
@@ -638,6 +638,7 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
                 layerdPane.add(contentCanvas, JLayeredPane.FRAME_CONTENT_LAYER);
 
                 scrolling.setCanvas(contentCanvas);
+                
                 contentCanvas.addKeyListener(this);
             }
             return;
@@ -1316,8 +1317,6 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
     @Override
     public void setBackground(double red, double green, double blue) {
         Color newColor = new Color((float) red, (float) green, (float) blue);
-        uiContentPane.setBackground(newColor);
-        scrolling.setBackground(red, green, blue);
         setBackground(newColor);
     }
 
@@ -1434,6 +1433,12 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
         paintEnable = false;
     }
 
+    public void setFigureBackground(Color color) {
+        if (layerdPane != null) {
+            layerdPane.setBackground(color);
+        }
+    }
+    
     /**
      * Redefine paint children to be sure that AWT components are well painted.
      *  @param g a Graphics

@@ -12,6 +12,7 @@
 
 package org.scilab.modules.gui.bridge.tab;
 
+import java.awt.Color;
 import java.awt.Container;
 
 import javax.swing.JLayeredPane;
@@ -54,4 +55,5 @@ public interface SwingScilabPanel extends SwingViewObject {
     public void setCallback(CommonCallBack callback);
     
     public void close();
+    public void setFigureBackground(Color color);
 }

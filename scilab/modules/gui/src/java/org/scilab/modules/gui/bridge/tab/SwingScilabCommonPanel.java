@@ -13,9 +13,11 @@ package org.scilab.modules.gui.bridge.tab;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AUTORESIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AXES_SIZE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_BACKGROUND__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_BORDER_OPT_PADDING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CALLBACK__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHILDREN__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_COLORMAP__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_EVENTHANDLER_ENABLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_EVENTHANDLER_NAME__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_GRID_OPT_GRID__;
@@ -70,6 +72,7 @@ import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.utils.ToolBarBuilder;
+import org.scilab.modules.renderer.JoGLView.util.ColorFactory;
 
 public class SwingScilabCommonPanel {
 
@@ -108,19 +111,19 @@ public class SwingScilabCommonPanel {
 
                 /* Update callback */
                 String closingCommand =
-                    "if (get_figure_handle(" + figureId + ") <> []) then"
-                    +      "  if (get(get_figure_handle(" + figureId + "), 'event_handler_enable') == 'on') then"
-                    +      "    execstr(get(get_figure_handle(" + figureId + "), 'event_handler')+'(" + figureId + ", -1, -1, -1000)', 'errcatch', 'm');"
-                    +      "  end;"
-                    +      "  delete(get_figure_handle(" + figureId + "));"
-                    +      "end;";
+                        "if (get_figure_handle(" + figureId + ") <> []) then"
+                                +      "  if (get(get_figure_handle(" + figureId + "), 'event_handler_enable') == 'on') then"
+                                +      "    execstr(get(get_figure_handle(" + figureId + "), 'event_handler')+'(" + figureId + ", -1, -1, -1000)', 'errcatch', 'm');"
+                                +      "  end;"
+                                +      "  delete(get_figure_handle(" + figureId + "));"
+                                +      "end;";
                 component.setCallback(null);
                 component.setCallback(ScilabCloseCallBack.create(component.getId(), closingCommand));
                 /* Update menus callback */
                 Integer[] children = (Integer[]) GraphicController.getController().getProperty(component.getId(), __GO_CHILDREN__);
                 updateChildrenCallbacks(children, figureId);
                 break;
-            case __GO_SIZE__ :
+            case __GO_SIZE__ : {
                 Integer[] size = (Integer[]) value;
                 SwingScilabWindow figure = SwingScilabWindow.allScilabWindows.get(component.getParentWindowId());
                 Size oldFigureSize = figure.getDims();
@@ -130,12 +133,13 @@ public class SwingScilabCommonPanel {
                 if ( oldFigureSize.getWidth() != 0 && oldFigureSize.getHeight() != 0
                         && ((oldFigureSize.getWidth() != size[0]) || (oldFigureSize.getHeight() != size[1]))
                         && ((Boolean) GraphicController.getController().getProperty(component.getId(), __GO_AUTORESIZE__))
-                   ) {
+                        ) {
                     Integer[] axesSize = (Integer[]) GraphicController.getController().getProperty(component.getId(), __GO_AXES_SIZE__);
                     Integer[] newAxesSize = {axesSize[0] + deltaFigureX, axesSize[1] + deltaFigureY};
                     GraphicController.getController().setProperty(component.getId(), __GO_AXES_SIZE__, newAxesSize);
                 }
                 break;
+            }
             case __GO_POSITION__ :
                 Integer[] position = (Integer[]) value;
                 SwingScilabWindow.allScilabWindows.get(component.getParentWindowId()).setPosition(new Position(position[0], position[1]));
@@ -146,13 +150,13 @@ public class SwingScilabCommonPanel {
                 if ( oldAxesSize.getWidth() != 0 && oldAxesSize.getHeight() != 0
                         && ((oldAxesSize.getWidth() != axesSize[0]) || (oldAxesSize.getHeight() != axesSize[1]))
                         && ((Boolean) GraphicController.getController().getProperty(component.getId(), __GO_AUTORESIZE__))
-                   ) {
+                        ) {
                     // TODO manage tabs when there are docked (do not change the window size if more than one tab docked)
                     int deltaX = axesSize[0] - (int) oldAxesSize.getWidth();
                     int deltaY = axesSize[1] - (int) oldAxesSize.getHeight();
                     Size parentWindowSize = SwingScilabWindow.allScilabWindows.get(component.getParentWindowId()).getDims();
                     SwingScilabWindow.allScilabWindows.get(component.getParentWindowId()).setDims(
-                        new Size(parentWindowSize.getWidth() + deltaX, parentWindowSize.getHeight() + deltaY));
+                            new Size(parentWindowSize.getWidth() + deltaX, parentWindowSize.getHeight() + deltaY));
                     Integer figureSize[] = {parentWindowSize.getWidth() + deltaX, parentWindowSize.getHeight() + deltaY};
                     GraphicController.getController().setProperty(component.getId(), __GO_SIZE__, figureSize);
                 }
@@ -271,6 +275,17 @@ public class SwingScilabCommonPanel {
                 }
                 break;
             }
+            case __GO_COLORMAP__ : {
+                // Force background
+                Figure figure = (Figure) GraphicController.getController().getObjectFromId(component.getId());
+                component.setFigureBackground(ColorFactory.createColor(figure.getColorMap(), figure.getBackground()));
+                break;
+            }
+            case __GO_BACKGROUND__ : {
+                Figure figure = (Figure) GraphicController.getController().getObjectFromId(component.getId());
+                component.setFigureBackground(ColorFactory.createColor(figure.getColorMap(), (Integer) value));
+                break;
+            }
         }
     }
 
@@ -295,10 +310,10 @@ public class SwingScilabCommonPanel {
         for (int kChild = 0; kChild < children.length; kChild++) {
             Integer childType = (Integer) GraphicController.getController().getProperty(children[kChild], __GO_TYPE__);
             if (childType != null && (
-                        childType == __GO_UIMENU__
-                        || childType == __GO_UIPARENTMENU__
-                        || childType == __GO_UICHILDMENU__
-                        || childType == __GO_UICHECKEDMENU__)) {
+                    childType == __GO_UIMENU__
+                    || childType == __GO_UIPARENTMENU__
+                    || childType == __GO_UICHILDMENU__
+                    || childType == __GO_UICHECKEDMENU__)) {
                 String cb = (String) GraphicController.getController().getProperty(children[kChild], __GO_CALLBACK__);
                 SwingView.getFromId(children[kChild]).update(__GO_CALLBACK__, replaceFigureID(cb, parentFigureId));
                 Integer[] menuChildren = (Integer[]) GraphicController.getController().getProperty(children[kChild], __GO_CHILDREN__);
@@ -416,8 +431,8 @@ public class SwingScilabCommonPanel {
             // Insets
             Double[] margins = uicontrol.getMargins();
             constraints.insets = new Insets(
-                margins[0].intValue(), margins[1].intValue(),
-                margins[2].intValue(), margins[3].intValue());
+                    margins[0].intValue(), margins[1].intValue(),
+                    margins[2].intValue(), margins[3].intValue());
 
             // Padding
             Integer[] padding = uicontrol.getGridBagPadding();
