@@ -527,15 +527,20 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
         switch (property) {
             case __GO_UI_ICON__: {
                 if (isJLabel) {
-                    File file = new File((String) value);
-                    if (file.exists() == false) {
-                        String filename = FindIconHelper.findImage((String) value);
-                        file = new File(filename);
-                    }
+                    String icon = (String) value;
+                    if (icon != null && icon.equals("") == false) {
+                        File file = new File((String) value);
+                        if (file.exists() == false) {
+                            String filename = FindIconHelper.findImage((String) value);
+                            file = new File(filename);
+                        }
 
-                    try {
-                        ((JLabel) label).setIcon(new ImageIcon(ImageIO.read(file)));
-                    } catch (IOException e) {
+                        try {
+                            ((JLabel) label).setIcon(new ImageIcon(ImageIO.read(file)));
+                        } catch (IOException e) {
+                        }
+                    } else {
+                        ((JLabel) label).setIcon(null);
                     }
                 } else {
                     //Icon in JEditorPane ?
