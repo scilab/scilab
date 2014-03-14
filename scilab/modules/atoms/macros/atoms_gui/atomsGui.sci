@@ -11,24 +11,14 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function atomsGui()
-
-    // =============================================================================
-    // getHomeListboxElements() - not public
-    //
-    // Returns a struct that contains the followings fields:
-    //  - elements("items_str")
-    //  - elements("items_mat")
-    //
-    // =============================================================================
-
-    function elements = getHomeListboxElements()
+    function elements = getHomeListboxElements(LeftFixedWidth)
         items_str  = [];
         items_mat  = [];
 
         installed  = atomsGetInstalled();
-        atomsfig   = findobj("tag","atomsFigure");
-        allModules = atomsfig("UserData");
-
+        allModules   = get("atomsFigure", "userdata");
+        AxesSize = get("atomsFigure", "axes_size");
+        Width = (AxesSize(1) - LeftFixedWidth) - 20*2; //16*2 is icon size
 
         for i=1:size(installed(:,1), "*")
             MRVersionAvailable = atomsGetMRVersion(installed(i,1));
@@ -48,12 +38,11 @@ function atomsGui()
                 background = "#ffffff";
             end
 
-            thisItem =      "<html>";
-
-            thisItem = thisItem + "<table style=""background-color:"+background+";color:#000000;"" ><tr>";
+            thisItem = "<html>";
+            thisItem = thisItem + "<table width=""100%"" style=""background-color:" + background + ";color:#000000;"" ><tr>";
             thisItem = thisItem + "<td><img src=""file:///"+SCI+"/modules/atoms/images/icons/16x16/status/"+icon+""" /></td>";
-            thisItem = thisItem + "<td>";
-            thisItem = thisItem + "  <div style=""width:383px;text-align:left;"">";
+            thisItem = thisItem + "<td width=""100%"">";
+            thisItem = thisItem + "  <div width=""" + string(Width) + """>";
             thisItem = thisItem + "  <span style=""font-weight:bold;"">"+allModules(installed(i,1))(installed(i,2)).Title+" "+installed(i,2)+"</span><br />";
             thisItem = thisItem + "  <span>"+allModules(installed(i,1))(installed(i,2)).Summary+"</span><br />";
             thisItem = thisItem + "  <span style=""font-style:italic;"">"+installed(i,4)+"</span>";
@@ -76,6 +65,175 @@ function atomsGui()
 
     endfunction
 
+    creation = %f;
+    if creation then
+        figwidth = 900;
+        figheight = 600;
+        defaultFontSize = 12;
+
+        f = figure( ...
+            "dockable", "off" , ...
+            "infobar_visible", "off", ...
+            "toolbar_visible", "off", ...
+            "toolbar", "none", ...
+            "menubar_visible", "on", ...
+            "menubar", "none", ...
+            "default_axes", "off", ...
+            "tag", "atomsFigure", ...
+            "visible", "off", ...
+            "icon", "software-update-notinstalled", ...
+            "position", [0 0 figwidth figheight], ...
+            "layout", "border");
+
+        h = uimenu( ...
+        "parent", f, ...
+        "tag", "home");
+
+        // Menu File:Installed Modules
+        uimenu( ...
+        "parent", h, ...
+        "callback", "cbAtomsGui", ...
+        "tag", "homeMenu");
+
+        // Menu File:Update List of Packages
+        uimenu( ...
+        "parent", h, ...
+        "callback", "xinfo(_(''Updating the list of packages. Please wait... until Done.''));" + ...
+        "atomsSystemUpdate();" + ...
+        "xinfo(_(''Update done.''));" , ...
+        "tag", "updatePackages");
+
+        // Menu File:Close
+        uimenu( ...
+        "parent", h, ...
+        "callback", "cbAtomsGui", ...
+        "tag", "closeMenu");
+
+        // Menu ?
+        h = uimenu( ...
+        "parent", f, ...
+        "tag", "help");
+
+        // Menu ?:Atoms Help...
+        uimenu( ...
+        "parent", h, ...
+        "callback", "cbAtomsGui", ...
+        "tag", "helpMenu");
+
+        MainFrame = uicontrol(f, ...
+            "Style", "frame", ...
+            "background", [1 1 1], ...
+            "Tag", "MainFrame");
+            MainFrame.layout_options = createLayoutOptions("border", [5, 5]);
+            MainFrame.layout = "border";
+
+        //Left frame + listbox
+        LeftFrame = uicontrol(MainFrame, ...
+            "Style", "frame", ...
+            "background", [1 1 1], ...
+            "border", createBorder("titled", createBorder("line", "black", 1), ""), ...
+            "constraints", createConstraints("border", "left", [300 0]), ...
+            "Tag", "LeftFrame");
+            LeftFrame.layout = "border";
+
+
+        LeftListbox = uicontrol(LeftFrame, ...
+            "Style" , "listbox", ...
+            "FontSize", defaultFontSize, ...
+            "String", "", ...
+            "Callback", "cbAtomsGui", ...
+            "Tag", "LeftListbox");
+
+        //layer right frame
+        LayerFrame = uicontrol(MainFrame, ...
+            "style", "layer", ...
+            "constraints", createConstraints("border", "center"), ...
+            "tag", "LayerFrame");
+
+        //1st layer, description module
+        DescFrame = uicontrol(LayerFrame, ...
+            "style", "frame", ...
+            "background", [1 1 1], ...
+            "border", createBorder("titled", createBorder("line", "black", 1), "", "", "", createBorderFont("", 14, "normal")), ...
+            "layout", "border", ...
+            "tag", "DescFrame");
+
+        Desc = uicontrol(DescFrame, ...
+            "Style", "text", ...
+            "background", [1 1 1], ...
+            "FontSize", defaultFontSize, ...
+            "string", [""], ...
+            "min", 0, ...
+            "max", 2, ...
+            "Tag", "Desc");
+
+        ButtonFrame = uicontrol(DescFrame, ...
+            "style", "frame", ...
+            "backgroundcolor", [1 1 1], ...
+            "constraints", createConstraints("border", "bottom"));
+            ButtonFrame.layout_options = createLayoutOptions("grid", [1 3], [20, 0]);
+            ButtonFrame.layout = "grid";
+
+        removeButton = uicontrol(ButtonFrame, ...
+            "Style" , "pushbutton", ...
+            "FontSize", defaultFontSize, ...
+            "FontWeight", "bold", ...
+            "Callback", "cbAtomsGui", ...
+            "Enable", "off", ...
+            "Tag", "removeButton");
+
+        installButton = uicontrol(ButtonFrame, ...
+            "Style" , "pushbutton", ...
+            "FontSize", defaultFontSize, ...
+            "FontWeight", "bold", ...
+            "Callback", "cbAtomsGui", ...
+            "Enable", "off", ...
+            "Tag", "installButton");
+
+        updateButton = uicontrol(ButtonFrame, ...
+            "Style" , "pushbutton", ...
+            "FontSize", defaultFontSize, ...
+            "FontWeight", "bold", ...
+            "Callback", "cbAtomsGui", ...
+            "Enable", "off", ...
+            "Tag", "updateButton");
+
+        //2nd layer, installed modules
+        HomeFrame = uicontrol(LayerFrame, ...
+            "style", "frame", ...
+            "background", [1 1 1], ...
+            "border", createBorder("titled", createBorder("line", "black", 1), ""), ...
+            "layout", "border", ...
+            "tag", "HomeFrame");
+
+        HomeListbox = uicontrol(HomeFrame,..
+            "Style", "listbox",..
+            "Background", [1 1 1],..
+            "FontSize", defaultFontSize,..
+            "Callback", "cbAtomsGui", ..
+            "Tag", "HomeListbox");
+
+        //message frame
+        msgFrame = uicontrol(MainFrame, ...
+            "style", "frame", ...
+            "Background", [1 1 1], ...
+            "layout", "border", ...
+            "border", createBorder("titled", createBorder("line", "black", 1), ""), ...
+            "constraints", createConstraints("border", "bottom", [0, 40]), ...
+            "margins", [5 5 5 5], ...
+            "tag", "msgFrame");
+
+        msgText = uicontrol(msgFrame, ....
+            "Style", "text", ...
+            "HorizontalAlignment", "left", ...
+            "VerticalAlignment", "middle", ...
+            "FontSize", defaultFontSize, ...
+            "Background", [1 1 1], ...
+            "Tag", "msgText");
+
+        saveGui(f, SCI + "/modules/atoms/gui/atomsGui.xml");
+        delete(f);
+    end //creation
 
     if ~ exists("atomsinternalslib") then
         load("SCI/modules/atoms/macros/atoms_internals/lib");
@@ -94,289 +252,51 @@ function atomsGui()
         return
     end
 
-    // Parameters
-    // =========================================================================
-
-    // Figure width & height
-    figwidth     = 800;
-    figheight    = 500;
-
-    // Margin
-    margin       = 10;
-    widgetHeight   = 25;
-
-    // Message Frame
-    msgWidth     = figwidth -2*margin;
-    msgHeight    = 30;
-
-    // Button
-    buttonHeight   = 20;
-
-    // Font Size
-    defaultFontSize  = 12;
-
-    // Close the window if it already exists
-    oldFig = findobj("tag", "atomsFigure");
-    if ~isempty(oldFig) then
-        delete(oldFig);
-    end
-
-    // Create the main window
-    // =========================================================================
-
-    atomsfig = figure( ..
-    "figure_name", gettext("ATOMS"), ..
-    "position"   , [0 0 figwidth figheight],..
-    "background" , -2,..
-    "UserData"   , allModules, ..
-    "ResizeFcn", "atomsGuiResizeFcn", ..
-    "tag"    , "atomsFigure", ..
-    "visible", "off");
-
-    // Remove Scilab graphics menus & toolbar
-    // =========================================================================
-
-    delmenu(atomsfig.figure_id, gettext("&File"));
-    delmenu(atomsfig.figure_id, gettext("&Tools"));
-    delmenu(atomsfig.figure_id, gettext("&Edit"));
-    delmenu(atomsfig.figure_id, gettext("&?"));
-    toolbar(atomsfig.figure_id, "off");
-
-    // Add ATOMS Menu
-    // =========================================================================
-
-    // Menu File
-    h = uimenu( ..
-    "parent"   , atomsfig, ..
-    "label"  , gettext("File"));
-
-    // Menu File:Installed Modules
-    uimenu( ..
-    "parent"   , h, ..
-    "label"  , gettext("Installed modules"), ..
-    "callback" , "cbAtomsGui", ..
-    "tag"    , "homeMenu");
-
-    // Menu File:Update List of Packages
-    uimenu( ..
-    "parent"   , h, ..
-    "label"  , gettext("Update List of Packages"), ..
-    "callback" , "xinfo(gettext(''Updating the list of packages. Please wait... until Done.''));" + ..
-    "atomsSystemUpdate();" + ..
-    "xinfo(gettext(''Update done.''));" , ..
-    "tag"    , "updatePackages");
-
-    // Menu File:Close
-    uimenu( ..
-    "parent"   , h, ..
-    "label"  , gettext("Close"), ..
-    "callback" , "cbAtomsGui", ..
-    "tag"    , "closeMenu");
-
-    // Menu ?
-    h = uimenu( ..
-    "parent"   , atomsfig, ..
-    "label"  , gettext("?"));
-
-    // Menu ?:Atoms Help...
-    uimenu( ..
-    "parent"   , h, ..
-    "label"  , gettext("Atoms Help..."), ..
-    "callback" , "cbAtomsGui", ..
-    "tag"    , "helpMenu");
+    atomsfig = loadGui(SCI + "/modules/atoms/gui/atomsGui.xml");
+    set("atomsFigure", "userdata", allModules);
 
     // Build the module list (listbox on the left)
-    // =========================================================================
     LeftElements = atomsGetLeftListboxElts("filter:main");
 
+    //localized title/menu
+
+    //menu
+    set("home", "label", _("File"));
+    set("homeMenu", "label", _("Installed modules"));
+    set("updatePackages", "label", _("Update List of Packages"));
+    set("closeMenu", "label", _("Close"));
+    set("help", "label", _("?"));
+    set("helpMenu", "label", _("Atoms Help..."));
+
+    set("LeftFrame", "UserData", "filter:main");
+
+    set("atomsFigure", "figure_name", LeftElements("title")+" - ATOMS");
+
+    set("LeftListbox", "string", LeftElements("items_str"));
+    set("LeftListbox", "userdata", LeftElements("items_mat"));
+
+    set("removeButton", "String", _("Remove"));
+    set("installButton", "String", _("Install"));
+    set("updateButton", "String", _("Update"));
+
+
+    homeFrame = get("HomeFrame");
+    homFrame.border.title = _("List of installed modules");
+
+    //compute size of right available width
+    Constraints = get("LeftFrame", "constraints");
+    ListBoxSize = Constraints.preferredsize;
+    LayoutOptions = get("MainFrame", "layout_options");
+    Padding = LayoutOptions.padding;
+    //TLBR : right padding + left padding + LeftFrame.width
+    LeftFixedWidth = Padding(1) * 2 + ListBoxSize(1);
+
     // Build the installed module list
-    // =========================================================================
-    HomeElements = getHomeListboxElements();
+    HomeElements = getHomeListboxElements(LeftFixedWidth);
 
-    // Set the figure size ... after all delmenu(s)
-    // =========================================================================
-    atomsfig.axes_size = [figwidth figheight];
-
-    // List of modules
-    // =========================================================================
-
-    listboxWidth        = 200;
-    listboxFrameWidth     = listboxWidth + 2*margin;
-
-    listboxFrameHeight    = figheight- 3*margin - msgHeight;
-    listboxHeight       = listboxFrameHeight - 2*margin;
-
-    // Figure name
-    atomsfig("figure_name")   = LeftElements("title")+" - ATOMS";
-
-    // Frame
-    LeftFrame         = uicontrol( ..
-    "Parent"        , atomsfig,..
-    "Style"         , "frame",..
-    "Relief"        , "solid",..
-    "Position"      , [margin widgetHeight+2*margin listboxFrameWidth listboxFrameHeight],..
-    "Background"      , [1 1 1],..
-    "UserData"      , "filter:main",..
-    "Tag"         , "LeftFrame");
-
-    // Listbox
-    LeftListbox         = uicontrol( ..
-    "Parent"        , LeftFrame,..
-    "Style"         , "listbox",..
-    "Position"      , [ margin margin listboxWidth listboxHeight],..
-    "Background"      , [1 1 1],..
-    "FontSize"      , defaultFontSize,..
-    "String"        , LeftElements("items_str"),..
-    "UserData"      , LeftElements("items_mat"),..
-    "Callback"      , "cbAtomsGui", ..
-    "Min"         , 1, ..
-    "Max"         , 1, ..
-    "Tag"         , "LeftListbox")
-
-    // Description of a module
-    // =========================================================================
-
-    descFrameWidth       = figwidth - listboxFrameWidth - 3*margin;
-    descFrameHeight      = listboxFrameHeight;
-
-    descWidth        = descFrameWidth  - 2*margin;
-    descHeight         = descFrameHeight - 4*margin - buttonHeight;
-
-    // Frame
-    DescFrame        = uicontrol( ..
-    "Parent"       , atomsfig,..
-    "Style"        , "frame",..
-    "Relief"       , "solid",..
-    "Background"     , [1 1 1],..
-    "Position"       , [listboxFrameWidth+2*margin widgetHeight+2*margin descFrameWidth descFrameHeight],..
-    "Tag"        , "DescFrame", ..
-    "Visible"      , "off");
-
-    // Frame title
-    DescTitle        = uicontrol( ..
-    "Parent"       , DescFrame,..
-    "Style"        , "text",..
-    "Position"       , [2*margin descFrameHeight-1.5*margin 200 widgetHeight],..
-    "HorizontalAlignment", "center",..
-    "VerticalAlignment"  , "middle",..
-    "String"       , gettext("List of installed modules"), ..
-    "FontWeight"     , "bold",..
-    "FontSize"       , 12,..
-    "Background"     , [1 1 1],..
-    "Tag"        , "DescTitle");
-
-    // Details of a module
-    Desc           = uicontrol( ..
-    "Parent"       , DescFrame,..
-    "VerticalAlignment"  , "top",..
-    "Style"        , "text",..
-    "Position"       , [ margin margin+buttonHeight+2*margin descWidth descHeight],..
-    "Background"     , [1 1 1],..
-    "FontSize"       , defaultFontSize,..
-    "String"       , "",..
-    "Tag"        , "Desc");
-
-    // Buttons
-    // -------------------------------------------------------------------------
-
-    buttonWidth = (descFrameWidth - 4*margin) / 3;
-
-    // "Remove" Button
-    removeButton       = uicontrol( ..
-    "Parent"       , DescFrame,..
-    "Style"        , "pushbutton",..
-    "Position"       , [margin margin buttonWidth widgetHeight],..
-    "String"       , gettext("Remove"),..
-    "Callback"       , "cbAtomsGui", ..
-    "Enable"       , "off",..
-    "Tag"        , "removeButton");
-
-    // "Install" Button
-    installButton      = uicontrol( ..
-    "Parent"       , DescFrame,..
-    "Style"        , "pushbutton",..
-    "Position"       , [buttonWidth+2*margin margin buttonWidth widgetHeight],..
-    "String"       , gettext("Install"),..
-    "Callback"       , "cbAtomsGui", ..
-    "Enable"       , "off", ..
-    "Tag"        , "installButton");
-
-    // "Update" Button
-    updateButton       = uicontrol( ..
-    "Parent"       , DescFrame,..
-    "Style"        , "pushbutton",..
-    "Position"       , [2*buttonWidth+3*margin margin buttonWidth widgetHeight],..
-    "String"       , gettext("Update"),..
-    "Callback"       , "cbAtomsGui", ..
-    "Enable"       , "off", ..
-    "Tag"        , "updateButton");
-
-    // Installed Modules: List of installed modules
-    // =========================================================================
-
-    descWidth        = descFrameWidth  - 2*margin;
-    descHeight         = descFrameHeight - 3*margin;
-
-    // Frame
-    HomeFrame        = uicontrol( ..
-    "Parent"       , atomsfig,..
-    "Style"        , "frame",..
-    "Relief"       , "solid",..
-    "Background"     , [1 1 1],..
-    "Position"       , [listboxFrameWidth+2*margin widgetHeight+2*margin descFrameWidth descFrameHeight],..
-    "Tag"        , "HomeFrame");
-
-    // Frame title
-    HomeTitle        = uicontrol( ..
-    "Parent"       , HomeFrame,..
-    "Style"        , "text",..
-    "Position"       , [2*margin descFrameHeight-1.5*margin 200 widgetHeight],..
-    "HorizontalAlignment", "center",..
-    "VerticalAlignment"  , "middle",..
-    "String"       , gettext("List of installed modules"), ..
-    "FontWeight"     , "bold",..
-    "FontSize"       , 12,..
-    "Background"     , [1 1 1],..
-    "Tag"        , "HomeTitle");
-
-    // Home
-    HomeListbox         = uicontrol( ..
-    "Parent"        , HomeFrame,..
-    "Style"         , "listbox",..
-    "Position"      , [ margin margin descWidth descHeight],..
-    "Background"      , [1 1 1],..
-    "FontSize"      , defaultFontSize,..
-    "String"        , HomeElements("items_str"),..
-    "UserData"      , HomeElements("items_mat"),..
-    "Callback"      , "cbAtomsGui", ..
-    "Min"         , 1, ..
-    "Max"         , 1, ..
-    "Tag"         , "HomeListbox");
-
-    // Message Frame
-    // =========================================================================
-
-    // Frame
-    msgFrame         = uicontrol( ..
-    "Parent"       , atomsfig,..
-    "Style"        , "frame",..
-    "Relief"       , "solid",..
-    "Background"     , [1 1 1],..
-    "Position"       , [margin margin msgWidth msgHeight],..
-    "Tag"        , "msgFrame");
-
-    // Text
-    msgText          = uicontrol( ..
-    "Parent"       , msgFrame,...
-    "Style"        , "text",..
-    "HorizontalAlignment", "left",..
-    "VerticalAlignment"  , "middle",..
-    "String"       , "", ..
-    "FontSize"       , 12,..
-    "Background"     , [1 1 1],..
-    "Position"       , [2 2 msgWidth-10 msgHeight-4],..
-    "Tag"        , "msgText");
-
-    atomsfig.visible = "on";
+    //Update Installed Toolbox Listbox
+    set("HomeListbox", "String", HomeElements("items_str"));
+    set("HomeListbox", "UserData", HomeElements("items_mat"));
+    set("atomsFigure", "visible", "on");
 endfunction
 
