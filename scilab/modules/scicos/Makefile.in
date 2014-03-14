@@ -3300,38 +3300,38 @@ distclean-local:
 
 @OCAML_TRUE@@XCOS_TRUE@%.cmo: %.ml %.cmi
 @OCAML_TRUE@@XCOS_TRUE@	@if echo "$<"|grep src/translator; then \
-@OCAML_TRUE@@XCOS_TRUE@		echo $(OCAMLC) $(INCLUDE_modelicat)  -c $<; \
-@OCAML_TRUE@@XCOS_TRUE@		$(OCAMLC) $(INCLUDE_modelicat)  -c $<; \
+@OCAML_TRUE@@XCOS_TRUE@		echo $(OCAMLC) $(INCLUDE_modelicat) $(OCAMLCFLAGS) -c $<; \
+@OCAML_TRUE@@XCOS_TRUE@		$(OCAMLC) $(INCLUDE_modelicat) $(OCAMLCFLAGS) -c $<; \
 @OCAML_TRUE@@XCOS_TRUE@	else \
-@OCAML_TRUE@@XCOS_TRUE@		echo $(OCAMLC) $(INCLUDE)  -c $<; \
-@OCAML_TRUE@@XCOS_TRUE@		$(OCAMLC) $(INCLUDE)  -c $<; \
+@OCAML_TRUE@@XCOS_TRUE@		echo $(OCAMLC) $(INCLUDE) $(OCAMLCFLAGS) -c $<; \
+@OCAML_TRUE@@XCOS_TRUE@		$(OCAMLC) $(INCLUDE) $(OCAMLCFLAGS) -c $<; \
 @OCAML_TRUE@@XCOS_TRUE@	fi
 
 @OCAML_TRUE@@XCOS_TRUE@.ml.cmx:
 @OCAML_TRUE@@XCOS_TRUE@	@if echo "$<"|grep src/translator; then \
-@OCAML_TRUE@@XCOS_TRUE@		echo $(OCAMLOPT) $(INCLUDE_modelicat) -c $<; \
-@OCAML_TRUE@@XCOS_TRUE@		$(OCAMLOPT) $(INCLUDE_modelicat) -c $<; \
+@OCAML_TRUE@@XCOS_TRUE@		echo $(OCAMLOPT) $(INCLUDE_modelicat) $(OCAMLOPTFLAGS) -c $<; \
+@OCAML_TRUE@@XCOS_TRUE@		$(OCAMLOPT) $(INCLUDE_modelicat) $(OCAMLOPTFLAGS) -c $<; \
 @OCAML_TRUE@@XCOS_TRUE@	else \
-@OCAML_TRUE@@XCOS_TRUE@		echo $(OCAMLOPT) $(INCLUDE) -c $<; \
-@OCAML_TRUE@@XCOS_TRUE@		$(OCAMLOPT) $(INCLUDE) -c $<; \
+@OCAML_TRUE@@XCOS_TRUE@		echo $(OCAMLOPT) $(INCLUDE) $(OCAMLOPTFLAGS) -c $<; \
+@OCAML_TRUE@@XCOS_TRUE@		$(OCAMLOPT) $(INCLUDE) $(OCAMLOPTFLAGS) -c $<; \
 @OCAML_TRUE@@XCOS_TRUE@	fi
 
 @OCAML_TRUE@@XCOS_TRUE@.mli.cmi:
 @OCAML_TRUE@@XCOS_TRUE@	@if echo "$<"|grep src/translator; then \
-@OCAML_TRUE@@XCOS_TRUE@		echo $(OCAMLC) $(INCLUDE_modelicat) -c $<; \
-@OCAML_TRUE@@XCOS_TRUE@		$(OCAMLC) $(INCLUDE_modelicat) -c $<; \
+@OCAML_TRUE@@XCOS_TRUE@		echo $(OCAMLC) $(INCLUDE_modelicat) $(OCAMLCFLAGS) -c $<; \
+@OCAML_TRUE@@XCOS_TRUE@		$(OCAMLC) $(INCLUDE_modelicat) $(OCAMLCFLAGS) -c $<; \
 @OCAML_TRUE@@XCOS_TRUE@	else \
-@OCAML_TRUE@@XCOS_TRUE@		echo $(OCAMLC) $(INCLUDE) -c $<; \
-@OCAML_TRUE@@XCOS_TRUE@		$(OCAMLC) $(INCLUDE) -c $<; \
+@OCAML_TRUE@@XCOS_TRUE@		echo $(OCAMLC) $(INCLUDE) $(OCAMLCFLAGS) -c $<; \
+@OCAML_TRUE@@XCOS_TRUE@		$(OCAMLC) $(INCLUDE) $(OCAMLCFLAGS) -c $<; \
 @OCAML_TRUE@@XCOS_TRUE@	fi
 
 @OCAML_TRUE@@XCOS_TRUE@.ml.mli:
 @OCAML_TRUE@@XCOS_TRUE@	@if echo "$<"|grep src/translator; then \
-@OCAML_TRUE@@XCOS_TRUE@		echo $(OCAMLC) $(INCLUDE_modelicat) -i $< > $@; \
-@OCAML_TRUE@@XCOS_TRUE@		$(OCAMLC) $(INCLUDE_modelicat) -i $< > $@; \
+@OCAML_TRUE@@XCOS_TRUE@		echo $(OCAMLC) $(INCLUDE_modelicat) $(OCAMLCFLAGS) -i $< > $@; \
+@OCAML_TRUE@@XCOS_TRUE@		$(OCAMLC) $(INCLUDE_modelicat) $(OCAMLCFLAGS) -i $< > $@; \
 @OCAML_TRUE@@XCOS_TRUE@	else \
-@OCAML_TRUE@@XCOS_TRUE@		echo $(OCAMLC) $(INCLUDE) -i $< > $@; \
-@OCAML_TRUE@@XCOS_TRUE@		$(OCAMLC) $(INCLUDE) -i $< > $@; \
+@OCAML_TRUE@@XCOS_TRUE@		echo $(OCAMLC) $(INCLUDE) $(OCAMLCFLAGS) -i $< > $@; \
+@OCAML_TRUE@@XCOS_TRUE@		$(OCAMLC) $(INCLUDE) $(OCAMLCFLAGS) -i $< > $@; \
 @OCAML_TRUE@@XCOS_TRUE@	fi
 
 @OCAML_TRUE@@XCOS_TRUE@.mll.ml:
@@ -3342,14 +3342,23 @@ distclean-local:
 
 # Build the binaries
 
-@OCAML_TRUE@@XCOS_TRUE@modelicac:$(MLIS:.mli=.cmi) $(MLS:.ml=.cmo) $(MLS:.ml=.cmx)
-@OCAML_TRUE@@XCOS_TRUE@	$(OCAMLOPT) -o modelicac $(INCLUDE) $(OCAMLLIBS:.cma=.cmxa) $(MLS:.ml=.cmx)
+@OCAML_TRUE@@XCOS_TRUE@modelicac: $(MLS:.ml=.cmx)
+@OCAML_TRUE@@XCOS_TRUE@	$(OCAMLOPT) -o $@ $(INCLUDE) $(OCAMLOPTFLAGS) $(OCAMLLIBS:.cma=.cmxa) $^
 
-@OCAML_TRUE@@XCOS_TRUE@XML2Modelica: $(MLS_XML2Modelica:.ml=.cmo) $(MLS_XML2Modelica:.ml=.cmx) 
-@OCAML_TRUE@@XCOS_TRUE@	$(OCAMLOPT) -o XML2Modelica $(INCLUDE) $(OCAMLLIBS:.cma=.cmxa) $(MLS_XML2Modelica:.ml=.cmx) 
+@OCAML_TRUE@@XCOS_TRUE@modelicac.ocamlc: $(MLS:.ml=.cmo)
+@OCAML_TRUE@@XCOS_TRUE@	$(OCAMLC) -o $@ $(INCLUDE) $(OCAMLOPTFLAGS) $(OCAMLLIBS) $^
 
-@OCAML_TRUE@@XCOS_TRUE@modelicat: $(MLIS_modelicat:.mli=.cmi) $(MLS_modelicat:.ml=.cmo) $(MLS_modelicat:.ml=.cmx)
-@OCAML_TRUE@@XCOS_TRUE@	$(OCAMLOPT) -o modelicat $(INCLUDE_modelicat) $(OCAMLLIBS:.cma=.cmxa) $(MLS_SPECIFIC_PRE_modelicat:.ml=.cmx) $(MLS_modelicat:.ml=.cmx) 
+@OCAML_TRUE@@XCOS_TRUE@XML2Modelica: $(MLS_XML2Modelica:.ml=.cmx) 
+@OCAML_TRUE@@XCOS_TRUE@	$(OCAMLOPT) -o $@ $(INCLUDE) $(OCAMLCFLAGS) $(OCAMLLIBS:.cma=.cmxa) $^
+
+@OCAML_TRUE@@XCOS_TRUE@XML2Modelica.ocamlc: $(MLS_XML2Modelica:.ml=.cmo)
+@OCAML_TRUE@@XCOS_TRUE@	$(OCAMLC) -o $@ $(INCLUDE) $(OCAMLCFLAGS) $(OCAMLLIBS) $^
+
+@OCAML_TRUE@@XCOS_TRUE@modelicat: $(MLS_SPECIFIC_PRE_modelicat:.ml=.cmx) $(MLS_modelicat:.ml=.cmx)
+@OCAML_TRUE@@XCOS_TRUE@	$(OCAMLOPT) -o $@ $(INCLUDE_modelicat) $(OCAMLOPTFLAGS) $(OCAMLLIBS:.cma=.cmxa) $^
+
+@OCAML_TRUE@@XCOS_TRUE@modelicat.ocamlc: $(MLS_SPECIFIC_PRE_modelicat:.ml=.cmo) $(MLS_modelicat:.ml=.cmo)
+@OCAML_TRUE@@XCOS_TRUE@	$(OCAMLC) -o $@ $(INCLUDE_modelicat) $(OCAMLOPTFLAGS) $(OCAMLLIBS) $^
 
 #BUILT_SOURCES = depend
 
