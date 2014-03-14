@@ -291,7 +291,7 @@ int sci_figure(char * fname, unsigned long fname_len)
         }
         iFig = createFigure(bDockable, iMenubarType, iToolbarType, bDefaultAxes, bVisible);
         setGraphicObjectProperty(iFig, __GO_ID__, &iNewId, jni_int, 1);
-        setDefaultProperties(iFig, bDefaultAxes);
+        iAxes = setDefaultProperties(iFig, bDefaultAxes);
     }
 
     //set(iFig, iPos, iPos + 1)
