@@ -55,7 +55,8 @@ typedef enum
     MATPLOT_RGB_444 = 8,
     MATPLOT_RGB_555 = 9,
     MATPLOT_RGBA_4444 = 10,
-    MATPLOT_RGBA_5551 = 11
+    MATPLOT_RGBA_5551 = 11,
+    MATPLOT_ARGB = 12,
 } ImageType;
 
 typedef enum

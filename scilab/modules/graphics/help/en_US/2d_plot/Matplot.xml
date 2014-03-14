@@ -323,6 +323,7 @@
             <warning>
                 To update the Matplot data, the <literal>data</literal> field of the corresponding handle must be used.
             </warning>
+            <literal>data</literal> can be a matrix (or an hypermatrix) containing RGB, RGBA, ... data (see <link linkend="Matplot_properties">Matplot_properties</link>).
         </para>
         <para>
             Enter the command <code>Matplot()</code> to see a demo.
@@ -361,5 +362,16 @@ Matplot((1:xget("lastpattern")))
                 <link linkend="Matplot_properties">Matplot_properties</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>
+                    <literal>data</literal> can now be a matrix (or an hypermatrix) containing RGB, RGBA, ... data (see <link linkend="Matplot_properties">Matplot_properties</link>).
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

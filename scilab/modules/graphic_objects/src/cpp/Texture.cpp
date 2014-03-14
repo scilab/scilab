@@ -67,6 +67,7 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
             }
             break;
         case MATPLOT_RGBA :
+        case MATPLOT_ARGB :
             switch (datatype)
             {
                 case MATPLOT_HM3_Char :
@@ -427,7 +428,187 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
                         ucdata[k + 1] = (((unsigned int)d[i]) >> 16) & 0xFF;
                         ucdata[k + 2] = (((unsigned int)d[i]) >> 8) & 0xFF;
                         ucdata[k + 3] = ((unsigned int)d[i]) & 0xFF;
-                        unsigned int k = 0;
+                        k += 4;
+                    }
+                    *gltype = MATPLOT_GL_RGBA_BYTE;
+                }
+            }
+            break;
+        }
+        case MATPLOT_ARGB :
+        {
+            switch (datatype)
+            {
+                case MATPLOT_HM3_Char :
+                case MATPLOT_HM3_UChar :
+                {
+                    const unsigned char * R = (const unsigned char *)data;
+                    const unsigned char * G = R + numElements;
+                    const unsigned char * B = G + numElements;
+                    unsigned char * ucdata = (unsigned char *) * dest;
+                    unsigned int k = 0;
+
+                    for (int i = 0; i < numElements; i++)
+                    {
+                        ucdata[k] = R[i];
+                        ucdata[k + 1] = G[i];
+                        ucdata[k + 2] = B[i];
+                        ucdata[k + 3] = 0xFF;
+                        k += 4;
+                    }
+                    *gltype = MATPLOT_GL_RGBA_BYTE;
+                    break;
+                }
+                case MATPLOT_HM4_Char :
+                case MATPLOT_HM4_UChar :
+                {
+                    const unsigned char * A = (const unsigned char *)data;
+                    const unsigned char * R = A + numElements;
+                    const unsigned char * G = R + numElements;
+                    const unsigned char * B = G + numElements;
+                    unsigned char * ucdata = (unsigned char *) * dest;
+                    unsigned int k = 0;
+
+                    for (int i = 0; i < numElements; i++)
+                    {
+                        ucdata[k] = R[i];
+                        ucdata[k + 1] = G[i];
+                        ucdata[k + 2] = B[i];
+                        ucdata[k + 3] = A[i];
+                        k += 4;
+                    }
+                    *gltype = MATPLOT_GL_RGBA_BYTE;
+                    break;
+                }
+                case MATPLOT_HM3_Double :
+                {
+                    const double * R = (const double *)data;
+                    const double * G = R + numElements;
+                    const double * B = G + numElements;
+                    float * fdata = (float *) * dest;
+                    unsigned int k = 0;
+
+                    for (int i = 0; i < numElements; i++)
+                    {
+                        fdata[k] = (float)R[i];
+                        fdata[k + 1] = (float)G[i];
+                        fdata[k + 2] = (float)B[i];
+                        fdata[k + 3] = 1.0f;
+                        k += 4;
+                    }
+                    *gltype = MATPLOT_GL_RGBA_FLOAT;
+                    break;
+                }
+                case MATPLOT_HM4_Double :
+                {
+                    const double * A = (const double *)data;
+                    const double * R = A + numElements;
+                    const double * G = R + numElements;
+                    const double * B = G + numElements;
+                    float * fdata = (float *) * dest;
+                    unsigned int k = 0;
+
+                    for (int i = 0; i < numElements; i++)
+                    {
+                        fdata[k] = (float)R[i];
+                        fdata[k + 1] = (float)G[i];
+                        fdata[k + 2] = (float)B[i];
+                        fdata[k + 3] = (float)A[i];
+                        k += 4;
+                    }
+                    *gltype = MATPLOT_GL_RGBA_FLOAT;
+                    break;
+                }
+                case MATPLOT_HM1_Char :
+                case MATPLOT_HM1_UChar :
+                case MATPLOT_UChar :
+                case MATPLOT_Char :
+                {
+                    const unsigned char * uc = (const unsigned char *)data;
+                    unsigned char * ucdata = (unsigned char *) * dest;
+
+                    for (int i = 0; i < size; i += 4)
+                    {
+                        ucdata[i] = uc[i + 1];
+                        ucdata[i + 1] = uc[i + 2];
+                        ucdata[i + 2] = uc[i + 3];
+                        ucdata[i + 3] = uc[i];
+                    }
+                    *gltype = MATPLOT_GL_RGBA_BYTE;
+                    break;
+                }
+                case MATPLOT_Int :
+                {
+                    const unsigned int * ui = (const unsigned int *)data;
+                    unsigned char * ucdata = (unsigned char *) * dest;
+                    unsigned int k = 0;
+
+                    for (int i = 0; i < numElements; i++)
+                    {
+                        ucdata[k] = (ui[i] >> 16) & 0xFF;
+                        ucdata[k + 1] = (ui[i] >> 8) & 0xFF;
+                        ucdata[k + 2] = ui[i] & 0xFF;
+                        ucdata[k + 3] = 0xFF;
+                        k += 4;
+                    }
+                    *gltype = MATPLOT_GL_RGBA_BYTE;
+                    break;
+                }
+                case MATPLOT_UInt :
+                {
+                    const unsigned int * ui = (const unsigned int *)data;
+                    unsigned char * ucdata = (unsigned char *) * dest;
+                    unsigned int k = 0;
+
+                    for (int i = 0; i < numElements; i++)
+                    {
+                        ucdata[k] = (ui[i] >> 16) & 0xFF;
+                        ucdata[k + 1] = (ui[i] >> 8) & 0xFF;
+                        ucdata[k + 2] = ui[i] & 0xFF;
+                        ucdata[k + 3] = (ui[i] >> 24) & 0xFF;
+                        k += 4;
+                    }
+                    *gltype = MATPLOT_GL_RGBA_BYTE;
+                    break;
+                }
+                case MATPLOT_Short :
+                {
+                    const unsigned short * us = (const unsigned short *)data;
+                    unsigned short * usdata = (unsigned short *) * dest;
+
+                    for (int i = 0; i < numElements; i++)
+                    {
+                        usdata[i] = (us[i] >> 12) | (us[i] << 4);
+                    }
+                    *gltype = MATPLOT_GL_RGBA_4444;
+                    break;
+                }
+                case MATPLOT_UShort :
+                {
+                    const unsigned short * us = (const unsigned short *)data;
+                    unsigned short * usdata = (unsigned short *) * dest;
+
+                    for (int i = 0; i < numElements; i++)
+                    {
+                        usdata[i] = (us[i] >> 15) | (us[i] << 1);
+                    }
+                    *gltype = MATPLOT_GL_RGBA_5551;
+                    break;
+                }
+                case MATPLOT_HM1_Double :
+                case MATPLOT_Double :
+                {
+                    const double * d = (const double *)data;
+                    unsigned char * ucdata = (unsigned char *) * dest;
+                    unsigned int k = 0;
+
+                    for (int i = 0; i < numElements; i++)
+                    {
+                        ucdata[k] = (((unsigned int)d[i]) >> 16) & 0xFF;
+                        ucdata[k + 1] = (((unsigned int)d[i]) >> 8) & 0xFF;
+                        ucdata[k + 2] = ((unsigned int)d[i]) & 0xFF;
+                        ucdata[k + 3] = (((unsigned int)d[i]) >> 24) & 0xFF;
+                        k += 4;
                     }
                     *gltype = MATPLOT_GL_RGBA_BYTE;
                 }

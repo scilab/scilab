@@ -467,7 +467,7 @@ int NgonGridMatplotData::setImageType(int imagetype)
             {
                 grid[2] = (ySize - 1) * 3 + 1;
             }
-            else if (this->imagetype == MATPLOT_RGBA)
+            else if (this->imagetype == MATPLOT_RGBA || this->imagetype == MATPLOT_ARGB)
             {
                 grid[2] = (ySize - 1) * 4 + 1;
             }
@@ -480,7 +480,7 @@ int NgonGridMatplotData::setImageType(int imagetype)
                 }
                 grid[2] = (grid[2] - 1) / 3 + 1;
             }
-            else if (type == MATPLOT_RGBA)
+            else if (type == MATPLOT_RGBA || type == MATPLOT_ARGB)
             {
                 if ((grid[2] - 1) % 4 != 0)
                 {
