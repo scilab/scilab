@@ -20,8 +20,6 @@ refmsg = msprintf(gettext("''%s'' property does not exist for this handle.\n"), 
 assert_checkerror("set(f, ""label"", ""toto"")", refmsg);
 refmsg = msprintf(gettext("''%s'' property does not exist for this handle.\n"), "String");
 assert_checkerror("set(f, ""string"", ""toto"")", refmsg);
-refmsg = msprintf(gettext("''%s'' property does not exist for this handle.\n"), "BackgroundColor");
-assert_checkerror("set(f, ""backgroundcolor"", [0.5 0.5 0.5])", refmsg);
 refmsg = msprintf(gettext("''%s'' property does not exist for this handle.\n"), "ForegroundColor");
 assert_checkerror("set(f, ""foregroundcolor"", [0.5 0.5 0.5])", refmsg);
 refmsg = msprintf(gettext("''%s'' property does not exist for this handle.\n"), "FontWeight");
