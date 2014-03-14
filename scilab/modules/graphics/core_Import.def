@@ -62,4 +62,5 @@ create_hashtable
 hashtable_destroy
 hashtable_search
 hashtable_insert
-
+returnanan_
+isanan_

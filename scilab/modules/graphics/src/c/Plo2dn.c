@@ -25,6 +25,7 @@
 
 #define spINSIDE_SPARSE
 #include "../../sparse/includes/spConfig.h"
+#include "isanan.h"
 
 #include "SetProperty.h"
 #include "DrawObjects.h"
@@ -583,7 +584,7 @@ void compute_data_bounds2(int cflag, char dataflag, char *logflags, double *x, d
     }
 
     /* back to default values for  x=[] and y = [] */
-    if (drect[2] == LARGEST_REAL || drect[3] == -LARGEST_REAL || isnan(drect[2]) || isnan(drect[3]))
+    if (drect[2] == LARGEST_REAL || drect[3] == -LARGEST_REAL || C2F(isanan)(&drect[2]) || C2F(isanan)(&drect[3]))
     {
         if (logflags[1] != 'l')
         {
@@ -597,7 +598,7 @@ void compute_data_bounds2(int cflag, char dataflag, char *logflags, double *x, d
         drect[3] = 10.0;
     }
 
-    if (drect[0] == LARGEST_REAL || drect[1] == -LARGEST_REAL || isnan(drect[0]) || isnan(drect[1]))
+    if (drect[0] == LARGEST_REAL || drect[1] == -LARGEST_REAL || C2F(isanan)(&drect[0]) || C2F(isanan)(&drect[1]))
     {
         if (logflags[0] != 'l')
         {
