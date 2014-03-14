@@ -59,7 +59,7 @@ public class SwingScilabStaticPanel extends SwingScilabScrollPane implements Swi
         layerdPane.setLayout(null);
         layerdPane.setOpaque(false);
 
-        uiContentPane.setOpaque(false);
+        uiContentPane.setOpaque(true);
         uiContentPane.setLayout(null);
         layerdPane.add(uiContentPane, JLayeredPane.DEFAULT_LAYER + 1, 0);
 
