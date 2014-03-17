@@ -257,10 +257,14 @@ e.data=e.data($:-1:1) // reverse order
             <revision>
                 <revnumber>5.5.0</revnumber>
                 <revremark>
-                    Property image_type introduced.
-                </revremark>
-                <revremark>
-                    Property rect introduced.
+                    <itemizedlist>
+                        <listitem>
+                            Property <literal>image_type</literal> introduced.
+                        </listitem>
+                        <listitem>
+                            Property <literal>rect</literal> introduced.
+                        </listitem>
+                    </itemizedlist>
                 </revremark>
             </revision>
         </revhistory>
