@@ -2148,7 +2148,7 @@ static void cossimdaskr(double *told)
     int (* DAEGetRootInfo) (void*, int*);
     int (* DAESStolerances) (void*, realtype, realtype);
     int (* DAEGetConsistentIC) (void*, N_Vector, N_Vector);
-    int (* DAESetMaxNumSteps) (void*, int*);
+    int (* DAESetMaxNumSteps) (void*, long int);
     int (* DAESetMaxNumJacsIC) (void*, int);
     int (* DAESetMaxNumItersIC) (void*, int);
     int (* DAESetMaxNumStepsIC) (void*, int);

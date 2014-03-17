@@ -767,6 +767,8 @@ Scilab Bug Fixes
 
 * Bug #13258 fixed - Bad number display in datatips fixed.
 
+* Bug #13267 fixed - Implicit typecasts in scicos.c have been fixed.
+
 * Bug #13271 fixed - plot2d with logarithmic scale and %nan value freezed Scilab.
 
 
