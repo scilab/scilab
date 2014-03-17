@@ -692,6 +692,7 @@ public class SciNotes extends SwingScilabDockablePanel {
             if (getTabPane().getTabCount() != 1 || getTextPane(0).getName() != null) {
                 openFile(null, 0, null);
             }
+
             setWindowIcon("accessories-text-editor");
             WindowsConfigurationManager.restorationFinished(this);
 
@@ -1933,25 +1934,6 @@ public class SciNotes extends SwingScilabDockablePanel {
                 ((ScilabDocument) sep.getDocument()).setAutoIndent(SciNotesOptions.getSciNotesDisplay().automaticIndent);
                 if (sep.getOtherPaneInSplit() != null) {
                     ((ScilabDocument) sep.getOtherPaneInSplit().getDocument()).setAutoIndent(SciNotesOptions.getSciNotesDisplay().automaticIndent);
-                }
-            }
-        }
-    }
-
-    /**
-     * Auto-indent mode management
-     *
-     * @param b
-     *            true to activate auto-indent mode
-     */
-    public static void setSuppressComments(boolean b) {
-        for (SciNotes ed : scinotesList) {
-            int n = ed.getTabPane().getTabCount();
-            for (int i = 0; i < n; i++) {
-                ScilabEditorPane sep = ed.getTextPane(i);
-                sep.suppressCommentsInExecutingCode(b);
-                if (sep.getOtherPaneInSplit() != null) {
-                    sep.getOtherPaneInSplit().suppressCommentsInExecutingCode(b);
                 }
             }
         }

@@ -84,7 +84,6 @@ public final class ConfigSciNotesManager {
 
     private static final int MARGIN = 20;
 
-    private static final String HORIZONTALWRAP = "HorizontalWrapAllowed";
     private static final String ERROR_READ = "Could not load file: ";
     private static final String ERROR_WRITE = "Could not save file: ";
     private static final String VALUE = "value";
@@ -110,8 +109,7 @@ public final class ConfigSciNotesManager {
     private static final String HELPONTYPING = "HelpOnTyping";
     private static final String LINENUMBERING = "LineNumbering";
     private static final String EDITOR = "SciNotes";
-    private static final String SUPPRESSCOMMENTS = "SuppressComments";
-
+    
     private static final String FOREGROUNDCOLOR = "ForegroundColor";
     private static final String BACKGROUNDCOLOR = "BackgroundColor";
     private static final String ALTERNCOLORS = "AlternColors";
@@ -357,138 +355,6 @@ public final class ConfigSciNotesManager {
 
         arr[1] = c;
         return arr;
-    }
-
-    /**
-     * Get the background Color
-     * @return the background Color
-     */
-    public static Color getSciNotesBackgroundColor() {
-        /* Load file */
-        readDocument();
-
-        Element root = document.getDocumentElement();
-
-        NodeList profiles = root.getElementsByTagName(EDITOR);
-        Element scinotesProfile = (Element) profiles.item(0);
-
-        NodeList allElements = scinotesProfile.getElementsByTagName(BACKGROUNDCOLOR);
-        Element scinotesBackground = (Element) allElements.item(0);
-
-        /*direct create a Color with "#FF00FF" string from the xml */
-        return Color.decode(scinotesBackground.getAttribute(VALUE));
-    }
-
-    /**
-     * Get the foreground Color
-     * @return the foreground Color
-     */
-    public static Color getSciNotesForegroundColor() {
-        /* Load file */
-        readDocument();
-
-        Element root = document.getDocumentElement();
-
-        NodeList profiles = root.getElementsByTagName(EDITOR);
-        Element scinotesProfile = (Element) profiles.item(0);
-
-        NodeList allElements = scinotesProfile.getElementsByTagName(FOREGROUNDCOLOR);
-        Element scinotesForeground = (Element) allElements.item(0);
-
-        /*direct create a Color with "#FF00FF" string from the xml */
-        return Color.decode(scinotesForeground.getAttribute(VALUE));
-    }
-
-    /**
-     * Save SciNotes BackgroundColor
-     * @param color the new Color
-     */
-    public static void saveSciNotesBackground(Color color) {
-
-        /* Load file */
-        readDocument();
-
-        Element root = document.getDocumentElement();
-
-        NodeList profiles = root.getElementsByTagName(EDITOR);
-        Element scinotesProfile = (Element) profiles.item(0);
-
-        NodeList allSizeElements = scinotesProfile.getElementsByTagName(BACKGROUNDCOLOR);
-        Element scinotesBackground = (Element) allSizeElements.item(0);
-
-        String rgb = Integer.toHexString(color.getRGB());
-        scinotesBackground.setAttribute(VALUE, COLORPREFIX + rgb.substring(2, rgb.length()));
-
-        /* Save changes */
-        writeDocument();
-    }
-
-    /**
-     * Save SciNotes foregroundColor
-     * @param color the new Color
-     */
-    public static void saveSciNotesForeground(Color color) {
-        readDocument();
-
-        Element root = document.getDocumentElement();
-
-        NodeList profiles = root.getElementsByTagName(EDITOR);
-        Element scinotesProfile = (Element) profiles.item(0);
-
-        NodeList allSizeElements = scinotesProfile.getElementsByTagName(FOREGROUNDCOLOR);
-        Element scinotesForeground = (Element) allSizeElements.item(0);
-
-        String rgb = Integer.toHexString(color.getRGB());
-        scinotesForeground.setAttribute(VALUE, COLORPREFIX + rgb.substring(2, rgb.length()));
-
-        /* Save changes */
-        writeDocument();
-    }
-
-    /**
-     * Save SciNotes autoIndent or not
-     * @param activated if autoIndent should be used or not
-     */
-    public static void saveSuppressComments(boolean activated) {
-        /* Load file */
-        readDocument();
-
-        Element root = document.getDocumentElement();
-
-        NodeList profiles = root.getElementsByTagName(PROFILE);
-        Element scinotesProfile = (Element) profiles.item(0);
-
-        NodeList allSizeElements = scinotesProfile.getElementsByTagName(SUPPRESSCOMMENTS);
-        Element suppressComments = (Element) allSizeElements.item(0);
-        if (suppressComments == null) {
-            Element sup = document.createElement(SUPPRESSCOMMENTS);
-            sup.setAttribute(VALUE, new Boolean(activated).toString());
-            scinotesProfile.appendChild((Node) sup);
-        } else {
-            suppressComments.setAttribute(VALUE, new Boolean(activated).toString());
-        }
-        /* Save changes */
-        writeDocument();
-    }
-
-    /**
-     * @return a boolean if autoIndent should be used or not
-     */
-    public static boolean getSuppressComments() {
-        /* Load file */
-        readDocument();
-
-        Element root = document.getDocumentElement();
-        NodeList profiles = root.getElementsByTagName(PROFILE);
-        Element scinotesProfile = (Element) profiles.item(0);
-        NodeList allSizeElements = scinotesProfile.getElementsByTagName(SUPPRESSCOMMENTS);
-        Element suppressComments = (Element) allSizeElements.item(0);
-
-        if (suppressComments == null) {
-            return true;
-        } else {
-            return new Boolean(suppressComments.getAttribute(VALUE));
-        }
     }
 
     /**
