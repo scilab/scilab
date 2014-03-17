@@ -56,7 +56,7 @@ function  ok = modelicac(Flat, Flat_functions, xmlfileTMP, Jacobian, Cfile, with
         JAC="";
     end
 
-    instr = strcat([exe, Flat, Flat_functions, XMLfiles, out, JAC, Errfile], " ");
+    instr = strcat([exe, Flat, Flat_functions, XMLfiles, out, JAC], " ");
 
     if getos() == "Windows" then
         if init then
