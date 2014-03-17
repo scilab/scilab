@@ -89,27 +89,11 @@ public final class ConfigSciNotesManager {
     private static final String VALUE = "value";
     private static final String VERSION = "version";
     private static final String STYLE = "style";
-    private static final String UNDERLINE = "underline";
-    private static final String DEFAULTUNDERLINE = "defaultUnderline";
-    private static final String STROKE = "stroke";
-    private static final String DEFAULTSTROKE = "defaultStroke";
-    private static final String FONT_SIZE = "FontSize";
-    private static final String FONT_STYLE = "FontStyle";
-    private static final String FONT_NAME = "FontName";
     private static final String DEFAULT = "default";
     private static final String WIDTH = "width";
     private static final String HEIGHT = "height";
-    private static final String XCOORD = "x";
-    private static final String YCOORD = "y";
-    private static final String MAINWINPOSITION = "MainWindowPosition";
-    private static final String MAINWINSIZE = "MainWindowSize";
-    private static final String AUTOINDENT = "AutoIndent";
-    private static final String DEFAULTENCONDING = "DefaultEncoding";
-    private static final String LINEHIGHLIGHTER = "LineHighlighter";
-    private static final String HELPONTYPING = "HelpOnTyping";
-    private static final String LINENUMBERING = "LineNumbering";
     private static final String EDITOR = "SciNotes";
-    
+
     private static final String FOREGROUNDCOLOR = "ForegroundColor";
     private static final String BACKGROUNDCOLOR = "BackgroundColor";
     private static final String ALTERNCOLORS = "AlternColors";
@@ -168,14 +152,6 @@ public final class ConfigSciNotesManager {
 
     private static final String SCI = "SCI";
     private static final String SCINOTES_CONFIG_FILE = System.getenv(SCI) + "/modules/scinotes/etc/scinotesConfiguration.xml";
-
-    private static final int PLAIN = 0;
-    private static final int BOLD =  1;
-    private static final int ITALIC = 2;
-    private static final int BOLDITALIC = 3;
-
-    private static final int DEFAULT_WIDTH = 650;
-    private static final int DEFAULT_HEIGHT = 550;
 
     private static final int MAXRECENT = 20;
 
@@ -896,29 +872,7 @@ public final class ConfigSciNotesManager {
      */
     private static void writeDocument() {
         if (mustSave) {
-            Transformer transformer = null;
-            try {
-                transformer = ScilabTransformerFactory.newInstance().newTransformer();
-            } catch (TransformerConfigurationException e1) {
-                System.err.println(ERROR_WRITE + USER_SCINOTES_CONFIG_FILE);
-                System.err.println(e1);
-            } catch (TransformerFactoryConfigurationError e1) {
-                System.err.println(ERROR_WRITE + USER_SCINOTES_CONFIG_FILE);
-                System.err.println(e1);
-            }
-
-            if (transformer != null) {
-                transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-
-                StreamResult result = new StreamResult(new File(USER_SCINOTES_CONFIG_FILE));
-                DOMSource source = new DOMSource(document);
-                try {
-                    transformer.transform(source, result);
-                } catch (TransformerException e) {
-                    System.err.println(ERROR_WRITE + USER_SCINOTES_CONFIG_FILE);
-                    System.err.println(e);
-                }
-            }
+            ScilabXMLUtilities.writeDocument(document, USER_SCINOTES_CONFIG_FILE);
         }
     }
 
@@ -1599,13 +1553,6 @@ public final class ConfigSciNotesManager {
      * @param r the element to clean
      */
     private static void clean(Node r) {
-        Node n = r.getFirstChild();
-        if (n != null && n instanceof Text) {
-            r.removeChild(n);
-        }
-        n = r.getLastChild();
-        if (n != null && n instanceof Text) {
-            r.removeChild(n);
-        }
+        ScilabXMLUtilities.removeEmptyLines(r);
     }
 }

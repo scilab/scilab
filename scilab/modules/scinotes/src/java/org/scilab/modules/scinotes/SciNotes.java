@@ -689,7 +689,7 @@ public class SciNotes extends SwingScilabDockablePanel {
     public void restorePreviousSession() {
         restored = true;
         if (!SciNotesOptions.getSciNotesPreferences().restartOpen || !ConfigSciNotesManager.getRestoreOpenedFiles() || ConfigSciNotesManager.countExistingOpenFiles(getUUID()) == 0) {
-            if (getTabPane().getTabCount() != 1 || getTextPane(0).getName() != null) {
+            if (getTabPane().getTabCount() == 0) {
                 openFile(null, 0, null);
             }
 
@@ -709,10 +709,8 @@ public class SciNotes extends SwingScilabDockablePanel {
                     for (File f : list) {
                         openFile(f.getPath(), 0, null);
                     }
-                } else {
-                    if (getTabPane().getTabCount() == 0 || getTextPane(0).getName() == null) {
-                        openFile(null, 0, null);
-                    }
+                } else if (getTabPane().getTabCount() == 0) {
+                    openFile(null, 0, null);
                 }
 
                 setWindowIcon("accessories-text-editor");
@@ -746,7 +744,10 @@ public class SciNotes extends SwingScilabDockablePanel {
                     }
                     if (!exists) {
                         success = WindowsConfigurationManager.restoreUUID(uuid);
-                        break;
+                        if (success) {
+                            break;
+                        }
+                        ConfigSciNotesManager.removeEditorUUID(uuid);
                     }
                 }
             }

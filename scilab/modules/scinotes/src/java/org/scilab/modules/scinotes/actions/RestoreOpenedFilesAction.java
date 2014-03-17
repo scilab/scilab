@@ -207,6 +207,8 @@ public class RestoreOpenedFilesAction extends DefaultCheckAction {
         dialog.setResizable(false);
         dialog.setLocationRelativeTo(owner);
 
+        ok.requestFocusInWindow();
+
         dialog.setVisible(true);
     }
 
