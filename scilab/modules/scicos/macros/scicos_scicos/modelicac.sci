@@ -73,8 +73,6 @@ function  ok = modelicac(Flat, Flat_functions, xmlfileTMP, Jacobian, Cfile, with
         messagebox(err, _("Modelica compiler"), "error", "modal");
         ok=%f;
         return
-    else
-        disp(rep)
     end
 
 endfunction
