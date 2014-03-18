@@ -1,4 +1,4 @@
-                 Changes between version 5.5.0-beta-1 and 5.5.0-beta-2
+﻿                 Changes between version 5.5.0-beta-1 and 5.5.0-beta-2
                  =====================================================
 
 GUI Refactoring and Improvements
@@ -440,6 +440,8 @@ Scilab Bug Fixes
 * Bug #11680 fixed - GUI functions in Scilab 5.4.X were much slower than in Scilab 5.3.3.
 
 * Bug #11714 fixed - help_from_sci sometimes failed when input function had "<imagedata>" comments.
+
+* Bug #11779 fixed - Wrong type in the documentation of getNbInputArgument and getNbOutputArgument fixed.
 
 * Bug #11814 fixed - Typo in CACSD help chapter fixed.
 
