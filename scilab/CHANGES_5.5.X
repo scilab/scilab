@@ -698,6 +698,8 @@ Scilab Bug Fixes
 
 * Bug #13152 fixed - Typo fixed in syslin French help page.
 
+* Bug #13164 fixed - Miscolorization in SciNotes colors preferences fixed.
+
 * Bug #13165 fixed - Preferences reset did not show a confirmation pop-up.
 
 * Bug #13168 fixed - Wrong interpretation of star followed by minus fixed.

@@ -20,7 +20,9 @@ import java.util.Map;
 
 import javax.swing.SwingUtilities;
 
+import org.scilab.modules.commons.ScilabCommonsUtils;
 import org.scilab.modules.localization.Messages;
+import org.scilab.modules.scinotes.ScilabLexer;
 
 /**
  * @author Calixte DENIZET
@@ -40,6 +42,12 @@ public class ScilabPreferences {
      * Open the preferences window
      */
     public static void openPreferences(final String initialPath) {
+        // ScilabLexer.update() causes the load of the various Scilab macros and functions
+        // and it must be made in the Scilab thread (to avoid conflicts)
+        // So we update the lexer (even if it is useless) to be sure to have good kwd colorization (bug 13164)
+        ScilabCommonsUtils.loadOnUse("SciNotes");
+        ScilabLexer.update();
+
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 XConfigManager.openPreferences(initialPath);
