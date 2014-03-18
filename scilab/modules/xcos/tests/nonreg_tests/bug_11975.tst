@@ -25,7 +25,7 @@
 ilib_verbose(0);
 
 // Inverted_pendulum
-if (~isdef("setw")) then 
+if (~isdef("setw")) then
     exec("SCI/modules/xcos/demos/setw.sci",-1)
 end
 assert_checktrue(importXcosDiagram(SCI + "/modules/xcos/demos/Inverted_pendulum.zcos"));
@@ -36,6 +36,13 @@ assert_checktrue(ok);
 assert_checktrue(importXcosDiagram("SCI/modules/xcos/demos/IF_block.zcos"));
 [cpr, ok] = xcos_compile(scs_m);
 assert_checktrue(ok);
+
+// Redefining messagebox() to avoid popup
+prot = funcprot();
+funcprot(0);
+function messagebox(msg, msg_title)
+endfunction
+funcprot(prot);
 
 // Hydraulics
 assert_checktrue(importXcosDiagram("SCI/modules/xcos/demos/ModelicaBlocks/Hydraulics.zcos"));
