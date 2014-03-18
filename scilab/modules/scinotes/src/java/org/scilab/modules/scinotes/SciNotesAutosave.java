@@ -174,7 +174,7 @@ public class SciNotesAutosave implements ActionListener {
                 int n = ed.getTabPane().getTabCount();
                 for (int i = 0; i < n; i++) {
                     ScilabEditorPane sep = ed.getTextPane(i);
-                    if (sep.getName() != null && !sep.getName().isEmpty() && !sep.checkExternalModif() && ((ScilabDocument) sep.getDocument()).isContentModified() && ((ScilabDocument) sep.getDocument()).isContentModifiedSinceBackup()) {
+                    if (sep != null && sep.getName() != null && !sep.getName().isEmpty() && !sep.checkExternalModif() && ((ScilabDocument) sep.getDocument()).isContentModified() && ((ScilabDocument) sep.getDocument()).isContentModifiedSinceBackup()) {
                         String name = sep.getName();
                         File file = getBackupFile(name);
                         boolean identic = false;

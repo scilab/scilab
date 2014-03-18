@@ -63,10 +63,12 @@ import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.utils.ClosingOperationsManager;
 
+import org.scilab.modules.scinotes.EditorComponent;
 import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.ScilabEditorPane;
 import org.scilab.modules.scinotes.actions.CloseAction;
 import org.scilab.modules.scinotes.actions.CloseAllButThisAction;
+import org.scilab.modules.scinotes.actions.RestoreOpenedFilesAction;
 import org.scilab.modules.scinotes.actions.SaveAction;
 
 /**
@@ -361,11 +363,13 @@ public class ScilabTabbedPane extends JTabbedPane implements DragGestureListener
         if (inputEvent instanceof MouseEvent) {
             MouseEvent mouseEvent = (MouseEvent) inputEvent;
             int index = indexAtLocation(mouseEvent.getX(), mouseEvent.getY());
-            currentWhenDragged = this;
+            if (index == -1 || (getComponentAt(index) instanceof EditorComponent)) {
+                currentWhenDragged = this;
 
-            if (index != -1) {
-                draggedIndex = index;
-                dge.startDrag(DragSource.DefaultMoveDrop, this, this);
+                if (index != -1) {
+                    draggedIndex = index;
+                    dge.startDrag(DragSource.DefaultMoveDrop, this, this);
+                }
             }
         }
     }
@@ -454,13 +458,22 @@ public class ScilabTabbedPane extends JTabbedPane implements DragGestureListener
         }
 
         public void closeTab() {
-            String name = editor.getTextPane(editor.getTabPane().indexOfTabComponent(this)).getName();
-            editor.closeTabAt(editor.getTabPane().indexOfTabComponent(this));
-            if (getTabCount() == 0) {
-                if (name != null) {
+            ScilabEditorPane sep = editor.getTextPane(editor.getTabPane().indexOfTabComponent(this));
+            if (sep != null) {
+                String name = sep.getName();
+                editor.closeTabAt(editor.getTabPane().indexOfTabComponent(this));
+                if (getTabCount() == 0) {
+                    if (name != null) {
+                        editor.addEmptyTab();
+                    } else {
+                        SciNotes.closeEditor(editor);
+                    }
+                }
+            } else if (editor.getTabPane().getTabComponentAt(editor.getTabPane().indexOfTabComponent(this)) != null) {
+                editor.getTabPane().remove(editor.getTabPane().indexOfTabComponent(this));
+                if (editor.getTabPane().getTabCount() == 0) {
                     editor.addEmptyTab();
-                } else {
-                    SciNotes.closeEditor(editor);
+                    RestoreOpenedFilesAction.restoreEnabledComponents(editor);
                 }
             }
         }

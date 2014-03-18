@@ -16,6 +16,8 @@ package org.scilab.modules.scinotes;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -45,6 +47,7 @@ import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
@@ -581,7 +584,7 @@ public class SciNotes extends SwingScilabDockablePanel {
         ScilabLexer.update();
         launchSciNotes();
         ScilabEditorPane theTextPane;
-        if (editor.getTabPane().getTabCount() != 0) {
+        if (editor.getTabPane().getTabCount() != 0 && editor.getTextPane(0) != null) {
             String name = editor.getTextPane(0).getName();
             if (name == null) {
                 theTextPane = editor.getTextPane(0);
@@ -630,7 +633,7 @@ public class SciNotes extends SwingScilabDockablePanel {
         ScilabEditorPane sep = editor.getTextPane();
 
         if (currentSep.getName() != null) {
-            editor.getTabPane().setTitleAt(0, title);
+            sep.setTitle(title);
             editor.setTitle(winTitle);
         }
 
@@ -642,6 +645,8 @@ public class SciNotes extends SwingScilabDockablePanel {
         editor.enableUndoButton(false);
         editor.enableRedoButton(false);
         ConfigSciNotesManager.saveToOpenFiles(sep.getName(), editor, editor.getTextPane());
+
+        editor.activeRestoreTab();
     }
 
     /**
@@ -699,29 +704,9 @@ public class SciNotes extends SwingScilabDockablePanel {
             return;
         }
 
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                RestoreOpenedFilesAction.displayDialog((JFrame) SwingUtilities.getAncestorOfClass(JFrame.class, SciNotes.this), getUUID().toString());
-                List<File> list = RestoreOpenedFilesAction.getSelectedFiles();
-
-                if (list != null && list.size() != 0) {
-                    for (File f : list) {
-                        openFile(f.getPath(), 0, null);
-                    }
-                } else if (getTabPane().getTabCount() == 0) {
-                    openFile(null, 0, null);
-                }
-
-                setWindowIcon("accessories-text-editor");
-
-                if (navigator != null) {
-                    navigator.updateTree();
-                }
-
-                WindowsConfigurationManager.restorationFinished(SciNotes.this);
-            }
-        });
+        addRestoreTab();
+        setWindowIcon("accessories-text-editor");
+        WindowsConfigurationManager.restorationFinished(SciNotes.this);
     }
 
     /**
@@ -784,6 +769,7 @@ public class SciNotes extends SwingScilabDockablePanel {
 
         if (filePath == null) {
             addEmptyTab();
+            activeRestoreTab();
             return;
         }
 
@@ -791,12 +777,14 @@ public class SciNotes extends SwingScilabDockablePanel {
         if (!f.getParentFile().exists()) {
             JOptionPane.showMessageDialog(SciNotes.this, SciNotesMessages.OPEN_ERROR);
             addEmptyTab();
+            activeRestoreTab();
             return;
         }
 
         if (f.isDirectory()) { /* Bug 5131 */
             ConfigManager.saveLastOpenedDirectory(f.getPath());
             addEmptyTab();
+            activeRestoreTab();
             return;
         }
 
@@ -814,6 +802,15 @@ public class SciNotes extends SwingScilabDockablePanel {
             ConfigSciNotesManager.saveToRecentOpenedFiles(filePath);
             RecentFileAction.updateRecentOpenedFilesMenu(this);
         }
+
+        activeRestoreTab();
+    }
+
+    public void activeRestoreTab() {
+        if (getTextPane(0) == null) {
+            tabPane.setSelectedIndex(0);
+            getInfoBar().setText("");
+        }
     }
 
     /**
@@ -822,7 +819,9 @@ public class SciNotes extends SwingScilabDockablePanel {
     public void closeSciNotes() {
         for (int i = 0; i < getTabPane().getTabCount(); i++) {
             ScilabEditorPane textPaneAt = getTextPane(i);
-            textPaneAt.destroy();
+            if (textPaneAt != null) {
+                textPaneAt.destroy();
+            }
         }
 
         FindAction.close();
@@ -985,7 +984,7 @@ public class SciNotes extends SwingScilabDockablePanel {
          * Test for modification added after bug 5103 fix: do not ask the user
          * for an Untitled not-modified file saving when closing SciNotes
          */
-        if (((ScilabDocument) textPaneAt.getDocument()).isContentModified()) {
+        if (textPaneAt != null && ((ScilabDocument) textPaneAt.getDocument()).isContentModified()) {
             if (!save(index, false, false)) {
                 return false;
             }
@@ -1433,6 +1432,17 @@ public class SciNotes extends SwingScilabDockablePanel {
         return sep;
     }
 
+    public void addRestoreTab() {
+        try {
+            JPanel panel = RestoreOpenedFilesAction.getTab(this, getUUID().toString());
+            if (panel != null) {
+                tabPane.addTab("Restore", panel);
+            }
+        } catch (Exception e) {
+            System.err.println(e);
+        }
+    }
+
     /**
      * Init a pane
      *
@@ -1765,7 +1775,7 @@ public class SciNotes extends SwingScilabDockablePanel {
         int index = -1;
         for (int i = 0; i < tabPane.getTabCount(); i++) {
             ScilabEditorPane textPaneAt = getTextPane(i);
-            if (f.getAbsolutePath().equals(textPaneAt.getName())) {
+            if (textPaneAt != null && f.getAbsolutePath().equals(textPaneAt.getName())) {
                 /* File is already opened */
                 tabPane.setSelectedIndex(i);
                 if (f.lastModified() > textPaneAt.getLastModified()) {
@@ -1831,18 +1841,20 @@ public class SciNotes extends SwingScilabDockablePanel {
      */
     public ScilabEditorPane getTextPane() {
         try {
-            EditorComponent c = (EditorComponent) tabPane.getSelectedComponent();
-            ScilabEditorPane pane = c.getEditorPane();
-            if (ScilabEditorPane.getFocusedPane() == pane.getOtherPaneInSplit()) {
-                return pane.getOtherPaneInSplit();
-            }
+            if (tabPane.getSelectedComponent() instanceof EditorComponent) {
+                EditorComponent c = (EditorComponent) tabPane.getSelectedComponent();
+                ScilabEditorPane pane = c.getEditorPane();
+                if (ScilabEditorPane.getFocusedPane() == pane.getOtherPaneInSplit()) {
+                    return pane.getOtherPaneInSplit();
+                }
 
-            return pane;
+                return pane;
+            }
         } catch (NullPointerException e) {
-            return null;
         } catch (ArrayIndexOutOfBoundsException e) {
-            return null;
         }
+
+        return null;
     }
 
     /**
@@ -1854,18 +1866,20 @@ public class SciNotes extends SwingScilabDockablePanel {
      */
     public ScilabEditorPane getTextPane(int index) {
         try {
-            EditorComponent c = (EditorComponent) tabPane.getComponentAt(index);
-            ScilabEditorPane pane = c.getEditorPane();
-            if (ScilabEditorPane.getFocusedPane() == pane.getOtherPaneInSplit()) {
-                return pane.getOtherPaneInSplit();
-            }
+            if (tabPane.getComponentAt(index) instanceof EditorComponent) {
+                EditorComponent c = (EditorComponent) tabPane.getComponentAt(index);
+                ScilabEditorPane pane = c.getEditorPane();
+                if (ScilabEditorPane.getFocusedPane() == pane.getOtherPaneInSplit()) {
+                    return pane.getOtherPaneInSplit();
+                }
 
-            return pane;
+                return pane;
+            }
         } catch (NullPointerException e) {
-            return null;
         } catch (ArrayIndexOutOfBoundsException e) {
-            return null;
         }
+
+        return null;
     }
 
     /**
@@ -2315,7 +2329,7 @@ public class SciNotes extends SwingScilabDockablePanel {
 
             if (getTabPane().getTabCount() == 2) {
                 ScilabEditorPane pane = getTextPane(0);
-                if (pane.getName() == null && !((ScilabDocument) pane.getDocument()).isContentModified()) {
+                if (pane != null && pane.getName() == null && !((ScilabDocument) pane.getDocument()).isContentModified()) {
                     closeTabAt(0);
                 }
             }
@@ -2469,8 +2483,8 @@ public class SciNotes extends SwingScilabDockablePanel {
      *            the SciNotes editor
      */
     private static void setKeyStrokeAction(ScilabEditorPane sep, SciNotes ed) {
-        if (ed.getTextPane(0) != sep) {
-            ScilabEditorPane s = ed.getTextPane(0);
+        ScilabEditorPane s = ed.getTextPane(0);
+        if (s != null && s != sep) {
             sep.setInputMap(JComponent.WHEN_FOCUSED, s.getInputMap());
             return;
         }

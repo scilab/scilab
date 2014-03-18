@@ -15,7 +15,6 @@ package org.scilab.modules.scinotes.actions;
 
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Dialog.ModalityType;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -29,7 +28,9 @@ import java.awt.event.MouseEvent;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.EventObject;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import java.util.Vector;
 
@@ -59,6 +60,8 @@ import javax.swing.tree.TreePath;
 
 import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
+import org.scilab.modules.gui.bridge.menubar.SwingScilabMenuBar;
+import org.scilab.modules.gui.bridge.toolbar.SwingScilabToolBar;
 import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.ScilabEditorPane;
 import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
@@ -76,6 +79,7 @@ public class RestoreOpenedFilesAction extends DefaultCheckAction {
     private static final String ESCAPE = "ESCAPE";
     private static final Icon SCILAB_ICON = new ImageIcon(FindIconHelper.findIcon("scilab"));
     private static List<File> selectedFiles;
+    private static Map<SciNotes, List<Component>> listOfComponents;
 
     /**
      * Constructor
@@ -115,31 +119,51 @@ public class RestoreOpenedFilesAction extends DefaultCheckAction {
         return selectedFiles;
     }
 
-    /**
-     * Display the JDialog
-     * @param owner the owner
-     * @param uuid the editor uuid
-     */
-    public static void displayDialog(JFrame owner, final String uuid) {
-        selectedFiles = null;
-        int dimX = 450;
-        int dimY = 300;
-
-        final JTree tree = fillTree(uuid);
-        if (tree == null) {
-            return;
+    private static void saveEnabledComponents(SciNotes ed) {
+        List<Component> list = new ArrayList<Component>();
+        SwingScilabMenuBar mb = (SwingScilabMenuBar) ed.getMenuBar().getAsSimpleMenuBar();
+        SwingScilabToolBar tb = (SwingScilabToolBar) ed.getToolBar().getAsSimpleToolBar();
+        for (int i = 0; i < mb.getMenuCount(); i++) {
+            if (mb.getMenu(i).isEnabled()) {
+                list.add(mb.getMenu(i));
+                mb.getMenu(i).setEnabled(false);
+            }
+        }
+        for (int i = 0; i < tb.getComponentCount(); i++) {
+            if (tb.getComponent(i).isEnabled()) {
+                list.add(tb.getComponent(i));
+                tb.getComponent(i).setEnabled(false);
+            }
         }
 
-        final JDialog dialog = new JDialog(owner);
-        dialog.getRootPane().getInputMap(JComponent.WHEN_FOCUSED).put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE , 0), ESCAPE);
-        dialog.getRootPane().getActionMap().put(ESCAPE, new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dialog.dispose();
-            }
-        });
+        if (listOfComponents == null) {
+            listOfComponents = new HashMap<SciNotes, List<Component>>();
+        }
+        listOfComponents.put(ed, list);
+    }
 
-        dialog.setPreferredSize(new Dimension(dimX, dimY));
+    public static void restoreEnabledComponents(SciNotes ed) {
+        if (listOfComponents != null && listOfComponents.containsKey(ed)) {
+            SwingScilabMenuBar mb = (SwingScilabMenuBar) ed.getMenuBar().getAsSimpleMenuBar();
+            SwingScilabToolBar tb = (SwingScilabToolBar) ed.getToolBar().getAsSimpleToolBar();
+            List<Component> l = listOfComponents.get(ed);
+            for (Component c : l) {
+                c.setEnabled(true);
+            }
+
+            l.clear();
+            listOfComponents.remove(ed);
+            if (listOfComponents.isEmpty()) {
+                listOfComponents = null;
+            }
+        }
+    }
+
+    public static JPanel getTab(final SciNotes ed, final String uuid) {
+        final JTree tree = fillTree(uuid);
+        if (tree == null) {
+            return null;
+        }
 
         JButton ok = new JButton(SciNotesMessages.OK);
         JButton cancel = new JButton(SciNotesMessages.CANCEL);
@@ -148,8 +172,21 @@ public class RestoreOpenedFilesAction extends DefaultCheckAction {
         ok.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                selectedFiles = getOpenedFiles(tree, uuid);
-                dialog.dispose();
+                List<File> list = getOpenedFiles(tree, uuid);
+                ed.getTabPane().remove(0);
+                if (list != null && list.size() != 0) {
+                    for (File f : list) {
+                        ed.openFile(f.getPath(), 0, null);
+                    }
+                } else if (ed.getTabPane().getTabCount() == 0) {
+                    ed.addEmptyTab();
+                }
+
+                if (ed.getNavigator() != null) {
+                    ed.getNavigator().updateTree();
+                }
+
+                restoreEnabledComponents(ed);
             }
         });
 
@@ -164,7 +201,11 @@ public class RestoreOpenedFilesAction extends DefaultCheckAction {
                         break;
                     }
                 }
-                dialog.dispose();
+                ed.getTabPane().remove(0);
+                if (ed.getTabPane().getTabCount() == 0) {
+                    ed.addEmptyTab();
+                }
+                restoreEnabledComponents(ed);
             }
         });
 
@@ -178,38 +219,30 @@ public class RestoreOpenedFilesAction extends DefaultCheckAction {
         }
 
         JOptionPane jop = new JOptionPane(SciNotesMessages.RESTORE_FILES_QUERY, JOptionPane.QUESTION_MESSAGE, JOptionPane.CANCEL_OPTION, null, buttons);
-        JPanel panel = new JPanel();
-        panel.setPreferredSize(new Dimension(dimX, dimY));
+        final JPanel panel = new JPanel();
         panel.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
         c.gridheight = 1;
         c.gridwidth = 1;
         c.gridx = 0;
         c.gridy = 0;
-        c.weighty = 0.5;
+        c.weightx = 1;
+        c.weighty = 0.1;
         c.anchor = GridBagConstraints.PAGE_START;
         c.fill = GridBagConstraints.HORIZONTAL;
         panel.add(jop, c);
         c.gridx = 0;
         c.gridy = 1;
         c.gridheight = GridBagConstraints.REMAINDER;
-        c.fill = GridBagConstraints.HORIZONTAL;
+        c.weighty = 0.9;
+        c.fill = GridBagConstraints.BOTH;
         JScrollPane scroll = new JScrollPane(tree);
-        scroll.setMinimumSize(new Dimension(dimX - 2 * GAP, dimY / 2));
         panel.add(scroll, c);
-
-        dialog.setContentPane(panel);
-
-        dialog.pack();
-        dialog.setIconImage(((ImageIcon) SCILAB_ICON).getImage());
-        dialog.setTitle(SciNotesMessages.RESTORE_FILES_TITLE);
-        dialog.setModalityType(ModalityType.APPLICATION_MODAL);
-        dialog.setResizable(false);
-        dialog.setLocationRelativeTo(owner);
-
         ok.requestFocusInWindow();
 
-        dialog.setVisible(true);
+        saveEnabledComponents(ed);
+
+        return panel;
     }
 
     /**

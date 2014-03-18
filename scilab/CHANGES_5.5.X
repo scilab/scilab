@@ -633,6 +633,8 @@ Scilab Bug Fixes
 
 * Bug #13050 fixed - The result of mvvacov was not symmetric.
 
+* Bug #13051 fixed - SciNotes restoration could block desktop one.
+
 * Bug #13053 fixed - datatipCreate did not return datatip handle.
 
 * Bug #13055 fixed - Array indexing did not follow Scilab convention in JIMS.

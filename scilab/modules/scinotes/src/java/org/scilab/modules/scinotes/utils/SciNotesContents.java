@@ -41,9 +41,10 @@ public class SciNotesContents extends JPanel {
         add(stp);
         addFocusListener(new FocusListener() {
             public void focusGained(FocusEvent e) {
-                editor.getTextPane().requestFocus();
+                if (editor.getTextPane() != null) {
+                    editor.getTextPane().requestFocus();
+                }
             }
-
             public void focusLost(FocusEvent e) { }
         });
     }
