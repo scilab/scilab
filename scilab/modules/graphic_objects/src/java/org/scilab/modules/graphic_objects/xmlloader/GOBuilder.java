@@ -1,7 +1,8 @@
 package org.scilab.modules.graphic_objects.xmlloader;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_BORDER_OPT_PADDING__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FOREGROUNDCOLOR__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_IMAGE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AXES_SIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CALLBACKTYPE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FOREGROUNDCOLOR__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_BORDER_OPT_PADDING__;
@@ -425,6 +426,14 @@ public class GOBuilder {
                         if (item.equals("true")) {
                             controller.setProperty(uic, __GO_UI_FONTANGLE__, "italic");
                         }
+                    }
+                    break;
+                }
+                case __GO_UI_IMAGE__: {
+                    String[] text = new String[1];
+                    text[0] = xmlAttributes.get("image");
+                    if (text[0] != null) {
+                        controller.setProperty(uic, __GO_UI_STRING__, text);
                     }
                     break;
                 }
