@@ -37,6 +37,8 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
 
+import javax.swing.JComponent;
+
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.CallBack;
 import org.scilab.modules.gui.bridge.editbox.SwingScilabEditBox;
@@ -82,15 +84,19 @@ public final class SwingViewWidget {
         switch (property) {
             case __GO_UI_BACKGROUNDCOLOR__: {
                 Double[] allColors = ((Double[]) value);
-                if (allColors[0] != -1) {
+                if (allColors[0] == -1) {
+                    // Do not set BackgroundColor for widgets
+                    // rely on Look and Feel
+                    ((JComponent) uiControl).setOpaque(true);
+                    uiControl.resetBackground();
+                } else if (allColors[0] == -2) {
+                    ((JComponent) uiControl).setOpaque(false);
+                } else {
+                    ((JComponent) uiControl).setOpaque(true);
                     uiControl.setBackground(new Color(
                                                 (int) (allColors[0] * COLORS_COEFF),
                                                 (int) (allColors[1] * COLORS_COEFF),
                                                 (int) (allColors[2] * COLORS_COEFF)));
-                } else {
-                    // Do not set BackgroundColor for widgets
-                    // rely on Look and Feel
-                    uiControl.resetBackground();
                 }
                 break;
             }
