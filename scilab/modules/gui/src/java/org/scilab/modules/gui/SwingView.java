@@ -969,6 +969,7 @@ public final class SwingView implements GraphicView {
     private void updateFigureChildren(TypedObject updatedObject, Integer[] newChildren) {
         Container updatedComponent = (Container) updatedObject.getValue();
         boolean needRevalidate = false;
+        boolean needRevalidateMenubar = false;
 
         // Add new children
         for (Integer childId : newChildren) {
@@ -1009,7 +1010,7 @@ public final class SwingView implements GraphicView {
                             ((Container) ((SwingScilabPanel) updatedComponent).getMenuBar().getAsSimpleMenuBar()).add((SwingScilabMenu) allObjects.get(childId).getValue());
                             break;
                     }
-                    needRevalidate = true;
+                    needRevalidateMenubar = true;
                 }
             }
         }
@@ -1048,10 +1049,16 @@ public final class SwingView implements GraphicView {
                             ((Container) ((SwingScilabPanel) updatedComponent).getMenuBar().getAsSimpleMenuBar()).remove((SwingScilabMenu) allObjects.get(childId).getValue());
                             break;
                     }
-                    needRevalidate = true;
+                    needRevalidateMenubar = true;
                 }
             }
         }
+
+        if (needRevalidateMenubar) {
+            ((JComponent) ((SwingScilabPanel) updatedComponent).getMenuBar().getAsSimpleMenuBar()).revalidate();
+            ((JComponent) ((SwingScilabPanel) updatedComponent).getMenuBar().getAsSimpleMenuBar()).repaint();
+        }
+
         if (needRevalidate && updatedComponent != null) {
             ((JComponent) updatedComponent).revalidate();
         }
