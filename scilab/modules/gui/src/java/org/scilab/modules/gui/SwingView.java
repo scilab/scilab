@@ -791,24 +791,21 @@ public final class SwingView implements GraphicView {
             return;
         }
 
-        //        if (SwingUtilities.isEventDispatchThread()) {
-        updateObjectOnEDT(registeredObject, id, property);
-        //        } else {
-        //            try {
-        //                SwingUtilities.invokeAndWait(new Runnable() {
-        //                    @Override
-        //                    public void run() {
-        //                        updateObjectOnEDT(registeredObject, id, property);
-        //                    }
-        //                });
-        //            } catch (InterruptedException e) {
-        //                // TODO Auto-generated catch block
-        //                e.printStackTrace();
-        //            } catch (InvocationTargetException e) {
-        //                // TODO Auto-generated catch block
-        //                e.printStackTrace();
-        //            }
-        //        }
+        if (SwingUtilities.isEventDispatchThread()) {
+            updateObjectOnEDT(registeredObject, id, property);
+        } else {
+            try {
+                SwingUtilities.invokeAndWait(new Runnable() {
+                    public void run() {
+                        updateObjectOnEDT(registeredObject, id, property);
+                    }
+                });
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public void updateObjectOnEDT(TypedObject registeredObject, final Integer id, final int property) {
