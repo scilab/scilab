@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -17,7 +17,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>txt=tree2code(tree,prettyprint)</synopsis>
+        <synopsis>txt = tree2code(tree, prettyprint)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>パラメータ</title>
@@ -25,7 +25,9 @@
             <varlistentry>
                 <term>tree</term>
                 <listitem>
-                    <para>マクロツリー (macr2treeの出力)</para>
+                    <para>
+                        マクロツリー (<function>macr2tree</function>の出力)
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -59,13 +61,13 @@
     <refsection>
         <title>説明</title>
         <para>
-            読み込まれたScilab関数 "ツリー" (macr2treeの出力)を指定することで, tree2code
+            読み込まれたScilab関数 "ツリー" (<function>macr2tree</function>の出力)を指定することで, <function>tree2code</function>
             によりコードを再生することができます.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 tree=macr2tree(cosh);
 txt=tree2code(tree,%T);
 write(%io(2),txt,'(a)');

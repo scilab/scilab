@@ -32,14 +32,14 @@
             出力引数を<literal>varargout(i)</literal>に保存することができます.
         </para>
         <para>
-            <literal>[X1,...Xn,varargout]= function ex()</literal> も
+            <literal>[X1,...,Xn,varargout] = function ex()</literal> も
             使用可能です.
             この場合,<literal>Xi</literal>引数は,
             <literal>varargout(i)</literal>と同様に
             関数内で代入される必要があります.
         </para>
         <para>
-            出力引数の実際の総数は,<link linkend="argn">argn(1)</link>で取得できます.
+            出力引数の実際の総数は,<code>argn(1)</code>で取得できます.
         </para>
     </refsection>
     <refsection>
@@ -47,13 +47,13 @@
         <para>
             <literal>varargout</literal> 変数は関数内で作成され,
             <link linkend="list">list</link>に代入される必要があります.
-            varargout が唯一の形式上の出力変数の場合,
+            <literal>varargout</literal> が唯一の形式上の出力変数の場合,
             リストには最低でも一つのエントリを含む必要があります.
         </para>
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 function varargout=exampl()
   varargout=list(1,2,3,4)
 endfunction
@@ -77,13 +77,16 @@ exampl1()
         <title>参照</title>
         <simplelist type="inline">
             <member>
+                <link linkend="argn">argn</link>
+            </member>
+            <member>
                 <link linkend="function">function</link>
             </member>
             <member>
-                <link linkend="varargin">varargin</link>
+                <link linkend="list">list</link>
             </member>
             <member>
-                <link linkend="list">list</link>
+                <link linkend="varargin">varargin</link>
             </member>
         </simplelist>
     </refsection>

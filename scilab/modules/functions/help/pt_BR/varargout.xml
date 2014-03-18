@@ -26,18 +26,18 @@
             extraídos da lista <literal>varargout</literal> definida na função.
         </para>
         <para>
-            <literal>varargout= function ex()</literal> pode ser chamado com
+            <literal>varargout = function ex()</literal> pode ser chamado com
             qualquer número de argumentos de saída. Dentro da função
-            <literal>ex</literal> , argumentos de saída podem ser armazenados em
+            <literal>ex</literal>, argumentos de saída podem ser armazenados em
             <literal>varargout(i)</literal>.
         </para>
         <para>
-            <literal>[X1,...Xn,varargout]= function ex()</literal> também pode
+            <literal>[X1,...,Xn,varargout] = function ex()</literal> também pode
             ser usado. Neste caso, as variáveis <literal>Xi</literal> devem estar
             atribuídas na função tanto quanto <literal>varargout(i)</literal>.
         </para>
         <para>
-            O número total real de argumentos de saída é dado por <link linkend="argn">argn(1)</link>
+            O número total real de argumentos de saída é dado por <code>argn(1)</code>
         </para>
     </refsection>
     <refsection>
@@ -45,13 +45,13 @@
         <para>
             A variável <literal>varargout</literal> deve ser criada dentro de
             uma função e atribuída a uma <link linkend="list">list</link>. Se
-            varargout for a única variável de saída formal, a lista deve conter pelo
+            <literal>varargout</literal> for a única variável de saída formal, a lista deve conter pelo
             menos uma entrada.
         </para>
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 function varargout=exampl()
   varargout=list(1,2,3,4)
 endfunction
@@ -65,6 +65,7 @@ function [a,b,varargout]=exampl1()
   b='second'
   varargout=list(1,2,3,4)
 endfunction
+
 exampl1()
 [a,b]=exampl1()
 [a,b,c]=exampl1()
@@ -74,13 +75,16 @@ exampl1()
         <title>Ver Também</title>
         <simplelist type="inline">
             <member>
+                <link linkend="argn">argn</link>
+            </member>
+            <member>
                 <link linkend="function">function</link>
             </member>
             <member>
-                <link linkend="varargin">varargin</link>
+                <link linkend="list">list</link>
             </member>
             <member>
-                <link linkend="list">list</link>
+                <link linkend="varargin">varargin</link>
             </member>
         </simplelist>
     </refsection>
