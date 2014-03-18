@@ -34,6 +34,8 @@ Source: modules\{#ATOMS}\macros\buildmacros.sce; DestDir: {app}\modules\{#ATOMS}
 Source: modules\{#ATOMS}\macros\buildmacros.bat; DestDir: {app}\modules\{#ATOMS}\macros; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 Source: modules\{#ATOMS}\macros\cleanmacros.bat; DestDir: {app}\modules\{#ATOMS}\macros; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
+Source: modules\{#ATOMS}\gui\*.xml; DestDir: {app}\modules\{#ATOMS}\gui; Components: {#COMPN_SCILAB}
+;
 ;Source: modules\{#ATOMS}\demos\*.*; DestDir: {app}\modules\{#ATOMS}\demos; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#ATOMS}\tests\*.*; DestDir: {app}\modules\{#ATOMS}\tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_TESTS}

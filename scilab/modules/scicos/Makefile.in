@@ -1135,8 +1135,15 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 
 ### XML2Modelica
 @OCAML_TRUE@@XCOS_TRUE@XML2Modelica_SOURCES = $(MLS_XML2Modelica)
-@OCAML_TRUE@@XCOS_TRUE@MLS_XML2Modelica = $(srcdir)/src/xml2modelica/xMLTree.ml $(srcdir)/src/xml2modelica/linenum.ml $(srcdir)/src/xml2modelica/stringParser.ml $(srcdir)/src/xml2modelica/stringLexer.ml $(srcdir)/src/xml2modelica/xMLParser.ml $(srcdir)/src/xml2modelica/xMLLexer.ml\
-@OCAML_TRUE@@XCOS_TRUE@	$(srcdir)/src/xml2modelica/modelicaCodeGenerator.ml $(srcdir)/src/xml2modelica/xML2Modelica.ml
+@OCAML_TRUE@@XCOS_TRUE@MLS_XML2Modelica = \
+@OCAML_TRUE@@XCOS_TRUE@	$(srcdir)/src/xml2modelica/xMLTree.ml \
+@OCAML_TRUE@@XCOS_TRUE@	$(srcdir)/src/xml2modelica/linenum.ml \
+@OCAML_TRUE@@XCOS_TRUE@	$(srcdir)/src/xml2modelica/stringParser.ml \
+@OCAML_TRUE@@XCOS_TRUE@	$(srcdir)/src/xml2modelica/stringLexer.ml \
+@OCAML_TRUE@@XCOS_TRUE@	$(srcdir)/src/xml2modelica/xMLParser.ml \
+@OCAML_TRUE@@XCOS_TRUE@	$(srcdir)/src/xml2modelica/xMLLexer.ml \
+@OCAML_TRUE@@XCOS_TRUE@	$(srcdir)/src/xml2modelica/modelicaCodeGenerator.ml \
+@OCAML_TRUE@@XCOS_TRUE@	$(srcdir)/src/xml2modelica/xML2Modelica.ml
 
 @OCAML_TRUE@@XCOS_TRUE@BASE_PATH_XML2Modelica = $(srcdir)/src/xml2modelica
 
