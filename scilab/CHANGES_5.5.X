@@ -443,6 +443,8 @@ Scilab Bug Fixes
 
 * Bug #11779 fixed - Wrong type in the documentation of getNbInputArgument and getNbOutputArgument fixed.
 
+* Bug #11789 fixed - Documentation was missing for nbInputArgument.
+
 * Bug #11814 fixed - Typo in CACSD help chapter fixed.
 
 * Bug #11953 fixed - Scilab crashed when global("") was typed.
