@@ -20,15 +20,13 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 
+
 /**
  * Describe an output of the modelica world.
  *
- * <p>
- * Java class for Output complex type.
+ * <p>Java class for Output complex type.
  *
- * <p>
- * The following schema fragment specifies the expected content contained within
- * this class.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  *
  * <pre>
  * &lt;complexType name="Output">
@@ -57,7 +55,11 @@ import javax.xml.bind.annotation.XmlType;
  *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Output", propOrder = { "name", "order", "dependencies" })
+@XmlType(name = "Output", propOrder = {
+    "name",
+    "order",
+    "dependencies"
+})
 public class Output {
 
     @XmlElement(required = true)
@@ -70,7 +72,9 @@ public class Output {
     /**
      * Gets the value of the name property.
      *
-     * @return possible object is {@link String }
+     * @return
+     *     possible object is
+     *     {@link String }
      *
      */
     public String getName() {
@@ -81,7 +85,8 @@ public class Output {
      * Sets the value of the name property.
      *
      * @param value
-     *            allowed object is {@link String }
+     *     allowed object is
+     *     {@link String }
      *
      */
     public void setName(String value) {
@@ -91,7 +96,9 @@ public class Output {
     /**
      * Gets the value of the order property.
      *
-     * @return possible object is {@link BigInteger }
+     * @return
+     *     possible object is
+     *     {@link BigInteger }
      *
      */
     public BigInteger getOrder() {
@@ -102,7 +109,8 @@ public class Output {
      * Sets the value of the order property.
      *
      * @param value
-     *            allowed object is {@link BigInteger }
+     *     allowed object is
+     *     {@link BigInteger }
      *
      */
     public void setOrder(BigInteger value) {
@@ -112,7 +120,9 @@ public class Output {
     /**
      * Gets the value of the dependencies property.
      *
-     * @return possible object is {@link Output.Dependencies }
+     * @return
+     *     possible object is
+     *     {@link Output.Dependencies }
      *
      */
     public Output.Dependencies getDependencies() {
@@ -123,20 +133,19 @@ public class Output {
      * Sets the value of the dependencies property.
      *
      * @param value
-     *            allowed object is {@link Output.Dependencies }
+     *     allowed object is
+     *     {@link Output.Dependencies }
      *
      */
     public void setDependencies(Output.Dependencies value) {
         this.dependencies = value;
     }
 
+
     /**
-     * <p>
-     * Java class for anonymous complex type.
+     * <p>Java class for anonymous complex type.
      *
-     * <p>
-     * The following schema fragment specifies the expected content contained
-     * within this class.
+     * <p>The following schema fragment specifies the expected content contained within this class.
      *
      * <pre>
      * &lt;complexType>
@@ -153,7 +162,9 @@ public class Output {
      *
      */
     @XmlAccessorType(XmlAccessType.FIELD)
-    @XmlType(name = "", propOrder = { "variable" })
+    @XmlType(name = "", propOrder = {
+        "variable"
+    })
     public static class Dependencies {
 
         protected String variable;
@@ -161,7 +172,9 @@ public class Output {
         /**
          * Gets the value of the variable property.
          *
-         * @return possible object is {@link String }
+         * @return
+         *     possible object is
+         *     {@link String }
          *
          */
         public String getVariable() {
@@ -172,7 +185,8 @@ public class Output {
          * Sets the value of the variable property.
          *
          * @param value
-         *            allowed object is {@link String }
+         *     allowed object is
+         *     {@link String }
          *
          */
         public void setVariable(String value) {

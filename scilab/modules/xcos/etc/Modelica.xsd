@@ -96,12 +96,14 @@
           <xs:annotation>
             <xs:documentation>Describe any model identifier.</xs:documentation>
           </xs:annotation>
-          <xs:sequence>
-            <xs:element name="parameter" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element name="explicit_variable" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element name="implicit_variable" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element name="input" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
-          </xs:sequence>
+        <xs:sequence>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="parameter" type="xs:string"/>
+            <xs:element name="explicit_variable" type="xs:string"/>
+            <xs:element name="implicit_variable" type="xs:string"/>
+            <xs:element name="input" type="xs:string"/>
+            </xs:choice>
+        </xs:sequence>
         </xs:complexType>
       </xs:element>
       <xs:element name="implicit_relations" minOccurs="0">
@@ -113,8 +115,10 @@
             <xs:element name="implicit_relation" minOccurs="0" maxOccurs="unbounded">
               <xs:complexType>
                 <xs:sequence>
-                  <xs:element name="implicit_variable" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
-                  <xs:element name="input" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:choice minOccurs="0" maxOccurs="unbounded">
+                      <xs:element name="implicit_variable" type="xs:string"/>
+                      <xs:element name="input" type="xs:string"/>
+                    </xs:choice>
                 </xs:sequence>
               </xs:complexType>
             </xs:element>

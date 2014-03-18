@@ -21,16 +21,13 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElements;
 import javax.xml.bind.annotation.XmlType;
 
+
 /**
- * Partial tree of a structured content. Each node of a this type must not be a
- * leaf.
+ * Partial tree of a structured content. Each node of a this type must not be a leaf.
  *
- * <p>
- * Java class for Struct complex type.
+ * <p>Java class for Struct complex type.
  *
- * <p>
- * The following schema fragment specifies the expected content contained within
- * this class.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  *
  * <pre>
  * &lt;complexType name="Struct">
@@ -61,7 +58,10 @@ import javax.xml.bind.annotation.XmlType;
  *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Struct", propOrder = { "name", "subnodes" })
+@XmlType(name = "Struct", propOrder = {
+    "name",
+    "subnodes"
+})
 public class Struct {
 
     @XmlElement(required = true)
@@ -72,7 +72,9 @@ public class Struct {
     /**
      * Gets the value of the name property.
      *
-     * @return possible object is {@link String }
+     * @return
+     *     possible object is
+     *     {@link String }
      *
      */
     public String getName() {
@@ -83,7 +85,8 @@ public class Struct {
      * Sets the value of the name property.
      *
      * @param value
-     *            allowed object is {@link String }
+     *     allowed object is
+     *     {@link String }
      *
      */
     public void setName(String value) {
@@ -93,7 +96,9 @@ public class Struct {
     /**
      * Gets the value of the subnodes property.
      *
-     * @return possible object is {@link Struct.Subnodes }
+     * @return
+     *     possible object is
+     *     {@link Struct.Subnodes }
      *
      */
     public Struct.Subnodes getSubnodes() {
@@ -104,20 +109,19 @@ public class Struct {
      * Sets the value of the subnodes property.
      *
      * @param value
-     *            allowed object is {@link Struct.Subnodes }
+     *     allowed object is
+     *     {@link Struct.Subnodes }
      *
      */
     public void setSubnodes(Struct.Subnodes value) {
         this.subnodes = value;
     }
 
+
     /**
-     * <p>
-     * Java class for anonymous complex type.
+     * <p>Java class for anonymous complex type.
      *
-     * <p>
-     * The following schema fragment specifies the expected content contained
-     * within this class.
+     * <p>The following schema fragment specifies the expected content contained within this class.
      *
      * <pre>
      * &lt;complexType>
@@ -137,32 +141,37 @@ public class Struct {
      *
      */
     @XmlAccessorType(XmlAccessType.FIELD)
-    @XmlType(name = "", propOrder = { "structOrTerminal" })
+    @XmlType(name = "", propOrder = {
+        "structOrTerminal"
+    })
     public static class Subnodes {
 
-        @XmlElements({ @XmlElement(name = "terminal", type = Terminal.class), @XmlElement(name = "struct", type = Struct.class) })
+        @XmlElements({
+            @XmlElement(name = "terminal", type = Terminal.class),
+            @XmlElement(name = "struct", type = Struct.class)
+        })
         protected List<Object> structOrTerminal;
 
         /**
          * Gets the value of the structOrTerminal property.
          *
          * <p>
-         * This accessor method returns a reference to the live list, not a
-         * snapshot. Therefore any modification you make to the returned list
-         * will be present inside the JAXB object. This is why there is not a
-         * <CODE>set</CODE> method for the structOrTerminal property.
+         * This accessor method returns a reference to the live list,
+         * not a snapshot. Therefore any modification you make to the
+         * returned list will be present inside the JAXB object.
+         * This is why there is not a <CODE>set</CODE> method for the structOrTerminal property.
          *
          * <p>
          * For example, to add a new item, do as follows:
-         *
          * <pre>
-         * getStructOrTerminal().add(newItem);
+         *    getStructOrTerminal().add(newItem);
          * </pre>
          *
          *
          * <p>
          * Objects of the following type(s) are allowed in the list
-         * {@link Terminal } {@link Struct }
+         * {@link Terminal }
+         * {@link Struct }
          *
          *
          */

@@ -18,16 +18,13 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlType;
 
+
 /**
- * Modelica String assignation. The default value is specified to ease
- * serialization.
+ * Modelica String assignation. The default value is specified to ease serialization.
  *
- * <p>
- * Java class for ModelicaValue complex type.
+ * <p>Java class for ModelicaValue complex type.
  *
- * <p>
- * The following schema fragment specifies the expected content contained within
- * this class.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  *
  * <pre>
  * &lt;complexType name="ModelicaValue">
@@ -54,7 +51,9 @@ public class ModelicaValue {
     /**
      * Gets the value of the value property.
      *
-     * @return possible object is {@link String }
+     * @return
+     *     possible object is
+     *     {@link String }
      *
      */
     public String getValue() {
@@ -65,7 +64,8 @@ public class ModelicaValue {
      * Sets the value of the value property.
      *
      * @param value
-     *            allowed object is {@link String }
+     *     allowed object is
+     *     {@link String }
      *
      */
     public void setValue(String value) {
