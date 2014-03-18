@@ -25,23 +25,12 @@ BOOL InitializeGUI(void)
 {
     if (getScilabMode() == SCILAB_STD)
     {
-        char *title = NULL;
 
         // TODO why this line since already done above
         // createSwingView();
 #ifdef _MSC_VER
         WindowShow();
 #endif
-
-        title = buildMainWindowTitle();
-        if (title)
-        {
-            BOOL bOK = setMainWindowTitle(title);
-
-            FREE(title);
-            title = NULL;
-            return bOK;
-        }
     }
     else
     {

@@ -352,6 +352,8 @@ Scilab Bug Fixes
 
 * Bug #9444 fixed - with_embedded_jre function removed.
 
+* Bug #9493 fixed - Title is now correctly set when starting Scilab and focus is set on Console
+
 * Bug #9627 fixed - Arguments checking added in optimsimplex_* functions.
 
 * Bug #9697 fixed - Displayed information for optim "qn" and "gc" with bounds and imp=1 fixed.

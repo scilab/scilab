@@ -76,18 +76,19 @@ public final class BarUpdater implements PropertyChangeListener {
         SwingScilabWindow parentWindow = SwingScilabWindow.allScilabWindows.get(parentWindowsID);
         if (parentWindow != null && !parentWindow.isRestoring()) {
             boolean same = parentWindow.compareMenuBar(newMenuBar) && parentWindow.compareToolBar(newToolBar) && parentWindow.compareInfoBar(newInfoBar);
+            //Forcing update of title and icon
+            parentWindow.setTitle(newWindowTitle);
+            if (newIcon != null) {
+                parentWindow.setIconImage(newIcon);
+            }
             if (!same) {
                 parentWindow.addMenuBar(newMenuBar);
                 parentWindow.addToolBar(newToolBar);
                 parentWindow.addInfoBar(newInfoBar);
-                parentWindow.setTitle(newWindowTitle);
                 /** The following line is used to update the menubar, toolbar, ... displayed on screen */
                 parentWindow.getRootPane().revalidate();
                 if (OS.get() == OS.MAC) { /* Fix bug #11787 */
                     parentWindow.repaint();
-                }
-                if (newIcon != null) {
-                    parentWindow.setIconImage(newIcon);
                 }
             }
         }
@@ -106,19 +107,20 @@ public final class BarUpdater implements PropertyChangeListener {
     public static void forceUpdateBars(String parentWindowsID, MenuBar newMenuBar, ToolBar newToolBar, TextBox newInfoBar, String newWindowTitle, Image newIcon) {
         SwingScilabWindow parentWindow = SwingScilabWindow.allScilabWindows.get(parentWindowsID);
         if (parentWindow != null) {
+            //Forcing update of title and icon
+            parentWindow.setTitle(newWindowTitle);
+            if (newIcon != null) {
+                parentWindow.setIconImage(newIcon);
+            }
             boolean same = parentWindow.compareMenuBar(newMenuBar) && parentWindow.compareToolBar(newToolBar) && parentWindow.compareInfoBar(newInfoBar);
             if (!same) {
                 parentWindow.addMenuBar(newMenuBar);
                 parentWindow.addToolBar(newToolBar);
                 parentWindow.addInfoBar(newInfoBar);
-                parentWindow.setTitle(newWindowTitle);
                 /** The following line is used to update the menubar, toolbar, ... displayed on screen */
                 parentWindow.getRootPane().revalidate();
                 if (OS.get() == OS.MAC) { /* Fix bug #11787 */
                     parentWindow.repaint();
-                }
-                if (newIcon != null) {
-                    parentWindow.setIconImage(newIcon);
                 }
             }
         }
