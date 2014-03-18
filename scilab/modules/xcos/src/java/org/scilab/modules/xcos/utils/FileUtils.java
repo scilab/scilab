@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
- * Copyright (C) Scilab Enterprises - 2011 - Clement DAVID
+ * Copyright (C) 2011-2014 Scilab Enterprises - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -197,29 +197,6 @@ public final class FileUtils {
             xml = xml.replaceAll("\\$SCIHOME", homeURL);
             document = mxUtils.parseXml(xml);
             new mxCodec().decode(document.getDocumentElement(), styleSheet);
-        }
-    }
-
-    /**
-     * Load an Xcos file.
-     *
-     * @param xcosFile
-     *            xcos file
-     * @return opened document
-     */
-    public static Document loadXcosDocument(String xcosFile) {
-        DocumentBuilderFactory docBuilderFactory = ScilabDocumentBuilderFactory.newInstance();
-        DocumentBuilder docBuilder;
-
-        try {
-            docBuilder = docBuilderFactory.newDocumentBuilder();
-            return docBuilder.parse(xcosFile);
-        } catch (ParserConfigurationException e) {
-            return null;
-        } catch (SAXException e) {
-            return null;
-        } catch (IOException e) {
-            return null;
         }
     }
 

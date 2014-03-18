@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2014 - Scilab Enterprises - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -18,6 +19,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.scilab.modules.commons.xml.ScilabDocumentBuilderFactory;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.gui.contextmenu.ContextMenu;
 import org.scilab.modules.gui.menu.Menu;
@@ -45,6 +49,7 @@ import org.scilab.modules.xcos.utils.FileUtils;
 import org.scilab.modules.xcos.utils.XcosConstants;
 import org.scilab.modules.xcos.utils.XcosEvent;
 import org.scilab.modules.xcos.utils.XcosMessages;
+import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
 import com.mxgraph.model.mxICell;
@@ -348,7 +353,7 @@ public final class SuperBlock extends BasicBlock {
     /**
      * Function that insert one port on the concerned superblock
      * and gives it the right order.
-     * 
+     *
      * @param order
      * @param basicblock
      */
@@ -366,15 +371,14 @@ public final class SuperBlock extends BasicBlock {
             Logger.getLogger(SuperBlock.class.getName()).severe(e.toString());
         } catch (IllegalAccessException e) {
             Logger.getLogger(SuperBlock.class.getName()).severe(e.toString());
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             Logger.getLogger(SuperBlock.class.getName()).severe(e.toString());
         }
     }
 
     /**
      * Function that remove one port on the concerned superblock
-     * 
+     *
      * @param order
      * @param basicport
      * @param basicblock
@@ -397,7 +401,7 @@ public final class SuperBlock extends BasicBlock {
     }
 
     /**
-     * 
+     *
      * @param basicport
      */
     private void removeOnePort(BasicPort basicport) {
@@ -408,7 +412,7 @@ public final class SuperBlock extends BasicBlock {
     /**
      * Function that returns a hashtable of IOBlocks contained in the superdiagram
      * depending on their direction.
-     * 
+     *
      * @param blockMap
      *            a map of blocks
      * @return the hashtable
@@ -445,7 +449,7 @@ public final class SuperBlock extends BasicBlock {
     /**
      * Function that returns a hashtable of the superblock ports
      * depending on their direction.
-     * 
+     *
      * @param portsMap
      *            a map of ports
      * @return the hashtable
@@ -482,7 +486,7 @@ public final class SuperBlock extends BasicBlock {
     /**
      * Function that add a port to a superblock. The function should be called only when
      * the number of superdiagram blocks is higher than the superblock port number.
-     * 
+     *
      * @param key
      *         direction of the block ports
      * @param context_block
@@ -490,8 +494,7 @@ public final class SuperBlock extends BasicBlock {
      * @param context_port
      *         the list of ports
      */
-    private void addPorts(String key, Hashtable<String, List<? extends mxICell>> context_block, Map<String, List<? extends mxICell>> context_port)
-    {
+    private void addPorts(String key, Hashtable<String, List<? extends mxICell>> context_block, Map<String, List<? extends mxICell>> context_port) {
         // iterate on the superdiagram blocks
         for (mxICell cell : context_block.get(key)) {
             if (cell instanceof BasicBlock) {
@@ -522,7 +525,7 @@ public final class SuperBlock extends BasicBlock {
     /**
      * Function that remove a port to a superblock. The function should be called only when
      * the number of superdiagram blocks is less than the superblock port number.
-     * 
+     *
      * @param key
      *         direction of the block ports
      * @param context_block
@@ -544,8 +547,7 @@ public final class SuperBlock extends BasicBlock {
                     if (block instanceof BasicBlock) {
                         BasicBlock basicblock = (BasicBlock) block;
                         int block_order = (int) ((ScilabDouble) basicblock.getIntegerParameters()).getRealPart()[0][0];
-                        if (order == block_order)
-                        {
+                        if (order == block_order) {
                             block_found = true;
                             break;
                         }
@@ -563,7 +565,7 @@ public final class SuperBlock extends BasicBlock {
     /**
      * Function that remove dead ports from the superblock. A dead port is a port which has not
      * a corresponding superdiagram IOBlock
-     * 
+     *
      * @param key
      *         direction of the block ports
      * @param context_block
@@ -603,7 +605,7 @@ public final class SuperBlock extends BasicBlock {
     /**
      * Function that replace a port of a superblock
      * if its numbering has changed
-     * 
+     *
      * @param key
      *          direction of the block ports
      * @param context_block
@@ -759,9 +761,11 @@ public final class SuperBlock extends BasicBlock {
      *            the output stream
      * @throws IOException
      *             on error
+     * @throws ParserConfigurationException on error
      */
-    private void writeObject(java.io.ObjectOutputStream out) throws IOException {
-        out.writeObject(new XcosCodec().encode(this));
+    private void writeObject(java.io.ObjectOutputStream out) throws IOException, ParserConfigurationException {
+        final XcosCodec codec = new XcosCodec();
+        out.writeObject(codec.encode(this));
     }
 
     /**
@@ -773,9 +777,14 @@ public final class SuperBlock extends BasicBlock {
      *             on error
      * @throws ClassNotFoundException
      *             on error
+     * @throws ParserConfigurationException on error
      */
-    private void readObject(java.io.ObjectInputStream in) throws IOException, ClassNotFoundException {
-        new XcosCodec().decode((Node) in.readObject(), this);
+    private void readObject(java.io.ObjectInputStream in) throws IOException, ClassNotFoundException, ParserConfigurationException {
+        final Node input = (Node) in.readObject();
+        final XcosCodec codec = new XcosCodec(input.getOwnerDocument());
+
+        codec.setElementIdAttributes();
+        codec.decode(input, this);
 
         /*
          * Specific post serialization things

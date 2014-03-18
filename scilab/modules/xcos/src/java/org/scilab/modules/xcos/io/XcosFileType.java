@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Clement DAVID
- * Copyright (C) 2011-2012 - Scilab Enterprises - Clement DAVID
+ * Copyright (C) 2011-2014 - Scilab Enterprises - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -96,13 +96,14 @@ public enum XcosFileType {
             try {
                 src = new StreamSource(new File(file).toURI().toURL()
                                        .toString());
-                final DOMResult result = new DOMResult();
+                final DOMResult result = new DOMResult(codec.getDocument());
 
                 LOG.entering("Transformer", "transform");
                 aTransformer.transform(src, result);
                 LOG.exiting("Transformer", "transform");
 
                 LOG.entering("XcosCodec", "decode");
+                codec.setElementIdAttributes();
                 codec.decode(result.getNode().getFirstChild(), into);
                 LOG.exiting("XcosCodec", "decode");
             } catch (MalformedURLException e) {
