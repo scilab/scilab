@@ -48,7 +48,7 @@ function h=generic_i_h(i,v,h)
             property(index(:))=v
         else
             if or(size(index)<>[-1 -1]) then
-                if (index(1)=="locations" | index(1)=="labels") & size(property(index),"*") ~= size(v,"*") then
+                if (index(1)=="locations" | index(1)=="labels") & size(v,"*") ~= 1 & size(property(index),"*") ~= size(v,"*") then
                     error(msprintf(_("%s: Incompatible sizes for properties ''%s'' and ''%s'': Same sizes expected.\n"), "generic_i_h", string(i($-2))+".locations", string(i($-2))+".labels"));
                 end
                 property(index)=v
