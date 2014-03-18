@@ -62,7 +62,17 @@ function clf(varargin)
     for k=1:nbHandles
         curFig = h(k)
         if curFig.type == "uicontrol" then
+            haveAxes = %F;
+            for kChild = 1:size(curFig.children, "*")
+                if curFig.children(kChild).type=="Axes" then
+                    haveAxes = %T;
+                    break
+                end
+            end
             delete(curFig.children);
+            if haveAxes then
+                newaxes(curFig);
+            end
         else
             // drawlater
             immediateMode = curFig.immediate_drawing;
@@ -72,10 +82,11 @@ function clf(varargin)
 
             // drawnow
             curFig.immediate_drawing = immediateMode;
+
+            curFig.info_message = "";
         end
     end
 
-    curFig.info_message = "";
 
     // reset figures to default values if needed
     if (job == "reset") then
