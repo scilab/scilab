@@ -25,29 +25,29 @@ c_file = TMPDIR + "/sample_im.c";
 
 // unsolvable system of equation
 mo_content = [..
-	"class sample_imf";..
-	"    Real `a` """";";..
-	"    Real `b` """";";..
-	"    Real `c` """";";..
-	"equation";..
-	"    a = b + 3 * c;";..
-	"    c = a + 3 * b;";..
-	"end sample_imf;";..
+"class sample_imf";..
+"    Real `a` """";";..
+"    Real `b` """";";..
+"    Real `c` """";";..
+"equation";..
+"    a = b + 3 * c;";..
+"    c = a + 3 * b;";..
+"end sample_imf;";..
 ""];
 
 // Creating source content
-fd = mopen(src_file, 'wt');
+fd = mopen(src_file, "wt");
 mputl(mo_content, fd);
 mclose(fd);
 
 // override messagebox method
 previous_ptr = funptr("messagebox");
 clearfun("messagebox");
-function messagebox(msg, strType, isModal), endfunction
+function messagebox(msg, Title, icon, isModal), endfunction
 
 // modelicac call
 ok = modelicac(src_file, function_file, xml_file, %t, c_file, %f);
-if ok then pause, end
+assert_checkequal(ok, %f);
 
 clear("messagebox");
 newfun("messagebox", previous_ptr);
