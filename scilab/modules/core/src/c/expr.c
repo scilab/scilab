@@ -627,6 +627,11 @@ L103:
     C2F(getsym)();
     if (op == equal && C2F(com).sym != equal)
     {
+        if (C2F(com).sym == great || C2F(com).sym == less)
+        {
+            SciError(2);
+            return 0;
+        }
         int code_message = 7;
         C2F(msgs)(&code_message, &val);
     }

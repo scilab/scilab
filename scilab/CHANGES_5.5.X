@@ -216,6 +216,8 @@ Scilab Bug Fixes
 
 * Bug #2067 fixed - Scilab crashed when plot was called with a large numerical value.
 
+* Bug #2345 fixed - Use of operators => and =< did not lead to an error.
+
 * Bug #2802 fixed - convstr did not convert non ascii chars.
 
 * Bug #4177 fixed - find function moved to the "elementary_functions" module.
