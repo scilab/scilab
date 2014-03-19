@@ -57,7 +57,7 @@ function demo_gui()
     clear_vars_str = strcat("clear " + lst_vars_locals, ";") + ";";
 
     callback_close_str = "delete(get(""scilab_demo_fig""));";
-    callback_close_str = callback_close_str + clear_vars_str + "clearglobal demolistlock demolist;";
+    callback_close_str = callback_close_str + clear_vars_str + "clearglobal demolistlock;";
 
     b = get("frame_1", "border");
     b.title = _("Demonstrations");
