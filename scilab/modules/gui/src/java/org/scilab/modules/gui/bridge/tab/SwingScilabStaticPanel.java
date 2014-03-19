@@ -14,10 +14,13 @@ package org.scilab.modules.gui.bridge.tab;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AUTORESIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AXES_SIZE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_POSITION__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_SIZE__;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 
@@ -29,6 +32,7 @@ import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.gui.SwingViewObject;
+import org.scilab.modules.gui.SwingViewWidget;
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
@@ -36,36 +40,36 @@ import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Size;
+import org.scilab.modules.gui.widget.Widget;
 
 public class SwingScilabStaticPanel extends SwingScilabScrollPane implements SwingScilabPanel {
-
+    private static final long serialVersionUID = -3887923938827929317L;
     private Integer id;
     private TextBox infoBar;
     private MenuBar menuBar;
     private ToolBar toolBar;
-    private String eventHandler;
-    private boolean eventHandlerEnabled;
     private String parentWindowId;
-    private String windowIcon;
-
     private JLayeredPane uiContentPane;
-    private JLayeredPane layerdPane;
+    private JLayeredPane layeredPane;
 
     private SwingScilabCanvas contentCanvas;
+    protected boolean hasLayout;
+    private Dimension deltaSize = null;
 
     public SwingScilabStaticPanel(String figureTitle, Integer figureId, Figure figure) {
         super(new JLayeredPane(), new JLayeredPane(), figure);
         uiContentPane = (JLayeredPane) getUIComponent();
-        layerdPane = (JLayeredPane) getGlobalComponent();
+        layeredPane = (JLayeredPane) getGlobalComponent();
         setVisible(true);
-        layerdPane.setLayout(null);
-        layerdPane.setOpaque(true);
+        layeredPane.setLayout(null);
+        layeredPane.setOpaque(true);
+        setHasLayout(false);
 
         uiContentPane.setOpaque(false);
         uiContentPane.setLayout(null);
-        layerdPane.add(uiContentPane, JLayeredPane.DEFAULT_LAYER + 1, 0);
+        layeredPane.add(uiContentPane, JLayeredPane.DEFAULT_LAYER + 1, 0);
 
-        layerdPane.setVisible(true);
+        layeredPane.setVisible(true);
         uiContentPane.setVisible(true);
 
         /* Manage figure_size property */
@@ -97,6 +101,14 @@ public class SwingScilabStaticPanel extends SwingScilabScrollPane implements Swi
                                            + resizeFcn
                                            + ";if exists(\"%oldgcbo\") then gcbo = %oldgcbo; else clear gcbo; end;";
                     InterpreterManagement.requestScilabExec(resizeCommand);
+                } else if (hasLayout == false) {
+                    for (Component comp : getWidgetPane().getComponents()) {
+                        if (comp instanceof Widget) {
+                            Widget widget = (Widget) comp;
+                            SwingViewObject obj = (SwingViewObject) comp;
+                            SwingViewWidget.update(widget, __GO_POSITION__, GraphicController.getController().getProperty(obj.getId(), __GO_POSITION__));
+                        }
+                    }
                 }
             }
 
@@ -121,11 +133,11 @@ public class SwingScilabStaticPanel extends SwingScilabScrollPane implements Swi
     }
 
     public void setFigureBackground(Color color) {
-        if (layerdPane != null) {
-            layerdPane.setBackground(color);
+        if (layeredPane != null) {
+            layeredPane.setBackground(color);
         }
     }
-    
+
     public TextBox getInfoBar() {
         return infoBar;
     }
@@ -151,11 +163,9 @@ public class SwingScilabStaticPanel extends SwingScilabScrollPane implements Swi
     }
 
     public void setEventHandler(String eventHandler) {
-        this.eventHandler = eventHandler;
     }
 
     public void setEventHandlerEnabled(boolean enabled) {
-        this.eventHandlerEnabled = enabled;
     }
 
     public void setParentWindowId(String parentWindowId) {
@@ -163,21 +173,14 @@ public class SwingScilabStaticPanel extends SwingScilabScrollPane implements Swi
     }
 
     public void setWindowIcon(String windowIcon) {
-        this.windowIcon = windowIcon;
     }
 
     public void addMember(SwingViewObject member) {
         if (member instanceof SwingScilabAxes) {
             if (contentCanvas == null) {
                 contentCanvas = new SwingScilabCanvas((Figure) GraphicController.getController().getObjectFromId(((SwingScilabAxes) member).getFigureId()));
-                //contentCanvas.addEventHandlerKeyListener(editorEventHandler);
-                //contentCanvas.addEventHandlerMouseListener(editorEventHandler);
-                //contentCanvas.addEventHandlerMouseMotionListener(editorEventHandler);
-                layerdPane.add(contentCanvas, JLayeredPane.FRAME_CONTENT_LAYER);
-
+                layeredPane.add(contentCanvas, JLayeredPane.FRAME_CONTENT_LAYER);
                 setCanvas(contentCanvas);
-
-                //contentCanvas.addKeyListener(this);
             }
             return;
         }
@@ -230,5 +233,29 @@ public class SwingScilabStaticPanel extends SwingScilabScrollPane implements Swi
     public void setName(String name) {
         super.setName(name);
         getParentWindow().setName(name);
+    }
+
+    public void setHasLayout(boolean hasLayout) {
+        this.hasLayout = hasLayout;
+    }
+
+    public void applyDeltaSize() {
+        if (deltaSize != null) {
+            if (deltaSize.getWidth() != 0 || deltaSize.getHeight() != 0) {
+                //update view and update model ( from componentResize of Window )
+                SwingScilabWindow figure = SwingScilabWindow.allScilabWindows.get(getParentWindowId());
+                Size oldFigureSize = figure.getDims();
+                figure.setDims(new Size((int)(oldFigureSize.getWidth() + deltaSize.getWidth()), (int)(oldFigureSize.getHeight() + deltaSize.getHeight())));
+            }
+
+            deltaSize = null;
+        }
+    }
+
+    public void storeSizeDelta() {
+        Dimension axesSize = getContentPane().getSize();
+        SwingScilabWindow figure = SwingScilabWindow.allScilabWindows.get(getParentWindowId());
+        Size figureSize = figure.getDims();
+        deltaSize = new Dimension((int)(figureSize.getWidth() - axesSize.getWidth()), (int)(figureSize.getHeight() - axesSize.getHeight()));
     }
 }

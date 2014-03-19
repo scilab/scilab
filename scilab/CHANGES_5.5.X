@@ -458,6 +458,8 @@ Scilab Bug Fixes
 
 * Bug #11953 fixed - Scilab crashed when global("") was typed.
 
+* Bug #11964 fixed - uicontrol coordinates system did not take figure resizing into account.
+
 * Bug #11996 fixed - eye extended to hypermatrix.
 
 * Bug #12037 fixed - Simplified Chinese version of SciNotes displayed warnings at startup.

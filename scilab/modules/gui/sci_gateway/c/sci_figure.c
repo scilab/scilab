@@ -439,6 +439,7 @@ int setDefaultProperties(int _iFig, BOOL _bDefaultAxes)
     int iColorIndex = 0;
     int iFilled = 0;
     int iAxesVisible = 0;
+    int* piAxesSize = NULL;
     double pdblNewColor[COLOR_COMPONENT] = {0.8, 0.8, 0.8};
 
     setGraphicObjectProperty(_iFig, __GO_IMMEDIATE_DRAWING__, &iDrawing, jni_bool, 1);
@@ -460,6 +461,11 @@ int setDefaultProperties(int _iFig, BOOL _bDefaultAxes)
         setGraphicObjectProperty(iAxes, __GO_Y_AXIS_VISIBLE__, &iAxesVisible, jni_bool, 1);
         setGraphicObjectProperty(iAxes, __GO_Z_AXIS_VISIBLE__, &iAxesVisible, jni_bool, 1);
     }
+
+    // axes_size
+    getGraphicObjectProperty(getFigureModel(), __GO_AXES_SIZE__, jni_int_vector, (void **)&piAxesSize);
+    setGraphicObjectProperty(_iFig, __GO_AXES_SIZE__, piAxesSize, jni_int_vector, 2);
+
     //f.immediate_drawing = "on"
     iDrawing = 1;
     setGraphicObjectProperty(_iFig, __GO_IMMEDIATE_DRAWING__, &iDrawing, jni_bool, 1);

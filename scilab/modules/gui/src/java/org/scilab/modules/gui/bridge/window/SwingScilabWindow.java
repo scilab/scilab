@@ -347,11 +347,9 @@ public abstract class SwingScilabWindow extends JFrame implements SimpleWindow {
      */
     @Override
     public void setPosition(Position newWindowPosition) {
-        //if (!SwingUtilities.isEventDispatchThread()) {
         if (getPosition().getX() != newWindowPosition.getX() || getPosition().getY() != newWindowPosition.getY()) {
             this.setLocation(newWindowPosition.getX(), newWindowPosition.getY());
         }
-        //}
     }
 
     /**

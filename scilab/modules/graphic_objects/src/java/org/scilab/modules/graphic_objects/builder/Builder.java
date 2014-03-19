@@ -359,8 +359,6 @@ public final class Builder {
         ScilabNativeView.ScilabNativeView__setCurrentFigure(newFigure);
 
         //Force axes size after window creation
-        Integer[] figureSize = (Integer[]) controller.getProperty(figModel, GraphicObjectProperties.__GO_SIZE__);
-        controller.setProperty(newFigure, GraphicObjectProperties.__GO_SIZE__, figureSize);
         Integer[] axesSize = (Integer[]) controller.getProperty(figModel, GraphicObjectProperties.__GO_AXES_SIZE__);
         controller.setProperty(newFigure, GraphicObjectProperties.__GO_AXES_SIZE__, axesSize);
 

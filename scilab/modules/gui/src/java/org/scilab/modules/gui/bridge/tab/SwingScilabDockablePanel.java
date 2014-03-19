@@ -63,6 +63,7 @@ import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.gui.SwingViewObject;
+import org.scilab.modules.gui.SwingViewWidget;
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
 import org.scilab.modules.gui.bridge.checkbox.SwingScilabCheckBox;
 import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
@@ -77,9 +78,10 @@ import org.scilab.modules.gui.bridge.popupmenu.SwingScilabPopupMenu;
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.bridge.radiobutton.SwingScilabRadioButton;
 import org.scilab.modules.gui.bridge.slider.SwingScilabScroll;
+import org.scilab.modules.gui.bridge.textbox.SwingScilabTextBox;
+import org.scilab.modules.gui.bridge.toolbar.SwingScilabToolBar;
 import org.scilab.modules.gui.bridge.tree.SwingScilabTree;
 import org.scilab.modules.gui.bridge.uidisplaytree.SwingScilabUiDisplayTree;
-import org.scilab.modules.gui.bridge.uiimage.SwingScilabUiImage;
 import org.scilab.modules.gui.bridge.uitable.SwingScilabUiTable;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.canvas.Canvas;
@@ -115,10 +117,11 @@ import org.scilab.modules.gui.utils.SciClosingAction;
 import org.scilab.modules.gui.utils.SciHelpOnComponentAction;
 import org.scilab.modules.gui.utils.SciUndockingAction;
 import org.scilab.modules.gui.utils.Size;
+import org.scilab.modules.gui.widget.Widget;
 
 /**
- * Swing implementation for Scilab tabs in GUIs
- * This implementation uses FlexDock package
+ * Swing implementation for Scilab tabs in GUIs This implementation uses
+ * FlexDock package
  * @author Bruno JOFRET
  * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
@@ -127,14 +130,13 @@ import org.scilab.modules.gui.utils.Size;
 
 public class SwingScilabDockablePanel extends View implements SimpleTab, FocusListener, KeyListener, SwingScilabPanel {
 
-
-
     private static final Image SCILAB_ICON = new ImageIcon(FindIconHelper.findIcon("scilab", "256x256")).getImage();
 
     private static final long serialVersionUID = 1L;
 
     private static final String UNDOCK = "undock";
     private static final String HELP = "help";
+    protected boolean hasLayout = false;
 
     private Integer id;
 
@@ -153,7 +155,7 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
 
     /** Contains the canvas and widgets */
     private JLayeredPane uiContentPane;
-    private JLayeredPane layerdPane;
+    private JLayeredPane layeredPane;
 
     /** Scroll the axes */
     private SwingScilabScrollPane scrolling;
@@ -168,6 +170,8 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
 
     /** A reference to the canvas used for event handling management */
     private SwingScilabCanvas contentCanvas = null;
+
+    private Dimension deltaSize = null;
 
     /**
      * Constructor
@@ -188,7 +192,7 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
         scrolling = null;
 
         this.setVisible(true);
-        
+
         getTitlebar().addFocusListener(this);
         addFocusListener(this);
         setCallback(null);
@@ -197,7 +201,8 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
     }
 
     /**
-     * Create a graphic tab used to display a figure with 3D graphics and/or UIcontrols
+     * Create a graphic tab used to display a figure with 3D graphics and/or
+     * UIcontrols
      * @param name name of the tab
      * @param figureId id of the displayed figure
      */
@@ -220,7 +225,7 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
         //setContentPane(scrolling.getAsContainer());
 
         this.setVisible(true);
-        
+
         getTitlebar().addFocusListener(this);
         addFocusListener(this);
         setCallback(null);
@@ -273,30 +278,22 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
         //contentCanvas = canvas;
 
         editorEventHandler = new EditorEventListener(figure.getIdentifier());
-        //contentCanvas.addEventHandlerKeyListener(editorEventHandler);
-        //contentCanvas.addEventHandlerMouseListener(editorEventHandler);
-        //contentCanvas.addEventHandlerMouseMotionListener(editorEventHandler);
 
-        layerdPane = new JLayeredPane();
-        layerdPane.setLayout(null);
-        layerdPane.setBorder(null);
-        layerdPane.setOpaque(true);
-        
-        //layerdPane.add(canvas, JLayeredPane.FRAME_CONTENT_LAYER);
+        layeredPane = new JLayeredPane();
+        layeredPane.setLayout(null);
+        layeredPane.setBorder(null);
+        layeredPane.setOpaque(true);
+
         uiContentPane = new JLayeredPane();
         uiContentPane.setOpaque(false);
         uiContentPane.setLayout(null);
         uiContentPane.setBorder(null);
-        layerdPane.add(uiContentPane, JLayeredPane.DEFAULT_LAYER + 1, 0);
 
-        scrolling = new SwingScilabScrollPane(layerdPane, uiContentPane, figure);
-        //scrolling.setCanvas(canvas);
-
-        //contentCanvas.addKeyListener(this);
+        layeredPane.add(uiContentPane, JLayeredPane.DEFAULT_LAYER + 1, 0);
+        scrolling = new SwingScilabScrollPane(layeredPane, uiContentPane, figure);
 
         setContentPane(scrolling.getAsContainer());
-        //setContentPane(uiContentPane);
-        //canvas.setVisible(true);
+
         uiContentPane.setVisible(true);
 
         /* Manage figure_position property */
@@ -307,7 +304,7 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
             public void ancestorMoved(HierarchyEvent e) {
                 if (e.getChanged() instanceof SwingScilabWindow) {
                     Position parentPosition = SwingScilabWindow.allScilabWindows.get(parentWindowId).getPosition();
-                    Integer[] newPosition = new Integer[] {parentPosition.getX(), parentPosition.getY()};
+                    Integer[] newPosition = new Integer[] { parentPosition.getX(), parentPosition.getY() };
                     GraphicController.getController().setProperty(id, __GO_POSITION__, newPosition);
                 }
             }
@@ -322,28 +319,33 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
             public void componentResized(ComponentEvent arg0) {
 
                 /* Update the figure_size property */
-                Size parentSize =  SwingScilabWindow.allScilabWindows.get(parentWindowId).getDims();
-                Integer[] newSize = new Integer[] {parentSize.getWidth(), parentSize.getHeight()};
+                Size parentSize = SwingScilabWindow.allScilabWindows.get(parentWindowId).getDims();
+                Integer[] newSize = new Integer[] { parentSize.getWidth(), parentSize.getHeight() };
 
                 GraphicController.getController().setProperty(id, __GO_SIZE__, newSize);
 
-                Boolean autoreSize = (Boolean) GraphicController.getController().getProperty(id, __GO_AUTORESIZE__);
+                Boolean autoResize = (Boolean) GraphicController.getController().getProperty(id, __GO_AUTORESIZE__);
 
-                if (autoreSize != null && autoreSize) {
+                if (autoResize != null && autoResize) {
                     /* Update the axes_size property */
-                    Integer[] newAxesSize = new Integer[] {getContentPane().getWidth(), getContentPane().getHeight()};
+                    Integer[] newAxesSize = new Integer[] { getContentPane().getWidth(), getContentPane().getHeight() };
                     GraphicController.getController().setProperty(id, __GO_AXES_SIZE__, newAxesSize);
                 }
 
                 String resizeFcn = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_RESIZEFCN__);
                 if (resizeFcn != null && !resizeFcn.equals("")) {
-                    String resizeCommand = "if exists(\"gcbo\") then %oldgcbo = gcbo; end;"
-                                           + "gcbo = getcallbackobject(" + id + ");"
-                                           + resizeFcn
+                    String resizeCommand = "if exists(\"gcbo\") then %oldgcbo = gcbo; end;" + "gcbo = getcallbackobject(" + id + ");" + resizeFcn
                                            + ";if exists(\"%oldgcbo\") then gcbo = %oldgcbo; else clear gcbo; end;";
                     InterpreterManagement.requestScilabExec(resizeCommand);
+                } else if (hasLayout == false) {
+                    for (Component comp : getWidgetPane().getComponents()) {
+                        if (comp instanceof Widget) {
+                            Widget widget = (Widget) comp;
+                            SwingViewObject obj = (SwingViewObject) comp;
+                            SwingViewWidget.update(widget, __GO_POSITION__, GraphicController.getController().getProperty(obj.getId(), __GO_POSITION__));
+                        }
+                    }
                 }
-
             }
 
             public void componentMoved(ComponentEvent arg0) {
@@ -404,7 +406,8 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
     /**
      * Call when the tab restoration is ended.
      */
-    public void endedRestoration() { }
+    public void endedRestoration() {
+    }
 
     /**
      * @return the window icon associated with this tab
@@ -435,7 +438,8 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
      * @param e the FocusEvent
      */
     @Override
-    public void focusLost(FocusEvent e) { }
+    public void focusLost(FocusEvent e) {
+    }
 
     /**
      * {@inheritDoc}
@@ -624,7 +628,8 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
     }
 
     /**
-     * Add a SwingViewObject (from SwingView.java) to container and returns its index
+     * Add a SwingViewObject (from SwingView.java) to container and returns its
+     * index
      * @param member the member to add
      */
     public void addMember(SwingViewObject member) {
@@ -635,10 +640,10 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
                 contentCanvas.addEventHandlerMouseListener(editorEventHandler);
                 contentCanvas.addEventHandlerMouseMotionListener(editorEventHandler);
 
-                layerdPane.add(contentCanvas, JLayeredPane.FRAME_CONTENT_LAYER);
+                layeredPane.add(contentCanvas, JLayeredPane.FRAME_CONTENT_LAYER);
 
                 scrolling.setCanvas(contentCanvas);
-                
+
                 contentCanvas.addKeyListener(this);
             }
             return;
@@ -924,22 +929,6 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
      * @param member the RadioButton to remove
      */
     private void removeMember(SwingScilabRadioButton member) {
-    }
-
-    /**
-     * Add a member (dockable element) to container and returns its index
-     * @param member the member to add
-     * @return index of member in ArrayList
-     */
-    private int addMember(SwingScilabUiImage member) {
-        return 0;
-    }
-
-    /**
-     * Remove a Image from its container
-     * @param member the Image to remove
-     */
-    private void removeMember(SwingScilabUiImage member) {
     }
 
     /**
@@ -1330,11 +1319,12 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
     }
 
     /**
-     * Specify a new viewport for the axes
-     * For SwingScilabCanvas viewport can not be modified
-     * since it match the parent tab size
-     * @param posX X coordinate of upper left point of the viewport within the axes
-     * @param posY Y coordinate of upper left point of the viewport within the axes
+     * Specify a new viewport for the axes For SwingScilabCanvas viewport can
+     * not be modified since it match the parent tab size
+     * @param posX X coordinate of upper left point of the viewport within the
+     * axes
+     * @param posY Y coordinate of upper left point of the viewport within the
+     * axes
      * @param width width of the viewport
      * @param height height of the viewport
      */
@@ -1376,8 +1366,8 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
     }
 
     /**
-     * Specify whether the canvas should fit the parent tab size
-     * (and consequently the scrollpane size) or not
+     * Specify whether the canvas should fit the parent tab size (and
+     * consequently the scrollpane size) or not
      * @param onOrOff true to enable autoresize mode
      */
     @Override
@@ -1434,14 +1424,14 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
     }
 
     public void setFigureBackground(Color color) {
-        if (layerdPane != null) {
-            layerdPane.setBackground(color);
+        if (layeredPane != null) {
+            layeredPane.setBackground(color);
         }
     }
-    
+
     /**
      * Redefine paint children to be sure that AWT components are well painted.
-     *  @param g a Graphics
+     * @param g a Graphics
      */
     @Override
     public void paintChildren(Graphics g) {
@@ -1462,7 +1452,8 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
      * Update the tab after a modification of its properties
      * @param property the property name
      * @param value the property value
-     * @see org.scilab.modules.gui.SwingViewObject#update(java.lang.String, java.lang.Object)
+     * @see org.scilab.modules.gui.SwingViewObject#update(java.lang.String,
+     * java.lang.Object)
      */
     public void update(int property, Object value) {
         SwingScilabCommonPanel.update(this, property, value);
@@ -1516,7 +1507,8 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
     }
 
     public void keyTyped(KeyEvent e) {
-        if (ScilabConstants.isGUI() && (eventHandler == null || !eventEnabled) && !GlobalEventWatcher.isActivated() && !editorEventHandler.isDatatipEnable() && Character.isLetterOrDigit(e.getKeyChar())) {
+        if (ScilabConstants.isGUI() && (eventHandler == null || !eventEnabled) && !GlobalEventWatcher.isActivated() && !editorEventHandler.isDatatipEnable()
+                && Character.isLetterOrDigit(e.getKeyChar())) {
             SwingScilabConsole console = (SwingScilabConsole) ScilabConsole.getConsole().getAsSimpleConsole();
             JTextPane input = (JTextPane) console.getConfiguration().getInputCommandView();
             input.requestFocus();
@@ -1528,5 +1520,29 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
 
     public JLayeredPane getWidgetPane() {
         return uiContentPane;
+    }
+
+    public void setHasLayout(boolean hasLayout) {
+        this.hasLayout = hasLayout;
+    }
+
+    public void applyDeltaSize() {
+        if (deltaSize != null) {
+            if (deltaSize.getWidth() != 0 || deltaSize.getHeight() != 0) {
+                //update view and update model ( from componentResize of Window )
+                SwingScilabWindow figure = SwingScilabWindow.allScilabWindows.get(getParentWindowId());
+                Dimension oldAxesSize = getContentPane().getSize();
+                figure.setDims(new Size((int)(oldAxesSize.getWidth() + deltaSize.getWidth()), (int)(oldAxesSize.getHeight() + deltaSize.getHeight())));
+            }
+
+            deltaSize = null;
+        }
+    }
+
+    public void storeSizeDelta() {
+        Dimension axesSize = getContentPane().getSize();
+        SwingScilabWindow figure = SwingScilabWindow.allScilabWindows.get(getParentWindowId());
+        Size figureSize = figure.getDims();
+        deltaSize = new Dimension((int)(figureSize.getWidth() - axesSize.getWidth()), (int)(figureSize.getHeight() - axesSize.getHeight()));
     }
 }

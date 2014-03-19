@@ -426,7 +426,6 @@ public final class SwingView implements GraphicView {
                     tab = new SwingScilabDockablePanel(figureTitle, figureId, figure);
                 } else {
                     tab = new SwingScilabStaticPanel(figureTitle, figureId, figure);
-                    window.addTab(tab);
                 }
                 tab.setId(id);
 
@@ -451,6 +450,8 @@ public final class SwingView implements GraphicView {
                 if (figure.getDockable()) {
                     DockingManager.dock((SwingScilabDockablePanel) tab, window.getDockingPort());
                     ActiveDockableTracker.requestDockableActivation((SwingScilabDockablePanel) tab);
+                } else {
+                    window.addTab(tab);
                 }
 
                 tab.setWindowIcon("graphic-window");
@@ -468,7 +469,6 @@ public final class SwingView implements GraphicView {
                 } else {
                     infoBar.setText(infoMessage);
                 }
-                tab.update(__GO_SIZE__, GraphicController.getController().getProperty(id, __GO_SIZE__));
                 tab.update(__GO_POSITION__, GraphicController.getController().getProperty(id, __GO_POSITION__));
 
                 String icon = (String)GraphicController.getController().getProperty(id, __GO_UI_ICON__);

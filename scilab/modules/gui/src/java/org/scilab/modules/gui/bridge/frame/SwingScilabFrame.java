@@ -92,6 +92,7 @@ import org.scilab.modules.gui.utils.ScilabRelief;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.utils.UnitsConverter;
 import org.scilab.modules.gui.utils.UnitsConverter.UicontrolUnits;
+import org.scilab.modules.gui.widget.Widget;
 
 /**
  * Swing implementation for Scilab frames in GUI
@@ -104,7 +105,7 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
 
     private Integer uid = -1;
     int redraw = 0;
-
+    protected boolean hasLayout = false;
     private Border defaultBorder = null;
 
     /**
@@ -114,6 +115,7 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
         super();
         // the Default layout is null so we have to set a Position and a Size of every Dockable we add to it
         super.setLayout(null);
+        hasLayout = false;
         addComponentListener(new ComponentListener() {
             public void componentShown(ComponentEvent e) { }
 
@@ -138,6 +140,16 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
                         GraphicController.getController().setProperty(getId(), GraphicObjectProperties.__GO_POSITION__, newPosition);
                     } else {
                         GraphicController.getController().setProperty(getId(), GraphicObjectProperties.__GO_POSITION__, positions);
+                    }
+                }
+
+                if (hasLayout == false) {
+                    for (Component comp : getComponents()) {
+                        if (comp instanceof Widget) {
+                            Widget widget = (Widget) comp;
+                            SwingViewObject obj = (SwingViewObject) comp;
+                            SwingViewWidget.update(widget, __GO_POSITION__, GraphicController.getController().getProperty(obj.getId(), __GO_POSITION__));
+                        }
                     }
                 }
             }
@@ -208,6 +220,7 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
             AxesContainer frame = (AxesContainer) GraphicModel.getModel().getObjectFromId(getId());
             SwingScilabCanvas canvas = new SwingScilabCanvas(frame);
             setLayout(new BorderLayout());
+            hasLayout = true;
             add(canvas, BorderLayout.CENTER);
             return;
         }
@@ -856,15 +869,18 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
                 break;
             }
             case __GO_LAYOUT__: {
+                hasLayout = false;
                 LayoutType newLayout = LayoutType.intToEnum((Integer) value);
                 switch (newLayout) {
                     case BORDER: {
                         Integer[] padding = (Integer[]) controller.getProperty(getId(), __GO_BORDER_OPT_PADDING__);
                         setLayout(new BorderLayout(padding[0], padding[1]));
+                        hasLayout = true;
                         break;
                     }
                     case GRIDBAG:
                         setLayout(new GridBagLayout());
+                        hasLayout = true;
                         break;
                     case GRID: {
                         Integer[] padding = (Integer[]) controller.getProperty(getId(), __GO_GRID_OPT_PADDING__);
@@ -874,11 +890,13 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
                         }
 
                         setLayout(new GridLayout(grid[0], grid[1], padding[0], padding[1]));
+                        hasLayout = true;
                         break;
                     }
                     case NONE:
                     default: {
                         setLayout(null);
+                        hasLayout = false;
                         break;
                     }
                 }
