@@ -201,6 +201,7 @@ public class SciNotes extends SwingScilabDockablePanel {
      */
     public SciNotes(String uuid) {
         super(SCINOTES, uuid);
+        setWindowIcon("accessories-text-editor");
         setAssociatedXMLIDForHelp("scinotes");
         this.uuid = UUID.fromString(uuid);
         SciNotesAutosave.autosave();
@@ -293,7 +294,6 @@ public class SciNotes extends SwingScilabDockablePanel {
 
     public void setParentWindow() {
         this.parentWindow = SwingScilabWindow.createWindow(true);
-        setWindowIcon("accessories-text-editor");
         parentWindow.setLocation(150, 50);
         parentWindow.setSize(650, 550);
     }
@@ -698,14 +698,12 @@ public class SciNotes extends SwingScilabDockablePanel {
                 openFile(null, 0, null);
             }
 
-            setWindowIcon("accessories-text-editor");
             WindowsConfigurationManager.restorationFinished(this);
 
             return;
         }
 
         addRestoreTab();
-        setWindowIcon("accessories-text-editor");
         WindowsConfigurationManager.restorationFinished(SciNotes.this);
     }
 
