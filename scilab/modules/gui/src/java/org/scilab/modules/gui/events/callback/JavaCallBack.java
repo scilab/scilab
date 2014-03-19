@@ -14,6 +14,8 @@ package org.scilab.modules.gui.events.callback;
 import java.awt.event.ActionEvent;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.scilab.modules.graphic_objects.graphicObject.CallBack;
 
@@ -24,8 +26,20 @@ import org.scilab.modules.graphic_objects.graphicObject.CallBack;
 public abstract class JavaCallBack extends CommonCallBack {
 
     private static final long serialVersionUID = -6513057558261299432L;
-
     private static final String DOT = ".";
+    private static final Map<Class, ArgConverter> converters = new HashMap<Class, ArgConverter>();
+
+    static {
+        converters.put(int.class, new ArgConverter() {
+            public Object convert(String s) {
+                try {
+                    return Integer.decode(s);
+                } catch (Exception e) {
+                    return null;
+                }
+            }
+        });
+    }
 
     /**
      * @param command : the command to execute.
@@ -46,13 +60,33 @@ public abstract class JavaCallBack extends CommonCallBack {
 
             public void callBack() {
                 try {
-                    int lastPoint = getCommand().lastIndexOf(DOT);
+                    String cmd = getCommand();
+                    String args = null;
+                    int fpindex = cmd.indexOf('(');
+                    int lpindex = cmd.lastIndexOf(')');
+                    if (fpindex != -1 && lpindex != -1) {
+                        args = cmd.substring(fpindex + 1, lpindex);
+                        cmd = cmd.substring(0, fpindex);
+                    }
+
+                    int lastPoint = cmd.lastIndexOf(DOT);
                     Class invokedClass;
-                    invokedClass = Class.forName(getCommand().substring(0, lastPoint));
-                    Method runMe;
-                    runMe = invokedClass.getMethod(getCommand().substring(lastPoint + 1));
-                    // Only able to launch method Class.
-                    runMe.invoke(invokedClass.getClass(), (Object[]) null);
+                    invokedClass = Class.forName(cmd.substring(0, lastPoint));
+                    String methName = cmd.substring(lastPoint + 1);
+
+                    if (args == null) {
+                        Method runMe = invokedClass.getMethod(methName);
+                        // Only able to launch method Class.
+                        runMe.invoke(invokedClass.getClass(), (Object[]) null);
+                    } else {
+                        Method[] meths = invokedClass.getMethods();
+                        for (Method m : meths) {
+                            if (m.getName().equals(methName)) {
+                                m.invoke(invokedClass.getClass(), getArguments(m, args));
+                                break;
+                            }
+                        }
+                    }
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
                 } catch (SecurityException e) {
@@ -108,5 +142,27 @@ public abstract class JavaCallBack extends CommonCallBack {
                 callBack();
             }
         });
+    }
+
+    private interface ArgConverter {
+        public Object convert(String s);
+    }
+
+    private static Object[] getArguments(Method m, String arg) {
+        Class<?>[] types = m.getParameterTypes();
+        if (types.length == 0 || arg == null || arg.isEmpty()) {
+            return null;
+        }
+
+        String[] args = arg.split(",");
+        final int l = Math.min(types.length, args.length);
+        Object[] _args = new Object[l];
+        for (int i = 0; i < l; i++) {
+            if (converters.containsKey(types[i])) {
+                _args[i] = converters.get(types[i]).convert(args[i].trim());
+            }
+        }
+
+        return _args;
     }
 }

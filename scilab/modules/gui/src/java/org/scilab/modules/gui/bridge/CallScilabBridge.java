@@ -50,6 +50,7 @@ import javax.swing.text.Document;
 import org.scilab.modules.commons.ScilabCommons;
 import org.scilab.modules.console.SciConsole;
 import org.scilab.modules.graphic_export.FileExporter;
+import org.scilab.modules.graphic_objects.ScilabNativeView;
 import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.gui.SwingView;
@@ -293,13 +294,20 @@ public class CallScilabBridge {
      * @param figureId id of the figure to export
      * @return the ID of the File Chooser in the UIElementMapper
      */
-
     public static int newExportFileChooser(int figureId) {
         FileChooser fileChooser = ScilabFileChooser.createExportFileChooser(figureId);
         return 0;
     }
 
-
+    /**
+     * Create a new Graphic Export File Chooser in Scilab GUIs
+     * @param figureId id of the figure to export
+     * @return the ID of the File Chooser in the UIElementMapper
+     */
+    public static int exportUI(int figureId) {
+        FileChooser fileChooser = ScilabFileChooser.createExportFileChooser(ScilabNativeView.ScilabNativeView__getFigureFromIndex(figureId));
+        return 0;
+    }
 
     /**********************/
     /*                    */
@@ -839,8 +847,8 @@ public class CallScilabBridge {
      * @param figID the ID of the figure to print
      * @return execution status
      */
-    public static boolean printFigure(int figID) {
-        return printFigure(figID, true, true);
+    public static boolean print_figure(int figureId) {
+        return printFigure(ScilabNativeView.ScilabNativeView__getFigureFromIndex(figureId), true, true);
     }
 
     /**
@@ -1138,6 +1146,14 @@ public class CallScilabBridge {
     public static void setClipboardContents(String text) {
         Transferable contents = new StringSelection(text);
         Toolkit.getDefaultToolkit().getSystemClipboard().setContents(contents, null);
+    }
+
+    /**
+     * Copy figure to clipboard
+     * @param figID the ID of the figure
+     */
+    public static void clipboard_figure(int figureId) {
+        copyFigureToClipBoard(ScilabNativeView.ScilabNativeView__getFigureFromIndex(figureId));
     }
 
     /**

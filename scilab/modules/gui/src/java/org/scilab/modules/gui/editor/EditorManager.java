@@ -13,9 +13,10 @@
 
 package org.scilab.modules.gui.editor;
 
-
 import java.util.HashMap;
 import java.util.Map;
+
+import org.scilab.modules.graphic_objects.ScilabNativeView;
 
 /**
  * Manages all the editors.
@@ -40,6 +41,14 @@ public class EditorManager {
         editor.setFigure(figureUid);
         allEditors.put(figureUid, editor);
         return editor;
+    }
+
+    public static void start(int figureId) {
+        enableModify(ScilabNativeView.ScilabNativeView__getFigureFromIndex(figureId));
+    }
+
+    public static void stop(int figureId) {
+        disableModify(ScilabNativeView.ScilabNativeView__getFigureFromIndex(figureId));
     }
 
     /**

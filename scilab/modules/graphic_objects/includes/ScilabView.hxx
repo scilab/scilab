@@ -29,6 +29,7 @@ extern "C"
     void ScilabNativeView__setCurrentSubWin(int id);
     void ScilabNativeView__setCurrentObject(int id);
     int ScilabNativeView__getValidDefaultFigureId();
+    int ScilabNativeView__getFigureFromIndex(int figNum);
 }
 
 struct PathItem

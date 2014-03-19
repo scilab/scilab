@@ -71,6 +71,11 @@ int ScilabNativeView__getValidDefaultFigureId()
     return ScilabView::getValidDefaultFigureId();
 }
 
+int ScilabNativeView__getFigureFromIndex(int figNum)
+{
+    return ScilabView::getFigureFromIndex(figNum);
+}
+
 /**
  * \}
  */

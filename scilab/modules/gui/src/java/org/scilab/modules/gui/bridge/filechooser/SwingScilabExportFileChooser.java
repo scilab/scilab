@@ -159,11 +159,6 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
         if (selection == JFileChooser.APPROVE_OPTION && super.getSelectedFile() != null) {
             this.exportName = super.getSelectedFile().getAbsolutePath();
 
-            //Test if there is a file with the same name
-            if (!canWriteFile(this.exportName)) {
-                return;
-            }
-
             /* Bug 3849 fix */
             ConfigManager.saveLastOpenedDirectory(new File(exportName).getParentFile().getPath());
 

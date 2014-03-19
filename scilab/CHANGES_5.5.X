@@ -233,6 +233,8 @@ Scilab Bug Fixes
 
 * Bug #4677 fixed - xclick did not return correct mouse position on keyboard event.
 
+* Bug #4692 fixed - Export did not work while xgetmouse was waiting.
+
 * Bug #4858 fixed - libintl.h was missing in binary versions but included in localization.h.
 
 * Bug #4965 fixed - Setting links property for a handle of type legend did not work.
