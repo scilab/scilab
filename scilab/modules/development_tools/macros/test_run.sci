@@ -870,6 +870,12 @@ function status = test_single(_module, _testPath, _testName)
                 else // Remove messages due to warning message from library
                     toRemove = grep(txt, ": no version information available (required by ");
                     txt(toRemove) = [];
+
+                    if ~isempty(txt) then
+                        toRemove = grep(txt, "extension ""RANDR"" missing on display");
+                        txt(toRemove) = [];
+                    end
+                    
                     if isempty(txt) then
                         deletefile(tmp_err);
                     end
