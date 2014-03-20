@@ -1036,7 +1036,7 @@ interface for JOGL2 - or libGL (OpenGL library) are installed and if the version
                 JLATEXMATH=$PACKAGE_JAR_FILE
                 AC_SUBST(JLATEXMATH)
 
-                AC_JAVA_CHECK_VERSION_PACKAGE([jlatexmath],[import org.scilab.forge.jlatexmath.TeXFormula;],$JLATEXMATH,[1.0.2],[TeXFormula.VERSION])
+                AC_JAVA_CHECK_VERSION_PACKAGE([jlatexmath],[import org.scilab.forge.jlatexmath.TeXFormula;],$JLATEXMATH,[1.0.3],[TeXFormula.VERSION])
 
                 # JLaTeXMath FOP
                 AC_JAVA_CHECK_PACKAGE([jlatexmath-fop],[org.scilab.forge.jlatexmath.fop.JLaTeXMathObj],[LaTex Rendering - FOP plugin])

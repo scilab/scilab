@@ -202,6 +202,8 @@ Compilation
 
 * Minimal version of JoGL (2.1.4) enforced.
 
+* Minimal version of JLaTeXMath (1.0.3) enforced.
+
 
 Scilab Bug Fixes
 ================
