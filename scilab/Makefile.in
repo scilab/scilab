@@ -780,10 +780,10 @@ AM_LDFLAGS = $(SCI_LDFLAGS)
 changelogs = CHANGES CHANGES_5.1.X CHANGES_5.2.X CHANGES_5.3.X CHANGES_5.4.X  CHANGES_5.5.X
 bin_SCRIPTS = bin/scilab bin/scilab-adv-cli bin/scilab-cli \
 	bin/scinotes bin/xcos $(am__append_1)
-scilab_bin_LDFLAGS = $(AM_LDFLAGS) $(OPENMPI_LIBS) $(am__append_2) \
-	$(am__append_4) $(am__append_6)
-scilab_cli_bin_LDFLAGS = $(AM_LDFLAGS) $(OPENMPI_LIBS) $(am__append_3) \
-	$(am__append_5)
+scilab_bin_LDFLAGS = $(AM_LDFLAGS) $(OPENMPI_LIBS) $(XML_LIBS) \
+	$(am__append_2) $(am__append_4) $(am__append_6)
+scilab_cli_bin_LDFLAGS = $(AM_LDFLAGS) $(OPENMPI_LIBS) $(XML_LIBS) \
+	$(am__append_3) $(am__append_5)
 scilab_bin_CPPFLAGS = -I$(top_srcdir)/modules/io/includes/ \
 	-I$(top_srcdir)/modules/console/includes/ \
 	-I$(top_srcdir)/modules/localization/includes/ $(AM_CPPFLAGS) \
