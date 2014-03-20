@@ -19,7 +19,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>matfile2sci(mat_file_path,sci_file_path)</synopsis>
+        <synopsis>matfile2sci(mat_file_path,sci_file_path[, overwrite])</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -36,6 +36,14 @@
                     <para>character string containing the path of the Scilab output file</para>
                 </listitem>
             </varlistentry>
+            <varlistentry>
+                <term>overwrite</term>
+                <listitem>
+                    <para>
+                        a boolean: wipes the <literal>sci_file_path</literal> file if set to true. False by default.
+                    </para>
+                </listitem>
+            </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
@@ -44,6 +52,9 @@
             Converts a Matlab 5 MAT-file into a SOD file compatible
             with the function <literal>load</literal> (See <link linkend="save">save</link> for more information). The Matlab data types are
             converted into the Scilab equivalents.
+        </para>
+        <para>
+            The function exits without creating an output file if no variable was found in the input file.
         </para>
     </refsection>
     <refsection role="see also">
@@ -75,6 +86,10 @@
             <revision>
                 <revnumber>5.4.0</revnumber>
                 <revremark>Scilab output file in a SOD (Scilab Open Data) file.</revremark>
+            </revision>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>Output file can be overwritten or appended.</revremark>
             </revision>
         </revhistory>
     </refsection>

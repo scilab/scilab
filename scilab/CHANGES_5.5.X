@@ -156,6 +156,8 @@ Scilab
 
 * nanreglin(): reglin() with arguments containing NaNs (See bug #13208).
 
+* New optional input argument added to matfile2sci (append or write the output file).
+
 
 Xcos
 ====
