@@ -38,8 +38,8 @@ if IS_MACOSX
 bin_SCRIPTS 		+= bin/checkmacosx.applescript
 endif
 
-scilab_bin_LDFLAGS 	    = $(AM_LDFLAGS) $(OPENMPI_LIBS) $(XML_LIBS)
-scilab_cli_bin_LDFLAGS  = $(AM_LDFLAGS) $(OPENMPI_LIBS) $(XML_LIBS)
+scilab_bin_LDFLAGS 	    = $(AM_LDFLAGS) $(OPENMPI_LIBS)
+scilab_cli_bin_LDFLAGS  = $(AM_LDFLAGS) $(OPENMPI_LIBS)
 
 if USE_STATIC_SYSTEM_LIB
 scilab_bin_LDFLAGS += -static-libstdc++ -static-libgcc
