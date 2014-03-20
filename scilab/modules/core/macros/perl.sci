@@ -13,6 +13,9 @@ function [result, status] = perl(varargin)
     lhs = argn(1);
     rhs = argn(2);
 
+    //Function deprecated in Scilab 5.5 and obsolete in Scilab 6.0
+    warnobsolete(scilabRemovedVersion="6.0.0")
+
     if (rhs) then
         // Check that the first param is a file
         [x,ierr]=fileinfo(varargin(1));
