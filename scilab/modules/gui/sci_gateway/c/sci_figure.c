@@ -24,6 +24,7 @@
 #include "CurrentFigure.h"
 #include "CurrentSubwin.h"
 #include "FigureList.h"
+#include "FigureModel.h"
 #include "HandleManagement.h"
 #include "SetHashTable.h"
 #include "stricmp.h"
