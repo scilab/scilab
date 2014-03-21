@@ -61,29 +61,36 @@ int sci_htmlRead(char *fname, unsigned long fname_len)
 
     if (Rhs == 2)
     {
-	err = getVarAddressFromPosition(pvApiCtx, 2, &addr);
-	if (err.iErr)
-	{
-	    printError(&err, 0);
-	    Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
-	    return 0;
-	}
-	
-	if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
-	{
-	    Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
-	    return 0;
-	}
-	
-	if (getAllocatedSingleString(pvApiCtx, addr, &encoding) != 0)
-	{
-	    Scierror(999, _("%s: No more memory.\n"), fname);
-	    return 0;
-	}
+        err = getVarAddressFromPosition(pvApiCtx, 2, &addr);
+        if (err.iErr)
+        {
+            freeAllocatedSingleString(path);
+            printError(&err, 0);
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
+            return 0;
+        }
+
+        if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
+        {
+            freeAllocatedSingleString(path);
+            Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
+            return 0;
+        }
+
+        if (getAllocatedSingleString(pvApiCtx, addr, &encoding) != 0)
+        {
+            freeAllocatedSingleString(path);
+            Scierror(999, _("%s: No more memory.\n"), fname);
+            return 0;
+        }
     }
 
     doc = new org_modules_xml::XMLDocument((const char *)path, false, &error, (const char *)encoding, true);
     freeAllocatedSingleString(path);
+    if (encoding)
+    {
+        freeAllocatedSingleString(encoding);
+    }
 
     if (!error.empty())
     {
