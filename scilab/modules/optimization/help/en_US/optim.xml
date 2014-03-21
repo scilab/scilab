@@ -737,10 +737,10 @@
             // Upper and lower bounds on x and setting up the algorithm to "gc"
             [fopt, xopt, gopt] = optim(cost, "b", [-1; 0; 2], [0.5; 1; 4], x0, "gc")
             
-            // Bound on the number of call to the objective function
+            // Bound on the number of calls to the objective function
             [fopt, xopt, gopt] = optim(cost, "b", [-1; 0; 2], [0.5; 1; 4], x0, "gc", "ar", 3)
             
-            // Set max number of call to the objective function (3)
+            // Set max number of calls to the objective function (3)
             // Set max number of iterations (100)
             // Set stopping threshold on the value of f (1e-6),
             // on the value of the norm of the gradient of the objective function (1e-6)
