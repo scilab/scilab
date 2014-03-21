@@ -1626,6 +1626,8 @@ Xcos Bug Fixes
 
 * Bug #12424 fixed - Calling lincos on a derivative block made Scilab crash.
 
+* Bug #12449 fixed - QUANT_f was not rounding/truncating/flooring/ceiling properly input signal.
+
 * Bug #12460 fixed - xcosPalGenerateAllIcons sometimes crashed Scilab.
 
 * Bug #12461 fixed - Cancelling zoom out by zooming in did not fully work.

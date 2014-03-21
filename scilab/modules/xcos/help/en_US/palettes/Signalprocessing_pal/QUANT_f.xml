@@ -94,32 +94,32 @@
         <title>Description</title>
         <para>
             This block outputs the quantization of the input according to a choice
-            of methods:
+            of methods (quantization types):
         </para>
         <itemizedlist>
             <listitem>
                 <para>
                     <emphasis role="bold">1: Round</emphasis>
                 </para>
-                <para>Nearest whole number of the value at the first step</para>
+                <para>Rounding the number of quantization steps (output signal is the nearest step)</para>
             </listitem>
             <listitem>
                 <para>
                     <emphasis role="bold">2: Truncation</emphasis>
                 </para>
-                <para>The value at the first step is truncated </para>
+                <para>Truncating the number of quantization steps (output signal is the nearest step towards 0)</para>
             </listitem>
             <listitem>
                 <para>
                     <emphasis role="bold">3: Floor</emphasis>
                 </para>
-                <para>The floor value of the first step is used</para>
+		<para>Rounding down the number of quantization steps (output signal is the nearest step towards <latex>-\infty</latex>)</para>
             </listitem>
             <listitem>
                 <para>
                     <emphasis role="bold">4: Ceil</emphasis>
                 </para>
-                <para>The floor value of the first step is used</para>
+		<para>Rounding up the number of quantization steps (output signal is the nearest step towards <latex>+\infty</latex>)</para>
             </listitem>
         </itemizedlist>
     </refsection>
@@ -147,7 +147,8 @@
                 <para>
                     <emphasis role="bold">Quantization Type</emphasis>
                 </para>
-                <para> scalar with possible values 1,2,3 or 4 Properties : Type 'vec' of size 1. </para>
+                <para> scalar with possible values 1,2,3 or 4: the method of quantization used (respectively Truncation, Floor or Ceil)</para>
+		<para>Properties : Type 'vec' of size 1.</para>
             </listitem>
         </itemizedlist>
     </refsection>
@@ -250,14 +251,39 @@
     </refsection>
     <refsection id="Example_QUANT_f">
         <title>Example of a sine quantized every 0.2 step with the Ceil method (using the ceil value between two steps):</title>
-        <para>
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/signalprocessing_pal/QUANT_f_Example.zcos">
-                <inlinemediaobject>
-                    <imageobject>
-                        <imagedata align="center" fileref="../../../../examples/signalprocessing_pal/QUANT_f_Example.zcos" valign="middle"/>
-                    </imageobject>
-                </inlinemediaobject>
-            </link>
+	<para>
+		<link type="scilab" linkend="scilab.xcos/xcos/examples/signalprocessing_pal/QUANT_f_Example.zcos">
+			<inlinemediaobject>
+				<imageobject>
+					<imagedata align="center" fileref="../../../../examples/signalprocessing_pal/QUANT_f_Example.zcos" valign="middle"/>
+				</imageobject>
+			</inlinemediaobject>
+		</link>
+	</para>
+	<para>
+		<scilab:image><![CDATA[
+			importXcosDiagram(SCI + "/modules/xcos/examples/signalprocessing_pal/QUANT_f_Example.zcos");
+			xcos_simulate(scs_m, 4);
+			title("Quantization of a sine","fontsize",3)
+			]]></scilab:image>
+	</para>
+	</refsection><refsection id="Example_QUANT_f_Quantization_mode">
+	<title>Comparison of the different quantization modes:</title>
+	<para>
+		<link type="scilab" linkend="scilab.xcos/xcos/examples/signalprocessing_pal/QUANT_f_Example_Quantization_Mode.zcos">
+			<inlinemediaobject>
+				<imageobject>
+					<imagedata align="center" fileref="../../../../examples/signalprocessing_pal/QUANT_f_Example_Quantization_Mode.zcos" valign="middle"/>
+				</imageobject>
+			</inlinemediaobject>
+		</link>
         </para>
+	<para>
+		<scilab:image><![CDATA[
+			importXcosDiagram(SCI + "/modules/xcos/examples/signalprocessing_pal/QUANT_f_Example_Quantization_Mode.zcos");
+			xcos_simulate(scs_m, 4);
+			title("Rounding strategy for the quantization type","fontsize",3)
+			]]></scilab:image>
+	</para>
     </refsection>
 </refentry>

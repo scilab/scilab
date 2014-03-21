@@ -31,12 +31,23 @@ c
       double precision t,xd(*),x(*),z(*),tvec(*),rpar(*),u(*),y(*)
       integer flag,nevprt,nx,nz,ntvec,nrpar,ipar(*)
       integer nipar,nu,ny
+      double precision flr
 
 
       integer i
-c      
+c     Quantization by taking the nearest whole number of quantized steps
+c     towards infinity (ceiling)
       do 15 i=1,nu
-        y(i)=rpar(i)*ANINT(u(i)/rpar(i)-0.5d0)
+         flr=AINT(u(i)/rpar(i))
+         if (u(i).lt.0.0d0)then
+            y(i)=rpar(i)*flr
+         else
+            if (u(i).eq.flr)then
+               y(i)=rpar(i)*flr
+            else
+               y(i)=rpar(i)*(flr+1.0d0)
+            endif
+         endif
  15   continue
       return
 

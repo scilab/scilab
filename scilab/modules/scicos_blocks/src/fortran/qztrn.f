@@ -33,13 +33,9 @@ c
 
 
       integer i
-c
+c     Quantification by truncating the number of quantized steps
       do 15 i=1,nu
-         if (u(i).lt.0.0d0)then
-            y(i)=rpar(i)*(ANINT(u(i)/rpar(i)+0.5d0))
-         else
-            y(i)=rpar(i)*(ANINT(u(i)/rpar(i)-0.5d0))
-         endif  
+         y(i)=rpar(i)*AINT(u(i)/rpar(i))
  15   continue
 
       end
