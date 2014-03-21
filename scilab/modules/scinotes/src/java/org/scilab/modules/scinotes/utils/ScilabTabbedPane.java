@@ -473,8 +473,8 @@ public class ScilabTabbedPane extends JTabbedPane implements DragGestureListener
                 editor.getTabPane().remove(editor.getTabPane().indexOfTabComponent(this));
                 if (editor.getTabPane().getTabCount() == 0) {
                     editor.addEmptyTab();
-                    RestoreOpenedFilesAction.restoreEnabledComponents(editor);
                 }
+                RestoreOpenedFilesAction.restoreEnabledComponents(editor);
             }
         }
 
