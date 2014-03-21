@@ -291,7 +291,7 @@
     <None Include="..\differential_equations_f_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
-    <None Include="..\scicos-cli_Export.def">
+    <None Include="scicos-cli_Export.def">
       <Filter>Libraries Dependencies\Export</Filter>
     </None>
   </ItemGroup>
