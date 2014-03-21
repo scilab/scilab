@@ -96,8 +96,8 @@
             <literal>"Max delay"/length("Register initial condition")</literal>.
         </para>
         <para>
-            The input activation port and the first ouput activation port are meant to be linked,
-            to get the variations of the input.
+            Le port d'entrée d'activation et le premier port de sortie d'activation doivent être reliés,
+            pour obtenir les variations du délai d'entrée τ(t).
         </para>
         <para>
             Le délai final est : <literal>τ(t) + "Max delay"/length("Register initial condition")</literal>.
