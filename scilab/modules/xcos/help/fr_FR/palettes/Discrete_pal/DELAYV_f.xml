@@ -81,8 +81,27 @@
     </refsection>
     <refsection id="Description_DELAYV_f">
         <title>Description</title>
-        <para>Ajouter un paragraphe de description de la fonction ici</para>
-        <para/>
+        <para>
+            Le bloc Délai variable peut être utilisé pour simuler un délai variable
+            entre une action et son effet. Le bloc est utilisé, par exemple, pour modéliser
+            un système avec un tube où la vitesse de pompage du fluide dans le tube est variable.
+        </para>
+        <para>
+            Le bloc accepte deux entrées et une sortie : la première entrée est le
+            signal u(t) qui passe à travers le bloc (entrée de donnée); la seconde entrée
+            est le temps de retard variable τ(t).
+        </para>
+        <para>
+            Les ports de sortie d'activiation se déclenchent tous les
+            <literal>"Max delay"/length("Register initial condition")</literal>.
+        </para>
+        <para>
+            The input activation port and the first ouput activation port are meant to be linked,
+            to get the variations of the input.
+        </para>
+        <para>
+            Le délai final est : <literal>τ(t) + "Max delay"/length("Register initial condition")</literal>.
+        </para>
     </refsection>
     <refsection id="Dialogbox_DELAYV_f">
         <title>Boîte de dialogue</title>
@@ -214,5 +233,26 @@
                 <para>SCI/modules/scicos_blocks/src/fortran/delayv.f (Type 1)</para>
             </listitem>
         </itemizedlist>
+    </refsection>
+    <refsection id="Example_DELAYV_f">
+        <title>Exemple de délai variable</title>
+        <para>
+            Dans cet exemple, la fonction sinus (en noir) est retardée alternativement de 0 et 1 seconde.
+            L'amplitude du bloc GENSQR_f est fixée à 2, mais le paramètre "Max delay" du bloc DELAVV_f
+            bride cette valeur à 1.
+            On voit qu'à chaque fois que GENSQR_f est activé (toutes les 2*π secondes), le délai change :
+            tour à tour, les courbes se superposent (délai=0) et sont décalées (délai=1).
+        </para>
+        <link type="scilab" linkend="scilab.xcos/xcos/examples/discrete_pal/en_US/DELAYV_f_en_US.zcos">
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../../../../examples/discrete_pal/en_US/DELAYV_f_en_US.zcos" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+        </link>
+        <scilab:image><![CDATA[
+importXcosDiagram(SCI + "/modules/xcos/examples/discrete_pal/en_US/DELAYV_f_en_US.zcos");
+xcos_simulate(scs_m, 4);
+]]></scilab:image>
     </refsection>
 </refentry>
