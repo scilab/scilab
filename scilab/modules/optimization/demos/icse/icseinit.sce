@@ -19,14 +19,14 @@ if exists("b")==0 then
     b = ones(1,ny);
 end
 if exists("fy")==0 then
-    fy1 = ones(1,ny*ny);
+    fy = ones(1,ny*ny);
 else
-    fy1 = matrix(fy,1,ny*ny);
+    fy = fy(:)';
 end
 if exists("fu")==0 then
-    fu1 = ones(1,ny*(nuc+nuv));
+    fu = ones(1,ny*(nuc+nuv));
 else
-    fu1 = matrix(fu,1,ny*(nuc+nuv));
+    fu = fu(:)';
 end
 
 format("e");
@@ -48,7 +48,7 @@ end
 clear xx yy;
 
 //    initialisation du common icsez
-[nitv,nrtv,ndtv]=fort("icse0",nu,1,"i",t0,2,"d",tf,3,"d",dti,4,"d",..
+[nitv,nrtv,ndtv]=call("icsez0",nu,1,"i",t0,2,"d",tf,3,"d",dti,4,"d",..
 dtf,5,"d",ermx,6,"d",iu,7,"i",nuc,8,"i",nuv,9,"i",ilin,10,"i",nti,..
 11,"i",ntf,12,"i",ny,13,"i",nea,14,"i",itmx,15,"i",nex,16,"i",nob,..
 17,"i",ntob,18,"i",ntobi,19,"i",nitu,20,"i",ndtu,21,"i","sort",..

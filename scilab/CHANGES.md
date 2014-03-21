@@ -324,6 +324,7 @@ Bug Fixes
 * [#7794](http://bugzilla.scilab.org/show_bug.cgi?id=7794): Example of findABCD help page failed.
 * [#7958](http://bugzilla.scilab.org/show_bug.cgi?id=7958): `mrfit`did not allow a fourth parameter as shown in the help page.
 * [#8010](http://bugzilla.scilab.org/show_bug.cgi?id=8010): Permanent variables could be redefined through a syntax like `%i(1,1)=1`
+* [#8190](http://bugzilla.scilab.org/show_bug.cgi?id=8190): Fixed ICSE demos of Optimization module.
 * [#8356](http://bugzilla.scilab.org/show_bug.cgi?id=8356): `sci2exp` applied to lists, tlists or mlists having undefined fields yielded an error or a wrong result.
 * [#8493](http://bugzilla.scilab.org/show_bug.cgi?id=8493): Some trivial simplifications of `p1./p2` with matrices of complex-encoded polynomials were not done.
 * [#8841](http://bugzilla.scilab.org/show_bug.cgi?id=8841): Error in struct extraction, s.a is not equal to s(1).a

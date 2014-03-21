@@ -44,7 +44,7 @@ function [co,u,g,itv,dtv,cof]=icsua(u,simu,nap,imp)
     ico  = 1;
     yob  = 0.d0*ones(nob,ntob);
     ob   = don;
-    [cof] = fort("icscof",ico,1,"i",ntob,2,"i",nex,3,"i",...
+    [cof] = call("icscof",ico,1,"i",ntob,2,"i",nex,3,"i",...
     nob,4,"i",yob,5,"d",ob,6,"d","sort",[1,nob*ntob],7,"d");
     [co,u,g,itv,dtv] = icsegen(u,simu,nap,imp);
     u = ech.*u;

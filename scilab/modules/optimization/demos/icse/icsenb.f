@@ -102,7 +102,7 @@ c!
      &d(nob),itu(nitu),dtu(ndtu),iu(5)
 c
       call navetc(indc,nu,tob,obs,cof,ytob,ob,u,
-     &     c,cy,g,yob,d,itu,dtu)
+     &     c,cy,g,yob,d,itu,dtu,ntob,nob,ny,nex,nitu)
 c
       end
       subroutine navetb(indf,t,y,uc,uv,f,fy,fu,itu,dtu,
@@ -256,7 +256,7 @@ C
       end
 
       subroutine navetc(indc,nu,tob,obs,cof,ytob,ob,u,
-     & c,cy,g,yob,d,itu,dtu)
+     & c,cy,g,yob,d,itu,dtu,ntob,nob,ny,nex,nitu)
 c
 c     test probleme navette
 c
@@ -278,7 +278,11 @@ c
 c     variables internes:     yob,d
 c
       implicit double precision (a-h,o-z)
-      dimension ytob(4),ob(3),u(nu),cy(4),g(nu),dtu(*)
+      dimension ytob(4),ob(3),u(nu),cy(4),g(nu),dtu(*),tob(ntob),
+     &obs(nob,ny),cof(nob,ntob),yob(nob,ntob),d(nob),itu(nitu)
+      !dimension tob(ntob),obs(nob,ny),cof(nob,ntob),ytob(ny,ntob),
+      !&ob(nex,ntob,nob),u(nu),cy(ny,ntob),g(nu),yob(nob,ntob),
+      !&d(nob),itu(nitu),dtu(ndtu),iu(5)
 c
       cpen=dtu(25)
       cy(1)=ytob(1)-ob(1)
