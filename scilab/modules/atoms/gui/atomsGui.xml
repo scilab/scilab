@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <scilabgui usedeprecatedskin="off" version="1.0">
-    <figure axes_size="900,600" background="33" default_axes="off" dockable="off" figure_position="0,0" figure_size="916,665" icon="software-update-notinstalled" infobar_visible="off" layout="3" menubar="0" resizefcn="atomsResize" tag="atomsFigure" toolbar="0" toolbar_visible="off" visible="off">
+    <figure axes_size="900,600" background="33" default_axes="off" dockable="off" figure_position="0,0" icon="software-update-notinstalled" infobar_visible="off" layout="3" menubar="0" tag="atomsFigure" toolbar="0" toolbar_visible="off" visible="off">
         <frame backgroundcolor="1.0,1.0,1.0" borderoptpadding="5,5" layout="3" tag="MainFrame">
             <frame backgroundcolor="1.0,1.0,1.0" borderposition="0" borderpreferredsize="0,40" layout="3" margins="5.0,5.0,5.0,5.0" tag="msgFrame">
                 <border style="titled" title="">
