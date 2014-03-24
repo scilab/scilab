@@ -209,6 +209,16 @@ Compilation
 * Minimal version of JLaTeXMath (1.0.3) enforced.
 
 
+Known incompatibilities
+========================
+
+* Using => or =< now returns an error. See bug #2345.
+
+* or/and functions now fix reals value before working on them. See bug #7666.
+
+* a*b*-c+d is now interpreted as (a*b*(-c))+d instead of a*b*(-c+d). See bug #13168.
+
+
 Scilab Bug Fixes
 ================
 
