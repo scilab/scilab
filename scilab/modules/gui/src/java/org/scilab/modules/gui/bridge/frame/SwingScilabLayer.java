@@ -21,6 +21,7 @@ public class SwingScilabLayer extends SwingScilabFrame {
     public SwingScilabLayer() {
         super();
         setLayout(new CardLayout());
+        hasLayout = true;
     }
 
     public void addMember(SwingScilabFrame member) {
