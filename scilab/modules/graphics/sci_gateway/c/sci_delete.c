@@ -274,9 +274,13 @@ int sci_delete(char *fname, unsigned long fname_len)
             int iChildType = -1;
             int *piChildType = &iChildType;
             int iAxesFound = 0;
+            int iDefaultAxes = -1;
+            int *piDefaultAxes = &iDefaultAxes;
 
             getGraphicObjectProperty(iParentUID, __GO_CHILDREN_COUNT__, jni_int, (void **)&piChildCount);
             getGraphicObjectProperty(iParentUID, __GO_CHILDREN__, jni_int_vector, (void **)&piChildrenUID);
+            getGraphicObjectProperty(iParentUID, __GO_DEFAULT_AXES__, jni_bool, (void **)&piDefaultAxes);
+
             for (iChild = 0; iChild < iChildCount; iChild++)
             {
                 getGraphicObjectProperty(piChildrenUID[iChild], __GO_TYPE__, jni_int, (void **)&piChildType);
@@ -290,8 +294,9 @@ int sci_delete(char *fname, unsigned long fname_len)
                     break;
                 }
             }
-            if (!iAxesFound)
+            if (!iAxesFound && iDefaultAxes != 0)
             {
+
                 /*
                  * Clone a new Axes object using the Axes model which is then
                  * attached to the newly created Figure.

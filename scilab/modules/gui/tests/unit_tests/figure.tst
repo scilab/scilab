@@ -39,3 +39,29 @@ assert_checkequal(size(f.color_map), [34, 3]);
 assert_checkequal(f.color_map(34,:), [0.5 0.2 0.6]);
 delete(f);
 
+// Figure without axes
+f = figure("default_axes", "off");
+assert_checkequal(f.children, []);
+newaxes(f);
+assert_checkequal(f.children(1).type, "Axes");
+delete(f.children(1));
+assert_checkequal(f.children, []);
+delete(f);
+
+// Figure with axes
+f = figure();
+assert_checkequal(f.children(1).type, "Axes");
+delete(f.children(1));
+assert_checkequal(f.children(1).type, "Axes");
+f.default_axes = "off";
+delete(f.children(1));
+assert_checkequal(f.children, []);
+newaxes(f);
+assert_checkequal(f.children(1).type, "Axes");
+delete(f.children(1));
+assert_checkequal(f.children, []);
+f.default_axes = "on";
+newaxes(f);
+assert_checkequal(f.children(1).type, "Axes");
+delete(f.children(1));
+assert_checkequal(f.children(1).type, "Axes");
