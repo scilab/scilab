@@ -391,10 +391,11 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         synchronized (figure) {
             /** Set the current {@see ColorMap}. */
             try {
+                Dimension dims = getCanvas().getDimension();
                 colorMap = figure.getColorMap();
                 drawingTools.clear(ColorFactory.createColor(colorMap, figure.getBackground()));
                 drawingTools.clearDepthBuffer();
-                if (figure.isValid() && figure.getVisible() && figure.getImmediateDrawing()) {
+                if (figure.isValid() && figure.getVisible() && figure.getImmediateDrawing() && dims.width > 1 && dims.height > 1) {
                     askAcceptVisitor(figure.getChildren());
                 }
             } catch (Exception e) {
@@ -413,8 +414,11 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 if (frame.isValid() && frame.getVisible()) {
                     DrawerVisitor visitor = visitorMap.get(frame.getIdentifier());
                     if (visitor != null) {
+                        Dimension dims = visitor.getCanvas().getDimension();
                         visitor.setDrawingTools(drawingTools);
-                        visitor.askAcceptVisitor(frame.getChildren());
+                        if (dims.width > 1 && dims.height > 1) {
+                            visitor.askAcceptVisitor(frame.getChildren());
+                        }
                     }
                 }
             } catch (Exception e) {
@@ -1028,12 +1032,17 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
             }
 
             if (object instanceof Axes) {
-
                 Axes axes = (Axes) object;
 
                 if ((axes.getXAxisAutoTicks() && X_AXIS_TICKS_PROPERTIES.contains(property)) ||
                         (axes.getYAxisAutoTicks() && Y_AXIS_TICKS_PROPERTIES.contains(property)) ||
                         (axes.getZAxisAutoTicks() && Z_AXIS_TICKS_PROPERTIES.contains(property))) {
+                    return false;
+                }
+
+                if ((!axes.getXAxisAutoTicks() && X_AXIS_TICKS_PROPERTIES.contains(property)) ||
+                        (!axes.getYAxisAutoTicks() && Y_AXIS_TICKS_PROPERTIES.contains(property)) ||
+                        (!axes.getZAxisAutoTicks() && Z_AXIS_TICKS_PROPERTIES.contains(property))) {
                     axesDrawer.computeMargins(axes);
                     return false;
                 }
