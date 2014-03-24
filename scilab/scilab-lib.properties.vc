@@ -1,5 +1,11 @@
 ; Definition of lib used in Scilab
 
+freehep-graphics2d.jar=${thirdparty.dir}/freehep-graphics2d.jar
+
+freehep-graphicsio-emf.jar=${thirdparty.dir}/freehep-graphicsio-emf.jar
+
+freehep-graphicsio.jar=${thirdparty.dir}/freehep-graphicsio.jar
+
 commons-logging.jar=${thirdparty.dir}/commons-logging-1.1.jar
 
 flexdock.jar=${thirdparty.dir}/flexdock-1.2.4.jar

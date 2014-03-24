@@ -207,6 +207,7 @@ lib /DEF:"$(ProjectDir)graphics_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     <ClCompile Include="sci_gateway\cpp\sci_driver.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_xend.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_xinit.cpp" />
+    <ClCompile Include="sci_gateway\c\sci_xs2emf.c" />
     <ClCompile Include="sci_gateway\c\xs2file.c" />
     <ClCompile Include="src\cpp\exportToFile.cpp" />
     <ClCompile Include="src\jni\Driver.cpp" />

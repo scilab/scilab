@@ -40,7 +40,8 @@ sci_gateway/c/sci_xs2svg.c \
 sci_gateway/c/sci_xs2jpg.c \
 sci_gateway/c/sci_xs2eps.c \
 sci_gateway/c/sci_xs2pdf.c \
-sci_gateway/c/sci_xs2png.c
+sci_gateway/c/sci_xs2png.c \
+sci_gateway/c/sci_xs2emf.c
 
 GATEWAY_CXX_SOURCES = sci_gateway/cpp/sci_driver.cpp \
 sci_gateway/cpp/sci_xinit.cpp \

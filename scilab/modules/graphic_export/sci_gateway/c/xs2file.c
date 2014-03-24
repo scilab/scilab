@@ -307,6 +307,7 @@ static BOOL isVectorialExport(ExportFileType fileType)
     return fileType == EPS_EXPORT
            || fileType == PS_EXPORT
            || fileType == PDF_EXPORT
-           || fileType == SVG_EXPORT;
+           || fileType == SVG_EXPORT
+           || fileType == EMF_EXPORT;
 }
 /*--------------------------------------------------------------------------*/

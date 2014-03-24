@@ -35,6 +35,26 @@ The option is "disableUnderMode" and can be:
     <path value="$SCILAB/thirdparty/jhall.jar"/>
 
     <!-- Load when needed -->
+    
+    <path value="$SCILAB/thirdparty/freehep-util.jar" load="onUse">
+      <load on="emf_graphic_export"/>
+    </path>
+    
+    <path value="$SCILAB/thirdparty/freehep-io.jar" load="onUse">
+      <load on="emf_graphic_export"/>
+    </path>
+    
+    <path value="$SCILAB/thirdparty/freehep-graphicsio.jar" load="onUse">
+      <load on="emf_graphic_export"/>
+    </path>
+    
+    <path value="$SCILAB/thirdparty/freehep-graphicsio-emf.jar" load="onUse">
+      <load on="emf_graphic_export"/>
+    </path>
+    
+    <path value="$SCILAB/thirdparty/freehep-graphics2d.jar" load="onUse">
+      <load on="emf_graphic_export"/>
+    </path>
 
     <path value="$SCILAB/thirdparty/jrosetta-API.jar" load="onUse">
         <load on="Console" />

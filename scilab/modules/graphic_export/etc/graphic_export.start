@@ -9,16 +9,3 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 // =============================================================================
 
-function graphic_exportlib = startModule()
-
-  //Load  functions libraries
-  // =============================================================================
-  load(SCI+"/modules/graphic_export/macros/lib");
-
-endfunction
-
-if (getscilabmode() <> 'NWNI') then
-  graphic_exportlib = startModule();
-end
-
-clear startModule;

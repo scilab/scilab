@@ -36,6 +36,26 @@ The option is "disableUnderMode" and can be:
 
 <!-- Load when needed -->
 
+<path value="@FREEHEP_UTIL@" load="onUse">
+  <load on="emf_graphic_export"/>
+</path>
+
+<path value="@FREEHEP_IO@" load="onUse">
+  <load on="emf_graphic_export"/>
+</path>
+
+<path value="@FREEHEP_GRAPHICSIO@" load="onUse">
+  <load on="emf_graphic_export"/>
+</path>
+
+<path value="@FREEHEP_GRAPHICSIO_EMF@" load="onUse">
+  <load on="emf_graphic_export"/>
+</path>
+
+<path value="@FREEHEP_GRAPHICS2D@" load="onUse">
+  <load on="emf_graphic_export"/>
+</path>
+
 <path value="@JROSETTA_API@" load="onUse">
         <load on="Console" />
         <load on="SciNotes" />

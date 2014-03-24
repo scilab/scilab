@@ -48,6 +48,7 @@ import org.apache.xmlgraphics.java2d.ps.EPSDocumentGraphics2D;
 import org.apache.xmlgraphics.java2d.ps.PSDocumentGraphics2D;
 import org.apache.xmlgraphics.ps.DSCConstants;
 import org.apache.xmlgraphics.ps.PSGenerator;
+import org.freehep.graphicsio.emf.EMFGraphics2D;
 import org.scilab.forge.scirenderer.Canvas;
 import org.scilab.forge.scirenderer.implementation.g2d.G2DCanvas;
 import org.scilab.forge.scirenderer.implementation.g2d.G2DCanvasFactory;
@@ -81,6 +82,7 @@ public class Export {
 
     private static final String CLASSPATH_PDF_PS_EPS_EXPORT_NAME = "pdf_ps_eps_graphic_export";
     private static final String CLASSPATH_SVG_EXPORT_NAME = "svg_graphic_export";
+    private static final String CLASSPATH_EMF_EXPORT_NAME = "emf_graphic_export";
 
     private static final Map<DrawerVisitor, Exporter> visitorsToExp = new WeakHashMap<DrawerVisitor, Exporter>();
 
@@ -97,13 +99,15 @@ public class Export {
         extToType.put("svg", 8);
         extToType.put("ps", 9);
         extToType.put("pos", 9);
+        extToType.put("emf", 10);
     }
 
+    private static boolean emfLoaded;
     private static boolean svgLoaded;
     private static boolean pdfLoaded;
 
-    public enum TYPE { PNG, JPEG, GIF, BMP, PPM, SVG, PS, EPS, PDF }
-    private static final TYPE[] types = new TYPE[] {TYPE.PNG, TYPE.BMP, TYPE.GIF, TYPE.JPEG, TYPE.PNG, TYPE.PPM, TYPE.EPS, TYPE.PDF, TYPE.SVG, TYPE.PS};
+    public enum TYPE { PNG, JPEG, GIF, BMP, PPM, SVG, PS, EPS, PDF, EMF }
+    private static final TYPE[] types = new TYPE[] {TYPE.PNG, TYPE.BMP, TYPE.GIF, TYPE.JPEG, TYPE.PNG, TYPE.PPM, TYPE.EPS, TYPE.PDF, TYPE.SVG, TYPE.PS, TYPE.EMF};
 
     /**
      * @param type the image type
@@ -140,7 +144,7 @@ public class Export {
 
         String extendedFilename = fileName;
         if (!extensionFound) { // Add default extension if no one found
-            String[] extensions = {"png", "bmp", "gif", "jpeg", "png", "ppm", "eps", "pdf", "svg", "ps"};
+            String[] extensions = {"png", "bmp", "gif", "jpeg", "png", "ppm", "eps", "pdf", "svg", "ps", "emf"};
             extendedFilename = fileName + "." + extensions[type];
         }
 
@@ -160,7 +164,6 @@ public class Export {
 
         return exportVectorial(uid, type, extendedFilename, params, headless);
     }
-
 
     /**
      * Export in drawing in a Graphics2D
@@ -439,6 +442,12 @@ public class Export {
             case EPS :
                 loadPDF();
                 return new EPSExporter();
+            case EMF :
+                if (!emfLoaded) {
+                    ScilabCommonsUtils.loadOnUse(CLASSPATH_EMF_EXPORT_NAME);
+                    emfLoaded = true;
+                }
+                return new EMFExporter();
             default :
                 break;
         }
@@ -1041,6 +1050,68 @@ public class Export {
             } catch (IOException e) { }
 
             return g2d;
+        }
+    }
+
+    /**
+     * EMF Exporter
+     */
+    private static class EMFExporter extends Exporter {
+
+        private OutputStream out;
+        private EMFGraphics2D g2d;
+        private ByteArrayOutputStream buffer;
+
+        public EMFExporter() { }
+
+        @Override
+        public Graphics2D getGraphics2D(int width, int height, File file, final ExportParams params) {
+            this.file = file;
+            try {
+                if (file == null) {
+                    buffer = new ByteArrayOutputStream();
+                    out = new BufferedOutputStream(buffer);
+                } else {
+                    out = new BufferedOutputStream(new FileOutputStream(file));
+                }
+                if (params.orientation == ExportParams.LANDSCAPE) {
+                    g2d = new EMFGraphics2D(out, new Dimension(height, width));
+                    g2d.startExport();
+                    AffineTransform transf = AffineTransform.getRotateInstance(Math.PI / 2);
+                    transf.preConcatenate(AffineTransform.getTranslateInstance(height, 0));
+                    g2d.setTransform(transf);
+                } else {
+                    g2d = new EMFGraphics2D(out, new Dimension(width, height));
+                    g2d.startExport();
+                }
+            } catch (IOException e) { }
+
+            return g2d;
+        }
+
+        @Override
+        public void write() throws IOException {
+            if (g2d != null) {
+                g2d.endExport();
+                g2d.closeStream();
+            }
+            if (buffer != null && file != null) {
+                FileOutputStream fos = new FileOutputStream(file);
+                buffer.writeTo(fos);
+                buffer.close();
+                fos.flush();
+                fos.close();
+            }
+            if (out != null) {
+                out.close();
+            }
+        }
+
+        @Override
+        public void dispose() {
+            if (g2d != null) {
+                g2d.dispose();
+            }
         }
     }
 }

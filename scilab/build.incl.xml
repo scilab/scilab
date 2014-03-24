@@ -77,6 +77,9 @@
         <pathelement location="${avalon-framework.jar}"/>
         <pathelement location="${jeuclid-core.jar}"/>
         <pathelement location="${jlatexmath.jar}"/>
+        <pathelement location="${freehep-graphics2d.jar}"/>
+        <pathelement location="${freehep-graphicsio-emf.jar}"/>
+        <pathelement location="${freehep-graphicsio.jar}"/>
     </path>
     <target name="init">
         <!-- Check the version of Java. If it changes after the configure

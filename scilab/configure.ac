@@ -985,6 +985,31 @@ interface for JOGL2 - or libGL (OpenGL library) are installed and if the version
                 FOP=$PACKAGE_JAR_FILE
                 AC_SUBST(FOP)
 
+		# Freehep Graphics2D
+                AC_JAVA_CHECK_PACKAGE([freehep-graphics2d],[org.freehep.graphics2d.VectorGraphics],[Freehep Graphics2D])
+                FREEHEP_GRAPHICS2D=$PACKAGE_JAR_FILE
+                AC_SUBST(FREEHEP_GRAPHICS2D)
+
+		# Freehep GraphicsIO EMF
+                AC_JAVA_CHECK_PACKAGE([freehep-graphicsio-emf],[org.freehep.graphicsio.emf.EMFGraphics2D],[Freehep GraphicsIO EMF])
+                FREEHEP_GRAPHICSIO_EMF=$PACKAGE_JAR_FILE
+                AC_SUBST(FREEHEP_GRAPHICSIO_EMF)
+
+		# Freehep GraphicsIO
+                AC_JAVA_CHECK_PACKAGE([freehep-graphicsio],[org.freehep.graphicsio.VectorGraphicsIO],[Freehep GraphicsIO])
+                FREEHEP_GRAPHICSIO=$PACKAGE_JAR_FILE
+                AC_SUBST(FREEHEP_GRAPHICSIO)
+
+		# Freehep IO
+                AC_JAVA_CHECK_PACKAGE([freehep-io],[org.freehep.util.io.XMLSequence],[Freehep IO])
+                FREEHEP_IO=$PACKAGE_JAR_FILE
+                AC_SUBST(FREEHEP_IO)
+
+		# Freehep Util
+                AC_JAVA_CHECK_PACKAGE([freehep-util],[org.freehep.util.StringUtilities],[Freehep Util])
+                FREEHEP_UTIL=$PACKAGE_JAR_FILE
+                AC_SUBST(FREEHEP_UTIL)
+
                 # xml.apache.org SVG Library (under mandriva for example)
                 AC_JAVA_CHECK_PACKAGE([batik-all],[org.apache.batik.parser.Parser],[Apache SVG Library],"yes")
                 BATIK=$PACKAGE_JAR_FILE

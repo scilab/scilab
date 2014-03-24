@@ -6,7 +6,6 @@
 // =============================================================================
 //
 // <-- TEST WITH GRAPHIC -->
-// <-- WINDOWS ONLY --> 
 //
 // <-- Non-regression test for bug 7994 -->
 //
@@ -16,13 +15,12 @@
 // <-- Short Description -->
 // xs2emf created empty files on Windows
 
-if getos() == "Windows"
-  emfFilename = TMPDIR + "/bug_7994.emf";
-  s = scf(0);
-  plot3d();
+emfFilename = TMPDIR + "/bug_7994.emf";
+s = scf(0);
+plot3d();
 
-  xs2emf(0, emfFilename);
-  if ~isfile(emfFilename) then pause, end
-  info = fileinfo(emfFilename);
-  if info(1) < 592080 then pause, end
-end
+xs2emf(0, emfFilename);
+if ~isfile(emfFilename) then pause, end
+info = fileinfo(emfFilename);
+if info(1) < 592080 then pause, end
+

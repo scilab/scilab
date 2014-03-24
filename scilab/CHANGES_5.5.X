@@ -208,6 +208,13 @@ Compilation
 
 * Minimal version of JLaTeXMath (1.0.3) enforced.
 
+* New dependencies to manage EMF export:
+ - freehep-graphics2d.jar
+ - freehep-graphicsio-emf.jar
+ - freehep-graphicsio.jar
+ - freehep-io.jar
+ - freehep-util.jar
+
 
 Known incompatibilities
 ========================

@@ -25,6 +25,7 @@
 /*--------------------------------------------------------------------------*/
 static BOOL loadedDep = FALSE;
 static BOOL loadedDepVectorialExport = FALSE;
+static BOOL loadedDepEMFVectorialExport = FALSE;
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[] =
 {
@@ -37,6 +38,7 @@ static gw_generic_table Tab[] =
     {sci_xs2pdf, "xs2pdf"},
     {sci_xs2svg, "xs2svg"},
     {sci_xs2ps, "xs2ps"},
+    {sci_xs2emf, "xs2emf"},
     {sci_driver, "driver"},
     {sci_xinit, "xinit"},
     {sci_xend, "xend"}
@@ -67,6 +69,12 @@ int gw_graphic_export(void)
         {
             loadOnUseClassPath("pdf_ps_eps_graphic_export");
             loadedDepVectorialExport = TRUE;
+        }
+
+        if (!loadedDepEMFVectorialExport && (strcmp(Tab[Fin - 1].name, "xs2eps") == 0))
+        {
+            loadOnUseClassPath("emf_graphic_export");
+            loadedDepEMFVectorialExport = TRUE;
         }
 
         callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
