@@ -161,6 +161,8 @@ Xcos
 
 * A demo sub-panel has been added for event demos.
 
+* API change: In scicos_block4.h, "Residute" has been renamed to "Jacobian".
+
 
 Obsolete & Removed Functions
 ============================

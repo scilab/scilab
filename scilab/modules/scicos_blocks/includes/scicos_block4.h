@@ -101,7 +101,7 @@ typedef enum
     ReInitialization = 6,
     ContinousPropertiesUpdate = 7,
     ZeroCrossing = 9,
-    Residute = 10
+    Jacobian = 10
 } scicos_flag;
 
 /* utility function for block declaration */
