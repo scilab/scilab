@@ -30,4 +30,3 @@ n=5;m=4;mat=rand(n,m);
 row="row";labelv=row(ones(1,n))+string(1:n);
 col="col";labelh=col(ones(1,m))+string(1:m);
 new=evstr(x_mdialog("Matrix to edit",labelv,labelh,string(mat)))
-
