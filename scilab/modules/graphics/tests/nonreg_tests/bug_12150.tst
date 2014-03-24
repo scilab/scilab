@@ -22,5 +22,5 @@ e=gce();
 p=e.children(1);
 t=datatipCreate(p,1);
 assert_checkequal(p.datatips(1).data, [20 190 0]);
-assert_checkequal(p.datatips(1).text, ["X:2e01";"Y:1.9e02"]);
+assert_checkequal(p.datatips(1).text, ["X:20.0000";"Y:190.000"]);
 close
