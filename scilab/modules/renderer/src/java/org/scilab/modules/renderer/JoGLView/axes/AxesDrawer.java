@@ -225,7 +225,7 @@ public class AxesDrawer {
                 }
             }
 
-            computeRulers(axes);
+            //computeRulers(axes);
             final double xratio = rulerDrawer.getRulerDrawer(axes, 0).getDistanceRatio();
             final double yratio = rulerDrawer.getRulerDrawer(axes, 1).getDistanceRatio();
 
@@ -302,7 +302,7 @@ public class AxesDrawer {
 
             if (!m[0].equals(margins[0]) || !m[1].equals(margins[1]) || !m[2].equals(margins[2]) || !m[3].equals(margins[3])) {
                 axes.setMargins(m);
-                computeRulers(axes);
+                //computeRulers(axes);
             }
         }
     }

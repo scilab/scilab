@@ -110,6 +110,7 @@ public class SwingScilabStaticPanel extends SwingScilabScrollPane implements Swi
                         }
                     }
                 }
+                getParentWindow().validate();
             }
 
             public void componentMoved(ComponentEvent arg0) {
