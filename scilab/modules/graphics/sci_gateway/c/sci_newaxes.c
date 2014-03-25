@@ -121,7 +121,7 @@ int sci_newaxes(char * fname, unsigned long fname_len)
                     return 1;
                 }
 
-                AssignOutputVariable(pvApiCtx, 1) = 1;
+                AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
                 ReturnArguments(pvApiCtx);
             }
             else
