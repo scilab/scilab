@@ -821,6 +821,8 @@ Scilab Bug Fixes
 
 * Bug #13271 fixed - plot2d with logarithmic scale and %nan value freezed Scilab.
 
+* Bug #13272 fixed - Error when reading CSV files with comment option on a CSV file without comment fixed.
+
 * Bug #13280 fixed - Axes were not always displayed correctly after figure resizing.
 
 

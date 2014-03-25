@@ -42,6 +42,7 @@ int sci_csvRead(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
     int iErr = 0;
+    int iErrEmpty = 0;
 
     char *filename = NULL;
     char *separator = NULL;
@@ -431,7 +432,15 @@ int sci_csvRead(char *fname, unsigned long fname_len)
                         }
                         else
                         {
-                            sciErr = createMatrixOfString(pvApiCtx, Rhs + 2, result->nbComments, 1, result->pstrComments);
+                            if (result->nbComments > 0)
+                            {
+                               sciErr = createMatrixOfString(pvApiCtx, Rhs + 2, result->nbComments, 1, result->pstrComments);
+                            }
+                            else
+                            {
+                               iErrEmpty = createEmptyMatrix(pvApiCtx, Rhs+2);
+                               sciErr.iErr = iErrEmpty;
+                            }
                         }
                         if (sciErr.iErr)
                         {
