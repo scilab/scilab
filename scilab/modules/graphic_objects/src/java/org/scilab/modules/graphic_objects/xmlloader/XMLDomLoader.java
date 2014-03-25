@@ -14,9 +14,13 @@ import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.graphic_objects.ScilabNativeView;
 import org.scilab.modules.graphic_objects.builder.Builder;
 import org.scilab.modules.graphic_objects.console.Console;
+import org.scilab.modules.graphic_objects.figure.Figure;
+import org.scilab.modules.graphic_objects.figure.Figure.BarType;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
+import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
 import org.scilab.modules.graphic_objects.uicontrol.frame.border.FrameBorderType;
+import org.scilab.modules.graphic_objects.utils.LayoutType;
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
@@ -25,7 +29,8 @@ import org.w3c.dom.NodeList;
 public class XMLDomLoader {
 
     private enum ModelType {
-        BOOLEAN, BOOLEAN_ARRAY, DOUBLE, DOUBLE_ARRAY, STRING, STRING_ARRAY, INTEGER, INTEGER_ARRAY;
+        BOOLEAN, BOOLEAN_ARRAY, DOUBLE, DOUBLE_ARRAY, STRING, STRING_ARRAY, INTEGER, INTEGER_ARRAY,
+        ROTATIONTYPE, BARTYPE, LAYOUTTYPE, FILLTYPE, ANCHORTYPE, POSITIONTYPE;
     };
 
     private static final int __NODE_SCILABGUI__     = -10;
@@ -96,19 +101,19 @@ public class XMLDomLoader {
         figPropToGO.put("immediate_drawing", new Pair<Integer, ModelType>(__GO_IMMEDIATE_DRAWING__, ModelType.BOOLEAN));
         figPropToGO.put("background", new Pair<Integer, ModelType>(__GO_BACKGROUND__, ModelType.INTEGER));
         figPropToGO.put("visible", new Pair<Integer, ModelType>(__GO_VISIBLE__, ModelType.BOOLEAN));
-        figPropToGO.put("rotation_style", new Pair<Integer, ModelType>(__GO_ROTATION_TYPE__, ModelType.STRING));
+        figPropToGO.put("rotation_style", new Pair<Integer, ModelType>(__GO_ROTATION_TYPE__, ModelType.ROTATIONTYPE));
         figPropToGO.put("event_handler", new Pair<Integer, ModelType>(__GO_EVENTHANDLER_NAME__, ModelType.STRING));
         figPropToGO.put("event_handler_enable", new Pair<Integer, ModelType>(__GO_EVENTHANDLER_ENABLE__, ModelType.BOOLEAN));
         figPropToGO.put("resizefcn", new Pair<Integer, ModelType>(__GO_RESIZEFCN__, ModelType.STRING));
         figPropToGO.put("closerequestfcn", new Pair<Integer, ModelType>(__GO_CLOSEREQUESTFCN__, ModelType.STRING));
         figPropToGO.put("resize", new Pair<Integer, ModelType>(__GO_RESIZE__, ModelType.BOOLEAN));
-        figPropToGO.put("toolbar", new Pair<Integer, ModelType>(__GO_TOOLBAR__, ModelType.INTEGER));
+        figPropToGO.put("toolbar", new Pair<Integer, ModelType>(__GO_TOOLBAR__, ModelType.BARTYPE));
         figPropToGO.put("toolbar_visible", new Pair<Integer, ModelType>(__GO_TOOLBAR_VISIBLE__, ModelType.BOOLEAN));
-        figPropToGO.put("menubar", new Pair<Integer, ModelType>(__GO_MENUBAR__, ModelType.INTEGER));
+        figPropToGO.put("menubar", new Pair<Integer, ModelType>(__GO_MENUBAR__, ModelType.BARTYPE));
         figPropToGO.put("menubar_visible", new Pair<Integer, ModelType>(__GO_MENUBAR_VISIBLE__, ModelType.BOOLEAN));
         figPropToGO.put("infobar_visible", new Pair<Integer, ModelType>(__GO_INFOBAR_VISIBLE__, ModelType.BOOLEAN));
         figPropToGO.put("dockable", new Pair<Integer, ModelType>(__GO_DOCKABLE__, ModelType.BOOLEAN));
-        figPropToGO.put("layout", new Pair<Integer, ModelType>(__GO_LAYOUT__, ModelType.INTEGER));
+        figPropToGO.put("layout", new Pair<Integer, ModelType>(__GO_LAYOUT__, ModelType.LAYOUTTYPE));
         figPropToGO.put("default_axes", new Pair<Integer, ModelType>(__GO_DEFAULT_AXES__, ModelType.BOOLEAN));
         figPropToGO.put("icon", new Pair<Integer, ModelType>(__GO_UI_ICON__, ModelType.STRING));
         figPropToGO.put("tag", new Pair<Integer, ModelType>(__GO_TAG__, ModelType.STRING));
@@ -139,16 +144,16 @@ public class XMLDomLoader {
         UiPropToGO.put("string", new Pair<Integer, ModelType>(__GO_UI_STRING__, ModelType.STRING_ARRAY));
         UiPropToGO.put("tooltipstring", new Pair<Integer, ModelType>(__GO_UI_TOOLTIPSTRING__, ModelType.STRING_ARRAY));
         UiPropToGO.put("visible", new Pair<Integer, ModelType>(__GO_VISIBLE__, ModelType.BOOLEAN));
-        UiPropToGO.put("layout", new Pair<Integer, ModelType>(__GO_LAYOUT__, ModelType.INTEGER));
+        UiPropToGO.put("layout", new Pair<Integer, ModelType>(__GO_LAYOUT__, ModelType.LAYOUTTYPE));
         UiPropToGO.put("callback", new Pair<Integer, ModelType>(__GO_CALLBACK__, ModelType.STRING));
         UiPropToGO.put("callback_type", new Pair<Integer, ModelType>(__GO_CALLBACKTYPE__, ModelType.INTEGER));
         UiPropToGO.put("gridbaggrid", new Pair<Integer, ModelType>(__GO_UI_GRIDBAG_GRID__, ModelType.INTEGER_ARRAY));
         UiPropToGO.put("gridbagweight", new Pair<Integer, ModelType>(__GO_UI_GRIDBAG_WEIGHT__, ModelType.DOUBLE_ARRAY));
-        UiPropToGO.put("gridbagfill", new Pair<Integer, ModelType>(__GO_UI_GRIDBAG_FILL__, ModelType.INTEGER));
-        UiPropToGO.put("gridbaganchor", new Pair<Integer, ModelType>(__GO_UI_GRIDBAG_ANCHOR__, ModelType.INTEGER));
+        UiPropToGO.put("gridbagfill", new Pair<Integer, ModelType>(__GO_UI_GRIDBAG_FILL__, ModelType.FILLTYPE));
+        UiPropToGO.put("gridbaganchor", new Pair<Integer, ModelType>(__GO_UI_GRIDBAG_ANCHOR__, ModelType.ANCHORTYPE));
         UiPropToGO.put("gridbagpadding", new Pair<Integer, ModelType>(__GO_UI_GRIDBAG_PADDING__, ModelType.INTEGER_ARRAY));
         UiPropToGO.put("gridbagpreferredsize", new Pair<Integer, ModelType>(__GO_UI_GRIDBAG_PREFERREDSIZE__, ModelType.INTEGER_ARRAY));
-        UiPropToGO.put("borderposition", new Pair<Integer, ModelType>(__GO_UI_BORDER_POSITION__, ModelType.INTEGER));
+        UiPropToGO.put("borderposition", new Pair<Integer, ModelType>(__GO_UI_BORDER_POSITION__, ModelType.POSITIONTYPE));
         UiPropToGO.put("borderpreferredsize", new Pair<Integer, ModelType>(__GO_UI_BORDER_PREFERREDSIZE__, ModelType.INTEGER_ARRAY));
         UiPropToGO.put("margins", new Pair<Integer, ModelType>(__GO_MARGINS__, ModelType.DOUBLE_ARRAY));
         UiPropToGO.put("groupname", new Pair<Integer, ModelType>(__GO_UI_GROUP_NAME__, ModelType.STRING));
@@ -524,13 +529,13 @@ public class XMLDomLoader {
         //menubar
         tempnode = attr.getNamedItem("menubar");
         if (tempnode != null) {
-            menubar = getAttributeAsInteger(tempnode.getNodeValue());
+            menubar = Figure.BarType.stringToEnum(getAttributeAsString(tempnode.getNodeValue())).ordinal();
             attr.removeNamedItem("menubar");
         }
         //toolbar
         tempnode = attr.getNamedItem("toolbar");
         if (tempnode != null) {
-            toolbar = getAttributeAsInteger(tempnode.getNodeValue());
+            toolbar = Figure.BarType.stringToEnum(getAttributeAsString(tempnode.getNodeValue())).ordinal();
             attr.removeNamedItem("toolbar");
         }
         //default_axes
@@ -616,6 +621,15 @@ public class XMLDomLoader {
                 case STRING_ARRAY:
                     controller.setProperty(fig, pair.getFirst(), getAttributeAsStringArray(prop.getNodeValue()));
                     break;
+                case ROTATIONTYPE :
+                    controller.setProperty(fig, pair.getFirst(), Figure.RotationType.stringToEnum(getAttributeAsString(prop.getNodeValue())).ordinal());
+                    break;
+                case BARTYPE :
+                    controller.setProperty(fig, pair.getFirst(), Figure.BarType.stringToEnum(getAttributeAsString(prop.getNodeValue())).ordinal());
+                    break;
+                case LAYOUTTYPE :
+                    controller.setProperty(fig, pair.getFirst(), LayoutType.stringToEnum(getAttributeAsString(prop.getNodeValue())).ordinal());
+                    break;
                 default:
                     System.out.println("missing type");
                     break;
@@ -669,6 +683,18 @@ public class XMLDomLoader {
                     break;
                 case STRING_ARRAY:
                     //nothing to do, manage as node instead of attributes
+                    break;
+                case LAYOUTTYPE :
+                    controller.setProperty(uic, pair.getFirst(), LayoutType.stringToEnum(getAttributeAsString(prop.getNodeValue())).ordinal());
+                    break;
+                case FILLTYPE :
+                    controller.setProperty(uic, pair.getFirst(), Uicontrol.FillType.stringToEnum(getAttributeAsString(prop.getNodeValue())).ordinal());
+                    break;
+                case ANCHORTYPE :
+                    controller.setProperty(uic, pair.getFirst(), Uicontrol.AnchorType.stringToEnum(getAttributeAsString(prop.getNodeValue())).ordinal());
+                    break;
+                case POSITIONTYPE :
+                    controller.setProperty(uic, pair.getFirst(), Uicontrol.BorderLayoutType.stringToEnum(getAttributeAsString(prop.getNodeValue())).ordinal());
                     break;
                 default:
                     System.out.println("missing type");

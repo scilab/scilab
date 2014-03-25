@@ -20,13 +20,13 @@ public enum LayoutType {
         switch (value) {
             default:
             case 0:
-                return LayoutType.NONE;
+                return NONE;
             case 1:
-                return LayoutType.GRIDBAG;
+                return GRIDBAG;
             case 2:
-                return LayoutType.GRID;
+                return GRID;
             case 3:
-                return LayoutType.BORDER;
+                return BORDER;
         }
     }
 
@@ -50,5 +50,19 @@ public enum LayoutType {
         }
 
         return NONE;
+    }
+
+    public static String enumToString(LayoutType value) {
+        switch (value) {
+            default:
+            case NONE:
+                return "none";
+            case GRIDBAG:
+                return "gridbag";
+            case GRID:
+                return "grid";
+            case BORDER:
+                return "border";
+        }
     }
 }

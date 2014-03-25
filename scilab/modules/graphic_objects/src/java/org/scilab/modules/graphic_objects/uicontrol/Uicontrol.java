@@ -95,15 +95,45 @@ public class Uicontrol extends GraphicObject {
         TOP, LEFT, BOTTOM, RIGHT;
         public static TitlePositionType intToEnum(Integer value) {
             switch (value) {
+                default:
                 case 0:
                     return TOP;
                 case 1:
                     return LEFT;
-                default:
                 case 2:
                     return BOTTOM;
                 case 3:
                     return RIGHT;
+            }
+        }
+
+        public static TitlePositionType stringToEnum(String value) {
+            if (value.equals("left")) {
+                return LEFT;
+            }
+
+            if (value.equals("bottom")) {
+                return BOTTOM;
+            }
+
+            if (value.equals("right")) {
+                return RIGHT;
+            }
+
+            return TOP;
+        }
+
+        public static String enumToString(TitlePositionType value) {
+            switch (value) {
+                case BOTTOM:
+                    return "bottom";
+                case LEFT:
+                    return "left";
+                case RIGHT:
+                    return "right";
+                default:
+                case TOP:
+                    return "top";
             }
         }
     }
@@ -126,7 +156,7 @@ public class Uicontrol extends GraphicObject {
             }
         }
 
-        public static BorderLayoutType stringToEnum(String value) {
+        public static BorderLayoutType stringToEnum2(String value) {
             if (value == null || value.equals("")) {
                 return CENTER;
             }
@@ -146,6 +176,42 @@ public class Uicontrol extends GraphicObject {
 
             if (chars[0] == 'w' || chars[0] == 'W') {
                 return LEFT;
+            }
+
+            return CENTER;
+        }
+
+        public static String enumToString(BorderLayoutType value) {
+            switch (value) {
+                case BOTTOM:
+                    return "bottom";
+                default:
+                case CENTER:
+                    return "center";
+                case LEFT:
+                    return "left";
+                case RIGHT:
+                    return "right";
+                case TOP:
+                    return "top";
+            }
+        }
+
+        public static BorderLayoutType stringToEnum(String value) {
+            if (value.equals("bottom")) {
+                return BOTTOM;
+            }
+
+            if (value.equals("left")) {
+                return LEFT;
+            }
+
+            if (value.equals("right")) {
+                return RIGHT;
+            }
+
+            if (value.equals("top")) {
+                return TOP;
             }
 
             return CENTER;
@@ -188,6 +254,20 @@ public class Uicontrol extends GraphicObject {
 
             return NONE;
         }
+
+        public static String enumToString(FillType value) {
+            switch (value) {
+                case BOTH:
+                    return "both";
+                case HORIZONTAL:
+                    return "horizontal";
+                case NONE:
+                default:
+                    return "none";
+                case VERTICAL:
+                    return "vertical";
+            }
+        }
     }
 
     public enum AnchorType {
@@ -217,7 +297,7 @@ public class Uicontrol extends GraphicObject {
             }
         }
 
-        public static AnchorType stringToEnum(String value) {
+        public static AnchorType stringToEnum2(String value) {
             if (value == null || value.equals("")) {
                 return CENTER;
             }
@@ -259,6 +339,66 @@ public class Uicontrol extends GraphicObject {
                     return LOWER_LEFT;
                 }
                 return LOWER;
+            }
+
+            return CENTER;
+        }
+
+        public static String enumToString(AnchorType value) {
+            switch (value) {
+                default:
+                case CENTER:
+                    return "center";
+                case LEFT:
+                    return "left";
+                case LOWER:
+                    return "lower";
+                case LOWER_LEFT:
+                    return "lower_left";
+                case LOWER_RIGHT:
+                    return "lower_right";
+                case RIGHT:
+                    return "right";
+                case UPPER:
+                    return "upper";
+                case UPPER_LEFT:
+                    return "upper_left";
+                case UPPER_RIGHT:
+                    return "upper_right";
+            }
+        }
+
+        public static AnchorType stringToEnum(String value) {
+            if (value.equals("left")) {
+                return LEFT;
+            }
+
+            if (value.equals("lower")) {
+                return LOWER;
+            }
+
+            if (value.equals("lower_left")) {
+                return LOWER_LEFT;
+            }
+
+            if (value.equals("lower_right")) {
+                return LOWER_RIGHT;
+            }
+
+            if (value.equals("right")) {
+                return RIGHT;
+            }
+
+            if (value.equals("upper")) {
+                return UPPER;
+            }
+
+            if (value.equals("upper_left")) {
+                return UPPER_LEFT;
+            }
+
+            if (value.equals("upper_right")) {
+                return UPPER_RIGHT;
             }
 
             return CENTER;

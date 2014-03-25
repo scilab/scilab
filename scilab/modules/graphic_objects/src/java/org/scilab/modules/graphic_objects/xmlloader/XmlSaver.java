@@ -131,7 +131,7 @@ public class XmlSaver {
         //visible
         setAttribute(elemFig, "visible", createAttribute(fig.getVisible()), createAttribute(defaultFig.getVisible()));
         //rotation_style
-        setAttribute(elemFig, "rotation_style", createAttribute(fig.getRotation()), createAttribute(defaultFig.getRotation()));
+        setAttribute(elemFig, "rotation_style", createAttribute(Figure.RotationType.enumToString(fig.getRotationAsEnum())), createAttribute(Figure.RotationType.enumToString(defaultFig.getRotationAsEnum())));
         //event_handler
         setAttribute(elemFig, "event_handler", createAttribute(fig.getEventHandlerString()), createAttribute(defaultFig.getEventHandlerString()));
         //event_handler_enable
@@ -143,11 +143,11 @@ public class XmlSaver {
         //resize
         setAttribute(elemFig, "resize", createAttribute(fig.getResize()), createAttribute(defaultFig.getResize()));
         //toolbar
-        setAttribute(elemFig, "toolbar", createAttribute(fig.getToolbar()), createAttribute(defaultFig.getToolbar()));
+        setAttribute(elemFig, "toolbar", createAttribute(Figure.BarType.enumToString(fig.getToolbarAsEnum())), createAttribute(Figure.BarType.enumToString(defaultFig.getToolbarAsEnum())));
         //toolbar_visible
         setAttribute(elemFig, "toolbar_visible", createAttribute(fig.getToolbarVisible()), createAttribute(defaultFig.getToolbarVisible()));
         //menubar
-        setAttribute(elemFig, "menubar", createAttribute(fig.getMenubar()), createAttribute(defaultFig.getMenubar()));
+        setAttribute(elemFig, "menubar", createAttribute(Figure.BarType.enumToString(fig.getMenubarAsEnum())), createAttribute(Figure.BarType.enumToString(defaultFig.getMenubarAsEnum())));
         //menubar_visible
         setAttribute(elemFig, "menubar_visible", createAttribute(fig.getMenubarVisible()), createAttribute(defaultFig.getMenubarVisible()));
         //infobar_visible
@@ -155,7 +155,7 @@ public class XmlSaver {
         //dockable
         setAttribute(elemFig, "dockable", createAttribute(fig.getDockable()), createAttribute(defaultFig.getDockable()));
         //layout
-        setAttribute(elemFig, "layout", createAttribute(fig.getLayout()), createAttribute(defaultFig.getLayout()));
+        setAttribute(elemFig, "layout", createAttribute(LayoutType.enumToString(fig.getLayoutAsEnum())), createAttribute(LayoutType.enumToString(defaultFig.getLayoutAsEnum())));
 
         //default_axes
         setAttribute(elemFig, "default_axes", createAttribute(fig.hasDefaultAxes()), createAttribute(defaultFig.hasDefaultAxes()));
@@ -383,12 +383,12 @@ public class XmlSaver {
         if (layout == LayoutType.GRIDBAG) {
             setAttribute(elemUi, "gridbaggrid", createAttribute(uic.getGridBagGrid()), createAttribute(defaultUi.getGridBagGrid()));
             setAttribute(elemUi, "gridbagweight", createAttribute(uic.getGridBagWeight()), createAttribute(defaultUi.getGridBagWeight()));
-            setAttribute(elemUi, "gridbagfill", createAttribute(uic.getGridBagFill()), createAttribute(defaultUi.getGridBagFill()));
-            setAttribute(elemUi, "gridbaganchor", createAttribute(uic.getGridBagAnchor()), createAttribute(defaultUi.getGridBagAnchor()));
+            setAttribute(elemUi, "gridbagfill", createAttribute(Uicontrol.FillType.enumToString(uic.getGridBagFillAsEnum())), createAttribute(Uicontrol.FillType.enumToString(defaultUi.getGridBagFillAsEnum())));
+            setAttribute(elemUi, "gridbaganchor", createAttribute(Uicontrol.AnchorType.enumToString(uic.getGridBagAnchorAsEnum())), createAttribute(Uicontrol.AnchorType.enumToString(defaultUi.getGridBagAnchorAsEnum())));
             setAttribute(elemUi, "gridbagpadding", createAttribute(uic.getGridBagPadding()), createAttribute(defaultUi.getGridBagPadding()));
             setAttribute(elemUi, "gridbagpreferredsize", createAttribute(uic.getGridBagPreferredSize()), createAttribute(defaultUi.getGridBagPreferredSize()));
         } else if (layout == LayoutType.BORDER) {
-            setAttribute(elemUi, "borderposition", createAttribute(uic.getBorderPosition()), createAttribute(defaultUi.getBorderPosition()));
+            setAttribute(elemUi, "borderposition", createAttribute(Uicontrol.BorderLayoutType.enumToString(uic.getBorderPositionAsEnum())), createAttribute(Uicontrol.BorderLayoutType.enumToString(defaultUi.getBorderPositionAsEnum())));
             setAttribute(elemUi, "borderpreferredsize", createAttribute(uic.getBorderPreferredSize()), createAttribute(defaultUi.getBorderPreferredSize()));
         } else if (layout == LayoutType.NONE) {
             //Position
@@ -415,7 +415,7 @@ public class XmlSaver {
             }
 
             //Layout
-            setAttribute(elemUi, "layout", createAttribute(uic.getLayout()), createAttribute(defaultUi.getLayout()));
+            setAttribute(elemUi, "layout", createAttribute(LayoutType.enumToString(uic.getLayoutAsEnum())), createAttribute(LayoutType.enumToString(defaultUi.getLayoutAsEnum())));
             //Layout_options
             if (uic.getLayoutAsEnum() == LayoutType.GRID) {
                 setAttribute(elemUi, "gridoptgrid", createAttribute(uic.getGridOptGrid()), createAttribute(defaultUi.getGridOptGrid()));

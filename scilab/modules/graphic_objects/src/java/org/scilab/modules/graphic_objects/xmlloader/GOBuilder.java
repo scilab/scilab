@@ -331,7 +331,7 @@ public class GOBuilder {
                 switch (layout) {
                     case BORDER: {
                         item = XmlTools.getFromMap(map, "position", "center");
-                        controller.setProperty(uic, __GO_UI_BORDER_POSITION__, Uicontrol.BorderLayoutType.stringToEnum(item).ordinal());
+                        controller.setProperty(uic, __GO_UI_BORDER_POSITION__, Uicontrol.BorderLayoutType.stringToEnum2(item).ordinal());
                         Integer[] preferredsize = new Integer[] { -1, -1};
                         item = xmlAttributes.get("preferred-size");
                         if (item != null) {
@@ -356,7 +356,7 @@ public class GOBuilder {
                         weight[1] = Double.parseDouble(XmlTools.getFromMap(map, "weighty", "1.0"));
 
                         Integer fill = Uicontrol.FillType.stringToEnum(XmlTools.getFromMap(map, "fill", "none")).ordinal();
-                        Integer anchor = Uicontrol.AnchorType.stringToEnum(XmlTools.getFromMap(map, "anchor", "center")).ordinal();
+                        Integer anchor = Uicontrol.AnchorType.stringToEnum2(XmlTools.getFromMap(map, "anchor", "center")).ordinal();
 
                         Integer[] padding = new Integer[] { 0, 0 };
                         padding[0] = Integer.parseInt(XmlTools.getFromMap(map, "ipadx", "0"));
