@@ -127,7 +127,6 @@ public class Editor {
      * @param event MouseEvent to retrieve click positon in figure.
      */
     public void onRightMouseClick(MouseEvent event) {
-
         if (!dataEditEnabled) {
             lastClick[0] = event.getX();
             lastClick[1] = event.getY();

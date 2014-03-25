@@ -188,7 +188,9 @@ public class EditorEventListener implements KeyListener, MouseListener, MouseMot
                 }
             } else {
                 if (arg0.getButton() == 3 && !isInRotation) {
-                    datatipManagerMode.pickAndDelete(arg0.getX(), arg0.getY());
+                    if (!datatipManagerMode.pickAndDelete(arg0.getX(), arg0.getY())) {
+                        datatipManagerMode.onRightMouseClick(arg0);
+                    }
                 }
                 datatipManagerMode.enableTranslation(true);
             }

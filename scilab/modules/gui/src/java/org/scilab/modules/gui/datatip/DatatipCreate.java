@@ -170,6 +170,8 @@ public class DatatipCreate {
             controller.setProperty(newDatatip, GraphicObjectProperties.__GO_CLIP_STATE__, 0);
         }
 
+        DatatipManagerMode.getInstance().setLastTip(axesUid, newDatatip);
+
         return newDatatip;
     }
 
@@ -179,7 +181,7 @@ public class DatatipCreate {
      * @param datatipUid datatip unique identifier.
      * @param interpMode boolean for the interpolation mode.
      */
-    private static void datatipSetInterp(int uid, boolean interpMode) {
+    public static void datatipSetInterp(int uid, boolean interpMode) {
         GraphicController controller = GraphicController.getController();
         Object o = controller.getObjectFromId(uid);
         if (o instanceof Datatip) {

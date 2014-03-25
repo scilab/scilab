@@ -696,6 +696,8 @@ Scilab Bug Fixes
 
 * Bug #13066 fixed - data_bounds was not fully documented in axes_properties.
 
+* Bug #13080 fixed - No contextual menu was available for datatips management.
+
 * Bug #13082 fixed - Datatip mark style was not inherited from the parent polyline.
 
 * Bug #13083 fixed - Datatip marks did not inherit colors from the parent polyline.

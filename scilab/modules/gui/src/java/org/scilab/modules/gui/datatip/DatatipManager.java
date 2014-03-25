@@ -85,7 +85,6 @@ public class DatatipManager {
         }
     }
 
-
     /**
      * Remove the DatatipManagerMode from the map.
      */
