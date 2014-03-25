@@ -106,6 +106,7 @@ workspace/
 .classpath
 .project
 .cproject
+.settings/
 
 # MacOS files
 .DS_Store

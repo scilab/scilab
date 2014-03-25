@@ -220,6 +220,14 @@
             <param type="long[][]" name="x" />
         </method>
         
+        <method name="wrapList" returnType="int" modifier="static">
+            <param type="int[]" name="ids" />
+        </method>
+        
+        <method name="wrapPoly" returnType="int" modifier="static">
+            <param type="double[]" name="coefs" />
+        </method>
+        
         <method name="getAccessibleFields" returnType="String[]" modifier="static">
             <param type="int" name="id" />
         </method>

@@ -34,6 +34,7 @@ import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 import java.nio.LongBuffer;
 import java.nio.ShortBuffer;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -68,6 +69,13 @@ public class ScilabJavaObject {
 
     protected static int currentCapacity = INITIALCAPACITY;
     protected static ScilabJavaObject[] arraySJO = new ScilabJavaObject[currentCapacity];
+
+    private static final class Poly {
+        private final double[] coefs;
+        public Poly(double[] coefs) {
+            this.coefs = coefs;
+        }
+    };
 
     static {
         primTypes.put(double.class, Double.class);
@@ -677,6 +685,10 @@ public class ScilabJavaObject {
                     throw new ScilabJavaException("Cannot read the field or property " + fieldName + " in object " + getClassName(id));
                 }
                 final Object retValue = method.invoke(arraySJO[id].object);
+                if (retValue == null) {
+                    return new ScilabJavaObject(retValue).id;
+                }
+
                 final Class cl = retValue.getClass();
                 if (cl == int.class) {
                     return new ScilabJavaObject(retValue, int.class).id;
@@ -881,6 +893,9 @@ public class ScilabJavaObject {
                             pos = ((Double) a).intValue() - 1;
                         } else if (a instanceof Integer) {
                             pos = ((Integer) a).intValue() - 1;
+                        } else if (a instanceof Poly) {
+                            /* this '$' polynomial coefs */
+                            pos = ((int) horner(l.size(), (Poly) a)) - 1;
                         } else {
                             pos = l.indexOf(a);
                         }
@@ -989,15 +1004,20 @@ public class ScilabJavaObject {
                         pos = ((Double) a).intValue() - 1;
                     } else if (a instanceof Integer) {
                         pos = ((Integer) a).intValue() - 1;
+                    } else if (a instanceof Poly) {
+                        /* this '$' polynomial coefs */
+                        pos = ((int) horner(l.size(), (Poly) a)) - 1;
                     } else {
                         pos = l.indexOf(a);
                     }
-                    if (pos >= 0 || pos < l.size()) {
+
+                    // the last element should be add-ed instead of set-ed
+                    if (pos >= 0 && pos < l.size()) {
                         l.set(pos, arraySJO[value].object);
                     } else if (pos < 0) {
                         l.add(0, arraySJO[value].object);
                     } else {
-                        l.add(arraySJO[value].object);
+                        l.add(pos, arraySJO[value].object);
                     }
                 } else if (o.getClass().isArray()) {
                     int pos = -1;
@@ -1018,6 +1038,21 @@ public class ScilabJavaObject {
         } else {
             throw new ScilabJavaException("null is not an object");
         }
+    }
+
+    /**
+     * Compute expected index using the coefs dans the actual size
+     *
+     * @param size the x value
+     * @param coefs the a_n values
+     * @see http://en.wikipedia.org/wiki/Horner's_method
+     */
+    private static final double horner(double size, Poly p) {
+        double result = 0;
+        for (int i = p.coefs.length - 1; i >= 0; i--) {
+            result = result * size + p.coefs[i];
+        }
+        return result;
     }
 
     /**
@@ -1401,6 +1436,36 @@ public class ScilabJavaObject {
      */
     public static final int wrap(final float[][] x) {
         return new ScilabJavaObject(x, float[][].class).id;
+    }
+
+    /**
+     * Wrap the ids into a Java collection
+     *
+     * The implementation is a raw {@link java.util.ArrayList}.
+     *
+     * @param ids the java object to put into
+     * @return a collection id
+     */
+    public static final int wrapList(final int[] ids) {
+        final ArrayList<Object> list = new ArrayList<Object>(ids.length);
+        for (int i = 0; i < ids.length; i++) {
+            list.add(arraySJO[ids[i]]);
+        }
+
+        return new ScilabJavaObject(list, ArrayList.class).id;
+    }
+
+    /**
+     * Wrap the ids into a Java collection
+     *
+     * The implementation is a raw {@link java.util.ArrayList}.
+     *
+     * @param ids the java object to put into
+     * @return a collection id
+     */
+    public static final int wrapPoly(final double[] coefs) {
+        final Poly p = new Poly(coefs);
+        return new ScilabJavaObject(p, Poly.class).id;
     }
 
     /**

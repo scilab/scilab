@@ -130,6 +130,10 @@ public:
 
     virtual int wrapBool(int * x, int xSize, int xSizeCol, const bool isRef) const = 0;
 
+    virtual int wrapList(int len, const int * const ids) const = 0;
+
+    virtual int wrapPoly(int len, const double * const coefs) const = 0;
+
     /**
      * Unwrap the external object with the given id into a double
      * @param id the value to wrap

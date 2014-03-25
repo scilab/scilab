@@ -127,6 +127,8 @@ jmethodID jintwrapjobjectArray__floatfloatID; // cache method id
 jmethodID jintwrapjlonglongID; // cache method id
 jmethodID jintwrapjlongArray_longlongID; // cache method id
 jmethodID jintwrapjobjectArray__longlongID; // cache method id
+jmethodID jintwrapListjintArray_intintID; // cache method id
+jmethodID jintwrapPolyjdoubleArray_doubledoubleID; // cache method id
 jmethodID jobjectArray_getAccessibleFieldsjintintID; // cache method id
 jmethodID jobjectArray_getAccessibleMethodsjintintID; // cache method id
 jmethodID jobjectArray_getCompletionjintintjobjectArray_java_lang_Stringjava_lang_StringID; // cache method id
@@ -288,6 +290,10 @@ static int wrap(JavaVM * jvm_, long long x);
 static int wrap(JavaVM * jvm_, long long const* x, int xSize);
 
 static int wrap(JavaVM * jvm_, long long const* const* x, int xSize, int xSizeCol);
+
+static int wrapList(JavaVM * jvm_, int const* ids, int idsSize);
+
+static int wrapPoly(JavaVM * jvm_, double const* coefs, int coefsSize);
 
 static char** getAccessibleFields(JavaVM * jvm_, int id, int *lenRow);
 
