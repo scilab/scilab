@@ -105,8 +105,13 @@ public class SwingScilabCommonPanel {
                 if (localFigure.getToolbarAsEnum() == BarType.FIGURE) {
                     SwingScilabWindow parentWindow = SwingScilabWindow.allScilabWindows.get(component.getParentWindowId());
 
-                    //keep current delta between figure size and axes size
-                    component.storeSizeDelta();
+                    boolean currentVisible = localFigure.getToolbarVisible();
+
+                    //only if toolbar is visible
+                    if (currentVisible) {
+                        //keep current delta between figure size and axes size
+                        component.storeSizeDelta();
+                    }
 
                     ToolBar toolbar = ToolBarBuilder.buildToolBar(GRAPHICS_TOOLBAR_DESCRIPTOR, figureId);
                     toolbar.setVisible(localFigure.getToolbarVisible());
@@ -115,18 +120,16 @@ public class SwingScilabCommonPanel {
                     //force redraw to get good value on contentpane.getHeight
                     parentWindow.validate();
 
-                    //apply stored delta to new axes size
-                    component.applyDeltaSize();
+                    if (currentVisible) {
+                        //apply stored delta to new axes size
+                        component.applyDeltaSize();
+                    }
                 }
 
                 /* Update callback */
-                String closingCommand =
-                    "if (get_figure_handle(" + figureId + ") <> []) then"
-                    + "  if (get(get_figure_handle(" + figureId + "), 'event_handler_enable') == 'on') then"
-                    + "    execstr(get(get_figure_handle(" + figureId + "), 'event_handler')+'(" + figureId + ", -1, -1, -1000)', 'errcatch', 'm');"
-                    + "  end;"
-                    + "  delete(get_figure_handle(" + figureId + "));"
-                    + "end;";
+                String closingCommand = "if (get_figure_handle(" + figureId + ") <> []) then" + "  if (get(get_figure_handle(" + figureId + "), 'event_handler_enable') == 'on') then"
+                                        + "    execstr(get(get_figure_handle(" + figureId + "), 'event_handler')+'(" + figureId + ", -1, -1, -1000)', 'errcatch', 'm');" + "  end;" + "  delete(get_figure_handle("
+                                        + figureId + "));" + "end;";
                 component.setCallback(null);
                 component.setCallback(ScilabCloseCallBack.create(component.getId(), closingCommand));
                 /* Update menus callback */
@@ -140,6 +143,9 @@ public class SwingScilabCommonPanel {
                 if (oldFigureSize.getWidth() != 0 && oldFigureSize.getHeight() != 0 && ((oldFigureSize.getWidth() != size[0]) || (oldFigureSize.getHeight() != size[1]))
                         && ((Boolean) GraphicController.getController().getProperty(component.getId(), __GO_AUTORESIZE__))) {
                     figure.setDims(new Size(size[0], size[1]));
+                    figure.validate();
+                    GraphicController.getController().setProperty(component.getId(), __GO_AXES_SIZE__, new Integer[] { figure.getContentPane().getWidth(), figure.getContentPane().getHeight() });
+
                 }
                 break;
             }

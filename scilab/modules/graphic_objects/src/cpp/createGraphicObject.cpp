@@ -79,9 +79,16 @@ int createNewFigureWithAxes()
     return Builder::createNewFigureWithAxes(getScilabJavaVM());
 }
 
-int createFigure(int iDockable, int iMenubarType, int iToolbarType, int iDefaultAxes, int iVisible)
+int createFigure(int iDockable, int iMenubarType, int iToolbarType, int iDefaultAxes, int iVisible,
+                 double* figureSize, double* axesSize, double* position, int iMenuBar, int iToolBar, int iInfoBar)
 {
-    return Builder::createFigure(getScilabJavaVM(), iDockable != 0, iMenubarType, iToolbarType, iDefaultAxes != 0, iVisible != 0);
+    return Builder::createFigure(getScilabJavaVM(), iDockable != 0, iMenubarType, iToolbarType, iDefaultAxes != 0, iVisible != 0,
+                                 figureSize, figureSize == NULL ? 0 : 2,
+                                 axesSize, axesSize == NULL ? 0 : 2,
+                                 position, position == NULL ? 0 : 2,
+                                 iMenuBar != 0,
+                                 iToolBar != 0,
+                                 iInfoBar != 0);
 }
 
 void cloneMenus(int model, int newParent)

@@ -1,18 +1,13 @@
 package org.scilab.modules.graphic_objects.xmlloader;
 
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AXES_SIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_BORDER_OPT_PADDING__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_IMAGE__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AXES_SIZE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CALLBACKTYPE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CALLBACK__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CLOSEREQUESTFCN__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DOCKABLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FIGURE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_GRID_OPT_GRID__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_GRID_OPT_PADDING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_HIDDEN__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_INFOBAR_VISIBLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_LAYOUT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_LINE_THICKNESS__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_MARGINS__;
@@ -24,7 +19,6 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_STYLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TAG__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TITLE__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TOOLBAR_VISIBLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TYPE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UIMENU__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_BACKGROUNDCOLOR__;
@@ -63,6 +57,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_GROUP_NAME__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_HORIZONTALALIGNMENT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ICON__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_IMAGE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LABEL__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LISTBOX__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MAX__;
@@ -95,21 +90,9 @@ import org.xml.sax.Attributes;
 
 public class GOBuilder {
     public static Integer figureBuilder(GraphicController controller, Attributes attributes) {
-        Integer fig = Builder.createFigure(false, 0, 0, false, false);
+        Integer fig = Builder.createFigure(false, 0, 0, false, false, null, null, null, false, false, false);
         //Integer fig = Builder.createNewFigureWithAxes();
         String item = null;
-
-        // hide toolbar
-        controller.setProperty(fig, __GO_TOOLBAR_VISIBLE__, false);
-
-        // hide menubar
-        controller.setProperty(fig, __GO_MENUBAR_VISIBLE__, false);
-
-        // hide infobar
-        controller.setProperty(fig, __GO_INFOBAR_VISIBLE__, false);
-
-        // remove docking bar
-        controller.setProperty(fig, __GO_DOCKABLE__, false);
 
         // id
         XmlTools.setPropAsString(fig, __GO_TAG__, attributes.getValue("id"));
@@ -150,10 +133,6 @@ public class GOBuilder {
 
         // title
         XmlTools.setPropAsString(fig, __GO_NAME__, attributes.getValue("title"));
-
-        // icon
-        // XmlTools.setPropAsString(fig, __GO_ICON__,
-        // attributes.getValue("icon"));
 
         // resizable
         XmlTools.setPropAsBoolean(fig, __GO_RESIZE__, attributes.getValue("resizable"));
@@ -573,6 +552,21 @@ public class GOBuilder {
                         Double[] val = new Double[] {(double) color.getRed() / 255, (double) color.getGreen() / 255, (double) color.getBlue() / 255};
                         controller.setProperty(uic, __GO_UI_FOREGROUNDCOLOR__, val);
                     }
+
+                    item = xmlAttributes.get("ui-style");
+                    if (item != null) {
+                        map = CSSParser.parseLine(item);
+                        item = XmlTools.getFromMap(map, "bold", "false");
+                        if (item.equals("true")) {
+                            controller.setProperty(uic, __GO_UI_FONTWEIGHT__, "bold");
+                        }
+
+                        item = XmlTools.getFromMap(map, "italic", "false");
+                        if (item.equals("true")) {
+                            controller.setProperty(uic, __GO_UI_FONTANGLE__, "italic");
+                        }
+                    }
+
                     break;
                 }
                 case __GO_UI_EDIT__ : {

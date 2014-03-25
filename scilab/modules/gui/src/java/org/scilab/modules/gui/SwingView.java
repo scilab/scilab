@@ -469,6 +469,7 @@ public final class SwingView implements GraphicView {
                 } else {
                     infoBar.setText(infoMessage);
                 }
+
                 tab.update(__GO_POSITION__, GraphicController.getController().getProperty(id, __GO_POSITION__));
 
                 String icon = (String)GraphicController.getController().getProperty(id, __GO_UI_ICON__);

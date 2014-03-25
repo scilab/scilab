@@ -36,7 +36,8 @@
 #include "addColor.h"
 
 /*--------------------------------------------------------------------------*/
-int setDefaultProperties(int _iFig, BOOL bDefaultAxes);
+int setDefaultProperties(int _iFig, BOOL bDefaultAxes, BOOL _axesSize);
+int getStackArgumentAsBoolean(void* _pvCtx, int* _piAddr);
 /*--------------------------------------------------------------------------*/
 int sci_figure(char * fname, unsigned long fname_len)
 {
@@ -54,6 +55,12 @@ int sci_figure(char * fname, unsigned long fname_len)
     BOOL bVisible = TRUE; // Create a visible figure by default
     BOOL bDockable = TRUE; // Create a dockable figure by default
     BOOL bDefaultAxes = TRUE; // Create an Axes by default
+    double* figureSize = NULL;
+    double* axesSize = NULL;
+    double* position = NULL;
+    BOOL bMenuBar = TRUE;
+    BOOL bToolBar = TRUE;
+    BOOL bInfoBar = TRUE;
     int iMenubarType = 1; // Create a 'figure' menubar by default
     int iToolbarType = 1; // Create a 'figure' toolbar by default
     double dblId = 0;
@@ -68,7 +75,7 @@ int sci_figure(char * fname, unsigned long fname_len)
     if (iRhs == 0) // Auto ID
     {
         iFig = createNewFigureWithAxes();
-        iAxes = setDefaultProperties(iFig, TRUE);
+        iAxes = setDefaultProperties(iFig, TRUE, TRUE);
         createScalarHandle(pvApiCtx, iRhs + 1, getHandle(iFig));
         AssignOutputVariable(pvApiCtx, 1) = iRhs + 1;
         ReturnArguments(pvApiCtx);
@@ -106,7 +113,7 @@ int sci_figure(char * fname, unsigned long fname_len)
         {
             iFig = createNewFigureWithAxes();
             setGraphicObjectProperty(iFig, __GO_ID__, &iId, jni_int,  1);
-            iAxes = setDefaultProperties(iFig, TRUE);
+            iAxes = setDefaultProperties(iFig, TRUE, TRUE);
         }
 
         createScalarHandle(pvApiCtx, iRhs + 1, getHandle(iFig));
@@ -151,7 +158,7 @@ int sci_figure(char * fname, unsigned long fname_len)
         iFig = getFigureFromIndex(iId);
         if (iFig != 0) // Figure already exists
         {
-            bDoCreation = TRUE;
+            bDoCreation = FALSE;
         }
     }
 
@@ -160,7 +167,6 @@ int sci_figure(char * fname, unsigned long fname_len)
         int* piAddrProp = NULL;
         char* pstProName = NULL;
         int* piAddrData = NULL;
-        char* pstPropVal = NULL;
         for (i = iPos + 1 ; i <= iRhs ; i += 2)
         {
             //get property name
@@ -176,15 +182,23 @@ int sci_figure(char * fname, unsigned long fname_len)
                 Scierror(999, _("%s: Wrong size for input argument #%d: A single string expected.\n"), fname, i);
                 return 1;
             }
-            if (stricmp(pstProName, "dockable") != 0
-                    && stricmp(pstProName, "toolbar") != 0
-                    && stricmp(pstProName, "menubar") != 0
-                    && stricmp(pstProName, "default_axes") != 0
-                    && stricmp(pstProName, "visible") != 0 )
+
+            if (stricmp(pstProName, "dockable") != 0 &&
+                    stricmp(pstProName, "toolbar") != 0 &&
+                    stricmp(pstProName, "menubar") != 0 &&
+                    stricmp(pstProName, "default_axes") != 0 &&
+                    stricmp(pstProName, "visible") != 0 &&
+                    stricmp(pstProName, "figure_size") != 0 &&
+                    stricmp(pstProName, "axes_size") != 0 &&
+                    stricmp(pstProName, "position") != 0 &&
+                    stricmp(pstProName, "menubar_visible") != 0 &&
+                    stricmp(pstProName, "toolbar_visible") != 0 &&
+                    stricmp(pstProName, "infobar_visible") != 0)
             {
                 freeAllocatedSingleString(pstProName);
                 continue;
             }
+
             //get address of value on stack
             sciErr = getVarAddressFromPosition(pvApiCtx, i + 1, &piAddrData);
             if (sciErr.iErr)
@@ -192,37 +206,34 @@ int sci_figure(char * fname, unsigned long fname_len)
                 Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, i + 1);
                 return 1;
             }
-            if (getAllocatedSingleString(pvApiCtx, piAddrData, (char**)&pstPropVal))
-            {
-                Scierror(999, _("%s: Wrong size for input argument #%d: A single string expected.\n"), fname, 3);
-                return 1;
-            }
+
             //check property value to compatibility
             if (stricmp(pstProName, "dockable") == 0)
             {
-                if (stricmp(pstPropVal, "on") == 0)
-                {
-                    bDockable = TRUE;
-                }
-                else if (stricmp(pstPropVal, "off") == 0)
-                {
-                    bDockable = FALSE;
-                }
-                else
+                bDockable = getStackArgumentAsBoolean(pvApiCtx, piAddrData);
+                if (bDockable == -1)
                 {
                     Scierror(999, _("Wrong value for '%s' property: '%s' or '%s' expected."), "dockable", "on", "off");
                     freeAllocatedSingleString(pstProName);
-                    freeAllocatedSingleString(pstPropVal);
                     return 1;
                 }
             }
             else if (stricmp(pstProName, "toolbar") == 0)
             {
-                if (stricmp(pstPropVal, "none") == 0)
+                char* pstVal = NULL;
+                if (isStringType(pvApiCtx, piAddrData) == FALSE || isScalar(pvApiCtx, piAddrData) == FALSE)
+                {
+                    Scierror(999, _("%s: Wrong size for input argument #%d: A single string expected.\n"), fname, i);
+                    freeAllocatedSingleString(pstProName);
+                }
+
+                getAllocatedSingleString(pvApiCtx, piAddrData, &pstVal);
+
+                if (stricmp(pstVal, "none") == 0)
                 {
                     iToolbarType = 0;
                 }
-                else if (stricmp(pstPropVal, "figure") == 0)
+                else if (stricmp(pstVal, "figure") == 0)
                 {
                     iToolbarType = 1;
                 }
@@ -230,17 +241,28 @@ int sci_figure(char * fname, unsigned long fname_len)
                 {
                     Scierror(999, _("Wrong value for '%s' property: '%s' or '%s' expected."), "toolbar", "none", "figure");
                     freeAllocatedSingleString(pstProName);
-                    freeAllocatedSingleString(pstPropVal);
+                    freeAllocatedSingleString(pstVal);
                     return 1;
                 }
+
+                freeAllocatedSingleString(pstVal);
             }
             else if (stricmp(pstProName, "menubar") == 0)
             {
-                if (stricmp(pstPropVal, "none") == 0)
+                char* pstVal = NULL;
+                if (isStringType(pvApiCtx, piAddrData) == FALSE || isScalar(pvApiCtx, piAddrData) == FALSE)
+                {
+                    Scierror(999, _("%s: Wrong size for input argument #%d: A single string expected.\n"), fname, i + 1);
+                    freeAllocatedSingleString(pstProName);
+                }
+
+                getAllocatedSingleString(pvApiCtx, piAddrData, &pstVal);
+
+                if (stricmp(pstVal, "none") == 0)
                 {
                     iMenubarType = 0;
                 }
-                else if (stricmp(pstPropVal, "figure") == 0)
+                else if (stricmp(pstVal, "figure") == 0)
                 {
                     iMenubarType = 1;
                 }
@@ -248,51 +270,123 @@ int sci_figure(char * fname, unsigned long fname_len)
                 {
                     Scierror(999, _("Wrong value for '%s' property: '%s' or '%s' expected."), "menubar", "none", "figure");
                     freeAllocatedSingleString(pstProName);
-                    freeAllocatedSingleString(pstPropVal);
+                    freeAllocatedSingleString(pstVal);
                     return 1;
                 }
+
+                freeAllocatedSingleString(pstVal);
             }
             else if (stricmp(pstProName, "default_axes") == 0)
             {
-                if (stricmp(pstPropVal, "on") == 0)
-                {
-                    bDefaultAxes = TRUE;
-                }
-                else if (stricmp(pstPropVal, "off") == 0)
-                {
-                    bDefaultAxes = FALSE;
-                }
-                else
+                bDefaultAxes = getStackArgumentAsBoolean(pvApiCtx, piAddrData);
+                if (bDefaultAxes == -1)
                 {
                     Scierror(999, _("Wrong value for '%s' property: '%s' or '%s' expected."), "default_axes", "on", "off");
                     freeAllocatedSingleString(pstProName);
-                    freeAllocatedSingleString(pstPropVal);
                     return 1;
                 }
             }
             else if (stricmp(pstProName, "visible") == 0)
             {
-                if (stricmp(pstPropVal, "on") == 0)
-                {
-                    bVisible = TRUE;
-                }
-                else if (stricmp(pstPropVal, "off") == 0)
-                {
-                    bVisible = FALSE;
-                }
-                else
+                bVisible = getStackArgumentAsBoolean(pvApiCtx, piAddrData);
+                if (bVisible == -1)
                 {
                     Scierror(999, _("Wrong value for '%s' property: '%s' or '%s' expected."), "visible", "on", "off");
                     freeAllocatedSingleString(pstProName);
-                    freeAllocatedSingleString(pstPropVal);
                     return 1;
                 }
             }
-            freeAllocatedSingleString(pstPropVal);
+            else if (stricmp(pstProName, "figure_size") == 0)
+            {
+                int iRows = 0;
+                int iCols = 0;
+                if (isDoubleType(pvApiCtx, piAddrData) == FALSE)
+                {
+                    Scierror(999, _("%s: Wrong type for input argument #%d: A double vector expected.\n"), fname, i + 1);
+                    return 1;
+                }
+
+                getMatrixOfDouble(pvApiCtx, piAddrData, &iRows, &iCols, &figureSize);
+                if (iRows * iCols != 2)
+                {
+                    Scierror(999, _("Wrong size for '%s' property: %d elements expected.\n"), "figure_size", 2);
+                    return 1;
+                }
+            }
+            else if (stricmp(pstProName, "axes_size") == 0)
+            {
+                int iRows = 0;
+                int iCols = 0;
+                if (isDoubleType(pvApiCtx, piAddrData) == FALSE)
+                {
+                    Scierror(999, _("%s: Wrong type for input argument #%d: A double vector expected.\n"), fname, i + 1);
+                    return 1;
+                }
+
+                getMatrixOfDouble(pvApiCtx, piAddrData, &iRows, &iCols, &axesSize);
+                if (iRows * iCols != 2)
+                {
+                    Scierror(999, _("Wrong size for '%s' property: %d elements expected.\n"), "axes_size", 2);
+                    return 1;
+                }
+            }
+            else if (stricmp(pstProName, "position") == 0)
+            {
+                int iRows = 0;
+                int iCols = 0;
+                double* pdbl = NULL;
+                if (isDoubleType(pvApiCtx, piAddrData) == FALSE)
+                {
+                    Scierror(999, _("%s: Wrong type for input argument #%d: A double vector expected.\n"), fname, i + 1);
+                    return 1;
+                }
+
+                getMatrixOfDouble(pvApiCtx, piAddrData, &iRows, &iCols, &pdbl);
+                if (iRows * iCols != 4)
+                {
+                    Scierror(999, _("Wrong size for '%s' property: %d elements expected.\n"), "position", 4);
+                    return 1;
+                }
+
+                position = pdbl;
+                axesSize = (pdbl + 2);
+            }
+            else if (stricmp(pstProName, "menubar_visible") == 0)
+            {
+                bMenuBar = getStackArgumentAsBoolean(pvApiCtx, piAddrData);
+                if (bMenuBar == -1)
+                {
+                    Scierror(999, _("Wrong value for '%s' property: '%s' or '%s' expected."), "menubar_visible", "on", "off");
+                    freeAllocatedSingleString(pstProName);
+                    return 1;
+                }
+            }
+            else if (stricmp(pstProName, "toolbar_visible") == 0)
+            {
+                bToolBar = getStackArgumentAsBoolean(pvApiCtx, piAddrData);
+                if (bToolBar == -1)
+                {
+                    Scierror(999, _("Wrong value for '%s' property: '%s' or '%s' expected."), "toolbar_visible", "on", "off");
+                    freeAllocatedSingleString(pstProName);
+                    return 1;
+                }
+            }
+            else if (stricmp(pstProName, "infobar_visible") == 0)
+            {
+                bInfoBar = getStackArgumentAsBoolean(pvApiCtx, piAddrData);
+                if (bInfoBar == -1)
+                {
+                    Scierror(999, _("Wrong value for '%s' property: '%s' or '%s' expected."), "infobar_visible", "on", "off");
+                    freeAllocatedSingleString(pstProName);
+                    return 1;
+                }
+            }
+
         }
-        iFig = createFigure(bDockable, iMenubarType, iToolbarType, bDefaultAxes, bVisible);
+
+        iFig = createFigure(bDockable, iMenubarType, iToolbarType, bDefaultAxes, bVisible, figureSize, axesSize, position, bMenuBar, bToolBar, bInfoBar);
         setGraphicObjectProperty(iFig, __GO_ID__, &iNewId, jni_int, 1);
-        iAxes = setDefaultProperties(iFig, bDefaultAxes);
+        iAxes = setDefaultProperties(iFig, bDefaultAxes, figureSize || axesSize ? FALSE : TRUE);
     }
 
     //set(iFig, iPos, iPos + 1)
@@ -321,16 +415,25 @@ int sci_figure(char * fname, unsigned long fname_len)
             return 1;
         }
 
-        if (bDoCreation &&
-                (stricmp(pstProName, "dockable") == 0 ||
-                 stricmp(pstProName, "menubar") == 0 ||
-                 stricmp(pstProName, "toolbar") == 0))
+        if (bDoCreation && (
+                    stricmp(pstProName, "dockable") == 0 ||
+                    stricmp(pstProName, "toolbar") == 0 ||
+                    stricmp(pstProName, "menubar") == 0 ||
+                    stricmp(pstProName, "default_axes") == 0 ||
+                    stricmp(pstProName, "visible") == 0 ||
+                    stricmp(pstProName, "figure_size") == 0 ||
+                    stricmp(pstProName, "axes_size") == 0 ||
+                    stricmp(pstProName, "position") == 0 ||
+                    stricmp(pstProName, "menubar_visible") == 0 ||
+                    stricmp(pstProName, "toolbar_visible") == 0 ||
+                    stricmp(pstProName, "infobar_visible") == 0))
         {
             // Already set creating new figure
             // but let the set_ function fail if figure already exists
             continue;
         }
 
+        sciprint("prop : %s\n", pstProName);
         //get address of value on stack
         sciErr = getVarAddressFromPosition(pvApiCtx, i + 1, &piAddrData);
         if (sciErr.iErr)
@@ -432,7 +535,42 @@ int sci_figure(char * fname, unsigned long fname_len)
     return 0;
 }
 /*--------------------------------------------------------------------------*/
-int setDefaultProperties(int _iFig, BOOL _bDefaultAxes)
+int getStackArgumentAsBoolean(void* _pvCtx, int* _piAddr)
+{
+    if (isScalar(_pvCtx, _piAddr))
+    {
+        if (isDoubleType(_pvCtx, _piAddr))
+        {
+            double dbl = 0;
+            getScalarDouble(_pvCtx, _piAddr, &dbl);
+            return ((int)dbl == 0 ? FALSE : TRUE);
+        }
+        else if (isBooleanType(_pvCtx, _piAddr))
+        {
+            int i = 0;
+            getScalarBoolean(_pvCtx, _piAddr, &i);
+            return (i == 0 ? FALSE : TRUE);
+        }
+        else if (isStringType(_pvCtx, _piAddr))
+        {
+            int ret = 0;
+            char* pst = NULL;
+            getAllocatedSingleString(_pvCtx, _piAddr, &pst);
+
+            if (stricmp(pst, "on") == 0)
+            {
+                ret = TRUE;
+            }
+
+            freeAllocatedSingleString(pst);
+
+            return ret;
+        }
+    }
+    return -1;
+}
+/*--------------------------------------------------------------------------*/
+int setDefaultProperties(int _iFig, BOOL _bDefaultAxes, BOOL _axesSize)
 {
     //get figure axes
     int iAxes = -1;
@@ -464,8 +602,11 @@ int setDefaultProperties(int _iFig, BOOL _bDefaultAxes)
     }
 
     // axes_size
-    getGraphicObjectProperty(getFigureModel(), __GO_AXES_SIZE__, jni_int_vector, (void **)&piAxesSize);
-    setGraphicObjectProperty(_iFig, __GO_AXES_SIZE__, piAxesSize, jni_int_vector, 2);
+    if (_axesSize)
+    {
+        getGraphicObjectProperty(getFigureModel(), __GO_AXES_SIZE__, jni_int_vector, (void **)&piAxesSize);
+        setGraphicObjectProperty(_iFig, __GO_AXES_SIZE__, piAxesSize, jni_int_vector, 2);
+    }
 
     //f.immediate_drawing = "on"
     iDrawing = 1;

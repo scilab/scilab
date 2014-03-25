@@ -11,6 +11,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.scilab.modules.commons.CommonFileUtils;
 import org.scilab.modules.commons.gui.FindIconHelper;
+import org.scilab.modules.graphic_objects.ScilabNativeView;
 import org.scilab.modules.graphic_objects.builder.Builder;
 import org.scilab.modules.graphic_objects.console.Console;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
@@ -507,6 +508,11 @@ public class XMLDomLoader {
         Integer menubar = 1;
         Integer toolbar = 1;
         Boolean default_axes = true;
+        double[] figureSize = null;
+        double[] axesSize = null;
+        boolean menubarVisisble = true;
+        boolean toolbarVisisble = true;
+        boolean infobarVisisble = true;
 
         NamedNodeMap attr = node.getAttributes();
         //dockable
@@ -540,8 +546,47 @@ public class XMLDomLoader {
             attr.removeNamedItem("visible");
         }
 
-        Integer fig = Builder.createFigure(dockable, menubar, toolbar, default_axes, false);
+        //axesSize
+        tempnode = attr.getNamedItem("axes_size");
+        if (tempnode != null) {
+            Double[] size = getAttributeAsDoubleArray(tempnode.getNodeValue());
+            axesSize = new double[] {size[0], size[1]};
+            attr.removeNamedItem("axes_size");
+        }
 
+        //figureSize
+        tempnode = attr.getNamedItem("figure_size");
+        if (axesSize == null && tempnode != null) {
+            Double[] size = getAttributeAsDoubleArray(tempnode.getNodeValue());
+            figureSize = new double[] {size[0], size[1]};
+            attr.removeNamedItem("figure_size");
+        }
+
+        //menubar
+        tempnode = attr.getNamedItem("menubar_visible");
+        if (tempnode != null) {
+            menubarVisisble = getAttributeAsBoolean(tempnode.getNodeValue());
+            attr.removeNamedItem("menubar_visible");
+        }
+        //toolbar
+        tempnode = attr.getNamedItem("toolbar_visible");
+        if (tempnode != null) {
+            toolbarVisisble = getAttributeAsBoolean(tempnode.getNodeValue());
+            attr.removeNamedItem("toolbar_visible");
+        }
+        //infobar
+        tempnode = attr.getNamedItem("infobar_visible");
+        if (tempnode != null) {
+            infobarVisisble = getAttributeAsBoolean(tempnode.getNodeValue());
+            attr.removeNamedItem("infobar_visible");
+        }
+
+        Integer fig = Builder.createFigure(dockable, menubar, toolbar, default_axes, false, figureSize, axesSize, null, menubarVisisble, toolbarVisisble, infobarVisisble);
+        //set new id
+        int newId = ScilabNativeView.ScilabNativeView__getValidDefaultFigureId();
+
+        controller.setProperty(fig,  __GO_ID__, newId);
+        System.out.println("setId : " + newId);
         for (int i = 0 ; i < attr.getLength() ; i++) {
             Node prop = attr.item(i);
             Pair<Integer, ModelType> pair = figPropToGO.get(prop.getNodeName());
