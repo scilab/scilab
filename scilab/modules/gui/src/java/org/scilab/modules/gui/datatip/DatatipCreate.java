@@ -170,7 +170,9 @@ public class DatatipCreate {
             controller.setProperty(newDatatip, GraphicObjectProperties.__GO_CLIP_STATE__, 0);
         }
 
-        DatatipManagerMode.getInstance().setLastTip(axesUid, newDatatip);
+        if (DatatipManagerMode.getInstance() != null) {
+            DatatipManagerMode.getInstance().setLastTip(axesUid, newDatatip);
+        }
 
         return newDatatip;
     }
