@@ -484,9 +484,6 @@ plot(x',t); // idem, x はtに一致するように自動的に転置される (
             4     5     6     7];
             
             x=[5 6 7 8];
-            warning("off")
-            plot(x,t);
-            warning("on")
             plot(x',t);
         </scilab:image>
         <programlisting role="example"><![CDATA[ 
@@ -503,7 +500,7 @@ t=[1     1     1     1
 subplot(221);
 plot(x,[t [8;9;10;12]]');
 subplot(222);
-plot(x',[t [8;9;10;12]]');
+plot(x',[t [8;9;10;12]]);
 subplot(223);
 plot(x,[t [8;9;10;12]]');
 subplot(224);
@@ -520,16 +517,14 @@ clf()
             
             // Only one matching possibility case : how to make 4 identical plots in 4 manners...
             // x is 1x4 (vector) and y is 4x5 (non square matrix)
-            warning("off")
             subplot(221);
-            plot(x,[t [8;9;10;12]]');
+            plot(x',[t [8;9;10;12]]);
             subplot(222);
-            plot(x',[t [8;9;10;12]]');
+            plot(x',[t [8;9;10;12]]);
             subplot(223);
-            plot(x,[t [8;9;10;12]]');
+            plot(x',[t [8;9;10;12]]);
             subplot(224);
-            plot(x',[t [8;9;10;12]]');
-            warning("on")
+            plot(x',[t [8;9;10;12]]);
         </scilab:image>
         <programlisting role="example"><![CDATA[ 
 
@@ -555,9 +550,6 @@ clf();
             // Case where only x or y is a square matrix
             //x : matrix (t) and y  : vector ([1 2 3 4])
             plot(t,[1 2 3 4]') // equivalent to plot(t,[1 1 1 1;2 2 2 2;3 3 3 3;4 4 4 4])
-            warning("off")
-            plot(t,[1;2;3;4]') // the same plot, but here Y needs to be transposed
-            warning("on")
         </scilab:image>
         <programlisting role="example"><![CDATA[ 
 t=[1     1     1     1
@@ -580,9 +572,6 @@ plot(t', cols') // the same plot
             cols = 1:4;
             
             // cols is transposed : notice the priority given to the columns treatment
-            warning("off")
-            plot(t',cols) // equivalent to plot(t',[1 1 1 1;2 2 2 2;3 3 3 3;4 4 4 4])
-            warning("on")
             plot(t',cols') // the same plot
         </scilab:image>
         <programlisting role="example"><![CDATA[ 

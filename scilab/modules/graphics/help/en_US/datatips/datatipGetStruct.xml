@@ -73,9 +73,6 @@
             e=gce();p=e.children(1);//get the handle on the polyline
             datatipCreate(p,50);
             datatipCreate(p,20);
-            warning("off")
-            datatips_struct=datatipGetStruct(p)
-            warning("on")
         </scilab:image>
     </refsection>
     <refsection>
