@@ -83,6 +83,9 @@ GUI Refactoring and Improvements
   set(get(0), "UseDeprecatedSkin", "on");
   Note that this deprecated behavior will be removed in future versions.
 
+* New way to access uicontrols using a path containing their "Tag" and their parent(s) "Tag" property.
+  See the set and get functions help page for more details.
+
 
 Graphics Evolutions
 ===================
