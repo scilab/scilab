@@ -21,8 +21,6 @@ Name: {group}\{#ScilabName}; Filename: {code:getExecNameForDesktop};WorkingDir: 
 
 Name: {group}\{cm:ConsoleIconName}; Filename: {app}\bin\scilex.exe;WorkingDir: "{userdocs}";Components: {#COMPN_JVM_MODULE};
 ;
-Name: {group}\{cm:DescriptionHelpScilabCHM}; Filename:"{app}\{cm:ScilabCHM}"; Components: {#COMPN_CHM};
-;
 Name: "{group}\{cm:WebIconScilab}"; Filename: "{app}\scilabwebsite.url";
 
 Name: {group}\{cm:UnInstallIcon}; Filename: {uninstallexe};

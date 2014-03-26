@@ -21,7 +21,6 @@
 #define javaSpecificationVersion "1.6"
 #define javaUsed "1.6.0_XX"
 #define TESTS_SIZE 14364741
-#define CHM_SIZE 28135014
 ;#define WITH_MODELICAC
 ;#define SCILAB_X64
 ;#define SCILAB_WITHOUT_JRE
@@ -32,8 +31,6 @@
 #define MKL_BLASLAPACK_PACKAGENAME 'blas-lapack-mkl-5.4-win32.zip'
 #define MKL_COMMONS_PACKAGENAME 'commons-mkl-5.4-win32.zip'
 #define MKL_FFTW_PACKAGENAME 'fftw-mkl-5.4-win32.zip'
-#define CHM_DOWNLOAD_HTTP 'http://fileexchange.scilab.org/toolboxes/CHM'
-#define CHM_PACKAGENAME 'scilab-help-chm-5.4.zip'
 ;-------------------------------------------------------------------------------
 [CustomMessages]
 #include BinariesSourcePath + "\tools\innosetup\custommessages.iss"

@@ -99,14 +99,6 @@ function Download_MKL_FFTW: Boolean;
     Result := Download_Package(ExpandConstant('{#MKL_FFTW_PACKAGENAME}'), URL, CustomMessage('DownloadMKLFFTWLabel'), CustomMessage('DownloadMKLDescription'));  
   end;
 //------------------------------------------------------------------------------
-function Download_CHM: Boolean;
-  var
-    URL: String;
-  begin
-    URL := ExpandConstant('{#CHM_DOWNLOAD_HTTP}')+ '/';
-    Result := Download_Package(ExpandConstant('{#CHM_PACKAGENAME}'), URL, CustomMessage('DownloadCHMLabel'), CustomMessage('DownloadCHMDescription'));  
-  end;
-//------------------------------------------------------------------------------
 function Install_Package(const packagefullfilename, pathdest: String):  Boolean;
   var
     TmpDirName: String;
@@ -198,28 +190,6 @@ function Install_MKL_FFTW: Boolean;
     fullnamePackage := TmpDirName + ExpandConstant('{#MKL_FFTW_PACKAGENAME}');
     destinationDirectory := ExpandConstant('{app}') + '\bin\fftw\';
     
-    if FileExists(fullnamePackage) then
-      begin
-        Result := Install_Package(fullnamePackage, destinationDirectory);
-      end
-    else
-      begin
-        Result := False;
-      end;
-
-  end;
-//------------------------------------------------------------------------------
-function Install_CHM: Boolean;
-  var
-    TmpDirName: String;
-    fullnamePackage: String;
-    destinationDirectory: String;
-
-  begin
-    TmpDirName := ExpandConstant('{tmp}') + '\';
-    fullnamePackage := TmpDirName + ExpandConstant('{#CHM_PACKAGENAME}');
-    destinationDirectory := ExpandConstant('{app}') + '\modules\helptools\chm\';
-    ForceDirectories(destinationDirectory);
     if FileExists(fullnamePackage) then
       begin
         Result := Install_Package(fullnamePackage, destinationDirectory);

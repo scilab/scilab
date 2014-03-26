@@ -39,7 +39,7 @@ begin
 end;
 //------------------------------------------------------------------------------
 // Offline installation option is checked : disable the components needing
-// to be downloaded (MKL, FFTW, CHM)
+// to be downloaded (MKL, FFTW)
 procedure OnOfflineInstallCheckBoxClick(Sender: TObject);
 var
   IsOnline: Boolean;
@@ -69,9 +69,6 @@ begin
   begin
     Res := Res and SetComponentState('DescriptionRefFftwLibrary', True, True);
   end;
-
-  // CHM
-  Res := Res and SetComponentState('DescriptionCHM', IsOnline, IsOnline);
 
   if not Res then
   begin
