@@ -1789,7 +1789,7 @@ public class ScilabJavaObject {
      */
     public static final int isUnwrappable(final int id) {
         if (id == 0) {
-            System.out.println("unwrappable=0");
+            //System.out.println("unwrappable=0");
             // Null object
             return 1;
         }

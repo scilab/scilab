@@ -13,3 +13,4 @@ a(2, 1, 3) = str;
 
 assert_checkequal(length(str), length(a(2, 1, 3)));
 assert_checkequal(str, a(2, 1, 3));
+assert_checkequal(a(1), ["" ""; "" ""; "Hi Jims !" ""]);
