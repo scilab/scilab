@@ -50,7 +50,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 m=0.8;
 z=%asn(1/sqrt(m),m);
 K=real(z);
@@ -68,6 +68,7 @@ deff('y=f(t)','y=1/sqrt((1-t^2)*(1-m*t^2))');
 intg(0,0.9,f)-%asn(0.9,m)  //Works for real case only!
  ]]></programlisting>
         <scilab:image>
+            warning("off")
             m=0.8;
             z=%asn(1/sqrt(m),m);
             K=real(z);
@@ -80,6 +81,7 @@ intg(0,0.9,f)-%asn(0.9,m)  //Works for real case only!
             y=%asn(x,m);
             rect=[0,-Ktilde,1.1*K,2*Ktilde];
             plot2d(real(y)',imag(y)',1,'011',' ',rect)
+            warning("on")
         </scilab:image>
     </refsection>
     <refsection role="see also">

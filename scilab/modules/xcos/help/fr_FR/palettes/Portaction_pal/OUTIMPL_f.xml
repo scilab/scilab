@@ -188,7 +188,7 @@
     <refsection id="Example_OUTIMPL_f">
         <title>Exemple</title>
         <para>
-            Dans l'exemple suivant le Super bloc est un simple commutateur à transistor. 
+            Dans l'exemple suivant le Super bloc est un simple commutateur à transistor.
         </para>
         <para>
             <link type="scilab" linkend="scilab.xcos/xcos/examples/portaction_pal/fr_FR/OUTIMPL_f_fr_FR.zcos">
@@ -204,9 +204,11 @@
         </para>
         <scilab:image><![CDATA[
 // overload messagebox to avoid the "modelica compiler" message
+warning("off")
 function [btn] = messagebox(msg, msgboxtitle, msgboxicon, buttons, ismodal)
 	btn=1;
 endfunction
+warning("on")
 
 importXcosDiagram(SCI + "/modules/xcos/examples/portaction_pal/fr_FR/OUTIMPL_f_fr_FR.zcos");
 xcos_simulate(scs_m, 4);
