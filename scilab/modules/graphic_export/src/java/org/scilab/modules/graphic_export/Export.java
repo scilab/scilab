@@ -246,31 +246,33 @@ public class Export {
             }
         } else {
             DrawerVisitor visitor = DrawerVisitor.getVisitor(uid);
-            G2DCanvas canvas = (G2DCanvas) visitor.getCanvas();
-            canvas.enableDraw();
-            Exporter exporter = null;
-            try {
-                canvas.redraw();
-                exporter = visitorsToExp.get(visitor);
-                if (exporter != null) {
-                    exporter.file = file;
-                    exporter.write();
+            if (visitor.getCanvas() instanceof G2DCanvas) {
+                G2DCanvas canvas = (G2DCanvas) visitor.getCanvas();
+                canvas.enableDraw();
+                Exporter exporter = null;
+                try {
+                    canvas.redraw();
+                    exporter = visitorsToExp.get(visitor);
+                    if (exporter != null) {
+                        exporter.file = file;
+                        exporter.write();
+                    }
+                } catch (OutOfMemoryError e) {
+                    return MEMORY_ERROR;
+                } catch (IOException e) {
+                    throw e;
+                } catch (Throwable e) {
+                    return UNKNOWN_ERROR;
+                } finally {
+                    if (exporter != null) {
+                        exporter.dispose();
+                        exporter = null;
+                        visitorsToExp.remove(visitor);
+                    }
+                    DrawerVisitor.changeVisitor(figure, null);
+                    GraphicController.getController().unregister(visitor);
+                    canvas.destroy();
                 }
-            } catch (OutOfMemoryError e) {
-                return MEMORY_ERROR;
-            } catch (IOException e) {
-                throw e;
-            } catch (Throwable e) {
-                return UNKNOWN_ERROR;
-            } finally {
-                if (exporter != null) {
-                    exporter.dispose();
-                    exporter = null;
-                    visitorsToExp.remove(visitor);
-                }
-                DrawerVisitor.changeVisitor(figure, null);
-                GraphicController.getController().unregister(visitor);
-                canvas.destroy();
             }
         }
 
