@@ -494,7 +494,7 @@ int ScilabObjects::getArgumentId(int * addr, int * tmpvars, const bool isRef, co
         {
             /* '$+1' should be handled to ease insertion/extraction */
             int nameLen = 5;
-            char name[nameLen];
+            char name[5];
 
             err = getPolyVariableName(pvApiCtx, addr, name, &nameLen);
             if (err.iErr)
