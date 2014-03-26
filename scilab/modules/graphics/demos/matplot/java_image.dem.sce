@@ -17,7 +17,7 @@ function demo_java_image()
     jimport javax.imageio.ImageIO;
     jimport java.net.URL;
 
-    bi = ImageIO.read(URL.new("file://" + demopath + "/puffin.png"));
+    bi = ImageIO.read(URL.new("file:////" + demopath + "/puffin.png"));
     w = bi.getWidth(jvoid);
     h = bi.getHeight(jvoid);
     data = bi.getRGB(0, 0, w, h, [], 0, w);
