@@ -225,6 +225,9 @@ Known incompatibilities
 
 * a*b*-c+d is now interpreted as (a*b*(-c))+d instead of a*b*(-c+d). See bug #13168.
 
+* Extracting children from an empty matrix of handles now returns an error.
+  For example: f=gcf(); f.children(1).children.children returns an error.
+
 
 Scilab Bug Fixes
 ================
