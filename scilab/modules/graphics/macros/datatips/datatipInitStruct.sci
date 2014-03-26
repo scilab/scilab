@@ -21,7 +21,7 @@ function ok=datatipInitStruct(curve_handle,varargin)
         error(msprintf(_("%s: Wrong type for input argument #%d: A ''%s'' handle expected.\n"),"datatipInitStruct",1,"Polyline"))
     end
     ok=%t;
-    ud=curve_handle.datatips;
+    ud=datatipGetStruct(curve_handle);
     if typeof(ud)<>"datatips" then
         //Create structure and set  default values
         ud=tlist(["datatips","style","interpolate","replace", "formatfunction",      "tips","selected"],..

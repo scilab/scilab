@@ -219,7 +219,7 @@ endfunction
 function str=formatEvansTip(curve,pt,index)
     //this function is called by the datatip mechanism to format the tip
     //string for the evans root loci curves
-    ud=curve.datatips;
+    ud=datatipGetStruct(curve);
     if index<>[] then
         K=ud.K(index)
     else //interpolated
