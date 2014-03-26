@@ -217,7 +217,6 @@ public class SwingScilabCommonPanel {
                     case BORDER: {
                         Integer[] padding = (Integer[]) GraphicController.getController().getProperty(component.getId(), __GO_BORDER_OPT_PADDING__);
                         component.getWidgetPane().setLayout(new BorderLayout(padding[0], padding[1]));
-                        component.getWidgetPane().setLayout(new BorderLayout());
                         component.setHasLayout(true);
                         break;
                     }
@@ -281,7 +280,6 @@ public class SwingScilabCommonPanel {
 
                 Integer[] padding = (Integer[]) GraphicController.getController().getProperty(component.getId(), __GO_BORDER_OPT_PADDING__);
                 component.getWidgetPane().setLayout(new BorderLayout(padding[0], padding[1]));
-                component.getWidgetPane().setLayout(new BorderLayout());
                 break;
             }
             case __GO_UI_ICON__: {

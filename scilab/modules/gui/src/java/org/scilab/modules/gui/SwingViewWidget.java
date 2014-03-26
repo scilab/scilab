@@ -274,7 +274,7 @@ public final class SwingViewWidget {
             }
             case __GO_PARENT__:
                 /* Update position */
-                SwingViewWidget.update(uiControl, __GO_POSITION__, controller.getProperty(uid, __GO_POSITION__));
+                ((SwingViewObject)uiControl).update(__GO_POSITION__, controller.getProperty(uid, __GO_POSITION__));
                 break;
             default:
                 break;

@@ -18,6 +18,9 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_POSITION__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TYPE__;
 
+import java.awt.Component;
+import java.awt.Dimension;
+
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.bridge.CallScilabBridge;
@@ -71,55 +74,33 @@ public final class UnitsConverter {
     public static double convertFromPoint(double value, UicontrolUnits newUnit, Widget uicontrol, boolean widthAsRef) {
         int refSize = 0;
 
-        Integer parentId = null;
-        int parentType = -1;
-
         SwingViewObject uicontrolAsView = (SwingViewObject) uicontrol;
         int widgetType = (Integer) GraphicController.getController().getProperty(uicontrolAsView.getId(), __GO_TYPE__);
 
         /* Get the component height from java */
         if (widgetType == __GO_FIGURE__) { /* Figure */
-            if (widthAsRef) {
-                refSize = (int) CallScilabBridge.getScreenWidth();
-            } else {
-                refSize = (int) CallScilabBridge.getScreenHeight();
-            }
             newUnit = UicontrolUnits.PIXELS;
-        } else { /* Uicontrol */
-            parentId = (Integer) GraphicController.getController().getProperty(uicontrolAsView.getId(), __GO_PARENT__);
-            if (parentId == null && newUnit == UicontrolUnits.NORMALIZED) { /* Parent not yet set */
-                return 0.0;
-            }
-            parentType = (Integer) GraphicController.getController().getProperty(parentId, __GO_TYPE__);
         }
 
         switch (newUnit) {
             case POINTS:
                 return value;
             case NORMALIZED:
-                if (parentType == __GO_FIGURE__) { /* Figure */
-                    Integer[] parentSize = (Integer[]) GraphicController.getController().getProperty(parentId, __GO_AXES_SIZE__);
-                    if (widthAsRef) {
-                        refSize = parentSize[0].intValue();
-                    } else {
-                        refSize = parentSize[1].intValue();
-                    }
-                } else { /* Frame */
-                    Double[] parentSize = (Double[]) GraphicController.getController().getProperty(parentId, __GO_POSITION__);
-
-                    if (widthAsRef) {
-                        refSize = parentSize[2].intValue();
-                    } else {
-                        refSize = parentSize[3].intValue();
-                    }
+                Component comp = (Component)uicontrol;
+                Dimension dims = comp.getParent().getSize();
+                if (widthAsRef) {
+                    refSize = dims.width;
+                } else {
+                    refSize = dims.height;
                 }
+
                 return value / (refSize * POINT_PER_INCH / CallScilabBridge.getScreenResolution());
             case INCHES:
                 return value / POINT_PER_INCH;
             case CENTIMETERS:
                 return value * CM_PER_INCH / POINT_PER_INCH;
             case PIXELS:
-                return value * CallScilabBridge.getScreenResolution() / POINT_PER_INCH + 1;
+                return value * CallScilabBridge.getScreenResolution() / POINT_PER_INCH;
             default:
                 return 0.0;
         }
@@ -128,49 +109,24 @@ public final class UnitsConverter {
     public static double convertToPoint(double value, UicontrolUnits oldUnit, Widget uicontrol, boolean widthAsRef) {
         int refSize = 0;
 
-        Integer parentId = null;
-        Integer parentType = null;
-
         SwingViewObject uicontrolAsView = (SwingViewObject) uicontrol;
         int widgetType = (Integer) GraphicController.getController().getProperty(uicontrolAsView.getId(), __GO_TYPE__);
 
         /* Get the component height from java */
-        if (widgetType == __GO_FIGURE__) { /* Figure */
-            /* The parent is the screen */
-            if (widthAsRef)	{
-                refSize = (int) CallScilabBridge.getScreenWidth();
-            } else {
-                refSize = (int) CallScilabBridge.getScreenHeight();
-            }
+        if (widgetType == __GO_FIGURE__) { // Figure
             oldUnit = UicontrolUnits.PIXELS;
-        } else { /* Uicontrol */
-            parentId = (Integer) GraphicController.getController().getProperty(uicontrolAsView.getId(), __GO_PARENT__);
-            if ((parentId == null || parentId.equals("")) && oldUnit == UicontrolUnits.NORMALIZED) { /* Parent not yet set */
-                return 0;
-            }
-            parentType = (Integer) GraphicController.getController().getProperty(parentId, __GO_TYPE__);
         }
 
         switch (oldUnit) {
             case POINTS:
                 return (int) value;
             case NORMALIZED:
-                if (parentType == __GO_FIGURE__) { /* Figure */
-                    Integer[] parentSize = (Integer[]) GraphicController.getController().getProperty(parentId, __GO_AXES_SIZE__);
-
-                    if (widthAsRef) {
-                        refSize = parentSize[0].intValue();
-                    } else {
-                        refSize = parentSize[1].intValue();
-                    }
-                } else { /* Frame */
-                    Double[] parentSize = (Double[]) GraphicController.getController().getProperty(parentId, __GO_POSITION__);
-
-                    if (widthAsRef) {
-                        refSize = parentSize[2].intValue();
-                    } else {
-                        refSize = parentSize[3].intValue();
-                    }
+                Component comp = (Component)uicontrol;
+                Dimension dims = comp.getParent().getSize();
+                if (widthAsRef) {
+                    refSize = dims.width;
+                } else {
+                    refSize = dims.height;
                 }
                 return (value * refSize * POINT_PER_INCH / CallScilabBridge.getScreenResolution());
             case INCHES:

@@ -128,27 +128,30 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
                         // Position property not yet set
                         return;
                     }
+
                     UicontrolUnits unitsProperty = UnitsConverter.stringToUnitsEnum((String) GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_UI_UNITS__));
-                    newPosition[0] = UnitsConverter.convertFromPixel(getPosition().getX(), unitsProperty, (SwingScilabFrame) SwingView.getFromId(uid), true);
-                    newPosition[1] = UnitsConverter.convertFromPixel(getPosition().getY(), unitsProperty, (SwingScilabFrame) SwingView.getFromId(uid), true);
-                    newPosition[2] = UnitsConverter.convertFromPixel(getWidth(), unitsProperty, (SwingScilabFrame) SwingView.getFromId(uid), true);
-                    newPosition[3] = UnitsConverter.convertFromPixel(getHeight(), unitsProperty, (SwingScilabFrame) SwingView.getFromId(uid), true);
-                    positions[2] = newPosition[2];
-                    positions[3] = newPosition[3];
-                    invalidate();
-                    if (getParent() != null && getParent().getLayout() == null) {
-                        GraphicController.getController().setProperty(getId(), GraphicObjectProperties.__GO_POSITION__, newPosition);
-                    } else {
-                        GraphicController.getController().setProperty(getId(), GraphicObjectProperties.__GO_POSITION__, positions);
+
+                    //normalized values are always good
+                    if (unitsProperty != UicontrolUnits.NORMALIZED) {
+                        newPosition[0] = UnitsConverter.convertFromPixel(getPosition().getX(), unitsProperty, (SwingScilabFrame) SwingView.getFromId(uid), true);
+                        newPosition[1] = UnitsConverter.convertFromPixel(getPosition().getY(), unitsProperty, (SwingScilabFrame) SwingView.getFromId(uid), true);
+                        newPosition[2] = UnitsConverter.convertFromPixel(getWidth(), unitsProperty, (SwingScilabFrame) SwingView.getFromId(uid), true);
+                        newPosition[3] = UnitsConverter.convertFromPixel(getHeight(), unitsProperty, (SwingScilabFrame) SwingView.getFromId(uid), true);
+                        positions[2] = newPosition[2];
+                        positions[3] = newPosition[3];
+                        if (getParent() != null && getParent().getLayout() == null) {
+                            GraphicController.getController().setProperty(getId(), GraphicObjectProperties.__GO_POSITION__, newPosition);
+                        } else {
+                            GraphicController.getController().setProperty(getId(), GraphicObjectProperties.__GO_POSITION__, positions);
+                        }
                     }
                 }
 
                 if (hasLayout == false) {
                     for (Component comp : getComponents()) {
                         if (comp instanceof Widget) {
-                            Widget widget = (Widget) comp;
                             SwingViewObject obj = (SwingViewObject) comp;
-                            SwingViewWidget.update(widget, __GO_POSITION__, GraphicController.getController().getProperty(obj.getId(), __GO_POSITION__));
+                            obj.update(__GO_POSITION__, GraphicController.getController().getProperty(obj.getId(), __GO_POSITION__));
                         }
                     }
                 }
@@ -858,7 +861,7 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
             }
             case __GO_POSITION__: {
                 SwingViewWidget.updatePosition(this, uid, value);
-                revalidate();
+                validate();
                 doLayout();
                 break;
             }
