@@ -215,7 +215,7 @@
                 </inlinemediaobject>
             </link>
         </para>
-        <scilab:image><![CDATA[
+        <scilab:image localized="true"><![CDATA[
 // overload messagebox to avoid the "modelica compiler" message
 function [btn] = messagebox(msg, msgboxtitle, msgboxicon, buttons, ismodal)
 	btn=1;

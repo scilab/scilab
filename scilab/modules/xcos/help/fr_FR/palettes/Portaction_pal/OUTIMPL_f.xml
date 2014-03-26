@@ -202,7 +202,7 @@
         <para>
             La figure suivante montre l'utilisation du Super bloc et la sortie résultante lorsque son entrée est basculée entre les potentiels GND et Vcc. Vous pouvez voir sur la sortie l'effet de la tension de saturation du transistor (sortie minimale = 0.4 Volt).
         </para>
-        <scilab:image><![CDATA[
+        <scilab:image localized="true"><![CDATA[
 // overload messagebox to avoid the "modelica compiler" message
 warning("off")
 function [btn] = messagebox(msg, msgboxtitle, msgboxicon, buttons, ismodal)

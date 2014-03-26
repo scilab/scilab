@@ -146,30 +146,30 @@ barhomogenize();
             bar(x,y,'red')
             x1=1:10;
             y1=[sin(x);cos(x)]
-            plot(x1,y1)
+            plot(x1',y1')
             
             // modify the polyline_style type of the second polyline from plot (this polyline becomes a bar)
             subplot(2,3,5)
             xtitle('transformation of the second polyline to bar')
-            x=1:10; 
+            x=1:10;
             y=sin(x)/2;
             bar(x,y,'red')
             x1=1:10;
             y1=[sin(x);cos(x)]
-            plot(x1,y1)
+            plot(x1',y1')
             e=gce();
             e2=e.children(2);
             e2.polyline_style=6;
             
-            // homogenisation of the first bar (from bar function) and second bar (from the modification). 
+            // homogenisation of the first bar (from bar function) and second bar (from the modification).
             subplot(2,3,6)
             xtitle('grouped homogenisation')
-            x=1:10; 
+            x=1:10;
             y=sin(x)/2;
             bar(x,y,'red')
             x1=1:10;
             y1=[sin(x);cos(x)]
-            plot(x1,y1)
+            plot(x1',y1')
             e=gce();
             e2=e.children(2);
             e2.polyline_style=6;

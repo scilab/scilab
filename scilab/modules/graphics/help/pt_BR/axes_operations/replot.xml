@@ -69,19 +69,19 @@
 x=[0:0.1:2*%pi]';
 plot2d(x,sin(x)) 
 replot([-1,-1,10,2]) 
-// segundo exemplo
-xdel(winsid());
-plot() // esboçando demonstração
-f=gcf();
-replot([-1,-1,10,2],f.children(1)) // especificando o valor do manipulador dos eixos
-replot([-3,-2,8,4],f.children(2)) 
  ]]></programlisting>
+        <scilab:image>
+            x=[0:0.1:2*%pi]';
+            plot2d(x,sin(x))
+            replot([-1,-1,10,2])
+        </scilab:image>
+        
         <programlisting role="example"><![CDATA[
-// ?????
+// segundo exemplo
 xdel(winsid());
 plot() // plot demo
 f=gcf();
-replot([-1,-1,10,2],f.children(1)) // axes?????????
+replot([-1,-1,10,2],f.children(1)) // especificando o valor do manipulador dos eixos
 replot([-3,-2,8,4],f.children(2)) 
  ]]></programlisting>
         <scilab:image>
