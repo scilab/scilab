@@ -38,22 +38,8 @@ if IS_MACOSX
 bin_SCRIPTS 		+= bin/checkmacosx.applescript
 endif
 
-scilab_bin_LDFLAGS 	    = $(AM_LDFLAGS) $(OPENMPI_LIBS) $(XML_LIBS)
-scilab_cli_bin_LDFLAGS  = $(AM_LDFLAGS) $(OPENMPI_LIBS) $(XML_LIBS)
-
-if USE_STATIC_SYSTEM_LIB
-scilab_bin_LDFLAGS += -static-libstdc++ -static-libgcc
-# -static-libgfortran
-scilab_cli_bin_LDFLAGS += -static-libstdc++ -static-libgcc
-#-static-libgfortran
-else
-# Clang (for example) needs an explicit reference to the lib
-scilab_bin_LDFLAGS += -lstdc++
-# -static-libgfortran
-scilab_cli_bin_LDFLAGS += -lstdc++
-#-static-libgfortran
-endif
-
+scilab_bin_LDFLAGS 	= $(AM_LDFLAGS)
+scilab_cli_bin_LDFLAGS  = $(AM_LDFLAGS)
 
 if IS_MACOSX
 scilab_bin_LDFLAGS 		+= -framework Cocoa
@@ -69,15 +55,30 @@ scilab_bin_CPPFLAGS = -I$(top_srcdir)/modules/io/includes/ \
 # (causing issues on some platform)
 COMMON_LIBS = $(LTLIBINTL)
 
-scilab_bin_SOURCES		= modules/startup/src/c/mainscic.cpp
-
-scilab_bin_LDADD 		= $(COMMON_LIBS) $(top_builddir)/modules/libscilab.la $(FLIBS)
+scilab_bin_SOURCES	= modules/startup/src/c/mainscic.cpp
 
 # Match scilab -nwni (ie command line without graphics)
 scilab_cli_bin_SOURCES	= modules/startup/src/c/mainscic.cpp
-
 scilab_cli_bin_CPPFLAGS = -DWITHOUT_GUI $(scilab_bin_CPPFLAGS)
-scilab_cli_bin_LDADD 	= $(COMMON_LIBS) $(top_builddir)/modules/libscilab-cli.la $(FLIBS)
+
+
+# the scilab-bin object file itself uses symbols from at least libscilab-cli.la,
+# libsciconsole-minimal.la and libscijvm-disable.la, so we have to link with these
+# libraries explicitly unless we link with -Wl,--copy-dt-needed-entries
+scilab_bin_LDADD 	= \
+			$(top_builddir)/modules/libscilab.la \
+			$(top_builddir)/modules/libscilab-cli.la \
+			$(top_builddir)/modules/console/libsciconsole-minimal.la \
+			$(top_builddir)/modules/jvm/libscijvm.la \
+			$(OPENMPI_LIBS) $(XML_LIBS) \
+			$(COMMON_LIBS) $(FLIBS)
+
+scilab_cli_bin_LDADD 	= \
+			$(top_builddir)/modules/libscilab-cli.la \
+			$(top_builddir)/modules/console/libsciconsole-minimal.la \
+			$(top_builddir)/modules/jvm/libscijvm-disable.la \
+			$(OPENMPI_LIBS) $(XML_LIBS) \
+			$(COMMON_LIBS) $(FLIBS)
 
 if MPI
 CXX = $(OPENMPI_CXX)
@@ -92,6 +93,19 @@ if NEED_JAVA
 # Don't do it for scilab_cli_bin. We want to be able to call it without
 # the java libs
 	scilab_bin_LDADD += $(JAVA_JNI_LIBS)
+endif
+
+if USE_STATIC_SYSTEM_LIB
+scilab_bin_LDFLAGS += -static-libstdc++ -static-libgcc
+# -static-libgfortran
+scilab_cli_bin_LDFLAGS += -static-libstdc++ -static-libgcc
+#-static-libgfortran
+else
+# Clang (for example) needs an explicit reference to the lib
+scilab_bin_LDADD += -lstdc++
+# -static-libgfortran
+scilab_cli_bin_LDADD += -lstdc++
+#-static-libgfortran
 endif
 
 if IS_SOLARIS
