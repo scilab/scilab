@@ -116,7 +116,8 @@ INCLUDE_FLAGS = $(libscixcos_la_CPPFLAGS)
 
 
 
-libscixcos_la_LIBADD = libscixcos-algo.la
+libscixcos_la_LIBADD = libscixcos-algo.la \
+		$(top_builddir)/modules/commons/libscicommons.la
 
 #### xcos : gateway declaration ####
 libscixcos_la_sci_gatewaydir = $(mydatadir)/sci_gateway
