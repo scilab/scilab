@@ -11,6 +11,7 @@
  *
  */
 
+#include <stdio.h>
 #include "gw_gui.h"
 #include "MALLOC.h"
 #include "api_scilab.h"
@@ -58,6 +59,7 @@ int sci_figure(char * fname, unsigned long fname_len)
     double* figureSize = NULL;
     double* axesSize = NULL;
     double* position = NULL;
+    double val[4];
     BOOL bMenuBar = TRUE;
     BOOL bToolBar = TRUE;
     BOOL bInfoBar = TRUE;
@@ -336,21 +338,41 @@ int sci_figure(char * fname, unsigned long fname_len)
                 int iRows = 0;
                 int iCols = 0;
                 double* pdbl = NULL;
-                if (isDoubleType(pvApiCtx, piAddrData) == FALSE)
+                if (isDoubleType(pvApiCtx, piAddrData))
                 {
-                    Scierror(999, _("%s: Wrong type for input argument #%d: A double vector expected.\n"), fname, i + 1);
+                    getMatrixOfDouble(pvApiCtx, piAddrData, &iRows, &iCols, &pdbl);
+                    if (iRows * iCols != 4)
+                    {
+                        Scierror(999, _("Wrong size for '%s' property: %d elements expected.\n"), "position", 4);
+                        return 1;
+                    }
+
+                    position = pdbl;
+                    axesSize = (pdbl + 2);
+                }
+                else if (isStringType(pvApiCtx, piAddrData) && isScalar(pvApiCtx, piAddrData))
+                {
+                    char* pstVal = NULL;
+                    int iVal = 0;
+
+                    getAllocatedSingleString(pvApiCtx, piAddrData, &pstVal);
+
+                    iVal = sscanf(pstVal, "%lf|%lf|%lf|%lf", &val[0], &val[1], &val[2], &val[3]);
+                    freeAllocatedSingleString(pstVal);
+                    if (iVal != 4)
+                    {
+                        Scierror(999, _("Wrong value for '%s' property: A string or a 1 x %d real row vector expected.\n"), "position", 4);
+                        return 1;
+                    }
+
+                    position = val;
+                    axesSize = (val + 2);
+                }
+                else
+                {
+                    Scierror(999, _("Wrong value for '%s' property: A string or a 1 x %d real row vector expected.\n"), "position", 4);
                     return 1;
                 }
-
-                getMatrixOfDouble(pvApiCtx, piAddrData, &iRows, &iCols, &pdbl);
-                if (iRows * iCols != 4)
-                {
-                    Scierror(999, _("Wrong size for '%s' property: %d elements expected.\n"), "position", 4);
-                    return 1;
-                }
-
-                position = pdbl;
-                axesSize = (pdbl + 2);
             }
             else if (stricmp(pstProName, "menubar_visible") == 0)
             {
