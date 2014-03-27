@@ -59,7 +59,7 @@ int set_parent_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType,
         }
         else
         {
-            Scierror(999, _("Wrong type for '%s' property: '%s' handle or '%s' handle expected.\n"), "parent", "Figure", "Frame uicontrol");
+            Scierror(999, _("Wrong type for '%s' property: '%s' handle or '%s' handle expected.\n"), "Parent", "Figure", "Frame uicontrol");
             return SET_PROPERTY_ERROR;
         }
 
@@ -76,7 +76,7 @@ int set_parent_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType,
         {
             getGraphicObjectProperty(iParentUID, __GO_STYLE__, jni_int, (void **)&piParentStyle);
             if (iParentType != __GO_UICONTROL__ ||
-                (iParentStyle != __GO_UI_FRAME__ && iParentStyle != __GO_UI_TAB__ && iParentStyle != __GO_UI_LAYER__))
+                    (iParentStyle != __GO_UI_FRAME__ && iParentStyle != __GO_UI_TAB__ && iParentStyle != __GO_UI_LAYER__))
             {
                 Scierror(999, _("Wrong value for '%s' property: A '%s' or '%s' handle expected.\n"), "Parent", "Figure", "Frame uicontrol");
                 return SET_PROPERTY_ERROR;
@@ -91,7 +91,7 @@ int set_parent_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType,
     {
         if ((valueType != sci_handles) && (valueType != sci_matrix))    /* sci_matrix used for adding menus in console menu */
         {
-            Scierror(999, _("Wrong type for '%s' property: '%s' handle or '%s' handle expected.\n"), "parent", "Figure", "Uimenu");
+            Scierror(999, _("Wrong type for '%s' property: '%s' handle or '%s' handle expected.\n"), "Parent", "Figure", "Uimenu");
             return SET_PROPERTY_ERROR;
         }
         else
@@ -99,11 +99,48 @@ int set_parent_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType,
             return setMenuParent(iObjUID, _pvData, valueType, nbRow, nbCol);
         }
     }
-    else
+
+    if (iObjType == __GO_AXES__)
     {
-        Scierror(999, _("Parent property can not be modified directly.\n"));
-        return SET_PROPERTY_ERROR;
+        if (valueType == sci_handles)
+        {
+            iParentUID = getObjectFromHandle((long)((long long*)_pvData)[0]);
+        }
+        else if (valueType == sci_matrix)
+        {
+            iParentUID = getFigureFromIndex((int)((double*)_pvData)[0]);
+        }
+        else
+        {
+            Scierror(999, _("Wrong type for '%s' property: '%s' handle or '%s' handle expected.\n"), "Parent", "Figure", "Frame uicontrol");
+            return SET_PROPERTY_ERROR;
+        }
+
+        if (iParentUID == 0)
+        {
+            // Can not set the parent
+            Scierror(999, _("Wrong value for '%s' property: A '%s' or '%s' handle expected.\n"), "Parent", "Figure", "Frame uicontrol");
+            return SET_PROPERTY_ERROR;
+        }
+
+        getGraphicObjectProperty(iParentUID, __GO_TYPE__, jni_int, (void **)&piParentType);
+
+        if (iParentType != __GO_FIGURE__)
+        {
+            getGraphicObjectProperty(iParentUID, __GO_STYLE__, jni_int, (void **)&piParentStyle);
+            if (iParentStyle != __GO_UI_FRAME__)
+            {
+                Scierror(999, _("Wrong value for '%s' property: A '%s' or '%s' handle expected.\n"), "Parent", "Figure", "Frame uicontrol");
+                return SET_PROPERTY_ERROR;
+            }
+        }
+
+        setGraphicObjectRelationship(iParentUID, iObjUID);
+        return SET_PROPERTY_SUCCEED;
     }
+
+    Scierror(999, _("Parent property can not be modified directly.\n"));
+    return SET_PROPERTY_ERROR;
 }
 
 /*------------------------------------------------------------------------*/
