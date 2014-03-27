@@ -556,7 +556,8 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                         geometry.setColors(null);
                     }
 
-                    appearance.setLineColor(ColorFactory.createColor(colorMap, polyline.getLineColor()));
+                    Integer lineColor = polyline.getSelected() ? polyline.getSelectedColor() : polyline.getLineColor();
+                    appearance.setLineColor(ColorFactory.createColor(colorMap, lineColor));
                     appearance.setLineWidth(polyline.getLineThickness().floatValue());
                     appearance.setLinePattern(polyline.getLineStyleAsEnum().asPattern());
 
@@ -568,7 +569,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                          * whereas the background color is used for all the other styles.
                          */
                         if (style == 5) {
-                            fillColor = polyline.getLineColor();
+                            fillColor = lineColor;
                         } else {
                             fillColor = polyline.getBackground();
                         }
@@ -580,7 +581,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
                     if (style == 4) {
                         arrowDrawer.drawArrows(polyline.getParentAxes(), polyline.getIdentifier(), polyline.getArrowSizeFactor(),
-                                               polyline.getLineThickness(), false, false, polyline.getLineColor(), true);
+                                               polyline.getLineThickness(), false, false, lineColor, true);
                     }
 
                     if (polyline.getMarkMode()) {
@@ -673,8 +674,8 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     if ((fac3d.getColorMode() >= 0) && (fac3d.getLineThickness() > 0.0)) {
                         geometry.setLineDrawingMode(Geometry.LineDrawingMode.SEGMENTS);
                         geometry.setWireIndices(dataManager.getWireIndexBuffer(fac3d.getIdentifier()));
-
-                        appearance.setLineColor(ColorFactory.createColor(colorMap, fac3d.getLineColor()));
+                        Integer lineColor = fac3d.getSelected() ? fac3d.getSelectedColor() : fac3d.getLineColor();
+                        appearance.setLineColor(ColorFactory.createColor(colorMap, lineColor));
                         appearance.setLineWidth(fac3d.getLineThickness().floatValue());
                     }
 
@@ -756,7 +757,8 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                         geometry.setWireIndices(dataManager.getWireIndexBuffer(plot3d.getIdentifier()));
 
                         appearance.setLinePattern(plot3d.getLineStyleAsEnum().asPattern());
-                        appearance.setLineColor(ColorFactory.createColor(colorMap, plot3d.getLineColor()));
+                        Integer lineColor = plot3d.getSelected() ? plot3d.getSelectedColor() : plot3d.getLineColor();
+                        appearance.setLineColor(ColorFactory.createColor(colorMap, lineColor));
                         appearance.setLineWidth(plot3d.getLineThickness().floatValue());
                     }
                     drawingTools.draw(geometry, appearance);

@@ -125,22 +125,11 @@ public class CommonHandler {
      * @param newColor Color to be used.
      * @return Returns the old color of the object.
      */
-    public static Integer setColor(Integer uid, Integer newColor) {
+    public static void setSelected(Integer uid, boolean selected) {
         if (uid == null) {
-            return 0;
+            return;
         }
-
-        Integer oldColor;
-        Boolean markon = isMarkEnabled(uid);
-        if (markon == true) {
-            oldColor = (Integer) GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_MARK_FOREGROUND__);
-            GraphicController.getController().setProperty(uid, GraphicObjectProperties.__GO_MARK_FOREGROUND__, newColor );
-        } else {
-            oldColor = (Integer) GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_LINE_COLOR__);
-            GraphicController.getController().setProperty(uid, GraphicObjectProperties.__GO_LINE_COLOR__, newColor );
-        }
-
-        return oldColor;
+        GraphicController.getController().setProperty(uid, GraphicObjectProperties.__GO_SELECTED__, selected);
     }
 
     /**

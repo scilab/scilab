@@ -29,7 +29,6 @@ public class ScilabClipboard {
 
     static ScilabClipboard instance = null;
     Integer objectUid = null;
-    Integer copiedColor = 0;
     boolean needDuplication = false;
     Integer copyStyle;
 
@@ -72,8 +71,6 @@ public class ScilabClipboard {
         } else {
             CommonHandler.cut(object);
         }
-
-        CommonHandler.setColor(object, copiedColor);
 
         Integer axesTo = AxesHandler.clickedAxes(figure, position);
         if (axesTo != null) { /* If there is an axes in the clicked position then adjust the bounds, make the axes visible and paste */
@@ -121,14 +118,6 @@ public class ScilabClipboard {
             return false;
         }
         return true;
-    }
-
-    /**
-    * Used to store the color of the copied polyline.
-    * @param color Polyline color.
-    */
-    public void setCopiedColor(Integer color) {
-        copiedColor = color;
     }
 
     /**

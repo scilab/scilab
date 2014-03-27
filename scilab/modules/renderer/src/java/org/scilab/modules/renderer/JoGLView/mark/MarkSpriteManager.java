@@ -60,7 +60,8 @@ public class MarkSpriteManager {
         Integer id = contouredObject.getIdentifier();
         Texture sprite = spriteMap.get(id);
         if (sprite == null) {
-            sprite = MarkSpriteFactory.getMarkSprite(textureManager, contouredObject.getMark(), colorMap, appearance);
+            Integer selectedColor = contouredObject.getSelected() ? contouredObject.getSelectedColor() : null;
+            sprite = MarkSpriteFactory.getMarkSprite(textureManager, contouredObject.getMark(), selectedColor, colorMap, appearance);
             spriteMap.put(id, sprite);
         }
         return sprite;
@@ -76,7 +77,7 @@ public class MarkSpriteManager {
     public Texture getMarkSprite(Integer id, Mark mark, ColorMap colorMap, Appearance appearance) {
         Texture sprite = spriteMap.get(id);
         if (sprite == null) {
-            sprite = MarkSpriteFactory.getMarkSprite(textureManager, mark, colorMap, appearance);
+            sprite = MarkSpriteFactory.getMarkSprite(textureManager, mark, null, colorMap, appearance);
             spriteMap.put(id, sprite);
         }
         return sprite;
@@ -99,7 +100,8 @@ public class MarkSpriteManager {
                 || property == GraphicObjectProperties.__GO_MARK_SIZE__
                 || property == GraphicObjectProperties.__GO_MARK_FOREGROUND__
                 || property == GraphicObjectProperties.__GO_MARK_BACKGROUND__
-                || property == GraphicObjectProperties.__GO_LINE_THICKNESS__) {
+                || property == GraphicObjectProperties.__GO_LINE_THICKNESS__
+                || property == GraphicObjectProperties.__GO_SELECTED__) {
             dispose(id);
         }
     }
