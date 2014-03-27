@@ -51,6 +51,8 @@ int set_current_figure_property(void* _pvCtx, int iObjUID, void* _pvData, int va
     int iCurFigUID = 0;
     int iAxesUID = 0;
     int* piAxesUID = &iAxesUID;
+    int iType = -1;
+    int *piType = &iType;
 
     if (iObjUID != 0)
     {
@@ -75,6 +77,15 @@ int set_current_figure_property(void* _pvCtx, int iObjUID, void* _pvData, int va
             Scierror(999, _("'%s' handle does not or no longer exists.\n"), "Figure");
             return SET_PROPERTY_ERROR;
         }
+
+        // Check new current figure is a figure
+        getGraphicObjectProperty(iCurFigUID, __GO_TYPE__, jni_int,  (void**)&piType);
+        if (iType != __GO_FIGURE__)
+        {
+            Scierror(999, _("Wrong value for '%s' property: A '%s' handle expected.\n"), "current_figure", "Figure");
+            return SET_PROPERTY_ERROR;
+        }
+
         setCurrentFigure(iCurFigUID);
         getGraphicObjectProperty(iCurFigUID, __GO_SELECTED_CHILD__, jni_int,  (void**)&piAxesUID);
         setCurrentSubWin(iAxesUID);
