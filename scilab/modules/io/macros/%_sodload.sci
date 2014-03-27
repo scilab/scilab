@@ -169,13 +169,20 @@ function %_sodload(%__filename__, varargin)
                 "dockable", figureProperties.dockable, ...
                 "default_axes", figureProperties.default_axes, ...
                 "visible", "off");
+                h.background = -2;
+                fields(fields=="menubar") = [];
+                fields(fields=="toolbar") = [];
+                fields(fields=="dockable") = [];
+                fields(fields=="default_axes") = [];
+                fields(fields=="visible") = [];
             else
-                h = gcf();
+                h = scf();
                 h.visible = "off";
             end
         else
             if isempty(winsid()) then
                 h = figure("visible", "off");
+                h.background = -2;
             else
                 h = gcf();
                 h.visible = "off";
@@ -273,6 +280,8 @@ function %_sodload(%__filename__, varargin)
         // Get auto_ticks to be sure to set it after ticks labels
         auto_ticks = axesProperties.auto_ticks;
         fields(fields=="auto_ticks") = [];
+        auto_margins = axesProperties.auto_margins;
+        fields(fields=="auto_margins") = [];
 
         for i = 1:size(fields, "*")
             if or(fields(i) == ["title","x_label","y_label","z_label"]) then
@@ -300,6 +309,7 @@ function %_sodload(%__filename__, varargin)
         end
 
         set(h, "auto_ticks", auto_ticks);
+        set(h, "auto_margins", auto_margins);
 
         // Legend management
         global %LEG
@@ -829,6 +839,10 @@ function %_sodload(%__filename__, varargin)
             fields(fields=="scrollable") = [];
             fields(fields=="constraints") = [];
             fields(fields=="margins") = [];
+            h.layout_options = uicontrolProperties.layout_options;
+            fields(fields=="layout_options") = [];
+            h.layout = uicontrolProperties.layout;
+            fields(fields=="layout") = [];
         else
             h = uicontrol("style", uicontrolProperties.style);
         end
