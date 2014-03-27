@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="border_constraints_properties">
+    <refnamediv>
+        <refname>Border Constraints Properties</refname>
+        <refpurpose>Description of the border constraints set of properties.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            constraints = createConstraints("border")
+            constraints = createConstraints("border", position)
+            constraints = createConstraints("border", position, preferredsize)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>position</term>
+                <listitem>
+                    <para>A string</para>
+                    <para>"top" | "left" | {"center"} | "right" |"bottom"</para>
+                    <para>The position of the element in the layout</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>preferredsize</term>
+                <listitem>
+                    <para>
+                        <literal>[width, heigth]</literal> a 1-by-2 matrix of doubles, [-1, -1] by default.
+                    </para>
+                    <para>
+                        The preferred <literal>width</literal> or <literal>heigth</literal> of the element in the layout in pixels if not constrained.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>constraints</term>
+                <listitem>
+                    <para>The created constraints.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            This functions creates the border constraints to set the <literal>constraints</literal> attribute of an uicontrol.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+         //Creating a figure with the border layout with 50 pixel padding in width and 10 in height 
+         f = figure( ...
+         "dockable"        , "off",...
+         "infobar_visible" , "off",...
+         "toolbar"         , "none",...
+         "menubar_visible" , "off",...
+         "menubar"         , "none",...
+         "default_axes"    , "off",...
+         "layout"          , "border",...
+         "layout_options", createLayoutOptions("border", [50,10]),...
+         "visible"         , "on");
+
+         c = createConstraints("border", "top", [50,10]);
+         //First frame is on top with 10 pixel in height
+         u_grid1 = uicontrol(f,...
+         "style", "frame",...
+         "backgroundcolor", [1 0 0], ...
+         "constraints", c);
+
+         sleep(500);
+         c.position = "left";
+         u_grid2 = uicontrol(f,...
+         "style", "frame",...
+         "backgroundcolor", [0 1 0], ...
+         "constraints", c);
+
+         sleep(500);
+         c.position = "center";
+         u_grid3 = uicontrol(f,...
+         "style", "frame",...
+         "backgroundcolor", [0 0 1], ...
+         "constraints", c);
+
+         sleep(500);
+         c.preferredsize = [10, 100];
+         c.position = "right";
+         u_grid4 = uicontrol(f,...
+         "style", "frame",...
+         "backgroundcolor", [1 1 0], ...
+         "constraints", c);
+
+         sleep(500);
+         c.position = "bottom";
+         u_grid5 = uicontrol(f,...
+         "style", "frame",...
+         "backgroundcolor", [1 0 1], ...
+         "constraints", c);
+         ]]></programlisting>
+    </refsection>
+     
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="layout">layout</link>
+            </member>
+            <member>
+                <link linkend="createConstraints">createConstraints</link>
+            </member>
+            <member>
+                <link linkend="uicontrol">uicontrol</link>
+            </member>
+            <member>
+                <link linkend="uicontrol_properties">uicontrol_properties</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>
+                    Function <function>createBorder</function> introduced.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>
