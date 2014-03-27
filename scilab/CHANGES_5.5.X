@@ -24,7 +24,8 @@ GUI Refactoring and Improvements
  - scrollable: Used to add scrolling capabilities on "frame" uicontrols.
  - groupname: Used to group "radiobutton" and "checkbox" uicontrols for an easier
               management.
- - icon: Add an icon to "pushbutton" and "labels" uicontrols.
+ - icon: Add an icon to "pushbutton", "text" and "frame" uicontrols.
+ - margin: Empty space around uicontrols.
 
 * New uimenu properties:
  - icon: add an icon on the left of the label menu.
