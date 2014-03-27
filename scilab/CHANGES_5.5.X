@@ -1,5 +1,5 @@
-﻿                 Changes between version 5.5.0-beta-1 and 5.5.0-beta-2
-                 =====================================================
+﻿                     Changes between version 5.5.0-beta-1 and 5.5.0
+                     ==============================================
 
 GUI Refactoring and Improvements
 ================================
@@ -29,8 +29,8 @@ GUI Refactoring and Improvements
 * New uimenu properties:
  - icon: add an icon on the left of the label menu.
 
-* "listbox" and "popupmenu" style uicontrols can now manage color boxes, icons, background and
-  foreground colors when the "String" property is set to a matrix matching the format:
+* "listbox" and "popupmenu" style uicontrols can now manage colors selection, icons, background
+  and foreground colors when the "String" property is set to a matrix matching the format:
   ["#color1", "Item1", "#background1", "#foreground1"; "#color2", "Item2", ..., ...]
   ["icon1", "Item1", "#background1", "#foreground1"; "icon2", "Item2", ..., ...]
   with "#color1", "#background1" and "#foreground1" in HTML format #XXXXXX.
@@ -163,9 +163,9 @@ Xcos
 
 * tbx_build_pal_loader function added to ease external module creation (See SEP #120).
 
-* A demo sub-panel has been added for event demos.
+* Event management demonstrations added.
 
-* API change: In scicos_block4.h, "Residute" has been renamed to "Jacobian".
+* API change: In scicos_block4.h, "Residute" renamed to "Jacobian".
 
 
 Obsolete & Removed Functions
@@ -251,8 +251,8 @@ Scilab Bug Fixes
 
 * Bug #2802 fixed - convstr did not convert non ascii chars.
 
-* Bug #4083 fixed - The numdiff and derivative functions were a quasi-duplicate for derivative
-                    and are tagged as obsolete, replaced by numderivative. See SEP #129.
+* Bug #4083 fixed - The numdiff and derivative functions were duplicates and are
+                    now tagged as obsolete and replaced by numderivative. See SEP #129.
 
 * Bug #4177 fixed - find function moved to the "elementary_functions" module.
 
@@ -289,7 +289,7 @@ Scilab Bug Fixes
 
 * Bug #6404 fixed - xrects help page was not clear about argument specification.
 
-* Bug #6476 fixed - Matplot help did not say that the data field should be used to update data.
+* Bug #6476 fixed - Matplot help did not indicate that the data field should be used to update data.
 
 * Bug #6512 fixed - %asn function tagged as obsolete.
 
@@ -308,7 +308,7 @@ Scilab Bug Fixes
 
 * Bug #7038 fixed - A toggle button now manages datatip mode.
 
-* Bug #7040 fixed - Example and the description for getMatrixOfIntegerPrecision modified.
+* Bug #7040 fixed - Example and description for getMatrixOfIntegerPrecision modified in help page.
 
 * Bug #7047 fixed - milk_drop is now obsolete. It will be removed in Scilab 5.5.1, but will be kept as a demonstration.
 
@@ -338,7 +338,7 @@ Scilab Bug Fixes
 
 * Bug #7650 fixed - isempty(tlist(...)) always returned false, even when all defined fields were empty.
 
-* Bug #7666 fixed - Inconstencies between and/or and &/| fixed.
+* Bug #7666 fixed - Inconsistencies between and/or and &/| fixed.
 
 * Bug #7705 fixed - "dimension", "minbounds" and "maxbounds" fields have been documented in Genetic algorithms help pages.
 
@@ -375,7 +375,7 @@ Scilab Bug Fixes
 
 * Bug #8247 fixed - regress tagged as obsolete.
 
-* Bug #8290 fixed - Documented the DELAYV_f block.
+* Bug #8290 fixed - DELAYV_f block documentation fixed.
 
 * Bug #8323 fixed - Scilab "About Box" did not hide Scilab main window.
 
@@ -399,7 +399,7 @@ Scilab Bug Fixes
 
 * Bug #9444 fixed - with_embedded_jre function removed.
 
-* Bug #9493 fixed - Title is now correctly set when starting Scilab and focus is set on Console
+* Bug #9493 fixed - Title is now correctly set when starting Scilab and focus is set on Console.
 
 * Bug #9627 fixed - Arguments checking added in optimsimplex_* functions.
 
@@ -464,8 +464,7 @@ Scilab Bug Fixes
 
 * Bug #10936 fixed - Scilab hung with invalid strf in plot2d.
 
-* Bug #10942 fixed - Sound function soundsec revised.
-                     Now soundsec can be used for non integer values of time.
+* Bug #10942 fixed - Function soundsec revised. Now soundsec can be used for non integer values of time.
 
 * Bug #10998 fixed - matrix*hypermatrix and hypermatrix*matrix operations failed.
 
@@ -493,21 +492,21 @@ Scilab Bug Fixes
 
 * Bug #11714 fixed - help_from_sci sometimes failed when input function had "<imagedata>" comments.
 
-* Bug #11779 fixed - Wrong type in the documentation of getNbInputArgument and getNbOutputArgument fixed.
+* Bug #11779 fixed - Wrong variable type in the documentation of getNbInputArgument and getNbOutputArgument fixed.
 
 * Bug #11789 fixed - Documentation was missing for nbInputArgument.
 
 * Bug #11814 fixed - Typo in CACSD help chapter fixed.
 
-* Bug #11876 fixed - ilib_include_flag now returns a string when called with a string column vector.
+* Bug #11876 fixed - ilib_include_flag now returns a string when called with a string column vector as input.
 
 * Bug #11953 fixed - Scilab crashed when global("") was typed.
 
-* Bug #11964 fixed - uicontrol coordinates system did not take figure resizing into account.
+* Bug #11964 fixed - uicontrol coordinates system did not take figure resize into account.
 
 * Bug #11996 fixed - eye extended to hypermatrix.
 
-* Bug #12012 fixed - Misleading perl function should be removed from Scilab.
+* Bug #12012 fixed - Misleading perl function should not be part of Scilab (tagged as obsolete).
 
 * Bug #12037 fixed - Simplified Chinese version of SciNotes displayed warnings at startup.
 
@@ -589,7 +588,7 @@ Scilab Bug Fixes
 
 * Bug #12826 fixed - <warning> and <note> tags were not managed in the documentation.
 
-* Bug #12854 fixed - the configure failed to detect custom installation of docbook.
+* Bug #12854 fixed - configure failed to detect custom installation of docbook.
 
 * Bug #12860 fixed - Missing semicolon in style.css added.
 
@@ -599,7 +598,7 @@ Scilab Bug Fixes
 
 * Bug #12896 fixed - Typos fixed in XML module error messages.
 
-* Bug #12900 fixed - It was not possible to set proxy options in Preferences.
+* Bug #12900 fixed - It is now possible to set proxy options in Preferences.
 
 * Bug #12910 fixed - Typos fixed in several help pages.
 
@@ -709,14 +708,13 @@ Scilab Bug Fixes
 
 * Bug #13063 fixed - Color selection in SciNotes preferences threw exceptions.
 
-* Bug #13064 fixed - Deleting a link connected to a split led to a translated
-                     link.
+* Bug #13064 fixed - Deleting a link connected to a split led to a translated link.
 
 * Bug #13069 fixed - Documentation for %MODELICA_USER_LIBS updated.
 
 * Bug #13066 fixed - data_bounds was not fully documented in axes_properties.
 
-* Bug #13080 fixed - No contextual menu was available for datatips management.
+* Bug #13080 fixed - Contextual menu was unavailable for datatips management.
 
 * Bug #13082 fixed - Datatip mark style was not inherited from the parent polyline.
 
@@ -744,7 +742,7 @@ Scilab Bug Fixes
 
 * Bug #13116 fixed - qpsolve now respects upper-bounds constraints.
 
-* Bug #13119 fixed - mget and mgetl accepted decimal values as number of lines.
+* Bug #13119 fixed - mget and mgetl now return an error when called with decimal values as number of lines.
 
 * Bug #13121 fixed - ode "rk" option crashed Scilab when the user derivative function failed.
 
@@ -839,13 +837,13 @@ Scilab Bug Fixes
 
 * Bug #13258 fixed - Bad number display in datatips fixed.
 
-* Bug #13267 fixed - Implicit typecasts in scicos.c have been fixed.
+* Bug #13267 fixed - Implicit typecasts in scicos.c fixed.
 
-* Bug #13271 fixed - plot2d with logarithmic scale and %nan value freezed Scilab.
+* Bug #13271 fixed - plot2d with logarithmic scale and %nan value froze Scilab.
 
-* Bug #13272 fixed - Error when reading CSV files with comment option on a CSV file without comment fixed.
+* Bug #13272 fixed - Error occurring when reading CSV files with comment option on a CSV file without comment fixed.
 
-* Bug #13280 fixed - Axes were not always displayed correctly after figure resizing.
+* Bug #13280 fixed - Axes were not always displayed properly after figure resize.
 
 
 Xcos Bug Fixes
