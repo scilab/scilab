@@ -49,17 +49,18 @@ int sci_newaxes(char * fname, unsigned long fname_len)
     int iParentStyle = -1;
     int *piParentStyle = &iParentStyle;
 
+    int iRhs = nbInputArgument(pvApiCtx);
 
     CheckInputArgument(pvApiCtx, 0, 1);
     CheckOutputArgument(pvApiCtx, 0, 1);
 
-    if (nbInputArgument(pvApiCtx) == 0)
+    if (iRhs == 0)
     {
         getOrCreateDefaultSubwin();
 
         if ((iSubwinUID = createSubWin (getCurrentFigure())) != 0)
         {
-            if (createScalarHandle(pvApiCtx, nbInputArgument(pvApiCtx) + 1, getHandle(iSubwinUID)))
+            if (createScalarHandle(pvApiCtx, iRhs + 1, getHandle(iSubwinUID)))
             {
                 printError(&sciErr, 0);
                 Scierror(999, _("%s: Memory allocation error.\n"), fname);
@@ -77,7 +78,7 @@ int sci_newaxes(char * fname, unsigned long fname_len)
     }
     else
     {
-        // NbInput Argument == 1
+        // iRhs == 1
         int* piAddr = NULL;
         int iType = 0;
 
@@ -114,14 +115,14 @@ int sci_newaxes(char * fname, unsigned long fname_len)
 
             if ((iSubwinUID = createSubWin(iParentUID)) != 0)
             {
-                if (createScalarHandle(pvApiCtx, nbInputArgument(pvApiCtx) + 1, getHandle(iSubwinUID)))
+                if (createScalarHandle(pvApiCtx, iRhs + 1, getHandle(iSubwinUID)))
                 {
                     printError(&sciErr, 0);
                     Scierror(999, _("%s: Memory allocation error.\n"), fname);
                     return 1;
                 }
 
-                AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
+                AssignOutputVariable(pvApiCtx, 1) = iRhs + 1;
                 ReturnArguments(pvApiCtx);
             }
             else

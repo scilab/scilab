@@ -17,6 +17,8 @@ extern "C"
 #include "getGraphicObjectProperty.h"
 #include "setGraphicObjectProperty.h"
 #include "FigureModel.h"
+#include "AxesModel.h"
+#include "CurrentSubwin.h"
 }
 
 #include "CallGraphicController.hxx"
@@ -94,6 +96,15 @@ int createNewFigureWithAxes()
         setGraphicObjectProperty(id, __GO_USER_DATA__, pUserData, jni_int_vector, iUserDataSize);
     }
 
+    //clone gda user_data is needed
+    getGraphicObjectProperty(getAxesModel(), __GO_USER_DATA_SIZE__, jni_int, (void**)&piUserDataSize);
+    if (iUserDataSize != 0)
+    {
+        int* pUserData = NULL;
+        getGraphicObjectProperty(getAxesModel(), __GO_USER_DATA__, jni_int_vector, (void**)&pUserData);
+        setGraphicObjectProperty(getCurrentSubWin(), __GO_USER_DATA__, pUserData, jni_int_vector, iUserDataSize);
+    }
+
     return id;
 }
 
@@ -111,13 +122,22 @@ int createFigure(int iDockable, int iMenubarType, int iToolbarType, int iDefault
                                iMenuBar != 0,
                                iToolBar != 0,
                                iInfoBar != 0);
-    //clone user_data is needed
+    //clone gdf user_data is needed
     getGraphicObjectProperty(getFigureModel(), __GO_USER_DATA_SIZE__, jni_int, (void**)&piUserDataSize);
     if (iUserDataSize != 0)
     {
         int* pUserData = NULL;
         getGraphicObjectProperty(getFigureModel(), __GO_USER_DATA__, jni_int_vector, (void**)&pUserData);
         setGraphicObjectProperty(id, __GO_USER_DATA__, pUserData, jni_int_vector, iUserDataSize);
+    }
+
+    //clone gda user_data is needed
+    getGraphicObjectProperty(getAxesModel(), __GO_USER_DATA_SIZE__, jni_int, (void**)&piUserDataSize);
+    if (iUserDataSize != 0)
+    {
+        int* pUserData = NULL;
+        getGraphicObjectProperty(getAxesModel(), __GO_USER_DATA__, jni_int_vector, (void**)&pUserData);
+        setGraphicObjectProperty(getCurrentSubWin(), __GO_USER_DATA__, pUserData, jni_int_vector, iUserDataSize);
     }
 
     return id;
@@ -135,7 +155,22 @@ int cloneAxesModel(int parent)
 
 int createSubWin(int parent)
 {
-    return Builder::createSubWin(getScilabJavaVM(), parent);
+    int id = 0;
+    int iUserDataSize = 0;
+    int* piUserDataSize = &iUserDataSize;
+
+    id = Builder::createSubWin(getScilabJavaVM(), parent);
+
+    //clone user_data is needed
+    getGraphicObjectProperty(getAxesModel(), __GO_USER_DATA_SIZE__, jni_int, (void**)&piUserDataSize);
+    if (iUserDataSize != 0)
+    {
+        int* pUserData = NULL;
+        getGraphicObjectProperty(getAxesModel(), __GO_USER_DATA__, jni_int_vector, (void**)&pUserData);
+        setGraphicObjectProperty(id, __GO_USER_DATA__, pUserData, jni_int_vector, iUserDataSize);
+    }
+
+    return id;
 }
 
 int createText(int iParentsubwinUID, char** text, int nbRow, int nbCol, double x, double y, BOOL autoSize, double* userSize, int  centerPos, int *foreground, int *background, BOOL isboxed, BOOL isline, BOOL isfilled, int align)
