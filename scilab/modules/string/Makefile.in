@@ -201,7 +201,9 @@ am__v_lt_0 = --silent
 am__v_lt_1 = 
 @MAINTAINER_MODE_FALSE@am_libscistring_algo_la_rpath =
 @MAINTAINER_MODE_TRUE@am_libscistring_algo_la_rpath =
-libscistring_la_DEPENDENCIES = libscistring-algo.la
+am__DEPENDENCIES_1 =
+libscistring_la_DEPENDENCIES = libscistring-algo.la \
+	$(am__DEPENDENCIES_1)
 am__objects_4 = sci_gateway/c/libscistring_la-gw_string.lo \
 	sci_gateway/c/libscistring_la-sci_ascii.lo \
 	sci_gateway/c/libscistring_la-sci_code2str.lo \
@@ -697,7 +699,7 @@ libscistring_la_CPPFLAGS = -I$(srcdir)/src/c \
 @MAINTAINER_MODE_TRUE@pkglib_LTLIBRARIES = libscistring.la
 @MAINTAINER_MODE_FALSE@noinst_LTLIBRARIES = libscistring-algo.la libscistring.la
 @MAINTAINER_MODE_TRUE@noinst_LTLIBRARIES = libscistring-algo.la
-libscistring_la_LDFLAGS = $(PCRE_LIBS) $(AM_LDFLAGS)
+libscistring_la_LDFLAGS = $(AM_LDFLAGS)
 libscistring_algo_la_SOURCES = $(STRING_C_SOURCES) $(STRING_CPP_SOURCES) $(STRING_FORTRAN_SOURCES)
 libscistring_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 libscistring_algo_la_CPPFLAGS = $(libscistring_la_CPPFLAGS)
@@ -707,7 +709,7 @@ CHECK_SRC = $(STRING_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscistring_la_CPPFLAGS)
 
 # commented since it is the first module to be processed
-libscistring_la_LIBADD = libscistring-algo.la
+libscistring_la_LIBADD = libscistring-algo.la $(PCRE_LIBS)
 
 #### Target ######
 modulename = string

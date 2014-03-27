@@ -198,7 +198,8 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(bindir)" \
 	"$(DESTDIR)$(libsciscicos_la_cosfdir)" \
 	"$(DESTDIR)$(libsciscicos_la_includedir)"
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
-libsciscicos_algo_la_LIBADD =
+am__DEPENDENCIES_1 =
+libsciscicos_algo_la_DEPENDENCIES = $(am__DEPENDENCIES_1)
 am__libsciscicos_algo_la_SOURCES_DIST = src/c/noscicos/noscicos.c \
 	src/c/tree.c src/c/scicos_malloc.c src/c/scicos_print.c \
 	src/c/import.c src/c/scicos.c src/c/scicos_free.c \
@@ -252,7 +253,7 @@ libsciscicos_algo_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=F77 \
 	$(AM_FFLAGS) $(FFLAGS) $(libsciscicos_algo_la_LDFLAGS) \
 	$(LDFLAGS) -o $@
 libsciscicos_cli_la_DEPENDENCIES = libsciscicos-algo.la \
-	$(am__append_2)
+	$(am__append_2) $(am__DEPENDENCIES_1)
 am__libsciscicos_cli_la_SOURCES_DIST = sci_gateway/c/gw_scicos.c \
 	sci_gateway/c/sci_buildouttb.c sci_gateway/c/sci_callblk.c \
 	sci_gateway/c/sci_coserror.c sci_gateway/c/sci_ctree2.c \
@@ -334,7 +335,8 @@ libsciscicos_cli_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=F77 \
 	$(AM_FFLAGS) $(FFLAGS) $(libsciscicos_cli_la_LDFLAGS) \
 	$(LDFLAGS) -o $@
 @XCOS_TRUE@am_libsciscicos_cli_la_rpath = -rpath $(pkglibdir)
-libsciscicos_la_DEPENDENCIES = libsciscicos-algo.la $(am__append_3)
+libsciscicos_la_DEPENDENCIES = libsciscicos-algo.la $(am__append_3) \
+	$(am__DEPENDENCIES_1)
 am__libsciscicos_la_SOURCES_DIST = sci_gateway/c/gw_scicos.c \
 	sci_gateway/c/sci_buildouttb.c sci_gateway/c/sci_callblk.c \
 	sci_gateway/c/sci_coserror.c sci_gateway/c/sci_ctree2.c \
@@ -939,9 +941,9 @@ sci_gateway/fortran/sci_f_vec2var.f
 noinst_LTLIBRARIES = libsciscicos-algo.la
 @XCOS_TRUE@pkglib_LTLIBRARIES = libscisundials.la libsciscicos-cli.la \
 @XCOS_TRUE@	$(am__append_1)
-libsciscicos_algo_la_LDFLAGS = $(RT_LIB) $(AM_LDFLAGS)
-libsciscicos_cli_la_LDFLAGS = $(RT_LIB) $(AM_LDFLAGS)
-libsciscicos_la_LDFLAGS = $(RT_LIB) $(AM_LDFLAGS)
+libsciscicos_algo_la_LDFLAGS = $(AM_LDFLAGS)
+libsciscicos_cli_la_LDFLAGS = $(AM_LDFLAGS)
+libsciscicos_la_LDFLAGS = $(AM_LDFLAGS)
 @XCOS_FALSE@libsciscicos_algo_la_CPPFLAGS = -I$(top_srcdir)/modules/output_stream/includes/ \
 @XCOS_FALSE@			-I$(top_srcdir)/modules/api_scilab/includes/ \
 @XCOS_FALSE@			-I$(top_srcdir)/modules/scicos/includes/ \
@@ -971,8 +973,11 @@ libsciscicos_la_CPPFLAGS = $(libsciscicos_algo_la_CPPFLAGS)
 @XCOS_TRUE@libsciscicos_cli_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 @XCOS_FALSE@libsciscicos_la_SOURCES = 
 @XCOS_TRUE@libsciscicos_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
-libsciscicos_cli_la_LIBADD = libsciscicos-algo.la $(am__append_2)
-libsciscicos_la_LIBADD = libsciscicos-algo.la $(am__append_3)
+libsciscicos_algo_la_LIBADD = $(RT_LIB)
+libsciscicos_cli_la_LIBADD = libsciscicos-algo.la $(am__append_2) \
+	$(RT_LIB)
+libsciscicos_la_LIBADD = libsciscicos-algo.la $(am__append_3) \
+	$(RT_LIB)
 
 # For the code check (splint)
 CHECK_SRC = $(SCICOS_C_SOURCES) $(GATEWAY_C_SOURCES)

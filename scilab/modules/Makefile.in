@@ -167,7 +167,9 @@ am__uninstall_files_from_dir = { \
   }
 am__installdirs = "$(DESTDIR)$(pkglibdir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
-libscilab_cli_la_DEPENDENCIES = $(ENGINE_LIBS) $(NO_GUI_LIBS)
+am__DEPENDENCIES_1 =
+libscilab_cli_la_DEPENDENCIES = $(ENGINE_LIBS) $(NO_GUI_LIBS) \
+	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1)
 am_libscilab_cli_la_OBJECTS =
 libscilab_cli_la_OBJECTS = $(am_libscilab_cli_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
@@ -179,7 +181,8 @@ libscilab_cli_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC \
 	$(AM_CFLAGS) $(CFLAGS) $(libscilab_cli_la_LDFLAGS) $(LDFLAGS) \
 	-o $@
 libscilab_la_DEPENDENCIES = $(am__append_6) $(am__append_7) \
-	$(am__append_8) $(top_builddir)/modules/libscilab-cli.la
+	$(top_builddir)/modules/libscilab-cli.la $(am__append_8) \
+	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1)
 am_libscilab_la_OBJECTS =
 libscilab_la_OBJECTS = $(am_libscilab_la_OBJECTS)
 libscilab_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
@@ -598,7 +601,7 @@ libscilab_la_rootdir = $(mydatadir)
 # libscilab-cli is for scilab-cli (without GUI)
 pkglib_LTLIBRARIES = libscilab-cli.la libscilab.la
 libscilab_la_SOURCES = 
-libscilab_la_LDFLAGS = $(LAPACK_LIBS) $(BLAS_LIBS) $(AM_LDFLAGS) $(SCI_LDFLAGS)
+libscilab_la_LDFLAGS = $(AM_LDFLAGS) $(SCI_LDFLAGS)
 GUI_LIBS = $(top_builddir)/modules/gui/libscigui.la \
 	$(top_builddir)/modules/renderer/libscirenderer.la \
 	$(top_builddir)/modules/graphics/libscigraphics.la \
@@ -686,16 +689,16 @@ ENGINE_LIBS_DYNAMIC_LOAD = \
 # Core modules
 
 # Core modules
-libscilab_la_LIBADD = $(am__append_6) $(am__append_7) $(OTHER_LIBS) \
-	$(EXTERNAL_LIBS) $(am__append_8) \
-	$(top_builddir)/modules/libscilab-cli.la
+libscilab_la_LIBADD = $(am__append_6) $(am__append_7) \
+	$(top_builddir)/modules/libscilab-cli.la $(OTHER_LIBS) \
+	$(EXTERNAL_LIBS) $(am__append_8) $(LAPACK_LIBS) $(BLAS_LIBS)
 
 ################## libscilab-cli  ##################
 libscilab_cli_la_SOURCES = 
-libscilab_cli_la_LDFLAGS = $(LAPACK_LIBS) $(BLAS_LIBS) $(AM_LDFLAGS) $(SCI_LDFLAGS)
+libscilab_cli_la_LDFLAGS = $(AM_LDFLAGS) $(SCI_LDFLAGS)
 
 # Core modules
-libscilab_cli_la_LIBADD = $(ENGINE_LIBS) $(NO_GUI_LIBS) $(OTHER_LIBS) $(EXTERNAL_LIBS)
+libscilab_cli_la_LIBADD = $(ENGINE_LIBS) $(NO_GUI_LIBS) $(OTHER_LIBS) $(EXTERNAL_LIBS) $(LAPACK_LIBS) $(BLAS_LIBS)
 all: all-recursive
 
 .SUFFIXES:

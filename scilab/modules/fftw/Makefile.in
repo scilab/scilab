@@ -186,7 +186,9 @@ am__v_lt_0 = --silent
 am__v_lt_1 = 
 @FFTW_TRUE@@MAINTAINER_MODE_FALSE@am_libscifftw_algo_la_rpath =
 @FFTW_TRUE@@MAINTAINER_MODE_TRUE@am_libscifftw_algo_la_rpath =
-@FFTW_TRUE@libscifftw_la_DEPENDENCIES = libscifftw-algo.la
+am__DEPENDENCIES_1 =
+@FFTW_TRUE@libscifftw_la_DEPENDENCIES = libscifftw-algo.la \
+@FFTW_TRUE@	$(am__DEPENDENCIES_1)
 am__libscifftw_la_SOURCES_DIST = src/nofftw/nofftw.c src/c/callfftw.c \
 	src/c/fftwlibname.c src/c/fftw_utilities.c \
 	src/c/sci_data_utilities.c src/c/with_fftw.c \
@@ -569,7 +571,7 @@ modulename = fftw
 @MAINTAINER_MODE_FALSE@noinst_LTLIBRARIES = libscifftw.la \
 @MAINTAINER_MODE_FALSE@	$(am__append_1)
 @MAINTAINER_MODE_TRUE@noinst_LTLIBRARIES = $(am__append_1)
-libscifftw_la_LDFLAGS = $(FFTW3_LIB) $(AM_LDFLAGS)
+libscifftw_la_LDFLAGS = $(AM_LDFLAGS)
 
 #### fftw : Conf files ####
 libscifftw_la_rootdir = $(mydatadir)
@@ -611,7 +613,7 @@ libscifftw_la_etc_DATA = etc/fftw.quit etc/fftw.start
 # For the code check (splint)
 @FFTW_TRUE@CHECK_SRC = $(FFTW_C_SOURCES) $(GATEWAY_C_SOURCES)
 @FFTW_TRUE@INCLUDE_FLAGS = $(libscifftw_la_CPPFLAGS)
-@FFTW_TRUE@libscifftw_la_LIBADD = libscifftw-algo.la
+@FFTW_TRUE@libscifftw_la_LIBADD = libscifftw-algo.la $(FFTW3_LIB)
 @FFTW_FALSE@libscifftw_la_CPPFLAGS = -I$(srcdir)/includes/ \
 @FFTW_FALSE@			-I$(srcdir)/src/c/ \
 @FFTW_FALSE@			-I$(top_srcdir)/modules/api_scilab/includes/ \

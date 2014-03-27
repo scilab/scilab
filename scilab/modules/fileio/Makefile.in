@@ -164,7 +164,8 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscifileio_la_sci_gatewaydir)" \
 	"$(DESTDIR)$(libscifileio_la_includedir)"
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
-libscifileio_algo_la_LIBADD =
+am__DEPENDENCIES_1 =
+libscifileio_algo_la_DEPENDENCIES = $(am__DEPENDENCIES_1)
 am__dirstamp = $(am__leading_dot)dirstamp
 am__objects_1 = src/c/libscifileio_algo_la-FileExist.lo \
 	src/c/libscifileio_algo_la-scanf_functions.lo \
@@ -226,13 +227,10 @@ AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
 am__v_lt_0 = --silent
 am__v_lt_1 = 
-libscifileio_algo_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC \
-	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CCLD) \
-	$(AM_CFLAGS) $(CFLAGS) $(libscifileio_algo_la_LDFLAGS) \
-	$(LDFLAGS) -o $@
 @MAINTAINER_MODE_FALSE@am_libscifileio_algo_la_rpath =
 @MAINTAINER_MODE_TRUE@am_libscifileio_algo_la_rpath =
-libscifileio_la_DEPENDENCIES = libscifileio-algo.la
+libscifileio_la_DEPENDENCIES = libscifileio-algo.la \
+	$(am__DEPENDENCIES_1)
 am__objects_2 = sci_gateway/c/libscifileio_la-gw_fileio.lo \
 	sci_gateway/c/libscifileio_la-sci_mfprintf.lo \
 	sci_gateway/c/libscifileio_la-sci_mscanf.lo \
@@ -748,14 +746,14 @@ libscifileio_la_CPPFLAGS = -I$(srcdir)/includes/ \
 libscifileio_algo_la_SOURCES = $(FILEIO_SOURCES)
 libscifileio_la_SOURCES = $(GATEWAY_SOURCES) $(GATEWAY_CXX_SOURCES)
 libscifileio_algo_la_CPPFLAGS = $(libscifileio_la_CPPFLAGS)
-libscifileio_algo_la_LDFLAGS = $(CURL_LIBS)
+libscifileio_algo_la_LIBADD = $(CURL_LIBS)
 
 # For the code check (splint)
 CHECK_SRC = $(FILEIO_SOURCES) $(GATEWAY_SOURCES)
 INCLUDE_FLAGS = $(libscifileio_la_CPPFLAGS)
 
 # pb of order $(top_builddir)/modules/console/libsciconsole.la
-libscifileio_la_LIBADD = libscifileio-algo.la
+libscifileio_la_LIBADD = libscifileio-algo.la $(CURL_LIBS)
 
 #### Target ######
 modulename = fileio
@@ -1047,7 +1045,7 @@ src/c/libscifileio_algo_la-convert_tools.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
 
 libscifileio-algo.la: $(libscifileio_algo_la_OBJECTS) $(libscifileio_algo_la_DEPENDENCIES) $(EXTRA_libscifileio_algo_la_DEPENDENCIES) 
-	$(AM_V_CCLD)$(libscifileio_algo_la_LINK) $(am_libscifileio_algo_la_rpath) $(libscifileio_algo_la_OBJECTS) $(libscifileio_algo_la_LIBADD) $(LIBS)
+	$(AM_V_CCLD)$(LINK) $(am_libscifileio_algo_la_rpath) $(libscifileio_algo_la_OBJECTS) $(libscifileio_algo_la_LIBADD) $(LIBS)
 sci_gateway/c/$(am__dirstamp):
 	@$(MKDIR_P) sci_gateway/c
 	@: > sci_gateway/c/$(am__dirstamp)

@@ -206,7 +206,9 @@ libscijvm_disable_la_LIBADD =
 am_libscijvm_disable_la_OBJECTS =  \
 	src/nojvm/libscijvm_disable_la-nojvm.lo
 libscijvm_disable_la_OBJECTS = $(am_libscijvm_disable_la_OBJECTS)
-libscijvm_la_DEPENDENCIES = libscijvm-algo.la
+am__DEPENDENCIES_1 =
+libscijvm_la_DEPENDENCIES = libscijvm-algo.la $(am__DEPENDENCIES_1) \
+	$(am__DEPENDENCIES_1)
 am__objects_2 = sci_gateway/c/libscijvm_la-sci_system_getproperty.lo \
 	sci_gateway/c/libscijvm_la-sci_system_setproperty.lo \
 	sci_gateway/c/libscijvm_la-sci_javaclasspath.lo \
@@ -588,9 +590,8 @@ libscijvm_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 pkglib_LTLIBRARIES = libscijvm-disable.la $(am__append_1)
 @GUI_TRUE@USEANT = 1
 @GUI_TRUE@noinst_LTLIBRARIES = libscijvm-algo.la
-libscijvm_la_LDFLAGS = -lpthread $(XML_LIBS) $(JAVA_JNI_LIBS) \
-	$(AM_LDFLAGS) $(am__append_2)
-libscijvm_la_LIBADD = libscijvm-algo.la
+libscijvm_la_LDFLAGS = -pthread $(AM_LDFLAGS) $(am__append_2)
+libscijvm_la_LIBADD = libscijvm-algo.la $(XML_LIBS) $(JAVA_JNI_LIBS)
 
 #### jvm : gateway declaration ####
 libscijvm_la_sci_gatewaydir = $(mydatadir)/sci_gateway

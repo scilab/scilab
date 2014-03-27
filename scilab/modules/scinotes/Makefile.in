@@ -190,7 +190,9 @@ am__objects_4 =  \
 am_libsciscinotes_disable_la_OBJECTS = $(am__objects_4)
 libsciscinotes_disable_la_OBJECTS =  \
 	$(am_libsciscinotes_disable_la_OBJECTS)
-libsciscinotes_la_DEPENDENCIES = libsciscinotes-algo.la
+am__DEPENDENCIES_1 =
+libsciscinotes_la_DEPENDENCIES = libsciscinotes-algo.la \
+	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1)
 am__objects_5 = sci_gateway/c/libsciscinotes_la-gw_scinotes.lo
 am__objects_6 = sci_gateway/cpp/libsciscinotes_la-sci_scinotes.lo \
 	sci_gateway/cpp/libsciscinotes_la-sci_closeSciNotesFromScilab.lo
@@ -616,7 +618,7 @@ SCINOTES_DISABLE_C_SOURCES = src/noscinotes/noscinotes.c
 libsciscinotes_disable_la_SOURCES = $(SCINOTES_DISABLE_C_SOURCES)
 pkglib_LTLIBRARIES = libsciscinotes-disable.la $(am__append_1)
 @GUI_TRUE@noinst_LTLIBRARIES = libsciscinotes-algo.la 
-libsciscinotes_la_LDFLAGS = $(X_LIBS) $(X_EXTRA_LIBS) $(AM_LDFLAGS)
+libsciscinotes_la_LDFLAGS = $(AM_LDFLAGS)
 libsciscinotes_algo_la_SOURCES = $(SCINOTES_C_SOURCES) $(SCINOTES_JNI_SOURCES) $(SCINOTES_CXX_SOURCES)
 libsciscinotes_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CXX_SOURCES) 
 libsciscinotes_algo_la_CPPFLAGS = $(libsciscinotes_la_CPPFLAGS)
@@ -627,7 +629,7 @@ INCLUDE_FLAGS = $(libsciscinotes_la_CPPFLAGS)
 GIWS_WRAPPERS = src/jni/SciNotes.giws.xml
 SWIG_WRAPPERS = src/jni/ScilabKeywords.i 
 BUILT_SOURCES = $(am__append_2) $(am__append_3)
-libsciscinotes_la_LIBADD = libsciscinotes-algo.la
+libsciscinotes_la_LIBADD = libsciscinotes-algo.la $(X_LIBS) $(X_EXTRA_LIBS)
 
 #### scinotes : gateway declaration ####
 libsciscinotes_la_sci_gatewaydir = $(mydatadir)/sci_gateway

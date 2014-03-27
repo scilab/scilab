@@ -168,26 +168,25 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libsciumfpack_la_sci_gatewaydir)"
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libsciumfpack_algo_la_LIBADD =
-am__libsciumfpack_algo_la_SOURCES_DIST = src/noumfpack/noumfpack.c \
-	src/c/taucs_scilab.c src/c/common_umfpack.c \
-	src/c/with_umfpack.c
+am__libsciumfpack_algo_la_SOURCES_DIST = src/c/taucs_scilab.c \
+	src/c/common_umfpack.c src/c/with_umfpack.c \
+	src/noumfpack/noumfpack.c
 am__dirstamp = $(am__leading_dot)dirstamp
-@UMFPACK_FALSE@am__objects_1 = src/noumfpack/libsciumfpack_algo_la-noumfpack.lo
-@UMFPACK_TRUE@am__objects_1 =  \
-@UMFPACK_TRUE@	src/c/libsciumfpack_algo_la-taucs_scilab.lo \
-@UMFPACK_TRUE@	src/c/libsciumfpack_algo_la-common_umfpack.lo \
-@UMFPACK_TRUE@	src/c/libsciumfpack_algo_la-with_umfpack.lo
-@UMFPACK_TRUE@am_libsciumfpack_algo_la_OBJECTS = $(am__objects_1)
+am__objects_1 = src/c/libsciumfpack_algo_la-taucs_scilab.lo \
+	src/c/libsciumfpack_algo_la-common_umfpack.lo \
+	src/c/libsciumfpack_algo_la-with_umfpack.lo
+am_libsciumfpack_algo_la_OBJECTS = $(am__objects_1)
 libsciumfpack_algo_la_OBJECTS = $(am_libsciumfpack_algo_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
 am__v_lt_0 = --silent
 am__v_lt_1 = 
 @UMFPACK_TRUE@am_libsciumfpack_algo_la_rpath =
-@UMFPACK_TRUE@libsciumfpack_la_DEPENDENCIES = libsciumfpack-algo.la
-am__libsciumfpack_la_SOURCES_DIST = src/noumfpack/noumfpack.c \
-	src/c/taucs_scilab.c src/c/common_umfpack.c \
-	src/c/with_umfpack.c sci_gateway/c/gw_umfpack.c \
+am__DEPENDENCIES_1 =
+@UMFPACK_TRUE@am__DEPENDENCIES_2 = $(am__DEPENDENCIES_1)
+libsciumfpack_la_DEPENDENCIES = libsciumfpack-algo.la \
+	$(am__DEPENDENCIES_2)
+am__libsciumfpack_la_SOURCES_DIST = sci_gateway/c/gw_umfpack.c \
 	sci_gateway/c/sci_res_with_prec.c \
 	sci_gateway/c/sci_taucs_chdel.c \
 	sci_gateway/c/sci_taucs_chfact.c \
@@ -196,28 +195,26 @@ am__libsciumfpack_la_SOURCES_DIST = src/noumfpack/noumfpack.c \
 	sci_gateway/c/sci_taucs_chsolve.c \
 	sci_gateway/c/sci_umf_ludel.c sci_gateway/c/sci_umf_lufact.c \
 	sci_gateway/c/sci_umf_luget.c sci_gateway/c/sci_umf_luinfo.c \
-	sci_gateway/c/sci_umf_lusolve.c sci_gateway/c/sci_umfpack.c
-@UMFPACK_FALSE@am__objects_2 =  \
-@UMFPACK_FALSE@	src/noumfpack/libsciumfpack_la-noumfpack.lo
-@UMFPACK_TRUE@am__objects_2 = src/c/libsciumfpack_la-taucs_scilab.lo \
-@UMFPACK_TRUE@	src/c/libsciumfpack_la-common_umfpack.lo \
-@UMFPACK_TRUE@	src/c/libsciumfpack_la-with_umfpack.lo
-@UMFPACK_TRUE@am__objects_3 =  \
-@UMFPACK_TRUE@	sci_gateway/c/libsciumfpack_la-gw_umfpack.lo \
-@UMFPACK_TRUE@	sci_gateway/c/libsciumfpack_la-sci_res_with_prec.lo \
-@UMFPACK_TRUE@	sci_gateway/c/libsciumfpack_la-sci_taucs_chdel.lo \
-@UMFPACK_TRUE@	sci_gateway/c/libsciumfpack_la-sci_taucs_chfact.lo \
-@UMFPACK_TRUE@	sci_gateway/c/libsciumfpack_la-sci_taucs_chget.lo \
-@UMFPACK_TRUE@	sci_gateway/c/libsciumfpack_la-sci_taucs_chinfo.lo \
-@UMFPACK_TRUE@	sci_gateway/c/libsciumfpack_la-sci_taucs_chsolve.lo \
-@UMFPACK_TRUE@	sci_gateway/c/libsciumfpack_la-sci_umf_ludel.lo \
-@UMFPACK_TRUE@	sci_gateway/c/libsciumfpack_la-sci_umf_lufact.lo \
-@UMFPACK_TRUE@	sci_gateway/c/libsciumfpack_la-sci_umf_luget.lo \
-@UMFPACK_TRUE@	sci_gateway/c/libsciumfpack_la-sci_umf_luinfo.lo \
-@UMFPACK_TRUE@	sci_gateway/c/libsciumfpack_la-sci_umf_lusolve.lo \
-@UMFPACK_TRUE@	sci_gateway/c/libsciumfpack_la-sci_umfpack.lo
-@UMFPACK_FALSE@am_libsciumfpack_la_OBJECTS = $(am__objects_2)
-@UMFPACK_TRUE@am_libsciumfpack_la_OBJECTS = $(am__objects_3)
+	sci_gateway/c/sci_umf_lusolve.c sci_gateway/c/sci_umfpack.c \
+	src/c/taucs_scilab.c src/c/common_umfpack.c \
+	src/c/with_umfpack.c src/noumfpack/noumfpack.c
+am__objects_2 = sci_gateway/c/libsciumfpack_la-gw_umfpack.lo \
+	sci_gateway/c/libsciumfpack_la-sci_res_with_prec.lo \
+	sci_gateway/c/libsciumfpack_la-sci_taucs_chdel.lo \
+	sci_gateway/c/libsciumfpack_la-sci_taucs_chfact.lo \
+	sci_gateway/c/libsciumfpack_la-sci_taucs_chget.lo \
+	sci_gateway/c/libsciumfpack_la-sci_taucs_chinfo.lo \
+	sci_gateway/c/libsciumfpack_la-sci_taucs_chsolve.lo \
+	sci_gateway/c/libsciumfpack_la-sci_umf_ludel.lo \
+	sci_gateway/c/libsciumfpack_la-sci_umf_lufact.lo \
+	sci_gateway/c/libsciumfpack_la-sci_umf_luget.lo \
+	sci_gateway/c/libsciumfpack_la-sci_umf_luinfo.lo \
+	sci_gateway/c/libsciumfpack_la-sci_umf_lusolve.lo \
+	sci_gateway/c/libsciumfpack_la-sci_umfpack.lo
+am__objects_3 = src/c/libsciumfpack_la-taucs_scilab.lo \
+	src/c/libsciumfpack_la-common_umfpack.lo \
+	src/c/libsciumfpack_la-with_umfpack.lo
+am_libsciumfpack_la_OBJECTS = $(am__objects_2)
 libsciumfpack_la_OBJECTS = $(am_libsciumfpack_la_OBJECTS)
 libsciumfpack_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC \
 	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CCLD) \
@@ -566,7 +563,7 @@ top_srcdir = @top_srcdir@
 modulename = umfpack
 pkglib_LTLIBRARIES = libsciumfpack.la
 @UMFPACK_TRUE@noinst_LTLIBRARIES = libsciumfpack-algo.la
-libsciumfpack_la_LDFLAGS = $(AM_LDFLAGS) $(am__append_1)
+libsciumfpack_la_LDFLAGS = $(AM_LDFLAGS)
 
 #### umfpack : Conf files ####
 libsciumfpack_la_rootdir = $(mydatadir)
@@ -579,42 +576,38 @@ UMFPACK_license.txt
 #### umfpack : init scripts ####
 libsciumfpack_la_etcdir = $(mydatadir)/etc
 libsciumfpack_la_etc_DATA = etc/umfpack.quit etc/umfpack.start
+UMFPACK_C_SOURCES = src/c/taucs_scilab.c \
+src/c/common_umfpack.c \
+src/c/with_umfpack.c
+
 @UMFPACK_FALSE@UMFPACK_C_SOURCES = src/noumfpack/noumfpack.c
-
-# Crappy workaround to avoid an undefined symbol while using umfpack features
-# For some unknown reasons, -lumfpack will not load cholmod & colamd
-# libsciumfpack_la_LDFLAGS += -lcholmod -lcolamd
-@UMFPACK_TRUE@UMFPACK_C_SOURCES = src/c/taucs_scilab.c \
-@UMFPACK_TRUE@src/c/common_umfpack.c \
-@UMFPACK_TRUE@src/c/with_umfpack.c
-
-@UMFPACK_TRUE@GATEWAY_C_SOURCES = sci_gateway/c/gw_umfpack.c \
-@UMFPACK_TRUE@sci_gateway/c/sci_res_with_prec.c \
-@UMFPACK_TRUE@sci_gateway/c/sci_taucs_chdel.c \
-@UMFPACK_TRUE@sci_gateway/c/sci_taucs_chfact.c \
-@UMFPACK_TRUE@sci_gateway/c/sci_taucs_chget.c \
-@UMFPACK_TRUE@sci_gateway/c/sci_taucs_chinfo.c \
-@UMFPACK_TRUE@sci_gateway/c/sci_taucs_chsolve.c \
-@UMFPACK_TRUE@sci_gateway/c/sci_umf_ludel.c \
-@UMFPACK_TRUE@sci_gateway/c/sci_umf_lufact.c \
-@UMFPACK_TRUE@sci_gateway/c/sci_umf_luget.c \
-@UMFPACK_TRUE@sci_gateway/c/sci_umf_luinfo.c \
-@UMFPACK_TRUE@sci_gateway/c/sci_umf_lusolve.c \
-@UMFPACK_TRUE@sci_gateway/c/sci_umfpack.c
+GATEWAY_C_SOURCES = sci_gateway/c/gw_umfpack.c \
+sci_gateway/c/sci_res_with_prec.c \
+sci_gateway/c/sci_taucs_chdel.c \
+sci_gateway/c/sci_taucs_chfact.c \
+sci_gateway/c/sci_taucs_chget.c \
+sci_gateway/c/sci_taucs_chinfo.c \
+sci_gateway/c/sci_taucs_chsolve.c \
+sci_gateway/c/sci_umf_ludel.c \
+sci_gateway/c/sci_umf_lufact.c \
+sci_gateway/c/sci_umf_luget.c \
+sci_gateway/c/sci_umf_luinfo.c \
+sci_gateway/c/sci_umf_lusolve.c \
+sci_gateway/c/sci_umfpack.c
 
 
 #### umfpack : gateway declaration ####
-@UMFPACK_TRUE@libsciumfpack_la_sci_gatewaydir = $(mydatadir)/sci_gateway
-@UMFPACK_TRUE@libsciumfpack_la_sci_gateway_DATA = sci_gateway/umfpack_gateway.xml
-@UMFPACK_TRUE@libsciumfpack_algo_la_SOURCES = $(UMFPACK_C_SOURCES)
+libsciumfpack_la_sci_gatewaydir = $(mydatadir)/sci_gateway
+libsciumfpack_la_sci_gateway_DATA = sci_gateway/umfpack_gateway.xml
+libsciumfpack_algo_la_SOURCES = $(UMFPACK_C_SOURCES)
+libsciumfpack_la_SOURCES = $(GATEWAY_C_SOURCES)
 @UMFPACK_FALSE@libsciumfpack_la_SOURCES = $(UMFPACK_C_SOURCES)
-@UMFPACK_TRUE@libsciumfpack_la_SOURCES = $(GATEWAY_C_SOURCES)
-@UMFPACK_TRUE@libsciumfpack_algo_la_CPPFLAGS = $(libsciumfpack_la_CPPFLAGS)
+libsciumfpack_algo_la_CPPFLAGS = $(libsciumfpack_la_CPPFLAGS)
 
 # For the code check (splint)
-@UMFPACK_TRUE@CHECK_SRC = $(libsciumfpack_la_SOURCES)
-@UMFPACK_TRUE@INCLUDE_FLAGS = $(libsciumfpack_la_CPPFLAGS)
-@UMFPACK_TRUE@libsciumfpack_la_LIBADD = libsciumfpack-algo.la
+CHECK_SRC = $(libsciumfpack_la_SOURCES)
+INCLUDE_FLAGS = $(libsciumfpack_la_CPPFLAGS)
+libsciumfpack_la_LIBADD = libsciumfpack-algo.la $(am__append_1)
 @UMFPACK_FALSE@libsciumfpack_la_CPPFLAGS = -I$(top_srcdir)/modules/api_scilab/includes/ \
 @UMFPACK_FALSE@-I$(top_srcdir)/modules/umfpack/includes/ \
 @UMFPACK_FALSE@-I$(top_srcdir)/modules/output_stream/includes/ \
@@ -622,6 +615,10 @@ libsciumfpack_la_etc_DATA = etc/umfpack.quit etc/umfpack.start
 @UMFPACK_FALSE@$(UMFPACK_CFLAGS) \
 @UMFPACK_FALSE@$(AM_CPPFLAGS)
 
+
+# Crappy workaround to avoid an undefined symbol while using umfpack features
+# For some unknown reasons, -lumfpack will not load cholmod & colamd
+# libsciumfpack_la_LIBADD += -lcholmod -lcolamd
 @UMFPACK_TRUE@libsciumfpack_la_CPPFLAGS = -I$(srcdir)/includes/ \
 @UMFPACK_TRUE@			-I$(srcdir)/src/c/ \
 @UMFPACK_TRUE@			-I$(top_srcdir)/modules/dynamic_link/includes/ \
@@ -786,15 +783,6 @@ clean-pkglibLTLIBRARIES:
 	  echo rm -f $${locs}; \
 	  rm -f $${locs}; \
 	}
-src/noumfpack/$(am__dirstamp):
-	@$(MKDIR_P) src/noumfpack
-	@: > src/noumfpack/$(am__dirstamp)
-src/noumfpack/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) src/noumfpack/$(DEPDIR)
-	@: > src/noumfpack/$(DEPDIR)/$(am__dirstamp)
-src/noumfpack/libsciumfpack_algo_la-noumfpack.lo:  \
-	src/noumfpack/$(am__dirstamp) \
-	src/noumfpack/$(DEPDIR)/$(am__dirstamp)
 src/c/$(am__dirstamp):
 	@$(MKDIR_P) src/c
 	@: > src/c/$(am__dirstamp)
@@ -807,18 +795,18 @@ src/c/libsciumfpack_algo_la-common_umfpack.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libsciumfpack_algo_la-with_umfpack.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
+src/noumfpack/$(am__dirstamp):
+	@$(MKDIR_P) src/noumfpack
+	@: > src/noumfpack/$(am__dirstamp)
+src/noumfpack/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) src/noumfpack/$(DEPDIR)
+	@: > src/noumfpack/$(DEPDIR)/$(am__dirstamp)
+src/noumfpack/libsciumfpack_algo_la-noumfpack.lo:  \
+	src/noumfpack/$(am__dirstamp) \
+	src/noumfpack/$(DEPDIR)/$(am__dirstamp)
 
 libsciumfpack-algo.la: $(libsciumfpack_algo_la_OBJECTS) $(libsciumfpack_algo_la_DEPENDENCIES) $(EXTRA_libsciumfpack_algo_la_DEPENDENCIES) 
 	$(AM_V_CCLD)$(LINK) $(am_libsciumfpack_algo_la_rpath) $(libsciumfpack_algo_la_OBJECTS) $(libsciumfpack_algo_la_LIBADD) $(LIBS)
-src/noumfpack/libsciumfpack_la-noumfpack.lo:  \
-	src/noumfpack/$(am__dirstamp) \
-	src/noumfpack/$(DEPDIR)/$(am__dirstamp)
-src/c/libsciumfpack_la-taucs_scilab.lo: src/c/$(am__dirstamp) \
-	src/c/$(DEPDIR)/$(am__dirstamp)
-src/c/libsciumfpack_la-common_umfpack.lo: src/c/$(am__dirstamp) \
-	src/c/$(DEPDIR)/$(am__dirstamp)
-src/c/libsciumfpack_la-with_umfpack.lo: src/c/$(am__dirstamp) \
-	src/c/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/c/$(am__dirstamp):
 	@$(MKDIR_P) sci_gateway/c
 	@: > sci_gateway/c/$(am__dirstamp)
@@ -864,6 +852,15 @@ sci_gateway/c/libsciumfpack_la-sci_umf_lusolve.lo:  \
 sci_gateway/c/libsciumfpack_la-sci_umfpack.lo:  \
 	sci_gateway/c/$(am__dirstamp) \
 	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libsciumfpack_la-taucs_scilab.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libsciumfpack_la-common_umfpack.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libsciumfpack_la-with_umfpack.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
+src/noumfpack/libsciumfpack_la-noumfpack.lo:  \
+	src/noumfpack/$(am__dirstamp) \
+	src/noumfpack/$(DEPDIR)/$(am__dirstamp)
 
 libsciumfpack.la: $(libsciumfpack_la_OBJECTS) $(libsciumfpack_la_DEPENDENCIES) $(EXTRA_libsciumfpack_la_DEPENDENCIES) 
 	$(AM_V_CCLD)$(libsciumfpack_la_LINK) -rpath $(pkglibdir) $(libsciumfpack_la_OBJECTS) $(libsciumfpack_la_LIBADD) $(LIBS)
@@ -926,13 +923,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LTCOMPILE) -c -o $@ $<
 
-src/noumfpack/libsciumfpack_algo_la-noumfpack.lo: src/noumfpack/noumfpack.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciumfpack_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/noumfpack/libsciumfpack_algo_la-noumfpack.lo -MD -MP -MF src/noumfpack/$(DEPDIR)/libsciumfpack_algo_la-noumfpack.Tpo -c -o src/noumfpack/libsciumfpack_algo_la-noumfpack.lo `test -f 'src/noumfpack/noumfpack.c' || echo '$(srcdir)/'`src/noumfpack/noumfpack.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/noumfpack/$(DEPDIR)/libsciumfpack_algo_la-noumfpack.Tpo src/noumfpack/$(DEPDIR)/libsciumfpack_algo_la-noumfpack.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/noumfpack/noumfpack.c' object='src/noumfpack/libsciumfpack_algo_la-noumfpack.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciumfpack_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/noumfpack/libsciumfpack_algo_la-noumfpack.lo `test -f 'src/noumfpack/noumfpack.c' || echo '$(srcdir)/'`src/noumfpack/noumfpack.c
-
 src/c/libsciumfpack_algo_la-taucs_scilab.lo: src/c/taucs_scilab.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciumfpack_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libsciumfpack_algo_la-taucs_scilab.lo -MD -MP -MF src/c/$(DEPDIR)/libsciumfpack_algo_la-taucs_scilab.Tpo -c -o src/c/libsciumfpack_algo_la-taucs_scilab.lo `test -f 'src/c/taucs_scilab.c' || echo '$(srcdir)/'`src/c/taucs_scilab.c
 @am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libsciumfpack_algo_la-taucs_scilab.Tpo src/c/$(DEPDIR)/libsciumfpack_algo_la-taucs_scilab.Plo
@@ -954,33 +944,12 @@ src/c/libsciumfpack_algo_la-with_umfpack.lo: src/c/with_umfpack.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciumfpack_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libsciumfpack_algo_la-with_umfpack.lo `test -f 'src/c/with_umfpack.c' || echo '$(srcdir)/'`src/c/with_umfpack.c
 
-src/noumfpack/libsciumfpack_la-noumfpack.lo: src/noumfpack/noumfpack.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciumfpack_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/noumfpack/libsciumfpack_la-noumfpack.lo -MD -MP -MF src/noumfpack/$(DEPDIR)/libsciumfpack_la-noumfpack.Tpo -c -o src/noumfpack/libsciumfpack_la-noumfpack.lo `test -f 'src/noumfpack/noumfpack.c' || echo '$(srcdir)/'`src/noumfpack/noumfpack.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/noumfpack/$(DEPDIR)/libsciumfpack_la-noumfpack.Tpo src/noumfpack/$(DEPDIR)/libsciumfpack_la-noumfpack.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/noumfpack/noumfpack.c' object='src/noumfpack/libsciumfpack_la-noumfpack.lo' libtool=yes @AMDEPBACKSLASH@
+src/noumfpack/libsciumfpack_algo_la-noumfpack.lo: src/noumfpack/noumfpack.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciumfpack_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/noumfpack/libsciumfpack_algo_la-noumfpack.lo -MD -MP -MF src/noumfpack/$(DEPDIR)/libsciumfpack_algo_la-noumfpack.Tpo -c -o src/noumfpack/libsciumfpack_algo_la-noumfpack.lo `test -f 'src/noumfpack/noumfpack.c' || echo '$(srcdir)/'`src/noumfpack/noumfpack.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/noumfpack/$(DEPDIR)/libsciumfpack_algo_la-noumfpack.Tpo src/noumfpack/$(DEPDIR)/libsciumfpack_algo_la-noumfpack.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/noumfpack/noumfpack.c' object='src/noumfpack/libsciumfpack_algo_la-noumfpack.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciumfpack_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/noumfpack/libsciumfpack_la-noumfpack.lo `test -f 'src/noumfpack/noumfpack.c' || echo '$(srcdir)/'`src/noumfpack/noumfpack.c
-
-src/c/libsciumfpack_la-taucs_scilab.lo: src/c/taucs_scilab.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciumfpack_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libsciumfpack_la-taucs_scilab.lo -MD -MP -MF src/c/$(DEPDIR)/libsciumfpack_la-taucs_scilab.Tpo -c -o src/c/libsciumfpack_la-taucs_scilab.lo `test -f 'src/c/taucs_scilab.c' || echo '$(srcdir)/'`src/c/taucs_scilab.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libsciumfpack_la-taucs_scilab.Tpo src/c/$(DEPDIR)/libsciumfpack_la-taucs_scilab.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/taucs_scilab.c' object='src/c/libsciumfpack_la-taucs_scilab.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciumfpack_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libsciumfpack_la-taucs_scilab.lo `test -f 'src/c/taucs_scilab.c' || echo '$(srcdir)/'`src/c/taucs_scilab.c
-
-src/c/libsciumfpack_la-common_umfpack.lo: src/c/common_umfpack.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciumfpack_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libsciumfpack_la-common_umfpack.lo -MD -MP -MF src/c/$(DEPDIR)/libsciumfpack_la-common_umfpack.Tpo -c -o src/c/libsciumfpack_la-common_umfpack.lo `test -f 'src/c/common_umfpack.c' || echo '$(srcdir)/'`src/c/common_umfpack.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libsciumfpack_la-common_umfpack.Tpo src/c/$(DEPDIR)/libsciumfpack_la-common_umfpack.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/common_umfpack.c' object='src/c/libsciumfpack_la-common_umfpack.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciumfpack_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libsciumfpack_la-common_umfpack.lo `test -f 'src/c/common_umfpack.c' || echo '$(srcdir)/'`src/c/common_umfpack.c
-
-src/c/libsciumfpack_la-with_umfpack.lo: src/c/with_umfpack.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciumfpack_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libsciumfpack_la-with_umfpack.lo -MD -MP -MF src/c/$(DEPDIR)/libsciumfpack_la-with_umfpack.Tpo -c -o src/c/libsciumfpack_la-with_umfpack.lo `test -f 'src/c/with_umfpack.c' || echo '$(srcdir)/'`src/c/with_umfpack.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libsciumfpack_la-with_umfpack.Tpo src/c/$(DEPDIR)/libsciumfpack_la-with_umfpack.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/with_umfpack.c' object='src/c/libsciumfpack_la-with_umfpack.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciumfpack_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libsciumfpack_la-with_umfpack.lo `test -f 'src/c/with_umfpack.c' || echo '$(srcdir)/'`src/c/with_umfpack.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciumfpack_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/noumfpack/libsciumfpack_algo_la-noumfpack.lo `test -f 'src/noumfpack/noumfpack.c' || echo '$(srcdir)/'`src/noumfpack/noumfpack.c
 
 sci_gateway/c/libsciumfpack_la-gw_umfpack.lo: sci_gateway/c/gw_umfpack.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciumfpack_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libsciumfpack_la-gw_umfpack.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libsciumfpack_la-gw_umfpack.Tpo -c -o sci_gateway/c/libsciumfpack_la-gw_umfpack.lo `test -f 'sci_gateway/c/gw_umfpack.c' || echo '$(srcdir)/'`sci_gateway/c/gw_umfpack.c
@@ -1072,6 +1041,34 @@ sci_gateway/c/libsciumfpack_la-sci_umfpack.lo: sci_gateway/c/sci_umfpack.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_umfpack.c' object='sci_gateway/c/libsciumfpack_la-sci_umfpack.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciumfpack_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libsciumfpack_la-sci_umfpack.lo `test -f 'sci_gateway/c/sci_umfpack.c' || echo '$(srcdir)/'`sci_gateway/c/sci_umfpack.c
+
+src/c/libsciumfpack_la-taucs_scilab.lo: src/c/taucs_scilab.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciumfpack_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libsciumfpack_la-taucs_scilab.lo -MD -MP -MF src/c/$(DEPDIR)/libsciumfpack_la-taucs_scilab.Tpo -c -o src/c/libsciumfpack_la-taucs_scilab.lo `test -f 'src/c/taucs_scilab.c' || echo '$(srcdir)/'`src/c/taucs_scilab.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libsciumfpack_la-taucs_scilab.Tpo src/c/$(DEPDIR)/libsciumfpack_la-taucs_scilab.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/taucs_scilab.c' object='src/c/libsciumfpack_la-taucs_scilab.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciumfpack_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libsciumfpack_la-taucs_scilab.lo `test -f 'src/c/taucs_scilab.c' || echo '$(srcdir)/'`src/c/taucs_scilab.c
+
+src/c/libsciumfpack_la-common_umfpack.lo: src/c/common_umfpack.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciumfpack_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libsciumfpack_la-common_umfpack.lo -MD -MP -MF src/c/$(DEPDIR)/libsciumfpack_la-common_umfpack.Tpo -c -o src/c/libsciumfpack_la-common_umfpack.lo `test -f 'src/c/common_umfpack.c' || echo '$(srcdir)/'`src/c/common_umfpack.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libsciumfpack_la-common_umfpack.Tpo src/c/$(DEPDIR)/libsciumfpack_la-common_umfpack.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/common_umfpack.c' object='src/c/libsciumfpack_la-common_umfpack.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciumfpack_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libsciumfpack_la-common_umfpack.lo `test -f 'src/c/common_umfpack.c' || echo '$(srcdir)/'`src/c/common_umfpack.c
+
+src/c/libsciumfpack_la-with_umfpack.lo: src/c/with_umfpack.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciumfpack_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libsciumfpack_la-with_umfpack.lo -MD -MP -MF src/c/$(DEPDIR)/libsciumfpack_la-with_umfpack.Tpo -c -o src/c/libsciumfpack_la-with_umfpack.lo `test -f 'src/c/with_umfpack.c' || echo '$(srcdir)/'`src/c/with_umfpack.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libsciumfpack_la-with_umfpack.Tpo src/c/$(DEPDIR)/libsciumfpack_la-with_umfpack.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/with_umfpack.c' object='src/c/libsciumfpack_la-with_umfpack.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciumfpack_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libsciumfpack_la-with_umfpack.lo `test -f 'src/c/with_umfpack.c' || echo '$(srcdir)/'`src/c/with_umfpack.c
+
+src/noumfpack/libsciumfpack_la-noumfpack.lo: src/noumfpack/noumfpack.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciumfpack_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/noumfpack/libsciumfpack_la-noumfpack.lo -MD -MP -MF src/noumfpack/$(DEPDIR)/libsciumfpack_la-noumfpack.Tpo -c -o src/noumfpack/libsciumfpack_la-noumfpack.lo `test -f 'src/noumfpack/noumfpack.c' || echo '$(srcdir)/'`src/noumfpack/noumfpack.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/noumfpack/$(DEPDIR)/libsciumfpack_la-noumfpack.Tpo src/noumfpack/$(DEPDIR)/libsciumfpack_la-noumfpack.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/noumfpack/noumfpack.c' object='src/noumfpack/libsciumfpack_la-noumfpack.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciumfpack_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/noumfpack/libsciumfpack_la-noumfpack.lo `test -f 'src/noumfpack/noumfpack.c' || echo '$(srcdir)/'`src/noumfpack/noumfpack.c
 
 mostlyclean-libtool:
 	-rm -f *.lo

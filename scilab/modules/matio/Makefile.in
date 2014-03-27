@@ -201,7 +201,9 @@ AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
 am__v_lt_0 = --silent
 am__v_lt_1 = 
-libscimatio_la_DEPENDENCIES = libscimatio-algo.la
+am__DEPENDENCIES_1 =
+libscimatio_la_DEPENDENCIES = libscimatio-algo.la \
+	$(am__DEPENDENCIES_1)
 am__libscimatio_la_SOURCES_DIST = sci_gateway/c/gw_matio.c \
 	sci_gateway/c/sci_matfile_open.c \
 	sci_gateway/c/sci_matfile_close.c \
@@ -664,7 +666,7 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @MATIO_TRUE@		  src/c/GetStructVariable.c \
 @MATIO_TRUE@		  src/c/GetSparseVariable.c
 
-@MATIO_TRUE@libscimatio_la_LDFLAGS = $(MATIO_LIBS) $(AM_LDFLAGS)
+@MATIO_TRUE@libscimatio_la_LDFLAGS = $(AM_LDFLAGS)
 libscimatio_la_CPPFLAGS = -I$(srcdir)/includes/ \
 			-I$(srcdir)/src/c/ \
 			-I$(srcdir)/src/matio/ \
@@ -699,7 +701,7 @@ libscimatio_la_etc_DATA = etc/matio.quit etc/matio.start
 #### matio : gateway declaration ####
 libscimatio_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscimatio_la_sci_gateway_DATA = sci_gateway/matio_gateway.xml
-libscimatio_la_LIBADD = libscimatio-algo.la
+libscimatio_la_LIBADD = libscimatio-algo.la $(MATIO_LIBS)
 all: all-am
 
 .SUFFIXES:

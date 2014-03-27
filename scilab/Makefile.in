@@ -105,20 +105,19 @@ build_triplet = @build@
 host_triplet = @host@
 bin_PROGRAMS = scilab-bin$(EXEEXT) scilab-cli-bin$(EXEEXT)
 @IS_MACOSX_TRUE@am__append_1 = bin/checkmacosx.applescript
-@USE_STATIC_SYSTEM_LIB_TRUE@am__append_2 = -static-libstdc++ -static-libgcc
+@IS_MACOSX_TRUE@am__append_2 = -framework Cocoa
+@MPI_TRUE@am__append_3 = modules/startup/src/c/initMPI.c
+@MPI_TRUE@am__append_4 = $(OPENMPI_CXXFLAGS)
+@MPI_TRUE@am__append_5 = modules/startup/src/c/initMPI.c
+@MPI_TRUE@am__append_6 = $(OPENMPI_CXXFLAGS)
+@USE_STATIC_SYSTEM_LIB_TRUE@am__append_7 = -static-libstdc++ -static-libgcc
 # -static-libgfortran
-@USE_STATIC_SYSTEM_LIB_TRUE@am__append_3 = -static-libstdc++ -static-libgcc
+@USE_STATIC_SYSTEM_LIB_TRUE@am__append_8 = -static-libstdc++ -static-libgcc
 #-static-libgfortran
 # Clang (for example) needs an explicit reference to the lib
-@USE_STATIC_SYSTEM_LIB_FALSE@am__append_4 = -lstdc++
+@USE_STATIC_SYSTEM_LIB_FALSE@am__append_9 = -lstdc++
 # -static-libgfortran
-@USE_STATIC_SYSTEM_LIB_FALSE@am__append_5 = -lstdc++
-#-static-libgfortran
-@IS_MACOSX_TRUE@am__append_6 = -framework Cocoa
-@MPI_TRUE@am__append_7 = modules/startup/src/c/initMPI.c
-@MPI_TRUE@am__append_8 = $(OPENMPI_CXXFLAGS)
-@MPI_TRUE@am__append_9 = modules/startup/src/c/initMPI.c
-@MPI_TRUE@am__append_10 = $(OPENMPI_CXXFLAGS)
+@USE_STATIC_SYSTEM_LIB_FALSE@am__append_10 = -lstdc++
 
 #  The user wants to compile the localization files
 @GENERATE_LOCALIZATION_FILES_TRUE@am__append_11 = localization
@@ -267,8 +266,12 @@ am_scilab_bin_OBJECTS =  \
 scilab_bin_OBJECTS = $(am_scilab_bin_OBJECTS)
 am__DEPENDENCIES_1 =
 am__DEPENDENCIES_2 = $(am__DEPENDENCIES_1)
-scilab_bin_DEPENDENCIES = $(am__DEPENDENCIES_2) \
-	$(top_builddir)/modules/libscilab.la $(am__DEPENDENCIES_1)
+scilab_bin_DEPENDENCIES = $(top_builddir)/modules/libscilab.la \
+	$(top_builddir)/modules/libscilab-cli.la \
+	$(top_builddir)/modules/console/libsciconsole-minimal.la \
+	$(top_builddir)/modules/jvm/libscijvm.la $(am__DEPENDENCIES_1) \
+	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_2) \
+	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1)
 scilab_bin_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(AM_CXXFLAGS) \
 	$(CXXFLAGS) $(scilab_bin_LDFLAGS) $(LDFLAGS) -o $@
@@ -279,8 +282,13 @@ am_scilab_cli_bin_OBJECTS =  \
 	modules/startup/src/c/scilab_cli_bin-mainscic.$(OBJEXT) \
 	$(am__objects_2)
 scilab_cli_bin_OBJECTS = $(am_scilab_cli_bin_OBJECTS)
-scilab_cli_bin_DEPENDENCIES = $(am__DEPENDENCIES_2) \
-	$(top_builddir)/modules/libscilab-cli.la $(am__DEPENDENCIES_1)
+scilab_cli_bin_DEPENDENCIES =  \
+	$(top_builddir)/modules/libscilab-cli.la \
+	$(top_builddir)/modules/console/libsciconsole-minimal.la \
+	$(top_builddir)/modules/jvm/libscijvm-disable.la \
+	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
+	$(am__DEPENDENCIES_2) $(am__DEPENDENCIES_1) \
+	$(am__DEPENDENCIES_1)
 scilab_cli_bin_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX \
 	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CXXLD) \
 	$(AM_CXXFLAGS) $(CXXFLAGS) $(scilab_cli_bin_LDFLAGS) \
@@ -785,29 +793,39 @@ AM_LDFLAGS = $(SCI_LDFLAGS)
 changelogs = CHANGES CHANGES_5.1.X CHANGES_5.2.X CHANGES_5.3.X CHANGES_5.4.X  CHANGES_5.5.X
 bin_SCRIPTS = bin/scilab bin/scilab-adv-cli bin/scilab-cli \
 	bin/scinotes bin/xcos $(am__append_1)
-scilab_bin_LDFLAGS = $(AM_LDFLAGS) $(OPENMPI_LIBS) $(XML_LIBS) \
-	$(am__append_2) $(am__append_4) $(am__append_6)
-scilab_cli_bin_LDFLAGS = $(AM_LDFLAGS) $(OPENMPI_LIBS) $(XML_LIBS) \
-	$(am__append_3) $(am__append_5)
+scilab_bin_LDFLAGS = $(AM_LDFLAGS) $(am__append_2) $(am__append_7)
+scilab_cli_bin_LDFLAGS = $(AM_LDFLAGS) $(am__append_8)
 scilab_bin_CPPFLAGS = -I$(top_srcdir)/modules/io/includes/ \
 	-I$(top_srcdir)/modules/console/includes/ \
 	-I$(top_srcdir)/modules/localization/includes/ $(AM_CPPFLAGS) \
-	$(am__append_8)
+	$(am__append_4)
 # --no-undefined --relax
 
 # Localization dep already exists because of the `exportLocaleToSystem' symbol
 # (causing issues on some platform)
 COMMON_LIBS = $(LTLIBINTL)
 scilab_bin_SOURCES = modules/startup/src/c/mainscic.cpp \
-	$(am__append_7)
-scilab_bin_LDADD = $(COMMON_LIBS) $(top_builddir)/modules/libscilab.la $(FLIBS)
+	$(am__append_3)
 
 # Match scilab -nwni (ie command line without graphics)
 scilab_cli_bin_SOURCES = modules/startup/src/c/mainscic.cpp \
-	$(am__append_9)
+	$(am__append_5)
 scilab_cli_bin_CPPFLAGS = -DWITHOUT_GUI $(scilab_bin_CPPFLAGS) \
+	$(am__append_6)
+
+# the scilab-bin object file itself uses symbols from at least libscilab-cli.la,
+# libsciconsole-minimal.la and libscijvm-disable.la, so we have to link with these
+# libraries explicitly unless we link with -Wl,--copy-dt-needed-entries
+scilab_bin_LDADD = $(top_builddir)/modules/libscilab.la \
+	$(top_builddir)/modules/libscilab-cli.la \
+	$(top_builddir)/modules/console/libsciconsole-minimal.la \
+	$(top_builddir)/modules/jvm/libscijvm.la $(OPENMPI_LIBS) \
+	$(XML_LIBS) $(COMMON_LIBS) $(FLIBS) $(am__append_9)
+scilab_cli_bin_LDADD = $(top_builddir)/modules/libscilab-cli.la \
+	$(top_builddir)/modules/console/libsciconsole-minimal.la \
+	$(top_builddir)/modules/jvm/libscijvm-disable.la \
+	$(OPENMPI_LIBS) $(XML_LIBS) $(COMMON_LIBS) $(FLIBS) \
 	$(am__append_10)
-scilab_cli_bin_LDADD = $(COMMON_LIBS) $(top_builddir)/modules/libscilab-cli.la $(FLIBS)
 LANG_DOMAIN = scilab
 TARGETS_ALL = macros $(am__append_11) $(am__append_12)
 
@@ -2036,6 +2054,7 @@ uninstall-am: uninstall-binPROGRAMS uninstall-binSCRIPTS \
 # Don't do it for scilab_cli_bin. We want to be able to call it without
 # the java libs
 @NEED_JAVA_TRUE@	scilab_bin_LDADD += $(JAVA_JNI_LIBS)
+#-static-libgfortran
 
 # The binary itself needs this dep
 @IS_SOLARIS_TRUE@	scilab_bin_LDADD += $(BLAS_LIBS)

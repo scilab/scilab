@@ -162,7 +162,9 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libsciarnoldi_la_rootdir)" \
 	"$(DESTDIR)$(libsciarnoldi_la_sci_gatewaydir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
-libsciarnoldi_la_LIBADD =
+am__DEPENDENCIES_1 =
+libsciarnoldi_la_DEPENDENCIES = $(am__DEPENDENCIES_1) \
+	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1)
 am__dirstamp = $(am__leading_dot)dirstamp
 am__objects_1 = src/c/libsciarnoldi_la-eigs.lo \
 	src/c/libsciarnoldi_la-eigs_dependencies.lo
@@ -547,7 +549,8 @@ libsciarnoldi_la_CPPFLAGS = \
     $(AM_CPPFLAGS)
 
 pkglib_LTLIBRARIES = libsciarnoldi.la
-libsciarnoldi_la_LDFLAGS = $(BLAS_LIBS) $(LAPACK_LIBS) $(ARPACK_LIBS) $(AM_LDFLAGS)
+libsciarnoldi_la_LDFLAGS = $(AM_LDFLAGS)
+libsciarnoldi_la_LIBADD = $(BLAS_LIBS) $(LAPACK_LIBS) $(ARPACK_LIBS)
 libsciarnoldi_la_SOURCES = $(ARNOLDI_C_SOURCES) $(GATEWAY_C_SOURCES)
 
 # For the code check (splint)

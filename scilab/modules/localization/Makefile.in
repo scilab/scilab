@@ -112,13 +112,14 @@ host_triplet = @host@
 @IS_MACOSX_TRUE@am__append_2 = src/c/getLocaleInfo_Apple.c
 
 # FIXME: platform dependent things should be in configure.ac
-@IS_MACOSX_TRUE@am__append_3 = -lintl -framework Cocoa
-@IS_MACOSX_TRUE@am__append_4 = -lintl -framework Cocoa
+@IS_MACOSX_TRUE@am__append_3 = -framework Cocoa
+@IS_MACOSX_TRUE@am__append_4 = -lintl
+@IS_MACOSX_TRUE@am__append_5 = -framework Cocoa
 DIST_COMMON = $(top_srcdir)/Makefile.incl.am $(srcdir)/Makefile.in \
 	$(srcdir)/Makefile.am $(top_srcdir)/config/mkinstalldirs \
 	$(top_srcdir)/config/depcomp \
 	$(libscilocalization_la_include_HEADERS)
-@NEED_JAVA_TRUE@am__append_5 = java
+@NEED_JAVA_TRUE@am__append_6 = java
 subdir = modules/localization
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
@@ -207,7 +208,9 @@ libscilocalization_algo_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC \
 	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CCLD) \
 	$(libscilocalization_algo_la_CFLAGS) $(CFLAGS) \
 	$(libscilocalization_algo_la_LDFLAGS) $(LDFLAGS) -o $@
-libscilocalization_la_DEPENDENCIES = libscilocalization-algo.la
+am__DEPENDENCIES_1 =
+libscilocalization_la_DEPENDENCIES = libscilocalization-algo.la \
+	$(am__DEPENDENCIES_1)
 am__objects_4 =  \
 	sci_gateway/c/libscilocalization_la-gw_localization.lo \
 	sci_gateway/c/libscilocalization_la-sci_gettext.lo \
@@ -590,7 +593,7 @@ libscilocalization_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 pkglib_LTLIBRARIES = libscilocalization.la
 noinst_LTLIBRARIES = libscilocalization-algo.la
 libscilocalization_la_LDFLAGS = $(AM_LDFLAGS) $(am__append_3)
-libscilocalization_la_CFLAGS = $(AM_CFLAGS) $(am__append_4)
+libscilocalization_la_CFLAGS = $(AM_CFLAGS) $(am__append_5)
 libscilocalization_algo_la_SOURCES = $(LOCALIZATION_C_SOURCES)
 libscilocalization_la_SOURCES = $(GATEWAY_C_SOURCES)
 libscilocalization_algo_la_CPPFLAGS = $(libscilocalization_la_CPPFLAGS)
@@ -600,7 +603,8 @@ libscilocalization_algo_la_LDFLAGS = $(libscilocalization_la_LDFLAGS)
 # For the code check (splint)
 CHECK_SRC = $(libscilocalization_la_SOURCES)
 INCLUDE_FLAGS = $(libscilocalization_la_CPPFLAGS)
-libscilocalization_la_LIBADD = libscilocalization-algo.la
+libscilocalization_la_LIBADD = libscilocalization-algo.la \
+	$(am__append_4)
 
 # $(top_builddir)/modules/io/libsciio.la
 #### Target ######
@@ -653,7 +657,7 @@ SPLINT_OPTIONS = -weak -booltype BOOL
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_5)
+TARGETS_ALL = $(am__append_6)
 
 ################ MACROS ######################
 # Rule to build a macro

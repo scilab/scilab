@@ -323,7 +323,8 @@ am__v_lt_0 = --silent
 am__v_lt_1 = 
 @MAINTAINER_MODE_FALSE@am_libscicore_algo_la_rpath =
 @MAINTAINER_MODE_TRUE@am_libscicore_algo_la_rpath =
-libscicore_la_DEPENDENCIES = libscicore-algo.la
+am__DEPENDENCIES_1 =
+libscicore_la_DEPENDENCIES = libscicore-algo.la $(am__DEPENDENCIES_1)
 am__objects_4 = sci_gateway/c/libscicore_la-sci_stacksize.lo \
 	sci_gateway/c/libscicore_la-sci_resume.lo \
 	sci_gateway/c/libscicore_la-sci_mtlb_mode.lo \
@@ -1064,7 +1065,7 @@ libscicore_la_CPPFLAGS = -I$(srcdir)/includes/ -I$(srcdir)/src/c/ \
 @MAINTAINER_MODE_TRUE@pkglib_LTLIBRARIES = libscicore.la
 @MAINTAINER_MODE_FALSE@noinst_LTLIBRARIES = libscicore-algo.la libscicore.la
 @MAINTAINER_MODE_TRUE@noinst_LTLIBRARIES = libscicore-algo.la
-libscicore_la_LDFLAGS = $(XML_LIBS) $(AM_LDFLAGS)
+libscicore_la_LDFLAGS = $(AM_LDFLAGS)
 #-Wl,--version-script,LibScilab_Import.def
 
 # For the code check (splint)
@@ -1075,7 +1076,7 @@ libscicore_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 libscicore_algo_la_CPPFLAGS = $(libscicore_la_CPPFLAGS)
 
 # Commented because it is easier to comment first the core module
-libscicore_la_LIBADD = libscicore-algo.la
+libscicore_la_LIBADD = libscicore-algo.la $(XML_LIBS)
 
 #### Target ######
 modulename = core

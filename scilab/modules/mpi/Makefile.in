@@ -168,7 +168,8 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscimpi_la_sci_gatewaydir)" \
 	"$(DESTDIR)$(libscimpi_la_includedir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
-libscimpi_la_LIBADD =
+am__DEPENDENCIES_1 =
+libscimpi_la_DEPENDENCIES = $(am__DEPENDENCIES_1)
 am__dirstamp = $(am__leading_dot)dirstamp
 am__objects_1 = sci_gateway/c/libscimpi_la-sci_mpi_init.lo \
 	sci_gateway/c/libscimpi_la-sci_mpi_finalize.lo \
@@ -192,7 +193,7 @@ am__v_lt_0 = --silent
 am__v_lt_1 = 
 libscimpi_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(libscimpi_la_CFLAGS) \
-	$(CFLAGS) $(libscimpi_la_LDFLAGS) $(LDFLAGS) -o $@
+	$(CFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
 am__v_P_0 = false
@@ -563,8 +564,8 @@ libscimpi_la_CFLAGS = -Iincludes/ \
 	-I$(top_srcdir)/modules/api_scilab/includes \
 	-DDEBUG
 
-libscimpi_la_LDFLAGS = $(OPENMPI_LIBS)
-# $(LAMPI_LDFLAGS)
+# libscimpi_la_LDFLAGS = $(LAMPI_LDFLAGS)
+libscimpi_la_LIBADD = $(OPENMPI_LIBS)
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding 
 # the system)
