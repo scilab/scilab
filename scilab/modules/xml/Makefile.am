@@ -103,13 +103,12 @@ libscixml_la_CPPFLAGS = -I$(srcdir)/includes/ \
 pkglib_LTLIBRARIES = libscixml.la
 noinst_LTLIBRARIES = libscixml-algo.la
 
-libscixml_la_LDFLAGS = $(XML_LIBS) $(AM_LDFLAGS)
-
 libscixml_algo_la_SOURCES = $(XML_C_SOURCES) $(XML_JNI_SOURCES) $(XML_CXX_SOURCES)
 libscixml_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CXX_SOURCES)
 libscixml_algo_la_CPPFLAGS = $(libscixml_la_CPPFLAGS)
 
-libscixml_la_LIBADD = libscixml-algo.la
+libscixml_la_LDFLAGS = $(AM_LDFLAGS)
+libscixml_la_LIBADD = libscixml-algo.la $(XML_LIBS)
 
 # For the code check (splint)
 CHECK_SRC= $(XML_C_SOURCES) $(GATEWAY_C_SOURCES)

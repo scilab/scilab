@@ -72,7 +72,7 @@ if GUI
     noinst_LTLIBRARIES = libsciscinotes-algo.la 
 endif
 
-libsciscinotes_la_LDFLAGS = $(X_LIBS) $(X_EXTRA_LIBS) $(AM_LDFLAGS)
+libsciscinotes_la_LDFLAGS = $(AM_LDFLAGS)
 
 libsciscinotes_algo_la_SOURCES = $(SCINOTES_C_SOURCES) $(SCINOTES_JNI_SOURCES) $(SCINOTES_CXX_SOURCES)
 libsciscinotes_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CXX_SOURCES) 
@@ -93,7 +93,7 @@ if SWIG
 BUILT_SOURCES+=swig
 endif
 
-libsciscinotes_la_LIBADD = libsciscinotes-algo.la
+libsciscinotes_la_LIBADD = libsciscinotes-algo.la $(X_LIBS) $(X_EXTRA_LIBS)
 
 #### scinotes : gateway declaration ####
 libsciscinotes_la_sci_gatewaydir = $(mydatadir)/sci_gateway

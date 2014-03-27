@@ -47,7 +47,7 @@ endif
 pkglib_LTLIBRARIES = libscitclsci.la
 noinst_LTLIBRARIES = libscitclsci-algo.la
 
-libscitclsci_la_LDFLAGS = $(TCLTK_LIBS) $(AM_LDFLAGS)
+libscitclsci_la_LDFLAGS = $(AM_LDFLAGS)
 
 libscitclsci_la_CPPFLAGS= -I$(srcdir)/includes/ \
 			-I$(srcdir)/src/c \
@@ -70,7 +70,7 @@ libscitclsci_algo_la_CPPFLAGS = $(libscitclsci_la_CPPFLAGS)
 CHECK_SRC= $(libscitclsci_la_SOURCES)
 INCLUDE_FLAGS = $(libscitclsci_la_CPPFLAGS)
 
-libscitclsci_la_LIBADD = libscitclsci-algo.la 
+libscitclsci_la_LIBADD = libscitclsci-algo.la $(TCLTK_LIBS)
 #### Target ######
 modulename=tclsci
 

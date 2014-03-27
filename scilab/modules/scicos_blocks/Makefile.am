@@ -416,9 +416,9 @@ pkglib_LTLIBRARIES += libsciscicos_blocks.la
 endif
 endif
 
-libsciscicos_blocks_algo_la_LDFLAGS = $(RT_LIB) $(AM_LDFLAGS)
-libsciscicos_blocks_la_LDFLAGS = $(RT_LIB) $(AM_LDFLAGS)
-libsciscicos_blocks_cli_la_LDFLAGS = $(RT_LIB) $(AM_LDFLAGS)
+libsciscicos_blocks_algo_la_LDFLAGS = $(AM_LDFLAGS)
+libsciscicos_blocks_la_LDFLAGS = $(AM_LDFLAGS)
+libsciscicos_blocks_cli_la_LDFLAGS = $(AM_LDFLAGS)
 
 libsciscicos_blocks_algo_la_CPPFLAGS= -I$(srcdir)/includes/ \
 			-I$(srcdir)/src/c/ \
@@ -451,15 +451,23 @@ $(NON_BLOCK_CXX_SOURCES)
 
 libsciscicos_blocks_cli_la_SOURCES =
 libsciscicos_blocks_la_SOURCES =
+
+libsciscicos_blocks_algo_la_LIBADD =
+libsciscicos_blocks_la_LIBADD =
+libsciscicos_blocks_cli_la_LIBADD =
+
 if XCOS
 libsciscicos_blocks_cli_la_SOURCES += $(NON_BLOCK_CLI_SOURCES)
-libsciscicos_blocks_cli_la_LIBADD = libsciscicos_blocks-algo.la
+libsciscicos_blocks_cli_la_LIBADD += libsciscicos_blocks-algo.la
 if GUI
 libsciscicos_blocks_la_SOURCES += $(NON_BLOCK_JNI_SOURCES)
-libsciscicos_blocks_la_LIBADD = libsciscicos_blocks-algo.la
+libsciscicos_blocks_la_LIBADD += libsciscicos_blocks-algo.la
 endif
 endif
 
+libsciscicos_blocks_algo_la_LIBADD += $(RT_LIB)
+libsciscicos_blocks_la_LIBADD += $(RT_LIB)
+libsciscicos_blocks_cli_la_LIBADD += $(RT_LIB)
 
 # For the code check (splint)
 CHECK_SRC= $(SCICOS_BLOCKS_C_SOURCES) $(NON_BLOCK_C_SOURCES)

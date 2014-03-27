@@ -47,14 +47,14 @@ pkglib_LTLIBRARIES += libscijvm.la
 noinst_LTLIBRARIES = libscijvm-algo.la
 endif
 
-libscijvm_la_LDFLAGS = -lpthread $(XML_LIBS) $(JAVA_JNI_LIBS) $(AM_LDFLAGS)
+libscijvm_la_LDFLAGS = -pthread $(AM_LDFLAGS)
 
 # FIXME: This a platform specific flag, this should be done on configure.ac
 if IS_MACOSX
 libscijvm_la_LDFLAGS += -framework JavaVM
 endif
 
-libscijvm_la_LIBADD = libscijvm-algo.la
+libscijvm_la_LIBADD = libscijvm-algo.la $(XML_LIBS) $(JAVA_JNI_LIBS)
 
 #### jvm : gateway declaration ####
 libscijvm_la_sci_gatewaydir = $(mydatadir)/sci_gateway

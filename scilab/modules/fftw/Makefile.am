@@ -22,7 +22,7 @@ if FFTW
 noinst_LTLIBRARIES += libscifftw-algo.la
 endif
 
-libscifftw_la_LDFLAGS = $(FFTW3_LIB) $(AM_LDFLAGS)
+libscifftw_la_LDFLAGS = $(AM_LDFLAGS)
 
 #### fftw : Conf files ####
 libscifftw_la_rootdir = $(mydatadir)
@@ -66,7 +66,7 @@ libscifftw_algo_la_CPPFLAGS = $(libscifftw_la_CPPFLAGS)
 CHECK_SRC= $(FFTW_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscifftw_la_CPPFLAGS)
 
-libscifftw_la_LIBADD = libscifftw-algo.la
+libscifftw_la_LIBADD = libscifftw-algo.la $(FFTW3_LIB)
 
 libscifftw_la_CPPFLAGS = -I$(srcdir)/includes/ \
 			-I$(srcdir)/src/c/ \

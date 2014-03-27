@@ -92,7 +92,7 @@ noinst_LTLIBRARIES = libscistring-algo.la libscistring.la
 endif
 
 
-libscistring_la_LDFLAGS = $(PCRE_LIBS) $(AM_LDFLAGS)
+libscistring_la_LDFLAGS = $(AM_LDFLAGS)
 
 libscistring_algo_la_SOURCES = $(STRING_C_SOURCES) $(STRING_CPP_SOURCES) $(STRING_FORTRAN_SOURCES)
 libscistring_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
@@ -103,7 +103,7 @@ CHECK_SRC= $(STRING_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscistring_la_CPPFLAGS)
 
 # commented since it is the first module to be processed
-libscistring_la_LIBADD = libscistring-algo.la
+libscistring_la_LIBADD = libscistring-algo.la $(PCRE_LIBS)
 
 #### Target ######
 modulename=string

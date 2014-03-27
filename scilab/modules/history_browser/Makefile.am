@@ -66,7 +66,8 @@ if GUI
 pkglib_LTLIBRARIES += libscihistory_browser.la 
 endif
 
-libscihistory_browser_la_LDFLAGS = $(X_LIBS) $(X_EXTRA_LIBS) $(AM_LDFLAGS)
+libscihistory_browser_la_LDFLAGS = $(AM_LDFLAGS)
+libscihistory_browser_la_LIBADD = $(X_LIBS) $(X_EXTRA_LIBS)
 
 libscihistory_browser_la_SOURCES = $(HISTORY_BROWSER_C_SOURCES) $(HISTORY_BROWSER_JNI_SOURCES) $(HISTORY_BROWSER_CXX_SOURCES) $(GATEWAY_C_SOURCES)
 

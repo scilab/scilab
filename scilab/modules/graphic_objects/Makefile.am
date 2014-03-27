@@ -115,7 +115,7 @@ if GUI
 pkglib_LTLIBRARIES += libscigraphic_objects.la
 endif
 
-libscigraphic_objects_la_LDFLAGS = $(X_LIBS) $(X_EXTRA_LIBS) $(AM_LDFLAGS)
+libscigraphic_objects_la_LDFLAGS = $(AM_LDFLAGS)
 
 libscigraphic_objects_la_SOURCES = $(GRAPHIC_OBJECTS_GEN_SOURCES) $(GRAPHIC_OBJECTS_C_SOURCES) $(GRAPHIC_OBJECTS_JNI_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CXX_SOURCES) $(GRAPHIC_OBJECTS_CXX_SOURCES)
 
@@ -136,7 +136,7 @@ if SWIG
 BUILT_SOURCES+=swig
 endif
 
-libscigraphic_objects_la_LIBADD = $(top_builddir)/modules/output_stream/libscioutput_stream.la
+libscigraphic_objects_la_LIBADD = $(top_builddir)/modules/output_stream/libscioutput_stream.la $(X_LIBS) $(X_EXTRA_LIBS)
 
 
 #### graphic_objects : gateway declaration ####

@@ -310,7 +310,7 @@ noinst_LTLIBRARIES = libscicore-algo.la libscicore.la
 endif
 
 
-libscicore_la_LDFLAGS = $(XML_LIBS) $(AM_LDFLAGS)
+libscicore_la_LDFLAGS = $(AM_LDFLAGS)
 #-Wl,--version-script,LibScilab_Import.def
 
 # For the code check (splint)
@@ -322,7 +322,7 @@ libscicore_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 libscicore_algo_la_CPPFLAGS = $(libscicore_la_CPPFLAGS)
 
 # Commented because it is easier to comment first the core module
-libscicore_la_LIBADD = libscicore-algo.la
+libscicore_la_LIBADD = libscicore-algo.la $(XML_LIBS)
 
 #### Target ######
 modulename=core

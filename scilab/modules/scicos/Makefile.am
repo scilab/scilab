@@ -104,9 +104,9 @@ pkglib_LTLIBRARIES += libsciscicos.la
 endif
 endif
 
-libsciscicos_algo_la_LDFLAGS = $(RT_LIB) $(AM_LDFLAGS)
-libsciscicos_cli_la_LDFLAGS = $(RT_LIB) $(AM_LDFLAGS)
-libsciscicos_la_LDFLAGS = $(RT_LIB) $(AM_LDFLAGS)
+libsciscicos_algo_la_LDFLAGS = $(AM_LDFLAGS)
+libsciscicos_cli_la_LDFLAGS = $(AM_LDFLAGS)
+libsciscicos_la_LDFLAGS = $(AM_LDFLAGS)
 
 if XCOS
 libsciscicos_algo_la_CPPFLAGS= -I$(srcdir)/includes/ \
@@ -143,6 +143,7 @@ libsciscicos_cli_la_SOURCES =
 libsciscicos_la_SOURCES =
 endif
 
+libsciscicos_algo_la_LIBADD =
 libsciscicos_cli_la_LIBADD = libsciscicos-algo.la
 libsciscicos_la_LIBADD = libsciscicos-algo.la
 if XCOS
@@ -153,6 +154,10 @@ libsciscicos_la_LIBADD += libscisundials.la \
     $(top_builddir)/modules/scicos_blocks/libsciscicos_blocks.la
 endif
 endif
+
+libsciscicos_algo_la_LIBADD += $(RT_LIB)
+libsciscicos_cli_la_LIBADD += $(RT_LIB)
+libsciscicos_la_LIBADD += $(RT_LIB)
 
 
 # For the code check (splint)

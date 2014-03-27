@@ -50,12 +50,6 @@ noinst_LTLIBRARIES = libscilocalization-algo.la
 libscilocalization_la_LDFLAGS = $(AM_LDFLAGS)
 libscilocalization_la_CFLAGS = $(AM_CFLAGS)
 
-# FIXME: platform dependent things should be in configure.ac
-if IS_MACOSX
-libscilocalization_la_LDFLAGS += -lintl -framework Cocoa
-libscilocalization_la_CFLAGS += -lintl -framework Cocoa
-endif
-
 libscilocalization_algo_la_SOURCES = $(LOCALIZATION_C_SOURCES)
 libscilocalization_la_SOURCES = $(GATEWAY_C_SOURCES)
 libscilocalization_algo_la_CPPFLAGS = $(libscilocalization_la_CPPFLAGS)
@@ -67,6 +61,13 @@ CHECK_SRC= $(libscilocalization_la_SOURCES)
 INCLUDE_FLAGS = $(libscilocalization_la_CPPFLAGS)
 
 libscilocalization_la_LIBADD = libscilocalization-algo.la
+
+# FIXME: platform dependent things should be in configure.ac
+if IS_MACOSX
+libscilocalization_la_LDFLAGS += -framework Cocoa
+libscilocalization_la_LIBADD += -lintl
+libscilocalization_la_CFLAGS += -framework Cocoa
+endif
 
 # $(top_builddir)/modules/io/libsciio.la
 #### Target ######

@@ -215,7 +215,7 @@ noinst_LTLIBRARIES = libscicacsd-algo.la libscicacsd.la
 endif
 
 
-libscicacsd_la_LDFLAGS = $(ATLAS_LIBS) $(AM_LDFLAGS)
+libscicacsd_la_LDFLAGS = $(AM_LDFLAGS)
 
 libscicacsd_algo_la_SOURCES = $(CACSD_FORTRAN_SOURCES) $(SLICOT_FORTRAN_SOURCES)
 libscicacsd_la_SOURCES = $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
@@ -227,7 +227,7 @@ CHECK_SRC= $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscicacsd_la_CPPFLAGS)
 
 
-libscicacsd_la_LIBADD = libscicacsd-algo.la
+libscicacsd_la_LIBADD = libscicacsd-algo.la $(ATLAS_LIBS)
 
 
 #### Target ######

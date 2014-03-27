@@ -133,14 +133,14 @@ endif
 libscifileio_algo_la_SOURCES = $(FILEIO_SOURCES)
 libscifileio_la_SOURCES = $(GATEWAY_SOURCES) $(GATEWAY_CXX_SOURCES)
 libscifileio_algo_la_CPPFLAGS = $(libscifileio_la_CPPFLAGS)
-libscifileio_algo_la_LDFLAGS = $(CURL_LIBS)
+libscifileio_algo_la_LIBADD = $(CURL_LIBS)
 
 # For the code check (splint)
 CHECK_SRC= $(FILEIO_SOURCES) $(GATEWAY_SOURCES)
 INCLUDE_FLAGS = $(libscifileio_la_CPPFLAGS)
 
 # pb of order $(top_builddir)/modules/console/libsciconsole.la
-libscifileio_la_LIBADD = libscifileio-algo.la
+libscifileio_la_LIBADD = libscifileio-algo.la $(CURL_LIBS)
 
 #### Target ######
 modulename=fileio

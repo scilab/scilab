@@ -134,14 +134,14 @@ libsciexternal_objects_la_CPPFLAGS = -I$(srcdir)/includes/ \
 pkglib_LTLIBRARIES = libsciexternal_objects.la 
 noinst_LTLIBRARIES = libsciexternal_objects-algo.la 
 
-libsciexternal_objects_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
+libsciexternal_objects_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
 
 libsciexternal_objects_algo_la_SOURCES = $(EXTERNAL_OBJECTS_C_SOURCES) $(EXTERNAL_OBJECTS_JNI_SOURCES) $(EXTERNAL_OBJECTS_CPP_SOURCES)
 libsciexternal_objects_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) 
 libsciexternal_objects_algo_la_CFLAGS = $(libsciexternal_objects_la_CFLAGS)
 libsciexternal_objects_algo_la_CPPFLAGS = $(libsciexternal_objects_la_CPPFLAGS)
 
-libsciexternal_objects_la_LIBADD = libsciexternal_objects-algo.la
+libsciexternal_objects_la_LIBADD = libsciexternal_objects-algo.la $(X_LIBS) $(X_EXTRA_LIBS)
 
 # For the code check (splint)
 CHECK_SRC= $(EXTERNAL_OBJECTS_C_SOURCES) $(GATEWAY_C_SOURCES)
