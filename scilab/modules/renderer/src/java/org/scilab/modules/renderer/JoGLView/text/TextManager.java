@@ -24,6 +24,7 @@ import org.scilab.forge.scirenderer.tranformations.Vector3d;
 import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.figure.ColorMap;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.textObject.Text;
 import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
 import org.scilab.modules.renderer.JoGLView.util.ScaleUtils;
@@ -602,7 +603,7 @@ public class TextManager {
     public static void updateTextCorners(Text text) {
         Vector3d[] projCorners = null;
 
-        DrawerVisitor currentVisitor = DrawerVisitor.getVisitor(text.getParentFigure());
+        DrawerVisitor currentVisitor = DrawerVisitor.getVisitor(text.getParentFrameOrFigure());
         Axes parentAxes = (Axes) GraphicController.getController().getObjectFromId(text.getParentAxes());
 
         /* Compute the corners */

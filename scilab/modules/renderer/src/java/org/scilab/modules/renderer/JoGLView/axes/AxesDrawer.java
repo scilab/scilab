@@ -862,7 +862,7 @@ public class AxesDrawer {
      * @param axes the given Axes.
      */
     public static void updateAxesTransformation(Axes axes) {
-        DrawerVisitor currentVisitor = DrawerVisitor.getVisitor(axes.getParentFigure());
+        DrawerVisitor currentVisitor = DrawerVisitor.getVisitor(axes.getParentFrameOrFigure());
         AxesDrawer axesDrawer = currentVisitor.getAxesDrawer();
         Dimension canvasDimension = currentVisitor.getCanvas().getDimension();
 

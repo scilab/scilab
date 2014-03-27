@@ -174,7 +174,7 @@ public class DatatipTextDrawer extends TextManager {
      */
     public static void updateTextCorners(Datatip datatip) {
         Vector3d[] projCorners = null;
-        DrawerVisitor currentVisitor = DrawerVisitor.getVisitor(datatip.getParentFigure());
+        DrawerVisitor currentVisitor = DrawerVisitor.getVisitor(datatip.getParentFrameOrFigure());
         Transformation currentProj = currentVisitor.getAxesDrawer().getProjection(datatip.getParentAxes());
         Axes parentAxes = (Axes) GraphicController.getController().getObjectFromId(datatip.getParentAxes());
         Dimension spriteDim = currentVisitor.getDatatipTextDrawer().getSpriteDims(currentVisitor.getColorMap(), datatip);

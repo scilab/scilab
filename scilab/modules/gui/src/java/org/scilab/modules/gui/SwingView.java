@@ -1073,15 +1073,15 @@ public final class SwingView implements GraphicView {
     private void updateFrameChildren(TypedObject updatedObject, Integer[] newChildren) {
         SwingScilabFrame updatedComponent = (SwingScilabFrame) updatedObject.getValue();
         boolean needRevalidate = false;
-
+        boolean hasOpenGLAxes = false;
+        
         // Add new children
         for (Integer childId : newChildren) {
+            int childType = (Integer) GraphicController.getController().getProperty(childId, __GO_TYPE__);
             if (!updatedObject.hasChild(childId)) {
 
                 // Add the child
                 updatedObject.addChild(childId);
-
-                int childType = (Integer) GraphicController.getController().getProperty(childId, __GO_TYPE__);
 
                 /* Add an uicontrol */
                 if (childType == __GO_UICONTROL__ || childType == __GO_AXES__) {
@@ -1089,6 +1089,11 @@ public final class SwingView implements GraphicView {
                     needRevalidate = true;
                 }
             }
+            
+            if (childType == __GO_AXES__) {
+                hasOpenGLAxes = true;
+            }
+            
         }
 
         // Remove children which have been deleted
@@ -1108,14 +1113,14 @@ public final class SwingView implements GraphicView {
                     updatedComponent.remove((Component) allObjects.get(childId).getValue());
                     needRevalidate = true;
                 }
-                
-                if (childType == __GO_AXES__) {
-                    updatedComponent.removeAxes();
-                    needRevalidate = true;
-                }
-                
             }
         }
+        
+        if (!hasOpenGLAxes) {
+            updatedComponent.removeAxes();
+            needRevalidate = true;
+        }
+        
         if (needRevalidate && updatedComponent != null) {
             updatedComponent.revalidate();
         }

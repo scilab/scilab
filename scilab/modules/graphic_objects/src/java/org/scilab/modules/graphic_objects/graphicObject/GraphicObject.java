@@ -81,6 +81,7 @@ import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.legend.Legend;
+import org.scilab.modules.graphic_objects.uicontrol.frame.Frame;
 
 /**
  * GraphicObject class
@@ -606,6 +607,27 @@ public abstract class GraphicObject implements Cloneable {
         }
 
         /* No parent Figure found */
+        return 0;
+    }
+
+    /**
+     * Get parent Figure method
+     * Returns the identifier of the object's parent Figure
+     * If the object is a Figure, then returns its own identifier.
+     * To be done: use a member variable storing the up-to-date current parent Figure,
+     * returned instead of recursively ascending the hierarchy at each call.
+     * @return the parent Figure identifier
+     */
+    public Integer getParentFrameOrFigure() {
+        if (this instanceof Figure || this instanceof Frame) {
+            return getIdentifier();
+        }
+
+        if (getParent() != 0 && GraphicController.getController().getObjectFromId(getParent()) != null) {
+            return GraphicController.getController().getObjectFromId(getParent()).getParentFrameOrFigure();
+        }
+
+        /* No parent Figure nor Frame found */
         return 0;
     }
 

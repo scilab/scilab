@@ -107,6 +107,7 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
     int redraw = 0;
     protected boolean hasLayout = false;
     private Border defaultBorder = null;
+    private SwingScilabCanvas canvas = null;
 
     /**
      * Constructor
@@ -220,11 +221,13 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
         }
 
         if (member instanceof SwingScilabAxes) {
-            AxesContainer frame = (AxesContainer) GraphicModel.getModel().getObjectFromId(getId());
-            SwingScilabCanvas canvas = new SwingScilabCanvas(frame);
-            setLayout(new BorderLayout());
-            hasLayout = true;
-            add(canvas, BorderLayout.CENTER);
+            if (canvas == null) {
+                AxesContainer frame = (AxesContainer) GraphicModel.getModel().getObjectFromId(getId());
+                canvas = new SwingScilabCanvas(frame);
+                setLayout(new GridLayout(1,1));
+                hasLayout = true;
+                add(canvas);
+            }
             return;
         }
 
@@ -1010,9 +1013,12 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
     }
 
     public void removeAxes() {
-        getComponent(0).setEnabled(false);
-        getComponent(0).removeNotify();
-        removeAll();
-        doLayout();
+        if (canvas != null) {
+            canvas.setEnabled(false);
+            remove(canvas);
+            canvas.removeNotify();
+            canvas = null;
+            repaint();
+        }
     }
 }
