@@ -127,7 +127,7 @@ public class XmlSaver {
         //immediate_drawing
         setAttribute(elemFig, "immediate_drawing", createAttribute(fig.getImmediateDrawing()), createAttribute(defaultFig.getImmediateDrawing()));
         //background
-        setAttribute(elemFig, "background", createAttribute(fig.getBackground()), createAttribute(defaultFig.getBackground()));
+        //setAttribute(elemFig, "background", createAttribute(fig.getBackground()), createAttribute(defaultFig.getBackground()));
         //visible
         setAttribute(elemFig, "visible", createAttribute(fig.getVisible()), createAttribute(defaultFig.getVisible()));
         //rotation_style

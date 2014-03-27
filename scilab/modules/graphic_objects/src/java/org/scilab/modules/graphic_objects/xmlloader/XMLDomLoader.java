@@ -99,7 +99,7 @@ public class XMLDomLoader {
         figPropToGO.put("pixel_drawing_mode", new Pair<Integer, ModelType>(__GO_PIXEL_DRAWING_MODE__, ModelType.STRING));
         figPropToGO.put("anti_aliasing", new Pair<Integer, ModelType>(__GO_ANTIALIASING__, ModelType.BOOLEAN));
         figPropToGO.put("immediate_drawing", new Pair<Integer, ModelType>(__GO_IMMEDIATE_DRAWING__, ModelType.BOOLEAN));
-        figPropToGO.put("background", new Pair<Integer, ModelType>(__GO_BACKGROUND__, ModelType.INTEGER));
+        //figPropToGO.put("background", new Pair<Integer, ModelType>(__GO_BACKGROUND__, ModelType.INTEGER));
         figPropToGO.put("visible", new Pair<Integer, ModelType>(__GO_VISIBLE__, ModelType.BOOLEAN));
         figPropToGO.put("rotation_style", new Pair<Integer, ModelType>(__GO_ROTATION_TYPE__, ModelType.ROTATIONTYPE));
         figPropToGO.put("event_handler", new Pair<Integer, ModelType>(__GO_EVENTHANDLER_NAME__, ModelType.STRING));
