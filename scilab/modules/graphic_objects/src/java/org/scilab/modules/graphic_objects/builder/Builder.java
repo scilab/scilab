@@ -327,7 +327,7 @@ public final class Builder {
         figure.setDefaultAxes(defaultAxes);
 
         //set figure size only if axes size is not set too
-        if (figureSize != null && figureSize.length == 2 && axesSize.length == 0) {
+        if (figureSize != null && figureSize.length == 2 && (axesSize == null || axesSize.length == 0)) {
             figure.setSize(new Integer[] { (int) figureSize[0], (int) figureSize[1] });
         }
 
