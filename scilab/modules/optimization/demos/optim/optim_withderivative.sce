@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009 - DIGITEO - Michael Baudin
 // Copyright (C) 2010 - DIGITEO - Allan CORNET
@@ -15,22 +14,17 @@ function demo_derivative()
     mprintf(_("Running optimization ...\n"));
 
     function f = rosenbrock ( x )
-        f = 100.0 *(x(2)-x(1)^2)^2 + (1-x(1))^2;
+        f = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
     endfunction
 
     function [ f , g , ind ] = rosenbrockCost2 ( x , ind )
-
-        if ((ind == 1) | (ind == 4)) then
+        if ind == 1 | ind == 4 then
             f = rosenbrock ( x );
+            g = numderivative ( rosenbrock , x.' , [], order = 4 );
         end
-
-        if ((ind == 1) | (ind == 4)) then
-            g = numderivative ( rosenbrock , x.' , order = 4 );
-        end
-
     endfunction
 
-    x0 = [-1.2 1.0];
+    x0 = [-1.2 1];
     [ f , x ] = optim ( rosenbrockCost2 , x0 );
 
     //
@@ -43,7 +37,7 @@ function demo_derivative()
     // Load this script into the editor
     //
     m = messagebox(_("View Code?"), "Question", "question", [_("Yes") _("No")], "modal")
-    if(m == 1)
+    if m == 1
         filename = "optim_withderivative.sce";
         dname = get_absolute_file_path(filename);
         editor ( dname + filename );
