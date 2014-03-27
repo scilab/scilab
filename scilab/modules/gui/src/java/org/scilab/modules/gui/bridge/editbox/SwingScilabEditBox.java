@@ -549,20 +549,27 @@ public class SwingScilabEditBox extends JScrollPane implements SwingViewObject, 
             textPane.getInputMap().put(tabKey, shiftTabKeyAction);
         } else {
             setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+            AbstractAction focusNextComponent = new AbstractAction() {
+                private static final long serialVersionUID = -5286137769378297783L;
+
+                public void actionPerformed(ActionEvent e) {
+                    KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
+                    manager.focusNextComponent();
+                }
+            };
+            
             AbstractAction validateUserInput = new AbstractAction() {
                 private static final long serialVersionUID = -5286137769378297783L;
 
                 public void actionPerformed(ActionEvent e) {
                     validateUserInput();
-                    KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
-                    manager.focusNextComponent();
                 }
             };
+
             AbstractAction focusPreviousComponent = new AbstractAction() {
                 private static final long serialVersionUID = -5286137769378297783L;
 
                 public void actionPerformed(ActionEvent e) {
-                    validateUserInput();
                     KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
                     manager.focusPreviousComponent();
                 }
@@ -571,8 +578,8 @@ public class SwingScilabEditBox extends JScrollPane implements SwingViewObject, 
             textPane.getInputMap().remove(tabKey);
             textPane.getInputMap().remove(shiftTabKey);
             textPane.getInputMap().put(enterKey, validateUserInput);
-            textPane.getInputMap().put(tabKey, validateUserInput);
-            textPane.getInputMap().put(shiftTabKey, focusPreviousComponent);
+            textPane.getInputMap().put(tabKey, focusNextComponent); // input validation will be performed by focusLost
+            textPane.getInputMap().put(shiftTabKey, focusPreviousComponent); // input validation will be performed by focusLost
         }
     }
 
