@@ -30,6 +30,9 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Type;
 import java.nio.charset.Charset;
 import java.nio.charset.CharsetEncoder;
 import java.text.AttributedCharacterIterator;
@@ -48,7 +51,6 @@ import org.apache.xmlgraphics.java2d.ps.EPSDocumentGraphics2D;
 import org.apache.xmlgraphics.java2d.ps.PSDocumentGraphics2D;
 import org.apache.xmlgraphics.ps.DSCConstants;
 import org.apache.xmlgraphics.ps.PSGenerator;
-import org.freehep.graphicsio.emf.EMFGraphics2D;
 import org.scilab.forge.scirenderer.Canvas;
 import org.scilab.forge.scirenderer.implementation.g2d.G2DCanvas;
 import org.scilab.forge.scirenderer.implementation.g2d.G2DCanvasFactory;
@@ -1061,10 +1063,38 @@ public class Export {
     private static class EMFExporter extends Exporter {
 
         private OutputStream out;
-        private EMFGraphics2D g2d;
+        private Class<Graphics2D> g2dClass;
+        private Constructor<Graphics2D> g2dCtor;
+        private Graphics2D g2d;
         private ByteArrayOutputStream buffer;
 
-        public EMFExporter() { }
+        public EMFExporter() {
+            final Class<Graphics2D> g2dClass;
+            try {
+                g2dClass = (Class<Graphics2D>) Class.forName("org.freehep.graphicsio.emf.EMFGraphics2D");
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException("This Scilab build does not provide EMF support");
+            }
+
+            final Constructor[] ctors = g2dClass.getDeclaredConstructors();
+            Constructor ctor = null;
+            for (int i = 0; i < ctors.length; i++) {
+                ctor = ctors[i];
+                final Type[] args = ctor.getGenericParameterTypes();
+                if (args.length != 2) {
+                    continue;
+                }
+                if (args[0] != OutputStream.class) {
+                    continue;
+                }
+                if (args[1] != Dimension.class) {
+                    continue;
+                }
+
+                g2dCtor = ctor;
+                break;
+            }
+        }
 
         @Override
         public Graphics2D getGraphics2D(int width, int height, File file, final ExportParams params) {
@@ -1077,16 +1107,23 @@ public class Export {
                     out = new BufferedOutputStream(new FileOutputStream(file));
                 }
                 if (params.orientation == ExportParams.LANDSCAPE) {
-                    g2d = new EMFGraphics2D(out, new Dimension(height, width));
-                    g2d.startExport();
+                    g2d = g2dCtor.newInstance(out, new Dimension(height, width));
+                    g2dClass.getMethod("startExport").invoke(g2d);
                     AffineTransform transf = AffineTransform.getRotateInstance(Math.PI / 2);
                     transf.preConcatenate(AffineTransform.getTranslateInstance(height, 0));
                     g2d.setTransform(transf);
                 } else {
-                    g2d = new EMFGraphics2D(out, new Dimension(width, height));
-                    g2d.startExport();
+                    g2d = g2dCtor.newInstance(out, new Dimension(width, height));
+                    g2dClass.getMethod("startExport").invoke(g2d);
                 }
-            } catch (IOException e) { }
+            } catch (IOException e) {
+            } catch (IllegalAccessException e) {
+            } catch (IllegalArgumentException e) {
+            } catch (InvocationTargetException e) {
+            } catch (NoSuchMethodException e) {
+            } catch (SecurityException e) {
+            } catch (InstantiationException e) {
+            }
 
             return g2d;
         }
@@ -1094,8 +1131,15 @@ public class Export {
         @Override
         public void write() throws IOException {
             if (g2d != null) {
-                g2d.endExport();
-                g2d.closeStream();
+                try {
+                    g2dClass.getMethod("endExport").invoke(g2d);
+                    g2dClass.getMethod("closeStream").invoke(g2d);
+                } catch (IllegalAccessException e) {
+                } catch (IllegalArgumentException e) {
+                } catch (InvocationTargetException e) {
+                } catch (NoSuchMethodException e) {
+                } catch (SecurityException e) {
+                }
             }
             if (buffer != null && file != null) {
                 FileOutputStream fos = new FileOutputStream(file);

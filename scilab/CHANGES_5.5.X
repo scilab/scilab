@@ -223,6 +223,7 @@ Compilation
  - freehep-graphicsio.jar
  - freehep-io.jar
  - freehep-util.jar
+ Note: --without-emf can be used to disable this feature.
 
 
 Known incompatibilities
