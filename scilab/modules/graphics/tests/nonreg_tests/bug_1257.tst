@@ -17,12 +17,12 @@
 // rotate when modifying rotation_angles property.
 
 // create two plots
-f = gcf();
+f = scf(100001);
 f.rotation_style = "multiple";
 subplot(1,2,1)
-   plot3d()
+plot3d()
 subplot(1,2,2)
-   plot3d()
+plot3d()
 
 // rotate one axes
 axes1 = f.children(1);

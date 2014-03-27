@@ -12,8 +12,9 @@
 //
 
 function %_Matplot1()
-    clf
-    f = gcf()
+    f = scf(100001);
+    my_plot_desc  = _("Classical Matplot1");
+    f.figure_name = my_plot_desc;
     nc = 200    // Number of colors
     np = 2      // Number of periods
     nx = 350
