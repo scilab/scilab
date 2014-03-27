@@ -14,6 +14,9 @@ extern "C"
 {
 #include "createGraphicObject.h"
 #include "getScilabJavaVM.h"
+#include "getGraphicObjectProperty.h"
+#include "setGraphicObjectProperty.h"
+#include "FigureModel.h"
 }
 
 #include "CallGraphicController.hxx"
@@ -76,19 +79,48 @@ int createLabel(int parent, int type)
 
 int createNewFigureWithAxes()
 {
-    return Builder::createNewFigureWithAxes(getScilabJavaVM());
+    int iUserDataSize = 0;
+    int* piUserDataSize = &iUserDataSize;
+    int id = 0;
+
+    id = Builder::createNewFigureWithAxes(getScilabJavaVM());
+
+    //clone user_data is needed
+    getGraphicObjectProperty(getFigureModel(), __GO_USER_DATA_SIZE__, jni_int, (void**)&piUserDataSize);
+    if (iUserDataSize != 0)
+    {
+        int* pUserData = NULL;
+        getGraphicObjectProperty(getFigureModel(), __GO_USER_DATA__, jni_int_vector, (void**)&pUserData);
+        setGraphicObjectProperty(id, __GO_USER_DATA__, pUserData, jni_int_vector, iUserDataSize);
+    }
+
+    return id;
 }
 
 int createFigure(int iDockable, int iMenubarType, int iToolbarType, int iDefaultAxes, int iVisible,
                  double* figureSize, double* axesSize, double* position, int iMenuBar, int iToolBar, int iInfoBar)
 {
-    return Builder::createFigure(getScilabJavaVM(), iDockable != 0, iMenubarType, iToolbarType, iDefaultAxes != 0, iVisible != 0,
-                                 figureSize, figureSize == NULL ? 0 : 2,
-                                 axesSize, axesSize == NULL ? 0 : 2,
-                                 position, position == NULL ? 0 : 2,
-                                 iMenuBar != 0,
-                                 iToolBar != 0,
-                                 iInfoBar != 0);
+    int id = 0;
+    int iUserDataSize = 0;
+    int* piUserDataSize = &iUserDataSize;
+
+    id = Builder::createFigure(getScilabJavaVM(), iDockable != 0, iMenubarType, iToolbarType, iDefaultAxes != 0, iVisible != 0,
+                               figureSize, figureSize == NULL ? 0 : 2,
+                               axesSize, axesSize == NULL ? 0 : 2,
+                               position, position == NULL ? 0 : 2,
+                               iMenuBar != 0,
+                               iToolBar != 0,
+                               iInfoBar != 0);
+    //clone user_data is needed
+    getGraphicObjectProperty(getFigureModel(), __GO_USER_DATA_SIZE__, jni_int, (void**)&piUserDataSize);
+    if (iUserDataSize != 0)
+    {
+        int* pUserData = NULL;
+        getGraphicObjectProperty(getFigureModel(), __GO_USER_DATA__, jni_int_vector, (void**)&pUserData);
+        setGraphicObjectProperty(id, __GO_USER_DATA__, pUserData, jni_int_vector, iUserDataSize);
+    }
+
+    return id;
 }
 
 void cloneMenus(int model, int newParent)
