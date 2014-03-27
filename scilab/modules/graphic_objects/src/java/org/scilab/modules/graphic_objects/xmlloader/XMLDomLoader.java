@@ -2,6 +2,7 @@ package org.scilab.modules.graphic_objects.xmlloader;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 
+import java.awt.Color;
 import java.io.File;
 import java.util.HashMap;
 import java.util.StringTokenizer;
@@ -39,6 +40,8 @@ public class XMLDomLoader {
     private static final int __NODE_TITLE__         = -40;
     private static final int __NODE_STRING__        = -50;
     private static final int __NODE_STRINGITEM__    = -50;
+    private static final int __NODE_COLORMAP__      = -60;
+    private static final int __NODE_COLORMAPITEM__  = -70;
 
     private static HashMap<String, Integer> nameToGO = new HashMap<String, Integer>();
 
@@ -81,6 +84,8 @@ public class XMLDomLoader {
         nameToGO.put("title", __NODE_TITLE__);
         nameToGO.put("string", __NODE_STRING__);
         nameToGO.put("stringitem", __NODE_STRINGITEM__);
+        nameToGO.put("colormap", __NODE_COLORMAP__);
+        nameToGO.put("colormapitem", __NODE_COLORMAPITEM__);
 
         /* system */
         nameToGO.put("scilabgui", __NODE_SCILABGUI__);
@@ -99,7 +104,7 @@ public class XMLDomLoader {
         figPropToGO.put("pixel_drawing_mode", new Pair<Integer, ModelType>(__GO_PIXEL_DRAWING_MODE__, ModelType.STRING));
         figPropToGO.put("anti_aliasing", new Pair<Integer, ModelType>(__GO_ANTIALIASING__, ModelType.BOOLEAN));
         figPropToGO.put("immediate_drawing", new Pair<Integer, ModelType>(__GO_IMMEDIATE_DRAWING__, ModelType.BOOLEAN));
-        //figPropToGO.put("background", new Pair<Integer, ModelType>(__GO_BACKGROUND__, ModelType.INTEGER));
+        figPropToGO.put("background", new Pair<Integer, ModelType>(__GO_BACKGROUND__, ModelType.INTEGER));
         figPropToGO.put("visible", new Pair<Integer, ModelType>(__GO_VISIBLE__, ModelType.BOOLEAN));
         figPropToGO.put("rotation_style", new Pair<Integer, ModelType>(__GO_ROTATION_TYPE__, ModelType.ROTATIONTYPE));
         figPropToGO.put("event_handler", new Pair<Integer, ModelType>(__GO_EVENTHANDLER_NAME__, ModelType.STRING));
@@ -324,6 +329,13 @@ public class XMLDomLoader {
                         break;
                     }
 
+                    case __NODE_COLORMAP__: {
+                        //avoid relationship
+                        child = 0;
+                        createColorMap(parent, childNode);
+                        break;
+                    }
+
                     case __NODE_SCILABGUI__ : {
                         //check version
                         Node nodeVersion = childNode.getAttributes().getNamedItem("version");
@@ -348,7 +360,7 @@ public class XMLDomLoader {
 
 
                     default: {
-                        //ignore TITLED, IN, OU, STRING_AARAY node
+                        //ignore TITLED, IN, OUT, STRING_AARAY, COLORMAPITEM node
                         break;
                     }
                 }
@@ -362,6 +374,49 @@ public class XMLDomLoader {
                 }
 
             }
+        }
+    }
+
+    private void createColorMap(Integer parent, Node node) {
+        NamedNodeMap attr = node.getAttributes();
+
+        Node rowNode = attr.getNamedItem("size");
+        if (rowNode == null) {
+            return;
+        }
+
+        Integer rows = Integer.parseInt(rowNode.getNodeValue());
+
+        if (node.hasChildNodes()) {
+            Double[] colorMap = new Double[rows * 3];
+            NodeList list = node.getChildNodes();
+            int index = 0;
+            for (int i = 0 ; i < list.getLength() ; i++) {
+                Node childNode = list.item(i);
+                if (childNode.getNodeType() == Node.ELEMENT_NODE) {
+                    attr = childNode.getAttributes();
+                    Node valueNode = attr.getNamedItem("color");
+                    if (valueNode == null) {
+                        colorMap[index] = 0.0;
+                        colorMap[index + rows] = 0.0;
+                        colorMap[index + 2 * rows] = 0.0;
+                    } else {
+                        try {
+                            Color c = Color.decode(valueNode.getNodeValue());
+                            colorMap[index] = c.getRed() / 255.0;
+                            colorMap[index + rows] = c.getGreen() / 255.0;
+                            colorMap[index + 2 * rows] = c.getBlue() / 255.0;
+                        } catch (NumberFormatException e) {
+                            colorMap[index] = 0.0;
+                            colorMap[index + rows] = 0.0;
+                            colorMap[index + 2 * rows] = 0.0;
+                        }
+                    }
+                    index++;
+                }
+            }
+
+            GraphicController.getController().setProperty(parent, __GO_COLORMAP__, colorMap);
         }
     }
 
@@ -410,7 +465,6 @@ public class XMLDomLoader {
             Integer propId = UiPropToGO.get(property).getFirst();
 
             if (propId == __GO_UI_STRING__ && cols > 1) {
-                System.out.println("set __GO_UI_STRING_COLNB__ : " + cols);
                 GraphicController.getController().setProperty(parent, __GO_UI_STRING_COLNB__, cols);
             }
             GraphicController.getController().setProperty(parent, propId, str);

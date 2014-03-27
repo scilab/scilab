@@ -24,9 +24,11 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+import org.scilab.forge.scirenderer.shapes.appearance.Color;
 import org.scilab.modules.commons.CommonFileUtils;
 import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.console.Console;
+import org.scilab.modules.graphic_objects.figure.ColorMap;
 import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicModel.GraphicModel;
@@ -127,7 +129,7 @@ public class XmlSaver {
         //immediate_drawing
         setAttribute(elemFig, "immediate_drawing", createAttribute(fig.getImmediateDrawing()), createAttribute(defaultFig.getImmediateDrawing()));
         //background
-        //setAttribute(elemFig, "background", createAttribute(fig.getBackground()), createAttribute(defaultFig.getBackground()));
+        setAttribute(elemFig, "background", createAttribute(fig.getBackground()), createAttribute(defaultFig.getBackground()));
         //visible
         setAttribute(elemFig, "visible", createAttribute(fig.getVisible()), createAttribute(defaultFig.getVisible()));
         //rotation_style
@@ -156,14 +158,12 @@ public class XmlSaver {
         setAttribute(elemFig, "dockable", createAttribute(fig.getDockable()), createAttribute(defaultFig.getDockable()));
         //layout
         setAttribute(elemFig, "layout", createAttribute(LayoutType.enumToString(fig.getLayoutAsEnum())), createAttribute(LayoutType.enumToString(defaultFig.getLayoutAsEnum())));
-
         //default_axes
         setAttribute(elemFig, "default_axes", createAttribute(fig.hasDefaultAxes()), createAttribute(defaultFig.hasDefaultAxes()));
         //icon
         setAttribute(elemFig, "icon", createAttribute(fig.getIcon()), createAttribute(defaultFig.getIcon()));
         //tag
         setAttribute(elemFig, "tag", createAttribute(fig.getTag()), createAttribute(defaultFig.getTag()));
-
         //layout_options
         if (fig.getLayoutAsEnum() == LayoutType.GRID) {
             setAttribute(elemFig, "grid_opt_grid", createAttribute(fig.getGridOptGrid()), createAttribute(defaultFig.getGridOptGrid()));
@@ -177,6 +177,15 @@ public class XmlSaver {
         for (int i = 0; i < children.length; i++) {
             appendChild(elemFig, createElement(doc, children[i], reverseChildren));
         }
+
+        //colormap
+        Double[] cm = fig.getColorMap().getData();
+        Double[] modelcm = defaultFig.getColorMap().getData();
+
+        if (Arrays.deepEquals(cm, modelcm) == false) {
+            createColorMap(doc, elemFig, fig.getColorMap().getData());
+        }
+
         return elemFig;
     }
 
@@ -629,6 +638,24 @@ public class XmlSaver {
         for (int i = 0 ; i < rows * cols ; i++) {
             Element elemSub = doc.createElement("stringitem");
             setAttribute(elemSub, "value", value[i], null);
+            elemString.appendChild(elemSub);
+        }
+
+        parent.appendChild(elemString);
+    }
+
+    private static void createColorMap(Document doc, Element parent, Double[] value) {
+        //create a new Node to store string
+        Element elemString = doc.createElement("colormap");
+        Integer rows = value.length / 3;
+
+        setAttribute(elemString, "size", rows.toString(), "");
+
+        for (int i = 0 ; i < rows ; i++) {
+            Element elemSub = doc.createElement("colormapitem");
+            Color c = new Color(value[i].floatValue(), value[i + rows].floatValue(), value[i + 2 * rows].floatValue());
+            Integer color = c.getRGB();
+            setAttribute(elemSub, "color", color.toString(), null);
             elemString.appendChild(elemSub);
         }
 
