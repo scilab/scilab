@@ -125,4 +125,4 @@ SEP #126: New function unwrap
 SEP #127: jmat tagged as obsolete. New input argument to flipdim to replace jmat.
 SEP #128: nanreglin.
 SEP #129: HTLM parsing functions.
-SEP #129: Replace obsolete numdiff and derivative with new function numderivative.
+SEP #130: Replace obsolete numdiff and derivative with new function numderivative.

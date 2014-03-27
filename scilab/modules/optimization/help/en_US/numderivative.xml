@@ -266,7 +266,7 @@
             </listitem>
         </itemizedlist>
         <para>
-            Computing the Hessian matrix requires square the number of function evaluations,
+            Computing the Hessian matrix requires the square of the number of function evaluations,
             as detailed in the following list.
         </para>
         <itemizedlist>

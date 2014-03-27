@@ -253,7 +253,7 @@ Scilab Bug Fixes
 * Bug #2802 fixed - convstr did not convert non ascii chars.
 
 * Bug #4083 fixed - The numdiff and derivative functions were duplicates and are
-                    now tagged as obsolete and replaced by numderivative. See SEP #129.
+                    now tagged as obsolete and replaced by numderivative. See SEP #130.
 
 * Bug #4177 fixed - find function moved to the "elementary_functions" module.
 
