@@ -60,51 +60,58 @@
         </para>
         <itemizedlist>
             <listitem>
-                <para>Pushbutton: (default style)a rectangular button generally used to run a callback.
-                </para>
-            </listitem>
-            <listitem>
-                <para>Radiobutton: a button with two states. RadioButtons are
-                    intended to be mutually exclusive (Your code must implement
-                    mutually exclusive behavior).
-                </para>
-            </listitem>
-            <listitem>
-                <para>Checkbox: a button with two states (Used for multiple
-                    independent choices).
+                <para>Checkbox: a button with two states (Used for multiple independent choices).
                 </para>
             </listitem>
             <listitem>
                 <para>Edit: an editable string zone.</para>
             </listitem>
             <listitem>
-                <para>Text: a text control (generally static).</para>
-            </listitem>
-            <listitem>
-                <para>Slider: a scale control, that is a scrollbar use to set
-                    values between in range with the mouse.
+                <para>Frame: a container for other uicontrols.
                 </para>
             </listitem>
             <listitem>
-                <para>Frame: a control representing a zone used to group related
-                    controls.
+                <para>Image: a component where a specified image is displayed.</para>
+            </listitem>
+            <listitem>
+                <para>
+                    Layer: a container for <literal>frame</literal> style uicontrols enbaling to switch between them programmatically using the <literal>value</literal> property.
                 </para>
             </listitem>
             <listitem>
-                <para>Listbox: a control representing a list of items that can
-                    be scrolled. The items can be selected with the mouse.
+                <para>Listbox: a control representing a list of items that can be scrolled. The items can be selected with the mouse.</para>
+            </listitem>
+            <listitem>
+                <para>Popupmenu: a button which make a menu appear when clicked.</para>
+            </listitem>
+            <listitem>
+                <para>Pushbutton: (default style) a rectangular button generally used to run a callback.
                 </para>
             </listitem>
             <listitem>
-                <para>Popupmenu: a button which make a menu appear when
-                    clicked.
+                <para>Radiobutton: a button with two states. RadioButtons are intended to be mutually exclusive.</para>
+                <para>
+                    Your code must implement mutually exclusive behavior if you do not use groups 
+                    (See <literal>GroupName</literal> property in <link linkend="uicontrol_properties">uicontrol properties</link>).
                 </para>
             </listitem>
             <listitem>
-                <para>Image: a sub-window where the image specified is displayed.</para>
+                <para>Slider: a scale control, that is a slider used to set values between in range with the mouse.</para>
+            </listitem>
+            <listitem>
+                <para>Spinner: a component which enables the user to select/edit a value between bounds with a fixed step.</para>
+            </listitem>
+            <listitem>
+                <para>
+                    Tab: a container for <literal>frame</literal> style uicontrols enabling to switch between them by cliking on a tab with a given title and/or icon.
+                </para>
+                <para>The font related properties set on the frame will be used for the tab label.</para>
             </listitem>
             <listitem>
                 <para>Table: an editable table.</para>
+            </listitem>
+            <listitem>
+                <para>Text: a text control (generally static).</para>
             </listitem>
         </itemizedlist>
     </refsection>
@@ -197,5 +204,29 @@ matrix(ut.string,size(table))
                 <link linkend="math_rendering_features_in_graphic">LaTeX and MathML</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>
+                    <para>
+                        New styles added:
+                    </para>
+                    <itemizedlist>
+                        <listitem>Tab</listitem>
+                        <listitem>Spinner</listitem>
+                        <listitem>Layer</listitem>
+                    </itemizedlist>
+                    <para>
+                        Uicontrols rendering is now based on operating system look and feel (See <link linkend="console_properties">console properties</link>).
+                    </para>
+                    <para>
+                        Uicontrols handles display is now limited to properties used by Java rendering (See <link linkend="console_properties">console properties</link>).
+                    </para>
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

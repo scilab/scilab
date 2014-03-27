@@ -23,15 +23,30 @@
                         color can be given as a real vector, ie [R,G,B] or a string where
                         each value is separated by a "|", ie "R|G|B".
                     </para>
+                    <para>
+                        Setting this property to <literal>[-1 -1 -1]</literal> will let the look and feel set the default background color.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Border</term>
+                <listitem>
+                    <para>A Border object.</para>
+                    <para>
+                        Only used for <literal>frame</literal> style uicontrols, this object is created using <link linkend="createBorder">createBorder</link>.
+                    </para>
+                    <para>
+                        Setting this value to <literal>[]</literal> removes the border of the frame.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>Callback</term>
                 <listitem>
                     <para>String</para>
-                    <para>Instruction evaluated by the Scilab interpreter when an
-                        uicontrol is activated. (for example when you click on a
-                        button).
+                    <para>Instruction evaluated by the Scilab interpreter when an uicontrol is activated (for example when you click on a button).</para>
+                    <para>
+                        This property is not used for <literal>layer</literal>, <literal>frame</literal> and <literal>text</literal> style uicontrols.
                     </para>
                 </listitem>
             </varlistentry>
@@ -65,6 +80,19 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
+                <term>Constraints</term>
+                <listitem>
+                    <para>A Constraints object.</para>
+                    <para>
+                        This object is created using <link linkend="createConstraints">createConstraints</link>
+                        and describes the constraints on the position and size of the uicontrol regarding to its parent.
+                    </para>
+                    <para>
+                        Setting this value to <literal>[]</literal> clears the constraints.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>Enable</term>
                 <listitem>
                     <para>{on} | off</para>
@@ -78,17 +106,14 @@
                 <term>FontAngle</term>
                 <listitem>
                     <para>{normal} | italic | oblique</para>
-                    <para>For a control containing some text, this property sets the
-                        slant of the font.
-                    </para>
+                    <para>For a control containing some text, this property sets the slant of the font.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>FontSize</term>
                 <listitem>
                     <para>Scalar</para>
-                    <para>For a control containing some text, this property sets the
-                        size of the font in FontUnits.
+                    <para>For a control containing some text, this property sets the size of the font in FontUnits.
                     </para>
                 </listitem>
             </varlistentry>
@@ -128,14 +153,56 @@
                         color can be given as a real vector, ie [R,G,B] or a string where
                         each value is separated by a "|", ie "R|G|B".
                     </para>
+                    <para>
+                        Setting this property to <literal>[-1 -1 -1]</literal> will let the look and feel set the default foreground color.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Groupname</term>
+                <listitem>
+                    <para>String</para>
+                    <para>
+                        Used for <literal>radiobutton</literal> and <literal>checkbox</literal> style uicontrols, 
+                        this property allow to manage uicontrols of the same group as a whole. For example, <literal>checkbox</literal> uicontrols of a group
+                        will manage selection unicity automatically.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>HorizontalAlignment</term>
                 <listitem>
                     <para>left | {center} | right</para>
-                    <para>Set text horizontal alignment in the uicontrol. This property
-                        has only effect with Text, Edit and Check Boxes.
+                    <para>Set text horizontal alignment in the uicontrol.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Icon</term>
+                <listitem>
+                    <para>String.</para>
+                    <para>
+                        This property represents the relative (to <link linkend="pwd">Scilab working directory</link>) or absolute path of the image file to be
+                        used as icon for a <literal>pushbutton</literal> or <literal>text</literal> uicontrol.
+                    </para>
+                    <para>
+                        For <literal>frame</literal> uicontrols in <literal>tab</literal> uicontrols, the icon property sets the icon of its sheet.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Layout: </term>
+                <listitem>
+                    <para>
+                        This property sets the layout used to dispose <literal>frame</literal> uicontrols children.
+                        See <link linkend="layout">layout</link> page for more information about available layouts.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Layout_options: </term>
+                <listitem>
+                    <para>
+                        This property sets the options of the layout used to dispose <literal>frame</literal> children. See <link linkend="layout">layout</link> page for more information about available options.
                     </para>
                 </listitem>
             </varlistentry>
@@ -143,8 +210,17 @@
                 <term>ListboxTop</term>
                 <listitem>
                     <para>Scalar</para>
-                    <para>For a ListBox, this property tells which item of the list
-                        appears on the first line of the visible area of the list.
+                    <para>
+                        Only used for <literal>listbox</literal> uicontrols, this property tells which item of the list appears on the first line of the visible area of the list.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Margins</term>
+                <listitem>
+                    <para>[1,4] real vector.</para>
+                    <para>
+                        Sets an empty space around the uicontrol under the form <literal>[top, left, bottom, right]</literal> (in pixels).
                     </para>
                 </listitem>
             </varlistentry>
@@ -157,16 +233,23 @@
                     </para>
                     <itemizedlist>
                         <listitem>
-                            <para>CheckBoxes: Max is the value the "Value" property take
-                                when control is checked.
+                            <para>
+                                <literal>checkbox</literal> and <literal>radiobutton</literal> uicontrols: Max is the value the "Value" property take when control is checked.
                             </para>
                         </listitem>
                         <listitem>
-                            <para>Sliders: Maximum value of the slider.</para>
+                            <para>
+                                <literal>slider</literal> and <literal>spinner</literal> uicontrols: Maximum value of the component.
+                            </para>
                         </listitem>
                         <listitem>
-                            <para>ListBoxes: if (Max-Min)&gt;1 the list allows multiple
-                                selection, Otherwise not.
+                            <para>
+                                <literal>listbox</literal> uicontrols: if (Max-Min)&gt;1 the list allows multiple selection.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>edit</literal> uicontrols: if (Max-Min)&gt;1 the edit allows multiple line edition.
                             </para>
                         </listitem>
                     </itemizedlist>
@@ -181,16 +264,23 @@
                     </para>
                     <itemizedlist>
                         <listitem>
-                            <para>CheckBoxes: Min is the value the "Value" property take
-                                when control is unchecked.
+                            <para>
+                                <literal>checkbox</literal> and <literal>radiobutton</literal> uicontrols: Min is the value the "Value" property take when control is unchecked.
                             </para>
                         </listitem>
                         <listitem>
-                            <para>Sliders: Minimum value of the slider.</para>
+                            <para>
+                                <literal>slider</literal> and <literal>spinner</literal> uicontrols: Minimum value of the component.
+                            </para>
                         </listitem>
                         <listitem>
-                            <para>ListBoxes: if (Max-Min)&gt;1 the list allows multiple
-                                selection, Otherwise not.
+                            <para>
+                                <literal>listbox</literal> uicontrols: if (Max-Min)&gt;1 the list allows multiple selection.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>edit</literal> uicontrols: if (Max-Min)&gt;1 the edit allows multiple line edition.
                             </para>
                         </listitem>
                     </itemizedlist>
@@ -203,12 +293,6 @@
                     <para>Handle of the uicontrol parent. Changing this property allows
                         to move a control from a figure to another.
                     </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>Path</term>
-                <listitem>
-                    <para>This property is no more supported.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -236,21 +320,31 @@
                     <para>When using the deprecated skin for uicontrols, default values are related to uicontrol style:</para>
                     <itemizedlist>
                         <listitem>
-                            <para>PushButtons: the default value for "Relief" property is
-                                "raised".
+                            <para>
+                                <literal>pushbutton</literal> uicontrols: the default value for "Relief" property is "raised".
                             </para>
                         </listitem>
                         <listitem>
-                            <para>Edits: the default value for "Relief" property is
-                                "sunken".
+                            <para>
+                                <literal>edit</literal> uicontrols: the default value for "Relief" property is "sunken".
                             </para>
                         </listitem>
                         <listitem>
-                            <para>Other styles: the default value for "Relief" property is
-                                "flat".
-                            </para>
+                            <para>Other uicontrols: the default value for "Relief" property is "flat".</para>
                         </listitem>
                     </itemizedlist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Scrollable</term>
+                <listitem>
+                    <para>Boolean.</para>
+                    <para>
+                        Used for <literal>frame</literal> and <literal>edit</literal> style uicontrols, this property indicates if the uicontrol must have scrolling capabilities (<literal>%T</literal>) or not (default <literal>%F</literal>).
+                    </para>
+                    <para>
+                        For <literal>frame</literal> this value must be set at creation.
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -262,6 +356,9 @@
                         (when the slider has focus); the big step is the amount moved when
                         using Ctrl-keyboard-arrows. If the big step is omitted, it is
                         defaulted to 1/10 of the scale.
+                    </para>
+                    <para>
+                        For <literal>spinner</literal> uicontrol, the first value of this property is used as fixed step.
                     </para>
                 </listitem>
             </varlistentry>
@@ -275,26 +372,42 @@
                         the value can be a vector of string or a string where the items are
                         separated by a "|". For Text uicontrols, this string can contain HTML code to format the text.
                     </para>
-                    <para>
-                        For Pushbutton or Text uicontrols, if the text is enclosed between two $ (dollar sign), then it will be
-                        considered as a LaTeX expression, and if it is enclosed between &lt; and &gt;, it will be considered
-                        as a MathML one.
-                    </para>
-                    <para>
-                        For Image, the value specifies the path of the image file.
-                    </para>
-                    <para>
-                        For Table, the value specifies the whole table data: <literal>[IGNORED COL1-HEADER...COLN-HEADER;ROW1-HEADER, ROW1COL1-DATA, ROW1COLN-DATA;...;ROWM-HEADER, ROWMCOL1-DATA, ROWMCOLN-DATA]</literal>.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>TooltipString</term>
-                <listitem>
-                    <para>String or String vector</para>
-                    <para>
-                        This property represents the text of the uicontrol tooltip appearing when the mouse is over the uicontrol.
-                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>  
+                                For <literal>pushbutton</literal> or <literal>text</literal> uicontrols, if the text is enclosed between two $ (dollar sign), then it will be
+                                considered as a LaTeX expression, and if it is enclosed between &lt; and &gt;, it will be considered
+                                as a MathML one.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                For <literal>layer</literal> and <literal>tab</literal> uicontrols, the value specifies the tag of the selected child.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                For <literal>image</literal> uicontrols, the value specifies the path of the image file.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                For <literal>table</literal> uicontrols, the value specifies the whole table data: <literal>[IGNORED COL1-HEADER...COLN-HEADER;ROW1-HEADER, ROW1COL1-DATA, ROW1COLN-DATA;...;ROWM-HEADER, ROWMCOL1-DATA, ROWMCOLN-DATA]</literal>.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                For <literal>listbox</literal> and <literal>popupmenu</literal> uicontrols which manage colors selection, icons, background
+                                and foreground colors, the <literal>String</literal> property can be set to a matrix matching the format:
+                                <literal>["#color1", "Item1", "#background1", "#foreground1"; "#color2", "Item2", ..., ...]</literal> 
+                                <literal>["icon1", "Item1", "#background1", "#foreground1"; "icon2", "Item2", ..., ...]</literal> 
+                                with <literal>"#color1"</literal>, <literal>"#background1"</literal> and <literal>"#foreground1"</literal> in HTML format <literal>#XXXXXX</literal>.
+                                Then the component will display a colored box or icon on the left of the associated string,
+                                and different background/foreground colors for items.
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                    
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -304,6 +417,34 @@
                     <para>This property is generally used to identify the control. It
                         allows to give it a "name". Mainly used in conjunction with
                         <literal>findobj()</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Title_position</term>
+                <listitem>
+                    <para>{top} | left | bottom | right</para>
+                    <para>
+                        The position of the tabs of a <literal>tab</literal> style uicontrol.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Title_scroll</term>
+                <listitem>
+                    <para>Boolean</para>
+                    <para>
+                        Indicates whether the tabs of a <literal>tab</literal> style uicontrol 
+                        must be wrapped (<literal>title_scroll=%F</literal>) or scrolled (<literal>title_scroll=%T</literal>).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>TooltipString</term>
+                <listitem>
+                    <para>String or String vector</para>
+                    <para>
+                        This property represents the text of the uicontrol tooltip appearing when the mouse is over the uicontrol.
                     </para>
                 </listitem>
             </varlistentry>
@@ -332,22 +473,30 @@
                     </para>
                     <itemizedlist>
                         <listitem>
-                            <para>CheckBoxes, Radio buttons: value is set to Max (see above)
+                            <para>
+                                <literal>checkbox</literal> and <literal>radiobutton</literal> uicontrols: value is set to Max (see above)
                                 when on and Min when off.
                             </para>
                         </listitem>
                         <listitem>
-                            <para>ListBoxes, PopupMenus: value is a vector of indexes
-                                corresponding to the indexes of the selected entries in the
-                                list. 1 is the first item of the list.
+                            <para>
+                                <literal>listbox</literal> and <literal>popupmenu</literal> uicontrols: value is a vector of indexes
+                                corresponding to the indexes of the selected entries in the list. 1 is the first item of the list.
                             </para>
                         </listitem>
                         <listitem>
-                            <para>Sliders: value indicated by the slider bar.</para>
+                            <para>
+                                <literal>slider</literal> and <literal>spinner</literal> uicontrols: value indicated by the component.
+                            </para>
                         </listitem>
                         <listitem>
                             <para>
-                                Images: value is used to set some image properties <literal>[X-Scale Y-Scale X-Shear Y-Shear RotationAngle]</literal>
+                                <literal>layer</literal> and <literal>tab</literal> uicontrols: index of displayed component.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>image</literal> uicontrols: value is used to set some image properties <literal>[X-Scale Y-Scale X-Shear Y-Shear RotationAngle]</literal>
                             </para>
                         </listitem>
                     </itemizedlist>
@@ -387,5 +536,31 @@
                 <link linkend="uicontrol">uicontrol</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>
+                    <para>
+                        Properties added and updated:
+                    </para>
+                    <itemizedlist>
+                        <listitem>Border property added.</listitem>
+                        <listitem>Scrollable property added.</listitem>
+                        <listitem>Groupname property added.</listitem>
+                        <listitem>Icon property added.</listitem>
+                        <listitem>Margins property added.</listitem>
+                        <listitem>Layout property added.</listitem>
+                        <listitem>Layout_properties property added.</listitem>
+                        <listitem>
+                            String property is now used to set colors on <literal>listbox</literal> and <literal>combobox</literal> uicontrols.
+                        </listitem>
+                        <listitem>Backgroundcolor and Foregroundcolor properties now manage Operating System specific values.</listitem>
+                    </itemizedlist>
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>
