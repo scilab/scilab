@@ -410,6 +410,21 @@ int sci_figure(char * fname, unsigned long fname_len)
         iFig = createFigure(bDockable, iMenubarType, iToolbarType, bDefaultAxes, bVisible, figureSize, axesSize, position, bMenuBar, bToolBar, bInfoBar);
         setGraphicObjectProperty(iFig, __GO_ID__, &iNewId, jni_int, 1);
         iAxes = setDefaultProperties(iFig, bDefaultAxes, figureSize || axesSize ? FALSE : TRUE);
+        if (figureSize)
+        {
+            int figure[2];
+            figure[0] = (int)figureSize[0];
+            figure[1] = (int)figureSize[1];
+            setGraphicObjectProperty(iFig, __GO_SIZE__, figure, jni_int_vector, 2);
+        }
+
+        if (axesSize)
+        {
+            int axes[2];
+            axes[0] = (int)axesSize[0];
+            axes[1] = (int)axesSize[1];
+            setGraphicObjectProperty(iFig, __GO_AXES_SIZE__, axes, jni_int_vector, 2);
+        }
     }
 
     //set(iFig, iPos, iPos + 1)
