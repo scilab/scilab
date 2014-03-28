@@ -38,7 +38,7 @@ public class PopupMenu extends Uicontrol {
             UIDefaults defaults = UIManager.getDefaults();
 
             //font
-            setFont(defaults.getFont("PopupMenu.font"));
+            setFont(defaults.getFont("ComboBox.font"));
 
             //h-alignment
             setHorizontalAlignment("left");
