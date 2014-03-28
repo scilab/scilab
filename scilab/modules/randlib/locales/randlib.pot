@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2014-03-13 09:46+0100\n"
+"Revision-Date: 2014-03-28 17:39+0100\n"
 
 # File: sci_gateway/c/sci_grand.c, line: 156
 # File: sci_gateway/c/sci_grand.c, line: 511
@@ -622,6 +622,7 @@ msgstr ""
 # File: demos/binomial.dem.sce, line: 63
 # File: demos/discrete.dem.sce, line: 47
 # File: demos/discrete_uni.dem.sce, line: 39
+# File: demos/exp.dem.sce, line: 41
 # File: demos/geometric.dem.sce, line: 48
 # File: demos/poisson.dem.sce, line: 51
 msgid "Simulation"
@@ -631,6 +632,7 @@ msgstr ""
 # File: demos/binomial.dem.sce, line: 63
 # File: demos/discrete.dem.sce, line: 47
 # File: demos/discrete_uni.dem.sce, line: 39
+# File: demos/exp.dem.sce, line: 41
 # File: demos/geometric.dem.sce, line: 48
 # File: demos/poisson.dem.sce, line: 51
 msgid "Theory"
@@ -653,7 +655,7 @@ msgstr ""
 
 #
 # File: demos/exp.dem.sce, line: 32
-msgid "macro histplot : Histogram plot"
+msgid "Simulation of an exponential random variable"
 msgstr ""
 
 #

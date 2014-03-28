@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2014-03-13 10:59+0100\n"
+"Revision-Date: 2014-03-28 17:39+0100\n"
 
 # File: sci_gateway/c/gw_graphics.c, line: 131
 # File: src/nographics/nographics.c, line: 83
@@ -37,8 +37,8 @@ msgstr ""
 # File: sci_gateway/c/sci_glue.c, line: 91
 # File: sci_gateway/c/sci_glue.c, line: 166
 # File: sci_gateway/c/sci_light.c, line: 182
-# File: sci_gateway/c/sci_newaxes.c, line: 65
-# File: sci_gateway/c/sci_newaxes.c, line: 120
+# File: sci_gateway/c/sci_newaxes.c, line: 66
+# File: sci_gateway/c/sci_newaxes.c, line: 121
 # File: sci_gateway/c/sci_plot2d.c, line: 152
 # File: sci_gateway/c/sci_plot2d.c, line: 256
 # File: sci_gateway/c/sci_plot2d.c, line: 283
@@ -99,7 +99,7 @@ msgstr ""
 # File: sci_gateway/c/sci_get.c, line: 160
 # File: sci_gateway/c/sci_glue.c, line: 74
 # File: sci_gateway/c/sci_move.c, line: 93
-# File: sci_gateway/c/sci_newaxes.c, line: 99
+# File: sci_gateway/c/sci_newaxes.c, line: 100
 # File: sci_gateway/c/sci_relocate_handle.c, line: 76
 # File: sci_gateway/c/sci_relocate_handle.c, line: 93
 # File: sci_gateway/c/sci_rotate_axes.c, line: 77
@@ -156,8 +156,8 @@ msgstr ""
 
 #
 # File: sci_gateway/c/sci_Legend.c, line: 152
-# File: sci_gateway/c/sci_newaxes.c, line: 74
-# File: sci_gateway/c/sci_newaxes.c, line: 129
+# File: sci_gateway/c/sci_newaxes.c, line: 75
+# File: sci_gateway/c/sci_newaxes.c, line: 130
 # File: sci_gateway/c/sci_unzoom.c, line: 86
 # File: sci_gateway/c/sci_winsid.c, line: 43
 # File: sci_gateway/c/sci_xset.c, line: 366
@@ -178,9 +178,9 @@ msgstr ""
 # File: src/c/Gray.c, line: 549
 # File: src/c/Gray.c, line: 584
 # File: src/c/InitObjects.c, line: 159
-# File: src/c/Plo2dn.c, line: 400
-# File: src/c/Plo2dn.c, line: 432
-# File: src/c/Plo2dn.c, line: 454
+# File: src/c/Plo2dn.c, line: 401
+# File: src/c/Plo2dn.c, line: 433
+# File: src/c/Plo2dn.c, line: 455
 # File: src/c/SetProperty.c, line: 293
 # File: src/c/SetProperty.c, line: 490
 # File: src/c/SetProperty.c, line: 573
@@ -618,7 +618,7 @@ msgstr ""
 
 #
 # File: sci_gateway/c/sci_light.c, line: 65
-# File: sci_gateway/c/sci_newaxes.c, line: 87
+# File: sci_gateway/c/sci_newaxes.c, line: 88
 # File: sci_gateway/c/sci_set.c, line: 66
 # File: sci_gateway/c/sci_set.c, line: 131
 # File: sci_gateway/c/sci_set.c, line: 138
@@ -736,14 +736,14 @@ msgid "%s: Wrong type for input argument #%d: Vector %s or %s expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_newaxes.c, line: 93
+# File: sci_gateway/c/sci_newaxes.c, line: 94
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A graphic handle expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_newaxes.c, line: 110
-# File: sci_gateway/c/sci_newaxes.c, line: 135
+# File: sci_gateway/c/sci_newaxes.c, line: 111
+# File: sci_gateway/c/sci_newaxes.c, line: 136
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A '%s' or '%s' handle expected.\n"
@@ -1307,7 +1307,7 @@ msgstr ""
 # File: src/c/Gray.c, line: 195
 # File: src/c/Gray.c, line: 346
 # File: src/c/Gray.c, line: 499
-# File: src/c/Plo2dn.c, line: 390
+# File: src/c/Plo2dn.c, line: 391
 msgid "Warning: Nax does not work with logarithmic scaling.\n"
 msgstr ""
 
@@ -1732,9 +1732,9 @@ msgstr ""
 # File: src/c/getHandleProperty/set_constraints_property.c, line: 413
 # File: src/c/getHandleProperty/set_constraints_property.c, line: 420
 # File: src/c/getHandleProperty/set_cube_scaling_property.c, line: 54
-# File: src/c/getHandleProperty/set_current_axes_property.c, line: 51
+# File: src/c/getHandleProperty/set_current_axes_property.c, line: 52
 # File: src/c/getHandleProperty/set_current_entity_property.c, line: 41
-# File: src/c/getHandleProperty/set_current_figure_property.c, line: 58
+# File: src/c/getHandleProperty/set_current_figure_property.c, line: 60
 # File: src/c/getHandleProperty/set_data_bounds_property.c, line: 129
 # File: src/c/getHandleProperty/set_data_bounds_property.c, line: 158
 # File: src/c/getHandleProperty/set_data_mapping_property.c, line: 72
@@ -1827,7 +1827,7 @@ msgstr ""
 # File: src/c/getHandleProperty/set_rotation_angles_property.c, line: 52
 # File: src/c/getHandleProperty/set_rotation_style_property.c, line: 67
 # File: src/c/getHandleProperty/set_screen_position_property.c, line: 65
-# File: src/c/getHandleProperty/set_scrollable_property.c, line: 52
+# File: src/c/getHandleProperty/set_scrollable_property.c, line: 40
 # File: src/c/getHandleProperty/set_segs_color_property.c, line: 53
 # File: src/c/getHandleProperty/set_segs_color_property.c, line: 92
 # File: src/c/getHandleProperty/set_specular_color_property.c, line: 60
@@ -1906,8 +1906,8 @@ msgid "%s should be a string vector.\n"
 msgstr ""
 
 #
-# File: src/c/getHandleProperty/GetHashTable.c, line: 296
-# File: src/c/getHandleProperty/SetHashTable.c, line: 298
+# File: src/c/getHandleProperty/GetHashTable.c, line: 297
+# File: src/c/getHandleProperty/SetHashTable.c, line: 299
 #, c-format
 msgid "Unknown property: %s.\n"
 msgstr ""
@@ -1954,7 +1954,6 @@ msgstr ""
 # File: src/c/getHandleProperty/set_menubar_property.c, line: 33
 # File: src/c/getHandleProperty/set_pixel_drawing_mode_property.c, line: 42
 # File: src/c/getHandleProperty/set_rotation_style_property.c, line: 41
-# File: src/c/getHandleProperty/set_scrollable_property.c, line: 32
 # File: src/c/getHandleProperty/set_tabtitle_property.c, line: 58
 # File: src/c/getHandleProperty/set_text_box_mode_property.c, line: 46
 # File: src/c/getHandleProperty/set_ticks_format_property.c, line: 41
@@ -1975,7 +1974,7 @@ msgstr ""
 # File: src/c/getHandleProperty/get_clip_box_property.c, line: 68
 # File: src/c/getHandleProperty/get_clip_state_property.c, line: 60
 # File: src/c/getHandleProperty/get_data_mapping_property.c, line: 56
-# File: src/c/getHandleProperty/get_image_type_property.c, line: 74
+# File: src/c/getHandleProperty/get_image_type_property.c, line: 76
 # File: src/c/getHandleProperty/get_legend_location_property.c, line: 94
 # File: src/c/getHandleProperty/get_mark_size_unit_property.c, line: 56
 # File: src/c/getHandleProperty/get_text_box_mode_property.c, line: 62
@@ -2005,7 +2004,7 @@ msgstr ""
 # File: src/c/getHandleProperty/set_constraints_property.c, line: 130
 # File: src/c/getHandleProperty/set_constraints_property.c, line: 253
 # File: src/c/getHandleProperty/set_constraints_property.c, line: 310
-# File: src/c/getHandleProperty/set_image_type_property.c, line: 104
+# File: src/c/getHandleProperty/set_image_type_property.c, line: 108
 # File: src/c/getHandleProperty/set_legend_location_property.c, line: 67
 # File: src/c/getHandleProperty/set_pixel_drawing_mode_property.c, line: 50
 # File: src/c/getHandleProperty/set_text_box_mode_property.c, line: 67
@@ -2252,39 +2251,45 @@ msgid "Wrong type for '%s' property: A '%s' expected.\n"
 msgstr ""
 
 #
-# File: src/c/getHandleProperty/set_current_axes_property.c, line: 57
+# File: src/c/getHandleProperty/set_current_axes_property.c, line: 58
 # File: src/c/getHandleProperty/set_current_entity_property.c, line: 47
 #, c-format
 msgid "Wrong type for '%s' property: Handle expected.\n"
 msgstr ""
 
 #
-# File: src/c/getHandleProperty/set_current_axes_property.c, line: 65
+# File: src/c/getHandleProperty/set_current_axes_property.c, line: 66
 # File: src/c/getHandleProperty/set_current_entity_property.c, line: 55
 #, c-format
 msgid "Wrong value for '%s' property: Must be a valid handle.\n"
 msgstr ""
 
 #
-# File: src/c/getHandleProperty/set_current_axes_property.c, line: 73
+# File: src/c/getHandleProperty/set_current_axes_property.c, line: 74
 #, c-format
 msgid "Wrong value for '%s' property: Must be a handle on axes.\n"
 msgstr ""
 
 #
-# File: src/c/getHandleProperty/set_current_figure_property.c, line: 64
+# File: src/c/getHandleProperty/set_current_figure_property.c, line: 66
 #, c-format
 msgid "Wrong size for '%s' property: A scalar expected.\n"
 msgstr ""
 
 #
-# File: src/c/getHandleProperty/set_current_figure_property.c, line: 75
+# File: src/c/getHandleProperty/set_current_figure_property.c, line: 77
 #, c-format
 msgid "'%s' handle does not or no longer exists.\n"
 msgstr ""
 
 #
-# File: src/c/getHandleProperty/set_current_figure_property.c, line: 90
+# File: src/c/getHandleProperty/set_current_figure_property.c, line: 85
+#, c-format
+msgid "Wrong value for '%s' property: A '%s' handle expected.\n"
+msgstr ""
+
+#
+# File: src/c/getHandleProperty/set_current_figure_property.c, line: 101
 #, c-format
 msgid "Wrong type for '%s' property: Real or '%s' handle expected.\n"
 msgstr ""
@@ -2437,7 +2442,7 @@ msgid "Incompatible type for property %s.\n"
 msgstr ""
 
 #
-# File: src/c/getHandleProperty/set_image_type_property.c, line: 115
+# File: src/c/getHandleProperty/set_image_type_property.c, line: 119
 msgid "Invalid image type for this handle.\n"
 msgstr ""
 
@@ -2463,7 +2468,6 @@ msgstr ""
 
 #
 # File: src/c/getHandleProperty/set_layout_property.c, line: 75
-# File: src/c/getHandleProperty/set_scrollable_property.c, line: 46
 # File: src/c/getHandleProperty/set_tabtitle_property.c, line: 80
 #, c-format
 msgid "Wrong value for '%s' property: %s, %s or %s expected.\n"
@@ -2550,6 +2554,7 @@ msgstr ""
 #
 # File: src/c/getHandleProperty/set_parent_property.c, line: 62
 # File: src/c/getHandleProperty/set_parent_property.c, line: 94
+# File: src/c/getHandleProperty/set_parent_property.c, line: 115
 #, c-format
 msgid "Wrong type for '%s' property: '%s' handle or '%s' handle expected.\n"
 msgstr ""
@@ -2557,12 +2562,14 @@ msgstr ""
 #
 # File: src/c/getHandleProperty/set_parent_property.c, line: 69
 # File: src/c/getHandleProperty/set_parent_property.c, line: 81
+# File: src/c/getHandleProperty/set_parent_property.c, line: 122
+# File: src/c/getHandleProperty/set_parent_property.c, line: 133
 #, c-format
 msgid "Wrong value for '%s' property: A '%s' or '%s' handle expected.\n"
 msgstr ""
 
 #
-# File: src/c/getHandleProperty/set_parent_property.c, line: 104
+# File: src/c/getHandleProperty/set_parent_property.c, line: 142
 msgid "Parent property can not be modified directly.\n"
 msgstr ""
 
@@ -2655,11 +2662,13 @@ msgstr ""
 
 #
 # File: demos/2d_3d_plots/mandelbrot.dem.sce, line: 38
+# File: demos/matplot/mandelbrot.dem.sce, line: 38
 msgid "Computing in progress..."
 msgstr ""
 
 #
 # File: demos/2d_3d_plots/mandelbrot.dem.sce, line: 88
+# File: demos/matplot/mandelbrot.dem.sce, line: 88
 msgid ""
 "Matplot1(..) displays a matrix\n"
 "(value => color#), with SCALED AXES\n"
@@ -2668,11 +2677,13 @@ msgstr ""
 
 #
 # File: demos/2d_3d_plots/mandelbrot.dem.sce, line: 90
+# File: demos/matplot/mandelbrot.dem.sce, line: 90
 msgid "Real part"
 msgstr ""
 
 #
 # File: demos/2d_3d_plots/mandelbrot.dem.sce, line: 91
+# File: demos/matplot/mandelbrot.dem.sce, line: 91
 msgid "Imaginary part"
 msgstr ""
 
@@ -2854,6 +2865,34 @@ msgid "Colormap"
 msgstr ""
 
 #
+# File: demos/graphics.dem.gateway.sce, line: 27
+msgid "Matplot"
+msgstr ""
+
+#
+# File: demos/matplot/java_image.dem.sce, line: 14
+# File: demos/matplot/matplot.dem.gateway.sce, line: 12
+msgid "Java Image"
+msgstr ""
+
+#
+# File: demos/matplot/matplot.dem.gateway.sce, line: 9
+# File: macros/%_Matplot.sci, line: 18
+msgid "Classical Matplot"
+msgstr ""
+
+#
+# File: demos/matplot/matplot.dem.gateway.sce, line: 10
+# File: macros/%_Matplot1.sci, line: 16
+msgid "Classical Matplot1"
+msgstr ""
+
+#
+# File: demos/matplot/matplot.dem.gateway.sce, line: 11
+msgid "Mandelbrot"
+msgstr ""
+
+#
 # File: demos/misc/misc.dem.sce, line: 96
 msgid "Jet"
 msgstr ""
@@ -2946,7 +2985,7 @@ msgid "%s: Wrong type for input argument #%d.\n"
 msgstr ""
 
 #
-# File: macros/%_Matplot.sci, line: 25
+# File: macros/%_Matplot.sci, line: 26
 #, c-format
 msgid ""
 "Matplot(M)  with  size(M)=>(%d,%d)\n"
@@ -2955,17 +2994,17 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/%_Matplot.sci, line: 26
+# File: macros/%_Matplot.sci, line: 27
 msgid "For data-scaled axes, please use Matplot1(..)"
 msgstr ""
 
 #
-# File: macros/%_Matplot.sci, line: 27
+# File: macros/%_Matplot.sci, line: 28
 msgid "Axes are scaled with M's indices"
 msgstr ""
 
 #
-# File: macros/%_Matplot1.sci, line: 36
+# File: macros/%_Matplot1.sci, line: 37
 #, c-format
 msgid ""
 "Matplot1(M, [ %g  %g  %g  %g ])  with  size(M)=>(%d,%d)\n"
@@ -2973,7 +3012,7 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/%_Matplot1.sci, line: 37
+# File: macros/%_Matplot1.sci, line: 38
 msgid "Axes are scaled with [xmin  ymin  xmax  ymax] specified"
 msgstr ""
 

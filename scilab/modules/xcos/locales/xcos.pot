@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2014-03-13 09:46+0100\n"
+"Revision-Date: 2014-03-28 17:39+0100\n"
 
 # File: sci_gateway/c/gw_xcos.c, line: 56
 # File: src/noxcos/noxcos.c, line: 22
@@ -1491,6 +1491,16 @@ msgid "Logic NOR gate"
 msgstr ""
 
 #
+# File: demos/event.dem.gateway.sce, line: 7
+msgid "If Then Else"
+msgstr ""
+
+#
+# File: demos/event.dem.gateway.sce, line: 8
+msgid "And"
+msgstr ""
+
+#
 # File: demos/mechanical_systems.dem.gateway.sce, line: 7
 msgid "Automotive Suspension"
 msgstr ""
@@ -1557,7 +1567,7 @@ msgstr ""
 
 #
 # File: demos/scicos.dem.gateway.sce, line: 12
-# File: demos/xcos.dem.gateway.sce, line: 24
+# File: demos/xcos.dem.gateway.sce, line: 25
 msgid "Old demos"
 msgstr ""
 
@@ -1614,6 +1624,11 @@ msgstr ""
 #
 # File: demos/standard.dem.gateway.sce, line: 17
 msgid "Goto/From blocks"
+msgstr ""
+
+#
+# File: demos/xcos.dem.gateway.sce, line: 24
+msgid "Event demos"
 msgstr ""
 
 #

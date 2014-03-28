@@ -15,10 +15,10 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2014-03-13 09:46+0100\n"
+"Revision-Date: 2014-03-28 17:39+0100\n"
 
 # File: sci_gateway/c/sci_matfile_close.c, line: 63
-# File: sci_gateway/c/sci_matfile_listvar.c, line: 62
+# File: sci_gateway/c/sci_matfile_listvar.c, line: 63
 # File: sci_gateway/c/sci_matfile_varreadnext.c, line: 61
 #, c-format
 msgid "%s: Wrong size for first input argument: Single double expected.\n"
@@ -26,29 +26,29 @@ msgstr ""
 
 #
 # File: sci_gateway/c/sci_matfile_close.c, line: 70
-# File: sci_gateway/c/sci_matfile_listvar.c, line: 69
+# File: sci_gateway/c/sci_matfile_listvar.c, line: 70
 # File: sci_gateway/c/sci_matfile_varreadnext.c, line: 68
 #, c-format
 msgid "%s: Wrong type for first input argument: Double expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_matfile_listvar.c, line: 78
+# File: sci_gateway/c/sci_matfile_listvar.c, line: 79
 # File: sci_gateway/c/sci_matfile_varreadnext.c, line: 77
 #, c-format
 msgid "%s: Invalid file identifier.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_matfile_listvar.c, line: 85
+# File: sci_gateway/c/sci_matfile_listvar.c, line: 86
 #, c-format
 msgid "%s: Could not rewind the file %s.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_matfile_listvar.c, line: 96
-# File: sci_gateway/c/sci_matfile_listvar.c, line: 103
-# File: sci_gateway/c/sci_matfile_listvar.c, line: 110
+# File: sci_gateway/c/sci_matfile_listvar.c, line: 97
+# File: sci_gateway/c/sci_matfile_listvar.c, line: 104
+# File: sci_gateway/c/sci_matfile_listvar.c, line: 111
 # File: src/c/CreateBooleanVariable.c, line: 39
 # File: src/c/CreateBooleanVariable.c, line: 73
 # File: src/c/CreateBooleanVariable.c, line: 109
@@ -110,6 +110,14 @@ msgstr ""
 # File: src/c/GetStructVariable.c, line: 71
 #, c-format
 msgid "%s: No more memory.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_matfile_listvar.c, line: 131
+# File: sci_gateway/c/sci_matfile_listvar.c, line: 142
+# File: sci_gateway/c/sci_matfile_listvar.c, line: 154
+#, c-format
+msgid "%s: Memory allocation error.\n"
 msgstr ""
 
 #
