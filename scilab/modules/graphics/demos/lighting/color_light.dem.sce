@@ -34,6 +34,9 @@ function demo_color_light()
     for j=1: num
         n = 700;
         for i=1:n
+            if ~is_handle_valid(l) then
+                break
+            end
             t = i / n;
             cdiff = diff0 * (1 - t) + diff1 * t;
             cspec = spec0 * (1 - t) + spec1 * t;
@@ -41,6 +44,9 @@ function demo_color_light()
             l.diffuse_color = 0.8 * cdiff;
             l.specular_color = cspec;
             sleep(3);
+        end
+        if ~is_handle_valid(l) then
+            break
         end
         diff0 = diff1;
         spec0 = spec1;
