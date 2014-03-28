@@ -69,9 +69,12 @@ scilab_bin_LDADD 	= \
 			$(top_builddir)/modules/libscilab.la \
 			$(top_builddir)/modules/libscilab-cli.la \
 			$(top_builddir)/modules/console/libsciconsole-minimal.la \
-			$(top_builddir)/modules/jvm/libscijvm.la \
 			$(OPENMPI_LIBS) $(XML_LIBS) \
 			$(COMMON_LIBS) $(FLIBS)
+
+if NEED_JAVA
+scilab_bin_LDADD += $(top_builddir)/modules/jvm/libscijvm.la
+endif
 
 scilab_cli_bin_LDADD 	= \
 			$(top_builddir)/modules/libscilab-cli.la \

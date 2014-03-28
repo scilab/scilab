@@ -29,6 +29,8 @@ UMFPACK_license.txt
 libsciumfpack_la_etcdir = $(mydatadir)/etc
 libsciumfpack_la_etc_DATA = etc/umfpack.quit etc/umfpack.start
 
+if UMFPACK
+
 UMFPACK_C_SOURCES = src/c/taucs_scilab.c \
 src/c/common_umfpack.c \
 src/c/with_umfpack.c
@@ -60,8 +62,6 @@ CHECK_SRC= $(libsciumfpack_la_SOURCES)
 INCLUDE_FLAGS = $(libsciumfpack_la_CPPFLAGS)
 
 libsciumfpack_la_LIBADD =  libsciumfpack-algo.la
-
-if UMFPACK
 
 libsciumfpack_la_LIBADD += $(UMFPACK_LIB)
 
