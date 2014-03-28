@@ -1050,7 +1050,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 }
 
                 if (property != GraphicObjectProperties.__GO_CHILDREN__) {
-                    //axesDrawer.computeRulers(axes);
+                    axesDrawer.computeRulers(axes);
                 }
             }
 
