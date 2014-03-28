@@ -392,7 +392,9 @@ src/c/getHandleProperty/set_material_shininess_property.c \
 src/c/getHandleProperty/set_light_type_property.c \
 src/c/getHandleProperty/set_direction_property.c \
 src/c/getHandleProperty/set_auto_margins_property.c \
-src/c/getHandleProperty/get_auto_margins_property.c
+src/c/getHandleProperty/get_auto_margins_property.c \
+src/c/name2rgb.c \
+src/c/addColor.c
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_swap_handles.c \
 sci_gateway/c/sci_grayplot.c \
@@ -454,8 +456,10 @@ sci_gateway/c/sci_rubberbox.c \
 sci_gateway/c/sci_rotate_axes.c \
 sci_gateway/c/sci_is_handle_valid.c \
 sci_gateway/c/sci_Legend.c \
-sci_gateway/c/sci_light.c
-
+sci_gateway/c/sci_light.c \
+sci_gateway/c/sci_color.c \
+sci_gateway/c/sci_name2rgb.c \
+sci_gateway/c/sci_addcolor.c
 
 libscigraphics_la_CPPFLAGS = \
 	-I$(srcdir)/includes/ \

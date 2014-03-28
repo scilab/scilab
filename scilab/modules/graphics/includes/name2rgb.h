@@ -10,16 +10,11 @@
  *
  */
 
-#ifndef __ADDCOLOR_H__
-#define __ADDCOLOR_H__
+#ifndef __NAME_TO_RGB_H__
+#define __NAME_TO_RGB_H__
 
-#define COLOR_COMPONENT 3
+#include "dynlib_graphics.h"
 
-/*
-** Add color into figure colormap
-** _iFig : the figure UID
-** _pdblColor[3] : [R,G,B] color
-*/
-int addColor(int _iFig, double* _pdblColor);
+GRAPHICS_IMPEXP void name2rgb(char* name, double* _rgb);
 
-#endif /* !__ADDCOLOR_H__ */
+#endif /* !__NAME_TO_RGB_H__ */

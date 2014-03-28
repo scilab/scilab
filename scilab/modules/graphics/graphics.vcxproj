@@ -198,7 +198,11 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="sci_gateway\c\sci_addcolor.c" />
+    <ClCompile Include="sci_gateway\c\sci_color.c" />
     <ClCompile Include="sci_gateway\c\sci_light.c" />
+    <ClCompile Include="sci_gateway\c\sci_name2rgb.c" />
+    <ClCompile Include="src\c\addColor.c" />
     <ClCompile Include="src\c\Axes.c" />
     <ClCompile Include="src\c\axesScale.c" />
     <ClCompile Include="src\c\BasicAlgos.c" />
@@ -425,6 +429,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="src\c\math_graphics.c">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|x64'">MinSpace</Optimization>
     </ClCompile>
+    <ClCompile Include="src\c\name2rgb.c" />
     <ClCompile Include="src\c\pixel_mode.c" />
     <ClCompile Include="src\c\Plo2dEch.c" />
     <ClCompile Include="src\c\Plo2dn.c" />
@@ -631,12 +636,14 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="src\c\TerminateGraphics.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="includes\addColor.h" />
     <ClInclude Include="includes\Axes.h" />
     <ClInclude Include="includes\axesScale.h" />
     <ClInclude Include="includes\BasicAlgos.h" />
     <ClInclude Include="includes\BuildObjects.h" />
     <ClInclude Include="includes\Champ.h" />
     <ClInclude Include="includes\Light.h" />
+    <ClInclude Include="includes\name2rgb.h" />
     <ClInclude Include="src\c\CheckScilabXgc.h" />
     <ClInclude Include="src\c\getHandleProperty\AnchorType.h" />
     <ClInclude Include="src\c\getHandleProperty\BarType.h" />

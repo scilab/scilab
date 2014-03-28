@@ -231,7 +231,6 @@
     <ClCompile Include="..\jni\ScilabTermination_wrap.c" />
     <ClCompile Include="..\jni\StartPlotBrowser.cpp" />
     <ClCompile Include="..\jni\SwingView.cpp" />
-    <ClCompile Include="addColor.c" />
     <ClCompile Include="addmenu.c" />
     <ClCompile Include="buildMainWindowTitle.c" />
     <ClCompile Include="..\cpp\CallClipboard.cpp" />
@@ -462,7 +461,6 @@
     <ClInclude Include="..\jni\ScilabDisplayTree.hxx" />
     <ClInclude Include="..\jni\StartPlotBrowser.hxx" />
     <ClInclude Include="..\jni\SwingView.hxx" />
-    <ClInclude Include="addColor.h" />
     <ClInclude Include="buildMainWindowTitle.h" />
     <ClInclude Include="checkColorRange.h" />
     <ClInclude Include="CreateUimenu.h" />

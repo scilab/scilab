@@ -88,4 +88,7 @@
     <PRIMITIVE gatewayId="7" primitiveId="64" primitiveName="is_handle_valid"/>
     <PRIMITIVE gatewayId="7" primitiveId="65" primitiveName="captions"/>
     <PRIMITIVE gatewayId="7" primitiveId="66" primitiveName="light"/>
+    <PRIMITIVE gatewayId="7" primitiveId="67" primitiveName="addcolor"/>
+    <PRIMITIVE gatewayId="7" primitiveId="68" primitiveName="name2rgb"/>
+    <PRIMITIVE gatewayId="7" primitiveId="69" primitiveName="color"/>
 </GATEWAY>

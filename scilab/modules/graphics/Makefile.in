@@ -539,7 +539,9 @@ am__objects_1 = src/c/libscigraphics_algo_la-GetCommandArg.lo \
 	src/c/getHandleProperty/libscigraphics_algo_la-set_light_type_property.lo \
 	src/c/getHandleProperty/libscigraphics_algo_la-set_direction_property.lo \
 	src/c/getHandleProperty/libscigraphics_algo_la-set_auto_margins_property.lo \
-	src/c/getHandleProperty/libscigraphics_algo_la-get_auto_margins_property.lo
+	src/c/getHandleProperty/libscigraphics_algo_la-get_auto_margins_property.lo \
+	src/c/libscigraphics_algo_la-name2rgb.lo \
+	src/c/libscigraphics_algo_la-addColor.lo
 am_libscigraphics_algo_la_OBJECTS = $(am__objects_1)
 libscigraphics_algo_la_OBJECTS = $(am_libscigraphics_algo_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
@@ -613,7 +615,10 @@ am__objects_2 = sci_gateway/c/libscigraphics_la-sci_swap_handles.lo \
 	sci_gateway/c/libscigraphics_la-sci_rotate_axes.lo \
 	sci_gateway/c/libscigraphics_la-sci_is_handle_valid.lo \
 	sci_gateway/c/libscigraphics_la-sci_Legend.lo \
-	sci_gateway/c/libscigraphics_la-sci_light.lo
+	sci_gateway/c/libscigraphics_la-sci_light.lo \
+	sci_gateway/c/libscigraphics_la-sci_color.lo \
+	sci_gateway/c/libscigraphics_la-sci_name2rgb.lo \
+	sci_gateway/c/libscigraphics_la-sci_addcolor.lo
 am_libscigraphics_la_OBJECTS = $(am__objects_2)
 libscigraphics_la_OBJECTS = $(am_libscigraphics_la_OBJECTS)
 @GUI_TRUE@am_libscigraphics_la_rpath = -rpath $(pkglibdir)
@@ -1342,7 +1347,9 @@ src/c/getHandleProperty/set_material_shininess_property.c \
 src/c/getHandleProperty/set_light_type_property.c \
 src/c/getHandleProperty/set_direction_property.c \
 src/c/getHandleProperty/set_auto_margins_property.c \
-src/c/getHandleProperty/get_auto_margins_property.c
+src/c/getHandleProperty/get_auto_margins_property.c \
+src/c/name2rgb.c \
+src/c/addColor.c
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_swap_handles.c \
 sci_gateway/c/sci_grayplot.c \
@@ -1404,7 +1411,10 @@ sci_gateway/c/sci_rubberbox.c \
 sci_gateway/c/sci_rotate_axes.c \
 sci_gateway/c/sci_is_handle_valid.c \
 sci_gateway/c/sci_Legend.c \
-sci_gateway/c/sci_light.c
+sci_gateway/c/sci_light.c \
+sci_gateway/c/sci_color.c \
+sci_gateway/c/sci_name2rgb.c \
+sci_gateway/c/sci_addcolor.c
 
 libscigraphics_la_CPPFLAGS = \
 	-I$(srcdir)/includes/ \
@@ -2733,6 +2743,10 @@ src/c/getHandleProperty/libscigraphics_algo_la-set_auto_margins_property.lo:  \
 src/c/getHandleProperty/libscigraphics_algo_la-get_auto_margins_property.lo:  \
 	src/c/getHandleProperty/$(am__dirstamp) \
 	src/c/getHandleProperty/$(DEPDIR)/$(am__dirstamp)
+src/c/libscigraphics_algo_la-name2rgb.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscigraphics_algo_la-addColor.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
 
 libscigraphics-algo.la: $(libscigraphics_algo_la_OBJECTS) $(libscigraphics_algo_la_DEPENDENCIES) $(EXTRA_libscigraphics_algo_la_DEPENDENCIES) 
 	$(AM_V_CCLD)$(LINK) $(am_libscigraphics_algo_la_rpath) $(libscigraphics_algo_la_OBJECTS) $(libscigraphics_algo_la_LIBADD) $(LIBS)
@@ -2937,6 +2951,15 @@ sci_gateway/c/libscigraphics_la-sci_Legend.lo:  \
 sci_gateway/c/libscigraphics_la-sci_light.lo:  \
 	sci_gateway/c/$(am__dirstamp) \
 	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscigraphics_la-sci_color.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscigraphics_la-sci_name2rgb.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscigraphics_la-sci_addcolor.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
 
 libscigraphics.la: $(libscigraphics_la_OBJECTS) $(libscigraphics_la_DEPENDENCIES) $(EXTRA_libscigraphics_la_DEPENDENCIES) 
 	$(AM_V_CCLD)$(LINK) $(am_libscigraphics_la_rpath) $(libscigraphics_la_OBJECTS) $(libscigraphics_la_LIBADD) $(LIBS)
@@ -2958,7 +2981,9 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigraphics_la-gw_graphics.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_Legend.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_StringBox.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_addcolor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_champ.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_color.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_contour2di.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_copy.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_delete.Plo@am__quote@
@@ -2976,6 +3001,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_matplot.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_matplot1.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_move.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_name2rgb.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_newaxes.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_param3d.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_param3d1.Plo@am__quote@
@@ -3038,11 +3064,13 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscigraphics_algo_la-StringBox.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscigraphics_algo_la-StringMatrix.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscigraphics_algo_la-TerminateGraphics.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscigraphics_algo_la-addColor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscigraphics_algo_la-axesScale.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscigraphics_algo_la-get_ticks_utils.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscigraphics_algo_la-graphicModuleLoad.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscigraphics_algo_la-loadTextRenderingAPI.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscigraphics_algo_la-math_graphics.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscigraphics_algo_la-name2rgb.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscigraphics_algo_la-periEmpty.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscigraphics_algo_la-pixel_mode.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscigraphics_algo_la-sciCall.Plo@am__quote@
@@ -5986,6 +6014,20 @@ src/c/getHandleProperty/libscigraphics_algo_la-get_auto_margins_property.lo: src
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/getHandleProperty/libscigraphics_algo_la-get_auto_margins_property.lo `test -f 'src/c/getHandleProperty/get_auto_margins_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_auto_margins_property.c
 
+src/c/libscigraphics_algo_la-name2rgb.lo: src/c/name2rgb.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscigraphics_algo_la-name2rgb.lo -MD -MP -MF src/c/$(DEPDIR)/libscigraphics_algo_la-name2rgb.Tpo -c -o src/c/libscigraphics_algo_la-name2rgb.lo `test -f 'src/c/name2rgb.c' || echo '$(srcdir)/'`src/c/name2rgb.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscigraphics_algo_la-name2rgb.Tpo src/c/$(DEPDIR)/libscigraphics_algo_la-name2rgb.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/name2rgb.c' object='src/c/libscigraphics_algo_la-name2rgb.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscigraphics_algo_la-name2rgb.lo `test -f 'src/c/name2rgb.c' || echo '$(srcdir)/'`src/c/name2rgb.c
+
+src/c/libscigraphics_algo_la-addColor.lo: src/c/addColor.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscigraphics_algo_la-addColor.lo -MD -MP -MF src/c/$(DEPDIR)/libscigraphics_algo_la-addColor.Tpo -c -o src/c/libscigraphics_algo_la-addColor.lo `test -f 'src/c/addColor.c' || echo '$(srcdir)/'`src/c/addColor.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscigraphics_algo_la-addColor.Tpo src/c/$(DEPDIR)/libscigraphics_algo_la-addColor.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/addColor.c' object='src/c/libscigraphics_algo_la-addColor.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscigraphics_algo_la-addColor.lo `test -f 'src/c/addColor.c' || echo '$(srcdir)/'`src/c/addColor.c
+
 src/nographics/libscigraphics_disable_la-nographics.lo: src/nographics/nographics.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_disable_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/nographics/libscigraphics_disable_la-nographics.lo -MD -MP -MF src/nographics/$(DEPDIR)/libscigraphics_disable_la-nographics.Tpo -c -o src/nographics/libscigraphics_disable_la-nographics.lo `test -f 'src/nographics/nographics.c' || echo '$(srcdir)/'`src/nographics/nographics.c
 @am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/nographics/$(DEPDIR)/libscigraphics_disable_la-nographics.Tpo src/nographics/$(DEPDIR)/libscigraphics_disable_la-nographics.Plo
@@ -6419,6 +6461,27 @@ sci_gateway/c/libscigraphics_la-sci_light.lo: sci_gateway/c/sci_light.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_light.c' object='sci_gateway/c/libscigraphics_la-sci_light.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscigraphics_la-sci_light.lo `test -f 'sci_gateway/c/sci_light.c' || echo '$(srcdir)/'`sci_gateway/c/sci_light.c
+
+sci_gateway/c/libscigraphics_la-sci_color.lo: sci_gateway/c/sci_color.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscigraphics_la-sci_color.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_color.Tpo -c -o sci_gateway/c/libscigraphics_la-sci_color.lo `test -f 'sci_gateway/c/sci_color.c' || echo '$(srcdir)/'`sci_gateway/c/sci_color.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_color.Tpo sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_color.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_color.c' object='sci_gateway/c/libscigraphics_la-sci_color.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscigraphics_la-sci_color.lo `test -f 'sci_gateway/c/sci_color.c' || echo '$(srcdir)/'`sci_gateway/c/sci_color.c
+
+sci_gateway/c/libscigraphics_la-sci_name2rgb.lo: sci_gateway/c/sci_name2rgb.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscigraphics_la-sci_name2rgb.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_name2rgb.Tpo -c -o sci_gateway/c/libscigraphics_la-sci_name2rgb.lo `test -f 'sci_gateway/c/sci_name2rgb.c' || echo '$(srcdir)/'`sci_gateway/c/sci_name2rgb.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_name2rgb.Tpo sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_name2rgb.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_name2rgb.c' object='sci_gateway/c/libscigraphics_la-sci_name2rgb.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscigraphics_la-sci_name2rgb.lo `test -f 'sci_gateway/c/sci_name2rgb.c' || echo '$(srcdir)/'`sci_gateway/c/sci_name2rgb.c
+
+sci_gateway/c/libscigraphics_la-sci_addcolor.lo: sci_gateway/c/sci_addcolor.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscigraphics_la-sci_addcolor.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_addcolor.Tpo -c -o sci_gateway/c/libscigraphics_la-sci_addcolor.lo `test -f 'sci_gateway/c/sci_addcolor.c' || echo '$(srcdir)/'`sci_gateway/c/sci_addcolor.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_addcolor.Tpo sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_addcolor.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_addcolor.c' object='sci_gateway/c/libscigraphics_la-sci_addcolor.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscigraphics_la-sci_addcolor.lo `test -f 'sci_gateway/c/sci_addcolor.c' || echo '$(srcdir)/'`sci_gateway/c/sci_addcolor.c
 
 mostlyclean-libtool:
 	-rm -f *.lo

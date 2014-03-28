@@ -464,9 +464,6 @@
     <ClCompile Include="..\..\sci_gateway\cpp\sci_loadGui.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="addColor.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="core_import.def">
@@ -669,9 +666,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\cpp\CreateUIControl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="addColor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

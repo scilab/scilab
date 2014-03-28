@@ -96,6 +96,9 @@ GRAPHICS_IMPEXP int sci_delete(char *fname, unsigned long fname_len);
 GRAPHICS_IMPEXP int sci_copy(char *fname, unsigned long fname_len);
 GRAPHICS_IMPEXP int sci_contour2di(char *fname, unsigned long fname_len);
 GRAPHICS_IMPEXP int sci_light(char *fname, unsigned long fname_len);
+GRAPHICS_IMPEXP int sci_addcolor(char *fname, unsigned long fname_len);
+GRAPHICS_IMPEXP int sci_name2rgb(char *fname, unsigned long fname_len);
+GRAPHICS_IMPEXP int sci_color(char *fname, unsigned long fname_len);
 
 /*--------------------------------------------------------------------------*/
 #endif /* __INTGRAPHICS__ */
