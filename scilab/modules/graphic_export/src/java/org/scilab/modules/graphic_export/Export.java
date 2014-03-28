@@ -1069,7 +1069,6 @@ public class Export {
         private ByteArrayOutputStream buffer;
 
         public EMFExporter() {
-            final Class<Graphics2D> g2dClass;
             try {
                 g2dClass = (Class<Graphics2D>) Class.forName("org.freehep.graphicsio.emf.EMFGraphics2D");
             } catch (ClassNotFoundException e) {
