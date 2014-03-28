@@ -38,8 +38,8 @@ if IS_MACOSX
 bin_SCRIPTS 		+= bin/checkmacosx.applescript
 endif
 
-scilab_bin_LDFLAGS 	= $(AM_LDFLAGS) $(XML_LIBS)
-scilab_cli_bin_LDFLAGS  = $(AM_LDFLAGS) $(XML_LIBS)
+scilab_bin_LDFLAGS 	= $(AM_LDFLAGS)
+scilab_cli_bin_LDFLAGS  = $(AM_LDFLAGS)
 
 if IS_MACOSX
 scilab_bin_LDFLAGS 		+= -framework Cocoa
