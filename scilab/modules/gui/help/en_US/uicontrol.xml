@@ -52,6 +52,9 @@
         <para>
             All available properties and their description are given in the <link linkend="uicontrol_properties">uicontrol properties</link> help page.
         </para>
+        <para>
+            Uicontrols rendering and properties display can be customized using <link linkend="console_properties">Console properties</link>.
+        </para>
     </refsection>
     <refsection>
         <title>Available styles</title>

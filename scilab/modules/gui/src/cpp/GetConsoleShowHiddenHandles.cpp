@@ -39,6 +39,30 @@ int GetConsoleShowHiddenHandles(void* _pvCtx, int iObjUID)
     }
 }
 
+int GetConsoleShowHiddenProperties(void* _pvCtx, int iObjUID)
+{
+    int iShowHiddenProperties = 0;
+    int *piShowHiddenProperties = &iShowHiddenProperties;
+
+    getGraphicObjectProperty(iObjUID, __GO_SHOWHIDDENPROPERTIES__, jni_bool, (void **)&piShowHiddenProperties);
+
+    if (piShowHiddenProperties == NULL)
+    {
+        Scierror(999, const_cast < char *>(_("'%s' property does not exist for this handle.\n")), "ShowHiddenProperties");
+
+        return FALSE;
+    }
+
+    if (iShowHiddenProperties == TRUE)
+    {
+        return sciReturnString(_pvCtx, "on");
+    }
+    else
+    {
+        return sciReturnString(_pvCtx, "off");
+    }
+}
+
 int GetConsoleUseDeprecatedLF(void* _pvCtx, int iObjUID)
 {
     int iUseDeprecatedLF = 0;

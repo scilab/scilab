@@ -34,7 +34,7 @@
                 <listitem>
                     <para>handle, the handle of the entity to retrieve a property.
                         <literal>h</literal> can be a vector of handles, in which case get returns
-                        the property value for all objects contained in h. <literal>h</literal> can also be <emphasis>0</emphasis> to get the root object properties.
+                        the property value for all objects contained in h. <literal>h</literal> can also be <emphasis>0</emphasis> to get the root object properties. Calling <literal>get(0)</literal> will return a "Console" handle with configuration <link linkend="console_properties">properties</link>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -132,7 +132,7 @@
     <refsection>
         <title>Examples</title>
         <para>
-          <programlisting role="example"><![CDATA[
+            <programlisting role="example"><![CDATA[
 // for graphics entities
  clf()
 
@@ -171,7 +171,7 @@ close(); // close figure
 ]]></programlisting>
         </para>
         <para>
-        <programlisting role="example"><![CDATA[
+            <programlisting role="example"><![CDATA[
 // Using path
 f = figure("dockable", "off", "menubar", "none", "toolbar", "none", "infobar_visible", "off", "tag", "mainfig");
 frameHandle = uicontrol("parent", f, "style", "frame", "position", [200 200 190 100], "tag", "myframe");

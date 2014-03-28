@@ -70,3 +70,5 @@ GetConsoleUseDeprecatedLF
 SetConsoleUseDeprecatedLF
 GetUicontrolIcon
 SetUicontrolIcon
+GetConsoleShowHiddenProperties
+SetConsoleShowHiddenProperties

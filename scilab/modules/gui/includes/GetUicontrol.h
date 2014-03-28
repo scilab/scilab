@@ -51,6 +51,7 @@ GUI_IMPEXP int GetUimenuLabel(void* _pvCtx, int iObjUID);
 GUI_IMPEXP int GetUiobjectEnable(void* _pvCtx, int iObjUID);
 GUI_IMPEXP int GetUiobjectForegroundColor(void* _pvCtx, int iObjUID);
 GUI_IMPEXP int GetConsoleShowHiddenHandles(void* _pvCtx, int iObjUID);
+GUI_IMPEXP int GetConsoleShowHiddenProperties(void* _pvCtx, int iObjUID);
 GUI_IMPEXP int GetUicontrolRelief(void* _pvCtx, int iObjUID);
 GUI_IMPEXP int GetConsoleUseDeprecatedLF(void* _pvCtx, int iObjUID);
 GUI_IMPEXP int GetUicontrolTooltipString(void* _pvCtx, int iObjUID);

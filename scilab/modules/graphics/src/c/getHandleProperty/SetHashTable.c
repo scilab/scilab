@@ -211,6 +211,7 @@ static setHashTableCouple propertySetTable[] =
     {"grid_position", set_grid_position_property},
     {"anti_aliasing", set_anti_aliasing_property},
     {"showhiddenhandles", SetConsoleShowHiddenHandles},
+    {"showhiddenproperties", SetConsoleShowHiddenProperties},
     {"usedeprecatedskin", SetConsoleUseDeprecatedLF},
     {"resizefcn", set_figure_resizefcn_property},
     {"tooltipstring", SetUicontrolTooltipString},

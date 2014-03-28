@@ -971,72 +971,79 @@ function %h_p(h)
 
             showHiddenProperties = get(get(0), "ShowHiddenProperties") == "on";
             t = [];
-            t($+1) = "Parent: "+h.parent.type;
-            t($+1) = "Children: "+fmtchildren(h.children);
-            t($+1) = "";
-            t($+1) = "Style = "+h.style;
-            t($+1) = "";
-            t($+1) = "BackgroundColor = "+sci2exp(h.backgroundcolor,0);
+            t($ + 1) = "Parent: " + h.parent.type;
+            t($ + 1) = "Children: " + fmtchildren(h.children);
+            t($ + 1) = "Style = " + h.style;
+            if and(h.style <> ["popupmenu"]) | showHiddenProperties then
+                t($ + 1) = "BackgroundColor = " + sci2exp(h.backgroundcolor,0);
+            end
             if h.style == "frame" | showHiddenProperties then
-                t($+1) = "Border = "+sci2exp(b);
+                t($ + 1) = "Border = " + sci2exp(b);
             end
             if and(h.style <> ["frame", "layer", "text"]) | showHiddenProperties then
-                t($+1) = "Callback = "+h.callback;
-                t($+1) = "Callback_Type = "+sci2exp(h.callback_type,0);
+                t($ + 1) = "Callback = " + h.callback;
+                t($ + 1) = "Callback_Type = " + sci2exp(h.callback_type,0);
             end
-            t($+1) = "Constraints = "+sci2exp(c);
-            t($+1) = "Enable = "+sci2exp(h.enable);
-            if and(h.style <> ["frame", "layer"]) | showHiddenProperties then
-                t($+1) = "FontAngle = "+h.fontangle;
-                t($+1) = "FontName = "+h.fontname;
-                t($+1) = "FontSize = "+sci2exp(h.fontsize);
-                t($+1) = "FontUnits = "+h.fontunits;
-                t($+1) = "FontWeight = "+h.fontweight;
+            t($ + 1) = "Constraints = " + sci2exp(c);
+            t($ + 1) = "Enable = " + sci2exp(h.enable);
+            if and(h.style <> ["image", "slider", "layer"]) | showHiddenProperties then
+                t($ + 1) = "FontAngle = " + h.fontangle;
+                t($ + 1) = "FontName = " + h.fontname;
+                t($ + 1) = "FontSize = " + sci2exp(h.fontsize);
+                t($ + 1) = "FontUnits = " + h.fontunits;
+                t($ + 1) = "FontWeight = " + h.fontweight;
             end
-            t($+1) = "ForegroundColor = "+sci2exp(h.foregroundcolor,0);
+            if and(h.style <> ["frame", "layer", "tab", "slider", "image", "popupmenu"]) | showHiddenProperties then
+                t($ + 1) = "ForegroundColor = " + sci2exp(h.foregroundcolor,0);
+            end
             if or(h.style == ["radiobutton", "checkbox"]) | showHiddenProperties then
-                t($+1) = "Groupname = "+sci2exp(h.groupname);
+                t($ + 1) = "Groupname = " + sci2exp(h.groupname);
             end
-            t($+1) = "HorizontalAlignment = "+h.horizontalalignment;
-            if and(h.style <> ["frame", "layer"]) | showHiddenProperties then
-                t($+1) = "Icon = "+fmtuser_data(h.icon);
+            if and(h.style <> ["frame", "layer", "tab", "listbox", "popupmenu"]) | showHiddenProperties then
+                t($ + 1) = "HorizontalAlignment = " + h.horizontalalignment;
+            end
+            if or(h.style == ["text", "pushbutton", "frame"]) | showHiddenProperties then
+                t($ + 1) = "Icon = " + fmtuser_data(h.icon);
             end
             if h.style == "frame" | showHiddenProperties then
-                t($+1) = "Layout = "+sci2exp(h.layout);
-                t($+1) = "Layout_options = "+sci2exp(l);
+                t($ + 1) = "Layout = " + sci2exp(h.layout);
+                t($ + 1) = "Layout_options = " + sci2exp(l);
             end
             if h.style == "listbox" | showHiddenProperties then
-                t($+1) = "ListboxTop = "+sci2exp(h.listboxtop,0);
+                t($ + 1) = "ListboxTop = " + sci2exp(h.listboxtop,0);
             end
-            t($+1) = "Margins = "+sci2exp(h.margins);
+            t($ + 1) = "Margins = " + sci2exp(h.margins);
             if or(h.style == ["checkbox", "radiobutton", "slider", "spinner", "listbox", "edit"]) | showHiddenProperties then
-                t($+1) = "Max = "+sci2exp(h.max);
-                t($+1) = "Min = "+sci2exp(h.min);
+                t($ + 1) = "Max = " + sci2exp(h.max);
+                t($ + 1) = "Min = " + sci2exp(h.min);
             end
-            t($+1) = "Position = "+sci2exp(h.position,0);
-            t($+1) = "Relief = "+h.relief;
+            t($ + 1) = "Position = " + sci2exp(h.position,0);
+            t($ + 1) = "Relief = " + h.relief;
             if or(h.style == ["frame", "edit"]) | showHiddenProperties then
-                t($+1) = "Scrollable = "+sci2exp(h.scrollable);
+                t($ + 1) = "Scrollable = " + sci2exp(h.scrollable);
             end
             if or(h.style == ["slider", "spinner"]) | showHiddenProperties then
-                t($+1) = "SliderStep = "+sci2exp(h.sliderstep);
+                t($ + 1) = "SliderStep = " + sci2exp(h.sliderstep);
             end
-            if h.style == "slider" | showHiddenProperties then
-                t($+1) = "String = "+fmtuser_data(h.string);
+            if h.style <> "slider" | showHiddenProperties then
+                t($ + 1) = "String = " + fmtuser_data(h.string);
             end
-            t($+1) = "Tag = "+h.tag;
+            t($ + 1) = "Tag = " + h.tag;
             if h.style == "tab" | showHiddenProperties then
-                t($+1) = "Title_position = "+sci2exp(h.title_position);
-                t($+1) = "Title_scroll = "+sci2exp(h.title_scroll);
+                t($ + 1) = "Title_position = " + sci2exp(h.title_position);
+                t($ + 1) = "Title_scroll = " + sci2exp(h.title_scroll);
             end
-            t($+1) = "TooltipString = "+fmtuser_data(h.tooltipstring);
-            t($+1) = "Units = "+h.units;
-            t($+1) = "Userdata = "+fmtuser_data(u);
-            if or(h.style == ["checkbox", "radiobutton", "slider", "spinner", "listbox", "edit", "layer", "tab"]) | showHiddenProperties then
-                t($+1) = "Value = "+sci2exp(h.value,0);
+            t($ + 1) = "TooltipString = " + fmtuser_data(h.tooltipstring);
+            t($ + 1) = "Units = " + h.units;
+            t($ + 1) = "Userdata = " + fmtuser_data(u);
+            if or(h.style == ["checkbox", "radiobutton", "slider", "spinner", "listbox", "edit", "layer", "tab", "popupmenu"]) | showHiddenProperties then
+                t($ + 1) = "Value = " + sci2exp(h.value,0);
             end
-            t($+1) = "VerticalAlignment = "+h.verticalalignment;
-            t($+1) = "Visible = "+sci2exp(h.visible);
+
+            if and(h.style <> ["frame", "layer", "tab", "listbox", "popupmenu"]) | showHiddenProperties then
+                t($ + 1) = "VerticalAlignment = " + h.verticalalignment;
+            end
+            t($ + 1) = "Visible = " + sci2exp(h.visible);
 
             // Console
             // =====================================================================
@@ -1045,6 +1052,7 @@ function %h_p(h)
             t=[t;
             "Children: "+fmtchildren(h.children)
             "ShowHiddenHandles: "+sci2exp(h.showhiddenhandles)
+            "ShowHiddenProperties: "+sci2exp(h.showhiddenproperties)
             "UseDeprecatedSkin: "+sci2exp(h.usedeprecatedskin)
             ]
             // Light

@@ -87,6 +87,9 @@ GUI Refactoring and Improvements
 * New way to access uicontrols using a path containing their "Tag" and their parent(s) "Tag" property.
   See the set and get functions help page for more details.
 
+* New display for uicontrols handles properties. Only properties used for Java rendering are displayed.
+  To display all available properties, use the "ShowHiddenProperties" "Console" property.
+
 
 Graphics Evolutions
 ===================
