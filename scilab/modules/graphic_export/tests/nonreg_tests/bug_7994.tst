@@ -16,10 +16,10 @@
 // xs2emf created empty files on Windows
 
 emfFilename = TMPDIR + "/bug_7994.emf";
-s = scf(0);
 plot3d();
+f=gcf();
 
-xs2emf(0, emfFilename);
+xs2emf(f.figure_id, emfFilename);
 if ~isfile(emfFilename) then pause, end
 info = fileinfo(emfFilename);
 if info(1) < 592080 then pause, end
