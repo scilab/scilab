@@ -20,6 +20,7 @@ extern "C" {
 #include "graphicObjectProperties.h"
 #include "HandleManagement.h"
 #include "BOOL.h"
+#include "expandPathVariable.h"
 }
 
 int sci_saveGui(char *fname, unsigned long fname_len)
@@ -33,6 +34,7 @@ int sci_saveGui(char *fname, unsigned long fname_len)
     int* piType = &iType;
     int* piAddr2 = NULL;
     char* pstFile = NULL;
+    char* pstFullFile = NULL;
 
     int* piAddr3 = NULL;
     int bReserve = 0;
@@ -122,8 +124,11 @@ int sci_saveGui(char *fname, unsigned long fname_len)
         }
     }
 
-    char* ret = xmlsave(iFig, pstFile, (BOOL) bReserve);
+    pstFullFile = expandPathVariable(pstFile);
+
+    char* ret = xmlsave(iFig, pstFullFile, (BOOL) bReserve);
     freeAllocatedSingleString(pstFile);
+    freeAllocatedSingleString(pstFullFile);
 
     if (ret[0] != '\0')
     {

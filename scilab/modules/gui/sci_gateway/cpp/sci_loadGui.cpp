@@ -19,6 +19,8 @@ extern "C" {
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 #include "HandleManagement.h"
+#include "FileExist.h"
+#include "expandPathVariable.h"
 }
 
 int sci_loadGui(char *fname, unsigned long fname_len)
@@ -26,18 +28,12 @@ int sci_loadGui(char *fname, unsigned long fname_len)
     SciErr sciErr;
     int* piAddr = NULL;
     char* pstFile = NULL;
+    char* pstFullFile = NULL;
 
     int iRhs = nbInputArgument(pvApiCtx);
 
     CheckInputArgument(pvApiCtx, 1, 1);
     CheckOutputArgument(pvApiCtx, 1, 1);
-
-    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
-    if (sciErr.iErr)
-    {
-        printError(&sciErr, 0);
-        return 1;
-    }
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
     if (sciErr.iErr)
@@ -60,15 +56,25 @@ int sci_loadGui(char *fname, unsigned long fname_len)
             freeAllocatedSingleString(pstFile);
         }
 
-        Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 2);
+        Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 1);
         return 1;
     }
 
-    int iFig = xmldomload(pstFile);
+    pstFullFile = expandPathVariable(pstFile);
+    if (!FileExist(pstFullFile))
+    {
+        Scierror(999, _("%s: This file %s does not exist.\n"), fname, pstFile);
+        freeAllocatedSingleString(pstFile);
+        freeAllocatedSingleString(pstFullFile);
+        return 0;
+    }
+
+    int iFig = xmldomload(pstFullFile);
     if (iFig < 1)
     {
         Scierror(999, _("%s: can not read file %s.\n"), fname, pstFile);
         freeAllocatedSingleString(pstFile);
+        freeAllocatedSingleString(pstFullFile);
         return 0;
     }
 

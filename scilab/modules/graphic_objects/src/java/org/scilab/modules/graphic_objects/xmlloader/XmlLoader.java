@@ -154,6 +154,9 @@ public class XmlLoader extends DefaultHandler {
                 }
                 currentPath = initialDirectoryPath + File.separator + filePath;
                 FindIconHelper.addThemePath(currentPath);
+                FindIconHelper.addThemePath(initialDirectoryPath);
+
+                f = new File(initialDirectoryPath, filename);
             }
         } else {
             //try to find file in currentPath

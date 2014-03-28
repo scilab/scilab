@@ -236,8 +236,9 @@ public class XMLDomLoader {
 
                     currentPath = initialDirectoryPath + File.separator + filePath;
                     FindIconHelper.addThemePath(currentPath);
+                    FindIconHelper.addThemePath(initialDirectoryPath);
 
-                    f = new File(currentPath + File.separator + filename);
+                    f = new File(initialDirectoryPath, filename);
                 }
             } else {
                 //try to find file in currentPath
