@@ -120,6 +120,7 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
         setBorder(BorderFactory.createEmptyBorder());
         setViewportBorder(BorderFactory.createEmptyBorder());
         setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
         // Initialize display
         setAlignment();
     }
@@ -357,7 +358,12 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
         // $...$            : LateXLabel ( LateX )
         // else             : JLabel
 
-        labelText = newText;
+        if (newText.equals("")) {
+            labelText = " ";
+        } else {
+            labelText = newText;
+        }
+
         if (labelText.startsWith("<math>") && labelText.endsWith("</math>")) {
             boolean mathML = ScilabSpecialTextUtilities.setText(new JLabel(), labelText);
 
@@ -423,11 +429,13 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
                 alignmentPanel.remove(label);
                 label = new IconLabel(IconType.LATEX);
                 setViewportView(label);
+                setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
                 break;
             case MATHML:
                 alignmentPanel.remove(label);
                 label = new IconLabel(IconType.MATHML);
                 setViewportView(label);
+                setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
                 break;
             case HTML: {
                 JTextPane newLabel = new JTextPane();
@@ -451,6 +459,7 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
                 label = newLabel;
                 alignmentPanel.add(label);
                 setViewportView(alignmentPanel);
+                setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
                 break;
             }
             case TEXT: {
@@ -460,6 +469,7 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
                 //refresh icon
                 update(__GO_UI_ICON__, GraphicController.getController().getProperty(getId(), __GO_UI_ICON__));
                 ((JLabel) label).setOpaque(false);
+                setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
                 break;
             }
         }
