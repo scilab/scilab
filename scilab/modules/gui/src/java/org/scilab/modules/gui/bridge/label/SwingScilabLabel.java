@@ -738,7 +738,7 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
         private void update() {
             if (text.equals("") == false) {
                 if (type == IconType.LATEX) {
-                    icon = ScilabSpecialTextUtilities.compileLaTeXExpression(text, (int) fontSize);
+                    icon = new TeXFormula(text).new TeXIconBuilder().setStyle(TeXConstants.STYLE_DISPLAY).setSize(fontSize).build();
                 } else {
                     if (isEnabled()) {
                         icon = ScilabSpecialTextUtilities.compileMathMLExpression(text, (int) fontSize);
