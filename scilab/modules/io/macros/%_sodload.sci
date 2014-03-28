@@ -176,7 +176,7 @@ function %_sodload(%__filename__, varargin)
                 fields(fields=="default_axes") = [];
                 fields(fields=="visible") = [];
             else
-                h = scf();
+                h = gcf();
                 h.visible = "off";
             end
         else
