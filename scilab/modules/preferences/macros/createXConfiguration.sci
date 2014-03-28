@@ -18,6 +18,18 @@ function createXConfiguration()
         return
     end;
 
+    if isdir(SCIHOME) then
+        try
+            fd = mopen(SCIHOME + "/test", "wb");
+            mclose(fd);
+            mdelete(SCIHOME + "/test")
+        catch
+            return
+        end
+    else
+        return
+    end
+
     doc = xmlRead(SCI + "/modules/preferences/etc/XConfiguration.xml");
     modules = ls(SCI + "/modules/*");
     xmls = [];

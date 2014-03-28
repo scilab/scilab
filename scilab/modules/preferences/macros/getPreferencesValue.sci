@@ -28,7 +28,11 @@ function values = getPreferencesValue(xpath, attributes, doc)
     end
 
     if rhs == 2 then
-        doc = xmlRead(SCIHOME + "/XConfiguration.xml");
+        try
+            doc = xmlRead(SCIHOME + "/XConfiguration.xml");
+        catch
+            error(msprintf(gettext("%s: Invalid XConfiguration.xml file.\n"), "getPreferencesValue"));
+        end
     elseif typeof(doc) ~= "XMLDoc" then
         error(msprintf(gettext("%s: Wrong type for input argument #%d: A XMLDoc expected.\n"), "getPreferencesValue", 3));
     end
