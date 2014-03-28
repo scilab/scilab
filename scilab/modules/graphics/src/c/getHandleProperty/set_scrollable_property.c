@@ -26,28 +26,16 @@
 /*------------------------------------------------------------------------*/
 int set_scrollable_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
-    BOOL bScrollable = FALSE;
-    if (valueType != sci_strings)
+    int b = (int)FALSE;
+    BOOL status = FALSE;
+
+    b =  tryGetBooleanValueFromStack(_pvData, valueType, nbRow, nbCol, "scrollable");
+    if (b == NOT_A_BOOLEAN_VALUE)
     {
-        Scierror(999, _("Wrong type for '%s' property: String expected.\n"), "scrollable");
         return SET_PROPERTY_ERROR;
     }
 
-    if (stricmp((char*)_pvData, "on") == 0)
-    {
-        bScrollable = TRUE;
-    }
-    else if (stricmp((char*)_pvData, "off") == 0)
-    {
-        bScrollable = FALSE;
-    }
-    else
-    {
-        Scierror(999, _("Wrong value for '%s' property: %s, %s or %s expected.\n"), "scrollable", "'on'", "'off'");
-        return SET_PROPERTY_ERROR;
-    }
-
-    if (setGraphicObjectProperty(iObjUID, __GO_UI_SCROLLABLE__, &bScrollable, jni_bool, 1) == FALSE)
+    if (setGraphicObjectProperty(iObjUID, __GO_UI_SCROLLABLE__, &b, jni_bool, 1) == FALSE)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "scrollable");
         return SET_PROPERTY_ERROR;
