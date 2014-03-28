@@ -161,6 +161,10 @@ public class SwingScilabSpinner extends JSpinner implements SwingViewObject, Sim
             case __GO_UI_SLIDERSTEP__: {
                 Double max = (Double) controller.getProperty(getId(), __GO_UI_MAX__);
                 Double min = (Double) controller.getProperty(getId(), __GO_UI_MIN__);
+                //wait update of max before update component
+                if (min > max) {
+                    return;
+                }
                 Double[] step = (Double[]) controller.getProperty(getId(), __GO_UI_SLIDERSTEP__);
                 Double[] val = (Double[]) controller.getProperty(getId(), __GO_UI_VALUE__);
                 Double v = (val != null && val.length != 0) ? val[0] : 0.0;
