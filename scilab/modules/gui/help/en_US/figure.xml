@@ -129,6 +129,9 @@ close(h);
             <member>
                 <link linkend="gcf">gcf</link>
             </member>
+            <member>
+                <link linkend="createWindow">createWindow</link>
+            </member>
         </simplelist>
     </refsection>
 </refentry>
