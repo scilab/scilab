@@ -73,7 +73,7 @@ int sci_ClipBoard(char *fname, unsigned long l)
 
                 if ( ( strcmp(param1, "paste") == 0 ) || ( strcmp(param1, "pastespecial") == 0 ) )
                 {
-                    /* Use the Java clipboard (CallScilabBridge.java returns "" if clipbaord could not be read) */
+                    /* Use the Java clipboard (CallScilabBridge.java returns "" if clipboard could not be read) */
                     char *output = getClipboardContents();
 
 

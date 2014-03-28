@@ -52,7 +52,7 @@
             Invoke the Java method (static or not) called methodName of the given object. The result is returned as a mlist typed _JObj.
         </para>
         <para>
-            The polymorphism is handled in using Java Reflection and the autoboxing is handled too so ArrayList.add(1.234) or ArrayList.add("Hello") are allowed. If it exists a method Foo.bar(int), it is possible to write Foo.bar(123) even if 123 is a Scilab double but Foo.bar(double), if it exists, will be choosen.
+            The polymorphism is handled in using Java Reflection and the autoboxing is handled too so ArrayList.add(1.234) or ArrayList.add("Hello") are allowed. If it exists a method Foo.bar(int), it is possible to write Foo.bar(123) even if 123 is a Scilab double but Foo.bar(double), if it exists, will be chosen.
         </para>
     </refsection>
     <refsection>

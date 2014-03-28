@@ -58,7 +58,7 @@ function legends(leg, style, opt, with_box, font_size )
     arect=old_ax.margins;
     r1=old_ax.axes_bounds;
 
-    //create small axes on the top left corner (the axes is choosen very
+    //create small axes on the top left corner (the axes is chosen very
     //small to avoid it can be selected for rotation in new graphic mode
     //case (a little tricky)
     xsetech(wrect=[r1(1),r1(2),r1(3)/1000,r1(4)/1000],frect=[0 0 1,1]/1000,arect=[0,0,0,0])

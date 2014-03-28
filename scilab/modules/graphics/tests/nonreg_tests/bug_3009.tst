@@ -14,14 +14,14 @@
 //
 // <-- Short Description -->
 // Default figure and axes handles "user_data" field is not taken into account when creating a new figure.
-// 
+//
 
 df = gdf();
 df.user_data = list(1,2,3);
 da = gda();
 da.user_data = rand(50,50);
 
-// create a figure and axes and chack their user_data fields
+// create a figure and axes and check their user_data fields
 fig = gcf();
 axes = gca();
 if (fig.user_data <> df.user_data) then pause; end
