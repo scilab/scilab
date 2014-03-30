@@ -176,7 +176,14 @@ function %_sodload(%__filename__, varargin)
                 fields(fields=="default_axes") = [];
                 fields(fields=="visible") = [];
             else
-                h = gcf();
+                [lnums, fnames] = where();
+                ind = grep(fnames, "xload");
+                xload_mode = (ind ~= []);
+                if xload_mode then // See bug #3975
+                    h = gcf();
+                else
+                    h = scf();
+                end
                 h.visible = "off";
             end
         else
