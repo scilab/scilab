@@ -215,10 +215,6 @@
             <literal>z_i</literal>. Vector <literal>p</literal> is found by minimizing
             <literal>G(p,z_1)'WG(p,z_1)+G(p,z_2)'WG(p,z_2)+...+G(p,z_n)'WG(p,z_n)</literal>
         </para>
-        <para>
-            <literal>datafit</literal> is an improved version of
-            <literal>fit_dat</literal>.
-        </para>
     </refsection>
     <refsection>
         <title>Examples</title>

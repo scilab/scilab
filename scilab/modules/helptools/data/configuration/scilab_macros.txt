@@ -1366,7 +1366,6 @@ aplat
 bvodeS
 datafit
 derivative
-fit_dat
 karmarkar
 leastsq
 list2vec

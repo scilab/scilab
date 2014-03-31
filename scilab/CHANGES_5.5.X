@@ -200,6 +200,8 @@ Obsolete & Removed Functions
 
 * draw removed.
 
+* fit_dat removed. Please use datafit instead.
+
 * regress tagged as obsolete. Will be removed in Scilab 5.5.1.
   Please use reglin instead.
 
