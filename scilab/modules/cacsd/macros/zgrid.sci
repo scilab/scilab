@@ -10,7 +10,7 @@
 function []=zgrid(varargin)
     // zgrid(["new",] [,Z,Wn [,colors]])
     // zgrid(Z,Wn [,"new"] [,colors])
-    defaultcolors=[4 12];
+    defaultcolors=[-1 -1];
     defaultbounds=[-1,-1;1,1];
     rhs=argn(2)
     new=%f
@@ -163,6 +163,10 @@ function []=zgrid(varargin)
     // drawn curves if any
     for k=1:nc
         swap_handles(axes.children(k),axes.children(k+1))
+    end
+
+    if nc==0 then
+        axes.data_bounds=defaultbounds
     end
 
     fig.immediate_drawing = immediate_drawing;
