@@ -8,8 +8,6 @@ function demo_tclsci_scale()
 
     tkpath = SCI + "/modules/tclsci/demos/tk/";
     exec(tkpath + "/demredraw.sci");
-    my_handle = scf(100001);
-    clf(my_handle,"reset");
     plot3d();
     handle_demo_scale = gcf();
 
