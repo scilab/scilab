@@ -4,6 +4,7 @@
 // This file is released under the 3-clause BSD license. See COPYING-BSD.
 
 mode(1)
+rand("seed", 0)
 rand("normal")
 // Define the plant
 nx=5;ny=1;nu=3;
@@ -33,7 +34,7 @@ my_handle             = scf(100001);
 clf(my_handle,"reset");
 plot2d(instants',totrack',axesflag=1);
 
-halt();
+halt(_("Press Return to continue ... \n"));
 
 clf(my_handle,"reset");
 
