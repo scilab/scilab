@@ -33,7 +33,7 @@ assert_checkfalse(isfile(a_file_empty));
 //Testing the error message on a call with third argument different than %t or %f
 matfile_notow         = pathconvert("SCI/modules/m2sci/tests/unit_tests/m2sci_empty.mat",%F,%T);
 w_file_notow          = pathconvert("TMPDIR/w_empty.sod",%F,%T);
-errmsg_notow = msprintf(_("%s: Wrong type for argument %d: Boolean matrix expected.\n"), "matfile2sci", 3);
+errmsg_notow = msprintf(_("%s: Wrong type for argument #%d: Boolean matrix expected.\n"), "matfile2sci", 3);
 errmsg_notow2 = msprintf(_("%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"), "matfile2sci", 3, 1, 1);
 assert_checkerror('matfile2sci(matfile_empty, w_file_empty, ""a wrong value"")', errmsg_notow); 
 assert_checkerror('matfile2sci(matfile_empty, w_file_empty, [%t, %f, %t])', errmsg_notow2); 

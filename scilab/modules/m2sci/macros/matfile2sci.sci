@@ -32,11 +32,11 @@ function matfile2sci(mat_file_path, result_file_path, overwrite)
     end
 
     //overwrite must be a boolean
-    if type(overwrite)<>4 
-        error(msprintf(_("%s: Wrong type for argument %d: Boolean matrix expected.\n"), "matfile2sci", 3));
+    if type(overwrite)<>4
+        error(msprintf(_("%s: Wrong type for argument #%d: Boolean matrix expected.\n"), "matfile2sci", 3));
     end
 
-    if size(overwrite, '*')<>1 
+    if size(overwrite, "*")<>1
         error(msprintf(_("%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"), "matfile2sci", 3, 1, 1));
     end
 
