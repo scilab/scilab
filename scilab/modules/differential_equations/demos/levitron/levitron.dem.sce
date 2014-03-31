@@ -4,8 +4,8 @@
 // This file is released under the 3-clause BSD license. See COPYING-BSD.
 
 mode(-1)
-exec SCI/modules/differential_equations/demos/levitron/levitron.sci;
 exec SCI/modules/differential_equations/demos/levitron/levitron_gui.sci;
+exec SCI/modules/differential_equations/demos/levitron/levitron.sci;
 
 
 //Notations
@@ -63,12 +63,14 @@ a*dTheta;
 dPsi*(a*sin(Theta)^2+c*cos(Theta)^2)+c*dPhi*cos(Theta)
 c*(dPhi+dPsi*cos(Theta))]
 
-scf(100001);clf()
 demo_viewCode("levitron.dem.sce");
+levitron_create_gui()
 H=build_levitron(h);
-ax=gca();
 y=[q0;p0];y0=y;y1=y;init=%t;state_changed=%f;
 global y0 y1 state_changed init  Stop
+update_height(1.72);
+update_theta(0.28);
+update_phi(0);
+update_psi(0);
 set_levitron(H,y);
-levitron_gui()
 
