@@ -1918,7 +1918,6 @@ datatipGetEntities
 datatipGetSelected
 datatipGetStruct
 datatipHilite
-datatipInitStruct
 datatipManagerMode
 datatipMove
 datatipRadioCallback

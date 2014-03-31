@@ -97,7 +97,6 @@ function datatipEventhandler(win,x,y,ibut)
             //an existing tip at this point
             ud=datatipGetStruct(curve);// the curve datatips data structure
             if typeof(ud)<>"datatips" then;
-                datatipInitStruct(curve);
                 ud=datatipGetStruct(curve);
             end
             if ud.replace&ud.tips.children<>[] then
@@ -276,7 +275,6 @@ function datatipSetReplaceMode(curve_handle,m)
 
     ud=datatipGetStruct(curve_handle);
     if typeof(ud)<>"datatips" then;
-        datatipInitStruct(curve_handle);
         ud=datatipGetStruct(curve_handle);
     end
     ud.replace=m;
