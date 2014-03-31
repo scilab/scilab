@@ -91,8 +91,9 @@ function demo_basic_function2()
     execstr(expr);
 
     // Demo II.10
-    expr=["rect=xstringl(350,200,''Character string'');";
-    "xrect(rect(1),rect(2),rect(3),rect(4));"]
+    expr=["xset(''mark'', 0, 0);"
+        "rect=xstringl(350,200,''Character string'');";
+        "xrect(rect(1),rect(2),rect(3),rect(4));"]
     messagebox(["[II.6] xstringl";expr],"modal");
     execstr(expr);
 
