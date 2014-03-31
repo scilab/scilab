@@ -31,7 +31,7 @@ function []=Sgrayplot(x,y,z, strf, rect, nax, zminmax, colminmax, mesh, colout)
 
         t=-%pi:0.1:%pi;
         m=sin(t)'*cos(t)
-        f=gcf();
+        f=scf();
         f.color_map = jetcolormap(64);
         f.immediate_drawing = "off";
         colorbar(-1,1);

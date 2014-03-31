@@ -43,6 +43,10 @@ function []=zgrid(varargin)
         wn=defaultwn
         zeta = defaultzeta
         colors = defaultcolors
+        fig = scf();
+        my_plot_desc    = "zgrid";
+        fig.figure_name = my_plot_desc;
+        xtitle(my_plot_desc," "," "," ");
     case 1 then
         zeta =  varargin(1)
         if type(zeta)<>1|~isreal(zeta) then
