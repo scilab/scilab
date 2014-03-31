@@ -26,14 +26,20 @@ public class LogView implements GraphicView {
 
     private LogView() {}
 
-    public static LogView createLogView() {
+    public static void createLogView() {
         if (me == null) {
             me = new LogView();
+            GraphicController.getController().register(me);
         }
-
-        return me;
     }
     
+    public static void deleteLogView() {
+        if (me != null) {
+            GraphicController.getController().unregister(me);
+            me = null;
+        }
+    }
+
     public static HashMap<Integer, String> pierreDeRosette = new HashMap<Integer, String>();
     
     static {

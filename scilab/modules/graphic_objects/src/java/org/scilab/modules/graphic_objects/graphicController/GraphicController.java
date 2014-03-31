@@ -71,9 +71,6 @@ public class GraphicController {
             register(GedTreeView.create());
             register(FlattenTreeView.create());
         }
-        if (infoEnable) {
-            register(LogView.createLogView());
-        }
     }
 
     /**
