@@ -18,6 +18,7 @@ function nicholschart(modules,args,colors)
     fig.immediate_drawing="off";
 
     ax=gca();
+    old_data_bounds = ax.data_bounds;
     nc=size(ax.children,"*")
     if nc==0 then
         ax.data_bounds=[-360,-40;0,40];
@@ -185,4 +186,11 @@ function nicholschart(modules,args,colors)
     end
 
     fig.immediate_drawing=immediate_drawing;
+
+    // reset data_bounds
+    if rhs == 0 then
+        ax.data_bounds=[-360,-40;0,40];
+    else
+        ax.data_bounds = old_data_bounds;
+    end
 endfunction
