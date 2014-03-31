@@ -224,7 +224,6 @@ wavwrite
 TCL_CreateSlave
 gettklib
 sciGUI_init
-winclose
 winlist
 cb_m2sci_gui
 m2sci_gui

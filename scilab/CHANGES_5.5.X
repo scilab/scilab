@@ -202,6 +202,8 @@ Obsolete & Removed Functions
 
 * fit_dat removed. Please use datafit instead.
 
+* winclose removed. Please use close instead.
+
 * regress tagged as obsolete. Will be removed in Scilab 5.5.1.
   Please use reglin instead.
 
