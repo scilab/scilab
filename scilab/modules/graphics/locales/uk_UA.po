@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2014-02-23 08:16+0000\n"
+"PO-Revision-Date: 2014-03-29 18:24+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16948)\n"
+"X-Generator: Launchpad (build 16967)\n"
 "Language: uk\n"
 
 #, c-format
@@ -192,14 +192,12 @@ msgstr ""
 "%d.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати одинарне "
-"значення типу «string».\n"
+msgid "%s: Wrong type for argument #%d: Single string expected.\n"
+msgstr "%s: помилковий тип параметра №%d: слід було вказати один рядок.\n"
 
 #, c-format
-msgid "%s: Could not read property '%s' for root object.\n"
-msgstr "%s: не вдалося прочитати властивість «%s» для кореневого об’єкта.\n"
+msgid "%s: Could not read property '%s' for console object.\n"
+msgstr "%s: не вдалося прочитати властивість «%s» об’єкта консолі.\n"
 
 #, c-format
 msgid "%s: Unable to get useful path from this handle.\n"
@@ -477,10 +475,11 @@ msgstr ""
 "кількість.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: handle or expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A handle or a string expected.\n"
 msgstr ""
-"%s: помилковий тип вхідного параметра №%d: мало бути використано елемент "
-"керування.\n"
+"%s: помилковий тип вхідного параметра №%d: мало бути вказано елемент "
+"керування або рядок.\n"
 
 #, c-format
 msgid "%s: Unable to find handle for path %s.\n"
@@ -1010,6 +1009,10 @@ msgstr ""
 "кольорів буде обрізано.\n"
 
 #, c-format
+msgid "Wrong type for '%s' property: A '%s' expected.\n"
+msgstr "Помилковий тип значення властивості «%s»: мало бути вказано «%s».\n"
+
+#, c-format
 msgid "Wrong type for '%s' property: Handle expected.\n"
 msgstr ""
 "Помилковий тип значення властивості «%s»: слід використовувати елемент "
@@ -1036,6 +1039,12 @@ msgstr ""
 #, c-format
 msgid "'%s' handle does not or no longer exists.\n"
 msgstr "Елемента керування «%s» не існує.\n"
+
+#, c-format
+msgid "Wrong value for '%s' property: A '%s' handle expected.\n"
+msgstr ""
+"Помилкове значення властивості «%s»: мало бути використано елемент керування "
+"«%s».\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: Real or '%s' handle expected.\n"
@@ -1272,6 +1281,13 @@ msgstr ""
 "Помилковий тип властивості «%s»: слід використовувати тип «string».\n"
 
 #, c-format
+msgid ""
+"Wrong size for '%s' property: At most %d columns and %d rows expected.\n"
+msgstr ""
+"Помилкова розмірність значення властивості «%s»: мало бути не більше %d "
+"стовпчиків і не більше %d рядків.\n"
+
+#, c-format
 msgid "Wrong size for '%s' property: At least %d elements expected.\n"
 msgstr ""
 "Помилкова розмірність значення властивості «%s»: слід використовувати "
@@ -1442,6 +1458,21 @@ msgstr "Інше"
 
 msgid "Colormap"
 msgstr "Карта кольорів"
+
+msgid "Matplot"
+msgstr "Matplot"
+
+msgid "Java Image"
+msgstr "Зображення Java"
+
+msgid "Classical Matplot"
+msgstr "Класичний Matplot"
+
+msgid "Classical Matplot1"
+msgstr "Класичний Matplot1"
+
+msgid "Mandelbrot"
+msgstr "Мандельброт"
 
 msgid "Jet"
 msgstr "Агат"
@@ -1743,10 +1774,11 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: A vector of 'Figure' handle expected."
+"%s: Wrong type for input argument #%d: A vector of 'Figure' or 'Frame' "
+"handle expected."
 msgstr ""
-"%s: помилковий тип вхідного параметра №%d: мало бути вказано вектор "
-"елементів керування «Figure»."
+"%s: помилковий тип вхідного параметра №%d: мало бути вказано вектор елемента "
+"керування «Figure» або «Frame»."
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String array expected.\n"
@@ -1870,65 +1902,10 @@ msgstr ""
 "параметрів."
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A integer expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: мало бути використано цілий тип.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d, %d or %d expected."
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: мало бути %d, %d або %d "
-"параметрів."
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A integer or a string expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: мало бути використано цілий або "
-"рядковий тип.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A border or a string expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: мало бути використано тип рамки "
-"або рядка.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A Font Border expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: мало бути використано рамку "
-"шрифту.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d or %d expected."
-msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d або %d."
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A border expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: мало бути використано рамку.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected."
-msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d."
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: мало бути вказано матрицю з "
 "дійсними елементами.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A integer value expected.\n"
-msgstr ""
-"%s: помилковий тип параметра №%d: мало бути використано ціле значення.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: %s or %sexpected.\n"
-msgstr ""
-"%s: помилкове значення вхідного параметра №%d: мало бути використано %s або "
-"%s.\n"
 
 msgid "Delete all datatips"
 msgstr "Вилучити всі позначки даних"
@@ -2495,6 +2472,10 @@ msgid ""
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати матрицю з "
 "дійсних або рядкових значень.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d or %d expected."
+msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d або %d."
 
 #, c-format
 msgid ""

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2014-02-17 14:55+0000\n"
+"PO-Revision-Date: 2014-03-30 14:14+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16948)\n"
+"X-Generator: Launchpad (build 16967)\n"
 "Language: ja\n"
 
 #, c-format
@@ -264,8 +264,8 @@ msgstr "(, [, ..."
 msgid "if, function, ..."
 msgstr "if, function, ..."
 
-msgid "Line numbering;Off;Normal;Whereami compatible"
-msgstr "行番号付け; オフ;通常; whereami 互換"
+msgid "Line numbering;Off;Normal;Local numbering"
+msgstr "行番号付け;オフ;通常;ローカル番号付け"
 
 msgid "Highlight current line"
 msgstr "現在行をハイライト"
@@ -288,8 +288,8 @@ msgstr "タブを新規ウインドウに切り離す"
 msgid "Copy selection in a new tab"
 msgstr "選択部を新規タブにコピー"
 
-msgid "Split View;Off;Horizontally;Vertically"
-msgstr "分割ビュー;オフ;水平方向;垂直方向"
+msgid "Split View;Off;Split in two columns;Split in two rows"
+msgstr "分割表示;オフ;2列に分割;2行に分割"
 
 msgid "Execute"
 msgstr "実行"
@@ -898,6 +898,25 @@ msgstr "ファイル %s を保存できません... バックアップ処理を�
 
 msgid "Backup finished..."
 msgstr "バックアップを終了しました..."
+
+#, c-format
+msgid "The directory %s does not exist. Do you want to create it?"
+msgstr "ディレクトリ %s が存在しません. 作成しますか?"
+
+#, c-format
+msgid "The directory %s cannot be created. Please check your access rights."
+msgstr "ディレクトリ %s を作成できませんでした. アクセス権を確認してください."
+
+#, c-format
+msgid "Impossible to write a file in %s. Please check your access rights."
+msgstr "ファイルを %s に書き込めません. アクセス権を確認してください."
+
+#, c-format
+msgid "Invalid directory name: %s."
+msgstr "ディレクトリ名が無効です: %s."
+
+msgid "SciNotes autosave"
+msgstr "SciNotes自動保存"
 
 #, c-format
 msgid "%s occurences found."

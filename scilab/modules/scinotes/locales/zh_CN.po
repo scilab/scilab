@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16948)\n"
+"X-Generator: Launchpad (build 16967)\n"
 "Language: \n"
 
 #, c-format
@@ -264,8 +264,8 @@ msgstr "(, [, ..."
 msgid "if, function, ..."
 msgstr "if, function, ..."
 
-msgid "Line numbering;Off;Normal;Whereami compatible"
-msgstr "行号；关；普通；Whereami兼容"
+msgid "Line numbering;Off;Normal;Local numbering"
+msgstr ""
 
 msgid "Highlight current line"
 msgstr "高亮显示当前行"
@@ -288,8 +288,8 @@ msgstr "将标签页分离到新窗口"
 msgid "Copy selection in a new tab"
 msgstr "将所选内容复制到新标签页"
 
-msgid "Split View;Off;Horizontally;Vertically"
-msgstr "分割视图；关闭；水平；垂直"
+msgid "Split View;Off;Split in two columns;Split in two rows"
+msgstr ""
 
 msgid "Execute"
 msgstr "执行"
@@ -898,6 +898,25 @@ msgstr "不能保存文件%s... 停止备份"
 
 msgid "Backup finished..."
 msgstr "备份结束..."
+
+#, c-format
+msgid "The directory %s does not exist. Do you want to create it?"
+msgstr ""
+
+#, c-format
+msgid "The directory %s cannot be created. Please check your access rights."
+msgstr ""
+
+#, c-format
+msgid "Impossible to write a file in %s. Please check your access rights."
+msgstr ""
+
+#, c-format
+msgid "Invalid directory name: %s."
+msgstr ""
+
+msgid "SciNotes autosave"
+msgstr ""
 
 #, c-format
 msgid "%s occurences found."

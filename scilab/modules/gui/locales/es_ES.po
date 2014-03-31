@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16948)\n"
+"X-Generator: Launchpad (build 16967)\n"
 "Language: es\n"
 
 #, c-format
@@ -128,6 +128,22 @@ msgstr ""
 #, c-format
 msgid "Wrong value for '%s' property: '%s' or '%s' expected."
 msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A double vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong size for '%s' property: %d elements expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"Wrong value for '%s' property: A string or a 1 x %d real row vector "
+"expected.\n"
+msgstr ""
+"Valor incorrecto para la propiedad '%s': Se esperaba un vector fila real de "
+"1 x %d, o un string.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real expected.\n"
@@ -284,12 +300,12 @@ msgid "%s: Unknown property: %s for '%s' handles.\n"
 msgstr "%s: Propiedad desconocida: %s para manejadores '%s'.\n"
 
 #, c-format
-msgid "%s: Could not create 'Uicontrol' handle.\n"
-msgstr "%s: No se pudo crear un manejador 'Uicontrol'.\n"
+msgid "%s: Wrong type for argument #%d: A string or boolean expected.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: A tlist expected.\n"
-msgstr ""
+msgid "%s: Could not create 'Uicontrol' handle.\n"
+msgstr "%s: No se pudo crear un manejador 'Uicontrol'.\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
@@ -390,11 +406,9 @@ msgstr "Solicitud de Valores Múltiples de Scilab"
 
 #, c-format
 msgid ""
-"%s: Wrong size for input argument #%d: It must have same dimensions that "
+"%s: Wrong size for input argument #%d: It must have same dimensions as "
 "argument #%d.\n"
 msgstr ""
-"%s: Tamaño incorrecto para el argumento de entrada #%d: Debe tener las "
-"mismas dimensiones que el argumento #%d\n"
 
 #, c-format
 msgid ""
@@ -514,6 +528,22 @@ msgid ""
 msgstr ""
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d: A single handle expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: The handle is not or no more valid.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Figure handle expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: %s.\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "%s: An exception occurred: %s\n"
 "%s\n"
@@ -595,39 +625,6 @@ msgstr "Guardar..."
 
 msgid "&Export to..."
 msgstr "&Exportar a..."
-
-msgid "P&NG"
-msgstr "P&NG"
-
-msgid "&JPG"
-msgstr "&JPG"
-
-msgid "&GIF"
-msgstr "&GIF"
-
-msgid "&PPM"
-msgstr "&PPM"
-
-msgid "&BMP"
-msgstr "&BMP"
-
-msgid "&Vectorial export to..."
-msgstr ""
-
-msgid "&PDF"
-msgstr "&PDF"
-
-msgid "&PS"
-msgstr ""
-
-msgid "&SVG"
-msgstr "&SVG"
-
-msgid "&EMF"
-msgstr "&EMF"
-
-msgid "&EPS"
-msgstr "&EPS"
 
 msgid "&Copy to clipboard"
 msgstr "&Copiar al portapapeles"
@@ -917,9 +914,6 @@ msgstr "Seleccione un archivo para escribir"
 msgid "Figure saved.\n"
 msgstr "Figura guardada.\n"
 
-msgid "Select a file name"
-msgstr "Seleccione un nombre de archivo"
-
 msgid "Colors"
 msgstr ""
 
@@ -1005,6 +999,24 @@ msgid "Use default mailer"
 msgstr ""
 
 msgid "Command for mailer: "
+msgstr ""
+
+msgid "Proxy settings"
+msgstr ""
+
+msgid "Enable proxy"
+msgstr ""
+
+msgid "Host: "
+msgstr ""
+
+msgid "Port: "
+msgstr ""
+
+msgid "User: "
+msgstr ""
+
+msgid "Password: "
 msgstr ""
 
 #, c-format
@@ -1109,6 +1121,10 @@ msgstr ""
 "Tamaño incorrecto para la propiedad '%s': Se esperaba '%s', '%s' o '%s'\n"
 
 #, c-format
+msgid "Wrong type for '%s' property: String expected.\n"
+msgstr ""
+
+#, c-format
 msgid "Wrong value for '%s' property: A real expected.\n"
 msgstr "Valor incorrecto para la propiedad '%s': Se esperaba un real.\n"
 
@@ -1130,14 +1146,6 @@ msgstr ""
 
 #, c-format
 msgid ""
-"Wrong value for '%s' property: A string or a 1 x %d real row vector "
-"expected.\n"
-msgstr ""
-"Valor incorrecto para la propiedad '%s': Se esperaba un vector fila real de "
-"1 x %d, o un string.\n"
-
-#, c-format
-msgid ""
 "Wrong type for '%s' property: A string or a 1 x %d real row vector "
 "expected.\n"
 msgstr ""
@@ -1146,27 +1154,9 @@ msgstr ""
 
 #, c-format
 msgid ""
-"Wrong type for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
+"Wrong type for '%s' property: '%s', '%s', '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
 msgstr ""
-"Tipo incorrecto para la propiedad '%s': Se esperaba '%s', '%s', '%s', '%s', "
-"'%s' o '%s'.\n"
-
-#, c-format
-msgid ""
-"Wrong size for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
-"expected.\n"
-msgstr ""
-"Tamaño incorrecto para la propiedad '%s': Se esperaba '%s', '%s', '%s', "
-"'%s', '%s' o '%s'.\n"
-
-#, c-format
-msgid ""
-"Wrong value for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
-"expected.\n"
-msgstr ""
-"Valor incorrecto para la propiedad '%s' : Se esperaba '%s', '%s', '%s', "
-"'%s', '%s' o '%s'.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: A 1 x %d real row vector expected.\n"
@@ -1230,6 +1220,10 @@ msgstr ""
 msgid ""
 "Warning: '%s' 'Value' property should be an integer, the value will be "
 "truncated.\n"
+msgstr ""
+
+#, c-format
+msgid "'%s' value must be between 0 and %d.\n"
 msgstr ""
 
 #, c-format
@@ -1376,8 +1370,8 @@ msgstr "Exportación-Sin-Nombre"
 msgid "Export"
 msgstr "Exportar"
 
-msgid "Preview"
-msgstr "Vista previa"
+msgid "Preview selected image file"
+msgstr ""
 
 msgid "Replace existing file?"
 msgstr "¿Reemplazar el archivo existente?"
@@ -1418,6 +1412,9 @@ msgstr "Monoespaciado"
 msgid "SciNotes compatible"
 msgstr "Compatible con SciNotes"
 
+msgid "Preview"
+msgstr "Vista previa"
+
 msgid "Ok"
 msgstr "Ok"
 
@@ -1449,6 +1446,33 @@ msgid ""
 "Left click on the curve creates a datatip and right click on the datatip "
 "removes it."
 msgstr ""
+
+msgid "Delete all the datatips"
+msgstr ""
+
+msgid "Delete all the datatips on the selected curve"
+msgstr ""
+
+msgid "Delete the nearest datatip"
+msgstr ""
+
+msgid "Delete the last datatip"
+msgstr ""
+
+msgid "Edit curve datatip display function"
+msgstr ""
+
+msgid "Enable interpolation"
+msgstr ""
+
+msgid "Disable interpolation"
+msgstr ""
+
+msgid "Display function name"
+msgstr ""
+
+msgid "OK"
+msgstr "OK"
 
 msgid "Insert"
 msgstr ""
@@ -2163,9 +2187,6 @@ msgstr ""
 msgid "Z Shift"
 msgstr ""
 
-msgid "OK"
-msgstr "OK"
-
 msgid "Yes"
 msgstr "Si"
 
@@ -2280,6 +2301,76 @@ msgstr "Error. Se a capturado una señal.\n"
 msgid "Control Plot3d"
 msgstr "Control Plot3d"
 
+msgid "Control Panel"
+msgstr ""
+
+msgid "Rotation angle"
+msgstr ""
+
+msgid "Colormap"
+msgstr ""
+
+msgid "Show / Hide"
+msgstr ""
+
+msgid "messagebox"
+msgstr ""
+
+msgid "x_choose"
+msgstr ""
+
+msgid "x_dialog"
+msgstr ""
+
+msgid "x_mdialog"
+msgstr ""
+
+msgid "Simple example of message"
+msgstr ""
+
+msgid "Button 1Button 2"
+msgstr ""
+
+msgid "Button 1 clicked."
+msgstr ""
+
+msgid "Button 2 clicked"
+msgstr ""
+
+msgid ""
+"Message: Selection (double-click on an item --> returns the item number)"
+msgstr ""
+
+msgid "Item selected: "
+msgstr ""
+
+msgid "Message: enter a value"
+msgstr ""
+
+msgid "Value entered: "
+msgstr ""
+
+msgid "Message"
+msgstr ""
+
+msgid "first row"
+msgstr ""
+
+msgid "Values entered: "
+msgstr ""
+
+msgid "row"
+msgstr ""
+
+msgid "col"
+msgstr ""
+
+msgid "Matrix to edit"
+msgstr ""
+
+msgid "Matrix entered: "
+msgstr ""
+
 msgid "GUI"
 msgstr "IGU"
 
@@ -2296,6 +2387,12 @@ msgid "Uicontrols with LaTeX/MathML"
 msgstr ""
 
 msgid "Show images with uicontrols "
+msgstr ""
+
+msgid "Listboxes and Popupmenus"
+msgstr ""
+
+msgid "Uicontrols rendering"
 msgstr ""
 
 msgid "<Enter color name here>"
@@ -2462,6 +2559,60 @@ msgid ""
 msgstr ""
 "%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un manejador o "
 "un real.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected."
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected."
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A integer expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d, %d or %d expected."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A integer or a string expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A border or a string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A Font Border expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d or %d expected."
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A border expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected."
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A integer value expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"

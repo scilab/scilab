@@ -9,13 +9,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2014-02-01 09:15+0000\n"
+"PO-Revision-Date: 2014-03-07 20:14+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16948)\n"
+"X-Generator: Launchpad (build 16967)\n"
 "Language: uk\n"
 
 msgid "X,Y,A and B"
@@ -497,6 +497,18 @@ msgstr ""
 "значення.\n"
 
 #, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Same column dimensions "
+"expected.\n"
+msgstr ""
+"%s: несумісні вхідні параметри №%d і №%d: слід використовувати однакову "
+"розмірність за стовпчиками.\n"
+
+#, c-format
+msgid "%s: No NaNs detected, please use %s() instead.\n"
+msgstr "%s: NaN-ів не виявлено, вам варто скористатися %s().\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Numerical expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати числовий "
@@ -514,12 +526,8 @@ msgstr ""
 "значення."
 
 #, c-format
-msgid ""
-"%s: Incompatible input arguments #%d and #%d: Same column dimensions "
-"expected.\n"
-msgstr ""
-"%s: несумісні вхідні параметри №%d і №%d: слід використовувати однакову "
-"розмірність за стовпчиками.\n"
+msgid "%s: NaNs detected, please use %s() instead.\n"
+msgstr "%s: виявлено NaN-и, скористайтеся краще %s().\n"
 
 #, c-format
 msgid "%s: Wrong type for input arguments: Numerical expected.\n"

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2014-02-19 12:56+0000\n"
-"Last-Translator: Julie PAUL <Unknown>\n"
+"PO-Revision-Date: 2014-03-31 09:19+0000\n"
+"Last-Translator: Vincent Couvert <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16948)\n"
+"X-Generator: Launchpad (build 16967)\n"
 "Language: fr\n"
 
 #, c-format
@@ -717,7 +717,7 @@ msgid "Middle"
 msgstr "Milieu"
 
 msgid "Border Color"
-msgstr "Couleur de bordure"
+msgstr "Couleur du cadre"
 
 msgid "Fill Color"
 msgstr "Couleur de remplissage"
@@ -938,6 +938,12 @@ msgstr "Fonction logique ET"
 msgid "Logic NOR gate"
 msgstr "Fonction logique NON-OU"
 
+msgid "If Then Else"
+msgstr "If Then Else"
+
+msgid "And"
+msgstr "And"
+
 msgid "Automotive Suspension"
 msgstr "Suspension automobile"
 
@@ -1009,6 +1015,9 @@ msgstr "Bloc Xcos IFTHEL_f"
 
 msgid "Goto/From blocks"
 msgstr "Blocs Goto/From"
+
+msgid "Event demos"
+msgstr "Démonstrations de blocs d'évènement"
 
 #, c-format
 msgid "%s: Unable to export %s to %s.\n"

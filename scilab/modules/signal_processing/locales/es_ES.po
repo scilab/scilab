@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16948)\n"
+"X-Generator: Launchpad (build 16967)\n"
 "Language: es\n"
 
 #, c-format
@@ -137,8 +137,8 @@ msgstr "Diseño de filtro FIR Minimax"
 msgid "Discrete IIR filter"
 msgstr "Filtro IIR discreto"
 
-msgid "Wiegner filter"
-msgstr "Filtro Wiegner"
+msgid "Wiener filter"
+msgstr ""
 
 msgid "Bode plots"
 msgstr "Diagramas de Bode"

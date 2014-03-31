@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16948)\n"
+"X-Generator: Launchpad (build 16967)\n"
 "Language: \n"
 
 msgid "X,Y,A and B"
@@ -412,6 +412,16 @@ msgid "%s: Wrong type for input arguments #%d: Numerical expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为数字。\n"
 
 #, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Same column dimensions "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: No NaNs detected, please use %s() instead.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Numerical expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为数字。\n"
 
@@ -424,9 +434,7 @@ msgid "%s: Wrong type for input argument #%d: Boolean expected."
 msgstr "%s：输入参数#%d的类型错误：应该为布尔值。"
 
 #, c-format
-msgid ""
-"%s: Incompatible input arguments #%d and #%d: Same column dimensions "
-"expected.\n"
+msgid "%s: NaNs detected, please use %s() instead.\n"
 msgstr ""
 
 #, c-format

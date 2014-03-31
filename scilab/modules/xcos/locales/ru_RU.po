@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16948)\n"
+"X-Generator: Launchpad (build 16967)\n"
 "Language: ru\n"
 
 #, c-format
@@ -933,6 +933,12 @@ msgstr "Логический элемент И"
 msgid "Logic NOR gate"
 msgstr "Логический элемент НЕ - ИЛИ"
 
+msgid "If Then Else"
+msgstr ""
+
+msgid "And"
+msgstr ""
+
 msgid "Automotive Suspension"
 msgstr "Автомобильная подвеска"
 
@@ -1004,6 +1010,9 @@ msgstr "блок _IF_ Xcos"
 
 msgid "Goto/From blocks"
 msgstr "Блоки Goto/From"
+
+msgid "Event demos"
+msgstr ""
 
 #, c-format
 msgid "%s: Unable to export %s to %s.\n"

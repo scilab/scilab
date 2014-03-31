@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16948)\n"
+"X-Generator: Launchpad (build 16967)\n"
 "Language: pl\n"
 
 msgid "X,Y,A and B"
@@ -445,6 +445,16 @@ msgid "%s: Wrong type for input arguments #%d: Numerical expected.\n"
 msgstr "%s: Nieprawidłowy typ argumentu wejściowego nr %d: Oczekuje liczb.\n"
 
 #, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Same column dimensions "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: No NaNs detected, please use %s() instead.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Numerical expected.\n"
 msgstr ""
 "%s: Nieprawidłowy typ argumentu wejściowego nr %d: Oczekuje wartości "
@@ -461,9 +471,7 @@ msgstr ""
 "logicznej."
 
 #, c-format
-msgid ""
-"%s: Incompatible input arguments #%d and #%d: Same column dimensions "
-"expected.\n"
+msgid "%s: NaNs detected, please use %s() instead.\n"
 msgstr ""
 
 #, c-format

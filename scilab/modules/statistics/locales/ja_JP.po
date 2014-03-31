@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2014-02-11 01:11+0000\n"
+"PO-Revision-Date: 2014-03-08 14:20+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16948)\n"
+"X-Generator: Launchpad (build 16967)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -494,6 +494,16 @@ msgid "%s: Wrong type for input arguments #%d: Numerical expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 数値を指定してください.\n"
 
 #, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Same column dimensions "
+"expected.\n"
+msgstr "%s: 入力引数 #%d と #%d に互換性がありません: 列の数を同じにしてください.\n"
+
+#, c-format
+msgid "%s: No NaNs detected, please use %s() instead.\n"
+msgstr "%s: NaNが検出できませんでした, かわりに %s() を使用してください.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Numerical expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 数値を指定してください.\n"
 
@@ -506,10 +516,8 @@ msgid "%s: Wrong type for input argument #%d: Boolean expected."
 msgstr "%s: 入力引数 #%d の型が間違っています: 論理値を指定してください."
 
 #, c-format
-msgid ""
-"%s: Incompatible input arguments #%d and #%d: Same column dimensions "
-"expected.\n"
-msgstr "%s: 入力引数 #%d と #%d に互換性がありません: 列の数を同じにしてください.\n"
+msgid "%s: NaNs detected, please use %s() instead.\n"
+msgstr "%s: NaNが検出されました, かわりに %s() を使用してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input arguments: Numerical expected.\n"

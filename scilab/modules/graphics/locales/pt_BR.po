@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16948)\n"
+"X-Generator: Launchpad (build 16967)\n"
 "Language: pt_BR\n"
 
 #, c-format
@@ -176,14 +176,12 @@ msgstr ""
 "esperava-se %d.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
+msgid "%s: Wrong type for argument #%d: Single string expected.\n"
 msgstr ""
-"%s: Tipo incorreto para o %dº argumento de entrada: esperava-se um único "
-"texto.\n"
 
 #, c-format
-msgid "%s: Could not read property '%s' for root object.\n"
-msgstr "%s: Não foi possível ler a propriedade '%s' do objeto raiz.\n"
+msgid "%s: Could not read property '%s' for console object.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Unable to get useful path from this handle.\n"
@@ -443,7 +441,8 @@ msgid "%s: Wrong number of input argument(s) : an odd number is expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: handle or expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A handle or a string expected.\n"
 msgstr ""
 
 #, c-format
@@ -933,6 +932,10 @@ msgstr ""
 "cores serão suprimidos.\n"
 
 #, c-format
+msgid "Wrong type for '%s' property: A '%s' expected.\n"
+msgstr ""
+
+#, c-format
 msgid "Wrong type for '%s' property: Handle expected.\n"
 msgstr ""
 "Tipo incorreto para a propriedade '%s': esperava-se um manipulador.\n"
@@ -953,6 +956,10 @@ msgstr "Tamanho incorreto para a propriedade '%s': esperava-se um escalar.\n"
 #, c-format
 msgid "'%s' handle does not or no longer exists.\n"
 msgstr "O manipulador \"%s\" não existe ou não existe mais.\n"
+
+#, c-format
+msgid "Wrong value for '%s' property: A '%s' handle expected.\n"
+msgstr ""
 
 #, c-format
 msgid "Wrong type for '%s' property: Real or '%s' handle expected.\n"
@@ -1159,6 +1166,11 @@ msgid "Wrong type for '%s' property: A string expected.\n"
 msgstr "Tipo incorreto para a propriedade '%s': esperava-se um texto.\n"
 
 #, c-format
+msgid ""
+"Wrong size for '%s' property: At most %d columns and %d rows expected.\n"
+msgstr ""
+
+#, c-format
 msgid "Wrong size for '%s' property: At least %d elements expected.\n"
 msgstr ""
 "Tamanho incorreto para a propriedade '%s': esperava-se ao menos %d "
@@ -1321,6 +1333,21 @@ msgstr "Miscelânea"
 
 msgid "Colormap"
 msgstr "Mapa de cores"
+
+msgid "Matplot"
+msgstr ""
+
+msgid "Java Image"
+msgstr ""
+
+msgid "Classical Matplot"
+msgstr ""
+
+msgid "Classical Matplot1"
+msgstr ""
+
+msgid "Mandelbrot"
+msgstr ""
 
 msgid "Jet"
 msgstr "Jato"
@@ -1572,7 +1599,8 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: A vector of 'Figure' handle expected."
+"%s: Wrong type for input argument #%d: A vector of 'Figure' or 'Frame' "
+"handle expected."
 msgstr ""
 
 #, c-format
@@ -1692,50 +1720,7 @@ msgid "%s: Wrong number of input argument(s): At least %d expected."
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A integer expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d, %d or %d expected."
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A integer or a string expected.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A border or a string expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A Font Border expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d or %d expected."
-msgstr ""
-"%s: Quantidade incorreta de argumentos de entrada: esperava-se %d ou %d."
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A border expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected."
-msgstr ""
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A integer value expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: %s or %sexpected.\n"
 msgstr ""
 
 msgid "Delete all datatips"
@@ -2248,6 +2233,11 @@ msgid ""
 "%s: Wrong type for input argument #%d: A real matrix or a string matrix "
 "expected.\n"
 msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d or %d expected."
+msgstr ""
+"%s: Quantidade incorreta de argumentos de entrada: esperava-se %d ou %d."
 
 #, c-format
 msgid ""

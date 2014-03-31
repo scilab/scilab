@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2014-01-24 15:10+0000\n"
+"PO-Revision-Date: 2014-03-26 01:01+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16948)\n"
+"X-Generator: Launchpad (build 16967)\n"
 "Language: ru\n"
 
 #, c-format
@@ -143,8 +143,8 @@ msgstr "Минимаксная схема КИХ-фильтра"
 msgid "Discrete IIR filter"
 msgstr "Дискретный БИХ-фильтр"
 
-msgid "Wiegner filter"
-msgstr "Фильтр Винера"
+msgid "Wiener filter"
+msgstr "Винеровский фильтр"
 
 msgid "Bode plots"
 msgstr "Диаграммы Боде"
@@ -329,17 +329,20 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
-msgstr ""
+msgstr "%s: Неверное количество аргументов: Ожидалось %d или %d.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A real or polynomial matrix or a "
 "rational expected.\n"
 msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидалась матрица вещественных или "
+"полиномиальных значений или рациональное число.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A discrete system expected.\n"
 msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидалась дискретная система.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
