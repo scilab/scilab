@@ -10,6 +10,8 @@
 
 function generated_files = xmltochm(dirs,titles,directory_language,default_language)
 
+    warnobsolete(scilabRemovedVersion="5.5.1");
+
     all_scilab_help    = %F;
 
     if getos() <> "Windows" then

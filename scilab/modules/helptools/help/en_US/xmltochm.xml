@@ -13,7 +13,9 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xmltochm" xml:lang="en">
     <refnamediv>
         <refname>xmltochm</refname>
-        <refpurpose>converts xml Scilab help files to Microsoft Compressed HTML format (Windows)</refpurpose>
+        <refpurpose>
+            converts xml Scilab help files to Microsoft Compressed HTML format (Windows). <emphasis role="bold">This function is obsolete.</emphasis>
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -126,5 +128,16 @@ end
                 <link linkend="add_help_chapter">add_help_chapter</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revdescription>
+                    Function tagged obsolete. Will be removed in 5.5.1.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

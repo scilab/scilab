@@ -218,6 +218,8 @@ Obsolete & Removed Functions
 * numdiff and derivative tagged as obsolete. Will be removed in Scilab 6.0.0.
   Please use numderivative instead.
 
+* xmltochm tagged as obsolete. Will be removed in Scilab 5.5.1.
+
 
 Compilation
 ============
