@@ -160,7 +160,15 @@ detect_os() {
         OS=$(uname -s) # Retrieve the Operating System
     fi
     if test "${MODEL}" = ""; then
-        MODEL=$(uname -m) # Retrieve the model
+        if ! long_size=$(getconf LONG_BIT); then
+            if test $long_size = "32"; then
+                MODEL=i386
+            else
+                MODEL=x86_64
+            fi
+        else
+            MODEL=$(uname -m) # Retrieve the model
+        fi
     fi
 
     if test $SCIVERBOSE -ne 0; then
