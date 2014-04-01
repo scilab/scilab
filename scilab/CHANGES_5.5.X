@@ -222,6 +222,8 @@ Obsolete & Removed Functions
 
 * xmltochm tagged as obsolete. Will be removed in Scilab 5.5.1.
 
+* getfont, getmark, getlinestyle and getsymbol removed. Please use ged instead.
+
 
 Compilation
 ============

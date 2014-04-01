@@ -203,10 +203,7 @@ endfunction
 function [sd1]=symbs(sd,del)
     [lhs,rhs]=argn(0);sd1=[];
     if rhs<=0 then
-        c=getsymbol("Choose a mark");
-        if c==[] then
-            c=xget("mark")
-        end
+        c=xget("mark")
         n1=c(1);dime=c(2)
         sd1=list("symbs",c(1),c(2));
     else

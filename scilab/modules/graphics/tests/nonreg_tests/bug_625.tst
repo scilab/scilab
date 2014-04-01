@@ -17,4 +17,4 @@
 //    Side effect: getmark() is very verbose and does not show
 //    scaled marks.
 
-if execstr('xget(''mark size'')','errcatch')<>0 then pause,end
+if execstr("xget(''mark size'')","errcatch")<>0 then pause,end

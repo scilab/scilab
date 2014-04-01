@@ -14,4 +14,4 @@
 //    xget does not recognise (anymore) some of its valid keys.
 //    Side effect: getmark() is very verbose and does not show
 //    scaled marks.
-if execstr('xget(''mark size'')','errcatch')<>0 then bugmes();quit;end
+if execstr("xget(''mark size'')","errcatch")<>0 then bugmes();quit;end

@@ -1836,10 +1836,6 @@ getSurfPropertyName
 getTitleLabelPropertyNam
 get_figure_handle
 getcolor
-getfont
-getlinestyle
-getmark
-getsymbol
 ghdl2tree
 ghdl_fields
 graduate

@@ -17,7 +17,7 @@ import java.awt.Color;
 import com.mxgraph.util.mxConstants;
 
 /**
- * Font list from Scilab getfont() and xlfont().
+ * Font list from Scilab xlfont().
  */
 public enum Font {
     /** xlfont(0) */
