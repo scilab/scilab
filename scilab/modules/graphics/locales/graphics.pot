@@ -15,9 +15,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2014-03-28 17:39+0100\n"
+"Revision-Date: 2014-04-01 12:32+0100\n"
 
-# File: sci_gateway/c/gw_graphics.c, line: 131
+# File: sci_gateway/c/gw_graphics.c, line: 134
 # File: src/nographics/nographics.c, line: 83
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
@@ -400,6 +400,26 @@ msgid "%s: Wrong type for input argument #%d: 2D array of strings expected.\n"
 msgstr ""
 
 #
+# File: sci_gateway/c/sci_addcolor.c, line: 65
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real vector 1x3 expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_addcolor.c, line: 78
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real vector nx3 expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_addcolor.c, line: 85
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Value must be between 0.0 and 1.0 "
+"expected.\n"
+msgstr ""
+
+#
 # File: sci_gateway/c/sci_champ.c, line: 79
 #, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
@@ -458,6 +478,39 @@ msgstr ""
 # File: sci_gateway/c/sci_xpolys.c, line: 148
 #, c-format
 msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_color.c, line: 35
+# File: sci_gateway/c/sci_xrect.c, line: 206
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_color.c, line: 53
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_color.c, line: 62
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A known color expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_color.c, line: 88
+# File: sci_gateway/c/sci_xlfont.c, line: 353
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_color.c, line: 95
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"
 msgstr ""
 
 #
@@ -736,6 +789,13 @@ msgid "%s: Wrong type for input argument #%d: Vector %s or %s expected.\n"
 msgstr ""
 
 #
+# File: sci_gateway/c/sci_name2rgb.c, line: 37
+# File: sci_gateway/c/sci_set.c, line: 319
+#, c-format
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
+msgstr ""
+
+#
 # File: sci_gateway/c/sci_newaxes.c, line: 94
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A graphic handle expected.\n"
@@ -991,12 +1051,6 @@ msgid "%s: Wrong size for input argument #%d: A single handle expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_set.c, line: 319
-#, c-format
-msgid "%s: Wrong type for input argument #%d: string expected.\n"
-msgstr ""
-
-#
 # File: sci_gateway/c/sci_show_window.c, line: 87
 # File: sci_gateway/c/sci_show_window.c, line: 122
 #, c-format
@@ -1126,12 +1180,6 @@ msgid "%s: Wrong value for input argument #%d: Non-negative int expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_xlfont.c, line: 353
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr ""
-
-#
 # File: sci_gateway/c/sci_xlfont.c, line: 368
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Non-negative int expected.\n"
@@ -1141,12 +1189,6 @@ msgstr ""
 # File: sci_gateway/c/sci_xpoly.c, line: 134
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_xrect.c, line: 206
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
 msgstr ""
 
 #
@@ -2870,21 +2912,23 @@ msgid "Matplot"
 msgstr ""
 
 #
-# File: demos/matplot/java_image.dem.sce, line: 14
-# File: demos/matplot/matplot.dem.gateway.sce, line: 12
-msgid "Java Image"
-msgstr ""
-
-#
+# File: demos/matplot/classical.dem.sce, line: 13
 # File: demos/matplot/matplot.dem.gateway.sce, line: 9
-# File: macros/%_Matplot.sci, line: 18
+# File: macros/%_Matplot.sci, line: 21
 msgid "Classical Matplot"
 msgstr ""
 
 #
+# File: demos/matplot/classical_1.dem.sce, line: 14
 # File: demos/matplot/matplot.dem.gateway.sce, line: 10
-# File: macros/%_Matplot1.sci, line: 16
+# File: macros/%_Matplot1.sci, line: 28
 msgid "Classical Matplot1"
+msgstr ""
+
+#
+# File: demos/matplot/java_image.dem.sce, line: 14
+# File: demos/matplot/matplot.dem.gateway.sce, line: 12
+msgid "Java Image"
 msgstr ""
 
 #
@@ -2985,7 +3029,7 @@ msgid "%s: Wrong type for input argument #%d.\n"
 msgstr ""
 
 #
-# File: macros/%_Matplot.sci, line: 26
+# File: macros/%_Matplot.sci, line: 29
 #, c-format
 msgid ""
 "Matplot(M)  with  size(M)=>(%d,%d)\n"
@@ -2994,17 +3038,17 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/%_Matplot.sci, line: 27
+# File: macros/%_Matplot.sci, line: 30
 msgid "For data-scaled axes, please use Matplot1(..)"
 msgstr ""
 
 #
-# File: macros/%_Matplot.sci, line: 28
+# File: macros/%_Matplot.sci, line: 31
 msgid "Axes are scaled with M's indices"
 msgstr ""
 
 #
-# File: macros/%_Matplot1.sci, line: 37
+# File: macros/%_Matplot1.sci, line: 38
 #, c-format
 msgid ""
 "Matplot1(M, [ %g  %g  %g  %g ])  with  size(M)=>(%d,%d)\n"
@@ -3012,7 +3056,7 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/%_Matplot1.sci, line: 38
+# File: macros/%_Matplot1.sci, line: 39
 msgid "Axes are scaled with [xmin  ymin  xmax  ymax] specified"
 msgstr ""
 
@@ -3111,7 +3155,6 @@ msgid "%s: Wrong size or type for input argument #%d: A string expected.\n"
 msgstr ""
 
 #
-# File: macros/addcolor.sci, line: 15
 # File: macros/autumncolormap.sci, line: 14
 # File: macros/bonecolormap.sci, line: 15
 # File: macros/coolcolormap.sci, line: 15
@@ -3131,7 +3174,6 @@ msgstr ""
 # File: macros/isoview.sci, line: 14
 # File: macros/jetcolormap.sci, line: 19
 # File: macros/milk_drop.sci, line: 13
-# File: macros/name2rgb.sci, line: 13
 # File: macros/nf3d.sci, line: 15
 # File: macros/oceancolormap.sci, line: 15
 # File: macros/pinkcolormap.sci, line: 15
@@ -3144,13 +3186,6 @@ msgstr ""
 # File: macros/wintercolormap.sci, line: 15
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr ""
-
-#
-# File: macros/addcolor.sci, line: 23
-# File: macros/colorbar.sci, line: 57
-#, c-format
-msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
 msgstr ""
 
 #
@@ -3374,7 +3409,12 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/color.sci, line: 16
+# File: macros/colorbar.sci, line: 57
+#, c-format
+msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
+msgstr ""
+
+#
 # File: macros/colordef.sci, line: 18
 # File: macros/colordef.sci, line: 26
 # File: macros/getfont.sci, line: 19
@@ -3382,19 +3422,6 @@ msgstr ""
 # File: macros/titlepage.sci, line: 21
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String array expected.\n"
-msgstr ""
-
-#
-# File: macros/color.sci, line: 20
-#, c-format
-msgid "%s: Wrong value for input argument #%d: A known color expected.\n"
-msgstr ""
-
-#
-# File: macros/color.sci, line: 33
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"
 msgstr ""
 
 #
@@ -3473,7 +3500,7 @@ msgstr ""
 # File: macros/errbar.sci, line: 33
 # File: macros/fcontour.sci, line: 49
 # File: macros/fcontour2d.sci, line: 24
-# File: macros/fgrayplot.sci, line: 35
+# File: macros/fgrayplot.sci, line: 38
 # File: macros/fplot2d.sci, line: 27
 # File: macros/fplot3d.sci, line: 30
 # File: macros/fplot3d1.sci, line: 32
@@ -3544,14 +3571,6 @@ msgstr ""
 # File: macros/contour2d.sci, line: 163
 #, c-format
 msgid "Error %d : in plot2d called by contour2d"
-msgstr ""
-
-#
-# File: macros/contourf.sci, line: 71
-# File: macros/contourf.sci, line: 75
-# File: macros/getPlotPropertyName.sci, line: 16
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
 
 #
