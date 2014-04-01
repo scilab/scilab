@@ -459,6 +459,7 @@ public class SwingScilabEditBox extends JScrollPane implements SwingViewObject, 
             StyleConstants.setFontSize(docAttributes, font.getSize());
             StyleConstants.setBold(docAttributes, font.isBold());
             StyleConstants.setItalic(docAttributes, font.isItalic());
+            doc.setParagraphAttributes(0, doc.getLength() - 1, docAttributes, true);
         }
     }
 
@@ -557,7 +558,7 @@ public class SwingScilabEditBox extends JScrollPane implements SwingViewObject, 
                     manager.focusNextComponent();
                 }
             };
-            
+
             AbstractAction validateUserInput = new AbstractAction() {
                 private static final long serialVersionUID = -5286137769378297783L;
 
