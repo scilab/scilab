@@ -13,7 +13,8 @@
 //
 // <-- Short Description -->
 // Completion with accentued chars could lead to a a crash
-
+//
+// <-- LINUX ONLY -->
 file_path = SCI + "/modules/console/tests/nonreg_tests/";
 mkdir(TMPDIR + "/console");
 cd(TMPDIR + "/console");
@@ -26,11 +27,7 @@ for i = 1 : size(files, "*")
     copyfile(file_path + "/" + files(i), TMPDIR + "/console");
 end
 
-if getos() == "Windows" then
-    libs   = SCI   + "/bin/sciconsole";
-    cflags = "-I " + SCI +"/modules/console/includes";
-
-elseif isdir(SCI+"/modules/console/includes")
+if isdir(SCI+"/modules/console/includes") then
     // Unix source version
     libs   = SCI + "/modules/console/.libs/libsciconsole";
     cflags = "-I " + SCI +"/modules/console/includes -I " + SCI + "/modules/localization/includes";
