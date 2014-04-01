@@ -105,7 +105,7 @@ public class SwingScilabCommonPanel {
                 if (localFigure.getToolbarAsEnum() == BarType.FIGURE) {
                     SwingScilabWindow parentWindow = SwingScilabWindow.allScilabWindows.get(component.getParentWindowId());
 
-                    boolean currentVisible = localFigure.getToolbarVisible();
+                    boolean currentVisible = component.getToolBar().isVisible();
 
                     //only if toolbar is visible
                     if (currentVisible) {
@@ -114,7 +114,7 @@ public class SwingScilabCommonPanel {
                     }
 
                     ToolBar toolbar = ToolBarBuilder.buildToolBar(GRAPHICS_TOOLBAR_DESCRIPTOR, figureId);
-                    toolbar.setVisible(localFigure.getToolbarVisible());
+                    toolbar.setVisible(false/*localFigure.getToolbarVisible()*/);
                     component.setToolBar(toolbar);
                     parentWindow.addToolBar(toolbar);
                     //force redraw to get good value on contentpane.getHeight
@@ -163,6 +163,7 @@ public class SwingScilabCommonPanel {
                     int deltaY = axesSize[1] - (int) oldAxesSize.getHeight();
                     Size parentWindowSize = SwingScilabWindow.allScilabWindows.get(component.getParentWindowId()).getDims();
                     SwingScilabWindow.allScilabWindows.get(component.getParentWindowId()).setDims(new Size(parentWindowSize.getWidth() + deltaX, parentWindowSize.getHeight() + deltaY));
+                    GraphicController.getController().setProperty(component.getId(), __GO_SIZE__, new Integer[] { parentWindowSize.getWidth() + deltaX, parentWindowSize.getHeight() + deltaY});
                 }
                 break;
             case __GO_INFO_MESSAGE__:
@@ -185,27 +186,33 @@ public class SwingScilabCommonPanel {
                 }
                 break;
             case __GO_INFOBAR_VISIBLE__: {
+                component.disableResizeEvent();
                 Integer[] oldSize = (Integer[]) GraphicController.getController().getProperty(component.getId(), __GO_AXES_SIZE__);
                 component.getInfoBar().setVisible((Boolean) value);
                 SwingScilabWindow parentWindow = SwingScilabWindow.allScilabWindows.get(component.getParentWindowId());
                 parentWindow.validate();
                 GraphicController.getController().setProperty(component.getId(), __GO_AXES_SIZE__, oldSize);
+                component.enableResizeEvent();
                 break;
             }
             case __GO_TOOLBAR_VISIBLE__: {
+                component.disableResizeEvent();
                 Integer[] oldSize = (Integer[]) GraphicController.getController().getProperty(component.getId(), __GO_AXES_SIZE__);
                 component.getToolBar().setVisible((Boolean) value);
                 SwingScilabWindow parentWindow = SwingScilabWindow.allScilabWindows.get(component.getParentWindowId());
                 parentWindow.validate();
                 GraphicController.getController().setProperty(component.getId(), __GO_AXES_SIZE__, oldSize);
+                component.enableResizeEvent();
                 break;
             }
             case __GO_MENUBAR_VISIBLE__: {
+                component.disableResizeEvent();
                 Integer[] oldSize = (Integer[]) GraphicController.getController().getProperty(component.getId(), __GO_AXES_SIZE__);
                 component.getMenuBar().setVisible((Boolean) value);
                 SwingScilabWindow parentWindow = SwingScilabWindow.allScilabWindows.get(component.getParentWindowId());
                 parentWindow.validate();
                 GraphicController.getController().setProperty(component.getId(), __GO_AXES_SIZE__, oldSize);
+                component.enableResizeEvent();
                 break;
             }
             case __GO_RESIZE__:

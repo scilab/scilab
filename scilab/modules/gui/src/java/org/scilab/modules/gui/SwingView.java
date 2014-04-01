@@ -431,19 +431,19 @@ public final class SwingView implements GraphicView {
 
                 /* MENUBAR */
                 MenuBar menuBar = ScilabMenuBar.createMenuBar();
-                menuBar.setVisible(figure.getMenubarVisible());
+                menuBar.setVisible(false);
                 tab.setMenuBar(menuBar);
                 window.addMenuBar(menuBar);
 
                 /* TOOLBAR */
                 ToolBar toolbar = ScilabToolBar.createToolBar();
-                toolbar.setVisible(figure.getToolbarVisible());
+                toolbar.setVisible(false);
                 tab.setToolBar(toolbar);
                 window.addToolBar(toolbar);
 
                 /* INFOBAR */
                 TextBox infoBar = ScilabTextBox.createTextBox();
-                infoBar.setVisible(figure.getInfobarVisible());
+                infoBar.setVisible(false);
                 tab.setInfoBar(infoBar);
                 window.addInfoBar(infoBar);
 
@@ -478,9 +478,8 @@ public final class SwingView implements GraphicView {
                 }
 
                 // TODO set other default properties
-
-                window.setVisible(figure.getVisible());
                 window.pack();
+                window.setVisible(figure.getVisible());
                 return tab;
             }
             case Axes:
@@ -1074,7 +1073,7 @@ public final class SwingView implements GraphicView {
         SwingScilabFrame updatedComponent = (SwingScilabFrame) updatedObject.getValue();
         boolean needRevalidate = false;
         boolean hasOpenGLAxes = false;
-        
+
         // Add new children
         for (Integer childId : newChildren) {
             int childType = (Integer) GraphicController.getController().getProperty(childId, __GO_TYPE__);
@@ -1089,11 +1088,11 @@ public final class SwingView implements GraphicView {
                     needRevalidate = true;
                 }
             }
-            
+
             if (childType == __GO_AXES__) {
                 hasOpenGLAxes = true;
             }
-            
+
         }
 
         // Remove children which have been deleted
@@ -1115,12 +1114,12 @@ public final class SwingView implements GraphicView {
                 }
             }
         }
-        
+
         if (!hasOpenGLAxes) {
             updatedComponent.removeAxes();
             needRevalidate = true;
         }
-        
+
         if (needRevalidate && updatedComponent != null) {
             updatedComponent.revalidate();
         }

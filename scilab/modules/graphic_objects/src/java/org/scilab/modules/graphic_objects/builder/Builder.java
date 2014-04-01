@@ -314,8 +314,7 @@ public final class Builder {
         }
     }
 
-    public final static int createFigure(boolean dockable, int menubarType, int toolbarType, boolean defaultAxes, boolean visible, double[] figureSize, double[] axesSize, double[] position,
-                                         boolean menubar, boolean toolbar, boolean infobar) {
+    public final static int createFigure(boolean dockable, int menubarType, int toolbarType, boolean defaultAxes, boolean visible) {
         GraphicController controller = GraphicController.getController();
         Integer figModel = GraphicModel.getFigureModel().getIdentifier();
         Integer figId = controller.cloneObject(figModel, false);
@@ -325,19 +324,6 @@ public final class Builder {
         figure.setToolbar(toolbarType);
         figure.setVisible(visible);
         figure.setDefaultAxes(defaultAxes);
-
-        //set figure size only if axes size is not set too
-        if (figureSize != null && figureSize.length == 2 && (axesSize == null || axesSize.length == 0)) {
-            figure.setSize(new Integer[] { (int) figureSize[0], (int) figureSize[1] });
-        }
-
-        if (position != null && position.length == 2) {
-            figure.setPosition(new Integer[] { (int) position[0], (int) position[1] });
-        }
-
-        figure.setMenubarVisible(menubar);
-        figure.setToolbarVisible(toolbar);
-        figure.setInfobarVisible(infobar);
 
         controller.objectCreated(figId);
 
@@ -350,10 +336,6 @@ public final class Builder {
         if (defaultAxes) {
             //clone default axes
             cloneAxesModel(figId);
-        }
-
-        if (axesSize != null && axesSize.length == 2) {
-            controller.setProperty(figId, GraphicObjectProperties.__GO_AXES_SIZE__, new Integer[] { (int) axesSize[0], (int) axesSize[1] });
         }
 
         return figId;

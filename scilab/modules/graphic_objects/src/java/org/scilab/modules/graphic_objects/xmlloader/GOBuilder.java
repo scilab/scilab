@@ -90,8 +90,7 @@ import org.xml.sax.Attributes;
 
 public class GOBuilder {
     public static Integer figureBuilder(GraphicController controller, Attributes attributes) {
-        Integer fig = Builder.createFigure(false, 0, 0, false, false, null, null, null, false, false, false);
-        //Integer fig = Builder.createNewFigureWithAxes();
+        Integer fig = Builder.createFigure(false, 0, 0, false, false);
         String item = null;
 
         // id
@@ -159,7 +158,6 @@ public class GOBuilder {
 
         // visible
         XmlTools.setPropAsBoolean(fig, __GO_VISIBLE__, attributes.getValue("visible"));
-
 
         return fig;
     }

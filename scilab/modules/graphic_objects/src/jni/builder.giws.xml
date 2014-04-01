@@ -37,12 +37,6 @@
           <parameter name="toolbarType" type="int" />
           <parameter name="defaultAxes" type="boolean" />
           <parameter name="visible" type="boolean" />
-          <parameter name="figureSize" type="double[]" />
-          <parameter name="axesSize" type="double[]" />
-          <parameter name="position" type="double[]" />
-          <parameter name="menubar" type="boolean" />
-          <parameter name="toolbar" type="boolean" />
-          <parameter name="infobar" type="boolean" />
         </method>
         <method name="cloneMenus" returnType="void" modifier="static">
             <parameter name="model" type="int"/>

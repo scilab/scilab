@@ -141,6 +141,7 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
     private Integer id;
 
     private boolean eventEnabled = false;
+    ComponentListener componentListener;
 
     static {
         PropertyChangeListenerFactory.addFactory(new BarUpdater.UpdateBarFactory());
@@ -311,8 +312,7 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
         });
 
         /* Manage figure_size property */
-        addComponentListener(new ComponentListener() {
-
+        componentListener = new ComponentListener() {
             public void componentShown(ComponentEvent arg0) {
             }
 
@@ -353,8 +353,9 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
 
             public void componentHidden(ComponentEvent arg0) {
             }
-        });
+        };
 
+        addComponentListener(componentListener);
         /* Manage closerequestfcn */
         ClosingOperationsManager.registerClosingOperation(SwingScilabDockablePanel.this, new ClosingOperationsManager.ClosingOperation() {
 
@@ -1544,5 +1545,13 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
         SwingScilabWindow figure = SwingScilabWindow.allScilabWindows.get(getParentWindowId());
         Size figureSize = figure.getDims();
         deltaSize = new Dimension((int)(figureSize.getWidth() - axesSize.getWidth()), (int)(figureSize.getHeight() - axesSize.getHeight()));
+    }
+
+    public void disableResizeEvent() {
+        removeComponentListener(componentListener);
+    }
+
+    public void enableResizeEvent() {
+        addComponentListener(componentListener);
     }
 }

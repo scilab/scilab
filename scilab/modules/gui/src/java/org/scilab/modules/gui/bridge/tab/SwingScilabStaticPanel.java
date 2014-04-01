@@ -51,6 +51,7 @@ public class SwingScilabStaticPanel extends SwingScilabScrollPane implements Swi
     private String parentWindowId;
     private JLayeredPane uiContentPane;
     private JLayeredPane layeredPane;
+    private ComponentListener componentListener;
 
     private SwingScilabCanvas contentCanvas;
     protected boolean hasLayout;
@@ -73,8 +74,7 @@ public class SwingScilabStaticPanel extends SwingScilabScrollPane implements Swi
         uiContentPane.setVisible(true);
 
         /* Manage figure_size property */
-        addComponentListener(new ComponentListener() {
-
+        componentListener = new ComponentListener() {
             public void componentShown(ComponentEvent arg0) {
             }
 
@@ -110,7 +110,6 @@ public class SwingScilabStaticPanel extends SwingScilabScrollPane implements Swi
                         }
                     }
                 }
-                getParentWindow().validate();
             }
 
             public void componentMoved(ComponentEvent arg0) {
@@ -118,7 +117,8 @@ public class SwingScilabStaticPanel extends SwingScilabScrollPane implements Swi
 
             public void componentHidden(ComponentEvent arg0) {
             }
-        });
+        };
+        addComponentListener(componentListener);
     }
 
     public void setId(Integer id) {
@@ -258,5 +258,13 @@ public class SwingScilabStaticPanel extends SwingScilabScrollPane implements Swi
         SwingScilabWindow figure = SwingScilabWindow.allScilabWindows.get(getParentWindowId());
         Size figureSize = figure.getDims();
         deltaSize = new Dimension((int)(figureSize.getWidth() - axesSize.getWidth()), (int)(figureSize.getHeight() - axesSize.getHeight()));
+    }
+
+    public void disableResizeEvent() {
+        removeComponentListener(componentListener);
+    }
+
+    public void enableResizeEvent() {
+        addComponentListener(componentListener);
     }
 }

@@ -60,4 +60,7 @@ public interface SwingScilabPanel extends SwingViewObject {
 
     public void applyDeltaSize();
     public void storeSizeDelta();
+
+    public void disableResizeEvent();
+    public void enableResizeEvent();
 }

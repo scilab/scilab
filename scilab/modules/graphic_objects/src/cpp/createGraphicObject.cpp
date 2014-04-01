@@ -84,6 +84,8 @@ int createNewFigureWithAxes()
     int iUserDataSize = 0;
     int* piUserDataSize = &iUserDataSize;
     int id = 0;
+    int on = 1;
+    int off = 0;
 
     id = Builder::createNewFigureWithAxes(getScilabJavaVM());
 
@@ -105,23 +107,24 @@ int createNewFigureWithAxes()
         setGraphicObjectProperty(getCurrentSubWin(), __GO_USER_DATA__, pUserData, jni_int_vector, iUserDataSize);
     }
 
+    setGraphicObjectProperty(id, __GO_MENUBAR_VISIBLE__, (void*)&off, jni_bool, 1);
+    setGraphicObjectProperty(id, __GO_TOOLBAR_VISIBLE__, (void*)&off, jni_bool, 1);
+    setGraphicObjectProperty(id, __GO_INFOBAR_VISIBLE__, (void*)&off, jni_bool, 1);
+
+    setGraphicObjectProperty(id, __GO_MENUBAR_VISIBLE__, (void*)&on, jni_bool, 1);
+    setGraphicObjectProperty(id, __GO_TOOLBAR_VISIBLE__, (void*)&on, jni_bool, 1);
+    setGraphicObjectProperty(id, __GO_INFOBAR_VISIBLE__, (void*)&on, jni_bool, 1);
+
     return id;
 }
 
-int createFigure(int iDockable, int iMenubarType, int iToolbarType, int iDefaultAxes, int iVisible,
-                 double* figureSize, double* axesSize, double* position, int iMenuBar, int iToolBar, int iInfoBar)
+int createFigure(int iDockable, int iMenubarType, int iToolbarType, int iDefaultAxes, int iVisible)
 {
     int id = 0;
     int iUserDataSize = 0;
     int* piUserDataSize = &iUserDataSize;
 
-    id = Builder::createFigure(getScilabJavaVM(), iDockable != 0, iMenubarType, iToolbarType, iDefaultAxes != 0, iVisible != 0,
-                               figureSize, figureSize == NULL ? 0 : 2,
-                               axesSize, axesSize == NULL ? 0 : 2,
-                               position, position == NULL ? 0 : 2,
-                               iMenuBar != 0,
-                               iToolBar != 0,
-                               iInfoBar != 0);
+    id = Builder::createFigure(getScilabJavaVM(), iDockable != 0, iMenubarType, iToolbarType, iDefaultAxes != 0, iVisible != 0);
     //clone gdf user_data is needed
     getGraphicObjectProperty(getFigureModel(), __GO_USER_DATA_SIZE__, jni_int, (void**)&piUserDataSize);
     if (iUserDataSize != 0)

@@ -37,8 +37,9 @@
 #include "addColor.h"
 
 /*--------------------------------------------------------------------------*/
-int setDefaultProperties(int _iFig, BOOL bDefaultAxes, BOOL _axesSize);
+int setDefaultProperties(int _iFig, BOOL bDefaultAxes);
 int getStackArgumentAsBoolean(void* _pvCtx, int* _piAddr);
+void initBar(int iFig, BOOL menubar, BOOL toolbar, BOOL infobar);
 /*--------------------------------------------------------------------------*/
 int sci_figure(char * fname, unsigned long fname_len)
 {
@@ -77,7 +78,8 @@ int sci_figure(char * fname, unsigned long fname_len)
     if (iRhs == 0) // Auto ID
     {
         iFig = createNewFigureWithAxes();
-        iAxes = setDefaultProperties(iFig, TRUE, TRUE);
+        iAxes = setDefaultProperties(iFig, TRUE);
+        initBar(iFig, bMenuBar, bToolBar, bInfoBar);
         createScalarHandle(pvApiCtx, iRhs + 1, getHandle(iFig));
         AssignOutputVariable(pvApiCtx, 1) = iRhs + 1;
         ReturnArguments(pvApiCtx);
@@ -115,9 +117,10 @@ int sci_figure(char * fname, unsigned long fname_len)
         {
             iFig = createNewFigureWithAxes();
             setGraphicObjectProperty(iFig, __GO_ID__, &iId, jni_int,  1);
-            iAxes = setDefaultProperties(iFig, TRUE, TRUE);
+            iAxes = setDefaultProperties(iFig, TRUE);
         }
 
+        initBar(iFig, bMenuBar, bToolBar, bInfoBar);
         createScalarHandle(pvApiCtx, iRhs + 1, getHandle(iFig));
         AssignOutputVariable(pvApiCtx, 1) = iRhs + 1;
         ReturnArguments(pvApiCtx);
@@ -407,24 +410,9 @@ int sci_figure(char * fname, unsigned long fname_len)
 
         }
 
-        iFig = createFigure(bDockable, iMenubarType, iToolbarType, bDefaultAxes, bVisible, figureSize, axesSize, position, bMenuBar, bToolBar, bInfoBar);
+        iFig = createFigure(bDockable, iMenubarType, iToolbarType, bDefaultAxes, bVisible);
         setGraphicObjectProperty(iFig, __GO_ID__, &iNewId, jni_int, 1);
-        iAxes = setDefaultProperties(iFig, bDefaultAxes, figureSize || axesSize ? FALSE : TRUE);
-        if (figureSize)
-        {
-            int figure[2];
-            figure[0] = (int)figureSize[0];
-            figure[1] = (int)figureSize[1];
-            setGraphicObjectProperty(iFig, __GO_SIZE__, figure, jni_int_vector, 2);
-        }
-
-        if (axesSize)
-        {
-            int axes[2];
-            axes[0] = (int)axesSize[0];
-            axes[1] = (int)axesSize[1];
-            setGraphicObjectProperty(iFig, __GO_AXES_SIZE__, axes, jni_int_vector, 2);
-        }
+        iAxes = setDefaultProperties(iFig, bDefaultAxes);
     }
 
     //set(iFig, iPos, iPos + 1)
@@ -565,6 +553,31 @@ int sci_figure(char * fname, unsigned long fname_len)
         }
     }
 
+    //axes_size
+    if (axesSize)
+    {
+        int axes[2];
+        axes[0] = (int)axesSize[0];
+        axes[1] = (int)axesSize[1];
+        setGraphicObjectProperty(iFig, __GO_AXES_SIZE__, axes, jni_int_vector, 2);
+    }
+    else //no size, use default axes_size
+    {
+        int* piAxesSize = NULL;
+        getGraphicObjectProperty(getFigureModel(), __GO_AXES_SIZE__, jni_int_vector, (void **)&piAxesSize);
+        setGraphicObjectProperty(iFig, __GO_AXES_SIZE__, piAxesSize, jni_int_vector, 2);
+    }
+
+    initBar(iFig, bMenuBar, bToolBar, bInfoBar);
+
+    if (axesSize == NULL && figureSize) //figure_size
+    {
+        int figure[2];
+        figure[0] = (int)figureSize[0];
+        figure[1] = (int)figureSize[1];
+        setGraphicObjectProperty(iFig, __GO_SIZE__, figure, jni_int_vector, 2);
+    }
+
     //return new created fig
     createScalarHandle(pvApiCtx, iRhs + 1, getHandle(iFig));
     AssignOutputVariable(pvApiCtx, 1) = iRhs + 1;
@@ -607,7 +620,7 @@ int getStackArgumentAsBoolean(void* _pvCtx, int* _piAddr)
     return -1;
 }
 /*--------------------------------------------------------------------------*/
-int setDefaultProperties(int _iFig, BOOL _bDefaultAxes, BOOL _axesSize)
+int setDefaultProperties(int _iFig, BOOL _bDefaultAxes)
 {
     //get figure axes
     int iAxes = -1;
@@ -617,8 +630,6 @@ int setDefaultProperties(int _iFig, BOOL _bDefaultAxes, BOOL _axesSize)
     int iAxesVisible = 0;
     int* piAxesSize = NULL;
     double pdblNewColor[COLOR_COMPONENT] = {0.8, 0.8, 0.8};
-
-    setGraphicObjectProperty(_iFig, __GO_IMMEDIATE_DRAWING__, &iDrawing, jni_bool, 1);
 
     iColorIndex = addColor(_iFig, pdblNewColor);
 
@@ -638,17 +649,23 @@ int setDefaultProperties(int _iFig, BOOL _bDefaultAxes, BOOL _axesSize)
         setGraphicObjectProperty(iAxes, __GO_Z_AXIS_VISIBLE__, &iAxesVisible, jni_bool, 1);
     }
 
-    // axes_size
-    if (_axesSize)
-    {
-        getGraphicObjectProperty(getFigureModel(), __GO_AXES_SIZE__, jni_int_vector, (void **)&piAxesSize);
-        setGraphicObjectProperty(_iFig, __GO_AXES_SIZE__, piAxesSize, jni_int_vector, 2);
-    }
-
-    //f.immediate_drawing = "on"
-    iDrawing = 1;
-    setGraphicObjectProperty(_iFig, __GO_IMMEDIATE_DRAWING__, &iDrawing, jni_bool, 1);
-
     return iAxes;
+}
+/*--------------------------------------------------------------------------*/
+void initBar(int iFig, BOOL menubar, BOOL toolbar, BOOL infobar)
+{
+    BOOL notmenubar = !menubar;
+    BOOL nottoolbar = !toolbar;
+    BOOL notinfobar = !infobar;
+
+    setGraphicObjectProperty(iFig, __GO_MENUBAR_VISIBLE__, (void*)&notmenubar, jni_bool, 1);
+    setGraphicObjectProperty(iFig, __GO_TOOLBAR_VISIBLE__, (void*)&nottoolbar, jni_bool, 1);
+    setGraphicObjectProperty(iFig, __GO_INFOBAR_VISIBLE__, (void*)&notinfobar, jni_bool, 1);
+
+    //set menubar, infobar, toolbar visibility
+    setGraphicObjectProperty(iFig, __GO_MENUBAR_VISIBLE__, (void*)&menubar, jni_bool, 1);
+    setGraphicObjectProperty(iFig, __GO_TOOLBAR_VISIBLE__, (void*)&toolbar, jni_bool, 1);
+    setGraphicObjectProperty(iFig, __GO_INFOBAR_VISIBLE__, (void*)&infobar, jni_bool, 1);
+
 }
 /*--------------------------------------------------------------------------*/

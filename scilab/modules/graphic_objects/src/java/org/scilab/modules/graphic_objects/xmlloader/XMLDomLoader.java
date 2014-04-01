@@ -18,7 +18,9 @@ import org.scilab.modules.graphic_objects.console.Console;
 import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.figure.Figure.BarType;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+import org.scilab.modules.graphic_objects.graphicModel.GraphicModel;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
 import org.scilab.modules.graphic_objects.uicontrol.frame.border.FrameBorderType;
 import org.scilab.modules.graphic_objects.utils.LayoutType;
@@ -568,8 +570,8 @@ public class XMLDomLoader {
         Integer menubar = 1;
         Integer toolbar = 1;
         Boolean default_axes = true;
-        double[] figureSize = null;
-        double[] axesSize = null;
+        Integer[] figureSize = null;
+        Integer[] axesSize = null;
         boolean menubarVisisble = true;
         boolean toolbarVisisble = true;
         boolean infobarVisisble = true;
@@ -609,16 +611,14 @@ public class XMLDomLoader {
         //axesSize
         tempnode = attr.getNamedItem("axes_size");
         if (tempnode != null) {
-            Double[] size = getAttributeAsDoubleArray(tempnode.getNodeValue());
-            axesSize = new double[] {size[0], size[1]};
+            axesSize = getAttributeAsIntegerArray(tempnode.getNodeValue());
             attr.removeNamedItem("axes_size");
         }
 
         //figureSize
         tempnode = attr.getNamedItem("figure_size");
         if (axesSize == null && tempnode != null) {
-            Double[] size = getAttributeAsDoubleArray(tempnode.getNodeValue());
-            figureSize = new double[] {size[0], size[1]};
+            figureSize = getAttributeAsIntegerArray(tempnode.getNodeValue());
             attr.removeNamedItem("figure_size");
         }
 
@@ -641,7 +641,7 @@ public class XMLDomLoader {
             attr.removeNamedItem("infobar_visible");
         }
 
-        Integer fig = Builder.createFigure(dockable, menubar, toolbar, default_axes, false, figureSize, axesSize, null, menubarVisisble, toolbarVisisble, infobarVisisble);
+        Integer fig = Builder.createFigure(dockable, menubar, toolbar, default_axes, false);
         //set new id
         int newId = ScilabNativeView.ScilabNativeView__getValidDefaultFigureId();
 
@@ -691,6 +691,18 @@ public class XMLDomLoader {
             }
         }
 
+        if (axesSize != null) {
+            controller.setProperty(fig, GraphicObjectProperties.__GO_AXES_SIZE__, axesSize);
+        } else if (figureSize != null) {
+            controller.setProperty(fig, GraphicObjectProperties.__GO_SIZE__, figureSize);
+        } else {
+            controller.setProperty(fig, GraphicObjectProperties.__GO_AXES_SIZE__, GraphicModel.getFigureModel().getAxesSize());
+        }
+
+        //set menubar, infobar, toolbar visibility
+        controller.setProperty(fig, __GO_MENUBAR_VISIBLE__, menubarVisisble);
+        controller.setProperty(fig, __GO_TOOLBAR_VISIBLE__, toolbarVisisble);
+        controller.setProperty(fig, __GO_INFOBAR_VISIBLE__, infobarVisisble);
         return fig;
     }
 
