@@ -50,7 +50,6 @@ int sci_figure(char * fname, unsigned long fname_len)
     int iId = 0;
     int iPos = 0;
     int i = 0;
-    int iNewId = -1;
     int iAxes = 0;
     int iPropertyOffset = 0;
     BOOL bDoCreation = TRUE;
@@ -77,7 +76,9 @@ int sci_figure(char * fname, unsigned long fname_len)
     // figure()
     if (iRhs == 0) // Auto ID
     {
+        iId = getValidDefaultFigureId();
         iFig = createNewFigureWithAxes();
+        setGraphicObjectProperty(iFig, __GO_ID__, &iId, jni_int,  1);
         iAxes = setDefaultProperties(iFig, TRUE);
         initBar(iFig, bMenuBar, bToolBar, bInfoBar);
         createScalarHandle(pvApiCtx, iRhs + 1, getHandle(iFig));
@@ -131,7 +132,7 @@ int sci_figure(char * fname, unsigned long fname_len)
     if (iRhs % 2 == 0)
     {
         //get highest value of winsid to create the new windows @ + 1
-        iNewId = getValidDefaultFigureId();
+        iId = getValidDefaultFigureId();
         iPos = 0;
     }
     else
@@ -158,7 +159,7 @@ int sci_figure(char * fname, unsigned long fname_len)
             return 0;
         }
 
-        iNewId = (int)(dblId + 0.5); //avoid 1.999 -> 1
+        iId = (int)(dblId + 0.5); //avoid 1.999 -> 1
         //get current fig from id
         iFig = getFigureFromIndex(iId);
         if (iFig != 0) // Figure already exists
@@ -411,7 +412,7 @@ int sci_figure(char * fname, unsigned long fname_len)
         }
 
         iFig = createFigure(bDockable, iMenubarType, iToolbarType, bDefaultAxes, bVisible);
-        setGraphicObjectProperty(iFig, __GO_ID__, &iNewId, jni_int, 1);
+        setGraphicObjectProperty(iFig, __GO_ID__, &iId, jni_int, 1);
         iAxes = setDefaultProperties(iFig, bDefaultAxes);
     }
 
