@@ -289,6 +289,8 @@ Scilab Bug Fixes
 
 * Bug #5016 fixed - condestsp could return different results when repeated calls were performed.
 
+* Bug #5232 fixed - 'frame' uicontrols children now follow the frame displacement.
+
 * Bug #5826 fixed - Graphic windows did not redirect key events in console.
 
 * Bug #5844 fixed - grayplot did not have a logflag option.
@@ -332,6 +334,8 @@ Scilab Bug Fixes
 * Bug #7051 fixed - fieldnames help page updated.
 
 * Bug #7084 fixed - Old, not documented and deprecated gr_menu function removed.
+
+* Bug #7085 fixed - 'edit' uicontrols did not support multiple line edition.
 
 * Bug #7133 fixed - help_from_sci with no input argument now launches a full demonstration.
 
