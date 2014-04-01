@@ -965,6 +965,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 openGLChildren.put(id, updatedOpenGLChildren);
             }
         }
+        
         try {
             if (needUpdate(id, property)) {
                 if (GraphicObjectProperties.__GO_COLORMAP__ == property) {
@@ -995,13 +996,13 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
                 Figure parentFigure = (Figure) GraphicController.getController().getObjectFromId(figure.getParentFigure());
                 if (figure.getVisible() && parentFigure != null && parentFigure.getVisible()) {
-                    if (figure instanceof Frame || isImmediateDrawing(id)) {
-                        if (figure instanceof Frame || GraphicObjectProperties.__GO_IMMEDIATE_DRAWING__ == property) {
+                    if (isImmediateDrawing(id)) {
+                        if (GraphicObjectProperties.__GO_IMMEDIATE_DRAWING__ == property) {
                             canvas.redrawAndWait();
                         } else {
                             canvas.redraw();
                         }
-                    }
+                    } 
                 }
             }
 
@@ -1108,8 +1109,9 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
             return true;
         }
-        // Special case if top level figure colormap has been updated, force redraw
-        if (property == GraphicObjectProperties.__GO_COLORMAP__  && id.intValue() == figure.getParentFigure().intValue()) {
+        // Special case if top level figure colormap/immediate_drawing has been updated, force redraw
+        if ((property == GraphicObjectProperties.__GO_COLORMAP__ ||  property == GraphicObjectProperties.__GO_IMMEDIATE_DRAWING__) 
+                && id.intValue() == figure.getParentFigure().intValue()) {
             return true;
         }
         return false;
@@ -1117,7 +1119,10 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
     private boolean isImmediateDrawing(Integer id) {
         Integer parentId = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_PARENT_FIGURE__);
-        if (parentId == null || !parentId.equals(figure.getIdentifier())) {
+        if (figure instanceof Frame) {
+            parentId = figure.getParentFigure();
+        }
+        if (figure instanceof Figure && (parentId == null || !parentId.equals(figure.getIdentifier()))) {
             return false;
         } else {
             Boolean b =  (Boolean) GraphicController.getController().getProperty(parentId, GraphicObjectProperties.__GO_IMMEDIATE_DRAWING__);

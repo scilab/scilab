@@ -30,9 +30,12 @@
 int sci_drawlater(char * fname, unsigned long fname_len)
 {
     int iFalse =  (int)FALSE;
-    int iFigureUID = 0;
-    int* piFigureUID = &iFigureUID;
+    int iParentFigureUID = 0;
+    int* piParentFigureUID = &iParentFigureUID;
     int iSubwinUID = 0;
+    int iCurChildUID = 0;
+    int iType = -1;
+    int *piType = &iType;
 
     CheckInputArgument(pvApiCtx, 0, 0);
     CheckOutputArgument(pvApiCtx, 0, 1);
@@ -42,10 +45,19 @@ int sci_drawlater(char * fname, unsigned long fname_len)
         iSubwinUID = getOrCreateDefaultSubwin();
         if (iSubwinUID != 0)
         {
-            iFigureUID = getParentObject(iSubwinUID);
-            if (iFigureUID != 0)
+            // Look for top level figure
+            iCurChildUID = iSubwinUID;
+            do
             {
-                setGraphicObjectProperty(iFigureUID, __GO_IMMEDIATE_DRAWING__, &iFalse, jni_bool, 1);
+                iParentFigureUID = getParentObject(iCurChildUID);
+                getGraphicObjectProperty(iParentFigureUID, __GO_TYPE__, jni_int, (void **)&piType);
+                iCurChildUID = iParentFigureUID;
+            }
+            while (iParentFigureUID != 0 && iType != __GO_FIGURE__);
+
+            if (iParentFigureUID != 0)
+            {
+                setGraphicObjectProperty(iParentFigureUID, __GO_IMMEDIATE_DRAWING__, &iFalse, jni_bool, 1);
             }
         }
     }
