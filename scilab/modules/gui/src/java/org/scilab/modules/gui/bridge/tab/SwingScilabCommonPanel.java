@@ -114,7 +114,7 @@ public class SwingScilabCommonPanel {
                     }
 
                     ToolBar toolbar = ToolBarBuilder.buildToolBar(GRAPHICS_TOOLBAR_DESCRIPTOR, figureId);
-                    toolbar.setVisible(false/*localFigure.getToolbarVisible()*/);
+                    toolbar.setVisible(currentVisible);
                     component.setToolBar(toolbar);
                     parentWindow.addToolBar(toolbar);
                     //force redraw to get good value on contentpane.getHeight
