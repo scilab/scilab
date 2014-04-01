@@ -30,6 +30,7 @@ import javax.swing.border.Border;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import org.scilab.modules.commons.OS;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.SwingViewWidget;
@@ -63,6 +64,13 @@ public class SwingScilabSlider extends JSlider implements SwingViewObject, Simpl
 
     private Border defaultBorder = null;
 
+    static {
+        if(OS.get() == OS.UNIX) {
+            // Force Slider on Unix not to display value upon
+            UIManager.put("Slider.paintValue", false);
+        }
+    }
+    
     class CtrlLeftAction extends AbstractAction {
         private static final long serialVersionUID = -3289281207742516486L;
 
