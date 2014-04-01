@@ -144,69 +144,69 @@ maxit = 20;
 tol = 1e-3;
 // =============================================================================
 [x,fx,ci,lambda_qp,info,iter]=sqp(x,objf4,cif4,lb,ub,ni,maxit,tol);
-WARNING: Feature numdiff is obsolete.
-         Please use numderivative instead.
-         This feature will be permanently removed in Scilab 6.0
+AVERTISSEMENT : La fonctionnalité numdiff est obsolète.
+                Veuillez utiliser numderivative à la place.
+                Cette fonctionnalité va être définitivement supprimée dans Scilab 6.0
 
-WARNING: Feature numdiff is obsolete.
-         Please use numderivative instead.
-         This feature will be permanently removed in Scilab 6.0
+AVERTISSEMENT : La fonctionnalité numdiff est obsolète.
+                Veuillez utiliser numderivative à la place.
+                Cette fonctionnalité va être définitivement supprimée dans Scilab 6.0
 
-WARNING: Feature numdiff is obsolete.
-         Please use numderivative instead.
-         This feature will be permanently removed in Scilab 6.0
+AVERTISSEMENT : La fonctionnalité numdiff est obsolète.
+                Veuillez utiliser numderivative à la place.
+                Cette fonctionnalité va être définitivement supprimée dans Scilab 6.0
 
-WARNING: Feature numdiff is obsolete.
-         Please use numderivative instead.
-         This feature will be permanently removed in Scilab 6.0
+AVERTISSEMENT : La fonctionnalité numdiff est obsolète.
+                Veuillez utiliser numderivative à la place.
+                Cette fonctionnalité va être définitivement supprimée dans Scilab 6.0
 
-WARNING: Feature numdiff is obsolete.
-         Please use numderivative instead.
-         This feature will be permanently removed in Scilab 6.0
+AVERTISSEMENT : La fonctionnalité numdiff est obsolète.
+                Veuillez utiliser numderivative à la place.
+                Cette fonctionnalité va être définitivement supprimée dans Scilab 6.0
 
-WARNING: Feature numdiff is obsolete.
-         Please use numderivative instead.
-         This feature will be permanently removed in Scilab 6.0
+AVERTISSEMENT : La fonctionnalité numdiff est obsolète.
+                Veuillez utiliser numderivative à la place.
+                Cette fonctionnalité va être définitivement supprimée dans Scilab 6.0
 
-WARNING: Feature numdiff is obsolete.
-         Please use numderivative instead.
-         This feature will be permanently removed in Scilab 6.0
+AVERTISSEMENT : La fonctionnalité numdiff est obsolète.
+                Veuillez utiliser numderivative à la place.
+                Cette fonctionnalité va être définitivement supprimée dans Scilab 6.0
 
-WARNING: Feature numdiff is obsolete.
-         Please use numderivative instead.
-         This feature will be permanently removed in Scilab 6.0
+AVERTISSEMENT : La fonctionnalité numdiff est obsolète.
+                Veuillez utiliser numderivative à la place.
+                Cette fonctionnalité va être définitivement supprimée dans Scilab 6.0
 
-WARNING: Feature numdiff is obsolete.
-         Please use numderivative instead.
-         This feature will be permanently removed in Scilab 6.0
+AVERTISSEMENT : La fonctionnalité numdiff est obsolète.
+                Veuillez utiliser numderivative à la place.
+                Cette fonctionnalité va être définitivement supprimée dans Scilab 6.0
 
-WARNING: Feature numdiff is obsolete.
-         Please use numderivative instead.
-         This feature will be permanently removed in Scilab 6.0
+AVERTISSEMENT : La fonctionnalité numdiff est obsolète.
+                Veuillez utiliser numderivative à la place.
+                Cette fonctionnalité va être définitivement supprimée dans Scilab 6.0
 
-WARNING: Feature numdiff is obsolete.
-         Please use numderivative instead.
-         This feature will be permanently removed in Scilab 6.0
+AVERTISSEMENT : La fonctionnalité numdiff est obsolète.
+                Veuillez utiliser numderivative à la place.
+                Cette fonctionnalité va être définitivement supprimée dans Scilab 6.0
 
-WARNING: Feature numdiff is obsolete.
-         Please use numderivative instead.
-         This feature will be permanently removed in Scilab 6.0
+AVERTISSEMENT : La fonctionnalité numdiff est obsolète.
+                Veuillez utiliser numderivative à la place.
+                Cette fonctionnalité va être définitivement supprimée dans Scilab 6.0
 
-WARNING: Feature numdiff is obsolete.
-         Please use numderivative instead.
-         This feature will be permanently removed in Scilab 6.0
+AVERTISSEMENT : La fonctionnalité numdiff est obsolète.
+                Veuillez utiliser numderivative à la place.
+                Cette fonctionnalité va être définitivement supprimée dans Scilab 6.0
 
-WARNING: Feature numdiff is obsolete.
-         Please use numderivative instead.
-         This feature will be permanently removed in Scilab 6.0
+AVERTISSEMENT : La fonctionnalité numdiff est obsolète.
+                Veuillez utiliser numderivative à la place.
+                Cette fonctionnalité va être définitivement supprimée dans Scilab 6.0
 
-WARNING: Feature numdiff is obsolete.
-         Please use numderivative instead.
-         This feature will be permanently removed in Scilab 6.0
+AVERTISSEMENT : La fonctionnalité numdiff est obsolète.
+                Veuillez utiliser numderivative à la place.
+                Cette fonctionnalité va être définitivement supprimée dans Scilab 6.0
 
-WARNING: Feature numdiff is obsolete.
-         Please use numderivative instead.
-         This feature will be permanently removed in Scilab 6.0
+AVERTISSEMENT : La fonctionnalité numdiff est obsolète.
+                Veuillez utiliser numderivative à la place.
+                Cette fonctionnalité va être définitivement supprimée dans Scilab 6.0
 
 if size(x) <> [7 1] then bugmes();quit;end
 if size(fx) <> [1 1] then bugmes();quit;end

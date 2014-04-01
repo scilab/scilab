@@ -183,7 +183,7 @@ WARNING: Feature derivative is obsolete.
          Please use numderivative instead.
          This feature will be permanently removed in Scilab 6.0
 
-h =  .0000061
+h = 0.0000061
 order = 2
 H_form = default
 Q = 
