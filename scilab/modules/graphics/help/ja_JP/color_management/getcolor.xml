@@ -65,12 +65,6 @@
             <member>
                 <link linkend="colormap">colormap</link>
             </member>
-            <member>
-                <link linkend="getmark">getmark</link>
-            </member>
-            <member>
-                <link linkend="getfont">getfont</link>
-            </member>
         </simplelist>
     </refsection>
 </refentry>

@@ -888,19 +888,6 @@
                     </para>
                 </listitem>
             </varlistentry>
-            <varlistentry>
-                <term>
-                    <link linkend="getsymbol">getsymbol</link>
-                </term>
-                <listitem>
-                    <para>
-                        Диалог выбора символа и его размера
-                        <warning>
-                            Эта функция устарела.
-                        </warning>
-                    </para>
-                </listitem>
-            </varlistentry>
         </variablelist>
     </refsection>
     <refsection>

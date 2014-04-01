@@ -104,12 +104,4 @@ uigetfont("arial", 24, %T)
 uigetfont("arial", 24, %T, %F)
  ]]></programlisting>
     </refsection>
-    <refsection role="see also">
-        <title>参照</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="getfont">getfont</link>
-            </member>
-        </simplelist>
-    </refsection>
 </refentry>

@@ -61,8 +61,7 @@
                     <para>
                         このフィールドは,線を描画する際に使用される線の種類を選択します.
                         この値は [0 6] の範囲の整数とします.
-                        0 は実線,その他は破線を意味します (
-                        <link linkend="getlinestyle">getlinestyle</link> 参照).
+                        0 は実線,その他は破線を意味します.
                     </para>
                 </listitem>
             </varlistentry>
@@ -142,7 +141,7 @@
                     <para>
                         <literal>mark_size</literal> は,表示されるマーカのフォントの大きさを指定します.
                         値には [0 5]の範囲の整数を指定します.これらはそれぞれ
-                        8pt, 10pt, 12pt, 14pt, 18pt および 24pt を意味します(<link linkend="getmark">getmark</link>参照).
+                        8pt, 10pt, 12pt, 14pt, 18pt および 24pt を意味します.
                     </para>
                 </listitem>
             </varlistentry>

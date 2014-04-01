@@ -715,8 +715,7 @@
                                     property value for Segs Rectangle Legend Axis Plot3d Fac3d and
                                     Polyline objects. <literal>mark_size</literal> selects the font size of
                                     mark to be displayed. Its value should be an integer in [0 5]
-                                    whith stands for 8pt, 10pt, 12pt, 14pt, 18pt and 24pt (see
-                                    <link linkend="getmark">getmark</link>).
+                                    whith stands for 8pt, 10pt, 12pt, 14pt, 18pt and 24pt.
                                 </para>
                                 <para>
                                     <warning>In the special case where mark_style and mark_size are 0, a dot of one pixel is drawn.</warning>

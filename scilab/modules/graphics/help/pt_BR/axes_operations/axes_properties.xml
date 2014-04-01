@@ -617,8 +617,7 @@
                                     Rectangle e Polyline. <literal>line_style</literal> seleciona
                                     o tipo de linha que será utilizado nos desenhos de linhas. Seu
                                     valor deve ser um inteiro no intervalo [0 6]. 0 e 1 significam
-                                    linhas sólidas, os outros selecionam linhas tracejadas (ver
-                                    <link linkend="getlinestyle">getlinestyle</link>).
+                                    linhas sólidas, os outros selecionam linhas tracejadas.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -686,7 +685,7 @@
                                     Legend, Axis, Plot3d, Fac3d, e Polyline.
                                     <literal>mark_size</literal> seleciona o tamanho de fonte da
                                     marca ser exibida. Deve ser um valor inteiro entre [0 5] que
-                                    significa 8pt, 10pt, 12pt, 14pt, 18pt e 24pt (ver <link linkend="getmark">getmark</link>).
+                                    significa 8pt, 10pt, 12pt, 14pt, 18pt e 24pt.
                                 </para>
                             </listitem>
                         </varlistentry>

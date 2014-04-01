@@ -337,9 +337,6 @@ xset("wdim",1000,500)
                 <link linkend="getcolor">getcolor</link>
             </member>
             <member>
-                <link linkend="getsymbol">getsymbol</link>
-            </member>
-            <member>
                 <link linkend="ged">ged</link>
             </member>
             <member>

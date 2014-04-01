@@ -111,12 +111,4 @@ title_entity.font_style = 10;
 xlfont('reset');
  ]]></programlisting>
     </refsection>
-    <refsection role="see also">
-        <title>See Also</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="getfont">getfont</link>
-            </member>
-        </simplelist>
-    </refsection>
 </refentry>

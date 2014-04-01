@@ -820,14 +820,6 @@
                     <para>charge une police dans le contexte graphique ou donne la liste des polices</para>
                 </listitem>
             </varlistentry>
-            <varlistentry>
-                <term>
-                    <link linkend="getsymbol">getsymbol</link>
-                </term>
-                <listitem>
-                    <para>boîte de dialogue pour choisir un marqueur (ou symbole)</para>
-                </listitem>
-            </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
