@@ -404,6 +404,34 @@
                     </para>
                 </listitem>
             </varlistentry>
+            <varlistentry>
+                <term>datatips: </term>
+                <listitem>
+                    <para>
+                        This property contains a vector of the <literal>datatips</literal> handles related to the polyline.
+                        However, polyline handles currently do not have any <literal>children</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>display_function: </term>
+                <listitem>
+                    <para>
+                        A character string that contains a function name. This function calling sequence must be <literal>str=fun(datatipHandle)</literal> where <literal>datatipHandle</literal> is the handle of the datatip to be displayed. This function must return a string or a vector of strings in str.
+                    </para>
+                    <para>
+                        This function can be overloaded by setting the similar property on a datatip itself.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>display_function_data: </term>
+                <listitem>
+                    <para>
+                        Any Scilab data needed by the <literal>display_function</literal> function.
+                    </para>
+                </listitem>
+            </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
@@ -465,9 +493,9 @@ f.children.y_label.font_size = 3;
             clf();
             f=gcf();
             for i=1:10
-                plot2d(1:10, i*ones([1:10]), 2);
-                f.children.children(1).children.line_style = i;
-                f.children.children(1).children.thickness = 2;
+            plot2d(1:10, i*ones([1:10]), 2);
+            f.children.children(1).children.line_style = i;
+            f.children.children(1).children.thickness = 2;
             end
             f.children.axes_visible = ["off","on","off"];
             f.children.y_label.text = "line_style value";
