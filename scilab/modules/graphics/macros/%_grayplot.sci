@@ -18,10 +18,10 @@
 function [] = %_grayplot()
     t=-%pi:0.05:%pi;
     m=sin(t)'*cos(t);
-    f = scf(100001);
+    grayplot(t,t,m);
+    f = gcf();
     my_plot_desc  = "grayplot";
     f.figure_name = my_plot_desc;
     xtitle(my_plot_desc," "," "," ");
     f.color_map = hotcolormap(128);
-    grayplot(t,t,m);
 endfunction

@@ -14,7 +14,7 @@ for i = 1:2
         "layout", "border", ...
         "constraints", createConstraints("gridbag", [i, j, 1, 1], [1,1], "both"));
         newaxes(frame);
-        plot2d();
+        plot3d();
     end
 end
 
@@ -23,6 +23,6 @@ for i = 1:4
     assert_checkequal(f.children(i).type, "uicontrol");
     assert_checkequal(f.children(i).style, "frame");
     assert_checkequal(f.children(i).children(1).type, "Axes");
-    assert_checkequal(f.children(i).children(1).children(1).type, "Compound");
+    assert_checkequal(f.children(i).children(1).children(1).type, "Plot3d");
     assert_checkequal(f.children(i).position(3:4), [400, 400]);
 end

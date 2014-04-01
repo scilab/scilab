@@ -6,9 +6,9 @@
 // =============================================================================
 // <-- TEST WITH GRAPHIC -->
 // test auto_clear behaviour
-plot3d();
 a = gca();
 a.auto_clear = "on";
+plot3d();
 assert_checkequal(size(a.children), [1 1]);
 assert_checkequal(a.children(1).type, "Plot3d");
 plot2d();

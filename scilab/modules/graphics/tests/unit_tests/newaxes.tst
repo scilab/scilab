@@ -6,7 +6,7 @@
 // =============================================================================
 
 // <-- TEST WITH GRAPHIC -->
-f = scf(100001);
+f = scf();
 
 plot();
 
@@ -21,11 +21,12 @@ newaxes(frame2);
 plot3d();
 
 // Plot demo => 2 Axes
-// Axes 1 has 0 children
+// Axes 1 has 41 children
 // Axes 2 has 3 children
 assert_checkequal(size(f.children, "*"), 4);
 assert_checkequal(f.children(3).type, "Axes");
-assert_checkequal(size(f.children(3).children(1).children, "*"), 0);
+assert_checkequal(f.children(3).children(1).type, "Compound");
+assert_checkequal(size(f.children(3).children(1).children, "*"), 41);
 assert_checkequal(f.children(4).type, "Axes");
 assert_checkequal(f.children(4).children(1).type, "Compound");
 assert_checkequal(size(f.children(4).children(1).children, "*"), 3);
@@ -34,7 +35,7 @@ assert_checkequal(size(f.children(4).children(1).children, "*"), 3);
 assert_checkequal(f.children(1).type, "uicontrol");
 assert_checkequal(f.children(1).style, "frame");
 assert_checkequal(f.children(1).children(1).type, "Axes");
-assert_checkequal(f.children(3).children(1).type, "Plot3d");
+assert_checkequal(f.children(1).children(1).children(1).type, "Plot3d");
 
 // Plot2d Demo => Compound + 3 children
 assert_checkequal(f.children(2).type, "uicontrol");

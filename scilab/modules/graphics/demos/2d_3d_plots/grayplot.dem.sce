@@ -7,11 +7,14 @@
 
 function demo_grayplot()
 
+    my_handle = scf(100001);
+    clf(my_handle,"reset");
     demo_viewCode("grayplot.dem.sce");
 
-    // DEMO START
+    my_plot_desc          = "grayplot";
+    my_handle.figure_name = my_plot_desc;
     grayplot();
-    // DEMO END
+    xtitle(my_plot_desc," "," "," ");
 
 endfunction
 

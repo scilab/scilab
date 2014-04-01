@@ -17,7 +17,7 @@
 // rotate when modifying rotation_angles property.
 
 // create two plots
-f = scf(100001);
+f = gcf();
 f.rotation_style = "multiple";
 subplot(1,2,1)
 plot3d()
