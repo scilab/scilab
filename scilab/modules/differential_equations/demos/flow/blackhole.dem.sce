@@ -6,7 +6,7 @@
 funcprot(0);
 
 my_demo_path = get_absolute_file_path("blackhole.dem.sce");
-
+exec(my_demo_path+"create_interface.sci");
 exec(my_demo_path+"blackhole.sci");
 exec(my_demo_path+"blackhole_interface.sci");
 exeblackhole();
