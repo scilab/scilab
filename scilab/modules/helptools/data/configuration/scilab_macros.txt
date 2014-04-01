@@ -1921,7 +1921,6 @@ datatipHilite
 datatipManagerMode
 datatipMove
 datatipRadioCallback
-datatipRedraw
 datatipRemoveAll
 datatipRemoveNearest
 datatipSetGUI

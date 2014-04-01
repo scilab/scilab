@@ -23,8 +23,7 @@ function  datatipContextMenu(ax)
         _("Redraw all datatips")];
     else
         items=[_("Delete all datatips");
-        _("Delete selected datatip")
-        _("Redraw all datatips")];
+        _("Delete selected datatip")];
     end
     sel=x_choose(items,"");
     if sel>0 then
@@ -55,8 +54,6 @@ function  datatipContextMenu(ax)
             datatipSetReplaceMode(curve,%F);
         case _("Unique datatip mode") then
             datatipSetReplaceMode(curve,%t);
-        case _("Redraw all datatips") then
-            datatipRedraw(curve_handles);
         case _("Open curve tip style editor")  then
             datatipsGUI(curve)
             scf(f);

@@ -204,7 +204,7 @@ Obsolete & Removed Functions
 
 * winclose removed. Please use close instead.
 
-* datatipInitStruct removed.
+* datatipInitStruct and datatipRedraw removed.
 
 * regress tagged as obsolete. Will be removed in Scilab 5.5.1.
   Please use reglin instead.

@@ -22,7 +22,6 @@ function datatipEventhandler(win,x,y,ibut)
         end
         //     ax=getAxes([x,y],fig);
         //     if or(datatipAngles<>ax.rotation_angles)|or(zoom_box<>ax.zoom_box) then
-        //       datatipRedraw();
         //       datatipAngles=ax.rotation_angles;
         //       zoom_box=ax.zoom_box;
         //     end
@@ -74,7 +73,6 @@ function datatipEventhandler(win,x,y,ibut)
             zoom_box=ax.zoom_box;
         else
             if or(datatipAngles<>ax.rotation_angles)|or(zoom_box<>ax.zoom_box) then
-                datatipRedraw(curve_handles);
                 datatipAngles=ax.rotation_angles;
                 zoom_box=ax.zoom_box;
             end
