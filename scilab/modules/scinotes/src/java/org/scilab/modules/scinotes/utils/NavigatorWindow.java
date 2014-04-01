@@ -128,6 +128,7 @@ public final class NavigatorWindow extends SwingScilabDockablePanel implements D
         super(SciNotesMessages.CODE_NAVIGATOR, uuid == null ? UUID.randomUUID().toString() : uuid);
         this.editor = editor;
         editor.addNavigator(this);
+        setContentPane(new javax.swing.JPanel());
         ConfigSciNotesManager.saveCodeNavigatorState(editor.getPersistentId(), getPersistentId());
         WindowsConfigurationManager.restorationFinished(this);
     }
