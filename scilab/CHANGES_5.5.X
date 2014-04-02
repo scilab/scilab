@@ -190,22 +190,6 @@ Obsolete & Removed Functions
 * datatipGetStruct tagged as obsolete. Will be removed in Scilab 5.5.1.
   Please use 'datatips' property instead.
 
-* clear_pixmap removed, please use drawlater/drawnow instead.
-
-* pixmap property removed for figures, please use drawlater/drawnow instead.
-
-* demo_message and demo_mdialog removed.
-
-* with_embedded_jre removed.
-
-* draw removed.
-
-* fit_dat removed. Please use datafit instead.
-
-* winclose removed. Please use close instead.
-
-* datatipInitStruct and datatipRedraw removed.
-
 * regress tagged as obsolete. Will be removed in Scilab 5.5.1.
   Please use reglin instead.
 
@@ -221,6 +205,22 @@ Obsolete & Removed Functions
   Please use numderivative instead.
 
 * xmltochm tagged as obsolete. Will be removed in Scilab 5.5.1.
+
+* clear_pixmap removed, please use drawlater/drawnow instead.
+
+* pixmap property removed for figures, please use drawlater/drawnow instead.
+
+* demo_message and demo_mdialog removed.
+
+* with_embedded_jre removed.
+
+* draw removed.
+
+* fit_dat removed. Please use datafit instead.
+
+* winclose removed. Please use close instead.
+
+* datatipInitStruct and datatipRedraw removed.
 
 * getfont, getmark, getlinestyle and getsymbol removed. Please use ged instead.
 
