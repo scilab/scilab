@@ -699,6 +699,10 @@ public class XMLDomLoader {
             controller.setProperty(fig, GraphicObjectProperties.__GO_AXES_SIZE__, GraphicModel.getFigureModel().getAxesSize());
         }
 
+        controller.setProperty(fig, __GO_MENUBAR_VISIBLE__, !menubarVisisble);
+        controller.setProperty(fig, __GO_TOOLBAR_VISIBLE__, !toolbarVisisble);
+        controller.setProperty(fig, __GO_INFOBAR_VISIBLE__, !infobarVisisble);
+
         //set menubar, infobar, toolbar visibility
         controller.setProperty(fig, __GO_MENUBAR_VISIBLE__, menubarVisisble);
         controller.setProperty(fig, __GO_TOOLBAR_VISIBLE__, toolbarVisisble);
