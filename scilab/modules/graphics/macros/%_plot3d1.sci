@@ -20,8 +20,5 @@ function [] = %_plot3d1()
     z = sin(x)*cos(x)';
     plot3d1(x, x, z, 70, 70);
     f = gcf();
-    my_plot_desc  = "plot3d1: z=sin(x)*cos(y)";
-    f.figure_name = my_plot_desc;
-    xtitle(my_plot_desc," "," "," ");
     f.color_map = jetcolormap(32);
 endfunction
