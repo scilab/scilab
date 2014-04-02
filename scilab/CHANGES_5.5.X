@@ -1988,10 +1988,6 @@ Known incompatibilities
 * Extracting children from an empty matrix of handles now returns an error.
   For example: f=gcf(); f.children(1).children.children returns an error.
 
-* Figure anti_aliasing property behavior changed:
-  - "off": No anti-aliasing activated on the figure.
-  - "2x", "4x", "8x", "16x": anti-aliasing activated using 8-buffers multi-sampling.
-
 
 Scilab Bug Fixes
 ================

@@ -11,11 +11,20 @@
 
 package org.scilab.forge.scirenderer.implementation.jogl;
 
+import org.scilab.forge.scirenderer.Canvas;
+import org.scilab.forge.scirenderer.Drawer;
+import org.scilab.forge.scirenderer.implementation.jogl.buffers.JoGLBuffersManager;
+import org.scilab.forge.scirenderer.implementation.jogl.picking.JoGLPickingManager;
+import org.scilab.forge.scirenderer.implementation.jogl.renderer.JoGLRendererManager;
+import org.scilab.forge.scirenderer.implementation.jogl.texture.JoGLTextureManager;
+import org.scilab.forge.scirenderer.picking.PickingManager;
+
+import com.jogamp.opengl.util.awt.ImageUtil;
+import com.jogamp.opengl.util.awt.Screenshot;
 import java.awt.Dimension;
 import java.awt.image.BufferedImage;
 import java.lang.reflect.InvocationTargetException;
 import java.util.concurrent.Semaphore;
-
 import javax.media.opengl.DebugGL2;
 import javax.media.opengl.GL2;
 import javax.media.opengl.GLAutoDrawable;
@@ -27,16 +36,6 @@ import javax.media.opengl.GLException;
 import javax.media.opengl.GLPbuffer;
 import javax.media.opengl.GLProfile;
 import javax.swing.SwingUtilities;
-
-import org.scilab.forge.scirenderer.Canvas;
-import org.scilab.forge.scirenderer.Drawer;
-import org.scilab.forge.scirenderer.implementation.jogl.buffers.JoGLBuffersManager;
-import org.scilab.forge.scirenderer.implementation.jogl.picking.JoGLPickingManager;
-import org.scilab.forge.scirenderer.implementation.jogl.renderer.JoGLRendererManager;
-import org.scilab.forge.scirenderer.implementation.jogl.texture.JoGLTextureManager;
-import org.scilab.forge.scirenderer.picking.PickingManager;
-
-import com.jogamp.opengl.util.awt.Screenshot;
 
 /**
  * JoGL implementation of a Canvas.
@@ -308,15 +307,38 @@ public final class JoGLCanvas implements Canvas, GLEventListener {
             if (mainDrawer != null) {
                 gl.glEnable(GL2.GL_DEPTH_TEST);
                 gl.glDepthFunc(GL2.GL_LEQUAL); // Set to less equal to allow last drawn object to be on the top.
-                if ((antiAliasingLevel > 0) && (antiAliasingLevel < 5)) {
-                    gl.glEnable(GL2.GL_MULTISAMPLE);
+
+                if ((antiAliasingLevel > 0) && (antiAliasingLevel < 5) && (drawingTools.getGLCapacity().isAccumulationBufferPresent())) {
+                    org.scilab.forge.scirenderer.renderer.Renderer renderer = rendererManager.createRenderer();
+                    renderer.setDrawer(mainDrawer);
+
+                    double[][] jitter = ANTI_ALIASING_JITTER[antiAliasingLevel];
+                    Dimension dimension = getDimension();
+                    gl.glClear(GL2.GL_ACCUM_BUFFER_BIT);
+                    for (double[] aJitter : jitter) {
+                        drawingTools.glSynchronize(gl);
+
+                        gl.glMatrixMode(GL2.GL_PROJECTION);
+                        gl.glLoadIdentity();
+                        gl.glTranslated(aJitter[0] / dimension.getWidth(), aJitter[1] / dimension.getHeight(), 0.);
+
+                        gl.glClear(GL2.GL_DEPTH_BUFFER_BIT);
+                        rendererManager.draw(drawingTools, renderer);
+                        //mainDrawer.draw(drawingTools);
+                        gl.glReadBuffer(GL2.GL_BACK);
+                        gl.glAccum(GL2.GL_ACCUM, 1f / jitter.length);
+                    }
+
+                    rendererManager.dispose(drawingTools, renderer);
+
+                    gl.glDrawBuffer(GL2.GL_BACK);
+                    gl.glAccum(GL2.GL_RETURN, 1.0f);
                 } else {
-                    gl.glDisable(GL2.GL_MULTISAMPLE);
+                    gl.glMatrixMode(GL2.GL_PROJECTION);
+                    gl.glLoadIdentity();
+                    gl.glClear(GL2.GL_DEPTH_BUFFER_BIT);
+                    mainDrawer.draw(drawingTools);
                 }
-                gl.glMatrixMode(GL2.GL_PROJECTION);
-                gl.glLoadIdentity();
-                gl.glClear(GL2.GL_DEPTH_BUFFER_BIT);
-                mainDrawer.draw(drawingTools);
             }
 
             pickingManager.glConsume(drawingTools);
