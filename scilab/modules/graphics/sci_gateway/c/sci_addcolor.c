@@ -82,7 +82,7 @@ int sci_addcolor(char *fname, unsigned long fname_len)
     //check values
     if (checkValues(pdblColor, iRows) == 0)
     {
-        Scierror(999, _("%s: Wrong value for input argument #%d: Value must be between 0.0 and 1.0 expected.\n"), fname, 1);
+        Scierror(999, _("%s: Wrong value for input argument #%d: Must be between 0.0 and 1.0.\n"), fname, 1);
         return 1;
     }
 

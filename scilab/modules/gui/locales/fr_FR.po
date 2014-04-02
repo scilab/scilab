@@ -2576,7 +2576,7 @@ msgid "Colors list edition"
 msgstr "Édition de la liste de couleurs"
 
 msgid "Add color in listbox"
-msgstr "Ajouter une couleur dans listbox"
+msgstr "Ajouter la couleur dans la listbox"
 
 msgid "Delete color in listbox"
 msgstr "Supprimer la couleur dans la listbox"

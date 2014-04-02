@@ -414,9 +414,7 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_addcolor.c, line: 85
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Value must be between 0.0 and 1.0 "
-"expected.\n"
+msgid "%s: Wrong value for input argument #%d: Must be between 0.0 and 1.0.\n"
 msgstr ""
 
 #
