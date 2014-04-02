@@ -21,7 +21,7 @@ e = a.children(1);
 //assert_checkequal(f.axes_size, [610,460]);
 assert_checkequal(f.auto_resize, "on");
 assert_checkequal(f.viewport, [0,0]);
-assert_checkequal(f.figure_name, gettext("plot3d: z=sin(x)*cos(y)"));
+assert_checkequal(f.figure_name, gettext("Graphic window number %d"));
 assert_checkequal(f.figure_id, 0);
 assert_checkequal(f.pixel_drawing_mode, "copy");
 assert_checkequal(f.anti_aliasing, "off");
