@@ -301,6 +301,10 @@ public class SwingScilabTabGroup extends JTabbedPane implements SwingViewObject,
     }
 
     public void setEnabled(boolean status) {
+        if (status == isEnabled()) {
+            return;
+        }
+
         if (status) {
             // Enable the frame
             super.setEnabled(status);

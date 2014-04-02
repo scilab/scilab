@@ -322,6 +322,10 @@ public class SwingScilabMenuItem extends JMenuItem implements SwingViewObject, S
      * @param status true if the menu item is enabled
      */
     public void setEnabled(boolean status) {
+        if (status == isEnabled()) {
+            return;
+        }
+
         super.setEnabled(status);
         /* (Des)Activate the callback */
         if (callback != null) {

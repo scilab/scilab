@@ -263,17 +263,19 @@ public class SwingScilabListBox extends JScrollPane implements SwingViewObject, 
      * (true if the UIElement is enabled, false if not)
      */
     public void setEnabled(boolean newEnableState) {
-        if (newEnableState != super.isEnabled()) {
-            super.setEnabled(newEnableState);
-            getList().setEnabled(newEnableState);
-            if (newEnableState) {
-                if (listListener != null) {
-                    getList().addListSelectionListener(listListener);
-                }
-            } else {
-                if (listListener != null) {
-                    getList().removeListSelectionListener(listListener);
-                }
+        if (newEnableState == isEnabled()) {
+            return;
+        }
+
+        super.setEnabled(newEnableState);
+        getList().setEnabled(newEnableState);
+        if (newEnableState) {
+            if (listListener != null) {
+                getList().addListSelectionListener(listListener);
+            }
+        } else {
+            if (listListener != null) {
+                getList().removeListSelectionListener(listListener);
             }
         }
     }

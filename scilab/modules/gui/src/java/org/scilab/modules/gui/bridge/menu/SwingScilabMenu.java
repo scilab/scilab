@@ -393,6 +393,10 @@ public class SwingScilabMenu extends JMenu implements SwingViewObject, SimpleMen
      * @param status true if the menu is enabled
      */
     public void setEnabled(boolean status) {
+        if (status == isEnabled()) {
+            return;
+        }
+
         super.setEnabled(status);
         /* (Des)Activate the callback */
         if (callback != null) {

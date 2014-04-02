@@ -290,6 +290,10 @@ public class SwingScilabEditBox extends JScrollPane implements SwingViewObject, 
      * @param status true if the EditBox is enabled
      */
     public void setEnabled(boolean status) {
+        if (status == isEnabled()) {
+            return;
+        }
+
         super.setEnabled(status);
         textPane.setEnabled(status);
 
