@@ -14,18 +14,18 @@
 package org.scilab.modules.gui.bridge.frame;
 
 
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ICON__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UICONTROL__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHILDREN__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TYPE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_BORDER_OPT_PADDING__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHILDREN__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_GRID_OPT_GRID__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_GRID_OPT_PADDING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_LAYOUT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_POSITION__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TAG__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TYPE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UICONTROL__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ENABLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FRAME_BORDER__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ICON__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VISIBLE__;
@@ -43,6 +43,7 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.border.Border;
 
@@ -66,8 +67,10 @@ import org.scilab.modules.gui.bridge.radiobutton.SwingScilabRadioButton;
 import org.scilab.modules.gui.bridge.slider.SwingScilabScroll;
 import org.scilab.modules.gui.bridge.tab.SwingScilabAxes;
 import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
+import org.scilab.modules.gui.bridge.tab.SwingScilabPanel;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTabGroup;
 import org.scilab.modules.gui.bridge.textbox.SwingScilabTextBox;
+import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.checkbox.CheckBox;
 import org.scilab.modules.gui.console.Console;
@@ -224,7 +227,7 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
             if (canvas == null) {
                 AxesContainer frame = (AxesContainer) GraphicModel.getModel().getObjectFromId(getId());
                 canvas = new SwingScilabCanvas(frame);
-                setLayout(new GridLayout(1,1));
+                setLayout(new GridLayout(1, 1));
                 hasLayout = true;
                 add(canvas);
             }
@@ -876,6 +879,9 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
             }
             case __GO_LAYOUT__: {
                 hasLayout = false;
+
+                invalidate();
+
                 LayoutType newLayout = LayoutType.intToEnum((Integer) value);
                 switch (newLayout) {
                     case BORDER: {
@@ -906,6 +912,57 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
                         break;
                     }
                 }
+
+                validate();
+                break;
+            }
+            case __GO_GRID_OPT_PADDING__:
+            case __GO_GRID_OPT_GRID__: {
+                Integer layout = (Integer) GraphicController.getController().getProperty(getId(), __GO_LAYOUT__);
+                LayoutType layoutType = LayoutType.intToEnum(layout);
+
+                if (layoutType != LayoutType.GRID) {
+                    break;
+                }
+
+                Integer[] padding = (Integer[]) GraphicController.getController().getProperty(getId(), __GO_GRID_OPT_PADDING__);
+
+                Integer[] grid = (Integer[]) GraphicController.getController().getProperty(getId(), __GO_GRID_OPT_GRID__);
+                Integer[] localGrid = new Integer[] { 0, 0 };
+                localGrid[0] = grid[0];
+                localGrid[1] = grid[1];
+
+                if (localGrid[0] == 0 && localGrid[1] == 0) {
+                    localGrid[0] = 1;
+                }
+
+                invalidate();
+
+                GridLayout gl = (GridLayout)getLayout();
+                gl.setRows(localGrid[0]);
+                gl.setColumns(localGrid[1]);
+                gl.setHgap(padding[0]);
+                gl.setVgap(padding[1]);
+
+                validate();
+                break;
+            }
+            case __GO_BORDER_OPT_PADDING__: {
+                Integer layout = (Integer) GraphicController.getController().getProperty(getId(), __GO_LAYOUT__);
+                LayoutType layoutType = LayoutType.intToEnum(layout);
+
+                if (layoutType != LayoutType.BORDER) {
+                    break;
+                }
+
+                invalidate();
+
+                Integer[] padding = (Integer[])value;
+                BorderLayout bl = (BorderLayout)getLayout();
+                bl.setHgap(padding[0]);
+                bl.setVgap(padding[1]);
+
+                validate();
                 break;
             }
             case __GO_VISIBLE__: {

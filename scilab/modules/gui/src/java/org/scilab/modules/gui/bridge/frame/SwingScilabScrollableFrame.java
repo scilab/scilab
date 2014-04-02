@@ -452,6 +452,9 @@ public class SwingScilabScrollableFrame extends JScrollPane implements SwingView
             }
             case __GO_LAYOUT__ : {
                 LayoutType newLayout = LayoutType.intToEnum((Integer) value);
+
+                invalidate();
+
                 switch (newLayout) {
                     case BORDER: {
                         Integer[] padding = (Integer[]) controller.getProperty(getId(), __GO_BORDER_OPT_PADDING__);
@@ -476,6 +479,57 @@ public class SwingScilabScrollableFrame extends JScrollPane implements SwingView
                         break;
                     }
                 }
+
+                validate();
+                break;
+            }
+            case __GO_GRID_OPT_PADDING__:
+            case __GO_GRID_OPT_GRID__: {
+                Integer layout = (Integer) GraphicController.getController().getProperty(getId(), __GO_LAYOUT__);
+                LayoutType layoutType = LayoutType.intToEnum(layout);
+
+                if (layoutType != LayoutType.GRID) {
+                    break;
+                }
+
+                Integer[] padding = (Integer[]) GraphicController.getController().getProperty(getId(), __GO_GRID_OPT_PADDING__);
+
+                Integer[] grid = (Integer[]) GraphicController.getController().getProperty(getId(), __GO_GRID_OPT_GRID__);
+                Integer[] localGrid = new Integer[] { 0, 0 };
+                localGrid[0] = grid[0];
+                localGrid[1] = grid[1];
+
+                if (localGrid[0] == 0 && localGrid[1] == 0) {
+                    localGrid[0] = 1;
+                }
+
+                invalidate();
+
+                GridLayout gl = (GridLayout)getLayout();
+                gl.setRows(localGrid[0]);
+                gl.setColumns(localGrid[1]);
+                gl.setHgap(padding[0]);
+                gl.setVgap(padding[1]);
+
+                validate();
+                break;
+            }
+            case __GO_BORDER_OPT_PADDING__: {
+                Integer layout = (Integer) GraphicController.getController().getProperty(getId(), __GO_LAYOUT__);
+                LayoutType layoutType = LayoutType.intToEnum(layout);
+
+                if (layoutType != LayoutType.BORDER) {
+                    break;
+                }
+
+                invalidate();
+
+                Integer[] padding = (Integer[])value;
+                BorderLayout bl = (BorderLayout)getLayout();
+                bl.setHgap(padding[0]);
+                bl.setVgap(padding[1]);
+
+                validate();
                 break;
             }
             case __GO_VISIBLE__ : {
