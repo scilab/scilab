@@ -28,7 +28,7 @@ GUI Refactoring and Improvements
  - margin: Empty space around uicontrols.
 
 * New uimenu properties:
- - icon: add an icon on the left of the label menu.
+ - icon: add an icon on the left of the menu label.
 
 * "listbox" and "popupmenu" style uicontrols can now manage colors selection, icons, background
   and foreground colors when the "String" property is set to a matrix matching the format:
@@ -151,13 +151,13 @@ Scilab
  - htmlDump/htmlRead/htmlReadStr/htmlWrite - Read and write data from/in HTML files.
  - numderivative - Approximate derivatives of a function (Jacobian or Hessian).
 
-* modulo() and pmodulo() now support integers & hypermatrices (See bug #13002).
+* modulo and pmodulo now support integers & hypermatrices (See bug #13002).
 
-* test_run() can now separate 32-bit systems from 64-bit ones.
+* test_run can now separate 32-bit systems from 64-bit ones.
 
-* pol2str(): now handles polynomials with complex coefficients and hypermatrices (See bug #13109).
+* pol2str: now handles polynomials with complex coefficients and hypermatrices (See bug #13109).
 
-* nanreglin(): reglin() with arguments containing NaNs (See bug #13208).
+* nanreglin: reglin with arguments containing NaNs (See bug #13208).
 
 * New optional input argument added to matfile2sci (append or write the output file).
 
@@ -279,7 +279,7 @@ Scilab Bug Fixes
 
 * Bug #4401 fixed - isnum did not recognize all constants or some complex numbers.
 
-* Bug #4490 fixed - Input argument of sinc function moved to rad: help page.
+* Bug #4490 fixed - Input argument of sinc function moved to rad.
 
 * Bug #4649 fixed - License issue in xs2ppm help page fixed.
 
@@ -759,7 +759,7 @@ Scilab Bug Fixes
 
 * Bug #13108 fixed - Time between ATOMS database updates is now a month (was a day) and is configurable.
 
-* Bug #13109 fixed - pll2str now supports polynomials with complex coefficients and hypermatrices.
+* Bug #13109 fixed - pol2str now supports polynomials with complex coefficients and hypermatrices.
 
 * Bug #13111 fixed - sqrt returned different results when imaginary part was -0 versus 0.
 
@@ -914,16 +914,16 @@ New Features
 * New functions introduced:
  - getURL - Download a URL (HTTP, HTTPS, FTP...)
  - splitURL - Split a URL (HTTP, HTTPS, FTP...)
- - cov - Covariance matrix. Deprecates mvvacov. See bug #11896 fixed.
- - ismatrix - Check if a variable is a matrix. See bug #10456 fixed.
- - isrow - Check if a variable is a row vector. See bug #10456 fixed.
- - iscolumn - Check if a variable is a column vector. See bug #10456 fixed.
- - issquare - Check if a variable is a square matrix. See bug #10456 fixed.
- - cross - Vector cross product. See bug #9941 fixed.
+ - cov - Covariance matrix. Deprecates mvvacov. See bug #11896.
+ - ismatrix - Check if a variable is a matrix. See bug #10456.
+ - isrow - Check if a variable is a row vector. See bug #10456.
+ - iscolumn - Check if a variable is a column vector. See bug #10456.
+ - issquare - Check if a variable is a square matrix. See bug #10456.
+ - cross - Vector cross product. See bug #9941.
  - members - Number of occurrences and linear indexes of common values between
-             two matrices of the same type.See bug #12705 fixed.
+             two matrices of the same type.See bug #12705.
 
-* Add a complete set of functions to read and write any HDF5 file from Scilab.
+* Complete set of functions to read and write any HDF5 file from Scilab added.
 
 * New Solver:
  - daskr - differential-algebraic system solver with rootfinding 'daskr', using
@@ -935,21 +935,21 @@ BDF methods with direct and preconditioned Krylov linear solvers, based on ODEPA
 * erf, erfc, erfcx and calerf functions now support complex arguments.
 
 * isnum has been redesigned in native code. Performance improvements up to 130x.
-  See bug #10404
+  See bug #10404.
 
-* Allow the usage of the '$' keyword in part function.
+* Usage of the '$' keyword in part function allowed.
 
 * The histplot command can now be used with the option polygon=%t/%f to add the
-  frequency polygon chart (thanks to Mehran Khorshidi).
+  frequency polygon chart (Thanks to Mehran Khorshidi).
 
 * Multi level completion on mlist, struct, XML structures...
 
 * Variable browser improvements:
  - The variable browser also shows the size of integers and the user type of
   the tlist/mlist.
-  See bugs #12523 and #10409
+  See bugs #12523 and #10409.
  - It is now possible to delete variables from the variable browser.
-  See bug #9447
+  See bug #9447.
  - A user can now plot variables from the variable browser (this functionality was
   already available in the variable editor).
 
@@ -1137,7 +1137,7 @@ Scilab Bug Fixes
 
 * Bug #6168 fixed - zpbutt, zpch1, zpch2 and zpell help pages were unclear.
 
-* Bug #6390 fixed - The "external" argument of odecd was not well documented and
+* Bug #6390 fixed - The "external" argument of odedc was not well documented and
                     not tested.
 
 * Bug #6427 fixed - full([%T %F]) returned an error message.
@@ -1625,7 +1625,7 @@ Scilab Bug Fixes
 
 * Bug #12823 fixed - In help generation (toolbox) links were not correctly handled.
 
-* Bug #12827 fixed - noisgen help page improved.
+* Bug #12827 fixed - noisegen help page improved.
 
 * Bug #12828 fixed - routh_t gave a wrong result if the first element of a row was zero.
 
@@ -1744,7 +1744,7 @@ Xcos Bug Fixes
 
 * Bug #12869 fixed - min and max were not defined but used in Xcos generated code.
 
-* Bug #12873 fixed - Scicos_flat produced an unexpected error after a diagram
+* Bug #12873 fixed - scicos_flat produced an unexpected error after a diagram
                      load.
 
 * Bug #12874 fixed - CSCOPE marks sizes were too small.
