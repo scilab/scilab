@@ -532,6 +532,10 @@ msgid "Impossible to get current look and feel"
 msgstr "É impossível obter a aparência atual"
 
 #, c-format
+msgid "%s: This file %s does not exist.\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "%s: A Java exception arised:\n"
 "%s"
@@ -2429,15 +2433,22 @@ msgstr "Erro"
 msgid "Please enter a color name first."
 msgstr "Informe um nome de cor primeiro."
 
+msgid "Unknown color."
+msgstr ""
+
 msgid "No color selected."
 msgstr "Nenhuma cor está selecionada."
+
+msgid "Color selection"
+msgstr ""
 
 #, c-format
 msgid "Selected colors are: %s."
 msgstr "As cores selecionadas são: %s."
 
-msgid "Selected colors"
-msgstr "Cores selecionadas"
+#, c-format
+msgid "Deleted colors are: %s."
+msgstr ""
 
 #, c-format
 msgid "You clicked on menu '%s'."
@@ -2481,8 +2492,8 @@ msgstr "Demonstração de Uicontrols"
 msgid "Application"
 msgstr "Aplicativo"
 
-msgid "Exit figure"
-msgstr "Sair da figura"
+msgid "Close figure"
+msgstr ""
 
 msgid "Scilab Graphics"
 msgstr "Gráficos do Scilab"
@@ -2508,11 +2519,23 @@ msgstr "Submenu 2-1"
 msgid "Sub-menu 2-2"
 msgstr "Submenu 2-2"
 
+msgid "item1|item2|item3|item4"
+msgstr "item1|item2|item3|item4"
+
+msgid "Pop-up menu"
+msgstr ""
+
+msgid "Slider demo"
+msgstr "Demonstração do deslizador"
+
 msgid "Colors list edition"
 msgstr "Edição da lista de cores"
 
 msgid "Add color in listbox"
 msgstr "Adicionar cor à lista"
+
+msgid "Delete color in listbox"
+msgstr ""
 
 msgid "blue"
 msgstr "azul"
@@ -2529,11 +2552,11 @@ msgstr "amarelo"
 msgid "Display selection"
 msgstr "Exibir seleção"
 
-msgid "Slider demo"
-msgstr "Demonstração do deslizador"
+msgid "Delete selection"
+msgstr ""
 
-msgid "item1|item2|item3|item4"
-msgstr "item1|item2|item3|item4"
+msgid "Default"
+msgstr ""
 
 msgid "Quit demonstration"
 msgstr "Sair da demonstração"
@@ -2785,3 +2808,9 @@ msgstr "%s: Tipo incorreto para %s: esperava-se um número real.\n"
 #, c-format
 msgid "%s: Wrong size for %s: A real expected.\n"
 msgstr "%s: Tamanho incorreto para %s: esperava-se um número real.\n"
+
+#~ msgid "Exit figure"
+#~ msgstr "Sair da figura"
+
+#~ msgid "Selected colors"
+#~ msgstr "Cores selecionadas"

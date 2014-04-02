@@ -306,6 +306,9 @@ msgstr "Трасування"
 msgid "Robust control"
 msgstr "Робастне керування"
 
+msgid "Press Return to continue ... \n"
+msgstr ""
+
 #, c-format
 msgid ""
 "%s: Wrong type for input argument: Linear dynamical system expected.\n"

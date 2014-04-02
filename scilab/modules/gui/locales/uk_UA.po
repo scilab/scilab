@@ -591,6 +591,10 @@ msgid "Impossible to get current look and feel"
 msgstr "Не вдалося визначити поточний вигляд і поведінку"
 
 #, c-format
+msgid "%s: This file %s does not exist.\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "%s: A Java exception arised:\n"
 "%s"
@@ -2524,15 +2528,22 @@ msgstr "Помилка"
 msgid "Please enter a color name first."
 msgstr "Будь ласка, спочатку введіть назву кольору."
 
+msgid "Unknown color."
+msgstr ""
+
 msgid "No color selected."
 msgstr "Не вибрано жодного кольору."
+
+msgid "Color selection"
+msgstr ""
 
 #, c-format
 msgid "Selected colors are: %s."
 msgstr "Вибрані кольори: %s."
 
-msgid "Selected colors"
-msgstr "Вибрані кольори"
+#, c-format
+msgid "Deleted colors are: %s."
+msgstr ""
 
 #, c-format
 msgid "You clicked on menu '%s'."
@@ -2576,8 +2587,8 @@ msgstr "Демонстрація елементів керування"
 msgid "Application"
 msgstr "Програма"
 
-msgid "Exit figure"
-msgstr "Закрити вікно рисунка"
+msgid "Close figure"
+msgstr ""
 
 msgid "Scilab Graphics"
 msgstr "Графічні дані Scilab"
@@ -2603,11 +2614,23 @@ msgstr "Підменю 2-1"
 msgid "Sub-menu 2-2"
 msgstr "Підменю 2-2"
 
+msgid "item1|item2|item3|item4"
+msgstr "елемент1|елемент2|елемент3|елемент4"
+
+msgid "Pop-up menu"
+msgstr ""
+
+msgid "Slider demo"
+msgstr "Демонстрація роботи повзунка"
+
 msgid "Colors list edition"
 msgstr "Редагування списку кольорів"
 
 msgid "Add color in listbox"
 msgstr "Додати колір з панелі списку"
+
+msgid "Delete color in listbox"
+msgstr ""
 
 msgid "blue"
 msgstr "синій"
@@ -2624,11 +2647,11 @@ msgstr "жовтий"
 msgid "Display selection"
 msgstr "Показ позначеного"
 
-msgid "Slider demo"
-msgstr "Демонстрація роботи повзунка"
+msgid "Delete selection"
+msgstr ""
 
-msgid "item1|item2|item3|item4"
-msgstr "елемент1|елемент2|елемент3|елемент4"
+msgid "Default"
+msgstr ""
 
 msgid "Quit demonstration"
 msgstr "Закрити вікно демонстрації"
@@ -2908,3 +2931,9 @@ msgstr "%s: помилковий тип для %s: слід використов
 #, c-format
 msgid "%s: Wrong size for %s: A real expected.\n"
 msgstr "%s: помилковий розмір для %s: слід використовувати дійсне число.\n"
+
+#~ msgid "Exit figure"
+#~ msgstr "Закрити вікно рисунка"
+
+#~ msgid "Selected colors"
+#~ msgstr "Вибрані кольори"

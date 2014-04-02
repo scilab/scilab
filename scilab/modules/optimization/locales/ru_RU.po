@@ -603,14 +603,6 @@ msgid "%s: Wrong type for input argument #%d: A function expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидалась функция.\n"
 
 #, c-format
-msgid "%s: Weighting matrix must be square.\n"
-msgstr "%s: Весовая матрица должна быть квадратной.\n"
-
-#, c-format
-msgid "%s: Initial guess not feasible.\n"
-msgstr "%s: Неподходящее исходное предположение.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
 msgstr ""
 "%s: Неверный тип входного аргумента №%d: Ожидалась матрица вещественных "

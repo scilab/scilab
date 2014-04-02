@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2014-03-07 20:06+0000\n"
+"PO-Revision-Date: 2014-04-01 19:08+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
@@ -34,10 +34,10 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: не вдалося прочитати вхідний параметр №%d.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real or complex matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Real or complex matrix expected.\n"
 msgstr ""
-"%s: помилковий тип параметра %d: мало бути вказано матрицю з дійсних або "
-"комплексних чисел.\n"
+"%s: помилковий тип параметра №%d: слід використовувати матрицю з дійсних або "
+"комплексних значень.\n"
 
 #, c-format
 msgid "%s: Wrong value for argument #%d: Must not contain NaN or Inf.\n"

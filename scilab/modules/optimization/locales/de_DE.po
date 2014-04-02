@@ -578,14 +578,6 @@ msgstr ""
 "%s: falsche Größe für Eingangsargument #%d: eine Funktion erwartet.\n"
 
 #, c-format
-msgid "%s: Weighting matrix must be square.\n"
-msgstr "%s: Gewichtungs-Matrix muß quadratisch sein.\n"
-
-#, c-format
-msgid "%s: Initial guess not feasible.\n"
-msgstr "%s: ursprüngliche Vermutung nicht durchführbar.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
 msgstr ""
 

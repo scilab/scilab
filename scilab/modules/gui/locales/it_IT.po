@@ -536,6 +536,10 @@ msgid "Impossible to get current look and feel"
 msgstr "Impossibile ottenere l'aspetto e il comportamento correnti"
 
 #, c-format
+msgid "%s: This file %s does not exist.\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "%s: A Java exception arised:\n"
 "%s"
@@ -2422,15 +2426,22 @@ msgstr "Errore"
 msgid "Please enter a color name first."
 msgstr "Inserire prima il nome di un colore."
 
+msgid "Unknown color."
+msgstr ""
+
 msgid "No color selected."
 msgstr "Nessun colore selezionato."
+
+msgid "Color selection"
+msgstr ""
 
 #, c-format
 msgid "Selected colors are: %s."
 msgstr "I colori selezionati sono: %s."
 
-msgid "Selected colors"
-msgstr "Colori selezionati"
+#, c-format
+msgid "Deleted colors are: %s."
+msgstr ""
 
 #, c-format
 msgid "You clicked on menu '%s'."
@@ -2474,7 +2485,7 @@ msgstr "Demo degli uicontrol"
 msgid "Application"
 msgstr "Applicazione"
 
-msgid "Exit figure"
+msgid "Close figure"
 msgstr ""
 
 msgid "Scilab Graphics"
@@ -2501,11 +2512,23 @@ msgstr "Sotto-menù 2-1"
 msgid "Sub-menu 2-2"
 msgstr "Sotto-menu 2-2"
 
+msgid "item1|item2|item3|item4"
+msgstr "oggetto1|oggetto2|oggetto3|oggetto4"
+
+msgid "Pop-up menu"
+msgstr ""
+
+msgid "Slider demo"
+msgstr "Demo della barra di controllo"
+
 msgid "Colors list edition"
 msgstr "Edizione dell'elenco dei colori"
 
 msgid "Add color in listbox"
 msgstr "Aggiungere un colore"
+
+msgid "Delete color in listbox"
+msgstr ""
 
 msgid "blue"
 msgstr "blu"
@@ -2522,11 +2545,11 @@ msgstr "giallo"
 msgid "Display selection"
 msgstr "Mostra la selezione"
 
-msgid "Slider demo"
-msgstr "Demo della barra di controllo"
+msgid "Delete selection"
+msgstr ""
 
-msgid "item1|item2|item3|item4"
-msgstr "oggetto1|oggetto2|oggetto3|oggetto4"
+msgid "Default"
+msgstr ""
 
 msgid "Quit demonstration"
 msgstr "Uscire dalla dimostrazione"
@@ -2781,3 +2804,6 @@ msgstr "%s: %s è di tipo sbagliato: era atteso un numero reale.\n"
 #, c-format
 msgid "%s: Wrong size for %s: A real expected.\n"
 msgstr "%s: %s ha una dimensione sbagliata: era atteso un numero reale.\n"
+
+#~ msgid "Selected colors"
+#~ msgstr "Colori selezionati"

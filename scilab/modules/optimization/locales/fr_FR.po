@@ -627,14 +627,6 @@ msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une fonction attendue.\n"
 
 #, c-format
-msgid "%s: Weighting matrix must be square.\n"
-msgstr "%s : La matrice de pondération doit être carrée.\n"
-
-#, c-format
-msgid "%s: Initial guess not feasible.\n"
-msgstr "%s : Le point initial n'est pas réalisable.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une matrice réelle attendue.\n"

@@ -589,14 +589,6 @@ msgstr ""
 "%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba una función.\n"
 
 #, c-format
-msgid "%s: Weighting matrix must be square.\n"
-msgstr "%s: La matriz de ponderación debe ser cuadrada.\n"
-
-#, c-format
-msgid "%s: Initial guess not feasible.\n"
-msgstr "%s: El acierto inicial no es factible.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
 msgstr ""
 "%s:Tipo incorrecto del argumento de entrada #%d: Se esperaba una matriz "

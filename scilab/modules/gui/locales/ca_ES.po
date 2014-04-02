@@ -527,6 +527,10 @@ msgid "Impossible to get current look and feel"
 msgstr "No s'ha pogut recuperar l'aparença actual"
 
 #, c-format
+msgid "%s: This file %s does not exist.\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "%s: A Java exception arised:\n"
 "%s"
@@ -2405,15 +2409,22 @@ msgstr "Error"
 msgid "Please enter a color name first."
 msgstr "Introduïu un nom de color."
 
+msgid "Unknown color."
+msgstr ""
+
 msgid "No color selected."
 msgstr "No heu seleccionat cap color."
+
+msgid "Color selection"
+msgstr ""
 
 #, c-format
 msgid "Selected colors are: %s."
 msgstr "Els colors seleccionats són: %s."
 
-msgid "Selected colors"
-msgstr "Colors seleccionats"
+#, c-format
+msgid "Deleted colors are: %s."
+msgstr ""
 
 #, c-format
 msgid "You clicked on menu '%s'."
@@ -2457,8 +2468,8 @@ msgstr "Demostració d'Uicontrols"
 msgid "Application"
 msgstr "Aplicació"
 
-msgid "Exit figure"
-msgstr "Surt de la figura"
+msgid "Close figure"
+msgstr ""
 
 msgid "Scilab Graphics"
 msgstr "Gràfics d'Scilab"
@@ -2484,11 +2495,23 @@ msgstr "Submenú 2-1"
 msgid "Sub-menu 2-2"
 msgstr "Submenú 2-2"
 
+msgid "item1|item2|item3|item4"
+msgstr "element1|element2|element3|element4"
+
+msgid "Pop-up menu"
+msgstr ""
+
+msgid "Slider demo"
+msgstr "Demostració de transició"
+
 msgid "Colors list edition"
 msgstr "Edita la llista de colors"
 
 msgid "Add color in listbox"
 msgstr "Afegiu un color a la llista"
+
+msgid "Delete color in listbox"
+msgstr ""
 
 msgid "blue"
 msgstr "blau"
@@ -2505,11 +2528,11 @@ msgstr "groc"
 msgid "Display selection"
 msgstr "Selecció de vista"
 
-msgid "Slider demo"
-msgstr "Demostració de transició"
+msgid "Delete selection"
+msgstr ""
 
-msgid "item1|item2|item3|item4"
-msgstr "element1|element2|element3|element4"
+msgid "Default"
+msgstr ""
 
 msgid "Quit demonstration"
 msgstr "Tanca la demostració"
@@ -2761,3 +2784,9 @@ msgstr "%s: El tipus de %s és incorrecte: Ha de ser un nombre real.\n"
 #, c-format
 msgid "%s: Wrong size for %s: A real expected.\n"
 msgstr "%s: La mida de %s és incorrecta: Ha de ser un nombre real.\n"
+
+#~ msgid "Exit figure"
+#~ msgstr "Surt de la figura"
+
+#~ msgid "Selected colors"
+#~ msgstr "Colors seleccionats"

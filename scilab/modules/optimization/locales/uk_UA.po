@@ -621,14 +621,6 @@ msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати функцію.\n"
 
 #, c-format
-msgid "%s: Weighting matrix must be square.\n"
-msgstr "%s: вагова матриця має бути квадратною.\n"
-
-#, c-format
-msgid "%s: Initial guess not feasible.\n"
-msgstr "%s: початкова точка не задовольняє умовам задачі.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати матрицю "

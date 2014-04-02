@@ -505,6 +505,10 @@ msgid "Impossible to get current look and feel"
 msgstr "Nelze získat současný vzhled"
 
 #, c-format
+msgid "%s: This file %s does not exist.\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "%s: A Java exception arised:\n"
 "%s"
@@ -2377,15 +2381,22 @@ msgstr "Chyba"
 msgid "Please enter a color name first."
 msgstr "Nejdříve prosím zadejte jméno barvy."
 
+msgid "Unknown color."
+msgstr ""
+
 msgid "No color selected."
 msgstr "Žádná barva není vybrána"
+
+msgid "Color selection"
+msgstr ""
 
 #, c-format
 msgid "Selected colors are: %s."
 msgstr "Vybrané barvy jsou: %s."
 
-msgid "Selected colors"
-msgstr "Vybrané barvy"
+#, c-format
+msgid "Deleted colors are: %s."
+msgstr ""
 
 #, c-format
 msgid "You clicked on menu '%s'."
@@ -2429,8 +2440,8 @@ msgstr "Ukázka ovládání rozhraní"
 msgid "Application"
 msgstr "Aplikace"
 
-msgid "Exit figure"
-msgstr "Výstupní číslo"
+msgid "Close figure"
+msgstr ""
 
 msgid "Scilab Graphics"
 msgstr "Grafika Scilab"
@@ -2456,11 +2467,23 @@ msgstr "Podmenu 2-1"
 msgid "Sub-menu 2-2"
 msgstr "Podmenu 2-2"
 
+msgid "item1|item2|item3|item4"
+msgstr "položka1|položka2|položka3|položka4"
+
+msgid "Pop-up menu"
+msgstr ""
+
+msgid "Slider demo"
+msgstr "Ukázka jezdce"
+
 msgid "Colors list edition"
 msgstr "Úprava seznamu barev"
 
 msgid "Add color in listbox"
 msgstr "Přidat barvu do rozevíracího seznamu"
+
+msgid "Delete color in listbox"
+msgstr ""
 
 msgid "blue"
 msgstr "modrá"
@@ -2477,11 +2500,11 @@ msgstr "žlutá"
 msgid "Display selection"
 msgstr "Výběr zobrazení"
 
-msgid "Slider demo"
-msgstr "Ukázka jezdce"
+msgid "Delete selection"
+msgstr ""
 
-msgid "item1|item2|item3|item4"
-msgstr "položka1|položka2|položka3|položka4"
+msgid "Default"
+msgstr ""
 
 msgid "Quit demonstration"
 msgstr "Ukončit ukázku"
@@ -2727,3 +2750,9 @@ msgstr "%s: Špatný typ %s: Očekáváno reálné číslo.\n"
 #, c-format
 msgid "%s: Wrong size for %s: A real expected.\n"
 msgstr "%s: Špatná velikost %s: Očekáváno reálné číslo.\n"
+
+#~ msgid "Exit figure"
+#~ msgstr "Výstupní číslo"
+
+#~ msgid "Selected colors"
+#~ msgstr "Vybrané barvy"

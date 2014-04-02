@@ -522,6 +522,10 @@ msgid "Impossible to get current look and feel"
 msgstr "Imposible adquirir el look and feel actual"
 
 #, c-format
+msgid "%s: This file %s does not exist.\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "%s: A Java exception arised:\n"
 "%s"
@@ -2404,15 +2408,22 @@ msgstr "Error"
 msgid "Please enter a color name first."
 msgstr "Por favor ingrese primero el nombre de un color."
 
+msgid "Unknown color."
+msgstr ""
+
 msgid "No color selected."
 msgstr "No se seleccionó un color."
+
+msgid "Color selection"
+msgstr ""
 
 #, c-format
 msgid "Selected colors are: %s."
 msgstr "Los colores seleccionados son: %s."
 
-msgid "Selected colors"
-msgstr "Colores seleccionados"
+#, c-format
+msgid "Deleted colors are: %s."
+msgstr ""
 
 #, c-format
 msgid "You clicked on menu '%s'."
@@ -2456,8 +2467,8 @@ msgstr "Demostración de Uicontrols"
 msgid "Application"
 msgstr "Aplicación"
 
-msgid "Exit figure"
-msgstr "Salir de la figura"
+msgid "Close figure"
+msgstr ""
 
 msgid "Scilab Graphics"
 msgstr "Gráficos de Scilab"
@@ -2483,11 +2494,23 @@ msgstr "Sub-menú 2-1"
 msgid "Sub-menu 2-2"
 msgstr "Sub-menú 2-2"
 
+msgid "item1|item2|item3|item4"
+msgstr "elemento1|elemento2|elemento3|elemento4"
+
+msgid "Pop-up menu"
+msgstr ""
+
+msgid "Slider demo"
+msgstr "Demostración del deslizador"
+
 msgid "Colors list edition"
 msgstr "Editar la lista de colores"
 
 msgid "Add color in listbox"
 msgstr "Añadir color en la lista"
+
+msgid "Delete color in listbox"
+msgstr ""
 
 msgid "blue"
 msgstr "azul"
@@ -2504,11 +2527,11 @@ msgstr "amarillo"
 msgid "Display selection"
 msgstr "Mostrar selección"
 
-msgid "Slider demo"
-msgstr "Demostración del deslizador"
+msgid "Delete selection"
+msgstr ""
 
-msgid "item1|item2|item3|item4"
-msgstr "elemento1|elemento2|elemento3|elemento4"
+msgid "Default"
+msgstr ""
 
 msgid "Quit demonstration"
 msgstr "Salir de la demostración"
@@ -2760,3 +2783,9 @@ msgstr "%s: Tipo incorrecto para %s: Se esperaba un real.\n"
 #, c-format
 msgid "%s: Wrong size for %s: A real expected.\n"
 msgstr "%s: Tamaño incorrecto para %s: Se esperaba un real.\n"
+
+#~ msgid "Exit figure"
+#~ msgstr "Salir de la figura"
+
+#~ msgid "Selected colors"
+#~ msgstr "Colores seleccionados"

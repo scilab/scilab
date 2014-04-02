@@ -450,6 +450,10 @@ msgid "Impossible to get current look and feel"
 msgstr "無法取得目前之 look and feel"
 
 #, c-format
+msgid "%s: This file %s does not exist.\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "%s: A Java exception arised:\n"
 "%s"
@@ -2278,15 +2282,22 @@ msgstr "錯誤"
 msgid "Please enter a color name first."
 msgstr "請先輸入顏色名稱"
 
+msgid "Unknown color."
+msgstr ""
+
 msgid "No color selected."
 msgstr "未選定顏色"
+
+msgid "Color selection"
+msgstr ""
 
 #, c-format
 msgid "Selected colors are: %s."
 msgstr "所選擇的顏色是: %s."
 
-msgid "Selected colors"
-msgstr "選擇顏色"
+#, c-format
+msgid "Deleted colors are: %s."
+msgstr ""
 
 #, c-format
 msgid "You clicked on menu '%s'."
@@ -2330,8 +2341,8 @@ msgstr "Uicontrols(使用者介面控制項) 展示"
 msgid "Application"
 msgstr "應用程式"
 
-msgid "Exit figure"
-msgstr "離開 figure"
+msgid "Close figure"
+msgstr ""
 
 msgid "Scilab Graphics"
 msgstr "Scilab 繪圖功能"
@@ -2357,11 +2368,23 @@ msgstr "子選單 2-1"
 msgid "Sub-menu 2-2"
 msgstr "子選單 2-2"
 
+msgid "item1|item2|item3|item4"
+msgstr "選項1|選項2|選項3|選項4"
+
+msgid "Pop-up menu"
+msgstr ""
+
+msgid "Slider demo"
+msgstr "輪播展示"
+
 msgid "Colors list edition"
 msgstr "Colors 清單版本"
 
 msgid "Add color in listbox"
 msgstr "在 listbox 中加入顏色"
+
+msgid "Delete color in listbox"
+msgstr ""
 
 msgid "blue"
 msgstr "藍色"
@@ -2378,11 +2401,11 @@ msgstr "黃色"
 msgid "Display selection"
 msgstr "選擇顯示器"
 
-msgid "Slider demo"
-msgstr "輪播展示"
+msgid "Delete selection"
+msgstr ""
 
-msgid "item1|item2|item3|item4"
-msgstr "選項1|選項2|選項3|選項4"
+msgid "Default"
+msgstr ""
 
 msgid "Quit demonstration"
 msgstr "離開展示功能"
@@ -2615,3 +2638,9 @@ msgstr "%s:  輸入參數 %s 之型態錯誤: 應為一實數.\n"
 #, c-format
 msgid "%s: Wrong size for %s: A real expected.\n"
 msgstr "%s: 參數 %s 長度錯誤: 應為一實數.\n"
+
+#~ msgid "Exit figure"
+#~ msgstr "離開 figure"
+
+#~ msgid "Selected colors"
+#~ msgstr "選擇顏色"

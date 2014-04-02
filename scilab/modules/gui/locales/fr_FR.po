@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2014-03-31 09:15+0000\n"
+"PO-Revision-Date: 2014-04-02 07:29+0000\n"
 "Last-Translator: Vincent Couvert <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -556,6 +556,10 @@ msgstr "%s : Une erreur s'est produite : %s.\n"
 
 msgid "Impossible to get current look and feel"
 msgstr "Impossible de lire le thème courant"
+
+#, c-format
+msgid "%s: This file %s does not exist.\n"
+msgstr "%s : Ce fichier %s n'existe pas.\n"
 
 #, c-format
 msgid ""
@@ -2473,15 +2477,22 @@ msgstr "Erreur"
 msgid "Please enter a color name first."
 msgstr "Veuillez entrer un nom de couleur en premier."
 
+msgid "Unknown color."
+msgstr "Couleur inconnue."
+
 msgid "No color selected."
 msgstr "Aucune couleur sélectionnée."
+
+msgid "Color selection"
+msgstr "Sélection de couleur."
 
 #, c-format
 msgid "Selected colors are: %s."
 msgstr "Les couleurs sélectionnées sont : %s."
 
-msgid "Selected colors"
-msgstr "Couleurs sélectionnées"
+#, c-format
+msgid "Deleted colors are: %s."
+msgstr "Les couleurs supprimées sont : %s."
 
 #, c-format
 msgid "You clicked on menu '%s'."
@@ -2525,8 +2536,8 @@ msgstr "Démonstration Uicontrol"
 msgid "Application"
 msgstr "Application"
 
-msgid "Exit figure"
-msgstr "Sortir de la figure"
+msgid "Close figure"
+msgstr "Fermer la fenêtre"
 
 msgid "Scilab Graphics"
 msgstr "Graphiques Scilab"
@@ -2552,11 +2563,23 @@ msgstr "Sous-menu 2-1"
 msgid "Sub-menu 2-2"
 msgstr "Sous-menu 2-2"
 
+msgid "item1|item2|item3|item4"
+msgstr "item1|item2|item3|item4"
+
+msgid "Pop-up menu"
+msgstr "Pop-up menu"
+
+msgid "Slider demo"
+msgstr "Démonstration Barre de défilement"
+
 msgid "Colors list edition"
 msgstr "Édition de la liste de couleurs"
 
 msgid "Add color in listbox"
 msgstr "Ajouter une couleur dans listbox"
+
+msgid "Delete color in listbox"
+msgstr "Supprimer la couleur dans la listbox"
 
 msgid "blue"
 msgstr "bleu"
@@ -2573,11 +2596,11 @@ msgstr "jaune"
 msgid "Display selection"
 msgstr "Afficher la sélection"
 
-msgid "Slider demo"
-msgstr "Démonstration Barre de défilement"
+msgid "Delete selection"
+msgstr "Supprimer la sélection"
 
-msgid "item1|item2|item3|item4"
-msgstr "item1|item2|item3|item4"
+msgid "Default"
+msgstr "Par défaut"
 
 msgid "Quit demonstration"
 msgstr "Quitter la démonstration"
@@ -2842,3 +2865,9 @@ msgstr "%s : Type erroné de %s : Un réel attendu.\n"
 #, c-format
 msgid "%s: Wrong size for %s: A real expected.\n"
 msgstr "%s : Dimension erronée de %s : Un réel attendu.\n"
+
+#~ msgid "Exit figure"
+#~ msgstr "Sortir de la figure"
+
+#~ msgid "Selected colors"
+#~ msgstr "Couleurs sélectionnées"

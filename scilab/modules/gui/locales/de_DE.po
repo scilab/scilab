@@ -511,6 +511,10 @@ msgid "Impossible to get current look and feel"
 msgstr "Es ist unmöglich das aktuelle Design zu erhalten."
 
 #, c-format
+msgid "%s: This file %s does not exist.\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "%s: A Java exception arised:\n"
 "%s"
@@ -2373,15 +2377,22 @@ msgstr "Fehler"
 msgid "Please enter a color name first."
 msgstr "Geben Sie zuerst einen Farbnamen ein."
 
+msgid "Unknown color."
+msgstr ""
+
 msgid "No color selected."
 msgstr "Keine Farbe ausgewählt."
+
+msgid "Color selection"
+msgstr ""
 
 #, c-format
 msgid "Selected colors are: %s."
 msgstr "Ausgewählte Farben sind: %s"
 
-msgid "Selected colors"
-msgstr "Ausgewählte Farben"
+#, c-format
+msgid "Deleted colors are: %s."
+msgstr ""
 
 #, c-format
 msgid "You clicked on menu '%s'."
@@ -2425,8 +2436,8 @@ msgstr "Uicontrol-Demo"
 msgid "Application"
 msgstr "Anwendung"
 
-msgid "Exit figure"
-msgstr "Diagramm verlassen"
+msgid "Close figure"
+msgstr ""
 
 msgid "Scilab Graphics"
 msgstr "Scilab Grafen"
@@ -2452,11 +2463,23 @@ msgstr "Submenü 2-1"
 msgid "Sub-menu 2-2"
 msgstr "Submenü 2-2"
 
+msgid "item1|item2|item3|item4"
+msgstr "item1|item2|item3|item4"
+
+msgid "Pop-up menu"
+msgstr ""
+
+msgid "Slider demo"
+msgstr "Slider Demo"
+
 msgid "Colors list edition"
 msgstr "Listenedittion der Farbe"
 
 msgid "Add color in listbox"
 msgstr "Füge eine Farbe in der Listbox hinzu"
+
+msgid "Delete color in listbox"
+msgstr ""
 
 msgid "blue"
 msgstr "blau"
@@ -2473,11 +2496,11 @@ msgstr "gelb"
 msgid "Display selection"
 msgstr "Auswahl der Anzeige"
 
-msgid "Slider demo"
-msgstr "Slider Demo"
+msgid "Delete selection"
+msgstr ""
 
-msgid "item1|item2|item3|item4"
-msgstr "item1|item2|item3|item4"
+msgid "Default"
+msgstr ""
 
 msgid "Quit demonstration"
 msgstr "Demo verlassen"
@@ -2719,3 +2742,9 @@ msgstr "%s: falscher Typ für %s: eine Realzahl erwartet.\n"
 #, c-format
 msgid "%s: Wrong size for %s: A real expected.\n"
 msgstr "%s: falsche Größe für %s: eine Realzahl erwartet.\n"
+
+#~ msgid "Exit figure"
+#~ msgstr "Diagramm verlassen"
+
+#~ msgid "Selected colors"
+#~ msgstr "Ausgewählte Farben"

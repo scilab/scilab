@@ -275,6 +275,9 @@ msgstr "Rilevamento"
 msgid "Robust control"
 msgstr "Controllo robusto"
 
+msgid "Press Return to continue ... \n"
+msgstr ""
+
 #, c-format
 msgid ""
 "%s: Wrong type for input argument: Linear dynamical system expected.\n"

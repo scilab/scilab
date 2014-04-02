@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2014-03-31 08:13+0000\n"
+"PO-Revision-Date: 2014-04-02 07:30+0000\n"
 "Last-Translator: Vincent Couvert <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -296,6 +296,9 @@ msgstr "Suivi de signal"
 
 msgid "Robust control"
 msgstr "Commande robuste"
+
+msgid "Press Return to continue ... \n"
+msgstr "Appuyez sur Entrée pour continuer ... \n"
 
 #, c-format
 msgid ""

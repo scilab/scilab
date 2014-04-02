@@ -524,6 +524,10 @@ msgid "Impossible to get current look and feel"
 msgstr "Текущий внешний вид получить невозможно"
 
 #, c-format
+msgid "%s: This file %s does not exist.\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "%s: A Java exception arised:\n"
 "%s"
@@ -2415,15 +2419,22 @@ msgstr "Ошибка"
 msgid "Please enter a color name first."
 msgstr "Введите сначала название цвета."
 
+msgid "Unknown color."
+msgstr ""
+
 msgid "No color selected."
 msgstr "Нет выбранного цвета."
+
+msgid "Color selection"
+msgstr ""
 
 #, c-format
 msgid "Selected colors are: %s."
 msgstr "Выбранные цвета: %s."
 
-msgid "Selected colors"
-msgstr "Выбранные цвета"
+#, c-format
+msgid "Deleted colors are: %s."
+msgstr ""
 
 #, c-format
 msgid "You clicked on menu '%s'."
@@ -2467,8 +2478,8 @@ msgstr "Пример uicontrols"
 msgid "Application"
 msgstr "Приложение"
 
-msgid "Exit figure"
-msgstr "Закрыть окно"
+msgid "Close figure"
+msgstr ""
 
 msgid "Scilab Graphics"
 msgstr "Графика"
@@ -2494,11 +2505,23 @@ msgstr "Подменю 2-1"
 msgid "Sub-menu 2-2"
 msgstr "Подменю 2-2"
 
+msgid "item1|item2|item3|item4"
+msgstr "элемент1|элемент2|элемент3|элемент4"
+
+msgid "Pop-up menu"
+msgstr ""
+
+msgid "Slider demo"
+msgstr "Пример ползунка"
+
 msgid "Colors list edition"
 msgstr "Редактирование списка цветов"
 
 msgid "Add color in listbox"
 msgstr "Добавить цвет в список"
+
+msgid "Delete color in listbox"
+msgstr ""
 
 msgid "blue"
 msgstr "синий"
@@ -2515,11 +2538,11 @@ msgstr "жёлтый"
 msgid "Display selection"
 msgstr "Отобразить выделенное"
 
-msgid "Slider demo"
-msgstr "Пример ползунка"
+msgid "Delete selection"
+msgstr ""
 
-msgid "item1|item2|item3|item4"
-msgstr "элемент1|элемент2|элемент3|элемент4"
+msgid "Default"
+msgstr ""
 
 msgid "Quit demonstration"
 msgstr "Выход"
@@ -2770,3 +2793,9 @@ msgstr "%s: Неверный тип %s: ожидалось вещественн�
 #, c-format
 msgid "%s: Wrong size for %s: A real expected.\n"
 msgstr "%s: Неверный размер %s: ожидалось вещественное число.\n"
+
+#~ msgid "Exit figure"
+#~ msgstr "Закрыть окно"
+
+#~ msgid "Selected colors"
+#~ msgstr "Выбранные цвета"

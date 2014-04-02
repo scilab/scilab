@@ -621,18 +621,6 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A function expected.\n"
 msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一函數.\n"
 
-#
-# File: macros/fit_dat.sci, line: 81
-#, c-format
-msgid "%s: Weighting matrix must be square.\n"
-msgstr "%s: 權重矩陣 (Weighting matrix) 應為方陣.\n"
-
-#
-# File: macros/fit_dat.sci, line: 100
-#, c-format
-msgid "%s: Initial guess not feasible.\n"
-msgstr "%s: 初始猜值不可行.\n"
-
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
 msgstr ""

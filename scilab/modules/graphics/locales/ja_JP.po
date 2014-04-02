@@ -102,6 +102,20 @@ msgid ""
 msgstr "%s: 入力引数 #%d の型が間違っています: 文字列の二次元配列を指定してください.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: Real vector 1x3 expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real vector nx3 expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Value must be between 0.0 and 1.0 "
+"expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr "%s: 入力引数の数が正しくありません: %d 個以上の引数を指定してください.\n"
 
@@ -116,6 +130,27 @@ msgstr "%s: 入力引数 #%d の大きさが間違っています: %d 行 %d 列
 #, c-format
 msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
 msgstr "%s: 入力引数の大きさが間違っています: 大きさに互換性がありません.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+msgstr "%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A known color expected.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 既存の色を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが正しくありません: スカラーを1つ指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: [%s, %s] の範囲で指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
@@ -227,6 +262,10 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 実数を指定し�
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Vector %s or %s expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: ベクトル %s または %sを指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A graphic handle expected.\n"
@@ -398,10 +437,6 @@ msgid "%s: Wrong size for input argument #%d: A single handle expected.\n"
 msgstr "%s: 入力引数 #%d の大きさが間違っています: ハンドルを1つ指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: string expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
-
-#, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A '%s' handle or a real scalar "
 "expected.\n"
@@ -486,20 +521,12 @@ msgid "%s: Wrong value for input argument #%d: Non-negative int expected.\n"
 msgstr "%s: 入力引数#%dの値が間違っています: 負ではない整数を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが正しくありません: スカラーを1つ指定してください.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: Non-negative int expected.\n"
 msgstr "%s: 入力引数#%dの型が間違っています: 負ではない整数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr "%s: 入力引数 #%d の値が間違っています: '%s' または '%s' を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
-msgstr "%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Incompatible length for input arguments #%d and #%d.\n"
@@ -1558,14 +1585,14 @@ msgstr "カラーマップ"
 msgid "Matplot"
 msgstr "Matplot"
 
-msgid "Java Image"
-msgstr "Java画像"
-
 msgid "Classical Matplot"
 msgstr "以前の Matplot"
 
 msgid "Classical Matplot1"
 msgstr "以前の Matplot1"
+
+msgid "Java Image"
+msgstr "Java画像"
 
 msgid "Mandelbrot"
 msgstr "マンデルブロ"
@@ -1739,10 +1766,6 @@ msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr "%s: 入力引数の数に誤りがあります: %d 個の引数を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
-msgstr "%s: 入力引数 #%d の型が正しくありません: %s データ構造を指定してください.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: a real scalar expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 実数スカラーを指定してください.\n"
 
@@ -1860,20 +1883,15 @@ msgid ""
 "handle expected."
 msgstr "%s: 入力引数 #%d の型が間違っています: 'Figure'または'Frame'ハンドルのベクトルを指定してください."
 
+#, c-format
+msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
+msgstr "%s: 入力引数 #%d の型が正しくありません: %s データ構造を指定してください.\n"
+
 #
 # File: sci_gateway/c/sci_set.c, line: 198
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String array expected.\n"
 msgstr "%s: 入力引数 #%d で不正な型: 文字配列を想定します。\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: A known color expected.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: 既存の色を指定してください.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: [%s, %s] の範囲で指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
@@ -1929,10 +1947,6 @@ msgstr "%s: 入力引数 #%d の大きさが間違っています: 実数ベク�
 #, c-format
 msgid "Error %d : in plot2d called by contour2d"
 msgstr "エラー %d: contour2d によりコールされたplot2dで発生"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d:  Real matrix expected.\n"

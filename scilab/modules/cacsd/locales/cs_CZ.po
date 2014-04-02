@@ -285,6 +285,9 @@ msgstr "Sledování"
 msgid "Robust control"
 msgstr "Robustní ovládání"
 
+msgid "Press Return to continue ... \n"
+msgstr ""
+
 #, c-format
 msgid ""
 "%s: Wrong type for input argument: Linear dynamical system expected.\n"

@@ -35,8 +35,8 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: 入力引数 #%d を読み込めません.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real or complex matrix expected.\n"
-msgstr "%s: 引数 %d の型が間違っています: 実数または複素数の行列を指定してください.\n"
+msgid "%s: Wrong type for argument #%d: Real or complex matrix expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for argument #%d: Must not contain NaN or Inf.\n"

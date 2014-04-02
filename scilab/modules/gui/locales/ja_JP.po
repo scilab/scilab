@@ -479,6 +479,10 @@ msgid "Impossible to get current look and feel"
 msgstr "現在のルックアンドフィールを取得できません"
 
 #, c-format
+msgid "%s: This file %s does not exist.\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "%s: A Java exception arised:\n"
 "%s"
@@ -2468,17 +2472,22 @@ msgstr "エラー"
 msgid "Please enter a color name first."
 msgstr "最初に色名を入力してください。"
 
+msgid "Unknown color."
+msgstr ""
+
 msgid "No color selected."
 msgstr "色選択なし"
+
+msgid "Color selection"
+msgstr ""
 
 #, c-format
 msgid "Selected colors are: %s."
 msgstr "選択された色: %s"
 
-#
-# File: scilab_fake_localization_file.c, line: 56
-msgid "Selected colors"
-msgstr "色選択"
+#, c-format
+msgid "Deleted colors are: %s."
+msgstr ""
 
 #, c-format
 msgid "You clicked on menu '%s'."
@@ -2537,8 +2546,8 @@ msgstr "UIコントロール・デモ"
 msgid "Application"
 msgstr "アプリケーション"
 
-msgid "Exit figure"
-msgstr "終了構成"
+msgid "Close figure"
+msgstr ""
 
 msgid "Scilab Graphics"
 msgstr "Scilab グラフィック"
@@ -2564,11 +2573,23 @@ msgstr "サブ・メニュー 2-1"
 msgid "Sub-menu 2-2"
 msgstr "サブ・メニュー 2-2"
 
+msgid "item1|item2|item3|item4"
+msgstr "項目1|項目2|項目3|項目4"
+
+msgid "Pop-up menu"
+msgstr ""
+
+msgid "Slider demo"
+msgstr "スライダーデモ"
+
 msgid "Colors list edition"
 msgstr "色一覧"
 
 msgid "Add color in listbox"
 msgstr "リストボックスで色を加える"
+
+msgid "Delete color in listbox"
+msgstr ""
 
 msgid "blue"
 msgstr "青"
@@ -2587,11 +2608,11 @@ msgstr "黄"
 msgid "Display selection"
 msgstr "表示選択"
 
-msgid "Slider demo"
-msgstr "スライダーデモ"
+msgid "Delete selection"
+msgstr ""
 
-msgid "item1|item2|item3|item4"
-msgstr "項目1|項目2|項目3|項目4"
+msgid "Default"
+msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 75
@@ -2835,3 +2856,11 @@ msgstr "%s: %s の型が間違っています: 実数を指定してください
 #, c-format
 msgid "%s: Wrong size for %s: A real expected.\n"
 msgstr "%s: %sの大きさが間違っています: 実数を指定してください.\n"
+
+#~ msgid "Exit figure"
+#~ msgstr "終了構成"
+
+#
+# File: scilab_fake_localization_file.c, line: 56
+#~ msgid "Selected colors"
+#~ msgstr "色選択"
