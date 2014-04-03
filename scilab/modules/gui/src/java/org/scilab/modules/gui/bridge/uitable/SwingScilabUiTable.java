@@ -13,7 +13,7 @@
 package org.scilab.modules.gui.bridge.uitable;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING_COLNB__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING__;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -433,7 +433,7 @@ public class SwingScilabUiTable extends JScrollPane implements SwingViewObject, 
         GraphicController controller = GraphicController.getController();
 
         switch (property) {
-            case __GO_UI_VALUE__: {
+            case __GO_UI_STRING__: {
                 // Update column names
                 String[] stringValue = (String[]) value;
                 int colNb = ((Integer) controller.getProperty(uid, __GO_UI_STRING_COLNB__));
