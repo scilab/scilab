@@ -37,8 +37,8 @@ endfunction
 function Y = calculate_traj(g_x, g_y, g_V, g_Vdir, t, gravity, slope)
 
     function r=cyllim(t, y),
-        r=[y(1)-0.9
-        y(1)+0.9
+        r=[y(1)-0.95
+        y(1)+0.95
         y(3)
         y(3)-14]
     endfunction
