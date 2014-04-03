@@ -23,6 +23,8 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
+import java.awt.event.HierarchyBoundsListener;
+import java.awt.event.HierarchyEvent;
 
 import javax.swing.JLayeredPane;
 import javax.swing.SwingUtilities;
@@ -39,6 +41,7 @@ import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
+import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.widget.Widget;
 
@@ -52,6 +55,7 @@ public class SwingScilabStaticPanel extends SwingScilabScrollPane implements Swi
     private JLayeredPane uiContentPane;
     private JLayeredPane layeredPane;
     private ComponentListener componentListener;
+    private HierarchyBoundsListener ancestorListener;
 
     private SwingScilabCanvas contentCanvas;
     protected boolean hasLayout;
@@ -73,6 +77,21 @@ public class SwingScilabStaticPanel extends SwingScilabScrollPane implements Swi
         layeredPane.setVisible(true);
         uiContentPane.setVisible(true);
 
+        /* Manage figure_position property */
+        ancestorListener = new HierarchyBoundsListener() {
+            public void ancestorResized(HierarchyEvent arg0) {
+            }
+
+            public void ancestorMoved(HierarchyEvent e) {
+                if (e.getChanged() instanceof SwingScilabWindow) {
+                    Position parentPosition = SwingScilabWindow.allScilabWindows.get(parentWindowId).getPosition();
+                    Integer[] newPosition = new Integer[] { parentPosition.getX(), parentPosition.getY() };
+                    GraphicController.getController().setProperty(id, __GO_POSITION__, newPosition);
+                }
+            }
+        };
+        addHierarchyBoundsListener(ancestorListener);
+        
         /* Manage figure_size property */
         componentListener = new ComponentListener() {
             public void componentShown(ComponentEvent arg0) {
