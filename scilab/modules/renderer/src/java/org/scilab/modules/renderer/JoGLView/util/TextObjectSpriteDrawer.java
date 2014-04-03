@@ -59,6 +59,9 @@ public class TextObjectSpriteDrawer implements TextureDrawer {
     private final int width;
     private final int height;
 
+    private boolean latexSet = false;
+    private boolean mathmlSet = false;
+
     /**
      * Default constructor.
      * @param colorMap the color map to use.
@@ -80,6 +83,23 @@ public class TextObjectSpriteDrawer implements TextureDrawer {
         boolean fractionalFont = textObject.getFontFractional();
         Color textColor = ColorFactory.createColor(colorMap, textObject.getFont().getColor());
         Font font = computeFont(textObject);
+
+        loop: {
+            for (String[] textLine : stringArray) {
+                for (String text : textLine) {
+                    if (text != null) {
+                        if (!latexSet && isLatex(text)) {
+                            latexSet = true;
+                            LoadClassPath.loadOnUse("graphics_latex_textrendering");
+                        } else if (!mathmlSet && isMathML(text)) {
+                            LoadClassPath.loadOnUse("graphics_mathml_textrendering");
+                        } else if (latexSet && mathmlSet) {
+                            break loop;
+                        }
+                    }
+                }
+            }
+        }
 
         fillEntityMatrix(stringArray, fractionalFont, textColor, font);
 
@@ -135,7 +155,6 @@ public class TextObjectSpriteDrawer implements TextureDrawer {
                     Icon icon = null;
                     float ascent = 0;
                     if (isLatex(text)) {
-                        LoadClassPath.loadOnUse("graphics_latex_textrendering");
                         try {
                             TeXFormula formula = new TeXFormula(text.substring(1, text.length() - 1));
                             formula.setColor(textColor);
@@ -143,7 +162,6 @@ public class TextObjectSpriteDrawer implements TextureDrawer {
                             ascent = ((TeXIcon) icon).getIconHeight() - ((TeXIcon) icon).getIconDepth();
                         } catch (Exception e) { }
                     } else if (isMathML(text)) {
-                        LoadClassPath.loadOnUse("graphics_mathml_textrendering");
                         try {
                             icon = ScilabSpecialTextUtilities.compileMathMLExpression(text, font.getSize(), textColor);
                             ScilabSpecialTextUtilities.SpecialIcon si = (ScilabSpecialTextUtilities.SpecialIcon) icon;
@@ -225,7 +243,7 @@ public class TextObjectSpriteDrawer implements TextureDrawer {
                     } else if (entity instanceof Icon) {
                         Icon icon = (Icon) entity;
                         double deltaX = alignmentFactor * (columnWidth[column] - icon.getIconWidth());
-                        if (icon instanceof TeXIcon) {
+                        if (latexSet && (icon instanceof TeXIcon)) {
                             TeXIcon tex = (TeXIcon) icon;
                             float ascent = tex.getIconHeight() - tex.getIconDepth();
                             drawingTools.draw(icon, (int) (x + deltaX), Math.round(y - ascent + lineAscent[line]));
