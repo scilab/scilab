@@ -51,7 +51,7 @@
         <programlisting role="example"><![CDATA[ 
 clf()
 x=0:0.01:6*%pi;
-plot2d(x,sin(x^2))
+plot2d(x,sin(x.^2))
 zoom_rect([16,-1,18,1])
 unzoom()
 
