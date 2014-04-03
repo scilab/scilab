@@ -554,6 +554,14 @@ int sci_figure(char * fname, unsigned long fname_len)
         }
     }
 
+    if (position)
+    {
+        int pos[2];
+        pos[0] = (int)position[0];
+        pos[1] = (int)position[1];
+        setGraphicObjectProperty(iFig, __GO_POSITION__, pos, jni_int_vector, 2);
+    }
+
     //axes_size
     if (axesSize)
     {
