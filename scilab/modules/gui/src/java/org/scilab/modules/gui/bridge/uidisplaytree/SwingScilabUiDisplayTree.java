@@ -280,6 +280,10 @@ public class SwingScilabUiDisplayTree extends JScrollPane implements SimpleUiDis
         getLabel().setText(newText);
     }
 
+    public void setEmptyText() {
+        setText(null);
+    }
+
     /**
      * Sets the tree data to be added to viewport
      * @param text the array of strings containing tree data

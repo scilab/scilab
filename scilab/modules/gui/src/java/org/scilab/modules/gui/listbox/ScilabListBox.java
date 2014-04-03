@@ -61,10 +61,14 @@ public class ScilabListBox extends ScilabWidget implements ListBox {
         ScilabBridge.setText(this, newText);
     }
 
+    public void setEmptyText() {
+        ScilabBridge.setText(this, new String[] {});
+    }
+
     /**
-     * Gets the text of a ListBox
-     * @return text of the ListBox
-     */
+      * Gets the text of a ListBox
+      * @return text of the ListBox
+      */
     public String getText() {
         return ScilabBridge.getText(this);
     }

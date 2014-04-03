@@ -111,6 +111,10 @@ public class SwingScilabMenuItem extends JMenuItem implements SwingViewObject, S
         }
     }
 
+    public void setEmptyText() {
+        setText("");
+    }
+
     /**
      * Add a callback to the MenuItem, this callback is a Scilab command
      * @param callback the callback to set.

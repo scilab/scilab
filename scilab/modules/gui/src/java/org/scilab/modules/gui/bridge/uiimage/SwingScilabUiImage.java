@@ -254,6 +254,13 @@ public class SwingScilabUiImage extends JLabel implements SwingViewObject, Simpl
         //        setIcon(imi);
     }
 
+    public void setEmptyText() {
+        imageFile = null;
+        imi = null;
+        img = null;
+        setIcon(null);
+    }
+
     /**
      * Rotates the image
      * @param angle the double value of the angle to rotate

@@ -62,6 +62,10 @@ public class ScilabPushButton extends ScilabWidget implements PushButton {
         ScilabBridge.setText(this, newText);
     }
 
+    public void setEmptyText() {
+        setText(null);
+    }
+
     /**
      * Gets the text of a PushButton
      * @return the text of the PushButton

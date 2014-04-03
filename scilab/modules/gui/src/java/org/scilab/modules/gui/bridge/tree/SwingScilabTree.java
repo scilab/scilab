@@ -273,6 +273,10 @@ public class SwingScilabTree extends DefaultMutableTreeNode implements SimpleTre
 
     }
 
+    public void setEmptyText() {
+        setText(null);
+    }
+
     public void setVerticalAlignment(String alignment) {
         // TODO Auto-generated method stub
 

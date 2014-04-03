@@ -358,52 +358,52 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
         // $...$            : LateXLabel ( LateX )
         // else             : JLabel
 
-        if (newText.equals("")) {
-            labelText = " ";
-        } else {
-            labelText = newText;
-        }
+        labelText = newText;
 
-        if (labelText.startsWith("<math>") && labelText.endsWith("</math>")) {
-            boolean mathML = ScilabSpecialTextUtilities.setText(new JLabel(), labelText);
+        if (labelText != null) {
+            if (labelText.startsWith("<math>") && labelText.endsWith("</math>")) {
+                boolean mathML = ScilabSpecialTextUtilities.setText(new JLabel(), labelText);
 
-            //if MAthML rendering failed use normal renderer ( JLabel)
-            if (mathML) {
-                changeLabelType(LabelStyle.MATHML);
-                ((IconLabel) label).setText(labelText);
-            } else {
-                changeLabelType(LabelStyle.TEXT);
-                ((JLabel) label).setText(labelText);
+                //if MAthML rendering failed use normal renderer ( JLabel)
+                if (mathML) {
+                    changeLabelType(LabelStyle.MATHML);
+                    ((IconLabel) label).setText(labelText);
+                } else {
+                    changeLabelType(LabelStyle.TEXT);
+                    ((JLabel) label).setText(labelText);
+                }
+                return;
             }
-            return;
-        }
 
-        if (labelText.startsWith("<html>") && labelText.endsWith("</html>")) {
-            changeLabelType(LabelStyle.HTML);
-            ((JEditorPane) label).setText(labelText);
-            return;
-        }
-
-        if (labelText.startsWith("$") && labelText.endsWith("$")) {
-            boolean latex = ScilabSpecialTextUtilities.setText(new JLabel(), labelText);
-
-            //if MAthML rendering failed use normal renderer ( JLabel)
-            if (latex) {
-                changeLabelType(LabelStyle.LATEX);
-                ((IconLabel) label).setText(labelText);
-            } else {
-                changeLabelType(LabelStyle.TEXT);
-                ((JLabel) label).setText(labelText);
+            if (labelText.startsWith("<html>") && labelText.endsWith("</html>")) {
+                changeLabelType(LabelStyle.HTML);
+                ((JEditorPane) label).setText(labelText);
+                return;
             }
-            return;
-        }
 
-        changeLabelType(LabelStyle.TEXT);
-        ((JLabel) label).setText(labelText);
+            if (labelText.startsWith("$") && labelText.endsWith("$")) {
+                boolean latex = ScilabSpecialTextUtilities.setText(new JLabel(), labelText);
+
+                //if MAthML rendering failed use normal renderer ( JLabel)
+                if (latex) {
+                    changeLabelType(LabelStyle.LATEX);
+                    ((IconLabel) label).setText(labelText);
+                } else {
+                    changeLabelType(LabelStyle.TEXT);
+                    ((JLabel) label).setText(labelText);
+                }
+                return;
+            }
+        }
 
         ((JLabel) label).invalidate();
+        changeLabelType(LabelStyle.TEXT);
+        ((JLabel) label).setText(labelText);
         ((JLabel) label).validate();
-        ((JLabel) label).repaint();
+    }
+
+    public void setEmptyText() {
+        setText(" ");
     }
 
     /**

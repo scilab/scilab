@@ -197,6 +197,10 @@ public class SwingScilabScroll extends JScrollBar implements SwingViewObject, Si
         this.setName(text);
     }
 
+    public void setEmptyText() {
+        this.setName(null);
+    }
+
     /**
      * Set the horizontal alignment for the Slider text
      * @param alignment the value for the alignment (See ScilabAlignment.java)

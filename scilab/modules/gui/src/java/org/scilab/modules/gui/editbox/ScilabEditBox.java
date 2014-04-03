@@ -62,6 +62,10 @@ public class ScilabEditBox extends ScilabWidget implements EditBox {
         ScilabBridge.setText(this, newText);
     }
 
+    public void setEmptyText() {
+        setText(null);
+    }
+
     /**
      * Gets the text of a EditBox
      * @return text of the EditBox

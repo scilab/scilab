@@ -221,6 +221,10 @@ public class ScilabTree implements Tree {
 
     }
 
+    public void setEmptyText() {
+        setText(null);
+    }
+
     public void setVerticalAlignment(String alignment) {
         // TODO Auto-generated method stub
 

@@ -88,6 +88,10 @@ public class SwingScilabMenu extends JMenu implements SwingViewObject, SimpleMen
         }
     }
 
+    public void setEmptyText() {
+        setText("");
+    }
+
     /**
      * Append a CheckBoxMenuItem to a Scilab Menu
      * @param newCheckBoxMenuItem the CheckBoxMenuItem to add to the Menu

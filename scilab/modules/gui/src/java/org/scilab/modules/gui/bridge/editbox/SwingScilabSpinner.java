@@ -66,6 +66,9 @@ public class SwingScilabSpinner extends JSpinner implements SwingViewObject, Sim
     public void setText(String newText) {
     }
 
+    public void setEmptyText() {
+    }
+
     public String getText() {
         return null;
     }

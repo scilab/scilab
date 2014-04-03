@@ -334,6 +334,10 @@ public class SwingScilabUiTable extends JScrollPane implements SwingViewObject, 
         getLabel().setText(newText);
     }
 
+    public void setEmptyText() {
+        getLabel().setText(null);
+    }
+
     /**
      * Sets the column names for uitable
      * @param names the String[] that contains column names

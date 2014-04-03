@@ -60,6 +60,10 @@ public class ScilabUiTable extends ScilabWidget implements UiTable {
         ScilabBridge.setText(this, newText);
     }
 
+    public void setEmptyText() {
+        setText(null);
+    }
+
     /**
      * Gets the text of a UiTable
      * @return text of the UiTable

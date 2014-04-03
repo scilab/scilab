@@ -730,6 +730,10 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
         this.setName(text);
     }
 
+    public void setEmptyText() {
+        setText("");
+    }
+
     /**
      * Add a dockable element in the Frame (Not available for the moment)
      * @param member the object we want to add to the Frame

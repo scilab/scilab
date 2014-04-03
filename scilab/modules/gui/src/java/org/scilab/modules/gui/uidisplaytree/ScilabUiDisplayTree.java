@@ -60,6 +60,10 @@ public class ScilabUiDisplayTree extends ScilabWidget implements UiDisplayTree {
         ScilabBridge.setText(this, newText);
     }
 
+    public void setEmptyText() {
+        setText(null);
+    }
+
     /**
      * Gets the text of a UiDisplayTree
      * @return text of the UiDisplayTree

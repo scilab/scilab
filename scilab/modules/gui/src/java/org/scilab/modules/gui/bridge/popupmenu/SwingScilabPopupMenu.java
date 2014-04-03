@@ -540,4 +540,8 @@ public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, 
             setForeground(color);
         }
     }
+
+    public void setEmptyText() {
+        setText(new String[] {});
+    }
 }

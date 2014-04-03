@@ -391,6 +391,10 @@ public class SwingScilabTabGroup extends JTabbedPane implements SwingViewObject,
     public void setText(String text) {
     }
 
+    public void setEmptyText() {
+        setText(null);
+    }
+
     public String getText() {
         return null;
     }

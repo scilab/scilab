@@ -343,6 +343,10 @@ public class SwingScilabScrollableFrame extends JScrollPane implements SwingView
         this.setName(text);
     }
 
+    public void setEmptyText() {
+        setText(null);
+    }
+
     /**
      * Add a dockable element in the Frame (Not available for the moment)
      * @param member the object we want to add to the Frame

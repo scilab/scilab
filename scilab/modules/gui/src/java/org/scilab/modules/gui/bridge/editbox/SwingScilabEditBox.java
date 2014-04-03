@@ -269,17 +269,26 @@ public class SwingScilabEditBox extends JScrollPane implements SwingViewObject, 
     }
 
     public void setText(String[] texts) {
-        StringBuffer newText = new StringBuffer(texts[0]);
+        if (texts.length == 0) {
+            try {
+                textPane.setText(null);
+                doc.setParagraphAttributes(0, doc.getLength() - 1, docAttributes, true);
+            } catch (Exception e) {
+                // Do nothing
+            }
+        } else {
+            StringBuffer newText = new StringBuffer(texts[0]);
 
-        for (int i = 1; i < texts.length; ++i) {
-            newText.append("\n" + texts[i]);
-        }
+            for (int i = 1; i < texts.length; ++i) {
+                newText.append("\n" + texts[i]);
+            }
 
-        try {
-            textPane.setText(newText.toString());
-            doc.setParagraphAttributes(0, doc.getLength() - 1, docAttributes, true);
-        } catch (Exception e) {
-            // Do nothing
+            try {
+                textPane.setText(newText.toString());
+                doc.setParagraphAttributes(0, doc.getLength() - 1, docAttributes, true);
+            } catch (Exception e) {
+                // Do nothing
+            }
         }
     }
 
@@ -290,6 +299,11 @@ public class SwingScilabEditBox extends JScrollPane implements SwingViewObject, 
         } catch (Exception e) {
             // Do nothing
         }
+    }
+
+    public void setEmptyText() {
+        textPane.setText(null);
+        doc.setParagraphAttributes(0, doc.getLength() - 1, docAttributes, true);
     }
 
     /**
@@ -524,7 +538,11 @@ public class SwingScilabEditBox extends JScrollPane implements SwingViewObject, 
                     setText((String[]) value);
                     setMultiLineText(true);
                 } else {
-                    setText(((String[]) value)[0]);
+                    if (((String[]) value).length == 0) {
+                        setEmptyText();
+                    } else {
+                        setText(((String[]) value)[0]);
+                    }
                     setMultiLineText(false);
                 }
                 break;

@@ -92,11 +92,15 @@ public class ScilabMenu extends ScilabWidget implements Menu {
         ScilabBridge.setText(this, newText);
     }
 
+    public void setEmptyText() {
+        setText(null);
+    }
+
     /**
-     * Gets the text of a Scilab Menu
-     * @return the Text to set to the Menu
-     * @see org.scilab.modules.gui.menu.Menu#getText(java.lang.String)
-     */
+      * Gets the text of a Scilab Menu
+      * @return the Text to set to the Menu
+      * @see org.scilab.modules.gui.menu.Menu#getText(java.lang.String)
+      */
     public String getText() {
         return ScilabBridge.getText(this);
     }

@@ -1252,7 +1252,7 @@ public final class SwingView implements GraphicView {
                 if (childType == __GO_UICONTROL__) {
                     String str = "Tab";
                     String[] text = (String[]) GraphicController.getController().getProperty(childId, __GO_UI_STRING__);
-                    if (text != null && text[0] != null) {
+                    if (text != null && text.length != 0 && text[0] != null) {
                         str = text[0];
                     }
 
