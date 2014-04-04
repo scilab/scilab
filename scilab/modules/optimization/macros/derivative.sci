@@ -1,6 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) Rainer von Seggern
-// Copyright (C) Bruno Pincon
+// Copyright (C) 2008 - Rainer von Seggern
+// Copyright (C) 2008 - Bruno Pincon
 // Copyright (C) 2009 - INRIA - Michael Baudin
 // Copyright (C) 2010 - DIGITEO - Michael Baudin
 //
@@ -34,6 +34,7 @@
 //                       its parameters
 //
 function [J,H] = derivative(F, x, h, order, H_form, Q , verbose )
+    warnobsolete("numderivative","6.0")
     [lhs,rhs]=argn();
     if rhs<2 | rhs>6 then
         error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"derivative",2,6));
@@ -83,11 +84,13 @@ function [J,H] = derivative(F, x, h, order, H_form, Q , verbose )
     end
 
     if verbose == 1 then
-        mprintf("h = %e\n",h)
-        mprintf("order = %d\n",order)
-        mprintf("H_form = %s\n",H_form)
+        mprintf("h = %s\n", string(h))
+        mprintf("order = %d\n", order)
+        mprintf("H_form = %s\n", H_form)
         mprintf("Q = \n")
-        disp(Q);
+        for i = 1:n
+            mprintf("%s\n", strcat(string(Q(i,:)), " "))
+        end
     end
 
     J = %deriv1_(F, x, h, order, Q)

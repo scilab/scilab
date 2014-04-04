@@ -49,7 +49,7 @@
                             key2=value2
                         </literal>
                         ,... where <literal>key1</literal>,
-                        <literal>key2,...</literal> can be one of the following: rect, nax, strf
+                        <literal>key2,...</literal> can be one of the following: rect, nax, strf, logflag
                         or axesflag and frameflag (see <literal>plot2d</literal>).
                     </para>
                 </listitem>
@@ -121,5 +121,16 @@ grayplot(t,t,m)
                 <link linkend="Sfgrayplot">Sfgrayplot</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>
+                    Option <function>logflag</function> introduced.
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

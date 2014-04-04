@@ -12,6 +12,7 @@
 
 package org.scilab.modules.renderer;
 
+import org.scilab.modules.graphic_objects.ScilabNativeView;
 import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
@@ -39,6 +40,10 @@ public final class CallRenderer {
         if (visitor != null) {
             visitor.getInteractionManager().startInteractiveZoom();
         }
+    }
+
+    public static void start_zoom(int figureId) {
+        startInteractiveZoom(ScilabNativeView.ScilabNativeView__getFigureFromIndex(figureId));
     }
 
     public static double[] clickRubberBox(int id, double initialRect[]) {
@@ -153,6 +158,24 @@ public final class CallRenderer {
         }
 
         return point2d;
+    }
+
+    public static double[][] getPixelFrom3dCoordinates(int id, double[] coordsX, double[] coordsY, double[] coordsZ) {
+        GraphicObject object = GraphicController.getController().getObjectFromId(id);
+        if (object instanceof Axes) {
+            return AxesDrawer.computePixelFrom3dCoordinates((Axes) object, coordsX, coordsY, coordsZ);
+        }
+
+        return null;
+    }
+
+    public static double[] getPixelFrom3dCoordinates(int id, double[] coord) {
+        GraphicObject object = GraphicController.getController().getObjectFromId(id);
+        if (object instanceof Axes) {
+            return AxesDrawer.computePixelFrom3dCoordinates((Axes) object, coord);
+        }
+
+        return null;
     }
 
     /**

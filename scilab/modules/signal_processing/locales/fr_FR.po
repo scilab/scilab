@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-07-26 14:20+0000\n"
+"PO-Revision-Date: 2014-03-19 09:02+0000\n"
 "Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 16967)\n"
 "Language: fr\n"
 
 #, c-format
@@ -105,11 +105,11 @@ msgstr "Choisir le type et les paramètres du filtre"
 msgid "Discrete IIR filter "
 msgstr "Filtre RII discret "
 
-msgid "Discrete IIR filter : low pass  fr < 0.2"
-msgstr "Filtre RII discret : passe-bas fr < 0,2"
+msgid "Discrete IIR filter: low pass  fr < 0.2"
+msgstr "Filtre RII discret : passe-bas fr < 0.2"
 
-msgid "Discrete IIR filter band pass 0.15 < fr < 0.25"
-msgstr "Filtre RII discret passe-bande 0,15 < fr < 0,25"
+msgid "Discrete IIR filter: band pass 0.15 < fr < 0.25"
+msgstr "Filtre RII discret : passe-bande 0.15 < fr < 0.25"
 
 msgid "Minimax FIR filter"
 msgstr "Filtres RIF minimax"
@@ -141,8 +141,8 @@ msgstr "Conception de filtres RIF minimax"
 msgid "Discrete IIR filter"
 msgstr "Filtres RII discrets"
 
-msgid "Wiegner filter"
-msgstr "Filtre de Wiegner"
+msgid "Wiener filter"
+msgstr "Filtre de Wiener"
 
 msgid "Bode plots"
 msgstr "Diagrammes de Bode"
@@ -189,11 +189,11 @@ msgstr "état réel"
 msgid "Windowed FIR Low pass Filter"
 msgstr "Filtre passe-bas RIF avec fenêtre"
 
-msgid "Kaiser window,cut-off:0.2"
+msgid "Kaiser window, cut-off: 0.2"
 msgstr "Fenêtre de Kaiser, fréquence de coupure : 0.2"
 
-msgid "Hamming window,cut-off:0.2,0.3"
-msgstr "Fenêtre de Hamming, fréquences de coupure : 0.2, 0.3"
+msgid "Hamming window, cut-off: 0.2, 0.3"
+msgstr "Fenêtre de Hamming,  fréquences de coupure : 0.2, 0.3"
 
 msgid "length 127"
 msgstr "Longueur 127"
@@ -201,8 +201,8 @@ msgstr "Longueur 127"
 msgid "Windowed FIR Band pass Filter"
 msgstr "Filtre passe-bande RIF avec fenêtre"
 
-msgid "Chebyshev window,cut-off:0.15,0.35"
-msgstr "Fenêtre de Chebyshev, fréquences de coupure : 0.15, 0.35"
+msgid "Chebyshev window, cut-off: 0.15, 0.35"
+msgstr "Fenêtre de Chebyshev,  fréquences de coupure : 0.15, 0.35"
 
 msgid "length 55"
 msgstr "Longueur 55"
@@ -328,6 +328,23 @@ msgid ""
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Un système dynamique linéaire "
 "ou un vecteur de flottants attendu.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d ou %d attendu(s).\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A real or polynomial matrix or a "
+"rational expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une matrices de réels, de "
+"polynômes ou de fonctions rationnelles attendue.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A discrete system expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Un système discret attendu.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"

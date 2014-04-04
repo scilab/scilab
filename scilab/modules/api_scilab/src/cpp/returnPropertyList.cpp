@@ -156,3 +156,22 @@ int addStringColVectorToReturnedList(void* list, char * vector[], int nbValues)
     return 0;
 }
 /*------------------------------------------------------------------------*/
+int addStringToReturnedList( returnedList * list, char * str)
+{
+//    int nbValues = 1;
+//    int nbCol = 1 ;
+//    /* check we are not using all the allocated space for the list */
+//    if ( list->curElement >= list->nbElements )
+//    {
+//        sciprint(_("List full.\n")) ;
+//        return 1 ;
+//    }
+//
+//    /* add a new element */
+//    list->curElement++ ;
+//    CreateListVarFromPtr( Rhs + 1, list->curElement, MATRIX_OF_STRING_DATATYPE, &nbValues, &nbCol, &str);
+    types::TList* pL = (types::TList*)list;
+    pL->append((types::InternalType*)sciReturnString(str));
+
+    return 0 ;
+}

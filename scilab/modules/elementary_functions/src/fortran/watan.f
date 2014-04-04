@@ -1,10 +1,10 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 c Copyright (C) Bruno Pincon
-c 
+c
 c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
 c you should have received as part of this distribution.  The terms
-c are also available at    
+c are also available at
 c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 c
       subroutine watan(xr,xi,yr,yi)
@@ -25,10 +25,10 @@ c     COPYRIGHT (C) 2001 Bruno Pincon and Lydia van Dijk
 c        Written by Bruno Pincon <Bruno.Pincon@iecn.u-nancy.fr> so
 c        as to get more precision.  Also to fix the
 c        behavior at the singular points and at the branch cuts.
-c        Polished by Lydia van Dijk 
+c        Polished by Lydia van Dijk
 c        <lvandijk@hammersmith-consulting.com>
-c     
-c     CHANGES : - (Bruno on 2001 May 22) for ysptrk use a 
+c
+c     CHANGES : - (Bruno on 2001 May 22) for ysptrk use a
 c                 minimax polynome to enlarge the special
 c                 evaluation zone |s| < SLIM. Also rename
 c                 this function as lnp1m1.
@@ -43,11 +43,11 @@ c        lnp1m1  (at the end of this file)
 c
 c     ALGORITHM : noting z = a + i*b, we have:
 c        Z = yr + yi*b = arctan(z) = (i/2) * log( (i+z)/(i-z) )
-c              
+c
 c     This function has two branch points at +i and -i and the
 c     chosen  branch cuts are the two half-straight lines
 c     D1 = [i, i*oo) and D2 = (-i*oo, i].  The function is then
-c     analytic in C \ (D1 U D2)). 
+c     analytic in C \ (D1 U D2)).
 c
 c     From the definition it follows that:
 c
@@ -64,17 +64,17 @@ c         if imag(z) > 1 then
 c             Arg(arctan(z)) =  pi/2 (=lim real(z) -> 0+)
 c         if imag(z) < 1 then
 c             Arg(arctan(z)) = -pi/2 (=lim real(z) -> 0-)
-c                 
+c
 c
 c     Basic evaluation: if we write (i+z)/(i-z) using
 c     z = a + i*b, we get:
 c
 c     i+z    1-(a**2+b**2) + i*(2a)
-c     --- =  ---------------------- 
+c     --- =  ----------------------
 c     i-z       a**2 + (1-b)**2
 c
 c     then, with r2 = |z|^2 = a**2 + b**2 :
-c  
+c
 c     yr = 0.5 * Arg(1-r2 + (2*a)*i)
 c        = 0.5 * atan2(2a, (1-r2))                      (3)
 c
@@ -83,29 +83,29 @@ c     and also when |1-r2| and |a| are near 0 (see comments
 c     in the code).
 c
 c     After some math:
-c             
+c
 c     yi = 0.25 * log( (a**2 + (b + 1)**2) /
-c                      (a**2 + (b - 1)**2) )            (4)     
-c               
+c                      (a**2 + (b - 1)**2) )            (4)
+c
 c     Evaluation for "big" |z|
 c     ------------------------
 c
 c     If |z| is "big", the direct evaluation of yi by (4) may
-c     suffer of innaccuracies and of spurious overflow.  Noting 
+c     suffer of innaccuracies and of spurious overflow.  Noting
 c     that  s = 2 b / (1 + |z|**2), we have:
 c
 c     yi = 0.25 log ( (1 + s)/(1 - s) )                 (5)
 c
-c                                3        5    
+c                                3        5
 c     yi = 0.25*( 2 * ( s + 1/3 s  + 1/5 s  + ... ))
 c
 c     yi = 0.25 * lnp1m1(s)    if  |s| < SLIM
 c
 c     So if |s| is less than SLIM we switch to a special
-c     evaluation done by the function lnp1m1. The 
-c     threshold value SLIM is choosen by experiment 
-c     (with the Pari-gp software). For |s| 
-c     "very small" we used a truncated taylor dvp, 
+c     evaluation done by the function lnp1m1. The
+c     threshold value SLIM is chosen by experiment
+c     (with the Pari-gp software). For |s|
+c     "very small" we used a truncated taylor dvp,
 c     else a minimax polynome (see lnp1m1).
 c
 c     To avoid spurious overflows (which result in spurious
@@ -113,7 +113,7 @@ c     underflows for s) in computing s with s= 2 b / (1 + |z|**2)
 c     when |z|^2 > RMAX (max positive float) we use :
 c
 c            s = 2d0 / ( (a/b)*a + b )
-c     
+c
 c     but if |b| = Inf  this formula leads to NaN when
 c     |a| is also Inf. As we have :
 c
@@ -130,12 +130,12 @@ c     So we switch to the following formulas:
 c
 c     If b = +-1 and |a| < sqrt(tiny) approximately 1d-150 (say)
 c     then (by using that a**2 + 4 = 4 in machine for such a):
-c         
+c
 c         yi = 0.5 * log( 2/|a| )   for b=1
-c 
+c
 c         yi = 0.5 * log( |a|/2 )   for b=-1
 c
-c     finally: yi = 0.5 * sign(b) * log( 2/|a| )     
+c     finally: yi = 0.5 * sign(b) * log( 2/|a| )
 c              yi = 0.5 * sign(b) * (log(2) - log(|a|)) (6)
 c
 c     The last trick is to avoid overflow for |a|=tiny!  In fact
@@ -161,7 +161,7 @@ c
 c     STATIC VAR
       logical first
       double precision RMAX, HALFPI
-      
+
       save    first
       data    first /.true./
 	save             RMAX, HALFPI
@@ -229,11 +229,11 @@ c              got a Nan with 0/0
                yr = 0d0
             endif
          elseif (r2 .gt. RMAX) then
-c           yr is necessarily very near sign(a)* pi/2 
+c           yr is necessarily very near sign(a)* pi/2
             yr = sign(1.d0, a) * HALFPI
          elseif ( abs(1.d0 - r2) + abs(a) .le.TOL ) then
 c           |b| is very near 1 (and a is near 0)  some
-c           cancellation occur in the (next) generic formula 
+c           cancellation occur in the (next) generic formula
             yr = 0.5d0 * atan2(2d0*a, (1.d0-b)*(1.d0+b) - a*a)
          else
 c           generic formula
@@ -250,20 +250,20 @@ c
 c     PURPOSE :  Compute   v = log ( (1 + s)/(1 - s) )
 c        for small s, this is for |s| < SLIM = 0.20
 c
-c     ALGORITHM : 
+c     ALGORITHM :
 c     1/ if |s| is "very small" we use a truncated
-c        taylor dvp (by keeping 3 terms) from : 
+c        taylor dvp (by keeping 3 terms) from :
 c                               2        4          6
 c        t = 2 * s * ( 1 + 1/3 s  + 1/5 s  + [ 1/7 s  + ....] )
-c                               2        4      
+c                               2        4
 c        t = 2 * s * ( 1 + 1/3 s  + 1/5 s  + er)
-c          
+c
 c        The limit E until we use this formula may be simply
 c        gotten so that the negliged part er is such that :
 c                                    2        4
 c        (#) er <= epsm * ( 1 + 1/3 s  + 1/5 s )   for all |s|<= E
 c
-c        As  er  = 1/7 s^6 + 1/9 s^8 + ... 
+c        As  er  = 1/7 s^6 + 1/9 s^8 + ...
 c            er <= 1/7 * s^6 ( 1 + s^2 + s^4 + ...) = 1/7  s^6/(1-s^2)
 c
 c        the inequality (#) is forced if :
@@ -278,9 +278,9 @@ c     2/ For larger |s| we used a minimax polynome :
 c
 c        yi = s * (2  + d3 s^3 + d5 s^5 .... + d13 s^13 + d15 s^15)
 c
-c        This polynome was computed (by some remes algorithm) following 
+c        This polynome was computed (by some remes algorithm) following
 c        (*) the sin(x) example (p 39) of the book :
-c       
+c
 c         "ELEMENTARY FUNCTIONS"
 c         "Algorithms and implementation"
 c         J.M. Muller (Birkhauser)
@@ -310,8 +310,8 @@ c     minimax poly coefs
       end
 
 c
-c   a log(1+x) function for scilab .... 
-c                                      
+c   a log(1+x) function for scilab ....
+c
 c
       double precision function logp1(x)
       implicit none
@@ -319,12 +319,12 @@ c
 
       double precision g
       double precision a, b
-      parameter      ( a = -1d0/3d0, 
+      parameter      ( a = -1d0/3d0,
      $                 b =  0.5d0 )
 
       double precision lnp1m1
       external         lnp1m1
-      
+
       if ( x .lt. -1.d0 ) then
 c        got NaN
          logp1 = (x - x)/(x - x)

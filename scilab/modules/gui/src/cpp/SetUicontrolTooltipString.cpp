@@ -11,9 +11,10 @@
  *
  */
 
-#include "SetUicontrolTooltipString.hxx"
-
-using namespace org_scilab_modules_gui_bridge;
+extern "C"
+{
+#include "SetUicontrol.h"
+}
 
 int SetUicontrolTooltipString(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {

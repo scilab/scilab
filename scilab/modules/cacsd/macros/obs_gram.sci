@@ -26,7 +26,7 @@ function [go]=obs_gram(a,c,domaine)
         end
         [a,c,domaine]=a([2,4,7])
         if domaine==[] then
-            warning(msprintf(gettext("%s: Input argument %d is assumed continuous time.\n"),"obs_gram",1));
+            warning(msprintf(gettext("%s: Input argument #%d is assumed continuous time.\n"),"obs_gram",1));
             domaine="c";
         elseif type(domaine)==1 then
             domaine="d",
@@ -39,7 +39,7 @@ function [go]=obs_gram(a,c,domaine)
         a=tf2ss(a)
         [a,c,domaine]=a([2,4,7])
         if domaine==[] then
-            warning(msprintf(gettext("%s: Input argument %d is assumed continuous time.\n"),"obs_gram",1));
+            warning(msprintf(gettext("%s: Input argument #%d is assumed continuous time.\n"),"obs_gram",1));
             domaine="c";
         elseif type(domaine)==1 then
             domaine="d",

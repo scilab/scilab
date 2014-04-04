@@ -123,12 +123,4 @@ xlfont()
 xlfont('reset');
  ]]></programlisting>
     </refsection>
-    <refsection>
-        <title>Ver Tamb&#233;m</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="getfont">getfont</link>
-            </member>
-        </simplelist>
-    </refsection>
 </refentry>

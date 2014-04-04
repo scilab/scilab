@@ -44,8 +44,12 @@
             </literal>
             returns true if <varname>x</varname>
             is a square matrix (all dimensions of <varname>x</varname> are the same, with eventually singletons
-            if <varname>x</varname> is an hpermatrix). Note that <literal>issquare([])</literal>
-            returns false.
+            if <varname>x</varname> is an hpermatrix).
+        </para>
+        <para>
+            <note>
+                Note that <literal>issquare([])</literal> returns false.
+            </note>
         </para>
     </refsection>
     <refsection>

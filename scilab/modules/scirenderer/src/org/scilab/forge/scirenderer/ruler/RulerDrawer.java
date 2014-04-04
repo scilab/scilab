@@ -28,6 +28,7 @@ import org.scilab.forge.scirenderer.SciRendererException;
 import org.scilab.forge.scirenderer.buffers.BuffersManager;
 import org.scilab.forge.scirenderer.buffers.ElementsBuffer;
 import org.scilab.forge.scirenderer.ruler.graduations.Graduations;
+import org.scilab.forge.scirenderer.ruler.graduations.UserDefinedFormat;
 import org.scilab.forge.scirenderer.shapes.appearance.Appearance;
 import org.scilab.forge.scirenderer.shapes.geometry.DefaultGeometry;
 import org.scilab.forge.scirenderer.shapes.geometry.Geometry;
@@ -77,6 +78,14 @@ public class RulerDrawer {
      */
     public RulerDrawingResult draw(DrawingTools drawingTools, RulerModel model) {
         return oneShotRulerDrawer.drawWithResults(drawingTools, model);
+    }
+
+    /**
+     * Get the sprite factory
+     * @return the sprite factory
+     */
+    public RulerSpriteFactory getSpriteFactory() {
+        return this.spriteFactory;
     }
 
     /**
@@ -140,6 +149,10 @@ public class RulerDrawer {
         oneShotRulerDrawer.dispose();
     }
 
+    public double getDistanceRatio() {
+        return oneShotRulerDrawer.getDistanceRatio();
+    }
+
     /**
      * This class actually perform all the rendering of one ruler.
      */
@@ -170,6 +183,7 @@ public class RulerDrawer {
         private List<Double> subTicksValue;
         private List<Double> ticksValue;
         private int density;
+        private double distRatio;
 
         public OneShotRulerDrawer() { }
 
@@ -183,6 +197,10 @@ public class RulerDrawer {
                 ticksValue.clear();
             }
             rulerModel = null;
+        }
+
+        public double getDistanceRatio() {
+            return distRatio;
         }
 
         /**
@@ -207,7 +225,6 @@ public class RulerDrawer {
             Vector3d normalizedProjectedTicksDirection = windowTicksDirection.getNormalized();
             windowSubTicksDelta = normalizedProjectedTicksDirection.times(rulerModel.getSubTicksLength());
             windowTicksDelta = normalizedProjectedTicksDirection.times(rulerModel.getTicksLength());
-
 
             DecimalFormat format;
             if (rulerModel.isAutoTicks()) {
@@ -257,12 +274,11 @@ public class RulerDrawer {
         }
 
         /**
-         * Compute the ratio between windows ticks norm and the sprite distance.
-         * @param windowTicksNorm the windows tics norm.
-         * @return the ratio between windows ticks norm and the sprite distance.
-         */
+             * Compute the ratio between windows ticks norm and the sprite distance.
+             * @param windowTicksNorm the windows tics norm.
+             * @return the ratio between windows ticks norm and the sprite distance.
+             */
         private double computeTicksDistanceRatio(double windowTicksNorm) {
-            double distRatio;
             if (windowTicksNorm == 0) {
                 distRatio = 1.0;
             } else if (maximalSpritesDistance == 0) {
@@ -317,6 +333,11 @@ public class RulerDrawer {
             Graduations currentGraduations = rulerModel.getGraduations();
             Graduations ticksGraduation = currentGraduations;
             DecimalFormat format = currentGraduations.getFormat();
+            String f = rulerModel.getFormat();
+            if (f != null && !f.isEmpty()) {
+                format = new UserDefinedFormat(format, f, rulerModel.getScale(), rulerModel.getTranslate());
+            }
+
             boolean canGetMore = true;
             List<PositionedSprite> newSpritesList = new LinkedList<PositionedSprite>();
             while (currentGraduations != null) {
@@ -328,13 +349,18 @@ public class RulerDrawer {
                 for (double value : ticks) {
                     Texture sprite = computeSprite(value, format);
                     Vector3d windowPosition = canvasProjection.project(rulerModel.getPosition(value));
-
+                    
+                    // X != X means NaN so we are not able to project coordinates
+                    // return basic format
+                    if (windowPosition.getX() != windowPosition.getX()) {
+                        return format;
+                    }
+                    
                     Dimension textureSize = computeSpriteDimension(value);
 
                     Vector3d delta = projectCenterToEdge(textureSize, windowTicksDelta);
                     PositionedSprite newSprite = new PositionedSprite(sprite, textureSize, windowPosition.plus(windowTicksDelta.plus(delta)));
                     newSpritesList.add(newSprite);
-
                     Vector3d farDelta = windowTicksDelta.plus(delta.times(2.0));
                     currentMaximalSpritesDistance = Math.max(currentMaximalSpritesDistance, farDelta.getNorm());
                 }
@@ -353,7 +379,6 @@ public class RulerDrawer {
                     }
                 }
             }
-
 
             this.graduations = ticksGraduation;
             this.maximalSpritesDistance = maxSpritesDistance;
@@ -522,10 +547,11 @@ public class RulerDrawer {
 
             /* +1 is used to have a space between the tick and its label */
             Dimension textureSize = sprite.getDataProvider().getTextureSize();
-            double ratioX = textureSize.width / Math.abs(usedDirection.getX()) + 1;
-            double ratioY = textureSize.height / Math.abs(usedDirection.getY()) + 1;
+            double ratioX = textureSize.width / Math.abs(usedDirection.getX());
+            double ratioY = textureSize.height / Math.abs(usedDirection.getY());
             double ratio = Math.min(ratioY, ratioX) / 2;
-            return usedDirection.times(ratio);
+
+            return usedDirection.times((ratio + 1) / 2);
         }
 
         /**
@@ -544,11 +570,11 @@ public class RulerDrawer {
                 usedDirection = direction;
             }
 
-            /* +1 is used to have a space between the tick and its label */
-            double ratioX = textureSize.width / Math.abs(usedDirection.getX()) + 1;
-            double ratioY = textureSize.height / Math.abs(usedDirection.getY()) + 1;
-            double ratio = Math.min(ratioY, ratioX) / 2;
-            return usedDirection.times(ratio);
+            double ratioX = textureSize.width / Math.abs(usedDirection.getX());
+            double ratioY = textureSize.height / Math.abs(usedDirection.getY());
+            double ratio = Math.min(ratioY, ratioX);
+
+            return usedDirection.times((ratio + 1) / 2);
         }
 
         /**

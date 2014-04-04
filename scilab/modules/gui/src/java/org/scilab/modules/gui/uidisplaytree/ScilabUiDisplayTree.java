@@ -250,4 +250,16 @@ public class ScilabUiDisplayTree extends ScilabWidget implements UiDisplayTree {
     public void setToolTipText(String tooltipText) {
         // TODO Auto-generated method stub
     }
+
+    @Override
+    public void resetBackground() {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void resetForeground() {
+        // TODO Auto-generated method stub
+
+    }
 }

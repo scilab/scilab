@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 16967)\n"
 "Language: es\n"
 
 #, c-format
@@ -266,8 +266,8 @@ msgstr ""
 msgid "if, function, ..."
 msgstr ""
 
-msgid "Line numbering;Off;Normal;Whereami compatible"
-msgstr "Numeración de linea;Apagado;Normal;Compatible con dondeestoy"
+msgid "Line numbering;Off;Normal;Local numbering"
+msgstr ""
 
 msgid "Highlight current line"
 msgstr "Resaltar la línea actual"
@@ -290,8 +290,8 @@ msgstr "Transformar pestaña en una nueva ventana"
 msgid "Copy selection in a new tab"
 msgstr "Copyar la selección a una nueva pestaña"
 
-msgid "Split View;Off;Horizontally;Vertically"
-msgstr "Vista partida;Apaagdo;Horizontalmente;Verticalmente"
+msgid "Split View;Off;Split in two columns;Split in two rows"
+msgstr ""
 
 msgid "Execute"
 msgstr "Ejecutar"
@@ -512,6 +512,9 @@ msgstr "SciNotes"
 
 msgid "Error while reading the String"
 msgstr "Error leyendo el String"
+
+msgid "The configuration file has been corrupted and reset to default one."
+msgstr ""
 
 #, c-format
 msgid "File not found: %s"
@@ -750,7 +753,7 @@ msgid "This file"
 msgstr "Este archivo"
 
 #, c-format
-msgid "%s has been modified since last save. Save it?"
+msgid "The file %s has been modified since last save. Save it?"
 msgstr ""
 
 #, c-format
@@ -904,6 +907,25 @@ msgid "Cannot save the file %s... stop the backup process"
 msgstr ""
 
 msgid "Backup finished..."
+msgstr ""
+
+#, c-format
+msgid "The directory %s does not exist. Do you want to create it?"
+msgstr ""
+
+#, c-format
+msgid "The directory %s cannot be created. Please check your access rights."
+msgstr ""
+
+#, c-format
+msgid "Impossible to write a file in %s. Please check your access rights."
+msgstr ""
+
+#, c-format
+msgid "Invalid directory name: %s."
+msgstr ""
+
+msgid "SciNotes autosave"
 msgstr ""
 
 #, c-format
@@ -1091,20 +1113,23 @@ msgstr "Escoja el directorio base para la búsqueda"
 msgid "Scilab '%s' module not installed.\n"
 msgstr "El módulo '%s' de Scilab no está instalado.\n"
 
-msgid "the last error did not occur inside a library function."
+msgid "The last error did not occur inside a Scilab macro."
 msgstr ""
 
 msgid " on line "
 msgstr ""
 
-msgid "opening file "
+msgid "Opening file "
 msgstr ""
 
 msgid " of the source file of the function "
 msgstr ""
 
-msgid "the source file of the function "
+msgid "The source file of the function "
 msgstr ""
 
 msgid " was not found in any library path"
+msgstr ""
+
+msgid "There is no recorded error"
 msgstr ""

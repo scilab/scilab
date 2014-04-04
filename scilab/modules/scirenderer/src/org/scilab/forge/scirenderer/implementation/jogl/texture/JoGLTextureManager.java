@@ -37,6 +37,7 @@ import java.awt.Dimension;
 import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -45,7 +46,7 @@ import java.util.Set;
  */
 public class JoGLTextureManager implements TextureManager {
 
-    private final Set<JoGLTexture> allTextures = new HashSet<JoGLTexture>();
+    private final Set<JoGLTexture> allTextures = Collections.synchronizedSet(new HashSet<JoGLTexture>());
     JoGLCanvas canvas;
 
     public JoGLTextureManager(JoGLCanvas canvas) {
@@ -81,18 +82,37 @@ public class JoGLTextureManager implements TextureManager {
         }
     }
 
-    public void draw(JoGLDrawingTools drawingTools, Texture texture, AnchorPosition anchor, ElementsBuffer positions, double rotationAngle) throws SciRendererException {
+    public void draw(JoGLDrawingTools drawingTools, Texture texture, AnchorPosition anchor, ElementsBuffer positions, int offset, int stride, double rotationAngle) throws SciRendererException {
         if ((texture instanceof JoGLTexture) && (allTextures.contains((JoGLTexture) texture))) {
             if (positions != null) {
                 FloatBuffer data = positions.getData();
                 if (data != null) {
-                    data.rewind();
                     float[] position = {0, 0, 0, 1};
                     final JoGLTexture jt = (JoGLTexture) texture;
                     if (jt.preDraw(drawingTools)) {
-                        while (data.remaining() >= 4) {
-                            data.get(position);
-                            jt.draw(drawingTools, anchor, new Vector3d(position), rotationAngle);
+                        stride = stride < 1 ? 1 : stride;
+                        offset = offset < 0 ? 0 : offset;
+                        if (stride == 1) {
+                            data.position(4 * offset);
+                            while (data.remaining() >= 4) {
+                                data.get(position);
+                                jt.draw(drawingTools, anchor, new Vector3d(position), rotationAngle);
+                            }
+                        } else {
+                            int mark = 4 * offset;
+                            if (mark < data.capacity()) {
+                                data.position(mark);
+                                while (data.remaining() >= 4) {
+                                    data.get(position);
+                                    mark += stride * 4;
+                                    if (mark < data.capacity()) {
+                                        data.position(mark);
+                                    } else {
+                                        break;
+                                    }
+                                    jt.draw(drawingTools, anchor, new Vector3d(position), rotationAngle);
+                                }
+                            }
                         }
                         jt.postDraw(drawingTools);
                     }
@@ -112,8 +132,10 @@ public class JoGLTextureManager implements TextureManager {
 
     /** Called when gl context is gone. */
     public void glReload() {
-        for (JoGLTexture texture : allTextures) {
-            texture.glReload();
+        synchronized (allTextures) {
+            for (JoGLTexture texture : allTextures) {
+                texture.glReload();
+            }
         }
     }
 

@@ -7,7 +7,7 @@
 
 // <-- CLI SHELL MODE -->
 
-// unit tests for meanf function 
+// unit tests for meanf function
 // =============================================================================
 
 assert_checkfalse(execstr("meanf()"   ,"errcatch") == 0);
@@ -43,11 +43,11 @@ assert_checkequal(meanf(x', x', 1), 7);
 assert_checkequal(meanf(x', x', "*"), 7);
 
 assert_checkfalse(execstr("meanf(x, x, ''t'')"   ,"errcatch") == 0);
-refMsg = msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'', ''%s'', %d or %d.\n"),"meanf",3,"r","c",1,2);
+refMsg = msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'', ''%s'', %d or %d expected.\n"),"meanf",3,"r","c",1,2);
 assert_checkerror("meanf(x, x, ''t'')", refMsg);
 
 assert_checkfalse(execstr("meanf(x, x, 4)"   ,"errcatch") == 0);
-refMsg = msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'', ''%s'', %d or %d.\n"),"meanf",3,"r","c",1,2);
+refMsg = msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'', ''%s'', %d or %d expected.\n"),"meanf",3,"r","c",1,2);
 assert_checkerror("meanf(x, x, 4)", refMsg);
 
 // Matrix

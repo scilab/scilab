@@ -33,6 +33,7 @@
 #include "get_ticks_utils.h"
 #include "HandleManagement.h"
 
+#include "createGraphicObject.h"
 #include "getGraphicObjectProperty.h"
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
@@ -85,7 +86,6 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, int *Nnode, 
     int iFecUID = 0;
     int iParentCompoundUID = 0;
 
-    long hdltab[2];
     int cmpt = 0;
     double drect[6];
 
@@ -235,11 +235,7 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, int *Nnode, 
     /* Set fec as current */
     setCurrentObject(iFecUID);
 
-    /* retrieve the created object : fec */
-    hdltab[cmpt] = getHandle(iFecUID);
-    cmpt++;
-
-    iParentCompoundUID = ConstructCompound (hdltab, cmpt);
+    iParentCompoundUID = createCompound(iSubwinUID, &iFecUID, 1);
     setCurrentObject(iParentCompoundUID);  /** construct Compound **/
     return 0;
 

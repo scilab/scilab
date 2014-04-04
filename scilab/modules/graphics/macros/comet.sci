@@ -160,7 +160,6 @@ function comet(varargin)
                 tail(l).data=[tail(l).data;[x(n-k+i,l),y(n-k+i,l)]];
             end
             if modulo(i,step)==0 then
-                //draw(axes),
                 fig.immediate_drawing = "on"
                 fig.immediate_drawing = "off"
             end

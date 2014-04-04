@@ -252,7 +252,6 @@ lib /DEF:"$(ProjectDir)cacsd_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
     <ClCompile Include="qsort.c" />
     <ClCompile Include="rea2db.c" />
     <ClCompile Include="scidcopy.c" />
-    <ClCompile Include="sci_tools.c" />
     <ClCompile Include="sign.c" />
     <ClCompile Include="sin.c" />
     <ClCompile Include="sinh.c" />

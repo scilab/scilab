@@ -18,7 +18,7 @@ function y=sinc(x,fl)
         error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"sinc", 1));
     end
     
-    if and(typeof(x)<>["constant", "sparse", "hypermatrix"]) then
+    if and(typeof(x)<>["constant", "sparse", "hypermat"]) then
         error(msprintf(gettext("%s: Wrong type for input argument #%d: Real or complex, sparse or full matrix or hypermatrix expected.\n"),"sinc",1));
     end
 

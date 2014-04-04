@@ -33,12 +33,12 @@
         <title>Description</title>
         <para>
             Left and right brackets are used to note vector and matrix concatenation.
-            These symbols are also used to denote a multiple left-hand-side for a function 
+            These symbols are also used to denote a multiple left-hand-side for a function
             call.
         </para>
         <para>
-            Inside concatenation brackets, blank or comma characters mean 
-            "column concatenation", semicolon and carriage-return mean 
+            Inside concatenation brackets, blank or comma characters mean
+            "column concatenation", semicolon and carriage-return mean
             "row concatenation".
         </para>
         <para>
@@ -51,7 +51,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 [6.9,9.64; sqrt(-1) 0]
 [1 +%i  2 -%i  3]
 []
@@ -66,7 +66,7 @@ s=poly(0,'s');[1/s,2/s]
         <title>See Also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="parents">parents</link>
+                <link linkend="parentheses">parentheses</link>
             </member>
             <member>
                 <link linkend="comma">comma</link>

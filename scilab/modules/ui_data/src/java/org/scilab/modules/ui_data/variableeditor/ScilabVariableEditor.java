@@ -20,6 +20,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.event.ChangeListener;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
+import org.scilab.modules.gui.bridge.window.SwingScilabDockingWindow;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.textbox.ScilabTextBox;
 import org.scilab.modules.gui.textbox.TextBox;
@@ -30,7 +31,7 @@ import org.scilab.modules.localization.Messages;
  * Implements a ScilabWindow containing Variable Editor (JTable)
  */
 @SuppressWarnings(value = { "serial" })
-public final class ScilabVariableEditor extends SwingScilabWindow implements VariableEditor {
+public final class ScilabVariableEditor extends SwingScilabDockingWindow implements VariableEditor {
 
     private static Map<String, Component> map = new HashMap();
 

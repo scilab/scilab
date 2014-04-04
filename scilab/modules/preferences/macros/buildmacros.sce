@@ -12,5 +12,5 @@ if (isdef("genlib") == %f) then
     exec(SCI+"/modules/functions/scripts/buildmacros/loadgenlib.sce");
 end
 
-genlib("scinoteslib","SCI/modules/scinotes/macros",%f,%t);
+genlib("preferenceslib","SCI/modules/preferences/macros",%f,%t);
 

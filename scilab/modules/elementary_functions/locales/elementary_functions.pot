@@ -2,6 +2,7 @@
 # Please see in SCI/tools/localization for localization management
 # Copyright (C) 2007-2008 - INRIA
 # Copyright (C) 2008-2011 - DIGITEO
+# Copyright (C) 2012-2014 - Scilab-Enterprises
 # This file is distributed under the same license as the Scilab package.
 #
 msgid ""
@@ -9,12 +10,12 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab.org>\n"
+"Last-Translator: Vincent COUVERT <vincent.couvert@scilab-enterprises.com>\n"
 "Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-12-09 09:47+0100\n"
+"Revision-Date: 2014-04-01 12:32+0100\n"
 
 # File: sci_gateway/c/sci_base2dec.c, line: 41
 # File: sci_gateway/c/sci_base2dec.c, line: 54
@@ -83,7 +84,7 @@ msgstr ""
 # File: sci_gateway/c/sci_base2dec.c, line: 123
 #, c-format
 msgid ""
-"%s: Wrong value for input argument(s): Valid base %d representations "
+"%s: Wrong value for input argument #%d: Valid base %d representations "
 "expected.\n"
 msgstr ""
 
@@ -260,6 +261,16 @@ msgid "%s: Wrong value for input argument #%d: ['d' 'i'] expected.\n"
 msgstr ""
 
 #
+# File: macros/%_unwrap.sci, line: 20
+msgid ": 1-D examples "
+msgstr ""
+
+#
+# File: macros/%_unwrap.sci, line: 100
+msgid ": 2-D examples"
+msgstr ""
+
+#
 # File: macros/%hm_gsort.sci, line: 34
 # File: macros/%sp_gsort.sci, line: 35
 # File: macros/vectorfind.sci, line: 57
@@ -403,7 +414,6 @@ msgstr ""
 # File: macros/factor.sci, line: 25
 # File: macros/factorial.sci, line: 19
 # File: macros/fix.sci, line: 18
-# File: macros/flipdim.sci, line: 26
 # File: macros/hex2dec.sci, line: 29
 # File: macros/ind2sub.sci, line: 23
 # File: macros/intersect.sci, line: 16
@@ -451,8 +461,6 @@ msgstr ""
 # File: macros/tanm.sci, line: 16
 # File: macros/toeplitz.sci, line: 21
 # File: macros/union.sci, line: 17
-# File: modulo_pmodulo_13002/modulo_pmodulo/modulo.sci, line: 17
-# File: modulo_pmodulo_13002/modulo_pmodulo/pmodulo.sci, line: 19
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr ""
@@ -504,6 +512,7 @@ msgstr ""
 # File: macros/coshm.sci, line: 25
 # File: macros/cothm.sci, line: 25
 # File: macros/sinhm.sci, line: 25
+# File: macros/sqrtm.sci, line: 28
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A square matrix expected.\n"
 msgstr ""
@@ -562,8 +571,6 @@ msgstr ""
 # File: macros/cat.sci, line: 73
 # File: macros/modulo.sci, line: 48
 # File: macros/pmodulo.sci, line: 54
-# File: modulo_pmodulo_13002/modulo_pmodulo/modulo.sci, line: 48
-# File: modulo_pmodulo_13002/modulo_pmodulo/pmodulo.sci, line: 54
 #, c-format
 msgid "%s: Wrong size for input arguments: Same size expected.\n"
 msgstr ""
@@ -769,15 +776,38 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/flipdim.sci, line: 31
+# File: macros/flipdim.sci, line: 27
+# File: macros/resize_matrix.sci, line: 91
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
+
+#
+# File: macros/flipdim.sci, line: 32
+# File: macros/flipdim.sci, line: 40
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A positive integer expected.\n"
 msgstr ""
 
 #
-# File: macros/flipdim.sci, line: 34
+# File: macros/flipdim.sci, line: 35
+# File: macros/flipdim.sci, line: 43
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A positive integer expected.\n"
+msgstr ""
+
+#
+# File: macros/flipdim.sci, line: 46
+#, c-format
+msgid "%s: Cannot flip hypermatrix blockwise. %d input arguments expected.\n"
+msgstr ""
+
+#
+# File: macros/flipdim.sci, line: 67
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A divisor of the selected dimension "
+"size expected.\n"
 msgstr ""
 
 #
@@ -922,7 +952,6 @@ msgstr ""
 
 #
 # File: macros/modulo.sci, line: 36
-# File: modulo_pmodulo_13002/modulo_pmodulo/modulo.sci, line: 36
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same types expected.\n"
 msgstr ""
@@ -968,6 +997,7 @@ msgstr ""
 
 #
 # File: macros/perms.sci, line: 29
+# File: macros/unwrap.sci, line: 91
 # File: macros/vectorfind.sci, line: 31
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
@@ -989,7 +1019,6 @@ msgstr ""
 
 #
 # File: macros/pmodulo.sci, line: 39
-# File: modulo_pmodulo_13002/modulo_pmodulo/pmodulo.sci, line: 39
 #, c-format
 msgid "%s: Incompatible input arguments: Same types expected.\n"
 msgstr ""
@@ -1059,12 +1088,12 @@ msgstr ""
 
 #
 # File: macros/resize_matrix.sci, line: 43
-msgid "TYPE <Enter> to see an example with POLYNOMIALS:"
+msgid "Type <Enter> to see an example with polynomials:"
 msgstr ""
 
 #
 # File: macros/resize_matrix.sci, line: 56
-msgid "The padding's unknown is forced to the P's one"
+msgid "The unknown variable of added values is forced to the P's one"
 msgstr ""
 
 #
@@ -1074,18 +1103,12 @@ msgstr ""
 
 #
 # File: macros/resize_matrix.sci, line: 59
-msgid "TYPE <Enter> to see an example with TEXT:"
+msgid "Type <Enter> to see an example with character strings:"
 msgstr ""
 
 #
 # File: macros/resize_matrix.sci, line: 72
-msgid "NOTE: Hypermatrix of text can't be converted"
-msgstr ""
-
-#
-# File: macros/resize_matrix.sci, line: 91
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgid "Hypermatrices of character strings can't be converted.\n"
 msgstr ""
 
 #
@@ -1097,7 +1120,7 @@ msgstr ""
 #
 # File: macros/resize_matrix.sci, line: 110
 #, c-format
-msgid "%s: Wrong input argument #%d: scalar decimal integer expected.\n"
+msgid "%s: Wrong input argument #%d: An integer value expected.\n"
 msgstr ""
 
 #
@@ -1110,8 +1133,8 @@ msgstr ""
 # File: macros/resize_matrix.sci, line: 172
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: can't convert the padding to the "
-"input matrix type.\n"
+"%s: Wrong type for input argument #%d: cannot convert the padding value to "
+"the input matrix type.\n"
 msgstr ""
 
 #
@@ -1133,11 +1156,55 @@ msgid "%s: Wrong value for input argument #%d: Non-hermitian matrix.\n"
 msgstr ""
 
 #
+# File: macros/sqrtm.sci, line: 25
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A real or complex matrix expected.\n"
+msgstr ""
+
+#
 # File: macros/toeplitz.sci, line: 39
 #, c-format
 msgid ""
 "%s: Wrong values for input arguments #%d and #%d: c(1) must be equal to "
 "r(1).\n"
+msgstr ""
+
+#
+# File: macros/unwrap.sci, line: 34
+msgid "Press return to display 2D examples"
+msgstr ""
+
+#
+# File: macros/unwrap.sci, line: 41
+# File: macros/unwrap.sci, line: 55
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real expected.\n"
+msgstr ""
+
+#
+# File: macros/unwrap.sci, line: 49
+# File: macros/unwrap.sci, line: 69
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set  {%s}.\n"
+msgstr ""
+
+#
+# File: macros/unwrap.sci, line: 64
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+
+#
+# File: macros/unwrap.sci, line: 84
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Must have at least 4 rows.\n"
+msgstr ""
+
+#
+# File: macros/unwrap.sci, line: 86
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Must have at least 4 columns.\n"
 msgstr ""
 
 #
@@ -1157,15 +1224,4 @@ msgstr ""
 # File: macros/vectorfind.sci, line: 47
 #, c-format
 msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
-msgstr ""
-
-#
-# File: modulo_pmodulo_13002/modulo_pmodulo/modulo.sci, line: 26
-# File: modulo_pmodulo_13002/modulo_pmodulo/modulo.sci, line: 31
-# File: modulo_pmodulo_13002/modulo_pmodulo/pmodulo.sci, line: 29
-# File: modulo_pmodulo_13002/modulo_pmodulo/pmodulo.sci, line: 34
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Reals, encoded integers or "
-"polynomials expected.\n"
 msgstr ""

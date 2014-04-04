@@ -38,9 +38,6 @@
             <member>
                 <link linkend="demo_run">demo_run</link>
             </member>
-            <member>
-                <link linkend="demo_message">demo_message</link>
-            </member>
         </simplelist>
     </refsection>
 </refentry>

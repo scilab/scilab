@@ -59,7 +59,9 @@
         </para>
         <para>
             The length of a mlist is by default the number of elements in the
-            mlist, but you can overload it (see example).
+            mlist, but you can overload it (see example). Note that for a non-string
+            hypermatrix, there is no need to overload the function. Indeed, <function>length</function>
+            returns the product of the dimensions of the hypermatrix.
         </para>
         <para>
             <code>length('123')</code> is <literal>3</literal>.
@@ -81,6 +83,7 @@
         <programlisting role="example"><![CDATA[
 length([123 ; 456 ])
 length(['hello world',SCI])
+length(rand(2,2,2))
 
     ]]></programlisting>
         <programlisting role="example"><![CDATA[

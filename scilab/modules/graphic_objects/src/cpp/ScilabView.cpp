@@ -10,8 +10,10 @@
  *
  */
 
+#include <algorithm>
 #include <iostream>
 #include <map>
+#include <list>
 #include <cstring>
 #include <limits.h>
 
@@ -27,6 +29,7 @@ extern "C"
 #include "graphicObjectProperties.h"
 #include "getScilabJavaVM.h"
 #include "deleteGraphicObject.h"
+#include "MALLOC.h"
 }
 
 /**
@@ -66,6 +69,11 @@ void ScilabNativeView__setCurrentObject(int iUID)
 int ScilabNativeView__getValidDefaultFigureId()
 {
     return ScilabView::getValidDefaultFigureId();
+}
+
+int ScilabNativeView__getFigureFromIndex(int figNum)
+{
+    return ScilabView::getFigureFromIndex(figNum);
 }
 
 /**
@@ -167,6 +175,18 @@ void ScilabView::createObject(int iUID)
 
     // Register object handle.
     getObjectHandle(iUID);
+
+    PathItem* item = new PathItem();
+    item->uid = iUID;
+
+    m_pathList[iUID] = item;
+
+    m_userdata[iUID]; //create an empty vector<int>
+
+    //get existing information from current object
+    updateObject(iUID, __GO_PARENT__);
+    updateObject(iUID, __GO_CHILDREN__);
+    updateObject(iUID, __GO_TAG__);
 }
 
 void ScilabView::deleteObject(int iUID)
@@ -221,6 +241,9 @@ void ScilabView::deleteObject(int iUID)
     }
 
     deleteDataObject(iUID);
+
+    m_pathList.erase(iUID);
+    m_userdata.erase(iUID);
 }
 
 void ScilabView::updateObject(int iUID, int iProperty)
@@ -230,15 +253,93 @@ void ScilabView::updateObject(int iUID, int iProperty)
     /*
     ** Take care of update if the value update is ID and object type is a Figure I manage.
     */
-    if (iProperty == __GO_ID__ && m_figureList.find(iUID) != m_figureList.end())
+    switch (iProperty)
     {
-        int iNewId = 0;
-        int *piNewId = &iNewId;
+        case __GO_ID__ :
+        {
+            if (m_figureList.find(iUID) != m_figureList.end())
+            {
+                int iNewId = 0;
+                int *piNewId = &iNewId;
 
-        getGraphicObjectProperty(iUID, __GO_ID__, jni_int, (void **)&piNewId);
+                getGraphicObjectProperty(iUID, __GO_ID__, jni_int, (void **)&piNewId);
 
-        m_figureList[iUID] = iNewId;
-        //std::cerr << "### [ScilabView] updateMap UID=" << iUID << " id=" << iNewId << std::endl;
+                m_figureList[iUID] = iNewId;
+                //std::cerr << "### [ScilabView] updateMap UID=" << iUID << " id=" << iNewId << std::endl;
+            }
+            break;
+        }
+        case __GO_CHILDREN__ :
+        {
+            int childrenCount = 0;
+            int* pChildrenCount = &childrenCount;
+            getGraphicObjectProperty(iUID, __GO_CHILDREN_COUNT__, jni_int, (void**)&pChildrenCount);
+
+            __pathList_iterator it = m_pathList.find(iUID);
+            if (it != m_pathList.end())
+            {
+                //update existing item
+
+                PathItem* item = (*it).second;
+                //reset children
+                item->children.clear();
+                if (childrenCount != 0)
+                {
+                    int* children = NULL;
+                    getGraphicObjectProperty(iUID, __GO_CHILDREN__, jni_int_vector, (void**)&children);
+                    item->children.assign(children, children + childrenCount);
+                }
+            }
+            break;
+        }
+        case __GO_PARENT__ :
+        {
+            int iParent = 0;
+            int* piParent = &iParent;
+            getGraphicObjectProperty(iUID, __GO_PARENT__, jni_int, (void**)&piParent);
+
+            __pathList_iterator it = m_pathList.find(iUID);
+
+            if (it != m_pathList.end())
+            {
+                //update existing item
+
+                PathItem* item = (*it).second;
+                item->parent = iParent;
+            }
+            break;
+        }
+        case __GO_TAG__ :
+        {
+            int iType = 0;
+            int* piType = &iType;
+            getGraphicObjectProperty(iUID, __GO_TYPE__, jni_int, (void**)&piType);
+
+            char* tag = NULL;
+            getGraphicObjectProperty(iUID, __GO_TAG__, jni_string, (void**)&tag);
+
+            if (tag[0] != 0 && iType == __GO_FIGURE__)
+            {
+                //not empty string
+
+                //add figure in list of path starter
+                m_pathFigList[tag] = iUID;
+            }
+
+            __pathList_iterator it = m_pathList.find(iUID);
+
+            if (it != m_pathList.end())
+            {
+                //update existing item
+
+                PathItem* item = (*it).second;
+                item->tag = tag;
+                free(tag);
+            }
+            break;
+        }
+        default:
+            break;
     }
 }
 
@@ -384,6 +485,220 @@ void ScilabView::setAxesModel(int UID)
     m_axesModel = UID;
 }
 
+PathItem* ScilabView::getItem(int uid)
+{
+    __pathList_iterator it = m_pathList.find(uid);
+    if (it != m_pathList.end())
+    {
+        return it->second;
+    }
+
+    return NULL;
+}
+
+PathItem* ScilabView::getItem(std::string _pstTag)
+{
+    std::list<int> ignored;
+    return getItem(_pstTag, ignored);
+}
+
+PathItem* ScilabView::getItem(std::string _pstTag, std::list<int>& _ignoredList)
+{
+    __pathList_iterator it = m_pathList.begin();
+    for (; it != m_pathList.end(); it++)
+    {
+        PathItem * item = it->second;
+        if (item->tag == _pstTag)
+        {
+            if (std::find(_ignoredList.begin(), _ignoredList.end(), item->uid) == _ignoredList.end())
+            {
+                return item;
+            }
+        }
+    }
+    return NULL;
+}
+
+PathItem* ScilabView::getFigureItem(std::string _pstTag)
+{
+
+    __pathFigList_iterator it = m_pathFigList.find(_pstTag);
+    if (it != m_pathFigList.end())
+    {
+        return getItem(it->second);
+    }
+
+    return NULL;
+}
+
+int ScilabView::search_path(char* _pstPath)
+{
+    //copy string to protect it against strtok
+    char* pstPath = strdup(_pstPath);
+    std::list<int> ignoredList;
+    PathItem* path = NULL;
+    char* pstSubPath = strtok(pstPath, "/");
+    bool bDeep = false;
+    while (pstSubPath != NULL)
+    {
+        if (pstSubPath[0] == 0)
+        {
+            //"" ?
+            break;
+        }
+
+        if (pstSubPath[0] != '*')
+        {
+            //search in direct children
+            if (path == NULL)
+            {
+                path = ScilabView::getFigureItem(pstSubPath);
+                if (path == NULL)
+                {
+                    path = ScilabView::getItem(pstSubPath, ignoredList);
+                    if (path == NULL)
+                    {
+                        break;
+                    }
+                }
+
+                //if figure is in ignore list, reeturn not found
+                if (std::find(ignoredList.begin(), ignoredList.end(), path->uid) != ignoredList.end())
+                {
+                    return 0;
+                }
+            }
+            else
+            {
+                PathItem* newPath = search_children(path, pstSubPath, bDeep, ignoredList);
+                if (newPath == NULL)
+                {
+                    //flag handle to ignore and restart parsing
+                    ignoredList.push_back(path->uid);
+                    pstPath = strdup(_pstPath);
+                    pstSubPath = strtok(pstPath, "/");
+                    path = NULL;
+                    continue;
+                }
+                else
+                {
+                    path = newPath;
+                }
+
+                bDeep = false;
+            }
+        }
+        else
+        {
+            //search in all path children
+            bDeep = true;
+        }
+
+        pstSubPath = strtok(NULL, "/");
+    }
+
+    if (path == NULL)
+    {
+        return 0;
+    }
+
+    return path->uid;
+}
+
+PathItem* ScilabView::search_children(PathItem* _path, std::string _subPath, bool _bDeep, std::list<int>& _ignoredList)
+{
+    PathItem::__child_iterator it = _path->children.begin();
+    for (; it != _path->children.end() ; it++)
+    {
+        PathItem* child = ScilabView::getItem(*it);
+        if (child->tag == _subPath)
+        {
+            bool ignored = false;
+            //check if this handle is not in ignoredList
+            if (std::find(_ignoredList.begin(), _ignoredList.end(), child->uid) == _ignoredList.end())
+            {
+                return child;
+            }
+        }
+        else if (_bDeep)
+        {
+            PathItem *item = search_children(child, _subPath, _bDeep, _ignoredList);
+            if (item)
+            {
+                return item;
+            }
+        }
+    }
+
+    return NULL;
+}
+
+std::string ScilabView::get_path(int uid)
+{
+    PathItem* item = getItem(uid);
+    if (item->tag == "")
+    {
+        //impossible to create a useful path from object without tag
+        return "";
+    }
+
+    std::string path = item->tag;
+
+    while (item->parent != 0)
+    {
+        item = getItem(item->parent);
+        if (item->tag == "")
+        {
+            if (path[0] == '*')
+            {
+                //we have already */ just continue
+                continue;
+            }
+            else
+            {
+                //add */ instead of /
+                path = "*/" + path;
+            }
+        }
+        else
+        {
+            path = item->tag + "/" + path;
+        }
+    }
+
+    if (path[0] == '*')
+    {
+        //path must start by mane
+        return "";
+    }
+
+    return path;
+}
+
+void ScilabView::setUserdata(int _id, int* _data, int _datasize)
+{
+    m_userdata[_id] = std::vector<int>(_data, _data + _datasize);
+}
+
+int ScilabView::getUserdataSize(int _id)
+{
+    return (int)m_userdata[_id].size();
+}
+
+int* ScilabView::getUserdata(int _id)
+{
+    std::vector<int> &vect = m_userdata[_id];
+    int size = (int)vect.size();
+
+    if (size != 0)
+    {
+        return &(vect[0]);
+    }
+
+    //empty userdata must be == NULL
+    return NULL;
+}
+
 /*
 ** Allocate static class variable.
 */
@@ -396,3 +711,6 @@ int ScilabView::m_currentObject;
 int ScilabView::m_currentSubWin;
 int ScilabView::m_figureModel;
 int ScilabView::m_axesModel;
+ScilabView::__pathList ScilabView::m_pathList = *new __pathList();
+ScilabView::__pathFigList ScilabView::m_pathFigList = *new __pathFigList();
+ScilabView::__userdata ScilabView::m_userdata = *new __userdata();

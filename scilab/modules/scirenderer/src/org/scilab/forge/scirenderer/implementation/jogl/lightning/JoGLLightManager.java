@@ -84,7 +84,9 @@ public class JoGLLightManager implements LightManager {
             GLShortCuts.setEnable(drawingTools.getGl().getGL2(), GL2.GL_COLOR_MATERIAL, material.isColorMaterialEnable());
             float[] black = new float[] {0.0f, 0.0f, 0.0f, 1.0f};
             drawingTools.getGl().glLightModelfv(GL2.GL_LIGHT_MODEL_AMBIENT, black, 0);
-            drawingTools.getGl().glLightModeli(GL2.GL_LIGHT_MODEL_LOCAL_VIEWER, GL2.GL_TRUE);
+            drawingTools.getGl().glLightModeli(GL2.GL_LIGHT_MODEL_LOCAL_VIEWER, GL2.GL_FALSE);
+            drawingTools.getGl().glLightModeli(GL2.GL_LIGHT_MODEL_TWO_SIDE, GL2.GL_TRUE);
+
             if (material.isColorMaterialEnable()) {
                 drawingTools.getGl().glColorMaterial(GL2.GL_FRONT_AND_BACK, GL2.GL_AMBIENT_AND_DIFFUSE);
             } else {
@@ -104,7 +106,7 @@ public class JoGLLightManager implements LightManager {
         GL2 gl = drawingTools.getGl().getGL2();
         GLShortCuts.setEnable(gl, GL2.GL_LIGHTING, isLightningEnable);
         for (JoGLLight light : lights) {
-            if (light != null) {
+            if (light != null && light.isEnable()) {
                 light.reload(gl);
             }
         }

@@ -30,12 +30,13 @@ import org.flexdock.docking.DockingManager;
 import org.scilab.modules.commons.OS;
 import org.scilab.modules.commons.ScilabCommonsUtils;
 import org.scilab.modules.commons.ScilabConstants;
+import org.scilab.modules.commons.xml.XConfiguration;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.Type;
 import org.scilab.modules.graphic_objects.utils.MenuBarBuilder;
 import org.scilab.modules.gui.SwingView;
 import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
@@ -57,6 +58,7 @@ public class Scilab {
 
     static {
         System.setProperty("java.protocol.handler.pkgs", "org.scilab.modules.commons");
+        XConfiguration.getXConfigurationDocument();
     }
 
     /** Index of windows vista version */
@@ -187,7 +189,7 @@ public class Scilab {
             MenuBarBuilder.buildConsoleMenuBar(consoleId);
 
             SwingScilabConsole sciConsole = ((SwingScilabConsole) ScilabConsole.getConsole().getAsSimpleConsole());
-            SwingScilabTab consoleTab = (SwingScilabTab) sciConsole.getParent();
+            SwingScilabDockablePanel consoleTab = (SwingScilabDockablePanel) sciConsole.getParent();
 
             WindowsConfigurationManager.restorationFinished(consoleTab);
 

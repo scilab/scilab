@@ -59,6 +59,10 @@ int set_image_type_property(void* _pvCtx, int iObjUID, void* _pvData, int valueT
     {
         imagetype = (int)MATPLOT_RGBA;
     }
+    else if (stricmp((char*)_pvData, "argb") == 0)
+    {
+        imagetype = (int)MATPLOT_ARGB;
+    }
     else if (stricmp((char*)_pvData, "gray") == 0)
     {
         imagetype = (int)MATPLOT_GRAY;

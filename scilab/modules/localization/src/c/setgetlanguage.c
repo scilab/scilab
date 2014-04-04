@@ -75,13 +75,21 @@ BOOL setlanguage(wchar_t *lang)
             {
 #endif
                 /* Load the locale from the system */
-#if !defined(_MSC_VER) && !defined(__APPLE__)
+#if !defined(_MSC_VER)
                 //for mbstowcs
 
                 char *newlang = NULL;
                 char *pstLang = wide_string_to_UTF8(lang);
                 char *pstRet = setlocale(LC_CTYPE, pstLang);
                 wchar_t *ret = NULL;
+
+#ifdef __APPLE__
+                /* Load the user locale from the system */
+                if (pstLang == NULL || *pstLang == 0)
+                {
+                    pstLang = getLocaleUserInfo();
+                }
+#endif
 
                 if (pstRet == NULL)
                 {
@@ -174,7 +182,7 @@ BOOL setlanguage(wchar_t *lang)
                     }
                     else
                     {
-#if !defined(_MSC_VER) && !defined(__APPLE__)
+#if !defined(_MSC_VER)
                         if (newlang)
                         {
                             wchar_t* pwstLang = to_wide_string(newlang);

@@ -14,11 +14,12 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 16967)\n"
 "Language: ca\n"
 
-msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
-msgstr "S'ha deshabilitat el mòdul gràfic Scilab en mode -nogui o -nwni.\n"
+#, c-format
+msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -26,7 +27,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for argument %d: A real expected.\n"
+msgid "%s: Wrong type for argument #%d: A real expected.\n"
 msgstr ""
 
 #, c-format
@@ -34,7 +35,7 @@ msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Handle matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Handle matrix expected.\n"
 msgstr ""
 
 #, c-format
@@ -133,35 +134,6 @@ msgid ""
 "other process."
 msgstr ""
 
-msgid "Scilab Graphic export module not installed.\n"
-msgstr "El mòdul Graphic export de Scilab no està instal·lat.\n"
-
 #, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgid "Scilab '%s' module not installed.\n"
 msgstr ""
-"%s: Nombre incorrecte d'arguments d'entrada: Hi ha d'haver entre %d i %d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
-msgstr "%s: L'argument #%d és d'un tipus incorrecte: Ha de ser un enter.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un text.\n"
-
-#, c-format
-msgid "%s: EMF format only available under Microsoft Windows OS.\n"
-msgstr "%s: El format EMF només està disponible en Microsoft Windows.\n"
-
-#, c-format
-msgid "%s: Unable to find pstoedit.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Unable to create export file, permission denied.\n"
-msgstr "%s: No es pot crear el fitxer d'exportació, permís denegat.\n"
-
-#, c-format
-msgid "%s: Unable to execute pstoedit.\n"
-msgstr "%s: No es pot executar el pstoedit.\n"

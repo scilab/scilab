@@ -35,8 +35,8 @@ libscimpi_la_CFLAGS=  -Iincludes/ \
 	-I$(top_srcdir)/modules/localization/includes \
 	-I$(top_srcdir)/modules/api_scilab/includes \
 	-DDEBUG
-libscimpi_la_LDFLAGS = $(OPENMPI_LIBS)
-# $(LAMPI_LDFLAGS)
+# libscimpi_la_LDFLAGS = $(LAMPI_LDFLAGS)
+libscimpi_la_LIBADD = $(OPENMPI_LIBS)
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding 
 # the system)
@@ -48,6 +48,7 @@ libscimpi_la_SOURCES =   $(GATEWAY_C_SOURCES)  $(MPI_C_SOURCES)
 
 
 #### Target ######
+modulename=mpi
 
 #### mpi : Conf files ####
 libscimpi_la_rootdir = $(mydatadir)

@@ -107,6 +107,13 @@ public class BoundingBox {
     }
 
     /**
+     * @return true if the bbox are non-intersecting and no z-overlapping
+     */
+    public boolean isNonZOverlapping(BoundingBox box) {
+        return (box.maxX < minX || maxX < box.minX || box.maxY < minY || maxY < box.minY) || ((box.maxZ < minZ || maxZ < box.minZ) && (maxX == box.minX || box.maxX == minX || box.minY == maxY || minY == box.maxY));
+    }
+
+    /**
      * @param box a BoundingBox
      * @return true if this BoundingBox and the box have a strict intersection
      */

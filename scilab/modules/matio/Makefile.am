@@ -36,7 +36,7 @@ MATIO_C_SOURCES = src/c/matfile_manager.c \
 		  src/c/GetStructVariable.c \
 		  src/c/GetSparseVariable.c
 
-libscimatio_la_LDFLAGS = $(MATIO_LIBS) $(AM_LDFLAGS)
+libscimatio_la_LDFLAGS = $(AM_LDFLAGS)
 
 else
 
@@ -81,4 +81,4 @@ libscimatio_la_etc_DATA = etc/matio.quit etc/matio.start
 libscimatio_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscimatio_la_sci_gateway_DATA = sci_gateway/matio_gateway.xml
 
-libscimatio_la_LIBADD = libscimatio-algo.la
+libscimatio_la_LIBADD = libscimatio-algo.la $(MATIO_LIBS)

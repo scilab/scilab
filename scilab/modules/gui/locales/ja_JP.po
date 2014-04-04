@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-12-08 11:36+0000\n"
+"PO-Revision-Date: 2014-03-30 13:50+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 16967)\n"
 "X-Poedit-Country: JAPAN\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -53,8 +53,8 @@ msgid "%s: No more memory.\n"
 msgstr "%s: メモリ不足です.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: A real expected.\n"
-msgstr "%s: 引数 %d の型が間違っています:  実数を指定してください.\n"
+msgid "%s: Wrong type for argument #%d: A real expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 実数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"
@@ -109,6 +109,36 @@ msgid ""
 msgstr "%s: 入力引数 #%d の値が間違っています: 有効な図IDを指定してください.\n"
 
 #, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s: 入力引数 #%d を読み込めません.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 整数値を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
+msgstr "%s: 入力引数 #%d の大きさに誤りがあります: 文字列を指定してください.\n"
+
+#, c-format
+msgid "Wrong value for '%s' property: '%s' or '%s' expected."
+msgstr "'%s' プロパティの値が間違っています: '%s' または '%s' を指定してください."
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A double vector expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: doubleベクトルを指定してください.\n"
+
+#, c-format
+msgid "Wrong size for '%s' property: %d elements expected.\n"
+msgstr "'%s' プロパティの大きさが間違っています: %d個の要素を指定してください.\n"
+
+#, c-format
+msgid ""
+"Wrong value for '%s' property: A string or a 1 x %d real row vector "
+"expected.\n"
+msgstr "'%s' プロパティの値が間違っています: 文字列または1 x %d 実数行ベクトルを指定してください.\n"
+
+#, c-format
 msgid "%s: Wrong type for argument #%d: Real expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 実数を指定してください.\n"
 
@@ -121,8 +151,8 @@ msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 論理値行列を指定してください.\n"
+msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
+msgstr "%s: 引数 #%d の型が間違っています: 論理値行列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
@@ -214,9 +244,8 @@ msgid ""
 msgstr "%s: 入力引数 #%d の型が間違っています: 実数またはFigureのハンドルを指定してください.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A real or Figure handle expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 実数またはFigureのハンドルを指定してください.\n"
+msgid "%s: can not read file %s.\n"
+msgstr "%s: ファイル %s を読み込めません.\n"
 
 #
 # File: sci_gateway/c/sci_uicontrol.c, line: 125
@@ -247,6 +276,10 @@ msgstr "%s: 入力引数 #%dの大きさが間違っています: '%s'または'
 #, c-format
 msgid "%s: Unknown property: %s for '%s' handles.\n"
 msgstr "%1$s: 未知のプロパティ: %3$s ハンドルのための '%2$s'\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: A string or boolean expected.\n"
+msgstr "%s: 引数 #%d の型が間違っています: 文字列または論理値を指定してください.\n"
 
 #
 # File: sci_gateway/c/sci_uicontrol.c, line: 289
@@ -329,9 +362,9 @@ msgstr "Scilab 複合値要求"
 
 #, c-format
 msgid ""
-"%s: Wrong size for input argument #%d: It must have same dimensions that "
+"%s: Wrong size for input argument #%d: It must have same dimensions as "
 "argument #%d.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: 引数 #%d と同じ次元を有する必要があります.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 引数 #%d と同じ次元で指定してください.\n"
 
 #, c-format
 msgid ""
@@ -347,12 +380,18 @@ msgstr ""
 "%s"
 
 #, c-format
-msgid "%s: Can not read input argument #%d.\n"
-msgstr "%s: 入力引数 #%d を読み込めません.\n"
-
-#, c-format
 msgid "%s: Wrong number for input argument: %d expected.\n"
 msgstr "%s: 入力引数の数が間違っています:  %d を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A string or a macro name expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列またはマクロ名を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A string or a macro name expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列またはマクロ名を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
@@ -440,12 +479,32 @@ msgid "Impossible to get current look and feel"
 msgstr "現在のルックアンドフィールを取得できません"
 
 #, c-format
+msgid "%s: This file %s does not exist.\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "%s: A Java exception arised:\n"
 "%s"
 msgstr ""
 "%s: Java例外が発生しました:\n"
 "%s"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A single handle expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: ハンドルを1つ指定してください.\n"
+
+#, c-format
+msgid "%s: The handle is not or no more valid.\n"
+msgstr "%s: ハンドルは有効でないか有効でなくなりました.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Figure handle expected.\n"
+msgstr "%s: 引数 #%d の型が間違っています: 図のハンドルを指定してください.\n"
+
+#, c-format
+msgid "%s: %s.\n"
+msgstr "%s: %s.\n"
 
 #, c-format
 msgid ""
@@ -527,57 +586,6 @@ msgstr "保存(&S)..."
 # File: scilab_fake_localization_file.c, line: 5
 msgid "&Export to..."
 msgstr "エクスポート(&E)..."
-
-#
-# File: scilab_fake_localization_file.c, line: 9
-msgid "P&NG"
-msgstr "PNG(&N)"
-
-#
-# File: scilab_fake_localization_file.c, line: 8
-msgid "&JPG"
-msgstr "JPG(&J)"
-
-#
-# File: scilab_fake_localization_file.c, line: 7
-msgid "&GIF"
-msgstr "GIF(&G)"
-
-#
-# File: scilab_fake_localization_file.c, line: 10
-msgid "&PPM"
-msgstr "PPM(&P)"
-
-#
-# File: scilab_fake_localization_file.c, line: 6
-msgid "&BMP"
-msgstr "BMP(&B)"
-
-msgid "&Vectorial export to..."
-msgstr "ベクトルでエクスポート (&V)"
-
-#
-# File: scilab_fake_localization_file.c, line: 15
-msgid "&PDF"
-msgstr "PDF(&P)"
-
-msgid "&PS"
-msgstr "&PS"
-
-#
-# File: scilab_fake_localization_file.c, line: 16
-msgid "&SVG"
-msgstr "SVG(&S)"
-
-#
-# File: scilab_fake_localization_file.c, line: 12
-msgid "&EMF"
-msgstr "EMF(&E)"
-
-#
-# File: scilab_fake_localization_file.c, line: 13
-msgid "&EPS"
-msgstr "EPS(&E)"
 
 #
 # File: scilab_fake_localization_file.c, line: 17
@@ -969,20 +977,6 @@ msgstr "ファイルを選択して出力"
 msgid "Figure saved.\n"
 msgstr "構成を保存しました。\n"
 
-#
-# File: etc/graphics_menubar.xml, line: 41
-# File: etc/graphics_menubar.xml, line: 52
-# File: etc/graphics_menubar.xml, line: 63
-# File: etc/graphics_menubar.xml, line: 74
-# File: etc/graphics_menubar.xml, line: 85
-# File: etc/graphics_menubar.xml, line: 98
-# File: etc/graphics_menubar.xml, line: 109
-# File: etc/graphics_menubar.xml, line: 120
-# File: etc/graphics_menubar.xml, line: 131
-# File: etc/graphics_menubar.xml, line: 142
-msgid "Select a file name"
-msgstr "ファイル名を選択"
-
 msgid "Colors"
 msgstr "色"
 
@@ -1069,6 +1063,24 @@ msgstr "デフォルトのメーラーを使用"
 
 msgid "Command for mailer: "
 msgstr "メーラーのコマンド: "
+
+msgid "Proxy settings"
+msgstr "プロキシ設定"
+
+msgid "Enable proxy"
+msgstr "プロキシを有効にする"
+
+msgid "Host: "
+msgstr "ホスト: "
+
+msgid "Port: "
+msgstr "ポート: "
+
+msgid "User: "
+msgstr "ユーザ: "
+
+msgid "Password: "
+msgstr "パスワード: "
 
 #, c-format
 msgid "'%s' property does not exist for this handle.\n"
@@ -1158,6 +1170,10 @@ msgid "Wrong size for '%s' property: '%s', '%s' or '%s' expected.\n"
 msgstr "''%s'プロパティの大きさが間違っています: '%s', '%s' または '%s'  を指定してください.\n"
 
 #, c-format
+msgid "Wrong type for '%s' property: String expected.\n"
+msgstr "'%s' プロパティの型が間違っています: 文字列を指定してください.\n"
+
+#, c-format
 msgid "Wrong value for '%s' property: A real expected.\n"
 msgstr "'%s' プロパティの値が間違っています: 実数を指定してください.\n"
 
@@ -1175,36 +1191,17 @@ msgstr "'%s' プロパティの大きさが間違っています: 文字列ま�
 
 #, c-format
 msgid ""
-"Wrong value for '%s' property: A string or a 1 x %d real row vector "
-"expected.\n"
-msgstr "'%s' プロパティの値が間違っています: 文字列または1 x %d 実数行ベクトルを指定してください.\n"
-
-#, c-format
-msgid ""
 "Wrong type for '%s' property: A string or a 1 x %d real row vector "
 "expected.\n"
 msgstr "'%s' プロパティの型が間違っています: 文字列または1 x %d 実数行ベクトルを指定してください.\n"
 
 #, c-format
 msgid ""
-"Wrong type for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
+"Wrong type for '%s' property: '%s', '%s', '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
 msgstr ""
-"'%s' プロパティの型が間違っています: %s', '%s', '%s', '%s', '%s' または '%s' を指定してください.\n"
-
-#, c-format
-msgid ""
-"Wrong size for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
-"expected.\n"
-msgstr ""
-"'%s' プロパティの大きさが間違っています: %s', '%s', '%s', '%s', '%s' または '%s' を指定してください.\n"
-
-#, c-format
-msgid ""
-"Wrong value for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
-"expected.\n"
-msgstr ""
-"'%s' プロパティの値が間違っています: '%s', '%s', '%s', '%s', '%s'または '%s' を指定してください.\n"
+"'%s' プロパティの型が間違っています:  '%s', '%s', '%s', '%s', '%s', '%s' または '%s' "
+"を指定してください.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: A 1 x %d real row vector expected.\n"
@@ -1254,6 +1251,10 @@ msgid ""
 "Warning: '%s' 'Value' property should be an integer, the value will be "
 "truncated.\n"
 msgstr "警告: '%s' 'Value' プロパティは整数である必要があり, 値は丸められます.\n"
+
+#, c-format
+msgid "'%s' value must be between 0 and %d.\n"
+msgstr "'%s'の値を 0 および %d の間で指定してください.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: '%s', '%s', or '%s' expected.\n"
@@ -1407,8 +1408,8 @@ msgstr "無題-エクスポート"
 msgid "Export"
 msgstr "エクスポート"
 
-msgid "Preview"
-msgstr "プレビュー"
+msgid "Preview selected image file"
+msgstr "選択された画像ファイルをプレビュー"
 
 msgid "Replace existing file?"
 msgstr "既存のファイルを置き換えますか?"
@@ -1451,6 +1452,9 @@ msgstr "モノスペース"
 msgid "SciNotes compatible"
 msgstr "SciNotes互換"
 
+msgid "Preview"
+msgstr "プレビュー"
+
 #
 # File: macros/about.sci, line: 20
 msgid "Ok"
@@ -1486,6 +1490,33 @@ msgid ""
 "Left click on the curve creates a datatip and right click on the datatip "
 "removes it."
 msgstr "曲線上で左クリックするとデータティップが生成され, データティップ上で右クリックすると削除されます."
+
+msgid "Delete all the datatips"
+msgstr "datatipを全て削除"
+
+msgid "Delete all the datatips on the selected curve"
+msgstr "選択した曲線のdatatipを全て削除"
+
+msgid "Delete the nearest datatip"
+msgstr "最も近いdatatipを削除"
+
+msgid "Delete the last datatip"
+msgstr "直近のdatatipを削除"
+
+msgid "Edit curve datatip display function"
+msgstr "曲線datatip表示関数を編集"
+
+msgid "Enable interpolation"
+msgstr "補間を有効にする"
+
+msgid "Disable interpolation"
+msgstr "補間を無効にする"
+
+msgid "Display function name"
+msgstr "関数名を表示"
+
+msgid "OK"
+msgstr "OK"
 
 msgid "Insert"
 msgstr "挿入"
@@ -2204,9 +2235,6 @@ msgstr "Yシフト"
 msgid "Z Shift"
 msgstr "Zシフト"
 
-msgid "OK"
-msgstr "OK"
-
 msgid "Yes"
 msgstr "はい"
 
@@ -2305,6 +2333,16 @@ msgstr "謝辞"
 msgid "Could not open: "
 msgstr "オープンできません: "
 
+msgid "Restoration error"
+msgstr "復元エラー"
+
+msgid ""
+"The configuration file has been corrupted and reset to the default one."
+msgstr "設定ファイルが壊れており, デフォルトのファイルにリセットしました."
+
+msgid "The configuration file has been corrupted. Scilab needs to restart."
+msgstr "設定ファイルが壊れています. Scilabを再起動する必要があります."
+
 #
 # File: src/nogui/nogui.c, line: 25
 # File: src/nogui/nogui.c, line: 128
@@ -2329,6 +2367,76 @@ msgstr "エラー、シグナルを捉えました。\n"
 msgid "Control Plot3d"
 msgstr "Plot3d コントロール"
 
+msgid "Control Panel"
+msgstr "コントロールパネル"
+
+msgid "Rotation angle"
+msgstr "回転角度"
+
+msgid "Colormap"
+msgstr "カラーマップ"
+
+msgid "Show / Hide"
+msgstr "表示/隠す"
+
+msgid "messagebox"
+msgstr "メッセージボックス"
+
+msgid "x_choose"
+msgstr "x_choose"
+
+msgid "x_dialog"
+msgstr "x_dialog"
+
+msgid "x_mdialog"
+msgstr "x_mdialog"
+
+msgid "Simple example of message"
+msgstr "メッセージの例"
+
+msgid "Button 1Button 2"
+msgstr "ボタン1 ボタン2"
+
+msgid "Button 1 clicked."
+msgstr "ボタン1がクリックされました."
+
+msgid "Button 2 clicked"
+msgstr "ボタン2がクリックされました."
+
+msgid ""
+"Message: Selection (double-click on an item --> returns the item number)"
+msgstr "メッセージ: セレクション (要素上でダブルクリック --> 要素番号を返す)"
+
+msgid "Item selected: "
+msgstr "選択された要素: "
+
+msgid "Message: enter a value"
+msgstr "メッセージ: 値を入力"
+
+msgid "Value entered: "
+msgstr "入力された値: "
+
+msgid "Message"
+msgstr "メッセージ"
+
+msgid "first row"
+msgstr "最初の行"
+
+msgid "Values entered: "
+msgstr "選択された値: "
+
+msgid "row"
+msgstr "行"
+
+msgid "col"
+msgstr "列"
+
+msgid "Matrix to edit"
+msgstr "編集する行列"
+
+msgid "Matrix entered: "
+msgstr "入力された行列: "
+
 #
 # File: etc/gui.start, line: 13
 msgid "GUI"
@@ -2349,6 +2457,12 @@ msgstr "LaTeX/MathULサポート付きのUIコントロール"
 msgid "Show images with uicontrols "
 msgstr "uicontrols付きの画像を表示 "
 
+msgid "Listboxes and Popupmenus"
+msgstr "リストボックスとポップアップメニュー"
+
+msgid "Uicontrols rendering"
+msgstr "UIコントロールを描画中"
+
 msgid "<Enter color name here>"
 msgstr "<色名をここに入力してください>"
 
@@ -2358,17 +2472,22 @@ msgstr "エラー"
 msgid "Please enter a color name first."
 msgstr "最初に色名を入力してください。"
 
+msgid "Unknown color."
+msgstr ""
+
 msgid "No color selected."
 msgstr "色選択なし"
+
+msgid "Color selection"
+msgstr ""
 
 #, c-format
 msgid "Selected colors are: %s."
 msgstr "選択された色: %s"
 
-#
-# File: scilab_fake_localization_file.c, line: 56
-msgid "Selected colors"
-msgstr "色選択"
+#, c-format
+msgid "Deleted colors are: %s."
+msgstr ""
 
 #, c-format
 msgid "You clicked on menu '%s'."
@@ -2427,8 +2546,8 @@ msgstr "UIコントロール・デモ"
 msgid "Application"
 msgstr "アプリケーション"
 
-msgid "Exit figure"
-msgstr "終了構成"
+msgid "Close figure"
+msgstr ""
 
 msgid "Scilab Graphics"
 msgstr "Scilab グラフィック"
@@ -2454,11 +2573,23 @@ msgstr "サブ・メニュー 2-1"
 msgid "Sub-menu 2-2"
 msgstr "サブ・メニュー 2-2"
 
+msgid "item1|item2|item3|item4"
+msgstr "項目1|項目2|項目3|項目4"
+
+msgid "Pop-up menu"
+msgstr ""
+
+msgid "Slider demo"
+msgstr "スライダーデモ"
+
 msgid "Colors list edition"
 msgstr "色一覧"
 
 msgid "Add color in listbox"
 msgstr "リストボックスで色を加える"
+
+msgid "Delete color in listbox"
+msgstr ""
 
 msgid "blue"
 msgstr "青"
@@ -2477,11 +2608,11 @@ msgstr "黄"
 msgid "Display selection"
 msgstr "表示選択"
 
-msgid "Slider demo"
-msgstr "スライダーデモ"
+msgid "Delete selection"
+msgstr ""
 
-msgid "item1|item2|item3|item4"
-msgstr "項目1|項目2|項目3|項目4"
+msgid "Default"
+msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 75
@@ -2532,14 +2663,59 @@ msgid ""
 "%s: Wrong type for input argument #%d: A graphic handle or a real expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: グラフィックのハンドルまたは実数を指定してください.\n"
 
-#
-# File: macros/figure.sci, line: 26
-# File: macros/figure.sci, line: 53
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected."
+msgstr "%s: 入力引数の数が間違っています: %d 以上を指定してください."
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected."
+msgstr "%s: 入力引数の数が間違っています: %d から%d個の引数を指定してください."
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A integer expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 整数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d, %d or %d expected."
+msgstr "%s: 入力引数の数が間違っています: %d, %d または %d個の引数を指定してください."
+
 #, c-format
 msgid ""
-"%s: Wrong size for input argument #%d: A 'Figure' handle or a real "
-"expected.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズです: '図形' ハンドル、または 実数を想定します。\n"
+"%s: Wrong type for input argument #%d: A integer or a string expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 整数または文字列を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A border or a string expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 境界または文字列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A Font Border expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: フォントの境界を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d or %d expected."
+msgstr "%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください."
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A border expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 境界を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected."
+msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください."
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
+msgstr "%s: 入力引数 #%d の値が正しくありません: 集合 {%s} に含まれる値を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A integer value expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 整数値を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: %s または %sを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
@@ -2580,6 +2756,15 @@ msgstr "%s に指定された回答は間違っています: %s.\n"
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr "%s: 入力引数の数に誤りがあります: %d 個の引数を指定してください.\n"
+
+#
+# File: macros/figure.sci, line: 26
+# File: macros/figure.sci, line: 53
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A 'Figure' handle or a real "
+"expected.\n"
+msgstr "%s: 入力引数 #%d で不正なサイズです: '図形' ハンドル、または 実数を想定します。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: uitree expected.\n"
@@ -2671,3 +2856,11 @@ msgstr "%s: %s の型が間違っています: 実数を指定してください
 #, c-format
 msgid "%s: Wrong size for %s: A real expected.\n"
 msgstr "%s: %sの大きさが間違っています: 実数を指定してください.\n"
+
+#~ msgid "Exit figure"
+#~ msgstr "終了構成"
+
+#
+# File: scilab_fake_localization_file.c, line: 56
+#~ msgid "Selected colors"
+#~ msgstr "色選択"

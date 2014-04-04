@@ -63,8 +63,10 @@
             <literal>U*xy=[r;0]=c</literal>.
         </para>
         <para>
-            <literal>givens(x,y)</literal> および <literal>givens([x;y])</literal> は等価であることに
-            注意してください.
+            <note>
+                <literal>givens(x,y)</literal> および <literal>givens([x;y])</literal> は等価であることに
+                注意してください.
+            </note>
         </para>
     </refsection>
     <refsection>

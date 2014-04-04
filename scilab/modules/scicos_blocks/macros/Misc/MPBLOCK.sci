@@ -118,7 +118,7 @@ function [x,y,typ]=MPBLOCK(job,arg1,arg2)
             funam=stripblanks(Tfunam)","errcatch")
 
             if ierr<>0 then
-                //You loose ! Try again ! Insert coin !
+                //You lose! Try again! Insert coin!
                 //x_message("Error, try again please!")
                 x_message("Error in evaluation of variables.")
                 ok=%f

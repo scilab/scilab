@@ -31,7 +31,7 @@ public interface Widget extends Dockable {
      * @param color the Color
      */
     void setBackground(Color color);
-
+    void resetBackground();
     /**
      * Get the Background color of the widget.
      * @return the Color
@@ -43,6 +43,7 @@ public interface Widget extends Dockable {
      * @param color the Color
      */
     void setForeground(Color color);
+    void resetForeground();
 
     /**
      * Get the Foreground color of the widget.

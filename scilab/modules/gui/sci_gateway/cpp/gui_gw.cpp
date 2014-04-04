@@ -84,5 +84,8 @@ int GuiModule::Load()
     symbol::Context::getInstance()->addFunction(Function::createFunction(L"datatip_set_display", &sci_datatip_set_display, &GuiModule::LoadDeps, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(Function::createFunction(L"datatip_set_interp", &sci_datatip_set_interp, &GuiModule::LoadDeps, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(Function::createFunction(L"datatip_set_orient", &sci_datatip_set_orient, &GuiModule::LoadDeps, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(Function::createFunction(L"figure", &sci_figure, &GuiModule::LoadDeps, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(Function::createFunction(L"saveGui", &sci_saveGui, &GuiModule::LoadDeps, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(Function::createFunction(L"loadGui", &sci_loadGui, &GuiModule::LoadDeps, MODULE_NAME));
     return 1;
 }

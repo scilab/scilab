@@ -18,6 +18,15 @@ extern "C" {
 #endif
 
 #include "dynlib_api_scilab.h"
+
+    typedef struct
+    {
+        int curElement ; /**< the number of the current element in the stack the first one is the name.
+                            vary from 1 to nbElements */
+        int nbElements ; /**< the number of element which will be inserted in the list. */
+        int stackPointer ; /**< use to differentiate returned list. Not useful for now. */
+    } returnedList ;
+
     /**
      * Construct a new tlist and allocate scilab stack for return in the console.
      * Only one tlist should be used at the same time.
@@ -75,7 +84,7 @@ extern "C" {
      *                -1 if an other error occurred
      */
     int addStringColVectorToReturnedList(void* list, char* vector[], int nbValues);
-
+    int addStringToReturnedList( returnedList * list, char * str);
 #ifdef __cplusplus
 }
 #endif

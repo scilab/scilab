@@ -255,9 +255,6 @@ public class SwingScilabFileChooser extends JFileChooser implements SimpleFileCh
             FileChooserInfos.getInstance().setSelectionSize(selectionSize);
             FileChooserInfos.getInstance().setFilterIndex(filterIndex);
         }
-
-
-
     }
 
     /**
@@ -311,23 +308,6 @@ public class SwingScilabFileChooser extends JFileChooser implements SimpleFileCh
     @Override
     public String[] getSelectionFileNames() {
         return selectionFileNames;
-    }
-
-    /**
-     * Get the filter index
-     * @return this.getFilterIndex() filter index
-     */
-    @Override
-    public int getFilterIndex() {
-        return getFilterIndex();
-    }
-
-    /**
-     * Set the flag indicating the filter index
-     * @param filterIndex index of the filter
-     */
-    public void setFilterIndex(int filterIndex) {
-        setFilterIndex(filterIndex);
     }
 
     /**

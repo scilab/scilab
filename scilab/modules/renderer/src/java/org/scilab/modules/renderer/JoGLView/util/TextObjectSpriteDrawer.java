@@ -162,7 +162,7 @@ public class TextObjectSpriteDrawer implements TextureDrawer {
                         textEntity.setFont(font);
                         entities[column][line] = textEntity;
                         dimension = textEntity.getSize();
-                        ascent = textEntity.getLayout().getAscent();
+                        ascent = textEntity.isValid() ? textEntity.getLayout().getAscent() : 0;
                     }
 
                     lineAscent[line] = Math.max(lineAscent[line], ascent);
@@ -217,9 +217,9 @@ public class TextObjectSpriteDrawer implements TextureDrawer {
                 if (entity != null) {
                     if (entity instanceof TextEntity) {
                         TextEntity textEntity = (TextEntity) entity;
-                        TextLayout layout = textEntity.getLayout();
+                        float ascent = textEntity.isValid() ? textEntity.getLayout().getAscent() : 0.f;
                         double deltaX = alignmentFactor * (columnWidth[column] - textEntity.getSize().getWidth());
-                        drawingTools.draw(textEntity, (int) (x + deltaX), Math.round(y - layout.getAscent() + lineAscent[line]));
+                        drawingTools.draw(textEntity, (int) (x + deltaX), Math.round(y - ascent + lineAscent[line]));
                         y += lineHeight[line] + currentVMargin;
                         line++;
                     } else if (entity instanceof Icon) {

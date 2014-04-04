@@ -5,7 +5,7 @@
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
 # you should have received as part of this distribution.  The terms
-# are also available at    
+# are also available at
 # http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 
@@ -61,7 +61,7 @@ global figure_name figure_id background figure_xposition figure_yposition
 global figure_xsiz figure_ysiz figure_xaxesiz figure_yaxesiz
 global curvis
 global ncolors
-global curpix curpdm currotation_style
+global curpdm currotation_style
 
 global scicomint_colormap
 global smallPad mediumPad
@@ -69,7 +69,7 @@ global smallPad mediumPad
 
 #To update foreground color grey ("off"), black ("on") for checkbutton boxes
 proc OnOffForeground { frame flag } {
-    
+
     if { $flag == "on" } {
 	$frame configure -foreground black
     } else {
@@ -104,13 +104,13 @@ set titf1 [TitleFrame $topf.titf1 -text "Graphic Editor" -font $gedFont]
 
 set parent  [$titf1 getframe]
 set pw1  [PanedWindow $parent.pw -side top]
-set pane3  $pw1  
+set pane3  $pw1
 
 
 # Make a frame scrollable
 
 set sw [ScrolledWindow $pane3.sw -relief sunken -borderwidth 2]
-# pack $sw -in .sw -fill both -expand true 
+# pack $sw -in .sw -fill both -expand true
 set sf [ScrollableFrame $sw.f]
 $sw setwidget $sf
 set uf [$sf getframe]
@@ -145,10 +145,10 @@ pack $w.frame -anchor w -fill both
 # : "Error: can't read "wfortree": no such variable"
 # The reason of the bug has nor been found but it is certainly in
 # Combobox.tcl (with no combobox in the note book, no error)
-# This bug only occurs under windows. However the result is OK. 
+# This bug only occurs under windows. However the result is OK.
 set wfortree $w
 
-for {set i 1} {$i<=$ged_handle_list_size} {incr i} { 
+for {set i 1} {$i<=$ged_handle_list_size} {incr i} {
     set OBJECTSARRAY($i) $SELOBJECT($i)
 }
 
@@ -221,9 +221,9 @@ label $w.frame.figlabel -text " Figure name:" -font $gedFont -anchor e -width $l
 entry $w.frame.figlabel1 -relief sunken  -textvariable figure_name -font $gedFont -width 15
 pack $w.frame.figlabel -in  $w.frame.lbfig -side left
 pack $w.frame.figlabel1  -in  $w.frame.lbfig  -expand 1 -fill x -pady 0 -padx $mediumPad
-bind  $w.frame.figlabel1 <Return> {setFiglabel} 
-bind  $w.frame.figlabel1 <KP_Enter> {setFiglabel} 
-bind  $w.frame.figlabel1 <FocusOut> {setFiglabel} 
+bind  $w.frame.figlabel1 <Return> {setFiglabel}
+bind  $w.frame.figlabel1 <KP_Enter> {setFiglabel}
+bind  $w.frame.figlabel1 <FocusOut> {setFiglabel}
 
 #figure id
 #label tout court non modifiable
@@ -242,10 +242,10 @@ pack $w.frame.xfigpos  -in $w.frame -side top   -fill x
 label $w.frame.xfigposlabel -text " X position:" -font $gedFont -anchor e -width $largeur
 entry $w.frame.xfigposlabel1 -relief sunken  -textvariable figure_xposition -font $gedFont -width 10
 pack $w.frame.xfigposlabel -in  $w.frame.xfigpos -side left
-pack $w.frame.xfigposlabel1  -in  $w.frame.xfigpos   -pady 0 -padx $mediumPad -side left 
-bind  $w.frame.xfigposlabel1 <Return> {setFigPos} 
-bind  $w.frame.xfigposlabel1 <KP_Enter> {setFigPos} 
-bind  $w.frame.xfigposlabel1 <FocusOut> {setFigPos} 
+pack $w.frame.xfigposlabel1  -in  $w.frame.xfigpos   -pady 0 -padx $mediumPad -side left
+bind  $w.frame.xfigposlabel1 <Return> {setFigPos}
+bind  $w.frame.xfigposlabel1 <KP_Enter> {setFigPos}
+bind  $w.frame.xfigposlabel1 <FocusOut> {setFigPos}
 
 #figure position y
 frame $w.frame.yfigpos -borderwidth 0
@@ -254,10 +254,10 @@ pack $w.frame.yfigpos  -in $w.frame -side top   -fill x
 label $w.frame.yfigposlabel -text "Y position:" -font $gedFont -anchor e -width $largeur
 entry $w.frame.yfigposlabel1 -relief sunken  -textvariable figure_yposition -font $gedFont -width 10
 pack $w.frame.yfigposlabel -in  $w.frame.yfigpos -side left
-pack $w.frame.yfigposlabel1  -in  $w.frame.yfigpos  -pady 0 -padx $mediumPad -side left 
-bind  $w.frame.yfigposlabel1 <Return> {setFigPos} 
-bind  $w.frame.yfigposlabel1 <KP_Enter> {setFigPos} 
-bind  $w.frame.yfigposlabel1 <FocusOut> {setFigPos} 
+pack $w.frame.yfigposlabel1  -in  $w.frame.yfigpos  -pady 0 -padx $mediumPad -side left
+bind  $w.frame.yfigposlabel1 <Return> {setFigPos}
+bind  $w.frame.yfigposlabel1 <KP_Enter> {setFigPos}
+bind  $w.frame.yfigposlabel1 <FocusOut> {setFigPos}
 
 #figure size x
 frame $w.frame.xfigsiz -borderwidth 0
@@ -266,10 +266,10 @@ pack $w.frame.xfigsiz  -in $w.frame -side top   -fill x
 label $w.frame.xfigsizlabel -text "X size:" -font $gedFont -anchor e -width $largeur
 entry $w.frame.xfigsizlabel1 -relief sunken  -textvariable figure_xsiz -font $gedFont -width 10
 pack $w.frame.xfigsizlabel -in  $w.frame.xfigsiz -side left
-pack $w.frame.xfigsizlabel1  -in  $w.frame.xfigsiz  -pady 0 -padx $mediumPad -side left 
-bind  $w.frame.xfigsizlabel1 <Return> {setFigSiz} 
-bind  $w.frame.xfigsizlabel1 <KP_Enter> {setFigSiz} 
-bind  $w.frame.xfigsizlabel1 <FocusOut> {setFigSiz} 
+pack $w.frame.xfigsizlabel1  -in  $w.frame.xfigsiz  -pady 0 -padx $mediumPad -side left
+bind  $w.frame.xfigsizlabel1 <Return> {setFigSiz}
+bind  $w.frame.xfigsizlabel1 <KP_Enter> {setFigSiz}
+bind  $w.frame.xfigsizlabel1 <FocusOut> {setFigSiz}
 
 #figure size y
 frame $w.frame.yfigsiz -borderwidth 0
@@ -278,10 +278,10 @@ pack $w.frame.yfigsiz  -in $w.frame -side top   -fill x
 label $w.frame.yfigsizlabel -text "Y size:" -font $gedFont -anchor e -width $largeur
 entry $w.frame.yfigsizlabel1 -relief sunken  -textvariable figure_ysiz -font $gedFont -width 10
 pack $w.frame.yfigsizlabel -in  $w.frame.yfigsiz -side left
-pack $w.frame.yfigsizlabel1  -in  $w.frame.yfigsiz  -pady 0 -padx $mediumPad -side left 
-bind  $w.frame.yfigsizlabel1 <Return> {setFigSiz} 
-bind  $w.frame.yfigsizlabel1 <KP_Enter> {setFigSiz} 
-bind  $w.frame.yfigsizlabel1 <FocusOut> {setFigSiz} 
+pack $w.frame.yfigsizlabel1  -in  $w.frame.yfigsiz  -pady 0 -padx $mediumPad -side left
+bind  $w.frame.yfigsizlabel1 <Return> {setFigSiz}
+bind  $w.frame.yfigsizlabel1 <KP_Enter> {setFigSiz}
+bind  $w.frame.yfigsizlabel1 <FocusOut> {setFigSiz}
 
 #axes size x
 frame $w.frame.xaxesiz -borderwidth 0
@@ -290,10 +290,10 @@ pack $w.frame.xaxesiz  -in $w.frame -side top   -fill x
 label $w.frame.xaxesizlabel -text "X axis size:" -font $gedFont -anchor e -width $largeur
 entry $w.frame.xaxesizlabel1 -relief sunken  -textvariable figure_xaxesiz -font $gedFont -width 10
 pack $w.frame.xaxesizlabel -in  $w.frame.xaxesiz -side left
-pack $w.frame.xaxesizlabel1  -in  $w.frame.xaxesiz  -pady 0 -padx $mediumPad -side left 
-bind  $w.frame.xaxesizlabel1 <Return> {setAxeSiz} 
-bind  $w.frame.xaxesizlabel1 <KP_Enter> {setAxeSiz} 
-bind  $w.frame.xaxesizlabel1 <FocusOut> {setAxeSiz} 
+pack $w.frame.xaxesizlabel1  -in  $w.frame.xaxesiz  -pady 0 -padx $mediumPad -side left
+bind  $w.frame.xaxesizlabel1 <Return> {setAxeSiz}
+bind  $w.frame.xaxesizlabel1 <KP_Enter> {setAxeSiz}
+bind  $w.frame.xaxesizlabel1 <FocusOut> {setAxeSiz}
 
 #axes size y
 frame $w.frame.yaxesiz -borderwidth 0
@@ -302,10 +302,10 @@ pack $w.frame.yaxesiz  -in $w.frame -side top   -fill x
 label $w.frame.yaxesizlabel -text "Y axis size:" -font $gedFont -anchor e -width $largeur
 entry $w.frame.yaxesizlabel1 -relief sunken  -textvariable figure_yaxesiz -font $gedFont -width 10
 pack $w.frame.yaxesizlabel -in  $w.frame.yaxesiz -side left
-pack $w.frame.yaxesizlabel1  -in  $w.frame.yaxesiz  -pady 0 -padx $mediumPad -side left 
-bind  $w.frame.yaxesizlabel1 <Return> {setAxeSiz} 
-bind  $w.frame.yaxesizlabel1 <KP_Enter> {setAxeSiz} 
-bind  $w.frame.yaxesizlabel1 <FocusOut> {setAxeSiz} 
+pack $w.frame.yaxesizlabel1  -in  $w.frame.yaxesiz  -pady 0 -padx $mediumPad -side left
+bind  $w.frame.yaxesizlabel1 <Return> {setAxeSiz}
+bind  $w.frame.yaxesizlabel1 <KP_Enter> {setAxeSiz}
+bind  $w.frame.yaxesizlabel1 <FocusOut> {setAxeSiz}
 
 #Color scale background
 frame $w.frame.clrb  -borderwidth 0
@@ -351,19 +351,6 @@ OnOffForeground $w.frame.autorszib $curautoresize
 
 pack $w.frame.autorszlabel -in $w.frame.autorsz  -side left
 pack $w.frame.autorszib  -in $w.frame.autorsz    -side left -fill x -pady 0 -padx $smallPad
-
-
-#pixmap
-frame $w.frame.pix -borderwidth 0
-pack $w.frame.pix  -in $w.frame  -side top -fill x
-label $w.frame.pixlabel  -text "Pixmap:" -font $gedFont -anchor e -width $largeur
-checkbutton $w.frame.pixib  -text "on"\
-    -variable curpix  -onvalue "on" -offvalue "off" \
-    -command "togglePix $w.frame.pixib" -font $gedFont
-OnOffForeground $w.frame.pixib $curpix
-
-pack $w.frame.pixlabel -in $w.frame.pix  -side left
-pack $w.frame.pixib  -in $w.frame.pix    -side left -fill x -pady 0 -padx $smallPad
 
 
 #pixel drawing mode
@@ -452,8 +439,8 @@ for {set i 1} {$i<=$ncolors} {incr i} {
     bind  $w.frame.c.gredata$i <Return> "setGreenColor $w $i "
     bind  $w.frame.c.gredata$i <KP_Enter> "setGreenColor $w $i "
     bind  $w.frame.c.gredata$i <FocusOut> "setGreenColor $w $i "
-#location help balloon	
-#location help balloon	
+#location help balloon
+#location help balloon
     set_balloon $w.frame.c.gredata$i "Row: $i Column: 2"
     $w.frame.c create window $aa $bb -anchor c -window $w.frame.c.gredata$i
 
@@ -463,15 +450,15 @@ for {set i 1} {$i<=$ncolors} {incr i} {
     bind  $w.frame.c.bludata$i <Return> "setBlueColor  $w $i "
     bind  $w.frame.c.bludata$i <KP_Enter> "setBlueColor  $w $i "
     bind  $w.frame.c.bludata$i <FocusOut> "setBlueColor  $w $i "
-#location help balloon	
+#location help balloon
     set_balloon $w.frame.c.bludata$i "Row: $i Column: 3"
     $w.frame.c create window $aa $bb -anchor c -window $w.frame.c.bludata$i
-    
+
 #sample
-    set REDC $RED($i) 
-    set GREC $GREEN($i) 
-    set BLUC $BLUE($i) 
-    
+    set REDC $RED($i)
+    set GREC $GREEN($i)
+    set BLUC $BLUE($i)
+
     set color [format \#%02x%02x%02x [expr int($REDC*255)]  [expr int($GREC*255)]  [expr int($BLUC*255)]]
     set aa 280
     $w.frame.c create rectangle $aa [expr $bb-10] [expr $aa+20] [expr $bb+10] -fill $color
@@ -555,12 +542,12 @@ global figure_yaxesiz
 ScilabEval "global ged_handle;ged_handle.axes_size=\[$figure_xaxesiz , $figure_yaxesiz\]"
 }
 
-proc setBackColor {w index} {  
+proc setBackColor {w index} {
     global RED BLUE GREEN
-    variable REDCOL 
-    variable GRECOL 
+    variable REDCOL
+    variable GRECOL
     variable BLUCOL
-    
+
     #ScilabEval "global ged_handle;"
     if { $index == -2 } {
 	ScilabEval "global ged_handle; if ged_handle.background <> $index then ged_handle.background=$index; end;"
@@ -575,34 +562,27 @@ proc setBackColor {w index} {
     } elseif { $index == 0 } {
 	ScilabEval "global ged_handle; if ged_handle.background <> $index then ged_handle.background=$index; end;"
 	#like $index==1: display first color
-	set REDCOL $RED(1) 
-	set GRECOL $GREEN(1) 
-	set BLUCOL $BLUE(1) 
-	
+	set REDCOL $RED(1)
+	set GRECOL $GREEN(1)
+	set BLUCOL $BLUE(1)
+
 	set color [format \#%02x%02x%02x [expr int($REDCOL*255)]  [expr int($GRECOL*255)]  [expr int($BLUCOL*255)]]
 	$w config  -activebackground $color -troughcolor $color
-    } else { 
+    } else {
 	ScilabEval "global ged_handle; if ged_handle.background <> $index then ged_handle.background=$index; end;"
-	
-	set REDCOL $RED($index) 
-	set GRECOL $GREEN($index) 
-	set BLUCOL $BLUE($index) 
+
+	set REDCOL $RED($index)
+	set GRECOL $GREEN($index)
+	set BLUCOL $BLUE($index)
 
 	set color [format \#%02x%02x%02x [expr int($REDCOL*255)]  [expr int($GRECOL*255)]  [expr int($BLUCOL*255)]]
 
 	$w config  -activebackground $color -troughcolor $color
-	
+
     }
 }
 
 
-
-proc togglePix { frame } {
-    global curpix
-    ScilabEval "global ged_handle;ged_handle.pixmap='$curpix'"
-
-    OnOffForeground $frame $curpix
-}
 
 proc toggleResize { frame } {
     global curautoresize
@@ -628,9 +608,9 @@ proc setRedColor { w i } {
     global RED GREEN BLUE
     variable REDC GREC BLUC color aa bb
     ScilabEval "execstr(\"global ged_handle; ged_handle.color_map($i,1)=$RED($i);\",\'errcatch\',\'n\');"
-    set REDC $RED($i) 
-    set GREC $GREEN($i) 
-    set BLUC $BLUE($i) 
+    set REDC $RED($i)
+    set GREC $GREEN($i)
+    set BLUC $BLUE($i)
     set bb [expr 10+(25*$i)]
     set color [format \#%02x%02x%02x [expr int($REDC*255)]  [expr int($GREC*255)]  [expr int($BLUC*255)]]
     set aa [expr 10+(4*150) - 60]
@@ -643,9 +623,9 @@ proc setGreenColor { w i } {
     global RED GREEN BLUE
     variable REDC GREC BLUC color aa bb
     ScilabEval "execstr(\"global ged_handle; ged_handle.color_map($i,2)=$GREEN($i);\",\'errcatch\',\'n\');"
-    set REDC $RED($i) 
-    set GREC $GREEN($i) 
-    set BLUC $BLUE($i) 
+    set REDC $RED($i)
+    set GREC $GREEN($i)
+    set BLUC $BLUE($i)
     set bb [expr 10+(25*$i)]
     set color [format \#%02x%02x%02x [expr int($REDC*255)]  [expr int($GREC*255)]  [expr int($BLUC*255)]]
     set aa [expr 10+(4*150) - 60]
@@ -657,9 +637,9 @@ proc setBlueColor { w i } {
     global RED GREEN BLUE
     variable REDC GREC BLUC color aa bb
     ScilabEval "execstr(\"global ged_handle; ged_handle.color_map($i,3)=$BLUE($i);\",\'errcatch\',\'n\');"
-    set REDC $RED($i) 
-    set GREC $GREEN($i) 
-    set BLUC $BLUE($i) 
+    set REDC $RED($i)
+    set GREC $GREEN($i)
+    set BLUC $BLUE($i)
     set bb [expr 10+(25*$i)]
     set color [format \#%02x%02x%02x [expr int($REDC*255)]  [expr int($GREC*255)]  [expr int($BLUC*255)]]
     set aa [expr 10+(4*150) - 60]
@@ -671,11 +651,11 @@ proc sciCommandColormap {} {
     global scicomint_colormap
 
     set longueur [expr [string length $scicomint_colormap]]
-    
+
     if { $longueur == 0 } {
 	tk_messageBox -icon error -type ok -title "Incorrect input" -message "You must specify an entry (such as graycolormap(COLOR_NUMBER), hotcolormap(COLOR_NUMBER) or jetcolormap(COLOR_NUMBER) or...) to initialize the \"colormap\" field."
     } else {
-	
+
 	ScilabEval "global ged_handle;ged_handle.color_map=$scicomint_colormap;" "seq"
 	#Refresh now !
 	ScilabEval "tkged();" "seq"
@@ -687,9 +667,9 @@ proc SavePreferences { } {
     global ged_listofpref
     global envSCIHOME MAIN_WINDOW_POSITION TICK_WINDOW_POSITION
     global ww msdos
-    
+
     ScilabEval "DestroyGlobals()" "seq"
-        
+
     if { $msdos == "F" } {
 #unix mandrake (at least) needs this offset
 #test other unix distribution to see (red hat, suse...)
@@ -699,11 +679,11 @@ proc SavePreferences { } {
 	set xoffset 0
 	set yoffset 0
     }
-    
+
     set x [eval {winfo x $ww}]
     set y [eval {winfo y $ww}]
     set MAIN_WINDOW_POSITION "+[expr $x+$xoffset]+[expr $y+$yoffset]"
-    
+
     #save preferences (position...)
     set preffilename [file join $envSCIHOME .GedPreferences.tcl]
     catch {

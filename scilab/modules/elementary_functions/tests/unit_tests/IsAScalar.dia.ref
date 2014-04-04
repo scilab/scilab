@@ -13,55 +13,55 @@
 // Constants
 assert_checkequal(IsAScalar([1 2 3]), %f);
 WARNING: Feature IsAScalar is obsolete.
-WARNING: Please use isscalar instead.
-WARNING: This feature will be permanently removed in Scilab 5.5.1
+         Please use isscalar instead.
+         This feature will be permanently removed in Scilab 5.5.1
 
 assert_checkequal(IsAScalar([1 2 3]'), %f);
 WARNING: Feature IsAScalar is obsolete.
-WARNING: Please use isscalar instead.
-WARNING: This feature will be permanently removed in Scilab 5.5.1
+         Please use isscalar instead.
+         This feature will be permanently removed in Scilab 5.5.1
 
 assert_checkequal(IsAScalar([1 2; 1 2]), %f);
 WARNING: Feature IsAScalar is obsolete.
-WARNING: Please use isscalar instead.
-WARNING: This feature will be permanently removed in Scilab 5.5.1
+         Please use isscalar instead.
+         This feature will be permanently removed in Scilab 5.5.1
 
 assert_checkequal(IsAScalar(1), %t);
 WARNING: Feature IsAScalar is obsolete.
-WARNING: Please use isscalar instead.
-WARNING: This feature will be permanently removed in Scilab 5.5.1
+         Please use isscalar instead.
+         This feature will be permanently removed in Scilab 5.5.1
 
 // Strings
 assert_checkequal(IsAScalar("s"), %f);
 WARNING: Feature IsAScalar is obsolete.
-WARNING: Please use isscalar instead.
-WARNING: This feature will be permanently removed in Scilab 5.5.1
+         Please use isscalar instead.
+         This feature will be permanently removed in Scilab 5.5.1
 
 // Polynomials
 s=poly(0,"s");
 assert_checkequal(IsAScalar(1+s), %f);
 WARNING: Feature IsAScalar is obsolete.
-WARNING: Please use isscalar instead.
-WARNING: This feature will be permanently removed in Scilab 5.5.1
+         Please use isscalar instead.
+         This feature will be permanently removed in Scilab 5.5.1
 
 // Booleans
 assert_checkequal(IsAScalar(%t), %f);
 WARNING: Feature IsAScalar is obsolete.
-WARNING: Please use isscalar instead.
-WARNING: This feature will be permanently removed in Scilab 5.5.1
+         Please use isscalar instead.
+         This feature will be permanently removed in Scilab 5.5.1
 
 // Sparses
 assert_checkequal(IsAScalar(sparse(0)), %f);
 WARNING: Feature IsAScalar is obsolete.
-WARNING: Please use isscalar instead.
-WARNING: This feature will be permanently removed in Scilab 5.5.1
+         Please use isscalar instead.
+         This feature will be permanently removed in Scilab 5.5.1
 
 // Error messages
 errmsg1 = msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"),"IsAScalar", 1);
 assert_checkerror("IsAScalar()", errmsg1);
 WARNING: Feature IsAScalar is obsolete.
-WARNING: Please use isscalar instead.
-WARNING: This feature will be permanently removed in Scilab 5.5.1
+         Please use isscalar instead.
+         This feature will be permanently removed in Scilab 5.5.1
 
 errmsg2 = msprintf(_("Wrong number of input arguments."));
 assert_checkerror("IsAScalar(1,2)", errmsg2);

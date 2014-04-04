@@ -94,7 +94,7 @@ types::Function::ReturnValue sci_xget(types::typed_list &in, int _iRetCount, typ
     {
         if(in[1]->isDouble() == false)
         {
-            Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), "xget", 2);
+            Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), "xget", 2);
             return types::Function::Error;
         }
 
@@ -309,17 +309,6 @@ types::Function::ReturnValue sci_xget(types::typed_list &in, int _iRetCount, typ
             getGraphicObjectProperty(getOrCreateDefaultSubwin(), __GO_LINE_MODE__, jni_bool, (void **)&lineMode);
 
             out.push_back(new types::Double((double)iLineMode));
-        }
-        break;
-        case 24 : // pixmap
-        {
-            int iPixmap = 0;
-            int *piPixmap = &iPixmap;
-
-            getOrCreateDefaultSubwin();
-            getGraphicObjectProperty(getCurrentFigure(), __GO_PIXMAP__, jni_bool, (void **)&piPixmap);
-
-            out.push_back(new types::Double((double)iPixmap));
         }
         break;
         case 29 : // white

@@ -31,7 +31,7 @@
                 <para>
                     Avec trois paramètres d'entrée : si la dimension du premier paramètre suivant la dimension
                     donnée par le troisième paramètre atteint 1 avant que la fin des n itérations, Matlab passe
-                    ï¿½ la dimension suivante n'étant pas un 1 ce que Scilab ne fait pas.
+                    à la dimension suivante n'étant pas un 1 ce que Scilab ne fait pas.
                 </para>
             </listitem>
         </itemizedlist>
@@ -57,7 +57,9 @@
             </listitem>
         </itemizedlist>
         <para>
-            Attention : <literal>mtlb_diff</literal> ne doit pas être utilisée pour une programmation manuelle.
+            <warning>
+                Attention : <literal>mtlb_diff</literal> ne doit pas être utilisée pour une programmation manuelle.
+            </warning>
         </para>
     </refsection>
 </refentry>

@@ -27,7 +27,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
  */
 public abstract class ContouredObject extends GraphicObject {
     /** ContouredObject properties */
-    public enum ContouredObjectPropertyType { LINE, FILLMODE, BACKGROUND, MARK };
+    public enum ContouredObjectPropertyType { LINE, FILLMODE, BACKGROUND, MARK, MARK_OFFSET, MARK_STRIDE, SELECTED };
 
     /** Line property */
     private Line line;
@@ -41,12 +41,21 @@ public abstract class ContouredObject extends GraphicObject {
     /** Mark property */
     private Mark mark;
 
+    private int offset;
+    private int stride;
+
+    private boolean selected;
+    private final Integer selectedColor = new Integer(-3);
+
     /** Default constructor */
     public ContouredObject() {
         line = new Line();
         fillMode = false;
         background = 0;
         mark = new Mark();
+        offset = 0;
+        stride = 1;
+        selected = false;
     }
 
     public ContouredObject clone() {
@@ -93,6 +102,12 @@ public abstract class ContouredObject extends GraphicObject {
                 return MarkPropertyType.FOREGROUND;
             case __GO_MARK_BACKGROUND__ :
                 return MarkPropertyType.BACKGROUND;
+            case __GO_MARK_OFFSET__ :
+                return ContouredObjectPropertyType.MARK_OFFSET;
+            case __GO_MARK_STRIDE__ :
+                return ContouredObjectPropertyType.MARK_STRIDE;
+            case __GO_SELECTED__ :
+                return ContouredObjectPropertyType.SELECTED;
             default :
                 return super.getPropertyFromName(propertyName);
         }
@@ -132,6 +147,12 @@ public abstract class ContouredObject extends GraphicObject {
             return getMarkForeground();
         } else if (property == MarkPropertyType.BACKGROUND) {
             return getMarkBackground();
+        } else if (property == ContouredObjectPropertyType.MARK_OFFSET) {
+            return getMarkOffset();
+        } else if (property == ContouredObjectPropertyType.MARK_STRIDE) {
+            return getMarkStride();
+        } else if (property == ContouredObjectPropertyType.SELECTED) {
+            return getSelected();
         } else {
             return super.getProperty(property);
         }
@@ -172,11 +193,81 @@ public abstract class ContouredObject extends GraphicObject {
             this.setMarkForeground((Integer) value);
         } else if (property == MarkPropertyType.BACKGROUND) {
             this.setMarkBackground((Integer) value);
+        } else if (property == ContouredObjectPropertyType.MARK_OFFSET) {
+            this.setMarkOffset((Integer) value);
+        } else if (property == ContouredObjectPropertyType.MARK_STRIDE) {
+            this.setMarkStride((Integer) value);
+        } else if (property == ContouredObjectPropertyType.SELECTED) {
+            this.setSelected((Boolean) value);
         } else {
             return super.setProperty(property, value);
         }
 
         return UpdateStatus.Success;
+    }
+
+    /**
+     * @return the color to use for selection
+     */
+    public Integer getSelectedColor() {
+        return selectedColor;
+    }
+
+    /**
+     * @return true if selected
+     */
+    public Boolean getSelected() {
+        return selected;
+    }
+
+    /**
+     * @param selected true if selected
+     */
+    public UpdateStatus setSelected(Boolean selected) {
+        if (this.selected != selected) {
+            this.selected = selected;
+            return UpdateStatus.Success;
+        }
+
+        return UpdateStatus.NoChange;
+    }
+
+    /**
+     * @return the offset
+     */
+    public Integer getMarkOffset() {
+        return offset;
+    }
+
+    /**
+     * @param offset the offset to set
+     */
+    public UpdateStatus setMarkOffset(Integer offset) {
+        if (this.offset != offset) {
+            this.offset = offset < 0 ? 0 : offset;
+            return UpdateStatus.Success;
+        }
+
+        return UpdateStatus.NoChange;
+    }
+
+    /**
+     * @return the stride
+     */
+    public Integer getMarkStride() {
+        return stride;
+    }
+
+    /**
+     * @param stride the stride to set
+     */
+    public UpdateStatus setMarkStride(Integer stride) {
+        if (this.stride != stride) {
+            this.stride = stride < 1 ? 1 : stride;
+            return UpdateStatus.Success;
+        }
+
+        return UpdateStatus.NoChange;
     }
 
     /**

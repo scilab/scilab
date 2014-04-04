@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="createBorder">
+    <refnamediv>
+        <refname>createBorder</refname>
+        <refpurpose>Create a border for a frame uicontrol.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            border = createBorder(borderType, varargin)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>borderType</term>
+                <listitem>
+                    <para>String</para>
+                    <para>The type of the border to be created. Available types of borders are listed below and their specific properties are detailled on dedicated help page:</para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>"none": No border will be added to the frame (default). No property is available for this type.</para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                "line": A simple <link linkend="line_border_properties">line border</link>.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                "bevel": A <link linkend="bevel_border_properties">beveled border</link> using shades.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                "softbevel": A <link linkend="softbevel_border_properties">soft beveled border</link> using shades with softened corners.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                "etched": A <link linkend="etched_border_properties">etched style border</link>.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                "titled": A <link linkend="titled_border_properties">border with a title</link>.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                "empty": An <link linkend="empty_border_properties">empty border</link> that is not drawn but takes space.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                "compound": A <link linkend="compound_border_properties">compound border</link> mixing other types of borders.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                "matte": A <link linkend="matte_border_properties">matte-look border</link>.
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>varargin</term>
+                <listitem>
+                    <para>
+                        All <literal>borderType</literal> specific properties.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>border</term>
+                <listitem>
+                    <para>The created border.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            This function creates a border for <literal>frame</literal> uicontrols. See <link linkend="uicontrol_properties">uicontrol properties</link> for more details.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="createBorderFont">createBorderFont</link>
+            </member>
+            <member>
+                <link linkend="uicontrol">uicontrol</link>
+            </member>
+            <member>
+                <link linkend="uicontrol_properties">uicontrol_properties</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>
+                    Function <function>createBorder</function> introduced.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

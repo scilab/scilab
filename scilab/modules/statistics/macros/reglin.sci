@@ -25,10 +25,13 @@ function [a,b,sig]=reglin(x,y,dflag)
     if n2<>p2 then
         error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same column dimensions expected.\n"),"reglin",1,2));
     end;
+    if or(isnan(x)) | or(isnan(y)) then
+        error(msprintf(_("%s: NaNs detected, please use %s() instead.\n"), "reglin", "nanreglin"))
+    end
 
     xmoy=sum(x,2)/n2
     ymoy=sum(y,2)/n2
-    // We use armax for apropriate orders which will perform
+    // We use armax for appropriate orders which will perform
     // nothing but a least square
     // We could directly call pinv or \
     [arc,la,lb,sig]=armax(0,0,y-ymoy*ones(1,n2),x-xmoy*ones(1,n2),0,dflag);

@@ -12,12 +12,15 @@
 
 package org.scilab.modules.gui.bridge.checkboxmenuitem;
 
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JCheckBoxMenuItem;
+import javax.swing.UIManager;
 import javax.swing.JToggleButton.ToggleButtonModel;
+import javax.swing.border.Border;
 
 import org.scilab.modules.commons.utils.StringBlockingResult;
 import org.scilab.modules.console.utils.ScilabSpecialTextUtilities;
@@ -52,6 +55,8 @@ public class SwingScilabCheckBoxMenuItem extends JCheckBoxMenuItem implements Sw
     private String text = "";
 
     private Integer uid;
+
+    private Border defaultBorder = null;
 
     /**
      * Constructor
@@ -224,7 +229,10 @@ public class SwingScilabCheckBoxMenuItem extends JCheckBoxMenuItem implements Sw
      * @param reliefType the type of the relief to set (See ScilabRelief.java)
      */
     public void setRelief(String reliefType) {
-        setBorder(ScilabRelief.getBorderFromRelief(reliefType));
+        if (defaultBorder == null) {
+            defaultBorder = getBorder();
+        }
+        setBorder(ScilabRelief.getBorderFromRelief(reliefType, defaultBorder));
     }
 
     /**
@@ -417,6 +425,21 @@ public class SwingScilabCheckBoxMenuItem extends JCheckBoxMenuItem implements Sw
          */
         public void forceSelected(boolean status) {
             super.setSelected(status);
+        }
+
+    }
+
+    public void resetBackground() {
+        Color color = (Color)UIManager.getLookAndFeelDefaults().get("CheckBoxMenuItem.background");
+        if (color != null) {
+            setBackground(color);
+        }
+    }
+
+    public void resetForeground() {
+        Color color = (Color)UIManager.getLookAndFeelDefaults().get("CheckBoxMenuItem.foreground");
+        if (color != null) {
+            setForeground(color);
         }
     }
 }

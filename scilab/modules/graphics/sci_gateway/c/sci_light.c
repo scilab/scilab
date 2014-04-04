@@ -15,7 +15,7 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "HandleManagement.h"
-#include "Light.h"
+#include "BuildObjects.h"
 #include "stricmp.h"
 
 int sci_light(char *fname, void* pvApiCtx)
@@ -32,10 +32,9 @@ int sci_light(char *fname, void* pvApiCtx)
     int* piAddr	= NULL;
     int length = 0;
     char * pStr = NULL;
-    long long light_handle;
-    long long axesHandle;
-    BOOL result;
-
+    int light = 0;
+    int axes = 0;
+    long long axesHandle = 0;
 
     static rhs_opts opts[] =
     {
@@ -52,7 +51,7 @@ int sci_light(char *fname, void* pvApiCtx)
 
     if (nbInputArgument(pvApiCtx) == 0)
     {
-        result = createLight(fname, -1, -1, TRUE, NULL, NULL, NULL, NULL, NULL, &light_handle);
+        light = ConstructLight(fname, 0, -1, TRUE, NULL, NULL, NULL, NULL, NULL);
     }
     else
     {
@@ -80,6 +79,8 @@ int sci_light(char *fname, void* pvApiCtx)
                 Scierror(999, _("%s: Wrong type for input argument #%d: A graphic handle expected.\n"), fname, 1);
                 return 0;
             }
+
+            axes = getObjectFromHandle((long)axesHandle);
         }
 
         if (getOptionals(pvApiCtx, fname, opts) == 0)
@@ -92,6 +93,11 @@ int sci_light(char *fname, void* pvApiCtx)
         {
             if (getAllocatedSingleString(pvApiCtx, opts[6].piAddr, &pStr))
             {
+                if (pStr)
+                {
+                    freeAllocatedSingleString(pStr);
+                }
+
                 Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 7);
                 return 0;
             }
@@ -112,6 +118,11 @@ int sci_light(char *fname, void* pvApiCtx)
         {
             if (getAllocatedSingleString(pvApiCtx, opts[5].piAddr, &pStr))
             {
+                if (pStr)
+                {
+                    freeAllocatedSingleString(pStr);
+                }
+
                 Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 6);
                 return 0;
             }
@@ -153,17 +164,18 @@ int sci_light(char *fname, void* pvApiCtx)
             sciErr = getMatrixOfDouble(pvApiCtx, opts[4].piAddr, &opts[4].iCols, &opts[4].iRows, &specular_color);
         }
 
-        result = createLight(fname, axesHandle, type, visible, position, direction, ambient_color, diffuse_color, specular_color, &light_handle);
+        light = ConstructLight(fname, axes, type, visible, position, direction, ambient_color, diffuse_color, specular_color);
 
     }
 
-    if (result == FALSE)
+    //error occurs in ConstructLight
+    if (light == 0)
     {
-        //error msg come from createLight
+        //error is manage in ConstructLight
         return 0;
     }
 
-    if (createScalarHandle(pvApiCtx, nbInputArgument(pvApiCtx) + 1, light_handle))
+    if (createScalarHandle(pvApiCtx, nbInputArgument(pvApiCtx) + 1, getHandle(light)))
     {
         Scierror(999, _("%s: Memory allocation error.\n"), fname);
         return 0;
@@ -172,5 +184,4 @@ int sci_light(char *fname, void* pvApiCtx)
     AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
     ReturnArguments(pvApiCtx);
     return 0;
-
 }

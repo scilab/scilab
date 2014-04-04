@@ -92,7 +92,7 @@ int xs2file(char * fname, ExportFileType fileType, void* pvApiCtx)
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
-                Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1);
+                Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 1);
                 return 1;
             }
 
@@ -122,7 +122,7 @@ int xs2file(char * fname, ExportFileType fileType, void* pvApiCtx)
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
-                Scierror(202, _("%s: Wrong type for argument %d: Handle matrix expected.\n"), fname, 1);
+                Scierror(202, _("%s: Wrong type for argument #%d: Handle matrix expected.\n"), fname, 1);
                 return 1;
             }
 
@@ -247,7 +247,7 @@ int xs2file(char * fname, ExportFileType fileType, void* pvApiCtx)
                     {
                         freeAllocatedMatrixOfString(m1, n1, fileName);
                         printError(&sciErr, 0);
-                        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 3);
+                        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 3);
                         return 1;
                     }
 
@@ -306,6 +306,7 @@ static BOOL isVectorialExport(ExportFileType fileType)
     return fileType == EPS_EXPORT
            || fileType == PS_EXPORT
            || fileType == PDF_EXPORT
-           || fileType == SVG_EXPORT;
+           || fileType == SVG_EXPORT
+           || fileType == EMF_EXPORT;
 }
 /*--------------------------------------------------------------------------*/

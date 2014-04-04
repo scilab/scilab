@@ -13,17 +13,16 @@
 package org.scilab.modules.ui_data.actions;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
+import org.scilab.modules.commons.gui.FindIconHelper;
+import org.scilab.modules.commons.gui.ScilabLAF;
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
-import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
-import org.scilab.modules.gui.pushbutton.PushButton;
-import org.scilab.modules.gui.pushbutton.ScilabPushButton;
-import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 
 /**
  * Launch Scilab help class
@@ -32,7 +31,7 @@ import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 @SuppressWarnings(value = { "serial" })
 public final class HelpAction extends CommonCallBack {
 
-    private static ImageIcon icon = new ImageIcon(ScilabSwingUtilities.findIcon("help-browser"));
+    private static ImageIcon icon = new ImageIcon(FindIconHelper.findIcon("help-browser"));
 
     /**
      * Constructor
@@ -59,11 +58,12 @@ public final class HelpAction extends CommonCallBack {
      * @param title tooltip for the button
      * @return the button
      */
-    public static PushButton createButton(String title) {
-        PushButton button = ScilabPushButton.createPushButton();
-        ((SwingScilabPushButton) button.getAsSimplePushButton()).addActionListener(new HelpAction(title));
+    public static JButton createButton(String title) {
+        JButton button = new JButton();
+        ScilabLAF.setDefaultProperties(button);
+        button.addActionListener(new HelpAction(title));
         button.setToolTipText(title);
-        ((SwingScilabPushButton) button.getAsSimplePushButton()).setIcon(icon);
+        button.setIcon(icon);
 
         return button;
     }

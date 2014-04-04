@@ -93,6 +93,7 @@ libscixcos_la_CPPFLAGS = \
 libscixcos_disable_la_CPPFLAGS = -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/localization/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes \
+			-I$(top_srcdir)/modules/system_env/includes \
 			$(AM_CPPFLAGS)
 
 XCOS_DISABLE_C_SOURCES = src/noxcos/noxcos.c
@@ -118,7 +119,8 @@ INCLUDE_FLAGS = $(libscixcos_la_CPPFLAGS)
 
 
 
-libscixcos_la_LIBADD = libscixcos-algo.la
+libscixcos_la_LIBADD = libscixcos-algo.la \
+		$(top_builddir)/modules/commons/libscicommons.la
 
 #### xcos : gateway declaration ####
 libscixcos_la_sci_gatewaydir = $(mydatadir)/sci_gateway
@@ -249,7 +251,7 @@ images/palettes/CurrentSensor.png \
 images/palettes/CURV_f.png \
 images/palettes/CVS.png \
 images/palettes/DEADBAND.png \
-images/palettes/DEBUG_SCICOS.png \
+images/palettes/DEBUG.png \
 images/palettes/DELAY_f.png \
 images/palettes/DELAYV_f.png \
 images/palettes/DEMUX_f.png \

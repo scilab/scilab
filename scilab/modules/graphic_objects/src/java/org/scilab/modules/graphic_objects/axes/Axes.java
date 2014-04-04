@@ -52,16 +52,16 @@ public class Axes extends GraphicObject {
 
     /** Axes properties names */
     private enum AxesProperty {
-        XAXISVISIBLE, XAXISREVERSE, XAXISGRIDCOLOR, XAXISLABEL, XAXISLOCATION, XAXISLOGFLAG,
+        XAXISVISIBLE, XAXISFORMAT, XAXISSTFACTORS, XAXISREVERSE, XAXISGRIDCOLOR, XAXISGRIDTHICKNESS, XAXISGRIDSTYLE, XAXISLABEL, XAXISLOCATION, XAXISLOGFLAG,
         XAXISTICKS, XAXISAUTOTICKS, XAXISNUMBERTICKS, XAXISTICKSLOCATIONS, XAXISTICKSLABELS, XAXISSUBTICKS,
-        YAXISVISIBLE, YAXISREVERSE, YAXISGRIDCOLOR, YAXISLABEL, YAXISLOCATION, YAXISLOGFLAG,
+        YAXISVISIBLE, YAXISFORMAT, YAXISSTFACTORS, YAXISREVERSE, YAXISGRIDCOLOR, YAXISGRIDTHICKNESS, YAXISGRIDSTYLE, YAXISLABEL, YAXISLOCATION, YAXISLOGFLAG,
         YAXISTICKS, YAXISAUTOTICKS, YAXISNUMBERTICKS, YAXISTICKSLOCATIONS, YAXISTICKSLABELS, YAXISSUBTICKS,
-        ZAXISVISIBLE, ZAXISREVERSE, ZAXISGRIDCOLOR, ZAXISLABEL, ZAXISLOCATION, ZAXISLOGFLAG,
+        ZAXISVISIBLE, ZAXISFORMAT, ZAXISSTFACTORS, ZAXISREVERSE, ZAXISGRIDCOLOR, ZAXISGRIDTHICKNESS, ZAXISGRIDSTYLE, ZAXISLABEL, ZAXISLOCATION, ZAXISLOGFLAG,
         ZAXISTICKS, ZAXISAUTOTICKS, ZAXISNUMBERTICKS, ZAXISTICKSLOCATIONS, ZAXISTICKSLABELS, ZAXISSUBTICKS,
         AUTOSUBTICKS,
         FONT_STYLE, FONT_SIZE, FONT_COLOR, FONT_FRACTIONAL,
         GRIDPOSITION, TITLE, AUTOCLEAR, FILLED, BACKGROUND,
-        MARGINS, AXESBOUNDS,
+        MARGINS, AUTO_MARGINS, AXESBOUNDS,
         HIDDENCOLOR
     };
 
@@ -121,6 +121,7 @@ public class Axes extends GraphicObject {
 
     /** Margins enclosing the drawing area (left, right, top, bottom) */
     private double[] margins;
+    private boolean auto_margins;
 
     /**
      * Axes bounds relative to their parent figure's
@@ -158,6 +159,7 @@ public class Axes extends GraphicObject {
         camera = new Camera();
         box = new Box();
         margins = new double[4];
+        auto_margins = true;
         axesBounds = new double[4];
 
         line = new Line();
@@ -186,6 +188,7 @@ public class Axes extends GraphicObject {
         }
 
         copy.margins = newMargins;
+        copy.auto_margins = auto_margins;
 
         double [] newAxesBounds = new double[4];
         for (int i = 0; i < this.axesBounds.length; i++) {
@@ -219,6 +222,10 @@ public class Axes extends GraphicObject {
                 return AxesProperty.XAXISREVERSE;
             case __GO_X_AXIS_GRID_COLOR__ :
                 return AxesProperty.XAXISGRIDCOLOR;
+            case __GO_X_AXIS_GRID_THICKNESS__ :
+                return AxesProperty.XAXISGRIDTHICKNESS;
+            case __GO_X_AXIS_GRID_STYLE__ :
+                return AxesProperty.XAXISGRIDSTYLE;
             case __GO_X_AXIS_LABEL__ :
                 return AxesProperty.XAXISLABEL;
             case __GO_X_AXIS_LOCATION__ :
@@ -227,6 +234,10 @@ public class Axes extends GraphicObject {
                 return AxesProperty.XAXISLOGFLAG;
             case __GO_X_AXIS_TICKS__ :
                 return AxesProperty.XAXISTICKS;
+            case __GO_X_AXIS_FORMAT__ :
+                return AxesProperty.XAXISFORMAT;
+            case __GO_X_AXIS_ST_FACTORS__ :
+                return AxesProperty.XAXISSTFACTORS;
             case __GO_X_AXIS_AUTO_TICKS__ :
                 return AxesProperty.XAXISAUTOTICKS;
             case __GO_X_AXIS_NUMBER_TICKS__ :
@@ -243,6 +254,10 @@ public class Axes extends GraphicObject {
                 return AxesProperty.YAXISREVERSE;
             case __GO_Y_AXIS_GRID_COLOR__ :
                 return AxesProperty.YAXISGRIDCOLOR;
+            case __GO_Y_AXIS_GRID_THICKNESS__ :
+                return AxesProperty.YAXISGRIDTHICKNESS;
+            case __GO_Y_AXIS_GRID_STYLE__ :
+                return AxesProperty.YAXISGRIDSTYLE;
             case __GO_Y_AXIS_LABEL__ :
                 return AxesProperty.YAXISLABEL;
             case __GO_Y_AXIS_LOCATION__ :
@@ -251,6 +266,10 @@ public class Axes extends GraphicObject {
                 return AxesProperty.YAXISLOGFLAG;
             case __GO_Y_AXIS_TICKS__ :
                 return AxesProperty.YAXISTICKS;
+            case __GO_Y_AXIS_FORMAT__ :
+                return AxesProperty.YAXISFORMAT;
+            case __GO_Y_AXIS_ST_FACTORS__ :
+                return AxesProperty.YAXISSTFACTORS;
             case __GO_Y_AXIS_AUTO_TICKS__ :
                 return AxesProperty.YAXISAUTOTICKS;
             case __GO_Y_AXIS_NUMBER_TICKS__ :
@@ -267,6 +286,10 @@ public class Axes extends GraphicObject {
                 return AxesProperty.ZAXISREVERSE;
             case __GO_Z_AXIS_GRID_COLOR__ :
                 return AxesProperty.ZAXISGRIDCOLOR;
+            case __GO_Z_AXIS_GRID_THICKNESS__ :
+                return AxesProperty.ZAXISGRIDTHICKNESS;
+            case __GO_Z_AXIS_GRID_STYLE__ :
+                return AxesProperty.ZAXISGRIDSTYLE;
             case __GO_Z_AXIS_LABEL__ :
                 return AxesProperty.ZAXISLABEL;
             case __GO_Z_AXIS_LOCATION__ :
@@ -275,6 +298,10 @@ public class Axes extends GraphicObject {
                 return AxesProperty.ZAXISLOGFLAG;
             case __GO_Z_AXIS_TICKS__ :
                 return AxesProperty.ZAXISTICKS;
+            case __GO_Z_AXIS_FORMAT__ :
+                return AxesProperty.ZAXISFORMAT;
+            case __GO_Z_AXIS_ST_FACTORS__ :
+                return AxesProperty.ZAXISSTFACTORS;
             case __GO_Z_AXIS_AUTO_TICKS__ :
                 return AxesProperty.ZAXISAUTOTICKS;
             case __GO_Z_AXIS_NUMBER_TICKS__ :
@@ -335,6 +362,8 @@ public class Axes extends GraphicObject {
                 return Box.BoxProperty.FIRSTPLOT;
             case __GO_MARGINS__ :
                 return AxesProperty.MARGINS;
+            case __GO_AUTO_MARGINS__ :
+                return AxesProperty.AUTO_MARGINS;
             case __GO_AXES_BOUNDS__ :
                 return AxesProperty.AXESBOUNDS;
             case __GO_HIDDEN_COLOR__ :
@@ -387,6 +416,10 @@ public class Axes extends GraphicObject {
                     return getXAxisReverse();
                 case XAXISGRIDCOLOR:
                     return getXAxisGridColor();
+                case XAXISGRIDTHICKNESS:
+                    return getXAxisGridThickness();
+                case XAXISGRIDSTYLE:
+                    return getXAxisGridStyle();
                 case XAXISLABEL:
                     return getXAxisLabel();
                 case XAXISLOCATION:
@@ -395,6 +428,10 @@ public class Axes extends GraphicObject {
                     return getXAxisLogFlag();
                 case XAXISTICKS:
                     return getXAxisTicks();
+                case XAXISFORMAT:
+                    return getXAxisFormat();
+                case XAXISSTFACTORS:
+                    return getXAxisSTFactors();
                 case XAXISAUTOTICKS:
                     return getXAxisAutoTicks();
                 case XAXISNUMBERTICKS:
@@ -411,6 +448,10 @@ public class Axes extends GraphicObject {
                     return getYAxisReverse();
                 case YAXISGRIDCOLOR:
                     return getYAxisGridColor();
+                case YAXISGRIDTHICKNESS:
+                    return getYAxisGridThickness();
+                case YAXISGRIDSTYLE:
+                    return getYAxisGridStyle();
                 case YAXISLABEL:
                     return getYAxisLabel();
                 case YAXISLOCATION:
@@ -419,6 +460,10 @@ public class Axes extends GraphicObject {
                     return getYAxisLogFlag();
                 case YAXISTICKS:
                     return getYAxisTicks();
+                case YAXISFORMAT:
+                    return getYAxisFormat();
+                case YAXISSTFACTORS:
+                    return getYAxisSTFactors();
                 case YAXISAUTOTICKS:
                     return getYAxisAutoTicks();
                 case YAXISNUMBERTICKS:
@@ -435,6 +480,10 @@ public class Axes extends GraphicObject {
                     return getZAxisReverse();
                 case ZAXISGRIDCOLOR:
                     return getZAxisGridColor();
+                case ZAXISGRIDTHICKNESS:
+                    return getZAxisGridThickness();
+                case ZAXISGRIDSTYLE:
+                    return getZAxisGridStyle();
                 case ZAXISLABEL:
                     return getZAxisLabel();
                 case ZAXISLOCATION:
@@ -443,6 +492,10 @@ public class Axes extends GraphicObject {
                     return getZAxisLogFlag();
                 case ZAXISTICKS:
                     return getZAxisTicks();
+                case ZAXISFORMAT:
+                    return getZAxisFormat();
+                case ZAXISSTFACTORS:
+                    return getZAxisSTFactors();
                 case ZAXISAUTOTICKS:
                     return getZAxisAutoTicks();
                 case ZAXISNUMBERTICKS:
@@ -475,6 +528,8 @@ public class Axes extends GraphicObject {
                     return getBackground();
                 case MARGINS:
                     return getMargins();
+                case AUTO_MARGINS:
+                    return getAutoMargins();
                 case AXESBOUNDS:
                     return getAxesBounds();
                 case HIDDENCOLOR:
@@ -577,6 +632,10 @@ public class Axes extends GraphicObject {
                     return setXAxisReverse((Boolean) value);
                 case XAXISGRIDCOLOR:
                     return setXAxisGridColor((Integer) value);
+                case XAXISGRIDTHICKNESS:
+                    return setXAxisGridThickness((Double) value);
+                case XAXISGRIDSTYLE:
+                    return setXAxisGridStyle((Integer) value);
                 case XAXISLABEL:
                     return setXAxisLabel((Integer) value);
                 case XAXISLOCATION:
@@ -585,6 +644,10 @@ public class Axes extends GraphicObject {
                     return setXAxisLogFlag((Boolean) value);
                 case XAXISTICKS:
                     return setXAxisTicks((TicksProperty) value);
+                case XAXISFORMAT:
+                    return setXAxisFormat((String) value);
+                case XAXISSTFACTORS:
+                    return setXAxisSTFactors((Double[]) value);
                 case XAXISAUTOTICKS:
                     return setXAxisAutoTicks((Boolean) value);
                 case XAXISTICKSLOCATIONS:
@@ -599,6 +662,10 @@ public class Axes extends GraphicObject {
                     return setYAxisReverse((Boolean) value);
                 case YAXISGRIDCOLOR:
                     return setYAxisGridColor((Integer) value);
+                case YAXISGRIDTHICKNESS:
+                    return setYAxisGridThickness((Double) value);
+                case YAXISGRIDSTYLE:
+                    return setYAxisGridStyle((Integer) value);
                 case YAXISLABEL:
                     return setYAxisLabel((Integer) value);
                 case YAXISLOCATION:
@@ -607,6 +674,10 @@ public class Axes extends GraphicObject {
                     return setYAxisLogFlag((Boolean) value);
                 case YAXISTICKS:
                     return setYAxisTicks((TicksProperty) value);
+                case YAXISFORMAT:
+                    return setYAxisFormat((String) value);
+                case YAXISSTFACTORS:
+                    return setYAxisSTFactors((Double[]) value);
                 case YAXISAUTOTICKS:
                     return setYAxisAutoTicks((Boolean) value);
                 case YAXISTICKSLOCATIONS:
@@ -621,6 +692,10 @@ public class Axes extends GraphicObject {
                     return setZAxisReverse((Boolean) value);
                 case ZAXISGRIDCOLOR:
                     return setZAxisGridColor((Integer) value);
+                case ZAXISGRIDTHICKNESS:
+                    return setZAxisGridThickness((Double) value);
+                case ZAXISGRIDSTYLE:
+                    return setZAxisGridStyle((Integer) value);
                 case ZAXISLABEL:
                     return setZAxisLabel((Integer) value);
                 case ZAXISLOCATION:
@@ -629,6 +704,10 @@ public class Axes extends GraphicObject {
                     return setZAxisLogFlag((Boolean) value);
                 case ZAXISTICKS:
                     return setZAxisTicks((TicksProperty) value);
+                case ZAXISFORMAT:
+                    return setZAxisFormat((String) value);
+                case ZAXISSTFACTORS:
+                    return setZAxisSTFactors((Double[]) value);
                 case ZAXISAUTOTICKS:
                     return setZAxisAutoTicks((Boolean) value);
                 case ZAXISTICKSLOCATIONS:
@@ -659,6 +738,8 @@ public class Axes extends GraphicObject {
                     return setBackground((Integer) value);
                 case MARGINS:
                     return setMargins((Double[]) value);
+                case AUTO_MARGINS:
+                    return setAutoMargins((Boolean) value);
                 case AXESBOUNDS:
                     return setAxesBounds((Double[]) value);
                 case HIDDENCOLOR:
@@ -811,6 +892,34 @@ public class Axes extends GraphicObject {
     }
 
     /**
+     * @return the x axis format
+     */
+    public String getXAxisFormat() {
+        return axes[0].getFormat();
+    }
+
+    /**
+     * @param format the x axis format to set
+     */
+    public UpdateStatus setXAxisFormat(String format) {
+        return axes[0].setFormat(format);
+    }
+
+    /**
+     * @return the x axis scale-translate factors
+     */
+    public Double[] getXAxisSTFactors() {
+        return axes[0].getSTFactors();
+    }
+
+    /**
+     * @param factors the x axis scale-translate factors
+     */
+    public UpdateStatus setXAxisSTFactors(Double[] factors) {
+        return axes[0].setSTFactors(factors);
+    }
+
+    /**
      * @return the x axis reverse
      */
     public Boolean getXAxisReverse() {
@@ -836,6 +945,35 @@ public class Axes extends GraphicObject {
      */
     public UpdateStatus setXAxisGridColor(Integer gridColor) {
         return axes[0].setGridColor(gridColor);
+    }
+
+    /**
+     * @return the x axis grid thickness
+     */
+    public Double getXAxisGridThickness() {
+        Double d = axes[0].getGridThickness();
+        return d == -1 ? getLineThickness() : d;
+    }
+
+    /**
+     * @param gridThickness the x axis grid thickness to set
+     */
+    public UpdateStatus setXAxisGridThickness(Double gridThickness) {
+        return axes[0].setGridThickness(gridThickness);
+    }
+
+    /**
+     * @return the x axis grid style
+     */
+    public Integer getXAxisGridStyle() {
+        return axes[0].getGridStyle();
+    }
+
+    /**
+     * @param gridStyle the x axis grid style to set
+     */
+    public UpdateStatus setXAxisGridStyle(Integer gridStyle) {
+        return axes[0].setGridStyle(gridStyle);
     }
 
     /**
@@ -1016,6 +1154,34 @@ public class Axes extends GraphicObject {
     }
 
     /**
+     * @return the y axis format
+     */
+    public String getYAxisFormat() {
+        return axes[1].getFormat();
+    }
+
+    /**
+     * @param format the x axis format to set
+     */
+    public UpdateStatus setYAxisFormat(String format) {
+        return axes[1].setFormat(format);
+    }
+
+    /**
+     * @return the y axis scale-translate factors
+     */
+    public Double[] getYAxisSTFactors() {
+        return axes[1].getSTFactors();
+    }
+
+    /**
+     * @param factors the y axis scale-translate factors
+     */
+    public UpdateStatus setYAxisSTFactors(Double[] factors) {
+        return axes[1].setSTFactors(factors);
+    }
+
+    /**
      * @return the y axis reverse
      */
     public Boolean getYAxisReverse() {
@@ -1041,6 +1207,35 @@ public class Axes extends GraphicObject {
      */
     public UpdateStatus setYAxisGridColor(Integer gridColor) {
         return axes[1].setGridColor(gridColor);
+    }
+
+    /**
+     * @return the y axis grid thickness
+     */
+    public Double getYAxisGridThickness() {
+        Double d = axes[1].getGridThickness();
+        return d == -1 ? getLineThickness() : d;
+    }
+
+    /**
+     * @param gridThickness the y axis grid thickness to set
+     */
+    public UpdateStatus setYAxisGridThickness(Double gridThickness) {
+        return axes[1].setGridThickness(gridThickness);
+    }
+
+    /**
+     * @return the y axis grid style
+     */
+    public Integer getYAxisGridStyle() {
+        return axes[1].getGridStyle();
+    }
+
+    /**
+     * @param gridStyle the y axis grid style to set
+     */
+    public UpdateStatus setYAxisGridStyle(Integer gridStyle) {
+        return axes[1].setGridStyle(gridStyle);
     }
 
     /**
@@ -1221,6 +1416,34 @@ public class Axes extends GraphicObject {
     }
 
     /**
+     * @return the z axis format
+     */
+    public String getZAxisFormat() {
+        return axes[2].getFormat();
+    }
+
+    /**
+     * @param format the z axis format to set
+     */
+    public UpdateStatus setZAxisFormat(String format) {
+        return axes[2].setFormat(format);
+    }
+
+    /**
+     * @return the z axis scale-translate factors
+     */
+    public Double[] getZAxisSTFactors() {
+        return axes[2].getSTFactors();
+    }
+
+    /**
+     * @param factors the z axis scale-translate factors
+     */
+    public UpdateStatus setZAxisSTFactors(Double[] factors) {
+        return axes[2].setSTFactors(factors);
+    }
+
+    /**
      * @return the z axis reverse
      */
     public Boolean getZAxisReverse() {
@@ -1246,6 +1469,35 @@ public class Axes extends GraphicObject {
      */
     public UpdateStatus setZAxisGridColor(Integer gridColor) {
         return axes[2].setGridColor(gridColor);
+    }
+
+    /**
+     * @return the x axis grid thickness
+     */
+    public Double getZAxisGridThickness() {
+        Double d = axes[2].getGridThickness();
+        return d == -1 ? getLineThickness() : d;
+    }
+
+    /**
+     * @param gridThickness the x axis grid thickness to set
+     */
+    public UpdateStatus setZAxisGridThickness(Double gridThickness) {
+        return axes[2].setGridThickness(gridThickness);
+    }
+
+    /**
+     * @return the z axis grid style
+     */
+    public Integer getZAxisGridStyle() {
+        return axes[2].getGridStyle();
+    }
+
+    /**
+     * @param gridStyle the z axis grid style to set
+     */
+    public UpdateStatus setZAxisGridStyle(Integer gridStyle) {
+        return axes[2].setGridStyle(gridStyle);
     }
 
     /**
@@ -2362,6 +2614,25 @@ public class Axes extends GraphicObject {
             this.margins[2] = margins[2];
             this.margins[3] = margins[3];
 
+            return UpdateStatus.Success;
+        }
+
+        return UpdateStatus.NoChange;
+    }
+
+    /**
+     * @return the margins
+     */
+    public Boolean getAutoMargins() {
+        return new Boolean(auto_margins);
+    }
+
+    /**
+     * @param margins the margins to set
+     */
+    public UpdateStatus setAutoMargins(Boolean auto_margins) {
+        if (this.auto_margins != auto_margins) {
+            this.auto_margins = auto_margins;
             return UpdateStatus.Success;
         }
 

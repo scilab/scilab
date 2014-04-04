@@ -33,6 +33,8 @@
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 #include "deleteGraphicObject.h"
+#include "createGraphicObject.h"
+
 /*-------------------------------------------------------------------------------*/
 void getTextBoundingBox(char ** text, int nbRow, int nbCol,
                         double xPos, double yPos,
@@ -50,15 +52,15 @@ void getTextBoundingBox(char ** text, int nbRow, int nbCol,
     /* Update subwin scale if needed */
     updateSubwinScale(iParentSubwinUID);
 
-    iTextUID = allocateText(iParentSubwinUID,
-                            text, nbRow, nbCol,
-                            xPos, yPos,
-                            TRUE,
-                            NULL,
-                            0,
-                            &defaultColor, &defaultColor,
-                            FALSE, FALSE, FALSE,
-                            ALIGN_LEFT);
+    iTextUID = createText(iParentSubwinUID,
+                          text, nbRow, nbCol,
+                          xPos, yPos,
+                          TRUE,
+                          NULL,
+                          0,
+                          &defaultColor, &defaultColor,
+                          FALSE, FALSE, FALSE,
+                          ALIGN_LEFT);
 
     /* Make it invisible to be sure */
     visible = 0;

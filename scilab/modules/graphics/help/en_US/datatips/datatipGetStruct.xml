@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Copyright (C) INRIA -  Serge Steer Serge.Steer@inria.fr
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en_US" xml:id="datatipGetStruct">
     <refnamediv>
         <refname>datatipGetStruct</refname>
         <refpurpose>
-            Retreive the datatips data structure from the polyline entity. <emphasis role="bold">Obsolete function. </emphasis>
+            Retreive the datatips data structure from the polyline entity. <emphasis role="bold">This function is obsolete.</emphasis>
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
@@ -28,7 +28,7 @@
                 <term>curve_handle</term>
                 <listitem>
                     <para>
-                        A handle on a polyline. 
+                        A handle on a polyline.
                     </para>
                 </listitem>
             </varlistentry>
@@ -73,16 +73,15 @@
             e=gce();p=e.children(1);//get the handle on the polyline
             datatipCreate(p,50);
             datatipCreate(p,20);
-            datatips_struct=datatipGetStruct(p)
         </scilab:image>
     </refsection>
     <refsection>
         <title>History</title>
         <revhistory>
             <revision>
-                <revnumber>5.4.1</revnumber>
+                <revnumber>5.5.0</revnumber>
                 <revdescription>
-                    Function tagged obsolete. Will be removed in 5.5.0.
+                    Function tagged obsolete. Will be removed in 5.5.1. Please use <link linkend="polyline_properties">"datatips" property</link> instead.
                 </revdescription>
             </revision>
         </revhistory>
@@ -95,9 +94,6 @@
             </member>
             <member>
                 <link linkend="datatipSetDisplay">datatipSetDisplay</link>
-            </member>
-            <member>
-                <link linkend="datatipInitStruct">datatipInitStruct</link>
             </member>
         </simplelist>
     </refsection>

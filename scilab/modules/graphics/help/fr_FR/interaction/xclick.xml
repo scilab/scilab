@@ -92,8 +92,10 @@
             est attendu dans toutes les fenêtres graphiques.
         </para>
         <para>
-            Attention, les coordonnées <literal>xcoord</literal>,
-            <literal>ycoord</literal> renvoyées par la fonction sont relatives au système d'axes courant (voir <link linkend="gca">gca()</link>).
+            <warning>
+                Attention, les coordonnées <literal>xcoord</literal>,
+                <literal>ycoord</literal> renvoyées par la fonction sont relatives au système d'axes courant (voir <link linkend="gca">gca()</link>).
+            </warning>
         </para>
         <para>
             Les valeurs de <literal>ibutton</literal> sont décrites ci-dessous

@@ -93,7 +93,7 @@ public final class LineNumbersAction extends DefaultAction {
      * @return createMenu
      */
     public static Menu createMenu(String label, SciNotes editor, KeyStroke key) {
-        StringTokenizer tokens = new StringTokenizer(label, ";");
+        StringTokenizer tokens = new StringTokenizer(label, ";\uff1b");
         String labelLineNumbering = tokens.nextToken();
         String labelOff = tokens.nextToken();
         String labelNormal = tokens.nextToken();

@@ -22,7 +22,7 @@
 function [flag_type,rdnom,DF_type,Code]=translate(CI,CI1,CLa_type,CLa_exp,CLb_type,CLb_exp,oper,..
     type_meth,degre,a,b,N,a1,b1,a2,b2,a3,b3,a4,b4,a5,b5,a6,b6,a7,b7,nom,mesures)
     // Cette fonction contient les différents algrithme de discretisation spaciale, ainnsi que la        //
-    // génération du code du bloc EDP. Elle est appelée par la fonction graphic du bloc EDP.Sci          //
+    // génération du code du bloc EDP. Elle est appelée par la fonction graphique du bloc EDP.Sci          //
     // Sorties:                                                                                          //
     //    - flag_type (Entier) : renvoie le type des équations générées, ( 1 pour l'explicite,            //
     //      2 pour l'implicite)                                                                          //

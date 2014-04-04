@@ -124,7 +124,7 @@
                 </para>
                 <para>a vector of positive integer.</para>
                 <para>
-                    <latex>$\left k_1, \dot , k_n \right$</latex> : The <latex>$k_i$</latex>th element of the read record gives the value of <latex>$i^{th}$</latex> output.
+                    <latex>$\left[ k_1 \ldots k_n \right]$</latex> : The <latex>$k_i$</latex>th element of the read record gives the value of <latex>$i^{th}$</latex> output.
                 </para>
                 <para> Properties : Type 'vec' of size -1 </para>
             </listitem>

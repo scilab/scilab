@@ -52,7 +52,7 @@
         <para>34 "Syntax error in a '%s' instruction."
             (if,while,select/case)
         </para>
-        <para>* 36 "Wrong input argument %d."</para>
+        <para>* 36 "Wrong input argument #%d."</para>
         <para>* 37 "Incorrect function at line %d."</para>
         <para>38 "Wrong file name."</para>
         <para>39 "Incorrect number of input arguments."</para>
@@ -68,10 +68,10 @@
         <para>49 "Incorrect file or format."</para>
         <para>50 "Subroutine '%s' not found."</para>
         <para>* 52 "Wrong type for argument #%d: Real matrix expected."</para>
-        <para>* 53 "Wrong type for input argument %d: Real or complex matrix
+        <para>* 53 "Wrong type for input argument #%d: Real or complex matrix
             expected."
         </para>
-        <para>* 54 "Wrong type for input argument %d: Polynomial expected."</para>
+        <para>* 54 "Wrong type for input argument #%d: Polynomial expected."</para>
         <para>* 55 "Wrong type for argument #%d: String expected."</para>
         <para>* 56 "Wrong type for argument #%d: List expected."</para>
         <para>57 "Problem with comparison symbol..."</para>
@@ -123,7 +123,7 @@
         </para>
         <para>* 94 "Wrong type for argument #%d: In discrete time expected."</para>
         <para>* 95 "Wrong type for argument #%d: SISO expected."</para>
-        <para>* 96 "time domain of argument %d is not defined."</para>
+        <para>* 96 "time domain of argument #%d is not defined."</para>
         <para>* 97 "Wrong type for argument #%d: A system in state space or
             transfer matrix form expected."
         </para>
@@ -209,7 +209,7 @@
         <para>213 "%s: Wrong type for argument #%d: Working integer matrix
             expected."
         </para>
-        <para>214 "Argument %d of %s: wrong type argument, expecting a
+        <para>214 "Argument #%d of %s: wrong type argument, expecting a
             vector"
         </para>
         <para>* 215 "%dth argument type must be boolean."</para>
@@ -222,7 +222,7 @@
         <para>* 218 "Wrong type for argument #%d: Handle to sparse lu factors
             expected."
         </para>
-        <para>* 219 "Wrong type argument %d: Sparse or full scalar matrix
+        <para>* 219 "Wrong type argument #%d: Sparse or full scalar matrix
             expected."
         </para>
         <para>220 "Null variable cannot be used here."</para>
@@ -325,7 +325,6 @@
     lasterror()
  ]]></programlisting>
     </refsection>
-    
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">

@@ -174,6 +174,12 @@ public final class JoGLCanvas implements Canvas, GLEventListener {
 
     @Override
     public void redrawAndWait() {
+        if (SwingUtilities.isEventDispatchThread()) {
+            if (autoDrawable != null) {
+                autoDrawable.display();
+            }
+            return;
+        }
         try {
             SwingUtilities.invokeAndWait(new Runnable() {
                 public void run() {
@@ -236,19 +242,25 @@ public final class JoGLCanvas implements Canvas, GLEventListener {
         final BufferedImage[] image = new BufferedImage[1];
         final GLContext context = autoDrawable.getContext();
 
-        try {
-            SwingUtilities.invokeAndWait(new Runnable() {
-                public void run() {
-                    context.makeCurrent();
-                    image[0] = Screenshot.readToBufferedImage(autoDrawable.getWidth(), autoDrawable.getHeight());
-                    context.release();
-                }
-            });
-        } catch (InterruptedException e) {
+        if (SwingUtilities.isEventDispatchThread()) {
+            context.makeCurrent();
+            image[0] = Screenshot.readToBufferedImage(autoDrawable.getWidth(), autoDrawable.getHeight());
+            context.release();
+        } else {
+            try {
+                SwingUtilities.invokeAndWait(new Runnable() {
+                    public void run() {
+                        context.makeCurrent();
+                        image[0] = Screenshot.readToBufferedImage(autoDrawable.getWidth(), autoDrawable.getHeight());
+                        context.release();
+                    }
+                });
+            } catch (InterruptedException e) {
 
-        } catch (InvocationTargetException e) {
-            System.err.println(e);
-            e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                System.err.println(e);
+                e.printStackTrace();
+            }
         }
 
         return image[0];

@@ -194,7 +194,10 @@ am__objects_2 =  \
 am_libscipreferences_cli_la_OBJECTS = $(am__objects_2)
 libscipreferences_cli_la_OBJECTS =  \
 	$(am_libscipreferences_cli_la_OBJECTS)
-libscipreferences_la_DEPENDENCIES = libscipreferences-algo.la
+am__DEPENDENCIES_1 =
+libscipreferences_la_DEPENDENCIES = libscipreferences-algo.la \
+	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
+	$(am__DEPENDENCIES_1)
 am__objects_3 = sci_gateway/c/libscipreferences_la-gw_preferences.lo
 am__objects_4 = sci_gateway/cpp/libscipreferences_la-sci_addModulePreferences.lo \
 	sci_gateway/cpp/libscipreferences_la-sci_removeModulePreferences.lo \
@@ -336,6 +339,7 @@ CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
 DEMOTOOLS_ENABLE = @DEMOTOOLS_ENABLE@
 DEPDIR = @DEPDIR@
+DLLTOOL = @DLLTOOL@
 DOCBOOK_ROOT = @DOCBOOK_ROOT@
 DOXYGEN_BIN = @DOXYGEN_BIN@
 DSYMUTIL = @DSYMUTIL@
@@ -355,6 +359,11 @@ FGREP = @FGREP@
 FLEXDOCK = @FLEXDOCK@
 FLIBS = @FLIBS@
 FOP = @FOP@
+FREEHEP_GRAPHICS2D = @FREEHEP_GRAPHICS2D@
+FREEHEP_GRAPHICSIO = @FREEHEP_GRAPHICSIO@
+FREEHEP_GRAPHICSIO_EMF = @FREEHEP_GRAPHICSIO_EMF@
+FREEHEP_IO = @FREEHEP_IO@
+FREEHEP_UTIL = @FREEHEP_UTIL@
 GENHTML = @GENHTML@
 GETTEXT_MACRO_VERSION = @GETTEXT_MACRO_VERSION@
 GIWS_BIN = @GIWS_BIN@
@@ -418,6 +427,7 @@ LTLIBINTL = @LTLIBINTL@
 LTLIBOBJS = @LTLIBOBJS@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
+MANIFEST_TOOL = @MANIFEST_TOOL@
 MATIO_CFLAGS = @MATIO_CFLAGS@
 MATIO_ENABLE = @MATIO_ENABLE@
 MATIO_LIBS = @MATIO_LIBS@
@@ -645,7 +655,7 @@ libscipreferences_cli_la_CPPFLAGS = -I$(srcdir)/includes/ \
 
 PREFERENCES_CLI_C_SOURCES = src/nopreferences/nopreferences.c
 libscipreferences_cli_la_SOURCES = $(PREFERENCES_CLI_C_SOURCES)
-libscipreferences_la_LDFLAGS = $(X_LIBS) $(X_EXTRA_LIBS) $(XML_LIBS) $(AM_LDFLAGS)
+libscipreferences_la_LDFLAGS = $(AM_LDFLAGS)
 pkglib_LTLIBRARIES = libscipreferences-cli.la $(am__append_1)
 @GUI_TRUE@noinst_LTLIBRARIES = libscipreferences-algo.la
 libscipreferences_algo_la_SOURCES = $(PREFERENCES_C_SOURCES)
@@ -660,7 +670,7 @@ GIWS_WRAPPERS = src/jni/ScilabPreferences.giws.xml
 SWIG_WRAPPERS = 
 BUILT_SOURCES = $(am__append_2) $(am__append_3)
 libscipreferences_cli_la_LIBADD = libscipreferences-algo.la
-libscipreferences_la_LIBADD = libscipreferences-algo.la
+libscipreferences_la_LIBADD = libscipreferences-algo.la $(X_LIBS) $(X_EXTRA_LIBS) $(XML_LIBS)
 
 #### preferences : gateway declaration ####
 libscipreferences_la_sci_gatewaydir = $(mydatadir)/sci_gateway

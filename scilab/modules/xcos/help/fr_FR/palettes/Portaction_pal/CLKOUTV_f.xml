@@ -187,20 +187,23 @@
         <para>
             Le Super block ci-dessous est principalement un diviseur de fréquence par 4, associé à une génération d'événement à l'instant 
             <emphasis>
-                <literal>t= 3 s</literal>
+                <literal>t = 3 s</literal>
             </emphasis>
             .
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/portaction_pal/fr_FR/CLKOUTV_f_fr_FR.zcos">
-                Ouvrir cet exemple dans Xcos
-            </link>
-            .
         </para>
-        <para/>
-        <mediaobject>
-            <imageobject>
-                <imagedata fileref="../../../../examples/portaction_pal/fr_FR/CLKOUTV_f_fr_FR.zcos"/>
-            </imageobject>
-        </mediaobject>
+        <para>
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/portaction_pal/fr_FR/CLKOUTV_f_fr_FR.zcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="../../../../examples/portaction_pal/fr_FR/CLKOUTV_f_fr_FR.zcos" align="center" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+        </para>
+        <scilab:image localized="true"><![CDATA[
+importXcosDiagram(SCI + "/modules/xcos/examples/portaction_pal/fr_FR/CLKOUTV_f_fr_FR.zcos");
+xcos_simulate(scs_m, 4);
+]]></scilab:image>
     </refsection>
     <refsection id="Interfacingfunction_CLKOUTV_f">
         <title>Fonction d'interfaçage</title>

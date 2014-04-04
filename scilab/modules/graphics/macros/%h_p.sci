@@ -64,6 +64,8 @@ function %h_p(h)
             "parent: "+h.parent.type
             "children: "+fmtchildren(h.children)
             "datatips: "+fmtchildren(h.datatips)
+            "display_function: "++sci2exp(h.display_function)
+            "display_function_data: "+fmtuser_data(h.display_function_data)
             "visible = "+sci2exp(h.visible)
             "data = "+d
             "closed = "+sci2exp(h.closed)
@@ -83,42 +85,14 @@ function %h_p(h)
             "mark_size = "+string(h.mark_size)
             "mark_foreground = "+string(h.mark_foreground)
             "mark_background = "+string(h.mark_background)
+            "mark_offset = "+string(h.mark_offset)
+            "mark_stride = "+string(h.mark_stride)
             "x_shift = "+bxs
             "y_shift = "+bys
             "z_shift = "+bzs
             "bar_width = "+sci2exp(h.bar_width)
             "clip_state = "+sci2exp(h.clip_state)
             "clip_box = "+sci2exp(h.clip_box)
-            "user_data = "+fmtuser_data(u)
-            "tag = "+h.tag
-            ]
-
-            // Datatip
-            // =====================================================================
-
-        case "Datatip"
-            u=h.user_data
-            t=[t;
-            "parent: "+h.parent.type
-            "children: "+fmtchildren(h.children)
-            "visible = "+sci2exp(h.visible)
-            "tip_data = "+sci2exp(h.tip_data)
-            "tip_box_mode = "+sci2exp(h.tip_box_mode)
-            "tip_label_mode = "+sci2exp(h.tip_label_mode)
-            "tip_orientation = "+sci2exp(h.tip_orientation)
-            "tip_3component = "+sci2exp(h.tip_3component)
-            "tip_auto_orientation = "+sci2exp(h.tip_auto_orientation)
-            "tip_interp_mode = "+sci2exp(h.tip_interp_mode)
-            "tip_disp_function = "+sci2exp(h.tip_disp_function)
-            "font_foreground = "+string(h.font_foreground)
-            "foreground = "+string(h.foreground)
-            "background = "+string(h.background)
-            "mark_mode = "+sci2exp(h.mark_mode)
-            "mark_style = "+sci2exp(h.mark_style)
-            "mark_size_unit = "+sci2exp(h.mark_size_unit)
-            "mark_size = "+string(h.mark_size)
-            "mark_foreground = "+string(h.mark_foreground)
-            "mark_background = "+string(h.mark_background)
             "user_data = "+fmtuser_data(u)
             "tag = "+h.tag
             ]
@@ -183,6 +157,8 @@ function %h_p(h)
             "axes_reverse = "+sci2exp(h.axes_reverse)
             "grid = "+sci2exp(h.grid,0)
             "grid_position = "+sci2exp(h.grid_position)
+            "grid_thickness = "+sci2exp(h.grid_thickness,0)
+            "grid_style = "+sci2exp(h.grid_style,0)
             "x_location = "+sci2exp(h.x_location)
             "y_location = "+sci2exp(h.y_location)
             "title: "+fmtchildren(h.title)
@@ -196,6 +172,8 @@ function %h_p(h)
             "x_ticks.labels = "+labx
             "y_ticks.labels = "+laby
             "z_ticks.labels = "+labz
+            "ticks_format = "+sci2exp(h.ticks_format)
+            "ticks_st = "+sci2exp(h.ticks_st, 0)
             "box = "+sci2exp(h.box)
             "filled = " + sci2exp(h.filled)
             "sub_ticks = "+sci2exp(h.sub_ticks,0)
@@ -213,6 +191,7 @@ function %h_p(h)
             "data_bounds = "+sci2exp(h.data_bounds,0)
             "zoom_box = "+sci2exp(h.zoom_box,0)
             "margins = "+sci2exp(h.margins,0)
+            "auto_margins = "+sci2exp(h.auto_margins)
             "axes_bounds = "+sci2exp(h.axes_bounds,0)
             " "
             "auto_clear = "+sci2exp(h.auto_clear)
@@ -254,11 +233,13 @@ function %h_p(h)
             "links = " +  fmtchildren(h.links)
             "legend_location = " + sci2exp(h.legend_location)
             "position = " + sci2exp(h.position)
+            "line_width = "+sci2exp(h.line_width)
             "line_mode = "+sci2exp(h.line_mode)
             "thickness = "+string(h.thickness)
             "foreground = "+string(h.foreground)
             "fill_mode = "+sci2exp(h.fill_mode)
             "background = "+string(h.background)
+            "marks_count = "+sci2exp(h.marks_count)
             "clip_state = "+sci2exp(h.clip_state)
             "clip_box = "+sci2exp(h.clip_box,0)
             "user_data = "+fmtuser_data(h.user_data)
@@ -320,6 +301,11 @@ function %h_p(h)
             // =====================================================================
 
         case "Figure"
+            l = h.layout_options;
+            if type(l) == 16 then //tlist
+                l = l(1);
+                l = l(1);
+            end
             u=h.user_data
             t=[t;
             "children: "+fmtchildren(h.children)
@@ -332,7 +318,6 @@ function %h_p(h)
             "figure_id = "+sci2exp(h.figure_id,0)
             "info_message = "+sci2exp(h.info_message)
             "color_map = matrix "+strcat(string(size(h.color_map)),"x")
-            "pixmap = "+sci2exp(h.pixmap)
             "pixel_drawing_mode = "+sci2exp(h.pixel_drawing_mode,0)
             "anti_aliasing = " + sci2exp(h.anti_aliasing)
             "immediate_drawing = "+sci2exp(h.immediate_drawing)
@@ -344,6 +329,17 @@ function %h_p(h)
             "user_data = "+fmtuser_data(u)
             "resizefcn = "+sci2exp(h.resizefcn)
             "closerequestfcn = "+sci2exp(h.closerequestfcn)
+            "resize = "+sci2exp(h.resize)
+            "toolbar = "+sci2exp(h.toolbar)
+            "toolbar_visible = "+sci2exp(h.toolbar_visible)
+            "menubar = "+sci2exp(h.menubar)
+            "menubar_visible = "+sci2exp(h.menubar_visible)
+            "infobar_visible = "+sci2exp(h.infobar_visible)
+            "dockable = "+sci2exp(h.dockable)
+            "layout = "+sci2exp(h.layout)
+            "layout_options = "+sci2exp(l)
+            "default_axes = "+sci2exp(h.default_axes)
+            "icon = "+fmtuser_data(h.icon)
             "tag = "+sci2exp(h.tag)
             ]
 
@@ -407,6 +403,7 @@ function %h_p(h)
             "children: "+fmtchildren(h.children)
             "visible = "+sci2exp(h.visible)
             "data = "+d
+            "rect = " + sci2exp(h.rect, 0)
             "image_type = " + sci2exp(h.image_type)
             "clip_state = "+sci2exp(h.clip_state)
             "clip_box = "+sci2exp(h.clip_box,0)
@@ -584,14 +581,14 @@ function %h_p(h)
             "parent: "+h.parent.type
             "children: "+fmtchildren(h.children)
             "visible = "+sci2exp(h.visible)
-            "tip_data = "+sci2exp(h.tip_data)
-            "tip_box_mode = "+sci2exp(h.tip_box_mode)
-            "tip_label_mode = "+sci2exp(h.tip_label_mode)
-            "tip_orientation = "+sci2exp(h.tip_orientation)
-            "tip_3component = "+sci2exp(h.tip_3component)
-            "tip_auto_orientation = "+sci2exp(h.tip_auto_orientation)
-            "tip_interp_mode = "+sci2exp(h.tip_interp_mode)
-            "tip_disp_function = "+sci2exp(h.tip_disp_function)
+            "data = "+sci2exp(h.data)
+            "box_mode = "+sci2exp(h.box_mode)
+            "label_mode = "+sci2exp(h.label_mode)
+            "orientation = "+sci2exp(h.orientation)
+            "z_component = "+sci2exp(h.z_component)
+            "auto_orientation = "+sci2exp(h.auto_orientation)
+            "interp_mode = "+sci2exp(h.interp_mode)
+            "display_function = "+sci2exp(h.display_function)
             "font_foreground = "+string(h.font_foreground)
             "foreground = "+string(h.foreground)
             "background = "+string(h.background)
@@ -926,11 +923,11 @@ function %h_p(h)
             "Foregroundcolor = "+sci2exp(h.foregroundcolor,0)
             "Label = "+h.label
             "Handle_Visible = "+sci2exp(h.handle_visible)
-            //"Position = "+sci2exp(h.position,0)
             "Visible = "+sci2exp(h.visible)
             "Callback = "+h.callback
             "Callback_Type = "+sci2exp(h.callback_type,0)
             "Checked =  "+sci2exp(h.checked)
+            "Icon =  "+sci2exp(h.icon)
             "Userdata = "+fmtuser_data(u)
             "Tag = "+h.tag
             ]
@@ -953,38 +950,99 @@ function %h_p(h)
             // =====================================================================
 
         case "uicontrol"
+
             u=h.user_data;
-            t=[t;
-            "Parent: "+h.parent.type
-            "Children: "+fmtchildren(h.children)
-            "BackgroundColor = "+sci2exp(h.backgroundcolor,0)
-            "Enable = "+sci2exp(h.enable)
-            "FontAngle = "+h.fontangle
-            "FontName = "+h.fontname
-            "FontSize = "+sci2exp(h.fontsize)
-            "FontUnits = "+h.fontunits
-            "FontWeight = "+h.fontweight
-            "ForegroundColor = "+sci2exp(h.foregroundcolor,0)
-            "HorizontalAlignment = "+h.horizontalalignment
-            "ListboxTop = "+sci2exp(h.listboxtop,0)
-            "Max = "+sci2exp(h.max)
-            "Min = "+sci2exp(h.min)
-            "Position = "+sci2exp(h.position,0)
-            "Relief = "+h.relief
-            "SliderStep = "+sci2exp(h.sliderstep)
-            "String = "+fmtuser_data(h.string)
-            "Style = "+h.style
-            "TooltipString = "+fmtuser_data(h.tooltipstring)
-            "Units = "+h.units
-            "Value = "+sci2exp(h.value,0)
-            "VerticalAlignment = "+h.verticalalignment
-            "Visible = "+sci2exp(h.visible)
-            "Callback = "+h.callback
-            "Callback_Type = "+sci2exp(h.callback_type,0)
-            "Handle_Visible = "+sci2exp(h.handle_visible)
-            "Userdata = "+fmtuser_data(u)
-            "Tag = "+h.tag
-            ]
+            c = h.constraints;
+            if type(c) == 16 then //tlist
+                c = c(1);
+                c = c(1);
+            end
+            l = h.layout_options;
+            if type(l) == 16 then //tlist
+                l = l(1);
+                l = l(1);
+            end
+            b = h.border;
+            if type(b) == 16 then //tlist
+                b = b(1);
+                b = b(1);
+            end
+
+            showHiddenProperties = get(get(0), "ShowHiddenProperties") == "on";
+            t = [];
+            t($ + 1) = "Parent: " + h.parent.type;
+            t($ + 1) = "Children: " + fmtchildren(h.children);
+            t($ + 1) = "Style = " + h.style;
+            if and(h.style <> ["popupmenu"]) | showHiddenProperties then
+                t($ + 1) = "BackgroundColor = " + sci2exp(h.backgroundcolor,0);
+            end
+            if h.style == "frame" | showHiddenProperties then
+                t($ + 1) = "Border = " + sci2exp(b);
+            end
+            if and(h.style <> ["frame", "layer", "text"]) | showHiddenProperties then
+                t($ + 1) = "Callback = " + h.callback;
+                t($ + 1) = "Callback_Type = " + sci2exp(h.callback_type,0);
+            end
+            t($ + 1) = "Constraints = " + sci2exp(c);
+            t($ + 1) = "Enable = " + sci2exp(h.enable);
+            if and(h.style <> ["image", "slider", "layer"]) | showHiddenProperties then
+                t($ + 1) = "FontAngle = " + h.fontangle;
+                t($ + 1) = "FontName = " + h.fontname;
+                t($ + 1) = "FontSize = " + sci2exp(h.fontsize);
+                t($ + 1) = "FontUnits = " + h.fontunits;
+                t($ + 1) = "FontWeight = " + h.fontweight;
+            end
+            if and(h.style <> ["frame", "layer", "tab", "slider", "image", "popupmenu"]) | showHiddenProperties then
+                t($ + 1) = "ForegroundColor = " + sci2exp(h.foregroundcolor,0);
+            end
+            if or(h.style == ["radiobutton", "checkbox"]) | showHiddenProperties then
+                t($ + 1) = "Groupname = " + sci2exp(h.groupname);
+            end
+            if and(h.style <> ["frame", "layer", "tab", "listbox", "popupmenu"]) | showHiddenProperties then
+                t($ + 1) = "HorizontalAlignment = " + h.horizontalalignment;
+            end
+            if or(h.style == ["text", "pushbutton", "frame"]) | showHiddenProperties then
+                t($ + 1) = "Icon = " + fmtuser_data(h.icon);
+            end
+            if h.style == "frame" | showHiddenProperties then
+                t($ + 1) = "Layout = " + sci2exp(h.layout);
+                t($ + 1) = "Layout_options = " + sci2exp(l);
+            end
+            if h.style == "listbox" | showHiddenProperties then
+                t($ + 1) = "ListboxTop = " + sci2exp(h.listboxtop,0);
+            end
+            t($ + 1) = "Margins = " + sci2exp(h.margins);
+            if or(h.style == ["checkbox", "radiobutton", "slider", "spinner", "listbox", "edit"]) | showHiddenProperties then
+                t($ + 1) = "Max = " + sci2exp(h.max);
+                t($ + 1) = "Min = " + sci2exp(h.min);
+            end
+            t($ + 1) = "Position = " + sci2exp(h.position,0);
+            t($ + 1) = "Relief = " + h.relief;
+            if or(h.style == ["frame", "edit"]) | showHiddenProperties then
+                t($ + 1) = "Scrollable = " + sci2exp(h.scrollable);
+            end
+            if or(h.style == ["slider", "spinner"]) | showHiddenProperties then
+                t($ + 1) = "SliderStep = " + sci2exp(h.sliderstep);
+            end
+            if h.style <> "slider" | showHiddenProperties then
+                t($ + 1) = "String = " + fmtuser_data(h.string);
+            end
+            t($ + 1) = "Tag = " + h.tag;
+            if h.style == "tab" | showHiddenProperties then
+                t($ + 1) = "Title_position = " + sci2exp(h.title_position);
+                t($ + 1) = "Title_scroll = " + sci2exp(h.title_scroll);
+            end
+            t($ + 1) = "TooltipString = " + fmtuser_data(h.tooltipstring);
+            t($ + 1) = "Units = " + h.units;
+            t($ + 1) = "Userdata = " + fmtuser_data(u);
+            if or(h.style == ["checkbox", "radiobutton", "slider", "spinner", "listbox", "edit", "layer", "tab", "popupmenu"]) | showHiddenProperties then
+                t($ + 1) = "Value = " + sci2exp(h.value,0);
+            end
+
+            if and(h.style <> ["frame", "layer", "tab", "listbox", "popupmenu"]) | showHiddenProperties then
+                t($ + 1) = "VerticalAlignment = " + h.verticalalignment;
+            end
+            t($ + 1) = "Visible = " + sci2exp(h.visible);
 
             // Console
             // =====================================================================
@@ -993,6 +1051,8 @@ function %h_p(h)
             t=[t;
             "Children: "+fmtchildren(h.children)
             "ShowHiddenHandles: "+sci2exp(h.showhiddenhandles)
+            "ShowHiddenProperties: "+sci2exp(h.showhiddenproperties)
+            "UseDeprecatedSkin: "+sci2exp(h.usedeprecatedskin)
             ]
             // Light
             // =====================================================================

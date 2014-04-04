@@ -77,6 +77,10 @@ public final class ScilabRelief {
      * Keyword used for SUNKEN relief property
      */
     public static final Border SUNKEN_BORDER = BorderFactory.createLoweredBevelBorder();
+    /**
+     * LaF border property
+     */
+    public static final String DEFAULT = "default";
 
     /**
      * Constructor
@@ -90,7 +94,7 @@ public final class ScilabRelief {
      * @param reliefType Scilab type for relief
      * @return the corresponding border
      */
-    public static Border getBorderFromRelief(String reliefType) {
+    public static Border getBorderFromRelief(String reliefType, Border defaultBorder) {
         Border returnBorder = SUNKEN_BORDER;
         if (reliefType.equals(FLAT)) {
             returnBorder = FLAT_BORDER;
@@ -102,6 +106,8 @@ public final class ScilabRelief {
             returnBorder = RIDGE_BORDER;
         } else if (reliefType.equals(SOLID)) {
             returnBorder = SOLID_BORDER;
+        } else if (reliefType.equals(DEFAULT)) {
+            returnBorder = defaultBorder;
         }
         return returnBorder;
     }

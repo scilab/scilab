@@ -30,7 +30,7 @@
                 <term>p</term>
                 <listitem>
                     <para>
-                        un polynôme réel ou complexe, ou 
+                        un polynôme réel ou complexe, ou
                         une m-par-1 or 1-par-m matrice de doubles, les coefficients du polynômes par ordre de puissance décroissante.
                     </para>
                 </listitem>
@@ -41,10 +41,10 @@
                     <para>
                         une chaîne de caractères, l'algorithme à utiliser (défaut algo="e").
                         Si algo="e", alors les valeurs propres de la matrice compagnion sont utilisées.
-                        Si algo="f", alors l'algorithme de Jenkins-Traub est utilisé (si les coefficients 
+                        Si algo="f", alors l'algorithme de Jenkins-Traub est utilisé (si les coefficients
                         du polynôme sont réels et que le degré du polynôme est plus petit que 100).
                         Si algo="f" et que le polynôme est complexe, alors une erreur est générée.
-                        Si algo="f" et que le polynôme est de degré inférieur à 100, alors une erreur est 
+                        Si algo="f" et que le polynôme est de degré inférieur à 100, alors une erreur est
                         générée.
                     </para>
                 </listitem>
@@ -55,15 +55,15 @@
         <title>Description</title>
         <para>
             Cette fonction retourne dans le vecteur complexe
-            <literal>x</literal> les racines du polynôme <literal>p</literal>. 
+            <literal>x</literal> les racines du polynôme <literal>p</literal>.
         </para>
         <para>
-            L'option "f" utilise l'algorithme rapide RPOLY, fondé sur la méthode de Jenkins-Traub. 
+            L'option "f" utilise l'algorithme rapide RPOLY, fondé sur la méthode de Jenkins-Traub.
         </para>
         <para>
-            Pour les polynôme réels de degré inférieur à 100, on peut utiliser 
+            Pour les polynôme réels de degré inférieur à 100, on peut utiliser
             l'option "f", qui peut être plus rapide dans certains cas.
-            Toutefois, certains polynômes sont susceptibles de poser des problèmes 
+            Toutefois, certains polynômes sont susceptibles de poser des problèmes
             de convergences pour l'algorithme associé à l'option "f".
             Par exemple, <literal>p=poly([1.e300,1.e0,1.e-300],'x');</literal>
             provoque le bouclage infini de <literal>roots(p,"f")</literal>
@@ -91,16 +91,16 @@ roots(p)
 spec(A)
  ]]></programlisting>
         <para>
-            La représentation polynômiale peut avoir un impact significatif sur les 
+            La représentation polynômiale peut avoir un impact significatif sur les
             racines.
-            Dans l'exemple suivant, suggéré par Wilkinson dans les années 60 et présenté 
-            par Moler, on considère une matrice dont les termes diagonaux sont égaux 
-            à 1, 2, ..., 20. 
+            Dans l'exemple suivant, suggéré par Wilkinson dans les années 60 et présenté
+            par Moler, on considère une matrice dont les termes diagonaux sont égaux
+            à 1, 2, ..., 20.
             Bien entendu, les racines du polynôme caractéristique sont 1, 2, ..., 20.
-            Si on calcule le polynôme caractéristique associé et qu'on calcule ses 
-            racines, on peut voir qu'elles sont significativement différentes des 
+            Si on calcule le polynôme caractéristique associé et qu'on calcule ses
+            racines, on peut voir qu'elles sont significativement différentes des
             valeurs attendues.
-            Cela montre que le seul fait de représenter les coefficients dans 
+            Cela montre que le seul fait de représenter les coefficients dans
             des doubles IEEE change les racines.
         </para>
         <programlisting role="example"><![CDATA[
@@ -109,7 +109,7 @@ p = poly(A,'x')
 roots(p)
  ]]></programlisting>
         <para>
-            L'option "f" produit une erreur si le polynôme est complexe 
+            L'option "f" produit une erreur si le polynôme est complexe
             ou que le degré est plus grand que 100.
         </para>
         <programlisting role="example"><![CDATA[
@@ -119,6 +119,22 @@ roots(p)
  // Le cas suivant produit une erreur
  p = ones(101,1);
  roots(p,"f")
+ ]]></programlisting>
+        <para>
+            Le script suivant est une manière simple de vérifier que la matrice compagnon donne le même résultat que l'option "e".
+            Il utilise explicitement la matrice compagnon pour calculer les racines.
+            Il faut néanmoins inverser les coefficients du polynôme ;
+            en effet, "roots" les attend dans l'ordre de degré décroissant,
+            alors que "poly" les attend dans l'ordre croissant.
+        </para>
+        <programlisting role="example"><![CDATA[
+v= [1.12119799 0 3.512D+13 32 3.275D+27 0 1.117D+41 4.952D+27 1.722D+54 0 1.224D+67 0 3.262D+79 ];
+r1 = roots(v,"e"); // Avec l'option "e"
+dv = size(v,"*");
+p = poly(v(dv:-1:1),"x","coeff"); // Inversion des coefficients de v
+A = companion(p);
+r2 = spec(A); // Avec la matrice compagnon
+max(abs(r1-r2))
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

@@ -350,7 +350,7 @@ int sci_linmeq(char *fname, void* pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: Real or complex matrix expected.\n"), fname, 2);
+        Scierror(202, _("%s: Wrong type for argument #%d: Real or complex matrix expected.\n"), fname, 2);
         return 1;
     }
 
@@ -382,7 +382,7 @@ int sci_linmeq(char *fname, void* pvApiCtx)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
-            Scierror(202, _("%s: Wrong type for argument %d: Real or complex matrix expected.\n"), fname, 3);
+            Scierror(202, _("%s: Wrong type for argument #%d: Real or complex matrix expected.\n"), fname, 3);
             return 1;
         }
 
@@ -410,7 +410,7 @@ int sci_linmeq(char *fname, void* pvApiCtx)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
-            Scierror(202, _("%s: Wrong type for argument %d: Real or complex matrix expected.\n"), fname, 4);
+            Scierror(202, _("%s: Wrong type for argument #%d: Real or complex matrix expected.\n"), fname, 4);
             return 1;
         }
 
@@ -443,7 +443,7 @@ int sci_linmeq(char *fname, void* pvApiCtx)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
-            Scierror(202, _("%s: Wrong type for argument %d: Real or complex matrix expected.\n"), fname, 3);
+            Scierror(202, _("%s: Wrong type for argument #%d: Real or complex matrix expected.\n"), fname, 3);
             return 1;
         }
 
@@ -494,7 +494,7 @@ int sci_linmeq(char *fname, void* pvApiCtx)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
-            Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, IP);
+            Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, IP);
             return 1;
         }
 

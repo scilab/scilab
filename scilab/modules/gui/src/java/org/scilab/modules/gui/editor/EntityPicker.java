@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Pedro Arthur dos S. Souza
  * Copyright (C) 2012 - Caio Lucas dos S. Souza
+ * Copyright (C) 2014 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,7 +13,6 @@
  */
 
 package org.scilab.modules.gui.editor;
-
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
@@ -26,81 +26,66 @@ import org.scilab.forge.scirenderer.tranformations.Vector3d;
 
 import org.scilab.modules.graphic_objects.PolylineData;
 import org.scilab.modules.graphic_objects.SurfaceData;
+import org.scilab.modules.gui.datatip.DatatipCommon;
 import org.scilab.modules.gui.editor.CommonHandler;
 import org.scilab.modules.gui.editor.ObjectSearcher;
 
-import java.lang.Math;
-
-
 /**
-* Given a (x, y) window coord checks
-* if it is closer or belongs to a polyline.
-*
-* @author Caio Souza <caioc2bolado@gmail.com>
-* @author Pedro Souza <bygrandao@gmail.com>
-*
-* @since 2012-06-01
-*/
+ * Given a (x, y) window coord checks
+ * if it is closer or belongs to a polyline.
+ *
+ * @author Caio Souza <caioc2bolado@gmail.com>
+ * @author Pedro Souza <bygrandao@gmail.com>
+ *
+ * @since 2012-06-01
+ */
 
 
 public class EntityPicker {
 
-    private Double dy;
-    private Double dx;
-    private boolean needTransform = false;
-    private Axes curAxes = null;
-    private final Double selectionDelta = 7.0;
+    private static final int EPS = 2;
 
     /**
-    * Picks a polyline at the given position.
-    *
-    * @param figureUid     Figure uid to be check.
-    * @param posX         Position on x axis in pixels.
-    * @param posY         Position on y axis in pixels.
-    * @return            Picked polyline uid or null if there isn't any polyline at the given position.
-    */
+     * Picks a polyline at the given position.
+     *
+     * @param figureUid     Figure uid to be check.
+     * @param posX         Position on x axis in pixels.
+     * @param posY         Position on y axis in pixels.
+     * @return            Picked polyline uid or null if there isn't any polyline at the given position.
+     */
     public Integer pick(Integer figureUid, Integer posX, Integer posY) {
-
         Integer[] position = {posX, posY};
         Integer axes = AxesHandler.clickedAxes(figureUid, position);
         if (axes == null) {
             return null;
         }
 
-        curAxes = AxesHandler.getAxesFromUid(axes);
-
-        double[] pos = {1.0 * posX, 1.0 * posY, 1.0};
+        double[] pos = {posX.doubleValue(), posY.doubleValue(), 1.0};
         double[] c2d = CallRenderer.get2dViewFromPixelCoordinates(axes, pos);
 
-        pos[0] += selectionDelta;
-        pos[1] += selectionDelta;
-        double[] c2d2 = CallRenderer.get2dViewFromPixelCoordinates(axes, pos);
-
-        dx = Math.abs(c2d[0] - c2d2[0]);
-        dy = Math.abs(c2d[1] - c2d2[1]);
-
-        needTransform = !isInDefaultView(curAxes);
-
         /* Checks if the click is outside canvas drawable area*/
-        if (AxesHandler.isZoomBoxEnabled(axes)) {
-            if (!AxesHandler.isInZoomBoxBounds(axes, c2d[0], c2d[1])) {
-                return null;
-            }
+        if (AxesHandler.isZoomBoxEnabled(axes) && !AxesHandler.isInZoomBoxBounds(axes, c2d[0], c2d[1])) {
+            return null;
         }
 
         Integer polylines[] = (new ObjectSearcher()).search(axes, GraphicObjectProperties.__GO_POLYLINE__);
-
         if (polylines != null) {
             for (int i = 0; i < polylines.length; ++i) {
                 if (CommonHandler.isVisible(polylines[i])) {
-
                     if (CommonHandler.isLineEnabled(polylines[i])) {
-                        if (isOverLine(polylines[i], c2d[0], c2d[1]) != -1) {
+                        if (isOverLine(axes, polylines[i], posX, posY) != -1) {
                             return polylines[i];
                         }
                     }
+
                     if (CommonHandler.isMarkEnabled(polylines[i])) {
-                        if (isOverMark(polylines[i], c2d[0], c2d[1]) != -1) {
+                        if (isOverMark(axes, polylines[i], posX, posY) != -1) {
+                            return polylines[i];
+                        }
+                    }
+
+                    if (!CommonHandler.isLineEnabled(polylines[i])) {
+                        if (isOverDot(axes, polylines[i], posX, posY) != -1) {
                             return polylines[i];
                         }
                     }
@@ -111,15 +96,48 @@ public class EntityPicker {
         return null;
     }
 
-    /**
-    * Check algorithm linear interpolation for each pair of points.
-    * @param uid    Polyline uid to be checked.
-    * @param x        position on x axis in view coordinates.
-    * @param y        position on y axis in view coordinates.
-    * @return        true if x,y belongs or is closest to the polyline.
-    */
-    private int isOverLine(Integer uid, Double x, Double y) {
+    public static DatatipCommon.Segment getSegment(Integer uid, int index) {
+        double[] datax = (double[])PolylineData.getDataX(uid);
+        double[] datay = (double[])PolylineData.getDataY(uid);
+        double[] dataz = (double[])PolylineData.getDataZ(uid);
 
+        if (datax.length == 1) {
+            return new DatatipCommon.Segment(0, datax[0], datax[0], datay[0], datay[0], dataz[0], dataz[0]);
+        }
+
+        if (index <= 0) {
+            return new DatatipCommon.Segment(0, datax[0], datax[1], datay[0], datay[1], dataz[0], dataz[1]);
+        } else if (index >= datax.length - 1) {
+            return new DatatipCommon.Segment(datax.length - 2, datax[datax.length - 2], datax[datax.length - 1], datay[datay.length - 2], datay[datay.length - 1], dataz[dataz.length - 2], dataz[dataz.length - 1]);
+        } else {
+            return new DatatipCommon.Segment(index, datax[index], datax[index + 1], datay[index], datay[index + 1], datay[index], datay[index + 1]);
+        }
+    }
+
+    public static double[] getSegment(Integer figureUid, Integer uid, int index, int x, int y) {
+        final Integer axes = AxesHandler.clickedAxes(figureUid, new Integer[] {x, y});
+        final double[][] pixs = EntityPicker.getPixelsData(axes, uid);
+        final double[] p1 = pixs[index];
+        final double[] p2 = pixs[index + 1];
+        final double px = p2[0] - p1[0];
+        final double py = p2[1] - p1[1];
+        final double ps = (x - p1[0]) * px + (y - p1[1]) * py;
+        final double[] info = new double[] {index, 0};
+
+        if (0 <= ps) {
+            final double n2 = px * px + py * py;
+            // the projected point is in the segment [p1,p2]
+            if (ps <= n2) {
+                info[1] = ps / n2;
+            } else {
+                info[1] = 1;
+            }
+        }
+
+        return info;
+    }
+
+    public static double[][] getPixelsData(Integer axes, Integer uid) {
         double[] datax = (double[])PolylineData.getDataX(uid);
         double[] datay = (double[])PolylineData.getDataY(uid);
         double[] dataz = (double[])PolylineData.getDataZ(uid);
@@ -127,71 +145,226 @@ public class EntityPicker {
 
         if (PolylineData.isXShiftSet(uid) != 0) {
             double[] x_shift = (double[])PolylineData.getShiftX(uid);
-            for (int i = 0; i < size; ++i) {
+            for (int i = 0; i < size; i++) {
                 datax[i] += x_shift[i];
             }
         }
 
         if (PolylineData.isYShiftSet(uid) != 0) {
             double[] y_shift = (double[])PolylineData.getShiftY(uid);
-            for (int i = 0; i < size; ++i) {
+            for (int i = 0; i < size; i++) {
                 datay[i] += y_shift[i];
             }
         }
 
         if (PolylineData.isZShiftSet(uid) != 0) {
             double[] z_shift = (double[])PolylineData.getShiftZ(uid);
-            for (int i = 0; i < size; ++i) {
+            for (int i = 0; i < size; i++) {
                 dataz[i] += z_shift[i];
             }
         }
-        datax = CommonHandler.toLogScale(datax, curAxes.getXAxisLogFlag());
-        datay = CommonHandler.toLogScale(datay, curAxes.getYAxisLogFlag());
-        dataz = CommonHandler.toLogScale(dataz, curAxes.getZAxisLogFlag());
 
-        double[] oldPoint = null;
-        if (needTransform) {
-            oldPoint = transformPoint(curAxes, datax[0], datay[0], dataz[0]);
+        return CallRenderer.getPixelFrom3dCoordinates(axes, datax, datay, dataz);
+    }
+
+    public static double[] getNearestSegmentIndex(double[][] data, double x, double y) {
+        if (data != null && data.length >= 1) {
+            int minIndex = 0;
+            double minD2 = Double.MAX_VALUE;
+
+            for (int i = 0; i < data.length - 1; i++) {
+                final double[] p1 = data[i];
+                final double[] p2 = data[i + 1];
+                final double px = p2[0] - p1[0];
+                final double py = p2[1] - p1[1];
+                final double mpx = x - p1[0];
+                final double mpy = y - p1[1];
+                final double ps = mpx * px + mpy * py;
+                final double d2;
+
+                if (0 <= ps) {
+                    final double n2 = px * px + py * py;
+                    // the projected point is in the segment [p1,p2]
+                    if (ps <= n2) {
+                        d2 = mpx * mpx + mpy * mpy - ps * ps / n2;
+                    } else {
+                        d2 = (x - p2[0]) * (x - p2[0]) + (y - p2[1]) * (y - p2[1]);
+                    }
+                } else {
+                    d2 = mpx * mpx + mpy * mpy;
+                }
+
+                if (d2 < minD2) {
+                    minD2 = d2;
+                    minIndex = i;
+                }
+            }
+
+            final double[] p1 = data[minIndex];
+            final double[] p2 = data[minIndex + 1];
+            final double px = p2[0] - p1[0];
+            final double py = p2[1] - p1[1];
+            final double ps = (x - p1[0]) * px + (y - p1[1]) * py;
+            double[] info = new double[] {minIndex, 0};
+
+            if (0 <= ps) {
+                final double n2 = px * px + py * py;
+                // the projected point is in the segment [p1,p2]
+                if (ps <= n2) {
+                    info[1] = ps / n2;
+                } else {
+                    info[1] = 1;
+                }
+            }
+
+            return info;
         }
 
-        for (Integer i = 0; i < (size - 1); ++i) {
-            if (needTransform) {
-                double[] newPoint = transformPoint(curAxes, datax[i + 1], datay[i + 1], dataz[i + 1]);
-                if (isInRange(oldPoint[0], newPoint[0], oldPoint[1], newPoint[1], x, y)) {
-                    return i;
+        return null;
+    }
+
+    public static double[] getNearestSegmentIndex(double[][] data, double x, double y, double z) {
+        if (data != null && data.length >= 1) {
+            int minIndex = 0;
+            double minD2 = Double.MAX_VALUE;
+
+            for (int i = 0; i < data.length - 1; i++) {
+                final double[] p1 = data[i];
+                final double[] p2 = data[i + 1];
+                final double px = p2[0] - p1[0];
+                final double py = p2[1] - p1[1];
+                final double pz = p2[2] - p1[2];
+                final double mpx = x - p1[0];
+                final double mpy = y - p1[1];
+                final double mpz = z - p1[2];
+                final double ps = mpx * px + mpy * py + mpz * pz;
+                final double d2;
+
+                if (0 <= ps) {
+                    final double n2 = px * px + py * py + pz * pz;
+                    // the projected point is in the segment [p1,p2]
+                    if (ps <= n2) {
+                        d2 = mpx * mpx + mpy * mpy + mpz * mpz - ps * ps / n2;
+                    } else {
+                        d2 = (x - p2[0]) * (x - p2[0]) + (y - p2[1]) * (y - p2[1]) + (z - p2[2]) * (z - p2[2]);
+                    }
+                } else {
+                    d2 = mpx * mpx + mpy * mpy + mpz * mpz;
                 }
-                oldPoint = newPoint;
-            } else {
-                if (isInRange(datax[i], datax[i + 1], datay[i], datay[i + 1], x, y)) {
-                    return i;
+
+                if (d2 < minD2) {
+                    minD2 = d2;
+                    minIndex = i;
+                }
+            }
+
+            final double[] p1 = data[minIndex];
+            final double[] p2 = data[minIndex + 1];
+            final double px = p2[0] - p1[0];
+            final double py = p2[1] - p1[1];
+            final double pz = p2[2] - p1[2];
+            final double ps = (x - p1[0]) * px + (y - p1[1]) * py + (z - p1[2]) * pz;
+            double[] info = new double[] {minIndex, 0};
+
+            if (0 <= ps) {
+                final double n2 = px * px + py * py + pz * pz;
+                // the projected point is in the segment [p1,p2]
+                if (ps <= n2) {
+                    info[1] = ps / n2;
+                } else {
+                    info[1] = 1;
+                }
+            }
+
+            return info;
+        }
+
+        return null;
+    }
+
+    public static double[] getNearestSegmentIndex(Integer axes, Integer uid, int x, int y) {
+        return getNearestSegmentIndex(EntityPicker.getPixelsData(axes, uid), (double) x, (double) y);
+    }
+
+    public static double[] getNearestSegmentIndex(Integer uid, double x, double y, double z) {
+        return getNearestSegmentIndex(DatatipCommon.getPolylineDataMatrix(uid, false), x, y, z);
+    }
+
+    public static double[] getNearestSegmentIndex(Integer uid, double x, double y) {
+        return getNearestSegmentIndex(DatatipCommon.getPolylineDataMatrix(uid, true), x, y);
+    }
+
+    /**
+     * Check algorithm linear interpolation for each pair of points.
+     * @param uid    Polyline uid to be checked.
+     * @param x        position on x axis in view coordinates.
+     * @param y        position on y axis in view coordinates.
+     * @return        true if x,y belongs or is closest to the polyline.
+     */
+    private int isOverLine(Integer axes, Integer uid, int x, int y) {
+        double[][] pixs = EntityPicker.getPixelsData(axes, uid);
+        for (int i = 0; i < pixs.length - 1; i++) {
+            // We could probably make something more efficient
+            // but in the case of datatip it is probably useless...
+            // So wait and see the user feedback.
+            final double[] p1 = pixs[i];
+            final double[] p2 = pixs[i + 1];
+            final double px = p2[0] - p1[0];
+            final double py = p2[1] - p1[1];
+            final double mpx = x - p1[0];
+            final double mpy = y - p1[1];
+            final double ps = mpx * px + mpy * py;
+
+            // the projected point is in the segment [p1,p2]
+            if (0 <= ps) {
+                final double n2 = px * px + py * py;
+                if (ps <= n2) {
+                    final double d = mpx * mpx + mpy * mpy - ps * ps / n2;
+                    // the square of the distance is lower than EPS^2
+                    if (d <= EPS * EPS) {
+                        return i;
+                    }
                 }
             }
         }
+
         return -1;
     }
 
-    private boolean isInRange(Double x0, Double x1, Double y0, Double y1, Double x, Double y) {
-        /* Fast bound check*/
-        double m = (x1 + x0) / 2;
-        double dx = m - x0;
+    /**
+     * Checks if the given point belongs the polyline dot.
+     * @param uid    Polyline uid to be checked.
+     * @param x        position on x axis in view coordinates.
+     * @param y        position on y axis in view coordinates.
+     * @return        True if x,y belongs to the polyline mark.
+     */
+    private int isOverDot(Integer axes, Integer uid, int x, int y) {
+        double[][] pixs = EntityPicker.getPixelsData(axes, uid);
+        for (int i = 0; i < pixs.length; ++i) {
+            if ((Math.abs(x - pixs[i][0]) <= EPS + 1) && (Math.abs(y - pixs[i][1]) <= EPS + 1)) {
+                return i;
+            }
+        }
 
-        double ca = (y1 - y0) / (x1 - x0);
+        return -1;
+    }
 
-        double yy = y0 + ca * (x - x0);
+    /**
+     * Checks if the given point belongs the polyline dot.
+     * @param uid    Polyline uid to be checked.
+     * @param x        position on x axis in view coordinates.
+     * @param y        position on y axis in view coordinates.
+     * @return        True if x,y belongs to the polyline mark.
+     */
+    private int isOverBar(Integer axes, Integer uid, int x, int y, int width) {
+        double[][] pixs = EntityPicker.getPixelsData(axes, uid);
+        for (int i = 0; i < pixs.length; ++i) {
+            if ((Math.abs(x - pixs[i][0]) <= width) && (Math.abs(y - pixs[i][1]) <= EPS)) {
+                return i;
+            }
+        }
 
-        double pix = this.dx / selectionDelta;
-        double m_y = (y1 + y0) / 2;
-        double dy = m_y - y0;
-
-        boolean ca_inf = (Math.abs(x1 - x0) < Math.abs(pix * 2));
-        boolean in_bounds = (Math.abs(m - x) <= Math.abs(pix * 2)) && (Math.abs(m_y - y) <= Math.abs(dy));
-
-        /*
-         * test if (x, y) belongs or is closer to the line
-         * if the angular coeficent -> inf(ca_inf), the interpolation fails
-         * then we use "in_bunds" test.
-         */
-        return (Math.abs(m - x) <= Math.abs(dx)) && (y >= (yy - this.dy)) && (y <= (yy + this.dy)) || (ca_inf && in_bounds);
+        return -1;
     }
 
     /**
@@ -201,61 +374,22 @@ public class EntityPicker {
      * @param y        position on y axis in view coordinates.
      * @return        True if x,y belongs to the polyline mark.
      */
-    private int isOverMark(Integer uid, Double x, Double y) {
-
-        double[] datax = (double[])PolylineData.getDataX(uid);
-        double[] datay = (double[])PolylineData.getDataY(uid);
-        double[] dataz = (double[])PolylineData.getDataZ(uid);
-
-        if (PolylineData.isXShiftSet(uid) != 0) {
-            double[] x_shift = (double[])PolylineData.getShiftX(uid);
-            for (int i = 0; i < datax.length; ++i) {
-                datax[i] += x_shift[i];
-            }
-        }
-
-        if (PolylineData.isYShiftSet(uid) != 0) {
-            double[] y_shift = (double[])PolylineData.getShiftY(uid);
-            for (int i = 0; i < datay.length; ++i) {
-                datay[i] += y_shift[i];
-            }
-        }
-
-        if (PolylineData.isZShiftSet(uid) != 0) {
-            double[] z_shift = (double[])PolylineData.getShiftZ(uid);
-            for (int i = 0; i < dataz.length; ++i) {
-                dataz[i] += z_shift[i];
-            }
-        }
-
-        datax = CommonHandler.toLogScale(datax, curAxes.getXAxisLogFlag());
-        datay = CommonHandler.toLogScale(datay, curAxes.getYAxisLogFlag());
-        dataz = CommonHandler.toLogScale(dataz, curAxes.getZAxisLogFlag());
-
+    private int isOverMark(Integer axes, Integer uid, int x, int y) {
+        double[][] pixs = EntityPicker.getPixelsData(axes, uid);
         Integer size = CommonHandler.getMarkSize(uid);
         Integer unit = CommonHandler.getMarkSizeUnit(uid);
 
         int finalSize = (unit == 1) ? (8 + 2 * size) : size;
         finalSize /= 2;
-        double deltax = Math.abs((dx / selectionDelta) * finalSize);
-        double deltay = Math.abs((dy / selectionDelta) * finalSize);
 
-
-        for (int i = 0; i < datax.length; ++i) {
-            if (needTransform) {
-                double[] point = transformPoint(curAxes, datax[i], datay[i], dataz[i]);
-                if ((Math.abs(point[0] - x) <= deltax) && (Math.abs(point[1] - y) <= deltay)) {
-                    return i;
-                }
-            } else {
-                if ((Math.abs(datax[i] - x) <= deltax) && (Math.abs(datay[i] - y) <= deltay)) {
-                    return i;
-                }
+        for (int i = 0; i < pixs.length; ++i) {
+            if ((Math.abs(x - pixs[i][0]) <= finalSize) && (Math.abs(y - pixs[i][1]) <= finalSize)) {
+                return i;
             }
         }
+
         return -1;
     }
-
 
     public class PickedPoint {
         public int point;
@@ -263,6 +397,10 @@ public class EntityPicker {
         PickedPoint(int p, boolean segment) {
             point = p;
             isSegment = segment;
+        }
+
+        public String toString() {
+            return "Point: " + point + ", isSegment=" + isSegment;
         }
     }
 
@@ -273,39 +411,29 @@ public class EntityPicker {
      * @return The picked point or PickedPoint.point = -1 otherwise.
      */
     public PickedPoint pickPoint(Integer uid, int px, int py) {
-
         PickedPoint point = new PickedPoint(-1, false);
-        Integer[] position = {px, py};
+        Integer[] position = new Integer[] {px, py};
         Integer figUid = (new ObjectSearcher()).searchParent(uid, GraphicObjectProperties.__GO_FIGURE__);
         Integer axes = AxesHandler.clickedAxes(figUid, position);
         if (axes == null) {
             return point;
         }
 
-        curAxes = AxesHandler.getAxesFromUid(axes);
-
-        double[] pos = {1.0 * px, 1.0 * py, 1.0};
-        double[] c2d = CallRenderer.get2dViewFromPixelCoordinates(axes, pos);
-
-        pos[0] += selectionDelta;
-        pos[1] += selectionDelta;
-        double[] c2d2 = CallRenderer.get2dViewFromPixelCoordinates(axes, pos);
-
-        dx = Math.abs(c2d[0] - c2d2[0]);
-        dy = Math.abs(c2d[1] - c2d2[1]);
-
-        needTransform = !isInDefaultView(curAxes);
-
-        /*try pick a point*/
-        point.point = isOverMark(uid, c2d[0], c2d[1]);
-        if (point.point != -1) {
-            return point;
-        } else {
-            /*try pick a segment*/
-            point.point = isOverLine(uid, c2d[0], c2d[1]);
-            point.isSegment = true;
-            return point;
+        if (CommonHandler.isMarkEnabled(uid)) {
+            point.point = isOverMark(axes, uid, px, py);
+            if (point.point != -1) {
+                return point;
+            }
         }
+
+        if (CommonHandler.isLineEnabled(uid)) {
+            point.point = isOverLine(axes, uid, px, py);
+            point.isSegment = true;
+        } else {
+            point.point = isOverDot(axes, uid, px, py);
+        }
+
+        return point;
     }
 
     /**
@@ -339,12 +467,12 @@ public class EntityPicker {
     }
 
     /**
-    * Check if the given position is over a legend object.
-    *
-    * @param axes The uid of axes that was clicked.
-    * @param position The mouse position (x, y).
-    * @return The LegendInfo if picked a legend null otherwise.
-    */
+     * Check if the given position is over a legend object.
+     *
+     * @param axes The uid of axes that was clicked.
+     * @param position The mouse position (x, y).
+     * @return The LegendInfo if picked a legend null otherwise.
+     */
     public LegendInfo pickLegend(Integer figure, Integer[] position) {
 
         Integer axes = AxesHandler.clickedAxes(figure, position);
@@ -445,10 +573,10 @@ public class EntityPicker {
     }
 
     /**
-    * Rotate the Corners points 90 degrees
-    *
-    * @param vec The corners points vector(should be 4 points x 3 coord, arranged sequentially)
-    */
+     * Rotate the Corners points 90 degrees
+     *
+     * @param vec The corners points vector(should be 4 points x 3 coord, arranged sequentially)
+     */
     private static Double[] rotateCorners(Double[] vec) {
 
         Integer length = vec.length;
@@ -471,7 +599,7 @@ public class EntityPicker {
      */
     Integer pickSurface(Integer figure, Integer[] pos) {
         Integer uid = AxesHandler.clickedAxes(figure, pos);
-        curAxes = (Axes)GraphicController.getController().getObjectFromId(uid);
+        Axes curAxes = (Axes)GraphicController.getController().getObjectFromId(uid);
         if (curAxes == null) {
             return null;
         }
@@ -507,39 +635,20 @@ public class EntityPicker {
 
 
     public Integer pickDatatip(Integer figure, Integer[] pos) {
-
         Integer axes = AxesHandler.clickedAxes(figure, pos);
         if (axes == null) {
             return null;
         }
 
-        curAxes = AxesHandler.getAxesFromUid(axes);
-        Integer[] datatips = (new ObjectSearcher()).search(axes, GraphicObjectProperties.__GO_DATATIP__);
-        boolean[] logFlags = {  curAxes.getXAxisLogFlag(), curAxes.getYAxisLogFlag(), curAxes.getZAxisLogFlag()};
-
+        Integer[] datatips = (new ObjectSearcher()).search(axes, GraphicObjectProperties.__GO_DATATIP__, true);
         if (datatips != null) {
-
-            needTransform = !isInDefaultView(curAxes);
-            double[] pix_pos = {1.0 * pos[0], 1.0 * pos[1], 1.0};
-            double[] c2d = CallRenderer.get2dViewFromPixelCoordinates(axes, pix_pos);
-            pix_pos[0] += 1.0;
-            pix_pos[1] += 1.0;
-            double[] c2d2 = CallRenderer.get2dViewFromPixelCoordinates(axes, pix_pos);
-            double dx = Math.abs(c2d[0] - c2d2[0]);
-            double dy = Math.abs(c2d[1] - c2d2[1]);
+            int x = pos[0];
+            int y = pos[1];
 
             for (int i = 0; i < datatips.length; ++i) {
-
                 Double[] tip_pos = (Double[])GraphicController.getController().getProperty(datatips[i], GraphicObjectProperties.__GO_DATATIP_DATA__);
-                double point[] = new double[3];
-                point[0] = CommonHandler.logScale(tip_pos[0], logFlags[0]);
-                point[1] = CommonHandler.logScale(tip_pos[1], logFlags[1]);
-                point[2] = CommonHandler.logScale(tip_pos[2], logFlags[2]);
-
-
-                if (needTransform) {
-                    point = transformPoint(curAxes, tip_pos[0], tip_pos[1], tip_pos[2]);
-                }
+                double[] point = new double[] {tip_pos[0], tip_pos[1], tip_pos[2]};
+                double[] pix = CallRenderer.getPixelFrom3dCoordinates(axes, point);
 
                 Integer size = CommonHandler.getMarkSize(datatips[i]);
                 Integer unit = CommonHandler.getMarkSizeUnit(datatips[i]);
@@ -547,12 +656,12 @@ public class EntityPicker {
                 int finalSize = (unit == 1) ? (8 + 2 * size) : size;
                 finalSize /= 2;
 
-                if ((Math.abs(point[0] - c2d[0]) <= dx * finalSize) && (Math.abs(point[1] - c2d[1]) <= dy * finalSize)) {
+                if ((Math.abs(x - pix[0]) <= finalSize) && (Math.abs(y - pix[1]) <= finalSize)) {
                     return datatips[i];
                 }
-
             }
         }
+
         return null;
     }
 }

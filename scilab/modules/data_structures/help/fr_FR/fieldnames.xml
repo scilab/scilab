@@ -49,6 +49,13 @@
             struct. <literal>fieldnames</literal> ne fonctionne pas sur le
             type cell.
         </para>
+        <para>
+            Comme expliqué dans les documentations de <link linkend="rational">rational</link> et
+            <link linkend="syslin">syslin</link>, certains objets de Scilab sont construits à partir
+            de tlist (ou rlist). Autrement dit, la fonction <function>fieldnames</function> avec ceux-ci en paramètres
+            d'entrée va retourner comme résultat la forme générique de ces objets. Par exemple, pour un objet
+            de type <link linkend="rational">rational</link>, la fonction va renvoyer "num", "den" et "dt".
+        </para>
     </refsection>
     <refsection>
         <title>Exemples</title>
@@ -59,6 +66,8 @@
             obj.x = 3;
             obj.y = 3;
             fieldnames(obj)
+            fieldnames(1/%s)
+            fieldnames(tf2ss(1/%s))
         </programlisting>
     </refsection>
     <refsection role="see also">

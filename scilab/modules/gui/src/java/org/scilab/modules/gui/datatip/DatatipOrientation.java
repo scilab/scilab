@@ -16,6 +16,7 @@ import org.scilab.modules.gui.datatip.DatatipCommon;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 import org.scilab.modules.gui.editor.AxesHandler;
+import org.scilab.modules.gui.editor.EntityPicker;
 import org.scilab.modules.renderer.CallRenderer;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
@@ -34,8 +35,8 @@ public class DatatipOrientation {
     public static void setOrientation(Integer datatip) {
         Integer polyline = DatatipCommon.getParentPolyline(datatip);
         if (polyline != null) {
-            Double[] tip_pos = (Double[])GraphicController.getController().getProperty(datatip, __GO_DATATIP_DATA__);
-            DatatipCommon.Segment seg = DatatipCommon.getSegment(tip_pos[0], polyline);
+            Integer[] indexes = (Integer[])GraphicController.getController().getProperty(datatip, __GO_DATATIP_INDEXES__);
+            DatatipCommon.Segment seg = EntityPicker.getSegment(polyline, indexes[0]);
             if (seg != null) {
                 setOrientation(datatip, seg);
             }
@@ -50,7 +51,6 @@ public class DatatipOrientation {
     public static void setOrientation(Integer datatip, Integer lastClick[], Integer[] curClick) {
         int dx = curClick[0] - lastClick[0];
         int dy = curClick[1] - lastClick[1];
-
         Integer finalOrientation = 0;
 
         if (dx > 0) {
@@ -76,7 +76,6 @@ public class DatatipOrientation {
      * @param seg the line segment
      */
     public static void setOrientation(Integer datatip, DatatipCommon.Segment seg) {
-
         Double[] bounds;
         Integer finalOrientation;
 

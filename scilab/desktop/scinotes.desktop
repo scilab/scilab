@@ -1,14 +1,16 @@
 [Desktop Entry]
 Comment=Scilab text editor
 Comment[fr]=Editeur de texte Scilab
+Comment[ru]=Текстовый редактор Scilab
 Exec=scinotes
 GenericName=Scientific Software Package
 GenericName[fr]=Logiciel de calcul numérique
 GenericName[de]=Wissenschaftssoftware
+GenericName[ru]=Научный программный комплекс
 Icon=scinotes
 MimeType=application/x-scilab-sci;application/x-scilab-sce;application/x-scilab-tst;application/x-scilab-dem;
 Name=Scinotes
 StartupNotify=false
 Terminal=false
 Type=Application
-Categories=Education;Science;Math;Development;Physics;
+Categories=Science;Math;

@@ -339,9 +339,6 @@ plot2d(x,x^3)  //the drawing are sent to the initial figure
                 <link linkend="move">move</link>
             </member>
             <member>
-                <link linkend="draw">draw</link>
-            </member>
-            <member>
                 <link linkend="delete">delete</link>
             </member>
             <member>

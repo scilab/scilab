@@ -70,6 +70,8 @@ void* get_image_type_property(void* _pvCtx, int iObjUID)
             return sciReturnString("rgb555");
         case MATPLOT_RGBA_5551 :
             return sciReturnString("rgba5551");
+        case MATPLOT_ARGB :
+            return sciReturnString("argb");
         default :
             Scierror(999, _("Wrong value for '%s' property.\n"), "image_type");
             return NULL;

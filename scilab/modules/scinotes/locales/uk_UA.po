@@ -9,13 +9,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-09-15 06:57+0000\n"
+"PO-Revision-Date: 2014-03-21 11:19+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 16967)\n"
 "Language: uk\n"
 
 #, c-format
@@ -274,8 +274,8 @@ msgstr "(, [, …"
 msgid "if, function, ..."
 msgstr "if, function, …"
 
-msgid "Line numbering;Off;Normal;Whereami compatible"
-msgstr "Нумерація рядків;Вимкнено;Звичайна;Сумісна з Whereami"
+msgid "Line numbering;Off;Normal;Local numbering"
+msgstr "Нумерація рядків;Вимкнено;Локальна нумерація"
 
 msgid "Highlight current line"
 msgstr "Підсвічувати поточний рядок"
@@ -298,8 +298,10 @@ msgstr "Від’єднати вкладку у окреме вікно"
 msgid "Copy selection in a new tab"
 msgstr "Копіювати позначене до нової вкладки"
 
-msgid "Split View;Off;Horizontally;Vertically"
-msgstr "Розділений перегляд;Вимкнено;Горизонтально;Вертикально"
+msgid "Split View;Off;Split in two columns;Split in two rows"
+msgstr ""
+"Розділений перегляд;Вимкнути;Розділити на два стовпчики;Розділити на два "
+"рядки"
 
 msgid "Execute"
 msgstr "Виконати"
@@ -520,6 +522,9 @@ msgstr "SciNotes"
 
 msgid "Error while reading the String"
 msgstr "Помилка під час спроби читання рядка"
+
+msgid "The configuration file has been corrupted and reset to default one."
+msgstr "Файл налаштувань пошкоджено. Відновлено типові значення."
 
 #, c-format
 msgid "File not found: %s"
@@ -757,10 +762,9 @@ msgid "This file"
 msgstr "Поточний файл"
 
 #, c-format
-msgid "%s has been modified since last save. Save it?"
+msgid "The file %s has been modified since last save. Save it?"
 msgstr ""
-"До файла %s було внесено зміни з часу його останнього збереження. Зберегти "
-"ці зміни?"
+"З часу останнього збереження до файла %s було внесено зміни. Зберегти файл?"
 
 #, c-format
 msgid "The file %s has been modified by another program ! Overwrite it ?"
@@ -916,6 +920,29 @@ msgstr ""
 
 msgid "Backup finished..."
 msgstr "Створення резервної копії завершено…"
+
+#, c-format
+msgid "The directory %s does not exist. Do you want to create it?"
+msgstr "Каталогу з назвою %s не існує. Хочете його створити?"
+
+#, c-format
+msgid "The directory %s cannot be created. Please check your access rights."
+msgstr ""
+"Не вдалося створити каталог %s. Будь ласка, перевірте, чи є у вас відповідні "
+"права доступу."
+
+#, c-format
+msgid "Impossible to write a file in %s. Please check your access rights."
+msgstr ""
+"Не вдалося записати файл до %s. Будь ласка, перевірте, чи є у вас відповідні "
+"права доступу."
+
+#, c-format
+msgid "Invalid directory name: %s."
+msgstr "Некоректна назва каталогу: %s."
+
+msgid "SciNotes autosave"
+msgstr "Автозбереження SciNotes"
 
 #, c-format
 msgid "%s occurences found."
@@ -1102,20 +1129,23 @@ msgstr "Виберіть кореневий каталог пошуку"
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Модуль «%s» Scilab не встановлено.\n"
 
-msgid "the last error did not occur inside a library function."
-msgstr "остання помилка сталася поза межами функції з бібліотеки."
+msgid "The last error did not occur inside a Scilab macro."
+msgstr "Остання помилка не сталася у межах макросу Scilab."
 
 msgid " on line "
 msgstr " у рядку "
 
-msgid "opening file "
-msgstr "відкриття файла "
+msgid "Opening file "
+msgstr "Відкриваємо файл "
 
 msgid " of the source file of the function "
 msgstr " початкового коду функції "
 
-msgid "the source file of the function "
-msgstr "початковий код функції "
+msgid "The source file of the function "
+msgstr "Файл коду функції "
 
 msgid " was not found in any library path"
 msgstr " не було знайдено за жодною з адрес бібліотек"
+
+msgid "There is no recorded error"
+msgstr "Записів помилок не збереглося"

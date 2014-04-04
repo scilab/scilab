@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 16967)\n"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
@@ -266,8 +266,8 @@ msgstr "(, [, ..."
 msgid "if, function, ..."
 msgstr "if, funkce, ..."
 
-msgid "Line numbering;Off;Normal;Whereami compatible"
-msgstr "Číslování řádků;Vypnuto;Normální;Kompatibilní s Whereami"
+msgid "Line numbering;Off;Normal;Local numbering"
+msgstr ""
 
 msgid "Highlight current line"
 msgstr "Zvýraznit aktuální řádek"
@@ -290,8 +290,8 @@ msgstr "Odepnout kartu do nového okna"
 msgid "Copy selection in a new tab"
 msgstr "Zkopírovat výběr do nového okna"
 
-msgid "Split View;Off;Horizontally;Vertically"
-msgstr "Rozdělit Zobrazení;Vypnuto;Vodorovně;Svisle"
+msgid "Split View;Off;Split in two columns;Split in two rows"
+msgstr ""
 
 msgid "Execute"
 msgstr "Spustit"
@@ -512,6 +512,9 @@ msgstr "SciNotes"
 
 msgid "Error while reading the String"
 msgstr "Chyba při čtení Řetězce"
+
+msgid "The configuration file has been corrupted and reset to default one."
+msgstr ""
 
 #, c-format
 msgid "File not found: %s"
@@ -748,8 +751,8 @@ msgid "This file"
 msgstr "Tento soubor"
 
 #, c-format
-msgid "%s has been modified since last save. Save it?"
-msgstr "%s byl od posledního uložení změněn. Chcete ho uložit?"
+msgid "The file %s has been modified since last save. Save it?"
+msgstr ""
 
 #, c-format
 msgid "The file %s has been modified by another program ! Overwrite it ?"
@@ -900,6 +903,25 @@ msgstr "Nelze uložit soubor %s... zastavte proces zálohování"
 
 msgid "Backup finished..."
 msgstr "Zálohování dokončeno..."
+
+#, c-format
+msgid "The directory %s does not exist. Do you want to create it?"
+msgstr ""
+
+#, c-format
+msgid "The directory %s cannot be created. Please check your access rights."
+msgstr ""
+
+#, c-format
+msgid "Impossible to write a file in %s. Please check your access rights."
+msgstr ""
+
+#, c-format
+msgid "Invalid directory name: %s."
+msgstr ""
+
+msgid "SciNotes autosave"
+msgstr ""
 
 #, c-format
 msgid "%s occurences found."
@@ -1086,20 +1108,23 @@ msgstr "Zvolte základní adresář hledání"
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Modul Scilabu '%s' není nainstalován.\n"
 
-msgid "the last error did not occur inside a library function."
-msgstr "poslední chyba se neudála uvnitř knihovní funkce."
+msgid "The last error did not occur inside a Scilab macro."
+msgstr ""
 
 msgid " on line "
 msgstr " online "
 
-msgid "opening file "
-msgstr "otevírání souboru "
+msgid "Opening file "
+msgstr ""
 
 msgid " of the source file of the function "
 msgstr " ze zdrojového souboru funkce "
 
-msgid "the source file of the function "
-msgstr "zdrojový soubor funkce "
+msgid "The source file of the function "
+msgstr ""
 
 msgid " was not found in any library path"
 msgstr " nebylo nalezeno v žádné cestě knihovny"
+
+msgid "There is no recorded error"
+msgstr ""

@@ -12,10 +12,10 @@
 
 package org.scilab.modules.scinotes.actions;
 
+import javax.swing.JButton;
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.scinotes.SciNotes;
 
 /**
@@ -60,8 +60,8 @@ public final class UndoAction extends DefaultAction {
      * @param editor SciNotes
      * @return PushButton
      */
-    public static PushButton createButton(String tooltip, String icon, SciNotes editor) {
-        PushButton button = createButton(tooltip, icon, new UndoAction(tooltip, editor));
+    public static JButton createButton(String tooltip, String icon, SciNotes editor) {
+        JButton button = createButton(tooltip, icon, new UndoAction(tooltip, editor));
         editor.setUndoButton(button);
         return button;
     }

@@ -13,7 +13,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xs2emf" xml:lang="en">
     <refnamediv>
         <refname>xs2emf</refname>
-        <refpurpose>export graphics to EMF (only under Windows)</refpurpose>
+        <refpurpose>export graphics to EMF.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -61,20 +61,14 @@
         <para>
             <function>xs2emf</function> exports the display of a graphic window into an EMF file.
         </para>
-        <para>
-            The export file is obtained by creating an EPS file 
-            and converting it into EMF format using "pstoedit".
-        </para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-if getos() == 'Windows' then
-  scf(0);
-  plot2d();
-  //EMF export
-  xs2emf(0,'foo.emf');
-end
+        scf(0);
+        plot2d();
+        //EMF export
+        xs2emf(0, "foo.emf");
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -114,5 +108,16 @@ end
                 <link linkend="xs2ps">xs2ps</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>
+                    EMF export available on all platforms.
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

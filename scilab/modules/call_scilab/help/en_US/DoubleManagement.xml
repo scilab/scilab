@@ -26,12 +26,16 @@
             the memory of Scilab. These functions are described in dedicated
             pages.
         </para>
-        <para>Note that the default type of a numeric value in Scilab is double.
-            For example, in <emphasis>a=1</emphasis> or <emphasis>a=[1,2]</emphasis>,
-            <emphasis>a</emphasis> will be consider as a double.
+        <para>
+            <note>Note that the default type of a numeric value in Scilab is double.
+                For example, in <emphasis>a=1</emphasis> or <emphasis>a=[1,2]</emphasis>,
+                <emphasis>a</emphasis> will be consider as a double.
+            </note>
         </para>
         <para>
-            Note: Access to variables is done through <link linkend="api_scilab">api Scilab</link> (named variable).
+            <note>
+                Note: Access to variables is done through <link linkend="api_scilab">api Scilab</link> (named variable).
+            </note>
         </para>
     </refsection>
     <refsection>

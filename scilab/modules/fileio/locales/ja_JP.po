@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-12-08 11:21+0000\n"
+"PO-Revision-Date: 2014-03-30 13:30+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 16967)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -140,8 +140,8 @@ msgid "%s: Wrong value for input argument #%d: '%s' is an invalid path.\n"
 msgstr "%s: 入力引数 #%d の値が間違っています: '%s' は無効なパスです.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: A string expected.\n"
-msgstr "%s: 入力引数 %d の型が間違っています: 文字列を指定してください.\n"
+msgid "%s: Wrong type for argument #%d: A string expected.\n"
+msgstr "%s: 引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Could not create the output argument.\n"
@@ -244,12 +244,31 @@ msgid "%s: Data mismatch.\n"
 msgstr "%s: データに不整合があります.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Integer expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: 整数を指定してください.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: A positive integer value expected.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 正の整数値を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 整数を指定してください.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: A positive integer value expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 正の整数値を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A positive integer value expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 正の整数値を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: An integer value expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 整数値を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
+msgstr "%s: 入力引数 #%dの値が間違っています: 整数値を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 整数値を指定してください.\n"
 
 #, c-format
 msgid ""
@@ -284,6 +303,10 @@ msgstr "%s: 論理ユニット %d に関連付けられた入力ファイルが�
 #, c-format
 msgid "%s: invalid filename.\n"
 msgstr "%s: ファイル名が無効です.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Integer expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 整数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
@@ -333,28 +356,6 @@ msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列 (�
 
 msgid "Could not parse the URL.\n"
 msgstr "URLをパースできませんでした.\n"
-
-#, c-format
-msgid "Could not read the configuration file '%s'.\n"
-msgstr "設定ファイル '%s' を読み込めませんでした.\n"
-
-#, c-format
-msgid "Failed to read the scicurl_config file '%s'.\n"
-msgstr "scicurl_configファイル '%s' を読み込めませんでした.\n"
-
-#, c-format
-msgid "Improper syntax of scicurl_config file ('%s'), '=' not found %d:%s\n"
-msgstr "scicurl_config ファイル ('%s') の構文が間違っています , '=' が見つかりません %d:%s\n"
-
-#, c-format
-msgid "Improper syntax of scicurl_config file ('%s'), after an '='\n"
-msgstr "scicurl_config ファイル ('%s') の構文が間違っています , '=' の後\n"
-
-#, c-format
-msgid ""
-"Improper syntax of scicurl_config file ('%s'), space before and after '=' "
-"expected\n"
-msgstr "scicurl_config ファイル ('%s') の構文が間違っています , '='  の前後に空白を指定してください\n"
 
 #, c-format
 msgid "Failed getting current dir, error code: %d\n"

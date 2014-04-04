@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 16967)\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected with option '%s'.\n"
@@ -120,8 +120,8 @@ msgstr ""
 "'%s', '%s' nebo '%s'.\n"
 
 #, c-format
-msgid "%s Wrong value for input argument #%d: '%s' is unknown.\n"
-msgstr "%s: Špatná hodnota vstupního argumentu #%d: '%s' je neznámé.\n"
+msgid "%s: Wrong value for input argument #%d: '%s' is unknown.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
@@ -441,8 +441,8 @@ msgstr "Simulace diskrétní jednotné náhodné veličiny"
 msgid "Simulation of a Erlang random variable"
 msgstr "Simulace Erlangovy náhodné proměnné"
 
-msgid "macro histplot : Histogram plot"
-msgstr "makro histplot : Plocha histogramu"
+msgid "Simulation of an exponential random variable"
+msgstr ""
 
 msgid "Classes"
 msgstr "Třídy"

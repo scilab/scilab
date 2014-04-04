@@ -37,9 +37,14 @@
         <para>
             Sends a string <literal>cmd</literal> to Unix for execution by the sh shell.
             The standard output is redirected to scilab window. Unix execution errors
-            are trapped; *NOTE* that only the last shell command error is reported
-            when a list of command separated by ";" is sent: this is not
-            recommended.
+            are trapped.
+        </para>
+        <para>
+            <warning>
+                *NOTE* that only the last shell command error is reported
+                when a list of command separated by ";" is sent: this is not
+                recommended.
+            </warning>
         </para>
     </refsection>
     <refsection>

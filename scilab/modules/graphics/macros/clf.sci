@@ -46,35 +46,56 @@ function clf(varargin)
 
     nbHandles = size(h,"*");
 
+    if nbHandles == 0 then
+        return;
+    end
+
     // check that all the handles are figures
     for k=1:nbHandles
         curFig = h(k);
-        if curFig.type <> "Figure" then
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: A vector of ''Figure'' handle expected."), "clf", 1));
+        if curFig.type <> "Figure" & (curFig.type <> "uicontrol" | curFig.style <> "frame") then
+            error(msprintf(gettext("%s: Wrong type for input argument #%d: A vector of ''Figure'' or ''Frame'' handle expected."), "clf", 1));
         end
     end
 
     // delete childrens
     for k=1:nbHandles
         curFig = h(k)
+        if curFig.type == "uicontrol" then
+            haveAxes = %F;
+            for kChild = 1:size(curFig.children, "*")
+                if curFig.children(kChild).type=="Axes" then
+                    haveAxes = %T;
+                    break
+                end
+            end
+            delete(curFig.children);
+            if haveAxes then
+                newaxes(curFig);
+            end
+        else
+            // drawlater
+            immediateMode = curFig.immediate_drawing;
+            curFig.immediate_drawing = "off";
 
-        // drawlater
-        immediateMode = curFig.immediate_drawing;
-        curFig.immediate_drawing = "off";
+            delete(curFig.children);
 
-        delete(curFig.children);
-        
-        // drawnow
-        curFig.immediate_drawing = immediateMode;
+            // drawnow
+            curFig.immediate_drawing = immediateMode;
+
+            curFig.info_message = "";
+        end
     end
-    
-    curFig.info_message = "";
+
 
     // reset figures to default values if needed
     if (job == "reset") then
         defaultFig = gdf();
         for k = 1: nbHandles
             curFig = h(k);
+            if curFig.type == "uicontrol" then
+                continue;
+            end
 
             // drawlater
             immediateMode = curFig.immediate_drawing;
@@ -88,7 +109,6 @@ function clf(varargin)
             "figure_name",
             "color_map",
             "info_message",
-            "pixmap",
             "pixel_drawing_mode",
             "immediate_drawing",
             "background",
@@ -110,7 +130,6 @@ function clf(varargin)
 
             // drawnow
             curFig.immediate_drawing = immediateMode;
-
         end
     end
 

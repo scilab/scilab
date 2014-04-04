@@ -22,7 +22,7 @@
 #include "charEncoding.h"
 #include "os_swprintf.h"
 /*--------------------------------------------------------------------------*/
-BOOL setenvc(char *stringIn, char *valueIn)
+BOOL setenvc(const char *stringIn, const char *valueIn)
 {
 #ifdef _MSC_VER
     wchar_t* wstringIn = to_wide_string(stringIn);

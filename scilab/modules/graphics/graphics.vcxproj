@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -239,7 +239,11 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\cpp\configgraphicvariable.cpp" />
+    <ClCompile Include="sci_gateway\c\sci_addcolor.c" />
+    <ClCompile Include="sci_gateway\c\sci_color.c" />
     <ClCompile Include="sci_gateway\c\sci_light.c" />
+    <ClCompile Include="sci_gateway\c\sci_name2rgb.c" />
+    <ClCompile Include="src\c\addColor.c" />
     <ClCompile Include="src\c\Axes.c" />
     <ClCompile Include="src\c\axesScale.c" />
     <ClCompile Include="src\c\BasicAlgos.c" />
@@ -266,6 +270,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="src\c\getHandleProperty\get_auto_resize_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_auto_rotation_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_auto_scale_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_auto_margins_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_auto_ticks_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_axes_bounds_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_axes_reverse_property.c" />
@@ -274,6 +279,8 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="src\c\getHandleProperty\get_background_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_bar_layout_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_bar_width_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_border_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_constraints_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_datatips_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_box_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_callback_property.c" />
@@ -300,6 +307,8 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="src\c\getHandleProperty\get_default_figure_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_diffuse_color_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_direction_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_display_function_data_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_dockable_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_event_handler_enable_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_event_handler_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_figure_closerequestfcn_property.c" />
@@ -322,11 +331,15 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="src\c\getHandleProperty\get_fractional_font_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_grid_position_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_grid_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_grid_style_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_grid_thickness_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_groupname_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_handle_visible_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_hidden_axis_color_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_hidden_color_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_image_type_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_immediate_drawing_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_infobar_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_info_message_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_interp_color_mode.c" />
     <ClCompile Include="src\c\getHandleProperty\get_interp_color_vector.c" />
@@ -334,51 +347,83 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="src\c\getHandleProperty\get_labels_font_color_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_labels_font_size_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_labels_font_style_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_layout_options_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_layout_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_legend_location_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_light_type_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_line_mode_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_line_style_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_line_width_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_links_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_log_flags_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_margins_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_marks_count_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_mark_background_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_mark_foreground_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_mark_mode_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_mark_offset_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_mark_size_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_mark_size_unit_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_mark_stride_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_mark_style_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_material_shininess_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_menubar_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_old_style_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_outside_colors_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_parent_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_pixel_drawing_mode_property.c" />
-    <ClCompile Include="src\c\getHandleProperty\get_pixmap_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_polyline_style_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_position_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_rect_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_resize_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_rotation_angles_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_rotation_style_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_screen_position_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_scrollable_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_segs_color_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_specular_color_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_sub_tics_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_surface_color_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_surface_mode_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_tabtitle_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_tag_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_text_box_mode_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_text_box_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_text_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_thickness_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_toolbar_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_use_color_material_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_ambient_color_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_border_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_constraints_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_default_axes_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_diffuse_color_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_direction_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_display_function_data_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_dockable_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_figure_closerequestfcn_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_figure_resizefcn_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_grid_style_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_grid_thickness_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_groupname_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_infobar_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_layout_options_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_layout_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_light_type_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_line_width_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_marks_count_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_mark_offset_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_mark_stride_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_material_shininess_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_menubar_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_rect_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_resize_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_scrollable_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_specular_color_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_image_type_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_tabtitle_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_tag_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_toolbar_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_use_color_material_property.c" />
     <ClCompile Include="src\c\get_ticks_utils.c" />
     <ClCompile Include="src\c\getHandleProperty\get_tics_color_property.c" />
@@ -398,6 +443,8 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="src\c\getHandleProperty\get_x_location_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_x_shift_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_x_ticks_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_ticks_format_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_ticks_st_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_xtics_coord_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_y_label_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_y_location_property.c" />
@@ -419,11 +466,11 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="sci_gateway\c\gw_graphics.c" />
     <ClCompile Include="src\c\InitObjects.c" />
     <ClCompile Include="src\c\Interaction.c" />
-    <ClCompile Include="src\c\Light.c" />
     <ClCompile Include="src\c\loadTextRenderingAPI.c" />
     <ClCompile Include="src\c\math_graphics.c">
       <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|x64'">MinSpace</Optimization>
     </ClCompile>
+    <ClCompile Include="src\c\name2rgb.c" />
     <ClCompile Include="src\c\pixel_mode.c" />
     <ClCompile Include="src\c\Plo2dEch.c" />
     <ClCompile Include="src\c\Plo2dn.c" />
@@ -432,7 +479,6 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="sci_gateway\c\sci_copy.c" />
     <ClCompile Include="sci_gateway\c\sci_delete.c" />
     <ClCompile Include="sci_gateway\c\sci_demo.c" />
-    <ClCompile Include="sci_gateway\c\sci_draw.c" />
     <ClCompile Include="sci_gateway\c\sci_drawaxis.c" />
     <ClCompile Include="sci_gateway\c\sci_drawlater.c" />
     <ClCompile Include="sci_gateway\c\sci_drawnow.c" />
@@ -497,6 +543,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="src\c\getHandleProperty\set_auto_resize_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_auto_rotation_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_auto_scale_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_auto_margins_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_auto_ticks_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_axes_bounds_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_axes_reverse_property.c" />
@@ -574,7 +621,6 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="src\c\getHandleProperty\set_outside_colors_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_parent_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_pixel_drawing_mode_property.c" />
-    <ClCompile Include="src\c\getHandleProperty\set_pixmap_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_polyline_style_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_position_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_rotation_angles_property.c" />
@@ -604,6 +650,8 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="src\c\getHandleProperty\set_x_location_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_x_shift_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_x_ticks_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_ticks_format_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_ticks_st_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_xtics_coord_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_y_label_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_y_location_property.c" />
@@ -625,6 +673,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="src\c\TerminateGraphics.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="includes\addColor.h" />
     <ClInclude Include="includes\Axes.h" />
     <ClInclude Include="includes\axesScale.h" />
     <ClInclude Include="includes\BasicAlgos.h" />
@@ -632,7 +681,11 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClInclude Include="includes\Champ.h" />
     <ClInclude Include="src\cpp\configgraphicvariable.hxx" />
     <ClInclude Include="includes\Light.h" />
+    <ClInclude Include="includes\name2rgb.h" />
     <ClInclude Include="src\c\CheckScilabXgc.h" />
+    <ClInclude Include="src\c\getHandleProperty\AnchorType.h" />
+    <ClInclude Include="src\c\getHandleProperty\BarType.h" />
+    <ClInclude Include="src\c\getHandleProperty\BorderLayoutType.h" />
     <ClInclude Include="src\c\getHandleProperty\CheckTicksProperty.h" />
     <ClInclude Include="includes\CloneObjects.h" />
     <ClInclude Include="includes\Contour.h" />
@@ -642,7 +695,11 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClInclude Include="includes\dynlib_graphics.h" />
     <ClInclude Include="src\c\Fec.h" />
     <ClInclude Include="includes\Format.h" />
+    <ClInclude Include="src\c\getHandleProperty\FillType.h" />
+    <ClInclude Include="src\c\getHandleProperty\FrameBorderType.h" />
     <ClInclude Include="src\c\getHandleProperty\get_data_property.h" />
+    <ClInclude Include="src\c\getHandleProperty\LayoutType.h" />
+    <ClInclude Include="src\c\getHandleProperty\TitlePositionType.h" />
     <ClInclude Include="src\c\get_ticks_utils.h" />
     <ClInclude Include="includes\GetCommandArg.h" />
     <ClInclude Include="includes\getDictionaryGetProperties.h" />

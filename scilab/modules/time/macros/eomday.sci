@@ -16,23 +16,23 @@ function E=eomday(Y,M)
 
     rhs=argn(2);
 
+    if rhs <> 2 then
+        error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"eomday", 2));
+    end
+
     common_year = [31,28,31,30,31,30,31,31,30,31,30,31];
     leap_year   = [31,29,31,30,31,30,31,31,30,31,30,31];
 
-    if size(Y) <> size(M) then
-        error(msprintf(gettext("%s: Wrong size for input argument: Same size expected.\n"),"eomday"));
+    if type(Y) <> 1 | ~isreal(Y) | int(Y) <> Y then
+        error(msprintf(gettext("%s: Wrong value for input argument #%d: An integer value expected.\n"), "eomday", 1));
     end
 
-    if rhs <> 2 then
-        error(msprintf(gettext("%s: Wrong number of input arguments.\n"),"eomday"));
+    if type(M) <> 1 | ~isreal(M) | int(M) <> M then
+        error(msprintf(gettext("%s: Wrong value for input argument #%d: An integer value expected.\n"), "eomday", 2))
     end
 
-    if (type(Y) <> 1) | (type(M) <> 1) then
-        error(msprintf(gettext("%s: Wrong type for input arguments: Integer expected.\n"),"eomday"));
-    end
-
-    if (int(Y)<>Y) | (int(M)<>M) then
-        error(msprintf(gettext("%s: Wrong type for input arguments: Integer expected.\n"),"eomday"));
+    if or(size(Y) <> size(M)) then
+        error(msprintf(gettext("%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"),"eomday", 1, 2));
     end
 
     if (min(M) < 1) | (max(M) > 12) then
@@ -40,10 +40,10 @@ function E=eomday(Y,M)
     end
 
     [nr,nc] = size(M);
-
-    E(  isLeapYear(Y) ) = leap_year(   M( isLeapYear(Y)) );
-    E( ~isLeapYear(Y) ) = common_year( M(~isLeapYear(Y)) );
-
+    E = zeros(1, nr*nc);
+    isleapyear = isLeapYear(Y);
+    E(isleapyear) = leap_year(M(isleapyear));
+    E(~isleapyear) = common_year(M(~isleapyear));
     E = matrix(E,nr,nc);
 
 endfunction

@@ -15,6 +15,8 @@
 extern "C"
 {
 #include "FigureList.h"
+#include "os_strdup.h"
+#include "FigureList.h"
 }
 
 int sciGetNbFigure(void)
@@ -25,6 +27,11 @@ int sciGetNbFigure(void)
 void sciGetFiguresId(int ids[])
 {
     return ScilabView::getFiguresId(ids);
+}
+
+int getValidDefaultFigureId()
+{
+    return ScilabView::getValidDefaultFigureId();
 }
 
 BOOL sciIsExistingFigure(int id)
@@ -50,3 +57,15 @@ void unregisterToController()
 {
     ScilabView::unregisterToController();
 }
+
+int search_path(char* _pstPath)
+{
+    return ScilabView::search_path(_pstPath);
+}
+
+char* get_path(int uid)
+{
+    std::string path = ScilabView::get_path(uid);
+    return strdup(path.c_str());
+}
+

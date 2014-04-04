@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-06-17 13:18+0000\n"
+"PO-Revision-Date: 2014-03-30 14:14+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 16967)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -103,11 +103,11 @@ msgstr "フィルタ型よパラメータを選択してください"
 msgid "Discrete IIR filter "
 msgstr "離散IIRフィルタ "
 
-msgid "Discrete IIR filter : low pass  fr < 0.2"
-msgstr "離散IIRフィルタ: ローパス fr < 0.2"
+msgid "Discrete IIR filter: low pass  fr < 0.2"
+msgstr "離散IRフィルタ: ローパス fr < 0.2"
 
-msgid "Discrete IIR filter band pass 0.15 < fr < 0.25"
-msgstr "離散IIRフィルタ バンドパス 0.15 < fr < 0.25"
+msgid "Discrete IIR filter: band pass 0.15 < fr < 0.25"
+msgstr "離散IIRフィルタ: バンドパス 0.15 < fr < 0.25"
 
 msgid "Minimax FIR filter"
 msgstr "ミニマックスFIRフィルタ"
@@ -139,8 +139,8 @@ msgstr "ミニマックスFIRフィルタ設計"
 msgid "Discrete IIR filter"
 msgstr "離散IIRフィルタ"
 
-msgid "Wiegner filter"
-msgstr "ウイナーフィルタ"
+msgid "Wiener filter"
+msgstr "ウィナーフィルタ"
 
 msgid "Bode plots"
 msgstr "ボード線図"
@@ -187,11 +187,11 @@ msgstr "実状態"
 msgid "Windowed FIR Low pass Filter"
 msgstr "ウインドウ付FIRローパスフィルタ"
 
-msgid "Kaiser window,cut-off:0.2"
-msgstr "カイザーウインドウ,カットオフ:0.2"
+msgid "Kaiser window, cut-off: 0.2"
+msgstr "カイザーウインドウ, カットオフ: 0.2"
 
-msgid "Hamming window,cut-off:0.2,0.3"
-msgstr "ハミングウインドウ,カットオフ:0.2,0.3"
+msgid "Hamming window, cut-off: 0.2, 0.3"
+msgstr "ハミングウインドウ, カットオフ: 0.2, 0.3"
 
 msgid "length 127"
 msgstr "長さ127"
@@ -199,8 +199,8 @@ msgstr "長さ127"
 msgid "Windowed FIR Band pass Filter"
 msgstr "ウインドウ付FIRバンドパスフィルタ"
 
-msgid "Chebyshev window,cut-off:0.15,0.35"
-msgstr "チェビシェフウインドウ,カットオフ:0.15,0.35"
+msgid "Chebyshev window, cut-off: 0.15, 0.35"
+msgstr "チェビシェフウインドウ, カットオフ: 0.15, 0.35"
 
 msgid "length 55"
 msgstr "長さ55"
@@ -327,6 +327,20 @@ msgid ""
 "%s: Wrong type for input argument #%d:  Linear dynamical system or row "
 "vector of floats expected.\n"
 msgstr "%s: 入力引数 #%d の型が正しくありません:  線形動的システムまたは浮動小数点数の行ベクトルを指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+msgstr "%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A real or polynomial matrix or a "
+"rational expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 実数または多項式の行列または有理数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A discrete system expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 離散時間システムを指定してください.\n"
 
 #
 # File: macros/lattn.sci, line: 47

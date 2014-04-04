@@ -125,11 +125,6 @@ cs_CZ.DescriptionMKLLibrary =Download Intel Math Kernel Library for Scilab
 cs_CZ.DownloadMKLLabel =Downloading Intel Math Kernel Library files for Scilab
 cs_CZ.DownloadMKLDescription =Please wait while Setup is downloading extra files to your computer.
 ;
-cs_CZ.DownloadCHMLabel =Downloading CHM files for Scilab.
-cs_CZ.DownloadCHMDescription =Please wait while Setup is downloading extra files to your computer.
-cs_CZ.DoTasksJustAfterInstallMsg4 =CHM files not installed.
-cs_CZ.DescriptionCHM=Download scilab help as CHM
-;
 cs_CZ.DownloadMKLFFTWLabel =Downloading FFTW3 library optimized by Intel Math Kernel.
 ;
 cs_CZ.DoTasksJustAfterInstallMsg2 =BLAS, LAPACK reference libraries will be installed and used.
@@ -137,12 +132,7 @@ cs_CZ.DoTasksJustAfterInstallMsg3 =FFTW3 reference library will be installed and
 ;
 cs_CZ.NextButtonClickwpReadyMsg1 =Impossible to download Intel Math Kernel Library files for Scilab (Default library will be used).
 cs_CZ.NextButtonClickwpReadyMsg2 =Impossible to download FFTW3 library optimized by Intel Math Kernel Library (Default library will be used).
-cs_CZ.NextButtonClickwpReadyMsg3 =Impossible to download CHM files(files will be not installed).
 ;
 cs_CZ.DescriptionAtoms =ATOMS
-;
-cs_CZ.DescriptionHelpScilabCHM =Scilab Help
-cs_CZ.ScilabCHM =modules\helptools\chm\scilab_en_US_help.chm
-;
 ;-------------------------------------------------------------------------------
 ;

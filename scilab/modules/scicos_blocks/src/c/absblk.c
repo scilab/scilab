@@ -24,7 +24,6 @@
 #include "core_math.h"
 #include "dynlib_scicos_blocks.h"
 #include "scicos.h"
-#include "elementary_functions.h" /* C2F(dmmul) */
 /*--------------------------------------------------------------------------*/
 /*------------------------------------------------
  *     Scicos block simulator

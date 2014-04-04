@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 16967)\n"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
@@ -52,8 +52,8 @@ msgid "%s: No more memory.\n"
 msgstr "%s: Není více paměti.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: A real expected.\n"
-msgstr "%s: Špatný typ argumentu %d: Očekáváno reálné číslo.\n"
+msgid "%s: Wrong type for argument #%d: A real expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"
@@ -108,6 +108,38 @@ msgid ""
 msgstr ""
 
 #, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s: Nelze přečíst vstupní argument #%d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong value for '%s' property: '%s' or '%s' expected."
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A double vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong size for '%s' property: %d elements expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"Wrong value for '%s' property: A string or a 1 x %d real row vector "
+"expected.\n"
+msgstr ""
+"Špatná hodnota vlastnosti '%s': Očekáván řetězec nebo reálný vektor řádku 1 "
+"x %d.\n"
+
+#, c-format
 msgid "%s: Wrong type for argument #%d: Real expected.\n"
 msgstr ""
 
@@ -120,8 +152,8 @@ msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
-msgstr "%s: Špatný typ argumentu %d: Očekávána booleovská matice.\n"
+msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
@@ -222,11 +254,8 @@ msgstr ""
 "rutina Obrazce.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A real or Figure handle expected.\n"
+msgid "%s: can not read file %s.\n"
 msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Očekáváno reálné číslo nebo obslužná "
-"rutina Obrazce.\n"
 
 #, c-format
 msgid "%s: Could not set property '%s'.\n"
@@ -257,6 +286,10 @@ msgstr ""
 #, c-format
 msgid "%s: Unknown property: %s for '%s' handles.\n"
 msgstr "%s: Neznámá vlastnost: %s pro obslužné rutiny '%s'.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: A string or boolean expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Could not create 'Uicontrol' handle.\n"
@@ -354,11 +387,9 @@ msgstr "Požadavek Více Hodnot Scilab"
 
 #, c-format
 msgid ""
-"%s: Wrong size for input argument #%d: It must have same dimensions that "
+"%s: Wrong size for input argument #%d: It must have same dimensions as "
 "argument #%d.\n"
 msgstr ""
-"%s: Špatná velikost vstupního argumentu #%d: Musí mít stejné rozměry jako "
-"argument #%d.\n"
 
 #, c-format
 msgid ""
@@ -376,11 +407,17 @@ msgstr ""
 "%s"
 
 #, c-format
-msgid "%s: Can not read input argument #%d.\n"
-msgstr "%s: Nelze přečíst vstupní argument #%d.\n"
+msgid "%s: Wrong number for input argument: %d expected.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: Wrong number for input argument: %d expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: A string or a macro name expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A string or a macro name expected.\n"
 msgstr ""
 
 #, c-format
@@ -468,9 +505,29 @@ msgid "Impossible to get current look and feel"
 msgstr "Nelze získat současný vzhled"
 
 #, c-format
+msgid "%s: This file %s does not exist.\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "%s: A Java exception arised:\n"
 "%s"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A single handle expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: The handle is not or no more valid.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Figure handle expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: %s.\n"
 msgstr ""
 
 #, c-format
@@ -549,39 +606,6 @@ msgstr "&Uložit..."
 
 msgid "&Export to..."
 msgstr "&Exportovat do..."
-
-msgid "P&NG"
-msgstr "P&NG"
-
-msgid "&JPG"
-msgstr "&JPG"
-
-msgid "&GIF"
-msgstr "&GIF"
-
-msgid "&PPM"
-msgstr "&PPM"
-
-msgid "&BMP"
-msgstr "&BMP"
-
-msgid "&Vectorial export to..."
-msgstr "Export &vektoru do..."
-
-msgid "&PDF"
-msgstr "&PDF"
-
-msgid "&PS"
-msgstr "&PS"
-
-msgid "&SVG"
-msgstr "&SVG"
-
-msgid "&EMF"
-msgstr "&EMF"
-
-msgid "&EPS"
-msgstr "&EPS"
 
 msgid "&Copy to clipboard"
 msgstr "&Kopírovat do schránky"
@@ -871,9 +895,6 @@ msgstr "Vyberte soubor k zápisu"
 msgid "Figure saved.\n"
 msgstr "Obrazec uložen.\n"
 
-msgid "Select a file name"
-msgstr "Vyberte jméno souboru"
-
 msgid "Colors"
 msgstr "Barvy"
 
@@ -960,6 +981,24 @@ msgstr "Použít výchozího poštovního klienta"
 
 msgid "Command for mailer: "
 msgstr "Příkaz pro poštovního klienta: "
+
+msgid "Proxy settings"
+msgstr ""
+
+msgid "Enable proxy"
+msgstr ""
+
+msgid "Host: "
+msgstr ""
+
+msgid "Port: "
+msgstr ""
+
+msgid "User: "
+msgstr ""
+
+msgid "Password: "
+msgstr ""
 
 #, c-format
 msgid "'%s' property does not exist for this handle.\n"
@@ -1059,6 +1098,10 @@ msgid "Wrong size for '%s' property: '%s', '%s' or '%s' expected.\n"
 msgstr "Špatná velikost vlastnosti '%s': Očekáváno '%s', '%s' nebo '%s'.\n"
 
 #, c-format
+msgid "Wrong type for '%s' property: String expected.\n"
+msgstr ""
+
+#, c-format
 msgid "Wrong value for '%s' property: A real expected.\n"
 msgstr "Špatná hodnota vlastnosti '%s': Očekáváno reálné číslo.\n"
 
@@ -1080,14 +1123,6 @@ msgstr ""
 
 #, c-format
 msgid ""
-"Wrong value for '%s' property: A string or a 1 x %d real row vector "
-"expected.\n"
-msgstr ""
-"Špatná hodnota vlastnosti '%s': Očekáván řetězec nebo reálný vektor řádku 1 "
-"x %d.\n"
-
-#, c-format
-msgid ""
 "Wrong type for '%s' property: A string or a 1 x %d real row vector "
 "expected.\n"
 msgstr ""
@@ -1096,27 +1131,9 @@ msgstr ""
 
 #, c-format
 msgid ""
-"Wrong type for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
+"Wrong type for '%s' property: '%s', '%s', '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
 msgstr ""
-"Špatný typ vlastnosti '%s': Očekáváno '%s', '%s', '%s', '%s', '%s' nebo "
-"'%s'.\n"
-
-#, c-format
-msgid ""
-"Wrong size for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
-"expected.\n"
-msgstr ""
-"Špatná velikost vlastnosti '%s': Očekáváno '%s', '%s', '%s', '%s', '%s' nebo "
-"'%s'.\n"
-
-#, c-format
-msgid ""
-"Wrong value for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
-"expected.\n"
-msgstr ""
-"Špatná hodnota vlastnosti '%s': Očekáváno '%s', '%s', '%s', '%s', '%s' nebo "
-"'%s'.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: A 1 x %d real row vector expected.\n"
@@ -1176,6 +1193,10 @@ msgid ""
 msgstr ""
 "Varování: Vlastnost '%s' 'Value' by měla být celé číslo, hodnota bude "
 "zkrácena.\n"
+
+#, c-format
+msgid "'%s' value must be between 0 and %d.\n"
+msgstr ""
 
 #, c-format
 msgid "Wrong type for '%s' property: '%s', '%s', or '%s' expected.\n"
@@ -1324,8 +1345,8 @@ msgstr "Bez názvu-export"
 msgid "Export"
 msgstr "Exportovat"
 
-msgid "Preview"
-msgstr "Náhled"
+msgid "Preview selected image file"
+msgstr ""
 
 msgid "Replace existing file?"
 msgstr "Nahradit existující soubor?"
@@ -1366,6 +1387,9 @@ msgstr "Pevná šířka"
 msgid "SciNotes compatible"
 msgstr "Kompatibilní se SciNotes"
 
+msgid "Preview"
+msgstr "Náhled"
+
 msgid "Ok"
 msgstr "Ok"
 
@@ -1397,6 +1421,33 @@ msgid ""
 "Left click on the curve creates a datatip and right click on the datatip "
 "removes it."
 msgstr ""
+
+msgid "Delete all the datatips"
+msgstr ""
+
+msgid "Delete all the datatips on the selected curve"
+msgstr ""
+
+msgid "Delete the nearest datatip"
+msgstr ""
+
+msgid "Delete the last datatip"
+msgstr ""
+
+msgid "Edit curve datatip display function"
+msgstr ""
+
+msgid "Enable interpolation"
+msgstr ""
+
+msgid "Disable interpolation"
+msgstr ""
+
+msgid "Display function name"
+msgstr ""
+
+msgid "OK"
+msgstr "OK"
 
 msgid "Insert"
 msgstr ""
@@ -2111,9 +2162,6 @@ msgstr ""
 msgid "Z Shift"
 msgstr ""
 
-msgid "OK"
-msgstr "OK"
-
 msgid "Yes"
 msgstr "Ano"
 
@@ -2206,6 +2254,16 @@ msgstr "Poděkování"
 msgid "Could not open: "
 msgstr "Nelze otevřít: "
 
+msgid "Restoration error"
+msgstr ""
+
+msgid ""
+"The configuration file has been corrupted and reset to the default one."
+msgstr ""
+
+msgid "The configuration file has been corrupted. Scilab needs to restart."
+msgstr ""
+
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Modul Scilabu '%s' není nainstalován.\n"
@@ -2219,6 +2277,76 @@ msgstr "Chyba. Byl zachycen signál.\n"
 
 msgid "Control Plot3d"
 msgstr "Kontrola Plot3d"
+
+msgid "Control Panel"
+msgstr ""
+
+msgid "Rotation angle"
+msgstr ""
+
+msgid "Colormap"
+msgstr ""
+
+msgid "Show / Hide"
+msgstr ""
+
+msgid "messagebox"
+msgstr ""
+
+msgid "x_choose"
+msgstr ""
+
+msgid "x_dialog"
+msgstr ""
+
+msgid "x_mdialog"
+msgstr ""
+
+msgid "Simple example of message"
+msgstr ""
+
+msgid "Button 1Button 2"
+msgstr ""
+
+msgid "Button 1 clicked."
+msgstr ""
+
+msgid "Button 2 clicked"
+msgstr ""
+
+msgid ""
+"Message: Selection (double-click on an item --> returns the item number)"
+msgstr ""
+
+msgid "Item selected: "
+msgstr ""
+
+msgid "Message: enter a value"
+msgstr ""
+
+msgid "Value entered: "
+msgstr ""
+
+msgid "Message"
+msgstr ""
+
+msgid "first row"
+msgstr ""
+
+msgid "Values entered: "
+msgstr ""
+
+msgid "row"
+msgstr ""
+
+msgid "col"
+msgstr ""
+
+msgid "Matrix to edit"
+msgstr ""
+
+msgid "Matrix entered: "
+msgstr ""
 
 msgid "GUI"
 msgstr "GUI"
@@ -2238,6 +2366,12 @@ msgstr "Ovládání rozhraní s LaTeX/MathML"
 msgid "Show images with uicontrols "
 msgstr "Zobrazit obrázky s uicontrols "
 
+msgid "Listboxes and Popupmenus"
+msgstr ""
+
+msgid "Uicontrols rendering"
+msgstr ""
+
 msgid "<Enter color name here>"
 msgstr "<Zde zadejte jméno barvy>"
 
@@ -2247,15 +2381,22 @@ msgstr "Chyba"
 msgid "Please enter a color name first."
 msgstr "Nejdříve prosím zadejte jméno barvy."
 
+msgid "Unknown color."
+msgstr ""
+
 msgid "No color selected."
 msgstr "Žádná barva není vybrána"
+
+msgid "Color selection"
+msgstr ""
 
 #, c-format
 msgid "Selected colors are: %s."
 msgstr "Vybrané barvy jsou: %s."
 
-msgid "Selected colors"
-msgstr "Vybrané barvy"
+#, c-format
+msgid "Deleted colors are: %s."
+msgstr ""
 
 #, c-format
 msgid "You clicked on menu '%s'."
@@ -2299,8 +2440,8 @@ msgstr "Ukázka ovládání rozhraní"
 msgid "Application"
 msgstr "Aplikace"
 
-msgid "Exit figure"
-msgstr "Výstupní číslo"
+msgid "Close figure"
+msgstr ""
 
 msgid "Scilab Graphics"
 msgstr "Grafika Scilab"
@@ -2326,11 +2467,23 @@ msgstr "Podmenu 2-1"
 msgid "Sub-menu 2-2"
 msgstr "Podmenu 2-2"
 
+msgid "item1|item2|item3|item4"
+msgstr "položka1|položka2|položka3|položka4"
+
+msgid "Pop-up menu"
+msgstr ""
+
+msgid "Slider demo"
+msgstr "Ukázka jezdce"
+
 msgid "Colors list edition"
 msgstr "Úprava seznamu barev"
 
 msgid "Add color in listbox"
 msgstr "Přidat barvu do rozevíracího seznamu"
+
+msgid "Delete color in listbox"
+msgstr ""
 
 msgid "blue"
 msgstr "modrá"
@@ -2347,11 +2500,11 @@ msgstr "žlutá"
 msgid "Display selection"
 msgstr "Výběr zobrazení"
 
-msgid "Slider demo"
-msgstr "Ukázka jezdce"
+msgid "Delete selection"
+msgstr ""
 
-msgid "item1|item2|item3|item4"
-msgstr "položka1|položka2|položka3|položka4"
+msgid "Default"
+msgstr ""
 
 msgid "Quit demonstration"
 msgstr "Ukončit ukázku"
@@ -2400,12 +2553,58 @@ msgstr ""
 "nebo reálné číslo.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A 'Figure' handle or a real "
-"expected.\n"
+msgid "%s: Wrong number of input argument(s): At least %d expected."
 msgstr ""
-"%s: Špatná velikost vstupního argumentu #%d: Očekávána obslužná rutina "
-"'Čísla' nebo reálné číslo.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected."
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A integer expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d, %d or %d expected."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A integer or a string expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A border or a string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A Font Border expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d or %d expected."
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A border expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected."
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A integer value expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
@@ -2444,6 +2643,14 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A 'Figure' handle or a real "
+"expected.\n"
+msgstr ""
+"%s: Špatná velikost vstupního argumentu #%d: Očekávána obslužná rutina "
+"'Čísla' nebo reálné číslo.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: uitree expected.\n"
@@ -2543,3 +2750,9 @@ msgstr "%s: Špatný typ %s: Očekáváno reálné číslo.\n"
 #, c-format
 msgid "%s: Wrong size for %s: A real expected.\n"
 msgstr "%s: Špatná velikost %s: Očekáváno reálné číslo.\n"
+
+#~ msgid "Exit figure"
+#~ msgstr "Výstupní číslo"
+
+#~ msgid "Selected colors"
+#~ msgstr "Vybrané barvy"

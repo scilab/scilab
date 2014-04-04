@@ -67,22 +67,12 @@ function DoTaskInstall_MKL_FFTW: Boolean;
       end;
   end;
 //------------------------------------------------------------------------------
-function DoTaskInstall_CHM: Boolean;
-  begin
-    Result := true;
-    if (IsComponentSelected( ExpandConstant('{#COMPN_CHM}') ) = true) then
-      begin
-        Result := Install_CHM();
-      end;
-  end;
-//------------------------------------------------------------------------------
 function DoTasksJustAfterInstall: Boolean;
   begin
     Result := true;
     Result := CreateModulesFile();
     Result := DoTaskInstall_MKL();
     Result := DoTaskInstall_MKL_FFTW();
-    Result := DoTaskInstall_CHM();
   end;
 //------------------------------------------------------------------------------
 function GetJREVersion(): String;
@@ -186,17 +176,6 @@ function NextButtonClick_Download_MKL_FFTW(): Boolean;
       end;
   end;
 //------------------------------------------------------------------------------
-function NextButtonClick_Download_CHM(): Boolean;
-  Var
-    bRes : Boolean;
-  begin
-    Result := true;
-    if (IsComponentSelected( ExpandConstant('{#COMPN_CHM}') ) = true) then
-      begin
-        bRes := Download_CHM();
-      end;
-  end;
-//------------------------------------------------------------------------------
 function NextButtonClick(CurPageID: Integer): Boolean;
   Var
     bRes : Boolean;
@@ -233,7 +212,6 @@ function NextButtonClick(CurPageID: Integer): Boolean;
       begin
         bRes := NextButtonClick_Download_MKL();
         bRes := NextButtonClick_Download_MKL_FFTW();
-        bRes := NextButtonClick_Download_CHM();
       end;
 
     if (CurPageId = wpSelectComponents) then
@@ -326,21 +304,6 @@ var
   Res: Boolean;
 begin
   OriginalOnTypesComboChange(Sender);
-
-  // Prevent CHM to be checked by switching to Full installation in Offline mode
-  if OfflineInstallCheckBox.Checked then
-  begin
-    ItemIndex := (Sender as TNewComboBox).ItemIndex;
-    if ItemIndex = 0 then
-    begin
-      Res := SetComponentState('DescriptionCHM', False, False);
-      if not Res then
-      begin
-        Log('OnTypesComboChange: ' +
-          'Error while changing components intallation.');
-      end;
-    end;
-  end;
 end;
 //------------------------------------------------------------------------------
 procedure CreateTheWizardPages;

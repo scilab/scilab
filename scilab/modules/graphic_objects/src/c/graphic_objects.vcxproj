@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -85,7 +85,7 @@
     <ClCompile>
       <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;../jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/intl;../../includes;../../../api_scilab/includes;../../../core/includes;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../cpp;../../../functions/includes;../../../fileio/includes;../../../commons/src/jni;../../../operations/includes;../../../commons/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/intl;../../includes;../../../api_scilab/includes;../../../core/includes;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../cpp;../../../functions/includes;../../../fileio/includes;../../../commons/src/jni;../../../operations/includes;../../../commons/includes;../../../string/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;GRAPHIC_OBJECTS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -122,7 +122,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;../jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/intl;../../includes;../../../api_scilab/includes;../../../core/includes;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../cpp;../../../functions/includes;../../../fileio/includes;../../../commons/src/jni;../../../operations/includes;../../../commons/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/intl;../../includes;../../../api_scilab/includes;../../../core/includes;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../cpp;../../../functions/includes;../../../fileio/includes;../../../commons/src/jni;../../../operations/includes;../../../commons/includes;../../../string/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;GRAPHIC_OBJECTS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -160,7 +160,7 @@
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;../jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/intl;../../includes;../../../api_scilab/includes;../../../core/includes;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../cpp;../../../functions/includes;../../../fileio/includes;../../../commons/src/jni;../../../operations/includes;../../../commons/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/intl;../../includes;../../../api_scilab/includes;../../../core/includes;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../cpp;../../../functions/includes;../../../fileio/includes;../../../commons/src/jni;../../../operations/includes;../../../commons/includes;../../../string/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;GRAPHIC_OBJECTS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -203,7 +203,7 @@
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;../jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/intl;../../includes;../../../api_scilab/includes;../../../core/includes;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../cpp;../../../functions/includes;../../../fileio/includes;../../../commons/src/jni;../../../operations/includes;../../../commons/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/intl;../../includes;../../../api_scilab/includes;../../../core/includes;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../cpp;../../../functions/includes;../../../fileio/includes;../../../commons/src/jni;../../../operations/includes;../../../commons/includes;../../../string/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;GRAPHIC_OBJECTS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -255,18 +255,19 @@
     <ClCompile Include="..\cpp\ScilabView.cpp" />
     <ClCompile Include="..\cpp\Texture.cpp" />
     <ClCompile Include="..\cpp\Triangulator.cpp" />
+    <ClCompile Include="..\jni\Builder.cpp" />
     <ClCompile Include="..\jni\CallGraphicController.cpp" />
     <ClCompile Include="..\cpp\ColorComputer.cpp" />
     <ClCompile Include="..\cpp\createGraphicObject.cpp" />
     <ClCompile Include="..\cpp\Data3D.cpp" />
     <ClCompile Include="..\cpp\DataLoader.cpp" />
+    <ClCompile Include="..\jni\CallXmlLoader.cpp" />
     <ClCompile Include="..\jni\DataLoader_wrap.c" />
     <ClCompile Include="..\cpp\dataModel.cpp" />
     <ClCompile Include="..\cpp\DecompositionUtils.cpp" />
     <ClCompile Include="..\cpp\deleteGraphicObject.cpp" />
     <ClCompile Include="..\jni\ObjectData_wrap.c" />
     <ClCompile Include="..\jni\PolylineData_wrap.c" />
-    <ClCompile Include="..\jni\GraphicObjectBuilder.cpp" />
     <ClCompile Include="..\jni\ScilabNativeView_wrap.c" />
     <ClCompile Include="DllmainGraphic_objects.c" />
     <ClCompile Include="..\cpp\Fac3DDecomposer.cpp" />
@@ -312,6 +313,7 @@
     <ClInclude Include="..\..\includes\TriangleMeshFecData.hxx" />
     <ClInclude Include="..\..\includes\Texture.hxx" />
     <ClInclude Include="..\..\includes\Triangulator.hxx" />
+    <ClInclude Include="..\jni\Builder.hxx" />
     <ClInclude Include="..\jni\CallGraphicController.hxx" />
     <ClInclude Include="..\..\includes\createGraphicObject.h" />
     <ClInclude Include="..\..\includes\Data3D.hxx" />
@@ -333,7 +335,7 @@
     <ClInclude Include="..\..\includes\PolylineDecomposer.hxx" />
     <ClInclude Include="..\..\includes\TriangleMeshData.hxx" />
     <ClInclude Include="..\..\includes\TriangleMeshFecDataDecomposer.hxx" />
-    <ClInclude Include="..\jni\GraphicObjectBuilder.hxx" />
+    <ClInclude Include="..\jni\CallXmlLoader.hxx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\jni\ObjectData.i" />
@@ -358,6 +360,9 @@
     </ProjectReference>
     <ProjectReference Include="..\..\..\output_stream\src\c\output_stream.vcxproj">
       <Project>{a5911cd7-f8e8-440c-a23e-4843a0636f3a}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\windows_tools\src\c\scilab_windows\scilab_windows.vcxproj">
+      <Project>{8028f371-6a94-4a26-8804-6e7f05f1d1aa}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

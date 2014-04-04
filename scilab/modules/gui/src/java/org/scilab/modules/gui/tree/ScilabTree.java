@@ -37,8 +37,6 @@ import org.scilab.modules.gui.utils.Size;
  */
 public class ScilabTree implements Tree {
 
-    private static final long serialVersionUID = 1L;
-
     private String label;
     private Icon icon;
     private CommonCallBack callback;
@@ -298,4 +296,15 @@ public class ScilabTree implements Tree {
         // TODO Auto-generated method stub
     }
 
+    @Override
+    public void resetBackground() {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void resetForeground() {
+        // TODO Auto-generated method stub
+
+    }
 }

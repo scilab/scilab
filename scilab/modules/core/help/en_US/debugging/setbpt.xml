@@ -39,12 +39,15 @@
         <para>
             Line numbers in <varname>linenumb</varname> are
             <emphasis>physical</emphasis> line numbers in function
-            <varname>macroname</varname>. Note that Scilab versions before 5.0 used
-            <emphasis>logical</emphasis> line numbers. The difference between physical
-            and logical line numbers is the number of <emphasis>continued
-                lines
-            </emphasis>
-            (see <link linkend="dot">dot</link>).
+            <varname>macroname</varname>.
+        </para>
+        <para>
+            <note>
+                Note that Scilab versions before 5.0 used
+                <emphasis>logical</emphasis> line numbers. The difference between physical
+                and logical line numbers is the number of <emphasis>continued lines</emphasis>
+                (see <link linkend="dot">dot</link>).
+            </note>
         </para>
         <para>When reaching a breakpoint, Scilab evaluates the specified physical
             line and stops the execution flow. If the function is not compiled (see

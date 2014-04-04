@@ -14,6 +14,10 @@ package org.scilab.modules.graphic_objects.uicontrol.checkbox;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_CHECKBOX__;
 
+import javax.swing.UIDefaults;
+import javax.swing.UIManager;
+
+import org.scilab.modules.graphic_objects.console.Console;
 import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
 
 /**
@@ -27,12 +31,25 @@ public class CheckBox extends Uicontrol {
     public CheckBox() {
         super();
         setStyle(__GO_UI_CHECKBOX__);
-        setRelief(FLAT_RELIEF);
 
         // Default value is the min value (not checked)
         Double[] value = new Double[1];
         value[0] = getMin();
         setUiValue(value);
-    }
 
+        if (Console.getConsole().getUseDeprecatedLF()) {
+            setRelief(RELIEF_FLAT);
+        } else {
+            UIDefaults defaults = UIManager.getDefaults();
+
+            //font
+            setFont(defaults.getFont("CheckBox.font"));
+
+            //h-alignment
+            setHorizontalAlignment("left");
+
+            //v-alignement
+            setVerticalAlignment("middle");
+        }
+    }
 }

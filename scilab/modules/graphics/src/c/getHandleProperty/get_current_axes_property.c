@@ -26,6 +26,7 @@
 #include "localization.h"
 #include "MALLOC.h"
 
+#include "createGraphicObject.h"
 #include "BuildObjects.h"
 #include "HandleManagement.h"
 #include "CurrentFigure.h"
@@ -44,15 +45,7 @@ void* get_current_axes_property(void* _pvCtx, int iObjUID)
         return NULL;
     }
 
-    iSubWinUID = getCurrentSubWin();
-
-    if (iSubWinUID == 0)
-    {
-        iFigureUID = createNewFigureWithAxes();
-        setCurrentFigure(iFigureUID);
-    }
-
-
+    iSubWinUID = getOrCreateDefaultSubwin();
     return sciReturnHandle(getHandle(getCurrentSubWin()));
 }
 /*------------------------------------------------------------------------*/

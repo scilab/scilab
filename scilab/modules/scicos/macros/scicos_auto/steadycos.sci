@@ -49,6 +49,10 @@ function [X,U,Y,XP] = steadycos(scs_m,X,U,Y,Indx,Indu,Indy,Indxp,param)
     //** the required library are loaded if not already present in the
     //** "semiglobal-local-environment".
 
+    if ~exists("scicos_diagram") then
+        loadXcosLibs();
+    end
+
     if exists("scicos_scicoslib")==0 then
         load("SCI/modules/scicos/macros/scicos_scicos/lib") ;
     end

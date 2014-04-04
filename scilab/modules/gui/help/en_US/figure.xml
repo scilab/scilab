@@ -8,7 +8,7 @@
         <title>Calling Sequence</title>
         <synopsis>
             f = figure(num);
-            f = figure("PropertyName1", Propertyvalue1, ..., ..., "PropertyNameN", PropertyvalueN); 
+            f = figure("PropertyName1", Propertyvalue1, ..., ..., "PropertyNameN", PropertyvalueN);
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -68,16 +68,6 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>ForegroundColor</term>
-                <listitem>
-                    <para>[1,3] real vector or string Foreground color of the figure. A
-                        color is specified as Red, Green and Blue values. Those values are
-                        real in [0,1]. The color can be given as a real vector, ie [R,G,B] or
-                        a string where each value is separated by a "|", ie "R|G|B"
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
                 <term>Position</term>
                 <listitem>
                     <para>allows to control the geometrical aspect of the figure.
@@ -100,14 +90,14 @@
             <varlistentry>
                 <term>Userdata</term>
                 <listitem>
-                    <para>this can be used to associate some Scilab objects to a fugure.</para>
+                    <para>this can be used to associate some Scilab objects to a figure.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // Create figure having figure_id==3
 h=figure(3);
 // Add a text uicontrol in figure 3
@@ -138,6 +128,9 @@ close(h);
             </member>
             <member>
                 <link linkend="gcf">gcf</link>
+            </member>
+            <member>
+                <link linkend="createWindow">createWindow</link>
             </member>
         </simplelist>
     </refsection>

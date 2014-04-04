@@ -57,9 +57,14 @@
     <refsection>
         <title>Description</title>
         <para>Change the current Scilab directory to those given by
-            <varname>path</varname>. Note that path conversion is performed and for example
-            <literal>SCI/modules/core/macros</literal> is a valid pattern for both Unix and Windows.
-            If <varname>path</varname> is empty change to "home" directory.
+            <varname>path</varname>.
+        </para>
+        <para>
+            <note>
+                Note that path conversion is performed and for example
+                <literal>SCI/modules/core/macros</literal> is a valid pattern for both Unix and Windows.
+                If <varname>path</varname> is empty change to "home" directory.
+            </note>
         </para>
     </refsection>
     <refsection>

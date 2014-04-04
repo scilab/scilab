@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="parentheses">
+    <refnamediv>
+        <refname>parentheses ( )</refname>
+        <refpurpose>parenthèses droite et gauche  </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>(expression)
+            [...]=func(e1,e2,...)
+            [x1,x2,...]=(e1,e2,...)
+            x(i,j)
+            v(i)
+            [...]=l(i)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Paramètres</title>
+        <variablelist>
+            <varlistentry>
+                <term>x  </term>
+                <listitem>
+                    <para>matrice de tout type
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>v  </term>
+                <listitem>
+                    <para>vecteur ligne ou colonne de tout type
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>l  </term>
+                <listitem>
+                    <para>liste
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>func  </term>
+                <listitem>
+                    <para>nom de fonction
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>e1,e2,...  </term>
+                <listitem>
+                    <para>expression de type quelconque
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Les parenthèses droite et gauche sont utilisées pour :
+        </para>
+        <para>
+            *
+            Spécifier l'ordre d'évaluation dans des expressions,
+        </para>
+        <para>
+            *
+            Former la liste des arguments d'entrée d'une fonction. Les arguments multiples sont séparés par des virgules,
+        </para>
+        <para>
+            *
+            Sélectionner des éléments dans les vecteurs, matrices et listes.
+        </para>
+        <para>
+            Voir l'aide pour l'<link linkend="extraction">extraction</link> et l'<link linkend="insertion">insertion</link> pour de plus amples précisions.
+        </para>
+        <para>
+            *
+            <literal>[x1,x2,...]=(e1,e2,...)</literal> est équivalent aux commandes préalables %t_1 = e1,
+            <literal>%t_2 = e2, ..., suivies de x1 = %t_1, x2 = %t_2, ...</literal>, où les
+            variables <literal>%t_i, i = 1, 2, ...</literal> sont "invisibles" pour l'utilisateur.
+        </para>
+        <para>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[
+3^(-1)
+x=poly(0,"x");
+//
+(x+10)/2
+i3=eye(3,3)
+//
+a=[1 2 3;4 5 6;7 8 9],a(1,3),a([1 3],:),a(:,3)
+a(:,3)=[]
+a(1,$)=33
+a(2,[$ $-1])
+a(:,$+1)=[10;11;12]
+//
+w=ssrand(2,2,2);ssprint(w)
+ssprint(w(:,1))
+ss2tf(w(:,1))
+//
+l=list(1,2,3,4)
+[a,b,c,d]=l(:)
+l($+1)='new'
+//
+v=%t([1 1 1 1 1])
+//
+[x,y,z]=(1,2,3)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="colon">colon</link>
+            </member>
+            <member>
+                <link linkend="comma">comma</link>
+            </member>
+            <member>
+                <link linkend="brackets">brackets</link>
+            </member>
+            <member>
+                <link linkend="list">list</link>
+            </member>
+            <member>
+                <link linkend="extraction">extraction</link>
+            </member>
+            <member>
+                <link linkend="insertion">insertion</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

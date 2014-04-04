@@ -27,7 +27,6 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.gui.bridge.menu.SwingScilabMenu;
-import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
 
@@ -51,6 +50,14 @@ public final class RegisterFavoriteDirsAction extends DefaultAction {
     }
 
     /**
+     * Clean
+     */
+    public static void close() {
+        addDir = null;
+        rmDir = null;
+    }
+
+    /**
      * Create a menu to add to SciNotes menu bar
      * @param label label of the menu
      * @param editor associated SciNotes instance
@@ -58,7 +65,7 @@ public final class RegisterFavoriteDirsAction extends DefaultAction {
      * @return the menu
      */
     public static Object createMenu(String label, final SciNotes editor, KeyStroke key) {
-        StringTokenizer token = new StringTokenizer(label, ";");
+        StringTokenizer token = new StringTokenizer(label, ";\uff1b");
         String label1 = token.nextToken();
         String label2 = token.nextToken();
         String label3 = token.nextToken();

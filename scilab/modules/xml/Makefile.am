@@ -81,14 +81,18 @@ GATEWAY_CXX_SOURCES = sci_gateway/cpp/sci_xmlRead.cpp \
 		      sci_gateway/cpp/sci_xmlRemove.cpp \
 		      sci_gateway/cpp/sci_xmlSetAttributes.cpp \
 		      sci_gateway/cpp/sci_xmlName.cpp \
-		      sci_gateway/cpp/sci_xmlAppend.cpp
+		      sci_gateway/cpp/sci_xmlAppend.cpp \
+		      sci_gateway/cpp/sci_htmlRead.cpp \
+		      sci_gateway/cpp/sci_htmlReadStr.cpp \
+		      sci_gateway/cpp/sci_htmlWrite.cpp \
+		      sci_gateway/cpp/sci_htmlDump.cpp
 
 libscixml_la_CPPFLAGS = -I$(srcdir)/includes/ \
     -I$(srcdir)/src/cpp/ \
     -I$(srcdir)/src/c/ \
     -I$(top_srcdir)/modules/core/includes/ \
     -I$(top_srcdir)/modules/api_scilab/includes/ \
-	-I$(top_srcdir)/modules/localization/includes/ \
+    -I$(top_srcdir)/modules/localization/includes/ \
     -I$(top_srcdir)/modules/output_stream/includes/ \
     -I$(top_srcdir)/modules/string/includes/ \
     -I$(top_srcdir)/modules/fileio/includes/ \
@@ -98,16 +102,15 @@ libscixml_la_CPPFLAGS = -I$(srcdir)/includes/ \
     $(AM_CPPFLAGS)
 
 
-pkglib_LTLIBRARIES = libscixml.la 
-noinst_LTLIBRARIES = libscixml-algo.la 
-
-libscixml_la_LDFLAGS = $(X_LIBS) $(X_EXTRA_LIBS) $(AM_LDFLAGS)
+pkglib_LTLIBRARIES = libscixml.la
+noinst_LTLIBRARIES = libscixml-algo.la
 
 libscixml_algo_la_SOURCES = $(XML_C_SOURCES) $(XML_JNI_SOURCES) $(XML_CXX_SOURCES)
-libscixml_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CXX_SOURCES) 
+libscixml_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CXX_SOURCES)
 libscixml_algo_la_CPPFLAGS = $(libscixml_la_CPPFLAGS)
 
-libscixml_la_LIBADD = libscixml-algo.la
+libscixml_la_LDFLAGS = $(AM_LDFLAGS)
+libscixml_la_LIBADD = libscixml-algo.la $(XML_LIBS)
 
 # For the code check (splint)
 CHECK_SRC= $(XML_C_SOURCES) $(GATEWAY_C_SOURCES)

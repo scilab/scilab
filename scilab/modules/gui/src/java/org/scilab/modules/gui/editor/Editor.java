@@ -68,7 +68,6 @@ public class Editor {
     EntityPicker.LegendInfo selectedLegend = null;
     Integer selected = null;
     Integer figureUid = null;
-    Integer oriColor = 0;
     Integer[] lastClick = { 0, 0 };
     Integer[] dragClick = { 0, 0 };
     EntityPicker entityPicker;
@@ -127,7 +126,6 @@ public class Editor {
      * @param event MouseEvent to retrieve click positon in figure.
      */
     public void onRightMouseClick(MouseEvent event) {
-
         if (!dataEditEnabled) {
             lastClick[0] = event.getX();
             lastClick[1] = event.getY();
@@ -489,15 +487,14 @@ public class Editor {
      * @param uid object unique identifier. Null uid unselect previous selection.
      */
     public void setSelected(Integer uid) {
-
         if (CommonHandler.objectExists(selected)) {
-            CommonHandler.setColor(selected, oriColor);
+            CommonHandler.setSelected(selected, false);
         }
 
         selected = uid;
 
         if (selected != null) {
-            oriColor = CommonHandler.setColor(selected, -3);
+            CommonHandler.setSelected(selected, true);
 
             boolean spl = (selectedType == SelectionType.SURFACE || selectedType == SelectionType.POLYLINE || selectedType == SelectionType.LEGEND);
 
@@ -522,25 +519,6 @@ public class Editor {
             editdata.setEnabled(false);
         }
     }
-
-    /**
-    * Get current color of the object line/mark.
-    *
-    * @return Returns the current color of the object.
-    */
-    public Integer getOriColor() {
-        return oriColor;
-    }
-
-    /**
-    * Set current color of the object line/mark.
-    *
-    * @param newScilabColor Color selected by user.
-    */
-    public void setOriColor(Integer newScilabColor) {
-        oriColor = newScilabColor;
-    }
-
 
     /**
      * Returns selected object unique identifier.
@@ -577,7 +555,6 @@ public class Editor {
     public void onClickCopy() {
         if (selectedType != SelectionType.LEGEND) {
             ScilabClipboard.getInstance().copy(getSelected());
-            ScilabClipboard.getInstance().setCopiedColor(oriColor);
         }
     }
 
@@ -621,7 +598,6 @@ public class Editor {
         if (s != null && selectedType != SelectionType.LEGEND) {
             setSelected(null);
             ScilabClipboard.getInstance().cut(s);
-            ScilabClipboard.getInstance().setCopiedColor(oriColor);
         }
     }
 

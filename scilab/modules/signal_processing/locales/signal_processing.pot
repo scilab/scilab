@@ -2,6 +2,7 @@
 # Please see in SCI/tools/localization for localization management
 # Copyright (C) 2007-2008 - INRIA
 # Copyright (C) 2008-2011 - DIGITEO
+# Copyright (C) 2012-2014 - Scilab-Enterprises
 # This file is distributed under the same license as the Scilab package.
 #
 msgid ""
@@ -9,12 +10,12 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab.org>\n"
+"Last-Translator: Vincent COUVERT <vincent.couvert@scilab-enterprises.com>\n"
 "Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-12-09 09:47+0100\n"
+"Revision-Date: 2014-04-01 12:32+0100\n"
 
 # File: sci_gateway/c/sci_conv2.c, line: 38
 # File: sci_gateway/c/sci_conv2.c, line: 99
@@ -198,12 +199,12 @@ msgstr ""
 
 #
 # File: demos/iirfilt.dem.sce, line: 21
-msgid "Discrete IIR filter : low pass  fr < 0.2"
+msgid "Discrete IIR filter: low pass  fr < 0.2"
 msgstr ""
 
 #
 # File: demos/iirfilt.dem.sce, line: 32
-msgid "Discrete IIR filter band pass 0.15 < fr < 0.25"
+msgid "Discrete IIR filter: band pass 0.15 < fr < 0.25"
 msgstr ""
 
 #
@@ -259,7 +260,7 @@ msgstr ""
 
 #
 # File: demos/signal_processing.dem.gateway.sce, line: 16
-msgid "Wiegner filter"
+msgid "Wiener filter"
 msgstr ""
 
 #
@@ -343,12 +344,12 @@ msgstr ""
 
 #
 # File: demos/winfilt.dem.sce, line: 23
-msgid "Kaiser window,cut-off:0.2"
+msgid "Kaiser window, cut-off: 0.2"
 msgstr ""
 
 #
 # File: demos/winfilt.dem.sce, line: 38
-msgid "Hamming window,cut-off:0.2,0.3"
+msgid "Hamming window, cut-off: 0.2, 0.3"
 msgstr ""
 
 #
@@ -363,7 +364,7 @@ msgstr ""
 
 #
 # File: demos/winfilt.dem.sce, line: 54
-msgid "Chebyshev window,cut-off:0.15,0.35"
+msgid "Chebyshev window, cut-off: 0.15, 0.35"
 msgstr ""
 
 #
@@ -372,7 +373,7 @@ msgid "length 55"
 msgstr ""
 
 #
-# File: macros/%asn.sci, line: 23
+# File: macros/%asn.sci, line: 24
 # File: macros/remezb.sci, line: 40
 #, c-format
 msgid ""
@@ -560,6 +561,26 @@ msgid ""
 msgstr ""
 
 #
+# File: macros/group.sci, line: 43
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+msgstr ""
+
+#
+# File: macros/group.sci, line: 57
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A real or polynomial matrix or a "
+"rational expected.\n"
+msgstr ""
+
+#
+# File: macros/group.sci, line: 60
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A discrete system expected.\n"
+msgstr ""
+
+#
 # File: macros/hank.sci, line: 24
 # File: macros/ifftshift.sci, line: 13
 # File: macros/kalm.sci, line: 28
@@ -647,8 +668,8 @@ msgid "%s: Wrong size for input argument #%d: A tall matrix expected.\n"
 msgstr ""
 
 #
-# File: macros/lattn.sci, line: 85
-# File: macros/lattn.sci, line: 94
+# File: macros/lattn.sci, line: 89
+# File: macros/lattn.sci, line: 98
 #, c-format
 msgid "%s: Wrong values for input arguments #%d and #%d.\n"
 msgstr ""

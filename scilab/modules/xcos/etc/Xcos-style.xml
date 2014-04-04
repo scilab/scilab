@@ -551,7 +551,7 @@
         <add as="displayedLabel" value="Mat. 3D"/>
     </add>
     <add as="CSCOPXY3D" extend="Icon">
-        <add as="image" value="$SCILAB/modules/xcos/images/blocks/CSCOPXY.svg"/>
+        <add as="image" value="$SCILAB/modules/xcos/images/blocks/CSCOPXY3D.svg"/>
     </add>
     <add as="CANIMXY3D" extend="Icon">
         <add as="image" value="$SCILAB/modules/xcos/images/blocks/3DSCOPE.svg"/>
@@ -772,7 +772,7 @@
     <add as="fortran_block" extend="blockWithLabel">
         <add as="displayedLabel" value="Fortran block:&lt;BR&gt;%4$s"/>
     </add>
-    <add as="DEBUG_SCICOS" extend="blockWithLabel">
+    <add as="DEBUG" extend="blockWithLabel">
         <add as="displayedLabel" value="Debug:&lt;BR&gt;%2$s"/>
     </add>
     <add as="EXPRESSION" extend="blockWithLabel">

@@ -51,8 +51,12 @@
             at position <literal>x(i), y(i)</literal> in the current scale.
             If <varname>box</varname> is 1, a box is drawn around the numbers.
             If <varname>angle</varname> is given, it gives the direction for string drawing.
-            Note that a maximum of 4 significant digits of each element of <varname>nums</varname>
-            will be displayed.
+        </para>
+        <para>
+            <note>
+                Note that a maximum of 4 significant digits of each element of <varname>nums</varname>
+                will be displayed.
+            </note>
         </para>
     </refsection>
     <refsection>

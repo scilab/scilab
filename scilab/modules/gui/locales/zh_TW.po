@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 16967)\n"
 "Language: \n"
 
 #, c-format
@@ -51,7 +51,7 @@ msgid "%s: No more memory.\n"
 msgstr "%s: 記憶體耗盡.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: A real expected.\n"
+msgid "%s: Wrong type for argument #%d: A real expected.\n"
 msgstr ""
 
 #, c-format
@@ -100,6 +100,36 @@ msgid ""
 msgstr ""
 
 #, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong value for '%s' property: '%s' or '%s' expected."
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A double vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong size for '%s' property: %d elements expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"Wrong value for '%s' property: A string or a 1 x %d real row vector "
+"expected.\n"
+msgstr "屬性 '%s' 數值錯誤:  應為一字串或 1 x %d 之實數行向量.\n"
+
+#, c-format
 msgid "%s: Wrong type for argument #%d: Real expected.\n"
 msgstr ""
 
@@ -112,7 +142,7 @@ msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為一字串.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
 msgstr ""
 
 #, c-format
@@ -199,9 +229,8 @@ msgid ""
 msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一實數或圖形代碼 (handle).\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A real or Figure handle expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一實數或圖形代碼 (handle).\n"
+msgid "%s: can not read file %s.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Could not set property '%s'.\n"
@@ -226,6 +255,10 @@ msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為 '%s' 或  '%s' 代碼 (ha
 #, c-format
 msgid "%s: Unknown property: %s for '%s' handles.\n"
 msgstr "%s: 未知屬性 : %s , 不屬於 '%s' 代碼 (handle).\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: A string or boolean expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Could not create 'Uicontrol' handle.\n"
@@ -306,9 +339,9 @@ msgstr "Scilab 多值選單"
 
 #, c-format
 msgid ""
-"%s: Wrong size for input argument #%d: It must have same dimensions that "
+"%s: Wrong size for input argument #%d: It must have same dimensions as "
 "argument #%d.\n"
-msgstr "%s: 輸入參數的大小有誤#%d: 必須和參數#%d有相同的維度.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -322,11 +355,17 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Can not read input argument #%d.\n"
+msgid "%s: Wrong number for input argument: %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong number for input argument: %d expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: A string or a macro name expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A string or a macro name expected.\n"
 msgstr ""
 
 #, c-format
@@ -411,9 +450,29 @@ msgid "Impossible to get current look and feel"
 msgstr "無法取得目前之 look and feel"
 
 #, c-format
+msgid "%s: This file %s does not exist.\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "%s: A Java exception arised:\n"
 "%s"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A single handle expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: The handle is not or no more valid.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Figure handle expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: %s.\n"
 msgstr ""
 
 #, c-format
@@ -484,39 +543,6 @@ msgstr "儲存(&S)..."
 
 msgid "&Export to..."
 msgstr "匯出到...(&E)"
-
-msgid "P&NG"
-msgstr "P&NG"
-
-msgid "&JPG"
-msgstr "&JPG"
-
-msgid "&GIF"
-msgstr "&GIF"
-
-msgid "&PPM"
-msgstr "&PPM"
-
-msgid "&BMP"
-msgstr "&BMP"
-
-msgid "&Vectorial export to..."
-msgstr ""
-
-msgid "&PDF"
-msgstr "&PDF"
-
-msgid "&PS"
-msgstr ""
-
-msgid "&SVG"
-msgstr "&SVG"
-
-msgid "&EMF"
-msgstr "&EMF"
-
-msgid "&EPS"
-msgstr "&EPS"
 
 msgid "&Copy to clipboard"
 msgstr "複製到剪貼簿(&C)"
@@ -806,9 +832,6 @@ msgstr "選擇一檔案以寫入"
 msgid "Figure saved.\n"
 msgstr "圖形已存起\n"
 
-msgid "Select a file name"
-msgstr "選擇一檔案名稱"
-
 msgid "Colors"
 msgstr ""
 
@@ -894,6 +917,24 @@ msgid "Use default mailer"
 msgstr ""
 
 msgid "Command for mailer: "
+msgstr ""
+
+msgid "Proxy settings"
+msgstr ""
+
+msgid "Enable proxy"
+msgstr ""
+
+msgid "Host: "
+msgstr ""
+
+msgid "Port: "
+msgstr ""
+
+msgid "User: "
+msgstr ""
+
+msgid "Password: "
 msgstr ""
 
 #, c-format
@@ -984,6 +1025,10 @@ msgid "Wrong size for '%s' property: '%s', '%s' or '%s' expected.\n"
 msgstr "屬性 '%s' 長度錯誤: 應為 '%s', '%s' 或 '%s'.\n"
 
 #, c-format
+msgid "Wrong type for '%s' property: String expected.\n"
+msgstr ""
+
+#, c-format
 msgid "Wrong value for '%s' property: A real expected.\n"
 msgstr "屬性 '%s' 數值錯誤: 應為一實數.\n"
 
@@ -1001,33 +1046,15 @@ msgstr "屬性 '%s' 長度錯誤:  應為一字串或 1 x %d 之實數行向量.
 
 #, c-format
 msgid ""
-"Wrong value for '%s' property: A string or a 1 x %d real row vector "
-"expected.\n"
-msgstr "屬性 '%s' 數值錯誤:  應為一字串或 1 x %d 之實數行向量.\n"
-
-#, c-format
-msgid ""
 "Wrong type for '%s' property: A string or a 1 x %d real row vector "
 "expected.\n"
 msgstr "屬性 '%s' 型態錯誤:  應為一字串或 1 x %d 之實數行向量.\n"
 
 #, c-format
 msgid ""
-"Wrong type for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
+"Wrong type for '%s' property: '%s', '%s', '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
-msgstr "屬性 '%s' 之型態錯誤: 應為 '%s', '%s', '%s', '%s', '%s' 或 '%s'.\n"
-
-#, c-format
-msgid ""
-"Wrong size for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
-"expected.\n"
-msgstr "屬性 '%s' 長度錯誤: 應為 '%s', '%s', '%s', '%s', '%s'或 '%s'.\n"
-
-#, c-format
-msgid ""
-"Wrong value for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' "
-"expected.\n"
-msgstr "屬性 '%s' 數值錯誤: 應為 '%s', '%s', '%s', '%s', '%s' 或 '%s' .\n"
+msgstr ""
 
 #, c-format
 msgid "Wrong type for '%s' property: A 1 x %d real row vector expected.\n"
@@ -1076,6 +1103,10 @@ msgstr "屬性 '%s' 之型態錯誤: 應為實數行向量或字串.\n"
 msgid ""
 "Warning: '%s' 'Value' property should be an integer, the value will be "
 "truncated.\n"
+msgstr ""
+
+#, c-format
+msgid "'%s' value must be between 0 and %d.\n"
 msgstr ""
 
 #, c-format
@@ -1217,8 +1248,8 @@ msgstr "無標題匯出"
 msgid "Export"
 msgstr "匯出"
 
-msgid "Preview"
-msgstr "預覽"
+msgid "Preview selected image file"
+msgstr ""
 
 msgid "Replace existing file?"
 msgstr "要覆蓋已存在的檔案嗎?"
@@ -1259,6 +1290,9 @@ msgstr ""
 msgid "SciNotes compatible"
 msgstr ""
 
+msgid "Preview"
+msgstr "預覽"
+
 msgid "Ok"
 msgstr "確定"
 
@@ -1290,6 +1324,33 @@ msgid ""
 "Left click on the curve creates a datatip and right click on the datatip "
 "removes it."
 msgstr ""
+
+msgid "Delete all the datatips"
+msgstr ""
+
+msgid "Delete all the datatips on the selected curve"
+msgstr ""
+
+msgid "Delete the nearest datatip"
+msgstr ""
+
+msgid "Delete the last datatip"
+msgstr ""
+
+msgid "Edit curve datatip display function"
+msgstr ""
+
+msgid "Enable interpolation"
+msgstr ""
+
+msgid "Disable interpolation"
+msgstr ""
+
+msgid "Display function name"
+msgstr ""
+
+msgid "OK"
+msgstr "確定"
 
 msgid "Insert"
 msgstr ""
@@ -2004,9 +2065,6 @@ msgstr ""
 msgid "Z Shift"
 msgstr ""
 
-msgid "OK"
-msgstr "確定"
-
 msgid "Yes"
 msgstr "是"
 
@@ -2097,6 +2155,16 @@ msgstr "致謝"
 msgid "Could not open: "
 msgstr "無法開啟： "
 
+msgid "Restoration error"
+msgstr ""
+
+msgid ""
+"The configuration file has been corrupted and reset to the default one."
+msgstr ""
+
+msgid "The configuration file has been corrupted. Scilab needs to restart."
+msgstr ""
+
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Scilab '%s' 模組未安裝.\n"
@@ -2110,6 +2178,76 @@ msgstr "錯誤. 捕捉到一錯誤訊號.\n"
 
 msgid "Control Plot3d"
 msgstr "控制 Plot3d"
+
+msgid "Control Panel"
+msgstr ""
+
+msgid "Rotation angle"
+msgstr ""
+
+msgid "Colormap"
+msgstr ""
+
+msgid "Show / Hide"
+msgstr ""
+
+msgid "messagebox"
+msgstr ""
+
+msgid "x_choose"
+msgstr ""
+
+msgid "x_dialog"
+msgstr ""
+
+msgid "x_mdialog"
+msgstr ""
+
+msgid "Simple example of message"
+msgstr ""
+
+msgid "Button 1Button 2"
+msgstr ""
+
+msgid "Button 1 clicked."
+msgstr ""
+
+msgid "Button 2 clicked"
+msgstr ""
+
+msgid ""
+"Message: Selection (double-click on an item --> returns the item number)"
+msgstr ""
+
+msgid "Item selected: "
+msgstr ""
+
+msgid "Message: enter a value"
+msgstr ""
+
+msgid "Value entered: "
+msgstr ""
+
+msgid "Message"
+msgstr ""
+
+msgid "first row"
+msgstr ""
+
+msgid "Values entered: "
+msgstr ""
+
+msgid "row"
+msgstr ""
+
+msgid "col"
+msgstr ""
+
+msgid "Matrix to edit"
+msgstr ""
+
+msgid "Matrix entered: "
+msgstr ""
 
 msgid "GUI"
 msgstr "圖形使用者介面"
@@ -2129,6 +2267,12 @@ msgstr "LaTeX/MathML 使用者操作控制項"
 msgid "Show images with uicontrols "
 msgstr ""
 
+msgid "Listboxes and Popupmenus"
+msgstr ""
+
+msgid "Uicontrols rendering"
+msgstr ""
+
 msgid "<Enter color name here>"
 msgstr "<在此輸入顏色名稱>"
 
@@ -2138,15 +2282,22 @@ msgstr "錯誤"
 msgid "Please enter a color name first."
 msgstr "請先輸入顏色名稱"
 
+msgid "Unknown color."
+msgstr ""
+
 msgid "No color selected."
 msgstr "未選定顏色"
+
+msgid "Color selection"
+msgstr ""
 
 #, c-format
 msgid "Selected colors are: %s."
 msgstr "所選擇的顏色是: %s."
 
-msgid "Selected colors"
-msgstr "選擇顏色"
+#, c-format
+msgid "Deleted colors are: %s."
+msgstr ""
 
 #, c-format
 msgid "You clicked on menu '%s'."
@@ -2190,8 +2341,8 @@ msgstr "Uicontrols(使用者介面控制項) 展示"
 msgid "Application"
 msgstr "應用程式"
 
-msgid "Exit figure"
-msgstr "離開 figure"
+msgid "Close figure"
+msgstr ""
 
 msgid "Scilab Graphics"
 msgstr "Scilab 繪圖功能"
@@ -2217,11 +2368,23 @@ msgstr "子選單 2-1"
 msgid "Sub-menu 2-2"
 msgstr "子選單 2-2"
 
+msgid "item1|item2|item3|item4"
+msgstr "選項1|選項2|選項3|選項4"
+
+msgid "Pop-up menu"
+msgstr ""
+
+msgid "Slider demo"
+msgstr "輪播展示"
+
 msgid "Colors list edition"
 msgstr "Colors 清單版本"
 
 msgid "Add color in listbox"
 msgstr "在 listbox 中加入顏色"
+
+msgid "Delete color in listbox"
+msgstr ""
 
 msgid "blue"
 msgstr "藍色"
@@ -2238,11 +2401,11 @@ msgstr "黃色"
 msgid "Display selection"
 msgstr "選擇顯示器"
 
-msgid "Slider demo"
-msgstr "輪播展示"
+msgid "Delete selection"
+msgstr ""
 
-msgid "item1|item2|item3|item4"
-msgstr "選項1|選項2|選項3|選項4"
+msgid "Default"
+msgstr ""
 
 msgid "Quit demonstration"
 msgstr "離開展示功能"
@@ -2288,10 +2451,58 @@ msgid ""
 msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一圖形代碼 (handle) 或實數.\n"
 
 #, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected."
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected."
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A integer expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d, %d or %d expected."
+msgstr ""
+
+#, c-format
 msgid ""
-"%s: Wrong size for input argument #%d: A 'Figure' handle or a real "
-"expected.\n"
-msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為一圖形代碼 (handle) 或實數.\n"
+"%s: Wrong type for input argument #%d: A integer or a string expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A border or a string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A Font Border expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d or %d expected."
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A border expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected."
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A integer value expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
@@ -2330,6 +2541,12 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A 'Figure' handle or a real "
+"expected.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為一圖形代碼 (handle) 或實數.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: uitree expected.\n"
@@ -2421,3 +2638,9 @@ msgstr "%s:  輸入參數 %s 之型態錯誤: 應為一實數.\n"
 #, c-format
 msgid "%s: Wrong size for %s: A real expected.\n"
 msgstr "%s: 參數 %s 長度錯誤: 應為一實數.\n"
+
+#~ msgid "Exit figure"
+#~ msgstr "離開 figure"
+
+#~ msgid "Selected colors"
+#~ msgstr "選擇顏色"

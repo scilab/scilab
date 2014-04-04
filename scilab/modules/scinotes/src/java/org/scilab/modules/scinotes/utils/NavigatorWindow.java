@@ -58,7 +58,7 @@ import javax.swing.tree.TreePath;
 
 import org.flexdock.docking.event.DockingEvent;
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menu.Menu;
@@ -85,7 +85,7 @@ import org.scilab.modules.scinotes.tabfactory.CodeNavigatorTabFactory;
  * @author Calixte DENIZET
  */
 @SuppressWarnings(value = { "serial" })
-public final class NavigatorWindow extends SwingScilabTab implements DocumentListener,
+public final class NavigatorWindow extends SwingScilabDockablePanel implements DocumentListener,
     TreeExpansionListener {
 
     private static final String EMPTY = "";
@@ -128,6 +128,7 @@ public final class NavigatorWindow extends SwingScilabTab implements DocumentLis
         super(SciNotesMessages.CODE_NAVIGATOR, uuid == null ? UUID.randomUUID().toString() : uuid);
         this.editor = editor;
         editor.addNavigator(this);
+        setContentPane(new javax.swing.JPanel());
         ConfigSciNotesManager.saveCodeNavigatorState(editor.getPersistentId(), getPersistentId());
         WindowsConfigurationManager.restorationFinished(this);
     }
@@ -192,7 +193,7 @@ public final class NavigatorWindow extends SwingScilabTab implements DocumentLis
      * Set the parent window
      */
     public void setParentWindow() {
-        this.parentWindow = new SwingScilabWindow();
+        this.parentWindow = SwingScilabWindow.createWindow(true);
         parentWindow.addTab(this);
         parentWindow.setVisible(true);
     }
@@ -287,8 +288,8 @@ public final class NavigatorWindow extends SwingScilabTab implements DocumentLis
     public void changeToolBar() {
         SwingScilabWindow win = (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, this);
         if (win != null && win.getDockingPort() != null) {
-            Set<SwingScilabTab> set = (Set<SwingScilabTab>) win.getDockingPort().getDockables();
-            for (SwingScilabTab tab : set) {
+            Set<SwingScilabDockablePanel> set = (Set<SwingScilabDockablePanel>) win.getDockingPort().getDockables();
+            for (SwingScilabDockablePanel tab : set) {
                 if (tab == editor) {
                     addToolBar(editor.getToolBar());
                     break;
@@ -513,7 +514,7 @@ public final class NavigatorWindow extends SwingScilabTab implements DocumentLis
 
         CommonCallBack callback = new CommonCallBack(null) {
             public void callBack() {
-                ClosingOperationsManager.startClosingOperation((SwingScilabTab) NavigatorWindow.this);
+                ClosingOperationsManager.startClosingOperation((SwingScilabDockablePanel) NavigatorWindow.this);
             }
 
             public void actionPerformed(ActionEvent e) {

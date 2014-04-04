@@ -101,20 +101,10 @@ fr_FR.DownloadMKLDescription = Merci de patienter durant le téléchargement de fi
 ;
 fr_FR.DownloadMKLFFTWLabel = Téléchargement de la bibliothèque FFTW3 optimisée par Intel Math Kernel Library.
 ;
-fr_FR.DownloadCHMLabel = Téléchargement des fichiers d'aide au format CHM.
-fr_FR.DownloadCHMDescription = Merci de patienter durant le téléchargement de fichiers.
-fr_FR.DoTasksJustAfterInstallMsg4 = Fichiers CHM non installés.
-fr_FR.DescriptionCHM = Telecharger les fichiers d'aide au format CHM
-;
 fr_FR.DoTasksJustAfterInstallMsg2 = Les bibliothèques de référence BLAS, LAPACK seront installées et utilisées.
 fr_FR.DoTasksJustAfterInstallMsg3 = La bibliothèque de référence FFTW3 sera installée et utilisée.
 ;
 fr_FR.NextButtonClickwpReadyMsg1 = Impossible de télécharger la bibliothèque Intel Math Kernel pour Scilab (La bibliothèque par défaut sera utilisée).
 fr_FR.NextButtonClickwpReadyMsg2 = Impossible de télécharger la bibliothèque FFTW3 optimisée par Intel Math Kernel Library (La bibliothèque par défaut sera utilisée).
-fr_FR.NextButtonClickwpReadyMsg3 = Impossible de télécharger les fichiers d'aide au format CHM (Ils ne seront pas utilisés).
-;
-fr_FR.DescriptionHelpScilabCHM = Aide Scilab
-fr_FR.ScilabCHM = modules\helptools\chm\scilab_fr_FR_help.chm
-;
 ;-------------------------------------------------------------------------------
 ;

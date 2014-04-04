@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 16967)\n"
 
 #, c-format
 msgid "%s: Function %s is obsolete.\n"
@@ -63,14 +63,6 @@ msgid ""
 "%s"
 msgstr ""
 "Нельзя скомпилировать код:\n"
-"%s"
-
-#, c-format
-msgid ""
-"Cannot create jar:\n"
-"%s"
-msgstr ""
-"Нельзя создать jar:\n"
 "%s"
 
 msgid "Invalid operator: '"

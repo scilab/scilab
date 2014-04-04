@@ -13,20 +13,18 @@
 
 package org.scilab.modules.ui_data.variablebrowser.actions;
 
-import org.scilab.modules.ui_data.variablebrowser.SwingScilabVariableBrowser;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 
-import org.scilab.modules.ui_data.utils.UiDataMessages;
-import org.scilab.modules.ui_data.BrowseVar;
-
-import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
+import org.scilab.modules.commons.gui.FindIconHelper;
+import org.scilab.modules.commons.gui.ScilabLAF;
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
-import org.scilab.modules.gui.pushbutton.PushButton;
-import org.scilab.modules.gui.pushbutton.ScilabPushButton;
-import org.scilab.modules.gui.utils.ScilabSwingUtilities;
+import org.scilab.modules.ui_data.BrowseVar;
+import org.scilab.modules.ui_data.utils.UiDataMessages;
+import org.scilab.modules.ui_data.variablebrowser.SwingScilabVariableBrowser;
 
 /**
  * Manage Modify Actions
@@ -36,7 +34,7 @@ public final class ModifyAction extends CommonCallBack {
 
     private static final long serialVersionUID = 1L;
 
-    private static ImageIcon icon = new ImageIcon(ScilabSwingUtilities.findIcon("rrze_table"));
+    private static ImageIcon icon = new ImageIcon(FindIconHelper.findIcon("rrze_table"));
 
     private static final char MNEMONIC = 'M';
 
@@ -58,11 +56,12 @@ public final class ModifyAction extends CommonCallBack {
      * @param title tooltip for the button
      * @return the button
      */
-    public static PushButton createButton(SwingScilabVariableBrowser variableBrowser, String title) {
-        PushButton button = ScilabPushButton.createPushButton();
-        ((SwingScilabPushButton) button.getAsSimplePushButton()).addActionListener(new ModifyAction(variableBrowser));
+    public static JButton createButton(SwingScilabVariableBrowser variableBrowser, String title) {
+        JButton button = new JButton();
+        ScilabLAF.setDefaultProperties(button);
+        button.addActionListener(new ModifyAction(variableBrowser));
         button.setToolTipText(title);
-        ((SwingScilabPushButton) button.getAsSimplePushButton()).setIcon(icon);
+        button.setIcon(icon);
 
         return button;
     }
@@ -80,7 +79,6 @@ public final class ModifyAction extends CommonCallBack {
         return menuItem;
     }
 
-
     /**
      * Action!
      * @see org.scilab.modules.gui.events.callback.CallBack#callBack()
@@ -88,11 +86,9 @@ public final class ModifyAction extends CommonCallBack {
     @Override
     public void callBack() {
         variableBrowser.startEditVar(getSelectedVariableVisibility(), getSelectedVariable());
-
     }
 
     private String getSelectedVariable() {
-
         int clickedRow = variableBrowser.getTable().getSelectedRow();
         // Does nothing if no variable selected
         if (clickedRow != -1) {
@@ -102,7 +98,6 @@ public final class ModifyAction extends CommonCallBack {
     }
 
     private String getSelectedVariableVisibility() {
-
         int clickedRow = variableBrowser.getTable().getSelectedRow();
         // Does nothing if no variable selected
         if (clickedRow != -1) {

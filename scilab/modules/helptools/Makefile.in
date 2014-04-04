@@ -190,7 +190,8 @@ am_libscihelptools_disable_la_OBJECTS = $(am__objects_2)
 libscihelptools_disable_la_OBJECTS =  \
 	$(am_libscihelptools_disable_la_OBJECTS)
 @BUILD_HELP_TRUE@@GUI_TRUE@libscihelptools_la_DEPENDENCIES =  \
-@BUILD_HELP_TRUE@@GUI_TRUE@	libscihelptools-algo.la
+@BUILD_HELP_TRUE@@GUI_TRUE@	libscihelptools-algo.la \
+@BUILD_HELP_TRUE@@GUI_TRUE@	$(top_builddir)/modules/commons/libscicommons.la
 am__libscihelptools_la_SOURCES_DIST = sci_gateway/c/gw_helptools.c \
 	sci_gateway/nogui/nogui.cpp sci_gateway/cpp/sci_buildDoc.cpp
 @BUILD_HELP_TRUE@@GUI_TRUE@am__objects_3 = sci_gateway/c/libscihelptools_la-gw_helptools.lo
@@ -331,6 +332,7 @@ CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
 DEMOTOOLS_ENABLE = @DEMOTOOLS_ENABLE@
 DEPDIR = @DEPDIR@
+DLLTOOL = @DLLTOOL@
 DOCBOOK_ROOT = @DOCBOOK_ROOT@
 DOXYGEN_BIN = @DOXYGEN_BIN@
 DSYMUTIL = @DSYMUTIL@
@@ -350,6 +352,11 @@ FGREP = @FGREP@
 FLEXDOCK = @FLEXDOCK@
 FLIBS = @FLIBS@
 FOP = @FOP@
+FREEHEP_GRAPHICS2D = @FREEHEP_GRAPHICS2D@
+FREEHEP_GRAPHICSIO = @FREEHEP_GRAPHICSIO@
+FREEHEP_GRAPHICSIO_EMF = @FREEHEP_GRAPHICSIO_EMF@
+FREEHEP_IO = @FREEHEP_IO@
+FREEHEP_UTIL = @FREEHEP_UTIL@
 GENHTML = @GENHTML@
 GETTEXT_MACRO_VERSION = @GETTEXT_MACRO_VERSION@
 GIWS_BIN = @GIWS_BIN@
@@ -413,6 +420,7 @@ LTLIBINTL = @LTLIBINTL@
 LTLIBOBJS = @LTLIBOBJS@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
+MANIFEST_TOOL = @MANIFEST_TOOL@
 MATIO_CFLAGS = @MATIO_CFLAGS@
 MATIO_ENABLE = @MATIO_ENABLE@
 MATIO_LIBS = @MATIO_LIBS@
@@ -578,7 +586,9 @@ yacc_present = @yacc_present@
 @BUILD_HELP_TRUE@@GUI_TRUE@GIWS_WRAPPERS = src/jni/BuildDocObject.giws.xml \
 @BUILD_HELP_TRUE@@GUI_TRUE@	src/jni/BuildDocObjectv2.giws.xml
 
-@BUILD_HELP_TRUE@@GUI_TRUE@libscihelptools_la_LIBADD = libscihelptools-algo.la
+@BUILD_HELP_TRUE@@GUI_TRUE@libscihelptools_la_LIBADD = libscihelptools-algo.la \
+@BUILD_HELP_TRUE@@GUI_TRUE@		$(top_builddir)/modules/commons/libscicommons.la
+
 @BUILD_HELP_TRUE@@GUI_TRUE@libscihelptools_algo_la_SOURCES = $(HELPTOOLS_SOURCES)
 @BUILD_HELP_TRUE@@GUI_TRUE@libscihelptools_algo_la_CPPFLAGS = $(libscihelptools_la_CPPFLAGS)
 @BUILD_HELP_TRUE@@GUI_TRUE@noinst_LTLIBRARIES = libscihelptools-algo.la

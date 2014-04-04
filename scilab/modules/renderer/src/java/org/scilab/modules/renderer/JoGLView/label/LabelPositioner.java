@@ -23,7 +23,7 @@ import org.scilab.modules.graphic_objects.axes.Axes;
 import java.awt.Dimension;
 
 /**
- * LabelPositioner class.
+ * LabelPositioner class
  *
  * Computes the position of a Label in box coordinates [-1, +1]^3, as used
  * when rulers are drawn {@see AxesDrawer}, where -1 and +1 respectively map
@@ -304,7 +304,6 @@ public abstract class LabelPositioner {
      */
     public void positionLabel() {
         computeAnchorPoint();
-
         computeRotationAngle();
 
         /* Depends on the rotation angle and must therefore be computed afterwards. */
@@ -339,8 +338,6 @@ public abstract class LabelPositioner {
         /* Compute and set a zero displacement */
         labelDisplacement = new Vector3d(0.0, 0.0, 0.0);
 
-        position = position.plus(labelDisplacement);
-
         return position;
     }
 
@@ -351,9 +348,9 @@ public abstract class LabelPositioner {
      */
     private void computeRotationAngle() {
         if (autoRotation) {
-            rotationAngle = getAutoRotationAngle();
+            setRotationAngle(getAutoRotationAngle());
         } else {
-            rotationAngle = userRotationAngle;
+            setRotationAngle(userRotationAngle);
         }
     }
 
@@ -435,7 +432,6 @@ public abstract class LabelPositioner {
     public Vector3d getLowerLeftCornerPosition() {
         Transformation canvasProjection = drawingTools.getTransformationManager().getCanvasProjection();
         Vector3d labelPoint = new Vector3d(anchorPoint);
-
         Vector3d projLabelPoint = new Vector3d(projAnchorPoint);
 
         Vector3d projRightPoint = projLabelPoint.plus(projHalfWidth);

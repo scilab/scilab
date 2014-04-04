@@ -3,7 +3,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * Copyright (C) 2013 - Samuel GOUGEON
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
@@ -31,8 +31,8 @@
             <varlistentry>
                 <term>m, n</term>
                 <listitem>
-                    <para>Scalar, vector, matrix or hypermatrix of encoded integers, reals or polynomials (Hypermatrix is not supported for polynomials). 
-                        <varname>m</varname> and <varname>n</varname> must have the same type. If they are of integer type, they may be of distinct 
+                    <para>Scalar, vector, matrix or hypermatrix of encoded integers, reals or polynomials (Hypermatrix is not supported for polynomials).
+                        <varname>m</varname> and <varname>n</varname> must have the same type. If they are of integer type, they may be of distinct
                         encoding length (for instance int8 and int16). If none of them is scalar, they must have the same sizes.
                     </para>
                 </listitem>
@@ -68,7 +68,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 n = [1,2,10,15];
 m = [2,2,3,5];
 modulo(n,m)
@@ -111,6 +111,9 @@ pmodulo(%z^2+1, %z)
     <refsection role= "see also">
         <title>See also</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="unwrap">unwrap</link>
+            </member>
             <member>
                 <link linkend="ieee">ieee</link>
             </member>

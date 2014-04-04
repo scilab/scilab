@@ -208,9 +208,11 @@ public class Motor3D {
         }
     }
 
-    public void draw(DrawingTools drawingTools, Texture texture, AnchorPosition anchor, ElementsBuffer positions, double rotationAngle) {
+    public void draw(DrawingTools drawingTools, Texture texture, AnchorPosition anchor, ElementsBuffer positions, int offset, int stride, double rotationAngle) {
         FloatBuffer positionsBuffer = positions.getData();
         float[] buffer;
+        offset = offset < 0 ? 0 : offset;
+        stride = stride < 1 ? 1 : stride;
 
         positionsBuffer.rewind();
         if (positionsBuffer.hasArray()) {
@@ -219,11 +221,11 @@ public class Motor3D {
             buffer = new float[positionsBuffer.limit()];
             positionsBuffer.get(buffer);
         }
-        Vector3d[] verticesArray = getMultiVectors(buffer, transf, false);
 
-        for (Vector3d v : verticesArray) {
+        Vector3d[] verticesArray = getMultiVectors(buffer, transf, false);
+        for (int i = offset; i < verticesArray.length; i += stride) {
             try {
-                SpritedRectangle o = new SpritedRectangle(v, texture, anchor, textureDrawingTools, rotationAngle);
+                SpritedRectangle o = new SpritedRectangle(verticesArray[i], texture, anchor, textureDrawingTools, rotationAngle);
                 add(o);
             } catch (InvalidPolygonException e) { }
         }
@@ -240,14 +242,19 @@ public class Motor3D {
      * @param tri the triangle to add
      */
     private void add(Triangle tri) {
-        Vector3d normal = tri.getNormal();
-        if (normal != null) {
-            //normal = transf.projectDirection(normal);
-            if ((mode == FaceCullingMode.CW && normal.getZ() > 0) || (mode == FaceCullingMode.CCW && normal.getZ() < 0) || mode == FaceCullingMode.BOTH) {
-                Scene.addToRoot(is2DView(), tri);
-            }
+        final boolean is2d = is2DView();
+        if (is2d) {
+            Scene.addToRoot(is2d, tri);
         } else {
-            Scene.addToRoot(is2DView(), tri);
+            Vector3d normal = tri.getNormal();
+            if (normal != null) {
+                //normal = transf.projectDirection(normal);
+                if ((mode == FaceCullingMode.CW && normal.getZ() > 0) || (mode == FaceCullingMode.CCW && normal.getZ() < 0) || mode == FaceCullingMode.BOTH) {
+                    Scene.addToRoot(is2d, tri);
+                }
+            } else {
+                Scene.addToRoot(is2d, tri);
+            }
         }
     }
 

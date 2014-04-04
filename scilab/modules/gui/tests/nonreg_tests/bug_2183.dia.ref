@@ -15,39 +15,6 @@
 //    The content typed into an 'edit' uicontrol cannot be retrieved if initially unset
 f = figure(1);
 // Create the uicontrol
-h=uicontrol(f,"style","edit","position",[20 20 80 20])
- h  =
- 
-Handle of type "uicontrol" with properties:
-===========================================
-Parent: Figure
-Children: []
-BackgroundColor = [0.8,0.8,0.8]
-Enable = "on"
-FontAngle = normal
-FontName = helvetica
-FontSize = 10
-FontUnits = points
-FontWeight = normal
-ForegroundColor = [0,0,0]
-HorizontalAlignment = center
-ListboxTop = []
-Max = 1
-Min = 0
-Position = [20,20,80,20]
-Relief = sunken
-SliderStep = [0.01,0.1]
-String = ""
-Style = edit
-TooltipString = ""
-Units = pixels
-Value = []
-VerticalAlignment = middle
-Visible = "on"
-Callback = 
-Callback_Type = -1
-Handle_Visible = "on"
-Userdata = []
-Tag = 
+h=uicontrol(f,"style","edit","position",[20 20 80 20]);
 // Now type something in the entry box
 if execstr("get(h,""string"")", "errcatch")<>0 then bugmes();quit;end

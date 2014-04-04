@@ -14,6 +14,10 @@ package org.scilab.modules.graphic_objects.uicontrol.popupmenu;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_POPUPMENU__;
 
+import javax.swing.UIDefaults;
+import javax.swing.UIManager;
+
+import org.scilab.modules.graphic_objects.console.Console;
 import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
 
 /**
@@ -27,7 +31,22 @@ public class PopupMenu extends Uicontrol {
     public PopupMenu() {
         super();
         setStyle(__GO_UI_POPUPMENU__);
-        setRelief(FLAT_RELIEF);
+
+        if (Console.getConsole().getUseDeprecatedLF()) {
+            setRelief(RELIEF_FLAT);
+        } else {
+            UIDefaults defaults = UIManager.getDefaults();
+
+            //font
+            setFont(defaults.getFont("ComboBox.font"));
+
+            //h-alignment
+            setHorizontalAlignment("left");
+
+            //v-alignement
+            setVerticalAlignment("middle");
+        }
+
     }
 
 }

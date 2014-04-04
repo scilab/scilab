@@ -74,7 +74,6 @@ plot2d // desenhará estes eixos e seus galhos depois...
 subplot(211) // aviso: mudamos os eixos
 plot2d1 // modo de desenho padrão
 
-draw(a) // ...os eixos são visíveis apenas se você não resdesenhar a janela
 drawnow() // tudo está visível
  ]]></programlisting>
     </refsection>

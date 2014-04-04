@@ -61,10 +61,10 @@ m1=(epsilon*epsilon)/(A*A-1);n=5;omegac=6;
 m=find_freq(epsilon,A,n);omegar = omegac/sqrt(m)
 %k(1-m1)*%k(m)/(%k(m1)*%k(1-m))-n   //チェック...
 [alpha,Beta]=alpha_beta(n,m,m1)
-alpha*%asn(1,m)-n*%k(m1)      //チェック
+alpha*delip(1,sqrt(m))-n*%k(m1)      //チェック
 sample=0:0.01:20;
 //等高線に正の実軸をマップ...
-z=alpha*%asn(sample/omegac,m)+Beta*ones(sample);
+z=alpha*delip(sample/omegac,sqrt(m))+Beta*ones(sample);
 plot(sample,ell1mag(epsilon,m1,z))
  ]]></programlisting>
     </refsection>

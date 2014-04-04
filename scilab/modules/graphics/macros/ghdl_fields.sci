@@ -20,7 +20,7 @@ function fields=ghdl_fields(h)
     select h.type
     case "Figure"
         fields=["visible";"figure_position";"figure_size";"axes_size";
-        "auto_resize";"figure_name";"figure_id";"color_map";"pixmap";
+        "auto_resize";"figure_name";"figure_id";"color_map";
         "pixel_drawing_mode";"immediate_drawing";"background";
         "rotation_style";"children";"user_data"]'
     case "Axes"

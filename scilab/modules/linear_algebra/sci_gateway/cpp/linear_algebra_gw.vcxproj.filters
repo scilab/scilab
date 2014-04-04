@@ -63,6 +63,9 @@
     <ClCompile Include="..\..\src\cpp\scischur.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\c\sci_norm.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\linear_algebra_gw.hxx">

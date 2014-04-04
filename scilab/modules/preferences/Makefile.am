@@ -84,7 +84,7 @@ libscipreferences_cli_la_CPPFLAGS = -I$(srcdir)/includes/ \
 PREFERENCES_CLI_C_SOURCES = src/nopreferences/nopreferences.c
 libscipreferences_cli_la_SOURCES = $(PREFERENCES_CLI_C_SOURCES)
 
-libscipreferences_la_LDFLAGS = $(X_LIBS) $(X_EXTRA_LIBS) $(XML_LIBS) $(AM_LDFLAGS)
+libscipreferences_la_LDFLAGS = $(AM_LDFLAGS)
 
 pkglib_LTLIBRARIES = libscipreferences-cli.la
 
@@ -116,7 +116,7 @@ BUILT_SOURCES+=swig
 endif
 
 libscipreferences_cli_la_LIBADD = libscipreferences-algo.la
-libscipreferences_la_LIBADD = libscipreferences-algo.la
+libscipreferences_la_LIBADD = libscipreferences-algo.la $(X_LIBS) $(X_EXTRA_LIBS) $(XML_LIBS)
 
 
 #### preferences : gateway declaration ####

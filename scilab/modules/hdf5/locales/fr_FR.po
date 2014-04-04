@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-09-16 09:46+0000\n"
+"PO-Revision-Date: 2014-01-27 13:16+0000\n"
 "Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 16967)\n"
 "Language: fr\n"
 
 #, c-format
@@ -231,10 +231,11 @@ msgid "%s: Second argument must be a dataset name.\n"
 msgstr "%s : Le deuxième argument doit être un nom de dataset.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Same size expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: Same size as the data expected.\n"
 msgstr ""
-"%s : Dimension erronée de l'argument d'entrée n°%d : Mêmes dimensions "
-"attendues.\n"
+"%s : Dimension erronée de l'argument d'entrée n°%d : La même dimension que "
+"les données attendue.\n"
 
 #, c-format
 msgid "%s: Argument 'count' is missing.\n"
@@ -794,22 +795,22 @@ msgid "Invalid path: %s."
 msgstr "Chemin invalide : %s."
 
 msgid "HDF5"
-msgstr ""
+msgstr "HDF5"
 
 msgid "Ring resonator (HDF5 data source)"
-msgstr ""
+msgstr "Cavité en anneau (source de données HDF5)"
 
 msgid "Ring Resonator from a HDF5 file"
-msgstr ""
+msgstr "Cavité en anneau depuis un fichier HDF5"
 
 msgid "X position [a]"
-msgstr ""
+msgstr "Position X [a]"
 
 msgid "Y position [a]"
-msgstr ""
+msgstr "Position Y [a]"
 
 msgid "Permittivity"
-msgstr ""
+msgstr "Permittivité"
 
 msgid "Ring Resonator"
-msgstr ""
+msgstr "Cavité en anneau"

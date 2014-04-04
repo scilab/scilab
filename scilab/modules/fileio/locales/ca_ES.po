@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 16967)\n"
 "Language: ca\n"
 
 #, c-format
@@ -160,7 +160,7 @@ msgstr ""
 "invàlid.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: A string expected.\n"
+msgid "%s: Wrong type for argument #%d: A string expected.\n"
 msgstr ""
 
 #, c-format
@@ -286,13 +286,31 @@ msgid "%s: Data mismatch.\n"
 msgstr "%s: Error a les dades.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Integer expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: A positive integer value expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un enter.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
-msgstr "%s: L'argument #%d és d'un tipus incorrecte: Ha de ser un enter.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: A positive integer value expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A positive integer value expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: An integer value expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -331,6 +349,11 @@ msgstr "%s: No s'ha associat cap fitxer a la unitat lògica %d.\n"
 #, c-format
 msgid "%s: invalid filename.\n"
 msgstr "%s: El nom de fitxer no és vàlid.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Integer expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un enter.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
@@ -380,28 +403,6 @@ msgid ""
 msgstr ""
 
 msgid "Could not parse the URL.\n"
-msgstr ""
-
-#, c-format
-msgid "Could not read the configuration file '%s'.\n"
-msgstr ""
-
-#, c-format
-msgid "Failed to read the scicurl_config file '%s'.\n"
-msgstr ""
-
-#, c-format
-msgid "Improper syntax of scicurl_config file ('%s'), '=' not found %d:%s\n"
-msgstr ""
-
-#, c-format
-msgid "Improper syntax of scicurl_config file ('%s'), after an '='\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"Improper syntax of scicurl_config file ('%s'), space before and after '=' "
-"expected\n"
 msgstr ""
 
 #, c-format

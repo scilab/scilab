@@ -20,4 +20,4 @@ sys=syslin("d",zaehler./nenner);
 execstr("plzr(sys);", "errcatch");
 
 [msg, num, x, y] = lasterror();
-if (msg<>msprintf(gettext("%s: Wrong value of input argument %d: Proper system expected.\n"), "plzr", 1)) | (num<>10000) then pause, end
+if (msg<>msprintf(gettext("%s: Wrong value of input argument #%d: Proper system expected.\n"), "plzr", 1)) | (num<>10000) then pause, end

@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010-2010 - DIGITEO - Clement DAVID <clement.david@scilab.org>
- * Copyright (C) 2011-2011 - Scilab Enterprises - Clement DAVID
+ * Copyright (C) 2011-2014 - Scilab Enterprises - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -14,16 +14,15 @@
 package org.scilab.modules.xcos.modelica.listener;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.IOException;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javax.swing.AbstractAction;
-import javax.xml.bind.JAXBException;
+import javax.swing.JProgressBar;
+import javax.swing.SwingWorker;
 
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
-import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.xcos.modelica.ModelStatistics;
 import org.scilab.modules.xcos.modelica.Modelica;
@@ -44,43 +43,43 @@ public final class SolveAction extends AbstractAction {
     private static final String EXTENSION = ".xml";
     private static final String INCIDENCE = "i_incidence_matrix";
 
-    private final ModelicaController controller;
+    private enum ActionToPerform {EXPORT, COMPILE, COMPUTE, FINISH};
+    private class Worker extends SwingWorker<Void, ActionToPerform> {
 
-    /**
-     * Default constructor
-     *
-     * @param controller
-     *            the associated controller
-     */
-    public SolveAction(final ModelicaController controller) {
-        super();
+        private final ModelicaController controller;
+        private final JProgressBar progress;
 
-        putValue(NAME, ModelicaMessages.SOLVE);
-        this.controller = controller;
-    }
-
-    /**
-     * action !!!
-     *
-     * @param e
-     *            the event
-     * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
-     */
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        final String modelName = controller.getRoot().getName();
-
-        // defensive programming
-        if (!controller.isSquare()) {
-            Logger.getLogger(SolveAction.class.getName()).severe(ModelicaMessages.MODEL_INVALID);
+        public Worker(ModelicaController controller, JProgressBar progress) {
+            this.controller = controller;
+            this.progress = progress;
         }
 
-        initStatus();
-        try {
+        @Override
+        protected Void doInBackground() throws Exception {
+            String cmd;
+
+            final String modelName = controller.getRoot().getName();
+            // creating a temporary status file
+            final File statusFile = File.createTempFile(modelName, null);
+
+            // defensive programming
+            if (!controller.isSquare()) {
+                Logger.getLogger(SolveAction.class.getName()).severe(ModelicaMessages.MODEL_INVALID);
+            }
+
+            /*
+             * Export the compilation data to xml
+             */
+            publish(ActionToPerform.EXPORT);
+
             // store the updated values
             final File updatedInitFile = new File(ScilabConstants.TMPDIR, modelName + IMF_INIT + EXTENSION);
             Modelica.getInstance().save(controller.getRoot(), updatedInitFile);
 
+            /*
+             * Compile the data from xml to a modelica file
+             */
+            publish(ActionToPerform.COMPILE);
             final int paremb;
             if (controller.isParameterEmbedded()) {
                 paremb = 1;
@@ -95,120 +94,109 @@ public final class SolveAction extends AbstractAction {
                 jaco = 0;
             }
 
-            // creating a temporary status file
-            File statusFile = File.createTempFile(modelName, null);
             statusFile.delete();
-
-            String cmd = String.format(COMPILE_STRING, modelName, paremb, jaco, statusFile.getAbsolutePath());
+            cmd = String.format(COMPILE_STRING, modelName, paremb, jaco, statusFile.getAbsolutePath());
 
             Logger.getLogger(SolveAction.class.getName()).finest("Compiling");
-            ScilabInterpreterManagement.asynchronousScilabExec(new CompileFinished(statusFile), cmd.toString());
-        } catch (InterpreterException e1) {
-            Logger.getLogger(SolveAction.class.getName()).severe(e1.toString());
-        } catch (IOException e1) {
-            Logger.getLogger(SolveAction.class.getName()).severe(e1.toString());
-        } catch (JAXBException e1) {
-            Logger.getLogger(SolveAction.class.getName()).severe(e1.toString());
-        }
-    }
+            ScilabInterpreterManagement.synchronousScilabExec(cmd);
 
-    /**
-     * Initialize the button and error status.
-     */
-    private void initStatus() {
-        putValue(NAME, ModelicaMessages.SOLVE);
-        setEnabled(true);
-    }
-
-    /**
-     * Action done at the end of the compilation
-     */
-    private final class CompileFinished implements ActionListener {
-        private final File incidence;
-        private final File status;
-
-        /**
-         * Default constructor
-         *
-         * @param status
-         *            the status file
-         */
-        public CompileFinished(File status) {
-            final String modelName = controller.getRoot().getName();
-            incidence = new File(ScilabConstants.TMPDIR, modelName + INCIDENCE + EXTENSION);
-            this.status = status;
-        }
-
-        /**
-         * Update things and compute the compiled model
-         *
-         * @param e
-         *            the event
-         * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
-         */
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            if (status.exists()) {
-                try {
-                    // update the model with the computed identifiers
-                    final Model incidenceModel = Modelica.getInstance().load(incidence);
-                    controller.getRoot().setIdentifiers(incidenceModel.getIdentifiers());
-                    controller.getRoot().setOutputs(incidenceModel.getOutputs());
-
-                    // update the statistics
-                    controller.getStatistics().fireChange();
-
-                    // update state
-                    controller.setCompileNeeded(false);
-
-                    // creating a temporary status file
-                    File statusFile = File.createTempFile(controller.getRoot().getName(), null);
-                    statusFile.delete();
-
-                    final ModelStatistics stats = controller.getStatistics();
-                    long nUnknowns = stats.getUnknowns() - stats.getEquations();
-                    String cmd = String.format(COMPUTE_STRING, controller.getComputeMethod(), nUnknowns, statusFile.getAbsolutePath());
-
-                    // compute now
-                    Logger.getLogger(SolveAction.class.getName()).finest("Computing");
-                    ScilabInterpreterManagement.asynchronousScilabExec(new ComputeFinished(statusFile), cmd);
-                } catch (JAXBException e1) {
-                    Logger.getLogger(SolveAction.class.getName()).severe(e1.toString());
-                } catch (IOException e1) {
-                    Logger.getLogger(SolveAction.class.getName()).severe(e1.toString());
-                } catch (InterpreterException e1) {
-                    Logger.getLogger(SolveAction.class.getName()).severe(e1.toString());
-                }
+            if (!statusFile.exists()) {
+                publish(ActionToPerform.FINISH);
+                return null;
             } else {
-                // best effort to alert the user.
-                initStatus();
+                statusFile.delete();
+            }
+
+            /*
+             * Launch a modelica initialization with the generated file
+             */
+            publish(ActionToPerform.COMPUTE);
+
+            // update the model with the computed identifiers
+            final File incidence = new File(ScilabConstants.TMPDIR, modelName + INCIDENCE + EXTENSION);
+            final Model incidenceModel = Modelica.getInstance().load(incidence);
+            controller.getRoot().setIdentifiers(incidenceModel.getIdentifiers());
+            controller.getRoot().setOutputs(incidenceModel.getOutputs());
+
+            // update the statistics
+            controller.getStatistics().fireChange();
+
+            // update state
+            controller.setCompileNeeded(false);
+
+            statusFile.delete();
+            final ModelStatistics stats = controller.getStatistics();
+            long nUnknowns = stats.getUnknowns() - stats.getEquations();
+            cmd = String.format(COMPUTE_STRING, controller.getComputeMethod(), nUnknowns, statusFile.getAbsolutePath());
+
+            // compute now
+            Logger.getLogger(SolveAction.class.getName()).finest("Computing");
+            ScilabInterpreterManagement.synchronousScilabExec(cmd);
+
+            if (!statusFile.exists()) {
+                publish(ActionToPerform.FINISH);
+                return null;
+            } else {
+                statusFile.delete();
+            }
+
+            /*
+             * Finish the action using a state instead of the done() method
+             */
+            publish(ActionToPerform.FINISH);
+
+            return null;
+        }
+
+        @Override
+        protected void process(List<ActionToPerform> chunks) {
+            // only visual notify accordingly to the last performed action
+            final ActionToPerform action = chunks.get(chunks.size() - 1);
+
+            switch (action) {
+                case EXPORT:
+                case COMPILE:
+                case COMPUTE:
+                    if (!progress.isIndeterminate()) {
+                        progress.setIndeterminate(true);
+                    }
+                    break;
+
+                case FINISH:
+                default:
+                    progress.setIndeterminate(false);
+                    break;
             }
         }
     }
 
-    /**
-     * Action done at the end of the computation
-     */
-    private final class ComputeFinished implements ActionListener {
-        /**
-         * Default constructor
-         *
-         * @param status
-         *            the status file
-         */
-        public ComputeFinished(File status) {
-        }
+    private final ModelicaController controller;
+    private final JProgressBar progress;
 
-        /**
-         * Clean the state
-         *
-         * @param e
-         *            the event
-         * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
-         */
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            initStatus();
-        }
+    /**
+     * Default constructor
+     *
+     * @param controller
+     *            the associated controller
+     */
+    public SolveAction(final ModelicaController controller, final JProgressBar progress) {
+        super();
+
+        putValue(NAME, ModelicaMessages.SOLVE);
+        this.controller = controller;
+        this.progress = progress;
+
+    }
+
+    /**
+     * action !!!
+     *
+     * @param e
+     *            the event
+     * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+     */
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        new Worker(controller, progress).execute();
     }
 }

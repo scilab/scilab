@@ -90,14 +90,6 @@
             <parameter name="id" type="int"/>
             <parameter name="name" type="String"/>
         </method>
-        <!-- Toolbar -->
-        <method name="isToolbarVisible" returnType="boolean" modifier="static">
-            <parameter name="parentUID" type="int"/>
-        </method>
-        <method name="setToolbarVisible" returnType="void" modifier="static">
-            <parameter name="parentUID" type="int"/>
-            <parameter name="status" type="boolean"/>
-        </method>
         <!-- Help Browser -->
         <method name="launchHelpBrowser" returnType="void" modifier="static">
             <parameter type="String[]" name="helps"/>

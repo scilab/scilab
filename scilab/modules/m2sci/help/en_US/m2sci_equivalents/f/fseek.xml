@@ -43,7 +43,12 @@ mseek
     <refsection>
         <title>Particular cases</title>
         <para>
-            Scilab and Matlab functions differ by the flag which indicate the origin of the position indicator, see examples below. Note that order of input value is different.
+            Scilab and Matlab functions differ by the flag which indicate the origin of the position indicator, see examples below.
+        </para>
+        <para>
+            <note>
+                Note that order of input value is different.
+            </note>
         </para>
     </refsection>
     <refsection>

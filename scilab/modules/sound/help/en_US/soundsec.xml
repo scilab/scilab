@@ -6,34 +6,35 @@
     * This file must be used under the terms of the CeCILL.
     * This source file is licensed as described in the file COPYING, which
     * you should have received as part of this distribution.  The terms
-    * are also available at    
+    * are also available at
     * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
     *
     -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="soundsec">
     <refnamediv>
         <refname>soundsec</refname>
-        <refpurpose>generates n sampled seconds of time
-            parameter
+        <refpurpose>
+            generates a vector of samples for <literal>t</literal> seconds at frequency <literal>freq</literal> Hz.
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>t=soundsec(n [,rate])</synopsis>
+        <synopsis>samples=soundsec(t [,freq])</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>n</term>
+                <term>t</term>
                 <listitem>
-                    <para>an integer, the number of seconds to generate.</para>
+                    <para>a 1-by-1 matrix of positive real numbers, the time length to sample.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>rate</term>
+                <term>freq</term>
                 <listitem>
-                    <para>an integer, the number of samples per second.</para>
+                    <para>a 1-by-1 matrix of positive real number, the frequency of samples per second.</para>
+                    <para>default value is 22050 Hz</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -41,8 +42,13 @@
     <refsection>
         <title>Description</title>
         <para>
-            generates a vector coding time from 0 to <literal>n</literal>seconds at
-            sampled rate <literal>rate</literal>.
+            Generates a vector coding time from 0 to <literal>t</literal> seconds at sampled rate <literal>freq</literal>.
+        </para>
+        <para>
+            Samples are always generated to fit in <literal>[0,t[</literal> (excluding upper bound).
+        </para>
+        <para>
+            Value 0 for either <literal>t</literal> or <literal>freq</literal> return an empty matrx
         </para>
     </refsection>
     <refsection>
@@ -51,7 +57,7 @@
 // At first we create 0.5 seconds of sound parameters.
 t=soundsec(0.5);
 
-// Then we generate the sound.
+// Then we generate a pure A4 = 440Hz sine
 s=sin(2*%pi*440*t);
 analyze(s,200,600,22050);
  ]]></programlisting>

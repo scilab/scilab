@@ -309,11 +309,7 @@
         <para>
             The following figure shows a simple use case of the DLATCH block with
             its timing diagram.
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/integer_pal/en_US/DLATCH_en_US.zcos">
-                Open this example in Xcos
-            </link>
         </para>
-        <para/>
         <para>
             <link type="scilab" linkend="scilab.xcos/xcos/examples/integer_pal/en_US/DLATCH_en_US.zcos">
                 <inlinemediaobject>
@@ -322,7 +318,8 @@
                     </imageobject>
                 </inlinemediaobject>
             </link>
-            <scilab:image><![CDATA[
+        </para>
+        <scilab:image><![CDATA[
 // overload messagebox to avoid the "no continuous states" messages
 function [btn] = messagebox(msg, msgboxtitle, msgboxicon, buttons, ismodal)
 	btn=1;
@@ -331,7 +328,6 @@ endfunction
 importXcosDiagram(SCI + "/modules/xcos/examples/integer_pal/en_US/DLATCH_en_US.zcos");
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
-        </para>
     </refsection>
     <refsection id="Interfacingfunction_DLATCH">
         <title>Interfacing function</title>

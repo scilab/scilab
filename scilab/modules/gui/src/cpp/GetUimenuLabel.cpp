@@ -11,7 +11,10 @@
  *
  */
 
-#include "GetUimenuLabel.hxx"
+extern "C"
+{
+#include "GetUicontrol.h"
+}
 
 /* Get the label of an uimenu */
 void* GetUimenuLabel(void* _pvCtx, int iOobjUID)

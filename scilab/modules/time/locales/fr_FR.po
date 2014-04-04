@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-06-17 19:42+0000\n"
-"Last-Translator: jojolebestof <Unknown>\n"
+"PO-Revision-Date: 2014-02-19 12:56+0000\n"
+"Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 16967)\n"
 "Language: fr\n"
 
 #, c-format
@@ -179,13 +179,21 @@ msgid "%s: Wrong number of input argument: %d expected.\n"
 msgstr "%s : Nombre erroné d'argument d'entrée : %d attendu.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument: Same size expected.\n"
-msgstr ""
-"%s : Dimension erronée de l'argument d'entrée : Même dimension attendue.\n"
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d attendu(s).\n"
 
 #, c-format
-msgid "%s: Wrong type for input arguments: Integer expected.\n"
-msgstr "%s : Type erroné des arguments d'entrée : Des entiers attendus.\n"
+msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
+msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d : Une valeur entière "
+"attendue.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
+msgstr ""
+"%s : Dimension erronée des arguments d'entrée n°%d et n°%d : Mêmes "
+"dimensions attendues.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real vector expected.\n"
@@ -197,6 +205,12 @@ msgid "%s: Wrong size for input argument #%d: Must be between %d and %d.\n"
 msgstr ""
 "%s : Dimension erronée de l'argument d'entrée n°%d : Doit être entre %d et "
 "%d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments #%d and #%d: Same size expected.\n"
+msgstr ""
+"%s : Dimension erronée des arguments d'entrée n°%d et n°%d : Même dimension "
+"attendue.\n"
 
 #, c-format
 msgid "%s: You must call tic() before calling toc().\n"

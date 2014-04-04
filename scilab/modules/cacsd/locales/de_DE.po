@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 16967)\n"
 "Language: de\n"
 
 #, c-format
@@ -35,7 +35,7 @@ msgstr ""
 "%s: falscher Wert für Eingangsargument #%d: muß sich in [%d,%d] befinden.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: A real expected.\n"
+msgid "%s: Wrong type for argument #%d: A real expected.\n"
 msgstr ""
 
 #, c-format
@@ -111,7 +111,7 @@ msgid "%s: Wrong value for %s: %d or %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real or complex matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Real or complex matrix expected.\n"
 msgstr ""
 
 #, c-format
@@ -169,7 +169,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for argument %d: A complex expected.\n"
+msgid "%s: Wrong type for argument #%d: A complex expected.\n"
 msgstr ""
 
 #, c-format
@@ -197,19 +197,7 @@ msgid "%s: Wrong type for argument #%d: A string expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Type must be continuous or "
-"discrete.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Method must be schur or sign.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Method must be schur or invf.\n"
+msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
 msgstr ""
 
 #, c-format
@@ -276,6 +264,9 @@ msgid "Tracking"
 msgstr ""
 
 msgid "Robust control"
+msgstr ""
+
+msgid "Press Return to continue ... \n"
 msgstr ""
 
 #, c-format
@@ -427,12 +418,6 @@ msgstr "Phase (deg)"
 msgid "Magnitude (dB)"
 msgstr "Magnitude (dB)"
 
-msgid "Hz"
-msgstr "Hz"
-
-msgid "dB"
-msgstr "dB"
-
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A list expected.\n"
 msgstr "%s: falscher Typ für Eingangsargument #%d: eine Liste erwartet.\n"
@@ -483,15 +468,16 @@ msgstr "Frequenz (Hz)"
 msgid "Phase (degree)"
 msgstr "Phase (Grad)"
 
+msgid "Frequency (rad/s)"
+msgstr ""
+
 #, c-format
 msgid ""
 "Wrong type for argument #%d: Rational or State-space matrix expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Problem evaluating the first argument.\n"
-"n"
+msgid "%s: Wrong value for input argument #%d: Evaluation failed.\n"
 msgstr ""
 
 #, c-format
@@ -618,6 +604,10 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: Detectable system expected.\n"
 msgstr ""
 "%s. falscher Wert für Eingangsargument #%d: detektierbares System erwartet.\n"
+
+#, c-format
+msgid "%s: Input argument #%d is assumed continuous time.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A proper system expected\n"
@@ -767,6 +757,15 @@ msgstr "%s: falsche Anzahl an Ausgangsargumenten %d erwartet.\n"
 #, c-format
 msgid "%s: At least %s past values needed.\n"
 msgstr "%s: mindestens %s vergangene Werte erwartet.\n"
+
+msgid "Hz"
+msgstr "Hz"
+
+msgid "dB"
+msgstr "dB"
+
+msgid "rad/sec"
+msgstr "rad/sec"
 
 #, c-format
 msgid "%s: Iteration %s, error=%s.\n"
@@ -1022,6 +1021,10 @@ msgstr ""
 "liegen.\n"
 
 #, c-format
+msgid "%s: Wrong value for input argument #%d: c or d expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s: falsche Anzahl von Eingangsargumenten: %d erwartet.\n"
 
@@ -1080,9 +1083,8 @@ msgid "Phase (Deg)"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value of input argument %d: Proper system expected.\n"
+msgid "%s: Wrong value of input argument #%d: Proper system expected.\n"
 msgstr ""
-"%s: falscher Wert für Eingangsargument %d: angemessenes System erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
@@ -1132,9 +1134,6 @@ msgstr ""
 "%s: Falscher Typ für das Eingabe-Argument #%d : Array aus reellen "
 "Gleitkommazahlen wird erwartet.\n"
 
-msgid "rad/sec"
-msgstr "rad/sec"
-
 #, c-format
 msgid "%s: Cannot find the state dimension.\n"
 msgstr "%s: kann Zustandsdimension nicht ermitteln.\n"
@@ -1168,6 +1167,17 @@ msgid ""
 "%s: Wrong values for input argument #%d: State matrix - eye is singular.\n"
 msgstr ""
 "%s: falscher Wert für Eingangsargument #%d: Zustandsmatrix - Auge singulär.\n"
+
+#, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Same number of rows expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Same number of columns "
+"expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: time domains are not compatible.\n"

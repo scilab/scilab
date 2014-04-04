@@ -14,6 +14,10 @@ package org.scilab.modules.graphic_objects.uicontrol.listbox;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LISTBOX__;
 
+import javax.swing.UIDefaults;
+import javax.swing.UIManager;
+
+import org.scilab.modules.graphic_objects.console.Console;
 import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
 
 /**
@@ -27,12 +31,25 @@ public class ListBox extends Uicontrol {
     public ListBox() {
         super();
         setStyle(__GO_UI_LISTBOX__);
-        setRelief(FLAT_RELIEF);
+        setUiValue(new Double[] {});
 
-        // Default value is the min value
-        Double[] value = new Double[1];
-        value[0] = getMin();
-        setUiValue(value);
+        if (Console.getConsole().getUseDeprecatedLF()) {
+            setRelief(RELIEF_FLAT);
+        } else {
+            UIDefaults defaults = UIManager.getDefaults();
+
+            //font
+            setFont(defaults.getFont("List.font"));
+
+            //h-alignment
+            setHorizontalAlignment("left");
+
+            //v-alignement
+            setVerticalAlignment("middle");
+        }
     }
 
+    public UpdateStatus setUiValue(Double[] value) {
+        return super.setUiValue(value);
+    }
 }

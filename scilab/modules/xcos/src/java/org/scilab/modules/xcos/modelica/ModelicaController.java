@@ -15,6 +15,8 @@ package org.scilab.modules.xcos.modelica;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
@@ -26,8 +28,11 @@ import javax.swing.WindowConstants;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.EventListenerList;
+import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
+import javax.xml.namespace.QName;
 
+import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.xcos.modelica.model.Model;
 import org.scilab.modules.xcos.modelica.model.Model.Identifiers;
@@ -134,7 +139,7 @@ public final class ModelicaController {
         dialog.setTitle(ModelicaMessages.MODELICA_SETTINGS);
         dialog.setAlwaysOnTop(false);
 
-        final ImageIcon icon = new ImageIcon(ScilabSwingUtilities.findIcon("scilab"));
+        final ImageIcon icon = new ImageIcon(FindIconHelper.findIcon("scilab"));
         dialog.setIconImage(icon.getImage());
 
         ModelicaController controller;
@@ -295,7 +300,17 @@ public final class ModelicaController {
      */
     private void updateIdentifiers(Identifiers identifiers) {
         if (identifiers != null) {
-            statistics.setRelaxedVariables(identifiers.getImplicitVariable().size());
+            List<JAXBElement<String>> allIds = identifiers.getParameterOrExplicitVariableOrImplicitVariable();
+            final QName implicit_name = new QName("", "implicit_variable");
+
+            long implicit_count = 0;
+            for (JAXBElement<String> e : allIds) {
+                if (e.getName().equals(implicit_name)) {
+                    implicit_count++;
+                }
+            }
+
+            statistics.setRelaxedVariables(implicit_count);
         }
     }
 
@@ -389,8 +404,8 @@ public final class ModelicaController {
                 final Double notUsed2 = TerminalAccessor.getData(TerminalAccessor.WEIGHT, terminal);
                 final Double notUsed3 = TerminalAccessor.getData(TerminalAccessor.INITIAL, terminal);
 
-                final Double notUsed4 = TerminalAccessor.getData(TerminalAccessor.MAX, terminal);
-                final Double notUsed5 = TerminalAccessor.getData(TerminalAccessor.MIN, terminal);
+                //                final Double notUsed4 = TerminalAccessor.getData(TerminalAccessor.MAX, terminal);
+                //                final Double notUsed5 = TerminalAccessor.getData(TerminalAccessor.MIN, terminal);
 
             } else {
                 // recursive call

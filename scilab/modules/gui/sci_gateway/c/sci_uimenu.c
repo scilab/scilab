@@ -27,6 +27,7 @@
 #include "Scierror.h"
 #include "stricmp.h"
 #include "CreateUimenu.h"
+#include "createGraphicObject.h"
 #include "setGraphicObjectProperty.h"
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
@@ -196,7 +197,7 @@ int sci_uimenu(char *fname, void *pvApiCtx)
                     if (sciErr.iErr)
                     {
                         printError(&sciErr, 0);
-                        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, iPropertyValuePositionIndex);
+                        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, iPropertyValuePositionIndex);
                         return 1;
                     }
 

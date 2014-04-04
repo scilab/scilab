@@ -83,11 +83,11 @@ int addErrorMessage(SciErr* _psciErr, int _iErr, const char* _pstMsg, ...)
         {
             _psciErr->pstMsg[i - 1] = _psciErr->pstMsg[i];
         }
-        _psciErr->pstMsg[MESSAGE_STACK_SIZE - 1] = strdup(pstMsg);
+        _psciErr->pstMsg[MESSAGE_STACK_SIZE - 1] = os_strdup(pstMsg);
     }
     else
     {
-        _psciErr->pstMsg[_psciErr->iMsgCount++] = strdup(pstMsg);
+        _psciErr->pstMsg[_psciErr->iMsgCount++] = os_strdup(pstMsg);
     }
 
     _psciErr->iErr = _iErr;

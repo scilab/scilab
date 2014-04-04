@@ -3,7 +3,7 @@
     <refnamediv>
         <refname>perl</refname>
         <refpurpose>Call Perl script using appropriate operating
-            system executable
+            system executable. <emphasis role="bold">This function is obsolete.</emphasis>
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
@@ -36,5 +36,14 @@
                 <link linkend="unix">unix</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>Tagged as obsolete. Will be removed in Scilab 6.0.0.</revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

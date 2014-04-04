@@ -22,6 +22,7 @@ import org.scilab.modules.xcos.block.BasicBlock.SimulationFunctionType;
 import org.scilab.modules.xcos.block.BlockFactory;
 import org.scilab.modules.xcos.block.BlockFactory.BlockInterFunction;
 import org.scilab.modules.xcos.block.SuperBlock;
+import org.scilab.modules.xcos.block.TextBlock;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -31,6 +32,7 @@ import com.mxgraph.io.mxCodec;
 import com.mxgraph.io.mxCodecRegistry;
 import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxICell;
+import com.mxgraph.util.mxUtils;
 
 /**
  * Codec for any Block.
@@ -197,6 +199,11 @@ public class BasicBlockCodec extends XcosObjectCodec {
                 superBlock.getChild().setContainer(superBlock);
             }
             superBlock.invalidateRpar();
+        }
+
+        // update TextBlock due to a wrong serialization of the CSS properties
+        if (block instanceof TextBlock) {
+            block.setValue(mxUtils.getBodyMarkup(String.valueOf(block.getValue()), true));
         }
 
         // update style to replace direction by rotation and add the

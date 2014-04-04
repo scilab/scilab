@@ -4,7 +4,6 @@
 # This file is distributed under the same license as the Scilab package.
 
 
-
 BOOLEAN_CPP_SOURCES = \
     src/cpp/boolean_gw.cpp
 
@@ -13,7 +12,6 @@ BOOLEAN_C_SOURCES = \
     src/c/vect_and.c
 
 BOOLEAN_FORTRAN_SOURCES = src/fortran/logic.f
-
 
 GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/sci_bool2s.cpp \

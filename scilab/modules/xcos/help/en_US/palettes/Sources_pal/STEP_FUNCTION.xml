@@ -355,12 +355,7 @@
             <para>
                 This diagram shows the use of the STEP_FUNCTION block to obtain the response to a step signal of
                 a first order's system defined by a transfer function.
-                <link type="scilab" linkend="scilab.xcos/xcos/examples/sources_pal/en_US/step_function_1_en_US.zcos">
-                    Open this example in Xcos
-                </link>
-                .
             </para>
-            <para/>
             <para>
                 <link type="scilab" linkend="scilab.xcos/xcos/examples/sources_pal/en_US/step_function_1_en_US.zcos">
                     <inlinemediaobject>
@@ -369,27 +364,30 @@
                         </imageobject>
                     </inlinemediaobject>
                 </link>
-                <scilab:image><![CDATA[
+            </para>
+            <scilab:image><![CDATA[
 importXcosDiagram(SCI + "/modules/xcos/examples/sources_pal/en_US/step_function_1_en_US.zcos");
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
-            </para>
         </refsection>
         <refsection id="Example_2_STEP_FUNCTION">
             <title>Example 2</title>
             <para>
-                This diagram shows the use of STEP_FUNCTION to obtain four step signals
-                <link type="scilab" linkend="scilab.xcos/xcos/examples/sources_pal/en_US/step_function_2_en_US.zcos">
-                    Open this example in Xcos
-                </link>
-                .
+                This diagram shows the use of STEP_FUNCTION to obtain four step signals.
             </para>
-            <para/>
-            <mediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../../examples/sources_pal/en_US/step_function_2_en_US.zcos" align="center"/>
-                </imageobject>
-            </mediaobject>
+            <para>
+                <link type="scilab" linkend="scilab.xcos/xcos/examples/sources_pal/en_US/step_function_2_en_US.zcos">
+                    <inlinemediaobject>
+                        <imageobject>
+                            <imagedata fileref="../../../../examples/sources_pal/en_US/step_function_2_en_US.zcos" align="center" valign="middle"/>
+                        </imageobject>
+                    </inlinemediaobject>
+                </link>
+            </para>
+            <scilab:image><![CDATA[
+importXcosDiagram(SCI + "/modules/xcos/examples/sources_pal/en_US/step_function_2_en_US.zcos");
+xcos_simulate(scs_m, 4);
+]]></scilab:image>
         </refsection>
     </refsection>
     <refsection id="Interfacingfunction_STEP_FUNCTION">

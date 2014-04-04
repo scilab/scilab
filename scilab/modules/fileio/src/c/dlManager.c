@@ -28,6 +28,9 @@
 #include "machine.h"
 #include "scicurdir.h"
 #include "splitpath.h"
+#include "getScilabPreference.h"
+#include "stricmp.h"
+#include "freeArrayOfString.h"
 /* ==================================================================== */
 #ifndef HAVE_BASENAME
 static char *Curl_basename(char *path);
@@ -72,7 +75,7 @@ static size_t writefunc(void *ptr, size_t size, size_t nmemb, inputString *s)
     if (s->ptr == NULL)
     {
         Scierror(999, "Internal error: realloc() failed.\n");
-        return NULL;
+        return 0;
     }
     memcpy(s->ptr + s->len, ptr, size * nmemb);
     s->ptr[new_len] = '\0';
@@ -110,235 +113,46 @@ static char *getFileNameFromURL(char *url)
 /* ==================================================================== */
 int getProxyValues(char **proxyHost, long *proxyPort, char **proxyUserPwd)
 {
-    FILE* pFile = NULL;
-    long lSize = 0;
-    char* buffer = NULL;
-    size_t result = 0;
+    const char * attrs[] = {"enabled", "host", "port", "user", "password"};
+    const unsigned int N = sizeof(attrs) / sizeof(char*);
+    char ** values = getPrefAttributesValues("//web/body/proxy", attrs, N);
 
-    char* configPtr = NULL;
-
-    char* host = NULL;
-    char* user = NULL;
-    char* password = NULL;
-    char* userpwd = NULL;
-    long port = 0;
-    int useproxy = 0;
-
-    char *tp = NULL;
-
-    int eqpos = 0;
-    int tplen = 0;
-
-    //construct ATOMS config file path
-    configPtr = (char *)MALLOC(PATH_MAX * sizeof(char));
-    strcpy(configPtr, getSCIHOME());
-
-    if (strcmp(getOSFullName(), "Windows") == 0)
+    if (!values)
     {
-        if (strstr(getOSRelease(), "x64") != NULL)
+        return 0;
+    }
+
+    if (stricmp(values[0]/*enabled*/, "true") == 0)
+    {
+        const unsigned int ulen = (const unsigned int)strlen(values[3]);
+        const unsigned int plen = (const unsigned int)strlen(values[4]);
+
+        *proxyHost = values[1]; //host;
+        *proxyPort = strtol(values[2], NULL, 10); //port;
+        FREE(values[2]);
+
+        if (plen == 0)
         {
-            strcat(configPtr, "/.atoms/x64/config");
+            *proxyUserPwd = values[3]; //user
         }
         else
         {
-            strcat(configPtr, "/.atoms/config");
+            *proxyUserPwd = (char *)MALLOC((ulen + 1 + plen + 1) * sizeof(char *));
+            sprintf(*proxyUserPwd, "%s:%s", values[3]/*user*/, values[4]/*password*/);
+            (*proxyUserPwd)[ulen + 1 + plen] = '\0';
+            FREE(values[3]);
         }
+
+        FREE(values[4]);
+        FREE(values);
     }
     else
     {
-        strcat(configPtr, "/.atoms/config");
-    }
-
-    wcfopen (pFile, configPtr , "rb" );
-    if (pFile == NULL)
-    {
-        // No configuration file. Leave
-        FREE(configPtr);
+        freeArrayOfString(values, N);
         return 0;
     }
 
-    fseek (pFile , 0 , SEEK_END);
-    lSize = ftell(pFile);
-    if (lSize < 0)
-    {
-        Scierror(999, _("Could not read the configuration file '%s'.\n"), configPtr);
-        FREE(configPtr);
-        fclose(pFile);
-        return 0;
-    }
-
-    rewind (pFile);
-
-    // allocate memory to contain the whole file
-    buffer = (char*)MALLOC((lSize + 1) * sizeof(char));
-    if (buffer == NULL)
-    {
-        fclose(pFile);
-        return 0;
-    }
-    buffer[lSize] = '\0';
-
-    // copy the file into the buffer
-    result = fread (buffer, 1, lSize, pFile);
-    fclose(pFile);
-
-    if (result != lSize)
-    {
-        Scierror(999, _("Failed to read the scicurl_config file '%s'.\n"), configPtr);
-        FREE(configPtr);
-        FREE(buffer);
-        return 0;
-    }
-
-    //add null terminated
-    buffer[result] = '\0';
-
-    // parse each line to extract variables
-    tp = strtok(buffer, "\r\n");
-    while (tp != NULL)
-    {
-        char *eqptr = NULL;
-        char *field = NULL;
-        char *value = NULL;
-
-        eqptr = strrchr(tp, '=');
-        tplen = (int)strlen(tp);
-        if (eqptr == NULL)
-        {
-            Scierror(999, _("Improper syntax of scicurl_config file ('%s'), '=' not found %d:%s\n"), configPtr, tplen, tp);
-            FREE(configPtr);
-            FREE(buffer);
-            return 0;
-        }
-
-        eqpos = (int)(eqptr - tp);
-        if (tplen <= eqpos + 1)
-        {
-            Scierror(999, _("Improper syntax of scicurl_config file ('%s'), after an '='\n"), configPtr);
-            FREE(configPtr);
-            FREE(buffer);
-            return 0;
-        }
-
-        if (tp[eqpos - 1] != ' ' || tp[eqpos + 1] != ' ')
-        {
-            Scierror(999, _("Improper syntax of scicurl_config file ('%s'), space before and after '=' expected\n"), configPtr);
-            FREE(configPtr);
-            FREE(buffer);
-            return 0;
-        }
-
-        //get field and value from each line
-        field = (char *)MALLOC(sizeof(char) * (eqpos));
-        value = (char *)MALLOC(sizeof(char) * (strlen(tp) - eqpos - 1));
-
-        memcpy(field, tp, eqpos - 1);
-        field[eqpos - 1] = '\0';
-
-        memcpy(value, tp + eqpos + 2, strlen(tp) - eqpos - 2);
-        value[strlen(tp) - eqpos - 2] = '\0';
-
-
-        //check and read proxy variables
-        if (strcmp(field, "useProxy") == 0)
-        {
-            if (strcmp(value, "False") == 0)
-            {
-                FREE(field);
-                FREE(value);
-                FREE(buffer);
-                FREE(configPtr);
-
-                if (host)
-                {
-                    FREE(host);
-                }
-
-                if (user)
-                {
-                    FREE(user);
-                }
-
-                if (password)
-                {
-                    FREE(password);
-                }
-                return 0;
-            }
-
-            if (strcmp(value, "True") == 0)
-            {
-                useproxy = 1;
-            }
-        }
-        else if (strcmp(field, "proxyHost") == 0)
-        {
-            host = (char *)MALLOC((strlen(value) + 1) * sizeof(char));
-            strcpy(host, value);
-        }
-        else if (strcmp(field, "proxyPort") == 0)
-        {
-            port = strtol(value, NULL, 10);
-        }
-        else if (strcmp(field, "proxyUser") == 0)
-        {
-            user = (char *)MALLOC((strlen(value) + 1) * sizeof(char));
-            strcpy(user, value);
-        }
-        else if (strcmp(field, "proxyPassword") == 0)
-        {
-            password = (char *)MALLOC((strlen(value) + 1) * sizeof(char));
-            strcpy(password, value);
-        }
-
-        FREE(field);
-        FREE(value);
-
-        tp = strtok(NULL, "\r\n");
-    }
-
-    FREE(configPtr);
-    FREE(buffer);
-
-    // if proxy is set, update the parameters
-    if (useproxy == 1)
-    {
-
-        // proxyUserPwd = "user:password"
-        int userlen = 0;
-        int passlen = 0;;
-
-        if (user)
-        {
-            userlen = (int)strlen(user);
-        }
-
-        if (password)
-        {
-            passlen = (int)strlen(user);
-        }
-
-        if (userlen + passlen != 0)
-        {
-            userpwd = (char *)MALLOC((userlen + passlen + 2) * sizeof(char));
-            strcpy(userpwd, user);
-            strcat(userpwd, ":");
-            if (password)
-            {
-                strcat(userpwd, password);
-            }
-
-            FREE(user);
-            FREE(password);
-        }
-
-        *proxyHost = host;
-        *proxyPort = port;
-        *proxyUserPwd = userpwd;
-
-    }
-
-    return useproxy;
+    return 1;
 }
 /* ==================================================================== */
 char *downloadFile(char *url, char *dest, char *username, char *password, char **content)
@@ -504,6 +318,8 @@ char *downloadFile(char *url, char *dest, char *username, char *password, char *
             res = curl_easy_setopt(curl, CURLOPT_PROXY, proxyHost);
             if (res != CURLE_OK)
             {
+                FREE(proxyHost);
+                FREE(proxyUserPwd);
                 FREE(filename);
                 Scierror(999, _("Failed to set proxy host [%s]\n"), errorBuffer);
                 return NULL;
@@ -512,6 +328,8 @@ char *downloadFile(char *url, char *dest, char *username, char *password, char *
             res = curl_easy_setopt(curl, CURLOPT_PROXYPORT, proxyPort);
             if (res != CURLE_OK)
             {
+                FREE(proxyHost);
+                FREE(proxyUserPwd);
                 FREE(filename);
                 Scierror(999, _("Failed to set proxy port [%s]\n"), errorBuffer);
                 return NULL;
@@ -521,12 +339,16 @@ char *downloadFile(char *url, char *dest, char *username, char *password, char *
                 res = curl_easy_setopt(curl, CURLOPT_PROXYUSERPWD, proxyUserPwd);
                 if (res != CURLE_OK)
                 {
+                    FREE(proxyHost);
+                    FREE(proxyUserPwd);
                     FREE(filename);
                     Scierror(999, _("Failed to set proxy user:password [%s]\n"), errorBuffer);
                     return NULL;
                 }
             }
 
+            FREE(proxyHost);
+            FREE(proxyUserPwd);
         }
     } /* end of the set of the proxy */
 

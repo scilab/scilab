@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 16967)\n"
 
 #, c-format
 msgid "%s: Invalid argument address"
@@ -36,8 +36,8 @@ msgid "%s: Unable to create variable in Scilab memory"
 msgstr "%s: Nie można utworzyć zmiennej w pamięci Scilab"
 
 #, c-format
-msgid "%s: Invalid variable name."
-msgstr "%s: Nieprawidłowa nazwa zmiennej."
+msgid "%s: Invalid variable name: %s."
+msgstr ""
 
 #, c-format
 msgid "%s: Unable to create %s named \"%s\""
@@ -333,5 +333,5 @@ msgid "%s: Invalid variable name.\n"
 msgstr "%s: Nieprawidłowa nazwa zmiennej.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument %d: An integer expected.\n"
+msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
 msgstr ""

@@ -13,14 +13,45 @@
 
 package org.scilab.modules.gui.bridge.frame;
 
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHILDREN__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ENABLE__;
 
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ICON__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UICONTROL__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHILDREN__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TYPE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_BORDER_OPT_PADDING__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_GRID_OPT_GRID__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_GRID_OPT_PADDING__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_LAYOUT__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_POSITION__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TAG__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_ENABLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FRAME_BORDER__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VISIBLE__;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
+import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import java.awt.Insets;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 
 import javax.swing.JPanel;
+import javax.swing.UIManager;
+import javax.swing.border.Border;
 
+import org.scilab.modules.graphic_objects.axes.AxesContainer;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+import org.scilab.modules.graphic_objects.graphicModel.GraphicModel;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
+import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
+import org.scilab.modules.graphic_objects.utils.LayoutType;
 import org.scilab.modules.gui.SwingView;
 import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.SwingViewWidget;
@@ -32,8 +63,10 @@ import org.scilab.modules.gui.bridge.label.SwingScilabLabel;
 import org.scilab.modules.gui.bridge.listbox.SwingScilabListBox;
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.bridge.radiobutton.SwingScilabRadioButton;
-import org.scilab.modules.gui.bridge.slider.SwingScilabSlider;
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.slider.SwingScilabScroll;
+import org.scilab.modules.gui.bridge.tab.SwingScilabAxes;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
+import org.scilab.modules.gui.bridge.tab.SwingScilabTabGroup;
 import org.scilab.modules.gui.bridge.textbox.SwingScilabTextBox;
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.checkbox.CheckBox;
@@ -44,7 +77,6 @@ import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.frame.Frame;
 import org.scilab.modules.gui.frame.SimpleFrame;
 import org.scilab.modules.gui.label.Label;
-import org.scilab.modules.gui.layout.LayoutManager;
 import org.scilab.modules.gui.listbox.ListBox;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.pushbutton.PushButton;
@@ -53,10 +85,14 @@ import org.scilab.modules.gui.slider.Slider;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
+import org.scilab.modules.gui.utils.BorderConvertor;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.PositionConverter;
 import org.scilab.modules.gui.utils.ScilabRelief;
 import org.scilab.modules.gui.utils.Size;
+import org.scilab.modules.gui.utils.UnitsConverter;
+import org.scilab.modules.gui.utils.UnitsConverter.UicontrolUnits;
+import org.scilab.modules.gui.widget.Widget;
 
 /**
  * Swing implementation for Scilab frames in GUI
@@ -67,7 +103,11 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
 
     private static final long serialVersionUID = -7401084975837285447L;
 
-    private Integer uid;
+    private Integer uid = -1;
+    int redraw = 0;
+    protected boolean hasLayout = false;
+    private Border defaultBorder = null;
+    private SwingScilabCanvas canvas = null;
 
     /**
      * Constructor
@@ -75,7 +115,53 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
     public SwingScilabFrame() {
         super();
         // the Default layout is null so we have to set a Position and a Size of every Dockable we add to it
-        this.setLayout((LayoutManager) null);
+        super.setLayout(null);
+        hasLayout = false;
+        addComponentListener(new ComponentListener() {
+            public void componentShown(ComponentEvent e) { }
+
+            public void componentResized(ComponentEvent e) {
+                if (getId() != -1 && getParent() != null) {
+
+                    Double[] newPosition = new Double[4];
+                    Double[] positions = (Double[]) GraphicController.getController().getProperty(getId(), GraphicObjectProperties.__GO_POSITION__);
+                    if (positions == null) {
+                        // Position property not yet set
+                        return;
+                    }
+
+                    UicontrolUnits unitsProperty = UnitsConverter.stringToUnitsEnum((String) GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_UI_UNITS__));
+
+                    //normalized values are always good
+                    if (unitsProperty != UicontrolUnits.NORMALIZED) {
+                        newPosition[0] = UnitsConverter.convertFromPixel(getPosition().getX(), unitsProperty, (SwingScilabFrame) SwingView.getFromId(uid), true);
+                        newPosition[1] = UnitsConverter.convertFromPixel(getPosition().getY(), unitsProperty, (SwingScilabFrame) SwingView.getFromId(uid), true);
+                        newPosition[2] = UnitsConverter.convertFromPixel(getWidth(), unitsProperty, (SwingScilabFrame) SwingView.getFromId(uid), true);
+                        newPosition[3] = UnitsConverter.convertFromPixel(getHeight(), unitsProperty, (SwingScilabFrame) SwingView.getFromId(uid), true);
+                        positions[2] = newPosition[2];
+                        positions[3] = newPosition[3];
+                        if (getParent() != null && getParent().getLayout() == null) {
+                            GraphicController.getController().setProperty(getId(), GraphicObjectProperties.__GO_POSITION__, newPosition);
+                        } else {
+                            GraphicController.getController().setProperty(getId(), GraphicObjectProperties.__GO_POSITION__, positions);
+                        }
+                    }
+                }
+
+                if (hasLayout == false) {
+                    for (Component comp : getComponents()) {
+                        if (comp instanceof Widget) {
+                            SwingViewObject obj = (SwingViewObject) comp;
+                            obj.update(__GO_POSITION__, GraphicController.getController().getProperty(obj.getId(), __GO_POSITION__));
+                        }
+                    }
+                }
+            }
+
+            public void componentMoved(ComponentEvent e) { }
+
+            public void componentHidden(ComponentEvent e) { }
+        });
     }
 
     /**
@@ -129,7 +215,138 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
      * @param member the member to add
      */
     public void addMember(SwingViewObject member) {
-        this.add((Component) member);
+        //forward disable status
+        if (isEnabled() == false) {
+            ((Component) member).setEnabled(false);
+        }
+
+        if (member instanceof SwingScilabAxes) {
+            if (canvas == null) {
+                AxesContainer frame = (AxesContainer) GraphicModel.getModel().getObjectFromId(getId());
+                canvas = new SwingScilabCanvas(frame);
+                setLayout(new GridLayout(1,1));
+                hasLayout = true;
+                add(canvas);
+            }
+            return;
+        }
+
+        Uicontrol uicontrol = (Uicontrol) GraphicModel.getModel().getObjectFromId(member.getId());
+        if (getLayout() instanceof BorderLayout) {
+            switch (uicontrol.getBorderPositionAsEnum()) {
+                case BOTTOM:
+                    add((Component) member, BorderLayout.SOUTH);
+                    break;
+                case TOP:
+                    add((Component) member, BorderLayout.NORTH);
+                    break;
+                case LEFT:
+                    add((Component) member, BorderLayout.WEST);
+                    break;
+                case RIGHT:
+                    add((Component) member, BorderLayout.EAST);
+                    break;
+                case CENTER:
+                    add((Component) member, BorderLayout.CENTER);
+                    break;
+                default:
+                    break;
+            }
+
+            Integer[] preferredSize = uicontrol.getBorderPreferredSize();
+            if (preferredSize[0].equals(-1) == false && preferredSize[1].equals(-1) == false) {
+                ((Component) member).setPreferredSize(new Dimension(preferredSize[0], preferredSize[1]));
+            }
+        } else if (getLayout() instanceof GridBagLayout) {
+            GridBagConstraints constraints = new GridBagConstraints();
+
+            // Grid
+            Integer[] grid = uicontrol.getGridBagGrid();
+            constraints.gridx = grid[0];
+            constraints.gridy = grid[1];
+            constraints.gridwidth = grid[2];
+            constraints.gridheight = grid[3];
+
+            // Weight
+            Double[] weight = uicontrol.getGridBagWeight();
+            constraints.weightx = weight[0];
+            constraints.weighty = weight[1];
+
+            // Anchor
+            switch (uicontrol.getGridBagAnchorAsEnum()) {
+                case LEFT :
+                    constraints.anchor = GridBagConstraints.WEST;
+                    break;
+                case UPPER :
+                    constraints.anchor = GridBagConstraints.NORTH;
+                    break;
+                case LOWER:
+                    constraints.anchor = GridBagConstraints.SOUTH;
+                    break;
+                case LOWER_LEFT:
+                    constraints.anchor = GridBagConstraints.SOUTHWEST;
+                    break;
+                case LOWER_RIGHT:
+                    constraints.anchor = GridBagConstraints.SOUTHEAST;
+                    break;
+                case RIGHT:
+                    constraints.anchor = GridBagConstraints.EAST;
+                    break;
+                case UPPER_LEFT:
+                    constraints.anchor = GridBagConstraints.NORTHWEST;
+                    break;
+                case UPPER_RIGHT:
+                    constraints.anchor = GridBagConstraints.NORTHEAST;
+                    break;
+                case CENTER :
+                default :
+                    constraints.anchor = GridBagConstraints.CENTER;
+                    break;
+            }
+
+            // Fill
+            switch (uicontrol.getGridBagFillAsEnum()) {
+                case BOTH :
+                    constraints.fill = GridBagConstraints.BOTH;
+                    break;
+                case HORIZONTAL:
+                    constraints.fill = GridBagConstraints.HORIZONTAL;
+                    break;
+                case VERTICAL:
+                    constraints.fill = GridBagConstraints.VERTICAL;
+                    break;
+                case NONE:
+                default:
+                    constraints.fill = GridBagConstraints.NONE;
+                    break;
+            }
+
+            // Insets
+            Double[] margins = uicontrol.getMargins();
+            constraints.insets = new Insets(
+                margins[0].intValue(), margins[1].intValue(),
+                margins[2].intValue(), margins[3].intValue());
+
+            // Padding
+            Integer[] padding = uicontrol.getGridBagPadding();
+            constraints.ipadx = padding[0];
+            constraints.ipady = padding[1];
+
+            Integer[] preferredSize = uicontrol.getGridBagPreferredSize();
+            if (preferredSize[0].equals(-1) == false && preferredSize[1].equals(-1) == false) {
+                ((Component) member).setPreferredSize(new Dimension(preferredSize[0], preferredSize[1]));
+            }
+
+            add((Component) member, constraints);
+            revalidate();
+        } else if (getLayout() instanceof GridLayout) {
+            this.add((Component) member, 0);
+        } else {
+            this.add((Component) member);
+        }
+
+        //force update position
+        member.update(__GO_POSITION__, GraphicController.getController().getProperty(member.getId(), __GO_POSITION__));
     }
 
     /**
@@ -354,7 +571,7 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
      */
     public int addMember(Slider member) {
         //		 FIXME replace member with member.getAsSimpleSlider() when ready
-        return this.addMember((SwingScilabSlider) member);
+        return this.addMember((SwingScilabScroll) member);
     }
 
     /**
@@ -362,7 +579,7 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
      * @param member the member to add
      * @return index of member in ArrayList
      */
-    private int addMember(SwingScilabSlider member) {
+    private int addMember(SwingScilabScroll member) {
         this.add(member);
         return this.getComponentZOrder(member);
     }
@@ -416,7 +633,7 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
      * @return index of member in ArrayList
      */
     public int addMember(Tab member) {
-        return this.addMember((SwingScilabTab) member.getAsSimpleTab());
+        return this.addMember((SwingScilabDockablePanel) member.getAsSimpleTab());
     }
     //	 TODO : Check if it should be possible to add a Tab to a frame and how it should behave
     /**
@@ -424,7 +641,7 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
      * @param member the member to add
      * @return index of member in ArrayList
      */
-    private int addMember(SwingScilabTab member) {
+    private int addMember(SwingScilabDockablePanel member) {
         this.add(member);
         return this.getComponentZOrder(member);
     }
@@ -446,14 +663,6 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
     private int addMember(SwingScilabTextBox member) {
         this.add(member);
         return this.getComponentZOrder(member);
-    }
-
-    /**
-     * To set the Layout of the element.
-     * @param layout the layout
-     */
-    public void setLayout(LayoutManager layout) {
-        super.setLayout((java.awt.LayoutManager) layout);
     }
 
     /**
@@ -534,7 +743,10 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
      * @param reliefType the type of the relief to set (See ScilabRelief.java)
      */
     public void setRelief(String reliefType) {
-        setBorder(ScilabRelief.getBorderFromRelief(reliefType));
+        if (defaultBorder == null) {
+            defaultBorder = getBorder();
+        }
+        setBorder(ScilabRelief.getBorderFromRelief(reliefType, defaultBorder));
     }
 
     /**
@@ -601,7 +813,146 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
      * @param value property value
      */
     public void update(int property, Object value) {
-        SwingViewWidget.update(this, property, value);
+        GraphicController controller = GraphicController.getController();
+
+        switch (property) {
+            case __GO_UI_VALUE__: {
+                if (this instanceof SwingScilabLayer) {
+                    SwingScilabLayer layer = (SwingScilabLayer) this;
+                    Double[] doubleValue = ((Double[]) value);
+                    if (doubleValue.length == 0) {
+                        return;
+                    }
+
+                    Integer val = doubleValue[0].intValue();
+
+                    //if intValue[0] is out of bounds, do not update view but let "wrong" value in model
+                    layer.setActiveLayer(val);
+                }
+                break;
+            }
+            case __GO_UI_STRING__: {
+                // Update tab title
+                Container parent = getParent();
+                if (parent instanceof SwingScilabTabGroup) {
+                    SwingScilabTabGroup tab = (SwingScilabTabGroup) parent;
+                    int index = tab.indexOfComponent(this);
+                    if (index != -1) {
+                        tab.setTitleAt(index, ((String[]) value)[0]);
+                    }
+                }
+
+                if (this instanceof SwingScilabLayer) {
+                    SwingScilabLayer layer = (SwingScilabLayer) this;
+                    //if intValue[0] is out of bounds, do not update view but let "wrong" value in model
+                    layer.setActiveLayerFromName(((String[]) value)[0]);
+                }
+                break;
+            }
+            case __GO_UI_ICON__: {
+                // Update tab icon title
+                Container parent = getParent();
+                if (parent instanceof SwingScilabTabGroup) {
+                    SwingScilabTabGroup tab = (SwingScilabTabGroup) parent;
+                    int index = tab.indexOfComponent(this);
+                    if (index != -1) {
+                        tab.setIconAt(index, (String) value);
+                    }
+                }
+
+                break;
+            }
+            case __GO_POSITION__: {
+                SwingViewWidget.updatePosition(this, uid, value);
+                validate();
+                doLayout();
+                break;
+            }
+            case __GO_UI_FRAME_BORDER__: {
+                Integer borderId = (Integer) value;
+                Border border = BorderConvertor.getBorder(borderId);
+                setBorder(border);
+                break;
+            }
+            case __GO_LAYOUT__: {
+                hasLayout = false;
+                LayoutType newLayout = LayoutType.intToEnum((Integer) value);
+                switch (newLayout) {
+                    case BORDER: {
+                        Integer[] padding = (Integer[]) controller.getProperty(getId(), __GO_BORDER_OPT_PADDING__);
+                        setLayout(new BorderLayout(padding[0], padding[1]));
+                        hasLayout = true;
+                        break;
+                    }
+                    case GRIDBAG:
+                        setLayout(new GridBagLayout());
+                        hasLayout = true;
+                        break;
+                    case GRID: {
+                        Integer[] padding = (Integer[]) controller.getProperty(getId(), __GO_GRID_OPT_PADDING__);
+                        Integer[] grid = (Integer[]) controller.getProperty(getId(), __GO_GRID_OPT_GRID__);
+                        if (grid[0] == 0 && grid[1] == 0) {
+                            grid[0] = 1;
+                        }
+
+                        setLayout(new GridLayout(grid[0], grid[1], padding[0], padding[1]));
+                        hasLayout = true;
+                        break;
+                    }
+                    case NONE:
+                    default: {
+                        setLayout(null);
+                        hasLayout = false;
+                        break;
+                    }
+                }
+                break;
+            }
+            case __GO_VISIBLE__: {
+                boolean needUpdate = true;
+                Component parent = getParent();
+                if (parent instanceof SwingScilabLayer) {
+                    //no no no don't touch visible on layer children !
+                    Boolean visible = (Boolean) value;
+                    SwingScilabLayer layer = (SwingScilabLayer) parent;
+                    Boolean isActive = layer.isLayerActive(this);
+                    if (isActive != visible) {
+                        controller.setProperty(uid, __GO_VISIBLE__, isActive);
+                    }
+
+                    needUpdate = false;
+                } else if (parent instanceof SwingScilabTabGroup) {
+                    //no no no don't touch visible on layer children !
+                    Boolean visible = (Boolean) value;
+                    SwingScilabTabGroup layer = (SwingScilabTabGroup) parent;
+                    Boolean isActive = layer.isTabActive(this);
+                    if (isActive != visible) {
+                        controller.setProperty(uid, __GO_VISIBLE__, isActive);
+                    }
+
+                    needUpdate = false;
+                }
+
+                if (needUpdate) {
+                    setVisible(((Boolean) value).booleanValue());
+                }
+
+                break;
+            }
+            case __GO_TAG__ : {
+                Component parent = getParent();
+                if (parent instanceof SwingScilabLayer) {
+                    SwingScilabLayer layer = (SwingScilabLayer)parent;
+                    layer.updateModelProperties(null, layer.getActiveLayer());
+                } else if (parent instanceof SwingScilabTabGroup) {
+                    ((SwingScilabTabGroup)parent).updateModelProperties();
+                }
+                break;
+            }
+            default:
+                SwingViewWidget.update(this, property, value);
+                break;
+        }
     }
 
     /**
@@ -615,8 +966,11 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
             // Enable its children according to their __GO_UI_ENABLE__ property
             Integer[] children = (Integer[]) GraphicController.getController().getProperty(uid, __GO_CHILDREN__);
             for (int kChild = 0; kChild < children.length; kChild++) {
-                Boolean childStatus = (Boolean) GraphicController.getController().getProperty(children[kChild], __GO_UI_ENABLE__);
-                SwingView.getFromId(children[kChild]).update(__GO_UI_ENABLE__, childStatus);
+                Integer type = (Integer)GraphicController.getController().getProperty(children[kChild], __GO_TYPE__);
+                if (type == __GO_UICONTROL__) {
+                    Boolean childStatus = (Boolean) GraphicController.getController().getProperty(children[kChild], __GO_UI_ENABLE__);
+                    SwingView.getFromId(children[kChild]).update(__GO_UI_ENABLE__, childStatus);
+                }
             }
         } else {
             // Disable the frame
@@ -626,6 +980,45 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
             for (int compIndex = 0; compIndex < components.length; compIndex++) {
                 components[compIndex].setEnabled(false);
             }
+        }
+
+        //if parent is a tab enable/disable children tab
+        Component parent = getParent();
+        if (parent instanceof SwingScilabTabGroup) {
+            SwingScilabTabGroup tab = (SwingScilabTabGroup)parent;
+            Integer index = tab.getIndex(this);
+            if (index != -1) {
+                tab.setEnabledAt(index, status);
+            }
+        }
+    }
+
+    //    public void setForeground(Color color) {
+    //        System.out.println((Color)UIManager.getLookAndFeelDefaults().get("Panel.foreground"));
+    //        super.setForeground((Color)UIManager.getLookAndFeelDefaults().get("Panel.foreground"));
+    //    }
+
+    public void resetBackground() {
+        Color color = (Color)UIManager.getLookAndFeelDefaults().get("Panel.background");
+        if (color != null) {
+            setBackground(color);
+        }
+    }
+
+    public void resetForeground() {
+        Color color = (Color)UIManager.getLookAndFeelDefaults().get("Panel.foreground");
+        if (color != null) {
+            setForeground(color);
+        }
+    }
+
+    public void removeAxes() {
+        if (canvas != null) {
+            canvas.setEnabled(false);
+            remove(canvas);
+            canvas.removeNotify();
+            canvas = null;
+            repaint();
         }
     }
 }

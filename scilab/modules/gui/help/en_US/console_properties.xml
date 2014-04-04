@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2014 - Scilab Enterprises - Vincent Couvert
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="console_properties">
+    <refnamediv>
+        <refname>Console properties</refname>
+        <refpurpose>Description of console object properties.</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            This object is returned when calling <literal>get(0)</literal> and allows to modify some parameters for handles and uicontrols.
+        </para>
+        <variablelist>
+            <varlistentry>
+                <term>Console properties</term>
+                <listitem>
+                    <variablelist>
+                        <varlistentry>
+                            <term>ShowHiddenHandles:</term>
+                            <listitem>
+                                <para>A boolean or a string</para>
+                                <para>Manages the display of all children handles in figures including default menus ones.</para>
+                                <para>
+                                    Default value is <literal>"off"</literal>.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>UseDeprecatedSkin:</term>
+                            <listitem>
+                                <para>A boolean or a string</para>
+                                <para>Manages the rendering of uicontrols.</para>
+                                <para>
+                                    Default value is <literal>"off"</literal> and uicontrols look and feel is managed by operating system.
+                                </para>
+                                <para>
+                                    Setting this value to <literal>"on"</literal> or <literal>%T</literal> will make the uicontrols have an old TK look and feel.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>ShowHiddenProperties:</term>
+                            <listitem>
+                                <para>A boolean or a string</para>
+                                <para>Manages the display of uicontrols properties.</para>
+                                <para>
+                                    Default value is <literal>"off"</literal> and only the uicontrols properties used on the Java side are displayed.
+                                </para>
+                                <para>
+                                    Setting this value to <literal>"on"</literal> or <literal>%T</literal> will make all available properties displayed (for example a <literal>ListboxTop</literal> property will be dispalyed for <literal>pushbutton</literal> uicontrols.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
+f=gcf() // Do no display hidden handles
+c = get(0);
+set(c, "ShowHiddenHandles", "on");
+f=gcf() // Show menu handles as children
+
+h=uicontrol(); // Button with OS look & feel
+set(c, "UseDeprecatedSkin", "on");
+h=uicontrol(); // Button with old TK look & feel
+
+h=uicontrol() // Minimal display of properties
+set(c, "ShowHiddenProperties", "on");
+h=uicontrol() // Full display of properties
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="uicontrol">uicontrol</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

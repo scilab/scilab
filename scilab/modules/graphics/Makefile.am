@@ -44,6 +44,7 @@ src/c/getHandleProperty/get_current_axes_property.c \
 src/c/getHandleProperty/get_bar_width_property.c \
 src/c/getHandleProperty/get_datatips_property.c \
 src/c/getHandleProperty/get_font_color_property.c \
+src/c/getHandleProperty/set_default_axes_property.c \
 src/c/getHandleProperty/get_default_axes_property.c \
 src/c/getHandleProperty/get_y_shift_property.c \
 src/c/getHandleProperty/get_immediate_drawing_property.c \
@@ -59,7 +60,6 @@ src/c/getHandleProperty/get_parent_property.c \
 src/c/getHandleProperty/get_surface_mode_property.c \
 src/c/getHandleProperty/get_figure_id_property.c \
 src/c/getHandleProperty/get_mark_mode_property.c \
-src/c/getHandleProperty/get_pixmap_property.c \
 src/c/getHandleProperty/get_interp_color_mode.c \
 src/c/getHandleProperty/get_font_size_property.c \
 src/c/getHandleProperty/get_x_shift_property.c \
@@ -75,6 +75,8 @@ src/c/getHandleProperty/get_figure_name_property.c \
 src/c/getHandleProperty/get_arrow_size_factor_property.c \
 src/c/getHandleProperty/get_mark_size_unit_property.c \
 src/c/getHandleProperty/get_mark_size_property.c \
+src/c/getHandleProperty/get_mark_offset_property.c \
+src/c/getHandleProperty/get_mark_stride_property.c \
 src/c/getHandleProperty/get_mark_background_property.c \
 src/c/getHandleProperty/get_auto_resize_property.c \
 src/c/getHandleProperty/get_fill_mode_property.c \
@@ -129,6 +131,8 @@ src/c/getHandleProperty/get_ytics_coord_property.c \
 src/c/getHandleProperty/get_labels_font_size_property.c \
 src/c/getHandleProperty/get_isoview_property.c \
 src/c/getHandleProperty/get_grid_property.c \
+src/c/getHandleProperty/get_grid_thickness_property.c \
+src/c/getHandleProperty/get_grid_style_property.c \
 src/c/getHandleProperty/get_box_property.c \
 src/c/getHandleProperty/get_hidden_color_property.c \
 src/c/getHandleProperty/get_handle_visible_property.c \
@@ -147,6 +151,8 @@ src/c/getHandleProperty/get_info_message_property.c \
 src/c/getHandleProperty/get_y_ticks_property.c \
 src/c/getHandleProperty/get_z_ticks_property.c \
 src/c/getHandleProperty/get_x_ticks_property.c \
+src/c/getHandleProperty/get_ticks_format_property.c \
+src/c/getHandleProperty/get_ticks_st_property.c \
 src/c/getHandleProperty/setGetHashTable.c \
 src/c/getHandleProperty/get_segs_color_property.c \
 src/c/getHandleProperty/get_screen_position_property.c \
@@ -163,6 +169,12 @@ src/c/getHandleProperty/get_grid_position_property.c \
 src/c/getHandleProperty/get_anti_aliasing_property.c \
 src/c/getHandleProperty/get_tag_property.c \
 src/c/getHandleProperty/get_image_type_property.c \
+src/c/getHandleProperty/get_resize_property.c \
+src/c/getHandleProperty/get_toolbar_property.c \
+src/c/getHandleProperty/get_menubar_property.c \
+src/c/getHandleProperty/get_infobar_property.c \
+src/c/getHandleProperty/get_dockable_property.c \
+src/c/getHandleProperty/get_rect_property.c \
 src/c/getHandleProperty/GetHashTable.c \
 src/c/graphicModuleLoad.c \
 src/c/getHandleProperty/set_old_style_property.c \
@@ -184,9 +196,10 @@ src/c/getHandleProperty/set_auto_resize_property.c \
 src/c/getHandleProperty/set_current_axes_property.c \
 src/c/getHandleProperty/set_current_entity_property.c \
 src/c/getHandleProperty/set_figure_id_property.c \
-src/c/getHandleProperty/set_pixmap_property.c \
 src/c/getHandleProperty/set_figure_style_property.c \
 src/c/getHandleProperty/set_mark_size_property.c \
+src/c/getHandleProperty/set_mark_offset_property.c \
+src/c/getHandleProperty/set_mark_stride_property.c \
 src/c/getHandleProperty/set_y_shift_property.c \
 src/c/getHandleProperty/set_auto_scale_property.c \
 src/c/getHandleProperty/set_auto_dimensionning_property.c \
@@ -260,6 +273,8 @@ src/c/getHandleProperty/set_arrow_size_property.c \
 src/c/getHandleProperty/set_children_property.c \
 src/c/getHandleProperty/set_axes_reverse_property.c \
 src/c/getHandleProperty/set_grid_property.c \
+src/c/getHandleProperty/set_grid_thickness_property.c \
+src/c/getHandleProperty/set_grid_style_property.c \
 src/c/getHandleProperty/set_log_flags_property.c \
 src/c/getHandleProperty/set_cube_scaling_property.c \
 src/c/getHandleProperty/set_colored_property.c \
@@ -284,6 +299,8 @@ src/c/getHandleProperty/set_surface_color_property.c \
 src/c/getHandleProperty/set_yticks_coord_property.c \
 src/c/getHandleProperty/CheckTicksProperty.c \
 src/c/getHandleProperty/set_x_ticks_property.c \
+src/c/getHandleProperty/set_ticks_format_property.c \
+src/c/getHandleProperty/set_ticks_st_property.c \
 src/c/getHandleProperty/set_viewport_property.c \
 src/c/getHandleProperty/set_info_message_property.c \
 src/c/getHandleProperty/set_screen_position_property.c \
@@ -306,6 +323,32 @@ src/c/getHandleProperty/get_figure_closerequestfcn_property.c \
 src/c/getHandleProperty/get_datatip_property.c \
 src/c/getHandleProperty/set_datatip_property.c \
 src/c/getHandleProperty/set_image_type_property.c \
+src/c/getHandleProperty/get_display_function_data_property.c \
+src/c/getHandleProperty/set_display_function_data_property.c \
+src/c/getHandleProperty/set_resize_property.c \
+src/c/getHandleProperty/set_toolbar_property.c \
+src/c/getHandleProperty/set_menubar_property.c \
+src/c/getHandleProperty/set_infobar_property.c \
+src/c/getHandleProperty/set_dockable_property.c \
+src/c/getHandleProperty/get_layout_property.c \
+src/c/getHandleProperty/set_layout_property.c \
+src/c/getHandleProperty/get_constraints_property.c \
+src/c/getHandleProperty/set_constraints_property.c \
+src/c/getHandleProperty/set_rect_property.c \
+src/c/getHandleProperty/get_layout_options_property.c \
+src/c/getHandleProperty/set_layout_options_property.c \
+src/c/getHandleProperty/get_border_property.c \
+src/c/getHandleProperty/set_border_property.c \
+src/c/getHandleProperty/get_groupname_property.c \
+src/c/getHandleProperty/set_groupname_property.c \
+src/c/getHandleProperty/get_tabtitle_property.c \
+src/c/getHandleProperty/set_tabtitle_property.c \
+src/c/getHandleProperty/get_scrollable_property.c \
+src/c/getHandleProperty/set_scrollable_property.c \
+src/c/getHandleProperty/get_marks_count_property.c \
+src/c/getHandleProperty/set_marks_count_property.c \
+src/c/getHandleProperty/get_line_width_property.c \
+src/c/getHandleProperty/set_line_width_property.c \
 src/c/DefaultCommandArg.c \
 src/c/Axes.c \
 src/c/sciMatrix.c \
@@ -349,8 +392,10 @@ src/c/getHandleProperty/set_use_color_material_property.c \
 src/c/getHandleProperty/set_material_shininess_property.c \
 src/c/getHandleProperty/set_light_type_property.c \
 src/c/getHandleProperty/set_direction_property.c \
-src/c/Light.c
-
+src/c/getHandleProperty/set_auto_margins_property.c \
+src/c/getHandleProperty/get_auto_margins_property.c \
+src/c/name2rgb.c \
+src/c/addColor.c
 
 GRAPHICS_CXX_SOURCES = \
 src/cpp/configgraphicvariable.cpp
@@ -383,7 +428,6 @@ sci_gateway/c/sci_drawaxis.c \
 sci_gateway/c/sci_demo.c \
 sci_gateway/c/sci_plot2d1.c \
 sci_gateway/c/sci_xrect.c \
-sci_gateway/c/sci_draw.c \
 sci_gateway/c/sci_xarrows.c \
 sci_gateway/c/sci_plot3d.c \
 sci_gateway/c/sci_move.c \
@@ -413,8 +457,10 @@ sci_gateway/c/sci_rubberbox.c \
 sci_gateway/c/sci_rotate_axes.c \
 sci_gateway/c/sci_is_handle_valid.c \
 sci_gateway/c/sci_Legend.c \
-sci_gateway/c/sci_light.c
-
+sci_gateway/c/sci_light.c \
+sci_gateway/c/sci_color.c \
+sci_gateway/c/sci_name2rgb.c \
+sci_gateway/c/sci_addcolor.c
 
 GATEWAY_CXX_SOURCES = \
 sci_gateway/cpp/graphics_gw.cpp \

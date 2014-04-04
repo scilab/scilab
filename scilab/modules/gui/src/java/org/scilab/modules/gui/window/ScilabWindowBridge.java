@@ -58,7 +58,7 @@ public class ScilabWindowBridge {
      * @return the created window
      */
     public static SimpleWindow createWindow() {
-        return new SwingScilabWindow();
+        throw new UnsupportedOperationException();
     }
 
     /**
@@ -139,7 +139,7 @@ public class ScilabWindowBridge {
      * @param newTab the tab to add to the window
      */
     public static void addTab(Window window, Tab newTab) {
-        window.getAsSimpleWindow().addTab(newTab.getAsSimpleTab());
+        //window.getAsSimpleWindow().addTab(newTab.getAsSimpleTab());
         //newTab.getAsSimpleTab().setParentWindowId(window.getAsSimpleWindow().getElementId());
     }
 
@@ -149,7 +149,7 @@ public class ScilabWindowBridge {
      * @param tab tab to remove
      */
     public static void removeTab(Window window, Tab tab) {
-        window.getAsSimpleWindow().removeTab(tab.getAsSimpleTab());
+        //window.getAsSimpleWindow().removeTab(tab.getAsSimpleTab());
     }
 
     /**

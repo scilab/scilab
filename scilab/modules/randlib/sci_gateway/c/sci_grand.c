@@ -578,7 +578,7 @@ int sci_Rand(char *fname, unsigned long fname_len)
         }
         else
         {
-            Scierror(999, _("%s Wrong value for input argument #%d: '%s' is unknown.\n"), fname, 1, cstk(ls));
+            Scierror(999, _("%s: Wrong value for input argument #%d: '%s' is unknown.\n"), fname, 1, cstk(ls));
 
             return 0;
         }

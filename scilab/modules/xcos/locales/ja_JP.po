@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-12-08 12:24+0000\n"
+"PO-Revision-Date: 2014-03-30 14:17+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <zz-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 16967)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -906,6 +906,12 @@ msgstr "論理ANDゲート"
 msgid "Logic NOR gate"
 msgstr "論理NORゲート"
 
+msgid "If Then Else"
+msgstr "If Then Else"
+
+msgid "And"
+msgstr "And"
+
 msgid "Automotive Suspension"
 msgstr "自動車のサスペンション"
 
@@ -977,6 +983,9 @@ msgstr "_IF_ Xcos ブロック"
 
 msgid "Goto/From blocks"
 msgstr "Goto/Fromブロック"
+
+msgid "Event demos"
+msgstr "イベントのデモ"
 
 #, c-format
 msgid "%s: Unable to export %s to %s.\n"
@@ -1150,8 +1159,8 @@ msgid "%s: Unable to export the palette to hdf5.\n"
 msgstr "%s: パレットを hdf5にエクスポートできません.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Matrix of strings expected.\n"
-msgstr "%s: 引数 %d の型が間違っています: 文字列の行列を指定してください.\n"
+msgid "%s: Wrong type for argument #%d: Matrix of strings expected.\n"
+msgstr "%s: 引数 #%d の型が間違っています:  文字列の行列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
@@ -1254,41 +1263,41 @@ msgid "Break on selected flags"
 msgstr "選択されたフラグでブレーク"
 
 msgid "After call"
-msgstr ""
+msgstr "コール後"
 
 msgid "Before call"
-msgstr ""
+msgstr "コール前"
 
 msgid "After date"
-msgstr ""
+msgstr "開始後"
 
 msgid "On the Scilab condition above"
-msgstr ""
+msgstr "上記のScilab条件に基づく"
 
 msgid "Current simulation state"
-msgstr ""
+msgstr "現在のシミュレーション状態"
 
 msgid "scs_m block path:"
-msgstr ""
+msgstr "scs_mブロックのパス:"
 
 msgid "Time:"
-msgstr ""
+msgstr "時間:"
 
 msgid "Flag:"
-msgstr ""
+msgstr "フラグ:"
 
 msgid "Next"
-msgstr ""
+msgstr "次へ"
 
 msgid "End debug"
-msgstr ""
+msgstr "デバッグ終了"
 
 msgid "Pause"
-msgstr ""
+msgstr "一時停止"
 
 #, c-format
 msgid "Use the %s button to end the debugging"
-msgstr ""
+msgstr "デバッグを終了するには %s ボタンを使用してください"
 
 msgid "The Scicos libraries are not loaded"
 msgstr "Scilabライブラリは取り込めませんでした"

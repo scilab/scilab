@@ -54,7 +54,11 @@ function [tree]=sci_reshape(tree)
         elseif size(tree.rhs)>=2
             if ~isemptyrhs then
                 for k=2:size(tree.rhs)
-                    dims($+1)=tree.rhs(k).value
+                    if typeof(tree.rhs(k)) == "cste" then
+                        dims($+1)=tree.rhs(k).value
+                    else
+                        dims($+1) = Unknown;
+                    end
                 end
                 tree.lhs(1).dims=dims
             end

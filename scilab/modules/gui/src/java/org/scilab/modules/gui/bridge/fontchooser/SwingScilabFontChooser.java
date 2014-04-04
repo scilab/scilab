@@ -46,6 +46,7 @@ import javax.swing.event.ChangeListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.gui.fontchooser.SimpleFontChooser;
 import org.scilab.modules.gui.utils.ScilabFontUtils;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
@@ -72,9 +73,9 @@ public class SwingScilabFontChooser extends JDialog implements SimpleFontChooser
 
     private final JList fontSizeList;
     private final String[] availableFontSizes = {"8", "10", "11", "12",
-                                                 "13", "14", "16", "18", "20",
-                                                 "24", "30", "36", "40",
-                                                 "48", "60", "72"
+                           "13", "14", "16", "18", "20",
+                           "24", "30", "36", "40",
+                           "48", "60", "72"
                                                 };
 
     private final boolean calledFromScinotes;
@@ -106,7 +107,7 @@ public class SwingScilabFontChooser extends JDialog implements SimpleFontChooser
     public SwingScilabFontChooser(JFrame owner, Font font, boolean calledFromScinotes) {
         super(owner, Messages.gettext("Font Chooser"), true);
         this.calledFromScinotes = calledFromScinotes;
-        ((JFrame) getParent()).setIconImage(new ImageIcon(ScilabSwingUtilities.findIcon("scilab", "256x256")).getImage());
+        ((JFrame) getParent()).setIconImage(new ImageIcon(FindIconHelper.findIcon("scilab", "256x256")).getImage());
 
         getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 

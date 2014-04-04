@@ -39,7 +39,7 @@ import javax.swing.JPanel;
 import org.scilab.forge.scirenderer.Canvas;
 import org.scilab.forge.scirenderer.implementation.jogl.JoGLCanvas;
 import org.scilab.forge.scirenderer.implementation.jogl.JoGLCanvasFactory;
-import org.scilab.modules.graphic_objects.figure.Figure;
+import org.scilab.modules.graphic_objects.axes.AxesContainer;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.gui.bridge.tab.SwingScilabAxes;
 import org.scilab.modules.gui.canvas.SimpleCanvas;
@@ -65,23 +65,17 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
     private final Canvas rendererCanvas;
 
     /** The drawn figure */
-    private final Figure figure;
+    private AxesContainer figure;
 
     /** The drawer visitor used to draw the figure */
-    private final DrawerVisitor drawerVisitor;
+    private DrawerVisitor drawerVisitor;
 
     /** The drawable component where the draw is performed */
     private final Component drawableComponent;
 
-    static {
-        try {
-            System.loadLibrary("gluegen2-rt");
-        } catch (Exception e) {
-            System.err.println(e);
-        }
-    }
+    private Integer id;
 
-    public SwingScilabCanvas(int figureId, final Figure figure) {
+    public SwingScilabCanvas(final AxesContainer figure) {
         super(new PanelLayout());
         this.figure = figure;
 
@@ -93,14 +87,7 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
         add(drawableComponent, PanelLayout.GL_CANVAS);
 
         rendererCanvas = JoGLCanvasFactory.createCanvas((GLAutoDrawable) drawableComponent);
-        drawerVisitor = new DrawerVisitor(drawableComponent, rendererCanvas, figure);
-        rendererCanvas.setMainDrawer(drawerVisitor);
-        drawableComponent.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                GlobalEventWatcher.setAxesUID(figure.getIdentifier());
-            }
-        });
+        drawerVisitor = null;
 
         /* Workaround for bug 12682: setFocusable(false) did not work...
            the GLJPanel always got the focus after zooming. So when it gets it, the
@@ -112,6 +99,13 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
             }
         });
 
+        drawerVisitor = new DrawerVisitor(drawableComponent, rendererCanvas, figure);
+        rendererCanvas.setMainDrawer(drawerVisitor);
+        drawableComponent.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent e) {
+                GlobalEventWatcher.setAxesUID(figure.getIdentifier());
+            }
+        });
         setBackground(Color.white);
         setFocusable(true);
         setEnabled(true);
@@ -144,7 +138,7 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
      * figure getter.
      * @return the MVC figure.
      */
-    public Figure getFigure() {
+    public AxesContainer getFigure() {
         return figure;
     }
 
@@ -158,14 +152,6 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
      */
     public static SwingScilabCanvas createCanvas(int figureIndex, int antialiasingQuality) {
         return null;
-    }
-
-    /**
-     * Drawable component getter.
-     * @return the drawable component.
-     */
-    private Component getDrawableComponent() {
-        return drawableComponent;
     }
 
     /**
@@ -282,7 +268,7 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
      * @param newCursor cursor to apply on the canvas
      */
     public void setCursor(Cursor newCursor) {
-        getParentAxes().setCursor(newCursor);
+        setCursor(newCursor);
     }
 
     /**
@@ -298,7 +284,6 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
      * @param listener listener to add
      */
     public void removeFocusListener(FocusListener listener) {
-        getParentAxes().removeFocusListener(listener);
     }
 
     /**
@@ -306,7 +291,6 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
      * @param listener listener to add
      */
     public void addMouseListener(MouseListener listener) {
-        getParentAxes().addMouseListener(listener);
     }
 
     /**
@@ -314,7 +298,6 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
      * @param listener listener to add
      */
     public void removeMouseListener(MouseListener listener) {
-        getParentAxes().removeMouseListener(listener);
     }
 
     /**
@@ -322,7 +305,6 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
      * @param listener listener to add
      */
     public void addMouseMotionListener(MouseMotionListener listener) {
-        getParentAxes().addMouseMotionListener(listener);
     }
 
     /**
@@ -330,7 +312,6 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
      * @param listener listener to add
      */
     public void removeMouseMotionListener(MouseMotionListener listener) {
-        getParentAxes().removeMouseMotionListener(listener);
     }
 
     /**
@@ -403,5 +384,13 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
     public boolean isAutoResize() {
         Boolean b = (Boolean) GraphicController.getController().getProperty(figure.getIdentifier(), __GO_AUTORESIZE__);
         return b == null ? false : b;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getId() {
+        return id;
     }
 }

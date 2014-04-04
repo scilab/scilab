@@ -2,6 +2,7 @@
 # Please see in SCI/tools/localization for localization management
 # Copyright (C) 2007-2008 - INRIA
 # Copyright (C) 2008-2011 - DIGITEO
+# Copyright (C) 2012-2014 - Scilab-Enterprises
 # This file is distributed under the same license as the Scilab package.
 #
 msgid ""
@@ -9,12 +10,12 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab.org>\n"
+"Last-Translator: Vincent COUVERT <vincent.couvert@scilab-enterprises.com>\n"
 "Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-12-09 09:47+0100\n"
+"Revision-Date: 2014-04-01 12:32+0100\n"
 
 # File: macros/buildmacros.sce, line: 18
 #, c-format
@@ -753,7 +754,26 @@ msgstr ""
 #
 # File: macros/matfile2sci.sci, line: 26
 #, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+
+#
+# File: macros/matfile2sci.sci, line: 36
+#, c-format
+msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
+msgstr ""
+
+#
+# File: macros/matfile2sci.sci, line: 40
+#, c-format
+msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
+msgstr ""
+
+#
+# File: macros/matfile2sci.sci, line: 58
+# File: macros/matfile2sci.sci, line: 62
+#, c-format
+msgid "%s: Could not read variables in %s"
 msgstr ""
 
 #
@@ -848,56 +868,56 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/mfile2sci.sci, line: 214
+# File: macros/mfile2sci.sci, line: 218
 msgid "Macro to tree conversion..."
 msgstr ""
 
 #
-# File: macros/mfile2sci.sci, line: 240
-# File: macros/mfile2sci.sci, line: 242
-# File: macros/mfile2sci.sci, line: 245
-# File: macros/mfile2sci.sci, line: 248
-# File: macros/mfile2sci.sci, line: 280
+# File: macros/mfile2sci.sci, line: 244
+# File: macros/mfile2sci.sci, line: 246
+# File: macros/mfile2sci.sci, line: 249
+# File: macros/mfile2sci.sci, line: 252
+# File: macros/mfile2sci.sci, line: 284
 msgid "resumelogfile.dat"
 msgstr ""
 
 #
-# File: macros/mfile2sci.sci, line: 247
+# File: macros/mfile2sci.sci, line: 251
 msgid "resume"
 msgstr ""
 
 #
-# File: macros/mfile2sci.sci, line: 266
+# File: macros/mfile2sci.sci, line: 270
 #, c-format
 msgid "****** %s: Functions of mfile2sci() session ******"
 msgstr ""
 
 #
-# File: macros/mfile2sci.sci, line: 268
+# File: macros/mfile2sci.sci, line: 272
 #, c-format
 msgid ""
 "%d Matlab Function(s) not yet converted, original calling sequence used:"
 msgstr ""
 
 #
-# File: macros/mfile2sci.sci, line: 271
+# File: macros/mfile2sci.sci, line: 275
 #, c-format
 msgid "%d Matlab Toolbox(es) Functions, original calling sequence used :"
 msgstr ""
 
 #
-# File: macros/mfile2sci.sci, line: 274
+# File: macros/mfile2sci.sci, line: 278
 #, c-format
 msgid "%d Unknown Function(s), original calling sequence used :"
 msgstr ""
 
 #
-# File: macros/mfile2sci.sci, line: 283
+# File: macros/mfile2sci.sci, line: 287
 msgid "Macro to tree conversion: Done"
 msgstr ""
 
 #
-# File: macros/mfile2sci.sci, line: 318
+# File: macros/mfile2sci.sci, line: 322
 msgid ""
 "Translation may be improved: see the //! comments and for all mtlb_<funname> "
 "function call\n"
@@ -906,17 +926,17 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/mfile2sci.sci, line: 321
+# File: macros/mfile2sci.sci, line: 325
 msgid "Translation may be wrong (see the //!! comments)."
 msgstr ""
 
 #
-# File: macros/mfile2sci.sci, line: 327
+# File: macros/mfile2sci.sci, line: 331
 msgid "File contains no instruction, no translation made..."
 msgstr ""
 
 #
-# File: macros/mfile2sci.sci, line: 331
+# File: macros/mfile2sci.sci, line: 335
 msgid "****** End of mfile2sci() session ******"
 msgstr ""
 
@@ -1348,6 +1368,6 @@ msgstr ""
 # File: macros/translatepaths.sci, line: 58
 # File: macros/translatepaths.sci, line: 61
 # File: macros/translatepaths.sci, line: 65
-# File: macros/translatepaths.sci, line: 184
+# File: macros/translatepaths.sci, line: 190
 msgid "unitfile.dat"
 msgstr ""

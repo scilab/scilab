@@ -14,11 +14,11 @@
 //  It seems that function bode doesn't work properly.
 //  It shift x (horizontal) axis for one decade in right. So the bode plot is incorect.
 // create a linerar system
-s=poly(0,'s')
+s=poly(0,"s")
  s  =
  
     s   
-h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
+h=syslin("c",(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
  h  =
  
                    2     
@@ -26,7 +26,7 @@ h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
     -----------------    
                       2  
     102.01 + 6.06s + s   
-my_title='(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01)';
+my_title="(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01)";
 // draw the bode plot between fmin and fmax
 fmin = 0.01;
 fmax = 100;
@@ -39,7 +39,7 @@ dataBounds1 = curFig.children(1).data_bounds
  
     0.01  - 29.4651    
     100.    30.537043  
-// chack that the X bounds are [fmin, fmax]
+// check that the X bounds are [fmin, fmax]
 if (dataBounds1(1,1) <> fmin) then bugmes();quit;end;
 if (dataBounds1(2,1) <> fmax) then bugmes();quit;end;
 // same for magnitude plot
@@ -48,6 +48,6 @@ dataBounds2 = curFig.children(2).data_bounds
  
     0.01  - 0.1723667  
     100.    9.4565594  
-// chack that the X bounds are [fmin, fmax]
+// check that the X bounds are [fmin, fmax]
 if (dataBounds2(1,1) <> fmin) then bugmes();quit;end;
 if (dataBounds2(2,1) <> fmax) then bugmes();quit;end;

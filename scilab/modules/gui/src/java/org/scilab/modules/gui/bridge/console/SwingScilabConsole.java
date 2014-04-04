@@ -12,6 +12,7 @@
 
 package org.scilab.modules.gui.bridge.console;
 
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
@@ -21,6 +22,7 @@ import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.KeyboardFocusManager;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.IOException;
@@ -370,6 +372,7 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
     public void clear() {
         CheckClearConfirmation ccc = XConfiguration.get(CheckClearConfirmation.class, XConfiguration.getXConfigurationDocument(), CONFIRMATION_PATH)[0];
         if (ccc.checked) {
+            final Component focused = KeyboardFocusManager.getCurrentKeyboardFocusManager().getFocusOwner();
             final boolean[] checked = new boolean[1];
             final Action action = new AbstractAction() {
                 public void actionPerformed(ActionEvent e) {
@@ -377,7 +380,16 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
                 }
             };
 
-            if (ScilabModalDialog.show(this, new String[] { CLEAR_CONFIRM }, CLEAR, IconType.WARNING_ICON, ButtonType.YES_NO, DONT_SHOW, action) == AnswerOption.NO_OPTION) {
+            boolean isNo = ScilabModalDialog.show(this, new String[] { CLEAR_CONFIRM }, CLEAR, IconType.WARNING_ICON, ButtonType.YES_NO, DONT_SHOW, action) == AnswerOption.NO_OPTION;
+            if (focused != null) {
+                SwingUtilities.invokeLater(new Runnable() {
+                    public void run() {
+                        focused.requestFocus();
+                    }
+                });
+            }
+
+            if (isNo) {
                 if (checked[0]) {
                     XConfiguration.set(XConfiguration.getXConfigurationDocument(), CONFIRMATION_PATH + "/@state", "unchecked");
                 }

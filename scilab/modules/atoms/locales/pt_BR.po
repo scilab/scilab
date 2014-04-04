@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 16967)\n"
 "Language: pt_BR\n"
 
 #, c-format
@@ -567,21 +567,6 @@ msgid "No ATOMS module is available: your repository list is empty."
 msgstr ""
 "Nenhum módulo do ATOMS está disponível: sua lista de repositório está vazia."
 
-msgid "ATOMS"
-msgstr "ATOMS"
-
-msgid "&File"
-msgstr "&Arquivo"
-
-msgid "&Tools"
-msgstr "&Ferramentas"
-
-msgid "&Edit"
-msgstr "&Editar"
-
-msgid "&?"
-msgstr "&?"
-
 msgid "File"
 msgstr "Arquivo"
 
@@ -600,8 +585,8 @@ msgstr "?"
 msgid "Atoms Help..."
 msgstr "Ajuda do Atoms..."
 
-msgid "List of installed modules"
-msgstr "Lista dos módulos instalados"
+msgid "Back"
+msgstr ""
 
 msgid "Remove"
 msgstr "Remover"
@@ -609,8 +594,11 @@ msgstr "Remover"
 msgid "Install"
 msgstr "Instalar"
 
-msgid "Update"
-msgstr "Atualizar"
+msgid "Autoload"
+msgstr ""
+
+msgid "List of installed modules"
+msgstr "Lista dos módulos instalados"
 
 msgid "Installing"
 msgstr "Instalando"
@@ -624,17 +612,6 @@ msgstr ""
 "Instalação concluída! Por favor, reinicie o Scilab para que as alterações "
 "tenham efeito."
 
-msgid "Removing"
-msgstr "Removendo"
-
-msgid "Remove failed!"
-msgstr "Falha na remoção!"
-
-msgid "Remove done! Please restart Scilab to take changes into account. "
-msgstr ""
-"Remoção concluída! Por favor, reinicie o Scilab para que as alterações "
-"tenham efeito. "
-
 msgid "Updating"
 msgstr "Atualizando"
 
@@ -646,6 +623,25 @@ msgstr ""
 "Atualização concluída! Por favor, reinicie o Scilab para que as alterações "
 "tenham efeito."
 
+msgid "Removing"
+msgstr "Removendo"
+
+msgid "Remove failed!"
+msgstr "Falha na remoção!"
+
+msgid "Remove done! Please restart Scilab to take changes into account. "
+msgstr ""
+"Remoção concluída! Por favor, reinicie o Scilab para que as alterações "
+"tenham efeito. "
+
+msgid "The module will be automatically loaded at next startup."
+msgstr ""
+
+msgid ""
+"Autoload at startup is canceled. The Toolboxes menu or atomsLoad() can be "
+"used to load the module when needed."
+msgstr ""
+
 msgid "Download size"
 msgstr "Tamanho a baixar"
 
@@ -654,6 +650,9 @@ msgstr "Veja também"
 
 msgid "Release date"
 msgstr "Data de lançamento"
+
+msgid "Update"
+msgstr "Atualizar"
 
 #, c-format
 msgid "A new version ('%s') of '%s' is available"
@@ -969,6 +968,75 @@ msgstr "Todos os módulos"
 msgid "Main categories"
 msgstr "Categorias principais"
 
+msgid "Aerospace"
+msgstr ""
+
+msgid "Contributed Scilab Binaries"
+msgstr ""
+
+msgid "Data Analysis And Statistics"
+msgstr ""
+
+msgid "Data Handling"
+msgstr ""
+
+msgid "Editor Styles"
+msgstr ""
+
+msgid "Education"
+msgstr ""
+
+msgid "GUI"
+msgstr ""
+
+msgid "Graphics"
+msgstr ""
+
+msgid "Graphs"
+msgstr ""
+
+msgid "Image Processing"
+msgstr ""
+
+msgid "Instruments Control"
+msgstr ""
+
+msgid "Linear algebra"
+msgstr ""
+
+msgid "Modeling and Control Tools"
+msgstr ""
+
+msgid "Number theory"
+msgstr ""
+
+msgid "Numerical Maths"
+msgstr ""
+
+msgid "Optimization"
+msgstr ""
+
+msgid "Physics"
+msgstr ""
+
+msgid "Real-Time"
+msgstr ""
+
+msgid "Scilab development"
+msgstr ""
+
+msgid "Signal Processing"
+msgstr ""
+
+msgid "Technical"
+msgstr ""
+
+msgid "Tests"
+msgstr ""
+
+msgid "Xcos"
+msgstr ""
+
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: %s must be an available atoms "
@@ -1042,6 +1110,9 @@ msgid "%s: Wrong value for input argument #%d: '%s' is not a valid URL.\n"
 msgstr ""
 "%s: Valor incorreto para o %dº argumento de entrada: '%s' não é um URL "
 "válido.\n"
+
+msgid "Loaded<br>at startup"
+msgstr ""
 
 #, c-format
 msgid "%s: the package '%s' does not exist.\n"

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -53,20 +53,20 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>[n,[U]]=unobs(A,C,[tol])</literal> gives the unobservable form of an <literal>(A,C)</literal> 
+            <literal>[n,[U]]=unobs(A,C,[tol])</literal> gives the unobservable form of an <literal>(A,C)</literal>
             pair.
             The <literal>n</literal> first columns of <literal>U</literal> make a basis for the unobservable
             subspace.
         </para>
         <para>
-            The <literal>(2,1)</literal> block (made of last <literal>nx-n</literal> rows and <literal>n</literal> first 
-            columns) of <literal>U'*A*U</literal> is zero and and the <literal>n</literal> first columns 
+            The <literal>(2,1)</literal> block (made of last <literal>nx-n</literal> rows and <literal>n</literal> first
+            columns) of <literal>U'*A*U</literal> is zero and the <literal>n</literal> first columns
             of <literal>C*U</literal> are zero.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 A=diag([1,2,3]);C=[1,0,0];
 unobs(A,C)
  ]]></programlisting>

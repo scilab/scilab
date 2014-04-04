@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 //
-// <-- TEST WITH GRAPHIC --> 
+// <-- TEST WITH GRAPHIC -->
 //
 // <-- Non-regression test for bug 12291 -->
 //
@@ -15,7 +15,7 @@
 // <-- Short Description -->
 // Unable to display a list of handle as a handle userData
 //
-
+set(get(0), "usedeprecatedskin", "on");
 f=figure("figure_name","UIcontrol with an handle as a user_data","figure_id",0,"auto_resize","off");
 frame=uicontrol("parent", f,"style","frame");
 child=uicontrol("parent",frame,"style","text","string","OK");
@@ -23,7 +23,7 @@ set(frame,"userdata",list(child));
 set(f,"figure_position",[201 228]);
 set(f,"figure_size", [500 500]);
 set(f,"axes_size",[490 400]);
-res="uicontrol(''Relief'', ''ridge'', ''Style'', ''frame'', ''Userdata'', list(uicontrol(''Relief'', ''flat'', ''String'', ''OK'' ,''Style'', ''text'')))";
+res="uicontrol(''ForegroundColor'', [-1 -1 -1] ,''Relief'', ''ridge'', ''Style'', ''frame'', ''Userdata'', list(uicontrol(''ForegroundColor'', [-1 -1 -1] ,''Relief'', ''flat'', ''String'', ''OK'' ,''Style'', ''text'')))";
 assert_checkequal(sci2exp(frame,0),res);
 assert_checktrue(execstr("frame2="+sci2exp(frame),"errcatch")==0);
 xdel(winsid())

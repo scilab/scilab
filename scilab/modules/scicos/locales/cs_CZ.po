@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 16967)\n"
 
 #, c-format
 msgid "%s : lnksz argument must be double or integer.\n"
@@ -875,6 +875,9 @@ msgstr "Velikost dep_ut v bloku %s není správná.\n"
 msgid "Not enough information to find port type.\n"
 msgstr "Není dostatek informací k nalezení typu portu.\n"
 
+msgid "Modelica compiler (flat2C)"
+msgstr ""
+
 msgid "The initialization file already exists!"
 msgstr "Soubor zavedení již existuje!"
 
@@ -961,7 +964,7 @@ msgstr "Problémy vyhodnocení: Neznámý blok"
 #, c-format
 msgid ""
 "%s: Error while calling block %s [uid='%s']: invalid parameter (ier=%f, \\"
-"%scicos_prob=%f).\n"
+"%scicos_prob=%%%s).\n"
 msgstr ""
 
 msgid "Cannot load dynamic library: "
@@ -973,10 +976,7 @@ msgstr ""
 msgid "This file does not exist"
 msgstr ""
 
-msgid "-------Modelica compiler error (with the translator):-------"
-msgstr ""
-
-msgid "Please read the error message in the Scilab window"
+msgid "Modelica compiler"
 msgstr ""
 
 msgid "Sorry: Only C or FORTRAN languages are supported"
@@ -1036,7 +1036,7 @@ msgstr "Příliš mnoho souborů Modelica.\n"
 msgid "-------Modelica translator error message:-----"
 msgstr "-------Chybová zpráva překladatele Modelica:-----"
 
-msgid "-------XML to Modelica error:-------"
+msgid "XML to Modelica"
 msgstr ""
 
 #, c-format

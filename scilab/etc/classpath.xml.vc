@@ -35,6 +35,26 @@ The option is "disableUnderMode" and can be:
     <path value="$SCILAB/thirdparty/jhall.jar"/>
 
     <!-- Load when needed -->
+    
+    <path value="$SCILAB/thirdparty/freehep-util.jar" load="onUse">
+      <load on="emf_graphic_export"/>
+    </path>
+    
+    <path value="$SCILAB/thirdparty/freehep-io.jar" load="onUse">
+      <load on="emf_graphic_export"/>
+    </path>
+    
+    <path value="$SCILAB/thirdparty/freehep-graphicsio.jar" load="onUse">
+      <load on="emf_graphic_export"/>
+    </path>
+    
+    <path value="$SCILAB/thirdparty/freehep-graphicsio-emf.jar" load="onUse">
+      <load on="emf_graphic_export"/>
+    </path>
+    
+    <path value="$SCILAB/thirdparty/freehep-graphics2d.jar" load="onUse">
+      <load on="emf_graphic_export"/>
+    </path>
 
     <path value="$SCILAB/thirdparty/jrosetta-API.jar" load="onUse">
         <load on="Console" />
@@ -50,23 +70,11 @@ The option is "disableUnderMode" and can be:
         <load on="documentationGeneration"/>
     </path>
 
-    <path value="$SCILAB/modules/scirenderer/jar/scirenderer.jar" load="onUse">
-        <load on="graphics"/>
-        <load on="graphic_ojects"/>
-        <load on="Xcos"/>
-    </path>
+    <path value="$SCILAB/modules/scirenderer/jar/scirenderer.jar"/>
 
-    <path value="$SCILAB/thirdparty/jogl2.jar" load="onUse">
-        <load on="graphics"/>
-        <load on="graphic_export"/>
-        <load on="Xcos"/>
-    </path>
+    <path value="$SCILAB/thirdparty/jogl2.jar"/>
 
-    <path value="$SCILAB/thirdparty/gluegen2-rt.jar" load="onUse">
-        <load on="graphics"/>
-        <load on="graphic_export"/>
-        <load on="Xcos"/>
-    </path>
+    <path value="$SCILAB/thirdparty/gluegen2-rt.jar"/>
 
     <!-- Temp. loaded at startup -->
     <path value="$SCILAB/modules/types/jar/org.scilab.modules.types.jar"/>
@@ -79,7 +87,7 @@ The option is "disableUnderMode" and can be:
         <load on="xcos_mathml_rendering"/>
     </path>
 
-    <path value="$SCILAB/thirdparty/jlatexmath-fop-1.0.2.jar" load="onUse">
+    <path value="$SCILAB/thirdparty/jlatexmath-fop-1.0.3.jar" load="onUse">
         <load on="documentationGeneration"/>
         <load on="pdf_ps_eps_graphic_export"/>
     </path>
@@ -123,7 +131,7 @@ The option is "disableUnderMode" and can be:
         <load on="pdf_ps_eps_graphic_export"/>
     </path>
 
-    <path value="$SCILAB/thirdparty/jlatexmath-1.0.2.jar" load="onUse">
+    <path value="$SCILAB/thirdparty/jlatexmath-1.0.3.jar" load="onUse">
         <load on="documentationGeneration"/>
         <load on="graphics_latex_textrendering"/>
         <load on="pdf_ps_eps_graphic_export"/>

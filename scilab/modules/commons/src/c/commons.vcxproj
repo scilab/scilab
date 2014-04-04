@@ -249,6 +249,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\jni\CommonFileUtils_wrap.c" />
+    <ClCompile Include="..\jni\FindIconHelper.cpp" />
     <ClCompile Include="..\jni\GiwsException.cpp" />
     <ClCompile Include="DllmainCommons.c" />
     <ClCompile Include="..\jni\ScilabCommons_wrap.c" />
@@ -257,6 +258,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\includes\dynlib_commons.h" />
     <ClInclude Include="..\..\includes\fileutils.h" />
+    <ClInclude Include="..\jni\FindIconHelper.hxx" />
     <ClInclude Include="..\jni\GiwsException.hxx" />
   </ItemGroup>
   <ItemGroup>

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-10-04 11:16+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2014-03-08 13:51+0000\n"
+"Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 16967)\n"
 "Language: ja\n"
 
 #, c-format
@@ -37,8 +37,8 @@ msgid "%s: Unable to create variable in Scilab memory"
 msgstr "%s: Scilabメモリに変数を作成できません"
 
 #, c-format
-msgid "%s: Invalid variable name."
-msgstr "%s: 変数名が無効です."
+msgid "%s: Invalid variable name: %s."
+msgstr "%s: 変数名が無効です: %s."
 
 #, c-format
 msgid "%s: Unable to create %s named \"%s\""
@@ -314,5 +314,5 @@ msgid "%s: Invalid variable name.\n"
 msgstr "%s: 変数名が無効です.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument %d: An integer expected.\n"
-msgstr "%s: 入力引数 %d の型が間違っています:  整数を指定してください.\n"
+msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 整数を指定してください.\n"

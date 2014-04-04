@@ -12,20 +12,22 @@
 //
 
 function %_Matplot1()
-    clf
-    f = gcf()
     nc = 200    // Number of colors
     np = 2      // Number of periods
     nx = 350
     ny = 300
-    f.color_map = hsvcolormap(nc);
     [X,Y] = meshgrid(-nx/2:nx/2, -ny/2:ny/2);
     R = sqrt(X.^2+Y.^2);
     R = (R-min(R))/(max(R)-min(R))*nc*np;
     R = 1+pmodulo(R,nc);
     xmin = -15, xmax = 40, ymin = -0.03, ymax = 0.01
 
-    Matplot1(R,[xmin ymin xmax ymax])
+    Matplot1(R,[xmin ymin xmax ymax]);
+
+    f = gcf();
+    my_plot_desc  = _("Classical Matplot1");
+    f.figure_name = my_plot_desc;
+    f.color_map = hsvcolormap(nc);
 
     a = gca()
     a.data_bounds=[xmin ymin ; xmax ymax];

@@ -109,4 +109,8 @@
     <PRIMITIVE gatewayId="68" primitiveId="78" primitiveName="xmlSetAttributes" />
     <PRIMITIVE gatewayId="68" primitiveId="79" primitiveName="xmlName" />
     <PRIMITIVE gatewayId="68" primitiveId="80" primitiveName="xmlAppend" />
+    <PRIMITIVE gatewayId="68" primitiveId="81" primitiveName="htmlRead" />
+    <PRIMITIVE gatewayId="68" primitiveId="82" primitiveName="htmlReadStr" />
+    <PRIMITIVE gatewayId="68" primitiveId="83" primitiveName="htmlWrite" />
+    <PRIMITIVE gatewayId="68" primitiveId="84" primitiveName="htmlDump" />
 </GATEWAY>

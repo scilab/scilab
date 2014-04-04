@@ -17,40 +17,7 @@
 f = figure(1);
 h = uicontrol(f,"style","listbox",..
     "position",[10 10 150 150],..
-    "string",["\Q\q"])
- h  =
- 
-Handle of type "uicontrol" with properties:
-===========================================
-Parent: Figure
-Children: []
-BackgroundColor = [0.8,0.8,0.8]
-Enable = "on"
-FontAngle = normal
-FontName = helvetica
-FontSize = 10
-FontUnits = points
-FontWeight = normal
-ForegroundColor = [0,0,0]
-HorizontalAlignment = center
-ListboxTop = 1
-Max = 1
-Min = 0
-Position = [10,10,150,150]
-Relief = flat
-SliderStep = [0.01,0.1]
-String = "\Q\q"
-Style = listbox
-TooltipString = ""
-Units = pixels
-Value = 0
-VerticalAlignment = middle
-Visible = "on"
-Callback = 
-Callback_Type = -1
-Handle_Visible = "on"
-Userdata = []
-Tag = 
+    "string",["\Q\q"]);
 if get(h,"string") <> "\Q\q" then bugmes();quit;end
 set(h,"string",["\Q","\q"]) 
 if or(get(h,"string") <> ["\Q","\q"]) then bugmes();quit;end

@@ -71,7 +71,7 @@ int sci_ClipBoard(char *fname, void* pvApiCtx)
 
                 if ( ( strcmp(param1, "paste") == 0 ) || ( strcmp(param1, "pastespecial") == 0 ) )
                 {
-                    /* Use the Java clipboard (CallScilabBridge.java returns "" if clipbaord could not be read) */
+                    /* Use the Java clipboard (CallScilabBridge.java returns "" if clipboard could not be read) */
                     char *output = getClipboardContents();
 
 
@@ -335,7 +335,7 @@ int sci_ClipBoard(char *fname, void* pvApiCtx)
                 if (sciErr.iErr)
                 {
                     printError(&sciErr, 0);
-                    Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1);
+                    Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 1);
                     return 1;
                 }
 

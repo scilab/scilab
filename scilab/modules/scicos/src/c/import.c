@@ -900,7 +900,7 @@ void C2F(getblockbylabel)(int *kfun, char **label, int *n)
     int job = 0;
     int lab[40];
 
-    nblk = (int)(scicos_imp.nblk);
+    nblk = scicos_imp.nblk[0];
     F2C(cvstr)(n, lab, *label, &job, *n);
 
     *kfun = 0;
@@ -932,7 +932,7 @@ int C2F(getsciblockbylabel)(int*kfun, int label[], int *n)
     {
         return (2); /* undefined import table scicos is not running */
     }
-    nblk = (int)(scicos_imp.nblk);
+    nblk = scicos_imp.nblk[0];
 
     *kfun = 0;
     for (k = 0; k < nblk; k++)

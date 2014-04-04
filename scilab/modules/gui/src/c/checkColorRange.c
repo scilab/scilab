@@ -21,6 +21,16 @@ static int checkColorComponent(double c)
 /*--------------------------------------------------------------------------*/
 int checkColorRange(double r, double g, double b)
 {
+    if (r == -1 && g == -1 && b == -1) //default laf
+    {
+        return 1;
+    }
+
+    if (r == -2 && g == -2 && b == -2) //transparence
+    {
+        return 1;
+    }
+
     return checkColorComponent(r) && checkColorComponent(g) && checkColorComponent(b);
 }
 /*--------------------------------------------------------------------------*/

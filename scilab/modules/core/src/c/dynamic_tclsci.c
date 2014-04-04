@@ -25,7 +25,7 @@ static char* dynlibname_tclsci = NULL;
 static char* gatewayname_tclsci = NULL;
 /*--------------------------------------------------------------------------*/
 #define SETENVTCL_NAME "setenvtcl"
-typedef int (*PROC_SETENVTCL) (char *, char *);
+typedef int (*PROC_SETENVTCL) (const char *, const char *);
 static PROC_SETENVTCL ptr_setenvtcl = NULL;
 /*--------------------------------------------------------------------------*/
 #define TERMINATETCLTK_NAME "TerminateTclTk"
@@ -42,7 +42,7 @@ int gw_dynamic_tclsci(void)
     return 0;
 }
 /*--------------------------------------------------------------------------*/
-int dynamic_setenvtcl(char *string, char *value)
+int dynamic_setenvtcl(const char *string, const char *value)
 {
     if (hTclsciLib)
     {

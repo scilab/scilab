@@ -11,6 +11,7 @@
  *
  */
 
+#include <stdio.h>
 #include <string.h>
 #include "BOOL.h"
 #include "gw_gui.h"

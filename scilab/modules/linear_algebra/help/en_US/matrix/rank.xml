@@ -50,9 +50,11 @@
             <literal>X</literal> that are larger than <literal>tol</literal>.
         </para>
         <para>
-            Note that the default value of <literal>tol</literal> is proportional to
-            <literal>norm(X)</literal>. As a consequence
-            <literal>rank([1.d-80,0;0,1.d-80])</literal> is 2 !.
+            <note>
+                Note that the default value of <literal>tol</literal> is proportional to
+                <literal>norm(X)</literal>. As a consequence
+                <literal>rank([1.d-80,0;0,1.d-80])</literal> is 2 !.
+            </note>
         </para>
     </refsection>
     <refsection>

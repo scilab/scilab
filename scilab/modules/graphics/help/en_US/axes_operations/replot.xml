@@ -2,6 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * Copyright (C) 2013 - Samuel GOUGEON
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -13,28 +14,31 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="replot">
     <refnamediv>
         <refname>replot</refname>
-        <refpurpose>redraw the current graphics window with new
-            boundaries
+        <refpurpose>redraw with new boundaries the current or a given set of axes
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>replot(rect,[handle])</synopsis>
+        <synopsis>replot(area)</synopsis>
+        <synopsis>replot(area, axesHandles)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>rect</term>
+                <term>area</term>
                 <listitem>
-                    <para>row vector of size 4.</para>
+                    <para>row vector [xmin ymin xmax ymax] or [xmin ymin zmin xmax ymax zmax]: new bounds of the area to be replotted. 
+                        <note>
+                            Use <literal>%nan</literal> to keep a bound as is.
+                        </note>
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>handle</term>
+                <term>axeHandle</term>
                 <listitem>
-                    <para>optional argument. Graphics handle(s) of type Axes to select
-                        one or several given Axes.
+                    <para>Vector of graphics handles of type Axes: Axes to crop. By default, the current Axes of the current figure is considered.
                     </para>
                 </listitem>
             </varlistentry>
@@ -43,19 +47,20 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>replot</literal> is used to redraw the content of the current
-            graphics window with new boundaries defined by
-            <literal>rect=[xmin,ymin,xmax,ymax]</literal>. Under old graphics syntax, it
-            works only with the driver <literal>"Rec"</literal>.
+            <literal>replot</literal> is used to redraw the content of the current graphics axes with new boundaries defined by
+            <literal>area = [xmin,ymin, xmax,ymax]</literal> or <literal>area = [xmin,ymin,zmin, xmax,ymax,zmax]</literal>. 
         </para>
         <para>This transformation can be applied to specific
-            axes given by Axes graphics handles via the handle argument. If handle is
+            axes given by Axes graphics handles via the <varname>axesHandles</varname> argument. If <varname>axesHandles</varname> is
             not specified, the new boundaries are applied to the current axes of the
             current figure. The transformation changes the <literal>data_bounds</literal>
-            value of those axes. Note that the axes property <literal>tight_limits</literal>
-            must also be set to "on" to strictly select those bounds (see
-            <link linkend="axes_properties">axes_properties</link>).<literal> </literal>
+            value of those axes.
         </para>
+        <note>
+            The axes property <literal>tight_limits</literal>
+            must be set to "on" to strictly select specified bounds (see
+            <link linkend="axes_properties">axes_properties</link>)
+        </note>
     </refsection>
     <refsection>
         <title>Examples</title>
@@ -69,7 +74,6 @@
             plot2d(x,sin(x))
             replot([-1,-1,10,2])
         </scilab:image>
-        
         <programlisting role="example"><![CDATA[
       xdel(winsid());
       plot() // plot demo
@@ -84,14 +88,76 @@
             replot([-1,-1,10,2],f2.children(1))
             replot([-3,-2,8,4],f2.children(2))
         </scilab:image>
-        
+        <programlisting role="example"><![CDATA[
+// Leaving some bounds as is with %nan:
+x = linspace(0,360,200).';
+clf
+plot2d(x,[sind(x) tand(x)])
+ax = gca();
+ax.data_bounds				// initial bounds
+replot([%nan,-10,%nan,10])	// only Ymin and Ymax are changed
+ax.data_bounds				// updated bounds
+// Resizing Z bounds as well as X and Y ones in 3D view:
+clf
+x = linspace(-4,4,100);
+X = meshgrid(x);
+R = (X-0.5).^2 + (X.'+0.7).^2;
+Z = sinc(R);
+surf(x-0.5,x+0.7,Z)
+f = gcf();
+f.color_map = autumncolormap(100);
+ax = gca();
+ax.data_bounds
+sleep(3000)
+replot([-5 0 -0.4 0 5 0.5])
+ax.data_bounds
+// Resizing several chosen axes together:
+clf
+x = linspace(-%pi,%pi,400);
+subplot(2,2,1)
+plot2d(x,sin(1 ./sqrt(abs(x))))
+ax1 = gca();
+subplot(2,2,2)
+plot2d(x,sinh(sqrt(abs(x))))
+subplot(2,1,2)
+plot2d(x,cos(1 ./sqrt(abs(x))))
+ax2 = gca();
+sleep(4000)
+f = gcf();
+replot([-1 %nan 1.5 %nan], [ax1 ax2])
+      ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="clf">clf</link>
+                <link linkend="zoom_rect">zoom_rect</link>
+            </member>
+            <member>
+                <link linkend="rubberbox">rubberbox</link>
+            </member>
+            <member>
+                <link linkend="axes_properties">axes_properties</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revdescription>
+                    <itemizedlist>
+                        <listitem>Extension to 3D
+                        </listitem>
+                        <listitem>axesHandles vectorized
+                        </listitem>
+                        <listitem>
+                            <literal>%nan</literal> can be used to keep a bound as is.
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

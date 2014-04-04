@@ -361,7 +361,7 @@ public class AxisDrawer {
             // Should find right index through given labels.
             String[] ticksLabel = axis.getTicksLabels();
             int index = (int) Math.round(value * (ticksLabel.length - 1));
-            if ((index < 0) || (index > ticksLabel.length)) {
+            if ((index < 0) || (index > ticksLabel.length) || ticksLabel.length == 0) {
                 return null;
             } else {
                 return ticksLabel[index];

@@ -4,6 +4,7 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2014 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -50,6 +51,8 @@ int set_margins_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType
 
     if (status == TRUE)
     {
+        int axes_margins_set = 0;
+        setGraphicObjectProperty(iObjUID, __GO_AUTO_MARGINS__, &axes_margins_set, jni_bool, 1);
         return SET_PROPERTY_SUCCEED;
     }
     else

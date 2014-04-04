@@ -34,6 +34,5 @@ datatipRemove(t1)
 assert_checkfalse(is_handle_valid(t1));
 assert_checkfalse(is_handle_valid(t2));
 
-a=gca();
-assert_checktrue(a.children(1).children == []);
+assert_checktrue(p.datatips == []);
 

@@ -1,0 +1,41 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2014 - Scilab Enterprises - Clement DAVID
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
+// <-- CLI SHELL MODE -->
+
+// <-- LINUX ONLY -->
+
+// <-- Non-regression test for bug 12082 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=12082
+//
+// <-- Short Description -->
+// convstr function does not work with non-ASCII symbols: it cannot change the
+// case of symbols. It does not work even when matrix of strings contains both
+// non-ASCII symbols and ASCII symbols (it convert only ASCII symbols).
+
+A=["это","моя";"матрица","строк"];
+A_ref=["ЭТО","МОЯ";"МАТРИЦА","СТРОК"];
+A_res = convstr(A,"u");
+assert_checkequal(A_res, A_ref);
+
+B=["ЭТО","МОЯ";"МАТРИЦА","СТРОК"];
+B_ref=["это","моя";"матрица","строк"];
+B_res = convstr(B,"l");
+assert_checkequal(B_res, B_ref);
+
+C=["This","is";"матрица","2х2"];
+C_ref=["THIS","IS";"МАТРИЦА","2Х2"];
+C_res = convstr(C,"u");
+assert_checkequal(C_res, C_ref);
+
+D=["This","IS";"МАТРИЦА","2Х2"];
+D_ref=["this","is";"матрица","2х2"];
+D_res = convstr(D,"l");
+assert_checkequal(D_res, D_ref);
+

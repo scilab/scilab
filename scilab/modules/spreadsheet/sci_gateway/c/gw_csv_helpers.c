@@ -95,6 +95,10 @@ char *csv_getArgumentAsStringWithEmptyManagement(void* pvApiCtx, int _iVar, cons
             Scierror(999, _("%s: Memory allocation error.\n"), fname);
             return NULL;
         }
+        if (strlen(returnedValue) == 0)
+        {
+            returnedValue = strdup(defaultValue);
+        }
     }
     return returnedValue;
 }

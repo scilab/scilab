@@ -8,9 +8,9 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>nb_params = getNbInputArgument(void* _pvCtx)</synopsis>
-        <synopsis>nb_params = nbInputArgument</synopsis>
-        <synopsis>nb_params = Rhs</synopsis>
+        <synopsis>int* nb_params = getNbInputArgument(void* _pvCtx)</synopsis>
+        <synopsis>int nb_params = nbInputArgument(void* _pvCtx)</synopsis>
+        <synopsis>int nb_params = Rhs</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -26,7 +26,7 @@
             <varlistentry>
                 <term>nb_params</term>
                 <listitem>
-                    <para>the number of input arguments present in the calling Scilab
+                    <para>the pointer on the number of input arguments present in the calling Scilab
                         function
                     </para>
                 </listitem>
@@ -54,7 +54,7 @@
 
 int sci_myrhs(char * fname)
 {
-  sciprint("The number of input parameters is %d\n", getNbInputArgument);
+  sciprint("The number of input parameters is %d\n", *getNbInputArgument());
 
   return 0;
 }

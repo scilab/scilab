@@ -87,7 +87,7 @@
         <para>35 "Syntax error in an if,a while or a select instruction" (erro de
             sintaxe em uma instrução if, while ou select)
         </para>
-        <para>* 36 "Wrong input argument %d." (argumento de entrada%d
+        <para>* 36 "Wrong input argument #%d." (argumento de entrada%d
             incorreto)
         </para>
         <para>* 37 "Incorrect function at line %d" (função incorreta na linha
@@ -121,11 +121,11 @@
         <para>* 52 "Wrong type for argument #%d: Real matrix expected." (tipo
             errado para o argumento %d: esperava matriz de reais)
         </para>
-        <para>* 53 "Wrong type for input argument %d: Real or complex matrix
+        <para>* 53 "Wrong type for input argument #%d: Real or complex matrix
             expected." (tipo errado para o argumento %d: esperava matriz de reais ou
             de complexos)
         </para>
-        <para>* 54 "Wrong type for input argument %d: Polynomial expected." (tipo
+        <para>* 54 "Wrong type for input argument #%d: Polynomial expected." (tipo
             errado para o argumento %d: esperava polinômio)
         </para>
         <para>* 55 "Wrong type for argument #%d: String expected." (tipo errado
@@ -407,7 +407,7 @@
             expected." (%s tipo errado para o argumento %d: esperava matriz de
             inteiros operante)
         </para>
-        <para>214 "Argument %d of %s: wrong type argument, expecting a vector"
+        <para>214 "Argument #%d of %s: wrong type argument, expecting a vector"
             (Argumento %d de %s: tipo de argumento errado, esperava um vetor)
         </para>
         <para>* 215 "%dth argument type must be boolean" (%d-ésimo argumento deve
@@ -424,7 +424,7 @@
             expected." (%s tipo errado para o argumento %d: esperava manipulador para
             fatores lu esparsos)
         </para>
-        <para>* 219 "Wrong type argument %d: Sparse or full scalar matrix
+        <para>* 219 "Wrong type argument #%d: Sparse or full scalar matrix
             expected." (%s tipo errado para o argumento %d: esperava matriz de
             escalares esparsa ou completa)
         </para>

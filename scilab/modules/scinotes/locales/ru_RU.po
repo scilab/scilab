@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-10-03 23:47+0000\n"
+"PO-Revision-Date: 2014-03-26 00:59+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 16967)\n"
 "Language: ru\n"
 
 #, c-format
@@ -268,8 +268,8 @@ msgstr "(, [, ..."
 msgid "if, function, ..."
 msgstr "if, function, ..."
 
-msgid "Line numbering;Off;Normal;Whereami compatible"
-msgstr "Нумерация строк;Нет;Абсолютная;Относительная"
+msgid "Line numbering;Off;Normal;Local numbering"
+msgstr "Нумерация строк;Выключить;Нормальная;Местная нумерация"
 
 msgid "Highlight current line"
 msgstr "Подсвечивать текущую строку"
@@ -292,8 +292,9 @@ msgstr "Отделить вкладку в новое окно"
 msgid "Copy selection in a new tab"
 msgstr "Скопировать выделенное в новую вкладку"
 
-msgid "Split View;Off;Horizontally;Vertically"
-msgstr "Разделение окна;Нет;Горизонтальное;Вертикальное"
+msgid "Split View;Off;Split in two columns;Split in two rows"
+msgstr ""
+"Разделённый вид;Выключить;Разделить на две колонки;Разделить на две строки"
 
 msgid "Execute"
 msgstr "Выполнение"
@@ -517,6 +518,9 @@ msgstr "SciNotes"
 
 msgid "Error while reading the String"
 msgstr "Ошибка при чтении строки"
+
+msgid "The configuration file has been corrupted and reset to default one."
+msgstr "Файл настроек был повреждён и сброшен к значениям по умолчанию."
 
 #, c-format
 msgid "File not found: %s"
@@ -754,8 +758,8 @@ msgid "This file"
 msgstr "Этот файл"
 
 #, c-format
-msgid "%s has been modified since last save. Save it?"
-msgstr "%s был изменён с момента последнего сохранения. Сохранить его?"
+msgid "The file %s has been modified since last save. Save it?"
+msgstr "Файл %s был изменён со времени последнего сохранения. Сохранить его?"
 
 #, c-format
 msgid "The file %s has been modified by another program ! Overwrite it ?"
@@ -906,6 +910,25 @@ msgstr ""
 
 msgid "Backup finished..."
 msgstr "Резервирование завершено..."
+
+#, c-format
+msgid "The directory %s does not exist. Do you want to create it?"
+msgstr "Директория %s не существует. Вы хотите её создать?"
+
+#, c-format
+msgid "The directory %s cannot be created. Please check your access rights."
+msgstr "Нельзя создать директорию %s. Проверьте права доступа."
+
+#, c-format
+msgid "Impossible to write a file in %s. Please check your access rights."
+msgstr "Невозможно записать файл в %s. Проверьте права доступа."
+
+#, c-format
+msgid "Invalid directory name: %s."
+msgstr "Недопустимое имя директории: %s."
+
+msgid "SciNotes autosave"
+msgstr "Автосохранение SciNotes"
 
 #, c-format
 msgid "%s occurences found."
@@ -1093,21 +1116,23 @@ msgstr "Выберите базовый каталог для поиска"
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Модуль «%s» не установлен.\n"
 
-msgid "the last error did not occur inside a library function."
-msgstr ""
-"последняя зарегистрированная ошибка не возникала внутри библиотечной функции."
+msgid "The last error did not occur inside a Scilab macro."
+msgstr "Последняя ошибка не встретилась внутри макроса Scilab."
 
 msgid " on line "
 msgstr " на строке "
 
-msgid "opening file "
-msgstr "открытие файла "
+msgid "Opening file "
+msgstr "Открытие файла "
 
 msgid " of the source file of the function "
 msgstr " файла с исходным кодом функции "
 
-msgid "the source file of the function "
-msgstr "файл с исходным кодом функции "
+msgid "The source file of the function "
+msgstr "Файл-исходник функции "
 
 msgid " was not found in any library path"
 msgstr " не обнаружен в пути ни одной библиотеки"
+
+msgid "There is no recorded error"
+msgstr "Нет записанной ошибки"

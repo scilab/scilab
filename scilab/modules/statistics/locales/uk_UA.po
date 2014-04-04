@@ -9,13 +9,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-12-07 08:35+0000\n"
+"PO-Revision-Date: 2014-03-07 20:14+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 16967)\n"
 "Language: uk\n"
 
 msgid "X,Y,A and B"
@@ -405,12 +405,6 @@ msgstr ""
 "%d параметрів.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s', '%s','%s', %d or %d.\n"
-msgstr ""
-"%s: Помилкове значення вхідного параметра №%d: слід використовувати «%s», "
-"«%s», «%s», %d або %d.\n"
-
-#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Real vector or matrix expected.\n"
 msgstr ""
@@ -443,11 +437,6 @@ msgstr ""
 "збігатися.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s', '%s', %d or %d.\n"
-msgstr ""
-"%s: помилкове значення вхідного параметра №%d: «%s», «%s», %d  або %d.\n"
-
-#, c-format
 msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
 msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d або %d.\n"
 
@@ -464,6 +453,36 @@ msgid "%s: Wrong number of input argument: %d expected.\n"
 msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d.\n"
 
 #, c-format
+msgid "%s: Wrong number of output argument: %d expected.\n"
+msgstr "%s: помилкова кількість вихідного параметра: мало бути %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
+"%d параметрів.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real or complex, boolean, polynomial "
+"matrix expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: мало бути вказано матрицю з "
+"комплексних, булевих або поліноміальних значень.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string or scalar expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип «string» "
+"або скалярний (числовий) тип.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати значення "
+"з набору {%s}.\n"
+
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s', %d or %d "
 "expected.\n"
@@ -476,6 +495,18 @@ msgid "%s: Wrong type for input arguments #%d: Numerical expected.\n"
 msgstr ""
 "%s: помилковий тип вхідних параметрів №%d: слід використовувати числові "
 "значення.\n"
+
+#, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Same column dimensions "
+"expected.\n"
+msgstr ""
+"%s: несумісні вхідні параметри №%d і №%d: слід використовувати однакову "
+"розмірність за стовпчиками.\n"
+
+#, c-format
+msgid "%s: No NaNs detected, please use %s() instead.\n"
+msgstr "%s: NaN-ів не виявлено, вам варто скористатися %s().\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Numerical expected.\n"
@@ -495,12 +526,8 @@ msgstr ""
 "значення."
 
 #, c-format
-msgid ""
-"%s: Incompatible input arguments #%d and #%d: Same column dimensions "
-"expected.\n"
-msgstr ""
-"%s: несумісні вхідні параметри №%d і №%d: слід використовувати однакову "
-"розмірність за стовпчиками.\n"
+msgid "%s: NaNs detected, please use %s() instead.\n"
+msgstr "%s: виявлено NaN-и, скористайтеся краще %s().\n"
 
 #, c-format
 msgid "%s: Wrong type for input arguments: Numerical expected.\n"
@@ -566,21 +593,15 @@ msgstr "Власні значення"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: '%s','%s', '%s' or a positive "
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s' or a positive "
 "integer expected.\n"
 msgstr ""
-"%s: помилкове значення вхідного параметра №%d: мало бути використано «%s», "
-"«%s», «%s» або додатне ціле значення.\n"
+"%s: помилкове значення вхідного параметра №%d: мало бути вказано «%s», «%s», "
+"«%s» або додатне ціле число.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
 msgstr "%s: помилкова розмірність вхідного параметра №%d.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
-msgstr ""
-"%s: помилкове значення вхідного параметра №%d: слід використовувати значення "
-"з набору {%s}.\n"
 
 #, c-format
 msgid ""

@@ -43,7 +43,7 @@ public class HTMLCodeConverter extends AbstractScilabCodeHandler {
      */
     public HTMLCodeConverter(ScilabEditorPane pane) {
         this.ctx = ((ScilabEditorKit) pane.getEditorKit()).getStylePreferences();
-        this.lexer = new ScilabLexer(pane.getLexer().commands, pane.getLexer().macros);
+        this.lexer = new ScilabLexer(org.scilab.modules.scinotes.ScilabLexer.commands, org.scilab.modules.scinotes.ScilabLexer.macros);
     }
 
     /**

@@ -26,6 +26,8 @@
 //    {sci_percent_foo_i_EObj, "%s_i__EObj"},
 //    {sci_percent_foo_i_EObj, "%b_i__EObj"},
 //    {sci_percent_foo_i_EObj, "%i_i__EObj"},
+//    {sci_percent_foo_i_EObj, "%l_i__EObj"},
+//    {sci_percent_foo_i_EObj, "%_EObj_i__EObj"},
 //    {sci_percent_EObj_a_foo, "%_EObj_a_c"},
 //    {sci_percent_EObj_a_foo, "%_EObj_a_s"},
 //    {sci_percent_EObj_a_foo, "%_EObj_a_b"},

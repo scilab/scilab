@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - 
- * 
+ * Copyright (C) INRIA -
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="tree2code" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="tree2code" xml:lang="pt">
     <refnamediv>
         <refname>tree2code</refname>
         <refpurpose>gera a definição ASCII de uma função Scilab</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Seqüência de Chamamento</title>
-        <synopsis>txt=tree2code(tree,prettyprint)</synopsis>
+        <synopsis>txt = tree2code(tree, prettyprint)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parâmetros</title>
@@ -25,7 +25,9 @@
             <varlistentry>
                 <term>tree</term>
                 <listitem>
-                    <para>uma árvore macro (vinda de macr2tree)</para>
+                    <para>
+                        uma árvore macro (vinda de <function>macr2tree</function>)
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -60,13 +62,14 @@
     </refsection>
     <refsection>
         <title>Descrição</title>
-        <para>Dada uma função Scilab carregada "tree" (retornada por macr2tree),
-            tree2code permite gerar novamente o código.
+        <para>
+            Dada uma função Scilab carregada "tree" (retornada por <function>macr2tree</function>),
+            <function>tree2code</function> permite gerar novamente o código.
         </para>
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 tree=macr2tree(cosh);
 txt=tree2code(tree,%T);
 write(%io(2),txt,'(a)');

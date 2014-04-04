@@ -12,7 +12,7 @@
 package org.scilab.modules.gui.ged;
 
 import javax.swing.SwingUtilities;
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.textbox.ScilabTextBox;
 import org.scilab.modules.gui.textbox.TextBox;
@@ -86,7 +86,7 @@ public class Inspector {
             boolean success = WindowsConfigurationManager.restoreUUID(SwingInspector.INSPECTORUUID);
             if (!success) {
                 InspectorTab.getInspectorInstance(objectID);
-                SwingScilabWindow window = (SwingScilabWindow) ScilabWindow.createWindow().getAsSimpleWindow();
+                SwingScilabWindow window = SwingScilabWindow.createWindow(true);
                 window.addTab(inspectorTab);
                 window.setLocation(0, 0);
                 window.setSize(300, 700);
@@ -116,7 +116,7 @@ public class Inspector {
      * Close Inspector
      */
     public void close() {
-        ClosingOperationsManager.startClosingOperationWithoutSave((SwingScilabTab) inspectorTab);
+        ClosingOperationsManager.startClosingOperationWithoutSave((SwingScilabDockablePanel) inspectorTab);
         gedView.close();
     }
 

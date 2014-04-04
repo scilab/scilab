@@ -61,7 +61,7 @@
                 <listitem>
                     <para> este campo seleciona o tipo de linha a ser utilizada para
                         desenhar linhas. O valor deve ser um inteiro em [0 6]. 0 significa
-                        linha sólida, o restante seleciona tracejados (ver <link linkend="getlinestyle">getlinestyle</link>).
+                        linha sólida, o restante seleciona tracejados.
                     </para>
                 </listitem>
             </varlistentry>
@@ -121,7 +121,7 @@
                         <literal>mark_size</literal>. A propriedade
                         <literal>mark_size</literal> seleciona o tamanho de fonte da marca a
                         ser exibida. Deve ser um valor inteiro em [0 5] que significa 8pt,
-                        10pt, 12pt, 14pt, 18pt e 24pt (ver <link linkend="getmark">getmark</link>).
+                        10pt, 12pt, 14pt, 18pt e 24pt.
                     </para>
                 </listitem>
             </varlistentry>

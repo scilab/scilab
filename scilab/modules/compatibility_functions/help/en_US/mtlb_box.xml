@@ -55,7 +55,9 @@
             </listitem>
         </itemizedlist>
         <para>
-            Caution: <literal>mtlb_box</literal> has not to be used for hand coded functions.
+            <warning>
+                Caution: <literal>mtlb_box</literal> has not to be used for hand coded functions.
+            </warning>
         </para>
     </refsection>
     <refsection role="see also">

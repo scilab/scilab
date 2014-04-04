@@ -46,7 +46,9 @@ max
             Matlab <emphasis role="bold">max</emphasis> function can work with complexes, what Scilab <emphasis role="bold">max</emphasis> can not, so a emulation function called <emphasis role="bold">mtlb_max</emphasis> has been written.
         </para>
         <para>
-            Note that in Scilab, second input parameter can give the dimension to use to find the maximum values or another matrix (maximum of two matrices), in Matlab, dimension parameter is given in a third input parameter (in this case, second parameter must be <emphasis role="bold">[]</emphasis>).
+            <note>
+                Note that in Scilab, second input parameter can give the dimension to use to find the maximum values or another matrix (maximum of two matrices), in Matlab, dimension parameter is given in a third input parameter (in this case, second parameter must be <emphasis role="bold">[]</emphasis>).
+            </note>
         </para>
         <variablelist>
             <varlistentry>

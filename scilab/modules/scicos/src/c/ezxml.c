@@ -1083,7 +1083,7 @@ ezxml_t ezxml_parse_file(const char *file)
 }
 
 // Encodes ampersand sequences appending the results to *dst, reallocating *dst
-// if length excedes max. a is non-zero for attribute encoding. Returns *dst
+// if length exceeds max. a is non-zero for attribute encoding. Returns *dst
 char *ezxml_ampencode(const char *s, size_t len, char **dst, size_t *dlen,
                       size_t *max, short a)
 {

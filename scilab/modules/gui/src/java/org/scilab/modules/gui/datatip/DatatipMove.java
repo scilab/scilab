@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Gustavo Barbosa Libotte
+ * Copyright (C) 2014 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,15 +13,14 @@
 
 package org.scilab.modules.gui.datatip;
 
-
+import org.scilab.modules.graphic_objects.PolylineData;
 import org.scilab.modules.gui.datatip.DatatipCommon;
 import org.scilab.modules.gui.datatip.DatatipOrientation;
-
 import org.scilab.modules.renderer.CallRenderer;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 import org.scilab.modules.gui.editor.CommonHandler;
-
+import org.scilab.modules.gui.editor.EntityPicker;
 
 /**
  * Move a datatip along the curve
@@ -28,26 +28,22 @@ import org.scilab.modules.gui.editor.CommonHandler;
  */
 public class DatatipMove {
 
-    public static double[] graphCoordDouble = new double[3];
-    public static Integer[] coordInteger = new Integer[2];
-
     /**
-    * Move a datatip to the right using keyboard
-    *
-    * @param markerUid datatip marker unique identifier
-    */
+     * Move a datatip to the right using keyboard
+     *
+     * @param markerUid datatip marker unique identifier
+     */
     public static void moveRight(Integer datatipUid) {
-        move(datatipUid, 1, 2);
+        move(datatipUid, 1);
     }
 
-
     /**
-    * Move a datatip to the left using keyboard
-    *
-    * @param datatipUid datatip unique identifier
-    */
+     * Move a datatip to the left using keyboard
+     *
+     * @param datatipUid datatip unique identifier
+     */
     public static void moveLeft(Integer datatipUid) {
-        move(datatipUid, -1, 0);
+        move(datatipUid, -1);
     }
 
     /*
@@ -57,72 +53,39 @@ public class DatatipMove {
      * the number 0 and 2 is because getSegment returns one segment more
      * the right would be -1, 1. Probably this is because float round error.
      */
-    private static void move(Integer datatipUid, int dir, int seg_offset) {
-
+    private static void move(Integer datatipUid, int dir) {
         Integer parentPolyline = DatatipCommon.getParentPolyline(datatipUid);
-
         if (parentPolyline != null) {
-            Integer figure = (Integer)GraphicController.getController().getProperty(datatipUid, __GO_PARENT_FIGURE__);
-            Boolean useInterp = (Boolean)GraphicController.getController().getProperty(datatipUid, __GO_DATATIP_INTERP_MODE__);
-            Integer[] pos = getCoordInteger(datatipUid);
+            GraphicController controller = GraphicController.getController();
+            Integer axes = (Integer) controller.getProperty(parentPolyline, __GO_PARENT_AXES__);
+            Double[] data = (Double[]) controller.getProperty(datatipUid, __GO_DATATIP_DATA__);
+            int index = (Integer) controller.getProperty(datatipUid, __GO_DATATIP_INDEXES__);
+            DatatipCommon.Segment seg = EntityPicker.getSegment(parentPolyline, index);
+            double[] datax = (double[]) PolylineData.getDataX(parentPolyline);
+            Boolean useInterp = (Boolean) controller.getProperty(datatipUid, __GO_DATATIP_INTERP_MODE__) && CommonHandler.isLineEnabled(parentPolyline);
+            Boolean AutoOrientation = (Boolean) controller.getProperty(datatipUid, __GO_DATATIP_AUTOORIENTATION__);
 
-
-            DatatipCommon.Segment seg;
-            Double[] newPos;
             if (useInterp) {
-                pos[0] += dir;
-                double[] c2d = DatatipCommon.getTransformedPositionInViewScale(figure, pos);
-                seg = DatatipCommon.getSegment(c2d[0], parentPolyline);
-                newPos = DatatipCommon.Interpolate(c2d[0], seg);
+                double[] start = CallRenderer.getPixelFrom3dCoordinates(axes, new double[] {seg.x0, seg.y0, seg.z0});
+                double[] end = CallRenderer.getPixelFrom3dCoordinates(axes, new double[] {seg.x1, seg.y1, seg.z1});
+                final double ns = Math.hypot(end[0] - start[0], end[1] - start[1]);
+                final double nsx = (2 * dir * (end[0] - start[0])) / ns;
+                final double nsy = (2 * dir * (end[1] - start[1])) / ns;
+
+                double[] pix_pos = CallRenderer.getPixelFrom3dCoordinates(axes, new double[] {data[0], data[1], data[2]});
+                double[] info = EntityPicker.getNearestSegmentIndex(axes, parentPolyline, (int) (pix_pos[0] + nsx), (int) (pix_pos[1] + nsy));
+
+                controller.setProperty(datatipUid, __GO_DATATIP_INDEXES__, new Double[] {info[0], info[1]});
+                if (AutoOrientation) {
+                    DatatipOrientation.setOrientation(datatipUid, EntityPicker.getSegment(parentPolyline, (int) info[0]));
+                }
             } else {
-                double[] c2d = DatatipCommon.getTransformedPositionInViewScale(figure, pos);
-                seg = DatatipCommon.getSegment(c2d[0], parentPolyline, seg_offset);
-                newPos = new Double[] {seg.x0, seg.y0, 0.0};
+                double ind = Math.min(Math.max(index + dir, 0), datax.length - 1);
+                controller.setProperty(datatipUid, __GO_DATATIP_INDEXES__, new Double[] {ind, 0.});
+                if (AutoOrientation) {
+                    DatatipOrientation.setOrientation(datatipUid, EntityPicker.getSegment(parentPolyline, (int) ind));
+                }
             }
-
-            Integer axes = (Integer)GraphicController.getController().getProperty(parentPolyline, __GO_PARENT_AXES__);
-            boolean[] logFlags = new boolean[] {(Boolean)GraphicController.getController().getProperty(axes, __GO_X_AXIS_LOG_FLAG__),
-                                                (Boolean)GraphicController.getController().getProperty(axes, __GO_Y_AXIS_LOG_FLAG__),
-                                                (Boolean)GraphicController.getController().getProperty(axes, __GO_Z_AXIS_LOG_FLAG__)
-                                               };
-
-            newPos[0] = CommonHandler.InverseLogScale(newPos[0], logFlags[0]);
-            newPos[1] = CommonHandler.InverseLogScale(newPos[1], logFlags[1]);
-            newPos[2] = CommonHandler.InverseLogScale(newPos[2], logFlags[2]);
-
-            GraphicController.getController().setProperty(datatipUid, __GO_DATATIP_DATA__, newPos);
-
-            Boolean AutoOrientation = (Boolean)GraphicController.getController().getProperty(datatipUid, __GO_DATATIP_AUTOORIENTATION__);
-            if (AutoOrientation) {
-                DatatipOrientation.setOrientation(datatipUid, seg);
-            }
-
         }
     }
-
-    /**
-    * Get the pixel integer coordinates of a datatip
-    *
-    * @param datatipUid Datatip unique identifier
-    * @return Array with x, y coordinates
-    */
-    public static Integer[] getCoordInteger(Integer datatipUid) {
-
-        Double[] markerPosition = (Double[]) GraphicController.getController().getProperty(datatipUid, __GO_DATATIP_DATA__);
-        for (int i = 0 ; i < graphCoordDouble.length ; i++) {
-            graphCoordDouble[i] = markerPosition[i];
-        }
-
-        Integer axes = (Integer)GraphicController.getController().getProperty(datatipUid, __GO_PARENT_AXES__);
-        if (axes != null) {
-            double[] pixelCoordinates = CallRenderer.getPixelFrom2dViewCoordinates(axes, graphCoordDouble);
-            int xInt = (int) pixelCoordinates[0];
-            int yInt = (int) pixelCoordinates[1];
-            coordInteger[0] = (Integer) xInt;
-            coordInteger[1] = (Integer) yInt;
-            return coordInteger;
-        }
-        return null;
-    }
-
 }

@@ -35,6 +35,7 @@ extern "C"
 #include "Scierror.h"
 #include "HandleManagement.h"
 
+#include "createGraphicObject.h"
 #include "BuildObjects.h"
 #include "graphicObjectProperties.h"
 #include "setGraphicObjectProperty.h"
@@ -105,7 +106,7 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
         {
             if (in[i]->isDouble() == false)
             {
-                Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), "xset", i + 1);
+                Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), "xset", i + 1);
             }
         }
     }
@@ -336,7 +337,6 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
             setGraphicObjectProperty(iFigureUID, __GO_VIEWPORT__, piViewPort, jni_int_vector, 2);
             setGraphicObjectProperty(iFigureUID, __GO_NAME__, _("Figure n°%d"), jni_string, 1);
             setGraphicObjectProperty(iFigureUID, __GO_INFO_MESSAGE__, "", jni_string, 1);
-            setGraphicObjectProperty(iFigureUID, __GO_PIXMAP__, &bFalse, jni_bool, 1);
             setGraphicObjectProperty(iFigureUID, __GO_PIXEL_DRAWING_MODE__, &iCopy, jni_int, 1);
             setGraphicObjectProperty(iFigureUID, __GO_ANTIALIASING__, &iZero, jni_int, 1);
             setGraphicObjectProperty(iFigureUID, __GO_IMMEDIATE_DRAWING__, &bTrue, jni_bool, 1);
@@ -544,19 +544,6 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
 
             getOrCreateDefaultSubwin();
             setGraphicObjectProperty(getCurrentFigure(), __GO_SIZE__, figureSize, jni_int_vector, 2);
-        }
-        break;
-        case 24 : // pixmap
-        {
-            if (in.size() != 2)
-            {
-                Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "xset", 2);
-                return types::Function::Error;
-            }
-
-            int iPixmapMode = (int)in[1]->getAs<types::Double>()->get(0);
-            getOrCreateDefaultSubwin();
-            setGraphicObjectProperty(getCurrentFigure(), __GO_PIXMAP__, &iPixmapMode, jni_bool, 1);
         }
         break;
         case 27 : // viewport

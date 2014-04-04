@@ -13,7 +13,6 @@
 package org.scilab.modules.graphic_objects.graphicController;
 
 import java.awt.GraphicsEnvironment;
-import java.rmi.server.UID;
 import java.util.Collections;
 import java.util.ConcurrentModificationException;
 import java.util.HashSet;
@@ -71,9 +70,6 @@ public class GraphicController {
             register(GuiLogView.createGuiLogView());
             register(GedTreeView.create());
             register(FlattenTreeView.create());
-        }
-        if (infoEnable) {
-            register(LogView.createLogView());
         }
     }
 
@@ -186,12 +182,14 @@ public class GraphicController {
      * @param type the object type
      * @return the created object's id
      */
-    public Integer askObject(Type type) {
+    public Integer askObject(Type type, boolean broadcastMessage) {
 
         try {
             Integer id = createUID();
             GraphicModel.getModel().createObject(id, type);
-            objectCreated(id);
+            if (broadcastMessage) {
+                objectCreated(id);
+            }
 
             return id;
         } catch (Exception e) {
@@ -204,16 +202,13 @@ public class GraphicController {
 
     }
 
-    /**
-     * Ask the model to clone an object
-     * @param id : the ID of the object to clone.
-     * @return the id of the clone.
-     */
-    public Integer cloneObject(Integer id) {
+    public Integer cloneObject(Integer id, boolean broadcastMessage) {
         try {
             Integer newId = createUID();
             GraphicModel.getModel().cloneObject(id, newId);
-            objectCreated(newId);
+            if (broadcastMessage) {
+                objectCreated(newId);
+            }
 
             return newId;
         } catch (Exception e) {
@@ -223,6 +218,19 @@ public class GraphicController {
             DEBUG("====== Exception caught ======");
             return 0;
         }
+    }
+
+    /**
+     * Ask the model to clone an object
+     * @param id : the ID of the object to clone.
+     * @return the id of the clone.
+     */
+    public Integer cloneObject(Integer id) {
+        return cloneObject(id, true);
+    }
+
+    public Integer askObject(Type type) {
+        return askObject(type, true);
     }
 
     /**

@@ -32,6 +32,7 @@ extern "C"
 #include "CurrentFigure.h"
 #include "BuildObjects.h"
 #include "sci_mode.h"
+#include "createGraphicObject.h"
 }
 
 using namespace org_scilab_modules_gui_bridge;

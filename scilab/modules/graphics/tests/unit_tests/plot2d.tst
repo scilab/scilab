@@ -39,14 +39,13 @@ x=(0.1:0.1:2*%pi)';
 plot2d(x, sin(x));
 f=gcf();
 a=gca();
-c=a.children(1) //compound
-p=c.children(1) //polyline
+c=a.children(1); //compound
+p=c.children(1); //polyline
 // Check figure
 assert_checkequal(f.auto_resize, "on");
 assert_checkequal(f.viewport, [0,0]);
 assert_checkequal(f.figure_name, gettext("Graphic window number %d"));
 assert_checkequal(f.figure_id, 0);
-assert_checkequal(f.pixmap, "off");
 assert_checkequal(f.pixel_drawing_mode, "copy");
 assert_checkequal(f.anti_aliasing, "off");
 assert_checkequal(f.immediate_drawing, "on");
@@ -144,14 +143,13 @@ x=(0.1:0.1:2*%pi)';
 plot2d(x, sin(x), logflag="nl");
 f=gcf();
 a=gca();
-c=a.children(1) //compound
-p=c.children(1) //polyline
+c=a.children(1); //compound
+p=c.children(1); //polyline
 // Check figure
 assert_checkequal(f.auto_resize, "on");
 assert_checkequal(f.viewport, [0,0]);
 assert_checkequal(f.figure_name, gettext("Graphic window number %d"));
 assert_checkequal(f.figure_id, 0);
-assert_checkequal(f.pixmap, "off");
 assert_checkequal(f.pixel_drawing_mode, "copy");
 assert_checkequal(f.anti_aliasing, "off");
 assert_checkequal(f.immediate_drawing, "on");
@@ -249,8 +247,8 @@ x=(0.1:0.1:2*%pi)';
 plot2d(x, sin(x), logflag="ln");
 f=gcf();
 a=gca();
-c=a.children(1) //compound
-p=c.children(1) //polyline
+c=a.children(1); //compound
+p=c.children(1); //polyline
 // Check sub_ticks
 assert_checkequal(a.sub_ticks, [3, 1]);
 // Check data_bounds
@@ -266,8 +264,8 @@ x=(0.1:0.1:2*%pi)';
 plot2d(x, sin(x), logflag="ll");
 f=gcf();
 a=gca();
-c=a.children(1) //compound
-p=c.children(1) //polyline
+c=a.children(1); //compound
+p=c.children(1); //polyline
 // Check sub_ticks
 assert_checkequal(a.sub_ticks, [3, 4]);
 // Check data_bounds
@@ -283,11 +281,11 @@ x=(0.1:0.1:2*%pi)';
 plot2d(x, [sin(x),sin(2*x), sin(3*x), sin(4*x)], style=[-1,-2,-3,-4]);
 f=gcf();
 a=gca();
-c=a.children(1) //compound
-p1=c.children(1) //polyline 1
-p2=c.children(2) //polyline 2
-p3=c.children(3) //polyline 3
-p4=c.children(4) //polyline 4
+c=a.children(1); //compound
+p1=c.children(1); //polyline 1
+p2=c.children(2); //polyline 2
+p3=c.children(3); //polyline 3
+p4=c.children(4); //polyline 4
 // Check polyline 1
 DefaultData=(0.1:0.1:2*%pi)';
 assert_checkequal(p1.parent.type, "Compound");
@@ -412,8 +410,8 @@ x=(0.1:0.1:2*%pi)';
 plot2d(x, sin(x), rect=[0,-2,2*%pi,2]);
 f=gcf();
 a=gca();
-c=a.children(1) //compound
-p=c.children(1) //polyline
+c=a.children(1); //compound
+p=c.children(1); //polyline
 // Check axes
 assert_checkequal(a.visible, "on");
 assert_checkequal(a.axes_visible, ["on" "on" "on"]);
@@ -501,8 +499,8 @@ x=(0.1:0.1:2*%pi)';
 plot2d(x, sin(x), axesflag=1);
 f=gcf();
 a=gca();
-c=a.children(1) //compound
-p=c.children(1) //polyline
+c=a.children(1); //compound
+p=c.children(1); //polyline
 // Check axes
 assert_checkequal(a.visible, "on");
 assert_checkequal(a.axes_visible, ["on" "on" "on"]);
@@ -554,8 +552,8 @@ x=(0.1:0.1:2*%pi)';
 plot2d(x, sin(x), axesflag=2);
 f=gcf();
 a=gca();
-c=a.children(1) //compound
-p=c.children(1) //polyline
+c=a.children(1); //compound
+p=c.children(1); //polyline
 // Check axes
 assert_checkequal(a.visible, "on");
 assert_checkequal(a.axes_visible, ["off" "off" "off"]);
@@ -607,8 +605,8 @@ x=(0.1:0.1:2*%pi)';
 plot2d(x, sin(x), axesflag=3);
 f=gcf();
 a=gca();
-c=a.children(1) //compound
-p=c.children(1) //polyline
+c=a.children(1); //compound
+p=c.children(1); //polyline
 // Check axes
 assert_checkequal(a.visible, "on");
 assert_checkequal(a.axes_visible, ["on" "on" "on"]);
@@ -660,8 +658,8 @@ x=(0.1:0.1:2*%pi)';
 plot2d(x, sin(x), axesflag=4);
 f=gcf();
 a=gca();
-c=a.children(1) //compound
-p=c.children(1) //polyline
+c=a.children(1); //compound
+p=c.children(1); //polyline
 // Check axes
 assert_checkequal(a.visible, "on");
 assert_checkequal(a.axes_visible, ["on" "on" "on"]);
@@ -713,8 +711,8 @@ x=(0.1:0.1:2*%pi)';
 plot2d(x, sin(x), axesflag=5);
 f=gcf();
 a=gca();
-c=a.children(1) //compound
-p=c.children(1) //polyline
+c=a.children(1); //compound
+p=c.children(1); //polyline
 // Check axes
 assert_checkequal(a.visible, "on");
 assert_checkequal(a.axes_visible, ["on" "on" "on"]);
@@ -775,7 +773,6 @@ assert_checkequal(f.auto_resize, "on");
 assert_checkequal(f.viewport, [0,0]);
 assert_checkequal(f.figure_name, gettext("Graphic window number %d"));
 assert_checkequal(f.figure_id, 0);
-assert_checkequal(f.pixmap, "off");
 assert_checkequal(f.pixel_drawing_mode, "copy");
 assert_checkequal(f.anti_aliasing, "off");
 assert_checkequal(f.immediate_drawing, "on");

@@ -11,6 +11,20 @@
 
 package org.scilab.modules.renderer.JoGLView;
 
+import java.awt.Component;
+import java.awt.Dimension;
+import java.nio.ByteBuffer;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import javax.swing.SwingUtilities;
+
 import org.scilab.forge.scirenderer.Canvas;
 import org.scilab.forge.scirenderer.Drawer;
 import org.scilab.forge.scirenderer.DrawingTools;
@@ -19,20 +33,22 @@ import org.scilab.forge.scirenderer.buffers.ElementsBuffer;
 import org.scilab.forge.scirenderer.shapes.appearance.Appearance;
 import org.scilab.forge.scirenderer.shapes.geometry.DefaultGeometry;
 import org.scilab.forge.scirenderer.shapes.geometry.Geometry;
-import org.scilab.forge.scirenderer.texture.AnchorPosition;
 import org.scilab.forge.scirenderer.texture.AbstractTextureDataProvider;
+import org.scilab.forge.scirenderer.texture.AnchorPosition;
 import org.scilab.forge.scirenderer.texture.Texture;
-import org.scilab.forge.scirenderer.tranformations.Vector3d;
 import org.scilab.forge.scirenderer.tranformations.Transformation;
 import org.scilab.forge.scirenderer.tranformations.TransformationFactory;
 import org.scilab.forge.scirenderer.tranformations.TransformationStack;
+import org.scilab.forge.scirenderer.tranformations.Vector3d;
 import org.scilab.forge.scirenderer.utils.shapes.geometry.CubeFactory;
 import org.scilab.modules.graphic_objects.ObjectRemovedException;
 import org.scilab.modules.graphic_objects.arc.Arc;
 import org.scilab.modules.graphic_objects.axes.Axes;
+import org.scilab.modules.graphic_objects.axes.AxesContainer;
 import org.scilab.modules.graphic_objects.axes.Camera.ViewType;
 import org.scilab.modules.graphic_objects.axis.Axis;
 import org.scilab.modules.graphic_objects.compound.Compound;
+import org.scilab.modules.graphic_objects.datatip.Datatip;
 import org.scilab.modules.graphic_objects.fec.Fec;
 import org.scilab.modules.graphic_objects.figure.ColorMap;
 import org.scilab.modules.graphic_objects.figure.Figure;
@@ -50,13 +66,14 @@ import org.scilab.modules.graphic_objects.rectangle.Rectangle;
 import org.scilab.modules.graphic_objects.surface.Fac3d;
 import org.scilab.modules.graphic_objects.surface.Plot3d;
 import org.scilab.modules.graphic_objects.textObject.Text;
+import org.scilab.modules.graphic_objects.uicontrol.frame.Frame;
 import org.scilab.modules.graphic_objects.vectfield.Arrow;
 import org.scilab.modules.graphic_objects.vectfield.Champ;
 import org.scilab.modules.graphic_objects.vectfield.Segs;
-import org.scilab.modules.graphic_objects.datatip.Datatip;
 import org.scilab.modules.renderer.JoGLView.arrowDrawing.ArrowDrawer;
 import org.scilab.modules.renderer.JoGLView.axes.AxesDrawer;
 import org.scilab.modules.renderer.JoGLView.contouredObject.ContouredObjectDrawer;
+import org.scilab.modules.renderer.JoGLView.datatip.DatatipTextDrawer;
 import org.scilab.modules.renderer.JoGLView.interaction.InteractionManager;
 import org.scilab.modules.renderer.JoGLView.label.LabelManager;
 import org.scilab.modules.renderer.JoGLView.legend.LegendDrawer;
@@ -64,24 +81,8 @@ import org.scilab.modules.renderer.JoGLView.mark.MarkSpriteManager;
 import org.scilab.modules.renderer.JoGLView.postRendering.PostRendered;
 import org.scilab.modules.renderer.JoGLView.text.TextManager;
 import org.scilab.modules.renderer.JoGLView.util.ColorFactory;
-import org.scilab.modules.renderer.JoGLView.util.OutOfMemoryException;
-import org.scilab.modules.renderer.utils.textRendering.FontManager;
-import org.scilab.modules.renderer.JoGLView.datatip.DatatipTextDrawer;
 import org.scilab.modules.renderer.JoGLView.util.LightingUtils;
-
-import java.awt.Component;
-import java.awt.Dimension;
-import java.nio.ByteBuffer;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import javax.swing.SwingUtilities;
+import org.scilab.modules.renderer.JoGLView.util.OutOfMemoryException;
 
 /**
  * @author Pierre Lando
@@ -120,7 +121,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     private static final boolean DEBUG_MODE = false;
 
     private final Component component;
-    private final Figure figure;
+    private final AxesContainer figure;
     private final InteractionManager interactionManager;
 
     private final ColorMapTextureDataProvider colorMapTextureDataProvider;
@@ -155,7 +156,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     private final List<PostRendered> postRenderedList = new LinkedList<PostRendered>();
     private final static Map<Integer, List<Integer>> openGLChildren = new HashMap<Integer, List<Integer>>();
 
-    public DrawerVisitor(Component component, Canvas canvas, Figure figure) {
+    public DrawerVisitor(Component component, Canvas canvas, AxesContainer figure) {
         GraphicController.getController().register(this);
 
         this.component = component;
@@ -177,17 +178,10 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         this.colorMapTextureDataProvider = new ColorMapTextureDataProvider();
         this.datatipTextDrawer = new DatatipTextDrawer(canvas.getTextureManager());
 
-        /*
-         * Forces font loading from the main thread. This is done because
-         * if getSciFontManager (thus, font loading) is concurrently accessed from
-         * 2 different threads (the AWT's and the main one), freezing may occur.
-         */
-        FontManager.getSciFontManager();
-
         visitorMap.put(figure.getIdentifier(), this);
     }
 
-    public static void changeVisitor(Figure figure, DrawerVisitor visitor) {
+    public static void changeVisitor(AxesContainer figure, DrawerVisitor visitor) {
         if (visitor == null) {
             visitorMap.remove(figure.getIdentifier());
         } else {
@@ -223,6 +217,13 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
      */
     public TextManager getTextManager() {
         return textManager;
+    }
+
+    /**
+     * @return the LegendDrawer
+     */
+    public LegendDrawer getLegendDrawer() {
+        return legendDrawer;
     }
 
     /**
@@ -277,7 +278,11 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     @Override
     public void draw(DrawingTools drawingTools) {
         this.drawingTools = drawingTools;
-        figure.accept(this);
+        if (figure instanceof Figure) {
+            visit((Figure) figure);
+        } else {
+            visit((Frame) figure);
+        }
 
         for (PostRendered postRendered : postRenderedList) {
             try {
@@ -326,6 +331,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
             if (axes.isValid() && axes.getVisible()) {
                 try {
                     currentAxes = axes;
+                    axesDrawer.computeRulers(axes);
                     axesDrawer.draw(axes);
                 } catch (SciRendererException e) {
                     invalidate(axes, e);
@@ -385,11 +391,35 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         synchronized (figure) {
             /** Set the current {@see ColorMap}. */
             try {
+                Dimension dims = getCanvas().getDimension();
                 colorMap = figure.getColorMap();
                 drawingTools.clear(ColorFactory.createColor(colorMap, figure.getBackground()));
                 drawingTools.clearDepthBuffer();
-                if (figure.isValid() && figure.getVisible() && figure.getImmediateDrawing()) {
+                if (figure.isValid() && figure.getVisible() && figure.getImmediateDrawing() && dims.width > 1 && dims.height > 1) {
                     askAcceptVisitor(figure.getChildren());
+                }
+            } catch (Exception e) {
+                System.err.println(e);
+            }
+        }
+    }
+
+    public void visit(Frame frame) {
+        synchronized (frame) {
+            /** Set the current {@see ColorMap}. */
+            try {
+                colorMap = frame.getColorMap();
+                drawingTools.clear(ColorFactory.createColor(colorMap, frame.getBackground()));
+                drawingTools.clearDepthBuffer();
+                if (frame.isValid() && frame.getVisible()) {
+                    DrawerVisitor visitor = visitorMap.get(frame.getIdentifier());
+                    if (visitor != null) {
+                        Dimension dims = visitor.getCanvas().getDimension();
+                        visitor.setDrawingTools(drawingTools);
+                        if (dims.width > 1 && dims.height > 1) {
+                            visitor.askAcceptVisitor(frame.getChildren());
+                        }
+                    }
                 }
             } catch (Exception e) {
                 System.err.println(e);
@@ -411,12 +441,12 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 Appearance trianglesAppearance = new Appearance();
                 drawingTools.draw(triangles, trianglesAppearance);
                 /*} catch (ObjectRemovedException e) {
-                        invalidate(grayplot, e);
-                    } catch (SciRendererException e) {
-                        invalidate(grayplot, e);
-                    } catch (OutOfMemoryException e) {
-                        invalidate(grayplot, e);
-                }*/
+                  invalidate(grayplot, e);
+                  } catch (SciRendererException e) {
+                  invalidate(grayplot, e);
+                  } catch (OutOfMemoryException e) {
+                  invalidate(grayplot, e);
+                  }*/
             } catch (Exception e) {
                 System.err.println(e);
                 e.printStackTrace();
@@ -526,7 +556,8 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                         geometry.setColors(null);
                     }
 
-                    appearance.setLineColor(ColorFactory.createColor(colorMap, polyline.getLineColor()));
+                    Integer lineColor = polyline.getSelected() ? polyline.getSelectedColor() : polyline.getLineColor();
+                    appearance.setLineColor(ColorFactory.createColor(colorMap, lineColor));
                     appearance.setLineWidth(polyline.getLineThickness().floatValue());
                     appearance.setLinePattern(polyline.getLineStyleAsEnum().asPattern());
 
@@ -538,7 +569,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                          * whereas the background color is used for all the other styles.
                          */
                         if (style == 5) {
-                            fillColor = polyline.getLineColor();
+                            fillColor = lineColor;
                         } else {
                             fillColor = polyline.getBackground();
                         }
@@ -550,13 +581,15 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
                     if (style == 4) {
                         arrowDrawer.drawArrows(polyline.getParentAxes(), polyline.getIdentifier(), polyline.getArrowSizeFactor(),
-                                               polyline.getLineThickness(), false, false, polyline.getLineColor(), true);
+                                               polyline.getLineThickness(), false, false, lineColor, true);
                     }
 
                     if (polyline.getMarkMode()) {
                         Texture sprite = markManager.getMarkSprite(polyline, colorMap, appearance);
                         ElementsBuffer positions = dataManager.getVertexBuffer(polyline.getIdentifier());
-                        drawingTools.draw(sprite, AnchorPosition.CENTER, positions);
+                        int offset = polyline.getMarkOffset();
+                        int stride = polyline.getMarkStride();
+                        drawingTools.draw(sprite, AnchorPosition.CENTER, positions, offset, stride, 0);
                     }
                 } catch (ObjectRemovedException e) {
                     invalidate(polyline, e);
@@ -566,7 +599,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     invalidate(polyline, e);
                 }
                 axesDrawer.disableClipping(polyline.getClipProperty());
-                askAcceptVisitor(polyline.getChildren());
+                askAcceptVisitor(polyline.getDatatips());
             }
         }
     }
@@ -641,8 +674,8 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     if ((fac3d.getColorMode() >= 0) && (fac3d.getLineThickness() > 0.0)) {
                         geometry.setLineDrawingMode(Geometry.LineDrawingMode.SEGMENTS);
                         geometry.setWireIndices(dataManager.getWireIndexBuffer(fac3d.getIdentifier()));
-
-                        appearance.setLineColor(ColorFactory.createColor(colorMap, fac3d.getLineColor()));
+                        Integer lineColor = fac3d.getSelected() ? fac3d.getSelectedColor() : fac3d.getLineColor();
+                        appearance.setLineColor(ColorFactory.createColor(colorMap, lineColor));
                         appearance.setLineWidth(fac3d.getLineThickness().floatValue());
                     }
 
@@ -724,7 +757,8 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                         geometry.setWireIndices(dataManager.getWireIndexBuffer(plot3d.getIdentifier()));
 
                         appearance.setLinePattern(plot3d.getLineStyleAsEnum().asPattern());
-                        appearance.setLineColor(ColorFactory.createColor(colorMap, plot3d.getLineColor()));
+                        Integer lineColor = plot3d.getSelected() ? plot3d.getSelectedColor() : plot3d.getLineColor();
+                        appearance.setLineColor(ColorFactory.createColor(colorMap, lineColor));
                         appearance.setLineWidth(plot3d.getLineThickness().floatValue());
                     }
                     drawingTools.draw(geometry, appearance);
@@ -897,8 +931,16 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         /*
          * Check if property is CHILDREN and if there is a new child I should care about
          */
+        Integer type = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
+        int objectStyle = (type == GraphicObjectProperties.__GO_UICONTROL__ ? (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_STYLE__) : -1);
+        if (id.intValue() != figure.getIdentifier().intValue()
+                && ((type == GraphicObjectProperties.__GO_UICONTROL__ && objectStyle != GraphicObjectProperties.__GO_UI_FRAME__)
+                    || type == GraphicObjectProperties.__GO_UIMENU__)) {
+            return;
+        }
+
         if (property == GraphicObjectProperties.__GO_CHILDREN__) {
-            if (id != figure.getIdentifier()) {
+            if (id.intValue() != figure.getIdentifier().intValue()) {
                 /* Ignore children that are not mine */
                 return;
             }
@@ -923,9 +965,10 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 openGLChildren.put(id, updatedOpenGLChildren);
             }
         }
+        
         try {
             if (needUpdate(id, property)) {
-                if (GraphicObjectProperties.__GO_COLORMAP__ == property && figure.getIdentifier().equals(id)) {
+                if (GraphicObjectProperties.__GO_COLORMAP__ == property) {
                     labelManager.disposeAll();
                     dataManager.disposeAllColorBuffers();
                     dataManager.disposeAllTextureCoordinatesBuffers();
@@ -951,12 +994,15 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     canvas.setAntiAliasingLevel(figure.getAntialiasing());
                 }
 
-                if (isImmediateDrawing(id)) {
-                    if (GraphicObjectProperties.__GO_IMMEDIATE_DRAWING__ == property) {
-                        canvas.redrawAndWait();
-                    } else {
-                        canvas.redraw();
-                    }
+                Figure parentFigure = (Figure) GraphicController.getController().getObjectFromId(figure.getParentFigure());
+                if (figure.getVisible() && parentFigure != null && parentFigure.getVisible()) {
+                    if (isImmediateDrawing(id)) {
+                        if (GraphicObjectProperties.__GO_IMMEDIATE_DRAWING__ == property) {
+                            canvas.redrawAndWait();
+                        } else {
+                            canvas.redraw();
+                        }
+                    } 
                 }
             }
 
@@ -980,28 +1026,28 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     protected boolean needUpdate(Integer id, int property) {
         GraphicObject object = GraphicController.getController().getObjectFromId(id);
         int objectType = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
-        if ((object != null) && isFigureChild(id)
-                && objectType != GraphicObjectProperties.__GO_UICONTROL__
-                && objectType != GraphicObjectProperties.__GO_UIMENU__) {
+        int objectStyle = (objectType == GraphicObjectProperties.__GO_UICONTROL__ ? (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_STYLE__) : -1);
+        if ((object != null) && isFigureChild(id) || (objectType == GraphicObjectProperties.__GO_UICONTROL__ && objectStyle == GraphicObjectProperties.__GO_UI_FRAME__)
+                && objectType != GraphicObjectProperties.__GO_UIMENU__ && objectType != GraphicObjectProperties.__GO_UI_FRAME_BORDER__) {
 
             if (GraphicObjectProperties.__GO_VALID__ == property) {
                 return false;
             }
 
             if (object instanceof Axes) {
-
                 Axes axes = (Axes) object;
 
-                if (axes.getXAxisAutoTicks() && X_AXIS_TICKS_PROPERTIES.contains(property)) {
+                if ((axes.getXAxisAutoTicks() && X_AXIS_TICKS_PROPERTIES.contains(property)) ||
+                        (axes.getYAxisAutoTicks() && Y_AXIS_TICKS_PROPERTIES.contains(property)) ||
+                        (axes.getZAxisAutoTicks() && Z_AXIS_TICKS_PROPERTIES.contains(property))) {
                     return false;
                 }
 
-                if (axes.getYAxisAutoTicks() && Y_AXIS_TICKS_PROPERTIES.contains(property)) {
-                    return false;
-                }
-
-                if (axes.getZAxisAutoTicks() && Z_AXIS_TICKS_PROPERTIES.contains(property)) {
-                    return false;
+                if ((!axes.getXAxisAutoTicks() && X_AXIS_TICKS_PROPERTIES.contains(property)) ||
+                        (!axes.getYAxisAutoTicks() && Y_AXIS_TICKS_PROPERTIES.contains(property)) ||
+                        (!axes.getZAxisAutoTicks() && Z_AXIS_TICKS_PROPERTIES.contains(property))) {
+                    axesDrawer.computeMargins(axes);
+                    return true;
                 }
 
                 if (property != GraphicObjectProperties.__GO_CHILDREN__) {
@@ -1009,8 +1055,26 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 }
             }
 
-            if (object instanceof Figure) {
-                if (property == GraphicObjectProperties.__GO_SIZE__ || property == GraphicObjectProperties.__GO_AXES_SIZE__ || property == GraphicObjectProperties.__GO_CHILDREN__) {
+            if (object instanceof Label || object instanceof Legend) {
+                GraphicObject parent = GraphicController.getController().getObjectFromId(object.getParent());
+                if (parent instanceof Axes) {
+                    Axes axes = (Axes) parent;
+                    if (axes.getXAxisLabel().equals(id) ||
+                            axes.getYAxisLabel().equals(id) ||
+                            axes.getZAxisLabel().equals(id) ||
+                            axes.getTitle().equals(id)) {
+                        labelManager.update(id, property);
+                        axesDrawer.computeMargins(axes);
+                    } else if (object instanceof Legend && (property == GraphicObjectProperties.__GO_LEGEND_LOCATION__ || property == GraphicObjectProperties.__GO_LINE_WIDTH__)) {
+                        legendDrawer.update(id, property);
+                        axesDrawer.computeMargins(axes);
+                    }
+                }
+            } else if (object instanceof Figure) {
+                if (property == GraphicObjectProperties.__GO_SIZE__
+                        || property == GraphicObjectProperties.__GO_AXES_SIZE__
+                        || property == GraphicObjectProperties.__GO_CHILDREN__
+                        || property == GraphicObjectProperties.__GO_POSITION__) {
                     Figure fig = (Figure) object;
                     for (Integer gid : fig.getChildren()) {
                         GraphicObject go = GraphicController.getController().getObjectFromId(gid);
@@ -1023,6 +1087,20 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 if (SILENT_FIGURE_PROPERTIES.contains(property)) {
                     return false;
                 }
+            } else if (object instanceof Frame
+                       && id.intValue() == figure.getIdentifier().intValue()
+                       && property == GraphicObjectProperties.__GO_POSITION__) {
+                Frame fig = (Frame) object;
+                for (Integer gid : fig.getChildren()) {
+                    GraphicObject go = GraphicController.getController().getObjectFromId(gid);
+                    if (go instanceof Axes) {
+                        axesDrawer.computeRulers((Axes) go);
+                    }
+                }
+
+            } else if (object instanceof Axes && property == GraphicObjectProperties.__GO_X_AXIS_LOCATION__ ||
+                       property == GraphicObjectProperties.__GO_Y_AXIS_LOCATION__ || property == GraphicObjectProperties.__GO_AUTO_MARGINS__) {
+                axesDrawer.computeMargins((Axes) object);
             }
 
             if (!object.isValid()) {
@@ -1030,14 +1108,21 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
             }
 
             return true;
-        } else {
-            return false;
         }
+        // Special case if top level figure colormap/immediate_drawing has been updated, force redraw
+        if ((property == GraphicObjectProperties.__GO_COLORMAP__ ||  property == GraphicObjectProperties.__GO_IMMEDIATE_DRAWING__) 
+                && id.intValue() == figure.getParentFigure().intValue()) {
+            return true;
+        }
+        return false;
     }
 
     private boolean isImmediateDrawing(Integer id) {
         Integer parentId = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_PARENT_FIGURE__);
-        if (parentId == null || !parentId.equals(figure.getIdentifier())) {
+        if (figure instanceof Frame) {
+            parentId = figure.getParentFigure();
+        }
+        if (figure instanceof Figure && (parentId == null || !parentId.equals(figure.getIdentifier()))) {
             return false;
         } else {
             Boolean b =  (Boolean) GraphicController.getController().getProperty(parentId, GraphicObjectProperties.__GO_IMMEDIATE_DRAWING__);
@@ -1051,6 +1136,11 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
     @Override
     public void deleteObject(Integer id) {
+        Integer type = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
+        if (type == GraphicObjectProperties.__GO_UICONTROL__ || type == GraphicObjectProperties.__GO_UIMENU__) {
+            return; // Not of my managed openGL children
+        }
+
         openGLChildren.remove(id);
 
         if (isImmediateDrawing(id)) {
@@ -1094,8 +1184,29 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
      * @return true if the given id correspond to a child of the current {@see Figure}.
      */
     private boolean isFigureChild(Integer id) {
-        Integer parentFigureID = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_PARENT_FIGURE__);
-        return figure.getIdentifier() == parentFigureID;
+        if (id.intValue() == figure.getIdentifier().intValue()) {
+            return true;
+        }
+
+        Object parentObject = GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_PARENT__);
+        Integer parentUID = parentObject == null ? 0 : (Integer) parentObject;
+        while (parentUID != 0) {
+
+            if (figure.getIdentifier().intValue() == parentUID.intValue()) {
+                return true;
+            }
+
+            Integer parentStyle = (Integer) GraphicController.getController().getProperty(parentUID, GraphicObjectProperties.__GO_STYLE__);
+            if (parentStyle != null && parentStyle.intValue() == GraphicObjectProperties.__GO_UI_FRAME__) {
+                // Drop drawing if parent is a Frame and I'm not the dedicated visitor.
+                return false;
+            }
+
+            parentObject = GraphicController.getController().getProperty(parentUID, GraphicObjectProperties.__GO_PARENT__);
+            parentUID = parentObject == null ? 0 : (Integer) parentObject;
+
+        }
+        return false;
     }
 
     /**
@@ -1132,7 +1243,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
      * Figure getter.
      * @return the figure this visitor draw.
      */
-    public Figure getFigure() {
+    public AxesContainer getFigure() {
         return figure;
     }
 

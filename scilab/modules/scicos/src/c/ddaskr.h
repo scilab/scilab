@@ -111,7 +111,7 @@ int DDaskrSetMaxStep (void * ddaskr_mem, realtype hmax);
 int DDaskrSetStopTime (void * ddaskr_mem, realtype tcrit);
 
 // Sets the maximum number of steps in an integration interval
-int DDaskrSetMaxNumSteps (void * ddaskr_mem, int maxnh);
+int DDaskrSetMaxNumSteps (void * ddaskr_mem, long int maxnh);
 
 // Sets the maximum number of Jacobian or preconditioner evaluations
 int DDaskrSetMaxNumJacsIC (void * ddaskr_mem, int maxnj);

@@ -16,6 +16,7 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
+import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileFilter;
 
@@ -24,7 +25,6 @@ import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
 import org.scilab.modules.gui.filechooser.ScilabFileChooser;
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.XcosFileType;
@@ -74,7 +74,7 @@ public final class SaveAsAction extends DefaultAction {
      *            associated Xcos diagram
      * @return the button
      */
-    public static PushButton createButton(ScilabGraph scilabGraph) {
+    public static JButton createButton(ScilabGraph scilabGraph) {
         return createButton(scilabGraph, SaveAsAction.class);
     }
 

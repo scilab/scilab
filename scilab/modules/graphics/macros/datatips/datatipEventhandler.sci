@@ -22,7 +22,6 @@ function datatipEventhandler(win,x,y,ibut)
         end
         //     ax=getAxes([x,y],fig);
         //     if or(datatipAngles<>ax.rotation_angles)|or(zoom_box<>ax.zoom_box) then
-        //       datatipRedraw();
         //       datatipAngles=ax.rotation_angles;
         //       zoom_box=ax.zoom_box;
         //     end
@@ -74,7 +73,6 @@ function datatipEventhandler(win,x,y,ibut)
             zoom_box=ax.zoom_box;
         else
             if or(datatipAngles<>ax.rotation_angles)|or(zoom_box<>ax.zoom_box) then
-                datatipRedraw(curve_handles);
                 datatipAngles=ax.rotation_angles;
                 zoom_box=ax.zoom_box;
             end
@@ -97,7 +95,6 @@ function datatipEventhandler(win,x,y,ibut)
             //an existing tip at this point
             ud=datatipGetStruct(curve);// the curve datatips data structure
             if typeof(ud)<>"datatips" then;
-                datatipInitStruct(curve);
                 ud=datatipGetStruct(curve);
             end
             if ud.replace&ud.tips.children<>[] then
@@ -276,7 +273,6 @@ function datatipSetReplaceMode(curve_handle,m)
 
     ud=datatipGetStruct(curve_handle);
     if typeof(ud)<>"datatips" then;
-        datatipInitStruct(curve_handle);
         ud=datatipGetStruct(curve_handle);
     end
     ud.replace=m;

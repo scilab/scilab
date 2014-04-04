@@ -87,7 +87,7 @@ function f=rosenbrock(x,varargin)
 endfunction
 
 x0=[1;2;3;4];
-[f,xopt,gopt]=optim(list(NDcost,rosenbrock,200),x0)
+[fopt,xopt,gopt]=optim(list(NDcost,rosenbrock,200),x0)
 
 // example #2: This example (by Rainer von Seggern) shows a quick (*) way to
 //             identify the parameters of a linear differential equation with
@@ -152,6 +152,7 @@ p0 = [0.5 ; 5];
 // The value of the cost function before optimization:
 cost0 = cost_func(p0, t_obs, x_obs, t0, y0);
 mprintf("\n\r The value of the cost function before optimization = %g \n\r",...
+                                                                        cost0);
 
 // Solution with optim
 [costopt,popt]=optim(list(NDcost,cost_func, t_obs, x_obs, t0, y0),p0,...
@@ -181,7 +182,7 @@ xtitle("Least square fit to identify ode parameters")
                 <link linkend="external">external</link>
             </member>
             <member>
-                <link linkend="derivative">derivative</link>
+                <link linkend="numderivative">numderivative</link>
             </member>
         </simplelist>
     </refsection>

@@ -177,7 +177,6 @@
     <ClCompile Include="..\c\sci_javaclasspath.c" />
     <ClCompile Include="..\c\sci_javalibrarypath.c" />
     <ClCompile Include="..\c\sci_system_setproperty.c" />
-    <ClCompile Include="..\c\sci_with_embedded_jre.c" />
     <ClCompile Include="jvm_gw.cpp" />
     <ClCompile Include="sci_system_getproperty.cpp" />
   </ItemGroup>

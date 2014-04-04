@@ -64,10 +64,12 @@
             calculer la fft.
         </para>
         <para>
-            Attention: la valeur par défaut "FFTW_MEASURE" donne le plus
-            souvent de bonnes performances. N'essayez d'autres choix que si
-            la performance est cruciale et que vous avez beaucoup d'appels
-            du même type que faire.
+            <warning>
+                Attention: la valeur par défaut "FFTW_MEASURE" donne le plus
+                souvent de bonnes performances. N'essayez d'autres choix que si
+                la performance est cruciale et que vous avez beaucoup d'appels
+                du même type que faire.
+            </warning>
         </para>
         <para>
             Les entrées possibles sont :

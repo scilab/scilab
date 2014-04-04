@@ -50,6 +50,8 @@ import org.scilab.modules.commons.ScilabCommonsUtils;
 import org.scilab.modules.commons.xml.ScilabXMLUtilities;
 import org.scilab.modules.commons.xml.ScilabDocumentBuilderFactory;
 import org.scilab.modules.commons.xml.ScilabTransformerFactory;
+import org.scilab.modules.gui.messagebox.ScilabModalDialog;
+import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
@@ -82,33 +84,15 @@ public final class ConfigSciNotesManager {
 
     private static final int MARGIN = 20;
 
-    private static final String HORIZONTALWRAP = "HorizontalWrapAllowed";
     private static final String ERROR_READ = "Could not load file: ";
     private static final String ERROR_WRITE = "Could not save file: ";
     private static final String VALUE = "value";
     private static final String VERSION = "version";
     private static final String STYLE = "style";
-    private static final String UNDERLINE = "underline";
-    private static final String DEFAULTUNDERLINE = "defaultUnderline";
-    private static final String STROKE = "stroke";
-    private static final String DEFAULTSTROKE = "defaultStroke";
-    private static final String FONT_SIZE = "FontSize";
-    private static final String FONT_STYLE = "FontStyle";
-    private static final String FONT_NAME = "FontName";
     private static final String DEFAULT = "default";
     private static final String WIDTH = "width";
     private static final String HEIGHT = "height";
-    private static final String XCOORD = "x";
-    private static final String YCOORD = "y";
-    private static final String MAINWINPOSITION = "MainWindowPosition";
-    private static final String MAINWINSIZE = "MainWindowSize";
-    private static final String AUTOINDENT = "AutoIndent";
-    private static final String DEFAULTENCONDING = "DefaultEncoding";
-    private static final String LINEHIGHLIGHTER = "LineHighlighter";
-    private static final String HELPONTYPING = "HelpOnTyping";
-    private static final String LINENUMBERING = "LineNumbering";
     private static final String EDITOR = "SciNotes";
-    private static final String SUPPRESSCOMMENTS = "SuppressComments";
 
     private static final String FOREGROUNDCOLOR = "ForegroundColor";
     private static final String BACKGROUNDCOLOR = "BackgroundColor";
@@ -168,14 +152,6 @@ public final class ConfigSciNotesManager {
 
     private static final String SCI = "SCI";
     private static final String SCINOTES_CONFIG_FILE = System.getenv(SCI) + "/modules/scinotes/etc/scinotesConfiguration.xml";
-
-    private static final int PLAIN = 0;
-    private static final int BOLD =  1;
-    private static final int ITALIC = 2;
-    private static final int BOLDITALIC = 3;
-
-    private static final int DEFAULT_WIDTH = 650;
-    private static final int DEFAULT_HEIGHT = 550;
 
     private static final int MAXRECENT = 20;
 
@@ -355,138 +331,6 @@ public final class ConfigSciNotesManager {
 
         arr[1] = c;
         return arr;
-    }
-
-    /**
-     * Get the background Color
-     * @return the background Color
-     */
-    public static Color getSciNotesBackgroundColor() {
-        /* Load file */
-        readDocument();
-
-        Element root = document.getDocumentElement();
-
-        NodeList profiles = root.getElementsByTagName(EDITOR);
-        Element scinotesProfile = (Element) profiles.item(0);
-
-        NodeList allElements = scinotesProfile.getElementsByTagName(BACKGROUNDCOLOR);
-        Element scinotesBackground = (Element) allElements.item(0);
-
-        /*direct create a Color with "#FF00FF" string from the xml */
-        return Color.decode(scinotesBackground.getAttribute(VALUE));
-    }
-
-    /**
-     * Get the foreground Color
-     * @return the foreground Color
-     */
-    public static Color getSciNotesForegroundColor() {
-        /* Load file */
-        readDocument();
-
-        Element root = document.getDocumentElement();
-
-        NodeList profiles = root.getElementsByTagName(EDITOR);
-        Element scinotesProfile = (Element) profiles.item(0);
-
-        NodeList allElements = scinotesProfile.getElementsByTagName(FOREGROUNDCOLOR);
-        Element scinotesForeground = (Element) allElements.item(0);
-
-        /*direct create a Color with "#FF00FF" string from the xml */
-        return Color.decode(scinotesForeground.getAttribute(VALUE));
-    }
-
-    /**
-     * Save SciNotes BackgroundColor
-     * @param color the new Color
-     */
-    public static void saveSciNotesBackground(Color color) {
-
-        /* Load file */
-        readDocument();
-
-        Element root = document.getDocumentElement();
-
-        NodeList profiles = root.getElementsByTagName(EDITOR);
-        Element scinotesProfile = (Element) profiles.item(0);
-
-        NodeList allSizeElements = scinotesProfile.getElementsByTagName(BACKGROUNDCOLOR);
-        Element scinotesBackground = (Element) allSizeElements.item(0);
-
-        String rgb = Integer.toHexString(color.getRGB());
-        scinotesBackground.setAttribute(VALUE, COLORPREFIX + rgb.substring(2, rgb.length()));
-
-        /* Save changes */
-        writeDocument();
-    }
-
-    /**
-     * Save SciNotes foregroundColor
-     * @param color the new Color
-     */
-    public static void saveSciNotesForeground(Color color) {
-        readDocument();
-
-        Element root = document.getDocumentElement();
-
-        NodeList profiles = root.getElementsByTagName(EDITOR);
-        Element scinotesProfile = (Element) profiles.item(0);
-
-        NodeList allSizeElements = scinotesProfile.getElementsByTagName(FOREGROUNDCOLOR);
-        Element scinotesForeground = (Element) allSizeElements.item(0);
-
-        String rgb = Integer.toHexString(color.getRGB());
-        scinotesForeground.setAttribute(VALUE, COLORPREFIX + rgb.substring(2, rgb.length()));
-
-        /* Save changes */
-        writeDocument();
-    }
-
-    /**
-     * Save SciNotes autoIndent or not
-     * @param activated if autoIndent should be used or not
-     */
-    public static void saveSuppressComments(boolean activated) {
-        /* Load file */
-        readDocument();
-
-        Element root = document.getDocumentElement();
-
-        NodeList profiles = root.getElementsByTagName(PROFILE);
-        Element scinotesProfile = (Element) profiles.item(0);
-
-        NodeList allSizeElements = scinotesProfile.getElementsByTagName(SUPPRESSCOMMENTS);
-        Element suppressComments = (Element) allSizeElements.item(0);
-        if (suppressComments == null) {
-            Element sup = document.createElement(SUPPRESSCOMMENTS);
-            sup.setAttribute(VALUE, new Boolean(activated).toString());
-            scinotesProfile.appendChild((Node) sup);
-        } else {
-            suppressComments.setAttribute(VALUE, new Boolean(activated).toString());
-        }
-        /* Save changes */
-        writeDocument();
-    }
-
-    /**
-     * @return a boolean if autoIndent should be used or not
-     */
-    public static boolean getSuppressComments() {
-        /* Load file */
-        readDocument();
-
-        Element root = document.getDocumentElement();
-        NodeList profiles = root.getElementsByTagName(PROFILE);
-        Element scinotesProfile = (Element) profiles.item(0);
-        NodeList allSizeElements = scinotesProfile.getElementsByTagName(SUPPRESSCOMMENTS);
-        Element suppressComments = (Element) allSizeElements.item(0);
-
-        if (suppressComments == null) {
-            return true;
-        } else {
-            return new Boolean(suppressComments.getAttribute(VALUE));
-        }
     }
 
     /**
@@ -1014,6 +858,13 @@ public final class ConfigSciNotesManager {
         }
 
         ScilabDocumentBuilderFactory.restoreDocumentBuilderFactoryImpl(factoryName);
+
+        if (document == null && fileConfig.exists()) {
+            ScilabModalDialog.show(null, SciNotesMessages.CORRUPTED_CONF_FILE, SciNotesMessages.SCINOTES_ERROR, IconType.ERROR_ICON);
+            fileConfig.delete();
+            createUserCopy();
+            readDocument(pathConfSci);
+        }
     }
 
     /**
@@ -1021,29 +872,7 @@ public final class ConfigSciNotesManager {
      */
     private static void writeDocument() {
         if (mustSave) {
-            Transformer transformer = null;
-            try {
-                transformer = ScilabTransformerFactory.newInstance().newTransformer();
-            } catch (TransformerConfigurationException e1) {
-                System.err.println(ERROR_WRITE + USER_SCINOTES_CONFIG_FILE);
-                System.err.println(e1);
-            } catch (TransformerFactoryConfigurationError e1) {
-                System.err.println(ERROR_WRITE + USER_SCINOTES_CONFIG_FILE);
-                System.err.println(e1);
-            }
-
-            if (transformer != null) {
-                transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-
-                StreamResult result = new StreamResult(new File(USER_SCINOTES_CONFIG_FILE));
-                DOMSource source = new DOMSource(document);
-                try {
-                    transformer.transform(source, result);
-                } catch (TransformerException e) {
-                    System.err.println(ERROR_WRITE + USER_SCINOTES_CONFIG_FILE);
-                    System.err.println(e);
-                }
-            }
+            ScilabXMLUtilities.writeDocument(document, USER_SCINOTES_CONFIG_FILE);
         }
     }
 
@@ -1724,13 +1553,6 @@ public final class ConfigSciNotesManager {
      * @param r the element to clean
      */
     private static void clean(Node r) {
-        Node n = r.getFirstChild();
-        if (n != null && n instanceof Text) {
-            r.removeChild(n);
-        }
-        n = r.getLastChild();
-        if (n != null && n instanceof Text) {
-            r.removeChild(n);
-        }
+        ScilabXMLUtilities.removeEmptyLines(r);
     }
 }

@@ -27,7 +27,7 @@ function datatip2
     ax=gca();ax.rotation_angles=[70 50];ax.axes_visible="off";
     drawnow()
 
-    datatipInitStruct(c,"t",t)
+    c.display_function_data = t;
     datatipSetStyle(c,2,%f) //directional arrow no box
 
     function s=mydisp(curve,pt,index),

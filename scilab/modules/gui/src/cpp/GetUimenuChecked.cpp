@@ -10,7 +10,10 @@
  *
  */
 
-#include "GetUimenuChecked.hxx"
+extern "C"
+{
+#include "GetUicontrol.h"
+}
 
 void* GetUimenuChecked(void* _pvCtx, int iObjUID)
 {

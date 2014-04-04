@@ -16,7 +16,7 @@
 x=-2:0.1:2; y=x;
 z=eval3d(milk_drop,x,y);
 WARNING: Feature milk_drop is obsolete.
-WARNING: This feature will be permanently removed in Scilab 5.5.1
+         This feature will be permanently removed in Scilab 5.5.1
 
 plot3d(x,y,z)
 a=gca();

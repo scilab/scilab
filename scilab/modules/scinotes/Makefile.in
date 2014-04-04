@@ -193,7 +193,9 @@ am_libsciscinotes_disable_la_OBJECTS = $(am__objects_4) \
 	$(am__objects_5)
 libsciscinotes_disable_la_OBJECTS =  \
 	$(am_libsciscinotes_disable_la_OBJECTS)
-libsciscinotes_la_DEPENDENCIES = libsciscinotes-algo.la
+am__DEPENDENCIES_1 =
+libsciscinotes_la_DEPENDENCIES = libsciscinotes-algo.la \
+	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1)
 am__objects_6 = sci_gateway/c/libsciscinotes_la-gw_scinotes.lo
 am__objects_7 = sci_gateway/cpp/libsciscinotes_la-sci_scinotes.lo \
 	sci_gateway/cpp/libsciscinotes_la-sci_closeSciNotesFromScilab.lo
@@ -329,6 +331,7 @@ CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
 DEMOTOOLS_ENABLE = @DEMOTOOLS_ENABLE@
 DEPDIR = @DEPDIR@
+DLLTOOL = @DLLTOOL@
 DOCBOOK_ROOT = @DOCBOOK_ROOT@
 DOXYGEN_BIN = @DOXYGEN_BIN@
 DSYMUTIL = @DSYMUTIL@
@@ -348,6 +351,11 @@ FGREP = @FGREP@
 FLEXDOCK = @FLEXDOCK@
 FLIBS = @FLIBS@
 FOP = @FOP@
+FREEHEP_GRAPHICS2D = @FREEHEP_GRAPHICS2D@
+FREEHEP_GRAPHICSIO = @FREEHEP_GRAPHICSIO@
+FREEHEP_GRAPHICSIO_EMF = @FREEHEP_GRAPHICSIO_EMF@
+FREEHEP_IO = @FREEHEP_IO@
+FREEHEP_UTIL = @FREEHEP_UTIL@
 GENHTML = @GENHTML@
 GETTEXT_MACRO_VERSION = @GETTEXT_MACRO_VERSION@
 GIWS_BIN = @GIWS_BIN@
@@ -411,6 +419,7 @@ LTLIBINTL = @LTLIBINTL@
 LTLIBOBJS = @LTLIBOBJS@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
+MANIFEST_TOOL = @MANIFEST_TOOL@
 MATIO_CFLAGS = @MATIO_CFLAGS@
 MATIO_ENABLE = @MATIO_ENABLE@
 MATIO_LIBS = @MATIO_LIBS@
@@ -616,6 +625,7 @@ libsciscinotes_la_CPPFLAGS = -I$(srcdir)/includes/ \
 libsciscinotes_disable_la_CPPFLAGS = -I$(srcdir)/includes/ \
     -I$(top_srcdir)/modules/localization/includes/ \
     -I$(top_srcdir)/modules/output_stream/includes/ \
+    -I$(top_srcdir)/modules/system_env/includes/ \
     $(AM_CPPFLAGS)
 
 SCINOTES_DISABLE_C_SOURCES = src/noscinotes/noscinotes.c
@@ -623,7 +633,7 @@ SCINOTES_DISABLE_CPP_SOURCES = src/noscinotes/noscinotes_gw.cpp
 libsciscinotes_disable_la_SOURCES = $(SCINOTES_DISABLE_C_SOURCES) $(SCINOTES_DISABLE_CPP_SOURCES)
 pkglib_LTLIBRARIES = libsciscinotes-disable.la $(am__append_1)
 @GUI_TRUE@noinst_LTLIBRARIES = libsciscinotes-algo.la
-libsciscinotes_la_LDFLAGS = $(X_LIBS) $(X_EXTRA_LIBS) $(AM_LDFLAGS)
+libsciscinotes_la_LDFLAGS = $(AM_LDFLAGS)
 libsciscinotes_algo_la_SOURCES = $(SCINOTES_C_SOURCES) $(SCINOTES_JNI_SOURCES) $(SCINOTES_CXX_SOURCES)
 libsciscinotes_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CXX_SOURCES)
 libsciscinotes_algo_la_CPPFLAGS = $(libsciscinotes_la_CPPFLAGS)
@@ -634,7 +644,7 @@ INCLUDE_FLAGS = $(libsciscinotes_la_CPPFLAGS)
 GIWS_WRAPPERS = src/jni/SciNotes.giws.xml
 SWIG_WRAPPERS = src/jni/ScilabKeywords.i
 BUILT_SOURCES = $(am__append_2) $(am__append_3)
-libsciscinotes_la_LIBADD = libsciscinotes-algo.la
+libsciscinotes_la_LIBADD = libsciscinotes-algo.la $(X_LIBS) $(X_EXTRA_LIBS)
 
 #### scinotes : gateway declaration ####
 libsciscinotes_la_sci_gatewaydir = $(mydatadir)/sci_gateway

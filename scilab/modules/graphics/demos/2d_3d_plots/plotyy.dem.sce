@@ -31,6 +31,8 @@ function demo_plotyy()
     a.tight_limits="on";
     a.font_size=fs;
     ylabel([" ";"$\sin(\alpha)$"])
+    m1 = a.margins;
+    pa = a;
     // --------------------------------------------------------------------------
 
     // Overall title and common X axe
@@ -53,6 +55,10 @@ function demo_plotyy()
     a.y_label.font_foreground=red;  // sets color for y-label
     ylabel("$(1.1+\cos(\alpha))*800$")
     //means X at the bottom, and Y at the right
+
+    m2 = a.margins;
+    a.margins = [m1(1) m2(2) m1(3) m1(4)];
+    pa.margins = a.margins;
 
     xgrid(color("grey"))
     drawnow()

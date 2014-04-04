@@ -42,17 +42,10 @@ typedef struct
 } getHashTableCouple;
 
 /**
- * number of properties
- * don't forget to modify it each time the propertyTable
- * is modified.
- */
-#define NB_PROPERTIES 179
-
-/**
  * list of all property names and associated functions in scilab
  * This is inserted in the hashTable
  */
-static getHashTableCouple propertyTable[NB_PROPERTIES] =
+static getHashTableCouple propertyGetTable[] =
 {
     {"figures_id", get_figures_id_property},
     {"visible", get_visible_property},
@@ -67,7 +60,6 @@ static getHashTableCouple propertyTable[NB_PROPERTIES] =
     {"figure_id", get_figure_id_property},
     {"rotation_style", get_rotation_style_property},
     {"immediate_drawing", get_immediate_drawing_property},
-    {"pixmap", get_pixmap_property},
     {"type", get_type_property},
     {"parent", get_parent_property},
     {"current_axes", get_current_axes_property},
@@ -96,6 +88,8 @@ static getHashTableCouple propertyTable[NB_PROPERTIES] =
     {"mark_size", get_mark_size_property},
     {"mark_foreground", get_mark_foreground_property},
     {"mark_background", get_mark_background_property},
+    {"mark_offset", get_mark_offset_property},
+    {"mark_stride", get_mark_stride_property},
     {"bar_layout", get_bar_layout_property},
     {"bar_width", get_bar_width_property},
     {"x_shift", get_x_shift_property},
@@ -139,6 +133,7 @@ static getHashTableCouple propertyTable[NB_PROPERTIES] =
     {"axes_bounds", get_axes_bounds_property},
     {"data_bounds", get_data_bounds_property},
     {"margins", get_margins_property},
+    {"auto_margins", get_auto_margins_property},
     {"tics_color", get_tics_color_property},
     {"tics_style", get_tics_style_property},
     {"sub_tics", get_sub_tics_property},
@@ -153,6 +148,8 @@ static getHashTableCouple propertyTable[NB_PROPERTIES] =
     {"tics_labels", get_tics_labels_property},
     {"box", get_box_property},
     {"grid", get_grid_property},
+    {"grid_thickness", get_grid_thickness_property},
+    {"grid_style", get_grid_style_property},
     {"axes_visible", get_axes_visible_property},
     {"hiddencolor", get_hidden_color_property},
     {"isoview", get_isoview_property},
@@ -213,17 +210,18 @@ static getHashTableCouple propertyTable[NB_PROPERTIES] =
     {"anti_aliasing", get_anti_aliasing_property},
     {"UID", get_UID},
     {"showhiddenhandles", GetConsoleShowHiddenHandles},
+    {"showhiddenproperties", GetConsoleShowHiddenProperties},
+    {"usedeprecatedskin", GetConsoleUseDeprecatedLF},
     {"resizefcn", get_figure_resizefcn_property},
     {"tooltipstring", GetUicontrolTooltipString},
     {"closerequestfcn", get_figure_closerequestfcn_property},
-    {"tip_data", get_tip_data_property},
-    {"tip_orientation", get_tip_orientation_property},
-    {"tip_3component", get_tip_3component_property},
-    {"tip_auto_orientation", get_tip_auto_orientation_property},
-    {"tip_interp_mode", get_tip_interp_mode_property},
-    {"tip_box_mode", get_tip_box_mode_property},
-    {"tip_label_mode", get_tip_label_mode_property},
-    {"tip_disp_function", get_tip_disp_function_property},
+    {"orientation", get_tip_orientation_property},
+    {"z_component", get_tip_3component_property},
+    {"auto_orientation", get_tip_auto_orientation_property},
+    {"interp_mode", get_tip_interp_mode_property},
+    {"box_mode", get_tip_box_mode_property},
+    {"label_mode", get_tip_label_mode_property},
+    {"display_function", get_tip_disp_function_property},
     {"ambient_color", get_ambient_color_property},
     {"diffuse_color", get_diffuse_color_property},
     {"specular_color", get_specular_color_property},
@@ -232,7 +230,29 @@ static getHashTableCouple propertyTable[NB_PROPERTIES] =
     {"light_type", get_light_type_property},
     {"direction", get_direction_property},
     {"image_type", get_image_type_property},
-    {"datatips", get_datatips_property}
+    {"datatips", get_datatips_property},
+    {"display_function_data", get_display_function_data_property},
+    {"resize", get_resize_property},
+    {"toolbar", get_toolbar_property},
+    {"toolbar_visible", get_toolbar_visible_property},
+    {"menubar", get_menubar_property},
+    {"menubar_visible", get_menubar_visible_property},
+    {"infobar_visible", get_infobar_visible_property},
+    {"dockable", get_dockable_property},
+    {"layout", get_layout_property},
+    {"constraints", get_constraints_property},
+    {"rect", get_rect_property},
+    {"layout_options", get_layout_options_property},
+    {"border", get_border_property},
+    {"groupname", get_groupname_property},
+    {"title_position", get_title_position_property},
+    {"title_scroll", get_title_scroll_property},
+    {"scrollable", get_scrollable_property},
+    {"icon", GetUicontrolIcon},
+    {"line_width", get_line_width_property},
+    {"marks_count", get_marks_count_property},
+    {"ticks_format", get_ticks_format_property},
+    {"ticks_st", get_ticks_st_property},
 };
 
 /*--------------------------------------------------------------------------*/
@@ -240,6 +260,7 @@ GetPropertyHashTable *createScilabGetHashTable(void)
 {
     int i = 0;
 
+    int propertyCount = sizeof(propertyGetTable) / sizeof(getHashTableCouple);
     if (getHashTableCreated)
     {
         /* hastable already created, return */
@@ -255,9 +276,9 @@ GetPropertyHashTable *createScilabGetHashTable(void)
     }
 
     /* insert every couple */
-    for (i = 0; i < NB_PROPERTIES; i++)
+    for (i = 0; i < propertyCount; i++)
     {
-        insertGetHashtable(getHashTable, propertyTable[i].key, propertyTable[i].accessor);
+        insertGetHashtable(getHashTable, propertyGetTable[i].key, propertyGetTable[i].accessor);
     }
 
     getHashTableCreated = TRUE;
@@ -296,27 +317,27 @@ void destroyScilabGetHashTable(void)
 char **getDictionaryGetProperties(int *sizearray)
 {
     char **dictionary = NULL;
+    int propertyCount = sizeof(propertyGetTable) / sizeof(getHashTableCouple);
 
     *sizearray = 0;
 
-    dictionary = (char **)MALLOC(sizeof(char *) * NB_PROPERTIES);
+    dictionary = (char **)MALLOC(sizeof(char *) * propertyCount);
     if (dictionary)
     {
         int i = 0;
 
-        *sizearray = NB_PROPERTIES;
-        for (i = 0; i < NB_PROPERTIES; i++)
+        *sizearray = propertyCount;
+        for (i = 0; i < propertyCount ; i++)
         {
-            char *propertyname = (char *)MALLOC(sizeof(char) * (strlen(propertyTable[i].key) + 1));
+            char *propertyname = (char *)MALLOC(sizeof(char) * (strlen(propertyGetTable[i].key) + 1));
 
             if (propertyname)
             {
-                strcpy(propertyname, propertyTable[i].key);
+                strcpy(propertyname, propertyGetTable[i].key);
             }
             dictionary[i] = propertyname;
         }
     }
     return dictionary;
 }
-
 /*--------------------------------------------------------------------------*/

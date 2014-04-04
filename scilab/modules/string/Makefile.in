@@ -198,7 +198,9 @@ am__v_lt_0 = --silent
 am__v_lt_1 = 
 @MAINTAINER_MODE_FALSE@am_libscistring_algo_la_rpath =
 @MAINTAINER_MODE_TRUE@am_libscistring_algo_la_rpath =
-libscistring_la_DEPENDENCIES = libscistring-algo.la
+am__DEPENDENCIES_1 =
+libscistring_la_DEPENDENCIES = libscistring-algo.la \
+	$(am__DEPENDENCIES_1)
 am__objects_3 = sci_gateway/cpp/libscistring_la-sci_stripblanks.lo \
 	sci_gateway/cpp/libscistring_la-sci_grep.lo \
 	sci_gateway/cpp/libscistring_la-string_gw.lo \
@@ -358,6 +360,7 @@ CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
 DEMOTOOLS_ENABLE = @DEMOTOOLS_ENABLE@
 DEPDIR = @DEPDIR@
+DLLTOOL = @DLLTOOL@
 DOCBOOK_ROOT = @DOCBOOK_ROOT@
 DOXYGEN_BIN = @DOXYGEN_BIN@
 DSYMUTIL = @DSYMUTIL@
@@ -377,6 +380,11 @@ FGREP = @FGREP@
 FLEXDOCK = @FLEXDOCK@
 FLIBS = @FLIBS@
 FOP = @FOP@
+FREEHEP_GRAPHICS2D = @FREEHEP_GRAPHICS2D@
+FREEHEP_GRAPHICSIO = @FREEHEP_GRAPHICSIO@
+FREEHEP_GRAPHICSIO_EMF = @FREEHEP_GRAPHICSIO_EMF@
+FREEHEP_IO = @FREEHEP_IO@
+FREEHEP_UTIL = @FREEHEP_UTIL@
 GENHTML = @GENHTML@
 GETTEXT_MACRO_VERSION = @GETTEXT_MACRO_VERSION@
 GIWS_BIN = @GIWS_BIN@
@@ -440,6 +448,7 @@ LTLIBINTL = @LTLIBINTL@
 LTLIBOBJS = @LTLIBOBJS@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
+MANIFEST_TOOL = @MANIFEST_TOOL@
 MATIO_CFLAGS = @MATIO_CFLAGS@
 MATIO_ENABLE = @MATIO_ENABLE@
 MATIO_LIBS = @MATIO_LIBS@
@@ -690,7 +699,7 @@ libscistring_algo_la_CPPFLAGS = $(libscistring_la_CPPFLAGS)
 @MAINTAINER_MODE_TRUE@pkglib_LTLIBRARIES = libscistring.la
 @MAINTAINER_MODE_FALSE@noinst_LTLIBRARIES = libscistring-algo.la libscistring.la
 @MAINTAINER_MODE_TRUE@noinst_LTLIBRARIES = libscistring-algo.la
-libscistring_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(PCRE_LIBS)
+libscistring_la_LDFLAGS = $(AM_LDFLAGS)
 libscistring_algo_la_SOURCES = $(STRING_C_SOURCES) $(STRING_CPP_SOURCES)
 libscistring_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
 libscistring_algo_la_CFLAGS = $(libscistring_la_CFLAGS)
@@ -700,7 +709,7 @@ CHECK_SRC = $(STRING_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscistring_la_CFLAGS)
 
 # commented since it is the first module to be processed
-libscistring_la_LIBADD = libscistring-algo.la
+libscistring_la_LIBADD = libscistring-algo.la $(PCRE_LIBS)
 
 #### Target ######
 modulename = string

@@ -16,12 +16,13 @@ import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.IOException;
 
+import javax.swing.JButton;
+
 import org.scilab.modules.commons.CommonFileUtils;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -66,7 +67,7 @@ public final class OpenInSciAction extends DefaultAction {
      *            associated Scilab Graph
      * @return the button
      */
-    public static PushButton createButton(ScilabGraph scilabGraph) {
+    public static JButton createButton(ScilabGraph scilabGraph) {
         return createButton(scilabGraph, OpenInSciAction.class);
     }
 

@@ -318,4 +318,16 @@ public class ScilabListBox extends ScilabWidget implements ListBox {
     public void setToolTipText(String tooltipText) {
         // TODO Auto-generated method stub
     }
+
+    @Override
+    public void resetBackground() {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void resetForeground() {
+        // TODO Auto-generated method stub
+
+    }
 }

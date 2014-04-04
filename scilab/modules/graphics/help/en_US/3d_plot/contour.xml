@@ -54,10 +54,12 @@
 z= zmin + (1:nz)*(zmax-zmin)/(nz+1)
  ]]></programlisting>
                                 <para>
-                                    Note that the <literal>zmin</literal> and
-                                    <literal>zmax</literal> levels are not drawn  (generically
-                                    they are reduced to points) but they can be added
-                                    with
+                                    <note>
+                                        Note that the <literal>zmin</literal> and
+                                        <literal>zmax</literal> levels are not drawn  (generically
+                                        they are reduced to points) but they can be added
+                                        with
+                                    </note>
                                 </para>
                                 <programlisting role=""><![CDATA[ 
 [im,jm] = find(z == zmin);     // or zmax 

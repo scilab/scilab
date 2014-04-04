@@ -45,8 +45,11 @@
             The user can use this handle to set or get the axes properties default
             values.
         </para>
-        <para>Note that an equivalent default graphic entity exists for figure
-            entities too (see <literal>gdf</literal>).
+        <para>
+            <note>
+                Note that an equivalent default graphic entity exists for figure
+                entities too (see <literal>gdf</literal>).
+            </note>
         </para>
     </refsection>
     <refsection>

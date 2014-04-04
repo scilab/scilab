@@ -45,18 +45,20 @@ public class SwingScilabScrollPane extends JScrollPane implements ScilabScrollPa
     private SwingScilabCanvas canvas;
     private Figure figure;
     private Component comp;
+    private Container uiContent;
 
     /**
      * Create a new Scroll pane around an axes.
      * @param axes axes to scroll
      */
-    public SwingScilabScrollPane(Component comp, SwingScilabCanvas canvas, Figure figure) {
+    public SwingScilabScrollPane(Component comp, Container uiContentPane, Figure figure) {
         super(comp);
         this.comp = comp;
-        this.canvas = canvas;
+        this.uiContent = uiContentPane;
         this.figure = figure;
+        //this.uiContent = uiContentPane;
         // use the axes background as default one
-        setRealBackground(canvas.getBackground());
+        setBorder(null);
         GraphicController.getController().register(this);
 
         if (figure.getAutoResize()) {
@@ -140,21 +142,43 @@ public class SwingScilabScrollPane extends JScrollPane implements ScilabScrollPa
                 Dimension d = new Dimension(figure.getAxesSize()[0], figure.getAxesSize()[1]);
                 comp.setPreferredSize(d);
                 comp.setSize(d);
-                canvas.setBounds(0, 0, figure.getAxesSize()[0], figure.getAxesSize()[1]);
+                uiContent.setSize(d);
+                uiContent.setPreferredSize(d);
+                if (canvas != null) {
+                    canvas.setBounds(0, 0, figure.getAxesSize()[0], figure.getAxesSize()[1]);
+                }
             }
 
             if (property == __GO_BACKGROUND__) {
-                canvas.setBackground(ColorFactory.createColor(figure.getColorMap(), figure.getBackground()));
+                if (canvas != null) {
+                    canvas.setBackground(ColorFactory.createColor(figure.getColorMap(), figure.getBackground()));
+                } else {
+                    uiContent.setBackground(ColorFactory.createColor(figure.getColorMap(), figure.getBackground()));
+                }
             }
         }
 
     }
 
-    @Override
+    public void setCanvas(SwingScilabCanvas canvas) {
+        this.canvas = canvas;
+        // use the axes background as default one
+        if (canvas != null) {
+            setRealBackground(canvas.getBackground());
+        }
+    }
+
+    public Component getGlobalComponent() {
+        return comp;
+    }
+
+    public Container getUIComponent() {
+        return uiContent;
+    }
+
     public void createObject(Integer id) {
     }
 
-    @Override
     public void deleteObject(Integer id) {
         if (figure.getIdentifier().equals(id)) {
             GraphicController.getController().unregister(this);

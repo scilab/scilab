@@ -17,11 +17,9 @@ import java.awt.Dimension;
 import java.awt.LayoutManager;
 import java.io.Serializable;
 
-import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.gui.SwingViewObject;
-import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
 
 /**
  * @author Pierre Lando
@@ -60,23 +58,10 @@ public class PanelLayout implements LayoutManager, Serializable {
             if (child.equals(canvas)) {
                 canvas.setBounds(0, 0, parent.getWidth(), parent.getHeight());
                 parent.setComponentZOrder(child, parent.getComponentCount() - 1);
-            }
-
-            Integer figureIdentifier = ((SwingScilabCanvas) parent).getFigure().getIdentifier();
-            String resizeFcn = (String) GraphicController.getController().getProperty(figureIdentifier, GraphicObjectProperties.__GO_RESIZEFCN__);
-            if (resizeFcn != null && !resizeFcn.equals("")) {
-                String resizeCommand = "if exists(\"gcbo\") then %oldgcbo = gcbo; end;"
-                                       + "gcbo = getcallbackobject(" + figureIdentifier + ");"
-                                       + resizeFcn
-                                       + ";if exists(\"%oldgcbo\") then gcbo = %oldgcbo; else clear gcbo; end;";
-                InterpreterManagement.requestScilabExec(resizeCommand);
-            }
-
-            /* Here you can perform the layout of UI object. */
-            if (child instanceof SwingViewObject) {
+            } else if (child instanceof SwingViewObject) {
+                /* Here you can perform the layout of UI object. */
                 Integer id = ((SwingViewObject) child).getId();
-                ((SwingViewObject) child).update(GraphicObjectProperties.__GO_POSITION__,
-                                                 GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_POSITION__));
+                ((SwingViewObject) child).update(GraphicObjectProperties.__GO_POSITION__, GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_POSITION__));
             }
         }
     }

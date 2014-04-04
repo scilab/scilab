@@ -69,11 +69,20 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
+                <term>rect: </term>
+                <listitem>
+                    <para>
+                        this field contains a row-vector defined by <literal>[xmin, ymin, xmax, ymax]</literal>.
+                        It specifies a rectangle in the current scale and the matrix is drawn inside this rectangle.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>image_type: </term>
                 <listitem>
                     <para>
                         this field defines the image type. It could be one of the values: "rgb", "rgba", "gray", "index",
-                        "red", "green", "blue", "rgb332", "rgb444", "rgb555", "rgba5551".
+                        "red", "green", "blue", "rgb332", "rgb444", "rgb555", "rgba5551", "argb".
                     </para>
                     <para>
                         Colors are determinated by the data type and by image_type:
@@ -137,6 +146,11 @@
                         <listitem>
                             <para>
                                 When image_type is equal to rgb5551, matrices of int16 or uint16 will give RGBA colors where each non-alpha components is wrote on 5 bits and the alpha component on 1 bit. For other data types, RGBA (8-8-8-8) data are converted into RGBA (5-5-5-1).
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                When image_type is equal to argb, hypermat of int8 or uint8 will give the ARGB components, hypermat of doubles will give normalized ARGB components (values between 0 and 1), matrices of int8 or uint8 where number of rows is a multiple of 4 will give the RGB components, matrices of int32 will give ARGB colors, matrices of uint32 will give ARGB colors.
                             </para>
                         </listitem>
                     </itemizedlist>
@@ -236,5 +250,23 @@ e.data=e.data($:-1:1) // reverse order
                 <link linkend="grayplot_properties">grayplot_properties</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>
+                    <itemizedlist>
+                        <listitem>
+                            Property <literal>image_type</literal> introduced.
+                        </listitem>
+                        <listitem>
+                            Property <literal>rect</literal> introduced.
+                        </listitem>
+                    </itemizedlist>
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

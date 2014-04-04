@@ -37,7 +37,7 @@
 #include "returnProperty.h"
 /*--------------------------------------------------------------------------*/
 /* the matplot data can have several type */
-void* getmatplotdata(void * _pvCtx, int iObjUID)
+void* getmatplotdata(int iObjUID)
 {
     int datatype = 0;
     int * piDataType = &datatype;
@@ -341,6 +341,21 @@ void* get3ddata(int iObjUID)
     return tList;
 }
 /*------------------------------------------------------------------------*/
+void* get_tip_data_property(void* _pvCtx, int iObjUID)
+{
+    double *tip_data = NULL;
+
+    getGraphicObjectProperty(iObjUID, __GO_DATATIP_DATA__, jni_double_vector, (void **)&tip_data);
+
+    if (tip_data == NULL)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "data");
+        return NULL;
+    }
+
+    return sciReturnRowVector(tip_data, 3);
+}
+/*------------------------------------------------------------------------*/
 void* get_data_property(void* _pvCtx, int iObjUID)
 {
     int type = -1;
@@ -350,7 +365,7 @@ void* get_data_property(void* _pvCtx, int iObjUID)
     if (piType == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "type");
-        return -1;
+        return NULL;
     }
 
     switch (type)
@@ -363,7 +378,9 @@ void* get_data_property(void* _pvCtx, int iObjUID)
         case __GO_GRAYPLOT__ :
             return getgrayplotdata(iObjUID);
         case __GO_MATPLOT__ :
-            return getmatplotdata(_pvCtx, iObjUID);
+            return getmatplotdata(iObjUID);
+        case __GO_DATATIP__ :
+            return get_tip_data_property(_pvCtx, iObjUID);
         default :
             /* F.Leray 02.05.05 : "data" case for others (using sciGetPoint routine inside GetProperty.c) */
         {

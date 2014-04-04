@@ -206,9 +206,13 @@ function res=mfile2sci(fil,res_path,Recmode,only_double,verbose_mode,prettyprint
             m2sci_info(mss,-1);
         end
 
+        txt($+1) = "endfunction"
         // Compilation
-        execstr("comp("+mname+",1)")
-        funcprot(fprot)
+        txt = [part(txt(1),kc:ksc-1);firstline;txt(2:$)]
+        mputl(txt, TMPDIR+"/"+mname+".sci");
+        exec(TMPDIR+"/"+mname+".sci", -1);
+        funcprot(fprot);
+        mdelete(TMPDIR+"/"+mname+".sci");
 
         // Get Scilab pseudo code of the function
         m2sci_info(gettext("Macro to tree conversion..."),-1);

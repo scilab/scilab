@@ -11,12 +11,9 @@
 *
 */
 
-#include "GetUicontrolStyle.hxx"
-
 extern "C"
 {
-#include "graphicObjectProperties.h"
-#include "getGraphicObjectProperty.h"
+#include "GetUicontrol.h"
 }
 
 /**
@@ -49,6 +46,12 @@ char *IntToStyle(int _iStyle)
             return "table";
         case __GO_UI_TEXT__ :
             return "text";
+        case __GO_UI_TAB__ :
+            return "tab";
+        case __GO_UI_LAYER__ :
+            return "layer";
+        case __GO_UI_SPINNER__ :
+            return "spinner";
     }
 
     return NULL;

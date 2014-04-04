@@ -28,7 +28,9 @@
             calls to <literal>mtlb_fprintf</literal> by calls to <link linkend="mfprintf">mfprintf</link>.
         </para>
         <para>
-            Caution: <literal>mtlb_fprintf</literal> has not to be used for hand coded functions.
+            <warning>
+                Caution: <literal>mtlb_fprintf</literal> has not to be used for hand coded functions.
+            </warning>
         </para>
     </refsection>
     <refsection role="see also">

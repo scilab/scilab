@@ -12,10 +12,10 @@
 
 package org.scilab.modules.scinotes.actions;
 
+import javax.swing.JButton;
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.scinotes.ScilabDocument;
 import org.scilab.modules.scinotes.ScilabEditorPane;
 import org.scilab.modules.scinotes.SciNotes;
@@ -65,7 +65,7 @@ public class SaveAndExecuteAllFilesAction extends SaveAndExecuteFileAction {
      * @param editor SciNotes
      * @return PushButton
      */
-    public static PushButton createButton(String tooltip, String icon, SciNotes editor) {
+    public static JButton createButton(String tooltip, String icon, SciNotes editor) {
         return createButton(tooltip, icon, new SaveAndExecuteAllFilesAction(tooltip, editor));
     }
 

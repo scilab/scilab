@@ -2,6 +2,7 @@
 # Please see in SCI/tools/localization for localization management
 # Copyright (C) 2007-2008 - INRIA
 # Copyright (C) 2008-2011 - DIGITEO
+# Copyright (C) 2012-2014 - Scilab-Enterprises
 # This file is distributed under the same license as the Scilab package.
 #
 msgid ""
@@ -9,12 +10,12 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab.org>\n"
+"Last-Translator: Vincent COUVERT <vincent.couvert@scilab-enterprises.com>\n"
 "Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-12-09 09:48+0100\n"
+"Revision-Date: 2014-04-01 12:32+0100\n"
 
 # File: sci_gateway/c/sci_exec.c, line: 52
 # File: sci_gateway/c/sci_exec.c, line: 60
@@ -170,7 +171,7 @@ msgstr ""
 # File: macros/createfun.sci, line: 16
 # File: macros/macrovar.sci, line: 21
 # File: macros/plotprofile.sci, line: 13
-# File: macros/profile.sci, line: 12
+# File: macros/profile.sci, line: 13
 # File: macros/remove_profiling.sci, line: 13
 # File: macros/reset_profiling.sci, line: 13
 # File: macros/showprofile.sci, line: 13
@@ -390,7 +391,7 @@ msgid "line %s [%s calls, %s sec] :: "
 msgstr ""
 
 #
-# File: macros/profile.sci, line: 20
+# File: macros/profile.sci, line: 25
 #, c-format
 msgid "%s: The function has not been built for profiling"
 msgstr ""

@@ -26,28 +26,7 @@
 #ifndef _SET_HANDLE_PROPERTY_H_
 #define _SET_HANDLE_PROPERTY_H_
 
-#include "SetUimenuLabel.h"
-#include "SetUicontrolString.h"
-#include "SetUicontrolBackgroundColor.h"
-#include "SetUiobjectForegroundColor.h"
-#include "SetUicontrolFontWeight.h"
-#include "SetUicontrolFontUnits.h"
-#include "SetUicontrolFontSize.h"
-#include "SetUicontrolFontAngle.h"
-#include "SetUiobjectEnable.h"
-#include "SetUicontrolMin.h"
-#include "SetUicontrolMax.h"
-#include "SetUicontrolUnits.h"
-#include "SetUicontrolListboxTop.h"
-#include "SetUicontrolValue.h"
-#include "SetUicontrolRelief.h"
-#include "SetUicontrolHorizontalAlignment.h"
-#include "SetUicontrolVerticalAlignment.h"
-#include "SetUicontrolFontName.h"
-#include "SetUicontrolSliderStep.h"
-#include "SetUimenuChecked.h"
-#include "SetConsoleShowHiddenHandles.h"
-#include "SetUicontrolTooltipString.h"
+#include "SetUicontrol.h"
 
 
 int set_color_map_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
@@ -69,7 +48,6 @@ int set_figure_resizefcn_property(void* _pvCtx, int iObj, void* _pvData, int val
 int set_figure_closerequestfcn_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
 int set_rotation_style_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
 int set_immediate_drawing_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
-int set_pixmap_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
 int set_background_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
 int set_interp_color_vector_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
 int set_interp_color_mode_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
@@ -84,6 +62,8 @@ int set_mark_style_property(void* _pvCtx, int iObj, void* _pvData, int valueType
 int set_mark_mode_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
 int set_mark_size_unit_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
 int set_mark_size_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
+int set_mark_offset_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
+int set_mark_stride_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
 int set_mark_foreground_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
 int set_mark_background_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
 int set_bar_width_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
@@ -141,6 +121,8 @@ int set_xtics_coord_property(void* _pvCtx, int iObj, void* _pvData, int valueTyp
 int set_ytics_coord_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
 int set_box_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
 int set_grid_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
+int set_grid_thickness_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
+int set_grid_style_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
 int set_axes_visible_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
 int set_hidden_color_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
 int set_isoview_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
@@ -181,7 +163,6 @@ int set_color_range_property(void* _pvCtx, int iObj, void* _pvData, int valueTyp
 int set_grid_position_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
 int set_anti_aliasing_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
 int set_tag_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
-int set_tip_data_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
 int set_tip_orientation_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
 int set_tip_3component_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
 int set_tip_auto_orientation_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
@@ -199,5 +180,28 @@ int set_direction_property(void* _pvCtx, int iObj, void* _pvData, int valueType,
 int set_image_type_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol);
 int set_video_mode_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol);
 int set_datatips_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
+int set_display_function_data_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
+int set_resize_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
+int set_toolbar_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
+int set_toolbar_visible_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
+int set_menubar_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
+int set_menubar_visible_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
+int set_infobar_visible_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
+int set_dockable_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
+int set_layout_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
+int set_constraints_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
+int set_rect_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
+int set_layout_options_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
+int set_border_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
+int set_groupname_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
+int set_title_position_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
+int set_title_scroll_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
+int set_default_axes_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
+int set_scrollable_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
+int set_line_width_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
+int set_marks_count_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
+int set_auto_margins_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
+int set_ticks_format_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
+int set_ticks_st_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
 
 #endif /* _SET_HANDLE_PROPERTY_H_ */

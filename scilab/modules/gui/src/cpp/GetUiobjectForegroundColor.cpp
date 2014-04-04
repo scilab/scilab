@@ -12,7 +12,10 @@
  *
  */
 
-#include "GetUiobjectForegroundColor.hxx"
+extern "C"
+{
+#include "GetUicontrol.h"
+}
 
 void* GetUiobjectForegroundColor(void* _pvCtx, int iObjUID)
 {

@@ -2,6 +2,7 @@
 # Please see in SCI/tools/localization for localization management
 # Copyright (C) 2007-2008 - INRIA
 # Copyright (C) 2008-2011 - DIGITEO
+# Copyright (C) 2012-2014 - Scilab-Enterprises
 # This file is distributed under the same license as the Scilab package.
 #
 msgid ""
@@ -9,12 +10,12 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab.org>\n"
+"Last-Translator: Vincent COUVERT <vincent.couvert@scilab-enterprises.com>\n"
 "Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-12-09 09:48+0100\n"
+"Revision-Date: 2014-04-01 12:32+0100\n"
 
 # File: sci_gateway/c/sci_qld.c, line: 86
 # File: sci_gateway/c/sci_qld.c, line: 112
@@ -30,7 +31,7 @@ msgstr ""
 # File: sci_gateway/c/sci_qp_solve.c, line: 198
 # File: sci_gateway/c/sci_qp_solve.c, line: 224
 #, c-format
-msgid "%s: Wrong type for argument %d: A real expected.\n"
+msgid "%s: Wrong type for argument #%d: A real expected.\n"
 msgstr ""
 
 #
@@ -317,7 +318,7 @@ msgstr ""
 # File: demos/neldermead/neldermead_rosenbrock.sce, line: 43
 # File: demos/optim/optim_output.sce, line: 42
 # File: demos/optim/optim_rosenbrock.sce, line: 34
-# File: demos/optim/optim_withderivative.sce, line: 44
+# File: demos/optim/optim_withderivative.sce, line: 39
 msgid "No"
 msgstr ""
 
@@ -334,7 +335,7 @@ msgstr ""
 # File: demos/neldermead/neldermead_rosenbrock.sce, line: 43
 # File: demos/optim/optim_output.sce, line: 42
 # File: demos/optim/optim_rosenbrock.sce, line: 34
-# File: demos/optim/optim_withderivative.sce, line: 44
+# File: demos/optim/optim_withderivative.sce, line: 39
 msgid "View Code?"
 msgstr ""
 
@@ -351,7 +352,7 @@ msgstr ""
 # File: demos/neldermead/neldermead_rosenbrock.sce, line: 43
 # File: demos/optim/optim_output.sce, line: 42
 # File: demos/optim/optim_rosenbrock.sce, line: 34
-# File: demos/optim/optim_withderivative.sce, line: 44
+# File: demos/optim/optim_withderivative.sce, line: 39
 msgid "Yes"
 msgstr ""
 
@@ -901,7 +902,6 @@ msgstr ""
 
 #
 # File: macros/bvodeS.sci, line: 30
-# File: macros/fit_dat.sci, line: 80
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
 msgstr ""
@@ -951,10 +951,10 @@ msgid "%s: With hard coded function, user must give output size of G."
 msgstr ""
 
 #
-# File: macros/derivative.sci, line: 39
+# File: macros/derivative.sci, line: 40
 # File: macros/karmarkar.sci, line: 54
 # File: macros/lmisolver.sci, line: 15
-# File: macros/lmitool.sci, line: 15
+# File: macros/numderivative.sci, line: 18
 # File: macros/optimsimplex/optimsimplex_compsomefv.sci, line: 40
 # File: macros/optimsimplex/optimsimplex_computefv.sci, line: 39
 # File: macros/optimsimplex/optimsimplex_new.sci, line: 308
@@ -963,38 +963,40 @@ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 
 #
-# File: macros/derivative.sci, line: 42
+# File: macros/derivative.sci, line: 43
 #, c-format
 msgid "%s: Wrong type for input argument #%d: N-dimensional array expected.\n"
 msgstr ""
 
 #
-# File: macros/derivative.sci, line: 46
+# File: macros/derivative.sci, line: 47
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
 msgstr ""
 
 #
-# File: macros/derivative.sci, line: 51
+# File: macros/derivative.sci, line: 52
 #, c-format
 msgid "%s: Order must be 1, 2 or 4.\n"
 msgstr ""
 
 #
-# File: macros/derivative.sci, line: 62
+# File: macros/derivative.sci, line: 63
+# File: macros/numderivative.sci, line: 131
 #, c-format
 msgid "%s: Q must be orthogonal.\n"
 msgstr ""
 
 #
-# File: macros/derivative.sci, line: 125
+# File: macros/derivative.sci, line: 128
 #, c-format
 msgid ""
 "%s: H_form must be default,blockmat or hypermat, but current H_form=%s\n"
 msgstr ""
 
 #
-# File: macros/derivative.sci, line: 166
+# File: macros/derivative.sci, line: 169
+# File: macros/numderivative.sci, line: 105
 #, c-format
 msgid ""
 "%s: Wrong number of elements in input argument #%d: At least %d elements "
@@ -1002,7 +1004,7 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/derivative.sci, line: 170
+# File: macros/derivative.sci, line: 173
 #, c-format
 msgid ""
 "%s: Wrong type for element #%d in input argument #%d: A function is "
@@ -1010,21 +1012,10 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/derivative.sci, line: 180
+# File: macros/derivative.sci, line: 183
+# File: macros/numderivative.sci, line: 350
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A function expected.\n"
-msgstr ""
-
-#
-# File: macros/fit_dat.sci, line: 83
-#, c-format
-msgid "%s: Weighting matrix must be square.\n"
-msgstr ""
-
-#
-# File: macros/fit_dat.sci, line: 102
-#, c-format
-msgid "%s: Initial guess not feasible.\n"
 msgstr ""
 
 #
@@ -1312,6 +1303,14 @@ msgid "%s: optimal solution found"
 msgstr ""
 
 #
+# File: macros/lmitool.sci, line: 15
+# File: macros/neldermead/fminsearch.sci, line: 26
+# File: macros/optimsimplex/optimsimplex_new.sci, line: 58
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""
+
+#
 # File: macros/lmitool.sci, line: 19
 msgid "Welcome to LMITOOL"
 msgstr ""
@@ -1405,140 +1404,133 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/lmitool.sci, line: 68
+# File: macros/lmitool.sci, line: 59
 msgid "LMI problem name: "
 msgstr ""
 
 #
-# File: macros/lmitool.sci, line: 68
+# File: macros/lmitool.sci, line: 59
 msgid "Names of unknown matrices: "
 msgstr ""
 
 #
-# File: macros/lmitool.sci, line: 69
+# File: macros/lmitool.sci, line: 60
 msgid "Names of data matrices: "
 msgstr ""
 
 #
-# File: macros/lmitool.sci, line: 70
+# File: macros/lmitool.sci, line: 61
 msgid "Problem definition"
 msgstr ""
 
 #
-# File: macros/lmitool.sci, line: 71
+# File: macros/lmitool.sci, line: 62
 msgid "LMITOOL will generate a skeleton of the functions needed"
 msgstr ""
 
 #
-# File: macros/lmitool.sci, line: 72
+# File: macros/lmitool.sci, line: 63
 msgid " (see User's Guide for details). For that, you need to specify:"
 msgstr ""
 
 #
-# File: macros/lmitool.sci, line: 73
+# File: macros/lmitool.sci, line: 64
 msgid "1- Name of your problem which will be given to the solver function,"
 msgstr ""
 
 #
-# File: macros/lmitool.sci, line: 74
+# File: macros/lmitool.sci, line: 65
 msgid "2- Names of unknown matrices or list of unknown matrices,"
 msgstr ""
 
 #
-# File: macros/lmitool.sci, line: 75
+# File: macros/lmitool.sci, line: 66
 msgid "3- Names of data matrices or list of data matrices."
 msgstr ""
 
 #
-# File: macros/lmitool.sci, line: 79
+# File: macros/lmitool.sci, line: 70
 msgid "Try again"
 msgstr ""
 
 #
-# File: macros/lmitool.sci, line: 137
+# File: macros/lmitool.sci, line: 126
 msgid "File not generated by lmitool or badly modified."
 msgstr ""
 
 #
-# File: macros/lmitool.sci, line: 163
+# File: macros/lmitool.sci, line: 152
 msgid "Function definitions: "
 msgstr ""
 
 #
-# File: macros/lmitool.sci, line: 164
+# File: macros/lmitool.sci, line: 153
 msgid "Here is a skeleton of the functions you should edit."
 msgstr ""
 
 #
-# File: macros/lmitool.sci, line: 165
+# File: macros/lmitool.sci, line: 154
 msgid "You can edit in this window or click on 'ok'."
 msgstr ""
 
 #
-# File: macros/lmitool.sci, line: 166
+# File: macros/lmitool.sci, line: 155
 msgid "Save and edit the skeleton later through your favorite editor."
 msgstr ""
 
 #
-# File: macros/lmitool.sci, line: 173
+# File: macros/lmitool.sci, line: 162
 msgid "Name of the file where to save the solver function"
 msgstr ""
 
 #
-# File: macros/lmitool.sci, line: 174
+# File: macros/lmitool.sci, line: 163
 msgid "and the evaluation function"
 msgstr ""
 
 #
-# File: macros/lmitool.sci, line: 175
+# File: macros/lmitool.sci, line: 164
 msgid "(Will overwrite if a file with the same name already exists)."
 msgstr ""
 
 #
-# File: macros/lmitool.sci, line: 178
+# File: macros/lmitool.sci, line: 167
 msgid "functions saved in "
 msgstr ""
 
 #
-# File: macros/lmitool.sci, line: 200
+# File: macros/lmitool.sci, line: 189
 msgid "    To solve your problem, you need to "
 msgstr ""
 
 #
-# File: macros/lmitool.sci, line: 201
+# File: macros/lmitool.sci, line: 190
 msgid "1- edit file "
 msgstr ""
 
 #
-# File: macros/lmitool.sci, line: 202
+# File: macros/lmitool.sci, line: 191
 msgid "2- load (and compile) your functions:"
 msgstr ""
 
 #
-# File: macros/lmitool.sci, line: 204
+# File: macros/lmitool.sci, line: 193
 msgid " and call "
 msgstr ""
 
 #
-# File: macros/lmitool.sci, line: 204
+# File: macros/lmitool.sci, line: 193
 msgid " function:"
 msgstr ""
 
 #
-# File: macros/lmitool.sci, line: 204
+# File: macros/lmitool.sci, line: 193
 msgid "3- Define "
 msgstr ""
 
 #
-# File: macros/lmitool.sci, line: 206
+# File: macros/lmitool.sci, line: 195
 msgid "To check the result, use [LME,LMI,OBJ]="
-msgstr ""
-
-#
-# File: macros/neldermead/fminsearch.sci, line: 26
-# File: macros/optimsimplex/optimsimplex_new.sci, line: 58
-#, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
 
 #
@@ -1713,6 +1705,9 @@ msgstr ""
 
 #
 # File: macros/neldermead/neldermead_configure.sci, line: 299
+# File: macros/numderivative.sci, line: 109
+# File: macros/numderivative.sci, line: 112
+# File: macros/numderivative.sci, line: 115
 # File: macros/optimbase/optimbase_configure.sci, line: 212
 # File: macros/optimsimplex/optimsimplex_new.sci, line: 339
 # File: macros/optimsimplex/optimsimplex_new.sci, line: 346
@@ -1914,7 +1909,76 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/numdiff.sci, line: 26
+# File: macros/numderivative.sci, line: 21
+#, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr ""
+
+#
+# File: macros/numderivative.sci, line: 30
+# File: macros/numderivative.sci, line: 48
+# File: macros/numderivative.sci, line: 92
+# File: macros/numderivative.sci, line: 98
+#, c-format
+msgid "%s: Wrong type for argument #%d: Matrix expected.\n"
+msgstr ""
+
+#
+# File: macros/numderivative.sci, line: 34
+# File: macros/numderivative.sci, line: 54
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
+msgstr ""
+
+#
+# File: macros/numderivative.sci, line: 60
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
+msgstr ""
+
+#
+# File: macros/numderivative.sci, line: 82
+#, c-format
+msgid "%s: Wrong type for argument #%d: Function or list expected.\n"
+msgstr ""
+
+#
+# File: macros/numderivative.sci, line: 88
+#, c-format
+msgid ""
+"%s: Wrong type for argument #%d: Function expected in first element of "
+"list.\n"
+msgstr ""
+
+#
+# File: macros/numderivative.sci, line: 95
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String array expected.\n"
+msgstr ""
+
+#
+# File: macros/numderivative.sci, line: 121
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
+msgstr ""
+
+#
+# File: macros/numderivative.sci, line: 125
+# File: macros/numderivative.sci, line: 128
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set  {%s}.\n"
+msgstr ""
+
+#
+# File: macros/numderivative.sci, line: 203
+# File: macros/numderivative.sci, line: 216
+# File: macros/numderivative.sci, line: 220
+#, c-format
+msgid "%s: Unknown value %s for option %s.\n"
+msgstr ""
+
+#
+# File: macros/numdiff.sci, line: 27
 #, c-format
 msgid ""
 "%s: Hard coded function not allowed, create a Scilab function using call."

@@ -47,7 +47,9 @@
     <refsection>
         <title>Description</title>
         <para> Sets the system property indicated by the specified key.</para>
-        <para> Warning : change property with precaution.</para>
+        <para>
+            <warning>Warning : change property with precaution.</warning>
+        </para>
     </refsection>
     <refsection>
         <title>Examples</title>

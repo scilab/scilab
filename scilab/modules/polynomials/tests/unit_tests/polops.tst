@@ -160,7 +160,7 @@ p1=[1+1.5*s;s**2];
 if norm(coeff(p1'-[p1(1),p1(2)]))>10*%eps then pause,end
 if norm(coeff((-p1)+p1))>10*%eps then pause,end
 if norm(coeff((-p1')+p1'))>10*%eps then pause,end
-// 
+//
 x=[1+s**3; 4];
 p3=p1(1)*x(1)+p1(2)*x(2);
 if norm(coeff(p1'*x-p3))>10*%eps then pause,end
@@ -195,7 +195,7 @@ x=[1.5,1/3];
 p3=[p1(1)*x(1),p1(2)*x(2)];
 if norm(coeff(p1'.*x-p3))>10*%eps then pause,end
 if norm(coeff(x.*p1'-p3))>10*%eps then pause,end
- 
+
 // matrices
 p1=[1+1.5*s,s**2, 0;1 s s+1];
 //
@@ -218,10 +218,10 @@ if norm(coeff(p1*x-p3))>10*%eps then pause,end
 x=5;
 p3=[x*p1(1,1),x*p1(1,2),x*p1(1,3);
     x*p1(2,1),x*p1(2,2),x*p1(2,3)];
- 
+
 if norm(coeff(p1*x-p3))>10*%eps then pause,end
 if norm(coeff(x*p1-p3))>10*%eps then pause,end
- 
+
 //
 x=[1+s**3, 4,-s;0,s+1,10*s**4];
 p3=[p1(1,1)*x(1,1),p1(1,2)*x(1,2),p1(1,3)*x(1,3);
@@ -232,7 +232,7 @@ p3=[p1(1,1)*x(1,1),p1(1,2)*x(1,2),p1(1,3)*x(1,3);
     p1(2,1)*x(2,1),p1(2,2)*x(2,2),p1(2,3)*x(2,3)];
 if norm(coeff(p1.*x-p3))>10*%eps then pause,end
 if norm(coeff(x.*p1-p3))>10*%eps then pause,end
- 
+
 //
 //               real    complex
 //
@@ -276,7 +276,7 @@ x=[1.5,1/3-3*%i];
 p3=[p1(1)*x(1),p1(2)*x(2)];
 if norm(coeff(p1'.*x-p3))>10*%eps then pause,end
 if norm(coeff(x.*p1'-p3))>10*%eps then pause,end
- 
+
 // matrices
 p1=[1+1.5*s,s**2, 0;1 s s+1];
 //
@@ -299,10 +299,10 @@ if norm(coeff(p1*x-p3))>10*%eps then pause,end
 x=5-2*%i;
 p3=[x*p1(1,1),x*p1(1,2),x*p1(1,3);
     x*p1(2,1),x*p1(2,2),x*p1(2,3)];
- 
+
 if norm(coeff(p1*x-p3))>10*%eps then pause,end
 if norm(coeff(x*p1-p3))>10*%eps then pause,end
- 
+
 //
 x=[1+s**3, 4-3*%i,-s;0,s+1,10*s**4];
 p3=[p1(1,1)*x(1,1),p1(1,2)*x(1,2),p1(1,3)*x(1,3);
@@ -356,7 +356,7 @@ x=[1.5,1/3];
 p3=[p1(1)*x(1),p1(2)*x(2)];
 if norm(coeff(conj(p1').*x-p3))>10*%eps then pause,end
 if norm(coeff(x.*conj(p1')-p3))>10*%eps then pause,end
- 
+
 //matrices
 p1=[1+1.5*s,s**2, 0;1 s s+1-%i/3];
 //
@@ -379,10 +379,10 @@ if norm(coeff(p1*x-p3))>10*%eps then pause,end
 x=5;
 p3=[x*p1(1,1),x*p1(1,2),x*p1(1,3);
     x*p1(2,1),x*p1(2,2),x*p1(2,3)];
- 
+
 if norm(coeff(p1*x-p3))>10*%eps then pause,end
 if norm(coeff(x*p1-p3))>10*%eps then pause,end
- 
+
 //
 x=[1+s**3,4,-s;0,s+1,10*s**4];
 p3=[p1(1,1)*x(1,1),p1(1,2)*x(1,2),p1(1,3)*x(1,3);
@@ -436,7 +436,7 @@ x=[1.5+3*%i,1/3];
 p3=[p1(1)*x(1),p1(2)*x(2)];
 if norm(coeff(conj(p1').*x-p3))>10*%eps then pause,end
 if norm(coeff(x.*conj(p1')-p3))>10*%eps then pause,end
- 
+
 //matrices
 p1=[1+1.5*s,s**2, 0;1 s s+1-%i/3];
 //
@@ -459,10 +459,10 @@ if norm(coeff(p1*x-p3))>10*%eps then pause,end
 x=5+8*%i;
 p3=[x*p1(1,1),x*p1(1,2),x*p1(1,3);
     x*p1(2,1),x*p1(2,2),x*p1(2,3)];
- 
+
 if norm(coeff(p1*x-p3))>10*%eps then pause,end
 if norm(coeff(x*p1-p3))>10*%eps then pause,end
- 
+
 //
 x=[1+s**3,4+10*%i,-s;0,s+1,10*s**4+%i*s**3];
 p3=[p1(1,1)*x(1,1),p1(1,2)*x(1,2),p1(1,3)*x(1,3);
@@ -473,7 +473,7 @@ p3=[p1(1,1)*x(1,1),p1(1,2)*x(1,2),p1(1,3)*x(1,3);
     p1(2,1)*x(2,1),p1(2,2)*x(2,2),p1(2,3)*x(2,3)];
 if norm(coeff(p1.*x-p3))>10*%eps then pause,end
 if norm(coeff(x.*p1-p3))>10*%eps then pause,end
- 
+
 //
 //
 //
@@ -539,7 +539,7 @@ pp3=p3;
 pp3(:,4)=p1;if pp3 <> [p3 [0;0;0;0] p1] then pause,end
 pp3=p3;
 pp3(6:9,:)=p3;if pp3 <> [p3;[0 0];p3] then pause,end
- 
+
 //
 p1=[1+3*s;s-%i;2*s;s*4+3*%i*s**2];p2=[0*s 1+s s-1 -s];p3=[p1 p2'];
 pp1=p1;pp2=p2;pp3=p3;
@@ -601,7 +601,7 @@ pp3=p3;
 pp3(:,4)=p1;if pp3 <> [p3 [0;0;0;0] p1] then pause,end
 pp3=p3;
 pp3(6:9,:)=p3;if pp3 <> [p3;[0 0];p3] then pause,end
- 
+
 //
 p1=[1+3*s;s+%i*s**3;2*s;s*4+%i];p2=[0*s-2.5*%i,1+s,s-1+3*%i,-s];
 p3=[p1 conj(p2')];
@@ -693,7 +693,7 @@ if norm(coeff(p3([2 4],[2 1])-[conj(p2([2 4])') p1([2 4])]))>10*%eps
 if norm(coeff(p3(:,1)- p1 ))>10*%eps then pause,end
 if norm(coeff(p3(:,2)- conj(p2') ))>10*%eps then pause,end
 if norm(coeff(p3(1,:)- [p1(1) p2(1)] ))>10*%eps then pause,end
-if norm(coeff(p3([1 4],:)- [p1([1 4]) conj(p2([1 4])')] ))>10*%eps 
+if norm(coeff(p3([1 4],:)- [p1([1 4]) conj(p2([1 4])')] ))>10*%eps
   then pause,end
 if norm(coeff(p3(:,:)- p3 ))>10*%eps then pause,end
 
@@ -717,3 +717,103 @@ assert_checkequal(a, [%s,1]);
 a=1+%s-%s^2;
 b=-a;
 assert_checkequal(b,-1-%s+%s^2);
+
+// polynom == double and double == polynom
+a = 1;
+aa = ones(3,3);
+ac = a + %i;
+aac = aa + aa * %i;
+
+p = 1 + %s * 0;
+pp = ones(3,3) + ones(3,3) * %s * 0;
+pc = p + %i;
+ppc = pp + pp * %i;
+
+// real
+assert_checktrue(a  == p);
+assert_checktrue(aa == p);
+assert_checktrue(a  == pp);
+assert_checktrue(aa == pp);
+assert_checktrue(p  == a);
+assert_checktrue(pp == a);
+assert_checktrue(p  == aa);
+assert_checktrue(pp == aa);
+
+// real complex
+assert_checkfalse(a  == pc);
+assert_checkfalse(aa == pc);
+assert_checkfalse(a  == ppc);
+assert_checkfalse(aa == ppc);
+assert_checkfalse(p  == ac);
+assert_checkfalse(pp == ac);
+assert_checkfalse(p  == aac);
+assert_checkfalse(pp == aac);
+
+// complex real
+assert_checkfalse(ac  == p);
+assert_checkfalse(aac == p);
+assert_checkfalse(ac  == pp);
+assert_checkfalse(aac == pp);
+assert_checkfalse(pc  == a);
+assert_checkfalse(ppc == a);
+assert_checkfalse(pc  == aa);
+assert_checkfalse(ppc == aa);
+
+//complex
+assert_checktrue(ac  == pc);
+assert_checktrue(aac == pc);
+assert_checktrue(ac  == ppc);
+assert_checktrue(aac == ppc);
+assert_checktrue(pc  == ac);
+assert_checktrue(ppc == ac);
+assert_checktrue(pc  == aac);
+assert_checktrue(ppc == aac);
+
+// not all equal
+// real
+aa(2) = 2;
+expected = ones(3,3) == 1;
+expected(2) = %f;
+
+assert_checkequal(expected, aa  == p);
+assert_checkequal(expected, pp  == aa);
+assert_checkequal(expected, p   == aa);
+assert_checkequal(expected, aa  == pp);
+assert_checkequal(expected, pp  == aa);
+
+pp(4) = %s;
+pp(6) = 2;
+expected = ones(3,3) == 1;
+expected(4) = %f;
+expected(6) = %f;
+expected2 = expected;
+expected2(2) = %f;
+
+assert_checkequal(expected, a   == pp);
+assert_checkequal(expected, pp  == a);
+assert_checkequal(expected2, aa == pp);
+assert_checkequal(expected2, pp == aa);
+
+// complex
+aac(2) = 2;
+expected = ones(3,3) == 1;
+expected(2) = %f;
+
+assert_checkequal(expected, aac  == pc);
+assert_checkequal(expected, ppc  == aac);
+assert_checkequal(expected, pc   == aac);
+assert_checkequal(expected, aac  == ppc);
+assert_checkequal(expected, ppc  == aac);
+
+ppc(4) = %s;
+ppc(6) = 2;
+expected = ones(3,3) == 1;
+expected(4) = %f;
+expected(6) = %f;
+expected2 = expected;
+expected2(2) = %f;
+
+assert_checkequal(expected, ac   == ppc);
+assert_checkequal(expected, ppc  == ac);
+assert_checkequal(expected2, aac == ppc);
+assert_checkequal(expected2, ppc == aac);

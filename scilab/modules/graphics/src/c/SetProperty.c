@@ -133,6 +133,48 @@ int sciSetMarkSize(int iObjUID, int marksize)
     return -1;
 }
 
+int sciSetMarkOffset(int iObjUID, int offset)
+{
+    if (offset < 0)
+    {
+        Scierror(999, _("The mark offset must be greater or equal than %d.\n"), 0);
+        return -1;
+    }
+    else
+    {
+        BOOL status = setGraphicObjectProperty(iObjUID, __GO_MARK_OFFSET__, &offset, jni_int, 1);
+
+        if (status == TRUE)
+        {
+            return 0;
+        }
+    }
+
+    printSetGetErrorMessage("mark_offset");
+    return -1;
+}
+
+int sciSetMarkStride(int iObjUID, int stride)
+{
+    if (stride < 1)
+    {
+        Scierror(999, _("The mark stride must be greater or equal than %d.\n"), 1);
+        return -1;
+    }
+    else
+    {
+        BOOL status = setGraphicObjectProperty(iObjUID, __GO_MARK_STRIDE__, &stride, jni_int, 1);
+
+        if (status == TRUE)
+        {
+            return 0;
+        }
+    }
+
+    printSetGetErrorMessage("mark_stride");
+    return -1;
+}
+
 /**sciSetText
  * Sets the Text in TEXT, TITLE or LEGEND
  * @param char * pobjUID: the pointer to the entity
@@ -182,36 +224,6 @@ int
 sciSetDefaultValues (void)
 {
     // FIXME : To be removed
-    return 0;
-}
-
-/**sciSetSelectedSubWin
- * Determines wich SubWin is selected or not. WARNING TO BE DEFINED.
- * It has been adapted to the MVC. Its should be implemented entirely
- * within the MVC (as the setGraphicObjectRelationship function).
- * @param char * psubwinobj: the pointer to the entity sub window
- * @return 0 if OK or -1 if NOT OK
- */
-int
-sciSetSelectedSubWin (int iObjUID)
-{
-    int iType = -1;
-    int *piType = &iType;
-    int iParent = 0;
-    int* piParent = &iParent;
-
-    getGraphicObjectProperty(iObjUID, __GO_TYPE__, jni_int, (void **)&piType);
-
-    /* Check that the object is an AXES */
-    if (iType != __GO_AXES__)
-    {
-        Scierror(999, _("Handle is not a SubWindow.\n"));
-        return -1;
-    }
-
-    iParent = getParentObject(iObjUID);
-    setGraphicObjectProperty(iParent, __GO_SELECTED_CHILD__, &iObjUID, jni_int, 1);
-
     return 0;
 }
 

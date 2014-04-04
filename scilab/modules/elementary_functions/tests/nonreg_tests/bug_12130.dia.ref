@@ -1,0 +1,61 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2014 - Scilab Enterprises - Paul Bignier
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+//
+// <-- CLI SHELL MODE -->
+//
+// <-- Non-regression test for bug 12130 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=12130
+//
+// <-- Short Description -->
+// flipdim can now flip an input by blocks.
+//---------------------------------------------------
+// Double type
+x = [0 1 2 3 4 5 6 7 8 9 10 11];
+x = [x ; x];
+ref1 = [11 10 9 8 7 6 5 4 3 2 1 0];
+ref1 = [ref1 ; ref1];
+y = flipdim(x, 2); // Present action.
+assert_checkequal(y, ref1);
+ref2 = [10 11   8 9   6 7   4 5   2 3   0 1];
+ref2 = [ref2 ; ref2];
+y = flipdim(x, 2, 2); // Block size = 2.
+assert_checkequal(y, ref2);
+ref3 = [9 10 11   6 7 8   3 4 5   0 1 2];
+ref3 = [ref3 ; ref3];
+y = flipdim(x, 2, 3);
+assert_checkequal(y, ref3);
+ref4 = [8 9 10 11   4 5 6 7   0 1 2 3];
+ref4 = [ref4 ; ref4];
+y = flipdim(x, 2, 4);
+assert_checkequal(y, ref4);
+ref5 = [6 7 8 9 10 11   0 1 2 3 4 5];
+ref5 = [ref5 ; ref5];
+y = flipdim(x, 2, 6);
+assert_checkequal(y, ref5);
+//---------------------------------------------------
+// String type
+x = string(x);
+ref1 = string(ref1);
+y = flipdim(x, 2); // Present action.
+assert_checkequal(y, ref1);
+ref2 = string(ref2);
+y = flipdim(x, 2, 2); // Block size = 2.
+assert_checkequal(y, ref2);
+ref3 = string(ref3);
+y = flipdim(x, 2, 3);
+assert_checkequal(y, ref3);
+ref4 = string(ref4);
+y = flipdim(x, 2, 4);
+assert_checkequal(y, ref4);
+ref5 = string(ref5);
+y = flipdim(x, 2, 6);
+assert_checkequal(y, ref5);
+// Error checks
+refMsg = msprintf(_("%s: Wrong value for input argument #%d: A divisor of the selected dimension size expected.\n"), "flipdim", 3);
+assert_checkerror("y = flipdim(x, 2, 5)", refMsg); // size(x) = [2 12] and 5 does not divide 12.

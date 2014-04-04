@@ -51,6 +51,11 @@ AC_CHECK_LIB([xml2], [xmlReaderForFile],
                [],
                [AC_MSG_ERROR([libxml2 : library missing. (Cannot find symbol xmlReaderForFile). Check if libxml2 is installed and if the version is correct])]
                )
+AC_CHECK_LIB([xml2], [xmlBufferDetach],
+               [],
+               [AC_MSG_ERROR([libxml2 : library missing. (Cannot find symbol xmlBufferDetach). Check if libxml2 is installed and if the version is correct])]
+               )
+
 #AC_CHECK_HEADERS([libxml/xmlreader.h])
 #AC_CHECK_HEADERS([libxml/parser.h])
 #AC_CHECK_HEADERS([libxml/tree.h])

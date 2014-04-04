@@ -13,17 +13,75 @@
 
 package org.scilab.modules.graphic_objects.graphicObject;
 
-import org.scilab.modules.graphic_objects.ObjectRemovedException;
-import org.scilab.modules.graphic_objects.axes.Axes;
-import org.scilab.modules.graphic_objects.figure.Figure;
-import org.scilab.modules.graphic_objects.graphicController.GraphicController;
-import org.scilab.modules.graphic_objects.legend.Legend;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_ARC__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AXESMODEL__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AXES__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AXIS__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CALLBACKTYPE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CALLBACK__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHAMP__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHILDREN_COUNT__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHILDREN__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_COMPOUND__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DATATIP__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DATA_MODEL__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FAC3D__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FEC__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FIGUREMODEL__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FIGURE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_GRAYPLOT__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_HAS_LEGEND_CHILD__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_HIDDEN__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_LABEL__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_LEGEND_CHILD__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_LEGEND__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_LIGHT__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_MATPLOT__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_PARENT_AXES__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_PARENT_FIGURE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_PARENT__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_PLOT3D__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_POLYLINE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_PROGRESSIONBAR__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_RECTANGLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_REFERENCED__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_SEGS__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_SELECTED_CHILD__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TAG__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TEXT__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TYPE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UICONTEXTMENU__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UIMENU__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_CHECKBOX__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_EDIT__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FRAME_BORDER__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FRAME_SCROLLABLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_FRAME__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_IMAGE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LAYER__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_LISTBOX__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_POPUPMENU__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_PUSHBUTTON__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_RADIOBUTTON__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SLIDER__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SPINNER__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TABLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TAB__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TEXT__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VALID__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VISIBLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_WAITBAR__;
 
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
+import org.scilab.modules.graphic_objects.ObjectRemovedException;
+import org.scilab.modules.graphic_objects.axes.Axes;
+import org.scilab.modules.graphic_objects.figure.Figure;
+import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+import org.scilab.modules.graphic_objects.legend.Legend;
+import org.scilab.modules.graphic_objects.uicontrol.frame.Frame;
 
 /**
  * GraphicObject class
@@ -43,13 +101,13 @@ public abstract class GraphicObject implements Cloneable {
 
     /** Graphic objects types */
     public enum Type { ARC, AXES, AXESMODEL, AXIS, CHAMP, COMPOUND, FAC3D, FEC, FIGURE, FIGUREMODEL, GRAYPLOT,
-                       LABEL, LEGEND, MATPLOT, PLOT3D, POLYLINE, RECTANGLE, SEGS, TEXT, CHECKBOX, EDIT, FRAME,
+                       LABEL, LEGEND, MATPLOT, PLOT3D, POLYLINE, RECTANGLE, SEGS, TEXT, CHECKBOX, EDIT, SPINNER, FRAME,
                        IMAGE, LISTBOX, POPUPMENU, PUSHBUTTON, RADIOBUTTON, CONSOLE, JAVACONSOLE, SLIDER, TABLE, UITEXT, UIMENU, UIMENUMODEL,
-                       PROGRESSIONBAR, WAITBAR, UICONTEXTMENU, DATATIP, LIGHT, UNKNOWNOBJECT
+                       PROGRESSIONBAR, WAITBAR, UICONTEXTMENU, DATATIP, LIGHT, TABGROUP, TAB, LAYER, BORDER, FRAME_SCROLLABLE, UNKNOWNOBJECT
                      };
 
     /** GraphicObject properties */
-    public enum GraphicObjectPropertyType { PARENT, CHILDREN, CHILDREN_COUNT, HIDDEN, VISIBLE, USERDATA, USERDATASIZE, TYPE, REFERENCED, VALID, DATA,
+    public enum GraphicObjectPropertyType { PARENT, CHILDREN, CHILDREN_COUNT, HIDDEN, VISIBLE, TYPE, REFERENCED, VALID, DATA,
                                             PARENT_FIGURE, PARENT_AXES, HASLEGENDCHILD, LEGENDCHILD, SELECTEDCHILD, TAG, CALLBACK, CALLBACKTYPE, UNKNOWNPROPERTY
                                           };
 
@@ -74,9 +132,6 @@ public abstract class GraphicObject implements Cloneable {
     /** Specifies if the "handle" is hidden, i.e not listed as children in Scilab view */
     private boolean hidden;
 
-    /** User data */
-    private Integer[] userData;
-
     /** Tag */
     private String tag;
 
@@ -97,7 +152,6 @@ public abstract class GraphicObject implements Cloneable {
         parent = 0;
         children = new LinkedList<Integer>();
         visible = true;
-        userData = null;
         valid = true;
         referenced = false;
         selectedChild = 0;
@@ -192,6 +246,8 @@ public abstract class GraphicObject implements Cloneable {
                 return Type.CHECKBOX;
             case __GO_UI_EDIT__ :
                 return Type.EDIT;
+            case __GO_UI_SPINNER__ :
+                return Type.SPINNER;
             case __GO_UI_FRAME__ :
                 return Type.FRAME;
             case __GO_UI_IMAGE__ :
@@ -222,6 +278,14 @@ public abstract class GraphicObject implements Cloneable {
                 return Type.DATATIP;
             case __GO_LIGHT__ :
                 return Type.LIGHT;
+            case __GO_UI_TAB__ :
+                return Type.TAB;
+            case __GO_UI_LAYER__ :
+                return Type.LAYER;
+            case __GO_UI_FRAME_BORDER__ :
+                return Type.BORDER;
+            case __GO_UI_FRAME_SCROLLABLE__ :
+                return Type.FRAME_SCROLLABLE;
             default :
                 return Type.UNKNOWNOBJECT;
         }
@@ -244,10 +308,6 @@ public abstract class GraphicObject implements Cloneable {
                 return GraphicObjectPropertyType.HIDDEN;
             case __GO_VISIBLE__ :
                 return GraphicObjectPropertyType.VISIBLE;
-            case __GO_USER_DATA__ :
-                return GraphicObjectPropertyType.USERDATA;
-            case __GO_USER_DATA_SIZE__ :
-                return GraphicObjectPropertyType.USERDATASIZE;
             case __GO_REFERENCED__ :
                 return GraphicObjectPropertyType.REFERENCED;
             case __GO_VALID__ :
@@ -302,10 +362,6 @@ public abstract class GraphicObject implements Cloneable {
                 return isHidden();
             case VISIBLE:
                 return getVisible();
-            case USERDATA:
-                return getUserData();
-            case USERDATASIZE:
-                return getUserDataSize();
             case PARENT_FIGURE:
                 return getParentFigure();
             case PARENT_AXES:
@@ -361,11 +417,6 @@ public abstract class GraphicObject implements Cloneable {
             case VISIBLE:
                 setVisible((Boolean) value);
                 break;
-            case USERDATA:
-                setUserData((Integer[]) value);
-                break;
-            case USERDATASIZE:
-                return UpdateStatus.Fail;
             case SELECTEDCHILD:
                 setSelectedChild((Integer) value);
                 break;
@@ -488,32 +539,6 @@ public abstract class GraphicObject implements Cloneable {
     }
 
     /**
-     * @return the userData
-     */
-    public Object getUserData() {
-        return userData;
-    }
-
-    /**
-     * @param userData the userData to set
-     * @return TODO
-     */
-    public UpdateStatus setUserData(Integer[] userData) {
-        this.userData = userData;
-        return UpdateStatus.Success;
-    }
-
-    /**
-     * @return the userDataSize
-     */
-    public Integer getUserDataSize() {
-        if (userData != null) {
-            return userData.length;
-        }
-        return 0;
-    }
-
-    /**
      * @return the tag
      */
     public String getTag() {
@@ -525,6 +550,10 @@ public abstract class GraphicObject implements Cloneable {
      * @return TODO
      */
     public UpdateStatus setTag(String tag) {
+        if (this.tag.equals(tag)) {
+            return UpdateStatus.NoChange;
+        }
+
         this.tag = tag;
         return UpdateStatus.Success;
     }
@@ -571,14 +600,35 @@ public abstract class GraphicObject implements Cloneable {
     public Integer getParentFigure() {
         if (this instanceof Figure) {
             return getIdentifier();
-        } else {
-            if (getParent() != 0 && GraphicController.getController().getObjectFromId(getParent()) != null) {
-                return GraphicController.getController().getObjectFromId(getParent()).getParentFigure();
-            } else {
-                /* No parent Figure found */
-                return 0;
-            }
         }
+
+        if (getParent() != 0 && GraphicController.getController().getObjectFromId(getParent()) != null) {
+            return GraphicController.getController().getObjectFromId(getParent()).getParentFigure();
+        }
+
+        /* No parent Figure found */
+        return 0;
+    }
+
+    /**
+     * Get parent Figure method
+     * Returns the identifier of the object's parent Figure
+     * If the object is a Figure, then returns its own identifier.
+     * To be done: use a member variable storing the up-to-date current parent Figure,
+     * returned instead of recursively ascending the hierarchy at each call.
+     * @return the parent Figure identifier
+     */
+    public Integer getParentFrameOrFigure() {
+        if (this instanceof Figure || this instanceof Frame) {
+            return getIdentifier();
+        }
+
+        if (getParent() != 0 && GraphicController.getController().getObjectFromId(getParent()) != null) {
+            return GraphicController.getController().getObjectFromId(getParent()).getParentFrameOrFigure();
+        }
+
+        /* No parent Figure nor Frame found */
+        return 0;
     }
 
     /**
@@ -673,6 +723,10 @@ public abstract class GraphicObject implements Cloneable {
      * @return TODO
      */
     public UpdateStatus setVisible(Boolean visible) {
+        if (this.visible == visible) {
+            return UpdateStatus.NoChange;
+        }
+
         this.visible = visible;
         return UpdateStatus.Success;
     }

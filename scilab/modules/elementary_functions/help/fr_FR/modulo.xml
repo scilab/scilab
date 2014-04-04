@@ -3,7 +3,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * Copyright (C) 2013 - Samuel GOUGEON
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
@@ -31,7 +31,7 @@
             <varlistentry>
                 <term>m, n</term>
                 <listitem>
-                    <para>Scalaire, vecteur, matrice ou hypermatrice d'entiers encodés, de décimaux réels ou de polynômes (les hypermatrices de polynômes ne sont pas admises). 
+                    <para>Scalaire, vecteur, matrice ou hypermatrice d'entiers encodés, de décimaux réels ou de polynômes (les hypermatrices de polynômes ne sont pas admises).
                         <varname>m</varname> et <varname>n</varname> doivent être de même type. S'ils sont de types entiers, il peuvent être d'encodages distincts (par exemple int8 et int16) Si aucune des deux n'est scalaire, elles doivent avoir les mêmes dimensions.
                     </para>
                 </listitem>
@@ -66,7 +66,7 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 n = [1,2,10,15];
 m = [2,2,3,5];
 modulo(n,m)
@@ -108,6 +108,9 @@ pmodulo(%z^2+1, %z)
     <refsection role= "see also">
         <title>Voir aussi</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="unwrap">unwrap</link>
+            </member>
             <member>
                 <link linkend="ieee">ieee</link>
             </member>

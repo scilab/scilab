@@ -12,11 +12,11 @@
 
 package org.scilab.modules.scinotes.actions;
 
+import javax.swing.JButton;
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.scinotes.SciNotes;
 
 /**
@@ -44,12 +44,7 @@ public final class HelpAction extends DefaultAction {
      * doAction
      */
     public void doAction() {
-        String selection = getEditor().getTextPane().getSelectedText();
-        if (selection == null || selection.equals("")) {
-            InterpreterManagement.requestScilabExec("help('scinotes')");
-        } else {
-            InterpreterManagement.requestScilabExec("help('" + selection + "')");
-        }
+        InterpreterManagement.requestScilabExec("help('scinotes')");
     }
 
     /**
@@ -70,7 +65,7 @@ public final class HelpAction extends DefaultAction {
      * @param editor SciNotes
      * @return PushButton
      */
-    public static PushButton createButton(String tooltip, String icon, SciNotes editor) {
+    public static JButton createButton(String tooltip, String icon, SciNotes editor) {
         return createButton(tooltip, icon, new HelpAction(tooltip, editor));
     }
 }

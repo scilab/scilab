@@ -13,10 +13,18 @@
 #include "noscinotes.h"
 #include "Scierror.h"
 #include "localization.h"
+#include "sci_mode.h"
 /*--------------------------------------------------------------------------*/
 int gw_scinotes(void)
 {
-    Scierror(999, _("Scilab '%s' module not installed.\n"), "scinotes");
+    if (getScilabMode() == SCILAB_NWNI)
+    {
+        Scierror(999, _("Scilab '%s' module disabled in -nogui or -nwni mode.\n"), "scinotes");
+    }
+    else
+    {
+        Scierror(999, _("Scilab '%s' module not installed.\n"), "scinotes");
+    }
     return 0;
 }
 /*--------------------------------------------------------------------------*/

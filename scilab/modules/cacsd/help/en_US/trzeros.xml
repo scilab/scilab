@@ -96,8 +96,10 @@
             calculated as the roots of the determinant of the system matrix.
         </para>
         <para>
-            Caution: the computed zeros are not always reliable, in particular
-            in case of repeated zeros.
+            <warning>
+                Caution: the computed zeros are not always reliable, in particular
+                in case of repeated zeros.
+            </warning>
         </para>
     </refsection>
     <refsection>

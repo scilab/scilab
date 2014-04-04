@@ -8,17 +8,18 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-12-07 08:20+0000\n"
+"PO-Revision-Date: 2014-03-29 18:24+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 16967)\n"
 "Language: uk\n"
 
-msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
-msgstr "Графічний модуль Scilab у режимах -nogui і -nwni вимкнено.\n"
+#, c-format
+msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
+msgstr "Модуль «%s» Scilab у режимі -nogui або -nwni вимкнено.\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
@@ -76,8 +77,9 @@ msgstr ""
 "число.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: A real expected.\n"
-msgstr "%s: помилковий тип аргументу %d: мало бути використано ціле число.\n"
+msgid "%s: Wrong type for argument #%d: A real expected.\n"
+msgstr ""
+"%s: помилковий тип параметра №%d: мало бути використано дійсне число.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Real scalar expected.\n"
@@ -92,10 +94,16 @@ msgstr ""
 "керування «Text».\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A 'Text' handle expected.\n"
+msgid "%s: Wrong type for input argument #%d: A ''%s'' handle expected.\n"
 msgstr ""
-"%s: помилкова розмірність вхідного параметра №%d: мав бути елемент керування "
-"«Text».\n"
+"%s: помилковий тип вхідного параметра №%d: мало бути використано елемент "
+"керування «%s».\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A ''%s'' handle expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: мало бути вказано елемент "
+"керування «%s».\n"
 
 #, c-format
 msgid "%s: The handle is not valid.\n"
@@ -112,6 +120,18 @@ msgid ""
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати двовимірний "
 "вектор рядків.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real vector 1x3 expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real vector nx3 expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be between 0.0 and 1.0.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
@@ -132,6 +152,35 @@ msgstr ""
 msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
 msgstr ""
 "%s: помилкові розмірності вхідних параметрів: несумісні розмірності.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d або %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+"«string».\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A known color expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: мало бути вказано відомий "
+"колір.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
+"дійсне число.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати значення "
+"у інтервалі [%s, %s].\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
@@ -164,25 +213,6 @@ msgid "A Label object cannot be deleted.\n"
 msgstr "Об’єкти типу «Label» не можна вилучати.\n"
 
 #, c-format
-msgid "%s: Function %s is obsolete.\n"
-msgstr "%s: функція %s є застрарілою.\n"
-
-msgid "Warning"
-msgstr "Попередження"
-
-#, c-format
-msgid "%s: Please see documentation for more details.\n"
-msgstr "%s: докладніші відомості можна знайти у документації.\n"
-
-#, c-format
-msgid ""
-"%s: This function will be permanently removed in Scilab %s\n"
-"\n"
-msgstr ""
-"%s: цю функцію буде назавжди вилучено у Scilab %s\n"
-"\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d: %d expected.\n"
 msgstr "%s: помилкова розмірність вхідного параметра №%d: мало бути %d.\n"
 
@@ -203,14 +233,16 @@ msgstr ""
 "%d.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати одинарне "
-"значення типу «string».\n"
+msgid "%s: Wrong type for argument #%d: Single string expected.\n"
+msgstr "%s: помилковий тип параметра №%d: слід було вказати один рядок.\n"
 
 #, c-format
-msgid "%s: Could not read property '%s' for root object.\n"
-msgstr "%s: не вдалося прочитати властивість «%s» для кореневого об’єкта.\n"
+msgid "%s: Could not read property '%s' for console object.\n"
+msgstr "%s: не вдалося прочитати властивість «%s» об’єкта консолі.\n"
+
+#, c-format
+msgid "%s: Unable to get useful path from this handle.\n"
+msgstr "%s: не вдалося отримати корисний шлях з цього елемента керування.\n"
 
 #, c-format
 msgid "%s: Each handle should not appear twice.\n"
@@ -247,11 +279,6 @@ msgid "%s: Cannot get the data type.\n"
 msgstr "%s: не вдалося визначити тип даних.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: A real expected.\n"
-msgstr ""
-"%s: помилковий тип параметра №%d: мало бути використано дійсне число.\n"
-
-#, c-format
 msgid "%s: Cannot get the integer type for argument #%d.\n"
 msgstr "%s: не вдалося отримати тип цілого числа для параметра №%d.\n"
 
@@ -270,10 +297,10 @@ msgid "%s: Cannot get the hypermatrix data type for argument #%d.\n"
 msgstr "%s: не вдалося отримати тип даних гіперматриці для параметра №%d.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: A real or integer expected.\n"
+msgid "%s: Wrong type for argument #%d: A real or integer expected.\n"
 msgstr ""
-"%s: помилковий тип параметра %d: мало бути використано тип дійсного або "
-"цілого числа.\n"
+"%s: помилковий тип параметра №%d: мало бути використано дійсний або цілий "
+"тип.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
@@ -286,6 +313,25 @@ msgid "%s: Wrong type for input argument #%d: Vector %s or %s expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати тип вектора "
 "%s або %s.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: мало бути використано рядковий "
+"тип.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A graphic handle expected.\n"
+msgstr ""
+"%s: помилковий розмір вхідного параметра №%d: слід використовувати елемент "
+"керування графічним об’єктом.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A '%s' or '%s' handle expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати елемент "
+"керування «%s» або «%s».\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: List of size %d expected.\n"
@@ -370,6 +416,25 @@ msgstr ""
 "%s: помилкові розмірності вхідних параметрів №%d та №%d: мало бути %s.\n"
 
 #, c-format
+msgid "%s: Function %s is obsolete.\n"
+msgstr "%s: функція %s є застрарілою.\n"
+
+msgid "Warning"
+msgstr "Попередження"
+
+#, c-format
+msgid "%s: Please see documentation for more details.\n"
+msgstr "%s: докладніші відомості можна знайти у документації.\n"
+
+#, c-format
+msgid ""
+"%s: This function will be permanently removed in Scilab %s\n"
+"\n"
+msgstr ""
+"%s: цю функцію буде назавжди вилучено у Scilab %s\n"
+"\n"
+
+#, c-format
 msgid "%s: Handles must be relocated under a single parent.\n"
 msgstr ""
 "%s: елементи керування мають належати одному батьківському елементу.\n"
@@ -383,9 +448,9 @@ msgstr ""
 "елемент керування «Figure» або «Axes».\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
 msgstr ""
-"%s: помилковий тип аргументу %d: мало бути використано матрицю з булевих "
+"%s: помилковий тип параметра %d: слід використовувати матрицю булівських "
 "значень.\n"
 
 #, c-format
@@ -433,16 +498,6 @@ msgstr ""
 "«boolean».\n"
 
 #, c-format
-msgid "%s: Can not get type of input argument #%d.\n"
-msgstr "%s: не вдалося визначити тип вхідного параметра №%d.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A single handle expected.\n"
-msgstr ""
-"%s: помилкова розмірність вхідного параметра №%d: мало бути вказано єдиний "
-"елемент керування.\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
 msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: слід використовувати одинарний "
@@ -455,16 +510,33 @@ msgstr ""
 "з рядків.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: String or handle expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати рядок або "
-"елемент керування.\n"
-
-#, c-format
 msgid "%s: Wrong value for input argument #%d: a valid property expected.\n"
 msgstr ""
 "%s: помилкове значення для вхідного параметра №%d. Мала бути коректна "
 "властивість.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s) : an odd number is expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: мало бути використано непарну "
+"кількість.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A handle or a string expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: мало бути вказано елемент "
+"керування або рядок.\n"
+
+#, c-format
+msgid "%s: Unable to find handle for path %s.\n"
+msgstr "%s: не вдалося знайти елемент керування для контуру %s.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A single handle expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: мало бути вказано єдиний "
+"елемент керування.\n"
 
 #, c-format
 msgid ""
@@ -494,6 +566,12 @@ msgstr "%s: елемент керування «%s» не існує.\n"
 msgid "%s: Routine can only swap two single handles.\n"
 msgstr ""
 "%s: процедура може поміняти місцями лише два окремих елементи керування.\n"
+
+#, c-format
+msgid "%s: Handles do not have the same parent type neither the same type.\n"
+msgstr ""
+"%s: елементи не мають спільного батьківського типу і не належать до одного "
+"типу.\n"
 
 #, c-format
 msgid "%s: Object must be a Compound.\n"
@@ -544,6 +622,14 @@ msgstr ""
 "булівських значень.\n"
 
 #, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A real scalar or a row vector "
+"expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: мало бути використано дійсне "
+"число або вектор-рядок.\n"
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d: A valid fontname expected.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати коректну "
@@ -556,12 +642,6 @@ msgstr ""
 "невід’ємне ціле число.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr ""
-"%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
-"дійсне число.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: Non-negative int expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід було вказувати невід’ємне "
@@ -572,10 +652,6 @@ msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати «%s» або "
 "«%s».\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
-msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d або %d.\n"
 
 #, c-format
 msgid "%s: Incompatible length for input arguments #%d and #%d.\n"
@@ -668,17 +744,8 @@ msgstr ""
 msgid "%s: Error on input argument #%d: Specified bounds are not correct.\n"
 msgstr "%s: помилка у вхідному параметрі №%d: вказано помилкові межі.\n"
 
-msgid "The parent has to be a FIGURE\n"
-msgstr "Батьківським елементом має бути FIGURE\n"
-
 msgid "The parent has to be a SUBWIN\n"
 msgstr "Батьківським елементом має бути SUBWIN\n"
-
-msgid "Width and height must be positive.\n"
-msgstr "Значення ширини і висоти мають бути додатними.\n"
-
-msgid "Impossible case when building axis\n"
-msgstr "Побудувати вісі не вдалося\n"
 
 #, c-format
 msgid "%s is only made to compute level curves and not display them.\n"
@@ -775,8 +842,13 @@ msgstr ""
 "Помилкове значення властивості «%s»: значення має бути більшим або рівним "
 "%d.\n"
 
-msgid "Handle is not a SubWindow.\n"
-msgstr "Елемент керування не є SubWindow.\n"
+#, c-format
+msgid "The mark offset must be greater or equal than %d.\n"
+msgstr "Відступ позначки має бути більшим або рівним %d.\n"
+
+#, c-format
+msgid "The mark stride must be greater or equal than %d.\n"
+msgstr "Крок позначки має бути більшим або рівним %d.\n"
 
 #, c-format
 msgid "Number of columns must be %d (%d if %s coordinate).\n"
@@ -968,6 +1040,10 @@ msgstr ""
 "кольорів буде обрізано.\n"
 
 #, c-format
+msgid "Wrong type for '%s' property: A '%s' expected.\n"
+msgstr "Помилковий тип значення властивості «%s»: мало бути вказано «%s».\n"
+
+#, c-format
 msgid "Wrong type for '%s' property: Handle expected.\n"
 msgstr ""
 "Помилковий тип значення властивості «%s»: слід використовувати елемент "
@@ -994,6 +1070,12 @@ msgstr ""
 #, c-format
 msgid "'%s' handle does not or no longer exists.\n"
 msgstr "Елемента керування «%s» не існує.\n"
+
+#, c-format
+msgid "Wrong value for '%s' property: A '%s' handle expected.\n"
+msgstr ""
+"Помилкове значення властивості «%s»: мало бути використано елемент керування "
+"«%s».\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: Real or '%s' handle expected.\n"
@@ -1134,6 +1216,15 @@ msgstr ""
 "визначають лінію (тобто має дорівнювати %d або %d).\n"
 
 #, c-format
+msgid "'%s' has already been set.\n"
+msgstr "«%s» вже було встановлено.\n"
+
+#, c-format
+msgid "Wrong value for '%s' property: %s, %s or %s expected.\n"
+msgstr ""
+"Помилкове значення властивості «%s»: мало бути вказано %s, %s або %s.\n"
+
+#, c-format
 msgid "Wrong value for '%s' property: 'directional' or 'point' expected.\n"
 msgstr ""
 "Помилкове значення властивості «%s»: значеннями можуть бути лише "
@@ -1151,6 +1242,12 @@ msgstr "0 буде вилучено після випуску версії Scila
 
 msgid "Please use 1 instead."
 msgstr "Будь ласка, скористайтеся 1."
+
+#, c-format
+msgid "Wrong value for '%s' property: Must be between %d and %d.\n"
+msgstr ""
+"Помилкове значення властивості «%s»: слід використовувати значення у межах "
+"від %d до %d.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: Graphic handle array expected.\n"
@@ -1189,12 +1286,6 @@ msgstr ""
 "логарифмічного режиму.\n"
 
 #, c-format
-msgid "Wrong value for '%s' property: Must be between %d and %d.\n"
-msgstr ""
-"Помилкове значення властивості «%s»: слід використовувати значення у межах "
-"від %d до %d.\n"
-
-#, c-format
 msgid "Wrong type for '%s' property: '%s' handle or '%s' handle expected.\n"
 msgstr ""
 "Помилковий тип значення властивості «%s»: слід використовувати елемент "
@@ -1219,6 +1310,13 @@ msgstr ""
 msgid "Wrong type for '%s' property: A string expected.\n"
 msgstr ""
 "Помилковий тип властивості «%s»: слід використовувати тип «string».\n"
+
+#, c-format
+msgid ""
+"Wrong size for '%s' property: At most %d columns and %d rows expected.\n"
+msgstr ""
+"Помилкова розмірність значення властивості «%s»: мало бути не більше %d "
+"стовпчиків і не більше %d рядків.\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: At least %d elements expected.\n"
@@ -1254,8 +1352,12 @@ msgstr "%s: вектор x не є монотонним.\n"
 msgid "%s: y vector is not monotonous.\n"
 msgstr "%s: вектор y не є монотонним.\n"
 
-msgid "Scilab Graphics module not installed.\n"
-msgstr "Графічний модуль Scilab не встановлено.\n"
+msgid "Impossible case when building axis\n"
+msgstr "Побудувати вісі не вдалося\n"
+
+#, c-format
+msgid "Scilab '%s' module not installed.\n"
+msgstr "Модуль «%s» Scilab не встановлено.\n"
 
 msgid "Press Return to continue ... \n"
 msgstr "Натисніть Enter, щоб продовжити… \n"
@@ -1287,8 +1389,8 @@ msgstr "Креслення з 3 різними масштабами за Y і с
 msgid "Common X axis"
 msgstr "Загальна вісь X"
 
-msgid "Scale n1"
-msgstr "Масштаб n1"
+msgid "Scale #1"
+msgstr "Шкала 1"
 
 msgid ""
 "Please press enter into the Scilab console to see more polarplot examples"
@@ -1388,6 +1490,21 @@ msgstr "Інше"
 msgid "Colormap"
 msgstr "Карта кольорів"
 
+msgid "Matplot"
+msgstr "Matplot"
+
+msgid "Classical Matplot"
+msgstr "Класичний Matplot"
+
+msgid "Classical Matplot1"
+msgstr "Класичний Matplot1"
+
+msgid "Java Image"
+msgstr "Зображення Java"
+
+msgid "Mandelbrot"
+msgstr "Мандельброт"
+
 msgid "Jet"
 msgstr "Агат"
 
@@ -1429,6 +1546,10 @@ msgstr "Океан"
 
 msgid "White"
 msgstr "Білий"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s: помилковий тип вхідного параметра №%d.\n"
 
 #, c-format
 msgid ""
@@ -1533,12 +1654,6 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати структуру "
-"даних %s.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: a real scalar expected.\n"
@@ -1647,11 +1762,20 @@ msgid "%s: Wrong size for input argument #%d: A vector expected.\n"
 msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: слід використовувати вектор.\n"
 
+msgid "Transposing row vector X to get compatible dimensions"
+msgstr "Транспонуємо вектор-рядок X для отримання сумісної розмірності"
+
+msgid "Transposing row vector Y to get compatible dimensions"
+msgstr "Транспонуємо вектор-рядок Y для отримання сумісної розмірності"
+
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A non empty matrix expected.\n"
 msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: слід використовувати непорожню "
 "матрицю.\n"
+
+msgid "Transposing data matrix Y to get compatible dimensions"
+msgstr "Транспонуємо матрицю даних Y для отримання сумісної розмірності"
 
 #, c-format
 msgid ""
@@ -1659,6 +1783,9 @@ msgid ""
 msgstr ""
 "%s: помилкова розмірність вхідних параметрів №%d та №%d: несумісні "
 "розмірності.\n"
+
+msgid "Transposing column vector X to get row vector"
+msgstr "Транспонуємо вектор-стовпчик X для отримання вектора-рядка"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected."
@@ -1672,28 +1799,23 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: A vector of 'Figure' handle expected."
+"%s: Wrong type for input argument #%d: A vector of 'Figure' or 'Frame' "
+"handle expected."
 msgstr ""
-"%s: помилковий тип вхідного параметра №%d: мало бути вказано вектор "
-"елементів керування «Figure»."
+"%s: помилковий тип вхідного параметра №%d: мало бути вказано вектор елемента "
+"керування «Figure» або «Frame»."
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати структуру "
+"даних %s.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String array expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати масив "
 "значень типу «string».\n"
-
-#, c-format
-msgid "%s: Wrong values for input argument #%d: '%s' expected.\n"
-msgstr ""
-"%s: помилкові значення вхідного параметра №%d: мало бути вказано «%s».\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"
-msgstr ""
-"%s: помилкове значення вхідного параметра №%d: слід використовувати значення "
-"у інтервалі [%s, %s].\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
@@ -1771,12 +1893,6 @@ msgid "Error %d : in plot2d called by contour2d"
 msgstr "Помилка %d: у plot2d, викликаному contour2d"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
-"«string».\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d:  Real matrix expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати матрицю "
@@ -1790,6 +1906,18 @@ msgstr ""
 #, c-format
 msgid "%s: Colormap too small"
 msgstr "%s: занадто мала карта кольорів"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected."
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: мало бути принаймні %d "
+"параметрів."
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: мало бути вказано матрицю з "
+"дійсними елементами.\n"
 
 msgid "Delete all datatips"
 msgstr "Вилучити всі позначки даних"
@@ -1863,6 +1991,9 @@ msgstr "Вказаний файл неможливо виконати"
 msgid "The selected file defines more than one function"
 msgstr "У вказаному файлі визначено декілька функцій"
 
+msgid "'datatips' property"
+msgstr "властивість «datatips»"
+
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Graphic handle expected.\n"
 msgstr ""
@@ -1928,12 +2059,6 @@ msgid ""
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати елемент "
 "керування на вісі або дочірній елемент осей.\n"
-
-msgid "The selected function must have 3 input parameters (curve,pt,index)"
-msgstr "Вказана функція повинна мати три вихідних параметри (curve,pt,index)"
-
-msgid "The selected function must have 1 output parameter (str)"
-msgstr "Вказана функція повинна мати один вихідний параметр (str)"
 
 #, c-format
 msgid "%s: Wrong type for curve user_data field: a struct expected.\n"
@@ -2331,12 +2456,6 @@ msgid ""
 msgstr ""
 "%s: помилкова розмірність або тип вхідного параметра №%d: слід "
 "використовувати вектор-стовпчик або вектор-рядок.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
-msgstr ""
-"%s: помилкове значення вхідного параметра №%d: мало бути вказано матрицю з "
-"дійсними елементами.\n"
 
 #, c-format
 msgid "%s: Ambiguous MarkStyle value.\n"

@@ -16,7 +16,7 @@ package org.scilab.modules.gui.slider;
 import java.awt.Color;
 import java.awt.Font;
 
-import org.scilab.modules.gui.bridge.slider.SwingScilabSlider;
+import org.scilab.modules.gui.bridge.slider.SwingScilabScroll;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
@@ -40,7 +40,7 @@ public class ScilabSliderBridge {
      * @return the created Slider
      */
     public static SimpleSlider createSlider() {
-        return new SwingScilabSlider();
+        return new SwingScilabScroll();
     }
 
     /**

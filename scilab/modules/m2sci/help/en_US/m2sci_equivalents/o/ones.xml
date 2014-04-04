@@ -43,8 +43,10 @@ ones
     <refsection>
         <title>Particular cases</title>
         <para>
-            Note that in Matlab, <emphasis role="strong">A</emphasis> can contain complex values (in these cases, only real part of 
-            <emphasis role="strong">A</emphasis> is taken in account), what Scilab function do not tolerate.
+            <note>
+                Note that in Matlab, <emphasis role="strong">A</emphasis> can contain complex values (in these cases, only real part of 
+                <emphasis role="strong">A</emphasis> is taken in account), what Scilab function do not tolerate.
+            </note>
         </para>
         <programlisting role="example"><![CDATA[ 
 // Scilab version

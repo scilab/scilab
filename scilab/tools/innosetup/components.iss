@@ -59,7 +59,4 @@ Name: {#COMPN_TESTS}; Description: {cm:DescriptionTests}; Types: full; ExtraDisk
 
 #define COMPN_TCLSCI 'tclsci'
 Name: {#COMPN_TCLSCI}; Description: {cm:DescriptionTclTK}; Types: full;
-
-#define COMPN_CHM 'chm_scilab'
-Name: {#COMPN_CHM}; Description: {cm:DescriptionCHM}; Types: full; ExtraDiskSpaceRequired: {#CHM_SIZE}
 ;-------------------------------------------------------------------------------

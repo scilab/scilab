@@ -24,22 +24,22 @@ function elements = atomsGetLeftListboxElts(category)
     // =========================================================================
 
     if rhs <> 1 then
-        error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"getLeftListboxElements",1));
+        error(msprintf(_("%s: Wrong number of input argument: %d expected.\n"),"getLeftListboxElements",1));
     end
 
     // Check input argument types
     // =========================================================================
 
     if category<>[] & type(category) <> 10 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"getLeftListboxElements",1));
+        error(msprintf(_("%s: Wrong type for input argument #%d: Single string expected.\n"),"getLeftListboxElements",1));
     end
 
     if category<>[] & type(category) <> 10 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"getLeftListboxElements",1));
+        error(msprintf(_("%s: Wrong type for input argument #%d: Single string expected.\n"),"getLeftListboxElements",1));
     end
 
     if size(category(1,:),"*") > 2 then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: mx1 or mx2 string matrix expected.\n"),"atomsIsCategory",1));
+        error(msprintf(_("%s: Wrong size for input argument #%d: mx1 or mx2 string matrix expected.\n"),"atomsIsCategory",1));
     end
 
     // Build lists
@@ -60,32 +60,17 @@ function elements = atomsGetLeftListboxElts(category)
 
         categories = atomsCategoryGet("filter:main");
 
-        thisItem  =            "<html>";
-        thisItem  = thisItem + "<table style=""background-color:#ffffff;color:#000000;""><tr>";
-        thisItem  = thisItem + "<td><img src=""file:///"+SCI+"/modules/gui/images/icons/16x16/places/user-home.png"" /></td>";
-        thisItem  = thisItem + "<td style=""width:132px;""><div style=""width:118px;text-align:left;font-weight:bold;"">"+gettext("All modules")+"</div></td>";
-        thisItem  = thisItem + "</tr></table>";
-        thisItem  = thisItem + "</html>";
-
-        items_str = [items_str ; thisItem ];
+        items_str = [items_str ; "user-home", _("All modules"), "#ffffff"];
         items_mat = [items_mat ; "category" "filter:all"];
 
         for i=1:size(categories, "*")
-
             if background == "#eeeeee" then
                 background = "#ffffff";
             else
                 background = "#eeeeee";
             end
 
-            thisItem  =            "<html>";
-            thisItem  = thisItem + "<table style=""background-color:"+background+";color:#000000;"" ><tr>";
-            thisItem  = thisItem + "<td><img src=""file:///"+SCI+"/modules/gui/images/icons/16x16/places/folder.png"" /></td>";
-            thisItem  = thisItem + "<td style=""width:132px;""><div style=""width:118px;text-align:left;"">"+categories(i)+"</div></td>";
-            thisItem  = thisItem + "</tr></table>";
-            thisItem  = thisItem + "</html>";
-
-            items_str = [items_str ; thisItem ];
+            items_str = [items_str ; "folder", _(categories(i)), background];
             items_mat = [items_mat ; "category" categories(i)];
         end
 
@@ -103,12 +88,12 @@ function elements = atomsGetLeftListboxElts(category)
 
         if category=="filter:all" then
             categories = [];
-            top_str    = gettext("Main categories");
+            top_str    = _("Main categories");
             top_mat    = ["category" "filter:main"];
 
         elseif index_start==[] then
             categories = atomsCategoryGet(category);
-            top_str    = gettext("Main categories");
+            top_str    = _("Main categories");
             top_mat    = ["category" "filter:main"];
 
         else
@@ -119,33 +104,18 @@ function elements = atomsGetLeftListboxElts(category)
 
         end
 
-        thisItem  =            "<html>";
-        thisItem  = thisItem + "<table style=""background-color:#ffffff;color:#000000;"" ><tr>";
-        thisItem  = thisItem + "<td><img src=""file:///"+SCI+"/modules/gui/images/icons/16x16/places/user-home.png"" /></td>";
-        thisItem  = thisItem + "<td style=""width:132px;""><div style=""width:118px;text-align:left;font-weight:bold;"">"+top_str+"</div></td>";
-
-        thisItem  = thisItem + "</tr></table>";
-        thisItem  = thisItem + "</html>";
-
-        items_str = [items_str ; thisItem ];
+        items_str = [items_str ; "user-home", _(top_str), "#ffffff"];
+        //items_str = [items_str ; thisItem ];
         items_mat = [items_mat ; top_mat  ];
 
         for i=1:size(categories, "*")
-
             if background == "#eeeeee" then
                 background = "#ffffff";
             else
                 background = "#eeeeee";
             end
 
-            thisItem  =            "<html>";
-            thisItem  = thisItem + "<table style=""background-color:"+background+";color:#000000;"" ><tr>";
-            thisItem  = thisItem + "<td><img src=""file:///"+SCI+"/modules/gui/images/icons/16x16/places/folder.png"" /></td>";
-            thisItem  = thisItem + "<td style=""width:132px;""><div style=""width:118px;text-align:left;"">"+categories(i)+"</div></td>";
-            thisItem  = thisItem + "</tr></table>";
-            thisItem  = thisItem + "</html>";
-
-            items_str = [items_str ; thisItem ];
+            items_str = [items_str ; "folder", _(categories(i)), background];
             items_mat = [items_mat ; "category" category+" - "+categories(i) ];
         end
 
@@ -173,14 +143,14 @@ function elements = atomsGetLeftListboxElts(category)
 
                 if atomsVersionCompare(MRVersionInstalled,MRVersionAvailable(i)) == -1 then
                     // Not up-to-date
-                    icon = "software-update-notuptodate.png";
+                    icon = "software-update-notuptodate";
                 else
                     // The Most Recent Version is already installed
-                    icon = "software-update-installed.png";
+                    icon = "software-update-installed";
                 end
 
             else
-                icon = "software-update-notinstalled.png";
+                icon = "software-update-notinstalled";
             end
 
             if background == "#eeeeee" then
@@ -189,14 +159,7 @@ function elements = atomsGetLeftListboxElts(category)
                 background = "#eeeeee";
             end
 
-            thisItem =            "<html>";
-            thisItem = thisItem + "<table style=""background-color:"+background+";color:#000000;"" ><tr>";
-            thisItem = thisItem + "<td><img src=""file:///"+SCI+"/modules/atoms/images/icons/16x16/status/"+icon+""" /></td>";
-            thisItem = thisItem + "<td style=""width:132px;""><div style=""width:118px;text-align:left;"">"+thisModuleTitle+"</div></td>";
-            thisItem = thisItem + "</tr></table>";
-            thisItem = thisItem + "</html>";
-
-            items_str = [items_str ; thisItem     ];
+            items_str = [items_str ; icon, _(thisModuleTitle), background];
             items_mat = [items_mat ; "module" modulesNames(i)];
 
         end
@@ -212,11 +175,38 @@ function elements = atomsGetLeftListboxElts(category)
     elements("items_mat") = items_mat;
 
     if category=="filter:main" then
-        elements("title") = gettext("Main categories");
+        elements("title") = _("Main categories");
     elseif category=="filter:all" then
-        elements("title") = gettext("All modules");
+        elements("title") = _("All modules");
     else
-        elements("title") = category;
+        elements("title") = _(category);
     end
 
+    if %f then
+        // NEVER EXECUTED ON PURPOSE
+        // inlined category "filter:main" data to ease localization
+        _("Aerospace");
+        _("Contributed Scilab Binaries");
+        _("Data Analysis And Statistics");
+        _("Data Handling");
+        _("Editor Styles");
+        _("Education");
+        _("GUI");
+        _("Graphics");
+        _("Graphs");
+        _("Image Processing");
+        _("Instruments Control");
+        _("Linear algebra");
+        _("Modeling and Control Tools");
+        _("Number theory");
+        _("Numerical Maths");
+        _("Optimization");
+        _("Physics");
+        _("Real-Time");
+        _("Scilab development");
+        _("Signal Processing");
+        _("Technical");
+        _("Tests");
+        _("Xcos");
+    end
 endfunction

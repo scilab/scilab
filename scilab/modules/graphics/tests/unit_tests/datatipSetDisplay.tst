@@ -1,0 +1,50 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2012 - Scilab Enterprises - Antoine ELIAS
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
+// <-- TEST WITH GRAPHIC -->
+
+x=linspace(-1,1,1000);
+clf()
+plot(x,sinc(20*x),x,1-x.^2);
+e=gce();
+p1 = e.children(1);
+p2 = e.children(2);
+
+//add some datatips
+d1_1 = datatipCreate(p1, 200);
+d1_2 = datatipCreate(p1, 450);
+d1_3 = datatipCreate(p1, 800);
+d2_1 = datatipCreate(p2, 200);
+d2_2 = datatipCreate(p2, 450);
+d2_3 = datatipCreate(p2, 800);
+
+function str=mydisplayP1(pt)
+   str='P1';
+endfunction
+function str=mydisplayP2(pt)
+   str='P2';
+endfunction
+function str=mydisplayD1(pt)
+   str='D1';
+endfunction
+function str=mydisplayD2(pt)
+   str='D2';
+endfunction
+
+datatipSetDisplay(p1, "mydisplayP1")
+datatipSetDisplay(d1_2, "mydisplayD1")
+datatipSetDisplay(p2, "mydisplayP2")
+datatipSetDisplay(d2_3, "mydisplayD2")
+
+//check values
+assert_checkequal(d1_1.text, "P1");
+assert_checkequal(d1_2.text, "D1");
+assert_checkequal(d1_3.text, "P1");
+assert_checkequal(d2_1.text, "P2");
+assert_checkequal(d2_2.text, "P2");
+assert_checkequal(d2_3.text, "D2");
+

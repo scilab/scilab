@@ -9,18 +9,19 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-12-07 08:28+0000\n"
+"PO-Revision-Date: 2014-03-29 18:32+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 16967)\n"
 "Language: uk\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: A real expected.\n"
-msgstr "%s: помилковий тип аргументу %d: мало бути використано ціле число.\n"
+msgid "%s: Wrong type for argument #%d: A real expected.\n"
+msgstr ""
+"%s: помилковий тип параметра №%d: мало бути використано дійсне число.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A square matrix expected.\n"
@@ -620,14 +621,6 @@ msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати функцію.\n"
 
 #, c-format
-msgid "%s: Weighting matrix must be square.\n"
-msgstr "%s: вагова матриця має бути квадратною.\n"
-
-#, c-format
-msgid "%s: Initial guess not feasible.\n"
-msgstr "%s: початкова точка не задовольняє умовам задачі.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати матрицю "
@@ -833,6 +826,11 @@ msgstr "%s: можливо, задача необмежена знизу"
 msgid "%s: optimal solution found"
 msgstr "%s: знайдено оптимальний розв’язок"
 
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати %d або %d.\n"
+
 msgid "Welcome to LMITOOL"
 msgstr "Вітаємо у LMITOOL"
 
@@ -985,11 +983,6 @@ msgstr "3- Визначити "
 msgid "To check the result, use [LME,LMI,OBJ]="
 msgstr ""
 "Щоб ознайомитися з результатом, скористайтеся командою [LME,LMI,OBJ]="
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати %d або %d.\n"
 
 #, c-format
 msgid "%s: Unexpected maximum number of iterations %s."
@@ -1266,6 +1259,61 @@ msgid ""
 msgstr ""
 "%s: типових параметрів не визначено: у каталогах шляхів до функцій немає "
 "функції «%s»."
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вихідних параметрів: слід використовувати значення "
+"від %d до %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Matrix expected.\n"
+msgstr "%s: помилковий тип параметра %d: слід використовувати матрицю.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
+"вектор.\n"
+
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
+msgstr ""
+"%s: несумісні вхідні параметри №%d і №%d: слід використовувати однакову "
+"розмірність.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Function or list expected.\n"
+msgstr ""
+"%s: помилковий тип параметра №%d: мало бути використано функцію або список.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for argument #%d: Function expected in first element of "
+"list.\n"
+msgstr ""
+"%s: помилковий тип параметра №%d: першим елементом списку має бути функція.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String array expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати масив "
+"значень типу «string».\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати > %d.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set  {%s}.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d. Значення має належати набору "
+"{%s}.\n"
+
+#, c-format
+msgid "%s: Unknown value %s for option %s.\n"
+msgstr "%s: невідоме значення, %s, параметра %s.\n"
 
 #, c-format
 msgid ""

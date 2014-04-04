@@ -11,7 +11,10 @@
  *
  */
 
-#include "GetUicontrolSliderStep.hxx"
+extern "C"
+{
+#include "GetUicontrol.h"
+}
 
 void* GetUicontrolSliderStep(void* _pvCtx, int iObjUID)
 {

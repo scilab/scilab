@@ -9,13 +9,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-06-13 13:46+0000\n"
-"Last-Translator: yurchor <Unknown>\n"
+"PO-Revision-Date: 2014-03-21 11:20+0000\n"
+"Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 16967)\n"
 "Language: uk\n"
 
 #, c-format
@@ -109,11 +109,11 @@ msgstr "Виберіть тип фільтрування та параметри
 msgid "Discrete IIR filter "
 msgstr "Дискретний IIR-фільтр "
 
-msgid "Discrete IIR filter : low pass  fr < 0.2"
-msgstr "Дискретний IIR-фільтр: нижні частоти < 0.2"
+msgid "Discrete IIR filter: low pass  fr < 0.2"
+msgstr "Дискретний IIR-фільтр: нижня частота < 0.2"
 
-msgid "Discrete IIR filter band pass 0.15 < fr < 0.25"
-msgstr "Дискретний IIR-фільтр за діапазоном частот 0.15 < fr < 0.25"
+msgid "Discrete IIR filter: band pass 0.15 < fr < 0.25"
+msgstr "Дискретний IIR-фільтр: смуга пропускання 0.15 < частота < 0.25"
 
 msgid "Minimax FIR filter"
 msgstr "Мінімаксний FIR-фільтр"
@@ -145,8 +145,8 @@ msgstr "Схема з мінімаксним FIR-фільтром"
 msgid "Discrete IIR filter"
 msgstr "Дискретний IIR-фільтр"
 
-msgid "Wiegner filter"
-msgstr "Фільтр Вігнера"
+msgid "Wiener filter"
+msgstr "Фільтр Вінера"
 
 msgid "Bode plots"
 msgstr "Графіки Боде"
@@ -193,11 +193,11 @@ msgstr "поточний стан"
 msgid "Windowed FIR Low pass Filter"
 msgstr "Віконний фільтр низьких частот зі СІХ (FIR)"
 
-msgid "Kaiser window,cut-off:0.2"
-msgstr "Вікно Кайзера, обрізання: 0.2"
+msgid "Kaiser window, cut-off: 0.2"
+msgstr "Віконна Кайзера, обрізання: 0.2"
 
-msgid "Hamming window,cut-off:0.2,0.3"
-msgstr "Вікно Гаммінґа, обрізання: 0.2,0.3"
+msgid "Hamming window, cut-off: 0.2, 0.3"
+msgstr "Віконна Гаммінґа, обрізання: 0.2, 0.3"
 
 msgid "length 127"
 msgstr "довжина 127"
@@ -205,8 +205,8 @@ msgstr "довжина 127"
 msgid "Windowed FIR Band pass Filter"
 msgstr "Віконний фільтр діапазону частот зі СІХ (FIR)"
 
-msgid "Chebyshev window,cut-off:0.15,0.35"
-msgstr "Вікно Чебишева, обрізання: 0.15,0.35"
+msgid "Chebyshev window, cut-off: 0.15, 0.35"
+msgstr "Віконна Чебишева, обрізання: 0.15, 0.35"
 
 msgid "length 55"
 msgstr "довжина 55"
@@ -334,6 +334,24 @@ msgid ""
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати лінійну "
 "динамічну систему або вектор-рядок дійсних чисел.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d або %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A real or polynomial matrix or a "
+"rational expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: мало бути використано матрицю з "
+"дійсних чисел або поліномів чи раціональне число.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A discrete system expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: мало бути використано дискретну "
+"систему.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"

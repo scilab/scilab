@@ -12,14 +12,22 @@
  */
 package org.scilab.modules.gui.bridge.uiimage;
 
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE__;
+
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.UIManager;
+import javax.swing.border.Border;
 
-import org.scilab.forge.scirenderer.shapes.appearance.Color;
+import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.SwingViewWidget;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
@@ -55,6 +63,8 @@ public class SwingScilabUiImage extends JLabel implements SwingViewObject, Simpl
     private double[] shear;
     private double angle;
 
+    private Border defaultBorder = null;
+
     /**
      * Constructor
      */
@@ -65,7 +75,6 @@ public class SwingScilabUiImage extends JLabel implements SwingViewObject, Simpl
         scale = new double[2];
         shear = new double[2];
     }
-
 
     /**
      * Draws a swing Scilab Image
@@ -86,7 +95,8 @@ public class SwingScilabUiImage extends JLabel implements SwingViewObject, Simpl
     }
 
     /**
-     * Gets the position (X-coordinate and Y-coordinate) of a swing Scilab element
+     * Gets the position (X-coordinate and Y-coordinate) of a swing Scilab
+     * element
      * @return the position of the element
      * @see org.scilab.modules.gui.uielement.UIElement#getPosition()
      */
@@ -104,7 +114,8 @@ public class SwingScilabUiImage extends JLabel implements SwingViewObject, Simpl
     }
 
     /**
-     * Sets the position (X-coordinate and Y-coordinate) of a swing Scilab element
+     * Sets the position (X-coordinate and Y-coordinate) of a swing Scilab
+     * element
      * @param newPosition the position to set to the element
      * @see org.scilab.modules.gui.uielement.UIElement#setPosition(org.scilab.modules.gui.utils.Position)
      */
@@ -178,7 +189,10 @@ public class SwingScilabUiImage extends JLabel implements SwingViewObject, Simpl
      * @param reliefType the type of the relief to set (See ScilabRelief.java)
      */
     public void setRelief(String reliefType) {
-        setBorder(ScilabRelief.getBorderFromRelief(reliefType));
+        if (defaultBorder == null) {
+            defaultBorder = getBorder();
+        }
+        setBorder(ScilabRelief.getBorderFromRelief(reliefType, defaultBorder));
     }
 
     /**
@@ -221,9 +235,23 @@ public class SwingScilabUiImage extends JLabel implements SwingViewObject, Simpl
      */
     public void setText(String newText) {
         imageFile = newText;
-        imi = new ImageIcon(imageFile);
-        img = imi.getImage();
-        setIcon(imi);
+
+        File file = new File(imageFile);
+        if (file.exists() == false) {
+            String filename = FindIconHelper.findImage(imageFile);
+            file = new File(filename);
+        }
+
+        try {
+            imi = new ImageIcon(ImageIO.read(file));
+            img = imi.getImage();
+            setIcon(imi);
+        } catch (IOException e) {
+        }
+
+        //        imi = new ImageIcon(imageFile);
+        //        img = imi.getImage();
+        //        setIcon(imi);
     }
 
     /**
@@ -292,6 +320,72 @@ public class SwingScilabUiImage extends JLabel implements SwingViewObject, Simpl
      * @param value property value
      */
     public void update(int property, Object value) {
-        SwingViewWidget.update(this, property, value);
+
+        switch (property) {
+            case __GO_UI_VALUE__: {
+                Double[] doubleValue = ((Double[]) value);
+                if (doubleValue.length == 0) {
+                    return;
+                }
+
+                // Update the image parameters
+                double[] imageParams = new double[5];
+                if (doubleValue.length < 1) {
+                    imageParams[0] = 1.0;
+                } else {
+                    imageParams[0] = doubleValue[0];
+                }
+                if (doubleValue.length < 2) {
+                    imageParams[1] = 1.0;
+                } else {
+                    imageParams[1] = doubleValue[1];
+                }
+                if (doubleValue.length < 3) {
+                    imageParams[2] = 0.0;
+                } else {
+                    imageParams[2] = doubleValue[2];
+                }
+                if (doubleValue.length < 4) {
+                    imageParams[3] = 0.0;
+                } else {
+                    imageParams[3] = doubleValue[3];
+                }
+                if (doubleValue.length < 5) {
+                    imageParams[4] = 0.0;
+                } else {
+                    imageParams[4] = doubleValue[4];
+                }
+
+                double[] scale = new double[2];
+                scale[0] = imageParams[0];
+                scale[1] = imageParams[1];
+                setScale(scale);
+
+                double[] shear = new double[2];
+                shear[0] = imageParams[2];
+                shear[1] = imageParams[3];
+                setShear(shear);
+                setRotate(imageParams[4]);
+                break;
+            }
+            default: {
+                SwingViewWidget.update(this, property, value);
+                break;
+            }
+        }
+    }
+
+    public void resetBackground() {
+        Color color = (Color) UIManager.getLookAndFeelDefaults().get("Label.background");
+        if (color != null) {
+            setBackground(color);
+        }
+    }
+
+    public void resetForeground() {
+        Color color = (Color)UIManager.getLookAndFeelDefaults().get("Label.foreground");
+        if (color != null) {
+            setForeground(color);
+        }
     }
 }

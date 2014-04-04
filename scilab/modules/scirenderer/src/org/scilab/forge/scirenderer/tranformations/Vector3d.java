@@ -21,7 +21,7 @@ public class Vector3d {
     private final double x;
     private final double y;
     private final double z;
-    private Integer hash;
+    private int hash = -1;
 
     public Vector3d(Vector3d v) {
         this.x = v.x;
@@ -198,7 +198,7 @@ public class Vector3d {
 
     @Override
     public int hashCode() {
-        if (hash == null) {
+        if (hash == -1) {
             hash = Arrays.hashCode(new double[] {x, y, z});
         }
         return hash;

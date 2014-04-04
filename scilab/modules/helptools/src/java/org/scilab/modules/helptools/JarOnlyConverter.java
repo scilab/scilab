@@ -72,8 +72,9 @@ public class JarOnlyConverter extends ContainerConverter {
             Helpers.deleteDirectory(outputJavaHelp);
             File directory = new File(outputJavaHelp);
             directory.mkdirs();
+            String jhs = new File(outputJavaHelp).getAbsolutePath();
 
-            String[] args = new String[] {"-nostopwords", "."};
+            String[] args = new String[] {"-db", jhs, "-nostopwords", "."};
 
             indexer.compile(args);
         } catch (Exception e) {

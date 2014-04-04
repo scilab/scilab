@@ -36,6 +36,7 @@ public class PolyLine extends ConvexObject {
 
     private boolean monochromatic;
     private G2DStroke stroke;
+    protected double[] clip = new double[] {Double.NaN, Double.NaN, Double.NaN, Double.NaN};
 
     /**
      * Default constructor
@@ -105,7 +106,7 @@ public class PolyLine extends ConvexObject {
         // Since PolyLine are only used in 2D it is useless to check when z != 0
         if (vv[2] == 0) {
             final Vector3d np = new Vector3d(vv);
-            makeClip(vv);
+            ConvexObject.makeClip(clip, vv);
 
             int pos = 0;
             boolean prev = false;
@@ -196,16 +197,16 @@ public class PolyLine extends ConvexObject {
 
             for (int i = 1; i < len - 1; i++) {
                 newVertices[i] = vertices[first + i - 1];
-                newColors[i] = colors[first + i - 1];
+                newColors[i] = getColor(first + i - 1);
             }
 
             double c = (C + vertices[first].scalar(np)) / vertices[first].minus(vertices[first - 1]).scalar(np);
             newVertices[0] = Vector3d.getBarycenter(vertices[first - 1], vertices[first], c, 1 - c);
-            newColors[0] = getColorsBarycenter(colors[first - 1], colors[first], c, 1 - c);
+            newColors[0] = getColorsBarycenter(getColor(first - 1), getColor(first), c, 1 - c);
 
             c = (C + vertices[second].scalar(np)) / vertices[second].minus(vertices[second - 1]).scalar(np);
             newVertices[len - 1] = Vector3d.getBarycenter(vertices[second - 1], vertices[second], c, 1 - c);
-            newColors[len - 1] = getColorsBarycenter(colors[second - 1], colors[second], c, 1 - c);
+            newColors[len - 1] = getColorsBarycenter(getColor(second - 1), getColor(second), c, 1 - c);
 
             return new PolyLine(newVertices, newColors, this.stroke);
         }
@@ -219,11 +220,11 @@ public class PolyLine extends ConvexObject {
 
             for (int i = 1; i < len; i++) {
                 newVertices[i] = vertices[first + i - 1];
-                newColors[i] = colors[first + i - 1];
+                newColors[i] = getColor(first + i - 1);
             }
 
             newVertices[0] = Vector3d.getBarycenter(vertices[first - 1], vertices[first], c, 1 - c);
-            newColors[0] = getColorsBarycenter(colors[first - 1], colors[first], c, 1 - c);
+            newColors[0] = getColorsBarycenter(getColor(first - 1), getColor(first), c, 1 - c);
 
             return new PolyLine(newVertices, newColors, this.stroke);
         } else {
@@ -235,11 +236,11 @@ public class PolyLine extends ConvexObject {
 
             for (int i = 0; i < len - 1; i++) {
                 newVertices[i] = vertices[first + i];
-                newColors[i] = colors[first + i];
+                newColors[i] = getColor(first + i);
             }
 
             newVertices[len - 1] = Vector3d.getBarycenter(vertices[second - 1], vertices[second], c, 1 - c);
-            newColors[len - 1] = getColorsBarycenter(colors[second - 1], colors[second], c, 1 - c);
+            newColors[len - 1] = getColorsBarycenter(getColor(second - 1), getColor(second), c, 1 - c);
             return new PolyLine(newVertices, newColors, this.stroke);
         }
     }
@@ -249,20 +250,20 @@ public class PolyLine extends ConvexObject {
         Stroke oldStroke = g2d.getStroke();
         Shape oldClip = g2d.getClip();
 
-        Shape newClip = getClip();
+        Shape newClip = ConvexObject.getClip(clip);
         if (newClip != null) {
             g2d.clip(newClip);
         }
 
         if (monochromatic) {
-            g2d.setColor(colors[0]);
+            g2d.setColor(getColor(0));
             g2d.setStroke(stroke);
             g2d.draw(getProjectedPolyLine());
         } else {
             // on peut surement faire mieux ici
             // avec un LinearGradientPaint
             Vector3d start = vertices[0];
-            Color color = colors[0];
+            Color color = getColor(0);
             double cumLen = 0;
             float[] dashArray = stroke.getDashArray();
             float lwidth = stroke.getLineWidth();

@@ -14,6 +14,7 @@
 #include <cstring>
 
 #include <cstdio>
+#include <vector>
 
 extern "C" {
     extern int C2F(varfunptr)(int *, int *, int *);
@@ -490,6 +491,61 @@ int ScilabObjects::getArgumentId(int * addr, int * tmpvars, const bool isRef, co
 
             return returnId;
         }
+        case sci_poly :
+        {
+            /* '$+1' should be handled to ease insertion/extraction */
+            int nameLen = 5;
+            char name[5];
+
+            err = getPolyVariableName(pvApiCtx, addr, name, &nameLen);
+            if (err.iErr)
+            {
+                removeTemporaryVars(envId, tmpvars);
+                throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, gettext("Invalid variable: cannot retrieve the data"));
+            }
+
+            if (name[0] == '$' && nameLen == 1)
+            {
+                err = getMatrixOfPoly(pvApiCtx, addr, &row, &col, NULL, NULL);
+                if (err.iErr)
+                {
+                    removeTemporaryVars(envId, tmpvars);
+                    throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, gettext("Invalid variable: cannot retrieve the data"));
+                }
+
+                if (row * col != 1)
+                {
+                    removeTemporaryVars(envId, tmpvars);
+                    throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, gettext("Invalid variable: cannot retrieve the data"));
+                }
+
+                int coefs;
+                err = getMatrixOfPoly(pvApiCtx, addr, &row, &col, &coefs, NULL);
+                if (err.iErr)
+                {
+                    removeTemporaryVars(envId, tmpvars);
+                    throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, gettext("Invalid variable: cannot retrieve the data"));
+                }
+
+                // should be std::dynarray
+                std::vector<double> mat = std::vector<double>(row * col * coefs);
+                double* pMat = mat.data();
+                err = getMatrixOfPoly(pvApiCtx, addr, &row, &col, &coefs, &pMat);
+                if (err.iErr)
+                {
+                    removeTemporaryVars(envId, tmpvars);
+                    throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, gettext("Invalid variable: cannot retrieve the data"));
+                }
+
+                returnId = wrapper.wrapPoly(row * col * coefs, mat.data());
+            }
+            else
+            {
+                removeTemporaryVars(envId, tmpvars);
+                throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, gettext("Invalid variable: cannot retrieve the data"));
+            }
+            return returnId;
+        }
         case sci_ints :
         {
             int prec = 0;
@@ -596,6 +652,10 @@ int ScilabObjects::getArgumentId(int * addr, int * tmpvars, const bool isRef, co
                     return returnId;
 #endif
             }
+
+            // invalid int code : should never be called
+            removeTemporaryVars(envId, tmpvars);
+            throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, gettext("Invalid variable: cannot retrieve the data"));
         }
         case sci_strings :
         {
@@ -624,6 +684,46 @@ int ScilabObjects::getArgumentId(int * addr, int * tmpvars, const bool isRef, co
             }
 
             returnId = wrapBool(row, col, matB, wrapper, isRef);
+            tmpvars[++tmpvars[0]] = returnId;
+
+            return returnId;
+        }
+        case sci_list :
+        {
+            int length;
+
+            err = getListItemNumber(pvApiCtx, addr, &length);
+            if (err.iErr)
+            {
+                removeTemporaryVars(envId, tmpvars);
+                throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, gettext("Invalid variable: cannot retrieve the data"));
+            }
+
+            // empty list
+            if (length <= 0)
+            {
+                return 0;
+            }
+
+            // should be std::dynarray
+            std::vector<int> childrenIds = std::vector<int>(length + 1);
+
+            // loop all over the items
+            for (int i = 0; i < length; i++)
+            {
+                int* pvItem;
+
+                err = getListItemAddress(pvApiCtx, addr, i + 1, &pvItem);
+                if (err.iErr)
+                {
+                    removeTemporaryVars(envId, childrenIds.data());
+                    throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, gettext("Invalid variable: cannot retrieve the data"));
+                }
+
+                getArgumentId(pvItem, childrenIds.data(), false, false, envId, pvApiCtx);
+            }
+
+            returnId = wrapper.wrapList(length, childrenIds.data());
             tmpvars[++tmpvars[0]] = returnId;
 
             return returnId;
@@ -683,6 +783,8 @@ int ScilabObjects::getArgumentId(int * addr, int * tmpvars, const bool isRef, co
             throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, gettext("Unable to wrap. Unmanaged datatype (%d) ?"), typ);
         }
     }
+
+    return -1;
 }
 
 int ScilabObjects::getMListType(int * mlist, void * pvApiCtx)

@@ -199,7 +199,8 @@ am__objects_2 =  \
 	sci_gateway/c/libscigraphic_export_la-sci_xs2jpg.lo \
 	sci_gateway/c/libscigraphic_export_la-sci_xs2eps.lo \
 	sci_gateway/c/libscigraphic_export_la-sci_xs2pdf.lo \
-	sci_gateway/c/libscigraphic_export_la-sci_xs2png.lo
+	sci_gateway/c/libscigraphic_export_la-sci_xs2png.lo \
+	sci_gateway/c/libscigraphic_export_la-sci_xs2emf.lo
 am__objects_3 = sci_gateway/cpp/libscigraphic_export_la-sci_driver.lo \
 	sci_gateway/cpp/libscigraphic_export_la-sci_xinit.lo \
 	sci_gateway/cpp/libscigraphic_export_la-sci_xend.lo
@@ -333,6 +334,7 @@ CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
 DEMOTOOLS_ENABLE = @DEMOTOOLS_ENABLE@
 DEPDIR = @DEPDIR@
+DLLTOOL = @DLLTOOL@
 DOCBOOK_ROOT = @DOCBOOK_ROOT@
 DOXYGEN_BIN = @DOXYGEN_BIN@
 DSYMUTIL = @DSYMUTIL@
@@ -352,6 +354,11 @@ FGREP = @FGREP@
 FLEXDOCK = @FLEXDOCK@
 FLIBS = @FLIBS@
 FOP = @FOP@
+FREEHEP_GRAPHICS2D = @FREEHEP_GRAPHICS2D@
+FREEHEP_GRAPHICSIO = @FREEHEP_GRAPHICSIO@
+FREEHEP_GRAPHICSIO_EMF = @FREEHEP_GRAPHICSIO_EMF@
+FREEHEP_IO = @FREEHEP_IO@
+FREEHEP_UTIL = @FREEHEP_UTIL@
 GENHTML = @GENHTML@
 GETTEXT_MACRO_VERSION = @GETTEXT_MACRO_VERSION@
 GIWS_BIN = @GIWS_BIN@
@@ -415,6 +422,7 @@ LTLIBINTL = @LTLIBINTL@
 LTLIBOBJS = @LTLIBOBJS@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
+MANIFEST_TOOL = @MANIFEST_TOOL@
 MATIO_CFLAGS = @MATIO_CFLAGS@
 MATIO_ENABLE = @MATIO_ENABLE@
 MATIO_LIBS = @MATIO_LIBS@
@@ -599,7 +607,8 @@ sci_gateway/c/sci_xs2svg.c \
 sci_gateway/c/sci_xs2jpg.c \
 sci_gateway/c/sci_xs2eps.c \
 sci_gateway/c/sci_xs2pdf.c \
-sci_gateway/c/sci_xs2png.c
+sci_gateway/c/sci_xs2png.c \
+sci_gateway/c/sci_xs2emf.c
 
 GATEWAY_CXX_SOURCES = sci_gateway/cpp/sci_driver.cpp \
 sci_gateway/cpp/sci_xinit.cpp \
@@ -647,6 +656,7 @@ libscigraphic_export_disable_la_CPPFLAGS = -I$(srcdir)/includes/ \
 	-I$(top_srcdir)/modules/api_scilab/includes/ \
 	-I$(top_srcdir)/modules/localization/includes/ \
 	-I$(top_srcdir)/modules/output_stream/includes/ \
+	-I$(top_srcdir)/modules/system_env/includes/ \
 	$(AM_CPPFLAGS)
 
 
@@ -886,6 +896,9 @@ sci_gateway/c/libscigraphic_export_la-sci_xs2pdf.lo:  \
 sci_gateway/c/libscigraphic_export_la-sci_xs2png.lo:  \
 	sci_gateway/c/$(am__dirstamp) \
 	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscigraphic_export_la-sci_xs2emf.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/cpp/$(am__dirstamp):
 	@$(MKDIR_P) sci_gateway/cpp
 	@: > sci_gateway/cpp/$(am__dirstamp)
@@ -923,6 +936,7 @@ distclean-compile:
 
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigraphic_export_la-gw_graphic_export.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigraphic_export_la-sci_xs2bmp.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigraphic_export_la-sci_xs2emf.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigraphic_export_la-sci_xs2eps.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigraphic_export_la-sci_xs2gif.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigraphic_export_la-sci_xs2jpg.Plo@am__quote@
@@ -1047,6 +1061,13 @@ sci_gateway/c/libscigraphic_export_la-sci_xs2png.lo: sci_gateway/c/sci_xs2png.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_xs2png.c' object='sci_gateway/c/libscigraphic_export_la-sci_xs2png.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_export_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscigraphic_export_la-sci_xs2png.lo `test -f 'sci_gateway/c/sci_xs2png.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xs2png.c
+
+sci_gateway/c/libscigraphic_export_la-sci_xs2emf.lo: sci_gateway/c/sci_xs2emf.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_export_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscigraphic_export_la-sci_xs2emf.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscigraphic_export_la-sci_xs2emf.Tpo -c -o sci_gateway/c/libscigraphic_export_la-sci_xs2emf.lo `test -f 'sci_gateway/c/sci_xs2emf.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xs2emf.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscigraphic_export_la-sci_xs2emf.Tpo sci_gateway/c/$(DEPDIR)/libscigraphic_export_la-sci_xs2emf.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_xs2emf.c' object='sci_gateway/c/libscigraphic_export_la-sci_xs2emf.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_export_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscigraphic_export_la-sci_xs2emf.lo `test -f 'sci_gateway/c/sci_xs2emf.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xs2emf.c
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\

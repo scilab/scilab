@@ -17,6 +17,10 @@ libsciatoms_la_root_DATA =  license.txt
 libsciatoms_la_etcdir = $(mydatadir)/etc
 libsciatoms_la_etc_DATA = etc/atoms.quit etc/atoms.start etc/repositories
 
+#### atoms : XML gui ####
+libsciatoms_la_guidir = $(mydatadir)/gui
+libsciatoms_la_gui_DATA = gui/atomsGui.xml
+
 #### atoms : internal functions ####
 MACROSDIRSEXT = macros/atoms_internals macros/atoms_gui
 

@@ -66,3 +66,9 @@ SetUicontrolString
 SetUicontrolTooltipString
 SetUimenuLabel
 SetUiobjectEnable
+GetConsoleUseDeprecatedLF
+SetConsoleUseDeprecatedLF
+GetUicontrolIcon
+SetUicontrolIcon
+GetConsoleShowHiddenProperties
+SetConsoleShowHiddenProperties

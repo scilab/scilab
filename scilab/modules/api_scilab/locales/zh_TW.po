@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 16967)\n"
 "Language: \n"
 
 #, c-format
@@ -37,7 +37,7 @@ msgid "%s: Unable to create variable in Scilab memory"
 msgstr "%s：無法在Scilab記憶體中建立變數"
 
 #, c-format
-msgid "%s: Invalid variable name."
+msgid "%s: Invalid variable name: %s."
 msgstr ""
 
 #, c-format
@@ -314,5 +314,5 @@ msgid "%s: Invalid variable name.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument %d: An integer expected.\n"
+msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
 msgstr ""

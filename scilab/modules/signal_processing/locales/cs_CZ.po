@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 16967)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -103,11 +103,11 @@ msgstr "Zvolte typ filtru a parametry"
 msgid "Discrete IIR filter "
 msgstr "Diskrétní filtr IIR "
 
-msgid "Discrete IIR filter : low pass  fr < 0.2"
-msgstr "Diskrétní filtr IIR : dolní propust fr < 0.2"
+msgid "Discrete IIR filter: low pass  fr < 0.2"
+msgstr ""
 
-msgid "Discrete IIR filter band pass 0.15 < fr < 0.25"
-msgstr "Diskrétní filtr IIR pásmovápropust 0.15 < fr < 0.25"
+msgid "Discrete IIR filter: band pass 0.15 < fr < 0.25"
+msgstr ""
 
 msgid "Minimax FIR filter"
 msgstr "Minimax filtr s KIO"
@@ -139,8 +139,8 @@ msgstr "Návr minimax filtru s KIO"
 msgid "Discrete IIR filter"
 msgstr "Diskrétní filtr s NIO"
 
-msgid "Wiegner filter"
-msgstr "Wiegnerův filtr"
+msgid "Wiener filter"
+msgstr ""
 
 msgid "Bode plots"
 msgstr "Frekvenční charakteristiky"
@@ -187,10 +187,10 @@ msgstr "skutečný stav"
 msgid "Windowed FIR Low pass Filter"
 msgstr ""
 
-msgid "Kaiser window,cut-off:0.2"
+msgid "Kaiser window, cut-off: 0.2"
 msgstr ""
 
-msgid "Hamming window,cut-off:0.2,0.3"
+msgid "Hamming window, cut-off: 0.2, 0.3"
 msgstr ""
 
 msgid "length 127"
@@ -199,7 +199,7 @@ msgstr ""
 msgid "Windowed FIR Band pass Filter"
 msgstr ""
 
-msgid "Chebyshev window,cut-off:0.15,0.35"
+msgid "Chebyshev window, cut-off: 0.15, 0.35"
 msgstr ""
 
 msgid "length 55"
@@ -314,6 +314,20 @@ msgid ""
 msgstr ""
 "%s: Špatný typ vstupního argumentu #%d: Očekáván lineárně dynamický systém, "
 "nebo řada vektorů desetinných čísel.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A real or polynomial matrix or a "
+"rational expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A discrete system expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"

@@ -39,6 +39,7 @@ int sci_grayplot(char *fname, void *pvApiCtx)
     {
         { -1, "axesflag", -1, 0, 0, NULL},
         { -1, "frameflag", -1, 0, 0, NULL},
+        { -1, "logflag", -1, 0, 0, NULL},
         { -1, "nax", -1, 0, 0, NULL},
         { -1, "rect", -1, 0, 0, NULL},
         { -1, "strf", -1, 0, 0, NULL},
@@ -50,6 +51,7 @@ int sci_grayplot(char *fname, void *pvApiCtx)
     double* rect    = NULL ;
     int    * nax     = NULL ;
     BOOL     flagNax = FALSE;
+    char* logFlags = NULL;
 
     int* piAddr1 = NULL;
     int* piAddr2 = NULL;
@@ -90,7 +92,7 @@ int sci_grayplot(char *fname, void *pvApiCtx)
     sciErr = getMatrixOfDouble(pvApiCtx, piAddr1, &m1, &n1, &l1);
     if (sciErr.iErr)
     {
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 1);
         printError(&sciErr, 0);
         return 1;
     }
@@ -114,7 +116,7 @@ int sci_grayplot(char *fname, void *pvApiCtx)
     sciErr = getMatrixOfDouble(pvApiCtx, piAddr2, &m2, &n2, &l2);
     if (sciErr.iErr)
     {
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 2);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 2);
         printError(&sciErr, 0);
         return 1;
     }
@@ -138,7 +140,7 @@ int sci_grayplot(char *fname, void *pvApiCtx)
     sciErr = getMatrixOfDouble(pvApiCtx, piAddr3, &m3, &n3, &l3);
     if (sciErr.iErr)
     {
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 3);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 3);
         printError(&sciErr, 0);
         return 1;
     }
@@ -168,6 +170,7 @@ int sci_grayplot(char *fname, void *pvApiCtx)
     GetStrf(pvApiCtx, fname, 4, opts, &strf);
     GetRect(pvApiCtx, fname, 5, opts, &rect);
     GetNax(pvApiCtx, 6, opts, &nax, &flagNax);
+    GetLogflags(pvApiCtx, fname, 7, opts, &logFlags);
 
     getOrCreateDefaultSubwin();
 
@@ -193,7 +196,7 @@ int sci_grayplot(char *fname, void *pvApiCtx)
         }
     }
 
-    Objgrayplot ((l1), (l2), (l3), &m3, &n3, strf, rect, nax, flagNax);
+    Objgrayplot ((l1), (l2), (l3), &m3, &n3, strf, rect, nax, flagNax, logFlags);
 
     AssignOutputVariable(pvApiCtx, 1) = 0;
     ReturnArguments(pvApiCtx);

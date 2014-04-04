@@ -24,6 +24,8 @@ libscicommons_la_etc_DATA = \
 	etc/commons.quit \
 	etc/commons.start
 
+COMMONS_JNI_SOURCES = src/jni/FindIconHelper.cpp
+
 COMMONS_C_SOURCES =  src/jni/ScilabCommons_wrap.c \
 		     src/jni/CommonFileUtils_wrap.c \
 		     src/c/fileutils.c
@@ -62,6 +64,8 @@ INCLUDE_FLAGS = $(libscicommons_la_CPPFLAGS)
 #### SWIG Declaration ####
 SWIG_WRAPPERS = src/jni/ScilabCommons.i \
                 src/jni/CommonFileUtils.i
+
+GIWS_WRAPPERS = src/jni/FindIconHelper.giws.xml
 
 BUILT_SOURCES=
 if SWIG

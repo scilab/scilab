@@ -41,10 +41,18 @@ int sci_swap_handles(char * fname, void *pvApiCtx)
     int secondHdlRow = 0;
     int iHandle_1 = 0;
     int iHandle_2 = 0;
+    int iType_1 = 0;
+    int iType_2 = 0;
+    int * piType_1 = &iType_1;
+    int * piType_2 = &iType_2;
     int iParent_1 = 0;
     int* piParent_1 = &iParent_1;
     int iParent_2 = 0;
     int* piParent_2 = &iParent_2;
+    int iParentType_1 = 0;
+    int iParentType_2 = 0;
+    int * piParentType_1 = &iParentType_1;
+    int * piParentType_2 = &iParentType_2;
     int iChildrenCount = 0;
     int *piChildrenCount = &iChildrenCount;
     int* piChildrenUID = NULL;
@@ -100,8 +108,14 @@ int sci_swap_handles(char * fname, void *pvApiCtx)
     h = (long) * (secondHdlStkIndex);
     iHandle_2 = getObjectFromHandle(h);
 
+    getGraphicObjectProperty(iHandle_1, __GO_TYPE__, jni_int, (void **)&piType_1);
+    getGraphicObjectProperty(iHandle_2, __GO_TYPE__, jni_int, (void **)&piType_2);
+
     iParent_1 = getParentObject(iHandle_1);
     iParent_2 = getParentObject(iHandle_2);
+
+    getGraphicObjectProperty(iParent_1, __GO_TYPE__, jni_int, (void **)&piParentType_1);
+    getGraphicObjectProperty(iParent_2, __GO_TYPE__, jni_int, (void **)&piParentType_2);
 
     // Check if objects do not have the same parent
     if (iParent_1 == iParent_2)
@@ -122,12 +136,16 @@ int sci_swap_handles(char * fname, void *pvApiCtx)
         }
 
         setGraphicObjectProperty(iParent_1, __GO_CHILDREN__, piChildrenUID, jni_int_vector, iChildrenCount);
-
     }
-    else
+    else if (iType_1 == iType_2 || iParentType_1 == iParentType_2)
     {
         setGraphicObjectRelationship(iParent_1, iHandle_2);
         setGraphicObjectRelationship(iParent_2, iHandle_1);
+    }
+    else
+    {
+        Scierror(999, _("%s: Handles do not have the same parent type neither the same type.\n"), fname);
+        return 0;
     }
     AssignOutputVariable(pvApiCtx, 1) = 0;
     ReturnArguments(pvApiCtx);

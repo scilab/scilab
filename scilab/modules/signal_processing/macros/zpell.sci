@@ -23,14 +23,14 @@ function [ze,po,gain]=zpell(epsilon,A,omegac,omegar)
     //!
 
     m1=(epsilon*epsilon)/(A*A-1);
-    K1=%asn(1,m1);
-    K1t=imag(%asn(1/sqrt(m1),m1));
+    K1=delip(1,sqrt(m1));
+    K1t=imag(delip(1/sqrt(m1),sqrt(m1)));
     m=(omegac/omegar)^2;
-    K=%asn(1,m);
-    Kt=imag(%asn(1/sqrt(m),m));
+    K=delip(1,sqrt(m));
+    Kt=imag(delip(1/sqrt(m),sqrt(m)));
     n=(K1t*K)/(K1*Kt);
     order=round(n);
-    u0=-(Kt/K1t)*%asn(sqrt(1/(1+epsilon*epsilon)),1-m1);
+    u0=-(Kt/K1t)*delip(sqrt(1/(1+epsilon*epsilon)),sqrt(1-m1));
     even=2*int(order/2);
     if order<>even then,
         vmin=2*K/n;

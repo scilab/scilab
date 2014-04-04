@@ -19,19 +19,19 @@ function cb_m2sci_gui
     if get(gcbo,"tag")=="fileradio" then
 
         set(gcbo, "value", 1);
-        set(findobj("tag", "dirradio"), "value", 0);
+        set("dirradio", "value", 0);
 
         // Make dir objects not-visible
-        set(findobj("tag", "dirtitle"),"visible","off");
-        set(findobj("tag", "dirlabel"),"visible","off");
-        set(findobj("tag", "diredit"),"visible","off");
-        set(findobj("tag", "dirbtn"),"visible","off");
+        set("dirlabel", "visible","off");
+        set("diredit", "visible","off");
+        set("dirbtn", "visible","off");
 
         // Make file objects visible
-        set(findobj("tag", "filetitle"),"visible","on");
-        set(findobj("tag", "filelabel"),"visible","on");
-        set(findobj("tag", "fileedit"),"visible","on");
-        set(findobj("tag", "filebtn"),"visible","on");
+        set("filedirselect", "border",createBorder("titled", createBorder("line", "lightGray", 1),...
+        _("Input file"),"left","top",createBorderFont("", 11, "normal"), "black"));
+        set("filelabel", "visible","on");
+        set("fileedit", "visible","on");
+        set("filebtn", "visible","on");
 
         //
         // --- Switch to directory conversion mode ---
@@ -39,19 +39,19 @@ function cb_m2sci_gui
     elseif get(gcbo,"tag")=="dirradio" then
 
         set(gcbo, "value", 1);
-        set(findobj("tag", "fileradio"), "value", 0);
+        set("fileradio", "value", 0);
 
         // Make dir objects visible
-        set(findobj("tag", "dirtitle"),"visible","on");
-        set(findobj("tag", "dirlabel"),"visible","on");
-        set(findobj("tag", "diredit"),"visible","on");
-        set(findobj("tag", "dirbtn"),"visible","on");
+        set("filedirselect", "border",createBorder("titled", createBorder("line", "lightGray", 1),...
+        _("Input directory"),"left","top",createBorderFont("", 11, "normal"), "black"));
+        set("dirlabel", "visible", "on");
+        set("diredit", "visible", "on");
+        set("dirbtn", "visible", "on");
 
         // Make file objects not-visible
-        set(findobj("tag", "filetitle"),"visible","off");
-        set(findobj("tag", "filelabel"),"visible","off");
-        set(findobj("tag", "fileedit"),"visible","off");
-        set(findobj("tag", "filebtn"),"visible","off");
+        set("filelabel", "visible", "off");
+        set("fileedit", "visible", "off");
+        set("filebtn", "visible", "off");
 
         //
         // --- Directory to convert ---
@@ -59,7 +59,7 @@ function cb_m2sci_gui
     elseif get(gcbo,"tag")=="dirbtn" then
 
         directoryname = uigetdir(pwd(), gettext("Select the directory to convert"));
-        set(findobj("tag", "diredit"), "string", directoryname);
+        set("diredit", "string", directoryname);
 
         //
         // --- File to convert ---
@@ -67,7 +67,7 @@ function cb_m2sci_gui
     elseif get(gcbo,"tag")=="filebtn" then
 
         filename = uigetfile("*.m", pwd(), gettext("Select the file to convert"));
-        set(findobj("tag", "fileedit"), "string", filename);
+        set("fileedit", "string", filename);
 
         //
         // --- Output directory ---
@@ -75,15 +75,15 @@ function cb_m2sci_gui
     elseif get(gcbo,"tag")=="outbtn" then
 
         directoryname = uigetdir(pwd(), gettext("Select the directory for generated files"));
-        set(findobj("tag", "outedit"), "string", directoryname);
+        set("outedit", "string", directoryname);
 
         //
         // --- Recmode option ---
         //
     elseif or(get(gcbo, "tag")==["recradioyes","recradiono"]) then
 
-        set(findobj("tag", "recradioyes"), "value", 0);
-        set(findobj("tag", "recradiono"), "value", 0);
+        set("recradioyes", "value", 0);
+        set("recradiono", "value", 0);
 
         set(gcbo, "value", 1);
 
@@ -92,8 +92,8 @@ function cb_m2sci_gui
         //
     elseif or(get(gcbo, "tag")==["doubradioyes","doubradiono"]) then
 
-        set(findobj("tag", "doubradioyes"), "value", 0);
-        set(findobj("tag", "doubradiono"), "value", 0);
+        set("doubradioyes", "value", 0);
+        set("doubradiono", "value", 0);
 
         set(gcbo, "value", 1);
 
@@ -102,10 +102,10 @@ function cb_m2sci_gui
         //
     elseif or(get(gcbo, "tag")==["verbradio0","verbradio1","verbradio2","verbradio3"]) then
 
-        set(findobj("tag", "verbradio0"), "value", 0);
-        set(findobj("tag", "verbradio1"), "value", 0);
-        set(findobj("tag", "verbradio2"), "value", 0);
-        set(findobj("tag", "verbradio3"), "value", 0);
+        set("verbradio0", "value", 0);
+        set("verbradio1", "value", 0);
+        set("verbradio2", "value", 0);
+        set("verbradio3", "value", 0);
 
         set(gcbo, "value", 1);
 
@@ -114,8 +114,8 @@ function cb_m2sci_gui
         //
     elseif or(get(gcbo, "tag")==["ppradioyes","ppradiono"]) then
 
-        set(findobj("tag", "ppradioyes"), "value", 0);
-        set(findobj("tag", "ppradiono"), "value", 0);
+        set("ppradioyes", "value", 0);
+        set("ppradiono", "value", 0);
 
         set(gcbo, "value", 1);
 
@@ -130,31 +130,31 @@ function cb_m2sci_gui
         // --- Launch conversion ---
         //
     elseif get(gcbo, "tag")=="convertbtn" then
-        outputdir = get(findobj("tag", "outedit"), "string");
+        outputdir = get("outedit", "string");
 
-        rec = get(findobj("tag", "recradioyes"), "value") == 1;
+        rec = get("recradioyes", "value") == 1;
 
-        doub = get(findobj("tag", "doubradioyes"), "value") == 1;
+        doub = get("doubradioyes", "value") == 1;
 
-        if get(findobj("tag", "verbradio0"), "value") == 1 then
+        if get("verbradio0", "value") == 1 then
             verb = 0;
-        elseif get(findobj("tag", "verbradio1"), "value") == 1 then
+        elseif get("verbradio1", "value") == 1 then
             verb = 1;
-        elseif get(findobj("tag", "verbradio2"), "value") == 1 then
+        elseif get("verbradio2", "value") == 1 then
             verb = 2;
         else
             verb = 3;
         end
 
-        pp = get(findobj("tag", "ppradioyes"), "value") == 1;
+        pp = get("ppradioyes", "value") == 1;
 
-        if get(findobj("tag", "fileradio"), "value") == 1 then // Single file conversion
-            inputfile = get(findobj("tag", "fileedit"), "string");
+        if get("fileradio", "value") == 1 then // Single file conversion
+            inputfile = get("fileedit", "string");
             //delete(findobj("tag", "m2scifig"));
             delete(gcf());
             mfile2sci(inputfile, outputdir, rec, doub, verb, pp);
         else // Directory conversion
-            inputdir = get(findobj("tag", "diredit"), "string");
+            inputdir = get("diredit", "string");
             //delete(findobj("tag", "m2scifig"));
             delete(gcf());
             translatepaths(inputdir, outputdir);

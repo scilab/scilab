@@ -30,6 +30,7 @@
 
 #include "graphicObjectProperties.h"
 #include "getGraphicObjectProperty.h"
+#include "createGraphicObject.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_xstring(char *fname, void *pvApiCtx)
@@ -55,6 +56,7 @@ int sci_xstring(char *fname, void *pvApiCtx)
     long hdlstr = 0;
     int nbElement = 0, i = 0;
     BOOL isboxed = FALSE;
+    int iCurrentSubWin = 0;
 
     CheckInputArgument(pvApiCtx, 3, 5);
 
@@ -91,7 +93,7 @@ int sci_xstring(char *fname, void *pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 1);
         return 1;
     }
 
@@ -107,7 +109,7 @@ int sci_xstring(char *fname, void *pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 2);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 2);
         return 1;
     }
 
@@ -149,7 +151,7 @@ int sci_xstring(char *fname, void *pvApiCtx)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
-            Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 4);
+            Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 4);
             return 1;
         }
 
@@ -175,7 +177,7 @@ int sci_xstring(char *fname, void *pvApiCtx)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
-            Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 5);
+            Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 5);
             return 1;
         }
 
@@ -202,7 +204,7 @@ int sci_xstring(char *fname, void *pvApiCtx)
         isboxed = (*l5 != 0);
     }
 
-    getOrCreateDefaultSubwin();
+    iCurrentSubWin = getOrCreateDefaultSubwin();
 
     if (nbElement == 1)
     {
@@ -245,7 +247,7 @@ int sci_xstring(char *fname, void *pvApiCtx)
          * To be modified
          */
         {
-            int o = ConstructCompoundSeq(nbElement);
+            int o = createCompoundSeq(iCurrentSubWin, nbElement);
         }
     }
 

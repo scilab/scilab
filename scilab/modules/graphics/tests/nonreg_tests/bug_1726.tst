@@ -95,5 +95,5 @@ for alpha = -250:0.1:0
     drawnow();
 end
 
-// chack that 5 facets of the cube are correctly drawn.
+// check that 5 facets of the cube are correctly drawn.
 

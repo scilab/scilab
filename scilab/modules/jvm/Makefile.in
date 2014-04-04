@@ -18,11 +18,11 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) INRIA   - 2006 - Sylvestre Ledru
 # Copyright (C) DIGITEO - 2009 - Pierre MARECHAL
-# 
+#
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
 # you should have received as part of this distribution.  The terms
-# are also available at    
+# are also available at
 # http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 #
 
@@ -207,9 +207,10 @@ am__objects_2 = src/nojvm/libscijvm_disable_la-nojvm.lo
 am__objects_3 = src/nojvm/libscijvm_disable_la-nojvm_gw.lo
 am_libscijvm_disable_la_OBJECTS = $(am__objects_2) $(am__objects_3)
 libscijvm_disable_la_OBJECTS = $(am_libscijvm_disable_la_OBJECTS)
-libscijvm_la_DEPENDENCIES = libscijvm-algo.la
+am__DEPENDENCIES_1 =
+libscijvm_la_DEPENDENCIES = libscijvm-algo.la $(am__DEPENDENCIES_1) \
+	$(am__DEPENDENCIES_1)
 am__objects_4 = sci_gateway/c/libscijvm_la-sci_system_setproperty.lo \
-	sci_gateway/c/libscijvm_la-sci_with_embedded_jre.lo \
 	sci_gateway/c/libscijvm_la-sci_javaclasspath.lo \
 	sci_gateway/c/libscijvm_la-gw_jvm.lo \
 	sci_gateway/c/libscijvm_la-sci_javalibrarypath.lo
@@ -346,6 +347,7 @@ CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
 DEMOTOOLS_ENABLE = @DEMOTOOLS_ENABLE@
 DEPDIR = @DEPDIR@
+DLLTOOL = @DLLTOOL@
 DOCBOOK_ROOT = @DOCBOOK_ROOT@
 DOXYGEN_BIN = @DOXYGEN_BIN@
 DSYMUTIL = @DSYMUTIL@
@@ -365,6 +367,11 @@ FGREP = @FGREP@
 FLEXDOCK = @FLEXDOCK@
 FLIBS = @FLIBS@
 FOP = @FOP@
+FREEHEP_GRAPHICS2D = @FREEHEP_GRAPHICS2D@
+FREEHEP_GRAPHICSIO = @FREEHEP_GRAPHICSIO@
+FREEHEP_GRAPHICSIO_EMF = @FREEHEP_GRAPHICSIO_EMF@
+FREEHEP_IO = @FREEHEP_IO@
+FREEHEP_UTIL = @FREEHEP_UTIL@
 GENHTML = @GENHTML@
 GETTEXT_MACRO_VERSION = @GETTEXT_MACRO_VERSION@
 GIWS_BIN = @GIWS_BIN@
@@ -428,6 +435,7 @@ LTLIBINTL = @LTLIBINTL@
 LTLIBOBJS = @LTLIBOBJS@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
+MANIFEST_TOOL = @MANIFEST_TOOL@
 MATIO_CFLAGS = @MATIO_CFLAGS@
 MATIO_ENABLE = @MATIO_ENABLE@
 MATIO_LIBS = @MATIO_LIBS@
@@ -588,7 +596,7 @@ modulename = jvm
 
 #### jvm : Conf files ####
 libscijvm_la_rootdir = $(mydatadir)
-libscijvm_la_root_DATA = license.txt 
+libscijvm_la_root_DATA = license.txt
 
 #### jvm : init scripts ####
 libscijvm_la_etcdir = $(mydatadir)/etc
@@ -617,9 +625,8 @@ libscijvm_la_CPPFLAGS = \
 pkglib_LTLIBRARIES = libscijvm-disable.la $(am__append_1)
 @GUI_TRUE@USEANT = 1
 @GUI_TRUE@noinst_LTLIBRARIES = libscijvm-algo.la
-libscijvm_la_LDFLAGS = -lpthread $(XML_LIBS) $(JAVA_JNI_LIBS) \
-	$(AM_LDFLAGS) $(am__append_2)
-libscijvm_la_LIBADD = libscijvm-algo.la
+libscijvm_la_LDFLAGS = -pthread $(AM_LDFLAGS) $(am__append_2)
+libscijvm_la_LIBADD = libscijvm-algo.la $(XML_LIBS) $(JAVA_JNI_LIBS)
 
 #### jvm : gateway declaration ####
 libscijvm_la_sci_gatewaydir = $(mydatadir)/sci_gateway
@@ -637,8 +644,8 @@ includes/addToClasspath.h \
 includes/addToLibrarypath.h \
 includes/getScilabObject.h
 
-GATEWAY_C_SOURCES = sci_gateway/c/sci_system_setproperty.c \
-sci_gateway/c/sci_with_embedded_jre.c \
+GATEWAY_C_SOURCES = \
+sci_gateway/c/sci_system_setproperty.c \
 sci_gateway/c/sci_javaclasspath.c \
 sci_gateway/c/gw_jvm.c \
 sci_gateway/c/sci_javalibrarypath.c
@@ -905,9 +912,6 @@ sci_gateway/c/$(DEPDIR)/$(am__dirstamp):
 sci_gateway/c/libscijvm_la-sci_system_setproperty.lo:  \
 	sci_gateway/c/$(am__dirstamp) \
 	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
-sci_gateway/c/libscijvm_la-sci_with_embedded_jre.lo:  \
-	sci_gateway/c/$(am__dirstamp) \
-	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/c/libscijvm_la-sci_javaclasspath.lo:  \
 	sci_gateway/c/$(am__dirstamp) \
 	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
@@ -950,7 +954,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscijvm_la-sci_javaclasspath.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscijvm_la-sci_javalibrarypath.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscijvm_la-sci_system_setproperty.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscijvm_la-sci_with_embedded_jre.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscijvm_la-jvm_gw.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscijvm_la-sci_system_getproperty.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscijvm_algo_la-InitializeJVM.Plo@am__quote@
@@ -1137,13 +1140,6 @@ sci_gateway/c/libscijvm_la-sci_system_setproperty.lo: sci_gateway/c/sci_system_s
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_system_setproperty.c' object='sci_gateway/c/libscijvm_la-sci_system_setproperty.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscijvm_la-sci_system_setproperty.lo `test -f 'sci_gateway/c/sci_system_setproperty.c' || echo '$(srcdir)/'`sci_gateway/c/sci_system_setproperty.c
-
-sci_gateway/c/libscijvm_la-sci_with_embedded_jre.lo: sci_gateway/c/sci_with_embedded_jre.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscijvm_la-sci_with_embedded_jre.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscijvm_la-sci_with_embedded_jre.Tpo -c -o sci_gateway/c/libscijvm_la-sci_with_embedded_jre.lo `test -f 'sci_gateway/c/sci_with_embedded_jre.c' || echo '$(srcdir)/'`sci_gateway/c/sci_with_embedded_jre.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscijvm_la-sci_with_embedded_jre.Tpo sci_gateway/c/$(DEPDIR)/libscijvm_la-sci_with_embedded_jre.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_with_embedded_jre.c' object='sci_gateway/c/libscijvm_la-sci_with_embedded_jre.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscijvm_la-sci_with_embedded_jre.lo `test -f 'sci_gateway/c/sci_with_embedded_jre.c' || echo '$(srcdir)/'`sci_gateway/c/sci_with_embedded_jre.c
 
 sci_gateway/c/libscijvm_la-sci_javaclasspath.lo: sci_gateway/c/sci_javaclasspath.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscijvm_la-sci_javaclasspath.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscijvm_la-sci_javaclasspath.Tpo -c -o sci_gateway/c/libscijvm_la-sci_javaclasspath.lo `test -f 'sci_gateway/c/sci_javaclasspath.c' || echo '$(srcdir)/'`sci_gateway/c/sci_javaclasspath.c

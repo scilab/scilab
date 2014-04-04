@@ -534,7 +534,7 @@ int ScilabJavaEnvironment::createJarArchive(char *jarFilePath, char **filePaths,
     }
     catch (const GiwsException::JniException & e)
     {
-        throw ScilabJavaException(__LINE__, __FILE__, gettext("Cannot create jar:\n%s"), e.getJavaDescription().c_str());
+        throw ScilabJavaException(__LINE__, __FILE__, e.getJavaDescription().c_str());
     }
 }
 

@@ -258,6 +258,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="sci_gateway\cpp\sci_extraction.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_htmlDump.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_htmlRead.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_htmlReadStr.cpp" />
+    <ClCompile Include="sci_gateway\cpp\sci_htmlWrite.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_insertion.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_percent_c_i_XMLAttr.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_percent_foo_i_XMLList.cpp" />

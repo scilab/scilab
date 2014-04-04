@@ -27,6 +27,7 @@
 
 #include "graphicObjectProperties.h"
 #include "getGraphicObjectProperty.h"
+#include "createGraphicObject.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_xfarcs(char *fname, void *pvApiCtx)
@@ -42,6 +43,7 @@ int sci_xfarcs(char *fname, void *pvApiCtx)
     int m2 = 0, n2 = 0;
 
     long hdl = 0;
+    int iCurrentSubWin = 0;
 
     int i = 0;
 
@@ -62,7 +64,7 @@ int sci_xfarcs(char *fname, void *pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 1);
         return 1;
     }
 
@@ -86,7 +88,7 @@ int sci_xfarcs(char *fname, void *pvApiCtx)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
-            Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 2);
+            Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 2);
             return 1;
         }
 
@@ -121,7 +123,7 @@ int sci_xfarcs(char *fname, void *pvApiCtx)
         }
     }
 
-    getOrCreateDefaultSubwin();
+    iCurrentSubWin = getOrCreateDefaultSubwin();
 
     for (i = 0; i < n1; ++i)
     {
@@ -133,7 +135,7 @@ int sci_xfarcs(char *fname, void *pvApiCtx)
 
     /** Construct Compound and make it current object **/
     {
-        int o = ConstructCompoundSeq(n1);
+        int o = createCompoundSeq(iCurrentSubWin, n1);
         setCurrentObject(o);
     }
 

@@ -411,7 +411,7 @@ SciErr createNamedComplexZMatrixOfDouble(void* _pvCtx, const char* _pstName, int
 
     if (!checkNamedVarFormat(_pvCtx, _pstName))
     {
-        addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name."), "createNamedComplexZMatrixOfDouble");
+        addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name: %s."), "createNamedComplexZMatrixOfDouble", _pstName);
         return sciErr;
     }
 
@@ -432,7 +432,7 @@ SciErr createCommonNamedMatrixOfDouble(void* _pvCtx, const char* _pstName, int _
     SciErr sciErr = sciErrInit();
     if (!checkNamedVarFormat(_pvCtx, _pstName))
     {
-        addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name."), "createCommonNamedMatrixOfDouble");
+        addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name: %s."), "createCommonNamedMatrixOfDouble", _pstName);
         return sciErr;
     }
 

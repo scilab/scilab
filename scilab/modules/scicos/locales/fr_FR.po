@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-09-27 10:56+0000\n"
+"PO-Revision-Date: 2014-03-31 08:43+0000\n"
 "Last-Translator: Vincent Couvert <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 16967)\n"
 "Language: fr\n"
 
 #, c-format
@@ -48,6 +48,7 @@ msgstr "%s : Plus de mémoire disponible.\n"
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
 msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d : Un entier attendu.\n"
 
 #, c-format
 msgid "%s : First argument must be a scicos_block typed list.\n"
@@ -715,8 +716,8 @@ msgstr "%s : Valeur erronée de l'argument d'entrée n°%d : '%s' attendu.\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String array expected.\n"
 msgstr ""
-"%s : L'argument d'entrée numéro %d est de mauvais type : Une table de chaîne "
-"de caractères est attendu.\n"
+"%s : Type erroné de l'argument d'entrée n°%d : Une table de chaîne de "
+"caractères attendue.\n"
 
 msgid "Can't convert old diagram (problem in version)"
 msgstr ""
@@ -940,6 +941,9 @@ msgstr "La dimension du paramètre dep_ut du bloc %s n'est pas correcte.\n"
 msgid "Not enough information to find port type.\n"
 msgstr "Il n'y a pas assez d'informations pour trouver le type de port.\n"
 
+msgid "Modelica compiler (flat2C)"
+msgstr "Compilateur Modelica (flat2C)"
+
 msgid "The initialization file already exists!"
 msgstr "Le fichier d'initialisation éxiste déjà!"
 
@@ -1027,8 +1031,10 @@ msgstr "Problème d'évaluation : Bloc inconnu"
 #, c-format
 msgid ""
 "%s: Error while calling block %s [uid='%s']: invalid parameter (ier=%f, \\"
-"%scicos_prob=%f).\n"
+"%scicos_prob=%%%s).\n"
 msgstr ""
+"%s : Erreur à l'appel du bloc %s [uid='%s'] : paramètre invalide (ier=%f, \\"
+"%scicos_prob=%%%s).\n"
 
 msgid "Cannot load dynamic library: "
 msgstr "Impossible de charger la bibliothèque dynamique : "
@@ -1039,11 +1045,8 @@ msgstr "Impossible d'inclure "
 msgid "This file does not exist"
 msgstr "Ce fichier n'éxiste pas"
 
-msgid "-------Modelica compiler error (with the translator):-------"
-msgstr "-------Erreur du compilateur Modelica (avec le traducteur) :-------"
-
-msgid "Please read the error message in the Scilab window"
-msgstr "Veuillez lire le message d'erreur dans la fenêtre Scilab"
+msgid "Modelica compiler"
+msgstr "Compilateur Modelica"
 
 msgid "Sorry: Only C or FORTRAN languages are supported"
 msgstr "Seuls les langages C et Fortran sont pris en charge"
@@ -1104,8 +1107,8 @@ msgstr "Il y a trop de fichiers Modelica.\n"
 msgid "-------Modelica translator error message:-----"
 msgstr "-------Message d'erreur du traducteur Modelica :-----"
 
-msgid "-------XML to Modelica error:-------"
-msgstr "------- Erreur XML vers Modelica : -------"
+msgid "XML to Modelica"
+msgstr "XML vers Modelica"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"

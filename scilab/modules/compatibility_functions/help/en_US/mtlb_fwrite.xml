@@ -28,7 +28,9 @@
             calls to <literal>mtlb_fwrite</literal> by calls to <link linkend="mput">mput</link>.
         </para>
         <para>
-            Caution: <literal>mtlb_fwrite</literal> has not to be used for hand coded functions.
+            <warning>
+                Caution: <literal>mtlb_fwrite</literal> has not to be used for hand coded functions.
+            </warning>
         </para>
     </refsection>
     <refsection role="see also">

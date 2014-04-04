@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2012-09-28 14:31+0000\n"
+"PO-Revision-Date: 2014-03-31 08:34+0000\n"
 "Last-Translator: Vincent Couvert <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 16967)\n"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
@@ -89,9 +89,71 @@ msgstr "Chemin incorrect:"
 msgid "Invalid preferences file:"
 msgstr "Fichier de préférence incorrect:"
 
+msgid "Are you sure you want to restore the default layout at next startup?"
+msgstr ""
+"Êtes-vous sûr de vouloir restaurer la disposition par défaut au prochain "
+"démarrage ?"
+
+msgid "Reset layout"
+msgstr "Réinitialiser la disposition"
+
 msgid "Scilab Preferences"
 msgstr "Préférences de Scilab"
+
+msgid "Are you sure you want to reset all settings to the default values?"
+msgstr ""
+"Êtes-vous sûr de vouloir réinitialiser tous les paramètres aux valeurs par "
+"défaut ?"
+
+msgid "Reset"
+msgstr "Réinitialiser"
 
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Le module '%s' de Scilab n'est pas installé.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr "%s : Nombre erroné d'arguments d'entrée : %d ou %d attendus.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
+"attendue.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une matrice de chaîne de "
+"caractères attendue.\n"
+
+#, c-format
+msgid "%s: Invalid XConfiguration.xml file.\n"
+msgstr "%s : Fichier XConfiguration.xml invalide.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A XMLDoc expected.\n"
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un XMLDoc attendu.\n"
+
+#, c-format
+msgid "%s: Invalid XPath request.\n"
+msgstr "%s : Requête XPath invalide.\n"
+
+#, c-format
+msgid "%s: Invalid XPath request."
+msgstr "%s : Requête XPath invalide."
+
+#, c-format
+msgid "%s: Target node is not a XML_ELEMENT_NODE."
+msgstr "%s : Le nœud cible n'est pas un XML_ELEMENT_NODE."
+
+#, c-format
+msgid "%s: Invalid attribute name: %s."
+msgstr "%s : Nom d'attribut invalide : %s"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: a 2xN matrix expected.\n"
+msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : Une matrice 2xN "
+"attendue.\n"

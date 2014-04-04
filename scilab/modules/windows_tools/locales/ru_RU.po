@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 16967)\n"
 "Language: ru\n"
 
 msgid "Only on Windows Mode, not in Console Mode.\n"
@@ -85,8 +85,9 @@ msgstr "%s: Не удалось открыть реестр Windows.\n"
 msgid "%s: Cannot query value of this type.\n"
 msgstr "%s: Не удалось запросить значение этого типа.\n"
 
-msgid "Scilab Console"
-msgstr "Командное окно"
+#, c-format
+msgid "Scilab %s Console"
+msgstr ""
 
 msgid "Scilab 5.5.X family will be the latest one working under Windows XP."
 msgstr ""

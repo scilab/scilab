@@ -111,14 +111,18 @@ libsciexternal_objects_java_la_CPPFLAGS = -I$(srcdir)/includes/ \
 pkglib_LTLIBRARIES = libsciexternal_objects_java.la
 noinst_LTLIBRARIES = libsciexternal_objects_java-algo.la
 
-libsciexternal_objects_java_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
+libsciexternal_objects_java_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
 
 libsciexternal_objects_java_algo_la_SOURCES = $(EXTERNAL_OBJECTS_JAVA_C_SOURCES) $(EXTERNAL_OBJECTS_JAVA_JNI_SOURCES) $(EXTERNAL_OBJECTS_JAVA_CPP_SOURCES)
 libsciexternal_objects_java_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
 libsciexternal_objects_java_algo_la_CFLAGS = $(libsciexternal_objects_java_la_CFLAGS)
 libsciexternal_objects_java_algo_la_CPPFLAGS = $(libsciexternal_objects_java_la_CPPFLAGS)
 
-libsciexternal_objects_java_la_LIBADD = libsciexternal_objects_java-algo.la $(top_builddir)/modules/commons/libscicommons.la $(top_builddir)/modules/jvm/libscijvm.la
+libsciexternal_objects_java_la_LIBADD = \
+		libsciexternal_objects_java-algo.la \
+		$(top_builddir)/modules/commons/libscicommons.la \
+		$(top_builddir)/modules/jvm/libscijvm.la \
+		$(X_LIBS) $(X_EXTRA_LIBS)
 
 # For the code check (splint)
 CHECK_SRC= $(EXTERNAL_OBJECTS_JAVA_C_SOURCES) $(GATEWAY_C_SOURCES)

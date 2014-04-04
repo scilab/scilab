@@ -21,12 +21,11 @@ int gw_jvm(void);
 /*--------------------------------------------------------------------------*/
 /* Declaration of all the profile function declared and */
 /* used in sci_gateway */
-JVM_GW_IMPEXP int sci_with_embedded_jre(char *fname, unsigned long fname_len);
-JVM_GW_IMPEXP int sci_system_setproperty(char *fname, unsigned long fname_len);
-JVM_GW_IMPEXP int sci_javalibrarypath(char *fname, unsigned long fname_len);
+//JVM_GW_IMPEXP int sci_with_embedded_jre(char *fname, unsigned long fname_len);
+//JVM_GW_IMPEXP int sci_system_setproperty(char *fname, unsigned long fname_len);
+//JVM_GW_IMPEXP int sci_javalibrarypath(char *fname, unsigned long fname_len);
 //YaSp
 JVM_GW_IMPEXP int sci_javaclasspath(char *fname, void* pvApiCtx);
-
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_JVM_H__ */
 

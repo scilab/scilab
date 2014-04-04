@@ -60,8 +60,7 @@
                 <listitem>
                     <para>This field selects the type of line to be used to draw lines . Its
                         value should be an integer in [1 6]. 1 stands for solid, the other
-                        values stand for a selection of dashes (see
-                        <link linkend="getlinestyle">getlinestyle</link>).
+                        values stand for a selection of dashes.
                     </para>
                 </listitem>
             </varlistentry>
@@ -133,7 +132,7 @@
                     <para>
                         . The <literal>mark_size</literal> selects the font size of the mark to
                         be displayed. Its value should be an integer in [0 5] whith stands for
-                        8pt, 10pt, 12pt, 14pt, 18pt and 24pt (see <link linkend="getmark">getmark</link>).
+                        8pt, 10pt, 12pt, 14pt, 18pt and 24pt.
                     </para>
                 </listitem>
             </varlistentry>

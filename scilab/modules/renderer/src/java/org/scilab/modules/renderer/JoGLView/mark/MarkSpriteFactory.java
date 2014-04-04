@@ -37,7 +37,7 @@ public class MarkSpriteFactory {
      * @param colorMap the scilab color map.
      * @return a mark sprite corresponding to the given scilab mark.
      */
-    public static Texture getMarkSprite(TextureManager spriteManager, Mark mark, ColorMap colorMap, Appearance appearance) {
+    public static Texture getMarkSprite(TextureManager spriteManager, Mark mark, Integer selectedColor, ColorMap colorMap, Appearance appearance) {
         int finalSize;
 
         /**
@@ -57,7 +57,7 @@ public class MarkSpriteFactory {
         }
 
         Texture sprite = spriteManager.createTexture();
-        sprite.setDrawer(getSpriteDrawer(mark, finalSize, colorMap, appearance));
+        sprite.setDrawer(getSpriteDrawer(mark, selectedColor, finalSize, colorMap, appearance));
 
         return sprite;
     }
@@ -69,10 +69,11 @@ public class MarkSpriteFactory {
      * @param colorMap the scilab colormap to use.
      * @return the sprite drawer corresponding to the given mark.
      */
-    private static TextureDrawer getSpriteDrawer(Mark mark, int finalSize, ColorMap colorMap, Appearance usedAppearance) {
+    private static TextureDrawer getSpriteDrawer(Mark mark, Integer selectedColor, int finalSize, ColorMap colorMap, Appearance usedAppearance) {
         final Appearance appearance = new Appearance();
+        Integer markColor = selectedColor == null ? mark.getForeground() : selectedColor;
         Color backgroundColor = ColorFactory.createColor(colorMap, mark.getBackground());
-        Color foregroundColor = ColorFactory.createColor(colorMap, mark.getForeground());
+        Color foregroundColor = ColorFactory.createColor(colorMap, markColor);
 
         if (mark.getBackground() != 0) {
             appearance.setFillColor(backgroundColor);

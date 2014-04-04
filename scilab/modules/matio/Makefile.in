@@ -199,7 +199,9 @@ AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
 am__v_lt_0 = --silent
 am__v_lt_1 = 
-libscimatio_la_DEPENDENCIES = libscimatio-algo.la
+am__DEPENDENCIES_1 =
+libscimatio_la_DEPENDENCIES = libscimatio-algo.la \
+	$(am__DEPENDENCIES_1)
 am__libscimatio_la_SOURCES_DIST = sci_gateway/c/gw_matio.c \
 	sci_gateway/c/sci_matfile_open.c \
 	sci_gateway/c/sci_matfile_close.c \
@@ -323,6 +325,7 @@ CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
 DEMOTOOLS_ENABLE = @DEMOTOOLS_ENABLE@
 DEPDIR = @DEPDIR@
+DLLTOOL = @DLLTOOL@
 DOCBOOK_ROOT = @DOCBOOK_ROOT@
 DOXYGEN_BIN = @DOXYGEN_BIN@
 DSYMUTIL = @DSYMUTIL@
@@ -342,6 +345,11 @@ FGREP = @FGREP@
 FLEXDOCK = @FLEXDOCK@
 FLIBS = @FLIBS@
 FOP = @FOP@
+FREEHEP_GRAPHICS2D = @FREEHEP_GRAPHICS2D@
+FREEHEP_GRAPHICSIO = @FREEHEP_GRAPHICSIO@
+FREEHEP_GRAPHICSIO_EMF = @FREEHEP_GRAPHICSIO_EMF@
+FREEHEP_IO = @FREEHEP_IO@
+FREEHEP_UTIL = @FREEHEP_UTIL@
 GENHTML = @GENHTML@
 GETTEXT_MACRO_VERSION = @GETTEXT_MACRO_VERSION@
 GIWS_BIN = @GIWS_BIN@
@@ -405,6 +413,7 @@ LTLIBINTL = @LTLIBINTL@
 LTLIBOBJS = @LTLIBOBJS@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
+MANIFEST_TOOL = @MANIFEST_TOOL@
 MATIO_CFLAGS = @MATIO_CFLAGS@
 MATIO_ENABLE = @MATIO_ENABLE@
 MATIO_LIBS = @MATIO_LIBS@
@@ -663,7 +672,7 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @MATIO_TRUE@		  src/c/GetStructVariable.c \
 @MATIO_TRUE@		  src/c/GetSparseVariable.c
 
-@MATIO_TRUE@libscimatio_la_LDFLAGS = $(MATIO_LIBS) $(AM_LDFLAGS)
+@MATIO_TRUE@libscimatio_la_LDFLAGS = $(AM_LDFLAGS)
 @MATIO_FALSE@GATEWAY_CPP_SOURCES = 
 libscimatio_la_CPPFLAGS = -I$(srcdir)/includes/ \
 			-I$(srcdir)/src/c/ \
@@ -699,7 +708,7 @@ libscimatio_la_etc_DATA = etc/matio.quit etc/matio.start
 #### matio : gateway declaration ####
 libscimatio_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscimatio_la_sci_gateway_DATA = sci_gateway/matio_gateway.xml
-libscimatio_la_LIBADD = libscimatio-algo.la
+libscimatio_la_LIBADD = libscimatio-algo.la $(MATIO_LIBS)
 all: all-am
 
 .SUFFIXES:

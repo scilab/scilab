@@ -14,10 +14,14 @@ function %_Matplot()
     ny = 400;
     nx = 300;
     M = pmodulo((0:(ny-1))'*ones(1:nx) + ones(ny,1)*(0:nx-1),ceil(max(nx,ny)/3));
-    clf
-    f = gcf();
-    f.color_map = coolcolormap(nx);
+
     Matplot(M)
+
+    f = gcf();
+    my_plot_desc  = _("Classical Matplot");
+    f.figure_name = my_plot_desc;
+    f.color_map = coolcolormap(nx);
+
     a = gca();
     a.tight_limits = "on";
     a.isoview = "on";

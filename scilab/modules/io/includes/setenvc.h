@@ -24,7 +24,7 @@
  * @param[in] value the value of the variable "string"
  * @return FALSE if there is a problem otherwise TRUE
  */
-IO_IMPEXP BOOL setenvc(char *string, char *value);
+IO_IMPEXP BOOL setenvc(const char *string, const char *value);
 IO_IMPEXP BOOL setenvcW(wchar_t *string, wchar_t *value);
 
 #endif /* __SETENVC_H__ */

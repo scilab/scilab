@@ -8,19 +8,20 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-12-08 11:24+0000\n"
+"PO-Revision-Date: 2014-03-08 14:04+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 16967)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
 
-msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
-msgstr "Scilabグラフィック・モジュール は、-nogui または -nwni モード では無効です.\n"
+#, c-format
+msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
+msgstr "-nogui または -nwni モードでは Scilab '%s' モジュールは無効です.\n"
 
 #, c-format
 msgid ""
@@ -28,16 +29,16 @@ msgid ""
 msgstr "%s: 入力引数 #%d の型が間違っています: 整数またはハンドルを指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: A real expected.\n"
-msgstr "%s: 引数 %d の型が間違っています:  実数を指定してください.\n"
+msgid "%s: Wrong type for argument #%d: A real expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 実数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr "%s: 入力引数 #%d の大きさが間違っています: スカラーを指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Handle matrix expected.\n"
-msgstr "%s: 引数 %d の型が間違っています:  ハンドル行列を指定してください.\n"
+msgid "%s: Wrong type for argument #%d: Handle matrix expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: ハンドルの行列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A graphic handle expected.\n"
@@ -131,33 +132,6 @@ msgid ""
 "other process."
 msgstr "エクスポートファイルを作成できませんでした.  ファイルを作成できなかったか他のプロセスにロックされています."
 
-msgid "Scilab Graphic export module not installed.\n"
-msgstr "Scilabグラフィックエクスポートモジュールはインストールされていません.\n"
-
 #, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 整数を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
-
-#, c-format
-msgid "%s: EMF format only available under Microsoft Windows OS.\n"
-msgstr "%s: EMF 形式は, Microsoft Windows OS 上でのみ使用可能です.\n"
-
-#, c-format
-msgid "%s: Unable to find pstoedit.\n"
-msgstr "%s: pstoedit が見つかりません.\n"
-
-#, c-format
-msgid "%s: Unable to create export file, permission denied.\n"
-msgstr "%s: エクスポートファイルを生成できません、権限がありません。\n"
-
-#, c-format
-msgid "%s: Unable to execute pstoedit.\n"
-msgstr "%s: pstoeditを実行できません。\n"
+msgid "Scilab '%s' module not installed.\n"
+msgstr "Scilabモジュール '%s' はインストールされていません.\n"

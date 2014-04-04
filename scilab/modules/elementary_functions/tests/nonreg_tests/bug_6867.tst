@@ -17,7 +17,7 @@
 // was wrong
 
 execstr("base2dec(""FFFF"",13);","errcatch");
-if lasterror() <> msprintf(gettext("%s: Wrong value for input argument(s): Valid base %d representations expected.\n"),"base2dec",13) then pause, end
+if lasterror() <> msprintf(gettext("%s: Wrong value for input argument #%d: Valid base %d representations expected.\n"),"base2dec",1,13) then pause, end
 
 execstr("base2dec(""FFFF"",14);","errcatch");
-if lasterror() <> msprintf(gettext("%s: Wrong value for input argument(s): Valid base %d representations expected.\n"),"base2dec",14) then pause, end
+if lasterror() <> msprintf(gettext("%s: Wrong value for input argument #%d: Valid base %d representations expected.\n"),"base2dec",1,14) then pause, end

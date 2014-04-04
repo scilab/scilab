@@ -1,5 +1,10 @@
 ; Definition of lib used in Scilab
 
+freehep-graphics2d.jar=@FREEHEP_GRAPHICS2D@
+
+freehep-graphicsio-emf.jar=@FREEHEP_GRAPHICSIO_EMF@
+
+freehep-graphicsio.jar=@FREEHEP_GRAPHICSIO@
 
 commons-logging.jar=@COMMONS_LOGGING@
 

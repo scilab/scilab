@@ -2,6 +2,7 @@
 # Please see in SCI/tools/localization for localization management
 # Copyright (C) 2007-2008 - INRIA
 # Copyright (C) 2008-2011 - DIGITEO
+# Copyright (C) 2012-2014 - Scilab-Enterprises
 # This file is distributed under the same license as the Scilab package.
 #
 msgid ""
@@ -9,12 +10,12 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab.org>\n"
+"Last-Translator: Vincent COUVERT <vincent.couvert@scilab-enterprises.com>\n"
 "Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-12-09 09:48+0100\n"
+"Revision-Date: 2014-04-01 12:32+0100\n"
 
 # File: sci_gateway/c/sci_clc.c, line: 41
 # File: sci_gateway/c/sci_lines.c, line: 206
@@ -241,1047 +242,1078 @@ msgid "Ukrainian"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 292
-# File: scilab_fake_localization_file.c, line: 638
+# File: scilab_fake_localization_file.c, line: 291
+# File: scilab_fake_localization_file.c, line: 639
+msgid "Start-up directory"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 293
+# File: scilab_fake_localization_file.c, line: 679
 msgid "Confirmation dialogs"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 295
+# File: scilab_fake_localization_file.c, line: 296
 msgid "Warn before exiting Scilab"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 296
+# File: scilab_fake_localization_file.c, line: 297
 msgid "Warn before deleting Command History items"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 297
+# File: scilab_fake_localization_file.c, line: 298
 msgid "Warn before clearing the Console"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 301
+# File: scilab_fake_localization_file.c, line: 302
 msgid "Desktop layout"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 304
+# File: scilab_fake_localization_file.c, line: 305
 msgid "Integrated"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 305
+# File: scilab_fake_localization_file.c, line: 306
 msgid "Simple"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 309
+# File: scilab_fake_localization_file.c, line: 310
 msgid "Shortcuts"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 313
+# File: scilab_fake_localization_file.c, line: 314
 msgid "Cut or interrupt"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 314
+# File: scilab_fake_localization_file.c, line: 315
 msgid "Copy or interrupt"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 315
-# File: scilab_fake_localization_file.c, line: 384
-# File: scilab_fake_localization_file.c, line: 463
+# File: scilab_fake_localization_file.c, line: 316
+# File: scilab_fake_localization_file.c, line: 385
+# File: scilab_fake_localization_file.c, line: 464
 msgid "Select all"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 316
+# File: scilab_fake_localization_file.c, line: 317
 msgid "Line beginning"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 317
+# File: scilab_fake_localization_file.c, line: 318
 msgid "Line end"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 318
+# File: scilab_fake_localization_file.c, line: 319
 msgid "Previous char"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 319
+# File: scilab_fake_localization_file.c, line: 320
 msgid "Delete next char"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 320
+# File: scilab_fake_localization_file.c, line: 321
 msgid "Delete previous char"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 321
+# File: scilab_fake_localization_file.c, line: 322
 msgid "Delete end of line"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 322
 # File: scilab_fake_localization_file.c, line: 323
+# File: scilab_fake_localization_file.c, line: 324
 msgid "Delete whole line"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 324
+# File: scilab_fake_localization_file.c, line: 325
 msgid "Delete last word"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 325
+# File: scilab_fake_localization_file.c, line: 326
 msgid "Previous console page"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 326
+# File: scilab_fake_localization_file.c, line: 327
 msgid "Next console page"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 327
+# File: scilab_fake_localization_file.c, line: 328
 msgid "Validate input"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 328
+# File: scilab_fake_localization_file.c, line: 329
 msgid "Clear console"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 329
+# File: scilab_fake_localization_file.c, line: 330
 msgid "Console box"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 330
 # File: scilab_fake_localization_file.c, line: 331
-msgid "Completion"
-msgstr ""
-
-#
 # File: scilab_fake_localization_file.c, line: 332
-# File: scilab_fake_localization_file.c, line: 334
-msgid "Previous history line"
+msgid "Completion"
 msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 333
 # File: scilab_fake_localization_file.c, line: 335
+msgid "Previous history line"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 334
+# File: scilab_fake_localization_file.c, line: 336
 msgid "Next history line"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 336
+# File: scilab_fake_localization_file.c, line: 337
 msgid "Help Browser"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 337
 # File: scilab_fake_localization_file.c, line: 338
+# File: scilab_fake_localization_file.c, line: 339
 msgid "Console Search Field"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 339
-# File: scilab_fake_localization_file.c, line: 390
-# File: scilab_fake_localization_file.c, line: 461
+# File: scilab_fake_localization_file.c, line: 340
+# File: scilab_fake_localization_file.c, line: 391
+# File: scilab_fake_localization_file.c, line: 462
 msgid "Paste"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 340
+# File: scilab_fake_localization_file.c, line: 341
 msgid "Open a file"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 341
+# File: scilab_fake_localization_file.c, line: 342
 msgid "Load environment"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 342
+# File: scilab_fake_localization_file.c, line: 343
 msgid "Save environment"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 343
+# File: scilab_fake_localization_file.c, line: 344
 msgid "Quit"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 344
+# File: scilab_fake_localization_file.c, line: 345
 msgid "Execute"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 345
+# File: scilab_fake_localization_file.c, line: 346
 msgid "Empty clipboard"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 346
+# File: scilab_fake_localization_file.c, line: 347
 msgid "Change current directory"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 347
+# File: scilab_fake_localization_file.c, line: 348
 msgid "Display current directory"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 348
-# File: scilab_fake_localization_file.c, line: 437
+# File: scilab_fake_localization_file.c, line: 349
+# File: scilab_fake_localization_file.c, line: 438
 msgid "Page setup"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 349
-# File: scilab_fake_localization_file.c, line: 404
-# File: scilab_fake_localization_file.c, line: 453
+# File: scilab_fake_localization_file.c, line: 350
+# File: scilab_fake_localization_file.c, line: 405
+# File: scilab_fake_localization_file.c, line: 454
 msgid "Print"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 350
+# File: scilab_fake_localization_file.c, line: 351
 msgid "Preferences"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 351
+# File: scilab_fake_localization_file.c, line: 352
 msgid "Show/Hide toolbar"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 352
+# File: scilab_fake_localization_file.c, line: 353
 msgid "Clear history"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 353
+# File: scilab_fake_localization_file.c, line: 354
 msgid "Resume"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 354
+# File: scilab_fake_localization_file.c, line: 355
 msgid "Abort"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 355
+# File: scilab_fake_localization_file.c, line: 356
 msgid "Interrupt"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 356
+# File: scilab_fake_localization_file.c, line: 357
 msgid "Launch SciNotes"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 357
+# File: scilab_fake_localization_file.c, line: 358
 msgid "Launch Xcos"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 358
+# File: scilab_fake_localization_file.c, line: 359
 msgid "Matlab to Scilab Translator"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 359
+# File: scilab_fake_localization_file.c, line: 360
 msgid "Module manager"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 360
+# File: scilab_fake_localization_file.c, line: 361
 msgid "Variable Browser"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 361
+# File: scilab_fake_localization_file.c, line: 362
 msgid "Command History"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 362
+# File: scilab_fake_localization_file.c, line: 363
 msgid "File Browser"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 363
+# File: scilab_fake_localization_file.c, line: 364
 msgid "Demonstrations"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 364
+# File: scilab_fake_localization_file.c, line: 365
 msgid "Open Scilab website"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 365
+# File: scilab_fake_localization_file.c, line: 366
 msgid "Open Online Help"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 366
+# File: scilab_fake_localization_file.c, line: 367
 msgid "Open Scilab wiki"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 367
+# File: scilab_fake_localization_file.c, line: 368
 msgid "Open ATOMS website"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 368
+# File: scilab_fake_localization_file.c, line: 369
 msgid "Open File Exchange website"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 369
+# File: scilab_fake_localization_file.c, line: 370
 msgid "Open Mailing lists"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 370
+# File: scilab_fake_localization_file.c, line: 371
 msgid "Open Forge website"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 371
+# File: scilab_fake_localization_file.c, line: 372
 msgid "Open Bugzilla"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 372
+# File: scilab_fake_localization_file.c, line: 373
 msgid "About Scilab"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 375
+# File: scilab_fake_localization_file.c, line: 376
 msgid "Auto complete (, [,..."
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 376
+# File: scilab_fake_localization_file.c, line: 377
 msgid "Auto complete keyword"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 377
+# File: scilab_fake_localization_file.c, line: 378
 msgid "Generate Help prototype"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 378
+# File: scilab_fake_localization_file.c, line: 379
 msgid "Tabify"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 379
+# File: scilab_fake_localization_file.c, line: 380
 msgid "Untabify"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 380
+# File: scilab_fake_localization_file.c, line: 381
 msgid "Indent"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 381
+# File: scilab_fake_localization_file.c, line: 382
 msgid "Comment"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 382
+# File: scilab_fake_localization_file.c, line: 383
 msgid "Uncomment"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 383
+# File: scilab_fake_localization_file.c, line: 384
 msgid "Remove trailing whites"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 385
+# File: scilab_fake_localization_file.c, line: 386
 msgid "Select block"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 386
+# File: scilab_fake_localization_file.c, line: 387
 msgid "Open current tab in a new window"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 387
+# File: scilab_fake_localization_file.c, line: 388
 msgid "Export current tab in a new window"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 388
-# File: scilab_fake_localization_file.c, line: 460
+# File: scilab_fake_localization_file.c, line: 389
+# File: scilab_fake_localization_file.c, line: 461
 msgid "Copy"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 389
-# File: scilab_fake_localization_file.c, line: 459
+# File: scilab_fake_localization_file.c, line: 390
+# File: scilab_fake_localization_file.c, line: 460
 msgid "Cut"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 391
+# File: scilab_fake_localization_file.c, line: 392
 msgid "Paste a column"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 392
-msgid "Repeat selection on column"
-msgstr ""
-
-#
 # File: scilab_fake_localization_file.c, line: 393
-# File: scilab_fake_localization_file.c, line: 457
-msgid "Undo"
+msgid "Repeat selection on column"
 msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 394
 # File: scilab_fake_localization_file.c, line: 458
-msgid "Redo"
+msgid "Undo"
 msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 395
-msgid "Copy as HTML with line number"
+# File: scilab_fake_localization_file.c, line: 459
+msgid "Redo"
 msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 396
-msgid "New"
+msgid "Copy as HTML with line number"
 msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 397
-# File: scilab_fake_localization_file.c, line: 448
-msgid "Open"
+msgid "New"
 msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 398
-msgid "Open URL"
+# File: scilab_fake_localization_file.c, line: 449
+msgid "Open"
 msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 399
-msgid "Open source"
+msgid "Open URL"
 msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 400
-# File: scilab_fake_localization_file.c, line: 450
-# File: scilab_fake_localization_file.c, line: 510
-msgid "Save"
+msgid "Open source"
 msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 401
 # File: scilab_fake_localization_file.c, line: 451
-msgid "Save as"
+# File: scilab_fake_localization_file.c, line: 511
+msgid "Save"
 msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 402
-msgid "Reload"
+# File: scilab_fake_localization_file.c, line: 452
+msgid "Save as"
 msgstr ""
 
 #
 # File: scilab_fake_localization_file.c, line: 403
+msgid "Reload"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 404
 msgid "Print preview"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 405
-# File: scilab_fake_localization_file.c, line: 454
+# File: scilab_fake_localization_file.c, line: 406
+# File: scilab_fake_localization_file.c, line: 455
 msgid "Close"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 406
+# File: scilab_fake_localization_file.c, line: 407
 msgid "Exit"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 407
+# File: scilab_fake_localization_file.c, line: 408
 msgid "To lower case"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 408
+# File: scilab_fake_localization_file.c, line: 409
 msgid "To upper case"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 409
+# File: scilab_fake_localization_file.c, line: 410
 msgid "Capitalize"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 410
+# File: scilab_fake_localization_file.c, line: 411
 msgid "Help on keyword"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 411
+# File: scilab_fake_localization_file.c, line: 412
 msgid "Load in Scilab"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 412
+# File: scilab_fake_localization_file.c, line: 413
 msgid "Execute in Scilab"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 413
+# File: scilab_fake_localization_file.c, line: 414
 msgid "Evaluate selection"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 414
+# File: scilab_fake_localization_file.c, line: 415
 msgid "Save and execute"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 415
+# File: scilab_fake_localization_file.c, line: 416
 msgid "Save and execute all"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 416
+# File: scilab_fake_localization_file.c, line: 417
 msgid "Find"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 417
+# File: scilab_fake_localization_file.c, line: 418
 msgid "Find next"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 418
+# File: scilab_fake_localization_file.c, line: 419
 msgid "Find previous"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 419
+# File: scilab_fake_localization_file.c, line: 420
 msgid "Incremental search"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 420
+# File: scilab_fake_localization_file.c, line: 421
 msgid "Set anchor"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 421
+# File: scilab_fake_localization_file.c, line: 422
 msgid "Remove anchor"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 422
+# File: scilab_fake_localization_file.c, line: 423
 msgid "Go to next anchor"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 423
+# File: scilab_fake_localization_file.c, line: 424
 msgid "Go to previous anchor"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 424
+# File: scilab_fake_localization_file.c, line: 425
 msgid "Start Code Navigator"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 425
+# File: scilab_fake_localization_file.c, line: 426
 msgid "Search word in file"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 426
+# File: scilab_fake_localization_file.c, line: 427
 msgid "Search files"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 427
+# File: scilab_fake_localization_file.c, line: 428
 msgid "Keyword completion"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 428
+# File: scilab_fake_localization_file.c, line: 429
 msgid "Help"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 429
+# File: scilab_fake_localization_file.c, line: 430
 msgid "About"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 430
+# File: scilab_fake_localization_file.c, line: 431
 msgid "Next tab"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 431
+# File: scilab_fake_localization_file.c, line: 432
 msgid "Previous tab"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 432
-# File: scilab_fake_localization_file.c, line: 462
+# File: scilab_fake_localization_file.c, line: 433
+# File: scilab_fake_localization_file.c, line: 463
 msgid "Delete"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 433
+# File: scilab_fake_localization_file.c, line: 434
 msgid "Next paragraph"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 434
+# File: scilab_fake_localization_file.c, line: 435
 msgid "Previous paragraph"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 435
+# File: scilab_fake_localization_file.c, line: 436
 msgid "Save all"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 436
+# File: scilab_fake_localization_file.c, line: 437
 msgid "Overwrite"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 438
+# File: scilab_fake_localization_file.c, line: 439
 msgid "Close all"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 439
+# File: scilab_fake_localization_file.c, line: 440
 msgid "Close all but this"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 440
+# File: scilab_fake_localization_file.c, line: 441
 msgid "Convert quote to double quote"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 441
+# File: scilab_fake_localization_file.c, line: 442
 msgid "Line numbering"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 442
+# File: scilab_fake_localization_file.c, line: 443
 msgid "Set the SciNotes font"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 443
+# File: scilab_fake_localization_file.c, line: 444
 msgid "Set the SciNotes colors"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 447
+# File: scilab_fake_localization_file.c, line: 448
 msgid "New diagram"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 449
+# File: scilab_fake_localization_file.c, line: 450
 msgid "Open file in Scilab current directory"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 452
+# File: scilab_fake_localization_file.c, line: 453
 msgid "Export"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 455
+# File: scilab_fake_localization_file.c, line: 456
 msgid "Quit Xcos"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 464
+# File: scilab_fake_localization_file.c, line: 465
 msgid "Invert selection"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 465
+# File: scilab_fake_localization_file.c, line: 466
 msgid "Block Parameters"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 466
+# File: scilab_fake_localization_file.c, line: 467
 msgid "Region to superblock"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 468
+# File: scilab_fake_localization_file.c, line: 469
 msgid "Zoom In"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 469
+# File: scilab_fake_localization_file.c, line: 470
 msgid "Zoom Out"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 470
+# File: scilab_fake_localization_file.c, line: 471
 msgid "Fit diagram to view"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 471
+# File: scilab_fake_localization_file.c, line: 472
 msgid "Normal 100%"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 472
+# File: scilab_fake_localization_file.c, line: 473
 msgid "Palette browser"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 473
+# File: scilab_fake_localization_file.c, line: 474
 msgid "Diagram browser"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 474
+# File: scilab_fake_localization_file.c, line: 475
 msgid "Viewport"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 475
+# File: scilab_fake_localization_file.c, line: 476
 msgid "Details"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 477
+# File: scilab_fake_localization_file.c, line: 478
 msgid "Setup"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 478
+# File: scilab_fake_localization_file.c, line: 479
 msgid "Execution trace and Debug"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 479
+# File: scilab_fake_localization_file.c, line: 480
 msgid "Set Context"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 480
+# File: scilab_fake_localization_file.c, line: 481
 msgid "Compile"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 481
+# File: scilab_fake_localization_file.c, line: 482
 msgid "Start"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 482
+# File: scilab_fake_localization_file.c, line: 483
 msgid "Stop"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 484
+# File: scilab_fake_localization_file.c, line: 485
 msgid "Rotate"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 485
+# File: scilab_fake_localization_file.c, line: 486
 msgid "Flip"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 486
+# File: scilab_fake_localization_file.c, line: 487
 msgid "Mirror"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 487
+# File: scilab_fake_localization_file.c, line: 488
 msgid "Show/Hide shadow"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 488
+# File: scilab_fake_localization_file.c, line: 489
 msgid "Left"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 489
+# File: scilab_fake_localization_file.c, line: 490
 msgid "Center"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 490
+# File: scilab_fake_localization_file.c, line: 491
 msgid "Right"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 491
+# File: scilab_fake_localization_file.c, line: 492
 msgid "Top"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 492
+# File: scilab_fake_localization_file.c, line: 493
 msgid "Middle"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 493
+# File: scilab_fake_localization_file.c, line: 494
 msgid "Bottom"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 494
+# File: scilab_fake_localization_file.c, line: 495
 msgid "Border Color"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 495
+# File: scilab_fake_localization_file.c, line: 496
 msgid "Fill Color"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 496
+# File: scilab_fake_localization_file.c, line: 497
 msgid "Horizontal"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 497
+# File: scilab_fake_localization_file.c, line: 498
 msgid "Straight"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 498
+# File: scilab_fake_localization_file.c, line: 499
 msgid "Vertical"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 499
+# File: scilab_fake_localization_file.c, line: 500
 msgid "Diagram background"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 500
+# File: scilab_fake_localization_file.c, line: 501
 msgid "Grid"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 502
+# File: scilab_fake_localization_file.c, line: 503
 msgid "Code generation"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 504
+# File: scilab_fake_localization_file.c, line: 505
 msgid "Xcos Help"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 505
+# File: scilab_fake_localization_file.c, line: 506
 msgid "Block Help"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 506
+# File: scilab_fake_localization_file.c, line: 507
 msgid "Xcos Demonstrations"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 507
+# File: scilab_fake_localization_file.c, line: 508
 msgid "About Xcos"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 513
+# File: scilab_fake_localization_file.c, line: 514
 msgid "Save variable"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 516
+# File: scilab_fake_localization_file.c, line: 517
 msgid "Save history"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 519
+# File: scilab_fake_localization_file.c, line: 520
 msgid "Save file"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 536
+# File: scilab_fake_localization_file.c, line: 537
 msgid "Environment"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 538
+# File: scilab_fake_localization_file.c, line: 539
 msgid "Floating point exception (ieee): "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 554
+# File: scilab_fake_localization_file.c, line: 555
 msgid "Printing format: "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 568
+# File: scilab_fake_localization_file.c, line: 569
 msgid "Width: "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 589
+# File: scilab_fake_localization_file.c, line: 590
 msgid "Language setting"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 591
+# File: scilab_fake_localization_file.c, line: 592
 msgid "Default language: "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 606
-# File: scilab_fake_localization_file.c, line: 630
+# File: scilab_fake_localization_file.c, line: 607
+# File: scilab_fake_localization_file.c, line: 631
 msgid "(This requires a restart of Scilab)"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 616
+# File: scilab_fake_localization_file.c, line: 617
 msgid "Java Heap Memory"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 618
+# File: scilab_fake_localization_file.c, line: 619
 msgid "Select the memory (in MB) available in Java: "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 658
+# File: scilab_fake_localization_file.c, line: 641
+msgid "Use current working directory"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 647
+msgid "Use previous working directory"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 653
+msgid "Use default directory"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 662
+msgid "Default startup directory"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 699
 msgid "Desktop Layout"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 660
+# File: scilab_fake_localization_file.c, line: 701
 msgid "Select a layout"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 674
+# File: scilab_fake_localization_file.c, line: 715
 msgid "(Modify the layout requires to restart Scilab)"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 686
+# File: scilab_fake_localization_file.c, line: 727
 msgid "Save layout on exiting"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 698
+# File: scilab_fake_localization_file.c, line: 732
+msgid "Reset layout"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 742
 msgid "Keys binding"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 701
+# File: scilab_fake_localization_file.c, line: 745
 msgid "Filter on action name: "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 711
+# File: scilab_fake_localization_file.c, line: 755
 msgid "Component"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 723
+# File: scilab_fake_localization_file.c, line: 767
 msgid "Name: "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 729
+# File: scilab_fake_localization_file.c, line: 773
 msgid "Description: "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 735
+# File: scilab_fake_localization_file.c, line: 779
 msgid "Binding: "
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 767
+# File: scilab_fake_localization_file.c, line: 811
 msgid "Action name"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 768
+# File: scilab_fake_localization_file.c, line: 812
 msgid "Key binding"
 msgstr ""
 
 #
-# File: src/c/cmdLine/autoCompletionCli.c, line: 227
+# File: src/c/cmdLine/autoCompletionCli.c, line: 225
 # File: src/c/windows/TermCompletion.c, line: 60
 # File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 60
 msgid "File or Directory"
 msgstr ""
 
 #
-# File: src/c/cmdLine/autoCompletionCli.c, line: 488
+# File: src/c/cmdLine/autoCompletionCli.c, line: 494
 # File: src/c/windows/TermCompletion.c, line: 195
 msgid "Scilab Fields"
 msgstr ""
 
 #
-# File: src/c/cmdLine/autoCompletionCli.c, line: 522
+# File: src/c/cmdLine/autoCompletionCli.c, line: 528
 # File: src/c/windows/TermCompletion.c, line: 223
 # File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 74
 msgid "Scilab Function"
 msgstr ""
 
 #
-# File: src/c/cmdLine/autoCompletionCli.c, line: 523
+# File: src/c/cmdLine/autoCompletionCli.c, line: 529
 # File: src/c/windows/TermCompletion.c, line: 224
 # File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 71
 msgid "Scilab Command"
 msgstr ""
 
 #
-# File: src/c/cmdLine/autoCompletionCli.c, line: 524
+# File: src/c/cmdLine/autoCompletionCli.c, line: 530
 # File: src/c/windows/TermCompletion.c, line: 225
 # File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 80
 msgid "Scilab Macro"
 msgstr ""
 
 #
-# File: src/c/cmdLine/autoCompletionCli.c, line: 525
+# File: src/c/cmdLine/autoCompletionCli.c, line: 531
 # File: src/c/windows/TermCompletion.c, line: 226
 # File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 83
 msgid "Scilab Variable"
 msgstr ""
 
 #
-# File: src/c/cmdLine/autoCompletionCli.c, line: 527
+# File: src/c/cmdLine/autoCompletionCli.c, line: 533
 # File: src/c/windows/TermCompletion.c, line: 227
 # File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 77
 msgid "Graphics handle field"
@@ -1299,12 +1331,6 @@ msgstr ""
 #
 # File: src/c/more.c, line: 25
 msgid "[Continue display? n (no) to stop, any other key to continue]"
-msgstr ""
-
-#
-# File: src/c/others/initMPI.c, line: 27
-#, c-format
-msgid "MPI error: %s\n"
 msgstr ""
 
 #

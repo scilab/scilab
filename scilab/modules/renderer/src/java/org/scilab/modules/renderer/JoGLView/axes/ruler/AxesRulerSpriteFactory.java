@@ -18,6 +18,7 @@ import org.scilab.forge.scirenderer.texture.TextureDrawer;
 import org.scilab.forge.scirenderer.texture.TextureDrawingTools;
 import org.scilab.forge.scirenderer.texture.TextureManager;
 import org.scilab.modules.graphic_objects.axes.Axes;
+import org.scilab.modules.graphic_objects.axes.AxesContainer;
 import org.scilab.modules.graphic_objects.axes.AxisProperty;
 import org.scilab.modules.graphic_objects.figure.ColorMap;
 import org.scilab.modules.graphic_objects.figure.Figure;
@@ -68,7 +69,7 @@ public class AxesRulerSpriteFactory implements RulerSpriteFactory {
         ColorMap figureColorMap;
         try {
             GraphicController controller = GraphicController.getController();
-            Figure parentFigure = (Figure) controller.getObjectFromId(axes.getParentFigure());
+            AxesContainer parentFigure = (AxesContainer) controller.getObjectFromId(axes.getParentFigure());
             figureColorMap = parentFigure.getColorMap();
         } catch (NullPointerException e) {
             figureColorMap = null;

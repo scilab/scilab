@@ -87,7 +87,11 @@
                     <para>
                         int: port (ex: <emphasis role="italic">80</emphasis>)
                     </para>
-                    <para>Note that if the port is not provided in the URL, the value will be 0.</para>
+                    <para>
+                        <note>
+                            Note that if the port is not provided in the URL, the value will be 0.
+                        </note>
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>

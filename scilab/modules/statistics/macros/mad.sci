@@ -46,7 +46,7 @@ function [s2]=mad(x,orien)
         elseif orien=="c" | orien==2 then
             s2=sum(abs(x-(mean(x,2)*ones(1,ncol))),2)/ncol
         else
-            error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'', ''%s'',''%s'', %d or %d.\n"),"mad",2, "r","c",1,2)),
+            error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'', ''%s'', %d or %d expected.\n"),"mad",2, "r","c",1,2)),
         end
     end
 endfunction

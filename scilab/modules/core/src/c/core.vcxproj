@@ -302,6 +302,7 @@ cd ..
     <ClCompile Include="returnanan.c" />
     <ClCompile Include="scimem.c" />
     <ClCompile Include="scirun.c" />
+    <ClCompile Include="sci_tools.c" />
     <ClCompile Include="setformat.c" />
     <ClCompile Include="setieee.c" />
     <ClCompile Include="setlines.c" />

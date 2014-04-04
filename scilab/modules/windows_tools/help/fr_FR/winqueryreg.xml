@@ -75,8 +75,12 @@ end
             </revision>
             <revision>
                 <revnumber>5.4.1</revnumber>
-                <revremark>Accepte les raccourcis de clés racine.</revremark>
-                <revremark>Peut renvoyer la liste des noms de clés.</revremark>
+                <revremark>
+                    <itemizedlist>
+                        <listitem>Accepte les raccourcis de clés racine.</listitem>
+                        <listitem>Peut renvoyer la liste des noms de clés.</listitem>
+                    </itemizedlist>
+                </revremark>
             </revision>
         </revhistory>
     </refsection>

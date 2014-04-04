@@ -841,19 +841,6 @@
                     <para>Load a font in the graphics context or query loaded font</para>
                 </listitem>
             </varlistentry>
-            <varlistentry>
-                <term>
-                    <link linkend="getsymbol">getsymbol</link>
-                </term>
-                <listitem>
-                    <para>
-                        Dialog to select a symbol and its size
-                        <warning>
-                            This function is obsolete.
-                        </warning>
-                    </para>
-                </listitem>
-            </varlistentry>
         </variablelist>
     </refsection>
     <refsection>

@@ -45,14 +45,10 @@
             graphic hierarchy. The first handle will take the second handle position
             and vice versa.
         </para>
-        <para>Since not every handles are compatible with each others, some
-            restrictions exist when swapping handles. For examples, it is not allowed
-            to swap a polyline with an axes handle, since their would not be
-            compatible with their new parents.. More information about compatibility
-            can be found in the <link linkend="graphics_entities">graphics_entities</link> page.
+        <para>The handles must have the same parent type or the same type to avoid incompatibilities.
         </para>
         <para>This routine may be used on children of the same parent to change their
-            indices..
+            indices.
         </para>
     </refsection>
     <refsection>

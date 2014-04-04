@@ -14,7 +14,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xml:id="part" xml:lang="en">
     <refnamediv>
         <refname>part</refname>
-        <refpurpose>string built from extracted characters</refpurpose>
+        <refpurpose>Extraction of characters from strings</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -24,17 +24,24 @@
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>strings_in, strings_out</term>
+                <term>strings_in</term>
                 <listitem>
-                    <para>matrices of character strings.</para>
+                    <para>a character string or matrix of character string.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>v</term>
                 <listitem>
                     <para>
-                        an integer row vector. <literal>$</literal> is accepted and means length(strings_in)
+                        a vector of integer values containing the indices of characters to be extracted. 
+                        <literal>$</literal> is accepted and means length(strings_in).
                     </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>strings_out</term>
+                <listitem>
+                    <para>a character string or matrix of character string.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -42,16 +49,17 @@
     <refsection>
         <title>Description</title>
         <para>
-            Let <literal>s[k]</literal> stands for the <literal>k</literal>
-            character of string <literal>s</literal> (or the white space
-            character if <literal>k &gt;length(s)</literal>).
+            This function extracts characters from strings. The characters to be 
+            extracted are referred to by their indices contained in <literal>v</literal>.
+        </para>
+        
+        <para>
+            <literal>strings_out</literal> is filled with whitespace characters when indices 
+            are beyond the input string's length.
         </para>
         <para>
-            <function>part</function> returns <varname>strings_out</varname>, a
-            matrix of character strings, such that
-            <literal>strings_out(i,j)</literal> is the string
-            <literal>"s[v(1)]...s[v(n)]"</literal>
-            (<literal>s=strings_in(i,j)</literal>).
+            <literal>v</literal> may contain <literal>$</literal> symbol which stands for the 
+            length of <literal>string_in</literal>.
         </para>
     </refsection>
     <refsection>

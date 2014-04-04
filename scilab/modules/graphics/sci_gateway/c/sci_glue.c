@@ -31,6 +31,7 @@
 #include "HandleManagement.h"
 #include "elem_common.h"
 
+#include "createGraphicObject.h"
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 #include "CurrentObject.h"
@@ -46,7 +47,7 @@ int sci_glue(char * fname, void *pvApiCtx)
     long long* outindex = NULL;
 
     int numrow = 0, numcol = 0, n = 0, cx1 = 1;
-    long *handelsvalue = NULL;
+    int *pObj = NULL;
     int i = 0;
 
     int iCompoundUID = 0;
@@ -110,14 +111,14 @@ int sci_glue(char * fname, void *pvApiCtx)
     }
 
     /* we must change the pobj to the Compound type */
-    handelsvalue = (long*)MALLOC(n * sizeof(long));
+    pObj = (int*)MALLOC(n * sizeof(int));
     for (i = 0 ; i < n ; i++)
     {
-        handelsvalue[i] = (unsigned long) l1[i];
-        iObjUID = getObjectFromHandle(handelsvalue[i]);
+        iObjUID = getObjectFromHandle((long)l1[i]);
+        pObj[i] = iObjUID;
         if (iObjUID == 0)
         {
-            FREE(handelsvalue);
+            FREE(pObj);
             Scierror(999, _("%s: The handle is not or no more valid.\n"), fname);
             return 0;
         }
@@ -131,7 +132,7 @@ int sci_glue(char * fname, void *pvApiCtx)
 
         if (iParentUID != iCurrentParentUID)
         {
-            FREE(handelsvalue);
+            FREE(pObj);
             Scierror(999, _("%s: Objects must have the same parent.\n"), fname);
             return 0;
         }
@@ -153,7 +154,7 @@ int sci_glue(char * fname, void *pvApiCtx)
     //    return 0;
     //}
 
-    iCompoundUID = ConstructCompound(handelsvalue, n);
+    iCompoundUID = createCompound(iParentUID, pObj, n);
     setCurrentObject(iCompoundUID);
 
     numrow = 1;
@@ -170,7 +171,7 @@ int sci_glue(char * fname, void *pvApiCtx)
     outindex[0] = getHandle(iCompoundUID);
     AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 3;
     ReturnArguments(pvApiCtx);
-    FREE(handelsvalue);
+    FREE(pObj);
 
     return 0;
 }

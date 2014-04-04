@@ -12,7 +12,10 @@
  *
  */
 
-#include "GetUicontrolValue.hxx"
+extern "C"
+{
+#include "GetUicontrol.h"
+}
 
 void* GetUicontrolValue(void* _pvCtx, int iObjUID)
 {

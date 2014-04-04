@@ -130,7 +130,7 @@ libscilab_la_rootdir = $(mydatadir)
 pkglib_LTLIBRARIES = libscilab-cli.la libscilab.la
 libscilab_la_SOURCES =
 
-libscilab_la_LDFLAGS = $(LAPACK_LIBS) $(BLAS_LIBS) $(AM_LDFLAGS) $(SCI_LDFLAGS)
+libscilab_la_LDFLAGS = $(AM_LDFLAGS) $(SCI_LDFLAGS)
 
 
 GUI_LIBS = 	$(top_builddir)/modules/gui/libscigui.la \
@@ -238,6 +238,8 @@ else
 libscilab_la_LIBADD += $(NO_GUI_LIBS)
 endif
 
+libscilab_la_LIBADD += $(top_builddir)/modules/libscilab-cli.la
+
 # Core modules
 libscilab_la_LIBADD += $(OTHER_LIBS) $(EXTERNAL_LIBS)
 
@@ -249,15 +251,15 @@ if FORCE_LINK
 libscilab_la_LIBADD += $(ENGINE_LIBS_DYNAMIC_LOAD)
 endif
 
-libscilab_la_LIBADD += $(top_builddir)/modules/libscilab-cli.la
+libscilab_la_LIBADD += $(LAPACK_LIBS) $(BLAS_LIBS)
 
 ################## libscilab-cli  ##################
 
 libscilab_cli_la_SOURCES =
 
-libscilab_cli_la_LDFLAGS = $(LAPACK_LIBS) $(BLAS_LIBS) $(AM_LDFLAGS) $(SCI_LDFLAGS)
+libscilab_cli_la_LDFLAGS = $(AM_LDFLAGS) $(SCI_LDFLAGS)
 
 # Core modules
-libscilab_cli_la_LIBADD = $(ENGINE_LIBS) $(NO_GUI_LIBS) $(OTHER_LIBS) $(EXTERNAL_LIBS)
+libscilab_cli_la_LIBADD = $(ENGINE_LIBS) $(NO_GUI_LIBS) $(OTHER_LIBS) $(EXTERNAL_LIBS) $(LAPACK_LIBS) $(BLAS_LIBS)
 
 .NOTPARALLEL: libscilab-cli.la libscilab.la

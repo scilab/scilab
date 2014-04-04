@@ -19,52 +19,54 @@
  * To be modified.
  */
 
-#define UNKNOWN_DATA_PROPERTY   0
+#define UNKNOWN_DATA_PROPERTY       0
 
-#define NUM_GONS                1
-#define NUM_VERTICES_PER_GON    2
+#define NUM_GONS                    1
+#define NUM_VERTICES_PER_GON        2
 
-#define NUM_ELEMENTS            3
-#define NUM_ELEMENTS_ARRAY      4
-#define COORDINATES             5
-#define X_COORDINATES           6
-#define Y_COORDINATES           7
-#define Z_COORDINATES           8
+#define NUM_ELEMENTS                3
+#define NUM_ELEMENTS_ARRAY          4
+#define COORDINATES                 5
+#define X_COORDINATES               6
+#define Y_COORDINATES               7
+#define Z_COORDINATES               8
 
-#define X_COORDINATES_SHIFT     9
-#define Y_COORDINATES_SHIFT     10
-#define Z_COORDINATES_SHIFT     11
-#define X_COORDINATES_SHIFT_SET 12
-#define Y_COORDINATES_SHIFT_SET 13
-#define Z_COORDINATES_SHIFT_SET 14
-#define Z_COORDINATES_SET       15
+#define X_COORDINATES_SHIFT         9
+#define Y_COORDINATES_SHIFT         10
+#define Z_COORDINATES_SHIFT         11
+#define X_COORDINATES_SHIFT_SET     12
+#define Y_COORDINATES_SHIFT_SET     13
+#define Z_COORDINATES_SHIFT_SET     14
+#define Z_COORDINATES_SET           15
 
-#define NUM_VERTICES            16
-#define NUM_INDICES             17
-#define INDICES                 18
-#define VALUES                  19
+#define NUM_VERTICES                16
+#define NUM_INDICES                 17
+#define INDICES                     18
+#define VALUES                      19
 
-#define FEC_TRIANGLES           20
+#define FEC_TRIANGLES               20
 
-#define NUM_X                   21
-#define NUM_Y                   22
-#define NUM_Z                   23
-#define GRID_SIZE               24
-#define X_DIMENSIONS            25
-#define Y_DIMENSIONS            26
+#define NUM_X                       21
+#define NUM_Y                       22
+#define NUM_Z                       23
+#define GRID_SIZE                   24
+#define X_DIMENSIONS                25
+#define Y_DIMENSIONS                26
 
-#define COLORS                  27
-#define NUM_COLORS              28
+#define COLORS                      27
+#define NUM_COLORS                  28
 
-#define MATPLOT_BOUNDS          30
-#define MATPLOT_TYPE            31
-#define MATPLOT_VIDEO_MODE      32
-#define MATPLOT_GL_TYPE         33
-#define MATPLOT_DATA_INFOS      34
-#define MATPLOT_DATA_TYPE       35
-#define MATPLOT_DATA_ORDER      36
-#define MATPLOT_IMAGE_TYPE      37
-#define MATPLOT_IMAGE_DATA      38
-#define MATPLOT_IMAGE_DATASIZE  39
+#define MATPLOT_BOUNDS              30
+#define MATPLOT_TYPE                31
+#define MATPLOT_VIDEO_MODE          32
+#define MATPLOT_GL_TYPE             33
+#define MATPLOT_DATA_INFOS          34
+#define MATPLOT_DATA_TYPE           35
+#define MATPLOT_DATA_ORDER          36
+#define MATPLOT_IMAGE_TYPE          37
+#define MATPLOT_IMAGE_DATA          38
+#define MATPLOT_IMAGE_DATASIZE      39
+#define DISPLAY_FUNCTION_DATA       40
+#define DISPLAY_FUNCTION_DATA_SIZE  41
 
 #endif

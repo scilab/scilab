@@ -2,11 +2,11 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Serge Steer
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -93,15 +93,15 @@
             and 1.0. As saturation varies from 0 to 1.0, the corresponding colors
             (hues) vary from unsaturated (shades of gray) to fully saturated (no
             white component). As value, or brightness, varies from 0 to 1.0, the
-            corresponding colors become increasingly brighter. 
+            corresponding colors become increasingly brighter.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-t=[0:0.3:2*%pi]'; z=sin(t)*cos(t'); 
-plot3d1(t,t,z) 
-f=gcf();f.pixmap='on';
+        <programlisting role="example"><![CDATA[
+t=[0:0.3:2*%pi]'; z=sin(t)*cos(t');
+plot3d1(t,t,z)
+f=gcf();
 for h=0:0.1:1
   hsv=[h*ones(32,1) linspace(0,1,32)' 0.7*ones(32,1)];
   f.color_map=hsv2rgb(hsv);
@@ -113,10 +113,10 @@ for v=0:0.1:1
   xpause(10000)
 end
  ]]></programlisting>
-        <scilab:image> 
-            t=[0:0.3:2*%pi]'; z=sin(t)*cos(t'); 
-            plot3d1(t,t,z) 
-            f=gcf();f.pixmap='on';
+        <scilab:image>
+            t=[0:0.3:2*%pi]'; z=sin(t)*cos(t');
+            plot3d1(t,t,z)
+            f=gcf();
             for h=0:0.1:1
             hsv=[h*ones(32,1) linspace(0,1,32)' 0.7*ones(32,1)];
             f.color_map=hsv2rgb(hsv);

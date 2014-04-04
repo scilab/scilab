@@ -108,12 +108,12 @@ checkassert ( flag , errmsg , "success" );
 //
 //  Mlist
 s=mlist(['V','name','value'],['a','b';'c' 'd'],[1 2; 3 4]);
-t=s; 
+t=s;
 assert_checkequal(s, t);
 //
 //  Tlist
 s=tlist(['V','name','value'],['a','b';'c' 'd'],[1 2; 3 4]);
-t=s; 
+t=s;
 assert_checkequal(s, t);
 //
 // Polynomial
@@ -150,3 +150,19 @@ assert_checkequal(s, t);
 s=list("foo",2);
 t=s;
 assert_checkequal(s, t);
+//
+// Hypermatrix
+// - Double
+s = rand(2,2,2);
+t = s;
+assert_checkequal(s,t);
+// - int8
+s = int8(rand(2,2,2));
+t = s;
+assert_checkequal(s,t);
+// - wrong type
+s = rand(2,2,2);
+t = int8(s);
+instr="assert_checkequal(s, t)";
+ierr=execstr(instr,"errcatch");
+MY_assert_equal(ierr, 10000);

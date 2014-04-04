@@ -118,16 +118,18 @@ static void popListAddress(int _iRhsPos)
     if (it != stackListPosition.end())
     {
         delete it->second->back();
-        stackListPosition[_iRhsPos]->pop_back();
+        it->second->pop_back();
         if (it->second->size() > 0 && it->second->back()->m_iLast == 1)
         {
             //close cascade
             popListAddress(_iRhsPos);
         }
 
-        if (stackListPosition.find(_iRhsPos) != stackListPosition.end() && stackListPosition[_iRhsPos]->empty())
+        StackList::iterator jt = stackListPosition.find(_iRhsPos);
+        if (jt != stackListPosition.end() && jt->second->empty())
         {
-            stackListPosition.erase(stackListPosition.find(_iRhsPos));
+            delete jt->second;
+            stackListPosition.erase(jt);
             //TODO : check to close list
         }
     }
@@ -137,6 +139,26 @@ static void popNamedListAddress(std::string _stNamedList)
 {
     StackNamedList::iterator it = stackNamedListPosition.find(_stNamedList);
     // FIXME
+//    if (it != stackNamedListPosition.end())
+//    {
+//        delete it->second->back();
+//        it->second->pop_back();
+//        if (it->second->size() > 0 && it->second->back()->m_iLast == 1)
+//        {
+//            //close cascade
+//            popNamedListAddress(_stNamedList);
+//        }
+//
+//        StackNamedList::iterator jt = stackNamedListPosition.find(_stNamedList);
+//        if (jt != stackNamedListPosition.end() && jt->second->empty())
+//        {
+//            int iVarID[nsiz];
+//            delete jt->second;
+//            stackNamedListPosition.erase(jt);
+//            C2F(str2name)(_stNamedList.c_str(), iVarID, (unsigned long)_stNamedList.size());
+//            createNamedVariable(iVarID);
+//        }
+//    }
 }
 
 /*get last store address*/
@@ -364,7 +386,7 @@ static SciErr createCommonNamedList(void* _pvCtx, const char* _pstName, int _iLi
 
     if (!checkNamedVarFormat(_pvCtx, _pstName))
     {
-        addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name."), "createCommonNamedList");
+        addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name: %s."), "createCommonNamedList", _pstName);
         return sciErr;
     }
 
@@ -690,7 +712,7 @@ SciErr createCommonListInNamedList(void* _pvCtx, const char* _pstName, int* _piP
 
     if (!checkNamedVarFormat(_pvCtx, _pstName))
     {
-        addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name."), "createCommonListInNamedList");
+        addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name: %s."), "createCommonListInNamedList", _pstName);
         return sciErr;
     }
 
@@ -761,7 +783,7 @@ SciErr createVoidInNamedList(void* _pvCtx, const char* _pstName, int* /*_piParen
 
     if (!checkNamedVarFormat(_pvCtx, _pstName))
     {
-        addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name."), "createVoidInNamedList");
+        addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name: %s."), "createVoidInNamedList", _pstName);
         return sciErr;
     }
 
@@ -829,7 +851,7 @@ SciErr createUndefinedInNamedList(void* _pvCtx, const char* _pstName, int* /*_pi
 
     if (!checkNamedVarFormat(_pvCtx, _pstName))
     {
-        addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name."), "createUndefinedInNamedList");
+        addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name: %s."), "createUndefinedInNamedList", _pstName);
         return sciErr;
     }
 
@@ -1066,7 +1088,7 @@ SciErr createComplexZMatrixOfDoubleInNamedList(void* _pvCtx, const char* _pstNam
 
     if (!checkNamedVarFormat(_pvCtx, _pstName))
     {
-        addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name."), "createComplexZMatrixOfDoubleInNamedList");
+        addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name: %s."), "createComplexZMatrixOfDoubleInNamedList", _pstName);
         return sciErr;
     }
 
@@ -1123,7 +1145,7 @@ SciErr createCommomMatrixOfDoubleInNamedList(void* _pvCtx, const char* _pstName,
 
     if (!checkNamedVarFormat(_pvCtx, _pstName))
     {
-        addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name."), "createCommomMatrixOfDoubleInNamedList");
+        addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name: %s."), "createCommomMatrixOfDoubleInNamedList", _pstName);
         return sciErr;
     }
 
@@ -1313,7 +1335,7 @@ SciErr createMatrixOfStringInNamedList(void* _pvCtx, const char* _pstName, int* 
 
     if (!checkNamedVarFormat(_pvCtx, _pstName))
     {
-        addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name."), "createMatrixOfStringInNamedList");
+        addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name: %s."), "createMatrixOfStringInNamedList", _pstName);
         return sciErr;
     }
 
@@ -1518,7 +1540,7 @@ SciErr createMatrixOfBooleanInNamedList(void* _pvCtx, const char* _pstName, int*
 
     if (!checkNamedVarFormat(_pvCtx, _pstName))
     {
-        addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name."), "createMatrixOfBooleanInNamedList");
+        addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name: %s."), "createMatrixOfBooleanInNamedList", _pstName);
         return sciErr;
     }
 
@@ -1762,7 +1784,7 @@ SciErr createCommonMatrixOfPolyInNamedList(void* _pvCtx, const char* _pstName, i
 
     if (!checkNamedVarFormat(_pvCtx, _pstName))
     {
-        addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name."), "createCommonMatrixOfPolyInNamedList");
+        addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name: %s."), "createCommonMatrixOfPolyInNamedList", _pstName);
         return sciErr;
     }
 
@@ -2131,7 +2153,7 @@ static SciErr createCommonMatrixOfIntegerInNamedList(void* _pvCtx, const char* _
 
     if (!checkNamedVarFormat(_pvCtx, _pstName))
     {
-        addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name."), "createCommonMatrixOfIntegerInNamedList");
+        addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name: %s."), "createCommonMatrixOfIntegerInNamedList", _pstName);
         return sciErr;
     }
 
@@ -2447,7 +2469,7 @@ SciErr createCommonSparseMatrixInNamedList(void* _pvCtx, const char* _pstName, i
 
     if (!checkNamedVarFormat(_pvCtx, _pstName))
     {
-        addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name."), "createCommonSparseMatrixInNamedList");
+        addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name: %s."), "createCommonSparseMatrixInNamedList", _pstName);
         return sciErr;
     }
 
@@ -2717,7 +2739,7 @@ SciErr createBooleanSparseMatrixInNamedList(void* _pvCtx, const char* _pstName, 
 
     if (!checkNamedVarFormat(_pvCtx, _pstName))
     {
-        addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name."), "createBooleanSparseMatrixInNamedList");
+        addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name: %s."), "createBooleanSparseMatrixInNamedList", _pstName);
         return sciErr;
     }
 
@@ -2966,7 +2988,7 @@ SciErr createPointerInNamedList(void* _pvCtx, const char* _pstName, int* /*_piPa
 
     if (!checkNamedVarFormat(_pvCtx, _pstName))
     {
-        addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name."), "createPointerInNamedList");
+        addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name: %s."), "createPointerInNamedList", _pstName);
         return sciErr;
     }
 

@@ -24,12 +24,11 @@ zoom_rect([0.5,0.5,0.6,0.6]);
 
 // check that 0 is not included in the frame
 a.margins = [0,0,0,0];
-sleep(200)//Wait for MVC update
 
 // get user coordinates of the upper left point of the window
 [x, y] = xchange(0, 0, "i2f");
 
-if ( abs(x - 0.5) > 0.01 | abs(y - 0.6) > 0.01) then pause;end
+if ( abs(x - 0.5) > 0.02 | abs(y - 0.6) > 0.02) then pause;end
 
 
 

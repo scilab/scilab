@@ -67,7 +67,7 @@ int sci_getcommonpart(char *fname, void *pvApiCtx)
     else
     {
         freeAllocatedMatrixOfString(iRows, iCols, pstrInput);
-        Scierror(999, _("%s: Wrong size for input argument %d.\n"), fname, 1);
+        Scierror(999, _("%s: Wrong size for input argument #%d.\n"), fname, 1);
     }
 
     return 0;

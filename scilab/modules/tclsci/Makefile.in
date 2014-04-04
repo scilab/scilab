@@ -193,7 +193,9 @@ AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
 am__v_lt_0 = --silent
 am__v_lt_1 = 
-libscitclsci_la_DEPENDENCIES = libscitclsci-algo.la
+am__DEPENDENCIES_1 =
+libscitclsci_la_DEPENDENCIES = libscitclsci-algo.la \
+	$(am__DEPENDENCIES_1)
 am__libscitclsci_la_SOURCES_DIST = sci_gateway/c/sci_opentk.c \
 	sci_gateway/c/sci_TCL_SetVar.c \
 	sci_gateway/c/sci_TCL_ExistVar.c \
@@ -333,6 +335,7 @@ CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
 DEMOTOOLS_ENABLE = @DEMOTOOLS_ENABLE@
 DEPDIR = @DEPDIR@
+DLLTOOL = @DLLTOOL@
 DOCBOOK_ROOT = @DOCBOOK_ROOT@
 DOXYGEN_BIN = @DOXYGEN_BIN@
 DSYMUTIL = @DSYMUTIL@
@@ -352,6 +355,11 @@ FGREP = @FGREP@
 FLEXDOCK = @FLEXDOCK@
 FLIBS = @FLIBS@
 FOP = @FOP@
+FREEHEP_GRAPHICS2D = @FREEHEP_GRAPHICS2D@
+FREEHEP_GRAPHICSIO = @FREEHEP_GRAPHICSIO@
+FREEHEP_GRAPHICSIO_EMF = @FREEHEP_GRAPHICSIO_EMF@
+FREEHEP_IO = @FREEHEP_IO@
+FREEHEP_UTIL = @FREEHEP_UTIL@
 GENHTML = @GENHTML@
 GETTEXT_MACRO_VERSION = @GETTEXT_MACRO_VERSION@
 GIWS_BIN = @GIWS_BIN@
@@ -415,6 +423,7 @@ LTLIBINTL = @LTLIBINTL@
 LTLIBOBJS = @LTLIBOBJS@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
+MANIFEST_TOOL = @MANIFEST_TOOL@
 MATIO_CFLAGS = @MATIO_CFLAGS@
 MATIO_ENABLE = @MATIO_ENABLE@
 MATIO_LIBS = @MATIO_LIBS@
@@ -603,7 +612,7 @@ yacc_present = @yacc_present@
 
 pkglib_LTLIBRARIES = libscitclsci.la
 noinst_LTLIBRARIES = libscitclsci-algo.la
-libscitclsci_la_LDFLAGS = $(TCLTK_LIBS) $(AM_LDFLAGS)
+libscitclsci_la_LDFLAGS = $(AM_LDFLAGS)
 libscitclsci_la_CPPFLAGS = -I$(srcdir)/includes/ \
 			-I$(srcdir)/src/c \
 			-I$(srcdir)/sci_gateway/c/ \
@@ -628,7 +637,7 @@ libscitclsci_algo_la_CPPFLAGS = $(libscitclsci_la_CPPFLAGS)
 # For the code check (splint)
 CHECK_SRC = $(libscitclsci_la_SOURCES)
 INCLUDE_FLAGS = $(libscitclsci_la_CPPFLAGS)
-libscitclsci_la_LIBADD = libscitclsci-algo.la 
+libscitclsci_la_LIBADD = libscitclsci-algo.la $(TCLTK_LIBS)
 #### Target ######
 modulename = tclsci
 

@@ -178,12 +178,7 @@ public class ContouredObject extends ContentLayout {
 
         // Get the current status of the property: Foreground Color
         Integer scilabForegroundColor;
-        if ((Boolean) GraphicController.getController().getProperty(UID, GraphicObjectProperties.__GO_MARK_MODE__)) {
-            scilabForegroundColor = (Integer) GraphicController.getController()
-                                    .getProperty(UID, GraphicObjectProperties.__GO_LINE_COLOR__);
-        } else {
-            scilabForegroundColor = EditorManager.getFromUid(parentFigure).getOriColor();
-        }
+        scilabForegroundColor = (Integer) GraphicController.getController().getProperty(UID, GraphicObjectProperties.__GO_LINE_COLOR__);
 
         Double[] rgbForegroundColor = ColorMapHandler.getRGBcolor(parentFigure, scilabForegroundColor);
         cForeground.setBackground(new Color(rgbForegroundColor[0].intValue(),
@@ -198,13 +193,7 @@ public class ContouredObject extends ContentLayout {
     public void setForegroundColor(int scilabColor, Integer UID) {
         Integer parentFigure = (Integer) GraphicController.getController()
                                .getProperty(UID, GraphicObjectProperties.__GO_PARENT_FIGURE__);
-        if ((Boolean) GraphicController.getController()
-                .getProperty(UID, GraphicObjectProperties.__GO_MARK_MODE__)) {
-            GraphicController.getController().setProperty(
-                UID, GraphicObjectProperties.__GO_LINE_COLOR__, scilabColor);
-        } else {
-            EditorManager.getFromUid(parentFigure).setOriColor(scilabColor);
-        }
+        GraphicController.getController().setProperty(UID, GraphicObjectProperties.__GO_LINE_COLOR__, scilabColor);
     }
 
     /**
@@ -338,18 +327,7 @@ public class ContouredObject extends ContentLayout {
         // Get the current status of the property: Mark Foreground Color
         Integer scilabMarkForeground = -1;
         String type[] = packClass.split("\\.");
-        if ("polyline".equals(type[0]) || "surface".equals(type[0])) {
-            if ((Boolean) GraphicController.getController()
-                    .getProperty(UID, GraphicObjectProperties.__GO_MARK_MODE__)) {
-                scilabMarkForeground = EditorManager.getFromUid(parentFigure).getOriColor();
-            } else {
-                scilabMarkForeground = (Integer) GraphicController.getController()
-                                       .getProperty(UID, GraphicObjectProperties.__GO_MARK_FOREGROUND__);
-            }
-        } else {
-            scilabMarkForeground = (Integer) GraphicController.getController()
-                                   .getProperty(UID, GraphicObjectProperties.__GO_MARK_FOREGROUND__);
-        }
+        scilabMarkForeground = (Integer) GraphicController.getController().getProperty(UID, GraphicObjectProperties.__GO_MARK_FOREGROUND__);
         Double[] rgbMarkForeground = ColorMapHandler.getRGBcolor(parentFigure, scilabMarkForeground);
         Color markForegroundCOLOR = new Color(rgbMarkForeground[0].intValue(),
                                               rgbMarkForeground[1].intValue(),

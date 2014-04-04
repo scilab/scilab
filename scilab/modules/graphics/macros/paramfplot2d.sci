@@ -55,7 +55,6 @@ function paramfplot2d(f,x,theta,flag,rect)
     a=gca();
     a.data_bounds=matrix(rect,2,2);
     a.axes_visible="on";
-    fig.pixmap="on"; //double buffer mode
     y=feval(x,theta(1),f);
     xpoly(x,y(:));p=gce(); //the polyline handle
     realtime(0);
@@ -75,6 +74,5 @@ function paramfplot2d(f,x,theta,flag,rect)
             drawnow();
         end
     end
-    fig.pixmap="off";
 
 endfunction

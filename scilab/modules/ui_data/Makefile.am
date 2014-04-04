@@ -1,11 +1,11 @@
 #
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) DIGITEO - 2010 - Allan CORNET
-# 
+#
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
 # you should have received as part of this distribution.  The terms
-# are also available at    
+# are also available at
 # http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 #
 
@@ -15,7 +15,7 @@ modulename=ui_data
 
 #### ui_data : Conf files ####
 libsciui_data_la_rootdir = $(mydatadir)
-libsciui_data_la_root_DATA =  license.txt 
+libsciui_data_la_root_DATA =  license.txt
 
 
 #### ui_data : init scripts ####
@@ -81,10 +81,11 @@ libsciui_data_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/modules/string/includes/ \
 			$(AM_CPPFLAGS)
 
-# Without the ui_data module 
+# Without the ui_data module
 libsciui_data_disable_la_CPPFLAGS = -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/localization/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes \
+			-I$(top_srcdir)/modules/system_env/includes \
 			$(AM_CPPFLAGS)
 
 UI_DATA_DISABLE_C_SOURCES = src/noui_data/noui_data.c
@@ -97,7 +98,7 @@ pkglib_LTLIBRARIES += libsciui_data.la
 noinst_LTLIBRARIES = libsciui_data-algo.la
 endif
 
-libsciui_data_la_LDFLAGS = $(X_LIBS) $(X_EXTRA_LIBS) $(AM_LDFLAGS)
+libsciui_data_la_LDFLAGS = $(AM_LDFLAGS)
 
 libsciui_data_algo_la_SOURCES = $(UI_DATA_C_SOURCES) $(UI_DATA_JNI_SOURCES) $(UI_DATA_CXX_SOURCES)
 libsciui_data_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CXX_SOURCES)
@@ -107,7 +108,7 @@ libsciui_data_algo_la_CPPFLAGS = $(libsciui_data_la_CPPFLAGS)
 CHECK_SRC= $(UI_DATA_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libsciui_data_la_CPPFLAGS)
 
-libsciui_data_la_LIBADD = libsciui_data-algo.la
+libsciui_data_la_LIBADD = libsciui_data-algo.la $(X_LIBS) $(X_EXTRA_LIBS)
 
 
 #### ui_data : gateway declaration ####

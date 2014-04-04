@@ -43,7 +43,7 @@ function [Xm,Xp,Ym,Yp,Zm,Zp] = slice_parallelepiped(dir_, val, ebox, nx, ny, nz)
     select dir_
     case "x=" then
         if val < ebox(1)  |  ebox(2) < val then
-            error("Bad slice choosen")
+            error("Bad slice chosen")
         end
         dx = coef*(ebox(2)-ebox(1))
         y = linspace(ebox(3),ebox(4),ny)
@@ -54,7 +54,7 @@ function [Xm,Xp,Ym,Yp,Zm,Zp] = slice_parallelepiped(dir_, val, ebox, nx, ny, nz)
         Xp = (val+dx)*ones(Yp);
     case "y=" then
         if val < ebox(3)  |  ebox(4) < val then
-            error("bad slice choosen")
+            error("bad slice chosen")
         end
         dy = coef*(ebox(4)-ebox(3))
         x = linspace(ebox(1),ebox(2),nx)
@@ -65,7 +65,7 @@ function [Xm,Xp,Ym,Yp,Zm,Zp] = slice_parallelepiped(dir_, val, ebox, nx, ny, nz)
         Yp = (val+dy)*ones(Xp);
     case "z=" then
         if val < ebox(5)  |  ebox(6) < val then
-            error("bad slice choosen")
+            error("bad slice chosen")
         end
         dz = coef*(ebox(6)-ebox(5))
         x = linspace(ebox(1),ebox(2),nx)

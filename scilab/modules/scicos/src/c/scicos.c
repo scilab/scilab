@@ -2149,7 +2149,7 @@ static void cossimdaskr(double *told)
     int (* DAEGetRootInfo) (void*, int*);
     int (* DAESStolerances) (void*, realtype, realtype);
     int (* DAEGetConsistentIC) (void*, N_Vector, N_Vector);
-    int (* DAESetMaxNumSteps) (void*, int*);
+    int (* DAESetMaxNumSteps) (void*, long int);
     int (* DAESetMaxNumJacsIC) (void*, int);
     int (* DAESetMaxNumItersIC) (void*, int);
     int (* DAESetMaxNumStepsIC) (void*, int);
@@ -3624,9 +3624,9 @@ void callf(double *t, scicos_block *block, scicos_flag *flag)
     //sciprint("callf type=%d flag=%d\n",block->type,flagi);
     switch (block->type)
     {
-            /*******************/
-            /* function type 0 */
-            /*******************/
+        /*******************/
+        /* function type 0 */
+        /*******************/
         case 0 :
         {
             /* This is for compatibility */
@@ -6153,6 +6153,17 @@ void do_cold_restart(void)
 double get_scicos_time(void)
 {
     return scicos_time;
+}
+/*--------------------------------------------------------------------------*/
+/*! \brief set the current simulation time before calling blocks
+ *
+ * As some of the blocks call get_scicos_time(), this is the only way to force
+ * a local time for these blocks. This call does not modify the Xcos solver
+ * time but is only used to step to a future point while calling blocks.
+ */
+void set_scicos_time(double t)
+{
+    scicos_time = t;
 }
 /*--------------------------------------------------------------------------*/
 /* get_block_number : return the current

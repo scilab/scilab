@@ -47,11 +47,14 @@ import org.scilab.modules.commons.xml.XConfiguration;
 import org.scilab.modules.commons.xml.XConfigurationEvent;
 import org.scilab.modules.commons.xml.XConfigurationListener;
 import static org.scilab.modules.commons.xml.XConfiguration.XConfAttribute;
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.console.ScilabConsole;
+import org.scilab.modules.gui.messagebox.ScilabModalDialog;
+import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
+import org.scilab.modules.localization.Messages;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -64,6 +67,10 @@ import org.w3c.dom.NodeList;
  */
 public class WindowsConfigurationManager implements XConfigurationListener {
 
+    private static final String RESTORATION_ERROR = Messages.gettext("Restoration error");
+    private static final String ERROR_IN_LOADING = Messages.gettext("The configuration file has been corrupted and reset to the default one.");
+    private static final String FATAL_ERROR = Messages.gettext("The configuration file has been corrupted. Scilab needs to restart.");
+
     private static final int DEFAULTX = 0;
     private static final int DEFAULTY = 0;
     private static final int DEFAULTHEIGHT = 500;
@@ -75,7 +82,7 @@ public class WindowsConfigurationManager implements XConfigurationListener {
     private static final String WINDOWS_CONFIG_FILE = System.getenv(SCI) + "/modules/gui/etc/windowsConfiguration.xml";
     private static final String DEFAULT_WINDOWS_CONFIG_FILE = System.getenv(SCI) + "/modules/gui/etc/integratedConfiguration.xml";
     private static final String NULLUUID = new UUID(0L, 0L).toString();
-    private static final Map<SwingScilabTab, EndedRestoration> endedRestoration = new HashMap<SwingScilabTab, EndedRestoration>();
+    private static final Map<SwingScilabDockablePanel, EndedRestoration> endedRestoration = new HashMap<SwingScilabDockablePanel, EndedRestoration>();
     private static final List<String> alreadyRestoredWindows = new ArrayList<String>();
     private static final Map<String, Object> defaultWinAttributes = new HashMap<String, Object>();
     private static final List<String> currentlyRestored = new ArrayList<String>();
@@ -137,6 +144,13 @@ public class WindowsConfigurationManager implements XConfigurationListener {
         XConfiguration.addXConfigurationListener(this);
     }
 
+    /**
+     * Reset the layout
+     */
+    public static void resetLayout() {
+        mustInvalidate = true;
+    }
+
     public void configurationChanged(XConfigurationEvent e) {
         if (e.getModifiedPaths().contains(LAYOUT_PATH)) {
             Options options = getOptions();
@@ -189,19 +203,74 @@ public class WindowsConfigurationManager implements XConfigurationListener {
         }
 
         if (doc == null && !oneTry) {
-            System.err.println("Try to reload the default configuration file.");
-            File f = new File(USER_WINDOWS_CONFIG_FILE);
-            if (f.exists() && f.isFile()) {
-                f.delete();
-            }
-            oneTry = true;
-            readDocument();
+            reload();
         } else if (doc == null && oneTry) {
             System.err.println("Serious problem to copy and parse the configuration file.");
             System.err.println("Please check if you have the rights to write the file: " + USER_WINDOWS_CONFIG_FILE);
             System.err.println("If the previous file exists, please check if it is a valid XML");
             System.err.println("and if yes, please report a bug: http://bugzilla.scilab.org");
+        } else if (doc != null) {
+            // We check that the file contains a NULLUUID (used for the console) and only one
+            // No console == no Scilab !
+            Element root = doc.getDocumentElement();
+            List<Element> list = ScilabXMLUtilities.getElementsWithAttributeEquals(root, "uuid", NULLUUID);
+            if (list == null || list.isEmpty() || list.size() >= 2) {
+                reload();
+            } else {
+                Element console = list.get(0);
+                // Check the factory
+                if (console == null || !"org.scilab.modules.core.ConsoleTabFactory".equals(console.getAttribute("factory"))) {
+                    // the factory is not correct => crash so we reload the conf file
+                    reload();
+                }
+            }
         }
+    }
+
+    /**
+     * Display an error
+     */
+    private static void displayLoadError() {
+        System.err.println("Try to reload the default configuration file.");
+        ScilabModalDialog.show(null, ERROR_IN_LOADING, RESTORATION_ERROR, IconType.ERROR_ICON);
+    }
+
+    /**
+     * Display a fatal error
+     */
+    private static void displayFatalError() {
+        System.err.println("The configuration file is severely corrupted and cannot be read. It will be deleted.");
+        ScilabModalDialog.show(null, FATAL_ERROR, RESTORATION_ERROR, IconType.ERROR_ICON);
+    }
+
+    /**
+     * Delete configuration file
+     */
+    private static void deleteConfFile() {
+        File f = new File(USER_WINDOWS_CONFIG_FILE);
+        if (f.exists() && f.isFile()) {
+            f.delete();
+        }
+    }
+
+    /**
+     * Reload the xml configuration file
+     */
+    private static void reload() {
+        doc = null;
+        displayLoadError();
+        deleteConfFile();
+        oneTry = true;
+        readDocument();
+    }
+
+    /**
+     * Kill scilab
+     */
+    private static void killScilab() {
+        deleteConfFile();
+        displayFatalError();
+        System.exit(1);
     }
 
     /**
@@ -225,8 +294,16 @@ public class WindowsConfigurationManager implements XConfigurationListener {
      * @param tab the associated tab
      * @param ended the closing operation
      */
-    public static void registerEndedRestoration(SwingScilabTab tab, EndedRestoration ended) {
+    public static void registerEndedRestoration(SwingScilabDockablePanel tab, EndedRestoration ended) {
         endedRestoration.put(tab, ended);
+    }
+
+    /**
+     * Unregister an EndedRestoration.
+     * @param tab the associated tab
+     */
+    public static void unregisterEndedRestoration(SwingScilabDockablePanel tab) {
+        endedRestoration.remove(tab);
     }
 
     /**
@@ -235,7 +312,7 @@ public class WindowsConfigurationManager implements XConfigurationListener {
      * @param ended the closing operation
      */
     public static void registerEndedRestoration(Tab tab, EndedRestoration ended) {
-        registerEndedRestoration((SwingScilabTab) tab.getAsSimpleTab(), ended);
+        registerEndedRestoration((SwingScilabDockablePanel) tab.getAsSimpleTab(), ended);
     }
 
     /**
@@ -277,7 +354,7 @@ public class WindowsConfigurationManager implements XConfigurationListener {
             win.appendChild(serializer.serialize(doc, layoutNode));
 
             for (Dockable dockable : (Set<Dockable>) window.getDockingPort().getDockables()) {
-                saveTabProperties((SwingScilabTab) dockable, false);
+                saveTabProperties((SwingScilabDockablePanel) dockable, false);
             }
 
             writeDocument();
@@ -326,7 +403,7 @@ public class WindowsConfigurationManager implements XConfigurationListener {
             attrs.putAll(defaultWinAttributes);
         }
 
-        SwingScilabWindow window = new SwingScilabWindow();
+        SwingScilabWindow window = SwingScilabWindow.createWindow(true);
         window.setVisible(false);
 
         final String localUUID;
@@ -367,11 +444,11 @@ public class WindowsConfigurationManager implements XConfigurationListener {
 
     public static SwingScilabWindow restoreWindow(String uuid) {
         String winuuid = UUID.randomUUID().toString();
-        SwingScilabWindow win = new SwingScilabWindow();
+        SwingScilabWindow win = SwingScilabWindow.createWindow(true);
         win.setUUID(winuuid);
         win.setIsRestoring(true);
 
-        final SwingScilabTab tab = ScilabTabFactory.getInstance().getTab(uuid);
+        final SwingScilabDockablePanel tab = ScilabTabFactory.getInstance().getTab(uuid);
         win.addTab(tab);
         BarUpdater.forceUpdateBars(tab.getParentWindowId(), tab.getMenuBar(), tab.getToolBar(), tab.getInfoBar(), tab.getName(), tab.getWindowIcon());
 
@@ -380,6 +457,8 @@ public class WindowsConfigurationManager implements XConfigurationListener {
         win.requestFocus();
         win.toFront();
         win.setIsRestoring(false);
+
+        endedRestoration.remove(tab);
 
         SwingUtilities.invokeLater(new Runnable() {
             @Override
@@ -402,7 +481,6 @@ public class WindowsConfigurationManager implements XConfigurationListener {
      */
     public static SwingScilabWindow restoreWindow(String uuid, String defaultTabUuid, boolean restoreTab, boolean requestFocus) {
         readDocument();
-
         final boolean nullUUID = uuid.equals(NULLUUID);
 
         // create the window and preserve the uuid if not null
@@ -420,21 +498,21 @@ public class WindowsConfigurationManager implements XConfigurationListener {
                 LayoutNode layoutNode = (LayoutNode) serializer.deserialize(dockingPort);
                 window.getDockingPort().importLayout(layoutNode);
             } else if (defaultTabUuid != null && !defaultTabUuid.isEmpty()) {
-                SwingScilabTab defaultTab = ScilabTabFactory.getInstance().getTab(defaultTabUuid);
+                SwingScilabDockablePanel defaultTab = ScilabTabFactory.getInstance().getTab(defaultTabUuid);
                 defaultTab.setParentWindowId(window.getId());
                 DockingManager.dock(defaultTab, window.getDockingPort());
             }
 
-            for (SwingScilabTab tab : (Set<SwingScilabTab>) window.getDockingPort().getDockables()) {
+            for (SwingScilabDockablePanel tab : (Set<SwingScilabDockablePanel>) window.getDockingPort().getDockables()) {
                 tab.setParentWindowId(window.getId());
             }
 
-            SwingScilabTab[] tabs = new SwingScilabTab[window.getNbDockedObjects()];
-            tabs = ((Set<SwingScilabTab>) window.getDockingPort().getDockables()).toArray(tabs);
+            SwingScilabDockablePanel[] tabs = new SwingScilabDockablePanel[window.getNbDockedObjects()];
+            tabs = ((Set<SwingScilabDockablePanel>) window.getDockingPort().getDockables()).toArray(tabs);
 
             // Be sur that the main tab will have the focus.
             // Get the elder tab and activate it
-            final SwingScilabTab mainTab = ClosingOperationsManager.getElderTab(new ArrayList(Arrays.asList(tabs)));
+            final SwingScilabDockablePanel mainTab = ClosingOperationsManager.getElderTab(new ArrayList(Arrays.asList(tabs)));
             BarUpdater.forceUpdateBars(mainTab.getParentWindowId(), mainTab.getMenuBar(), mainTab.getToolBar(), mainTab.getInfoBar(), mainTab.getName(), mainTab.getWindowIcon());
 
             if (!ScilabConsole.isExistingConsole() && tabs.length == 1 && tabs[0].getPersistentId().equals(NULLUUID)) {
@@ -442,22 +520,22 @@ public class WindowsConfigurationManager implements XConfigurationListener {
                 return null;
             }
 
-            for (SwingScilabTab tab : tabs) {
+            for (SwingScilabDockablePanel tab : tabs) {
                 // each tab has now a window so it can be useful for the tab to set an icon window or to center a dialog...
                 EndedRestoration ended = endedRestoration.get(tab);
                 if (ended != null) {
                     ended.finish();
-                    endedRestoration.remove(ended);
+                    endedRestoration.remove(tab);
                 }
             }
 
             if (tabs.length == 1) {
                 // we remove undock and close buttons when there is only one View in the DockingPort
-                SwingScilabTab.removeActions(tabs[0]);
+                SwingScilabDockablePanel.removeActions(tabs[0]);
             } else {
                 // we add undock and close buttons
-                for (SwingScilabTab tab : tabs) {
-                    SwingScilabTab.addActions(tab);
+                for (SwingScilabDockablePanel tab : tabs) {
+                    SwingScilabDockablePanel.addActions(tab);
                 }
             }
 
@@ -526,7 +604,7 @@ public class WindowsConfigurationManager implements XConfigurationListener {
      * Must be called when the restoration is finished
      * @param tab the tab
      */
-    public static final void restorationFinished(SwingScilabTab tab) {
+    public static final void restorationFinished(SwingScilabDockablePanel tab) {
         synchronized (currentlyRestored) {
             currentlyRestored.remove(tab.getPersistentId());
 
@@ -584,7 +662,7 @@ public class WindowsConfigurationManager implements XConfigurationListener {
             ScilabTabFactory factory = ScilabTabFactory.getInstance();
             factory.addTabFactory(e.getAttribute("load"), e.getAttribute("factory"));
             currentlyRestored.add(e.getAttribute("uuid"));
-            SwingScilabTab tab = factory.getTab(e.getAttribute("uuid"));
+            SwingScilabDockablePanel tab = factory.getTab(e.getAttribute("uuid"));
             if (!e.getAttribute("width").isEmpty() && !e.getAttribute("height").isEmpty()) {
                 tab.setMinimumSize(nullDims);
                 tab.setPreferredSize(new Dimension(Integer.parseInt(e.getAttribute("width")), Integer.parseInt(e.getAttribute("width"))));
@@ -956,7 +1034,7 @@ public class WindowsConfigurationManager implements XConfigurationListener {
      * @param tab the tab
      * @param nullWin if true, the winuuid will be set to 0 (the tab is not docked)
      */
-    public static void saveTabProperties(SwingScilabTab tab, boolean nullWin) {
+    public static void saveTabProperties(SwingScilabDockablePanel tab, boolean nullWin) {
         if (ScilabConstants.isGUI()) {
             readDocument();
 
@@ -1064,7 +1142,11 @@ public class WindowsConfigurationManager implements XConfigurationListener {
         }
 
         if (SwingUtilities.isEventDispatchThread()) {
-            startRestoration(uuid);
+            try {
+                startRestoration(uuid);
+            } catch (Exception e) {
+                killScilab();
+            }
         } else {
             try {
                 SwingUtilities.invokeAndWait(new Runnable() {
@@ -1072,10 +1154,8 @@ public class WindowsConfigurationManager implements XConfigurationListener {
                         startRestoration(uuid);
                     }
                 });
-            } catch (InvocationTargetException e) {
-                System.err.println(e);
-            } catch (InterruptedException e) {
-                System.err.println(e);
+            } catch (Exception e) {
+                killScilab();
             }
         }
 

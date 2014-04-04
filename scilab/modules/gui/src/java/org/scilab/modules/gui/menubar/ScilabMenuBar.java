@@ -112,6 +112,6 @@ public class ScilabMenuBar extends ScilabUIElement implements MenuBar {
      * @param newVisibleState is not used
      */
     public void setVisible(boolean newVisibleState) {
-        throw new UnsupportedOperationException();
+        component.setVisible(newVisibleState);
     }
 }

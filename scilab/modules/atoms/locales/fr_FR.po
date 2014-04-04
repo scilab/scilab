@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-09-27 09:22+0000\n"
-"Last-Translator: Julie PAUL <Unknown>\n"
+"PO-Revision-Date: 2014-03-31 08:13+0000\n"
+"Last-Translator: Vincent Couvert <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 16967)\n"
 "Language: fr\n"
 
 #, c-format
@@ -23,7 +23,7 @@ msgstr "%s : Nombre erroné d'arguments d'entrée : %d attendus.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d to %d expected.\n"
-msgstr "%s : Nombre erroné d'argument d'entrée : %d à %d attendus.\n"
+msgstr "%s : Nombre erroné d'arguments d'entrée : %d à %d attendus.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String array expected.\n"
@@ -565,21 +565,6 @@ msgstr ""
 msgid "No ATOMS module is available: your repository list is empty."
 msgstr "Aucun module ATOMS n'est disponible : votre liste de dépôt est vide."
 
-msgid "ATOMS"
-msgstr "ATOMS"
-
-msgid "&File"
-msgstr "&Fichier"
-
-msgid "&Tools"
-msgstr "&Outils"
-
-msgid "&Edit"
-msgstr "&Édition"
-
-msgid "&?"
-msgstr "&?"
-
 msgid "File"
 msgstr "Fichier"
 
@@ -598,8 +583,8 @@ msgstr "?"
 msgid "Atoms Help..."
 msgstr "Aide ATOMS..."
 
-msgid "List of installed modules"
-msgstr "Liste des modules installés"
+msgid "Back"
+msgstr "Précédent"
 
 msgid "Remove"
 msgstr "Supprimer"
@@ -607,8 +592,11 @@ msgstr "Supprimer"
 msgid "Install"
 msgstr "Installer"
 
-msgid "Update"
-msgstr "Mettre à jour"
+msgid "Autoload"
+msgstr "Chargement automatique"
+
+msgid "List of installed modules"
+msgstr "Liste des modules installés"
 
 msgid "Installing"
 msgstr "Installation en cours"
@@ -622,17 +610,6 @@ msgstr ""
 "Installation complète ! Veuillez redémarrer Scilab pour que les "
 "modifications soient prises en compte."
 
-msgid "Removing"
-msgstr "Suppression de"
-
-msgid "Remove failed!"
-msgstr "La désintallation a échoué !"
-
-msgid "Remove done! Please restart Scilab to take changes into account. "
-msgstr ""
-"Désinstallation effectuée ! Veuillez redémarrer Scilab pour que les "
-"modifications soient prises en compte. "
-
 msgid "Updating"
 msgstr "Mise à jour"
 
@@ -644,6 +621,28 @@ msgstr ""
 "Mise à jour effectuée ! Veuillez redémarrer Scilab pour que les "
 "modifications soient prises en compte."
 
+msgid "Removing"
+msgstr "Suppression de"
+
+msgid "Remove failed!"
+msgstr "La désintallation a échoué !"
+
+msgid "Remove done! Please restart Scilab to take changes into account. "
+msgstr ""
+"Désinstallation effectuée ! Veuillez redémarrer Scilab pour que les "
+"modifications soient prises en compte. "
+
+msgid "The module will be automatically loaded at next startup."
+msgstr "Le module sera chargé automatiquement au prochain démarrage."
+
+msgid ""
+"Autoload at startup is canceled. The Toolboxes menu or atomsLoad() can be "
+"used to load the module when needed."
+msgstr ""
+"Le chargement automatique au démarrage est annulé. Le menu Boîtes à Outils "
+"ou atomsLoad() peuvent être utilisés pour charger le module quand cela est "
+"nécessaire."
+
 msgid "Download size"
 msgstr "Taille du téléchargement"
 
@@ -652,6 +651,9 @@ msgstr "Voir aussi"
 
 msgid "Release date"
 msgstr "Date de sortie"
+
+msgid "Update"
+msgstr "Mettre à jour"
 
 #, c-format
 msgid "A new version ('%s') of '%s' is available"
@@ -974,6 +976,75 @@ msgstr "Tous les modules"
 msgid "Main categories"
 msgstr "Catégories principales"
 
+msgid "Aerospace"
+msgstr "Aérospatiale"
+
+msgid "Contributed Scilab Binaries"
+msgstr "Versions binaires Scilab"
+
+msgid "Data Analysis And Statistics"
+msgstr "Analyse de données et statistiques"
+
+msgid "Data Handling"
+msgstr "Traitement de données"
+
+msgid "Editor Styles"
+msgstr "Styles d'éditeurs"
+
+msgid "Education"
+msgstr "Éducation"
+
+msgid "GUI"
+msgstr "Interfaces graphiques"
+
+msgid "Graphics"
+msgstr "Graphiques"
+
+msgid "Graphs"
+msgstr "Graphes"
+
+msgid "Image Processing"
+msgstr "Traitement d'images"
+
+msgid "Instruments Control"
+msgstr "Contrôle d'instruments"
+
+msgid "Linear algebra"
+msgstr "Algèbre linéaire"
+
+msgid "Modeling and Control Tools"
+msgstr "Outils de modélisation et de contrôle"
+
+msgid "Number theory"
+msgstr "Théorie des nombres"
+
+msgid "Numerical Maths"
+msgstr "Mathématiques numériques"
+
+msgid "Optimization"
+msgstr "Optimisation"
+
+msgid "Physics"
+msgstr "Physique"
+
+msgid "Real-Time"
+msgstr "Temps réel"
+
+msgid "Scilab development"
+msgstr "Développement Scilab"
+
+msgid "Signal Processing"
+msgstr "Traitement du signal"
+
+msgid "Technical"
+msgstr "Technique"
+
+msgid "Tests"
+msgstr "Tests"
+
+msgid "Xcos"
+msgstr "Xcos"
+
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: %s must be an available atoms "
@@ -1044,6 +1115,9 @@ msgid "%s: Wrong value for input argument #%d: '%s' is not a valid URL.\n"
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : '%s' n'est pas une URL "
 "valide.\n"
+
+msgid "Loaded<br>at startup"
+msgstr "Chargé<br>au démarrage"
 
 #, c-format
 msgid "%s: the package '%s' does not exist.\n"

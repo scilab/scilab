@@ -283,4 +283,15 @@ public class ScilabPopupMenu extends ScilabWidget implements PopupMenu {
         // TODO Auto-generated method stub
     }
 
+    @Override
+    public void resetBackground() {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void resetForeground() {
+        // TODO Auto-generated method stub
+
+    }
 }

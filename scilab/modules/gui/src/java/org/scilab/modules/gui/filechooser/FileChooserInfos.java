@@ -224,9 +224,4 @@ public final class FileChooserInfos {
     public void setMenuCallback(String menuCallback) {
         this.menuCallback = menuCallback;
     }
-
-
-
-
-
 }

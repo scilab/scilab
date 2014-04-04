@@ -6,7 +6,7 @@
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
 * are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 *
 */
 /*--------------------------------------------------------------------------*/
@@ -14,6 +14,7 @@
 #define __FULLPATH_H__
 
 #include "dynlib_fileio.h"
+
 /**
 * Creates an absolute or full path name for the specified relative path name.
 * @param[out] absPath Pointer to a buffer containing the absolute or full path name, or NULL.

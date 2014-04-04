@@ -35,6 +35,7 @@
 
 #include "graphicObjectProperties.h"
 #include "getGraphicObjectProperty.h"
+#include "createGraphicObject.h"
 
 /*--------------------------------------------------------------------------*/
 static int getZoomedObject(void* pvApiCtx, const char * fname);
@@ -68,7 +69,7 @@ static BOOL getZoomRect(void* pvApiCtx, const char * fname, int attribPos, doubl
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, attribPos);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, attribPos);
         return 1;
     }
 

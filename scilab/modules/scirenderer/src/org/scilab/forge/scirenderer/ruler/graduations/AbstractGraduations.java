@@ -164,7 +164,9 @@ public abstract class AbstractGraduations implements Graduations {
 
             if (maxDisplayedValue < 1e-3) {
                 numberFormat = new DecimalFormat("0.##########E00");
-            } else if (len <= 1e-3) {
+            } else if (false && len <= 1e-3) {
+                // desactivated for now...
+                // the user should be able to do that itself
                 numberFormat = new TinyIntervalFormat("0.####E00", "0.##E00");
             } else if (maxDisplayedValue >= 1e6) {
                 numberFormat = new DecimalFormat("0.##########E00");

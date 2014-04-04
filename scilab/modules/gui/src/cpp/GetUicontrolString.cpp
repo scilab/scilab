@@ -11,28 +11,36 @@
  *
  */
 
-#include "GetUicontrolString.hxx"
-
 extern "C"
 {
-#include "graphicObjectProperties.h"
-#include "getGraphicObjectProperty.h"
+#include "GetUicontrol.h"
 }
-
-using namespace org_scilab_modules_gui_bridge;
 
 void* GetUicontrolString(void* _pvCtx, int iObjUID)
 {
+    int iNbColStrings = 0;
+    int *piNbColStrings = &iNbColStrings;
     int iNbStrings = 0;
     int *piNbStrings = &iNbStrings;
     char **pstString = NULL;
 
     getGraphicObjectProperty(iObjUID, __GO_UI_STRING_SIZE__, jni_int, (void **) &piNbStrings);
+    getGraphicObjectProperty(iObjUID, __GO_UI_STRING_COLNB__, jni_int, (void **) &piNbColStrings);
     getGraphicObjectProperty(iObjUID, __GO_UI_STRING__, jni_string_vector, (void **) &pstString);
-
     if (pstString != NULL)
     {
-        return sciReturnStringMatrix(pstString, 1, iNbStrings);
+        if (iNbStrings == 0 || iNbColStrings == 0)
+        {
+            return sciReturnEmptyMatrix();
+        }
+        else if (iNbColStrings == 1)
+        {
+            return sciReturnStringMatrix(pstString, 1, iNbStrings);
+        }
+        else
+        {
+            return sciReturnStringMatrix(pstString, iNbStrings / iNbColStrings, iNbColStrings);
+        }
     }
     else
     {

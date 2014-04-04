@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2012 - Scilab Enterprises - Clement DAVID
+ * Copyright (C) 2012-2014 - Scilab Enterprises - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -72,13 +72,14 @@ public class ContentEntry implements Entry {
             final Transformer aTransformer = tranFactory.newTransformer();
 
             final StreamSource src = new StreamSource(stream);
-            final DOMResult result = new DOMResult();
+            final DOMResult result = new DOMResult(codec.getDocument());
 
             LOG.entering("Transformer", "transform");
             aTransformer.transform(src, result);
             LOG.exiting("Transformer", "transform");
 
             LOG.entering("XcosCodec", "decode");
+            codec.setElementIdAttributes();
             if (dictionary == null) {
                 codec.decode(result.getNode().getFirstChild(), content);
             } else {

@@ -260,6 +260,7 @@ cd ..
     <ClCompile Include="dbesjg.c" />
     <ClCompile Include="dbeskg.c" />
     <ClCompile Include="dbesyg.c" />
+    <ClCompile Include="psi.c" />
     <ClCompile Include="zbesig.c" />
     <ClCompile Include="zbesjg.c" />
     <ClCompile Include="zbeskg.c" />
@@ -270,6 +271,7 @@ cd ..
     <f2c_rule Include="dbesjg.f" />
     <f2c_rule Include="dbeskg.f" />
     <f2c_rule Include="dbesyg.f" />
+    <f2c_rule Include="psi.f" />
     <f2c_rule Include="zbesig.f" />
     <f2c_rule Include="zbesjg.f" />
     <f2c_rule Include="zbeskg.f" />

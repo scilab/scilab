@@ -16,6 +16,7 @@ import org.scilab.modules.graphic_objects.arc.Arc;
 import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.axis.Axis;
 import org.scilab.modules.graphic_objects.compound.Compound;
+import org.scilab.modules.graphic_objects.datatip.Datatip;
 import org.scilab.modules.graphic_objects.fec.Fec;
 import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.imageplot.Grayplot;
@@ -27,10 +28,10 @@ import org.scilab.modules.graphic_objects.rectangle.Rectangle;
 import org.scilab.modules.graphic_objects.surface.Fac3d;
 import org.scilab.modules.graphic_objects.surface.Plot3d;
 import org.scilab.modules.graphic_objects.textObject.Text;
+import org.scilab.modules.graphic_objects.uicontrol.frame.Frame;
 import org.scilab.modules.graphic_objects.vectfield.Arrow;
 import org.scilab.modules.graphic_objects.vectfield.Champ;
 import org.scilab.modules.graphic_objects.vectfield.Segs;
-import org.scilab.modules.graphic_objects.datatip.Datatip;
 
 /**
  * @author Pierre Lando
@@ -48,6 +49,8 @@ public interface Visitor {
     void visit(Fec fec) throws ObjectRemovedException;
 
     void visit(Figure figure);
+    
+    void visit(Frame frame);
 
     void visit(Grayplot grayplot) throws ObjectRemovedException;
 

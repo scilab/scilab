@@ -44,7 +44,9 @@
             <literal>H1=simp(H)</literal> est aussi valide (chaque terme de <literal>H</literal> est simplifié dans <literal>H1</literal>).
         </para>
         <para>
-            Attention : 
+            <warning>
+                Attention : 
+            </warning>
         </para>
         <para>
             - pas de seuil i.e. <literal>simp</literal> ne peut pas forcer une

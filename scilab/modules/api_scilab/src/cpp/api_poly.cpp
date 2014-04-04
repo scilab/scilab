@@ -251,7 +251,7 @@ SciErr createCommonNamedMatrixOfPoly(void* _pvCtx, const char* _pstName, char* _
     FREE(pstTemp);
     if (pP == NULL)
     {
-        addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: No more memory to allocated variable"), _iComplex ? "createComplexMatrixOfPoly" : "createMatrixOfPoly");
+        addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name: %s."), "createCommonNamedMatrixOfPoly", _pstName);
         return sciErr;
     }
 

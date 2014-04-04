@@ -86,8 +86,12 @@ end
             </revision>
             <revision>
                 <revnumber>5.4.1</revnumber>
-                <revremark>Manage shorcut root names.</revremark>
-                <revremark>Can retrieve key list names.</revremark>
+                <revremark>
+                    <itemizedlist>
+                        <listitem>Manage shorcut root names.</listitem>
+                        <listitem>Can retrieve key list names.</listitem>
+                    </itemizedlist>
+                </revremark>
             </revision>
         </revhistory>
     </refsection>

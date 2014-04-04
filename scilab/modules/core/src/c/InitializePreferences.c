@@ -21,8 +21,9 @@
 #include "TerminateHistoryManager.h"
 #include "InitializeHistoryManager.h"
 #include "HistoryManager.h"
+#include "scicurdir.h"
 
-void InitializePreferences()
+void InitializePreferences(int useCWD)
 {
     const ScilabPreferences * prefs = getScilabPreferences();
     int ieee = 0;
@@ -81,6 +82,22 @@ void InitializePreferences()
         }
     }
 
+    // Set current directory
+    if (!useCWD && prefs->startup_dir_use)
+    {
+        if (stricmp(prefs->startup_dir_use, "current"))
+        {
+            // Not in cwd
+            if (stricmp(prefs->startup_dir_use, "previous") == 0 && prefs->startup_dir_previous && *prefs->startup_dir_previous)
+            {
+                scichdir((char*)prefs->startup_dir_previous);
+            }
+            else if (stricmp(prefs->startup_dir_use, "default") == 0 && prefs->startup_dir_default && *prefs->startup_dir_default)
+            {
+                scichdir((char*)prefs->startup_dir_default);
+            }
+        }
+    }
 
     clearScilabPreferences();
 }

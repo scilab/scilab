@@ -10,13 +10,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-12-06 19:57+0000\n"
+"PO-Revision-Date: 2014-03-29 18:27+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 16967)\n"
 "Language: uk\n"
 
 #, c-format
@@ -133,8 +133,8 @@ msgstr ""
 "«%s», «%s», «%s», «%s» або «%s».\n"
 
 #, c-format
-msgid "%s Wrong value for input argument #%d: '%s' is unknown.\n"
-msgstr "%s: помилкове значення вхідного параметра ;%d: «%s» не є відомим.\n"
+msgid "%s: Wrong value for input argument #%d: '%s' is unknown.\n"
+msgstr "%s: помилкове значення вхідного параметра №%d: «%s» є невідомим.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
@@ -501,8 +501,8 @@ msgstr "Імітація дискретної випадкової величи�
 msgid "Simulation of a Erlang random variable"
 msgstr "Імінтація випадкової величини з розподілом Ерланга"
 
-msgid "macro histplot : Histogram plot"
-msgstr "макрос histplot: побудова гістограми"
+msgid "Simulation of an exponential random variable"
+msgstr "Імітація випадкової величини з експоненційним розподілом"
 
 msgid "Classes"
 msgstr "Класи"

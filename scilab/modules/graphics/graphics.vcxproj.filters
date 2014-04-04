@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
@@ -98,6 +98,9 @@
     <ClCompile Include="src\c\getHandleProperty\get_auto_scale_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\get_auto_margins_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="src\c\getHandleProperty\get_auto_ticks_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -189,6 +192,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\c\getHandleProperty\get_default_axes_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\set_default_axes_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\c\getHandleProperty\get_default_figure_property.c">
@@ -335,9 +341,6 @@
     <ClCompile Include="src\c\getHandleProperty\get_pixel_drawing_mode_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\c\getHandleProperty\get_pixmap_property.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\c\getHandleProperty\get_polyline_style_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -431,6 +434,12 @@
     <ClCompile Include="src\c\getHandleProperty\get_x_ticks_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\get_ticks_format_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\get_ticks_st_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="src\c\getHandleProperty\get_xtics_coord_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -522,9 +531,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sci_gateway\c\sci_demo.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sci_gateway\c\sci_draw.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sci_gateway\c\sci_drawaxis.c">
@@ -717,6 +723,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\c\getHandleProperty\set_auto_scale_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\set_auto_margins_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\c\getHandleProperty\set_auto_ticks_property.c">
@@ -950,9 +959,6 @@
     <ClCompile Include="src\c\getHandleProperty\set_pixel_drawing_mode_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\c\getHandleProperty\set_pixmap_property.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\c\getHandleProperty\set_polyline_style_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -1035,6 +1041,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\c\getHandleProperty\set_x_ticks_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\set_ticks_format_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\set_ticks_st_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\c\getHandleProperty\set_xtics_coord_property.c">
@@ -1145,9 +1157,6 @@
     <ClCompile Include="src\c\getHandleProperty\set_material_shininess_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\c\Light.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\c\getHandleProperty\set_image_type_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -1170,6 +1179,141 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\c\getHandleProperty\set_direction_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\get_display_function_data_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\set_display_function_data_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\set_dockable_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\set_resize_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\set_menubar_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\set_toolbar_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\get_resize_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\get_toolbar_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\get_menubar_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\get_dockable_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\set_layout_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\get_layout_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\set_infobar_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\get_infobar_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\get_constraints_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\set_constraints_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\get_grid_style_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\get_grid_thickness_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\get_mark_offset_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\get_mark_stride_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\get_rect_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\set_grid_style_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\set_grid_thickness_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\set_mark_offset_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\set_mark_stride_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\set_rect_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\set_layout_options_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\get_layout_options_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\get_border_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\set_border_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\get_groupname_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\set_groupname_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\set_tabtitle_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\get_tabtitle_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\set_scrollable_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\get_scrollable_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\get_line_width_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\get_marks_count_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\set_line_width_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\set_marks_count_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\addColor.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\name2rgb.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_gateway\c\sci_addcolor.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_gateway\c\sci_name2rgb.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_gateway\c\sci_color.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1319,6 +1463,33 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="includes\Light.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c\getHandleProperty\LayoutType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c\getHandleProperty\BarType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c\getHandleProperty\BorderLayoutType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c\getHandleProperty\AnchorType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c\getHandleProperty\FillType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c\getHandleProperty\FrameBorderType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c\getHandleProperty\TitlePositionType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\addColor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\name2rgb.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -204,7 +204,12 @@ public class Legend extends ContentLayout {
                            LEFTMARGIN, COLUMN, ROW);
 
         // Get the current status of the property: Foreground Color
-        Integer scilabForegroundColor = EditorManager.getFromUid(parentFigure).getOriColor();
+        Integer scilabForegroundColor;
+        if ((Boolean)GraphicController.getController().getProperty(UID, GraphicObjectProperties.__GO_MARK_MODE__)) {
+            scilabForegroundColor = (Integer) GraphicController.getController().getProperty(UID, GraphicObjectProperties.__GO_MARK_FOREGROUND__);
+        } else {
+            scilabForegroundColor = (Integer) GraphicController.getController().getProperty(UID, GraphicObjectProperties.__GO_LINE_COLOR__);
+        }
         Double[] rgbForegroundColor = ColorMapHandler.getRGBcolor(parentFigure, scilabForegroundColor);
         cForeground.setBackground(new Color(rgbForegroundColor[0].intValue(),
                                             rgbForegroundColor[1].intValue(),
@@ -216,10 +221,10 @@ public class Legend extends ContentLayout {
     * @param scilabColor index of the color map.
     */
     public void setForegroundColor(int scilabColor, Integer UID) {
-        EditorManager.getFromUid
-        (
-            (Integer) GraphicController.getController()
-            .getProperty(UID, GraphicObjectProperties.__GO_PARENT_FIGURE__)
-        ).setOriColor(scilabColor);
+        if ((Boolean)GraphicController.getController().getProperty(UID, GraphicObjectProperties.__GO_MARK_MODE__)) {
+            GraphicController.getController().setProperty(UID, GraphicObjectProperties.__GO_MARK_FOREGROUND__, scilabColor);
+        } else {
+            GraphicController.getController().setProperty(UID, GraphicObjectProperties.__GO_LINE_COLOR__, scilabColor);
+        }
     }
 }

@@ -28,17 +28,18 @@
 /*--------------------------------------------------------------------------*/
 LINEAR_ALGEBRA_IMPEXP int gw_linear_algebra(void);
 /*--------------------------------------------------------------------------*/
-LINEAR_ALGEBRA_IMPEXP int C2F(intbackslash)(char *fname, unsigned long fname_len);
-LINEAR_ALGEBRA_IMPEXP int C2F(invnew)(char *fname, unsigned long fname_len);
-LINEAR_ALGEBRA_IMPEXP int C2F(intslash)(char *fname, unsigned long fname_len);
+//LINEAR_ALGEBRA_IMPEXP int C2F(intbackslash)(char *fname, unsigned long fname_len);
+//LINEAR_ALGEBRA_IMPEXP int C2F(invnew)(char *fname, unsigned long fname_len);
+//LINEAR_ALGEBRA_IMPEXP int C2F(intslash)(char *fname, unsigned long fname_len);
+int sci_norm(char *fname, void* pvApiCtx);
 /*--------------------------------------------------------------------------*/
-/* used in 'eig' */
-LINEAR_ALGEBRA_IMPEXP int sci_dsyev(char *fname, unsigned long fname_len);
-LINEAR_ALGEBRA_IMPEXP int sci_dgeev(char *fname, unsigned long fname_len);
-LINEAR_ALGEBRA_IMPEXP int sci_zgeev(char *fname, unsigned long fname_len);
-LINEAR_ALGEBRA_IMPEXP int sci_zheev(char *fname, unsigned long fname_len);
-LINEAR_ALGEBRA_IMPEXP int sci_dggev(char *fname, unsigned long fname_len);
-LINEAR_ALGEBRA_IMPEXP int sci_zggev(char *fname, unsigned long fname_len);
+///* used in 'eig' */
+//LINEAR_ALGEBRA_IMPEXP int sci_dsyev(char *fname, unsigned long fname_len);
+//LINEAR_ALGEBRA_IMPEXP int sci_dgeev(char *fname, unsigned long fname_len);
+//LINEAR_ALGEBRA_IMPEXP int sci_zgeev(char *fname, unsigned long fname_len);
+//LINEAR_ALGEBRA_IMPEXP int sci_zheev(char *fname, unsigned long fname_len);
+//LINEAR_ALGEBRA_IMPEXP int sci_dggev(char *fname, unsigned long fname_len);
+//LINEAR_ALGEBRA_IMPEXP int sci_zggev(char *fname, unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 //LINEAR_ALGEBRA_IMPEXP int C2F(intschur)(char *fname, unsigned long fname_len); => C++ sci_schur
 
@@ -55,7 +56,6 @@ LINEAR_ALGEBRA_IMPEXP int sci_zggev(char *fname, unsigned long fname_len);
 //LINEAR_ALGEBRA_IMPEXP int sci_eig(char *fname, void* pvApiCtx); => C++ sci_spec
 //LINEAR_ALGEBRA_IMPEXP int sci_det(char *fname, void* pvApiCtx); => C++
 //LINEAR_ALGEBRA_IMPEXP int sci_balanc(char *fname, void* pvApiCtx); => C++
-
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_LINEAR_ALGEBRA__ */
 /*--------------------------------------------------------------------------*/

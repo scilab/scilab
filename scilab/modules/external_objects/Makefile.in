@@ -229,8 +229,10 @@ AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
 am__v_lt_0 = --silent
 am__v_lt_1 = 
+am__DEPENDENCIES_1 =
 libsciexternal_objects_la_DEPENDENCIES =  \
-	libsciexternal_objects-algo.la
+	libsciexternal_objects-algo.la $(am__DEPENDENCIES_1) \
+	$(am__DEPENDENCIES_1)
 am__objects_3 = sci_gateway/c/libsciexternal_objects_la-gw_external_objects.lo
 am__objects_4 = sci_gateway/cpp/libsciexternal_objects_la-sci_percent_EObj_e.lo \
 	sci_gateway/cpp/libsciexternal_objects_la-sci_percent_EObj_p.lo \
@@ -396,6 +398,7 @@ CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
 DEMOTOOLS_ENABLE = @DEMOTOOLS_ENABLE@
 DEPDIR = @DEPDIR@
+DLLTOOL = @DLLTOOL@
 DOCBOOK_ROOT = @DOCBOOK_ROOT@
 DOXYGEN_BIN = @DOXYGEN_BIN@
 DSYMUTIL = @DSYMUTIL@
@@ -415,6 +418,11 @@ FGREP = @FGREP@
 FLEXDOCK = @FLEXDOCK@
 FLIBS = @FLIBS@
 FOP = @FOP@
+FREEHEP_GRAPHICS2D = @FREEHEP_GRAPHICS2D@
+FREEHEP_GRAPHICSIO = @FREEHEP_GRAPHICSIO@
+FREEHEP_GRAPHICSIO_EMF = @FREEHEP_GRAPHICSIO_EMF@
+FREEHEP_IO = @FREEHEP_IO@
+FREEHEP_UTIL = @FREEHEP_UTIL@
 GENHTML = @GENHTML@
 GETTEXT_MACRO_VERSION = @GETTEXT_MACRO_VERSION@
 GIWS_BIN = @GIWS_BIN@
@@ -478,6 +486,7 @@ LTLIBINTL = @LTLIBINTL@
 LTLIBOBJS = @LTLIBOBJS@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
+MANIFEST_TOOL = @MANIFEST_TOOL@
 MATIO_CFLAGS = @MATIO_CFLAGS@
 MATIO_ENABLE = @MATIO_ENABLE@
 MATIO_LIBS = @MATIO_LIBS@
@@ -822,12 +831,12 @@ libsciexternal_objects_la_CPPFLAGS = -I$(srcdir)/includes/ \
 
 pkglib_LTLIBRARIES = libsciexternal_objects.la 
 noinst_LTLIBRARIES = libsciexternal_objects-algo.la 
-libsciexternal_objects_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
+libsciexternal_objects_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
 libsciexternal_objects_algo_la_SOURCES = $(EXTERNAL_OBJECTS_C_SOURCES) $(EXTERNAL_OBJECTS_JNI_SOURCES) $(EXTERNAL_OBJECTS_CPP_SOURCES)
 libsciexternal_objects_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) 
 libsciexternal_objects_algo_la_CFLAGS = $(libsciexternal_objects_la_CFLAGS)
 libsciexternal_objects_algo_la_CPPFLAGS = $(libsciexternal_objects_la_CPPFLAGS)
-libsciexternal_objects_la_LIBADD = libsciexternal_objects-algo.la
+libsciexternal_objects_la_LIBADD = libsciexternal_objects-algo.la $(X_LIBS) $(X_EXTRA_LIBS)
 
 # For the code check (splint)
 CHECK_SRC = $(EXTERNAL_OBJECTS_C_SOURCES) $(GATEWAY_C_SOURCES)

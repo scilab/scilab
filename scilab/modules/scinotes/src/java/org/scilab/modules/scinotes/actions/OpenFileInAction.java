@@ -16,6 +16,7 @@ import java.io.File;
 import java.util.List;
 import java.util.StringTokenizer;
 
+import javax.swing.JButton;
 import javax.swing.KeyStroke;
 import javax.swing.event.MenuEvent;
 import javax.swing.event.MenuListener;
@@ -24,7 +25,6 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.gui.bridge.menu.SwingScilabMenu;
-import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
 
@@ -86,8 +86,8 @@ public final class OpenFileInAction extends OpenAction {
      * @param editor SciNotes
      * @return PushButton
      */
-    public static PushButton createButton(String tooltip, String icon, SciNotes editor) {
-        StringTokenizer token = new StringTokenizer(tooltip, ";");
+    public static JButton createButton(String tooltip, String icon, SciNotes editor) {
+        StringTokenizer token = new StringTokenizer(tooltip, ";\uff1b");
         String tt = token.nextToken();
         String path = token.nextToken();
         if (path.equals(SCI)) {

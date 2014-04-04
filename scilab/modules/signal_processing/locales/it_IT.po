@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 16967)\n"
 "Language: it\n"
 
 #, c-format
@@ -109,10 +109,10 @@ msgstr ""
 msgid "Discrete IIR filter "
 msgstr ""
 
-msgid "Discrete IIR filter : low pass  fr < 0.2"
+msgid "Discrete IIR filter: low pass  fr < 0.2"
 msgstr ""
 
-msgid "Discrete IIR filter band pass 0.15 < fr < 0.25"
+msgid "Discrete IIR filter: band pass 0.15 < fr < 0.25"
 msgstr ""
 
 msgid "Minimax FIR filter"
@@ -145,8 +145,8 @@ msgstr "Disegno di un filtro FIR minimax"
 msgid "Discrete IIR filter"
 msgstr "Filtro IIR discreto"
 
-msgid "Wiegner filter"
-msgstr "Filtro di Wiegner"
+msgid "Wiener filter"
+msgstr ""
 
 msgid "Bode plots"
 msgstr "Diagrammi di Bode"
@@ -193,10 +193,10 @@ msgstr "stato reale"
 msgid "Windowed FIR Low pass Filter"
 msgstr ""
 
-msgid "Kaiser window,cut-off:0.2"
+msgid "Kaiser window, cut-off: 0.2"
 msgstr ""
 
-msgid "Hamming window,cut-off:0.2,0.3"
+msgid "Hamming window, cut-off: 0.2, 0.3"
 msgstr ""
 
 msgid "length 127"
@@ -205,7 +205,7 @@ msgstr ""
 msgid "Windowed FIR Band pass Filter"
 msgstr ""
 
-msgid "Chebyshev window,cut-off:0.15,0.35"
+msgid "Chebyshev window, cut-off: 0.15, 0.35"
 msgstr ""
 
 msgid "length 55"
@@ -340,6 +340,20 @@ msgid ""
 msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un sistema "
 "dinamico lineare o un vettore riga di numeri con la virgola.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A real or polynomial matrix or a "
+"rational expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A discrete system expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"

@@ -10,13 +10,13 @@ msgstr ""
 "Project-Id-Version: output_stream-ru\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-09-17 15:38+0000\n"
+"PO-Revision-Date: 2014-03-25 14:49+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 16967)\n"
 "Language: ru\n"
 
 #, c-format
@@ -765,7 +765,7 @@ msgstr "%s: Неверный тип параметра %d: ожидалась м
 #, c-format
 msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
 msgstr ""
-"%s: Неверный тип параметра %d: ожидалась матрица логических значений.\n"
+"%s: Неверный тип аргумента №%d: ожидалась матрица логических значений.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Matrix expected.\n"
@@ -1449,6 +1449,8 @@ msgid ""
 "%s: %s: %s is too small. %s is orthogonal to the columns of the Jacobian to "
 "machine precision.\n"
 msgstr ""
+"%s: %s: %s слишком мал. %s ортогонален столбцам якобиана до машинной "
+"точности.\n"
 
 msgid "poly: variable name must be lesser than 5 characters long.\n"
 msgstr "poly: имя переменной должно быть длиной менее 5 символов.\n"

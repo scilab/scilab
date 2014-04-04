@@ -47,10 +47,13 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <scilab:image>x=-2:0.1:2;
+        <scilab:image>
+            warning("off")
+            x=-2:0.1:2;
             y=x;
             z=eval3d(milk_drop,x,y);
             plot3d(x,y,z)
+            warning("on")
         </scilab:image>
     </refsection>
     <refsection>

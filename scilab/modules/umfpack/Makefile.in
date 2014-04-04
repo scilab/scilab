@@ -105,11 +105,10 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-@UMFPACK_TRUE@am__append_1 = $(UMFPACK_LIB)
 DIST_COMMON = $(top_srcdir)/Makefile.incl.am $(srcdir)/Makefile.in \
 	$(srcdir)/Makefile.am $(top_srcdir)/config/mkinstalldirs \
 	$(top_srcdir)/config/depcomp
-@NEED_JAVA_TRUE@am__append_2 = java
+@NEED_JAVA_TRUE@am__append_1 = java
 subdir = modules/umfpack
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
@@ -184,7 +183,9 @@ am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
 am__v_lt_0 = --silent
 am__v_lt_1 = 
 @UMFPACK_TRUE@am_libsciumfpack_algo_la_rpath =
-@UMFPACK_TRUE@libsciumfpack_la_DEPENDENCIES = libsciumfpack-algo.la
+am__DEPENDENCIES_1 =
+@UMFPACK_TRUE@libsciumfpack_la_DEPENDENCIES = libsciumfpack-algo.la \
+@UMFPACK_TRUE@	$(am__DEPENDENCIES_1)
 am__libsciumfpack_la_SOURCES_DIST = src/noumfpack/noumfpack.c \
 	src/c/taucs_scilab.c src/c/common_umfpack.c \
 	src/c/with_umfpack.c sci_gateway/c/gw_umfpack.c \
@@ -327,6 +328,7 @@ CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
 DEMOTOOLS_ENABLE = @DEMOTOOLS_ENABLE@
 DEPDIR = @DEPDIR@
+DLLTOOL = @DLLTOOL@
 DOCBOOK_ROOT = @DOCBOOK_ROOT@
 DOXYGEN_BIN = @DOXYGEN_BIN@
 DSYMUTIL = @DSYMUTIL@
@@ -346,6 +348,11 @@ FGREP = @FGREP@
 FLEXDOCK = @FLEXDOCK@
 FLIBS = @FLIBS@
 FOP = @FOP@
+FREEHEP_GRAPHICS2D = @FREEHEP_GRAPHICS2D@
+FREEHEP_GRAPHICSIO = @FREEHEP_GRAPHICSIO@
+FREEHEP_GRAPHICSIO_EMF = @FREEHEP_GRAPHICSIO_EMF@
+FREEHEP_IO = @FREEHEP_IO@
+FREEHEP_UTIL = @FREEHEP_UTIL@
 GENHTML = @GENHTML@
 GETTEXT_MACRO_VERSION = @GETTEXT_MACRO_VERSION@
 GIWS_BIN = @GIWS_BIN@
@@ -409,6 +416,7 @@ LTLIBINTL = @LTLIBINTL@
 LTLIBOBJS = @LTLIBOBJS@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
+MANIFEST_TOOL = @MANIFEST_TOOL@
 MATIO_CFLAGS = @MATIO_CFLAGS@
 MATIO_ENABLE = @MATIO_ENABLE@
 MATIO_LIBS = @MATIO_LIBS@
@@ -566,7 +574,7 @@ yacc_present = @yacc_present@
 modulename = umfpack
 pkglib_LTLIBRARIES = libsciumfpack.la
 @UMFPACK_TRUE@noinst_LTLIBRARIES = libsciumfpack-algo.la
-libsciumfpack_la_LDFLAGS = $(AM_LDFLAGS) $(am__append_1)
+libsciumfpack_la_LDFLAGS = $(AM_LDFLAGS)
 
 #### umfpack : Conf files ####
 libsciumfpack_la_rootdir = $(mydatadir)
@@ -580,10 +588,6 @@ UMFPACK_license.txt
 libsciumfpack_la_etcdir = $(mydatadir)/etc
 libsciumfpack_la_etc_DATA = etc/umfpack.quit etc/umfpack.start
 @UMFPACK_FALSE@UMFPACK_C_SOURCES = src/noumfpack/noumfpack.c
-
-# Crappy workaround to avoid an undefined symbol while using umfpack features
-# For some unknown reasons, -lumfpack will not load cholmod & colamd
-# libsciumfpack_la_LDFLAGS += -lcholmod -lcolamd
 @UMFPACK_TRUE@UMFPACK_C_SOURCES = src/c/taucs_scilab.c \
 @UMFPACK_TRUE@src/c/common_umfpack.c \
 @UMFPACK_TRUE@src/c/with_umfpack.c
@@ -614,7 +618,8 @@ libsciumfpack_la_etc_DATA = etc/umfpack.quit etc/umfpack.start
 # For the code check (splint)
 @UMFPACK_TRUE@CHECK_SRC = $(libsciumfpack_la_SOURCES)
 @UMFPACK_TRUE@INCLUDE_FLAGS = $(libsciumfpack_la_CPPFLAGS)
-@UMFPACK_TRUE@libsciumfpack_la_LIBADD = libsciumfpack-algo.la
+@UMFPACK_TRUE@libsciumfpack_la_LIBADD = libsciumfpack-algo.la \
+@UMFPACK_TRUE@	$(UMFPACK_LIB)
 @UMFPACK_FALSE@libsciumfpack_la_CPPFLAGS = -I$(top_srcdir)/modules/api_scilab/includes/ \
 @UMFPACK_FALSE@-I$(top_srcdir)/modules/umfpack/includes/ \
 @UMFPACK_FALSE@-I$(top_srcdir)/modules/output_stream/includes/ \
@@ -622,6 +627,10 @@ libsciumfpack_la_etc_DATA = etc/umfpack.quit etc/umfpack.start
 @UMFPACK_FALSE@$(UMFPACK_CFLAGS) \
 @UMFPACK_FALSE@$(AM_CPPFLAGS)
 
+
+# Crappy workaround to avoid an undefined symbol while using umfpack features
+# For some unknown reasons, -lumfpack will not load cholmod & colamd
+# libsciumfpack_la_LIBADD += -lcholmod -lcolamd
 @UMFPACK_TRUE@libsciumfpack_la_CPPFLAGS = -I$(srcdir)/includes/ \
 @UMFPACK_TRUE@			-I$(srcdir)/src/c/ \
 @UMFPACK_TRUE@			-I$(top_srcdir)/modules/dynamic_link/includes/ \
@@ -656,7 +665,7 @@ SPLINT_OPTIONS = -weak -booltype BOOL
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_2)
+TARGETS_ALL = $(am__append_1)
 
 ################ MACROS ######################
 # Rule to build a macro

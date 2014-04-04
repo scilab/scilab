@@ -26,31 +26,31 @@
             <literal>varargout</literal> list defined in the function.
         </para>
         <para>
-            <literal>varargout= function ex()</literal> may be called with any
+            <literal>varargout = function ex()</literal> may be called with any
             number of output arguments. Within function <literal>ex</literal> output
-            arguments may be stored in in <literal>varargout(i)</literal>.
+            arguments may be stored in <literal>varargout(i)</literal>.
         </para>
         <para>
-            <literal>[X1,...Xn,varargout]= function ex()</literal> may also be
+            <literal>[X1,...,Xn,varargout] = function ex()</literal> may also be
             used. In this case the <literal>Xi</literal> variables must be assigned in
             the function as well as <literal>varargout(i)</literal>.
         </para>
         <para>
-            The actual total number of output argument is given <link linkend="argn">argn(1)</link>
+            The actual total number of output argument is given <code>argn(1)</code>.
         </para>
     </refsection>
     <refsection>
         <title>Remark</title>
         <para>
             The <literal>varargout</literal> variable must be created within the
-            function and assigned to a <link linkend="list">list</link>. If varargout
+            function and assigned to a <link linkend="list">list</link>. If <literal>varargout</literal>
             is the only formal output variable the list must contain at least one
             entry.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 function varargout=exampl()
   varargout=list(1,2,3,4)
 endfunction
@@ -74,13 +74,16 @@ exampl1()
         <title>See Also</title>
         <simplelist type="inline">
             <member>
+                <link linkend="argn">argn</link>
+            </member>
+            <member>
                 <link linkend="function">function</link>
             </member>
             <member>
-                <link linkend="varargin">varargin</link>
+                <link linkend="list">list</link>
             </member>
             <member>
-                <link linkend="list">list</link>
+                <link linkend="varargin">varargin</link>
             </member>
         </simplelist>
     </refsection>

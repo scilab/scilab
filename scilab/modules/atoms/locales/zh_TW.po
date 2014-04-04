@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 16967)\n"
 "Language: \n"
 
 #, c-format
@@ -477,21 +477,6 @@ msgstr "無任何有效的 ATOMS 模組. 請檢查網路連線是否正常或是
 msgid "No ATOMS module is available: your repository list is empty."
 msgstr "沒有可取得的ATOMS模組:你的倉庫清單是空的."
 
-msgid "ATOMS"
-msgstr "ATOMS"
-
-msgid "&File"
-msgstr "檔案(&F)"
-
-msgid "&Tools"
-msgstr "工具(&T)"
-
-msgid "&Edit"
-msgstr "編輯(&E)"
-
-msgid "&?"
-msgstr "&?"
-
 msgid "File"
 msgstr "檔案"
 
@@ -510,8 +495,8 @@ msgstr "?"
 msgid "Atoms Help..."
 msgstr "Atoms 線上文件..."
 
-msgid "List of installed modules"
-msgstr "已安裝模組清單"
+msgid "Back"
+msgstr ""
 
 msgid "Remove"
 msgstr "移除"
@@ -519,8 +504,11 @@ msgstr "移除"
 msgid "Install"
 msgstr "安裝"
 
-msgid "Update"
-msgstr "更新"
+msgid "Autoload"
+msgstr ""
+
+msgid "List of installed modules"
+msgstr "已安裝模組清單"
 
 msgid "Installing"
 msgstr "安裝中"
@@ -532,15 +520,6 @@ msgid ""
 "Installation done! Please restart Scilab to take changes into account."
 msgstr "安裝完畢！請重新啟動 Scilab 使變更發生作用."
 
-msgid "Removing"
-msgstr "刪除中"
-
-msgid "Remove failed!"
-msgstr "移除失敗"
-
-msgid "Remove done! Please restart Scilab to take changes into account. "
-msgstr "已移除 ! 請重新啟動 Scilab  使變更發生作用. "
-
 msgid "Updating"
 msgstr "更新中"
 
@@ -550,6 +529,23 @@ msgstr "更新失敗！"
 msgid "Update done! Please restart Scilab to take changes into account."
 msgstr "更新完成!   請重新啟動 Scilab  使變更發生作用."
 
+msgid "Removing"
+msgstr "刪除中"
+
+msgid "Remove failed!"
+msgstr "移除失敗"
+
+msgid "Remove done! Please restart Scilab to take changes into account. "
+msgstr "已移除 ! 請重新啟動 Scilab  使變更發生作用. "
+
+msgid "The module will be automatically loaded at next startup."
+msgstr ""
+
+msgid ""
+"Autoload at startup is canceled. The Toolboxes menu or atomsLoad() can be "
+"used to load the module when needed."
+msgstr ""
+
 msgid "Download size"
 msgstr "下載大小"
 
@@ -558,6 +554,9 @@ msgstr "可參閱"
 
 msgid "Release date"
 msgstr "發佈日期"
+
+msgid "Update"
+msgstr "更新"
 
 #, c-format
 msgid "A new version ('%s') of '%s' is available"
@@ -839,6 +838,75 @@ msgstr "所有模組"
 msgid "Main categories"
 msgstr "主要的分類"
 
+msgid "Aerospace"
+msgstr ""
+
+msgid "Contributed Scilab Binaries"
+msgstr ""
+
+msgid "Data Analysis And Statistics"
+msgstr ""
+
+msgid "Data Handling"
+msgstr ""
+
+msgid "Editor Styles"
+msgstr ""
+
+msgid "Education"
+msgstr ""
+
+msgid "GUI"
+msgstr ""
+
+msgid "Graphics"
+msgstr ""
+
+msgid "Graphs"
+msgstr ""
+
+msgid "Image Processing"
+msgstr ""
+
+msgid "Instruments Control"
+msgstr ""
+
+msgid "Linear algebra"
+msgstr ""
+
+msgid "Modeling and Control Tools"
+msgstr ""
+
+msgid "Number theory"
+msgstr ""
+
+msgid "Numerical Maths"
+msgstr ""
+
+msgid "Optimization"
+msgstr ""
+
+msgid "Physics"
+msgstr ""
+
+msgid "Real-Time"
+msgstr ""
+
+msgid "Scilab development"
+msgstr ""
+
+msgid "Signal Processing"
+msgstr ""
+
+msgid "Technical"
+msgstr ""
+
+msgid "Tests"
+msgstr ""
+
+msgid "Xcos"
+msgstr ""
+
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: %s must be an available atoms "
@@ -895,6 +963,9 @@ msgstr "%s: 第 %d 行敘述的格式不符\n"
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' is not a valid URL.\n"
 msgstr "%s: 第 #%d 輸入參數數值錯誤: '%s' 不是正確的 URL.\n"
+
+msgid "Loaded<br>at startup"
+msgstr ""
 
 #, c-format
 msgid "%s: the package '%s' does not exist.\n"

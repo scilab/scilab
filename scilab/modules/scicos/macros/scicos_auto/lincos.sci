@@ -63,6 +63,10 @@ function sys = lincos(scs_m,x0,u0,param)
     //** the required library are loaded if not already present in the
     //** "semiglobal-local-environment".
 
+    if ~exists("scicos_diagram") then
+        loadXcosLibs();
+    end
+
     if exists("scicos_scicoslib")==0 then
         load("SCI/modules/scicos/macros/scicos_scicos/lib") ;
     end

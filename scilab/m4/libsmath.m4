@@ -70,23 +70,22 @@ if test $acx_blas_ok = no; then
 	save_LIBS="$LIBS"; LIBS="$LIBS"
 	AC_CHECK_FUNC($sgemm, [acx_blas_ok=yes; BLAS_TYPE="Linked"])
 	LIBS="$save_LIBS"
-
 fi
 
-# BLAS in ATLAS library? (http://math-atlas.sourceforge.net/)
+# BLAS in OpenBlas library (http://www.openblas.net/)
 if test $acx_blas_ok = no; then
-	AC_CHECK_LIB(atlas, ATL_xerbla,
-		[AC_CHECK_LIB(f77blas, $sgemm,
-		[AC_CHECK_LIB(cblas, cblas_dgemm,
-			[acx_blas_ok=yes; BLAS_TYPE="Atlas"
-			 BLAS_LIBS="-lcblas -lf77blas -latlas"],
-			[], [-lf77blas -latlas])],
-			[], [-latlas])])
+    AC_CHECK_LIB(openblas, $sgemm, [acx_blas_ok=yes; BLAS_TYPE="OpenBLAS"; BLAS_LIBS="-lopenblas"])
 fi
 
-# BLAS in Intel MKL libraries?
+# BLAS in ATLAS library (http://math-atlas.sourceforge.net/)
 if test $acx_blas_ok = no; then
-	AC_CHECK_LIB(mkl, $sgemm, [acx_blas_ok=yes; BLAS_TYPE="MKL"; BLAS_LIBS="-lmkl -lguide -lpthread"])
+	AC_CHECK_LIB(f77blas, $sgemm, [acx_blas_ok=yes; BLAS_TYPE="Atlas"; BLAS_LIBS="-lf77blas"], [
+		AC_CHECK_LIB(f77blas, $sgemm, [acx_blas_ok=yes; BLAS_TYPE="Atlas"; BLAS_LIBS="-lf77blas -latlas"], [], [-latlas])])
+fi
+
+# BLAS in Intel MKL libraries (http://software.intel.com/en-us/articles/a-new-linking-model-single-dynamic-library-mkl_rt-since-intel-mkl-103)
+if test $acx_blas_ok = no; then
+	AC_CHECK_LIB(mkl_rt, $sgemm, [acx_blas_ok=yes; BLAS_TYPE="MKL"; BLAS_LIBS="-lmkl_rt"])
 fi
 
 # BLAS in PhiPACK libraries? (requires generic BLAS lib, too)
@@ -145,7 +144,7 @@ if test $acx_blas_ok = no; then
 fi
 
 if test "$with_blas_library" != no -a "$with_blas_library" != ""; then
-BLAS_LIBS="$BLAS_LIBS -L$with_blas_library"
+BLAS_LIBS="-L$with_blas_library $BLAS_LIBS"
 fi
 
 AC_SUBST(BLAS_LIBS)
@@ -236,7 +235,7 @@ fi
 # LAPACK linked to by default?  (is sometimes included in BLAS lib)
 if test $acx_lapack_ok = no; then
         save_LIBS="$LIBS"; LIBS="$LIBS $BLAS_LIBS $FLIBS"
-        AC_CHECK_FUNC($cheev, [acx_lapack_ok=yes; LAPACK_TYPE="Default link"])
+        AC_CHECK_FUNC($cheev, [acx_lapack_ok=yes; LAPACK_TYPE="Default link (may be provided with BLAS)"])
         LIBS="$save_LIBS"
 fi
 

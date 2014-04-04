@@ -1,4 +1,7 @@
+# ignore some generated files
+
 modelicac
+modelicac.ocamlc
 *.cmi
 *.cma
 *.cmo
@@ -16,15 +19,14 @@ src/modelica_compiler/modelicac.exe
 src/modelica_compiler/*.obj
 
 #
-
-*.mli
-
 XML2Modelica
+XML2Modelica.ocamlc
 xml2modelica.exe
 
 
 #translator
 modelicat
+modelicat.ocamlc
 modelicat.exe
 src/translator/*/*.a
 src/translator/parsing/lexer.ml

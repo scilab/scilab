@@ -21,7 +21,7 @@
 /*--------------------------------------------------------------------------*/
 #include <math.h>
 #include <stdio.h>
-#include "sciprint.h"
+#include "scicos_print.h"
 #include "scicos.h"
 #include "scicos_block4.h"
 #include "localization.h"
@@ -57,7 +57,7 @@ SCICOS_BLOCKS_IMPEXP void matmul_ui8e(scicos_block *block, int flag)
                 }
                 if ((D > (k - 1)) | (D < 0))
                 {
-                    sciprint(_("overflow error"));
+                    scicos_print(_("overflow error"));
                     set_block_error(-4);
                     return;
                 }

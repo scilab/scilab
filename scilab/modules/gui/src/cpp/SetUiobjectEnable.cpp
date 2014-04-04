@@ -11,7 +11,10 @@
  *
  */
 
-#include "SetUiobjectEnable.hxx"
+extern "C"
+{
+#include "SetUicontrol.h"
+}
 
 /* Set the enable property of an uicontrol or uimenu */
 int SetUiobjectEnable(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)

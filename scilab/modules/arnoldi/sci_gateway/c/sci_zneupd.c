@@ -115,7 +115,7 @@ int sci_zneupd(char *fname, void *pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 1);
         return 1;
     }
 
@@ -131,7 +131,7 @@ int sci_zneupd(char *fname, void *pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 3);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 3);
         return 1;
     }
 
@@ -147,7 +147,7 @@ int sci_zneupd(char *fname, void *pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 4);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 4);
         return 1;
     }
     D =  4;
@@ -164,7 +164,7 @@ int sci_zneupd(char *fname, void *pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 5);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 5);
         return 1;
     }
     Z =  5;
@@ -181,7 +181,7 @@ int sci_zneupd(char *fname, void *pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 6);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 6);
         return 1;
     }
 
@@ -197,7 +197,7 @@ int sci_zneupd(char *fname, void *pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 7);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 7);
         return 1;
     }
 
@@ -213,7 +213,7 @@ int sci_zneupd(char *fname, void *pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 9);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 9);
         return 1;
     }
 
@@ -229,7 +229,7 @@ int sci_zneupd(char *fname, void *pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 11);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 11);
         return 1;
     }
 
@@ -245,7 +245,7 @@ int sci_zneupd(char *fname, void *pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 12);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 12);
         return 1;
     }
 
@@ -261,7 +261,7 @@ int sci_zneupd(char *fname, void *pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 13);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 13);
         return 1;
     }
     RESID = 13;
@@ -278,7 +278,7 @@ int sci_zneupd(char *fname, void *pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 14);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 14);
         return 1;
     }
 
@@ -294,7 +294,7 @@ int sci_zneupd(char *fname, void *pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 15);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 15);
         return 1;
     }
 
@@ -310,7 +310,7 @@ int sci_zneupd(char *fname, void *pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 16);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 16);
         return 1;
     }
 
@@ -327,7 +327,7 @@ int sci_zneupd(char *fname, void *pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 17);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 17);
         return 1;
     }
 
@@ -345,7 +345,7 @@ int sci_zneupd(char *fname, void *pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 18);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 18);
         return 1;
     }
     WORKD = 18;
@@ -362,7 +362,7 @@ int sci_zneupd(char *fname, void *pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 19);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 19);
         return 1;
     }
     WORKL = 19;
@@ -379,7 +379,7 @@ int sci_zneupd(char *fname, void *pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 20);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 20);
         return 1;
     }
 
@@ -396,7 +396,7 @@ int sci_zneupd(char *fname, void *pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 21);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 21);
         return 1;
     }
 

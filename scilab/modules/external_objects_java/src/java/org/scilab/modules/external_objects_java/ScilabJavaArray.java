@@ -155,7 +155,7 @@ public final class ScilabJavaArray {
         if (obj != null && obj.getClass().isArray()) {
             if (index[i] >= 0 && index[i] < Array.getLength(obj)) {
                 try {
-                    Array.set(obj, index[i], x);
+                    Array.set(obj, index[i], FunctionArguments.convert(x, obj.getClass().getComponentType()));
                 } catch (IllegalArgumentException e) {
                     throw new ScilabJavaException("Array " + obj + " cannot contain object which is an instance of " + x.getClass());
                 }

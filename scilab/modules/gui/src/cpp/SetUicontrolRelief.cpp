@@ -12,7 +12,10 @@
  *
  */
 
-#include "SetUicontrolRelief.hxx"
+extern "C"
+{
+#include "SetUicontrol.h"
+}
 
 int SetUicontrolRelief(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
@@ -24,14 +27,14 @@ int SetUicontrolRelief(void* _pvCtx, int iObjUID, void* _pvData, int valueType, 
     if (valueType != sci_strings)
     {
         /* Wrong datatype */
-        Scierror(999, const_cast<char*>(_("Wrong type for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' expected.\n")), "Relief", "flat", "groove", "raised", "ridge", "solid", "sunken");
+        Scierror(999, const_cast<char*>(_("Wrong type for '%s' property: '%s', '%s', '%s', '%s', '%s', '%s' or '%s' expected.\n")), "Relief", "flat", "groove", "raised", "ridge", "solid", "sunken", "default");
         return SET_PROPERTY_ERROR;
     }
 
     if (nbCol != 1 || nbRow == 0)
     {
         /* Wrong string size */
-        Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' expected.\n")), "Relief", "flat", "groove", "raised", "ridge", "solid", "sunken");
+        Scierror(999, const_cast<char*>(_("Wrong type for '%s' property: '%s', '%s', '%s', '%s', '%s', '%s' or '%s' expected.\n")), "Relief", "flat", "groove", "raised", "ridge", "solid", "sunken", "default");
         return SET_PROPERTY_ERROR;
     }
 
@@ -42,10 +45,11 @@ int SetUicontrolRelief(void* _pvCtx, int iObjUID, void* _pvData, int valueType, 
             && stricmp(relief, "raised") != 0
             && stricmp(relief, "ridge") != 0
             && stricmp(relief, "solid") != 0
-            && stricmp(relief, "sunken") != 0)
+            && stricmp(relief, "sunken") != 0
+            && stricmp(relief, "default") != 0)
     {
         /* Wrong string format */
-        Scierror(999, const_cast<char*>(_("Wrong value for '%s' property: '%s', '%s', '%s', '%s', '%s' or '%s' expected.\n")), "Relief", "flat", "groove", "raised", "ridge", "solid", "sunken");
+        Scierror(999, const_cast<char*>(_("Wrong type for '%s' property: '%s', '%s', '%s', '%s', '%s', '%s' or '%s' expected.\n")), "Relief", "flat", "groove", "raised", "ridge", "solid", "sunken", "default");
         return SET_PROPERTY_ERROR;
     }
 

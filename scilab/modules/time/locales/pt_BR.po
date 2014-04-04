@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 16967)\n"
 "Language: pt_BR\n"
 
 #, c-format
@@ -186,16 +186,17 @@ msgid "%s: Wrong number of input argument: %d expected.\n"
 msgstr "%s: Quantidade incorreta de argumentos de entrada: esperava-se %d.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument: Same size expected.\n"
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr ""
-"%s: Tamanho incorreto para os argumentos de entrada: esperava-se tamanhos "
-"iguais.\n"
 
 #, c-format
-msgid "%s: Wrong type for input arguments: Integer expected.\n"
+msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
 msgstr ""
-"%s: Tipo incorreto para os argumentos de entrada: esperava-se números "
-"inteiros.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real vector expected.\n"
@@ -208,6 +209,10 @@ msgid "%s: Wrong size for input argument #%d: Must be between %d and %d.\n"
 msgstr ""
 "%s: Tamanho incorreto para o argumento de entrada #%d: deve ser entre %d e "
 "%d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments #%d and #%d: Same size expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: You must call tic() before calling toc().\n"

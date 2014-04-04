@@ -211,14 +211,10 @@
         <title>Example</title>
         <para>
             The following example calculate an arbitrary expression with multiple different configuration or blocks.
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/userdefinedfunctions_pal/en_US/EXPRESSION_en_US.zcos">
-                Open this example in Xcos
-            </link>
         </para>
         <para>
             <latex>y=u(1) - u(2) - u(3)</latex>
         </para>
-        <para/>
         <para>
             <link type="scilab" linkend="scilab.xcos/xcos/examples/userdefinedfunctions_pal/en_US/EXPRESSION_en_US.zcos">
                 <inlinemediaobject>
@@ -227,11 +223,11 @@
                     </imageobject>
                 </inlinemediaobject>
             </link>
-            <scilab:image><![CDATA[
+        </para>
+        <scilab:image><![CDATA[
 importXcosDiagram(SCI + "/modules/xcos/examples/userdefinedfunctions_pal/en_US/EXPRESSION_en_US.zcos");
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
-        </para>
     </refsection>
     <refsection id="Interfacingfunction_EXPRESSION">
         <title>Interfacing function</title>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="createLayoutOptions">
+    <refnamediv>
+        <refname>createLayoutOptions</refname>
+        <refpurpose>
+            Creates the layout options for a <literal>frame</literal> uicontrol or a figure
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            layout_options = createLayoutOptions(constType, varargin)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>constType</term>
+                <listitem>
+                    <para>String</para>
+                    <para>The type of the layout options to be created. Available types of options are listed below and their specific properties are detailled on dedicated help page:</para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>"none" or "nolayout": No layout options added to the uicontrol. No property is available for this type.</para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                "grid": the <link linkend="grid_layout_options_properties">grid options</link> type.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                "border": the <link linkend="border_layout_options_properties">border options</link> type.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                "gridbag": A <link linkend="gridbag_layout_options_properties">gridbag options</link> type.
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>varargin</term>
+                <listitem>
+                    <para>
+                        All <literal>constType</literal> specific properties.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>layout_options</term>
+                <listitem>
+                    <para>The created layout_options.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            This function creates the layout options structure used to set the <literal>layout_options</literal> attribute of a <literal>frame</literal> uicontrol or a figure. See <link linkend="uicontrol_properties">uicontrol properties</link> for more details.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="layout">layout</link>
+            </member>
+            <member>
+                <link linkend="uicontrol">uicontrol</link>
+            </member>
+            <member>
+                <link linkend="uicontrol_properties">uicontrol_properties</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>
+                    Function <function>createBorder</function> introduced.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

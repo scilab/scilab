@@ -374,7 +374,7 @@ SciErr getVarNameFromPosition(void *_pvCtx, int _iVar, char *_pstName)
     int iNameLen = 0;
     int iJob1 = 1;
 
-    CvNameL(&vstk_.idstk[(_iVar - 1) * 6], _pstName, &iJob1, &iNameLen);
+    CvNameL(&vstk_.idstk[(Top - Rhs + _iVar - 1) * 6], _pstName, &iJob1, &iNameLen);
     if (iNameLen == 0)
     {
         addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Unable to get name of argument #%d"), "getVarNameFromPosition", _iVar);
@@ -1472,7 +1472,7 @@ int deleteNamedVariable(void* _pvCtx, const char* _pstName)
 
     if (!checkNamedVarFormat(_pvCtx, _pstName))
     {
-        addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name."), "createNamedComplexZMatrixOfDouble");
+        addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name: %s."), "createNamedComplexZMatrixOfDouble", _pstName);
         return 0;
     }
 

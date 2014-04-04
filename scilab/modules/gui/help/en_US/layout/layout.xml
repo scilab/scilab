@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="layout" xml:lang="en">
+    <refnamediv>
+        <refname>Layout</refname>
+        <refpurpose>Description of the different layouts and constraints for uicontrols and figures.</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Layouts control how figures or <literal>frame</literal> uicontrols manage the positions and display of nested uicontrols.
+            Layout options can be created/set using the <link linkend="createLayoutOptions">createLayoutOptions</link> function.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Properties</title>
+        <variablelist>
+            <varlistentry>
+                <term>nolayout | none</term>
+                <listitem>
+                    <para>No layout is applied, nested uicontrols do not have any constraint.</para>
+                    <para>Nested uicontrols must be positionned manually and their size is fixed.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>grid</term>
+                <listitem>
+                    <para>A grid layout is applied to all nested uicontrols.</para>
+                    <para>
+                        Nested uicontrols are positionned in a grid defined in <literal>layout_options</literal> from left to right and top to bottom.
+                    </para>
+                    <para>
+                        See <link linkend="grid_layout_options_properties">grid layout options</link> for information on grid layouts.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>border</term>
+                <listitem>
+                    <para>A border layout is applied to all nested uicontrols.</para>
+                    <para>Nested uicontrols are positionned on a border of the parent frame or in the center.</para>
+                    <para>
+                        See <link linkend="border_layout_options_properties">border layout options</link> for information on border layouts.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>gridbag</term>
+                <listitem>
+                    <para>A gridbag layout is applied to all nested uicontrols.</para>
+                    <para>Nested uicontrols are positionned on a virtual grid as in the grid layout but can occupy several grid spaces, fill empty space horizontally or vertically.</para>
+                    <para>The gridbag layout allows finer control over the uicontrol behaviour during resize.</para>
+                    <para>
+                        see <link linkend="gridbag_layout_options_properties">gridbag layout options</link> for information on gridbag layouts.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Layout Constraints</title>
+        <para>Constraints define behaviour of a uicontrol inside a layout.</para>
+        <para>
+            All nested elements in a layout must define its <literal>constraint</literal> attribute relative to their parent layout. Layouts are thus defined on the parent while constraints are defined on the children.
+        </para>
+        <para>
+            Constraints can be created/set using the <link linkend="createConstraints">createConstraints</link> function.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="uicontrol_properties">uicontrol_properties</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

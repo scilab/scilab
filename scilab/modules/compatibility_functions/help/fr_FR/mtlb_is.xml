@@ -28,7 +28,9 @@
             déterminer la sémantique correcte pendant l'exécution. Elle ne peut être remplacée.
         </para>
         <para>
-            Attention : <literal>mtlb_is</literal> ne doit pas être utilisée pour une programmation manuelle.
+            <warning>
+                Attention : <literal>mtlb_is</literal> ne doit pas être utilisée pour une programmation manuelle.
+            </warning>
         </para>
     </refsection>
     <refsection role="see also">

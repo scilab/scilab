@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="varargin" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="varargin" xml:lang="pt">
     <refnamediv>
         <refname>varargin</refname>
         <refpurpose>variável do número de argumentos de saída em uma lista de
@@ -35,61 +35,73 @@
             lista vazia
         </para>
         <para>
-            <literal>y= function ex(varargin)</literal> pode ser chamada com
+            <literal>function y= ex(varargin)</literal> pode ser chamada com
             qualquer número de argumentos de entrada. Dentro da função
             <literal>ex</literal> argumentos de entrada podem ser recuperados em
-            <literal>varargin(i)</literal>
-            ,<literal>i=1:length(varargin)</literal>
+            <literal>varargin(i)</literal>, <literal>i=1:length(varargin)</literal>
         </para>
         <para>Se não for o último argumento de entrada da função,
             <literal>varargin</literal> é um argumento de entrada normal, sem nenhum
             significado especial.
         </para>
         <para>
-            O número de argumentos de entrada real é dado por <link linkend="argn">argn(2)</link>.
+            O número de argumentos de entrada real é dado por <code>argn(2)</code>.
         </para>
     </refsection>
     <refsection>
         <title>Observações</title>
         <para>
-            Sintaxe de argumento nomeada, como <literal>foo(...,key=value)
-            </literal>
-            ,é incompatível com o uso de varargin. A razão é que os nomes
+            Sintaxe de argumento nomeada, como <literal>foo(...,key=value)</literal>, é incompatível com o uso de <literal>varargin</literal>. A razão é que os nomes
             (i.e. keys) associados aos valores value não são armazenados na lista
-            varargin. Considere por exemplo:
+            <literal>varargin</literal>. Considere por exemplo:
         </para>
-        <para>function
-            foo(varargin),disp([varargin(1),varargin(2)]),endfunction
-        </para>
-        <para>foo(a=1,b=2)</para>
-        <para>O Scilab responde: 1. 2.</para>
-        <para>foo(b=1,a=2)</para>
-        <para>O Scilab responde: 1. 2.</para>
+        <programlisting role="no-scilab-exec"><![CDATA[
+function foo(varargin)
+    disp([varargin(1),varargin(2)])
+endfunction
+        ]]></programlisting>
+        <screen>
+            -->foo(a=1,b=2)
+            
+            1.    2.
+            
+            -->foo(b=1,a=2)
+            
+            1.    2.
+        </screen>
         <para>O resultado é o mesmo, mas os argumentos foram invertidos.</para>
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
-deff('exampl(a,varargin)',['[lhs,rhs]=argn(0)'
-                          'if rhs>=1 then disp(varargin),end'])
+        <programlisting role="example"><![CDATA[
+function exampl(a,varargin)
+    [lhs,rhs]=argn(0)
+    if rhs>=1 then
+        disp(varargin)
+    end
+endfunction
+
 exampl(1)
 exampl()
 exampl(1,2,3)
 l=list('a',%s,%t);
 exampl(1,l(2:3))
- ]]></programlisting>
+]]></programlisting>
     </refsection>
     <refsection>
         <title>Ver Também</title>
         <simplelist type="inline">
             <member>
+                <link linkend="argn">argn</link>
+            </member>
+            <member>
                 <link linkend="function">function</link>
             </member>
             <member>
-                <link linkend="varargout">varargout</link>
+                <link linkend="list">list</link>
             </member>
             <member>
-                <link linkend="list">list</link>
+                <link linkend="varargout">varargout</link>
             </member>
         </simplelist>
     </refsection>

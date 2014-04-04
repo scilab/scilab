@@ -21,20 +21,40 @@
 #include "MALLOC.h"
 #include "core_math.h"
 #include "freeArrayOfString.h"
+#include "returnanan.h"
+
 /*------------------------------------------------------------------------*/
 double sciFindStPosMin(const double x[], int n)
 {
-    double min = 0.;
+    double min = -1.0;
     int i = 0;
+    char hasNeg = 0;
 
     if (n <= 0)
     {
-        return -1.0;
+        return min;
     }
 
-    min = x[0];
+    for (i = 0; i < n; i++)
+    {
+        if (x[i] > 0)
+        {
+            min = x[i];
+            break;
+        }
+        else if (!hasNeg && x[i] <= 0)
+        {
+            hasNeg = 1;
+        }
+    }
 
-    for (i = 1 ; i < n ; i++)
+    if (i == n && !hasNeg)
+    {
+        // we have only NaN
+        return C2F(returnanan)();
+    }
+
+    for (; i < n ; i++)
     {
         if (x[i] > 0.0 && x[i] < min)
         {

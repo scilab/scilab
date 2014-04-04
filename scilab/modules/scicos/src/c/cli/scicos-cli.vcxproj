@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -303,6 +303,7 @@ lib /DEF:"$(ProjectDir)../differential_equations_f_Import.def" /SUBSYSTEM:WINDOW
     <ClCompile Include="..\scicos.c" />
     <ClCompile Include="..\scicos_free.c" />
     <ClCompile Include="..\scicos_malloc.c" />
+    <ClCompile Include="..\scicos_print.c" />
     <ClCompile Include="..\tree.c" />
     <ClCompile Include="..\var2sci.c" />
   </ItemGroup>
@@ -324,6 +325,7 @@ lib /DEF:"$(ProjectDir)../differential_equations_f_Import.def" /SUBSYSTEM:WINDOW
     <ClInclude Include="..\..\..\includes\scicos_free.h" />
     <ClInclude Include="..\..\..\includes\scicos_malloc.h" />
     <ClInclude Include="..\..\..\includes\scicos_math.h" />
+    <ClInclude Include="..\..\..\includes\scicos_print.h" />
     <ClInclude Include="..\sciblk2.h" />
     <ClInclude Include="..\sciblk4.h" />
     <ClInclude Include="..\tree.h" />
@@ -342,10 +344,10 @@ lib /DEF:"$(ProjectDir)../differential_equations_f_Import.def" /SUBSYSTEM:WINDOW
     <None Include="..\Scicos_blocks_f_Import.def" />
     <None Include="..\scicos_f_Import.def" />
     <None Include="..\String_Import.def" />
-    <None Include="..\scicos-cli_Export.def" />
     <None Include="..\..\..\Makefile.am" />
     <None Include="..\..\..\scicos.iss" />
     <None Include="..\..\..\sci_gateway\scicos_gateway.xml" />
+    <None Include="scicos-cli_Export.def" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="scicos-cli.rc" />

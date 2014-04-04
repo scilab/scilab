@@ -14,8 +14,11 @@ package org.scilab.modules.gui.bridge.helpbrowser;
 
 import java.awt.BorderLayout;
 import java.awt.Cursor;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.io.File;
 import java.io.FilenameFilter;
+import java.lang.reflect.Field;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
@@ -23,6 +26,7 @@ import java.util.Enumeration;
 import java.util.Locale;
 
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
 
 import javax.help.BadIDException;
@@ -38,6 +42,7 @@ import javax.help.SwingHelpUtilities;
 import javax.help.event.HelpModelEvent;
 import javax.help.event.HelpModelListener;
 import javax.help.plaf.basic.BasicSearchNavigatorUI;
+import javax.help.plaf.basic.BasicTOCNavigatorUI;
 import javax.help.search.SearchQuery;
 
 import org.scilab.modules.gui.console.ScilabConsole;
@@ -224,6 +229,32 @@ public class SwingScilabHelpBrowser extends JPanel implements SimpleHelpBrowser,
             }
         }
 
+        navigators = jhelp.getHelpNavigators();
+        while (navigators.hasMoreElements()) {
+            Object nav = navigators.nextElement();
+            if (nav instanceof JHelpTOCNavigator) {
+                BasicTOCNavigatorUI tocUI = (BasicTOCNavigatorUI) ((JHelpTOCNavigator) nav).getUI();
+                JScrollPane scroll = null;
+                try {
+                    Field f = BasicTOCNavigatorUI.class.getDeclaredField("sp");
+                    f.setAccessible(true);
+                    scroll = (JScrollPane) f.get(tocUI);
+                } catch (Exception e) { }
+
+                if (scroll != null) {
+                    final JScrollPane sp = scroll;
+                    sp.addComponentListener(new ComponentAdapter() {
+                        public void componentResized(ComponentEvent e) {
+                            sp.getHorizontalScrollBar().setValue(0);
+                            sp.getVerticalScrollBar().setValue(0);
+                            sp.removeComponentListener(this);
+                        }
+                    });
+                }
+                break;
+            }
+        }
+
         /* Reinit status bar and cursor */
         if (ScilabConsole.isExistingConsole() && ScilabConsole.getConsole().getInfoBar() != null) {
             ScilabConsole.getConsole().getInfoBar().setText("");
@@ -236,8 +267,8 @@ public class SwingScilabHelpBrowser extends JPanel implements SimpleHelpBrowser,
             homePageURL = new URL(jhelp.getModel().getHelpSet().getHelpSetURL().toString().replace("jhelpset.hs", "ScilabHomePage.html"));
         } catch (MalformedURLException ex) { }
 
-        setVisible(true);
         jhelp.getContentViewer().addHelpModelListener(this);
+        setVisible(true);
     }
 
     /**

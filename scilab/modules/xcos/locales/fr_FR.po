@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-09-16 09:59+0000\n"
-"Last-Translator: Julie PAUL <Unknown>\n"
+"PO-Revision-Date: 2014-03-31 09:19+0000\n"
+"Last-Translator: Vincent Couvert <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 16967)\n"
 "Language: fr\n"
 
 #, c-format
@@ -247,7 +247,7 @@ msgid "Error"
 msgstr "Erreur"
 
 msgid "Unknowns not equal to Equations"
-msgstr ""
+msgstr "Les inconnues ne sont pas égales aux équations"
 
 msgid "Unknowns"
 msgstr "Inconnues"
@@ -717,7 +717,7 @@ msgid "Middle"
 msgstr "Milieu"
 
 msgid "Border Color"
-msgstr "Couleur de bordure"
+msgstr "Couleur du cadre"
 
 msgid "Fill Color"
 msgstr "Couleur de remplissage"
@@ -938,6 +938,12 @@ msgstr "Fonction logique ET"
 msgid "Logic NOR gate"
 msgstr "Fonction logique NON-OU"
 
+msgid "If Then Else"
+msgstr "If Then Else"
+
+msgid "And"
+msgstr "And"
+
 msgid "Automotive Suspension"
 msgstr "Suspension automobile"
 
@@ -1009,6 +1015,9 @@ msgstr "Bloc Xcos IFTHEL_f"
 
 msgid "Goto/From blocks"
 msgstr "Blocs Goto/From"
+
+msgid "Event demos"
+msgstr "Démonstrations de blocs d'évènement"
 
 #, c-format
 msgid "%s: Unable to export %s to %s.\n"
@@ -1216,9 +1225,9 @@ msgid "%s: Unable to export the palette to hdf5.\n"
 msgstr "%s : Impossible d'exporter la palette vers hdf5.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Matrix of strings expected.\n"
+msgid "%s: Wrong type for argument #%d: Matrix of strings expected.\n"
 msgstr ""
-"%s : Type erroné de l'argument n°%d : Une matrice de chaîne de caractères "
+"%s : Type erroné de l'argument %d : Une matrice de chaîne de caractères "
 "attendue.\n"
 
 #, c-format
@@ -1270,98 +1279,98 @@ msgid "Field %s has different values."
 msgstr "Le champ %s a des valeurs différentes."
 
 msgid "Stopped before block:"
-msgstr ""
+msgstr "Arrêt avant le bloc"
 
 msgid "Stopped after block:"
-msgstr ""
+msgstr "Arrêt après le bloc"
 
 msgid "State derivative computation"
-msgstr ""
+msgstr "Calcul des états dérivés"
 
 msgid "Regular outputs update"
-msgstr ""
+msgstr "Mise à jour des sorties"
 
 msgid "States update on discrete event"
-msgstr ""
+msgstr "Mise à jour des états suite à une activation discrète"
 
 msgid "Output activation dates"
-msgstr ""
+msgstr "Dates d'activations en sortie"
 
 msgid "Initialization"
-msgstr ""
+msgstr "Initialisation"
 
 msgid "Ending"
-msgstr ""
+msgstr "Fin"
 
 msgid "ReInitialization"
-msgstr ""
+msgstr "Réinitialisation"
 
 msgid "Continous states properties update"
-msgstr ""
+msgstr "Mise à jour des états continus"
 
 msgid "Zero crossing surfaces computation"
-msgstr ""
+msgstr "Calcul des traversées de zéros"
 
 msgid "Residual computation"
-msgstr ""
+msgstr "Calcul résiduel"
 
 msgid "&File"
-msgstr ""
+msgstr "&Fichier"
 
 msgid "&Tools"
-msgstr ""
+msgstr "&Outils"
 
 msgid "&Edit"
-msgstr ""
+msgstr "&Édition"
 
 msgid "&?"
-msgstr ""
+msgstr "&?"
 
 msgid "Xcos debug"
-msgstr ""
+msgstr "Débogage de Xcos"
 
 msgid "Break point conditions"
-msgstr ""
+msgstr "Conditions de point de rupture"
 
 msgid "Break on selected flags"
-msgstr ""
+msgstr "Point d'arrêt sur les flags sélectionnés"
 
 msgid "After call"
-msgstr ""
+msgstr "Après appel"
 
 msgid "Before call"
-msgstr ""
+msgstr "Avant appel"
 
 msgid "After date"
-msgstr ""
+msgstr "Date de fin"
 
 msgid "On the Scilab condition above"
-msgstr ""
+msgstr "Suivant la condition Scilab suivante"
 
 msgid "Current simulation state"
-msgstr ""
+msgstr "État actuel de la simulation"
 
 msgid "scs_m block path:"
-msgstr ""
+msgstr "Chemin du bloc scs_m"
 
 msgid "Time:"
-msgstr ""
+msgstr "Temps :"
 
 msgid "Flag:"
-msgstr ""
+msgstr "Flag :"
 
 msgid "Next"
-msgstr ""
+msgstr "Suivant"
 
 msgid "End debug"
-msgstr ""
+msgstr "Arrêter le debug"
 
 msgid "Pause"
-msgstr ""
+msgstr "Pause"
 
 #, c-format
 msgid "Use the %s button to end the debugging"
-msgstr ""
+msgstr "Utilisez le bouton %s pour mettre fin au débogage"
 
 msgid "The Scicos libraries are not loaded"
 msgstr "Les bibliothèques Scicos ne sont pas chargées"

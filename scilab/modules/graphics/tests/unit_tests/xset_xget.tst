@@ -122,10 +122,6 @@ assert_checkequal(out, 512);
 out = xget("line mode");
 assert_checkequal(out, 1);
 
-// pixmap
-out = xget("pixmap");
-assert_checkequal(out, 0);
-
 // white
 out = xget("white");
 assert_checkequal(out, 514);
@@ -199,8 +195,6 @@ assert_checkequal(ierr, 77);
 ierr = execstr("xset(""pattern"");","errcatch");
 assert_checkequal(ierr, 77);
 ierr = execstr("xset(""line mode"");","errcatch");
-assert_checkequal(ierr, 77);
-ierr = execstr("xset(""pixmap"");","errcatch");
 assert_checkequal(ierr, 77);
 ierr = execstr("xset(""wresize"");","errcatch");
 assert_checkequal(ierr, 77);

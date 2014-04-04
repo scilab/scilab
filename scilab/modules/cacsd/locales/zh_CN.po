@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-06-26 01:17+0000\n"
-"Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
+"PO-Revision-Date: 2014-03-20 13:10+0000\n"
+"Last-Translator: Wesh <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 16967)\n"
 "Language: \n"
 
 #, c-format
@@ -34,7 +34,7 @@ msgid "%s: Wrong value for input argument #%d: Must be in [%d %d].\n"
 msgstr "%s：输入参数#%d的值错误：必须在[%d %d]之间。\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: A real expected.\n"
+msgid "%s: Wrong type for argument #%d: A real expected.\n"
 msgstr ""
 
 #, c-format
@@ -110,7 +110,7 @@ msgid "%s: Wrong value for %s: %d or %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real or complex matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Real or complex matrix expected.\n"
 msgstr ""
 
 #, c-format
@@ -168,7 +168,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for argument %d: A complex expected.\n"
+msgid "%s: Wrong type for argument #%d: A complex expected.\n"
 msgstr ""
 
 #, c-format
@@ -196,19 +196,7 @@ msgid "%s: Wrong type for argument #%d: A string expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Type must be continuous or "
-"discrete.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Method must be schur or sign.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Method must be schur or invf.\n"
+msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
 msgstr ""
 
 #, c-format
@@ -275,6 +263,9 @@ msgid "Tracking"
 msgstr ""
 
 msgid "Robust control"
+msgstr ""
+
+msgid "Press Return to continue ... \n"
 msgstr ""
 
 #, c-format
@@ -400,12 +391,6 @@ msgstr "相位（度）"
 msgid "Magnitude (dB)"
 msgstr ""
 
-msgid "Hz"
-msgstr ""
-
-msgid "dB"
-msgstr ""
-
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A list expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为一个列表。\n"
@@ -456,15 +441,16 @@ msgstr "频率（Hz）"
 msgid "Phase (degree)"
 msgstr "相位（度）"
 
+msgid "Frequency (rad/s)"
+msgstr ""
+
 #, c-format
 msgid ""
 "Wrong type for argument #%d: Rational or State-space matrix expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Problem evaluating the first argument.\n"
-"n"
+msgid "%s: Wrong value for input argument #%d: Evaluation failed.\n"
 msgstr ""
 
 #, c-format
@@ -575,6 +561,10 @@ msgstr "%s：输入参数#%d的值错误：应该为稳定系统。\n"
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Detectable system expected.\n"
 msgstr "%s：输入参数#%d的值错误：应该为detectable system。\n"
+
+#, c-format
+msgid "%s: Input argument #%d is assumed continuous time.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A proper system expected\n"
@@ -701,7 +691,7 @@ msgstr "%s：输出参数的数目错误：至少应有%d个。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %d or %d expected.\n"
-msgstr "%s：输入参数#%d的值错误：应该为%d或%d。\n"
+msgstr "%s：第%d个输入参数的值错误：应该为%d或%d。\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument: %d expected.\n"
@@ -710,6 +700,15 @@ msgstr "%s：输出参数的数目错误：应该为%d个。\n"
 #, c-format
 msgid "%s: At least %s past values needed.\n"
 msgstr "%s：至少需要%s个过去的值（post values）。\n"
+
+msgid "Hz"
+msgstr ""
+
+msgid "dB"
+msgstr ""
+
+msgid "rad/sec"
+msgstr ""
 
 #, c-format
 msgid "%s: Iteration %s, error=%s.\n"
@@ -941,6 +940,10 @@ msgid ""
 msgstr "%s：输入参数#%d的值错误：时间域必须为'cc'或'd'。\n"
 
 #, c-format
+msgid "%s: Wrong value for input argument #%d: c or d expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s：输出参数的数目错误：应该为%d个。\n"
 
@@ -995,7 +998,7 @@ msgid "Phase (Deg)"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value of input argument %d: Proper system expected.\n"
+msgid "%s: Wrong value of input argument #%d: Proper system expected.\n"
 msgstr ""
 
 #, c-format
@@ -1041,9 +1044,6 @@ msgid ""
 "%s: Wrong type for input argument #%d : real floating point array expected\n"
 msgstr ""
 
-msgid "rad/sec"
-msgstr ""
-
 #, c-format
 msgid "%s: Cannot find the state dimension.\n"
 msgstr "%s：不能发现状态维数。\n"
@@ -1071,6 +1071,17 @@ msgstr "%s：输入参数#%d的值错误：状态矩阵为奇异的。\n"
 msgid ""
 "%s: Wrong values for input argument #%d: State matrix - eye is singular.\n"
 msgstr "%s：输入参数#%d的值错误：状态矩阵 -  eye矩阵是奇异的。\n"
+
+#, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Same number of rows expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Same number of columns "
+"expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: time domains are not compatible.\n"

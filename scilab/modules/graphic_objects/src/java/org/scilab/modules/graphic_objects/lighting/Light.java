@@ -14,6 +14,8 @@ package org.scilab.modules.graphic_objects.lighting;
 
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
+import org.scilab.modules.graphic_objects.legend.Legend.LegendLocation;
+
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 
 /**
@@ -24,7 +26,20 @@ public class Light extends GraphicObject {
 
     public enum LightProperty {POSITION, DIRECTION, TYPE};
 
-    public enum LightType {DIRECTIONAL, POINT};
+    public enum LightType {DIRECTIONAL, POINT;
+
+    public static LightType intToEnum(Integer intValue) {
+        switch (intValue) {
+            case 0:
+                return DIRECTIONAL;
+            case 1:
+                return POINT;
+            default:
+                return null;
+        }
+    }
+                          };
+
 
     /** light position */
     Double[] position;

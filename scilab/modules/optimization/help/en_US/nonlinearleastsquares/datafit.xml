@@ -32,9 +32,12 @@
                         <literal>imp=0</literal> nothing (execpt errors) is reported,
                         <literal>imp=1</literal> initial and final reports,
                         <literal>imp=2</literal> adds a report per iteration,
-                        <literal>imp&gt;2</literal> add reports on linear search. Warning,
-                        most of these reports are written on the Scilab standard
-                        output.
+                        <literal>imp&gt;2</literal> add reports on linear search.
+                    </para>
+                    <para>
+                        <warning>
+                            Warning: most of these reports are written on the Scilab standard output.
+                        </warning>
                     </para>
                 </listitem>
             </varlistentry>
@@ -211,10 +214,6 @@
             <literal>G(p,z_i)=0</literal> for a set of measurement vectors
             <literal>z_i</literal>. Vector <literal>p</literal> is found by minimizing
             <literal>G(p,z_1)'WG(p,z_1)+G(p,z_2)'WG(p,z_2)+...+G(p,z_n)'WG(p,z_n)</literal>
-        </para>
-        <para>
-            <literal>datafit</literal> is an improved version of
-            <literal>fit_dat</literal>.
         </para>
     </refsection>
     <refsection>

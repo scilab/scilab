@@ -58,7 +58,7 @@ int sci_xmlAddNs(char *fname, void* pvApiCtx)
     elem = XMLObject::getFromId < XMLElement > (getXMLObjectId(addr, pvApiCtx));
     if (!elem)
     {
-        Scierror(999, gettext("%s: XML Element does not exist.\n"), fname);
+        Scierror(999, gettext("%s: XML element does not exist.\n"), fname);
         return 0;
     }
 

@@ -233,6 +233,7 @@ public class DragZoomRotateInteraction extends FigureInteraction {
                         doRotation(e);
                         break;
                     }
+                    break;
                 case XY_TRANSLATION_MODIFIER:
                     if (translateEnabled) {
                         doXYTranslation(e);
@@ -269,6 +270,13 @@ public class DragZoomRotateInteraction extends FigureInteraction {
                     Double[] bounds = currentAxes.getDisplayedBounds();
 
                     Integer[] winSize = (Integer[]) GraphicController.getController().getProperty(currentAxes.getParent(), GraphicObjectProperties.__GO_AXES_SIZE__);
+                    if (winSize == null) {
+                        // We are in a Frame
+                        Double[] position = (Double[]) GraphicController.getController().getProperty(currentAxes.getParent(), GraphicObjectProperties.__GO_POSITION__);
+                        winSize = new Integer[2];
+                        winSize[0] = position[2].intValue();
+                        winSize[1] = position[3].intValue();
+                    }
                     Double[] axesBounds = (Double[]) GraphicController.getController().getProperty(currentAxes.getIdentifier(), GraphicObjectProperties.__GO_AXES_BOUNDS__);
                     Double[] axesMargins = (Double[]) GraphicController.getController().getProperty(currentAxes.getIdentifier(), GraphicObjectProperties.__GO_MARGINS__);
                     Integer view = (Integer) GraphicController.getController().getProperty(currentAxes.getIdentifier(), GraphicObjectProperties.__GO_VIEW__);

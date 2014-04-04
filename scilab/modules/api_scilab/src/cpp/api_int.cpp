@@ -766,7 +766,7 @@ SciErr createCommonNamedMatrixOfInteger(void* _pvCtx, const char* _pstName, int 
 
     if (_pvCtx == NULL)
     {
-        addErrorMessage(&sciErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), "allocMatrixOfInteger");
+        addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name: %s."), "createCommonNamedMatrixOfInteger", _pstName);
         return sciErr;
     }
 

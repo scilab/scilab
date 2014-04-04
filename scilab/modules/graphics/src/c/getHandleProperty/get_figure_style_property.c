@@ -31,6 +31,6 @@ void* get_figure_style_property(void* _pvCtx, int iObjUID)
 {
     /* no more old style */
     sciReturnString("new");
-    return 0;
+    return NULL;
 }
 /*------------------------------------------------------------------------*/

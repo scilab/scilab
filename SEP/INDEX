@@ -90,8 +90,8 @@ SEP #090: New function to access to numerical data in HDF5 files
 SEP #091: New function daskr
 SEP #092: New special functions
 SEP #093: New function cov
-SEP #095: New functions: ismatrix, isrow,iscolumn and issquare.
-SEP #096: cross function.
+SEP #095: New functions: ismatrix, isrow, iscolumn and issquare
+SEP #096: cross function
 SEP #097: New argument added at strtod function (decimalseparator)
 SEP #098: New output argument for qp_solve function
 SEP #099: Matrices of strings as input argument for clear
@@ -115,3 +115,15 @@ SEP #116: conjgrad function, to regroup the Conjugate Gradient solvers. pcg obso
 SEP #117: New function ilib_build_jar
 SEP #118: New function ifftshift
 SEP #119: Management of encoding in xmlRead
+SEP #120: New function tbx_build_pal_loader
+SEP #121: New rect property for matplot handle
+SEP #122: Customized mark draw
+SEP #123: Grid improvements
+SEP #124: New input argument for csvRead(), to ignore header comments.
+SEP #125: New input argument to matfile_open to open Matlab 7.3 files.
+SEP #126: New function unwrap
+SEP #127: jmat tagged as obsolete. New input argument to flipdim to replace jmat.
+SEP #128: nanreglin.
+SEP #129: HTLM parsing functions.
+SEP #130: Replace obsolete numdiff and derivative with new function numderivative.
+SEP #131: Modified matfile2sci to have an new input argument overwrite to overwrite the output file

@@ -90,8 +90,10 @@
             mouse click in any graphics window.
         </para>
         <para>
-            Warning, the returned coordinates <literal>xcoord</literal>,
-            <literal>ycoord</literal> are relative to the current axes (see <link linkend="gca">gca()</link>).
+            <warning>
+                Warning, the returned coordinates <literal>xcoord</literal>,
+                <literal>ycoord</literal> are relative to the current axes (see <link linkend="gca">gca()</link>).
+            </warning>
         </para>
         <para>
             The values of <literal>ibutton</literal> are described below.

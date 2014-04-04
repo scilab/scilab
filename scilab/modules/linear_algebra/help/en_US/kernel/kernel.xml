@@ -13,7 +13,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="kernel">
     <refnamediv>
         <refname>kernel</refname>
-        <refpurpose>kernel, nullspace</refpurpose>
+        <refpurpose>kernel, null space</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -53,7 +53,8 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>W=kernel(A)</literal> returns the kernel (nullspace) of <literal>A</literal>. If A has full column rank then an empty matrix [] is returned.
+            <literal>W=kernel(A)</literal> returns the kernel (null space) of <literal>A</literal>, and <literal>size(W,2)</literal> is the nullity of A.
+            If A has full column rank then an empty matrix [] is returned.
         </para>
         <para>
             <literal>flag</literal> and <literal>tol</literal> are optional parameters: <literal>flag = 'qr'</literal> 

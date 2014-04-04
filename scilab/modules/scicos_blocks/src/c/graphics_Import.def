@@ -16,7 +16,6 @@ sciInitFontSize
 ConstructSubWin
 sciGetFirstTypedSelectedSon
 sciIsExistingFigure
-sciSetSelectedSubWin
 sciSetMarkBackground
 sciSetMarkSizeUnit
 sciSetIsMark

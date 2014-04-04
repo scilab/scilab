@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-09-27 09:47+0000\n"
+"PO-Revision-Date: 2014-02-19 13:50+0000\n"
 "Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 16967)\n"
 "Language: fr\n"
 
 #, c-format
@@ -39,11 +39,12 @@ msgstr ""
 
 #, c-format
 msgid "%c: input argument #%d has duplicates\n"
-msgstr ""
+msgstr "%c : L'argument d'entrée n°%d a des doublons.\n"
 
 #, c-format
 msgid "%c: input argument #%d must be sorted in lexicographic order\n"
 msgstr ""
+"%c : L'argument d'entrée n°%d doit être trié dans l'ordre lexicographique.\n"
 
 #, c-format
 msgid ""
@@ -119,7 +120,7 @@ msgstr "%s : Dimensions incohérentes.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr "%s : Mauvais nombre d'argument(s) d'entrée : %d à %d attendu.\n"
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d à %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
@@ -170,11 +171,12 @@ msgstr "%s : Trop d'indices.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d to %d expected.\n"
-msgstr ""
+msgstr "%s : Nombre erroné d'arguments d'entrée : %d à %d attendus.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Hypermatrix expected.\n"
 msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une hypermatrice attendue.\n"
 
 #, c-format
 msgid "%s: Operand is not a boolean hypermatrix.\n"
@@ -193,10 +195,12 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d: 3D maximum expected.\n"
 msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : Au maximum de la 3D "
+"attendue.\n"
 
 #, c-format
 msgid "%s: Wrong size for argument: Incompatible dimensions.\n"
-msgstr ""
+msgstr "%s : Dimensions erronées de l'argument : Dimensions incompatibles\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument(s): integer scalars expected.\n"
@@ -239,6 +243,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
 msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une matrice réelle attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: integer values expected.\n"
@@ -267,8 +272,10 @@ msgstr ""
 "définie.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: integer expected.\n"
-msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un entier attendu.\n"
+msgid "%s: Wrong type for input argument #%d: An integer matrix expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une matrice entière "
+"attendue.\n"
 
 #, c-format
 msgid "%s: Wrong size for input arguments.\n"
@@ -356,10 +363,10 @@ msgstr "%s : Non implémenté.\n"
 
 #, c-format
 msgid ""
-"%s: Invalid assignement: for insertion in cell, use e.g. x(i,j).entries=y.\n"
+"%s: Wrong assignment: for insertion in cell, use e.g. x(i,j).entries=y.\n"
 msgstr ""
-"%s : Affectation invalide : Pour une insertion dans une cell, utilisez e.g. "
-"x(i,j).entries=y.\n"
+"%s : Affectation erronée: pour l'insertion dans une cellule, utilisez par "
+"exemple x(i,j).entries=y.\n"
 
 #, c-format
 msgid ""

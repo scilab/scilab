@@ -44,6 +44,11 @@
             of a <literal>tlist</literal>, <literal>mlist</literal> or <literal>struct</literal>. <function>fieldnames</function>
             does not work on cells.
         </para>
+        <para>
+            As said in <link linkend="rational">rational</link> or <link linkend="syslin">syslin</link> help pages, internal representation of
+            some Scilab objects is a tlist (or rlist), so using <function>fieldnames</function> with them will return the generic forms of these objects.
+            For example, for rationals, the function will return "num","den" and "dt".
+        </para>
     </refsection>
     <refsection>
         <title>Examples</title>
@@ -54,6 +59,8 @@
             obj.x = 3;
             obj.y = 3;
             fieldnames(obj)
+            fieldnames(1/%s)
+            fieldnames(tf2ss(1/%s))
         </programlisting>
     </refsection>
     <refsection role="see also">

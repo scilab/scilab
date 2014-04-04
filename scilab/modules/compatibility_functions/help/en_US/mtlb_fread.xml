@@ -28,7 +28,9 @@
             calls to <literal>mtlb_fread</literal> by calls to <link linkend="mget">mget</link>.
         </para>
         <para>
-            Caution: <literal>mtlb_fread</literal> has not to be used for hand coded functions.
+            <warning>
+                Caution: <literal>mtlb_fread</literal> has not to be used for hand coded functions.
+            </warning>
         </para>
     </refsection>
     <refsection role="see also">

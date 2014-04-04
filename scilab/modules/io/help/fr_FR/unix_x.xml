@@ -38,9 +38,14 @@
             Envoie la chaîne <literal>command-name</literal> à  l'interpréteur
             de commande (sh sous Unix, ou command.com sous DOS). La sortie standard et
             les erreurs sont reportées dans une fenêtre . Les erreurs se produisant dans
-            l'interpréteur de commande sont interceptées; notez que la *dernière erreur
-            uniquement* est signalée quand <literal>command-name</literal> est une suite de
-            commandes séparées par des ";"
+            l'interpréteur de commande sont interceptées.
+        </para>
+        <para>
+            <warning>
+                Notez que la *dernière erreur
+                uniquement* est signalée quand <literal>command-name</literal> est une suite de
+                commandes séparées par des ";".
+            </warning>
         </para>
     </refsection>
     <refsection>

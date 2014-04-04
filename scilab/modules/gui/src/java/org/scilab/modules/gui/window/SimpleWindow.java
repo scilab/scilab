@@ -36,19 +36,7 @@ public interface SimpleWindow {
      * @param newWindowTitle the title we want to set for the window
      */
     void setTitle(String newWindowTitle);
-
-    /**
-     * Add a tab to a window
-     * @param newTab the tab to add to the window
-     */
-    void addTab(SimpleTab newTab);
-
-    /**
-     * Remove a tab from a window
-     * @param oldTab tab to remove
-     */
-    void removeTab(SimpleTab oldTab);
-
+ 
     /**
      * Sets a InfoBar to a window
      * @param newInfoBar the Scilab InfoBar to set to the Scilab window

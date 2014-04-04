@@ -187,7 +187,8 @@ libscixcos_disable_la_LIBADD =
 am__objects_2 = src/noxcos/libscixcos_disable_la-noxcos.lo
 am_libscixcos_disable_la_OBJECTS = $(am__objects_2)
 libscixcos_disable_la_OBJECTS = $(am_libscixcos_disable_la_OBJECTS)
-libscixcos_la_DEPENDENCIES = libscixcos-algo.la
+libscixcos_la_DEPENDENCIES = libscixcos-algo.la \
+	$(top_builddir)/modules/commons/libscicommons.la
 am__objects_3 = sci_gateway/c/libscixcos_la-gw_xcos.lo
 am__objects_4 = sci_gateway/cpp/libscixcos_la-sci_Xcos.lo \
 	sci_gateway/cpp/libscixcos_la-sci_warnBlockByUID.lo \
@@ -333,6 +334,7 @@ CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
 DEMOTOOLS_ENABLE = @DEMOTOOLS_ENABLE@
 DEPDIR = @DEPDIR@
+DLLTOOL = @DLLTOOL@
 DOCBOOK_ROOT = @DOCBOOK_ROOT@
 DOXYGEN_BIN = @DOXYGEN_BIN@
 DSYMUTIL = @DSYMUTIL@
@@ -352,6 +354,11 @@ FGREP = @FGREP@
 FLEXDOCK = @FLEXDOCK@
 FLIBS = @FLIBS@
 FOP = @FOP@
+FREEHEP_GRAPHICS2D = @FREEHEP_GRAPHICS2D@
+FREEHEP_GRAPHICSIO = @FREEHEP_GRAPHICSIO@
+FREEHEP_GRAPHICSIO_EMF = @FREEHEP_GRAPHICSIO_EMF@
+FREEHEP_IO = @FREEHEP_IO@
+FREEHEP_UTIL = @FREEHEP_UTIL@
 GENHTML = @GENHTML@
 GETTEXT_MACRO_VERSION = @GETTEXT_MACRO_VERSION@
 GIWS_BIN = @GIWS_BIN@
@@ -415,6 +422,7 @@ LTLIBINTL = @LTLIBINTL@
 LTLIBOBJS = @LTLIBOBJS@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
+MANIFEST_TOOL = @MANIFEST_TOOL@
 MATIO_CFLAGS = @MATIO_CFLAGS@
 MATIO_ENABLE = @MATIO_ENABLE@
 MATIO_LIBS = @MATIO_LIBS@
@@ -647,6 +655,7 @@ libscixcos_la_CPPFLAGS = \
 libscixcos_disable_la_CPPFLAGS = -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/localization/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes \
+			-I$(top_srcdir)/modules/system_env/includes \
 			$(AM_CPPFLAGS)
 
 XCOS_DISABLE_C_SOURCES = src/noxcos/noxcos.c
@@ -660,7 +669,9 @@ libscixcos_algo_la_CPPFLAGS = $(libscixcos_la_CPPFLAGS)
 # For the code check (splint)
 CHECK_SRC = $(XCOS_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscixcos_la_CPPFLAGS)
-libscixcos_la_LIBADD = libscixcos-algo.la
+libscixcos_la_LIBADD = libscixcos-algo.la \
+		$(top_builddir)/modules/commons/libscicommons.la
+
 
 #### xcos : gateway declaration ####
 libscixcos_la_sci_gatewaydir = $(mydatadir)/sci_gateway
@@ -790,7 +801,7 @@ images/palettes/CurrentSensor.png \
 images/palettes/CURV_f.png \
 images/palettes/CVS.png \
 images/palettes/DEADBAND.png \
-images/palettes/DEBUG_SCICOS.png \
+images/palettes/DEBUG.png \
 images/palettes/DELAY_f.png \
 images/palettes/DELAYV_f.png \
 images/palettes/DEMUX_f.png \

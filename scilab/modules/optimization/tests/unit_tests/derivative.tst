@@ -7,11 +7,12 @@
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
+// <-- ENGLISH IMPOSED -->
 
 
 // 1. Test with a scalar function
 function y = myfunction (x)
-  y = x*x;
+    y = x*x;
 endfunction
 
 x = 1.0;
@@ -50,9 +51,9 @@ assert_checkalmostequal ( Hcomputed , Hexpected , 1.e-11 );
 
 // 2. Test with a vector function
 function y = myfunction2 (x)
-  y = x(1)*x(1) + x(2)+ x(1)*x(2);
+    y = x(1)*x(1) + x(2)+ x(1)*x(2);
 endfunction
-x = [1.0 
+x = [1.0
 2.0];
 expected = [4.0 2.0];
 // 2.1 With default parameters
@@ -98,14 +99,14 @@ assert_checkalmostequal ( Hcomputed , Hexpected , %eps );
 Jexpected = [4.0 2.0];
 Hexpected = [2.0 1.0
 1.0 0.0];
-[Jcomputed , Hcomputed] = derivative(myfunction2 , x , H_form='hypermat');
+[Jcomputed , Hcomputed] = derivative(myfunction2 , x , H_form="hypermat");
 assert_checkalmostequal ( Jcomputed , Jexpected , 1.e-10 );
 assert_checkalmostequal ( Hcomputed , Hexpected , %eps );
 // 3.3 Test H_form='hypermat'
 Jexpected = [4.0 2.0];
-Hexpected = [2.0 1.0 
+Hexpected = [2.0 1.0
 1.0 0.0];
-[Jcomputed , Hcomputed] = derivative(myfunction2 , x , H_form='hypermat');
+[Jcomputed , Hcomputed] = derivative(myfunction2 , x , H_form="hypermat");
 assert_checkalmostequal ( Jcomputed , Jexpected , 1.e-10 );
 assert_checkalmostequal ( Hcomputed , Hexpected , %eps );
 
@@ -114,16 +115,16 @@ assert_checkalmostequal ( Hcomputed , Hexpected , %eps );
 
 // 5. Test h parameter
 // Test a case where the default step h is very small ~ 1.e-9,
-// but, because the function is very flat in the neighbourhood of the 
+// but, because the function is very flat in the neighbourhood of the
 // point, a larger step ~ 1.e-4 reduces the error.
-// This means that this test cannot pass if the right step is 
+// This means that this test cannot pass if the right step is
 // not taken into account, therefore testing the feature "h is used correctly".
 myn = 1.e5;
 function y = myfunction3 (x)
-  y = x^(2/myn);
+    y = x^(2/myn);
 endfunction
 x = 1.0;
-h = 6.055454e-006
+h = 6.055454e-006;
 Jexpected = (2/myn) * x^(2/myn-1);
 Hexpected = (2/myn) * (2/myn-1) * x^(2/myn-2);
 [Jcomputed , Hcomputed] = derivative(myfunction3 , x , h = 1.e-4 , order = 1 );
@@ -132,4 +133,3 @@ assert_checkalmostequal ( Hcomputed , Hexpected , 1.e-3 );
 
 // 6. Test Q parameter
 // TODO !
-

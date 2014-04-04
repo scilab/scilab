@@ -701,9 +701,8 @@ fopt = 0
                     is (much) lower with <link linkend="optim">optim</link>, when the
                     function is sufficiently smooth. If the derivatives of the function are
                     not available, it is still possible to use numerical derivatives combined
-                    with the <link linkend="optim">optim</link> function (this feature
-                    is provided by the <link linkend="derivative">derivative</link> and
-                    <link linkend="numdiff">numdiff</link> functions).
+                    with the <link linkend="optim">optim</link> function: this feature
+                    is provided by the <link linkend="numderivative">numderivative</link> function.
                     If the function has discontinuous derivatives, the <link linkend="optim">optim</link>
                     function provides the <literal>nd</literal> solver which is very efficient.
                     Still, there are situations where the cost function is discontinuous or "noisy".

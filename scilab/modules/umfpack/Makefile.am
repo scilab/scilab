@@ -31,14 +31,6 @@ libsciumfpack_la_etc_DATA = etc/umfpack.quit etc/umfpack.start
 
 if UMFPACK
 
-libsciumfpack_la_LDFLAGS += $(UMFPACK_LIB)
-
-if IS_MACOSX
-# Crappy workaround to avoid an undefined symbol while using umfpack features
-# For some unknown reasons, -lumfpack will not load cholmod & colamd
-# libsciumfpack_la_LDFLAGS += -lcholmod -lcolamd
-endif
-
 UMFPACK_C_SOURCES = src/c/taucs_scilab.c \
 src/c/common_umfpack.c \
 src/c/with_umfpack.c
@@ -70,6 +62,14 @@ CHECK_SRC= $(libsciumfpack_la_SOURCES)
 INCLUDE_FLAGS = $(libsciumfpack_la_CPPFLAGS)
 
 libsciumfpack_la_LIBADD =  libsciumfpack-algo.la
+
+libsciumfpack_la_LIBADD += $(UMFPACK_LIB)
+
+if IS_MACOSX
+# Crappy workaround to avoid an undefined symbol while using umfpack features
+# For some unknown reasons, -lumfpack will not load cholmod & colamd
+# libsciumfpack_la_LIBADD += -lcholmod -lcolamd
+endif
 
 libsciumfpack_la_CPPFLAGS= -I$(srcdir)/includes/ \
 			-I$(srcdir)/src/c/ \

@@ -649,7 +649,6 @@ function []=PlotCmplxFunc(R,e,TypeDomain,TypeCut,n,StrFunc,theta,alpha,DomReal)
 
     my_title_axes             = newaxes();
     my_title_axes.axes_bounds = [1/3,0,2/3,1];
-    my_title_axes.margins     = [ 0.08 0.08 0.08 0.08 ]
 
     // make axes transparent
     my_title_axes.filled = "off";
@@ -672,6 +671,7 @@ function []=PlotCmplxFunc(R,e,TypeDomain,TypeCut,n,StrFunc,theta,alpha,DomReal)
 
     my_title_axes.title.text       = the_title;
     my_title_axes.title.font_size  = 3;
+    my_title_axes.margins     = [ 0.08 0.08 0.08 0.08 ]
 
     // plot Im(z)
     // ============================================
@@ -681,11 +681,11 @@ function []=PlotCmplxFunc(R,e,TypeDomain,TypeCut,n,StrFunc,theta,alpha,DomReal)
 
     my_IM_axes = gca();
     my_IM_axes.axes_bounds = [0.1, 0.05, 1, 0.5];
-    my_IM_axes.margins     = [0.2, 0.2, 0.2, 0.2];
     my_IM_plot             = my_IM_axes.children;
     my_IM_plot.color_flag  = 1;
 
     xtitle("Im("+StrFunc+"(z))");
+    my_IM_axes.margins     = [0.2, 0.2, 0.2, 0.2];
 
     // plot Re(z) + the real restriction
     // ============================================
@@ -695,11 +695,12 @@ function []=PlotCmplxFunc(R,e,TypeDomain,TypeCut,n,StrFunc,theta,alpha,DomReal)
 
     my_RE_axes = gca();
     my_RE_axes.axes_bounds = [0.1, 0.5, 1, 0.5];
-    my_RE_axes.margins     = [ 0.2 0.2 0.2 0.2 ];
+    my_RE_axes.margins      = [ 0.2 0.2 0.2 0.2 ];
     my_RE_plot             = my_RE_axes.children;
     my_RE_plot.color_flag  = 1;
 
     xtitle("Re("+StrFunc+"(z))");
+    my_RE_axes.margins     = [ 0.2 0.2 0.2 0.2 ];
 
     // real function in yellow
     // ============================================

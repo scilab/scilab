@@ -1,6 +1,7 @@
 dnl
 dnl Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 dnl Copyright (C) S/E - 2013/2013 - Sylvestre Ledru
+dnl Copyright (C) Scilab Enterprises - 2014 - Clement DAVID
 dnl
 dnl This file must be used under the terms of the CeCILL.
 dnl This source file is licensed as described in the file COPYING, which
@@ -48,11 +49,11 @@ fi
 LDFLAGS="$LDFLAGS -static-libstdc++ -static-libgcc"
 AC_MSG_CHECKING([whether g++ accepts -static-libstdc++ -static-libgcc])
 AC_LANG_PUSH(C++)
-AC_LINK_IFELSE([
+AC_LINK_IFELSE([AC_LANG_SOURCE([
 #if (__GNUC__ < 4) || (__GNUC__ == 4 && __GNUC_MINOR__ < 5)
 #error -static-libstdc++ not implemented
 #endif
-int main() {}],
+int main() {return 0;}])],
   [AC_MSG_RESULT([yes]); compiler_manage_static_libs=yes],
   [AC_MSG_RESULT([no])])
 AC_LANG_POP(C++)

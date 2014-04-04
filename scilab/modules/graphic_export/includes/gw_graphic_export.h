@@ -20,6 +20,7 @@ GRAPHIC_EXPORT_IMPEXP int gw_graphic_export(void);
 /* Declaration of all the profile function declared and */
 /* used in sci_gateway */
 /*--------------------------------------------------------------------------*/
+
 GRAPHIC_EXPORT_IMPEXP int sci_xs2bmp(char* fname, void* pvApiCtx);
 GRAPHIC_EXPORT_IMPEXP int sci_xs2eps(char* fname, void* pvApiCtx);
 GRAPHIC_EXPORT_IMPEXP int sci_xs2gif(char* fname, void* pvApiCtx);
@@ -32,6 +33,7 @@ GRAPHIC_EXPORT_IMPEXP int sci_xs2ps(char* fname, void* pvApiCtx);
 GRAPHIC_EXPORT_IMPEXP int sci_driver(char* fname, void* pvApiCtx);
 GRAPHIC_EXPORT_IMPEXP int sci_xinit(char* fname, void* pvApiCtx);
 GRAPHIC_EXPORT_IMPEXP int sci_xend(char* fname, void* pvApiCtx);
+GRAPHIC_EXPORT_IMPEXP int sci_xs2emf(char* fname, void* pvApiCtx);
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_GRAPHIC_EXPORT__ */
 /*--------------------------------------------------------------------------*/

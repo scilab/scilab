@@ -214,6 +214,7 @@ lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClCompile Include="issymmetric.c" />
     <ClCompile Include="lsq.c" />
     <ClCompile Include="lu.c" />
+    <ClCompile Include="norm.c" />
     <ClCompile Include="qr.c" />
     <ClCompile Include="rcond.c" />
     <ClCompile Include="schurtable.c" />
@@ -228,6 +229,7 @@ lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClInclude Include="..\..\includes\issymmetric.h" />
     <ClInclude Include="linear_FTables.h" />
     <ClInclude Include="..\..\includes\schur.h" />
+    <ClInclude Include="norm.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\locales\linear_algebra.pot" />

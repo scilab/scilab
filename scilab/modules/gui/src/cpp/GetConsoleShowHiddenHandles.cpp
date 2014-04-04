@@ -12,15 +12,7 @@
 
 extern "C"
 {
-#include "GetConsoleShowHiddenHandles.h"
-#include "SetPropertyStatus.h"
-#include "localization.h"
-#include "Scierror.h"
-#include "returnProperty.h"
-#include "BOOL.h"
-
-#include "getGraphicObjectProperty.h"
-#include "graphicObjectProperties.h"
+#include "GetUicontrol.h"
 }
 
 void* GetConsoleShowHiddenHandles(void* _pvCtx, int iObjUID)
@@ -38,6 +30,52 @@ void* GetConsoleShowHiddenHandles(void* _pvCtx, int iObjUID)
     }
 
     if (iShowHiddenHandles == TRUE)
+    {
+        return sciReturnString("on");
+    }
+    else
+    {
+        return sciReturnString("off");
+    }
+}
+
+void* GetConsoleShowHiddenProperties(void* _pvCtx, int iObjUID)
+{
+    int iShowHiddenProperties = 0;
+    int *piShowHiddenProperties = &iShowHiddenProperties;
+
+    getGraphicObjectProperty(iObjUID, __GO_SHOWHIDDENPROPERTIES__, jni_bool, (void **)&piShowHiddenProperties);
+
+    if (piShowHiddenProperties == NULL)
+    {
+        Scierror(999, const_cast < char *>(_("'%s' property does not exist for this handle.\n")), "ShowHiddenProperties");
+        return NULL;
+    }
+
+    if (iShowHiddenProperties == TRUE)
+    {
+        return sciReturnString("on");
+    }
+    else
+    {
+        return sciReturnString("off");
+    }
+}
+
+void* GetConsoleUseDeprecatedLF(void* _pvCtx, int iObjUID)
+{
+    int iUseDeprecatedLF = 0;
+    int *piUseDeprecatedLF = &iUseDeprecatedLF;
+
+    getGraphicObjectProperty(iObjUID, __GO_USEDEPRECATEDLF__, jni_bool, (void **)&piUseDeprecatedLF);
+
+    if (piUseDeprecatedLF == NULL)
+    {
+        Scierror(999, const_cast < char *>(_("'%s' property does not exist for this handle.\n")), "UseDeprecatedSkin");
+        return NULL;
+    }
+
+    if (iUseDeprecatedLF == TRUE)
     {
         return sciReturnString("on");
     }

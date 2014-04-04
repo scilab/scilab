@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 16967)\n"
 "Language: pt_BR\n"
 
 msgid "Only on Windows Mode, not in Console Mode.\n"
@@ -94,8 +94,9 @@ msgstr "%s: Não foi possível abrir o registro do Windows.\n"
 msgid "%s: Cannot query value of this type.\n"
 msgstr "%s: Não é possível consultar o valor desse tipo.\n"
 
-msgid "Scilab Console"
-msgstr "Console do Scilab"
+#, c-format
+msgid "Scilab %s Console"
+msgstr ""
 
 msgid "Scilab 5.5.X family will be the latest one working under Windows XP."
 msgstr "A família Scilab 5.5.X será a última funcionando no Windows XP."

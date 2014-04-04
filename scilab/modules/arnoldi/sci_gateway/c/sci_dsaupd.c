@@ -92,7 +92,7 @@ int sci_dsaupd(char *fname, void *pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 1);
         return 1;
     }
 
@@ -110,7 +110,7 @@ int sci_dsaupd(char *fname, void *pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 3);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 3);
         return 1;
     }
 
@@ -126,7 +126,7 @@ int sci_dsaupd(char *fname, void *pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 5);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 5);
         return 1;
     }
 
@@ -142,7 +142,7 @@ int sci_dsaupd(char *fname, void *pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 6);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 6);
         return 1;
     }
 
@@ -158,7 +158,7 @@ int sci_dsaupd(char *fname, void *pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 7);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 7);
         return 1;
     }
 
@@ -175,7 +175,7 @@ int sci_dsaupd(char *fname, void *pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 8);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 8);
         return 1;
     }
 
@@ -191,7 +191,7 @@ int sci_dsaupd(char *fname, void *pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 9);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 9);
         return 1;
     }
 
@@ -208,7 +208,7 @@ int sci_dsaupd(char *fname, void *pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 10);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 10);
         return 1;
     }
 
@@ -225,7 +225,7 @@ int sci_dsaupd(char *fname, void *pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 11);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 11);
         return 1;
     }
 
@@ -242,7 +242,7 @@ int sci_dsaupd(char *fname, void *pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 12);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 12);
         return 1;
     }
 
@@ -259,7 +259,7 @@ int sci_dsaupd(char *fname, void *pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 13);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 13);
         return 1;
     }
 
@@ -276,7 +276,7 @@ int sci_dsaupd(char *fname, void *pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 14);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 14);
         return 1;
     }
 

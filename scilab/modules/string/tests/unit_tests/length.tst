@@ -97,3 +97,15 @@ S = size(txt);
 if length(txt(S(1)-1)) <> 106  then pause,end
 if length(txt(S(1))) <> 0  then pause,end
 
+
+// = an hypermatrix (double) ===================================================
+A = rand(2,5,2,3,2);
+assert_checkequal(length(A), double(prod(A.dims)));
+A = hypermat([2,3,4], 1:24);
+assert_checkequal(length(A), double(prod(A.dims)));
+
+// = an hypermatrix (string) ===================================================
+clear S;
+S(:,:,1) = ["a","b";"c","d"];
+S(:,:,2) = ["ab", "bc"; "cd", "de"];
+assert_checkequal(length(S),3);

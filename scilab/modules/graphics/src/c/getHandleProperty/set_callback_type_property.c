@@ -49,7 +49,7 @@ int set_callback_type_property(void* _pvCtx, int iObjUID, void* _pvData, int val
     callbackType = (int)((double*)_pvData)[0];
 
     /* Check the value */
-    if (callbackType < -1 || callbackType > 2)
+    if ((callbackType < -1 || callbackType > 2) && callbackType != 10 && callbackType != 12)
     {
         Scierror(999, _("Wrong value for '%s' property: %d, %d, %d or %d expected.\n"), "callback_type", -1, 0, 1, 2);
         return SET_PROPERTY_ERROR;

@@ -72,8 +72,8 @@
     <refsection id="Description_CLINDUMMY_f">
         <title>Description</title>
         <para>
-            Ce bloc doit être inclu dans tout schéma-bloc qui contient un bloc avec détection
-            de passage à zéro mais aucun système continu avec état. Ce bloc est nécessaire
+            Ce bloc doit être inclus dans tout schéma-bloc qui contient un bloc avec détection
+            de passage à zéro mais aucun système avec état continu. Ce bloc est nécessaire
             en raison de l'utilisation du solveur ode pour trouver les surfaces de passage à zéro.
         </para>
     </refsection>

@@ -34,31 +34,17 @@ public class DatatipSetStyle {
     * @param labeled Boolean to show/hide datatip label.
     */
     public static void datatipSetStyle(int polylineUID, int t, boolean boxed, boolean labeled) {
-
-        Integer[] childrenUID = (Integer[])GraphicController.getController().getProperty(polylineUID, GraphicObjectProperties.__GO_CHILDREN__);
-
-        for (int i = 0 ; i < childrenUID.length ; i++) {
-
-            Integer childrenType = (Integer)GraphicController.getController().getProperty(childrenUID[i], __GO_TYPE__);
-            if (childrenType.equals(__GO_DATATIP__)) {
-
-                if (t == 1) {
-
-                    GraphicController.getController().setProperty(childrenUID[i], GraphicObjectProperties.__GO_MARK_STYLE__, 11);
-
-                } else {
-
-                    GraphicController.getController().setProperty(childrenUID[i], GraphicObjectProperties.__GO_MARK_STYLE__, 7);
-
-                }
-
-                GraphicController.getController().setProperty(childrenUID[i], GraphicObjectProperties.__GO_DATATIP_BOX_MODE__, boxed);
-                GraphicController.getController().setProperty(childrenUID[i], GraphicObjectProperties.__GO_DATATIP_LABEL_MODE__, labeled);
-
+        Integer[] datatipsUID = (Integer[])GraphicController.getController().getProperty(polylineUID, GraphicObjectProperties.__GO_DATATIPS__);
+        Integer style = t == 1 ? 11 : 7;
+        GraphicController.getController().setProperty(polylineUID, GraphicObjectProperties.__GO_DATATIP_MARK__, style);
+        for (int i = 0 ; i < datatipsUID.length ; i++) {
+            Integer datatipsType = (Integer) GraphicController.getController().getProperty(datatipsUID[i], __GO_TYPE__);
+            if (datatipsType.equals(__GO_DATATIP__)) {
+                GraphicController.getController().setProperty(datatipsUID[i], GraphicObjectProperties.__GO_MARK_STYLE__, style);
+                GraphicController.getController().setProperty(datatipsUID[i], GraphicObjectProperties.__GO_DATATIP_BOX_MODE__, boxed);
+                GraphicController.getController().setProperty(datatipsUID[i], GraphicObjectProperties.__GO_DATATIP_LABEL_MODE__, labeled);
             }
-
         }
-
     }
 
     /**
@@ -92,7 +78,5 @@ public class DatatipSetStyle {
         } else {
             return 0;
         }
-
     }
-
 }

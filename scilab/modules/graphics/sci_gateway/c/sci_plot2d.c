@@ -125,7 +125,7 @@ int sci_plot2d(char* fname, void *pvApiCtx)
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
-                Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1 + iskip);
+                Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 1 + iskip);
                 return 1;
             }
         }
@@ -187,7 +187,7 @@ int sci_plot2d(char* fname, void *pvApiCtx)
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
-                Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1 + iskip);
+                Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 1 + iskip);
                 return 1;
             }
         }
@@ -222,7 +222,7 @@ int sci_plot2d(char* fname, void *pvApiCtx)
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
-                Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 2 + iskip);
+                Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 2 + iskip);
                 return 1;
             }
         }

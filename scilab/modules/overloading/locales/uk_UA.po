@@ -9,13 +9,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-12-10 06:53+0000\n"
+"PO-Revision-Date: 2014-02-23 07:52+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 16967)\n"
 "Language: uk\n"
 
 #, c-format
@@ -276,9 +276,10 @@ msgstr ""
 "%s: вставлення розрідженої матриці до числової матриці не визначено.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: integer expected.\n"
+msgid "%s: Wrong type for input argument #%d: An integer matrix expected.\n"
 msgstr ""
-"%s: помилковий тип вхідного параметра №%d: мало бути вказано ціле число.\n"
+"%s: помилковий тип вхідного параметра №%d: мало бути вказано матрицю з цілих "
+"значень.\n"
 
 #, c-format
 msgid "%s: Wrong size for input arguments.\n"
@@ -366,10 +367,10 @@ msgstr "%s: не реалізовано.\n"
 
 #, c-format
 msgid ""
-"%s: Invalid assignement: for insertion in cell, use e.g. x(i,j).entries=y.\n"
+"%s: Wrong assignment: for insertion in cell, use e.g. x(i,j).entries=y.\n"
 msgstr ""
-"%s: некоректне призначення: для вставлення до комірки скористайтеся, "
-"наприклад, x(i,j).entries=y.\n"
+"%s: помилкове визначення: для вставлення до комірки скористайтеся, "
+"наприклад, записом x(i,j).entries=y.\n"
 
 #, c-format
 msgid ""

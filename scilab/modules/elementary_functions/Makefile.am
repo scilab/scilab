@@ -4,7 +4,6 @@
 # This file is distributed under the same license as the Scilab package.
 
 ELEMENTARIES_FUNCTIONS_C_SOURCES = \
-src/c/sci_tools.c \
 src/c/finite.c \
 src/c/vfinite.c \
 src/c/cmp.c \
@@ -169,7 +168,6 @@ LINPACK_SOURCES = \
 	src/fortran/linpack/dpofa.f
 
 ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
-    src/fortran/psi.f \
     src/fortran/wasum.f \
     src/fortran/dexpm1.f \
     src/fortran/wwdiv.f \

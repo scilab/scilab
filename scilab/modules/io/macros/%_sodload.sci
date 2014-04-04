@@ -158,12 +158,53 @@ function %_sodload(%__filename__, varargin)
         fields = fieldnames(figureProperties);
         fields(1) = [];
 
-        h = gcf();
-        isVisible = h.visible;
-        resizefcn = "";
-        event_handler = "";
-        h.visible = "off";
+        if or(fields=="resize") then
+            if figureProperties.menubar<>"figure" ..
+                | figureProperties.toolbar<>"figure" ..
+                | figureProperties.dockable<>"on" ..
+                | figureProperties.default_axes<>"on" then
+                // File created by Scilab 5.5.0 or more
+                h = figure("menubar", figureProperties.menubar, ...
+                "toolbar", figureProperties.toolbar, ...
+                "dockable", figureProperties.dockable, ...
+                "default_axes", figureProperties.default_axes, ...
+                "visible", "off");
+                h.background = -2;
+                fields(fields=="menubar") = [];
+                fields(fields=="toolbar") = [];
+                fields(fields=="dockable") = [];
+                fields(fields=="default_axes") = [];
+                fields(fields=="visible") = [];
+            else
+                [lnums, fnames] = where();
+                ind = grep(fnames, "xload");
+                xload_mode = (ind ~= []);
+                if xload_mode then // See bug #3975
+                    h = gcf();
+                else
+                    h = scf();
+                end
+                h.visible = "off";
+            end
+        else
+            if isempty(winsid()) then
+                h = figure("visible", "off");
+                h.background = -2;
+            else
+                h = gcf();
+                h.visible = "off";
+            end
+        end
 
+        // Following propeties will be set after all other ones
+        isVisible = figureProperties.visible;
+        fields(fields=="visible") = [];
+        resizefcn = figureProperties.resizefcn;
+        fields(fields=="resizefcn") = [];
+        event_handler = figureProperties.event_handler;
+        fields(fields=="event_handler") = [];
+
+        // Ignore figure_id
         fields(fields=="figure_id") = [];
 
         h.figure_position=figureProperties.figure_position;
@@ -186,20 +227,14 @@ function %_sodload(%__filename__, varargin)
                     xsetech(wrect=[0 0 .1 .1])
                     createSingleHandle(c.values(i));
                 end
-            elseif fields(i) == "event_handler" then
-                event_handler = figureProperties(fields(i));
-            elseif fields(i) == "resizefcn" then
-                resizefcn = figureProperties(fields(i));
-            elseif fields(i) == "visible" then
-                isVisible = figureProperties(fields(i));// do not set visible = "true" before the end of load.
             else
                 set(h, fields(i), figureProperties(fields(i)));
             end
         end
 
-        h.visible = isVisible;
         h.resizefcn = resizefcn;
         h.event_handler = event_handler;
+        h.visible = isVisible;
     endfunction
 
     //
@@ -252,6 +287,8 @@ function %_sodload(%__filename__, varargin)
         // Get auto_ticks to be sure to set it after ticks labels
         auto_ticks = axesProperties.auto_ticks;
         fields(fields=="auto_ticks") = [];
+        auto_margins = axesProperties.auto_margins;
+        fields(fields=="auto_margins") = [];
 
         for i = 1:size(fields, "*")
             if or(fields(i) == ["title","x_label","y_label","z_label"]) then
@@ -279,6 +316,7 @@ function %_sodload(%__filename__, varargin)
         end
 
         set(h, "auto_ticks", auto_ticks);
+        set(h, "auto_margins", auto_margins);
 
         // Legend management
         global %LEG
@@ -696,9 +734,14 @@ function %_sodload(%__filename__, varargin)
         fields = fieldnames(datatipProperties);
         fields(1) = [];
 
-        h = datatipCreate(%POLYLINE, 0);
+        tip_data = datatipProperties("data");
+        h = datatipCreate(%POLYLINE, tip_data);
 
         for i = 1:size(fields, "*")
+            if fields(i) == "data" then
+                continue;
+            end
+
             set(h, fields(i), datatipProperties(fields(i)));
         end
     endfunction
@@ -792,7 +835,24 @@ function %_sodload(%__filename__, varargin)
         fields = fieldnames(uicontrolProperties);
         fields(1) = [];
 
-        h = uicontrol("Style", uicontrolProperties.style);
+        if or(fields=="scrollable") then
+            // Properties added in Scilab 5.5.0
+            //  - scrollable must be set at creation (for frames)
+            //  - contraints & margins must be set before parent
+            h = uicontrol("style", uicontrolProperties.style, ...
+            "scrollable", uicontrolProperties.scrollable, ...
+            "constraints", uicontrolProperties.constraints, ...
+            "margins", uicontrolProperties.margins);
+            fields(fields=="scrollable") = [];
+            fields(fields=="constraints") = [];
+            fields(fields=="margins") = [];
+            h.layout_options = uicontrolProperties.layout_options;
+            fields(fields=="layout_options") = [];
+            h.layout = uicontrolProperties.layout;
+            fields(fields=="layout") = [];
+        else
+            h = uicontrol("style", uicontrolProperties.style);
+        end
         fields(fields=="style") = [];
 
         for i = 1:size(fields, "*")

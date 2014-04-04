@@ -23,6 +23,8 @@
 #include "HandleManagement.h"
 #include "localization.h"
 #include "Scierror.h"
+#include "sciprint.h"
+#include "warningmode.h"
 /*--------------------------------------------------------------------------*/
 
 int sci_relocate_handle(char * fname, void *pvApiCtx)
@@ -46,6 +48,13 @@ int sci_relocate_handle(char * fname, void *pvApiCtx)
     int iCchildrenID = 0;
     long parent = 0;
     int iParentID = 0;
+
+    if (getWarningMode())
+    {
+        sciprint(_("%s: Function %s is obsolete.\n"), _("Warning"), fname);
+        sciprint(_("%s: Please see documentation for more details.\n"), _("Warning"));
+        sciprint(_("%s: This function will be permanently removed in Scilab %s\n\n"), _("Warning"), "5.5.1");
+    }
 
     /* the function should be called with relocate_handle(handle, parent_handle) */
     CheckInputArgument(pvApiCtx, 2, 2);

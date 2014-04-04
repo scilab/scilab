@@ -42,7 +42,9 @@
             </listitem>
         </itemizedlist>
         <para>
-            Attention : <literal>mtlb_0</literal> ne doit pas être utilisée pour une programmation manuelle.
+            <warning>
+                Attention : <literal>mtlb_0</literal> ne doit pas être utilisée pour une programmation manuelle.
+            </warning>
         </para>
     </refsection>
     <refsection role="see also">

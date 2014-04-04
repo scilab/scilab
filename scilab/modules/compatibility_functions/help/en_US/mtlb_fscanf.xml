@@ -28,7 +28,9 @@
             calls to <literal>mtlb_fscanf</literal> by calls to <link linkend="mfscanf">mfscanf</link>.
         </para>
         <para>
-            Caution: <literal>mtlb_fscanf</literal> has not to be used for hand coded functions.
+            <warning>
+                Caution: <literal>mtlb_fscanf</literal> has not to be used for hand coded functions.
+            </warning>
         </para>
     </refsection>
     <refsection role="see also">

@@ -27,6 +27,7 @@
 #include "CurrentObject.h"
 
 #include "graphicObjectProperties.h"
+#include "createGraphicObject.h"
 #include "getGraphicObjectProperty.h"
 
 /*--------------------------------------------------------------------------*/
@@ -64,7 +65,7 @@ int sci_xarcs(char *fname, void *pvApiCtx)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 1);
         return 1;
     }
 
@@ -101,7 +102,7 @@ int sci_xarcs(char *fname, void *pvApiCtx)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
-            Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 2);
+            Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 2);
             return 1;
         }
 
@@ -148,7 +149,7 @@ int sci_xarcs(char *fname, void *pvApiCtx)
 
     /* construct Compound and make it current object */
     {
-        int o = ConstructCompoundSeq(n1);
+        int o = createCompoundSeq(iCurrentSubWinUID, n1);
         setCurrentObject(o);
     }
 

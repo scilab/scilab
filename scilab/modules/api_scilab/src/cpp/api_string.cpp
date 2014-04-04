@@ -174,7 +174,7 @@ SciErr createNamedMatrixOfString(void* _pvCtx, const char* _pstName, int _iRows,
     String* pS = new String(_iRows, _iCols);
     if (pS == NULL)
     {
-        addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: No more memory to allocated variable"), "createMatrixOfString");
+        addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name: %s."), "createNamedMatrixOfString", _pstName);
         return sciErr;
     }
 

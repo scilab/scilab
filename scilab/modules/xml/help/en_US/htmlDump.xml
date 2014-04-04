@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2013 - Scilab Enterprises - Calixte DENIZET
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+*
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="htmlDump" xml:lang="en">
+    <refnamediv>
+        <refname>htmlDump</refname>
+        <refpurpose>Dump a HTML document</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            str = htmlDump(xmlDoc [, indent])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>xmlDoc</term>
+                <listitem>
+                    <para>xmlDoc, a XML document</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>indent</term>
+                <listitem>
+                    <para>indent, a boolean</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>str</term>
+                <listitem>
+                    <para>str, a matrix of strings</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>Dump a HTML document. If indent is false (by default it is true), no indentation and carriage return will be added.</para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+    doc = htmlReadStr(["<!DOCTYPE html PUBLIC ""-//W3C//DTD HTML 4.01//EN""";
+                       """http://www.w3.org/TR/html4/strict.dtd"">";
+                       "<html lang=""en"">";
+                       "  <head>";
+                       "    <meta http-equiv=""content-type"" content=""text/html; charset=utf-8"">";
+                       "    <title>title</title>";
+                       "    <link rel=""stylesheet"" type=""text/css"" href=""style.css"">";
+                       "    <script type=""text/javascript"" src=""script.js""></script>";
+                       "  </head>";
+                       "  <body>";
+                       "  </body>";
+                       "</html>"]);
+
+    // Dump a HTML document
+    htmlDump(doc)
+
+    // Dump a HTML document without indentation
+    htmlDump(doc, %f)
+
+    // Free the resources associated with the document
+    xmlDelete(doc);
+    ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="xmlWrite">htmlWrite</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>HTML features added.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

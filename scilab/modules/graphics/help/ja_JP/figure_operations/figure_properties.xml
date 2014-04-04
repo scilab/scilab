@@ -149,18 +149,6 @@
                             </listitem>
                         </varlistentry>
                         <varlistentry>
-                            <term>pixmap: </term>
-                            <listitem>
-                                <para>このプロパティはグラフィックウインドウのpixmapステータスを制御します.
-                                    このプロパティの値が<literal>"off"</literal>の場合,
-                                    グラフィックスは画面に直接表示されます. <literal>"on"</literal>の場合,
-                                    グラフィックスは pixmap上に表示され,
-                                    コマンド <literal>show_pixmap()</literal>によりグラフィックウインドウに
-                                    転送されます.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
                             <term>pixel_drawing_mode: </term>
                             <listitem>
                                 <para>このフィールドは画面上のピクセルの描画で使用されるビット単位の処理を定義します.
@@ -201,7 +189,7 @@
                                     <literal>"on"</literal> (デフォルトモード) または <literal>"off"</literal>です.
                                     (複数の描画や再描画を適用することにより)グラフィックスコマンドが大量に連続する場合に,
                                     表示を遅延させるために使用されます.
-
+                                    
                                     Note that, when using
                                     <literal>drawlater</literal> または <literal>drawnow</literal> コマンドを
                                     使用した場合, カレントの図のプロパティの値を変更することに注意してください
@@ -326,9 +314,7 @@ f.background=2
 f.children  // man can see that an Axes entity already exists
 delete(f);
 f=gcf(); // macro shortcut <=> f=get("current_figure")
-f.pixmap = "on" // set pixmap status to on
 plot2d() // nothing happens on the screen...
-show_pixmap() // ...display the pixmap on screen
 
 //Example 2 : default_figure settings
 df=get("default_figure") // get the default values (shortcut is gdf() )

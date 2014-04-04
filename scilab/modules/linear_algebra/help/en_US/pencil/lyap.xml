@@ -45,9 +45,11 @@ A'*X + X*A = C       ( flag='c' )
 A'*X*A - X = C       ( flag='d' )
  ]]></programlisting>
         <para>
-            Note that a unique solution exist if and only if an eigenvalue of <literal>A</literal> is
-            not an eigenvalue of <literal>-A</literal> (<literal>flag='c'</literal>)  or 1 over an eigenvalue of <literal>A</literal> 
-            (<literal>flag='d'</literal>).
+            <note>
+                Note that a unique solution exist if and only if an eigenvalue of <literal>A</literal> is
+                not an eigenvalue of <literal>-A</literal> (<literal>flag='c'</literal>)  or 1 over an eigenvalue of <literal>A</literal> 
+                (<literal>flag='d'</literal>).
+            </note>
         </para>
     </refsection>
     <refsection>

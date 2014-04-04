@@ -218,4 +218,16 @@
             </listitem>
         </itemizedlist>
     </refsection>
+    <refsection id="Example_SATURATION">
+        <title>Exemple imposant 0.6 comme valeur maximale à un sinus :</title>
+        <para>
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/discontinuities_pal/SATURATION_Example.zcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata align="center" fileref="../../../../examples/discontinuities_pal/SATURATION_Example.zcos" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+        </para>
+    </refsection>
 </refentry>

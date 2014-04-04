@@ -28,15 +28,15 @@ function builder_c()
         end
     end
 
-    tbx_build_src(["block_sum", "business_sum"],        ..
-    ["block_sum.c", "business_sum.c"],    ..
-    "c",                                  ..
-    src_c_path,                           ..
-    "",                                   ..
-    LDFLAGS,                              ..
-    CFLAGS,                               ..
-    "",                                   ..
-    "",                                   ..
+    tbx_build_src(["block_sum", "business_sum", "tbx_block_noop"],          ..
+    ["block_sum.c", "business_sum.c" "tbx_block_noop.c"],                   ..
+    "c",                                                                    ..
+    src_c_path,                                                             ..
+    "",                                                                     ..
+    LDFLAGS,                                                                ..
+    CFLAGS,                                                                 ..
+    "",                                                                     ..
+    "",                                                                     ..
     "xcos_tbx_skel");
 endfunction
 

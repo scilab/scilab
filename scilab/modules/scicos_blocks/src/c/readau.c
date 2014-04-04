@@ -22,7 +22,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <string.h>
-#include "sciprint.h"
+#include "scicos_print.h"
 #include "machine.h"
 #include "charEncoding.h"
 #include "cvstr.h"
@@ -145,7 +145,7 @@ ipar[10:9+lfil] = character codes for file name
                 mget2(fd, ipar[8], buffer, m, type, &ierr);
                 if (ierr > 0)
                 {
-                    sciprint(_("Read error!\n"));
+                    scicos_print(_("Read error!\n"));
                     fclose(fd);
                     z[3] = 0.0;
                     *flag = -1;
@@ -177,7 +177,7 @@ ipar[10:9+lfil] = character codes for file name
         wcfopen(fd, str, "rb");
         if (!fd )
         {
-            sciprint(_("Could not open the file!\n"));
+            scicos_print(_("Could not open the file!\n"));
             *flag = -1;
             return;
         }
@@ -196,7 +196,7 @@ ipar[10:9+lfil] = character codes for file name
             irep = fseek(fd, offset, 0) ;
             if ( irep != 0 )
             {
-                sciprint(_("Read error\n"));
+                scicos_print(_("Read error\n"));
                 *flag = -1;
                 fclose(fd);
                 z[3] = 0.0;
@@ -215,7 +215,7 @@ ipar[10:9+lfil] = character codes for file name
         mget2(fd, ipar[8], buffer, m, type, &ierr);
         if (ierr > 0)
         {
-            sciprint(_("Read error!\n"));
+            scicos_print(_("Read error!\n"));
             *flag = -1;
             fclose(fd);
             z[3] = 0.0;

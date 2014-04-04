@@ -181,6 +181,29 @@ public final class FunctionArguments {
     }
 
     /**
+     * Convert an object x into another one according to base Class
+     * @param x the object to convert
+     * @param base the base Class
+     * @return the converted object
+     */
+    public static final Object convert(Object x, Class base) {
+        if (x == null) {
+            return null;
+        }
+        final Class clazz = x.getClass();
+        if (base.isAssignableFrom(clazz)) {
+            return x;
+        }
+        for (Converter converter : converters) {
+            if (converter.canConvert(clazz, base)) {
+                return converter.convert(x, base);
+            }
+        }
+
+        return x;
+    }
+
+    /**
      * To find the "correct" method we proceed as follow:
      * i) We calculate the distance between the Class of the arguments.
      *    For a Class B which derivates from A (A.isAssignableFrom(B) == true), the distance between A and B is the number of
@@ -228,19 +251,19 @@ public final class FunctionArguments {
                     better = f;
                     isVarArgs = refBools[0];
                     toConvert = toConv;
+                    if (d == 0) {
+                        break;
+                    }
+
                     toConv = new HashMap<Integer, Converter>();
                 } else {
                     toConv.clear();
-                }
-
-                if (d == 0) {
-                    break;
                 }
             }
         }
 
         if (better != null) {
-            if (toConvert != null && !toConvert.isEmpty()) {
+            if (!toConvert.isEmpty()) {
                 // Contains int.class arguments and we passed double.class args
                 Class[] types = better.getParameterTypes();
                 Class base = types[types.length - 1].getComponentType();
@@ -259,12 +282,17 @@ public final class FunctionArguments {
             if (isVarArgs) {
                 // Variable arguments
                 Class[] types = better.getParameterTypes();
-                Class base = types[types.length - 1].getComponentType();
-                Object o = Array.newInstance(base, args.length - types.length + 1);
+                Object o;
+                if (args.length == 1 && types.length == 1 && args[0] == null) {
+                    o = null;
+                } else {
+                    Class base = types[types.length - 1].getComponentType();
+                    o = Array.newInstance(base, args.length - types.length + 1);
 
-                // Don't use System.arraycopy since it does not handle unboxing
-                for (int i = 0; i < args.length - types.length + 1; i++) {
-                    Array.set(o, i, args[i + types.length - 1]);
+                    // Don't use System.arraycopy since it does not handle unboxing
+                    for (int i = 0; i < args.length - types.length + 1; i++) {
+                        Array.set(o, i, args[i + types.length - 1]);
+                    }
                 }
 
                 Object[] newArgs = new Object[types.length];
@@ -307,19 +335,19 @@ public final class FunctionArguments {
                     better = f;
                     isVarArgs = refBools[0];
                     toConvert = toConv;
+                    if (d == 0) {
+                        break;
+                    }
+
                     toConv = new HashMap<Integer, Converter>();
                 } else {
                     toConv.clear();
-                }
-
-                if (d == 0) {
-                    break;
                 }
             }
         }
 
         if (better != null) {
-            if (toConvert != null && !toConvert.isEmpty()) {
+            if (!toConvert.isEmpty()) {
                 // Contains int.class arguments and we passed double.class args
                 Class[] types = better.getParameterTypes();
                 Class base = types[types.length - 1].getComponentType();
@@ -337,12 +365,16 @@ public final class FunctionArguments {
             if (isVarArgs) {
                 // Variable arguments
                 Class[] types = better.getParameterTypes();
-                Class base = types[types.length - 1].getComponentType();
-                Object o = Array.newInstance(base, args.length - types.length + 1);
-
-                // Don't use System.arraycopy since it does not handle unboxing
-                for (int i = 0; i < args.length - types.length + 1; i++) {
-                    Array.set(o, i, args[i + types.length - 1]);
+                Object o;
+                if (args.length == 1 && types.length == 1 && args[0] == null) {
+                    o = null;
+                } else {
+                    Class base = types[types.length - 1].getComponentType();
+                    o = Array.newInstance(base, args.length - types.length + 1);
+                    // Don't use System.arraycopy since it does not handle unboxing
+                    for (int i = 0; i < args.length - types.length + 1; i++) {
+                        Array.set(o, i, args[i + types.length - 1]);
+                    }
                 }
 
                 Object[] newArgs = new Object[types.length];
@@ -359,7 +391,7 @@ public final class FunctionArguments {
     }
 
     /**
-     * This function calculates the distance between thes method signatures
+     * This function calculates the distance between the method signatures
      * @param A the method signature
      * @param B the class of the passed arguments
      * @param arr array of arguments (used to transform double in int)
@@ -373,7 +405,7 @@ public final class FunctionArguments {
 
         long s = 0;
         int end = A.length;
-        if (A.length > 0 && A[A.length - 1].isArray() && (A.length < B.length || (A.length == 1 && B.length == 1 && !B[0].isArray()))) {
+        if (A.length > 0 && A[A.length - 1].isArray() && (A.length < B.length || (A.length == 1 && B.length == 1 && (B[0] == null || !B[0].isArray())))) {
             Class base = A[A.length - 1].getComponentType();
             // this is a variable arguments method
             bools[0] = true;

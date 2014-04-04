@@ -12,7 +12,7 @@ function f=%p_j_s(p,s)
     //!
 
     if s==[] then f=[],return,end
-    if  or(imag(s)<>0)|or(int(s)<>s) then error(msprintf(_("%s: Wrong type for input argument #%d: integer expected.\n"),"%p_j_s",2)),end
+    if  or(imag(s)<>0)|or(int(s)<>s) then error(msprintf(_("%s: Wrong type for input argument #%d: An integer matrix expected.\n"),"%p_j_s",2)),end
     [m,n]=size(p)
     [ms,ns]=size(s)
     if ms==1&ns==1 then

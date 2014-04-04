@@ -301,9 +301,6 @@ plot2d(x,x^3)  //描画データは最初の図に送信される
                 <link linkend="move">move</link>
             </member>
             <member>
-                <link linkend="draw">draw</link>
-            </member>
-            <member>
                 <link linkend="delete">delete</link>
             </member>
             <member>

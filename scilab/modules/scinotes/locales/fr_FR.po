@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-09-16 09:49+0000\n"
+"PO-Revision-Date: 2014-03-19 09:01+0000\n"
 "Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 16967)\n"
 "Language: fr\n"
 
 #, c-format
@@ -272,8 +272,8 @@ msgstr "(, [, ..."
 msgid "if, function, ..."
 msgstr "if, function, ..."
 
-msgid "Line numbering;Off;Normal;Whereami compatible"
-msgstr "Numérotation de lignes;Désactivée;Normale;Compatible whereami"
+msgid "Line numbering;Off;Normal;Local numbering"
+msgstr "Numérotation des lignes;Aucune;Normale;Locale"
 
 msgid "Highlight current line"
 msgstr "Mettre en surbrillance la ligne actuelle"
@@ -296,8 +296,10 @@ msgstr "Extraire la tabulation dans une nouvelle fenêtre"
 msgid "Copy selection in a new tab"
 msgstr "Copier la sélection dans un nouvel onglet"
 
-msgid "Split View;Off;Horizontally;Vertically"
-msgstr "Séparer la vue;Désactivé;Horizontalement;Verticalement"
+msgid "Split View;Off;Split in two columns;Split in two rows"
+msgstr ""
+"Séparation de la vue;Aucune;Séparation en deux colonnes;Séparation en deux "
+"lignes"
 
 msgid "Execute"
 msgstr "Exécuter"
@@ -523,6 +525,11 @@ msgstr "SciNotes"
 
 msgid "Error while reading the String"
 msgstr "Erreur pendant la lecture de la chaîne de caractères"
+
+msgid "The configuration file has been corrupted and reset to default one."
+msgstr ""
+"Le fichier de configuration a été endommagé. Réinitialisation à celui par "
+"défaut."
 
 #, c-format
 msgid "File not found: %s"
@@ -761,8 +768,9 @@ msgid "This file"
 msgstr "Ce fichier"
 
 #, c-format
-msgid "%s has been modified since last save. Save it?"
-msgstr "%s a été modifié depuis le dernier enregistrement. L'enregistrer ?"
+msgid "The file %s has been modified since last save. Save it?"
+msgstr ""
+"Le fichier %s a été modifié depuis le dernier enregistrement. L'enregistrer ?"
 
 #, c-format
 msgid "The file %s has been modified by another program ! Overwrite it ?"
@@ -917,6 +925,27 @@ msgstr ""
 
 msgid "Backup finished..."
 msgstr "Sauvegarde terminée..."
+
+#, c-format
+msgid "The directory %s does not exist. Do you want to create it?"
+msgstr "Le répertoire %s n'existe pas. Souhaitez-vous le créer ?"
+
+#, c-format
+msgid "The directory %s cannot be created. Please check your access rights."
+msgstr ""
+"Le répertoire %s ne peut pas être créé. Veuillez vérifier vos droits d'accès."
+
+#, c-format
+msgid "Impossible to write a file in %s. Please check your access rights."
+msgstr ""
+"Impossible d'écrire un fichier dans %s. Veuillez vérifier vos droits d'accès."
+
+#, c-format
+msgid "Invalid directory name: %s."
+msgstr "Nom de répertoire invalide : %s."
+
+msgid "SciNotes autosave"
+msgstr "Enregistrement automatique de SciNotes"
 
 #, c-format
 msgid "%s occurences found."
@@ -1137,21 +1166,23 @@ msgstr "Sélectionner le répertoire de base pour la recherche"
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Le module '%s' de Scilab n'est pas installé.\n"
 
-msgid "the last error did not occur inside a library function."
-msgstr ""
-"La dernière erreur ne s'est pas produite dans une fonction de bibliothèque"
+msgid "The last error did not occur inside a Scilab macro."
+msgstr "La dernière erreur ne s'est pas produite dans une macro Scilab."
 
 msgid " on line "
 msgstr " à la ligne "
 
-msgid "opening file "
-msgstr "ouverture du fichier "
+msgid "Opening file "
+msgstr "Ouverture du fichier "
 
 msgid " of the source file of the function "
 msgstr " du fichier source de la fonction "
 
-msgid "the source file of the function "
-msgstr "le fichier source de la fonction "
+msgid "The source file of the function "
+msgstr "Le fichier source de la fonction "
 
 msgid " was not found in any library path"
 msgstr " n'a pas pu être trouvée dans aucune bibliothèque"
+
+msgid "There is no recorded error"
+msgstr "Il n'y a aucune erreur enregistrée"

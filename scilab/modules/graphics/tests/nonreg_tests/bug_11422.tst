@@ -15,5 +15,5 @@
 // <-- Short Description -->
 // datatips do not work when the figure contains uicontrols.
 
-uicontrol()
+uicontrol();
 assert_checktrue(execstr("datatipEventhandler(get(gcf(), ""figure_id""), 1 ,1, 1)", "errcatch")==0);

@@ -51,8 +51,6 @@ plot2d(x,sin(2*x),5);
 subplot(236);
 plot2d(t,tan(2*t));  
  
-draw(gca()); //カレントの軸とその子を描画
-draw(f.children([3 4])); // 指定した軸とその子を描画
 drawnow(); // カレントの図を描画
  ]]></programlisting>
     </refsection>

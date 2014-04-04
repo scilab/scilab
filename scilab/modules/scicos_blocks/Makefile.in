@@ -107,14 +107,16 @@ build_triplet = @build@
 host_triplet = @host@
 @GUI_TRUE@@XCOS_TRUE@am__append_1 = libsciscicos_blocks.la
 @XCOS_TRUE@am__append_2 = $(NON_BLOCK_CLI_SOURCES)
-@GUI_TRUE@@XCOS_TRUE@am__append_3 = $(NON_BLOCK_JNI_SOURCES)
-@XCOS_TRUE@am__append_4 = includes/blocks.h
-@GIWS_TRUE@am__append_5 = giws
+@XCOS_TRUE@am__append_3 = libsciscicos_blocks-algo.la
+@GUI_TRUE@@XCOS_TRUE@am__append_4 = $(NON_BLOCK_JNI_SOURCES)
+@GUI_TRUE@@XCOS_TRUE@am__append_5 = libsciscicos_blocks-algo.la
+@XCOS_TRUE@am__append_6 = includes/blocks.h
+@GIWS_TRUE@am__append_7 = giws
 DIST_COMMON = $(top_srcdir)/Makefile.incl.am $(srcdir)/Makefile.in \
 	$(srcdir)/Makefile.am $(top_srcdir)/config/mkinstalldirs \
 	$(top_srcdir)/config/depcomp \
 	$(libsciscicos_blocks_la_include_HEADERS)
-@NEED_JAVA_TRUE@am__append_6 = java
+@NEED_JAVA_TRUE@am__append_8 = java
 subdir = modules/scicos_blocks
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
@@ -172,7 +174,8 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libsciscicos_blocks_la_rootdir)" \
 	"$(DESTDIR)$(libsciscicos_blocks_la_includedir)"
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
-libsciscicos_blocks_algo_la_LIBADD =
+am__DEPENDENCIES_1 =
+libsciscicos_blocks_algo_la_DEPENDENCIES = $(am__DEPENDENCIES_1)
 am__dirstamp = $(am__leading_dot)dirstamp
 am__objects_1 = src/c/libsciscicos_blocks_algo_la-absblk.lo \
 	src/c/libsciscicos_blocks_algo_la-absolute_value.lo \
@@ -530,8 +533,8 @@ libsciscicos_blocks_algo_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX \
 	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CXXLD) \
 	$(AM_CXXFLAGS) $(CXXFLAGS) \
 	$(libsciscicos_blocks_algo_la_LDFLAGS) $(LDFLAGS) -o $@
-@XCOS_TRUE@libsciscicos_blocks_cli_la_DEPENDENCIES =  \
-@XCOS_TRUE@	libsciscicos_blocks-algo.la
+libsciscicos_blocks_cli_la_DEPENDENCIES = $(am__append_3) \
+	$(am__DEPENDENCIES_1)
 am__libsciscicos_blocks_cli_la_SOURCES_DIST = src/cpp/HelpersCLI.cpp
 am__objects_6 = src/cpp/libsciscicos_blocks_cli_la-HelpersCLI.lo
 @XCOS_TRUE@am__objects_7 = $(am__objects_6)
@@ -542,8 +545,8 @@ libsciscicos_blocks_cli_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX \
 	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CXXLD) \
 	$(AM_CXXFLAGS) $(CXXFLAGS) \
 	$(libsciscicos_blocks_cli_la_LDFLAGS) $(LDFLAGS) -o $@
-@GUI_TRUE@@XCOS_TRUE@libsciscicos_blocks_la_DEPENDENCIES =  \
-@GUI_TRUE@@XCOS_TRUE@	libsciscicos_blocks-algo.la
+libsciscicos_blocks_la_DEPENDENCIES = $(am__append_5) \
+	$(am__DEPENDENCIES_1)
 am__libsciscicos_blocks_la_SOURCES_DIST = src/cpp/HelpersJNI.cpp \
 	src/jni/AfficheBlock.cpp
 am__objects_8 = src/cpp/libsciscicos_blocks_la-HelpersJNI.lo \
@@ -698,6 +701,7 @@ CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
 DEMOTOOLS_ENABLE = @DEMOTOOLS_ENABLE@
 DEPDIR = @DEPDIR@
+DLLTOOL = @DLLTOOL@
 DOCBOOK_ROOT = @DOCBOOK_ROOT@
 DOXYGEN_BIN = @DOXYGEN_BIN@
 DSYMUTIL = @DSYMUTIL@
@@ -717,6 +721,11 @@ FGREP = @FGREP@
 FLEXDOCK = @FLEXDOCK@
 FLIBS = @FLIBS@
 FOP = @FOP@
+FREEHEP_GRAPHICS2D = @FREEHEP_GRAPHICS2D@
+FREEHEP_GRAPHICSIO = @FREEHEP_GRAPHICSIO@
+FREEHEP_GRAPHICSIO_EMF = @FREEHEP_GRAPHICSIO_EMF@
+FREEHEP_IO = @FREEHEP_IO@
+FREEHEP_UTIL = @FREEHEP_UTIL@
 GENHTML = @GENHTML@
 GETTEXT_MACRO_VERSION = @GETTEXT_MACRO_VERSION@
 GIWS_BIN = @GIWS_BIN@
@@ -780,6 +789,7 @@ LTLIBINTL = @LTLIBINTL@
 LTLIBOBJS = @LTLIBOBJS@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
+MANIFEST_TOOL = @MANIFEST_TOOL@
 MATIO_CFLAGS = @MATIO_CFLAGS@
 MATIO_ENABLE = @MATIO_ENABLE@
 MATIO_LIBS = @MATIO_LIBS@
@@ -1338,9 +1348,9 @@ src/fortran/zcross.f
 #### Multi-libraries handling ######
 noinst_LTLIBRARIES = libsciscicos_blocks-algo.la
 pkglib_LTLIBRARIES = libsciscicos_blocks-cli.la $(am__append_1)
-libsciscicos_blocks_algo_la_LDFLAGS = $(RT_LIB) $(AM_LDFLAGS)
-libsciscicos_blocks_la_LDFLAGS = $(RT_LIB) $(AM_LDFLAGS)
-libsciscicos_blocks_cli_la_LDFLAGS = $(RT_LIB) $(AM_LDFLAGS)
+libsciscicos_blocks_algo_la_LDFLAGS = $(AM_LDFLAGS)
+libsciscicos_blocks_la_LDFLAGS = $(AM_LDFLAGS)
+libsciscicos_blocks_cli_la_LDFLAGS = $(AM_LDFLAGS)
 libsciscicos_blocks_algo_la_CPPFLAGS = -I$(srcdir)/includes/ \
 			-I$(srcdir)/src/c/ \
 			-I$(srcdir)/src/cpp/ \
@@ -1371,16 +1381,17 @@ $(NON_BLOCK_C_SOURCES) \
 $(NON_BLOCK_CXX_SOURCES)
 
 libsciscicos_blocks_cli_la_SOURCES = $(am__append_2)
-libsciscicos_blocks_la_SOURCES = $(am__append_3)
-@XCOS_TRUE@libsciscicos_blocks_cli_la_LIBADD = libsciscicos_blocks-algo.la
-@GUI_TRUE@@XCOS_TRUE@libsciscicos_blocks_la_LIBADD = libsciscicos_blocks-algo.la
+libsciscicos_blocks_la_SOURCES = $(am__append_4)
+libsciscicos_blocks_algo_la_LIBADD = $(RT_LIB)
+libsciscicos_blocks_la_LIBADD = $(am__append_5) $(RT_LIB)
+libsciscicos_blocks_cli_la_LIBADD = $(am__append_3) $(RT_LIB)
 
 # For the code check (splint)
 CHECK_SRC = $(SCICOS_BLOCKS_C_SOURCES) $(NON_BLOCK_C_SOURCES)
 INCLUDE_FLAGS = $(libsciscicos_blocks_la_CPPFLAGS)
 
 #### scicos_blocks : Generation of the  includes/blocks.h Files ####
-BUILT_SOURCES = $(am__append_4) $(am__append_5)
+BUILT_SOURCES = $(am__append_6) $(am__append_7)
 CLEANFILES = $(top_srcdir)/modules/scicos_blocks/includes/blocks.h \
 	$(top_srcdir)/modules/scicos_blocks/build/Cblocknames \
 	$(top_srcdir)/modules/scicos_blocks/build/Fblocknames \
@@ -1447,7 +1458,7 @@ SPLINT_OPTIONS = -weak -booltype BOOL
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_6)
+TARGETS_ALL = $(am__append_8)
 
 ################ MACROS ######################
 # Rule to build a macro

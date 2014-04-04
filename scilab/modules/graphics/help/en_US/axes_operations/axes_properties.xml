@@ -3,6 +3,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
  * Copyright (C) 2009 - DIGITEO - Pierre Lando
+ * Copyright (C) 2013 - Samuel GOUGEON : revision for x|y|z_ticks and "See also" sections
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -14,13 +15,15 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="axes_properties">
     <refnamediv>
         <refname>axes properties</refname>
-        <refpurpose>description of the axes entity
+        <refpurpose>
+            description of the axes entity
             properties
         </refpurpose>
     </refnamediv>
     <refsection>
         <title>Description</title>
-        <para>The Axes entity is the second level of the graphics entities hierarchy.
+        <para>
+            The Axes entity is the second level of the graphics entities hierarchy.
             This entity defines the parameters allowing the change of coordinates and
             the axes drawing as well as the parameters' default values for the
             children creation.
@@ -39,7 +42,8 @@
                         <varlistentry>
                             <term>children: </term>
                             <listitem>
-                                <para>FA vector containing the handles of all graphics objects
+                                <para>
+                                    FA vector containing the handles of all graphics objects
                                     children of the axes These graphics objects are of type
                                     <literal>"Compound"</literal>, <literal>"Rectangle"</literal>,
                                     <literal>"Polyline"</literal>, <literal>"Segs"</literal>, <literal>"Arc"</literal>,
@@ -101,9 +105,11 @@
                         <varlistentry>
                             <term>grid: </term>
                             <listitem>
-                                <para>The field value is a vector
+                                <para>
+                                    The field value is a vector
                                     <literal>[x-grid,y-grid,z-grid]</literal> where <literal>x-grid</literal>
-                                    controls a grid drawning for the x-axis and <literal>y-grid,
+                                    controls a grid drawning for the x-axis and <literal>
+                                        y-grid,
                                         z-grid
                                     </literal>
                                     respecting to the y-axis, z-axis. The default values
@@ -115,7 +121,8 @@
                         <varlistentry>
                             <term>grid_position: </term>
                             <listitem>
-                                <para>This character string specifies the grid position compared with other graphic entities.
+                                <para>
+                                    This character string specifies the grid position compared with other graphic entities.
                                     Its value can be either <literal>"foreground"</literal>
                                     to draw the grid ahead other graphic entities or <literal>"background"</literal> to draw the grid behind.
                                 </para>
@@ -124,7 +131,8 @@
                         <varlistentry>
                             <term>x_location: </term>
                             <listitem>
-                                <para>Specify the location of the x-axis. The possible values
+                                <para>
+                                    Specify the location of the x-axis. The possible values
                                     are:
                                 </para>
                                 <itemizedlist>
@@ -158,7 +166,8 @@
                         <varlistentry>
                             <term>y_location: </term>
                             <listitem>
-                                <para>Specify the location of the y-axis. The possible values
+                                <para>
+                                    Specify the location of the y-axis. The possible values
                                     are:
                                 </para>
                                 <itemizedlist>
@@ -192,7 +201,8 @@
                         <varlistentry>
                             <term>title: </term>
                             <listitem>
-                                <para>An object attached to the Axes entity and returning a graphic
+                                <para>
+                                    An object attached to the Axes entity and returning a graphic
                                     handle on a Label structure (see <link linkend="label_properties">label_properties</link>).
                                     This field defines a title with options on this label.
                                 </para>
@@ -201,7 +211,8 @@
                         <varlistentry>
                             <term>x_label: </term>
                             <listitem>
-                                <para>An object attached to the Axes entity and returning a graphic
+                                <para>
+                                    An object attached to the Axes entity and returning a graphic
                                     handle on a Label structure (see <link linkend="label_properties">label_properties</link>).
                                     This field defines a label on x axis with options on this
                                     label.
@@ -211,7 +222,8 @@
                         <varlistentry>
                             <term>y_label: </term>
                             <listitem>
-                                <para>An object attached to the Axes entity and returning a graphic
+                                <para>
+                                    An object attached to the Axes entity and returning a graphic
                                     handle on a Label structure (see <link linkend="label_properties">label_properties</link>).
                                     This field defines a label on y axis with options on this
                                     label.
@@ -221,7 +233,8 @@
                         <varlistentry>
                             <term>z_label: </term>
                             <listitem>
-                                <para>An object attached to the Axes entity and returning a graphic
+                                <para>
+                                    An object attached to the Axes entity and returning a graphic
                                     handle on a Label structure (see <link linkend="label_properties">label_properties</link>).
                                     This field defines a label on z axis with options on this
                                     label.
@@ -247,84 +260,87 @@
                             </listitem>
                         </varlistentry>
                         <varlistentry>
-                            <term>x_ticks.locations: </term>
+                            <term>x_ticks, y_ticks, z_ticks: </term>
                             <listitem>
-                                <para>A real vector containing the locations for the graduations on
-                                    x axis. This property can be edited specifying a new real vector
-                                    (of the same size). To specify greater or lesser graduations, man
-                                    can act on the <literal>x_ticks</literal> <literal>tlist</literal> defining a
-                                    corresponding<literal> x_ticks.labels</literal> string vector too.
+                                <para>
+                                    Each of these properties is a tlist of type "ticks" with 2 fields named "locations" and "labels":
+                                    <literal>tlist(["ticks", "locations", "labels"], Locations, Labels)</literal> where
+                                    <variablelist>
+                                        <varlistentry>
+                                            <term>Locations</term>
+                                            <listitem>
+                                                is a real vector containing the locations of graduations along and according to the data scale of the given x or y or z axis.
+                                                When the number of ticks does not need to be changed, their locations can be set or changed through
+                                                the syntax (e.g. along x) <literal>Haxes.x_ticks.locations = Locations</literal> where <literal>Haxes = gca();</literal>
+                                                and <literal>Locations</literal> is the complete vector of updated ticks positions. To change just the ith location, just use:
+                                                <literal>Haxes.x_ticks.locations(i) = newLoc</literal>
+                                            </listitem>
+                                        </varlistentry>
+                                        <varlistentry>
+                                            <term>Labels</term>
+                                            <listitem>
+                                                is a text vector containing the labels to be displayed in front of each related graduation. As for Locations of ticks, Labels can be addressed with (e.g. along y) <literal>Haxes.y_ticks.labels = Labels</literal> or <literal>Haxes.y_ticks.labels(j) = newLabelJ</literal>
+                                            </listitem>
+                                        </varlistentry>
+                                    </variablelist>
+                                    <warning>
+                                        <para>
+                                            For an axis, <literal>Locations</literal> and <literal>Labels</literal> vectors must have the same number of components.
+                                        </para>
+                                        <para>
+                                            When the number of ticks must be changed, their positions AND labels must be changed at once, in order to avoid any mismatch: The syntax (e.g. along x) <literal>Haxes.x_ticks = tlist(["ticks" "locations", "labels"], newLocations, newLabels)</literal> must then be used.
+                                        </para>
+                                    </warning>
                                 </para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
-                            <term>y_ticks.locations: </term>
+                            <term>x_ticks.locations, y_ticks.locations, z_ticks.locations: </term>
                             <listitem>
-                                <para>A real vector containing the locations for the graduations on
-                                    y axis. This property can be edited specifying a new real vector
-                                    (of the same size). To specify greater or lesser graduations, man
-                                    can act on the <literal>y_ticks</literal> <literal>tlist</literal> defining a
-                                    corresponding<literal> y_ticks.labels</literal> string vector too.
+                                <para>
+                                    Each of these properties is a real vector containing the locations of graduations on the related x or y or z axis. <varname>x_ticks.locations</varname> must have the same number of components as <varname>x_ticks.labels</varname>. See <varname>x_ticks</varname> hereabove for more details.
                                 </para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
-                            <term>z_ticks.locations: </term>
+                            <term>x_ticks.labels, y_ticks.labels, z_ticks.labels: </term>
                             <listitem>
-                                <para>A real vector containing the locations for the graduations on
-                                    z axis. This property can be edited specifying a new real vector
-                                    (of the same size). To specify greater or lesser graduations, man
-                                    can act on the <literal>z_ticks</literal> <literal>tlist</literal> defining a
-                                    corresponding<literal> z_ticks.labels</literal> string vector too.
+                                <para>
+                                    Each of these properties is a text vector containing the labels to be displayed in front of ticks on the related x or y or z axis. <varname>x_ticks.labels</varname> must have the same number of components as <varname>x_ticks.locations</varname>. See <varname>x_ticks</varname> hereabove for more details.
                                 </para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
-                            <term>x_ticks.labels: </term>
+                            <term>ticks_format: </term>
                             <listitem>
-                                <para>A string vector containing the labels for the graduations on x
-                                    axis. This property can be edited specifying a new string vector
-                                    (of the same size). To specify greater or lesser graduations, man
-                                    can act on the <literal>x_ticks</literal> <literal>tlist</literal> defining a
-                                    corresponding<literal> x_ticks.locations</literal> real vector too.
+                                <para>
+                                    This property specifies the format to use for each axes.
+                                    It is a row vector with at most 3 columns containing strings format (as specified for <link linkend="mprintf">mprintf</link>). Each ticks position will be used to format the string used as label.
                                 </para>
                                 <para>
-                                    Starting from Scilab 5.2, it is possible to write <link linkend="math_rendering_features_in_graphic">LaTeX or MathML expression</link>.
+                                    So, for example ticks_format="%.2e" will print ticks positions in using scientific notation with two decimals.
                                 </para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
-                            <term>y_ticks.labels: </term>
+                            <term>ticks_st: </term>
                             <listitem>
-                                <para>A string vector containing the labels for the graduations on y
-                                    axis. This property can be edited specifying a new string vector
-                                    (of the same size). To specify greater or lesser graduations, man
-                                    can act on the <literal>y_ticks</literal> <literal>tlist</literal> defining a
-                                    corresponding<literal> y_ticks.locations</literal> real vector too.
+                                <para>
+                                    This property specifies scale-translate factors to apply to each ticks position before to use it in the formatted string used as label. So if the factors are <literal>[x_s y_s z_s ; x_t y_t z_t]</literal> and if a x_tick is positionned at X, the value used to format the label will be <literal>x_s*(X-x_t)</literal>. It could be particulary useful when the axes bounds are too closed.
+                                    <para>
+                                        It is a matrix with 2 rows and at most 3 columns.
+                                    </para>
                                 </para>
                                 <para>
-                                    Starting from Scilab 5.2, it is possible to write <link linkend="math_rendering_features_in_graphic">LaTeX or MathML expression</link>.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>z_ticks.labels: </term>
-                            <listitem>
-                                <para>A string vector containing the labels for the graduations on z
-                                    axis. This property can be edited specifying a new string vector
-                                    (of the same size). To specify greater or lesser graduations, man
-                                    can act on the <literal>z_ticks</literal> <literal>tlist</literal> defining a
-                                    corresponding<literal> z_ticks.locations</literal> real vector too.
-                                </para>
-                                <para>
-                                    Starting from Scilab 5.2, it is possible to write <link linkend="math_rendering_features_in_graphic">LaTeX or MathML expression</link>.
+                                    So, for example <literal>base=B</literal>, labels could be printed with <literal>ticks_format=string(base)+"%+.2e"</literal> and <literal>ticks_st=[1 base]</literal>
                                 </para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
                             <term>box: </term>
                             <listitem>
-                                <para>This property specifies whether to enclose the axes in a box.
+                                <para>
+                                    This property specifies whether to enclose the axes in a box.
                                     Its value can be either <literal>"off"</literal>,
                                     <literal>"hidden_axes"</literal>, <literal>"back_half"</literal> or
                                     <literal>"on".</literal> If the property is <literal>"off"</literal>, the box
@@ -338,7 +354,8 @@
                         <varlistentry>
                             <term>filled: </term>
                             <listitem>
-                                <para>This property specifies whether the axes background should be drawn or not.
+                                <para>
+                                    This property specifies whether the axes background should be drawn or not.
                                     Its value can be either <literal>"off"</literal> or
                                     <literal>"on".</literal> If the property is <literal>"off"</literal>, the background
                                     is not drawn, the axes box is transparent. If the property is <literal>"on"</literal> the
@@ -349,7 +366,8 @@
                         <varlistentry>
                             <term>sub_ticks: </term>
                             <listitem>
-                                <para>This field sets the number of tics to draw between two main
+                                <para>
+                                    This field sets the number of tics to draw between two main
                                     tics. The field value is the vector <literal>[nx,ny]</literal> where
                                     <literal>nx</literal> is the number of sub tics for the x-axis and
                                     <literal>ny</literal> respecting to the y-axis.
@@ -359,7 +377,8 @@
                         <varlistentry>
                             <term>font_style: </term>
                             <listitem>
-                                <para>Specifies the font used for displaying tics labels. This is a positive integer referecing one of the loaded fonts.
+                                <para>
+                                    Specifies the font used for displaying tics labels. This is a positive integer referecing one of the loaded fonts.
                                     Its value must be between 0, referecing the first font,
                                     and the number of loaded fonts minus one, referencing the last font.
                                     For more information see <link linkend="graphics_fonts">graphics_fonts</link>.
@@ -398,7 +417,8 @@
                         <varlistentry>
                             <term>isoview: </term>
                             <listitem>
-                                <para>This property is used to have isometric scales on the x, y and
+                                <para>
+                                    This property is used to have isometric scales on the x, y and
                                     z axes (for exemple to make the display of the curve sin(x) versus
                                     cos(x) be a circle not an ellipse). Its value should be
                                     <literal>"on"</literal> or <literal>"off"</literal>. If the value is
@@ -425,7 +445,8 @@
                         <varlistentry>
                             <term>view: </term>
                             <listitem>
-                                <para>This field is related to the graphics universe. It takes
+                                <para>
+                                    This field is related to the graphics universe. It takes
                                     <literal>"3d"</literal> as value corresponding to the three-dimensional
                                     views. In the other case its value can be <literal>"2d"</literal> for
                                     initial 2d plotting (default value). This flag also depends on the
@@ -448,7 +469,8 @@
                         <varlistentry>
                             <term>log_flags: </term>
                             <listitem>
-                                <para> 3 character string that sets the scale (linear or logarithmic) along the axes.
+                                <para>
+                                    3 character string that sets the scale (linear or logarithmic) along the axes.
                                     Each character speficfies the scale for respectivgly the X, Y and Z axes.
                                     They should take a value between <literal>'n'</literal> for linear scale or
                                     <literal>'l'</literal> for logarithmic scale.
@@ -468,7 +490,8 @@
                         <varlistentry>
                             <term>data_bounds: </term>
                             <listitem>
-                                <para>This field contains the boundary values for the x, y and z
+                                <para>
+                                    This field contains the boundary values for the x, y and z
                                     coordinates. It is either the matrix or the vector
                                     <literal>[xmin,ymin; xmax,ymax]</literal>,
                                     <literal>[xmin,ymin,zmin; xmax,ymax,zmax]</literal>,
@@ -485,7 +508,8 @@
                         <varlistentry>
                             <term>zoom_box: </term>
                             <listitem>
-                                <para>This field contains the current zoom box if any coordinates
+                                <para>
+                                    This field contains the current zoom box if any coordinates
                                     are given. It is an empty matrix (no zoom) or the vector
                                     <literal>[xmin,ymin,xmax,ymax,zmin,zmax]</literal> (defines a smaller axes box).
                                 </para>
@@ -494,7 +518,8 @@
                         <varlistentry>
                             <term>margins: </term>
                             <listitem>
-                                <para>A vector
+                                <para>
+                                    A vector
                                     <literal>[margin_left,margin_right,margin_top,margin_bottom]</literal>
                                     specifying the margins portion for this axes. This vector is
                                     composed of numbers between [0 1] with default: [0.125 0.125 0.125
@@ -503,6 +528,15 @@
                                     <literal>margin_left</literal> and <literal>margin_right</literal>, and
                                     <literal>height</literal> for <literal>margin_top</literal> and
                                     <literal>margin_bottom</literal>.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>auto_margins: </term>
+                            <listitem>
+                                <para>
+                                    A property to allow the automatic computation of the margins accordint to their contents.
+                                    If value is <literal>"on"</literal>, then the automatic computation is activated.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -523,7 +557,8 @@
                         <varlistentry>
                             <term>hidden_axis_color: </term>
                             <listitem>
-                                <para>This property defined the color of the hidden axis. It takes
+                                <para>
+                                    This property defined the color of the hidden axis. It takes
                                     an index relative to the current colormap.
                                 </para>
                             </listitem>
@@ -531,7 +566,8 @@
                         <varlistentry>
                             <term>user_data: </term>
                             <listitem>
-                                <para>This field can be use to store any scilab variable in the axes
+                                <para>
+                                    This field can be use to store any scilab variable in the axes
                                     data structure, and to retreive it.
                                 </para>
                             </listitem>
@@ -565,7 +601,8 @@
                         <varlistentry>
                             <term>auto_scale: </term>
                             <listitem>
-                                <para>A property to update the axes data boundary. If value is
+                                <para>
+                                    A property to update the axes data boundary. If value is
                                     <literal>"on"</literal>, a new plot will adapt the current axes
                                     properties to fit with previous and current plots. If its value is
                                     <literal>"off"</literal> the new plot will be drawn in the current axes
@@ -583,7 +620,8 @@
                         <varlistentry>
                             <term>hiddencolor: </term>
                             <listitem>
-                                <para>This property controls the hidden parts' color. It takes as
+                                <para>
+                                    This property controls the hidden parts' color. It takes as
                                     value an index relative to the current colormap. In another case,
                                     if it is a negative value, the hidden parts take the same colors
                                     as the surface
@@ -677,8 +715,7 @@
                                     property value for Segs Rectangle Legend Axis Plot3d Fac3d and
                                     Polyline objects. <literal>mark_size</literal> selects the font size of
                                     mark to be displayed. Its value should be an integer in [0 5]
-                                    whith stands for 8pt, 10pt, 12pt, 14pt, 18pt and 24pt (see
-                                    <link linkend="getmark">getmark</link>).
+                                    whith stands for 8pt, 10pt, 12pt, 14pt, 18pt and 24pt.
                                 </para>
                                 <para>
                                     <warning>In the special case where mark_style and mark_size are 0, a dot of one pixel is drawn.</warning>
@@ -704,7 +741,8 @@
                         <varlistentry>
                             <term>mark_background: </term>
                             <listitem>
-                                <para>This property controls the default
+                                <para>
+                                    This property controls the default
                                     <literal>mark_background</literal> property value for all objects
                                     created under this axes. Polyline, rectangle, legend, surface,
                                     segment and axis objects are using this property to specify a
@@ -803,7 +841,8 @@
                                     <varlistentry>
                                         <term/>
                                         <listitem>
-                                            <para>All these listed properties and fields inherit from
+                                            <para>
+                                                All these listed properties and fields inherit from
                                                 default values stored in an axes model. These default values
                                                 can be seen and changed. To do so, use the
                                                 <literal>get("default_axes")</literal> command : it returns a
@@ -823,7 +862,8 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[
+        <programlisting role="example">
+            <![CDATA[
 lines(0) // disables vertical paging
 a=get("current_axes")//get the handle of the newly created axes
 a.axes_visible="on"; // makes the axes visible
@@ -937,11 +977,25 @@ a.x_ticks = tlist(["ticks", "locations", "labels"], (0:6)', [mathml;"1";"$\sin(x
 // Mixed expression: MathML and LaTex
 a.y_ticks = tlist(["ticks", "locations", "labels"], (-2:0.5:2)', ["0";"1";"2";"3";"$\cos(a)$";"5";"6";mathml;"8"]);
 
- ]]></programlisting>
+ ]]>
+        </programlisting>
+        <para/>
+        <programlisting role="example">
+            <![CDATA[
+m=[66.425514; 66.425513];
+plot([69;70], m);
+a=gca();
+a.ticks_format=["" sprintf("%.2f", m(2))+"%+.1e"];
+a.ticks_st=[1 1;0 m(2)];
+ ]]>
+        </programlisting>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="axis_properties">axis_properties</link>
+            </member>
             <member>
                 <link linkend="lines">lines</link>
             </member>
@@ -983,7 +1037,13 @@ a.y_ticks = tlist(["ticks", "locations", "labels"], (-2:0.5:2)', ["0";"1";"2";"3
             </revision>
             <revision>
                 <revnumber>5.5.0</revnumber>
-                <revremark>line_style values 9 and 10 can be used to have respectively longblank dot and bigblank dot styles.</revremark>
+                <revremark>
+                    <itemizedlist>
+                        <listitem>line_style values 9 and 10 can be used to have respectively longblank dot and bigblank dot styles.</listitem>
+                        <listitem>auto_margins property added to allow automatic computation of the margins.</listitem>
+                        <listitem>ticks_format and ticks_st properties added to improve ticks labels display.</listitem>
+                    </itemizedlist>
+                </revremark>
             </revision>
         </revhistory>
     </refsection>

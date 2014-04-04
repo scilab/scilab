@@ -2,11 +2,11 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -229,6 +229,14 @@ position=[(x1-as(1)*bnds(1))/(as(1)*bnds(3)),...
                 </listitem>
             </varlistentry>
             <varlistentry>
+                <term>line_width</term>
+                <listitem>
+                    <para>This field specifies the width (in axes coordinates) of the line shown in the legend.
+		    This value is a real between 0 and 1.
+		    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>line_mode</term>
                 <listitem>
                     <para>This field specifies if a rectangle is drawn around the legend
@@ -272,6 +280,13 @@ position=[(x1-as(1)*bnds(1))/(as(1)*bnds(3)),...
                 <listitem>
                     <para>This field gives the color index of the line used to paint the
                         rectangle area.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>marks_count</term>
+                <listitem>
+                    <para>This property is an integer between 0 and 3 which specifies the number of marks to show in the legend.
                     </para>
                 </listitem>
             </varlistentry>
@@ -357,5 +372,14 @@ l.text=["$\sin(x)$";"$\sin(2*x)$";"$\sin(3*x)$"];
                 <link linkend="graphics_entities">graphics_entities</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>line_width and marks_count properties added.</revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

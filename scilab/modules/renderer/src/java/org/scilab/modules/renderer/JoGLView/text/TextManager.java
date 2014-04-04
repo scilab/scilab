@@ -24,6 +24,7 @@ import org.scilab.forge.scirenderer.tranformations.Vector3d;
 import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.figure.ColorMap;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.textObject.Text;
 import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
 import org.scilab.modules.renderer.JoGLView.util.ScaleUtils;
@@ -144,9 +145,7 @@ public class TextManager {
      */
     protected Vector3d[] computeTextBoxVectors(Transformation projection, Text text, Dimension dimension, Axes parentAxes) {
         Double[] textBox = text.getTextBox();
-
         Vector3d[] textBoxVectors = new Vector3d[2];
-
         double[][] factors = parentAxes.getScaleTranslateFactors();
         Double[] pos = text.getPosition();
 
@@ -177,7 +176,6 @@ public class TextManager {
         /* Applies inverse logarithmic scaling */
         textWidth = ScaleUtils.applyInverseLogScale(textWidth, logFlags);
         textHeight = ScaleUtils.applyInverseLogScale(textHeight, logFlags);
-
 
         textWidth = textWidth.minus(textPosition);
         textHeight = textHeight.minus(textPosition);
@@ -280,7 +278,6 @@ public class TextManager {
      */
     protected Vector3d[] computeTextPosition(Transformation projection, Text text, Vector3d[] textBoxVectors, Dimension spriteDim) throws DegenerateMatrixException {
         Vector3d[] cornerPositions = new Vector3d[2];
-
         Integer parentAxesId = text.getParentAxes();
         Axes parentAxes = (Axes) GraphicController.getController().getObjectFromId(parentAxesId);
         double[][] factors = parentAxes.getScaleTranslateFactors();
@@ -606,7 +603,7 @@ public class TextManager {
     public static void updateTextCorners(Text text) {
         Vector3d[] projCorners = null;
 
-        DrawerVisitor currentVisitor = DrawerVisitor.getVisitor(text.getParentFigure());
+        DrawerVisitor currentVisitor = DrawerVisitor.getVisitor(text.getParentFrameOrFigure());
         Axes parentAxes = (Axes) GraphicController.getController().getObjectFromId(text.getParentAxes());
 
         /* Compute the corners */

@@ -43,6 +43,7 @@
 #include "getConsoleIdentifier.h"
 #include "CurrentSubwin.h"
 #include "sciprint.h"
+#include "createGraphicObject.h"
 
 #include "os_strdup.h"
 /*--------------------------------------------------------------------------*/
@@ -102,6 +103,21 @@ int sci_delete(char *fname, void* pvApiCtx)
 
         switch (getInputArgumentType(pvApiCtx, 1))
         {
+            case sci_matrix:
+            {
+                if (isEmptyMatrix(pvApiCtx, piAddrl1))
+                {
+                    AssignOutputVariable(pvApiCtx, 1) = 0;
+                    ReturnArguments(pvApiCtx);
+                    return 1;
+                }
+                else
+                {
+                    Scierror(202, _("%s: Wrong type for input argument #%d: Handle matrix expected.\n"), fname, 1);
+                    return 1;
+                }
+                break;
+            }
             case sci_handles:      /* delete Entity given by a handle */
 
                 // Retrieve a matrix of handle at position 1.
@@ -254,9 +270,13 @@ int sci_delete(char *fname, void* pvApiCtx)
             int iChildType = -1;
             int *piChildType = &iChildType;
             int iAxesFound = 0;
+            int iDefaultAxes = -1;
+            int *piDefaultAxes = &iDefaultAxes;
 
             getGraphicObjectProperty(iParentUID, __GO_CHILDREN_COUNT__, jni_int, (void **)&piChildCount);
             getGraphicObjectProperty(iParentUID, __GO_CHILDREN__, jni_int_vector, (void **)&piChildrenUID);
+            getGraphicObjectProperty(iParentUID, __GO_DEFAULT_AXES__, jni_bool, (void **)&piDefaultAxes);
+
             for (iChild = 0; iChild < iChildCount; iChild++)
             {
                 getGraphicObjectProperty(piChildrenUID[iChild], __GO_TYPE__, jni_int, (void **)&piChildType);
@@ -270,8 +290,9 @@ int sci_delete(char *fname, void* pvApiCtx)
                     break;
                 }
             }
-            if (!iAxesFound)
+            if (!iAxesFound && iDefaultAxes != 0)
             {
+
                 /*
                  * Clone a new Axes object using the Axes model which is then
                  * attached to the newly created Figure.

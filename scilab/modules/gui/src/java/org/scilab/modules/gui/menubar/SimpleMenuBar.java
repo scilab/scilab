@@ -58,4 +58,10 @@ public interface SimpleMenuBar {
      * @param menuName the name of the menu
      */
     void removeMenu(String menuName);
+    
+    /**
+     * Set the visibility of the Toolbar
+     * @param newVisibleState true to set the toolbar visible
+     */
+    void setVisible(boolean newVisibleState);
 }

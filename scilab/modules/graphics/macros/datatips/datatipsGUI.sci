@@ -34,9 +34,6 @@ function datatipsGUI(curve_handle)
     ud=datatipGetStruct(datatipGUICurve)
     if typeof(ud)<>"datatips" then
         //no datatips structure yet, initialize it
-        if ~datatipInitStruct(curve) then
-            return
-        end
         ud=datatipGetStruct(curve)
     end
     style=ud.style

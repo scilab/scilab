@@ -12,7 +12,10 @@
  *
  */
 
-#include "GetUicontrolFontName.hxx"
+extern "C"
+{
+#include "GetUicontrol.h"
+}
 
 void* GetUicontrolFontName(void* _pvCtx, int iObjUID)
 {

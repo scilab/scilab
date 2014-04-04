@@ -63,7 +63,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // ランダムに選択された補間点について cos(x)cos(y)を補間します
 n = 150; // nb 個の補間点
 xy = grand(n,2,"unf",0,2*%pi);
@@ -79,7 +79,7 @@ Z = eval_cshep2d(X,Y, tl_coef);
 clf()
 plot3d(xx,xx,Z,flag=[2 6 4])
 param3d1(xy(:,1),xy(:,2),list(z,-9), flag=[0 0])
-xtitle("Cubic Shepard Interpolation of cos(x)cos(y) with randomly choosen interpolation points")
+xtitle("Cubic Shepard Interpolation of cos(x)cos(y) with randomly chosen interpolation points")
 legends("interpolation points",-9,1)
 show_window()
  ]]></programlisting>

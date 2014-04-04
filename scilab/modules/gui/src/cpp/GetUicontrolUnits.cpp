@@ -12,15 +12,10 @@
  *
  */
 
-#include "GetUicontrolUnits.hxx"
-
 extern "C"
 {
-#include "graphicObjectProperties.h"
-#include "getGraphicObjectProperty.h"
+#include "GetUicontrol.h"
 }
-
-using namespace org_scilab_modules_gui_bridge;
 
 void* GetUicontrolUnits(void* _pvCtx, int iObjUID)
 {

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="createConstraints">
+    <refnamediv>
+        <refname>createConstraints</refname>
+        <refpurpose>Creates the layout constraints structure for a uicontrol.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            constraints = createConstraints(constraintsType, varargin)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>constraintsType</term>
+                <listitem>
+                    <para>String</para>
+                    <para>The type of the layout constraints to be created. Available types of constraints are listed below and their specific properties are detailled on dedicated help page:</para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                "none" or "nolayout": No constraints will be added to the uicontrol layout.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                "grid": A <link linkend="grid_constraints_properties">grid layout constraint</link>.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                "border": A <link linkend="border_constraints_properties">border layout constraint</link>. 
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                "gridbag": A <link linkend="gridbag_constraints_properties">gridbag layout constraint</link>.
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>varargin</term>
+                <listitem>
+                    <para>
+                        All <literal>constraintsType</literal> specific properties.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>constraints</term>
+                <listitem>
+                    <para>The created constraints.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            This function creates the constraints structure for uicontrols <literal>constraints</literal> attribute. See <link linkend="uicontrol_properties">uicontrol properties.</link> for more details.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="uicontrol">uicontrol</link>
+            </member>
+            <member>
+                <link linkend="uicontrol_properties">uicontrol_properties</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>
+                    Function <function>createBorder</function> introduced.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

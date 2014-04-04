@@ -16,6 +16,7 @@
 #include "BOOL.h"
 #include "gw_graphic_export.h"
 #include "callFunctionFromGateway.h"
+
 /*--------------------------------------------------------------------------*/
 int gw_graphic_export(void)
 {

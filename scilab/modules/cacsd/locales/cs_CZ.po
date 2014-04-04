@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 16967)\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
@@ -33,8 +33,8 @@ msgid "%s: Wrong value for input argument #%d: Must be in [%d %d].\n"
 msgstr "%s: Špatná hodnota pro vstupní argument #%d: Musí být v [%d %d].\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: A real expected.\n"
-msgstr "%s: Špatný typ argumentu %d: Očekáváno reálné číslo.\n"
+msgid "%s: Wrong type for argument #%d: A real expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: A must be a square matrix.\n"
@@ -111,9 +111,8 @@ msgid "%s: Wrong value for %s: %d or %d expected.\n"
 msgstr "%s: Špatná hodnota %s: Očekáváno %d nebo %d.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Real or complex matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Real or complex matrix expected.\n"
 msgstr ""
-"%s: Špatný typ argumentu %d: Očekávána reálná nebo komplexní matice.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A square matrix expected.\n"
@@ -185,8 +184,8 @@ msgstr ""
 "hodnoty.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: A complex expected.\n"
-msgstr "%s: Špatný typ argumentu %d: Očekáváno komplexní číslo.\n"
+msgid "%s: Wrong type for argument #%d: A complex expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input arguments #%d and #%d: Same size expected.\n"
@@ -215,26 +214,8 @@ msgid "%s: Wrong type for argument #%d: A string expected.\n"
 msgstr "%s: Špatný typ argumentu #%d: Očekáván řetězec.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Type must be continuous or "
-"discrete.\n"
+msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
 msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: Typ musí být spojitý nebo "
-"diskrétní.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Method must be schur or sign.\n"
-msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: Metoda musí být schur nebo "
-"sign.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Method must be schur or invf.\n"
-msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: Metoda musí být schur nebo "
-"invf.\n"
 
 #, c-format
 msgid "%s: RICCSL exit with info = %d.\n"
@@ -303,6 +284,9 @@ msgstr "Sledování"
 
 msgid "Robust control"
 msgstr "Robustní ovládání"
+
+msgid "Press Return to continue ... \n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -449,12 +433,6 @@ msgstr "Fáze (stp)"
 msgid "Magnitude (dB)"
 msgstr "Rozsah (dB)"
 
-msgid "Hz"
-msgstr "Hz"
-
-msgid "dB"
-msgstr "dB"
-
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A list expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván seznam.\n"
@@ -505,15 +483,16 @@ msgstr "Frekvence (Hz)"
 msgid "Phase (degree)"
 msgstr "Fáze (stupeň)"
 
+msgid "Frequency (rad/s)"
+msgstr ""
+
 #, c-format
 msgid ""
 "Wrong type for argument #%d: Rational or State-space matrix expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Problem evaluating the first argument.\n"
-"n"
+msgid "%s: Wrong value for input argument #%d: Evaluation failed.\n"
 msgstr ""
 
 #, c-format
@@ -635,6 +614,10 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: Detectable system expected.\n"
 msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: Očekáván zjistitelný systém.\n"
+
+#, c-format
+msgid "%s: Input argument #%d is assumed continuous time.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A proper system expected\n"
@@ -782,6 +765,15 @@ msgstr "%s: Špatný počet výstupních argumentů: Očekáváno %d.\n"
 #, c-format
 msgid "%s: At least %s past values needed.\n"
 msgstr "%s: Vyžadováno alespoň %s předchozích hodnot.\n"
+
+msgid "Hz"
+msgstr "Hz"
+
+msgid "dB"
+msgstr "dB"
+
+msgid "rad/sec"
+msgstr "rad/sek"
 
 #, c-format
 msgid "%s: Iteration %s, error=%s.\n"
@@ -1030,6 +1022,10 @@ msgstr ""
 "'d'.\n"
 
 #, c-format
+msgid "%s: Wrong value for input argument #%d: c or d expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d.\n"
 
@@ -1087,8 +1083,8 @@ msgid "Phase (Deg)"
 msgstr "Fáze (Stup)"
 
 #, c-format
-msgid "%s: Wrong value of input argument %d: Proper system expected.\n"
-msgstr "%s: Špatná hodnota vstupního argumentu %d: Očekáván řádný systém.\n"
+msgid "%s: Wrong value of input argument #%d: Proper system expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
@@ -1136,9 +1132,6 @@ msgid ""
 msgstr ""
 "%s: Špatný typ vstupního argumentu #%d: Očekáváno reálné desetinné pole\n"
 
-msgid "rad/sec"
-msgstr "rad/sek"
-
 #, c-format
 msgid "%s: Cannot find the state dimension.\n"
 msgstr "%s: Nelze najít rozměr stavu.\n"
@@ -1174,6 +1167,17 @@ msgid ""
 msgstr ""
 "%s: Špatné hodnoty vstupního argumentu #%d: Stabilní matice - eye je "
 "jednotné.\n"
+
+#, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Same number of rows expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Same number of columns "
+"expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: time domains are not compatible.\n"

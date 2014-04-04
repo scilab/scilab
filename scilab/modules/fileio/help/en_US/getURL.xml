@@ -101,7 +101,7 @@
         
         <para>IPv6 (and obviously IPv4) are supported out-of-the box by getURL.</para>
         
-        <para>Proxy configuration is enabled in this version. It uses the parameters from ATOMS config file.</para>
+        <para>Proxy configuration is enabled in this version, it can be modified in the Preferences under the rubric "Internet".</para>
         
         <para>
             The <emphasis role="italic">CURLOPT_FOLLOWLOCATION</emphasis> curl option is activated to make sure the download follow the URL.

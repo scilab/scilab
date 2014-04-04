@@ -32,4 +32,5 @@
     <gateway name="sci_driver"  function="driver"   type="0" />
     <gateway name="sci_xinit"   function="xinit"    type="0" />
     <gateway name="sci_xend"    function="xend"     type="0" />
+    <gateway name="sci_xs2emf"  function="xs2emf"   type="0" />
 </module>

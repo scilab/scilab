@@ -504,12 +504,6 @@
                     </para>
                 </listitem>
             </varlistentry>
-            <varlistentry>
-                <term>getsymbol</term>
-                <listitem>
-                    <para>Diálogo para a seleção de um símbolo e seu tamanho.</para>
-                </listitem>
-            </varlistentry>
         </variablelist>
     </refsection>
     <refsection>

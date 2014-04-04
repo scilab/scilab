@@ -33,6 +33,7 @@ int sci_matfile_listvar(char *fname, void* pvApiCtx)
     int * fd_addr = NULL;
     double tmp_dbl;
     SciErr sciErr;
+    int iErr = 0;
 
     CheckRhs(1, 1);
     CheckLhs(1, 3);
@@ -117,50 +118,78 @@ int sci_matfile_listvar(char *fname, void* pvApiCtx)
     Mat_VarFree(matvar);
 
     /* Return the variable names list */
-    nbRow = nbvar;
-    nbCol = 1;
-    sciErr = createMatrixOfString(pvApiCtx, Rhs + 1, nbRow, nbCol, varnames);
-    if (sciErr.iErr)
+    if (nbvar == 0)
     {
-        printError(&sciErr, 0);
-        return 0;
-    }
-    LhsVar(1) = Rhs + 1;
+        /* No variables found in MatFile */
 
-    /* Return the variable classes */
-    if (Lhs >= 2)
+        /* Return the empty names */
+        iErr = createEmptyMatrix(pvApiCtx, Rhs + 1);
+        if (iErr)
+        {
+            Scierror(999, _("%s: Memory allocation error.\n"), fname);
+            return 0;
+        }
+        LhsVar(1) = Rhs + 1;
+
+        /* Return the empty classes if asked */
+        if (Lhs >= 2)
+        {
+            iErr = createEmptyMatrix(pvApiCtx, Rhs + 2);
+            if (iErr)
+            {
+                Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                return 0;
+            }
+            LhsVar(2) = Rhs + 2;
+        }
+
+        /* Return the empty types if asked */
+        if (Lhs >= 3)
+        {
+            iErr = createEmptyMatrix(pvApiCtx, Rhs + 3);
+            if (iErr)
+            {
+                Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                return 0;
+            }
+            LhsVar(3) = Rhs + 3;
+        }
+    }
+    else
     {
-        sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 2, nbRow, nbCol, varclasses);
+        nbRow = nbvar;
+        nbCol = 1;
+        sciErr = createMatrixOfString(pvApiCtx, Rhs + 1, nbRow, nbCol, varnames);
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
             return 0;
         }
-        LhsVar(2) = Rhs + 2;
-    }
+        LhsVar(1) = Rhs + 1;
 
-    /* Return the variable types */
-    if (Lhs >= 3)
-    {
-        sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 3, nbRow, nbCol, vartypes);
-        if (sciErr.iErr)
+        /* Return the variable classes */
+        if (Lhs >= 2)
         {
-            printError(&sciErr, 0);
-            return 0;
+            sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 2, nbRow, nbCol, varclasses);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                return 0;
+            }
+            LhsVar(2) = Rhs + 2;
         }
-        LhsVar(2) = Rhs + 2;
-    }
 
-    /* Return the variable types */
-    if (Lhs >= 3)
-    {
-        sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 3, nbRow, nbCol, vartypes);
-        if (sciErr.iErr)
+        /* Return the variable types */
+        if (Lhs >= 3)
         {
-            printError(&sciErr, 0);
-            return 0;
+            sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 3, nbRow, nbCol, vartypes);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                return 0;
+            }
+            LhsVar(3) = Rhs + 3;
         }
-        LhsVar(3) = Rhs + 3;
     }
 
     freeArrayOfString(varnames, nbvar);

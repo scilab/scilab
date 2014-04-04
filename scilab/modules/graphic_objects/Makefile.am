@@ -30,13 +30,14 @@ BUILT_SOURCES = 	includes/graphicObjectsProperties.h
 #src/java/org/scilab/modules/graphic_objects/graphicObject/GraphicObjectProperties.java
 
 GRAPHIC_OBJECTS_JNI_SOURCES = src/jni/CallGraphicController.cpp \
-                              src/jni/GraphicObjectBuilder.cpp
+                              src/jni/Builder.cpp \
+                              src/jni/CallXmlLoader.cpp
 
 GRAPHIC_OBJECTS_C_SOURCES = src/jni/DataLoader_wrap.c \
 							src/jni/ScilabNativeView_wrap.c \
 							src/jni/PolylineData_wrap.c \
 							src/jni/SurfaceData_wrap.c \
-                                                        src/jni/ObjectData_wrap.c
+                            src/jni/ObjectData_wrap.c
 
 GRAPHIC_OBJECTS_CXX_SOURCES = 	src/cpp/createGraphicObject.cpp \
 								src/cpp/getGraphicObjectProperty.cpp \
@@ -78,7 +79,8 @@ GRAPHIC_OBJECTS_CXX_SOURCES = 	src/cpp/createGraphicObject.cpp \
 								src/cpp/Texture.cpp \
 								src/cpp/NormalGenerator.cpp
 
-GIWS_WRAPPERS = src/jni/graphic_objects.giws.xml
+GIWS_WRAPPERS = src/jni/graphic_objects.giws.xml \
+                src/jni/builder.giws.xml
 
 if GIWS
 BUILT_SOURCES += giws
@@ -96,13 +98,15 @@ libscigraphic_objects_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 	 		-I$(top_srcdir)/modules/jvm/includes/ \
 			-I$(top_srcdir)/modules/localization/includes/ \
 			-I$(top_srcdir)/modules/operations/includes/ \
-			-I$(top_srcdir)/modules/output_stream/includes/
+			-I$(top_srcdir)/modules/output_stream/includes/ \
+			-I$(top_srcdir)/modules/string/includes/ \
 			$(AM_CPPFLAGS)
 
 # Without the graphic_objects module
 libscigraphic_objects_disable_la_CPPFLAGS = -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/localization/includes/ \
-			-I$(top_srcdir)/modules/output_stream/includes/
+			-I$(top_srcdir)/modules/output_stream/includes/ \
+			-I$(top_srcdir)/modules/system_env/includes/ \
 			$(AM_CPPFLAGS)
 
 GRAPHIC_OBJECTS_DISABLE_C_SOURCES = src/nographic_objects/nographic_objects.c
@@ -114,7 +118,7 @@ if GUI
 pkglib_LTLIBRARIES += libscigraphic_objects.la
 endif
 
-libscigraphic_objects_la_LDFLAGS = $(X_LIBS) $(X_EXTRA_LIBS) $(AM_LDFLAGS)
+libscigraphic_objects_la_LDFLAGS = $(AM_LDFLAGS)
 
 libscigraphic_objects_la_SOURCES = $(GRAPHIC_OBJECTS_GEN_SOURCES) $(GRAPHIC_OBJECTS_C_SOURCES) $(GRAPHIC_OBJECTS_JNI_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CXX_SOURCES) $(GRAPHIC_OBJECTS_CXX_SOURCES)
 
@@ -135,7 +139,7 @@ if SWIG
 BUILT_SOURCES+=swig
 endif
 
-libscigraphic_objects_la_LIBADD = $(top_builddir)/modules/output_stream/libscioutput_stream.la
+libscigraphic_objects_la_LIBADD = $(top_builddir)/modules/output_stream/libscioutput_stream.la $(X_LIBS) $(X_EXTRA_LIBS)
 
 
 #### graphic_objects : gateway declaration ####

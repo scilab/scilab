@@ -16,7 +16,7 @@ assert_checkequal(repmat(a,2,3,2),matrix(int8([1;0;1;0;0;1;0;1;1;0;1;0;1;0;1;0;0
 1;0]),4,9,2));
 assert_checkequal(repmat("Scilab",3,2),["Scilab","Scilab";"Scilab","Scilab";"Scilab","Scilab"]);
 H=repmat([1/%s;2/(%s+1)],1,3);
-s=poly(0,'s');
+s=poly(0,"s");
 H_ref=[1/s,1/s,1/s;2/(1+s),2/(1+s),2/(1+s)];
 assert_checkequal(numer(H),numer(H_ref));
 assert_checkequal(denom(H),denom(H_ref));

@@ -2,6 +2,7 @@
 # Please see in SCI/tools/localization for localization management
 # Copyright (C) 2007-2008 - INRIA
 # Copyright (C) 2008-2011 - DIGITEO
+# Copyright (C) 2012-2014 - Scilab-Enterprises
 # This file is distributed under the same license as the Scilab package.
 #
 msgid ""
@@ -9,47 +10,45 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab.org>\n"
+"Last-Translator: Vincent COUVERT <vincent.couvert@scilab-enterprises.com>\n"
 "Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-12-09 09:48+0100\n"
+"Revision-Date: 2014-04-01 12:32+0100\n"
 
 # File: sci_gateway/c/sci_matfile_close.c, line: 63
-# File: sci_gateway/c/sci_matfile_listvar.c, line: 62
+# File: sci_gateway/c/sci_matfile_listvar.c, line: 63
 # File: sci_gateway/c/sci_matfile_varreadnext.c, line: 61
-# File: sci_gateway/c/sci_matfile_varwrite.c, line: 65
 #, c-format
 msgid "%s: Wrong size for first input argument: Single double expected.\n"
 msgstr ""
 
 #
 # File: sci_gateway/c/sci_matfile_close.c, line: 70
-# File: sci_gateway/c/sci_matfile_listvar.c, line: 69
+# File: sci_gateway/c/sci_matfile_listvar.c, line: 70
 # File: sci_gateway/c/sci_matfile_varreadnext.c, line: 68
-# File: sci_gateway/c/sci_matfile_varwrite.c, line: 72
 #, c-format
 msgid "%s: Wrong type for first input argument: Double expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_matfile_listvar.c, line: 78
+# File: sci_gateway/c/sci_matfile_listvar.c, line: 79
 # File: sci_gateway/c/sci_matfile_varreadnext.c, line: 77
 #, c-format
 msgid "%s: Invalid file identifier.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_matfile_listvar.c, line: 85
+# File: sci_gateway/c/sci_matfile_listvar.c, line: 86
 #, c-format
 msgid "%s: Could not rewind the file %s.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_matfile_listvar.c, line: 96
-# File: sci_gateway/c/sci_matfile_listvar.c, line: 103
-# File: sci_gateway/c/sci_matfile_listvar.c, line: 110
+# File: sci_gateway/c/sci_matfile_listvar.c, line: 97
+# File: sci_gateway/c/sci_matfile_listvar.c, line: 104
+# File: sci_gateway/c/sci_matfile_listvar.c, line: 111
 # File: src/c/CreateBooleanVariable.c, line: 39
 # File: src/c/CreateBooleanVariable.c, line: 73
 # File: src/c/CreateBooleanVariable.c, line: 109
@@ -114,47 +113,79 @@ msgid "%s: No more memory.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_matfile_open.c, line: 64
+# File: sci_gateway/c/sci_matfile_listvar.c, line: 131
+# File: sci_gateway/c/sci_matfile_listvar.c, line: 142
+# File: sci_gateway/c/sci_matfile_listvar.c, line: 154
 #, c-format
-msgid "%s: Wrong size for first input argument: Single string expected.\n"
+msgid "%s: Memory allocation error.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_matfile_open.c, line: 71
+# File: sci_gateway/c/sci_matfile_open.c, line: 67
 #, c-format
-msgid "%s: Wrong type for first input argument: Single string expected.\n"
+msgid "%s: Wrong size for first input argument: A string expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_matfile_open.c, line: 104
+# File: sci_gateway/c/sci_matfile_open.c, line: 74
+#, c-format
+msgid "%s: Wrong type for first input argument: A string expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_matfile_open.c, line: 107
 # File: sci_gateway/c/sci_matfile_varwrite.c, line: 105
 #, c-format
-msgid "%s: Wrong size for second input argument: Single string expected.\n"
+msgid "%s: Wrong size for second input argument: A string expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_matfile_open.c, line: 121
+# File: sci_gateway/c/sci_matfile_open.c, line: 124
 #, c-format
 msgid "%s: Wrong value for second input argument: 'r' or 'w' expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_matfile_open.c, line: 130
+# File: sci_gateway/c/sci_matfile_open.c, line: 133
 # File: sci_gateway/c/sci_matfile_varwrite.c, line: 114
 #, c-format
-msgid "%s: Wrong type for second input argument: Single string expected.\n"
+msgid "%s: Wrong type for second input argument: A string expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_matfile_open.c, line: 173
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_matfile_open.c, line: 192
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_matfile_varwrite.c, line: 65
+#, c-format
+msgid "%s: Wrong size for first input argument: An integer value expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_matfile_varwrite.c, line: 72
+#, c-format
+msgid "%s: Wrong type for first input argument: An integer value expected.\n"
 msgstr ""
 
 #
 # File: sci_gateway/c/sci_matfile_varwrite.c, line: 145
 #, c-format
-msgid "%s: Wrong size for fourth input argument: Single boolean expected.\n"
+msgid "%s: Wrong size for fourth input argument: A boolean expected.\n"
 msgstr ""
 
 #
 # File: sci_gateway/c/sci_matfile_varwrite.c, line: 154
 #, c-format
-msgid "%s: Wrong type for fourth input argument: Single boolean expected.\n"
+msgid "%s: Wrong type for fourth input argument: A boolean expected.\n"
 msgstr ""
 
 #
@@ -251,66 +282,64 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/savematfile.sci, line: 20
+# File: macros/savematfile.sci, line: 21
 msgid "All inputs must be character strings."
 msgstr ""
 
 #
-# File: macros/savematfile.sci, line: 47
-# File: macros/savematfile.sci, line: 101
+# File: macros/savematfile.sci, line: 48
+# File: macros/savematfile.sci, line: 102
 #, c-format
 msgid "Option %s not implemented: IGNORED."
 msgstr ""
 
 #
-# File: macros/savematfile.sci, line: 121
+# File: macros/savematfile.sci, line: 122
 msgid "Option -v7 added."
 msgstr ""
 
 #
-# File: macros/savematfile.sci, line: 150
+# File: macros/savematfile.sci, line: 151
 #, c-format
 msgid "Variable %s can not be saved in level 4 MAT-file: IGNORED."
 msgstr ""
 
 #
-# File: macros/savematfile.sci, line: 161
-# File: macros/savematfile.sci, line: 270
-# File: macros/savematfile.sci, line: 299
-# File: macros/savematfile.sci, line: 351
+# File: macros/savematfile.sci, line: 162
+# File: macros/savematfile.sci, line: 271
+# File: macros/savematfile.sci, line: 300
+# File: macros/savematfile.sci, line: 329
+# File: macros/savematfile.sci, line: 379
 #, c-format
 msgid "Name conflict: it is not possible to save variable with name %s."
 msgstr ""
 
 #
-# File: macros/savematfile.sci, line: 217
+# File: macros/savematfile.sci, line: 218
 msgid "Attempt to write an unsupported data type to an ASCII file."
 msgstr ""
 
 #
-# File: macros/savematfile.sci, line: 265
-# File: macros/savematfile.sci, line: 294
+# File: macros/savematfile.sci, line: 266
+# File: macros/savematfile.sci, line: 295
+# File: macros/savematfile.sci, line: 324
 #, c-format
 msgid "%s: Could not open file '%s'.\n"
 msgstr ""
 
 #
-# File: macros/savematfile.sci, line: 282
-# File: macros/savematfile.sci, line: 285
-# File: macros/savematfile.sci, line: 311
-# File: macros/savematfile.sci, line: 314
+# File: macros/savematfile.sci, line: 283
+# File: macros/savematfile.sci, line: 286
+# File: macros/savematfile.sci, line: 312
+# File: macros/savematfile.sci, line: 315
+# File: macros/savematfile.sci, line: 341
+# File: macros/savematfile.sci, line: 344
 #, c-format
 msgid "savematfile: could not save variable named %s.\n"
 msgstr ""
 
 #
-# File: macros/savematfile.sci, line: 320
-#, c-format
-msgid "Version %d MAT-file not implemented."
-msgstr ""
-
-#
-# File: macros/savematfile.sci, line: 331
+# File: macros/savematfile.sci, line: 359
 #, c-format
 msgid "Variable %s can not be saved in ASCII file: IGNORED."
 msgstr ""

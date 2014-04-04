@@ -31,15 +31,13 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 
+import org.scilab.modules.commons.gui.FindIconHelper;
+import org.scilab.modules.commons.gui.ScilabLAF;
 import org.scilab.modules.commons.gui.ScilabKeyStroke;
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
-import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
-import org.scilab.modules.gui.pushbutton.PushButton;
-import org.scilab.modules.gui.pushbutton.ScilabPushButton;
-import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.ui_data.UI_data;
 import org.scilab.modules.ui_data.datatable.SwingEditvarTableModel;
 import org.scilab.modules.ui_data.utils.UiDataMessages;
@@ -119,7 +117,7 @@ public final class CreateNewVariableAction extends CommonCallBack {
         final Object[] ret = new Object[] { "", new Integer(0), new Integer(0), "" };
         dialog.setModalityType(ModalityType.APPLICATION_MODAL);
         dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-        dialog.setIconImage(new ImageIcon(ScilabSwingUtilities.findIcon("rrze_table", "256x256")).getImage());
+        dialog.setIconImage(new ImageIcon(FindIconHelper.findIcon("rrze_table", "256x256")).getImage());
 
         JPanel panel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -248,12 +246,13 @@ public final class CreateNewVariableAction extends CommonCallBack {
      * @param title tooltip for the button
      * @return the button
      */
-    public static PushButton createButton(SwingScilabVariableEditor editor, String title) {
-        PushButton button = ScilabPushButton.createPushButton();
-        ((SwingScilabPushButton) button.getAsSimplePushButton()).addActionListener(new CreateNewVariableAction(editor, title));
+    public static JButton createButton(SwingScilabVariableEditor editor, String title) {
+        JButton button = new JButton();
+        ScilabLAF.setDefaultProperties(button);
+        button.addActionListener(new CreateNewVariableAction(editor, title));
         button.setToolTipText(title);
-        ImageIcon imageIcon = new ImageIcon(ScilabSwingUtilities.findIcon("variable-new"));
-        ((SwingScilabPushButton) button.getAsSimplePushButton()).setIcon(imageIcon);
+        ImageIcon imageIcon = new ImageIcon(FindIconHelper.findIcon("variable-new"));
+        button.setIcon(imageIcon);
 
         return button;
     }

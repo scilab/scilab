@@ -6,9 +6,9 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
-        <synopsis>X=eye(m,n)
-            X=eye(A)
-            X=eye()
+        <synopsis>X = eye(m,n)
+            X = eye(A)
+            X = eye()
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -25,25 +25,27 @@
             <varlistentry>
                 <term>m,n</term>
                 <listitem>
-                    <para>entiers</para>
+                    <para>
+                        valeurs entières : nombre de lignes et nombre de colonnes souhaitées pour <varname>X</varname>
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
         <title>Description</title>
-        <para>Renvoie, suivant les arguments, une matrice
+        <para>Renvoie, suivant les arguments, une matrice de dimensions
             <literal>m</literal>x<literal>n</literal> avec des 1 sur la diagonale
-            principale ou une matrice identité de même taille que <literal>A</literal>
-            . Dans le cas où <varname>A</varname> est une hypermatrice, 
-            alors <varname>X</varname> sera de la forme:
-            <literal>X(i,i,...,i)=1</literal> (avec <literal>i=min(size(A)</literal>).
+            principale ou une matrice identité de même taille que <literal>A</literal>. 
+            Dans le cas où <varname>A</varname> est une hypermatrice, 
+            <varname>X</varname> sera de la forme:
+            <literal>X(i,i,...,i) = 1</literal> avec <literal>i</literal> de 1 à <literal>min(size(A))</literal>.
         </para>
-        <para>
-            Attention : <literal>eye(10)</literal> est équivalent à
+        <warning>
+            <literal>eye(10)</literal> est équivalent à
             <literal>eye(A)</literal> avec <literal>A=10</literal> c'est à dire
-            <literal>1</literal>. (Ce n'est pas une matrice identité 10 x 10!).
-        </para>
+            <literal>1</literal>. Ce n'est pas une matrice identité 10 x 10 !.
+        </warning>
         <para>
             Si <literal>A</literal> est un système linéaire représenté par une
             liste de type <literal>syslin</literal>, <literal>eye(A)</literal> renvoie
@@ -78,5 +80,16 @@ eye(zeros(4,4,4,4))
                 <link linkend="zeros">zeros</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>Historique</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revdescription>
+                    <para>Généralisation à toute hypermatrice à N>2 dimensions</para>
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

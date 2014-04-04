@@ -32,6 +32,7 @@ import java.util.regex.Pattern;
 import javax.swing.ActionMap;
 import javax.swing.ImageIcon;
 import javax.swing.InputMap;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
@@ -45,9 +46,8 @@ import javax.swing.plaf.basic.BasicTreeUI;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.tree.TreePath;
 
+import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
-import org.scilab.modules.gui.pushbutton.PushButton;
-import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.ui_data.filebrowser.actions.ChangeCWDAction;
 import org.scilab.modules.ui_data.filebrowser.actions.EditFileWithDefaultAppAction;
 import org.scilab.modules.ui_data.filebrowser.actions.ExecuteFileInConsoleAction;
@@ -217,14 +217,14 @@ public class SwingScilabTreeTable extends JTable {
     /**
      * @return the Next button used in history
      */
-    public PushButton getNextButton() {
+    public JButton getNextButton() {
         return history.getNextButton();
     }
 
     /**
      * @return the Previous button used in history
      */
-    public PushButton getPreviousButton() {
+    public JButton getPreviousButton() {
         return history.getPreviousButton();
     }
 
@@ -403,22 +403,22 @@ public class SwingScilabTreeTable extends JTable {
         JPopupMenu popup = new JPopupMenu();
         JMenuItem item = new JMenuItem(UiDataMessages.OPENINSCINOTES);
         item.addActionListener(actions.get("scinotes"));
-        item.setIcon(new ImageIcon(ScilabSwingUtilities.findIcon("accessories-text-editor")));
+        item.setIcon(new ImageIcon(FindIconHelper.findIcon("accessories-text-editor")));
         popup.add(item);
 
         item = new JMenuItem(UiDataMessages.EXECINCONSOLE);
         item.addActionListener(actions.get("console"));
-        item.setIcon(new ImageIcon(ScilabSwingUtilities.findIcon("media-playback-start")));
+        item.setIcon(new ImageIcon(FindIconHelper.findIcon("media-playback-start")));
         popup.add(item);
 
         item = new JMenuItem(UiDataMessages.OPENINXCOS);
         item.addActionListener(actions.get("xcos"));
-        item.setIcon(new ImageIcon(ScilabSwingUtilities.findIcon("utilities-system-monitor")));
+        item.setIcon(new ImageIcon(FindIconHelper.findIcon("utilities-system-monitor")));
         popup.add(item);
 
         item = new JMenuItem(UiDataMessages.LOADINSCILAB);
         item.addActionListener(actions.get("load"));
-        item.setIcon(new ImageIcon(ScilabSwingUtilities.findIcon("scilab")));
+        item.setIcon(new ImageIcon(FindIconHelper.findIcon("scilab")));
         popup.add(item);
 
         if (actions.get("edit") != null || actions.get("open") != null) {

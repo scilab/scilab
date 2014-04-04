@@ -12,7 +12,10 @@
  *
  */
 
-#include "SetUicontrolFontAngle.hxx"
+extern "C"
+{
+#include "SetUicontrol.h"
+}
 
 int SetUicontrolFontAngle(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {

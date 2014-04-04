@@ -29,6 +29,7 @@ public class CallBack {
      * Scilab instruction command type constant
      */
     public static final int SCILAB_INSTRUCTION = 0;
+    public static final int SCILAB_NOT_INTERRUPTIBLE_INSTRUCTION = 10;
     /**
      * C or Fortran function type constant
      */
@@ -37,6 +38,7 @@ public class CallBack {
      * Scilab function type constant
      */
     public static final int SCILAB_FUNCTION = 2;
+    public static final int SCILAB_NOT_INTERRUPTIBLE_FUNCTION = 12;
     /**
      * Scilab function type constant (not trapped by scilab event listeners)
      */

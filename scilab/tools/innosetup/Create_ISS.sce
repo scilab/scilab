@@ -120,19 +120,6 @@ function ret = Update_Script_Innosetup(ISSFilenameSource)
         return;
     end;
 
-    if (scilab_version(3) == 0) then
-        HTTP_CHM = "http://fileexchange.scilab.org/toolboxes/CHM/" + string(scilab_version(1)) + "." + string(scilab_version(2)) + "/files";
-    else
-        HTTP_CHM = "http://fileexchange.scilab.org/toolboxes/CHM/" + string(scilab_version(1)) + "." + string(scilab_version(2)) + "." + string(scilab_version(3)) + "/files";
-    end
-
-    [SciFile,err] = FindAndReplace(SciFile,"#define CHM_DOWNLOAD_HTTP ", "#define CHM_DOWNLOAD_HTTP """ + HTTP_CHM + """");
-    if err == %F then
-        ret = err;
-        return;
-    end;
-
-
     currentVersion = sprintf("%d.%d.%d",scilab_version(1),scilab_version(2),scilab_version(3));
 
     [SciFile,err] = FindAndReplace(SciFile,"#define ScilabVersion ","#define ScilabVersion """+ currentVersion +"""");
@@ -229,13 +216,6 @@ function ret = Update_Script_Innosetup(ISSFilenameSource)
     end;
 
     [SciFile,err] = FindAndReplace(SciFile,"#define MKL_FFTW_PACKAGENAME","#define MKL_FFTW_PACKAGENAME ''" + MKL_FFTW_NAME + "''");
-    if err == %F then
-        ret = err;
-        return;
-    end;
-
-    CHM_NAME = "scilab-help-chm-" + ver_str + ".zip";
-    [SciFile,err] = FindAndReplace(SciFile,"#define CHM_PACKAGENAME","#define CHM_PACKAGENAME ''" + CHM_NAME + "''");
     if err == %F then
         ret = err;
         return;

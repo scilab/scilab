@@ -73,7 +73,7 @@ public class LightingUtils {
             if (object instanceof org.scilab.modules.graphic_objects.lighting.Light) {
                 //setup only visible lights
                 if (((org.scilab.modules.graphic_objects.lighting.Light)object).getVisible()) {
-                    setLight(manager, (org.scilab.modules.graphic_objects.lighting.Light)object, index++);
+                    setLight(manager, (org.scilab.modules.graphic_objects.lighting.Light)object, index++, axes);
                     hasLight = true;
                 }
             }
@@ -82,7 +82,7 @@ public class LightingUtils {
             }
         }
         for (int i = index; i < manager.getLightNumber(); ++i) {
-            manager.getLight(i).setEnable(false);
+            //manager.getLight(i).setEnable(false);
         }
         manager.setLightningEnable(hasLight);
     }
@@ -93,9 +93,13 @@ public class LightingUtils {
      * @param light the light.
      * @param index the light index.
      */
-    public static void setLight(LightManager manager, org.scilab.modules.graphic_objects.lighting.Light light, int index) {
-
+    public static void setLight(LightManager manager, org.scilab.modules.graphic_objects.lighting.Light light, int index, org.scilab.modules.graphic_objects.axes.Axes axes) {
         Light sciLight = manager.getLight(index);
+        double[][] factors = axes.getScaleTranslateFactors();
+        Double[] coords = light.getLightTypeAsInteger() == 0 ? light.getDirection() : light.getPosition();
+        coords[0] = coords[0] * factors[0][0] + factors[1][0];
+        coords[1] = coords[1] * factors[0][1] + factors[1][1];
+        coords[2] = coords[2] * factors[0][2] + factors[1][2];
 
         Double[] color = light.getAmbientColor();
         sciLight.setAmbientColor(new Color(color[0].floatValue(), color[1].floatValue(), color[2].floatValue()));
@@ -104,15 +108,10 @@ public class LightingUtils {
         color = light.getSpecularColor();
         sciLight.setSpecularColor(new Color(color[0].floatValue(), color[1].floatValue(), color[2].floatValue()));
 
-        switch (light.getLightTypeAsInteger()) {
-            case 0: //directional
-                sciLight.setDirection(new Vector3d(light.getDirection()));
-                break;
-            case 1: //point
-                sciLight.setPosition(new Vector3d(light.getPosition()));
-                break;
-            default:
-                break;
+        if (light.getLightTypeAsInteger() == 0) {
+            sciLight.setDirection(new Vector3d(coords));
+        } else {
+            sciLight.setPosition(new Vector3d(coords));
         }
 
         sciLight.setEnable(true);

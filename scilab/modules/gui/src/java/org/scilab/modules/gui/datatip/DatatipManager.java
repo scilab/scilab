@@ -13,9 +13,10 @@
 
 package org.scilab.modules.gui.datatip;
 
-
 import java.util.HashMap;
 import java.util.Map;
+
+import org.scilab.modules.graphic_objects.ScilabNativeView;
 
 /**
  * Manages all the datatipManagerMode.
@@ -39,6 +40,14 @@ public class DatatipManager {
         tipManagerMode.setFigure(figureUid);
         allDatatipManagers.put(figureUid, tipManagerMode);
         return tipManagerMode;
+    }
+
+    public static void start(int figureId) {
+        setEnabled(ScilabNativeView.ScilabNativeView__getFigureFromIndex(figureId), true);
+    }
+
+    public static void stop(int figureId) {
+        setEnabled(ScilabNativeView.ScilabNativeView__getFigureFromIndex(figureId), false);
     }
 
     /**
@@ -75,7 +84,6 @@ public class DatatipManager {
             tipManagerMode.setSelectedTip(tipUid);
         }
     }
-
 
     /**
      * Remove the DatatipManagerMode from the map.

@@ -20,12 +20,12 @@ config_downloadTool = atomsGetConfig("downloadTool");
 
 // Start config
 // =============================================================================
-ref=struct("downloadTool",config_downloadTool,"autoloadAddAfterInstall","False","Verbose","False");
+ref=struct("useProxy", "False", "downloadTool",config_downloadTool,"autoloadAddAfterInstall","False","Verbose","False");
 assert_checkequal(atomsGetConfig(),ref);
 
 // CamelCase test
 // =============================================================================
-ref=struct("downloadTool",config_downloadTool,"autoloadAddAfterInstall","False","Verbose","True");
+ref=struct("useProxy", "False", "downloadTool",config_downloadTool,"autoloadAddAfterInstall","False","Verbose","True");
 assert_checkequal(string(atomsSetConfig("Verbose","True")),"1");
 assert_checkequal(atomsGetConfig(),ref);
 assert_checkequal(string(atomsSetConfig("verbose","true")),"0");
@@ -46,18 +46,18 @@ assert_checkequal(atomsGetConfig(),ref);
 
 // Exhaustive key list test
 // =============================================================================
-ref=struct(	"useProxy","False",..
-		"proxyUser","scilab",..
-		"proxyPort","42",..
-		"proxyPassword","scilab",..
-		"proxyHost","myproxy",..
-		"offline","False",..
-		"downloadTool",config_downloadTool,..
-		"autoloadAddAfterInstall","False",..
-		"autoload","True",..
-		"Verbose","True");
+ref=struct("useProxy","False",..
+"proxyUser","scilab",..
+"proxyPort","42",..
+"proxyPassword","scilab",..
+"proxyHost","myproxy",..
+"offline","False",..
+"downloadTool",config_downloadTool,..
+"autoloadAddAfterInstall","False",..
+"autoload","True",..
+"Verbose","True");
 
-assert_checkequal(string(atomsSetConfig("useProxy","False")),"1");
+assert_checkequal(string(atomsSetConfig("useProxy","False")),"0");
 assert_checkequal(string(atomsSetConfig("proxyHost","myproxy")),"1");
 assert_checkequal(string(atomsSetConfig("proxyPort","42")),"1");
 assert_checkequal(string(atomsSetConfig("proxyUser","scilab")),"1");

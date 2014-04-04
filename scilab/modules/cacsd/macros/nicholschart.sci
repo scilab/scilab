@@ -18,6 +18,7 @@ function nicholschart(modules,args,colors)
     fig.immediate_drawing="off";
 
     ax=gca();
+    old_data_bounds = ax.data_bounds;
     nc=size(ax.children,"*")
     if nc==0 then
         ax.data_bounds=[-360,-40;0,40];
@@ -130,7 +131,8 @@ function nicholschart(modules,args,colors)
             e=gce();
             e.foreground=colors(1),
             e.line_style=7;
-            datatipInitStruct(e,"formatfunction","formatNicholsGainTip","gain",att)
+            e.display_function = "formatNicholsGainTip";
+            e.display_function_data = att;
 
             if size(S,"*")>1 then S=glue(S),end
             chart_handles=[glue([S,e]),chart_handles];
@@ -172,8 +174,8 @@ function nicholschart(modules,args,colors)
             e=gce();
             e.foreground=colors(2);
             e.line_style=7;
-            datatipInitStruct(e,"formatfunction", ...
-            "formatNicholsPhaseTip","phase",teta*180/%pi)
+            e.display_function = "formatNicholsPhaseTip";
+            e.display_function_data = teta * 180 / %pi;
             chart_handles=[e chart_handles]
         end;
     end
@@ -184,18 +186,11 @@ function nicholschart(modules,args,colors)
     end
 
     fig.immediate_drawing=immediate_drawing;
-endfunction
 
-function str=formatNicholsGainTip(curve,pt,index)
-    //This function is called by the datatip mechanism to format the tip
-    //string for the Nichols chart iso gain curves.
-    ud=datatipGetStruct(curve);
-    str=msprintf("%.2g"+_("dB"),ud.gain);
-endfunction
-
-function str=formatNicholsPhaseTip(curve,pt,index)
-    //This function is called by the datatip mechanism to format the tip
-    //string for the Nichols chart iso phase curves.
-    ud=datatipGetStruct(curve);
-    str=msprintf("%.2g°",ud.phase)
+    // reset data_bounds
+    if rhs == 0 then
+        ax.data_bounds=[-360,-40;0,40];
+    else
+        ax.data_bounds = old_data_bounds;
+    end
 endfunction

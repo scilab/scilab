@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Farid BELAHCENE
- * Copyright (C) 2013 - Samuel GOUGEON : restriction to decimal numbers removed. Examples added for booleans, integer-encoded numbers, text, polynomials, rationals
+ * Copyright (C) 2013 - Samuel GOUGEON: restriction to decimal numbers removed. Examples added for booleans, integer-encoded numbers, text, polynomials, rationals
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -15,12 +15,12 @@
     <refnamediv>
         <refname>flipdim</refname>
         <refpurpose>
-            retourne les éléments de <literal>x</literal> selon une dimension
+            retourne par blocs les éléments de <literal>x</literal> selon une dimension
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
-        <synopsis>y = flipdim(x, dim)</synopsis>
+        <synopsis>y = flipdim(x, dim [,sb])</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Paramètres</title>
@@ -34,7 +34,15 @@
             <varlistentry>
                 <term>dim</term>
                 <listitem>
-                    <para>entier positif</para>
+                    <para>
+                        entier positif, la dimension de <literal>x</literal> selon laquelle les éléments seront retournés
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>sb</term>
+                <listitem>
+                    <para>entier positif, la taille des blocs à permuter</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -43,9 +51,14 @@
         <title>Description</title>
         <para>
             A partir de <literal>x</literal>, un scalaire/vecteur/matrice/hypermatrice de n'importe quel type et
-            <literal>dim</literal> un entier positif, cette fonction retourne les éléments de
-            <literal>x</literal> selon le nombre dimension <literal>dim</literal> de
+            deux entiers positifs <literal>dim</literal> et <literal>sb</literal>, cette fonction retourne les éléments de
+            <literal>x</literal> par blocs de taille <literal>sb</literal> selon le nombre dimension <literal>dim</literal> de
             <literal>x</literal> (<literal>x</literal> et <literal>y</literal> ont la même taille)
+        </para>
+        <para>
+            Le paramètre optionnel <literal>sb</literal> (pour Size Block) permet de retounerles éléments de <literal>x</literal>
+            par blocs de taille <literal>sb*size(x,2)</literal> (<literal>dim=1</literal>)
+            ou <literal>size(x,1)*sb</literal> (<literal>dim=2</literal>).
         </para>
     </refsection>
     <refsection>
@@ -93,13 +106,29 @@ d = inv_coeff(grand(3, 9, "uin", 0, 3), 2);
 r = n./d
 flipdim(r, 2)
  ]]></programlisting>
+        <para>
+            Exemples utilisant <literal>sb</literal> :
+        </para>
+        <programlisting role="example"><![CDATA[
+X = [0 1 2 3 4 5 6 7 8 9 10 11];
+flipdim(X, 2, 2) // => [10 11   8 9   6 7   4 5   2 3   0 1] // Taille du bloc = 2.
+flipdim(X, 2, 3) // => [9 10 11   6 7 8   3 4 5   0 1 2]
+flipdim(X, 2, 4) // => [8 9 10 11   4 5 6 7   0 1 2 3]
+flipdim(X, 2, 6) // => [6 7 8 9 10 11   0 1 2 3 4 5]
+
+// Erreur si sb ne divise pas la dimension ciblée de x.
+y = flipdim(x, 2, 5); // size(X) = [1 12] et sb=5 ne divise pas 12.
+ ]]></programlisting>
     </refsection>
     <refsection>
         <title>History</title>
         <revhistory>
             <revision>
                 <revnumber>5.5.0</revnumber>
-                <revremark>Extension de décimaux à tout type: booléens, entiers, textes, polynômes et rationals.</revremark>
+                <revremark>
+                    Extension de décimaux à tout type : booléens, entiers, chaines de caractères, polynômes et fractions rationnelles.
+                    Nouveau paramètre optionnel <literal>sb</literal> pour retourner <literal>x</literal> par blocs.
+                </revremark>
             </revision>
         </revhistory>
     </refsection>

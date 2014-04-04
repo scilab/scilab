@@ -133,6 +133,7 @@ libscifileio_la_CPPFLAGS = \
 	-I$(top_srcdir)/modules/console/includes \
 	-I$(top_srcdir)/modules/localization/includes \
 	-I$(top_srcdir)/modules/dynamic_link/includes \
+	-I$(top_srcdir)/modules/preferences/includes \
 	$(HDF5_CFLAGS) \
 	$(XML_FLAGS) \
     $(EIGEN_CPPFLAGS) \

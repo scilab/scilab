@@ -133,7 +133,7 @@ int sci_x_mdialog(char *fname, void* pvApiCtx)
             if ((nbRowDefaultValues != nbRowLineLabels) || (nbColDefaultValues != nbColLineLabels))
             {
                 freeAllocatedMatrixOfString(nbRowDefaultValues, nbColDefaultValues, defaultValuesAdr);
-                Scierror(999, _("%s: Wrong size for input argument #%d: It must have same dimensions that argument #%d.\n"), fname, 3, 2);
+                Scierror(999, _("%s: Wrong size for input argument #%d: It must have same dimensions as argument #%d.\n"), fname, 3, 2);
                 return FALSE;
             }
 

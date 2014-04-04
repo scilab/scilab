@@ -3,50 +3,59 @@
  * Copyright (C) INRIA - Serge Steer
  * Copyright (C) INRIA - Jean-Baptiste Silvy
  * Copyright (C) Samuel GOUGEON : update after fix of bug 7411
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
- <refentry xml:lang="en" xml:id="clf">
+<refentry xml:lang="en" xml:id="clf">
     <refnamediv>
         <refname>clf</refname>
         <refpurpose>
-            clear or reset the current graphic figure (window) to default values
+            Clear or reset or reset a figure or a frame uicontrol.
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
         <synopsis>
-            clf(&lt;opt_job_arg&gt;)
-            clf(h,&lt;opt_job_arg&gt;)
-            clf(num,&lt;opt_job_arg&gt;)
+            clf([opt_job_arg])
+            
+            clf(figureHandle[, opt_job_arg])
+            clf(num[, opt_job_arg])
+            
+            clf(frameHandle[, opt_job_arg)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>h</term>
+                <term>figureHandle</term>
                 <listitem>
-                    <para>a handle, the figure handle</para>
+                    <para>A handle: the handle of the figure to clear or reset.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>num</term>
                 <listitem>
-                    <para>a number, the figure_id</para>
+                    <para>An integer value: the figure_id of the figure to clear or reset.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>&lt;opt_job_arg&gt;</term>
+                <term>frameHandle</term>
+                <listitem>
+                    <para>A handle: the handle of the frame to clear or reset.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>opt_job_arg</term>
                 <listitem>
                     <para>
-                        string <literal>'clear'</literal> (default) or <literal>'reset'</literal>,
-                        specifying the job for <literal>clf</literal>. 
+                        A string which specifying the job for <function>clf</function>.
+                        Its value can be <literal>"clear"</literal> (default) or <literal>"reset"</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -55,8 +64,8 @@
     <refsection>
         <title>Description</title>
         <para>
-            The <literal>clf</literal> command is used to reset a figure to its default
-            values and/or to delete all its children.
+            The <literal>clf</literal> command can be used to reset a figure to its default
+            values and/or to delete all its children. If can also be used to delete all the children of a frame.
         </para>
         <variablelist>
             <varlistentry>
@@ -72,82 +81,91 @@
                             </listitem>
                         </varlistentry>
                         <varlistentry>
-                            <term>h</term>
+                            <term>figureHandle</term>
                             <listitem>
                                 <para>
-                                    <literal>clf(h,..)</literal> clears or resets the figure pointed to by the handle <literal>h</literal>
+                                    <literal>clf(figureHandle,..)</literal> clears or resets the figure pointed to by the handle <literal>h</literal>
                                 </para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
-                            <term>(none)</term>
+                            <term>job</term>
                             <listitem>
                                 <para>
-                                    <literal>clf(..)</literal> clears or resets the current figure.
-								</para>
-					        </listitem>
-					    </varlistentry>
-					</variablelist>
-			    </listitem>
-			</varlistentry>
-			<varlistentry>
-			    <term>opt_job_arg</term>
-			    <listitem>
-			        <variablelist>
-			            <varlistentry>
-			                <term>'clear' (default)</term>
-			                <listitem>
-			                    <para>
-			                        <literal>clf(..,'clear')</literal> clears the targetted figure:
-									<itemizedlist>
-									    <listitem>all its <literal>children</literal> are deleted: axes, uicontrols, menus, and others. 
-										To prevent menus and uicontrols from being deleted, the <literal>delete(gca())</literal> command
-										might be used instead.
-										</listitem>
-										<listitem>Its event handler is disabled: <literal>.event_handler_enable = "off"</literal>
-										</listitem>
-										<listitem>The message in the status bar is cleared: <literal>.info_message = ""</literal>
-										</listitem>
-								    </itemizedlist>
-									All other figure's properties are unchanged.
+                                    <literal>clf(job)</literal> clears or resets the current figure.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Second input argument:</term>
+                <listitem>
+                    <variablelist>
+                        <varlistentry>
+                            <term>"clear" (default)</term>
+                            <listitem>
+                                <para>
+                                    <literal>clf(.., "clear")</literal> clears the targetted figure or frame.
+                                    <itemizedlist>
+                                        <listitem>
+                                            All its <literal>children</literal> are deleted: axes, uicontrols, menus (for figures only), ...
+                                            To prevent menus and uicontrols from being deleted from a figure, the <literal>delete(gca())</literal> command
+                                            might be used instead.
+                                        </listitem>
+                                        <listitem>
+                                            Its event handler is disabled: <literal>.event_handler_enable = "off"</literal>
+                                        </listitem>
+                                        <listitem>
+                                            The message in the status bar is cleared: <literal>.info_message = ""</literal>
+                                        </listitem>
+                                    </itemizedlist>
+                                    All other figure's properties are unchanged.
                                 </para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
-                            <term>'reset'</term>
+                            <term>"reset"</term>
                             <listitem>
-                                <para><literal>clf(..,'reset')</literal> deletes all children of the specified figure. In addition, all figure's
-            properties are reset to their default values as returned by <link linkend="gdf">gdf()</link>. The only exception are the 
-			<literal>axes_size</literal>
-            and <literal>figure_size</literal> properties, which can not be reset if the figure
-            is docked with other elements.clears or resets the current figure.
-								</para>
-							</listitem>
-						</varlistentry>
-					</variablelist>
-				</listitem>
-			</varlistentry>
-		</variablelist>
-	</refsection>
-	<refsection>
-	    <title>Examples</title>
-	    <programlisting role="example"> 
-f4=scf(4);  //creates figure with id==4 and make it the current one
-f4.color_map = jetcolormap(64);
-f4.figure_size = [400, 200];
-plot2d()
-clf(f4,'reset')
-   
-f0=scf(0); //creates figure with id==0 and make it the current one
-f0.color_map=hotcolormap(128); // change color map
-t=-%pi:0.3:%pi;
-plot3d1(t,t,sin(t)'*cos(t));
-
-clf() // equivalent to clf(gcf(),'clear')
-plot3d1(t,t,sin(t)'*cos(t));  // color_map unchanged
-   
-clf(gcf(),'reset')
-plot3d1(t,t,sin(t)'*cos(t));  // color_map changed (back to the default one with 32 colors)
+                                <para>
+                                    Used for figures only, <literal>clf(.., "reset")</literal> deletes all children of the specified figure. In addition, all figure's
+                                    properties are reset to their default values as returned by <link linkend="gdf">gdf</link>. The only exception are the
+                                    <literal>axes_size</literal>
+                                    and <literal>figure_size</literal> properties, which can not be reset if the figure
+                                    is docked with other elements.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example">
+            f4=scf(4);  //creates figure with id==4 and make it the current one
+            f4.color_map = jetcolormap(64);
+            f4.figure_size = [400, 200];
+            plot2d()
+            clf(f4, "reset")
+            
+            f0=scf(0); //creates figure with id==0 and make it the current one
+            f0.color_map = hotcolormap(128); // change color map
+            t=-%pi:0.3:%pi;
+            plot3d1(t,t,sin(t)'*cos(t));
+            
+            clf() // equivalent to clf(gcf(),"clear")
+            plot3d1(t,t,sin(t)'*cos(t)); // color_map unchanged
+            
+            clf(gcf(), "reset")
+            plot3d1(t,t,sin(t)'*cos(t)); // color_map changed (back to the default one with 32 colors)
+            
+            fr = uicontrol("Style", "frame", "Position", [20 20 200 200]);
+            a=newaxes(fr);
+            plot(1:10);
+            clf(fr);
         </programlisting>
     </refsection>
     <refsection role="see also">
@@ -175,5 +193,16 @@ plot3d1(t,t,sin(t)'*cos(t));  // color_map changed (back to the default one with
                 <link linkend="graphics_entities">graphics_entities</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>
+                    <function>clf</function> works for all axes parents (figures and frames).
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

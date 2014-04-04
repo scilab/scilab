@@ -93,6 +93,9 @@
     <ClCompile Include="sci_gateway\c\xs2file.c">
       <Filter>Source Files\c</Filter>
     </ClCompile>
+    <ClCompile Include="sci_gateway\c\sci_xs2emf.c">
+      <Filter>Source Files\c</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\dynlib_graphic_export.h">

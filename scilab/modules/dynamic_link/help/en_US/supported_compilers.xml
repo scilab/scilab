@@ -23,18 +23,12 @@
     </refsection>
     <refsection>
         <title>Windows</title>
-        <para>-- Visual studio C++ 2005, 2008, 2010 Professionnal 32 and 64 bits</para>
-        <para>-- Visual studio C++ 2008, 2010 Express Edition (available at no
-            charge)
+        <para>-- Visual studio C++ 2005, 2008, 2010, 2012 Professionnal 32 and 64 bits</para>
+        <para>-- Visual studio C++ 2012 Express Edition (available at no charge)</para>
+        <para>
+            More information is available on <ulink url="http://wiki.scilab.org/How_can_I_set_up_Microsoft_Visual_Studio_2008/2010_Express_Edition_for_use_with_Scilab_x64_on_64-bit_Windows%3F">Scilab Wiki</ulink>.
         </para>
-        <para>On 64-bit Windows, Visual Studio C++ 2008/2010 Express Edition
-            requires you to install some optional component. See <ulink url="http://wiki.scilab.org/How_can_I_set_up_Microsoft_Visual_Studio_2008/2010_Express_Edition_for_use_with_Scilab_x64_on_64-bit_Windows%3F">"How
-                can I set up Microsoft Visual Studio 2008/2010 C++ Express Edition for use
-                with Scilab x64 on 64-bit Windows ?"
-            </ulink>
-            on scilab wiki.
-        </para>
-        <para>-- Intel Fortran 9, 10, 11, XE 2011</para>
+        <para>-- Intel Fortran 9, 10, 11, XE 2011, XE 2012</para>
         <para>
             -- LCC-Win32 requires to install a ATOMS module:<programlisting role="exec">atomsInstall('lcc_windows'); atomsLoad('lcc_windows');</programlisting>
         </para>

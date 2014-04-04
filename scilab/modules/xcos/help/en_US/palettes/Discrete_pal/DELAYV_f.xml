@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
- * 
+ *
  * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
  * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  *  (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
- * 
+ *
  * See the file ./license.txt
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="DELAYV_f">
@@ -98,8 +98,27 @@
     </refsection>
     <refsection id="Description_DELAYV_f">
         <title>Description</title>
-        <para>Add here a paragraph of the function description</para>
-        <para/>
+        <para>
+            The Variable Delay block can be used to simulate a variable time delay
+            between an action and its effect. The block might be used, for example,
+            to model a system with a pipe where the speed of a motor pumping fluid in the pipe is variable.
+        </para>
+        <para>
+            The block accepts two inputs and one output: the first input
+            is the signal u(t) that passes through the block (data input);
+            the second input is the variable time delay τ(t).
+        </para>
+        <para>
+            The ouput activation ports trigger every
+            <literal>"Max delay"/length("Register initial condition")</literal>.
+        </para>
+        <para>
+            The input activation port and the first ouput activation port are meant to be linked,
+            to get the variations of the input.
+        </para>
+        <para>
+            The final delay is: <literal>τ(t) + "Max delay"/length("Register initial condition")</literal>.
+        </para>
     </refsection>
     <refsection id="Dialogbox_DELAYV_f">
         <title>Dialog box</title>
@@ -239,5 +258,26 @@
                 <para>SCI/modules/scicos_blocks/src/fortran/delayv.f (Type 1)</para>
             </listitem>
         </itemizedlist>
+    </refsection>
+    <refsection id="Example_DELAYV_f">
+        <title>Variable delay example</title>
+        <para>
+            In this example, the sine function (in black) est delayed alternatively by 0 and 1 second.
+            The amplitude of the GENSQR_f block is fixed at 2, but the "Max delay" parameter of the
+            DELAVV_f block restrains that value to 1.
+            We see that with every time GENSQR_f is activated (every 2*π seconds), the delay changes:
+            the curves overlap (delay=0) and are shifted (delay=1) in turn.
+        </para>
+        <link type="scilab" linkend="scilab.xcos/xcos/examples/discrete_pal/en_US/DELAYV_f_en_US.zcos">
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../../../../examples/discrete_pal/en_US/DELAYV_f_en_US.zcos" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+        </link>
+        <scilab:image><![CDATA[
+importXcosDiagram(SCI + "/modules/xcos/examples/discrete_pal/en_US/DELAYV_f_en_US.zcos");
+xcos_simulate(scs_m, 4);
+]]></scilab:image>
     </refsection>
 </refentry>

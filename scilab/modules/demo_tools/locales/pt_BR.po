@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 16967)\n"
 "Language: pt_BR\n"
 
 #, c-format
@@ -28,26 +28,8 @@ msgstr ""
 "%s: O argumento de entrada #%d está incorreto: esperava-se um caminho para "
 "um arquivo script do Scilab.\n"
 
-msgid "&File"
-msgstr "&Arquivo"
-
-msgid "&Tools"
-msgstr "&Ferramentas"
-
-msgid "&Edit"
-msgstr "&Editar"
-
-msgid "&?"
-msgstr "&?"
-
-msgid "File"
-msgstr "Arquivo"
-
-msgid "Close"
-msgstr "Fechar"
-
-msgid "Demos"
-msgstr "Demonstrações"
+msgid "Demonstrations"
+msgstr ""
 
 msgid " -- View Code -- "
 msgstr " -- Ver Código -- "

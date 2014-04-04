@@ -18,11 +18,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.logging.Logger;
 
+import javax.swing.JButton;
+
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.graph.ScilabComponent;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.scicos.ScilabDirectHandler;
 import org.scilab.modules.xcos.utils.XcosMessages;
@@ -58,7 +59,7 @@ public final class InitModelicaAction extends SimulationNotRunningAction {
      *            corresponding Scilab Graph
      * @return the button
      */
-    public static PushButton createButton(ScilabGraph scilabGraph) {
+    public static JButton createButton(ScilabGraph scilabGraph) {
         return createButton(scilabGraph, InitModelicaAction.class);
     }
 

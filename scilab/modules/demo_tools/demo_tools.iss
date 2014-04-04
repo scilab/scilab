@@ -31,6 +31,8 @@ Source: modules\{#DEMO_TOOLS}\macros\cleanmacros.bat; DestDir: {app}\modules\{#D
 Source: modules\{#DEMO_TOOLS}\macros\lib; DestDir: {app}\modules\{#DEMO_TOOLS}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#DEMO_TOOLS}\macros\*.sci; DestDir: {app}\modules\{#DEMO_TOOLS}\macros; Components: {#COMPN_SCILAB}
 ;
+Source: modules\{#DEMO_TOOLS}\gui\*.xml; DestDir: {app}\modules\{#DEMO_TOOLS}\gui; Components: {#COMPN_SCILAB}
+;
 ;Source: modules\{#DEMO_TOOLS}\examples\*.*; DestDir: {app}\modules\{#DEMO_TOOLS}\examples; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#DEMO_TOOLS}\tests\*.*; DestDir: {app}\modules\{#DEMO_TOOLS}\tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_TESTS}

@@ -54,6 +54,10 @@ GRAPHICS_IMPEXP int sciSetPoint(int iObj, double *tab, int *numrow, int *numcol)
 
 GRAPHICS_IMPEXP BOOL sciCheckColorIndex(int iObj, int colorIndex);
 
+GRAPHICS_IMPEXP int sciSetMarkOffset(int iObjUID, int offset);
+
+GRAPHICS_IMPEXP int sciSetMarkStride(int iObjUID, int stride);
+
 /*---------------------------------------------------------------------------*/
 
 #endif /* __SCI_SET_PROPERTY__ */

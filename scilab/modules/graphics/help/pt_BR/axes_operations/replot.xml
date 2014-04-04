@@ -2,6 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * Copyright (C) 2013 - Samuel GOUGEON
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -10,28 +11,28 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="replot" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="replot" xml:lang="pt">
     <refnamediv>
         <refname>replot</refname>
-        <refpurpose>redesenha a janela de gráficos corrente com novas
-            fronteiras
+        <refpurpose>reformula a área de exibição de um ou mais gráficos
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Seqüência de Chamamento</title>
-        <synopsis>replot(rect,[handle])</synopsis>
+        <synopsis>replot(area)</synopsis>
+        <synopsis>replot(area, axesHandles)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Parâmetros</title>
         <variablelist>
             <varlistentry>
-                <term>rect</term>
+                <term>area</term>
                 <listitem>
                     <para>vetor linha de tamanho 4.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>handle</term>
+                <term>axesHandles</term>
                 <listitem>
                     <para>argumento opcional. Manipulador(es) do tipo Axes para
                         selecionar uma ou várias entidades Axes válidas. Disponível apenas
@@ -46,18 +47,19 @@
         <para>
             <literal>replot</literal> é utilizado para redesenhar o conteúdo da
             janela de gráficos atual com novas fronteiras definidas por
-            <literal>rect=[xmin,ymin,xmax,ymax]</literal>. Sob a sintaxe de gráficos
-            antiga, funciona apenas com o driver <literal>"Rec"</literal>.
+            <literal>area = [xmin,ymin,xmax,ymax]</literal> ou <literal> rect = [xmin, ymin, zmin, xmax, ymax, zmax] </literal>. 
         </para>
         <para>Sob o novo modo de gráficos, esta transformação pode ser aplicada a
             eixos específicos fornecidos por manipuladores gráficos Axes via o
-            argumento handle. Se handle não for especificado, as novas fronteiras são
+            argumento <varname>axesHandles</varname>. Se <varname>axesHandles</varname> 
+            não for especificado, as novas fronteiras são
             aplicadas aos eixos correntes da figura corrente. A transformação muda os
-            valores de <literal>data_bounds</literal> para estes eixos. Note que a
-            propriedade de eixos <literal>tight_limits</literal> também deve ser
-            ajustada para "on" para selecionar estritamente estas fronteiras (ver
-            <link linkend="axes_properties">axes_properties</link>).<literal>
-            </literal>
+            valores de <literal>data_bounds</literal> para estes eixos. 
+            <note>
+                A propriedade de eixos <literal>tight_limits</literal> também deve ser
+                ajustada para "on" para selecionar estritamente estas fronteiras (ver
+                <link linkend="axes_properties">axes_properties</link>).
+            </note>
         </para>
     </refsection>
     <refsection>
@@ -67,21 +69,102 @@
 x=[0:0.1:2*%pi]';
 plot2d(x,sin(x)) 
 replot([-1,-1,10,2]) 
-
+ ]]></programlisting>
+        <scilab:image>
+            x=[0:0.1:2*%pi]';
+            plot2d(x,sin(x))
+            replot([-1,-1,10,2])
+        </scilab:image>
+        
+        <programlisting role="example"><![CDATA[
 // segundo exemplo
 xdel(winsid());
-plot() // esboçando demonstração
+plot() // plot demo
 f=gcf();
 replot([-1,-1,10,2],f.children(1)) // especificando o valor do manipulador dos eixos
 replot([-3,-2,8,4],f.children(2)) 
  ]]></programlisting>
+        <scilab:image>
+            xdel(winsid());
+            plot()
+            f2=gcf();
+            replot([-1,-1,10,2],f2.children(1))
+            replot([-3,-2,8,4],f2.children(2))
+        </scilab:image>
+        <programlisting role="example"><![CDATA[
+// Os fronteiras indicadas pelo valor %nan não são alterados:
+x = linspace(0,360,200).';
+clf
+plot2d(x,[sind(x) tand(x)])
+ax = gca();
+ax.data_bounds				// Fronteiras iniciais
+replot([%nan,-10,%nan,10])	// Ymin e Ymax só são modificados
+ax.data_bounds				// novas fronteiras
+// 3D Fronteiras Z também pode ser modificadas :
+clf
+x = linspace(-4,4,100);
+X = meshgrid(x);
+R = (X-0.5).^2 + (X.'+0.7).^2;
+Z = sinc(R);
+surf(x-0.5,x+0.7,Z)
+f = gcf();
+f.color_map = autumncolormap(100);
+ax = gca();
+ax.data_bounds
+sleep(3000)
+replot([-5 0 -0.4 0 5 0.5])
+ax.data_bounds
+// Diversos gráficos podem ser cortadas simultaneamente :
+clf
+x = linspace(-%pi,%pi,400);
+subplot(2,2,1)
+plot2d(x,sin(1 ./sqrt(abs(x))))
+ax1 = gca();
+subplot(2,2,2)
+plot2d(x,sinh(sqrt(abs(x))))
+subplot(2,1,2)
+plot2d(x,cos(1 ./sqrt(abs(x))))
+ax2 = gca();
+sleep(4000)
+f = gcf();
+replot([-1 %nan 1.5 %nan], [ax1 ax2])
+      ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>Ver Também</title>
         <simplelist type="inline">
             <member>
-                <link linkend="clf">clf</link>
+                <link linkend="zoom_rect">zoom_rect</link>
+            </member>
+            <member>
+                <link linkend="rubberbox">rubberbox</link>
+            </member>
+            <member>
+                <link linkend="axes_properties">axes_properties</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>histórico</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revdescription>
+                    <itemizedlist>
+                        <listitem>
+                            <para>Extensão para o 3D</para>
+                        </listitem>
+                        <listitem>
+                            <para>Vários coordenadas gráficos podem agora ser redimensionadas simultaneamente</para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>%nan</literal> pode ser usado para manter um limite como está.
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

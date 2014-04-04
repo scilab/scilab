@@ -1,10 +1,10 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 c Copyright (C) INRIA
-c 
+c
 c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
 c you should have received as part of this distribution.  The terms
-c are also available at    
+c are also available at
 c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 c
       subroutine n1qn2a (simul,prosca,n,x,f,g,dxmin,df1,epsg,
@@ -90,18 +90,19 @@ c
 c---- debut de l'iteration. on cherche x(k+1) de la forme x(k) + t*d,
 c     avec t > 0. on connait d.
 c
-c     debut de la boucle: etiquette 100,
-c     sortie de la boucle: goto 1000.
+c     Si impres<0 et l'itération est un multiple de -impres,
+c     alors on appelle la fonction fournie, avec indic=1.
 c
 100   iter=iter+1
       if (impres.lt.0) then
           if(mod(iter,-impres).eq.0) then
               indic=1
               call simul (indic,n,x,f,g,izs,rzs,dzs)
-              goto 100
+c             error in user function
+              if(indic.eq.0) goto 1000
           endif
       endif
-      if (impres.ge.5) then 
+      if (impres.ge.5) then
         write(bufstr,901)
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
@@ -114,10 +115,10 @@ c
       if (impres.ge.3) then
         write (bufstr,902) iter,isim
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
-        
+
         write (bufstr,9020) f,hp0
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
-        
+
         endif
 902   format (' n1qn2: iter ',i3,', simul ',i3)
 9020  format (', f=',d15.8,', h''(0)=',d12.5)
@@ -163,7 +164,7 @@ c             ---- descente bloquee sur tmax
 c                  [sortie rare (!!) d'apres le code de nlis0]
 c
               mode=3
-              if (impres.ge.1) then 
+              if (impres.ge.1) then
                 write(bufstr,904) iter
                 call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
                 endif

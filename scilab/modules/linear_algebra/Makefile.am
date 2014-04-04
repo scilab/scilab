@@ -18,7 +18,8 @@ src/c/chol.c \
 src/c/svd.c \
 src/c/rcond.c \
 src/c/det.c \
-src/c/lsq.c
+src/c/lsq.c \
+src/c/norm.c
 
 LINEAR_ALGEBRA_FORTRAN_SOURCES = \
     src/fortran/DGELSY1.f \
@@ -27,7 +28,8 @@ LINEAR_ALGEBRA_FORTRAN_SOURCES = \
 GATEWAY_C_SOURCES = \
     sci_gateway/c/gw_linear_algebra2.c \
     sci_gateway/c/gw_linear_algebra.c \
-    sci_gateway/c/assembleEigenvectors.c
+    sci_gateway/c/assembleEigenvectors.c \
+    sci_gateway/c/sci_norm.c
 
 GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/linear_algebra_gw.cpp \

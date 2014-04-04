@@ -210,6 +210,11 @@ double get_scicos_time(void);
 /**
 *
 */
+void set_scicos_time(double t);
+
+/**
+*
+*/
 void set_pointer_xproperty(int *pointer);
 
 /**

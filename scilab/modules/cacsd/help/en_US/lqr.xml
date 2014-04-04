@@ -100,8 +100,10 @@ z|0   A'   0| - |-Q    I    -S|        s|0   I   0| - |-Q   -A'   -S|
  |0   B2'  0|   | S'   0     R|         |0   0   0|   | S'  -B2'   R|
  ]]></programlisting>
         <para>
-            Caution: It is assumed that matrix R is non singular. In particular,
-            the plant must be tall (number of outputs &gt;= number of inputs).
+            <warning>
+                Caution: It is assumed that matrix R is non singular. In particular,
+                the plant must be tall (number of outputs &gt;= number of inputs).
+            </warning>
         </para>
     </refsection>
     <refsection>

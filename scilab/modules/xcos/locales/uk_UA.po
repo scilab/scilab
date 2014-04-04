@@ -9,13 +9,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-12-07 08:42+0000\n"
+"PO-Revision-Date: 2014-03-29 18:33+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 16967)\n"
 "Language: uk\n"
 
 #, c-format
@@ -937,6 +937,12 @@ msgstr "Логічний шлюз AND"
 msgid "Logic NOR gate"
 msgstr "Логічний шлюз NOR"
 
+msgid "If Then Else"
+msgstr "If Then Else"
+
+msgid "And"
+msgstr "And"
+
 msgid "Automotive Suspension"
 msgstr "Автомобільна підвіска"
 
@@ -1008,6 +1014,9 @@ msgstr "Блок _IF_ Xcos"
 
 msgid "Goto/From blocks"
 msgstr "Блоки переходу/початку"
+
+msgid "Event demos"
+msgstr "Демонстрації подій"
 
 #, c-format
 msgid "%s: Unable to export %s to %s.\n"
@@ -1225,9 +1234,9 @@ msgid "%s: Unable to export the palette to hdf5.\n"
 msgstr "%s: не вдалося експортувати палітру до hdf5.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Matrix of strings expected.\n"
+msgid "%s: Wrong type for argument #%d: Matrix of strings expected.\n"
 msgstr ""
-"%s: помилковий тип параметра %d: мало бути вказано матрицю з рядків.\n"
+"%s: помилковий тип параметра №%d: слід використовувати матрицю з рядків.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector expected.\n"

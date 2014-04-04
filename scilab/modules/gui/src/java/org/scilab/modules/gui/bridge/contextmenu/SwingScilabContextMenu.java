@@ -14,9 +14,12 @@ package org.scilab.modules.gui.bridge.contextmenu;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHILDREN__;
 
+import java.awt.Color;
 import java.awt.MouseInfo;
 
 import javax.swing.JPopupMenu;
+import javax.swing.UIManager;
+import javax.swing.border.Border;
 import javax.swing.event.PopupMenuEvent;
 import javax.swing.event.PopupMenuListener;
 
@@ -49,6 +52,8 @@ public class SwingScilabContextMenu extends JPopupMenu implements SwingViewObjec
     private Integer uid;
 
     private boolean checkedState;
+
+    private Border defaultBorder = null;
 
     /**
      * Constructor
@@ -231,7 +236,10 @@ public class SwingScilabContextMenu extends JPopupMenu implements SwingViewObjec
      * @param reliefType the type of the relief to set (See ScilabRelief.java)
      */
     public void setRelief(String reliefType) {
-        setBorder(ScilabRelief.getBorderFromRelief(reliefType));
+        if (defaultBorder == null) {
+            defaultBorder = getBorder();
+        }
+        setBorder(ScilabRelief.getBorderFromRelief(reliefType, defaultBorder));
     }
 
     /**
@@ -369,4 +377,17 @@ public class SwingScilabContextMenu extends JPopupMenu implements SwingViewObjec
         }
     }
 
+    public void resetBackground() {
+        Color color = (Color)UIManager.getLookAndFeelDefaults().get("PopupMenu.background");
+        if (color != null) {
+            setBackground(color);
+        }
+    }
+
+    public void resetForeground() {
+        Color color = (Color)UIManager.getLookAndFeelDefaults().get("PopupMenu.foreground");
+        if (color != null) {
+            setForeground(color);
+        }
+    }
 }

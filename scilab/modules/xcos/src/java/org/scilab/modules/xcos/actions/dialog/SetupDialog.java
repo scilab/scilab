@@ -41,6 +41,7 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JList;
 
+import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.xcos.actions.SetupAction;
 import org.scilab.modules.xcos.graph.ScicosParameters;
@@ -246,7 +247,7 @@ public class SetupDialog extends JDialog {
 
         this.parameters = parameters;
 
-        ImageIcon scilabIcon = new ImageIcon(ScilabSwingUtilities.findIcon("scilab"));
+        ImageIcon scilabIcon = new ImageIcon(FindIconHelper.findIcon("scilab"));
         Image imageForIcon = scilabIcon.getImage();
         setLayout(new GridBagLayout());
         setIconImage(imageForIcon);

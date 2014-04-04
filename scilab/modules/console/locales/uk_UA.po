@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-09-15 06:36+0000\n"
+"PO-Revision-Date: 2014-03-21 11:16+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 16967)\n"
 "Language: uk\n"
 
 #, c-format
@@ -157,6 +157,9 @@ msgstr "японська"
 
 msgid "Ukrainian"
 msgstr "українська"
+
+msgid "Start-up directory"
+msgstr "Каталог запуску"
 
 msgid "Confirmation dialogs"
 msgstr "Діалогові вікна підтвердження"
@@ -707,6 +710,18 @@ msgstr "Пам’ять купи даних Java"
 msgid "Select the memory (in MB) available in Java: "
 msgstr "Виберіть об’єм пам’яті (у МБ), доступний у Java: "
 
+msgid "Use current working directory"
+msgstr "Використовувати поточний робочий каталог"
+
+msgid "Use previous working directory"
+msgstr "Використовувати попередній робочий каталог"
+
+msgid "Use default directory"
+msgstr "Використовувати типовий каталог"
+
+msgid "Default startup directory"
+msgstr "Типовий каталог запуску"
+
 msgid "Desktop Layout"
 msgstr "Компонування"
 
@@ -718,6 +733,9 @@ msgstr "(Зміна компонування потребуватиме пере
 
 msgid "Save layout on exiting"
 msgstr "Зберігати компонування під час виходу з програми"
+
+msgid "Reset layout"
+msgstr "Відновити початкове компонування"
 
 msgid "Keys binding"
 msgstr "Прив’язка до клавіш"
@@ -776,10 +794,6 @@ msgid "[Continue display? n (no) to stop, any other key to continue]"
 msgstr ""
 "[Продовжити показ? Натисніть клавішу «n» (ні), щоб зупинити показ, або будь-"
 "яку іншу клавішу, щоб його продовжити]"
-
-#, c-format
-msgid "MPI error: %s\n"
-msgstr "Помилка MPI: %s\n"
 
 #, c-format
 msgid ""

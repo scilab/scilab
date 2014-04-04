@@ -1,10 +1,10 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2008 - INRIA - Vincent COUVERT 
-// 
+// Copyright (C) 2008 - INRIA - Vincent COUVERT
+//
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 // This test check save and load functions used with uicontrols
@@ -50,6 +50,7 @@ save(TMPDIR + "/uicontrol.scg", h);
 hsaved = h;
 clear h;
 
+scf(1);
 // Load saved handle
 load(TMPDIR + "/uicontrol.scg");
 
@@ -59,7 +60,7 @@ if or(h.backgroundcolor<>hsaved.backgroundcolor) then pause; end
 if or(h.enable<>hsaved.enable) then pause; end
 if or(h.fontangle<>hsaved.fontangle) then pause; end
 if or(h.fontname<>hsaved.fontname) then pause; end
-//if or(h.fontsize<>hsaved.fontsize) then pause; end // TODO FIX ME !!
+if or(h.fontsize<>hsaved.fontsize) then pause; end
 if or(h.fontunits<>hsaved.fontunits) then pause; end
 if or(h.fontweight<>hsaved.fontweight) then pause; end
 if or(h.foregroundcolor<>hsaved.foregroundcolor) then pause; end
@@ -67,7 +68,7 @@ if or(h.horizontalalignment<>hsaved.horizontalalignment) then pause; end
 if or(h.listboxtop<>hsaved.listboxtop) then pause; end
 if or(h.max<>hsaved.max) then pause; end
 if or(h.min<>hsaved.min) then pause; end
-if abs(sum(h.position-hsaved.position)) > 4 then pause; end // TODO FIX ME !! Can have a difference of 1 (point or pixel) when getting position
+if or(h.position<>hsaved.position) then pause; end
 if or(h.relief<>hsaved.relief) then pause; end
 if or(h.sliderstep<>hsaved.sliderstep) then pause; end
 if or(h.string<>hsaved.string) then pause; end

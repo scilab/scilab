@@ -178,9 +178,11 @@ am__uninstall_files_from_dir = { \
          $(am__cd) "$$dir" && rm -f $$files; }; \
   }
 am__installdirs = "$(DESTDIR)$(libsciatoms_la_etcdir)" \
+	"$(DESTDIR)$(libsciatoms_la_guidir)" \
 	"$(DESTDIR)$(libsciatoms_la_rootdir)" \
 	"$(DESTDIR)$(libsciatoms_la_iconsdir)"
-DATA = $(libsciatoms_la_etc_DATA) $(libsciatoms_la_root_DATA) \
+DATA = $(libsciatoms_la_etc_DATA) $(libsciatoms_la_gui_DATA) \
+	$(libsciatoms_la_root_DATA) \
 	$(nobase_libsciatoms_la_icons_DATA)
 am__tagged_files = $(HEADERS) $(SOURCES) $(TAGS_FILES) $(LISP)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -224,6 +226,7 @@ CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
 DEMOTOOLS_ENABLE = @DEMOTOOLS_ENABLE@
 DEPDIR = @DEPDIR@
+DLLTOOL = @DLLTOOL@
 DOCBOOK_ROOT = @DOCBOOK_ROOT@
 DOXYGEN_BIN = @DOXYGEN_BIN@
 DSYMUTIL = @DSYMUTIL@
@@ -243,6 +246,11 @@ FGREP = @FGREP@
 FLEXDOCK = @FLEXDOCK@
 FLIBS = @FLIBS@
 FOP = @FOP@
+FREEHEP_GRAPHICS2D = @FREEHEP_GRAPHICS2D@
+FREEHEP_GRAPHICSIO = @FREEHEP_GRAPHICSIO@
+FREEHEP_GRAPHICSIO_EMF = @FREEHEP_GRAPHICSIO_EMF@
+FREEHEP_IO = @FREEHEP_IO@
+FREEHEP_UTIL = @FREEHEP_UTIL@
 GENHTML = @GENHTML@
 GETTEXT_MACRO_VERSION = @GETTEXT_MACRO_VERSION@
 GIWS_BIN = @GIWS_BIN@
@@ -306,6 +314,7 @@ LTLIBINTL = @LTLIBINTL@
 LTLIBOBJS = @LTLIBOBJS@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
+MANIFEST_TOOL = @MANIFEST_TOOL@
 MATIO_CFLAGS = @MATIO_CFLAGS@
 MATIO_ENABLE = @MATIO_ENABLE@
 MATIO_LIBS = @MATIO_LIBS@
@@ -470,6 +479,10 @@ libsciatoms_la_root_DATA = license.txt
 libsciatoms_la_etcdir = $(mydatadir)/etc
 libsciatoms_la_etc_DATA = etc/atoms.quit etc/atoms.start etc/repositories
 
+#### atoms : XML gui ####
+libsciatoms_la_guidir = $(mydatadir)/gui
+libsciatoms_la_gui_DATA = gui/atomsGui.xml
+
 #### atoms : internal functions ####
 MACROSDIRSEXT = macros/atoms_internals macros/atoms_gui
 
@@ -620,6 +633,27 @@ uninstall-libsciatoms_la_etcDATA:
 	@list='$(libsciatoms_la_etc_DATA)'; test -n "$(libsciatoms_la_etcdir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
 	dir='$(DESTDIR)$(libsciatoms_la_etcdir)'; $(am__uninstall_files_from_dir)
+install-libsciatoms_la_guiDATA: $(libsciatoms_la_gui_DATA)
+	@$(NORMAL_INSTALL)
+	@list='$(libsciatoms_la_gui_DATA)'; test -n "$(libsciatoms_la_guidir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(libsciatoms_la_guidir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(libsciatoms_la_guidir)" || exit 1; \
+	fi; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libsciatoms_la_guidir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libsciatoms_la_guidir)" || exit $$?; \
+	done
+
+uninstall-libsciatoms_la_guiDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libsciatoms_la_gui_DATA)'; test -n "$(libsciatoms_la_guidir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(libsciatoms_la_guidir)'; $(am__uninstall_files_from_dir)
 install-libsciatoms_la_rootDATA: $(libsciatoms_la_root_DATA)
 	@$(NORMAL_INSTALL)
 	@list='$(libsciatoms_la_root_DATA)'; test -n "$(libsciatoms_la_rootdir)" || list=; \
@@ -707,7 +741,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(DATA) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(libsciatoms_la_etcdir)" "$(DESTDIR)$(libsciatoms_la_rootdir)" "$(DESTDIR)$(libsciatoms_la_iconsdir)"; do \
+	for dir in "$(DESTDIR)$(libsciatoms_la_etcdir)" "$(DESTDIR)$(libsciatoms_la_guidir)" "$(DESTDIR)$(libsciatoms_la_rootdir)" "$(DESTDIR)$(libsciatoms_la_iconsdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -761,7 +795,7 @@ info: info-am
 info-am:
 
 install-data-am: install-data-local install-libsciatoms_la_etcDATA \
-	install-libsciatoms_la_rootDATA \
+	install-libsciatoms_la_guiDATA install-libsciatoms_la_rootDATA \
 	install-nobase_libsciatoms_la_iconsDATA
 
 install-dvi: install-dvi-am
@@ -807,6 +841,7 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libsciatoms_la_etcDATA \
+	uninstall-libsciatoms_la_guiDATA \
 	uninstall-libsciatoms_la_rootDATA \
 	uninstall-nobase_libsciatoms_la_iconsDATA
 
@@ -820,13 +855,15 @@ uninstall-am: uninstall-libsciatoms_la_etcDATA \
 	install-dvi install-dvi-am install-exec install-exec-am \
 	install-html install-html-am install-html-local install-info \
 	install-info-am install-libsciatoms_la_etcDATA \
-	install-libsciatoms_la_rootDATA install-man \
-	install-nobase_libsciatoms_la_iconsDATA install-pdf \
-	install-pdf-am install-ps install-ps-am install-strip \
-	installcheck installcheck-am installdirs maintainer-clean \
-	maintainer-clean-generic mostlyclean mostlyclean-generic \
-	mostlyclean-libtool pdf pdf-am ps ps-am tags-am uninstall \
-	uninstall-am uninstall-libsciatoms_la_etcDATA \
+	install-libsciatoms_la_guiDATA install-libsciatoms_la_rootDATA \
+	install-man install-nobase_libsciatoms_la_iconsDATA \
+	install-pdf install-pdf-am install-ps install-ps-am \
+	install-strip installcheck installcheck-am installdirs \
+	maintainer-clean maintainer-clean-generic mostlyclean \
+	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
+	tags-am uninstall uninstall-am \
+	uninstall-libsciatoms_la_etcDATA \
+	uninstall-libsciatoms_la_guiDATA \
 	uninstall-libsciatoms_la_rootDATA \
 	uninstall-nobase_libsciatoms_la_iconsDATA
 

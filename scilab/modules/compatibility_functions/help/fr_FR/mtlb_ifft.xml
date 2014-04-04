@@ -52,7 +52,9 @@
             </listitem>
         </itemizedlist>
         <para>
-            Attention : <literal>mtlb_ifft</literal> ne doit pas être utilisée pour une programmation manuelle.
+            <warning>
+                Attention : <literal>mtlb_ifft</literal> ne doit pas être utilisée pour une programmation manuelle.
+            </warning>
         </para>
     </refsection>
 </refentry>

@@ -251,7 +251,7 @@ function addSingleMenuCallback(fig, menulabel, callback)
         if type(fig)==1
             set(h, "callback", list(4, callbackStr+"(1)"));
         else
-            set(h, "callback", list(4, callbackStr+"("+string(get(fig,"figure_id"))+",1)"));
+            set(h, "callback", list(4, callbackStr+"(1,"+string(get(fig,"figure_id"))+")"));
         end
     end
 

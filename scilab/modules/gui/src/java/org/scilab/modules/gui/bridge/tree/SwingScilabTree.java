@@ -23,12 +23,13 @@ import javax.swing.Icon;
 import javax.swing.JComponent;
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
+import javax.swing.UIManager;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreePath;
 
 import org.scilab.modules.graphic_objects.graphicObject.CallBack;
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
@@ -187,8 +188,8 @@ public class SwingScilabTree extends DefaultMutableTreeNode implements SimpleTre
         // Scilab tree
         SwingScilabTree swingScilabTree = new SwingScilabTree(tree);
 
-        SwingScilabWindow window = new SwingScilabWindow();
-        final SwingScilabTab tab = new SwingScilabTab(Messages.gettext("Tree Overview"));
+        SwingScilabWindow window = SwingScilabWindow.createWindow(true);
+        final SwingScilabDockablePanel tab = new SwingScilabDockablePanel(Messages.gettext("Tree Overview"));
         tab.setCallback(new CommonCallBack("", CallBack.UNTYPED) {
             private static final long serialVersionUID = 8418506008885202932L;
 
@@ -351,12 +352,22 @@ public class SwingScilabTree extends DefaultMutableTreeNode implements SimpleTre
     }
 
     public void setVisible(boolean newVisibleState) {
-        // TODO Auto-generated method stub
-
     }
 
-    @Override
     public void setToolTipText(String tooltipText) {
-        // TODO Auto-generated method stub
+    }
+
+    public void resetBackground() {
+        Color color = (Color)UIManager.getLookAndFeelDefaults().get("Tree.background");
+        if (color != null) {
+            setBackground(color);
+        }
+    }
+
+    public void resetForeground() {
+        Color color = (Color)UIManager.getLookAndFeelDefaults().get("Tree.foreground");
+        if (color != null) {
+            setForeground(color);
+        }
     }
 }

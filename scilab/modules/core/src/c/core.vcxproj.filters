@@ -230,6 +230,9 @@
     <ClCompile Include="..\cpp\getvariablesname.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="sci_tools.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\core.iss" />

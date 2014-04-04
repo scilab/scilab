@@ -74,6 +74,8 @@ function ierr = uicontrol_generic_test(uicontrol_style)
     f = scf();
 
     // Create a new uicontrol
+    consoleHandle = get(0);
+    set(consoleHandle, "UseDeprecatedSkin", "on");
     h = uicontrol("parent", f, "style", uicontrol_style);
 
     // --- BackgroundColor ---
@@ -169,7 +171,7 @@ function ierr = uicontrol_generic_test(uicontrol_style)
 
     // --- ForegroundColor ---
     // Default value
-    assert_checkequal(get(h, "foregroundcolor"), [0 0 0]);
+    assert_checkequal(get(h, "foregroundcolor"), [-1 -1 -1]); // Set by Look&Feel
     // Vector of 'integer' values
     set(h, "foregroundcolor", [1 0 1]);
     assert_checkequal(get(h, "foregroundcolor"), [1 0 1]);
@@ -315,5 +317,24 @@ function ierr = uicontrol_generic_test(uicontrol_style)
     set(h, "verticalalignment", "middle");
     assert_checkequal(get(h, "verticalalignment"), "middle");
     // TODO test with wrong values
+
+    // Layout
+    assert_checkequal(get(h, "layout"), "none"); // Default value
+    set(h, "layout", "border");
+    assert_checkequal(get(h, "layout"), "border");
+    assert_checktrue(execstr("set(h, ""layout"", ""grid"");", "errcatch")<>0)
+
+    // Margins
+    assert_checkequal(get(h, "margins"), [0 0 0 0]); // Default value
+    set(h, "margins", [1 2 3 4]);
+    assert_checkequal(get(h, "margins"), [1 2 3 4]);
+    // TODO test with wrong values
+
+    // Constraints
+    h.parent.layout = "border";
+    assert_checkequal(get(h, "constraints"), createConstraints("border", "center")); // Default value
+    set(h, "constraints", createConstraints("border", "left"));
+    assert_checkequal(get(h, "constraints"), createConstraints("border", "left"));
+    // TODO test with wrong values & different layouts
 
 endfunction

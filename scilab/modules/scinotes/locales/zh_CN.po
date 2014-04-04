@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 16967)\n"
 "Language: \n"
 
 #, c-format
@@ -264,8 +264,8 @@ msgstr "(, [, ..."
 msgid "if, function, ..."
 msgstr "if, function, ..."
 
-msgid "Line numbering;Off;Normal;Whereami compatible"
-msgstr "行号；关；普通；Whereami兼容"
+msgid "Line numbering;Off;Normal;Local numbering"
+msgstr ""
 
 msgid "Highlight current line"
 msgstr "高亮显示当前行"
@@ -288,8 +288,8 @@ msgstr "将标签页分离到新窗口"
 msgid "Copy selection in a new tab"
 msgstr "将所选内容复制到新标签页"
 
-msgid "Split View;Off;Horizontally;Vertically"
-msgstr "分割视图；关闭；水平；垂直"
+msgid "Split View;Off;Split in two columns;Split in two rows"
+msgstr ""
 
 msgid "Execute"
 msgstr "执行"
@@ -510,6 +510,9 @@ msgstr "SciNotes"
 
 msgid "Error while reading the String"
 msgstr "读取字符串时出错"
+
+msgid "The configuration file has been corrupted and reset to default one."
+msgstr ""
 
 #, c-format
 msgid "File not found: %s"
@@ -746,8 +749,8 @@ msgid "This file"
 msgstr "文件"
 
 #, c-format
-msgid "%s has been modified since last save. Save it?"
-msgstr "%s自上次保存后已经修改，保存?"
+msgid "The file %s has been modified since last save. Save it?"
+msgstr ""
 
 #, c-format
 msgid "The file %s has been modified by another program ! Overwrite it ?"
@@ -895,6 +898,25 @@ msgstr "不能保存文件%s... 停止备份"
 
 msgid "Backup finished..."
 msgstr "备份结束..."
+
+#, c-format
+msgid "The directory %s does not exist. Do you want to create it?"
+msgstr ""
+
+#, c-format
+msgid "The directory %s cannot be created. Please check your access rights."
+msgstr ""
+
+#, c-format
+msgid "Impossible to write a file in %s. Please check your access rights."
+msgstr ""
+
+#, c-format
+msgid "Invalid directory name: %s."
+msgstr ""
+
+msgid "SciNotes autosave"
+msgstr ""
 
 #, c-format
 msgid "%s occurences found."
@@ -1081,20 +1103,23 @@ msgstr "选择搜索基目录"
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Scilab模块'%s'尚未安装。\n"
 
-msgid "the last error did not occur inside a library function."
+msgid "The last error did not occur inside a Scilab macro."
 msgstr ""
 
 msgid " on line "
 msgstr ""
 
-msgid "opening file "
+msgid "Opening file "
 msgstr ""
 
 msgid " of the source file of the function "
 msgstr ""
 
-msgid "the source file of the function "
-msgstr "函数源文件 "
+msgid "The source file of the function "
+msgstr ""
 
 msgid " was not found in any library path"
+msgstr ""
+
+msgid "There is no recorded error"
 msgstr ""

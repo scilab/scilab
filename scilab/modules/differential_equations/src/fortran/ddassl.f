@@ -116,6 +116,7 @@ C
 C     CORRECTOR LOOP.
 300   IWM(LNRE)=IWM(LNRE)+1
       IRES=0
+      iero = 0
 C
       CALL RES(X,Y,YPRIME,DELTA,IRES,RPAR,IPAR)
       if(iero.ne.0) return
@@ -1857,7 +1858,7 @@ C     TEST H VS. HMAX
       IF (INFO(7) .EQ. 0) GO TO 526
          RH = ABS(H)/RWORK(LHMAX)
          IF (RH .GT. 1.0D0) H = H/RH
-526   CONTINUE           
+526   CONTINUE
 C
       CALL DDASTP(TN,Y,YPRIME,NEQ,
      *   RES,JAC,H,RWORK(LWT),INFO(1),IDID,RPAR,IPAR,
@@ -2159,7 +2160,7 @@ C-----------END OF SUBROUTINE DDASSL------------------------------------
      +   IDID, RPAR, IPAR, PHI, DELTA, E, WM, IWM, ALPHA, BETA, GAMMA,
      +   PSI, SIGMA, CJ, CJOLD, HOLD, S, HMIN, UROUND, IPHASE, JCALC,
      +   K, KOLD, NS, NONNEG, NTEMP)
-      
+
       include 'stack.h'
 
 C***BEGIN PROLOGUE  DDASTP
@@ -2417,6 +2418,7 @@ C     MODIFIED NEWTON SCHEME.
       M=0
       IWM(LNRE)=IWM(LNRE)+1
       IRES = 0
+      iero = 0
       CALL RES(X,Y,YPRIME,DELTA,IRES,RPAR,IPAR)
       if(iero.ne.0) return
       IF (IRES .LT. 0) GO TO 380

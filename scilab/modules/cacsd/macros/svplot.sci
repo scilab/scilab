@@ -34,7 +34,7 @@ function svm = svplot(Sl,w)
     // Compute the singular values of the frequency response
     select Sl.dt
     case []
-        warning(msprintf(gettext("%s: Input argument %d is assumed continuous time.\n"),"svplot",1));
+        warning(msprintf(gettext("%s: Input argument #%d is assumed continuous time.\n"),"svplot",1));
         if argn(2) == 1
             w = logspace(-3,3);
         end

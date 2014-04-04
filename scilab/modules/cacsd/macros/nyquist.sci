@@ -165,7 +165,8 @@ function nyquist(varargin)
         for k=1:mn
             xpoly([R(k,:) R(k,$:-1:1)],[I(k,:) -I(k,$:-1:1)]);
             e=gce();e.foreground=k;
-            datatipInitStruct(e,"formatfunction","formatNyquistTip","freq",[F(kf,:) F(kf,$:-1:1)])
+            e.display_function = "formatNyquistTip";
+            e.display_function_data = [F(kf,:) F(kf,$:-1:1)];
             Curves=[Curves,e];
             kf=kf+ilf;
         end
@@ -173,7 +174,8 @@ function nyquist(varargin)
         for k=1:mn
             xpoly(R(k,:),I(k,:));
             e=gce();e.foreground=k;
-            datatipInitStruct(e,"formatfunction","formatNyquistTip","freq",F(kf,:))
+            e.display_function = "formatNyquistTip";
+            e.display_function_data = F(kf,:);
             Curves=[Curves,e];
             kf=kf+ilf;
         end
@@ -270,17 +272,4 @@ function nyquist(varargin)
         legend(Curves, comments);
     end
     fig.immediate_drawing=immediate_drawing;
-endfunction
-
-function str=formatNyquistTip(curve,pt,index)
-    //This function is called by the datatip mechanism to format the tip
-    //string for the nyquist curves.
-    ud=datatipGetStruct(curve);
-    if index<>[] then
-        f=ud.freq(index);
-    else //interpolated
-        [d,ptp,i,c]=orthProj(curve.data,pt);
-        f=ud.freq(i)+(ud.freq(i+1)-ud.freq(i))*c;
-    end
-    str=msprintf("%.4g%+.4gi\n%.4g"+_("Hz"), pt,f);
 endfunction

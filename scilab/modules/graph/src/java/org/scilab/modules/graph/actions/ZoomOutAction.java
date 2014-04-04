@@ -24,6 +24,7 @@ import java.awt.event.MouseWheelListener;
 
 import javax.swing.ActionMap;
 import javax.swing.InputMap;
+import javax.swing.JButton;
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.commons.OS;
@@ -31,7 +32,6 @@ import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.graph.utils.ScilabGraphMessages;
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.gui.pushbutton.PushButton;
 
 /**
  * Zoom management
@@ -132,7 +132,7 @@ public class ZoomOutAction extends DefaultAction implements ActionListener {
      *            corresponding Scilab Graph
      * @return the button
      */
-    public static PushButton zoomoutButton(ScilabGraph scilabGraph) {
+    public static JButton zoomoutButton(ScilabGraph scilabGraph) {
         return createButton(scilabGraph, ZoomOutAction.class);
     }
 

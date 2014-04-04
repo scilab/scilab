@@ -13,22 +13,18 @@
 
 package org.scilab.modules.xcos.modelica.model;
 
-import javax.xml.bind.JAXBElement;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlType;
+
 
 /**
  * Terminal node of a {@link Struct} tree. This node is always a leaf.
  *
- * <p>
- * Java class for Terminal complex type.
+ * <p>Java class for Terminal complex type.
  *
- * <p>
- * The following schema fragment specifies the expected content contained within
- * this class.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  *
  * <pre>
  * &lt;complexType name="Terminal">
@@ -46,7 +42,14 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="nominal_value" type="{}ModelicaValue" minOccurs="0"/>
  *         &lt;element name="comment" type="{}ModelicaValue" minOccurs="0"/>
  *         &lt;element name="selected" type="{}ModelicaValue" minOccurs="0"/>
- *         &lt;element name="output" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="output" minOccurs="0">
+ *           &lt;complexType>
+ *             &lt;complexContent>
+ *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *               &lt;/restriction>
+ *             &lt;/complexContent>
+ *           &lt;/complexType>
+ *         &lt;/element>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -56,9 +59,20 @@ import javax.xml.bind.annotation.XmlType;
  *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Terminal", propOrder = { "name", "kind", "id", "fixed", "initialValue", "weight", "max", "min", "nominalValue", "comment", "selected",
-                                          "output"
-                                        })
+@XmlType(name = "Terminal", propOrder = {
+    "name",
+    "kind",
+    "id",
+    "fixed",
+    "initialValue",
+    "weight",
+    "max",
+    "min",
+    "nominalValue",
+    "comment",
+    "selected",
+    "output"
+})
 public class Terminal {
 
     @XmlElement(required = true)
@@ -77,13 +91,14 @@ public class Terminal {
     protected ModelicaValue nominalValue;
     protected ModelicaValue comment;
     protected ModelicaValue selected;
-    @XmlElementRef(name = "output", type = JAXBElement.class)
-    protected JAXBElement<String> output;
+    protected Terminal.Output output;
 
     /**
      * Gets the value of the name property.
      *
-     * @return possible object is {@link String }
+     * @return
+     *     possible object is
+     *     {@link String }
      *
      */
     public String getName() {
@@ -94,7 +109,8 @@ public class Terminal {
      * Sets the value of the name property.
      *
      * @param value
-     *            allowed object is {@link String }
+     *     allowed object is
+     *     {@link String }
      *
      */
     public void setName(String value) {
@@ -104,7 +120,9 @@ public class Terminal {
     /**
      * Gets the value of the kind property.
      *
-     * @return possible object is {@link String }
+     * @return
+     *     possible object is
+     *     {@link String }
      *
      */
     public String getKind() {
@@ -115,7 +133,8 @@ public class Terminal {
      * Sets the value of the kind property.
      *
      * @param value
-     *            allowed object is {@link String }
+     *     allowed object is
+     *     {@link String }
      *
      */
     public void setKind(String value) {
@@ -125,7 +144,9 @@ public class Terminal {
     /**
      * Gets the value of the id property.
      *
-     * @return possible object is {@link String }
+     * @return
+     *     possible object is
+     *     {@link String }
      *
      */
     public String getId() {
@@ -136,7 +157,8 @@ public class Terminal {
      * Sets the value of the id property.
      *
      * @param value
-     *            allowed object is {@link String }
+     *     allowed object is
+     *     {@link String }
      *
      */
     public void setId(String value) {
@@ -146,7 +168,9 @@ public class Terminal {
     /**
      * Gets the value of the fixed property.
      *
-     * @return possible object is {@link ModelicaValue }
+     * @return
+     *     possible object is
+     *     {@link ModelicaValue }
      *
      */
     public ModelicaValue getFixed() {
@@ -157,7 +181,8 @@ public class Terminal {
      * Sets the value of the fixed property.
      *
      * @param value
-     *            allowed object is {@link ModelicaValue }
+     *     allowed object is
+     *     {@link ModelicaValue }
      *
      */
     public void setFixed(ModelicaValue value) {
@@ -167,7 +192,9 @@ public class Terminal {
     /**
      * Gets the value of the initialValue property.
      *
-     * @return possible object is {@link ModelicaValue }
+     * @return
+     *     possible object is
+     *     {@link ModelicaValue }
      *
      */
     public ModelicaValue getInitialValue() {
@@ -178,7 +205,8 @@ public class Terminal {
      * Sets the value of the initialValue property.
      *
      * @param value
-     *            allowed object is {@link ModelicaValue }
+     *     allowed object is
+     *     {@link ModelicaValue }
      *
      */
     public void setInitialValue(ModelicaValue value) {
@@ -188,7 +216,9 @@ public class Terminal {
     /**
      * Gets the value of the weight property.
      *
-     * @return possible object is {@link ModelicaValue }
+     * @return
+     *     possible object is
+     *     {@link ModelicaValue }
      *
      */
     public ModelicaValue getWeight() {
@@ -199,7 +229,8 @@ public class Terminal {
      * Sets the value of the weight property.
      *
      * @param value
-     *            allowed object is {@link ModelicaValue }
+     *     allowed object is
+     *     {@link ModelicaValue }
      *
      */
     public void setWeight(ModelicaValue value) {
@@ -209,7 +240,9 @@ public class Terminal {
     /**
      * Gets the value of the max property.
      *
-     * @return possible object is {@link ModelicaValue }
+     * @return
+     *     possible object is
+     *     {@link ModelicaValue }
      *
      */
     public ModelicaValue getMax() {
@@ -220,7 +253,8 @@ public class Terminal {
      * Sets the value of the max property.
      *
      * @param value
-     *            allowed object is {@link ModelicaValue }
+     *     allowed object is
+     *     {@link ModelicaValue }
      *
      */
     public void setMax(ModelicaValue value) {
@@ -230,7 +264,9 @@ public class Terminal {
     /**
      * Gets the value of the min property.
      *
-     * @return possible object is {@link ModelicaValue }
+     * @return
+     *     possible object is
+     *     {@link ModelicaValue }
      *
      */
     public ModelicaValue getMin() {
@@ -241,7 +277,8 @@ public class Terminal {
      * Sets the value of the min property.
      *
      * @param value
-     *            allowed object is {@link ModelicaValue }
+     *     allowed object is
+     *     {@link ModelicaValue }
      *
      */
     public void setMin(ModelicaValue value) {
@@ -251,7 +288,9 @@ public class Terminal {
     /**
      * Gets the value of the nominalValue property.
      *
-     * @return possible object is {@link ModelicaValue }
+     * @return
+     *     possible object is
+     *     {@link ModelicaValue }
      *
      */
     public ModelicaValue getNominalValue() {
@@ -262,7 +301,8 @@ public class Terminal {
      * Sets the value of the nominalValue property.
      *
      * @param value
-     *            allowed object is {@link ModelicaValue }
+     *     allowed object is
+     *     {@link ModelicaValue }
      *
      */
     public void setNominalValue(ModelicaValue value) {
@@ -272,7 +312,9 @@ public class Terminal {
     /**
      * Gets the value of the comment property.
      *
-     * @return possible object is {@link ModelicaValue }
+     * @return
+     *     possible object is
+     *     {@link ModelicaValue }
      *
      */
     public ModelicaValue getComment() {
@@ -283,7 +325,8 @@ public class Terminal {
      * Sets the value of the comment property.
      *
      * @param value
-     *            allowed object is {@link ModelicaValue }
+     *     allowed object is
+     *     {@link ModelicaValue }
      *
      */
     public void setComment(ModelicaValue value) {
@@ -293,7 +336,9 @@ public class Terminal {
     /**
      * Gets the value of the selected property.
      *
-     * @return possible object is {@link ModelicaValue }
+     * @return
+     *     possible object is
+     *     {@link ModelicaValue }
      *
      */
     public ModelicaValue getSelected() {
@@ -304,7 +349,8 @@ public class Terminal {
      * Sets the value of the selected property.
      *
      * @param value
-     *            allowed object is {@link ModelicaValue }
+     *     allowed object is
+     *     {@link ModelicaValue }
      *
      */
     public void setSelected(ModelicaValue value) {
@@ -314,11 +360,12 @@ public class Terminal {
     /**
      * Gets the value of the output property.
      *
-     * @return possible object is {@link JAXBElement }{@code <}{@link String }
-     *         {@code >}
+     * @return
+     *     possible object is
+     *     {@link Terminal.Output }
      *
      */
-    public JAXBElement<String> getOutput() {
+    public Terminal.Output getOutput() {
         return output;
     }
 
@@ -326,25 +373,36 @@ public class Terminal {
      * Sets the value of the output property.
      *
      * @param value
-     *            allowed object is {@link JAXBElement }{@code <}{@link String }
-     *            {@code >}
+     *     allowed object is
+     *     {@link Terminal.Output }
      *
      */
-    public void setOutput(JAXBElement<String> value) {
+    public void setOutput(Terminal.Output value) {
         this.output = value;
     }
 
-    /*
-     * Overriden methods
-     */
 
     /**
-     * @return the id
-     * @see java.lang.Object#toString()
+     * <p>Java class for anonymous complex type.
+     *
+     * <p>The following schema fragment specifies the expected content contained within this class.
+     *
+     * <pre>
+     * &lt;complexType>
+     *   &lt;complexContent>
+     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *     &lt;/restriction>
+     *   &lt;/complexContent>
+     * &lt;/complexType>
+     * </pre>
+     *
+     *
      */
-    @Override
-    public String toString() {
-        return getId();
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = "")
+    public static class Output {
+
+
     }
 
 }

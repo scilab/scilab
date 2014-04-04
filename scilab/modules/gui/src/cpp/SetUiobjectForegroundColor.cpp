@@ -12,8 +12,10 @@
  *
  */
 
-#include <string.h>
-#include "SetUiobjectForegroundColor.hxx"
+extern "C"
+{
+#include "SetUicontrol.h"
+}
 
 int SetUiobjectForegroundColor(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {

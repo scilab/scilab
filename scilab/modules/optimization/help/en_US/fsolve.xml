@@ -193,7 +193,7 @@ a*xres+b
 function F=feuler(x,r)
   F=x-r-dt*(x.^2-x.^3);
 endfunction
-function J=dFdx(x)  //definition de la derivee de F
+function J=dFdx(x)  //Definition of the Jacobian
    J=1-dt*(2*x-3*x^2);
 endfunction
 

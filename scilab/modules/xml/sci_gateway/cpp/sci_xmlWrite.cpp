@@ -62,7 +62,7 @@ int sci_xmlWrite(char *fname, void* pvApiCtx)
     doc = XMLObject::getFromId < org_modules_xml::XMLDocument > (getXMLObjectId(addr, pvApiCtx));
     if (!doc)
     {
-        Scierror(999, gettext("%s: XML Document does not exist.\n"), fname);
+        Scierror(999, gettext("%s: XML document does not exist.\n"), fname);
         return 0;
     }
     document = doc->getRealDocument();
@@ -162,9 +162,7 @@ int sci_xmlWrite(char *fname, void* pvApiCtx)
         expandedPath = os_strdup((const char *)document->URL);
     }
 
-    xmlThrDefIndentTreeOutput(1);
-    ret = xmlSaveFormatFile(expandedPath, document, indent);
-    if (ret == -1)
+    if (!doc->saveToFile(expandedPath, indent == 1))
     {
         Scierror(999, gettext("%s: Cannot write the file: %s\n"), fname, expandedPath);
         FREE(expandedPath);

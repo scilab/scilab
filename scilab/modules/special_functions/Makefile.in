@@ -166,7 +166,7 @@ libscispecial_functions_algo_la_LIBADD =
 am__dirstamp = $(am__leading_dot)dirstamp
 am__objects_1 = src/c/libscispecial_functions_algo_la-zbeshv.lo
 am__objects_2 = src/fortran/dbesig.lo src/fortran/dbesjg.lo \
-	src/fortran/dbeskg.lo src/fortran/dbesyg.lo \
+	src/fortran/dbeskg.lo src/fortran/dbesyg.lo src/fortran/psi.lo \
 	src/fortran/zbesig.lo src/fortran/zbesjg.lo \
 	src/fortran/zbeskg.lo src/fortran/zbesyg.lo
 am__objects_3 = src/cpp/libscispecial_functions_algo_la-faddeeva.lo
@@ -337,6 +337,7 @@ CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
 DEMOTOOLS_ENABLE = @DEMOTOOLS_ENABLE@
 DEPDIR = @DEPDIR@
+DLLTOOL = @DLLTOOL@
 DOCBOOK_ROOT = @DOCBOOK_ROOT@
 DOXYGEN_BIN = @DOXYGEN_BIN@
 DSYMUTIL = @DSYMUTIL@
@@ -356,6 +357,11 @@ FGREP = @FGREP@
 FLEXDOCK = @FLEXDOCK@
 FLIBS = @FLIBS@
 FOP = @FOP@
+FREEHEP_GRAPHICS2D = @FREEHEP_GRAPHICS2D@
+FREEHEP_GRAPHICSIO = @FREEHEP_GRAPHICSIO@
+FREEHEP_GRAPHICSIO_EMF = @FREEHEP_GRAPHICSIO_EMF@
+FREEHEP_IO = @FREEHEP_IO@
+FREEHEP_UTIL = @FREEHEP_UTIL@
 GENHTML = @GENHTML@
 GETTEXT_MACRO_VERSION = @GETTEXT_MACRO_VERSION@
 GIWS_BIN = @GIWS_BIN@
@@ -419,6 +425,7 @@ LTLIBINTL = @LTLIBINTL@
 LTLIBOBJS = @LTLIBOBJS@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
+MANIFEST_TOOL = @MANIFEST_TOOL@
 MATIO_CFLAGS = @MATIO_CFLAGS@
 MATIO_ENABLE = @MATIO_ENABLE@
 MATIO_LIBS = @MATIO_LIBS@
@@ -584,6 +591,7 @@ src/fortran/dbesig.f \
 src/fortran/dbesjg.f \
 src/fortran/dbeskg.f \
 src/fortran/dbesyg.f \
+src/fortran/psi.f \
 src/fortran/zbesig.f \
 src/fortran/zbesjg.f \
 src/fortran/zbeskg.f \
@@ -822,6 +830,8 @@ src/fortran/dbesjg.lo: src/fortran/$(am__dirstamp) \
 src/fortran/dbeskg.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/dbesyg.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/psi.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/zbesig.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)

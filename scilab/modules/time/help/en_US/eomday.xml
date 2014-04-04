@@ -20,8 +20,41 @@
         <synopsis>E = eomday(Y, M)</synopsis>
     </refsynopsisdiv>
     <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>Y</term>
+                <listitem>
+                    <para>a vector/matrix containing integers values.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+        <variablelist>
+            <varlistentry>
+                <term>M</term>
+                <listitem>
+                    <para>a vector/matrix containing integers values.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+        <variablelist>
+            <varlistentry>
+                <term>E</term>
+                <listitem>
+                    <para>a vector/matrix containing integers values.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
         <title>Description</title>
-        <para>E = eomday(Y, M) returns the last day of the year and month given by corresponding elements of arrays Y and M.</para>
+        <para>
+            <literal>E= eomday(Y, M)</literal> returns the last day of the year and month 
+            given by corresponding elements of matrices <varname>Y</varname> and <varname>M</varname>.
+        </para>
+        <para>
+            <varname>Y</varname> and <varname>M</varname> must have the same sizes.
+        </para>
     </refsection>
     <refsection>
         <title>Examples</title>

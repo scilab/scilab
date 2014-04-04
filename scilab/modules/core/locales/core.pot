@@ -2,6 +2,7 @@
 # Please see in SCI/tools/localization for localization management
 # Copyright (C) 2007-2008 - INRIA
 # Copyright (C) 2008-2011 - DIGITEO
+# Copyright (C) 2012-2014 - Scilab-Enterprises
 # This file is distributed under the same license as the Scilab package.
 #
 msgid ""
@@ -9,12 +10,12 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab.org>\n"
+"Last-Translator: Vincent COUVERT <vincent.couvert@scilab-enterprises.com>\n"
 "Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-12-09 09:48+0100\n"
+"Revision-Date: 2014-04-01 12:32+0100\n"
 
 # File: examples/capi/call_scifunction/sci_call_scifunc.c, line: 37
 # File: examples/capi/call_scifunction/sci_call_scifunc.c, line: 55
@@ -49,7 +50,7 @@ msgid "%s: Wrong type for input argument #%d: A scilab function expected.\n"
 msgstr ""
 
 #
-# File: includes/stack-c.h, line: 282
+# File: includes/stack-c.h, line: 275
 #, c-format
 msgid " results may be inaccurate. rcond = %s1\n"
 msgstr ""
@@ -67,7 +68,7 @@ msgstr ""
 # File: sci_gateway/c/sci_getvariablesonstack.c, line: 60
 # File: sci_gateway/c/sci_getversion.c, line: 211
 # File: sci_gateway/c/sci_readgateway.c, line: 130
-# File: sci_gateway/c/sci_warning.c, line: 134
+# File: sci_gateway/c/sci_warning.c, line: 157
 # File: sci_gateway/c/sci_with_module.c, line: 52
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
@@ -354,7 +355,7 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_funcprot.c, line: 85
 #, c-format
-msgid "%s: Wrong value for input argument #%d: 0,1 or 2 expected.\n"
+msgid "%s: Wrong value for input argument #%d: %d, %d or %d expected.\n"
 msgstr ""
 
 #
@@ -431,9 +432,9 @@ msgstr ""
 # File: sci_gateway/c/sci_gstacksize.c, line: 202
 # File: sci_gateway/c/sci_gstacksize.c, line: 218
 # File: sci_gateway/c/sci_gstacksize.c, line: 285
-# File: sci_gateway/c/sci_stacksize.c, line: 207
-# File: sci_gateway/c/sci_stacksize.c, line: 222
-# File: sci_gateway/c/sci_stacksize.c, line: 312
+# File: sci_gateway/c/sci_stacksize.c, line: 205
+# File: sci_gateway/c/sci_stacksize.c, line: 220
+# File: sci_gateway/c/sci_stacksize.c, line: 282
 #, c-format
 msgid "%s: Cannot allocate memory.\n"
 msgstr ""
@@ -441,15 +442,15 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_gstacksize.c, line: 153
 # File: sci_gateway/c/sci_gstacksize.c, line: 158
-# File: sci_gateway/c/sci_stacksize.c, line: 158
-# File: sci_gateway/c/sci_stacksize.c, line: 163
+# File: sci_gateway/c/sci_stacksize.c, line: 156
+# File: sci_gateway/c/sci_stacksize.c, line: 161
 #, c-format
 msgid "%s: Out of bounds value. Not in [%lu,%lu].\n"
 msgstr ""
 
 #
 # File: sci_gateway/c/sci_gstacksize.c, line: 163
-# File: sci_gateway/c/sci_stacksize.c, line: 168
+# File: sci_gateway/c/sci_stacksize.c, line: 166
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
 msgstr ""
@@ -457,8 +458,8 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_gstacksize.c, line: 182
 # File: sci_gateway/c/sci_gstacksize.c, line: 187
-# File: sci_gateway/c/sci_stacksize.c, line: 187
-# File: sci_gateway/c/sci_stacksize.c, line: 192
+# File: sci_gateway/c/sci_stacksize.c, line: 185
+# File: sci_gateway/c/sci_stacksize.c, line: 190
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar, '%s' or '%s'.\n"
 msgstr ""
@@ -528,9 +529,9 @@ msgid "%s: Invalid module name : %s.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_stacksize.c, line: 145
-# File: sci_gateway/c/sci_stacksize.c, line: 152
-# File: sci_gateway/c/sci_stacksize.c, line: 303
+# File: sci_gateway/c/sci_stacksize.c, line: 143
+# File: sci_gateway/c/sci_stacksize.c, line: 150
+# File: sci_gateway/c/sci_stacksize.c, line: 273
 #, c-format
 msgid ""
 "%s: Cannot allocate memory.\n"
@@ -538,25 +539,25 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_stacksize.c, line: 385
+# File: sci_gateway/c/sci_stacksize.c, line: 359
 #, c-format
 msgid "%s: Cannot allocate this quantity of memory.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_stacksize.c, line: 388
+# File: sci_gateway/c/sci_stacksize.c, line: 362
 #, c-format
 msgid "%s: The requested size is smaller than the minimal one.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_stacksize.c, line: 391
+# File: sci_gateway/c/sci_stacksize.c, line: 365
 #, c-format
 msgid "%s: Unable to create (or resize) the stack (probably a malloc error).\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_stacksize.c, line: 394
+# File: sci_gateway/c/sci_stacksize.c, line: 368
 #, c-format
 msgid "%s: Unknown error.\n"
 msgstr ""
@@ -581,7 +582,7 @@ msgstr ""
 
 #
 # File: sci_gateway/c/sci_warning.c, line: 89
-# File: sci_gateway/c/sci_warning.c, line: 115
+# File: sci_gateway/c/sci_warning.c, line: 116
 #, c-format
 msgid "WARNING: %s"
 msgstr ""
@@ -589,10 +590,24 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_warning.c, line: 93
 # File: sci_gateway/c/sci_warning.c, line: 98
-# File: sci_gateway/c/sci_warning.c, line: 119
-# File: sci_gateway/c/sci_warning.c, line: 124
+# File: sci_gateway/c/sci_warning.c, line: 109
+# File: sci_gateway/c/sci_warning.c, line: 120
+# File: sci_gateway/c/sci_warning.c, line: 125
 #, c-format
 msgid "WARNING: %s\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_warning.c, line: 137
+#, c-format
+msgid "%s%s"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_warning.c, line: 141
+# File: sci_gateway/c/sci_warning.c, line: 146
+#, c-format
+msgid "%s%s\n"
 msgstr ""
 
 #
@@ -684,7 +699,7 @@ msgstr ""
 
 #
 # File: src/c/banier.c, line: 37
-msgid "Copyright (c) 2011-2013 (Scilab Enterprises)\n"
+msgid "Copyright (c) 2011-2014 (Scilab Enterprises)\n"
 msgstr ""
 
 #
@@ -937,6 +952,7 @@ msgstr ""
 # File: src/c/returnPropertyList.c, line: 85
 # File: src/c/returnPropertyList.c, line: 101
 # File: src/c/returnPropertyList.c, line: 118
+# File: src/c/returnPropertyList.c, line: 136
 msgid "List full.\n"
 msgstr ""
 
@@ -952,8 +968,8 @@ msgid "Functions compiled with very old versions are no more handled."
 msgstr ""
 
 #
-# File: src/c/scimem.c, line: 58
-# File: src/c/scimem.c, line: 92
+# File: src/c/scimem.c, line: 71
+# File: src/c/scimem.c, line: 106
 # File: src/c/scimem64.c, line: 128
 msgid "No space to allocate Scilab stack.\n"
 msgstr ""
@@ -1779,57 +1795,57 @@ msgid "%s: Wrong type of input argument #%d: Integer expected.\n"
 msgstr ""
 
 #
-# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 73
+# File: /home/couvert/git/scilab/scilab/etc/scilab.start, line: 73
 msgid "Startup execution:"
 msgstr ""
 
 #
-# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 74
+# File: /home/couvert/git/scilab/scilab/etc/scilab.start, line: 74
 msgid "  loading initial environment"
 msgstr ""
 
 #
-# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 95
+# File: /home/couvert/git/scilab/scilab/etc/scilab.start, line: 95
 #, c-format
 msgid "Failed to execute %s:"
 msgstr ""
 
 #
-# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 163
+# File: /home/couvert/git/scilab/scilab/etc/scilab.start, line: 163
 msgid "&File"
 msgstr ""
 
 #
-# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 164
+# File: /home/couvert/git/scilab/scilab/etc/scilab.start, line: 164
 msgid "&Edit"
 msgstr ""
 
 #
-# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 165
+# File: /home/couvert/git/scilab/scilab/etc/scilab.start, line: 165
 msgid "&Preferences"
 msgstr ""
 
 #
-# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 166
+# File: /home/couvert/git/scilab/scilab/etc/scilab.start, line: 166
 msgid "&Control"
 msgstr ""
 
 #
-# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 167
-# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 169
-# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 172
-# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 175
-# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 178
+# File: /home/couvert/git/scilab/scilab/etc/scilab.start, line: 167
+# File: /home/couvert/git/scilab/scilab/etc/scilab.start, line: 169
+# File: /home/couvert/git/scilab/scilab/etc/scilab.start, line: 172
+# File: /home/couvert/git/scilab/scilab/etc/scilab.start, line: 175
+# File: /home/couvert/git/scilab/scilab/etc/scilab.start, line: 178
 msgid "&Applications"
 msgstr ""
 
 #
-# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 180
+# File: /home/couvert/git/scilab/scilab/etc/scilab.start, line: 180
 msgid "&?"
 msgstr ""
 
 #
-# File: /home/sylvestre/dev/git/scilab/scilab/etc/scilab.start, line: 181
+# File: /home/couvert/git/scilab/scilab/etc/scilab.start, line: 181
 msgid "&Toolboxes"
 msgstr ""
 
@@ -1915,43 +1931,43 @@ msgid "%s: %s is a uneditable hard coded function.\n"
 msgstr ""
 
 #
-# File: macros/perl.sci, line: 20
+# File: macros/perl.sci, line: 23
 #, c-format
 msgid "%s: Unable to find Perl file: %s"
 msgstr ""
 
 #
-# File: macros/perl.sci, line: 25
+# File: macros/perl.sci, line: 28
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Strings expected.\n"
 msgstr ""
 
 #
-# File: macros/perl.sci, line: 40
+# File: macros/perl.sci, line: 43
 #, c-format
 msgid "%s: No perl command specified."
 msgstr ""
 
 #
-# File: macros/perl.sci, line: 46
+# File: macros/perl.sci, line: 49
 #, c-format
 msgid "%s: Unable to find Perl in '%s"
 msgstr ""
 
 #
-# File: macros/perl.sci, line: 62
+# File: macros/perl.sci, line: 65
 #, c-format
 msgid "%s: Unable to find Perl.\n"
 msgstr ""
 
 #
-# File: macros/perl.sci, line: 67
+# File: macros/perl.sci, line: 70
 #, c-format
 msgid "%s: System error: Command executed: %s"
 msgstr ""
 
 #
-# File: macros/perl.sci, line: 71
+# File: macros/perl.sci, line: 74
 #, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr ""

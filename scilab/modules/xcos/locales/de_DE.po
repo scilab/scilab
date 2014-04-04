@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-04-03 02:43+0000\n"
-"Last-Translator: peter <peterslopp@googlemail.com>\n"
+"PO-Revision-Date: 2014-02-23 11:57+0000\n"
+"Last-Translator: Petersen <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 16967)\n"
 "Language: de\n"
 
 #, c-format
@@ -51,11 +51,10 @@ msgid "No trace nor debug printing"
 msgstr "Weder Trace- noch Debug-Ausgabe"
 
 msgid "Light Simulation trace (Discrete and Continuous part switches)"
-msgstr ""
-"Leichte Simulationsspur (diskrete und kontinuierliche Gegenstandsschalter)"
+msgstr "Light Simulation trace (Discrete and Continuous part switches)"
 
 msgid "Per block execution trace and Debug block calls"
-msgstr "Durch Block Ausführung Spur und suche Fehler in den Block Aufrufen"
+msgstr "Per block execution trace and Debug block calls"
 
 msgid "Debug block calls without trace"
 msgstr "Debug-Block-Aufrufe ohne Trace"
@@ -931,6 +930,12 @@ msgstr ""
 msgid "Logic NOR gate"
 msgstr ""
 
+msgid "If Then Else"
+msgstr ""
+
+msgid "And"
+msgstr ""
+
 msgid "Automotive Suspension"
 msgstr ""
 
@@ -1001,6 +1006,9 @@ msgid "_IF_ Xcos block"
 msgstr ""
 
 msgid "Goto/From blocks"
+msgstr ""
+
+msgid "Event demos"
 msgstr ""
 
 #, c-format
@@ -1196,7 +1204,7 @@ msgid "%s: Unable to export the palette to hdf5.\n"
 msgstr "%s: Kann die Palette nicht nach hdf5 exportieren.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Matrix of strings expected.\n"
+msgid "%s: Wrong type for argument #%d: Matrix of strings expected.\n"
 msgstr ""
 
 #, c-format

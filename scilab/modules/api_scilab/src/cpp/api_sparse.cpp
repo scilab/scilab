@@ -84,7 +84,7 @@ SciErr getCommonSparseMatrix(void* _pvCtx, int* _piAddress, int _iComplex, int* 
 
     Sparse* pS = ((InternalType*)_piAddress)->getAs<Sparse>();
 
-    *_piNbItem = pS->nonZeros();
+    *_piNbItem = (int)pS->nonZeros();
 
     if (_piNbItemRow == NULL)
     {
@@ -302,7 +302,7 @@ SciErr createCommonNamedSparseMatrix(void* _pvCtx, const char* _pstName, int _iC
 
     if (!checkNamedVarFormat(_pvCtx, _pstName))
     {
-        addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name."), "createCommonNamedSparseMatrix");
+        addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name: %s."), "createCommonNamedSparseMatrix", _pstName);
         return sciErr;
     }
 

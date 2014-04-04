@@ -3,7 +3,7 @@
 <properties>
     <comment>
         Map between action and keys
-        If no path is given, org.scilab.modules.scinotes.actions will be choosen
+        If no path is given, org.scilab.modules.scinotes.actions will be chosen
     </comment>
     
     <entry key="ActivateHelpOnTypingForOpenersAction">OSSCKEY H</entry>

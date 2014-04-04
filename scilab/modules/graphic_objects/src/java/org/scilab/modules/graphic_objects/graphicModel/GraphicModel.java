@@ -20,6 +20,7 @@ import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.axis.Axis;
 import org.scilab.modules.graphic_objects.compound.Compound;
 import org.scilab.modules.graphic_objects.console.Console;
+import org.scilab.modules.graphic_objects.datatip.Datatip;
 import org.scilab.modules.graphic_objects.fec.Fec;
 import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
@@ -29,30 +30,33 @@ import org.scilab.modules.graphic_objects.imageplot.Grayplot;
 import org.scilab.modules.graphic_objects.imageplot.Matplot;
 import org.scilab.modules.graphic_objects.label.Label;
 import org.scilab.modules.graphic_objects.legend.Legend;
+import org.scilab.modules.graphic_objects.lighting.Light;
 import org.scilab.modules.graphic_objects.polyline.Polyline;
 import org.scilab.modules.graphic_objects.rectangle.Rectangle;
 import org.scilab.modules.graphic_objects.surface.Fac3d;
 import org.scilab.modules.graphic_objects.surface.Plot3d;
-import org.scilab.modules.graphic_objects.lighting.Light;
 import org.scilab.modules.graphic_objects.textObject.Text;
 import org.scilab.modules.graphic_objects.uibar.progressionbar.Progressionbar;
 import org.scilab.modules.graphic_objects.uibar.waitbar.Waitbar;
 import org.scilab.modules.graphic_objects.uicontextmenu.Uicontextmenu;
 import org.scilab.modules.graphic_objects.uicontrol.checkbox.CheckBox;
 import org.scilab.modules.graphic_objects.uicontrol.edit.Edit;
+import org.scilab.modules.graphic_objects.uicontrol.edit.Spinner;
 import org.scilab.modules.graphic_objects.uicontrol.frame.Frame;
+import org.scilab.modules.graphic_objects.uicontrol.frame.border.FrameBorder;
+import org.scilab.modules.graphic_objects.uicontrol.layer.Layer;
 import org.scilab.modules.graphic_objects.uicontrol.listbox.ListBox;
 import org.scilab.modules.graphic_objects.uicontrol.popupmenu.PopupMenu;
 import org.scilab.modules.graphic_objects.uicontrol.pushbutton.PushButton;
 import org.scilab.modules.graphic_objects.uicontrol.radiobutton.RadioButton;
 import org.scilab.modules.graphic_objects.uicontrol.slider.Slider;
+import org.scilab.modules.graphic_objects.uicontrol.tab.Tab;
 import org.scilab.modules.graphic_objects.uicontrol.table.Table;
 import org.scilab.modules.graphic_objects.uicontrol.uiimage.UiImage;
 import org.scilab.modules.graphic_objects.uicontrol.uitext.UiText;
 import org.scilab.modules.graphic_objects.uimenu.Uimenu;
 import org.scilab.modules.graphic_objects.vectfield.Champ;
 import org.scilab.modules.graphic_objects.vectfield.Segs;
-import org.scilab.modules.graphic_objects.datatip.Datatip;
 
 /**
  * GraphicModel class
@@ -255,6 +259,9 @@ public final class GraphicModel {
             case EDIT:
                 createdObject = new Edit();
                 break;
+            case SPINNER:
+                createdObject = new Spinner();
+                break;
             case FRAME:
                 createdObject = new Frame();
                 break;
@@ -313,11 +320,21 @@ public final class GraphicModel {
             case LIGHT:
                 createdObject = new Light();
                 break;
-            case UNKNOWNOBJECT:
-                createdObject = null;
-                break;
             case DATATIP:
                 createdObject = new Datatip();
+                break;
+            case TAB:
+                createdObject = new Tab();
+                break;
+            case LAYER:
+                createdObject = new Layer();
+                break;
+            case BORDER:
+                createdObject = new FrameBorder();
+                break;
+            case FRAME_SCROLLABLE:
+                createdObject = new Frame();
+                ((Frame)createdObject).setScrollable(true);
                 break;
             default:
                 createdObject = null;

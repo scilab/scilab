@@ -61,7 +61,6 @@ function datatipSetStyle(curve_handle,t,boxed,labeled)
 
     ud=datatipGetStruct(curve_handle)
     if typeof(ud)<>"datatips" then;
-        datatipInitStruct(curve_handle)
         ud=datatipGetStruct(curve_handle)
     end
     if or(ud.style<>style) then

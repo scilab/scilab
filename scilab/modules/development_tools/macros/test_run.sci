@@ -832,7 +832,14 @@ function status = test_single(_module, _testPath, _testName)
 
 
     //execute test
-    host(test_cmd);
+    returnStatus = host(test_cmd);
+    //Check return status
+    if (returnStatus <> 0)
+        status.id = 5;
+        status.message = "failed: Slave Scilab exited with error code " + string(returnStatus);
+        return;
+    end
+
     //Check errors
     if (error_output == "check") & (_module.error_output == "check") then
         if getos() == "Darwin" then
@@ -854,8 +861,7 @@ function status = test_single(_module, _testPath, _testName)
             end
         end
 
-        // Ignore JOGL2 debug message
-        if getos() == "Linux" then
+        if getos() == "Linux" then // Ignore JOGL2 debug message
             tmp_errfile_info = fileinfo(tmp_err);
             msg = "Info: XInitThreads() called for concurrent Thread support"
 
@@ -867,9 +873,28 @@ function status = test_single(_module, _testPath, _testName)
                 else // Remove messages due to warning message from library
                     toRemove = grep(txt, ": no version information available (required by ");
                     txt(toRemove) = [];
+
+                    if ~isempty(txt) then
+                        toRemove = grep(txt, "extension ""RANDR"" missing on display");
+                        txt(toRemove) = [];
+                    end
+
                     if isempty(txt) then
                         deletefile(tmp_err);
                     end
+                end
+            end
+        end
+
+        if getos() == "Windows" then // Ignore JOGL 2.1.4 debug message
+            tmp_errfile_info = fileinfo(tmp_err);
+            msg = "Info: GLDrawableHelper.reshape: pre-exisiting GL error 0x500"
+
+            if ~isempty(tmp_errfile_info) then
+                txt = mgetl(tmp_err);
+                txt(txt==msg) = [];
+                if isempty(txt) then
+                    deletefile(tmp_err);
                 end
             end
         end

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-09-16 09:13+0000\n"
-"Last-Translator: Julie PAUL <Unknown>\n"
+"PO-Revision-Date: 2014-03-31 09:18+0000\n"
+"Last-Translator: Vincent Couvert <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 16967)\n"
 "Language: fr\n"
 
 #, c-format
@@ -156,6 +156,9 @@ msgstr "Japonais"
 
 msgid "Ukrainian"
 msgstr "Ukrainien"
+
+msgid "Start-up directory"
+msgstr "Répertoire de démarrage"
 
 msgid "Confirmation dialogs"
 msgstr "Messages de confirmation"
@@ -635,7 +638,7 @@ msgid "Bottom"
 msgstr "En bas"
 
 msgid "Border Color"
-msgstr "Couleur de bordure"
+msgstr "Couleur du cadre"
 
 msgid "Fill Color"
 msgstr "Couleur de fond"
@@ -706,6 +709,18 @@ msgstr "Mémoire du tas Java (heap memory)"
 msgid "Select the memory (in MB) available in Java: "
 msgstr "Sélectionner la mémoire (en MB) disponible pour le Java : "
 
+msgid "Use current working directory"
+msgstr "Utiliser le répertoire de travail actuel"
+
+msgid "Use previous working directory"
+msgstr "Utiliser le répertoire de travail précédent"
+
+msgid "Use default directory"
+msgstr "Utiliser le répertoire par défaut"
+
+msgid "Default startup directory"
+msgstr "Répertoire de démarrage par défaut"
+
 msgid "Desktop Layout"
 msgstr "Agencement du bureau"
 
@@ -718,6 +733,9 @@ msgstr ""
 
 msgid "Save layout on exiting"
 msgstr "Enregistrer la disposition en quittant"
+
+msgid "Reset layout"
+msgstr "Réinitialiser la disposition"
 
 msgid "Keys binding"
 msgstr "Combinaison de touches"
@@ -776,10 +794,6 @@ msgid "[Continue display? n (no) to stop, any other key to continue]"
 msgstr ""
 "[Continuer à afficher ? n (no) pour arrêter, toute autre touche pour "
 "continuer]"
-
-#, c-format
-msgid "MPI error: %s\n"
-msgstr "Erreur MPI : %s\n"
 
 #, c-format
 msgid ""

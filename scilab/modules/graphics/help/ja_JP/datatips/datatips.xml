@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Copyright (C) INRIA -  Serge Steer Serge.Steer@inria.fr
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="datatips">
@@ -70,12 +70,12 @@
     t=datatipCreate(p2,[0.1,0]);
     t=datatipCreate(p2,[0.8 0.4]);
     datatipSetOrientation(t,"upper left")
-  
+
     function str=myfmt(curve,pt,index)
       str = msprintf('sinc\n%s', sci2exp(round(pt*10)/10))
     endfunction
     datatipSetDisplay(p1,myfmt) //エディタで関数を修正し,ok
-    
+
      ]]></programlisting>
         <programlisting role="example"><![CDATA[
     // 3D 曲線の場合
@@ -89,7 +89,7 @@
     t=datatipCreate(p,50);
     datatipSetOrientation(t,"lower right")
     datatipCreate(p,[0,-1.1,1.1]);
-    
+
      ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -97,9 +97,6 @@
         <simplelist type="inline">
             <member>
                 <link linkend="datatipToggle">datatipToggle</link>
-            </member>
-            <member>
-                <link linkend="datatipInitStruct">datatipInitStruct</link>
             </member>
             <member>
                 <link linkend="datatipCreate">datatipCreate</link>

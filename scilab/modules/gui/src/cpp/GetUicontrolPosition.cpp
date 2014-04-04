@@ -12,7 +12,10 @@
  *
  */
 
-#include "GetUicontrolPosition.hxx"
+extern "C"
+{
+#include "GetUicontrol.h"
+}
 
 void* GetUicontrolPosition(void* _pvCtx, int iObjUID)
 {

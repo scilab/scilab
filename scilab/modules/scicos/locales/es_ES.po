@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 16967)\n"
 "Language: es\n"
 
 #, c-format
@@ -858,6 +858,9 @@ msgstr ""
 msgid "Not enough information to find port type.\n"
 msgstr ""
 
+msgid "Modelica compiler (flat2C)"
+msgstr ""
+
 msgid "The initialization file already exists!"
 msgstr ""
 
@@ -944,7 +947,7 @@ msgstr ""
 #, c-format
 msgid ""
 "%s: Error while calling block %s [uid='%s']: invalid parameter (ier=%f, \\"
-"%scicos_prob=%f).\n"
+"%scicos_prob=%%%s).\n"
 msgstr ""
 
 msgid "Cannot load dynamic library: "
@@ -956,10 +959,7 @@ msgstr ""
 msgid "This file does not exist"
 msgstr ""
 
-msgid "-------Modelica compiler error (with the translator):-------"
-msgstr ""
-
-msgid "Please read the error message in the Scilab window"
+msgid "Modelica compiler"
 msgstr ""
 
 msgid "Sorry: Only C or FORTRAN languages are supported"
@@ -1019,7 +1019,7 @@ msgstr ""
 msgid "-------Modelica translator error message:-----"
 msgstr ""
 
-msgid "-------XML to Modelica error:-------"
+msgid "XML to Modelica"
 msgstr ""
 
 #, c-format

@@ -22,7 +22,6 @@
 #include "splitpath.h"
 #include "PATH_MAX.h"
 #include "stricmp.h"
-#include "convstr.h"
 #include "stristr.h"
 
 /*--------------------------------------------------------------------------*/
@@ -42,10 +41,18 @@ static int findMatchingPrefixSuffix(const char* string, const char* find, BOOL s
 
     //get a working copy of find
     pointerOnFindCopy = os_strdup(find);
-    convstr(&pointerOnFindCopy, &pointerOnFindCopy, UPPER, 1);
     //last character of string
     lastchar = *(string + strlen(string) - 1);
     stringLength = strlen(string);
+
+    // Convert to upper-case
+    {
+        char* str;
+        for (str = pointerOnFindCopy; *str != '\0'; str++)
+        {
+            *str = toupper(*str);
+        }
+    }
 
     //Tips : no infinite loop there, tmpfind string length is always reduced at each iteration
     movingPointerOnFindCopy = strrchr(pointerOnFindCopy, toupper(lastchar));

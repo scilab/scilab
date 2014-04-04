@@ -96,9 +96,13 @@
                 <term>line_style: </term>
                 <listitem>
                     <para>
-                        The <literal>line_style</literal> property value should be an integer in
-                        [1 8]. 1 stands for solid, the other value stands for a selection of
-                        dashes (see <link linkend="axes_properties">getlinestyle</link>).
+                        This field contains the default <literal>line_style</literal>
+                        property value for Segs, Arcs, Rectangle and Polyline objects.
+                        <literal>line_style</literal> selects the type of line to be used to
+                        draw lines . Its value should be an integer in [1 10]. 1
+                        stand for solid, the other values stand for a selection of dashes
+                        (dash, dash dot, longdash dot, bigdash dot, bigdash longdash, dot, double dot, longblank dot, bigblank dot).
+                        See example below.
                     </para>
                 </listitem>
             </varlistentry>
@@ -289,6 +293,26 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
+                <term>mark_offset: </term>
+                <listitem>
+                    <para>
+                        This field contains the <literal>mark_offset</literal> property
+                        value which is the offset to use to draw the first mark. Its value should be an integer
+                        greater or equal to 0 (default value is 0).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>mark_stride: </term>
+                <listitem>
+                    <para>
+                        This field contains the <literal>mark_stride</literal> property
+                        value which is the stride to use to draw the marks (i.e. stride-1 points are skipped
+                        between two consecutive marks). Its value should be integer greater or equal to 1 (default value is 1).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>x_shift: </term>
                 <listitem>
                     <para>This field contains the offset computed by a call to the
@@ -380,6 +404,34 @@
                     </para>
                 </listitem>
             </varlistentry>
+            <varlistentry>
+                <term>datatips: </term>
+                <listitem>
+                    <para>
+                        This property contains a vector of the <literal>datatips</literal> handles related to the polyline.
+                        However, polyline handles currently do not have any <literal>children</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>display_function: </term>
+                <listitem>
+                    <para>
+                        A character string that contains a function name. This function calling sequence must be <literal>str=fun(datatipHandle)</literal> where <literal>datatipHandle</literal> is the handle of the datatip to be displayed. This function must return a string or a vector of strings in str.
+                    </para>
+                    <para>
+                        This function can be overloaded by setting the similar property on a datatip itself.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>display_function_data: </term>
+                <listitem>
+                    <para>
+                        Any Scilab data needed by the <literal>display_function</literal> function.
+                    </para>
+                </listitem>
+            </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
@@ -422,6 +474,32 @@ p.line_style=4;
             p.mark_mode="off";
             p.polyline_style=3;
             p.line_style=4;
+        </scilab:image>
+        <programlisting role="example"><![CDATA[
+// Example for line_style property
+clf();
+f=gcf();
+for i=1:10
+    plot2d(1:10, i*ones([1:10]), 2);
+    // Change line_style:
+    f.children.children(1).children.line_style = i;
+    f.children.children(1).children.thickness = 2;
+end
+f.children.axes_visible = ["off","on","off"];
+f.children.y_label.text = "line_style value";
+f.children.y_label.font_size = 3;
+ ]]></programlisting>
+        <scilab:image>
+            clf();
+            f=gcf();
+            for i=1:10
+            plot2d(1:10, i*ones([1:10]), 2);
+            f.children.children(1).children.line_style = i;
+            f.children.children(1).children.thickness = 2;
+            end
+            f.children.axes_visible = ["off","on","off"];
+            f.children.y_label.text = "line_style value";
+            f.children.y_label.font_size = 3;
         </scilab:image>
     </refsection>
     <refsection role="see also">

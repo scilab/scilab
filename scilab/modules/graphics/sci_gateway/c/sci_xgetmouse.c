@@ -93,7 +93,7 @@ int sci_xgetmouse(char *fname, void *pvApiCtx)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
-            Scierror(202, _("%s: Wrong type for argument %d: Boolean matrix expected.\n"), fname, selPosition);
+            Scierror(202, _("%s: Wrong type for argument #%d: Boolean matrix expected.\n"), fname, selPosition);
             return 1;
         }
 

@@ -2,6 +2,7 @@
 # Please see in SCI/tools/localization for localization management
 # Copyright (C) 2007-2008 - INRIA
 # Copyright (C) 2008-2011 - DIGITEO
+# Copyright (C) 2012-2014 - Scilab-Enterprises
 # This file is distributed under the same license as the Scilab package.
 #
 msgid ""
@@ -9,12 +10,12 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab.org>\n"
+"Last-Translator: Vincent COUVERT <vincent.couvert@scilab-enterprises.com>\n"
 "Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-12-09 09:47+0100\n"
+"Revision-Date: 2014-04-01 12:32+0100\n"
 
 # File: sci_gateway/c/sci_contr.c, line: 72
 # File: sci_gateway/c/sci_contr.c, line: 78
@@ -69,7 +70,7 @@ msgstr ""
 # File: sci_gateway/c/sci_zrankqr.c, line: 174
 # File: sci_gateway/c/sci_zrankqr.c, line: 196
 #, c-format
-msgid "%s: Wrong type for argument %d: A real expected.\n"
+msgid "%s: Wrong type for argument #%d: A real expected.\n"
 msgstr ""
 
 #
@@ -289,7 +290,7 @@ msgstr ""
 # File: sci_gateway/c/sci_linmeq.c, line: 415
 # File: sci_gateway/c/sci_linmeq.c, line: 448
 #, c-format
-msgid "%s: Wrong type for argument %d: Real or complex matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Real or complex matrix expected.\n"
 msgstr ""
 
 #
@@ -384,7 +385,7 @@ msgstr ""
 # File: sci_gateway/c/sci_mucomp.c, line: 72
 # File: sci_gateway/c/sci_zrankqr.c, line: 95
 #, c-format
-msgid "%s: Wrong type for argument %d: A complex expected.\n"
+msgid "%s: Wrong type for argument #%d: A complex expected.\n"
 msgstr ""
 
 #
@@ -426,22 +427,10 @@ msgstr ""
 
 #
 # File: sci_gateway/c/sci_ricc2.c, line: 158
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Type must be continuous or "
-"discrete.\n"
-msgstr ""
-
-#
 # File: sci_gateway/c/sci_ricc2.c, line: 187
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Method must be schur or sign.\n"
-msgstr ""
-
-#
 # File: sci_gateway/c/sci_ricc2.c, line: 197
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Method must be schur or invf.\n"
+msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
 msgstr ""
 
 #
@@ -550,6 +539,11 @@ msgid "Robust control"
 msgstr ""
 
 #
+# File: demos/tracking/track.dem.sce, line: 37
+msgid "Press Return to continue ... \n"
+msgstr ""
+
+#
 # File: macros/abcd.sci, line: 21
 #, c-format
 msgid "%s: Wrong type for input argument: Linear dynamical system expected.\n"
@@ -609,19 +603,12 @@ msgstr ""
 #
 # File: macros/abinv.sci, line: 82
 # File: macros/cls2dls.sci, line: 27
-# File: macros/csim.sci, line: 52
 # File: macros/ctr_gram.sci, line: 34
 # File: macros/ctr_gram.sci, line: 47
 # File: macros/dscr.sci, line: 38
 # File: macros/hankelsv.sci, line: 16
 # File: macros/leqr.sci, line: 31
 # File: macros/lqg.sci, line: 42
-# File: macros/lqg2stan.sci, line: 40
-# File: macros/nehari.sci, line: 27
-# File: macros/obs_gram.sci, line: 29
-# File: macros/obs_gram.sci, line: 42
-# File: macros/st_ility.sci, line: 26
-# File: macros/svplot.sci, line: 37
 #, c-format
 msgid "%s: Input argument %d is assumed continuous time.\n"
 msgstr ""
@@ -794,7 +781,6 @@ msgstr ""
 # File: macros/nyquist.sci, line: 81
 # File: macros/phaseplot.sci, line: 48
 # File: macros/phaseplot.sci, line: 56
-# File: macros/sylv.sci, line: 19
 # File: macros/syslin.sci, line: 97
 # File: macros/syslin.sci, line: 123
 #, c-format
@@ -835,28 +821,9 @@ msgstr ""
 #
 # File: macros/black.sci, line: 151
 # File: macros/bode.sci, line: 142
+# File: macros/bode.sci, line: 182
 # File: macros/gainplot.sci, line: 95
 msgid "Magnitude (dB)"
-msgstr ""
-
-#
-# File: macros/black.sci, line: 233
-# File: macros/bode.sci, line: 187
-# File: macros/bode.sci, line: 193
-# File: macros/gainplot.sci, line: 124
-# File: macros/nyquist.sci, line: 285
-# File: macros/phaseplot.sci, line: 111
-msgid "Hz"
-msgstr ""
-
-#
-# File: macros/black.sci, line: 233
-# File: macros/bode.sci, line: 187
-# File: macros/gainplot.sci, line: 124
-# File: macros/hallchart.sci, line: 87
-# File: macros/hallchart.sci, line: 130
-# File: macros/nicholschart.sci, line: 193
-msgid "dB"
 msgstr ""
 
 #
@@ -941,7 +908,13 @@ msgstr ""
 
 #
 # File: macros/bode.sci, line: 168
+# File: macros/bode.sci, line: 182
 msgid "Phase (degree)"
+msgstr ""
+
+#
+# File: macros/bode.sci, line: 199
+msgid "Frequency (rad/s)"
 msgstr ""
 
 #
@@ -953,9 +926,7 @@ msgstr ""
 #
 # File: macros/bode_asymp.sci, line: 67
 #, c-format
-msgid ""
-"%s: Problem evaluating the first argument.\n"
-"n"
+msgid "%s: Wrong value for input argument #%d: Evaluation failed.\n"
 msgstr ""
 
 #
@@ -1108,7 +1079,7 @@ msgstr ""
 
 #
 # File: macros/chart.sci, line: 12
-# File: macros/nicholschart.sci, line: 27
+# File: macros/nicholschart.sci, line: 28
 msgid "Amplitude and phase contours of y/(1+y)"
 msgstr ""
 
@@ -1119,7 +1090,7 @@ msgstr ""
 
 #
 # File: macros/chart.sci, line: 89
-# File: macros/nicholschart.sci, line: 28
+# File: macros/nicholschart.sci, line: 29
 msgid "phase(y) (degree)"
 msgstr ""
 
@@ -1220,6 +1191,18 @@ msgid "%s: Wrong value for input argument #%d: Detectable system expected.\n"
 msgstr ""
 
 #
+# File: macros/csim.sci, line: 52
+# File: macros/lqg2stan.sci, line: 40
+# File: macros/nehari.sci, line: 27
+# File: macros/obs_gram.sci, line: 29
+# File: macros/obs_gram.sci, line: 42
+# File: macros/st_ility.sci, line: 26
+# File: macros/svplot.sci, line: 37
+#, c-format
+msgid "%s: Input argument #%d is assumed continuous time.\n"
+msgstr ""
+
+#
 # File: macros/csim.sci, line: 57
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A proper system expected\n"
@@ -1288,7 +1271,6 @@ msgstr ""
 # File: macros/ddp.sci, line: 57
 # File: macros/ddp.sci, line: 60
 # File: macros/narsimul.sci, line: 81
-# File: macros/sylv.sci, line: 16
 # File: macros/syslin.sci, line: 90
 # File: macros/syslin.sci, line: 120
 #, c-format
@@ -1448,6 +1430,31 @@ msgid "%s: At least %s past values needed.\n"
 msgstr ""
 
 #
+# File: macros/formatBlackTip.sci, line: 18
+# File: macros/formatBodeMagTip.sci, line: 13
+# File: macros/formatBodePhaseTip.sci, line: 13
+# File: macros/formatGainplotTip.sci, line: 13
+# File: macros/formatNyquistTip.sci, line: 16
+# File: macros/formatPhaseplotTip.sci, line: 13
+msgid "Hz"
+msgstr ""
+
+#
+# File: macros/formatBlackTip.sci, line: 18
+# File: macros/formatBodeMagTip.sci, line: 13
+# File: macros/formatGainplotTip.sci, line: 13
+# File: macros/formatHallModuleTip.sci, line: 12
+# File: macros/formatNicholsGainTip.sci, line: 12
+# File: macros/hallchart.sci, line: 88
+msgid "dB"
+msgstr ""
+
+#
+# File: macros/formatSgridFreqTip.sci, line: 12
+msgid "rad/sec"
+msgstr ""
+
+#
 # File: macros/frep2tf.sci, line: 43
 #, c-format
 msgid "%s: Iteration %s, error=%s.\n"
@@ -1468,6 +1475,8 @@ msgstr ""
 
 #
 # File: macros/g_margin.sci, line: 15
+# File: macros/lyap.sci, line: 13
+# File: macros/sylv.sci, line: 13
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr ""
@@ -1821,6 +1830,13 @@ msgid ""
 msgstr ""
 
 #
+# File: macros/lyap.sci, line: 21
+# File: macros/sylv.sci, line: 33
+#, c-format
+msgid "%s: Wrong value for input argument #%d: c or d expected.\n"
+msgstr ""
+
+#
 # File: macros/minreal.sci, line: 17
 # File: macros/minreal.sci, line: 38
 # File: macros/obsvss.sci, line: 16
@@ -1844,7 +1860,7 @@ msgid "%s: Incompatible input arguments #%d and #%d: "
 msgstr ""
 
 #
-# File: macros/nicholschart.sci, line: 29
+# File: macros/nicholschart.sci, line: 30
 msgid "magnitude(y) (dB)"
 msgstr ""
 
@@ -1919,7 +1935,7 @@ msgstr ""
 # File: macros/plzr.sci, line: 32
 # File: macros/plzr.sci, line: 41
 #, c-format
-msgid "%s: Wrong value of input argument %d: Proper system expected.\n"
+msgid "%s: Wrong value of input argument #%d: Proper system expected.\n"
 msgstr ""
 
 #
@@ -2005,11 +2021,6 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/sgrid.sci, line: 207
-msgid "rad/sec"
-msgstr ""
-
-#
 # File: macros/sm2des.sci, line: 29
 # File: macros/sm2ss.sci, line: 30
 #, c-format
@@ -2048,6 +2059,21 @@ msgstr ""
 #, c-format
 msgid ""
 "%s: Wrong values for input argument #%d: State matrix - eye is singular.\n"
+msgstr ""
+
+#
+# File: macros/sylv.sci, line: 22
+#, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Same number of rows expected.\n"
+msgstr ""
+
+#
+# File: macros/sylv.sci, line: 25
+#, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Same number of columns "
+"expected.\n"
 msgstr ""
 
 #

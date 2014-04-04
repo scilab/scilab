@@ -40,7 +40,8 @@ sci_gateway/c/sci_xs2svg.c \
 sci_gateway/c/sci_xs2jpg.c \
 sci_gateway/c/sci_xs2eps.c \
 sci_gateway/c/sci_xs2pdf.c \
-sci_gateway/c/sci_xs2png.c
+sci_gateway/c/sci_xs2png.c \
+sci_gateway/c/sci_xs2emf.c
 
 GATEWAY_CXX_SOURCES = sci_gateway/cpp/sci_driver.cpp \
 sci_gateway/cpp/sci_xinit.cpp \
@@ -94,6 +95,7 @@ libscigraphic_export_disable_la_CPPFLAGS = -I$(srcdir)/includes/ \
 	-I$(top_srcdir)/modules/api_scilab/includes/ \
 	-I$(top_srcdir)/modules/localization/includes/ \
 	-I$(top_srcdir)/modules/output_stream/includes/ \
+	-I$(top_srcdir)/modules/system_env/includes/ \
 	$(AM_CPPFLAGS)
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding

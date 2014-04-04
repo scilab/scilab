@@ -71,6 +71,9 @@
     <ClCompile Include="issymmetric.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="norm.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\sci_gateway\c\assembleEigenvectors.h">
@@ -95,6 +98,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\schur.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="norm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

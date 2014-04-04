@@ -109,7 +109,7 @@
                                             場合,<literal>i</literal>で指定した行を削除します.
                                             また,<literal>i</literal>が<literal>x</literal>の全ての行にマッチする
                                             場合,<literal>j</literal>で指定した列を削除します.
-                                            その他の場合,<literal>x(i,j)=[]</literal>はエラーを発生します. 
+                                            その他の場合,<literal>x(i,j)=[]</literal>はエラーを発生します.
                                         </para>
                                     </listitem>
                                     <listitem>
@@ -289,7 +289,7 @@
                                 <literal>l(k1) = lk1</literal>
                             </para>
                             <para>
-                                命令<literal>l(k1)...(kn)(i,j)=a</literal> および  <literal>l(list(k1,...,kn,list(i,j))=a</literal> 
+                                命令<literal>l(k1)...(kn)(i,j)=a</literal> および  <literal>l(list(k1,...,kn,list(i,j))=a</literal>
                                 は以下のように解釈されます:
                             </para>
                             <para>
@@ -312,7 +312,7 @@
                             </para>
                             <itemizedlist>
                                 <listitem>
-                                    <para> 
+                                    <para>
                                         実数の非負のスカラー.
                                         <literal>l(0)=a</literal>はリストの"左"にエントリを追加します.
                                         <literal>l(i)=a</literal>はリストの<literal>i</literal>番目の
@@ -341,7 +341,7 @@
                             </para>
                             <itemizedlist>
                                 <listitem>
-                                    <para> 
+                                    <para>
                                         実数の正のスカラー.
                                     </para>
                                 </listitem>
@@ -374,7 +374,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // MATRIX CASE
 a=[1 2 3;4 5 6]
 a(1,2)=10
@@ -418,7 +418,7 @@ dts(2)('b')(1,2)=-100
                 <link linkend="horner">horner</link>
             </member>
             <member>
-                <link linkend="parents">parents</link>
+                <link linkend="parentheses">parentheses</link>
             </member>
             <member>
                 <link linkend="extraction">extraction</link>

@@ -20,32 +20,7 @@
 #ifndef _GET_HANDLE_PROPERTY_H_
 #define _GET_HANDLE_PROPERTY_H_
 
-#include "dynlib_graphics.h"
-
-#include "GetUimenuLabel.h"
-#include "GetUicontrolString.h"
-#include "GetUicontrolStyle.h"
-#include "GetUicontrolPosition.h"
-#include "GetUicontrolBackgroundColor.h"
-#include "GetUiobjectForegroundColor.h"
-#include "GetUicontrolFontWeight.h"
-#include "GetUicontrolFontUnits.h"
-#include "GetUicontrolFontSize.h"
-#include "GetUicontrolFontAngle.h"
-#include "GetUiobjectEnable.h"
-#include "GetUicontrolMin.h"
-#include "GetUicontrolMax.h"
-#include "GetUicontrolUnits.h"
-#include "GetUicontrolListboxTop.h"
-#include "GetUicontrolValue.h"
-#include "GetUicontrolRelief.h"
-#include "GetUicontrolHorizontalAlignment.h"
-#include "GetUicontrolVerticalAlignment.h"
-#include "GetUicontrolFontName.h"
-#include "GetUicontrolSliderStep.h"
-#include "GetUimenuChecked.h"
-#include "GetConsoleShowHiddenHandles.h"
-#include "GetUicontrolTooltipString.h"
+#include "GetUicontrol.h"
 
 GRAPHICS_IMPEXP void* get_figures_id_property(void* _pvCtx, int iObjUID);
 GRAPHICS_IMPEXP void* get_visible_property(void* _pvCtx, int iObjUID);
@@ -62,7 +37,6 @@ GRAPHICS_IMPEXP void* get_figure_resizefcn_property(void* _pvCtx, int iObjUID);
 GRAPHICS_IMPEXP void* get_figure_closerequestfcn_property(void* _pvCtx, int iObjUID);
 GRAPHICS_IMPEXP void* get_rotation_style_property(void* _pvCtx, int iObjUID);
 GRAPHICS_IMPEXP void* get_immediate_drawing_property(void* _pvCtx, int iObjUID);
-GRAPHICS_IMPEXP void* get_pixmap_property(void* _pvCtx, int iObjUID);
 GRAPHICS_IMPEXP void* get_type_property(void* _pvCtx, int iObjUID);
 GRAPHICS_IMPEXP void* get_parent_property(void* _pvCtx, int iObjUID);
 GRAPHICS_IMPEXP void* get_current_axes_property(void* _pvCtx, int iObjUID);
@@ -86,6 +60,8 @@ GRAPHICS_IMPEXP void* get_mark_style_property(void* _pvCtx, int iObjUID);
 GRAPHICS_IMPEXP void* get_mark_mode_property(void* _pvCtx, int iObjUID);
 GRAPHICS_IMPEXP void* get_mark_size_unit_property(void* _pvCtx, int iObjUID);
 GRAPHICS_IMPEXP void* get_mark_size_property(void* _pvCtx, int iObjUID);
+GRAPHICS_IMPEXP void* get_mark_offset_property(void* _pvCtx, int iObjUID);
+GRAPHICS_IMPEXP void* get_mark_stride_property(void* _pvCtx, int iObjUID);
 GRAPHICS_IMPEXP void* get_mark_foreground_property(void* _pvCtx, int iObjUID);
 GRAPHICS_IMPEXP void* get_mark_background_property(void* _pvCtx, int iObjUID);
 GRAPHICS_IMPEXP void* get_bar_layout_property(void* _pvCtx, int iObjUID);
@@ -144,6 +120,8 @@ GRAPHICS_IMPEXP void* get_ytics_coord_property(void* _pvCtx, int iObjUID);
 GRAPHICS_IMPEXP void* get_tics_labels_property(void* _pvCtx, int iObjUID);
 GRAPHICS_IMPEXP void* get_box_property(void* _pvCtx, int iObjUID);
 GRAPHICS_IMPEXP void* get_grid_property(void* _pvCtx, int iObjUID);
+GRAPHICS_IMPEXP void* get_grid_thickness_property(void* _pvCtx, int iObjUID);
+GRAPHICS_IMPEXP void* get_grid_style_property(void* _pvCtx, int iObjUID);
 GRAPHICS_IMPEXP void* get_axes_visible_property(void* _pvCtx, int iObjUID);
 GRAPHICS_IMPEXP void* get_hidden_color_property(void* _pvCtx, int iObjUID);
 GRAPHICS_IMPEXP void* get_isoview_property(void* _pvCtx, int iObjUID);
@@ -182,7 +160,6 @@ GRAPHICS_IMPEXP void* get_grid_position_property(void* _pvCtx, int iObjUID);
 GRAPHICS_IMPEXP void* get_anti_aliasing_property(void* _pvCtx, int iObjUID);
 GRAPHICS_IMPEXP void* get_tag_property(void* _pvCtx, int iObjUID);
 GRAPHICS_IMPEXP void* get_UID(void* _pvCtx, int iObjUID);
-GRAPHICS_IMPEXP void* get_tip_data_property(void* _pvCtx, int iObjUID);
 GRAPHICS_IMPEXP void* get_tip_orientation_property(void* _pvCtx, int iObjUID);
 GRAPHICS_IMPEXP void* get_tip_3component_property(void* _pvCtx, int iObjUID);
 GRAPHICS_IMPEXP void* get_tip_auto_orientation_property(void* _pvCtx, int iObjUID);
@@ -200,5 +177,27 @@ GRAPHICS_IMPEXP void* get_direction_property(void* _pvCtx, int iObjUID);
 GRAPHICS_IMPEXP void* get_image_type_property(void* _pvCtx, int iObjUID);
 GRAPHICS_IMPEXP void* get_video_mode_property(void* _pvCtx, int iObjUID);
 GRAPHICS_IMPEXP void* get_datatips_property(void* _pvCtx, int iObjUID);
+GRAPHICS_IMPEXP void* get_display_function_data_property(void* _pvCtx, int iObjUID);
+GRAPHICS_IMPEXP void* get_resize_property(void* _pvCtx, int iObjUID);
+GRAPHICS_IMPEXP void* get_toolbar_property(void* _pvCtx, int iObjUID);
+GRAPHICS_IMPEXP void* get_toolbar_visible_property(void* _pvCtx, int iObjUID);
+GRAPHICS_IMPEXP void* get_menubar_property(void* _pvCtx, int iObjUID);
+GRAPHICS_IMPEXP void* get_menubar_visible_property(void* _pvCtx, int iObjUID);
+GRAPHICS_IMPEXP void* get_infobar_visible_property(void* _pvCtx, int iObjUID);
+GRAPHICS_IMPEXP void* get_dockable_property(void* _pvCtx, int iObjUID);
+GRAPHICS_IMPEXP void* get_layout_property(void* _pvCtx, int iObjUID);
+GRAPHICS_IMPEXP void* get_constraints_property(void* _pvCtx, int iObjUID);
+GRAPHICS_IMPEXP void* get_rect_property(void* _pvCtx, int iObjUID);
+GRAPHICS_IMPEXP void* get_layout_options_property(void* _pvCtx, int iObjUID);
+GRAPHICS_IMPEXP void* get_border_property(void* _pvCtx, int iObjUID);
+GRAPHICS_IMPEXP void* get_groupname_property(void* _pvCtx, int iObjUID);
+GRAPHICS_IMPEXP void* get_title_position_property(void* _pvCtx, int iObjUID);
+GRAPHICS_IMPEXP void* get_title_scroll_property(void* _pvCtx, int iObjUID);
+GRAPHICS_IMPEXP void* get_scrollable_property(void* _pvCtx, int iObjUID);
+GRAPHICS_IMPEXP void* get_line_width_property(void* _pvCtx, int iObjUID);
+GRAPHICS_IMPEXP void* get_marks_count_property(void* _pvCtx, int iObjUID);
+GRAPHICS_IMPEXP void* get_auto_margins_property(void* _pvCtx, int iObjUID);
+GRAPHICS_IMPEXP void* get_ticks_format_property(void* _pvCtx, int iObjUID);
+GRAPHICS_IMPEXP void* get_ticks_st_property(void* _pvCtx, int iObjUID);
 
 #endif /* _GET_HANDLE_PROPERTY_H_ */

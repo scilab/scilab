@@ -17,9 +17,13 @@
         <para>
             The line numbers displayed by <code>dispbpt()</code> are
             <emphasis>physical</emphasis> line numbers in the mentioned functions.
-            Note that Scilab versions before 5.0 showed <emphasis>logical</emphasis>
-            line numbers. The difference between physical and logical line numbers is
-            the number of <emphasis>continued</emphasis> lines (see <link linkend="dot">dot</link>).
+        </para>
+        <para>
+            <note>
+                Note that Scilab versions before 5.0 showed <emphasis>logical</emphasis>
+                line numbers. The difference between physical and logical line numbers is
+                the number of <emphasis>continued</emphasis> lines (see <link linkend="dot">dot</link>).
+            </note>
         </para>
     </refsection>
     <refsection>

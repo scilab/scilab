@@ -55,6 +55,8 @@ src/c/suspendProcess.c \
 src/c/setlines.c \
 src/c/setformat.c \
 src/c/InitializePreferences.c \
+src/c/saveCWDInPreferences.c \
+src/c/sci_tools.c \
 src/c/getmaxMALLOC.c \
 src/c/sci_mem_alloc.c \
 src/c/hashtable/hashtable.c \
@@ -219,7 +221,7 @@ noinst_LTLIBRARIES = libscicore-algo.la libscicore.la
 endif
 
 
-libscicore_la_LDFLAGS = $(XML_LIBS) $(AM_LDFLAGS)
+libscicore_la_LDFLAGS = $(AM_LDFLAGS)
 #-Wl,--version-script,LibScilab_Import.def
 
 # For the code check (splint)
@@ -231,7 +233,7 @@ libscicore_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
 libscicore_algo_la_CPPFLAGS = $(libscicore_la_CPPFLAGS)
 
 # Commented because it is easier to comment first the core module
-libscicore_la_LIBADD = libscicore-algo.la
+libscicore_la_LIBADD = libscicore-algo.la $(XML_LIBS)
 
 #### Target ######
 modulename=core
@@ -277,6 +279,7 @@ includes/stack.h \
 includes/stack1.h \
 includes/stack2.h \
 includes/stack3.h \
+includes/stack-optional.h \
 includes/stackinfo.h \
 includes/stackTypeVariable.h \
 includes/version.h \

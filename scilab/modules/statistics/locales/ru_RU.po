@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-08-02 00:05+0000\n"
+"PO-Revision-Date: 2014-01-24 15:13+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 16967)\n"
 "Language: ru\n"
 
 msgid "X,Y,A and B"
@@ -196,7 +196,7 @@ msgstr "%s и %s должны иметь одинаковые размеры.\n"
 
 #, c-format
 msgid "Answer appears to be lower than lowest search bound %g\n"
-msgstr ""
+msgstr "Ответ оказался меньше наименьшей границы поиска %g\n"
 
 #, c-format
 msgid "Answer appears to be lower than lowest search bound %f\n"
@@ -315,32 +315,41 @@ msgstr "%s: Неверное количество входных парамет�
 #, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr ""
+"%s: Неверное количество входных аргументов: Ожидалось как минимум %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr ""
+"%s: Неверное количество входных аргументов: ожидалось как минимум %d.\n"
 
 #, c-format
 msgid "%s: Wrong type of input argument #%d: A single boolean expected.\n"
 msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидалось одно логическое "
+"значение.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
 msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидалась вещественная матрица.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the interval %s.\n"
 msgstr ""
+"%s: Неверное значение входного аргумента №%d: оно должно быть на интервале "
+"%s.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
-msgstr ""
+msgstr "%s: Неверный тип входного аргумента №%d: ожидалось целое число.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong values for input argument #%d: Elements must be in increasing "
 "order.\n"
 msgstr ""
+"%s: Неверные значения входного аргумента №%d: элементы должны быть "
+"отсортированы по возрастанию.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument: At least %d expected.\n"
@@ -374,12 +383,6 @@ msgid "%s: Wrong number of input argument: %d to %d expected.\n"
 msgstr "%s: Неверное количество входных параметров: ожидалось от %d до %d.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s', '%s','%s', %d or %d.\n"
-msgstr ""
-"%s: Неверное значение входного параметра №%d: ожидалось «%s», «%s», «%s», %d "
-"или %d.\n"
-
-#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Real vector or matrix expected.\n"
 msgstr ""
@@ -411,13 +414,8 @@ msgstr ""
 "размерности.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s', '%s', %d or %d.\n"
-msgstr ""
-"%s: Неверное значение входного аргумента №%d: '%s', '%s', %d или %d.\n"
-
-#, c-format
 msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
-msgstr ""
+msgstr "%s: Неверное количество аргументов: Ожидалось %d или %d.\n"
 
 #, c-format
 msgid ""
@@ -432,6 +430,34 @@ msgid "%s: Wrong number of input argument: %d expected.\n"
 msgstr "%s: Неверное количество входных параметров: ожидалось %d.\n"
 
 #, c-format
+msgid "%s: Wrong number of output argument: %d expected.\n"
+msgstr "%s: Неверное количество выходных параметров: ожидалось %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr "%s: Неверное количество входных аргументов: Ожидалось от %d до %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real or complex, boolean, polynomial "
+"matrix expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: Ожидалась матрица вещественных или "
+"комплексных, логических, полиномиальных значений.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string or scalar expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидалось строковое значение или "
+"скаляр.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
+msgstr ""
+"%s: Неверное значение входного параметра №%d: должно быть из множества "
+"{%s}.\n"
+
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s', %d or %d "
 "expected.\n"
@@ -444,12 +470,24 @@ msgid "%s: Wrong type for input arguments #%d: Numerical expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидался численный тип.\n"
 
 #, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Same column dimensions "
+"expected.\n"
+msgstr ""
+"%s: Несовместимые входные аргументы №%d и №%d: ожидалось одинаковое "
+"количество столбцов.\n"
+
+#, c-format
+msgid "%s: No NaNs detected, please use %s() instead.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Numerical expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидался численный тип.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr ""
+msgstr "%s: Неверное количество входных аргументов: ожидалось %d или %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Boolean expected."
@@ -457,9 +495,7 @@ msgstr ""
 "%s: Неверный тип входного параметра №%d: ожидалось логическое значение."
 
 #, c-format
-msgid ""
-"%s: Incompatible input arguments #%d and #%d: Same column dimensions "
-"expected.\n"
+msgid "%s: NaNs detected, please use %s() instead.\n"
 msgstr ""
 
 #, c-format
@@ -522,19 +558,15 @@ msgstr "Собственные значения"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: '%s','%s', '%s' or a positive "
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s' or a positive "
 "integer expected.\n"
 msgstr ""
+"%s: Неверное значение входного аргумента №%d: ожидалось '%s', '%s', '%s' или "
+"положительное целое число.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
-msgstr ""
-"%s: Неверное значение входного параметра №%d: должно быть из множества "
-"{%s}.\n"
+msgstr "%s: Неверный размер входного аргумента №%d.\n"
 
 #, c-format
 msgid ""
@@ -594,13 +626,15 @@ msgstr "Неверное значение orien : %s\n"
 
 #, c-format
 msgid "%s: Wrong value of m : a priori mean expected.\n"
-msgstr ""
+msgstr "%s: Неверное значение m : ожидалось априорное среднее значение.\n"
 
 #, c-format
 msgid ""
 "%s: The significance of input argument #%d has been modified. Please refer "
 "to the variance help page.\n"
 msgstr ""
+"%s: Значение входного аргумента №%d изменено. Пожалуйста, обратитесь к "
+"справке по variance.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"

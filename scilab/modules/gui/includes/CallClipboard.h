@@ -22,7 +22,7 @@ extern "C" {
      * Get the clipboard contents
      *
      * @param void
-     * @return the contents of the clipbaord or NULL if the clipbaord data are not chars
+     * @return the contents of the clipboard or NULL if the clipboard data are not chars
      */
     char *getClipboardContents(void);
 

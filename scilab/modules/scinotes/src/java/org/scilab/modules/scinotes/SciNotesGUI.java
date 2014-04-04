@@ -12,43 +12,43 @@
 
 package org.scilab.modules.scinotes;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.Map;
-import java.util.HashMap;
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
 
+import javax.swing.JButton;
 import javax.swing.JPopupMenu;
 import javax.swing.KeyStroke;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.scilab.modules.commons.gui.ScilabLAF;
+import org.scilab.modules.commons.xml.ScilabDocumentBuilderFactory;
+import org.scilab.modules.gui.bridge.checkboxmenuitem.SwingScilabCheckBoxMenuItem;
+import org.scilab.modules.gui.bridge.menu.SwingScilabMenu;
+import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
+import org.scilab.modules.gui.bridge.toolbar.SwingScilabToolBar;
+import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
+import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
+import org.scilab.modules.gui.menu.Menu;
+import org.scilab.modules.gui.menu.ScilabMenu;
+import org.scilab.modules.gui.menubar.MenuBar;
+import org.scilab.modules.gui.menubar.ScilabMenuBar;
+import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.textbox.ScilabTextBox;
+import org.scilab.modules.gui.textbox.TextBox;
+import org.scilab.modules.gui.toolbar.ScilabToolBar;
+import org.scilab.modules.gui.toolbar.ToolBar;
+import org.scilab.modules.localization.Messages;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
-
-import org.scilab.modules.commons.xml.ScilabDocumentBuilderFactory;
-import org.scilab.modules.gui.menu.Menu;
-import org.scilab.modules.gui.menu.ScilabMenu;
-import org.scilab.modules.gui.bridge.menu.SwingScilabMenu;
-import org.scilab.modules.gui.menubar.MenuBar;
-import org.scilab.modules.gui.menubar.ScilabMenuBar;
-import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
-import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
-import org.scilab.modules.gui.bridge.checkboxmenuitem.SwingScilabCheckBoxMenuItem;
-import org.scilab.modules.gui.pushbutton.PushButton;
-import org.scilab.modules.gui.textbox.ScilabTextBox;
-import org.scilab.modules.gui.textbox.TextBox;
-import org.scilab.modules.gui.toolbar.ScilabToolBar;
-import org.scilab.modules.gui.toolbar.ToolBar;
-import org.scilab.modules.gui.window.SimpleWindow;
-import org.scilab.modules.localization.Messages;
-import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
 
 /**
  * Class SciNotesGUI handles menus, bar, ...
@@ -86,7 +86,7 @@ public final class SciNotesGUI {
      * @param editorInstance SciNotes
      * @param title the title
      */
-    public static void init(SimpleWindow mainWindow, final SciNotes editorInstance, String title) {
+    public static void init(SwingScilabWindow mainWindow, final SciNotes editorInstance, String title) {
         mainWindow.setTitle(title);
         mainWindow.addTab(editorInstance);
 
@@ -105,6 +105,13 @@ public final class SciNotesGUI {
         editorInstance.setMenuBar(generateMenuBar(editorInstance));
         editorInstance.setToolBar(generateToolBar(editorInstance));
         editorInstance.setInfoBar(generateInfoBar(editorInstance));
+    }
+
+    public static void clean(SciNotes editorInstance) {
+        mapMenuBar.remove(editorInstance);
+        mapToolBar.remove(editorInstance);
+        mapPopup.remove(editorInstance);
+        mapInfoBar.remove(editorInstance);
     }
 
     /**
@@ -193,8 +200,8 @@ public final class SciNotesGUI {
             Node node = buttons.item(i);
             if (BUTTON.equals(node.getNodeName())) {
                 Element elem = (Element) node;
-                PushButton pb = (PushButton) getButton(elem.getAttribute(ACTION), elem.getAttribute(TOOLTIP), elem.getAttribute(ICON), editor);
-                toolBar.add(pb);
+                JButton button = getButton(elem.getAttribute(ACTION), elem.getAttribute(TOOLTIP), elem.getAttribute(ICON), editor);
+                ((SwingScilabToolBar) toolBar.getAsSimpleToolBar()).add(button);
             } else if (SEPARATOR.equals(node.getNodeName())) {
                 toolBar.addSeparator();
             }
@@ -346,7 +353,7 @@ public final class SciNotesGUI {
      * @param editor the editor
      * @return the button
      */
-    private static Object getButton(String action, String tooltip, String icon, SciNotes editor) {
+    private static JButton getButton(String action, String tooltip, String icon, SciNotes editor) {
         ClassLoader loader = ClassLoader.getSystemClassLoader();
         String className = "";
         String actionClass = SciNotes.getActionName().get(action);
@@ -358,7 +365,10 @@ public final class SciNotesGUI {
             }
             Class clazz = loader.loadClass(className);
             Method method = clazz.getMethod("createButton", new Class[] {String.class, String.class, SciNotes.class});
-            return method.invoke(null, new Object[] {Messages.gettext(tooltip), icon, editor});
+            JButton button = (JButton) method.invoke(null, new Object[] {Messages.gettext(tooltip), icon, editor});
+            ScilabLAF.setDefaultProperties(button);
+
+            return button;
         } catch (ClassNotFoundException e) {
             System.err.println("No action: " + className);
         } catch (NoSuchMethodException e) {

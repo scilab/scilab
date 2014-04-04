@@ -12,7 +12,10 @@
  *
  */
 
-#include "GetUicontrolFontWeight.hxx"
+extern "C"
+{
+#include "GetUicontrol.h"
+}
 
 void* GetUicontrolFontWeight(void* _pvCtx, int iObjUID)
 {

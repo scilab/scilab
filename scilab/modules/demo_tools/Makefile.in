@@ -174,10 +174,11 @@ am__uninstall_files_from_dir = { \
          $(am__cd) "$$dir" && rm -f $$files; }; \
   }
 am__installdirs = "$(DESTDIR)$(libdemo_tools_la_etcdir)" \
+	"$(DESTDIR)$(libdemo_tools_la_guidir)" \
 	"$(DESTDIR)$(libdemo_tools_la_imagesdir)" \
 	"$(DESTDIR)$(libdemo_tools_la_rootdir)"
-DATA = $(libdemo_tools_la_etc_DATA) $(libdemo_tools_la_images_DATA) \
-	$(libdemo_tools_la_root_DATA)
+DATA = $(libdemo_tools_la_etc_DATA) $(libdemo_tools_la_gui_DATA) \
+	$(libdemo_tools_la_images_DATA) $(libdemo_tools_la_root_DATA)
 am__tagged_files = $(HEADERS) $(SOURCES) $(TAGS_FILES) $(LISP)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
@@ -220,6 +221,7 @@ CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
 DEMOTOOLS_ENABLE = @DEMOTOOLS_ENABLE@
 DEPDIR = @DEPDIR@
+DLLTOOL = @DLLTOOL@
 DOCBOOK_ROOT = @DOCBOOK_ROOT@
 DOXYGEN_BIN = @DOXYGEN_BIN@
 DSYMUTIL = @DSYMUTIL@
@@ -239,6 +241,11 @@ FGREP = @FGREP@
 FLEXDOCK = @FLEXDOCK@
 FLIBS = @FLIBS@
 FOP = @FOP@
+FREEHEP_GRAPHICS2D = @FREEHEP_GRAPHICS2D@
+FREEHEP_GRAPHICSIO = @FREEHEP_GRAPHICSIO@
+FREEHEP_GRAPHICSIO_EMF = @FREEHEP_GRAPHICSIO_EMF@
+FREEHEP_IO = @FREEHEP_IO@
+FREEHEP_UTIL = @FREEHEP_UTIL@
 GENHTML = @GENHTML@
 GETTEXT_MACRO_VERSION = @GETTEXT_MACRO_VERSION@
 GIWS_BIN = @GIWS_BIN@
@@ -302,6 +309,7 @@ LTLIBINTL = @LTLIBINTL@
 LTLIBOBJS = @LTLIBOBJS@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
+MANIFEST_TOOL = @MANIFEST_TOOL@
 MATIO_CFLAGS = @MATIO_CFLAGS@
 MATIO_ENABLE = @MATIO_ENABLE@
 MATIO_LIBS = @MATIO_LIBS@
@@ -468,6 +476,10 @@ libdemo_tools_la_root_DATA = license.txt
 libdemo_tools_la_etcdir = $(mydatadir)/etc
 libdemo_tools_la_etc_DATA = etc/demo_tools.quit etc/demo_tools.start
 
+#### demo_tools : XML gui ####
+libdemo_tools_la_guidir = $(mydatadir)/gui
+libdemo_tools_la_gui_DATA = gui/demo_gui.xml
+
 #### demo_tools : images files ####
 libdemo_tools_la_imagesdir = $(mydatadir)/images
 libdemo_tools_la_images_DATA = images/logo_scilab.png
@@ -606,6 +618,27 @@ uninstall-libdemo_tools_la_etcDATA:
 	@list='$(libdemo_tools_la_etc_DATA)'; test -n "$(libdemo_tools_la_etcdir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
 	dir='$(DESTDIR)$(libdemo_tools_la_etcdir)'; $(am__uninstall_files_from_dir)
+install-libdemo_tools_la_guiDATA: $(libdemo_tools_la_gui_DATA)
+	@$(NORMAL_INSTALL)
+	@list='$(libdemo_tools_la_gui_DATA)'; test -n "$(libdemo_tools_la_guidir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(libdemo_tools_la_guidir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(libdemo_tools_la_guidir)" || exit 1; \
+	fi; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libdemo_tools_la_guidir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libdemo_tools_la_guidir)" || exit $$?; \
+	done
+
+uninstall-libdemo_tools_la_guiDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libdemo_tools_la_gui_DATA)'; test -n "$(libdemo_tools_la_guidir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(libdemo_tools_la_guidir)'; $(am__uninstall_files_from_dir)
 install-libdemo_tools_la_imagesDATA: $(libdemo_tools_la_images_DATA)
 	@$(NORMAL_INSTALL)
 	@list='$(libdemo_tools_la_images_DATA)'; test -n "$(libdemo_tools_la_imagesdir)" || list=; \
@@ -690,7 +723,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(DATA) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(libdemo_tools_la_etcdir)" "$(DESTDIR)$(libdemo_tools_la_imagesdir)" "$(DESTDIR)$(libdemo_tools_la_rootdir)"; do \
+	for dir in "$(DESTDIR)$(libdemo_tools_la_etcdir)" "$(DESTDIR)$(libdemo_tools_la_guidir)" "$(DESTDIR)$(libdemo_tools_la_imagesdir)" "$(DESTDIR)$(libdemo_tools_la_rootdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -744,6 +777,7 @@ info: info-am
 info-am:
 
 install-data-am: install-data-local install-libdemo_tools_la_etcDATA \
+	install-libdemo_tools_la_guiDATA \
 	install-libdemo_tools_la_imagesDATA \
 	install-libdemo_tools_la_rootDATA
 
@@ -790,6 +824,7 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libdemo_tools_la_etcDATA \
+	uninstall-libdemo_tools_la_guiDATA \
 	uninstall-libdemo_tools_la_imagesDATA \
 	uninstall-libdemo_tools_la_rootDATA
 
@@ -803,6 +838,7 @@ uninstall-am: uninstall-libdemo_tools_la_etcDATA \
 	install-dvi install-dvi-am install-exec install-exec-am \
 	install-html install-html-am install-html-local install-info \
 	install-info-am install-libdemo_tools_la_etcDATA \
+	install-libdemo_tools_la_guiDATA \
 	install-libdemo_tools_la_imagesDATA \
 	install-libdemo_tools_la_rootDATA install-man install-pdf \
 	install-pdf-am install-ps install-ps-am install-strip \
@@ -810,6 +846,7 @@ uninstall-am: uninstall-libdemo_tools_la_etcDATA \
 	maintainer-clean-generic mostlyclean mostlyclean-generic \
 	mostlyclean-libtool pdf pdf-am ps ps-am tags-am uninstall \
 	uninstall-am uninstall-libdemo_tools_la_etcDATA \
+	uninstall-libdemo_tools_la_guiDATA \
 	uninstall-libdemo_tools_la_imagesDATA \
 	uninstall-libdemo_tools_la_rootDATA
 

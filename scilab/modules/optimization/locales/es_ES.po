@@ -14,11 +14,11 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 16967)\n"
 "Language: es\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: A real expected.\n"
+msgid "%s: Wrong type for argument #%d: A real expected.\n"
 msgstr ""
 
 #, c-format
@@ -589,14 +589,6 @@ msgstr ""
 "%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba una función.\n"
 
 #, c-format
-msgid "%s: Weighting matrix must be square.\n"
-msgstr "%s: La matriz de ponderación debe ser cuadrada.\n"
-
-#, c-format
-msgid "%s: Initial guess not feasible.\n"
-msgstr "%s: El acierto inicial no es factible.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
 msgstr ""
 "%s:Tipo incorrecto del argumento de entrada #%d: Se esperaba una matriz "
@@ -786,6 +778,11 @@ msgstr ""
 msgid "%s: optimal solution found"
 msgstr ""
 
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""
+"%s: Número incorrecto de argumentos de entrada: Se esperaba %d ó %d.\n"
+
 msgid "Welcome to LMITOOL"
 msgstr ""
 
@@ -922,11 +919,6 @@ msgstr ""
 
 msgid "To check the result, use [LME,LMI,OBJ]="
 msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr ""
-"%s: Número incorrecto de argumentos de entrada: Se esperaba %d ó %d.\n"
 
 #, c-format
 msgid "%s: Unexpected maximum number of iterations %s."
@@ -1184,6 +1176,48 @@ msgid ""
 msgstr ""
 "%s: No hay opciones predeterminadas disponibles: la función '%s' no existe "
 "en la ruta."
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Function or list expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for argument #%d: Function expected in first element of "
+"list.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String array expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set  {%s}.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Unknown value %s for option %s.\n"
+msgstr ""
 
 #, c-format
 msgid ""

@@ -9,13 +9,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-10-01 10:10+0000\n"
+"PO-Revision-Date: 2014-03-29 18:20+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 16967)\n"
 "Language: uk\n"
 
 #, c-format
@@ -569,21 +569,6 @@ msgstr ""
 "Немає доступу до жодного з модулів ATOMS: список модулів вашого сховища "
 "порожній."
 
-msgid "ATOMS"
-msgstr "ATOMS"
-
-msgid "&File"
-msgstr "&Файл"
-
-msgid "&Tools"
-msgstr "&Інструменти"
-
-msgid "&Edit"
-msgstr "З&міни"
-
-msgid "&?"
-msgstr "&Довідка"
-
 msgid "File"
 msgstr "Файл"
 
@@ -602,8 +587,8 @@ msgstr "Довідка"
 msgid "Atoms Help..."
 msgstr "Довідка з Atoms…"
 
-msgid "List of installed modules"
-msgstr "Список встановлених модулів"
+msgid "Back"
+msgstr "Назад"
 
 msgid "Remove"
 msgstr "Вилучити"
@@ -611,8 +596,11 @@ msgstr "Вилучити"
 msgid "Install"
 msgstr "Встановити"
 
-msgid "Update"
-msgstr "Оновити"
+msgid "Autoload"
+msgstr "Автозавантаження"
+
+msgid "List of installed modules"
+msgstr "Список встановлених модулів"
 
 msgid "Installing"
 msgstr "Встановлення"
@@ -626,17 +614,6 @@ msgstr ""
 "Встановлення завершено! Будь ласка, перезапустіть Scilab, щоб зміни набули "
 "чинності."
 
-msgid "Removing"
-msgstr "Вилучення"
-
-msgid "Remove failed!"
-msgstr "Невдала спроба вилучення!"
-
-msgid "Remove done! Please restart Scilab to take changes into account. "
-msgstr ""
-"Вилучення завершено. Будь ласка, перезапустіть Scilab, щоб зміни набули "
-"чинності. "
-
 msgid "Updating"
 msgstr "Оновлення"
 
@@ -648,6 +625,28 @@ msgstr ""
 "Оновлення завершено! Будь ласка, перезапустіть Scilab, щоб зміни набули "
 "чинності."
 
+msgid "Removing"
+msgstr "Вилучення"
+
+msgid "Remove failed!"
+msgstr "Невдала спроба вилучення!"
+
+msgid "Remove done! Please restart Scilab to take changes into account. "
+msgstr ""
+"Вилучення завершено. Будь ласка, перезапустіть Scilab, щоб зміни набули "
+"чинності. "
+
+msgid "The module will be automatically loaded at next startup."
+msgstr "Модуль буде автоматично завантажено під час наступного запуску."
+
+msgid ""
+"Autoload at startup is canceled. The Toolboxes menu or atomsLoad() can be "
+"used to load the module when needed."
+msgstr ""
+"Автоматичне завантаження під час запуску вимкнено. Для завантаження модуля "
+"за потреби можна скористатися меню наборів інструментів або командою "
+"atomsLoad()."
+
 msgid "Download size"
 msgstr "Розмір звантаження"
 
@@ -656,6 +655,9 @@ msgstr "Див. також"
 
 msgid "Release date"
 msgstr "Дата випуску"
+
+msgid "Update"
+msgstr "Оновити"
 
 #, c-format
 msgid "A new version ('%s') of '%s' is available"
@@ -983,6 +985,75 @@ msgstr "Всі модулі"
 msgid "Main categories"
 msgstr "Основні категорії"
 
+msgid "Aerospace"
+msgstr "Аерокосмічна галузь"
+
+msgid "Contributed Scilab Binaries"
+msgstr "Надіслані виконувані файли Scilab"
+
+msgid "Data Analysis And Statistics"
+msgstr "Аналіз даних і статистика"
+
+msgid "Data Handling"
+msgstr "Обробка даних"
+
+msgid "Editor Styles"
+msgstr "Стилі редактора"
+
+msgid "Education"
+msgstr "Освіта"
+
+msgid "GUI"
+msgstr "Графічний інтерфейс"
+
+msgid "Graphics"
+msgstr "Графіка"
+
+msgid "Graphs"
+msgstr "Графи"
+
+msgid "Image Processing"
+msgstr "Обробка зображень"
+
+msgid "Instruments Control"
+msgstr "Інструментальний контроль"
+
+msgid "Linear algebra"
+msgstr "Лінійна алгебра"
+
+msgid "Modeling and Control Tools"
+msgstr "Інструменти моделювання та керування"
+
+msgid "Number theory"
+msgstr "Теорія чисел"
+
+msgid "Numerical Maths"
+msgstr "Обчислювальна математика"
+
+msgid "Optimization"
+msgstr "Оптимізація"
+
+msgid "Physics"
+msgstr "Фізика"
+
+msgid "Real-Time"
+msgstr "Обробка у режимі реального часу"
+
+msgid "Scilab development"
+msgstr "Розробка Scilab"
+
+msgid "Signal Processing"
+msgstr "Обробка сигналів"
+
+msgid "Technical"
+msgstr "Технічні галузі"
+
+msgid "Tests"
+msgstr "Тестування"
+
+msgid "Xcos"
+msgstr "Xcos"
+
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: %s must be an available atoms "
@@ -1057,6 +1128,9 @@ msgid "%s: Wrong value for input argument #%d: '%s' is not a valid URL.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: «%s» не є коректною адресою "
 "URL.\n"
+
+msgid "Loaded<br>at startup"
+msgstr "Завантажено<br>під час запуску"
 
 #, c-format
 msgid "%s: the package '%s' does not exist.\n"

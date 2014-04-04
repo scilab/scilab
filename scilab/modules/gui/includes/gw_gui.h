@@ -69,6 +69,10 @@ GUI_IMPEXP int sci_about(char* fname, void* pvApiCtx);
 GUI_IMPEXP int sci_mpopup(char* fname, void* pvApiCtx);
 GUI_IMPEXP int sci_fire_closing_finished (char* fname, void* pvApiCtx);
 
+GUI_IMPEXP int sci_figure(char *fname, void* pvApiCtx);
+GUI_IMPEXP int sci_saveGui(char *fname, void* pvApiCtx);
+GUI_IMPEXP int sci_loadGui(char *fname, void* pvApiCtx);
+
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_GUI__ */
 /*--------------------------------------------------------------------------*/

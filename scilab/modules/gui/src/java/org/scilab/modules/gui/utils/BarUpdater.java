@@ -20,7 +20,7 @@ import java.beans.PropertyChangeListener;
 import org.flexdock.docking.props.DockablePropertySet;
 import org.flexdock.docking.props.PropertyChangeListenerFactory;
 import org.scilab.modules.commons.OS;
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.textbox.TextBox;
@@ -76,18 +76,19 @@ public final class BarUpdater implements PropertyChangeListener {
         SwingScilabWindow parentWindow = SwingScilabWindow.allScilabWindows.get(parentWindowsID);
         if (parentWindow != null && !parentWindow.isRestoring()) {
             boolean same = parentWindow.compareMenuBar(newMenuBar) && parentWindow.compareToolBar(newToolBar) && parentWindow.compareInfoBar(newInfoBar);
+            //Forcing update of title and icon
+            parentWindow.setTitle(newWindowTitle);
+            if (newIcon != null) {
+                parentWindow.setIconImage(newIcon);
+            }
             if (!same) {
                 parentWindow.addMenuBar(newMenuBar);
                 parentWindow.addToolBar(newToolBar);
                 parentWindow.addInfoBar(newInfoBar);
-                parentWindow.setTitle(newWindowTitle);
                 /** The following line is used to update the menubar, toolbar, ... displayed on screen */
                 parentWindow.getRootPane().revalidate();
                 if (OS.get() == OS.MAC) { /* Fix bug #11787 */
                     parentWindow.repaint();
-                }
-                if (newIcon != null) {
-                    parentWindow.setIconImage(newIcon);
                 }
             }
         }
@@ -106,19 +107,20 @@ public final class BarUpdater implements PropertyChangeListener {
     public static void forceUpdateBars(String parentWindowsID, MenuBar newMenuBar, ToolBar newToolBar, TextBox newInfoBar, String newWindowTitle, Image newIcon) {
         SwingScilabWindow parentWindow = SwingScilabWindow.allScilabWindows.get(parentWindowsID);
         if (parentWindow != null) {
+            //Forcing update of title and icon
+            parentWindow.setTitle(newWindowTitle);
+            if (newIcon != null) {
+                parentWindow.setIconImage(newIcon);
+            }
             boolean same = parentWindow.compareMenuBar(newMenuBar) && parentWindow.compareToolBar(newToolBar) && parentWindow.compareInfoBar(newInfoBar);
             if (!same) {
                 parentWindow.addMenuBar(newMenuBar);
                 parentWindow.addToolBar(newToolBar);
                 parentWindow.addInfoBar(newInfoBar);
-                parentWindow.setTitle(newWindowTitle);
                 /** The following line is used to update the menubar, toolbar, ... displayed on screen */
                 parentWindow.getRootPane().revalidate();
                 if (OS.get() == OS.MAC) { /* Fix bug #11787 */
                     parentWindow.repaint();
-                }
-                if (newIcon != null) {
-                    parentWindow.setIconImage(newIcon);
                 }
             }
         }
@@ -127,15 +129,15 @@ public final class BarUpdater implements PropertyChangeListener {
     /**
      * Update the bar on activation event.
      *
-     * @param evt the event emitted by a {@link SwingScilabTab}
+     * @param evt the event emitted by a {@link SwingScilabDockablePanel}
      * @see java.beans.PropertyChangeListener#propertyChange(java.beans.PropertyChangeEvent)
      */
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        if (evt.getSource() instanceof SwingScilabTab
+        if (evt.getSource() instanceof SwingScilabDockablePanel
                 && evt.getPropertyName().equals(DockablePropertySet.ACTIVE)
                 && evt.getNewValue().equals(Boolean.TRUE)) {
-            SwingScilabTab tab = (SwingScilabTab) evt.getSource();
+            SwingScilabDockablePanel tab = (SwingScilabDockablePanel) evt.getSource();
 
             BarUpdater.updateBars(tab.getParentWindowId(),
                                   tab.getMenuBar(),

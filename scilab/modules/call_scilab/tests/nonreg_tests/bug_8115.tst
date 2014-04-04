@@ -27,7 +27,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "call_scilab.h"
-#include "scilabmode.h"
+#include "sci_mode.h"
 /*--------------------------------------------------------------------------*/
 int main(void)
 {

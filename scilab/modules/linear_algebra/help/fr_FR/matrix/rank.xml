@@ -55,8 +55,10 @@
             <literal>X</literal> supérieures à <literal>tol</literal>.
         </para>
         <para>
-            Notez que la valeur par défaut de <literal>tol</literal> est
-            proportionnelle à <literal>norm(X)</literal>. Par exemple
+            <note>
+                Notez que la valeur par défaut de <literal>tol</literal> est
+                proportionnelle à <literal>norm(X)</literal>. Par exemple
+            </note>
         </para>
         <para>
             <literal>rank([1.d-80,0;0,1.d-80])</literal> vaut 2 !.

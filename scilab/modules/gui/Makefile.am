@@ -53,7 +53,6 @@ src/c/getMainWindowTitle.c \
 src/c/InitializeGUI.c \
 src/c/setMainWindowTitle.c \
 src/c/addmenu.c \
-src/c/CreateUIControl.c \
 src/c/CreateUimenu.c \
 src/c/checkColorRange.c \
 src/c/messageboxoptions.c \
@@ -63,6 +62,7 @@ src/jni/ScilabTermination_wrap.c
 GUI_CXX_SOURCES = \
 src/cpp/InitUIMenu.cpp \
 src/jni/CallScilabBridge.cpp \
+src/cpp/CreateUIControl.cpp \
 src/jni/Jxclick.cpp \
 src/jni/SwingView.cpp \
 src/cpp/CallJxclick.cpp \
@@ -73,7 +73,6 @@ src/cpp/CallFontChooser.cpp \
 src/cpp/CallMessageBox.cpp \
 src/cpp/CallHelpBrowser.cpp \
 src/cpp/ContextMenu.cpp \
-src/cpp/Toolbar.cpp \
 src/cpp/Widget.cpp \
 src/cpp/SetUimenuLabel.cpp \
 src/cpp/GetUimenuLabel.cpp \
@@ -120,6 +119,8 @@ src/cpp/SetUicontrolVerticalAlignment.cpp \
 src/cpp/GetUicontrolVerticalAlignment.cpp \
 src/cpp/SetUicontrolSliderStep.cpp \
 src/cpp/GetUicontrolSliderStep.cpp \
+src/cpp/SetUicontrolIcon.cpp \
+src/cpp/GetUicontrolIcon.cpp \
 src/cpp/SetConsoleShowHiddenHandles.cpp \
 src/cpp/GetConsoleShowHiddenHandles.cpp \
 src/cpp/UnitsConversion.cpp \
@@ -186,7 +187,8 @@ sci_gateway/c/sci_progressionbar.c \
 sci_gateway/c/sci_uigetfont.c \
 sci_gateway/c/sci_uigetcolor.c \
 sci_gateway/c/sci_getcallbackobject.c \
-sci_gateway/c/sci_exportUI.c
+sci_gateway/c/sci_exportUI.c \
+sci_gateway/c/sci_figure.c
 
 GATEWAY_CXX_SOURCES = \
 sci_gateway/cpp/sci_printsetupbox.cpp \
@@ -216,7 +218,9 @@ sci_gateway/cpp/sci_datatipmove.cpp \
 sci_gateway/cpp/sci_datatip_set_style.cpp \
 sci_gateway/cpp/sci_datatip_set_display.cpp \
 sci_gateway/cpp/sci_datatip_set_interp.cpp \
-sci_gateway/cpp/sci_datatip_set_orient.cpp
+sci_gateway/cpp/sci_datatip_set_orient.cpp \
+sci_gateway/cpp/sci_saveGui.cpp \
+sci_gateway/cpp/sci_loadGui.cpp
 
 libscigui_la_CPPFLAGS = \
 -I$(srcdir)/includes/ \
@@ -344,6 +348,7 @@ images/icons/16x16/actions/zoom-fit-selection.png \
 images/icons/16x16/actions/zoom-in.png \
 images/icons/16x16/actions/zoom-original.png \
 images/icons/16x16/actions/zoom-out.png \
+images/icons/16x16/actions/data_modify.png \
 images/icons/16x16/animations/process-working.png \
 images/icons/16x16/apps/accessories-text-editor.png \
 images/icons/16x16/apps/datatips.png \
@@ -385,6 +390,7 @@ images/icons/32x32/apps/rrze_table.png \
 images/icons/32x32/apps/scilab.png \
 images/icons/32x32/apps/system-search.png \
 images/icons/32x32/apps/utilities-system-monitor.png \
+images/icons/32x32/apps/preferences-system.png \
 images/icons/32x32/emblems/emblem-readonly.png \
 images/icons/48x48/emblems/emblem-readonly.png \
 images/icons/64x40/mimetypes/application-x-scilab-champ.png \
@@ -410,7 +416,6 @@ images/icons/close-tab-on.png \
 images/icons/close-tab.png \
 images/icons/dock_help_active.png \
 images/icons/dock_help_default.png \
-images/icons/data_modify.png \
 images/icons/puff.png \
 images/icons/rotate.png \
 images/icons/scilab_close_active.png \

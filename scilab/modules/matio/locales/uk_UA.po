@@ -9,13 +9,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2011-09-02 08:22+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2014-03-29 18:30+0000\n"
+"Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 16967)\n"
 "Language: ukPlural-Forms: nplurals=1; plural=0;\n"
 
 #, c-format
@@ -43,22 +43,25 @@ msgid "%s: No more memory.\n"
 msgstr "%s: доступну пам’ять вичерпано.\n"
 
 #, c-format
-msgid "%s: Wrong size for first input argument: Single string expected.\n"
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: помилка під час спроби виділення пам’яті.\n"
+
+#, c-format
+msgid "%s: Wrong size for first input argument: A string expected.\n"
 msgstr ""
-"%s: помилковий розмір вхідного параметра: слід використовувати одинарний "
+"%s: помилкова розмірність першого вхідного параметра: мало бути використано "
 "рядок.\n"
 
 #, c-format
-msgid "%s: Wrong type for first input argument: Single string expected.\n"
+msgid "%s: Wrong type for first input argument: A string expected.\n"
 msgstr ""
-"%s: помилковий тип першого вхідного параметра: слід використовувати одинарне "
-"значення типу «string».\n"
+"%s: помилковий тип першого вхідного параметра: мало бути використано рядок.\n"
 
 #, c-format
-msgid "%s: Wrong size for second input argument: Single string expected.\n"
+msgid "%s: Wrong size for second input argument: A string expected.\n"
 msgstr ""
-"%s: помилкова розмірність другого вхідного параметра: слід використовувати "
-"одинарний рядок.\n"
+"%s: помилкова розмірність другого вхідного параметра: мало бути використано "
+"рядок.\n"
 
 #, c-format
 msgid "%s: Wrong value for second input argument: 'r' or 'w' expected.\n"
@@ -67,22 +70,45 @@ msgstr ""
 "або «w».\n"
 
 #, c-format
-msgid "%s: Wrong type for second input argument: Single string expected.\n"
+msgid "%s: Wrong type for second input argument: A string expected.\n"
 msgstr ""
-"%s: помилковий тип другого вхідного параметра: слід використовувати "
-"одинарний рядок.\n"
+"%s: помилковий тип другого вхідного параметра: мало бути використано "
+"рядковий тип.\n"
 
 #, c-format
-msgid "%s: Wrong size for fourth input argument: Single boolean expected.\n"
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
-"%s: помилкова розмірність четвертого вхідного параметра: слід "
-"використовувати єдине булівське значення\n"
+"%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
 
 #, c-format
-msgid "%s: Wrong type for fourth input argument: Single boolean expected.\n"
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
-"%s: помилковий тип четвертого вхідного параметра: слід використовувати єдине "
-"булівське значення\n"
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+"«string».\n"
+
+#, c-format
+msgid "%s: Wrong size for first input argument: An integer value expected.\n"
+msgstr ""
+"%s: помилкова розмірність першого вхідного параметра: мало бути використано "
+"ціле значення.\n"
+
+#, c-format
+msgid "%s: Wrong type for first input argument: An integer value expected.\n"
+msgstr ""
+"%s: помилковий тип першого вхідного параметра: мало бути використано ціле "
+"значення.\n"
+
+#, c-format
+msgid "%s: Wrong size for fourth input argument: A boolean expected.\n"
+msgstr ""
+"%s: помилкова розмірність четвертого вхідного параметра: мало бути "
+"використано булеве значення.\n"
+
+#, c-format
+msgid "%s: Wrong type for fourth input argument: A boolean expected.\n"
+msgstr ""
+"%s: помилковий тип четвертого вхідного параметра: мало бути використано "
+"булеве значення.\n"
 
 #, c-format
 msgid "%s: N-D arrays of chars not implemented.\n"
@@ -193,10 +219,6 @@ msgstr "%s: не вдалося відкрити файл «%s».\n"
 #, c-format
 msgid "savematfile: could not save variable named %s.\n"
 msgstr "savematfile: не вдалося зберегти змінну з назвою %s.\n"
-
-#, c-format
-msgid "Version %d MAT-file not implemented."
-msgstr "Версію %d файлів MAT не реалізовано."
 
 #, c-format
 msgid "Variable %s can not be saved in ASCII file: IGNORED."

@@ -47,10 +47,15 @@
             plot, use <literal>clf()</literal>.
         </para>
         <para>
-            Enter the command <literal>plot2d3()</literal> to see a demo. Note that all
-            the modes proposed by <literal>plot2dxx</literal> (xx = 1 to 4) can be enabled
-            using <literal>plot2d</literal> and setting the <literal>polyline_style</literal>
-            option to the corresponding number.
+            Enter the command <literal>plot2d3()</literal> to see a demo.
+        </para>
+        <para>
+            <note>
+                Note that all
+                the modes proposed by <literal>plot2dxx</literal> (xx = 1 to 4) can be enabled
+                using <literal>plot2d</literal> and setting the <literal>polyline_style</literal>
+                option to the corresponding number.
+            </note>
         </para>
     </refsection>
     <refsection>

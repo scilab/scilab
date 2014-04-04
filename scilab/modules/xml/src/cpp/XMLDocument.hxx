@@ -67,7 +67,7 @@ public:
      * @param validate a boolean to indicate if the document must be validated in using a DTD
      * @param error a pointer to a string which will receive the error message
      */
-    XMLDocument(const char *path, bool validate, std::string * error, const char * encoding = 0);
+	    XMLDocument(const char *path, bool validate, std::string * error, const char * encoding = 0, const bool html = false);
 
     /**
      * Builds a document with a given code
@@ -75,7 +75,7 @@ public:
      * @param validate a boolean to indicate if the document must be validated in using a DTD
      * @param error a pointer to a string which will receive the error message
      */
-    XMLDocument(const std::string & xmlCode, bool validate, std::string * error, const char * encoding = 0);
+    XMLDocument(const std::string & xmlCode, bool validate, std::string * error, const char * encoding = 0, const bool html = false);
 
     /**
      * Builds a simple document
@@ -95,6 +95,20 @@ public:
     {
         return document;
     }
+
+    /**
+     * @param filename the file where to write xml
+     * @param indent if true, the xml is indented
+     * @return true if all is ok
+     */
+    bool saveToFile(const std::string & filename, const bool indent) const;
+
+    /**
+     * @param filename the file where to write xml
+     * @param indent if true, the xml is indented
+     * @return true if all is ok
+     */
+    bool saveToHTMLFile(const std::string & filename, const bool indent) const;
 
     /**
      * @return the document root
@@ -136,6 +150,7 @@ public:
 
     const XMLObject *getXMLObjectParent() const;
     const std::string dump(bool indent) const;
+    const std::string dumpHTML(bool indent) const;
     const std::string toString() const;
 
 private:
@@ -179,12 +194,38 @@ private:
     static xmlDoc *readDocument(const std::string & xmlCode, const char * encoding, bool validate, std::string * error);
 
     /**
+     * Reads and parses a document given in a file.
+     * @param filename the file name
+     * @param validate a boolean to indicate if the document must be validated in using a DTD
+     * @param error a string where to write the parsing errors
+     * @return a pointer on a xmlDoc
+     */
+    static xmlDoc *readHTMLDocument(const char *filename, const char * encoding, std::string * error);
+
+    /**
+     * Read and parse a document given in a string.
+     * @param xmlCode the XML code
+     * @param validate a boolean to indicate if the document must be validated in using a DTD
+     * @param error a string where to write the parsing errors
+     * @return a pointer on a xmlDoc
+     */
+    static xmlDoc *readHTMLDocument(const std::string & xmlCode, const char * encoding, std::string * error);
+
+    /**
      * Initializes the context
      * @param error a string where to write the parsing errors
      * @param validate a boolean to indicate if the document must be validated in using a DTD
      * @return a pointer on a context
      */
     static xmlParserCtxt *initContext(std::string * error, bool validate);
+
+    /**
+     * Initializes the context
+     * @param error a string where to write the parsing errors
+     * @param validate a boolean to indicate if the document must be validated in using a DTD
+     * @return a pointer on a context
+     */
+    static htmlParserCtxt *initHTMLContext(std::string * error);
 
     static std::string * errorBuffer;
     static std::string * errorXPathBuffer;

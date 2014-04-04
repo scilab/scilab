@@ -511,6 +511,7 @@
                 <FileSelector gridx="3" gridy="2" href="{@single-directory}" mask="*"
                       desc="_(Choose an autosave directory)"
                       dir-selection = "true"
+                      check-entry = "false"
                       listener="EntryListener">
                     <xsl:attribute name="enable">
                         <xsl:if test="@enable='true' and @source-flag='false'">

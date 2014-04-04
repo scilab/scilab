@@ -2,4 +2,4 @@ LIBRARY    linear_algebra.dll
 
 
 EXPORTS
-inteig_
+intspec_

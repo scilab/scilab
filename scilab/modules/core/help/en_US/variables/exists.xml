@@ -14,7 +14,8 @@
             <varlistentry>
                 <term>ve</term>
                 <listitem>
-                    <para>a matrix with the same size as <varname>name</varname> with possible values:
+                    <para>
+                        a matrix with the same size as <varname>name</varname> with possible values:
                         <literal>1</literal> if true, 
                         <literal>0</literal> if false
                     </para>
@@ -61,8 +62,10 @@
             <literal>0</literal> otherwise.
         </para>
         <para>
-            Warning: the <literal>exists</literal> function does not check if a variable exists in
-            the <link linkend="global">global</link> namespace.
+            <warning>
+                Warning: the <literal>exists</literal> function does not check if a variable exists in
+                the <link linkend="global">global</link> namespace.
+            </warning>
         </para>
     </refsection>
     <refsection>

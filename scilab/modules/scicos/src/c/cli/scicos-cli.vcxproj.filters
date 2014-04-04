@@ -167,6 +167,9 @@
     <ClCompile Include="..\scicos_malloc.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\scicos_print.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\tree.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -229,6 +232,9 @@
     <ClInclude Include="..\..\..\includes\scicos_math.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\includes\scicos_print.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\tree.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -285,7 +291,7 @@
     <None Include="..\differential_equations_f_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
-    <None Include="..\scicos-cli_Export.def">
+    <None Include="scicos-cli_Export.def">
       <Filter>Libraries Dependencies\Export</Filter>
     </None>
   </ItemGroup>

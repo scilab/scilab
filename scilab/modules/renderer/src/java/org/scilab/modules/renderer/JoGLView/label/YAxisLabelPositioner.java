@@ -44,6 +44,4 @@ public class YAxisLabelPositioner extends AxisLabelPositioner {
             return 270.0;
         }
     }
-
 }
-

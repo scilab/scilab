@@ -65,8 +65,8 @@
     e=gce();p=e.children(1);//get the handle on the polyline
     t1=datatipCreate(p,80);
     datatipCreate(p,40);
-    datatipRemove(p,1) 
-    datatipRemove(t1)
+    datatipRemove(p,2);
+    datatipRemove(t1);
     ]]></programlisting>
         <scilab:image>
             x=linspace(0,1,100)';
@@ -76,8 +76,8 @@
             e=gce();p=e.children(1);//get the handle on the polyline
             t1=datatipCreate(p,80);
             datatipCreate(p,40);
-            datatipRemove(p,1) 
-            datatipRemove(t1)
+            datatipRemove(p,2);
+            datatipRemove(t1);
         </scilab:image>
     </refsection>
     <refsection role="see also">

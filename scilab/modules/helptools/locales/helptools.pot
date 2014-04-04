@@ -2,6 +2,7 @@
 # Please see in SCI/tools/localization for localization management
 # Copyright (C) 2007-2008 - INRIA
 # Copyright (C) 2008-2011 - DIGITEO
+# Copyright (C) 2012-2014 - Scilab-Enterprises
 # This file is distributed under the same license as the Scilab package.
 #
 msgid ""
@@ -9,12 +10,12 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab.org>\n"
+"Last-Translator: Vincent COUVERT <vincent.couvert@scilab-enterprises.com>\n"
 "Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-12-09 09:47+0100\n"
+"Revision-Date: 2014-04-01 12:32+0100\n"
 
 # File: sci_gateway/c/gw_helptools.c, line: 39
 #, c-format
@@ -216,8 +217,8 @@ msgid "%s: Cannot open file %s.\n"
 msgstr ""
 
 #
-# File: macros/help_from_sci.sci, line: 345
-# File: macros/help_from_sci.sci, line: 361
+# File: macros/help_from_sci.sci, line: 354
+# File: macros/help_from_sci.sci, line: 370
 #, c-format
 msgid "%s: File skipped %s."
 msgstr ""
@@ -354,13 +355,13 @@ msgid "%s: Wrong number of input argument: %d expected.\n"
 msgstr ""
 
 #
-# File: macros/xmltochm.sci, line: 16
+# File: macros/xmltochm.sci, line: 18
 #, c-format
 msgid "%s: This function is only supported on Windows platforms.\n"
 msgstr ""
 
 #
-# File: macros/xmltochm.sci, line: 42
+# File: macros/xmltochm.sci, line: 44
 # File: macros/xmltohtml.sci, line: 28
 # File: macros/xmltojar.sci, line: 28
 # File: macros/xmltopdf.sci, line: 28
@@ -371,13 +372,13 @@ msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
 msgstr ""
 
 #
-# File: macros/xmltochm.sci, line: 85
+# File: macros/xmltochm.sci, line: 87
 #, c-format
 msgid "%s: hhc.exe not found.\n"
 msgstr ""
 
 #
-# File: macros/xmltochm.sci, line: 88
+# File: macros/xmltochm.sci, line: 90
 #, c-format
 msgid "%s: no file generate.\n"
 msgstr ""

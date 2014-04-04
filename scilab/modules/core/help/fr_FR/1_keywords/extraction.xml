@@ -209,7 +209,7 @@
                         S'ils sont présents, les <literal>ki</literal> donnent le
                         chemin vers un terme d'une sous-liste de la liste
                         <literal>l</literal>. Ils permettent de faire une extraction
-                        récursive directe sans utiliser de variable intermédiaire. 
+                        récursive directe sans utiliser de variable intermédiaire.
                     </para>
                     <para> Les instructions:</para>
                     <para>
@@ -257,7 +257,7 @@
                                     </varlistentry>
                                     <varlistentry>
                                         <term>
-                                            le symbole <literal> : </literal> 
+                                            le symbole <literal> : </literal>
                                         </term>
                                         <listitem>
                                             <para> qui représente "tous les éléments".</para>
@@ -347,7 +347,7 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // CAS DES MATRICES
 a=[1 2 3;4 5 6]
 a(1,2)
@@ -393,7 +393,7 @@ dts(2)('b')(1,2)
                 <link linkend="horner">horner</link>
             </member>
             <member>
-                <link linkend="parents">parents</link>
+                <link linkend="parentheses">parentheses</link>
             </member>
         </simplelist>
     </refsection>

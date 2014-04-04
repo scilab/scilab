@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 16967)\n"
 
 msgid "overflow error"
 msgstr "ошибка переполнения"
@@ -321,6 +321,9 @@ msgstr "Тип сдвига"
 
 msgid "SR flip-flop"
 msgstr "SR-триггер"
+
+msgid "Matrix A is not square or D has wrong dimension"
+msgstr ""
 
 msgid "Invalid masked block."
 msgstr ""

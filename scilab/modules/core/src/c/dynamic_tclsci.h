@@ -24,7 +24,7 @@ int gw_dynamic_tclsci(void);
 /*
 * see SCI/modules/tclsci/src/c/setenvtcl.c
 */
-int dynamic_setenvtcl(char *string, char *value);
+int dynamic_setenvtcl(const char *string, const char *value);
 
 /**
 * call & load TerminateTclTk in tclsci dynamic library

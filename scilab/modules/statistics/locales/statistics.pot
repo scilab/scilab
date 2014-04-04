@@ -2,6 +2,7 @@
 # Please see in SCI/tools/localization for localization management
 # Copyright (C) 2007-2008 - INRIA
 # Copyright (C) 2008-2011 - DIGITEO
+# Copyright (C) 2012-2014 - Scilab-Enterprises
 # This file is distributed under the same license as the Scilab package.
 #
 msgid ""
@@ -9,12 +10,12 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab.org>\n"
+"Last-Translator: Vincent COUVERT <vincent.couvert@scilab-enterprises.com>\n"
 "Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2013-12-09 09:47+0100\n"
+"Revision-Date: 2014-04-01 12:32+0100\n"
 
 # File: sci_gateway/c/sci_cdfbet.c, line: 45
 msgid "X,Y,A and B"
@@ -385,12 +386,12 @@ msgstr ""
 # File: macros/geomean.sci, line: 44
 # File: macros/harmean.sci, line: 33
 # File: macros/harmean.sci, line: 51
-# File: macros/nancumsum.sci, line: 41
 # File: macros/nand2mean.sci, line: 33
 # File: macros/nanmax.sci, line: 41
 # File: macros/nanmean.sci, line: 31
 # File: macros/nanmeanf.sci, line: 37
 # File: macros/nanmin.sci, line: 40
+# File: macros/nanreglin.sci, line: 19
 # File: macros/reglin.sci, line: 20
 # File: macros/sample.sci, line: 32
 # File: macros/samplef.sci, line: 41
@@ -411,6 +412,8 @@ msgstr ""
 # File: macros/center.sci, line: 46
 # File: macros/cmoment.sci, line: 51
 # File: macros/harmean.sci, line: 47
+# File: macros/mad.sci, line: 49
+# File: macros/meanf.sci, line: 71
 # File: macros/msd.sci, line: 46
 # File: macros/nanmedian.sci, line: 51
 # File: macros/variance.sci, line: 79
@@ -504,7 +507,7 @@ msgstr ""
 # File: macros/ftest.sci, line: 27
 # File: macros/pca.sci, line: 63
 # File: macros/perctl.sci, line: 31
-# File: macros/regress.sci, line: 26
+# File: macros/regress.sci, line: 27
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr ""
@@ -593,15 +596,8 @@ msgstr ""
 # File: macros/moment.sci, line: 46
 # File: macros/nanmedian.sci, line: 29
 # File: macros/nanstdev.sci, line: 32
-# File: macros/nansum.sci, line: 35
 #, c-format
 msgid "%s: Wrong number of input argument: %d to %d expected.\n"
-msgstr ""
-
-#
-# File: macros/mad.sci, line: 49
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s', '%s','%s', %d or %d.\n"
 msgstr ""
 
 #
@@ -641,12 +637,6 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/meanf.sci, line: 71
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s', '%s', %d or %d.\n"
-msgstr ""
-
-#
 # File: macros/median.sci, line: 22
 # File: macros/quart.sci, line: 29
 #, c-format
@@ -671,6 +661,43 @@ msgid "%s: Wrong number of input argument: %d expected.\n"
 msgstr ""
 
 #
+# File: macros/nancumsum.sci, line: 37
+#, c-format
+msgid "%s: Wrong number of output argument: %d expected.\n"
+msgstr ""
+
+#
+# File: macros/nancumsum.sci, line: 41
+# File: macros/nansum.sci, line: 34
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
+
+#
+# File: macros/nancumsum.sci, line: 45
+# File: macros/nansum.sci, line: 38
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real or complex, boolean, polynomial "
+"matrix expected.\n"
+msgstr ""
+
+#
+# File: macros/nancumsum.sci, line: 58
+# File: macros/nansum.sci, line: 50
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string or scalar expected.\n"
+msgstr ""
+
+#
+# File: macros/nancumsum.sci, line: 62
+# File: macros/nansum.sci, line: 54
+# File: macros/stdevf.sci, line: 54
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
+msgstr ""
+
+#
 # File: macros/nanmeanf.sci, line: 48
 # File: macros/sample.sci, line: 49
 # File: macros/samplef.sci, line: 71
@@ -686,6 +713,21 @@ msgstr ""
 # File: macros/nanmedian.sci, line: 30
 #, c-format
 msgid "%s: Wrong type for input arguments #%d: Numerical expected.\n"
+msgstr ""
+
+#
+# File: macros/nanreglin.sci, line: 27
+# File: macros/reglin.sci, line: 26
+#, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Same column dimensions "
+"expected.\n"
+msgstr ""
+
+#
+# File: macros/nanreglin.sci, line: 30
+#, c-format
+msgid "%s: No NaNs detected, please use %s() instead.\n"
 msgstr ""
 
 #
@@ -707,27 +749,25 @@ msgid "%s: Wrong type for input argument #%d: Boolean expected."
 msgstr ""
 
 #
-# File: macros/reglin.sci, line: 26
+# File: macros/reglin.sci, line: 29
 #, c-format
-msgid ""
-"%s: Incompatible input arguments #%d and #%d: Same column dimensions "
-"expected.\n"
+msgid "%s: NaNs detected, please use %s() instead.\n"
 msgstr ""
 
 #
-# File: macros/regress.sci, line: 30
+# File: macros/regress.sci, line: 31
 #, c-format
 msgid "%s: Wrong type for input arguments: Numerical expected.\n"
 msgstr ""
 
 #
-# File: macros/regress.sci, line: 32
+# File: macros/regress.sci, line: 33
 #, c-format
 msgid "%s: Wrong size for both input arguments: same size expected.\n"
 msgstr ""
 
 #
-# File: macros/regress.sci, line: 33
+# File: macros/regress.sci, line: 34
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Must be > %d.\n"
 msgstr ""
@@ -788,7 +828,7 @@ msgstr ""
 # File: macros/stdev.sci, line: 52
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: '%s','%s', '%s' or a positive "
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s' or a positive "
 "integer expected.\n"
 msgstr ""
 
@@ -798,12 +838,6 @@ msgstr ""
 # File: macros/stdev.sci, line: 97
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
-msgstr ""
-
-#
-# File: macros/stdevf.sci, line: 54
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr ""
 
 #

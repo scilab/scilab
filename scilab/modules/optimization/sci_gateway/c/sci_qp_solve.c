@@ -95,7 +95,7 @@ int sci_qp_solve(char *fname,  void* pvApiCtx)
     sciErr = getMatrixOfDouble(pvApiCtx, piAddr1, &n, &nbis, &Q);
     if (sciErr.iErr)
     {
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 1);
         printError(&sciErr, 0);
         return 1;
     }
@@ -120,7 +120,7 @@ int sci_qp_solve(char *fname,  void* pvApiCtx)
     sciErr = getMatrixOfDouble(pvApiCtx, piAddr2, &nbis, &unbis, &p);
     if (sciErr.iErr)
     {
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 2);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 2);
         printError(&sciErr, 0);
         return 1;
     }
@@ -149,7 +149,7 @@ int sci_qp_solve(char *fname,  void* pvApiCtx)
         sciErr = getMatrixOfDouble(pvApiCtx, piAddr3, &nbis, &m, &C);
         if (sciErr.iErr)
         {
-            Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 3);
+            Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 3);
             printError(&sciErr, 0);
             return 1;
         }
@@ -196,7 +196,7 @@ int sci_qp_solve(char *fname,  void* pvApiCtx)
     sciErr = getMatrixOfDouble(pvApiCtx, piAddr4, &mbis, &unbis, &b);
     if (sciErr.iErr)
     {
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 4);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 4);
         printError(&sciErr, 0);
         return 1;
     }
@@ -222,7 +222,7 @@ int sci_qp_solve(char *fname,  void* pvApiCtx)
     sciErr = getMatrixOfDoubleAsInteger(pvApiCtx, piAddr5, &pipo, &unbis, &me);
     if (sciErr.iErr)
     {
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 5);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 5);
         printError(&sciErr, 0);
         return 1;
     }

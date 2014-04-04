@@ -53,7 +53,9 @@ rand(A[,"uniform"])
             </varlistentry>
         </variablelist>
         <para>
-            Note that in Matlab, <emphasis role="bold">A</emphasis> can contain complex values (in these cases, only real part of <emphasis role="bold">A</emphasis> is taken in account), what Scilab function do not tolerate.
+            <note>
+                Note that in Matlab, <emphasis role="bold">A</emphasis> can contain complex values (in these cases, only real part of <emphasis role="bold">A</emphasis> is taken in account), what Scilab function do not tolerate.
+            </note>
         </para>
         <para>
             Particular case: To get the state of the uniform generator, in Matlab you have to use <emphasis role="bold">s=rand('state')</emphasis> to get 35 current values of the generator, but Scilab equivalent <emphasis role="bold">s=rand("seed")</emphasis> return only one value.

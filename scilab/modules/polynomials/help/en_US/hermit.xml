@@ -52,7 +52,9 @@
             The output variable is <literal>Ar=A*U</literal>.
         </para>
         <para>
-            Warning: Experimental version
+            <warning>
+                Warning: Experimental version
+            </warning>
         </para>
     </refsection>
     <refsection>

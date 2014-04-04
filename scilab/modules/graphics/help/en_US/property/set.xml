@@ -2,11 +2,11 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -19,9 +19,11 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>set(prop,val)
+        <synopsis>
+            set(prop,val)
             set(h,prop)
             set(h,prop,val)
+            set(handlePath,prop,val)
             h.prop=val
         </synopsis>
     </refsynopsisdiv>
@@ -34,6 +36,17 @@
                     <para>graphic handle of the entity which to set the named
                         property. <literal>h</literal> can be a vector of handles, in which case
                         set modifies the property for all entities contained in h.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>handlePath</term>
+                <listitem>
+                    <para>
+                        A character string containing a path pointing to the graphic entity. This path is made of the graphic entity <literal>"Tag"</literal> property and the <literal>"Tag"</literal> property of its parents in the graphics hierarchy under the format <literal>"figuretag/entitytag"</literal> (when the entity is the child of a figure).
+                    </para>
+                    <para>
+                        Deeper hierarchy levels can also be used such as <literal>"figuretag/entity1tag/entity2tag/entitntag/entitytag"</literal>. Wildcards can also be used for multi-paths search. The first entity matching the path will be used.
                     </para>
                 </listitem>
             </varlistentry>
@@ -106,7 +119,8 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <para>
+          <programlisting role="example"><![CDATA[
 clf()
 set("auto_clear","off") ;
 // Exemple of a Plot 2D
@@ -129,6 +143,22 @@ plot2d(x-2,x.^2/20);
 p3= a.children(1).children;
 set([a p1 p2 p3],"foreground",5)
  ]]></programlisting>
+        </para>
+        <para>
+          <programlisting role="example"><![CDATA[
+// Using path
+f = figure("dockable", "off", "menubar", "none", "toolbar", "none", "infobar_visible", "off", "tag", "mainfig");
+frameHandle = uicontrol("parent", f, "style", "frame", "position", [200 200 190 100], "tag", "myframe");
+btnHandle = uicontrol("parent", frameHandle, "position", [20 20 150 30], "string", "button", "tag", "example");
+
+set("mainfig/myframe/example", "string", "complete path");
+get("mainfig/myframe/example", "string")
+set("mainfig/*/example", "string", "wildcard path");
+get("mainfig/*/example", "string")
+set("myframe/example", "string", "partial path");
+get("myframe/example", "string")
+ ]]></programlisting>
+        </para>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>
@@ -152,5 +182,16 @@ set([a p1 p2 p3],"foreground",5)
                 <link linkend="uicontrol">uicontrol</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>
+                    First input argument can now be a path pointing to the graphic entity.
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

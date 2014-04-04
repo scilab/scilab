@@ -91,8 +91,8 @@ c
 c---- debut de l'iteration. On cherche x(k+1) de la forme x(k) + t*d,
 c     avec t > 0. On connait d.
 c
-c         debut de la boucle: etiquette 100,
-c         sortie de la boucle: goto 1000.
+c     Si impres<0 et l'itération est un multiple de -impres,
+c     alors on appelle la fonction fournie, avec indic=1.
 c
 100   iter=iter+1
       if (impres.lt.0) then
@@ -101,7 +101,6 @@ c
               call simul (indic,n,x,f,g,izs,rzs,dzs)
 c             error in user function
               if(indic.eq.0) goto 1000
-              goto 100
           endif
       endif
       if (impres.ge.4) then

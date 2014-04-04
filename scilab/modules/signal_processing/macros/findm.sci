@@ -20,8 +20,8 @@ function m=findm(chi)
         while abs(t-tn) > 10.*%eps
             t=tn;
             lln=log(16/(1-m));
-            k1=%asn(1,1-m);
-            k=%asn(1,m);
+            k1=delip(1,sqrt(1-m));
+            k=delip(1,sqrt(m));
             y=(k1*lln/%pi)-k;
             mn=m;
             m=1-v*exp((-%pi*y)/k1);
@@ -36,8 +36,8 @@ function m=findm(chi)
         while abs(t-tn) > 10.*%eps
             t=tn;
             lln=log(16/m);
-            k1=%asn(1,1-m);
-            k=%asn(1,m);
+            k1=delip(1,sqrt(1-m));
+            k=delip(1,sqrt(m));
             y=(k*lln/%pi)-k1;
             mn=m;
             m=v*exp((-%pi*y)/k);

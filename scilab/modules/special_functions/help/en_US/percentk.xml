@@ -44,7 +44,7 @@
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
 m=0.4;
-%asn(1,m)
+delip(1,sqrt(m))
 %k(m)
  ]]></programlisting>
     </refsection>
@@ -52,7 +52,7 @@ m=0.4;
         <title>See Also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="percentasn">%asn</link>
+                <link linkend="delip">delip</link>
             </member>
         </simplelist>
     </refsection>

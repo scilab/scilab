@@ -8,11 +8,3 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 // =============================================================================
-
-if (getscilabmode() <> "NWNI") then
-
-  //Load  functions libraries
-  // =============================================================================
-  load(SCI+"/modules/graphic_export/macros/lib");
-
-end

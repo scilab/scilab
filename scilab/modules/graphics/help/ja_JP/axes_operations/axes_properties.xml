@@ -700,8 +700,7 @@
                                     <literal>mark_size</literal> は表示される記号のフォントの大きさを
                                     選択します.
                                     この値は [0 5]の範囲の整数である必要があり,それぞれ,
-                                    8pt, 10pt, 12pt, 14pt, 18pt および 24pt (
-                                    <link linkend="getmark">getmark</link>参照)を意味します.
+                                    8pt, 10pt, 12pt, 14pt, 18pt および 24ptを意味します.
                                 </para>
                             </listitem>
                         </varlistentry>

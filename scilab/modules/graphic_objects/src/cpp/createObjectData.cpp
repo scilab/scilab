@@ -67,7 +67,7 @@ int createObject3dData(int obj, int newObj, int type)
         getGraphicObjectProperty(obj, __GO_DATA_MODEL_NUM_GONS__, jni_int, (void**) &png);
         getGraphicObjectProperty(obj, __GO_DATA_MODEL_NUM_VERTICES_PER_GON__, jni_int, (void**) &pnvg);
         getGraphicObjectProperty(obj, __GO_DATA_MODEL_NUM_COLORS__, jni_int, (void**)&pNumColors);
-        getGraphicObjectProperty(obj, __GO_DATA_MODEL_COLORS__, jni_double_vector, (void**)&pNumColors);
+        getGraphicObjectProperty(obj, __GO_DATA_MODEL_COLORS__, jni_double_vector, (void**)&Colors);
 
         numElementsArray[0] = numElementsArray[1] = numElementsArray[2] = ng * nvg;
 

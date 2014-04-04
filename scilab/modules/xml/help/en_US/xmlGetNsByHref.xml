@@ -51,7 +51,9 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-    doc = xmlReadStr("<root><a xmlns:scilab=""http://www.scilab.org""><b>Hello </b><scilab:c>World</scilab:c></a></root>")
+    s = "<root><a xmlns:scilab=""http://www.scilab.org"">"+..
+        "<b>Hello </b><scilab:c>World</scilab:c></a></root>"
+    doc = xmlReadStr(s)
     c = doc.root.children(1).children(2);
     xmlGetNsByHref(c, "http://www.scilab.org")
 

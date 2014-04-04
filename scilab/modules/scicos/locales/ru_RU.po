@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-03-26 17:13+0000\n"
+"PO-Revision-Date: 2014-01-18 02:12+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 16967)\n"
 "Language: ru\n"
 
 #, c-format
@@ -52,6 +52,7 @@ msgstr "%s : Не осталось свободной памяти.\n"
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
 msgstr ""
+"%s: Неверное значение входного аргумента №%d: ожидалось целое число.\n"
 
 #, c-format
 msgid "%s : First argument must be a scicos_block typed list.\n"
@@ -550,28 +551,40 @@ msgid ""
 "\n"
 "Error: Problem in the evaluation of a root function"
 msgstr ""
+"\n"
+"Ошибка: Проблема в вычислении корневой функции"
 
 #, c-format
 msgid ""
 "\n"
 "Warning: The preconditioner evaluation function returns a NaN at index #%d."
 msgstr ""
+"\n"
+"Внимание: Функция вычисления предобуславливателя возвращает NaN в индексе "
+"№%d."
 
 msgid ""
 "\n"
 "Error: The preconditioner evaluation function failed."
 msgstr ""
+"\n"
+"Ошибка: Функция вычисления предобуславливателя рухнула."
 
 msgid ""
 "\n"
 "Error: Failed to factor the preconditioner."
 msgstr ""
+"\n"
+"Ошибка:Не удалось разложить предобуславливатель."
 
 #, c-format
 msgid ""
 "\n"
 "Warning: The preconditioner application function returns a NaN at index #%d."
 msgstr ""
+"\n"
+"Внимание: Функция применения предобуславливателя возвращает NaN не индексе "
+"№%d."
 
 #, c-format
 msgid ""
@@ -730,7 +743,7 @@ msgid "Simulation parameters not set:"
 msgstr "Не установлены параметры моделирования:"
 
 msgid "Initialization problem:"
-msgstr ""
+msgstr "Проблема инициализации:"
 
 msgid "Simulation problem: "
 msgstr "Проблема моделирования: "
@@ -744,17 +757,18 @@ msgstr "%s: Неверное количество входных парамет�
 
 msgid "Your model contains states defined in standard Scicos blocks.\n"
 msgstr ""
+"Ваша модель содержит состояния, определённые в стандартных Scicos-блоках.\n"
 
 #, c-format
 msgid "Initialisation problem in %s "
-msgstr ""
+msgstr "Проблема инициализации в %s "
 
 #, c-format
 msgid "Initialisation problem in the %s method"
-msgstr ""
+msgstr "Проблема инициализации в методе %s"
 
 msgid "Initialisation problem in the finish phase"
-msgstr ""
+msgstr "Проблема инициализации в конечной фазе"
 
 msgid "Problem with the block generated from modelica blocks."
 msgstr "Проблема с блоком, сформированным в блоках modelica."
@@ -820,7 +834,7 @@ msgid "Algebraic loop."
 msgstr ""
 
 msgid "A C or Fortran block is used but not linked.\n"
-msgstr ""
+msgstr "Блок C или Fortran используется но не компонуется.\n"
 
 #, c-format
 msgid "Number of modes in block #%d cannot be determined."
@@ -899,17 +913,20 @@ msgstr ""
 msgid "Not enough information to find port type.\n"
 msgstr ""
 
+msgid "Modelica compiler (flat2C)"
+msgstr ""
+
 msgid "The initialization file already exists!"
 msgstr ""
 
 msgid "Do you want to overwrite it?"
-msgstr ""
+msgstr "Хотите перезаписать?"
 
 msgid "No"
-msgstr ""
+msgstr "Нет"
 
 msgid "Yes"
-msgstr ""
+msgstr "Да"
 
 msgid "Modelica blocks are reduced to a block with:"
 msgstr ""
@@ -985,7 +1002,7 @@ msgstr "Проблема выполнения: Неизвестный блок"
 #, c-format
 msgid ""
 "%s: Error while calling block %s [uid='%s']: invalid parameter (ier=%f, \\"
-"%scicos_prob=%f).\n"
+"%scicos_prob=%%%s).\n"
 msgstr ""
 
 msgid "Cannot load dynamic library: "
@@ -997,10 +1014,7 @@ msgstr ""
 msgid "This file does not exist"
 msgstr ""
 
-msgid "-------Modelica compiler error (with the translator):-------"
-msgstr ""
-
-msgid "Please read the error message in the Scilab window"
+msgid "Modelica compiler"
 msgstr ""
 
 msgid "Sorry: Only C or FORTRAN languages are supported"
@@ -1062,7 +1076,7 @@ msgstr ""
 msgid "-------Modelica translator error message:-----"
 msgstr ""
 
-msgid "-------XML to Modelica error:-------"
+msgid "XML to Modelica"
 msgstr ""
 
 #, c-format

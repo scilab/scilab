@@ -15,18 +15,18 @@ package org.scilab.modules.history_browser.actions;
 import java.lang.reflect.InvocationTargetException;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.KeyStroke;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreePath;
 
+import org.scilab.modules.commons.gui.FindIconHelper;
+import org.scilab.modules.commons.gui.ScilabLAF;
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
-import org.scilab.modules.gui.pushbutton.PushButton;
-import org.scilab.modules.gui.pushbutton.ScilabPushButton;
-import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.history_browser.CommandHistory;
 import org.scilab.modules.history_browser.CommandHistoryMessages;
 import org.scilab.modules.history_manager.HistoryManagement;
@@ -40,7 +40,7 @@ public final class DeleteAction extends CommonCallBack {
     private static final long serialVersionUID = 1L;
 
     private static final String LABEL = CommandHistoryMessages.DELETE;
-    private static final String ICON = ScilabSwingUtilities.findIcon("edit-delete");
+    private static final String ICON = FindIconHelper.findIcon("edit-delete");
     private static final char MNEMONIC = 'D';
 
     private static final String KEY = "DELETE";
@@ -78,11 +78,13 @@ public final class DeleteAction extends CommonCallBack {
      * Create the associated button
      * @return the button
      */
-    public static PushButton createPushButton() {
-        PushButton pushButton = ScilabPushButton.createPushButton();
-        pushButton.setIcon(ICON);
+    public static JButton createPushButton() {
+        JButton pushButton = new JButton();
+        ScilabLAF.setDefaultProperties(pushButton);
+        pushButton.setIcon(new ImageIcon(ICON));
         pushButton.setToolTipText(LABEL);
-        pushButton.setCallback(getCallBack());
+        pushButton.addActionListener(getCallBack());
+
         return pushButton;
     }
 

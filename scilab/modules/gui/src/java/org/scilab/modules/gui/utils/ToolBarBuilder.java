@@ -27,12 +27,12 @@ import javax.swing.JButton;
 import javax.swing.JToggleButton;
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.scilab.modules.commons.gui.FindIconHelper;
+import org.scilab.modules.commons.gui.ScilabLAF;
 import org.scilab.modules.commons.xml.ScilabDocumentBuilderFactory;
 import org.scilab.modules.graphic_objects.graphicObject.CallBack;
 import org.scilab.modules.gui.bridge.toolbar.SwingScilabToolBar;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
-import org.scilab.modules.gui.pushbutton.PushButton;
-import org.scilab.modules.gui.pushbutton.ScilabPushButton;
 import org.scilab.modules.gui.toolbar.ScilabToolBar;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.localization.Messages;
@@ -218,14 +218,12 @@ public final class ToolBarBuilder {
                             pushButton = new JButton();
                         }
 
-                        pushButton.setFocusable(false);
-                        pushButton.setContentAreaFilled(true);
-                        pushButton.setOpaque(false);
+                        ScilabLAF.setDefaultProperties(pushButton);
 
                         for (int i = 0; i < buttonAttributes.getLength(); i++) {
                             if (buttonAttributes.item(i).getNodeName().equals(ICON)) {
                                 // Icon file
-                                pushButton.setIcon(new ImageIcon(ScilabSwingUtilities.findIcon(buttonAttributes.item(i).getNodeValue())));
+                                pushButton.setIcon(new ImageIcon(FindIconHelper.findIcon(buttonAttributes.item(i).getNodeValue())));
                             } else if (buttonAttributes.item(i).getNodeName().equals(ENABLED)) {
                                 // Enable are disable the button
                                 pushButton.setEnabled(buttonAttributes.item(i).getNodeValue().equals(TRUE));

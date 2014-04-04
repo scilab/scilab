@@ -40,6 +40,7 @@ int sci_csvRead(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int iErr = 0;
+    int iErrEmpty = 0;
 
     char *filename = NULL;
     char *separator = NULL;
@@ -47,11 +48,13 @@ int sci_csvRead(char *fname, void* pvApiCtx)
     char *conversion = NULL;
     int *iRange = NULL;
     int haveRange = 0;
+    int header = 0;
 
     char **toreplace = NULL;
     int nbElementsToReplace = 0;
 
     char *regexp = NULL;
+    int haveRegexp = 0;
 
     csvResult *result = NULL;
 
@@ -59,8 +62,18 @@ int sci_csvRead(char *fname, void* pvApiCtx)
 
     sciErr.iErr = 0;
 
-    CheckRhs(1, 7);
+    CheckRhs(1, 8);
     CheckLhs(1, 2);
+
+    if (Rhs == 8)
+    {
+        header = (int) csv_getArgumentAsScalarDouble(pvApiCtx, 8, fname, &iErr);
+        if (iErr)
+        {
+            freeVar(&filename, &separator, &decimal, &conversion, &iRange, &toreplace, 0, &regexp);
+            return 0;
+        }
+    }
 
     if (Rhs == 7)
     {
@@ -109,6 +122,10 @@ int sci_csvRead(char *fname, void* pvApiCtx)
             {
                 FREE(regexp);
                 regexp = NULL;
+            }
+            else
+            {
+                haveRegexp = 1;
             }
         }
 
@@ -241,7 +258,7 @@ int sci_csvRead(char *fname, void* pvApiCtx)
         return 0;
     }
 
-    result = csvRead(filename, separator, decimal, (const char**)toreplace, nbElementsToReplace * 2, regexp);
+    result = csvRead(filename, separator, decimal, (const char**)toreplace, nbElementsToReplace * 2, regexp, header);
     freeVar(NULL, &separator, &decimal, NULL, NULL, &toreplace, nbElementsToReplace, &regexp);
 
     if (result)
@@ -405,7 +422,26 @@ int sci_csvRead(char *fname, void* pvApiCtx)
 
                     if (Lhs == 2)
                     {
-                        sciErr = createMatrixOfString(pvApiCtx, Rhs + 2, result->nbComments, 1, result->pstrComments);
+                        if (haveRegexp == 0)
+                        {
+                            char **emptyStringMatrix = NULL;
+                            emptyStringMatrix = (char**) malloc(sizeof(char*));
+                            emptyStringMatrix[0] = "";
+                            sciErr = createMatrixOfString(pvApiCtx, Rhs + 2, 1, 1, emptyStringMatrix);
+                            free(emptyStringMatrix);
+                        }
+                        else
+                        {
+                            if (result->nbComments > 0)
+                            {
+                               sciErr = createMatrixOfString(pvApiCtx, Rhs + 2, result->nbComments, 1, result->pstrComments);
+                            }
+                            else
+                            {
+                               iErrEmpty = createEmptyMatrix(pvApiCtx, Rhs+2);
+                               sciErr.iErr = iErrEmpty;
+                            }
+                        }
                         if (sciErr.iErr)
                         {
                             Scierror(999, _("%s: Memory allocation error.\n"), fname);

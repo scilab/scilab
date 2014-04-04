@@ -34,6 +34,7 @@ import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.scicos.AbstractElement;
 
+import com.mxgraph.model.mxGeometry;
 import com.mxgraph.util.mxConstants;
 import com.mxgraph.util.mxRectangle;
 import com.mxgraph.view.mxCellState;
@@ -187,15 +188,8 @@ public final class AfficheBlock extends BasicBlock {
             if (src.getParentDiagram() != null) {
                 final XcosDiagram parent = src.getParentDiagram();
                 final mxRectangle rect = parent.getPreferredSizeForCell(src);
-                rect.setX(src.getGeometry().getX());
-                rect.setY(src.getGeometry().getY());
-                parent.resizeCell(src, rect);
 
-                final mxGraphView view = parent.getView();
-                final mxCellState parentState = view.getState(src.getParent());
-
-                view.validateBounds(parentState, src);
-                parent.repaint(view.validatePoints(parentState, src));
+                parent.getModel().setGeometry(src, new mxGeometry(src.getGeometry().getX(), src.getGeometry().getY(), rect.getWidth(), rect.getHeight()));
             }
         }
 

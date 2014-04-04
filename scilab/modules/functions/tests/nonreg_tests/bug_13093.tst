@@ -17,4 +17,4 @@
 // <-- Short Description -->
 // head_comments displayed a trailing "\n" when the argument had no head comments.
 
-head_comments("resize_demo_gui");
+head_comments("demo_gui");

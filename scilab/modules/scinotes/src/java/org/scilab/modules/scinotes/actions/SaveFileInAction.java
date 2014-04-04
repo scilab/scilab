@@ -14,7 +14,6 @@ package org.scilab.modules.scinotes.actions;
 
 import java.io.File;
 import java.util.List;
-import java.util.StringTokenizer;
 
 import javax.swing.KeyStroke;
 import javax.swing.event.MenuEvent;

@@ -162,7 +162,9 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libsciarnoldi_la_rootdir)" \
 	"$(DESTDIR)$(libsciarnoldi_la_sci_gatewaydir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
-libsciarnoldi_la_LIBADD =
+am__DEPENDENCIES_1 =
+libsciarnoldi_la_DEPENDENCIES = $(am__DEPENDENCIES_1) \
+	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1)
 am__dirstamp = $(am__leading_dot)dirstamp
 am__objects_1 = src/c/libsciarnoldi_la-eigs.lo \
 	src/c/libsciarnoldi_la-eigs_dependencies.lo
@@ -287,6 +289,7 @@ CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
 DEMOTOOLS_ENABLE = @DEMOTOOLS_ENABLE@
 DEPDIR = @DEPDIR@
+DLLTOOL = @DLLTOOL@
 DOCBOOK_ROOT = @DOCBOOK_ROOT@
 DOXYGEN_BIN = @DOXYGEN_BIN@
 DSYMUTIL = @DSYMUTIL@
@@ -306,6 +309,11 @@ FGREP = @FGREP@
 FLEXDOCK = @FLEXDOCK@
 FLIBS = @FLIBS@
 FOP = @FOP@
+FREEHEP_GRAPHICS2D = @FREEHEP_GRAPHICS2D@
+FREEHEP_GRAPHICSIO = @FREEHEP_GRAPHICSIO@
+FREEHEP_GRAPHICSIO_EMF = @FREEHEP_GRAPHICSIO_EMF@
+FREEHEP_IO = @FREEHEP_IO@
+FREEHEP_UTIL = @FREEHEP_UTIL@
 GENHTML = @GENHTML@
 GETTEXT_MACRO_VERSION = @GETTEXT_MACRO_VERSION@
 GIWS_BIN = @GIWS_BIN@
@@ -369,6 +377,7 @@ LTLIBINTL = @LTLIBINTL@
 LTLIBOBJS = @LTLIBOBJS@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
+MANIFEST_TOOL = @MANIFEST_TOOL@
 MATIO_CFLAGS = @MATIO_CFLAGS@
 MATIO_ENABLE = @MATIO_ENABLE@
 MATIO_LIBS = @MATIO_LIBS@
@@ -548,7 +557,8 @@ libsciarnoldi_la_CPPFLAGS = \
     $(AM_CPPFLAGS)
 
 pkglib_LTLIBRARIES = libsciarnoldi.la
-libsciarnoldi_la_LDFLAGS = $(LAPACK_LIBS) $(ARPACK_LIBS) $(AM_LDFLAGS)
+libsciarnoldi_la_LDFLAGS = $(AM_LDFLAGS)
+libsciarnoldi_la_LIBADD = $(BLAS_LIBS) $(LAPACK_LIBS) $(ARPACK_LIBS)
 libsciarnoldi_la_SOURCES = $(ARNOLDI_C_SOURCES) $(GATEWAY_C_SOURCES)
 
 # For the code check (splint)

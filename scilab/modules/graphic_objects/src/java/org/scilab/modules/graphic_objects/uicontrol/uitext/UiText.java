@@ -14,6 +14,10 @@ package org.scilab.modules.graphic_objects.uicontrol.uitext;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_TEXT__;
 
+import javax.swing.UIDefaults;
+import javax.swing.UIManager;
+
+import org.scilab.modules.graphic_objects.console.Console;
 import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
 
 /**
@@ -27,7 +31,20 @@ public class UiText extends Uicontrol {
     public UiText() {
         super();
         setStyle(__GO_UI_TEXT__);
-        setRelief(FLAT_RELIEF);
-    }
 
+        if (Console.getConsole().getUseDeprecatedLF()) {
+            setRelief(RELIEF_FLAT);
+        } else {
+            UIDefaults defaults = UIManager.getDefaults();
+
+            //font
+            setFont(defaults.getFont("Label.font"));
+
+            //h-alignment
+            setHorizontalAlignment("left");
+
+            //v-alignement
+            setVerticalAlignment("middle");
+        }
+    }
 }

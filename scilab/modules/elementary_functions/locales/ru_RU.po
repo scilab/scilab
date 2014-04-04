@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-12-10 15:35+0000\n"
+"PO-Revision-Date: 2014-03-23 14:01+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 16967)\n"
 "Language: ru\n"
 
 #, c-format
@@ -52,11 +52,11 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument(s): Valid base %d representations "
+"%s: Wrong value for input argument #%d: Valid base %d representations "
 "expected.\n"
 msgstr ""
-"%s: Неверное значение входных параметров: ожидалось правильное представление "
-"числа в %d-ой системе счисления.\n"
+"%s: Неверное значение входного аргумента №%d: Ожидалось корректное "
+"представление по основанию %d.\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
@@ -186,6 +186,12 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: ['d' 'i'] expected.\n"
 msgstr ""
 "%s: Неверное значение входного параметра №%d: ожидалось «d» или «i».\n"
+
+msgid ": 1-D examples "
+msgstr ": одномерные примеры "
+
+msgid ": 2-D examples"
+msgstr ": двумерные примеры"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
@@ -456,6 +462,10 @@ msgstr ""
 "матрица или гиперматрица целых положительных чисел.\n"
 
 #, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr "%s: Неверное количество входных аргументов: Ожидалось от %d до %d.\n"
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: A positive integer expected.\n"
 msgstr ""
 "%s: Неверный размер входного параметра №%d: ожидалось положительное целое "
@@ -466,6 +476,20 @@ msgid "%s: Wrong type for input argument #%d: A positive integer expected.\n"
 msgstr ""
 "%s: Неверный тип входного параметра №%d: ожидалось положительное целое "
 "число.\n"
+
+#, c-format
+msgid "%s: Cannot flip hypermatrix blockwise. %d input arguments expected.\n"
+msgstr ""
+"%s: Нельзя перевернуть гиперматрицу поблочно. Ожидается %d входных "
+"аргументов.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A divisor of the selected dimension "
+"size expected.\n"
+msgstr ""
+"%s: Неверное значение входного аргумента №%d: ожидался делитель размером "
+"выбранной размерности.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %d,'%s',%d or '%s' expected\n"
@@ -689,42 +713,41 @@ msgstr "%s: Неверный размер входного аргумента �
 msgid "RESIZING a matrix of DECIMALS:"
 msgstr ""
 
-msgid "TYPE <Enter> to see an example with POLYNOMIALS:"
-msgstr ""
+msgid "Type <Enter> to see an example with polynomials:"
+msgstr "Нажмите <Enter>, чтобы посмотерть пример с полиномами:"
 
-msgid "The padding's unknown is forced to the P's one"
+msgid "The unknown variable of added values is forced to the P's one"
 msgstr ""
 
 msgid "Polynomials can't be converted"
 msgstr "Полиномы нельзя преобразовать"
 
-msgid "TYPE <Enter> to see an example with TEXT:"
-msgstr ""
+msgid "Type <Enter> to see an example with character strings:"
+msgstr "Нажмите <Enter>, чтобы посмотерть пример с символьными строками:"
 
-msgid "NOTE: Hypermatrix of text can't be converted"
-msgstr "Примечание: текстовая гиперматрица не может быть преобразована"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr "%s: Неверное количество входных аргументов: Ожидалось от %d до %d.\n"
+msgid "Hypermatrices of character strings can't be converted.\n"
+msgstr "Гиперматрицы символьных строк не могут быть преобразованы.\n"
 
 #, c-format
 msgid "%s: Wrong type of input argument #%d: %s not supported.\n"
 msgstr "%s: Неверный тип входного аргумента №%d: %s не поддерживается.\n"
 
 #, c-format
-msgid "%s: Wrong input argument #%d: scalar decimal integer expected.\n"
-msgstr ""
+msgid "%s: Wrong input argument #%d: An integer value expected.\n"
+msgstr "%s: Неверный аргумент №%d:Ожидалось целочисленное значение.\n"
 
 #, c-format
 msgid "%s: Wrong sizes requested, cannot convert list to matrix.\n"
 msgstr ""
+"%s: Запрошены неверные размеры, нельзя преобразовать список в матрицу.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: can't convert the padding to the "
-"input matrix type.\n"
+"%s: Wrong type for input argument #%d: cannot convert the padding value to "
+"the input matrix type.\n"
 msgstr ""
+"%s: Неверный тип входного аргумента №%d: нельзя преобразовать дополняющее "
+"значение в тип входной матрицы.\n"
 
 #, c-format
 msgid "%s: conversion of polynomials is not supported\n"
@@ -740,11 +763,49 @@ msgstr "%s: Неверное значение входного параметр�
 
 #, c-format
 msgid ""
+"%s: Wrong type for input argument #%d: A real or complex matrix expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидалась вещественная или "
+"комплексная матрица.\n"
+
+#, c-format
+msgid ""
 "%s: Wrong values for input arguments #%d and #%d: c(1) must be equal to "
 "r(1).\n"
 msgstr ""
 "%s: Неверные значения входных параметров №%d и №%d: c(1) должен равняться "
 "r(1).\n"
+
+msgid "Press return to display 2D examples"
+msgstr "Нажмите ввод для отображения двумерных примеров"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидалось вещественное число.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set  {%s}.\n"
+msgstr ""
+"%s: Неверное значение входного параметра #%d: должно входить в множество "
+"{%s}.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Must have at least 4 rows.\n"
+msgstr ""
+"%s: Неверный размер входного аргумента №%d: должно быть по крайней мере 4 "
+"строки.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Must have at least 4 columns.\n"
+msgstr ""
+"%s: Неверный размер входного аргумента №%d: должно быть по крайней мере 4 "
+"столбца.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
@@ -759,11 +820,3 @@ msgstr ""
 msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
 msgstr ""
 "%s: Неверный размер входных параметров: ожидался совместимый размер.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Reals, encoded integers or "
-"polynomials expected.\n"
-msgstr ""
-"%s: Неверный тип входного аргумента №%d: ожидались вещественные, "
-"закодированные целочисленные или полиномиальные значения.\n"

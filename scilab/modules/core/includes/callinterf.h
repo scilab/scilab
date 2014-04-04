@@ -105,7 +105,7 @@ typedef struct
 } OpTab ;
 
 /**
- * call the apropriate interface according to the value of k
+ * call the appropriate interface according to the value of k
  * @param k the number of the interface
  * @return
  */

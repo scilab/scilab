@@ -193,7 +193,8 @@ function black(varargin)
 
         xpoly(phi(k,:),d(k,:));e1=gce()
         e1.foreground=k;
-        datatipInitStruct(e1,"formatfunction","formatBlackTip","freq",frq(kf,:))
+        e1.display_function = "formatBlackTip";
+        e1.display_function_data = frq(kf,:);
 
         // glue entities relative to a single black curve
         E=[E glue([e2 e1])]
@@ -218,17 +219,4 @@ function black(varargin)
         legend([c e]',[comments(:); "2.3"+_("dB")])
     end
     fig.immediate_drawing=immediate_drawing;
-endfunction
-
-function str=formatBlackTip(curve,pt,index)
-    //This function is called by the datatip mechanism to format the tip
-    //string for black curves.
-    ud=datatipGetStruct(curve);
-    if index<>[] then
-        f=ud.freq(index)
-    else //interpolated
-        [d,ptp,i,c]=orthProj(curve.data,pt)
-        f=ud.freq(i)+(ud.freq(i+1)-ud.freq(i))*c
-    end
-    str=msprintf("%.4g°\n%.4g"+_("dB")+"\n%.4g"+_("Hz"), pt,f);
 endfunction

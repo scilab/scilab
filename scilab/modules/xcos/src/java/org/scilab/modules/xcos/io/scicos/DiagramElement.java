@@ -162,7 +162,7 @@ public final class DiagramElement extends AbstractElement<XcosDiagram> {
         }
 
         // Fill the diag
-        decodeDiagram(diag);
+        decodeDiagram(diag, validate);
 
         diag.getModel().endUpdate();
         diag = afterDecode(element, diag);
@@ -198,10 +198,11 @@ public final class DiagramElement extends AbstractElement<XcosDiagram> {
      *
      * @param diag
      *            the current diagram
+     * @param validate if true, enable graphic updates ; false disable them
      * @throws ScicosFormatException
      *             on decoding error
      */
-    private void decodeDiagram(XcosDiagram diag) throws ScicosFormatException {
+    private void decodeDiagram(XcosDiagram diag, boolean validate) throws ScicosFormatException {
         // Fill the local parameters
         // NOTE: the title field is checked on the ScicosParametersElement
         final String title = ((ScilabString) ((ScilabTList) base.get(1)).get(2)).getData()[0][0];
@@ -214,7 +215,7 @@ public final class DiagramElement extends AbstractElement<XcosDiagram> {
         // Decode the objs attributes
         decodeObjs(diag);
         // Update the objs properties if applicable
-        updateObjs(diag);
+        updateObjs(diag, validate);
     }
 
     /**
@@ -290,8 +291,9 @@ public final class DiagramElement extends AbstractElement<XcosDiagram> {
      *
      * @param diag
      *            the diagram to update
+     * @param validate perform graphic updates, or not
      */
-    private void updateObjs(final XcosDiagram diag) {
+    private void updateObjs(final XcosDiagram diag, boolean validate) {
         final mxGraphModel model = (mxGraphModel) diag.getModel();
 
         final double minY = -minimalYaxisValue + V_MARGIN;
@@ -299,7 +301,9 @@ public final class DiagramElement extends AbstractElement<XcosDiagram> {
         for (final Object cell : model.getCells().values()) {
             updateMinimalSize(cell, model);
             translate(cell, model, minX, minY);
-            updateLabels(cell, model);
+            if (validate) {
+                updateLabels(cell, model);
+            }
         }
     }
 

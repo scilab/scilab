@@ -24,7 +24,6 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
-import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;
 
 /**
  * @author Vincent COUVERT

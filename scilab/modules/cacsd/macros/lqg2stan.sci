@@ -37,7 +37,7 @@ function [P,m]=lqg2stan(P22,Q,R)
     D11=0*C1*B1;
     dom=P22(7);
     if dom==[] then
-        warning(msprintf(gettext("%s: Input argument %d is assumed continuous time.\n"),"lqg2stan",1));
+        warning(msprintf(gettext("%s: Input argument #%d is assumed continuous time.\n"),"lqg2stan",1));
     end
     P=syslin(dom,A,real([B1,B2]),real([C1;C2]),real([D11,D12;D21,D22]));
     m=size(C2*B2);

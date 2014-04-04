@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009-2010 - DIGITEO - Pierre Lando
  * Copyright (C) 2011 - DIGITEO - Manuel Juliachs
- * Copyright (C) 2013 - Scilab Enterprises - Calixte DENIZET
+ * Copyright (C) 2013-2014 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -31,13 +31,16 @@ import org.scilab.forge.scirenderer.tranformations.Vector3d;
 import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.axes.AxisProperty;
 import org.scilab.modules.graphic_objects.axes.Camera;
+import org.scilab.modules.graphic_objects.contouredObject.Line;
 import org.scilab.modules.graphic_objects.figure.ColorMap;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.renderer.JoGLView.axes.AxesDrawer;
 import org.scilab.modules.renderer.JoGLView.label.AxisLabelPositioner;
+import org.scilab.modules.renderer.JoGLView.label.TitlePositioner;
 import org.scilab.modules.renderer.JoGLView.util.ColorFactory;
 
+import java.awt.Dimension;
 import java.nio.FloatBuffer;
 import java.text.DecimalFormat;
 import java.util.Arrays;
@@ -48,16 +51,11 @@ import java.util.List;
  */
 public class AxesRulerDrawer {
 
-    /**
-     * Grid pattern.
-     */
-    private static final short GRID_LINE_PATTERN = (short) 0xF0F0;
-
     private static final double LINEAR_MINIMAL_SUB_TICKS_DISTANCE = 8;
     private static final double LOG_MINIMAL_SUB_TICKS_DISTANCE = 2;
 
     /** Ticks length in pixels. */
-    private static final int TICKS_LENGTH = 6;
+    public static final int TICKS_LENGTH = 6;
 
     /** Sub-ticks length in pixels. */
     private static final int SUB_TICKS_LENGTH = 3;
@@ -70,6 +68,10 @@ public class AxesRulerDrawer {
 
     public AxesRulerDrawer(Canvas canvas) {
         this.rulerDrawerManager = new RulerDrawerManager(canvas.getTextureManager());
+    }
+
+    public RulerDrawer getRulerDrawer(Axes axes, int axis) {
+        return rulerDrawerManager.get(axes)[axis];
     }
 
     /**
@@ -138,6 +140,8 @@ public class AxesRulerDrawer {
 
         setRulerBounds(axes.getXAxis(), rulerModel, bounds[0], bounds[1]);
 
+        rulerModel.setFormat(axes.getXAxisFormat());
+        rulerModel.setSTFactors(axes.getXAxisSTFactors());
         rulerModel.setLogarithmic(axes.getXAxis().getLogFlag());
         rulerModel.setMinimalSubTicksDistance(axes.getXAxis().getLogFlag() ? LOG_MINIMAL_SUB_TICKS_DISTANCE : LINEAR_MINIMAL_SUB_TICKS_DISTANCE);
 
@@ -164,7 +168,8 @@ public class AxesRulerDrawer {
                 GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_X_AXIS_TICKS_LOCATIONS__, toDoubleArray(values));
                 GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_X_AXIS_TICKS_LABELS__, toStringArray(values, rulerDrawingResult.getFormat()));
                 if (axes.getAutoSubticks()) {
-                    GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_X_AXIS_SUBTICKS__, rulerDrawingResult.getSubTicksDensity());
+                    //GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_X_AXIS_SUBTICKS__, rulerDrawingResult.getSubTicksDensity());
+                    axes.setXAxisSubticks(rulerDrawingResult.getSubTicksDensity());
                 }
             }
 
@@ -180,6 +185,11 @@ public class AxesRulerDrawer {
             xAxisLabelPositioner.setProjectedTicksDirection(projTicksDir.getNormalized().setZ(0));
         }
 
+        TitlePositioner titlePositioner = axesDrawer.getTitlePositioner(axes);
+        Dimension xdim = axesDrawer.getLabelManager().getXLabelSize(colorMap, axes, axesDrawer);
+        titlePositioner.setXLabelHeight(xdim.height);
+        titlePositioner.setDistanceRatio(xAxisLabelPositioner.getDistanceRatio());
+
         // Draw Y ruler
         rulerModel = getDefaultRulerModel(axes, colorMap);
         rulerModel.setTicksDirection(yTicksDirection);
@@ -190,6 +200,8 @@ public class AxesRulerDrawer {
         }
 
         setRulerBounds(axes.getYAxis(), rulerModel, bounds[2], bounds[3]);
+        rulerModel.setFormat(axes.getYAxisFormat());
+        rulerModel.setSTFactors(axes.getYAxisSTFactors());
         rulerModel.setLogarithmic(axes.getYAxis().getLogFlag());
         rulerModel.setMinimalSubTicksDistance(axes.getYAxis().getLogFlag() ? LOG_MINIMAL_SUB_TICKS_DISTANCE : LINEAR_MINIMAL_SUB_TICKS_DISTANCE);
 
@@ -214,7 +226,8 @@ public class AxesRulerDrawer {
                 GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_Y_AXIS_TICKS_LOCATIONS__, toDoubleArray(values));
                 GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_Y_AXIS_TICKS_LABELS__, toStringArray(values, rulerDrawingResult.getFormat()));
                 if (axes.getAutoSubticks()) {
-                    GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_Y_AXIS_SUBTICKS__, rulerDrawingResult.getSubTicksDensity());
+                    //GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_Y_AXIS_SUBTICKS__, rulerDrawingResult.getSubTicksDensity());
+                    axes.setYAxisSubticks(rulerDrawingResult.getSubTicksDensity());
                 }
             }
 
@@ -255,6 +268,8 @@ public class AxesRulerDrawer {
             }
 
             setRulerBounds(axes.getZAxis(), rulerModel, bounds[4], bounds[5]);
+            rulerModel.setFormat(axes.getZAxisFormat());
+            rulerModel.setSTFactors(axes.getZAxisSTFactors());
             rulerModel.setLogarithmic(axes.getZAxis().getLogFlag());
             rulerModel.setMinimalSubTicksDistance(axes.getZAxis().getLogFlag() ? LOG_MINIMAL_SUB_TICKS_DISTANCE : LINEAR_MINIMAL_SUB_TICKS_DISTANCE);
 
@@ -279,7 +294,8 @@ public class AxesRulerDrawer {
                     GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_Z_AXIS_TICKS_LOCATIONS__, toDoubleArray(values));
                     GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_Z_AXIS_TICKS_LABELS__, toStringArray(values, rulerDrawingResult.getFormat()));
                     if (axes.getAutoSubticks()) {
-                        GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_Z_AXIS_SUBTICKS__, rulerDrawingResult.getSubTicksDensity());
+                        //GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_Z_AXIS_SUBTICKS__, rulerDrawingResult.getSubTicksDensity());
+                        axes.setZAxisSubticks(rulerDrawingResult.getSubTicksDensity());
                     }
                 }
 
@@ -310,8 +326,6 @@ public class AxesRulerDrawer {
      */
     public void drawRuler(Axes axes, AxesDrawer axesDrawer, ColorMap colorMap, DrawingTools drawingTools) throws SciRendererException {
         Appearance gridAppearance = new Appearance();
-        gridAppearance.setLinePattern(GRID_LINE_PATTERN);
-        gridAppearance.setLineWidth(axes.getLineThickness().floatValue());
 
         Double[] bounds = axes.getDisplayedBounds();
         double[] matrix = drawingTools.getTransformationManager().getModelViewStack().peek().getMatrix();
@@ -362,6 +376,8 @@ public class AxesRulerDrawer {
                 }
 
                 gridAppearance.setLineColor(ColorFactory.createColor(colorMap, axes.getXAxisGridColor()));
+                gridAppearance.setLineWidth(axes.getXAxisGridThickness().floatValue());
+                gridAppearance.setLinePattern(Line.LineType.fromScilabIndex(axes.getXAxisGridStyle()).asPattern());
                 drawingTools.getTransformationManager().getModelViewStack().pushRightMultiply(mirror);
                 DefaultGeometry gridGeometry = new DefaultGeometry();
                 gridGeometry.setFillDrawingMode(Geometry.FillDrawingMode.NONE);
@@ -403,6 +419,8 @@ public class AxesRulerDrawer {
                 }
 
                 gridAppearance.setLineColor(ColorFactory.createColor(colorMap, axes.getYAxisGridColor()));
+                gridAppearance.setLineWidth(axes.getYAxisGridThickness().floatValue());
+                gridAppearance.setLinePattern(Line.LineType.fromScilabIndex(axes.getYAxisGridStyle()).asPattern());
                 drawingTools.getTransformationManager().getModelViewStack().pushRightMultiply(mirror);
                 DefaultGeometry gridGeometry = new DefaultGeometry();
                 gridGeometry.setFillDrawingMode(Geometry.FillDrawingMode.NONE);
@@ -445,6 +463,8 @@ public class AxesRulerDrawer {
                     }
 
                     gridAppearance.setLineColor(ColorFactory.createColor(colorMap, axes.getZAxisGridColor()));
+                    gridAppearance.setLineWidth(axes.getZAxisGridThickness().floatValue());
+                    gridAppearance.setLinePattern(Line.LineType.fromScilabIndex(axes.getZAxisGridStyle()).asPattern());
                     drawingTools.getTransformationManager().getModelViewStack().pushRightMultiply(mirror);
                     DefaultGeometry gridGeometry = new DefaultGeometry();
                     gridGeometry.setFillDrawingMode(Geometry.FillDrawingMode.NONE);

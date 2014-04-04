@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-08-02 00:19+0000\n"
+"PO-Revision-Date: 2014-03-26 01:01+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 16967)\n"
 "Language: ru\n"
 
 #, c-format
@@ -107,11 +107,11 @@ msgstr "Выберите тип фильтра и параметры"
 msgid "Discrete IIR filter "
 msgstr "Дискретный БИХ-фильтр "
 
-msgid "Discrete IIR filter : low pass  fr < 0.2"
-msgstr "Дискретный БИХ-фильтр : нижняя частота пропускания  fr < 0.2"
+msgid "Discrete IIR filter: low pass  fr < 0.2"
+msgstr "Дискретный БИХ-фильтр: фильтр нижних частот  fr < 0.2"
 
-msgid "Discrete IIR filter band pass 0.15 < fr < 0.25"
-msgstr "Дискретный полосовой БИХ-фильтр 0.15 < fr < 0.25"
+msgid "Discrete IIR filter: band pass 0.15 < fr < 0.25"
+msgstr "Дискретный БИХ-фильтр: полосовой фильтр 0.15 < fr < 0.25"
 
 msgid "Minimax FIR filter"
 msgstr "Минимаксный КИХ-фильтр"
@@ -143,8 +143,8 @@ msgstr "Минимаксная схема КИХ-фильтра"
 msgid "Discrete IIR filter"
 msgstr "Дискретный БИХ-фильтр"
 
-msgid "Wiegner filter"
-msgstr "Фильтр Винера"
+msgid "Wiener filter"
+msgstr "Винеровский фильтр"
 
 msgid "Bode plots"
 msgstr "Диаграммы Боде"
@@ -193,11 +193,11 @@ msgstr "истинное состояние"
 msgid "Windowed FIR Low pass Filter"
 msgstr "КИХ-фильтр низких частот с оконной обработкой"
 
-msgid "Kaiser window,cut-off:0.2"
+msgid "Kaiser window, cut-off: 0.2"
 msgstr "Кайзеровское окно, отсечка: 0.2"
 
-msgid "Hamming window,cut-off:0.2,0.3"
-msgstr "Окно Хэмминга, отсечка:0.2, 0.3"
+msgid "Hamming window, cut-off: 0.2, 0.3"
+msgstr "Окно Хемминга, отсечка 0.2, 0.3"
 
 msgid "length 127"
 msgstr "длина 127"
@@ -205,8 +205,8 @@ msgstr "длина 127"
 msgid "Windowed FIR Band pass Filter"
 msgstr "полосовой КИХ-фильтр с оконной обработкой"
 
-msgid "Chebyshev window,cut-off:0.15,0.35"
-msgstr "Окно Чебышёва, отсечка:0.15, 0.35"
+msgid "Chebyshev window, cut-off: 0.15, 0.35"
+msgstr "Окно Чебышева, отсечка: 0.15, 0.35"
 
 msgid "length 55"
 msgstr "длина 55"
@@ -326,6 +326,23 @@ msgid ""
 msgstr ""
 "%s: Неверный тип входного параметра №%d: ожидалась линейная динамическая "
 "система или вектор-строка чисел с плавающей точкой.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+msgstr "%s: Неверное количество аргументов: Ожидалось %d или %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A real or polynomial matrix or a "
+"rational expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидалась матрица вещественных или "
+"полиномиальных значений или рациональное число.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A discrete system expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидалась дискретная система.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"

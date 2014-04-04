@@ -822,14 +822,6 @@
                     </para>
                 </listitem>
             </varlistentry>
-            <varlistentry>
-                <term>
-                    <link linkend="getsymbol">getsymbol</link>
-                </term>
-                <listitem>
-                    <para>記号およびその大きさを選択するためのダイアログを表示</para>
-                </listitem>
-            </varlistentry>
         </variablelist>
     </refsection>
     <refsection>

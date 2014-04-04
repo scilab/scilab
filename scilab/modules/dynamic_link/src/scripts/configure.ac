@@ -18,6 +18,7 @@
 
 # Initialise autoconf
 AC_INIT([scilab],[0],[http://bugzilla.scilab.org/])
+AC_CONFIG_MACRO_DIR([m4])
 
 # Initialise automake (foreign is low strictness)
 AM_INIT_AUTOMAKE([foreign]) 
@@ -31,6 +32,7 @@ AC_PROG_CC
 AC_PROG_CXX
 
 # Detect Fortran Compiler (77 and 90)
+AC_PROG_F77
 AC_PROG_FC
 
 # Initialise libtool

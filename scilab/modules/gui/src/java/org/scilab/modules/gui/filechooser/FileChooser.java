@@ -79,15 +79,8 @@ public interface FileChooser {
     String[] getSelectionFileNames();
 
     /**
-     * Get the filter index
-     * @return the filter index
-     */
-    int getFilterIndex();
-
-    /**
      * Set the dialog type (save or open a file ?)
      * @param dialogType the dialog type
      */
     void setUiDialogType(int dialogType);
-
 }

@@ -17,7 +17,7 @@ dnl Process this file with autoconf to produce a configure script.
 AC_REVISION($Revision$)dnl
 AC_INIT([Scilab],[6],[http://bugzilla.scilab.org/])
 AC_PREREQ(2.68)
-AC_CONFIG_MACRO_DIR([m4/])
+AC_CONFIG_MACRO_DIR([m4])
 
 SCI_BUILDDIR="`pwd`"
 SCI_SRCDIR="$srcdir"
@@ -1016,6 +1016,35 @@ interface for JOGL2 - or libGL (OpenGL library) are installed and if the version
                 FOP=$PACKAGE_JAR_FILE
                 AC_SUBST(FOP)
 
+                AC_ARG_WITH(emf, [AS_HELP_STRING([--without-emf-export],
+                    [disable support for EMF (Windows Metafile) export])])
+                if test "x$with_emf" != xno; then
+                    # Freehep Graphics2D
+                    AC_JAVA_CHECK_PACKAGE([freehep-graphics2d],[org.freehep.graphics2d.VectorGraphics],[Freehep Graphics2D])
+                    FREEHEP_GRAPHICS2D=$PACKAGE_JAR_FILE
+                    AC_SUBST(FREEHEP_GRAPHICS2D)
+
+                    # Freehep GraphicsIO EMF
+                    AC_JAVA_CHECK_PACKAGE([freehep-graphicsio-emf],[org.freehep.graphicsio.emf.EMFGraphics2D],[Freehep GraphicsIO EMF])
+                    FREEHEP_GRAPHICSIO_EMF=$PACKAGE_JAR_FILE
+                    AC_SUBST(FREEHEP_GRAPHICSIO_EMF)
+
+                    # Freehep GraphicsIO
+                    AC_JAVA_CHECK_PACKAGE([freehep-graphicsio],[org.freehep.graphicsio.VectorGraphicsIO],[Freehep GraphicsIO])
+                    FREEHEP_GRAPHICSIO=$PACKAGE_JAR_FILE
+                    AC_SUBST(FREEHEP_GRAPHICSIO)
+
+                    # Freehep IO
+                    AC_JAVA_CHECK_PACKAGE([freehep-io],[org.freehep.util.io.XMLSequence],[Freehep IO])
+                    FREEHEP_IO=$PACKAGE_JAR_FILE
+                    AC_SUBST(FREEHEP_IO)
+
+                    # Freehep Util
+                    AC_JAVA_CHECK_PACKAGE([freehep-util],[org.freehep.util.StringUtilities],[Freehep Util])
+                    FREEHEP_UTIL=$PACKAGE_JAR_FILE
+                    AC_SUBST(FREEHEP_UTIL)
+                fi
+
                 # xml.apache.org SVG Library (under mandriva for example)
                 AC_JAVA_CHECK_PACKAGE([batik-all],[org.apache.batik.parser.Parser],[Apache SVG Library],"yes")
                 BATIK=$PACKAGE_JAR_FILE
@@ -1067,7 +1096,7 @@ interface for JOGL2 - or libGL (OpenGL library) are installed and if the version
                 JLATEXMATH=$PACKAGE_JAR_FILE
                 AC_SUBST(JLATEXMATH)
 
-                AC_JAVA_CHECK_VERSION_PACKAGE([jlatexmath],[import org.scilab.forge.jlatexmath.TeXFormula;],$JLATEXMATH,[1.0.2],[TeXFormula.VERSION])
+                AC_JAVA_CHECK_VERSION_PACKAGE([jlatexmath],[import org.scilab.forge.jlatexmath.TeXFormula;],$JLATEXMATH,[1.0.3],[TeXFormula.VERSION])
 
                 # JLaTeXMath FOP
                 AC_JAVA_CHECK_PACKAGE([jlatexmath-fop],[org.scilab.forge.jlatexmath.fop.JLaTeXMathObj],[LaTex Rendering - FOP plugin])
@@ -2092,7 +2121,7 @@ if test $XCOS_ENABLE = yes; then
    echo "Xcos enable"
    echo "Build modelica compiler (--without-modelica) ....... = $with_modelica"
    echo ""
-   if test "$with_ocaml" != no -a "$OCAMLC" != no -a "$OCAMLOPT" != no; then
+   if test "$with_modelica" != no -a "$OCAMLC" != no -a "$OCAMLOPT" != no; then
      echo "Ocaml Configuration (for Modelica compiler):"
      echo "  OCAMLC ............. = $OCAMLC"
      echo "  OCAMLOPT ........... = $OCAMLOPT"

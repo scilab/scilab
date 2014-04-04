@@ -17,13 +17,14 @@
 #include "Scierror.h"
 #include "MALLOC.h"
 #include "localization.h"
-#include "Toolbar.h"
 #include "FigureList.h"
 #include "HandleManagement.h"
 #include "GetProperty.h"
 #include "freeArrayOfString.h"
 #include "os_strdup.h"
+#include "sci_mode.h"
 #include "getGraphicObjectProperty.h"
+#include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 #include "getConsoleIdentifier.h"
 /*--------------------------------------------------------------------------*/
@@ -43,6 +44,9 @@ int sci_toolbar(char *fname, void* pvApiCtx)
     char *Output = NULL;
     char **param = NULL;
     int figNum = -2;
+
+    int iIsVisible = 0;
+    int *piIsVisible = NULL;
 
     int iParentUID = 0;
     int iParentType = -1;
@@ -85,7 +89,7 @@ int sci_toolbar(char *fname, void* pvApiCtx)
 
         if (figNum != -1)       /* Check that the figure exists */
         {
-            if (getFigureFromIndex(figNum) == NULL)
+            if (getFigureFromIndex(figNum) == 0)
             {
                 Scierror(999, _("%s: Wrong value for input argument #%d: 'Graphic Window Number %d' does not exist.\n"), fname, 1, figNum);
                 return FALSE;
@@ -134,7 +138,7 @@ int sci_toolbar(char *fname, void* pvApiCtx)
         }
 
         getGraphicObjectProperty(iParentUID, __GO_TYPE__, jni_int, (void **)&piParentType);
-        if (iParentType == __GO_FIGURE__)
+        if (iParentType != __GO_FIGURE__)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A real or a Figure handle expected.\n"), fname, 1);
             return FALSE;
@@ -142,7 +146,7 @@ int sci_toolbar(char *fname, void* pvApiCtx)
     }
     else
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A real or Figure handle expected.\n"), fname, 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A real or a Figure handle expected.\n"), fname, 1);
         return FALSE;
     }
 
@@ -160,7 +164,7 @@ int sci_toolbar(char *fname, void* pvApiCtx)
             // Retrieve a matrix of string at position 2.
             if (getAllocatedMatrixOfString(pvApiCtx, piAddrparam, &nbRow, &nbCol, &param))
             {
-                Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, 2);
+                Scierror(202, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
                 return 1;
             }
 
@@ -173,7 +177,11 @@ int sci_toolbar(char *fname, void* pvApiCtx)
 
             if ((strcmp(param[0], "off") == 0) || (strcmp(param[0], "on") == 0))
             {
-                setToolbarVisible(iParentUID, strcmp(param[0], "on") == 0);
+                iIsVisible = strcmp(param[0], "on") == 0;
+                if (iParentUID != getConsoleIdentifier() || getScilabMode() == SCILAB_STD)
+                {
+                    setGraphicObjectProperty(iParentUID, __GO_TOOLBAR_VISIBLE__, &iIsVisible, jni_bool, 1);
+                }
                 freeAllocatedMatrixOfString(nbRow, nbCol, param);
             }
             else
@@ -191,7 +199,9 @@ int sci_toolbar(char *fname, void* pvApiCtx)
     }
 
     /* Returned value */
-    if (isToolbarVisible(iParentUID))
+    piIsVisible = &iIsVisible;
+    getGraphicObjectProperty(iParentUID, __GO_TOOLBAR_VISIBLE__, jni_bool, (void **)&piIsVisible);
+    if (iIsVisible)
     {
         Output = os_strdup("on");
     }

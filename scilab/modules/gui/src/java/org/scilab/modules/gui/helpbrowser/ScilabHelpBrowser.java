@@ -27,7 +27,7 @@ import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.commons.gui.ScilabGUIUtilities;
 import org.scilab.modules.gui.bridge.ScilabBridge;
 import org.scilab.modules.gui.bridge.helpbrowser.SwingScilabHelpBrowser;
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.dockable.ScilabDockable;
@@ -44,8 +44,6 @@ import org.scilab.modules.gui.utils.MenuBarBuilder;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.utils.WindowsConfigurationManager;
-import org.scilab.modules.gui.window.ScilabWindow;
-import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.localization.Messages;
 
 /**
@@ -71,7 +69,7 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
     }
 
     private SimpleHelpBrowser component;
-    private Window parentWindow;
+    private SwingScilabWindow parentWindow;
 
     /**
      * Constructor
@@ -89,7 +87,7 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
      * Creates a SwingScilabTab containing the help browser
      * @return the corresponding SwingScilabTab
      */
-    public static SwingScilabTab createHelpBrowserTab() {
+    public static SwingScilabDockablePanel createHelpBrowserTab() {
         helpTab = ScilabTab.createTab(Messages.gettext("Help Browser"), HELPUUID);
         String lastID = restoreHelpBrowserState();
 
@@ -112,7 +110,7 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
             // This is a workaround for Mac OS X where e.getKeyCode() sometimes returns a bad value
             public boolean dispatchKeyEvent(KeyEvent e) {
                 if (e.getID() == KeyEvent.KEY_PRESSED) {
-                    Container c = SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, (SwingScilabTab) helpTab.getAsSimpleTab());
+                    Container c = SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, (SwingScilabDockablePanel) helpTab.getAsSimpleTab());
                     if (e.getSource() instanceof Component) {
                         Container cs = SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, (Component) e.getSource());
                         char chr = e.getKeyChar();
@@ -134,10 +132,10 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
 
         SwingScilabHelpBrowser browser = (SwingScilabHelpBrowser) ((ScilabHelpBrowser) instance).component;
         browser.setCurrentID(lastID);
-        ((SwingScilabTab) helpTab.getAsSimpleTab()).setAssociatedXMLIDForHelp("helpbrowser");
-        WindowsConfigurationManager.restorationFinished((SwingScilabTab) helpTab.getAsSimpleTab());
+        ((SwingScilabDockablePanel) helpTab.getAsSimpleTab()).setAssociatedXMLIDForHelp("helpbrowser");
+        WindowsConfigurationManager.restorationFinished((SwingScilabDockablePanel) helpTab.getAsSimpleTab());
 
-        return (SwingScilabTab) helpTab.getAsSimpleTab();
+        return (SwingScilabDockablePanel) helpTab.getAsSimpleTab();
     }
 
     /**
@@ -159,7 +157,7 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
             if (!success) {
                 HelpBrowserTabFactory.getInstance().getTab(HELPUUID);
                 ((ScilabHelpBrowser) instance).setParentWindow();
-                ((ScilabHelpBrowser) instance).parentWindow.addTab(helpTab);
+                ((ScilabHelpBrowser) instance).parentWindow.addTab((SwingScilabDockablePanel) helpTab.getAsSimpleTab());
                 ((ScilabHelpBrowser) instance).parentWindow.setVisible(true);
             }
 
@@ -172,7 +170,7 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
             }
         }
 
-        SwingScilabWindow window = (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, (SwingScilabTab) helpTab.getAsSimpleTab());
+        SwingScilabWindow window = (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, (SwingScilabDockablePanel) helpTab.getAsSimpleTab());
         ScilabGUIUtilities.toFront(window);
 
         return instance;
@@ -182,10 +180,9 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
      * Set a default parent window
      */
     public void setParentWindow() {
-        this.parentWindow = ScilabWindow.createWindow();
-        SwingScilabWindow window = (SwingScilabWindow) parentWindow.getAsSimpleWindow();
-        window.setLocation(0, 0);
-        window.setSize(500, 500);
+        this.parentWindow = SwingScilabWindow.createWindow(true);
+        parentWindow.setLocation(0, 0);
+        parentWindow.setSize(500, 500);
     }
 
     /**
@@ -311,7 +308,7 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
      * Close the HelpBrowser
      */
     public void close() {
-        ClosingOperationsManager.startClosingOperation((SwingScilabTab) helpTab.getAsSimpleTab());
+        ClosingOperationsManager.startClosingOperation((SwingScilabDockablePanel) helpTab.getAsSimpleTab());
     }
 
     /**

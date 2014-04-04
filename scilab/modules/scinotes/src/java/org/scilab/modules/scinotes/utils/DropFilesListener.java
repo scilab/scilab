@@ -154,11 +154,13 @@ public class DropFilesListener implements DropTargetListener {
                     ScilabDocument doc = (ScilabDocument) pane.getDocument();
                     int pos = pane.viewToModel(arg0.getLocation());
                     doc.mergeEditsBegin();
-                    doc.remove(p0, p1 - p0);
-                    if (pos > p1) {
-                        pos = pos - (p1 - p0);
-                    } else if (pos > p0) {
-                        pos = p0;
+                    if (arg0.getDropAction() == DnDConstants.ACTION_MOVE) {
+                        doc.remove(p0, p1 - p0);
+                        if (pos > p1) {
+                            pos = pos - (p1 - p0);
+                        } else if (pos > p0) {
+                            pos = p0;
+                        }
                     }
                     doc.insertString(pos, dropString, null);
                     doc.mergeEditsEnd();

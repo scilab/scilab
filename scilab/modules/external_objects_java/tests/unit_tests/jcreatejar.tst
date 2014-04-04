@@ -12,6 +12,7 @@ jimport java.util.zip.ZipEntry;
 testRootDir = fullfile(TMPDIR, "jcreatejar");
 mkdir(testRootDir);
 
+// Create a sub dir of a dir, and clean it if exists
 function path = createSubDir(parentDir, subDir, removeExistingDir)
     path = fullfile(parentDir, subDir);
     if isdir(path) & removeExistingDir then
@@ -20,6 +21,7 @@ function path = createSubDir(parentDir, subDir, removeExistingDir)
     mkdir(path);
 endfunction
 
+// Create a file to be JAR-red with a given filename & content, create the parent dir if needed
 function [filePath, fileContent] = addFileToPackage(fileName, package, packageDir, fileContent)
     destDir = packageDir;
     if ~isempty(package) then
@@ -39,6 +41,7 @@ function [filePath, fileContent] = addFileToPackage(fileName, package, packageDi
     mclose(fd);
 endfunction
 
+// Extracts a file from the JAR (ZIP) stream
 function fileContent = extractFileContent(zipInputStream)
     BUFFER_SIZE = 1000;
     buffer = jarray("byte", BUFFER_SIZE);
@@ -53,6 +56,7 @@ function fileContent = extractFileContent(zipInputStream)
     jremove(buffer);
 endfunction
 
+// Extracts JAR content (through JIMS) with Java Zip functions
 function [filePaths, fileContents] = extractJarContent(zipFilePath)
     filePaths = [];
     fileContents = [];
@@ -76,6 +80,7 @@ function [filePaths, fileContents] = extractJarContent(zipFilePath)
     zipEntry = jinvoke(zipInputStream, "close");
 endfunction
 
+// Checks JAR archive : uncompress JAR and check extracted files
 function checkJar(jarFilePath, expectedJarFilePaths, expectedJarFileContents)
     assert_checktrue(isfile(jarFilePath));
     [jarFilePaths, jarFileContents] = extractJarContent(jarFilePath);
@@ -89,7 +94,7 @@ endfunction
 
 // TEST JAR STRUCTURE
 
-// Test create jar with one file, by Arg the dir path
+// Test create jar with one file, by giving the dir path
 packageName = "packageOneClassArgDirPath";
 jarSrcPath = createSubDir(testRootDir, packageName, %T);
 jarDestPath = fullfile(testRootDir, packageName + ".jar");
@@ -97,7 +102,7 @@ addFileToPackage("FooDir", "", jarSrcPath, "");
 jcreatejar(jarDestPath, jarSrcPath);
 checkJar(jarDestPath, ["META-INF/MANIFEST.MF"; "FooDir"], []);
 
-// Test create jar with one file, by Arg the file path
+// Test create jar with one file, by giving the file path
 packageName = "packageOneClassArgFilePath";
 jarSrcPath = createSubDir(testRootDir, packageName, %T);
 jarDestPath = fullfile(testRootDir, packageName + ".jar");
@@ -105,7 +110,7 @@ filePath = addFileToPackage("FooFile", "", jarSrcPath, "");
 jcreatejar(jarDestPath, filePath);
 checkJar(jarDestPath, ["META-INF/MANIFEST.MF"; "FooFile"], []);
 
-// Test create jar with two files, by Arg the dir path
+// Test create jar with two files, by giving the dir path
 packageName = "packageTwoClassesArgDirPath";
 jarSrcPath = createSubDir(testRootDir, packageName, %T);
 jarDestPath = fullfile(testRootDir, packageName + ".jar");
@@ -114,7 +119,7 @@ addFileToPackage("FooDir2", "", jarSrcPath, "");
 jcreatejar(jarDestPath, jarSrcPath);
 checkJar(jarDestPath, ["META-INF/MANIFEST.MF"; "FooDir1"; "FooDir2"], []);
 
-// Test create jar with two files, by Arg the file paths
+// Test create jar with two files, by giving the file paths
 packageName = "packageTwoClassesArgFilePaths";
 jarSrcPath = createSubDir(testRootDir, packageName, %T);
 jarDestPath = fullfile(testRootDir, packageName + ".jar");
@@ -123,7 +128,7 @@ filePath2 = addFileToPackage("FooFile2", "", jarSrcPath, "");
 jcreatejar(jarDestPath, [filePath1, filePath2]);
 checkJar(jarDestPath, ["META-INF/MANIFEST.MF"; "FooFile1"; "FooFile2"], []);
 
-// Test create jar with two files and one folder, by Arg the dir path
+// Test create jar with two files and one folder, by giving the dir path
 packageName = "packageOneFolderArgDirPath";
 jarSrcPath = createSubDir(testRootDir, packageName, %T);
 jarDestPath = fullfile(testRootDir, packageName + ".jar");
@@ -140,10 +145,10 @@ addFileToPackage("FooPackage1", packageName, jarSrcPath, "");
 addFileToPackage("FooPackage2", packageName, jarSrcPath, "");
 jcreatejar(jarDestPath, jarSrcPath);
 checkJar(jarDestPath, ..
-["META-INF/MANIFEST.MF"; ..
-"org/scilab/test/mypackage/FooPackage1"; ..
-"org/scilab/test/mypackage/FooPackage2"], ..
-[]);
+  ["META-INF/MANIFEST.MF"; ..
+  "org/scilab/test/mypackage/FooPackage1"; ..
+  "org/scilab/test/mypackage/FooPackage2"], ..
+  []);
 
 // Test argument files root path
 packageName = "packageFilesRootPath";
@@ -154,11 +159,11 @@ addFileToPackage("image2", "images", jarSrcPath, "");
 addFileToPackage("icon1", "images/icon", jarSrcPath, "");
 jcreatejar(jarDestPath, jarSrcPath, jarSrcPath);
 checkJar(jarDestPath, ..
-["META-INF/MANIFEST.MF"; ..
-"images/icon/icon1"; ..
-"images/image1"; ..
-"images/image2"] ..
-, []);
+  ["META-INF/MANIFEST.MF"; ..
+  "images/icon/icon1"; ..
+  "images/image1"; ..
+  "images/image2"] ..
+  , []);
 
 // TESTS JAR MANIFEST
 
@@ -167,7 +172,7 @@ checkJar(jarDestPath, ..
 manifestData = msprintf("Manifest-Version: 1.0\nName: testManifest");
 CRLF = ascii([13 10]);
 expectedManifestData = "Manifest-Version: 1.0" + CRLF + ..
-"Name: testManifest" + CRLF + CRLF;
+  "Name: testManifest" + CRLF + CRLF;
 
 // Test META-INF\MANIFEST.MF manifest file is loaded
 packageName = "packageManifest";
@@ -191,7 +196,7 @@ checkJar(jarDestPath, ["META-INF/MANIFEST.MF"], [expectedManifestData]);
 
 // OTHER TESTS
 
-// Test JAR overwirting
+// Test JAR overwriting
 packageName = "packageOverwriting";
 jarSrcPath = createSubDir(testRootDir, packageName, %T);
 jarDestPath = fullfile(testRootDir, packageName + ".jar");
@@ -203,3 +208,8 @@ addFileToPackage("Foo2", "", jarSrcPath, "");
 jcreatejar(jarDestPath, jarSrcPath);
 checkJar(jarDestPath, ["META-INF/MANIFEST.MF"; "Foo"; "Foo2"], []);
 
+// Test error when creating JAR of invalid file
+tmpDir = getlongpathname(TMPDIR);
+jarDestPath = fullfile(tmpDir, "checkerror.jar");
+jarSrcPath = fullfile(tmpDir, "notfoundfile");
+assert_checkequal(execstr("jcreatejar(jarDestPath, jarSrcPath)", "errcatch"), 999);

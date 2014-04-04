@@ -70,9 +70,4 @@ public class SwingScilabToolBar extends JToolBar implements SimpleToolBar {
         this.elementId = id;
     }
 
-    public void close() {
-        removeAll();
-        UIElementMapper.removeMapping(elementId);
-    }
-
 }

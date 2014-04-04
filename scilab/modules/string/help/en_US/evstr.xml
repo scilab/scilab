@@ -93,6 +93,9 @@
         <para>
             <literal>Inf</literal> will be interpreted as <constant>%inf</constant>.
         </para>
+        <note>
+            Note that <varname>Z</varname> should not be composed of continuation marks (..).
+        </note>
     </refsection>
     <refsection>
         <title>Examples</title>

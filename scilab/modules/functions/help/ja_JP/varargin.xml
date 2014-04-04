@@ -35,10 +35,10 @@
             <literal>varargin</literal>リストは空のリストとなります.
         </para>
         <para>
-            <literal>y= function ex(varargin)</literal> は
+            <literal>function y= ex(varargin)</literal> は
             任意の数の入力引数を指定してコールすることが可能です.
             関数<literal>ex</literal>の中では, 入力引数は
-            <literal>varargin(i)</literal>,<literal>i=1:length(varargin)</literal>
+            <literal>varargin(i)</literal>, <literal>i=1:length(varargin)</literal>
             により取得可能です.
         </para>
         <para>
@@ -47,51 +47,66 @@
             入力引数の名前となります.
         </para>
         <para>
-            実際の入力引数の総数は,<link linkend="argn">argn(2)</link>で取得できます.
+            実際の入力引数の総数は,<code>argn(2)</code>で取得できます.
         </para>
     </refsection>
     <refsection>
         <title>注意</title>
         <para>
-            <literal>foo(...,key=value) </literal>のような名前付き引数構文は
-            vararginとは互換性がありません.
+            <literal>foo(...,key=value)</literal> のような名前付き引数構文は
+            <literal>varargin</literal>とは互換性がありません.
             その理由は,
-            値に対応する名前(すなわち, keys) が  varargin リストに
+            値に対応する名前(すなわち, keys) が  <literal>varargin</literal> リストに
             保存されないためです.
             例えば,以下について考えてみてください:
         </para>
-        <para>function
-            foo(varargin),disp([varargin(1),varargin(2)]),endfunction
-        </para>
-        <para>foo(a=1,b=2)</para>
-        <para>Scilab answers: 1. 2.</para>
-        <para>foo(b=1,a=2)</para>
-        <para>Scilab answers: 1. 2.</para>
+        <programlisting role="no-scilab-exec"><![CDATA[
+function foo(varargin)
+    disp([varargin(1),varargin(2)])
+endfunction
+        ]]></programlisting>
+        <screen>
+            -->foo(a=1,b=2)
+            
+            1.    2.
+            
+            -->foo(b=1,a=2)
+            
+            1.    2.
+        </screen>
         <para>結果は同じですが, 引数は逆になります.</para>
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
-deff('exampl(a,varargin)',['[lhs,rhs]=argn(0)'
-                          'if rhs>=1 then disp(varargin),end'])
+        <programlisting role="example"><![CDATA[
+function exampl(a,varargin)
+    [lhs,rhs]=argn(0)
+    if rhs>=1 then
+        disp(varargin)
+    end
+endfunction
+
 exampl(1)
 exampl()
 exampl(1,2,3)
 l=list('a',%s,%t);
 exampl(1,l(2:3))
- ]]></programlisting>
+]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">
             <member>
+                <link linkend="argn">argn</link>
+            </member>
+            <member>
                 <link linkend="function">function</link>
             </member>
             <member>
-                <link linkend="varargout">varargout</link>
+                <link linkend="list">list</link>
             </member>
             <member>
-                <link linkend="list">list</link>
+                <link linkend="varargout">varargout</link>
             </member>
         </simplelist>
     </refsection>

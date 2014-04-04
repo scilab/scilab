@@ -79,7 +79,7 @@ assert_checkerror("prod(d,""r"", [""nat"" ""dble""])", refMsg);
 
 assert_checkfalse(execstr("prod(d,""orient"", ""t"")"   ,"errcatch") == 0);
 refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),..
-            "prod",2,"""*"",""r"",""c"",""m""");
+"prod",2,"""*"",""r"",""c"",""m""");
 assert_checkerror("prod(d,""orient"", ""t"")", refMsg);
 
 assert_checkfalse(execstr("prod(d,1,1)"   ,"errcatch") == 0);
@@ -152,19 +152,19 @@ refMsg = msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n
 assert_checkerror("prod(d, [""r"", ""c""])", refMsg);
 
 //empty matrices
-T=list(list(),list('native'),list('double'));
+T=list(list(),list("native"),list("double"));
 for typ=T
-  if prod([],typ(:))<>1 then pause,end
-  if prod([],'*',typ(:))<>1 then pause,end
-  if prod([],1,typ(:))<>[] then pause,end
-  if prod([],2,typ(:))<>[] then pause,end
-  if prod([],3,typ(:))<>[] then pause,end
+    assert_checkequal(prod([], typ(:)), 1);
+    assert_checkequal(prod([], "*", typ(:)), 1);
+    assert_checkequal(prod([], 1, typ(:)), []);
+    assert_checkequal(prod([], 2, typ(:)), []);
+    assert_checkequal(prod([], 3, typ(:)), []);
 end
 
 //=======================================================================
 //float matrices
 d=[1 10;254 9];
-T=list(list(),list('native'),list('double'));
+T=list(list(),list("native"),list("double"));
 for typ=T
     assert_checkequal(prod(d, typ(:)), 22860);
     assert_checkequal(prod(d, "*", typ(:)), 22860);
@@ -176,7 +176,7 @@ end
 
 //hypermatrices of floats
 d=[1 10;254 9];d(:,:,2)=1;
-T=list(list(),list('native'),list('double'));
+T=list(list(),list("native"),list("double"));
 for typ=T
     assert_checkequal(prod(d, typ(:)), 22860);
     assert_checkequal(prod(d, "*", typ(:)), 22860);
@@ -189,7 +189,7 @@ end
 //=======================================================================
 //matrices of short integers
 i=uint8([1 10;254 9]);
-T=list(list(),list('native'));
+T=list(list(),list("native"));
 for typ=T
     assert_checkequal(prod(i, typ(:)), uint8(76));
     assert_checkequal(prod(i, "*", typ(:)), uint8(76));
@@ -206,14 +206,14 @@ assert_checkequal(prod(i, 3, "double"), double(i));
 
 //with hypermatrices
 i=uint8([1 10;254 9]);i(:,:,2)=uint8(1);
-T = list(list(),list('native'));
+T = list(list(),list("native"));
 for typ=T
     assert_checkequal(prod(i, typ(:)), uint8(76));
     assert_checkequal(prod(i, "*", typ(:)), uint8(76));
     assert_checkequal(prod(i, 1, typ(:)), hypermat([1,2,2],uint8([254;90;1;1])));
     assert_checkequal(prod(i, 2, typ(:)), hypermat([2,1,2],uint8([10;238;1;1])));
     assert_checkequal(prod(i, 3, typ(:)), uint8([1,10;254,9]));
-    assert_checkequal(prod(i, 5, typ(:)), double(i));
+    assert_checkequal(prod(i, 5, typ(:)), i);
 end
 
 assert_checkequal(prod(i, "double"), 22860);
@@ -225,7 +225,7 @@ assert_checkequal(prod(i, 5, "double"), double(i));
 
 //Polynomials
 s=%s;p=[s s+1;s^2 1];
-T=list(list(),list('native'),list('double'));
+T=list(list(),list("native"),list("double"));
 for typ=T
     assert_checkequal(prod(p, typ(:)), s^3+s^4);
     assert_checkequal(prod(p, "*", typ(:)), s^3+s^4);
@@ -235,7 +235,7 @@ for typ=T
 end
 //with hypermatrices
 s=%s;p=[s s+1;s^2 1];p(:,:,2)=[1 s;s+1 2];
-T=list(list(),list('native'),list('double'));
+T=list(list(),list("native"),list("double"));
 for typ=T
     assert_checkequal(prod(p, typ(:)), 2*s^4+4*s^5+2*s^6);
     assert_checkequal(prod(p, "*", typ(:)), 2*s^4+4*s^5+2*s^6);
@@ -248,7 +248,7 @@ end
 //=======================================================================
 //Matrices of rationals
 s=%s;r=1.0 ./[s s+1;s^2 1];
-T=list(list(),list('native'),list('double'));
+T=list(list(),list("native"),list("double"));
 for typ=T
     assert_checkequal(prod(r, typ(:)), 1.0/(s^3+s^4));
     assert_checkequal(prod(r, "*", typ(:)), 1.0/(s^3+s^4));
@@ -260,7 +260,7 @@ end
 //=======================================================================
 //Matrices of booleans
 b=[%t %t; %f %t];
-T = list(list(),list('double'));
+T = list(list(),list("double"));
 for typ=T
     assert_checkequal(prod(b, typ(:)), 0);
     assert_checkequal(prod(b, "*", typ(:)), 0);
@@ -277,7 +277,7 @@ assert_checkequal(prod(b, 3, "native"), b);
 
 //with hypermatrices
 b=[%t %t;%f %t];b(1,1,2)=%t;
-T = list(list(),list('double'));
+T = list(list(),list("double"));
 for typ=T
     assert_checkequal(prod(b, typ(:)), 0);
     assert_checkequal(prod(b, "*", typ(:)), 0);
@@ -297,7 +297,7 @@ assert_checkequal(prod(b, 5, "native"), b);
 //=======================================================================
 //sparse matrices of floats
 s=sparse([1 10 2;-1 254 9]);
-T=list(list(),list('native'),list('double'));
+T=list(list(),list("native"),list("double"));
 for typ=T
     assert_checkequal(prod(s, typ(:)), -45720);
     assert_checkequal(prod(s, "*", typ(:)), -45720);
@@ -309,7 +309,7 @@ end
 //=======================================================================
 //sparse  matrices of boolean
 bs=sparse([%t %t %f;%t %t %t]);
-T = list(list(),list('double'));
+T = list(list(),list("double"));
 for typ=T
     assert_checkequal(prod(bs, typ(:)), 0);
     assert_checkequal(prod(bs, "*", typ(:)), 0);

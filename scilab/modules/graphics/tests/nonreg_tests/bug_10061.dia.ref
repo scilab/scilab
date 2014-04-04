@@ -20,6 +20,5 @@ plot(1:10);e=gce();p1=e.children;
 subplot(212);a2=gca();
 plot(1:10);e=gce();p2=e.children;
 datatipCreate(p1,[5,5]);
-d=datatipGetStruct(p1);
-tips=d.tips;
-assert_checkequal(tips.parent,a1);
+tips=p1.datatips;
+assert_checktrue(tips.parent==p1);

@@ -36,7 +36,7 @@ function demo_conv2()
     a=gca();a.margins=[0 0 0.125 0]
     a.tight_limits="on";
     a.axes_visible="off";
-    title("Blured  image")
+    title("Blurred  image")
     drawnow()
 endfunction
 demo_conv2()

@@ -22,25 +22,6 @@
 
 
 /**
- * Gets the datatip data 3 component vector.
- */
-void* get_tip_data_property(void* _pvCtx, int iObjUID)
-{
-    double *tip_data = NULL;
-
-    getGraphicObjectProperty(iObjUID, __GO_DATATIP_DATA__, jni_double_vector, (void **)&tip_data);
-
-    if (tip_data == NULL)
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "tip_data");
-        return -1;
-    }
-
-    return sciReturnRowVector(tip_data, 3);
-}
-
-
-/**
  * Get the datatip orientation.
  */
 void* get_tip_orientation_property(void* _pvCtx, int iObjUID)
@@ -52,7 +33,7 @@ void* get_tip_orientation_property(void* _pvCtx, int iObjUID)
 
     if (piTipOrientation == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "tip_orientation");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "orientation");
         return NULL;
     }
 
@@ -71,8 +52,8 @@ void* get_tip_3component_property(void* _pvCtx, int iObjUID)
 
     if (piTip_3component == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "tip_3component");
-        return -1;
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "z_component");
+        return NULL;
     }
 
     if (tip_3component)
@@ -97,8 +78,8 @@ void* get_tip_auto_orientation_property(void* _pvCtx, int iObjUID)
 
     if (piTip_auto_orientation == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "tip_auto_orientation");
-        return -1;
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "auto_orientation");
+        return NULL;
     }
 
     if (tip_auto_orientation)
@@ -123,8 +104,8 @@ void* get_tip_interp_mode_property(void* _pvCtx, int iObjUID)
 
     if (piTip_interp_mode == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "tip_interp_mode");
-        return -1;
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "interp_mode");
+        return NULL;
     }
 
     if (tip_interp_mode)
@@ -149,8 +130,8 @@ void* get_tip_box_mode_property(void* _pvCtx, int iObjUID)
 
     if (piTip_box_mode == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "tip_box_mode");
-        return -1;
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "box_mode");
+        return NULL;
     }
 
     if (tip_box_mode)
@@ -175,8 +156,8 @@ void* get_tip_label_mode_property(void* _pvCtx, int iObjUID)
 
     if (piTip_label_mode == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "tip_label_mode");
-        return -1;
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "label_mode");
+        return NULL;
     }
 
     if (tip_label_mode)
@@ -200,8 +181,8 @@ void* get_tip_disp_function_property(void* _pvCtx, int iObjUID)
 
     if (tip_disp_function == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "tip_disp_function");
-        return -1;
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "display_function");
+        return NULL;
     }
 
     return sciReturnString(tip_disp_function);

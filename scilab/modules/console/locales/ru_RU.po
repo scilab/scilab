@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-10-19 15:36+0000\n"
+"PO-Revision-Date: 2014-03-23 13:51+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16869)\n"
+"X-Generator: Launchpad (build 16967)\n"
 "Language: ru\n"
 
 #, c-format
@@ -149,6 +149,9 @@ msgstr "Японский"
 
 msgid "Ukrainian"
 msgstr "Украинский"
+
+msgid "Start-up directory"
+msgstr "Директория при запуске"
 
 msgid "Confirmation dialogs"
 msgstr "Диалоги подтверждения"
@@ -699,6 +702,18 @@ msgstr "Динамическая память для Java (heap memory)"
 msgid "Select the memory (in MB) available in Java: "
 msgstr "Выберите память (в МБ), доступную в Java: "
 
+msgid "Use current working directory"
+msgstr "Использовать текущую рабочую директорию"
+
+msgid "Use previous working directory"
+msgstr "Использовать предыдущую рабочую директоию"
+
+msgid "Use default directory"
+msgstr "Использовать директорию по умолчанию"
+
+msgid "Default startup directory"
+msgstr "Директория при запуске по умолчанию"
+
 msgid "Desktop Layout"
 msgstr "Конфигурация рабочего стола"
 
@@ -710,6 +725,9 @@ msgstr "(Изменение конфигурации требует переза
 
 msgid "Save layout on exiting"
 msgstr "Сохранить проект при выходе"
+
+msgid "Reset layout"
+msgstr "Сбросить расположение панелей"
 
 msgid "Keys binding"
 msgstr "Привязка клавиш"
@@ -768,10 +786,6 @@ msgid "[Continue display? n (no) to stop, any other key to continue]"
 msgstr ""
 "[Продолжить отображение? n (no) - остановить, любая другая клавиша - "
 "продолжить]"
-
-#, c-format
-msgid "MPI error: %s\n"
-msgstr ""
 
 #, c-format
 msgid ""

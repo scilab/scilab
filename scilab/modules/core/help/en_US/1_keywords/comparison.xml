@@ -94,6 +94,13 @@
                         </listitem>
                         <listitem>
                             <para>
+                                If <literal>a</literal> or <literal>b</literal> are arrays, but one of them
+                                is empty, then an equality or an inequality comparison is possible. In this case,
+                                the result is a scalar boolean.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
                                 In the others cases the result is the boolean <literal>%f</literal>
                             </para>
                         </listitem>

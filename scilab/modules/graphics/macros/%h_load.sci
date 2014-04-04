@@ -83,7 +83,9 @@ function [h,immediate_drawing] = load_graphichandle(fd)
             end
             figure_id=mget(1,"sl",fd); // figure_id
             h.color_map=matrix(mget(mget(1,"il",fd),"dl",fd),-1,3) // color_map
-            pixmap=toggle(mget(1,characterFormat,fd)); // pixmap
+            if ~is_higher_than([5 4 0 1]) then
+                pixmap=toggle(mget(1,characterFormat,fd)); // pixmap, removed from V5.5.0 on
+            end
             pixel_drawing_mode=ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)) // pixel_drawing_mode
             if (is_higher_than([5 1 0 0])) then
                 anti_aliasing=ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)); // anti_aliasing
@@ -132,7 +134,9 @@ function [h,immediate_drawing] = load_graphichandle(fd)
             end
             h.figure_name=figure_name
             h.color_map=matrix(mget(mget(1,"il",fd),"dl",fd),-1,3) // color_map
-            h.pixmap=toggle(mget(1,characterFormat,fd)); // pixmap
+            if ~is_higher_than([5 4 0 1]) then
+                pixmap=toggle(mget(1,characterFormat,fd)); // pixmap, removed from V5.5.0 on
+            end
             h.pixel_drawing_mode=ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)) // pixel_drawing_mode
             if (is_higher_than([5 1 0 0])) then
                 h.anti_aliasing=ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)); // anti_aliasing
@@ -566,6 +570,11 @@ function [h,immediate_drawing] = load_graphichandle(fd)
             mark_background=mget(1,"il",fd) // mark_background
         end
 
+        if is_higher_than([5 4 0 1]) then
+            mark_offset=mget(1,"il",fd) // mark_offset
+            mark_stride=mget(1,"il",fd) // mark_stride
+        end
+
         if is_higher_than([3 1 0 0]) then
             sz_x_shift=mget(1,"sl",fd) // x_shift
             x_shift=mget(sz_x_shift,"dl",fd)'
@@ -608,6 +617,10 @@ function [h,immediate_drawing] = load_graphichandle(fd)
             set(h,"mark_foreground",mark_foreground),
             set(h,"mark_background",mark_background)
         end
+        if is_higher_than([5 5 0 1]) then
+            set(h,"mark_offset",mark_offset)
+            set(h,"mark_stride",mark_stride)
+        end
         if is_higher_than([3 1 0 0]) then
             set(h,"background",background)
             set(h,"fill_mode",fill_mode)
@@ -640,14 +653,14 @@ function [h,immediate_drawing] = load_graphichandle(fd)
         if is_higher_than([5 4 0 1]) then
             visible=toggle(mget(1,characterFormat,fd)) // visible
             sz = mget(2,characterFormat,fd)
-            tip_data = matrix(mget(prod(sz),"dl",fd),sz(1),-1) // tip_data
-            tip_box_mode = ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)); // tip_box_mode
-            tip_label_mode = ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)); // tip_label_mode
-            tip_orientation = mget(1,characterFormat,fd); // tip_orientation
-            tip_3component = ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)); // tip_3component
-            tip_auto_orientation = ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)); // tip_auto_orientation
-            tip_interp_mode = ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)); // tip_interp_mode
-            tip_disp_function = load_text_matrix(fd); // tip_disp_function
+            tip_data = matrix(mget(prod(sz),"dl",fd),sz(1),-1) // data
+            tip_box_mode = ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)); // box_mode
+            tip_label_mode = ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)); // label_mode
+            tip_orientation = mget(1,characterFormat,fd); // orientation
+            tip_3component = ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)); // z_component
+            tip_auto_orientation = ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)); // auto_orientation
+            tip_interp_mode = ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)); // interp_mode
+            tip_disp_function = load_text_matrix(fd); // display_function
             mark_mode = toggle(mget(1,characterFormat,fd)) // mark_mode
             mark_style = mget(1,characterFormat,fd); // mark_style
             if ascii(mget(1,characterFormat,fd))=="t" then // mark_size_unit

@@ -15,7 +15,7 @@ function demo_xcos()
 
     bResumeSomeVariables = %t;
     // check if some variables used by demo_gui already exist
-    if isdef("demo_gui_update") & isdef("resize_gui") & isdef("create_frame") then
+    if isdef("demo_gui_update") & isdef("resize_gui") then
         bResumeSomeVariables = %f;
     end
 
@@ -36,7 +36,7 @@ function demo_xcos()
 
     // resume some variables
     if bResumeSomeVariables then
-        [demo_gui_update, resize_gui, create_frame] = resume(demo_gui_update, resize_gui, create_frame);
+        [demo_gui_update, resize_gui] = resume(demo_gui_update, resize_gui);
     end
 
 endfunction

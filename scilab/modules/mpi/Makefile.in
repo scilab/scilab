@@ -168,7 +168,8 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscimpi_la_sci_gatewaydir)" \
 	"$(DESTDIR)$(libscimpi_la_includedir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
-libscimpi_la_LIBADD =
+am__DEPENDENCIES_1 =
+libscimpi_la_DEPENDENCIES = $(am__DEPENDENCIES_1)
 am__dirstamp = $(am__leading_dot)dirstamp
 am__objects_1 = sci_gateway/c/libscimpi_la-sci_mpi_init.lo \
 	sci_gateway/c/libscimpi_la-sci_mpi_finalize.lo \
@@ -192,7 +193,7 @@ am__v_lt_0 = --silent
 am__v_lt_1 = 
 libscimpi_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(libscimpi_la_CFLAGS) \
-	$(CFLAGS) $(libscimpi_la_LDFLAGS) $(LDFLAGS) -o $@
+	$(CFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
 am__v_P_0 = false
@@ -300,6 +301,7 @@ CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
 DEMOTOOLS_ENABLE = @DEMOTOOLS_ENABLE@
 DEPDIR = @DEPDIR@
+DLLTOOL = @DLLTOOL@
 DOCBOOK_ROOT = @DOCBOOK_ROOT@
 DOXYGEN_BIN = @DOXYGEN_BIN@
 DSYMUTIL = @DSYMUTIL@
@@ -319,6 +321,11 @@ FGREP = @FGREP@
 FLEXDOCK = @FLEXDOCK@
 FLIBS = @FLIBS@
 FOP = @FOP@
+FREEHEP_GRAPHICS2D = @FREEHEP_GRAPHICS2D@
+FREEHEP_GRAPHICSIO = @FREEHEP_GRAPHICSIO@
+FREEHEP_GRAPHICSIO_EMF = @FREEHEP_GRAPHICSIO_EMF@
+FREEHEP_IO = @FREEHEP_IO@
+FREEHEP_UTIL = @FREEHEP_UTIL@
 GENHTML = @GENHTML@
 GETTEXT_MACRO_VERSION = @GETTEXT_MACRO_VERSION@
 GIWS_BIN = @GIWS_BIN@
@@ -382,6 +389,7 @@ LTLIBINTL = @LTLIBINTL@
 LTLIBOBJS = @LTLIBOBJS@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
+MANIFEST_TOOL = @MANIFEST_TOOL@
 MATIO_CFLAGS = @MATIO_CFLAGS@
 MATIO_ENABLE = @MATIO_ENABLE@
 MATIO_LIBS = @MATIO_LIBS@
@@ -563,8 +571,8 @@ libscimpi_la_CFLAGS = -Iincludes/ \
 	-I$(top_srcdir)/modules/api_scilab/includes \
 	-DDEBUG
 
-libscimpi_la_LDFLAGS = $(OPENMPI_LIBS)
-# $(LAMPI_LDFLAGS)
+# libscimpi_la_LDFLAGS = $(LAMPI_LDFLAGS)
+libscimpi_la_LIBADD = $(OPENMPI_LIBS)
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding 
 # the system)
@@ -575,6 +583,7 @@ libscimpi_la_SOURCES = $(GATEWAY_C_SOURCES)  $(MPI_C_SOURCES)
 #$(GATEWAY_FORTRAN_SOURCES) $(MPI_FORTRAN_SOURCES)
 
 #### Target ######
+modulename = mpi
 
 #### mpi : Conf files ####
 libscimpi_la_rootdir = $(mydatadir)

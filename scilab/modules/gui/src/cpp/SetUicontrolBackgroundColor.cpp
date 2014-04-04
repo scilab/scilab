@@ -13,8 +13,11 @@
  *
  */
 
-#include <string.h>
-#include "SetUicontrolBackgroundColor.hxx"
+extern "C"
+{
+#include "addColor.h"
+#include "SetUicontrol.h"
+}
 
 int SetUicontrolBackgroundColor(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
@@ -23,6 +26,9 @@ int SetUicontrolBackgroundColor(void* _pvCtx, int iObjUID, void* _pvData, int va
     double* allColors = NULL;
     BOOL status = FALSE;
     int nbValues = 0;
+    int iType = -1;
+    int *piType = &iType;
+    int iColorIndex = 0;
 
     if (valueType == sci_strings)
     {
@@ -69,7 +75,18 @@ int SetUicontrolBackgroundColor(void* _pvCtx, int iObjUID, void* _pvData, int va
         return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(iObjUID, __GO_UI_BACKGROUNDCOLOR__, allColors, jni_double_vector, 3);
+    getGraphicObjectProperty(iObjUID, __GO_TYPE__, jni_int, (void **) &piType);
+    switch (iType)
+    {
+    case __GO_FIGURE__ :
+        iColorIndex = addColor(iObjUID, allColors);
+        status = setGraphicObjectProperty(iObjUID, __GO_BACKGROUND__, &iColorIndex, jni_int, 1);
+        break;
+    default :
+        status = setGraphicObjectProperty(iObjUID, __GO_UI_BACKGROUNDCOLOR__, allColors, jni_double_vector, 3);
+        break;
+    }
+
 
     if (valueType == sci_strings)
     {

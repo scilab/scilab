@@ -15,6 +15,7 @@
 /*--------------------------------------------------------------------------*/
 #include <Windows.h>
 #include <stdio.h>
+#include <string>
 #include <CommCtrl.h>
 #include <GdiPlus.h>
 extern "C"
@@ -196,7 +197,7 @@ static DWORD WINAPI ThreadSplashScreen(LPVOID lpParam)
 /*--------------------------------------------------------------------------*/
 static BOOL stopSplashScreen(UINT _time, UINT _timeMax)
 {
-    if (haveConsoleWindow() || (timeSplashScreen > _timeMax))
+    if (haveConsoleWindow() || (timeSplashScreen >= _timeMax))
     {
         return TRUE;
     }
@@ -221,7 +222,7 @@ static BOOL haveConsoleWindow(void)
 
     if (hWndMainScilab == NULL)
     {
-        wsprintf(titleMainWindow, _("Scilab Console"));
+        wsprintf(titleMainWindow, _("Scilab %s Console"),  std::string(SCI_VERSION_STRING).substr(strlen("scilab-"), std::string::npos).c_str());
         hWndMainScilab = FindWindow(NULL, titleMainWindow);
     }
 
