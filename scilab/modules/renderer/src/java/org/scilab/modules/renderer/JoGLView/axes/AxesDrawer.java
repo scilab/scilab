@@ -183,7 +183,14 @@ public class AxesDrawer {
 
     public void computeMargins(Axes axes) {
         if (axes.getAutoMargins() && axes.getViewAsEnum() == ViewType.VIEW_2D) {
-            ColorMap colorMap = visitor.getColorMap();
+            Figure figure = (Figure) GraphicController.getController().getObjectFromId(axes.getParentFigure());
+            ColorMap colorMap = null;
+            if (figure != null) {
+                colorMap = figure.getColorMap();
+            } else {
+                return;
+            }
+
             Dimension[] marginLabels = labelManager.getLabelsSize(colorMap, axes, this);
             Integer[] size = {visitor.getCanvas().getWidth(), visitor.getCanvas().getHeight()};
             // [x_left, y_up, w, h]
