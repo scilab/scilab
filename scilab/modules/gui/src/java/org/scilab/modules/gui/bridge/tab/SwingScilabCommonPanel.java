@@ -217,6 +217,10 @@ public class SwingScilabCommonPanel {
             }
             case __GO_RESIZE__:
                 component.getParentWindow().setResizable((Boolean) value);
+                //on some cases, set resizable can change frame size. ( L&F, Window Manager, ... )
+                //so force set of axes_size.
+                SwingScilabCommonPanel.update(component, __GO_AXES_SIZE__, GraphicController.getController().getProperty(component.getId(), __GO_AXES_SIZE__));
+
                 break;
             case __GO_LAYOUT__:
                 LayoutType newLayout = LayoutType.intToEnum((Integer) value);
