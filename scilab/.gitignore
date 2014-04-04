@@ -1,4 +1,9 @@
 #
+# Prerequirements
+#
+bin/xml2-config
+
+#
 # Linux objects files
 #
 *.loT
