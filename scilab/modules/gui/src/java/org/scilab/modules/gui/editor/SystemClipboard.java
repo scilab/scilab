@@ -56,7 +56,6 @@ public class SystemClipboard {
         BufferedImage image = bufferFromUID(uid);
         ImageTransfer img = new ImageTransfer((Image)image);
         Toolkit.getDefaultToolkit().getSystemClipboard().setContents(img, null);
-        System.out.println("Image copied to clipboard!");
     }
 
     /**
@@ -113,7 +112,7 @@ public class SystemClipboard {
         }
         if (joglCanvas != null) {
             BufferedImage image = joglCanvas.getImage();
-            joglCanvas.destroy();
+            //joglCanvas.destroy();
             return image;
         }
         return null;
