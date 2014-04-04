@@ -3,9 +3,9 @@
     <refnamediv>
         <refname>derivative</refname>
         <refpurpose>
-            approximate derivatives of a function. 
+            approximate derivatives of a function.
             <emphasis role="bold">
-                 This function is obsolete. Please use the <link linkend="numderivative">numderivative</link> function instead.
+                This function is obsolete. Please use the <link linkend="numderivative">numderivative</link> function instead.
             </emphasis>
         </refpurpose>
     </refnamediv>
@@ -59,7 +59,7 @@
                 <term>H_form</term>
                 <listitem>
                     <para>
-                        (optional) string, the form in which the Hessean will be
+                        (optional) string, the form in which the Hessian will be
                         returned. Possible forms are:
                     </para>
                     <variablelist>
@@ -68,7 +68,7 @@
                             <listitem>
                                 <para>
                                     H is a m x (<literal>n^2</literal>) matrix ; in this
-                                    form, the k-th row of H corresponds to the Hessean of the k-th
+                                    form, the k-th row of H corresponds to the Hessian of the k-th
                                     component of F, given as the following row vector :
                                 </para>
                                 <informalequation>
@@ -85,7 +85,7 @@
                             <term>H_form='blockmat' :</term>
                             <listitem>
                                 <para>
-                                    H is a (mxn) x n block matrix : the classic Hessean
+                                    H is a (mxn) x n block matrix : the classic Hessian
                                     matrices (of each component of F) are stacked by row (H = [H1
                                     ; H2 ; ... ; Hm] in scilab syntax).
                                 </para>
@@ -96,7 +96,7 @@
                             <listitem>
                                 <para>
                                     H is a n x n matrix for m=1, and a n x n x m hypermatrix
-                                    otherwise. H(:,:,k) is the classic Hessean matrix of the k-th
+                                    otherwise. H(:,:,k) is the classic Hessian matrix of the k-th
                                     component of F.
                                 </para>
                             </listitem>
@@ -260,7 +260,7 @@
          function y=f(x,A,p,w)
          y=x'*A*x+p'*x+w;
          endfunction
-         // with Jacobian and Hessean given by J(x)=x'*(A+A')+p', and H(x)=A+A'.
+         // with Jacobian and Hessian given by J(x)=x'*(A+A')+p', and H(x)=A+A'.
          A = rand(3,3);
          p = rand(3,1);
          w = 1;
@@ -360,7 +360,7 @@
             </member>
         </simplelist>
     </refsection>
-     <refsection>
+    <refsection>
         <title>History</title>
         <revhistory>
             <revision>

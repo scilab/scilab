@@ -1,10 +1,10 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 c Copyright (C) Bruno Pincon
-c 
+c
 c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
 c you should have received as part of this distribution.  The terms
-c are also available at    
+c are also available at
 c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
       subroutine SplineCub(x, y, d, n, type, A_d, A_sd, qdy, lll)
@@ -18,10 +18,10 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 *      inputs :
 *         n       number of interpolation points (n >= 3)
 *         x, y    the n interpolation points, x must be in strict increasing order
-*         type    type of the spline : currently 
+*         type    type of the spline : currently
 *                    type = 0 correspond to a  NOT_A_KNOT spline where it is
 *                             imposed the conditions :
-*                                 s'''(x(2)-) = s'''(x(2)+) 
+*                                 s'''(x(2)-) = s'''(x(2)+)
 *                             and s'''(x(n-1)-) = s'''(x(n-1)+)
 *                    type = 1 correspond to a NATURAL spline with the conditions :
 *                                 s''(x1) = 0
@@ -37,7 +37,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 *         lll(1..n-1) (used only in the periodic case)
 *
 *    NOTES
-*         this routine requires (i)   n >= 3 (for natural) n >=4 (for not_a_knot) 
+*         this routine requires (i)   n >= 3 (for natural) n >=4 (for not_a_knot)
 *                               (ii)  strict increasing abscissae x(i)
 *                               (iii) y(1) = y(n) in the periodic case
 *         THESE CONDITIONS MUST BE TESTED IN THE CALLING CODE
@@ -50,8 +50,8 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 *
       implicit none
 
-      integer n, type         
-      double precision x(n), y(n), d(n), A_d(n), A_sd(n-1), qdy(n-1), 
+      integer n, type
+      double precision x(n), y(n), d(n), A_d(n), A_sd(n-1), qdy(n-1),
      $                 lll(n-1)
 
       include 'constinterp.h.f'
@@ -70,13 +70,13 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
          call derivd(x, y, d, n, 1, FAST)
          return
       endif
- 
+
       do i = 1, n-1
          A_sd(i) = 1.d0 / (x(i+1) - x(i))
-         qdy(i) = (y(i+1) - y(i)) * A_sd(i)**2         
+         qdy(i) = (y(i+1) - y(i)) * A_sd(i)**2
       enddo
 
-*     compute the coef matrix and r.h.s. for rows 2..n-1 
+*     compute the coef matrix and r.h.s. for rows 2..n-1
 *     (which don't relies on the type)
       do i = 2, n-1
          A_d(i) = 2.d0*( A_sd(i-1) + A_sd(i) )
@@ -103,7 +103,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
          call TriDiagLDLtSolve(A_d, A_sd, d, n)
 
       else if (type .eq. CLAMPED) then
-         ! d(1) and d(n) are already known 
+         ! d(1) and d(n) are already known
          d(2) = d(2) - d(1)*A_sd(1)
          d(n-1) = d(n-1) - d(n)*A_sd(n-1)
          call TriDiagLDLtSolve(A_d(2), A_sd(2), d(2), n-2)
@@ -118,7 +118,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
          d(n) = d(1)
 
       endif
-      
+
       end ! subroutine SplineCub
 
 
@@ -127,7 +127,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 *     PURPOSE
 *        solve a linear system A x = b with a symmetric tridiagonal positive definite
 *        matrix A by using an LDL^t factorization
-*        
+*
 *     PARAMETERS
 *        d(1..n)   : on input the diagonal of A
 *                    on output the diagonal of the (diagonal) matrix D
@@ -135,18 +135,18 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 *                    on output the sub-diagonal of L
 *        b(1..n)   : on input contains the r.h.s. b
 *                    on output the solution x
-*        n         : the dimension 
+*        n         : the dimension
 *
-*     CAUTION 
+*     CAUTION
 *        no zero pivot detection
 *
       implicit none
       integer n
       integer flag
       double precision d(n), l(n-1), b(n)
-      
+
       integer i
-      double precision temp 
+      double precision temp
 
       do i = 2, n
          temp = l(i-1)
@@ -165,10 +165,10 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
       subroutine CyclicTriDiagLDLtSolve(d, lsd, lll, b, n)
 *
 *     PURPOSE
-*        solve a linear system A x = b with a symmetric "nearly" tridiagonal 
-*        positive definite matrix A by using an LDL^t factorization, 
+*        solve a linear system A x = b with a symmetric "nearly" tridiagonal
+*        positive definite matrix A by using an LDL^t factorization,
 *        the matrix A has the form :
-*           
+*
 *          |x x         x|                        |1            |
 *          |x x x        |                        |x 1          |
 *          |  x x x      |                        |  x 1        |
@@ -180,23 +180,23 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 *     PARAMETERS
 *        d(1..n)     : on input the diagonal of A
 *                      on output the diagonal of the (diagonal) matrix D
-*        lsd(1..n-2) : on input the sub-diagonal of A (without  A(n,n-1)) 
+*        lsd(1..n-2) : on input the sub-diagonal of A (without  A(n,n-1))
 *                      on output the sub-diagonal of L (without  L(n,n-1))
 *        lll(1..n-1) : on input the last line of A (without A(n,n))
 *                      on output the last line of L (without L(n,n))
 *        b(1..n)     : on input contains the r.h.s. b
 *                      on output the solution x
-*        n           : the dimension 
+*        n           : the dimension
 *
-*     CAUTION 
+*     CAUTION
 *        no zero pivot detection
 *
       implicit none
       integer n
       double precision d(n), lsd(n-2), lll(n-1), b(n)
-      
+
       integer i, j
-      double precision temp1, temp2 
+      double precision temp1, temp2
 
 *     compute the LDL^t factorization
       do i = 1, n-2
@@ -204,10 +204,10 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
          temp2 = lll(i)
          lsd(i) = lsd(i) / d(i) ! elimination coef L(i,i-1)
          lll(i) = lll(i) / d(i) ! elimination coef L(n,i-1)
-         
+
          d(i+1)   = d(i+1)   - lsd(i) * temp1 ! elimination on line i+1
          lll(i+1) = lll(i+1) - lll(i) * temp1 ! elimination on line n
-         d(n)     = d(n)     - lll(i) * temp2 ! elimination on line n   
+         d(n)     = d(n)     - lll(i) * temp2 ! elimination on line n
       enddo
       temp2 = lll(n-1)
       lll(n-1) = lll(n-1) / d(n-1)
@@ -220,7 +220,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
       do j = 1, n-1
          b(n) = b(n) - lll(j)*b(j)
       enddo
-      
+
       do i = 1, n
          b(i) = b(i) / d(i)
       enddo
@@ -233,15 +233,15 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
       end ! subroutine CyclicTriDiagLDLtSolve
 
 
-      integer function isearch(t, x, n) 
+      integer function isearch(t, x, n)
 *
 *     PURPOSE
 *        x(1..n) being an array (with strict increasing order and n >=2)
 *        representing intervals, this routine return i such that :
-*           
+*
 *           x(i) <= t <= x(i+1)
-*          
-*        and 0 if t is not in [x(1), x(n)] 
+*
+*        and 0 if t is not in [x(1), x(n)]
 *
       implicit none
       integer n
@@ -268,30 +268,30 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
       end
 
-      subroutine EvalPWHermite(t, st, dst, d2st, d3st, m, x, y, d, n, 
+      subroutine EvalPWHermite(t, st, dst, d2st, d3st, m, x, y, d, n,
      $                         outmode)
 *
 *     PURPOSE
 *        evaluation at the abscissae t(1..m) of the piecewise hermite function
 *        define by x(1..n), y(1..n), d(1..n) (d being the derivatives at the
 *        x(i)) together with its derivative, second derivative and third derivative
-*        
+*
 *     PARAMETERS
 *
 *        outmode : define what return in case t(j) not in [x(1), x(n)]
 
       implicit none
       integer m, n, outmode
-      double precision t(m), st(m), dst(m), d2st(m), d3st(m), 
+      double precision t(m), st(m), dst(m), d2st(m), d3st(m),
      $                 x(n), y(n), d(n)
-      
+
       include 'constinterp.h.f'
       integer i, j
       integer  isearch, isanan
       external isearch, isanan
       double precision tt
       external         returnananfortran
-      logical new_call     
+      logical new_call
       common /INFO_HERMITE/new_call
 
       new_call = .true.
@@ -301,12 +301,12 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
          call fast_int_search(tt, x, n, i)  ! recompute i only if necessary
 
          if ( i .ne. 0 ) then
-            call EvalHermite(tt, x(i), x(i+1), y(i), y(i+1), d(i), 
+            call EvalHermite(tt, x(i), x(i+1), y(i), y(i+1), d(i),
      $                       d(i+1), st(j), dst(j), d2st(j), d3st(j), i)
 
-         else   ! t(j) is outside [x(1), x(n)] evaluation depend upon outmode 
+         else   ! t(j) is outside [x(1), x(n)] evaluation depend upon outmode
 
-            if (outmode .eq. BY_NAN  .or.  isanan(tt) .eq. 1) then 
+            if (outmode .eq. BY_NAN  .or.  isanan(tt) .eq. 1) then
                CALL returnananfortran(st(j))
                dst(j) = st(j)
                d2st(j) = st(j)
@@ -343,24 +343,24 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
                if (outmode .eq. NATURAL) then
                   call near_interval(tt, x, n, i)
                elseif (outmode .eq. PERIODIC) then
-                  call coord_by_periodicity(tt, x, n, i)                  
+                  call coord_by_periodicity(tt, x, n, i)
                endif
-               call EvalHermite(tt, x(i), x(i+1), y(i), y(i+1), d(i), 
+               call EvalHermite(tt, x(i), x(i+1), y(i), y(i+1), d(i),
      $                       d(i+1), st(j), dst(j), d2st(j), d3st(j), i)
             endif
          endif
       enddo
-      
+
       end ! subroutine EvalPWHermite
 
-      subroutine EvalHermite(t, xa, xb, ya, yb, da, db, h, dh, ddh, 
+      subroutine EvalHermite(t, xa, xb, ya, yb, da, db, h, dh, ddh,
      $                       dddh, i)
- 
+
       implicit none
       double precision t, xa, xb, ya, yb, da, db, h, dh, ddh, dddh
       integer i
 
-      logical new_call     
+      logical new_call
       common /INFO_HERMITE/new_call
 
       double precision tmxa, dx, p, c2, c3
@@ -369,7 +369,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
       data old_i/0/
 
       if (old_i .ne. i  .or.  new_call) then
-*        compute the following Newton form : 
+*        compute the following Newton form :
 *           h(t) = ya + da*(t-xa) + c2*(t-xa)^2 + c3*(t-xa)^2*(t-xb)
          dx = 1.d0/(xb - xa)
          p = (yb - ya) * dx
@@ -461,7 +461,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
          i = nx-1
          xx = x(nx)
       endif
- 
+
       end
 
       subroutine near_interval(xx, x, nx, i)
@@ -477,7 +477,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
       else    !  xx > x(nx)
          i = nx-1
       endif
- 
+
       end
 
       subroutine proj_by_per(t, xmin, xmax)
@@ -516,10 +516,10 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
       if (xx .lt. xmin) then
          xx = xmin
-      else 
+      else
          xx = xmax
       endif
- 
+
       end
 
       subroutine BiCubicSubSpline(x, y, u, nx, ny, C, p, q, r, type)
@@ -573,7 +573,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
       end ! subroutine BiCubicSubSpline
 
-      subroutine BiCubicSpline(x, y, u, nx, ny, C, p, q, r, 
+      subroutine BiCubicSpline(x, y, u, nx, ny, C, p, q, r,
      $                         A_d, A_sd, d, ll, qdu, u_temp, type)
 *
 *     PURPOSE
@@ -583,7 +583,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
       integer nx, ny, type
       double precision x(nx), y(ny), u(nx, ny), C(4,4,nx-1,ny-1),
      $                 p(nx, ny), q(nx, ny), r(nx, ny), A_d(*),
-     $                 A_sd(*), d(ny), ll(*), qdu(*), u_temp(ny) 
+     $                 A_sd(*), d(ny), ll(*), qdu(*), u_temp(ny)
       include 'constinterp.h.f'
       integer i, j
 
@@ -594,7 +594,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
       ! compute du/dy
       do i = 1, nx
-         call dcopy(ny, u(i,1), nx, u_temp, 1)   
+         call dcopy(ny, u(i,1), nx, u_temp, 1)
          call SplineCub(y, u_temp, d, ny, type, A_d, A_sd, qdu, ll)
          call dcopy(ny, d, 1, q(i,1), nx)
       enddo
@@ -604,7 +604,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
       call SplineCub(x, q(1,ny), r(1,ny), nx, type, A_d, A_sd, qdu, ll)
 
       do i = 1, nx
-         call dcopy(ny, p(i,1), nx, u_temp, 1)   
+         call dcopy(ny, p(i,1), nx, u_temp, 1)
          d(1) = r(i,1)
          d(ny) = r(i,ny)
          call SplineCub(y, u_temp, d, ny, CLAMPED, A_d, A_sd, qdu, ll)
@@ -623,7 +623,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 *     PURPOSE
 *        given functions values u(i) at points x(i),  i = 1, ..., n
 *        this subroutine computes approximations du(i) of the derivative
-*        at the points x(i). 
+*        at the points x(i).
 *
 *     METHOD
 *        For i in [2,n-1], the "centered" formula of order 2 is used :
@@ -707,25 +707,25 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
             du(1,i) = w_l*du_l + w_r*du_r
          enddo
          du(1,n) = (1.d0 + w_l)*du_r - w_l*du_l
-            
+
       endif
 
       end
 
- 
+
       subroutine coef_bicubic(u, p, q, r, x, y, nx, ny, C)
 *
-*     PURPOSE 
-*        compute for each polynomial (i,j)-patch (defined on 
+*     PURPOSE
+*        compute for each polynomial (i,j)-patch (defined on
 *        [x(i),x(i+1)]x[y(i),y(i+1)]) the following base
 *        representation :
 *           i,j        _4_  _4_   i,j       k-1       l-1
-*          u   (x,y) = >__  >__  C   (x-x(i))  (y-y(j)) 
+*          u   (x,y) = >__  >__  C   (x-x(i))  (y-y(j))
 *                      k=1  l=1   k,l
 *
 *        from the "Hermite" representation (values of u, p = du/dx,
 *        q = du/dy, r = ddu/dxdy at the 4 vertices (x(i),y(j)),
-*        (x(i+1),y(j)), (x(i+1),y(j+1)), (x(i),y(j+1)). 
+*        (x(i+1),y(j)), (x(i+1),y(j+1)), (x(i),y(j+1)).
 *
       implicit none
 
@@ -754,7 +754,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
             a = (u(i,j+1) - u(i,j))*dy
             C(1,3,i,j) = (3.d0*a -2.d0*q(i,j) - q(i,j+1))*dy
             C(1,4,i,j) = (q(i,j+1) + q(i,j) - 2.d0*a)*(dy*dy)
-            
+
             a = (q(i+1,j) - q(i,j))*dx
             C(3,2,i,j) = (3.d0*a - r(i+1,j) - 2.d0*r(i,j))*dx
             C(4,2,i,j) = (r(i+1,j) + r(i,j) - 2.d0*a)*(dx*dx)
@@ -801,8 +801,8 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
       EvalBicubic = u
 
       end ! function EvalBicubic
-        
-      subroutine EvalBicubic_with_grad(xx, yy, xk, yk, Ck, 
+
+      subroutine EvalBicubic_with_grad(xx, yy, xk, yk, Ck,
      $                                 u, dudx, dudy)
 
       implicit none
@@ -823,10 +823,10 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
       enddo
 
       end ! subroutine EvalBicubic_with_grad
-      
-        
-      subroutine EvalBicubic_with_grad_and_hes(xx, yy, xk, yk, Ck, 
-     $                                         u, dudx, dudy, 
+
+
+      subroutine EvalBicubic_with_grad_and_hes(xx, yy, xk, yk, Ck,
+     $                                         u, dudx, dudy,
      $                                         d2udx2, d2udxy, d2udy2)
 
       implicit none
@@ -855,25 +855,25 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
      .        + dx*(2.d0*(Ck(3,2)+dy*(2.d0*Ck(3,3)+dy*3.d0*Ck(3,4)))
      .        + dx*(3.d0*(Ck(4,2)+dy*(2.d0*Ck(4,3)+dy*3.d0*Ck(4,4)))))
       end ! subroutine EvalBicubic_with_grad_and_hes
-      
-     
-      subroutine BiCubicInterp(x, y, C, nx, ny, x_eval, y_eval, z_eval, 
+
+
+      subroutine BiCubicInterp(x, y, C, nx, ny, x_eval, y_eval, z_eval,
      $                         m, outmode)
 *
 *     PURPOSE
 *        bicubic interpolation :
 *          the grid is defined by x(1..nx), y(1..ny)
-*          the known values are z(1..nx,1..ny), (z(i,j) being the value 
-*          at point (x(i),y(j))) 
+*          the known values are z(1..nx,1..ny), (z(i,j) being the value
+*          at point (x(i),y(j)))
 *          the interpolation is done on the points x_eval,y_eval(1..m)
-*          z_eval(k) is the result of the bicubic interpolation of 
-*          (x_eval(k), y_eval(k)) 
+*          z_eval(k) is the result of the bicubic interpolation of
+*          (x_eval(k), y_eval(k))
 *
       implicit none
       integer nx, ny, m, outmode
-      double precision x(nx), y(ny), C(4,4,nx-1,ny-1), 
+      double precision x(nx), y(ny), C(4,4,nx-1,ny-1),
      $                 x_eval(m), y_eval(m), z_eval(m)
-      
+
       double precision xx, yy
       integer i, j, k
       include 'constinterp.h.f'
@@ -885,10 +885,10 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
       j = 0
       do k = 1, m
          xx = x_eval(k)
-         call fast_int_search(xx, x, nx, i) 
+         call fast_int_search(xx, x, nx, i)
          yy = y_eval(k)
-         call fast_int_search(yy, y, ny, j) 
-         
+         call fast_int_search(yy, y, ny, j)
+
          if (i .ne. 0  .and.  j .ne. 0) then
             z_eval(k) = EvalBicubic(xx, yy, x(i), y(j), C(1,1,i,j))
 
@@ -919,25 +919,25 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
       end
 
-      subroutine BiCubicInterpWithGrad(x, y, C, nx, ny, x_eval, y_eval, 
-     $                                 z_eval, dzdx_eval, dzdy_eval,m, 
+      subroutine BiCubicInterpWithGrad(x, y, C, nx, ny, x_eval, y_eval,
+     $                                 z_eval, dzdx_eval, dzdy_eval,m,
      $                                 outmode)
 *
 *     PURPOSE
 *        bicubic interpolation :
 *          the grid is defined by x(1..nx), y(1..ny)
-*          the known values are z(1..nx,1..ny), (z(i,j) being the value 
-*          at point (x(i),y(j))) 
+*          the known values are z(1..nx,1..ny), (z(i,j) being the value
+*          at point (x(i),y(j)))
 *          the interpolation is done on the points x_eval,y_eval(1..m)
-*          z_eval(k) is the result of the bicubic interpolation of 
+*          z_eval(k) is the result of the bicubic interpolation of
 *          (x_eval(k), y_eval(k)) and dzdx_eval(k), dzdy_eval(k) is the gradient
 *
       implicit none
       integer nx, ny, m, outmode
-      double precision x(nx), y(ny), C(4,4,nx-1,ny-1), 
-     $                 x_eval(m), y_eval(m), z_eval(m), 
+      double precision x(nx), y(ny), C(4,4,nx-1,ny-1),
+     $                 x_eval(m), y_eval(m), z_eval(m),
      $                 dzdx_eval(m), dzdy_eval(m)
-      
+
       double precision xx, yy
       integer k, i, j
       include 'constinterp.h.f'
@@ -950,13 +950,13 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
       j = 0
       do k = 1, m
          xx = x_eval(k)
-         call fast_int_search(xx, x, nx, i) 
+         call fast_int_search(xx, x, nx, i)
          yy = y_eval(k)
-         call fast_int_search(yy, y, ny, j) 
-         
+         call fast_int_search(yy, y, ny, j)
+
          if (i .ne. 0  .and.  j .ne. 0) then
             call Evalbicubic_with_grad(xx, yy, x(i), y(j), C(1,1,i,j),
-     $                                 z_eval(k), 
+     $                                 z_eval(k),
      $                                 dzdx_eval(k), dzdy_eval(k))
 
          elseif ( outmode .eq. BY_NAN  .or.  isanan(xx) .eq. 1
@@ -974,7 +974,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
             if (i .eq. 0) call coord_by_periodicity(xx, x, nx, i)
             if (j .eq. 0) call coord_by_periodicity(yy, y, ny, j)
             call Evalbicubic_with_grad(xx, yy, x(i), y(j), C(1,1,i,j),
-     $                                 z_eval(k), 
+     $                                 z_eval(k),
      $                                 dzdx_eval(k), dzdy_eval(k))
 
          elseif (outmode .eq. C0) then
@@ -991,7 +991,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
                change_dzdy = .false.
             endif
             call Evalbicubic_with_grad(xx, yy, x(i), y(j), C(1,1,i,j),
-     $                                 z_eval(k), 
+     $                                 z_eval(k),
      $                                 dzdx_eval(k), dzdy_eval(k))
             if (change_dzdx) dzdx_eval(k) = 0.d0
             if (change_dzdy) dzdy_eval(k) = 0.d0
@@ -1000,7 +1000,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
             if (i .eq. 0) call near_interval(xx, x, nx, i)
             if (j .eq. 0) call near_interval(yy, y, ny, j)
             call Evalbicubic_with_grad(xx, yy, x(i), y(j), C(1,1,i,j),
-     $                                 z_eval(k), 
+     $                                 z_eval(k),
      $                                 dzdx_eval(k), dzdy_eval(k))
 
          endif
@@ -1009,28 +1009,28 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
       end
 
-      subroutine BiCubicInterpWithGradAndHes(x, y, C, nx, ny, 
-     $                                       x_eval, y_eval, z_eval, 
-     $                                         dzdx_eval, dzdy_eval, 
+      subroutine BiCubicInterpWithGradAndHes(x, y, C, nx, ny,
+     $                                       x_eval, y_eval, z_eval,
+     $                                         dzdx_eval, dzdy_eval,
      $                        d2zdx2_eval, d2zdxy_eval, d2zdy2_eval,
      $                                                    m, outmode)
 *
 *     PURPOSE
 *        bicubic interpolation :
 *          the grid is defined by x(1..nx), y(1..ny)
-*          the known values are z(1..nx,1..ny), (z(i,j) being the value 
-*          at point (x(i),y(j))) 
+*          the known values are z(1..nx,1..ny), (z(i,j) being the value
+*          at point (x(i),y(j)))
 *          the interpolation is done on the points x_eval,y_eval(1..m)
-*          z_eval(k) is the result of the bicubic interpolation of 
+*          z_eval(k) is the result of the bicubic interpolation of
 *          (x_eval(k), y_eval(k)), [dzdx_eval(k), dzdy_eval(k)] is the gradient
-*          and [d2zdx2(k), d2zdxy(k), d2zdy2(k)] the Hessean
+*          and [d2zdx2(k), d2zdxy(k), d2zdy2(k)] the Hessian
 *
       implicit none
       integer nx, ny, m, outmode
-      double precision x(nx), y(ny), C(4,4,nx-1,ny-1), 
-     $                 x_eval(m), y_eval(m), z_eval(m), dzdx_eval(m), 
+      double precision x(nx), y(ny), C(4,4,nx-1,ny-1),
+     $                 x_eval(m), y_eval(m), z_eval(m), dzdx_eval(m),
      $   dzdy_eval(m), d2zdx2_eval(m), d2zdxy_eval(m), d2zdy2_eval(m)
-      
+
       double precision xx, yy
       integer k, i, j
       include 'constinterp.h.f'
@@ -1043,13 +1043,13 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
       j = 0
       do k = 1, m
          xx = x_eval(k)
-         call fast_int_search(xx, x, nx, i) 
+         call fast_int_search(xx, x, nx, i)
          yy = y_eval(k)
-         call fast_int_search(yy, y, ny, j) 
-         
+         call fast_int_search(yy, y, ny, j)
+
          if (i .ne. 0  .and.  j .ne. 0) then
-            call Evalbicubic_with_grad_and_hes(xx, yy, x(i), y(j), 
-     $                                      C(1,1,i,j), z_eval(k), 
+            call Evalbicubic_with_grad_and_hes(xx, yy, x(i), y(j),
+     $                                      C(1,1,i,j), z_eval(k),
      $                                 dzdx_eval(k), dzdy_eval(k),
      $             d2zdx2_eval(k), d2zdxy_eval(k), d2zdy2_eval(k))
 
@@ -1073,8 +1073,8 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
          elseif (outmode .eq. PERIODIC) then
             if (i .eq. 0) call coord_by_periodicity(xx, x, nx, i)
             if (j .eq. 0) call coord_by_periodicity(yy, y, ny, j)
-            call Evalbicubic_with_grad_and_hes(xx, yy, x(i), y(j), 
-     $                                      C(1,1,i,j), z_eval(k), 
+            call Evalbicubic_with_grad_and_hes(xx, yy, x(i), y(j),
+     $                                      C(1,1,i,j), z_eval(k),
      $                                 dzdx_eval(k), dzdy_eval(k),
      $             d2zdx2_eval(k), d2zdxy_eval(k), d2zdy2_eval(k))
 
@@ -1091,8 +1091,8 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
             else
                change_dzdy = .false.
             endif
-            call Evalbicubic_with_grad_and_hes(xx, yy, x(i), y(j), 
-     $                                      C(1,1,i,j), z_eval(k), 
+            call Evalbicubic_with_grad_and_hes(xx, yy, x(i), y(j),
+     $                                      C(1,1,i,j), z_eval(k),
      $                                 dzdx_eval(k), dzdy_eval(k),
      $             d2zdx2_eval(k), d2zdxy_eval(k), d2zdy2_eval(k))
             if (change_dzdx) then
@@ -1109,8 +1109,8 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
          elseif (outmode .eq. NATURAL) then
             if (i .eq. 0) call near_interval(xx, x, nx, i)
             if (j .eq. 0) call near_interval(yy, y, ny, j)
-            call Evalbicubic_with_grad_and_hes(xx, yy, x(i), y(j), 
-     $                                      C(1,1,i,j), z_eval(k), 
+            call Evalbicubic_with_grad_and_hes(xx, yy, x(i), y(j),
+     $                                      C(1,1,i,j), z_eval(k),
      $                                 dzdx_eval(k), dzdy_eval(k),
      $             d2zdx2_eval(k), d2zdxy_eval(k), d2zdy2_eval(k))
          endif
@@ -1119,9 +1119,9 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
       end
 
-      subroutine driverdb3val(xp, yp, zp, fp, np, tx, ty, tz, 
-     $                        nx, ny, nz, kx, ky, kz, bcoef, work, 
-     $                        xmin, xmax, ymin, ymax, zmin, zmax, 
+      subroutine driverdb3val(xp, yp, zp, fp, np, tx, ty, tz,
+     $                        nx, ny, nz, kx, ky, kz, bcoef, work,
+     $                        xmin, xmax, ymin, ymax, zmin, zmax,
      $                        outmode)
 *
 *     PURPOSE
@@ -1129,10 +1129,10 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 *
       implicit none
       integer np, nx, ny, nz, kx, ky, kz, outmode
-      double precision xp(np), yp(np), zp(np), fp(np), 
-     $                 tx(*), ty(*), tz(*), bcoef(*), work(*), 
+      double precision xp(np), yp(np), zp(np), fp(np),
+     $                 tx(*), ty(*), tz(*), bcoef(*), work(*),
      $                 xmin, xmax, ymin, ymax, zmin, zmax
-      
+
       integer k
       logical flag_x, flag_y, flag_z
       double precision x, y, z
@@ -1162,10 +1162,10 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
          endif
 
          if ( flag_x .and. flag_y .and. flag_z ) then
-            fp(k) = db3val(x, y, z, 0, 0, 0, tx, ty, tz, 
+            fp(k) = db3val(x, y, z, 0, 0, 0, tx, ty, tz,
      $                     nx, ny, nz, kx, ky, kz, bcoef, work)
 
-         elseif (outmode .eq. BY_NAN  .or.  isanan(x) .eq. 1 
+         elseif (outmode .eq. BY_NAN  .or.  isanan(x) .eq. 1
      $                                .or.  isanan(y) .eq. 1
      $                                .or.  isanan(z) .eq. 1) then
             CALL returnananfortran(fp(k))
@@ -1183,17 +1183,17 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
                if (.not. flag_y) call proj_on_grid(y, ymin, ymax)
                if (.not. flag_z) call proj_on_grid(z, zmin, zmax)
             endif
-            fp(k) = db3val(x, y, z, 0, 0, 0, tx, ty, tz, nx, ny, nz, 
+            fp(k) = db3val(x, y, z, 0, 0, 0, tx, ty, tz, nx, ny, nz,
      $                     kx, ky, kz, bcoef, work)
          endif
       enddo
 
       end
 
-      subroutine driverdb3valwithgrad(xp, yp, zp, fp, 
-     $                        dfpdx, dfpdy, dfpdz, np, tx, ty, tz, 
-     $                        nx, ny, nz, kx, ky, kz, bcoef, work, 
-     $                        xmin, xmax, ymin, ymax, zmin, zmax, 
+      subroutine driverdb3valwithgrad(xp, yp, zp, fp,
+     $                        dfpdx, dfpdy, dfpdz, np, tx, ty, tz,
+     $                        nx, ny, nz, kx, ky, kz, bcoef, work,
+     $                        xmin, xmax, ymin, ymax, zmin, zmax,
      $                        outmode)
 *
 *     PURPOSE
@@ -1202,10 +1202,10 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
       implicit none
       integer np, nx, ny, nz, kx, ky, kz, outmode
       double precision xp(np), yp(np), zp(np), fp(np),
-     $                 dfpdx(np), dfpdy(np), dfpdz(np), 
-     $                 tx(*), ty(*), tz(*), bcoef(*), work(*), 
+     $                 dfpdx(np), dfpdy(np), dfpdz(np),
+     $                 tx(*), ty(*), tz(*), bcoef(*), work(*),
      $                 xmin, xmax, ymin, ymax, zmin, zmax
-      
+
       integer k
       logical flag_x, flag_y, flag_z
       double precision x, y, z
@@ -1235,16 +1235,16 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
          endif
 
          if ( flag_x .and. flag_y .and. flag_z ) then
-            fp(k) = db3val(x, y, z, 0, 0, 0, tx, ty, tz, 
+            fp(k) = db3val(x, y, z, 0, 0, 0, tx, ty, tz,
      $                     nx, ny, nz, kx, ky, kz, bcoef, work)
-            dfpdx(k) = db3val(x, y, z, 1, 0, 0, tx, ty, tz, 
+            dfpdx(k) = db3val(x, y, z, 1, 0, 0, tx, ty, tz,
      $                     nx, ny, nz, kx, ky, kz, bcoef, work)
-            dfpdy(k) = db3val(x, y, z, 0, 1, 0, tx, ty, tz, 
+            dfpdy(k) = db3val(x, y, z, 0, 1, 0, tx, ty, tz,
      $                     nx, ny, nz, kx, ky, kz, bcoef, work)
-            dfpdz(k) = db3val(x, y, z, 0, 0, 1, tx, ty, tz, 
+            dfpdz(k) = db3val(x, y, z, 0, 0, 1, tx, ty, tz,
      $                     nx, ny, nz, kx, ky, kz, bcoef, work)
 
-         elseif (outmode .eq. BY_NAN  .or.  isanan(x) .eq. 1 
+         elseif (outmode .eq. BY_NAN  .or.  isanan(x) .eq. 1
      $                                .or.  isanan(y) .eq. 1
      $                                .or.  isanan(z) .eq. 1) then
             CALL returnananfortran(fp(k))
@@ -1262,37 +1262,37 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
             if (.not. flag_x) call proj_by_per(x, xmin, xmax)
             if (.not. flag_y) call proj_by_per(y, ymin, ymax)
             if (.not. flag_z) call proj_by_per(z, zmin, zmax)
-            fp(k) = db3val(x, y, z, 0, 0, 0, tx, ty, tz, nx, ny, nz, 
+            fp(k) = db3val(x, y, z, 0, 0, 0, tx, ty, tz, nx, ny, nz,
      $                     kx, ky, kz, bcoef, work)
-            dfpdx(k) = db3val(x, y, z, 1, 0, 0, tx, ty, tz, 
+            dfpdx(k) = db3val(x, y, z, 1, 0, 0, tx, ty, tz,
      $                     nx, ny, nz, kx, ky, kz, bcoef, work)
-            dfpdy(k) = db3val(x, y, z, 0, 1, 0, tx, ty, tz, 
+            dfpdy(k) = db3val(x, y, z, 0, 1, 0, tx, ty, tz,
      $                     nx, ny, nz, kx, ky, kz, bcoef, work)
-            dfpdz(k) = db3val(x, y, z, 0, 0, 1, tx, ty, tz, 
+            dfpdz(k) = db3val(x, y, z, 0, 0, 1, tx, ty, tz,
      $                     nx, ny, nz, kx, ky, kz, bcoef, work)
 
          elseif (outmode .eq. C0) then
             if (.not. flag_x) call proj_on_grid(x, xmin, xmax)
             if (.not. flag_y) call proj_on_grid(y, ymin, ymax)
             if (.not. flag_z) call proj_on_grid(z, zmin, zmax)
-            fp(k) = db3val(x, y, z, 0, 0, 0, tx, ty, tz, nx, ny, nz, 
+            fp(k) = db3val(x, y, z, 0, 0, 0, tx, ty, tz, nx, ny, nz,
      $                     kx, ky, kz, bcoef, work)
             if ( flag_x ) then
                dfpdx(k) = 0.d0
             else
-               dfpdx(k) = db3val(x, y, z, 1, 0, 0, tx, ty, tz, 
+               dfpdx(k) = db3val(x, y, z, 1, 0, 0, tx, ty, tz,
      $                           nx, ny, nz, kx, ky, kz, bcoef, work)
             endif
             if ( flag_y ) then
                dfpdy(k) = 0.d0
             else
-               dfpdy(k) = db3val(x, y, z, 0, 1, 0, tx, ty, tz, 
+               dfpdy(k) = db3val(x, y, z, 0, 1, 0, tx, ty, tz,
      $                           nx, ny, nz, kx, ky, kz, bcoef, work)
             endif
             if ( flag_z ) then
                dfpdz(k) = 0.d0
             else
-               dfpdz(k) = db3val(x, y, z, 0, 0, 1, tx, ty, tz, 
+               dfpdz(k) = db3val(x, y, z, 0, 0, 1, tx, ty, tz,
      $                           nx, ny, nz, kx, ky, kz, bcoef, work)
             endif
 
