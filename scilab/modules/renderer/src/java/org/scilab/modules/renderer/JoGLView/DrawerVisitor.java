@@ -179,6 +179,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         this.datatipTextDrawer = new DatatipTextDrawer(canvas.getTextureManager());
 
         visitorMap.put(figure.getIdentifier(), this);
+        //System.err.println("[VisitorMap] size="+visitorMap.size());
     }
 
     public static void changeVisitor(AxesContainer figure, DrawerVisitor visitor) {
@@ -1137,7 +1138,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     @Override
     public void deleteObject(Integer id) {
         Integer type = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
-        if (type == GraphicObjectProperties.__GO_UICONTROL__ || type == GraphicObjectProperties.__GO_UIMENU__) {
+        if (!figure.getIdentifier().equals(id) && type == GraphicObjectProperties.__GO_UICONTROL__ || type == GraphicObjectProperties.__GO_UIMENU__) {
             return; // Not of my managed openGL children
         }
 
