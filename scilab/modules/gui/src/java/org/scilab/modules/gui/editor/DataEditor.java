@@ -20,6 +20,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.renderer.CallRenderer;
@@ -209,14 +210,16 @@ public class DataEditor {
     public void onLeftMouseDown(MouseEvent event) {
         picked = picker.pickPoint(curPolyline, event.getX(), event.getY());
         if (picked != null && picked.point != -1) {
-            Integer figureUid = (Integer) GraphicController.getController().getProperty(curPolyline, GraphicObjectProperties.__GO_PARENT_FIGURE__);
+            GraphicObject go = 	GraphicController.getController().getObjectFromId(curPolyline);
+            Integer figureUid = go.getParentFrameOrFigure();
             DrawerVisitor.getVisitor(figureUid).getInteractionManager().setTranslationEnable(false);
         }
     }
 
     public void onLeftMouseRelease(MouseEvent event) {
         if (picked != null && picked.point != -1) {
-            Integer figureUid = (Integer) GraphicController.getController().getProperty(curPolyline, GraphicObjectProperties.__GO_PARENT_FIGURE__);
+            GraphicObject go = 	GraphicController.getController().getObjectFromId(curPolyline);
+            Integer figureUid = go.getParentFrameOrFigure();
             DrawerVisitor.getVisitor(figureUid).getInteractionManager().setTranslationEnable(true);
         }
     }

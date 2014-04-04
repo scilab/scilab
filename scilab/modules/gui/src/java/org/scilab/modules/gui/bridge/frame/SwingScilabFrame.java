@@ -76,6 +76,7 @@ import org.scilab.modules.gui.checkbox.CheckBox;
 import org.scilab.modules.gui.console.Console;
 import org.scilab.modules.gui.dockable.Dockable;
 import org.scilab.modules.gui.editbox.EditBox;
+import org.scilab.modules.gui.editor.EditorEventListener;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.frame.Frame;
 import org.scilab.modules.gui.frame.SimpleFrame;
@@ -111,6 +112,7 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
     protected boolean hasLayout = false;
     private Border defaultBorder = null;
     private SwingScilabCanvas canvas = null;
+    private EditorEventListener editorEventHandler = null;
 
     /**
      * Constructor
@@ -225,8 +227,14 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
 
         if (member instanceof SwingScilabAxes) {
             if (canvas == null) {
+                editorEventHandler = new EditorEventListener(getId());
                 AxesContainer frame = (AxesContainer) GraphicModel.getModel().getObjectFromId(getId());
                 canvas = new SwingScilabCanvas(frame);
+                canvas.addEventHandlerKeyListener(editorEventHandler);
+                canvas.addEventHandlerMouseListener(editorEventHandler);
+                canvas.addEventHandlerMouseMotionListener(editorEventHandler);
+                editorEventHandler.setEnable(true);
+
                 setLayout(new GridLayout(1, 1));
                 hasLayout = true;
                 add(canvas);

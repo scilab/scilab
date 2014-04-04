@@ -905,7 +905,7 @@ public class AxesDrawer {
     public static double[] compute2dViewCoordinates(Axes axes, double[] coordinates) {
         // used in geom3d
 
-        DrawerVisitor currentVisitor = DrawerVisitor.getVisitor(axes.getParentFigure());
+        DrawerVisitor currentVisitor = DrawerVisitor.getVisitor(axes.getParentFrameOrFigure());
         AxesDrawer axesDrawer;
         Transformation projection;
         Transformation projection2d;
@@ -950,7 +950,7 @@ public class AxesDrawer {
     public static double[] computePixelFrom2dViewCoordinates(Axes axes, double[] coordinates) {
         // used by xchange
 
-        DrawerVisitor currentVisitor = DrawerVisitor.getVisitor(axes.getParentFigure());
+        DrawerVisitor currentVisitor = DrawerVisitor.getVisitor(axes.getParentFrameOrFigure());
         AxesDrawer axesDrawer;
         double[] coords2dView = new double[] {0.0, 0.0, 0.0};
 
@@ -996,7 +996,7 @@ public class AxesDrawer {
         Transformation projection;
         Transformation projection2d;
 
-        currentVisitor = DrawerVisitor.getVisitor(axes.getParentFigure());
+        currentVisitor = DrawerVisitor.getVisitor(axes.getParentFrameOrFigure());
         boolean[] logFlags = { axes.getXAxisLogFlag(), axes.getYAxisLogFlag(), axes.getZAxisLogFlag()};
         double[][] factors = axes.getScaleTranslateFactors();
 
@@ -1029,7 +1029,7 @@ public class AxesDrawer {
      * @returns the pixel coordinates (2-element array: x, y).
      */
     public static double[][] computePixelFrom3dCoordinates(Axes axes, double[] coordsX, double[] coordsY, double[] coordsZ) {
-        DrawerVisitor currentVisitor = DrawerVisitor.getVisitor(axes.getParentFigure());
+        DrawerVisitor currentVisitor = DrawerVisitor.getVisitor(axes.getParentFrameOrFigure());
 
         if (currentVisitor != null) {
             AxesDrawer axesDrawer = currentVisitor.getAxesDrawer();
@@ -1072,7 +1072,7 @@ public class AxesDrawer {
      * @returns the 3d view coordinates (3-element array).
      */
     public static double[] compute3dViewCoordinates(Axes axes, double[] coordinates) {
-        DrawerVisitor currentVisitor = DrawerVisitor.getVisitor(axes.getParentFigure());
+        DrawerVisitor currentVisitor = DrawerVisitor.getVisitor(axes.getParentFrameOrFigure());
         AxesDrawer axesDrawer;
         Transformation projection;
         Transformation projection2d;
@@ -1128,7 +1128,7 @@ public class AxesDrawer {
         AxesDrawer axesDrawer;
         double[] coords2dView = new double[] {0.0, 0.0, 0.0};
 
-        currentVisitor = DrawerVisitor.getVisitor(axes.getParentFigure());
+        currentVisitor = DrawerVisitor.getVisitor(axes.getParentFrameOrFigure());
 
         if (currentVisitor != null) {
             boolean[] logFlags = { axes.getXAxisLogFlag(), axes.getYAxisLogFlag(), axes.getZAxisLogFlag()};
@@ -1165,7 +1165,7 @@ public class AxesDrawer {
      * @return The un-projected point.
      */
     public static Vector3d unProject(Axes axes, Vector3d point) {
-        DrawerVisitor currentVisitor = DrawerVisitor.getVisitor(axes.getParentFigure());
+        DrawerVisitor currentVisitor = DrawerVisitor.getVisitor(axes.getParentFrameOrFigure());
 
         if (currentVisitor != null) {
             AxesDrawer axesDrawer = currentVisitor.getAxesDrawer();
@@ -1192,7 +1192,7 @@ public class AxesDrawer {
 
         double[] viewingArea = new double[] {0.0, 0.0, 0.0, 0.0};
 
-        currentVisitor = DrawerVisitor.getVisitor(axes.getParentFigure());
+        currentVisitor = DrawerVisitor.getVisitor(axes.getParentFrameOrFigure());
 
         if (currentVisitor != null) {
             double width = currentVisitor.getCanvas().getDimension().getWidth();
