@@ -23,11 +23,20 @@ public class FlattenTreeView extends TreeView {
         super();
     }
 
-    public static FlattenTreeView create() {
+    public static void createView() {
         if (me == null) {
             me = new FlattenTreeView();
+            GraphicController.getController().register(me);
+            me.show();
         }
-        return me;
+    }
+    
+    public static void deleteView() {
+        if (me != null) {
+            me.hide();
+            GraphicController.getController().unregister(me);
+            me = null;
+        }
     }
 
     public void createObject(Integer id) {
@@ -41,7 +50,7 @@ public class FlattenTreeView extends TreeView {
             topModel.nodeStructureChanged(top);
             //}
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
     }
 

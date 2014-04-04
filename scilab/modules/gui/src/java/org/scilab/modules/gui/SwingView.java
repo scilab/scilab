@@ -214,6 +214,10 @@ public final class SwingView implements GraphicView {
         return typedObject.getValue();
     }
 
+    public static int getSize() {
+        return me.allObjects.size();
+    }
+    
     private enum UielementType {
         Console, CheckBox, Edit, Spinner, Frame, Figure, Axes, Image, ListBox, PopupMenu, Progressbar, PushButton, RadioButton, Slider, Table, Text, Uimenu, UiParentMenu, UiChildMenu, UiCheckedMenu, UiContextMenu, Waitbar, Tab, Layer
     }

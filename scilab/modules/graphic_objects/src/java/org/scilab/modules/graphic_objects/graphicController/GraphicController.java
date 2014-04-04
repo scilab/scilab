@@ -69,7 +69,6 @@ public class GraphicController {
         if (!GraphicsEnvironment.isHeadless() && MVCViewEnable) {
             register(GuiLogView.createGuiLogView());
             register(GedTreeView.create());
-            register(FlattenTreeView.create());
         }
     }
 

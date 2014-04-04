@@ -45,6 +45,10 @@ public abstract class TreeView implements GraphicView, TreeSelectionListener {
     public void show() {
         frame.setVisible(true);
     }
+    
+    public void hide() {
+        frame.setVisible(false);
+    }
 
     protected TreeView() {
         frame = new JFrame("TreeView");

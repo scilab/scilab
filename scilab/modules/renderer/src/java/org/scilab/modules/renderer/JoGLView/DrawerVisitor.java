@@ -156,6 +156,10 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     private final List<PostRendered> postRenderedList = new LinkedList<PostRendered>();
     private final static Map<Integer, List<Integer>> openGLChildren = new HashMap<Integer, List<Integer>>();
 
+    public static int[] getSize() {
+        return new int[] {visitorMap.size(), openGLChildren.size()};
+    }
+    
     public DrawerVisitor(Component component, Canvas canvas, AxesContainer figure) {
         GraphicController.getController().register(this);
 
@@ -179,7 +183,6 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         this.datatipTextDrawer = new DatatipTextDrawer(canvas.getTextureManager());
 
         visitorMap.put(figure.getIdentifier(), this);
-        //System.err.println("[VisitorMap] size="+visitorMap.size());
     }
 
     public static void changeVisitor(AxesContainer figure, DrawerVisitor visitor) {
