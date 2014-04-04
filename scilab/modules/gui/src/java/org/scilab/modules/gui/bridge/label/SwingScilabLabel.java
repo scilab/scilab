@@ -396,14 +396,18 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
             }
         }
 
-        ((JLabel) label).invalidate();
+        if (getParent() != null) {
+            getParent().invalidate();
+        }
         changeLabelType(LabelStyle.TEXT);
         ((JLabel) label).setText(labelText);
-        ((JLabel) label).validate();
+        if (getParent() != null) {
+            getParent().validate();
+        }
     }
 
     public void setEmptyText() {
-        setText(" ");
+        setText(null);
     }
 
     /**
