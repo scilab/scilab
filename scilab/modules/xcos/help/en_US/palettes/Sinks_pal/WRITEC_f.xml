@@ -304,10 +304,6 @@ box "Field #N";
             events, we use a TIME_f block and a multiplexer to form the input vector of the WRITEC_f block which record the data in
             the file <emphasis>"TMPDIR/writec_f.data"</emphasis>. Then you can read these data with the block
             <link linkend="READC_f">READC_f</link>.
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/sinks_pal/en_US/writec_f_en_US.zcos">
-                Open this example in Xcos
-            </link>
-            .
         </para>
         <para/>
         <para>

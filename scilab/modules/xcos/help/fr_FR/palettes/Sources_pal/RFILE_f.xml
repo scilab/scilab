@@ -318,10 +318,6 @@ box "Champ #N";
         <para>
             Il utilise sa sortie d'activation comme entrée de CSCOPE. Dans le fichier, le premier champ de l'enregistrement est le temps, les deux autres sont des données régulières.
             Le bouclage de la sortie d'activation sur l'entrée d'activation assure la lecture séquentielle du fichier.
-            <link type="scilab" linkend="scilab.xcos/xcos/examples/sources_pal/fr_FR/rfile_f_fr_FR.zcos">
-                Ouvrir cet exemple dans Xcos
-            </link>
-            .
         </para>
         <para>
             <link type="scilab" linkend="scilab.xcos/xcos/examples/sources_pal/fr_FR/rfile_f_fr_FR.zcos">
