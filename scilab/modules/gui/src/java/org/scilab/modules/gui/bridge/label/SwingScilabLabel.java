@@ -19,29 +19,24 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.GraphicsConfiguration;
-import java.awt.GraphicsDevice;
-import java.awt.GraphicsEnvironment;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Image;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
-import javax.swing.GrayFilter;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JEditorPane;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.border.Border;
 import javax.swing.event.HyperlinkEvent;
@@ -58,6 +53,8 @@ import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.SwingViewWidget;
 import org.scilab.modules.gui.bridge.label.SwingScilabLabel.IconLabel.IconType;
+import org.scilab.modules.gui.bridge.tab.SwingScilabPanel;
+import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.label.SimpleLabel;
 import org.scilab.modules.gui.menubar.MenuBar;
@@ -396,14 +393,21 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
             }
         }
 
-        if (getParent() != null) {
-            getParent().invalidate();
+        //force window to redraw all component
+        JFrame win = (JFrame)SwingUtilities.getAncestorOfClass(JFrame.class, this);
+        if (win != null) {
+            win.invalidate();
         }
+
         changeLabelType(LabelStyle.TEXT);
         ((JLabel) label).setText(labelText);
-        if (getParent() != null) {
-            getParent().validate();
+
+
+        //force window to redraw all component
+        if (win != null) {
+            win.validate();
         }
+
     }
 
     public void setEmptyText() {
