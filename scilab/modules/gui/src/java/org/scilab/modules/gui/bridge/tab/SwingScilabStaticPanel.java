@@ -26,10 +26,12 @@ import java.awt.event.ComponentListener;
 import java.awt.event.HierarchyBoundsListener;
 import java.awt.event.HierarchyEvent;
 
+import javax.swing.ImageIcon;
 import javax.swing.JLayeredPane;
 import javax.swing.SwingUtilities;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
+import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
@@ -91,7 +93,7 @@ public class SwingScilabStaticPanel extends SwingScilabScrollPane implements Swi
             }
         };
         addHierarchyBoundsListener(ancestorListener);
-        
+
         /* Manage figure_size property */
         componentListener = new ComponentListener() {
             public void componentShown(ComponentEvent arg0) {
@@ -190,6 +192,7 @@ public class SwingScilabStaticPanel extends SwingScilabScrollPane implements Swi
 
     public void setParentWindowId(String parentWindowId) {
         this.parentWindowId = parentWindowId;
+        SwingScilabWindow.allScilabWindows.get(parentWindowId).setIconImage(new ImageIcon(FindIconHelper.findIcon("graphic-window", "256x256")).getImage());
     }
 
     public void setWindowIcon(String windowIcon) {
