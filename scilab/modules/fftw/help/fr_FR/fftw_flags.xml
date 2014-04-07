@@ -119,15 +119,15 @@
     <refsection>
         <title>Exemples</title>
         <programlisting role="example"><![CDATA[ 
-A=rand(1,2^9+2^15+2^17);
+A=rand(1, 2^9 + 2^15);
 fftw_forget_wisdom();
 fftw_flags("FFTW_ESTIMATE");
-timer();y=fft(A);timer()//premier appel, détermine le plan
-timer();y=fft(A);timer() //appels similaires suivants
+timer(); y=fft(A); timer()//premier appel, détermine le plan
+timer(); y=fft(A); timer() //appels similaires suivants
 fftw_flags("FFTW_MEASURE");
 fftw_forget_wisdom();
-timer();y=fft(A);timer()//premier appel, détermine le plan
-timer();y=fft(A);timer() //appels similaires suivants
+timer(); y=fft(A); timer()//premier appel, détermine le plan, prend environ 5min
+timer(); y=fft(A); timer() //appels similaires suivants
 
  ]]></programlisting>
     </refsection>
