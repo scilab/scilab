@@ -40,7 +40,7 @@
             <varlistentry>
                 <term>a</term>
                 <listitem>
-                    <para>un entier. Code de l'algorithme de planification.Voir
+                    <para>un entier. Code de l'algorithme de planification. Voir
                         ci-dessous.
                     </para>
                 </listitem>
@@ -65,10 +65,10 @@
         </para>
         <para>
             <warning>
-                Attention: la valeur par défaut "FFTW_MEASURE" donne le plus
+                Attention: la valeur par défaut "FFTW_ESTIMATE" donne le plus
                 souvent de bonnes performances. N'essayez d'autres choix que si
                 la performance est cruciale et que vous avez beaucoup d'appels
-                du même type que faire.
+                du même type à effectuer.
             </warning>
         </para>
         <para>
@@ -76,17 +76,17 @@
         </para>
         <itemizedlist>
             <listitem>
-                <para>FFTW_ESTIMATE ou 64. Selectionne une heuristique simple et
+                <para>{FFTW_ESTIMATE} ou 64. Selectionne une heuristique simple et
                     peu couteuse pour choisir un plan (probablement
                     sous-optimal). C'est la valeur par défaut.
                 </para>
             </listitem>
             <listitem>
                 <para>FFTW_MEASURE ou 0.  Selectionne une méthode consistant a
-                    éffectuer plusieurs calcul de fft avec des planifications
+                    effectuer plusieurs calcul de fft avec des planifications
                     différentes, à mesurer leur temps d'exécution et de choisir la
-                    meilleur planification. En fonction de votre machine, cela
-                    peut prendre un certain le temps (souvent quelques
+                    meilleure planification. En fonction de votre machine, cela
+                    peut prendre un certain temps (souvent quelques
                     secondes).
                 </para>
             </listitem>
@@ -94,14 +94,14 @@
                 <para>FFTW_PATIENT ou 32. Similaire à "FFTW_MEASURE", mais
                     considère un plus large éventail d'algorithmes et produit
                     souvent un plan plus efficace (en particulier pour les
-                    transformations importantes), par contre le cout de la
+                    transformations importantes). En revanche, le coût de la
                     détermination du plan peut être largement supérieur (en
                     particulier pour les transformations importantes).
                 </para>
             </listitem>
             
             <listitem>
-                <para>FFTW_EXHAUSTIVE or 8. C'est comme "FFTW_PATIENT", mais
+                <para>FFTW_EXHAUSTIVE ou 8. Comme "FFTW_PATIENT", mais
                     considère une gamme encore plus large d'algorithmes, visant a
                     trouver le plan optimal , mais avec un temps de planification
                     sensiblement augmenté. 
