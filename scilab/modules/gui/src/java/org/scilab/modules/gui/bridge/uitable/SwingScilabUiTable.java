@@ -335,7 +335,9 @@ public class SwingScilabUiTable extends JScrollPane implements SwingViewObject, 
     }
 
     public void setEmptyText() {
-        getLabel().setText(null);
+        setColumnNames(new String[] {""});
+        setRowNames(new String[] {""});
+        setData(new String[] {""});
     }
 
     /**
@@ -440,6 +442,12 @@ public class SwingScilabUiTable extends JScrollPane implements SwingViewObject, 
             case __GO_UI_STRING__: {
                 // Update column names
                 String[] stringValue = (String[]) value;
+                if (stringValue.length == 0) {
+                    setColumnNames(new String[] {""});
+                    setRowNames(new String[] {""});
+                    setData(new String[] {""});
+                    return;
+                }
                 int colNb = ((Integer) controller.getProperty(uid, __GO_UI_STRING_COLNB__));
                 String[] colNames = new String[colNb - 1];
                 for (int k = 1; k < colNb; k++) {
