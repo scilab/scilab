@@ -50,6 +50,8 @@ Scilab Bug Fixes
 
 * Bug #8066 fixed - There was no OK button in x_choose window.
 
+* Bug #9890 fixed - xarrows demonstration added in Graphics/Basic functions category.
+
 * Bug #12788 fixed - All graphics were displayed in red on some platforms.
 
 * Bug #12842 fixed - Scilab could not be launched on some platforms (ATOMS internal library loading problem).
