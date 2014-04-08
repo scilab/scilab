@@ -551,9 +551,7 @@ public class SwingScilabEditBox extends JScrollPane implements SwingViewObject, 
                     int index = 0;
                     int lastIndex = 0;
                     while ((index = s.indexOf('\n', lastIndex)) != -1) {
-                        System.out.println("index : " + index);
                         lst.add(s.substring(lastIndex, index));
-                        System.out.println("subSequence : " + s.substring(lastIndex, index));
                         lastIndex = index + 1;
                     }
                     if (lastIndex <= s.length()) {
