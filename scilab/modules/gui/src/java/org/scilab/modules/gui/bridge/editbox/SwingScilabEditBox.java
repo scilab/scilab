@@ -28,6 +28,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 
 import javax.swing.AbstractAction;
 import javax.swing.InputMap;
@@ -532,16 +533,49 @@ public class SwingScilabEditBox extends JScrollPane implements SwingViewObject, 
                 break;
             }
             case __GO_UI_STRING__: {
+                String[] str = (String[])value;
+
                 double min = ((Double) controller.getProperty(uid, __GO_UI_MIN__));
                 double max = ((Double) controller.getProperty(uid, __GO_UI_MAX__));
+
+                //if str.length > 1 automactly switch to multiline
+                if (str.length > 1 && max - min <= 1.0 ) {
+                    //update max in model that recall setText
+                    controller.setProperty(uid, __GO_UI_MAX__, min + 2);
+                    return;
+                }
+
+                ArrayList<String> lst = new ArrayList<String>();
+                for (int i = 0 ; i < str.length ; i++) {
+                    String s = str[i];
+                    int index = 0;
+                    int lastIndex = 0;
+                    while ((index = s.indexOf('\n', lastIndex)) != -1) {
+                        System.out.println("index : " + index);
+                        lst.add(s.substring(lastIndex, index));
+                        System.out.println("subSequence : " + s.substring(lastIndex, index));
+                        lastIndex = index + 1;
+                    }
+                    if (lastIndex <= s.length()) {
+                        lst.add(s.substring(lastIndex));
+                    }
+                }
+
+                if (lst.size() != str.length) {
+                    String[] newStr = new String[lst.size()];
+                    lst.toArray(newStr);
+                    controller.setProperty(uid,  __GO_UI_STRING__, newStr);
+                    return;
+                }
+
                 if (max - min > 1.0) {
-                    setText((String[]) value);
+                    setText(str);
                     setMultiLineText(true);
                 } else {
-                    if (((String[]) value).length == 0) {
+                    if (str.length == 0) {
                         setEmptyText();
                     } else {
-                        setText(((String[]) value)[0]);
+                        setText(str[0]);
                     }
                     setMultiLineText(false);
                 }
