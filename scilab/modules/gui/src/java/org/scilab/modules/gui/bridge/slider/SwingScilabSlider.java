@@ -477,7 +477,12 @@ public class SwingScilabSlider extends JSlider implements SwingViewObject, Simpl
             }
             case __GO_UI_VALUE__ : {
                 Double[] doubleValue = ((Double[]) value);
-                setUserValue(doubleValue[0]);
+                if (doubleValue.length != 0) {
+                    setUserValue(doubleValue[0]);
+                } else {
+                    Double minValue = (Double) controller.getProperty(uid, __GO_UI_MIN__);
+                    setUserValue(minValue);
+                }
                 break;
             }
             default: {
