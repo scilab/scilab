@@ -228,7 +228,9 @@ function %_sodload(%__filename__, varargin)
                     createSingleHandle(c.values(i));
                 end
             else
-                set(h, fields(i), figureProperties(fields(i)));
+                if fields(i)<>"pixmap" then // See bug #13310
+                    set(h, fields(i), figureProperties(fields(i)));
+                end
             end
         end
 
@@ -287,8 +289,12 @@ function %_sodload(%__filename__, varargin)
         // Get auto_ticks to be sure to set it after ticks labels
         auto_ticks = axesProperties.auto_ticks;
         fields(fields=="auto_ticks") = [];
-        auto_margins = axesProperties.auto_margins;
-        fields(fields=="auto_margins") = [];
+        automargins = %f;
+        if isfield(axesProperties, "auto_margins") then
+            auto_margins = axesProperties.auto_margins;
+            fields(fields=="auto_margins") = [];
+            automargins = %t;
+        end
 
         for i = 1:size(fields, "*")
             if or(fields(i) == ["title","x_label","y_label","z_label"]) then
@@ -316,7 +322,9 @@ function %_sodload(%__filename__, varargin)
         end
 
         set(h, "auto_ticks", auto_ticks);
-        set(h, "auto_margins", auto_margins);
+        if automargins then
+            set(h, "auto_margins", auto_margins);
+        end
 
         // Legend management
         global %LEG
