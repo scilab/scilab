@@ -53,8 +53,6 @@ import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.SwingViewWidget;
 import org.scilab.modules.gui.bridge.label.SwingScilabLabel.IconLabel.IconType;
-import org.scilab.modules.gui.bridge.tab.SwingScilabPanel;
-import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.label.SimpleLabel;
 import org.scilab.modules.gui.menubar.MenuBar;
@@ -130,6 +128,8 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
         super.setFont(font);
         if (label != null) {
             label.setFont(font);
+            setMinimumSize(label.getMinimumSize());
+
             if (labelStyle == LabelStyle.HTML) {
                 StyleSheet styleSheet = ((HTMLDocument) ((JTextPane) label).getDocument()).getStyleSheet();
                 styleSheet.addRule("body {font-family:" + font.getName() + ";}");
@@ -219,7 +219,7 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
     public void setDims(Size newSize) {
         setSize(newSize.getWidth(), newSize.getHeight());
         // Need validate to force alignement to be applyed
-        setMinimumSize(new Dimension(Math.max((int) label.getMinimumSize().getWidth(), newSize.getWidth()), (int) label.getMinimumSize().getHeight()));
+        //setMinimumSize(new Dimension(Math.max((int) label.getMinimumSize().getWidth(), newSize.getWidth()), (int) label.getMinimumSize().getHeight()));
     }
 
     /**
@@ -401,6 +401,7 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
 
         changeLabelType(LabelStyle.TEXT);
         ((JLabel) label).setText(labelText);
+        setMinimumSize(label.getMinimumSize());
 
 
         //force window to redraw all component
