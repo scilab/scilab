@@ -122,7 +122,9 @@ public final class OpenAction extends DefaultAction {
         for (FileFilter fileFilter : filters) {
             fc.addChoosableFileFilter(fileFilter);
         }
-        fc.setFileFilter(fc.getAcceptAllFileFilter());
+
+        // the first valid filter is the "All valid files" one
+        fc.setFileFilter(filters[0]);
     }
 
     protected static void displayAndOpen(final SwingScilabFileChooser fc, final java.awt.Component component) throws IOException {

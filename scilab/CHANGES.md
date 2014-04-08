@@ -364,6 +364,7 @@ Bug Fixes
 * [#11959](http://bugzilla.scilab.org/show_bug.cgi?id=11959): Allow "Zoom Area" to be clicked out of axes
 * [#12017](http://bugzilla.scilab.org/show_bug.cgi?id=12017): `figure.pixel_drawing_mode` is ignored for filled regular polygons and other shapes, still does not work for vectorial export (eps, pdf, etc).
 * [#12110](http://bugzilla.scilab.org/show_bug.cgi?id=12110): Unable to zoom multiple axes at once
+* [#12417](http://bugzilla.scilab.org/show_bug.cgi?id=12417): Set "All supported formats" as default selected on Xcos open.
 * [#12431](http://bugzilla.scilab.org/show_bug.cgi?id=12431): The page describing the `%helps` variable needed clarification.
 * [#12453](http://bugzilla.scilab.org/show_bug.cgi?id=12453): The left panel of the palette browser keeps its size when some category is enabled or disabled.
 * [#12897](http://bugzilla.scilab.org/show_bug.cgi?id=12897): Renamed optim's "imp" argument to "iprint".
