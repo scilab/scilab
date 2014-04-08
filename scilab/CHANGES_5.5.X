@@ -2609,6 +2609,8 @@ Scilab Bug Fixes
 Xcos Bug Fixes
 ==============
 
+* Bug #9995 fixed - LOGICAL_OP drawing the parameters over block.
+
 * Bug #11975 fixed - Inverted Pendulum demonstration did not compile.
 
 * Bug #12423 fixed - Data types of SWITCH2_m were not documented.
