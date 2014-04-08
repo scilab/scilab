@@ -1636,6 +1636,8 @@ Xcos Bug Fixes
 * Bug #8570 fixed - "Region to superblock" has been renamed to
                     "Selection to superblock".
 
+* Bug #9995 fixed - LOGICAL_OP drew the parameters over the block.
+
 * Bug #11518 fixed - CLR block-text was displayed out of the bounding box
                      when zooming.
 
@@ -2609,7 +2611,7 @@ Scilab Bug Fixes
 Xcos Bug Fixes
 ==============
 
-* Bug #9995 fixed - LOGICAL_OP drawing the parameters over block.
+* Bug #9995 fixed - LOGICAL_OP drew the parameters over the block.
 
 * Bug #11975 fixed - Inverted Pendulum demonstration did not compile.
 
