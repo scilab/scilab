@@ -54,6 +54,8 @@ Xcos Bug Fixes
 * Bug #13285 fixed - There was no appropriate example of the syntax for scifunc_block_m GUI
                      on the help page.
 
+* Bug #13318 fixed - Multiplication matrix * vector using MATMUL did not work correctly.
+
 * Bug #13385 fixed - TOWS_c and FROMWSB Xcos blocs needed better examples on how
                      to get or write a Scilab variable.
                      
