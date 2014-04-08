@@ -32,6 +32,7 @@ extern "C"
 #include "returnProperty.h"
 #include "getConsoleIdentifier.h"
 #include "GetScreenProperty.h"
+#include "FigureList.h"
 }
 /*--------------------------------------------------------------------------*/
 
@@ -41,7 +42,6 @@ types::Function::ReturnValue sci_get(types::typed_list &in, int _iRetCount, type
     types::String* pS = NULL;
     int iObjUID = 0;
     types::InternalType* pOut = NULL;
-    double pdbll1 = 0;
 
     if (in.size() > 2)
     {
@@ -66,64 +66,64 @@ types::Function::ReturnValue sci_get(types::typed_list &in, int _iRetCount, type
 
     if (p1->isDouble())
     {
-        double pdbll1 = p1->getAs<types::Double>()->get(0);
-        if (pdbll1 == 0) /* Root property */
+        types::Double* pDbll1 = p1->getAs<types::Double>();
+        if(pDbll1->isScalar())
         {
-            if (in.size() == 1)
-            {
-                types::InternalType* pIT = static_cast<types::InternalType*>(sciReturnHandle(getHandle(getConsoleIdentifier())));
-                if (pIT == NULL)
-                {
-                    /* An error has occurred */
-                    return types::Function::OK;
-                }
-
-                out.push_back(pIT);
-            }
-            else // in.size == 2
-            {
-                if (in[1]->isString() == false)
-                {
-                    Scierror(999, _("%s: Wrong type for input argument #%d: Single string expected.\n"), "get", 2);
-                    return types::Function::Error;
-                }
-
-                types::String* pStr = in[1]->getAs<types::String>();
-                if (pStr->isScalar() == false)
-                {
-                    Scierror(999, _("%s: Wrong type for input argument #%d: Single string expected.\n"), "get", 2);
-                    return types::Function::Error;
-                }
-
-                char* pstr = wide_string_to_UTF8(pStr->get(0));
-                void* pvPropScreen = GetScreenProperty(NULL, pstr);
-
-                if (pvPropScreen == NULL) /* Return property */
-                {
-                    Scierror(999, _("%s: Could not read property '%s' for root object.\n"), "get", pstr);
-                    FREE(pstr);
-                    return types::Function::Error;
-                }
-
-                FREE(pstr);
-                out.push_back(static_cast<types::InternalType*>(pvPropScreen));
-            }
+            Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), "get", 1);
+            return types::Function::Error;
         }
-        else
+
+        double pdbll1 = pDbll1->get(0);
+        if (pdbll1 != 0)
         {
             ExecVisitor exec;
             Overload::generateNameAndCall(L"get", in, _iRetCount, out, &exec);
+            return types::Function::OK;
         }
+
+        /* Console property */
+        if (in.size() == 1)
+        {
+            types::InternalType* pIT = static_cast<types::InternalType*>(sciReturnHandle(getHandle(getConsoleIdentifier())));
+            if (pIT == NULL)
+            {
+                /* An error has occurred */
+                return types::Function::OK;
+            }
+
+            out.push_back(pIT);
+            return types::Function::OK;
+        }
+
+        if (in[1]->isString() == false)
+        {
+            Scierror(999, _("%s: Wrong type for input argument #%d: Single string expected.\n"), "get", 2);
+            return types::Function::Error;
+        }
+
+        types::String* pStr = in[1]->getAs<types::String>();
+        if (pStr->isScalar() == false)
+        {
+            Scierror(999, _("%s: Wrong type for input argument #%d: Single string expected.\n"), "get", 2);
+            return types::Function::Error;
+        }
+
+        char* pstr = wide_string_to_UTF8(pStr->get(0));
+        void* pvPropScreen = GetScreenProperty(NULL, pstr);
+
+        if (pvPropScreen == NULL) /* Return property */
+        {
+            Scierror(999, _("%s: Could not read property '%s' for root object.\n"), "get", pstr);
+            FREE(pstr);
+            return types::Function::Error;
+        }
+
+        FREE(pstr);
+        out.push_back(static_cast<types::InternalType*>(pvPropScreen));
         return types::Function::OK;
     }
     else if (p1->isHandle())
     {
-        if (in.size() != 2)
-        {
-            //Error
-            return types::Function::Error;
-        }
-
         types::GraphicHandle* pH = p1->getAs<types::GraphicHandle>();
         if (pH->isScalar() == false)
         {
@@ -131,8 +131,32 @@ types::Function::ReturnValue sci_get(types::typed_list &in, int _iRetCount, type
             return Overload::call(L"%h_get", in, _iRetCount, out, &exec);
         }
 
+        if (in.size() == 1)
+        {
+            //get path from handle
+            int uic = getObjectFromHandle((long)pH->get(0));
+            char* path = get_path(uic);
+            if (path[0] == '\0')
+            {
+                Scierror(999, _("%s: Unable to get useful path from this handle.\n"), "get");
+                return types::Function::Error;
+            }
+
+            pOut = new types::String(path);
+            FREE(path);
+            out.push_back(pOut);
+            return types::Function::OK;
+        }
+
+        if (in[1]->isString() == false)
+        {
+            Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), "get", 2);
+            return types::Function::Error;
+        }
+
         pS = in[1]->getAs<types::String>();
-        if (in[1]->isString() == false || pS->isScalar() == false)
+
+        if (pS->isScalar() == false)
         {
             Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), "get", 2);
             return types::Function::Error;
@@ -142,14 +166,14 @@ types::Function::ReturnValue sci_get(types::typed_list &in, int _iRetCount, type
     }
     else if (p1->isString())
     {
-        if (in.size() != 1)
+        if (in[0]->isString() == false)
         {
-            //Error
+            Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), "get", 1);
             return types::Function::Error;
         }
 
         pS = in[0]->getAs<types::String>();
-        if (in[0]->isString() == false || pS->isScalar() == false)
+        if (pS->isScalar() == false)
         {
             Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), "get", 1);
             return types::Function::Error;
@@ -157,32 +181,52 @@ types::Function::ReturnValue sci_get(types::typed_list &in, int _iRetCount, type
 
         wchar_t* pstProperty = pS->get(0);
 
-        if (wcscmp(pstProperty, L"default_figure") && wcscmp(pstProperty, L"default_axes"))
+        if (wcscmp(pstProperty, L"default_figure")  &&
+            wcscmp(pstProperty, L"default_axes")    &&
+            wcscmp(pstProperty, L"current_figure")  &&
+            wcscmp(pstProperty, L"current_axes")    &&
+            wcscmp(pstProperty, L"current_entity")  &&
+            wcscmp(pstProperty, L"hdl")             &&
+            wcscmp(pstProperty, L"figures_id"))
         {
-            if ( wcscmp(pstProperty, L"current_figure") &&
-                    wcscmp(pstProperty, L"current_axes") &&
-                    wcscmp(pstProperty, L"current_entity") &&
-                    wcscmp(pstProperty, L"hdl") &&
-                    wcscmp(pstProperty, L"figures_id"))
+            char* pstProperty = wide_string_to_UTF8(pS->get(0));
+            int uid = search_path(pstProperty);
+            FREE(pstProperty);
+
+            if (uid != 0)
             {
-                if ( wcscmp(pstProperty, L"children") &&
-                        wcscmp(pstProperty, L"zoom_") &&
-                        wcscmp(pstProperty, L"clip_box") &&
-                        wcscmp(pstProperty, L"auto_"))
+                llH = getHandle(uid);
+                if (in.size() == 1)
                 {
-                    getOrCreateDefaultSubwin();
-                    llH = getHandle(getCurrentObject());
+                    out.push_back(new types::GraphicHandle(llH));
+                    return types::Function::OK;
                 }
-                else
+
+                if(in[1]->isString() == false)
                 {
-                    llH = getHandle(getCurrentSubWin());    /* on recupere le pointeur d'objet par le handle */
+                    Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), "get", 2);
+                    return types::Function::Error;
+                }
+
+                pS = in[1]->getAs<types::String>();
+                if(pS->isScalar() == false)
+                {
+                    Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), "get", 2);
+                    return types::Function::Error;
                 }
             }
             else
             {
-                llH = 0;
+                out.push_back(types::Double::Empty());
+                return types::Function::OK;
             }
         }
+    }
+    else
+    {
+        // Overload
+        ExecVisitor exec;
+        return Overload::call(L"%"+p1->getShortTypeStr()+L"_get", in, _iRetCount, out, &exec);
     }
 
     char* pstProperty = wide_string_to_UTF8(pS->get(0));
@@ -198,8 +242,8 @@ types::Function::ReturnValue sci_get(types::typed_list &in, int _iRetCount, type
         }
     }
 
-
     pOut = (types::InternalType*)callGetProperty(NULL, iObjUID, pstProperty);
+
     if (pOut == NULL)
     {
         /* An error has occurred */

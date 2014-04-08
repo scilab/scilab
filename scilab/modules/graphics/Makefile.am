@@ -337,7 +337,7 @@ src/c/getHandleProperty/set_constraints_property.c \
 src/c/getHandleProperty/set_rect_property.c \
 src/c/getHandleProperty/get_layout_options_property.c \
 src/c/getHandleProperty/set_layout_options_property.c \
-src/c/getHandleProperty/get_border_property.c \
+src/c/getHandleProperty/get_border_property.cpp \
 src/c/getHandleProperty/set_border_property.c \
 src/c/getHandleProperty/get_groupname_property.c \
 src/c/getHandleProperty/set_groupname_property.c \

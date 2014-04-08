@@ -1321,7 +1321,7 @@ src/c/getHandleProperty/set_constraints_property.c \
 src/c/getHandleProperty/set_rect_property.c \
 src/c/getHandleProperty/get_layout_options_property.c \
 src/c/getHandleProperty/set_layout_options_property.c \
-src/c/getHandleProperty/get_border_property.c \
+src/c/getHandleProperty/get_border_property.cpp \
 src/c/getHandleProperty/set_border_property.c \
 src/c/getHandleProperty/get_groupname_property.c \
 src/c/getHandleProperty/set_groupname_property.c \
@@ -5703,13 +5703,6 @@ src/c/getHandleProperty/libscigraphics_algo_la-set_layout_options_property.lo: s
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/getHandleProperty/libscigraphics_algo_la-set_layout_options_property.lo `test -f 'src/c/getHandleProperty/set_layout_options_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_layout_options_property.c
 
-src/c/getHandleProperty/libscigraphics_algo_la-get_border_property.lo: src/c/getHandleProperty/get_border_property.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/getHandleProperty/libscigraphics_algo_la-get_border_property.lo -MD -MP -MF src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_border_property.Tpo -c -o src/c/getHandleProperty/libscigraphics_algo_la-get_border_property.lo `test -f 'src/c/getHandleProperty/get_border_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_border_property.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_border_property.Tpo src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_border_property.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getHandleProperty/get_border_property.c' object='src/c/getHandleProperty/libscigraphics_algo_la-get_border_property.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/getHandleProperty/libscigraphics_algo_la-get_border_property.lo `test -f 'src/c/getHandleProperty/get_border_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_border_property.c
-
 src/c/getHandleProperty/libscigraphics_algo_la-set_border_property.lo: src/c/getHandleProperty/set_border_property.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/getHandleProperty/libscigraphics_algo_la-set_border_property.lo -MD -MP -MF src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_border_property.Tpo -c -o src/c/getHandleProperty/libscigraphics_algo_la-set_border_property.lo `test -f 'src/c/getHandleProperty/set_border_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_border_property.c
 @am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_border_property.Tpo src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-set_border_property.Plo
@@ -6566,6 +6559,13 @@ sci_gateway/c/libscigraphics_la-sci_addcolor.lo: sci_gateway/c/sci_addcolor.c
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LTCXXCOMPILE) -c -o $@ $<
+
+src/c/getHandleProperty/libscigraphics_algo_la-get_border_property.lo: src/c/getHandleProperty/get_border_property.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/c/getHandleProperty/libscigraphics_algo_la-get_border_property.lo -MD -MP -MF src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_border_property.Tpo -c -o src/c/getHandleProperty/libscigraphics_algo_la-get_border_property.lo `test -f 'src/c/getHandleProperty/get_border_property.cpp' || echo '$(srcdir)/'`src/c/getHandleProperty/get_border_property.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_border_property.Tpo src/c/getHandleProperty/$(DEPDIR)/libscigraphics_algo_la-get_border_property.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/c/getHandleProperty/get_border_property.cpp' object='src/c/getHandleProperty/libscigraphics_algo_la-get_border_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/c/getHandleProperty/libscigraphics_algo_la-get_border_property.lo `test -f 'src/c/getHandleProperty/get_border_property.cpp' || echo '$(srcdir)/'`src/c/getHandleProperty/get_border_property.cpp
 
 src/cpp/libscigraphics_algo_la-configgraphicvariable.lo: src/cpp/configgraphicvariable.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscigraphics_algo_la-configgraphicvariable.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscigraphics_algo_la-configgraphicvariable.Tpo -c -o src/cpp/libscigraphics_algo_la-configgraphicvariable.lo `test -f 'src/cpp/configgraphicvariable.cpp' || echo '$(srcdir)/'`src/cpp/configgraphicvariable.cpp

@@ -70,7 +70,7 @@ int destroyReturnedList(void* list)
     //FREE(list) ;
     //return 0 ;
 
-    delete (types::TList*)list;
+//    delete (types::TList*)list;
     return 0;
 }
 /*------------------------------------------------------------------------*/
