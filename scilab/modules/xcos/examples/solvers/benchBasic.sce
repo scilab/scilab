@@ -14,10 +14,10 @@ tolerances(1) = 1d-13;
 tolerances(2) = 1d-13;
 [%tcur, %cpr, alreadyran, needstart, needcompile, %state0] = Info(:);
 
-solverName = ["LSodar", "CVode BDF/Newton", "CVode BDF/Functional", "CVode Adams/Newton", "CVode Adams/Functional", "Dormand-Prince", "Runge-Kutta", "implicit Runge-Kutta"];
+solverName = ["LSodar", "CVode BDF/Newton", "CVode BDF/Functional", "CVode Adams/Newton", "CVode Adams/Functional", "Dormand-Prince", "Runge-Kutta", "implicit Runge-Kutta", "Crank-Nicolson"];
 
 disp("--------------------------------");
-for solver = 0:7
+for solver = 0:8
 
     disp("Time for " + solverName(solver + 1) + ":");
     tolerances(6) = solver;

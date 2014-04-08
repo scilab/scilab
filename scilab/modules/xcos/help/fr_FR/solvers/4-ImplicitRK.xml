@@ -174,7 +174,7 @@
             <emphasis>
                 10<superscript>-3</superscript>
             </emphasis>
-            , es erreurs d'arrondi surviennent parfois quand l'on approche
+            , les erreurs d'arrondi surviennent parfois quand l'on approche
             <emphasis>
                 4*10<superscript>-4</superscript>
             </emphasis>
@@ -276,6 +276,9 @@ Temps pour Runge-Kutta implicite :
             </member>
             <member>
                 <link linkend="DoPri">Dormand-Prince 4(5)</link>
+            </member>
+            <member>
+                <link linkend="CRANI">Crank-Nicolson 2(3)</link>
             </member>
             <member>
                 <link linkend="DDaskr">DDaskr</link>

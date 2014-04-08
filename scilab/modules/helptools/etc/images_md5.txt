@@ -4,6 +4,7 @@
 3-Dormand-Prince_1.png=f03f6156c4442805827ba389af1f314e
 4-ImplicitRK_1.png=3baa7637cb0be94076c6e06b7ae34991
 4-RKImplicite_1.png=3baa7637cb0be94076c6e06b7ae34991
+5-CrankNicolson_1.png=e460c3c5dcdf57152d190386d91eac1d
 6-IDA_en_US_1.png=56248160f1b98de82bccc2bbd1850f5
 6-IDA_fr_FR_1.png=c0c4c44ea933b98ca3a7111ff32c5066
 6-IDA_ja_JP_1.png=56248160f1b98de82bccc2bbd1850f5
@@ -187,6 +188,7 @@ _LaTeX_2-Runge-Kutta.xml_1.png=e130ce3936e3d90b95bf43660f09cb4e
 _LaTeX_3-Dormand-Prince.xml_1.png=e130ce3936e3d90b95bf43660f09cb4e
 _LaTeX_4-ImplicitRK.xml_1.png=e130ce3936e3d90b95bf43660f09cb4e
 _LaTeX_4-RKImplicite.xml_1.png=e130ce3936e3d90b95bf43660f09cb4e
+_LaTeX_5-CrankNicolson.xml_1.png=e130ce3936e3d90b95bf43660f09cb4e
 _LaTeX_6-IDA.xml_1.png=dff7132b713410ac0eb11a45b1d627dc
 _LaTeX_6-IDA.xml_2.png=1aa0a943d7130da822dd44a06bd29841
 _LaTeX_6-IDA.xml_3.png=dc4144bc7f206b73cb21d076e514318

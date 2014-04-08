@@ -266,6 +266,13 @@ Modified Functions
     "-" + mgetl("TMPDIR/test") + "-"
 
 
+Xcos
+====
+
+* Implicit fixed-size step ODE solver added: Crank-Nicolson 2(3).
+  Added to the CVode package, it also benefits from the CVode rootfinding feature.
+
+
 Obsolete functions or features
 ==============================
 * maxfiles function is now obsolete.
@@ -356,6 +363,8 @@ In 6.0.0:
 * Bug #12872       - help pages of else, elseif, end, try, sciargs, global, halt, empty and power were in wrong help sections
 
 * Bug #13154       - In shellmode, completion now separates Files from Directories.
+
+* Bug #13308 fixed - Added the Crank-Nicolson solver to Xcos.
 
 * Bug #13465 fixed - The display of polyline .display_function and .display_function properties was not conventional
 

@@ -169,7 +169,12 @@ public class SetupDialog extends JDialog {
                              "Method: Fixed step",
                              EnumSet.of(SetupDialog.SolverModifiers.MAX_STEP_SIZE)),
 
-        new SolverDescriptor(7, "Implicit RK45 - Runge-Kutta 4(5)",
+        new SolverDescriptor(7, "Implicit RK45 - Implicit Runge-Kutta 4(5)",
+                             "Method: Fixed step, Nonlinear solver= FIXED-POINT",
+                             EnumSet.of(SetupDialog.SolverModifiers.MAX_STEP_SIZE,
+                                        SetupDialog.SolverModifiers.RELATIVE_TOLERANCE)),
+
+        new SolverDescriptor(8, "CRANI - Crank-Nicolson 2(3)",
                              "Method: Fixed step, Nonlinear solver= FIXED-POINT",
                              EnumSet.of(SetupDialog.SolverModifiers.MAX_STEP_SIZE,
                                         SetupDialog.SolverModifiers.RELATIVE_TOLERANCE)),
