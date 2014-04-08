@@ -269,7 +269,6 @@ am__DEPENDENCIES_1 =
 am__DEPENDENCIES_2 = $(am__DEPENDENCIES_1)
 scilab_bin_DEPENDENCIES = $(top_builddir)/modules/libscilab.la \
 	$(top_builddir)/modules/libscilab-cli.la \
-	$(top_builddir)/modules/console/libsciconsole.la \
 	$(top_builddir)/modules/console/libsciconsole-minimal.la \
 	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
 	$(am__DEPENDENCIES_2) $(am__DEPENDENCIES_1) $(am__append_3) \
@@ -820,7 +819,6 @@ scilab_cli_bin_CPPFLAGS = -DWITHOUT_GUI $(scilab_bin_CPPFLAGS) \
 # libraries explicitly unless we link with -Wl,--copy-dt-needed-entries
 scilab_bin_LDADD = $(top_builddir)/modules/libscilab.la \
 	$(top_builddir)/modules/libscilab-cli.la \
-	$(top_builddir)/modules/console/libsciconsole.la \
 	$(top_builddir)/modules/console/libsciconsole-minimal.la \
 	$(OPENMPI_LIBS) $(XML_LIBS) $(COMMON_LIBS) $(FLIBS) \
 	$(am__append_3) $(am__append_10)

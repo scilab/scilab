@@ -68,8 +68,7 @@ scilab_cli_bin_CPPFLAGS = -DWITHOUT_GUI $(scilab_bin_CPPFLAGS)
 scilab_bin_LDADD 	= \
 			$(top_builddir)/modules/libscilab.la \
 			$(top_builddir)/modules/libscilab-cli.la \
-                        $(top_builddir)/modules/console/libsciconsole.la \
-                        $(top_builddir)/modules/console/libsciconsole-minimal.la \
+			$(top_builddir)/modules/console/libsciconsole-minimal.la \
 			$(OPENMPI_LIBS) $(XML_LIBS) \
 			$(COMMON_LIBS) $(FLIBS)
 
