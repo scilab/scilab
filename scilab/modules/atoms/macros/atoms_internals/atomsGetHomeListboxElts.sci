@@ -16,18 +16,21 @@ function elements = atomsGetHomeListboxElts()
     installed  = atomsGetInstalled();
     tmp = atomsAutoloadList("all")
     autoloaded = tmp(:,1)
-    allModules = get("atomsFigure", "UserData");
+    if ~isempty(get("atomsFigure")) then
+        allModules = get("atomsFigure", "UserData");
 
-    items_str  = atomsSetInstalledList(installed)
-    items_mat = installed(:,1)
-    items_mat = [emptystr(items_mat)+"module" items_mat ]
+        items_str  = atomsSetInstalledList(installed)
+        items_mat = installed(:,1)
+        items_mat = [emptystr(items_mat)+"module" items_mat ]
 
-    if items_str==[] then
-        elements("items_str") = "";
+        if items_str==[] then
+            elements("items_str") = "";
+        else
+            elements("items_str") = items_str;
+        end
+
+        elements("items_mat") = items_mat;
     else
-        elements("items_str") = items_str;
+        elements = [];
     end
-
-    elements("items_mat") = items_mat;
-
 endfunction
