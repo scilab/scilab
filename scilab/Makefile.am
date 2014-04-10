@@ -46,9 +46,9 @@ scilab_bin_LDFLAGS 		+= -framework Cocoa
 endif
 
 scilab_bin_CPPFLAGS = -I$(top_srcdir)/modules/io/includes/ \
-                    -I$(top_srcdir)/modules/console/includes/ \
-                    -I$(top_srcdir)/modules/localization/includes/ \
-                    $(AM_CPPFLAGS)
+			        -I$(top_srcdir)/modules/console/includes/ \
+			        -I$(top_srcdir)/modules/localization/includes/ \
+			        $(AM_CPPFLAGS)
 # --no-undefined --relax
 
 # Localization dep already exists because of the `exportLocaleToSystem' symbol
@@ -68,12 +68,18 @@ scilab_cli_bin_CPPFLAGS = -DWITHOUT_GUI $(scilab_bin_CPPFLAGS)
 scilab_bin_LDADD 	= \
 			$(top_builddir)/modules/libscilab.la \
 			$(top_builddir)/modules/libscilab-cli.la \
-			$(top_builddir)/modules/console/libsciconsole-minimal.la \
 			$(OPENMPI_LIBS) $(XML_LIBS) \
 			$(COMMON_LIBS) $(FLIBS)
 
 if NEED_JAVA
-scilab_bin_LDADD += $(top_builddir)/modules/jvm/libscijvm.la
+scilab_bin_LDADD += \
+			$(top_builddir)/modules/console/libsciconsole.la \
+			$(top_builddir)/modules/jvm/libscijvm.la \
+			$(top_builddir)/modules/commons/libscicommons.la
+else
+scilab_bin_LDADD += \
+			$(top_builddir)/modules/console/libsciconsole-minimal.la \
+			$(top_builddir)/modules/jvm/libscijvm-disable.la
 endif
 
 scilab_cli_bin_LDADD 	= \

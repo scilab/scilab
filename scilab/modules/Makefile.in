@@ -268,8 +268,8 @@ DIST_SUBDIRS = prebuildjava fileio mexlib functions parameters boolean \
 	localization polynomials special_functions time windows_tools \
 	sparse completion history_manager output_stream string hdf5 \
 	fftw statistics dynamic_link console arnoldi spreadsheet \
-	tclsci commons jvm action_binding graphic_objects renderer \
-	graphic_export gui graphics optimization symbolic randlib \
+	tclsci commons jvm action_binding graphic_objects renderer gui \
+	graphic_export graphics optimization symbolic randlib \
 	interpolation sound overloading m2sci development_tools \
 	compatibility_functions helptools umfpack demo_tools \
 	genetic_algorithms simulated_annealing matio atoms graph xcos \
@@ -585,8 +585,8 @@ SUBDIRS = prebuildjava fileio mexlib functions parameters boolean \
 	localization polynomials special_functions time windows_tools \
 	sparse completion history_manager output_stream string hdf5 \
 	fftw statistics dynamic_link console arnoldi spreadsheet \
-	tclsci commons jvm action_binding graphic_objects renderer \
-	graphic_export gui graphics optimization symbolic randlib \
+	tclsci commons jvm action_binding graphic_objects renderer gui \
+	graphic_export graphics optimization symbolic randlib \
 	interpolation sound overloading m2sci development_tools \
 	compatibility_functions helptools umfpack demo_tools \
 	genetic_algorithms simulated_annealing matio atoms hdf5 graph \

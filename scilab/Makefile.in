@@ -106,23 +106,31 @@ host_triplet = @host@
 bin_PROGRAMS = scilab-bin$(EXEEXT) scilab-cli-bin$(EXEEXT)
 @IS_MACOSX_TRUE@am__append_1 = bin/checkmacosx.applescript
 @IS_MACOSX_TRUE@am__append_2 = -framework Cocoa
-@NEED_JAVA_TRUE@am__append_3 = $(top_builddir)/modules/jvm/libscijvm.la
-@MPI_TRUE@am__append_4 = modules/startup/src/c/initMPI.c
-@MPI_TRUE@am__append_5 = $(OPENMPI_CXXFLAGS)
-@MPI_TRUE@am__append_6 = modules/startup/src/c/initMPI.c
-@MPI_TRUE@am__append_7 = $(OPENMPI_CXXFLAGS)
-@USE_STATIC_SYSTEM_LIB_TRUE@am__append_8 = -static-libstdc++ -static-libgcc
-# -static-libgfortran
+@NEED_JAVA_TRUE@am__append_3 = \
+@NEED_JAVA_TRUE@			$(top_builddir)/modules/console/libsciconsole.la \
+@NEED_JAVA_TRUE@			$(top_builddir)/modules/jvm/libscijvm.la \
+@NEED_JAVA_TRUE@			$(top_builddir)/modules/commons/libscicommons.la
+
+@NEED_JAVA_FALSE@am__append_4 = \
+@NEED_JAVA_FALSE@			$(top_builddir)/modules/console/libsciconsole-minimal.la \
+@NEED_JAVA_FALSE@			$(top_builddir)/modules/jvm/libscijvm-disable.la
+
+@MPI_TRUE@am__append_5 = modules/startup/src/c/initMPI.c
+@MPI_TRUE@am__append_6 = $(OPENMPI_CXXFLAGS)
+@MPI_TRUE@am__append_7 = modules/startup/src/c/initMPI.c
+@MPI_TRUE@am__append_8 = $(OPENMPI_CXXFLAGS)
 @USE_STATIC_SYSTEM_LIB_TRUE@am__append_9 = -static-libstdc++ -static-libgcc
+# -static-libgfortran
+@USE_STATIC_SYSTEM_LIB_TRUE@am__append_10 = -static-libstdc++ -static-libgcc
 #-static-libgfortran
 # Clang (for example) needs an explicit reference to the lib
-@USE_STATIC_SYSTEM_LIB_FALSE@am__append_10 = -lstdc++
-# -static-libgfortran
 @USE_STATIC_SYSTEM_LIB_FALSE@am__append_11 = -lstdc++
+# -static-libgfortran
+@USE_STATIC_SYSTEM_LIB_FALSE@am__append_12 = -lstdc++
 
 #  The user wants to compile the localization files
-@GENERATE_LOCALIZATION_FILES_TRUE@am__append_12 = localization
-@COMPILATION_TESTS_TRUE@am__append_13 = check-java
+@GENERATE_LOCALIZATION_FILES_TRUE@am__append_13 = localization
+@COMPILATION_TESTS_TRUE@am__append_14 = check-java
 DIST_COMMON = $(top_srcdir)/Makefile.call_scilab.am \
 	$(srcdir)/Makefile.in $(srcdir)/Makefile.am \
 	$(top_srcdir)/configure $(am__configure_deps) \
@@ -268,10 +276,9 @@ scilab_bin_OBJECTS = $(am_scilab_bin_OBJECTS)
 am__DEPENDENCIES_1 =
 am__DEPENDENCIES_2 = $(am__DEPENDENCIES_1)
 scilab_bin_DEPENDENCIES = $(top_builddir)/modules/libscilab.la \
-	$(top_builddir)/modules/libscilab-cli.la \
-	$(top_builddir)/modules/console/libsciconsole-minimal.la \
-	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
-	$(am__DEPENDENCIES_2) $(am__DEPENDENCIES_1) $(am__append_3) \
+	$(top_builddir)/modules/libscilab-cli.la $(am__DEPENDENCIES_1) \
+	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_2) \
+	$(am__DEPENDENCIES_1) $(am__append_3) $(am__append_4) \
 	$(am__DEPENDENCIES_1)
 scilab_bin_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(AM_CXXFLAGS) \
@@ -794,41 +801,40 @@ AM_LDFLAGS = $(SCI_LDFLAGS)
 changelogs = CHANGES CHANGES_5.1.X CHANGES_5.2.X CHANGES_5.3.X CHANGES_5.4.X  CHANGES_5.5.X
 bin_SCRIPTS = bin/scilab bin/scilab-adv-cli bin/scilab-cli \
 	bin/scinotes bin/xcos $(am__append_1)
-scilab_bin_LDFLAGS = $(AM_LDFLAGS) $(am__append_2) $(am__append_8)
-scilab_cli_bin_LDFLAGS = $(AM_LDFLAGS) $(am__append_9)
+scilab_bin_LDFLAGS = $(AM_LDFLAGS) $(am__append_2) $(am__append_9)
+scilab_cli_bin_LDFLAGS = $(AM_LDFLAGS) $(am__append_10)
 scilab_bin_CPPFLAGS = -I$(top_srcdir)/modules/io/includes/ \
 	-I$(top_srcdir)/modules/console/includes/ \
 	-I$(top_srcdir)/modules/localization/includes/ $(AM_CPPFLAGS) \
-	$(am__append_5)
+	$(am__append_6)
 # --no-undefined --relax
 
 # Localization dep already exists because of the `exportLocaleToSystem' symbol
 # (causing issues on some platform)
 COMMON_LIBS = $(LTLIBINTL)
 scilab_bin_SOURCES = modules/startup/src/c/mainscic.cpp \
-	$(am__append_4)
+	$(am__append_5)
 
 # Match scilab -nwni (ie command line without graphics)
 scilab_cli_bin_SOURCES = modules/startup/src/c/mainscic.cpp \
-	$(am__append_6)
-scilab_cli_bin_CPPFLAGS = -DWITHOUT_GUI $(scilab_bin_CPPFLAGS) \
 	$(am__append_7)
+scilab_cli_bin_CPPFLAGS = -DWITHOUT_GUI $(scilab_bin_CPPFLAGS) \
+	$(am__append_8)
 
 # the scilab-bin object file itself uses symbols from at least libscilab-cli.la,
 # libsciconsole-minimal.la and libscijvm-disable.la, so we have to link with these
 # libraries explicitly unless we link with -Wl,--copy-dt-needed-entries
 scilab_bin_LDADD = $(top_builddir)/modules/libscilab.la \
-	$(top_builddir)/modules/libscilab-cli.la \
-	$(top_builddir)/modules/console/libsciconsole-minimal.la \
-	$(OPENMPI_LIBS) $(XML_LIBS) $(COMMON_LIBS) $(FLIBS) \
-	$(am__append_3) $(am__append_10)
+	$(top_builddir)/modules/libscilab-cli.la $(OPENMPI_LIBS) \
+	$(XML_LIBS) $(COMMON_LIBS) $(FLIBS) $(am__append_3) \
+	$(am__append_4) $(am__append_11)
 scilab_cli_bin_LDADD = $(top_builddir)/modules/libscilab-cli.la \
 	$(top_builddir)/modules/console/libsciconsole-minimal.la \
 	$(top_builddir)/modules/jvm/libscijvm-disable.la \
 	$(OPENMPI_LIBS) $(XML_LIBS) $(COMMON_LIBS) $(FLIBS) \
-	$(am__append_11)
+	$(am__append_12)
 LANG_DOMAIN = scilab
-TARGETS_ALL = macros $(am__append_12) $(am__append_13)
+TARGETS_ALL = macros $(am__append_13) $(am__append_14)
 
 # check is performed with scilab, so use the serial-tests on purpose
 TESTS_ENVIRONMENT = LANG=C $(top_builddir)/bin/scilab-cli -nb -noatomsautoload -f
