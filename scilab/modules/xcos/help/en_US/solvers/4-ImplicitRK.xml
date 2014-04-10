@@ -58,7 +58,7 @@
             By convention, to use fixed-size steps, the program first computes a fitting <emphasis>h</emphasis> that approaches the simulation parameter <link linkend="Simulatemenu_Menu_entries">max step size</link>.
         </para>
         <para>
-            An important difference of <emphasis>implicit Runge-Kutta</emphasis> with the previous methods is that it computes up to the fourth derivative of <emphasis>y</emphasis>, while the others mainly use linear combinations of <emphasis>y</emphasis> and <emphasis>y'</emphasis>.
+            An important difference of <emphasis>implicit Runge-Kutta</emphasis> with the previous methods is that it computes up to the fourth derivative of <emphasis>y</emphasis>, while the others only use linear combinations of <emphasis>y</emphasis> and <emphasis>y'</emphasis>.
         </para>
         <para>
             Here, the next value is determined by the present value

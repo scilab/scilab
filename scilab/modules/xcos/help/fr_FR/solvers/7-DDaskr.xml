@@ -201,7 +201,7 @@ try xcos_simulate(scs_m, 4); catch disp(lasterror()); end
                 <link linkend="DoPri">Dormand-Prince 4(5)</link>
             </member>
             <member>
-                <link linkend="RKImp">Runge-Kutta Implicite 4(5)</link>
+                <link linkend="ImpRK">Runge-Kutta Implicite 4(5)</link>
             </member>
             <member>
                 <link linkend="Comparaisons">Comparaisons</link>

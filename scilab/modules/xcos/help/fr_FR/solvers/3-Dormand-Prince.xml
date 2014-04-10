@@ -54,7 +54,11 @@
             Une différence notable de <emphasis>Runge-Kutta</emphasis> par rapport à <emphasis>Sundials</emphasis> est qu'il calcule jusqu'à la septième dérivée de <emphasis>y</emphasis>, alors que les autres n'utilisent que des combinaisons linéaires de <emphasis>y</emphasis> et <emphasis>y'</emphasis>.
         </para>
         <para>
-            Ici, la valeur suivante est déterminée par la valeur actuelle
+            Ici, la valeur suivante
+            <emphasis>
+                y<subscript>n+1</subscript>
+            </emphasis>
+             est déterminée par la valeur actuelle
             <emphasis>
                 y<subscript>n</subscript>
             </emphasis>
@@ -212,7 +216,7 @@ Temps pour Dormand-Prince :
                 <link linkend="RK">Runge-Kutta 4(5)</link>
             </member>
             <member>
-                <link linkend="RKImp">Runge-Kutta Implicite 4(5)</link>
+                <link linkend="ImpRK">Runge-Kutta Implicite 4(5)</link>
             </member>
             <member>
                 <link linkend="DDaskr">DDaskr</link>

@@ -12,7 +12,7 @@
  * For more information, see the COPYING file which you should have received
  * along with this program.
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg"  xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr_FR" xml:id="RKImp">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg"  xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr_FR" xml:id="ImpRK">
     <refnamediv>
         <refname>Implicit Runge-Kutta 4(5)</refname>
         <refpurpose>
@@ -61,7 +61,11 @@
             Une différence notable de <emphasis>Runge-Kutta implicite</emphasis> par rapport à <emphasis>Sundials</emphasis> est qu'il calcule jusqu'à la dérivée quatrième de <emphasis>y</emphasis>, alors que les autres n'utilisent que des combinaisons linéaires de <emphasis>y</emphasis> et <emphasis>y'</emphasis>.
         </para>
         <para>
-            Ici, la valeur suivante est déterminée par la valeur actuelle
+            Ici, la valeur suivante
+            <emphasis>
+                y<subscript>n+1</subscript>
+            </emphasis>
+             est déterminée par la valeur actuelle
             <emphasis>
                 y<subscript>n</subscript>
             </emphasis>
@@ -137,7 +141,7 @@
             <emphasis>
                 a<subscript>ij</subscript>
             </emphasis>
-            ) nous fait gagner un order, produisant ainsi une erreur par pas de temps en
+            ) nous fait gagner un ordre, produisant ainsi une erreur par pas de temps en
             <emphasis>
                 O(h<superscript>5</superscript>)
             </emphasis>
