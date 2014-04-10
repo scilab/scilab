@@ -95,7 +95,7 @@ static int CopyDirectoryFunction_windows(wchar_t *DestinationDirectory, wchar_t 
     else
     {
         /* Create the destdir */
-        ans = CreateDirectoryW(DestinationDirectory, NULL);
+        ans = createdirectoryW(DestinationDirectory);
     }
     FindClose(find_handle);
 

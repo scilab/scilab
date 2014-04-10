@@ -65,7 +65,7 @@ void createScilabTMPDIR(void)
         static wchar_t bufenv[PATH_MAX + 16];
         char *TmpDir = NULL;
         swprintf(wctmp_dir, PATH_MAX + FILENAME_MAX + 1, L"%sSCI_TMP_%d_", wcTmpDirDefault, (int) _getpid());
-        if ( CreateDirectoryW(wctmp_dir, NULL) == FALSE)
+        if ( createdirectoryW(wctmp_dir) == FALSE)
         {
             DWORD attribs = GetFileAttributesW (wctmp_dir);
             if (attribs & FILE_ATTRIBUTE_DIRECTORY)

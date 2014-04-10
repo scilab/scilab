@@ -24,6 +24,7 @@
 #include "MALLOC.h"
 #include "createdirectory.h"
 #include "isdir.h"
+#include "splitpath.h"
 /*--------------------------------------------------------------------------*/
 #define DIRMODE 0777
 /*--------------------------------------------------------------------------*/
@@ -70,7 +71,15 @@ BOOL createdirectoryW(const wchar_t *pathW)
                 path = NULL;
             }
 #else
-            if (CreateDirectoryW(pathW, NULL))
+            wchar_t path_out[MAX_PATH];
+            wchar_t drv[MAX_PATH];
+            wchar_t dir[MAX_PATH];
+            splitpathW(pathW, TRUE, drv, dir, NULL, NULL);
+
+            wcscpy(path_out, drv);
+            wcscat(path_out, dir);
+
+            if (CreateDirectoryExW(path_out, pathW, NULL))
             {
                 bOK = TRUE;
             }
