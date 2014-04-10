@@ -34,16 +34,28 @@ int SetUicontrolIcon(void* _pvCtx, int iObjUID, void* _pvData, int valueType, in
 
     //get file path
     expandedpath = expandPathVariable((char*)_pvData);
-    get_full_path(absolutepath, expandedpath, 4096);
 
-    //it is a absolute path, put it only in model
-    if (strcmp(expandedpath, absolutepath))
+    if (((char*)_pvData)[0] != '\0')
     {
-        int iErr = 0;
-        char* pwd = scigetcwd(&iErr);
+        char* iconPath = org_scilab_modules_commons_gui::FindIconHelper::findIcon(getScilabJavaVM(), (char*)_pvData, 0);
+        if (iconPath == NULL)
+        {
+            get_full_path(absolutepath, expandedpath, 4096);
 
-        //add it to FindIconHelper java class
-        org_scilab_modules_commons_gui::FindIconHelper::addThemePath(getScilabJavaVM(), pwd);
+            //it is a absolute path, put it only in model
+            if (strcmp(expandedpath, absolutepath))
+            {
+                int iErr = 0;
+                char* pwd = scigetcwd(&iErr);
+
+                //add it to FindIconHelper java class
+                org_scilab_modules_commons_gui::FindIconHelper::addThemePath(getScilabJavaVM(), pwd);
+            }
+        }
+        else
+        {
+            free(iconPath);
+        }
     }
 
     strcpy(absolutepath, expandedpath);
