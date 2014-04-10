@@ -59,3 +59,9 @@ assert_checkequal(a.arc_drawing_method, "lines");
 assert_checkequal(a.clip_state, "off");
 assert_checkequal(a.clip_box, []);
 assert_checkequal(a.user_data, []);
+
+delete(gcf());
+set(gda(), "user_data", "test");
+clf();
+a=gca();
+assert_checkequal(a.user_data, "test");

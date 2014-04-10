@@ -125,6 +125,7 @@ int createFigure(int iDockable, int iMenubarType, int iToolbarType, int iDefault
     int* piUserDataSize = &iUserDataSize;
 
     id = Builder::createFigure(getScilabJavaVM(), iDockable != 0, iMenubarType, iToolbarType, iDefaultAxes != 0, iVisible != 0);
+
     //clone gdf user_data is needed
     getGraphicObjectProperty(getFigureModel(), __GO_USER_DATA_SIZE__, jni_int, (void**)&piUserDataSize);
     if (iUserDataSize != 0)
@@ -153,7 +154,20 @@ void cloneMenus(int model, int newParent)
 
 int cloneAxesModel(int parent)
 {
-    return Builder::cloneAxesModel(getScilabJavaVM(), parent);
+    int id = Builder::cloneAxesModel(getScilabJavaVM(), parent);
+    int iUserDataSize = 0;
+    int* piUserDataSize = &iUserDataSize;
+
+    //clone user_data is needed
+    getGraphicObjectProperty(getAxesModel(), __GO_USER_DATA_SIZE__, jni_int, (void**)&piUserDataSize);
+    if (iUserDataSize != 0)
+    {
+        int* pUserData = NULL;
+        getGraphicObjectProperty(getAxesModel(), __GO_USER_DATA__, jni_int_vector, (void**)&pUserData);
+        setGraphicObjectProperty(id, __GO_USER_DATA__, pUserData, jni_int_vector, iUserDataSize);
+    }
+
+    return id;
 }
 
 int createSubWin(int parent)
