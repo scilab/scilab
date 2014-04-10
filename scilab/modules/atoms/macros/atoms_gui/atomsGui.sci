@@ -182,6 +182,10 @@ function atomsGui()
         delete(f);
     end //creation
 
+    if ~isempty(get("atomsFigure")) then
+        return;
+    end
+
     if ~ exists("atomsinternalslib") then
         load("SCI/modules/atoms/macros/atoms_internals/lib");
     end
