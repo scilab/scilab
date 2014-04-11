@@ -97,7 +97,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <link linkend="atomsAutoLoad">atomsAutoLoad</link>
+                        <link linkend="atomsAutoload">atomsAutoload</link>
                     </td>
                     <td>
                         Load the modules marked as "autoload"
@@ -320,7 +320,4 @@
             </informaltable>
         </para>
     </refsection>
-    <!-- ===================================================================== -->
-    <!-- Authors -->
-    <!-- ===================================================================== -->
 </refentry>
