@@ -114,7 +114,7 @@ mputl(manifest, fd);
 mclose(fd);
 
 // Create the JAR
-jar_src_path = fullfile(SCI, 'desktop/images');
+jar_src_path = fullfile(SCI, 'modules/gui/images/icons');
 jar_dest_path = fullfile(TMPDIR, 'jarImagesExample.jar');
 jcreatejar(jar_dest_path, jar_src_path, '', manifest_path);
       ]]></programlisting>
