@@ -123,7 +123,7 @@ function result = atomsInstall(packages,section)
         if ~ isdir( directories2create(i) ) & (mkdir( directories2create(i) ) <> 1) then
             error(msprintf( ..
             gettext("%s: The directory ''%s'' cannot been created, please check if you have write access on this directory.\n"),..
-            directories2create(i)));
+            "atomsInstall", directories2create(i)));
         end
     end
 
