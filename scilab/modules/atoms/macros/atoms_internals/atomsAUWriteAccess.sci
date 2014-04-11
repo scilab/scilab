@@ -27,6 +27,8 @@ function res = atomsAUWriteAccess()
     // Physical test
 
     if ~ isdir(atoms_system_directory) then
+        mkdir(SCI + "/.scilab");
+        rmdir(SCI + "/.scilab");
         if mkdir(atoms_system_directory) <> 1 then
             return;
         end
