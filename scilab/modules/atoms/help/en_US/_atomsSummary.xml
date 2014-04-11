@@ -63,7 +63,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <link linkend="atomsIsInstalled">atomsTest</link>
+                        <link linkend="atomsTest">atomsTest</link>
                     </td>
                     <td>
                         Execute the tests of an installed module
@@ -71,7 +71,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <link linkend="atomsIsInstalled">atomsCheckModule</link>
+                        <link linkend="atomsCheckModule">atomsCheckModule</link>
                     </td>
                     <td>
                         Install, load, test and remove one or several modules
@@ -97,7 +97,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <link linkend="atomsLoad">atomsAutoLoad</link>
+                        <link linkend="atomsAutoLoad">atomsAutoLoad</link>
                     </td>
                     <td>
                         Load the modules marked as "autoload"
@@ -145,7 +145,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <link linkend="atomsAutoloadDel">atomsQuit</link>
+                        <link linkend="atomsQuit">atomsQuit</link>
                     </td>
                     <td>
                         Launch the .quit file of all loaded modules
@@ -171,7 +171,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <link linkend="atomsList">atomsCategoryList</link>
+                        <link linkend="atomsCategoryList">atomsCategoryList</link>
                     </td>
                     <td>
                         List available categories
@@ -203,7 +203,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <link linkend="atomsDepTreeShow">atomsGetInstalledPath</link>
+                        <link linkend="atomsGetInstalledPath">atomsGetInstalledPath</link>
                     </td>
                     <td>
                         Get the installation path of an module
@@ -211,7 +211,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <link linkend="atomsDepTreeShow">atomsGetLoadedPath</link>
+                        <link linkend="atomsGetLoadedPath">atomsGetLoadedPath</link>
                     </td>
                     <td>
                         Get the installation path of a loaded module
@@ -219,7 +219,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <link linkend="atomsDepTreeShow">atomsVersion</link>
+                        <link linkend="atomsVersion">atomsVersion</link>
                     </td>
                     <td>
                         Get the ATOMS's module version
@@ -287,7 +287,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <link linkend="atomsSetConfig">atomsGetConfig</link>
+                        <link linkend="atomsGetConfig">atomsGetConfig</link>
                     </td>
                     <td>
                         Get the list of ATOMS parameters
@@ -295,7 +295,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <link linkend="atomsSetConfig">atomsRestoreConfig</link>
+                        <link linkend="atomsRestoreConfig">atomsRestoreConfig</link>
                     </td>
                     <td>
                         Restore the configuration from the backup file
@@ -303,7 +303,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <link linkend="atomsSetConfig">atomsSaveConfig</link>
+                        <link linkend="atomsSaveConfig">atomsSaveConfig</link>
                     </td>
                     <td>
                         Make a backup of the configuration file
@@ -311,7 +311,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <link linkend="atomsSetConfig">atomsSystemInit</link>
+                        <link linkend="atomsSystemInit">atomsSystemInit</link>
                     </td>
                     <td>
                         Set the rightful write access for the ATOMS system
