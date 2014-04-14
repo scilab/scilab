@@ -88,7 +88,7 @@
             bar(x,y1,'yellow');bar(x,y2);
             
             subplot(2,3,2) 
-            xtitle('grouped homogenisation')
+            xtitle('grouped homogenization')
             x=1:3;
             y1=1:3;
             y2=[4 3 5;6 7 8;9 10 11];
@@ -96,7 +96,7 @@
             barhomogenize();
             
             subplot(2,3,3)
-            xtitle('stacked homogenisation')
+            xtitle('stacked homogenization')
             x=1:3; y1=1:3; y2=[4 3 5;6 7 8;9 10 11];
             bar(x,y1,'yellow');bar(x,y2);
             barhomogenize('stacked',1);
@@ -112,13 +112,13 @@ x=1:3; y1=1:3; y2=[4 3 5;6 7 8;9 10 11];
 bar(x,y1,'yellow');bar(x,y2);
 // これら4本の棒のグループとして均質化
 subplot(2,3,2) 
-xtitle('grouped homogenisation')
+xtitle('grouped homogenization')
 x=1:3; y1=1:3; y2=[4 3 5;6 7 8;9 10 11];
 bar(x,y1,'yellow');bar(x,y2);
 barhomogenize('grouped',1);
 // これら4本の棒のスタックとして統一化
 subplot(2,3,3)
-xtitle('stacked homogenisation')
+xtitle('stacked homogenization')
 x=1:3; y1=1:3; y2=[4 3 5;6 7 8;9 10 11];
 bar(x,y1,'yellow');bar(x,y2);
 barhomogenize('stacked',1);
@@ -140,7 +140,7 @@ plot(x1,y1)
 e=gce(); e2=e.children(2); e2.polyline_style=6;
 // (bar 関数による)最初の棒(修正による)と2個目の棒の均質化. 
 subplot(2,3,6)
-xtitle('grouped homogenisation')
+xtitle('grouped homogenization')
 x=1:10; y=sin(x)/2;
 bar(x,y,'red')
 x1=1:10;y1=[sin(x);cos(x)]

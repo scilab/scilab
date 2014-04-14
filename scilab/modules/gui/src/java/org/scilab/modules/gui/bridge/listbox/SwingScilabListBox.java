@@ -492,6 +492,10 @@ public class SwingScilabListBox extends JScrollPane implements SwingViewObject, 
         getList().addListSelectionListener(listListener);
     }
 
+    public void setEmptyText() {
+        setText(new String[] {});
+    }
+
     /**
      * Set the horizontal alignment for the ListBox text
      * @param alignment the value for the alignment (See ScilabAlignment.java)
@@ -623,7 +627,7 @@ public class SwingScilabListBox extends JScrollPane implements SwingViewObject, 
      */
     public void setListBoxTop(int index) {
         getVerticalScrollBar().removeAdjustmentListener(adjustmentListener);
-        if (index > 0 & index != getListBoxTop()) {
+        if (index > 0 & index != getListBoxTop() && getList().getModel().getSize() != 0) {
             getViewport().setViewPosition(getList().getUI().indexToLocation(getList(), index - 1));
             doLayout();
         }

@@ -254,8 +254,8 @@ public class CommonHandler {
      * @return the parent igure UID
      */
     public static Integer getParentFigure(Integer object) {
-
-        return (Integer)GraphicController.getController().getProperty(object, GraphicObjectProperties.__GO_PARENT_FIGURE__);
+        GraphicObject go = GraphicController.getController().getObjectFromId(object);
+        return go.getParentFrameOrFigure();
     }
 
     /**

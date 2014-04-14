@@ -16,7 +16,6 @@ import org.scilab.modules.graphic_objects.ScilabNativeView;
 import org.scilab.modules.graphic_objects.builder.Builder;
 import org.scilab.modules.graphic_objects.console.Console;
 import org.scilab.modules.graphic_objects.figure.Figure;
-import org.scilab.modules.graphic_objects.figure.Figure.BarType;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicModel.GraphicModel;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
@@ -32,18 +31,17 @@ import org.w3c.dom.NodeList;
 public class XMLDomLoader {
 
     private enum ModelType {
-        BOOLEAN, BOOLEAN_ARRAY, DOUBLE, DOUBLE_ARRAY, STRING, STRING_ARRAY, INTEGER, INTEGER_ARRAY,
-        ROTATIONTYPE, BARTYPE, LAYOUTTYPE, FILLTYPE, ANCHORTYPE, POSITIONTYPE;
+        BOOLEAN, BOOLEAN_ARRAY, DOUBLE, DOUBLE_ARRAY, STRING, STRING_ARRAY, INTEGER, INTEGER_ARRAY, ROTATIONTYPE, BARTYPE, LAYOUTTYPE, FILLTYPE, ANCHORTYPE, POSITIONTYPE;
     };
 
-    private static final int __NODE_SCILABGUI__     = -10;
-    private static final int __NODE_OUT__           = -20;
-    private static final int __NODE_IN__            = -30;
-    private static final int __NODE_TITLE__         = -40;
-    private static final int __NODE_STRING__        = -50;
-    private static final int __NODE_STRINGITEM__    = -50;
-    private static final int __NODE_COLORMAP__      = -60;
-    private static final int __NODE_COLORMAPITEM__  = -70;
+    private static final int __NODE_SCILABGUI__ = -10;
+    private static final int __NODE_OUT__ = -20;
+    private static final int __NODE_IN__ = -30;
+    private static final int __NODE_TITLE__ = -40;
+    private static final int __NODE_STRING__ = -50;
+    private static final int __NODE_STRINGITEM__ = -50;
+    private static final int __NODE_COLORMAP__ = -60;
+    private static final int __NODE_COLORMAPITEM__ = -70;
 
     private static HashMap<String, Integer> nameToGO = new HashMap<String, Integer>();
 
@@ -51,7 +49,6 @@ public class XMLDomLoader {
     private static HashMap<String, Pair<Integer, ModelType>> UiPropToGO = new HashMap<String, Pair<Integer, ModelType>>();
     private static HashMap<String, Pair<Integer, ModelType>> MenuPropToGO = new HashMap<String, Pair<Integer, ModelType>>();
     private static HashMap<String, Pair<Integer, ModelType>> BorderPropToGO = new HashMap<String, Pair<Integer, ModelType>>();
-
 
     static {
         // init map to convert control name to id
@@ -264,8 +261,14 @@ public class XMLDomLoader {
                 }
             }
 
-            DocumentBuilder dBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-            Document doc = dBuilder.parse(f);
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+
+            // enable XInclude processing
+            factory.setNamespaceAware(true);
+            factory.setXIncludeAware(true);
+
+            DocumentBuilder parser = factory.newDocumentBuilder();
+            Document doc = parser.parse(f);
             doc.getDocumentElement().normalize();
 
             if (doc.hasChildNodes()) {
@@ -281,7 +284,7 @@ public class XMLDomLoader {
     }
 
     private void parseNode(Integer parent, NodeList nodes) {
-        for (int i = nodes.getLength() - 1 ; i >= 0;  i--) {
+        for (int i = nodes.getLength() - 1; i >= 0; i--) {
             Node childNode = nodes.item(i);
             Integer child = 0;
 
@@ -314,7 +317,7 @@ public class XMLDomLoader {
                         break;
                     }
 
-                    case __GO_AXES__ : {
+                    case __GO_AXES__: {
                         child = createAxes(parent, childNode);
                         break;
                     }
@@ -325,7 +328,7 @@ public class XMLDomLoader {
                         break;
                     }
 
-                    case __NODE_STRING__ : {
+                    case __NODE_STRING__: {
                         //avoid relationship
                         child = 0;
                         createString(parent, childNode);
@@ -339,7 +342,7 @@ public class XMLDomLoader {
                         break;
                     }
 
-                    case __NODE_SCILABGUI__ : {
+                    case __NODE_SCILABGUI__: {
                         //check version
                         Node nodeVersion = childNode.getAttributes().getNamedItem("version");
                         double version = Double.parseDouble(nodeVersion.getNodeValue());
@@ -360,7 +363,6 @@ public class XMLDomLoader {
                         child = createUiMenu(parent, childNode);
                         break;
                     }
-
 
                     default: {
                         //ignore TITLED, IN, OUT, STRING_AARAY, COLORMAPITEM node
@@ -394,7 +396,7 @@ public class XMLDomLoader {
             Double[] colorMap = new Double[rows * 3];
             NodeList list = node.getChildNodes();
             int index = 0;
-            for (int i = 0 ; i < list.getLength() ; i++) {
+            for (int i = 0; i < list.getLength(); i++) {
                 Node childNode = list.item(i);
                 if (childNode.getNodeType() == Node.ELEMENT_NODE) {
                     attr = childNode.getAttributes();
@@ -447,12 +449,11 @@ public class XMLDomLoader {
 
         Integer cols = Integer.parseInt(colNode.getNodeValue());
 
-
         if (node.hasChildNodes()) {
             String[] str = new String[rows * cols];
             NodeList list = node.getChildNodes();
             int index = 0;
-            for (int i = 0 ; i < list.getLength() ; i++) {
+            for (int i = 0; i < list.getLength(); i++) {
                 Node childNode = list.item(i);
                 if (childNode.getNodeType() == Node.ELEMENT_NODE) {
                     attr = childNode.getAttributes();
@@ -502,9 +503,9 @@ public class XMLDomLoader {
         }
 
         //frame borders are always hidden
-        controller.setProperty(uib,  __GO_HIDDEN__, true);
+        controller.setProperty(uib, __GO_HIDDEN__, true);
 
-        for (int i = 0 ; i < attr.getLength() ; i++) {
+        for (int i = 0; i < attr.getLength(); i++) {
             Node prop = attr.item(i);
             Pair<Integer, ModelType> pair = BorderPropToGO.get(prop.getNodeName());
 
@@ -513,7 +514,7 @@ public class XMLDomLoader {
                 case BOOLEAN:
                     controller.setProperty(uib, pair.getFirst(), getAttributeAsBoolean(prop.getNodeValue()));
                     break;
-                case BOOLEAN_ARRAY :
+                case BOOLEAN_ARRAY:
                     controller.setProperty(uib, pair.getFirst(), getAttributeAsBooleanArray(prop.getNodeValue()));
                     break;
                 case DOUBLE:
@@ -543,7 +544,7 @@ public class XMLDomLoader {
         //manage children here to avoid trouble on draw without children in SwingView
         if (node.hasChildNodes()) {
             NodeList list = node.getChildNodes();
-            for (int i = 0 ; i < list.getLength() ; i++) {
+            for (int i = 0; i < list.getLength(); i++) {
                 Node childNode = list.item(i);
                 if (childNode.getNodeType() == Node.ELEMENT_NODE) {
                     Integer child = createBorder(childNode);
@@ -645,8 +646,8 @@ public class XMLDomLoader {
         //set new id
         int newId = ScilabNativeView.ScilabNativeView__getValidDefaultFigureId();
 
-        controller.setProperty(fig,  __GO_ID__, newId);
-        for (int i = 0 ; i < attr.getLength() ; i++) {
+        controller.setProperty(fig, __GO_ID__, newId);
+        for (int i = 0; i < attr.getLength(); i++) {
             Node prop = attr.item(i);
             Pair<Integer, ModelType> pair = figPropToGO.get(prop.getNodeName());
 
@@ -676,13 +677,13 @@ public class XMLDomLoader {
                 case STRING_ARRAY:
                     controller.setProperty(fig, pair.getFirst(), getAttributeAsStringArray(prop.getNodeValue()));
                     break;
-                case ROTATIONTYPE :
+                case ROTATIONTYPE:
                     controller.setProperty(fig, pair.getFirst(), Figure.RotationType.stringToEnum(getAttributeAsString(prop.getNodeValue())).ordinal());
                     break;
-                case BARTYPE :
+                case BARTYPE:
                     controller.setProperty(fig, pair.getFirst(), Figure.BarType.stringToEnum(getAttributeAsString(prop.getNodeValue())).ordinal());
                     break;
-                case LAYOUTTYPE :
+                case LAYOUTTYPE:
                     controller.setProperty(fig, pair.getFirst(), LayoutType.stringToEnum(getAttributeAsString(prop.getNodeValue())).ordinal());
                     break;
                 default:
@@ -714,7 +715,7 @@ public class XMLDomLoader {
         GraphicController controller = GraphicController.getController();
         NamedNodeMap attr = node.getAttributes();
 
-        /*for frame we have to take care of scrollable property*/
+        /* for frame we have to take care of scrollable property */
         if (type == __GO_UI_FRAME__) {
             Node item = attr.getNamedItem("scrollable");
             if (item != null && item.getNodeValue().equals("on")) {
@@ -725,16 +726,20 @@ public class XMLDomLoader {
         Integer uic = GraphicController.getController().askObject(GraphicObject.getTypeFromName(type));
         controller.setProperty(uic, __GO_VISIBLE__, true);
 
-        for (int i = 0 ; i < attr.getLength() ; i++) {
+        for (int i = 0; i < attr.getLength(); i++) {
             Node prop = attr.item(i);
             Pair<Integer, ModelType> pair = UiPropToGO.get(prop.getNodeName());
+
+            if (pair == null) {
+                continue;
+            }
 
             ModelType modelType = pair.getSecond();
             switch (modelType) {
                 case BOOLEAN:
                     controller.setProperty(uic, pair.getFirst(), getAttributeAsBoolean(prop.getNodeValue()));
                     break;
-                case BOOLEAN_ARRAY :
+                case BOOLEAN_ARRAY:
                     controller.setProperty(uic, pair.getFirst(), getAttributeAsBooleanArray(prop.getNodeValue()));
                     break;
                 case DOUBLE:
@@ -755,16 +760,16 @@ public class XMLDomLoader {
                 case STRING_ARRAY:
                     //nothing to do, manage as node instead of attributes
                     break;
-                case LAYOUTTYPE :
+                case LAYOUTTYPE:
                     controller.setProperty(uic, pair.getFirst(), LayoutType.stringToEnum(getAttributeAsString(prop.getNodeValue())).ordinal());
                     break;
-                case FILLTYPE :
+                case FILLTYPE:
                     controller.setProperty(uic, pair.getFirst(), Uicontrol.FillType.stringToEnum(getAttributeAsString(prop.getNodeValue())).ordinal());
                     break;
-                case ANCHORTYPE :
+                case ANCHORTYPE:
                     controller.setProperty(uic, pair.getFirst(), Uicontrol.AnchorType.stringToEnum(getAttributeAsString(prop.getNodeValue())).ordinal());
                     break;
-                case POSITIONTYPE :
+                case POSITIONTYPE:
                     controller.setProperty(uic, pair.getFirst(), Uicontrol.BorderLayoutType.stringToEnum(getAttributeAsString(prop.getNodeValue())).ordinal());
                     break;
                 default:
@@ -783,7 +788,7 @@ public class XMLDomLoader {
         Integer uim = GraphicController.getController().askObject(GraphicObject.getTypeFromName(__GO_UIMENU__));
         controller.setProperty(uim, __GO_VISIBLE__, true);
 
-        for (int i = 0 ; i < attr.getLength() ; i++) {
+        for (int i = 0; i < attr.getLength(); i++) {
             Node prop = attr.item(i);
             Pair<Integer, ModelType> pair = MenuPropToGO.get(prop.getNodeName());
             ModelType modelType = pair.getSecond();
@@ -791,7 +796,7 @@ public class XMLDomLoader {
                 case BOOLEAN:
                     controller.setProperty(uim, pair.getFirst(), getAttributeAsBoolean(prop.getNodeValue()));
                     break;
-                case BOOLEAN_ARRAY :
+                case BOOLEAN_ARRAY:
                     controller.setProperty(uim, pair.getFirst(), getAttributeAsBooleanArray(prop.getNodeValue()));
                     break;
                 case DOUBLE:

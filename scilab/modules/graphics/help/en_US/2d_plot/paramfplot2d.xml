@@ -94,7 +94,7 @@ function V=twosoliton(x,t)
   f1=exp(-a1*(x-s1-v1*t));
   f2=exp(-a2*(x-s2-v2*t));
   r=((a2-1)/(a2+a1))^2;
-  V=2*(v1*f1+v2*f2+2*(a2-a1)^2*f1.*f2+r*(v2*(f1^2).*f2+v1*f1.*(f2^2)))./((1+f1+f2+r*f1.*f2)^2);
+  V=2*(v1*f1+v2*f2+2*(a2-a1)^2*f1.*f2+r*(v2*(f1.^2).*f2+v1*f1.*(f2.^2)))./((1+f1+f2+r*f1.*f2).^2);
 endfunction
 x=linspace(1,100,3000);
 clf;paramfplot2d(twosoliton,x,0:0.05:3);

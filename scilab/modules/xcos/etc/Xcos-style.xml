@@ -928,8 +928,7 @@
     <add as="MUX_f" extend="MUX"/>
     <add as="MEMORY_f" extend="blockWithLabel"/>
     <add as="LOGICAL_OP" extend="blockWithLabel">
-        <!-- FIXME : Show parameters over block  -->
-        <add as="displayedLabel" value="Logical op :&lt;BR&gt;         AND"/>
+        <add as="displayedLabel" value="AND"/>
     </add>
     <add as="generic_block" extend="blockWithLabel">
         <add as="displayedLabel" value="GENERIC"/>

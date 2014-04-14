@@ -969,7 +969,6 @@ function %h_p(h)
             end
 
             showHiddenProperties = get(get(0), "ShowHiddenProperties") == "on";
-            t = [];
             t($ + 1) = "Parent: " + h.parent.type;
             t($ + 1) = "Children: " + fmtchildren(h.children);
             t($ + 1) = "Style = " + h.style;

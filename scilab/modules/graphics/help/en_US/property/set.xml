@@ -23,7 +23,7 @@
             set(prop,val)
             set(h,prop)
             set(h,prop,val)
-            set(handlePath,prop,val)
+            set(handlePath,prop,val[,prop2, val2, ..., propn, valn])
             h.prop=val
         </synopsis>
     </refsynopsisdiv>
@@ -46,7 +46,7 @@
                         A character string containing a path pointing to the graphic entity. This path is made of the graphic entity <literal>"Tag"</literal> property and the <literal>"Tag"</literal> property of its parents in the graphics hierarchy under the format <literal>"figuretag/entitytag"</literal> (when the entity is the child of a figure).
                     </para>
                     <para>
-                        Deeper hierarchy levels can also be used such as <literal>"figuretag/entity1tag/entity2tag/entitntag/entitytag"</literal>. Wildcards can also be used for multi-paths search. The first entity matching the path will be used.
+                        Deeper hierarchy levels can also be used such as <literal>"figuretag/entity1tag/entity2tag/entityntag/entitytag"</literal>. Wildcards can also be used for multi-paths search. The first entity matching the path will be used.
                     </para>
                 </listitem>
             </varlistentry>
@@ -120,7 +120,7 @@
     <refsection>
         <title>Examples</title>
         <para>
-          <programlisting role="example"><![CDATA[
+            <programlisting role="example"><![CDATA[
 clf()
 set("auto_clear","off") ;
 // Exemple of a Plot 2D
@@ -145,7 +145,7 @@ set([a p1 p2 p3],"foreground",5)
  ]]></programlisting>
         </para>
         <para>
-          <programlisting role="example"><![CDATA[
+            <programlisting role="example"><![CDATA[
 // Using path
 f = figure("dockable", "off", "menubar", "none", "toolbar", "none", "infobar_visible", "off", "tag", "mainfig");
 frameHandle = uicontrol("parent", f, "style", "frame", "position", [200 200 190 100], "tag", "myframe");
@@ -189,7 +189,14 @@ get("myframe/example", "string")
             <revision>
                 <revnumber>5.5.0</revnumber>
                 <revremark>
-                    First input argument can now be a path pointing to the graphic entity.
+                    <itemizedlist>
+                        <listitem>
+                            First input argument can now be a path pointing to the graphic entity.
+                        </listitem>
+                        <listitem>
+                            Multiple property setting is now available at once.
+                        </listitem>
+                    </itemizedlist>
                 </revremark>
             </revision>
         </revhistory>

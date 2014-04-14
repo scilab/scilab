@@ -15,6 +15,7 @@
 #include "ole.h"
 #include "localization.h"
 #include "charEncoding.h"
+#include "createdirectory.h"
 /** Sector ID values (predefined) **/
 #define OLE_SECTORID_FREE	-1 /** Unallocated sector **/
 #define OLE_SECTORID_ENDOFCHAIN	-2 /** Sector marks the end of the a sector-ID chain **/
@@ -1583,7 +1584,7 @@ int OLE_open_directory(struct OLE_object *ole, char *directory)
     {
         wchar_t *wdirectory = to_wide_string(directory);
 
-        result = CreateDirectoryW(wdirectory, NULL);
+        result = createdirectoryW(wdirectory);
         FREE(wdirectory);
     }
     /* If the function succeeds, the return value is nonzero.

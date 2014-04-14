@@ -19,29 +19,24 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.GraphicsConfiguration;
-import java.awt.GraphicsDevice;
-import java.awt.GraphicsEnvironment;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Image;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
-import javax.swing.GrayFilter;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JEditorPane;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.border.Border;
 import javax.swing.event.HyperlinkEvent;
@@ -133,6 +128,8 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
         super.setFont(font);
         if (label != null) {
             label.setFont(font);
+            setMinimumSize(label.getMinimumSize());
+
             if (labelStyle == LabelStyle.HTML) {
                 StyleSheet styleSheet = ((HTMLDocument) ((JTextPane) label).getDocument()).getStyleSheet();
                 styleSheet.addRule("body {font-family:" + font.getName() + ";}");
@@ -222,7 +219,7 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
     public void setDims(Size newSize) {
         setSize(newSize.getWidth(), newSize.getHeight());
         // Need validate to force alignement to be applyed
-        setMinimumSize(new Dimension(Math.max((int) label.getMinimumSize().getWidth(), newSize.getWidth()), (int) label.getMinimumSize().getHeight()));
+        //setMinimumSize(new Dimension(Math.max((int) label.getMinimumSize().getWidth(), newSize.getWidth()), (int) label.getMinimumSize().getHeight()));
     }
 
     /**
@@ -358,52 +355,64 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
         // $...$            : LateXLabel ( LateX )
         // else             : JLabel
 
-        if (newText.equals("")) {
-            labelText = " ";
-        } else {
-            labelText = newText;
-        }
+        labelText = newText;
 
-        if (labelText.startsWith("<math>") && labelText.endsWith("</math>")) {
-            boolean mathML = ScilabSpecialTextUtilities.setText(new JLabel(), labelText);
+        if (labelText != null) {
+            if (labelText.startsWith("<math>") && labelText.endsWith("</math>")) {
+                boolean mathML = ScilabSpecialTextUtilities.setText(new JLabel(), labelText);
 
-            //if MAthML rendering failed use normal renderer ( JLabel)
-            if (mathML) {
-                changeLabelType(LabelStyle.MATHML);
-                ((IconLabel) label).setText(labelText);
-            } else {
-                changeLabelType(LabelStyle.TEXT);
-                ((JLabel) label).setText(labelText);
+                //if MAthML rendering failed use normal renderer ( JLabel)
+                if (mathML) {
+                    changeLabelType(LabelStyle.MATHML);
+                    ((IconLabel) label).setText(labelText);
+                } else {
+                    changeLabelType(LabelStyle.TEXT);
+                    ((JLabel) label).setText(labelText);
+                }
+                return;
             }
-            return;
-        }
 
-        if (labelText.startsWith("<html>") && labelText.endsWith("</html>")) {
-            changeLabelType(LabelStyle.HTML);
-            ((JEditorPane) label).setText(labelText);
-            return;
-        }
-
-        if (labelText.startsWith("$") && labelText.endsWith("$")) {
-            boolean latex = ScilabSpecialTextUtilities.setText(new JLabel(), labelText);
-
-            //if MAthML rendering failed use normal renderer ( JLabel)
-            if (latex) {
-                changeLabelType(LabelStyle.LATEX);
-                ((IconLabel) label).setText(labelText);
-            } else {
-                changeLabelType(LabelStyle.TEXT);
-                ((JLabel) label).setText(labelText);
+            if (labelText.startsWith("<html>") && labelText.endsWith("</html>")) {
+                changeLabelType(LabelStyle.HTML);
+                ((JEditorPane) label).setText(labelText);
+                return;
             }
-            return;
+
+            if (labelText.startsWith("$") && labelText.endsWith("$")) {
+                boolean latex = ScilabSpecialTextUtilities.setText(new JLabel(), labelText);
+
+                //if MAthML rendering failed use normal renderer ( JLabel)
+                if (latex) {
+                    changeLabelType(LabelStyle.LATEX);
+                    ((IconLabel) label).setText(labelText);
+                } else {
+                    changeLabelType(LabelStyle.TEXT);
+                    ((JLabel) label).setText(labelText);
+                }
+                return;
+            }
+        }
+
+        //force window to redraw all component
+        JFrame win = (JFrame)SwingUtilities.getAncestorOfClass(JFrame.class, this);
+        if (win != null) {
+            win.invalidate();
         }
 
         changeLabelType(LabelStyle.TEXT);
         ((JLabel) label).setText(labelText);
+        setMinimumSize(label.getMinimumSize());
 
-        ((JLabel) label).invalidate();
-        ((JLabel) label).validate();
-        ((JLabel) label).repaint();
+
+        //force window to redraw all component
+        if (win != null) {
+            win.validate();
+        }
+
+    }
+
+    public void setEmptyText() {
+        setText(null);
     }
 
     /**

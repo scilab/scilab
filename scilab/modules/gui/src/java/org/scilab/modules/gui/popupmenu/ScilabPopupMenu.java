@@ -60,6 +60,10 @@ public class ScilabPopupMenu extends ScilabWidget implements PopupMenu {
         ScilabBridge.setText(this, newText);
     }
 
+    public void setEmptyText() {
+        setText(new String[] {});
+    }
+
     /**
      * Gets the text of a PopupMenu
      * @return text of the PopupMenu

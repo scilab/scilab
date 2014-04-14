@@ -106,7 +106,12 @@ BOOL setGraphicObjectPropertyAndWarn(int _iID, int _iName, void const* _pvValue,
         case __GO_DATA_MODEL_MATPLOT_IMAGE_DATA__ :
         case __GO_DATA_MODEL_DISPLAY_FUNCTION__ :
         {
-            BOOL res = DataController::setGraphicObjectProperty(_iID, _iName, _pvValue, numElements);
+            BOOL bFalse = FALSE;
+            BOOL bTrue = TRUE;
+            BOOL res;
+            setGraphicObjectProperty(_iID, __GO_VALID__, &bFalse, jni_bool, 1);
+            res = DataController::setGraphicObjectProperty(_iID, _iName, _pvValue, numElements);
+            setGraphicObjectProperty(_iID, __GO_VALID__, &bTrue, jni_bool, 1);
             if ((res || _iName == __GO_DATA_MODEL__) && warnJava)
             {
                 ///printf("debug property value=%d\n",_iName);

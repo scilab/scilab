@@ -20,6 +20,7 @@ import org.scilab.modules.graphic_objects.CallGraphicController;
 import org.scilab.modules.renderer.CallRenderer;
 
 import org.scilab.modules.graphic_objects.axes.Axes;
+import org.scilab.modules.graphic_objects.axes.AxesContainer;
 import org.scilab.modules.renderer.JoGLView.axes.AxesDrawer;
 import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
 import org.scilab.forge.scirenderer.tranformations.Vector3d;
@@ -474,7 +475,6 @@ public class EntityPicker {
      * @return The LegendInfo if picked a legend null otherwise.
      */
     public LegendInfo pickLegend(Integer figure, Integer[] position) {
-
         Integer axes = AxesHandler.clickedAxes(figure, position);
         if (axes == null) {
             return null;
@@ -489,7 +489,9 @@ public class EntityPicker {
         Double delta;
         Double[] axesBounds = { 0., 0. }, dPosition = { 0., 0. }, legendPos = { 0., 0. }, legendBounds = { 0., 0., 0., 0. }, dimension = { 0., 0. };
 
-        axesSize = (Integer[])GraphicController.getController().getProperty(figure, GraphicObjectProperties.__GO_AXES_SIZE__);
+        AxesContainer container = (AxesContainer) GraphicController.getController().getObjectFromId(figure);
+        axesSize = container.getAxesSize();
+
         axesBounds = (Double[])GraphicController.getController().getProperty(axes, GraphicObjectProperties.__GO_AXES_BOUNDS__);
         legendPos = (Double[])GraphicController.getController().getProperty(legend, GraphicObjectProperties.__GO_POSITION__);
         links = (Integer[])GraphicController.getController().getProperty(legend, GraphicObjectProperties.__GO_LINKS__);

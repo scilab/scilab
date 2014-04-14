@@ -74,6 +74,7 @@ public interface Widget extends Dockable {
      * @param text the text
      */
     void setText(String text);
+    void setEmptyText();
 
     /**
      * Get the text of the widget

@@ -401,4 +401,8 @@ public class SwingScilabCheckBox extends JCheckBox implements SwingViewObject, S
             setForeground(color);
         }
     }
+
+    public void setEmptyText() {
+        setText(null);
+    }
 }

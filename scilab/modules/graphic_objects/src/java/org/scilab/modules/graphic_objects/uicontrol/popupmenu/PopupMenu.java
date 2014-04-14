@@ -31,6 +31,7 @@ public class PopupMenu extends Uicontrol {
     public PopupMenu() {
         super();
         setStyle(__GO_UI_POPUPMENU__);
+        setString(new String[] {});
 
         if (Console.getConsole().getUseDeprecatedLF()) {
             setRelief(RELIEF_FLAT);

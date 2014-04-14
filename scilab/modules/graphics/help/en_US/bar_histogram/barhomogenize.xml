@@ -83,18 +83,18 @@ y1=1:3;
 y2=[4 3 5;6 7 8;9 10 11];
 bar(x,y1,'yellow');bar(x,y2);
 
-// grouped homogenisation of these 4 bars
+// grouped homogenization of these 4 bars
 subplot(2,3,2)
-xtitle('grouped homogenisation')
+xtitle('grouped homogenization')
 x=1:3;
 y1=1:3;
 y2=[4 3 5;6 7 8;9 10 11];
 bar(x,y1,'yellow');bar(x,y2);
 barhomogenize();
 
-// stacked homogenisation of the 4 bars
+// stacked homogenization of the 4 bars
 subplot(2,3,3)
-xtitle('stacked homogenisation')
+xtitle('stacked homogenization')
 x=1:3; y1=1:3; y2=[4 3 5;6 7 8;9 10 11];
 bar(x,y1,'yellow');bar(x,y2);
 barhomogenize('stacked',1);
@@ -108,7 +108,7 @@ barhomogenize('stacked',1);
             bar(x,y1,'yellow');bar(x,y2);
             
             subplot(2,3,2)
-            xtitle('grouped homogenisation')
+            xtitle('grouped homogenization')
             x=1:3;
             y1=1:3;
             y2=[4 3 5;6 7 8;9 10 11];
@@ -116,7 +116,7 @@ barhomogenize('stacked',1);
             barhomogenize();
             
             subplot(2,3,3)
-            xtitle('stacked homogenisation')
+            xtitle('stacked homogenization')
             x=1:3; y1=1:3; y2=[4 3 5;6 7 8;9 10 11];
             bar(x,y1,'yellow');bar(x,y2);
             barhomogenize('stacked',1);
@@ -146,9 +146,9 @@ e=gce();
 e2=e.children(2);
 e2.polyline_style=6;
 
-// homogenisation of the first bar (from bar function) and second bar (from the modification).
+// homogenization of the first bar (from bar function) and second bar (from the modification).
 subplot(2,3,6)
-xtitle('grouped homogenisation')
+xtitle('grouped homogenization')
 x=1:10;
 y=sin(x)/2;
 bar(x,y,'red')
@@ -187,9 +187,9 @@ barhomogenize();
             e2=e.children(2);
             e2.polyline_style=6;
             
-            // homogenisation of the first bar (from bar function) and second bar (from the modification).
+            // homogenization of the first bar (from bar function) and second bar (from the modification).
             subplot(2,3,6)
-            xtitle('grouped homogenisation')
+            xtitle('grouped homogenization')
             x=1:10;
             y=sin(x)/2;
             bar(x,y,'red')

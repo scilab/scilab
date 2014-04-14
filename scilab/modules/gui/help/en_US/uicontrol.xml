@@ -175,7 +175,6 @@ table = [params; [ towns country pop temp ]]
 f = gcf();
 clf
 as = f.axes_size;  // [width height]
-delete(ut)
 ut = uicontrol("style","table",..
                "string",table,..
                "position",[5 as(2)-100 300 87],.. // => @top left corner of figure

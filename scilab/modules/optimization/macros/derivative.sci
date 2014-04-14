@@ -14,7 +14,7 @@
 //  PURPOSE
 //     First and second order numerical derivatives of a function  F: R^n --> R^m
 //     by finite differences.
-//     J=J(x) is the m x n Jacobian (the gradient for m=1), and H=H(x) the Hessean
+//     J=J(x) is the m x n Jacobian (the gradient for m=1), and H=H(x) the Hessian
 //     of the m components of F at x. The default form of H is a mxn^2 matrix;
 //     in this form the Taylor series of F up to second order terms is given by:
 //
@@ -26,7 +26,7 @@
 //     2/ This function uses the 3 "internal" functions (following
 //        this one in this file) :
 //
-//          %DF_      => used to compute the Hessean by "differentiating
+//          %DF_      => used to compute the Hessian by "differentiating
 //                       the derivative"
 //          %deriv1_  => contains the various finite difference formulae
 //          %R_       => to deal with F as this arg may be a scilab

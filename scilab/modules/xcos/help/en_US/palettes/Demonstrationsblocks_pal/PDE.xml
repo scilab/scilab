@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
- * 
+ *
  * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
  * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  *  (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
- * 
+ *
  * See the file ./license.txt
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="PDE">
@@ -89,13 +89,12 @@
         <title>Description</title>
         <para>
             This block is an implementation of several numerical schemes (Finite Elements (1st and 2nd order),
-            Finite Differences (1st and 2nd order), Finite Volumes (1st order)) to solve mono dimensional 
-            PDE (Partial Differential Equation) within SCICOS.
-            The mathematical framework was restricts in PDEs linear scalars with maximum order 2 in time and space.
-            The goal is to provide engineers and physicists with an easy to use toolbox in SCICOS that will let them
+            Finite Differences (1st and 2nd order), Finite Volumes (1st order)) to solve mono-dimensional
+            PDE (Partial Differential Equation) within Xcos.
+            The mathematical framework is restricted to PDEs linear scalars with maximum order 2 in time and space.
+            The goal is to provide engineers and physicists with an easy-to-use toolbox in Xcos that will let them
             graphically describe the PDE to be solved. A decision system selects the most efficient numerical scheme
-            depending on the type of the PDE and runs the solvers.
-            
+            depending on the type of the PDE and runs the solver.
         </para>
     </refsection>
     <refsection id="Dialogbox_PDE">
@@ -113,60 +112,76 @@
         <itemizedlist>
             <listitem>
                 <para>
-                    <emphasis role="bold">a et b</emphasis>
+                    <emphasis role="bold">Domain</emphasis>
                 </para>
-                <para> (double) The two edges of the discretization field. </para>
+                <para> a and b : (double) The two edges of the discretization field.</para>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">specification de l'EDP</emphasis>
+                    <emphasis role="bold">PDE specification</emphasis>
                 </para>
-                <para> check box to select the PDE operators.
-                    ai(x), bi(t) (i=1:7) are the operator coefficients.
-                    
-                    type of PDE discriminant (constant or variable, in the
-                    later case, the sign should be given) 
-                </para>
+                <itemizedlist>
+                    <listitem>
+                        Check boxes to select the PDE operators.
+                        ai(x), bi(t) (i=1:7) are the operator coefficients.
+                    </listitem>
+                    <listitem>
+                        Discriminant type : constant or variable, in the
+                        later case, the sign should be given.
+                    </listitem>
+                </itemizedlist>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">Discretization methode</emphasis>
+                    <emphasis role="bold">Discretization method</emphasis>
                 </para>
-                <para> choix (check box) : is the choice for the manual or the automatic mode.
-                    type : in the manual mode we can give the method type
-                    (Finite differences, finite elements or finite volumes).
-                    
-                    degré : method degre (1 or 2 for the FD and FE methods,
-                    1 for the FV method).
-                    
-                    Nombre de noeuds : to give the number of the nodal points.
-                </para>
+                <itemizedlist>
+                    <listitem>
+                        Choice (check box) : is the choice for the manual or the automatic mode.
+                    </listitem>
+                    <listitem>
+                        Type : in the manual mode we can give the method type
+                        (Finite differences, finite elements or finite volumes).
+                    </listitem>
+                    <listitem>
+                        Degree : method degree (1 or 2 for the FD and FE methods,
+                        1 for the FV method).
+                    </listitem>
+                    <listitem>
+                        Number of nodes : to give the number of the nodal points.
+                    </listitem>
+                </itemizedlist>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">Conditions initiales</emphasis>
+                    <emphasis role="bold">Initial Conditions</emphasis>
                 </para>
                 <para> u(x,t0)=, du/dt at t0= : to give the initial conditions. </para>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">Conditions aux limites</emphasis>
+                    <emphasis role="bold">Boundary condition on a</emphasis>
                 </para>
-                <para> type : two type of the boundray conditions are possible : Dirichlet or Neumann.
-                    expressions : to give then boundray conditions expressions.
-                </para>
+                <itemizedlist>
+                    <listitem>
+                        Type : two types of boundary conditions are possible : Dirichlet or Neumann.
+                    </listitem>
+                    <listitem>
+                        Expression : to give the boundary conditions expression.
+                    </listitem>
+                </itemizedlist>
             </listitem>
             <listitem>
                 <para>
-                    <emphasis role="bold">Points de mesures</emphasis>
+                    <emphasis role="bold">Measurement points</emphasis>
                 </para>
-                <para> To give the list of mesurment points. </para>
+                <para> To give the list of measurement points. </para>
             </listitem>
             <listitem>
                 <para>
                     <emphasis role="bold">Name</emphasis>
                 </para>
-                <para> A getvalue box to give the block name's. </para>
+                <para> A getvalue box to give the block's name. </para>
             </listitem>
         </itemizedlist>
     </refsection>
@@ -262,6 +277,14 @@
         <itemizedlist>
             <listitem>
                 <para> SCI/modules/scicos_blocks/macros/PDE/PDE.sci</para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Computationalfunction_PDE">
+        <title>Computational functions</title>
+        <itemizedlist>
+            <listitem>
+                <para> SCI/modules/scicos_blocks/macros/PDE/</para>
             </listitem>
         </itemizedlist>
     </refsection>

@@ -156,6 +156,10 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     private final List<PostRendered> postRenderedList = new LinkedList<PostRendered>();
     private final static Map<Integer, List<Integer>> openGLChildren = new HashMap<Integer, List<Integer>>();
 
+    public static int[] getSize() {
+        return new int[] {visitorMap.size(), openGLChildren.size()};
+    }
+    
     public DrawerVisitor(Component component, Canvas canvas, AxesContainer figure) {
         GraphicController.getController().register(this);
 
@@ -965,7 +969,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 openGLChildren.put(id, updatedOpenGLChildren);
             }
         }
-        
+
         try {
             if (needUpdate(id, property)) {
                 if (GraphicObjectProperties.__GO_COLORMAP__ == property) {
@@ -1002,7 +1006,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                         } else {
                             canvas.redraw();
                         }
-                    } 
+                    }
                 }
             }
 
@@ -1110,7 +1114,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
             return true;
         }
         // Special case if top level figure colormap/immediate_drawing has been updated, force redraw
-        if ((property == GraphicObjectProperties.__GO_COLORMAP__ ||  property == GraphicObjectProperties.__GO_IMMEDIATE_DRAWING__) 
+        if ((property == GraphicObjectProperties.__GO_COLORMAP__ ||  property == GraphicObjectProperties.__GO_IMMEDIATE_DRAWING__)
                 && id.intValue() == figure.getParentFigure().intValue()) {
             return true;
         }
@@ -1137,7 +1141,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     @Override
     public void deleteObject(Integer id) {
         Integer type = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
-        if (type == GraphicObjectProperties.__GO_UICONTROL__ || type == GraphicObjectProperties.__GO_UIMENU__) {
+        if (!figure.getIdentifier().equals(id) && type == GraphicObjectProperties.__GO_UICONTROL__ || type == GraphicObjectProperties.__GO_UIMENU__) {
             return; // Not of my managed openGL children
         }
 

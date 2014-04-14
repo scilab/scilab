@@ -60,6 +60,10 @@ public class ScilabSlider extends ScilabWidget implements Slider {
         ScilabBridge.setText(this, newText);
     }
 
+    public void setEmptyText() {
+        setText(null);
+    }
+
     /**
      * Gets the text of a Slider
      * @return text of the Slider

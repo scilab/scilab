@@ -5,6 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 // <-- CLI SHELL MODE -->
+// <-- ENGLISH IMPOSED -->
 // <-- Non-regression test for bug 4083 -->
 //
 // <-- Bugzilla URL -->
@@ -19,16 +20,16 @@ function y = myfunction(x)
 endfunction
 x = 1;
 g = numdiff(myfunction, x);
-AVERTISSEMENT : La fonctionnalité numdiff est obsolète.
-                Veuillez utiliser numderivative à la place.
-                Cette fonctionnalité va être définitivement supprimée dans Scilab 6.0
+WARNING: Feature numdiff is obsolete.
+         Please use numderivative instead.
+         This feature will be permanently removed in Scilab 6.0
 
 expectedJ = 3;
 assert_checkalmostequal(g, expectedJ, [], 1.d-8);
 [J, H] = derivative(myfunction, x);
-AVERTISSEMENT : La fonctionnalité derivative est obsolète.
-                Veuillez utiliser numderivative à la place.
-                Cette fonctionnalité va être définitivement supprimée dans Scilab 6.0
+WARNING: Feature derivative is obsolete.
+         Please use numderivative instead.
+         This feature will be permanently removed in Scilab 6.0
 
 expectedH = 6;
 assert_checkalmostequal(J, expectedJ, [], 1.d-8);

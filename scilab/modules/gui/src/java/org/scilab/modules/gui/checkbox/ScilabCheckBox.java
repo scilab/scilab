@@ -60,6 +60,10 @@ public class ScilabCheckBox extends ScilabWidget implements CheckBox {
         ScilabBridge.setText(this, newText);
     }
 
+    public void setEmptyText() {
+        setText(null);
+    }
+
     /**
      * Gets the text of a CheckBox
      * @return text of the CheckBox

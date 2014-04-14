@@ -50,7 +50,8 @@ class RulerDrawerManager {
                 GraphicObjectProperties.__GO_Z_AXIS_ST_FACTORS__,
                 GraphicObjectProperties.__GO_X_AXIS_LOG_FLAG__,
                 GraphicObjectProperties.__GO_Y_AXIS_LOG_FLAG__,
-                GraphicObjectProperties.__GO_Z_AXIS_LOG_FLAG__
+                GraphicObjectProperties.__GO_Z_AXIS_LOG_FLAG__,
+                GraphicObjectProperties.__GO_DATA_BOUNDS__
             ));
 
     /**

@@ -99,7 +99,7 @@ public class ImagePreview extends JComponent implements PropertyChangeListener {
                 update = true;
             }
         } else if (JFileChooser.FILE_FILTER_CHANGED_PROPERTY.equals(prop)) {
-            ((SwingScilabExportFileChooser) fc).updateFileName(file);
+            updateFileName(file);
 
             // Crappy workaround to clear the selection when the filter has changed
             fc.setMultiSelectionEnabled(true);
@@ -112,6 +112,24 @@ public class ImagePreview extends JComponent implements PropertyChangeListener {
             if (isShowing()) {
                 loadImage();
                 repaint();
+            }
+        }
+    }
+
+    private void updateFileName(File file) {
+        if (file != null) {
+            String fileName = file.getName();
+            int i = fileName.lastIndexOf('.');
+            if (i != -1) {
+                fileName = fileName.substring(0, i);
+            }
+
+            FileMask ft = (FileMask) fc.getFileFilter();
+            String ext = ft.getExtensionFromFilter();
+
+            if (ext != null && !ext.equals("*")) {
+                fileName += "." + ext;
+                fc.setSelectedFile(new File(fileName));
             }
         }
     }

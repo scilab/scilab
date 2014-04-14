@@ -165,6 +165,10 @@ public final class FindIconHelper {
     }
 
     private static String lookupIcon(final String iconname, final String size, final String theme) throws IOException {
+        if(iconname.contains("<html>")) {
+            return null;
+        }
+
         for (String directory : THEME_BASENAME) {
             final File themeDir = new File(directory + SEP + theme);
             if (!themeDir.exists() || !themeDir.isDirectory()) {
@@ -175,7 +179,13 @@ public final class FindIconHelper {
              * FIXME: implement an index.theme reader, for now we are parsing
              * the file path to get the information
              */
+            for (String extension : ICONS_EXTENSIONS) {
+                final File f = new File(themeDir, iconname + DOT + extension);
 
+                if (f.exists()) {
+                    return f.getCanonicalPath();
+                }
+            }
             /*
              * Create the theme subdirs
              */
@@ -226,7 +236,12 @@ public final class FindIconHelper {
         while (!dirs.isEmpty()) {
             final File d = dirs.poll();
 
-            final List<File> sub = Arrays.asList(d.listFiles(DIR_FILTER));
+            File[] allDirs = d.listFiles(DIR_FILTER);
+            if (allDirs == null) {
+                continue;
+            }
+
+            final List<File> sub = Arrays.asList(allDirs);
             if (sub.isEmpty()) {
                 final String s = d.getCanonicalPath();
 

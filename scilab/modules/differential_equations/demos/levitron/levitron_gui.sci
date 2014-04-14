@@ -11,15 +11,17 @@ function [H]=build_levitron(h)
     //construct the graphical object representing the levitron in 3D
 
     n=21;// assumed to be odd
-    [X,Y,Z]=levitron_facets(levitron_profile,n)
-    //
+    [X, Y, Z]=levitron_facets(levitron_profile, n)
     N=n-1;
-    np=1+size(X,2)/N
-    drawlater()
-    f=gcf();f.color_map=graycolormap(N);
+    np=1+size(X, 2)/N
+    f = get("levitron_main_figure")
 
-    s=[((N/2)):(N-1),N:-1:((N/2)+1)];
-    clf(),plot3d(X,Y,list(Z,ones(1,np-1).*.s))// the top
+    //Plot the levitron
+    f.color_map = graycolormap(N);
+    f.immediate_drawing = "off"
+
+    s=[((N/2)):(N-1), N:-1:((N/2)+1)];
+    plot3d(X, Y, list(Z, ones(1, np-1).*.s))// the top
 
     H=gce();
     H.hiddencolor=-1;
@@ -30,28 +32,34 @@ function [H]=build_levitron(h)
     H.user_data=[0 0 0 0 0 0];
     //The z axis
     x=0:0.05:2.5;
-    param3d(zeros(x),zeros(x),x) //z axis
+    param3d(zeros(x), zeros(x), x) //z axis
     e=gce();e.thickness=2;
     //the bottom
-    plot3d([-1 1]*1.5,[-1 1]*1.5,zeros(2,2))
+    plot3d([-1 1]*1.5, [-1 1]*1.5, zeros(2, 2))
     e=gce();e.color_mode=color("red");
-    //set axes properties
-    a=gca();
-    a.clip_state="off";
-    a.data_bounds=[-1 -1 0;1 1 2];
-    a.axes_bounds=[0 0 0.8 1];
-    a.axes_visible="off";a.box="off";
-    a.cube_scaling="on";
-    a.isoview="on";
-    a.rotation_angles=[76 45];
-    a.foreground=N
-    a.x_label.text=""
-    a.y_label.text=""
-    a.z_label.text=""
-    drawnow()
+
+    levitron_axes = gca();
+    //Axes definition for the plot
+    //plot will be on the left-hand side of the screen
+    levitron_axes.axes_bounds = [0 0 3.5/5 1];
+    levitron_axes.tight_limits="on";
+    levitron_axes.clip_state="off";
+    levitron_axes.data_bounds=[-1 -1 0;1 1 2];
+    levitron_axes.axes_visible="off";
+    levitron_axes.box="off";
+    levitron_axes.cube_scaling="on";
+    levitron_axes.isoview="on";
+    levitron_axes.rotation_angles=[76 45];
+    levitron_axes.foreground=N
+    levitron_axes.x_label.text=""
+    levitron_axes.y_label.text=""
+    levitron_axes.z_label.text=""
+
+    immediate_drawing ="on"
+    f.visible = "on"
 endfunction
 
-function [zp,ro]=levitron_profile()
+function [zp, ro]=levitron_profile()
     //zp : elevation of the profile's points
     //ro : radius
     //c  : color
@@ -62,254 +70,88 @@ function [zp,ro]=levitron_profile()
     c = ones(ro)
 endfunction
 
-function [X,Y,Z]=levitron_facets(prof,n)
+function [X, Y, Z]=levitron_facets(prof, n)
     //computes the facets of the surface of a revolution surface
     // prof is a function that returns the elevation and the radiud of ech
     // profile point
     // n: is the number of points for the rotation angle discretization
 
-    [zp,ro]=prof();//one profile
-    np=size(ro,"*");
+    [zp, ro]=prof();//one profile
+    np=size(ro, "*");
     //generate points on the top surface
-    t=linspace(0,2*%pi,n);
+    t=linspace(0, 2*%pi, n);
     x=ro*cos(t);//np x n
     y=ro*sin(t);
     z=zp*ones(t);
 
     //build the facets
-    Iz=([0;0;1;1]*ones(1,np-1)+ones(4,1)*(1:(np-1))).*.ones(1,n-1);
-    It=ones(1,np-1).*.([0;1;1;0]*ones(1,n-1)+ones(4,1)*(0:(n-2)));
-    I=matrix(Iz+np*It,-1,1);
-    X=matrix(x(I),4,-1);
-    Y=matrix(y(I),4,-1);
-    Z=matrix(z(I),4,-1);
+    Iz=([0;0;1;1]*ones(1, np-1)+ones(4, 1)*(1:(np-1))).*.ones(1, n-1);
+    It=ones(1, np-1).*.([0;1;1;0]*ones(1, n-1)+ones(4, 1)*(0:(n-2)));
+    I=matrix(Iz+np*It, -1, 1);
+    X=matrix(x(I), 4, -1);
+    Y=matrix(y(I), 4, -1);
+    Z=matrix(z(I), 4, -1);
 endfunction
 
 
-// The gui builder
-//----------------
-function levitron_gui()
-    global levitron_controls
-    fig=gcf();
-    w=fig.axes_size;
-    m=20;
-    lslider=150;h=20;
-    lv=40;
-    xs=w(1)-lslider-lv-m-10;
-    xv=xs+lslider+10;
-    SliderStep=[0.001 0.001]
-
-    yh=w(2)-(m+h);
-    Height_title = uicontrol( ...
-    "parent"              , fig,...
-    "style"               , "text",...
-    "string"              , "Height",...
-    "units"               , "pixels",...
-    "position"            , [xs yh+h lslider h],...
-    "fontunits"           , "points",...
-    "fontsize"            , 9,...
-    "horizontalalignment" , "center", ...
-    "background"          , [1 1 1], ...
-    "tag"                 , "HeightTitle" ...
-    );
-
-
-    Slider_Height=uicontrol("parent",fig,..
-    "style","slider",..
-    "Min",0,..
-    "Max",100,..
-    "Value",1+100*0.72,..
-    "units","pixels",..
-    "position"            , [xs yh lslider h],...
-    "tag"                 , "Height", ...
-    "callback"            , "update_height()" ...
-    );
-    Value_Height = uicontrol("parent",fig,..
-    "Position"  , [xv yh lv h],...
-    "Style"     , "text",...
-    "String"    , "70",...
-    "BackgroundColor",[1 1 1]);
-
-    yt=yh-(m+h);
-    Theta_title = uicontrol( ...
-    "parent"              , fig,...
-    "style"               , "text",...
-    "string"              , "Theta",...
-    "units"               , "pixels",...
-    "position"            , [xs yt+h lslider h],...
-    "fontunits"           , "points",...
-    "fontsize"            , 9,...
-    "horizontalalignment" , "center", ...
-    "background"          , [1 1 1], ...
-    "tag"                 , "ThetaTitle" ...
-    );
-
-    Slider_Theta=uicontrol("parent",fig,..
-    "style","slider",..
-    "Min",0.1,..
-    "Max",100,..
-    "Value",70,..
-    "units","pixels",..
-    "position"            , [xs yt lslider h],...
-    "tag"                 , "Theta", ...
-    "callback"            , "update_theta()" ...
-    );
-    Value_Theta = uicontrol("parent",fig,..
-    "Position"  , [xv yt lv h],...
-    "Style"     , "text",...
-    "String"    , "70",...
-    "BackgroundColor",[1 1 1]);
-    yphi=yt-(m+h);
-    Phi_title = uicontrol( ...
-    "parent"              , fig,...
-    "style"               , "text",...
-    "string"              , "Phi",...
-    "units"               , "pixels",...
-    "position"            , [xs yphi+h lslider h],...
-    "fontunits"           , "points",...
-    "fontsize"            , 9,...
-    "horizontalalignment" , "center", ...
-    "background"          , [1 1 1], ...
-    "tag"                 , "PhiTitle" ...
-    );
-
-    Slider_Phi=uicontrol("parent",fig,..
-    "style","slider",..
-    "Min",0,..
-    "Max",100,..
-    "Value",70,..
-    "units","pixels",..
-    "position"            , [xs yphi lslider h],...
-    "tag"                 , "Phi", ...
-    "callback"            , "update_phi()" ...
-    );
-    Value_Phi = uicontrol("parent",fig,..
-    "Position"  , [xv yphi lv h],...
-    "Style"     , "text",...
-    "String"    , "70",...
-    "BackgroundColor",[1 1 1]);
-
-    ypsi=yphi-(m+h);
-    Psi_title = uicontrol( ...
-    "parent"              , fig,...
-    "style"               , "text",...
-    "string"              , "Psi",...
-    "units"               , "pixels",...
-    "position"            , [xs ypsi+h lslider h],...
-    "fontunits"           , "points",...
-    "fontsize"            , 9,...
-    "horizontalalignment" , "center", ...
-    "background"          , [1 1 1], ...
-    "tag"                 , "PsiTitle" ...
-    );
-
-    Slider_Psi=uicontrol("parent",fig,..
-    "style","slider",..
-    "Min",0,..
-    "Max",100,..
-    "Value",70,..
-    "units","pixels",..
-    "position"            , [xs ypsi lslider h],...
-    "tag"                 , "Psi", ...
-    "callback"            , "update_psi()" ...
-    );
-    Value_Psi = uicontrol("parent",fig,..
-    "Position"  , [xv ypsi lv h],...
-    "Style"     , "text",...
-    "String"    , "70",...
-    "BackgroundColor",[1 1 1]);
-
-    ybtn= ypsi -(m+h);
-    wb=40;eb=13;
-    Start = uicontrol("parent",fig, ..
-    "Position"  , [xs ybtn wb h],...
-    "Style"     , "pushbutton",...
-    "String"    , "Start",...
-    "callback"  , "levitron_start()");
-    Stop = uicontrol("parent",fig, ..
-    "Position"  , [xs+wb+eb ybtn wb h],...
-    "Style"     , "pushbutton",...
-    "String"    , "Stop",...
-    "callback"  , "levitron_stop()");
-    Reinit = uicontrol("parent",fig, ..
-    "Position"  , [xs+2*(wb+eb) ybtn wb h],...
-    "Style"     , "pushbutton",...
-    "String"    , "Reinit",...
-    "callback"  , "levitron_reinit()");
-
-
-    levitron_controls=[Slider_Height Value_Height
-    Slider_Theta Value_Theta
-    Slider_Phi Value_Phi
-    Slider_Psi Value_Psi]
-
-    update_height(1.72)
-    update_theta(0.28)
-    update_phi(0)
-    update_psi(0)
-endfunction
 //The callbacks
 //-------------------------------------------------------------
 
 function update_height(h)
-    global levitron_controls
-    Slider_Height=levitron_controls(1,1)
-    Value_Height=levitron_controls(1,2)
+    Slider_Height=get("slider_height");
+    Value_Height =get("value_height")
     if argn(2)==1 then
         Slider_Height.Value=(h-1.6)*100/0.2;
     else
         h=Slider_Height.Value
-        h=max(0.001,1.6+h*0.2/100)
+        h=max(0.001, 1.6+h*0.2/100)
     end
-    Value_Height.String=msprintf("%.3f",h)
-    update_state(3,h)
+    Value_Height.String=msprintf("%.3f", h)
+    update_state(3, h)
 endfunction
 
 function update_theta(t)
-    global levitron_controls
-    Slider_Theta=levitron_controls(2,1)
-    Value_Theta=levitron_controls(2,2)
+    Slider_Theta=get("slider_theta")
+    Value_Theta=get("value_theta")
     if argn(2)==1 then
-        Slider_Theta.Value=t*100;
+        Slider_Theta.Value=(t-0.01)*100;
     else
         t=Slider_Theta.Value
-        t=t/100
+        t=t/100 + 0.01
     end
-    Value_Theta.String=msprintf("%.3f",t)
-    update_state(4,t)
+    Value_Theta.String=msprintf("%.3f", t)
+    update_state(4, t)
 endfunction
 
 function update_phi(p)
-    global levitron_controls
-    Slider_Phi=levitron_controls(3,1)
-    Value_Phi=levitron_controls(3,2)
+    Slider_Phi=get("slider_phi")
+    Value_Phi=get("value_phi")
     if argn(2)==1 then
         Slider_Phi.Value=p*100/360;
     else
         p=Slider_Phi.Value
         p=360*p/100
     end
-    Value_Phi.String=msprintf("%.3f",p)
-    update_state(5,p)
+    Value_Phi.String=msprintf("%.3f", p)
+    update_state(5, p)
 endfunction
 
 function update_psi(p)
-    global levitron_controls
-    Slider_Psi=levitron_controls(4,1)
-    Value_Psi=levitron_controls(4,2)
+    Slider_Psi=get("slider_psi")
+    Value_Psi=get("value_psi")
     if argn(2)==1 then
         Slider_Psi.Value=p*100/360;
     else
         p=Slider_Psi.Value
         p=360*p/100
     end
-    Value_Psi.String=msprintf("%.3f",p)
-    update_state(6,p)
+    Value_Psi.String=msprintf("%.3f", p)
+    update_state(6, p)
 endfunction
 
 
 function levitron_start()
-    global  Stop;Stop=%f;
+    global Stop;Stop=%f;
     show();
 endfunction
 
@@ -330,36 +172,36 @@ endfunction
 
 // Callbacks subsidiary functions
 //-------------------------------
-function update_state(k,value)
+function update_state(k, value)
     global y1 state_changed init  Stop changed
     if ~changed then
         if or(k==(4:6)) then value=value*%pi/180;end
         y1(k)=value;
         if init then
-            set_levitron(H,y1),
+            set_levitron(H, y1),
         else
             state_changed=%t;
         end
     end
 endfunction
 
-function set_levitron(H,q)
+function set_levitron(H, q)
     O=H.user_data;
     Data=H.data;
     f=20 //Dilatation factor of X and Y coordinates
-    XYZ=[matrix(Data.x-f*O(1),1,-1)
-    matrix(Data.y-f*O(2),1,-1)
-    matrix(Data.z-O(3),1,-1)];
+    XYZ=[matrix(Data.x-f*O(1), 1, -1)
+    matrix(Data.y-f*O(2), 1, -1)
+    matrix(Data.z-O(3), 1, -1)];
     psi  =q(6); //precession:rotation Oxyz ->Ouvz
     theta=q(4);//nutation Ouvz -> Ouwz'
     phi  =q(5);// rotation propre Ouwz'->0x'y'z' (referentiel attache a la toupie)
 
-    XYZ=euler(psi,theta,phi)*eulerm1(O(6),O(4),O(5))*XYZ
+    XYZ=euler(psi, theta, phi)*eulerm1(O(6), O(4), O(5))*XYZ
 
     drawlater()
-    Data.x=f*q(1)+matrix(XYZ(1,:),4,-1);
-    Data.y=f*q(2)+matrix(XYZ(2,:),4,-1);
-    Data.z=q(3)+matrix(XYZ(3,:),4,-1);
+    Data.x=f*q(1)+matrix(XYZ(1, :), 4, -1);
+    Data.y=f*q(2)+matrix(XYZ(2, :), 4, -1);
+    Data.z=q(3)+matrix(XYZ(3, :), 4, -1);
     H.user_data(1:6)=q(1:6)';
     H.data=Data;
     drawnow()
@@ -373,31 +215,196 @@ function show()
     init=%f;changed=%f
     dt=0.05
     if state_changed then y=y1;end
-    [y,w,iw]=ode(y,0,dt,list(levitron_dyn,a,c,Mc)); y1=y;
+    [y, w, iw]=ode(y, 0, dt, list(levitron_dyn, a, c, Mc)); y1=y;
     realtimeinit(dt)
     t0=dt
     k=1
     while %t
         if state_changed then
-            [y,w,iw]=ode(y1,t0,t0+dt,list(levitron_dyn,a,c,Mc));y1=y;
+            [y, w, iw]=ode(y1, t0, t0+dt, list(levitron_dyn, a, c, Mc));y1=y;
         else
-            [y,w,iw]=ode(y,t0,t0+dt,list(levitron_dyn,a,c,Mc),w,iw);y1=y;
+            [y, w, iw]=ode(y, t0, t0+dt, list(levitron_dyn, a, c, Mc), w, iw);y1=y;
         end
-        if y(3)<=0 then Stop=%t,end
-        if Stop then init=%t,break,end
+        if y(3)<=0 then Stop=%t, end
+        if Stop then init=%t, break, end
         if ~is_handle_valid(H) then break; end
-        set_levitron(H,y(1:6));
+        set_levitron(H, y(1:6));
 
         if %t then
             changed=%t
             update_height(y(3))
             update_theta(y(4)*180/%pi)
-            update_phi(modulo(y(5)*180/%pi,360))
-            update_psi(modulo(y(6)*180/%pi,360))
+            update_phi(modulo(y(5)*180/%pi, 360))
+            update_psi(modulo(y(6)*180/%pi, 360))
             changed=%f
         end
 
         k=k+1;t0=t0+dt;
         realtime(k);
     end
+endfunction
+
+function levitron_create_gui()
+    //Simulation parameters
+    height_param = tlist(["sim_param", "name", "unit", "default"]);
+    height_param.name = "height";
+    height_param.unit = "m";
+    height_param.default = (1.72-1.6)*50;
+
+    theta_param  = tlist(["sim_param", "name", "unit", "default"]);
+    theta_param.name = "theta" 
+    theta_param.unit = "deg"
+    theta_param.default = 28;
+
+    phi_param    = tlist(["sim_param", "name", "unit", "default"]);
+    phi_param.name = "phi"
+    phi_param.unit = "deg"
+    phi_param.default = 0;
+
+    psi_param    = tlist(["sim_param", "name", "unit", "default"]);
+    psi_param.name = "psi"
+    psi_param.unit = "deg"
+    psi_param.default = 0
+
+    param_list = list(height_param, theta_param, phi_param, psi_param);
+
+    //Create the figure and the frame to put the sliders
+    levitron_main_fig = figure( ...
+        "dockable", "off", ...
+        "infobar_visible", "off", ...
+        "toolbar_visible", "off", ...
+        "toolbar", "none", ...
+        "menubar_visible", "off", ...
+        "menubar", "none", ...
+        "default_axes", "on", ...
+        "layout", "none", ...
+        "visible", "off", ...
+        "immediate_drawing", "off", ...
+        "background", -2, ...
+        "figure_position", [0 0], ...
+        "axes_size", [800, 600], ...
+        "figure_name", "Levitron Simulation", ...
+        "tag", "levitron_main_figure");
+
+
+    levitron_main_fig.layout = "gridbag"
+
+    //An empty frame to push parameters on the right when resizing
+    c = createConstraints("gridbag", [1, 1, 1, 1], [0.75, 1], "horizontal", "upper_left", [0, 0], [500, 0])
+    empty_frame = uicontrol(levitron_main_fig, "style", "frame", "constraints", c, "backgroundcolor", [1, 0, 0]);
+
+    c = createConstraints("gridbag", [2, 1, 1, 1], [0.25, 1], "both", "right", [0, 0], [300, 0]);
+    right_frame = uicontrol(levitron_main_fig, "style", "frame", "backgroundcolor", [1, 1, 1], ...
+        "constraints", c);
+
+    right_frame.layout = "border";
+    right_frame.layout_options = createLayoutOptions("border");
+
+    l_border = createBorder("line", "black", 2)
+    param_border = createBorder("titled", l_border, "Simulation Parameters", "center", "top")
+    c = createConstraints("border", "center");
+    param_frame = uicontrol(right_frame, "style", "frame", "backgroundcolor", [1, 1, 1], ...
+        "constraints", c, "tag", "param_frame", "border", param_border, "layout", "gridbag");
+
+    c = createConstraints("border", "bottom", [0, 50]);
+    button_frame = uicontrol(right_frame, "style", "frame", "backgroundcolor", [1, 1, 1], ...
+        "constraints", c, "tag", "button_frame", "layout", "gridbag");
+
+    c = createConstraints("border", "right", [10, 0]);
+    empty_frame = uicontrol(right_frame, "style", "frame", "backgroundcolor", [1, 1, 1], ...
+        "constraints", c);
+
+    c = createConstraints("border", "left", [10, 0]);
+    empty_frame = uicontrol(right_frame, "style", "frame", "backgroundcolor", [1, 1, 1], ...
+        "constraints", c);
+
+    gui_createParamFrame(param_list);
+    gui_createButtonFrame();
+endfunction
+
+function gui_createParamFrame(param_list);
+    param_frame = get("param_frame");
+
+    for i = 1:size(param_list)
+        c = createConstraints("gridbag", [1, i, 1, 1], [1, 1], "both", "left", [5, 0], [25, 0]);
+            name_p = uicontrol(param_frame, ...
+            "Style", "text", ...
+            "String", param_list(i).name + " ", ...
+            "BackgroundColor", [1 1 1], ...
+            "horizontalalignment", "right", ...
+            "constraints", c, ...
+            "tag", "text_" + param_list(i).name); 
+
+        c = createConstraints("gridbag", [2, i, 1, 1], [1, 1], "both", "center", [0, 0], [60, 0]);
+        slider_p = uicontrol(param_frame, ...
+            "Style", "slider", ...
+            "Value", param_list(i).default, ...
+            "Min", 0, ...
+            "Max", 100, ...
+            "callback", "update_" + param_list(i).name + "()", ...
+            "constraints", c, ...
+            "horizontalalignment", "center", ...
+            "backgroundcolor", [1, 1, 1], ...
+            "tag", "slider_" + param_list(i).name);
+
+        c = createConstraints("gridbag", [3, i, 1, 1], [1, 1], "both", "left", [15, 0], [25, 0]);
+        value_p = uicontrol(param_frame, ...
+            "Style", "text", ...
+            "String", msprintf("%.3f", param_list(i).default), ...
+            "BackgroundColor", [1 1 1], ...
+            "constraints", c, ...
+            "foregroundcolor", [0 0 1], ...
+            "horizontalalignment", "right", ...
+            "tag", "value_" + param_list(i).name);
+
+        c = createConstraints("gridbag", [4, i, 1, 1], [1, 1], "both", "right", [5, 0], [25, 0]);
+        unite_p = uicontrol(param_frame, ...
+            "Style", "text", ...
+            "String", " " + param_list(i).unit, ...
+            "BackgroundColor", [1 1 1], ...
+            "constraints", c, ...
+            "horizontalalignment", "left", ...
+            "tag", "unite_" + param_list(i).name);
+    end
+endfunction
+
+
+function gui_createButtonFrame();
+    button_frame = get("button_frame");
+
+    c = createConstraints("gridbag", [1, 1, 1, 1], [1, 1], "horizontal", "left");
+    empty = uicontrol(button_frame, "style", "frame", "backgroundcolor", [1, 1, 1], "constraints", c);
+
+    c = createConstraints("gridbag", [2, 1, 1, 1], [0, 0], "none", "center");
+    Start = uicontrol("parent", button_frame, ...
+        "Style"     , "pushbutton", ...
+        "String"    , "Start", ...
+        "callback"  , "levitron_start()", ...
+        "constraints", c, ...
+        "tag", "Start");
+
+    c = createConstraints("gridbag", [3, 1, 1, 1], [1, 1], "horizontal", "center");
+    empty = uicontrol(button_frame, "style", "frame", "backgroundcolor", [1, 1, 1], "constraints", c);
+
+    c = createConstraints("gridbag", [4, 1, 1, 1], [0, 0], "none", "center");
+    Stop = uicontrol("parent", button_frame, ...
+        "Style"     , "pushbutton", ...
+        "String"    , "Stop", ...
+        "callback"  , "levitron_stop()", ...
+        "constraints", c, ...
+        "tag", "Stop");
+
+    c = createConstraints("gridbag", [5, 1, 1, 1], [1, 1], "horizontal", "center");
+    empty = uicontrol(button_frame, "style", "frame", "backgroundcolor", [1, 1, 1], "constraints", c);
+
+    c = createConstraints("gridbag", [6, 1, 1, 1], [0, 0], "none", "center");
+    Reinit = uicontrol("parent", button_frame, ...
+        "Style"     , "pushbutton", ...
+        "String"    , "Reset", ...
+        "callback"  , "levitron_reinit()", ...
+        "constraints", c, ...
+        "tag", "Reinit");
+
+    c = createConstraints("gridbag", [7, 1, 1, 1], [1, 1], "horizontal", "right");
+    empty = uicontrol(button_frame, "style", "frame", "backgroundcolor", [1, 1, 1], "constraints", c);
 endfunction

@@ -59,6 +59,10 @@ public class SwingScilabTextBox extends JTextArea implements SimpleTextBox {
         super.setText(newText);
     }
 
+    public void setEmptyText() {
+        setText(null);
+    }
+
     /**
      * Gets the text of a Text Widget
      * @return the text of the Text Widget

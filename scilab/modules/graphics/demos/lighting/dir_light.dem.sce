@@ -17,7 +17,7 @@ function demo_dir_light()
     plot3d;l=light();s=gce();
 
     l.light_type = "directional";
-    l.direction = [1 0 1];
+    l.direction = [-1 0 -1];
     l.ambient_color = [0.1 0.1 0.1];
     s.diffuse_color = [0.5 0.4 0.4];
     s.use_color_material = "off";

@@ -36,6 +36,9 @@ int sci_fftw_forget_wisdom(char *fname, void* pvApiCtx)
     FreeFFTWPlan(getSci_Forward_Plan());
 
     call_fftw_forget_wisdom();
+    
+    AssignOutputVariable(pvApiCtx, 1) = 0;
+    ReturnArguments(pvApiCtx);
 
     return 0;
 }

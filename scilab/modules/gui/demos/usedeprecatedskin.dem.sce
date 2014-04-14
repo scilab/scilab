@@ -7,10 +7,10 @@ function usedeprecatedskin()
     c = get(0);
     oldSkin = c.usedeprecatedskin;
     c.usedeprecatedskin = "off";
-    f = figure("dockable", "off" ,"infobar_visible", "off", "toolbar_visible", "off", "menubar_visible", "off", "position", [200 200 240 430], "figure_name", "usedeprecatedskin=""off""");
+    f = figure("dockable", "off" ,"infobar_visible", "off", "toolbar_visible", "off", "menubar_visible", "off", "position", [200 200 240 430], "figure_name", "");
     fr1 = uicontrol("style", "frame", "position", [10 10 220 410], "border", createBorder("etched"));
-    editbox = uicontrol(fr1, "style", "edit", "string", "Edit", "position", [10 370 200 30]);
-    label = uicontrol(fr1, "style", "text", "string", "Text", "position", [10 330 200 30]);
+    label = uicontrol(fr1, "style", "text", "string", "usedeprecatedskin=""off""", "position", [10 370 200 30]);
+    editbox = uicontrol(fr1, "style", "edit", "string", "Edit", "position", [10 330 200 30]);
     button = uicontrol(fr1, "style", "pushbutton", "string", "Pushbutton", "position", [10 290 200 30]);
     checkbox = uicontrol(fr1, "style", "checkbox", "string", "Checkbox", "position", [10 250 200 30]);
     radio = uicontrol(fr1, "style", "radiobutton", "string", "Radiobutton", "position", [10 210 200 30]);
@@ -23,10 +23,10 @@ function usedeprecatedskin()
     c = get(0);
     oldSkin = c.usedeprecatedskin;
     c.usedeprecatedskin = "on";
-    f = figure("dockable", "off" ,"infobar_visible", "off", "toolbar_visible", "off", "menubar_visible", "off", "position", [450 200 240 430], "figure_name", "usedeprecatedskin=""off""");
+    f = figure("dockable", "off" ,"infobar_visible", "off", "toolbar_visible", "off", "menubar_visible", "off", "position", [480 200 240 430], "figure_name", "");
     fr1 = uicontrol("style", "frame", "position", [10 10 220 410], "border", createBorder("etched"));
-    editbox = uicontrol(fr1, "style", "edit", "string", "Edit", "position", [10 370 200 30]);
-    label = uicontrol(fr1, "style", "text", "string", "Text", "position", [10 330 200 30]);
+    label = uicontrol(fr1, "style", "text", "string", "usedeprecatedskin=""on""", "position", [10 370 200 30]);
+    editbox = uicontrol(fr1, "style", "edit", "string", "Edit", "position", [10 330 200 30]);
     button = uicontrol(fr1, "style", "pushbutton", "string", "Pushbutton", "position", [10 290 200 30]);
     checkbox = uicontrol(fr1, "style", "checkbox", "string", "Checkbox", "position", [10 250 200 30]);
     radio = uicontrol(fr1, "style", "radiobutton", "string", "Radiobutton", "position", [10 210 200 30]);

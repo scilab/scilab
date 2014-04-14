@@ -254,7 +254,7 @@ function ierr = uicontrol_generic_test(uicontrol_style)
     // TODO test with wrong values
 
     // --- String ---
-    assert_checkequal(get(h, "string"), "");  // Default value
+    assert_checktrue(isempty(get(h, "string")));  // Default value
     set(h, "string", ["test for string"]);
     assert_checkequal(get(h, "string"), "test for string");
     set(h, "string", "");

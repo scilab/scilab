@@ -15,5 +15,9 @@
         <method name="addThemePath" returnType="void" modifier="static">
             <parameter name="path" type="String"/>
         </method>
+        <method name="findIcon" returnType="String" modifier="static">
+            <parameter name="path" type="String"/>
+            <parameter name="defaultValue" type="boolean"/>
+        </method>
     </object>
 </package>

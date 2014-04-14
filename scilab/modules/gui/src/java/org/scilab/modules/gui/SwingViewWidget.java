@@ -237,7 +237,11 @@ public final class SwingViewWidget {
                 break;
             }
             case __GO_UI_STRING__: {
-                uiControl.setText(((String[]) value)[0]);
+                if (((String[])value).length == 0) {
+                    uiControl.setEmptyText();
+                } else {
+                    uiControl.setText(((String[]) value)[0]);
+                }
                 break;
             }
             case __GO_UI_TOOLTIPSTRING__:

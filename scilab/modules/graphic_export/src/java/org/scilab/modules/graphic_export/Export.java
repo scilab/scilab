@@ -1018,7 +1018,7 @@ public class Export {
                             }
                         } else if (s instanceof Path2D) {
                             StringBuilder buffer = new StringBuilder();
-                            double[] coords = new double[2];
+                            double[] coords = new double[6];
                             PathIterator it = ((Path2D) s).getPathIterator(new AffineTransform());
                             if (!it.isDone()) {
                                 int type = it.currentSegment(coords);

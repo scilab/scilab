@@ -28,6 +28,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 
 import javax.swing.AbstractAction;
 import javax.swing.InputMap;
@@ -90,10 +91,13 @@ public class SwingScilabEditBox extends JScrollPane implements SwingViewObject, 
     private JTextPane textPane = new JTextPane();
     //use to disable wordwarp
     private JPanel noWrapPanel = new JPanel(new BorderLayout());
+    private boolean scrollable = false;
+    private boolean isMultiLine = false;
 
     private Object enterKeyAction;
     private Object tabKeyAction;
     private Object shiftTabKeyAction;
+
 
     private class EditBoxView extends BoxView {
         public EditBoxView(Element elem, int axis) {
@@ -158,9 +162,13 @@ public class SwingScilabEditBox extends JScrollPane implements SwingViewObject, 
      * Constructor
      */
     public SwingScilabEditBox() {
-        super(new JTextPane());
-        textPane = (JTextPane) getViewport().getView();
+        super(new JPanel(new BorderLayout()));
+        noWrapPanel = (JPanel) getViewport().getView();
+        textPane = new JTextPane();
+        noWrapPanel.add(textPane, BorderLayout.CENTER);
+
         setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+        setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         textPane.setEditorKit(new EditBoxEditorKit());
         doc = (StyledDocument) textPane.getDocument();
@@ -262,17 +270,26 @@ public class SwingScilabEditBox extends JScrollPane implements SwingViewObject, 
     }
 
     public void setText(String[] texts) {
-        StringBuffer newText = new StringBuffer(texts[0]);
+        if (texts.length == 0) {
+            try {
+                textPane.setText(null);
+                doc.setParagraphAttributes(0, doc.getLength() - 1, docAttributes, true);
+            } catch (Exception e) {
+                // Do nothing
+            }
+        } else {
+            StringBuffer newText = new StringBuffer(texts[0]);
 
-        for (int i = 1; i < texts.length; ++i) {
-            newText.append("\n" + texts[i]);
-        }
+            for (int i = 1; i < texts.length; ++i) {
+                newText.append("\n" + texts[i]);
+            }
 
-        try {
-            textPane.setText(newText.toString());
-            doc.setParagraphAttributes(0, doc.getLength() - 1, docAttributes, true);
-        } catch (Exception e) {
-            // Do nothing
+            try {
+                textPane.setText(newText.toString());
+                doc.setParagraphAttributes(0, doc.getLength() - 1, docAttributes, true);
+            } catch (Exception e) {
+                // Do nothing
+            }
         }
     }
 
@@ -283,6 +300,11 @@ public class SwingScilabEditBox extends JScrollPane implements SwingViewObject, 
         } catch (Exception e) {
             // Do nothing
         }
+    }
+
+    public void setEmptyText() {
+        textPane.setText(null);
+        doc.setParagraphAttributes(0, doc.getLength() - 1, docAttributes, true);
     }
 
     /**
@@ -488,6 +510,9 @@ public class SwingScilabEditBox extends JScrollPane implements SwingViewObject, 
                 } else {
                     setMultiLineText(false);
                 }
+
+                //refresh scrollable state
+                setScrollable(scrollable);
                 // Force String update
                 update(__GO_UI_STRING__, GraphicController.getController().getProperty(uid, __GO_UI_STRING__));
                 break;
@@ -500,18 +525,56 @@ public class SwingScilabEditBox extends JScrollPane implements SwingViewObject, 
                 } else {
                     setMultiLineText(false);
                 }
+
+                //refresh scrollable state
+                setScrollable(scrollable);
                 // Force String update
                 update(__GO_UI_STRING__, GraphicController.getController().getProperty(uid, __GO_UI_STRING__));
                 break;
             }
             case __GO_UI_STRING__: {
+                String[] str = (String[])value;
+
                 double min = ((Double) controller.getProperty(uid, __GO_UI_MIN__));
                 double max = ((Double) controller.getProperty(uid, __GO_UI_MAX__));
+
+                //if str.length > 1 automactly switch to multiline
+                if (str.length > 1 && max - min <= 1.0 ) {
+                    //update max in model that recall setText
+                    controller.setProperty(uid, __GO_UI_MAX__, min + 2);
+                    return;
+                }
+
+                ArrayList<String> lst = new ArrayList<String>();
+                for (int i = 0 ; i < str.length ; i++) {
+                    String s = str[i];
+                    int index = 0;
+                    int lastIndex = 0;
+                    while ((index = s.indexOf('\n', lastIndex)) != -1) {
+                        lst.add(s.substring(lastIndex, index));
+                        lastIndex = index + 1;
+                    }
+                    if (lastIndex <= s.length()) {
+                        lst.add(s.substring(lastIndex));
+                    }
+                }
+
+                if (lst.size() != str.length) {
+                    String[] newStr = new String[lst.size()];
+                    lst.toArray(newStr);
+                    controller.setProperty(uid,  __GO_UI_STRING__, newStr);
+                    return;
+                }
+
                 if (max - min > 1.0) {
-                    setText((String[]) value);
+                    setText(str);
                     setMultiLineText(true);
                 } else {
-                    setText(((String[]) value)[0]);
+                    if (str.length == 0) {
+                        setEmptyText();
+                    } else {
+                        setText(str[0]);
+                    }
                     setMultiLineText(false);
                 }
                 break;
@@ -525,14 +588,44 @@ public class SwingScilabEditBox extends JScrollPane implements SwingViewObject, 
                 break;
             }
         }
+
+        setMinimumSize(textPane.getMinimumSize());
     }
 
     public void setScrollable(Boolean scrollable) {
+        this.scrollable  = scrollable;
         if (scrollable) {
+            //scrollbar -> true
+            if (isMultiLine) {
+                //wrap -> false
+                setWordWrap(false);
+            } else {
+                //wrap -> false
+                setWordWrap(false);
+            }
+
+            //scrollbar -> true
+            setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        } else {
+            if (isMultiLine) {
+                //wrap -> true
+                setWordWrap(true);
+            } else {
+                //wrap -> false
+                setWordWrap(false);
+            }
+
+            //scrollbar -> false
+            setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        }
+    }
+
+    private void setWordWrap(boolean wordWrap) {
+        if (wordWrap) {
+            setViewportView(textPane);
+        } else {
             setViewportView(noWrapPanel);
             noWrapPanel.add(textPane);
-        } else {
-            setViewportView(textPane);
         }
     }
 
@@ -541,6 +634,7 @@ public class SwingScilabEditBox extends JScrollPane implements SwingViewObject, 
     }
 
     public void setMultiLineText(boolean enable) {
+        isMultiLine = enable;
         KeyStroke enterKey = KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0);
         KeyStroke tabKey = KeyStroke.getKeyStroke(KeyEvent.VK_TAB, 0);
         KeyStroke shiftTabKey = KeyStroke.getKeyStroke(KeyEvent.VK_TAB, KeyEvent.SHIFT_DOWN_MASK);

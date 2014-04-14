@@ -61,6 +61,7 @@ int sci_figure(char * fname, void* pvApiCtx)
     BOOL bMenuBar = TRUE;
     BOOL bToolBar = TRUE;
     BOOL bInfoBar = TRUE;
+    BOOL bResize = TRUE;
     int iMenubarType = 1; // Create a 'figure' menubar by default
     int iToolbarType = 1; // Create a 'figure' toolbar by default
     double dblId = 0;
@@ -197,6 +198,7 @@ int sci_figure(char * fname, void* pvApiCtx)
                     stricmp(pstProName, "position") != 0 &&
                     stricmp(pstProName, "menubar_visible") != 0 &&
                     stricmp(pstProName, "toolbar_visible") != 0 &&
+                    stricmp(pstProName, "resize") != 0 &&
                     stricmp(pstProName, "infobar_visible") != 0)
             {
                 freeAllocatedSingleString(pstProName);
@@ -376,6 +378,16 @@ int sci_figure(char * fname, void* pvApiCtx)
                     return 1;
                 }
             }
+            else if (stricmp(pstProName, "resize") == 0)
+            {
+                bResize = getStackArgumentAsBoolean(pvApiCtx, piAddrData);
+                if (bResize == -1)
+                {
+                    Scierror(999, _("Wrong value for '%s' property: '%s' or '%s' expected."), "resize", "on", "off");
+                    freeAllocatedSingleString(pstProName);
+                    return 1;
+                }
+            }
             else if (stricmp(pstProName, "menubar_visible") == 0)
             {
                 bMenuBar = getStackArgumentAsBoolean(pvApiCtx, piAddrData);
@@ -449,6 +461,7 @@ int sci_figure(char * fname, void* pvApiCtx)
                     stricmp(pstProName, "figure_size") == 0 ||
                     stricmp(pstProName, "axes_size") == 0 ||
                     stricmp(pstProName, "position") == 0 ||
+                    stricmp(pstProName, "resize") == 0 ||
                     stricmp(pstProName, "menubar_visible") == 0 ||
                     stricmp(pstProName, "toolbar_visible") == 0 ||
                     stricmp(pstProName, "infobar_visible") == 0))
@@ -552,6 +565,14 @@ int sci_figure(char * fname, void* pvApiCtx)
         }
     }
 
+    if (position)
+    {
+        int pos[2];
+        pos[0] = (int)position[0];
+        pos[1] = (int)position[1];
+        setGraphicObjectProperty(iFig, __GO_POSITION__, pos, jni_int_vector, 2);
+    }
+
     //axes_size
     if (axesSize)
     {
@@ -576,6 +597,9 @@ int sci_figure(char * fname, void* pvApiCtx)
         figure[1] = (int)figureSize[1];
         setGraphicObjectProperty(iFig, __GO_SIZE__, figure, jni_int_vector, 2);
     }
+
+
+    setGraphicObjectProperty(iFig, __GO_RESIZE__, (void*)&bResize, jni_bool, 1);
 
     //return new created fig
     createScalarHandle(pvApiCtx, iRhs + 1, getHandle(iFig));

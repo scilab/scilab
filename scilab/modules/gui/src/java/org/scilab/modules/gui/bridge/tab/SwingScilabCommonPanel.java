@@ -217,9 +217,16 @@ public class SwingScilabCommonPanel {
             }
             case __GO_RESIZE__:
                 component.getParentWindow().setResizable((Boolean) value);
+                //on some cases, set resizable can change frame size. ( L&F, Window Manager, ... )
+                //so force set of axes_size.
+                SwingScilabCommonPanel.update(component, __GO_AXES_SIZE__, GraphicController.getController().getProperty(component.getId(), __GO_AXES_SIZE__));
+
                 break;
             case __GO_LAYOUT__:
                 LayoutType newLayout = LayoutType.intToEnum((Integer) value);
+
+                component.getWidgetPane().invalidate();
+
                 switch (newLayout) {
                     case BORDER: {
                         Integer[] padding = (Integer[]) GraphicController.getController().getProperty(component.getId(), __GO_BORDER_OPT_PADDING__);
@@ -253,6 +260,9 @@ public class SwingScilabCommonPanel {
                         component.setHasLayout(false);
                         break;
                 }
+
+                component.getWidgetPane().validate();
+
                 break;
             case __GO_GRID_OPT_PADDING__:
             case __GO_GRID_OPT_GRID__: {
@@ -274,7 +284,16 @@ public class SwingScilabCommonPanel {
                     localGrid[0] = 1;
                 }
 
-                component.getWidgetPane().setLayout(new GridLayout(localGrid[0], localGrid[1], padding[0], padding[1]));
+                component.getWidgetPane().invalidate();
+
+                GridLayout gl = (GridLayout)component.getWidgetPane().getLayout();
+                gl.setRows(localGrid[0]);
+                gl.setColumns(localGrid[1]);
+                gl.setHgap(padding[0]);
+                gl.setVgap(padding[1]);
+
+                component.getWidgetPane().validate();
+
                 break;
             }
             case __GO_BORDER_OPT_PADDING__: {
@@ -285,8 +304,16 @@ public class SwingScilabCommonPanel {
                     break;
                 }
 
-                Integer[] padding = (Integer[]) GraphicController.getController().getProperty(component.getId(), __GO_BORDER_OPT_PADDING__);
-                component.getWidgetPane().setLayout(new BorderLayout(padding[0], padding[1]));
+                component.getWidgetPane().invalidate();
+
+                Integer[] padding = (Integer[])value;
+                BorderLayout bl = (BorderLayout)component.getWidgetPane().getLayout();
+                bl.setHgap(padding[0]);
+                bl.setVgap(padding[1]);
+
+
+                component.getWidgetPane().validate();
+
                 break;
             }
             case __GO_UI_ICON__: {
@@ -471,9 +498,9 @@ public class SwingScilabCommonPanel {
             component.getWidgetPane().revalidate();
         } else {
             if (member instanceof SwingScilabScrollableFrame || member instanceof SwingScilabFrame) {
-                component.getWidgetPane().add((Component) member, JLayeredPane.FRAME_CONTENT_LAYER);
+                component.getWidgetPane().add((Component) member, 0);
             } else {
-                component.getWidgetPane().add((Component) member, JLayeredPane.DEFAULT_LAYER + 1);
+                component.getWidgetPane().add((Component) member, 0);
             }
         }
     }

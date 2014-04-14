@@ -188,6 +188,10 @@ public class Triangle extends ConvexObject {
             Object key = filter == Texture.Filter.LINEAR ? RenderingHints.VALUE_INTERPOLATION_BILINEAR : RenderingHints.VALUE_INTERPOLATION_NEAREST_NEIGHBOR;
             DrawTools.drawTriangleTexture(g2d, image, new double[] {textureCoords[0].getX(), textureCoords[1].getX(), textureCoords[2].getX()}, new double[] {textureCoords[0].getY(), textureCoords[1].getY(), textureCoords[2].getY()}, new double[] {vertices[0].getX(), vertices[1].getX(), vertices[2].getX()}, new double[] {vertices[0].getY(), vertices[1].getY(), vertices[2].getY()}, key);
         } else if (isMonochromatic()) {
+            // AA generates artifacts on the triangles borders whent they slightlyt overlap
+            // So we disable it just ot fill the triangle
+            Object prevAA = g2d.getRenderingHint(RenderingHints.KEY_ANTIALIASING);
+            g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
             Path2D contour = getProjectedContour();
             //Area area = new Area(contour);
             // Trick to paint the triangle and its outline
@@ -202,6 +206,7 @@ public class Triangle extends ConvexObject {
             }
             g2d.setColor(getColor(0));
             g2d.fill(contour);
+            g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, prevAA);
         } else {
             DrawTools.fillGouraud(g2d, this);
         }

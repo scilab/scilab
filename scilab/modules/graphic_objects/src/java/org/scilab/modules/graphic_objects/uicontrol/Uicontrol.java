@@ -445,7 +445,7 @@ public class Uicontrol extends GraphicObject {
     private Double[] position = {DEFAULT_X, DEFAULT_Y, DEFAULT_WIDTH, DEFAULT_HEIGHT};
     private String relief = RELIEF_DEFAULT;
     private Double[] sliderStep = {0.01, 0.1};
-    private String[] string = {""};
+    private String[] string = new String[] {};
     private int stringColNb = 1; // Used for tables
     private String[] tooltipString = {""};
     private String units = "pixels";

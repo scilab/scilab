@@ -15,6 +15,7 @@ package org.scilab.modules.gui.editor;
 
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.CallGraphicController;
 import org.scilab.modules.renderer.CallRenderer;
@@ -247,8 +248,8 @@ public class GEDPicker {
      * @return true if picked the surface otherwise returns false
      */
     boolean getSurface(Integer obj, Integer[] position) {
-
-        Integer figure = (Integer)GraphicController.getController().getProperty(obj, GraphicObjectProperties.__GO_PARENT_FIGURE__);
+        GraphicObject go = GraphicController.getController().getObjectFromId(obj);
+        Integer figure = go.getParentFrameOrFigure();
         double[] mat = DrawerVisitor.getVisitor(figure).getAxesDrawer().getProjection(axesUID).getMatrix();
         double[][] factors = axes.getScaleTranslateFactors();
 
@@ -276,12 +277,12 @@ public class GEDPicker {
      * @return true if picked the legend otherwise returns false
      */
     boolean getLegend(Integer obj, Integer[] position) {
-
         Integer[] axesSize = {0, 0};
         Double delta;
         Double[] axesBounds = { 0., 0. }, dPosition = { 0., 0. }, legendPos = { 0., 0. }, legendBounds = { 0., 0., 0., 0. }, dimension = { 0., 0. };
 
-        Integer figure = (Integer)GraphicController.getController().getProperty(obj, GraphicObjectProperties.__GO_PARENT_FIGURE__);
+        GraphicObject go = GraphicController.getController().getObjectFromId(obj);
+        Integer figure = go.getParentFrameOrFigure();
         axesSize = (Integer[])GraphicController.getController().getProperty(figure, GraphicObjectProperties.__GO_AXES_SIZE__);
         axesBounds = (Double[])GraphicController.getController().getProperty(axesUID, GraphicObjectProperties.__GO_AXES_BOUNDS__);
         legendPos = (Double[])GraphicController.getController().getProperty(obj, GraphicObjectProperties.__GO_POSITION__);

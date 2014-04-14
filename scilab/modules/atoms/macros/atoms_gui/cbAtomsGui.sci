@@ -17,12 +17,13 @@ function cbAtomsGui()
 
     UItag = get(gcbo,"Tag");
 
-    if get(UItag, "string") == "" then
-        return;
-    end
     // Display selected module information
     // =========================================================================
     if or(UItag == ["LeftListbox";"HomeListbox"]) then
+
+        if get(UItag, "string") == "" then
+            return;
+        end
         // Get the selected module
         selected = getSelected(UItag);
         if selected(1) == "module" then

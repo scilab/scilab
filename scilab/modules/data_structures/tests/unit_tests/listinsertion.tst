@@ -7,7 +7,7 @@
 // <-- CLI SHELL MODE -->
 
 // test des insertions dans les listes
-a=1,b=3;c=2;d=[1 2 3];e=[3 4 5];f=[10;20];g=[44 55];
+a=1;b=3;c=2;d=[1 2 3];e=[3 4 5];f=[10;20];g=[44 55];
 h=5;i=4;a0=10;c0=20;b0=30;g0=[44 55 66; 10 20 30];
 
 
@@ -96,7 +96,7 @@ l=list(a,1/%s,g);l(2)('num')(1,2)=33;l(2)('den')(1,2)=%s+1;
 if l<>list(a,[1 33]./[%s %s+1],g) then pause,end
 
 
-//a=1,b=3;c=2;d=[1 2 3];e=[3 4 5];f=[10;20];g=[44 55];
+//a=1;b=3;c=2;d=[1 2 3];e=[3 4 5];f=[10;20];g=[44 55];
 //h=5;i=4;a0=10;c0=20;b0=30;g0=[44 55 66; 10 20 30];
 l=list(a);l(1)(1)=3;x=a;x(1)=3;if l<>list(x) then pause,end
 l=list(e);l(1)(2)=[];x=e;x(2)=[];if l<>list(x) then pause,end
@@ -114,7 +114,7 @@ l=list(b,g0);l(2)(2,3)=3;x=g0;x(2,3)=3;if l<>list(b,x) then pause,end
 l=list(b,g0);l(2)(2,2:3)=[1 3];x=g0;x(2,2:3)=[1 3];if l<>list(b,x) then pause,end
 
 
-a=1:10,b=3:2:33;c=(-10:0)';d=[1 2+%s 3];e=['1';'2';'3';'4'];
+a=1:10;b=3:2:33;c=(-10:0)';d=[1 2+%s 3];e=['1';'2';'3';'4'];
 f=[%t %t %f];g=['12345','abcdefghijk'];
 h=rand(3,3);i=eye(10,10);a0=10+%s;c0=20;b0=sparse(eye(30,30));
 
@@ -217,7 +217,7 @@ function M=%to_e(varargin)
 endfunction
 
 
-%to_6=%to_e
+%to_6=%to_e;
 
 function M=%to_i_to(varargin)
   M=varargin($);N=varargin($-1)
@@ -235,199 +235,185 @@ function M=%to_i_to(varargin)
 endfunction
 
 M=mlist(['to','V','N'],[1 2 3;4 5 6],['a','b','c';'d','e','f']);
-M.row1(2)=M.row2(1)
+M.row1(2)=M.row2(1);
+assert_checkequal(M.V, [1 4 3;4 5 6]);
+assert_checkequal(M.N, ['a','d','c';'d','e','f']);
 l=list(1,M,2);
-l(2).row1(2)=M.row1(1)
-l(1)='foo'
+l(2).row1(2)=M.row1(1);
+assert_checkequal(l(1), 1);
+assert_checkequal(l(2).V, [1 1 3;4 5 6]);
+assert_checkequal(l(2).N, ['a','a','c';'d','e','f']);
+assert_checkequal(M.V, [1 4 3;4 5 6]);
+assert_checkequal(M.N, ['a','d','c';'d','e','f']);
+l(1)="foo";
+assert_checkequal(l(1), "foo");
 
 //test of insertion in structs (a particular mlist)
-
-clear S
+clear S;
 S.a=11;
 S(2).a=12;
-Sr=mlist(['st','dims','a'],int32([2,1]),list(11,12));
-if or(S<>Sr) pause,end
+assert_checkequal(S.a, list(11,12));
 
-clear S
-S.a=11
-S.a(2,2)=12
-if or(S.a<>diag([11,12])) pause,end
+clear S;
+S.a=11;
+S.a(2,2)=12;
+assert_checkequal(S.a, diag([11,12]));
 
-clear S
+clear S;
 S.a=11;
 S(2).b=12;
-Sr=mlist(['st','dims','a','b'],int32([2,1]),list(11,[]),list([],12));
-if or(S<>Sr) pause,end
+assert_checkequal(S.a, list(11,[]));
+assert_checkequal(S.b, list([],12));
 
-clear S S1 S2
+clear S S1 S2;
 S.a=11;
 S(2).b=12;
 
 S1.a=33;
 S1.b='toto';
 S(1)=S1;
-Sr=mlist(['st','dims','a','b'],int32([2,1]),list(33,[]),list('toto',12));
-if or(S<>Sr) pause,end
-
+assert_checkequal(S.a, list(33,[]));
+assert_checkequal(S.b, list("toto",12));
 
 S(2,2)=S1;
-Sr=mlist(['st','dims','a','b'],int32([2,2]),list(33,[],[],33),list('toto',12,[],'toto'));
-if or(S<>Sr) pause,end
+assert_checkequal(S.a, list(33,[],[],33));
+assert_checkequal(S.b, list("toto",12,[],"toto"));
 
 S2.a=-5;
 S2.c=8;
 
 S(2,2,2)=S2;
-Sr=mlist(['st','dims','a','b','c'],int32([2,2,2]),..
-	 list(33,[],[],33,[],[],[],-5),..
-	 list('toto',12,[],'toto',[],[],[],[]),..
-	 list([],[],[],[],[],[],[],8));
-if or(S<>Sr) pause,end
+assert_checkequal(S.a, list(33,[],[],33,[],[],[],-5));
+assert_checkequal(S.b, list("toto",12,[],"toto",[],[],[],[]));
+assert_checkequal(S.c, list([],[],[],[],[],[],[],8));
 
 S1=S(:,1,1);
-Sr=mlist(['st','dims','a','b','c'],int32([2,1]),list(33,[]),..
-	 list('toto',12),list([],[]));
-if or(S1<>Sr) pause,end
+assert_checkequal(S1.a, list(33,[]));
+assert_checkequal(S1.b, list("toto",12));
+assert_checkequal(S1.c, list([],[]));
 
 S1=S(1:2,1,1);
-Sr=mlist(['st','dims','a','b','c'],int32([2,1]),list(33,[]),..
-	 list('toto',12),list([],[]));
-if or(S1<>Sr) pause,end
+assert_checkequal(S1.a, list(33,[]));
+assert_checkequal(S1.b, list("toto",12));
+assert_checkequal(S1.c, list([],[]));
 
 S1=S([1 1],1,1);
-Sr=mlist(['st','dims','a','b','c'],int32([2,1]),list(33,33),..
-	 list('toto','toto'),list([],[]));
-if or(S1<>Sr) pause,end
+assert_checkequal(S1.a, list(33,33));
+assert_checkequal(S1.b, list("toto","toto"));
+assert_checkequal(S1.c, list([],[]));
 
 S1=S([1 2 1],1,1);
-Sr=mlist(['st','dims','a','b','c'],int32([3,1]),list(33,[],33),..
-	 list('toto',12,'toto'),list([],[],[]));
-if or(S1<>Sr) pause,end
+assert_checkequal(S1.a, list(33,[],33));
+assert_checkequal(S1.b, list("toto",12,"toto"));
+assert_checkequal(S1.c, list([],[],[]));
 
 S1=S(1,:,1);
-Sr=mlist(['st','dims','a','b','c'],int32([1,2]),list(33,[]),..
-	 list('toto',[]),list([],[]));
-if or(S1<>Sr) pause,end
+assert_checkequal(S1.a, list(33,[]));
+assert_checkequal(S1.b, list("toto",[]));
+assert_checkequal(S1.c, list([],[]));
 
 S1=S(:,:);
-Sr=mlist(['st','dims','a','b','c'],int32([2,4]),list(33,[],[],33,[],[],[],-5),..
-	 list('toto',12,[],'toto',[],[],[],[]),..
-	 list([],[],[],[],[],[],[],8));
-if or(S1<>Sr) pause,end
-
+assert_checkequal(S1.a, list(33,[],[],33,[],[],[],-5));
+assert_checkequal(S1.b, list("toto",12,[],"toto",[],[],[],[]));
+assert_checkequal(S1.c, list([],[],[],[],[],[],[],8));
 
 S=struct();
 S.a(2).b=1;
-Sr=mlist(['st','dims','a'],int32([1,1]),mlist(['st','dims','b'],int32([2,1]),list([],1)));
-if or(S<>Sr) pause,end
+assert_checkequal(S.a.b, list([],1));
 
 clear S;
 S.a(2).b=1;
-Sr=mlist(['st','dims','a'],int32([1,1]),mlist(['st','dims','b'],int32([2,1]),list([],1)));
-if or(S<>Sr) pause,end
+assert_checkequal(S.a.b, list([],1));
 
 S=struct();
 S(2).a.b=1;
-Sr=mlist(['st','dims','a'],int32([2,1]),..
-	 list([],mlist(['st','dims','b'],int32([1,1]),1)));
-if or(S<>Sr) pause,end
+assert_checkequal(S(1).a, []);
+assert_checkequal(S(2).a.b, 1);
 
 clear S;
 S(2).a.b=1;
-Sr=mlist(['st','dims','a'],int32([2,1]),..
-	 list([],mlist(['st','dims','b'],int32([1,1]),1)));
-if or(S<>Sr) pause,end
+assert_checkequal(S(1).a, []);
+assert_checkequal(S(2).a.b, 1);
 
 clear S;
 S(2).a(3).b=1;
-
-Sr=mlist(['st','dims','a'],int32([2,1]),..
-	 list([],mlist(['st','dims','b'],int32([3,1]),list([],[],1))));
-if or(S<>Sr) pause,end
+assert_checkequal(S(1).a, []);
+assert_checkequal(S(2).a.b, list([],[], 1));
 
 //
-S=mlist(['st','dims','a','b'],int32([1 1 2]),list('1','2'),list(2,[]));
+S = struct("a", "1");
+S(1,1,2).a = "2";
+S(1).b = 2;
+assert_checkequal(S.a, list("1", "2"));
+assert_checkequal(S.b, list(2, []));
 S(2).a=5;
-Sr=  mlist(["st","dims","a","b"],int32([1,1,2]),list("1",5),list(2,[]));
-if or(S<>Sr) pause,end
+assert_checkequal(S.a, list("1", 5));
 
-S(1,3,2).a='foo';
-Sr=  mlist(["st","dims","a","b"],int32([1,3,2]),list("1",[],[],5,[],"foo"),..
-	   list(2,[],[],[],[],[]));
-if or(S<>Sr) pause,end
+S(1,3,2).a="foo";
+assert_checkequal(S.a, list("1",[],[],5,[],"foo"));
+assert_checkequal(S.b, list(2,[],[],[],[],[]));
 
 S(1,3,2,2).b=[33 44];
-Sr=mlist(["st","dims","a","b"],int32([1,3,2,2]),..
-	 list("1",[],[],5,[],"foo" ,[],[],[],[],[],[]),..
-	 list(2,[],[],[],[],[],[],[],[],[],[],[33,44]));
-if or(S<>Sr) pause,end
+assert_checkequal(S.a, list("1",[],[],5,[],"foo" ,[],[],[],[],[],[]));
+assert_checkequal(S.b, list(2,[],[],[],[],[],[],[],[],[],[],[33,44]));
 
 clear S;S(1,2).a=3;S(3).a=44 ;
-Sr = mlist(["st","dims","a"],int32([1,3]),list([],3,44));
-if or(S<>Sr) pause,end
+assert_checkequal(S.a, list([],3,44));
 
 clear S;S.a=3;S(3).a=44;
-Sr = mlist(["st","dims","a"],int32([3,1]),list(3,[],44));
-if or(S<>Sr) pause,end
+assert_checkequal(S.a, list(3,[],44));
 
 clear S;S(4).a=3;
-Sr = mlist(["st","dims","a"],int32([4,1]),list([],[],[],3));   
-if or(S<>Sr) pause,end
-
+assert_checkequal(S.a, list([],[],[],3));
 
 clear S;
 S(1).a(1,1:4)=1;
 S(1).b(1:3)=5;
-Sr=mlist(["st","dims","a","b"],int32([1,1]),[1,1,1,1],[5;5;5]);
-if or(S<>Sr) pause,end
-
+assert_checkequal(S.a, [1,1,1,1]);
+assert_checkequal(S.b, [5;5;5]);
 
 S=struct();
 S.b(1,1)=3;
-Sr=mlist(["st","dims","b"],int32([1,1]),3);
-if or(S<>Sr) pause,end
+assert_checkequal(S.b, 3);
 
 clear S;
 S(1,1).a(1,1:4)=1;
 S(1,1).b(1,1:3)=5;
-Sr=mlist(["st","dims","a","b"],int32([1,1]),[1,1,1,1],[5,5,5]);
-if or(S<>Sr) pause,end
+assert_checkequal(S.a, [1,1,1,1]);
+assert_checkequal(S.b, [5,5,5]);
 
 clear S;
 S(1,1).a(1:4)=1;
 S(1,1).b(1:3)=5;
-Sr=mlist(["st","dims","a","b"],int32([1,1]),[1;1;1;1],[5;5;5]);
-if or(S<>Sr) pause,end
+assert_checkequal(S.a, [1;1;1;1]);
+assert_checkequal(S.b, [5;5;5]);
 
 clear S;
 S(1,2).a(1:4)=1;
 S(2,1).b(1:3)=5;
-Sr=mlist(["st","dims","a","b"],int32([2,2]),list([],[],[1,1,1,1]',[]),list([],[5,5,5]',[],[]));
-if or(S<>Sr) pause,end
+assert_checkequal(S.a, list([],[],[1,1,1,1]',[]));
+assert_checkequal(S.b, list([],[5,5,5]',[],[]));
 
 clear S;
 S(1,2).a(2).b(1,2)=1;
-Sr=mlist(["st","dims","a"],int32([1,2]),list([],mlist(["st","dims","b"],int32([2,1]),list([],[0,1]))));
-if or(S<>Sr) pause,end
+assert_checkequal(S(1).a, []);
+assert_checkequal(S(2).a.b, list([],[0,1]));
 
 clear S;
 S(1,2).a(1,2).b(1,2,3)=4;
-Sr=mlist(["st","dims","a"],int32([1,2]),list([],mlist(["st","dims","b"],..
-	int32([1,2]),list([],mlist(["hm","dims","entries"],int32([1,2,3]),..
-	[0;0;0;0;0;4])))));
-if or(S<>Sr) pause,end
+assert_checkequal(S(1).a, []);
+assert_checkequal(S(2).a.b, list([], hypermat([1 2 3], [0;0;0;0;0;4])));
 
-mtlb_mode(%t) 
+mtlb_mode(%t)
 clear S;S(1,2).a=3;S(3).a=44 ;
-Sr = mlist(["st","dims","a"],int32([1,3]),list([],3,44));
-if or(S<>Sr) pause,end
+assert_checkequal(S.a, list([],3,44));
+assert_checkequal(size(S), [1, 3]);
 
 clear S;S.a=3;S(3).a=44;
-Sr = mlist(["st","dims","a"],int32([1,3]),list(3,[],44));
-if or(S<>Sr) pause,end
-
+assert_checkequal(S.a, list(3,[],44));
+assert_checkequal(size(S), [1, 3]);
 
 clear S;S(4).a=3;
-Sr = mlist(["st","dims","a"],int32([1,4]),list([],[],[],3));   
-if or(S<>Sr) pause,end
-mtlb_mode(%f) 
+assert_checkequal(S.a, list([],[],[],3));
+assert_checkequal(size(S), [1, 4]);
+mtlb_mode(%f)

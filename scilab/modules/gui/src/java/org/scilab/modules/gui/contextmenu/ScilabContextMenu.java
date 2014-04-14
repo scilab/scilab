@@ -80,6 +80,10 @@ public class ScilabContextMenu extends ScilabWidget implements ContextMenu {
         ScilabBridge.setText(this, newText);
     }
 
+    public void setEmptyText() {
+        setText(null);
+    }
+
     /**
      * Gets the text of a Scilab ContextMenu
      * @return the Text to set to the ContextMenu

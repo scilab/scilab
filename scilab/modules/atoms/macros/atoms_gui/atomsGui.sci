@@ -182,6 +182,10 @@ function atomsGui()
         delete(f);
     end //creation
 
+    if ~isempty(get("atomsFigure")) then
+        return;
+    end
+
     if ~ exists("atomsinternalslib") then
         load("SCI/modules/atoms/macros/atoms_internals/lib");
     end
@@ -225,7 +229,7 @@ function atomsGui()
     set("backButton", "String", _("Back"));
     set("removeButton", "String", _("Remove"));
     set("installButton", "String", _("Install"));
-    set("autoloadCheck", "String", _("Autoload"));
+    set("autoloadCheck", "String", _("Autoload"), "TooltipString", _("Autoload"));
 
 
     homeFrame = get("HomeFrame");

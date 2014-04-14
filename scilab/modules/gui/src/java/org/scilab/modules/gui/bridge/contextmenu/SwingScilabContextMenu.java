@@ -290,6 +290,10 @@ public class SwingScilabContextMenu extends JPopupMenu implements SwingViewObjec
         throw new UnsupportedOperationException();
     }
 
+    public void setEmptyText() {
+        throw new UnsupportedOperationException();
+    }
+
     /**
      * Add a Menu to this MenuItem
      * @param childMenu the Menu we want to add

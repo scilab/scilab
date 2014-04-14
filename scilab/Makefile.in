@@ -115,17 +115,23 @@ bin_PROGRAMS = scilab-bin$(EXEEXT) scilab-cli-bin$(EXEEXT)
 @USE_STATIC_SYSTEM_LIB_FALSE@am__append_5 = -lstdc++
 #-static-libgfortran
 @IS_MACOSX_TRUE@am__append_6 = -framework Cocoa
+@NEED_JAVA_TRUE@am__append_7 = \
+@NEED_JAVA_TRUE@			$(top_builddir)/modules/console/libsciconsole.la \
+@NEED_JAVA_TRUE@			$(top_builddir)/modules/jvm/libscijvm.la \
+@NEED_JAVA_TRUE@			$(top_builddir)/modules/commons/libscicommons.la
 
-# Force the libscijvm to be linked first. Under Debian, this avoid some reordering issues during the link
-@GUI_TRUE@am__append_7 = $(top_builddir)/modules/jvm/libscijvm.la
-@MPI_TRUE@am__append_8 = modules/startup/src/c/initMPI.c
-@MPI_TRUE@am__append_9 = $(OPENMPI_CXXFLAGS)
-@MPI_TRUE@am__append_10 = modules/startup/src/c/initMPI.c
-@MPI_TRUE@am__append_11 = $(OPENMPI_CXXFLAGS)
+@NEED_JAVA_FALSE@am__append_8 = \
+@NEED_JAVA_FALSE@			$(top_builddir)/modules/console/libsciconsole-minimal.la \
+@NEED_JAVA_FALSE@			$(top_builddir)/modules/jvm/libscijvm-disable.la
+
+@MPI_TRUE@am__append_9 = modules/startup/src/c/initMPI.c
+@MPI_TRUE@am__append_10 = $(OPENMPI_CXXFLAGS)
+@MPI_TRUE@am__append_11 = modules/startup/src/c/initMPI.c
+@MPI_TRUE@am__append_12 = $(OPENMPI_CXXFLAGS)
 
 #  The user wants to compile the localization files
-@GENERATE_LOCALIZATION_FILES_TRUE@am__append_12 = localization
-@COMPILATION_TESTS_TRUE@am__append_13 = check-java
+@GENERATE_LOCALIZATION_FILES_TRUE@am__append_13 = localization
+@COMPILATION_TESTS_TRUE@am__append_14 = check-java
 DIST_COMMON = $(top_srcdir)/Makefile.call_scilab.am \
 	$(srcdir)/Makefile.in $(srcdir)/Makefile.am \
 	$(top_srcdir)/configure $(am__configure_deps) \
@@ -270,7 +276,10 @@ am_scilab_bin_OBJECTS =  \
 scilab_bin_OBJECTS = $(am_scilab_bin_OBJECTS)
 am__DEPENDENCIES_1 =
 am__DEPENDENCIES_2 = $(am__DEPENDENCIES_1)
-scilab_bin_DEPENDENCIES = $(am__DEPENDENCIES_2) $(am__append_7) \
+scilab_bin_DEPENDENCIES = $(top_builddir)/modules/libscilab.la \
+	$(top_builddir)/modules/libscilab-cli.la $(am__DEPENDENCIES_1) \
+	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_2) \
+	$(am__DEPENDENCIES_1) $(am__append_7) $(am__append_8) \
 	$(top_builddir)/modules/libscilab.la $(am__DEPENDENCIES_1) \
 	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1)
 scilab_bin_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) \
@@ -819,7 +828,7 @@ scilab_bin_CPPFLAGS = -I$(top_srcdir)/modules/console/includes/ \
 	-I$(top_srcdir)/modules/localization/includes/ \
 	-I$(top_srcdir)/modules/core/src/c/ \
 	-I$(top_srcdir)/modules/dynamic_link/includes/ \
-	$(EIGEN_CPPFLAGS) $(AM_CPPFLAGS) $(am__append_9)
+	$(EIGEN_CPPFLAGS) $(AM_CPPFLAGS) $(am__append_10)
 
 # --no-undefined --relax
 
@@ -827,26 +836,32 @@ scilab_bin_CPPFLAGS = -I$(top_srcdir)/modules/console/includes/ \
 # (causing issues on some platform)
 COMMON_LIBS = $(LTLIBINTL)
 scilab_bin_SOURCES = modules/startup/src/cpp/scilab.cpp \
-	$(am__append_8)
+	$(am__append_9)
+
+# the scilab-bin object file itself uses symbols from at least libscilab-cli.la,
+# libsciconsole-minimal.la and libscijvm-disable.la, so we have to link with these
+# libraries explicitly unless we link with -Wl,--copy-dt-needed-entries
 
 # BLAS_LIBS & LAPACK_LIBS are explicitly linked at the end. Unlike Scilab 5 in which the binary
 # is in C, Scilab 6 main is in C++. For some reasons (ie, I don't know why), libtool places blas and
 # lapack at the beginning of the order of the link. This caused some issues with the overload of the
 # xerbla function
-scilab_bin_LDADD = $(COMMON_LIBS) $(am__append_7) \
-	$(top_builddir)/modules/libscilab.la $(BLAS_LIBS) \
-	$(LAPACK_LIBS) $(FLIBS)
+scilab_bin_LDADD = $(top_builddir)/modules/libscilab.la \
+	$(top_builddir)/modules/libscilab-cli.la $(OPENMPI_LIBS) \
+	$(XML_LIBS) $(COMMON_LIBS) $(FLIBS) $(am__append_7) \
+	$(am__append_8) $(top_builddir)/modules/libscilab.la \
+	$(BLAS_LIBS) $(LAPACK_LIBS) $(FLIBS)
 
 # Match scilab -nwni (ie command line without graphics)
 scilab_cli_bin_SOURCES = modules/startup/src/cpp/scilab.cpp \
-	$(am__append_10)
-scilab_cli_bin_CPPFLAGS = -DWITHOUT_GUI $(scilab_bin_CPPFLAGS) \
 	$(am__append_11)
+scilab_cli_bin_CPPFLAGS = -DWITHOUT_GUI $(scilab_bin_CPPFLAGS) \
+	$(am__append_12)
 
 # See the comment about scilab_bin_LDADD (relative to BLAS_LIBS & LAPACK_LIBS)
 scilab_cli_bin_LDADD = $(COMMON_LIBS) $(top_builddir)/modules/libscilab-cli.la $(BLAS_LIBS) $(LAPACK_LIBS) $(FLIBS)
 LANG_DOMAIN = scilab
-TARGETS_ALL = macros $(am__append_12) $(am__append_13)
+TARGETS_ALL = macros $(am__append_13) $(am__append_14)
 
 # check is performed with scilab, so use the serial-tests on purpose
 TESTS_ENVIRONMENT = LANG=C $(top_builddir)/bin/scilab-cli -nb -noatomsautoload -f

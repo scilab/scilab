@@ -63,8 +63,8 @@ jvm \
 action_binding \
 graphic_objects \
 renderer \
-graphic_export \
 gui \
+graphic_export \
 graphics \
 optimization \
 symbolic \

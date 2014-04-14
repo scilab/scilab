@@ -104,13 +104,24 @@ public class SwingScilabPushButton extends JButton implements SwingViewObject, S
      * a LaTeX string, in this case the setIcon method of this object is used.
      */
     public void setText(String text) {
-        this.text = text;
-        isLaTeX = ScilabSpecialTextUtilities.setText(this, text);
-        if (isLaTeX) {
-            super.setText("");
+        if (text == null) {
+            this.text = null;
+            isLaTeX = false;
+            super.setIcon(null);
+            super.setText(null);
         } else {
-            super.setText(text);
+            this.text = text;
+            isLaTeX = ScilabSpecialTextUtilities.setText(this, text);
+            if (isLaTeX) {
+                super.setText("");
+            } else {
+                super.setText(text);
+            }
         }
+    }
+
+    public void setEmptyText() {
+        setText(null);
     }
 
     /**

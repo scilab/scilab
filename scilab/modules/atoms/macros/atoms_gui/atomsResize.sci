@@ -8,12 +8,17 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function atomsResize()
-    // Load Atoms Internals lib if it's not already loaded
-    if ~exists("atomsinternalslib") then
-        load("SCI/modules/atoms/macros/atoms_internals/lib");
-    end
 
-    HomeElements = atomsGetHomeListboxElts();
-    set("HomeListbox", "String", HomeElements("items_str"));
-    set("HomeListbox", "UserData", HomeElements("items_mat"));
+    if ~isempty(get("HomeListbox")) then
+    // Load Atoms Internals lib if it's not already loaded
+        if ~exists("atomsinternalslib") then
+            load("SCI/modules/atoms/macros/atoms_internals/lib");
+        end
+
+        HomeElements = atomsGetHomeListboxElts();
+        if ~isempty(get("HomeListbox")) then
+            set("HomeListbox", "String", HomeElements("items_str"));
+            set("HomeListbox", "UserData", HomeElements("items_mat"));
+        end
+    end
 endfunction

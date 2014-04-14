@@ -20,6 +20,9 @@ demo_viewCode(SCI+ "/modules/gui/demos/uicontrol_image.dem.sce");
 // Play with image size
 scales = [1:.01:2 2:-0.01:1];
 for k=scales
+    if ~is_handle_valid(h) then
+        break
+    end
     scaledImageWidth = int(imageWidth * k);
     scaledImageHeight = int(imageHeight * k);
     scaleXY = [scaledImageWidth/imageWidth scaledImageHeight/imageHeight];
@@ -32,6 +35,9 @@ end
 xShear = [0:.01:1 1:-0.01:0];
 yShear = xShear;
 for k=1:size(xShear, "*")
+    if ~is_handle_valid(h) then
+        break
+    end
     valueProp = [1 1 xShear(k) yShear(k)];
     set(h, "Value", valueProp);
     sleep(10);
@@ -39,6 +45,9 @@ end
 
 // Play with rotation
 for k=0:180
+    if ~is_handle_valid(h) then
+        break
+    end
     valueProp = [1 1 0 0 k];
     set(h, "Value", valueProp);
     sleep(10);

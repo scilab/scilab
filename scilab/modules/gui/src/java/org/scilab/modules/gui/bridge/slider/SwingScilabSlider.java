@@ -65,12 +65,12 @@ public class SwingScilabSlider extends JSlider implements SwingViewObject, Simpl
     private Border defaultBorder = null;
 
     static {
-        if(OS.get() == OS.UNIX) {
+        if (OS.get() == OS.UNIX) {
             // Force Slider on Unix not to display value upon
             UIManager.put("Slider.paintValue", false);
         }
     }
-    
+
     class CtrlLeftAction extends AbstractAction {
         private static final long serialVersionUID = -3289281207742516486L;
 
@@ -278,6 +278,9 @@ public class SwingScilabSlider extends JSlider implements SwingViewObject, Simpl
         this.setName(text);
     }
 
+    public void setEmptyText() {
+        this.setName(null);
+    }
     /**
      * Set the horizontal alignment for the Slider text
      * @param alignment the value for the alignment (See ScilabAlignment.java)
@@ -474,7 +477,12 @@ public class SwingScilabSlider extends JSlider implements SwingViewObject, Simpl
             }
             case __GO_UI_VALUE__ : {
                 Double[] doubleValue = ((Double[]) value);
-                setUserValue(doubleValue[0]);
+                if (doubleValue.length != 0) {
+                    setUserValue(doubleValue[0]);
+                } else {
+                    Double minValue = (Double) controller.getProperty(uid, __GO_UI_MIN__);
+                    setUserValue(minValue);
+                }
                 break;
             }
             default: {

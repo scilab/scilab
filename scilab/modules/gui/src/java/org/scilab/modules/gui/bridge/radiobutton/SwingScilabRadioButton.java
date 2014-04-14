@@ -399,4 +399,8 @@ public class SwingScilabRadioButton extends JRadioButton implements SwingViewObj
             setForeground(color);
         }
     }
+
+    public void setEmptyText() {
+        setText(null);
+    }
 }

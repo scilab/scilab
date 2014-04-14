@@ -270,8 +270,8 @@ DIST_SUBDIRS = prebuildjava threads operations output_stream arnoldi \
 	linear_algebra localization polynomials special_functions time \
 	windows_tools sparse completion history_manager string hdf5 \
 	fftw statistics dynamic_link console spreadsheet tclsci \
-	commons jvm action_binding graphic_objects renderer \
-	graphic_export gui graphics optimization symbolic randlib \
+	commons jvm action_binding graphic_objects renderer gui \
+	graphic_export graphics optimization symbolic randlib \
 	interpolation sound overloading m2sci development_tools \
 	compatibility_functions helptools umfpack demo_tools \
 	genetic_algorithms simulated_annealing matio atoms graph xcos \
@@ -595,8 +595,8 @@ SUBDIRS = prebuildjava threads operations output_stream arnoldi \
 	polynomials special_functions time windows_tools sparse \
 	completion history_manager output_stream string hdf5 fftw \
 	statistics dynamic_link console arnoldi spreadsheet tclsci \
-	commons jvm action_binding graphic_objects renderer \
-	graphic_export gui graphics optimization symbolic randlib \
+	commons jvm action_binding graphic_objects renderer gui \
+	graphic_export graphics optimization symbolic randlib \
 	interpolation sound overloading m2sci development_tools \
 	compatibility_functions helptools umfpack demo_tools \
 	genetic_algorithms simulated_annealing parameters matio atoms \

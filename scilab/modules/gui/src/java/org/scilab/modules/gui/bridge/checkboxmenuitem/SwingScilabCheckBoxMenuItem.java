@@ -107,6 +107,11 @@ public class SwingScilabCheckBoxMenuItem extends JCheckBoxMenuItem implements Sw
         }
     }
 
+    public void setEmptyText() {
+        this.text = null;
+        this.setText(null);
+    }
+
     /**
      * Add a callback to the MenuItem, this callback is a Scilab command
      * @param callback the callback to set.

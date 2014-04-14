@@ -60,6 +60,10 @@ public class ScilabRadioButton extends ScilabWidget implements RadioButton {
         ScilabBridge.setText(this, newText);
     }
 
+    public void setEmptyText() {
+        setText(null);
+    }
+
     /**
      * Gets the text of a RadioButton
      * @return text of the RadioButton

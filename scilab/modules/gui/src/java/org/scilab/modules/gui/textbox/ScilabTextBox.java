@@ -62,6 +62,10 @@ public class ScilabTextBox extends ScilabText implements TextBox {
         ScilabBridge.setText(this, newText);
     }
 
+    public void setEmptyText() {
+        setText(null);
+    }
+
     /**
      * Gets the text of a TextBox
      * @return text of the TextBox

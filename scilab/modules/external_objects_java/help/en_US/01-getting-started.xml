@@ -63,7 +63,7 @@ public class HelloWorld {
       ]]></programlisting>
         <programlisting role="example"><![CDATA[
 // How to compile the Java code from Scilab
-javacode=mgetl('/tmp/HelloWorld.java')
+javacode=mgetl(fullfile(TMPDIR, 'HelloWorld.java'));
 jcompile("com.foo.HelloWorld",javacode);
       ]]></programlisting>
         <para>Once the compiled version of this Java class exists, we can start Scilab and try to get Scilab to show us the various messages.
@@ -149,7 +149,7 @@ public class Inspector {
         </para>
         <programlisting role="example"><![CDATA[
 // How to compile the Java code from Scilab
-javacode= mgetl('/tmp/Inspector.java')
+javacode= mgetl(fullfile(TMPDIR, 'Inspector.java'));
 jcompile("com.foo.Inspector",javacode);
       ]]></programlisting>
         To start, import the Inspector class and create an Inspector object:

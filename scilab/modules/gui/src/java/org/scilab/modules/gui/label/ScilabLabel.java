@@ -60,6 +60,10 @@ public class ScilabLabel extends ScilabWidget implements Label {
         ScilabBridge.setText(this, newText);
     }
 
+    public void setEmptyText() {
+        setText(null);
+    }
+
     /**
      * Gets the text of a Label
      * @return text of the Label

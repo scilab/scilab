@@ -214,11 +214,11 @@ public final class PlotAction extends CommonCallBack {
                 break;
         }
         if (editor instanceof SwingScilabVariableEditor) {
-            model.execCommand("clf();" + com);
+            model.execCommand("scf();" + com);
         } else {
             // Browse var case
             try {
-                asynchronousScilabExec(null, "clf();" + com);
+                asynchronousScilabExec(null, "scf();" + com);
             } catch (InterpreterException e1) {
                 System.err.println("An error in the interpreter has been catched: " + e1.getLocalizedMessage());
             }

@@ -41,7 +41,7 @@ int sci_saveGui(char *fname, void* pvApiCtx)
 
     int iRhs = nbInputArgument(pvApiCtx);
 
-    CheckInputArgument(pvApiCtx, 2, 3);
+    CheckInputArgument(pvApiCtx, 2, 2);
     CheckOutputArgument(pvApiCtx, 1, 1);
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr1);

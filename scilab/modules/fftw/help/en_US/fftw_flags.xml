@@ -62,28 +62,27 @@
         </para>
         <para>
             <warning>
-                Warning: the default value "FFTW_MEASURE" gives
+                Warning: the default value "FFTW_ESTIMATE" gives generally 
                 quite efficient plans. Try to change it only if the fft efficiency is
-                really important and you have a lot of simmilar calls to do.
+                really important and you have a lot of similar calls to do.
             </warning>
         </para>
         
         <para>Accepted entries are :</para>
         <itemizedlist>
             <listitem>
-                <para>FFTW_ESTIMATE or 64. Specifies that, instead of actual
+                <para>{FFTW_ESTIMATE} or 64. Specifies that, instead of actual
                     measurements of different algorithms, a simple heuristic is
                     used to pick a (probably sub-optimal) plan quickly. With this
                     flag, the input/output arrays are not overwritten during
-                    planning. It is the defailt value
+                    planning. It is the default value
                 </para>
             </listitem>
             <listitem>
-                <para>"FFTW_MEASURE" or 0. tells FFTW to find an optimized
+                <para>FFTW_MEASURE or 0. tells FFTW to find an optimized
                     plan by actually computing several FFTs and measuring their
                     execution time. Depending on your machine, this can take some
                     time (often a few seconds). 
-                    planning option.
                 </para>
             </listitem>
             <listitem>
@@ -107,22 +106,22 @@
         
         
         <para>Remark : when using FFTW_MEASURE/FFTW_PATIENT/FFTW_EXHAUSTIVE you must
-            call two times fftw. (first call for initialisation, second and others
+            call fftw twice. (first call for initialization, second and others
             calls for computation)
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
-A=rand(1,2^9+2^15+2^17);
+A=rand(1, 2^9 + 2^15);
 fftw_forget_wisdom();
 fftw_flags("FFTW_ESTIMATE");
-timer();y=fft(A);timer()//first call determines the plan
-timer();y=fft(A);timer() //subsequent similar calls
+timer(); y=fft(A); timer()//first call determines the plan
+timer(); y=fft(A); timer() //subsequent similar calls
 fftw_flags("FFTW_MEASURE");
 fftw_forget_wisdom();
-timer();y=fft(A);timer()//first call determines the plan
-timer();y=fft(A);timer() //subsequent similar calls
+timer(); y=fft(A); timer()//first call determines the plan, this takes about 5min
+timer(); y=fft(A); timer() //subsequent similar calls
 
  ]]></programlisting>
     </refsection>

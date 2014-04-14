@@ -54,7 +54,6 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
     private final String emfDesc = Messages.gettext("Enhanced Metafile image (EMF)");
     private final String epsDesc = Messages.gettext("Encapsulated PostScript image (EPS)");
     private final String psDesc = Messages.gettext("PostScript image (PS)");
-    private final String figDesc = Messages.gettext("FIG image");
     private final String pdfDesc = Messages.gettext("PDF image");
     private final String svgDesc = Messages.gettext("SVG image");
     private final String allFilesDesc = Messages.gettext("All files");
@@ -67,7 +66,6 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
     private final String emf = "emf";
     private final String eps = "eps";
     private final String ps = "ps";
-    private final String fig = "fig";
     private final String pdf = "pdf";
     private final String svg = "svg";
     private final String allFiles = "*";
@@ -114,7 +112,6 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
         v.add(new FileMask(gif, gifDesc));
         v.add(new FileMask(bmp, bmpDesc));
         v.add(new FileMask(ppm, ppmDesc));
-        v.add(new FileMask(fig, figDesc));
         v.add(new FileMask(allFiles, allFilesDesc)); // should always be at the last position
 
         super.setDialogTitle(Messages.gettext("Export"));
@@ -180,7 +177,7 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
 
             if (extensionCombo.equals(allFiles)) {
                 exportManager();
-            } else if (extensionCombo.equals(emf) || extensionCombo.equals(eps) || extensionCombo.equals(ps) || extensionCombo.equals(fig) || extensionCombo.equals(pdf) || extensionCombo.equals(svg)) {
+            } else if (extensionCombo.equals(emf) || extensionCombo.equals(eps) || extensionCombo.equals(ps) || extensionCombo.equals(pdf) || extensionCombo.equals(svg)) {
                 vectorialExport(extensionCombo);
             } else {
                 bitmapExport(extensionCombo);
@@ -220,24 +217,6 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
         return null;
     }
 
-    public void updateFileName(File file) {
-        if (file != null) {
-            String fileName = file.getName();
-            int i = fileName.lastIndexOf('.');
-            if (i != -1) {
-                fileName = fileName.substring(0, i);
-            }
-
-            FileMask ft = (FileMask) super.getFileFilter();
-            String ext = ft.getExtensionFromFilter();
-
-            if (ext != null && !ext.equals(allFiles)) {
-                fileName += "." + ext;
-                setSelectedFile(new File(fileName));
-            }
-        }
-    }
-
     /**
      * Manage the export (bitmap/vectorial format) and export errors
      */
@@ -264,8 +243,6 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
         } else if (userExtension.equals(emf)) {
             vectorialExport(userExtension);
         } else if (userExtension.equals(eps)) {
-            vectorialExport(userExtension);
-        } else if (userExtension.equals(fig)) {
             vectorialExport(userExtension);
         } else if (userExtension.equals(pdf)) {
             vectorialExport(userExtension);

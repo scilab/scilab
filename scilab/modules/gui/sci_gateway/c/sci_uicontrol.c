@@ -163,6 +163,7 @@ int sci_uicontrol(char *fname, void* pvApiCtx)
             OverLoad(1);
             return FALSE;
         }
+#if 0 // Allow XML loading
         else if (isStringType(pvApiCtx, piAddr))
         {
             char* pstXmlfile = NULL;
@@ -203,9 +204,8 @@ int sci_uicontrol(char *fname, void* pvApiCtx)
             AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
             ReturnArguments(pvApiCtx);
             return TRUE;
-
-
         }
+#endif // Allow XML loading
         else /* Get parent ID */
         {
             int* piAddr = NULL;

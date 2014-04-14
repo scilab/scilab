@@ -91,9 +91,24 @@ scilab_bin_SOURCES = modules/startup/src/cpp/scilab.cpp
 
 scilab_bin_LDADD 		= $(COMMON_LIBS)
 
-if GUI
-# Force the libscijvm to be linked first. Under Debian, this avoid some reordering issues during the link
-scilab_bin_LDADD += $(top_builddir)/modules/jvm/libscijvm.la
+# the scilab-bin object file itself uses symbols from at least libscilab-cli.la,
+# libsciconsole-minimal.la and libscijvm-disable.la, so we have to link with these
+# libraries explicitly unless we link with -Wl,--copy-dt-needed-entries
+scilab_bin_LDADD 	= \
+			$(top_builddir)/modules/libscilab.la \
+			$(top_builddir)/modules/libscilab-cli.la \
+			$(OPENMPI_LIBS) $(XML_LIBS) \
+			$(COMMON_LIBS) $(FLIBS)
+
+if NEED_JAVA
+scilab_bin_LDADD += \
+			$(top_builddir)/modules/console/libsciconsole.la \
+			$(top_builddir)/modules/jvm/libscijvm.la \
+			$(top_builddir)/modules/commons/libscicommons.la
+else
+scilab_bin_LDADD += \
+			$(top_builddir)/modules/console/libsciconsole-minimal.la \
+			$(top_builddir)/modules/jvm/libscijvm-disable.la
 endif
 
 # BLAS_LIBS & LAPACK_LIBS are explicitly linked at the end. Unlike Scilab 5 in which the binary
