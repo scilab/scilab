@@ -25,6 +25,7 @@
 
 using namespace types;
 
+int ast::Ast::globalNodeNumber = 0;
 static bool isIntTrue(InternalType* _pIT);
 
 bool bConditionState(types::InternalType *_pITResult)

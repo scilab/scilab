@@ -28,80 +28,96 @@
 #define EXTERN_AST __declspec (dllimport)
 #endif
 #else
-#define EXTERN_AST 
+#define EXTERN_AST
 #endif
 
 namespace ast
 {
 
-    /** \brief Abstract an Abstract Syntax Tree node. */
-    class EXTERN_AST Ast
+/** \brief Abstract an Abstract Syntax Tree node. */
+class EXTERN_AST Ast
+{
+    /** \name Ctor & dtor.
+    ** \{ */
+public:
+    /** \brief Construct an Ast node.
+    ** \param location scanner position informations */
+    Ast (const Location& location) : _location (location)
     {
-        /** \name Ctor & dtor.
-        ** \{ */
-    public:
-        /** \brief Construct an Ast node.
-        ** \param location scanner position informations */
-        Ast (const Location& location) : _location (location)
-        {
-        }
+        nodeNumber = globalNodeNumber++;
+    }
 
 
-        /** \brief Destroys an Ast node. */
-        virtual ~Ast ()
-        {
-        }
-        /** \} */
+    /** \brief Destroys an Ast node. */
+    virtual ~Ast ()
+    {
+    }
+    /** \} */
 
-        virtual Ast* clone() = 0;
+    virtual Ast* clone() = 0;
 
-        /** \name Accessors.
-        ** \{ */
-    public:
-        /** \brief Set scanner position informations.
-        ** \param location scanner position informations
-        **
-        ** Return a reference to this.
-        */
-        Ast& location_set (const Location& location)
-        {
-            _location = location;
-            return *this;
-        }
-        /** \brief Get scanner position informations stored. */
-        const Location& location_get () const
-        {
-            return _location;
-        }
+    /** \name Accessors.
+    ** \{ */
+public:
+    /** \brief Set scanner position informations.
+    ** \param location scanner position informations
+    **
+    ** Return a reference to this.
+    */
+    Ast& location_set (const Location& location)
+    {
+        _location = location;
+        return *this;
+    }
+    /** \brief Get scanner position informations stored. */
+    const Location& location_get () const
+    {
+        return _location;
+    }
 
-        /** \brief Get scanner position informations stored. */
-        Location& location_get ()
-        {
-            return _location;
-        }
-        /** \} */
+    /** \brief Get scanner position informations stored. */
+    Location& location_get ()
+    {
+        return _location;
+    }
+    /** \} */
 
-        /** \name Visitors entry point.
-        ** \{ */
-    public:
-        /** \brief Accept a const visitor \a v. */
-        virtual void accept (ConstVisitor& v) const = 0;
-        /** \brief Accept a non const visitor \a v. */
-        virtual void accept (Visitor& v) = 0;
-        /** \} */
+    /** \name Visitors entry point.
+    ** \{ */
+public:
+    /** \brief Accept a const visitor \a v. */
+    virtual void accept (ConstVisitor& v) const = 0;
+    /** \brief Accept a non const visitor \a v. */
+    virtual void accept (Visitor& v) = 0;
+    /** \} */
 
-        void elapsedtime_set(double _dblElapsedTime) { m_dblElapsedTime = _dblElapsedTime; }
+    void elapsedtime_set(double _dblElapsedTime)
+    {
+        m_dblElapsedTime = _dblElapsedTime;
+    }
 
-    private:
-        /** \brief Construct an Ast by copy. */
-        Ast (const Ast&);
-        /** \brief Assign an Ast to this. */
-        Ast& operator= (const Ast&);
+    static void reinit_nodeNumber()
+    {
+        globalNodeNumber = 0;
+    }
+    int nodeNumber_get() const
+    {
+        return nodeNumber;
+    }
 
-        /** \brief Scanner position informations. */
-        Location _location;
-        double m_dblElapsedTime;
-    };
+
+private:
+    /** \brief Construct an Ast by copy. */
+    Ast (const Ast&);
+    /** \brief Assign an Ast to this. */
+    Ast& operator= (const Ast&);
+
+    /** \brief Scanner position informations. */
+    Location _location;
+    double m_dblElapsedTime;
+    int nodeNumber;
+    static int globalNodeNumber;
+};
 
 } // namespace ast
 
