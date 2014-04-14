@@ -673,6 +673,11 @@ int getAllocatedMatrixOfWideString(void* _pvCtx, int* _piAddress, int* _piRows, 
             FREE(piLen);
             piLen = NULL;
         }
+        if (*_pwstData)
+        {
+            FREE(*_pwstData);
+            *_pwstData = NULL;
+        }
         printError(&sciErr, 0);
         return sciErr.iErr;
     }
@@ -886,7 +891,6 @@ int allocSingleString(void* _pvCtx, int _iVar, int _iLen, const char** _pstStrin
     SciErr sciErr = sciErrInit();
     int iNewPos     = Top - Rhs + _iVar;
     int iAddr       = *Lstk(iNewPos);
-    int iTotalLen   = 0;
     int* piAddr     = NULL;
     int* piOffset   = NULL;
     char* pstString = NULL;

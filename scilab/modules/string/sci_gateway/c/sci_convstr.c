@@ -113,7 +113,6 @@ int sci_convstr(char *fname, unsigned long fname_len)
     /* To input the string matrix */
     if (getAllocatedMatrixOfWideString(pvApiCtx, piAddr1, &iRows1, &iCols1, &pstInput))
     {
-        freeAllocatedMatrixOfWideString(iRows1, iCols1, pstInput);
         Scierror(999, _("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"), fname, 1);
         return 0;
     }
