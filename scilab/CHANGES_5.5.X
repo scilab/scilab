@@ -16,8 +16,9 @@ Scilab Bug Fixes
 Xcos Bug Fixes
 ==============
 
-* Bug #12751 fixed - cdummy_ entry point was not found when using Code Generation.
+* Bug #9996 fixed - The RELATION_OP box drawn in the work space is not compliant to the programming.
 
+* Bug #12751 fixed - cdummy_ entry point was not found when using Code Generation.
 
 
                      Changes between version 5.4.1 and 5.5.0

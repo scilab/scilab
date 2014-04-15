@@ -759,8 +759,8 @@
         <add as="fillColor" value="white"/>
     </add>
     <add as="RELATIONALOP" extend="blockWithLabel">
-        <!-- FIXME : Show parameters over block  -->
-        <add as="displayedLabel" value="Relational&lt;BR&gt;         op : &amp;&lt;"/>
+        <add as="displayedLabel"/>
+        <!-- value for the label defined in the interface function of block -->  
     </add>
     <add as="TEXT_f" extend="Label">
         <!-- <add as="displayedLabel" value="Text"/>  -->
