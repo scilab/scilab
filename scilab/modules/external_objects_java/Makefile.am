@@ -139,7 +139,7 @@ libsciexternal_objects_java_la_testsdir = $(mydatadir)/tests/
 libsciexternal_objects_java_la_tests_DATA = \
 tests/libintl.jar
 
-if GUI
+if NEED_JAVA
 USEANT=1
 endif
 

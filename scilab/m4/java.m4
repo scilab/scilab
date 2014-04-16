@@ -711,15 +711,15 @@ AC_DEFUN([AC_JAVA_JNI_LIBS], [
 
 AC_DEFUN([AC_JAVA_WITH_JDK], [
     AC_ARG_WITH(jdk,
-    AC_HELP_STRING([--with-jdk=DIR],[use JDK from DIR]),
-    ok=$withval, ok=no)
-    if test "$ok" = "no" ; then
+    AC_HELP_STRING([--with-jdk=DIR],[use JDK from DIR]))
+
+    if test "$with_jdk" = "no" -o -z "$with_jdk"; then
         NO=op
-    elif test "$ok" = "yes" || test ! -d "$ok"; then
+    elif test "$with_jdk" = "yes" -o \( ! -d "$with_jdk" \); then
         AC_MSG_ERROR([--with-jdk=DIR option, must pass a valid DIR])
-    elif test "$ok" != "no" ; then
-        AC_MSG_RESULT([Use JDK path specified ($ok)])
-        ac_java_jvm_dir=$ok
+    elif test "$with_jdk" != "no" ; then
+        AC_MSG_RESULT([Use JDK path specified ($with_jdk)])
+        ac_java_jvm_dir=$with_jdk
         ac_java_jvm_name=jdk
     fi
 ])

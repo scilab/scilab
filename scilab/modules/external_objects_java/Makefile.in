@@ -788,7 +788,7 @@ libsciexternal_objects_java_la_testsdir = $(mydatadir)/tests/
 libsciexternal_objects_java_la_tests_DATA = \
 tests/libintl.jar
 
-@GUI_TRUE@USEANT = 1
+@NEED_JAVA_TRUE@USEANT = 1
 all: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) all-am
 
