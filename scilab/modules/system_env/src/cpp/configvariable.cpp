@@ -27,23 +27,13 @@ std::list<std::wstring> ConfigVariable::m_ModuleList;
 
 void ConfigVariable::setModuleList(std::list<std::wstring>& _pModule_list)
 {
-    m_ModuleList.clear();
+    m_ModuleList = _pModule_list;
 
-    std::list<std::wstring>::iterator it;
-    for (it = _pModule_list.begin() ; it != _pModule_list.end() ; it++)
-    {
-        m_ModuleList.push_back(*it);
-    }
 }
 
 std::list<std::wstring> ConfigVariable::getModuleList()
 {
-    std::list<std::wstring> moduleList;
-    std::list<std::wstring>::iterator it;
-    for (it = m_ModuleList.begin() ; it != m_ModuleList.end() ; it++)
-    {
-        moduleList.push_back(*it);
-    }
+    std::list<std::wstring> moduleList(m_ModuleList);
     return moduleList;
 }
 /*
@@ -991,3 +981,46 @@ std::list< std::pair<int, std::wstring> >& ConfigVariable::getWhere()
 /*
 ** \}
 */
+
+/*
+** module called with variable by reference
+** \{
+*/
+
+std::list<std::wstring> ConfigVariable::m_ReferenceModules;
+
+bool ConfigVariable::checkReferenceModule(std::wstring _module)
+{
+    std::list<std::wstring>::iterator it = m_ReferenceModules.begin();
+    for ( ; it != m_ReferenceModules.end() ; ++it)
+    {
+        if (*it == _module)
+        {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+void ConfigVariable::addReferenceModule(std::wstring _module)
+{
+    if (checkReferenceModule(_module) == false)
+    {
+        m_ReferenceModules.push_back(_module);
+    }
+}
+
+void ConfigVariable::removeReferenceModule(std::wstring _module)
+{
+    if (checkReferenceModule(_module))
+    {
+        m_ReferenceModules.remove(_module);
+    }
+}
+
+std::list<std::wstring> ConfigVariable::getReferenceModules()
+{
+    std::list<std::wstring> l(m_ReferenceModules);
+    return l;
+}

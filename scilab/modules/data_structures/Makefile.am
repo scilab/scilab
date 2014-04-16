@@ -16,7 +16,6 @@ src/fortran/insertfield.f
 
 GATEWAY_C_SOURCES = \
 sci_gateway/c/sci_glist.c \
-sci_gateway/c/sci_definedfields.c \
 sci_gateway/c/gw_data_structures1.c \
 sci_gateway/c/gw_data_structures2.c
 
@@ -24,10 +23,8 @@ GATEWAY_CPP_SOURCES = \
 sci_gateway/cpp/data_structures_gw.cpp \
 sci_gateway/cpp/sci_getfield.cpp \
 sci_gateway/cpp/sci_setfield.cpp \
-sci_gateway/cpp/sci_rlist.cpp
-
-GATEWAY_FORTRAN_SOURCES = \
-sci_gateway/fortran/sci_f_definedfields.f
+sci_gateway/cpp/sci_rlist.cpp \
+sci_gateway/cpp/sci_definedfields.cpp
 
 libscidata_structures_la_CPPFLAGS = \
 -I$(srcdir)/includes/ \
@@ -51,7 +48,7 @@ endif
 
 
 libscidata_structures_algo_la_SOURCES = $(DATA_STRUCTURES_FORTRAN_SOURCES)
-libscidata_structures_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libscidata_structures_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
 libscidata_structures_algo_la_CPPFLAGS = $(libscidata_structures_la_CPPFLAGS)
 
 # For the code check (splint)

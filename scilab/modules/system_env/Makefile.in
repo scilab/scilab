@@ -152,7 +152,8 @@ am__objects_1 = src/cpp/libscisystem_env_la-setenvvar.lo \
 	src/cpp/libscisystem_env_la-promptmode.lo \
 	src/cpp/libscisystem_env_la-formatmode.lo \
 	src/cpp/libscisystem_env_la-sci_ieee.lo \
-	src/cpp/libscisystem_env_la-sci_simpMode.lo
+	src/cpp/libscisystem_env_la-sci_simpMode.lo \
+	src/cpp/libscisystem_env_la-reference_modules.lo
 am_libscisystem_env_la_OBJECTS = $(am__objects_1)
 libscisystem_env_la_OBJECTS = $(am_libscisystem_env_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
@@ -517,7 +518,8 @@ SYSTEM_ENV_CPP_SOURCES = \
 	src/cpp/promptmode.cpp \
 	src/cpp/formatmode.cpp \
 	src/cpp/sci_ieee.cpp \
-	src/cpp/sci_simpMode.cpp
+	src/cpp/sci_simpMode.cpp \
+	src/cpp/reference_modules.cpp
 
 pkglib_LTLIBRARIES = libscisystem_env.la
 libscisystem_env_la_SOURCES = $(SYSTEM_ENV_CPP_SOURCES)
@@ -646,6 +648,8 @@ src/cpp/libscisystem_env_la-sci_ieee.lo: src/cpp/$(am__dirstamp) \
 	src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscisystem_env_la-sci_simpMode.lo: src/cpp/$(am__dirstamp) \
 	src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscisystem_env_la-reference_modules.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
 
 libscisystem_env.la: $(libscisystem_env_la_OBJECTS) $(libscisystem_env_la_DEPENDENCIES) $(EXTRA_libscisystem_env_la_DEPENDENCIES) 
 	$(AM_V_CXXLD)$(CXXLINK) -rpath $(pkglibdir) $(libscisystem_env_la_OBJECTS) $(libscisystem_env_la_LIBADD) $(LIBS)
@@ -663,6 +667,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscisystem_env_la-home.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscisystem_env_la-lasterror.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscisystem_env_la-promptmode.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscisystem_env_la-reference_modules.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscisystem_env_la-sci_home.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscisystem_env_la-sci_ieee.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscisystem_env_la-sci_mode.Plo@am__quote@
@@ -786,6 +791,13 @@ src/cpp/libscisystem_env_la-sci_simpMode.lo: src/cpp/sci_simpMode.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/sci_simpMode.cpp' object='src/cpp/libscisystem_env_la-sci_simpMode.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisystem_env_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscisystem_env_la-sci_simpMode.lo `test -f 'src/cpp/sci_simpMode.cpp' || echo '$(srcdir)/'`src/cpp/sci_simpMode.cpp
+
+src/cpp/libscisystem_env_la-reference_modules.lo: src/cpp/reference_modules.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisystem_env_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscisystem_env_la-reference_modules.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscisystem_env_la-reference_modules.Tpo -c -o src/cpp/libscisystem_env_la-reference_modules.lo `test -f 'src/cpp/reference_modules.cpp' || echo '$(srcdir)/'`src/cpp/reference_modules.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscisystem_env_la-reference_modules.Tpo src/cpp/$(DEPDIR)/libscisystem_env_la-reference_modules.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/reference_modules.cpp' object='src/cpp/libscisystem_env_la-reference_modules.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisystem_env_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscisystem_env_la-reference_modules.lo `test -f 'src/cpp/reference_modules.cpp' || echo '$(srcdir)/'`src/cpp/reference_modules.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo

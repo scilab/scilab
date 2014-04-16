@@ -23,7 +23,8 @@ SYSTEM_ENV_CPP_SOURCES = \
 	src/cpp/promptmode.cpp \
 	src/cpp/formatmode.cpp \
 	src/cpp/sci_ieee.cpp \
-	src/cpp/sci_simpMode.cpp
+	src/cpp/sci_simpMode.cpp \
+	src/cpp/reference_modules.cpp
 
 pkglib_LTLIBRARIES = libscisystem_env.la
 

@@ -652,6 +652,28 @@ function [] = %_save(%__filename__, varargin)
     // LEGEND
     //
     function returnedLegend = extractLegend(h)
+        // Utility function for legends, copy/paste from %h_load
+        function p=get_entity_path(e)
+            // given a handle e on an entity this function returns its path relative
+            // to its parent axes.
+            // the path is a vector of child index.
+            p=[];
+            parent=e.parent;
+
+            while %t
+                pos=find(parent.children==e,1)
+                if pos==[] then
+                    error(msprintf(_("%s : Invalid entity %s\n"),"save","Legend"))
+                end
+                p=[pos p]
+                if parent.type=="Axes" then
+                    break
+                end
+                e=parent
+                parent=e.parent;
+            end
+        endfunction
+
         returnedLegend = tlist([
         "ScilabSingleHandle", ...
         "type", ...
@@ -914,28 +936,6 @@ function [] = %_save(%__filename__, varargin)
 
         for %__i__ = 1:size(fields, "*")
             returnedLight(fields(%__i__)) = h(fields(%__i__));
-        end
-    endfunction
-
-    // Utility function for legends, copy/paste from %h_load
-    function p=get_entity_path(e)
-        // given a handle e on an entity this function returns its path relative
-        // to its parent axes.
-        // the path is a vector of child index.
-        p=[];
-        parent=e.parent;
-
-        while %t
-            pos=find(parent.children==e,1)
-            if pos==[] then
-                error(msprintf(_("%s : Invalid entity %s\n"),"save","Legend"))
-            end
-            p=[pos p]
-            if parent.type=="Axes" then
-                break
-            end
-            e=parent
-            parent=e.parent;
         end
     endfunction
 

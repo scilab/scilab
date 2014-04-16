@@ -64,7 +64,6 @@
 		<File RelativePath=".\lsstyp.f"/>
 		<File RelativePath=".\mlist.f"/>
 		<File RelativePath=".\rattyp.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_definedfields.f"/>
 		<File RelativePath=".\udptr.f"/></Filter>
 		<File RelativePath="..\..\sci_gateway\data_structures_gateway.xml"/>
 		<File RelativePath="..\..\Makefile.am"/></Files>

@@ -326,6 +326,7 @@ void visitprivate(const CallExp &e)
                 break;
                 case InternalType::RealTList :
                 {
+                    Function::ReturnValue ret = Function::OK;
                     bool bCallOverLoad = false;
                     if (pArgs->size() == 1)
                     {
@@ -389,12 +390,12 @@ void visitprivate(const CallExp &e)
                         try
                         {
                             //try to call specific exrtaction function
-                            Overload::call(L"%" + pIT->getAs<TList>()->getShortTypeStr() + L"_e", in, 1, ResultList, this);
+                            ret = Overload::call(L"%" + pIT->getAs<TList>()->getShortTypeStr() + L"_e", in, 1, ResultList, this);
                         }
                         catch (ScilabError /*&e*/)
                         {
                             //if call failed try to call generic extraction function
-                            Overload::call(L"%l_e", in, 1, ResultList, this);
+                            ret = Overload::call(L"%l_e", in, 1, ResultList, this);
                         }
 
                         for (int i = 0 ; i < (int)pArgs->size() ; i++)
@@ -404,29 +405,37 @@ void visitprivate(const CallExp &e)
                         pIT->DecreaseRef();
                     }
 
-                    switch (ResultList.size())
+                    if (ret == Function::OK)
                     {
-                        case 0 :
+                        switch (ResultList.size())
                         {
-                            std::wostringstream os;
-                            os << _W("Invalid index.\n");
-                            throw ScilabError(os.str(), 999, (*e.args_get().begin())->location_get());
-                        }
-                        break;
-                        case 1 :
-                            result_set(ResultList[0]);
-                            break;
-                        default :
-                            for (int i = 0 ; i < static_cast<int>(ResultList.size()) ; i++)
+                            case 0 :
                             {
-                                result_set(i, ResultList[i]);
+                                std::wostringstream os;
+                                os << _W("Invalid index.\n");
+                                throw ScilabError(os.str(), 999, (*e.args_get().begin())->location_get());
                             }
                             break;
+                            case 1 :
+                                result_set(ResultList[0]);
+                                break;
+                            default :
+                                for (int i = 0 ; i < static_cast<int>(ResultList.size()) ; i++)
+                                {
+                                    result_set(i, ResultList[i]);
+                                }
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        throw ScilabError();
                     }
                     break;
                 }
                 case InternalType::RealMList :
                 {
+                    Function::ReturnValue ret = Function::OK;
                     bool bCallOverLoad = false;
                     if (pArgs->size() == 1)
                     {
@@ -477,12 +486,12 @@ void visitprivate(const CallExp &e)
                         try
                         {
                             //try to call specific exrtaction function
-                            Overload::call(L"%" + pIT->getAs<MList>()->getShortTypeStr() + L"_e", in, 1, ResultList, this);
+                            ret = Overload::call(L"%" + pIT->getAs<MList>()->getShortTypeStr() + L"_e", in, 1, ResultList, this);
                         }
                         catch (ScilabError /*&e*/)
                         {
                             //if call failed try to call generic extraction function
-                            Overload::call(L"%l_e", in, 1, ResultList, this);
+                            ret = Overload::call(L"%l_e", in, 1, ResultList, this);
                         }
 
                         for (int i = 0 ; i < (int)pArgs->size() ; i++)
@@ -492,24 +501,31 @@ void visitprivate(const CallExp &e)
                         pIT->DecreaseRef();
                     }
 
-                    switch (ResultList.size())
+                    if (ret == Function::OK)
                     {
-                        case 0 :
+                        switch (ResultList.size())
                         {
-                            std::wostringstream os;
-                            os << _W("Invalid index.\n");
-                            throw ScilabError(os.str(), 999, (*e.args_get().begin())->location_get());
-                        }
-                        break;
-                        case 1 :
-                            result_set(ResultList[0]);
-                            break;
-                        default :
-                            for (int i = 0 ; i < static_cast<int>(ResultList.size()) ; i++)
+                            case 0 :
                             {
-                                result_set(i, ResultList[i]);
+                                std::wostringstream os;
+                                os << _W("Invalid index.\n");
+                                throw ScilabError(os.str(), 999, (*e.args_get().begin())->location_get());
                             }
                             break;
+                            case 1 :
+                                result_set(ResultList[0]);
+                                break;
+                            default :
+                                for (int i = 0 ; i < static_cast<int>(ResultList.size()) ; i++)
+                                {
+                                    result_set(i, ResultList[i]);
+                                }
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        throw ScilabError();
                     }
                     break;
                 }

@@ -16,7 +16,6 @@
 #include "function.hxx"
 #include "double.hxx"
 #include "gatewaystruct.hxx"
-#include "lasterror.h"
 
 extern "C"
 {
@@ -29,6 +28,7 @@ extern "C"
 #include "MALLOC.h"
 #include "os_swprintf.h"
 #include "lasterror.h"
+#include "reference_modules.h"
 }
 
 namespace types
@@ -186,11 +186,21 @@ Function::ReturnValue WrapFunction::call(typed_list &in, optional_list &opt, int
 
     //copy input parameter to prevent calling gateway modifies input data
     typed_list inCopy;
-    for (int i = 0 ; i < in.size() ; i++)
-    {
-        inCopy.push_back(in[i]->clone());
-    }
 
+    if (checkReferenceModule(m_wstModule.c_str()) == false)
+    {
+        for (int i = 0 ; i < in.size() ; i++)
+        {
+            inCopy.push_back(in[i]->clone());
+        }
+    }
+    else
+    {
+        for (int i = 0 ; i < in.size() ; i++)
+        {
+            inCopy.push_back(in[i]);
+        }
+    }
     gStr.m_pIn = &inCopy;
     gStr.m_pOpt = &opt;
     typed_list::value_type tmpOut[MAX_OUTPUT_VARIABLE];
@@ -269,14 +279,16 @@ Function::ReturnValue WrapFunction::call(typed_list &in, optional_list &opt, int
     }
 
     //clean input copy
-    for (int i = 0 ; i < in.size() ; i++)
+    if (checkReferenceModule(m_wstModule.c_str()) == false)
     {
-        if (inCopy[i]->isDeletable())
+        for (int i = 0 ; i < in.size() ; i++)
         {
-            delete inCopy[i];
+            if (inCopy[i]->isDeletable())
+            {
+                delete inCopy[i];
+            }
         }
     }
-
     //unprotect outputs
     for (int i = 0 ; i < out.size() ; i++)
     {

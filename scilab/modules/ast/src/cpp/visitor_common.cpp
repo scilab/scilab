@@ -823,7 +823,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
     //*** get main variable ***//
     std::list<ExpHistory*>::iterator iterFields = fields.begin();
     ExpHistory* pFirstField = *iterFields;
-    InternalType* pIT = symbol::Context::getInstance()->get(pFirstField->getExp()->name_get());
+    InternalType* pIT = symbol::Context::getInstance()->getCurrentLevel(pFirstField->getExp()->name_get());
     if (pIT == NULL)
     {
         if (pFirstField->isCellExp())
@@ -1494,7 +1494,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
         evalFields.pop_back();
     }
 
-    return symbol::Context::getInstance()->get(pFirstField->getExp()->name_get());
+    return symbol::Context::getInstance()->getCurrentLevel(pFirstField->getExp()->name_get());
 }
 
 InternalType* insertionCall(const Exp& e, typed_list* _pArgs, InternalType* _pVar, InternalType* _pInsert)

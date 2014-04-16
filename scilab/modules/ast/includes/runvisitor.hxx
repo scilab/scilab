@@ -544,7 +544,7 @@ public :
 
                 if (Ret != Callable::OK)
                 {
-                    throw ScilabError(L"", 999, e.location_get());
+                    throw ScilabError();
                 }
 
                 if (out.size() == 0)
@@ -1951,7 +1951,10 @@ public :
 
             try
             {
-                Overload::call(L"%" + pIT->getAs<TList>()->getShortTypeStr() + L"_p", in, 1, out, this);
+                if (Overload::call(L"%" + pIT->getAs<TList>()->getShortTypeStr() + L"_p", in, 1, out, this) != Function::OK)
+                {
+                    throw ScilabError();
+                }
             }
             catch (ScilabError /*&e*/)
             {

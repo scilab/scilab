@@ -10,3 +10,4 @@ context_get
 SetError
 isError
 resetError
+checkReferenceModule

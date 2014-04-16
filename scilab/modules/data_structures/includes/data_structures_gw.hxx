@@ -30,5 +30,6 @@ public:
 CPP_GATEWAY_PROTOTYPE(sci_getfield);
 CPP_GATEWAY_PROTOTYPE(sci_setfield);
 CPP_GATEWAY_PROTOTYPE(sci_rlist);
+CPP_GATEWAY_PROTOTYPE(sci_definedfields);
 
 #endif /* !__DATA_STRUCTURES_GW_HXX__ */

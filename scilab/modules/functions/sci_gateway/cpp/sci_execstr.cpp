@@ -163,10 +163,7 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
 
     //save current prompt mode
     int oldVal = ConfigVariable::getPromptMode();
-    if (bMute)
-    {
-        ConfigVariable::setPromptMode(-1);
-    }
+    ConfigVariable::setPromptMode(-1);
 
     if (bErrCatch)
     {

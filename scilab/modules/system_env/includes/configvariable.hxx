@@ -352,6 +352,15 @@ public :
     static void where_end();
     static std::list< std::pair<int, std::wstring> >& getWhere();
 
+    //module called with variable by reference
+private :
+    static std::list<std::wstring> m_ReferenceModules;
+public :
+    static bool checkReferenceModule(std::wstring _module);
+    static void addReferenceModule(std::wstring _module);
+    static void removeReferenceModule(std::wstring _module);
+    static std::list<std::wstring> getReferenceModules();
+
 };
 
 #endif /* !__CONFIGVARIABLE_HXX__ */

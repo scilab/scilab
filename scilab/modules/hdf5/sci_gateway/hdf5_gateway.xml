@@ -23,11 +23,11 @@
     <gateway name="sci_import_from_hdf5"                function="import_from_hdf5"         type="0" />
     <gateway name="sci_listvar_in_hdf5"                 function="listvar_in_hdf5"          type="0" />
     <gateway name="sci_is_hdf5_file"                    function="is_hdf5_file"             type="0" />
-    <gateway name="sci_5dump"                           function="5dump"                    type="0" />
-    <gateway name="sci_5open"                           function="5open"                    type="0" />
-    <gateway name="sci_5close"                          function="5close"                   type="0" />
-    <gateway name="sci_5read"                           function="5read"                    type="0" />
-    <gateway name="sci_5ls"                             function="5ls"                      type="0" />
+    <gateway name="sci_h5dump"                          function="h5dump"                   type="0" />
+    <gateway name="sci_h5open"                          function="h5open"                   type="0" />
+    <gateway name="sci_h5close"                         function="h5close"                  type="0" />
+    <gateway name="sci_h5read"                          function="h5read"                   type="0" />
+    <gateway name="sci_h5ls"                            function="h5ls"                     type="0" />
     <gateway name="sci_percent_H5Object_p"              function="%H5Object_p"              type="0" />
     <gateway name="sci_percent_H5Object_e"              function="%H5Object_e"              type="0" />
     <gateway name="sci_h5group"                         function="h5group"                  type="0" />
@@ -35,7 +35,7 @@
     <gateway name="sci_h5dataset"                       function="h5dataset"                type="0" />
     <gateway name="sci_h5write"                         function="h5write"                  type="0" />
     <gateway name="sci_h5attr"                          function="h5attr"                   type="0" />
-    <gateway name="sci_h5writeattr"                     function="h5writeattr"              type="0" />
+    <gateway name="sci_h5attr"                          function="h5writeattr"              type="0" />
     <gateway name="sci_h5ln"                            function="h5ln"                     type="0" />
     <gateway name="sci_h5readattr"                      function="h5readattr"               type="0" />
     <gateway name="sci_h5flush"                         function="h5flush"                  type="0" />

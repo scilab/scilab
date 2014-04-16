@@ -208,6 +208,7 @@
     <ClCompile Include="sci_where.cpp" />
     <ClCompile Include="sci_who.cpp" />
     <ClCompile Include="sci_with_module.cpp" />
+    <ClCompile Include="sci_intppty.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\banner.hxx" />
