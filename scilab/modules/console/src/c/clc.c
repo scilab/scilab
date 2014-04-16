@@ -17,6 +17,7 @@
 #include "ClearConsolePart.h"
 #ifdef _MSC_VER
 #include "windows/clrscr_nw.h"
+#include "others/clrscr_nw.h"
 #include "windows/clrscrPart_nw.h"
 #endif
 /*--------------------------------------------------------------------------*/
@@ -32,8 +33,9 @@ BOOL clc(int nblines)
             clrscrPart_nw(nblines);
             bOK = TRUE;
 #else
-            /* impossible in this mode */
-            bOK = FALSE;
+
+            printf("\033[%dA\033[J", nblines + 2);
+            bOK = TRUE;
 #endif
         }
         else
@@ -42,8 +44,8 @@ BOOL clc(int nblines)
             clrscr_nw();
             bOK = TRUE;
 #else
-            /* only on Windows */
-            bOK = FALSE;
+            clrscr_nw();
+            bOK = TRUE;
 #endif
         }
     }
