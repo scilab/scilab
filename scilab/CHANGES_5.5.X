@@ -21,6 +21,8 @@ Scilab Bug Fixes
 
 * Bug #10555 fixed - Scilab failed to build with some configure options.
 
+* Bug #10777 fixed - Home and End keys were not trapped in CLI mode.
+
 * Bug #12700 fixed - edit_curv (used by CURV_f) was broken.
 
 * Bug #13180 fixed - surf did not handle degenerate cases.
