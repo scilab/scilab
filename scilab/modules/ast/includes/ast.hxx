@@ -96,11 +96,7 @@ public:
         m_dblElapsedTime = _dblElapsedTime;
     }
 
-    static void reinit_nodeNumber()
-    {
-        globalNodeNumber = 0;
-    }
-    int nodeNumber_get() const
+    size_t nodeNumber_get() const
     {
         return nodeNumber;
     }
@@ -115,8 +111,8 @@ private:
     /** \brief Scanner position informations. */
     Location _location;
     double m_dblElapsedTime;
-    int nodeNumber;
-    static int globalNodeNumber;
+    size_t nodeNumber;
+    static size_t globalNodeNumber;
 };
 
 } // namespace ast
