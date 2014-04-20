@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+
+
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -149,7 +151,7 @@ erfi(x)
                 
                 <revnumber>5.5.0</revnumber>
                 
-                <revremark>関数erfiは複素数引数をサポートします</revremark>
+                <revremark>関数erfiが複素数引数をサポート</revremark>
                 
             </revision>
             
@@ -158,4 +160,6 @@ erfi(x)
     </refsection>
     
 </refentry>
+
+
 
