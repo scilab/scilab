@@ -102,8 +102,6 @@
                     
                     <para>
                         
-                        freeAllocatedMatrixOfStringで確保されたポインタ"_pstData".
-                        
                         freeAllocatedWideMatrixOfStringで確保されたポインタ"_pwstData".
                         
                     </para>

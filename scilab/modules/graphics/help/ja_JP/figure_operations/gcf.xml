@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Serge Steer
@@ -10,32 +11,59 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
+
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="gcf">
+    
     <refnamediv>
+        
         <refname>gcf</refname>
+        
         <refpurpose>カレントグラフィックウインドウのハンドルを返す.</refpurpose>
+        
     </refnamediv>
+    
     <refsynopsisdiv>
+        
         <title>呼び出し手順</title>
+        
         <synopsis>h = gcf()</synopsis>
+        
     </refsynopsisdiv>
+    
     <refsection>
-        <title>Parameters</title>
+        
+        <title>引数</title>
+        
         <variablelist>
+            
             <varlistentry>
+                
                 <term>h</term>
+                
                 <listitem>
+                    
                     <para>ハンドル.</para>
+                    
                 </listitem>
+                
             </varlistentry>
+            
         </variablelist>
+        
     </refsection>
+    
     <refsection>
+        
         <title>説明</title>
+        
         <para>このルーチンはカレントのウインドウのハンドルを返します.</para>
+        
     </refsection>
+    
     <refsection>
+        
         <title>例</title>
+        
         <programlisting role="example"><![CDATA[ 
 f=gcf(); // 図を作成
 f.figure_size= [610,469]/2;
@@ -53,34 +81,66 @@ gcf()  // カレントのウインドウのグラフィックハンドルを返�
 figure(f) // ウインドウ f を作成, カレントの図に指定
 gcf() // カレントのウインドウのグラフィックハンドルを返す
  ]]></programlisting>
+        
     </refsection>
+    
     <refsection>
+        
         <title>参考</title>
+        
         <simplelist type="inline">
+            
             <member>
+                
                 <link linkend="gdf">gdf</link>
+                
             </member>
+            
             <member>
+                
                 <link linkend="gca">gca</link>
+                
             </member>
+            
             <member>
+                
                 <link linkend="gce">gce</link>
+                
             </member>
+            
             <member>
+                
                 <link linkend="get">get</link>
+                
             </member>
+            
             <member>
+                
                 <link linkend="scf">scf</link>
+                
             </member>
+            
             <member>
+                
                 <link linkend="set">set</link>
+                
             </member>
+            
             <member>
+                
                 <link linkend="graphics_entities">graphics_entities</link>
+                
             </member>
+            
             <member>
+                
                 <link linkend="uicontrol">uicontrol</link>
+                
             </member>
+            
         </simplelist>
+        
     </refsection>
+    
 </refentry>
+
