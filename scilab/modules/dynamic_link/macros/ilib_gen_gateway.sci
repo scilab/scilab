@@ -9,7 +9,7 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 //=============================================================================
-// ilib_gen_gateway used by ilib_build
+// ilib_gen_gateway_cpp used by ilib_build
 //=============================================================================
 // generate an interface gateway named name
 // from table table taking into account
@@ -24,7 +24,7 @@ function gateway_filename = ilib_gen_gateway(name,tables)
         return
     end
 
-    gateway_filename = "";
+    gateway_filename = ["","",""];
     k = strindex(name,["/","\"]);
     if k~=[] then
         path = part(name,1:k($));
@@ -63,54 +63,113 @@ function gateway_filename = ilib_gen_gateway(name,tables)
             nt = 3;
         end
 
-        prototype = "(char* fname, int* _piKey);";
-        addGWFunction = "addGatewayInContext";
-        if isdef("ismex") & ismex == %t then
-            prototype = "(int nlhs, int* plhs[], int nrhs, int* prhs[]);";
-            addGWFunction = "addMexGatewayInContext";
-        end
-
-
         if ( nt <> 3 ) then
             error(msprintf(gettext("%s: Wrong size for input argument #%d: %d expected.\n"),"ilib_gen_gateway",2,3));
         end
         [gate,names] = new_names(table);
+
+        //generate cpp interface file
         t = [
-        "#ifdef __cpluplus";
-        "extern ""C"" {"
-        "#endif"
-        "#include <wchar.h> ";
-        "#include ""mex.h"" ";
-        "#include ""sci_gateway.h""";
-        "#include ""api_scilab.h""";
-        "#include ""MALLOC.h""";
-        "#include ""addGatewayInContext.h""";
+        "#include ""context.hxx""";
+        "#include """ + tname + ".hxx""";
+        "extern ""C""";
+        "{";
+        "#include """ + tname + ".h""";
+        "}";
         "";
         "#define MODULE_NAME L""" + tname + """";
         "";
-        "extern int " + names(:) + prototype;
-        "";
-        "int " + tname + "(wchar_t* _pwstName)";
+        "int " + tname + "(wchar_t* _pwstFuncName)";
         "{";
-        "   if(wcscmp(_pwstName, L""" + table(:,1) + """) == 0){" + addGWFunction + "(L""" + table(:,1) + """, &" + names(:) + ", MODULE_NAME);}";
-        "}";
-        "#ifdef __cplusplus";
-        "}";
-        "#endif"];
+        "    if(wcscmp(_pwstFuncName, L""" + table(:,1) + """) == 0){ " + "symbol::Context::getInstance()->addFunction(types::Function::createFunction(L""" + table(:,1) + """, &" + names(:) + ", MODULE_NAME)); }";
+        "";
+        "    return 1;";
+        "}"];
 
-        gateway_filename = path + tname + ".c";
+        gateway_filename(1) = path + tname + ".cpp";
         // first check if we have already a gateway
-        [fd, ierr] = mopen(gateway_filename, "rt");
+        [fd, ierr] = mopen(gateway_filename(1), "rt");
         if ierr == 0 then
             // file already exists
             t1 = mgetl(fd);
             mclose(fd);
             if or(t1 <> t) then
-                mputl(t, gateway_filename);
+                mputl(t, gateway_filename(1));
             end
         else
             // file does not exist we create it
-            mputl(t, gateway_filename) ;
+            mputl(t, gateway_filename(1)) ;
+        end
+
+        if ilib_verbose() > 1 then
+            disp(t);
+        end
+
+        //prepare .hxx file
+        TNAME = convstr(tname, "u");
+        t = [
+        "#ifndef __" + TNAME + "_GW_HXX__";
+        "#define __" + TNAME + "_GW_HXX__";
+        "";
+        "#include ""c_gateway_prototype.h""";
+        "#include ""cpp_gateway_prototype.hxx""";
+        "";
+        "#ifdef _MSC_VER";
+        "#ifdef " + TNAME + "_GW_EXPORTS";
+        "#define " + TNAME + "_GW_IMPEXP __declspec(dllexport)";
+        "#else";
+        "#define " + TNAME + "_GW_IMPEXP __declspec(dllimport)";
+        "#endif";
+        "#else";
+        "#define " + TNAME + "_GW_IMPEXP";
+        "#endif";
+        "";
+        "extern ""C"" " + TNAME + "_GW_IMPEXP int " + tname + "(wchar_t* _pwstFuncName);";
+        "";
+        gate(:, 2);
+        "";
+        "#endif /* __" + TNAME + "_GW_HXX__ */"];
+
+        gateway_filename(2) = path + tname + ".hxx";
+        // first check if we have already a gateway
+        [fd, ierr] = mopen(gateway_filename(2), "rt");
+        if ierr == 0 then
+            // file already exists
+            t1 = mgetl(fd);
+            mclose(fd);
+            if or(t1 <> t) then
+                mputl(t, gateway_filename(2));
+            end
+        else
+            // file does not exist we create it
+            mputl(t, gateway_filename(2)) ;
+        end
+
+        //prepare .h file
+        TNAME = convstr(tname, "u");
+        t = [
+        "#ifndef __" + TNAME + "_GW_H__";
+        "#define __" + TNAME + "_GW_H__";
+        "";
+        "#include ""c_gateway_prototype.h""";
+        "";
+        gate(:, 1);
+        "";
+        "#endif /* __" + TNAME + "_GW_H__ */"];
+
+        gateway_filename(3) = path + tname + ".h";
+        // first check if we have already a gateway
+        [fd, ierr] = mopen(gateway_filename(3), "rt");
+        if ierr == 0 then
+            // file already exists
+            t1 = mgetl(fd);
+            mclose(fd);
+            if or(t1 <> t) then
+                mputl(t, gateway_filename(3));
+            end
+        else
+            // file does not exist we create it
+            mputl(t, gateway_filename(3)) ;
         end
 
         if ilib_verbose() > 1 then
@@ -124,45 +183,33 @@ endfunction
 function [gate,names] = new_names(table)
     // change names according to types
     [mt,nt] = size(table);
-    gate = "mex_gateway";
-    gate = gate(ones(mt,1));
+    gate = [""];
+    gate = gate(ones(mt, 2));
     names = " ";
     names = names(ones(mt,1));
     for i = 1:mt
         select table(i,3)
         case "cmex" then
-            names(i) = "mex_" + table(i,2) ;
+            names(i) = "mex_" + table(i,2);
+            gate(i, 1) = "C_GATEWAY_PROTOTYPE(" + names(i) + ");";
         case "fmex" then
-            gate(i) = "(Myinterfun)fortran_mex_gateway" ;
-            names(i) = "C2F(mex" + table(i,2) + ")" ;
+            names(i) = "C2F(mex" + table(i,2) + ")";
+            gate(i, 1) = "C_GATEWAY_PROTOTYPE(" + names(i) + ");";
         case "Fmex" then
-            gate(i) = "(Myinterfun)fortran_mex_gateway" ;
-            names(i) = "C2F(mex" + table(i,2) + ")" ;
+            names(i) = "C2F(mex" + table(i,2) + ")";
+            gate(i, 1) = "C_GATEWAY_PROTOTYPE(" + names(i) + ");";
         case "csci"  then
-            if isdef("WITHOUT_AUTO_PUTLHSVAR") then
-                if (WITHOUT_AUTO_PUTLHSVAR == %T) then
-                    gate(i) = "(Myinterfun)sci_gateway_without_putlhsvar" ;
-                else
-                    gate(i) = "(Myinterfun)sci_gateway" ;
-                end
-            else
-                gate(i) = "(Myinterfun)sci_gateway" ;
-            end
-            names(i) = table(i,2) ;
+            names(i) = table(i,2);
+            gate(i, 1) = "C_GATEWAY_PROTOTYPE(" + names(i) + ");";
         case "fsci"  then
-            if isdef("WITHOUT_AUTO_PUTLHSVAR") then
-                if (WITHOUT_AUTO_PUTLHSVAR == %T) then
-                    gate(i) = "(Myinterfun)sci_gateway_without_putlhsvar" ;
-                else
-                    gate(i) = "(Myinterfun)sci_gateway" ;
-                end
-            else
-                gate(i) = "(Myinterfun)sci_gateway" ;
-            end
-            names(i) = "C2F(" + table(i,2) + ")" ;
+            names(i) = "C2F(" + table(i,2) + ")";
+            gate(i, 1) = "C_GATEWAY_PROTOTYPE(" + names(i) + ");";
+        case "cppsci"  then
+            names(i) = table(i,2);
+            gate(i, 2) = "CPP_GATEWAY_PROTOTYPE(" + names(i) + ");";
         case "direct"  then
-            gate(i) = "(Myinterfun)direct_gateway" ;
-            names(i) = "C2F(" + table(i,2) + ")" ;
+            names(i) = table(i,2);
+            gate(i, 1) = "C_GATEWAY_PROTOTYPE(" + names(i) + ");";
         else
             error(999,"Wrong interface type " + table(i,3));
         end

@@ -117,6 +117,11 @@ void Scopes::putInPreviousScope(const Symbol& _key, types::InternalType& _iT)
     put(_key, _iT, m_iLevel - 1);
 }
 
+void Scopes::addFunction(const Symbol& _key, types::Function& _func)
+{
+    m_scopes.front()->put(_key, _func);
+}
+
 /* getters */
 types::InternalType* Scopes::get(const Symbol& _key) const
 {

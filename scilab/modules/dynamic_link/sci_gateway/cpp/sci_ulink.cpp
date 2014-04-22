@@ -46,19 +46,19 @@ types::Function::ReturnValue sci_ulink(types::typed_list &in, int _iRetCount, ty
     {
         unLinkAll();
     }
-    else if (in.size() == 1)
+    else if (in.size() == 1 && in[0]->isDouble())
     {
         types::Double* pDIds = in[0]->getAs<types::Double>();
-        if (pDIds == NULL)
-        {
-            Scierror(999, _("%s: Wrong type for input argument #%d: Matrix expected.\n"), "ulink", 1);
-            return types::Function::Error;
-        }
 
         for (int i = 0 ; i < pDIds->getSize() ; i++)
         {
-            unLink(pDIds->get(i));
+            unLink((int)pDIds->get(i));
         }
+    }
+    else
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%d: real scalar expected.\n"), "ulink", 1);
+        return types::Function::Error;
     }
 
     return types::Function::OK;
@@ -75,8 +75,12 @@ void unLinkAll()
 /*--------------------------------------------------------------------------*/
 void unLink(int _iLib)
 {
-    unsigned long long iLib = ConfigVariable::getDynamicLibrary(_iLib)->hLib;
-    ConfigVariable::removeDynamicLibrary(_iLib);
-    Sci_dlclose(iLib);
+    ConfigVariable::DynamicLibraryStr* pStr = ConfigVariable::getDynamicLibrary(_iLib);
+    if (pStr)
+    {
+        unsigned long long iLib = ConfigVariable::getDynamicLibrary(_iLib)->hLib;
+        ConfigVariable::removeDynamicLibrary(_iLib);
+        Sci_dlclose(iLib);
+    }
 }
 /*--------------------------------------------------------------------------*/

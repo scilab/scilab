@@ -63,6 +63,7 @@ private :
     void put(const Symbol& _key, types::InternalType& _iT, int _iLevel);
 public :
     void put(const Symbol& _key, types::InternalType& _iT);
+    void addFunction(const Symbol& _key, types::Function& _info);
     void putInPreviousScope(const Symbol& _key, types::InternalType& _iT);
 
     /* getters */

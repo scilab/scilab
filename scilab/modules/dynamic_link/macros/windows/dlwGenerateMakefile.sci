@@ -145,10 +145,10 @@ function ilib_gen_Make_win32(name, ..
 
     if with_gateway then
         if L == 1 then
-            FILES_SRC_MATRIX = [FILES_SRC_MATRIX , name + ".c"];
+            FILES_SRC_MATRIX = [FILES_SRC_MATRIX , name + ".cpp"];
         else
             for i=1:L
-                FILES_SRC_MATRIX = [FILES_SRC_MATRIX , name + string(i) + ".c"];
+                FILES_SRC_MATRIX = [FILES_SRC_MATRIX , name + string(i) + ".cpp"];
             end
         end
     end
@@ -243,6 +243,7 @@ function ilib_gen_Make_win32(name, ..
         MAKEFILE_VC = strsubst(MAKEFILE_VC, "CC = __CC__","#CC = ");
     end
 
+    CFLAGS = CFLAGS + " -D" + convstr(name, "u") + "_GW_EXPORTS";
     MAKEFILE_VC = strsubst(MAKEFILE_VC, "__CFLAGS__", CFLAGS);
     MAKEFILE_VC = strsubst(MAKEFILE_VC, "__MEXCFLAGS__", MEXCFLAGS);
     MAKEFILE_VC = strsubst(MAKEFILE_VC, "__FFLAGS__", FFLAGS);

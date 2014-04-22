@@ -14,17 +14,6 @@
 #include "function.hxx"
 #include "macro.hxx"
 #include "macrofile.hxx"
-#include "addGatewayInContext.h"
-
-void addGatewayInContext(wchar_t* _pwstName, OLDGW_FUNC _pFunc, wchar_t* _pwstModule)
-{
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(_pwstName, _pFunc, _pwstModule));
-}
-
-void addMexGatewayInContext(wchar_t* _pwstName, MEXGW_FUNC _pFunc, wchar_t* _pwstModule)
-{
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(_pwstName, _pFunc, _pwstModule));
-}
 
 namespace symbol
 {
@@ -115,7 +104,7 @@ bool Context::putInPreviousScope(const symbol::Symbol& _key, types::InternalType
 
 bool Context::addFunction(types::Function *_info)
 {
-    m_scopes->put(symbol::Symbol(_info->getName()), *_info);
+    m_scopes->addFunction(symbol::Symbol(_info->getName()), *_info);
     return true;
 }
 

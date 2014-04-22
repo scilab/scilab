@@ -9,7 +9,7 @@
 #include <localization.h>
 
 /* ==================================================================== */
-int sci_multiplybypi(char *fname)
+int sci_multiplybypi(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
 

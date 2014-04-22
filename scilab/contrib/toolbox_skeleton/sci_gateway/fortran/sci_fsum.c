@@ -10,7 +10,7 @@
 /* ==================================================================== */
 extern int F2C(fsum)(double *a, double *b, double *c);
 /* ==================================================================== */
-int sci_fsum(char *fname)
+int sci_fsum(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
 

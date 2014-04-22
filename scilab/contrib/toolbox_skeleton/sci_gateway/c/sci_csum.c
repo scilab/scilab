@@ -9,7 +9,7 @@
 #include <localization.h>
 
 /* ==================================================================== */
-int sci_csum(char *fname)
+int sci_csum(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
 

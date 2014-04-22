@@ -127,7 +127,7 @@ function ilib_build(ilib_name, ..
     if ( ilib_verbose() <> 0 ) then
         mprintf(_("   Generate a cleaner file\n"));
     end
-    ilib_gen_cleaner(makename, "loader.sce", [libn; file_gw_name]);
+    ilib_gen_cleaner(makename, "loader.sce", [libn; file_gw_name']);
 
 endfunction
 //=============================================================================

@@ -17,6 +17,7 @@
 #include <list>
 #include "types.hxx"
 #include "symbol.hxx"
+#include "function.hxx"
 
 namespace symbol
 {

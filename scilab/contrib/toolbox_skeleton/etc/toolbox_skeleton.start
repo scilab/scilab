@@ -32,7 +32,7 @@ function toolbox_skeletonlib = startModule()
   mprintf("\tLoad gateways\n");
   exec(pathconvert(root_tlbx+"/sci_gateway/loader_gateway.sce",%f));
   mprintf("\tLoad Java libraries\n");
-  exec(pathconvert(root_tlbx+"/src/java/loader.sce",%f));
+  //exec(pathconvert(root_tlbx+"/src/java/loader.sce",%f));
   ilib_verbose(verboseMode);
 
 // load localization
@@ -40,13 +40,13 @@ function toolbox_skeletonlib = startModule()
 
 // Load and add help chapter
 // =============================================================================
-  if or(getscilabmode() == ["NW";"STD"]) then
-    mprintf("\tLoad help\n");
-    path_addchapter = pathconvert(root_tlbx+"/jar");
-    if ( isdir(path_addchapter) <> [] ) then
-      add_help_chapter(TOOLBOX_NAME, path_addchapter, %F);
-    end
-  end
+//  if or(getscilabmode() == ["NW";"STD"]) then
+//    mprintf("\tLoad help\n");
+//    path_addchapter = pathconvert(root_tlbx+"/jar");
+//    if ( isdir(path_addchapter) <> [] ) then
+//      add_help_chapter(TOOLBOX_NAME, path_addchapter, %F);
+//    end
+//  end
 
 // Load demos
 // =============================================================================

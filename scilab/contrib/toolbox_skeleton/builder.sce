@@ -8,6 +8,7 @@ lines(0);
 
 function main_builder()
 
+    setenv('DEBUG_SCILAB_DYNAMIC_LINK','YES')
     TOOLBOX_NAME  = "toolbox_skeleton";
     TOOLBOX_TITLE = "Toolbox Skeleton";
     toolbox_dir   = get_absolute_file_path("builder.sce");
@@ -40,7 +41,7 @@ function main_builder()
     tbx_builder_src(toolbox_dir);
     tbx_builder_gateway(toolbox_dir);
     tbx_build_localization(TOOLBOX_NAME, toolbox_dir);
-    tbx_builder_help(toolbox_dir);
+    //tbx_builder_help(toolbox_dir);
     tbx_build_loader(TOOLBOX_NAME, toolbox_dir);
     tbx_build_cleaner(TOOLBOX_NAME, toolbox_dir);
 
