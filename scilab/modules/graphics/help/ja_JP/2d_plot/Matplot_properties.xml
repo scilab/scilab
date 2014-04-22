@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!--
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - Fabrice Leray
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
- *
- -->
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) INRIA - Fabrice Leray
+* 
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at    
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+*
+-->
 
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="Matplot_properties">
     
@@ -476,157 +476,156 @@
                         
                         その他の場合,ベクトル<literal>[x,y,w,h]</literal> 
                         
-                        (左上の点,幅,高さ)がliteral>Matplot
-                    </literal>
-                    
-                    が表示する範囲を定義しますが,
-                    
-                    <literal>clip_state</literal>プロパティの値は変更されません.
-                    
-                </para>
-                
-            </listitem>
-            
-        </varlistentry>
-        
-        <varlistentry>
-            
-            <term>user_data: </term>
-            
-            <listitem>
-                
-                <para>
-                    
-                    このフィールドは任意のScilab変数を<literal>Matplot</literal>
-                    
-                    データ構造体に保存し,復元する際に使用可能です.
-                    
-                </para>
-                
-            </listitem>
-            
-        </varlistentry>
-        
-    </variablelist>
-    
-</refsection>
-
-<refsection>
-    
-    <title>例</title>
-    
-    <programlisting role="example"><![CDATA[ 
-Matplot((1:xget("lastpattern")))
-e=gce(); // カレントのエンティティを取得
-
-e.data=e.data($:-1:1) // 逆順
- ]]></programlisting>
-    
-    <scilab:image>
-        
-        Matplot((1:xget("lastpattern")));
-        
-        e=gce();
-        
-        e.data=e.data($:-1:1);
-        
-    </scilab:image>
-    
-</refsection>
-
-<refsection role="see also">
-    
-    <title>参照</title>
-    
-    <simplelist type="inline">
-        
-        <member>
-            
-            <link linkend="set">set</link>
-            
-        </member>
-        
-        <member>
-            
-            <link linkend="get">get</link>
-            
-        </member>
-        
-        <member>
-            
-            <link linkend="delete">delete</link>
-            
-        </member>
-        
-        <member>
-            
-            <link linkend="grayplot">grayplot</link>
-            
-        </member>
-        
-        <member>
-            
-            <link linkend="Matplot">Matplot</link>
-            
-        </member>
-        
-        <member>
-            
-            <link linkend="Matplot1">Matplot1</link>
-            
-        </member>
-        
-        <member>
-            
-            <link linkend="graphics_entities">graphics_entities</link>
-            
-        </member>
-        
-        <member>
-            
-            <link linkend="grayplot_properties">grayplot_properties</link>
-            
-        </member>
-        
-    </simplelist>
-    
-</refsection>
-
-<refsection>
-    
-    <title>履歴</title>
-    
-    <revhistory>
-        
-        <revision>
-            
-            <revnumber>5.5.0</revnumber>
-            
-            <revremark>
-                
-                <itemizedlist>
-                    
-                    <listitem>
+                        (左上の点,幅,高さ)が<literal>Matplot</literal>
                         
-                        プロパティ <literal>image_type</literal>が導入されました.
+                        が表示する範囲を定義しますが,
                         
-                    </listitem>
+                        <literal>clip_state</literal>プロパティの値は変更されません.
+                        
+                    </para>
                     
-                    <listitem>
-                        
-                        プロパティ <literal>rect</literal>が導入されました.
-                        
-                    </listitem>
-                    
-                </itemizedlist>
+                </listitem>
                 
-            </revremark>
+            </varlistentry>
             
-        </revision>
+            <varlistentry>
+                
+                <term>user_data: </term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        このフィールドは任意のScilab変数を<literal>Matplot</literal>
+                        
+                        データ構造体に保存し,復元する際に使用可能です.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+        </variablelist>
         
-    </revhistory>
+    </refsection>
     
-</refsection>
+    <refsection>
+        
+        <title>例</title>
+        
+        <programlisting role="example"><![CDATA[ 
+  Matplot((1:xget("lastpattern")))
+  e=gce(); // カレントのエンティティを取得
 
+  e.data=e.data($:-1:1) // 逆順
+  ]]></programlisting>
+        
+        <scilab:image>
+            
+            Matplot((1:xget("lastpattern")));
+            
+            e=gce();
+            
+            e.data=e.data($:-1:1);
+            
+        </scilab:image>
+        
+    </refsection>
+    
+    <refsection role="see also">
+        
+        <title>参照</title>
+        
+        <simplelist type="inline">
+            
+            <member>
+                
+                <link linkend="set">set</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="get">get</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="delete">delete</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="grayplot">grayplot</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="Matplot">Matplot</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="Matplot1">Matplot1</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="graphics_entities">graphics_entities</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="grayplot_properties">grayplot_properties</link>
+                
+            </member>
+            
+        </simplelist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>履歴</title>
+        
+        <revhistory>
+            
+            <revision>
+                
+                <revnumber>5.5.0</revnumber>
+                
+                <revremark>
+                    
+                    <itemizedlist>
+                        
+                        <listitem>
+                            
+                            プロパティ <literal>image_type</literal>が導入されました.
+                            
+                        </listitem>
+                        
+                        <listitem>
+                            
+                            プロパティ <literal>rect</literal>が導入されました.
+                            
+                        </listitem>
+                        
+                    </itemizedlist>
+                    
+                </revremark>
+                
+            </revision>
+            
+        </revhistory>
+        
+    </refsection>
+    
 </refentry>
 
