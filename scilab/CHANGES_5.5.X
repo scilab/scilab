@@ -103,6 +103,8 @@ Scilab Bug Fixes
 
 * Bug #13336 fixed - In SciNotes it was not possible to complete brackets only at eol.
 
+* Bug #13339 fixed - Kronecker tensor product now works on hypermatrices.
+
 * Bug #13343 fixed - In console popup menu, 'help about a selected text' moved
                      from bottom to top for consistency with Scinotes.
 
