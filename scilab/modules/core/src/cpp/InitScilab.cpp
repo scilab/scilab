@@ -111,6 +111,7 @@ ScilabEngineInfo* InitScilabEngineInfo()
     pSEI->iConsoleMode  = 0;
     pSEI->iNoJvm        = 0;
     pSEI->iNoStart      = 0;
+    pSEI->iShowVersion  = 0;
 
     pSEI->pstParseFile  = NULL;
     pSEI->pstFile       = NULL;

@@ -26,6 +26,7 @@ extern "C"
 #include "sci_mode.h"
 #include "scilabRead.h"
 #include "ConsoleRead.h"
+#include "version.h"
 
     extern char *getCmdLine(void);
 }
@@ -119,6 +120,14 @@ static int get_option(const int argc, char *argv[], ScilabEngineInfo* _pSEI)
             if (argc >= i)
             {
                 _pSEI->pstParseFile = argv[i];
+            }
+        }
+        else if (!strcmp("-version", argv[i]))
+        {
+            i++;
+            if (argc >= i)
+            {
+                _pSEI->iShowVersion = 1;
             }
         }
         else if (!strcmp("-f", argv[i]))
@@ -258,6 +267,12 @@ int main(int argc, char *argv[])
     setScilabInputMethod(&getCmdLine);
     setScilabOutputMethod(&TermPrintf);
 #endif // defined(WITHOUT_GUI)
+
+    if (pSEI->iShowVersion == 1)
+    {
+        disp_scilab_version();
+        exit(0);
+    }
 
     StartScilabEngine(pSEI);
     iRet = RunScilabEngine(pSEI);

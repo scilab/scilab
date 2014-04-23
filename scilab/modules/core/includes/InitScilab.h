@@ -27,6 +27,7 @@ typedef struct
     int iConsoleMode;
     int iNoJvm;
     int iNoStart;
+    int iShowVersion;
     char* pstParseFile;
     char* pstFile;
     char* pstExec;
