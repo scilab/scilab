@@ -63,6 +63,8 @@ Scilab Bug Fixes
 
 * Bug #11284 fixed - Some calling sequences added in file help page.
 
+* Bug #11405 fixed - hypermatrix support added for extraction.
+
 * Bug #12580 fixed - Demonstration GUI now displays an arrow if selected item
                      has sub-categories.
 
