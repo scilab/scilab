@@ -13,6 +13,13 @@ Scilab Bug Fixes
                      Scilab in "Command line mode" (without GUI modules).
 
 
+Xcos Bug Fixes
+==============
+
+* Bug #12751 fixed - cdummy_ entry point was not found when using Code Generation.
+
+
+
                      Changes between version 5.4.1 and 5.5.0
                      =======================================
 
