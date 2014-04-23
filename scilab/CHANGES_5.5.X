@@ -93,6 +93,9 @@ Scilab Bug Fixes
 
 * Bug #13345 fixed - Scilab did not start on Debian Wheezy (GLIBC issue).
 
+* Bug #13346 fixed - Filter did not works for simple delays.
+                     Improved documentation on the function filter.
+
 * Bug #13349 fixed - Double-clicking on a MAT-file in file browser did not load it.
 
 * Bug #13351 fixed - xstringb failed with LaTeX code.

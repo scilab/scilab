@@ -474,6 +474,7 @@ _LaTeX_erfcx.xml_2.png=5feafbda8ba8a657c647a355fb122b49
 _LaTeX_erfi.xml_1.png=98b6a64c2482c6be60499c854c70a678
 _LaTeX_fft.xml_1.png=30d788e922f7acbb3ef6f5d2d70bb96b
 _LaTeX_fft.xml_2.png=4b7b41681f5cfbcb0af74e4cc3ab99fc
+_LaTeX_filter.xml_1.png=f5eab130f2e7fd10b80a402952421a05
 _LaTeX_floor.xml_ru_RU_1.png=1d5ba78bbbafd3226f371146bc348363
 _LaTeX_grand.xml_1.png=75aef00d49dd8d9dfff15c7a1bb3d0eb
 _LaTeX_grand.xml_2.png=dd59088e24bed7a6af5a6ccd16e58616
