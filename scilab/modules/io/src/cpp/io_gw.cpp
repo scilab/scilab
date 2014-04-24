@@ -31,5 +31,6 @@ int IoModule::Load()
     symbol::Context::getInstance()->addFunction(Function::createFunction(L"unix", &sci_unix, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(Function::createFunction(L"getenv", &sci_getenv, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(Function::createFunction(L"setenv", &sci_setenv, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(Function::createFunction(L"lib", &sci_lib, MODULE_NAME));
     return 1;
 }

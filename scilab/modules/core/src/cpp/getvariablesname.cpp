@@ -19,22 +19,23 @@ extern "C" {
 /*----------------------------------------------------------------------------------*/
 char **getVariablesName(int *sizearray, BOOL sorted)
 {
-    std::list<std::wstring> plVarNames = symbol::Context::getInstance()->getVarsName();
+    std::list<std::wstring>* plVarNames = symbol::Context::getInstance()->getVarsName();
     std::list<std::wstring>::iterator it;
-    *sizearray = (int)plVarNames.size();
+    *sizearray = (int)plVarNames->size();
     char** variables = (char**)MALLOC(*sizearray * sizeof(char*));
 
     if (sorted)
     {
-        plVarNames.sort();
+        plVarNames->sort();
     }
 
     int i = 0;
-    for (it = plVarNames.begin(); it != plVarNames.end(); it++, i++)
+    for (it = plVarNames->begin(); it != plVarNames->end(); ++it, i++)
     {
         variables[i] = wide_string_to_UTF8((*it).c_str());
     }
 
+    delete plVarNames;
     return variables;
 }
 

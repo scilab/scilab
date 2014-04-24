@@ -64,11 +64,11 @@ public :
     types::InternalType* getFunction(const symbol::Symbol& key) const;
 
     /*return function list in the module _stModuleName*/
-    std::list<symbol::Symbol>& getFunctionList(const std::wstring& _stModuleName, bool _bFromEnd = true);
+    std::list<symbol::Symbol>* getFunctionList(const std::wstring& _stModuleName, bool _bFromEnd = true);
 
-    std::list<std::wstring>& getVarsName();
-    std::list<std::wstring>& getMacrosName();
-    std::list<std::wstring>& getFunctionsName();
+    std::list<std::wstring>* getVarsName();
+    std::list<std::wstring>* getMacrosName();
+    std::list<std::wstring>* getFunctionsName();
 
     /* global functions */
 

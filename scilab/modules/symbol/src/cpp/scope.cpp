@@ -22,6 +22,7 @@ Scope::~Scope()
     for (; it != m_symbol.end() ; it++)
     {
         m_vars->remove(it->first);
+        m_libs->remove(it->first);
     }
 }
 
@@ -29,12 +30,17 @@ void Scope::put(const Symbol& _key, types::InternalType& _iT)
 {
     m_symbol[_key] = 0;
     m_vars->put(_key, _iT, m_iLevel);
+    if (_iT.isLibrary())
+    {
+        m_libs->put(_key, _iT);
+    }
 }
 
 void Scope::remove(const Symbol& _key)
 {
     m_symbol.erase(_key);
     m_vars->remove(_key);
+    m_libs->remove(_key);
 }
 
 void Scope::print(std::wostream& ostr) const
@@ -73,8 +79,9 @@ void Scope::removeVar(const symbol::Symbol& _key)
 void Scopes::scope_begin()
 {
     m_iLevel++;
-    m_scopes.push_back(new Scope(&m_vars, m_iLevel));
+    m_scopes.push_back(new Scope(&m_vars, &m_libs, m_iLevel));
     m_vars.IncreaseLevel();
+    m_libs.IncreaseLevel();
 }
 
 void Scopes::scope_end()
@@ -84,6 +91,7 @@ void Scopes::scope_end()
     m_scopes.pop_back();
     m_iLevel--;
     m_vars.DecreaseLevel();
+    m_libs.DecreaseLevel();
 }
 
 void Scopes::put(const Symbol& _key, types::InternalType& _iT, int _iLevel)
@@ -112,7 +120,14 @@ void Scopes::putInPreviousScope(const Symbol& _key, types::InternalType& _iT)
 /* getters */
 types::InternalType* Scopes::get(const Symbol& _key) const
 {
-    return m_vars.get(_key);
+    types::InternalType* pIT = m_vars.get(_key);
+    if (pIT == NULL)
+    {
+        //check in macro lib
+        pIT = m_libs.get(_key);
+    }
+
+    return pIT;
 }
 
 types::InternalType* Scopes::getCurrentLevel(const Symbol& _key) const
@@ -184,22 +199,26 @@ void Scopes::createEmptyGlobalValue(const symbol::Symbol& _key)
 
 
 /*tools*/
-std::list<symbol::Symbol>& Scopes::getFunctionList(const std::wstring& _stModuleName, bool _bFromEnd)
+std::list<symbol::Symbol>* Scopes::getFunctionList(const std::wstring& _stModuleName, bool _bFromEnd)
 {
     return m_vars.getFunctionList(_stModuleName, _bFromEnd);
 }
 
-std::list<std::wstring>& Scopes::getVarsName()
+std::list<std::wstring>* Scopes::getVarsName()
 {
     return m_vars.getVarsName();
 }
 
-std::list<std::wstring>& Scopes::getMacrosName()
+std::list<std::wstring>* Scopes::getMacrosName()
 {
-    return m_vars.getMacrosName();
+    std::list<std::wstring>* vars = m_vars.getMacrosName();
+    std::list<std::wstring>* libs = m_libs.getMacrosName();
+    vars->insert(vars->end(), libs->begin(), libs->end());
+    delete libs;
+    return vars;
 }
 
-std::list<std::wstring>& Scopes::getFunctionsName()
+std::list<std::wstring>* Scopes::getFunctionsName()
 {
     return m_vars.getFunctionsName();
 }

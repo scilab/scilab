@@ -160,7 +160,8 @@ am__dirstamp = $(am__leading_dot)dirstamp
 am__objects_1 = src/cpp/libscisymbol_la-symbol.lo \
 	src/cpp/libscisymbol_la-context.lo \
 	src/cpp/libscisymbol_la-scope.lo \
-	src/cpp/libscisymbol_la-variables.lo
+	src/cpp/libscisymbol_la-variables.lo \
+	src/cpp/libscisymbol_la-libraries.lo
 am_libscisymbol_la_OBJECTS = $(am__objects_1)
 libscisymbol_la_OBJECTS = $(am_libscisymbol_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
@@ -513,10 +514,11 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 yacc_present = @yacc_present@
 SYMBOL_CXX_SOURCES = \
-    src/cpp/symbol.cpp \
-    src/cpp/context.cpp \
-    src/cpp/scope.cpp \
-    src/cpp/variables.cpp
+src/cpp/symbol.cpp \
+src/cpp/context.cpp \
+src/cpp/scope.cpp \
+src/cpp/variables.cpp \
+src/cpp/libraries.cpp
 
 pkglib_LTLIBRARIES = libscisymbol.la
 libscisymbol_la_SOURCES = $(SYMBOL_CXX_SOURCES)
@@ -695,6 +697,8 @@ src/cpp/libscisymbol_la-scope.lo: src/cpp/$(am__dirstamp) \
 	src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscisymbol_la-variables.lo: src/cpp/$(am__dirstamp) \
 	src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscisymbol_la-libraries.lo: src/cpp/$(am__dirstamp) \
+	src/cpp/$(DEPDIR)/$(am__dirstamp)
 
 libscisymbol.la: $(libscisymbol_la_OBJECTS) $(libscisymbol_la_DEPENDENCIES) $(EXTRA_libscisymbol_la_DEPENDENCIES) 
 	$(AM_V_CXXLD)$(CXXLINK) -rpath $(pkglibdir) $(libscisymbol_la_OBJECTS) $(libscisymbol_la_LIBADD) $(LIBS)
@@ -708,6 +712,7 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscisymbol_la-context.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscisymbol_la-libraries.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscisymbol_la-scope.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscisymbol_la-symbol.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscisymbol_la-variables.Plo@am__quote@
@@ -763,6 +768,13 @@ src/cpp/libscisymbol_la-variables.lo: src/cpp/variables.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/variables.cpp' object='src/cpp/libscisymbol_la-variables.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisymbol_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscisymbol_la-variables.lo `test -f 'src/cpp/variables.cpp' || echo '$(srcdir)/'`src/cpp/variables.cpp
+
+src/cpp/libscisymbol_la-libraries.lo: src/cpp/libraries.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisymbol_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscisymbol_la-libraries.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscisymbol_la-libraries.Tpo -c -o src/cpp/libscisymbol_la-libraries.lo `test -f 'src/cpp/libraries.cpp' || echo '$(srcdir)/'`src/cpp/libraries.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscisymbol_la-libraries.Tpo src/cpp/$(DEPDIR)/libscisymbol_la-libraries.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/libraries.cpp' object='src/cpp/libscisymbol_la-libraries.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisymbol_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscisymbol_la-libraries.lo `test -f 'src/cpp/libraries.cpp' || echo '$(srcdir)/'`src/cpp/libraries.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo

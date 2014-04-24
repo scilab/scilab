@@ -39,6 +39,10 @@ types::Function::ReturnValue sci_pause(types::typed_list &in, int _iRetCount, ty
     Runner::UnlockPrompt();
 
     ThreadId* pThread = ConfigVariable::getLastRunningThread();
+    if (pThread == NULL)
+    {
+        return types::Function::OK;
+    }
 
     //return to console so change mode to 2
     int iOldMode = ConfigVariable::getPromptMode();

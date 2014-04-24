@@ -206,6 +206,7 @@ lib /DEF:"$(ProjectDir)operations_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <ClCompile Include="src\cpp\int32.cpp" />
     <ClCompile Include="src\cpp\int64.cpp" />
     <ClCompile Include="src\cpp\int8.cpp" />
+    <ClCompile Include="src\cpp\library.cpp" />
     <ClCompile Include="src\cpp\list.cpp" />
     <ClCompile Include="src\cpp\listdelete.cpp" />
     <ClCompile Include="src\cpp\listinsert.cpp" />
@@ -255,6 +256,7 @@ lib /DEF:"$(ProjectDir)operations_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <ClInclude Include="includes\int64.hxx" />
     <ClInclude Include="includes\int8.hxx" />
     <ClInclude Include="includes\internal.hxx" />
+    <ClInclude Include="includes\library.hxx" />
     <ClInclude Include="includes\list.hxx" />
     <ClInclude Include="includes\listdelete.hxx" />
     <ClInclude Include="includes\listinsert.hxx" />

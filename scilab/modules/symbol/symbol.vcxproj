@@ -175,6 +175,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\cpp\context.cpp" />
+    <ClCompile Include="src\cpp\libraries.cpp" />
     <ClCompile Include="src\cpp\scope.cpp" />
     <ClCompile Include="src\cpp\symbol.cpp" />
     <ClCompile Include="src\cpp\variables.cpp" />
@@ -183,6 +184,8 @@
     <ClInclude Include="includes\addGatewayInContext.h" />
     <ClInclude Include="includes\context.hxx" />
     <ClInclude Include="includes\export_symbol.h" />
+    <ClInclude Include="includes\libraries.hxx" />
+    <ClInclude Include="includes\scope.hxx" />
     <ClInclude Include="includes\symbol.hxx" />
     <ClInclude Include="includes\variables.hxx" />
   </ItemGroup>

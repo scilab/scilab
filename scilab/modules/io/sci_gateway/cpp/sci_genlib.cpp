@@ -152,6 +152,7 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
 
     if (pstPath)
     {
+        types::Library* pLib = new types::Library(pstParsePath);
         for (int k = 0 ; k < iNbFile ; k++)
         {
             //version with direct parsing
@@ -182,14 +183,16 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
                         scilabWriteW(pstVerbose);
                     }
 
-                    symbol::Context::getInstance()->AddMacroFile(new MacroFile(pFD->name_get().name_get(), stFullPath, pstLibName));
-
+                    pLib->add(pFD->name_get().name_get(), new MacroFile(pFD->name_get().name_get(), stFullPath, pstLibName));
                 }
             }
 
             delete parser.getTree();
         }
+
+        symbol::Context::getInstance()->put(symbol::Symbol(pstLibName), *pLib);
     }
+
 
     out.push_back(new Bool(1));
     FREE(pstParsePath);

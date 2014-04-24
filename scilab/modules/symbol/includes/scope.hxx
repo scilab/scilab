@@ -14,13 +14,14 @@
 #define __NEWSCOPE_HXX__
 
 #include "variables.hxx"
+#include "libraries.hxx"
 
 namespace symbol
 {
 class Scope
 {
 public :
-    Scope(Variables* _vars, int _iLevel) : m_vars(_vars), m_iLevel(_iLevel) {}
+    Scope(Variables* _vars, Libraries* _libs, int _iLevel) : m_vars(_vars), m_libs(_libs), m_iLevel(_iLevel) {}
     virtual ~Scope();
 
     void put(const Symbol& _key, types::InternalType& _iT);
@@ -38,6 +39,7 @@ private :
     SymbolMap m_symbol;
     int m_iLevel;
     Variables* m_vars;
+    Libraries* m_libs;
 };
 
 class Scopes
@@ -47,7 +49,7 @@ private :
     ScopesList m_scopes;
     int m_iLevel;
     Variables m_vars;
-
+    Libraries m_libs;
 public :
 
     Scopes() : m_iLevel(-1) {}
@@ -82,10 +84,10 @@ public :
     void createEmptyGlobalValue(const symbol::Symbol& _key);
 
     /*tools*/
-    std::list<symbol::Symbol>& getFunctionList(const std::wstring& _stModuleName, bool _bFromEnd);
-    std::list<std::wstring>& getVarsName();
-    std::list<std::wstring>& getMacrosName();
-    std::list<std::wstring>& getFunctionsName();
+    std::list<symbol::Symbol>* getFunctionList(const std::wstring& _stModuleName, bool _bFromEnd);
+    std::list<std::wstring>* getVarsName();
+    std::list<std::wstring>* getMacrosName();
+    std::list<std::wstring>* getFunctionsName();
     void print(std::wostream& ostr) const;
 };
 

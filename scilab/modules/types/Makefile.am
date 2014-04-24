@@ -30,43 +30,44 @@ include $(top_srcdir)/Makefile.incl.am
 TYPES_JAVA_C_SOURCES = src/jni/getScilabVariable_wrap.c
 
 TYPES_CPP_SOURCES = \
-			src/cpp/types.cpp \
-			src/cpp/string.cpp \
-			src/cpp/double.cpp \
-			src/cpp/bool.cpp \
-			src/cpp/float.cpp \
-			src/cpp/implicitlist.cpp \
-			src/cpp/polynom.cpp \
-			src/cpp/singlepoly.cpp \
-			src/cpp/tostring_common.cpp \
-			src/cpp/function.cpp \
-			src/cpp/macrofile.cpp \
-			src/cpp/macro.cpp \
-			src/cpp/list.cpp \
-			src/cpp/listdelete.cpp \
-			src/cpp/listinsert.cpp \
-			src/cpp/listoperation.cpp \
-			src/cpp/listundefined.cpp \
-			src/cpp/struct.cpp \
-			src/cpp/singlestruct.cpp \
-			src/cpp/cell.cpp \
-			src/cpp/tlist.cpp \
-			src/cpp/file.cpp \
-			src/cpp/mlist.cpp \
-			src/cpp/threadId.cpp \
-			src/cpp/arrayof.cpp \
-			src/cpp/int8.cpp \
-			src/cpp/uint8.cpp \
-			src/cpp/int16.cpp \
-			src/cpp/uint16.cpp \
-			src/cpp/int32.cpp \
-			src/cpp/uint32.cpp \
-			src/cpp/int64.cpp \
-			src/cpp/uint64.cpp \
-            src/cpp/sparse.cpp \
-			src/cpp/graphichandle.cpp \
-            src/cpp/types_tools.cpp \
-            src/cpp/void.cpp
+src/cpp/types.cpp \
+src/cpp/string.cpp \
+src/cpp/double.cpp \
+src/cpp/bool.cpp \
+src/cpp/float.cpp \
+src/cpp/implicitlist.cpp \
+src/cpp/polynom.cpp \
+src/cpp/singlepoly.cpp \
+src/cpp/tostring_common.cpp \
+src/cpp/function.cpp \
+src/cpp/macrofile.cpp \
+src/cpp/macro.cpp \
+src/cpp/list.cpp \
+src/cpp/listdelete.cpp \
+src/cpp/listinsert.cpp \
+src/cpp/listoperation.cpp \
+src/cpp/listundefined.cpp \
+src/cpp/struct.cpp \
+src/cpp/singlestruct.cpp \
+src/cpp/cell.cpp \
+src/cpp/tlist.cpp \
+src/cpp/file.cpp \
+src/cpp/mlist.cpp \
+src/cpp/threadId.cpp \
+src/cpp/arrayof.cpp \
+src/cpp/int8.cpp \
+src/cpp/uint8.cpp \
+src/cpp/int16.cpp \
+src/cpp/uint16.cpp \
+src/cpp/int32.cpp \
+src/cpp/uint32.cpp \
+src/cpp/int64.cpp \
+src/cpp/uint64.cpp \
+src/cpp/sparse.cpp \
+src/cpp/graphichandle.cpp \
+src/cpp/types_tools.cpp \
+src/cpp/void.cpp \
+src/cpp/library.cpp
 
 TYPES_JAVA_CPP_SOURCES = src/cpp/ScilabToJava.cpp \
 	            src/jni/ScilabVariables.cpp \

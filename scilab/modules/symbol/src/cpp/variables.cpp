@@ -228,10 +228,9 @@ bool Variables::remove(const Symbol& _key)
     {
         return false;
     }
-
 }
 
-std::list<std::wstring>& Variables::getVarsName()
+std::list<std::wstring>* Variables::getVarsName()
 {
     std::list<std::wstring>* plOut = new std::list<std::wstring>();
     types::InternalType* pIT = NULL;
@@ -246,10 +245,10 @@ std::list<std::wstring>& Variables::getVarsName()
         }
     }
 
-    return *plOut;
+    return plOut;
 }
 
-std::list<std::wstring>& Variables::getMacrosName()
+std::list<std::wstring>* Variables::getMacrosName()
 {
     std::list<std::wstring>* plOut = new std::list<std::wstring>();
     types::InternalType* pIT = NULL;
@@ -264,10 +263,10 @@ std::list<std::wstring>& Variables::getMacrosName()
         }
     }
 
-    return *plOut;
+    return plOut;
 }
 
-std::list<std::wstring>& Variables::getFunctionsName()
+std::list<std::wstring>* Variables::getFunctionsName()
 {
     std::list<std::wstring>* plOut = new std::list<std::wstring>();
     types::InternalType* pIT = NULL;
@@ -282,10 +281,10 @@ std::list<std::wstring>& Variables::getFunctionsName()
         }
     }
 
-    return *plOut;
+    return plOut;
 }
 
-std::list<symbol::Symbol>& Variables::getFunctionList(const std::wstring& _stModuleName, bool _bFromEnd) const
+std::list<symbol::Symbol>* Variables::getFunctionList(const std::wstring& _stModuleName, bool _bFromEnd) const
 {
     bool bAll = _stModuleName == L"";
     std::list<symbol::Symbol>* lst = new std::list<symbol::Symbol>;
@@ -338,7 +337,7 @@ std::list<symbol::Symbol>& Variables::getFunctionList(const std::wstring& _stMod
         }
 
     }
-    return *lst;
+    return lst;
 }
 
 bool Variables::isGlobalVisible(const symbol::Symbol& _key) const

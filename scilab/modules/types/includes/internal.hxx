@@ -78,7 +78,8 @@ public :
         RealSparseBool,
         RealSingleHandle,
         RealHandle,
-        RealVoid
+        RealVoid,
+        RealLibrary
     };
 
 protected :
@@ -123,15 +124,15 @@ public :
         }
     }
 
-    bool	                        isDeletable()
+    virtual bool isDeletable()
     {
         return m_iRef == 0;
     }
-    bool	                        isRef(int _iRef = 0)
+    bool isRef(int _iRef = 0)
     {
         return m_iRef > _iRef;
     }
-    int                             getRef()
+    int getRef()
     {
         return m_iRef;
     }
@@ -319,6 +320,10 @@ public :
         return false;
     }
     virtual bool                    isPointer(void)
+    {
+        return false;
+    }
+    virtual bool                    isLibrary(void)
     {
         return false;
     }

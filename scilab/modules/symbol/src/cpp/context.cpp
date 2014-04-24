@@ -75,22 +75,22 @@ types::InternalType* Context::getFunction(const symbol::Symbol& _key) const
     return m_scopes->get(_key);
 }
 
-std::list<symbol::Symbol>& Context::getFunctionList(const std::wstring& _stModuleName, bool _bFromEnd)
+std::list<symbol::Symbol>* Context::getFunctionList(const std::wstring& _stModuleName, bool _bFromEnd)
 {
     return m_scopes->getFunctionList(_stModuleName, _bFromEnd);
 }
 
-std::list<std::wstring>& Context::getVarsName()
+std::list<std::wstring>* Context::getVarsName()
 {
     return m_scopes->getVarsName();
 }
 
-std::list<std::wstring>& Context::getMacrosName()
+std::list<std::wstring>* Context::getMacrosName()
 {
     return m_scopes->getMacrosName();
 }
 
-std::list<std::wstring>& Context::getFunctionsName()
+std::list<std::wstring>* Context::getFunctionsName()
 {
     return m_scopes->getFunctionsName();
 }

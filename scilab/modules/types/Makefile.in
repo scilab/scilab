@@ -198,7 +198,7 @@ am__libscitypes_algo_la_SOURCES_DIST = src/cpp/types.cpp \
 	src/cpp/int32.cpp src/cpp/uint32.cpp src/cpp/int64.cpp \
 	src/cpp/uint64.cpp src/cpp/sparse.cpp \
 	src/cpp/graphichandle.cpp src/cpp/types_tools.cpp \
-	src/cpp/void.cpp src/cpp/inspector.cpp
+	src/cpp/void.cpp src/cpp/library.cpp src/cpp/inspector.cpp
 am__dirstamp = $(am__leading_dot)dirstamp
 @ENABLE_DEBUG_TRUE@am__objects_1 =  \
 @ENABLE_DEBUG_TRUE@	src/cpp/libscitypes_algo_la-inspector.lo
@@ -238,7 +238,8 @@ am__objects_2 = src/cpp/libscitypes_algo_la-types.lo \
 	src/cpp/libscitypes_algo_la-sparse.lo \
 	src/cpp/libscitypes_algo_la-graphichandle.lo \
 	src/cpp/libscitypes_algo_la-types_tools.lo \
-	src/cpp/libscitypes_algo_la-void.lo $(am__objects_1)
+	src/cpp/libscitypes_algo_la-void.lo \
+	src/cpp/libscitypes_algo_la-library.lo $(am__objects_1)
 am_libscitypes_algo_la_OBJECTS = $(am__objects_2)
 libscitypes_algo_la_OBJECTS = $(am_libscitypes_algo_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
@@ -791,7 +792,7 @@ TYPES_CPP_SOURCES = src/cpp/types.cpp src/cpp/string.cpp \
 	src/cpp/int32.cpp src/cpp/uint32.cpp src/cpp/int64.cpp \
 	src/cpp/uint64.cpp src/cpp/sparse.cpp \
 	src/cpp/graphichandle.cpp src/cpp/types_tools.cpp \
-	src/cpp/void.cpp $(am__append_2)
+	src/cpp/void.cpp src/cpp/library.cpp $(am__append_2)
 TYPES_JAVA_CPP_SOURCES = src/cpp/ScilabToJava.cpp \
 	            src/jni/ScilabVariables.cpp \
 	            src/jni/ScilabVariablesRefresh.cpp \
@@ -1042,6 +1043,8 @@ src/cpp/libscitypes_algo_la-types_tools.lo: src/cpp/$(am__dirstamp) \
 	src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscitypes_algo_la-void.lo: src/cpp/$(am__dirstamp) \
 	src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscitypes_algo_la-library.lo: src/cpp/$(am__dirstamp) \
+	src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscitypes_algo_la-inspector.lo: src/cpp/$(am__dirstamp) \
 	src/cpp/$(DEPDIR)/$(am__dirstamp)
 
@@ -1197,6 +1200,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscitypes_algo_la-int32.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscitypes_algo_la-int64.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscitypes_algo_la-int8.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscitypes_algo_la-library.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscitypes_algo_la-list.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscitypes_algo_la-listdelete.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscitypes_algo_la-listinsert.Plo@am__quote@
@@ -1541,6 +1545,13 @@ src/cpp/libscitypes_algo_la-void.lo: src/cpp/void.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/void.cpp' object='src/cpp/libscitypes_algo_la-void.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscitypes_algo_la-void.lo `test -f 'src/cpp/void.cpp' || echo '$(srcdir)/'`src/cpp/void.cpp
+
+src/cpp/libscitypes_algo_la-library.lo: src/cpp/library.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscitypes_algo_la-library.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscitypes_algo_la-library.Tpo -c -o src/cpp/libscitypes_algo_la-library.lo `test -f 'src/cpp/library.cpp' || echo '$(srcdir)/'`src/cpp/library.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscitypes_algo_la-library.Tpo src/cpp/$(DEPDIR)/libscitypes_algo_la-library.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/library.cpp' object='src/cpp/libscitypes_algo_la-library.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscitypes_algo_la-library.lo `test -f 'src/cpp/library.cpp' || echo '$(srcdir)/'`src/cpp/library.cpp
 
 src/cpp/libscitypes_algo_la-inspector.lo: src/cpp/inspector.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscitypes_algo_la-inspector.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscitypes_algo_la-inspector.Tpo -c -o src/cpp/libscitypes_algo_la-inspector.lo `test -f 'src/cpp/inspector.cpp' || echo '$(srcdir)/'`src/cpp/inspector.cpp

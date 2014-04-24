@@ -14,7 +14,7 @@ mode(-1);  // silent execution mode
 
 // clean database when restarted ======================================
 //predef("clear"); //unprotect all variables
-clear  // erase all variables
+clear;  // erase all variables
 clearglobal();
 
 %tk = (with_module("tclsci") & getscilabmode() <> "NWNI");

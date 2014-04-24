@@ -27,6 +27,9 @@
     <ClCompile Include="src\cpp\scope.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\cpp\libraries.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\context.hxx">
@@ -42,6 +45,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="includes\variables.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\scope.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\libraries.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

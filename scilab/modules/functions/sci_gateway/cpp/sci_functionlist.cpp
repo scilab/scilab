@@ -52,17 +52,18 @@ Function::ReturnValue sci_funclist(types::typed_list &in, int _iRetCount, types:
     }
 
     wstring libName(pstLibName);
-    std::list<symbol::Symbol> FuncList = pContext->getFunctionList(libName, false);
+    std::list<symbol::Symbol>* FuncList = pContext->getFunctionList(libName, false);
 
-    String *pS = new String((int)FuncList.size(), 1);
+    String *pS = new String((int)FuncList->size(), 1);
 
     std::list<symbol::Symbol>::iterator it;
     int i = 0;
-    for (it = FuncList.begin() ; it != FuncList.end() ; it++)
+    for (it = FuncList->begin() ; it != FuncList->end() ; ++it)
     {
         pS->set(i++, 0, it->name_get().c_str());
     }
 
+    delete FuncList;
     out.push_back(pS);
     return Function::OK;
 }

@@ -26,7 +26,7 @@ extern "C"
 using namespace types;
 
 /*--------------------------------------------------------------------------*/
-Function::ReturnValue sci_load(types::typed_list &in, int _iRetCount, types::typed_list &out)
+Function::ReturnValue sci_lib(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int iXMLFileLen = 0;
     if (in.size() != 1)
@@ -50,7 +50,7 @@ Function::ReturnValue sci_load(types::typed_list &in, int _iRetCount, types::typ
 
     wchar_t* pstPath = pS->get(0);
     wchar_t* pwstPath = expandPathVariableW(pstPath);
-    Library* lib = loadlib(pwstPath);
+    Library* lib = loadlib(pwstPath, false, false);
     FREE(pwstPath);
 
     if (lib == NULL)
@@ -58,6 +58,8 @@ Function::ReturnValue sci_load(types::typed_list &in, int _iRetCount, types::typ
         return Function::Error;
     }
 
+
+    out.push_back(lib);
     return Function::OK;
 }
 

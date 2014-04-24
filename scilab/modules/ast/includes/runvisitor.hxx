@@ -486,7 +486,14 @@ public :
             throw ScilabError(szError, 999, e.location_get());
         }
 
-        if (result_get() != NULL && result_get()->isStruct())
+        if (result_get() == NULL)
+        {
+            wchar_t szError[bsiz];
+            os_swprintf(szError, bsiz, _W("Attempt to reference field of non-structure array.\n"));
+            throw ScilabError(szError, 999, e.location_get());
+        }
+
+        if (result_get()->isStruct())
         {
             InternalType* pTemp = result_get();
             result_set(NULL);
@@ -514,7 +521,7 @@ public :
                 throw ScilabError(szError, 999, e.tail_get()->location_get());
             }
         }
-        else if (result_get() != NULL && (result_get()->isMList() || result_get()->isTList()))
+        else if (result_get()->isMList() || result_get()->isTList())
         {
             TList* psValue = ((InternalType*)result_get())->getAs<MList>();
 
@@ -569,13 +576,13 @@ public :
                 pS->DecreaseRef();
             }
         }
-        else if (result_get() != NULL && result_get()->isHandle())
+        else if (result_get()->isHandle())
         {
             typed_list in;
             typed_list out;
             optional_list opt;
 
-            String* pField = new String(psvRightMember->name_get().name_get().c_str());
+            String* pField = new String(wstField.c_str());
             in.push_back(pField);
             in.push_back(result_get());
 
@@ -585,6 +592,20 @@ public :
             {
                 result_set(out[0]);
             }
+        }
+        else if (result_get()->isLibrary())
+        {
+            Library* pLib = ((InternalType*)result_get())->getAs<Library>();
+
+            InternalType* pIT = pLib->get(wstField);
+            if (pIT == NULL)
+            {
+                wchar_t szError[bsiz];
+                os_swprintf(szError, bsiz, _W("Unknown macro %ls in library.\n"), wstField.c_str());
+                throw ScilabError(szError, 999, e.tail_get()->location_get());
+            }
+
+            result_set(pIT);
         }
         else
         {

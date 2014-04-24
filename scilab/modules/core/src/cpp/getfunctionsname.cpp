@@ -19,18 +19,19 @@ extern "C" {
 /*----------------------------------------------------------------------------------*/
 char **getFunctionsName(int *sizearray)
 {
-    std::list<std::wstring> plMacrosList = symbol::Context::getInstance()->getFunctionsName();
+    std::list<std::wstring>* plMacrosList = symbol::Context::getInstance()->getFunctionsName();
     std::list<std::wstring>::iterator it;
-    *sizearray = (int)plMacrosList.size();
+    *sizearray = (int)plMacrosList->size();
     char** functions = (char**)MALLOC(*sizearray * sizeof(char*));
 
-    plMacrosList.sort();
+    plMacrosList->sort();
 
     int i = 0;
-    for (it = plMacrosList.begin(); it != plMacrosList.end(); it++, i++)
+    for (it = plMacrosList->begin(); it != plMacrosList->end(); ++it, i++)
     {
         functions[i] = wide_string_to_UTF8((*it).c_str());
     }
 
+    delete plMacrosList;
     return functions;
 }

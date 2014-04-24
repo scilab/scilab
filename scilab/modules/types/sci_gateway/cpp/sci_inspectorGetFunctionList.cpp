@@ -34,12 +34,12 @@ Function::ReturnValue sci_inspectorGetFunctionList(typed_list &in, int _iRetCoun
 
     symbol::Context* pC = symbol::Context::getInstance();
 
-    std::list<symbol::Symbol> FuncName = pC->getFunctionList(L"");
+    std::list<symbol::Symbol>* FuncName = pC->getFunctionList(L"");
 
-    String* pOut = new String((int)FuncName.size(), 4);
+    String* pOut = new String((int)FuncName->size(), 4);
 
-    std::list<symbol::Symbol>::iterator it = FuncName.begin();
-    for (int i = 0; it != FuncName.end() ; it++, i++)
+    std::list<symbol::Symbol>::iterator it = FuncName->begin();
+    for (int i = 0; it != FuncName->end() ; ++it, i++)
     {
         Callable* pCall = pC->get(*it)->getAs<Callable>();
         //Function name
@@ -57,6 +57,7 @@ Function::ReturnValue sci_inspectorGetFunctionList(typed_list &in, int _iRetCoun
         }
     }
 
+    delete FuncName;
     out.push_back(pOut);
     return Function::OK;
 }
