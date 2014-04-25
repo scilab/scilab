@@ -102,6 +102,9 @@ Scilab Bug Fixes
 
 * Bug #13358 fixed - Intersect and unique were slow due to an issue in quicksort implementation.
 
+* Bug #13359 fixed - Nyquist datatip with symetry now displaying properly
+                     negative frequencies
+
 * Bug #13364 fixed - Scilab did not start on CentOS 6.5, RedHat 5.4, RedHat 5.5 (GLIBC issue).
 
 * Bug #13365 fixed - Data bounds were not correctly updated in 3-D.
