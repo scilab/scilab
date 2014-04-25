@@ -987,7 +987,7 @@ interface for JOGL2 - or libGL (OpenGL library) are installed and if the version
                 FOP=$PACKAGE_JAR_FILE
                 AC_SUBST(FOP)
 
-                AC_ARG_WITH(emf, [AS_HELP_STRING([--without-emf-export],
+                AC_ARG_WITH(emf, [AS_HELP_STRING([--without-emf],
                     [disable support for EMF (Windows Metafile) export])])
                 if test "x$with_emf" != xno; then
                     # Freehep Graphics2D

@@ -1778,7 +1778,7 @@ Optional Packages:
   --without-modelica      Disable the OCaml module (modelica)
   --with-jdk=DIR          use JDK from DIR
   --with-ant=DIR          Use ant from DIR
-  --without-emf-export    disable support for EMF (Windows Metafile) export
+  --without-emf           disable support for EMF (Windows Metafile) export
   --with-libiconv-prefix[=DIR]  search for libiconv in DIR/include and DIR/lib
   --without-libiconv-prefix     don't search for libiconv in includedir and libdir
   --with-libintl-prefix[=DIR]  search for libintl in DIR/include and DIR/lib
