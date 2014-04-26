@@ -99,6 +99,7 @@
         <para>成功した場合は 0, それ以外はScilabコンソールにエラーメッセージを出力し,
             
             最初のエラー番号を返します.
+            
         </para>
         
     </refsection>
@@ -118,4 +119,6 @@
     </revhistory>
     
 </refentry>
+
+
 

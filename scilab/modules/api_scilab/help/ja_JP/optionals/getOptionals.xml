@@ -30,7 +30,7 @@
                     
                     <para>
                         
-                        Scilab環境ポインタ, api_scilab.h により定義された "pvApiCtx"で指定.
+                        Scilab環境ポインタ, api_scilab.h により定義された "pvApiCtx"で指定.                        
                         
                     </para>
                     

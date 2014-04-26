@@ -208,22 +208,18 @@
             この関数は <ulink url="http://xmlsoft.org/html/libxml-uri.html#xmlParseURI">libxml2ライブラリ
                 
                 (特に, 関数 xmlParseURI)
+                
             </ulink>
+            
             に基づいています.
             
         </para>
         
-        
-        
     </refsection>
-    
-    
     
     <refsection>
         
         <title>例</title>
-        
-        
         
         <programlisting role="example">
             
@@ -250,8 +246,6 @@ M = grand(3,4,"uin",0,9);
 cshift(M,1);
 -->
         
-        
-        
     </refsection>
     
     
@@ -272,9 +266,11 @@ cshift(M,1);
         
     </refsection>
     
+    
+    
     <refsection>
         
-        <title>History</title>
+        <title>履歴</title>
         
         <revhistory>
             

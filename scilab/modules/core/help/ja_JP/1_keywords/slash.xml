@@ -1,61 +1,187 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="slash">
+    
     <refnamediv>
+        
         <refname>slash</refname>
+        
         <refpurpose>(/) 右除算およびフィードバック</refpurpose>
+        
     </refnamediv>
+    
     <refsection>
+        
         <title>説明</title>
+        
         <para>
-            右除算.  <literal>x=A / b</literal> は, <literal>x*b=A</literal> の解です.
+            
+            右除算.  <literal>X=A/B</literal> は, <literal>X*B=A</literal> の解です.
+            
         </para>
+        
         <para>
-            <literal>b/a = (a' \ b')'</literal> .
+            
+            スラッシュ (右除算) とバックスラッシュ (左除算) 演算子は以下の等式で関係付けられます:
+            
+            <code>B/A=(A'\B')'</code>.
+            
         </para>
+        
         <para>
-            <literal>a./  b</literal> は,
-            エントリ <literal>a(i,j)/ b(i,j)</literal> を有する行列です.
-            <literal>b</literal> がスカラー(1x1 行列)の場合,
-            この処理は <literal> a./b*ones(a)</literal> と同じになります.
-            (<literal>a</literal> がスカラーの場合も同様).
+            
+            <literal>A</literal>が正方の場合, 
+            
+            <literal>X</literal> の解はLU分解または線形最小二乗ソルバにより求められます.
+            
+            <literal>A</literal>の条件数が <code>1/(10*%eps)</code>以下の場合(すなわち<literal>A</literal>
+            
+            の条件が良い場合), ピボット選択付きLU分解が使用されます.
+            
+            そうでない場合 (すなわち <literal>A</literal> の条件が悪い場合),
+            
+            <literal>X</literal> は<literal>A</literal>の完全直交分解により
+            
+            <literal>||A*X-B||</literal>を最小化する最小ノルム解となります
+            
+            (すなわち, <literal>X</literal>は線形最小二乗問題の解となります).
+            
         </para>
+        
         <para>
-            <literal>123./b</literal> は, <literal>(123.)/b</literal> と
-            解釈されることに注意してください.
-            この場合, ドット(.) は演算子ではなく数値の一部となります.
+            
+            <code>A./B</code> は要素毎の右除算, すなわち,
+            
+            エントリ<literal>A(i,j)/B(i,j)</literal>を有する行列となります.
+            
+            <literal>B</literal> がスカラー (1x1 行列)の場合,この演算は
+            
+            <code>A./B*ones(A)</code>と同じになります. 
+            
+            <literal>A</literal>がスカラーの場合も
+            
+            同様です.
+            
         </para>
+        
         <para>
-            バックスラッシュは左除算を意味します.
+            
+            <note>
+                
+                <code>123./B</code> は <code>(123.)/B</code>と解釈されることに注意してください. 
+                
+                この場合,ドットは演算子ではなく数値の一部となります.
+                
+            </note>
+            
         </para>
+        
         <para>
-            システムフィードバック.  <literal>S=G/.K</literal> は <literal>S=G*(eye()+K*G)^(-1)</literal>
-            と評価されます.
+            
+            システムフィードバック. <code>S = G/.K</code>は
+            
+            <code>S = G*(eye() + K*G)^(-1)</code> と評価されます.
+            
             この演算子はシンプルな記述が容易に可能となります.
+            
         </para>
+        
         <para>
-            <literal>G/.5</literal> は <literal>G/(.5)</literal>と解釈されることに注意してください. 
-            この場合, ドット(.) は演算子ではなく数値の一部となります.
+            
+            <note>
+                
+                <code>G/.5</code> は
+                
+                <code>G/(.5)</code>と解釈されることに注意してください.
+                
+                この場合, ドット(.) は演算子ではなく数値の一部となります.
+                
+            </note>
+            
         </para>
+        
         <para>
-            コメント <literal>//</literal> は, 特定の行をコメントにします.
-            すなわち, <literal>//</literal> で始まる行はインタプリタから無視されます.
+            
+            コメント <code>//</code> は, 特定の行をコメントにします.
+            
+            すなわち, <code>//</code> で始まる行はインタプリタから無視されます.
+            
         </para>
+        
     </refsection>
+    
+    <refsection>
+        
+        <title>例</title>
+        
+        <programlisting role="example"><![CDATA[
+a=[3.,-24.,30.];
+B=[
+   9.   -36.    30.
+  -36.   192.  -180.
+   30.  -180.   180.
+];
+x=a/B
+x*B-a // ゼロに近い
+
+a=4 / 2; // 2となります
+a=2 ./ [2,4]; //     1.    0.5
+// コメントは有用です. コードを理解しやすくします.
+ ]]></programlisting>
+        
+    </refsection>
+    
     <refsection role="see also">
+        
         <title>参照</title>
+        
         <simplelist type="inline">
+            
             <member>
+                
                 <link linkend="inv">inv</link>
+                
             </member>
+            
             <member>
+                
                 <link linkend="percent">percent</link>
+                
             </member>
+            
             <member>
+                
                 <link linkend="backslash">backslash</link>
+                
             </member>
+            
             <member>
+                
                 <link linkend="ieee">ieee</link>
+                
             </member>
+            
         </simplelist>
+        
     </refsection>
+    
+    <refsection>
+        
+        <title>履歴</title>
+        
+        <revhistory>
+            
+            <revision>
+                
+                <revnumber>5.4.1</revnumber>
+                
+                <revremark>バックスラッシュの条件数の閾値が増加しました.</revremark>
+                
+            </revision>
+            
+        </revhistory>
+        
+    </refsection>
+    
 </refentry>
+

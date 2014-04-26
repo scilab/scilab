@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+
+
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009  - DIGITEO - Antoine ELIAS
@@ -99,11 +101,12 @@
         <para>成功した場合は 0, それ以外はScilabコンソールにエラーメッセージを出力し,
             
             最初のエラー番号を返します.
+            
         </para>
         
     </refsection>
     
-    <title>History</title>
+    <title>履歴</title>
     
     <revhistory>
         
@@ -118,4 +121,6 @@
     </revhistory>
     
 </refentry>
+
+
 

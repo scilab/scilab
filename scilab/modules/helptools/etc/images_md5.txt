@@ -1133,6 +1133,7 @@ splin2d_1.png=6e186e7bcf5d848fd9d8f354282f6489
 splin2d_2.png=d83250260f32a8809dd873e42bc7911b
 splin3d_en_US_1.png=ae40e15cef55c07766d9b00a62f78666
 splin3d_fr_FR_1.png=ae40e15cef55c07766d9b00a62f78666
+splin3d_ja_JP_1.png=ae40e15cef55c07766d9b00a62f78666
 splin3d_ru_RU_1.png=ae40e15cef55c07766d9b00a62f78666
 splin_1.png=4982eeb64b3dc94cc23e16b4e5af0b15
 splin_2.png=446983411e4aa2a48c9aa96edef44404

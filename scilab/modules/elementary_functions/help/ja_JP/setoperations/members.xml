@@ -337,13 +337,9 @@
             
             <literal>N(i,j,...)</literal>が現れる最初(デフォルト)または
             
-            <literal>"last"</literal>(最後)の<literal>H</literal>の
+            <literal>"last"</literal>(最後)の<literal>H</literal>の添字を,
             
-            添字を,
-            
-            2番目のオプションの出力<literal>loc</literal>により
-            
-            取得できます.
+            2番目のオプションの出力<literal>loc</literal>により取得できます.
             
             <literal>"rows"</literal> または <literal>"cols"</literal> 
             

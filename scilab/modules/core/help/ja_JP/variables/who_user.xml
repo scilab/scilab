@@ -1,28 +1,153 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="who_user">
+    
     <refnamediv>
+        
         <refname>who_user</refname>
-        <refpurpose>ユーザ変数の一覧を得る</refpurpose>
+        
+        <refpurpose>ユーザ変数の一覧</refpurpose>
+        
     </refnamediv>
+    
     <refsynopsisdiv>
+        
         <title>呼び出し手順</title>
-        <synopsis>who_user()</synopsis>
+        
+        <synopsis>varList = who_user([bPrint])</synopsis>
+        
     </refsynopsisdiv>
+    
     <refsection>
+        
+        <title>引数</title>
+        
+        <variablelist>
+            
+            <varlistentry>
+                
+                <term>bPrint</term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        画面出力を有効または無効にする (デフォルト: <constant>%t</constant>).
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+        </variablelist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>返り値</title>
+        
+        <variablelist>
+            
+            <varlistentry>
+                
+                <term>varList</term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        ユーザ変数の列ベクトルまたはユーザが変数が有さない場合に<literal>[]</literal>.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+        </variablelist>
+        
+    </refsection>
+    
+    <refsection>
+        
         <title>説明</title>
+        
         <para>
-            <literal>who_user</literal> は,ユーザの変数名を表示します.
+            
+            <literal>who_user</literal> は,ユーザの変数名を表示し,ユーザ変数名を返します.
+            
         </para>
+        
     </refsection>
+    
+    <refsection>
+        
+        <title>例</title>
+        
+        <programlisting role="code_scilab"><![CDATA[ 
+clear;
+who_user()
+who_user(%t)
+who_user(%f)
+a = 1;
+b = 2;
+who_user()
+who_user(%t)
+who_user(%f)
+clear;
+ ]]>
+            
+        </programlisting>
+        
+    </refsection>
+    
     <refsection role="see also">
+        
         <title>参照</title>
+        
         <simplelist type="inline">
+            
             <member>
+                
                 <link linkend="whos">whos</link>
+                
             </member>
+            
             <member>
+                
                 <link linkend="who">who</link>
+                
             </member>
+            
         </simplelist>
+        
     </refsection>
+    
+    <refsection>
+        
+        <title>履歴</title>
+        
+        <revhistory>
+            
+            <revision>
+                
+                <revnumber>5.4.0</revnumber>
+                
+                <revremark>
+                    
+                    <function>who_user</function> はユーザ変数名を
+                    
+                    文字列の列ベクトルで返すようになりました.
+                    
+                </revremark>
+                
+            </revision>
+            
+        </revhistory>
+        
+    </refsection>
+    
 </refentry>
+
