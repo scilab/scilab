@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+
+
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises
@@ -71,15 +73,17 @@
         <para>
             
             <literal>
+                
                 isrow(<varname>x</varname>)
+                
             </literal>
-            は
+             は,
             
             <varname>x</varname>が行ベクトルの場合にtrueを返します.
             
             スカラーは行ベクトルとみなされます.
             
-            ハイパー行列は最後の次元以外が1である場合にのみ
+            ハイパー行列は,最後の次元以外が1である場合にのみ
             
             行ベクトルとみなされます.
             

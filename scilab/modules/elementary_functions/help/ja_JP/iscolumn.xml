@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+
+
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises
@@ -71,8 +73,11 @@
         <para>
             
             <literal>
+                
                 iscolumn(<varname>x</varname>)
+                
             </literal>
+            
             は
             
             <varname>x</varname>が列ベクトルの場合にtrueを返します.
@@ -176,4 +181,6 @@ iscolumn(s) // 構造体の3次元配列 (うち2つの次元は1要素)
     </refsection>
     
 </refentry>
+
+
 

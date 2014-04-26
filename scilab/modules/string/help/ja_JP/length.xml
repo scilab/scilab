@@ -20,7 +20,7 @@
         <synopsis>n=length(M)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>M</term>
@@ -54,22 +54,51 @@
             (<literal>size</literal>でも出力されます).
         </para>
         <para>
+	  mlistのlengthはデフォルトでmlistの要素数ですが,
+	  オーバーロードすることができます(例参照).
+	  文字列でないハイパー行列は,
+	  関数をオーバーロードする必要がないことに注意してください.
+	  さもなくば,<function>length</function>は
+	  ハイパー行列の次元の積を返します.
+        </para>
+        <para>
             <literal>length('123')</literal>は <literal>3</literal>となります.
             <literal>length([1,2;3,4])</literal>は <literal>4</literal>となります.
         </para>
-        <para>警告: 疎行列の長さは,行列の最大次元を返し,
-            次元の積ではありません.
-            (例:
-            length(sparse(eye(12,2))) はr max(12,2) を返し,24 とはなりません)
+        <para>
+            <warning>
+                警告 : 
+		疎行列の<function>length</function>は,
+		行列の最大次元を返し,次元の積ではありません.
+		(例えば:
+                <code>length(sparse(eye(12,2)))</code>は,
+		<literal>24</literal>)ではなく<code>max(12,2)</code> を返します.
+		疎行列の場合は <literal>size(...,'*')</literal>を使用してください.
+            </warning>
         </para>
-        <para>疎行列の場合は size(...,'*') を使用してください.</para>
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 length([123 ; 456 ])
 length(['hello world',SCI])
- ]]></programlisting>
+length(rand(2,2,2))
+
+    ]]></programlisting>
+        <programlisting role="example"><![CDATA[
+
+a = mlist(["myMlistT" "field1" "field2"],"aexample","bexampleb");
+length(a)
+// lengthがmlistにオーバーロードされたいない場合のデフォルトの動作は3を返す
+
+// mlist型myMlistTのオーバーロード関数を作成
+function r = %myMlistT_length(M)
+    r = length(M.field1)
+endfunction
+
+length(a)
+// length(a.field1)の結果8を返す
+    ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>参照</title>
@@ -78,5 +107,16 @@ length(['hello world',SCI])
                 <link linkend="size">size</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>
+                  この関数によりmlist型のオーバーロードが可能となりました.
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

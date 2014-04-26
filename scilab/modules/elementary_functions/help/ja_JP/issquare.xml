@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+
+
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises
@@ -71,9 +73,11 @@
         <para>
             
             <literal>
+                
                 issquare(<varname>x</varname>)
+                
             </literal>
-            は
+             は,
             
             <varname>x</varname>が正方行列
             
@@ -81,7 +85,7 @@
             
             <varname>x</varname> がハイパー行列の場合は要素数が1)
             
-            の場合にtrueを返します.. 
+            の場合にtrueを返します.
             
             <literal>issquare([])</literal>はfalseを返すことに注意してください.
             

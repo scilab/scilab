@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -10,104 +11,408 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
+
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="driver">
+    
     <refnamediv>
+        
         <refname>driver</refname>
+        
         <refpurpose>グラフィックドライバを選択する</refpurpose>
+        
     </refnamediv>
+    
     <refsynopsisdiv>
+        
         <title>呼び出し手順</title>
-        <synopsis>driver(driver_name)
-            current_driver=driver()
+        
+        <synopsis>
+            
+            current_driver = driver()
+            
+            driver(driver_name)
+            
+            previous_driver = driver(driver_name)
+            
         </synopsis>
+        
     </refsynopsisdiv>
+    
     <refsection>
-        <title>パラメータ</title>
+        
+        <title>引数</title>
+        
         <variablelist>
+            
             <varlistentry>
+                
                 <term>driver_name</term>
+                
                 <listitem>
-                    <para>文字列, 選択するドライバ.</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>説明</title>
-        <para>
-            この関数はグラフィックドライバを選択する際に使用されます.
-            引数を指定しない場合にはカレントのグラフィックドライバ名を
-            取得します.
-            選択するドライバは以下のどれかとすることができます:
-        </para>
-        <variablelist>
-            <varlistentry>
-                <term>"X11"</term>
-                <listitem>
-                    <para>コンピュータ画面に出力.</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>"Pos"</term>
-                <listitem>
-                    <para>ポストスクリプト形式で出力.</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>"Rec"</term>
-                <listitem>
+                    
                     <para>
-                        コンピュータ画面に出力. <literal>X11</literal>と同じ.
+                        
+                        文字列, 選択するドライバ(大文字小文字を区別せず).
+                        
                     </para>
+                    
                 </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>"Fig"</term>
+                
+                <term>current_driver</term>
+                
                 <listitem>
-                    <para>XFig形式で出力.</para>
+                    
+                    <para>文字列, 選択中のドライバ.</para>
+                    
                 </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>"GIF"</term>
+                
+                <term>previous_driver</term>
+                
                 <listitem>
-                    <para>Gif形式で出力.</para>
+                    
+                    <para>文字列, 前に選択されたドライバ.</para>
+                    
                 </listitem>
+                
             </varlistentry>
-            <varlistentry>
-                <term>"PPM"</term>
-                <listitem>
-                    <para>PPM形式で出力.</para>
-                </listitem>
-            </varlistentry>
+            
         </variablelist>
+        
     </refsection>
+    
     <refsection>
+        
+        <title>説明</title>
+        
+        <para>
+            
+            この関数は異なるエクスポートまたは表示用の異なるドライバ間の
+            
+            スイッチを提供します.
+            
+        </para>
+        
+        <para>
+            
+            画面への直接レンダリングまたはグラフィックユーザインターフェイス
+            
+            のないオフスクリーンエクスポートが,
+            
+            <literal>scilab-adv-cli</literal> (または
+            
+            <literal>-nw</literal>を付けてコール)モードで利用可能です.
+            
+        </para>
+        
+        <para>
+            
+            入力引数を指定さえずに使用した場合,
+            
+            <function>driver</function>関数は現在の
+            
+            グラフィックドライバ名を返します.
+            
+        </para>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>画面出力</title>
+        
+        <para>
+            
+            Scilabのデフォルトの動作では,
+            
+            グラフィックをオフスクリーン形式ではなく
+            
+            新規ウインドウに表示します.
+            
+        </para>
+        
+        <para>
+            
+            グラフィックを書き込まない場合, "null"形式を使用することができます.
+            
+        </para>
+        
+        <variablelist>
+            
+            <varlistentry>
+                
+                <term>X11またはRec</term>
+                
+                <listitem>
+                    
+                    <para>コンピュータ画面に出力.</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+        </variablelist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>サポートされるベクトル形式</title>
+        
+        <para>
+            
+            選択されるドライバは以下のベクトル形式のどれかとすることができます:
+            
+        </para>
+        
+        <variablelist>
+            
+            <varlistentry>
+                
+                <term>Posまたはps</term>
+                
+                <listitem>
+                    
+                    <para>ポストスクリプト形式で出力.</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>PDF</term>
+                
+                <listitem>
+                    
+                    <para>PDF形式で出力.</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>SVG</term>
+                
+                <listitem>
+                    
+                    <para>SVG形式で出力.</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+        </variablelist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>サポートされるビットマップ形式</title>
+        
+        <para>
+            
+            選択されたドライバは以下のビットマップ形式のどれかと
+            
+            することができます:
+            
+        </para>
+        
+        <variablelist>
+            
+            <varlistentry>
+                
+                <term>GIF</term>
+                
+                <listitem>
+                    
+                    <para>GIF形式で出力.</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>PNG</term>
+                
+                <listitem>
+                    
+                    <para>PNG形式で出力.</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>JPEG または JPG</term>
+                
+                <listitem>
+                    
+                    <para>JPEG形式で出力.</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>BMP</term>
+                
+                <listitem>
+                    
+                    <para>BMP形式で出力.</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>PPM</term>
+                
+                <listitem>
+                    
+                    <para>portable pixmap (PPM) 形式で出力.</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+        </variablelist>
+        
+    </refsection>
+    
+    <refsection>
+        
         <title>注意</title>
+        
         <para>
-            "GIF" または "PPM" ファイルを他の画像形式に変換したり,
-            アニメーションを構築する場合,
-            ImageMagic (http://www.imagemagick.org/)の
-            "convert"プログラムを使用することができます.
+            
+            グラフィック出力を(一時ディレクトリに書かれる)
+            
+            GIFファイルにリダイレクトする際に,
+            
+            以下の例を使用できます:
+            
         </para>
-        <para>
-            グラフィック出力を(カレントのディレクトリに書きこまれる)GIFファイルにリダイレクトするには,
-            以下の例の様にします:
-        </para>
-        <programlisting role=""><![CDATA[ 
-driver('GIF');
-xinit('mygiffile.gif');
+        
+        <programlisting role="example"><![CDATA[
+previous_driver = driver('GIF');
+xinit(TMPDIR+'/mygiffile.gif');
 plot3d();
 xend();
-driver('X11');
+driver(previous_driver); // Scilabの元の動作に戻す
  ]]></programlisting>
+        
         <para>
-            例えば,<literal>img*.gif</literal>という名前の一連のGifファイルを
-            生成した場合,
-            アニメーションGifファイル(名前:anim.gif)を以下のように構築することが
-            できます
+            
+            例えば,<literal>img*.gif</literal>という名前の
+            
+            一連のGIFファイルを生成した場合,
+            
+            (<literal>anim.gif</literal>という名前の) 
+            
+            アニメーションGIFファイルを以下のように構築できます.
+            
         </para>
-        <programlisting role=""><![CDATA[ 
-convert -delay 10  img*.gif anim.gif  
- ]]></programlisting>
+        
+        <synopsis>
+            
+            convert -delay 10  img*.gif anim.gif
+            
+        </synopsis>
+        
     </refsection>
+    
+    <refsection role="see also">
+        
+        <title>参照</title>
+        
+        <simplelist type="inline">
+            
+            <member>
+                
+                <link linkend="xinit">xinit</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="xend">xend</link>
+                
+            </member>
+            
+        </simplelist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>履歴</title>
+        
+        <revhistory>
+            
+            <revision>
+                
+                <revnumber>5.4.0</revnumber>
+                
+                <revremark>
+                    
+                    <itemizedlist>
+                        
+                        <listitem>
+                            
+                            元のドライバ値を返す.
+                            
+                        </listitem>
+                        
+                        <listitem>
+                            
+                            オフスクリーンエクスポートを可能に.
+                            
+                            Scilabは新規ウインドウをオープンせずにグラフィック
+                            
+                            をグラフィックをエクスポートします.
+                            
+                        </listitem>
+                        
+                        <listitem>
+                            
+                            新規ビットマップ形式のサポート: PNG, JPEG および BMP.
+                            
+                        </listitem>
+                        
+                        <listitem>
+                            
+                            新規ベクトル形式のサポート: PDF および SVG.
+                            
+                        </listitem>
+                        
+                        <listitem>
+                            
+                            関数は小文字および大文字の引数を受け付けます.
+                            
+                        </listitem>
+                        
+                        <listitem>
+                            
+                            Fig ドライバは廃止されました.
+                            
+                        </listitem>
+                        
+                    </itemizedlist>
+                    
+                </revremark>
+                
+            </revision>
+            
+        </revhistory>
+        
+    </refsection>
+    
 </refentry>
+
+
+

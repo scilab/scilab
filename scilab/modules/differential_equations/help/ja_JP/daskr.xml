@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+
+
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises
@@ -243,6 +245,7 @@ r=res(t,y,ydot,x1,x2,...)
                             </para>
                             
                             <para>
+                                
                                 警告: この形式は<literal>関数</literal>に渡す別の引数が存在しない場合には
                                 
                                 使用するべきではありません.
@@ -266,7 +269,7 @@ void res(double *t, double y[], double yd[], double r[],
          int *ires, double rpar[], int ipar[])
  ]]></programlisting>
                             
-                            <para>Fortranの場合, 以下としま:</para>
+                            <para>Fortranの場合, 以下とします:</para>
                             
                             <programlisting role="no-scilab-exec"><![CDATA[
 subroutine res(t,y,yd,r,ires,rpar,ipar)
@@ -309,6 +312,7 @@ integer ires,ipar(*)
                             <para>Scilab関数.</para>
                             
                             <para>
+                                
                                 呼び出し手順は <literal>r=jac(t,y,ydot,cj)</literal> で,
                                 
                                 <literal>jac</literal> 関数は
@@ -393,6 +397,8 @@ integer ipar(*)
                     <para>
                         
                         <link linkend="external">external</link> (関数またはリストまたは文字列). 
+                        
+                        k                        
                         
                         <literal>ng</literal>個の要素を有する列ベクトル <literal>surf(t,y)</literal> の値を計算します.
                         
@@ -537,6 +543,7 @@ integer ny,ng
                                         "dg(i)/dy(j)+cj*dg(i)/dydot(j)"
                                         
                                     </literal>
+                                    
                                     で計算するバンド行列の定義域<literal>[ml,mu]</literal>を指定します.
                                     
                                     <literal>info(3)=[]</literal>の場合, <literal>jac</literal> は通常の行列
@@ -1179,6 +1186,7 @@ nn
                 <link linkend="ode">ode</link>
                 
             </member>
+             
             
             <member>
                 
@@ -1239,4 +1247,6 @@ nn
     </refsection>
     
 </refentry>
+
+
 

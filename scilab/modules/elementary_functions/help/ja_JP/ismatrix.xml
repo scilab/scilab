@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+
+
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises
@@ -71,8 +73,11 @@
         <para>
             
             <literal>
+                
                 ismatrix(<varname>x</varname>)
+                
             </literal>
+            
             は,
             
             <varname>x</varname>が行列の場合にtrueを返します.
@@ -85,11 +90,19 @@
             
         </para>
         
+        
+        
     </refsection>
+    
+    
     
     <refsection>
         
+        
+        
         <title>例</title>
+        
+        
         
         <programlisting role="example"><![CDATA[ 
 ismatrix(ones(10,5))
@@ -125,65 +138,129 @@ s(1,2,1).b = list(%e, %s);
 ismatrix(s) // 構造体の3次元 (立法)配列
  ]]></programlisting>
         
+        
+        
     </refsection>
+    
+    
     
     <refsection role="see also">
         
+        
+        
         <title>参照</title>
+        
+        
         
         <simplelist type="inline">
             
+            
+            
             <member>
+                
+                
                 
                 <link linkend="isscalar">isscalar</link>
                 
+                
+                
             </member>
             
+            
+            
             <member>
+                
+                
                 
                 <link linkend="isrow">isrow</link>
                 
+                
+                
             </member>
             
+            
+            
             <member>
+                
+                
                 
                 <link linkend="iscolumn">iscolumn</link>
                 
+                
+                
             </member>
             
+            
+            
             <member>
+                
+                
                 
                 <link linkend="issquare">issquare</link>
                 
+                
+                
             </member>
+            
+            
             
             <member>
                 
+                
+                
                 <link linkend="isempty">isempty</link>
+                
+                
                 
             </member>
             
+            
+            
         </simplelist>
         
+        
+        
     </refsection>
+    
+    
     
     <refsection>
         
+        
+        
         <title>履歴</title>
+        
+        
         
         <revhistory>
             
+            
+            
             <revision>
+                
+                
                 
                 <revnumber>5.5.0</revnumber>
                 
+                
+                
                 <revremark>関数 ismatrix が導入されました.</revremark>
+                
+                
                 
             </revision>
             
+            
+            
         </revhistory>
+        
+        
         
     </refsection>
     
+    
+    
 </refentry>
+
+
 

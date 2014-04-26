@@ -262,6 +262,10 @@
                     基づきます.
                 </revremark>
             </revision>
+            <revision>
+              <revnumber>5.4.1</revnumber>
+              <revremark>'blank' がデフォルトで有効となりました.</revremark>
+            </revision>
         </revhistory>
     </refsection>
 </refentry>

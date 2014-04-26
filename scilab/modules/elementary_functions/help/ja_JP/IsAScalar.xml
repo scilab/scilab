@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+
+
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises
@@ -12,7 +14,11 @@
  *
  -->
 
+
+
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="IsAScalar" xml:lang="ja">
+    
+    
     
     <refnamediv>
         
@@ -79,8 +85,11 @@
             (size(<varname>x</varname>が1, type(<varname>x</varname>,1) も 1)の場合,
             
             <literal>
+                
                 IsAScalar(<varname>x</varname>)
+                
             </literal>
+            
             は true を返します.
             
             <warning>この関数は廃止予定です.</warning>
@@ -132,4 +141,6 @@ IsAScalar("s")
     </refsection>
     
 </refentry>
+
+
 

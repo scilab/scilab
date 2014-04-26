@@ -18,16 +18,19 @@
     <refsynopsisdiv>
         <title>呼び出し手順</title>
         <synopsis>string(x)
-            [out,in,text]=string(x)
+            [out, in, text] = string(x)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>論理値, 複素数, 実数, 整数, 多項式行列,または関数</para>
+                    <para>
+		      論理値, 複素数, 実数, 整数, 多項式行列,
+		      暗黙の大きさ, ライブラリまたは関数.
+		    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -35,43 +38,64 @@
     <refsection>
         <title>説明</title>
         <para>
-            行列を文字列の行列に変換します.
+	  <function>string</function>関数は
+            行列<varname>x</varname> を文字列の行列に変換します.
         </para>
         <para>
-            <literal>x</literal>が関数の場合,<literal>[out,in,text]=string(x)</literal>は
-            3つの文字列ベクトルを返します:
-            <literal>out</literal> は出力変数のベクトル,
-            <literal>in</literal> は入力変数のベクトル, そして <literal>text</literal> は
-            関数のソースコードの(列)ベクトルです.
+          <literal>x</literal>が関数の場合,
+	  <code>[out, in, text] = string(x)</code> は
+          3つの文字列ベクトルを返します:
+          <literal>out</literal> は出力変数のベクトル,
+          <literal>in</literal> は入力変数のベクトル, そして <literal>text</literal> は
+          関数のソースコードの(列)ベクトルです.
         </para>
         <para>
-            <literal>x</literal>が <literal>lib</literal>変数の場合, text は
-            文字列の列ベクトルとなります.
-            最初の要素には,ライブラリファイルのパス,
-            その他の要素にはライブラリで定義される関数の名前となります.
+          <literal>x</literal>が <literal>lib</literal>変数の場合, 
+	  <varname>text</varname>は文字列の列ベクトルとなります.
+          最初の要素は,ライブラリファイルのパス,
+          その他の要素は定義する関数の名前を有します.
         </para>
         <para>
-            文字列は<literal>'string'</literal> (引用符で括る)または
-            <literal>"string"</literal> (二重引用符で括る)で定義されます;
-            文字列の行列は通常の定数行列として定義されます.
+          文字列は<literal>'string'</literal> (引用符で括る)または
+          <literal>"string"</literal> (二重引用符で括る)で定義されます;
+          文字列の行列は通常の定数行列として定義されます.
         </para>
         <para>
-            文字列の結合は<literal>+</literal>操作により行われます.
+          文字列の結合は<literal>+</literal>操作により行われます.
+        </para>
+        <para>
+	  複素数, 実数, 整数, 多項式行列の場合,
+          <function>string</function> の出力は
+	  <link linkend="format">format</link> function (例参照)で管理されます.
+        </para>
+        <para>
+          string([]) は []を返すことに注意してください.
         </para>
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
-string(rand(2,2))
-deff('y=mymacro(x)','y=x+1')
-[out,in,text]=string(mymacro)
-x=123.356; 
-disp('Result is '+string(x))
-
-disp('/'+string(~%t)+'/')
-disp('/'+string(%i+1)+'/')
-disp('/'+string(int16(-123))+'/')
-disp('/'+string(1+%s+%s^3)+'/')
+        <programlisting role="example"><![CDATA[
+            string(rand(2, 2))
+            
+            deff("y = mymacro(x)", "y = x + 1")
+            [out, in, text] = string(mymacro)
+            x = 123.356;
+            disp("Result is " + string(x));
+            
+            disp("/" + string(~%t) + "/");
+            disp("/" + string(%i+1) + "/");
+            disp("/" + string(int16(-123)) + "/");
+            disp("/" + string(1 + %s + %s^3) + "/");
+            
+            string(corelib)
+            
+            v = format();
+            disp(string(%pi))
+            format(24);
+            disp(string(%pi))
+            format(v(2))
+            
+            string(1:4:$)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -104,6 +128,20 @@ disp('/'+string(1+%s+%s^3)+'/')
             <member>
                 <link linkend="sci2exp">sci2exp</link>
             </member>
+            <member>
+                <link linkend="format">format</link>
+            </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>
+                  暗黙の大きさの型が入力引数として管理されます.
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

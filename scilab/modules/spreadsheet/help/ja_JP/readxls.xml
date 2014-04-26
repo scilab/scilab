@@ -21,7 +21,7 @@
         <synopsis>sheets = readxls(file_path)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>file_path</term>
@@ -43,12 +43,12 @@
     </refsection>
     <refsection>
         <title>説明</title>
-        <para>Excelファイルのパスを指定すると,この関数は
-            <literal>sheets</literal>という名前のフィールドを有する
-            <literal>xls</literal>
-            型の <literal>mlist</literal>データ構造体を返します.
-            この<literal>sheets</literal> フィールドはそれ自体 sheetデータ構造体の
-            リストです.
+        <para>
+	  Excelファイルのパスを指定すると,この関数は
+          <literal>sheets</literal>という名前のフィールドを有する<literal>xls</literal>
+          型の <literal>mlist</literal>データ構造体を返します.
+          この<literal>sheets</literal> フィールドはそれ自体 sheetデータ構造体の
+          リストです.
         </para>
         <para>
             <literal>sheet=mlist(['xlssheet','name','text','value'],sheetname,Text,Value)</literal> ただし,
@@ -57,7 +57,9 @@
             <literal>Value</literal>はセルの値を有する数値の行列です.
         </para>
         <para>
-            <warning> BIFF8 Excelファイル(最近のExcelファイルのバージョン(2003))のみが処理可能です.</warning>
+          <warning>
+	    BIFF8 Excelファイル(最近のExcelファイルのバージョン(2003))のみが処理可能です.
+	  </warning>
         </para>
     </refsection>
     <refsection>

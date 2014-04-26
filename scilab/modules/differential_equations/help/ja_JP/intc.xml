@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Farid BELAHCENE
@@ -10,51 +11,173 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
+
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="intc">
+    
     <refnamediv>
+        
         <refname>intc</refname>
+        
         <refpurpose>コーシー積分</refpurpose>
+        
     </refnamediv>
+    
     <refsynopsisdiv>
+        
         <title>呼び出し手順</title>
-        <synopsis>[y]=intc(a,b,f)</synopsis>
+        
+        <synopsis>[y  [,err]] = intc(a, b, f [,abserr [,relerr]])</synopsis>
+        
     </refsynopsisdiv>
+    
     <refsection>
+        
         <title>パラメータ</title>
+        
         <variablelist>
+            
             <varlistentry>
+                
                 <term>a,b</term>
+                
                 <listitem>
-                    <para>複素数</para>
+                    
+                    <para>2つの複素数スカラー</para>
+                    
                 </listitem>
+                
             </varlistentry>
+            
             <varlistentry>
+                
                 <term>f</term>
+                
                 <listitem>
+                    
                     <para>"外部" 関数</para>
+                    
                 </listitem>
+                
             </varlistentry>
+            
+            <varlistentry>
+                
+                <term>abserr, rerr</term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        実スカラー, 絶対および相対エラー.
+                        
+                        デフォルト値: <literal>1.d-14</literal> および
+                        
+                        <literal>1d-8</literal>.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>err</term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        実数, 推定された結果の絶対誤差.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
         </variablelist>
+        
     </refsection>
+    
     <refsection>
+        
         <title>説明</title>
+        
         <para>
+            
             <literal>f</literal> が複素数を値とする関数の場合,
-            <literal> intc(a,b,f) </literal> は,
-            複素平面上の直線<literal>a b</literal>に沿った
+            
+            <literal>intc(a, b, f)</literal> は,
+            
+            複素平面上の直線<literal>[a b]</literal>に沿った
+            
             <literal>f(z)dz</literal> の
+            
             <literal>a</literal> から <literal>b</literal>の積分を計算します.
+            
         </para>
+        
     </refsection>
+    
+    <refsection>
+        
+        <title>例</title>
+        
+        <programlisting role="example"><![CDATA[
+function y = f(z)
+  y = z^(3 + %pi * %i);
+endfunction
+
+intc(1+%i, 4-%i, f)
+
+[r, err] = intc(1+%i, 4-%i, f, 1d-10, 1d-6)
+ ]]></programlisting>
+        
+    </refsection>
+    
     <refsection role="see also">
+        
         <title>参照</title>
+        
         <simplelist type="inline">
+            
             <member>
+                
                 <link linkend="intg">intg</link>
+                
             </member>
+            
             <member>
+                
                 <link linkend="intl">intl</link>
+                
             </member>
+            
         </simplelist>
+        
     </refsection>
+    
+    <refsection>
+        
+        <title>履歴</title>
+        
+        <revhistory>
+            
+            <revision>
+                
+                <revnumber>5.5.0</revnumber>
+                
+                <revremark>絶対および相対(入力)および絶対 (出力) 
+                    
+                    誤差管理が追加されました.
+                </revremark>
+                
+            </revision>
+            
+        </revhistory>
+        
+    </refsection>
+    
 </refentry>
+
