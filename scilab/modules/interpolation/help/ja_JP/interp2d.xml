@@ -1,365 +1,186 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="interp2d" xml:lang="ja">
-
-<refnamediv>
-    
-    <refname>interp2d</refname>
-    
-    <refpurpose>双3次スプライン (2d) 評価関数</refpurpose>
-    
-</refnamediv>
-
-<refsynopsisdiv>
-    
-    <title>呼び出し手順</title>
-    
-    <synopsis>[zp[,dzpdx,dzpdy[,d2zpdxx,d2zpdxy,d2zpdyy]]]=interp2d(xp,yp,x,y,C [,out_mode])</synopsis>
-    
-</refsynopsisdiv>
-
-<refsection>
-    
-    <title>引数</title>
-    
-    <variablelist>
-        
-        <varlistentry>
-            
-            <term>xp</term>
-            
-            <listitem>
-                
-                <para>
-                    
-                    doubleの mx行my列行列, スプラインを評価する点の<varname>x</varname>座標.
-                    
-                </para>
-                
-            </listitem>
-            
-        </varlistentry>
-        
-        <varlistentry>
-            
-            <term>yp</term>
-            
-            <listitem>
-                
-                <para>
-                    
-                    doubleの mx行my列行列, スプラインを評価する点の<varname>y</varname>座標.
-                    
-                </para>
-                
-            </listitem>
-            
-        </varlistentry>
-        
-        <varlistentry>
-            
-            <term>x</term>
-            
-            <listitem>
-                
-                <para>
-                    
-                    doubleの1行nx列行列, 補間点の<varname>x</varname>座標値.
-                    
-                    i=1,2,...,nx-1について x(i)&lt;x(i+1)が必要.
-                    
-                </para>
-                
-            </listitem>
-            
-        </varlistentry>
-        
-        <varlistentry>
-            
-            <term>y</term>
-            
-            <listitem>
-                
-                <para>
-                    
-                    doubleの1行nx列行列, 補間点の<varname>y</varname>座標値.
-                    
-                    i=1,2,...,nx-1について y(i)&lt;y(i+1)が必要.
-                    
-                </para>
-                
-            </listitem>
-            
-        </varlistentry>
-        
-        <varlistentry>
-            
-            <term>C</term>
-            
-            <listitem>
-                
-                <para>
-                    
-                    双3次スプラインの係数. interp2d関数の入力引数は
-                    
-                    <link linkend="splin2d">splin2d</link>関数の出力引数です.                    
-                    
-                </para>
-                
-            </listitem>
-            
-        </varlistentry>
-        
-        <varlistentry>
-            
-            <term>out_mode</term>
-            
-            <listitem>
-                
-                <para>1行1列の文字列行列, 
-                    
-                    [x(1),x(nx)]x[y(1),y(ny)]の外にある値の評価
-                </para>
-                
-            </listitem>
-            
-        </varlistentry>
-        
-        <varlistentry>
-            
-            <term>zp</term>
-            
-            <listitem>
-                
-                <para>
-                    
-                    mx行my列のdouble行列, スプラインの<varname>z</varname>座標の評価値,
-                    
-                    すなわち,i=1,2,...,mx および j = 1,2,...,my について,
-                    
-                    zp(i,j)=s(xp(i,j),yp(i,j))
-                    
-                </para>
-                
-            </listitem>
-            
-        </varlistentry>
-        
-        <varlistentry>
-            
-            <term>dzpdx</term>
-            
-            <listitem>
-                
-                <para>
-                    mx行my列のdouble行列, スプラインの<varname>x</varname>に関する1階微分.
-                    
-                </para>
-                
-            </listitem>
-            
-        </varlistentry>
-        
-        
-        
-        <varlistentry>
-            
-            <term>dzpdy</term>
-            
-            <listitem>
-                
-                <para>
-                    mx行my列のdouble行列, スプラインの<varname>y</varname>に関する1階微分.
-                    
-                </para>
-                
-            </listitem>
-            
-        </varlistentry>
-        
-        <varlistentry>
-            
-            <term>d2zpdxx</term>
-            
-            <listitem>
-                
-                <para>
-                    mx行my列のdouble行列, スプラインの<varname>x</varname>に関する2階微分.
-                    
-                </para>
-                
-            </listitem>
-            
-        </varlistentry>
-        
-        
-        
-        <varlistentry>
-            
-            <term>d2zpdxy</term>
-            
-            <listitem>
-                
-                <para>
-                    mx行my列のdouble行列, スプラインの<varname>x</varname>と<varname>y</varname>に関する2階微分.
-                    
-                </para>
-                
-            </listitem>
-            
-        </varlistentry>
-        
-        
-        
-        <varlistentry>
-            
-            <term>d2zpdyy</term>
-            
-            <listitem>
-                
-                <para>
-                    mx行my列のdouble行列, スプラインの<varname>y</varname>に関する2階微分.
-                    
-                </para>
-                
-            </listitem>
-            
-        </varlistentry>
-        
-    </variablelist>
-    
-</refsection>
-
-<refsection>
-    
-    <title>説明</title>
-    
-    <para>
-        
-        双3次スプラインまたはサブスプライン関数を定義する
-        
-        3つのベクトル <literal>(x,y,C)</literal> 
-        
-        (<link linkend="splin2d">splin2d</link>参照)を指定すると,
-        
-        この関数は, 次のように<emphasis>(xp(i),yp(i))</emphasis>における
-        
-        <emphasis>s</emphasis> (要すれば <emphasis>ds/dx,
-            
-            ds/dy, d2s/dxx, d2s/dxy, d2s/dyy
-            
-        </emphasis>
-        
-        も)を評価します:
-        
-    </para>
-    
-    <informalequation>
-        
-        <mediaobject>
-            
-            <imageobject>
-                
-                <imagedata fileref="../mml/interp2_equation_1.mml"/>
-                
-            </imageobject>
-            
-        </mediaobject>
-        
-    </informalequation>
-    
-    <para>
-        
-        <literal>out_mode</literal> パラメータは,
-        
-        捕外,すなわち<emphasis>(xp(i),yp(i))</emphasis>が
-        
-        [x(1),x(nx)]x[y(1),y(ny)]にない場合,
-        
-        の計算手法を定義します:
-        
-    </para>
-    
-    <variablelist>
-        
-        <varlistentry>
-            
-            <term>"by_zero"</term>
-            
-            <listitem>
-                
-                <para>ゼロによる捕外が行われます</para>
-                
-            </listitem>
-            
-        </varlistentry>
-        
-        <varlistentry>
-            
-            <term>"by_nan"</term>
-            
-            <listitem>
-                
-                <para>Nanによる捕外</para>
-                
-            </listitem>
-            
-        </varlistentry>
-        
-        <varlistentry>
-            
-            <term>"C0"</term>
-            
-            <listitem>
-                
-                <para>捕外は以下のように定義されます :</para>
-                
-                <programlisting role=""><![CDATA[ 
+    <refnamediv>
+        <refname>interp2d</refname>
+        <refpurpose>双3次スプライン (2d) 評価関数</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[zp[,dzpdx,dzpdy[,d2zpdxx,d2zpdxy,d2zpdyy]]]=interp2d(xp,yp,x,y,C [,out_mode])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>xp</term>
+                <listitem>
+                    <para>
+                        doubleの mx行my列行列, スプラインを評価する点の<varname>x</varname>座標.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>yp</term>
+                <listitem>
+                    <para>
+                        doubleの mx行my列行列, スプラインを評価する点の<varname>y</varname>座標.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>
+                        doubleの1行nx列行列, 補間点の<varname>x</varname>座標値.
+                        i=1,2,...,nx-1について x(i)&lt;x(i+1)が必要.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>
+                        doubleの1行nx列行列, 補間点の<varname>y</varname>座標値.
+                        i=1,2,...,nx-1について y(i)&lt;y(i+1)が必要.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>C</term>
+                <listitem>
+                    <para>
+                        双3次スプラインの係数. interp2d関数の入力引数は
+                        <link linkend="splin2d">splin2d</link>関数の出力引数です.                    
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>out_mode</term>
+                <listitem>
+                    <para>1行1列の文字列行列, 
+                        [x(1),x(nx)]x[y(1),y(ny)]の外にある値の評価
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>zp</term>
+                <listitem>
+                    <para>
+                        mx行my列のdouble行列, スプラインの<varname>z</varname>座標の評価値,
+                        すなわち,i=1,2,...,mx および j = 1,2,...,my について,
+                        zp(i,j)=s(xp(i,j),yp(i,j))
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>dzpdx</term>
+                <listitem>
+                    <para>
+                        mx行my列のdouble行列, スプラインの<varname>x</varname>に関する1階微分.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>dzpdy</term>
+                <listitem>
+                    <para>
+                        mx行my列のdouble行列, スプラインの<varname>y</varname>に関する1階微分.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>d2zpdxx</term>
+                <listitem>
+                    <para>
+                        mx行my列のdouble行列, スプラインの<varname>x</varname>に関する2階微分.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>d2zpdxy</term>
+                <listitem>
+                    <para>
+                        mx行my列のdouble行列, スプラインの<varname>x</varname>と<varname>y</varname>に関する2階微分.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>d2zpdyy</term>
+                <listitem>
+                    <para>
+                        mx行my列のdouble行列, スプラインの<varname>y</varname>に関する2階微分.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            双3次スプラインまたはサブスプライン関数を定義する
+            3つのベクトル <literal>(x,y,C)</literal> 
+            (<link linkend="splin2d">splin2d</link>参照)を指定すると,
+            この関数は, 次のように<emphasis>(xp(i),yp(i))</emphasis>における
+            <emphasis>s</emphasis> (要すれば <emphasis>ds/dx,
+                ds/dy, d2s/dxx, d2s/dxy, d2s/dyy
+            </emphasis>
+            も)を評価します:
+        </para>
+        <informalequation>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="../mml/interp2_equation_1.mml"/>
+                </imageobject>
+            </mediaobject>
+        </informalequation>
+        <para>
+            <literal>out_mode</literal> パラメータは,
+            捕外,すなわち<emphasis>(xp(i),yp(i))</emphasis>が
+            [x(1),x(nx)]x[y(1),y(ny)]にない場合,
+            の計算手法を定義します:
+        </para>
+        <variablelist>
+            <varlistentry>
+                <term>"by_zero"</term>
+                <listitem>
+                    <para>ゼロによる捕外が行われます</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"by_nan"</term>
+                <listitem>
+                    <para>Nanによる捕外</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"C0"</term>
+                <listitem>
+                    <para>捕外は以下のように定義されます :</para>
+                    <programlisting role=""><![CDATA[ 
 s(x,y) = s(proj(x,y)) where proj(x,y) is nearest point 
                       of [x(1),x(nx)]x[y(1),y(ny)] from (x,y)
  ]]></programlisting>
-                
-            </listitem>
-            
-        </varlistentry>
-        
-        <varlistentry>
-            
-            <term>"natural"</term>
-            
-            <listitem>
-                
-                <para>捕外は(x,y)から最も近い双三次パッチにより行われます.</para>
-                
-            </listitem>
-            
-        </varlistentry>
-        
-        <varlistentry>
-            
-            <term>"periodic"</term>
-            
-            <listitem>
-                
-                <para>
-                    
-                    <literal>s</literal> は周期的に拡張されます.
-                    
-                </para>
-                
-            </listitem>
-            
-        </varlistentry>
-        
-    </variablelist>
-    
-</refsection>
-
-<refsection>
-    
-    <title>例</title>
-    
-    <programlisting role="example"><![CDATA[
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"natural"</term>
+                <listitem>
+                    <para>捕外は(x,y)から最も近い双三次パッチにより行われます.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"periodic"</term>
+                <listitem>
+                    <para>
+                        <literal>s</literal> は周期的に拡張されます.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
 n = 7;  // a n x n interpolation grid
 x = linspace(0,2*%pi,n); y = x;
 z = cos(x')*cos(y);
@@ -373,44 +194,27 @@ zz1 = interp2d(XX,YY, x, y, C, "C0");
 plot3d(xx, yy, zz1, flag=[2 6 4])
 xtitle("extrapolation with the C0 outmode")
  ]]></programlisting>
-    
-    <scilab:image>
-        
-        n = 7;  // a n x n interpolation grid
-        
-        x = linspace(0,2*%pi,n); y = x;
-        
-        z = cos(x')*cos(y);
-        
-        C = splin2d(x, y, z, "periodic");
-        
-        
-        
-        // now evaluate on a bigger domain than [0,2pi]x [0,2pi]
-        
-        m = 80; // discretization parameter of the evaluation grid
-        
-        xx = linspace(-0.5*%pi,2.5*%pi,m); yy = xx;
-        
-        [XX,YY] = ndgrid(xx,yy);
-        
-        zz1 = interp2d(XX,YY, x, y, C, "C0");
-        
-        plot3d(xx, yy, zz1, flag=[2 6 4])
-        
-        xtitle("extrapolation with the C0 outmode")
-        
-    </scilab:image>
-    
-    
-    
-    <programlisting role="example"><![CDATA[
+        <scilab:image>
+            n = 7;  // a n x n interpolation grid
+            x = linspace(0,2*%pi,n); y = x;
+            z = cos(x')*cos(y);
+            C = splin2d(x, y, z, "periodic");
+            
+            // now evaluate on a bigger domain than [0,2pi]x [0,2pi]
+            m = 80; // discretization parameter of the evaluation grid
+            xx = linspace(-0.5*%pi,2.5*%pi,m); yy = xx;
+            [XX,YY] = ndgrid(xx,yy);
+            zz1 = interp2d(XX,YY, x, y, C, "C0");
+            plot3d(xx, yy, zz1, flag=[2 6 4])
+            xtitle("extrapolation with the C0 outmode")
+        </scilab:image>
+        <programlisting role="example"><![CDATA[
 n = 7;  // a n x n interpolation grid
 x = linspace(0,2*%pi,n); y = x;
 z = cos(x')*cos(y);
 C = splin2d(x, y, z, "periodic");
 
-// now evaluate on a bigger domain than [0,2pi]x [0,2pi]
+// now evaluate on a bigger domain than [0,2pi]x [0,
 m = 80; // discretization parameter of the evaluation grid
 xx = linspace(-0.5*%pi,2.5*%pi,m); yy = xx;
 [XX,YY] = ndgrid(xx,yy);
@@ -418,36 +222,21 @@ zz2 = interp2d(XX,YY, x, y, C, "by_zero");
 plot3d(xx, yy, zz2, flag=[2 6 4])
 xtitle("extrapolation with the by_zero outmode")
  ]]></programlisting>
-    
-    <scilab:image>
-        
-        n = 7;  // a n x n interpolation grid
-        
-        x = linspace(0,2*%pi,n); y = x;
-        
-        z = cos(x')*cos(y);
-        
-        C = splin2d(x, y, z, "periodic");
-        
-        
-        
-        // now evaluate on a bigger domain than [0,2pi]x [0,2pi]
-        
-        m = 80; // discretization parameter of the evaluation grid
-        
-        xx = linspace(-0.5*%pi,2.5*%pi,m); yy = xx;
-        
-        [XX,YY] = ndgrid(xx,yy);
-        
-        zz2 = interp2d(XX,YY, x, y, C, "by_zero");
-        
-        plot3d(xx, yy, zz2, flag=[2 6 4])
-        
-        xtitle("extrapolation with the by_zero outmode")
-        
-    </scilab:image>
-    
-    <programlisting role="example"><![CDATA[
+        <scilab:image>
+            n = 7;  // a n x n interpolation grid
+            x = linspace(0,2*%pi,n); y = x;
+            z = cos(x')*cos(y);
+            C = splin2d(x, y, z, "periodic");
+            
+            // now evaluate on a bigger domain than [0,2pi]x [0,2pi]
+            m = 80; // discretization parameter of the evaluation grid
+            xx = linspace(-0.5*%pi,2.5*%pi,m); yy = xx;
+            [XX,YY] = ndgrid(xx,yy);
+            zz2 = interp2d(XX,YY, x, y, C, "by_zero");
+            plot3d(xx, yy, zz2, flag=[2 6 4])
+            xtitle("extrapolation with the by_zero outmode")
+        </scilab:image>
+        <programlisting role="example"><![CDATA[
 n = 7;  // a n x n interpolation grid
 x = linspace(0,2*%pi,n); y = x;
 z = cos(x')*cos(y);
@@ -461,38 +250,21 @@ zz3 = interp2d(XX,YY, x, y, C, "periodic");
 plot3d(xx, yy, zz3, flag=[2 6 4])
 xtitle("extrapolation with the periodic outmode")
  ]]></programlisting>
-    
-    <scilab:image>
-        
-        n = 7;  // a n x n interpolation grid
-        
-        x = linspace(0,2*%pi,n); y = x;
-        
-        z = cos(x')*cos(y);
-        
-        C = splin2d(x, y, z, "periodic");
-        
-        
-        
-        // now evaluate on a bigger domain than [0,2pi]x [0,2pi]
-        
-        m = 80; // discretization parameter of the evaluation grid
-        
-        xx = linspace(-0.5*%pi,2.5*%pi,m); yy = xx;
-        
-        [XX,YY] = ndgrid(xx,yy);
-        
-        zz3 = interp2d(XX,YY, x, y, C, "periodic");
-        
-        plot3d(xx, yy, zz3, flag=[2 6 4])
-        
-        xtitle("extrapolation with the periodic outmode")
-        
-    </scilab:image>
-    
-    
-    
-    <programlisting role="example"><![CDATA[
+        <scilab:image>
+            n = 7;  // a n x n interpolation grid
+            x = linspace(0,2*%pi,n); y = x;
+            z = cos(x')*cos(y);
+            C = splin2d(x, y, z, "periodic");
+            
+            // now evaluate on a bigger domain than [0,2pi]x [0,2pi]
+            m = 80; // discretization parameter of the evaluation grid
+            xx = linspace(-0.5*%pi,2.5*%pi,m); yy = xx;
+            [XX,YY] = ndgrid(xx,yy);
+            zz3 = interp2d(XX,YY, x, y, C, "periodic");
+            plot3d(xx, yy, zz3, flag=[2 6 4])
+            xtitle("extrapolation with the periodic outmode")
+        </scilab:image>
+        <programlisting role="example"><![CDATA[
 n = 7;  // a n x n interpolation grid
 x = linspace(0,2*%pi,n); y = x;
 z = cos(x')*cos(y);
@@ -506,72 +278,37 @@ zz4 = interp2d(XX,YY, x, y, C, "natural");
 plot3d(xx, yy, zz4, flag=[2 6 4])
 xtitle("extrapolation with the natural outmode")
  ]]></programlisting>
-    
-    <scilab:image>
-        
-        
-        
-        n = 7;  // a n x n interpolation grid
-        
-        x = linspace(0,2*%pi,n); y = x;
-        
-        z = cos(x')*cos(y);
-        
-        C = splin2d(x, y, z, "periodic");
-        
-        
-        
-        // now evaluate on a bigger domain than [0,2pi]x [0,2pi]
-        
-        m = 80; // discretization parameter of the evaluation grid
-        
-        xx = linspace(-0.5*%pi,2.5*%pi,m); yy = xx;
-        
-        [XX,YY] = ndgrid(xx,yy);
-        
-        zz4 = interp2d(XX,YY, x, y, C, "natural");
-        
-        plot3d(xx, yy, zz4, flag=[2 6 4])
-        
-        xtitle("extrapolation with the natural outmode")
-        
-    </scilab:image>
-    
-</refsection>
-
-<refsection role="see also">
-    
-    <title>参照</title>
-    
-    <simplelist type="inline">
-        
-        <member>
+        <scilab:image>
+            n = 7;  // a n x n interpolation grid
+            x = linspace(0,2*%pi,n); y = x;
+            z = cos(x')*cos(y);
+            C = splin2d(x, y, z, "periodic");
             
-            <link linkend="splin2d">splin2d</link>
-            
-        </member>
-        
-    </simplelist>
-    
-</refsection>
-
-<refsection>
-    
-    <title>履歴</title>
-    
-    <revhistory>
-        
-        <revision>
-            
-            <revnumber>5.4.0</revnumber>
-            
-            <revremark>以前では, 入力引数の虚部は暗黙のうちに無視されていました.</revremark>
-            
-        </revision>
-        
-    </revhistory>
-    
-</refsection>
-
+            // now evaluate on a bigger domain than [0,2pi]x [0,2pi]
+            m = 80; // discretization parameter of the evaluation grid
+            xx = linspace(-0.5*%pi,2.5*%pi,m); yy = xx;
+            [XX,YY] = ndgrid(xx,yy);
+            zz4 = interp2d(XX,YY, x, y, C, "natural");
+            plot3d(xx, yy, zz4, flag=[2 6 4])
+            xtitle("extrapolation with the natural outmode")
+        </scilab:image>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="splin2d">splin2d</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>以前では, 入力引数の虚部は暗黙のうちに無視されていました.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
 </refentry>
 
