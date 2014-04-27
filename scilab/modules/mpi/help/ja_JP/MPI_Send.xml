@@ -6,19 +6,19 @@
  * 
  -->
 
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="MPI_Send" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="MPI_Send" xml:lang="ja">
     
     <refnamediv>
         
         <refname>MPI_Send</refname>
         
-        <refpurpose>Send data from a node to an other</refpurpose>
+        <refpurpose>ノード間データ送信</refpurpose>
         
     </refnamediv>
     
     <refsynopsisdiv>
         
-        <title>Calling Sequence</title>
+        <title>呼び出し手順</title>
         
         <synopsis>res = MPI_Send(value,node)</synopsis>
         
@@ -26,7 +26,7 @@
     
     <refsection>
         
-        <title>Arguments</title>
+        <title>引数</title>
         
         <variablelist>
             
@@ -36,7 +36,7 @@
                 
                 <listitem>
                     
-                    <para>The value to be sent to the specified node.</para>
+                    <para>特定のノードに送信する値.</para>
                     
                 </listitem>
                 
@@ -48,7 +48,7 @@
                 
                 <listitem>
                     
-                    <para>The node to send the data</para>
+                    <para>データを送信するノード</para>
                     
                 </listitem>
                 
@@ -60,7 +60,7 @@
                 
                 <listitem>
                     
-                    <para>The result of the operation (true if success, false if failed)</para>
+                    <para>処理結果 (成功時にtrue,失敗した場合に false)</para>
                     
                 </listitem>
                 
@@ -72,11 +72,15 @@
     
     <refsection>
         
-        <title>Description</title>
+        <title>説明</title>
         
         <para>
             
-            Send a variable to a specified node. The value should be retrieved by the node with the function <link linkend="MPI_Recv">MPI_Recv</link>.
+            変数を特定のノードに送信します.
+            
+            この値は,関数<link linkend="MPI_Recv">MPI_Recv</link>により
+            
+            取得します.
             
         </para>
         
@@ -84,7 +88,7 @@
     
     <refsection>
         
-        <title>Examples</title>
+        <title>例</title>
         
         <programlisting role="example">
             
@@ -162,7 +166,7 @@
     
     <refsection role="see also">
         
-        <title>See Also</title>
+        <title>参照</title>
         
         <simplelist type="inline">
             
