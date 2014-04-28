@@ -28,7 +28,7 @@
             fopt=leastsq(fun, cstr, x0)
             fopt=leastsq(fun, dfun, cstr, x0)
             fopt=leastsq(fun, dfun, cstr, x0, algo)
-            fopt=leastsq([imp], fun [,dfun] [,cstr],x0 [,algo],[df0,[mem]],[stop])
+            fopt=leastsq([iprint], fun [,dfun] [,cstr],x0 [,algo],[df0,[mem]],[stop])
             [fopt,xopt] = leastsq(...)
             [fopt,xopt,gopt] =  = leastsq(...)
         </synopsis>
@@ -119,14 +119,14 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>imp</term>
+                <term>iprint</term>
                 <listitem>
                     <para>
                         scalar argument used to set the trace mode.
-                        <literal>imp=0</literal> nothing (except errors) is reported,
-                        <literal>imp=1</literal> initial and final reports,
-                        <literal>imp=2</literal> adds a report per iteration,
-                        <literal>imp&gt;2</literal> add reports on linear search. Warning,
+                        <literal>iprint=0</literal> nothing (except errors) is reported,
+                        <literal>iprint=1</literal> initial and final reports,
+                        <literal>iprint=2</literal> adds a report per iteration,
+                        <literal>iprint&gt;2</literal> add reports on linear search. Warning,
                         most of these reports are written on the Scilab standard
                         output.
                     </para>
@@ -423,7 +423,7 @@ plot(tt, yy, "b-")
 legend(["measure points", "fitted curve"]);
 xtitle("a simple fit with leastsq")
 
-// 3- how to get some information (we use imp=1)
+// 3- how to get some information (we use iprint=1)
 [f,xopt, gopt] = leastsq(1,list(myfun,tm,ym,wm),mydfun,x0)
 
 // 4- using the conjugate gradient (instead of quasi Newton)

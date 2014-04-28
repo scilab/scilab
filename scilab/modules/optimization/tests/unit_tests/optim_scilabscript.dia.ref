@@ -10,12 +10,12 @@
 // <-- ENGLISH IMPOSED -->
 // <-- NO CHECK REF -->
 //
-// Do not check ref, because imp option create output messages
+// Do not check ref, because iprint option create output messages
 // which contains lots of floating point values which may
 // be slightly different across platforms, without being bugs.
 //
 // optim_script.tst --
-//   Test the optim command with the Rosenbrock test case 
+//   Test the optim command with the Rosenbrock test case
 //   in the case where the cost function is a Scilab function.
 //   The expected solution is x=(1,...,1) where f(x)=0
 //
@@ -27,13 +27,13 @@ xopt=[1 1];
 fopt = 0.0;
 gopt = [0.0 0.0];
 function [ f , g , ind ] = rosenbrock ( x , ind )
-  if ind == 2 | ind == 4 then
-    f = 100.0 *(x(2)-x(1)^2)^2 + (1-x(1))^2;
-  end
-  if ind == 2 | ind == 4 then
-    g(1) = - 400. * ( x(2) - x(1)**2 ) * x(1) -2. * ( 1. - x(1) )
-    g(2) = 200. * ( x(2) - x(1)**2 )
-  end
+    if ind == 2 | ind == 4 then
+        f = 100.0 *(x(2)-x(1)^2)^2 + (1-x(1))^2;
+    end
+    if ind == 2 | ind == 4 then
+        g(1) = - 400. * ( x(2) - x(1)**2 ) * x(1) -2. * ( 1. - x(1) )
+        g(2) = 200. * ( x(2) - x(1)**2 )
+    end
 endfunction
 //
 // Configure the test so that verbose message do not interrupt the test.
@@ -46,38 +46,38 @@ assert_checkalmostequal ( x , xopt , Leps );
 assert_checkalmostequal ( f , fopt , [] , Leps );
 assert_checkalmostequal ( g , gopt , [] , Leps );
 // Test with maximum number of call to cost function
-[f,x,g]=optim(rosenbrock,x0,'qn','ar',50);
+[f,x,g]=optim(rosenbrock,x0,"qn","ar",50);
 assert_checkalmostequal ( x , xopt , Leps );
 assert_checkalmostequal ( f , fopt , [] , Leps );
 assert_checkalmostequal ( g , gopt , [] , Leps );
 // Test with hot-restart array tr
-[f,x,g,tr]=optim(rosenbrock,x0,'qn','ar',50);
+[f,x,g,tr]=optim(rosenbrock,x0,"qn","ar",50);
 [f,x,g]=optim(rosenbrock,x0,tr);
 assert_checkalmostequal ( x , xopt , Leps );
 assert_checkalmostequal ( f , fopt , [] , Leps );
 assert_checkalmostequal ( g , gopt , [] , Leps );
 // Test with maximum number of call to cost function, maximum number of iterations
-[f,x,g]=optim(rosenbrock,x0,'qn','ar', 50 , 100 );
+[f,x,g]=optim(rosenbrock,x0,"qn","ar", 50 , 100 );
 assert_checkalmostequal ( x , xopt , Leps );
 assert_checkalmostequal ( f , fopt , [] , Leps );
 assert_checkalmostequal ( g , gopt , [] , Leps );
-// Test with various imp levels
-// imp = 0 : No messages
-[f,x,g]=optim(rosenbrock,x0,'qn',imp=0);
-// imp = 1 : one line at start, one line at end
-[f,x,g]=optim(rosenbrock,x0,'qn',imp=1);
+// Test with various iprint levels
+// iprint = 0 : No messages
+[f,x,g]=optim(rosenbrock,x0,"qn",iprint=0);
+// iprint = 1 : one line at start, one line at end
+[f,x,g]=optim(rosenbrock,x0,"qn",iprint=1);
 ***** enters -qn code- (without bound cstr)
-dimension=         2, epsq=  0.2220446049250313E-15, verbosity level: imp=         1
+dimension=         2, epsq=  0.2220446049250313E-15, verbosity level: iprint=         1
 max number of iterations allowed: iter=       100
 max number of calls to costf allowed: nap=       100
 ------------------------------------------------
  iter num   38, nb calls=  46, f=  0.000
 ***** leaves -qn code-, gradient norm=  0.0000000000000000E+00
 optim: Norm of projected gradient lower than 0.
-// imp = 2 : one line by iteration
-[f,x,g]=optim(rosenbrock,x0,'qn',imp=2);
+// iprint = 2 : one line by iteration
+[f,x,g]=optim(rosenbrock,x0,"qn",iprint=2);
 ***** enters -qn code- (without bound cstr)
-dimension=         2, epsq=  0.2220446049250313E-15, verbosity level: imp=         2
+dimension=         2, epsq=  0.2220446049250313E-15, verbosity level: iprint=         2
 max number of iterations allowed: iter=       100
 max number of calls to costf allowed: nap=       100
 ------------------------------------------------
@@ -121,10 +121,10 @@ max number of calls to costf allowed: nap=       100
  iter num   38, nb calls=  46, f=  0.000
 ***** leaves -qn code-, gradient norm=  0.0000000000000000E+00
 optim: Norm of projected gradient lower than 0.
-// imp = 3 : one line by iteration + one line by line search
-[f,x,g]=optim(rosenbrock,x0,'qn',imp=3);
+// iprint = 3 : one line by iteration + one line by line search
+[f,x,g]=optim(rosenbrock,x0,"qn",iprint=3);
 ***** enters -qn code- (without bound cstr)
-dimension=         2, epsq=  0.2220446049250313E-15, verbosity level: imp=         3
+dimension=         2, epsq=  0.2220446049250313E-15, verbosity level: iprint=         3
 max number of iterations allowed: iter=       100
 max number of calls to costf allowed: nap=       100
 ------------------------------------------------
@@ -250,24 +250,24 @@ max number of calls to costf allowed: nap=       100
  iter num   38, nb calls=  46, f=  0.000
 ***** leaves -qn code-, gradient norm=  0.0000000000000000E+00
 optim: Norm of projected gradient lower than 0.
-// Negative imp : call back the cost function with ind = 0 each -imp iteration
-[f,x,g]=optim(rosenbrock,x0,'qn',imp=-5);
+// Negative iprint : call back the cost function with ind = 0 each -iprint iteration
+[f,x,g]=optim(rosenbrock,x0,"qn",iprint=-5);
 optim: Norm of projected gradient lower than 0.
 //
 // 2. Test unconstrained Limited Memory BFGS
-[f,x,g]=optim(rosenbrock,x0,'gc');
+[f,x,g]=optim(rosenbrock,x0,"gc");
 assert_checkalmostequal ( x , xopt , Leps );
 assert_checkalmostequal ( f , fopt , [] , Leps );
 assert_checkalmostequal ( g , gopt , [] , Leps );
-[f,x,g]=optim(rosenbrock,x0,'gc','ar',50);
+[f,x,g]=optim(rosenbrock,x0,"gc","ar",50);
 assert_checkalmostequal ( x , xopt , Leps );
 assert_checkalmostequal ( f , fopt , [] , Leps );
 assert_checkalmostequal ( g , gopt , [] , Leps );
-// Test with various imp levels
-// imp = 0 : No messages
-[f,x,g]=optim(rosenbrock,x0,'gc',imp=0);
-// imp = 1,2 : one line at start, one line at end
-[f,x,g]=optim(rosenbrock,x0,'gc',imp=1);
+// Test with various iprint levels
+// iprint = 0 : No messages
+[f,x,g]=optim(rosenbrock,x0,"gc",iprint=0);
+// iprint = 1,2 : one line at start, one line at end
+[f,x,g]=optim(rosenbrock,x0,"gc",iprint=1);
  n1qn3: entry point
      dimension of the problem (n):     2
      absolute precision on x (dxmin): 0.22D-15
@@ -275,7 +275,7 @@ assert_checkalmostequal ( g , gopt , [] , Leps );
      relative precision on g (epsg): 0.95D-18
      maximal number of iterations (niter):   100
      maximal number of simulations (nsim):   100
-     printing level (impres):   1
+     printing level (iprint):   1
      allocated memory (nrz) :     58
      used memory :                58
      number of updates :          10
@@ -290,8 +290,8 @@ assert_checkalmostequal ( g , gopt , [] , Leps );
      f         =  0.00000000D+00
      norm of x =  0.00000000D+00
 optim: Norm of projected gradient lower than 0.
-// imp = 3 : one line by iteration
-[f,x,g]=optim(rosenbrock,x0,'gc',imp=2);
+// iprint = 3 : one line by iteration
+[f,x,g]=optim(rosenbrock,x0,"gc",iprint=2);
  n1qn3: entry point
      dimension of the problem (n):     2
      absolute precision on x (dxmin): 0.22D-15
@@ -299,7 +299,7 @@ optim: Norm of projected gradient lower than 0.
      relative precision on g (epsg): 0.95D-18
      maximal number of iterations (niter):   100
      maximal number of simulations (nsim):   100
-     printing level (impres):   2
+     printing level (iprint):   2
      allocated memory (nrz) :     58
      used memory :                58
      number of updates :          10
@@ -355,8 +355,8 @@ optim: Norm of projected gradient lower than 0.
      f         =  0.00000000D+00
      norm of x =  0.00000000D+00
 optim: Norm of projected gradient lower than 0.
-// imp = 4 : one line by iteration + one line by line search
-[f,x,g]=optim(rosenbrock,x0,'gc',imp=3);
+// iprint = 4 : one line by iteration + one line by line search
+[f,x,g]=optim(rosenbrock,x0,"gc",iprint=3);
  n1qn3: entry point
      dimension of the problem (n):     2
      absolute precision on x (dxmin): 0.22D-15
@@ -364,7 +364,7 @@ optim: Norm of projected gradient lower than 0.
      relative precision on g (epsg): 0.95D-18
      maximal number of iterations (niter):   100
      maximal number of simulations (nsim):   100
-     printing level (impres):   3
+     printing level (iprint):   3
      allocated memory (nrz) :     58
      used memory :                58
      number of updates :          10
@@ -515,31 +515,31 @@ optim: Norm of projected gradient lower than 0.
 optim: Norm of projected gradient lower than 0.
 //
 // 3. Test unconstrained non-differentiable method
-[f,x,g]=optim(rosenbrock,x0,'nd');
+[f,x,g]=optim(rosenbrock,x0,"nd");
 assert_checkalmostequal ( x , xopt , Leps );
 assert_checkalmostequal ( f , fopt , [] , Leps );
 assert_checkalmostequal ( g , gopt , [] , Leps );
 // Test with maximum number of call to cost function
-[f,x,g]=optim(rosenbrock,x0,'nd','ar',100);
+[f,x,g]=optim(rosenbrock,x0,"nd","ar",100);
 assert_checkalmostequal ( x , xopt , Leps );
 assert_checkalmostequal ( f , fopt , [] , Leps );
 assert_checkalmostequal ( g , gopt , [] , Leps );
 // Test with maximum number of call to cost function, maximum number of iterations
-[f,x,g]=optim(rosenbrock,x0,'nd','ar', 100 , 100 );
+[f,x,g]=optim(rosenbrock,x0,"nd","ar", 100 , 100 );
 assert_checkalmostequal ( x , xopt , Leps );
 assert_checkalmostequal ( f , fopt , [] , Leps );
 assert_checkalmostequal ( g , gopt , [] , Leps );
-// Test with various imp levels
-// imp = 0 : No messages
-[f,x,g]=optim(rosenbrock,x0,'nd',imp=0);
-// imp = 1,2 : one line at start, one line at end
-[f,x,g]=optim(rosenbrock,x0,'nd',imp=1);
+// Test with various iprint levels
+// iprint = 0 : No messages
+[f,x,g]=optim(rosenbrock,x0,"nd",iprint=0);
+// iprint = 1,2 : one line at start, one line at end
+[f,x,g]=optim(rosenbrock,x0,"nd",iprint=1);
 entry in n1fc1 . n=   2 memax= 10  
 minimal array sizes: iz(    22)  rz(    70)  dz(   198)
 n1fc1      Incorrect end of fprf2
 optim: End of optimization.
-// imp = 3 : one line by iteration
-[f,x,g]=optim(rosenbrock,x0,'nd',imp=2);
+// iprint = 3 : one line by iteration
+[f,x,g]=optim(rosenbrock,x0,"nd",iprint=2);
 entry in n1fc1 . n=   2 memax= 10  
 minimal array sizes: iz(    22)  rz(    70)  dz(   198)
  n1fc1            diam1= 0.739D+00    eta2= 0.000D+00    ap= 0.299D-28
@@ -553,8 +553,8 @@ n1fc1   eta2 assigned to  0.444D-14
  n1fc1     33   90   0.1890964D-06   faisceau reduit a  2 gradients
 n1fc1      Incorrect end of fprf2
 optim: End of optimization.
-// imp = 4 : one line by iteration + one line by line search
-[f,x,g]=optim(rosenbrock,x0,'nd',imp=3);
+// iprint = 4 : one line by iteration + one line by line search
+[f,x,g]=optim(rosenbrock,x0,"nd",iprint=3);
 entry in n1fc1 . n=   2 memax= 10  
 minimal array sizes: iz(    22)  rz(    70)  dz(   198)
 n1fc1      1    1   0.2420000D+02  0.10D+01  0.54D+05  0.00D+00  2
@@ -606,35 +606,35 @@ n1fc1      Incorrect end of fprf2
 optim: End of optimization.
 //
 // 4. Test bound-constrained BFGS
-[f,x,g]=optim(rosenbrock,'b',bi,bs,x0,'qn');
+[f,x,g]=optim(rosenbrock,"b",bi,bs,x0,"qn");
 assert_checkalmostequal ( x , xopt , Leps );
 assert_checkalmostequal ( f , fopt , [] , Leps );
 assert_checkalmostequal ( g , gopt , [] , Leps );
 // Test with maximum number of call to cost function
-[f,x,g]=optim(rosenbrock,'b',bi,bs,x0,'qn','ar',50);
+[f,x,g]=optim(rosenbrock,"b",bi,bs,x0,"qn","ar",50);
 assert_checkalmostequal ( x , xopt , Leps );
 assert_checkalmostequal ( f , fopt , [] , Leps );
 assert_checkalmostequal ( g , gopt , [] , Leps );
 // Test with maximum number of call to cost function, maximum number of iterations
-[f,x,g]=optim(rosenbrock,'b',bi,bs,x0,'qn','ar', 100 , 100 );
+[f,x,g]=optim(rosenbrock,"b",bi,bs,x0,"qn","ar", 100 , 100 );
 assert_checkalmostequal ( x , xopt , Leps );
 assert_checkalmostequal ( f , fopt , [] , Leps );
 assert_checkalmostequal ( g , gopt , [] , Leps );
-// Test with various imp levels
-// imp = 0 : No messages
-[f,x,g]=optim(rosenbrock,'b',bi,bs,x0,'qn',imp=0);
-// imp = 1,2 : one line at start, one line at end
-[f,x,g]=optim(rosenbrock,'b',bi,bs,x0,'qn',imp=1);
+// Test with various iprint levels
+// iprint = 0 : No messages
+[f,x,g]=optim(rosenbrock,"b",bi,bs,x0,"qn",iprint=0);
+// iprint = 1,2 : one line at start, one line at end
+[f,x,g]=optim(rosenbrock,"b",bi,bs,x0,"qn",iprint=1);
  *********** qnbd (with bound cstr) ****************
-dimension=         2, epsq=  0.2220446049250313E-15, verbosity level: imp=         1
+dimension=         2, epsq=  0.2220446049250313E-15, verbosity level: iprint=         1
 max number of iterations allowed: iter=       100
 max number of calls to costf allowed: nap=       100
 ------------------------------------------------
  qnbd : indqn=      13
-// imp = 3 : one line by iteration
-[f,x,g]=optim(rosenbrock,'b',bi,bs,x0,'qn',imp=2);
+// iprint = 3 : one line by iteration
+[f,x,g]=optim(rosenbrock,"b",bi,bs,x0,"qn",iprint=2);
  *********** qnbd (with bound cstr) ****************
-dimension=         2, epsq=  0.2220446049250313E-15, verbosity level: imp=         2
+dimension=         2, epsq=  0.2220446049250313E-15, verbosity level: iprint=         2
 max number of iterations allowed: iter=       100
 max number of calls to costf allowed: nap=       100
 ------------------------------------------------
@@ -782,10 +782,10 @@ max number of calls to costf allowed: nap=       100
  qnbd : iter= 48  f=  0.7741575D-24
  qnbd : nbre fact  0 defact  0 total var factorisees  2
  qnbd : indqn=      13
-// imp = 4 : one line by iteration + one line by line search
-[f,x,g]=optim(rosenbrock,'b',bi,bs,x0,'qn',imp=3);
+// iprint = 4 : one line by iteration + one line by line search
+[f,x,g]=optim(rosenbrock,"b",bi,bs,x0,"qn",iprint=3);
  *********** qnbd (with bound cstr) ****************
-dimension=         2, epsq=  0.2220446049250313E-15, verbosity level: imp=         3
+dimension=         2, epsq=  0.2220446049250313E-15, verbosity level: iprint=         3
 max number of iterations allowed: iter=       100
 max number of calls to costf allowed: nap=       100
 ------------------------------------------------
@@ -1090,45 +1090,45 @@ d   t= 0.5000E-06 h= 0.3717E-25 dh/dt= 0.1781E-18 dfh/dt= 0.2790E-18 dt-0.5E-06
  qnbd : indqn=      13
 //
 // 5. Test bound-constrained Limited Memory BFGS
-[f,x,g]=optim(rosenbrock,'b',bi,bs,x0,'gc');
+[f,x,g]=optim(rosenbrock,"b",bi,bs,x0,"gc");
 assert_checkalmostequal ( x , xopt , Leps );
 assert_checkalmostequal ( f , fopt , [] , Leps );
 assert_checkalmostequal ( g , gopt , [] , Leps );
 // Test with maximum number of call to cost function
-[f,x,g]=optim(rosenbrock,'b',bi,bs,x0,'gc','ar',100);
+[f,x,g]=optim(rosenbrock,"b",bi,bs,x0,"gc","ar",100);
 assert_checkalmostequal ( x , xopt , Leps );
 assert_checkalmostequal ( f , fopt , [] , Leps );
 assert_checkalmostequal ( g , gopt , [] , Leps );
 // Test with maximum number of call to cost function, maximum number of iterations
-[f,x,g]=optim(rosenbrock,'b',bi,bs,x0,'gc','ar', 100 , 100 );
+[f,x,g]=optim(rosenbrock,"b",bi,bs,x0,"gc","ar", 100 , 100 );
 assert_checkalmostequal ( x , xopt , Leps );
 assert_checkalmostequal ( f , fopt , [] , Leps );
 assert_checkalmostequal ( g , gopt , [] , Leps );
-// Test with various imp levels
-// imp = 0 : No messages
-[f,x,g]=optim(rosenbrock,'b',bi,bs,x0,'gc',imp=0);
-// imp = 1,2 : one line at start, one line at end
-[f,x,g]=optim(rosenbrock,'b',bi,bs,x0,'gc',imp=1);
+// Test with various iprint levels
+// iprint = 0 : No messages
+[f,x,g]=optim(rosenbrock,"b",bi,bs,x0,"gc",iprint=0);
+// iprint = 1,2 : one line at start, one line at end
+[f,x,g]=optim(rosenbrock,"b",bi,bs,x0,"gc",iprint=1);
  gcdb: entry point
      dimension of the problem (n):     2
      expected decrease for f (df0): 0.10D+01
      relative precision on g (epsg): 0.22D-15
      maximal number of iterations (itmax):   100
      maximal number of simulations (napmax):   100
-     printing level (imp):   1
+     printing level (iprint):   1
  gcbd max appels simul
  gcbd : retour avec indgc=       4
  f,norme grad,nap,iter,indgc= 0.6214E-20 0.8448E-10   100    43     4
 optim: Optim stops: maximum number of calls to f is reached.
-// imp = 3 : one line by iteration
-[f,x,g]=optim(rosenbrock,'b',bi,bs,x0,'gc',imp=2);
+// iprint = 3 : one line by iteration
+[f,x,g]=optim(rosenbrock,"b",bi,bs,x0,"gc",iprint=2);
  gcdb: entry point
      dimension of the problem (n):     2
      expected decrease for f (df0): 0.10D+01
      relative precision on g (epsg): 0.22D-15
      maximal number of iterations (itmax):   100
      maximal number of simulations (napmax):   100
-     printing level (imp):   2
+     printing level (iprint):   2
  dans gcbd  iter=  1  f=  0.2420000D+02
  gcbd. epsg,difg= 0.2220D-15 0.7159D+02  epsf,diff= 0.0000D+00 0.1784D+02  nap=  2
  dans gcbd  iter=  2  f=  0.6363632D+01
@@ -1218,15 +1218,15 @@ optim: Optim stops: maximum number of calls to f is reached.
  gcbd : retour avec indgc=       4
  f,norme grad,nap,iter,indgc= 0.6214E-20 0.8448E-10   100    43     4
 optim: Optim stops: maximum number of calls to f is reached.
-// imp = 4 : one line by iteration + one line by line search
-[f,x,g]=optim(rosenbrock,'b',bi,bs,x0,'gc',imp=3);
+// iprint = 4 : one line by iteration + one line by line search
+[f,x,g]=optim(rosenbrock,"b",bi,bs,x0,"gc",iprint=3);
  gcdb: entry point
      dimension of the problem (n):     2
      expected decrease for f (df0): 0.10D+01
      relative precision on g (epsg): 0.22D-15
      maximal number of iterations (itmax):   100
      maximal number of simulations (napmax):   100
-     printing level (imp):   3
+     printing level (iprint):   3
  dans gcbd  iter=  1  f=  0.2420000D+02
  relvar1. valeur de eps1=  0.1020000D+02
    redemarrage. icycl=    2
@@ -1557,19 +1557,19 @@ d   t= 0.3894E+01 h=-0.3634E-24 dh/dt= 0.1157E-22 dfh/dt=-0.9333E-25 dt 0.4E+01
 optim: Optim stops: maximum number of calls to f is reached.
 //
 // 6. Test "sd", "si", "td", "ti" options
-[f,x,g,td]=optim(rosenbrock,x0,'sd');
+[f,x,g,td]=optim(rosenbrock,x0,"sd");
 assert_checkalmostequal ( x , xopt , Leps );
 assert_checkalmostequal ( f , fopt , [] , Leps );
 assert_checkalmostequal ( g , gopt , [] , Leps );
-[f,x,g,ti]=optim(rosenbrock,x0,'si');
+[f,x,g,ti]=optim(rosenbrock,x0,"si");
 assert_checkalmostequal ( x , xopt , Leps );
 assert_checkalmostequal ( f , fopt , [] , Leps );
 assert_checkalmostequal ( g , gopt , [] , Leps );
-[f,x,g,ti,td]=optim(rosenbrock,x0,'si','sd');
+[f,x,g,ti,td]=optim(rosenbrock,x0,"si","sd");
 assert_checkalmostequal ( x , xopt , Leps );
 assert_checkalmostequal ( f , fopt , [] , Leps );
 assert_checkalmostequal ( g , gopt , [] , Leps );
-[f,x,g,ti,td]=optim(rosenbrock,x0,"ti",[2 2 2],"td",[1.1 1.1 1.1],'si','sd');
+[f,x,g,ti,td]=optim(rosenbrock,x0,"ti",[2 2 2],"td",[1.1 1.1 1.1],"si","sd");
 assert_checkalmostequal ( x , xopt , Leps );
 assert_checkalmostequal ( f , fopt , [] , Leps );
 assert_checkalmostequal ( g , gopt , [] , Leps );

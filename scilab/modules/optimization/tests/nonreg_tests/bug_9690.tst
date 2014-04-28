@@ -15,7 +15,7 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=9690
 //
 // <-- Short Description -->
-// optim(): option "imp"=5 could crash Scilab
+// optim(): option "iprint"=5 could crash Scilab
 //
 function f = rosenbrock(x)
     f = 100.0 * (x(2)-x(1)^2)^2 + (1-x(1))^2;
@@ -44,10 +44,10 @@ endfunction
 x0 = [-1.2 1.0];
 lines(0);
 
-for impval = 1:5
-    [ fopt , xopt ] = optim ( rosenbrockCostFixedStep , x0 , "gc" , imp=impval);
+for printval = 1:5
+    [ fopt , xopt ] = optim ( rosenbrockCostFixedStep , x0 , "gc" , iprint=printval);
 end
 
-for impval = 1:5
-    [ fopt , xopt ] = optim ( rosenbrockCostVariableStep , x0 , "gc" , imp=impval);
+for printval = 1:5
+    [ fopt , xopt ] = optim ( rosenbrockCostVariableStep , x0 , "gc" , iprint=printval);
 end

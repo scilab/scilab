@@ -43,10 +43,10 @@ endfunction
 x0 = [-1.2 1.0];
 lines(0);
 
-for impval = 1:5
-    [ fopt , xopt ] = optim ( rosenbrockCostFixedStep , x0 , "gc" , imp=impval);
+for printval = 1:5
+    [ fopt , xopt ] = optim ( rosenbrockCostFixedStep , x0 , "gc" , iprint=printval);
 end
 
-for impval = 1:5
-    [ fopt , xopt ] = optim ( rosenbrockCostVariableStep , x0 , "gc" , imp=impval);
+for printval = 1:5
+    [ fopt , xopt ] = optim ( rosenbrockCostVariableStep , x0 , "gc" , iprint=printval);
 end

@@ -21,7 +21,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Syntax</title>
-        <synopsis>[p,err]=datafit([imp,] G [,DG],Z [,W],[contr],p0,[algo],[df0,[mem]],
+        <synopsis>[p,err]=datafit([iprint,] G [,DG],Z [,W],[contr],p0,[algo],[df0,[mem]],
             [work],[stop],['in'])
         </synopsis>
     </refsynopsisdiv>
@@ -29,13 +29,13 @@
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>imp</term>
+                <term>iprint</term>
                 <listitem>
                     <para>scalar argument used to set the trace mode.
-                        <literal>imp=0</literal> nothing (except errors) is reported,
-                        <literal>imp=1</literal> initial and final reports,
-                        <literal>imp=2</literal> adds a report per iteration,
-                        <literal>imp&gt;2</literal> add reports on linear search.
+                        <literal>iprint=0</literal> nothing (except errors) is reported,
+                        <literal>iprint=1</literal> initial and final reports,
+                        <literal>iprint=2</literal> adds a report per iteration,
+                        <literal>iprint&gt;2</literal> add reports on linear search.
                     </para>
                     <para>
                         <warning>

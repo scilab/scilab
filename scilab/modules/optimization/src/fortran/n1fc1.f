@@ -1,6 +1,6 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 c Copyright (C) INRIA
-c 
+c
 c Copyright (C) 2012 - 2016 - Scilab Enterprises
 c
 c This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -10,8 +10,8 @@ c and continues to be available under such terms.
 c For more information, see the COPYING file which you should have received
 c along with this program.
 c
-      subroutine n1fc1(simul,prosca,n,xn,fn,g,dxmin,df1,epsf,zero,imp,
-     &                 io,mode,iter,nsim,memax,iz,rz,dz,izs,rzs,dzs)
+      subroutine n1fc1(simul,prosca,n,xn,fn,g,dxmin,df1,epsf,zero,
+     &              iprint,io,mode,iter,nsim,memax,iz,rz,dz,izs,rzs,dzs)
 C          dimension iz=2*(memax+1)
 C          dimension rz=5*n+(n+4)*memax
 C          dimension dz=(memax+9)*memax+8
@@ -53,18 +53,18 @@ C
       niz = 2 * (memax+1)
       nrz = nq + n*memax - 1
       ndz = nw2 + memax
-      if (imp .gt. 0) call n1fc1o(io,2,n,memax,niz,nrz,ndz,d1,d2,d3,d4)
+      if (iprint.gt.0) call n1fc1o(io,2,n,memax,niz,nrz,ndz,d1,d2,d3,d4)
       do 110 i = 1,niz
  110  iz(i) = 0
       do 120 i = 1,nrz
  120  rz(i) = 0.d0
       do 130 i = 1,ndz
  130  dz(i) = 0.d0
-      call n1fc1a(simul,prosca,n,mode,xn,fn,g,df1,epsf,dxmin,imp,zero,
-     &            io,ntot,iter,nsim,memax,rz(ns),rz(ngd),rz(nx),rz(nsa),
-     &            rz(ngg),rz(nal),rz(naps),rz(nanc),rz(npoids),rz(nq),
-     &            iz(njc),iz(nic),dz(nr),dz(na),dz(ne),dz(nrr),dz(nxga),
-     &            dz(ny),dz(nw1),dz(nw2),izs,rzs,dzs)
+      call n1fc1a(simul,prosca,n,mode,xn,fn,g,df1,epsf,dxmin,iprint,
+     &            zero,io,ntot,iter,nsim,memax,rz(ns),rz(ngd),rz(nx),
+     &            rz(nsa),rz(ngg),rz(nal),rz(naps),rz(nanc),rz(npoids),
+     &            rz(nq),iz(njc),iz(nic),dz(nr),dz(na),dz(ne),dz(nrr),
+     &            dz(nxga),dz(ny),dz(nw1),dz(nw2),izs,rzs,dzs)
       iz(1) = ntot
  999  return
       end

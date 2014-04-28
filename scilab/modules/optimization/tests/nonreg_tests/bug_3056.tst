@@ -26,26 +26,26 @@ global to_record;
 // Rastrigin test function
 
 function [f,df,ind] = myf(x,ind)
-  global xn_1;
-  global iter;
-  global to_record;
-  global fn_1;
-  global gn_1;
+    global xn_1;
+    global iter;
+    global to_record;
+    global fn_1;
+    global gn_1;
 
-  if to_record then
-    xn_1($+1) = x;
-    printf("myf: ||xn(1) - xn_1(1)|| = %f - ||xn(2) - xn_1(2)|| = %f - iter = %d",norm(xn_1($)(1)-xn_1($-1)(1)),norm(xn_1($)(2)-xn_1($-1)(2)),iter);
-  end
+    if to_record then
+        xn_1($+1) = x;
+        printf("myf: ||xn(1) - xn_1(1)|| = %f - ||xn(2) - xn_1(2)|| = %f - iter = %d",norm(xn_1($)(1)-xn_1($-1)(1)),norm(xn_1($)(2)-xn_1($-1)(2)),iter);
+    end
 
-  iter = iter + 1;
-  f = x(1)^2+x(2)^2-cos(12*x(1))-cos(18*x(2));
-  df(1,1) = 2*x(1) - 12*sin(12*x(1));
-  df(2,1) = 2*x(2) - 18*sin(18*x(1));
-  if to_record then
-    fn_1($+1) = f;
-    gn_1($+1) = df;
-    printf(" - ||fn - fn_1|| = %f - ||gn - gn_1|| = %f\n",norm(fn_1($)-fn_1($-1)),norm(gn_1($)-gn_1($-1)));
-  end
+    iter = iter + 1;
+    f = x(1)^2+x(2)^2-cos(12*x(1))-cos(18*x(2));
+    df(1,1) = 2*x(1) - 12*sin(12*x(1));
+    df(2,1) = 2*x(2) - 18*sin(18*x(1));
+    if to_record then
+        fn_1($+1) = f;
+        gn_1($+1) = df;
+        printf(" - ||fn - fn_1|| = %f - ||gn - gn_1|| = %f\n",norm(fn_1($)-fn_1($-1)),norm(gn_1($)-gn_1($-1)));
+    end
 endfunction
 
 Min = [-1;-1];
@@ -66,7 +66,7 @@ gn_1($+1) = df_tmp
 
 to_record = %f;
 
-[fopt,xopt,gopt]=optim(myf,x0,algo="nd","ar",nap=20,iter=10,epsg=1e-1,epsf=1e-1,epsx=[1e-2;1e-2],imp=0);
+[fopt,xopt,gopt]=optim(myf,x0,algo="nd","ar",nap=20,iter=10,epsg=1e-1,epsf=1e-1,epsx=[1e-2;1e-2],iprint=0);
 
 list_to_plot = xn_1;
 xn_1 = list();
@@ -78,9 +78,9 @@ y = Min(2):(Max(2)-Min(2))/20:Max(2);
 [X,Y]=meshgrid(x,y);
 
 for i=1:size(X,1)
-  for j=1:size(X,2)
-    [Z(i,j),tmp1,tmp2] = myf([X(i,j);Y(i,j)],1);
-  end
+    for j=1:size(X,2)
+        [Z(i,j),tmp1,tmp2] = myf([X(i,j);Y(i,j)],1);
+    end
 end
 
 scf();
@@ -92,7 +92,7 @@ _axes.data_bounds = [Min(1) Max(1) Min(2) Max(2)];
 xtitle("myf","x1","x2");
 
 for i=1:length(list_to_plot)
-  plot(list_to_plot(i)(1),list_to_plot(i)(2),"ko");
+    plot(list_to_plot(i)(1),list_to_plot(i)(2),"ko");
 end
 
 drawnow;

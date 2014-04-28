@@ -57,7 +57,7 @@ function demo_optim_plot()
     //
     // 4. Plot the optimization process, during optimization
     mprintf("Plot points during optimization...\n");
-    [ fopt , xopt ] = optim ( rosenbrock , x0 , imp = -1)
+    [ fopt , xopt ] = optim ( rosenbrock , x0 , iprint = -1)
 
 endfunction
 

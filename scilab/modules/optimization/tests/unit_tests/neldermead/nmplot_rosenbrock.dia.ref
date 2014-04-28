@@ -47,11 +47,11 @@ nm = nmplot_search(nm);
 optimbase_terminate: Exiting: Maximum number of iterations has been exceeded
          - increase MaxIter option.
 // Plot the contours of the cost function and the simplex history
-xmin = -2.0; 
-xmax = 2.0 ; 
-ymin = -2.0 ; 
-ymax = 2.0 ; 
-nx = NP ; 
+xmin = -2.0;
+xmax = 2.0 ;
+ymin = -2.0 ;
+ymax = 2.0 ;
+nx = NP ;
 ny = NP;
 [nm , xdata , ydata , zdata ] = nmplot_contour ( nm , ...
   xmin , xmax , ymin , ymax , nx , ny );
@@ -62,17 +62,17 @@ nmplot_simplexhistory ( nm );
 drawnow();
 close(f);
 f = scf();
-mytitle = "Function Value Average" ; 
+mytitle = "Function Value Average" ;
 myxlabel = "Iterations";
 nmplot_historyplot ( nm , fbarfn , mytitle , myxlabel);
 close(f);
 f = scf();
-mytitle = "Minimum Function Value" ; 
+mytitle = "Minimum Function Value" ;
 myxlabel = "Iterations";
 nmplot_historyplot ( nm , foptfn , mytitle , myxlabel);
 close(f);
 f = scf();
-mytitle = "Maximum Oriented length" ; 
+mytitle = "Maximum Oriented length" ;
 myxlabel = "Iterations";
 nmplot_historyplot ( nm , sigmafn , mytitle , myxlabel);
 close(f);

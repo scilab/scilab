@@ -43,11 +43,11 @@ function stop = myoutputcmd(state, data)
 endfunction
 xopt = [1;1]
  xopt  = 
-    1.
-    1.
+   1.
+   1.
 fopt = 0
  fopt  = 
-    0.
+   0.
 x0 = [-1.2 1.0];
 lower_bounds = [-2 -2];
 upper_bounds = [2. 2.];

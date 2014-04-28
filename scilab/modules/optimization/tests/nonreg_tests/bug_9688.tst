@@ -14,7 +14,7 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=9688
 //
 // <-- Short Description -->
-// optim could crash when "imp" option was < 0
+// optim could crash when "iprint" option was < 0
 //
 function [ f , g , ind ] = woodFG ( x , ind )
     f = []
@@ -37,6 +37,6 @@ endfunction
 x0 = [-3 -1 -3 -1];
 
 refMsg = msprintf(_("%s: Wrong type for output argument #%d: Real scalar expected.\n"), "woodFG", 1);
-assert_checkerror("[ fopt, xopt, gopt ] = optim ( woodFG, x0, ""qn"", imp=-1);", refMsg);
-assert_checkerror("[ fopt, xopt, gopt ] = optim ( woodFG, x0, ""gc"", imp=-1);", refMsg);
-assert_checkerror("[ fopt, xopt, gopt ] = optim ( woodFG, x0, ""nd"", imp=-1);", refMsg);
+assert_checkerror("[ fopt, xopt, gopt ] = optim ( woodFG, x0, ""qn"", iprint=-1);", refMsg);
+assert_checkerror("[ fopt, xopt, gopt ] = optim ( woodFG, x0, ""gc"", iprint=-1);", refMsg);
+assert_checkerror("[ fopt, xopt, gopt ] = optim ( woodFG, x0, ""nd"", iprint=-1);", refMsg);

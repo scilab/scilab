@@ -15,7 +15,7 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=9697
 //
 // <-- Short Description -->
-// The optim/"qn" /"gc" with bounds and imp=1 did not print the basic information of the problem.
+// The optim/"qn" /"gc" with bounds and iprint=1 did not print the basic information of the problem.
 //
 
 function [f, g, ind] = woodFG(x, ind)
@@ -43,5 +43,5 @@ x0 = [-3 -1 -3 -1];
 binf = [-10 -10 -10 -10];
 bsup = [0 0 0 0];
 
-[fopt, xopt, gopt] = optim(woodFG, "b", binf, bsup, x0, "qn", imp=1);
-[fopt, xopt, gopt] = optim(woodFG, "b", binf, bsup, x0, "gc", imp=1);
+[fopt, xopt, gopt] = optim(woodFG, "b", binf, bsup, x0, "qn", iprint=1);
+[fopt, xopt, gopt] = optim(woodFG, "b", binf, bsup, x0, "gc", iprint=1);

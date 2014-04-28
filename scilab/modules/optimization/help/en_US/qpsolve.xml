@@ -125,7 +125,7 @@
             the compiled qp_solve primitive. It is provided as a facility, in order to
             be a direct replacement for the former quapro solver : indeed, the qpsolve
             solver has been designed so that it provides the same interface, that is,
-            the same input/output arguments. But the x0 and imp input arguments are
+            the same input/output arguments. But the x0 and iprint input arguments are
             available in quapro, but not in qpsolve.
         </para>
     </refsection>

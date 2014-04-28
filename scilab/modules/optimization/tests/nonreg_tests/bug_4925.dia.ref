@@ -13,17 +13,17 @@
 //
 // <-- Short Description -->
 // this example with optim crashs 'optim' on windows (release mode)
-// 
+//
 // =============================================================================
 xref=[1;2;3];
 x0=[1;-1;1];
 function [f,g,ind] = cost(x,ind)
-  f=0.5*norm(x-xref)^2;
-  g=x-xref;
+    f=0.5*norm(x-xref)^2;
+    g=x-xref;
 endfunction
-[f,xopt]=optim(cost,x0,imp=3)
+[f,xopt]=optim(cost,x0,iprint=3)
 ***** enters -qn code- (without bound cstr)
-dimension=         3, epsq=  0.2220446049250313E-15, verbosity level: imp=         3
+dimension=         3, epsq=  0.2220446049250313E-15, verbosity level: iprint=         3
 max number of iterations allowed: iter=       100
 max number of calls to costf allowed: nap=       100
 ------------------------------------------------
@@ -42,9 +42,9 @@ max number of calls to costf allowed: nap=       100
 ***** leaves -qn code-, gradient norm=  0.0000000000000000E+00
 optim: Norm of projected gradient lower than 0.
  xopt  = 
-    1.
-    2.
-    3.
+   1.
+   2.
+   3.
  f  = 
-    0.
+   0.
 // =============================================================================

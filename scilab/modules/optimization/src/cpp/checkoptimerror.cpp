@@ -22,9 +22,9 @@ extern "C" {
 #include "configvariable_interface.h"
 }
 // return 0 = ok, return 1 = error
-int checkOptimError(int iarret, int indopt, int imp, double dEpsg)
+int checkOptimError(int iarret, int indopt, int iprint, double dEpsg)
 {
-    if (iarret || (imp == 0 && indopt > 0))
+    if (iarret || (iprint == 0 && indopt > 0))
     {
         return 0;
     }

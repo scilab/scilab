@@ -11,7 +11,7 @@ c For more information, see the COPYING file which you should have received
 c along with this program.
 c
       subroutine n1gc2b(n,simul,prosca,xinit,f,dg,alpha,d,
-     /                  xfinal,gfinal,imp,io,retour,ntotap,nsim,
+     /                  xfinal,gfinal,iprint,io,retour,ntotap,nsim,
      /                  intfor,dx,eps,izs,rzs,dzs)
 c
       implicit double precision (a-h,o-z)
@@ -29,7 +29,7 @@ c declarations des tableaux
 c declarations des scalaires
       double precision f, finit, dg, alpha, eps, dx, ap, dp, fp,
      /                  aux1, aux2, pas, at, dal, bsup, delta
-      integer  n, imp, io, retour, nsim, ntotap, nappel, indic, j
+      integer  n, iprint, io, retour, nsim, ntotap, nappel, indic, j
       logical  intfor, maxpas, rfinie, accept, encadr, depas
       external prosca, simul
       character bufstr*(4096)
@@ -42,7 +42,7 @@ c initialisations
       ap=zero
       fp=finit
       dp=dg
-      if (imp .gt. 3) then
+      if (iprint .gt. 3) then
          write(bufstr,1) alpha, dg
          call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
       endif
@@ -52,7 +52,7 @@ c calcul de la longueur du pas
 c test d'erreur dans la recherche lineaire
 1000  continue
       if (alpha * pas .le. dx) then
-      if (imp .gt. 3) then
+      if (iprint .gt. 3) then
         write(bufstr,1001)
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
       endif
@@ -75,7 +75,7 @@ c calculs de f et g en ce point
       ntotap=ntotap + 1
       if (indic .lt. 0) then
       depas=.true.
-      if (imp . gt. 3) then
+      if (iprint . gt. 3) then
         write(bufstr,2001) alpha,indic
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
       endif
@@ -92,7 +92,7 @@ c calculs de f et g en ce point
 c calcul de la derivee suivant d au point xfinal
       call prosca(n,d,gfinal,dal,izs,rzs,dzs)
 c
-      if (imp .gt. 3) then
+      if (iprint .gt. 3) then
         aux2=f - finit
         write(bufstr,2002) alpha, aux2, dal
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
