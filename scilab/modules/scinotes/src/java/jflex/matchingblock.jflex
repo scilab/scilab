@@ -34,6 +34,42 @@ import javax.swing.text.Element;
         this.scilabLexer = doc.createLexer();
     }
 
+    public MatchingPositions getNextBlock(int pos, boolean lr) {
+        int s = 1;
+        transp = false;
+	try {
+      	    if (lr) {
+                start =  pos;
+                end = doc.getEndPosition().getOffset();
+                yyreset(new ScilabDocumentReader(doc, start, end));
+                yybegin(LR);
+	    } else {
+                start = pos - 1;
+                end = 0;
+                yyreset(new ScilabDocumentReader(doc, true, start, end));
+              	yybegin(RL);
+	    }
+	    do {
+               if (yylex() == 0) {
+                  s--;
+               } else {
+                  s++;
+               }
+            } while (zzMarkedPos != 0 && s != 0);
+        } catch (IOException e) {
+            return null;
+        }
+        if (s == 0) {
+            if (lr) {
+                return new MatchingPositions(pos, pos, pos + yychar, pos + yychar + (transp?(yylength()-1):yylength()));
+            } else {
+                return new MatchingPositions(pos, pos, pos - yychar - yylength(), pos - yychar);
+            }
+        }
+
+        return null;
+    }
+
     public MatchingPositions getMatchingBlock(int pos, boolean lr) {
         int p1, s = 1;
         transp = false;

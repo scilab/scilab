@@ -85,6 +85,8 @@ Scilab Bug Fixes
 * Bug #13333 fixed - Selecting "Offline mode" in Scilab installer installed
                      Scilab in "Command line mode" (without GUI modules).
 
+* Bug #13336 fixed - In SciNotes it was not possible to complete brackets only at eol.
+
 * Bug #13344 fixed - User defined ticks were not drawn at the right position.
 
 * Bug #13345 fixed - Scilab did not start on Debian Wheezy (GLIBC issue).
@@ -199,7 +201,7 @@ Xcos Bug Fixes
 
 * Bug #13443 fixed - There was no image on CSCOPXY3D block.
 
-* Bug #13513 fixed - EXPRESSION block with "u1" as expression failed with a 
+* Bug #13513 fixed - EXPRESSION block with "u1" as expression failed with a
                      singularity error.
 
 * Bug #13514 fixed - External modules' loader_pal.sce file contained absolute path.
