@@ -19,6 +19,8 @@ Scilab Bug Fixes
 * Bug #13333 fixed - Selecting "Offline mode" in Scilab installer installed
                      Scilab in "Command line mode" (without GUI modules).
 
+* Bug #13344 fixed - User defined ticks were not drawn at the right position.
+
 * Bug #13378 fixed - The "Console" handle display was not homogeneous with others.
 
 * Bug #13381 fixed - eigs was failing when using a function as first input argument.

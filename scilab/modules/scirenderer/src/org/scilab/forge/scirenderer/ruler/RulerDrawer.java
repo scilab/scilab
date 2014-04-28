@@ -549,7 +549,7 @@ public class RulerDrawer {
             Dimension textureSize = sprite.getDataProvider().getTextureSize();
             double ratioX = textureSize.width / Math.abs(usedDirection.getX());
             double ratioY = textureSize.height / Math.abs(usedDirection.getY());
-            double ratio = Math.min(ratioY, ratioX) / 2;
+            double ratio = Math.min(ratioY, ratioX);
 
             return usedDirection.times((ratio + 1) / 2);
         }
