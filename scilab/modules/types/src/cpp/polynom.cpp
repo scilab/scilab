@@ -176,9 +176,9 @@ bool Polynom::getRealRank(int *_piRank)
     return true;
 }
 
-GenericType::RealType Polynom::getType()
+GenericType::ScilabType Polynom::getType()
 {
-    return RealPoly;
+    return ScilabPolynom;
 }
 
 void Polynom::whoAmI(void)

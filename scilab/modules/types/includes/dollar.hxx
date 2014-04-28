@@ -42,9 +42,9 @@ public :
         return new Dollar();
     }
 
-    InternalType::RealType getType()
+    InternalType::ScilabType getType()
     {
-        return RealDollar;
+        return ScilabDollar;
     }
 
     bool isDollar()

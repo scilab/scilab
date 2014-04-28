@@ -2,10 +2,7 @@
 /* Template toolbox_skeleton */
 /* This file is released under the 3-clause BSD license. See COPYING-BSD. */
 /* ==================================================================== */
-#include "function.hxx"
-#include "double.hxx"
-#include "Scierror.h"
-#include "localization.h"
+#include "api_scilab.hxx"
 
 extern "C"
 {
@@ -13,7 +10,7 @@ extern "C"
 }
 
 /* ==================================================================== */
-types::Function::ReturnValue sci_cppsum(types::typed_list &in, int _iRetCount, types::typed_list &out)
+api_scilab::Status sci_cppsum(api_scilab::input &in, int _iRetCount, api_scilab::output &out)
 {
     /* --> result = csum(3,8)
 
@@ -21,53 +18,57 @@ types::Function::ReturnValue sci_cppsum(types::typed_list &in, int _iRetCount, t
     if (in.size() != 2)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "cpp_sum", 2);
-        return types::Function::Error;
+        return api_scilab::Error;
     }
 
     /* check that we have only 1 output argument */
     if (_iRetCount != 1)
     {
         Scierror(78, _("%s: Wrong number of output argument(s): %d expected."), "cpp_sum", 1);
-        return types::Function::Error;
+        return api_scilab::Error;
     }
 
-    if (in[0]->isDouble() == false)
+    if (api_scilab::isDouble(in[0]) == false)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), "cpp_sum", 1);
-        return types::Function::Error;
+        return api_scilab::Error;
     }
 
-    types::Double* pIn1 = in[0]->getAs<types::Double>();
-
+    api_scilab::Double* pIn1 = api_scilab::getAsDouble(in[0]);
     if (in[1]->isDouble() == false)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), "cpp_sum", 2);
-        return types::Function::Error;
+        return api_scilab::Error;
     }
 
-    types::Double* pIn2 = in[1]->getAs<types::Double>();
+    api_scilab::Double* pIn2 = api_scilab::getAsDouble(in[1]);
 
     /* check size */
     if (pIn1->getSize() != 1)
     {
         Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), "cpp_sum", 1);
-        return types::Function::Error;
+        return api_scilab::Error;
     }
 
     if (pIn2->getSize() != 1)
     {
         Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), "cpp_sum", 2);
-        return types::Function::Error;
+        return api_scilab::Error;
     }
 
-    types::Double* pOut = new types::Double(1, 1);
+    api_scilab::Double* pOut = new api_scilab::Double(1, 1);
     /* call c function csub */
     csum(pIn1->get(), pIn2->get(), pOut->get());
 
     /* return result */
-    out.push_back(pOut);
+    out.push_back(api_scilab::getReturnVariable(pOut));
 
-    return types::Function::OK;
+    //clear api variables
+    delete pIn2;
+    delete pIn1;
+    delete pOut;
+    //return gateway status
+    return api_scilab::OK;
 }
 /* ==================================================================== */
 

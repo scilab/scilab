@@ -84,9 +84,9 @@ void Bool::whoAmI()
     std::cout << "types::Bool";
 }
 
-GenericType::RealType Bool::getType(void)
+GenericType::ScilabType Bool::getType(void)
 {
-    return RealBool;
+    return ScilabBool;
 }
 
 bool Bool::setFalse()

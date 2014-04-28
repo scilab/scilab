@@ -77,7 +77,7 @@ public :
         return L"p";
     }
 protected :
-    RealType                getType(void);
+    ScilabType                getType(void);
 
 private :
     void                    toStringInternal(double *_pdblVal, std::wstring _szVar, std::list<std::wstring>* _pListExp , std::list<std::wstring>* _pListCoef);

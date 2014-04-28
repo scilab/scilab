@@ -261,43 +261,43 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
 
             switch (pIT->getType())
             {
-                case types::InternalType::RealDouble :
+                case types::InternalType::ScilabDouble :
                     pOut = pIT->getAs<types::Double>()->extract(pArgs);
                     break;
-                case types::InternalType::RealString :
+                case types::InternalType::ScilabString :
                     pOut = pIT->getAs<types::String>()->extract(pArgs);
                     break;
-                case types::InternalType::RealBool :
+                case types::InternalType::ScilabBool :
                     pOut = pIT->getAs<types::Bool>()->extract(pArgs);
                     break;
-                case types::InternalType::RealPoly :
+                case types::InternalType::ScilabPolynom :
                     pOut = pIT->getAs<types::Polynom>()->extract(pArgs);
                     break;
-                case types::InternalType::RealInt8 :
+                case types::InternalType::ScilabInt8 :
                     pOut = pIT->getAs<types::Int8>()->extract(pArgs);
                     break;
-                case types::InternalType::RealUInt8 :
+                case types::InternalType::ScilabUInt8 :
                     pOut = pIT->getAs<types::UInt8>()->extract(pArgs);
                     break;
-                case types::InternalType::RealInt16 :
+                case types::InternalType::ScilabInt16 :
                     pOut = pIT->getAs<types::Int16>()->extract(pArgs);
                     break;
-                case types::InternalType::RealUInt16 :
+                case types::InternalType::ScilabUInt16 :
                     pOut = pIT->getAs<types::UInt16>()->extract(pArgs);
                     break;
-                case types::InternalType::RealInt32 :
+                case types::InternalType::ScilabInt32 :
                     pOut = pIT->getAs<types::Int32>()->extract(pArgs);
                     break;
-                case types::InternalType::RealUInt32 :
+                case types::InternalType::ScilabUInt32 :
                     pOut = pIT->getAs<types::UInt32>()->extract(pArgs);
                     break;
-                case types::InternalType::RealInt64 :
+                case types::InternalType::ScilabInt64 :
                     pOut = pIT->getAs<types::Int64>()->extract(pArgs);
                     break;
-                case types::InternalType::RealUInt64 :
+                case types::InternalType::ScilabUInt64 :
                     pOut = pIT->getAs<types::UInt64>()->extract(pArgs);
                     break;
-                case types::InternalType::RealList :
+                case types::InternalType::ScilabList :
                 {
                     ResultList = pIT->getAs<types::List>()->extract(pArgs);
 
@@ -320,7 +320,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                     }
                 }
                 break;
-                case InternalType::RealTList :
+                case InternalType::ScilabTList :
                 {
                     Function::ReturnValue ret = Function::OK;
                     bool bCallOverLoad = false;
@@ -429,7 +429,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                     }
                     break;
                 }
-                case InternalType::RealMList :
+                case InternalType::ScilabMList :
                 {
                     Function::ReturnValue ret = Function::OK;
                     bool bCallOverLoad = false;
@@ -525,16 +525,16 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                     }
                     break;
                 }
-                case InternalType::RealCell :
+                case InternalType::ScilabCell :
                     pOut = pIT->getAs<Cell>()->extract(pArgs);
                     break;
-                case types::InternalType::RealSparse :
+                case types::InternalType::ScilabSparse :
                     pOut = pIT->getAs<types::Sparse>()->extract(pArgs);
                     break;
-                case types::InternalType::RealSparseBool :
+                case types::InternalType::ScilabSparseBool :
                     pOut = pIT->getAs<types::SparseBool>()->extract(pArgs);
                     break;
-                case types::InternalType::RealStruct :
+                case types::InternalType::ScilabStruct :
                 {
                     types::Struct* pStr = pIT->getAs<types::Struct>();
                     if (pArgs->size() == 1 && (*pArgs)[0]->isString())
@@ -581,7 +581,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                     }
                     break;
                 }
-                case types::InternalType::RealHandle :
+                case types::InternalType::ScilabHandle :
                 {
                     if (pArgs->size() == 1 && (*pArgs)[0]->isString())
                     {

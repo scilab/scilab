@@ -44,11 +44,11 @@ types::Callable::ReturnValue sci_double(types::typed_list &in, int _iRetCount, t
         return types::Function::Error;
     }
 
-    types::InternalType::RealType type = in[0]->getType();
+    types::InternalType::ScilabType type = in[0]->getType();
 
     switch (type)
     {
-        case types::InternalType::RealBool :
+        case types::InternalType::ScilabBool :
         {
             types::Bool* pInt = in[0]->getAs<types::Bool>();
             pOut = new types::Double(pInt->getDims(), pInt->getDimsArray());
@@ -59,7 +59,7 @@ types::Callable::ReturnValue sci_double(types::typed_list &in, int _iRetCount, t
             break;
         }
 
-        case types::InternalType::RealInt8 :
+        case types::InternalType::ScilabInt8 :
         {
             types::Int8* pInt = in[0]->getAs<types::Int8>();
             pOut = new types::Double(pInt->getDims(), pInt->getDimsArray());
@@ -70,7 +70,7 @@ types::Callable::ReturnValue sci_double(types::typed_list &in, int _iRetCount, t
             break;
         }
 
-        case types::InternalType::RealUInt8 :
+        case types::InternalType::ScilabUInt8 :
         {
             types::UInt8* pInt = in[0]->getAs<types::UInt8>();
             pOut = new types::Double(pInt->getDims(), pInt->getDimsArray());
@@ -81,7 +81,7 @@ types::Callable::ReturnValue sci_double(types::typed_list &in, int _iRetCount, t
             break;
         }
 
-        case types::InternalType::RealInt16 :
+        case types::InternalType::ScilabInt16 :
         {
             types::Int16* pInt = in[0]->getAs<types::Int16>();
             pOut = new types::Double(pInt->getDims(), pInt->getDimsArray());
@@ -92,7 +92,7 @@ types::Callable::ReturnValue sci_double(types::typed_list &in, int _iRetCount, t
             break;
         }
 
-        case types::InternalType::RealUInt16 :
+        case types::InternalType::ScilabUInt16 :
         {
             types::UInt16* pInt = in[0]->getAs<types::UInt16>();
             pOut = new types::Double(pInt->getDims(), pInt->getDimsArray());
@@ -103,7 +103,7 @@ types::Callable::ReturnValue sci_double(types::typed_list &in, int _iRetCount, t
             break;
         }
 
-        case types::InternalType::RealInt32 :
+        case types::InternalType::ScilabInt32 :
         {
             types::Int32* pInt = in[0]->getAs<types::Int32>();
             pOut = new types::Double(pInt->getDims(), pInt->getDimsArray());
@@ -114,7 +114,7 @@ types::Callable::ReturnValue sci_double(types::typed_list &in, int _iRetCount, t
             break;
         }
 
-        case types::InternalType::RealUInt32 :
+        case types::InternalType::ScilabUInt32 :
         {
             types::UInt32* pInt = in[0]->getAs<types::UInt32>();
             pOut = new types::Double(pInt->getDims(), pInt->getDimsArray());
@@ -125,7 +125,7 @@ types::Callable::ReturnValue sci_double(types::typed_list &in, int _iRetCount, t
             break;
         }
 
-        case types::InternalType::RealInt64 :
+        case types::InternalType::ScilabInt64 :
         {
             types::Int64* pInt = in[0]->getAs<types::Int64>();
             pOut = new types::Double(pInt->getDims(), pInt->getDimsArray());
@@ -136,7 +136,7 @@ types::Callable::ReturnValue sci_double(types::typed_list &in, int _iRetCount, t
             break;
         }
 
-        case types::InternalType::RealUInt64 :
+        case types::InternalType::ScilabUInt64 :
         {
             types::UInt64* pInt = in[0]->getAs<types::UInt64>();
             pOut = new types::Double(pInt->getDims(), pInt->getDimsArray());

@@ -39,13 +39,13 @@ Function::ReturnValue sci_size(types::typed_list &in, int _iRetCount, types::typ
     switch (in[0]->getType())
     {
             // Dedicated case for lists.
-        case InternalType::RealMList:
+        case InternalType::ScilabMList:
         {
             std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_size";
             Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
             break;
         }
-        case InternalType::RealTList:
+        case InternalType::ScilabTList:
         {
             // calls the overload if it exists.
             std::wstring wstFuncName = L"%"  + in[0]->getTypeStr() + L"_size";
@@ -55,7 +55,7 @@ Function::ReturnValue sci_size(types::typed_list &in, int _iRetCount, types::typ
                 return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
             }
         }
-        case InternalType::RealList:
+        case InternalType::ScilabList:
         {
             if (in.size() > 1)
             {

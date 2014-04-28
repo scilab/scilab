@@ -25,8 +25,8 @@ extern "C"
 InternalType *GenericPower(InternalType *_pLeftOperand, InternalType *_pRightOperand)
 {
     InternalType *pResult = NULL;
-    GenericType::RealType TypeL = _pLeftOperand->getType();
-    GenericType::RealType TypeR = _pRightOperand->getType();
+    GenericType::ScilabType TypeL = _pLeftOperand->getType();
+    GenericType::ScilabType TypeR = _pRightOperand->getType();
 
     /*
     ** DOUBLE ^ DOUBLE
@@ -80,14 +80,14 @@ InternalType *GenericPower(InternalType *_pLeftOperand, InternalType *_pRightOpe
 InternalType *GenericDotPower(InternalType *_pLeftOperand, InternalType *_pRightOperand)
 {
     InternalType *pResult = NULL;
-    GenericType::RealType TypeL = _pLeftOperand->getType();
-    GenericType::RealType TypeR = _pRightOperand->getType();
+    GenericType::ScilabType TypeL = _pLeftOperand->getType();
+    GenericType::ScilabType TypeR = _pRightOperand->getType();
 
     /*
     ** DOUBLE .^ DOUBLE
     ** DOUBLE .** DOUBLE
     */
-    if (TypeL == GenericType::RealDouble && TypeR == GenericType::RealDouble)
+    if (TypeL == GenericType::ScilabDouble && TypeR == GenericType::ScilabDouble)
     {
         Double *pL  = _pLeftOperand->getAs<Double>();
         Double *pR  = _pRightOperand->getAs<Double>();
@@ -105,7 +105,7 @@ InternalType *GenericDotPower(InternalType *_pLeftOperand, InternalType *_pRight
     ** POLY .^ DOUBLE
     ** POLY .** DOUBLE
     */
-    if (TypeL == GenericType::RealPoly && TypeR == GenericType::RealDouble)
+    if (TypeL == GenericType::ScilabPolynom && TypeR == GenericType::ScilabDouble)
     {
         Polynom *pL   = _pLeftOperand->getAs<Polynom>();
         Double *pR   = _pRightOperand->getAs<Double>();
@@ -339,7 +339,7 @@ int PowerPolyByDouble(Polynom* _pPoly, Double* _pDouble, InternalType** _pOut)
         for (int i = 0 ; i < _pDouble->getSize() ; i++)
         {
             int iInputRank = (int)_pDouble->get(i);
-            if(iInputRank < 0)
+            if (iInputRank < 0)
             {
                 //call overload
                 _pOut = NULL;

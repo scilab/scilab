@@ -32,9 +32,9 @@ InternalType* Void::clone(void)
     return new Void();
 }
 
-InternalType::RealType Void::getType(void)
+InternalType::ScilabType Void::getType(void)
 {
-    return RealVoid;
+    return ScilabVoid;
 }
 
 bool Void::toString(std::wostringstream& ostr)

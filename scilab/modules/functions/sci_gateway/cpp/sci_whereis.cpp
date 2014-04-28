@@ -68,9 +68,9 @@ Function::ReturnValue sci_whereis(types::typed_list &in, int _iRetCount, types::
 
     switch (pIT->getType())
     {
-        case InternalType::RealFunction :
-        case InternalType::RealMacro :
-        case InternalType::RealMacroFile :
+        case InternalType::ScilabFunction :
+        case InternalType::ScilabMacro :
+        case InternalType::ScilabMacroFile :
             stModule = pIT->getAs<Callable>()->getModule();
             break;
         default :

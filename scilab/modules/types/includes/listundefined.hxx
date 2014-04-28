@@ -28,7 +28,7 @@ public :
     // FIXME : Should not return NULL;
     InternalType*           clone();
 
-    RealType                getType(void);
+    ScilabType                getType(void);
     bool                    isListUndefined()
     {
         return true;

@@ -129,7 +129,7 @@ int iAddComplexMatrixToComplexMatrix(double* _pdblReal1, double* _pdblImg1, doub
 }
 
 /* SinglePoly + SinglePoly*/
-int iAddRealPolyToRealPoly(double* _pCoef1R, int _iRank1, double* _pCoef2R, int _iRank2, double* _pCoefOutR, int _iRanOut)
+int iAddScilabPolynomToScilabPolynom(double* _pCoef1R, int _iRank1, double* _pCoef2R, int _iRank2, double* _pCoefOutR, int _iRanOut)
 {
     int iRankMin			= Min(_iRank1, _iRank2);
     int iRankMax			= Max(_iRank1, _iRank2);
@@ -148,7 +148,7 @@ int iAddRealPolyToRealPoly(double* _pCoef1R, int _iRank1, double* _pCoef2R, int 
     return 0;
 }
 
-int iAddRealPolyToComplexPoly(double* _pCoef1R, int _iRank1, double* _pCoef2R, double* _pCoef2I, int _iRank2, double* _pCoefOutR, double* _pCoefOutI, int _iRanOut)
+int iAddScilabPolynomToComplexPoly(double* _pCoef1R, int _iRank1, double* _pCoef2R, double* _pCoef2I, int _iRank2, double* _pCoefOutR, double* _pCoefOutI, int _iRanOut)
 {
     int iRankMin			= Min(_iRank1, _iRank2);
     int iRankMax			= Max(_iRank1, _iRank2);

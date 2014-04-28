@@ -476,69 +476,69 @@ SciErr getVarType(void *_pvCtx, int *_piAddress, int *_piType)
 
     switch (((InternalType*)_piAddress)->getType())
     {
-        case GenericType::RealDouble :
+        case GenericType::ScilabDouble :
             *_piType = sci_matrix;
             break;
-        case GenericType::RealPoly :
+        case GenericType::ScilabPolynom :
             *_piType = sci_poly;
             break;
-        case GenericType::RealBool :
+        case GenericType::ScilabBool :
             *_piType = sci_boolean;
             break;
-        case GenericType::RealSparse :
+        case GenericType::ScilabSparse :
             *_piType = sci_sparse;
             break;
-        case GenericType::RealSparseBool :
+        case GenericType::ScilabSparseBool :
             *_piType = sci_boolean_sparse;
             break;
             //case GenericType::RealMatlabSparse :
             //    *_piType = sci_matlab_sparse;
             //    break;
-        case GenericType::RealInt8 :
-        case GenericType::RealUInt8 :
-        case GenericType::RealInt16 :
-        case GenericType::RealUInt16 :
-        case GenericType::RealInt32 :
-        case GenericType::RealUInt32 :
-        case GenericType::RealInt64 :
-        case GenericType::RealUInt64 :
+        case GenericType::ScilabInt8 :
+        case GenericType::ScilabUInt8 :
+        case GenericType::ScilabInt16 :
+        case GenericType::ScilabUInt16 :
+        case GenericType::ScilabInt32 :
+        case GenericType::ScilabUInt32 :
+        case GenericType::ScilabInt64 :
+        case GenericType::ScilabUInt64 :
             *_piType = sci_ints;
             break;
-        case GenericType::RealHandle :
+        case GenericType::ScilabHandle :
             *_piType = sci_handles;
             break;
-        case GenericType::RealString :
+        case GenericType::ScilabString :
             *_piType = sci_strings;
             break;
-        case GenericType::RealMacroFile :
+        case GenericType::ScilabMacroFile :
             *_piType = sci_u_function;
             break;
-        case GenericType::RealMacro :
+        case GenericType::ScilabMacro :
             *_piType = sci_c_function;
             break;
-        case GenericType::RealList :
+        case GenericType::ScilabList :
             *_piType = sci_list;
             break;
-        case GenericType::RealCell :
+        case GenericType::ScilabCell :
             *_piType = sci_mlist;
             break;
-        case GenericType::RealTList :
+        case GenericType::ScilabTList :
             *_piType = sci_tlist;
             break;
-        case GenericType::RealMList :
+        case GenericType::ScilabMList :
             *_piType = sci_mlist;
             break;
-        case GenericType::RealStruct :
+        case GenericType::ScilabStruct :
             // Scilab < 6 compatibility... Struct have type 17;
             *_piType = sci_mlist;
             break;
-        case GenericType::RealUserType :
+        case GenericType::ScilabUserType :
             *_piType = sci_pointer;
             break;
-        case GenericType::RealImplicitList :
+        case GenericType::ScilabImplicitList :
             *_piType = sci_implicit_poly;
             break;
-        case GenericType::RealFunction :
+        case GenericType::ScilabFunction :
             *_piType = sci_intrinsic_function;
             break;
         default :

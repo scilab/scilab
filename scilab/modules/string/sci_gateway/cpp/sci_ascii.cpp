@@ -72,34 +72,34 @@ Function::ReturnValue sci_ascii(typed_list &in, int _iRetCount, typed_list &out)
     InternalType* pOut;
     switch (in[0]->getType())
     {
-        case InternalType::RealDouble :
+        case InternalType::ScilabDouble :
             pOut = TypeToString<double>(in[0]->getAs<Double>());
             break;
-        case InternalType::RealString :
+        case InternalType::ScilabString :
             pOut = StringToDouble(in[0]->getAs<types::String>());
             break;
-        case InternalType::RealInt8 :
+        case InternalType::ScilabInt8 :
             pOut = TypeToString<char>(in[0]->getAs<Int8>());
             break;
-        case InternalType::RealUInt8 :
+        case InternalType::ScilabUInt8 :
             pOut = TypeToString<unsigned char>(in[0]->getAs<UInt8>());
             break;
-        case InternalType::RealInt16 :
+        case InternalType::ScilabInt16 :
             pOut = TypeToString<short>(in[0]->getAs<Int16>());
             break;
-        case InternalType::RealUInt16 :
+        case InternalType::ScilabUInt16 :
             pOut = TypeToString<unsigned short>(in[0]->getAs<UInt16>());
             break;
-        case InternalType::RealInt32 :
+        case InternalType::ScilabInt32 :
             pOut = TypeToString<int>(in[0]->getAs<Int32>());
             break;
-        case InternalType::RealUInt32 :
+        case InternalType::ScilabUInt32 :
             pOut = TypeToString<unsigned int>(in[0]->getAs<UInt32>());
             break;
-        case InternalType::RealInt64 :
+        case InternalType::ScilabInt64 :
             pOut = TypeToString<long long>(in[0]->getAs<Int64>());
             break;
-        case InternalType::RealUInt64 :
+        case InternalType::ScilabUInt64 :
             pOut = TypeToString<unsigned long long>(in[0]->getAs<UInt64>());
             break;
         default :

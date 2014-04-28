@@ -30,8 +30,8 @@ EXTERN_OP int iAddComplexIdentityToComplexMatrix(double _dblReal1, double _dblIm
 
 
 
-EXTERN_OP int iAddRealPolyToRealPoly(double* _pCoef1, int _iRank1, double* _pCoef2, int _iRank2, double* _pCoefOut, int _iRanOut);
-EXTERN_OP int iAddRealPolyToComplexPoly(double* _pCoef1, int _iRank1, double* _pCoefR2, double* _pCoef2I, int _iRank2, double* _pCoefOutR, double* _pCoefOutI, int _iRanOut);
+EXTERN_OP int iAddScilabPolynomToScilabPolynom(double* _pCoef1, int _iRank1, double* _pCoef2, int _iRank2, double* _pCoefOut, int _iRanOut);
+EXTERN_OP int iAddScilabPolynomToComplexPoly(double* _pCoef1, int _iRank1, double* _pCoefR2, double* _pCoef2I, int _iRank2, double* _pCoefOutR, double* _pCoefOutI, int _iRanOut);
 EXTERN_OP int iAddComplexPolyToComplexPoly(double* _pCoef1R, double* _pCoef1I, int _iRank1, double* _pCoef2R, double* _pCoef2I, int _iRank2, double* _pCoefOutR, double* _pCoefOutI, int _iRanOut);
 
 

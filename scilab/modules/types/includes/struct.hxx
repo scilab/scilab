@@ -38,9 +38,9 @@ public :
         std::cout << "types::Struct";
     };
 
-    RealType                    getType(void)
+    ScilabType                    getType(void)
     {
-        return RealStruct;
+        return ScilabStruct;
     }
     bool                        isStruct()
     {

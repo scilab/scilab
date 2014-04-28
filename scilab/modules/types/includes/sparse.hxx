@@ -435,7 +435,7 @@ struct TYPES_IMPEXP Sparse : GenericType
     void fill(Double& dest, int r = 0, int c = 0) SPARSE_CONST;
 
 
-    RealType getType(void) SPARSE_CONST;
+    ScilabType getType(void) SPARSE_CONST;
 
 
     SparseBool* newLesserThan(Sparse const&o);
@@ -570,7 +570,7 @@ struct TYPES_IMPEXP SparseBool : GenericType
     /* return type as short string ( s, i, ce, l, ... )*/
     virtual std::wstring getShortTypeStr() SPARSE_CONST {return std::wstring(L"spb");}
 
-    RealType getType(void) SPARSE_CONST;
+    ScilabType getType(void) SPARSE_CONST;
 
     bool isScalar()
     {

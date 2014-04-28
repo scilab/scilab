@@ -106,13 +106,13 @@ Function::ReturnValue sci_sparse(typed_list &in, int _piRetCount, typed_list &ou
     {
         switch (in[i]->getType())
         {
-            case InternalType::RealBool :
-            case InternalType::RealSparseBool :
+            case InternalType::ScilabBool :
+            case InternalType::ScilabSparseBool :
             {
                 isValid = (i == (in.size() > 1) ? 1 : 0);
             }
-            case InternalType::RealDouble :
-            case InternalType::RealSparse :
+            case InternalType::ScilabDouble :
+            case InternalType::ScilabSparse :
             {
                 break;
             }
@@ -133,12 +133,12 @@ Function::ReturnValue sci_sparse(typed_list &in, int _piRetCount, typed_list &ou
     {
         switch (in[0]->getType())
         {
-            case InternalType::RealSparse :
+            case InternalType::ScilabSparse :
             {
                 pRetVal = new types::Sparse(*in[0]->getAs<Sparse>());
                 break;
             }
-            case InternalType::RealDouble :
+            case InternalType::ScilabDouble :
             {
                 if (in[0]->getAs<Double>()->isEmpty())
                 {
@@ -149,12 +149,12 @@ Function::ReturnValue sci_sparse(typed_list &in, int _piRetCount, typed_list &ou
                 pRetVal = new types::Sparse(*in[0]->getAs<Double>());
                 break;
             }
-            case InternalType::RealBool :
+            case InternalType::ScilabBool :
             {
                 pRetVal = new types::SparseBool(*in[0]->getAs<Bool>());
                 break;
             }
-            case InternalType::RealSparseBool :
+            case InternalType::ScilabSparseBool :
             {
                 pRetVal = new types::SparseBool(*in[0]->getAs<SparseBool>());
                 break;

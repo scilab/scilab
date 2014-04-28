@@ -257,7 +257,7 @@ types::Function::ReturnValue sci_mfscanf(types::typed_list &in, int _iRetCount, 
                     {
                         switch (pITTemp->back()->getType())
                         {
-                            case types::InternalType::RealString :
+                            case types::InternalType::ScilabString :
                             {
                                 int iRows               = pITTemp->back()->getAs<types::String>()->getRows();
                                 int iCols               = pITTemp->back()->getAs<types::String>()->getCols();
@@ -277,7 +277,7 @@ types::Function::ReturnValue sci_mfscanf(types::typed_list &in, int _iRetCount, 
                                 pITTemp->push_back(pType);
                             }
                             break;
-                            case types::InternalType::RealDouble :
+                            case types::InternalType::ScilabDouble :
                             {
                                 int iRows               = pITTemp->back()->getAs<types::Double>()->getRows();
                                 int iCols               = pITTemp->back()->getAs<types::Double>()->getCols();

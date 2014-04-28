@@ -32,9 +32,9 @@ InternalType* ListDelete::clone(void)
     return new ListDelete();
 }
 
-InternalType::RealType ListDelete::getType(void)
+InternalType::ScilabType ListDelete::getType(void)
 {
-    return RealListDeleteOperation;
+    return ScilabListDeleteOperation;
 }
 
 bool ListDelete::toString(std::wostringstream& ostr)

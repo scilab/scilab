@@ -37,9 +37,9 @@ public :
         return true;
     }
 
-    virtual RealType        getType(void)
+    virtual ScilabType        getType(void)
     {
-        return RealContainer;
+        return ScilabContainer;
     }
     virtual bool            isContainer(void)
     {

@@ -29,57 +29,57 @@ namespace types
 class TYPES_IMPEXP InternalType
 {
 public :
-    enum RealType
+    enum ScilabType
     {
+        ScilabNull, //no type, no data, nothing !
         /* Internal Type */
-        RealInternal,
+        ScilabInternal,
         /* Generic Types */
-        RealGeneric,
-        RealInt8,
-        RealUInt8,
-        RealInt16,
-        RealUInt16,
-        RealInt32,
-        RealUInt32,
-        RealInt64,
-        RealUInt64,
-        RealString,
-        RealDouble,
-        RealBool,
-        RealFloat,
-        RealPoly,
-        RealSinglePoly,
+        ScilabGeneric,
+        ScilabInt8,
+        ScilabUInt8,
+        ScilabInt16,
+        ScilabUInt16,
+        ScilabInt32,
+        ScilabUInt32,
+        ScilabInt64,
+        ScilabUInt64,
+        ScilabString,
+        ScilabDouble,
+        ScilabBool,
+        ScilabFloat,
+        ScilabPolynom,
+        ScilabSinglePolynom,
         /* Callable */
-        RealFunction,
-        RealMacro,
-        RealMacroFile,
+        ScilabFunction,
+        ScilabMacro,
+        ScilabMacroFile,
         /* Implicit List */
-        RealImplicitList,
+        ScilabImplicitList,
         /* Container */
-        RealContainer,
-        RealList,
-        RealTList,
-        RealMList,
-        RealSingleStruct,
-        RealStruct,
-        RealCell,
+        ScilabContainer,
+        ScilabList,
+        ScilabTList,
+        ScilabMList,
+        ScilabSingleStruct,
+        ScilabStruct,
+        ScilabCell,
         /* User */
-        RealUserType,
+        ScilabUserType,
         /*For list operation*/
-        RealListOperation, //parent type
-        RealListInsertOperation,
-        RealListDeleteOperation,
-        RealListUndefinedOperation,
-        RealFile,
-        RealColon,
-        RealDollar,
-        RealThreadId,
-        RealSparse,
-        RealSparseBool,
-        RealSingleHandle,
-        RealHandle,
-        RealVoid,
-        RealLibrary
+        ScilabListOperation, //parent type
+        ScilabListInsertOperation,
+        ScilabListDeleteOperation,
+        ScilabListUndefinedOperation,
+        ScilabFile,
+        ScilabColon,
+        ScilabDollar,
+        ScilabThreadId,
+        ScilabSparse,
+        ScilabSparseBool,
+        ScilabHandle,
+        ScilabVoid,
+        ScilabLibrary
     };
 
 protected :
@@ -96,7 +96,7 @@ public :
     {
         return false;
     }
-    virtual RealType                getType(void) = 0 ; //{ return RealInternal; }
+    virtual ScilabType                getType(void) = 0 ; //{ return ScilabInternal; }
 
     virtual bool                    hasToString()
     {

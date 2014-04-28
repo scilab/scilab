@@ -39,7 +39,7 @@ void RunVisitorT<T>::visitprivate(const OpExp &e)
             throw ScilabError(os.str(), 999, e.right_get().location_get());
         }
 
-        if (pITL->getType() == GenericType::RealImplicitList)
+        if (pITL->getType() == GenericType::ScilabImplicitList)
         {
             ImplicitList* pIL = pITL->getAs<ImplicitList>();
             if (pIL->isComputable())
@@ -48,7 +48,7 @@ void RunVisitorT<T>::visitprivate(const OpExp &e)
             }
         }
 
-        if (pITR->getType() == GenericType::RealImplicitList)
+        if (pITR->getType() == GenericType::ScilabImplicitList)
         {
             ImplicitList* pIR = pITR->getAs<ImplicitList>();
             if (pIR->isComputable())
@@ -231,7 +231,7 @@ void RunVisitorT<T>::visitprivate(const LogicalOpExp &e)
 
         result_set(NULL);
 
-        if (pITL->getType() == GenericType::RealImplicitList)
+        if (pITL->getType() == GenericType::ScilabImplicitList)
         {
             ImplicitList* pIL = pITL->getAs<ImplicitList>();
             if (pIL->isComputable())
@@ -267,7 +267,7 @@ void RunVisitorT<T>::visitprivate(const LogicalOpExp &e)
                     throw ScilabError(os.str(), 999, e.right_get().location_get());
                 }
 
-                if (pITR->getType() == GenericType::RealImplicitList)
+                if (pITR->getType() == GenericType::ScilabImplicitList)
                 {
                     ImplicitList* pIR = pITR->getAs<ImplicitList>();
                     if (pIR->isComputable())
@@ -301,7 +301,7 @@ void RunVisitorT<T>::visitprivate(const LogicalOpExp &e)
                     throw ScilabError(os.str(), 999, e.right_get().location_get());
                 }
 
-                if (pITR->getType() == GenericType::RealImplicitList)
+                if (pITR->getType() == GenericType::ScilabImplicitList)
                 {
                     ImplicitList* pIR = pITR->getAs<ImplicitList>();
                     if (pIR->isComputable())

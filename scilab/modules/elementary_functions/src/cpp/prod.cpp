@@ -203,9 +203,9 @@ types::Polynom* prod(types::Polynom* pIn, int iOrientation)
             {
                 double* pdblRealIn = pIn->get(i)->getCoef()->getReal();
                 memcpy(pdblTempReal, pdblRealOut, iRankMax * sizeof(double));
-                iMultiRealPolyByRealPoly(pdblTempReal, iRankMax,
-                                         pdblRealIn, piRanks[i],
-                                         pdblRealOut, iRankMax);
+                iMultiScilabPolynomByScilabPolynom(pdblTempReal, iRankMax,
+                                                   pdblRealIn, piRanks[i],
+                                                   pdblRealOut, iRankMax);
             }
 
             delete pdblTempReal;
@@ -346,9 +346,9 @@ types::Polynom* prod(types::Polynom* pIn, int iOrientation)
                 double* pdblRealIn = pIn->get(i)->getCoef()->getReal();
                 double* pdblRealOut = pOut->get(iIndex)->getCoef()->getReal();
                 memcpy(pdblTempReal, pdblRealOut, piRankMax[iIndex] * sizeof(double));
-                iMultiRealPolyByRealPoly(pdblTempReal, piRankMax[iIndex],
-                                         pdblRealIn, piRanks[i],
-                                         pdblRealOut, piRankMax[iIndex]);
+                iMultiScilabPolynomByScilabPolynom(pdblTempReal, piRankMax[iIndex],
+                                                   pdblRealIn, piRanks[i],
+                                                   pdblRealOut, piRankMax[iIndex]);
             }
 
             delete pdblTempReal;

@@ -57,17 +57,17 @@ EXTERN_OP int iMultiComplexScalarByComplexMatrix(
 
 
 /*polynomial multiplications*/
-EXTERN_OP int iMultiRealPolyByRealPoly(
+EXTERN_OP int iMultiScilabPolynomByScilabPolynom(
     double *_pdblReal1,	int _iRank1,
     double *_pdblReal2,	int _iRank2,
     double *_pdblRealOut, int _iRankOut);
 
-EXTERN_OP int iMultiComplexPolyByRealPoly(
+EXTERN_OP int iMultiComplexPolyByScilabPolynom(
     double *_pdblReal1,	double *_pdblImg1, int _iRank1,
     double *_pdblReal2,	int _iRank2,
     double *_pdblRealOut, double *_pdblImgOut, int _iRankOut);
 
-EXTERN_OP int iMultiRealPolyByComplexPoly(
+EXTERN_OP int iMultiScilabPolynomByComplexPoly(
     double *_pdblReal1,	int _iRank1,
     double *_pdblReal2,	double *_pdblImg2, int _iRank2,
     double *_pdblRealOut, double *_pdblImgOut, int _iRankOut);

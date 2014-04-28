@@ -20,10 +20,10 @@ extern "C" {
 types::InternalType *GenericKrontimes(types::InternalType *_pLeftOperand, types::InternalType *_pRightOperand)
 {
     types::Double *pResult = NULL;
-    types::GenericType::RealType TypeL = _pLeftOperand->getType();
-    types::GenericType::RealType TypeR = _pRightOperand->getType();
+    types::GenericType::ScilabType TypeL = _pLeftOperand->getType();
+    types::GenericType::ScilabType TypeR = _pRightOperand->getType();
 
-    if (TypeL == types::GenericType::RealDouble && TypeR == types::GenericType::RealDouble)
+    if (TypeL == types::GenericType::ScilabDouble && TypeR == types::GenericType::ScilabDouble)
     {
         types::Double *pL = _pLeftOperand->getAs<types::Double>();
         types::Double *pR = _pRightOperand->getAs<types::Double>();
@@ -93,10 +93,10 @@ int KroneckerMultiplyDoubleByDouble(types::Double* _pDouble1, types::Double* _pD
 types::InternalType *GenericKronrdivide(types::InternalType *_pLeftOperand, types::InternalType *_pRightOperand)
 {
     types::Double *pResult = NULL;
-    types::GenericType::RealType TypeL = _pLeftOperand->getType();
-    types::GenericType::RealType TypeR = _pRightOperand->getType();
+    types::GenericType::ScilabType TypeL = _pLeftOperand->getType();
+    types::GenericType::ScilabType TypeR = _pRightOperand->getType();
 
-    if (TypeL == types::GenericType::RealDouble && TypeR == types::GenericType::RealDouble)
+    if (TypeL == types::GenericType::ScilabDouble && TypeR == types::GenericType::ScilabDouble)
     {
         types::Double *pL = _pLeftOperand->getAs<types::Double>();
         types::Double *pR = _pRightOperand->getAs<types::Double>();
@@ -152,10 +152,10 @@ int KroneckerRDivideDoubleByDouble(types::Double* _pDouble1, types::Double* _pDo
 types::InternalType *GenericKronldivide(types::InternalType *_pLeftOperand, types::InternalType *_pRightOperand)
 {
     types::Double *pResult = NULL;
-    types::GenericType::RealType TypeL = _pLeftOperand->getType();
-    types::GenericType::RealType TypeR = _pRightOperand->getType();
+    types::GenericType::ScilabType TypeL = _pLeftOperand->getType();
+    types::GenericType::ScilabType TypeR = _pRightOperand->getType();
 
-    if (TypeL == types::GenericType::RealDouble && TypeR == types::GenericType::RealDouble)
+    if (TypeL == types::GenericType::ScilabDouble && TypeR == types::GenericType::ScilabDouble)
     {
         types::Double *pL = _pLeftOperand->getAs<types::Double>();
         types::Double *pR = _pRightOperand->getAs<types::Double>();

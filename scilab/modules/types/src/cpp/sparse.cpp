@@ -512,9 +512,9 @@ Sparse* Sparse::clone(void) const
     return new Sparse(*this);
 }
 
-GenericType::RealType Sparse::getType(void) SPARSE_CONST
+GenericType::ScilabType Sparse::getType(void) SPARSE_CONST
 {
-    return RealSparse;
+    return ScilabSparse;
 }
 
 bool Sparse::zero_set()
@@ -3075,9 +3075,9 @@ void SparseBool::finalize()
     matrixBool->finalize();
 }
 
-GenericType::RealType SparseBool::getType(void) SPARSE_CONST
+GenericType::ScilabType SparseBool::getType(void) SPARSE_CONST
 {
-    return InternalType::RealSparseBool;
+    return InternalType::ScilabSparseBool;
 }
 
 bool SparseBool::get(int r, int c) SPARSE_CONST

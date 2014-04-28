@@ -183,7 +183,16 @@ am__objects_1 = src/cpp/libsciapi_scilab_la-api_boolean.lo \
 	src/cpp/libsciapi_scilab_la-returnProperty.lo \
 	src/cpp/libsciapi_scilab_la-returnPropertyList.lo \
 	src/cpp/libsciapi_scilab_la-api_optional.lo \
-	src/cpp/libsciapi_scilab_la-api_hypermat.lo
+	src/cpp/libsciapi_scilab_la-api_hypermat.lo \
+	src/cpp/libsciapi_scilab_la-api_boolean_cpp.lo \
+	src/cpp/libsciapi_scilab_la-api_common_cpp.lo \
+	src/cpp/libsciapi_scilab_la-api_double_cpp.lo \
+	src/cpp/libsciapi_scilab_la-api_int_cpp.lo \
+	src/cpp/libsciapi_scilab_la-api_list_cpp.lo \
+	src/cpp/libsciapi_scilab_la-api_sparse_cpp.lo \
+	src/cpp/libsciapi_scilab_la-api_string_cpp.lo \
+	src/cpp/libsciapi_scilab_la-api_pointer_cpp.lo \
+	src/cpp/libsciapi_scilab_la-api_handle_cpp.lo
 am_libsciapi_scilab_la_OBJECTS = $(am__objects_1)
 libsciapi_scilab_la_OBJECTS = $(am_libsciapi_scilab_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
@@ -561,7 +570,16 @@ src/cpp/overload.cpp \
 src/cpp/returnProperty.cpp \
 src/cpp/returnPropertyList.cpp \
 src/cpp/api_optional.cpp \
-src/cpp/api_hypermat.cpp
+src/cpp/api_hypermat.cpp \
+src/cpp/api_boolean_cpp.cpp \
+src/cpp/api_common_cpp.cpp \
+src/cpp/api_double_cpp.cpp \
+src/cpp/api_int_cpp.cpp \
+src/cpp/api_list_cpp.cpp \
+src/cpp/api_sparse_cpp.cpp \
+src/cpp/api_string_cpp.cpp \
+src/cpp/api_pointer_cpp.cpp \
+src/cpp/api_handle_cpp.cpp
 
 libsciapi_scilab_la_CPPFLAGS = \
 -I$(srcdir)/includes/ \
@@ -817,6 +835,24 @@ src/cpp/libsciapi_scilab_la-api_optional.lo: src/cpp/$(am__dirstamp) \
 	src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libsciapi_scilab_la-api_hypermat.lo: src/cpp/$(am__dirstamp) \
 	src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libsciapi_scilab_la-api_boolean_cpp.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libsciapi_scilab_la-api_common_cpp.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libsciapi_scilab_la-api_double_cpp.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libsciapi_scilab_la-api_int_cpp.lo: src/cpp/$(am__dirstamp) \
+	src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libsciapi_scilab_la-api_list_cpp.lo: src/cpp/$(am__dirstamp) \
+	src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libsciapi_scilab_la-api_sparse_cpp.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libsciapi_scilab_la-api_string_cpp.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libsciapi_scilab_la-api_pointer_cpp.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libsciapi_scilab_la-api_handle_cpp.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
 
 libsciapi_scilab.la: $(libsciapi_scilab_la_OBJECTS) $(libsciapi_scilab_la_DEPENDENCIES) $(EXTRA_libsciapi_scilab_la_DEPENDENCIES) 
 	$(AM_V_CXXLD)$(libsciapi_scilab_la_LINK) $(am_libsciapi_scilab_la_rpath) $(libsciapi_scilab_la_OBJECTS) $(libsciapi_scilab_la_LIBADD) $(LIBS)
@@ -830,19 +866,28 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciapi_scilab_la-api_boolean.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciapi_scilab_la-api_boolean_cpp.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciapi_scilab_la-api_boolean_sparse.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciapi_scilab_la-api_common.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciapi_scilab_la-api_common_cpp.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciapi_scilab_la-api_double.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciapi_scilab_la-api_double_cpp.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciapi_scilab_la-api_error.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciapi_scilab_la-api_handle.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciapi_scilab_la-api_handle_cpp.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciapi_scilab_la-api_hypermat.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciapi_scilab_la-api_int.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciapi_scilab_la-api_int_cpp.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciapi_scilab_la-api_list.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciapi_scilab_la-api_list_cpp.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciapi_scilab_la-api_optional.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciapi_scilab_la-api_pointer.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciapi_scilab_la-api_pointer_cpp.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciapi_scilab_la-api_poly.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciapi_scilab_la-api_sparse.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciapi_scilab_la-api_sparse_cpp.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciapi_scilab_la-api_string.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciapi_scilab_la-api_string_cpp.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciapi_scilab_la-overload.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciapi_scilab_la-returnProperty.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciapi_scilab_la-returnPropertyList.Plo@am__quote@
@@ -989,6 +1034,69 @@ src/cpp/libsciapi_scilab_la-api_hypermat.lo: src/cpp/api_hypermat.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/api_hypermat.cpp' object='src/cpp/libsciapi_scilab_la-api_hypermat.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciapi_scilab_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libsciapi_scilab_la-api_hypermat.lo `test -f 'src/cpp/api_hypermat.cpp' || echo '$(srcdir)/'`src/cpp/api_hypermat.cpp
+
+src/cpp/libsciapi_scilab_la-api_boolean_cpp.lo: src/cpp/api_boolean_cpp.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciapi_scilab_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libsciapi_scilab_la-api_boolean_cpp.lo -MD -MP -MF src/cpp/$(DEPDIR)/libsciapi_scilab_la-api_boolean_cpp.Tpo -c -o src/cpp/libsciapi_scilab_la-api_boolean_cpp.lo `test -f 'src/cpp/api_boolean_cpp.cpp' || echo '$(srcdir)/'`src/cpp/api_boolean_cpp.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libsciapi_scilab_la-api_boolean_cpp.Tpo src/cpp/$(DEPDIR)/libsciapi_scilab_la-api_boolean_cpp.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/api_boolean_cpp.cpp' object='src/cpp/libsciapi_scilab_la-api_boolean_cpp.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciapi_scilab_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libsciapi_scilab_la-api_boolean_cpp.lo `test -f 'src/cpp/api_boolean_cpp.cpp' || echo '$(srcdir)/'`src/cpp/api_boolean_cpp.cpp
+
+src/cpp/libsciapi_scilab_la-api_common_cpp.lo: src/cpp/api_common_cpp.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciapi_scilab_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libsciapi_scilab_la-api_common_cpp.lo -MD -MP -MF src/cpp/$(DEPDIR)/libsciapi_scilab_la-api_common_cpp.Tpo -c -o src/cpp/libsciapi_scilab_la-api_common_cpp.lo `test -f 'src/cpp/api_common_cpp.cpp' || echo '$(srcdir)/'`src/cpp/api_common_cpp.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libsciapi_scilab_la-api_common_cpp.Tpo src/cpp/$(DEPDIR)/libsciapi_scilab_la-api_common_cpp.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/api_common_cpp.cpp' object='src/cpp/libsciapi_scilab_la-api_common_cpp.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciapi_scilab_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libsciapi_scilab_la-api_common_cpp.lo `test -f 'src/cpp/api_common_cpp.cpp' || echo '$(srcdir)/'`src/cpp/api_common_cpp.cpp
+
+src/cpp/libsciapi_scilab_la-api_double_cpp.lo: src/cpp/api_double_cpp.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciapi_scilab_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libsciapi_scilab_la-api_double_cpp.lo -MD -MP -MF src/cpp/$(DEPDIR)/libsciapi_scilab_la-api_double_cpp.Tpo -c -o src/cpp/libsciapi_scilab_la-api_double_cpp.lo `test -f 'src/cpp/api_double_cpp.cpp' || echo '$(srcdir)/'`src/cpp/api_double_cpp.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libsciapi_scilab_la-api_double_cpp.Tpo src/cpp/$(DEPDIR)/libsciapi_scilab_la-api_double_cpp.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/api_double_cpp.cpp' object='src/cpp/libsciapi_scilab_la-api_double_cpp.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciapi_scilab_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libsciapi_scilab_la-api_double_cpp.lo `test -f 'src/cpp/api_double_cpp.cpp' || echo '$(srcdir)/'`src/cpp/api_double_cpp.cpp
+
+src/cpp/libsciapi_scilab_la-api_int_cpp.lo: src/cpp/api_int_cpp.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciapi_scilab_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libsciapi_scilab_la-api_int_cpp.lo -MD -MP -MF src/cpp/$(DEPDIR)/libsciapi_scilab_la-api_int_cpp.Tpo -c -o src/cpp/libsciapi_scilab_la-api_int_cpp.lo `test -f 'src/cpp/api_int_cpp.cpp' || echo '$(srcdir)/'`src/cpp/api_int_cpp.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libsciapi_scilab_la-api_int_cpp.Tpo src/cpp/$(DEPDIR)/libsciapi_scilab_la-api_int_cpp.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/api_int_cpp.cpp' object='src/cpp/libsciapi_scilab_la-api_int_cpp.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciapi_scilab_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libsciapi_scilab_la-api_int_cpp.lo `test -f 'src/cpp/api_int_cpp.cpp' || echo '$(srcdir)/'`src/cpp/api_int_cpp.cpp
+
+src/cpp/libsciapi_scilab_la-api_list_cpp.lo: src/cpp/api_list_cpp.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciapi_scilab_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libsciapi_scilab_la-api_list_cpp.lo -MD -MP -MF src/cpp/$(DEPDIR)/libsciapi_scilab_la-api_list_cpp.Tpo -c -o src/cpp/libsciapi_scilab_la-api_list_cpp.lo `test -f 'src/cpp/api_list_cpp.cpp' || echo '$(srcdir)/'`src/cpp/api_list_cpp.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libsciapi_scilab_la-api_list_cpp.Tpo src/cpp/$(DEPDIR)/libsciapi_scilab_la-api_list_cpp.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/api_list_cpp.cpp' object='src/cpp/libsciapi_scilab_la-api_list_cpp.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciapi_scilab_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libsciapi_scilab_la-api_list_cpp.lo `test -f 'src/cpp/api_list_cpp.cpp' || echo '$(srcdir)/'`src/cpp/api_list_cpp.cpp
+
+src/cpp/libsciapi_scilab_la-api_sparse_cpp.lo: src/cpp/api_sparse_cpp.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciapi_scilab_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libsciapi_scilab_la-api_sparse_cpp.lo -MD -MP -MF src/cpp/$(DEPDIR)/libsciapi_scilab_la-api_sparse_cpp.Tpo -c -o src/cpp/libsciapi_scilab_la-api_sparse_cpp.lo `test -f 'src/cpp/api_sparse_cpp.cpp' || echo '$(srcdir)/'`src/cpp/api_sparse_cpp.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libsciapi_scilab_la-api_sparse_cpp.Tpo src/cpp/$(DEPDIR)/libsciapi_scilab_la-api_sparse_cpp.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/api_sparse_cpp.cpp' object='src/cpp/libsciapi_scilab_la-api_sparse_cpp.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciapi_scilab_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libsciapi_scilab_la-api_sparse_cpp.lo `test -f 'src/cpp/api_sparse_cpp.cpp' || echo '$(srcdir)/'`src/cpp/api_sparse_cpp.cpp
+
+src/cpp/libsciapi_scilab_la-api_string_cpp.lo: src/cpp/api_string_cpp.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciapi_scilab_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libsciapi_scilab_la-api_string_cpp.lo -MD -MP -MF src/cpp/$(DEPDIR)/libsciapi_scilab_la-api_string_cpp.Tpo -c -o src/cpp/libsciapi_scilab_la-api_string_cpp.lo `test -f 'src/cpp/api_string_cpp.cpp' || echo '$(srcdir)/'`src/cpp/api_string_cpp.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libsciapi_scilab_la-api_string_cpp.Tpo src/cpp/$(DEPDIR)/libsciapi_scilab_la-api_string_cpp.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/api_string_cpp.cpp' object='src/cpp/libsciapi_scilab_la-api_string_cpp.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciapi_scilab_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libsciapi_scilab_la-api_string_cpp.lo `test -f 'src/cpp/api_string_cpp.cpp' || echo '$(srcdir)/'`src/cpp/api_string_cpp.cpp
+
+src/cpp/libsciapi_scilab_la-api_pointer_cpp.lo: src/cpp/api_pointer_cpp.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciapi_scilab_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libsciapi_scilab_la-api_pointer_cpp.lo -MD -MP -MF src/cpp/$(DEPDIR)/libsciapi_scilab_la-api_pointer_cpp.Tpo -c -o src/cpp/libsciapi_scilab_la-api_pointer_cpp.lo `test -f 'src/cpp/api_pointer_cpp.cpp' || echo '$(srcdir)/'`src/cpp/api_pointer_cpp.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libsciapi_scilab_la-api_pointer_cpp.Tpo src/cpp/$(DEPDIR)/libsciapi_scilab_la-api_pointer_cpp.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/api_pointer_cpp.cpp' object='src/cpp/libsciapi_scilab_la-api_pointer_cpp.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciapi_scilab_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libsciapi_scilab_la-api_pointer_cpp.lo `test -f 'src/cpp/api_pointer_cpp.cpp' || echo '$(srcdir)/'`src/cpp/api_pointer_cpp.cpp
+
+src/cpp/libsciapi_scilab_la-api_handle_cpp.lo: src/cpp/api_handle_cpp.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciapi_scilab_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libsciapi_scilab_la-api_handle_cpp.lo -MD -MP -MF src/cpp/$(DEPDIR)/libsciapi_scilab_la-api_handle_cpp.Tpo -c -o src/cpp/libsciapi_scilab_la-api_handle_cpp.lo `test -f 'src/cpp/api_handle_cpp.cpp' || echo '$(srcdir)/'`src/cpp/api_handle_cpp.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libsciapi_scilab_la-api_handle_cpp.Tpo src/cpp/$(DEPDIR)/libsciapi_scilab_la-api_handle_cpp.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/api_handle_cpp.cpp' object='src/cpp/libsciapi_scilab_la-api_handle_cpp.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciapi_scilab_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libsciapi_scilab_la-api_handle_cpp.lo `test -f 'src/cpp/api_handle_cpp.cpp' || echo '$(srcdir)/'`src/cpp/api_handle_cpp.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo

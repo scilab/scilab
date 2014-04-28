@@ -171,15 +171,15 @@ InternalType *GenericDotTimes(InternalType *_pLeftOperand, InternalType *_pRight
 InternalType *GenericTimes(InternalType *_pLeftOperand, InternalType *_pRightOperand)
 {
     InternalType *pResult = NULL;
-    GenericType::RealType TypeL = _pLeftOperand->getType();
-    GenericType::RealType TypeR = _pRightOperand->getType();
+    GenericType::ScilabType TypeL = _pLeftOperand->getType();
+    GenericType::ScilabType TypeR = _pRightOperand->getType();
 
-    if (TypeL == GenericType::RealDouble && _pLeftOperand->getAs<Double>()->isEmpty())
+    if (TypeL == GenericType::ScilabDouble && _pLeftOperand->getAs<Double>()->isEmpty())
     {
         return Double::Empty();
     }
 
-    if (TypeR == GenericType::RealDouble && _pRightOperand->getAs<Double>()->isEmpty())
+    if (TypeR == GenericType::ScilabDouble && _pRightOperand->getAs<Double>()->isEmpty())
     {
         return Double::Empty();
     }
@@ -187,7 +187,7 @@ InternalType *GenericTimes(InternalType *_pLeftOperand, InternalType *_pRightOpe
     /*
     ** DOUBLE * DOUBLE
     */
-    if (TypeL == GenericType::RealDouble && TypeR == GenericType::RealDouble)
+    if (TypeL == GenericType::ScilabDouble && TypeR == GenericType::ScilabDouble)
     {
         Double *pL   = _pLeftOperand->getAs<Double>();
         Double *pR   = _pRightOperand->getAs<Double>();
@@ -204,7 +204,7 @@ InternalType *GenericTimes(InternalType *_pLeftOperand, InternalType *_pRightOpe
     /*
     ** DOUBLE * POLY
     */
-    else if (TypeL == InternalType::RealDouble && TypeR == InternalType::RealPoly)
+    else if (TypeL == InternalType::ScilabDouble && TypeR == InternalType::ScilabPolynom)
     {
         Double *pL   = _pLeftOperand->getAs<Double>();
         Polynom *pR     = _pRightOperand->getAs<types::Polynom>();
@@ -221,7 +221,7 @@ InternalType *GenericTimes(InternalType *_pLeftOperand, InternalType *_pRightOpe
     /*
     ** POLY * DOUBLE
     */
-    else if (TypeL == InternalType::RealPoly && TypeR == InternalType::RealDouble)
+    else if (TypeL == InternalType::ScilabPolynom && TypeR == InternalType::ScilabDouble)
     {
         Polynom *pL          = _pLeftOperand->getAs<types::Polynom>();
         Double *pR              = _pRightOperand->getAs<Double>();
@@ -238,7 +238,7 @@ InternalType *GenericTimes(InternalType *_pLeftOperand, InternalType *_pRightOpe
     /*
     ** POLY * POLY
     */
-    else if (TypeL == InternalType::RealPoly && TypeR == InternalType::RealPoly)
+    else if (TypeL == InternalType::ScilabPolynom && TypeR == InternalType::ScilabPolynom)
     {
         Polynom *pL          = _pLeftOperand->getAs<types::Polynom>();
         Polynom *pR          = _pRightOperand->getAs<types::Polynom>();
@@ -255,7 +255,7 @@ InternalType *GenericTimes(InternalType *_pLeftOperand, InternalType *_pRightOpe
     /*
     ** SPARSE * SPARSE
     */
-    if (TypeL == GenericType::RealSparse && TypeR == GenericType::RealSparse)
+    if (TypeL == GenericType::ScilabSparse && TypeR == GenericType::ScilabSparse)
     {
         Sparse *pL   = _pLeftOperand->getAs<Sparse>();
         Sparse *pR   = _pRightOperand->getAs<Sparse>();
@@ -272,7 +272,7 @@ InternalType *GenericTimes(InternalType *_pLeftOperand, InternalType *_pRightOpe
     /*
     ** DOUBLE * SPARSE
     */
-    if (TypeL == GenericType::RealDouble && TypeR == GenericType::RealSparse)
+    if (TypeL == GenericType::ScilabDouble && TypeR == GenericType::ScilabSparse)
     {
         Double *pL   = _pLeftOperand->getAs<Double>();
         Sparse *pR   = _pRightOperand->getAs<Sparse>();
@@ -289,7 +289,7 @@ InternalType *GenericTimes(InternalType *_pLeftOperand, InternalType *_pRightOpe
     /*
     ** SPARSE * DOUBLE
     */
-    if (TypeL == GenericType::RealSparse && TypeR == GenericType::RealDouble)
+    if (TypeL == GenericType::ScilabSparse && TypeR == GenericType::ScilabDouble)
     {
         Sparse *pL   = _pLeftOperand->getAs<Sparse>();
         Double *pR   = _pRightOperand->getAs<Double>();
@@ -868,7 +868,7 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
 
             pPolyOut->getCoef()->setZeros();
 
-            iMultiRealPolyByRealPoly(
+            iMultiScilabPolynomByScilabPolynom(
                 pPoly1->getCoef()->get(), pPoly1->getRank(),
                 pPoly2->getCoef()->get(), pPoly2->getRank(),
                 pPolyOut->getCoef()->get(), pPolyOut->getRank());
@@ -881,7 +881,7 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
 
             pPolyOut->getCoef()->setZeros();
 
-            iMultiRealPolyByComplexPoly(
+            iMultiScilabPolynomByComplexPoly(
                 pPoly1->getCoef()->get(), pPoly1->getRank(),
                 pPoly2->getCoef()->get(), pPoly2->getCoef()->getImg(), pPoly2->getRank(),
                 pPolyOut->getCoef()->get(), pPolyOut->getCoef()->getImg(), pPolyOut->getRank());
@@ -894,7 +894,7 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
 
             pPolyOut->getCoef()->setZeros();
 
-            iMultiComplexPolyByRealPoly(
+            iMultiComplexPolyByScilabPolynom(
                 pPoly1->getCoef()->get(), pPoly1->getCoef()->getImg(), pPoly1->getRank(),
                 pPoly2->getCoef()->get(), pPoly2->getRank(),
                 pPolyOut->getCoef()->get(), pPolyOut->getCoef()->getImg(), pPolyOut->getRank());
@@ -947,7 +947,7 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
 
                 pPolyOut->getCoef()->setZeros();
 
-                iMultiRealPolyByRealPoly(
+                iMultiScilabPolynomByScilabPolynom(
                     pPoly1->getCoef()->get(), pPoly1->getRank(),
                     pPoly2->getCoef()->get(), pPoly2->getRank(),
                     pPolyOut->getCoef()->get(), pPolyOut->getRank());
@@ -962,7 +962,7 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
 
                 pPolyOut->getCoef()->setZeros();
 
-                iMultiRealPolyByComplexPoly(
+                iMultiScilabPolynomByComplexPoly(
                     pPoly1->getCoef()->get(), pPoly1->getRank(),
                     pPoly2->getCoef()->get(), pPoly2->getCoef()->getImg(), pPoly2->getRank(),
                     pPolyOut->getCoef()->get(), pPolyOut->getCoef()->getImg(), pPolyOut->getRank());
@@ -977,7 +977,7 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
 
                 pPolyOut->getCoef()->setZeros();
 
-                iMultiComplexPolyByRealPoly(
+                iMultiComplexPolyByScilabPolynom(
                     pPoly1->getCoef()->get(), pPoly1->getCoef()->getImg(), pPoly1->getRank(),
                     pPoly2->getCoef()->get(), pPoly2->getRank(),
                     pPolyOut->getCoef()->get(), pPolyOut->getCoef()->getImg(), pPolyOut->getRank());
@@ -1032,7 +1032,7 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
 
                 pPolyOut->getCoef()->setZeros();
 
-                iMultiRealPolyByRealPoly(
+                iMultiScilabPolynomByScilabPolynom(
                     pPoly1->getCoef()->get(), pPoly1->getRank(),
                     pPoly2->getCoef()->get(), pPoly2->getRank(),
                     pPolyOut->getCoef()->get(), pPolyOut->getRank());
@@ -1047,7 +1047,7 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
 
                 pPolyOut->getCoef()->setZeros();
 
-                iMultiRealPolyByComplexPoly(
+                iMultiScilabPolynomByComplexPoly(
                     pPoly1->getCoef()->get(), pPoly1->getRank(),
                     pPoly2->getCoef()->get(), pPoly2->getCoef()->getImg(), pPoly2->getRank(),
                     pPolyOut->getCoef()->get(), pPolyOut->getCoef()->getImg(), pPolyOut->getRank());
@@ -1062,7 +1062,7 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
 
                 pPolyOut->getCoef()->setZeros();
 
-                iMultiComplexPolyByRealPoly(
+                iMultiComplexPolyByScilabPolynom(
                     pPoly1->getCoef()->get(), pPoly1->getCoef()->getImg(), pPoly1->getRank(),
                     pPoly2->getCoef()->get(), pPoly2->getRank(),
                     pPolyOut->getCoef()->get(), pPolyOut->getCoef()->getImg(), pPolyOut->getRank());
@@ -1131,12 +1131,12 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
 
                     pTemp->getCoef()->setZeros();
 
-                    iMultiRealPolyByRealPoly(
+                    iMultiScilabPolynomByScilabPolynom(
                         pL->getCoef()->get(), pL->getRank(),
                         pR->getCoef()->get(), pR->getRank(),
                         pTemp->getCoef()->get(), pL->getRank() + pR->getRank() - 1);
 
-                    iAddRealPolyToRealPoly(
+                    iAddScilabPolynomToScilabPolynom(
                         pResult->getCoef()->get(), pResult->getRank(),
                         pTemp->getCoef()->get(), pResult->getRank(),
                         pResult->getCoef()->get(), pResult->getRank());
@@ -1164,7 +1164,7 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
 
                     pTemp->getCoef()->setZeros();
 
-                    iMultiRealPolyByComplexPoly(
+                    iMultiScilabPolynomByComplexPoly(
                         pL->getCoef()->get(), pL->getRank(),
                         pR->getCoef()->get(), pR->getCoef()->getImg(), pR->getRank(),
                         pTemp->getCoef()->get(), pTemp->getCoef()->getImg(), pL->getRank() + pR->getRank() - 1);
@@ -1197,7 +1197,7 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
 
                     pTemp->getCoef()->setZeros();
 
-                    iMultiRealPolyByComplexPoly(
+                    iMultiScilabPolynomByComplexPoly(
                         pR->getCoef()->get(), pR->getRank(),
                         pL->getCoef()->get(), pL->getCoef()->getImg(), pL->getRank(),
                         pTemp->getCoef()->get(), pTemp->getCoef()->getImg(), pL->getRank() + pR->getRank() - 1);
@@ -1747,7 +1747,7 @@ int DotMultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOu
 
                 pSPOut->getCoef()->setZeros();
 
-                iMultiComplexPolyByRealPoly(
+                iMultiComplexPolyByScilabPolynom(
                     pSP1->getCoef()->get(), pSP1->getCoef()->getImg(), pSP1->getRank(),
                     pSP2->getCoef()->get(), pSP2->getRank(),
                     pSPOut->getCoef()->get(), pSPOut->getCoef()->getImg(), pSPOut->getRank());
@@ -1764,7 +1764,7 @@ int DotMultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOu
 
                 pSPOut->getCoef()->setZeros();
 
-                iMultiRealPolyByComplexPoly(
+                iMultiScilabPolynomByComplexPoly(
                     pSP1->getCoef()->get(), pSP1->getRank(),
                     pSP2->getCoef()->get(), pSP2->getCoef()->getImg(), pSP2->getRank(),
                     pSPOut->getCoef()->get(), pSPOut->getCoef()->getImg(), pSPOut->getRank());
@@ -1780,7 +1780,7 @@ int DotMultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOu
 
                 pSPOut->getCoef()->setZeros();
 
-                iMultiRealPolyByRealPoly(
+                iMultiScilabPolynomByScilabPolynom(
                     pSP1->getCoef()->get(), pSP1->getRank(),
                     pSP2->getCoef()->get(), pSP2->getRank(),
                     pSPOut->getCoef()->get(), pSPOut->getRank());

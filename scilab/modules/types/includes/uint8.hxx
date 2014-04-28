@@ -66,9 +66,9 @@ public :
     }
 
 protected :
-    RealType				    getType(void)
+    ScilabType				    getType(void)
     {
-        return InternalType::RealUInt8;
+        return InternalType::ScilabUInt8;
     }
 
 private :

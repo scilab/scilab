@@ -135,9 +135,9 @@ void String::deleteImg()
     return;
 }
 
-GenericType::RealType String::getType()
+GenericType::ScilabType String::getType()
 {
-    return GenericType::RealString;
+    return GenericType::ScilabString;
 }
 
 bool String::subMatrixToString(wostringstream& ostr, int* _piDims, int _iDims)

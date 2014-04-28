@@ -2,10 +2,7 @@
 /* Template toolbox_skeleton */
 /* This file is released under the 3-clause BSD license. See COPYING-BSD. */
 /* ==================================================================== */
-#include "function.hxx"
-#include "double.hxx"
-#include "Scierror.h"
-#include "localization.h"
+#include "api_scilab.hxx"
 
 extern "C"
 {
@@ -13,7 +10,7 @@ extern "C"
 }
 
 /* ==================================================================== */
-types::Function::ReturnValue sci_cppmultiplybypi(types::typed_list &in, int _iRetCount, types::typed_list &out)
+api_scilab::Status sci_cppmultiplybypi(api_scilab::input &in, int _iRetCount, api_scilab::output &out)
 {
     /* --> result = multiplybypi(8) */
     /* --> result = multiplybypi([12, 42; 42, 12]) */
@@ -22,28 +19,28 @@ types::Function::ReturnValue sci_cppmultiplybypi(types::typed_list &in, int _iRe
     if (in.size() != 1)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "cppmultiplybypi", 1);
-        return types::Function::Error;
+        return api_scilab::Error;
     }
 
     /* check that we have only 1 output argument */
     if (_iRetCount != 1)
     {
         Scierror(78, _("%s: Wrong number of output argument(s): %d expected."), "cppmultiplybypi", 1);
-        return types::Function::Error;
+        return api_scilab::Error;
     }
 
     /* check input type */
-    if (in[0]->getType() != types::InternalType::RealDouble)
+    if (api_scilab::isDouble(in[0]) == false)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A matrix expected.\n"), "cppmultiplybypi", 1);
-        return types::Function::Error;
+        return api_scilab::Error;
     }
 
     /* get matrix */
-    types::Double* pdblIn = in[0]->getAs<types::Double>();
+    api_scilab::Double* pdblIn = api_scilab::getAsDouble(in[0]);
 
     //create output variable
-    types::Double* pdblOut = new types::Double(pdblIn->getDims(), pdblIn->getDimsArray());
+    api_scilab::Double* pdblOut = new api_scilab::Double(pdblIn->getDims(), pdblIn->getDimsArray());
 
     /* The difference with the csum & csub is that we give the argument as copy
      * and not as reference */
@@ -54,8 +51,13 @@ types::Function::ReturnValue sci_cppmultiplybypi(types::typed_list &in, int _iRe
     }
 
     //set output paramter
-    out.push_back(pdblOut);
-    return types::Function::OK;
+    out.push_back(api_scilab::getReturnVariable(pdblOut));
+
+    //clear api variables
+    delete pdblIn;
+    delete pdblOut;
+    //return gateway status
+    return api_scilab::OK;
 }
 /* ==================================================================== */
 

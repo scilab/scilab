@@ -37,9 +37,9 @@ public :
         std::cout << "types::List";
     };
 
-    RealType                        getType(void)
+    ScilabType                        getType(void)
     {
-        return RealList;
+        return ScilabList;
     }
 
     /**

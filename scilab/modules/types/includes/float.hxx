@@ -69,7 +69,7 @@ public :
         return L"f";
     }
 protected :
-    RealType            getType(void);
+    ScilabType            getType(void);
 
     /*clean values array*/
     void                deleteReal();

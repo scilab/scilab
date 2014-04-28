@@ -34,9 +34,9 @@ private :
 public :
     SingleStruct*                           clone();
 
-    RealType                                getType(void)
+    ScilabType                                getType(void)
     {
-        return RealSingleStruct;
+        return ScilabSingleStruct;
     }
 
     bool                                    toString(std::wostringstream& ostr);

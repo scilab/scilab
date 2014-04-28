@@ -35,61 +35,61 @@ void convertInt(types::InternalType* _pIn, T* _pOut)
 {
     switch (_pIn->getType())
     {
-        case types::InternalType::RealBool :
+        case types::InternalType::ScilabBool :
         {
             types::Bool* pBool = _pIn->getAs<types::Bool>();
             convert_int(pBool->get(), pBool->getSize(), _pOut->get());
             break;
         }
-        case types::InternalType::RealDouble :
+        case types::InternalType::ScilabDouble :
         {
             types::Double* pD = _pIn->getAs<types::Double>();
             convert_int(pD->get(), pD->getSize(), _pOut->get());
             break;
         }
-        case types::InternalType::RealInt8 :
+        case types::InternalType::ScilabInt8 :
         {
             types::Int8* pD = _pIn->getAs<types::Int8>();
             convert_int(pD->get(), pD->getSize(), _pOut->get());
             break;
         }
-        case types::InternalType::RealUInt8 :
+        case types::InternalType::ScilabUInt8 :
         {
             types::UInt8* pD = _pIn->getAs<types::UInt8>();
             convert_int(pD->get(), pD->getSize(), _pOut->get());
             break;
         }
-        case types::InternalType::RealInt16 :
+        case types::InternalType::ScilabInt16 :
         {
             types::Int16* pD = _pIn->getAs<types::Int16>();
             convert_int(pD->get(), pD->getSize(), _pOut->get());
             break;
         }
-        case types::InternalType::RealUInt16 :
+        case types::InternalType::ScilabUInt16 :
         {
             types::UInt16* pD = _pIn->getAs<types::UInt16>();
             convert_int(pD->get(), pD->getSize(), _pOut->get());
             break;
         }
-        case types::InternalType::RealInt32 :
+        case types::InternalType::ScilabInt32 :
         {
             types::Int32* pD = _pIn->getAs<types::Int32>();
             convert_int(pD->get(), pD->getSize(), _pOut->get());
             break;
         }
-        case types::InternalType::RealUInt32 :
+        case types::InternalType::ScilabUInt32 :
         {
             types::UInt32* pD = _pIn->getAs<types::UInt32>();
             convert_int(pD->get(), pD->getSize(), _pOut->get());
             break;
         }
-        case types::InternalType::RealInt64 :
+        case types::InternalType::ScilabInt64 :
         {
             types::Int64* pD = _pIn->getAs<types::Int64>();
             convert_int(pD->get(), pD->getSize(), _pOut->get());
             break;
         }
-        case types::InternalType::RealUInt64 :
+        case types::InternalType::ScilabUInt64 :
         {
             types::UInt64* pD = _pIn->getAs<types::UInt64>();
             convert_int(pD->get(), pD->getSize(), _pOut->get());

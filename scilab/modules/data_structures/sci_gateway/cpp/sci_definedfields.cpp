@@ -47,7 +47,7 @@ types::Function::ReturnValue sci_definedfields(types::typed_list &in, int _iRetC
     for (int i = 0 ; i < pL->getSize() ; i++)
     {
         types::InternalType* pIT = pL->get(i);
-        if (pIT->getType() != types::InternalType::RealListUndefinedOperation)
+        if (pIT->getType() != types::InternalType::ScilabListUndefinedOperation)
         {
             res[idx++] = i + 1;
         }

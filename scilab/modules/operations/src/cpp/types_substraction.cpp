@@ -102,7 +102,7 @@ InternalType* GenericUnaryMinus(InternalType* _pRightOperand)
     {
         switch (_pRightOperand->getType())
         {
-            case InternalType::RealInt8 :
+            case InternalType::ScilabInt8 :
             {
                 Int8 *pR = _pRightOperand->clone()->getAs<Int8>();
                 char* pReal = pR->get();
@@ -113,7 +113,7 @@ InternalType* GenericUnaryMinus(InternalType* _pRightOperand)
                 }
                 return pR;
             }
-            case InternalType::RealInt16 :
+            case InternalType::ScilabInt16 :
             {
                 Int16 *pR = _pRightOperand->clone()->getAs<Int16>();
                 short* pReal = pR->get();
@@ -124,7 +124,7 @@ InternalType* GenericUnaryMinus(InternalType* _pRightOperand)
                 }
                 return pR;
             }
-            case InternalType::RealInt32 :
+            case InternalType::ScilabInt32 :
             {
                 Int32 *pR = _pRightOperand->clone()->getAs<Int32>();
                 int* pReal = pR->get();
@@ -135,7 +135,7 @@ InternalType* GenericUnaryMinus(InternalType* _pRightOperand)
                 }
                 return pR;
             }
-            case InternalType::RealInt64 :
+            case InternalType::ScilabInt64 :
             {
                 Int64 *pR = _pRightOperand->clone()->getAs<Int64>();
                 long long* pReal = pR->get();
@@ -146,7 +146,7 @@ InternalType* GenericUnaryMinus(InternalType* _pRightOperand)
                 }
                 return pR;
             }
-            case InternalType::RealUInt8 :
+            case InternalType::ScilabUInt8 :
             {
                 UInt8 *pR = _pRightOperand->clone()->getAs<UInt8>();
                 unsigned char* pReal = pR->get();
@@ -157,7 +157,7 @@ InternalType* GenericUnaryMinus(InternalType* _pRightOperand)
                 }
                 return pR;
             }
-            case InternalType::RealUInt16 :
+            case InternalType::ScilabUInt16 :
             {
                 UInt16 *pR = _pRightOperand->clone()->getAs<UInt16>();
                 unsigned short* pReal = pR->get();
@@ -168,7 +168,7 @@ InternalType* GenericUnaryMinus(InternalType* _pRightOperand)
                 }
                 return pR;
             }
-            case InternalType::RealUInt32 :
+            case InternalType::ScilabUInt32 :
             {
                 UInt32 *pR = _pRightOperand->clone()->getAs<UInt32>();
                 unsigned int* pReal = pR->get();
@@ -179,7 +179,7 @@ InternalType* GenericUnaryMinus(InternalType* _pRightOperand)
                 }
                 return pR;
             }
-            case InternalType::RealUInt64 :
+            case InternalType::ScilabUInt64 :
             {
                 UInt64 *pR = _pRightOperand->clone()->getAs<UInt64>();
                 unsigned long long* pReal = pR->get();

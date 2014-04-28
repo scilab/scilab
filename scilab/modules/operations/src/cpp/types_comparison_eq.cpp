@@ -30,8 +30,8 @@ template <class T> static int EqualToArrayAndArray(T* _pL, T* _pR, GenericType**
 
 InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *_pRightOperand)
 {
-    GenericType::RealType TypeL = _pLeftOperand->getType();
-    GenericType::RealType TypeR = _pRightOperand->getType();
+    GenericType::ScilabType TypeL = _pLeftOperand->getType();
+    GenericType::ScilabType TypeR = _pRightOperand->getType();
 
     InternalType* pIL = _pLeftOperand;
     InternalType* pIR = _pRightOperand;
@@ -43,9 +43,9 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
     /*
     ** [] == ??
     */
-    if (TypeL == GenericType::RealDouble && pIL->getAs<Double>()->getSize() == 0)
+    if (TypeL == GenericType::ScilabDouble && pIL->getAs<Double>()->getSize() == 0)
     {
-        if (TypeR != InternalType::RealDouble)
+        if (TypeR != InternalType::ScilabDouble)
         {
             return new Bool(false);
         }
@@ -54,21 +54,21 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
     /*
     ** ?? == []
     */
-    if (TypeR == GenericType::RealDouble && pIR->getAs<Double>()->getSize() == 0)
+    if (TypeR == GenericType::ScilabDouble && pIR->getAs<Double>()->getSize() == 0)
     {
-        if (TypeL != InternalType::RealDouble)
+        if (TypeL != InternalType::ScilabDouble)
         {
             return new Bool(false);
         }
     }
 
-    if (TypeL == GenericType::RealColon && TypeR == GenericType::RealColon)
+    if (TypeL == GenericType::ScilabColon && TypeR == GenericType::ScilabColon)
     {
         //: == :
         return new Bool(true);
     }
 
-    if (TypeL == GenericType::RealColon)
+    if (TypeL == GenericType::ScilabColon)
     {
         // : == x
         if (pIR->isGenericType())
@@ -76,7 +76,7 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
             //transform left operand in a identity matrix with same dimension of right operand
             GenericType* pGT = pIR->getAs<GenericType>();
             pIL = Double::Identity(pGT->getDims(), pGT->getDimsArray());;
-            TypeL = GenericType::RealDouble;
+            TypeL = GenericType::ScilabDouble;
             bAllocL = true;
         }
         else
@@ -85,7 +85,7 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
         }
     }
 
-    if (TypeR == GenericType::RealColon)
+    if (TypeR == GenericType::ScilabColon)
     {
         // x == :
         if (pIL->isGenericType())
@@ -93,7 +93,7 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
             //transform right operand in a identity matrix with same dimensions of left operand
             GenericType* pGT = pIL->getAs<GenericType>();
             pIR = Double::Identity(pGT->getDims(), pGT->getDimsArray());;
-            TypeR = GenericType::RealDouble;
+            TypeR = GenericType::ScilabDouble;
             bAllocR = true;
         }
         else
@@ -105,7 +105,7 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
     /*
     ** DOUBLE == DOUBLE
     */
-    if (TypeL == GenericType::RealDouble && TypeR == GenericType::RealDouble)
+    if (TypeL == GenericType::ScilabDouble && TypeR == GenericType::ScilabDouble)
     {
         Double *pL   = pIL->getAs<Double>();
         Double *pR   = pIR->getAs<Double>();
@@ -124,7 +124,7 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
     /*
     ** STRING == STRING
     */
-    if (TypeL == GenericType::RealString && TypeR == GenericType::RealString)
+    if (TypeL == GenericType::ScilabString && TypeR == GenericType::ScilabString)
     {
         String *pL   = pIL->getAs<String>();
         String *pR   = pIR->getAs<String>();
@@ -192,7 +192,7 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
     /*
     ** BOOL == BOOL
     */
-    if (TypeL == GenericType::RealBool && TypeR == GenericType::RealBool)
+    if (TypeL == GenericType::ScilabBool && TypeR == GenericType::ScilabBool)
     {
         Bool *pL   = pIL->getAs<Bool>();
         Bool *pR   = pIR->getAs<Bool>();
@@ -261,7 +261,7 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
     /*
     ** POLY == POLY
     */
-    if (TypeL == GenericType::RealPoly && TypeR == GenericType::RealPoly)
+    if (TypeL == GenericType::ScilabPolynom && TypeR == GenericType::ScilabPolynom)
     {
         Polynom *pL   = pIL->getAs<Polynom>();
         Polynom *pR   = pIR->getAs<Polynom>();
@@ -326,7 +326,7 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
     /*
     ** DOUBLE == POLY
     */
-    if (TypeL == GenericType::RealDouble && TypeR == GenericType::RealPoly)
+    if (TypeL == GenericType::ScilabDouble && TypeR == GenericType::ScilabPolynom)
     {
         Double *pL  = pIL->getAs<Double>();
         Polynom *pR = pIR->getAs<Polynom>();
@@ -545,7 +545,7 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
     /*
     ** POLY == DOUBLE
     */
-    if (TypeL == GenericType::RealPoly && TypeR == GenericType::RealDouble)
+    if (TypeL == GenericType::ScilabPolynom && TypeR == GenericType::ScilabDouble)
     {
         return GenericComparisonEqual(_pRightOperand, _pLeftOperand);
     }
@@ -553,7 +553,7 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
     /*
     ** LIST == LIST
     */
-    if (TypeL == GenericType::RealList && TypeR == GenericType::RealList)
+    if (TypeL == GenericType::ScilabList && TypeR == GenericType::ScilabList)
     {
         List* pLL = pIL->getAs<List>();
         List* pLR = pIR->getAs<List>();
@@ -584,7 +584,7 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
     /*
     ** CELL == CELL
     */
-    if (TypeL == GenericType::RealCell && TypeR == GenericType::RealCell)
+    if (TypeL == GenericType::ScilabCell && TypeR == GenericType::ScilabCell)
     {
         Cell* pCL = pIL->getAs<Cell>();
         Cell* pCR = pIR->getAs<Cell>();
@@ -628,7 +628,7 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
     /*
     ** STRUCT == STRUCT
     */
-    if (TypeL == GenericType::RealStruct && TypeR == GenericType::RealStruct)
+    if (TypeL == GenericType::ScilabStruct && TypeR == GenericType::ScilabStruct)
     {
         Struct* pStL = pIL->getAs<Struct>();
         Struct* pStR = pIR->getAs<Struct>();
@@ -671,7 +671,7 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
     /*
     ** DOUBLE == STRING
     */
-    if (TypeL == GenericType::RealDouble && TypeR == GenericType::RealString)
+    if (TypeL == GenericType::ScilabDouble && TypeR == GenericType::ScilabString)
     {
         clearAlloc(bAllocL, pIL, bAllocR, pIR);
         return new Bool(0);
@@ -680,7 +680,7 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
     /*
     ** STRING == DOUBLE
     */
-    if (TypeL == GenericType::RealString && TypeR == GenericType::RealDouble)
+    if (TypeL == GenericType::ScilabString && TypeR == GenericType::ScilabDouble)
     {
         clearAlloc(bAllocL, pIL, bAllocR, pIR);
         return new Bool(0);
@@ -689,7 +689,7 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
     /*
     ** SPARSE == SPARSE
     */
-    if (TypeL == GenericType::RealSparse && TypeR == GenericType::RealSparse)
+    if (TypeL == GenericType::ScilabSparse && TypeR == GenericType::ScilabSparse)
     {
         Sparse* pL = pIL->getAs<Sparse>();
         Sparse* pR = pIR->getAs<Sparse>();
@@ -708,7 +708,7 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
     /*
     ** SPARSE == DOUBLE
     */
-    if (TypeL == GenericType::RealSparse && TypeR == GenericType::RealDouble)
+    if (TypeL == GenericType::ScilabSparse && TypeR == GenericType::ScilabDouble)
     {
         Sparse* pL = pIL->getAs<Sparse>();
         Double* pR = pIR->getAs<Double>();
@@ -727,7 +727,7 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
     /*
     ** DOUBLE == SPARSE
     */
-    if (TypeL == GenericType::RealDouble && TypeR == GenericType::RealSparse)
+    if (TypeL == GenericType::ScilabDouble && TypeR == GenericType::ScilabSparse)
     {
         Double* pL = pIL->getAs<Double>();
         Sparse* pR = pIR->getAs<Sparse>();
@@ -746,7 +746,7 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
     /*
     ** SPARSE BOOL == SPARSE BOOL
     */
-    if (TypeL == GenericType::RealSparseBool && TypeR == GenericType::RealSparseBool)
+    if (TypeL == GenericType::ScilabSparseBool && TypeR == GenericType::ScilabSparseBool)
     {
         SparseBool* pL = pIL->getAs<SparseBool>();
         SparseBool* pR = pIR->getAs<SparseBool>();
@@ -765,7 +765,7 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
     /*
     ** SPARSE BOOL == BOOL
     */
-    if (TypeL == GenericType::RealSparseBool && TypeR == GenericType::RealBool)
+    if (TypeL == GenericType::ScilabSparseBool && TypeR == GenericType::ScilabBool)
     {
         SparseBool* pL = pIL->getAs<SparseBool>();
         Bool* pR = pIR->getAs<Bool>();
@@ -784,7 +784,7 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
     /*
     ** BOOL == SPARSE BOOL
     */
-    if (TypeL == GenericType::RealBool && TypeR == GenericType::RealSparseBool)
+    if (TypeL == GenericType::ScilabBool && TypeR == GenericType::ScilabSparseBool)
     {
         Bool* pL = pIL->getAs<Bool>();
         SparseBool* pR = pIR->getAs<SparseBool>();
@@ -844,7 +844,7 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
     /*
     ** TList == TList
     */
-    if (TypeL == GenericType::RealTList && TypeR == GenericType::RealTList)
+    if (TypeL == GenericType::ScilabTList && TypeR == GenericType::ScilabTList)
     {
         TList* pLL = pIL->getAs<TList>();
         TList* pLR = pIR->getAs<TList>();
@@ -876,7 +876,7 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
     /*
     ** MList == MList
     */
-    if (TypeL == GenericType::RealMList && TypeR == GenericType::RealMList)
+    if (TypeL == GenericType::ScilabMList && TypeR == GenericType::ScilabMList)
     {
         MList* pLL = pIL->getAs<MList>();
         MList* pLR = pIR->getAs<MList>();
@@ -1238,35 +1238,35 @@ int EqualToIntAndInt(InternalType* _pL, InternalType*  _pR, GenericType** _pOut)
 {
     switch (_pL->getType())
     {
-        case InternalType::RealInt8 :
+        case InternalType::ScilabInt8 :
         {
             return EqualToArrayAndArray(_pL->getAs<Int8>(), _pR->getAs<Int8>(), _pOut);
         }
-        case InternalType::RealUInt8 :
+        case InternalType::ScilabUInt8 :
         {
             return EqualToArrayAndArray(_pL->getAs<UInt8>(), _pR->getAs<UInt8>(), _pOut);
         }
-        case InternalType::RealInt16 :
+        case InternalType::ScilabInt16 :
         {
             return EqualToArrayAndArray(_pL->getAs<Int16>(), _pR->getAs<Int16>(), _pOut);
         }
-        case InternalType::RealUInt16 :
+        case InternalType::ScilabUInt16 :
         {
             return EqualToArrayAndArray(_pL->getAs<UInt16>(), _pR->getAs<UInt16>(), _pOut);
         }
-        case InternalType::RealInt32 :
+        case InternalType::ScilabInt32 :
         {
             return EqualToArrayAndArray(_pL->getAs<Int32>(), _pR->getAs<Int32>(), _pOut);
         }
-        case InternalType::RealUInt32 :
+        case InternalType::ScilabUInt32 :
         {
             return EqualToArrayAndArray(_pL->getAs<UInt32>(), _pR->getAs<UInt32>(), _pOut);
         }
-        case InternalType::RealInt64 :
+        case InternalType::ScilabInt64 :
         {
             return EqualToArrayAndArray(_pL->getAs<Int64>(), _pR->getAs<Int64>(), _pOut);
         }
-        case InternalType::RealUInt64 :
+        case InternalType::ScilabUInt64 :
         {
             return EqualToArrayAndArray(_pL->getAs<UInt64>(), _pR->getAs<UInt64>(), _pOut);
         }

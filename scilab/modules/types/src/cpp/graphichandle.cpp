@@ -77,9 +77,9 @@ GraphicHandle::~GraphicHandle()
 #endif
 }
 
-InternalType::RealType GraphicHandle::getType(void)
+InternalType::ScilabType GraphicHandle::getType(void)
 {
-    return RealHandle;
+    return ScilabHandle;
 }
 
 InternalType* GraphicHandle::clone()

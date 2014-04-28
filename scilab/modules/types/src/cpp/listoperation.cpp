@@ -32,9 +32,9 @@ InternalType* ListOperation::clone(void)
     return new ListOperation();
 }
 
-InternalType::RealType ListOperation::getType(void)
+InternalType::ScilabType ListOperation::getType(void)
 {
-    return RealListOperation;
+    return ScilabListOperation;
 }
 
 bool ListOperation::toString(std::wostringstream& ostr)

@@ -244,9 +244,9 @@ GenericType* SinglePoly::getColumnValues(int _iPos)
     return NULL;
 }
 
-GenericType::RealType SinglePoly::getType(void)
+GenericType::ScilabType SinglePoly::getType(void)
 {
-    return RealSinglePoly;
+    return ScilabSinglePolynom;
 }
 
 bool SinglePoly::evaluate(double _dblInR, double _dblInI, double *_pdblOutR, double *_pdblOutI)

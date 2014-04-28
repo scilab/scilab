@@ -32,9 +32,9 @@ InternalType* ListUndefined::clone(void)
     return new ListUndefined();
 }
 
-InternalType::RealType ListUndefined::getType(void)
+InternalType::ScilabType ListUndefined::getType(void)
 {
-    return RealListUndefinedOperation;
+    return ScilabListUndefinedOperation;
 }
 
 bool ListUndefined::toString(std::wostringstream& ostr)

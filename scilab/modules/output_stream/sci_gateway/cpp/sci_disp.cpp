@@ -42,8 +42,8 @@ Function::ReturnValue sci_disp(typed_list &in, int _iRetCount, typed_list &out)
 
     for (it = in.rbegin() ; it != in.rend() ; it++)
     {
-        bool isTList = (*it)->getType() == GenericType::RealTList;
-        bool isMList = (*it)->getType() == GenericType::RealMList;
+        bool isTList = (*it)->getType() == GenericType::ScilabTList;
+        bool isMList = (*it)->getType() == GenericType::ScilabMList;
 
         scilabForcedWriteW(L"\n");
         if (isTList || isMList)

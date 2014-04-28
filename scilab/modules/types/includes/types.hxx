@@ -84,9 +84,9 @@ public :
         return true;
     }
 
-    virtual RealType            getType(void)
+    virtual ScilabType            getType(void)
     {
-        return RealGeneric;
+        return ScilabGeneric;
     }
 
     /* return type as string ( double, int, cell, list, ... )*/

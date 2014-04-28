@@ -40,8 +40,8 @@ types::Function::ReturnValue sci_isfield(types::typed_list &in, int _iRetCount, 
     }
 
     if (in[0]->isStruct() == false &&
-        in[0]->isTList()  == false &&
-        in[0]->isMList()  == false)
+            in[0]->isTList()  == false &&
+            in[0]->isMList()  == false)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: struct array or tlist or mlist expected.\n"), "isfield", 1);
         return types::Function::Error;
@@ -57,22 +57,22 @@ types::Function::ReturnValue sci_isfield(types::typed_list &in, int _iRetCount, 
     wchar_t** wcsStr = pInString->get();
     types::Bool *pOutBool = new types::Bool(pInString->getRows(), pInString->getCols());
 
-    switch(in[0]->getType())
+    switch (in[0]->getType())
     {
-        case types::GenericType::RealStruct :
+        case types::GenericType::ScilabStruct :
         {
             types::Struct* pStruct = in[0]->getAs<types::Struct>();
-            for(int i = 0; i < pInString->getSize(); i++)
+            for (int i = 0; i < pInString->getSize(); i++)
             {
                 pOutBool->set(i, pStruct->exists(std::wstring(wcsStr[i])));
             }
             break;
         }
-        case types::GenericType::RealTList :
-        case types::GenericType::RealMList :
+        case types::GenericType::ScilabTList :
+        case types::GenericType::ScilabMList :
         {
             types::TList* pTL = in[0]->getAs<types::TList>();
-            for(int i = 0; i < pInString->getSize(); i++)
+            for (int i = 0; i < pInString->getSize(); i++)
             {
                 pOutBool->set(i, pTL->exists(std::wstring(wcsStr[i])));
             }

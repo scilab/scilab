@@ -46,9 +46,9 @@ public :
         return new Colon();
     }
 
-    InternalType::RealType getType(void)
+    InternalType::ScilabType getType(void)
     {
-        return RealColon;
+        return ScilabColon;
     }
 
     bool isColon()

@@ -58,7 +58,7 @@ types::Function::ReturnValue sci_stripblanks(types::typed_list &in, int _iRetCou
 
     switch (in[0]->getType())
     {
-        case InternalType::RealString:
+        case InternalType::ScilabString:
         {
             String *pS = stripblanks(in[0]->getAs<types::String>(), bRemoveTab);
             if (pS == NULL)
@@ -70,7 +70,7 @@ types::Function::ReturnValue sci_stripblanks(types::typed_list &in, int _iRetCou
             out.push_back(pS);
         }
         break;
-        case InternalType::RealDouble://manage []
+        case InternalType::ScilabDouble://manage []
         {
             if (in[0]->getAs<Double>()->getSize() != 0)
             {

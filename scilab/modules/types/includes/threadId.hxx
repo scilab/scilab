@@ -73,7 +73,7 @@ private :
     std::wstring            StatusToString(Status _status);
 
 protected :
-    RealType                getType();
+    ScilabType                getType();
 
 private :
     __threadId              m_threadId;

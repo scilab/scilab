@@ -40,9 +40,9 @@ public :
         return L"f";
     }
 
-    RealType getType(void)
+    ScilabType getType(void)
     {
-        return RealLibrary;
+        return ScilabLibrary;
     };
     bool toString(std::wostringstream& ostr);
     InternalType* clone();

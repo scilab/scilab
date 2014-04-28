@@ -52,7 +52,7 @@ public :
 
     virtual void            setComplex(bool _bComplex);
 
-    virtual RealType        getType();
+    virtual ScilabType        getType();
     bool                    isPoly()
     {
         return true;

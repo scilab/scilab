@@ -175,13 +175,13 @@ wchar_t** scilab_sprintf(char* _pstName, wchar_t* _pwstInput, typed_list &in, Ar
                     case L'u' : //unsigned
                     case L'x' : //hex
                     case L'X' : //HEX
-                        if (_pArgs[iPosArg].type != InternalType::RealDouble)
+                        if (_pArgs[iPosArg].type != InternalType::ScilabDouble)
                         {
                             Scierror(999, _("%s: Wrong number of input arguments: data doesn't fit with format.\n"), _pstName);
                             *_piOutputRows = 0;
                             return NULL;
                         }
-                        pToken[iToken].outputType = InternalType::RealInt32;
+                        pToken[iToken].outputType = InternalType::ScilabInt32;
                         iPosArg++;
                         break;
                     case L'f' : //float
@@ -189,24 +189,24 @@ wchar_t** scilab_sprintf(char* _pstName, wchar_t* _pwstInput, typed_list &in, Ar
                     case L'E' : //EXP
                     case L'g' : //shorter between float or exp
                     case L'G' : //shorter between float or EXP
-                        if (_pArgs[iPosArg].type != InternalType::RealDouble)
+                        if (_pArgs[iPosArg].type != InternalType::ScilabDouble)
                         {
                             Scierror(999, _("%s: Wrong number of input arguments: data doesn't fit with format.\n"), _pstName);
                             *_piOutputRows = 0;
                             return NULL;
                         }
-                        pToken[iToken].outputType = InternalType::RealDouble;
+                        pToken[iToken].outputType = InternalType::ScilabDouble;
                         iPosArg++;
                         break;
                     case L's' :
                     case L'c' :
-                        if (_pArgs[iPosArg].type != InternalType::RealString)
+                        if (_pArgs[iPosArg].type != InternalType::ScilabString)
                         {
                             Scierror(999, _("%s: Wrong number of input arguments: data doesn't fit with format.\n"), _pstName);
                             *_piOutputRows = 0;
                             return NULL;
                         }
-                        pToken[iToken].outputType = InternalType::RealString;
+                        pToken[iToken].outputType = InternalType::ScilabString;
                         iPosArg++;
                         break;
                     default :
@@ -255,19 +255,19 @@ wchar_t** scilab_sprintf(char* _pstName, wchar_t* _pwstInput, typed_list &in, Ar
             {
                 wchar_t pwstTemp[bsiz];
                 void* pvVal = NULL;
-                if (pToken[i].outputType == InternalType::RealDouble)
+                if (pToken[i].outputType == InternalType::ScilabDouble)
                 {
                     double dblVal = in[_pArgs[iPosArg].iArg]->getAs<Double>()->get(j, _pArgs[iPosArg].iPos);
                     swprintf(pwstTemp, bsiz, pToken[i].pwstToken, dblVal);
                     iPosArg++;
                 }
-                else if (pToken[i].outputType == InternalType::RealInt32)
+                else if (pToken[i].outputType == InternalType::ScilabInt32)
                 {
                     double dblVal = in[_pArgs[iPosArg].iArg]->getAs<Double>()->get(j, _pArgs[iPosArg].iPos);
                     swprintf(pwstTemp, bsiz, pToken[i].pwstToken, (int)dblVal);
                     iPosArg++;
                 }
-                else if (pToken[i].outputType == InternalType::RealString)
+                else if (pToken[i].outputType == InternalType::ScilabString)
                 {
                     wchar_t* pwstStr = in[_pArgs[iPosArg].iArg]->getAs<types::String>()->get(j, _pArgs[iPosArg].iPos);
                     int posC = (int)wcscspn(pToken[i].pwstToken, L"c");

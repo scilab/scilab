@@ -12,8 +12,8 @@
  */
 /*--------------------------------------------------------------------------*/
 #include "elem_func_gw.hxx"
+#include "api_scilab.hxx"
 #include "function.hxx"
-#include "double.hxx"
 #include "overload.hxx"
 #include "execvisitor.hxx"
 
@@ -42,8 +42,8 @@ types::Function::ReturnValue sci_abs(types::typed_list &in, int _iRetCount, type
 
     if (in[0]->isDouble())
     {
-        types::Double* pDblIn  = in[0]->getAs<types::Double>();
-        types::Double* pDblOut = new types::Double(pDblIn->getDims(), pDblIn->getDimsArray());
+        api_scilab::Double* pDblIn  = api_scilab::getAsDouble(in[0]);
+        api_scilab::Double* pDblOut = new api_scilab::Double(pDblIn->getDims(), pDblIn->getDimsArray());
 
         double* pdblInR = pDblIn->get();
         double* pdblInI = pDblIn->getImg();
@@ -82,7 +82,7 @@ types::Function::ReturnValue sci_abs(types::typed_list &in, int _iRetCount, type
             }
         }
 
-        out.push_back(pDblOut);
+        out.push_back(api_scilab::getReturnVariable(pDblOut));
     }
     else if (in[0]->isPoly())
     {

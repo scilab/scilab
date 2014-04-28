@@ -101,39 +101,39 @@ mxClassID mxGetClassID(const mxArray *ptr)
     {
         return mxUNKNOWN_CLASS;
     }
-    types::InternalType::RealType type = pIT->getType();
+    types::InternalType::ScilabType type = pIT->getType();
 
     switch (type)
     {
-        case types::InternalType::RealInt8:
+        case types::InternalType::ScilabInt8:
             return mxINT8_CLASS;
-        case types::InternalType::RealUInt8:
+        case types::InternalType::ScilabUInt8:
             return mxUINT8_CLASS;
-        case types::InternalType::RealInt16:
+        case types::InternalType::ScilabInt16:
             return mxINT16_CLASS;
-        case types::InternalType::RealUInt16:
+        case types::InternalType::ScilabUInt16:
             return mxUINT16_CLASS;
-        case types::InternalType::RealInt32:
+        case types::InternalType::ScilabInt32:
             return mxINT32_CLASS;
-        case types::InternalType::RealUInt32:
+        case types::InternalType::ScilabUInt32:
             return mxUINT32_CLASS;
-        case types::InternalType::RealInt64:
+        case types::InternalType::ScilabInt64:
             return mxINT64_CLASS;
-        case types::InternalType::RealUInt64:
+        case types::InternalType::ScilabUInt64:
             return mxUINT64_CLASS;
-        case types::InternalType::RealString:
+        case types::InternalType::ScilabString:
             return mxCHAR_CLASS;
-        case types::InternalType::RealDouble:
+        case types::InternalType::ScilabDouble:
             return mxDOUBLE_CLASS;
-        case types::InternalType::RealBool:
+        case types::InternalType::ScilabBool:
             return mxLOGICAL_CLASS;
-        case types::InternalType::RealFloat:
+        case types::InternalType::ScilabFloat:
             return mxSINGLE_CLASS;
-        case types::InternalType::RealStruct:
+        case types::InternalType::ScilabStruct:
             return mxSTRUCT_CLASS;
-        case types::InternalType::RealCell:
+        case types::InternalType::ScilabCell:
             return mxCELL_CLASS;
-        case types::InternalType::RealFunction:
+        case types::InternalType::ScilabFunction:
             return mxFUNCTION_CLASS;
         default:
             return mxUNKNOWN_CLASS;
@@ -321,9 +321,9 @@ int *mxGetDimensions(const mxArray *ptr)
 
     switch (pIT->getType())
     {
-        case types::InternalType::RealList:
-        case types::InternalType::RealMList:
-        case types::InternalType::RealTList:
+        case types::InternalType::ScilabList:
+        case types::InternalType::ScilabMList:
+        case types::InternalType::ScilabTList:
         {
             int *piDims = (int *) MALLOC(sizeof(int));
 
@@ -475,20 +475,20 @@ bool mxIsEmpty(const mxArray *ptr)
 
     switch (pIT->getType())
     {
-        case types::InternalType::RealDouble:
+        case types::InternalType::ScilabDouble:
         {
             types::Double *pD = pIT->getAs<types::Double>();
             return pD->getSize() == 0;
         }
-        case types::InternalType::RealCell:
+        case types::InternalType::ScilabCell:
         {
             types::Cell *pC = pIT->getAs<types::Cell>();
             return pC->getSize() == 0;
         }
-        case types::InternalType::RealContainer:
-        case types::InternalType::RealList:
-        case types::InternalType::RealMList:
-        case types::InternalType::RealTList:
+        case types::InternalType::ScilabContainer:
+        case types::InternalType::ScilabList:
+        case types::InternalType::ScilabMList:
+        case types::InternalType::ScilabTList:
         {
             types::Container *pC = pIT->getAs<types::Container>();
             return pC->getSize() == 0;
@@ -572,52 +572,52 @@ double mxGetScalar(const mxArray *ptr)
 
     switch (pIT->getType())
     {
-        case types::InternalType::RealDouble:
+        case types::InternalType::ScilabDouble:
         {
             types::Double *pD = pIT->getAs<types::Double>();
             return pD->get(0);
         }
-        case types::InternalType::RealBool:
+        case types::InternalType::ScilabBool:
         {
             types::Bool *pB = pIT->getAs<types::Bool>();
             return (double) pB->get(0);
         }
-        case types::InternalType::RealInt8:
+        case types::InternalType::ScilabInt8:
         {
             types::Int8 *pI = pIT->getAs<types::Int8>();
             return (double) pI->get(0);
         }
-        case types::InternalType::RealUInt8:
+        case types::InternalType::ScilabUInt8:
         {
             types::UInt8 *pI = pIT->getAs<types::UInt8>();
             return (double) pI->get(0);
         }
-        case types::InternalType::RealInt16:
+        case types::InternalType::ScilabInt16:
         {
             types::Int16 *pI = pIT->getAs<types::Int16>();
             return (double) pI->get(0);
         }
-        case types::InternalType::RealUInt16:
+        case types::InternalType::ScilabUInt16:
         {
             types::UInt16 *pI = pIT->getAs<types::UInt16>();
             return (double) pI->get(0);
         }
-        case types::InternalType::RealInt32:
+        case types::InternalType::ScilabInt32:
         {
             types::Int32 *pI = pIT->getAs<types::Int32>();
             return (double) pI->get(0);
         }
-        case types::InternalType::RealUInt32:
+        case types::InternalType::ScilabUInt32:
         {
             types::UInt32 *pI = pIT->getAs<types::UInt32>();
             return (double) pI->get(0);
         }
-        case types::InternalType::RealInt64:
+        case types::InternalType::ScilabInt64:
         {
             types::Int64 *pI = pIT->getAs<types::Int64>();
             return (double) pI->get(0);
         }
-        case types::InternalType::RealUInt64:
+        case types::InternalType::ScilabUInt64:
         {
             types::UInt64 *pI = pIT->getAs<types::UInt64>();
             return (double) pI->get(0);
@@ -637,52 +637,52 @@ void *mxGetData(const mxArray *ptr)
 
     switch (pIT->getType())
     {
-        case types::InternalType::RealDouble:
+        case types::InternalType::ScilabDouble:
         {
             types::Double *pD = pIT->getAs<types::Double>();
             return pD->get();
         }
-        case types::InternalType::RealBool:
+        case types::InternalType::ScilabBool:
         {
             types::Bool *pB = pIT->getAs<types::Bool>();
             return pB->get();
         }
-        case types::InternalType::RealInt8:
+        case types::InternalType::ScilabInt8:
         {
             types::Int8 *pI = pIT->getAs<types::Int8>();
             return pI->get();
         }
-        case types::InternalType::RealUInt8:
+        case types::InternalType::ScilabUInt8:
         {
             types::UInt8 *pI = pIT->getAs<types::UInt8>();
             return pI->get();
         }
-        case types::InternalType::RealInt16:
+        case types::InternalType::ScilabInt16:
         {
             types::Int16 *pI = pIT->getAs<types::Int16>();
             return pI->get();
         }
-        case types::InternalType::RealUInt16:
+        case types::InternalType::ScilabUInt16:
         {
             types::UInt16 *pI = pIT->getAs<types::UInt16>();
             return pI->get();
         }
-        case types::InternalType::RealInt32:
+        case types::InternalType::ScilabInt32:
         {
             types::Int32 *pI = pIT->getAs<types::Int32>();
             return pI->get();
         }
-        case types::InternalType::RealUInt32:
+        case types::InternalType::ScilabUInt32:
         {
             types::UInt32 *pI = pIT->getAs<types::UInt32>();
             return pI->get();
         }
-        case types::InternalType::RealInt64:
+        case types::InternalType::ScilabInt64:
         {
             types::Int64 *pI = pIT->getAs<types::Int64>();
             return pI->get();
         }
-        case types::InternalType::RealUInt64:
+        case types::InternalType::ScilabUInt64:
         {
             types::UInt64 *pI = pIT->getAs<types::UInt64>();
             return pI->get();
@@ -702,52 +702,52 @@ void *mxGetImagData(const mxArray *ptr)
 
     switch (pIT->getType())
     {
-        case types::InternalType::RealDouble:
+        case types::InternalType::ScilabDouble:
         {
             types::Double *pD = pIT->getAs<types::Double>();
             return pD->getImg();
         }
-        case types::InternalType::RealBool:
+        case types::InternalType::ScilabBool:
         {
             types::Bool *pB = pIT->getAs<types::Bool>();
             return pB->getImg();
         }
-        case types::InternalType::RealInt8:
+        case types::InternalType::ScilabInt8:
         {
             types::Int8 *pI = pIT->getAs<types::Int8>();
             return pI->getImg();
         }
-        case types::InternalType::RealUInt8:
+        case types::InternalType::ScilabUInt8:
         {
             types::UInt8 *pI = pIT->getAs<types::UInt8>();
             return pI->getImg();
         }
-        case types::InternalType::RealInt16:
+        case types::InternalType::ScilabInt16:
         {
             types::Int16 *pI = pIT->getAs<types::Int16>();
             return pI->getImg();
         }
-        case types::InternalType::RealUInt16:
+        case types::InternalType::ScilabUInt16:
         {
             types::UInt16 *pI = pIT->getAs<types::UInt16>();
             return pI->getImg();
         }
-        case types::InternalType::RealInt32:
+        case types::InternalType::ScilabInt32:
         {
             types::Int32 *pI = pIT->getAs<types::Int32>();
             return pI->getImg();
         }
-        case types::InternalType::RealUInt32:
+        case types::InternalType::ScilabUInt32:
         {
             types::UInt32 *pI = pIT->getAs<types::UInt32>();
             return pI->getImg();
         }
-        case types::InternalType::RealInt64:
+        case types::InternalType::ScilabInt64:
         {
             types::Int64 *pI = pIT->getAs<types::Int64>();
             return pI->getImg();
         }
-        case types::InternalType::RealUInt64:
+        case types::InternalType::ScilabUInt64:
         {
             types::UInt64 *pI = pIT->getAs<types::UInt64>();
             return pI->getImg();

@@ -177,9 +177,9 @@ void Float::whoAmI()
     std::cout << "types::Float";
 }
 
-GenericType::RealType Float::getType(void)
+GenericType::ScilabType Float::getType(void)
 {
-    return RealFloat;
+    return ScilabFloat;
 }
 
 void Float::deleteReal()

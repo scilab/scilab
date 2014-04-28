@@ -22,7 +22,16 @@ src/cpp/overload.cpp \
 src/cpp/returnProperty.cpp \
 src/cpp/returnPropertyList.cpp \
 src/cpp/api_optional.cpp \
-src/cpp/api_hypermat.cpp
+src/cpp/api_hypermat.cpp \
+src/cpp/api_boolean_cpp.cpp \
+src/cpp/api_common_cpp.cpp \
+src/cpp/api_double_cpp.cpp \
+src/cpp/api_int_cpp.cpp \
+src/cpp/api_list_cpp.cpp \
+src/cpp/api_sparse_cpp.cpp \
+src/cpp/api_string_cpp.cpp \
+src/cpp/api_pointer_cpp.cpp \
+src/cpp/api_handle_cpp.cpp
 
 libsciapi_scilab_la_CPPFLAGS= \
 -I$(srcdir)/includes/ \

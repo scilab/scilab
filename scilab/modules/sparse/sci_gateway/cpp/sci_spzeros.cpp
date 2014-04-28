@@ -75,22 +75,22 @@ types::Function::ReturnValue sci_spzeros(types::typed_list &in, int _iRetCount, 
     {
         switch (in[0]->getType())
         {
-            case types::InternalType::RealInt8 :
-            case types::InternalType::RealUInt8 :
-            case types::InternalType::RealInt16 :
-            case types::InternalType::RealUInt16 :
-            case types::InternalType::RealInt32 :
-            case types::InternalType::RealUInt32 :
-            case types::InternalType::RealInt64 :
-            case types::InternalType::RealUInt64 :
-            case types::InternalType::RealString :
-            case types::InternalType::RealDouble :
-            case types::InternalType::RealBool :
-            case types::InternalType::RealFloat :
-            case types::InternalType::RealPoly :
-            case types::InternalType::RealSinglePoly :
-            case types::InternalType::RealSparse :
-            case types::InternalType::RealSparseBool :
+            case types::InternalType::ScilabInt8 :
+            case types::InternalType::ScilabUInt8 :
+            case types::InternalType::ScilabInt16 :
+            case types::InternalType::ScilabUInt16 :
+            case types::InternalType::ScilabInt32 :
+            case types::InternalType::ScilabUInt32 :
+            case types::InternalType::ScilabInt64 :
+            case types::InternalType::ScilabUInt64 :
+            case types::InternalType::ScilabString :
+            case types::InternalType::ScilabDouble :
+            case types::InternalType::ScilabBool :
+            case types::InternalType::ScilabFloat :
+            case types::InternalType::ScilabPolynom :
+            case types::InternalType::ScilabSinglePolynom :
+            case types::InternalType::ScilabSparse :
+            case types::InternalType::ScilabSparseBool :
                 break;
             default :
             {

@@ -49,28 +49,28 @@ SciErr getMatrixOfIntegerPrecision(void* _pvCtx, int* _piAddress, int* _piPrecis
 
     switch (((InternalType*)_piAddress)->getType())
     {
-        case GenericType::RealInt8 :
+        case GenericType::ScilabInt8 :
             *_piPrecision = SCI_INT8;
             break;
-        case GenericType::RealUInt8 :
+        case GenericType::ScilabUInt8 :
             *_piPrecision = SCI_UINT8;
             break;
-        case GenericType::RealInt16 :
+        case GenericType::ScilabInt16 :
             *_piPrecision = SCI_INT16;
             break;
-        case GenericType::RealUInt16 :
+        case GenericType::ScilabUInt16 :
             *_piPrecision = SCI_UINT16;
             break;
-        case GenericType::RealInt32 :
+        case GenericType::ScilabInt32 :
             *_piPrecision = SCI_INT32;
             break;
-        case GenericType::RealUInt32 :
+        case GenericType::ScilabUInt32 :
             *_piPrecision = SCI_UINT32;
             break;
-        case GenericType::RealInt64 :
+        case GenericType::ScilabInt64 :
             *_piPrecision = SCI_INT64;
             break;
-        case GenericType::RealUInt64 :
+        case GenericType::ScilabUInt64 :
             *_piPrecision = SCI_UINT64;
             break;
     }
@@ -154,28 +154,28 @@ SciErr getCommonMatrixOfInteger(void* _pvCtx, int* _piAddress, int _iPrecision, 
 
     switch (((InternalType*)_piAddress)->getType())
     {
-        case GenericType::RealInt8 :
+        case GenericType::ScilabInt8 :
             *_piData	= (void*)((InternalType*)_piAddress)->getAs<types::Int8>()->get();
             break;
-        case GenericType::RealUInt8 :
+        case GenericType::ScilabUInt8 :
             *_piData	= (void*)((InternalType*)_piAddress)->getAs<types::UInt8>()->get();
             break;
-        case GenericType::RealInt16 :
+        case GenericType::ScilabInt16 :
             *_piData	= (void*)((InternalType*)_piAddress)->getAs<types::Int16>()->get();
             break;
-        case GenericType::RealUInt16 :
+        case GenericType::ScilabUInt16 :
             *_piData	= (void*)((InternalType*)_piAddress)->getAs<types::UInt16>()->get();
             break;
-        case GenericType::RealInt32 :
+        case GenericType::ScilabInt32 :
             *_piData	= (void*)((InternalType*)_piAddress)->getAs<types::Int32>()->get();
             break;
-        case GenericType::RealUInt32 :
+        case GenericType::ScilabUInt32 :
             *_piData	= (void*)((InternalType*)_piAddress)->getAs<types::UInt32>()->get();
             break;
-        case GenericType::RealInt64 :
+        case GenericType::ScilabInt64 :
             *_piData	= (void*)((InternalType*)_piAddress)->getAs<types::Int64>()->get();
             break;
-        case GenericType::RealUInt64 :
+        case GenericType::ScilabUInt64 :
             *_piData	= (void*)((InternalType*)_piAddress)->getAs<types::UInt64>()->get();
             break;
     }
@@ -832,28 +832,28 @@ SciErr getNamedMatrixOfIntegerPrecision(void* _pvCtx, const char* _pstName, int*
 
     switch (pIT->getType())
     {
-        case InternalType::RealInt8 :
+        case InternalType::ScilabInt8 :
             *_piPrecision = sci_int8;
             break;
-        case InternalType::RealUInt8 :
+        case InternalType::ScilabUInt8 :
             *_piPrecision = sci_uint8;
             break;
-        case InternalType::RealInt16 :
+        case InternalType::ScilabInt16 :
             *_piPrecision = sci_int16;
             break;
-        case InternalType::RealUInt16 :
+        case InternalType::ScilabUInt16 :
             *_piPrecision = sci_uint16;
             break;
-        case InternalType::RealInt32 :
+        case InternalType::ScilabInt32 :
             *_piPrecision = sci_int32;
             break;
-        case InternalType::RealUInt32 :
+        case InternalType::ScilabUInt32 :
             *_piPrecision = sci_uint32;
             break;
-        case InternalType::RealInt64 :
+        case InternalType::ScilabInt64 :
             *_piPrecision = sci_int64;
             break;
-        case InternalType::RealUInt64 :
+        case InternalType::ScilabUInt64 :
             *_piPrecision = sci_uint64;
             break;
         default :

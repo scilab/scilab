@@ -35,9 +35,9 @@ public :
         std::cout << "types::TList";
     };
 
-    RealType                        getType(void)
+    ScilabType                        getType(void)
     {
-        return RealTList;
+        return ScilabTList;
     }
     bool                            isTList()
     {

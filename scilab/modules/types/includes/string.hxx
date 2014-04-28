@@ -66,7 +66,7 @@ public :
     }
     InternalType*           clone();
 
-    RealType                getType();//			{ return RealString; }
+    ScilabType                getType();//			{ return ScilabString; }
     bool                    isString()
     {
         return true;

@@ -12,35 +12,30 @@
  */
 /*--------------------------------------------------------------------------*/
 #include "elem_func_gw.hxx"
-#include "function.hxx"
-#include "double.hxx"
+#include "api_scilab.hxx"
 
 extern "C"
 {
-#include "Scierror.h"
-#include "localization.h"
 #include "charEncoding.h"
 }
 
-using namespace types;
-
 /*--------------------------------------------------------------------------*/
-Function::ReturnValue sci_zeros(types::typed_list &in, int _iRetCount, types::typed_list &out)
+types::Function::ReturnValue sci_zeros(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    Double* pOut = NULL;
+    api_scilab::Double* pOut = NULL;
     if (in.size() == 0)
     {
-        pOut = new Double(0);
+        pOut = new api_scilab::Double(0);
     }
     else if (in.size() == 1)
     {
-        if (in[0]->isGenericType() == false || in[0]->isContainer())
+        if (api_scilab::isMatrix(in[0]) == false)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: Matrix expected.\n"), "zeros", 1);
-            return Function::Error;
+            return types::Function::Error;
         }
 
-        Double* pIn = in[0]->getAs<Double>();
+        api_scilab::Matrix* pIn = api_scilab::getAsMatrix(in[0]);
         int iDims = pIn->getDims();
         int* piDims = pIn->getDimsArray();
 
@@ -48,19 +43,20 @@ Function::ReturnValue sci_zeros(types::typed_list &in, int _iRetCount, types::ty
         if (pIn->getRows() == -1 && pIn->getCols() == -1)
         {
             Scierror(21, _("Invalid index.\n"));
-            return Function::Error;
+            return types::Function::Error;
         }
 
-        pOut = new Double(iDims, piDims);
+        pOut = new api_scilab::Double(iDims, piDims);
+        delete pIn;
     }
     else //size > 1
     {
         for (int i = 0 ; i < in.size() ; i++)
         {
-            if (in[i]->isDouble() == false)
+            if (api_scilab::isDouble(in[i]) == false)
             {
                 Scierror(999, _("%s: Wrong type for input argument #%d: Matrix expected.\n"), "zeros", i + 1);
-                return Function::Error;
+                return types::Function::Error;
             }
         }
 
@@ -68,21 +64,23 @@ Function::ReturnValue sci_zeros(types::typed_list &in, int _iRetCount, types::ty
         int* piDims = new int[iDims];
         for (int i = 0 ; i < iDims ; i++)
         {
-            Double* pIn = in[i]->getAs<Double>();
+            api_scilab::Double* pIn = api_scilab::getAsDouble(in[i]);
             if (pIn->isScalar() == false || pIn->isComplex())
             {
+                delete pIn;
                 Scierror(999, _("%s: Wrong type for input argument #%d: Real scalar expected.\n"), "zeros", i + 1);
-                return Function::Error;
+                return types::Function::Error;
             }
             piDims[i] = static_cast<int>(pIn->getReal()[0]);
+            delete pIn;
         }
-        pOut = new Double(iDims, piDims);
+        pOut = new api_scilab::Double(iDims, piDims);
         delete[] piDims;
     }
 
-    pOut->setZeros();
+    memset(pOut->get(), 0x00, pOut->getSize() * sizeof(double));
 
-    out.push_back(pOut);
-    return Function::OK;
+    out.push_back(api_scilab::getReturnVariable(pOut));
+    return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/

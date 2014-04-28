@@ -182,7 +182,7 @@ int cumprod(types::Polynom* pIn, int iOrientation, types::Polynom* pOut)
 
                 pSP = new types::SinglePoly(&pdRData, iOutRank);
                 pSP->getCoef()->setZeros();
-                iMultiRealPolyByRealPoly(pdblReal, iRank, pdblLastReal, iLastRank, pdRData, iOutRank);
+                iMultiScilabPolynomByScilabPolynom(pdblReal, iRank, pdblLastReal, iLastRank, pdRData, iOutRank);
 
                 pOut->set(i, pSP);
                 pdblLastReal = pdRData;
@@ -275,7 +275,7 @@ int cumprod(types::Polynom* pIn, int iOrientation, types::Polynom* pOut)
                         iOutRank = iLastRank + iRank - 1;
                         pSP = new types::SinglePoly(&pdRData, iOutRank);
 
-                        iMultiRealPolyByRealPoly(pdblReal, iRank, pdblLastReal, iLastRank, pdRData, iOutRank);
+                        iMultiScilabPolynomByScilabPolynom(pdblReal, iRank, pdblLastReal, iLastRank, pdRData, iOutRank);
 
                         pOut->set(i, pSP);
                         delete pSP;

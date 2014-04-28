@@ -30,8 +30,8 @@ using namespace types;
 InternalType *GenericRDivide(InternalType *_pLeftOperand, InternalType *_pRightOperand)
 {
     InternalType *pResult       = NULL;
-    GenericType::RealType TypeL = _pLeftOperand->getType();
-    GenericType::RealType TypeR = _pRightOperand->getType();
+    GenericType::ScilabType TypeL = _pLeftOperand->getType();
+    GenericType::ScilabType TypeR = _pRightOperand->getType();
 
     int iResult = 0;
 
@@ -48,7 +48,7 @@ InternalType *GenericRDivide(InternalType *_pLeftOperand, InternalType *_pRightO
     /*
     ** DOUBLE / DOUBLE
     */
-    if (TypeL == GenericType::RealDouble && TypeR == GenericType::RealDouble)
+    if (TypeL == GenericType::ScilabDouble && TypeR == GenericType::ScilabDouble)
     {
         Double *pL  = _pLeftOperand->getAs<Double>();
         Double *pR  = _pRightOperand->getAs<Double>();
@@ -59,7 +59,7 @@ InternalType *GenericRDivide(InternalType *_pLeftOperand, InternalType *_pRightO
     /*
     ** POLY / DOUBLE
     */
-    else if (TypeL == GenericType::RealPoly && TypeR == GenericType::RealDouble)
+    else if (TypeL == GenericType::ScilabPolynom && TypeR == GenericType::ScilabDouble)
     {
         Polynom *pL = _pLeftOperand->getAs<types::Polynom>();
         Double *pR  = _pRightOperand->getAs<Double>();
@@ -70,7 +70,7 @@ InternalType *GenericRDivide(InternalType *_pLeftOperand, InternalType *_pRightO
     /*
     ** DOUBLE / POLY
     */
-    else if (TypeL == GenericType::RealDouble && TypeR == GenericType::RealPoly)
+    else if (TypeL == GenericType::ScilabDouble && TypeR == GenericType::ScilabPolynom)
     {
         Double *pL  = _pLeftOperand->getAs<Double>();
         Polynom *pR = _pRightOperand->getAs<types::Polynom>();
@@ -110,8 +110,8 @@ InternalType *GenericRDivide(InternalType *_pLeftOperand, InternalType *_pRightO
 InternalType *GenericDotRDivide(InternalType *_pLeftOperand, InternalType *_pRightOperand)
 {
     InternalType *pResult       = NULL;
-    GenericType::RealType TypeL = _pLeftOperand->getType();
-    GenericType::RealType TypeR = _pRightOperand->getType();
+    GenericType::ScilabType TypeL = _pLeftOperand->getType();
+    GenericType::ScilabType TypeR = _pRightOperand->getType();
 
     int iResult = 0;
 
@@ -128,7 +128,7 @@ InternalType *GenericDotRDivide(InternalType *_pLeftOperand, InternalType *_pRig
     /*
     ** DOUBLE ./ DOUBLE
     */
-    if (TypeL == GenericType::RealDouble && TypeR == GenericType::RealDouble)
+    if (TypeL == GenericType::ScilabDouble && TypeR == GenericType::ScilabDouble)
     {
         Double *pL  = _pLeftOperand->getAs<Double>();
         Double *pR  = _pRightOperand->getAs<Double>();
@@ -136,13 +136,13 @@ InternalType *GenericDotRDivide(InternalType *_pLeftOperand, InternalType *_pRig
         iResult = DotRDivideDoubleByDouble(pL, pR, (Double**)&pResult);
     }
 
-    if (TypeL == GenericType::RealPoly && TypeR == GenericType::RealDouble)
+    if (TypeL == GenericType::ScilabPolynom && TypeR == GenericType::ScilabDouble)
     {
         Polynom *pL = _pLeftOperand->getAs<Polynom>();
         Double *pR  = _pRightOperand->getAs<Double>();
 
         // ou exclusif
-        if(pL->isScalar() ^ pR->isScalar())
+        if (pL->isScalar() ^ pR->isScalar())
         {
             // call overload
             return NULL;
@@ -696,7 +696,7 @@ int DotRDividePolyByDouble(Polynom* _pPoly1, Double* _pDouble2, Polynom** _pPoly
 
     // compute output ranks
     int* piRanks = new int[iSizePoly];
-    for(int i = 0; i < iSizePoly; i++)
+    for (int i = 0; i < iSizePoly; i++)
     {
         piRanks[i] = iMaxRank;
     }
@@ -710,7 +710,7 @@ int DotRDividePolyByDouble(Polynom* _pPoly1, Double* _pDouble2, Polynom** _pPoly
 
     int iZero = 0;
     double* pdbl = _pDouble2->get();
-    for(int i = 0; i < iSizePoly; i++)
+    for (int i = 0; i < iSizePoly; i++)
     {
         C2F(dcopy)(&iMaxRank, pdbl + i, &iZero, pdblCoef2 + i, &iSizePoly);
     }
@@ -731,10 +731,10 @@ int DotRDividePolyByDouble(Polynom* _pPoly1, Double* _pDouble2, Polynom** _pPoly
     else if (bComplex1 == false && bComplex2 == true)
     {
         // r ./ C
-//        iErr = iRightDivisionRealMatrixByComplexMatrix(
-//                   _pDouble1->getReal(), iInc1,
-//                   _pDouble2->getReal(), _pDouble2->getImg(), iInc2,
-//                   (*_pDoubleOut)->getReal(), (*_pDoubleOut)->getImg(), iIncOut, iSizeResult);
+        //        iErr = iRightDivisionRealMatrixByComplexMatrix(
+        //                   _pDouble1->getReal(), iInc1,
+        //                   _pDouble2->getReal(), _pDouble2->getImg(), iInc2,
+        //                   (*_pDoubleOut)->getReal(), (*_pDoubleOut)->getImg(), iIncOut, iSizeResult);
 
         // waiting for polynom rewrite about complex
         iErr = 10;
@@ -742,10 +742,10 @@ int DotRDividePolyByDouble(Polynom* _pPoly1, Double* _pDouble2, Polynom** _pPoly
     else if (bComplex1 == true && bComplex2 == false)
     {
         // c ./ R
-//        iErr = iRightDivisionComplexMatrixByRealMatrix(
-//                   _pDouble1->getReal(), _pDouble1->getImg(), iInc1,
-//                   _pDouble2->getReal(), iInc2,
-//                   (*_pDoubleOut)->getReal(), (*_pDoubleOut)->getImg(), iIncOut, iSizeResult);
+        //        iErr = iRightDivisionComplexMatrixByRealMatrix(
+        //                   _pDouble1->getReal(), _pDouble1->getImg(), iInc1,
+        //                   _pDouble2->getReal(), iInc2,
+        //                   (*_pDoubleOut)->getReal(), (*_pDoubleOut)->getImg(), iIncOut, iSizeResult);
 
         // waiting for polynom rewrite about complex
         iErr = 10;
@@ -753,10 +753,10 @@ int DotRDividePolyByDouble(Polynom* _pPoly1, Double* _pDouble2, Polynom** _pPoly
     else if (bComplex1 == true && bComplex2 == true)
     {
         // c ./ C
-//        iErr = iRightDivisionComplexMatrixByComplexMatrix(
-//                   _pDouble1->getReal(), _pDouble1->getImg(), iInc1,
-//                   _pDouble2->getReal(), _pDouble2->getImg(), iInc2,
-//                   (*_pDoubleOut)->getReal(), (*_pDoubleOut)->getImg(), iIncOut, iSizeResult);
+        //        iErr = iRightDivisionComplexMatrixByComplexMatrix(
+        //                   _pDouble1->getReal(), _pDouble1->getImg(), iInc1,
+        //                   _pDouble2->getReal(), _pDouble2->getImg(), iInc2,
+        //                   (*_pDoubleOut)->getReal(), (*_pDoubleOut)->getImg(), iIncOut, iSizeResult);
 
         // waiting for polynom rewrite about complex
         iErr = 10;

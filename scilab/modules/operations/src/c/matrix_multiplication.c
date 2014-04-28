@@ -149,7 +149,7 @@ int iMultiComplexScalarByComplexMatrix(
 
 
 /* (a1 + a2 * %s + ... ) * (a1 + a2 * %s + ... )*/
-EXTERN_OP int iMultiRealPolyByRealPoly(
+EXTERN_OP int iMultiScilabPolynomByScilabPolynom(
     double *_pdblReal1,	int _iRank1,
     double *_pdblReal2,	int _iRank2,
     double *_pdblRealOut, int _iRankOut)
@@ -169,7 +169,7 @@ EXTERN_OP int iMultiRealPolyByRealPoly(
 }
 
 /* ((a1 +ib1) + (a2+ib2) * %s + ... ) (a1 + a2 * %s + ... ) */
-EXTERN_OP int iMultiComplexPolyByRealPoly(
+EXTERN_OP int iMultiComplexPolyByScilabPolynom(
     double *_pdblReal1,	double *_pdblImg1, int _iRank1,
     double *_pdblReal2,	int _iRank2,
     double *_pdblRealOut, double *_pdblImgOut, int _iRankOut)
@@ -191,12 +191,12 @@ EXTERN_OP int iMultiComplexPolyByRealPoly(
 }
 
 /* (a1 + a2 * %s + ... ) * ((a1 +ib1) + (a2+ib2) * %s + ... )*/
-EXTERN_OP int iMultiRealPolyByComplexPoly(
+EXTERN_OP int iMultiScilabPolynomByComplexPoly(
     double *_pdblReal1,	int _iRank1,
     double *_pdblReal2,	double *_pdblImg2, int _iRank2,
     double *_pdblRealOut, double *_pdblImgOut, int _iRankOut)
 {
-    return iMultiComplexPolyByRealPoly(
+    return iMultiComplexPolyByScilabPolynom(
                _pdblReal2, _pdblImg2, _iRank2,
                _pdblReal1, _iRank1,
                _pdblRealOut, _pdblImgOut, _iRankOut);

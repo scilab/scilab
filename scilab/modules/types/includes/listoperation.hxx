@@ -27,7 +27,7 @@ public :
 
     InternalType*           clone();
 
-    RealType                getType(void);
+    ScilabType                getType(void);
     bool                    isListOperation()
     {
         return true;

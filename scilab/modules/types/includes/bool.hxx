@@ -66,7 +66,7 @@ public :
     }
 
 protected :
-    RealType				getType(void);
+    ScilabType				getType(void);
 
 private :
     virtual bool            subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims);

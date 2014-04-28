@@ -50,9 +50,9 @@ void MacroFile::whoAmI()
     std::cout << "types::MacroFile";
 }
 
-InternalType::RealType MacroFile::getType(void)
+InternalType::ScilabType MacroFile::getType(void)
 {
-    return RealMacroFile;
+    return ScilabMacroFile;
 }
 
 bool MacroFile::toString(std::wostringstream& ostr)

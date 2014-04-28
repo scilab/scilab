@@ -53,12 +53,12 @@ Function::ReturnValue sci_macrovar(types::typed_list &in, int _iRetCount, types:
     Macro* pM = NULL;
     switch (in[0]->getType())
     {
-        case InternalType::RealMacro :
+        case InternalType::ScilabMacro :
         {
             pM = in[0]->getAs<Macro>();
             break;
         }
-        case InternalType::RealMacroFile :
+        case InternalType::ScilabMacroFile :
         {
             MacroFile* pMF = in[0]->getAs<MacroFile>();
             pM = pMF->getMacro();

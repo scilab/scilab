@@ -225,35 +225,35 @@ int IntOrInt(InternalType* _pL, Bool** _pOut)
 {
     switch (_pL->getType())
     {
-        case InternalType::RealInt8 :
+        case InternalType::ScilabInt8 :
         {
             return IntOrInt(_pL->getAs<Int8>(), _pOut);
         }
-        case InternalType::RealUInt8 :
+        case InternalType::ScilabUInt8 :
         {
             return IntOrInt(_pL->getAs<UInt8>(), _pOut);
         }
-        case InternalType::RealInt16 :
+        case InternalType::ScilabInt16 :
         {
             return IntOrInt(_pL->getAs<Int16>(), _pOut);
         }
-        case InternalType::RealUInt16 :
+        case InternalType::ScilabUInt16 :
         {
             return IntOrInt(_pL->getAs<UInt16>(), _pOut);
         }
-        case InternalType::RealInt32 :
+        case InternalType::ScilabInt32 :
         {
             return IntOrInt(_pL->getAs<Int32>(), _pOut);
         }
-        case InternalType::RealUInt32 :
+        case InternalType::ScilabUInt32 :
         {
             return IntOrInt(_pL->getAs<UInt32>(), _pOut);
         }
-        case InternalType::RealInt64 :
+        case InternalType::ScilabInt64 :
         {
             return IntOrInt(_pL->getAs<Int64>(), _pOut);
         }
-        case InternalType::RealUInt64 :
+        case InternalType::ScilabUInt64 :
         {
             return IntOrInt(_pL->getAs<UInt64>(), _pOut);
         }
@@ -284,35 +284,35 @@ int IntAndInt(InternalType* _pL, Bool** _pOut)
 {
     switch (_pL->getType())
     {
-        case InternalType::RealInt8 :
+        case InternalType::ScilabInt8 :
         {
             return IntAndInt(_pL->getAs<Int8>(), _pOut);
         }
-        case InternalType::RealUInt8 :
+        case InternalType::ScilabUInt8 :
         {
             return IntAndInt(_pL->getAs<UInt8>(), _pOut);
         }
-        case InternalType::RealInt16 :
+        case InternalType::ScilabInt16 :
         {
             return IntAndInt(_pL->getAs<Int16>(), _pOut);
         }
-        case InternalType::RealUInt16 :
+        case InternalType::ScilabUInt16 :
         {
             return IntAndInt(_pL->getAs<UInt16>(), _pOut);
         }
-        case InternalType::RealInt32 :
+        case InternalType::ScilabInt32 :
         {
             return IntAndInt(_pL->getAs<Int32>(), _pOut);
         }
-        case InternalType::RealUInt32 :
+        case InternalType::ScilabUInt32 :
         {
             return IntAndInt(_pL->getAs<UInt32>(), _pOut);
         }
-        case InternalType::RealInt64 :
+        case InternalType::ScilabInt64 :
         {
             return IntAndInt(_pL->getAs<Int64>(), _pOut);
         }
-        case InternalType::RealUInt64 :
+        case InternalType::ScilabUInt64 :
         {
             return IntAndInt(_pL->getAs<UInt64>(), _pOut);
         }
@@ -382,35 +382,35 @@ int IntLogicalAndInt(InternalType* _pL, InternalType*  _pR, InternalType** _pOut
 {
     switch (_pL->getType())
     {
-        case InternalType::RealInt8 :
+        case InternalType::ScilabInt8 :
         {
             return IntLogicalAndInt(_pL->getAs<Int8>(), _pR->getAs<Int8>(), _pOut);
         }
-        case InternalType::RealUInt8 :
+        case InternalType::ScilabUInt8 :
         {
             return IntLogicalAndInt(_pL->getAs<UInt8>(), _pR->getAs<UInt8>(), _pOut);
         }
-        case InternalType::RealInt16 :
+        case InternalType::ScilabInt16 :
         {
             return IntLogicalAndInt(_pL->getAs<Int16>(), _pR->getAs<Int16>(), _pOut);
         }
-        case InternalType::RealUInt16 :
+        case InternalType::ScilabUInt16 :
         {
             return IntLogicalAndInt(_pL->getAs<UInt16>(), _pR->getAs<UInt16>(), _pOut);
         }
-        case InternalType::RealInt32 :
+        case InternalType::ScilabInt32 :
         {
             return IntLogicalAndInt(_pL->getAs<Int32>(), _pR->getAs<Int32>(), _pOut);
         }
-        case InternalType::RealUInt32 :
+        case InternalType::ScilabUInt32 :
         {
             return IntLogicalAndInt(_pL->getAs<UInt32>(), _pR->getAs<UInt32>(), _pOut);
         }
-        case InternalType::RealInt64 :
+        case InternalType::ScilabInt64 :
         {
             return IntLogicalAndInt(_pL->getAs<Int64>(), _pR->getAs<Int64>(), _pOut);
         }
-        case InternalType::RealUInt64 :
+        case InternalType::ScilabUInt64 :
         {
             return IntLogicalAndInt(_pL->getAs<UInt64>(), _pR->getAs<UInt64>(), _pOut);
         }
@@ -480,49 +480,49 @@ int IntLogicalOrInt(InternalType* _pL, InternalType*  _pR, InternalType** _pOut)
 {
     switch (_pL->getType())
     {
-        case InternalType::RealInt8 :
+        case InternalType::ScilabInt8 :
         {
             Int8* pI1 = _pL->getAs<Int8>();
             Int8* pI2 = _pR->getAs<Int8>();
             return IntLogicalOrInt(pI1, pI2, _pOut);
         }
-        case InternalType::RealUInt8 :
+        case InternalType::ScilabUInt8 :
         {
             UInt8* pI1 = _pL->getAs<UInt8>();
             UInt8* pI2 = _pR->getAs<UInt8>();
             return IntLogicalOrInt(pI1, pI2, _pOut);
         }
-        case InternalType::RealInt16 :
+        case InternalType::ScilabInt16 :
         {
             Int16* pI1 = _pL->getAs<Int16>();
             Int16* pI2 = _pR->getAs<Int16>();
             return IntLogicalOrInt(pI1, pI2, _pOut);
         }
-        case InternalType::RealUInt16 :
+        case InternalType::ScilabUInt16 :
         {
             UInt16* pI1 = _pL->getAs<UInt16>();
             UInt16* pI2 = _pR->getAs<UInt16>();
             return IntLogicalOrInt(pI1, pI2, _pOut);
         }
-        case InternalType::RealInt32 :
+        case InternalType::ScilabInt32 :
         {
             Int32* pI1 = _pL->getAs<Int32>();
             Int32* pI2 = _pR->getAs<Int32>();
             return IntLogicalOrInt(pI1, pI2, _pOut);
         }
-        case InternalType::RealUInt32 :
+        case InternalType::ScilabUInt32 :
         {
             UInt32* pI1 = _pL->getAs<UInt32>();
             UInt32* pI2 = _pR->getAs<UInt32>();
             return IntLogicalOrInt(pI1, pI2, _pOut);
         }
-        case InternalType::RealInt64 :
+        case InternalType::ScilabInt64 :
         {
             Int64* pI1 = _pL->getAs<Int64>();
             Int64* pI2 = _pR->getAs<Int64>();
             return IntLogicalOrInt(pI1, pI2, _pOut);
         }
-        case InternalType::RealUInt64 :
+        case InternalType::ScilabUInt64 :
         {
             UInt64* pI1 = _pL->getAs<UInt64>();
             UInt64* pI2 = _pR->getAs<UInt64>();

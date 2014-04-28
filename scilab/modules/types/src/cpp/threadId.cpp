@@ -62,9 +62,9 @@ InternalType* ThreadId::clone()
     return this;
 }
 
-InternalType::RealType ThreadId::getType()
+InternalType::ScilabType ThreadId::getType()
 {
-    return InternalType::RealThreadId;
+    return InternalType::ScilabThreadId;
 }
 
 std::wstring ThreadId::StatusToString(Status _status)

@@ -61,7 +61,7 @@ InternalType *GenericPlus(InternalType *_pLeftOperand, InternalType *_pRightOper
     }
 
     // FIXME: Overload or dedicated function.
-    //    else if(TypeL == GenericType::RealBool && TypeR == GenericType::RealBool)
+    //    else if(TypeL == GenericType::ScilabBool && TypeR == GenericType::ScilabBool)
     //    {
     //        //nothing to do, all in macro : %b_+_b
     //    }
@@ -86,7 +86,7 @@ InternalType *GenericPlus(InternalType *_pLeftOperand, InternalType *_pRightOper
     }
 
     // FIXME: Overload or dedicated function.
-    //    else if(TypeL == GenericType::RealInt && TypeR == GenericType::RealInt)
+    //    else if(TypeL == GenericType::ScilabInt && TypeR == GenericType::ScilabInt)
     //    {
     //    }
 
@@ -853,7 +853,7 @@ int AddPolyToPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom ** _pPolyOut)
     {
         for (int i = 0 ; i < _pPoly1->getSize() ; i++)
         {
-            iAddRealPolyToRealPoly(
+            iAddScilabPolynomToScilabPolynom(
                 _pPoly1->get(i)->getCoef()->getReal(), pRank1[i],
                 _pPoly2->get(i)->getCoef()->getReal(), pRank2[i],
                 (*_pPolyOut)->get(i)->getCoef()->getReal(), pRank[i]);
@@ -863,7 +863,7 @@ int AddPolyToPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom ** _pPolyOut)
     {
         for (int i = 0 ; i < _pPoly1->getSize() ; i++)
         {
-            iAddRealPolyToComplexPoly(
+            iAddScilabPolynomToComplexPoly(
                 _pPoly1->get(i)->getCoef()->getReal(), pRank1[i],
                 _pPoly2->get(i)->getCoef()->getReal(), _pPoly2->get(i)->getCoef()->getImg(), pRank2[i],
                 (*_pPolyOut)->get(i)->getCoef()->getReal(), (*_pPolyOut)->get(i)->getCoef()->getImg(), pRank[i]);
@@ -873,7 +873,7 @@ int AddPolyToPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom ** _pPolyOut)
     {
         for (int i = 0 ; i < _pPoly1->getSize() ; i++)
         {
-            iAddRealPolyToComplexPoly(
+            iAddScilabPolynomToComplexPoly(
                 _pPoly2->get(i)->getCoef()->getReal(), pRank2[i],
                 _pPoly1->get(i)->getCoef()->getReal(), _pPoly1->get(i)->getCoef()->getImg(), pRank1[i],
                 (*_pPolyOut)->get(i)->getCoef()->getReal(), (*_pPolyOut)->get(i)->getCoef()->getImg(), pRank[i]);

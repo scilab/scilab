@@ -29,8 +29,8 @@ using namespace types;
 InternalType *GenericLDivide(InternalType *_pLeftOperand, InternalType *_pRightOperand)
 {
     InternalType *pResult       = NULL;
-    GenericType::RealType TypeL = _pLeftOperand->getType();
-    GenericType::RealType TypeR = _pRightOperand->getType();
+    GenericType::ScilabType TypeL = _pLeftOperand->getType();
+    GenericType::ScilabType TypeR = _pRightOperand->getType();
 
     int iResult = 0;
 
@@ -47,7 +47,7 @@ InternalType *GenericLDivide(InternalType *_pLeftOperand, InternalType *_pRightO
     /*
     ** DOUBLE \ DOUBLE
     */
-    if (TypeL == GenericType::RealDouble && TypeR == GenericType::RealDouble)
+    if (TypeL == GenericType::ScilabDouble && TypeR == GenericType::ScilabDouble)
     {
         Double *pL  = _pLeftOperand->getAs<Double>();
         Double *pR  = _pRightOperand->getAs<Double>();
@@ -83,8 +83,8 @@ InternalType *GenericLDivide(InternalType *_pLeftOperand, InternalType *_pRightO
 InternalType *GenericDotLDivide(InternalType *_pLeftOperand, InternalType *_pRightOperand)
 {
     InternalType *pResult       = NULL;
-    GenericType::RealType TypeL = _pLeftOperand->getType();
-    GenericType::RealType TypeR = _pRightOperand->getType();
+    GenericType::ScilabType TypeL = _pLeftOperand->getType();
+    GenericType::ScilabType TypeR = _pRightOperand->getType();
 
     int iResult = 0;
 
@@ -101,7 +101,7 @@ InternalType *GenericDotLDivide(InternalType *_pLeftOperand, InternalType *_pRig
     /*
     ** DOUBLE .\ DOUBLE
     */
-    if (TypeL == GenericType::RealDouble && TypeR == GenericType::RealDouble)
+    if (TypeL == GenericType::ScilabDouble && TypeR == GenericType::ScilabDouble)
     {
         Double *pL  = _pLeftOperand->getAs<Double>();
         Double *pR  = _pRightOperand->getAs<Double>();

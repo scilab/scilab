@@ -45,9 +45,9 @@ public :
         std::cout << "types::Cell";
     };
 
-    RealType            getType(void)
+    ScilabType            getType(void)
     {
-        return RealCell;
+        return ScilabCell;
     }
     bool                isCell()
     {

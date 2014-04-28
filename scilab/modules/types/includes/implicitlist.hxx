@@ -43,10 +43,10 @@ protected :
 
     int			            m_iSize;
 
-    InternalType::RealType  m_eStartType;
-    InternalType::RealType  m_eStepType;
-    InternalType::RealType  m_eEndType;
-    InternalType::RealType  m_eOutType;
+    InternalType::ScilabType  m_eStartType;
+    InternalType::ScilabType  m_eStepType;
+    InternalType::ScilabType  m_eEndType;
+    InternalType::ScilabType  m_eOutType;
 
     bool                    m_bComputed;
 
@@ -57,16 +57,16 @@ public :
 
     InternalType*           clone();
 
-    RealType                getType(void)
+    ScilabType                getType(void)
     {
-        return RealImplicitList;
+        return ScilabImplicitList;
     }
     bool                    isImplicitList()
     {
         return true;
     }
 
-    RealType                getOutputType();
+    ScilabType                getOutputType();
 
     InternalType*           getStart();
     void                    setStart(InternalType*	_poIT);
@@ -83,9 +83,9 @@ public :
     bool                    toString(std::wostringstream& ostr);
 
 
-    InternalType::RealType  getStartType();
-    InternalType::RealType  getStepType();
-    InternalType::RealType  getEndType();
+    InternalType::ScilabType  getStartType();
+    InternalType::ScilabType  getStepType();
+    InternalType::ScilabType  getEndType();
 
     long long               getSize();
 

@@ -48,9 +48,9 @@ InternalType* ListInsert::clone(void)
     return new ListInsert(m_pInsert);
 }
 
-InternalType::RealType ListInsert::getType(void)
+InternalType::ScilabType ListInsert::getType(void)
 {
-    return RealListInsertOperation;
+    return ScilabListInsertOperation;
 }
 
 bool ListInsert::toString(std::wostringstream& ostr)

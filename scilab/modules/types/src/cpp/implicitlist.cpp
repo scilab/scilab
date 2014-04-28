@@ -83,7 +83,7 @@ ImplicitList::~ImplicitList()
 ImplicitList::ImplicitList()
 {
     m_iSize     = -1;
-    m_eOutType  = RealGeneric;
+    m_eOutType  = ScilabGeneric;
     m_bComputed = false;
     m_poStart   = NULL;
     m_poStep    = NULL;
@@ -100,7 +100,7 @@ ImplicitList::ImplicitList()
 ImplicitList::ImplicitList(InternalType* _poStart, InternalType* _poStep, InternalType* _poEnd)
 {
     m_iSize     = -1;
-    m_eOutType  = RealGeneric;
+    m_eOutType  = ScilabGeneric;
     m_bComputed = false;
     m_poStart   = NULL;
     m_poStep    = NULL;
@@ -123,17 +123,17 @@ InternalType* ImplicitList::clone()
     return new ImplicitList(m_poStart, m_poStep, m_poEnd);
 }
 
-InternalType::RealType ImplicitList::getStartType()
+InternalType::ScilabType ImplicitList::getStartType()
 {
     return m_poStart->getType();
 }
 
-InternalType::RealType ImplicitList::getStepType()
+InternalType::ScilabType ImplicitList::getStepType()
 {
     return m_poStep->getType();
 }
 
-InternalType::RealType ImplicitList::getEndType()
+InternalType::ScilabType ImplicitList::getEndType()
 {
     return m_poEnd->getType();
 }
@@ -235,7 +235,7 @@ bool ImplicitList::compute()
     if (isComputable() == true)
     {
         m_iSize = 0;
-        if (m_eOutType == RealDouble)
+        if (m_eOutType == ScilabDouble)
         {
             m_pDblStart = m_poStart->getAs<Double>();
             double dblStart	= m_pDblStart->get(0);
@@ -311,12 +311,12 @@ bool ImplicitList::compute()
             //}
             //                m_iSize = static_cast<long long>(floor(fabs(dblEnd - dblStart) / fabs(dblStep))) + 1;
         }
-        else //m_eOutType == RealInt
+        else //m_eOutType == ScilabInt
         {
-            if (m_eOutType == RealInt8 ||
-                    m_eOutType == RealInt16 ||
-                    m_eOutType == RealInt32 ||
-                    m_eOutType == RealInt64)
+            if (m_eOutType == ScilabInt8 ||
+                    m_eOutType == ScilabInt16 ||
+                    m_eOutType == ScilabInt32 ||
+                    m_eOutType == ScilabInt64)
             {
                 //signed
                 long long llStart   = convert_input(m_poStart);
@@ -354,23 +354,23 @@ bool ImplicitList::compute()
 
 bool ImplicitList::isComputable()
 {
-    if (m_eStartType != RealDouble && m_poStart->isInt() == false)
+    if (m_eStartType != ScilabDouble && m_poStart->isInt() == false)
     {
         return false;
     }
 
-    if (m_eStepType != RealDouble && m_poStep->isInt() == false)
+    if (m_eStepType != ScilabDouble && m_poStep->isInt() == false)
     {
         return false;
     }
 
-    if (m_eEndType != RealDouble && m_poEnd->isInt() == false)
+    if (m_eEndType != ScilabDouble && m_poEnd->isInt() == false)
     {
         return false;
     }
 
     //"compute" output type
-    m_eOutType = RealGeneric; //not defined type
+    m_eOutType = ScilabGeneric; //not defined type
     if (m_poStart->isInt())
     {
         m_eOutType  = m_poStart->getType();
@@ -385,7 +385,7 @@ bool ImplicitList::isComputable()
     }
     else
     {
-        m_eOutType  = RealDouble;
+        m_eOutType  = ScilabDouble;
     }
 
     return true;
@@ -400,7 +400,7 @@ bool ImplicitList::toString(std::wostringstream& ostr)
     else
     {
         ostr << L" ";
-        if (m_eStartType == RealDouble)
+        if (m_eStartType == ScilabDouble)
         {
             Double *pD = m_poStart->getAs<Double>();
             ostr << printDouble(pD);
@@ -413,7 +413,7 @@ bool ImplicitList::toString(std::wostringstream& ostr)
 
         ostr << L":";
 
-        if (m_eStepType == RealDouble)
+        if (m_eStepType == ScilabDouble)
         {
             Double *pD = m_poStep->getAs<Double>();
             ostr << printDouble(pD);
@@ -426,7 +426,7 @@ bool ImplicitList::toString(std::wostringstream& ostr)
 
         ostr << L":";
 
-        if (m_eEndType == RealDouble)
+        if (m_eEndType == ScilabDouble)
         {
             Double *pD = m_poEnd->getAs<Double>();
             ostr << printDouble(pD);
@@ -441,7 +441,7 @@ bool ImplicitList::toString(std::wostringstream& ostr)
     }
 }
 
-InternalType::RealType ImplicitList::getOutputType()
+InternalType::ScilabType ImplicitList::getOutputType()
 {
     return m_eOutType;
 }
@@ -471,39 +471,39 @@ InternalType* ImplicitList::extractValue(int _iOccur)
     {
         long long llVal             = extractValueInInteger(_iOccur);
         unsigned long long ullVal   = extractValueInUnsignedInteger(_iOccur);
-        if (m_eOutType == RealInt8)
+        if (m_eOutType == ScilabInt8)
         {
             pIT	= new Int8((char)llVal);
         }
-        else if (m_eOutType == RealUInt8)
+        else if (m_eOutType == ScilabUInt8)
         {
             pIT	= new UInt8((unsigned char)ullVal);
         }
-        else if (m_eOutType == RealInt16)
+        else if (m_eOutType == ScilabInt16)
         {
             pIT	= new Int16((short)llVal);
         }
-        else if (m_eOutType == RealUInt16)
+        else if (m_eOutType == ScilabUInt16)
         {
             pIT	= new UInt16((unsigned short)ullVal);
         }
-        else if (m_eOutType == RealInt32)
+        else if (m_eOutType == ScilabInt32)
         {
             pIT	= new Int32((int)llVal);
         }
-        else if (m_eOutType == RealUInt32)
+        else if (m_eOutType == ScilabUInt32)
         {
             pIT	= new UInt32((unsigned int)ullVal);
         }
-        else if (m_eOutType == RealInt64)
+        else if (m_eOutType == ScilabInt64)
         {
             pIT	= new Int64((long long)llVal);
         }
-        else if (m_eOutType == RealUInt64)
+        else if (m_eOutType == ScilabUInt64)
         {
             pIT	= new UInt64((unsigned long long)ullVal);
         }
-        else //RealDouble
+        else //ScilabDouble
         {
             double dblStart = m_poStart->getAs<Double>()->getReal(0, 0);
             double dblStep  = m_poStep->getAs<Double>()->getReal(0, 0);
@@ -530,47 +530,47 @@ InternalType* ImplicitList::extractFullMatrix()
             double not_a_number = *( double* )&raw;
             pIT = new Double(not_a_number);
         }
-        else if (m_eOutType == RealDouble)
+        else if (m_eOutType == ScilabDouble)
         {
             pIT = new Double(1, m_iSize);
             extractFullMatrix(pIT->getAs<Double>()->get());
         }
-        else if (m_eOutType == RealInt8)
+        else if (m_eOutType == ScilabInt8)
         {
             pIT	= new Int8(1, m_iSize);
             extractFullMatrix(pIT->getAs<Int8>()->get());
         }
-        else if (m_eOutType == RealUInt8)
+        else if (m_eOutType == ScilabUInt8)
         {
             pIT	= new UInt8(1, m_iSize);
             extractFullMatrix(pIT->getAs<UInt8>()->get());
         }
-        else if (m_eOutType == RealInt16)
+        else if (m_eOutType == ScilabInt16)
         {
             pIT	= new Int16(1, m_iSize);
             extractFullMatrix(pIT->getAs<Int16>()->get());
         }
-        else if (m_eOutType == RealUInt16)
+        else if (m_eOutType == ScilabUInt16)
         {
             pIT	= new UInt16(1, m_iSize);
             extractFullMatrix(pIT->getAs<UInt16>()->get());
         }
-        else if (m_eOutType == RealInt32)
+        else if (m_eOutType == ScilabInt32)
         {
             pIT	= new Int32(1, m_iSize);
             extractFullMatrix(pIT->getAs<Int32>()->get());
         }
-        else if (m_eOutType == RealUInt32)
+        else if (m_eOutType == ScilabUInt32)
         {
             pIT	= new UInt32(1, m_iSize);
             extractFullMatrix(pIT->getAs<UInt32>()->get());
         }
-        else if (m_eOutType == RealInt64)
+        else if (m_eOutType == ScilabInt64)
         {
             pIT	= new Int64(1, m_iSize);
             extractFullMatrix(pIT->getAs<Int64>()->get());
         }
-        else if (m_eOutType == RealUInt64)
+        else if (m_eOutType == ScilabUInt64)
         {
             pIT	= new UInt64(1, m_iSize);
             extractFullMatrix(pIT->getAs<UInt64>()->get());
@@ -646,31 +646,31 @@ long long convert_input(types::InternalType* _poIT)
     long long llValue = 0;
     switch (_poIT->getType())
     {
-        case types::GenericType::RealDouble :
+        case types::GenericType::ScilabDouble :
             llValue = static_cast<long long>(_poIT->getAs<types::Double>()->get(0));
             break;
-        case types::GenericType::RealInt8 :
+        case types::GenericType::ScilabInt8 :
             llValue = static_cast<long long>(_poIT->getAs<types::Int8>()->get(0));
             break;
-        case types::GenericType::RealUInt8 :
+        case types::GenericType::ScilabUInt8 :
             llValue = static_cast<long long>(_poIT->getAs<types::UInt8>()->get(0));
             break;
-        case types::GenericType::RealInt16 :
+        case types::GenericType::ScilabInt16 :
             llValue = static_cast<long long>(_poIT->getAs<types::Int16>()->get(0));
             break;
-        case types::GenericType::RealUInt16 :
+        case types::GenericType::ScilabUInt16 :
             llValue = static_cast<long long>(_poIT->getAs<types::UInt16>()->get(0));
             break;
-        case types::GenericType::RealInt32 :
+        case types::GenericType::ScilabInt32 :
             llValue = static_cast<long long>(_poIT->getAs<types::Int32>()->get(0));
             break;
-        case types::GenericType::RealUInt32 :
+        case types::GenericType::ScilabUInt32 :
             llValue = static_cast<long long>(_poIT->getAs<types::UInt32>()->get(0));
             break;
-        case types::GenericType::RealInt64 :
+        case types::GenericType::ScilabInt64 :
             llValue = static_cast<long long>(_poIT->getAs<types::Int64>()->get(0));
             break;
-        case types::GenericType::RealUInt64 :
+        case types::GenericType::ScilabUInt64 :
             llValue = static_cast<long long>(_poIT->getAs<types::UInt64>()->get(0));
             break;
         default:
@@ -685,31 +685,31 @@ unsigned long long convert_unsigned_input(types::InternalType* _poIT)
     unsigned long long ullValue = 0;
     switch (_poIT->getType())
     {
-        case types::GenericType::RealDouble :
+        case types::GenericType::ScilabDouble :
             ullValue = static_cast<unsigned long long>(_poIT->getAs<types::Double>()->get(0));
             break;
-        case types::GenericType::RealInt8 :
+        case types::GenericType::ScilabInt8 :
             ullValue = static_cast<unsigned long long>(_poIT->getAs<types::Int8>()->get(0));
             break;
-        case types::GenericType::RealUInt8 :
+        case types::GenericType::ScilabUInt8 :
             ullValue = static_cast<unsigned long long>(_poIT->getAs<types::UInt8>()->get(0));
             break;
-        case types::GenericType::RealInt16 :
+        case types::GenericType::ScilabInt16 :
             ullValue = static_cast<unsigned long long>(_poIT->getAs<types::Int16>()->get(0));
             break;
-        case types::GenericType::RealUInt16 :
+        case types::GenericType::ScilabUInt16 :
             ullValue = static_cast<unsigned long long>(_poIT->getAs<types::UInt16>()->get(0));
             break;
-        case types::GenericType::RealInt32 :
+        case types::GenericType::ScilabInt32 :
             ullValue = static_cast<unsigned long long>(_poIT->getAs<types::Int32>()->get(0));
             break;
-        case types::GenericType::RealUInt32 :
+        case types::GenericType::ScilabUInt32 :
             ullValue = static_cast<unsigned long long>(_poIT->getAs<types::UInt32>()->get(0));
             break;
-        case types::GenericType::RealInt64 :
+        case types::GenericType::ScilabInt64 :
             ullValue = static_cast<unsigned long long>(_poIT->getAs<types::Int64>()->get(0));
             break;
-        case types::GenericType::RealUInt64 :
+        case types::GenericType::ScilabUInt64 :
             ullValue = static_cast<unsigned long long>(_poIT->getAs<types::UInt64>()->get(0));
             break;
         default:

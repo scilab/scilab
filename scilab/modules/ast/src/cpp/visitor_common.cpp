@@ -95,35 +95,35 @@ static bool isIntTrue(InternalType* _pIT)
 {
     switch (_pIT->getType())
     {
-        case InternalType::RealInt8 :
+        case InternalType::ScilabInt8 :
         {
             return isIntTrue(_pIT->getAs<Int8>());
         }
-        case InternalType::RealUInt8 :
+        case InternalType::ScilabUInt8 :
         {
             return isIntTrue(_pIT->getAs<UInt8>());
         }
-        case InternalType::RealInt16 :
+        case InternalType::ScilabInt16 :
         {
             return isIntTrue(_pIT->getAs<Int16>());
         }
-        case InternalType::RealUInt16 :
+        case InternalType::ScilabUInt16 :
         {
             return isIntTrue(_pIT->getAs<UInt16>());
         }
-        case InternalType::RealInt32 :
+        case InternalType::ScilabInt32 :
         {
             return isIntTrue(_pIT->getAs<Int32>());
         }
-        case InternalType::RealUInt32 :
+        case InternalType::ScilabUInt32 :
         {
             return isIntTrue(_pIT->getAs<UInt32>());
         }
-        case InternalType::RealInt64 :
+        case InternalType::ScilabInt64 :
         {
             return isIntTrue(_pIT->getAs<Int64>());
         }
-        case InternalType::RealUInt64 :
+        case InternalType::ScilabUInt64 :
         {
             return isIntTrue(_pIT->getAs<UInt64>());
         }
@@ -142,40 +142,40 @@ types::InternalType* allocDest(types::InternalType* _poSource, int _iRows, int _
     types::InternalType* poResult = NULL;
     switch (_poSource->getType())
     {
-        case types::GenericType::RealDouble :
+        case types::GenericType::ScilabDouble :
             poResult = new types::Double(_iRows, _iCols, false);
             break;
-        case types::GenericType::RealBool :
+        case types::GenericType::ScilabBool :
             poResult = new types::Bool(_iRows, _iCols);
             break;
-        case types::GenericType::RealInt8 :
+        case types::GenericType::ScilabInt8 :
             poResult = new types::Int8(_iRows, _iCols);
             break;
-        case types::GenericType::RealUInt8 :
+        case types::GenericType::ScilabUInt8 :
             poResult = new types::UInt8(_iRows, _iCols);
             break;
-        case types::GenericType::RealInt16 :
+        case types::GenericType::ScilabInt16 :
             poResult = new types::Int16(_iRows, _iCols);
             break;
-        case types::GenericType::RealUInt16 :
+        case types::GenericType::ScilabUInt16 :
             poResult = new types::UInt16(_iRows, _iCols);
             break;
-        case types::GenericType::RealInt32 :
+        case types::GenericType::ScilabInt32 :
             poResult = new types::Int32(_iRows, _iCols);
             break;
-        case types::GenericType::RealUInt32 :
+        case types::GenericType::ScilabUInt32 :
             poResult = new types::UInt32(_iRows, _iCols);
             break;
-        case types::GenericType::RealInt64 :
+        case types::GenericType::ScilabInt64 :
             poResult = new types::Int64(_iRows, _iCols);
             break;
-        case types::GenericType::RealUInt64 :
+        case types::GenericType::ScilabUInt64 :
             poResult = new types::UInt64(_iRows, _iCols);
             break;
-        case types::GenericType::RealString :
+        case types::GenericType::ScilabString :
             poResult = new types::String(_iRows, _iCols);
             break;
-        case types::GenericType::RealPoly :
+        case types::GenericType::ScilabPolynom :
         {
             int* piRank = new int[_iRows * _iCols];
             for (int i = 0 ; i < _iRows * _iCols ; i++)
@@ -185,7 +185,7 @@ types::InternalType* allocDest(types::InternalType* _poSource, int _iRows, int _
             poResult = new types::Polynom(_poSource->getAs<types::Polynom>()->getVariableName(), _iRows, _iCols, piRank);
             break;
         }
-        case types::InternalType::RealImplicitList :
+        case types::InternalType::ScilabImplicitList :
             poResult = new types::ImplicitList();
             break;
         default :
@@ -198,8 +198,8 @@ types::InternalType* allocDest(types::InternalType* _poSource, int _iRows, int _
 types::InternalType* AddElementToVariableFromCol(types::InternalType* _poDest, types::InternalType* _poSource, int _iRows, int _iCols, int *_piCols)
 {
     types::InternalType *poResult	            = NULL;
-    types::InternalType::RealType TypeSource	= _poSource->getType();
-    types::InternalType::RealType TypeDest		= types::InternalType::RealInternal;
+    types::InternalType::ScilabType TypeSource	= _poSource->getType();
+    types::InternalType::ScilabType TypeDest		= types::InternalType::ScilabInternal;
     int iCurRow                                 = _iRows;
     int iCurCol                                 = _iCols;
 
@@ -226,7 +226,7 @@ types::InternalType* AddElementToVariableFromCol(types::InternalType* _poDest, t
     {
         switch (TypeDest)
         {
-            case types::GenericType::RealDouble :
+            case types::GenericType::ScilabDouble :
                 if (poResult->getAs<types::Double>()->isComplex() == false && _poSource->getAs<types::Double>()->isComplex() == true)
                 {
                     poResult->getAs<types::Double>()->setComplex(true);
@@ -247,8 +247,8 @@ types::InternalType* AddElementToVariableFromCol(types::InternalType* _poDest, t
 types::InternalType* AddElementToVariableFromRow(types::InternalType* _poDest, types::InternalType* _poSource, int _iRows, int _iCols, int *_piRows)
 {
     types::InternalType *poResult	            = NULL;
-    types::InternalType::RealType TypeSource	= _poSource->getType();
-    types::InternalType::RealType TypeDest		= types::InternalType::RealInternal;
+    types::InternalType::ScilabType TypeSource	= _poSource->getType();
+    types::InternalType::ScilabType TypeDest		= types::InternalType::ScilabInternal;
     int iCurRow                                 = _iRows;
     int iCurCol                                 = _iCols;
 
@@ -275,7 +275,7 @@ types::InternalType* AddElementToVariableFromRow(types::InternalType* _poDest, t
     {
         switch (TypeDest)
         {
-            case types::GenericType::RealDouble :
+            case types::GenericType::ScilabDouble :
                 if (poResult->getAs<types::Double>()->isComplex() == false && _poSource->getAs<types::Double>()->isComplex() == true)
                 {
                     poResult->getAs<types::Double>()->setComplex(true);
@@ -301,8 +301,8 @@ _iCols : Position if _poDest allready initialized else size of the matrix
 types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::InternalType* _poSource, int _iRows, int _iCols)
 {
     types::InternalType *poResult	= NULL;
-    types::InternalType::RealType TypeSource	= _poSource->getType();
-    types::InternalType::RealType TypeDest		=	types::InternalType::RealInternal;
+    types::InternalType::ScilabType TypeSource	= _poSource->getType();
+    types::InternalType::ScilabType TypeDest		=	types::InternalType::ScilabInternal;
     int iCurRow = _iRows;
     int iCurCol = _iCols;
 
@@ -310,46 +310,46 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
     {
         switch (TypeSource)
         {
-            case types::GenericType::RealDouble :
+            case types::GenericType::ScilabDouble :
                 poResult = new types::Double(_iRows, _iCols, false);
                 break;
-            case types::GenericType::RealBool :
+            case types::GenericType::ScilabBool :
                 poResult = new types::Bool(_iRows, _iCols);
                 break;
-            case types::GenericType::RealInt8 :
+            case types::GenericType::ScilabInt8 :
                 poResult = new types::Int8(_iRows, _iCols);
                 break;
-            case types::GenericType::RealUInt8 :
+            case types::GenericType::ScilabUInt8 :
                 poResult = new types::UInt8(_iRows, _iCols);
                 break;
-            case types::GenericType::RealInt16 :
+            case types::GenericType::ScilabInt16 :
                 poResult = new types::Int16(_iRows, _iCols);
                 break;
-            case types::GenericType::RealUInt16 :
+            case types::GenericType::ScilabUInt16 :
                 poResult = new types::UInt16(_iRows, _iCols);
                 break;
-            case types::GenericType::RealInt32 :
+            case types::GenericType::ScilabInt32 :
                 poResult = new types::Int32(_iRows, _iCols);
                 break;
-            case types::GenericType::RealUInt32 :
+            case types::GenericType::ScilabUInt32 :
                 poResult = new types::UInt32(_iRows, _iCols);
                 break;
-            case types::GenericType::RealInt64 :
+            case types::GenericType::ScilabInt64 :
                 poResult = new types::Int64(_iRows, _iCols);
                 break;
-            case types::GenericType::RealUInt64 :
+            case types::GenericType::ScilabUInt64 :
                 poResult = new types::UInt64(_iRows, _iCols);
                 break;
-            case types::GenericType::RealString :
+            case types::GenericType::ScilabString :
                 poResult = new types::String(_iRows, _iCols);
                 break;
-            case types::GenericType::RealSparse :
+            case types::GenericType::ScilabSparse :
                 poResult = new types::Sparse(_iRows, _iCols);
                 break;
-            case types::GenericType::RealSparseBool :
+            case types::GenericType::ScilabSparseBool :
                 poResult = new types::SparseBool(_iRows, _iCols);
                 break;
-            case types::GenericType::RealPoly :
+            case types::GenericType::ScilabPolynom :
             {
                 int* piRank = new int[_iRows * _iCols];
                 for (int i = 0 ; i < _iRows * _iCols ; i++)
@@ -359,10 +359,10 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
                 poResult = new types::Polynom(_poSource->getAs<types::Polynom>()->getVariableName(), _iRows, _iCols, piRank);
                 break;
             }
-            case types::InternalType::RealImplicitList :
+            case types::InternalType::ScilabImplicitList :
                 poResult = new types::ImplicitList();
                 break;
-            case types::GenericType::RealHandle :
+            case types::GenericType::ScilabHandle :
                 poResult = new types::GraphicHandle(_iRows, _iCols);
                 break;
             default :
@@ -385,11 +385,11 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
         //check if source type is compatible with dest type
         switch (TypeDest)
         {
-            case types::GenericType::RealDouble :
-                if (TypeSource == types::GenericType::RealPoly)
+            case types::GenericType::ScilabDouble :
+                if (TypeSource == types::GenericType::ScilabPolynom)
                 {
                     types::Double *poDest = _poDest->getAs<types::Double>();
-                    //Convert Dest to RealPoly
+                    //Convert Dest to ScilabPolynom
                     int *piRank = new int[poDest->getSize()];
                     for (int i = 0 ; i < poDest->getSize() ; i++)
                     {
@@ -427,8 +427,8 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
                     }
                 }
                 break;
-            case types::GenericType::RealPoly :
-                if (TypeSource == types::GenericType::RealDouble)
+            case types::GenericType::ScilabPolynom :
+                if (TypeSource == types::GenericType::ScilabDouble)
                 {
                     //Add Source like coef of the new element
                     Double* pD = _poSource->getAs<Double>();
@@ -466,8 +466,8 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
                     }
                 }
                 break;
-            case types::GenericType::RealSparse :
-                if (TypeSource == types::GenericType::RealDouble)
+            case types::GenericType::ScilabSparse :
+                if (TypeSource == types::GenericType::ScilabDouble)
                 {
                     types::Double* poSource = _poSource->getAs<types::Double>();
                     types::Sparse* spResult = poResult->getAs<types::Sparse>();
@@ -530,8 +530,8 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
                     }
                 }
                 break;
-            case types::GenericType::RealSparseBool :
-                if (TypeSource == types::GenericType::RealBool)
+            case types::GenericType::ScilabSparseBool :
+                if (TypeSource == types::GenericType::ScilabBool)
                 {
                     types::Bool* poSource = _poSource->getAs<types::Bool>();
                     types::SparseBool* spResult = poResult->getAs<types::SparseBool>();
@@ -560,54 +560,54 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
         //Just add the new value in the current item
         switch (TypeDest)
         {
-            case types::GenericType::RealDouble :
+            case types::GenericType::ScilabDouble :
                 ((Double*)poResult)->append(iCurRow, iCurCol, (Double*)_poSource);
                 break;
-            case types::GenericType::RealPoly :
+            case types::GenericType::ScilabPolynom :
                 poResult->getAs<types::Polynom>()->append(iCurRow, iCurCol, _poSource->getAs<types::Polynom>());
                 break;
-            case types::GenericType::RealBool:
+            case types::GenericType::ScilabBool:
                 poResult->getAs<types::Bool>()->append(iCurRow, iCurCol, _poSource->getAs<types::Bool>());
                 break;
-            case types::GenericType::RealInt8 :
+            case types::GenericType::ScilabInt8 :
                 poResult->getAs<types::Int8>()->append(iCurRow, iCurCol, _poSource->getAs<types::Int8>());
                 break;
-            case types::GenericType::RealUInt8 :
+            case types::GenericType::ScilabUInt8 :
                 poResult->getAs<types::UInt8>()->append(iCurRow, iCurCol, _poSource->getAs<types::UInt8>());
                 break;
-            case types::GenericType::RealInt16 :
+            case types::GenericType::ScilabInt16 :
                 poResult->getAs<types::Int16>()->append(iCurRow, iCurCol, _poSource->getAs<types::Int16>());
                 break;
-            case types::GenericType::RealUInt16 :
+            case types::GenericType::ScilabUInt16 :
                 poResult->getAs<types::UInt16>()->append(iCurRow, iCurCol, _poSource->getAs<types::UInt16>());
                 break;
-            case types::GenericType::RealInt32 :
+            case types::GenericType::ScilabInt32 :
                 poResult->getAs<types::Int32>()->append(iCurRow, iCurCol, _poSource->getAs<types::Int32>());
                 break;
-            case types::GenericType::RealUInt32 :
+            case types::GenericType::ScilabUInt32 :
                 poResult->getAs<types::UInt32>()->append(iCurRow, iCurCol, _poSource->getAs<types::UInt32>());
                 break;
-            case types::GenericType::RealInt64 :
+            case types::GenericType::ScilabInt64 :
                 poResult->getAs<types::Int64>()->append(iCurRow, iCurCol, _poSource->getAs<types::Int64>());
                 break;
-            case types::GenericType::RealUInt64 :
+            case types::GenericType::ScilabUInt64 :
                 poResult->getAs<types::UInt64>()->append(iCurRow, iCurCol, _poSource->getAs<types::UInt64>());
                 break;
-            case types::GenericType::RealSparse :
+            case types::GenericType::ScilabSparse :
                 poResult->getAs<types::Sparse>()->append(iCurRow, iCurCol, _poSource->getAs<types::Sparse>());
                 break;
-            case types::GenericType::RealSparseBool :
+            case types::GenericType::ScilabSparseBool :
                 poResult->getAs<types::SparseBool>()->append(iCurRow, iCurCol, _poSource->getAs<types::SparseBool>());
                 break;
-            case types::GenericType::RealString :
+            case types::GenericType::ScilabString :
             {
                 types::String* pSource = _poSource->getAs<types::String>();
                 poResult->getAs<types::String>()->append(iCurRow, iCurCol, pSource);
             }
             break;
-            case types::GenericType::RealImplicitList :
+            case types::GenericType::ScilabImplicitList :
             {
-                if (_poSource->getAs<ImplicitList>()->getStartType() == types::InternalType::RealPoly)
+                if (_poSource->getAs<ImplicitList>()->getStartType() == types::InternalType::ScilabPolynom)
                 {
                     poResult->getAs<ImplicitList>()->setStart(_poSource->getAs<ImplicitList>()->getStart());
                 }
@@ -616,7 +616,7 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
                     poResult->getAs<ImplicitList>()->setStart(_poSource->getAs<ImplicitList>()->getStart());
                 }
 
-                if (_poSource->getAs<ImplicitList>()->getStepType() == types::InternalType::RealPoly)
+                if (_poSource->getAs<ImplicitList>()->getStepType() == types::InternalType::ScilabPolynom)
                 {
                     poResult->getAs<ImplicitList>()->setStep(_poSource->getAs<ImplicitList>()->getStep());
                 }
@@ -625,7 +625,7 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
                     poResult->getAs<ImplicitList>()->setStep(_poSource->getAs<ImplicitList>()->getStep());
                 }
 
-                if (_poSource->getAs<ImplicitList>()->getEndType() == types::InternalType::RealPoly)
+                if (_poSource->getAs<ImplicitList>()->getEndType() == types::InternalType::ScilabPolynom)
                 {
                     poResult->getAs<ImplicitList>()->setEnd(_poSource->getAs<ImplicitList>()->getEnd());
                 }
@@ -635,7 +635,7 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
                 }
                 break;
             }
-            case types::GenericType::RealHandle :
+            case types::GenericType::ScilabHandle :
                 poResult->getAs<types::GraphicHandle>()->append(iCurRow, iCurCol, _poSource->getAs<types::GraphicHandle>());
                 break;
             default:
@@ -1620,49 +1620,49 @@ InternalType* insertionCall(const Exp& e, typed_list* _pArgs, InternalType* _pVa
         {
             switch (_pInsert->getType())
             {
-                case InternalType::RealDouble :
+                case InternalType::ScilabDouble :
                     pOut = Double::insertNew(_pArgs, _pInsert);
                     break;
-                case InternalType::RealString :
+                case InternalType::ScilabString :
                     pOut = String::insertNew(_pArgs, _pInsert);
                     break;
-                case InternalType::RealCell :
+                case InternalType::ScilabCell :
                     pOut = Cell::insertNew(_pArgs, _pInsert);
                     break;
-                case InternalType::RealBool :
+                case InternalType::ScilabBool :
                     pOut = Bool::insertNew(_pArgs, _pInsert);
                     break;
-                case InternalType::RealPoly :
+                case InternalType::ScilabPolynom :
                     pOut = Polynom::insertNew(_pArgs, _pInsert);
                     break;
-                case InternalType::RealInt8 :
+                case InternalType::ScilabInt8 :
                     pOut = Int8::insertNew(_pArgs, _pInsert);
                     break;
-                case InternalType::RealUInt8 :
+                case InternalType::ScilabUInt8 :
                     pOut = UInt8::insertNew(_pArgs, _pInsert);
                     break;
-                case InternalType::RealInt16 :
+                case InternalType::ScilabInt16 :
                     pOut = Int16::insertNew(_pArgs, _pInsert);
                     break;
-                case InternalType::RealUInt16 :
+                case InternalType::ScilabUInt16 :
                     pOut = UInt16::insertNew(_pArgs, _pInsert);
                     break;
-                case InternalType::RealInt32 :
+                case InternalType::ScilabInt32 :
                     pOut = Int32::insertNew(_pArgs, _pInsert);
                     break;
-                case InternalType::RealUInt32 :
+                case InternalType::ScilabUInt32 :
                     pOut = UInt32::insertNew(_pArgs, _pInsert);
                     break;
-                case InternalType::RealInt64 :
+                case InternalType::ScilabInt64 :
                     pOut = Int64::insertNew(_pArgs, _pInsert);
                     break;
-                case InternalType::RealUInt64 :
+                case InternalType::ScilabUInt64 :
                     pOut = UInt64::insertNew(_pArgs, _pInsert);
                     break;
-                case InternalType::RealSparse :
+                case InternalType::ScilabSparse :
                     pOut = Sparse::insertNew(_pArgs, _pInsert);
                     break;
-                case InternalType::RealSparseBool :
+                case InternalType::ScilabSparseBool :
                     pOut = SparseBool::insertNew(_pArgs, _pInsert);
                     break;
                 default :

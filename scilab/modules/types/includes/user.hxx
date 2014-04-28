@@ -27,10 +27,10 @@ public :
     {
         return this;
     }
-    //non virtaul function to prevent overriding in user derived class
-    RealType                getType(void)
+    //non virtual function to prevent overriding in user derived class
+    ScilabType                getType(void)
     {
-        return RealUserType;
+        return ScilabUserType;
     }
 
     /*

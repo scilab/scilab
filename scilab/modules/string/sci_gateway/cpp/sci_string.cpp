@@ -203,7 +203,7 @@ Function::ReturnValue sci_string(typed_list &in, int _iRetCount, typed_list &out
 
     switch (in[0]->getType())
     {
-        case GenericType::RealDouble :
+        case GenericType::ScilabDouble :
         {
             types::Double* pDbl = in[0]->getAs<Double>();
             int iDims = pDbl->getDims();
@@ -247,12 +247,12 @@ Function::ReturnValue sci_string(typed_list &in, int _iRetCount, typed_list &out
             out.push_back(pstOutput);
             break;
         }
-        case GenericType::RealString :
+        case GenericType::ScilabString :
         {
             out.push_back(in[0]);
             break;
         }
-        case GenericType::RealMacroFile :
+        case GenericType::ScilabMacroFile :
         {
             if (_iRetCount != 3)
             {
@@ -272,7 +272,7 @@ Function::ReturnValue sci_string(typed_list &in, int _iRetCount, typed_list &out
             out.push_back(pBody);
             break;
         }
-        case GenericType::RealMacro :
+        case GenericType::ScilabMacro :
         {
             if (_iRetCount != 3)
             {
@@ -292,9 +292,9 @@ Function::ReturnValue sci_string(typed_list &in, int _iRetCount, typed_list &out
             out.push_back(pBody);
             break;
         }
-        case GenericType::RealTList :
-        case GenericType::RealMList :
-        case GenericType::RealPoly :
+        case GenericType::ScilabTList :
+        case GenericType::ScilabMList :
+        case GenericType::ScilabPolynom :
         {
             std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_string";
             return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());

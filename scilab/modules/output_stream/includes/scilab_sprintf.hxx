@@ -19,7 +19,7 @@
 typedef struct
 {
     wchar_t* pwstToken;
-    types::InternalType::RealType outputType;
+    types::InternalType::ScilabType outputType;
     bool bLengthFlag;
 } TokenDef;
 
@@ -28,7 +28,7 @@ typedef struct
 {
     int iArg;
     int iPos;
-    types::InternalType::RealType type;
+    types::InternalType::ScilabType type;
 } ArgumentPosition;
 
 OUTPUT_STREAM_IMPEXP_GW wchar_t** scilab_sprintf(char* _pstName, wchar_t* _pwstInput, types::typed_list &in, ArgumentPosition* _pArgs, int _iArgsCount, int* _piOutputRows, int* piNewLine);
