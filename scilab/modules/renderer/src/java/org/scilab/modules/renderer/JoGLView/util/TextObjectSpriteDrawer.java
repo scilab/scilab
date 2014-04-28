@@ -84,23 +84,7 @@ public class TextObjectSpriteDrawer implements TextureDrawer {
         Color textColor = ColorFactory.createColor(colorMap, textObject.getFont().getColor());
         Font font = computeFont(textObject);
 
-        loop: {
-            for (String[] textLine : stringArray) {
-                for (String text : textLine) {
-                    if (text != null) {
-                        if (!latexSet && isLatex(text)) {
-                            latexSet = true;
-                            LoadClassPath.loadOnUse("graphics_latex_textrendering");
-                        } else if (!mathmlSet && isMathML(text)) {
-                            LoadClassPath.loadOnUse("graphics_mathml_textrendering");
-                        } else if (latexSet && mathmlSet) {
-                            break loop;
-                        }
-                    }
-                }
-            }
-        }
-
+        loadDeps(stringArray);
         fillEntityMatrix(stringArray, fractionalFont, textColor, font);
 
         this.width  = sum(columnWidth) + HMARGIN * (columnNumber + 1) + 2 * thickness + SPACEWIDTH * (columnNumber - 1);
@@ -132,10 +116,34 @@ public class TextObjectSpriteDrawer implements TextureDrawer {
         Font font = computeFont(textObject, scaleFactor);
 
         /* Fill the entity matrix */
+        loadDeps(stringArray);
         fillEntityMatrix(stringArray, fractionalFont, textColor, font);
 
         this.width  = (int)((double)sum(columnWidth) + scaleFactor * (double)(HMARGIN * (columnNumber + 1)) + 2 * thickness + scaleFactor * (double)(SPACEWIDTH * (columnNumber - 1)));
         this.height = (int)((double)sum(lineHeight)  + scaleFactor * (double)(VMARGIN * (lineNumber + 1)) + 2 * thickness);
+    }
+
+    /**
+     * Load JLaTeXMath or JEuclid if mandatory
+     * @param stringArray the text to check
+     */
+    protected void loadDeps(String[][] stringArray) {
+    loop: {
+            for (String[] textLine : stringArray) {
+                for (String text : textLine) {
+                    if (text != null) {
+                        if (!latexSet && isLatex(text)) {
+                            latexSet = true;
+                            LoadClassPath.loadOnUse("graphics_latex_textrendering");
+                        } else if (!mathmlSet && isMathML(text)) {
+                            LoadClassPath.loadOnUse("graphics_mathml_textrendering");
+                        } else if (latexSet && mathmlSet) {
+                            break loop;
+                        }
+                    }
+                }
+            }
+        }
     }
 
     /**
@@ -370,14 +378,14 @@ public class TextObjectSpriteDrawer implements TextureDrawer {
      */
     protected float computeAlignmentFactor(Text text) {
         switch (text.getAlignmentAsEnum()) {
-            case LEFT:
-                return 0f;
-            case CENTER:
-                return 1f / 2f;
-            case RIGHT:
-                return 1f;
-            default:
-                return 0f;
+        case LEFT:
+            return 0f;
+        case CENTER:
+            return 1f / 2f;
+        case RIGHT:
+            return 1f;
+        default:
+            return 0f;
         }
     }
 
