@@ -49,6 +49,8 @@ Scilab Bug Fixes
 
 * Bug #13351 fixed - xstringb failed with LaTeX code.
 
+* Bug #13358 fixed - Intersect and unique were slow due to an issue in quicksort implementation.
+
 * Bug #13365 fixed - Data bounds werenot correctly updated in 3-D.
 
 * Bug #13378 fixed - The "Console" handle display was not homogeneous with others.
@@ -104,6 +106,7 @@ Xcos Bug Fixes
                      Example has been added.  
 
 * Bug #13396 fixed - MBLOCK did not work with an external file containing the modelica class.
+
 
 
                      Changes between version 5.4.1 and 5.5.0
