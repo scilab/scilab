@@ -49,6 +49,8 @@ Scilab Bug Fixes
 
 * Bug #13351 fixed - xstringb failed with LaTeX code.
 
+* Bug #13365 fixed - Data bounds werenot correctly updated in 3-D.
+
 * Bug #13378 fixed - The "Console" handle display was not homogeneous with others.
 
 * Bug #13381 fixed - eigs was failing when using a function as first input argument.
