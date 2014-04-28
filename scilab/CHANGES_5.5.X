@@ -35,6 +35,8 @@ Scilab Bug Fixes
 
 * Bug #13316 fixed - There were missing tooltips on File Browser buttons.
 
+* Bug #13324 fixed - Legends were completely modified when an item was clicked and modified.
+
 * Bug #13331 fixed - Users are no longer able to write inconsistent options to mopen,
                      mopen(file, "wr") now exits with a proper error.
 
