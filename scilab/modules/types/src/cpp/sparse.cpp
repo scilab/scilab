@@ -1790,7 +1790,7 @@ Sparse* Sparse::newReal() const
 {
     return new Sparse( matrixReal
                        ? matrixReal
-                       : new RealSparse_t(matrixCplx->cast<RealCast>())
+                       : new RealSparse_t(matrixCplx->cast<RealCast>().cast<double>())
                        , 0);
 }
 
