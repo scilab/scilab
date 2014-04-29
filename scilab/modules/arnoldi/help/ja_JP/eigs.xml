@@ -58,7 +58,7 @@
                 
                 <listitem>
                     
-                    <para>a full or sparse, real or complex, symmetric or non-symmetric square matrix</para>
+                    <para>通常または疎, 実数または複素数, 対称または非対称正方行列</para>
                     
                 </listitem>
                 
@@ -70,7 +70,7 @@
                 
                 <listitem>
                     
-                    <para>a function</para>
+                    <para>関数</para>
                     
                 </listitem>
                 
@@ -84,7 +84,7 @@
                     
                     <para>
                         
-                        a scalar, defined only if <literal>A</literal> is a function
+                        スカラー, Aが関数の場合のみ <literal>A</literal> 定義
                         
                     </para>
                     
@@ -100,9 +100,9 @@
                     
                     <para>
                         
-                        a sparse, real or complex, square matrix with same dimensions as
+                        <literal> A</literal>と同じ次元の
                         
-                        <literal> A</literal>
+                        疎, 実数または複素数, 正方行列
                         
                     </para>
                     
@@ -116,7 +116,7 @@
                 
                 <listitem>
                     
-                    <para>an integer, number of eigenvalues to be computed</para>
+                    <para>整数, 計算する固有値の数</para>
                     
                 </listitem>
                 
@@ -128,7 +128,7 @@
                 
                 <listitem>
                     
-                    <para>a real scalar or a string of length 2</para>
+                    <para>実スカラーまたは長さ2の文字列</para>
                     
                 </listitem>
                 
@@ -140,7 +140,7 @@
                 
                 <listitem>
                     
-                    <para>a structure</para>
+                    <para>構造体</para>
                     
                 </listitem>
                 
@@ -152,7 +152,7 @@
                 
                 <listitem>
                     
-                    <para>a real or complex eigenvalues vector or diagonal matrix (eigenvalues along the diagonal)</para>
+                    <para>実数または複素数の固有値ベクトルまたは対角行列 (対角項に固有値)</para>
                     
                 </listitem>
                 
@@ -166,7 +166,7 @@
                     
                     <para>
                         
-                        real or complex eigenvector matrix
+                        実数または複素数の固有ベクトル行列
                         
                     </para>
                     
@@ -184,7 +184,7 @@
         
         <para>
             
-            The purpose of the eigs function is to compute the largest eigenvalues of sparse, large matrices.
+            eigs関数の目的は,疎で大きな行列の最大固有値を計算することです.
             
         </para>
         
@@ -192,23 +192,37 @@
             
             <varlistentry>
                 
-                <term>d = eigs(A) or d = eigs(Af, n)</term>
+                <term>d = eigs(A) または d = eigs(Af, n)</term>
                 
                 <listitem>
                     
                     <para>
                         
-                        solves the eigenvalue problem <literal>A * v = lambda * v</literal>. This calling returns a vector <literal>d</literal> containing the six largest magnitude eigenvalues.
+                        は,固有値問題<literal>A * v = lambda * v</literal>を解きます. 
                         
-                        <literal>A</literal> is either a square matrix, which can be symmetric or non-symmetric, real or complex, full or sparse.
+                        このコールは,大きさが最大の6個の固有値を有する
+                        
+                        ベクトル <literal>d</literal>を返します.
+                        
+                        <literal>A</literal> は正方行列で,
+                        
+                        対称または非対称, 実数または複素数, 通常または複素数
+                        
+                        とすることができます.
                         
                     </para>
                     
                     <para>
                         
-                        <literal>A</literal> should be represented by a function <literal>Af</literal>. In this instance, a scalar <literal>n</literal> designating
+                        <literal>A</literal> は関数<literal>Af</literal>で
                         
-                        the length of the vector argument, must be defined. It must have the following header :
+                        表すことも可能です.この場合,
+                        
+                        ベクトル引数の長さを指定するスカラー<literal>n</literal>を
+                        
+                        定義する必要があります.
+                        
+                        この関数は,以下のヘッダを有する必要があります:
                         
                     </para>
                     
@@ -222,7 +236,7 @@ function y = A ( x )
                     
                     <para>
                         
-                        This function <literal>Af</literal> must return one of the four following expressions :
+                        この関数 <literal>Af</literal> は以下の4つの式の1つを返す必要があります:
                         
                         <itemizedlist>
                             
@@ -230,7 +244,7 @@ function y = A ( x )
                                 
                                 <term>A * x</term>
                                 
-                                <para> if sigma is not given or is a string other than 'SM'.</para>
+                                <para> sigmaが指定されないか文字列が'SM'以外の場合.</para>
                                 
                             </listitem>
                             
@@ -238,7 +252,7 @@ function y = A ( x )
                                 
                                 <term>A \ x</term>
                                 
-                                <para> if sigma is 0 or 'SM'.</para>
+                                <para>sigmaが0または'SM'の場合.</para>
                                 
                             </listitem>
                             
@@ -246,7 +260,7 @@ function y = A ( x )
                                 
                                 <term>(A - sigma * I) \ x</term>
                                 
-                                <para>for the standard eigenvalue problem, where I is the identity matrix.</para>
+                                <para>標準固有値問題の場合, ただし I は単位行列.</para>
                                 
                             </listitem>
                             
@@ -254,7 +268,7 @@ function y = A ( x )
                                 
                                 <term>(A - sigma * B) \ x</term>
                                 
-                                <para> for the generalized eigenvalue problem.</para>
+                                <para> 一般化固有値問題の場合.</para>
                                 
                             </listitem>
                             
@@ -274,9 +288,11 @@ function y = A ( x )
                     
                     <para>
                         
-                        returns a diagonal matrix <literal>d</literal> containing the six largest magnitude eigenvalues on the diagonal.
+                        は,6個の最大固有値を対角項に有する対角行列 <literal>d</literal> を返します.
                         
-                        <literal>v</literal> is a n by six matrix whose columns are the six eigenvectors corresponding to the returned eigenvalues.
+                        <literal>v</literal> は n行6列の行列で,
+                        
+                        その列は返された固有値に対応する6個の固有値ベクトルです.
                         
                     </para>
                     
@@ -292,7 +308,11 @@ function y = A ( x )
                     
                     <para>
                         
-                        solves the generalized eigenvalue problem <literal>A * v = lambda  * B * v </literal> with positive, definite matrix <literal>B</literal>.
+                        は,正定行列<literal>B</literal>を指定して,
+                        
+                        一般化固有値問題 <literal>A * v = lambda  * B * v </literal> 
+                        
+                        を解きます.
                         
                     </para>
                     
@@ -302,7 +322,9 @@ function y = A ( x )
                             
                             <para>
                                 
-                                if <literal>B</literal> is not specified, <literal>B = []</literal> is used.
+                                <literal>B</literal> が指定されない場合, 
+                                
+                                <literal>B = []</literal> が使用されます.
                                 
                             </para>
                             
@@ -312,7 +334,9 @@ function y = A ( x )
                             
                             <para>
                                 
-                                if <literal>B</literal> is specified, <literal>B</literal> must be the same size as A.
+                                <literal>B</literal> が指定された場合, 
+                                
+                                <literal>B</literal> はAと同じ大きさとする必要があります.
                                 
                             </para>
                             
@@ -332,9 +356,11 @@ function y = A ( x )
                     
                     <para>
                         
-                        returns in vector <literal>d</literal> the <literal>k</literal> eigenvalues.
+                        は,<literal>k</literal>個の固有値をベクトル<literal>d</literal>に返します.
                         
-                        If <literal>k</literal> is not specified, <literal>k = min(n, 6)</literal>, where n is the row number of A.
+                        <literal>k</literal> が指定されない場合, 
+                        
+                        <literal>k = min(n, 6)</literal>, ただし, nはAの行数となります.
                         
                     </para>
                     
@@ -350,11 +376,15 @@ function y = A ( x )
                     
                     <para>
                         
-                        returns in vector <literal>d</literal> the <literal>k</literal> eigenvalues determined by <literal>sigma</literal>.
+                        は,<literal>sigma</literal>で定義された<literal>k</literal>個の固有値を
                         
-                        <literal>sigma</literal> can be either a real or complex including 0 scalar or string.
+                        ベクトル<literal>d</literal>に返します.
                         
-                        If sigma is a string of length 2, it takes one of the following values :
+                        <literal>sigma</literal> は,0を含む実数または複素数,または文字列
+                        
+                        とすることができます.
+                        
+                        sigma が長さ2の文字列の場合, 以下の値のどれかとします :
                         
                     </para>
                     
@@ -364,7 +394,9 @@ function y = A ( x )
                             
                             <para>
                                 
-                                <literal>'LM'</literal> compute the <varname>k</varname> largest in magnitude eigenvalues (by default).
+                                <literal>'LM'</literal> は,大きさが最大の<varname>k</varname>個の
+                                
+                                固有値を計算します(デフォルト).
                                 
                             </para>
                             
@@ -374,7 +406,9 @@ function y = A ( x )
                             
                             <para>
                                 
-                                <literal>'SM'</literal> compute the <varname>k</varname> smallest in magnitude eigenvalues (same as sigma = 0).
+                                <literal>'SM'</literal> は,大きさが最小の<varname>k</varname>個の
+                                
+                                固有値を計算します(sigma = 0 と同じ).
                                 
                             </para>
                             
@@ -384,7 +418,9 @@ function y = A ( x )
                             
                             <para>
                                 
-                                <literal>'LA'</literal> compute the <varname>k</varname> Largest Algebraic eigenvalues, only for real symmetric problems.
+                                <literal>'LA'</literal> は,実対称問題のみに適用され,
+                                
+                                <varname>k</varname>個の代数的最大固有値を計算します.
                                 
                             </para>
                             
@@ -394,7 +430,9 @@ function y = A ( x )
                             
                             <para>
                                 
-                                <literal>'SA'</literal> compute the <varname>k</varname> Smallest Algebraic eigenvalues, only for real symmetric problems.
+                                <literal>'SA'</literal> は,実対称問題のみに適用され,
+                                
+                                <varname>k</varname>個の代数的最小固有値を計算します.
                                 
                             </para>
                             
@@ -404,21 +442,9 @@ function y = A ( x )
                             
                             <para>
                                 
-                                <literal>'BE'</literal> compute <varname>k</varname> eigenvalues, half from each end of the spectrum, only for real 
+                                <literal>'BE'</literal> は,実対称問題のみに適用され,
                                 
-                                symmetric problems.
-                                
-                            </para>
-                            
-                        </listitem>
-                        
-                        <listitem>
-                            
-                            <para>
-                                
-                                <literal>'LR'</literal> compute the <varname>k</varname> eigenvalues of Largest Real part, only for real non-symmetric or 
-                                
-                                complex problems.
+                                スペクトラムの各端から半分づつ,<varname>k</varname>個の固有値を計算します.
                                 
                             </para>
                             
@@ -428,21 +454,9 @@ function y = A ( x )
                             
                             <para>
                                 
-                                <literal>'SR'</literal> compute the <varname>k</varname> eigenvalues of Smallest Real part, only for real non-symmetric or 
+                                <literal>'LR'</literal> は,実非対称または複素問題のみに適用され,
                                 
-                                complex problems.
-                                
-                            </para>
-                            
-                        </listitem>
-                        
-                        <listitem>
-                            
-                            <para>
-                                
-                                <literal>'LI'</literal> compute the <varname>k</varname> eigenvalues of Largest Imaginary part, only for real non-symmetric 
-                                
-                                or complex problems.
+                                <varname>k</varname>個の実部最大の固有値を計算します.
                                 
                             </para>
                             
@@ -452,9 +466,33 @@ function y = A ( x )
                             
                             <para>
                                 
-                                <literal>'SI'</literal> compute the <varname>k</varname> eigenvalues of Smallest Imaginary part, only for real non-symmetric 
+                                <literal>'SR'</literal> は,実非対称または複素問題のみに適用され,
                                 
-                                or complex problems.
+                                <varname>k</varname>個の実部最小の固有値を計算します.
+                                
+                            </para>
+                            
+                        </listitem>
+                        
+                        <listitem>
+                            
+                            <para>
+                                
+                                <literal>'LI'</literal> は,実非対称または複素問題のみに適用され,
+                                
+                                <varname>k</varname>個の虚部最大の固有値を計算します.
+                                
+                            </para>
+                            
+                        </listitem>
+                        
+                        <listitem>
+                            
+                            <para>
+                                
+                                <literal>'SI'</literal> は,実非対称または複素問題のみに適用され,
+                                
+                                <varname>k</varname>個の虚部最小の固有値を計算します.
                                 
                             </para>
                             
@@ -474,7 +512,11 @@ function y = A ( x )
                     
                     <para>
                         
-                        If the <literal> opts </literal> structure is specified, different options can be used to compute the <literal>k</literal> eigenvalues :
+                        <literal> opts </literal> 構造体が指定された場合, 
+                        
+                        <literal>k</literal> 個の固有値を計算する際に
+                        
+                        異なるオプションを使用できます:
                         
                     </para>
                     
@@ -488,7 +530,7 @@ function y = A ( x )
                                 
                                 <para>
                                     
-                                    required convergence tolerance. By default, <literal>tol = %eps</literal>.
+                                    所要の収束閾値. デフォルトで, <literal>tol = %eps</literal>.
                                     
                                 </para>
                                 
@@ -504,7 +546,7 @@ function y = A ( x )
                                 
                                 <para>
                                     
-                                    maximum number of iterations. By default, <literal>maxiter = 300</literal>.
+                                    最大反復回数. デフォルトで, <literal>maxiter = 300</literal>.
                                     
                                 </para>
                                 
@@ -520,7 +562,21 @@ function y = A ( x )
                                 
                                 <para>
                                     
-                                    number of Lanzcos basis vectors to use. For real non-symmetric problems, the <literal>ncv</literal> value must be greater or equal than <literal>2 * k + 1 </literal> and, by default, <literal>ncv = min(max(2 * k + 1, 20), nA) </literal>. For real symmetric or complex problems, <literal>ncv</literal> must be greater or equal <literal>2 * k </literal> and, by default, <literal> ncv = min(max(2 * k, 20), nA) </literal> with <literal> nA = size(A, 2) </literal>.
+                                    使用するLanzcos基底ベクトルの数.
+                                    
+                                    実非対称問題の場合, <literal>ncv</literal>の値は
+                                    
+                                    <literal>2 * k + 1 </literal>以上とする必要があり,
+                                    
+                                    デフォルトで <literal>ncv = min(max(2 * k + 1, 20), nA) </literal>です.
+                                    
+                                    実対称または複素数問題の場合,<literal>ncv</literal>は
+                                    
+                                    <literal>2 * k </literal>以上とする必要があり,
+                                    
+                                    デフォルトで<literal> ncv = min(max(2 * k, 20), nA) </literal>
+                                    
+                                    です.ただし,<literal> nA = size(A, 2) </literal>.
                                     
                                 </para>
                                 
@@ -536,9 +592,13 @@ function y = A ( x )
                                 
                                 <para>
                                     
-                                    starting vector whose contains the initial residual vector, possibly from a previous run. By default,
+                                    初期残差ベクトルを有する開始ベクトルで,
                                     
-                                    <literal>resid</literal> is a random initial vector.
+                                    前回実行時の値を使用することもできます.
+                                    
+                                    デフォルトで,<literal>resid</literal> はランダムな
+                                    
+                                    初期値ベクトルです.
                                     
                                 </para>
                                 
@@ -554,7 +614,13 @@ function y = A ( x )
                                 
                                 <para>
                                     
-                                    if <literal>chol(B)</literal> is passed rather than <literal>B</literal>. By default, <literal>cholB</literal> is %f.
+                                    <literal>B</literal>ではなく
+                                    
+                                    <literal>chol(B)</literal>を指定します.
+                                    
+                                    デフォルトで
+                                    
+                                    , <literal>cholB</literal> は %f です.
                                     
                                 </para>
                                 
@@ -570,9 +636,15 @@ function y = A ( x )
                                 
                                 <para>
                                     
-                                    if <literal>Af</literal> is given, <literal>isreal</literal> can be defined. By default, <literal>isreal</literal> is %t.
+                                    <literal>Af</literal> が指定された場合, 
                                     
-                                    This argument should not be indicated if <literal>A</literal> is a matrix.
+                                    <literal>isreal</literal> を定義できます.
+                                    
+                                    デフォルトで, <literal>isreal</literal> は %t です.
+                                    
+                                    この引数は,<literal>A</literal>が行列の場合,
+                                    
+                                    指定する必要がありません.
                                     
                                 </para>
                                 
@@ -588,9 +660,15 @@ function y = A ( x )
                                 
                                 <para>
                                     
-                                    if <literal>Af</literal> is given, <literal>issym</literal> can be defined. By default, <literal>issym</literal> is %f.
+                                    <literal>Af</literal> が指定された場合, 
                                     
-                                    This argument should not be indicated if <literal>A</literal> is a matrix.
+                                    <literal>issym</literal> を定義できます. 
+                                    
+                                    デフォルトで <literal>issym</literal> は %f です.
+                                    
+                                    この引数は,<literal>A</literal>が行列の場合,
+                                    
+                                    指定する必要がありません.
                                     
                                 </para>
                                 
@@ -715,6 +793,8 @@ d = eigs(fn, 10, [], k, 4, opts)
         <title>実非対称問題の例</title>
         
         <programlisting role="example">
+            
+            
             
             <![CDATA[ 
     A            = diag(10*ones(10,1));
