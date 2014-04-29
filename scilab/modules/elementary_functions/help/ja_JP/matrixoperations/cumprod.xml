@@ -72,11 +72,9 @@
         <title>例</title>
         <programlisting role="example"><![CDATA[ 
 A=[1,2;3,4];
-
 cumprod(A)
 cumprod(A,'r')
 cumprod(A,'c')
-
 rand('seed',0);
 a=rand(3,4);
 [m,n]=size(a);

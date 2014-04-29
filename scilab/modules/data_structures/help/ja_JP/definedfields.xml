@@ -51,10 +51,8 @@
         <programlisting role="example"><![CDATA[ 
 l=list(1);l(3)=5
 k=definedfields(l)
-
 t=tlist('x');t(5)=4
 definedfields(t)
-
 m=mlist(['m','a','b']);m.b='sdfgfgd'
 definedfields(m)
  ]]></programlisting>

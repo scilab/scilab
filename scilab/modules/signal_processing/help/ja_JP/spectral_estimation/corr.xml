@@ -8,7 +8,6 @@
         <title>呼び出し手順</title>
         <synopsis>[cov,Mean]=corr(x,[y],nlags)
             [cov,Mean]=corr('fft',xmacro,[ymacro],n,sect)
-            
             [w,xu]=corr('updt',x1,[y1],w0)
             [w,xu]=corr('updt',x2,[y2],w,xu)
             ...
@@ -199,7 +198,6 @@ for j=1:2,for k=1:2,c=[c;corr(y(k,:),y(j,:),64)];end;end;
 c=matrix(c,2,128);cov=[];
 for j=1:64,cov=[cov;c(:,(j-1)*2+1:2*j)];end;
 rand('unif')
-
 rand('normal');x=rand(1,256);y=-x;
 deff('[z]=xx(inc,is)','z=x(is:is+inc-1)');
 deff('[z]=yy(inc,is)','z=y(is:is+inc-1)');
@@ -222,7 +220,6 @@ norm(c5-c1,1)
 zz=real(fft(w2,1))/256;c6=zz(1:32);
 norm(c6-c2,1)
 rand('unif')
-
 // Fortran または C 外部ルーチンのテスト 
 //
 deff('[y]=xmacro(sec,ist)','y=sin(ist:(ist+sec-1))');
@@ -231,7 +228,6 @@ x=xmacro(100,1);
 [cc,mm]=corr('fft',xmacro,100,2^3);
 [cc2,mm2]=corr('fft','corexx',100,2^3);
 [max(abs(cc-cc1)),max(abs(mm-mm1)),max(abs(cc-cc2)),max(abs(mm-mm2))]
-
 deff('[y]=ymacro(sec,ist)','y=cos(ist:(ist+sec-1))');
 y=ymacro(100,1);
 [cc1,mm1]=corr(x,y,2^3);

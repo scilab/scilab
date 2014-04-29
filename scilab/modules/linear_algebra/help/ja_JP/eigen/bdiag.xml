@@ -82,7 +82,6 @@
         <programlisting role="example"><![CDATA[ 
 //実数の場合: 1x1 および 2x2 ブロック
 a=rand(5,5);[ab,x,bs]=bdiag(a);ab
-
 //複素数の場合: 複素数 1x1 ブロック
 [ab,x,bs]=bdiag(a+%i*0);ab
  ]]></programlisting>

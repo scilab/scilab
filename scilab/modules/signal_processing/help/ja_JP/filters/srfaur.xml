@@ -73,19 +73,15 @@
 x=%pi/10:%pi/10:102.4*%pi;
 rand('seed',0);rand('normal');
 y=[1;1]*sin(x)+[sin(2*x);sin(1.9*x)]+rand(2,1024);
-
 //相関を計算
 c=[];for j=1:2,for k=1:2,c=[c;corr(y(k,:),y(j,:),64)];end;end
 c=matrix(c,2,128);
-
 //状態量6の H,F,G を計算
 hk=hank(20,20,c);
 [H,F,G]=phc(hk,2,6);
-
 //リカッチ方程式を解く
 r0=c(1:2,1:2);
 [P,s,t,l,Rt,Tt]=srfaur(H,F,G,r0,200);
-
 //厳密に対称な共分散行列を作成
 Rt=(Rt+Rt')/2
  ]]></programlisting>

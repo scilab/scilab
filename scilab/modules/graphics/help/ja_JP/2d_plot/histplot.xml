@@ -86,7 +86,6 @@
 |   h(x) dx = 1,  when x(1)<=min(data) and max(data) <= x(n+1))
 /
 x(1)
-
     ]]></programlisting>
         <para>
             任意の <link linkend="plot2d">plot2d</link> (オプション) パラメータを指定できます;

@@ -70,7 +70,6 @@ xy = grand(n,2,"unf",0,2*%pi);
 z = cos(xy(:,1)).*cos(xy(:,2));
 xyz = [xy z];
 tl_coef = cshep2d(xyz);
-
 // グリッドにおける評価
 m = 30;
 xx = linspace(0,2*%pi,m);
@@ -107,4 +106,3 @@ show_window()
         </revhistory>
     </refsection>
 </refentry>
-

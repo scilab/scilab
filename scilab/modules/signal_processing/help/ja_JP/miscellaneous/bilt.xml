@@ -78,9 +78,7 @@ a=0.3;
 num=z-a;
 den=1-a*z;
 [npl,nzr,ngn] = bilt(pl,zr,gn,num,den)
-
 Hlpt=ngn*poly(nzr,'z','r')/poly(npl,'z','r')
-
 //hornerと比較
 horner(Hlp,num/den)
  ]]></programlisting>

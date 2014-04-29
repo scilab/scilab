@@ -339,7 +339,6 @@ plot2d(x(im)',y(jm)',-9,"000")
         <programlisting role="example"><![CDATA[ 
 t=linspace(-%pi,%pi,30);
 function z=my_surface(x,y),z=x*sin(x)^2*cos(y),endfunction
-
 contour(t,t,my_surface,10)
 // 等高線の出力形式を変更します
 xset("fpf","%.1f")

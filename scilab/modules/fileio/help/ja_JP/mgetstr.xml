@@ -59,13 +59,10 @@
         <title>例</title>
         <programlisting role="example">// テキスト読み込みモードでファイル記述子をオープン
             fd_r = mopen(SCI+'/ACKNOWLEDGEMENTS','rt')
-            
             // fd_rから100文字を取得
             strs_1 = mgetstr(100, fd_r)
-            
             // fd_rから次の200文字を取得
             strs_2 = mgetstr(200, fd_r)
-            
             // ファイル記述子を閉じる
             mclose(fd_r);
         </programlisting>

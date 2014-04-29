@@ -70,7 +70,6 @@
                     ベクトル. 詳細は説明を参照ください.
                 </listitem>
             </varlistentry>
-            
             <varlistentry>
                 <term>dims</term>
                 <listitem>
@@ -170,8 +169,6 @@
                         </latex>
                     </para>
                 </listitem>
-                
-                
                 <listitem>
                     <para>
                         <literal>"dct4"</literal>の場合,この関数は
@@ -199,7 +196,6 @@
                         </latex>
                     </para>
                 </listitem>
-                
                 <listitem>
                     <para>
                         <literal>"idct"</literal>の場合,この関数は
@@ -259,7 +255,6 @@
                     \omega_j(k)=\sqrt{\frac{2}{n_j}} , k>1 \end{array}$
                 </latex>
             </para>
-            
         </refsection>
         <refsection>
             <title>構文の説明</title>
@@ -309,7 +304,6 @@
                         </variablelist>
                     </listitem>
                 </varlistentry>
-                
                 <varlistentry>
                     <term>指定した次元方向のDCTの長い構文</term>
                     <listitem>
@@ -405,9 +399,7 @@
   d(abs(d)<1)=0;
   size(find(y1<>0),'*') //only 30 non zero coefficients out of 600
   clf;plot(s,'b'),plot(dct(d,1),'r')
-
   ]]></programlisting>
-        
         <para>2次元 dct</para>
         <programlisting role="example"><![CDATA[ 
   ----------------------------------
@@ -421,8 +413,6 @@
   subplot(121),grayplot(x,x,A)
   subplot(122),grayplot(x,x,A1)
   ]]></programlisting>
-        
-        
     </refsection>
     <refsection role="see also">
         <title>参照</title>

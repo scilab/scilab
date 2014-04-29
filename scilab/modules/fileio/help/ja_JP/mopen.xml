@@ -182,14 +182,11 @@
     <refsection>
         <programlisting role="example">// SCI+'/ACKNOWLEDGEMENTS'をテキスト,読込みのみとしてオープン
             fd_r = mopen(SCI+'/ACKNOWLEDGEMENTS','rt')
-            
             // fd_rから5行読み込む
             mgetl(fd_r, 5)
-            
             // ファイルを読み込む他の方法
             // 5つのワードを読み込む
             mfscanf(5,fd_r,'%s')
-            
             // テキスト,読込みのみのSCI+'/ACKNOWLEDGEMENTS'のファイル記述子を閉じる
             mclose(fd_r);
         </programlisting>
@@ -197,11 +194,9 @@
     <refsection>
         <programlisting role="example">// ファイルをテキスト/書込みプロパティでオープン
             fd_w = mopen(TMPDIR+'/write.txt','wt');
-            
             // fd_w に1行書き込み
             mputl('This is a line of text', fwd_w);
             mclose(fd_w);
-            
             // テキスト読み込み 
             fd_r2 = mopen(TMPDIR+'/write.txt','rt');
             mgetl(fd_r2) 
@@ -210,27 +205,21 @@
     </refsection>
     <refsection>
         <programlisting role="example">// 書き込んだファイルをバイナリとして読み込む
-            
             // まずファイルに書き込む
             fd_wb = mopen(TMPDIR+'/writeread.bin','wb')
-            
             // バイナリとして値を出力
             mput(2003,'l',fd_wb);
             mput(2008,'i',fd_wb);
             mput(2012,'s',fd_wb);
             mput(98,'c',fd_wb);
-            
             // TMPDIR+'/writeread.bin'を指すファイル記述子を閉じる
             mclose(fd_wb);
-            
             // ファイルを読み込む
             fd_rb = mopen(TMPDIR+'/writeread.bin','rb')
-            
             mget(fd_rb, 'l')
             mget(fd_rb, 'i')
             mget(fd_rb, 's')
             mget(fd_rb, 'c')
-            
             mclose(fd_rb) 
         </programlisting>
     </refsection>

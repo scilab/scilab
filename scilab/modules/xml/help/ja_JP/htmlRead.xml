@@ -47,21 +47,21 @@
     <refsection>
         <title>説明</title>
         <para>HTMLファイルを読込み, パースします. 返される文書により,
-	  メモリ上に保持したDOMツリーにアクセスできます.
-	</para>
+            メモリ上に保持したDOMツリーにアクセスできます.
+        </para>
         <para>一般に, HTMLファイルは,整形式であることがまれのため,
-	  XMLパーサーにより読み込むことはできません.
-	  このため,HTMLパーサが必要となり,より適合したものになります.
-	</para>
+            XMLパーサーにより読み込むことはできません.
+            このため,HTMLパーサが必要となり,より適合したものになります.
+        </para>
         <para>HTMLファイルが一度パースされると, メモリ上でXMLファイルとして参照でき,
-	  通常の操作が適用可能になります.
-	</para>
+            通常の操作が適用可能になります.
+        </para>
         <para>encoding引数はファイルエンコーディングを明確に
-	  指定する際に使用されます.
-	</para>
+            指定する際に使用されます.
+        </para>
         <para>
-	  (メモリーリークを回避するために)<link linkend="xmlDelete">xmlDelete</link>
-	  によりツリーを解放することはできません.
+            (メモリーリークを回避するために)<link linkend="xmlDelete">xmlDelete</link>
+            によりツリーを解放することはできません.
         </para>
     </refsection>
     <refsection>
@@ -71,11 +71,9 @@
     e = doc.root.children(1).children(1)
     e.name
     e.content
-
     // 'href'属性を有する全ノードを取得
     q = xmlXPath(doc, "//*[@href]");
     q(1).attributes
-
     // 文書を削除
     xmlDelete(doc);
     ]]></programlisting>

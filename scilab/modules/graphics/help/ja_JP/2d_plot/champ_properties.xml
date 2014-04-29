@@ -149,9 +149,7 @@
 a=get("current_axes");//新規に作成された軸のハンドルを取得
 a.data_bounds=[-10,-10;10,10];
 champ(-5:5,-5:5,rand(11,11),rand(11,11))
-
 c=a.children
-
 c.colored="on";
 c.thickness=2;
 c.arrow_size=-1;

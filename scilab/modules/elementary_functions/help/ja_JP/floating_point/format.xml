@@ -93,11 +93,9 @@ format('v',10);x
 format(20);x
 format('e',10);x
 format(20);x
-
 x=[100 %eps];
 format('e',10);x
 format('v',10);x
-
 format("v")
  ]]></programlisting>
     </refsection>

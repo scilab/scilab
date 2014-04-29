@@ -48,29 +48,26 @@
     <refsection>
         <title>説明</title>
         <para>HTML文書をファイル名または文書URLを指定したファイルに
-	  書き込みます.
-	  indentがtrueの場合,文書はインデントされます.
-	  デフォルトでindentはtrueです.
-	</para>
+            書き込みます.
+            indentがtrueの場合,文書はインデントされます.
+            デフォルトでindentはtrueです.
+        </para>
     </refsection>
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[
     doc = htmlRead("http://www.scilab.org");
     htmlWrite(doc, TMPDIR+"/scilab.html", %f);
-
     // ここで前のファイルを開き, 修正後に保存
     doc1 = htmlRead(TMPDIR+"/scilab.html");
     xp = xmlXPath(doc1, "//title");
     e = xp(1);
     e.content = "Hello Scilab World";
     htmlWrite(doc1);
-
     // 修正が行われたことを確認
     doc2 = htmlRead(TMPDIR+"/scilab.html");
     xp = xmlXPath(doc2, "//title");
     xp(1).content
-
     xmlDelete("all");
     ]]></programlisting>
     </refsection>

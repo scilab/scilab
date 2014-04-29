@@ -22,7 +22,6 @@
             d = assert_cond2reqdigits ( condition )
             d = assert_cond2reqdigits ( condition , offset )
             d = assert_cond2reqdigits ( condition , offset , b )
-            
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -125,11 +124,9 @@ assert_cond2reqdigits ( 1.e3 ) // 12.95459
 assert_cond2reqdigits ( 1.e16 ) // 0
 assert_cond2reqdigits ( 1.e17 ) // 0
 assert_cond2reqdigits ( 1.e18 ) // 0
-
 // 行列入力.
 condition = [0,1,10,100,1000,1.D13,1.D14,1.D15,1.D16,1.D17,1.D18];
 assert_cond2reqdigits ( condition )
-
 // オフセットを使用
 // 負のオフセット : 必要な桁数を減らす (より低い精度を要求)
 assert_cond2reqdigits ( 1.e2 , [0 -1] ) // [13.95459    12.95459]
@@ -139,7 +136,6 @@ assert_cond2reqdigits ( 1.e2 , [0 1 2 3] ) // [13.95459    14.95459    15.95459 
 // 負のオフセット (より低い精度を要求)
 // オフセットの影響を調べます.
 assert_cond2reqdigits ( 1.e14 , [0 -1 -2 -3] ) // [1.9545898    0.9545898    0.    0.]
-
 // 基底2を使用
 assert_cond2reqdigits ( 0     , [] , 2 ) // 53
 assert_cond2reqdigits ( 1     , [] , 2 ) // 53
@@ -149,7 +145,6 @@ assert_cond2reqdigits ( 1.e3  , [] , 2 ) // 43.034216
 assert_cond2reqdigits ( 1.e16 , [] , 2 ) // 0
 assert_cond2reqdigits ( 1.e17 , [] , 2 ) // 0
 assert_cond2reqdigits ( 1.e18 , [] , 2 ) // 0
-
 // 条件に基づき必要な10進桁数をプロット
 condition = logspace(0,18,1000);
 d = assert_cond2reqdigits ( condition );
@@ -162,7 +157,6 @@ xt.locations = 10^(0:2:18)';
 xt.labels = ["10^0";"10^2";"10^4";"10^6";"10^8";"10^10";"10^12";"10^14";"10^16";"10^18"];
 h.children.x_ticks=xt;
 xtitle("Number of required digits","Condition","Required decimal digits");
-
 // 条件に基づき必要な2進桁数をプロット
 condition = logspace(0,18,1000);
 d = assert_cond2reqdigits ( condition , [] , 2 );
@@ -180,7 +174,6 @@ plot(condition,d,"r")
 d = assert_cond2reqdigits ( condition , -10 , 2 );
 plot(condition,d,"g")
 legend(["Offset=0","Offset=+10","Offset=-10"]);
-
    ]]></programlisting>
     </refsection>
     <refsection>

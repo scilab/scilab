@@ -80,13 +80,10 @@
         <title>例</title>
         <programlisting role="example"><![CDATA[ 
 M=round(2*rand(20,1));
-
 unique(M)
 [N,k]=unique(M)
-
 unique(string(M))
 [N,k]=unique(string(M))
-
 A = [0,0,1,1;
      0,1,1,1;
      2,0,1,1;
@@ -94,12 +91,9 @@ A = [0,0,1,1;
      2,0,1,1;
      0,0,1,1];
 T='x'+string(A);
-
 //ユニークな行
-
 [m,k]=unique(A,'r')
 unique(T,'r')
-
 //ユニークな列
 [m,k]=unique(T,'c')
 unique(A,'c')

@@ -80,40 +80,27 @@ http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
         <itemizedlist>
             <listitem>
                 <literal>c=xcorr(x)</literal>
-                
                 は以下のように正規化しない離散自己共分散を計算します:
-                
                 <latex>{\begin{matrix}C_k = \sum_{i=1}^{n-k}
                     {x_{i+k}*x^{*}_i}, k \geq 0 \\ C_k = C^{*}_{-k}, k \leq
                     -1\end{matrix}.$
                 </latex>
-                
                 そして,<literal>c</literal> を返します.
-                
                 自己共分散の並びは,
-                
                 <latex>$C_k,k=-n:n$</latex>
                 となります.ただし,
                 <literal>n</literal>
                 は
                 <literal>x</literal>の長さです.
-                
-                
             </listitem>
             <listitem>
                 <literal>xcorr(x,y)</literal>
-                
                 は正規化しない離散相互共分散を以下のように計算します:
-                
                 <latex>{\begin{matrix}C_k = \sum_{i=1}^{n-k}
                     {x_{i+k}*y^{*}_i}, k \geq 0 \\ C_k = C^{*}_{-k}, k \leq
                     -1\end{matrix}}.$
                 </latex>
-                
                 結果を<literal>c</literal>に返します.
-                
-                
-                
                 相互共分散の並びは
                 <latex>$C_k,k=-n:n$</latex>となります.
                 ただし,<literal>n</literal>は
@@ -149,9 +136,7 @@ http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
     </refsection>
     <refsection>
         <title>注意</title>
-        
         The
-        
         <link linkend="corr">corr</link>
         関数は<literal>x</literal>および<literal>y</literal>の
         バイアス付き("biased")共分散を計算し,

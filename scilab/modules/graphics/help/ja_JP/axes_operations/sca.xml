@@ -42,7 +42,6 @@
     <refsection>
         <title>例</title>
         <scilab:image>
-            
             clf()
             a1=newaxes(); 
             a1.axes_bounds=[0,0,1.0,0.5];
@@ -57,7 +56,6 @@
             legend(['acosh','asinh'])
             sca(a2); 
             legend('sinh')
-            
         </scilab:image>
     </refsection>
     <refsection>
@@ -72,7 +70,6 @@ a2=newaxes();
 a2.axes_bounds=[0,0.5,1.0,0.5];
 x=0:0.1:4;
 plot(x,sinh(x))
-
 sca(a1); // 最初の軸をカレントとする
 plot(t,asinh(t),'g')
 legend(['acosh','asinh'])

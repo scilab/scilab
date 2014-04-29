@@ -14,28 +14,27 @@
     <refnamediv>
         <refname>read_csv</refname>
         <refpurpose>
-	  カンマ区切り形式のファイルを読み込む.
-	  <link linkend="csvRead">csvRead</link>で置換されています.
-	</refpurpose>
+            カンマ区切り形式のファイルを読み込む.
+            <link linkend="csvRead">csvRead</link>で置換されています.
+        </refpurpose>
     </refnamediv>
     <refsection>
         <title>説明</title>
         <para>
-          <link linkend="csvRead">csvRead</link>と異なり, 
-	  以前のバージョンとの互換性を維持するために
-	  変換はデフォルトで<literal>string</literal>に設定されます.
+            <link linkend="csvRead">csvRead</link>と異なり, 
+            以前のバージョンとの互換性を維持するために
+            変換はデフォルトで<literal>string</literal>に設定されます.
         </para>
     </refsection>
-
     <refsection>
-      <title>履歴</title>
-      <revhistory>
-        <revision>
-          <revnumber>5.4.0</revnumber>
-          <revremark>
-            read_csvは,完全に<link linkend="csvRead">csvRead</link>に基づいています.
-          </revremark>
-        </revision>
-      </revhistory>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>
+                    read_csvは,完全に<link linkend="csvRead">csvRead</link>に基づいています.
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

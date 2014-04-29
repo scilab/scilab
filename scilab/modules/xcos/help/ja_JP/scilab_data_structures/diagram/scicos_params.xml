@@ -45,7 +45,6 @@
             型 : scilab リスト.
         </para>
         <para>
-            
         </para>
         <itemizedlist>
             <listitem>
@@ -95,7 +94,6 @@
                             数値ソルバーの積分器の絶対許容誤差.
                         </para>
                         <para>
-                            
                         </para>
                     </listitem>
                     <listitem>
@@ -106,7 +104,6 @@
                             数値ソルバーの積分器の相対許容誤差.
                         </para>
                         <para>
-                            
                         </para>
                     </listitem>
                     <listitem>
@@ -120,7 +117,6 @@
                             積分間隔がttolより小さい場合,数値ソルバーはコールされません.
                         </para>
                         <para>
-                            
                         </para>
                     </listitem>
                     <listitem>
@@ -150,7 +146,6 @@
                             値1はScicosの各時間単位を1秒に対応付けることを意味します.
                         </para>
                         <para>
-                            
                         </para>
                     </listitem>
                     <listitem>
@@ -164,7 +159,6 @@
                             値0はODEソルバー, 100はDAEソルバーを意味します.
                         </para>
                         <para>
-                            
                         </para>
                     </listitem>
                     <listitem>
@@ -244,8 +238,6 @@
                 </para>
                 <para> 
                     フィールドは以下のようになります:
-                    
-                    
                 </para>
                 <itemizedlist>
                     <listitem>
@@ -268,7 +260,6 @@
                             デフォルト値は list(%t,33) です.
                         </para>
                         <para>
-                            
                         </para>
                     </listitem>
                     <listitem>
@@ -283,7 +274,6 @@
                             デフォルト値は [8,1] です.
                         </para>
                         <para>
-                            
                         </para>
                     </listitem>
                     <listitem>
@@ -305,7 +295,6 @@
                             使用されている場合は黒と赤に対応します.
                         </para>
                         <para>
-                            
                         </para>
                     </listitem>
                     <listitem>
@@ -319,7 +308,6 @@
                             デフォルト値は [5,1],[4,1]です.
                         </para>
                         <para>
-                            
                         </para>
                     </listitem>
                     <listitem>

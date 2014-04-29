@@ -77,10 +77,8 @@
             // 新しいダイアグラムをオープン
             xcos();
             xcos
-            
             // ダイアグラムを読み込む
             xcos SCI/scicos/demos/bounce.cosf; 
-            
             // 構造体を読み込む
             load('mondiagr.cos'); 
             xcos(scs_m);

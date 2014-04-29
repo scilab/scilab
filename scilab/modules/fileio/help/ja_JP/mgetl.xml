@@ -70,9 +70,7 @@
         <title>例</title>
         <programlisting role="example"><![CDATA[ 
 mgetl('SCI/etc/scilab.start',5)
-
 mgetl SCI/modules/elementary_functions/macros/erf.sci
-
 fd=mopen('SCI/etc/scilab.start','r')
 mgetl(fd,10)
 mclose(fd)

@@ -158,7 +158,6 @@ plot2d1('onn',t',x',[1:nx],'161');
 plot2d2('onn',t',u',[nx+1:nx+nu],'000');
 //Fortran外部関数 (fydot2.f参照): 
 norm(xu-odedc([x0;u0],nu,stdel,0,t,'phis'),1)
-
 //サンプル値フィードバック 
 //
 //        |         xcdot=fc(t,xc,u)

@@ -81,19 +81,15 @@ http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
         <itemizedlist>
             <listitem>
                 <literal>c=xcov(x)</literal>
-                
                 は,以下の正規化しない離散共分散を計算します:
-                
                 <latex>{\begin{matrix}C_k = \sum_{i=0}^{n-k-1}
                     {(x_{i+k}-\mu_x})({x_i-\mu_x})^{*} , k \geq 0 
                     \mu_x=\sum_{i=0}^{n-1}{x_i} C_k = C^{*}_{-k}, k \leq
                     -1\end{matrix}.}$
                 </latex>
-                
                 そして,
                 <literal>c</literal>
                 を返します.
-                
                 共分散の並びは,
                 <latex>$C_k,k=-n:n$</latex>
                 となります. ただし,
@@ -101,23 +97,17 @@ http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
                 は
                 <literal>x</literal>
                 の長さです.
-                
             </listitem>
             <listitem>
                 <literal>xcov(x,y)</literal>
-                
                 は以下のように正規化しない離散相互共分散を計算します:
-                
                 <latex>${\begin{matrix}C_k = \sum_{i=1}^{n-k}
                     {(x_{i+k}-\mu_x})*({y_i}-\mu_y)^{*}, k \geq 0
                     \mu_x=\sum_{i=0}^{n-1}{x_i} \mu_y=\sum_{i=0}^{n-1}{y_i} C_k =
                     C^{*}_{-k}, k \leq -1\end{matrix}.}$
                 </latex>
-                
                 結果を
-                
                 <literal>c</literal>
-                
                 に返します.
                 相互共分散の並びは
                 <latex>$C_k,k=-n:n$</latex>

@@ -8,7 +8,6 @@
         <title>呼び出し手順</title>
         <synopsis>C = splin2d(x, y, z, [,spline_type])</synopsis>
     </refsynopsisdiv>
-    
     <refsection>
         <title>引数</title>
         <variablelist>
@@ -54,7 +53,6 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    
     <refsection>
         <title>説明</title>
         <para>
@@ -85,14 +83,12 @@
             <emphasis>s</emphasis>の評価を行う必要があります.
             適当な<literal>spline_type</literal>パラメータを選択することにより,
             複数の種類のスプラインを計算することができます.
-            
             双3次スプライン(またはサブスプライン)を計算するために使用する方法は,
             古い形式の手法,すなわち,
             各グリッドの点<emphasis>(xi,yj)</emphasis>において
             1階微分<emphasis>ds/dx(xi,yj)</emphasis> および
             <emphasis>ds/dy(xi,yj)</emphasis>と相互微分
             <emphasis>d2s/dxdy(xi,yj)</emphasis>の近似値を計算する手法です.
-            
             これらの微係数は,C2関数
             (<emphasis>s</emphasis>は連続2階微分可能)となる
             1次元スプライン法の平均,または
@@ -122,7 +118,6 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    
     <refsection>
         <title>注意</title>
         <para>
@@ -147,7 +142,6 @@
             容易に<literal>C</literal>を取得できます).
         </para>
     </refsection>
-    
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[ 
@@ -187,7 +181,6 @@ xtitle("spline interpolation of cos(x)cos(y)"+str)
             str = msprintf(" with %d x %d interpolation points. ermax = %g",n,n,emax) 
             xtitle("spline interpolation of cos(x)cos(y)"+str)
         </scilab:image>
-        
         <programlisting role="example"><![CDATA[ 
 // 例2 : ランダムなデータに異なる補間関数を適用
 n = 6;
@@ -270,7 +263,6 @@ plot3d1(xp, xp, zp2, flag=[-2 6 4])
 xtitle("subspline (monotone)")
  ]]></programlisting>
     </refsection>
-    
     <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">
@@ -285,7 +277,6 @@ xtitle("subspline (monotone)")
             </member>
         </simplelist>
     </refsection>
-    
     <refsection>
         <title>履歴</title>
         <revhistory>
@@ -296,4 +287,3 @@ xtitle("subspline (monotone)")
         </revhistory>
     </refsection>
 </refentry>
-

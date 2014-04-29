@@ -287,14 +287,12 @@ x=-10:10; y=-10:10;m =rand(21,21);
 clf()
 xset("colormap",hotcolormap(64))
 Sgrayplot(x,y,m, strf="011", rect=[-20,-20,20,20])
-
 // 例 #2
 t=-%pi:0.1:%pi; m=sin(t)'*cos(t);
 clf()
 xset("colormap",jetcolormap(64))
 colorbar(-1,1)
 Sgrayplot(t,t,m, strf="041")
-
 // 例 #3: アニメーション表示 cos(t)*sin(x)sin(y).
 n = 30;
 nt = 100;

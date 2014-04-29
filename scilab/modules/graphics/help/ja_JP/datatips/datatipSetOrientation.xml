@@ -62,9 +62,7 @@
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[
-
     x=linspace(-20,20,1000);
-
     clf()
     plot(x,sinc(x),x,sinc(x.^2));
     e=gce();e=e.children

@@ -20,7 +20,6 @@
         <synopsis>X0 = inistate(SYS,Y,U,TOL,PRINTW)
             X0 = inistate(A,B,C,Y,U);
             X0 = inistate(A,C,Y);
-            
             [x0,V,rcnd] = inistate(SYS,Y,U,TOL,PRINTW)
         </synopsis>
     </refsynopsisdiv>

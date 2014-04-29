@@ -51,11 +51,9 @@
         <programlisting role="example"><![CDATA[ 
 fd = mopen(TMPDIR+'/filetodelete.txt','wt');
 mclose(fd); 
-
 if (fileinfo(TMPDIR+'/filetodelete.txt') <> []) then 
 deletefile(TMPDIR+'/filetodelete.txt')
 end
-
 deletefile(TMPDIR+'/notexistingfile')
     ]]></programlisting>
     </refsection>

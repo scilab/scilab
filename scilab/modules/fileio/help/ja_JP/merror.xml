@@ -19,7 +19,6 @@
     <refsynopsisdiv>
         <title>呼び出し手順</title>
         <synopsis>err = merror([fd])
-            
             [err,msg] = merror([fd])
         </synopsis>
     </refsynopsisdiv>

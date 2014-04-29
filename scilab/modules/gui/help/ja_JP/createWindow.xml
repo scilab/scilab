@@ -66,4 +66,3 @@ uicontrol(f, "style", "checkbox", "units", "normalized", "position", [0.5 0.5 0.
         </revhistory>
     </refsection>
 </refentry>
-

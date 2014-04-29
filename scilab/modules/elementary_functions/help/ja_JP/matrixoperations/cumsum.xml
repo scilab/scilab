@@ -69,11 +69,9 @@
         <title>例</title>
         <programlisting role="example"><![CDATA[ 
 A=[1,2;3,4];
-
 cumsum(A)
 cumsum(A,'r')
 cumsum(A,'c')
-
 a=rand(3,4)+%i;
 [m,n]=size(a);
 w=zeros(a);

@@ -114,23 +114,17 @@ function [x,y]=myfct(a,b)
 x=a+b
 y=a-b
 endfunction
-
 [x,y]=myfct(3,2)
-
 //行内での関数定義
 function y=sq(x),y=x^2,endfunction
-
 sq(3)
-
 //関数定義のネスト
 function y=foo(x)
 a=sin(x)
 function y=sq(x), y=x^2,endfunction
 y=sq(a)+1
 endfunction
-
 foo(%pi/3)
-
 // スクリプトファイル内での定義 (exec参照)
 exec SCI/modules/elementary_functions/macros/asinh.sci;
  ]]></programlisting>

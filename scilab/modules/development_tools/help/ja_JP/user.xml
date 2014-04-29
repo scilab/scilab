@@ -15,7 +15,6 @@
             なります.
             ただし,<literal>(s_1,s_2,...,s_lhs)</literal>は出力変数であり,
             <literal>(e_1,e_2,...,e_rhs)</literal>は入力変数です.
-            
             このコマンドをScilabに挿入するには,ScilabのFortranサブルーチン
             <literal>user</literal>に数行を追加する必要があります.
             詳細については,<link linkend="intersci">intersci</link>またはScilabのドキュメントを参照ください.

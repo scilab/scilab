@@ -76,13 +76,11 @@ x=[1,%i,-1,%i]
 phasex=atan(imag(x),real(x))
 atan(0,-1)
 atan(-%eps,-1)
-
 // 分岐切断(branch cut)
 atan(-%eps + 2*%i)
 atan(+%eps + 2*%i)
 atan(-%eps - 2*%i)
 atan(+%eps - 2*%i)
-
 // 分岐点における値
 ieee(2)
 atan(%i)

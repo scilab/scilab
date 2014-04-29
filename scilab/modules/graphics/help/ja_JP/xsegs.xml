@@ -76,7 +76,6 @@ zv=[zi_1 zi_2 ...; zf_1 zf_2...]
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[
-
 // 2次元の例
 x=2*%pi*(0:9)/10;
 xv=[sin(x);9*sin(x)];
@@ -120,8 +119,6 @@ a.data_bounds = [min(xv) min(yv) min(zv); ...
 // 矢印を各線分に追加できます
 e = gce();
 e.arrow_size = 0.4;
-
-
  ]]></programlisting>
         <scilab:image>
             a=gca();

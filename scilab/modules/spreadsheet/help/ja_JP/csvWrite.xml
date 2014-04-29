@@ -12,13 +12,10 @@
           xmlns:db="http://docbook.org/ns/docbook">
     <refnamediv>
         <refname>csvWrite</refname>
-        
         <refpurpose>CSVファイルを書き込む</refpurpose>
     </refnamediv>
-    
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        
         <synopsis>
             csvWrite(M, filename)
             csvWrite(M, filename, separator)
@@ -27,7 +24,6 @@
             csvWrite(M, filename, separator, decimal, precision, comments)
         </synopsis>
     </refsynopsisdiv>
-    
     <refsection>
         <title>引数</title>
         <variablelist>
@@ -78,54 +74,46 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    
     <refsection>
         <title>説明</title>
-        
         <para>
             この関数は,行列 M を filename にカンマ区切りの値として
             書き込みます.
         </para>
-        
         <para>
             オプションの入力引数のデフォルト値は
             <literal>csvDefault</literal> 関数で定義されます.
         </para>
-        
         <para>
             オプションの入力引数に空の行列<literal>[]</literal>を指定すると,
             デフォルト値が設定されます.
         </para>
-        
         <para>
-          <literal>filename</literal> がすでに存在する場合,
-          上書きされます.
+            <literal>filename</literal> がすでに存在する場合,
+            上書きされます.
         </para>
         <para>
-          関係がある場合 (すなわち,'特殊'文字がある場合),ファイルはUTF-8として保存されます.
+            関係がある場合 (すなわち,'特殊'文字がある場合),ファイルはUTF-8として保存されます.
         </para>
     </refsection>
-    
     <refsection>
         <title>例</title>
         <para>
-          以下の例では,
-          <literal>csvWrite</literal> および <literal>csvRead</literal>
-          関数を組み合わせて使用します.
+            以下の例では,
+            <literal>csvWrite</literal> および <literal>csvRead</literal>
+            関数を組み合わせて使用します.
         </para>
         <programlisting role="example"><![CDATA[// CSVファイル形式で行列を保存
 M = [1:10] * 0.1;
 filename = fullfile(TMPDIR, "data.csv");
 csvWrite(M, filename);
-
 // テキストとして読み込む
 mgetl(filename)
-
 r = csvRead(filename);
         ]]></programlisting>
         <para>
-	  以下の例では,
-          <literal>csvWrite</literal> 関数の種々のオプションを使用します.
+            以下の例では,
+            <literal>csvWrite</literal> 関数の種々のオプションを使用します.
         </para>
         <programlisting role="example"><![CDATA[// CSVファイル形式で行列を保存
 M = rand(2,3);
@@ -164,7 +152,6 @@ mgetl(filename)
 9.99999999899999990e-001 1.e-100 200 296 117
 1 %inf -%inf %nan 0
 ];
-
 // ファイルに書き込む
 filename=fullfile(TMPDIR,"foo.csv");
 csvWrite ( A , filename );
@@ -173,7 +160,6 @@ edit(filename)
     </refsection>
     <refsection>
         <title>参照</title>
-        
         <simplelist type="inline">
             <member>
                 <link linkend="csvRead">csvRead</link>
@@ -191,6 +177,4 @@ edit(filename)
             </revision>
         </revhistory>
     </refsection>
-    
 </refentry>
-

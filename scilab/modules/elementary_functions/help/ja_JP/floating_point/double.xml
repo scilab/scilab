@@ -48,7 +48,6 @@
         <title>説明</title>
         <para>converts data stored using one, two or four bytes integers into
             double precision floating point representation. 
-            
             エントリ<literal>X</literal>がすでに倍精度
             entries are already double precision floats, nothing is done.
         </para>

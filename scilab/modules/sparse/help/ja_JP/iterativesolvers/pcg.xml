@@ -199,11 +199,9 @@ A=[ 94  0   0   0    0   28  0   0   32  0
      0   10  0   0    32  0   39  46  8   0  
      32  0   0   0    12  33  0   8   82  11 
      0   0   65  55   0   0   0   0   11  100];
-
 b=ones(10,1);
 [x, fail, err, iter, res]=pcg(A,b,1d-12,15);
 mprintf("      fail=%d, iter=%d, errrel=%e\n",fail,iter,err)
-
 //悪い条件の例
 A=[ 894     0   0     0   0   28  0   0   1000  70000
       0      5   13    5   0   0   0   0   0     0    
@@ -215,7 +213,6 @@ A=[ 894     0   0     0   0   28  0   0   1000  70000
       0      0   0     0   32  0   39  46  8     0    
       1000   0   0     0   12  33  0   8   82    11   
       70000  0   6500  55  0   0   0   0   11    100];
- 
 [x, fail, err, iter, res]=pcg(A,b,maxIter=30,tol=1d-12);
 mprintf("      fail=%d, iter=%d, errrel=%e\n",fail,iter,err)
  ]]></programlisting>
@@ -241,12 +238,10 @@ A=[ 94  0   0   0    0   28  0   0   32  0
      32  0   0   0    12  33  0   8   82  11 
      0   0   65  55   0   0   0   0   11  100];
 b=ones(10,1);
-
 // Aを疎行列に変換
 Asparse=sparse(A);
 [x, fail, err, iter, res]=pcg(Asparse,b,maxIter=30,tol=1d-12);
 mprintf("      fail=%d, iter=%d, errrel=%e\n",fail,iter,err)
-
 // 右辺を計算する関数を定義.
 function y=Atimesx(x)
   A=[ 94  0   0   0    0   28  0   0   32  0  
@@ -261,16 +256,13 @@ function y=Atimesx(x)
        0   0   65  55   0   0   0   0   11  100];
   y=A*x
 endfunction
-
 // スクリプトAtimesx をプリミティブに指定
 [x, fail, err, iter, res]=pcg(Atimesx,b,maxIter=30,tol=1d-12);
 mprintf("      fail=%d, iter=%d, errrel=%e\n",fail,iter,err)
-
 // 右辺を計算する関数を定義.
 function y=Atimesxbis(x,A)
   y=A*x
 endfunction
-
 // リストをプリミティブに指定
 Alist = list(Atimesxbis,Asparse);
 [x, fail, err, iter, res]=pcg(Alist,b,maxIter=30,tol=1d-12);
@@ -296,7 +288,6 @@ mprintf("      fail=%d, iter=%d, errrel=%e\n",fail,iter,err)
 A=[100,1;1,10];
 b=[101;11];
 [xcomputed, flag, err, iter, res]=pcg(A,b,verbose=1);
-
 // key=value構文では, 順番は関係ありません
 [xcomputed, flag, err, iter, res]=pcg(A,b,verbose=1,maxIter=0);
  ]]></programlisting>

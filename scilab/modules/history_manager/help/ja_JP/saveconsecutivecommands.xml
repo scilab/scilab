@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA - Allan CORNET
@@ -11,87 +10,46 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
-
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="saveconsecutivecommands">
-    
     <refnamediv>
-        
         <refname>saveconsecutivecommands</refname>
-        
         <refpurpose>連続する冗長なコマンドを保存する.</refpurpose>
-        
     </refnamediv>
-    
     <refsynopsisdiv>
-        
         <title>呼び出し手順</title>
-        
         <synopsis>saveconsecutivecommands(boolean_in)
-            
             boolean_out = saveconsecutivecommands()
-            
         </synopsis>
-        
     </refsynopsisdiv>
-    
     <refsection>
-        
         <title>引数</title>
-        
         <variablelist>
-            
             <varlistentry>
-                
                 <term>boolean_in</term>
-                
                 <listitem>
-                    
                     <para>論理値 (%t または %f)</para>
-                    
                 </listitem>
-                
             </varlistentry>
-            
             <varlistentry>
-                
                 <term>boolean_out</term>
-                
                 <listitem>
-                    
                     <para>カレントの値</para>
-                    
                 </listitem>
-                
             </varlistentry>
-            
         </variablelist>
-        
     </refsection>
-    
     <refsection>
-        
         <title>説明</title>
-        
         <para>
-            
             連続した冗長なコマンドを保存します.
-            
         </para>
-        
         <para>
-            
             連続した同じ命令の実行を履歴ファイルに保存したい場合,
-            
             saveconsecutivecommands(%t) としてください.
-            
         </para>
-        
     </refsection>
-    
     <refsection>
-        
         <title>例</title>
-        
         <programlisting role="example"><![CDATA[ 
 saveconsecutivecommands()
 saveconsecutivecommands(%t)
@@ -103,8 +61,5 @@ saveconsecutivecommands(%f)
 1
 2
  ]]></programlisting>
-        
     </refsection>
-    
 </refentry>
-

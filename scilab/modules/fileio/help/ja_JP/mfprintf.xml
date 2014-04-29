@@ -86,7 +86,6 @@
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[ 
-
 fd = mopen(TMPDIR+'/text.txt','wt');
 mfprintf(fd,'hello %s %d.\n','world',1);
 mfprintf(fd,'hello %s %d.\n','scilab',2);

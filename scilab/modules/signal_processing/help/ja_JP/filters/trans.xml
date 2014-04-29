@@ -120,7 +120,6 @@ clf()
 Hlp=iir(3,'lp','ellip',[0.1 0],[.08 .03]);
 Hbp=trans(Hlp,'bp',[0.01 0.1]);
 Hsb=trans(Hlp,'sb',[0.01 0.1])
-
 clf();gainplot([Hlp;Hbp;Hsb],1d-3,0.48);
 l=legend(['original low pass';'band pass';'stop band']);
 l.legend_location="in_lower_left";

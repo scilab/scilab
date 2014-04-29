@@ -59,7 +59,6 @@ A =  n x m 疎行列. xadj, adjncy, anz = Aの隣接表現,すなわち:
             <literal>adjncy</literal> = 行1,行2,...,行nにおける
             エントリの非ゼロの列インデックス.
             <literal>anz</literal> = 行1,行2,...,行nにおける非ゼロ要素の値.
-            
             <literal>xadj</literal> は大きさ n+1の (列)ベクトル,
             <literal>adjncy</literal> は大きさ<literal>nz=nnz(A)</literal>の
             整数(列)ベクトルです.

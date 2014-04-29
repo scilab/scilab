@@ -19,7 +19,6 @@
         <title>呼び出し手順</title>
         <synopsis>evals=spec(A)
             [R,diagevals]=spec(A)
-            
             evals=spec(A,B)
             [alpha,beta]=spec(A,B)
             [alpha,beta,Z]=spec(A,B)
@@ -230,14 +229,11 @@ A=diag([1,2,3]);
 X=rand(3,3);
 A=inv(X)*A*X;
 spec(A)
-
 x=poly(0,'x');
 pol=det(x*eye()-A)
 roots(pol)
-
 [S,X]=bdiag(A);
 clean(inv(X)*A*X)
-
 // PENCIL EIGENVALUES
 A=rand(3,3);
 [al,be,R] = spec(A,eye(A));

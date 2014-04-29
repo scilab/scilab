@@ -27,12 +27,10 @@ OmegaC  = 10; // 通過域カットオフ周波数 (Hz)
 OmegaR  = 50; // 阻止域カットオフ周波数 (Hz)
 // フィルタを生成
 [_zeros,pols,gain] = zpell(3,60,10,50);
-
 // フィルタの等価な線形システムを生成
 num   = gain * real(poly(_zeros,'s'));
 den   = real(poly(pols,'s'));
 elatf = syslin('c',num,den);
-
 // 得られたフィルタをプロット
 bode(elatf,0.01,100);
 title('Analog Elliptic filter');
@@ -103,14 +101,11 @@ title('Analog Elliptic filter');
 Order   = 2; // フィルタの次数
 Fs      = 1000; // サンプル周期
 Fcutoff = 40;   // カットオフ周波数
-
 // ローパス楕円フィルタを設計
 hz = iir(Order,'lp','ellip',[Fcutoff/Fs/2 0],[0.1 0.1]);
-
 // フィルタの周波数応用を計算
 [frq,repf]=repfreq(hz,0:0.001:0.5);
 [db_repf, phi_repf] = dbphi(repf);
-
 // デジタルフィルタのボード線図に類似の図をプロット
 subplot(2,1,1);
 plot2d(Fs*frq,db_repf);
@@ -144,10 +139,8 @@ xtitle('Obtained Frequency Response (Phase in degree)');
 rand('normal');
 Input = rand(1,1000); // Produce a random gaussian noise
 t     = 1:1000;
-
 sl= tf2ss(hz); // From transfert function to syslin representation
 y = flts(Input,sl); // Filter the signal
-
 subplot(2,1,1);
 plot(t,Input);
 xtitle('The gaussian noise','t','y');
@@ -189,10 +182,8 @@ xtitle('The filtered gaussian noise','t','y');
 rand('normal');
 Input = rand(1,1000); // ランダムなガウスノイズを生成
 n     = 1:1000; // 標本インデックス
-
 eldtf = dscr(elatf,1/100); //線形フィルタの離散化
 y = flts(Input,eldtf); // 信号をフィルタ処理
-
 subplot(2,1,1);
 plot(n,Input);
 xtitle('The gaussian noise','n','y');
@@ -216,9 +207,7 @@ rand('normal');
 Input = rand(1,1000); // Pランダムなガウスノイズを生成
 t     = 1:1000;
 t     = t*0.01; // 標本インデックスを時間刻みに変換
-
 y = csim(Input,t,elatf); // 信号をフィルタ処理
-
 subplot(2,1,1);
 plot(t,Input);
 xtitle('The gaussian noise','t','y');

@@ -130,7 +130,6 @@ subplot(122)
 n=256;[W,fr]=frmag(w,n);
 plot2d(fr,20*log10(W),style=color('blue'))
 set(gca(),'grid',[1 1]*color('gray'))
-
 // カイザーウインドウ
 clf()
 N=64;
@@ -141,7 +140,6 @@ subplot(122)
 n=256;[W,fr]=frmag(w,n);
 plot2d(fr,20*log10(W),style=color('blue'))
 set(gca(),'grid',[1 1]*color('gray'))
-
 // チェビシェフウインドウ
 clf()
 N=64;

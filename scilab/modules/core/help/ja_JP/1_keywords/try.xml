@@ -89,7 +89,6 @@ catch
   x=1:10
 end 
  [error_message,error_number]=lasterror(%t)
-
 // 例 2 (ネストしたtry/catch構造)
 function nestedtry(a,b)
 disp("START")

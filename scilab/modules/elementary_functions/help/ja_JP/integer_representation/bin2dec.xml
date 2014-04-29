@@ -56,7 +56,6 @@
 // '1010110' : is the binary representation of 86 
 str='1010110';
 y=bin2dec(str)
-
 // example 2 :
 // '1011011' : is the binary representation of 91 
 // '1010010' : is the binary representation of 82

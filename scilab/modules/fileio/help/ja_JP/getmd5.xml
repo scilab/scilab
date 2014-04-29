@@ -45,7 +45,6 @@
 getmd5('hello world','string')
 getmd5(['hello' 'world'],'string')
 getmd5(['hello' ; 'world'],'string')
-
 getmd5( SCI+'/modules/core/etc/core.start' )
 getmd5( SCI+'/modules/core/etc/'+['core.start' 'core.quit'])
  ]]></programlisting>

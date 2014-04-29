@@ -63,15 +63,12 @@
         <programlisting role="example"><![CDATA[ 
 A=rand(4,2)*rand(2,4);   // 4 列ベクトル, 2 独立.
 [X,dim]=range(A,1);dim   // 範囲を計算
-
 y1=A*rand(4,1);          //Aの範囲のベクトル
 y2=rand(4,1);            //Aの範囲にないベクトル
 norm(X(dim+1:$,:)*y1)    //最後のエントリはゼロ, y1 はAの範囲
 norm(X(dim+1:$,:)*y2)    //最後のエントリは非ゼロ
-
 I=X(1:dim,:)'            //I が範囲の基底is a basis of the range
 coeffs=X(1:dim,:)*y1     // 基底Iに関連るy1の要素
-
 norm(I*coeffs-y1)        //check
  ]]></programlisting>
     </refsection>

@@ -114,14 +114,10 @@
         <programlisting role="example"><![CDATA[ 
 A=round(5*rand(10,1));
 B=round(5*rand(7,1));
-
 intersect(A,B)
 [N,ka,kb]=intersect(A,B)
-
 intersect('a'+string(A),'a'+string(B))
-
 intersect(int16(A),int16(B))
-
 //行列の場合
  A = [0,0,1,1 1;
       0,1,1,1,1;
@@ -135,7 +131,6 @@ B = [1,0,1;
      2,0,4;
      1,2,5;
      %nan,0,6];
-
 [v,ka,kb] = intersect(A,B,'c')
 A(:,ka)
  ]]></programlisting>

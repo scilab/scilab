@@ -47,12 +47,9 @@
         <programlisting role="example"><![CDATA[
     doc = xmlRead("SCI/modules/xml/tests/unit_tests/library.xml");
     dtd = xmlDTD("SCI/modules/xml/tests/unit_tests/library.dtd");
-
     // 文書が有効かどうかを確認します
     // エラーが発生しない場合は有効です
-
     xmlValidate(doc, dtd);
-
     xmlDelete(doc, dtd);
     ]]></programlisting>
     </refsection>

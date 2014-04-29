@@ -99,9 +99,7 @@ clear();
 fd = matfile_open("test_matfile.mat");
 matfile_listvar(fd)
 matfile_close(fd);
-
 //fd = matfile_open("test_matfile.mat", "w"); // 空のtest_matfile.mat
-
 //fd = matfile_open("test_matfile.mat", "w", "7.3"); // Matlab 7.3 ファイル用の空の test_matfile.mat
  ]]></programlisting>
     </refsection>
@@ -122,7 +120,6 @@ matfile_close(fd);
             </member>
         </simplelist>
     </refsection>
-    
     <refsection>
         <title>参考文献</title>
         <para>
@@ -133,7 +130,6 @@ matfile_close(fd);
             )を使用しています.
         </para>
     </refsection>
-    
     <refsection>
         <title>履歴</title>
         <revhistory>
@@ -144,4 +140,3 @@ matfile_close(fd);
         </revhistory>
     </refsection>
 </refentry>
-

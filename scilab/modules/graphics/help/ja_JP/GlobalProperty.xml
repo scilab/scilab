@@ -77,7 +77,6 @@
                         <literal>'scaled'</literal> または
                         <literal>'direct'</literal>を値とする文字列. <literal>data.color</literal> が設定された場合, 
                         color data の各インデックスは各頂点について単一の値を指定します.
-                        
                         <literal>cdata_mapping</literal> はこれらのインデックスが
                         カレントのカラーマップに線形にマップするためにスケーリングされる
                         (<literal>'scaled'</literal> モード)か,もしくは,
@@ -442,20 +441,16 @@
 x=1:10; // Init.
 plot(x,sin(x),'colo','red','linest','-.','marker','>','markeredg','cyan','markerFace','yellow','markersize',5)
 clf();
-
 // combinations' order in {PropertyName,PropertyValue} does not matter
 plot(x,sin(x),'marker','p','markerfac','cyan','markersiz',10)
 clf();
-
 // combination of LineSpec and GlobalProperty shows the GlobalProperty predominance
 plot(x,x.*x,'*cya--','color','gr','linestyle','-','marker','sq','markersize',6,'markforegroun','red','markbackgro',[0.2 0.5 0.6])
 clf();
-
 //multiple plots with different LineSpecs and finally some global GlobalProperty
 clf();
 t=0:%pi/20:2*%pi;
 plot(t,sin(t),'ro-.',t,cos(t),'cya+',t,abs(sin(t)),'--mo','markstyl','diam')
-
 // --------------------
 // With the plot2d command :
 // --------------------
@@ -464,42 +459,33 @@ function draw_marks(title)
   a.title.text=title;
   a.mark_size=8;
   a.data_bounds=[-1.5 1.5 -1.5 1.5];
-
   theta=(1/15)*(2*%pi)*[0:15];
   plot2d(cos(theta),sin(theta));
-
   for i=0:14 do
     theta=(i/15)*(2*%pi);
     plot2d(cos(theta),sin(theta),style=-i);
   end
 endfunction
-
 clf();
 subplot(2,2,1)
 draw_marks("black foreground / white background")
-
 subplot(2,2,2)
 a=gca();
 a.mark_foreground=-1;
 a.mark_background=4;
 draw_marks("black foreground / cyan background")
-
 subplot(2,2,3)
 a=gca();
 a.mark_background=0;
 draw_marks("black foreground / invisible background")
-
 subplot(2,2,4)
 a=gca();
 a.mark_foreground=0;
 a.mark_background=4;
 draw_marks("invisible foreground / cyan background")
-
 // --------------------
 // With the surf command :
 // --------------------
-
-
 Z= [   0.0001    0.0013    0.0053   -0.0299   -0.1809   -0.2465   -0.1100   -0.0168   -0.0008   -0.0000
     0.0005    0.0089    0.0259   -0.3673   -1.8670   -2.4736   -1.0866   -0.1602   -0.0067    0.0000
     0.0004    0.0214    0.1739   -0.3147   -4.0919   -6.4101   -2.7589   -0.2779    0.0131    0.0020
@@ -510,7 +496,6 @@ Z= [   0.0001    0.0013    0.0053   -0.0299   -0.1809   -0.2465   -0.1100   -0.0
    -0.0014   -0.0017    0.3189    2.7414    7.1622    7.1361    3.1242    0.6633    0.0674    0.0030
     0.0002    0.0104    0.1733    1.0852    2.6741    2.6725    1.1119    0.1973    0.0152    0.0005
     0.0000    0.0012    0.0183    0.1099    0.2684    0.2683    0.1107    0.0190    0.0014    0.0000];
-
 clf();
 f=gcf();
 f.figure_size = [610,724];

@@ -61,11 +61,9 @@ n=10;omegar=6;A=1/0.2;Samples=0.0001:0.05:10;
 h2=cheb2mag(n,omegar,A,Samples);
 plot(Samples,log(h2)/log(10))
 xtitle("", "frequencies", "magnitude in dB");
-
 //周波数のエッジをプロット
 minval=(-max(-log(h2)))/log(10);
 plot2d([omegar;omegar],[minval;0],[2],"000");
-
 //阻止域のエッジにおける減衰(単位:dB)を計算
 attenuation=-log(A*A)/log(10);
 plot2d(Samples',attenuation*ones(Samples)',[5],"000")
@@ -75,10 +73,8 @@ n=10;omegar=6;A=1/0.2;Samples=0.0001:0.05:10;
 h2=cheb2mag(n,omegar,A,Samples);
 plot(Samples,log(h2)/log(10))
 xtitle("", "frequencies", "magnitude in dB");
-
 minval=(-max(-log(h2)))/log(10);
 plot2d([omegar;omegar],[minval;0],[2],"000");
-
 attenuation=-log(A*A)/log(10);
 plot2d(Samples',attenuation*ones(Samples)',[5],"000")
 ]]>     </scilab:image>

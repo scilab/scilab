@@ -58,7 +58,6 @@ z=poly(0,'z');
 p=(z-1/2)*(2-z)
 w=sfact(p);
 w*numer(horner(w,1/z))
-
 //matrix example
 F1=[z-1/2,z+1/2,z^2+2;1,z,-z;z^3+2*z,z,1/2-z];
 P=F1*gtild(F1,'d');  //P is symmetric
@@ -67,7 +66,6 @@ roots(det(P))
 roots(det(gtild(F,'d')))  //The stable roots
 roots(det(F))             //The antistable roots
 clean(P-F*gtild(F,'d'))
-
 //Example of continuous time use
 s=poly(0,'s');
 p=-3*(s+(1+%i))*(s+(1-%i))*(s+0.5)*(s-0.5)*(s-(1+%i))*(s-(1-%i));p=real(p);

@@ -43,9 +43,9 @@
                 <term>start</term>
                 <listitem>
                     <para>
-		      正規表現文字列<varname>pattern</varname>に
-		      一致する<varname>input</varname>の各部分文字列の
-		      開始添字
+                        正規表現文字列<varname>pattern</varname>に
+                        一致する<varname>input</varname>の各部分文字列の
+                        開始添字
                     </para>
                 </listitem>
             </varlistentry>
@@ -53,9 +53,9 @@
                 <term>final</term>
                 <listitem>
                     <para>
-		      正規表現文字列<varname>pattern</varname>に
-		      一致する<varname>input</varname>の各部分文字列の
-		      終端添字
+                        正規表現文字列<varname>pattern</varname>に
+                        一致する<varname>input</varname>の各部分文字列の
+                        終端添字
                     </para>
                 </listitem>
             </varlistentry>
@@ -63,8 +63,8 @@
                 <term>match</term>
                 <listitem>
                     <para>
-                      <literal>pattern</literal>に一致する
-		      <varname>input</varname>の各部分文字列のテキスト.
+                        <literal>pattern</literal>に一致する
+                        <varname>input</varname>の各部分文字列のテキスト.
                     </para>
                 </listitem>
             </varlistentry>
@@ -72,8 +72,8 @@
                 <term>match</term>
                 <listitem>
                     <para>
-                      <varname>pattern</varname>にマッチする<varname>input</varname>
-		      の部分文字列のテキスト.
+                        <varname>pattern</varname>にマッチする<varname>input</varname>
+                        の部分文字列のテキスト.
                     </para>
                 </listitem>
             </varlistentry>
@@ -81,7 +81,7 @@
                 <term>foundString</term>
                 <listitem>
                     <para>
-		      取得された括弧で括られた<literal>サブパターン</literal>.
+                        取得された括弧で括られた<literal>サブパターン</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -89,7 +89,7 @@
                 <term>[flag]</term>
                 <listitem>
                     <para>
-		      パターンに一回マッチする場合は,<literal>'o'</literal>.
+                        パターンに一回マッチする場合は,<literal>'o'</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -98,17 +98,17 @@
     <refsection>
         <title>説明</title>
         <para>
-	  Perl言語に似た正規表現の規則.
-          すぐに始めるには,
-	  <ulink url="http://perldoc.perl.org/perlrequick.html">http://perldoc.perl.org/perlrequick.html</ulink>を参照ください.
-          より詳細なチュートリアルについては, 
-	  <ulink url="http://perldoc.perl.org/perlretut.html">http://perldoc.perl.org/perlretut.html</ulink>を参照ください.
-	  また,リファレンスについては<ulink url="http://perldoc.perl.org/perlre.html">http://perldoc.perl.org/perlre.html</ulink>を参照ください.
+            Perl言語に似た正規表現の規則.
+            すぐに始めるには,
+            <ulink url="http://perldoc.perl.org/perlrequick.html">http://perldoc.perl.org/perlrequick.html</ulink>を参照ください.
+            より詳細なチュートリアルについては, 
+            <ulink url="http://perldoc.perl.org/perlretut.html">http://perldoc.perl.org/perlretut.html</ulink>を参照ください.
+            また,リファレンスについては<ulink url="http://perldoc.perl.org/perlre.html">http://perldoc.perl.org/perlre.html</ulink>を参照ください.
         </para>
         <para>
-	  Perlとの違いは,Perlでは文字ではない位置
-          (例えば,<literal>/^/</literal>または<literal>/(?=o)/</literal>)
-	  にPerlではマッチできますが,Scilabではできません.
+            Perlとの違いは,Perlでは文字ではない位置
+            (例えば,<literal>/^/</literal>または<literal>/(?=o)/</literal>)
+            にPerlではマッチできますが,Scilabではできません.
         </para>
     </refsection>
     <refsection>
@@ -119,25 +119,20 @@ regexp('a!','/((((((((((a))))))))))\041/')
 regexp('ABCC','/^abc$/i')
 regexp('ABC','/ab|cd/i')
 [a b c]=regexp('XABYABBBZ','/ab*/i')
-
 piString="3.14"
 [a,b,c,piStringSplit]=regexp(piString,"/(\d+)\.(\d+)/")
 disp(piStringSplit(1))
 disp(piStringSplit(2))
-
 [a,b,c,d]=regexp('xabyabbbz','/ab(.*)b(.*)/')
 size(d)
-
 // URLからホスト名を取得
 myURL="http://www.scilab.org/download/";
 [a,b,c,d]=regexp(myURL,'@^(?:http://)?([^/]+)@i')
-
 str='foobar: 2012';
 // 名前のあるサブパターンを使用
 [a,b,c,d]=regexp(str,'/(?P<name>\w+): (?P<digit>\d+)/')
 d(1)=="foobar"
 d(2)=="2012"
-
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -154,8 +149,8 @@ d(2)=="2012"
             <revision>
                 <revnumber>5.4.0</revnumber>
                 <revremark>
-                  サブパターンマッチの結果を取得するために
-		  新しい出力引数, foundString, が追加されました.
+                    サブパターンマッチの結果を取得するために
+                    新しい出力引数, foundString, が追加されました.
                 </revremark>
             </revision>
         </revhistory>

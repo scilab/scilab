@@ -103,31 +103,25 @@
         <programlisting role="example"><![CDATA[
 execstr('a=1') // sets a=1.
 execstr('1+1') // does nothing (while evstr('1+1') returns 2)
-
 execstr(['if %t then';
          '  a=1';
          '  b=a+1';
          'else'
          ' b=0'
          'end'])
-
 execstr('a=zzzzzzz','errcatch')
 execstr('a=zzzzzzz','errcatch','m')
-
 //syntax errors
 execstr('a=1?02','errcatch')
 lasterror(%t)
-
 execstr('a=[1 2 3)','errcatch')
 lasterror(%t)
-
 // variable1 does not exist
 if execstr('variable1;','errcatch')<>0 then
    disp("Trigger an error");
 else
    disp("execstr is happy");
 end
-
 // variable2 exists ... no error is triggered by execstr
 variable2=[2,3];
 if execstr('variable2;','errcatch')<>0 then

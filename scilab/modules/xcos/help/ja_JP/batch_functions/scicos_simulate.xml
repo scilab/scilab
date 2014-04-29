@@ -123,15 +123,12 @@
         </mediaobject>
         <programlisting role="example"><![CDATA[ 
 importXcosDiagram("SCI/modules/xcos/demos/batch_simulation.zcos")
-
 typeof(scs_m) //ダイアグラムデータ構造体
-
 //このダイアグラムは以下の3つのコンテキスト変数を使用する : 
 //  Amplitude : sin関数の大きさ
 //  Pulsation : sin関数の脈動
 //  Tf        : シミュレーション終了時間
 scs_m.props.context; //組込み定義
-
 //ダイアグラムに埋め込まれたパラメータを用いたバッチシミュレーション(初回)
 scicos_simulate(scs_m);
 // 終了時間を変更
@@ -143,7 +140,6 @@ Context.Pulsation=9;
 scicos_simulate(scs_m,list(),Context,'nw');
 // "from workspace block"で作成された変数を取得
 counter 
-
     ]]></programlisting>
     </refsection>
     <refsection id="SeeAlso_scicos_simulate">

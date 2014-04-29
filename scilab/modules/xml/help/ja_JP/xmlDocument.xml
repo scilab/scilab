@@ -54,15 +54,12 @@
     doc = xmlDocument("TMPDIR/foo.xml");
     root = xmlElement(doc, "root");
     root.attributes.attr = "value";
-
     root.children(1) = "<a>hello</a>";
     root.children(2) = xmlElement(doc, "b");
     root.children(2).attributes.id = "123";
     root.children(2).content = " world";
-
     doc.root = root;
     xmlDump(doc)
-
     xmlDelete(doc);
     ]]></programlisting>
     </refsection>

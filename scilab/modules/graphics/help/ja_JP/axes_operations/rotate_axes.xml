@@ -57,11 +57,9 @@ subplot(2, 1, 1);
 plot2d;
 subplot(2, 1, 2);
 plot3d;
-
 // 2番目の軸のみを回転
 axes2 = gca();
 rotate_axes(axes2);
-
 // 選択した軸を回転
 rotate_axes();
 // or

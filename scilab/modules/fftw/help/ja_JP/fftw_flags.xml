@@ -131,10 +131,8 @@
         <programlisting role="example"><![CDATA[ 
 //return the integer value of the flag
 fftw_flags()
-
 //change flags
 fftw_flags(["FFTW_MEASURE";"FFTW_CONSERVE_MEMORY"]);
-
 //change flags and display current value of fftw flags (both integer and strings)
 [a,S]=fftw_flags("FFTW_PATIENT")
  ]]></programlisting>

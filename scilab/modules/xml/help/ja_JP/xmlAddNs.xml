@@ -52,11 +52,9 @@
     ns_scilab = xmlNs(a, "scilab", "http://www.scilab.org");
     ns_balics = xmlNs(a, "balics", "http://gro.balics.www");
     xmlAddNs(b, ns_scilab, ns_balics);
-
     doc.root.children(1) = a;
     doc.root.children(2) = b;
     xmlDump(doc)
-
     xmlDelete(doc);
     ]]></programlisting>
     </refsection>

@@ -111,7 +111,6 @@
         <programlisting role="example"><![CDATA[ 
 // xsetechパラメータのグラフィカルな説明を得るには以下を入力してください:
 exec('SCI/modules/graphics/demos/xsetechfig.sce');
-
 // ここではグラフィックウインドウを2分割するためにxsetechが使用されます
 // まず最初のサブウインドウを設定するためにxsetechを使用します 
 // and the graphics scale 

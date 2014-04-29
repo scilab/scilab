@@ -8,9 +8,7 @@
         <title>呼び出し手順</title>
         <synopsis>
             uigetfont()
-            
             [fontname [,fontsize [,bold [,italic]]]] = uigetfont([defaultfontname [,defaultfontsize [,defaultbold [,defaultitalic]]]]);
-            
             [fontname ,fontsize ,bold ,italic] = uigetfont(defaultfontname ,defaultfontsize ,defaultbold ,defaultitalic);
         </synopsis>
     </refsynopsisdiv>

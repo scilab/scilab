@@ -48,7 +48,6 @@
             linkend="get">get</link> 関数と
                     <link
 	       linkend="graphics_entities">graphicsエンティティ</link> ヘルプページを
-                    
                     参照). 
                     <link linkend="ged">ged</link>により便利なプロパティエディタを
                     起動できます.
@@ -74,4 +73,3 @@
         </simplelist>
     </refsection>
 </refentry>
-

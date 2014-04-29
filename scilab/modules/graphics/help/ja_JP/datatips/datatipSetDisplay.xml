@@ -69,7 +69,6 @@
     d21=datatipCreate(e(2),600);
     d22=datatipCreate(e(2),200);
     d1=datatipCreate(e(1),700);
-
     function str=mydisplay(curve,pt,index)
        str=msprintf('sinc(%-0.2g)=%-0.2g', 20*pt(1),pt(2))
     endfunction

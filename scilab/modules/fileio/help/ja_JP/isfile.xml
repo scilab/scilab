@@ -48,9 +48,7 @@
         <programlisting role="example">cd SCI
             filenames = ls()
             isfile(filenames)
-            
             isfile(filenames)
-            
             isfile(SCI + '/etc')
             isdir(SCI + '/etc')
         </programlisting>

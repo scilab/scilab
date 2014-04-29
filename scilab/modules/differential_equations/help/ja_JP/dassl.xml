@@ -330,24 +330,19 @@ function [r,ires]=chemres(t,y,yd)
        y(1)+y(2)+y(3)-1];
    ires=0
 endfunction
-
 function pd=chemjac(x,y,yd,cj)
     pd=[-0.04-cj , 1d4*y(3)               , 1d4*y(2);
          0.04    ,-1d4*y(3)-2*3d7*y(2)-cj ,-1d4*y(2);
          1       , 1                      , 1       ]
 endfunction
-
 y0=[1;0;0];
 yd0=[-0.04;0.04;0];
 t=[1.d-5:0.02:.4,0.41:.1:4,40,400,4000,40000,4d5,4d6,4d7,4d8,4d9,4d10];
-
 y=dassl([y0,yd0],0,t,chemres);
-
 info=list([],0,[],[],[],0,0);
 info(2)=1;
 y1=dassl([y0,yd0],0,4d10,chemres,info);
 y2=dassl([y0,yd0],0,4d10,chemres,chemjac,info);
- 
 //パラメータとしてオプション引数を使用
 //-----------------------------------
 function [r,ires]=chemres(t,y,yd ,a,b,c)
@@ -356,15 +351,12 @@ function [r,ires]=chemres(t,y,yd ,a,b,c)
        y(1)+y(2)+y(3)-1];
    ires=0
 endfunction
-
 function pd=chemjac(x,y,yd,cj, a,b,c)
     pd=[-a-cj , b*y(3)             , b*y(2);
          a    ,-b*y(3)-2*c*y(2)-cj ,-b*y(2);
          1    , 1                  , 1       ]
 endfunction
-
 y3=dassl([y0,yd0],0,t,list(chemres,0.04,1d4,3d7),list(chemjac,0.04,1d4,3d7));
-
 // Cコードを使用
 //------------
 // - Cコードを作成
@@ -375,7 +367,6 @@ rescode=['void chemres(double *t, double y[], double yd[], double r[], int *ires
          '   r[2] =       y[0]+y[1]+y[2]-1;'
          '   *ires = 0;'
          ' }'];
-
 jaccode=['void chemjac(double *t, double y[], double yd[], double pd[], double *cj, double rpar[], int ipar[])'
          ' {'
          '   /* first column*/'
@@ -392,13 +383,10 @@ jaccode=['void chemjac(double *t, double y[], double yd[], double pd[], double *
          '   pd[8] =  1.0;'
          ' }'];
 mputl([rescode;jaccode],fullfile(TMPDIR,'mycode.c')) //Cファイルを作成
-
 // - コンパイル
 ilib_for_link(['chemres','chemjac'],fullfile(TMPDIR,'mycode.c'),[],'c','',fullfile(TMPDIR,'loader.sce'));//compile
-
 // - Scilabにリンク
 exec(fullfile(TMPDIR,'loader.sce')) //incremental linking
-
 // - dasslをコール
 y4=dassl([y0,yd0],0,t,'chemres','chemjac');
  ]]></programlisting>

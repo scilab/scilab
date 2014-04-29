@@ -30,33 +30,33 @@
                 <term/>
                 <listitem>
                     <para>
-		      指令した各<literal>x</literal>について<literal>A*x</literal>を計算する
-		      行列または関数またはリスト.
-		      Aのそれぞれの型に関する A*x の計算に関して以下に示します.
+                        指令した各<literal>x</literal>について<literal>A*x</literal>を計算する
+                        行列または関数またはリスト.
+                        Aのそれぞれの型に関する A*x の計算に関して以下に示します.
                     </para>
                     <itemizedlist>
-                      <listitem>
-                        <para>
-                          <literal>行列.</literal>Aが行列の場合, 通常または疎行列が使用可能
-                        </para>
-                      </listitem>
-                      <listitem>
-                        <para>
-                          <literal>関数.</literal>Aが関数の場合, 以下のヘッダを有する
-			  必要があります :
-                        </para>
-                        <programlisting role=""><![CDATA[
+                        <listitem>
+                            <para>
+                                <literal>行列.</literal>Aが行列の場合, 通常または疎行列が使用可能
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>関数.</literal>Aが関数の場合, 以下のヘッダを有する
+                                必要があります :
+                            </para>
+                            <programlisting role=""><![CDATA[
 function y = A ( x )
  ]]></programlisting>
                         </listitem>
                         <listitem>
                             <para>
-                              <literal>リスト.</literal>Aがリストの場合,
-			      リストの最初の要素には関数を指定し,
-			      添字2から最後までのリストの他の要素には関数の引数を指定します.
-			      この関数がコールされた際,
-			      xのカレントの値が関数の最初の引数に指定され,
-			      その他の引数にはリストで指定されたものが指定されます.
+                                <literal>リスト.</literal>Aがリストの場合,
+                                リストの最初の要素には関数を指定し,
+                                添字2から最後までのリストの他の要素には関数の引数を指定します.
+                                この関数がコールされた際,
+                                xのカレントの値が関数の最初の引数に指定され,
+                                その他の引数にはリストで指定されたものが指定されます.
                             </para>
                         </listitem>
                     </itemizedlist>
@@ -78,8 +78,8 @@ function y = A ( x )
                 <term>tol</term>
                 <listitem>
                     <para>相対許容誤差 (デフォルト: 1e-8).
-                      終了基準は残差 r=b-Ax の二乗ノルムを右辺 b の二乗ノルムで割ったものに
-		      基づきます.
+                        終了基準は残差 r=b-Ax の二乗ノルムを右辺 b の二乗ノルムで割ったものに
+                        基づきます.
                     </para>
                 </listitem>
             </varlistentry>
@@ -93,15 +93,16 @@ function y = A ( x )
                 <term>M</term>
                 <listitem>
                     <para>プリコンディショナ: 通常または疎行列または
-                      <literal>M\x</literal> を返す関数 (デフォルト: none)
+                        <literal>M\x</literal> を返す関数 (デフォルト: none)
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>M2</term>
                 <listitem>
-                    <para>プリコンディショナ: 通常または疎行列または各<literal>x</literal>の
-                      <literal>M2\x</literal> を返す関数 (デフォルト: none)
+                    <para>
+                        プリコンディショナ: 通常または疎行列または各<literal>x</literal>の
+                        <literal>M2\x</literal> を返す関数 (デフォルト: none)
                     </para>
                 </listitem>
             </varlistentry>
@@ -127,9 +128,9 @@ function y = A ( x )
                 <term>flag</term>
                 <listitem>
                     <para>
-		      <literal>conjgrad</literal> が反復回数<literal>maxi</literal>以内に
-		      許容誤差以内に収束した場合は 0,
-		      それ以外は 1
+                        <literal>conjgrad</literal> が反復回数<literal>maxi</literal>以内に
+                        許容誤差以内に収束した場合は 0,
+                        それ以外は 1
                     </para>
                 </listitem>
             </varlistentry>
@@ -156,21 +157,21 @@ function y = A ( x )
     <refsection>
         <title>説明</title>
         <para>
-	  プリコンディショニング有りまたは無しの
-	  共役勾配法により線形システム<literal>Ax=b</literal> を解きます.
-	  プリコンディショナは対称正定行列<literal>M</literal>,または
-	  <literal>M=M1*M2</literal>となる2つの行列
-	  <literal>M1</literal>と<literal>M2</literal>
-	  により定義されます.
-	  この場合,この関数は<literal>inv(M)*A*x = inv(M)*b</literal>を
-	  <literal>x</literal>について解きます.
-	    <literal>M</literal>, <literal>M1</literal> および
+            プリコンディショニング有りまたは無しの
+            共役勾配法により線形システム<literal>Ax=b</literal> を解きます.
+            プリコンディショナは対称正定行列<literal>M</literal>,または
+            <literal>M=M1*M2</literal>となる2つの行列
+            <literal>M1</literal>と<literal>M2</literal>
+            により定義されます.
+            この場合,この関数は<literal>inv(M)*A*x = inv(M)*b</literal>を
+            <literal>x</literal>について解きます.
+            <literal>M</literal>, <literal>M1</literal> および
             <literal>M2</literal> は, 呼び出し手順<literal>y=Milx(x)</literal>
-	    で対応する左除算<literal>y=Mi\x</literal>を計算するScilab関数と
-	    することができます.
+            で対応する左除算<literal>y=Mi\x</literal>を計算するScilab関数と
+            することができます.
         </para>
         <para>
-          入力引数 <literal>method</literal> は,使用するソルバを指定します:
+            入力引数 <literal>method</literal> は,使用するソルバを指定します:
             <simplelist type="inline">
                 <member>
                     "pcg" プリコンディショナ付き共役勾配法
@@ -187,10 +188,10 @@ function y = A ( x )
             </simplelist>
         </para>
         <para>
-          <literal>method="pcg"</literal>の場合, <literal>A</literal> 行列は
-	  対称正定行列(通常または疎行列)または呼び出し手順<literal>y=Ax(x)</literal>で
-	  <literal>y=A*x</literal>を計算する関数とする必要があります.
-          その他の場合 (<literal>method="cgs", "bicg" or "bicgstab"</literal>),
+            <literal>method="pcg"</literal>の場合, <literal>A</literal> 行列は
+            対称正定行列(通常または疎行列)または呼び出し手順<literal>y=Ax(x)</literal>で
+            <literal>y=A*x</literal>を計算する関数とする必要があります.
+            その他の場合 (<literal>method="cgs", "bicg" or "bicgstab"</literal>),
             <literal>A</literal> は正方行列であることのみ必要です.
         </para>
     </refsection>
@@ -198,13 +199,13 @@ function y = A ( x )
         <title>良条件および悪条件の問題の例
         </title>
         <para>
-	  以下の例では, 2つの線形システムを解きます.
-	  最初の行列は条件数が ~0.02で,アルゴリズムは10回で収束します.
-	  これは行列の大きさと同じで,共役勾配法で期待される動作です.
-	  2番目の行列は条件数が1.d-6と小さく,アルゴリズムは収束までに22回と
-	  より多くの反復を要します.これがパラメータ maxIter が 30 に設定されている
-	  理由です.
-	  "key=value" 構文の他の例については以下を参照ください.
+            以下の例では, 2つの線形システムを解きます.
+            最初の行列は条件数が ~0.02で,アルゴリズムは10回で収束します.
+            これは行列の大きさと同じで,共役勾配法で期待される動作です.
+            2番目の行列は条件数が1.d-6と小さく,アルゴリズムは収束までに22回と
+            より多くの反復を要します.これがパラメータ maxIter が 30 に設定されている
+            理由です.
+            "key=value" 構文の他の例については以下を参照ください.
         </para>
         <programlisting role="example"><![CDATA[
 // 良条件問題
@@ -218,11 +219,9 @@ A = [ 94  0   0   0    0   28  0   0   32  0
      0   10  0   0    32  0   39  46  8   0
      32  0   0   0    12  33  0   8   82  11
      0   0   65  55   0   0   0   0   11  100];
-
 b = ones(10, 1);
 [x, fail, err, iter, res] = conjgrad(A, b, "bicg", 1d-12, 15);
 mprintf("      fail=%d, iter=%d, errrel=%e\n",fail,iter,err)
-
 // 悪条件問題
 A = [ 894     0   0     0   0   28  0   0   1000  70000
       0      5   13    5   0   0   0   0   0     0
@@ -234,7 +233,6 @@ A = [ 894     0   0     0   0   28  0   0   1000  70000
       0      0   0     0   32  0   39  46  8     0
       1000   0   0     0   12  33  0   8   82    11
       70000  0   6500  55  0   0   0   0   11    100];
-
 [x, fail, err, iter, res] = conjgrad(A, b, method="pcg", maxIter=30, tol=1d-12);
 mprintf("      fail=%d, iter=%d, errrel=%e\n",fail,iter,err)
  ]]></programlisting>
@@ -243,11 +241,11 @@ mprintf("      fail=%d, iter=%d, errrel=%e\n",fail,iter,err)
         <title>Aに疎行列または関数またはリストを指定する例
         </title>
         <para>
-	  以下の例は,この手法が疎行列を同様に処理できることを示すものです.
-	  また,この例は右辺を計算する関数を"conjgrad"のプリミティブに指定する
-	  ケースも示します.
-	  この例の最後のケースは,
-	  リストをプリミティブに指定すた場合です.
+            以下の例は,この手法が疎行列を同様に処理できることを示すものです.
+            また,この例は右辺を計算する関数を"conjgrad"のプリミティブに指定する
+            ケースも示します.
+            この例の最後のケースは,
+            リストをプリミティブに指定すた場合です.
         </para>
         <programlisting role="example"><![CDATA[
 // 良条件問題
@@ -262,12 +260,10 @@ A = [ 94  0   0   0    0   28  0   0   32  0
      32  0   0   0    12  33  0   8   82  11
      0   0   65  55   0   0   0   0   11  100];
 b = ones(10, 1);
-
 // Aを疎行列に変換
 Asparse=sparse(A);
 [x, fail, err, iter, res] = conjgrad(Asparse, b, "cgs", maxIter=30, tol=1d-12);
 mprintf("      fail=%d, iter=%d, errrel=%e\n",fail,iter,err)
-
 // 右辺を計算する関数を定義
 function y = Atimesx(x)
   A = [ 94  0   0   0    0   28  0   0   32  0
@@ -282,16 +278,13 @@ function y = Atimesx(x)
        0   0   65  55   0   0   0   0   11  100];
   y = A*x
 endfunction
-
 // スクリプトAtimesx をプリミティブに指定
 [x, fail, err, iter, res] = conjgrad(Atimesx, b, maxIter=30, tol=1d-12);
 mprintf("      fail=%d, iter=%d, errrel=%e\n",fail,iter,err)
-
 // 右辺を計算する関数を定義
 function y = Atimesxbis(x, A)
   y = A*x
 endfunction
-
 // プリミティブへのリストを指定
 Alist = list(Atimesxbis, Asparse);
 [x, fail, err, iter, res] = conjgrad(Alist, b, maxIter=30, tol=1d-12);
@@ -301,23 +294,22 @@ mprintf("      fail=%d, iter=%d, errrel=%e\n",fail,iter,err)
     <refsection>
         <title>key=value 構文の例</title>
         <para>
-	  以下の例は"key=value"構文で引数を指定する方法を示すものです.
-	  これにより,位置を固定せずに引数を指定でき,
-	  つまり, 引数リストにおける順序に依存せずに,
-	  引数を設定できます.
-	  有効なキーはオプション引数の名前,つまり,
-	  tol, maxIter, %M, %M2, x0, verbose です.
-	  以下の例では, verbose オプションが maxIterオプションの
-	  前に指定されていることに注意してください.
-	  "key=value"構文ではない場合は引数の位置が固定されるため,
-	  maxIter は先, verbose は後で使用する必要があります.
+            以下の例は"key=value"構文で引数を指定する方法を示すものです.
+            これにより,位置を固定せずに引数を指定でき,
+            つまり, 引数リストにおける順序に依存せずに,
+            引数を設定できます.
+            有効なキーはオプション引数の名前,つまり,
+            tol, maxIter, %M, %M2, x0, verbose です.
+            以下の例では, verbose オプションが maxIterオプションの
+            前に指定されていることに注意してください.
+            "key=value"構文ではない場合は引数の位置が固定されるため,
+            maxIter は先, verbose は後で使用する必要があります.
         </para>
         <programlisting role="example"><![CDATA[
 // key=value 構文で指定される引数の例
 A = [100 1; 1 10];
 b = [101; 11];
 [xcomputed, flag, err, iter, res] = conjgrad(A, b, verbose=1);
-
 // key=value 構文の場合, 順序は関係ありません
 [xcomputed, flag, err, iter, res] = conjgrad(A, b, verbose=1, maxIter=0);
  ]]></programlisting>
@@ -402,7 +394,7 @@ b = [101; 11];
             <revision>
                 <revnumber>5.5.0</revnumber>
                 <revdescription>
-                  導入
+                    導入
                 </revdescription>
             </revision>
         </revhistory>

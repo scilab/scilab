@@ -59,16 +59,12 @@
     doc = xmlReadStr("<root><a att=""foo"" rib=""bar""><b>Hello</b></a></root>");
     // 文書をダンプ
     xmlDump(doc)
-
     // インデントなしに文書をダンプ
     xmlDump(doc, %f)
-
     // ノードリストをダンプ
     xmlDump(doc.root.children)
-
     //要素をダンプ
     xmlDump(doc.root.children(1))
-
     xmlDelete(doc);
     ]]></programlisting>
     </refsection>

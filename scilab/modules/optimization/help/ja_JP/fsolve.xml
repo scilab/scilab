@@ -168,16 +168,12 @@ fct(int *n, double x[],double v[],int *iflag)
         <programlisting role="example"><![CDATA[
 // fsolve に関する簡単な例
 a=[1,7;2,8];b=[10;11];
-
 deff('[y]=fsol1(x)','y=a*x+b');
 deff('[y]=fsolj1(x)','y=a');
-
 [xres]=fsolve([100;100],fsol1);
 a*xres+b
-
 [xres]=fsolve([100;100],fsol1,fsolj1);
 a*xres+b
-
 // See SCI/modules/optimization/sci_gateway/fortran/Ex-fsolve.f
 [xres]=fsolve([100;100],'fsol1','fsolj1',1.e-7);
 a*xres+b
@@ -196,18 +192,14 @@ endfunction
 function J=dFdx(x)  // Fの微分を定義
    J=1-dt*(2*x-3*x^2);
 endfunction
-
 r = 0.04257794928862307 ;
 dt = 10;
-
 [x,v,info]=fsolve(r,list(feuler,r),dFdx); // fsolveは解を見つけることができません
 disp(v); // 残差
 disp(info); // 終了インジケータ
-
 [x,v,info]=fsolve(1,list(feuler,r),dFdx); // fsolve は解を見つけます
 disp(v); // 残差
 disp(info); // 終了インジケータ
-
 clf();x=linspace(0,1,1000);plot(x,feuler(x))
 a=gca();a.grid=[5 5];
  ]]></programlisting>

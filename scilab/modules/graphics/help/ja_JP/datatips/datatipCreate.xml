@@ -77,7 +77,6 @@
     e=gce();p=e.children(1);//ポリラインのハンドルを取得
     p.mark_mode="on";p.mark_style=2;p.mark_size=5;
     t=datatipCreate(p,2);
-
     datatipCreate(p,[0.8,0.5]);
     datatipSetInterp(p,%t);
     datatipCreate(p,[0.8,0.5]);

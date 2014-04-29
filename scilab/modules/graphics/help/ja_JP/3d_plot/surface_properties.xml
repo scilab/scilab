@@ -487,11 +487,9 @@ h.color_flag=2;
 h.data.color=[1+modulo(1:400,64),1+modulo(1:400,64)];
 //影付き
 h.color_flag=3; 
-
 scf(2); // 2番目のウインドウを作成し,surfコマンドを使用
 subplot(211)
 surf(z,'cdata_mapping','direct','facecol','interp')
-
 subplot(212)
 surf(t,t,z,'edgeco','b','marker','d','markersiz',9,'markeredg','red','markerfac','k')
 e=gce();

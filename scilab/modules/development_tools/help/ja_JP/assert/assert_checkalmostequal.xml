@@ -24,7 +24,6 @@
             flag = assert_checkalmostequal ( computed , expected , reltol , abstol )
             flag = assert_checkalmostequal ( computed , expected , reltol , abstol , comptype )
             [flag,errmsg] = assert_checkalmostequal ( ... )
-            
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -216,7 +215,6 @@ assert_checkalmostequal ( ones(10,1) , ones(10,1) , %eps );
 // 絶対誤差 :
 assert_checkalmostequal ( 1.23456789123456789e-30 , 0 , 0 , 1.e-10 );
 assert_checkalmostequal ( [1 %nan], [1 %nan] , 0 , %eps );
-
 // 失敗する比較.
 // エラーメッセージを出力 :
 assert_checkalmostequal ( 1 , 2 , %eps );
@@ -228,20 +226,17 @@ assert_checkalmostequal ( 1 , [2 3] , %eps );
 assert_checkalmostequal ( [%nan 1], [1 %nan] , %eps );
 assert_checkalmostequal ( 1 + 5 * %eps , 1 , %eps );
 assert_checkalmostequal ( 1.23456789123456789e-30 , 1.3e-30 , %eps );
-
 // expectedがゼロでない場合,
 // 相対誤差の許容値を %eps の倍数とする必要があります.
 // 以下のテストは成功し, 最大実現可能な精度に対して
 // 11桁以下が失われたことが示されます.
 assert_checkalmostequal ( 1.23456 , 1.23457 , 1.e11*%eps );
-
 // 相対および絶対許容誤差を交換できません.
 // 以下のテストはパスします: 予測値が0であるため,
 // 絶対許容誤差を使用します.
 assert_checkalmostequal ( 1.23456789e-30 , 0 , 0 , 1.e-10 );
 // 以下のテストは失敗します: 相対許容誤差を使用します.
 assert_checkalmostequal ( 0 , 1.23456789e-30 , 1.e-10 );
-
 // 許容誤差を可能な限りタイトに設定する必要があります.
 // 許容誤差が指定した数に対して小さすぎるため,以下のテストは失敗します.
 assert_checkalmostequal ( 1.23456 , 1.23457 , %eps );
@@ -250,7 +245,6 @@ assert_computedigits(1.23456 , 1.23457)
 // 5.09を返します...
 // 精度の判定を行い, 受け入れ可能であると結論付けます:
 assert_checkalmostequal ( 1.23456 , 1.23457 , 1.e-5 );
-
 // assert_checkalmostequalの実用的な使用例を示します.
 // ヒルバート行列に基づく,平均的に悪条件の線形方程式の
 // システムを解きます.
@@ -273,23 +267,19 @@ assert_computedigits(computed, expected)
 // この計算を受け入れます.
 // 以下のテストはパスします.
 assert_checkalmostequal(computed,expected,1.e5*%eps);
-
 // 以下の例は comptype="element" と "matrix" の差異を示します.
 // 以下のテストはパスしません.
 assert_checkalmostequal ( [1 1.e5] , [2 1.e5] , 1.e-3 )
 // 以下のテストは行列に基づく比較ではパスします.
 assert_checkalmostequal ( [1 1.e5] , [2 1.e5] , 1.e-3 , [] , "matrix" )
-
 // 以下のテストはパスします.
 // IEEE値を考慮することは容易ではありません.
 [flag,errmsg] = assert_checkalmostequal ( [1.2345 %inf -%inf %nan] , [1.2346 %inf -%inf %nan] , 1.e-4 )
-
 // この関数は複素数を考慮します.
 // 以下のテストはパスします.
 assert_checkalmostequal ( 1+%i , 1+(1+1.e-4)*%i , 1.e-3 , [], "element" );
 // 以下のテストは失敗します.
 assert_checkalmostequal ( 1+%i , 1+(1+1.e-4)*%i , 1.e-5 , [], "element" );
-
    ]]></programlisting>
     </refsection>
     <refsection>

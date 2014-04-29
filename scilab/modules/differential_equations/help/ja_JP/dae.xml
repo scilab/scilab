@@ -450,17 +450,13 @@ function pd=chemjac(x,y,yd,cj)
          0.04    ,-1d4*y(3)-2*3d7*y(2)-cj ,-1d4*y(2);
          1       , 1                      , 1       ]
 endfunction
-
 x0=[1; 0; 0];
 xd0=[-0.04; 0.04; 0];
 t=[1.d-5:0.02:.4, 0.41:.1:4, 40, 400, 4000, 40000, 4d5, 4d6, 4d7, 4d8, 4d9, 4d10];
-
 y=dae([x0,xd0],0,t,chemres);// 指定した観測時刻での点を返す
-
 %DAEOPTIONS=list([],1,[],[],[],0,0); // dae メッシュ点を返すかどうかを確認
 y=dae([x0,xd0],0,4d10,chemres); // ヤコビアン指定なし
 y=dae([x0,xd0],0,4d10,chemres,chemjac); // ヤコビアン指定あり
-
 // C コードの例 (Cコンパイラが必要) --------------------------------------------------
 //-1- Cコードを TMPDIR に作成 - Vanderpol 方程式, 陰形式
 code=['#include <math.h>'
@@ -491,7 +487,6 @@ clf();plot(yy(1,:),yy(2,:))
 [yy,nn,hotd]=dae("root",[y0,y0d],t0,300,atol,rtol,'res22','jac22',ng,'gr22');
 plot(yy(1,1),yy(2,1),'r+')
 xstring(yy(1,1)+0.1,yy(2,1),string(nn(1)))
-
 //次の点までホットリスタート
 t01=nn(1);[pp,qq]=size(yy);y01=yy(2:3,qq);y0d1=yy(3:4,qq);
 [yy,nn,hotd]=dae("root",[y01,y0d1],t01,300,atol,rtol,'res22','jac22',ng,'gr22',hotd);

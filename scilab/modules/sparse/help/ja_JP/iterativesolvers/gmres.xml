@@ -173,11 +173,8 @@ A=[ 94  0   0   0    0   28  0   0   32  0
      0   0   65  55   0   0   0   0   11  100];
 b=ones(10,1);
 [x,flag,err,iter,res] = gmres(A, b)
-
 M = eye(10, 10);
-
 [x,flag,err,iter,res] = gmres(A, b, 10, 1d-12, 20, M, zeros(10, 1))
-
 	// Aが行列, Mが関数の場合
 	A=[ 94  0   0   0    0   28  0   0   32  0  
      0   59  13  5    0   0   0   10  0   0  
@@ -190,14 +187,11 @@ M = eye(10, 10);
      32  0   0   0    12  33  0   8   82  11 
      0   0   65  55   0   0   0   0   11  100];
 b=ones(10,1);
-
 function y = Mtimesx(x)
 M = eye(10,10);
 y = M*x;
 endfunction
-
 [x,flag,err,iter,res] = gmres(A, b, 10, 1d-12, 20, Mtimesx, zeros(10, 1))
-
 	// A が関数, M が行列の場合
 	function y = Atimesx(x)
 	A=[ 94  0   0   0    0   28  0   0   32  0  
@@ -212,14 +206,10 @@ endfunction
      0   0   65  55   0   0   0   0   11  100];
 	 y = A * x;
 	 endfunction
-	 
 	 b = ones(10,1);
 	 M = eye(10, 10);
-	 
 	 [x,flag,err,iter,res] = gmres(Atimesx, b)
-	 
 	 [x,flag,err,iter,res] = gmres(Atimesx, b, 10, 1d-12, 20, M, zeros(10,1))
-	 
 	 // A および M が関数
 	 function y = Atimesx(x)
 	A=[ 94  0   0   0    0   28  0   0   32  0  
@@ -234,12 +224,10 @@ endfunction
      0   0   65  55   0   0   0   0   11  100];
 	 y = A * x;
 	 endfunction
-	 
 	 function y = Mtimesx(x)
 M = eye(10,10);
 y = M*x;
 endfunction
-	 
 	 [x,flag,err,iter,res] = gmres(Atimesx, b, 10, 1d-12, 20, Mtimesx, zeros(10,1))
  ]]></programlisting>
     </refsection>

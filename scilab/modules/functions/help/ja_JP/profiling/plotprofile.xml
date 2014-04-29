@@ -71,7 +71,6 @@ deff('x=foo(n)',['if n==0 then'
                  'end'],'p')
 //関数をコール
 foo(30)
-
 //実行プロファイルを取得
 plotprofile(foo) // 終了するには Exit をクリック
   ]]></programlisting>

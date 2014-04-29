@@ -83,11 +83,9 @@
 //      (11001)_2 producing 25
 bitset(uint8(9), 5)
 expected = 25
-
 // Set the 5th bit of 25 to 0.
 bitset(uint8(25), 5, 0)
 expected = 9
-
 // The input can be a positive double
 bitset(25, 5, 0)
 expected = 9

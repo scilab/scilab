@@ -89,7 +89,6 @@ res=mget(11,'d')
 res1=[1:11]; res1(1)=678;res1($)=932;
 if res1<>res ;write(%io(2),'Bug');end;
 mseek(0,fd1,'set');
-
 // 保存されたデータより多くのデータを読み込もうとする 
 res1=mget(100,'d',fd1);
 if res1<>res ;write(%io(2),'Bug');end;

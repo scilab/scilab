@@ -86,18 +86,14 @@ find(beers=="1664") // KO
 find(beers=="Foster") // KO
 beers=[beers, "Foster"]
 find(beers=="Foster") // OK
-
 A=rand(1,20);
 w=find(A<0.4)
 A(w)
 w=find(A>100) 
-
 B=rand(1,20);
 w=find(B<0.4,2) //最大2個の値を返す
-
 H=rand(4,3,5); //ハイパー行列
 [i,j,k]=find(H>0.9)  
-
 H(i(1),j(1),k(1))
  ]]></programlisting>
     </refsection>

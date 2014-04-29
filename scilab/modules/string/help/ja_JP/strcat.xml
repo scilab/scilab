@@ -87,12 +87,10 @@ strcat('A')
 strcat('A','B')
 strcat(['A','B'])
 strcat(['A','B'],'')
-
 m =["a" "b" ; "c" "d"];
 strcat(m, "r")
 strcat(m, "", "r")
 strcat(m, "", "c")
-
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

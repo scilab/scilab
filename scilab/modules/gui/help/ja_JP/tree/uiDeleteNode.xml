@@ -65,19 +65,15 @@ node1 = uiCreateNode('Node 1', 'iconNode1', 'callbackNode1')
 node2 = uiCreateNode('Node 2', 'iconNode2', 'callbackNode2')
 node3 = uiCreateNode('Node 3', 'iconNode3', 'callbackNode3')
 root = uiCreateNode('Root', 'iconRoot', 'callbackRoot')
-
 treeNode1 = uiCreateTree(node1, leaf11, leaf12)
 treeNode3 = uiCreateTree(node3, leaf31, leaf32)
 treeRoot = uiCreateTree(root, treeNode1, node2, treeNode3)
-
 // 'node2'を削除
 treeDel = uiDeleteNode(treeRoot, node2)
 uiDisplayTree(treeDel)
-
 // 位置'3.2'におけるノードを削除
 treeDel = uiDeleteNode(treeRoot, '3.2')
 uiDisplayTree(treeDel)
-
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

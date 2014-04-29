@@ -70,12 +70,10 @@
     t=datatipCreate(p2,[0.1,0]);
     t=datatipCreate(p2,[0.8 0.4]);
     datatipSetOrientation(t,"upper left")
-
     function str=myfmt(curve,pt,index)
       str = msprintf('sinc\n%s', sci2exp(round(pt*10)/10))
     endfunction
     datatipSetDisplay(p1,myfmt) //エディタで関数を修正し,ok
-
      ]]></programlisting>
         <programlisting role="example"><![CDATA[
     // 3D 曲線の場合
@@ -89,7 +87,6 @@
     t=datatipCreate(p,50);
     datatipSetOrientation(t,"lower right")
     datatipCreate(p,[0,-1.1,1.1]);
-
      ]]></programlisting>
     </refsection>
     <refsection role="see also">

@@ -77,13 +77,10 @@ deff('x=foo(n)',['if n==0 then'
                  '    x=x+s(1)'
                  '  end'
                  'end'],'p')
-
 //関数をコール
 foo(10)
-
 //実行プロファイルを取得
 profile(foo)
-
 //関数をコール
 foo(20)
 profile(foo) //実行プロファイルは蓄積されます

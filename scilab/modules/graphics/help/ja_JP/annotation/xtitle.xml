@@ -89,11 +89,8 @@ plot3d() ;
 xtitle( 'My surface is blue', 'X axis', 'Y axis', 'Z axis' ) ;
 // タイトルの周囲にボックスを描画
 xtitle( 'My surface is blue', 'X axis', 'Y axis', 'Z axis', boxed = 1 );
-
-
 //  LaTeX & MathMLで指定:
 mathml="<mrow>      <mfrac>        <mrow>          <mi>d</mi>          <mi>y</mi>        </mrow>        <mrow>          <mi>d</mi>          <mi>x</mi>        </mrow>      </mfrac>      <mo>=</mo>      <mfrac>        <mn>1</mn>        <msup>          <mi>y</mi>          <mn>2</mn>        </msup>      </mfrac>    </mrow>";
-
 xtitle( 'My surface is blue', 'X axis', '$Y axis$', mathml );
  ]]></programlisting>
     </refsection>

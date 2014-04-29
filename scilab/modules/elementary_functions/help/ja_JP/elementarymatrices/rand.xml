@@ -20,7 +20,6 @@
         <synopsis>rand(m1,m2,.. [,key])
             rand(x [, key])
             rand()
-            
             rand(key)
             rand("seed" [,n])
             rand("info")

@@ -103,7 +103,6 @@
                         仮想グラフィックウインドウの幅と高さ
                         (uicontrolsおよびグラフィックを有する図の部分)
                         を意味します.
-                        
                         <link linkend="figure_properties">図のプロパティ</link>
                         のヘルプページで説明された
                         <emphasis role="bold">axes_size</emphasis>プロパティ
@@ -144,7 +143,6 @@ uicontrol(h, "style", "text", ...
              "string", "This is a figure", ...
              "position", [50 70 100 100], ...
              "fontsize",15);
-
 // figure_id==1の図を作成します
 figure();
 // 図1のテキストuicontrolを追加します
@@ -152,7 +150,6 @@ uicontrol("style", "text", ...
           "string", "Another figure", ...
           "position", [50 70 100 100], ...
           "fontsize", 15);
-
 // カレントの図(すなわち,図1)を閉じる
 close();
 // 図3を閉じる

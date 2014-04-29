@@ -124,7 +124,6 @@ xfpolys(xpols,ypols,[-1,0,1,2])
             ypols=[y1 y1 y1 y1];
             xfpolys(xpols,ypols,[-1,0,1,2])
         </scilab:image>
-        
         <programlisting role="example"><![CDATA[ 
 // 補間色
 clf()
@@ -220,7 +219,6 @@ xfpolys(X,Y,C)
             f.color_map=graycolormap(max(C));
             xfpolys(X,Y,C)
         </scilab:image>
-        
     </refsection>
     <refsection role="see also">
         <title>参照</title>

@@ -139,7 +139,6 @@ deff("[ydot]=f(t,y)","ydot=y")
 deff("[z]=g(t,y)","z=y-2")
 y0=1;ng=1;
 [y,rd]=ode("roots",y0,0,2,f,ng,g)
- 
 deff("[z]=g(t,y)","z=y-[2;2;33]")
 [y,rd]=ode("roots",1,0,2,f,3,g)
  ]]></programlisting>

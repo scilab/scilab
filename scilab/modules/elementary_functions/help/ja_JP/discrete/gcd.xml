@@ -52,18 +52,13 @@ s=poly(0,'s');
 p=[s,s*(s+1)^2,2*s^2+s^3];
 [pgcd,u]=gcd(p);
 p*u
-
 //整数の場合
 V=int32([2^2*3^5, 2^3*3^2,2^2*3^4*5]);
 [thegcd,U]=gcd(V)
 V*U
-
 gcd([15 20])
-
 gcd(uint8([15 20]))
-
 gcd([iconvert(15,4) iconvert(20,4)])
-
 gcd(iconvert([15 20],4))
  ]]></programlisting>
     </refsection>

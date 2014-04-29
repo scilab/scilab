@@ -49,7 +49,6 @@
             if issparse(sp) == 1 then
             disp("It is a sparse");
             end
-            
             A = 1;
             if issparse(A) == 0 then
             disp("It is not a sparse");

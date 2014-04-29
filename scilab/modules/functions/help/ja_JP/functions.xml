@@ -131,9 +131,7 @@ function [x,y]=myfct(a,b)
   x=a+b
   y=a-b
 endfunction
-
 [x,y]=myfct(3,2)
-
 //インライン定義 (deff参照)
 deff('[x,y]=myfct(a,b)',['x=a+b';
                          'y=a-b'])

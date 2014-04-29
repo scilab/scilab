@@ -52,7 +52,6 @@
             型 : Scilabリスト.
         </para>
         <para>
-            
         </para>
         <itemizedlist>
             <listitem>
@@ -83,14 +82,12 @@
                 </para>
                 <para> 
                     大きさは負,0または正とすることができます:
-                    
                 </para>
                 <itemizedlist>
                     <listitem>
                         <para>大きさが負の場合, コンパイラが適当な大きさを設定します.
                         </para>
                         <para>
-                            
                         </para>
                     </listitem>
                     <listitem>
@@ -128,14 +125,12 @@
                 </para>
                 <para> これは入力ポートの次元を in,1 とすることを意味します.
                     大きさは負,0または正とすることができます:
-                    
                 </para>
                 <itemizedlist>
                     <listitem>
                         <para>大きさが負の場合,コンパイラが適当な大きさを設定します.
                         </para>
                         <para>
-                            
                         </para>
                     </listitem>
                     <listitem>
@@ -143,7 +138,6 @@
                             加算した次元に変更します.
                         </para>
                         <para>
-                            
                         </para>
                     </listitem>
                     <listitem>
@@ -169,7 +163,6 @@
                 <para> 標準入力ポートの型を指定するベクトル.</para>
                 <para> 大きさはinの大きさと同じです.</para>
                 <para> 標準入力ポートの型は以下のどれかとします :
-                    
                 </para>
                 <itemizedlist>
                     <listitem>
@@ -227,15 +220,12 @@
                 </para>
                 <para> 
                     大きさ(size)は負,ゼロまたは正とすることができます:
-                    
-                    
                 </para>
                 <itemizedlist>
                     <listitem>
                         <para>ある大きさが負の場合, コンパイラが適当な大きさを指定します.
                         </para>
                         <para>
-                            
                         </para>
                     </listitem>
                     <listitem>
@@ -276,15 +266,12 @@
                 <para> 互換性のため, この次元は空 ([]) のままとすることも可能です.
                     これは,出力ポートの次元が out,1 となることを意味します.
                     この次元を負,ゼロまたは正とすることが可能です:
-                    
-                    
                 </para>
                 <itemizedlist>
                     <listitem>
                         <para>ある大きさ負の場合, コンパイラは適当な大きさを見つけようとします.
                         </para>
                         <para>
-                            
                         </para>
                     </listitem>
                     <listitem>
@@ -294,7 +281,6 @@
                             この次元を更新します.
                         </para>
                         <para>
-                            
                         </para>
                     </listitem>
                     <listitem>
@@ -321,7 +307,6 @@
                 <para> 標準出力ポートの型を指定するベクトル.</para>
                 <para> 大きさは出力サイズに等しくなります.</para>
                 <para> 標準出力ポートの型は以下のいずれかとなります :
-                    
                 </para>
                 <itemizedlist>
                     <listitem>
@@ -539,7 +524,6 @@
                 </para>
                 <para> 論理値ベクトル [dep_u, dep_t].</para>
                 <para> 
-                    
                 </para>
                 <itemizedlist>
                     <listitem>
@@ -630,7 +614,6 @@
                 <para> 
                     modelicaコードの説明を有するmodelica型のデータ構造体.
                     このリストは以下の4個のエントリを有します:
-                    
                 </para>
                 <itemizedlist>
                     <listitem>
@@ -641,7 +624,6 @@
                             modelica関数を有するファイルの名前を指定する文字列.
                         </para>
                         <para>
-                            
                         </para>
                     </listitem>
                     <listitem>
@@ -652,7 +634,6 @@
                             入力として使用されるmodelica変数の名前を有する文字列の列ベクトル.
                         </para>
                         <para>
-                            
                         </para>
                     </listitem>
                     <listitem>
@@ -663,7 +644,6 @@
                             出力として使用されるmodelica変数の名前を有する文字列の列ベクトル.
                         </para>
                         <para>
-                            
                         </para>
                     </listitem>
                     <listitem>

@@ -48,7 +48,6 @@
         <title>注記</title>
         <para>Scilab では(他の数値計算ソフトウエアと同様に)
             定義域の範囲外の基本数値関数の値を計算しようとした場合に,
-            
             複素数拡張(結果は複素数)が使用されます.
             より有名な例は, sqrt 関数で行われるものです
             (<literal>sqrt(-1)</literal> を試してみてください!).
@@ -62,7 +61,6 @@
             このため, 実際には <literal>atanh(1) = +Inf</literal>　となる
             時(lim x-&gt;1- atanh(x) の時)に, 
             <literal>atanh(1) = +Inf + i NaN</literal> となります.
-            
             このため,この関数をベクトル<literal>[1 2]</literal>で
             評価すると,  <literal>2</literal> が定義域の外側にあるので,
             そのベクトル全体に複素数拡張が使用されます.
@@ -77,12 +75,10 @@
 // example 1
 x=[0,%i,-%i]
 tanh(atanh(x))
-
 // example 2
 x = [-%inf -3 -2 -1 0 1 2 3 %inf]
 ieee(2)
 atanh(tanh(x))
-
 // example 3 (see Remark)
 ieee(2)
 atanh([1 2])

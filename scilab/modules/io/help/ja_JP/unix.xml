@@ -53,7 +53,6 @@
 if getos() <> 'Windows' then
   unix("ls $SCI/demos");
 end
-
 function wd=directory()
   if getos() == 'Windows' then
     unix('cd>'+TMPDIR+'\path');
@@ -62,7 +61,6 @@ function wd=directory()
   end
   wd=read(TMPDIR+'/path',1,1,'(a)');
 endfunction
-
 wd=directory()
  ]]></programlisting>
     </refsection>

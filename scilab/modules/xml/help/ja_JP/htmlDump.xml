@@ -63,13 +63,10 @@
                        "  <body>";
                        "  </body>";
                        "</html>"]);
-
     // HTML文書をダンプ
     htmlDump(doc)
-
     // インデントせずにHTML文書をダンプ
     htmlDump(doc, %f)
-
     // 文書に関連するリソースを開放
     xmlDelete(doc);
     ]]></programlisting>

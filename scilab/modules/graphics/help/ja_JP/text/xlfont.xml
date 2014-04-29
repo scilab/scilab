@@ -97,7 +97,6 @@
         <programlisting role="example"><![CDATA[ 
 xlfont('reset');
 xlfont()
-
 // 注意 : この例はMonospacedフォントを有さないシステムでは動作しない可能性があります.
 xlfont("Monospaced",10,%t,%t);
 xstring(1,0,'A title');
@@ -105,7 +104,6 @@ figure_entity = gcf();
 axes_entity = figure_entity.children;
 title_entity = axes_entity.children;
 title_entity.font_style = 10;
-
 xlfont('reset');
  ]]></programlisting>
     </refsection>

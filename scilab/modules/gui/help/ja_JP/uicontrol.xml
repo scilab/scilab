@@ -1,316 +1,159 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="uicontrol" xml:lang="ja">
-    
     <refnamediv>
-        
         <refname>uicontrol</refname>
-        
         <refpurpose>グラフィックユーザーインターフェイスオブジェクトを作成
-            
         </refpurpose>
-        
     </refnamediv>
-    
     <refsynopsisdiv>
-        
         <title>呼び出し手順</title>
-        
         <synopsis>
-            
             h = uicontrol(PropertyName,PropertyValue,...)
-            
             h = uicontrol(parent,PropertyName,PropertyValue,...)
-            
             h = uicontrol(uich)
-            
         </synopsis>
-        
     </refsynopsisdiv>
-    
     <refsection>
-        
         <title>説明</title>
-        
         <para>このルーチンは図にオブジェクトを作成します.</para>
-        
         <para>図のオブジェクトが(最初のパラメータとして)指定された場合, 
-            
             この図にuicontrolが作成されます.ハンドルが指定されない場合,
-            
             uicontrolが(<literal>gcf()</literal>のコールにより得られる)
-            
             カレントの図に作成されます.
-            
             カレントの図が存在しない場合, uicontrolを作成する前に作成されます.
-            
         </para>
-        
         <para>
-            
             コントロールが作成される際に,パラメータとして指定されたプロパティが
-            
             適当な値で設定されます.
-            
             これはuicontrolを作成する際と同じで,この後,プロパティが
-            
             <literal>set()</literal>コマンドで設定されます.
-            
             それにもかからわらず, 一般に
-            
             <literal>uicontrol()</literal>のコールにより
-            
             プロパティを設定する方がより効率的です.
-            
             Scilabと全てのグラフィックオブジェクトは
-            
             適当な機構により通信を行います.
-            
             つまり,適当なuicontrolを作成するには,
-            
             適当なフィールドの使用方法を知る必要があります.
-            
         </para>
-        
         <para>
-            
             <literal>h= uicontrol(PropertyName, PropertyValue,...)</literal>
-            
             は, uicontrolを作成し,指定したプロパティを割付,値を代入します.
-            
             値が指定されないプロパティにはデフォルト値が代入されます.
-            
             デフォルトの uicontrol の形式は "Pushbutton" です.
-            
             デフォルトの親は,カレントの図です.
-            
             これらおよび他のプロパティに関する情報についてはプロパティの節を
-            
             参照ください.
-            
         </para>
-        
         <para>
-            
             <literal>h= uicontrol(parent, PropertyName,
-                
                 PropertyValue,...)
-                
             </literal>
-            
             はハンドルparentで指定されたオブジェクトにuicontrolを作成します.
-            
             親プロパティと異なる値を指定する場合,
-            
             親プロパティの値が優先されます.
-            
             parentは図のハンドルです.
-            
         </para>
-        
         <para>
-            
             <literal>h= uicontrol(uich)</literal> はuichにより指定された
-            
             uicontrolにフォーカスを与えます.
-            
         </para>
-        
         <para>
-            
             利用可能な全プロパティとその説明を
-            
             <link linkend="uicontrol_properties">uicontrolプロパティ</link>
-            
             ヘルプページで参照可能です.
-            
         </para>
-        
         <para>
-            
             uicontrolsレンダリングとプロパティ表示は
-            
             <link linkend="console_properties">コンソールプロパティ</link>
-            
             によりカスタマイズできます.
-            
         </para>
-        
-        
-        
     </refsection>
-    
     <refsection>
-        
         <title>利用可能なスタイル</title>
-        
         <para>
-            
             利用可能なスタイルを以下に示します. 
-            
             <literal>uicontrol</literal>の<literal>style</literal>は
-            
             作成時に<literal>"Style"</literal>プロパティにより設定する
-            
             必要があり, <literal>uicontrol</literal> の作成後は変更できません.
-            
         </para>
-        
         <itemizedlist>
-            
             <listitem>
-                
                 <para>Checkbox: 2種類の状態を有するボタン (複数の独立した選択で使用されます).
-                    
                 </para>
-                
             </listitem>
-            
             <listitem>
-                
                 <para>Edit: 編集可能なテキスト領域.</para>
-                
             </listitem>
-            
             <listitem>
-                
                 <para>Frame: 他のuicontrolのコンテナ.
-                    
                 </para>
-                
             </listitem>
-            
             <listitem>
-                
                 <para>Image: 指定した画像が表示されるコンポーネント.</para>
-                
             </listitem>
-            
             <listitem>
-                
                 <para>
-                    
                     Layer: 
-                    
                     <literal>frame</literal>スタイルのuicontrol用コンテナで,
-                    
                     <literal>value</literal> プロパティを用いてプログラムにより 
-                    
                     切替できます.
-                    
                 </para>
-                
             </listitem>
-            
             <listitem>
-                
                 <para>Listbox: スクロール可能なリスト要素を表すコントロール.
-                    
                     要素はマウスで選択できます.
-                    
                 </para>
-                
             </listitem>
-            
             <listitem>
-                
                 <para>Popupmenu: クリックした際にメニューが現れるボタン
-                    
                 </para>
-                
             </listitem>
-            
             <listitem>
-                
                 <para>Pushbutton: (デフォルトのスタイル) 
-                    
                     矩形のボタンで,通常コールバックを実行する際に使用されます.
-                    
                 </para>
-                
             </listitem>
-            
             <listitem>
-                
                 <para>Radiobutton: 2つの状態を有するボタン. 
-                    
                     RadioButtons は相互に排他であることを意図しています.
                 </para>
-                
                 <para>
-                    
                     グループを使用しない場合,
-                    
                     コードに相互に排他である動作を実装する必要があります
-                    
                     (<link linkend="uicontrol_properties">uicontrolプロパティ</link>の
-                    
                     <literal>GroupName</literal>プロパティを参照).
-                    
                 </para>
-                
             </listitem>
-            
             <listitem>
-                
                 <para>Slider: 縮尺制御, マウスで範囲内の値を設定する際に使用されます.
-                    
                 </para>
-                
             </listitem>
-            
             <listitem>
-                
                 <para>Spinner: 
-                    
                     ユーザが固定刻みで範囲内の値を選択/編集することを可能とするコンポーネント.
-                    
                 </para>
-                
             </listitem>
-            
             <listitem>
-                
                 <para>
-                    
                     Tab: 
-                    
                     <literal>frame</literal> スタイルの uicontrols のコンテナで,
-                    
                     指定したタイトルやアイコンをクリックすることにより切替できるようにします.
-                    
                 </para>
-                
                 <para>
-                    
                     フレームに指定されたフォント関連プロパティは
-                    
                     タブレベルにも使用されます.
-                    
                 </para>
-                
             </listitem>
-            
             <listitem>
-                
                 <para>Table: 編集可能な表.</para>
-                
             </listitem>
-            
             <listitem>
-                
                 <para>Text: テキストコントロールl (通常 static).</para>
-                
             </listitem>
-            
         </itemizedlist>
-        
     </refsection>
-    
     <refsection>
-        
         <title>Examples</title>
-        
         <programlisting role="example"><![CDATA[
 f=figure();
 // 図を作成
@@ -324,13 +167,10 @@ set(h, 'value', [1 3]);
 close(f);
 // close the figure
  ]]></programlisting>
-        
         <para>uicontrol関数はオーバーロードできます</para>
-        
         <programlisting role="example"><![CDATA[
 // mlistを作成
 mymlist = mlist(['objid','A','B'],[],[]);
-
 // objidのset / getをオーバーロード
 function result = %objid_uicontrol(varargin)
   // res = uicontrol(mymlist,'A');
@@ -339,12 +179,9 @@ function result = %objid_uicontrol(varargin)
   mprintf('uicontrol on an object of type %s, field = %s\n', typeof(obj_tmp), field_tmp);
   result = %t;
 endfunction
-
 res = uicontrol(mymlist,'property');
  ]]></programlisting>
-        
         <para>Pushbuttons or Text can have LaTeX or MathML label</para>
-        
         <programlisting role="example"><![CDATA[
 // LaTeX
 f=figure();
@@ -357,7 +194,6 @@ h=uicontrol(f,"Style","text","string","$\Gamma(s)=\int_0^\infty t^{s-1}\mathrm{e
 // 小さすぎる場合
 h.fontsize=20
  ]]></programlisting>
-        
         <programlisting role="example"><![CDATA[
 // 編集可能な表を図に含める:
 // データの表を構築:
@@ -367,7 +203,6 @@ country = ["Mexico" "France" "Japan" "Singapour"]';
 pop  = string([22.41 11.77 33.41 4.24]');
 temp = string([26 19 22 17]');
 table = [params; [ towns country pop temp ]]
-
 f = gcf();
 clf
 as = f.axes_size;  // [width height]
@@ -375,118 +210,61 @@ ut = uicontrol("style","table",..
                "string",table,..
                "position",[5 as(2)-100 300 87],.. // => @top left corner of figure
                "tooltipstring","Data from majors towns")
-
 // 表の中の値のいくつかを手修正. これらをUIから取得:
 matrix(ut.string,size(table))
  ]]></programlisting>
-        
     </refsection>
-    
     <refsection role="see also">
-        
         <title>参照</title>
-        
         <simplelist type="inline">
-            
             <member>
-                
                 <link linkend="uicontrol_properties">uicontrol_properties</link>
-                
             </member>
-            
             <member>
-                
                 <link linkend="figure">figure</link>
-                
             </member>
-            
             <member>
-                
                 <link linkend="set">set</link>
-                
             </member>
-            
             <member>
-                
                 <link linkend="get">get</link>
-                
             </member>
-            
             <member>
-                
                 <link linkend="uimenu">uimenu</link>
-                
             </member>
-            
             <member>
-                
                 <link linkend="math_rendering_features_in_graphic">LaTeXおよびMathML</link>
-                
             </member>
-            
         </simplelist>
-        
     </refsection>
-    
     <refsection>
-        
         <title>履歴</title>
-        
         <revhistory>
-            
             <revision>
-                
                 <revnumber>5.5.0</revnumber>
-                
                 <revremark>
-                    
                     <para>
-                        
                         新スタイルが追加されました:
-                        
                     </para>
-                    
                     <itemizedlist>
-                        
                         <listitem>Tab</listitem>
-                        
                         <listitem>Spinner</listitem>
-                        
                         <listitem>Layer</listitem>
-                        
                     </itemizedlist>
-                    
                     <para>
-                        
                         uicontrolsレンダリングはオペレーティングシステムの
-                        
                         ルックアンドフィールに基づくようになりました
-                        
                         (<link linkend="console_properties">コンソールプロパティ</link>
-                        
                         参照).
-                        
                     </para>
-                    
                     <para>
-                        
                         uicontrolsハンドルの表示はJavaレンダリングにより使用される
-                        
                         プロパティに制限されるようになりました
-                        
                         (<link linkend="console_properties">コンソールプロパティ</link>
-                        
                         参照).
-                        
                     </para>
-                    
                 </revremark>
-                
             </revision>
-            
         </revhistory>
-        
     </refsection>
-    
 </refentry>
-

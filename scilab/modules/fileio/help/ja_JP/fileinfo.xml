@@ -168,21 +168,17 @@ w = fileinfo(SCI+'/etc/scilab.start')
 dec2oct(w(2))
 // file date
 getdate(w(6))
-
 // ファイルの書き込み許可属性を確認
 w = fileinfo(SCI+'/etc/scilab.start')
-
 S_IWRITE = 128; // 書き込み許可属性をマスク
 S_IEXEC = 64; // 実行許可属性をマスク
 S_IREAD = 256; // 読み込み許可属性をマスク
 S_IFCHR = 8192; // ディレクトリ許可属性をマスク
-
 if ( bitand( w(2), S_IWRITE ) &lt;&gt; 0) then
  disp('WRITE PERMISSION on this file.');
 else
  disp('NO WRITE PERMISSION on this file.');
 end
-
 FILES = [SCI;SCIHOME;'not_exist_file';TMPDIR]
 [X,ERRS] = fileinfo(FILES)
  ]]></programlisting>

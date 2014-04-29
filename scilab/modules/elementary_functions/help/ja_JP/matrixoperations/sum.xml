@@ -20,9 +20,7 @@
         <title>呼び出し手順</title>
         <synopsis>y=sum(x)
             y=sum(x,'r') or y=sum(x,1)
-            
             y=sum(x,'c') or y=sum(x,2)
-            
             y=sum(x,'m')
         </synopsis>
     </refsynopsisdiv>

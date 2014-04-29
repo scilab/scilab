@@ -75,7 +75,6 @@
 t=['1234','x','adfdfgdfghfgj'
    '1','354556','dgf'
    'sdfgd','','sdfsf'];
-
 justify(t,'l')
 justify(t,'c')
 justify(t,'r')

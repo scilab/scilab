@@ -42,7 +42,6 @@
         <programlisting role="example"><![CDATA[ 
 toolbar(-1,'off')
 state=toolbar(-1,'on')
-
 plot3d();
 h=gcf();
 toolbar(h.figure_id,'off')

@@ -121,7 +121,6 @@
                 各組<literal>(x(:,l),y(:,l),z(:,l))</literal>について
                 描画されます.
             </para>
-            
             <para>
                 <literal>comet3d(x,y,fun,...)</literal> は,
                 <literal>z</literal> ベクトルを
@@ -134,7 +133,6 @@
                 <literal>k</literal> は,
                 <literal>k = round(p*nz)</literal>により定義されます.
             </para>
-            
         </para>
     </refsection>
     <refsection>

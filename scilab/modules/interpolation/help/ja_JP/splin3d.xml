@@ -84,7 +84,6 @@
         <programlisting role="example"><![CDATA[ 
 // 例1
 // =============================================================================
-
 func =  "v=cos(2*%pi*x).*sin(2*%pi*y).*cos(2*%pi*z)";
 deff("v=f(x,y,z)",func);
 n = 10;  // n x n x n  補間点
@@ -100,12 +99,10 @@ vp_interp = interp3d(xp,yp,zp, tl);
 er = max(abs(vp_exact - vp_interp))
 // n=20で再試行し,誤差を見る
  ]]></programlisting>
-        
         <programlisting role="example"><![CDATA[ 
 // 例 2 (linear_interpn のヘルプを参照ください, 
 //       trilinear補間に関する同じ例があります)
 // =============================================================================
-
 exec("SCI/modules/interpolation/demos/interp_demo.sci")
 func =  "v=(x-0.5).^2 + (y-0.5).^3 + (z-0.5).^2";
 deff("v=f(x,y,z)",func);
@@ -172,7 +169,6 @@ show_window()
             xtitle("3d spline interpolation of "+func)
         </scilab:image>
     </refsection>
-    
     <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">
@@ -187,7 +183,6 @@ show_window()
             </member>
         </simplelist>
     </refsection>
-    
     <refsection>
         <title>履歴</title>
         <revhistory>
@@ -198,4 +193,3 @@ show_window()
         </revhistory>
     </refsection>
 </refentry>
-

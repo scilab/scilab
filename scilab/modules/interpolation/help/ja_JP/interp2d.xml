@@ -185,7 +185,6 @@ n = 7;  // a n x n interpolation grid
 x = linspace(0,2*%pi,n); y = x;
 z = cos(x')*cos(y);
 C = splin2d(x, y, z, "periodic");
-
 // now evaluate on a bigger domain than [0,2pi]x [0,2pi]
 m = 80; // discretization parameter of the evaluation grid
 xx = linspace(-0.5*%pi,2.5*%pi,m); yy = xx;
@@ -199,7 +198,6 @@ xtitle("extrapolation with the C0 outmode")
             x = linspace(0,2*%pi,n); y = x;
             z = cos(x')*cos(y);
             C = splin2d(x, y, z, "periodic");
-            
             // now evaluate on a bigger domain than [0,2pi]x [0,2pi]
             m = 80; // discretization parameter of the evaluation grid
             xx = linspace(-0.5*%pi,2.5*%pi,m); yy = xx;
@@ -213,7 +211,6 @@ n = 7;  // a n x n interpolation grid
 x = linspace(0,2*%pi,n); y = x;
 z = cos(x')*cos(y);
 C = splin2d(x, y, z, "periodic");
-
 // now evaluate on a bigger domain than [0,2pi]x [0,
 m = 80; // discretization parameter of the evaluation grid
 xx = linspace(-0.5*%pi,2.5*%pi,m); yy = xx;
@@ -227,7 +224,6 @@ xtitle("extrapolation with the by_zero outmode")
             x = linspace(0,2*%pi,n); y = x;
             z = cos(x')*cos(y);
             C = splin2d(x, y, z, "periodic");
-            
             // now evaluate on a bigger domain than [0,2pi]x [0,2pi]
             m = 80; // discretization parameter of the evaluation grid
             xx = linspace(-0.5*%pi,2.5*%pi,m); yy = xx;
@@ -241,7 +237,6 @@ n = 7;  // a n x n interpolation grid
 x = linspace(0,2*%pi,n); y = x;
 z = cos(x')*cos(y);
 C = splin2d(x, y, z, "periodic");
-
 // now evaluate on a bigger domain than [0,2pi]x [0,2pi]
 m = 80; // discretization parameter of the evaluation grid
 xx = linspace(-0.5*%pi,2.5*%pi,m); yy = xx;
@@ -255,7 +250,6 @@ xtitle("extrapolation with the periodic outmode")
             x = linspace(0,2*%pi,n); y = x;
             z = cos(x')*cos(y);
             C = splin2d(x, y, z, "periodic");
-            
             // now evaluate on a bigger domain than [0,2pi]x [0,2pi]
             m = 80; // discretization parameter of the evaluation grid
             xx = linspace(-0.5*%pi,2.5*%pi,m); yy = xx;
@@ -269,7 +263,6 @@ n = 7;  // a n x n interpolation grid
 x = linspace(0,2*%pi,n); y = x;
 z = cos(x')*cos(y);
 C = splin2d(x, y, z, "periodic");
-
 // now evaluate on a bigger domain than [0,2pi]x [0,2pi]
 m = 80; // discretization parameter of the evaluation grid
 xx = linspace(-0.5*%pi,2.5*%pi,m); yy = xx;
@@ -283,7 +276,6 @@ xtitle("extrapolation with the natural outmode")
             x = linspace(0,2*%pi,n); y = x;
             z = cos(x')*cos(y);
             C = splin2d(x, y, z, "periodic");
-            
             // now evaluate on a bigger domain than [0,2pi]x [0,2pi]
             m = 80; // discretization parameter of the evaluation grid
             xx = linspace(-0.5*%pi,2.5*%pi,m); yy = xx;
@@ -311,4 +303,3 @@ xtitle("extrapolation with the natural outmode")
         </revhistory>
     </refsection>
 </refentry>
-

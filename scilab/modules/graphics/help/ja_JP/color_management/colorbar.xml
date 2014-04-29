@@ -80,7 +80,6 @@ xset("colormap",jetcolormap(64))
 colorbar(zm,zM)
 Sgrayplot(x,x,z)
 xtitle("The function cos(2 pi x)sin(2 pi y)")
-
 // 例 2 
 x = linspace(0,1,81);
 z = cos(2*%pi*x)'*sin(2*%pi*x);
@@ -89,7 +88,6 @@ zz = abs(0.5*cos(2*%pi*x)'*cos(2*%pi*x));
 zzm = min(zz); zzM = max(zz);
 clf();
 xset("colormap",jetcolormap(64))
-
 drawlater() ;
 subplot(2,2,1)
    colorbar(zm,zM)
@@ -108,7 +106,6 @@ subplot(2,2,4)
    Sgrayplot(x,x,zz, strf="031", rect=[0 0 1 1])
    xtitle("a Sgrayplot with a colorbar")
 drawnow() ;
-
 // 例 3
 x = linspace(0,1,81);
 zz = abs(0.5*cos(2*%pi*x)'*cos(2*%pi*x));

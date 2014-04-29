@@ -125,7 +125,6 @@ norm(l*u-e*a)
 a=rand(4,4);
 [l,u]=lu(a)
 norm(l*u-a)
-
 [h,rk]=lufact(sparse(a))
 [P,L,U,Q]=luget(h);
 ludel(h)

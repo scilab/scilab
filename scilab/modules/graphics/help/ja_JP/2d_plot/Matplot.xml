@@ -318,7 +318,6 @@ Matplot((1:xget("lastpattern")))
             Matplot((1:xget("lastpattern")))
         </scilab:image>
     </refsection>
-    
     <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">
@@ -350,4 +349,3 @@ Matplot((1:xget("lastpattern")))
         </revhistory>
     </refsection>
 </refentry>
-

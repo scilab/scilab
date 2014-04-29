@@ -79,7 +79,6 @@
             plot3d(Xf,Yf,Zf)
         </scilab:image>
     </refsection>
-    
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[ 

@@ -83,14 +83,12 @@ x=hypermat([4,2,3],61:84);
 y=char(x)
 size(x)
 size(y)
-
 //Example with more than one argument :
 st1="zeros";
 st2=["one","two"];
 st3=["three"];
 y=char(st1,st2,st3)
 size(y)
-
 //all strings rows are completed by 'blanks' to have the same length : 6
 length(y)
  ]]></programlisting>

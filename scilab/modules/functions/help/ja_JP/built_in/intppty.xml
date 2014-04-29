@@ -51,7 +51,6 @@ foo(A,1+2)
             2番目の方法では,"名前付きの引数"がある場合,
             引数をリファレンスで渡すことができます
             (変数の値のコピーは行われません).
-            
             <literal>fun&gt;0</literal>を指定して<literal>intppty(fun)</literal>とすると,
             番号 <literal>fun</literal>のインターフェイスにより
             リファレンスに渡しの引数を処理できることがScilabに伝えられます.

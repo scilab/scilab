@@ -19,7 +19,6 @@
         <title>呼出し手順</title>
         <synopsis>[SYS,K] = findABCD(S,N,L,R,METH,NSMPL,TOL,PRINTW)
             SYS = findABCD(S,N,L,R,METH)
-            
             [SYS,K,Q,Ry,S,RCND] = findABCD(S,N,L,R,METH,NSMPL,TOL,PRINTW)
             [SYS,RCND] = findABCD(S,N,L,R,METH)
         </synopsis>
@@ -228,15 +227,12 @@ SYS=syslin(0.1,A,B,C);
 nsmp=100;
 U=prbs_a(nsmp,nsmp/5);
 Y=(flts(U,SYS)+0.3*rand(1,nsmp,'normal'));
-
 // Rを計算
 S=15;
 [R,N1,SVAL] = findR(S,Y',U');
 N=3;
 SYS1 = findABCD(S,N,1,R) ;SYS1.dt=0.1;
-
 SYS1.X0 = inistate(SYS1,Y',U');
-
 Y1=flts(U,SYS1);
 clf();plot2d((1:nsmp)',[Y',Y1'])
 ]]></programlisting>

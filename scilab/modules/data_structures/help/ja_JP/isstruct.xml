@@ -48,11 +48,8 @@
         <title>例</title>
         <programlisting role="example"><![CDATA[ 
 isstruct(1)
-
 isstruct(cell())
-
 isstruct(struct("name","Scilab", "version", getversion()))
-
 info.name="Scilab";
 info.function="isstruct";
 info.module="help";

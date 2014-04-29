@@ -74,25 +74,19 @@
 function z = myplus(x, y), z = x + y,endfunction
 function z = yourplus(x, y), x = x - y,endfunction
 A=1:10;
-
 // *.bin ファイルを libdirに作成
 libdir=TMPDIR
 save(libdir + '/myplus.bin', myplus);
 save(libdir + '/yourplus.bin', yourplus);
 save(libdir + '/A.bin', A);
-
 //nameファイルを作成
 mputl(['myplus';'yourplus';'A'],TMPDIR+'/names');
-
 // myplus およびyourplusを含むライブラリを構築
 xlib = lib(libdir+'/')
-
 //変数を消去
 clear myplus yourplus A
-
 //自動的にロードし,実行
 myplus(1,2)
-
 A
  ]]></programlisting>
     </refsection>

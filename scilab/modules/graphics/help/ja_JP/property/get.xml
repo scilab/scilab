@@ -127,7 +127,6 @@
         <programlisting role="example"><![CDATA[ 
 // グラフィックエンティティ用
  clf()
-    
 // シンプルなグラフィックオブジェクト 
 subplot(121);
 x=[-.2:0.1:2*%pi]';
@@ -138,10 +137,8 @@ xrect(.3,.8,.3,.2);
 xfarc(.25,.55,.1,.15,0,64*360);
 xfarc(.55,.55,.1,.15,0,64*360);
 xstring(0.2,.9,"Example <<A CAR>>");
- 
 h=get("current_entity") //新規に作成されたオブジェクトを取得
 h.font_size=3;
- 
 f=get("current_figure") //カレントの図を取得 
 f.figure_size
 f.figure_size=[700 500];
@@ -149,12 +146,10 @@ f.children
 f.children(2).type
 f.children(2).children
 f.children(2).children.children.thickness=4; 
- 
 a=get("current_axes") //カレントの軸を取得
 a.children.type
 a.children.foreground //グラフィックオブジェクトの集合の前景色を取得
 a.children.foreground=9;
-
 // ユーザーインターフェイスオブジェクト用
 h=uicontrol('string', 'Button'); // ボタンを有するウインドウをオープン.
 p=get(h,'position'); // ボタンの位置を取得

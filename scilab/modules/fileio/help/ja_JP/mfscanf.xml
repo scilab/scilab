@@ -34,10 +34,8 @@
         <title>呼び出し手順</title>
         <synopsis>[n,v_1,...v_n]=mfscanf([niter,]fd,format)
             L=mfscanf([niter,] fd,format)
-            
             [n,v_1,...v_n]=mscanf([niter,] format)
             L=mscanf([niter,]format)
-            
             [n,v_1,...v_m]=msscanf([niter,]str,format)
             L=msscanf([niter,] str,format)
         </synopsis>
@@ -150,21 +148,15 @@
 s='1 1.3'  //文字列
 [n,a,b]=msscanf(s,"%i %e")
 L=msscanf(s,"%i %e")
-
 //----------------------------------------------------------
 //--    フォーマットのサンプル                            --
 //----------------------------------------------------------
-
 msscanf(" 12\n",'%c%c%c%c') //スキャン文字列
-
 msscanf('0xabc','%x') //16進形式でスキャン
-
 msscanf('012345abczoo','%[0-9abc]%s')  //[] 表記
-
 // float および doubleを読み込み
 msscanf('4345.988','%g')-4345.988 // floatとしてスキャン
 msscanf('4345.988','%lg')-4345.988 // doubleとしてスキャン
-
 //----------------------------------------------------------
 //--    複数行のデータファイルをスキャン                  --
 //----------------------------------------------------------
@@ -172,19 +164,15 @@ msscanf('4345.988','%lg')-4345.988 // doubleとしてスキャン
 u=mopen(TMPDIR+'/foo','w');
 t=(0:0.1:%pi)';mfprintf(u,"%6.3f %6.3f\n",t,sin(t))
 mclose(u);
-
 u=mopen(TMPDIR+'/foo','r'); // 読み込むファイルをオープン
 //read the file line by line
 [n,a,b]=mfscanf(u,'%e %e') //最初の行に複数の出力引数構文を適用
 l=mfscanf(u,'%e %e')       //2行目に単一の出力引数構文を適用
 //niterを使用して更に5つの行を読み込む
 l=mfscanf(5,u,'%e %e')  
-
 //ファイル終端まで読み込むために niter=-1 を使用
 l=mfscanf(-1,u,'%e %e')  
-
 mclose(u); //ファイルを閉じる
-
 //----------------------------------------------------------
 //--    scanning multi-line  strings vectors              --
 //----------------------------------------------------------

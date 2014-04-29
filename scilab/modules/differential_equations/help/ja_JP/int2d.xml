@@ -172,7 +172,6 @@ Y=[0,0;0,1;1,1];
 deff('z=f(x,y)','z=cos(x+y)')
 [I,e]=int2d(X,Y,f)
 // 正方形の区間 [0 1]x[0 1] で被積分関数を計算します
-
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

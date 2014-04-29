@@ -54,15 +54,12 @@
     doc = xmlReadStr("<root><a att=""foo"" rib=""bar""><b>Hello</b></a></root>");
     // このコードは失敗します:
     // doc.root.children(1.5) = 1.23456;
-
     // ここで, double型を処理するために %s_xmlFormat を定義します
     // この例ではdouble行列は処理されないことに注意してください
     function y=%s_xmlFormat(x), y="<number>" + string(x) + "</number>", endfunction;
-
     // 数値の挿入を再試行
     doc.root.children(1.5) = 1.23456;
     xmlDump(doc)
-
     xmlDelete(doc);
     ]]></programlisting>
     </refsection>

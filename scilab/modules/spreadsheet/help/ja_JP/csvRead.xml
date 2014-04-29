@@ -10,13 +10,10 @@
           xmlns:ns3="http://www.w3.org/1999/xhtml"
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook">
-    
     <refnamediv>
         <refname>csvRead</refname>
-        
         <refpurpose>CSVファイルを読み込む</refpurpose>
     </refnamediv>
-    
     <refsynopsisdiv>
         <title>呼び出し手順</title>
         <synopsis>
@@ -30,7 +27,6 @@
             [M, comments] = csvRead(filename, separator, decimal, conversion, substitute, regexpcomments, range, header)
         </synopsis>
     </refsynopsisdiv>
-    
     <refsection>
         <title>引数</title>
         <variablelist>
@@ -52,29 +48,29 @@
                 <term>decimal</term>
                 <listitem>
                     <para>
-		      1行1列の文字列行列で,使用される小数点.
-		    </para>
+                        1行1列の文字列行列で,使用される小数点.
+                    </para>
                     <para>
-                      <literal>decimal</literal> が <literal>[]</literal> 
-		      と異なり 
-		      <literal>conversion</literal> が <literal>string</literal>に
-		      設定された場合,小数点変換が行われます.
+                        <literal>decimal</literal> が <literal>[]</literal> 
+                        と異なり 
+                        <literal>conversion</literal> が <literal>string</literal>に
+                        設定された場合,小数点変換が行われます.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-              <term>conversion</term>
-              <listitem>
-                <para>
-                  1行1列の文字列行列で,出力<literal>M</literal>の型.
-                  利用可能な値は "string" または "double"
-                  (デフォルト)です.
-                </para>
-                <para>
-                  <link linkend="read_csv">read_csv</link> では "string" がデフォルトであることに
-		  注意してください.
-                </para>
-              </listitem>
+                <term>conversion</term>
+                <listitem>
+                    <para>
+                        1行1列の文字列行列で,出力<literal>M</literal>の型.
+                        利用可能な値は "string" または "double"
+                        (デフォルト)です.
+                    </para>
+                    <para>
+                        <link linkend="read_csv">read_csv</link> では "string" がデフォルトであることに
+                        注意してください.
+                    </para>
+                </listitem>
             </varlistentry>
             <varlistentry>
                 <term>substitute</term>
@@ -114,33 +110,33 @@
                         (R2,C2)は右下隅です.
                     </para>
                     <para>
-                      <note>
-			ファイルが正しく整形されていることに注意してください.
-			この範囲はパースされた要素についてメモリ上で実行されます.
-		      </note>
+                        <note>
+                            ファイルが正しく整形されていることに注意してください.
+                            この範囲はパースされた要素についてメモリ上で実行されます.
+                        </note>
                     </para>
                 </listitem>
             </varlistentry>
-           <varlistentry>
-             <term>header</term>
-             <listitem>
-               <para>
-		 1行1列の行列の浮動小数点整数, ファイルの先頭で無視される行の数.
-               </para>
-             </listitem>
-           </varlistentry>
-           <varlistentry>
-             <term>M</term>
-             <listitem>
-               <para>m行n列の文字列またはdouble行列.</para>
-             </listitem>
-           </varlistentry>
-           <varlistentry>
-             <term>comments</term>
-             <listitem>
-               <para>正規表現にマッチしたm行n列の文字列行列.</para>
-             </listitem>
-           </varlistentry>
+            <varlistentry>
+                <term>header</term>
+                <listitem>
+                    <para>
+                        1行1列の行列の浮動小数点整数, ファイルの先頭で無視される行の数.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>M</term>
+                <listitem>
+                    <para>m行n列の文字列またはdouble行列.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>comments</term>
+                <listitem>
+                    <para>正規表現にマッチしたm行n列の文字列行列.</para>
+                </listitem>
+            </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
@@ -150,28 +146,29 @@
             この関数は対応する文字列またはdoubleのScilab行列を返します.
         </para>
         <para>
-	  例えば,.csvデータファイルは 
-          表計算ソフトウェアにより"テキスト及びカンマ"形式で
-          作成されたものとすることができます.
+            例えば,.csvデータファイルは 
+            表計算ソフトウェアにより"テキスト及びカンマ"形式で
+            作成されたものとすることができます.
         </para>
         <para>
-          列はカンマ以外で区切られたものとすることもできます.
-          この場合, 別のセパレータを指定する
-          csvRead(filename, separator) を使用してください.
+            列はカンマ以外で区切られたものとすることもできます.
+            この場合, 別のセパレータを指定する
+            csvRead(filename, separator) を使用してください.
         </para>
         <para>
-          オプションの入力引数のデフォルト値は,
-          <literal>csvDefault</literal> 関数で定義されます.
+            オプションの入力引数のデフォルト値は,
+            <literal>csvDefault</literal> 関数で定義されます.
         </para>
         <para>
-          オプションの入力引数に空の行列<literal>[]</literal>を指定すると,
-          デフォルト値が設定されます.
-        </para>      
-        <para>
-          入力引数 "conversion" が "double" の時,
-          .csvの中の数値以外のフィールド(例:文字列)は NaNに変換されます.
+            オプションの入力引数に空の行列<literal>[]</literal>を指定すると,
+            デフォルト値が設定されます.
         </para>
-	<para>csvRead は UTF-8 および ASCII テキストファイルを読み込むことができます.
+         
+        <para>
+            入力引数 "conversion" が "double" の時,
+            .csvの中の数値以外のフィールド(例:文字列)は NaNに変換されます.
+        </para>
+        <para>csvRead は UTF-8 および ASCII テキストファイルを読み込むことができます.
         </para>
     </refsection>
     <refsection>
@@ -184,16 +181,12 @@
 M = 1:50;
 filename = fullfile(TMPDIR, "data.csv");
 csvWrite(M, filename, ascii(9), '.');
-            
 // csvファイルを読み込む
 M1 = csvRead(filename,ascii(9), [], 'string')
-
 // doubleを返す
 M2 = csvRead(filename,ascii(9), '.', 'double')
-            
 // 元のデータを結果と比較
 and(M == M2)
-            
 // 特殊なデータファイルを管理するために
 // 置換用引数を使用
 content = [
@@ -202,16 +195,13 @@ content = [
 "2"
 "Not-A-Number"
 ];
-
 substitute = [
 "Not-A-Number" "Nan"
 ];
-
 mputl(content,filename);
 M = csvRead(filename,",",".","double",substitute)
 isnan(M(2,1)) // Expected=%t
 isnan(M(4,1)) // Expected=%t
-
         ]]></programlisting>
         <para>
             以下のスクリプトは,
@@ -227,7 +217,6 @@ Astr = [
 "6" "13" "20" "27" "34" "41" "48" "55"
 "+0" "-0" "Inf" "-Inf" "Nan" "1.D+308" "1.e-308" "1.e-323"
 ];
-
 // カンマ区切りのデータを有するファイルを作成
 filename = fullfile(TMPDIR , 'foo.csv');
 sep = ",";
@@ -237,10 +226,8 @@ for i = 1 : size(Astr,"r")
 end
 mclose(fd);
 // ファイルを参照するには: edit(filename)
-
 // このファイルを読み込む
 Bstr = csvRead ( filename )
-
 // 特殊なセパレータを有するファイルを作成: ここでは ";"
 filename = fullfile(TMPDIR , 'foo.csv');
 sep = ";";
@@ -249,15 +236,14 @@ for i = 1 : size(Astr,"r")
         mfprintf(fd,"%s\n",strcat(Astr(i,:),sep));
 end
 mclose(fd);
-
 //
 // セパレータを指定してファイルを読み込む
 csvRead ( filename , sep )
         ]]></programlisting>
         <para>
-	  以下のスクリプトは
-          <literal>csvRead</literal> 関数のregexp引数により
-          行を削除する例を示します.
+            以下のスクリプトは
+            <literal>csvRead</literal> 関数のregexp引数により
+            行を削除する例を示します.
         </para>
         <programlisting role="example"><![CDATA[
 CSV = ["// tata"; ..
@@ -269,7 +255,6 @@ CSV = ["// tata"; ..
 "// tutu"];
 filename = fullfile(TMPDIR , 'foo.csv');
 mputl(CSV, filename);
-
 // @ で始まる行を削除
 [M, comments] = csvRead(filename, [], [], [], [], '/\/\//')
         ]]></programlisting>
@@ -293,7 +278,6 @@ Astr = [
 "6" "13" "20" "27" "34" "41" "48" "55"
 "+0" "-0" "Inf" "-Inf" "Nan" "1.D+308" "1.e-308" "1.e-323"
 ];
-
 // カンマ区切りのデータを有するファイルを作成
 filename = fullfile(TMPDIR , 'foo.csv');
 sep = ",";
@@ -303,10 +287,8 @@ for i = 1 : size(Astr,"r")
 end
 mclose(fd);
 // ファイルを参照するには: edit(filename)
-
 // このファイルを読み込む
 Bstr = csvRead ( filename )
-
 // 特殊なセパレータを有するファイルを作成: ここでは ";"
 filename = fullfile(TMPDIR , 'foo.csv');
 sep = ";";
@@ -319,7 +301,6 @@ mclose(fd);
 // セパレータを指定してファイルを読み込む
 csvRead ( filename , sep )
     ]]></programlisting>
-    
     <refsection>
         <para>
             以下のスクリプトでは, ファイル "filename" は
@@ -370,7 +351,7 @@ T=3.151 (s)
 T=210.1 (ms/cell)
 etc....
         ]]></programlisting>
-       範囲を有する例
+        範囲を有する例
         <programlisting role="example"><![CDATA[
 CSV = ["1,0,0,0,0"; ..
 "0,1,0,0,0"; ..
@@ -392,7 +373,6 @@ comments = [
 "// This file must be used under the terms of the CeCILL."];
 filename = fullfile(TMPDIR , 'foo.csv');
 csvWrite(rand(2,3), filename, ascii(9), ",", [], comments);
-
 header = 2;
 [M, c] = csvRead(filename, ascii(9), ",", "double", [], [], [], header) // 最初の2行(ヘッダ)を無視
     ]]></programlisting>
@@ -409,31 +389,29 @@ header = 2;
         <title>履歴</title>
         <revhistory>
             <revision>
-              <revnumber>5.4.0</revnumber>
-              <revremark>関数が導入されました. 
-                'csv_readwrite'モジュールに基づきます.
-		  <link linkend="read_csv">read_csv</link> と比べた場合の
-		  動作の唯一の差異は,
-		  read_csvが値を文字列として返す時,デフォルトで値をdoubleに変換しようとする
-		  ことです.
-              </revremark>
+                <revnumber>5.4.0</revnumber>
+                <revremark>関数が導入されました. 
+                    'csv_readwrite'モジュールに基づきます.
+                    <link linkend="read_csv">read_csv</link> と比べた場合の
+                    動作の唯一の差異は,
+                    read_csvが値を文字列として返す時,デフォルトで値をdoubleに変換しようとする
+                    ことです.
+                </revremark>
             </revision>
-           <revision>
-             <revnumber>5.4.1</revnumber>
-             <revremark>
-               <literal>decimal</literal> が <literal>[]</literal> 以外で,
-	       <literal>conversion</literal> が <literal>string</literal>に設定された場合, 
-	       小数点変換が行われます.
-             </revremark>
-           </revision>
-           <revision>
-             <revnumber>5.5</revnumber>
-             <revremark>
-	       ヘッダを無視するために,入力引数"header"が追加されました.
-             </revremark>
-           </revision>
+            <revision>
+                <revnumber>5.4.1</revnumber>
+                <revremark>
+                    <literal>decimal</literal> が <literal>[]</literal> 以外で,
+                    <literal>conversion</literal> が <literal>string</literal>に設定された場合, 
+                    小数点変換が行われます.
+                </revremark>
+            </revision>
+            <revision>
+                <revnumber>5.5</revnumber>
+                <revremark>
+                    ヘッダを無視するために,入力引数"header"が追加されました.
+                </revremark>
+            </revision>
         </revhistory>
     </refsection>
-    
 </refentry>
-
