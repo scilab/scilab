@@ -87,6 +87,7 @@ public class ScilabFileSelectorFilter extends JPanel {
             }
         });
         validate.setIcon(VALIDATE);
+        validate.setToolTipText(UiDataMessages.RUNFILTER);
 
         caseSensitive = new JCheckBox(UiDataMessages.CASESENSITIVE, !isWindows);
         regexp = new JCheckBox(UiDataMessages.REGEXP, false);

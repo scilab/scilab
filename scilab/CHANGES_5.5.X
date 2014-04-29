@@ -31,6 +31,8 @@ Scilab Bug Fixes
 * Bug #13313 fixed - Setting datatips orientation did not disable
                      auto_orientation mode.
 
+* Bug #13316 fixed - There were missing tooltips on File Browser buttons.
+
 * Bug #13331 fixed - Users are no longer able to write inconsistent options to mopen,
                      mopen(file, "wr") now exits with a proper error.
 

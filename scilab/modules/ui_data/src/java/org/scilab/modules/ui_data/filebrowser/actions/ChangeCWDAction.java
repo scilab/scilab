@@ -55,6 +55,7 @@ public class ChangeCWDAction extends CommonCallBack {
      */
     public JButton createButton() {
         JButton button = new JButton();
+        button.setToolTipText(UiDataMessages.SELECTDIR);
         button.addActionListener(new CommonCallBack(null) {
             public void callBack() {
                 SwingScilabFileChooser filechooser = new SwingScilabFileChooser();
@@ -80,6 +81,7 @@ public class ChangeCWDAction extends CommonCallBack {
      */
     public JButton createParentDirButton() {
         JButton button = new JButton();
+        button.setToolTipText(UiDataMessages.PARENTDIR);
         button.addActionListener(new CommonCallBack(null) {
             public void callBack() {
                 File f = new File(table.getComboBox().getBaseDir());
