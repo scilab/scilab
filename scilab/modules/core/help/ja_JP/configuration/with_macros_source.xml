@@ -8,10 +8,10 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>r=with_macros_source()</synopsis>
+        <synopsis>r = with_macros_source()</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>r</term>
@@ -28,5 +28,13 @@
             <literal>%t</literal>,それ以外の場合に 
             <literal>%f</literal> を返します.
         </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
+if with_macros_source() == %t then
+   disp("Scilab macro sources are installed");
+end
+ ]]></programlisting>
     </refsection>
 </refentry>

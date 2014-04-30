@@ -28,8 +28,7 @@
             エントリ<literal>A(i,j)/B(i,j)</literal>を有する行列となります.
             <literal>B</literal> がスカラー (1x1 行列)の場合,この演算は
             <code>A./B*ones(A)</code>と同じになります. 
-            <literal>A</literal>がスカラーの場合も
-            同様です.
+            <literal>A</literal>がスカラーの場合も同様です.
         </para>
         <para>
             <note>
@@ -65,6 +64,7 @@ B=[
 ];
 x=a/B
 x*B-a // ゼロに近い
+
 a=4 / 2; // 2となります
 a=2 ./ [2,4]; //     1.    0.5
 // コメントは有用です. コードを理解しやすくします.
@@ -77,13 +77,10 @@ a=2 ./ [2,4]; //     1.    0.5
                 <link linkend="inv">inv</link>
             </member>
             <member>
-                <link linkend="percent">percent</link>
-            </member>
-            <member>
                 <link linkend="backslash">backslash</link>
             </member>
             <member>
-                <link linkend="ieee">ieee</link>
+                <link linkend="comments">comments</link>
             </member>
         </simplelist>
     </refsection>

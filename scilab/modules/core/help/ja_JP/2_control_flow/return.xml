@@ -11,12 +11,18 @@
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
-        <variablelist>
+        <title>引数</title>
+       <variablelist>
             <varlistentry>
-                <term>x</term>
+                <term>x1,..,xn</term>
                 <listitem>
-                    <para>...</para>
+                    <para>コール側の環境の変数</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>a1,..,an</term>
+                <listitem>
+                    <para>ローカル変数</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -45,7 +51,29 @@
         <para>
             <literal>resume</literal> は <literal>return</literal>と等価です.
         </para>
+        <para>
+          <note>
+	    注意: この機能を使用すると,コードが複雑化する可能性があります.
+	    代わりに, <code>function b = foo()</code>構文が推奨されます.
+          </note>
+        </para>
     </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+function foo(a)
+         a=a+1
+         b=resume(a)
+         c=52
+endfunction
+
+foo(42);
+assert_checkequal(b,43)
+// c does not exist
+
+ ]]></programlisting>
+    </refsection>
+
     <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">
@@ -54,6 +82,12 @@
             </member>
             <member>
                 <link linkend="break">break</link>
+            </member>
+            <member>
+                <link linkend="execstr">execstr</link>
+            </member>
+            <member>
+                <link linkend="resume">resume</link>
             </member>
         </simplelist>
     </refsection>

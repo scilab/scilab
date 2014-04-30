@@ -47,6 +47,7 @@
             <literal>exists(name)</literal> は,
             <literal>name</literal>という名前の変数が存在する場合に
             <literal>1</literal>,それ以外の場合に<literal>0</literal>を返します.
+            　　
         </para>
         <para>
             注意: <literal>exists</literal> を使用する関数は,

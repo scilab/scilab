@@ -12,8 +12,19 @@
             <literal>ans</literal>は,直近の代入されていない評価式の値を有しています.
         </para>
         <para>
-            変数 <literal>ans</literal> は <literal>predef</literal>で保護されません.
+            変数 <literal>ans</literal> は <function>predef</function> で保護されません.
         </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+2+2
+ans // 4
+ans=10 // 10
+clear ans
+a=2+2;
+isdef("ans") // F
+ ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>参照</title>

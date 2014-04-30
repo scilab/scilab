@@ -6,18 +6,20 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼出し手順</title>
-        <synopsis>X+Y
-            str1+str2
+        <synopsis>
+	  X+Y
+          str1+str2
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>X,Y</term>
                 <listitem>
                     <para>
-                        数値,多項式または有理数のスカラーまたはベクトルまたは行列. <literal>syslin</literal> リストとすることも可能
+                        数値,多項式または有理数のスカラーまたはベクトルまたは行列. 
+			<literal>syslin</literal> リストとすることも可能
                     </para>
                 </listitem>
             </varlistentry>
@@ -59,7 +61,7 @@
 s=poly(0,"s");
 s+2
 1/s+2
-"cat"+"enate"
+"con"+"cat"+"enate"
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

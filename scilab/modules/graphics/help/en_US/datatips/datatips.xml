@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
 <!--
  * Copyright (C) INRIA -  Serge Steer Serge.Steer@inria.fr
  * 
@@ -132,3 +133,231 @@
         </simplelist>
     </refsection>
 </refentry>
+=======
+
+<!--
+ * Copyright (C) INRIA -  Serge Steer Serge.Steer@inria.fr
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+-->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en_US" xml:id="datatips">
+    
+    <refnamediv>
+        
+        <refname>datatips</refname>
+        
+        <refpurpose>Tool for placing and editing tips along the plotted curves.</refpurpose>
+        
+    </refnamediv>
+    
+    <refsection>
+        
+        <title>Description</title>
+        
+        <para>
+            
+            With this tool, it is possible to place, move and modify tips on
+            
+            the curves (polylines). This can be done by program or interactively. The
+            
+            commonly used mode is the interactive one:
+            
+        </para>
+        
+        <para>
+            
+            The datatips mode can be enabled by <link linkend="datatipToggle">datatipToggle()</link> or using the
+            
+            <literal>Edit/Start datatip manager</literal> or clicking on the
+            
+            toolbar icon 
+            
+            <inlinemediaobject>
+                
+                <imageobject>
+                    
+                    <imagedata fileref="../../../../gui/images/icons/16x16/apps/datatips.png"/>
+                    
+                </imageobject>
+                
+            </inlinemediaobject>
+            
+            of the desired graphic window.
+            
+        </para>
+        
+        <para>Once enabled, a simple left click on a curve will add a tip
+            
+            ( a small box with information on the current point) at the
+            
+            interpolated point of the curve.
+            
+        </para>
+        
+        <para>
+            
+            To move a tip, press left button on the small square mark on
+            
+            the curve and drag it to the desired location.
+            
+        </para>
+        
+        <para>
+            
+            To remove a datatip, right click on the small square mark on
+            
+            the curve.
+            
+        </para>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>Examples</title>
+        
+        <programlisting role="example"><![CDATA[
+    // this examples show how to manage tips by program
+    x1=linspace(0,1,100)';
+    y1=x1.^3;
+    clf();
+    plot(x1,y1,x1,sinc(10*x1));
+    e=gce();
+    p1=e.children(1);//sinc(10*x1)
+    p2=e.children(2); //x1^3
+    t=datatipCreate(p1,50);
+    datatipSetOrientation(t,"lower right")
+    t=datatipCreate(p1,[0.8 0.5]);
+    t=datatipCreate(p2,[0.1,0.0]);
+    t=datatipCreate(p2,[0.8 0.4]);
+    datatipSetOrientation(t,"upper left")
+  
+    function str=myfmt(pt)
+      str = msprintf('sinc\n%s', sci2exp(round(pt*10)/10))
+    endfunction
+    datatipSetDisplay(t,"myfmt")
+    
+     ]]></programlisting>
+        
+        <scilab:image>
+            
+            // this examples show how to manage tips by program
+            
+            x1=linspace(0,1,100)';
+            
+            y1=x1.^3;
+            
+            clf();
+            
+            plot(x1,y1,x1,sinc(10*x1));
+            
+            e=gce();
+            
+            p1=e.children(1);//sinc(10*x1)
+            
+            p2=e.children(2); //x1^3
+            
+            t=datatipCreate(p1,50);
+            
+            datatipSetOrientation(t,"lower right")
+            
+            t=datatipCreate(p1,[0.8 0.5]);
+            
+            t=datatipCreate(p2,[0.1,0.0]);
+            
+            t=datatipCreate(p2,[0.8 0.4]);
+            
+            datatipSetOrientation(t,"upper left")
+            
+            
+            
+            function str=myfmt(pt)
+            
+            str = msprintf('sinc\n%s', sci2exp(round(pt*10)/10))
+            
+            endfunction
+            
+            datatipSetDisplay(t,"myfmt")
+            
+        </scilab:image>
+        
+        <programlisting role="example"><![CDATA[
+    // With 3D curves
+    x1=linspace(0,1.5,100)';
+    y1=x1.^3;
+    clf();
+    param3d(x1.*cos(10*x1),x1.*sin(10*x1),x1);
+    ax=gca();ax.box='off';
+    ax.rotation_angles=[76 31];
+    p=gce();
+    t=datatipCreate(p,50);
+    datatipSetOrientation(t,"lower right")
+    datatipCreate(p,[0,-1.10,1.10]);
+     ]]></programlisting>
+        
+        <scilab:image>
+            
+            x1=linspace(0,1.5,100)';
+            
+            y1=x1.^3;
+            
+            param3d(x1.*cos(10*x1),x1.*sin(10*x1),x1);
+            
+            ax=gca();ax.box='off';
+            
+            ax.rotation_angles=[76 31];
+            
+            p=gce();
+            
+            t=datatipCreate(p,50);
+            
+            datatipSetOrientation(t,"lower right")
+            
+            datatipCreate(p,[0,-1.10,1.10]);
+            
+        </scilab:image>
+        
+    </refsection>
+    
+    <refsection role="see also">
+        
+        <title>See Also</title>
+        
+        <simplelist type="inline">
+            
+            <member>
+                
+                <link linkend="datatipToggle">datatipToggle</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="datatipCreate">datatipCreate</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="datatipMove">datatipMove</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="datatipSetDisplay">datatipSetDisplay</link>
+                
+            </member>
+            
+        </simplelist>
+        
+    </refsection>
+    
+</refentry>
+
+>>>>>>> 51f831b... update japanese translation of core module.

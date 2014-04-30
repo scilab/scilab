@@ -15,7 +15,7 @@
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>x</term>
@@ -56,24 +56,26 @@
         </para>
         <para>
             *
-            式の中で評価の順序を指定します,
+            式の中で評価の順序を指定します;
         </para>
         <para>
             *
             関数の右辺の引数のリストを作成します.
-            複数の右辺の引数の間はカンマで区切られる必要があります.
+            複数の右辺の引数の間はカンマで区切られる必要があります;
         </para>
         <para>
+	    *
             ベクトル,行列およびリストの中の要素を選択します.
             詳細にについては,
-            展開および挿入のヘルプを参照ください.
+	    <link linkend="extraction">展開</link> および
+            <link linkend="insertion">挿入</link>
+	    のヘルプを参照ください;
         </para>
         <para>
-            *
-            [x1,x2,...]=(e1,e2,...) は,まず
-            %t_1 = e1, %t_2 = e2, ...,を実行した後,
-            x1 = %t_1, x2 = %t_2, ...,　とすることに等価です.
-            ただし, 変数 %t_i, i = 1, 2, ...はユーザから不可視です.
+            <literal>[x1,x2,...]=(e1,e2,...)</literal> は,まず
+	    <literal>%t_1 = e1, %t_2 = e2, ...</literal>を実行した後,
+            <literal> x1 = %t_1, x2 = %t_2, ...</literal>とすることに等価です.
+            ただし, 変数 <literal>%t_i, i = 1, 2, ...</literal>は,ユーザから不可視です.
         </para>
     </refsection>
     <refsection>

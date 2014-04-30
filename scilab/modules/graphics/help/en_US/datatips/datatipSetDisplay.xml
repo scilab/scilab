@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
 <!--
  * Copyright (C) INRIA -  Serge Steer Serge.Steer@inria.fr
  *
@@ -105,3 +106,190 @@
         </simplelist>
     </refsection>
 </refentry>
+=======
+
+<!--
+ * Copyright (C) INRIA -  Serge Steer Serge.Steer@inria.fr
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+-->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en_US" xml:id="datatipSetDisplay">
+    
+    <refnamediv>
+        
+        <refname>datatipSetDisplay</refname>
+        
+        <refpurpose>Set the function used to compute the datatip string. </refpurpose>
+        
+    </refnamediv>
+    
+    <refsynopsisdiv>
+        
+        <title>Calling Sequence</title>
+        
+        <synopsis>
+            
+            datatipSetDisplay(handle,"fun")
+            
+            datatipSetDisplay(handle, fun)
+            
+        </synopsis>
+        
+    </refsynopsisdiv>
+    
+    <refsection>
+        
+        <title>Arguments</title>
+        
+        <variablelist>
+            
+            <varlistentry>
+                
+                <term>handle</term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        A handle on a datatip or its parent.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+        </variablelist>
+        
+        <variablelist>
+            
+            <varlistentry>
+                
+                <term>"fun"</term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        A variable that contains a function (type==11 or type==13) or the name of this function. This function calling sequence must be <literal>str=fun(h)</literal> where <literal>h</literal> is the handle of the datatip.
+                        
+                    </para>
+                    
+                    <para>
+                        
+                        This function must return a string or a vector of strings
+                        
+                        in <literal>str</literal>.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+        </variablelist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>Description</title>
+        
+        <para>
+            
+            Set the function used to format the text to be displayed at the datatip point. If the handle of the parent of the datatip is given as first argument, then all the datatips which don't have a display function will have same one.
+            
+        </para>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>Examples</title><programlisting role="example"><![CDATA[
+    x=linspace(-1,1,1000);
+    clf()
+    plot(x,sinc(20*x),x,1-x.^2);
+    e=gce();e=e.children;
+    d21=datatipCreate(e(2),600);
+    d1=datatipCreate(e(1),700);
+
+    function str=mydisplay(h)
+        pt = h.data;
+        str=msprintf('sinc(%-0.2g)=%-0.2g', 20*pt(1),pt(2))
+    endfunction
+    datatipSetDisplay(d21,"mydisplay")
+    ]]></programlisting>
+        
+        <scilab:image>
+            
+            x=linspace(-1,1,1000);
+            
+            clf()
+            
+            plot(x,sinc(20*x),x,1-x.^2);
+            
+            e=gce();e=e.children;
+            
+            d21=datatipCreate(e(2),600);
+            
+            d1=datatipCreate(e(1),700);
+            
+            
+            
+            function str=mydisplay(h)
+            
+            pt = h.data;
+            
+            str=msprintf('sinc(%-0.2g)=%-0.2g', 20*pt(1),pt(2))
+            
+            endfunction
+            
+            datatipSetDisplay(d21,mydisplay)
+            
+            datatipSetDisplay(d21,"mydisplay")
+            
+        </scilab:image>
+        
+        The display function can also be used to place tip text in different locations:
+        
+        <programlisting role="example"><![CDATA[
+    function str=infodisplay(h)
+        pt = h.data;
+        xinfo(msprintf('x=%0.2g,\t 1-x^2=%0.2g', pt(1),pt(2)))
+        str=''
+    endfunction
+    datatipSetDisplay(d1,"infodisplay") //tip text displayed in the info bar
+    ]]></programlisting>
+        
+    </refsection>
+    
+    <refsection role="see also">
+        
+        <title>See Also</title>
+        
+        <simplelist type="inline">
+            
+            <member>
+                
+                <link linkend="datatips">datatips</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="datatipSetOrientation">datatipSetOrientation</link>
+                
+            </member>
+            
+        </simplelist>
+        
+    </refsection>
+    
+</refentry>
+
+>>>>>>> 51f831b... update japanese translation of core module.

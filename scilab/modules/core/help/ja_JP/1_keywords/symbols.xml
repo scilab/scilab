@@ -16,97 +16,97 @@
                 <td>Scilab ヘルプの名前</td>
             </tr>
             <tr>
-                <td> ',", .'</td>
+                <td>',&quot;, .'</td>
                 <td>
                     <link linkend="quote">quote</link>
                 </td>
             </tr>
             <tr>
-                <td> +</td>
+                <td>+</td>
                 <td>
                     <link linkend="plus">plus</link>
                 </td>
             </tr>
             <tr>
-                <td> -</td>
+                <td>-</td>
                 <td>
                     <link linkend="minus">minus</link>
                 </td>
             </tr>
             <tr>
-                <td> *,.*</td>
+                <td>*,.*</td>
                 <td>
                     <link linkend="star">star</link>
                 </td>
             </tr>
             <tr>
-                <td> /, ./, /.</td>
+                <td>/, ./, /.</td>
                 <td>
                     <link linkend="slash">slash</link>
                 </td>
             </tr>
             <tr>
-                <td> \,.\ ,\. </td>
+                <td>\,.\ ,\.</td>
                 <td>
                     <link linkend="backslash">backslash</link>
                 </td>
             </tr>
             <tr>
-                <td> .</td>
+                <td>.</td>
                 <td>
                     <link linkend="dot">dot</link>
                 </td>
             </tr>
             <tr>
-                <td> =, ==</td>
+                <td>=, ==</td>
                 <td>
                     <link linkend="equal">equal</link>
                 </td>
             </tr>
             <tr>
-                <td> &lt;,&gt;,&gt;=,&lt;=,&lt;&gt;</td>
+                <td>&lt;,&gt;,&gt;=,&lt;=,&lt;&gt;</td>
                 <td>
                     <link linkend="less">less</link>, <link linkend="greater">greater</link>
                 </td>
             </tr>
             <tr>
-                <td> ~</td>
+                <td>~</td>
                 <td>
                     <link linkend="tilde">tilde</link>
                 </td>
             </tr>
             <tr>
-                <td> []</td>
+                <td>[]</td>
                 <td>
                     <link linkend="brackets">brackets</link>
                 </td>
             </tr>
             <tr>
-                <td> ()</td>
+                <td>()</td>
                 <td>
                     <link linkend="parentheses">parentheses</link>
                 </td>
             </tr>
             <tr>
-                <td> %</td>
+                <td>%</td>
                 <td>
                     <link linkend="percent">percent</link>
                 </td>
             </tr>
             <tr>
-                <td> :</td>
+                <td>:</td>
                 <td>
                     <link linkend="colon">colon</link>
                 </td>
             </tr>
             <tr>
-                <td> ,</td>
+                <td>,</td>
                 <td>
                     <link linkend="comma">comma</link>
                 </td>
             </tr>
             <tr>
-                <td> ;</td>
+                <td>;</td>
                 <td>
                     <link linkend="semicolon">semicolon</link>
                 </td>
@@ -128,19 +128,19 @@
                 </td>
             </tr>
             <tr>
-                <td> |</td>
+                <td>|</td>
                 <td>
                     <link linkend="or_op">or_op</link>
                 </td>
             </tr>
             <tr>
-                <td> &amp;</td>
+                <td>&amp;</td>
                 <td>
                     <link linkend="and_op">and_op</link>
                 </td>
             </tr>
             <tr>
-                <td> .*., ./., .\.</td>
+                <td>.*., ./., .\.</td>
                 <td>
                     <link linkend="kron">kron</link>
                 </td>
