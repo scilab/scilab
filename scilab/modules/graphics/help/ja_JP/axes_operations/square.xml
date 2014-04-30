@@ -13,17 +13,19 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="square">
     <refnamediv>
         <refname>square</refname>
-        <refpurpose>等軸プロットのスケールを設定 (ウインドウの大きさを変更)  </refpurpose>
+        <refpurpose>
+	  等軸プロットのスケールを設定 (ウインドウの大きさを変更)  
+	</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>square(xmin,ymin,xmax,ymax)</synopsis>
+        <synopsis>square(xmin, ymin, xmax, ymax)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
-                <term>xmin,xmax,ymin,ymax</term>
+                <term>xmin, xmax, ymin, ymax</term>
                 <listitem>
                     <para>実数値</para>
                 </listitem>
@@ -33,15 +35,19 @@
     <refsection>
         <title>説明</title>
         <para>
-            <literal>square</literal>は, xおよびy軸に等軸スケールを適用する際に
-            使用されます.
-            指定された値 <literal>xmin, xmax, ymin, ymax</literal> は
-            グラフィックフレームの境界で, <literal>square</literal> は
+            <function>square</function> は, xおよびy軸に等軸スケールを
+	    適用する際に使用されます.
+            指定された値 <literal>xmin</literal>,
+            <literal>xmax</literal>, <literal>ymin</literal>,
+            <literal>ymax</literal> は
+            グラフィックフレームの境界で, <function>square</function>  は
             等軸プロットとなるようにグラフィックウインドウの次元を変更します.
-            <literal>square</literal> はカレントのグラフィックスケールを設定し,
+            <function>square</function> は,
+	    カレントのグラフィックスケールを設定し,
             カレントのグラフィックスケールを指定する
             グラフィックルーチン
-            (例えば, <literal>plot2d</literal>の<literal>fstrf="x0z"</literal>)
+            (例えば, <function>plot2d</function>の
+	    <code>strf="x0z"</code>)
             と組み合わせて使用することができます.
         </para>
     </refsection>

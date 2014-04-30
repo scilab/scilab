@@ -17,10 +17,12 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>[xi,xa,np1,np2,kMinr,kMaxr,ar]=xgraduate(xmi,xma)</synopsis>
+        <synopsis>
+            [xi, xa, np1, np2, kMinr, kMaxr, ar] = xgraduate(xmi, xma)
+        </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>xmi,xma</term>
@@ -45,16 +47,14 @@
     <refsection>
         <title>説明</title>
         <para>
-            <literal>xgraduate</literal> は
-            (見栄えを良くするプリントフラグが有効とされた)プロットルーチン
-            で使用される軸のグラデーションを返します.
-            この関数は,指定した範囲<literal>[xmi,xma]</literal>を含み
-            <literal>xi= kMinr*10^ar</literal>, <literal>xa=kMaxr*10^ar</literal>
-            となる範囲<literal>[xi,xa]</literal>を返します.
-        </para>
-        <para>
-            この範囲は,<literal>np2</literal>個の範囲に分割することができ,
-            各範囲は<literal>np1</literal>個のサブ範囲に分割されます.
+          <function>xgraduate</function> は,
+          (プリティプリントフラグが有効とされた)プロットルーチン
+          で使用される軸のグラデーションを返します.
+          この関数は,指定した範囲<literal>[xmi,xma]</literal>を含み,
+          <code>xi= kMinr*10^ar</code>, <code>xa=kMaxr*10^ar</code>となる,
+	  範囲<literal>[xi,xa]</literal>を返します.
+          この範囲は,<varname>np2</varname>個の範囲に分割することができ,
+          各範囲は<varname>np1</varname>個のサブ範囲に分割されます.
         </para>
     </refsection>
     <refsection>

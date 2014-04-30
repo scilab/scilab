@@ -20,7 +20,7 @@
         <synopsis>new=addcolor(c)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>new</term>
@@ -63,6 +63,12 @@ h = gcf();
 h.color_map = jetcolormap(16);
 addcolor(name2rgb('grey')/255);
  ]]></programlisting>
+        <scilab:image> 
+            plot3d();
+            h = gcf();
+            h.color_map = jetcolormap(16);
+            addcolor(name2rgb('grey')/255);
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>参照</title>

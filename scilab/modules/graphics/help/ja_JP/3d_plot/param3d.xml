@@ -185,6 +185,7 @@
                     <para>
                         プロットの境界をベクトル
                         <literal>[xmin,xmax,ymin,ymax,zmin,zmax]</literal>で指定します. 
+                        
                         この引数は,<literal>flag</literal>の<literal>type</literal>が<literal>1</literal>,
                         <literal>3</literal> または <literal>5</literal>に設定された場合,
                         使用されます (対応する動作については上記参照). 
@@ -225,25 +226,28 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <scilab:image>
-            t=0:0.1:5*%pi;
-            param3d(sin(t),cos(t),t/10,35,45,"X@Y@Z",[2,3])
-            e=gce() //the handle on the 3D polyline
-            e.foreground=color('red');
-            a=gca(); //the handle on the axes
-            a.rotation_angles=[10 70];
-        </scilab:image>
-    </refsection>
-    <refsection>
-        <title>例</title>
         <programlisting role="example"><![CDATA[ 
 t=0:0.1:5*%pi;
 param3d(sin(t),cos(t),t/10,35,45,"X@Y@Z",[2,3])
+
 e=gce() //3次元ポリラインのハンドル
+
 e.foreground=color('red');
+
 a=gca(); //軸のハンドル
 a.rotation_angles=[10 70];
  ]]></programlisting>
+        <scilab:image>
+            t=0:0.1:5*%pi;
+            param3d(sin(t),cos(t),t/10,35,45,"X@Y@Z",[2,3])
+            
+            e=gce() //the handle on the 3D polyline
+            
+            e.foreground=color('red');
+            
+            a=gca(); //the handle on the axes
+            a.rotation_angles=[10 70];
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>参照</title>

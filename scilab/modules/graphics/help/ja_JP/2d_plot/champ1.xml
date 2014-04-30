@@ -6,10 +6,10 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>champ1(x,y,fx,fy,[arfact,rect,strf])</synopsis>
+	<synopsis>champ1(x, y, fx, fy, [arfact, rect, strf])</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>x,y</term>
@@ -95,18 +95,38 @@
         <para>
             コマンド <literal>champ1()</literal>を入力するとデモが表示されます.
         </para>
-    </refsection>
-    <refsection>
-        <title>例</title>
-        <scilab:image>
-            champ1(-5:5,-5:5,rand(11,11),rand(11,11),rect=[-10,-10,10,10],arfact=2)
-        </scilab:image>
+        <para>
+	  <code>champ1</code>の使用前に <link linkend="meshgrid">meshgrid</link>関数を
+	  使用する場合は調整が必要なことに注意してください.
+	  詳細については最後の例を参照ください.
+        </para>
     </refsection>
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[ 
 champ1(-5:5,-5:5,rand(11,11),rand(11,11),rect=[-10,-10,10,10],arfact=2)
  ]]></programlisting>
+        <scilab:image>
+            champ1(-5:5,-5:5,rand(11,11),rand(11,11),rect=[-10,-10,10,10],arfact=2)
+        </scilab:image>
+        <programlisting role="example"><![CDATA[
+// fx および fy を取得するために meshgrid を使用
+clf()
+x = linspace(-1,1,30);
+y = linspace(-1,1,30);
+[X,Y] = meshgrid(x,y);
+fy = 2.*Y;
+fx = 2.*X;
+champ1(x,y,fx',fy'); //転置したfxおよびfyを使用
+]]></programlisting>
+        <scilab:image>
+            x = linspace(-1,1,30);
+            y = linspace(-1,1,30);
+            [X,Y] = meshgrid(x,y);
+            fy = 2.*Y;
+            fx = 2.*X;
+            champ1(x,y,fx',fy'); //here we have transposed fx and fy
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>参照</title>

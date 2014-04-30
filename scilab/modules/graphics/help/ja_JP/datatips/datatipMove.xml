@@ -18,7 +18,7 @@
         <synopsis>datatipMove(tip_handle)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>tip_handle</term>

@@ -52,6 +52,7 @@ function my_eventhandler(win,x,y,ibut)
   [x,y]=xchange(x,y,'i2f')
   xinfo(msprintf('Event code %d at mouse position is (%f,%f)',ibut,x,y))
 endfunction
+
 plot2d()
 seteventhandler('my_eventhandler')
 //ここで:
@@ -60,6 +61,7 @@ seteventhandler('my_eventhandler')
 //   -  ボタンを押し, 少し待ってから離す
 //   -  ボタンを押して離す
 //   -  ボタンをダブルクリック
+
 seteventhandler('') //イベントハンドラを削除
  ]]></programlisting>
     </refsection>

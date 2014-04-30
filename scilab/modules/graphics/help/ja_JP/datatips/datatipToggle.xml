@@ -11,7 +11,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="datatipToggle">
     <refnamediv>
         <refname>datatipToggle</refname>
-        <refpurpose>data tipsモードを切り替える.</refpurpose>
+        <refpurpose>data tipsモードをトグルする.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
@@ -20,7 +20,7 @@
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>fig</term>
@@ -35,16 +35,17 @@
     <refsection>
         <title>説明</title>
         <para>
-            data tipsモードを有効にした場合,
-            曲線の選択した点にtipsを追加したり,編集したりすることが
-            可能となります.選択は選択する点で右クリックをすることにより
-            行われます.
+	  有効にした場合, 
+          data tipsモードにより,
+          曲線の選択した点にtipsを追加したり,編集したりすることが
+          可能となります.選択は選択する点で右クリックをすることにより
+          行われます.
         </para>
         <para>
-            <literal>datatipToggle()</literal>, はカレントの図に関する
-            data tipsモードをトグルし,
-            <literal>datatipToggle(fig)</literal> はハンドル<literal>fig</literal>
-            で指定した図のdata tipsモードをトグルします.
+          <literal>datatipToggle()</literal>は,カレントの図に関する
+          data tipsモードをトグルし,
+          <literal>datatipToggle(fig)</literal> はハンドル<literal>fig</literal>
+          で指定した図のdata tipsモードをトグルします.
         </para>
     </refsection>
     <refsection>

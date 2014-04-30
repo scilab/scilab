@@ -19,8 +19,8 @@
     <refsynopsisdiv>
         <title>呼び出し手順</title>
         <synopsis>
-            xsegs(xv,yv,[style])
-            xsegs(xv,yv,zv,[style])
+            xsegs(xv, yv, [style])
+            xsegs(xv, yv, zv,[style])
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -30,7 +30,8 @@
                 <term>xv, yv, zv</term>
                 <listitem>
                     <para>
-                        同じ大きさの行列. <literal>zv</literal>が指定されない場合, ゼロベクトルを使用します.
+                        同じ大きさの行列. <varname>zv</varname>が指定されない場合, 
+			ゼロベクトルを使用します.
                     </para>
                 </listitem>
             </varlistentry>
@@ -38,11 +39,13 @@
                 <term>style</term>
                 <listitem>
                     <para>
-                        ベクトルまたはスカラー.  <literal>style</literal>が正のスカラーの場合,
-                        全ての線分で使用される色を指定します. <literal>style</literal>が負のスカラーの場合
-                        , カレントの色が使用されます. <literal>style</literal>
-                        がベクトルの場合, <literal>style(i)</literal> は線分<literal>i</literal>に関する
-                        色を指定します.
+                      ベクトルまたはスカラー. <varname>style</varname>が正のスカラーの場合,
+                      全ての線分で使用される色を指定します. 
+		      <varname>style</varname>が負のスカラーの場合
+                      , カレントの色が使用されます. 
+		      <varname>style</varname>がベクトルの場合, 
+		      <literal>style(i)</literal> は線分<literal>i</literal>に関する
+                      色を指定します.
                     </para>
                 </listitem>
             </varlistentry>
@@ -51,20 +54,22 @@
     <refsection>
         <title>説明</title>
         <para>
-            <literal>xsegs</literal> は
-            <literal>xv</literal>, <literal>yv</literal> および <literal>zv</literal>
-            で指定した接続されていない一連の線分を描画します.
-            <literal>xv</literal>, <literal>yv</literal> および <literal>zv</literal> 
-            が行列の場合,列を結合したベクトルとみなされます.
-            ある線分を定義する2つ点の座標は
-            <literal>xv</literal>, <literal>yv</literal> および
-            <literal>zv</literal>の連続する2つの値で指定されます:
+          <function>xsegs</function> は,
+          <varname>xv</varname>, <varname>yv</varname> および <varname>zv</varname>
+          で指定した接続されていない一連の線分を描画します.
+          <varname>xv</varname>, <varname>yv</varname> および <varname>zv</varname>
+          が行列の場合,列を結合したベクトルとみなされます.
+          ある線分を定義する2つ点の座標は,
+          <varname>xv</varname>, <varname>yv</varname> および <varname>zv</varname>
+	  の連続する2つの値で指定されます:
         </para>
         <para>
             <literal>(xv(i),yv(i),zv(i))--&gt;(xv(i+1),yv(i+1),zv(i+1))</literal>.
         </para>
-        <para>例えば, 大きさ (2,n)の行列の場合, 線分は以下のように定義されます:</para>
-        <programlisting><![CDATA[ 
+        <para>
+	  例えば, 大きさ (2,n)の行列の場合, 線分は以下のように定義されます:
+	</para>
+        <programlisting role="no-scilab-exec"><![CDATA[ 
 xv=[xi_1 xi_2 ...; xf_1 xf_2...]
 yv=[yi_1 yi_2 ...; yf_1 yf_2...]
 zv=[zi_1 zi_2 ...; zf_1 zf_2...]
@@ -119,6 +124,8 @@ a.data_bounds = [min(xv) min(yv) min(zv); ...
 // 矢印を各線分に追加できます
 e = gce();
 e.arrow_size = 0.4;
+
+
  ]]></programlisting>
         <scilab:image>
             a=gca();

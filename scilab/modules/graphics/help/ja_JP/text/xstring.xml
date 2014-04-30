@@ -93,17 +93,11 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <scilab:image>
-            plot2d([0;1],[0;1],0)
-            xstring(0.5,0.5,["$\overbrace{Scilab}$" "n''est ";"pas" "$\underbrace{Matlab}$"])
-        </scilab:image>
-    </refsection>
-    <refsection>
-        <title>例</title>
         <programlisting role="example"><![CDATA[ 
 plot2d([0;1],[0;1],0)
 xstring(0.5,0.5,["$\overbrace{Scilab}$" "n''est ";"pas" "$\underbrace{Matlab}$"])
 // LaTeX レンダリング (>= Scilab 5.2)
+
 //Other example
 alphabet=["a" "b" "c" "d" "e" "f" "g" ..
           "h" "i" "j" "k" "l" "m" "n" ..
@@ -121,6 +115,10 @@ xstring(0.1,0.3,alphabet)
 xset("font",1,24);
 xstring(0.1,0.6,"a") //大きなアルファ
  ]]></programlisting>
+        <scilab:image>
+            plot2d([0;1],[0;1],0)
+            xstring(0.5,0.5,["$\overbrace{Scilab}$" "n''est ";"pas" "$\underbrace{Matlab}$"])
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>参照</title>

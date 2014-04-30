@@ -22,7 +22,7 @@
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>title</term>
@@ -56,6 +56,17 @@
             "Cancel"ボタンがクリックされたかウインドウがクローズされた場合に []を返します.
         </para>
     </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+getcolor();
+
+getcolor("Title foo");
+
+getcolor("foo",21); // 赤を選択
+ ]]></programlisting>
+    </refsection>
+
     <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">

@@ -20,7 +20,7 @@
         <synopsis>xname(name)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>name</term>
@@ -36,5 +36,14 @@
             <literal>xname</literal>はカレントのグラフィックウインドウの
             名前を変更します.
         </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
+xname("Empty graphic")
+x=-%pi*2:0.1:%pi*2;
+plot(x,sin(x))
+xname("sin(x) with x between -%pi*2 and %pi*2")
+ ]]></programlisting>
     </refsection>
 </refentry>

@@ -40,15 +40,12 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <scilab:image>
-            titlepage("This is the title of the page");
-        </scilab:image>
-    </refsection>
-    <refsection>
-        <title>例</title>
         <programlisting role="example"><![CDATA[ 
 titlepage("This is the title of the page");
  ]]></programlisting>
+        <scilab:image>
+            titlepage("This is the title of the page");
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>参照</title>

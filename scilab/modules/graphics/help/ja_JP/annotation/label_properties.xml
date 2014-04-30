@@ -193,15 +193,18 @@ a.x_label
 a.y_label
 a.z_label
 xtitle("My title","my x axis label", "Volume","Month") 
+
 t=a.title;
 t.foreground=9;
 t.font_size=4;
 t.font_style=5;
 t.text="SCILAB";
+
 x_label=a.x_label;
 x_label.text=" Weight"
 x_label.font_style= 5;
 a.y_label.foreground = 12;
+   
 // Scilab 5.2以降, LaTeX または MathML式を書くことができます:
 t.text="$\sqrt{SCILAB}$";
 x_label.font_size= 5;

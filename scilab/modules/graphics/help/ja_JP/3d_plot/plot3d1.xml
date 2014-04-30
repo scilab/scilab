@@ -19,6 +19,7 @@
         <title>呼び出し手順</title>
         <synopsis>plot3d1(x,y,z,[theta,alpha,leg,flag,ebox])
             plot3d1(xf,yf,zf,[theta,alpha,leg,flag,ebox])
+            
             plot3d1(x,y,z,&lt;opts_args&gt;)
             plot3d1(xf,yf,zf,&lt;opts_args&gt;)
         </synopsis>
@@ -288,6 +289,7 @@
     </refsection>
     <refsection>
         <title>例</title>
+        
         <programlisting role="example"><![CDATA[
 // z=f(x,y) によりプロットする
 t=[0:0.3:2*%pi]';
@@ -332,6 +334,7 @@ plot3d1(1:10,1:20,10*rand(10,20),35,45,"X@Y@Z",[2,2,3])
         <scilab:image>
             plot3d1(1:10,1:20,10*rand(10,20),35,45,"X@Y@Z",[2,2,3])
         </scilab:image>
+        
         <programlisting role="example"><![CDATA[
 // グリッドを指定せずにプロット 
 plot3d1(1:10,1:20,10*rand(10,20),35,45,"X@Y@Z",[-2,2,3])

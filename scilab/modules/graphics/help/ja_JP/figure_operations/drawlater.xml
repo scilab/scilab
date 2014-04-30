@@ -67,13 +67,17 @@ a.children(6).background=17;
 a.children(7).background=25;
 a.children(8).background=25;
 xclick();drawnow();
+ 
 //例 2: 軸を2つ / 図を1つ
+
 subplot(212)
 a=gca();
 drawlater //この軸に描画されるものは後で表示されます
 plot2d // これらの軸と子に後で描画します...
+
 subplot(211) //警告: 軸を変更します
 plot2d1 // デフォルトの描画モード
+
 drawnow() // 全て可視
  ]]></programlisting>
     </refsection>

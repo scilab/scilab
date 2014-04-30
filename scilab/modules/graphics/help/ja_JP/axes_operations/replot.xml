@@ -12,78 +12,78 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ja" xml:id="replot">
-    <refnamediv>
-        <refname>replot</refname>
-        <refpurpose>
-            新しい境界を指定してカレントまたは指定した軸で再描画
-        </refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>呼び出し手順</title>
-        <synopsis>replot(area)</synopsis>
-        <synopsis>replot(area, axesHandles)</synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>引数</title>
-        <variablelist>
-            <varlistentry>
-                <term>area</term>
-                <listitem>
-                    <para>
-                        行ベクトル [xmin ymin xmax ymax] または
-                        [xmin ymin zmin xmax ymax zmax]: 再プロットされる領域の新しい範囲.
-                        <note>
-                            範囲を変えない場合は <literal>%nan</literal> を使用してください.
-                        </note>
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>axesHandles</term>
-                <listitem>
-                    <para>
-                        Axes型のグラフィックハンドルのベクトル:
-                        選択する軸. デフォルトで, カレントの図のカレントの軸が指定されます.
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>説明</title>
-        <para>
-            <literal>replot</literal> はカレントのグラフィックウインドウの内容を
-            <literal>area = [xmin,ymin, xmax,ymax]</literal>または
-            <literal>area = [xmin,ymin,zmin, xmax,ymax,zmax]</literal>で定義した新しい境界内に
-            再描画する際に使用されます.
-        </para>
-        <para>
-            この変換は<varname>axesHandles</varname>引数でAxesグラフィックハンドルにより
-            指定された特定の軸に適用できます.
-            <varname>axesHandles</varname>が指令されない場合,
-            新しい境界はカレントの図のカレントの軸に適用されます.
-            変換はこれらの軸の<literal>data_bounds</literal>の値を変更します.
-        </para>
-        <note>
-            これらの範囲を厳密に選択するために
-            axesのプロパティ<literal>tight_limits</literal>を"on" に設定する必要があります
-            (<link linkend="axes_properties">axes_properties</link>を参照ください).
-        </note>
-    </refsection>
-    <refsection>
-        <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+<refnamediv>
+    <refname>replot</refname>
+    <refpurpose>
+        新しい境界を指定してカレントまたは指定した軸で再描画
+    </refpurpose>
+</refnamediv>
+<refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>replot(area)</synopsis>
+    <synopsis>replot(area, axesHandles)</synopsis>
+</refsynopsisdiv>
+<refsection>
+    <title>引数</title>
+    <variablelist>
+        <varlistentry>
+            <term>area</term>
+            <listitem>
+                <para>
+                    行ベクトル [xmin ymin xmax ymax] または
+                    [xmin ymin zmin xmax ymax zmax]: 再プロットされる領域の新しい範囲.
+                    <note>
+                        範囲を変えない場合は <literal>%nan</literal> を使用してください.
+                    </note>
+                </para>
+            </listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>axesHandles</term>
+            <listitem>
+                <para>
+                    Axes型のグラフィックハンドルのベクトル:
+                    選択する軸. デフォルトで, カレントの図のカレントの軸が指定されます.
+                </para>
+            </listitem>
+        </varlistentry>
+    </variablelist>
+</refsection>
+<refsection>
+    <title>説明</title>
+    <para>
+        <literal>replot</literal> はカレントのグラフィックウインドウの内容を
+        <literal>area = [xmin,ymin, xmax,ymax]</literal>または
+        <literal>area = [xmin,ymin,zmin, xmax,ymax,zmax]</literal>で定義した新しい境界内に
+        再描画する際に使用されます.
+    </para>
+    <para>
+        この変換は<varname>axesHandles</varname>引数でAxesグラフィックハンドルにより
+        指定された特定の軸に適用できます.
+        <varname>axesHandles</varname>が指令されない場合,
+        新しい境界はカレントの図のカレントの軸に適用されます.
+        変換はこれらの軸の<literal>data_bounds</literal>の値を変更します.
+    </para>
+    <note>
+        これらの範囲を厳密に選択するために
+        axesのプロパティ<literal>tight_limits</literal>を"on" に設定する必要があります
+        (<link linkend="axes_properties">axes_properties</link>を参照ください).
+    </note>
+</refsection>
+<refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
 // 最初の例
 x=[0:0.1:2*%pi]';
 plot2d(x,sin(x)) 
 replot([-1,-1,10,2]) 
       ]]></programlisting>
-        <scilab:image>
-            x=[0:0.1:2*%pi]';
-            plot2d(x,sin(x))
-            replot([-1,-1,10,2])
-        </scilab:image>
-        <programlisting role="example"><![CDATA[
+    <scilab:image>
+        x=[0:0.1:2*%pi]';
+        plot2d(x,sin(x))
+        replot([-1,-1,10,2])
+    </scilab:image>
+    <programlisting role="example"><![CDATA[
 // 二番目の例
 xdel(winsid());
 plot() // plot demo
@@ -91,14 +91,14 @@ f=gcf();
 replot([-1,-1,10,2],f.children(1)) // axesハンドルの値を指定
 replot([-3,-2,8,4],f.children(2)) 
  ]]></programlisting>
-        <scilab:image>
-            xdel(winsid());
-            plot()
-            f2=gcf();
-            replot([-1,-1,10,2],f2.children(1))
-            replot([-3,-2,8,4],f2.children(2))
-        </scilab:image>
-        <programlisting role="example"><![CDATA[
+    <scilab:image>
+        xdel(winsid());
+        plot()
+        f2=gcf();
+        replot([-1,-1,10,2],f2.children(1))
+        replot([-3,-2,8,4],f2.children(2))
+    </scilab:image>
+    <programlisting role="example"><![CDATA[
 //値は%nanで示さ端子は変更されません。
 x = linspace(0,360,200).';
 clf
@@ -136,38 +136,38 @@ sleep(4000)
 f = gcf();
 replot([-1 %nan 1.5 %nan], [ax1 ax2])
       ]]></programlisting>
-    </refsection>
-    <refsection role="see also">
-        <title>参照</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="zoom_rect">zoom_rect</link>
-            </member>
-            <member>
-                <link linkend="rubberbox">rubberbox</link>
-            </member>
-            <member>
-                <link linkend="axes_properties">axes_properties</link>
-            </member>
-        </simplelist>
-    </refsection>
-    <refsection>
-        <title>履歴</title>
-        <revhistory>
-            <revision>
-                <revnumber>5.5.0</revnumber>
-                <revdescription>
-                    <itemizedlist>
-                        <listitem>3Dへの拡張
-                        </listitem>
-                        <listitem>axesHandles をベクトル化
-                        </listitem>
-                        <listitem>
-                            範囲を維持するために <literal>%nan</literal> を使用できます.
-                        </listitem>
-                    </itemizedlist>
-                </revdescription>
-            </revision>
-        </revhistory>
-    </refsection>
+</refsection>
+<refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+        <member>
+            <link linkend="zoom_rect">zoom_rect</link>
+        </member>
+        <member>
+            <link linkend="rubberbox">rubberbox</link>
+        </member>
+        <member>
+            <link linkend="axes_properties">axes_properties</link>
+        </member>
+    </simplelist>
+</refsection>
+<refsection>
+    <title>履歴</title>
+    <revhistory>
+        <revision>
+            <revnumber>5.5.0</revnumber>
+            <revdescription>
+                <itemizedlist>
+                    <listitem>3Dへの拡張
+                    </listitem>
+                    <listitem>axesHandles をベクトル化
+                    </listitem>
+                    <listitem>
+                        範囲を維持するために <literal>%nan</literal> を使用できます.
+                    </listitem>
+                </itemizedlist>
+            </revdescription>
+        </revision>
+    </revhistory>
+</refsection>
 </refentry>

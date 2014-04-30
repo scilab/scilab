@@ -11,7 +11,9 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="datatipSetOrientation">
     <refnamediv>
         <refname>datatipSetOrientation</refname>
-        <refpurpose>指定した点に最も近いdatatipを探す. </refpurpose>
+        <refpurpose>
+	  指定したtipに関係するテキストボックスの位置を設定.
+	</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
@@ -20,7 +22,7 @@
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>tip_handle</term>
@@ -53,9 +55,11 @@
     <refsection>
         <title>説明</title>
         <para>
-            曲線上の点に相対的にテキストボックスの位置を設定します.
+	  ポリラインの点に相対的にテキストボックスの位置を設定します.
             <literal>"automatic"</literal>を向きに設定すると,
-            プログラムはプロット境界内にテキストボックスを収めるように
+	    プログラムはテキストがポリラインの重なるのを
+	    避けられるような位置を選択します.
+            また,プロット境界内にテキストボックスを収めるように
             選択を行ないます.
         </para>
     </refsection>
@@ -65,11 +69,21 @@
     x=linspace(-20,20,1000);
     clf()
     plot(x,sinc(x),x,sinc(x.^2));
-    e=gce();e=e.children
+    e=gce();e=e.children;
     d1=datatipCreate(e(1),500);
-    d2=datatipCreate(e(2),200);
-    datatipSetOrientation(d2,"lower left")
+    d2=datatipCreate(e(2),60);
+    datatipSetOrientation(d1,"lower left");
+    datatipSetOrientation(d2,"lower right");
     ]]></programlisting>
+        <scilab:image>
+            x=linspace(-20,20,1000);
+            plot(x,sinc(x),x,sinc(x.^2));
+            e=gce();e=e.children;
+            d1=datatipCreate(e(1),500);
+            d2=datatipCreate(e(2),60);
+            datatipSetOrientation(d1,"lower left");
+            datatipSetOrientation(d2,"lower right");
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>参照</title>

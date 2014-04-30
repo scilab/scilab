@@ -55,12 +55,15 @@
         <programlisting role="example"><![CDATA[ 
 // カレントのオブジェクトが有効かどうか調べる
 is_handle_valid([gcf(), gca(), gce()])
+
 // 11本のポリラインを作成
 plot([0:10; 0:10; 0:10], [0:10; 0:0.5:5; 0:2:20]);
+    
 // ポリラインの有効性を確認
 axes = gca();
 polylines = axes.children(1).children
 is_handle_valid(polylines)
+    
 // いくつかのポリラインを削除
 delete(polylines(3:7));
 // 有効性を出力

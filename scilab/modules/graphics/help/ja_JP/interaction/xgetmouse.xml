@@ -179,10 +179,12 @@ clf();  // ウインドウを消去/作成
 a=gca();a.data_bounds=[0 0;100 100];//ユーザ座標を設定
 xtitle(" drawing a rectangle ") //タイトルを追加
 show_window(); //ウインドウを最前面に配置
+
 [b,xc,yc]=xclick(); //ポイントを取得
 xrect(xc,yc,0,0) //矩形エンティティを描画
 r=gce();// 矩形のハンドル
 rep=[xc,yc,-1];first=%f;
+
 while rep(3)==-1 do // マウスを移動 ...
   rep=xgetmouse();
   xc1=rep(1);yc1=rep(2);

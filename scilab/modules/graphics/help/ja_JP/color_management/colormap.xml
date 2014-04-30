@@ -58,6 +58,16 @@ f=gcf(); f.color_map=cmap;
 plot3d1()
 f.color_map=get(sdf(),"color_map");
  ]]></programlisting>
+        <scilab:image> 
+            n=64;
+            r=linspace(0,1,n)';
+            g=linspace(1,0,n)';
+            b=ones(r);
+            cmap=[r g b];
+            f=gcf(); f.color_map=cmap;
+            plot3d1()
+            f.color_map=get(sdf(),"color_map");
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>参照</title>

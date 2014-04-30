@@ -20,7 +20,7 @@
         <synopsis>xtitle(title,[x_label,[y_label,[z_label]]],&lt;opts_args&gt;)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>title,x_label,y_label, z_label</term>
@@ -76,25 +76,25 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <scilab:image>
-            plot3d() ;
-            xtitle( 'My surface is blue', 'X axis', 'Y axis', 'Z axis' ) ;
-        </scilab:image>
-    </refsection>
-    <refsection>
-        <title>例</title>
         <programlisting role="example"><![CDATA[ 
 plot3d() ;
 // タイトルを描画
 xtitle( 'My surface is blue', 'X axis', 'Y axis', 'Z axis' ) ;
 // タイトルの周囲にボックスを描画
 xtitle( 'My surface is blue', 'X axis', 'Y axis', 'Z axis', boxed = 1 );
+
+
 //  LaTeX & MathMLで指定:
 mathml="<mrow>      <mfrac>        <mrow>          <mi>d</mi>          <mi>y</mi>        </mrow>        <mrow>          <mi>d</mi>          <mi>x</mi>        </mrow>      </mfrac>      <mo>=</mo>      <mfrac>        <mn>1</mn>        <msup>          <mi>y</mi>          <mn>2</mn>        </msup>      </mfrac>    </mrow>";
+
 xtitle( 'My surface is blue', 'X axis', '$Y axis$', mathml );
  ]]></programlisting>
+        <scilab:image>
+            plot3d() ;
+            xtitle( 'My surface is blue', 'X axis', 'Y axis', 'Z axis' ) ;
+        </scilab:image>
     </refsection>
-    <refsection>
+    <refsection role="see also">
         <title>参考</title>
         <simplelist type="inline">
             <member>

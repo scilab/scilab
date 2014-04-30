@@ -25,7 +25,7 @@
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>rect</term>
@@ -81,6 +81,7 @@ unzoom()
 a=gca();
 a.zoom_box=[16,0,16.2,1];
 a.zoom_box=[];
+
 //サブプロットを適当にズーム
 clf()
 x=0:0.01:6*%pi;
@@ -97,6 +98,7 @@ rect=[0.4 0 0.6 1] //ウインドウの大きさの比で指定した矩形
 zoom_rect(rect) 
 rect=[0.4 0.2 0.6 0.8]; //ウインドウの大きさの比で指定した矩形
 zoom_rect(rect)
+
 // カレントの図を対話的にズーム
 zoom_rect();
 // or

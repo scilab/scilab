@@ -23,7 +23,7 @@
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>H</term>
@@ -55,6 +55,7 @@ x=0:0.01:6*%pi;
 plot2d(x,sin(x.^2))
 zoom_rect([16,-1,18,1])
 unzoom()
+
 //サブプロットを順次実行
 clf()
 x=0:0.01:6*%pi;
@@ -65,6 +66,7 @@ subplot(212)
 plot2d(x,cos(2*x))
 a2=gca();
 rect=[3 -2 7 10]; // カレントの軸(直近の軸)の座標で指定された矩形
+
 zoom_rect(rect) 
 unzoom(a1) // 最初のプロットのみズーム解除
 unzoom(a2) // 第二のプロットのみズーム解除y

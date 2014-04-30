@@ -13,14 +13,17 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="xclear">
     <refnamediv>
         <refname>xclear</refname>
-        <refpurpose>グラフィックウインドウをクリア</refpurpose>
+        <refpurpose>
+	  グラフィックウインドウをクリア.
+	  <emphasis role="bold">この関数は廃止されました.</emphasis>
+	</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
         <synopsis>xclear([window-id])</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>window-id</term>
@@ -41,10 +44,22 @@
             ウインドウの一つが存在しない場合,自動的に作成されます.
         </para>
         <para>
-            関数<literal>xclear</literal>は古い関数です.
-            図をクリアするには,代わりに<literal>clf</literal> 関数または
-            <literal>visible</literal>プロパティを使用してください.
+	  <warning>
+            関数 <function>xclear</function> は廃止されました.
+          </warning>
+          図をクリアするには,代わりに<literal>clf</literal> 関数または
+          <literal>visible</literal>プロパティを使用してください.
         </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
+plot2d();
+scf();
+plot3d();
+xclear(0); // clear the first graphic
+xclear(); // clear the current figure
+ ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>参照</title>

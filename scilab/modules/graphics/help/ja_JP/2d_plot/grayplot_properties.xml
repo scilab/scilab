@@ -146,16 +146,21 @@
 m=5;n=5;
 M=round(32*rand(m,n));
 grayplot(1:m,1:n,M)
+
 a=get("current_axes");
 a.data_bounds=  [-1,-1;7,7]
 h=a.children
+
 h.data_mapping="direct";
+   
 // 行列をカラー二次元プロットする
 clf()
 a=get("current_axes");
 a.data_bounds=  [0,0;4,4];
+  
 b=5*ones(11,11); b(2:10,2:10)=4; b(5:7,5:7)=2;
 Matplot1(b,[1,1,3,3])  ;
+  
 h=a.children
 for i=1:7
   xclick(); // Matplotデータを設定するためにマウスをクリック

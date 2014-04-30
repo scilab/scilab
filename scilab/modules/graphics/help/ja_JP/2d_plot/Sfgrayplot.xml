@@ -18,8 +18,9 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>Sfgrayplot(x,y,f,&lt;opt_args&gt;)
-            Sfgrayplot(x,y,f [,strf, rect, nax, zminmax, colminmax, mesh, colout])
+       <synopsis>
+            Sfgrayplot(x, y, f, &lt;opt_args&gt;)
+            Sfgrayplot(x, y, f [,strf, rect, nax, zminmax, colminmax, mesh, colout])
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -28,13 +29,15 @@
             <varlistentry>
                 <term>x,y</term>
                 <listitem>
-                    <para>大きさ n1 および n2の実数行ベクトル.</para>
+                    <para>
+		      大きさ <literal>n1</literal>および<literal>n2</literal>の実数行ベクトル.
+		    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>f</term>
                 <listitem>
-                    <para>scilab 関数 (z=f(x,y))</para>
+                    <para>scilab 関数 (<literal>z=f(x,y)</literal>)</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -47,7 +50,10 @@
                         ,... を表します.
                         ただし, <literal>key1</literal>,
                         <literal>key2,...</literal> は以下のどれかとすることができます:
-                        strf, rect, nax, zminmax, colminmax, mesh, colout
+			<varname>strf</varname>,
+                        <varname>rect</varname>, <varname>nax</varname>,
+                        <varname>zminmax</varname>, <varname>colminmax</varname>,
+                        <varname>mesh</varname>, <varname>colout</varname>
                         (最初の3つについては <link linkend="plot2d">plot2d</link>,  最後の4つに
                         ついては<link linkend="fec">fec</link> を参照).
                     </para>
@@ -77,7 +83,8 @@
             <literal>Sfgrayplot</literal> は
             <literal>fgrayplot</literal> と同じですが,プロットが平滑化されるところが
             異なります. 平滑化には関数 <literal>fec</literal> が使用されます. 
-            面の描画の際には,以下のグリッド (ここでは n1=5, n2=3)から構築された
+            面の描画の際には,以下のグリッド (ここでは <literal>n1=5</literal>, 
+	    <literal>n2=3</literal>)から構築された
             一連の三角形上では線形であると仮定されます:
         </para>
         <screen><![CDATA[ 

@@ -192,6 +192,7 @@ function my_eventhandler(win,x,y,ibut)
   [x,y]=xchange(x,y,'i2f')
   xinfo(msprintf('Event code %d at mouse position is (%f,%f)',ibut,x,y))
 endfunction
+
 plot2d()
 fig = gcf() ;
 fig.event_handler = 'my_eventhandler' ;
@@ -202,6 +203,7 @@ fig.event_handler_enable = "on" ;
 //   -  press button, wait a little release
 //   -  press and release button
 //   -  double-click button
+
 fig.event_handler_enable = "off" ; //イベントハンドラを停止
  ]]></programlisting>
     </refsection>

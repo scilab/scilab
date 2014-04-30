@@ -25,58 +25,122 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>xlabel("string label")</synopsis>
-        <synopsis>xlabel("string label", "PropertyName", PropertyValue)</synopsis>
-        <synopsis>ylabel("string label")</synopsis>
-        <synopsis>ylabel("string label", "PropertyName", PropertyValue)</synopsis>
-        <synopsis>zlabel("string label")</synopsis>
-        <synopsis>zlabel("string label", "PropertyName", PropertyValue)</synopsis>
+        <synopsis>xlabel([axis_handle], label, [property_name, property_value,...])</synopsis>
+        <synopsis>ylabel([axis_handle], label, [property_name, property_value,...])</synopsis>
+        <synopsis>zlabel([axis_handle], label, [property_name, property_value,...])</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>引数</title>
         <variablelist>
             <varlistentry>
-                <term>"string label"</term>
+	      <term>label</term>
+              <listitem>
+                <para>文字列, ラベルの値を有する</para>
+              </listitem>
+            </varlistentry>
+           <varlistentry>
+                <term>axis_handle</term>
                 <listitem>
-                    <para>文字列: カレントの軸の軸ラベル</para>
+                    <para>
+		      オプションのハンドルで, ラベルを設定する軸を指定します.
+		    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>"PropertyName"</term>
+                <term>[property_name, property_value,...]</term>
                 <listitem>
-                    <para>文字列: プロパティ名</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>PropertyValue</term>
-                <listitem>
-                    <para>プロパティの値</para>
+                    <para>
+		      オプションの名前-値の組の並びで,
+		      (<link linkend="text_properties">ここ</link>に記述されたtextプロパティに関係する)
+		      ラベルのtextプロパティを指定します.
+                    </para>
+                    <para>利用可能なx-y-zラベルのプロパティを以下に示します:
+                        <itemizedlist>
+                            <listitem>
+                                <para>
+                                    <literal>"visible"</literal>: <literal>"on"</literal> または <literal>"off"</literal>
+                                </para>
+                            </listitem>
+                            <listitem>
+                                <para>
+                                    <literal>"fontsize"</literal>: フォントの大きさ (定数)
+                                </para>
+                            </listitem>
+                            <listitem>
+                                <para>
+                                    <literal>"fontname"</literal>: 利用可能な10種類のフォント名
+				    (大文字小文字を区別しない文字列または関係するid番号):
+                                    "courrier" | 0, "symbol" | 1, "times" | 2, "times italic" | 3, 
+                                    "times bold" | 4, "times bold italic" | 5, "helvetica" | 6, 
+                                    "helvetica italic" | 7, "helvetica bold" | 8, "helvetica bold italic" | 9.
+                                </para>
+                            </listitem>
+                            <listitem>
+                                <para>
+                                    <literal>"rotation"</literal>: 角度 (単位:deg) (定数)
+                                </para>
+                            </listitem>
+                            <listitem>
+                                <para>
+                                    <literal>"position"</literal>: ラベルの位置 (2次元ベクトル)
+                                </para>
+                            </listitem>
+                            <listitem>
+                                <para>
+                                    <literal>"color"</literal>: フォントの色
+				    (<literal>["red","green","blue","cyan","magenta","yellow",
+				      "black","white"]</literal>, または RGB行列の値から選んだ文字列の値)
+                                </para>
+                            </listitem>
+                            <listitem>
+                                <para>
+                                    <literal>"edgecolor"</literal>: 
+				    テキスト周囲の線の色 
+				    (<literal>["red","green","blue","cyan","magenta","yellow",
+				      "black","white"]</literal>, または RGB行列の値から選んだ文字列の値)
+                                </para>
+                            </listitem>
+                            <listitem>
+                                <para>
+                                    <literal>"background"</literal>: 
+				    テキスト周囲の背景色 
+				    (<literal>["red","green","blue","cyan","magenta","yellow",
+				      "black","white"]</literal>, または RGB行列の値から選んだ文字列の値)
+                                </para>
+                            </listitem>
+                        </itemizedlist>
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
         <title>説明</title>
-        <para>各軸のグラフィックオブジェクトは,
-            x, y, および z軸に各一つのラベルを有することができます.
-        </para>
-        <para>このラベルは2次元プロットでは対応する軸の下,
-            3次元プロットでは軸の横または下に表示されます.
+        <para>
+	  xlabel, ylabel, zlabel は,それぞれ,x, y, およびz軸に
+	  ラベルを付けるために使用します.
+	</para>
+        <para>
+	  このラベルは2次元プロットでは対応する軸の下,
+          3次元プロットでは軸の横または下に表示されます.
         </para>
     </refsection>
     <refsection>
         <title>例</title>
         <programlisting role="example">
             t = linspace(-2*%pi, 2*%pi, 30);
+            
             subplot(2,1,1);
             plot(t, sin(t), "r");
             xlabel("t", "fontsize", 2);
             ylabel("sin(t)");
             axis1_handle = gca();
+            
             subplot(2,1,2);
             plot(t, cos(t), "b");
             xlabel("t", "fontsize", 2);
             ylabel("cos(t)", "fontsize", 6, "color", "blue");
+            
             ylabel(axis1_handle, "sin(t)", "fontsize", 6, "color", "red");
         </programlisting>
         <scilab:image>
@@ -92,12 +156,6 @@
             ylabel("cos(t)", "fontsize", 6, "color", "blue");
             ylabel(axis1_handle, "sin(t)", "fontsize", 6, "color", "red");
         </scilab:image>
-    </refsection>
-    <refsection>
-        <title>例</title>
-        <programlisting role="example">xlabel(["first line";"second line"])
-            ylabel("A label on y axis", "fontsize", 6)
-        </programlisting>
     </refsection>
     <refsection role="see also">
         <title>参照</title>

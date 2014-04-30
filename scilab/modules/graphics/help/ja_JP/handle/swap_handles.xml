@@ -57,34 +57,44 @@
 //-----------------//
 //  最初の例       //
 //-----------------//
+
 // 矩形を作成
 xrect( 0.5, 0.5,0.5,0.5) ;
 rect = gce() ;
+
 // 円を作成
 xarc( 0.5, 0.5, 0.5, 0.5, 0, 64 * 360 ) ;
 circle = gce() ;
+
 // 矢印を作成
 xpoly([0,1],[0,1]) ;
 arrow = gce() ;
 arrow.polyline_style = 4 ;
 arrow.arrow_size_factor = 4 ;
+
 // 子のリストを取得
 axes = gca()  ;
 axes.children
+
 // 順番を変更
 swap_handles( rect, arrow ) ;
 swap_handles( arrow, circle ) ;
+
 // 新しい順番を得る
 axes.children
+
 //-----------------//
 //  2番目の例      //
 //-----------------//
+
 // 2つのウインドウを作成
 plot2d ;
 axes1 = gca() ;
+
 scf() ;
 fec ;
 axes2 = gca() ;
+
 // 軸を交換
 // 色マップは変更されないことに注意.
 swap_handles( axes1, axes2 ) ;

@@ -53,16 +53,6 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <scilab:image>
-            // isoview scaling 
-            plot2d(0,0,-1,"031"," ",[-2,-2,2,2])
-            xfarc(-0.5,0.5,1,1,0,90*64)
-            xset("color",2)
-            xfarc(0.5,0.5,1,1,0,360*64)
-        </scilab:image>
-    </refsection>
-    <refsection>
-        <title>例</title>
         <programlisting role="example"><![CDATA[ 
 // 等軸スケーリング 
 plot2d(0,0,-1,"031"," ",[-2,-2,2,2])
@@ -70,6 +60,13 @@ xfarc(-0.5,0.5,1,1,0,90*64)
 xset("color",2)
 xfarc(0.5,0.5,1,1,0,360*64)
  ]]></programlisting>
+        <scilab:image>
+            // isoview scaling 
+            plot2d(0,0,-1,"031"," ",[-2,-2,2,2])
+            xfarc(-0.5,0.5,1,1,0,90*64)
+            xset("color",2)
+            xfarc(0.5,0.5,1,1,0,360*64)
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>参照</title>

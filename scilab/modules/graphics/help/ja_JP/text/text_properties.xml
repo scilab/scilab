@@ -146,6 +146,17 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
+                <term>auto_dimensionning: </term>
+                <listitem>
+                  <para>
+                    auto_dimensionning を "off" にすることは,
+		    text_box_mode を "filled" にすることと等価です. 
+		    text_box_mode が "off" または "centered" の場合,
+		    auto_dimensionning は "on" となります.
+                  </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>font_foreground: </term>
                 <listitem>
                     <para>このフィールドはテキストの文字を表示する際に使用される色を
@@ -268,38 +279,46 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <scilab:image>
-            a=get("current_axes");
-            a.data_bounds=[0,0;1,1];
-            a.axes_visible = 'on' ;
-            xstring(0,0,"Scilab is not esilaB",0,0)
-            t=get("hdl") 
-            t.font_foreground=6; 
-            t.font_size=5;
-            t.font_style=5;
-        </scilab:image>
-    </refsection>
-    <refsection>
-        <title>例</title>
         <programlisting role="example"><![CDATA[ 
 a=get("current_axes");
 a.data_bounds=[0,0;1,1];
 a.axes_visible = 'on' ;
+
 xstring(0.5,0.5,"Scilab is not esilaB",0,0)
+
 t=get("hdl")   //新規に作成されたオブジェクトのハンドルを取得
+
 t.font_foreground=6; // フォントプロパティを変更
 t.font_size=5;
 t.font_style=5;
+
+
 t.text=["SCILAB","is";"not","esilaB"] ; // テキストを変更
 t.font_angle=90 ; // turn the strings
 t.text_box = [0,0] ;
 t.text_box_mode = 'centered' ; // テキストの中心を [0.5,0.5]に設定.
 t.alignment = 'center' ;
 t.box = 'on' ; // テキストの周囲にボックスを描画
+
 //  Scilab 5.2以降でのみ有効
 mathml="<mrow>      <mfrac>        <mrow>          <mi>d</mi>          <mi>y</mi>        </mrow>        <mrow>          <mi>d</mi>          <mi>x</mi>        </mrow>      </mfrac>      <mo>=</mo>      <mfrac>        <mn>1</mn>        <msup>          <mi>y</mi>          <mn>2</mn>        </msup>      </mfrac>    </mrow>";
 t.text=["SCILAB","can write LaTeX :","$\frac{abc}{xyz}$";"or","MathML :",mathml] ; 
+
+
  ]]></programlisting>
+        <scilab:image>
+            a=get("current_axes");
+            a.data_bounds=[0,0;1,1];
+            a.axes_visible = 'on' ;
+            
+            xstring(0,0,"Scilab is not esilaB",0,0)
+            
+            t=get("hdl") 
+            
+            t.font_foreground=6; 
+            t.font_size=5;
+            t.font_style=5;
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>参照</title>

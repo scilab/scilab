@@ -24,7 +24,7 @@
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parameters</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>h</term>
@@ -48,6 +48,20 @@
             <literal>glue</literal>は個々の子のハンドルのベクトルをを返します.
         </para>
     </refsection>
+
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
+a=gca();
+t=0:9;
+x=cos(t*%pi/5);
+y=sin(t*%pi/5);
+plot(x,y,'r-');
+p = unglue(gce())
+set(p,"closed","on");
+ ]]></programlisting>
+    </refsection>
+
     <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">

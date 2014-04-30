@@ -247,9 +247,11 @@
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[
+   
    a=get("current_axes");//　新規に作成された軸のハンドルを取得
    t=[0:0.1:5*%pi]';
    param3d1([sin(t),sin(2*t)],[cos(t),cos(2*t)],[t/10,sin(t)])
+  
    a.rotation_angles=[65,75]; 
    a.data_bounds=[-1,-1,-1;1,1,2]; // data_boundsにより境界を指定
    a.thickness = 2;
@@ -258,6 +260,8 @@
    curve2 = h.children(2);
    curve2.foreground = 6;
    curve2.mark_style = 2;
+
+ 
   ]]></programlisting>
     </refsection>
     <refsection>

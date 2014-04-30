@@ -57,6 +57,7 @@ plot2d(sin(t),cos(t))
 clf()
 isoview(-1,1,-1,1)
 plot2d(sin(t),cos(t),1,"001")
+
 plot2d(sin(t),cos(t),frameflag=4)
  ]]></programlisting>
         <scilab:image>

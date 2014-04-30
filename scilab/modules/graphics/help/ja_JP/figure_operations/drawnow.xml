@@ -38,6 +38,7 @@
         <title>例</title>
         <programlisting role="example"><![CDATA[ 
 f=get("current_figure") // カレントの図のハンドル
+  
 drawlater()
 subplot(221);
 t=1:10;plot2d(t,t.^2)
@@ -49,6 +50,7 @@ subplot(235);
 plot2d(x,sin(2*x),5); 
 subplot(236);
 plot2d(t,tan(2*t));  
+ 
 drawnow(); // カレントの図を描画
  ]]></programlisting>
     </refsection>

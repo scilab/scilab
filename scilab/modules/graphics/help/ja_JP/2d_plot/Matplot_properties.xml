@@ -262,6 +262,7 @@
         <programlisting role="example"><![CDATA[ 
 Matplot((1:xget("lastpattern")))
 e=gce(); // カレントのエンティティを取得
+
 e.data=e.data($:-1:1) // 逆順
  ]]></programlisting>
         <scilab:image>
@@ -318,3 +319,4 @@ e.data=e.data($:-1:1) // 逆順
         </revhistory>
     </refsection>
 </refentry>
+

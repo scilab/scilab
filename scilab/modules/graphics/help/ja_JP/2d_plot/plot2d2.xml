@@ -23,7 +23,7 @@
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>args</term>
@@ -46,10 +46,14 @@
         </para>
         <para>
             コマンド <literal>plot2d2()</literal> を入力するとデモを参照できます. 
+	</para>
+        <para>
+	  <note>
             <literal>plot2dxx</literal> (xx = 1 から 4)により提供されるモードは全て
             <literal>plot2d</literal>を用いて,
             <literal>polyline_style</literal>オプションを対応する数字に設定することにより,
             有効にすることができます.
+	  </note>
         </para>
     </refsection>
     <refsection>
@@ -57,11 +61,23 @@
         <programlisting role="example"><![CDATA[ 
 // 区間[i,i+1]において値がiとなる階段状関数をプロット 
 // 最後の区間は描画されません
-plot2d2([1:4],[1:4],1,"111","step function",[0,0,5,5])
+plot2d2([1:4],[1:4],1,"111","step function",[0,0,5,5]
+ ]]></programlisting>
+        <scilab:image>
+            plot2d2([1:4],[1:4],1,"111","step function",[0,0,5,5])
+        </scilab:image>
+        <programlisting role="example"><![CDATA[ 
 // 以下のplot2dによる場合と比較
 x=[0:0.1:2*%pi]';
 clf()
 plot2d2(x,[sin(x) sin(2*x) sin(3*x)])
+ ]]></programlisting>
+        <scilab:image>
+            x=[0:0.1:2*%pi]';
+            plot2d2(x,[sin(x) sin(2*x) sin(3*x)])
+        </scilab:image>
+        <programlisting role="example"><![CDATA[ 
+x=[0:0.1:2*%pi]';
 clf();
 plot2d(x,[sin(x) sin(2*x) sin(3*x)])
 e=gce();
@@ -69,6 +85,14 @@ e.children(1).polyline_style=2;
 e.children(2).polyline_style=2;
 e.children(3).polyline_style=2;
  ]]></programlisting>
+       <scilab:image>
+            x=[0:0.1:2*%pi]';
+            plot2d(x,[sin(x) sin(2*x) sin(3*x)])
+            e=gce();
+            e.children(1).polyline_style=2;
+            e.children(2).polyline_style=2;
+            e.children(3).polyline_style=2;
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>参照</title>

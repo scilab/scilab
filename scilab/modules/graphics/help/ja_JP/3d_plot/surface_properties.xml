@@ -450,6 +450,65 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
+                <term>use_color_material: </term>
+                <listitem>
+                    <para>このフィールドは拡散色を面の色に使用できるように
+		      する際に使用されます.デフォルト値は,<literal>"on"</literal>です.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>material_shininess: </term>
+                <listitem>
+                    <para>
+		      このフィールドは, 面の輝度レベルを定義します. このパラメータは,
+		      面に拡散する輝度色を制御します.
+		      任意の正の値を使用可能です.
+		      [0 10]の範囲にある値を使用すると良く,
+		      小さい値は強いハイライトを生成し, 大きい値は単に検知できるレベルの
+		      ハイライトを生成します.
+                      デフォルト値は <literal>"2"</literal>です.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ambient_color: </term>
+                <listitem>
+                    <para>
+		      このフィールドは面の環境色を定義します.
+		      この色は,各要素が[0, 1]の範囲である
+		      3要素ベクトル<literal>"[red, green, blue]"</literal>
+		      により定義されます.
+                      デフォルト値は <literal>"[1 1 1]"</literal>です.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>diffuse_color: </term>
+                <listitem>
+                    <para>
+		      このフィールドは面の拡散色を定義します.
+		      この色は,各要素が[0, 1]の範囲である
+		      3要素ベクトル<literal>"[red, green, blue]"</literal>
+		      により定義されます.
+		      このフィールドは use_color_material が無効の場合のみ使用されます.
+                      デフォルト値は <literal>"[1 1 1]"</literal>です.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>specular_color: </term>
+                <listitem>
+                    <para>
+		      このフィールドは面の反射色を定義します.
+		      この色は,各要素が[0, 1]の範囲である
+		      3要素ベクトル<literal>"[red, green, blue]"</literal>
+		      により定義されます.
+                      デフォルト値は <literal>"[1 1 1]"</literal>です.		      
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>user_data: </term>
                 <listitem>
                     <para>このフィールドはsurfaceデータ構造体に任意のScilab変数を
@@ -487,9 +546,11 @@ h.color_flag=2;
 h.data.color=[1+modulo(1:400,64),1+modulo(1:400,64)];
 //影付き
 h.color_flag=3; 
+
 scf(2); // 2番目のウインドウを作成し,surfコマンドを使用
 subplot(211)
 surf(z,'cdata_mapping','direct','facecol','interp')
+
 subplot(212)
 surf(t,t,z,'edgeco','b','marker','d','markersiz',9,'markeredg','red','markerfac','k')
 e=gce();

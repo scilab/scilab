@@ -75,19 +75,6 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <scilab:image>
-            xsetech([0,0,1.0,0.5])
-            plot2d()
-            xsetech([0,0.5,1.0,0.5])
-            grayplot()
-            xsetech([0,0,1.0,0.5])
-            [wrect,frect,logflag,arect]=xgetech();
-            xsetech([0,0.5,1.0,0.5])
-            [wrect,frect,logflag,arect]=xgetech();
-        </scilab:image>
-    </refsection>
-    <refsection>
-        <title>例</title>
         <programlisting role="example"><![CDATA[ 
 // 最初のサブウインドウ
 xsetech([0,0,1.0,0.5])
@@ -104,6 +91,16 @@ xsetech([0,0.5,1.0,0.5])
 clf();
 xset('default')
  ]]></programlisting>
+        <scilab:image>
+            xsetech([0,0,1.0,0.5])
+            plot2d()
+            xsetech([0,0.5,1.0,0.5])
+            grayplot()
+            xsetech([0,0,1.0,0.5])
+            [wrect,frect,logflag,arect]=xgetech();
+            xsetech([0,0.5,1.0,0.5])
+            [wrect,frect,logflag,arect]=xgetech();
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>参照</title>

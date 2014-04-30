@@ -82,16 +82,16 @@
                         この値は(カレントのカラーマップの)色インデックスである必要があります.
                     </para>
                     <para>
-                        <literal>fontname :</literal> 以下の7種類のフォントが利用可能です:
-                        "Courrier", "Symbol", "Times", "Times Italic", "Times Bold", "User
-                        defined". 
-                        Tfont_sizeプロパティは[0 6]の範囲のインデックスで,
-                        前のフォント名に関連します.
+                        <literal>fontname :</literal> 以下の10種類のフォントが利用可能です
+			(大文字小文字を区別しない文字列または関連するid番号):
+			"courrier" | 0, "symbol" | 1, "times" | 2, "times italic" | 3, 
+                        "times bold" | 4, "times bold italic" | 5, "helvetica" | 6, 
+                        "helvetica italic" | 7, "helvetica bold" | 8, "helvetica bold italic" | 9.
                     </para>
                     <para>
                         <literal>fontsize :</literal> 
                         fontsizeプロパティはタイトルの大きさの型を選択する際に使用されます.
-                        この値は8pt, 10pt, 12pt, 14pt, 18pt および 24ptを意味する0から5の範囲の整数とします.
+			整数 >= 0 とする必要があります.
                     </para>
                     <para>
                         <literal>position :</literal> 
@@ -115,12 +115,6 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <scilab:image>
-            title('my title','color','blue','edgecolor','red','fontsize',3,'rotation',90,'position',[0.3 0.8]);
-        </scilab:image>
-    </refsection>
-    <refsection>
-        <title>例</title>
         <programlisting role="example"><![CDATA[ 
 // 複数のプロパティを指定してタイトルを表示
 title('my title');
@@ -134,9 +128,14 @@ title('my title','position',[0.3 0.8]);
 title('my title','fontsize',3);
 // 回転 
 title('my title','rotation',90);
+
 // これらの変更を以下の命令のみで行う:
 title('my title','color','blue','edgecolor','red','fontsize',3,'rotation',90,'position',[0.3 0.8]);
  ]]></programlisting>
+       <scilab:image>
+            title('my title','color','blue','edgecolor','red','fontsize',3,'rotation',90,'position',[0.3 0.8]);
+            
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>参照</title>

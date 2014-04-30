@@ -20,7 +20,7 @@
         <synopsis>xy1=scaling(xy,scalingFactor,[orig])</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>xy1</term>
@@ -51,11 +51,11 @@
     <refsection>
         <title>説明</title>
         <para>
-            <literal>scaling</literal> は座標<literal>xy</literal>で
-            定義された点の集合に関して次のアフィン変換を行ないます:
+          <literal>scaling</literal> は,座標<literal>xy</literal>で
+          定義された点の集合に関して次のアフィン変換を行ないます:
         </para>
         <para>
-            <literal>xy1(:,i) = scalingFactor * (xy(:,i) - orig) + orig</literal>.
+          <literal>xy1(:,i) = scalingFactor * (xy(:,i) - orig) + orig</literal>.
         </para>
     </refsection>
 </refentry>

@@ -845,10 +845,63 @@
             </varlistentry>
             <varlistentry>
                 <term>
+                    <link linkend="xs2bmp">xs2bmp</link>
+                </term>
+                <listitem>
+                    <para>グラフィックをBMP形式でエクスポート</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="xs2emf">xs2emf</link>
+                </term>
+                <listitem>
+                    <para>
+		      グラフィックをEMF形式でエクスポート
+                      <warning>
+			Windowsのみ.
+                      </warning>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="xs2eps">xs2eps</link>
+                </term>
+                <listitem>
+                    <para>グラフィックをEPS形式でエクスポート</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
                     <link linkend="xs2gif">xs2gif</link>
                 </term>
                 <listitem>
-                    <para>グラフィックをGif形式でファイルに保存</para>
+                    <para>グラフィックをGIF形式でエクスポート</para>
+                </listitem>
+           <varlistentry>
+                <term>
+                    <link linkend="xs2jpg">xs2jpg</link>
+                </term>
+                <listitem>
+                    <para>グラフィックをJPG形式でエクスポート</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="xs2pdf">xs2pdf</link>
+                </term>
+                <listitem>
+                    <para>グラフィックをPDF形式でエクスポート</para>
+                </listitem>
+            </varlistentry>
+            </varlistentry>
+           <varlistentry>
+                <term>
+                    <link linkend="xs2png">xs2png</link>
+                </term>
+                <listitem>
+                    <para>グラフィックをPNG形式でエクスポート</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -856,7 +909,23 @@
                     <link linkend="xs2ppm">xs2ppm</link>
                 </term>
                 <listitem>
-                    <para>グラフィックをPPM形式でファイルに保存</para>
+                    <para>グラフィックをPPM形式でエクスポート</para>
+                </listitem>
+            </varlistentry>
+           <varlistentry>
+                <term>
+                    <link linkend="xs2ps">xs2ps</link>
+                </term>
+                <listitem>
+                    <para>グラフィックをPS形式でエクスポート</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    <link linkend="xs2svg">xs2svg</link>
+                </term>
+                <listitem>
+                    <para>グラフィックをSVG形式でエクスポート</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -879,7 +948,12 @@
                     <link linkend="xclear">xclear</link>
                 </term>
                 <listitem>
-                    <para>グラフィックウインドウをクリア</para>
+                    <para>
+		      グラフィックウインドウをクリア
+		      <warning>
+                        関数 <function>xclear</function> は廃止されました.
+                      </warning>
+		    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -964,7 +1038,9 @@
                     <link linkend="xclick">xclick</link>
                 </term>
                 <listitem>
-                    <para>マウスクリックを待つ</para>
+                    <para>
+		      マウスクリックまたはグラフィックウインドウのイベントを待つ
+		    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -980,7 +1056,7 @@
                     <link linkend="xgetmouse">xgetmouse</link>
                 </term>
                 <listitem>
-                    <para>マウスの現在位置を取得</para>
+                    <para>マウスイベントおよび現在位置を取得</para>
                 </listitem>
             </varlistentry>
         </variablelist>

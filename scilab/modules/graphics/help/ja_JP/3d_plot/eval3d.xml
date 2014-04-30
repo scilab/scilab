@@ -54,23 +54,22 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <scilab:image>x=-5:5;y=x;
-            deff('[z]=f(x,y)',['z= x.*y']);
-            z=eval3d(f,x,y);
-            plot3d(x,y,z);
-        </scilab:image>
-    </refsection>
-    <refsection>
-        <title>例</title>
         <programlisting role="example"><![CDATA[ 
 x=-5:5;y=x;
 deff('[z]=f(x,y)',['z= x.*y']);
 z=eval3d(f,x,y);
 plot3d(x,y,z);
+
 deff('[z]=f(x,y)',['z= x*y']);
 z=feval(x,y,f);
 plot3d(x,y,z);
  ]]></programlisting>
+        <scilab:image>x=-5:5;y=x;
+            deff('[z]=f(x,y)',['z= x.*y']);
+            z=eval3d(f,x,y);
+            plot3d(x,y,z);
+        </scilab:image>
+
     </refsection>
     <refsection role="see also">
         <title>参照</title>

@@ -22,7 +22,7 @@
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>X, Y, Z:</term>
@@ -293,6 +293,19 @@ TL = tlist(["3d" "x" "y" "z" "color"],f_data.x,f_data.y,f_data.z,10*(f_data.z)+1
 e.data=TL;
 e.color_flag=2;
  ]]></programlisting>
+       <scilab:image>u = linspace(-%pi/2,%pi/2,40);
+            v = linspace(0,2*%pi,20);
+            X = cos(u)'*cos(v);
+            Y = cos(u)'*sin(v);
+            Z = sin(u)'*ones(v);
+            plot3d2(X,Y,Z);
+            e=gce();
+            e.color_mode=4; // change color
+            f_data=e.data;
+            TL = tlist(["3d" "x" "y" "z" "color"],f_data.x,f_data.y,f_data.z,10*(f_data.z)+1);
+            e.data=TL;
+            e.color_flag=2;
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>参照</title>

@@ -488,6 +488,7 @@
         <title>例</title>
         <programlisting role="example"><![CDATA[
 lines(0) // 垂直ページングを無効に
+
 //例 1
 f=get("current_figure") //カレント図のハンドルを取得 :
                         //存在しない場合,図を作成,ハンドルを返す
@@ -498,6 +499,7 @@ f.children  // axesエンティティが既に存在することを確認
 delete(f);
 f=gcf(); // マクロショートカット <=> f=get("current_figure")
 plot2d() // 画面には何も起こりません...
+
 //例 2 : default_figure 設定
 df=get("default_figure") // デフォルト値を取得 (ショートカットは gdf() )
 // デフォルトを変更...

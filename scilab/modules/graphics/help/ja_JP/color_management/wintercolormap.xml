@@ -20,7 +20,7 @@
         <synopsis>cmap=wintercolormap(n)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>n</term>
@@ -52,6 +52,11 @@ f = scf();
 plot3d1();
 f.color_map = wintercolormap(32);
  ]]></programlisting>
+        <scilab:image> 
+            f = scf();
+            plot3d1();
+            f.color_map = wintercolormap(32);
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>参照</title>

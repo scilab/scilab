@@ -22,7 +22,7 @@
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Pパラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>a</term>
@@ -59,15 +59,18 @@ a.labels_font_size=3;
 a.labels_font_color=5;
 a.sub_tics=[5 5 3];
 a.x_location="top";
+
 //描画に軸を使用
 subplot(211) // axes エンティティを作成
 plot2d() 
+
 // 他のプロパティを設定
 a.background=color('gray')
 a.grid=[5 5 5];
 subplot(212)
 t=0:0.1:5*%pi; 
 plot2d(sin(t),cos(t)) 
+ 
 set(a,"default_values",1); // モデルのデフォルト値を返す
                            // sda() 関数を参照
 clf()

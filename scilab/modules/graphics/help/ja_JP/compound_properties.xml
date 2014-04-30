@@ -17,9 +17,10 @@
     </refnamediv>
     <refsection>
         <title>説明</title>
-        <para>Compoundエンティティはグラフィックエンティティ階層の第3層に属します.
-            このエンティティは,様々なグラフィックエンティティおよび
-            それらのグローバル可視プロパティの相互関係を定義します.
+        <para>
+	  <literal>Compound</literal>エンティティはグラフィックエンティティ階層の第3層に属します.
+          このエンティティは,様々なグラフィックエンティティおよび
+          それらのグローバル可視プロパティの相互関係を定義します.
         </para>
         <variablelist>
             <varlistentry>
@@ -50,9 +51,10 @@
                         このフィールドは,エンティティの<literal>visible</literal>プロパティを
                         有します. その値は, <literal>"on" </literal> または <literal>"off"</literal>となります.
                         デフォルト値は <literal>"on" </literal>で,
-                        Compound の子グラフィックエンティティはそれらの可視エンティティに
+                        <literal>Compound</literal> の子グラフィックエンティティはそれらの可視エンティティに
                         基づいて描画されます.
-                        <literal>"off"</literal>の場合,Compound の全ての子は画面に表示されません.
+                        <literal>"off"</literal>の場合,<literal>Compound</literal>
+			の全ての子は画面に表示されません.
                     </para>
                 </listitem>
             </varlistentry>
@@ -76,7 +78,7 @@
                 <link linkend="unglue">unglue</link>
             </member>
             <member>
-                <link linkend="graphics_entities">graphics_entities</link>
+                <link linkend="graphics_entities">graphicsエンティティ</link>
             </member>
         </simplelist>
     </refsection>

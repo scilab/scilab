@@ -17,12 +17,13 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>fchamp(f,t,xr,yr,[arfact,rect,strf])
-            fchamp(f,t,xr,yr,&lt;opt_args&gt;)
+        <synopsis>
+            fchamp(f, t, xr, yr, [arfact, rect, strf])
+            fchamp(f, t, xr, yr, &lt;opt_args&gt;)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>f</term>
@@ -33,12 +34,13 @@
                             <term>-</term>
                             <listitem>
                                 <para>
-                                    関数名 <literal>f</literal>とすることができ,
-                                    この際, <literal>f</literal> は<literal>y=f(t,xy [p1,..pn])</literal>
+                                    関数名 <varname>f</varname> とすることができ,
+                                    この際, <varname>f</varname>は<literal>y=f(t,xy [p1,..pn])</literal>
                                     という型の関数と仮定されます.
-                                    <literal>f</literal> は大きさ 2 の列ベクトルを返し,
-                                    そのベクトルは点 <literal>xy=[x,y]</literal>の時刻<literal>t</literal>
-                                    における方向フィールド<literal>f</literal>の値を指定します.
+                                    <varname>f</varname> は大きさ 2 の列ベクトルを返し,
+                                    そのベクトルは点 <literal>xy=[x,y]</literal>の時刻
+				    <varname>t</varname>
+                                    における方向フィールド<varname>f</varname>の値を指定します.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -65,8 +67,9 @@
             <varlistentry>
                 <term>xr,yr</term>
                 <listitem>
-                    <para>大きさn1およびn2の行ベクトルで,
-                        方向フィールドが計算されるグリッドを定義します.
+                    <para>
+		      大きさ<literal>n1</literal>および<literal>n2</literal>の行ベクトルで,
+                      方向フィールドが計算されるグリッドを定義します.
                     </para>
                 </listitem>
             </varlistentry>
@@ -76,8 +79,9 @@
                     <para>
                         一連の命令 <literal>key1=value1,key2=value2</literal> ... を表します.
                         ただし, <literal>key1</literal>,
-                        <literal>key2,...</literal> は以下のどれかとします: arfact, rect,
-                        strf (以下参照).
+                        <literal>key2,...</literal> は以下のどれかとします: 
+			<literal>arfact</literal>,
+                        <literal>rect</literal>, <literal>strf</literal> (以下参照).
                     </para>
                 </listitem>
             </varlistentry>
@@ -94,26 +98,16 @@
     <refsection>
         <title>説明</title>
         <para>
-            <literal>fchamp</literal> は,外部関数<literal>f</literal>で定義された
+            <literal>fchamp</literal> は,外部関数<varname>f</varname>で定義された
             2次元1階常微分方程式(ODE)のフィールド方向を描画する際に使用されます.
-            ODEが自律的な場合, 引数 <literal>t</literal>は不要ですが,
-            指定する必要があることに注意してください.
+	    <note>
+              ODEが自律的な場合, 引数 <varname>f</varname>は不要ですが,
+              指定する必要があることに注意してください.
+	    </note>
         </para>
         <para>
             コマンド <literal>fchamp()</literal> を入力するとデモを参照できます.
         </para>
-    </refsection>
-    <refsection>
-        <title>例</title>
-        <scilab:image>
-            deff("[xdot] = derpol(t,x)",..
-            ["xd1 = x(2)";..
-            "xd2 = -x(1) + (1 - x(1)**2)*x(2)";..
-            "xdot = [ xd1 ; xd2 ]"])
-            xf= -1:0.1:1;
-            yf= -1:0.1:1;
-            fchamp(derpol,0,xf,yf)
-        </scilab:image>
     </refsection>
     <refsection>
         <title>例</title>
@@ -125,9 +119,36 @@ deff("[xdot] = derpol(t,x)",..
 xf= -1:0.1:1;
 yf= -1:0.1:1;
 fchamp(derpol,0,xf,yf)
+ ]]></programlisting>
+        <scilab:image>
+            deff("[xdot] = derpol(t,x)",..
+            ["xd1 = x(2)";..
+            "xd2 = -x(1) + (1 - x(1)**2)*x(2)";..
+            "xdot = [ xd1 ; xd2 ]"])
+            xf= -1:0.1:1;
+            yf= -1:0.1:1;
+            fchamp(derpol,0,xf,yf)
+        </scilab:image>
+        <programlisting role="example"><![CDATA[ 
+deff("[xdot] = derpol(t,x)",..
+        ["xd1 = x(2)";..
+         "xd2 = -x(1) + (1 - x(1)**2)*x(2)";..
+         "xdot = [ xd1 ; xd2 ]"])
+xf= -1:0.1:1;
+yf= -1:0.1:1;
 clf()
 fchamp(derpol,0,xf,yf,1,[-2,-2,2,2],"011")
  ]]></programlisting>
+        <scilab:image>
+            deff("[xdot] = derpol(t,x)",..
+            ["xd1 = x(2)";..
+            "xd2 = -x(1) + (1 - x(1)**2)*x(2)";..
+            "xdot = [ xd1 ; xd2 ]"])
+            xf= -1:0.1:1;
+            yf= -1:0.1:1;
+            clf()
+            fchamp(derpol,0,xf,yf,1,[-2,-2,2,2],"011")
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>参照</title>

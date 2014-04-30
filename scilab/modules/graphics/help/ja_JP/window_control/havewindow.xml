@@ -22,9 +22,11 @@
     <refsection>
         <title>説明</title>
         <para>
-            Scilabが独自のウインドウを有する場合に %t, そうでない場合,
-            すなわち, Scilab が "scilab -nw により起動された場合, に%f を返します.
-            (<literal>nw</literal> は"no-window"を意味します.
+	  <code>havewindow()</code>は,
+            Scilabが独自のウインドウを有する場合に <constant>%t</constant>, 
+	  そうでない場合,例えば,Scilab が <code>scilab -nw</code>
+	  により起動された場合, に<constant>%f</constant>を返します.
+          (<literal>nw</literal> は,"no-window"を意味します.
         </para>
     </refsection>
 </refentry>

@@ -20,7 +20,7 @@
         <synopsis>a = gca()</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>a</term>
@@ -33,24 +33,24 @@
     <refsection>
         <title>説明</title>
         <para>
-            このルーチンはカレントの図のカレント軸のハンドルを返す.
+            このルーチンは,カレントの図のカレント軸のハンドルを返します.
         </para>
     </refsection>
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[ 
 subplot(211)
-a=gca() //get the current axes
+a=gca() //カレントの軸を取得
 a.box="off";
 t=-%pi:0.3:%pi;plot3d(t,t,sin(t)'*cos(t),80,50,'X@Y@Z',[5,2,4]);
 subplot(212)
-plot2d(); //simple plot
-a=gca() //get the current axes
+plot2d(); //簡単なプロット
+a=gca() //カレントの軸を取得
 a.box="off";
 a.x_location="middle";
 a.parent.background=4;
-delete(gca()) // delete the current axes    
-xdel(0) //delete a graphics window 
+delete(gca()) // カレントの軸を削除
+xdel(0) //カレントのウインドウを削除
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

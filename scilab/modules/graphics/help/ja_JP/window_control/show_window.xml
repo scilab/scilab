@@ -20,7 +20,7 @@
         <synopsis>show_window([figure])</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>figure</term>
@@ -33,7 +33,8 @@
     <refsection>
         <title>説明</title>
         <para>
-            引数を指定しない時,<literal>show_window</literal>は,アイコン化されている場合でも
+            引数を指定しない時,<function>show_window</function>は,
+	    アイコン化されている場合でも
             カレントのグラフィックウインドウを前面に出します.
             その他の場合,番号またはハンドルで指定したウインドウを前面に出します.
             ウインドウが存在しない場合,作成されます.

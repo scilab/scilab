@@ -14,7 +14,8 @@
     <refnamediv>
         <refname>plotframe</refname>
         <refpurpose>
-            スケールとグリッドを指定してフレームをプロット. <emphasis role="bold">この関数は古い関数です.</emphasis>
+            スケールとグリッドを指定してフレームをプロット. 
+	    <emphasis role="bold">この関数は廃止されました.</emphasis>
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
@@ -24,7 +25,7 @@
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>rect</term>

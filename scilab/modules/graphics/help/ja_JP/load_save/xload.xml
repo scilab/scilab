@@ -67,6 +67,7 @@ subplot(212),plot2d(t,sin(3*t))
 xsave(TMPDIR + "/foo.scg", gcf())
 clf()
 xload(TMPDIR + "/foo.scg")
+
 a=gca();
 curve=a.children.children; //handle on the curve
 save(TMPDIR + "/foo.scg", "curve")

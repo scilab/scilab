@@ -20,7 +20,7 @@
         <synopsis>cmap=rainbowcolormap(n)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>n</term>
@@ -54,9 +54,14 @@ f = scf();
 plot3d1();
 f.color_map = rainbowcolormap(32);
  ]]></programlisting>
+        <scilab:image> 
+            f = scf();
+            plot3d1();
+            f.color_map = rainbowcolormap(32);
+        </scilab:image>
     </refsection>
     <refsection>
-        <title>参照o</title>
+        <title>参照</title>
         <simplelist type="inline">
             <member>
                 <link linkend="colormap">colormap</link>

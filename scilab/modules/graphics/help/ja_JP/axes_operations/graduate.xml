@@ -22,7 +22,7 @@
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>xmi,xma</term>
@@ -61,8 +61,8 @@
             <literal>xi &lt;= xmi &lt;= xma &lt;= xa</literal>
         </para>
         <para>
-            <literal>xa - xi / np  =  k(10^n)</literal>
-            ある整数 <literal>n</literal>に関して<literal>k</literal>を<literal>[1 3 5]</literal>する時,
+            ある整数 <literal>n</literal>に関して<literal>k</literal>を
+	    <literal>[1 3 5]</literal>とする時,
             <literal>xa - xi / np  =  k(10^n)</literal>
         </para>
         <para>

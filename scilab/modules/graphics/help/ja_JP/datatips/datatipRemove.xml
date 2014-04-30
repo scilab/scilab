@@ -14,13 +14,14 @@
         <refpurpose>選択したdatatipを削除する</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>呼び出し手順e</title>
-        <synopsis>datatipRemove(polyline_handle,ind)
-            datatipRemove(datatip_handle)
+        <title>呼び出し手順</title>
+        <synopsis>
+	  datatipRemove(polyline_handle,ind)
+          datatipRemove(datatip_handle)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>polyline_handle</term>
@@ -67,6 +68,17 @@
     datatipRemove(p,2) 
     datatipRemove(t1)
     ]]></programlisting>
+        <scilab:image>
+            x=linspace(0,1,100)';
+            y=x.^3;
+            clf()
+            plot(x,y);
+            e=gce();p=e.children(1);//get the handle on the polyline
+            t1=datatipCreate(p,80);
+            datatipCreate(p,40);
+            datatipRemove(p,2);
+            datatipRemove(t1);
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>参照</title>

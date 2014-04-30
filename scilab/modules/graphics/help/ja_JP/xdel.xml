@@ -17,15 +17,15 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>xdel([win-nums])</synopsis>
+        <synopsis>xdel([win_nums])</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
-                <term>win-nums</term>
+                <term>win_nums</term>
                 <listitem>
-                    <para>整数または整数のベクトル</para>
+                    <para>整数のスカラーまたはベクトル</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -33,9 +33,35 @@
     <refsection>
         <title>説明</title>
         <para>
-            <literal>xdel</literal> は<literal>win-nums</literal>の
-            グラフィックウインドウまたは引数が指定されない場合に
-            カレントのグラフィックウインドウを削除します.
+          <function>xdel</function>は,
+	  番号がベクトル<varname>win_nums</varname>に含まれる
+	  グラフィックウインドウを削除します.
+	  引数が指定されない場合には,
+          カレントのグラフィックウインドウを削除します.
         </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
+plot2d();
+scf();
+plot3d();
+xdel(0); // 最初のグラフィックを削除
+xdel(); // カレントのグラフィックを削除
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="close">close</link>
+            </member>
+            <member>
+                <link linkend="delete">delete</link>
+            </member>
+            <member>
+                <link linkend="winsid">winsid</link>
+            </member>
+        </simplelist>
     </refsection>
 </refentry>

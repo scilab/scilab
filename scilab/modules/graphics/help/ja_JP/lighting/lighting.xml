@@ -85,170 +85,171 @@
             <varlistentry>
                 <term>kightプロパティ</term>
                 <listitem>
-                    <variablelist>
-                        <varlistentry>
-                            <term>visible: </term>
-                            <listitem>
-                                <para>
-                                    このフィールドは光の有効(<literal>"on"</literal>)または
-                                    無効(<literal>"off"</literal>)を定義します.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>light_type: </term>
-                            <listitem>
-                                <para>
-                                    このフィールドは使用される光の型を定義します.
-                                    以下の2種類の光を利用できます:
-                                    <literal>"directional"</literal> および <literal>"point"</literal>.
-                                    方向性(directional)光源は,曲面から無限遠に位置する光源で,平行線となります.
-                                </para>
-                                <para>
-                                    点光源は,全ての方向に放射する空間の点として
-                                    定義されます.
-                                    デフォルト値は <literal>"point"</literal>です.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>direction: </term>
-                            <listitem>
-                                <para>
-                                    このフィールドは方向性光源の光線方向を定義します.
-                                    方向は,原点からのベクトルを表す
-                                    3要素ベクトル<literal>"[x, y, z]"</literal>により変更できます.
-                                </para>
-                                <para>
-                                    デフォルト値は <literal>"[0 0 1]"</literal>です.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>position: </term>
-                            <listitem>
-                                <para>
-                                    このフィールドは,点光源の光源位置を定義します.
-                                    位置は3要素ベクトル<literal>"[x, y, z]"</literal>により変更できます.
-                                </para>
-                                <para>
-                                    デフォルト値は<literal>"[0 0 1]"</literal>です.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>ambient_color: </term>
-                            <listitem>
-                                <para>
-                                    このフィールドは光源のアンビエント色を定義します.
-                                    この色は3要素ベクトル<literal>"[red, green, blue]"</literal>
-                                    (各要素の範囲は[0, 1])により定義されます.
-                                </para>
-                                <para>
-                                    デフォルト値は<literal>"[0.1 0.1 0.1]"</literal>です.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>diffuse_color: </term>
-                            <listitem>
-                                <para>
-                                    このフィールドは光源の拡散色を定義します.
-                                    この色は3要素ベクトル<literal>"[red, green, blue]"</literal>
-                                    (各要素の範囲は[0, 1])により定義されます.
-                                </para>
-                                <para>
-                                    デフォルト値は<literal>"[1 1 1]"</literal>です.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>specular_color: </term>
-                            <listitem>
-                                <para>
-                                    このフィールドは光源の鏡面反射色を定義します.
-                                    この色は3要素ベクトル<literal>"[red, green, blue]"</literal>
-                                    (各要素の範囲は[0, 1])により定義されます.
-                                </para>
-                                <para>
-                                    デフォルト値は <literal>"[1 1 1]"</literal>です.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                    </variablelist>
+                  <variablelist>
+                    <varlistentry>
+                      <term>visible: </term>
+                      <listitem>
+                        <para>
+                          このフィールドは光の有効(<literal>"on"</literal>)または
+                          無効(<literal>"off"</literal>)を定義します.
+                        </para>
+                      </listitem>
+                    </varlistentry>
+                    <varlistentry>
+                      <term>light_type: </term>
+                      <listitem>
+                        <para>
+                          このフィールドは使用される光の型を定義します.
+                          以下の2種類の光を利用できます:
+                          <literal>"directional"</literal> および <literal>"point"</literal>.
+                          方向性(directional)光源は,曲面から無限遠に位置する光源で,平行線となります.
+                        </para>
+                        <para>
+                          点光源は,全ての方向に放射する空間の点として
+                          定義されます.
+                          デフォルト値は <literal>"point"</literal>です.
+                        </para>
+                      </listitem>
+                    </varlistentry>
+                    <varlistentry>
+                      <term>direction: </term>
+                      <listitem>
+                        <para>
+                          このフィールドは方向性光源の光線方向を定義します.
+                          方向は,原点からのベクトルを表す
+                          3要素ベクトル<literal>"[x, y, z]"</literal>により変更できます.
+                        </para>
+                        <para>
+                          デフォルト値は <literal>"[0 0 1]"</literal>です.
+                        </para>
+                      </listitem>
+                    </varlistentry>
+                    <varlistentry>
+                      <term>position: </term>
+                      <listitem>
+                        <para>
+                          このフィールドは,点光源の光源位置を定義します.
+                          位置は3要素ベクトル<literal>"[x, y, z]"</literal>により変更できます.
+                        </para>
+                        <para>
+                          デフォルト値は<literal>"[0 0 1]"</literal>です.
+                        </para>
+                      </listitem>
+                    </varlistentry>
+                    <varlistentry>
+                      <term>ambient_color: </term>
+                      <listitem>
+                        <para>
+                          このフィールドは光源のアンビエント色を定義します.
+                          この色は3要素ベクトル<literal>"[red, green, blue]"</literal>
+                          (各要素の範囲は[0, 1])により定義されます.
+                        </para>
+                        <para>
+                          デフォルト値は<literal>"[0.1 0.1 0.1]"</literal>です.
+                        </para>
+                      </listitem>
+                    </varlistentry>
+                    <varlistentry>
+                      <term>diffuse_color: </term>
+                      <listitem>
+                        <para>
+                          このフィールドは光源の拡散色を定義します.
+                          この色は3要素ベクトル<literal>"[red, green, blue]"</literal>
+                          (各要素の範囲は[0, 1])により定義されます.
+                        </para>
+                        <para>
+                          デフォルト値は<literal>"[1 1 1]"</literal>です.
+                        </para>
+                      </listitem>
+                    </varlistentry>
+                    <varlistentry>
+                      <term>specular_color: </term>
+                      <listitem>
+                        <para>
+                          このフィールドは光源の鏡面反射色を定義します.
+                          この色は3要素ベクトル<literal>"[red, green, blue]"</literal>
+                          (各要素の範囲は[0, 1])により定義されます.
+                        </para>
+                        <para>
+                          デフォルト値は <literal>"[1 1 1]"</literal>です.
+                        </para>
+                      </listitem>
+                    </varlistentry>
+                  </variablelist>
                 </listitem>
             </varlistentry>
+            
             <varlistentry>
-                <term>曲面のプロパティ</term>
-                <listitem>
-                    <variablelist>
-                        <varlistentry>
-                            <term>use_color_material: </term>
-                            <listitem>
-                                <para>
-                                    このフィールドは曲面の色を拡散色として使用することを有効にします.
-                                    デフォルト値は<literal>"on"</literal>です.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>material_shininess: </term>
-                            <listitem>
-                                <para>
-                                    このフィールドは曲面の輝度を定義します.
-                                    このパラメータは曲面内で散らばる輝度色を制御します.
-                                    正の値を使用できます.
-                                </para>
-                                <para>
-                                    [0 10]の範囲の値を使用すると良く, 小さい値は強いハイライト,
-                                    大きな値はわずかに認識できるハイライトを生成します.
-                                    デフォルト値は<literal>"2"</literal>です.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>ambient_color: </term>
-                            <listitem>
-                                <para>
-                                    このフィールドは光源のアンビエント色を定義します.
-                                    この色は3要素ベクトル<literal>"[red, green, blue]"</literal>
-                                    (各要素の範囲は[0, 1])により定義されます.
-                                </para>
-                                <para>
-                                    デフォルト値は<literal>"[1 1 1]"</literal>です.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>diffuse_color: </term>
-                            <listitem>
-                                <para>
-                                    このフィールドは光源の拡散色を定義します.
-                                    この色は3要素ベクトル<literal>"[red, green, blue]"</literal>
-                                    (各要素の範囲は[0, 1])により定義されます.
-                                    このフィールドはuse_color_materialが無効の場合の
-                                    使用されることに注意してください.
-                                </para>
-                                <para>
-                                    デフォルト値は<literal>"[1 1 1]"</literal>です.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>specular_color: </term>
-                            <listitem>
-                                <para>
-                                    このフィールドは光源の鏡面反射色を定義します.
-                                    この色は3要素ベクトル<literal>"[red, green, blue]"</literal>
-                                    (各要素の範囲は[0, 1])により定義されます.
-                                </para>
-                                <para>
-                                    デフォルト値は <literal>"[1 1 1]"</literal>です.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                    </variablelist>
-                </listitem>
+              <term>曲面のプロパティ</term>
+              <listitem>
+                <variablelist>
+                  <varlistentry>
+                    <term>use_color_material: </term>
+                    <listitem>
+                      <para>
+                        このフィールドは曲面の色を拡散色として使用することを有効にします.
+                        デフォルト値は<literal>"on"</literal>です.
+                      </para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>material_shininess: </term>
+                    <listitem>
+                      <para>
+                        このフィールドは曲面の輝度を定義します.
+                        このパラメータは曲面内で散らばる輝度色を制御します.
+                        正の値を使用できます.
+                      </para>
+                      <para>
+                        [0 10]の範囲の値を使用すると良く, 小さい値は強いハイライト,
+                        大きな値はわずかに認識できるハイライトを生成します.
+                        デフォルト値は<literal>"2"</literal>です.
+                      </para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>ambient_color: </term>
+                    <listitem>
+                      <para>
+                        このフィールドは光源のアンビエント色を定義します.
+                        この色は3要素ベクトル<literal>"[red, green, blue]"</literal>
+                        (各要素の範囲は[0, 1])により定義されます.
+                      </para>
+                      <para>
+                        デフォルト値は<literal>"[1 1 1]"</literal>です.
+                      </para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>diffuse_color: </term>
+                    <listitem>
+                      <para>
+                        このフィールドは光源の拡散色を定義します.
+                        この色は3要素ベクトル<literal>"[red, green, blue]"</literal>
+                        (各要素の範囲は[0, 1])により定義されます.
+                        このフィールドはuse_color_materialが無効の場合の
+                        使用されることに注意してください.
+                      </para>
+                      <para>
+                        デフォルト値は<literal>"[1 1 1]"</literal>です.
+                      </para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>specular_color: </term>
+                    <listitem>
+                      <para>
+                        このフィールドは光源の鏡面反射色を定義します.
+                        この色は3要素ベクトル<literal>"[red, green, blue]"</literal>
+                        (各要素の範囲は[0, 1])により定義されます.
+                      </para>
+                      <para>
+                        デフォルト値は <literal>"[1 1 1]"</literal>です.
+                      </para>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+              </listitem>
             </varlistentry>
         </variablelist>
     </refsection>

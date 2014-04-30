@@ -25,28 +25,28 @@
             <varlistentry>
                 <term>nx, ny, nz</term>
                 <listitem>
-                    <para>同じ大きさの実数のベクトルまたは行列.</para>
-                </listitem>
+                        <para>同じ大きさの実数のベクトルまたは行列.</para>
+                    </listitem>
             </varlistentry>
             <varlistentry>
                 <term>arsize</term>
                 <listitem>
-                    <para>実数スカラー, 矢じりの大きさ. 
-                        デフォルト値は <varname>arsize</varname> を -1 に設定することにより得られます.
-                    </para>
-                </listitem>
+                        <para>実数スカラー, 矢じりの大きさ. 
+                                デフォルト値は <varname>arsize</varname> を -1 に設定することにより得られます.
+                            </para>
+                    </listitem>
             </varlistentry>
             <varlistentry>
                 <term>color</term>
                 <listitem>
-                    <para>行列またはスカラー. 
-                        <varname>color</varname>が正のスカラーの場合,
-                        この値は全ての矢印に使用される色を指定します.
-                        負のスカラーの場合,カレントの色が使用されます.
-                        ベクトルの場合,<literal>color(i)</literal> は <literal>i</literal>番目の
-                        矢印に使用される色を指定します.
-                    </para>
-                </listitem>
+                        <para>行列またはスカラー. 
+                                <varname>color</varname>が正のスカラーの場合,
+                                この値は全ての矢印に使用される色を指定します.
+                                負のスカラーの場合,カレントの色が使用されます.
+                                ベクトルの場合,<literal>color(i)</literal> は <literal>i</literal>番目の
+                                矢印に使用される色を指定します.
+                            </para>
+                    </listitem>
             </varlistentry>
         </variablelist>
     </refsection>

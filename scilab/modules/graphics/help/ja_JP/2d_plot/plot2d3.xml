@@ -23,7 +23,7 @@
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>args</term>
@@ -46,25 +46,44 @@
         </para>
         <para>
             コマンド <literal>plot2d3()</literal> を入力するとデモを参照できます.
+        </para>
+        <para>
+          <note>
             <literal>plot2dxx</literal> (xx = 1 から 4)により提供されるモードは全て
             <literal>plot2d</literal>を用いて,
             <literal>polyline_style</literal>オプションを対応する数字に設定することにより,
             有効にすることができます.
+	  </note>
         </para>
     </refsection>
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[ 
-// compare the following with plot2d1
+// 以下を plot2d1と比較
 x=[0:0.1:2*%pi]';
 plot2d3(x,[sin(x) sin(2*x) sin(3*x)])
+ ]]></programlisting>
+        <scilab:image>
+            x=[0:0.1:2*%pi]';
+            plot2d3(x,[sin(x) sin(2*x) sin(3*x)])
+        </scilab:image>
+        <programlisting role="example"><![CDATA[ 
 clf()
+x=[0:0.1:2*%pi]';
 plot2d(x,[sin(x) sin(2*x) sin(3*x)])
 e=gce();
 e.children(1).polyline_style=3;
 e.children(2).polyline_style=3;
 e.children(3).polyline_style=3;
  ]]></programlisting>
+        <scilab:image>
+            x=[0:0.1:2*%pi]';
+            plot2d(x,[sin(x) sin(2*x) sin(3*x)])
+            e=gce();
+            e.children(1).polyline_style=3;
+            e.children(2).polyline_style=3;
+            e.children(3).polyline_style=3;
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>参照</title>

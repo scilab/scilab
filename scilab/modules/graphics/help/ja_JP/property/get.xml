@@ -22,11 +22,12 @@
         <title>呼び出し手順</title>
         <synopsis>h=get(prop)
             val=get(h,prop)
+            val=get(handlePath,prop)
             val=h.prop
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>h</term>
@@ -35,8 +36,29 @@
                         <literal>h</literal> はハンドルのベクトルとすることができ,この場合,
                         h に含まれる全てのオブジェクトに関するプロパティの値を返します.
                         <literal>h</literal> に<emphasis>0</emphasis> を指定することができ,
-                        この場合,ルートオブジェクトのプロパティが取得されます..
+                        この場合,ルートオブジェクトのプロパティが取得されます.
+			<literal>get(0)</literal> とコールすると,
+			設定<link linkend="console_properties">プロパティ</link>を有する
+			"Console"ハンドルが返されます.
                     </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>handlePath</term>
+                <listitem>
+                    <para>
+		      グラフィックエンティティを指すパスを有する文字列.
+		      このパスはグラフィックエンティティ<literal>"Tag"</literal>プロパティと
+		      グラフィック階層におけるその親の<literal>"Tag"</literal>プロパティから,
+		      <literal>"figuretag/entitytag"</literal>形式
+		      (エンティティが図の子の場合)で作られます.
+                    </para>
+                    <para>
+		      <literal>"figuretag/entity1tag/entity2tag/entitntag/entitytag"</literal>のように
+		      より深い階層レベルも使用できます.
+		      複数パス検索用にワイルドカードも使用できます.
+		      パスにマッチした最初のエンティティが使用されます.
+k                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -68,11 +90,13 @@
         </para>
         <para>
             <literal>get</literal> 関数はプロパティのみを引数に指定してコールすることも
-            可能です.この場合,そのプロパティは以下のどれかとする必要がありますg:
+            可能です.この場合,そのプロパティは以下のどれかとする必要があります
+	    (他のプロパティ名を指定したコールした場合, 
+	    <literal>get</literal> は<literal>[]</literal>を返します):
         </para>
         <variablelist>
             <varlistentry>
-                <term>current_entity or hdl</term>
+                <term>current_entity または hdl</term>
                 <listitem>
                     <para>直近に作成された(そしてまだ存在する)エンティティのハンドルを返します.
                         <literal>get('current_entity')</literal> および <literal>get('hdl')</literal> 
@@ -124,9 +148,11 @@
     </refsection>
     <refsection>
         <title>例</title>
+	<para>
         <programlisting role="example"><![CDATA[ 
 // グラフィックエンティティ用
  clf()
+    
 // シンプルなグラフィックオブジェクト 
 subplot(121);
 x=[-.2:0.1:2*%pi]';
@@ -137,8 +163,10 @@ xrect(.3,.8,.3,.2);
 xfarc(.25,.55,.1,.15,0,64*360);
 xfarc(.55,.55,.1,.15,0,64*360);
 xstring(0.2,.9,"Example <<A CAR>>");
+ 
 h=get("current_entity") //新規に作成されたオブジェクトを取得
 h.font_size=3;
+ 
 f=get("current_figure") //カレントの図を取得 
 f.figure_size
 f.figure_size=[700 500];
@@ -146,16 +174,34 @@ f.children
 f.children(2).type
 f.children(2).children
 f.children(2).children.children.thickness=4; 
+ 
 a=get("current_axes") //カレントの軸を取得
 a.children.type
 a.children.foreground //グラフィックオブジェクトの集合の前景色を取得
 a.children.foreground=9;
+
 // ユーザーインターフェイスオブジェクト用
 h=uicontrol('string', 'Button'); // ボタンを有するウインドウをオープン.
 p=get(h,'position'); // ボタンの位置を取得
 disp('Button width: ' + string(p(3))); // ボタンの幅を出力
-close(); // close figure
+close(); // 図を閉じる
  ]]></programlisting>
+        </para>
+        <para>
+            <programlisting role="example"><![CDATA[
+// Using path
+f = figure("dockable", "off", "menubar", "none", "toolbar", "none", "infobar_visible", "off", "tag", "mainfig");
+frameHandle = uicontrol("parent", f, "style", "frame", "position", [200 200 190 100], "tag", "myframe");
+btnHandle = uicontrol("parent", frameHandle, "position", [20 20 150 30], "string", "button", "tag", "example");
+
+set("mainfig/myframe/example", "string", "complete path");
+get("mainfig/myframe/example", "string")
+set("mainfig/*/example", "string", "wildcard path");
+get("mainfig/*/example", "string")
+set("myframe/example", "string", "partial path");
+get("myframe/example", "string")
+ ]]></programlisting>
+        </para>
     </refsection>
     <refsection>
         <title>参考</title>

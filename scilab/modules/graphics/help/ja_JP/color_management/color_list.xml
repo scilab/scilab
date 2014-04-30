@@ -17,11 +17,15 @@
     </refnamediv>
     <refsection>
         <title>説明</title>
+       <para>
+         Scilabが認識する色の名前を以下に示します.
+         RGB値の後にその名前が記載されています.
+        </para>
         <para>
-            Scilabが認識する色の名前を以下に示します.
-            RGB値の後にその名前が記載されています.
+	  <note>
             いくつかの色には複数の名前が付けられていることに
             注意してください.
+	  </note>
         </para>
         <informaltable border="1">
             <tr>
@@ -4867,6 +4871,19 @@
                 <td>144</td>
             </tr>
         </informaltable>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+plot3d();
+h = gcf();
+h.color_map = jetcolormap(16);
+addcolor(name2rgb('grey')/255);
+addcolor(name2rgb('red'));
+
+rgb2name(240, 255, 255)
+
+ ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>参照</title>

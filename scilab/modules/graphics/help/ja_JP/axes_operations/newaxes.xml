@@ -20,7 +20,7 @@
         <synopsis>a=newaxes()</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>a</term>
@@ -55,6 +55,7 @@ a2.axes_bounds=[0,0.5,1.0,0.5];
 x=0:0.1:4;
 plot(x,sinh(x))
 legend('sinh')
+
 sca(a1); //最初の軸をカレントとする
 plot(t,asinh(t),'g')
 legend(['acosh','asinh'])

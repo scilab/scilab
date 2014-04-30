@@ -23,9 +23,11 @@
             図の上の描画される色と既存の色の間で図のピクセル上で適用されるビット単位の処理
             を指定する<link linkend="figure_properties">図のプロパティ</link>です.
             この処理の結果は新しいピクセル色となります.
+            
             <literal>src</literal> はピクセルに指定される色です.
             <literal>prv</literal> は(描画済みの)ピクセルの前の色です.
             <literal>res</literal> は(描画される)ピクセルの結果の色です.
+            
             <literal>pixel_drawing_mode</literal>には以下の値を指定できます:
         </para>
         <informaltable border="1">

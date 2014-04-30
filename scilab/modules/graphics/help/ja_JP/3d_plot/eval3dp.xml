@@ -34,7 +34,7 @@
             <varlistentry>
                 <term>fun</term>
                 <listitem>
-                    <para>a Scilab関数.</para>
+                    <para>Scilab関数.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -70,17 +70,6 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <scilab:image>p1=linspace(0,2*%pi,10);
-            p2=linspace(0,2*%pi,10);
-            deff("[x,y,z]=scp(p1,p2)",["x=p1.*sin(p1).*cos(p2)";..
-            "y=p1.*cos(p1).*cos(p2)";..
-            "z=p1.*sin(p2)"])
-            [Xf,Yf,Zf]=eval3dp(scp,p1,p2);
-            plot3d(Xf,Yf,Zf)
-        </scilab:image>
-    </refsection>
-    <refsection>
-        <title>例</title>
         <programlisting role="example"><![CDATA[ 
 p1=linspace(0,2*%pi,10);
 p2=linspace(0,2*%pi,10);
@@ -90,6 +79,14 @@ deff("[x,y,z]=scp(p1,p2)",["x=p1.*sin(p1).*cos(p2)";..
 [Xf,Yf,Zf]=eval3dp(scp,p1,p2);
 plot3d(Xf,Yf,Zf)
  ]]></programlisting>
+        <scilab:image>p1=linspace(0,2*%pi,10);
+            p2=linspace(0,2*%pi,10);
+            deff("[x,y,z]=scp(p1,p2)",["x=p1.*sin(p1).*cos(p2)";..
+            "y=p1.*cos(p1).*cos(p2)";..
+            "z=p1.*sin(p2)"])
+            [Xf,Yf,Zf]=eval3dp(scp,p1,p2);
+            plot3d(Xf,Yf,Zf)
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>参照</title>

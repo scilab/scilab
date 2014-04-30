@@ -33,43 +33,43 @@
             <varlistentry>
                 <term>h</term>
                 <listitem>
-                    <para>名前のあるプロパティを設定するエンティティの
-                        グラフィックハンドル.
-                        <literal>h</literal> はハンドルのベクトルとすることができ,
-                        この場合,プロパティを修正すると,hに含まれる全てのエンティティに
-                        適用されます.
-                    </para>
-                </listitem>
+                        <para>名前のあるプロパティを設定するエンティティの
+                                グラフィックハンドル.
+                                <literal>h</literal> はハンドルのベクトルとすることができ,
+                                この場合,プロパティを修正すると,hに含まれる全てのエンティティに
+                                適用されます.
+                            </para>
+                    </listitem>
             </varlistentry>
             <varlistentry>
                 <term>handlePath</term>
                 <listitem>
-                    <para>
-                        graphicエンティティを指すパスを有する文字列.
-                        このパスはgraphicエンティティ<literal>"Tag"</literal> プロパティおよび
-                        <literal>"figuretag/entitytag"</literal> (エンティティが図の子の場合)形式による
-                        グラフィック階層におけるその親の<literal>"Tag"</literal>プロパティ
-                        から構成されます.
-                    </para>
-                    <para>
-                        <literal>"figuretag/entity1tag/entity2tag/entityntag/entitytag"</literal>のように
-                        より深い階層レベルも使用できます.
-                        複数のパスを検索する際にワイルドカードも使用できます.
-                        パスに一致した最初のエンティティが使用されます.
-                    </para>
+                  <para>
+                    graphicエンティティを指すパスを有する文字列.
+                    このパスはgraphicエンティティ<literal>"Tag"</literal> プロパティおよび
+                    <literal>"figuretag/entitytag"</literal> (エンティティが図の子の場合)形式による
+                    グラフィック階層におけるその親の<literal>"Tag"</literal>プロパティ
+                    から構成されます.
+                  </para>
+                  <para>
+                    <literal>"figuretag/entity1tag/entity2tag/entityntag/entitytag"</literal>のように
+                    より深い階層レベルも使用できます.
+                    複数のパスを検索する際にワイルドカードも使用できます.
+                    パスに一致した最初のエンティティが使用されます.
+                  </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>prop</term>
                 <listitem>
-                    <para>文字列, 設定するプロパティの名前.</para>
+                  <para>文字列, 設定するプロパティの名前.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>val</term>
-                <listitem>
-                    <para>プロパティに設定する値.</para>
-                </listitem>
+              <term>val</term>
+              <listitem>
+                <para>プロパティに設定する値.</para>
+              </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
@@ -93,54 +93,54 @@
             この場合,プロパティは以下のどれかとします:
         </para>
         <variablelist>
-            <varlistentry>
-                <term>current_entity または hdl</term>
-                <listitem>
-                    <para>
-                        <literal>set('current_entity',h)</literal> または
-                        <literal>set('hdl',h)</literal>は新規エンティティをカレントに設定します.
-                        この場合,値にはグラフィックハンドルを指定します.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>current_figure</term>
-                <listitem>
-                    <para>
-                        <literal>set('current_figure',fig)</literal> は新しいグラフィック図を
-                        カレントに設定します.
-                        これは <link linkend="scf">scf</link>と等価です. この場合,
-                        値には図のハンドルを指定します.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>current_axes</term>
-                <listitem>
-                    <para>
-                        <literal>set('current_axes',axes)</literal> は新しい軸をカレントに
-                        設定します.
-                        これは,<link linkend="sca">sca</link>と等価です. この場合,
-                        値にはAxesハンドルを指定します.
-                    </para>
-                </listitem>
-            </varlistentry>
+          <varlistentry>
+            <term>current_entity または hdl</term>
+            <listitem>
+              <para>
+                <literal>set('current_entity',h)</literal> または
+                <literal>set('hdl',h)</literal>は新規エンティティをカレントに設定します.
+                この場合,値にはグラフィックハンドルを指定します.
+              </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>current_figure</term>
+            <listitem>
+              <para>
+                <literal>set('current_figure',fig)</literal> は新しいグラフィック図を
+                カレントに設定します.
+                これは <link linkend="scf">scf</link>と等価です. この場合,
+                値には図のハンドルを指定します.
+              </para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>current_axes</term>
+            <listitem>
+              <para>
+                <literal>set('current_axes',axes)</literal> は新しい軸をカレントに
+                設定します.
+                これは,<link linkend="sca">sca</link>と等価です. この場合,
+                値にはAxesハンドルを指定します.
+              </para>
+            </listitem>
+          </varlistentry>
         </variablelist>
         <para>
-            <literal>set</literal> は引数にグラフィックハンドルとプロパティを指定して
-            コールすることも可能です.
-            ハンドルにはデフォルト図またはデフォルト軸のエンティティへのハンドルのどちらかを
-            指定します.
-            プロパティの値は, <literal>"default_values"</literal>とします.
-            この場合,デフォルトのエンティティはScilabの起動時にこの値にリセットされます.
-            <literal>set("default_values",h)</literal>は
-            <link linkend="sda">sda</link> または <link linkend="sdf">sdf</link>と等価です.
+          <literal>set</literal> は引数にグラフィックハンドルとプロパティを指定して
+          コールすることも可能です.
+          ハンドルにはデフォルト図またはデフォルト軸のエンティティへのハンドルのどちらかを
+          指定します.
+          プロパティの値は, <literal>"default_values"</literal>とします.
+          この場合,デフォルトのエンティティはScilabの起動時にこの値にリセットされます.
+          <literal>set("default_values",h)</literal>は
+          <link linkend="sda">sda</link> または <link linkend="sdf">sdf</link>と等価です.
         </para>
     </refsection>
     <refsection>
-        <title>例</title>
-        <para>
-            <programlisting role="example"><![CDATA[ 
+      <title>例</title>
+      <para>
+        <programlisting role="example"><![CDATA[ 
 clf()
 set("auto_clear","off") ;
 // Plot 2Dの例
@@ -163,13 +163,14 @@ plot2d(x-2,x.^2/20);
 p3= a.children(1).children;
 set([a p1 p2 p3],"foreground",5)
  ]]></programlisting>
-        </para>
-        <para>
-            <programlisting role="example"><![CDATA[
+      </para>
+      <para>
+        <programlisting role="example"><![CDATA[
 // パスを使用
 f = figure("dockable", "off", "menubar", "none", "toolbar", "none", "infobar_visible", "off", "tag", "mainfig");
 frameHandle = uicontrol("parent", f, "style", "frame", "position", [200 200 190 100], "tag", "myframe");
 btnHandle = uicontrol("parent", frameHandle, "position", [20 20 150 30], "string", "button", "tag", "example");
+
 set("mainfig/myframe/example", "string", "complete path");
 get("mainfig/myframe/example", "string")
 set("mainfig/*/example", "string", "wildcard path");
@@ -177,48 +178,48 @@ get("mainfig/*/example", "string")
 set("myframe/example", "string", "partial path");
 get("myframe/example", "string")
  ]]></programlisting>
-        </para>
+      </para>
     </refsection>
     <refsection role="see also">
-        <title>参照</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="get">get</link>
-            </member>
-            <member>
-                <link linkend="delete">delete</link>
-            </member>
-            <member>
-                <link linkend="copy">copy</link>
-            </member>
-            <member>
-                <link linkend="move">move</link>
-            </member>
-            <member>
-                <link linkend="graphics_entities">graphics_entities</link>
-            </member>
-            <member>
-                <link linkend="uicontrol">uicontrol</link>
-            </member>
-        </simplelist>
+      <title>参照</title>
+      <simplelist type="inline">
+        <member>
+          <link linkend="get">get</link>
+        </member>
+        <member>
+          <link linkend="delete">delete</link>
+        </member>
+        <member>
+          <link linkend="copy">copy</link>
+        </member>
+        <member>
+          <link linkend="move">move</link>
+        </member>
+        <member>
+          <link linkend="graphics_entities">graphics_entities</link>
+        </member>
+        <member>
+          <link linkend="uicontrol">uicontrol</link>
+        </member>
+      </simplelist>
     </refsection>
     <refsection>
-        <title>履歴</title>
-        <revhistory>
-            <revision>
-                <revnumber>5.5.0</revnumber>
-                <revremark>
-                    <itemizedlist>
-                        <listitem>
-                            最初の入力引数をグラフィックエンティティを指すパスとすることが
-                            できるようになりました.
-                        </listitem>
-                        <listitem>
-                            複数のプロパティ設定を一度に利用できるようになりました.
-                        </listitem>
-                    </itemizedlist>
-                </revremark>
-            </revision>
-        </revhistory>
+      <title>履歴</title>
+      <revhistory>
+        <revision>
+          <revnumber>5.5.0</revnumber>
+          <revremark>
+            <itemizedlist>
+              <listitem>
+                最初の入力引数をグラフィックエンティティを指すパスとすることが
+                できるようになりました.
+              </listitem>
+              <listitem>
+                複数のプロパティ設定を一度に利用できるようになりました.
+              </listitem>
+            </itemizedlist>
+          </revremark>
+        </revision>
+      </revhistory>
     </refsection>
 </refentry>

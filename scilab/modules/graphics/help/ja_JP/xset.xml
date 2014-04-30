@@ -46,7 +46,9 @@
     <refsection>
         <title>説明</title>
         <para>
-            警告: この関数は古い関数です.
+            <warning>
+	      この関数は廃止されました.
+            </warning>
             替わりにScilabグラフィックオブジェクトの記法を使用してください
             (<link linkend="set">set</link> および <link linkend="get">get</link>
             関数および<link linkend="graphics_entities">graphics_entities</link>

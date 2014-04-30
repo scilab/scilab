@@ -20,7 +20,7 @@
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>polyline_handle</term>
@@ -70,17 +70,26 @@
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[
-    x=linspace(0,1,8)';
+    x=linspace(0,1,9)';
     y=x.^3;
     clf();
     plot(x,y);
     e=gce();p=e.children(1);//ポリラインのハンドルを取得
-    p.mark_mode="on";p.mark_style=2;p.mark_size=5;
-    t=datatipCreate(p,2);
-    datatipCreate(p,[0.8,0.5]);
-    datatipSetInterp(p,%t);
-    datatipCreate(p,[0.8,0.5]);
+    p.mark_mode="on";p.mark_style=2;p.mark_size=12;
+    t=datatipCreate(p,5);
+
+    datatipCreate(p,[0.65,0.3]);
     ]]></programlisting>
+        <scilab:image>
+            x=linspace(0,1,9)';
+            y=x.^3;
+            plot(x,y);
+            e=gce();p=e.children(1);//get the handle on the polyline
+            p.mark_mode="on";p.mark_style=2;p.mark_size=12;
+            t=datatipCreate(p,5);
+            
+            datatipCreate(p,[0.65,0.3]);
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>参照</title>
