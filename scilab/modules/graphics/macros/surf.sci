@@ -8,7 +8,6 @@
 
 
 function surf(varargin)
-
     [lhs,rhs]=argn(0);
 
     if ~rhs
@@ -171,8 +170,6 @@ function surf(varargin)
     end
 
 
-
-
     // P1 is the position of the first PropertyName field.
     Property = P1;
 
@@ -227,10 +224,10 @@ function surf(varargin)
         Property = Property+2;
     end
 
-
-
-
-
+    if isempty(XX) | isempty(YY) | isempty(ZZ) then
+        // Nothing will be drawn so return (see http://bugzilla.scilab.org/13180 )
+        return
+    end
 
     // surf is made now !
     // with default option to simulate the Matlab mode
@@ -248,12 +245,6 @@ function surf(varargin)
     e.hiddencolor=0; // to avoid painting the hidden facets
     e.color_flag=4; // Matlab special flat mode by default (different from mode 2)
     e.cdata_mapping = "scaled"
-
-
-
-
-
-
 
 
     // F.Leray
@@ -341,8 +332,6 @@ function surf(varargin)
 
 endfunction
 
-
-
 //
 //function [C] = build_interp_color(C,colormap_size)
 //// C is considered as a data value in Matlab
@@ -368,13 +357,6 @@ function k=getIndexInStringTable(pattern,table)
     k=find(part(table,1:length(str))==str);
 
 endfunction
-
-
-
-
-
-
-
 
 function [XX,YY,ZZ,CC] = CreateFacetsFromXYZ(X,Y,Z,current_figure, cur_draw_mode)
 
@@ -487,10 +469,6 @@ function [XX,YY,ZZ,CC] = CreateFacetsFromXYZ(X,Y,Z,current_figure, cur_draw_mode
     end
 
 endfunction
-
-
-
-
 
 function [XX,YY,ZZ,CC] = CreateFacetsFromXYZColor(X,Y,Z,C,current_figure, cur_draw_mode)
 
@@ -633,7 +611,6 @@ function [XX,YY,ZZ,CC] = CreateFacetsFromXYZColor(X,Y,Z,C,current_figure, cur_dr
     end
 
 endfunction
-
 
 // If an error occurs in the surf code, we need to catch it
 // order to reset some default values
