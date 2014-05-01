@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -10,55 +11,109 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
+
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="isascii">
+    
     <refnamediv>
+        
         <refname>isascii</refname>
+        
         <refpurpose>文字が7ビットUS-ASCII文字であるかどうかを確認する</refpurpose>
+        
     </refnamediv>
+    
     <refsynopsisdiv>
+        
         <title>呼び出し手順</title>
+        
         <synopsis>res = isascii(str)</synopsis>
+        
     </refsynopsisdiv>
+    
     <refsection>
-        <title>パラメータ</title>
+        
+        <title>引数</title>
+        
         <variablelist>
+            
             <varlistentry>
+                
                 <term>str</term>
+                
                 <listitem>
-                    <para>文字列.</para>
+                    
+                    <para>文字列または整数の配列.</para>
+                    
                 </listitem>
+                
             </varlistentry>
+            
             <varlistentry>
+                
                 <term>res</term>
+                
                 <listitem>
+                    
                     <para>論理値行列.</para>
+                    
                 </listitem>
+                
             </varlistentry>
+            
         </variablelist>
+        
     </refsection>
+    
     <refsection>
-        <title>説明n</title>
+        
+        <title>説明</title>
+        
         <para>
-            <literal>res = isascii(str)</literal> は,
-            cが0および8進数0177の間の7ビットUS-ACII文字コードの場合にTRUE (%T),
-            それ以外の場合に FALSE (%F)を返します.
+            
+            <code>res = isascii(str)</code>は,
+            
+            <varname>str</varname>のエントリが
+            
+            0および8進数表現で0177の間の7ビットUS-ASCII文字コード
+            
+            (または<varname>str</varname>のエントリが7ビットUS-ASCII文字列)
+            
+            の場合に<constant>%t</constant> (TRUE),
+            
+            それ以外の場合に <constant>%f</constant> (FALSE).
+            
         </para>
+        
     </refsection>
+    
     <refsection>
+        
         <title>例</title>
+        
         <programlisting role="example"><![CDATA[ 
 letters = [115.    99.    105.    108.    97.    98.]
 isascii(letters)
 ascii(letters)
 isascii('scilab')
  ]]></programlisting>
+        
     </refsection>
+    
     <refsection role="see also">
+        
         <title>参照</title>
+        
         <simplelist type="inline">
+            
             <member>
+                
                 <link linkend="isalphanum">isalphanum</link>
+                
             </member>
+            
         </simplelist>
+        
     </refsection>
+    
 </refentry>
+
