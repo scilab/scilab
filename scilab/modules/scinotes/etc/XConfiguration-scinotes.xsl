@@ -180,7 +180,7 @@
                     </actionPerformed>
                 </Checkbox>
                 
-                <Radiobutton value="{@whereami}" expected-value="true" listener="ActionListener" text="_(Whereami compatible)" gridx="2" gridy="2" fill="none" weightx="0" anchor="west" enable="{@show-line-numbers}">
+                <Radiobutton value="{@whereami}" expected-value="true" listener="ActionListener" text="_(Local numbering)" gridx="2" gridy="2" fill="none" weightx="0" anchor="west" enable="{@show-line-numbers}">
                     <actionPerformed choose="whereami">
                         <xsl:call-template name="context"/>
                     </actionPerformed>
