@@ -92,6 +92,7 @@ intc(1+%i, 4-%i, f)
                 <revnumber>5.5.0</revnumber>
                 <revremark>絶対および相対(入力)および絶対 (出力) 
                     誤差管理が追加されました.
+                    
                 </revremark>
             </revision>
         </revhistory>
