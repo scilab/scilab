@@ -20,7 +20,7 @@
         <synopsis>[txt]=get_fftw_wisdom()</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>txt</term>
@@ -31,28 +31,55 @@
         </variablelist>
     </refsection>
     <refsection>
-        <title>説明</title>
-        <para>
-            この関数は文字列行列として fftw wisdom を返します.
+        <title>注意</title>
+        <para> 
+	  この関数は, 
+	  MKL intelライブラリを使用する
+	  Scilabバージョンでは実装されていません
+	  (特にWindows用のScilab公式版).
         </para>
+    </refsection>
+    <refsection>
+      <title>説明</title>
+      <para>
+        この関数は,文字列行列として fftw wisdom を返します.
+        <literal>get_fftw_wisdom</literal> および
+        <literal>set_fftw_wisdom</literal> を使用することで,
+	同じデータの大きさと
+	<link linkend="fft">fft</link>関数に同じオプションにして
+	多くのコールを行う場合に
+	fft効率を最適化できるようになります.
+      </para>
     </refsection>
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[ 
-//return fftw wisdom
-txt=get_fftw_wisdom();
-//set fftw wisdom
-set_fftw_wisdom(txt);
-//reset fftw wisdom
-fftw_forget_wisdom();
+sample_rate=1000;
+t = 0:1/sample_rate:40;
+N=size(t,'*'); //サンプル数
+s=sin(2*%pi*50*t)+sin(2*%pi*70*t+%pi/4)+grand(1,N,'nor',0,1);
+fftw_forget_wisdom();  
+timer();y=fft(s);t1=timer() //最初のコール
+timer();y=fft(s);t2=timer()  //2番目のコールは保存したwisdomを使用
+t1/t2
+wisdom1=get_fftw_wisdom(); //カレントの wisdomを保存
+//異なるfftを実行
+A = zeros(256,256);
+A(5:24,13:17) = 1;
+X = fft(A);
+
+//s と同じ大きさで新規信号を作成
+s1=sin(2*%pi*10*t)+sin(2*%pi*7*t+%pi/4)+5*grand(1,N,'nor',0,1);
+//保存したwisdomを回復
+set_fftw_wisdom(wisdom1);
+timer();y=fft(s);t3=timer()
+t3/t2
+
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">
-            <member>
-                <link linkend="fftw">fftw</link>
-            </member>
             <member>
                 <link linkend="set_fftw_wisdom">set_fftw_wisdom</link>
             </member>
