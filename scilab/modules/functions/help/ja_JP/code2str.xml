@@ -2,7 +2,7 @@
 
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) ????-2008 - INRIA
+ * Copyright (C) INRIA -
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,13 +12,19 @@
  *
  -->
 
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="fun2string">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="code2str" xml:lang="en">
     
     <refnamediv>
         
-        <refname>fun2string</refname>
+        <refname>code2str</refname>
         
-        <refpurpose>Scilab関数のアスキー定義を生成する</refpurpose>
+        <refpurpose>
+            
+            Scilab整数コードに関連した文字列を返す.
+            
+            <emphasis role="bold">この関数は廃止されました.</emphasis>
+            
+        </refpurpose>
         
     </refnamediv>
     
@@ -26,7 +32,7 @@
         
         <title>呼び出し手順</title>
         
-        <synopsis>txt = fun2string(fun, name)</synopsis>
+        <synopsis>str = code2str(c)</synopsis>
         
     </refsynopsisdiv>
     
@@ -38,13 +44,11 @@
             
             <varlistentry>
                 
-                <term>fun</term>
+                <term>str</term>
                 
                 <listitem>
                     
-                    <para>
-                        <literal>function</literal>型変数
-                    </para>
+                    <para>文字列.</para>
                     
                 </listitem>
                 
@@ -52,23 +56,11 @@
             
             <varlistentry>
                 
-                <term>name</term>
+                <term>c</term>
                 
                 <listitem>
                     
-                    <para>文字列, 生成した関数名</para>
-                    
-                </listitem>
-                
-            </varlistentry>
-            
-            <varlistentry>
-                
-                <term>txt</term>
-                
-                <listitem>
-                    
-                    <para>文字列の列ベクトル, Scilab関数を指定するテキスト</para>
+                    <para>整数コードの文字ベクトル.</para>
                     
                 </listitem>
                 
@@ -84,21 +76,15 @@
         
         <para>
             
-            ロード済みのScilab関数の擬似コードを指定すると,
+            <code>str = code2str(c)</code> は
             
-            <function>fun2string</function> により,
+            Scilab整数コードに関連する文字列を返します.
             
-            そのコードを再度生成することができます.
+            <varname>str</varname>は,
             
-            生成したコードはインデントされ, 整形されます.
+            <literal>c(i)</literal>が<literal>part(str,i)</literal>の
             
-        </para>
-        
-        <para>
-            
-            仕組みは<function>mfile2sci</function>に似ていますが, より簡単です.
-            
-            構文の変換に使用することも可能です.
+            Scilab整数コードとなるような文字列です.
             
         </para>
         
@@ -109,8 +95,8 @@
         <title>例</title>
         
         <programlisting role="example"><![CDATA[
-txt = fun2string(asinh,'foo');
-write(%io(2),txt,'(a)')
+code2str([-28 12 18 21 10 11])
+str2code('Scilab')'
  ]]></programlisting>
         
     </refsection>
@@ -123,23 +109,41 @@ write(%io(2),txt,'(a)')
             
             <member>
                 
-                <link linkend="exec">exec</link>
+                <link linkend="str2code">str2code</link>
                 
             </member>
             
             <member>
                 
-                <link linkend="edit">edit</link>
+                <link linkend="ascii">ascii</link>
                 
             </member>
             
             <member>
                 
-                <link linkend="macrovar">macrovar</link>
+                <link linkend="part">part</link>
                 
             </member>
             
         </simplelist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>履歴</title>
+        
+        <revhistory>
+            
+            <revision>
+                
+                <revnumber>5.4.0</revnumber>
+                
+                <revremark>この関数はScilab 6.0.0で削除されます</revremark>
+                
+            </revision>
+            
+        </revhistory>
         
     </refsection>
     

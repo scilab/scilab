@@ -2,7 +2,7 @@
 
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) ????-2008 - INRIA
+ * Copyright (C) INRIA -
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,13 +12,19 @@
  *
  -->
 
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="get_function_path">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="str2code" xml:lang="en">
     
     <refnamediv>
         
-        <refname>get_function_path</refname>
+        <refname>str2code</refname>
         
-        <refpurpose>ライブラリ関数のソースファイルのパスを取得</refpurpose>
+        <refpurpose>
+            
+            文字列に関するScilab整数コードを返す.
+            
+            <emphasis role="bold">この関数は廃止されました.</emphasis>
+            
+        </refpurpose>
         
     </refnamediv>
     
@@ -26,7 +32,7 @@
         
         <title>呼び出し手順</title>
         
-        <synopsis>path=get_function_path(fun_name)</synopsis>
+        <synopsis>c = str2code(str)</synopsis>
         
     </refsynopsisdiv>
     
@@ -38,11 +44,11 @@
             
             <varlistentry>
                 
-                <term>fun_name</term>
+                <term>str</term>
                 
                 <listitem>
                     
-                    <para>文字列, 関数名</para>
+                    <para>文字列.</para>
                     
                 </listitem>
                 
@@ -50,11 +56,11 @@
             
             <varlistentry>
                 
-                <term>path</term>
+                <term>c</term>
                 
                 <listitem>
                     
-                    <para>文字列, 関数ソースファイル(.sci)の絶対パス名または [].</para>
+                    <para>整数コード文字の列ベクトル.</para>
                     
                 </listitem>
                 
@@ -70,15 +76,13 @@
         
         <para>
             
-            関数名を指定すると, 
+            <code>c = str2code(str)</code> は列ベクトル
             
-            その関数が Scilab ライブラリ(lib参照)で定義されている場合,
+            <varname>c</varname>を返します.
             
-            get_function_path は関数ソースファイルの
+            ただし,<literal>c(i)</literal> は,
             
-            絶対パス名を返します.
-            
-            名前がライブラリ関数に一致しない場合 [] が返されます.
+            <literal>part(str,i)</literal>のScilab整数コードです.
             
         </para>
         
@@ -88,8 +92,9 @@
         
         <title>例</title>
         
-        <programlisting role="example"><![CDATA[ 
-get_function_path('median')
+        <programlisting role="example"><![CDATA[
+str2code('Scilab')'
+code2str([-28 12 18 21 10 11])
  ]]></programlisting>
         
     </refsection>
@@ -102,17 +107,41 @@ get_function_path('median')
             
             <member>
                 
-                <link linkend="lib">lib</link>
+                <link linkend="code2str">code2str</link>
                 
             </member>
             
             <member>
                 
-                <link linkend="string">string</link>
+                <link linkend="ascii">ascii</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="part">part</link>
                 
             </member>
             
         </simplelist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>履歴</title>
+        
+        <revhistory>
+            
+            <revision>
+                
+                <revnumber>5.4.0</revnumber>
+                
+                <revremark>この関数は Scilab 6.0.0で削除されます.</revremark>
+                
+            </revision>
+            
+        </revhistory>
         
     </refsection>
     
