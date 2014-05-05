@@ -9,28 +9,13 @@
         <synopsis>[free, total]=getmemory()</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>説明</title>
+        <title>Description</title>
         <para>
-          <code>getmemory()</code> は利用可能なシステムメモリを取得します (キロ-オクテット).
+            <literal>getmemory()</literal> は利用可能なシステムメモリを取得します (キロ-オクテット).
         </para>
         <para>
-          <code>[free, total] = getmemory()</code>は,
-	  利用可能なシステムメモリおよびシステムメモリの総量を返します
-          (キロ-オクテット).
+            <literal>[free, total]=getmemory()</literal> は利用可能なシステムメモリおよびシステムメモリの総量を返します
+            (キロ-オクテット).
         </para>
-        <para>
-          <note>
-	    この関数を信用しすぎないようにしてください.
-	    様々なレベルのキャッシュのせいで,
-	    多くの現代的なオペレーティングシステムにおいて,
-	    メモリ解放の検出は難しくなっています.
-          </note>
-        </para>
-    </refsection>
-    <refsection>
-        <title>例</title>
-        <programlisting role="example"><![CDATA[
-[a,b]=getmemory()
- ]]></programlisting>
     </refsection>
 </refentry>

@@ -54,8 +54,7 @@
         </para>
         <para>
             減算は,"ソフトコードされた"演算により他のデータ型についても
-            定義できます
-	    (<link linkend="overloading">オーバーローディング</link>参照).
+            定義できます.
         </para>
     </refsection>
     <refsection>
@@ -63,9 +62,9 @@
         <programlisting role="example"><![CDATA[ 
 [1,2]-1
 []-2
-
 %s-2
 1/%s-2
+"cat"+"enate"
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -76,12 +75,6 @@
             </member>
             <member>
                 <link linkend="mtlb_mode">mtlb_mode</link>
-            </member>
-            <member>
-                <link linkend="plus">plus</link>
-            </member>
-            <member>
-                <link linkend="overloading">overloading</link>
             </member>
         </simplelist>
     </refsection>

@@ -11,32 +11,17 @@
     <refsection>
         <title>説明</title>
         <para>
-          <code>dispbpt()</code> は,関数に現在挿入されている
-          アクティブなブレークポイントを全て表示します.
+            <literal>dispbpt()</literal> は関数に現在挿入されている
+            アクティブなブレークポイントを全て表示します.
         </para>
         <para>
-          <code>dispbpt()</code> により表示される行番号は,
-          対象とする関数内での<emphasis>物理的な</emphasis>行番号です.
-        </para>
-        <para>
-          <note>
+            <literal>dispbpt</literal>により表示される行番号は,
+            対象とする関数内での<emphasis>物理的な</emphasis>行番号です.
             5.0より前のバージョンのScilabでは<emphasis>論理的な</emphasis>
             行番号が表示されることに注意してください.
             物理的な行番号と論理的な行番号の差は,
             <emphasis>継続行</emphasis>(<link linkend="dot">dot</link>参照)の数です.
-	  </note>
         </para>
-    </refsection>
-    <refsection>
-        <title>例</title>
-        <programlisting role="example"><![CDATA[ 
-setbpt('foo')
-setbpt('foo',10)
-dispbpt()
-delbpt()
-setbpt('foo',[1,2,5,6])
-dispbpt()
- ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>参照</title>
@@ -52,9 +37,6 @@ dispbpt()
             </member>
             <member>
                 <link linkend="resume">resume</link>
-            </member>
-            <member>
-                <link linkend="abort">abort</link>
             </member>
         </simplelist>
     </refsection>
