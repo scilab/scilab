@@ -37,6 +37,8 @@ Scilab Bug Fixes
 
 * Bug #13344 fixed - User defined ticks were not drawn at the right position.
 
+* Bug #13349 fixed - Double-clicking on a MAT-file in file browser did not load it.
+
 * Bug #13378 fixed - The "Console" handle display was not homogeneous with others.
 
 * Bug #13381 fixed - eigs was failing when using a function as first input argument.
@@ -64,6 +66,7 @@ Scilab Bug Fixes
 
 * Bug #13409 fixed - permute(x, dims) failed when dims was greater than the dimensions of size(x)
                      now permute treats extra dimensions as 1
+
 
 
 Xcos Bug Fixes
