@@ -71,6 +71,7 @@ b=[
 ];
 x=A\b
 A*x-b // ゼロに近い
+
 A=rand(3,2);
 b=[1;1;1];
 x=A\b;
@@ -80,6 +81,7 @@ A=rand(2,3);b=[1;1];
 x=A\b;
 y=pinv(A)*b;
 x-y, A*x-b, A*y-b
+
 // ランク落ちの場合
 A=rand(3,1)*rand(1,2);
 b=[1;1;1];
@@ -91,16 +93,22 @@ b=[1;1];
 x=A\b;
 y=pinv(A)*b;
 A*x-b, A*y-b
+
 // 複数の線形ソルバのベンチマーク
+
 [A,descr,ref,mtype] = ReadHBSparse(SCI+..
    "/modules/umfpack/examples/bcsstk24.rsa");
+
 b = zeros(size(A,1),1);
+
 tic();
 res = umfpack(A,'\',b);
 mprintf('\nTime with umfpack: %.3f\n',toc());
+
 tic();
 res = linsolve(A,b);
 mprintf('\ntime with linsolve: %.3f\n',toc());
+
 tic();
 res = A\b;
 mprintf('\ntime with backslash: %.3f\n',toc());
@@ -142,3 +150,4 @@ mprintf('\ntime with backslash: %.3f\n',toc());
         </revhistory>
     </refsection>
 </refentry>
+

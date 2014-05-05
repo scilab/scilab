@@ -21,12 +21,50 @@
         <para>
             <literal>A*.B</literal> は
             定義済みの意味がない演算子で, * または /. と同様に
-            新しい演算子を定義する際に使用可能です(オーバーロード参照).
+            新しい演算子を定義する際に使用可能です(
+	    (<link linkend="overloading">オーバーロード</link>参照).
         </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+// 基本的な数値演算
+2 * 2 // 4
+2 * [%pi, %eps] // 6.2831853    4.441D-16
+rand(2,2) * rand(2)
+[1, 2; 3, 4] * [%pi,%eps; %e, %pi]
+ ]]></programlisting>
+        <programlisting role="example"><![CDATA[
+// 多項式演算
+s=poly(0,"s");
+p=1+s+2*s^2;
+q=1+s+2*s^3;
+p * q
+//               2    3    4    5
+//    1 + 2s + 3s + 4s + 2s + 4s
+ ]]></programlisting>
+        <programlisting role="example"><![CDATA[
+// 有理数
+s=poly(0,'s');
+W=[1/s,1/(s+1)];
+W' * W
+//    1           1          
+//    -         -----        
+//     2             2       
+//    s         s + s        
+//                           
+//      1           1        
+//    -----     ---------    
+//         2              2  
+//    s + s     1 + 2s + s   
+ ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="dot">dot</link>
+            </member>
             <member>
                 <link linkend="slash">slash</link>
             </member>
@@ -35,6 +73,9 @@
             </member>
             <member>
                 <link linkend="syslin">syslin</link>
+            </member>
+            <member>
+                <link linkend="overloading">overloading</link>
             </member>
         </simplelist>
     </refsection>

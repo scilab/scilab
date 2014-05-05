@@ -33,6 +33,7 @@
         <programlisting role="example"><![CDATA[ 
 a=[1,2,3;4,5,6];
 a($)
+
 b = [1 2 3;4 5 6;7 8 9];
 // 最初の行の最後の要素(3)にアクセス
 b(1,$)
@@ -40,8 +41,10 @@ b(1,$)
 b($,2)
 //bの最後の要素(9)にアクセス
 b($,$)
+
 // 行列bの最後に行を追加
 b($+1,:) = [1 1 1]
+
 // $記号をLaTeXデリミタとして使用
 titlepage(['$\Huge\textrm{It is }\LaTeX:$';'$\Huge 2^2+1=\sqrt{25}$'])
  ]]></programlisting>

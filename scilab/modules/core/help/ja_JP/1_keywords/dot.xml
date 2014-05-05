@@ -69,6 +69,7 @@ endfunction
                     <programlisting role=""><![CDATA[ 
 function foo 
   a=1
+
   disp(a),disp('ok') 
 endfunction
  ]]></programlisting>
@@ -86,11 +87,14 @@ endfunction
         <programlisting role="example"><![CDATA[ 
 //decimal point
 1.345
+
 //used as part of an operator
 x=[1 2 3];x.^2 .*x // a space is required between 2 and dot
+
 // used to enter continuation lines
 T=[123,..//first element
    456] //second one
+
 a="here I start a very long string...  //but I'm not in the mood of continuing
      - and here I go on"
 y=12..

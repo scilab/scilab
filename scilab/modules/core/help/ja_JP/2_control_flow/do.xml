@@ -12,6 +12,7 @@
             　　ループ変数の定義と命令を分離するために使用されます.
         </para>
     </refsection>
+    
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[
@@ -28,6 +29,7 @@ for i = 1:n do
         a(i,j) = 1/(i+j-1);
     end;
 end
+
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

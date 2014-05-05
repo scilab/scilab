@@ -41,7 +41,7 @@
                 <term>A(:)</term>
                 <listitem>
                     <para>
-                        <literal>A</literal>の全要素を一つの列としてベクトル.
+                       は,<literal>A</literal>の全要素を一つの列としてベクトル.
                     </para>
                 </listitem>
             </varlistentry>
@@ -49,7 +49,15 @@
                 <term>A(:,j)</term>
                 <listitem>
                     <para>
-                        <literal>A</literal>の<literal>j</literal>番目の列
+                        は,<literal>A</literal>の<literal>j</literal>番目の列;
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>A(i,:)</term>
+                <listitem>
+                    <para>
+		      は,<literal>A</literal>の<literal>i</literal>番目の行;
                     </para>
                 </listitem>
             </varlistentry>
@@ -57,7 +65,7 @@
                 <term>A(j:k)</term>
                 <listitem>
                     <para>
-                        <literal>[A(j),A(j+1),...,A(k)]</literal>
+                      は,<literal>[A(j),A(j+1),...,A(k)]</literal>;
                     </para>
                 </listitem>
             </varlistentry>
@@ -65,7 +73,30 @@
                 <term>A(:,j:k)</term>
                 <listitem>
                     <para>
-                        <literal>[A(:,j),A(:,j+1),...,A(:,k)] </literal>
+                        は,
+                        <programlisting><![CDATA[
+              [A(1,j)  A(1,j+1)  ... A(1,k)
+              A(2,j)  A(2,j+1)  ... A(2,k)
+              . . . . . . . . . . .
+              A(M,j)  A(M,j+1)  ... A(M,k)]
+             ]]></programlisting>
+			ただし,<literal>A</literal> の大きさが
+			<literal>M</literal>行<literal>N</literal>列の場合;
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>A(j:k,:)</term>
+                <listitem>
+                    <para>は,
+                        <programlisting><![CDATA[
+              [A(j,1)    A(j,2)   ... A(j,N)
+              A(j+1,1)  A(j+1,2) ... A(j+1,N)
+              . . . . . . . . . . .
+              A(k,1)    A(k,2)   ... A(k,N)]
+             ]]></programlisting>
+			ただし,<literal>A</literal>の大きさが
+			<literal>M</literal>行<literal>N</literal>列の場合;
                     </para>
                 </listitem>
             </varlistentry>
@@ -75,10 +106,47 @@
                     <para>
                         行列 <literal>A</literal>に<literal>w</literal>のエントリを代入します
                         (<literal>w</literal> が行列の場合,列毎に取り出されます).
+                        <literal>A</literal>のエントリの数は,
+                        <literal>w</literal>のエントリの数を等しい必要があります.
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
+        <para>
+	    <literal>i</literal>, <literal>j</literal>, 
+            <literal>k</literal>または<literal>d</literal>に小数点以下が
+	    ある場合でも,整数部のみが使用されることに注意してください.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting><![CDATA[ 
+a = 1:5
+b = 1:3:12
+A = matrix(1:42,7,6);
+// Aの全要素のベクトル
+A(:)
+
+// Aのj列目
+A(:,j)
+
+// Aのi行目
+A(i,:)
+
+// jからk列の全ての行の要素
+A(:,j:k)
+
+// jからk行の全ての列の要素
+A(j:k,:)
+
+w = matrix(101:142,7,6);
+A(:) = w
+
+// 添字が整数ではない場合
+i = 1:0.4:10; //添字
+A(i)
+
+ ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>参照</title>

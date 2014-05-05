@@ -19,12 +19,15 @@
         <title>例</title>
         <programlisting role="example"><![CDATA[ 
 g=9.81// the gravity
+
 text='a//b'
+
 function y=myfunction(x)
   // myfunction は y=x^2+1 を計算します
   // x はベクトルまたは行列である必要があります
   y=x^2+1
 endfunction
+
 help myfunction
  ]]></programlisting>
     </refsection>

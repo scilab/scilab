@@ -8,7 +8,7 @@
         <title>説明</title>
         <variablelist>
             <varlistentry>
-                <term>代入t:</term>
+                <term>代入:</term>
                 <listitem>
                     <para>
                         等号記号  <literal>=</literal> は値の変数への代入を定義する
@@ -17,7 +17,7 @@
                     <itemizedlist>
                         <listitem>
                             <para>
-                                <literal>a=expr</literal> ただし
+                                <literal>a=expr</literal> ただし,
                                 <literal>a</literal> は変数名,  <literal>expr</literal> は
                                 単一の結果を返すScilab式です.
                             </para>
