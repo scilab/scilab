@@ -25,6 +25,8 @@ Scilab Bug Fixes
 * Bug #13384 fixed - uicontrol help page did not mention axes could be contained
                      in frame style uicontrols.
 
+* Bug #13386 fixed - An exception occured when using entity picker on legends.
+
 
 Xcos Bug Fixes
 ==============
