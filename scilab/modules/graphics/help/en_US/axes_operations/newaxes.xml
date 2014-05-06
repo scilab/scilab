@@ -18,10 +18,17 @@
     <refsynopsisdiv>
         <title>Calling Sequence</title>
         <synopsis>a=newaxes()</synopsis>
+        <synopsis>a=newaxes(h)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
+            <varlistentry>
+                <term>h</term>
+                <listitem>
+                    <para>a handle, the handle of the parent of the newly created Axes entity (optional).</para>
+                </listitem>
+            </varlistentry>
             <varlistentry>
                 <term>a</term>
                 <listitem>
@@ -34,9 +41,12 @@
         <title>Description</title>
         <para>
             <literal>newaxes()</literal> is used to create a new <literal>Axes</literal> entity (see
-            <link linkend="graphics_entities">graphics_entities</link>) in the current figure. The properties of
+            <link linkend="graphics_entities">graphics_entities</link>) in the current figure by default. The properties of
             this entity are inherited from the <literal>default_axes</literal> entity (see
             <link linkend="gda">gda</link>) 
+        </para>
+        <para>
+            <literal>newaxes(h)</literal> creates the axes in the frame <link linkend="uicontrol">uicontrol</link> or figure whose handle is <literal>h</literal>.
         </para>
     </refsection>
     <refsection>
@@ -57,6 +67,41 @@ sca(a1); //make first axes current
 plot(t,asinh(t),'g')
 legend(['acosh','asinh'])
  ]]></programlisting>
+<para>
+    The following example uses <literal>newaxes(h)</literal>
+</para>
+<programlisting role="example"><![CDATA[ 
+// Create a new figure
+f = figure("layout", "gridbag", ...
+    "toolbar", "none", ...
+    "menubar", "none", ...
+    "backgroundcolor", [1 1 1]);
+
+// Create the frames where each graph is put
+c = createConstraints("gridbag", [1 1 1 1], [1 1], "both");
+top_left = uicontrol(f, "style", "frame","constraints", c);
+
+c.grid = [2 1 1 1];
+top_right = uicontrol(f, "style", "frame", "constraints", c);
+
+c.grid = [1 2 2 2];
+bottom = uicontrol(f, "style", "frame", "constraints", c);
+
+// Create the axes in each frame
+a_tl = newaxes(top_left);
+a_tr = newaxes(top_right);
+a_bt = newaxes(bottom);
+
+// Plot in the frames
+X = (1:100) ./ 50;
+plot(a_tl, X, X, "r");
+plot(a_tr, X, cos(2 * %pi * 3 * X), "g");
+plot(a_bt, X, exp(X), "b");
+
+title(a_tl, "a line");
+title(a_tr, "a cosine");
+title(a_bt, "the exponential");
+    ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

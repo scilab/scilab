@@ -14,6 +14,9 @@ Scilab Bug Fixes
 
 * Bug #13378 fixed - The "Console" handle display was not homogeneous with others.
 
+* Bug #13383 fixed - newaxes help page did not mention the call with a graphic
+                     handle as input.
+
 
 Xcos Bug Fixes
 ==============
