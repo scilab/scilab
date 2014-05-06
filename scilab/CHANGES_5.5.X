@@ -19,6 +19,9 @@ Scilab Bug Fixes
 * Bug #13383 fixed - newaxes help page did not mention the call with a graphic
                      handle as input.
 
+* Bug #13384 fixed - uicontrol help page did not mention axes could be contained
+                     in frame style uicontrols.
+
 
 Xcos Bug Fixes
 ==============
