@@ -4,6 +4,8 @@
 Scilab Bug Fixes
 ================
 
+* Bug #7549 fixed - edit_curv did not disable standard plot menus.
+
 * Bug #10555 fixed - Scilab failed to build with some configure options.
 
 * Bug #13291 fixed - xmltojar([],[],'ja_JP') might lead to a crash when the

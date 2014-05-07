@@ -109,12 +109,12 @@ function [x,y,ok,gc]=edit_curv(x,y,job,tit,gc)
     curwin = max(winsid())+1;
     scf(curwin) ;
 
-    //** Default layout is changed in Scilab 5
-    //** unsetmenu(curwin,'File',1) // clear
-    //** unsetmenu(curwin,'File',2) // select
-    //** unsetmenu(curwin,'File',6) // load
-    //** unsetmenu(curwin,'File',7) // close
-    //** unsetmenu(curwin,'3D Rot.')
+    // Disable the menus and toolbars
+    toolbar(curwin,"off");
+    delmenu(curwin,gettext("File"));
+    delmenu(curwin,gettext("Tools"));
+    delmenu(curwin,gettext("Edit"));;
+    delmenu(curwin,"?");
 
     execstr("Edit_"+string(curwin)+"=Edit");
     execstr("Data_"+string(curwin)+"=Data");
@@ -363,7 +363,6 @@ function [x,y]=movept(x,y)
         if mody==0 then c2(2)=y(k);end
         x(k)=c2(1);y(k)=c2(2)
         hdl.data=[x,y];
-        drawnow()
     end
 endfunction
 
@@ -390,7 +389,7 @@ function savexy(x,y)
     if fn<>emptystr()  then
         xy = [x y];
         fil=fn+".xy"
-        if execstr("save(fil,xy)","errcatch")<>0 then
+        if execstr("save(fil,""xy"")","errcatch")<>0 then
             messagebox(["Impossible to save in the selected file";
             "Check file and directory access"],"modal");
             return
