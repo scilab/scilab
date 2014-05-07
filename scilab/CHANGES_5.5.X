@@ -33,6 +33,9 @@ Scilab Bug Fixes
 
 * Bug #13386 fixed - An exception occurred when using entity picker on legends.
 
+* Bug #13388 fixed - Display of Waitbar and Progressionbar handles did not show
+                     Tag and Userdata properties.
+
 * Bug #13397 fixed - saveGui() returned an undocumented boolean parameter (success/failure flag).
 
 * Bug #13401 fixed - Closing Scilab during halt() did not quit the Scilab process.
