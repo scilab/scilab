@@ -38,6 +38,8 @@ Xcos Bug Fixes
 
 * Bug #13385 fixed - TOWS_c and FROMWSB Xcos blocs needed better examples on how
                      to get or write a Scilab variable.
+                     
+* Bug #13396 fixed - MBLOCK did not work with an external file containing the modelica class.
 
 
                      Changes between version 5.4.1 and 5.5.0
