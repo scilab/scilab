@@ -131,7 +131,7 @@
             がこの用途には最も強力です)に有用です.
         </para>
         <para>より簡便な方法で双三次パッチの係数を得るには,
-            <literal>c = hypermat([4,4,nx-1,ny-1],C)</literal>を使用し,
+            <literal>c = matrix(C, [4,4,nx-1,ny-1])</literal>を使用し,
             続いてパッチ<emphasis>(i,j)</emphasis>(前記の式参照)
             の係数<emphasis>(k,l)</emphasis>
             を<literal>c(k,l,i,j)</literal>に保存します.

@@ -10,10 +10,13 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
+// NO LONGER USED (tested for hm of integers, decimal or complex numbers, polynomials)
+// => TO BE REMOVED
+
 function a = %hm_cumsum(varargin)
     a = varargin(1)
     dims = size(a);
-    tm = type(a.entries)
+    tm = type(a)
 
     nargs = size(varargin);
     select nargs
@@ -80,12 +83,12 @@ function a = %hm_cumsum(varargin)
     end
 
     if d == 0 then // '*'
-        a=matrix(cumsum(a.entries, "*", typ), dims);
+        a = matrix(cumsum(a(:), "*", typ), dims);
     elseif d > size(dims,"*") then
         //requested summation direction exceeds array dims, return the array, converted
         //to double if necessary.
         if typ == "double" & or(tm == [4 8]) then
-            a.entries=double(a.entries),
+            a(:) = double(a(:))
         end
         a=a
     else
@@ -96,18 +99,5 @@ function a = %hm_cumsum(varargin)
         a=cumsum(a,1,typ);
         //permute back
         a=permute(matrix(a,dims(p)),p)
-//        N=size(dims,"*");
-//        p1=prod(dims(1:d-1));//summation step
-//        p2=p1*dims(d);//step for next to sum
-//        ind=(0:p1:p2-1);// selection for summation
-//        deb=(1:p1)';
-//        I=deb*ones(ind)+ones(deb)*ind
-//
-//
-//        ind=(0:p2:prod(dims)-1)';
-//        I=ones(ind).*.I+ind.*.ones(I)
-//        a=cumsum(matrix(a.entries(I),-1,dims(d)),2,typ)
-//        a(I)=matrix(a,-1,1)
-//        a=hypermat(dims,a)
     end
 endfunction

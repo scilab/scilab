@@ -116,7 +116,7 @@
             casos, por exemplo para limitar oscilações (<emphasis role="bold">monotone</emphasis> é o mais poderoso para isso).
         </para>
         <para>Para obter coeficientes dos remendos bicúbicos de um modo mais
-            amigável você pode usar <literal>c = hypermat([4,4,nx-1,ny-1],C)</literal>
+            amigável você pode usar <literal>c = matrix(C, [4,4,nx-1,ny-1])</literal>
             então o coeficiente <emphasis>(k,l)</emphasis> do remendo
             <emphasis>(i,j)</emphasis> (ver equação aqui antes) é armazenado em
             <literal>c(k,l,i,j)</literal>. Não obstante, a função <link linkend="interp2d">interp2d</link> espera pelo vetor grande

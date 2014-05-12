@@ -1700,7 +1700,7 @@ Xcos debug: objectReferenced( 29 , BLOCK ) : 1
 Xcos debug: objectUnreferenced( 29 , BLOCK ) : 0
 // With hypermatrices
 // Double
-testHM = hypermat([2 2 2], 1:8);
+testHM = matrix(1:8, [2 2 2]);
 listRef = list([], testHM, []);
 o.model.opar = listRef;
 Xcos debug: objectReferenced( 29 , BLOCK ) : 1

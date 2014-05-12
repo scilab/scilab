@@ -39,8 +39,8 @@ assert_checkequal(modulo( int8([-123 51]), int16([-7 5])),int8([-4,1]) );
 assert_checkequal(pmodulo(int8([-123 51]), int16([-7 5])),  int8([3,1]));
 
 // Hypermatrices
-m = hypermat([2 2 2],1:8);
-n = hypermat([2 2 2],-9:-2)
+m = matrix(1:8, [2 2 2]);
+n = matrix(-9:-2, [2 2 2])
 a=[1 3;2 4];a(:,:,2)=[0 2; 1 3];
 assert_checkequal(modulo(m, 5), a );
 assert_checkequal(pmodulo(m,5), a);

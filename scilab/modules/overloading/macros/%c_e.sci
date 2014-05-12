@@ -32,6 +32,6 @@ function f=%c_e(varargin)
         N=prod(dims)
         szf=size(f)
         f=f(:)
-        f=mlist(["hm","dims","entries"],int32([szf dims]),matrix(f(:,ones(1,N)),-1,1))
+        f=matrix(f(:,ones(1,N)), [szf dims])
     end
 endfunction

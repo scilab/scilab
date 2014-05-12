@@ -19,15 +19,11 @@ function M=hypermat(dims,v)
     // M data structure contains the vector of matrix dimensions M('dims')
     // and the vector of entries M('entries') such as the leftmost subcripts vary first
     // [M(1,1,..);..;M(n1,1,..);...;M(1,n2,..);..;M(n1,n2,..);...]
-    [lhs,rhs] = argn(0);
-    dims = double(dims);
-
-    if or(floor(dims) <> dims) | or(dims < 0) then
-        error(msprintf(_("%s: Wrong values for input argument #%d: Elements must be non-negative integers.\n"), "hypermat", 1));
-    end
-
-    if dims==[] | or(dims == 0) then
-        dims=[0 0];
+    warnobsolete("matrix", "6.1.0");
+    [lhs,rhs]=argn(0)
+    dims=double(dims)
+    if or(floor(dims)<>dims)|or(dims<0) then
+        error(msprintf(_("%s: Wrong values for input argument #%d: Elements must be non-negative integers.\n"),"hypermat",1));
     end
 
     if size(dims, "*") == 1 then

@@ -176,16 +176,9 @@
                 </para>
             </listitem>
         </itemizedlist>
-    </refsection>
-    
-    <refsection role="remark">
-        <title>Примечание</title>
-        <para>
-            Эта функция применяется с аналогичными правилами к <link linkend="sparse">разряжённым
-                матрицам
-            </link>
-            и <link linkend="hypermat">гиперматрицам</link>.
-        </para>
+        <note>
+            This function applies with identical rules to <link linkend="sparse">sparse matrices</link>
+        </note>
     </refsection>
     
     <refsection role="examples">

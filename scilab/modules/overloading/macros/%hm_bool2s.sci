@@ -11,5 +11,5 @@
 // along with this program.
 
 function Ms=%hm_bool2s(Mb)
-    Ms=hypermat(Mb.dims,bool2s(Mb.entries))
+    Ms = matrix(bool2s(Mb(:)), size(Mb))
 endfunction

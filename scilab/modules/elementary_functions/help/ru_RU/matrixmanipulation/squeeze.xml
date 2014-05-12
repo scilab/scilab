@@ -55,7 +55,7 @@
 	squeeze(M1)
 	squeeze(M1(:,:,1))
 	
-	M2 = hypermat([2 1 2 1],1:4)
+	M2 = matrix(1:4, [2 1 2 1])
 	squeeze(M2)
 	]]></programlisting>
     </refsection>
@@ -63,10 +63,10 @@
         <title>Смотрите также</title>
         <simplelist type="inline">
             <member>
-                <link linkend="hypermat">hypermat</link>
+                <link linkend="matrix">matrix</link>
             </member>
             <member>
-                <link linkend="hypermatrices">hypermatrices</link>
+                <link linkend="hypermatrices">гиперматрицы</link>
             </member>
         </simplelist>
     </refsection>

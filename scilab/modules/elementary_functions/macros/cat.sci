@@ -84,20 +84,10 @@ function  y = cat(dims, varargin)
         ytemp = [];
     end
 
-    if typeof(varargin(1))=="hypermat" then
-        vartype = typeof(varargin(1).entries);
-    else
-        vartype = typeof(varargin(1));
-    end
+    vartype = typeof(varargin(1));
 
     for j=2:size(varargin)
-        if typeof(varargin(j))=="hypermat" then
-            if typeof(varargin(j).entries) ==vartype
-                vartype = typeof(varargin(j).entries);
-            else
-                error(msprintf(gettext("%s: Wrong type for input arguments: Same types expected.\n"),"cat"));
-            end
-        elseif  typeof(varargin(j)) ==vartype
+        if  typeof(varargin(j)) ==vartype
             vartype = typeof(varargin(j));
         else
             error(msprintf(gettext("%s: Wrong type for input arguments: Same types expected.\n"),"cat"));

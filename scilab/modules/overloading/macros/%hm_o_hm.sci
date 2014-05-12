@@ -10,11 +10,12 @@
 // For more information, see the COPYING file which you should have received
 // along with this program.
 
-function r=%hm_o_hm(a,b)
-    r=and(a.dims==b.dims)
+// NO LONGER CALLED (hm of booleans, integers, decimal or complex number, polynomials, strings)
+// => TO BE DELETED
+
+function r = %hm_o_hm(a,b)
+    r = and(size(a)==size(b))
     if r then
-        r=hypermat(a.dims,a.entries==b.entries)
-    else
-        r=%f
+        r = matrix(a(:)==b(:), size(a))
     end
 endfunction

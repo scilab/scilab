@@ -188,16 +188,9 @@
                 </para>
             </listitem>
         </itemizedlist>
-    </refsection>
-    
-    <refsection role="remark">
-        <title>注意</title>
-        <para>
-            この関数には,
-            <link linkend="sparse">疎行列</link> および
-            <link linkend="hypermat">ハイパー行列</link>と
-            同じ規則が適用されます.
-        </para>
+        <note>
+            This function applies with identical rules to <link linkend="sparse">sparse matrices</link>
+        </note>
     </refsection>
     
     <refsection role="examples">

@@ -14,7 +14,7 @@
 //
 // <-- Short Description -->
 // size with 2 input arguments did not work for hypermatrix.
-M = hypermat([2 3 2 2],1:24);
+M = matrix(1:24, [2 3 2 2]);
 ref = [2 3 2 2];
 s = size(M);
 if ~or(s == ref) then bugmes();quit;end

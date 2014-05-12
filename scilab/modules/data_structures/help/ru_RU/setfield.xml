@@ -63,9 +63,6 @@ l=list(1,'qwerw',%s)
 l(1)='Изменён'
 l(0)='Добавлен'
 l(6)=['ещё один';'добавлен']
- 
-a=hypermat([2,2,2],rand(1:2^3));// гиперматрицы кодируются с помощью mlist-ов
-setfield(3,1:8,a);a // установка значения поля равным 1:8
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

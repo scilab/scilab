@@ -162,6 +162,6 @@ function M=%s_i_s(varargin)
     case 2
         M=matrix(v,dims1(1),dims1(2))
     else
-        M=mlist(["hm","dims","entries"],int32(matrix(dims1,1,-1)),v)
+        M=matrix(v, dims1)
     end
 endfunction

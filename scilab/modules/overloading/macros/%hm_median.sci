@@ -9,6 +9,9 @@
 // and continues to be available under such terms.
 // For more information, see the COPYING file which you should have received
 // along with this program.
+
+// THIS OVERLOAD IS NO LONGER CALLED (decimal numbers, integers) => TO BE DELETED
+
 function x=%hm_median(m,d)
     if argn(2)==1 then
         x=median(m.entries)
@@ -35,6 +38,6 @@ function x=%hm_median(m,d)
     if size(dims,"*")==2 then
         x=matrix(x,dims(1),dims(2))
     else
-        x=hypermat(dims,x)
+        x=matrix(x, dims)
     end
 endfunction

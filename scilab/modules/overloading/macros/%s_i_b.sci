@@ -18,9 +18,7 @@ function M=%s_i_b(varargin)
         M=bool2s(M)
         M(varargin(1:$-2))=varargin($-1)
     else //hypermatrix syntax
-        if varargin($-1)<>[] then M=bool2s(M),end
-        M=mlist(["hm","dims","entries"],int32(size(M)),M(:))
-        varargin($)=M;
+        if varargin($-1)<>[] then varargin($)=bool2s(M),end
         M=generic_i_hm(0,varargin(:))
     end
 endfunction

@@ -2,8 +2,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="mlist">
     <refnamediv>
         <refname>mlist</refname>
-        <refpurpose>Objet Scilab, définition d'une liste
-            typée
+        <refpurpose>Objet Scilab, définition d'une liste typée
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
@@ -78,8 +77,8 @@ M(:,2)
 
 // tableau multidimensionnel
 str=['a','b','c','d','e','f','g','h'];
-n=hypermat([2,2,2],str);
-v=hypermat([2,2,2],1:8);
+n=matrix(str, [2,2,2]);
+v=matrix(1:8, [2,2,2]);
 M=mlist(['V','name','value'],n,v);
 M(1,1:2,2)
  ]]></programlisting>

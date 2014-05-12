@@ -171,15 +171,10 @@
                 </para>
             </listitem>
         </itemizedlist>
-    </refsection>
-    <refsection>
-        <title>Примечание</title>
-        <para>
-            Эта функция применяется с аналогичными правилами к <link linkend="sparse">разряжённым 
-                матрицам
-            </link>
-            и <link linkend="hypermat">гиперматрицам</link>.
-        </para>
+      <note>
+        Эта функция применяется с аналогичными правилами к <link linkend="sparse">разряжённым 
+        матрицам</link>.
+      </note>
     </refsection>
     <refsection>
         <title>Примеры</title>

@@ -133,13 +133,9 @@
                 </para>
             </listitem>
         </itemizedlist>
-    </refsection>
-    
-    <refsection role="remark">
-        <title>Remark</title>
-        <para>
-            This function applies, with identical rules to <link linkend="sparse">sparse matrices</link> and <link linkend="hypermat">hypermatrices</link>.
-        </para>
+        <note>
+            This function applies, with identical rules to <link linkend="sparse">sparse matrices</link>.
+        </note>
     </refsection>
     
     <refsection role="examples">

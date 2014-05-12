@@ -17,5 +17,5 @@
 a(1:2,1:2,1:2)=0;
 a(:)=(1:8).^2;
 res = sqrt(a);
-expected = hypermat([2 2 2],1:8);
+expected = matrix(1:8, [2 2 2]);
 assert_checkequal(res, expected);

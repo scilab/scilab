@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2013 - Scilab Enterprises - Charlotte HECQUET
- * 
+ *
  * Copyright (C) 2012 - 2016 - Scilab Enterprises
  *
  * This file is hereby licensed under the terms of the GNU GPL v2.0,
@@ -73,11 +73,11 @@
         <programlisting role="example">
             A = [1 2; 3 4]
             num2cell(A)
-            M = hypermat([2 3 2 2],1:24)
-            c = num2cell(M,[1 2])
+            M = matrix(1:24, [2 3 2 2])
+            c=num2cell(M,[1 2])
             size(c)
             size(c{1})
-            
+
             A = ["a", "b"; "c" "d"]
             num2cell(A)
         </programlisting>

@@ -119,7 +119,7 @@
             cases, for instance to limit oscillations (<emphasis role="bold">monotone</emphasis> being the most powerful for that).
         </para>
         <para>To get the coefficients of the bi-cubic patches in a more friendly
-            way you can use <literal>c = hypermat([4,4,nx-1,ny-1],C)</literal> then
+            way you can use <literal>c = matrix(C, [4,4,nx-1,ny-1])</literal> then
             the coefficient <emphasis>(k,l)</emphasis> of the patch
             <emphasis>(i,j)</emphasis> (see equation here before) is stored at
             <literal>c(k,l,i,j)</literal>. Nevertheless the <link linkend="interp2d">interp2d</link> function wait for the big vector

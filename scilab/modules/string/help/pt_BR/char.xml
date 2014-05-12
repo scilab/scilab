@@ -82,7 +82,7 @@
         <title>Exemplos</title>
         <programlisting role="example"><![CDATA[ 
 //exemplo com uma hipermatriz de códigos ASCII :
-x=hypermat([4,2,3],61:84);
+x=matrix([61:84, 4,2,3]);
 y=char(x)
 size(x)
 size(y)

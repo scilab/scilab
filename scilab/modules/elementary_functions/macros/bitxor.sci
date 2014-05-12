@@ -51,16 +51,14 @@ function z = bitxor(x,y)
 
     if    (type(x)==1  & (x-floor(x)<>0 | x<0)) ..
         | (type(x)==8  & (inttype(x)<10) ) ..
-        | (type(x)==17 & (type(x.entries<>1) | type(x.entries<>8)) & find(x.entries>0)<>[]) ..
-        | (type(x)<>1  & type(x)<>8 & type(x)<>17) then
+        | (type(x)<>1  & type(x)<>8) then
 
         error(msprintf(gettext("%s: Wrong type for input argument #%d: Scalar/matrix of unsigned integers expected.\n"),"bitxor",1));
     end
 
     if    (type(y)==1  & (y-floor(y)<>0 | y<0)) ..
         | (type(y)==8  & (inttype(y)<10) ) ..
-        | (type(y)==17 & (type(y.entries<>1) | type(y.entries<>8)) & find(y.entries>0)<>[]) ..
-        | (type(y)<>1  & type(y)<>8 & type(y)<>17) then
+        | (type(y)<>1  & type(y)<>8) then
 
         error(msprintf(gettext("%s: Wrong type for input argument #%d: Scalar/matrix of unsigned integers expected.\n"),"bitxor",2));
     end

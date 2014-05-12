@@ -410,9 +410,7 @@ function %h_p(h)
 
 
         case "Matplot"
-            if typeof(h.data) == "hypermat" then
-                d="matrix "+strcat(string(h.data.dims),"x")
-            elseif size(h.data,"*") > 10 then
+            if size(h.data,"*") > 10 then
                 d="matrix "+strcat(string(size(h.data)),"x")
             else
                 d=sci2exp(h.data,0)

@@ -28,7 +28,7 @@
             <varlistentry>
                 <term>sizes</term>
                 <listitem>
-                    <para>vector of integers</para>
+                    <para>vector of non-negative integers</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -83,6 +83,9 @@ matrix(a,3,2)
             </member>
             <member>
                 <link linkend="zeros">zeros</link>
+            </member>
+            <member>
+                <link linkend="emptystr">emptystr</link>
             </member>
             <member>
                 <link linkend="rand">rand</link>

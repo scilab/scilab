@@ -68,7 +68,8 @@ function pie(varargin)
             txt = varlist(3);
         elseif iscellstr(varlist(3)) then
             for j=1:size(varlist(3),"*")
-                txt(j) = varlist(3).entries(j);
+                tmp = varlist(3);
+                txt(j) = tmp{j};
             end
         else
             error(msprintf(gettext("%s: Wrong size for input argument #%d: Vector of strings expected.\n"),"pie", 3));
