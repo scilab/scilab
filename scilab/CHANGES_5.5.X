@@ -39,6 +39,8 @@ Scilab Bug Fixes
 
 * Bug #13403 fixed - Regression on axes labeling fixed.
 
+* Bug #13404 fixed - rect property was not taken into account in polarplot.
+
 * Bug #13409 fixed - permute(x, dims) failed when dims was greater than the dimensions of size(x)
                      now permute treats extra dimensions as 1
 
