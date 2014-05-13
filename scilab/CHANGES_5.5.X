@@ -31,11 +31,13 @@ Scilab Bug Fixes
 * Bug #13384 fixed - uicontrol help page did not mention axes could be contained
                      in frame style uicontrols.
 
-* Bug #13386 fixed - An exception occured when using entity picker on legends.
+* Bug #13386 fixed - An exception occurred when using entity picker on legends.
 
 * Bug #13397 fixed - saveGui() returned an undocumented boolean parameter (success/failure flag).
 
 * Bug #13401 fixed - Closing Scilab during halt() did not quit the Scilab process.
+
+* Bug #13403 fixed - Regression on axes labeling fixed.
 
 * Bug #13409 fixed - permute(x, dims) failed when dims was greater than the dimensions of size(x)
                      now permute treats extra dimensions as 1
