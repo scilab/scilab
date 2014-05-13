@@ -37,6 +37,8 @@ Scilab Bug Fixes
 
 * Bug #13401 fixed - Closing Scilab during halt() did not quit the Scilab process.
 
+* Bug #13402 fixed - Bounding boxes of xarcs were not correct.
+
 * Bug #13403 fixed - Regression on axes labeling fixed.
 
 * Bug #13404 fixed - rect property was not taken into account in polarplot.
