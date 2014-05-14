@@ -37,6 +37,9 @@ Scilab Bug Fixes
 
 * Bug #13401 fixed - Closing Scilab during halt() did not quit the Scilab process.
 
+* Bug #13409 fixed - permute(x, dims) failed when dims was greater than the dimensions of size(x)
+                     now permute treats extra dimensions as 1
+
 
 Xcos Bug Fixes
 ==============

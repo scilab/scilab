@@ -70,6 +70,6 @@ assert_checkequal(y, refY);
 // Error checks
 refMsg = msprintf(_("%s: Wrong size for input argument #%d: At least the size of input argument #%d expected.\n"), "permute", 2, 1);
 assert_checkerror("permute(x, [1 2]);", refMsg);
-refMsg = msprintf(_("%s: Wrong size for input argument #%d.\n"), "permute", 2);
+refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be a valid permutation vector.\n"), "permute", 2);
 assert_checkerror("permute(x, [1 2 4]);", refMsg);
 assert_checkerror("permute(x, [1 2 3 5]);", refMsg);
