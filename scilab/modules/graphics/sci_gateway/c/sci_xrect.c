@@ -210,9 +210,11 @@ int sci_xrect(char *fname, unsigned long fname_len)
     if (hdl > 0)
     {
         setGraphicObjectRelationship(iSubwinUID, getObjectFromHandle(hdl));
-        AssignOutputVariable(pvApiCtx, 1) = 0;
-        ReturnArguments(pvApiCtx);
     }
+
+    AssignOutputVariable(pvApiCtx, 1) = 0;
+    ReturnArguments(pvApiCtx);
+
     return 0;
 }
 /*--------------------------------------------------------------------------*/
