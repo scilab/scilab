@@ -98,7 +98,6 @@
             language. During simulation, these instructions are interpreted by
             Scilab; the simulation of diagrams that include these types of blocks
             is slower. For more information see Scicos reference manual.
-            
         </para>
     </refsection>
     <refsection id="Dialogbox_scifunc_block_m">
@@ -252,6 +251,22 @@
                 </para>
             </listitem>
         </itemizedlist>
+    </refsection>
+    <refsection id="Example_scifunc_block_m">
+        <title>Example</title>
+        <para>
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/userdefinedfunctions_pal/en_US/scifunc_block_m_en_US.zcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="../../../../examples/userdefinedfunctions_pal/en_US/scifunc_block_m_en_US.zcos" align="center" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+        </para>
+        <scilab:image><![CDATA[
+importXcosDiagram(SCI + "/modules/xcos/examples/userdefinedfunctions_pal/en_US/scifunc_block_m_en_US.zcos");
+xcos_simulate(scs_m, 4);
+]]></scilab:image>
     </refsection>
     <refsection id="Interfacingfunction_scifunc_block_m">
         <title>Interfacing function</title>
