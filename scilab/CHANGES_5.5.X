@@ -42,6 +42,9 @@ Xcos Bug Fixes
 
 * Bug #12751 fixed - cdummy_ entry point was not found when using Code Generation.
 
+* Bug #13285 fixed - There was no appropriate example of the syntax for scifunc_block_m GUI
+                     on the help page.
+
 * Bug #13385 fixed - TOWS_c and FROMWSB Xcos blocs needed better examples on how
                      to get or write a Scilab variable.
                      
