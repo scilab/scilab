@@ -10,6 +10,8 @@ Obsolete & Removed Functions
 Scilab Bug Fixes
 ================
 
+* Bug #6979 fixed - Help page of rlist was unclear.
+
 * Bug #7203 fixed - Help page of titlepage was unclear.
 
 * Bug #7549 fixed - edit_curv did not disable standard plot menus.
