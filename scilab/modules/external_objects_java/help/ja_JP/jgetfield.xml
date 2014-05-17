@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+*
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2010 - 2011 - Calixte DENIZET <calixte@contrib.scilab.org>
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+*
+*
+-->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="jgetfield">
+    
+    <refnamediv>
+        
+        <refname>jgetfield</refname>
+        
+        <refpurpose>Javaオブジェクトのフィールドの値を取得</refpurpose>
+        
+    </refnamediv>
+    
+    <refsynopsisdiv>
+        
+        <title>呼び出し手順</title>
+        
+        <synopsis>
+            
+            jgetfield(object, fieldName [, unwrap])
+            
+        </synopsis>
+        
+    </refsynopsisdiv>
+    
+    <refsection>
+        
+        <title>パラメータ</title>
+        
+        <variablelist>
+            
+            <varlistentry>
+                
+                <term>object</term>
+                
+                <listitem>
+                    
+                    <para>_JObj または _JClass型のmlistまたはScilab変数</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>fieldName</term>
+                
+                <listitem>
+                    
+                    <para>フィールド名を指定する文字列</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>unwrap</term>
+                
+                <listitem>
+                    
+                    <para>論理値</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+        </variablelist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>説明</title>
+        
+        <para>
+            
+            fieldNameという名前のフィールドの値を取得します.
+            
+            オプションの第三引数がtrueの場合,
+            
+            値は自動的にアンラップされます.
+            
+        </para>
+        
+        <para>
+            
+            この関数は公開javaフィールドにマップされない
+            
+            beansプロパティについても動作します.
+            
+        </para>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>例</title>
+        
+        <programlisting role="example"><![CDATA[
+               c = jcompile("Test", ["public class Test {";
+                                     "public int field;";
+                                     "public Test(int n) {";
+                                     "field = n;";
+                                     "}";
+                                     "}";]);
+               t = c.new(128);
+               v = jgetfield(t, "field")
+
+               // or easier
+               t.field
+
+               jremove c t v;
+      ]]></programlisting>
+        
+        <programlisting role="example"><![CDATA[
+jimport java.util.Date;
+
+d = Date.new();
+d.minutes, // d.getMinutes()をコールします
+jgetfield(d, "minutes"), // これも d.getMinutes()をコールします
+
+jremove Date d;
+      ]]></programlisting>
+        
+    </refsection>
+    
+    <refsection role="see also">
+        
+        <title>参照</title>
+        
+        <simplelist type="inline">
+            
+            <member>
+                
+                <link linkend="jsetfield">jsetfield</link>
+                
+            </member>
+            
+        </simplelist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>履歴</title>
+        
+        <revhistory>
+            
+            <revision>
+                
+                <revnumber>5.5.0</revnumber>
+                
+                <revremark>
+                    
+                    関数が導入されました. 'JIMS'モジュールに基づきます.
+                    
+                    JIMSモジュールとの動作上の主な違いは,
+                    
+                    <link linkend="jautoUnwrap">jautoUnwrap</link>がデフォルトで
+                    
+                    有効になっていることです.
+                    
+                </revremark>
+                
+            </revision>
+            
+        </revhistory>
+        
+    </refsection>
+    
+</refentry>
+
+
+

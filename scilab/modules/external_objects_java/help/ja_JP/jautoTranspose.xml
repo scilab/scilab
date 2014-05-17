@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+*
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2013 - S/E - Sylvestre LEDRU
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+*
+*
+-->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="jautoTranspose">
+    
+    <refnamediv>
+        
+        <refname>jautoTranspose</refname>
+        
+        <refpurpose>行列を変換する方法を指定</refpurpose>
+        
+    </refnamediv>
+    
+    <refsynopsisdiv>
+        
+        <title>呼び出し手順</title>
+        
+        <synopsis>
+            
+            method = jautoTranspose()
+            
+            jautoTranspose(method)
+            
+        </synopsis>
+        
+    </refsynopsisdiv>
+    
+    <refsection>
+        
+        <title>パラメータ</title>
+        
+        <variablelist>
+            
+            <varlistentry>
+                
+                <term>method</term>
+                
+                <listitem>
+                    
+                    <para>変換の型を指定する論理値</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+        </variablelist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>説明</title>
+        
+        <para>
+            
+            Scilabでは,
+            
+            <literal>[1 2 3;4 5 6]</literal>のような行列は
+            
+            <literal>[1 4 2 5 3 6]</literal> のように(列毎に)保存されます. 
+            
+            Javaでは,同じ行列は
+            
+            <literal>[-&gt;[1 2 3] -&gt;[4 5 6]]</literal> 
+            
+            のように(ポインタの配列)として保存されます.
+            
+        </para>
+        
+        <para>
+            
+            methodが'%f'の場合 (列-行), 内部配列 
+            
+            <literal>[1 4 2 5 3 6]</literal> が指定され,
+            
+            Javaは配列
+            
+            <literal>[-&gt;[1 4] -&gt;[2 5] -&gt;[3 6]]</literal>を作成します.
+            
+        </para>
+        
+        <para>
+            
+            method が 't' (行-列)の場合, 配列
+            
+            <literal>[1 4 2 5 3 6]</literal> は
+            
+            <literal>[1 2 3 4 5 6]</literal> のように指定され,
+            
+            <literal>[-&gt;[1 2 3] -&gt;[4 5 6]]</literal>に変換されます.
+            
+        </para>
+        
+        <para>
+            
+            デフォルトで, method は '%f'に設定されます.
+            
+        </para>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>例</title>
+        
+        <programlisting role="example"><![CDATA[
+               jautoTranspose()
+               jautoTranspose(%t)
+      ]]></programlisting>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>履歴</title>
+        
+        <revhistory>
+            
+            <revision>
+                
+                <revnumber>5.5.0</revnumber>
+                
+                <revremark>
+                    
+                    関数が導入されました. 'JIMS'モジュールに基づきます.
+                    
+                    JIMSモジュールとの動作上の主な違いは,
+                    
+                    <link linkend="jautoUnwrap">jautoUnwrap</link>がデフォルトで
+                    
+                    有効になっていることです.
+                    
+                </revremark>
+                
+            </revision>
+            
+        </revhistory>
+        
+    </refsection>
+    
+</refentry>
+
+
+
