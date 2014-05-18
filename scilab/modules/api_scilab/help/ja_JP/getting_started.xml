@@ -242,21 +242,25 @@
             </orderedlist>
         </para>
         <para>
-            API_Scilab関数
-            Note that almost all the API_Scilab functions returns a C structure called SciErr which contains many information about the error.
+            ほぼ全てのAPI_Scilab関数がエラーに関する多くの情報を含む
+            SciErrと呼ばれるC構造体を返すことに注意してください.
         </para>
         <para>
-            By default, Scilab numerical values are stored with the C type <literal>double</literal>.
+            デフォルトでは, Scilab数値はC言語の<literal>double</literal>型に保存されます.
         </para>
         <para>
-            As convention, gateways are stored in <literal>sci_gateway/c/</literal> (or <literal>/cpp/</literal>) and are called <literal>sci_functionName.c</literal>.
+            習慣的に,
+            ゲートウェイは,<literal>sci_gateway/c/</literal> (または <literal>/cpp/</literal>)
+            に保存され,<literal>sci_functionName.c</literal>という名前が付けられます.
         </para>
         <para>
-            <literal>pvApiCtx</literal> is the global context variable. Useless in the 5 family, it has been introduced to manage multithread aspects coming with the version 6 of Scilab.
+            <literal>pvApiCtx</literal> は,グローバルコンテキスト変数です.
+            これは,バージョン5系では使用されていませんが, Scilab バージョン 6で導入される
+            マルチスレッド機能を管理するために導入されています.
         </para>
     </refsection>
     <refsection>
-        <title>現実的な例</title>
+        <title>実用的な例</title>
         <para>以下のScilab関数を例として示します:</para>
         <para>
             <literal>[c,d] = foo(a,b)</literal>
@@ -278,6 +282,7 @@
         <programlisting role="code_gateway">
             <![CDATA[ 
 // 完全なソースはtoolboxスケルトンのsci_gateway/c/ ディレクトリにあります
+
 // 標準ヘッダ
 #include "api_scilab.h"
 #include "BOOL.h"
@@ -389,10 +394,8 @@ int sci_foo(char *fname, unsigned long fname_len)
       ]]>
         </programlisting>
         <para>
-            このコードを構築,Scilabにロードする際,
-            Scilabの動的リンク機能を使用します.
-            この組み込み処理はScilabに委任するため,
-            以下のコードはマルチプラットフォームです.
+            このコードを構築,Scilabにロードする際,Scilabの動的リンク機能を使用します.
+            この組み込み処理はScilabに委任するため,以下のコードはマルチプラットフォーム対応です.
             <programlisting role="scilab">
                 <![CDATA[
       files=["sci_foo.c"];
@@ -431,8 +434,10 @@ foo: Wrong type for input argument #1: A real matrix expected.
                 <![CDATA[
 -->[c, d] = foo([2,%pi], [%t, %f])
  d  =
+
   F T
  c  =
+
     4.    6.2831853
       ]]>
             </programlisting>

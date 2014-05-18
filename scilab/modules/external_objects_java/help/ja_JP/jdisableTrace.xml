@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 8f371f0... japanese translation updated.
 <!--
 *
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
@@ -13,92 +16,57 @@
 *
 *
 -->
-
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="jdisableTrace">
-    
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="jdisableTrace">
     <refnamediv>
-        
         <refname>jdisableTrace</refname>
-        
-        <refpurpose>Stop the trace process.</refpurpose>
-        
+        <refpurpose>トレース処理を停止.</refpurpose>
     </refnamediv>
-    
     <refsynopsisdiv>
-        
-        <title>Calling Sequence</title>
-        
+        <title>呼び出し手順</title>
         <synopsis>
-            
             jdisableTrace()
-            
         </synopsis>
-        
     </refsynopsisdiv>
-    
     <refsection>
-        
-        <title>Description</title>
-        
+        <title>説明</title>
         <para>
-            
-            Stop the trace process enabled with jenableTrace.
-            
+            jenableTraceで有効にしたトレース処理を停止します.
         </para>
-        
     </refsection>
-    
     <refsection>
+<<<<<<< HEAD
         
         <title>Examples</title>
         
+=======
+        <title>例</title>
+>>>>>>> 8f371f0... japanese translation updated.
         <programlisting role="example"><![CDATA[
                jenableTrace(fullpath(TMPDIR + "/../debug_jims.log"));
                // ...
                jdisableTrace();
       ]]></programlisting>
-        
     </refsection>
-    
     <refsection role="see also">
-        
-        <title>See Also</title>
-        
+        <title>参照</title>
         <simplelist type="inline">
-            
             <member>
-                
                 <link linkend="jenableTrace">jenableTrace</link>
-                
             </member>
-            
         </simplelist>
-        
     </refsection>
-    
     <refsection>
-        
-        <title>History</title>
-        
+        <title>履歴</title>
         <revhistory>
-            
             <revision>
-                
                 <revnumber>5.5.0</revnumber>
-                
                 <revremark>
-                    
-                    Function introduced. Based on the 'JIMS' module. The main difference in the behavior compared to the JIMS module is that <link linkend="jautoUnwrap">jautoUnwrap</link> is enabled by default.
-                    
+                    関数が導入されました. 'JIMS'モジュールに基づきます.
+                    JIMSモジュールとの動作上の主な違いは,
+                    <link linkend="jautoUnwrap">jautoUnwrap</link>がデフォルトで
+                    有効になっていることです.
                 </revremark>
-                
             </revision>
-            
         </revhistory>
-        
     </refsection>
-    
 </refentry>
-
-
-
