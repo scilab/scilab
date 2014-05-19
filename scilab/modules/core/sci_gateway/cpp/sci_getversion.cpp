@@ -52,7 +52,7 @@ Function::ReturnValue sci_getversion(types::typed_list &in, int _iRetCount, type
             return Function::Error;
         }
 
-        wchar_t *pwstVer = getScilabVersionAsString();
+        wchar_t *pwstVer = getScilabVersionAsWideString();
         String* pOut1 = new String(pwstVer);
         out.push_back(pOut1);
         FREE(pwstVer);

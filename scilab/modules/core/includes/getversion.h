@@ -55,7 +55,13 @@ int getScilabVersionTimestamp();
 * get Scilab version as a string
 * @return scilab version
 */
-wchar_t* getScilabVersionAsString(void);
+char* getScilabVersionAsString(void);
+
+/**
+* get Scilab version as wide string
+* @return scilab version
+*/
+wchar_t* getScilabVersionAsWideString(void);
 
 /**
 * get module version as a int array

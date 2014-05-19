@@ -59,9 +59,9 @@ int *getScilabVersion(int *sizeArrayReturned)
     return returnedArray;
 }
 /*--------------------------------------------------------------------------*/
-wchar_t* getScilabVersionAsString(void)
+char* getScilabVersionAsString(void)
 {
-    return os_wcsdup(SCI_VERSION_WIDE_STRING);
+    return os_strdup(SCI_VERSION);
 }
 /*--------------------------------------------------------------------------*/
 wchar_t *getScilabVersionAsWideString(void)
