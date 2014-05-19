@@ -61,6 +61,7 @@ import org.scilab.modules.xcos.actions.CloseAction;
 import org.scilab.modules.xcos.actions.CompileAction;
 import org.scilab.modules.xcos.actions.DebugLevelAction;
 import org.scilab.modules.xcos.actions.DiagramBackgroundAction;
+import org.scilab.modules.xcos.actions.EditFormatAction;
 import org.scilab.modules.xcos.actions.ExportAction;
 import org.scilab.modules.xcos.actions.ExportAllAction;
 import org.scilab.modules.xcos.actions.ExternalAction;
@@ -474,6 +475,7 @@ public class XcosTab extends SwingScilabDockablePanel implements SimpleTab {
         format.add(alignMenu);
         format.addSeparator();
 
+        format.add(EditFormatAction.createMenu(diagram));
         format.add(BorderColorAction.createMenu(diagram));
         format.add(FilledColorAction.createMenu(diagram));
         format.addSeparator();

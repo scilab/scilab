@@ -44,6 +44,8 @@ Xcos Bug Fixes
 * Bug #9996 fixed - The RELATION_OP box drawn in the work space is not compliant
                     to the programming.
 
+* Bug #11823 fixed - Ctrl+F2 shortcut did not work on a selected block.
+
 * Bug #12751 fixed - cdummy_ entry point was not found when using Code Generation.
 
 * Bug #13285 fixed - There was no appropriate example of the syntax for scifunc_block_m GUI
