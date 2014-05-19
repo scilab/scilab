@@ -1,8 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<<<<<<< HEAD
-
-=======
->>>>>>> 8f371f0... japanese translation updated.
 <!--
 *
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
@@ -34,13 +30,7 @@
         </para>
     </refsection>
     <refsection>
-<<<<<<< HEAD
-        
-        <title>Examples</title>
-        
-=======
         <title>例</title>
->>>>>>> 8f371f0... japanese translation updated.
         <programlisting role="example"><![CDATA[
                jenableTrace(fullpath(TMPDIR + "/../debug_jims.log"));
                // ...
