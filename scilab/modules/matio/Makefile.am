@@ -46,7 +46,6 @@ endif
 
 libscimatio_la_CPPFLAGS = -I$(srcdir)/includes/ \
 			-I$(srcdir)/src/c/ \
-			-I$(srcdir)/src/matio/ \
 			-I$(top_srcdir)/modules/localization/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes/ \
 			-I$(top_srcdir)/modules/string/includes/ \
