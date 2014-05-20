@@ -89,12 +89,12 @@ public:
     // Start a timer.  If it is already running, let it continue running.
     // Print an optional message.
 
-    inline void start(const char* msg = 0)
+    inline void start(const std::wstring _msg = std::wstring(L""))
     {
         // Print an optional message, something like "Starting timer t";
-        if (msg)
+        if (_msg.empty() == false)
         {
-            std::cerr << msg << std::endl;
+            std::wcerr << _msg << std::endl;
         }
 #ifndef _MSC_VER
         // FIXME : Tonio
@@ -120,19 +120,19 @@ public:
     //===========================================================================
     // Print out an optional message followed by the current timer timing.
 
-    inline double check(const char* msg, bool _bRestart = false)
+    inline double check(const std::wstring _msg, bool _bRestart = false)
     {
         // Print an optional message, something like "Checking timer t";
         double t = elapsed_time();
-        if (msg)
+        if (_msg.empty() == false)
         {
-            std::cerr << "[" << msg << "]" << " : ";
+            std::wcerr << L"[" << _msg << L"]" << L" : ";
         }
-        std::cerr << "Elapsed time ["
-                  << std::setiosflags(std::ios::fixed)
-                  << std::setprecision(3)
-                  << t << "] milliseconds"
-                  << std::endl;
+        std::wcerr << L"Elapsed time ["
+                   << std::setiosflags(std::ios::fixed)
+                   << std::setprecision(3)
+                   << t << L"] milliseconds"
+                   << std::endl;
 
         if (_bRestart == true)
         {
@@ -148,7 +148,7 @@ public:
 // for an ostream 'os' and a timer 't'.  For example, "cout << t" will
 // print out the total amount of time 't' has been "running".
 
-inline std::ostream& operator<<(std::ostream& os, Timer& t)
+inline std::wostream& operator<<(std::wostream& os, Timer& t)
 {
     os << std::setprecision(3)
        << std::setiosflags(std::ios::fixed)

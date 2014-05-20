@@ -108,6 +108,12 @@ static int get_option(const int argc, char *argv[], ScilabEngineInfo* _pSEI)
         else if (!strcmp("--timed", argv[i]))
         {
             _pSEI->iTimed = 1;
+            ConfigVariable::setTimed(true);
+        }
+        else if (!strcmp("--serialize", argv[i]))
+        {
+            _pSEI->iSerialize = 1;
+            ConfigVariable::setSerialize(true);
         }
         else if (!strcmp("--AST-timed", argv[i]))
         {

@@ -760,6 +760,8 @@ std::list<ConfigVariable::EntryPointStr*>* ConfigVariable::getEntryPointList()
 
 // Command Line Arguments
 std::vector<std::wstring> ConfigVariable::m_Args;
+bool ConfigVariable::m_bTimed = false;
+bool ConfigVariable::m_bSerialize = false;
 
 void ConfigVariable::setCommandLineArgs(int _iArgs, char** _pstArgs)
 {
@@ -782,6 +784,26 @@ wchar_t** ConfigVariable::getCommandLineArgs(int* _piCount)
 
     *_piCount = (int)m_Args.size();
     return pwstArgs;
+}
+
+bool ConfigVariable::getTimed()
+{
+    return m_bTimed;
+}
+
+void ConfigVariable::setTimed(bool _bTimed)
+{
+    m_bTimed = _bTimed;
+}
+
+bool ConfigVariable::getSerialize()
+{
+    return m_bSerialize;
+}
+
+void ConfigVariable::setSerialize(bool _bSerialize)
+{
+    m_bSerialize = _bSerialize;
 }
 
 /*

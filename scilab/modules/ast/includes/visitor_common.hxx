@@ -13,6 +13,9 @@
 #ifndef AST_VISITOR_COMMON_HXX
 #define AST_VISITOR_COMMON_HXX
 
+
+#define ENABLE_EXTERNAL_TYPER
+
 #include "internal.hxx"
 #include "struct.hxx"
 #include "list.hxx"
@@ -61,5 +64,6 @@ EXTERN_AST void callOnPrompt(void);
 EXTERN_AST types::List* getPropertyTree(ast::Exp* e, types::List* pList);
 
 EXTERN_AST types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs, types::InternalType* _pVar, types::InternalType* _pInsert);
+EXTERN_AST ast::Exp* callTyper(ast::Exp* _tree, std::wstring _msg = std::wstring(L""));
 
 #endif //!AST_VISITOR_COMMON_HXX

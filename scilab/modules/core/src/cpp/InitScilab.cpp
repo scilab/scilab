@@ -223,7 +223,7 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
     //execute scilab.start
     if (_pSEI->iNoStart == 0)
     {
-        execScilabStartTask();
+        execScilabStartTask(_pSEI->iSerialize != 0);
     }
 
     int pause = 0;
@@ -315,7 +315,7 @@ void StopScilabEngine(ScilabEngineInfo* _pSEI)
     }
     else if (_pSEI->iNoStart == 0)
     {
-        execScilabQuitTask();
+        execScilabQuitTask(_pSEI->iSerialize != 0);
     }
 
 
@@ -402,7 +402,7 @@ static Parser::ControlStatus processCommand(ScilabEngineInfo* _pSEI)
             {
                 //before calling YaspReader, try to call %onprompt function
                 callOnPrompt();
-                execAstTask(parser->getTree(), _pSEI->iTimed != 0, _pSEI->iAstTimed != 0, _pSEI->iExecVerbose != 0);
+                execAstTask(parser->getTree(), _pSEI->iSerialize != 0, _pSEI->iTimed != 0, _pSEI->iAstTimed != 0, _pSEI->iExecVerbose != 0);
             }
 
             /*

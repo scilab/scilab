@@ -270,5 +270,11 @@
     <ClInclude Include="includes\visitor_common.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="includes\deserializervisitor.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\serializervisitor.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

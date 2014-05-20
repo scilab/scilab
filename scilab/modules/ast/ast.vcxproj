@@ -240,6 +240,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\debugvisitor.hxx" />
+    <ClInclude Include="includes\deserializervisitor.hxx" />
     <ClInclude Include="includes\dummyvisitor.hxx" />
     <ClInclude Include="includes\dynlib_ast_tools.hxx" />
     <ClInclude Include="includes\execvisitor.hxx" />
@@ -303,6 +304,7 @@
     <ClInclude Include="includes\printvisitor.hxx" />
     <ClInclude Include="includes\runvisitor.hxx" />
     <ClInclude Include="includes\scilabexception.hxx" />
+    <ClInclude Include="includes\serializervisitor.hxx" />
     <ClInclude Include="includes\shortcutvisitor.hxx" />
     <ClInclude Include="includes\stepvisitor.hxx" />
     <ClInclude Include="includes\timedvisitor.hxx" />

@@ -52,43 +52,6 @@ public:
     /** \} */
 
     virtual Exp* clone() = 0;
-    //{
-    //    Location* newloc = const_cast<Location*>(&location_get())->clone();
-    //    Exp* exp = new Exp(location_get());
-    //    exp->set_verbose(is_verbose());
-
-    //    if(is_break())
-    //    {
-    //        exp->break_set();
-    //    }
-
-    //    if(is_breakable())
-    //    {
-    //        exp->breakable_set();
-    //    }
-
-    //    if(is_return())
-    //    {
-    //        exp->return_set();
-    //    }
-
-    //    if(is_returnable())
-    //    {
-    //        exp->returnable_set();
-    //    }
-
-    //    if(is_continue())
-    //    {
-    //        exp->continue_set();
-    //    }
-
-    //    if(is_continuable())
-    //    {
-    //        exp->continuable_set();
-    //    }
-
-    //    return exp;
-    //}
 
 public:
     /** \brief Return if an expression should be displayed or not. */

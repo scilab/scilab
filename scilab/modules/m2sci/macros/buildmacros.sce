@@ -13,17 +13,7 @@ if (isdef("genlib") == %f) then
     exec(SCI+"/modules/functions/scripts/buildmacros/loadgenlib.sce");
 end
 //------------------------------------
-genlib("m2scilib","SCI/modules/m2sci/macros");
-//------------------------------------
-mprintf(gettext("-- Creation of [%s] (Macros) --\n"),"m2sci");
-//------------------------------------
-
-lines(0);
-CurrentDirectorym2sci = get_absolute_file_path("buildmacros.sce");
-macrosdirs            = ["kernel","percent","sci_files"];
-
-for i=1:size(macrosdirs,"*") do
-    exec(CurrentDirectorym2sci+"/"+macrosdirs(i)+"/buildmacros.sce");
-end
-
-clear my_script_path CurrentDirectorym2sci macrosdirs
+genlib("m2scilib","SCI/modules/m2sci/macros", %f,%t);
+genlib("m2scikernellib","SCI/modules/m2sci/macros/kernel",%f,%t);
+genlib("m2scipercentlib","SCI/modules/m2sci/macros/percent",%f,%t);
+genlib("m2scisci_fileslib","SCI/modules/m2sci/macros/sci_files",%f,%t);

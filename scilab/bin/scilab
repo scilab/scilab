@@ -1061,7 +1061,7 @@ if test "$rest" = "yes"; then
                     exit 5
                 fi
                 ;;
-            --parse-trace|--pretty-print|--help|--AST-trace|--no-exec|--context-dump|--exec-verbose|--timed|--AST-timed)
+            --parse-trace|--pretty-print|--help|--AST-trace|--no-exec|--context-dump|--exec-verbose|--timed|--AST-timed|--serialize)
 	    #This are Scilab6 dedicated options.
 	            ;;
             -psn_*)

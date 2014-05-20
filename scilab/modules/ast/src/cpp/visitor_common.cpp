@@ -20,6 +20,8 @@
 #include "struct.hxx"
 #include "context.hxx"
 #include "execvisitor.hxx"
+#include "serializervisitor.hxx"
+#include "deserializervisitor.hxx"
 
 #include "alltypes.hxx"
 
@@ -2090,4 +2092,53 @@ List* getPropertyTree(Exp* e, List* pList)
     }
 
     return pList;
+}
+
+ast::Exp* callTyper(ast::Exp* _tree, std::wstring _msg)
+{
+    ast::Exp* newTree = NULL;
+    unsigned char *newast = NULL;
+    ast::SerializeVisitor* s = new ast::SerializeVisitor(_tree);
+    ast::DeserializeVisitor* d = NULL;
+
+    if (_msg.empty())
+    {
+        unsigned char* astbin = s->serialize();
+        //call ocamlpro typer
+        //char *newast = ocamlpro_typer(astbin);
+        //free(astbin);
+
+        //for debug
+        newast = astbin;
+
+        d = new ast::DeserializeVisitor(newast);
+        newTree = d->deserialize();
+    }
+    else
+    {
+        std::wstring msgS(_msg + L" serialize");
+        std::wstring msgD(_msg + L" deserialize");
+
+        Timer timer;
+        timer.start();
+        unsigned char* astbin = s->serialize();
+        timer.check(msgS.c_str());
+
+        //call ocamlpro typer
+        //char *newast = ocamlpro_typer(astbin);
+        //free(astbin);
+
+        //for debug
+        newast = astbin;
+
+        timer.start();
+        d = new ast::DeserializeVisitor(newast);
+        newTree = d->deserialize();
+        timer.check(msgD.c_str());
+    }
+
+    free(newast);
+    delete s;
+    delete d;
+    return newTree;
 }

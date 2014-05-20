@@ -16,6 +16,7 @@
 #include "execvisitor.hxx"
 #include "mutevisitor.hxx"
 #include "printvisitor.hxx"
+#include "visitor_common.hxx"
 #include "scilabWrite.hxx"
 #include "scilabexception.hxx"
 #include "configvariable.hxx"
@@ -158,7 +159,24 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
         }
     }
 
-    pExp = parser.getTree();
+    if (ConfigVariable::getSerialize())
+    {
+        ast::Exp* temp = parser.getTree();
+        if (ConfigVariable::getTimed())
+        {
+            pExp = callTyper(temp, L"execstr");
+        }
+        else
+        {
+            pExp = callTyper(temp);
+        }
+
+        delete temp;
+    }
+    else
+    {
+        pExp = parser.getTree();
+    }
 
     if (pExp == NULL)
     {
@@ -382,31 +400,7 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
         ConfigVariable::setLastErrorCall();
     }
 
-    delete parser.getTree();
+    delete pExp;
     return Function::OK;
 }
 /*--------------------------------------------------------------------------*/
-
-/*
-		catch(ScilabError se)
-		{
-            if(bErrCatch && bMute == true)
-            {
-                //set mode silent for errors
-                ConfigVariable::setPromptMode(-1);
-            }
-
-            //store message
-            Scierror(ConfigVariable::getLastErrorNumber(), "%s", ConfigVariable::getLastErrorMessage().c_str());
-            iErr = ConfigVariable::getLastErrorNumber();
-            if(bErrCatch == false)
-            {
-            	delete parser.getTree();
-			    return Function::Error;
-            }
-            break;
-		}
-*/
-
-/*
-*/

@@ -32,6 +32,7 @@ typedef struct
     char* pstFile;
     char* pstExec;
     char* pstLang;
+    int iSerialize;
 } ScilabEngineInfo;
 
 ScilabEngineInfo* InitScilabEngineInfo();

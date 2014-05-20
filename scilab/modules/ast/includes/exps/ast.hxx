@@ -101,6 +101,10 @@ public:
         return nodeNumber;
     }
 
+    void nodeNumber_set(long long _nodeNumber)
+    {
+        nodeNumber = _nodeNumber;
+    }
 
 private:
     /** \brief Construct an Ast by copy. */
