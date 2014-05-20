@@ -313,108 +313,53 @@ plot2d(x(im)',y(jm)',-9,"000")
         
         <title>例</title>
         
-        <scilab:image>contour2d(1:10,1:10,rand(10,10),5,rect=[0,0,11,11]);</scilab:image>
-        
-    </refsection>
-    
-    <refsection>
-        
-        <title>例</title>
-        
         <programlisting role="example"><![CDATA[
-
 contour2d(1:10,1:10,rand(10,10),5,rect=[0,0,11,11])
-
  ]]></programlisting>
-        
         <scilab:image>
-            
             contour2d(1:10,1:10,rand(10,10),5,rect=[0,0,11,11]);
-            
         </scilab:image>
-        
         <programlisting role="example"><![CDATA[
-
 clf()
-
 // 等高線の出力形式を変更
-
 xset("fpf","%.2f")
-
 contour2d(1:10,1:10,rand(10,10),5,rect=[0,0,11,11])
-
   ]]></programlisting>
-        
         <scilab:image>
-            
             xset("fpf","%.2f")
-            
             contour2d(1:10,1:10,rand(10,10),5,rect=[0,0,11,11])
-            
         </scilab:image>
-        
         <programlisting role="example"><![CDATA[
-
 // 等高線の値を凡例に表示
-
 // いくつかの裏技を使用していることに注意してください...
-
 x = linspace(0,4*%pi,80);
-
 z = cos(x')*cos(x);
-
 clf(); f=gcf();
-
 xset("fpf"," ")
-
 // 裏技 1: これにより等高線の値は
-
 //         等高線上に描画されなくなります
-
 f.color_map=jetcolormap(7);
-
 // 裏技2: 等高線とインターフェイスをとることなく凡例を右に表示するために
-
 // xmax 値を十分に大きくした rect を使用します.
-
 contour2d(x,x,z,-0.75:0.25:0.75,frameflag=3,rect=[0,0,5*%pi,4*%pi])
-
 // 裏技3: legendsを使用 (より実用的なlegend関数は等高線の一つの値が
-
 //         2つの曲線により構成される場合に動作しないことに注意してください.
-
 legends(string(-0.75:0.25:0.75),1:7,"lr");
-
 xtitle("Some level curves of the function cos(x)cos(y)")
-
  ]]></programlisting>
-        
         <scilab:image localized="true">
-            
             x = linspace(0,4*%pi,80);
-            
             z = cos(x')*cos(x);
             
-            
-            
             clf(); f=gcf();
-            
             xset("fpf"," ")
-            
-            
             
             f.color_map=jetcolormap(7);
             
-            
-            
             contour2d(x,x,z,-0.75:0.25:0.75,frameflag=3,rect=[0,0,5*%pi,4*%pi])
             
-            
-            
             legends(string(-0.75:0.25:0.75),1:7,"lr");
-            
             xtitle("Some level curves of the function cos(x)cos(y)")
-            
         </scilab:image>
         
     </refsection>
