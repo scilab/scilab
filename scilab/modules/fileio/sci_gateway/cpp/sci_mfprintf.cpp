@@ -35,6 +35,9 @@ extern "C"
 #ifdef _MSC_VER
 static BOOL forceSTDERRredirect = TRUE;
 #endif
+
+using namespace types;
+using namespace ast;
 /*--------------------------------------------------------------------------*/
 
 Function::ReturnValue sci_mfprintf(types::typed_list &in, int _iRetCount, types::typed_list &out)

@@ -15,23 +15,28 @@
 extern "C" {
 #include "MALLOC.h"
 #include "getfunctionsname.h"
+#include "charEncoding.h"
 }
 /*----------------------------------------------------------------------------------*/
 char **getFunctionsName(int *sizearray)
 {
     std::list<std::wstring>* plMacrosList = symbol::Context::getInstance()->getFunctionsName();
-    std::list<std::wstring>::iterator it;
     *sizearray = (int)plMacrosList->size();
-    char** functions = (char**)MALLOC(*sizearray * sizeof(char*));
-
-    plMacrosList->sort();
-
-    int i = 0;
-    for (it = plMacrosList->begin(); it != plMacrosList->end(); ++it, i++)
+    char** functions = NULL;
+    if (*sizearray != 0)
     {
-        functions[i] = wide_string_to_UTF8((*it).c_str());
+        functions = (char**)MALLOC(*sizearray * sizeof(char*));
+
+        plMacrosList->sort();
+
+        std::list<std::wstring>::iterator it = plMacrosList->begin();
+        for (int i = 0; it != plMacrosList->end(); ++it, i++)
+        {
+            functions[i] = wide_string_to_UTF8((*it).c_str());
+        }
+
+        delete plMacrosList;
     }
 
-    delete plMacrosList;
     return functions;
 }

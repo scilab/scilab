@@ -23,15 +23,15 @@ class ExpHistory
 {
 public :
     ExpHistory();
-    ExpHistory(ExpHistory*, const ast::SimpleVar*);
+    ExpHistory(ExpHistory*, ast::SimpleVar*);
     ExpHistory(ExpHistory*, types::typed_list*);
-    ExpHistory(ExpHistory*, const ast::SimpleVar*, types::typed_list*, int, bool, types::InternalType*);
+    ExpHistory(ExpHistory*, ast::SimpleVar*, types::typed_list*, int, bool, types::InternalType*);
 
     ~ExpHistory();
 
     // expression "a"
-    void                    setExp(const ast::SimpleVar*);
-    const ast::SimpleVar*   getExp();
+    void                    setExp(ast::SimpleVar*);
+    ast::SimpleVar*         getExp();
     std::wstring            getExpAsString();
 
     // arguments x of a(x)
@@ -73,7 +73,7 @@ private :
     int*                    m_piArgsDimsArray;
     int                     m_iArgsDims;
 
-    const ast::SimpleVar*   m_pExp;
+    ast::SimpleVar*         m_pExp;
     ExpHistory*             m_pParent;
     types::InternalType*    m_pITCurrent;
 

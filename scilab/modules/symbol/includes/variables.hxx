@@ -1,88 +1,399 @@
 /*
-*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-*  Copyright (C) 2013 - Scilab Enterprises - Antoine ELIAS
-*
-*  This file must be used under the terms of the CeCILL.
-*  This source file is licensed as described in the file COPYING, which
-*  you should have received as part of this distribution.  The terms
-*  are also available at
-*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-*
-*/
+ *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ *  Copyright (C) 2007-2008 - INRIA - Bruno JOFRET
+ *
+ *  This file must be used under the terms of the CeCILL.
+ *  This source file is licensed as described in the file COPYING, which
+ *  you should have received as part of this distribution.  The terms
+ *  are also available at
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
 
 #ifndef __VARIABLES_HXX__
 #define __VARIABLES_HXX__
 
-#include <map>
-#include <list>
-#include "types.hxx"
+#include <string>
+#include <stack>
 #include "symbol.hxx"
-#include "function.hxx"
+#include "internal.hxx"
+#include "double.hxx"
+#include "export_symbol.h"
 
 namespace symbol
 {
-struct VarBox
+struct EXTERN_SYMBOL ScopedVariable
 {
-    VarBox(int _iLevel, types::InternalType* _pIT, bool _bGlobal = false, bool _bGlobalVisible = false);
+    ScopedVariable(int _iLevel, types::InternalType* _pIT)
+        : m_iLevel(_iLevel), m_pIT(_pIT), m_globalVisible(false) {}
 
     int m_iLevel;
+    bool m_globalVisible;
     types::InternalType* m_pIT;
-    bool m_bGlobal;
-    bool m_bGlobalVisible;
 };
 
-class Variables
+struct EXTERN_SYMBOL Variable
 {
+    Variable(const Symbol& _name) : name(_name), m_Global(false), m_GlobalValue(NULL) {};
+
+    void put(types::InternalType* _pIT, int _iLevel)
+    {
+        if (isGlobal() && isGlobalVisible(_iLevel))
+        {
+            setGlobalValue(_pIT);
+            return;
+        }
+
+        if (empty() || top()->m_iLevel < _iLevel)
+        {
+            //create a new level
+            stack.push(new ScopedVariable(_iLevel, _pIT));
+            _pIT->IncreaseRef();
+        }
+        else
+        {
+            //update current level
+            types::InternalType* pIT = top()->m_pIT;
+            if (pIT != _pIT)
+            {
+                pIT->DecreaseRef();
+                if (pIT->isDeletable())
+                {
+                    delete pIT;
+                }
+
+                top()->m_pIT = _pIT;
+                _pIT->IncreaseRef();
+            }
+        }
+    }
+
+    types::InternalType* get() const
+    {
+        if (empty())
+        {
+            return NULL;
+        }
+
+        if (m_Global && top()->m_globalVisible)
+        {
+            return m_GlobalValue;
+        }
+        else
+        {
+            return top()->m_pIT;
+        }
+    }
+
+    bool empty() const
+    {
+        return stack.empty();
+    }
+
+    ScopedVariable* top() const
+    {
+        return stack.top();
+    }
+
+    void pop()
+    {
+        stack.pop();
+    }
+
+    Symbol name_get() const
+    {
+        return name;
+    }
+
+    //globals
+
+    void setGlobal(bool _bGlobal)
+    {
+        m_Global = _bGlobal;
+    }
+
+    bool isGlobal()
+    {
+        return m_Global;
+    }
+
+    bool isGlobalVisible(int _iLevel)
+    {
+        if (empty() == false)
+        {
+            if (top()->m_iLevel == _iLevel)
+            {
+                return top()->m_globalVisible;
+            }
+        }
+
+        return false;
+    }
+
+    void setGlobalVisible(int _iLevel, bool _bVisible)
+    {
+        if (empty() || top()->m_iLevel != _iLevel)
+        {
+            stack.push(new ScopedVariable(_iLevel, types::Double::Empty()));
+        }
+
+
+        top()->m_globalVisible = _bVisible;
+    }
+
+    void setGlobalValue(types::InternalType* _pIT)
+    {
+        if (m_GlobalValue != _pIT)
+        {
+            if (m_GlobalValue)
+            {
+                m_GlobalValue->DecreaseRef();
+                if (m_GlobalValue->isDeletable())
+                {
+                    delete m_GlobalValue;
+                }
+            }
+
+            m_GlobalValue = _pIT;
+            if (_pIT != NULL)
+            {
+                _pIT->IncreaseRef();
+            }
+        }
+    }
+
+    types::InternalType* getGlobalValue()
+    {
+        return m_GlobalValue;
+    }
+
 private :
-    //current scope level
-    int m_iLevel;
+    Symbol name;
+    types::InternalType* m_GlobalValue;
+    bool m_Global;
+    typedef std::stack<ScopedVariable*> StackVar;
+    StackVar stack;
+};
 
-    typedef std::list<VarBox* > VarBoxList;
-    typedef std::map<Symbol, VarBoxList*> VarMap;
-    typedef std::map<Symbol, types::InternalType*> GlobalMap;
-    VarMap m_vars;
-    GlobalMap m_globals;
+struct Variables
+{
+    Variables() {};
 
-    void removeGlobal(GlobalMap::iterator& _it);
-public :
-    Variables() : m_iLevel(-1) {}
-
-    virtual ~Variables() {}
-
-    void put(const Symbol& _key, types::InternalType& _pIT);
-    void put(const Symbol& _key, types::InternalType& _iT, int _iLevel);
-    void putInPreviousScope(const Symbol& _key, types::InternalType& _iT);
-
-    types::InternalType* get(const Symbol& _key) const;
-    types::InternalType* getCurrentLevel(const Symbol& _key) const;
-    types::InternalType* getAllButCurrentLevel(const Symbol& _key) const;
-    types::InternalType* getInSpecificLevel(const Symbol& _key, int _iLevel) const;
-
-    std::list<symbol::Symbol>* getFunctionList(const std::wstring& _stModuleName, bool _bFromEnd) const;
-    std::list<std::wstring>* getVarsName();
-    std::list<std::wstring>* getMacrosName();
-    std::list<std::wstring>* getFunctionsName();
-
-    /*globals*/
-    bool isGlobalVisible(const symbol::Symbol& _key) const;
-    void setGlobalVisible(const symbol::Symbol& _key, bool bVisible);
-    void removeGlobal(const symbol::Symbol& _key);
-    void removeGlobalAll();
-    void createEmptyGlobalValue(const symbol::Symbol& _key);
-    bool isGlobalExists(const symbol::Symbol& _key) const;
-    types::InternalType* getGlobalValue(const symbol::Symbol& _key) const;
-    void setGlobalValue(const symbol::Symbol& _key, types::InternalType& _value);
-
-    bool remove(const Symbol& _key);
-
-    void IncreaseLevel()
+    Variable* getOrCreate(const Symbol& _key)
     {
-        m_iLevel++;
+        std::wstring toto = _key.name_get();
+        MapVars::const_iterator it = vars.find(_key);
+        if (it == vars.end())
+        {
+            //create an empty StackedValues
+            Variable* var = new Variable(_key);
+            vars[_key] = var;
+            return var;
+        }
+
+        return it->second;
     }
-    void DecreaseLevel()
+
+    void put(const Symbol& _key, types::InternalType* _pIT, int _iLevel)
     {
-        m_iLevel--;
+        Variable* var = getOrCreate(_key);
+        var->put(_pIT, _iLevel);
     }
+
+    types::InternalType* get(const Symbol& _key, int _iLevel)
+    {
+        MapVars::const_iterator it = vars.find(_key);
+        if (it != vars.end() && it->second->empty() == false)
+        {
+            if (_iLevel == -1 || it->second->top()->m_iLevel == _iLevel)
+            {
+                return it->second->get();
+            }
+        }
+
+        return NULL;
+    }
+
+    types::InternalType* get(Variable* _var, int _iLevel)
+    {
+        if (_var != NULL && _var->empty() == false)
+        {
+            if (_iLevel == -1 || _var->top()->m_iLevel == _iLevel)
+            {
+                return _var->get();
+            }
+        }
+
+        return NULL;
+    }
+
+    types::InternalType* getAllButCurrentLevel(const Symbol& _key, int _iLevel)
+    {
+        MapVars::const_iterator it = vars.find(_key);
+        if (it != vars.end() && it->second->empty() == false)
+        {
+            if (it->second->top()->m_iLevel < _iLevel)
+            {
+                return it->second->get();
+            }
+            else
+            {
+                ScopedVariable* pSave = it->second->top();
+                it->second->pop();
+                types::InternalType* pIT = getAllButCurrentLevel(_key, _iLevel);
+                it->second->put(pSave->m_pIT, pSave->m_iLevel);
+                return pIT;
+            }
+        }
+
+        return NULL;
+    }
+
+    bool remove(Variable* _var, int _iLevel)
+    {
+        if (_var->empty() == false)
+        {
+            if (_var->top()->m_iLevel == _iLevel)
+            {
+                types::InternalType* pIT = _var->top()->m_pIT;
+                pIT->DecreaseRef();
+                if (pIT->isDeletable())
+                {
+                    delete pIT;
+                }
+
+                _var->pop();
+            }
+        }
+
+        return true;
+    }
+
+    bool remove(const Symbol& _key, int _iLevel)
+    {
+        MapVars::iterator it = vars.find(_key);
+        if (it != vars.end())
+        {
+            Variable* pVar = it->second;
+            return remove(pVar, _iLevel);
+        }
+
+        return false;
+    }
+
+    std::list<std::wstring>* getMacrosName()
+    {
+        std::list<std::wstring>* plOut = new std::list<std::wstring>();
+        MapVars::const_iterator it = vars.begin();
+        for (; it != vars.end(); ++it)
+        {
+            if (it->second->empty() == false)
+            {
+                types::InternalType* pIT = it->second->top()->m_pIT;
+                if (pIT && (pIT->isMacro() || pIT->isMacroFile()))
+                {
+                    plOut->push_back(it->first.name_get().c_str());
+                }
+            }
+        }
+
+        return plOut;
+    }
+
+    std::list<Symbol>* getFunctionList(std::wstring _stModuleName, int _iLevel)
+    {
+        std::list<Symbol>* symb = new std::list<Symbol>();
+
+        MapVars::iterator it = vars.begin();
+        for (; it != vars.end() ; ++it)
+        {
+            if (it->second->empty())
+            {
+                continue;
+            }
+
+            if ((it->second->top()->m_iLevel == _iLevel || _iLevel == 1) && it->second->top()->m_pIT->isCallable())
+            {
+                types::Callable* pCall = it->second->top()->m_pIT->getAs<types::Callable>();
+                if (_stModuleName == L"" || _stModuleName == pCall->getModule())
+                {
+                    symb->push_back(it->first);
+                }
+            }
+        }
+
+        return symb;
+    }
+
+    bool putInPreviousScope(Variable* _var, types::InternalType* _pIT, int _iLevel)
+    {
+        if (_var->empty())
+        {
+            _var->put(_pIT, _iLevel);
+        }
+        else if (_var->top()->m_iLevel > _iLevel)
+        {
+            ScopedVariable* pVar = _var->top();
+            _var->pop();
+            putInPreviousScope(_var, _pIT, _iLevel);
+            _var->put(pVar->m_pIT, pVar->m_iLevel);
+        }
+        else
+        {
+            _var->put(_pIT, _iLevel);
+        }
+
+        return true;
+    }
+
+    //globals
+
+    void setGlobal(const Symbol& _key)
+    {
+        getOrCreate(_key)->setGlobal(true);
+    }
+
+    void setGlobalVisible(const Symbol& _key, bool _bVisible, int _iLevel)
+    {
+        Variable* pVar = getOrCreate(_key);
+        pVar->setGlobalVisible(_iLevel, _bVisible);
+        if (_bVisible)
+        {
+            pVar->setGlobal(true);
+        }
+    }
+
+    bool isGlobalVisible(const Symbol& _key, int _iLevel)
+    {
+        return getOrCreate(_key)->isGlobalVisible(_iLevel);
+    }
+
+    bool isGlobal(const Symbol& _key, int _iLevel)
+    {
+        return getOrCreate(_key)->isGlobal();
+    }
+
+    types::InternalType* getGlobalValue(const Symbol& _key)
+    {
+        return getOrCreate(_key)->getGlobalValue();
+    }
+
+    void removeGlobal(const Symbol& _key, int _iLevel)
+    {
+        Variable* pVar = getOrCreate(_key);
+        if (pVar->isGlobal())
+        {
+            pVar->setGlobal(false);
+            pVar->setGlobalValue(NULL);
+        }
+
+        remove(pVar, _iLevel);
+    }
+
+private:
+    typedef std::map<Symbol, Variable*> MapVars;
+    MapVars vars;
 };
 }
-#endif /* !__VARIABLES_HXX__ */
+
+#endif // !__VARIABLES_HXX__

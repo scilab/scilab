@@ -9,11 +9,12 @@
 *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
-
 #include "context.hxx"
+#include "internal.hxx"
 #include "function.hxx"
 #include "macro.hxx"
 #include "macrofile.hxx"
+#include "variables.hxx"
 
 namespace symbol
 {
@@ -21,8 +22,9 @@ Context* Context::me;
 
 Context::Context()
 {
-    m_scopes = new Scopes();
-    m_scopes->scope_begin();
+    m_iLevel = 0;
+    varStack.push(new VarList());
+    globals = new std::list<Symbol>();
 }
 
 Context* Context::getInstance(void)
@@ -36,138 +38,279 @@ Context* Context::getInstance(void)
 
 void Context::scope_begin()
 {
-    m_scopes->scope_begin();
+    m_iLevel++;
+    varStack.push(new VarList());
 }
 
 void Context::scope_end()
 {
-    m_scopes->scope_end();
+    //clear varList of current scope
+    if (varStack.empty() == false)
+    {
+        clearCurrentScope(true);
+    }
+
+    m_iLevel--;
 }
 
-types::InternalType* Context::get(const symbol::Symbol& _key) const
+bool Context::clearCurrentScope(bool _bClose)
 {
-    return m_scopes->get(_key);
+    if (varStack.empty())
+    {
+        return true;
+    }
+
+    VarList* varList = varStack.top();
+    std::map<Symbol, Variable*>::iterator it = varList->begin();
+    for (; it != varList->end() ; ++it)
+    {
+        if (it->second->empty() == false && it->second->top()->m_iLevel == m_iLevel)
+        {
+            types::InternalType* pIT = it->second->top()->m_pIT;
+            pIT->DecreaseRef();
+            if (pIT->isDeletable())
+            {
+                delete pIT;
+            }
+
+            it->second->pop();
+        }
+    }
+
+    varList->clear();
+
+    if (_bClose)
+    {
+        delete varList;
+        varStack.pop();
+    }
+
+    return true;
 }
 
-types::InternalType* Context::getCurrentLevel(const symbol::Symbol& _key) const
+Variable* Context::getOrCreate(const Symbol& _key)
 {
-    return m_scopes->getCurrentLevel(_key);
+    return variables.getOrCreate(_key);
 }
 
-types::InternalType* Context::getAllButCurrentLevel(const symbol::Symbol& _key) const
+types::InternalType* Context::get(const Symbol& _key)
 {
-    return m_scopes->getAllButCurrentLevel(_key);
+    return get(_key, -1);
 }
 
-types::InternalType* Context::getFunction(const symbol::Symbol& _key) const
+types::InternalType* Context::get(const Variable* _var)
 {
-    return m_scopes->get(_key);
+    types::InternalType* pIT = _var->get();
+
+    if (pIT == NULL)
+    {
+        //look in libraries
+        pIT = libraries.get(_var->name_get(), -1);
+        if (pIT)
+        {
+            put((Variable*)_var, pIT);
+        }
+    }
+
+    return pIT;
 }
 
-std::list<symbol::Symbol>* Context::getFunctionList(const std::wstring& _stModuleName, bool _bFromEnd)
+types::InternalType* Context::get(const Symbol& _key, int _iLevel)
 {
-    return m_scopes->getFunctionList(_stModuleName, _bFromEnd);
+    types::InternalType* pIT = NULL;
+    if (_iLevel == m_iLevel || _iLevel == -1)
+    {
+        //look for in current VarList
+        VarList::iterator it = varStack.top()->find(_key);
+        if (it != varStack.top()->end())
+        {
+            if (it->second->empty() == false)
+            {
+                return it->second->top()->m_pIT;
+            }
+        }
+    }
+
+    if (pIT == NULL)
+    {
+        pIT = variables.get(_key, _iLevel);
+        if (pIT == NULL)
+        {
+            //find in libraries
+            pIT = libraries.get(_key, _iLevel);
+            if (pIT)
+            {
+                //add symbol to current scope
+                put(_key, pIT);
+            }
+        }
+    }
+
+    return pIT;
+}
+
+types::InternalType* Context::getCurrentLevel(const Symbol& _key)
+{
+    return variables.get(_key, m_iLevel);
+}
+
+types::InternalType* Context::getAllButCurrentLevel(const Symbol& _key)
+{
+    return variables.getAllButCurrentLevel(_key, m_iLevel);
+}
+
+types::InternalType* Context::getFunction(const Symbol& _key)
+{
+    return get(_key);
+}
+
+std::list<Symbol>* Context::getFunctionList(std::wstring _stModuleName)
+{
+    return variables.getFunctionList(_stModuleName, m_iLevel);
 }
 
 std::list<std::wstring>* Context::getVarsName()
 {
-    return m_scopes->getVarsName();
+    return new std::list<std::wstring>();
+    //return scopes.getVarsName();
 }
 
 std::list<std::wstring>* Context::getMacrosName()
 {
-    return m_scopes->getMacrosName();
+    std::list<std::wstring>* vars = variables.getMacrosName();
+    std::list<std::wstring>* libs = libraries.getMacrosName();
+    vars->insert(vars->end(), libs->begin(), libs->end());
+    delete libs;
+    return vars;
 }
 
 std::list<std::wstring>* Context::getFunctionsName()
 {
-    return m_scopes->getFunctionsName();
+    return new std::list<std::wstring>();
+    //return scopes.getFunctionsName();
 }
 
-bool Context::put(const symbol::Symbol& _key, types::InternalType &type)
+void Context::put(Variable* _var, types::InternalType* _pIT)
 {
-    m_scopes->put(_key, type);
-    return true;
+    _var->put(_pIT, m_iLevel);
+    if (varStack.empty() == false)
+    {
+        (*varStack.top())[_var->name_get()] = _var;
+    }
 }
 
-bool Context::remove(const symbol::Symbol& _key)
+void Context::put(const Symbol& _key, types::InternalType* _pIT)
 {
-    m_scopes->remove(_key);
-    return true;
+    Variable* var = variables.getOrCreate(_key);
+    put(var, _pIT);
+    if (_pIT->isLibrary())
+    {
+        Library* lib = libraries.getOrCreate(_key);
+        lib->put((types::Library*)_pIT, m_iLevel);
+    }
 }
 
-bool Context::putInPreviousScope(const symbol::Symbol& _key, types::InternalType &type)
+bool Context::remove(const Symbol& _key)
 {
-    m_scopes->putInPreviousScope(_key, type);
+    if (variables.remove(_key, m_iLevel))
+    {
+        varStack.top()->erase(_key);
+        libraries.remove(_key, m_iLevel);
+        return true;
+    }
+
+    return false;
+}
+
+bool Context::removeAll()
+{
+    return clearCurrentScope(false);
+}
+
+bool Context::putInPreviousScope(Variable* _var, types::InternalType* _pIT)
+{
+    //add variable in previous scope
+    variables.putInPreviousScope(_var, _pIT, m_iLevel - 1);
+
+    //add variable in stack of using variables
+    if (varStack.empty() == false)
+    {
+        VarList *list =  varStack.top();
+        varStack.pop();
+        if (varStack.empty() == false)
+        {
+            (*varStack.top())[_var->name_get()] = _var;
+            varStack.push(list);
+        }
+    }
     return true;
 }
 
 bool Context::addFunction(types::Function *_info)
 {
-    m_scopes->addFunction(symbol::Symbol(_info->getName()), *_info);
+    put(Symbol(_info->getName()), _info);
     return true;
 }
 
-bool Context::AddMacro(types::Macro *_info)
+bool Context::addMacro(types::Macro *_info)
 {
-    m_scopes->put(symbol::Symbol(_info->getName()), *_info);
+    put(Symbol(_info->getName()), _info);
     return true;
 }
 
-bool Context::AddMacroFile(types::MacroFile *_info)
+bool Context::addMacroFile(types::MacroFile *_info)
 {
-    m_scopes->put(symbol::Symbol(_info->getName()), *_info);
+    put(Symbol(_info->getName()), _info);
     return true;
 }
 
-bool Context::isGlobalVisible(const symbol::Symbol& _key) const
+bool Context::isGlobalVisible(const Symbol& _key)
 {
-    return m_scopes->isGlobalVisible(_key);
-}
-
-/*return global variable, search in global scope ( highest )*/
-types::InternalType* Context::getGlobalValue(const symbol::Symbol& _key) const
-{
-    m_scopes->getGlobalValue(_key);
-    return NULL;
+    return variables.isGlobalVisible(_key, m_iLevel);
 }
 
 /*return global variable existance status*/
-bool Context::isGlobalExists(const symbol::Symbol& _key) const
+bool Context::isGlobal(const Symbol& _key)
 {
-    return m_scopes->isGlobalExists(_key);
+    return variables.isGlobal(_key, m_iLevel);
 }
 
-void Context::setGlobalValue(const symbol::Symbol& _key, types::InternalType &value)
+types::InternalType* Context::getGlobalValue(const Symbol& _key)
 {
-    m_scopes->setGlobalValue(_key, value);
+    return variables.getGlobalValue(_key);
 }
 
-void Context::createEmptyGlobalValue(const symbol::Symbol& _key)
+void Context::setGlobalVisible(const Symbol& _key, bool bVisible)
 {
-    m_scopes->createEmptyGlobalValue(_key);
+    variables.setGlobalVisible(_key, bVisible, m_iLevel);
 }
 
-void Context::setGlobalVisible(const symbol::Symbol& _key, bool bVisible)
+void Context::setGlobal(const Symbol& _key)
 {
-    m_scopes->setGlobalVisible(_key, bVisible);
+    variables.setGlobal(_key);
+    globals->push_back(_key);
 }
 
-void Context::removeGlobal(const symbol::Symbol& _key)
+void Context::removeGlobal(const Symbol& _key)
 {
-    m_scopes->removeGlobal(_key);
+    variables.removeGlobal(_key, m_iLevel);
 }
 
 void Context::removeGlobalAll()
 {
-    m_scopes->removeGlobalAll();
+    std::list<Symbol>::iterator it = globals->begin();
+    for (; it != globals->end(); ++it)
+    {
+        removeGlobal(*it);
+    }
+
+    globals->clear();
 }
 
 void Context::print(std::wostream& ostr) const
 {
     ostr << L"  Environment Variables:" << std::endl;
     ostr << L"==========================" << std::endl;
-    ostr << *m_scopes;
 }
 
 }

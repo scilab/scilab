@@ -35,21 +35,22 @@ struct VARIABLEALIAS
 {
     wchar_t *Alias;
     wchar_t *VariableName;
+    symbol::Variable* var;
 };
 /*--------------------------------------------------------------------------*/
 #define NB_ALIAS 7
 static struct VARIABLEALIAS VARIABLES_words[NB_ALIAS] =
 {
-    {L"SCIHOME", L"SCIHOME"},
-    {L"WSCI", L"WSCI"},
-    {L"SCI", L"SCI"},
-    {L"~", L"home"},
-    {L"HOME", L"home"},
-    {L"home", L"home"},
-    {L"TMPDIR", L"TMPDIR"}
+    {L"SCIHOME", L"SCIHOME", NULL},
+    {L"WSCI", L"WSCI", NULL},
+    {L"SCI", L"SCI", NULL},
+    {L"~", L"home", NULL},
+    {L"HOME", L"home", NULL},
+    {L"home", L"home", NULL},
+    {L"TMPDIR", L"TMPDIR", NULL}
 };
 /*--------------------------------------------------------------------------*/
-static wchar_t *getVariableValueDefinedInScilab(wchar_t *wcVarName);
+static wchar_t *getVariableValueDefinedInScilab(VARIABLEALIAS* var);
 static wchar_t *convertFileSeparators(wchar_t *wcStr);
 /*--------------------------------------------------------------------------*/
 wchar_t *expandPathVariableW(wchar_t *wcstr)
@@ -67,7 +68,7 @@ wchar_t *expandPathVariableW(wchar_t *wcstr)
             /* input is ALIAS without subdirectory */
             if (wcscmp(VARIABLES_words[i].Alias, wcstr) == 0)
             {
-                wchar_t *wcexpanded = getVariableValueDefinedInScilab(VARIABLES_words[i].VariableName);
+                wchar_t *wcexpanded = getVariableValueDefinedInScilab(&VARIABLES_words[i]);
                 if (wcexpanded)
                 {
                     return convertFileSeparators(wcexpanded);
@@ -88,7 +89,7 @@ wchar_t *expandPathVariableW(wchar_t *wcstr)
                     {
                         if ( (wcstr[lenAlias] == L'/') || (wcstr[lenAlias] == L'\\') )
                         {
-                            wchar_t * newBegin = getVariableValueDefinedInScilab(VARIABLES_words[i].VariableName);
+                            wchar_t * newBegin = getVariableValueDefinedInScilab(&VARIABLES_words[i]);
                             if (newBegin)
                             {
                                 int lengthnewBegin = (int)wcslen(newBegin);
@@ -145,12 +146,17 @@ char *expandPathVariable(char* str)
     return expanded;
 }
 /*--------------------------------------------------------------------------*/
-wchar_t *getVariableValueDefinedInScilab(wchar_t *wcVarName)
+wchar_t *getVariableValueDefinedInScilab(VARIABLEALIAS* _var)
 {
-    if (wcVarName)
+    if (_var)
     {
-        types::InternalType *pIT = symbol::Context::getInstance()->get(symbol::Symbol(wcVarName));
-        if (pIT->isString() == false)
+        if (_var->var == NULL)
+        {
+            _var->var = symbol::Context::getInstance()->getOrCreate(symbol::Symbol(_var->VariableName));
+        }
+
+        types::InternalType *pIT = _var->var->get();
+        if (pIT == NULL || pIT->isString() == false)
         {
             return NULL;
         }

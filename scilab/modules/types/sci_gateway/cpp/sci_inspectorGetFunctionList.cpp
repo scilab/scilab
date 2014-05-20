@@ -13,6 +13,7 @@
 #include "types_gw.hxx"
 #include "function.hxx"
 #include "string.hxx"
+#include "macrofile.hxx"
 #include "inspector.hxx"
 #include "context.hxx"
 
@@ -41,7 +42,7 @@ Function::ReturnValue sci_inspectorGetFunctionList(typed_list &in, int _iRetCoun
     std::list<symbol::Symbol>::iterator it = FuncName->begin();
     for (int i = 0; it != FuncName->end() ; ++it, i++)
     {
-        Callable* pCall = pC->get(*it)->getAs<Callable>();
+        types::Callable* pCall = pC->get(*it)->getAs<types::Callable>();
         //Function name
         pOut->set(i, 0, pCall->getName().c_str());
         pOut->set(i, 1, pCall->getModule().c_str());
@@ -49,7 +50,7 @@ Function::ReturnValue sci_inspectorGetFunctionList(typed_list &in, int _iRetCoun
 
         if (pCall->isMacroFile())
         {
-            pOut->set(i, 3, pCall->getAs<MacroFile>()->getMacro() == NULL ? L"false" : L"true");
+            pOut->set(i, 3, pCall->getAs<types::MacroFile>()->getMacro() == NULL ? L"false" : L"true");
         }
         else
         {

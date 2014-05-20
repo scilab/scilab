@@ -17,7 +17,6 @@
 #include "list.hxx"
 #include "context.hxx"
 #include "symbol.hxx"
-#include "localization.h"
 #include "scilabWrite.hxx"
 #include "scilabexception.hxx"
 #include "configvariable.hxx"
@@ -25,6 +24,7 @@
 
 extern "C"
 {
+#include "localization.h"
 #include "Scierror.h"
 #include "sciprint.h"
 #include "MALLOC.h"
@@ -33,9 +33,13 @@ extern "C"
 
 namespace types
 {
-Macro::Macro(const std::wstring& _stName, std::list<symbol::Symbol> &_inputArgs, std::list<symbol::Symbol> &_outputArgs, ast::SeqExp &_body, const wstring& _stModule):
-    Callable(), m_inputArgs(&_inputArgs), m_outputArgs(&_outputArgs), m_body(&_body),
-    m_ArgInSymb(symbol::Symbol(L"nargin")), m_ArgOutSymb(symbol::Symbol(L"nargout"))
+Macro::Macro(const std::wstring& _stName, std::list<symbol::Variable*>& _inputArgs, std::list<symbol::Variable*>& _outputArgs, ast::SeqExp &_body, const std::wstring& _stModule):
+    Callable(),
+    m_inputArgs(&_inputArgs), m_outputArgs(&_outputArgs), m_body(&_body),
+    m_Nargin(symbol::Context::getInstance()->getOrCreate(symbol::Symbol(L"nargin"))),
+    m_Nargout(symbol::Context::getInstance()->getOrCreate(symbol::Symbol(L"nargout"))),
+    m_Varargin(symbol::Context::getInstance()->getOrCreate(symbol::Symbol(L"varargin"))),
+    m_Varargout(symbol::Context::getInstance()->getOrCreate(symbol::Symbol(L"varargout")))
 {
     setName(_stName);
     setModule(_stModule);
@@ -44,6 +48,7 @@ Macro::Macro(const std::wstring& _stName, std::list<symbol::Symbol> &_inputArgs,
     m_pDblArgIn->IncreaseRef(); //never delete
     m_pDblArgOut = new Double(1);
     m_pDblArgOut->IncreaseRef(); //never delete
+
 }
 
 Macro::~Macro()
@@ -93,14 +98,14 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
     optional_list::const_iterator it;
     for (it = opt.begin() ; it != opt.end() ; it++)
     {
-        pContext->put(symbol::Symbol(it->first), *it->second);
+        pContext->put(symbol::Symbol(it->first), it->second);
     }
     //check excepted and input/output parameters numbers
     // Scilab Macro can be called with less than prototyped arguments,
     // but not more execpts with varargin
 
     // varargin management
-    if (m_inputArgs->size() > 0 && m_inputArgs->back().name_get() == L"varargin")
+    if (m_inputArgs->size() > 0 && m_inputArgs->back()->name_get().name_get() == L"varargin")
     {
         int iVarPos = static_cast<int>(in.size());
         if (iVarPos > static_cast<int>(m_inputArgs->size()) - 1)
@@ -109,14 +114,14 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
         }
 
         //add all standard variable in function context but not varargin
-        std::list<symbol::Symbol>::const_iterator itName = m_inputArgs->begin();
+        std::list<symbol::Variable*>::iterator itName = m_inputArgs->begin();
         typed_list::const_iterator itValue = in.begin();
         while (iVarPos > 0)
         {
-            pContext->put((*itName), **itValue);
+            pContext->put(*itName, *itValue);
             iVarPos--;
-            itName++;
-            itValue++;
+            ++itName;
+            ++itValue;
         }
 
         //create varargin only if previous variable are assigned
@@ -129,7 +134,7 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
                 pL->append(*itValue);
                 itValue++;
             }
-            pContext->put(symbol::Symbol(L"varargin"), *pL);
+            pContext->put(m_Varargin, pL);
         }
     }
     else if (in.size() > m_inputArgs->size())
@@ -140,9 +145,9 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
         {
             ostr << _W("Arguments are:") << std::endl << std::endl;
             ostr << " ";
-            for (std::list<symbol::Symbol>::iterator it =  m_inputArgs->begin() ; it != m_inputArgs->end() ; ++it)
+            for (std::list<symbol::Variable*>::iterator it =  m_inputArgs->begin() ; it != m_inputArgs->end() ; ++it)
             {
-                ostr << (*it).name_get() << L"    ";
+                ostr << (*it)->name_get() << L"    ";
             }
             ostr << std::endl;
         }
@@ -157,7 +162,7 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
     else
     {
         //assign value to variable in the new context
-        std::list<symbol::Symbol>::const_iterator i;
+        std::list<symbol::Variable*>::iterator i;
         typed_list::const_iterator j;
 
         for (i = m_inputArgs->begin(), j = in.begin(); j != in.end (); ++j, ++i)
@@ -165,7 +170,7 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
             if (*j)
             {
                 //prevent assignation of NULL value
-                pContext->put((*i), **j);
+                pContext->put(*i, *j);
             }
         }
     }
@@ -176,11 +181,11 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
     // varargout is a list
     // varargout can containt more items than caller need
     // varargout must containt at leat caller needs
-    if (m_outputArgs->size() == 1 && m_outputArgs->back().name_get() == L"varargout")
+    if (m_outputArgs->size() == 1 && m_outputArgs->back()->name_get().name_get() == L"varargout")
     {
         bVarargout = true;
         List* pL = new List();
-        pContext->put(symbol::Symbol(L"varargout"), *pL);
+        pContext->put(m_Varargout, pL);
     }
 
     //common part with or without varargin/varargout
@@ -188,8 +193,8 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
     // Declare nargin & nargout in function context.
     m_pDblArgIn->set(0, static_cast<double>(in.size()));
     m_pDblArgOut->set(0, _iRetCount);
-    pContext->put(m_ArgInSymb, *m_pDblArgIn);
-    pContext->put(m_ArgOutSymb, *m_pDblArgOut);
+    pContext->put(m_Nargin, m_pDblArgIn);
+    pContext->put(m_Nargout, m_pDblArgOut);
 
     //save current prompt mode
     int oldVal = ConfigVariable::getPromptMode();
@@ -212,7 +217,7 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
         //varargout management
         if (bVarargout)
         {
-            InternalType* pOut = pContext->get(symbol::Symbol(L"varargout"));
+            InternalType* pOut = pContext->get(m_Varargout);
             if (pOut == NULL)
             {
                 Scierror(999, _("Invalid index.\n"));
@@ -241,7 +246,7 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
         else
         {
             //normal output management
-            std::list<symbol::Symbol>::const_iterator i;
+            std::list<symbol::Variable*>::iterator i;
             for (i = m_outputArgs->begin(); i != m_outputArgs->end() && _iRetCount; ++i, --_iRetCount)
             {
                 InternalType *pIT = pContext->get((*i));
@@ -252,7 +257,7 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
                 }
                 else
                 {
-                    char* pst = wide_string_to_UTF8((*i).name_get().c_str());
+                    char* pst = wide_string_to_UTF8((*i)->name_get().name_get().c_str());
                     Scierror(999, _("Undefined variable %s.\n"), pst);
                     FREE(pst);
                     return Callable::Error;
@@ -298,12 +303,12 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
     return RetVal;
 }
 
-std::list<symbol::Symbol>* Macro::inputs_get()
+std::list<symbol::Variable*>* Macro::inputs_get()
 {
     return m_inputArgs;
 }
 
-std::list<symbol::Symbol>* Macro::outputs_get()
+std::list<symbol::Variable*>* Macro::outputs_get()
 {
     return m_outputArgs;
 }
@@ -315,7 +320,7 @@ int Macro::getNbInputArgument(void)
 
 int Macro::getNbOutputArgument(void)
 {
-    if (m_outputArgs->size() == 1 && m_outputArgs->back().name_get() == L"varargout")
+    if (m_outputArgs->size() == 1 && m_outputArgs->back()->name_get().name_get() == L"varargout")
     {
         return -1;
     }

@@ -82,7 +82,7 @@ void C2F(mgetnc)(int* fd, void* res, int* n1, const char* type, int* ierr)
     int items   = *n1;
     int n       = *n1;
     FILE* fa; // used in MGET_GEN_NC => MGET_NC
-    File* pFile = FileManager::getFile(*fd);
+    types::File* pFile = FileManager::getFile(*fd);
 
     *ierr = 0;
 
@@ -244,7 +244,7 @@ void C2F(mget) (int *fd, double *res, int *n, const char *type, int *ierr)
         return;
     }
 
-    File* pFile = FileManager::getFile(*fd);
+    types::File* pFile = FileManager::getFile(*fd);
     if (pFile && pFile->getFiledesc())
     {
         mget2(pFile->getFiledesc(), pFile->getFileSwap(), res, *n, type, ierr);

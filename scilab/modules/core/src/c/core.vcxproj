@@ -384,6 +384,7 @@ cd ..
     <ClInclude Include="..\..\includes\scimem.h" />
     <ClInclude Include="..\..\includes\scirun.h" />
     <ClInclude Include="..\..\includes\scisparse.h" />
+    <ClInclude Include="..\..\includes\sci_tools.h" />
     <ClInclude Include="..\..\includes\sci_types.h" />
     <ClInclude Include="..\..\includes\setformat.h" />
     <ClInclude Include="..\..\includes\setieee.h" />

@@ -24,7 +24,7 @@ extern "C"
 wchar_t* mgetstr(int _iFileId, int _iSizeToRead)
 {
     wchar_t* pwstOut = NULL;
-    File* pF = FileManager::getFile(_iFileId);
+    types::File* pF = FileManager::getFile(_iFileId);
 
     if (pF != NULL)
     {

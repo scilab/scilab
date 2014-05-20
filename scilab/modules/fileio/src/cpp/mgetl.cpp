@@ -41,14 +41,14 @@ extern "C"
 /*--------------------------------------------------------------------------*/
 static wchar_t *removeEOL(wchar_t *_inString);
 static char *convertAnsiToUtf(char *_inString);
-static wchar_t* getLine(wchar_t* _pstLine, int _iLineSize, File* _pFile);
+static wchar_t* getLine(wchar_t* _pstLine, int _iLineSize, types::File* _pFile);
 /*--------------------------------------------------------------------------*/
 #define UTF_16BE_BOM 0xFEFF // 0xFEFF = to_wide_string(0xEFBBBF)
 /*--------------------------------------------------------------------------*/
 wchar_t **mgetl(int fd, int nbLinesIn, int *nbLinesOut, int *ierr)
 {
     wchar_t **strLines = NULL;
-    File* pFile     = NULL;
+    types::File* pFile = NULL;
     int iLineSizeMult = 1;
     *ierr = MGETL_ERROR;
     *nbLinesOut = 0;
@@ -246,7 +246,7 @@ wchar_t **mgetl(int fd, int nbLinesIn, int *nbLinesOut, int *ierr)
     return strLines;
 }
 /*--------------------------------------------------------------------------*/
-wchar_t* getLine(wchar_t* _pstLine, int _iLineSize, File* _pFile)
+wchar_t* getLine(wchar_t* _pstLine, int _iLineSize, types::File* _pFile)
 {
     if (_pFile->getFileModeAsInt() % 2 == 1)
     {

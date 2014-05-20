@@ -30,7 +30,6 @@ extern "C"
 }
 
 using namespace std;
-using namespace types;
 
 /********************************/
 /*   boolean matrix functions   */
@@ -62,7 +61,7 @@ SciErr getMatrixOfBoolean(void* _pvCtx, int* _piAddress, int* _piRows, int* _piC
 
     if (_piBool)
     {
-        *_piBool = ((InternalType*)_piAddress)->getAs<types::Bool>()->get();
+        *_piBool = ((types::InternalType*)_piAddress)->getAs<types::Bool>()->get();
     }
     return sciErr;
 }
@@ -77,11 +76,11 @@ SciErr allocMatrixOfBoolean(void* _pvCtx, int _iVar, int _iRows, int _iCols, int
         return sciErr;
     }
 
-    GatewayStruct* pStr = (GatewayStruct*)_pvCtx;
-    typed_list in = *pStr->m_pIn;
-    InternalType** out = pStr->m_pOut;
+    types::GatewayStruct* pStr = (types::GatewayStruct*)_pvCtx;
+    types::typed_list in = *pStr->m_pIn;
+    types::InternalType** out = pStr->m_pOut;
 
-    Bool *pBool = new Bool(_iRows, _iCols);
+    types::Bool *pBool = new types::Bool(_iRows, _iCols);
     if (pBool == NULL)
     {
         addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: No more memory to allocated variable"), "allocMatrixOfBoolean");

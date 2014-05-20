@@ -12,10 +12,7 @@
 
 SYMBOL_CXX_SOURCES = \
 src/cpp/symbol.cpp \
-src/cpp/context.cpp \
-src/cpp/scope.cpp \
-src/cpp/variables.cpp \
-src/cpp/libraries.cpp
+src/cpp/context.cpp
     
 
 pkglib_LTLIBRARIES 		= libscisymbol.la

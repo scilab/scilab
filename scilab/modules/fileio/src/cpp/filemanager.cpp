@@ -238,21 +238,21 @@ double* FileManager::getSwaps()
 
 void FileManager::initialize()
 {
-    File* pErr = new File();
+    types::File* pErr = new types::File();
     pErr->setFileMode(L"wb");
     pErr->setFileDesc(stderr);
     pErr->setFileSwap(0);
     pErr->setFileType(1);
     pErr->setFilename(L"stderr");
 
-    File* pIn = new File();
+    types::File* pIn = new types::File();
     pIn->setFileMode(L"rb");
     pIn->setFileDesc(stdin);
     pIn->setFileSwap(0);
     pIn->setFileType(1);
     pIn->setFilename(L"stdin");
 
-    File* pOut = new File();
+    types::File* pOut = new types::File();
     pOut->setFileMode(L"wb");
     pOut->setFileDesc(stdout);
     pOut->setFileSwap(0);

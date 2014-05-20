@@ -96,7 +96,6 @@
       <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)linpack_f.lib" 1&gt;NUL 2&gt;NUL
 
 cd $(IntDir) &gt;nul
@@ -108,7 +107,7 @@ cd .. &gt;nul
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>elementary_functions_f.lib;elementary_functions.lib;linpack_f.lib;core.lib;scilocalization.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>elementary_functions_f.lib;linpack_f.lib;core.lib;scilocalization.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>api_scilab_export.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -149,7 +148,6 @@ cd .. &gt;nul
       <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)linpack_f.lib" 1&gt;NUL 2&gt;NUL
 
 cd $(IntDir) &gt;nul
@@ -161,7 +159,7 @@ cd .. &gt;nul
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>elementary_functions_f.lib;elementary_functions.lib;linpack_f.lib;core.lib;scilocalization.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>elementary_functions_f.lib;linpack_f.lib;core.lib;scilocalization.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>api_scilab_export.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -206,7 +204,6 @@ cd .. &gt;nul
       <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)linpack_f.lib" 1&gt;NUL 2&gt;NUL
 
 cd $(IntDir) &gt;nul
@@ -218,7 +215,7 @@ cd .. &gt;nul
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>elementary_functions_f.lib;elementary_functions.lib;linpack_f.lib;core.lib;scilocalization.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>elementary_functions_f.lib;linpack_f.lib;core.lib;scilocalization.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>api_scilab_export.def</ModuleDefinitionFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
@@ -269,7 +266,6 @@ cd .. &gt;nul
       <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)linpack_f.lib" 1&gt;NUL 2&gt;NUL
 
 cd $(IntDir) &gt;nul
@@ -281,7 +277,7 @@ cd .. &gt;nul
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>elementary_functions_f.lib;elementary_functions.lib;linpack_f.lib;core.lib;scilocalization.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>elementary_functions_f.lib;linpack_f.lib;core.lib;scilocalization.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>api_scilab_export.def</ModuleDefinitionFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
@@ -379,7 +375,6 @@ cd .. &gt;nul
   <ItemGroup>
     <None Include="core_import.def" />
     <None Include="elementary_functions_f_Import.def" />
-    <None Include="elementary_functions_Import.def" />
     <None Include="linpack_f_Import.def" />
     <None Include="locales\api_scilab.pot" />
     <None Include="Localization_Import.def" />

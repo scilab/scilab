@@ -28,7 +28,7 @@ extern "C"
 mputlError mputl(int _iFileId, wchar_t **pstStrings, int _iSizeStrings, BOOL _CR)
 {
     int i = 0;
-    File* pF = NULL;
+    types::File* pF = NULL;
 
     if (pstStrings == NULL)
     {

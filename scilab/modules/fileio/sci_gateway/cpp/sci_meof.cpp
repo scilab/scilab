@@ -28,6 +28,9 @@ extern "C"
 #include "localization.h"
 #include "PATH_MAX.h"
 }
+
+using namespace types;
+
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_meof(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {

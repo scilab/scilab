@@ -17,6 +17,8 @@
 #include "functions_gw.hxx"
 #include "macrovarvisitor.hxx"
 #include "list.hxx"
+#include "macro.hxx"
+#include "macrofile.hxx"
 
 #include <iostream>
 #include <fstream>
@@ -33,8 +35,8 @@ using namespace ast;
 using namespace std;
 
 InternalType* createString(std::list<std::wstring>& lst);
-void addIn(MacrovarVisitor& pVisit, std::list<symbol::Symbol>* pSym);
-void addOut(MacrovarVisitor& pVisit, std::list<symbol::Symbol>* pSym);
+void addIn(MacrovarVisitor& pVisit, std::list<symbol::Variable*>* pSym);
+void addOut(MacrovarVisitor& pVisit, std::list<symbol::Variable*>* pSym);
 
 Function::ReturnValue sci_macrovar(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
@@ -107,30 +109,30 @@ InternalType* createString(std::list<std::wstring>& lst)
     return pS;
 }
 
-void addOut(MacrovarVisitor& visit, std::list<symbol::Symbol>* pSym)
+void addOut(MacrovarVisitor& visit, std::list<symbol::Variable*>* pSym)
 {
     if (pSym == 0 || pSym->size() == 0)
     {
         return;
     }
 
-    std::list<symbol::Symbol>::iterator it = pSym->begin();
+    std::list<symbol::Variable*>::iterator it = pSym->begin();
     for (int i = 0 ; it != pSym->end() ; it++, i++)
     {
-        visit.addOut((*it).name_get().c_str());
+        visit.addOut((*it)->name_get().name_get().c_str());
     }
 }
 
-void addIn(MacrovarVisitor& visit, std::list<symbol::Symbol>* pSym)
+void addIn(MacrovarVisitor& visit, std::list<symbol::Variable*>* pSym)
 {
     if (pSym == 0 || pSym->size() == 0)
     {
         return;
     }
 
-    std::list<symbol::Symbol>::iterator it = pSym->begin();
+    std::list<symbol::Variable*>::iterator it = pSym->begin();
     for (int i = 0 ; it != pSym->end() ; it++, i++)
     {
-        visit.addIn((*it).name_get().c_str());
+        visit.addIn((*it)->name_get().name_get().c_str());
     }
 }

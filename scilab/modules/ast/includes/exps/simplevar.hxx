@@ -15,7 +15,7 @@
 #define AST_SIMPLEVAR_HXX
 
 #include "var.hxx"
-#include "symbol.hxx"
+#include "context.hxx"
 
 namespace ast
 {
@@ -34,7 +34,8 @@ public:
     SimpleVar (const Location& location,
                symbol::Symbol& name)
         : Var (location),
-          _name (name)
+          _name (name),
+          _stack(NULL)
     {
     }
     /** \brief Destroy a Field Variable node.
@@ -77,6 +78,16 @@ public:
     {
         return _name;
     }
+
+    symbol::Variable* stack_get()
+    {
+        if (_stack == NULL)
+        {
+            _stack = symbol::Context::getInstance()->getOrCreate(_name);
+        }
+
+        return _stack;
+    }
     /** \} */
 
 
@@ -88,6 +99,7 @@ public:
 protected:
     /** \brief Variable's name */
     symbol::Symbol& _name;
+    symbol::Variable* _stack;
 };
 
 } // namespace ast

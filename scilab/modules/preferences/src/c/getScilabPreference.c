@@ -151,21 +151,21 @@ void getPrefs()
             return;
         }
 
-        scilabPref.heapSize = os_strdup(getAttribute(doc, xpathCtxt, HEAPSIZE_XPATH));
-        scilabPref.adaptToDisplay = os_strdup(getAttribute(doc, xpathCtxt, ADAPTTODISPLAY_XPATH));
-        scilabPref.columnsToDisplay = os_strdup(getAttribute(doc, xpathCtxt, COLUMNSTODISPLAY_XPATH));
-        scilabPref.linesToDisplay = os_strdup(getAttribute(doc, xpathCtxt, LINESTODISPLAY_XPATH));
-        scilabPref.historySaveAfter = os_strdup(getAttribute(doc, xpathCtxt, HISTORYSAVEAFTER_XPATH));
-        scilabPref.historyFile = os_strdup(getAttribute(doc, xpathCtxt, HISTORYFILE_XPATH));
-        scilabPref.historyLines = os_strdup(getAttribute(doc, xpathCtxt, HISTORYLINES_XPATH));
-        scilabPref.historyEnable = os_strdup(getAttribute(doc, xpathCtxt, HISTORYENABLE_XPATH));
-        scilabPref.ieee = os_strdup(getAttribute(doc, xpathCtxt, IEEE_XPATH));
-        scilabPref.format = os_strdup(getAttribute(doc, xpathCtxt, FORMAT_XPATH));
-        scilabPref.formatWidth = os_strdup(getAttribute(doc, xpathCtxt, FORMATWIDTH_XPATH));
-        scilabPref.language = os_strdup(getAttribute(doc, xpathCtxt, LANGUAGE_XPATH));
-        scilabPref.startup_dir_use = os_strdup(getAttribute(doc, xpathCtxt, STARTUP_DIR_USE_XPATH));
-        scilabPref.startup_dir_default = os_strdup(getAttribute(doc, xpathCtxt, STARTUP_DIR_DEFAULT_XPATH));
-        scilabPref.startup_dir_previous = os_strdup(getAttribute(doc, xpathCtxt, STARTUP_DIR_PREVIOUS_XPATH));
+        scilabPref.heapSize = os_strdup(getAttribute(doc, xpathCtxt, (char*)HEAPSIZE_XPATH));
+        scilabPref.adaptToDisplay = os_strdup(getAttribute(doc, xpathCtxt, (char*)ADAPTTODISPLAY_XPATH));
+        scilabPref.columnsToDisplay = os_strdup(getAttribute(doc, xpathCtxt, (char*)COLUMNSTODISPLAY_XPATH));
+        scilabPref.linesToDisplay = os_strdup(getAttribute(doc, xpathCtxt, (char*)LINESTODISPLAY_XPATH));
+        scilabPref.historySaveAfter = os_strdup(getAttribute(doc, xpathCtxt, (char*)HISTORYSAVEAFTER_XPATH));
+        scilabPref.historyFile = os_strdup(getAttribute(doc, xpathCtxt, (char*)HISTORYFILE_XPATH));
+        scilabPref.historyLines = os_strdup(getAttribute(doc, xpathCtxt, (char*)HISTORYLINES_XPATH));
+        scilabPref.historyEnable = os_strdup(getAttribute(doc, xpathCtxt, (char*)HISTORYENABLE_XPATH));
+        scilabPref.ieee = os_strdup(getAttribute(doc, xpathCtxt, (char*)IEEE_XPATH));
+        scilabPref.format = os_strdup(getAttribute(doc, xpathCtxt, (char*)FORMAT_XPATH));
+        scilabPref.formatWidth = os_strdup(getAttribute(doc, xpathCtxt, (char*)FORMATWIDTH_XPATH));
+        scilabPref.language = os_strdup(getAttribute(doc, xpathCtxt, (char*)LANGUAGE_XPATH));
+        scilabPref.startup_dir_use = os_strdup(getAttribute(doc, xpathCtxt, (char*)STARTUP_DIR_USE_XPATH));
+        scilabPref.startup_dir_default = os_strdup(getAttribute(doc, xpathCtxt, (char*)STARTUP_DIR_DEFAULT_XPATH));
+        scilabPref.startup_dir_previous = os_strdup(getAttribute(doc, xpathCtxt, (char*)STARTUP_DIR_PREVIOUS_XPATH));
 
         xmlXPathFreeContext(xpathCtxt);
         xmlFreeDoc(doc);

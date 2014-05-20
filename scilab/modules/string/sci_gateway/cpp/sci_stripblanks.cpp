@@ -15,6 +15,7 @@
 #include "context.hxx"
 #include "types.hxx"
 #include "bool.hxx"
+#include "double.hxx"
 #include "stripblanks.hxx"
 /*--------------------------------------------------------------------------*/
 extern "C"
@@ -32,14 +33,14 @@ types::Function::ReturnValue sci_stripblanks(types::typed_list &in, int _iRetCou
     if (in.size() < 1 || in.size() > 2)
     {
         Scierror(999, _("%s: Wrong number of input arguments: %d or %d expected.\n"), FUNCNAME, 1, 2);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     // check output parameters
     if (_iRetCount != 1 && _iRetCount != -1)
     {
         Scierror(999, _("%s: Wrong number of output arguments: %d expected.\n"), FUNCNAME, 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (in.size() == 2)
@@ -47,7 +48,7 @@ types::Function::ReturnValue sci_stripblanks(types::typed_list &in, int _iRetCou
         if (in[1]->isBool() == false || in[1]->getAs<types::Bool>()->getSize() != 1)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A boolean expected.\n"), FUNCNAME, 2);
-            return Function::Error;
+            return types::Function::Error;
         }
 
         if (in[1]->getAs<types::Bool>()->get()[0] == 1)
@@ -58,34 +59,34 @@ types::Function::ReturnValue sci_stripblanks(types::typed_list &in, int _iRetCou
 
     switch (in[0]->getType())
     {
-        case InternalType::ScilabString:
+        case types::InternalType::ScilabString:
         {
-            String *pS = stripblanks(in[0]->getAs<types::String>(), bRemoveTab);
+            types::String *pS = stripblanks(in[0]->getAs<types::String>(), bRemoveTab);
             if (pS == NULL)
             {
                 Scierror(999, _("%s : No more memory.\n"), FUNCNAME);
-                return Function::Error;
+                return types::Function::Error;
             }
 
             out.push_back(pS);
         }
         break;
-        case InternalType::ScilabDouble://manage []
+        case types::InternalType::ScilabDouble://manage []
         {
-            if (in[0]->getAs<Double>()->getSize() != 0)
+            if (in[0]->getAs<types::Double>()->getSize() != 0)
             {
                 Scierror(999, _("%s: Wrong type for input argument #%d: Matrix of strings or empty matrix expected.\n"), FUNCNAME, 1);
-                return Function::Error;
+                return types::Function::Error;
             }
 
-            out.push_back(Double::Empty());
+            out.push_back(types::Double::Empty());
         }
         break;
         default:
             Scierror(999, _("%s: Wrong type for input argument #%d: Matrix of strings or empty matrix expected.\n"), FUNCNAME, 1);
-            return Function::Error;
+            return types::Function::Error;
     }
 
-    return Function::OK;
+    return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/

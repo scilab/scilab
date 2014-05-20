@@ -271,7 +271,7 @@ SciErr createCommonNamedMatrixOfPoly(void* _pvCtx, const char* _pstName, char* _
         pP->setCoef(i, pD);
     }
 
-    symbol::Context::getInstance()->put(symbol::Symbol(pwstName), *pP);
+    symbol::Context::getInstance()->put(symbol::Symbol(pwstName), pP);
     FREE(pwstName);
     return sciErr;
 }

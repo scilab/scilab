@@ -20,8 +20,6 @@
 #include "file.hxx"
 
 using namespace std;
-using namespace types;
-
 class FILEIO_IMPEXP FileManager
 {
     //static attributs instantiation
@@ -30,9 +28,9 @@ public :
     static int                  getFileMaxID();
     static bool                 isOpened(wstring _stFilename);
     static int                  getFileID(wstring _stFilename);
-    static File*                getFile(int _iID);
+    static types::File*         getFile(int _iID);
     static int                  getCurrentFile();
-    static int                  addFile(File* _file);
+    static int                  addFile(types::File* _file);
     static int                  getFirstFreeFileID();
     static void                 deleteFile(int _iID);
     static int                  getOpenedCount();
@@ -45,10 +43,9 @@ public :
     static void                 initialize();
     static void                 destroy();
 private :
-    typedef std::vector<File*>  vectFile;
+    typedef std::vector<types::File*>  vectFile;
     static vectFile             m_fileList;
     static int                  m_iCurrentFile;     //memorize current using file
-
 };
 
 #endif /* __FILEMANAGER_HXX__ */

@@ -15,27 +15,33 @@
 extern "C" {
 #include "MALLOC.h"
 #include "getvariablesname.h"
+#include "charEncoding.h"
 }
 /*----------------------------------------------------------------------------------*/
 char **getVariablesName(int *sizearray, BOOL sorted)
 {
     std::list<std::wstring>* plVarNames = symbol::Context::getInstance()->getVarsName();
-    std::list<std::wstring>::iterator it;
     *sizearray = (int)plVarNames->size();
-    char** variables = (char**)MALLOC(*sizearray * sizeof(char*));
+    char** variables = NULL;
 
-    if (sorted)
+    if (*sizearray != 0)
     {
-        plVarNames->sort();
+        variables = (char**)MALLOC(*sizearray * sizeof(char*));
+
+        if (sorted)
+        {
+            plVarNames->sort();
+        }
+
+        std::list<std::wstring>::iterator it = plVarNames->begin();
+        for (int i = 0; it != plVarNames->end(); ++it, i++)
+        {
+            variables[i] = wide_string_to_UTF8((*it).c_str());
+        }
+
+        delete plVarNames;
     }
 
-    int i = 0;
-    for (it = plVarNames->begin(); it != plVarNames->end(); ++it, i++)
-    {
-        variables[i] = wide_string_to_UTF8((*it).c_str());
-    }
-
-    delete plVarNames;
     return variables;
 }
 

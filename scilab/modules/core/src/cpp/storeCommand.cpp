@@ -22,6 +22,7 @@ extern "C"
 #include "scilabWrite.hxx"
 #include "scilabexception.hxx"
 
+using namespace ast;
 /*--------------------------------------------------------------------------*/
 /*
  *  Command queue functions

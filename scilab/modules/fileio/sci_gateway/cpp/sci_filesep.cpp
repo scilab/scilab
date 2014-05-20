@@ -26,6 +26,8 @@ extern "C"
 #include "os_wcsicmp.h"
 }
 
+using namespace types;
+
 /*--------------------------------------------------------------------------*/
 Function::ReturnValue sci_filesep(typed_list &in, int _iRetCount, typed_list &out)
 {

@@ -582,6 +582,9 @@
     <ClInclude Include="..\..\includes\getmacrosname.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\includes\sci_tools.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\core.iss" />

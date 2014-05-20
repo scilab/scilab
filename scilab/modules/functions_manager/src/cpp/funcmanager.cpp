@@ -371,6 +371,8 @@ bool FuncManager::LoadFuncByModule(void)
         }
     }
 
+    //protected all variables after scilab start
+    symbol::Context::getInstance()->scope_begin();
     return bRet;
 }
 

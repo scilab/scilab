@@ -87,7 +87,7 @@ public:
     ** \{ */
 public:
     /** \brief Return the implicit variable declaration (read only) */
-    const VarDec& vardec_get () const
+    VarDec& vardec_get () const
     {
         return *_vardec;
     }

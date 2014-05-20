@@ -15,12 +15,12 @@
 extern "C" {
 #include "MALLOC.h"
 #include "getmacrosname.h"
+#include "charEncoding.h"
 }
 /*----------------------------------------------------------------------------------*/
 char **getMacrosName(int *sizearray)
 {
     std::list<std::wstring>* plMacrosList = symbol::Context::getInstance()->getMacrosName();
-    std::list<std::wstring>::iterator it;
 
     //sort list
     plMacrosList->sort();
@@ -28,16 +28,20 @@ char **getMacrosName(int *sizearray)
     plMacrosList->unique();
 
     *sizearray = (int)plMacrosList->size();
-    char** macros = (char**)MALLOC(*sizearray * sizeof(char*));
-
-
-    int i = 0;
-    for (it = plMacrosList->begin(); it != plMacrosList->end(); ++it, i++)
+    char** macros = NULL;
+    if (*sizearray != 0)
     {
-        macros[i] = wide_string_to_UTF8((*it).c_str());
+        macros = (char**)MALLOC(*sizearray * sizeof(char*));
+
+        std::list<std::wstring>::iterator it = plMacrosList->begin();
+        for (int i = 0; it != plMacrosList->end(); ++it, i++)
+        {
+            macros[i] = wide_string_to_UTF8((*it).c_str());
+        }
+
+        delete plMacrosList;
     }
 
-    delete plMacrosList;
     return macros;
 }
 /*----------------------------------------------------------------------------------*/

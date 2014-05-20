@@ -13,6 +13,7 @@
 #include "configvariable.hxx"
 #include "context.hxx"
 #include "loadlib.hxx"
+#include "macrofile.hxx"
 
 extern "C"
 {
@@ -27,14 +28,14 @@ extern "C"
 
 #define DEFAULT_ENCODING "UTF-8"
 
-static char *GetXmlFileEncoding(string _filename);
+static char *GetXmlFileEncoding(std::string _filename);
 
 types::Library* loadlib(std::wstring _wstXML, bool _isFile, bool _bAddInContext)
 {
     types::Library* lib = NULL;
 
-    wstring wstFile(_wstXML);
-    wstring wstPath(_wstXML);
+    std::wstring wstFile(_wstXML);
+    std::wstring wstPath(_wstXML);
 
     if (_isFile)
     {
@@ -132,7 +133,7 @@ types::Library* loadlib(std::wstring _wstXML, bool _isFile, bool _bAddInContext)
 
             if (pstName && pstFileName)
             {
-                wstring stFilename(wstPath);
+                std::wstring stFilename(wstPath);
                 if (stFilename.empty() == false && *stFilename.rbegin() != DIR_SEPARATORW[0])
                 {
                     stFilename += DIR_SEPARATORW;
@@ -171,7 +172,7 @@ types::Library* loadlib(std::wstring _wstXML, bool _isFile, bool _bAddInContext)
 
     if (_bAddInContext)
     {
-        symbol::Context::getInstance()->put(symbol::Symbol(pstLibName), *lib);
+        symbol::Context::getInstance()->put(symbol::Symbol(pstLibName), lib);
     }
 
     xmlFreeDoc(doc);
@@ -179,7 +180,7 @@ types::Library* loadlib(std::wstring _wstXML, bool _isFile, bool _bAddInContext)
     return lib;
 }
 
-static char *GetXmlFileEncoding(string _filename)
+static char *GetXmlFileEncoding(std::string _filename)
 {
     char *encoding = NULL;
     xmlDocPtr doc = NULL;

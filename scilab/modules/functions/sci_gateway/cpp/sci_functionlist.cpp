@@ -51,8 +51,7 @@ Function::ReturnValue sci_funclist(types::typed_list &in, int _iRetCount, types:
         pstLibName = L"";
     }
 
-    wstring libName(pstLibName);
-    std::list<symbol::Symbol>* FuncList = pContext->getFunctionList(libName, false);
+    std::list<symbol::Symbol>* FuncList = pContext->getFunctionList(pstLibName);
 
     String *pS = new String((int)FuncList->size(), 1);
 

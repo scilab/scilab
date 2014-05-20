@@ -213,7 +213,7 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
             delete parser.getTree();
         }
 
-        symbol::Context::getInstance()->put(symbol::Symbol(pstLibName), *pLib);
+        symbol::Context::getInstance()->put(symbol::Symbol(pstLibName), pLib);
     }
 
 

@@ -14,19 +14,27 @@
 #define __MACRO_HXX__
 
 #include <list>
+#include <string>
+#include "context.hxx"
 #include "types.hxx"
 #include "callable.hxx"
 #include "double.hxx"
 #include "seqexp.hxx"
 
-using namespace std;
 namespace types
 {
 class Macro : public Callable
 {
 public :
-    Macro() : Callable(), m_ArgInSymb(symbol::Symbol(L"nargin")), m_ArgOutSymb(symbol::Symbol(L"nargout")) {}
-    Macro(const std::wstring& _stName, std::list<symbol::Symbol> &_inputArgs, std::list<symbol::Symbol> &_outputArgs, ast::SeqExp &_body, const wstring& _stModule);
+    Macro() : Callable(),
+        m_Nargin(symbol::Context::getInstance()->getOrCreate(symbol::Symbol(L"nargin"))),
+        m_Nargout(symbol::Context::getInstance()->getOrCreate(symbol::Symbol(L"nargout"))),
+        m_Varargin(symbol::Context::getInstance()->getOrCreate(symbol::Symbol(L"varargin"))),
+        m_Varargout(symbol::Context::getInstance()->getOrCreate(symbol::Symbol(L"varargout")))
+    {
+    }
+
+    Macro(const std::wstring& _stName, std::list<symbol::Variable*> &_inputArgs, std::list<symbol::Variable*> &_outputArgs, ast::SeqExp &_body, const std::wstring& _stModule);
     virtual                     ~Macro();
 
     // FIXME : Should not return NULL;
@@ -47,31 +55,33 @@ public :
     ast::SeqExp*                getBody();
 
     /* return type as string ( double, int, cell, list, ... )*/
-    virtual wstring             getTypeStr()
+    virtual std::wstring        getTypeStr()
     {
         return L"function";
     }
     /* return type as short string ( s, i, ce, l, ... )*/
-    virtual wstring             getShortTypeStr()
+    virtual std::wstring        getShortTypeStr()
     {
         return L"function";
     }
 
-    list<symbol::Symbol>*       inputs_get();
-    list<symbol::Symbol>*       outputs_get();
+    std::list<symbol::Variable*>*   inputs_get();
+    std::list<symbol::Variable*>*   outputs_get();
 
     virtual int getNbInputArgument(void);
     virtual int getNbOutputArgument(void);
 
 private :
-    std::list<symbol::Symbol>*  m_inputArgs;
-    std::list<symbol::Symbol>*  m_outputArgs;
-    ast::SeqExp*                m_body;
-    bool                        bAutoAlloc;
-    symbol::Symbol              m_ArgInSymb;
-    symbol::Symbol              m_ArgOutSymb;
-    Double*                     m_pDblArgIn;
-    Double*                     m_pDblArgOut;
+    std::list<symbol::Variable*>*   m_inputArgs;
+    std::list<symbol::Variable*>*   m_outputArgs;
+    ast::SeqExp*                    m_body;
+    bool                            bAutoAlloc;
+    symbol::Variable*               m_Nargin;
+    symbol::Variable*               m_Nargout;
+    symbol::Variable*               m_Varargin;
+    symbol::Variable*               m_Varargout;
+    Double*                         m_pDblArgIn;
+    Double*                         m_pDblArgOut;
 
 };
 }

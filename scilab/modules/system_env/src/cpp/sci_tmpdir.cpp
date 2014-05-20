@@ -54,7 +54,7 @@ void setTMPDIRW(const wchar_t* _sci_tmpdir)
 {
     //add SCI value in context as variable
     types::String *pS = new types::String(_sci_tmpdir);
-    symbol::Context::getInstance()->put(symbol::Symbol(L"TMPDIR"), *pS);
+    symbol::Context::getInstance()->put(symbol::Symbol(L"TMPDIR"), pS);
 
     //add SCI value ConfigVariable
     std::wstring sci_tmpdir(_sci_tmpdir);

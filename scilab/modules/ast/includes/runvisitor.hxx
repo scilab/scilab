@@ -20,6 +20,7 @@
 #include "overload.hxx"
 #include "scilabWrite.hxx"
 #include "context.hxx"
+#include "variables.hxx"
 
 extern "C" {
 #include "more.h"
@@ -39,7 +40,7 @@ public:
         _resultVect.push_back(NULL);
         _result = NULL;
         m_bSingleResult = true;
-        m_pAns = new symbol::Symbol(L"ans");
+        m_pAns = symbol::Context::getInstance()->getOrCreate(symbol::Symbol(L"ans"));
     }
 
     ~RunVisitor()
@@ -183,7 +184,7 @@ protected:
     types::InternalType*	_result;
     bool m_bSingleResult;
     int _excepted_result;
-    symbol::Symbol* m_pAns;
+    symbol::Variable* m_pAns;
 };
 
 template <class T>
@@ -293,7 +294,7 @@ public :
 
     void visitprivate(const SimpleVar &e)
     {
-        InternalType *pI = symbol::Context::getInstance()->get(e.name_get());
+        InternalType *pI = symbol::Context::getInstance()->get(((SimpleVar&)e).stack_get());
         result_set(pI);
         if (pI != NULL)
         {

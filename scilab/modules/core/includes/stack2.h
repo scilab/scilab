@@ -19,26 +19,6 @@
 
 #include "machine.h"
 
-/**
- * Convert an Scilab array of double to a fortran format
- *
- * @param ptr the array of double
- * @param size size of the array
- * @param lda
- */
-//void SciToF77(double *ptr, int size, int lda);
-
-/**
- * Convert an Fortran array of double to a Scilab format
- *
- * @param ptr the array of double
- * @param size size of the array
- * @param lda
- */
-void F77ToSci(double *ptr, int size, int lda);
-void double2z(double *ptr,  double *ptr77z, int size, int lda);
-void z2double(double *ptrz, double *ptrsci, int size, int lda);
-
 /* from int */
 
 extern  int C2F(tpconv)(int *, int *, int *, void *, int *, void *, int *);

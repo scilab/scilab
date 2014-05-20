@@ -25,9 +25,9 @@ extern "C"
 /*--------------------------------------------------------------------------*/
 static wchar_t* subwcs(const wchar_t *_pstStr, int _iStartPos, int _iEndPos);
 /*--------------------------------------------------------------------------*/
-String * stripblanks(String *InputStrings, bool bRemoveTAB)
+types::String * stripblanks(types::String *InputStrings, bool bRemoveTAB)
 {
-    String *pOutputStrings = new String(InputStrings->getRows(), InputStrings->getCols());
+    types::String *pOutputStrings = new types::String(InputStrings->getRows(), InputStrings->getCols());
     if (pOutputStrings)
     {
         pOutputStrings->set(InputStrings->get());

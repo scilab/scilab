@@ -25,9 +25,10 @@ extern "C"
 #include "Scierror.h"
 #include "localization.h"
 }
+
+using namespace types;
+
 /*--------------------------------------------------------------------------*/
-
-
 Function::ReturnValue sci_get_absolute_file_path(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int dimsArray[2]                = {1, 1};

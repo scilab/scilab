@@ -22,10 +22,10 @@
 #include "configvariable.hxx"
 #include "deserializervisitor.hxx"
 
-using namespace ast;
 namespace types
 {
-MacroFile::MacroFile(wstring _stName, wstring _stPath, wstring _stModule) : Callable(), m_stPath(_stPath), m_pMacro(NULL)
+MacroFile::MacroFile(std::wstring _stName, std::wstring _stPath, std::wstring _stModule) :
+    Callable(), m_stPath(_stPath), m_pMacro(NULL)
 {
     setName(_stName);
     setModule(_stModule);
@@ -94,14 +94,14 @@ bool MacroFile::parse(void)
         ast::Exp* tree = d->deserialize();
 
         //find FunctionDec
-        FunctionDec* pFD = NULL;
+        ast::FunctionDec* pFD = NULL;
 
         std::list<ast::Exp *>::iterator j;
         std::list<ast::Exp *>LExp = ((ast::SeqExp*)tree)->exps_get();
 
         for (j = LExp.begin() ; j != LExp.end() ; j++)
         {
-            pFD = dynamic_cast<FunctionDec*>(*j);
+            pFD = dynamic_cast<ast::FunctionDec*>(*j);
             if (pFD) // &&	pFD->name_get() == m_stName
             {
                 symbol::Context* pContext = symbol::Context::getInstance();
@@ -111,28 +111,25 @@ bool MacroFile::parse(void)
                     MacroFile* pMacro = pContext->getFunction(pFD->name_get())->getAs<MacroFile>();
                     if (pMacro->m_pMacro == NULL)
                     {
-                        std::list<Var *>::const_iterator	i;
+                        std::list<ast::Var *>::const_iterator i;
 
                         //get input parameters list
-                        std::list<symbol::Symbol> *pVarList = new std::list<symbol::Symbol>();
-                        ArrayListVar *pListVar = (ArrayListVar *)&pFD->args_get();
+                        std::list<symbol::Variable*> *pVarList = new std::list<symbol::Variable*>();
+                        ast::ArrayListVar *pListVar = (ast::ArrayListVar *)&pFD->args_get();
                         for (i = pListVar->vars_get().begin() ; i != pListVar->vars_get().end() ; i++)
                         {
-                            pVarList->push_back(((SimpleVar*)(*i))->name_get());
+                            pVarList->push_back(((ast::SimpleVar*)(*i))->stack_get());
                         }
 
                         //get output parameters list
-                        std::list<symbol::Symbol> *pRetList = new std::list<symbol::Symbol>();
-                        ArrayListVar *pListRet = (ArrayListVar *)&pFD->returns_get();
+                        std::list<symbol::Variable*> *pRetList = new std::list<symbol::Variable*>();
+                        ast::ArrayListVar *pListRet = (ast::ArrayListVar *)&pFD->returns_get();
                         for (i = pListRet->vars_get().begin() ; i != pListRet->vars_get().end() ; i++)
                         {
-                            pRetList->push_back(((SimpleVar*)(*i))->name_get());
+                            pRetList->push_back(((ast::SimpleVar*)(*i))->stack_get());
                         }
 
-                        //types::Macro macro(VarList, RetList, (SeqExp&)e.body_get());
-                        //types::Macro *pMacro = new types::Macro(m_stName, *pVarList, *pRetList, (SeqExp&)e.body_get());
-
-                        pMacro->m_pMacro = new Macro(m_wstName, *pVarList, *pRetList, (SeqExp&)pFD->body_get(), m_wstModule);
+                        pMacro->m_pMacro = new Macro(m_wstName, *pVarList, *pRetList, (ast::SeqExp&)pFD->body_get(), m_wstModule);
                         pMacro->setFirstLine(pFD->location_get().first_line);
                     }
                 }

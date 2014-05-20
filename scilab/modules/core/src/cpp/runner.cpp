@@ -16,6 +16,8 @@ __threadLock Runner::m_lock;
 __threadSignal Runner::m_awakeScilab;
 __threadSignalLock Runner::m_awakeScilabLock;
 
+using namespace ast;
+
 void Runner::init()
 {
     __InitSignal(&m_awakeScilab);

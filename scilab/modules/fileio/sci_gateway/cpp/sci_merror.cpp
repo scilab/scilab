@@ -24,8 +24,10 @@ extern "C"
 #include "Scierror.h"
 #include "localization.h"
 }
-/*--------------------------------------------------------------------------*/
 
+using namespace types;
+
+/*--------------------------------------------------------------------------*/
 Function::ReturnValue sci_merror(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int iRet  = 0;

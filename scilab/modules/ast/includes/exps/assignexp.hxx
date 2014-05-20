@@ -81,7 +81,7 @@ public:
     ** \{ */
 public:
     /** \brief Return the name of the size (read only). */
-    const Exp& left_exp_get() const
+    Exp& left_exp_get() const
     {
         return *_left_exp;
     }
@@ -92,7 +92,7 @@ public:
     }
 
     /** \brief Return the name of the init (read only). */
-    const Exp& right_exp_get() const
+    Exp& right_exp_get() const
     {
         return *_right_exp;
     }

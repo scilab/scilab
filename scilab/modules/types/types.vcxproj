@@ -276,6 +276,7 @@ lib /DEF:"$(ProjectDir)operations_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <ClInclude Include="includes\tlist.hxx" />
     <ClInclude Include="includes\tostring_common.hxx" />
     <ClInclude Include="includes\types.hxx" />
+    <ClInclude Include="includes\typesdecl.hxx" />
     <ClInclude Include="includes\types_tools.hxx" />
     <ClInclude Include="includes\uint16.hxx" />
     <ClInclude Include="includes\uint32.hxx" />

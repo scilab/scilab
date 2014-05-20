@@ -16,6 +16,7 @@
 #include "gatewaystruct.hxx"
 #include "pointer.hxx"
 #include "context.hxx"
+#include "scilabexception.hxx"
 
 extern "C"
 {
@@ -96,7 +97,7 @@ SciErr createNamedPointer(void* _pvCtx, const char* _pstName, void* _pvPtr)
     wchar_t* pwstName = to_wide_string(_pstName);
 
     Pointer* pP = new Pointer(_pvPtr);
-    symbol::Context::getInstance()->put(symbol::Symbol(pwstName), *pP);
+    symbol::Context::getInstance()->put(symbol::Symbol(pwstName), pP);
     FREE(pwstName);
 
     return sciErr;

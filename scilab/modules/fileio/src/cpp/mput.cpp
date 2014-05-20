@@ -254,7 +254,7 @@ void C2F(mput) (int *fd, double *res, int *n, char *type, int *ierr)
         return;
     }
 
-    File *pFile = FileManager::getFile(*fd);
+    types::File *pFile = FileManager::getFile(*fd);
     if (pFile && pFile->getFiledesc())
     {
         mput2(pFile->getFiledesc(), pFile->getFileSwap(), res, *n, type, ierr);

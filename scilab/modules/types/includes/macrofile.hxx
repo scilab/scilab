@@ -14,6 +14,7 @@
 #ifndef __MACROFILE_HXX__
 #define __MACROFILE_HXX__
 
+#include <string>
 #include "callable.hxx"
 #include "macro.hxx"
 
@@ -23,7 +24,7 @@ class MacroFile : public Callable
 {
 public :
     MacroFile(): Callable() {};
-    MacroFile(wstring _stName, wstring _stPath, wstring _stModule);
+    MacroFile(std::wstring _stName, std::wstring _stPath, std::wstring _stModule);
     virtual                 ~MacroFile();
 
     //FIXME : Should not return NULL
@@ -47,12 +48,12 @@ public :
     void                    setFirstLine(int _iLine);
 
     /* return type as string ( double, int, cell, list, ... )*/
-    virtual wstring         getTypeStr()
+    virtual std::wstring    getTypeStr()
     {
         return L"function";
     }
     /* return type as short string ( s, i, ce, l, ... )*/
-    virtual wstring         getShortTypeStr()
+    virtual std::wstring    getShortTypeStr()
     {
         return L"function";
     }
@@ -62,9 +63,9 @@ public :
 
 private :
     Macro*                  m_pMacro;
-    wstring                 m_stPath;
+    std::wstring            m_stPath;
 };
 }
 
 
-#endif /* !__MACRO_HXX__ */
+#endif /* !__MACROFILE_HXX__ */

@@ -22,14 +22,12 @@ extern "C"
 }
 
 
-using namespace types;
-
-int getMode(typed_list &in, int _iProcess, int _iRef)
+int getMode(types::typed_list &in, int _iProcess, int _iRef)
 {
     int iMode = 0;
     if (in[_iProcess]->isString())
     {
-        String* pS = in[_iProcess]->getAs<String>();
+        types::String* pS = in[_iProcess]->getAs<types::String>();
         if (pS->getSize() != 1)
         {
             Scierror(999, _("%s: Wrong size for argument %d: (%d,%d) expected.\n"), "size", _iProcess + 1, 1, 1);
@@ -55,9 +53,9 @@ int getMode(typed_list &in, int _iProcess, int _iRef)
                 break;
         }
     }
-    else if (in[1]->isDouble() && in[1]->getAs<Double>()->isComplex() == false)
+    else if (in[1]->isDouble() && in[1]->getAs<types::Double>()->isComplex() == false)
     {
-        Double* pD = in[_iProcess]->getAs<Double>();
+        types::Double* pD = in[_iProcess]->getAs<types::Double>();
         if (pD->getSize() != 1)
         {
             Scierror(999, _("%s: Wrong size for argument %d: (%d,%d) expected.\n"), "size", _iProcess + 1, 1, 1);
@@ -87,11 +85,11 @@ int getMode(typed_list &in, int _iProcess, int _iRef)
     if (iMode == -1)
     {
         iMode = 0;
-        if (in[_iRef]->getAs<GenericType>()->getRows() > 1)
+        if (in[_iRef]->getAs<types::GenericType>()->getRows() > 1)
         {
             iMode = 1;
         }
-        else if (in[_iRef]->getAs<GenericType>()->getCols() > 1)
+        else if (in[_iRef]->getAs<types::GenericType>()->getCols() > 1)
         {
             iMode = 2;
         }

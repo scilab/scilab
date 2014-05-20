@@ -30,6 +30,13 @@ Function::ReturnValue sci_clear(types::typed_list &in, int _iRetCount, types::ty
     types::typed_list::iterator inIterator;
     int iWrongType = 1;
 
+    if (in.size() == 0)
+    {
+        //clear();
+        symbol::Context::getInstance()->removeAll();
+        return Function::OK;
+    }
+
     // First check if all arguments are Single Strings.
     for (inIterator = in.begin() ; inIterator != in.end() ; iWrongType++, inIterator++)
     {

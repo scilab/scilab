@@ -97,86 +97,85 @@
 #include "localization.h"
 #include "Scierror.h"
 
-void SciToF77(double *ptr, int size, int lda)
-{
-    int i;
-    double *tab;
-
-    if ((tab = (double *) MALLOC(size * sizeof(double))) == NULL)
-    {
-        Scierror(999, _("%s: No more memory.\n"), "SciToF77");
-        return;
-    }
-
-    /* for (i = size; --i >= 0; ) { */
-    /*     tab[i] = ptr[i]; */
-    /*   } */
-
-    memcpy(tab, ptr, size * sizeof(double));
-
-    for (i = 0; i < size; ++i)
-    {
-        ptr[2 * i] = tab[i];
-        ptr[2 * i + 1] = ptr[lda + i];
-    }
-
-    FREE(tab);
-} /* SciToF77 */
-
-
-void F77ToSci(double *ptr, int size, int lda)
-{
-    int i;
-    double *tab;
-
-    if ((tab = (double *) MALLOC(size * sizeof(double))) == NULL)
-    {
-        Scierror(999, _("%s: No more memory.\n"), "F77ToSci");
-        return;
-    }
-
-    for (i = 0; i < size; ++i)
-    {
-        tab[i] = ptr[2 * i + 1];
-        ptr[i] = ptr[2 * i];
-    }
-
-    memcpy(ptr + lda, tab, size * sizeof(double));
-
-    /*   for (i = size; --i >= 0; ) { */
-    /*     ptr[lda+i] = tab[i]; */
-    /*   } */
-
-    FREE(tab);
-} /* F77ToSci */
+//void SciToF77(double *ptr, int size, int lda)
+//{
+//    int i;
+//    double *tab;
+//
+//    if ((tab = (double *) MALLOC(size * sizeof(double))) == NULL)
+//    {
+//        Scierror(999, _("%s: No more memory.\n"), "SciToF77");
+//        return;
+//    }
+//
+//    /* for (i = size; --i >= 0; ) { */
+//    /*     tab[i] = ptr[i]; */
+//    /*   } */
+//
+//    memcpy(tab, ptr, size * sizeof(double));
+//
+//    for (i = 0; i < size; ++i)
+//    {
+//        ptr[2 * i] = tab[i];
+//        ptr[2 * i + 1] = ptr[lda + i];
+//    }
+//
+//    FREE(tab);
+//} /* SciToF77 */
+//
+//
+//void F77ToSci(double *ptr, int size, int lda)
+//{
+//    int i;
+//    double *tab;
+//
+//    if ((tab = (double *) MALLOC(size * sizeof(double))) == NULL)
+//    {
+//        Scierror(999, _("%s: No more memory.\n"), "F77ToSci");
+//        return;
+//    }
+//
+//    for (i = 0; i < size; ++i)
+//    {
+//        tab[i] = ptr[2 * i + 1];
+//        ptr[i] = ptr[2 * i];
+//    }
+//
+//    memcpy(ptr + lda, tab, size * sizeof(double));
+//
+//    /*   for (i = size; --i >= 0; ) { */
+//    /*     ptr[lda+i] = tab[i]; */
+//    /*   } */
+//
+//    FREE(tab);
+//} /* F77ToSci */
 
 
 /* double2z and z2double : same as above with two pointers dest and src
    double2z ptr = src, ptr77z = dest (z format)
    z2double ptr = src (z format) , ptrsci = dest */
 
-void
-double2z(double *ptr, double *ptr77z, int size, int lda)
-{
-    int i;
-    double *tab;
-
-    if ((tab = (double *) MALLOC(size * sizeof(double))) == NULL)
-    {
-        Scierror(999, _("%s: No more memory.\n"), "double2z");
-        return;
-    }
-
-    memcpy(tab, ptr, size * sizeof(double));
-
-    for (i = 0; i < size; ++i)
-    {
-        ptr77z[2 * i] = tab[i];
-        ptr77z[2 * i + 1] = ptr[lda + i];
-    }
-
-    FREE(tab);
-}
+//void double2z(double *ptr, double *ptr77z, int size, int lda)
+//{
+//    int i;
+//    double *tab;
+//
+//    if ((tab = (double *) MALLOC(size * sizeof(double))) == NULL)
+//    {
+//        Scierror(999, _("%s: No more memory.\n"), "double2z");
+//        return;
+//    }
+//
+//    memcpy(tab, ptr, size * sizeof(double));
+//
+//    for (i = 0; i < size; ++i)
+//    {
+//        ptr77z[2 * i] = tab[i];
+//        ptr77z[2 * i + 1] = ptr[lda + i];
+//    }
+//
+//    FREE(tab);
+//}
 
 
 //
@@ -192,27 +191,26 @@ double2z(double *ptr, double *ptr77z, int size, int lda)
 //   The Scilab internal representation is block-ordered, that is
 //   R1, ..., Rn, I1, ..., In.
 //
-void
-z2double(double *ptrz, double *ptrsci, int size, int lda)
-{
-    int i;
-    double *tab;
-
-    if ((tab = (double *) MALLOC(size * sizeof(double))) == NULL)
-    {
-        Scierror(999, _("%s: No more memory.\n"), "z2double");
-        return;
-    }
-    // Put the real parts in place and stores the imaginary parts
-    // in the array tab.
-    for (i = 0; i < size; ++i)
-    {
-        tab[i] = ptrz[2 * i + 1]; // imaginary part
-        ptrsci[i] = ptrz[2 * i]; // real part
-    }
-    // Puts the imaginary parts in the imaginary block.
-    memcpy(ptrsci + lda, tab, size * sizeof(double));
-
-    FREE(tab);
-}
+//void z2double(double *ptrz, double *ptrsci, int size, int lda)
+//{
+//    int i;
+//    double *tab;
+//
+//    if ((tab = (double *) MALLOC(size * sizeof(double))) == NULL)
+//    {
+//        Scierror(999, _("%s: No more memory.\n"), "z2double");
+//        return;
+//    }
+//    // Put the real parts in place and stores the imaginary parts
+//    // in the array tab.
+//    for (i = 0; i < size; ++i)
+//    {
+//        tab[i] = ptrz[2 * i + 1]; // imaginary part
+//        ptrsci[i] = ptrz[2 * i]; // real part
+//    }
+//    // Puts the imaginary parts in the imaginary block.
+//    memcpy(ptrsci + lda, tab, size * sizeof(double));
+//
+//    FREE(tab);
+//}
 

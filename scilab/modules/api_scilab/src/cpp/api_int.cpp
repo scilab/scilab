@@ -805,7 +805,7 @@ SciErr createCommonNamedMatrixOfInteger(void* _pvCtx, const char* _pstName, int 
         return sciErr;
     }
 
-    symbol::Context::getInstance()->put(symbol::Symbol(pwstName), *pIT);
+    symbol::Context::getInstance()->put(symbol::Symbol(pwstName), pIT);
     FREE(pwstName);
     return sciErr;
 }

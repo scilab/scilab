@@ -25,7 +25,7 @@ extern "C"
 /*--------------------------------------------------------------------------*/
 long long mtell(int fd)
 {
-    File* pF        = FileManager::getFile(fd);
+    types::File* pF = FileManager::getFile(fd);
     long long offset = -1;
 
     if (pF == NULL)

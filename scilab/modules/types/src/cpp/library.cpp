@@ -10,12 +10,16 @@
  *
  */
 
+#include <sstream>
+#include "macrofile.hxx"
 #include "library.hxx"
+
 extern "C"
 {
 #include <wchar.h>
 #include "os_swprintf.h"
 #include "formatmode.h"
+#include "localization.h"
 }
 
 namespace types

@@ -16,15 +16,13 @@
 #include "dynlib_string.h"
 #include "string.hxx"
 
-using namespace types;
-
 /**
 * remove blank or tab characters in a string matrix
 * @param[in] String: input Strings
 * @param[in] Bool: remove TAB if get() != 0
 * @return String: output String
 */
-STRING_IMPEXP String * stripblanks(String *InputStrings, bool bWithTAB);
+STRING_IMPEXP types::String * stripblanks(types::String *InputStrings, bool bWithTAB);
 
 #endif /* __STRIPBLANKS_HXX__ */
 /*--------------------------------------------------------------------------*/

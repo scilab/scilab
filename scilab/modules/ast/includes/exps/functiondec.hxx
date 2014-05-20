@@ -55,7 +55,8 @@ public:
           _name (name),
           _args (&args),
           _returns (&returns),
-          _body (&body)
+          _body (&body),
+          _stack(NULL)
     {
     }
 
@@ -70,7 +71,7 @@ public:
     virtual FunctionDec* clone()
     {
         Location* newloc = const_cast<Location*>(&location_get())->clone();
-        FunctionDec* cloned = new FunctionDec(*newloc, *new symbol::Symbol(name_get().name_get()), *args_get().clone(), *returns_get().clone(), *body_get().clone());
+        FunctionDec* cloned = new FunctionDec(*newloc, name_get(), *args_get().clone(), *returns_get().clone(), *body_get().clone());
         cloned->set_verbose(is_verbose());
         return cloned;
     }
@@ -131,8 +132,19 @@ public:
         _body = body;
     }
 
+    symbol::Variable* stack_get()
+    {
+        if (_stack == NULL)
+        {
+            _stack = symbol::Context::getInstance()->getOrCreate(_name);
+        }
+
+        return _stack;
+    }
+
 protected:
     symbol::Symbol&    _name;
+    symbol::Variable*    _stack;
     ArrayListVar*	_args;
     ArrayListVar*	_returns;
     Exp*		_body;

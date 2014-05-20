@@ -47,7 +47,7 @@ EXTERN_AST types::InternalType* AddElementToVariableFromRow(
 
 EXTERN_AST const std::wstring* getStructNameFromExp(const ast::Exp* _pExp);
 
-EXTERN_AST bool getFieldsFromExp(const ast::Exp* _pExp, std::list<ExpHistory*>& fields);
+EXTERN_AST bool getFieldsFromExp(ast::Exp* _pExp, std::list<ExpHistory*>& fields);
 
 EXTERN_AST types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*>& fields, types::InternalType* pIT);
 

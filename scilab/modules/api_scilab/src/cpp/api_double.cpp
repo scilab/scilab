@@ -422,7 +422,7 @@ SciErr createNamedComplexZMatrixOfDouble(void* _pvCtx, const char* _pstName, int
     C2F(dcopy)(&iSize, const_cast<double*>(&_pdblData->r), &iTwo, pdblReal, &iOne);
     C2F(dcopy)(&iSize, const_cast<double*>(&_pdblData->i), &iOne, pdblImg, &iOne);
 
-    symbol::Context::getInstance()->put(symbol::Symbol(pwstName), *pDbl);
+    symbol::Context::getInstance()->put(symbol::Symbol(pwstName), pDbl);
     FREE(pwstName);
     return sciErr;
 }
@@ -451,7 +451,7 @@ SciErr createCommonNamedMatrixOfDouble(void* _pvCtx, const char* _pstName, int _
         C2F(dcopy)(&iSize, const_cast<double*>(_pdblImg), &iOne, pdblImg, &iOne);
     }
 
-    symbol::Context::getInstance()->put(symbol::Symbol(pwstName), *pDbl);
+    symbol::Context::getInstance()->put(symbol::Symbol(pwstName), pDbl);
     FREE(pwstName);
     return sciErr;
 }

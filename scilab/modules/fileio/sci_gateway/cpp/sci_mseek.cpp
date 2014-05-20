@@ -36,6 +36,8 @@ char *strerror (int errcode);
 #define SEEK_CUR 1
 #define SEEK_END 2
 #endif
+
+using namespace types;
 /*--------------------------------------------------------------------------*/
 
 Function::ReturnValue sci_mseek(types::typed_list &in, int _iRetCount, types::typed_list &out)

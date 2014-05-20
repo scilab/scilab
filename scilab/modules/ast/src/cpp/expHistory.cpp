@@ -13,6 +13,7 @@
 #include "expHistory.hxx"
 #include "types_tools.hxx"
 #include "types.hxx"
+#include "context.hxx"
 
 /**
 ** Constructor & Destructor (public)
@@ -38,7 +39,7 @@ ExpHistory::ExpHistory()
 }
 
 
-ExpHistory::ExpHistory(ExpHistory* _pEH, const ast::SimpleVar* _pExp)
+ExpHistory::ExpHistory(ExpHistory* _pEH, ast::SimpleVar* _pExp)
 {
     initHistory();
 
@@ -54,7 +55,7 @@ ExpHistory::ExpHistory(ExpHistory* _pParent, types::typed_list* _pArgs)
     m_pParent   = _pParent;
 }
 
-ExpHistory::ExpHistory(ExpHistory* _pParent, const ast::SimpleVar* _pExp, types::typed_list* _pArgs, int _iLevel,  bool _bCellExp, types::InternalType* _pITCurrent)
+ExpHistory::ExpHistory(ExpHistory* _pParent, ast::SimpleVar* _pExp, types::typed_list* _pArgs, int _iLevel,  bool _bCellExp, types::InternalType* _pITCurrent)
 {
     initHistory();
 
@@ -78,12 +79,12 @@ ExpHistory::~ExpHistory()
 ** Accessor (public)
 */
 
-void ExpHistory::setExp(const ast::SimpleVar* _pExp)
+void ExpHistory::setExp(ast::SimpleVar* _pExp)
 {
     m_pExp = _pExp;
 }
 
-const ast::SimpleVar* ExpHistory::getExp()
+ast::SimpleVar* ExpHistory::getExp()
 {
     return m_pExp;
 }
@@ -149,9 +150,9 @@ void ExpHistory::computeArgs()
         }
         else
         {
-            for (int i = 0; i < std::min(m_iArgsDims, m_pITCurrent->getAs<types::GenericType>()->getDims()); i++)
+            for (int i = 0; i < Min(m_iArgsDims, m_pITCurrent->getAs<types::GenericType>()->getDims()); i++)
             {
-                m_piArgsDimsArray[i] = std::max(m_piArgsDimsArray[i], piDimsArray[i]);
+                m_piArgsDimsArray[i] = Max(m_piArgsDimsArray[i], piDimsArray[i]);
             }
         }
     }

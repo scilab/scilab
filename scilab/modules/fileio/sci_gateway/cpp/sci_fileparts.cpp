@@ -35,6 +35,8 @@ enum PartialPart
 #define FILEPARTS_PATH_SELECTOR L"path"
 #define FILEPARTS_FNAME_SELECTOR L"fname"
 #define FILEPARTS_EXTENSION_SELECTOR L"extension"
+
+using namespace types;
 /*--------------------------------------------------------------------------*/
 Function::ReturnValue sci_fileparts(typed_list &in, int _iRetCount, typed_list &out)
 {

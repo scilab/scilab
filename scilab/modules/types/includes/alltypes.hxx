@@ -58,5 +58,6 @@
 #include "sparse.hxx"
 #include "graphichandle.hxx"
 #include "void.hxx"
+#include "library.hxx"
 
 #endif /* !ALL_TYPES_HXX */

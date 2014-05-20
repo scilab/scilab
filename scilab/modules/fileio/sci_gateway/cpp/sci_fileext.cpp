@@ -23,6 +23,9 @@ extern "C"
 #include "splitpath.h"
 #include "localization.h"
 }
+
+using namespace types;
+
 /*--------------------------------------------------------------------------*/
 Function::ReturnValue sci_fileext(typed_list &in, int _iRetCount, typed_list &out)
 {

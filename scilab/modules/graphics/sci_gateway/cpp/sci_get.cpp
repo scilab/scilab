@@ -43,7 +43,7 @@ types::Function::ReturnValue sci_get(types::typed_list &in, int _iRetCount, type
     int iObjUID = 0;
     types::InternalType* pOut = NULL;
 
-    if (in.size() > 2)
+    if (in.size() < 1 || in.size() > 2)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "get", 1, 2);
         return types::Function::Error;
@@ -67,7 +67,7 @@ types::Function::ReturnValue sci_get(types::typed_list &in, int _iRetCount, type
     if (p1->isDouble())
     {
         types::Double* pDbll1 = p1->getAs<types::Double>();
-        if (pDbll1->isScalar())
+        if (pDbll1->isScalar() == false)
         {
             Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), "get", 1);
             return types::Function::Error;

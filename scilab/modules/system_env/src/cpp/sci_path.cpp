@@ -29,6 +29,7 @@ extern "C"
 #include "getenvc.h"
 }
 
+using namespace std;
 char *getSCI(void)
 {
     return wide_string_to_UTF8(ConfigVariable::getSCIPath().c_str());
@@ -61,7 +62,7 @@ void setSCI(const char* _sci_path)
     //SCI
     wchar_t* pwstSCI = to_wide_string(pstSlash);
     types::String *pSSCI = new types::String(pwstSCI);
-    symbol::Context::getInstance()->put(symbol::Symbol(L"SCI"), *pSSCI);
+    symbol::Context::getInstance()->put(symbol::Symbol(L"SCI"), pSSCI);
 
     //WSCI
     wchar_t* pwstWSCI = NULL;
@@ -71,7 +72,7 @@ void setSCI(const char* _sci_path)
     SlashToAntislash(_sci_path, pstBackSlash);
     pwstWSCI = to_wide_string(pstBackSlash);
     types::String *pSWSCI = new types::String(pwstWSCI);
-    symbol::Context::getInstance()->put(symbol::Symbol(L"WSCI"), *pSWSCI);
+    symbol::Context::getInstance()->put(symbol::Symbol(L"WSCI"), pSWSCI);
     delete[] pstBackSlash;
 #else
     pwstWSCI = to_wide_string(_sci_path);

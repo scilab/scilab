@@ -94,6 +94,8 @@ using namespace ast;
 static char *the_current_mex_name;
 static void (*exitFcn)(void);
 
+using namespace ast;
+
 mxClassID mxGetClassID(const mxArray *ptr)
 {
     types::InternalType *pIT = (types::InternalType *) ptr;
@@ -1571,11 +1573,11 @@ int mexEvalString(const char *name)
                         {
                             wchar_t szError[bsiz];
                             os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n"), (*j)->location_get().first_line, pCall->getName().c_str());
-                            throw ScilabMessage(szError);
+                            throw ast::ScilabMessage(szError);
                         }
                         else
                         {
-                            throw ScilabMessage();
+                            throw ast::ScilabMessage();
                         }
                     }
                 }
@@ -1598,7 +1600,7 @@ int mexEvalString(const char *name)
                         szAllError = szError + os.str();
                         os_swprintf(szError, bsiz, _W("in  execstr instruction    called by :\n"));
                         szAllError += szError;
-                        throw ScilabMessage(szAllError);
+                        throw ast::ScilabMessage(szAllError);
                     }
                     else
                     {
@@ -1611,7 +1613,7 @@ int mexEvalString(const char *name)
             //update ans variable.
             if (execMe.result_get() != NULL && execMe.result_get()->isDeletable())
             {
-                symbol::Context::getInstance()->put(symbol::Symbol(L"ans"), *execMe.result_get());
+                symbol::Context::getInstance()->put(symbol::Symbol(L"ans"), execMe.result_get());
                 if ((*j)->is_verbose() && bErrCatch == false)
                 {
                     std::wostringstream ostr;
@@ -1658,10 +1660,10 @@ int mexEvalString(const char *name)
 
                         //restore previous prompt mode
                         ConfigVariable::setPromptMode(oldVal);
-                        throw ScilabMessage(os.str(), 0, (*j)->location_get());
+                        throw ast::ScilabMessage(os.str(), 0, (*j)->location_get());
                     }
                 }
-                throw ScilabMessage((*j)->location_get());
+                throw ast::ScilabMessage((*j)->location_get());
             }
             else
             {
@@ -1669,7 +1671,7 @@ int mexEvalString(const char *name)
                 break;
             }
         }
-        catch (ScilabError se)
+        catch (ast::ScilabError se)
         {
             if (ConfigVariable::getLastErrorMessage() == L"")
             {
@@ -1694,7 +1696,7 @@ int mexEvalString(const char *name)
                 os_swprintf(szError, bsiz, _W("at line % 5d of exec file called by :\n"), (*j)->location_get().first_line);
                 //restore previous prompt mode
                 ConfigVariable::setPromptMode(oldVal);
-                throw ScilabMessage(szError, 1, (*j)->location_get());
+                throw ast::ScilabMessage(szError, 1, (*j)->location_get());
             }
             break;
         }
@@ -1745,15 +1747,16 @@ int mexPutVariable(const char *workspace, const char *varname, const mxArray *pm
     wchar_t *dest = to_wide_string(varname);
     if (strcmp(workspace, "base") == 0)
     {
-        context->putInPreviousScope(*(new symbol::Symbol(dest)), *(types::InternalType *) pm);
+        context->putInPreviousScope(context->getOrCreate(symbol::Symbol(dest)), (types::InternalType *) pm);
     }
     else if (strcmp(workspace, "caller") == 0)
     {
-        context->put(*(new symbol::Symbol(dest)), *(types::InternalType *) pm);
+        context->put(symbol::Symbol(dest), (types::InternalType *) pm);
     }
     else if (strcmp(workspace, "global") == 0)
     {
-        context->setGlobalValue(*(new symbol::Symbol(dest)), *(types::InternalType *) pm);
+        context->setGlobalVisible(symbol::Symbol(dest), true);
+        context->put(symbol::Symbol(dest), (types::InternalType *) pm);
     }
     else
     {

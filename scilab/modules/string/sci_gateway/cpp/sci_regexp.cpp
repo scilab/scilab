@@ -17,6 +17,7 @@ using regular expression .                                      */
 #include "function.hxx"
 #include "context.hxx"
 #include "string.hxx"
+#include "double.hxx"
 #include "string_gw.hxx"
 
 extern "C"
@@ -154,10 +155,10 @@ Function::ReturnValue sci_regexp(typed_list &in, int _iRetCount, typed_list &out
 
     if (iOccurs == 0)
     {
-        out.push_back(Double::Empty());
+        out.push_back(types::Double::Empty());
         if (_iRetCount > 1)
         {
-            out.push_back(Double::Empty());
+            out.push_back(types::Double::Empty());
         }
 
         if (_iRetCount > 2)

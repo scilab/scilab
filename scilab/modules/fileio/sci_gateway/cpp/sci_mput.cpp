@@ -28,6 +28,9 @@ extern "C"
 #include "charEncoding.h"
 #include "os_strdup.h"
 }
+
+using namespace types;
+
 /*--------------------------------------------------------------------------*/
 Function::ReturnValue sci_mput(typed_list &in, int _iRetCount, typed_list &out)
 {

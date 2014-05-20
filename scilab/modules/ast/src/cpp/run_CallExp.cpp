@@ -33,7 +33,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
         {
             std::wostringstream os;
             os << _W("Wrong number of output arguments.\n") << std::endl;
-            throw ScilabError(os.str(), 999, e.location_get());
+            throw ast::ScilabError(os.str(), 999, e.location_get());
         }
 
         //get function arguments
@@ -49,7 +49,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                 {
                     std::wostringstream os;
                     os << _W("left side of optional parameter must be a variable") << std::endl;
-                    throw ScilabError(os.str(), 999, e.location_get());
+                    throw ast::ScilabError(os.str(), 999, e.location_get());
                 }
 
                 Exp* pR = &pAssign->right_exp_get();
@@ -148,7 +148,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
 
                         std::wostringstream os;
                         os << _W("bad lhs, expected : ") << iRetCount << _W(" returned : ") << out.size() << std::endl;
-                        throw ScilabError(os.str(), 999, e.location_get());
+                        throw ast::ScilabError(os.str(), 999, e.location_get());
                     }
                 }
 
@@ -168,7 +168,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
             {
                 ConfigVariable::setLastErrorFunction(pCall->getName());
                 ConfigVariable::setLastErrorLine(e.location_get().first_line);
-                throw ScilabError();
+                throw ast::ScilabError();
             }
         }
         catch (ScilabMessage sm)
@@ -189,7 +189,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
             {
                 wchar_t szError[bsiz];
                 os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n"), sm.GetErrorLocation().first_line, pCall->getName().c_str());
-                throw ScilabMessage(szError);
+                throw ast::ScilabMessage(szError);
             }
             else
             {
@@ -237,7 +237,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
         const SimpleVar *Var = dynamic_cast<const SimpleVar*>(&e.name_get());
         if (Var != NULL)
         {
-            pIT = symbol::Context::getInstance()->get(Var->name_get());
+            pIT = symbol::Context::getInstance()->get(((SimpleVar*)Var)->stack_get());
         }
         else
         {
@@ -388,7 +388,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                             //try to call specific exrtaction function
                             ret = Overload::call(L"%" + pIT->getAs<TList>()->getShortTypeStr() + L"_e", in, 1, ResultList, this);
                         }
-                        catch (ScilabError /*&e*/)
+                        catch (ast::ScilabError /*&e*/)
                         {
                             //if call failed try to call generic extraction function
                             ret = Overload::call(L"%l_e", in, 1, ResultList, this);
@@ -409,7 +409,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                             {
                                 std::wostringstream os;
                                 os << _W("Invalid index.\n");
-                                throw ScilabError(os.str(), 999, (*e.args_get().begin())->location_get());
+                                throw ast::ScilabError(os.str(), 999, (*e.args_get().begin())->location_get());
                             }
                             break;
                             case 1 :
@@ -425,7 +425,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                     }
                     else
                     {
-                        throw ScilabError();
+                        throw ast::ScilabError();
                     }
                     break;
                 }
@@ -484,7 +484,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                             //try to call specific exrtaction function
                             ret = Overload::call(L"%" + pIT->getAs<MList>()->getShortTypeStr() + L"_e", in, 1, ResultList, this);
                         }
-                        catch (ScilabError /*&e*/)
+                        catch (ast::ScilabError /*&e*/)
                         {
                             //if call failed try to call generic extraction function
                             ret = Overload::call(L"%l_e", in, 1, ResultList, this);
@@ -505,7 +505,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                             {
                                 std::wostringstream os;
                                 os << _W("Invalid index.\n");
-                                throw ScilabError(os.str(), 999, (*e.args_get().begin())->location_get());
+                                throw ast::ScilabError(os.str(), 999, (*e.args_get().begin())->location_get());
                             }
                             break;
                             case 1 :
@@ -521,7 +521,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                     }
                     else
                     {
-                        throw ScilabError();
+                        throw ast::ScilabError();
                     }
                     break;
                 }
@@ -553,7 +553,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                             {
                                 wchar_t szError[bsiz];
                                 os_swprintf(szError, bsiz, _W("Field \"%ls\" does not exists\n"), wstField.c_str());
-                                throw ScilabError(szError, 999, (*e.args_get().begin())->location_get());
+                                throw ast::ScilabError(szError, 999, (*e.args_get().begin())->location_get());
                             }
                         }
 
@@ -595,7 +595,13 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                         in.push_back(pS);
                         in.push_back(pH);
 
-                        Function* pCall = (Function*)symbol::Context::getInstance()->get(symbol::Symbol(L"%h_e"));
+                        static symbol::Variable* h_e = NULL;
+                        if (h_e == NULL)
+                        {
+                            h_e = symbol::Context::getInstance()->getOrCreate(symbol::Symbol(L"%h_e"));
+                        }
+
+                        Function* pCall = (Function*)symbol::Context::getInstance()->get(h_e);
                         Callable::ReturnValue ret =  pCall->call(in, opt, 1, out, this);
                         if (ret == Callable::OK)
                         {
@@ -638,7 +644,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                     std::wostringstream os;
                     os << _W("Invalid index.\n");
                     //os << ((*e.args_get().begin())->location_get()).location_getString() << std::endl;
-                    throw ScilabError(os.str(), 999, (*e.args_get().begin())->location_get());
+                    throw ast::ScilabError(os.str(), 999, (*e.args_get().begin())->location_get());
                 }
             }
             result_set(pOut);
@@ -656,7 +662,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                     std::wostringstream os;
                     os << _W("inconsistent row/column dimensions\n");
                     //os << ((*e.args_get().begin())->location_get()).location_getString() << std::endl;
-                    throw ScilabError(os.str(), 999, (*e.args_get().begin())->location_get());
+                    throw ast::ScilabError(os.str(), 999, (*e.args_get().begin())->location_get());
                 }
             }
         }
@@ -689,7 +695,7 @@ void RunVisitorT<T>::visitprivate(const CellCallExp &e)
 
             if (pIT->isCell() == false)
             {
-                throw ScilabError(_W("[error] Cell contents reference from a non-cell array object.\n"), 999, (*e.args_get().begin())->location_get());
+                throw ast::ScilabError(_W("[error] Cell contents reference from a non-cell array object.\n"), 999, (*e.args_get().begin())->location_get());
             }
             //Create list of indexes
             types::typed_list *pArgs = GetArgumentList(e.args_get());
@@ -701,7 +707,7 @@ void RunVisitorT<T>::visitprivate(const CellCallExp &e)
                 std::wostringstream os;
                 os << _W("inconsistent row/column dimensions\n");
                 //os << ((*e.args_get().begin())->location_get()).location_getString() << std::endl;
-                throw ScilabError(os.str(), 999, (*e.args_get().begin())->location_get());
+                throw ast::ScilabError(os.str(), 999, (*e.args_get().begin())->location_get());
             }
 
             if (pList->getSize() == 1)

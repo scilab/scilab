@@ -80,7 +80,7 @@ static void getMacroString(Macro* _pM, InternalType** _pOut, InternalType** _pIn
     *_pBody = pBody;
 
     //get inputs
-    list<symbol::Symbol>* pIn = _pM->inputs_get();
+    std::list<symbol::Variable*>* pIn = _pM->inputs_get();
 
     if (pIn->size() == 0)
     {
@@ -90,17 +90,17 @@ static void getMacroString(Macro* _pM, InternalType** _pOut, InternalType** _pIn
     {
         String *pSIn = new String(1, (int)pIn->size());
 
-        list<symbol::Symbol>::iterator itIn = pIn->begin();
+        list<symbol::Variable*>::iterator itIn = pIn->begin();
         for (int i = 0 ; i < pIn->size() ; i++, itIn++)
         {
-            pSIn->set(i, (*itIn).name_get().c_str());
+            pSIn->set(i, (*itIn)->name_get().name_get().c_str());
         }
 
         *_pIn = pSIn;
     }
 
     //get outputs
-    list<symbol::Symbol>* pOut = _pM->outputs_get();
+    list<symbol::Variable*>* pOut = _pM->outputs_get();
     if (pOut->size() == 0)
     {
         *_pOut = Double::Empty();
@@ -109,10 +109,10 @@ static void getMacroString(Macro* _pM, InternalType** _pOut, InternalType** _pIn
     {
         String* pSOut = new String(1, (int)pOut->size());
 
-        list<symbol::Symbol>::iterator itOut = pOut->begin();
+        list<symbol::Variable*>::iterator itOut = pOut->begin();
         for (int i = 0 ; i < pOut->size() ; i++, itOut++)
         {
-            pSOut->set(i, (*itOut).name_get().c_str());
+            pSOut->set(i, (*itOut)->name_get().name_get().c_str());
         }
 
         *_pOut = pSOut;

@@ -248,11 +248,11 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
                         {
                             wchar_t szError[bsiz];
                             os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n"), (*j)->location_get().first_line, pCall->getName().c_str());
-                            throw ScilabMessage(szError);
+                            throw ast::ScilabMessage(szError);
                         }
                         else
                         {
-                            throw ScilabMessage();
+                            throw ast::ScilabMessage();
                         }
                     }
                 }
@@ -276,7 +276,7 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
                         szAllError = szError + os.str();
                         os_swprintf(szError, bsiz, _W("in  execstr instruction    called by :\n"));
                         szAllError += szError;
-                        throw ScilabMessage(szAllError);
+                        throw ast::ScilabMessage(szAllError);
                     }
                     else
                     {
@@ -290,7 +290,7 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
             if (execMe.result_get() != NULL && execMe.result_get()->isDeletable())
             {
                 InternalType* pITAns = execMe.result_get();
-                symbol::Context::getInstance()->put(symbol::Symbol(L"ans"), *pITAns);
+                symbol::Context::getInstance()->put(symbol::Symbol(L"ans"), pITAns);
                 if ( (*j)->is_verbose() && bErrCatch == false)
                 {
                     std::wostringstream ostr;
@@ -344,10 +344,10 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
 
                         //restore previous prompt mode
                         ConfigVariable::setPromptMode(oldVal);
-                        throw ScilabMessage(os.str(), 0, (*j)->location_get());
+                        throw ast::ScilabMessage(os.str(), 0, (*j)->location_get());
                     }
                 }
-                throw ScilabMessage((*j)->location_get());
+                throw ast::ScilabMessage((*j)->location_get());
             }
             else
             {
@@ -355,7 +355,7 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
                 break;
             }
         }
-        catch (ScilabError se)
+        catch (ast::ScilabError se)
         {
             ConfigVariable::setSilentError(iOldSilentError);
             // check on error number because error message can be empty.
@@ -380,7 +380,7 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
                 sciprint(_("in  execstr instruction    called by :\n"));
                 //restore previous prompt mode
                 ConfigVariable::setPromptMode(oldVal);
-                //throw ScilabMessage(szError, 1, (*j)->location_get());
+                //throw ast::ScilabMessage(szError, 1, (*j)->location_get());
                 //print already done, so just foward exception but with message
                 //throw ast::ScilabError();
                 return Function::Error;

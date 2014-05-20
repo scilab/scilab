@@ -14,6 +14,7 @@
 #include "functions_gw.hxx"
 #include "context.hxx"
 #include "string.hxx"
+#include "double.hxx"
 
 extern "C" {
 #include "Scierror.h"
@@ -23,6 +24,7 @@ extern "C" {
 /*--------------------------------------------------------------------------*/
 
 using namespace types;
+using namespace std;
 
 Function::ReturnValue sci_whereis(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {

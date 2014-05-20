@@ -52,34 +52,38 @@ types::Function::ReturnValue sci_global(types::typed_list &in, int _iRetCount, t
 
     for (int i = 0 ; i < in.size() ; i++)
     {
-        symbol::Symbol pstVar = *new symbol::Symbol(in[i]->getAs<types::String>()->get(0));
+        symbol::Symbol pstVar(symbol::Symbol(in[i]->getAs<types::String>()->get(0)));
 
-        //does it visible in current global scope
-        if (pCtx->isGlobalVisible(pstVar) == false)
+        if (pCtx->isGlobalVisible(pstVar))
         {
-            //does it exist in global
-            if (pCtx->isGlobalExists(pstVar) == false)
-            {
-                InternalType* pIT = pCtx->get(pstVar);
-
-                //create a empty global variable => []
-                pCtx->createEmptyGlobalValue(pstVar);
-
-                //set visible in current global scope
-                pCtx->setGlobalVisible(pstVar);
-
-                if (pIT)
-                {
-                    //assign old local value
-                    pCtx->put(pstVar, *pIT);
-                }
-            }
-            else
-            {
-                //set visible in current global scope
-                pCtx->setGlobalVisible(pstVar);
-            }
+            continue;
         }
+
+        types::InternalType* pIT = NULL;
+
+        if (pCtx->isGlobal(pstVar))
+        {
+            pIT = pCtx->getGlobalValue(pstVar);
+        }
+        else
+        {
+            pIT = pCtx->getCurrentLevel(pstVar);
+            pCtx->setGlobal(pstVar);
+        }
+
+        //set global variable visible in current scope
+        pCtx->setGlobalVisible(pstVar, true);
+
+        if (pIT)
+        {
+            //assign local value to new global variable
+            pCtx->put(pstVar, pIT);
+        }
+        else
+        {
+            pCtx->put(pstVar, types::Double::Empty());
+        }
+
     }
     return types::Function::OK;
 }

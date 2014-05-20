@@ -1014,7 +1014,7 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
         Scierror(999, pstrMsg);
         FREE(pstrMsg);
     }
-    catch (ast::ScilabMessage &m)
+    catch (ast::ScilabMessage& /*m*/)
     {
     }
 

@@ -13,7 +13,8 @@
 #ifndef __LIBRARY_HXX__
 #define __LIBRARY_HXX__
 
-#include "macrofile.hxx"
+#include <list>
+#include "typesdecl.hxx"
 #include "dynlib_types.h"
 
 namespace types

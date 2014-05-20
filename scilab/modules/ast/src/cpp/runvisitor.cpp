@@ -414,7 +414,7 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
         for (int i = 0 ; i < pVar->getSize() ; i++)
         {
             pIL = pVar->extractValue(i);
-            symbol::Context::getInstance()->put(varName, *pIL);
+            symbol::Context::getInstance()->put(e.vardec_get().stack_get(), pIL);
 
             e.body_get().accept(*this);
             if (e.body_get().is_break())
@@ -442,7 +442,7 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
         for (int i = 0 ; i < pL->getSize() ; i++)
         {
             InternalType* pNew = pL->get(i);
-            symbol::Context::getInstance()->put(e.vardec_get().name_get(), *pNew);
+            symbol::Context::getInstance()->put(e.vardec_get().stack_get(), pNew);
             e.body_get().accept(*this);
             if (e.body_get().is_break())
             {
@@ -475,7 +475,7 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
         for (int i = 0 ; i < pVar->getCols() ; i++)
         {
             GenericType* pNew = pVar->getColumnValues(i);
-            symbol::Context::getInstance()->put(e.vardec_get().name_get(), *pNew);
+            symbol::Context::getInstance()->put(e.vardec_get().stack_get(), pNew);
             e.body_get().accept(*this);
             if (e.body_get().is_break())
             {
@@ -810,7 +810,7 @@ void RunVisitorT<T>::visitprivate(const SeqExp  &e)
                 {
                     //symbol::Context::getInstance()->put(symbol::Symbol(L"ans"), *execMe.result_get());
                     InternalType* pITAns = result_get();
-                    symbol::Context::getInstance()->put(*m_pAns, *pITAns);
+                    symbol::Context::getInstance()->put(m_pAns, pITAns);
                     if ((*itExp)->is_verbose() && ConfigVariable::isPromptShow())
                     {
                         //TODO manage multiple returns
@@ -1283,7 +1283,7 @@ void RunVisitorT<T>::visitprivate(const FunctionDec  &e)
     // funcprot(2) : error
     if (ConfigVariable::getFuncprot() == 1 && ConfigVariable::getWarningMode())
     {
-        types::InternalType* pITFunc = symbol::Context::getInstance()->get(symbol::Symbol(e.name_get().name_get()));
+        types::InternalType* pITFunc = symbol::Context::getInstance()->get(((FunctionDec&)e).stack_get());
 
         if (pITFunc && pITFunc->isCallable())
         {
@@ -1298,7 +1298,7 @@ void RunVisitorT<T>::visitprivate(const FunctionDec  &e)
     }
     else if (ConfigVariable::getFuncprot() == 2)
     {
-        types::InternalType* pITFunc = symbol::Context::getInstance()->get(symbol::Symbol(e.name_get().name_get()));
+        types::InternalType* pITFunc = symbol::Context::getInstance()->get(((FunctionDec&)e).stack_get());
 
         if (pITFunc && pITFunc->isCallable())
         {
@@ -1316,19 +1316,19 @@ void RunVisitorT<T>::visitprivate(const FunctionDec  &e)
     std::list<Var *>::const_iterator	i;
 
     //get input parameters list
-    std::list<symbol::Symbol> *pVarList = new std::list<symbol::Symbol>();
+    std::list<symbol::Variable*> *pVarList = new std::list<symbol::Variable*>();
     const ArrayListVar *pListVar = &e.args_get();
     for (i = pListVar->vars_get().begin() ; i != pListVar->vars_get().end() ; i++)
     {
-        pVarList->push_back(static_cast<SimpleVar*>(*i)->name_get());
+        pVarList->push_back(static_cast<SimpleVar*>(*i)->stack_get());
     }
 
     //get output parameters list
-    std::list<symbol::Symbol> *pRetList = new std::list<symbol::Symbol>();
+    std::list<symbol::Variable*> *pRetList = new std::list<symbol::Variable*>();
     const ArrayListVar *pListRet = &e.returns_get();
     for (i = pListRet->vars_get().begin() ; i != pListRet->vars_get().end() ; i++)
     {
-        pRetList->push_back(static_cast<SimpleVar*>(*i)->name_get());
+        pRetList->push_back(static_cast<SimpleVar*>(*i)->stack_get());
     }
 
     //            Location* newloc = const_cast<Location*>(&location_get())->clone();
@@ -1341,7 +1341,7 @@ void RunVisitorT<T>::visitprivate(const FunctionDec  &e)
     types::Macro *pMacro = new types::Macro(e.name_get().name_get(), *pVarList, *pRetList,
                                             static_cast<SeqExp&>(*exp), L"script");
     pMacro->setFirstLine(e.location_get().first_line);
-    symbol::Context::getInstance()->AddMacro(pMacro);
+    symbol::Context::getInstance()->addMacro(pMacro);
 }
 
 template <class T>

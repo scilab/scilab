@@ -27,6 +27,9 @@ extern "C"
 #include "charEncoding.h"
 #include "mgetstr.h"
 }
+
+using namespace types;
+
 /*--------------------------------------------------------------------------*/
 Function::ReturnValue sci_mgetstr(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {

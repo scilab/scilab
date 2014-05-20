@@ -186,7 +186,7 @@ SciErr createNamedMatrixOfString(void* _pvCtx, const char* _pstName, int _iRows,
     }
 
     wchar_t* pwstName = to_wide_string(_pstName);
-    symbol::Context::getInstance()->put(symbol::Symbol(pwstName), *pS);
+    symbol::Context::getInstance()->put(symbol::Symbol(pwstName), pS);
     FREE(pwstName);
 
     return sciErr;

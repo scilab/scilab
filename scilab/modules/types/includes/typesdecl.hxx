@@ -1,6 +1,6 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2012 - Scilab Enterprises - Antoine ELIAS
+ *  Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
  *
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which
@@ -10,18 +10,9 @@
  *
  */
 
-#include "graphics_gw.hxx"
-#include "function.hxx"
-#include "context.hxx"
-
-#define MODULE_NAME L"graphics"
-extern "C"
+namespace types
 {
-#include "gw_graphics.h"
-}
-
-int GraphicsModule::Load()
-{
-    return 1;
+class MacroFile;
+class Macro;
 }
 

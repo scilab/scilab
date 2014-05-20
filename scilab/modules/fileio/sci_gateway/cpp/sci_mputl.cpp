@@ -27,6 +27,9 @@ extern "C"
 #include "mclose.h"
 #include "expandPathVariable.h"
 }
+
+using namespace types;
+
 /*--------------------------------------------------------------------------*/
 Function::ReturnValue sci_mputl(typed_list &in, int _iRetCount, typed_list &out)
 {

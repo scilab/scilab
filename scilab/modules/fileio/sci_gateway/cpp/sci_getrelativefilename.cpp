@@ -30,8 +30,10 @@ extern "C"
 #include "localization.h"
 #include "getrelativefilename.h"
 }
-/*--------------------------------------------------------------------------*/
 
+using namespace types;
+
+/*--------------------------------------------------------------------------*/
 Function::ReturnValue sci_getrelativefilename(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     wchar_t* wcsAbsDir  = NULL;

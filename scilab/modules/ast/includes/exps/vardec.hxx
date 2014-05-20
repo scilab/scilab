@@ -21,7 +21,7 @@
 #include <assert.h>
 
 #include "dec.hxx"
-#include "symbol.hxx"
+#include "context.hxx"
 
 namespace ast
 {
@@ -50,7 +50,8 @@ public:
             symbol::Symbol& name, Exp& init)
         : Dec (location),
           _name (name),
-          _init (&init)
+          _init (&init),
+          _stack(NULL)
     {
     }
 
@@ -67,7 +68,7 @@ public:
     virtual VarDec* clone()
     {
         Location* newloc = const_cast<Location*>(&location_get())->clone();
-        VarDec* cloned = new VarDec(*newloc, *new symbol::Symbol(name_get().name_get()), *init_get().clone());
+        VarDec* cloned = new VarDec(*newloc, name_get(), *init_get().clone());
         cloned->set_verbose(is_verbose());
         return cloned;
     }
@@ -96,6 +97,16 @@ public:
         return _name;
     }
 
+    symbol::Variable* stack_get()
+    {
+        if (_stack == NULL)
+        {
+            _stack = symbol::Context::getInstance()->getOrCreate(_name);
+        }
+
+        return _stack;
+    }
+
     /** \brief Return the initial expression value (read only). */
     const Exp& init_get (void) const
     {
@@ -110,6 +121,7 @@ public:
 protected:
     /** \brief Name of the declared variable. */
     symbol::Symbol& _name;
+    symbol::Variable* _stack;
     /** \brief The initial value (expression) assigned to the variable. */
     Exp* _init;
 };
