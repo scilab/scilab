@@ -134,15 +134,15 @@
     <!--
   <menu label="&amp;MVC">
     <submenu label="&amp;Log View (Trace all View notifications)">
-      <callback instruction='org.scilab.modules.graphic_objects.MVCDebugView.showLogView' type="3"/>
+      <callback instruction='org.scilab.modules.graphic_objects.graphicView.LogView.createLogView' type="3"/>
     </submenu>
     <separator/>
     <submenu label="&amp;All Objects View (All objects with properties)">
-      <callback instruction='org.scilab.modules.graphic_objects.MVCDebugView.showAllObjectsView' type="3"/>
+      <callback instruction='org.scilab.modules.graphic_objects.graphicView.FlattenTreeView.createView' type="3"/>
     </submenu>
     <separator/>
     <submenu label="&amp;Ged-like View (Future ged)">
-      <callback instruction='org.scilab.modules.graphic_objects.MVCDebugView.showGedView' type="3"/>
+      <callback instruction='org.scilab.modules.graphic_objects.graphicView.GedTreeView.create' type="3"/>
     </submenu>
     <separator/>
   </menu>
