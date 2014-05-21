@@ -42,8 +42,11 @@
         <title>Description</title>
         <para>
             This function returns a struct with the fields names
-            <varname>fields1</varname>, <varname>field2</varname>, ..., and the fields values
+            <varname>field1</varname>, <varname>field2</varname>, ..., and the fields values
             corresponding <varname>value1</varname>, <varname>value2</varname>, ...
+        </para>
+        <para>
+            Note that <literal>type(st)</literal> returns <literal>17</literal>, and <literal>typeof(st)</literal> returns <literal>st</literal>.
         </para>
     </refsection>
     <refsection>
@@ -51,18 +54,28 @@
         <programlisting role="example"><![CDATA[
 //create a struct date
 date_st=struct('day',25,'month' ,'DEC','year',2006)
- 
 //change the month
 date_st.month='AUG';
- 
 //change the year
 date_st.year=1973;
- 
 //change the day
 date_st.day=19;
- 
 //add a new field
 date_st.semaine=32
+
+//create a structure test
+test=struct('list1',list('testlist',1,2), 'matrix1', [1 2 3; 4 5 6], 'boolean1', %t);
+//add a polynom
+s=poly(0,'s')
+test.pol1=s;
+//add a state-space
+A=[0,1;0,0]; B=[1;1];C=[1,1];
+test.ss1=syslin('c',A,B,C);
+//Show the list
+test.list1
+getfield(3,test)
+//Show the type
+type(test)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -70,6 +83,18 @@ date_st.semaine=32
         <simplelist type="inline">
             <member>
                 <link linkend="cell">cell</link>
+            </member>
+            <member>
+                <link linkend="mlist">mlist</link>
+            </member>
+            <member>
+                <link linkend="tlist">tlist</link>
+            </member>
+            <member>
+                <link linkend="getfield">getfield</link>
+            </member>
+            <member>
+                <link linkend="setfield">setfield</link>
             </member>
         </simplelist>
     </refsection>
