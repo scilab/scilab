@@ -153,7 +153,6 @@ G1=rand(size(B2,2),3);
 B1=-B2*G1;
 D11=-D12*G1;
 D1=[D11;rand(ny,size(B1,2))];
-
 [Closed,F,G]=ddp(Sys,1:nz,B1,D1,'st',my_alpha,my_beta);
 closed=syslin('c',A+B2*F,B1+B2*G,C1+D12*F,D11+D12*G);
 ss2tf(closed)

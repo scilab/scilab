@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - DIGITEO - Sylvestre Ledru
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ -->
+<!-- This document was created with Syntext Serna Free. -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="mpi_technical" xml:lang="ja">
+    <refnamediv>
+        <refname>MPI implementation</refname>
+        <refpurpose>実装に関する技術的詳細</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>データの送信および受信</title>
+        <para>
+            スクリプト言語によるMPI実装の主な問題は,ネーティブな特徴に起因します.
+            つまり,スクリプト言語は,もともと,
+            種々の<literal>型</literal>および大きさの動的な変数を用いているのです.
+        </para>
+        <para>
+            ScilabにおけるMPIの実装はMPIデータ型MPI_INTへの内部的なシリアル化および
+            非シリアル化処理を用いています.
+            送信関数(MPI_Send, MPI_Isend, MPI_BCast, など)は
+            全てのサポートされるデータ型を MPI_INTに変換し,一方,
+            受信関数(MPI_Recv, MPI_Irecv, など) は元の変数を 
+            <literal>回復</literal> します.
+        </para>
+        <para>
+            5系列におけるメモリ表現と同様に,変数は以下のようにシリアル化されます:
+        </para>
+        <para>
+            Double, Boolean, 文字列(?)
+            <informaltable border="1">
+                <tr>
+                    <td>
+                        <para>型</para>
+                    </td>
+                    <td>
+                        <para>行数</para>
+                    </td>
+                    <td>
+                        <para>列数</para>
+                    </td>
+                    <td>
+                        <para>複素数 (関係する場合)</para>
+                    </td>
+                    <td>
+                        <para>データ</para>
+                    </td>
+                </tr>
+            </informaltable>
+        </para>
+        <para>整数
+            <informaltable border="1">
+                <tr>
+                    <td>
+                        <para>型</para>
+                    </td>
+                    <td>
+                        <para>行数</para>
+                    </td>
+                    <td>
+                        <para>列数</para>
+                    </td>
+                    <td>
+                        <para>精度</para>
+                    </td>
+                    <td>
+                        <para>データ</para>
+                    </td>
+                </tr>
+            </informaltable>
+            <para>
+            </para>
+            疎行列 (double または boolean)
+            <informaltable border="1">
+                <tr>
+                    <td>
+                        <para>型</para>
+                    </td>
+                    <td>
+                        <para>行数</para>
+                    </td>
+                    <td>
+                        <para>列数</para>
+                    </td>
+                    <td>
+                        <para>複素数</para>
+                    </td>
+                    <td>
+                        <para>要素数</para>
+                    </td>
+                    <td>
+                        <para>データ</para>
+                    </td>
+                </tr>
+            </informaltable>
+        </para>
+        <para>
+            他の解を検討しましたが,種々の理由により棄却されました:
+            <simplelist type="inline">
+                <member>
+                    <literal>MPIに基づく新規データ型</literal> は
+                    <literal>事前に</literal>変数の大きさを知る必要があります.
+                </member>
+                <member>
+                    <literal>
+                        メタデータ(大きさ, 型)が送信されたり,
+                        データが送信されたりします.
+                    </literal>
+                    性能は低下し,コードはかなり複雑化します.
+                </member>
+            </simplelist>
+        </para>
+    </refsection>
+    <refsection>
+        <title>非同期通信</title>
+        <para>
+            MPI_Irecv とMPI_Isendの標準的な動作はScilab言語で共通する方法とは実際には
+            異なり、MPI_WairがScilab MPIバインディングに値を返します.
+        </para>
+        <para>
+            リクエストのリストとMPI_Irecv/MPI_Waitで想定されるMPI変数を保存するために,
+            最大 10 000 要素を有する静的C構造体が使用されます.
+            これらは,非同期通信で使用される種々のMPIリクエストと
+            MPI_Irecvから期待される変数へのリファレンスを保存する際に使用されます.
+            受信された値はMPI_Waitにより取得されます.
+        </para>
+        <para>以下の例では, "42"という名前のリクエストがこのデータ構造体に保存されます.
+            <programlisting role="example"><![CDATA[ 
+                MPI_Init();
+                rnk =    MPI_Comm_rank();
+                sizeNodes =    MPI_Comm_size();
+                SLV = rnk;
+                Master = ~ SLV;
+                assert_checkequal(MPI_Comm_size(), 2);
+                if Master
+                   for slaveId = 1:sizeNodes-1
+                     value = slaveId*2
+                     MPI_Isend(value, slaveId, 42);
+                   end
+                else
+                    rankSource=0;
+                    tag=0;
+                    MPI_Irecv(rankSource, tag, 42); // MPI_Irecv は値を返しません
+                    value=MPI_Wait(42) // 値は MPI_Waitにより返されます
+                    assert_checkequal(value,2);
+                end
+                MPI_Finalize();
+                exit()
+           ]]> </programlisting>
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="mpi">MPIの概要</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

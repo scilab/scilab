@@ -20,7 +20,7 @@
         <synopsis>[K]=ccontrg(P,r,gamma);</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>P</term>
@@ -78,5 +78,19 @@ B = ( B1 , B2 ) ,        C= ( C1 ) ,    D = ( D11  D12)
                 <link linkend="h_inf">h_inf</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>
+                    <literal>Sl</literal> は連続時間系の線形動的システムであることが確認されるようになりました.
+                    この修正は,
+                    <ulink url="http://gitweb.scilab.org/?p=scilab.git;a=commit;h=3d7083daae3339813ba747c8adcda1f9599bb80d">このcommit</ulink>
+                    により行われました.
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

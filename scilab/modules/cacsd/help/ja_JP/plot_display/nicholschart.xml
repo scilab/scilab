@@ -17,8 +17,8 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>nicholschart([ modules [,args [,colors]]])</synopsis>
-        
+        <synopsis>nicholschart([modules] [,args] [,colors])</synopsis>
+        <synopsis/>
     </refsynopsisdiv>
     <refsection>
         <title>引数</title>
@@ -38,7 +38,7 @@
             <varlistentry>
                 <term>colorss</term>
                 <listitem>
-                    <para>スカラーまたはベクトル, 等ゲインまたは等位相曲線の色インデックスs</para>
+                    <para>スカラーまたはベクトル, 等ゲインまたは等位相曲線の色インデックス</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -62,6 +62,14 @@
         </para>
         <para>
             <literal>[-(1:10) , -(20:10:160)]</literal>
+        </para>
+    </refsection>
+    <refsection>
+        <title>注意</title>
+        <para>
+            従来からの<code>nicholschart</code>のニコルス線図の呼び出し手順は以下の形式でした:
+            nicholschart(modules=gains, args=phases, colors=colors), 
+            しかし,以下の呼び出し手順も利用可能です: nicholschart(gains, phases, colors).
         </para>
     </refsection>
     <refsection>
@@ -117,5 +125,14 @@
                 <link linkend="hallchart">hallchart</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark> 使用可能な呼び出し手順: nicholschart(gains, phases, colors).</revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

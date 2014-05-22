@@ -13,7 +13,9 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="tempname">
     <refnamediv>
         <refname>tempname</refname>
-        <refpurpose>テンポラリファイル用のユニークな名前</refpurpose>
+        <refpurpose>
+            ユニークなファイル名を有するファイルを作成
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
@@ -40,10 +42,13 @@
     </refsection>
     <refsection>
         <title>説明</title>
-        <para>ユニークなファイル名を有するファイルをTMPDIRディレクトリに作成します.
+        <para>
+            <function>tempname</function>は,
+            ユニークなファイル名を有するファイルを<literal>TMPDIR</literal> ディレクトリに作成します.
         </para>
-        <para>tmp_nam = tempname() は,テンポラリなファイル名として使用可能な
-            ユニークな文字列, tmp_namを返します.
+        <para>
+            <code>tmp_name = tempname()</code> は,テンポラリなファイル名として使用可能な
+            ユニークな文字列, <varname>tmp_name</varname>を返します.
         </para>
     </refsection>
     <refsection>
@@ -54,5 +59,16 @@
       F2 = tempname('TMP')
       isfile(F2)
  ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>
+                    関数<function>tempname</function>が導入されました.
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

@@ -25,13 +25,13 @@
             <varlistentry>
                 <term>Plant</term>
                 <listitem>
-                    <para>状態空間表現の連続時間システム.</para>
+                    <para>状態空間表現の連続時間動的システム.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>Model</term>
                 <listitem>
-                    <para>状態空間表現の連続時間システム.</para>
+                    <para>状態空間表現の連続時間動的システム.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>

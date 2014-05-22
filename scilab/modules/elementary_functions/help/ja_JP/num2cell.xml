@@ -158,8 +158,6 @@
             
             size(c(1).entries)
             
-            
-            
             A=["a", "b"; "c" "d"]
             
             num2cell(A)

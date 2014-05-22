@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -10,76 +11,172 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
+
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="strcat" xml:lang="ja">
+    
     <refnamediv>
+        
         <refname>strcat</refname>
+        
         <refpurpose>文字列を結合する</refpurpose>
+        
     </refnamediv>
+    
     <refsynopsisdiv>
+        
         <title>呼び出し手順</title>
-        <synopsis>txt=strcat(vector_of_strings [,string_added])
-            txt=strcat(vector_of_strings [,string_added, ["flag"]])
+        
+        <synopsis>
+            
+            txt = strcat(strings [,string_added])
+            
+            txt = strcat(strings [,string_added, ["flag"]])
+            
         </synopsis>
+        
     </refsynopsisdiv>
+    
     <refsection>
-        <title>パラメータ</title>
+        
+        <title>引数</title>
+        
         <variablelist>
+            
             <varlistentry>
-                <term>vector_of_strings</term>
+                
+                <term>strings</term>
+                
                 <listitem>
-                    <para>文字列ベクトル</para>
+                    
+                    <para>文字列のベクトルまたは行列</para>
+                    
                 </listitem>
+                
             </varlistentry>
+            
             <varlistentry>
+                
                 <term>string_added</term>
+                
                 <listitem>
-                    <para>追加される文字列, デフォルト値は空の文字列
+                    
+                    <para>
+                        
+                        追加される文字列, デフォルト値は長さ0の文字列
+                        
                         <literal>""</literal>
+                        
                     </para>
+                    
                 </listitem>
+                
             </varlistentry>
+            
             <varlistentry>
+                
                 <term>txt</term>
+                
                 <listitem>
+                    
                     <para>文字列</para>
+                    
                 </listitem>
+                
             </varlistentry>
+            
             <varlistentry>
+                
                 <term>"flag"</term>
+                
                 <listitem>
-                    <para>文字列 ( "r" は行行列を返し, "c" は列行列を返します)</para>
+                    
+                    <para>
+                        
+                        文字列 (<literal>"r"</literal>は
+                        
+                        行列<varname>strings</varname>の行の結合,
+                        
+                        <literal>"c"</literal>は
+                        
+                        行列<varname>strings</varname>の列の結合)
+                        
+                    </para>
+                    
                 </listitem>
+                
             </varlistentry>
+            
         </variablelist>
+        
     </refsection>
+    
     <refsection>
+        
         <title>説明</title>
+        
         <para>
-            <literal>txt=strcat(vector_of_strings)</literal>は文字列を結合します
-            :
-            <literal>txt=vector_of_strings(1)+...+vector_of_strings(n)</literal>
+            
+            <code>txt = strcat(strings)</code>は文字列を結合します:
+            
+            <literal>txt = strings(1) + ... + strings(n)</literal>.
+            
         </para>
+        
         <para>
-            <literal>txt=strcat(vector_of_strings,string_added)</literal>
-            は
-            <literal>txt=vector_of_strings(1)+string_added+...+string_added+vector_of_strings(n)</literal>を返します.
+            
+            <code>txt = strcat(strings, string_added)</code>は,
+            
+            <literal>txt = strings(1) + string_added + ... + string_added + strings(n)</literal>
+            
+            を返します.
+            
         </para>
+        
         <para>
-            プラス記号の動作は同じです: <literal>"a"+"b"</literal> は
-            <literal>strcat(["a","b"])</literal>と同じです.
+            
+            プラス記号の動作は同じです: <code>"a"+"b"</code> は
+            
+            <code>strcat(["a","b"])</code>と同じです.
+            
         </para>
+        
         <para>
-            <literal>vector_of_strings</literal> の大きさが1の場合, 
-            <literal>txt=vector_of_strings(1)</literal>を返します.
+            
+            <varname>strings</varname> の大きさが1の場合, 
+            
+            <code>txt = strings(1)</code>を返します.
+            
         </para>
+        
         <para>
-            <literal>strcat('A','B')</literal> は 'A' を返し,
-            <literal>strcat(['A','B'])</literal>のように 'AB'とはなりません.
+            
+            <code>strcat('A','B')</code> は <literal>'A'</literal>を返し,
+            
+            <code>strcat(['A','B'])</code>のように<literal>'AB'</literal>
+            
+            とはなりません.
+            
         </para>
+        
+        <para>
+            
+            <varname>strings</varname>が文字列の行列の場合,
+            
+            <code>strcat(strings,"",'r')</code> は文字列の行ベクトルを返します.
+            
+            この行ベクトルのエントリは行結合の毛化です.文字列の列ベクトルを返します.
+            
+            この列ベクトルのエントリは列結合の結果です.
+            
+        </para>
+        
     </refsection>
+    
     <refsection>
+        
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        
+        <programlisting role="example"><![CDATA[
 strcat(string(1:10),',')
 strcat(["a","b"])
 strcat(["a","b"],'|')
@@ -93,17 +190,34 @@ strcat(m, "r")
 strcat(m, "", "r")
 strcat(m, "", "c")
 
- ]]></programlisting>
+strcat(m, "_and_", "r")
+strcat(m, "_and_", "c")
+
+    ]]></programlisting>
+        
     </refsection>
+    
     <refsection role="see also">
+        
         <title>参照</title>
+        
         <simplelist type="inline">
+            
             <member>
+                
                 <link linkend="string">string</link>
+                
             </member>
+            
             <member>
+                
                 <link linkend="strings">strings</link>
+                
             </member>
+            
         </simplelist>
+        
     </refsection>
+    
 </refentry>
+

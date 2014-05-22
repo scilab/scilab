@@ -152,7 +152,6 @@ N1=[-2,-3];C1=-N1*C;D1=-N1*D;
 nw=length(reject);nu=size(Sys('B'),2)-nw;
 ny=size(Sys('C'),1);nz=size(C1,1);
 [UIobs,J,N]=ui_observer(Sys,reject,C1,D1);
-
 W=[zeros(nu,nw),eye(nu,nu);Sys];UIobsW=UIobs*W;   
 //(w,u) --> z=UIobs*[0,I;Sys](w,u)
 clean(ss2tf(UIobsW));

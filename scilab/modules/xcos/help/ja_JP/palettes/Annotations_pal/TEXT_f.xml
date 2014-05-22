@@ -1,0 +1,521 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ * Xcos
+ *
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * Copyright 2011 Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * 
+ * See the file ./license.txt
+ -->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="TEXT_f" xml:lang="ja">
+    
+    <refnamediv>
+        
+        <refname>TEXT_f</refname>
+        
+        <refpurpose>フリーアノテーション</refpurpose>
+        
+    </refnamediv>
+    
+    <refsection>
+        
+        <title>ブロックのスクリーンショット</title>
+        
+        <para>
+            
+            <inlinemediaobject>
+                
+                <imageobject>
+                    
+                    <imagedata fileref="../../../../images/palettes/TEXT_f.png" align="center" valign="middle"/>
+                    
+                </imageobject>
+                
+            </inlinemediaobject>
+            
+        </para>
+        
+    </refsection>
+    
+    <refsection id="Contents_TEXT_f">
+        
+        <title>内容</title>
+        
+        <itemizedlist>
+            
+            <listitem>
+                
+                <para>
+                    
+                    <link linkend="TEXT_f">フリーアノテーション</link>
+                    
+                </para>
+                
+            </listitem>
+            
+            <listitem>
+                
+                <itemizedlist>
+                    
+                    <listitem>
+                        
+                        <para>
+                            
+                            <xref linkend="Palette_TEXT_f">パレット</xref>
+                            
+                        </para>
+                        
+                    </listitem>
+                    
+                    <listitem>
+                        
+                        <para>
+                            
+                            <xref linkend="Description_TEXT_f">説明</xref>
+                            
+                        </para>
+                        
+                    </listitem>
+                    
+                    <listitem>
+                        
+                        <para>
+                            
+                            <xref linkend="Dialogbox_TEXT_f">ダイアグラムボックス</xref>
+                            
+                        </para>
+                        
+                    </listitem>
+                    
+                    <listitem>
+                        
+                        <para>
+                            
+                            <xref linkend="Defaultproperties_TEXT_f">デフォルトプロパティ</xref>
+                            
+                        </para>
+                        
+                    </listitem>
+                    
+                    <listitem>
+                        
+                        <para>
+                            
+                            <xref linkend="Example_TEXT_f">例</xref>
+                            
+                        </para>
+                        
+                    </listitem>
+                    
+                    <listitem>
+                        
+                        <para>
+                            
+                            <xref linkend="See_also">参照</xref>
+                            
+                        </para>
+                        
+                    </listitem>
+                    
+                </itemizedlist>
+                
+            </listitem>
+            
+        </itemizedlist>
+        
+    </refsection>
+    
+    <refsection id="Palette_TEXT_f">
+        
+        <title>パレット</title>
+        
+        <itemizedlist>
+            
+            <listitem>
+                
+                <para>
+                    
+                    <link linkend="Annotations_pal">アノテーションパレット</link>
+                    
+                </para>
+                
+            </listitem>
+            
+        </itemizedlist>
+        
+    </refsection>
+    
+    <refsection id="Description_TEXT_f">
+        
+        <title>説明</title>
+        
+        <para>
+            
+            このスペシャルブロックは,
+            
+            ダイアログウインドウの任意の点にテキストを追加する
+            
+            際にのみ使用されます.
+            
+            シミュレーションには影響を与えません.
+            
+            k        
+        </para>
+        
+        <para>
+            
+            ダイアグラムの空いている部分で
+            
+            マウスをダブルクリックすることにより
+            
+            このブロックを直接追加できます.
+            
+        </para>
+        
+        <para>
+            
+            追加した後, ブロック上でダブルクリックし,
+            
+            テキストを書き込みます.
+            
+            テキストを制御(フォントの型, 大きさまたは色)したい場合,
+            
+            マウスを右クリックし, ポップアップメニューを表示します.
+            
+            <emphasis>Format</emphasis>メニュー要素の
+            
+            サブメニュー要素<emphasis>Edit...</emphasis>を選択してください.
+            
+            これにより,以下のタブ付きのダイアログがオープンし,
+            
+            そこでテキストのパラメータを設定できます.
+            
+        </para>
+        
+        <para>
+            
+            注意 : 以下のGUIはコメントテキストブロックおよびリンクの外観
+            
+            を修正する際にも使用されます.
+            
+        </para>
+        
+    </refsection>
+    
+    <refsection id="Dialogbox_TEXT_f">
+        
+        <title>ダイアログボックス</title>
+        
+        <para>
+            
+            <inlinemediaobject>
+                
+                <imageobject>
+                    
+                    <imagedata fileref="../../../gui/annotations_pal/en_US/TEXT_f_text_gui.png" align="center" valign="middle"/>
+                    
+                </imageobject>
+                
+            </inlinemediaobject>
+            
+            <inlinemediaobject>
+                
+                <imageobject>
+                    
+                    <imagedata fileref="../../../gui/annotations_pal/en_US/TEXT_f_color_gui.png" align="center" valign="middle"/>
+                    
+                </imageobject>
+                
+            </inlinemediaobject>
+            
+        </para>
+        
+        <para/>
+        
+        <itemizedlist>
+            
+            <listitem>
+                
+                <para>
+                    
+                    <emphasis role="bold">テキストタブ</emphasis>
+                    
+                </para>
+                
+                <para>
+                    
+                    このタブでは, テキストおよび
+                    
+                    フォントの大きさ, 種類, スタイルのような
+                    
+                    外観を修正できます.
+                    
+                    テキスト表示を制御するために
+                    
+                    いくつかのHTMLタグを使用することも可能です.
+                    
+                    Scilab 5.2以降, 
+                    
+                    <link linkend="math_rendering_features_in_graphic">
+                        
+                        LaTeX または MathML
+                    </link>
+                    式を書き込むことも可能です.
+                    
+                </para>
+                
+            </listitem>
+            
+            <listitem>
+                
+                <para>
+                    
+                    <emphasis role="bold">カラータブ</emphasis>
+                    
+                </para>
+                
+                <para>
+                    
+                    これらのタブの使用法はテキスト, 境界, 色塗りと
+                    
+                    同じです.
+                    
+                    以下の4つの方法で色を設定できます:
+                    
+                </para>
+                
+                <itemizedlist>
+                    
+                    <listitem>
+                        
+                        <para>HSV 色 (色相, 彩度, 明度).</para>
+                        
+                    </listitem>
+                    
+                    <listitem>
+                        
+                        <para>RGB 色 (赤, 緑, 青).</para>
+                        
+                    </listitem>
+                    
+                    <listitem>
+                        
+                        <para>HTML 色: 
+                            
+                            2桁の3つの16進数の文字列(RRGGBB)
+                            
+                            の前に "#" を付けた形式の色.
+                            
+                        </para>
+                        
+                    </listitem>
+                    
+                    <listitem>
+                        
+                        <para>HSV 色ホイール : 
+                            
+                            円の周りのやや白い部分を移動し,
+                            
+                            色相を設定,
+                            
+                            小さな円を移動して,彩度と明度を設定.
+                            
+                        </para>
+                        
+                    </listitem>
+                    
+                </itemizedlist>
+                
+            </listitem>
+            
+        </itemizedlist>
+        
+    </refsection>
+    
+    <refsection id="Defaultproperties_TEXT_f">
+        
+        <title>デフォルトのプロパティ</title>
+        
+        <itemizedlist>
+            
+            <listitem>
+                
+                <para>
+                    
+                    <emphasis role="bold">常にアクティブ:</emphasis> no
+                    
+                </para>
+                
+            </listitem>
+            
+            <listitem>
+                
+                <para>
+                    
+                    <emphasis role="bold">直達項:</emphasis> no
+                    
+                </para>
+                
+            </listitem>
+            
+            <listitem>
+                
+                <para>
+                    
+                    <emphasis role="bold">ゼロ交差:</emphasis> no
+                    
+                </para>
+                
+            </listitem>
+            
+            <listitem>
+                
+                <para>
+                    
+                    <emphasis role="bold">モード:</emphasis> no
+                    
+                </para>
+                
+            </listitem>
+            
+            <listitem>
+                
+                <para>
+                    
+                    <emphasis role="bold">アクティベーション入力の数/大きさ:</emphasis> 0
+                    
+                </para>
+                
+            </listitem>
+            
+            <listitem>
+                
+                <para>
+                    
+                    <emphasis role="bold">アクティベーション出力の数/大きさ:</emphasis> 0
+                    
+                </para>
+                
+            </listitem>
+            
+            <listitem>
+                
+                <para>
+                    
+                    <emphasis role="bold">連続時間状態量:</emphasis> no
+                    
+                </para>
+                
+            </listitem>
+            
+            <listitem>
+                
+                <para>
+                    
+                    <emphasis role="bold">離散時間状態量:</emphasis> no
+                    
+                </para>
+                
+            </listitem>
+            
+            <listitem>
+                
+                <para>
+                    
+                    <emphasis role="bold">オブジェクト離散時間状態量:</emphasis> no
+                    
+                </para>
+                
+            </listitem>
+            
+            <listitem>
+                
+                <para>
+                    
+                    <emphasis role="bold">計算関数の名前:</emphasis>
+                    
+                    <emphasis role="italic">text</emphasis>
+                    
+                </para>
+                
+            </listitem>
+            
+        </itemizedlist>
+        
+    </refsection>
+    
+    <refsection id="Example_TEXT_f">
+        
+        <title>例</title>
+        
+        <para>
+            
+            以下の図はテキストアノテーションの例を示します.
+            
+            最初の例は,LaTeX式で得られた結果を表示し,
+            
+            2番目の例のテキストはHTML番号付きリストです.
+            
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/annotations_pal/en_US/text_f_en_US.zcos">
+                
+                Xcosでこの例をオープンし,
+                
+            </link>
+            
+            <emphasis>Format</emphasis> を選択,ポップアップメニューの
+            
+            <emphasis>Edit...</emphasis> で
+            
+            テキストパラメータを変更してください.
+            
+        </para>
+        
+        <para/>
+        
+        <mediaobject>
+            
+            <imageobject>
+                
+                <imagedata fileref="../../../examples/annotations_pal/en_US/text_f_diagram_en_US.png" align="center"/>
+                
+            </imageobject>
+            
+        </mediaobject>
+        
+    </refsection>
+    
+    <refsection role="see also" id="See_also">
+        
+        <title>参照</title>
+        
+        <itemizedlist>
+            
+            <listitem>
+                
+                <link linkend="math_rendering_features_in_graphic">数学レンダリング</link>
+                
+            </listitem>
+            
+        </itemizedlist>
+        
+    </refsection>
+    
+</refentry>
+

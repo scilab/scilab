@@ -6,24 +6,36 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼出し手順</title>
-        <synopsis>exists(name [,where])</synopsis>
+        <synopsis>ve = exists(name [,where])</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
+            <varlistentry>
+                <term>ve</term>
+                <listitem>
+                    <para>
+                        <varname>name</varname>と同じ大きさの行列で,
+                        使用される値は:
+                        <literal>1</literal> (trueの場合), 
+                        <literal>0</literal> (falseの場合)
+                    </para>
+                </listitem>
+            </varlistentry>
             <varlistentry>
                 <term>name</term>
                 <listitem>
-                    <para>文字列</para>
+                    <para>文字列の行列</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>where</term>
                 <listitem>
-                    <para>オプションの文字で,以下の値を指定します:
+                    <para>
+                        オプションの文字で,以下の値を指定します:
                         <literal>'l'</literal> (local), <literal>'n'</literal>
                         (nolocal) および <literal>'a'</literal> (all). 
-                        デフォルト値は<literal>'all'</literal>です.
+                        デフォルト値は<literal>'a'</literal>です.
                     </para>
                 </listitem>
             </varlistentry>
@@ -54,24 +66,29 @@
             それ以外の場合に <literal>0</literal> を返します.
         </para>
         <para>
-            警告: exists関数は,ある変数が<link linkend="global">グローバル</link>
+            警告: <literal>exists</literal>関数は,ある変数が
+            <link linkend="global">グローバル</link>
             名前空間に存在するかどうかを確認しません.
         </para>
     </refsection>
     <refsection>
         <title>例</title>
+        <programlisting role="example"><![CDATA[
+exists("myNotLikelyToExistVar")
+myNotLikelyToExistVar = 1;
+exists("myNotLikelyToExistVar")
+ ]]></programlisting>
         <programlisting role="example"><![CDATA[ 
 deff('foo(x)',..
 ['disp([exists(''a12''),exists(''a12'',''l'')])'
  'disp([exists(''x''),exists(''x'',''l'')])'])
 foo(1)
 a12=[];foo(1)
-
 function level1()
   function level2()
-    disp(exists("a","a"));
-    disp(exists("a","l"));
-    disp(exists("a","n"));
+    disp(exists(["a","b"],"a"));
+    disp(exists(["a","b"],"l"));
+    disp(exists(["a","b"],"n"));
   endfunction
   level2()
 endfunction

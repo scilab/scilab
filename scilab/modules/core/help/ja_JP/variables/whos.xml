@@ -6,13 +6,14 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>whos()
+        <synopsis>
+            whos()
             whos -type typ
             whos -name nam
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>typ</term>
@@ -33,17 +34,21 @@
     <refsection>
         <title>説明</title>
         <para>
-            <literal>whos()</literal> は,カレントの全ての変数の名前,型および使用メモリを表示します.
+            <code>whos()</code>  は,カレントの全ての変数の名前,型および使用メモリを表示します.
         </para>
         <para>
             <literal>whos -type typ</literal> は,
-            指定した型のカレントの全変数を表示します.
+            指定した型<varname>typ</varname>のカレントの全変数を表示します.
         </para>
         <para>
             <literal>whos -name nam</literal> は
             名前が<literal>nam</literal>から始まる全変数を表示します.
         </para>
-        <para>注意 : 変数がグローバルの場合, 型の前に * が出力されます.</para>
+        <para>
+            <note>
+                注意 : 変数がグローバルの場合, 型の前に <literal>*</literal> が出力されます.
+            </note>
+        </para>
     </refsection>
     <refsection>
         <title>例</title>

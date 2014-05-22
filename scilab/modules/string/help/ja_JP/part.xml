@@ -20,18 +20,28 @@
         <synopsis>[strings_out] = part(strings_in, v)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータs</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
-                <term>strings_in, strings_out</term>
+                <term>strings_in</term>
                 <listitem>
-                    <para>文字列の行列.</para>
+                    <para>文字列または文字列の行列.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>v</term>
                 <listitem>
-                    <para>整数行ベクトル.</para>
+                    <para>
+                        展開する文字の添字を有する整数値のベクトル.
+                        <literal>$</literal> を使用可能で,
+                        length(strings_in)を意味します.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>strings_out</term>
+                <listitem>
+                    <para>文字列または文字列の行列.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -39,46 +49,50 @@
     <refsection>
         <title>説明</title>
         <para>
-            <literal>s[k]</literal>が文字列<literal>s</literal>の
-            <literal>k</literal>文字目
-            (または<literal>k &gt;length(s)</literal>の場合は空白文字)
-            を意味するとします.
+            この関数は,文字列から文字を展開します.
+            展開する文字は<literal>v</literal>に含まれる
+            添字により参照されます.
         </para>
         <para>
-            <literal>part</literal> は,
-            <literal>strings_out(i,j)</literal>が
-            文字列<literal>"s[v(1)]...s[v(n)]"</literal>(
-            <literal>s=strings_in(i,j)</literal> )となるような
-            文字列の行列<literal>strings_out</literal>を返します,
+            添字が入力文字の長さを超える場合,
+            <literal>strings_out</literal> は,空白文字で埋められます.
+        </para>
+        <para>
+            <literal>v</literal> は,<literal>string_in</literal>の長さを意味する
+            <literal>$</literal>記号を含むことができます.
         </para>
     </refsection>
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[ 
 // 位置 8 から 11 の文字を返します
-part("How to use ""part"" ?",8:11)
-
+part("How to use ""part"" ?", 8:11)
 // 各要素の位置2から4の文字を返します
 // 文字はn ''で置換されません
-c = part(['a','abc','abcd'],2:4)
-
+c = part(['a', 'abc', 'abcd'], 2:4)
 // 各要素の位置1の文字に各要素の位置4から7に文字を追加して返します
-c = part(['abcdefg','hijklmn','opqrstu'],[1,4:7]);
-
+c = part(['abcdefg', 'hijklmn', 'opqrstu'], [1, 4:7]);
 // 各要素の4番目の文字に位置1から7の文字を追加し,各要素の位置4の文字を追加して返します
-c = part(['abcdefg','hijklmn','opqrstu'],[4,1:7,4]);
-
+c = part(['abcdefg', 'hijklmn', 'opqrstu'], [4, 1:7, 4]);
 // 位置1の文字に位置1の文字を再度追加,位置2の文字を追加して返す
-c=part(['a','abc','abcd'],[1,1,2])
-
-// a a a  
-part(['a','abc','abcd'],[1])
-
-// aa aa aa 
-part(['a','abc','abcd'],[1,1])
-
-// aa aab aab 
-part(['a','abc','abcd'],[1,1,2])
+c=part(['a', 'abc', 'abcd'], [1, 1, 2])
+part(['a', 'abc', 'abcd'], [1])		// =>  ['a' 'a' 'a']
+part(['a', 'abc', 'abcd'], [1, 1])		// =>  ['aa' 'aa' 'aa']
+part(['a', 'abc', 'abcd'], [1, 1, 2])	// =>  ['aa' 'aab' 'aab']
+// 文字をN回反復
+N = 10; part('-', ones(1:N))  		// => '----------'
+// パターンをN回反復:
+N = 6; pat = '- '; 
+part(pat, ones(1:N).*.(1:length(pat))) // => '- - - - - - '
+// $ = 暗黙的な文字列長 を使用: 
+// 1)
+part(['a string' 'another longer one'], $-2:$ ) // => [ 'ing' 'one']
+// 2) strrev()の別の実装:
+part('Hello world', $:-1:1)		  // => 'dlrow olleH'
+// 3) 範囲を示さない$を使用:
+part('Hello world', [ $ 4:5 ])	  // => 'dlo'
+// 4) 範囲を示す$が使用できない状況でスカラーと範囲ではない$を混用:
+part("Hello", [ 1 $-1:$ $ ])      // =>  エラー
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -88,8 +102,23 @@ part(['a','abc','abcd'],[1,1,2])
                 <link linkend="string">string</link>
             </member>
             <member>
+                <link linkend="strsplit">strsplit</link>
+            </member>
+            <member>
                 <link linkend="length">length</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>
+                    length(input_strings)を意味する <literal>$</literal> は,
+                    選択した文字の添字として使用可能になりました.
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

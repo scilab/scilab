@@ -9,7 +9,7 @@
         <synopsis>[dfp]=bsplin3val(xp,yp,zp,tl,der)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>xp, yp, zp</term>
@@ -87,25 +87,19 @@ n = 20;  // n x n x n  補間点
 x = linspace(0,2*%pi,n); y=x; z=x; // 補間グリッド
 [X,Y,Z] = ndgrid(x,y,z); V = f(X,Y,Z);
 tl = splin3d(x,y,z,V,[5 5 5]);
-
 // ある点で f および微係数を計算し,
 // スプライン補間値と比較 
 xp = grand(1,1,"unf",0,2*%pi); 
 yp = grand(1,1,"unf",0,2*%pi); 
 zp = grand(1,1,"unf",0,2*%pi); 
-
 f_e = f(xp,yp,zp)
 f_i = bsplin3val(xp,yp,zp,tl,[0 0 0])
-
 fx_e = fx(xp,yp,zp)
 fx_i = bsplin3val(xp,yp,zp,tl,[1 0 0])
-
 fxy_e = fxy(xp,yp,zp)
 fxy_i = bsplin3val(xp,yp,zp,tl,[1 1 0])
-
 fxyz_e = fxyz(xp,yp,zp)
 fxyz_i = bsplin3val(xp,yp,zp,tl,[1 1 1])
-
 fxxyz_e = fxxyz(xp,yp,zp)
 fxxyz_i = bsplin3val(xp,yp,zp,tl,[2 1 1])
  ]]></programlisting>
@@ -120,5 +114,16 @@ fxxyz_i = bsplin3val(xp,yp,zp,tl,[2 1 1])
                 <link linkend="interp3d">interp3d</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>
+                    以前は,入力引数の虚部は暗黙的に無視されていました.
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

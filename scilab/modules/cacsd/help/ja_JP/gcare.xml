@@ -20,13 +20,13 @@
         <synopsis>[X,F]=gcare(Sl)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>Sl</term>
                 <listitem>
                     <para>
-                        線形システム (<literal>syslin</literal> リスト)
+                        状態空間表現の連続時間線形動的システム
                     </para>
                 </listitem>
             </varlistentry>
@@ -69,5 +69,19 @@
                 <link linkend="gfare">gfare</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>
+                    <literal>Sl</literal> は連続時間線形動的システム
+                    について確認されるようになりました.
+                    この修正はこの
+                    <ulink url="http://gitweb.scilab.org/?p=scilab.git;a=commit;h=3d7083daae3339813ba747c8adcda1f9599bb80d">コミット</ulink>により導入されました.
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

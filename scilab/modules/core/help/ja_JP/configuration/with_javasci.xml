@@ -11,7 +11,7 @@
         <synopsis>r=with_javasci()</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>r</term>
@@ -28,5 +28,21 @@
             <constant>%t</constant>, それ以外の場合に <constant>%f</constant>
             を返します. 
         </para>
+        <para>
+          <note>
+	    この関数は, GNU/LinuxまたはMac OS Xにおいては常に
+	    真を返すことに注意してください.
+	  </note>
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
+if with_javasci() == %t then
+   disp("javasci is available");
+else
+   disp("javasci is not available");
+end
+ ]]></programlisting>
     </refsection>
 </refentry>

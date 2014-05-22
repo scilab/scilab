@@ -61,14 +61,12 @@
             ベクトル s を返します.
         </para>
         <para>
-            
             s=sample(n,X,'r')   (または等価な  s=sample(n,X,1))
             は,size(X,'r')xnの行列を返します.
             これには,Xの行から置換付きで展開された
             n行のランダム標本が含まれます.
         </para>
         <para>
-            
             s=sample(n,X,'c')   (または等価な  s=sample(n,X,2))
             は,nxsize(X,'c')の行列を返します.
             これには,Xの列から置換付きで展開された

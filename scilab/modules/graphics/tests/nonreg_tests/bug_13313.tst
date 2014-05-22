@@ -1,0 +1,28 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2014 - Scilab Enterprises - Calixte DENIZET
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
+// <-- TEST WITH GRAPHIC -->
+
+// <-- Non-regression test for bug 13313 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/13313
+//
+// <-- Short Description -->
+// Set orientation did not disabled auto_orientation
+
+clf
+plot(1:100)
+e = gce();
+c = e.children;
+d = datatipCreate(c, [73 73]);
+
+assert_checkequal(d.auto_orientation, "on");
+assert_checkequal(d.orientation, 1);
+d.orientation = 2;
+assert_checkequal(d.orientation, 2);
+assert_checkequal(d.auto_orientation, "off");

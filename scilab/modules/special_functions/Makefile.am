@@ -45,7 +45,6 @@ libscispecial_functions_la_CPPFLAGS = -I$(srcdir)/includes/ \
 -I$(srcdir)/sci_gateway/cpp/ \
 -I$(top_srcdir)/modules/core/src/c/ \
 -I$(top_srcdir)/modules/elementary_functions/includes/ \
--I$(top_srcdir)/modules/elementary_functions/src/cpp/ \
 -I$(top_srcdir)/modules/api_scilab/includes/ \
 -I$(top_srcdir)/modules/output_stream/includes/ \
 -I$(top_srcdir)/modules/localization/includes/ \

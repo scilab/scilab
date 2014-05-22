@@ -13,20 +13,20 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="fstabst">
     <refnamediv>
         <refname>fstabst</refname>
-        <refpurpose>ユーラ(Youla)・パラメトリゼーション</refpurpose>
+        <refpurpose>線形動的システムのユーラ(Youla)・パラメトリゼーション</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>呼出し手順</title>
-        <synopsis>[J]=fstabst(P,r)</synopsis>
+        <synopsis>J = fstabst(P,r)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>P</term>
                 <listitem>
                     <para>
-                        <literal>syslin</literal> リスト (線形システム)
+                        連続時間線形動的システム
                     </para>
                 </listitem>
             </varlistentry>
@@ -42,7 +42,8 @@
                 <term>J</term>
                 <listitem>
                     <para>
-                        <literal>syslin</literal> リスト (状態空間表現の線形システム)
+                        連続時間線形動的システム
+                        (<literal>P</literal>と同じ表現)
                     </para>
                 </listitem>
             </varlistentry>
@@ -81,7 +82,7 @@ J =[J11 J12;
         </para>
         <para>
             <literal>J</literal>の中心部である , <literal>J11</literal> は
-            <literal>P</literal>のLQGレギュレータです.
+            <literal>P</literal>のlqgレギュレータです.
         </para>
         <para>
             この <literal>J</literal> は,
@@ -122,5 +123,19 @@ A=h_cl(P,r,K); spec(A)
                 <link linkend="lqg2stan">lqg2stan</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>
+                    <literal>Sl</literal> は連続時間線形動的システムについて
+                    確認されます.
+                    この修正はこの
+                    <ulink url="http://gitweb.scilab.org/?p=scilab.git;a=commit;h=3d7083daae3339813ba747c8adcda1f9599bb80d">コミット</ulink>により導入されました.
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

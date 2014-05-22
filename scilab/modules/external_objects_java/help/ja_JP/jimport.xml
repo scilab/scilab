@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+*
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2010 - 2011 - Calixte DENIZET <calixte@contrib.scilab.org>
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+*
+*
+-->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="jimport">
+    
+    <refnamediv>
+        
+        <refname>jimport</refname>
+        
+        <refpurpose>Javaクラスをインポートする</refpurpose>
+        
+    </refnamediv>
+    
+    <refsynopsisdiv>
+        
+        <title>呼び出し手順</title>
+        
+        <synopsis>
+            
+            jimport(className)
+            
+            cl = jimport(className, isAClassReturned)
+            
+        </synopsis>
+        
+    </refsynopsisdiv>
+    
+    <refsection>
+        
+        <title>パラメータ</title>
+        
+        <variablelist>
+            
+            <varlistentry>
+                
+                <term>className</term>
+                
+                <listitem>
+                    
+                    <para>クラス名を指定する文字列</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>isAClassReturned</term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        クラスオブジェクトを返すかどうかを示す論理値
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+        </variablelist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>説明</title>
+        
+        <para>
+            
+            クラスはclasspathにある必要があります
+            
+            (パッケージまたはディレクトリをJava classpathに追加するには,
+            
+            <link type="scilab" linkend="scilab.help/javaclasspath">javaclasspath</link>を使用してください).
+            
+        </para>
+        
+        <para>
+            
+            <literal>jimport("java.lang.String")</literal>の時, 
+            
+            Stringという名前のmlistがScilabスタック上に作成されます.
+            
+            作成されたmlistは_JClassに等価な型を有し,
+            
+            <literal>str = String.new("A Scilab String");</literal>のように
+            
+            新規オブジェクトをインスタンス化する際に使用されます.
+            
+            クラスの静的メソッドをコールすることが可能です.
+            
+        </para>
+        
+        <programlisting role="example"><![CDATA[
+               jimport java.lang.Math;
+               x=Math.random();
+               disp(x);
+               jremove Math x;
+      ]]></programlisting>
+        
+        <para>
+            
+            既存のScilab変数との混用を避けるため,
+            
+            第2引数 isAClassReturned を使用できます
+            
+        </para>
+        
+        <programlisting role="example"><![CDATA[
+                 String = "Hello";
+                 foo = jimport("java.lang.String", %f);
+                 obj = foo.new("A string...")
+                 jremove(obj);
+        ]]></programlisting>
+        
+        <para>
+            
+            <literal>jallowReloadClass</literal>関数で許可された場合,
+            
+            クラスをリロードできます.
+            
+        </para>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>例</title>
+        
+        <programlisting role="example"><![CDATA[
+               jimport javax.swing.JFrame;
+               jimport javax.swing.JLabel;
+
+               jframe = JFrame.new("Hello World !! Window");
+               jlabel = JLabel.new("A JLabel containing ""Hello Wolrd""");
+               cp = jframe.getContentPane();
+               cp.add(jlabel);
+               jframe.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+               jframe.pack();
+               jframe.setVisible(%t);
+               jremove jlabel cp jframe;
+      ]]></programlisting>
+        
+    </refsection>
+    
+    <refsection role="see also">
+        
+        <title>参照</title>
+        
+        <simplelist type="inline">
+            
+            <member>
+                
+                <link type="scilab" linkend="scilab.help/javaclasspath">javaclasspath</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="jallowClassReloading">jallowClassReloading</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="jremove">jremove</link>
+                
+            </member>
+            
+        </simplelist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>履歴</title>
+        
+        <revhistory>
+            
+            <revision>
+                
+                <revnumber>5.5.0</revnumber>
+                
+                <revremark>
+                    
+                    関数が導入されました. 'JIMS'モジュールに基づきます.
+                    
+                    JIMSモジュールとの動作上の主な違いは,
+                    
+                    <link linkend="jautoUnwrap">jautoUnwrap</link>がデフォルトで
+                    
+                    有効になっていることです.
+                    
+                </revremark>
+                
+            </revision>
+            
+        </revhistory>
+        
+    </refsection>
+    
+</refentry>
+

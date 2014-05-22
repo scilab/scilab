@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) ????-2008 - INRIA - Scilab 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+    *
+    -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="auread">
+    <refnamediv>
+        <refname>auread</refname>
+        <refpurpose>.au サウンドファイルを読み込む</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>y=auread(aufile)
+            y=auread(aufile,ext)
+            [y,Fs,bits]=auread(aufile)
+            [y,Fs,bits]=auread(aufile,ext)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>aufile</term>
+                <listitem>
+                    <para>文字列 (拡張子が指定されない場合,拡張子.auが追加されます)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Fs</term>
+                <listitem>
+                    <para>...</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>[]</term>
+                <listitem>
+                    <para>整数, サンプリング周波数(単位:Hz).</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ext</term>
+                <listitem>
+                    <para>
+                        文字列(<literal>'size'</literal> または
+                        <literal>'snd'</literal>) または
+                        整数 (n サンプルを読み込む) または
+                        1 x 2 整数ベクトル [n1,n2] (n1 から n2を読み込む).
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>.au</literal>サウンドファイルを読み込むための
+            ユーティリティ関数.
+            <literal>auread(aufile)</literal> は
+            aufile文字列で指定されたサウンドファイルを読み込み,
+            yにサンプリングデータを返します.
+            大きさは範囲[-1,+1]となります.
+        </para>
+        <para>
+            以下の形式の複数チャネルデータをサポートします:
+            8-bit mu-law, 8-, 16-, および 32-bitリニア, および浮動小数点.
+        </para>
+        <para>
+            <literal>[y,Fs,bits]=auread(aufile)</literal> は
+            ヘルツ単位のサンプリングレート (Fs)と,
+            ファイル中でデータをエンコードする際に使用される
+            サンプル毎のビット数を返します.
+        </para>
+        <para>
+            <literal>auread(aufile,n)</literal> は,各チャネルから
+            最初のnサンプルを返します.
+        </para>
+        <para>
+            <literal>auread(aufile,[n1,n2])</literal> は,
+            サンプル n1 から n2までを返します.
+        </para>
+        <para>
+            <literal>auread(aufile,'size')</literal> は,
+            実際のオーディオデータの配置でファイル中に含まれる
+            オーディオデータの大きさを,
+            [samples channels] のベクトルとして返します.
+        </para>
+        <para>
+            <literal>auread(aufile,'snd')</literal> は
+            サンプルとデータに関する情報を tlist として返します.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
+y=wavread('SCI/modules/sound/demos/chimes.wav');
+// デフォルトは 8-bits mu-law です
+auwrite(y,TMPDIR+'/tmp.au');
+y1=auread(TMPDIR+'/tmp.au');
+max(abs(y-y1))
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="savewave">savewave</link>
+            </member>
+            <member>
+                <link linkend="analyze">analyze</link>
+            </member>
+            <member>
+                <link linkend="mapsound">mapsound</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

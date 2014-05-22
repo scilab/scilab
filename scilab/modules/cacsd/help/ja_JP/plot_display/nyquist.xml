@@ -171,7 +171,6 @@
         <programlisting role="customize"><![CDATA[
     hi.children(1).visible='off'; //矢印とラベルを隠す
     hi.children(2).thickness=2; //曲線を太くする
-
     ]]></programlisting>
     </refsection>
     <refsection>

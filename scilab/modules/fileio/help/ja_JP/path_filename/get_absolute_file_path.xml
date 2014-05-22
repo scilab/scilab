@@ -66,7 +66,6 @@
         <title>例</title>
         <programlisting role="example"><![CDATA[ 
 // このスクリプトを実行
-
 a=mopen(TMPDIR+'test.sce','wt');
 disp(get_absolute_file_path('test.sce'));
 mclose(a);

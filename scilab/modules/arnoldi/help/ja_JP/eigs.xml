@@ -1,0 +1,523 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2012 - Scilab Enterprises - Adeline CARNIS
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="eigs" xml:lang="ja">
+    <refnamediv>
+        <refname>eigs</refname>
+        <refpurpose>
+            行列の最大固有値と固有ベクトルを計算
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>
+            d = eigs(A [,B [,k [,sigma [,opts]]]])
+            [d, v] = eigs(A [,B [,k [,sigma [,opts]]]])
+            d = eigs(Af, n [,B [,k [,sigma [,opts]]]])
+            [d, v] = eigs(Af, n [,B [,k [,sigma [,opts]]]])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>A </term>
+                <listitem>
+                    <para>通常または疎, 実数または複素数, 対称または非対称正方行列</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Af </term>
+                <listitem>
+                    <para>関数</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>n </term>
+                <listitem>
+                    <para>
+                        スカラー, Aが関数の場合のみ <literal>A</literal> 定義
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>B</term>
+                <listitem>
+                    <para>
+                        <literal> A</literal>と同じ次元の
+                        疎, 実数または複素数, 正方行列
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>k</term>
+                <listitem>
+                    <para>整数, 計算する固有値の数</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>sigma</term>
+                <listitem>
+                    <para>実スカラーまたは長さ2の文字列</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>opts</term>
+                <listitem>
+                    <para>構造体</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>d</term>
+                <listitem>
+                    <para>実数または複素数の固有値ベクトルまたは対角行列 (対角項に固有値)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>v</term>
+                <listitem>
+                    <para>
+                        実数または複素数の固有ベクトル行列
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            eigs関数の目的は,疎で大きな行列の最大固有値を計算することです.
+        </para>
+        <variablelist>
+            <varlistentry>
+                <term>d = eigs(A) または d = eigs(Af, n)</term>
+                <listitem>
+                    <para>
+                        は,固有値問題<literal>A * v = lambda * v</literal>を解きます. 
+                        このコールは,大きさが最大の6個の固有値を有する
+                        ベクトル <literal>d</literal>を返します.
+                        <literal>A</literal> は正方行列で,
+                        対称または非対称, 実数または複素数, 通常または複素数
+                        とすることができます.
+                    </para>
+                    <para>
+                        <literal>A</literal> は関数<literal>Af</literal>で
+                        表すことも可能です.この場合,
+                        ベクトル引数の長さを指定するスカラー<literal>n</literal>を
+                        定義する必要があります.
+                        この関数は,以下のヘッダを有する必要があります:
+                    </para>
+                    <programlisting role="no-scilab-exec">
+                        <![CDATA[ 
+function y = A ( x )
+ ]]>
+                    </programlisting>
+                    <para>
+                        この関数 <literal>Af</literal> は以下の4つの式の1つを返す必要があります:
+                        <itemizedlist>
+                            <listitem>
+                                <term>A * x</term>
+                                <para> sigmaが指定されないか文字列が'SM'以外の場合.</para>
+                            </listitem>
+                            <listitem>
+                                <term>A \ x</term>
+                                <para>sigmaが0または'SM'の場合.</para>
+                            </listitem>
+                            <listitem>
+                                <term>(A - sigma * I) \ x</term>
+                                <para>標準固有値問題の場合, ただし I は単位行列.</para>
+                            </listitem>
+                            <listitem>
+                                <term>(A - sigma * B) \ x</term>
+                                <para> 一般化固有値問題の場合.</para>
+                            </listitem>
+                        </itemizedlist>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>[d, v] = eigs(A) or [d, v] = eigs(Af, n)</term>
+                <listitem>
+                    <para>
+                        は,6個の最大固有値を対角項に有する対角行列 <literal>d</literal> を返します.
+                        <literal>v</literal> は n行6列の行列で,
+                        その列は返された固有値に対応する6個の固有値ベクトルです.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>d = eigs(A, B)</term>
+                <listitem>
+                    <para>
+                        は,正定行列<literal>B</literal>を指定して,
+                        一般化固有値問題 <literal>A * v = lambda  * B * v </literal> 
+                        を解きます.
+                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                <literal>B</literal> が指定されない場合, 
+                                <literal>B = []</literal> が使用されます.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>B</literal> が指定された場合, 
+                                <literal>B</literal> はAと同じ大きさとする必要があります.
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>d = eigs(A, B, k)</term>
+                <listitem>
+                    <para>
+                        は,<literal>k</literal>個の固有値をベクトル<literal>d</literal>に返します.
+                        <literal>k</literal> が指定されない場合, 
+                        <literal>k = min(n, 6)</literal>, ただし, nはAの行数となります.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>d = eigs(A, B, k, sigma)</term>
+                <listitem>
+                    <para>
+                        は,<literal>sigma</literal>で定義された<literal>k</literal>個の固有値を
+                        ベクトル<literal>d</literal>に返します.
+                        <literal>sigma</literal> は,0を含む実数または複素数,または文字列
+                        とすることができます.
+                        sigma が長さ2の文字列の場合, 以下の値のどれかとします :
+                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                <literal>'LM'</literal> は,大きさが最大の<varname>k</varname>個の
+                                固有値を計算します(デフォルト).
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>'SM'</literal> は,大きさが最小の<varname>k</varname>個の
+                                固有値を計算します(sigma = 0 と同じ).
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>'LA'</literal> は,実対称問題のみに適用され,
+                                <varname>k</varname>個の代数的最大固有値を計算します.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>'SA'</literal> は,実対称問題のみに適用され,
+                                <varname>k</varname>個の代数的最小固有値を計算します.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>'BE'</literal> は,実対称問題のみに適用され,
+                                スペクトラムの各端から半分づつ,<varname>k</varname>個の固有値を計算します.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>'LR'</literal> は,実非対称または複素問題のみに適用され,
+                                <varname>k</varname>個の実部最大の固有値を計算します.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>'SR'</literal> は,実非対称または複素問題のみに適用され,
+                                <varname>k</varname>個の実部最小の固有値を計算します.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>'LI'</literal> は,実非対称または複素問題のみに適用され,
+                                <varname>k</varname>個の虚部最大の固有値を計算します.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>'SI'</literal> は,実非対称または複素問題のみに適用され,
+                                <varname>k</varname>個の虚部最小の固有値を計算します.
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>d = eigs(A, B, k, sigma, opts)</term>
+                <listitem>
+                    <para>
+                        <literal> opts </literal> 構造体が指定された場合, 
+                        <literal>k</literal> 個の固有値を計算する際に
+                        異なるオプションを使用できます:
+                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                <term>tol</term>
+                                <para>
+                                    所要の収束閾値. デフォルトで, <literal>tol = %eps</literal>.
+                                </para>
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <term>maxiter</term>
+                                <para>
+                                    最大反復回数. デフォルトで, <literal>maxiter = 300</literal>.
+                                </para>
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <term>ncv</term>
+                                <para>
+                                    使用するLanzcos基底ベクトルの数.
+                                    実非対称問題の場合, <literal>ncv</literal>の値は
+                                    <literal>2 * k + 1 </literal>以上とする必要があり,
+                                    デフォルトで <literal>ncv = min(max(2 * k + 1, 20), nA) </literal>です.
+                                    実対称または複素数問題の場合,<literal>ncv</literal>は
+                                    <literal>2 * k </literal>以上とする必要があり,
+                                    デフォルトで<literal> ncv = min(max(2 * k, 20), nA) </literal>
+                                    です.ただし,<literal> nA = size(A, 2) </literal>.
+                                </para>
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <term>resid</term>
+                                <para>
+                                    初期残差ベクトルを有する開始ベクトルで,
+                                    前回実行時の値を使用することもできます.
+                                    デフォルトで,<literal>resid</literal> はランダムな
+                                    初期値ベクトルです.
+                                </para>
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <term>cholB</term>
+                                <para>
+                                    <literal>B</literal>ではなく
+                                    <literal>chol(B)</literal>を指定します.
+                                    デフォルトで
+                                    , <literal>cholB</literal> は %f です.
+                                </para>
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <term>isreal</term>
+                                <para>
+                                    <literal>Af</literal> が指定された場合, 
+                                    <literal>isreal</literal> を定義できます.
+                                    デフォルトで, <literal>isreal</literal> は %t です.
+                                    この引数は,<literal>A</literal>が行列の場合,
+                                    指定する必要がありません.
+                                </para>
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <term>issym</term>
+                                <para>
+                                    <literal>Af</literal> が指定された場合, 
+                                    <literal>issym</literal> を定義できます. 
+                                    デフォルトで <literal>issym</literal> は %f です.
+                                    この引数は,<literal>A</literal>が行列の場合,
+                                    指定する必要がありません.
+                                </para>
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>参考文献</title>
+        <para>
+            この関数はR. Lehoucq, K. Maschhoff, D. Sorensen, および C. Yang.により書かれた
+            ARPACKパッケージに基づいています.
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>実対称問題用のDSAUPD および DSEUPD ルーチン,</para>
+            </listitem>
+            <listitem>
+                <para>実非対称行列用のDNAUPD および DNEUPD ルーチン.</para>
+            </listitem>
+            <listitem>
+                <para>複素問題用のZNAUPD および ZNEUPD.</para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection>
+        <title>実対称問題の例</title>
+        <programlisting role="example">
+            <![CDATA[ 
+A            = diag(10*ones(10,1));
+A(1:$-1,2:$) = A(1:$-1,2:$) + diag(6*ones(9,1));
+A(2:$,1:$-1) = A(2:$,1:$-1) + diag(6*ones(9,1));
+B = eye(10,10);
+k = 8;
+sigma = 'SM';
+opts.cholB = %t;
+d = eigs(A)
+[d, v] = eigs(A)
+d = eigs(A, B, k, sigma)
+[d, v] = eigs(A, B, k, sigma)
+d = eigs(A, B, k, sigma, opts)
+[d, v] = eigs(A, B, k, sigma, opts)
+// 疎行列
+AS = sparse(A);
+BS = sparse(B);
+d = eigs(AS)
+[d, v] = eigs(AS)
+d = eigs(AS, BS, k, sigma)
+[d, v] = eigs(AS, BS, k, sigma)
+d = eigs(AS, BS, k, sigma, opts)
+[d, v] = eigs(AS, BS, k, sigma, opts)
+// 関数
+clear opts
+function y = fn(x)
+   y = A * x;
+endfunction
+opts.isreal = %t;
+opts.issym = %t;
+d = eigs(fn, 10, [], k, 'LM', opts)
+function y = fn(x)
+   y = A \ x;
+endfunction
+d = eigs(fn, 10, [], k, 'SM', opts)
+function y = fn(x)
+   y = (A - 4 * eye(10,10)) \ x;
+endfunction
+d = eigs(fn, 10, [], k, 4, opts)
+ ]]>
+        </programlisting>
+    </refsection>
+    <refsection>
+        <title>実非対称問題の例</title>
+        <programlisting role="example">
+            <![CDATA[ 
+    A            = diag(10*ones(10,1));
+    A(1:$-1,2:$) = A(1:$-1,2:$) + diag(6*ones(9,1));
+    A(2:$,1:$-1) = A(2:$,1:$-1) + diag(-6*ones(9,1));
+    B = eye(10,10);
+    k = 8;
+    sigma = 'SM';
+    opts.cholB = %t;
+    d = eigs(A)
+[d, v] = eigs(A)
+    d = eigs(A, B, k, sigma)
+    [d, v] = eigs(A, B, k, sigma) 
+    d = eigs(A, B, k, sigma, opts)
+    [d, v] = eigs(A, B, k, sigma, opts)
+// 疎行列
+    AS = sparse(A);
+    BS = sparse(B);
+d = eigs(AS)
+[d, v] = eigs(AS)
+    d = eigs(AS, BS, k, sigma)
+    [d, v] = eigs(AS, BS, k, sigma)
+    d = eigs(AS, BS, k, sigma, opts)
+    [d, v] = eigs(AS, BS, k, sigma, opts)
+    // 関数
+clear opts
+function y = fn(x)
+   y = A * x;
+endfunction
+opts.isreal = %t;
+opts.issym = %f;
+d = eigs(fn, 10, [], k, 'LM', opts)
+function y = fn(x)
+   y = A \ x;
+endfunction
+d = eigs(fn, 10, [], k, 'SM', opts)
+function y = fn(x)
+   y = (A - 4 * eye(10,10)) \ x;
+endfunction
+d = eigs(fn, 10, [], k, 4, opts)
+    ]]>
+        </programlisting>
+    </refsection>
+    <refsection>
+        <title>複素問題の例</title>
+        <programlisting role="example">
+            <![CDATA[ 
+    A            = diag(10*ones(10,1) + %i * ones(10,1));
+    A(1:$-1,2:$) = A(1:$-1,2:$) + diag(6*ones(9,1));
+    A(2:$,1:$-1) = A(2:$,1:$-1) + diag(-6*ones(9,1));
+    B = eye(10,10);
+    k = 8;
+    sigma = 'LM';
+    opts.cholB = %t;
+    d = eigs(A)
+[d, v] = eigs(A)
+    d = eigs(A, B, k, sigma)
+    [d, v] = eigs(A, B, k, sigma)
+    d = eigs(A, B, k, sigma, opts)
+    [d, v] = eigs(A, B, k, sigma, opts)
+    // 疎行列
+    AS = sparse(A);
+    BS = sparse(B);
+    d = eigs(AS)
+[d, v] = eigs(AS)
+    d = eigs(AS, BS, k, sigma)
+    [d, v] = eigs(AS, BS, k, sigma)
+    d = eigs(AS, BS, k, sigma, opts)
+    [d, v] = eigs(AS, BS, k, sigma, opts)
+    // 関数
+clear opts
+function y = fn(x)
+   y = A * x;
+endfunction
+opts.isreal = %f;
+opts.issym = %f;
+d = eigs(fn, 10, [], k, 'LM', opts)
+function y = fn(x)
+   y = A \ x;
+endfunction
+d = eigs(fn, 10, [], k, 'SM', opts)
+function y = fn(x)
+   y = (A - 4 * eye(10,10)) \ x;
+endfunction
+d = eigs(fn, 10, [], k, 4, opts)
+    ]]>
+        </programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="spec">spec</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>
+                    関数が導入されました. 
+                    dnaupd, dneupd, dsaupd, dseupd, znaupd および zneupdは廃止されました.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

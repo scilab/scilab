@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+
+ * Copyright (C) Pedro SOUZA
+
+ *
+
+ * This file must be used under the terms of the CeCILL.
+
+ * This source file is licensed as described in the file COPYING, which
+
+ * you should have received as part of this distribution.  The terms
+
+ * are also available at
+
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+
+ *
+
+ -->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ja" scilab:needs-examples="no" xml:id="light">
+    
+    <refnamediv>
+        
+        <refname>light</refname>
+        
+        <refpurpose>指定した軸にライトオブジェクトを作成</refpurpose>
+        
+    </refnamediv>
+    
+    <refsynopsisdiv>
+        
+        <title>呼び出し手順</title>
+        
+        <synopsis>l=light()
+            
+            l=light(&lt;LightProperty&gt;)
+            
+            l=light(axes_handle, &lt;LightProperty&gt;)
+            
+        </synopsis>
+        
+    </refsynopsisdiv>
+    
+    <refsection>
+        
+        <title>引数</title>
+        
+        <variablelist>
+            
+            <varlistentry>
+                
+                <term>axes_handle</term>
+                
+                <listitem>
+                    
+                    <para>軸のハンドル, 省略した場合はカレントの軸.</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>&lt;LightProperty&gt;</term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        ライトプロパティを指定するオプション引数.
+                        
+                        オプション引数は以下の構文で指定可能:
+                        
+                        <literal>"light(propname1=propvalue1, propname2=propvalue2, ..., propnameN=propvalueN)"</literal>.
+                        
+                    </para>
+                    
+                    <para>
+                        
+                        以下にオプション引数のリストを示します:
+                        
+                    </para>
+                    
+                    <variablelist>
+                        
+                        <varlistentry>
+                            
+                            <term>visible: </term>
+                            
+                            <listitem>
+                                
+                                <para>
+                                    
+                                    このフィールドは光の有効(<literal>"on"</literal>)または
+                                    
+                                    無効(<literal>"off"</literal>)を定義します.
+                                    
+                                </para>
+                                
+                            </listitem>
+                            
+                        </varlistentry>
+                        
+                        <varlistentry>
+                            
+                            <term>type: </term>
+                            
+                            <listitem>
+                                
+                                <para>
+                                    
+                                    このフィールドは使用される光の型を定義します.
+                                    
+                                    以下の2種類の光を利用できます:
+                                    
+                                    <literal>"directional"</literal> および <literal>"point"</literal>.
+                                    
+                                    方向性(directional)光源は,曲面から無限遠に位置する光源で,平行線となります.
+                                    
+                                </para>
+                                
+                                <para>
+                                    
+                                    点光源は,全ての方向に放射する空間の点として
+                                    
+                                    定義されます.
+                                    
+                                    デフォルト値は <literal>"point"</literal>です.
+                                    
+                                </para>
+                                
+                            </listitem>
+                            
+                        </varlistentry>
+                        
+                        <varlistentry>
+                            
+                            <term>direction: </term>
+                            
+                            <listitem>
+                                
+                                <para>
+                                    
+                                    このフィールドは方向性光源の光線方向を定義します.
+                                    
+                                    方向は,原点からのベクトルを表す
+                                    
+                                    3要素ベクトル<literal>"[x, y, z]"</literal>により変更できます.
+                                    
+                                </para>
+                                
+                                <para>
+                                    
+                                    デフォルト値は <literal>"[0 0 1]"</literal>です.
+                                    
+                                </para>
+                                
+                            </listitem>
+                            
+                        </varlistentry>
+                        
+                        <varlistentry>
+                            
+                            <term>position: </term>
+                            
+                            <listitem>
+                                
+                                <para>
+                                    
+                                    このフィールドは,点光源の光源位置を定義します.
+                                    
+                                    位置は3要素ベクトル<literal>"[x, y, z]"</literal>により変更できます.
+                                    
+                                </para>
+                                
+                                <para>
+                                    
+                                    デフォルト値は<literal>"[0 0 1]"</literal>です.
+                                    
+                                </para>
+                                
+                            </listitem>
+                            
+                        </varlistentry>
+                        
+                        <varlistentry>
+                            
+                            <term>ambient_color: </term>
+                            
+                            <listitem>
+                                
+                                <para>
+                                    
+                                    このフィールドは光源のアンビエント色を定義します.
+                                    
+                                    この色は3要素ベクトル<literal>"[red, green, blue]"</literal>
+                                    
+                                    (各要素の範囲は[0, 1])により定義されます.
+                                    
+                                </para>
+                                
+                                <para>
+                                    
+                                    デフォルト値は<literal>"[0.1 0.1 0.1]"</literal>です.
+                                    
+                                </para>
+                                
+                            </listitem>
+                            
+                        </varlistentry>
+                        
+                        <varlistentry>
+                            
+                            <term>diffuse_color: </term>
+                            
+                            <listitem>
+                                
+                                <para>
+                                    
+                                    このフィールドは光源の拡散色を定義します.
+                                    
+                                    この色は3要素ベクトル<literal>"[red, green, blue]"</literal>
+                                    
+                                    (各要素の範囲は[0, 1])により定義されます.
+                                    
+                                </para>
+                                
+                                <para>
+                                    
+                                    デフォルト値は<literal>"[1 1 1]"</literal>です.
+                                    
+                                </para>
+                                
+                            </listitem>
+                            
+                        </varlistentry>
+                        
+                        <varlistentry>
+                            
+                            <term>specular_color: </term>
+                            
+                            <listitem>
+                                
+                                <para>
+                                    
+                                    このフィールドは光源の鏡面反射色を定義します.
+                                    
+                                    この色は3要素ベクトル<literal>"[red, green, blue]"</literal>
+                                    
+                                    (各要素の範囲は[0, 1])により定義されます.
+                                    
+                                </para>
+                                
+                                <para>
+                                    
+                                    デフォルト値は <literal>"[1 1 1]"</literal>です.
+                                    
+                                </para>
+                                
+                            </listitem>
+                            
+                        </varlistentry>
+                        
+                    </variablelist>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+        </variablelist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>説明</title>
+        
+        <para>
+            
+            <literal>light</literal> 関数は, 指定した軸の
+            
+            lightエンティティ(lightのエンティティプロパティについては
+            
+            <link linkend="light">light_property</link> を参照)を作成し,オプション引数
+            
+            &lt;LightProperty&gt; で指定したプロパティを設定します.
+            
+        </para>
+        
+        <para>
+            
+            面の見え方を決める照明の効果に関する詳細については,
+            
+            <link linkend="lighting">照明</link>を参照ください.
+            
+        </para>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>例</title>
+        
+        <scilab:image>
+            
+            plot3d();
+            
+            l = light(visible="on", type="point", position=[0 0 1]);
+            
+        </scilab:image>
+        
+        <programlisting role="example"><![CDATA[
+
+plot3d();
+
+l = light(visible="on", type="point", position=[0 0 1]);
+
+         ]]></programlisting>
+        
+    </refsection>
+    
+    <refsection role="see also">
+        
+        <title>参照</title>
+        
+        <simplelist type="inline">
+            
+            <member>
+                
+                <link linkend="lighting">照明</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="light_properties">lightプロパティ</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="surface_properties">surfaceプロパティ</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="delete">delete</link>
+                
+            </member>
+            
+        </simplelist>
+        
+    </refsection>
+    
+</refentry>
+

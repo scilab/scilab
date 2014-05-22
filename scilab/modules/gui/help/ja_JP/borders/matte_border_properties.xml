@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="matte_border_properties">
+    <refnamediv>
+        <refname>matte境界プロパティ</refname>
+        <refpurpose>matte境界プロパティの説明.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>
+            matteBorder = createBorder("matte", top, left, bottom, right, color)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>top</term>
+                <listitem>
+                    <para>実数整数値</para>
+                    <para>境界頂部の幅(単位:ピクセル).</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>left</term>
+                <listitem>
+                    <para>実数整数値</para>
+                    <para>境界左部の幅(単位:ピクセル).</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>bottom</term>
+                <listitem>
+                    <para>実数整数値</para>
+                    <para>境界底部の幅(単位:ピクセル).</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>right</term>
+                <listitem>
+                    <para>実数整数値</para>
+                    <para>境界右部の幅(単位:ピクセル).</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>color</term>
+                <listitem>
+                    <para>文字列</para>
+                    <para>境界の色の名前.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>matteBorder</term>
+                <listitem>
+                    <para>作成された境界.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            この関数は<literal>frame</literal> uicontrolsのmatte(マット)境界を作成します.
+            詳細については,
+            <link linkend="uicontrol_properties">uicontrolプロパティ</link>を参照ください.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="createBorder">createBorder</link>
+            </member>
+            <member>
+                <link linkend="createBorderFont">createBorderFont</link>
+            </member>
+            <member>
+                <link linkend="uicontrol">uicontrol</link>
+            </member>
+            <member>
+                <link linkend="uicontrol_properties">uicontrol_properties</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>
+                    関数 <function>createBorder</function> が導入されました.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

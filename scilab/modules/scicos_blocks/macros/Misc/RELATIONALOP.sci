@@ -47,6 +47,7 @@ function [x,y,typ] = RELATIONALOP(job,arg1,arg2)
             end
             if (rule<0)|(rule>5) then
                 message("Incorrect operator "+string(rule)+" ; must be 0 to 5.")
+                ok=%f;
             end
             if (Datatype==1) then
                 model.sim=list("relational_op",4)
@@ -74,7 +75,21 @@ function [x,y,typ] = RELATIONALOP(job,arg1,arg2)
                 [model,graphics,ok]=set_io(model,graphics,list(in,it),list(out,ot),[],[])
             end
             if ok then
+                if rule == 0 then
+                    label = "==";
+                elseif rule == 1 then
+                    label = "~=";
+                elseif rule == 2 then
+                    label = "&lt";
+                elseif rule == 3 then
+                    label = "&lt=";
+                elseif rule == 4 then
+                    label = "&gt";
+                elseif rule == 5 then
+                    label = "&gt=";
+                end
                 graphics.exprs=exprs;
+                graphics.style=["fontSize=13;fontStyle=1;displayedLabel="+label];
                 model.ipar=[rule],
                 model.nzcross=zcr,
                 model.nmode=zcr,
@@ -85,6 +100,7 @@ function [x,y,typ] = RELATIONALOP(job,arg1,arg2)
         end
     case "define" then
         ipar=[2]
+        label="&lt";
         model=scicos_model()
         model.sim=list("relationalop",4)
         model.in=[1;1]
@@ -92,9 +108,9 @@ function [x,y,typ] = RELATIONALOP(job,arg1,arg2)
         model.ipar=ipar
         model.blocktype="c"
         model.dep_ut=[%t %f]
-
         exprs=[string(ipar);string(0)]
         gr_i=[]
-        x=standard_define([3 2],model,exprs,gr_i)
+        x=standard_define([2 2],model,exprs,gr_i)
+        x.graphics.style=["fontSize=13;fontStyle=1;displayedLabel="+label];
     end
 endfunction

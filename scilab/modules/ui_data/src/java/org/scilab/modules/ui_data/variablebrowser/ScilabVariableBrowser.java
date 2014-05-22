@@ -95,7 +95,9 @@ public final class ScilabVariableBrowser implements VariableBrowser {
         if (instance != null) {
             SwingUtilities.invokeLater(new Runnable() {
                 public void run() {
-                    instance.setData(data);
+                    if (instance != null) {
+                        instance.setData(data);
+                    }
                 }
             });
         }

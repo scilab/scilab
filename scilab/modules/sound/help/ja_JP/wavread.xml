@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) ????-2008 - INRIA - Scilab 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+    *
+    -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="wavread" xml:lang="ja">
+    <refnamediv>
+        <refname>wavread</refname>
+        <refpurpose>.wav サウンドファイルを読み込む</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>y=wavread(wavfile)
+            y=wavread(wavfile,ext)
+            [y,Fs,bits]=wavread(wavfile)
+            [y,Fs,bits]=wavread(wavfile,ext)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>wavfile</term>
+                <listitem>
+                    <para>文字列(拡張子が指定されない場合,拡張子 .wav が追加されます)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Fs</term>
+                <listitem>
+                    <para>整数, サンプリング周波数(単位:Hz) (サンプル数/秒).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ext</term>
+                <listitem>
+                    <para>
+                        文字列 (<literal>'size'</literal>) または string('info') または
+                        (nサンプルを読み込む)整数 ,
+                        (n1からn2を読み込む) 1 x 2整数ベクトル.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>.wav</literal>サウンドファイルを読み込む
+            ユーティリティ関数.
+            <literal>wavread(wavfile)</literal> は文字列wavfileで
+            指定されたサウンドファイルを読み込み,サンプルデータをyに返します.
+            大きさは [-1,+1]の範囲となります.
+            以下の形式の多チャネルデータをサポートします:
+            8-bit mu-law, 8-, 16-, および 32ビット,線形, および浮動小数点.
+        </para>
+        <para>
+            <literal>[y,Fs,bits]=wavread(wavfile)</literal> は,
+            ファイル中のデータをエンコードする際に使用された
+            サンプルレート(Fs) (単位:Hz),ビット数/サンプルを返します.
+        </para>
+        <para>
+            <literal>wavread(wavfile,n)</literal>は各チャネルの最初のnサンプルを
+            返します.
+        </para>
+        <para>
+            <literal>wavread(wavfile,[n1,n2])</literal> はサンプル n1 から n2までを返します.
+        </para>
+        <para>
+            <literal>wavread(wavfile,'size')</literal> は,
+            ファイル中に含まれるオーディオデータの大きさを
+            [チャネル サンプル] のベクトルとして返します.
+        </para>
+        <para>
+            <literal>wavread(wavfile,'info')</literal> は,
+            実際のオーディオデータについて
+            ファイル中に含まれるオーディオデータに関する情報を,
+            ベクトル
+            [データ形式, チャネル数, サンプル/秒/チャネル, 所要バイト/秒の推定値,
+            基本サンプルブロックのバイト並び, ビット/秒, サウンドデータ長(単位:バイト),
+            バイト/サンプル (チャネル毎)]
+            として返します.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
+wavread("SCI/modules/sound/demos/chimes.wav","size")
+[y,Fs,bits]=wavread("SCI/modules/sound/demos/chimes.wav");Fs,bits
+subplot(2,1,1)
+plot2d(y(1,:)) // 最初のチャネル
+subplot(2,1,2)
+plot2d(y(2,:)) // 2番目のチャネル
+y=wavread("SCI/modules/sound/demos/chimes.wav",[1 5]) //最初の5サンプル
+ ]]></programlisting>
+        <scilab:image>
+            wavread("SCI/modules/sound/demos/chimes.wav","size")
+            [y,Fs,bits]=wavread("SCI/modules/sound/demos/chimes.wav");
+            subplot(2,1,1)
+            plot2d(y(1,:))
+            subplot(2,1,2)
+            plot2d(y(2,:))
+            y=wavread("SCI/modules/sound/demos/chimes.wav",[1 5])
+        </scilab:image>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="auread">auread</link>
+            </member>
+            <member>
+                <link linkend="savewave">savewave</link>
+            </member>
+            <member>
+                <link linkend="analyze">analyze</link>
+            </member>
+            <member>
+                <link linkend="mapsound">mapsound</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

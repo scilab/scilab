@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+*
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2010 - 2011 - Calixte DENIZET <calixte@contrib.scilab.org>
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+*
+*
+-->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="jcompile">
+    
+    <refnamediv>
+        
+        <refname>jcompile</refname>
+        
+        <refpurpose>Javaコードまたはファイルをコンパイルする</refpurpose>
+        
+    </refnamediv>
+    
+    <refsynopsisdiv>
+        
+        <title>呼び出し手順</title>
+        
+        <synopsis>
+            
+            class = jcompile(className, code);
+            
+            class = jcompile(javaFiles);
+            
+        </synopsis>
+        
+    </refsynopsisdiv>
+    
+    <refsection>
+        
+        <title>パラメータ</title>
+        
+        <variablelist>
+            
+            <varlistentry>
+                
+                <term>className</term>
+                
+                <listitem>
+                    
+                    <para>クラス名を指定する文字列</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>code</term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        Javaコードを有する文字列の行または列
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>javaFiles</term>
+                
+                <listitem>
+                    
+                    <para>Javaファイルのパス.</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>class</term>
+                
+                <listitem>
+                    
+                    <para>_JClass型のmlist</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+        </variablelist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>説明</title>
+        
+        <para>
+            
+            Javaソースコードをコンパイルし, 対応するクラスを読み込みます.
+            
+            JDKで配布されるパッケージ tools.jar が classpath に存在しない場合,
+            
+            Eclipse Compiler for Java (ECJ) が使用されます.
+            
+        </para>
+        
+        <para>
+            
+            引数がファイルの場合, jcompile はJavaコードをコンパイルします.
+            
+        </para>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>例</title>
+        
+        <programlisting role="example"><![CDATA[
+               hw = jcompile("HelloWorld", ["public class HelloWorld {"
+                                            "public static String getHello() {"
+                                            "return ""Hello World !!"";"
+                                            "}"
+                                            "}"]);
+
+               hello = hw.getHello()
+
+               jremove hello hw
+      ]]></programlisting>
+        
+        <programlisting role="example"><![CDATA[
+fd = mopen(TMPDIR+'/HelloWorld.java','wt');
+mputl(["public class HelloWorld {"
+                   "public static String getHello() {"
+                   "return ""Hello World !!"";"
+                   "}"
+                   "}"],fd);
+mclose(fd);
+
+jcompile(TMPDIR+"/HelloWorld.java")
+      ]]></programlisting>
+        
+        <programlisting role="example"><![CDATA[
+directory=SCI+"/modules/external_objects_java/examples/com/foo/";
+// Compile of all them
+jcompile(ls(directory + "/*.java"))
+      ]]></programlisting>
+        
+    </refsection>
+    
+    <refsection role="see also">
+        
+        <title>参照</title>
+        
+        <simplelist type="inline">
+            
+            <member>
+                
+                <link linkend="jimport">jimport</link>
+                
+            </member>
+            
+        </simplelist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>履歴</title>
+        
+        <revhistory>
+            
+            <revision>
+                
+                <revnumber>5.5.0</revnumber>
+                
+                <revremark>
+                    
+                    関数が導入されました. 'JIMS'モジュールに基づきます.
+                    
+                    JIMSモジュールとの動作上の主な違いは,
+                    
+                    <link linkend="jautoUnwrap">jautoUnwrap</link>がデフォルトで
+                    
+                    有効になっていることです.
+                    
+                </revremark>
+                
+            </revision>
+            
+        </revhistory>
+        
+    </refsection>
+    
+</refentry>
+
+
+

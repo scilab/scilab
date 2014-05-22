@@ -28,7 +28,7 @@
                 <term>P, P22</term>
                 <listitem>
                     <para>
-                        線形システム (<literal>syslin</literal> リスト), 
+                        連続時間動的システム:
                         それぞれ拡張プラントまたはノミナルプラント
                     </para>
                 </listitem>
@@ -46,7 +46,7 @@
                 <term>K</term>
                 <listitem>
                     <para>
-                        線形システム (<literal>syslin</literal> リスト), コントローラ
+                        連続時間線形動的システム: コントローラ
                     </para>
                 </listitem>
             </varlistentry>
@@ -63,8 +63,7 @@
         <para>
             標準プラント <literal>P</literal> を
             (<literal>r=size(P22)</literal> とコントローラ <literal>K</literal> と共に)
-            指定すると,この関数は閉ループ行列
-            <literal>Acl</literal> を返します.
+            指定すると,この関数は閉ループ行列 <literal>Acl</literal> を返します.
         </para>
         <para>
             閉ループ系の内部安定性を確保するために,<literal>Acl</literal> の極は,
@@ -83,5 +82,22 @@
                 <link linkend="lft">lft</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <para>F. D.  </para>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>
+                    <literal>Sl</literal>が
+                    連続時間線形システムであることを確認するようになりました.
+                    この修正は,この <ulink url="http://gitweb.scilab.org/?p=scilab.git;a=commit;h=3d7083daae3339813ba747c8adcda1f9599bb80d">コミット</ulink>により導入されました.
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

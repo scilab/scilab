@@ -148,7 +148,6 @@
         <programlisting role="example"><![CDATA[ 
 w=getdate()
 mprintf("Year:%d,Month:%d,Day:%d",w(1),w(2),w(6));
-
 x=getdate("s")
 getdate(x)
  ]]></programlisting>

@@ -387,73 +387,51 @@
         <programlisting role="example"><![CDATA[
 // 全てのテストを実行
 // =============================================
-
 test_run();
 test_run([]);
 test_run([],[]);
-
 // 1つまたは複数のモジュールをテスト
 // =============================================
-
 // 1つのモジュールをテスト
 test_run('time');
-
 // 複数のモジュールをテスト
 test_run(['time','string']);
-
 // サブモジュールをテスト
 test_run('optimization|neldermead');
-
 // パスで指定したモジュールを参照
 test_run(SCI+'/modules/core');
-
 // 指定したテストを実行
 // =============================================
-
 // テストを1つ指定
 test_run('time','datenum');
-
 // 複数のテストを指定
 test_run('time',['datenum';'calendar']);
-
 // いくつかのテストをスキップ
 // =============================================
-
 test_run('time',['datenum';'calendar'],'skip_tests');
-
 // オプション
 // =============================================
-
 // .dia と .dia.ref が等しいかどうかをチェックしません
 test_run('time','datenum','no_check_ref');
-
 // .dia.refファイルを作成しますが,.diaと.dia.refが等しいかどうかをチェックしません
 test_run([],[],'create_ref');
-
 // テストを実行しないが,利用可能なテストの一覧を表示します
 test_run([],[],'list');
-
 // このコマンドの使用法に関するいくつかの例を表示します
 test_run([],[],'help');
-
 // 非回帰テストのみを実行し,ユニットテストをスキップします
 test_run([],[],'nonreg_test');
-
 // ユニットテストのみを実行し,非回帰テストをスキップします
 test_run([],[],'unit_test');
-
 // エラー出力 (std err)をチェックしません
 test_run('boolean','bug_2799','no_check_error_output');
-
 // 複数のオプションを同時に指定
 test_run([],[],['no_check_ref','mode_nw']);
  ]]></programlisting>
-        
         <programlisting role="example"><![CDATA[
 //  (パスで指定した)外部モジュールのユニットテストを実行
 test_run('SCI/contrib/toolbox_skeleton')
  ]]></programlisting>
-        
         <programlisting role="example"><![CDATA[
 // XML Xunitファイルにエクスポート
 test_run('boolean',[],[],TMPDIR+"/boolean_test_run.xml");
@@ -502,7 +480,6 @@ test_run('time','datenum',[],TMPDIR+"/time_datenum_test_run.xml");
                     <para>
                         <literal>test_run</literal> は外部モジュールでも動作します.
                     </para>
-                    
                     <para>
                         XMLファイルにエクスポートする4番目の引数が追加されました
                     </para>

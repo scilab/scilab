@@ -130,13 +130,10 @@ sigma = 0.1;  // ガウスノイズの標準偏差
 m = 200;       // 試行点の数
 xd = linspace(a,b,m)';
 yd = sin(xd) + grand(xd,"nor",0,sigma);
-
 n = 6; // 折点の数
 x = linspace(a,b,n)';
-
 // スプラインを計算
 [y, d] = lsq_splin(xd, yd, x);  // 等しい重みを使用
-
 // プロット
 ye = sin(xd);
 ys = interp(xd, x, y, d);

@@ -47,12 +47,9 @@
 a(1,1,1,1:2)=[1 2]
 a=[1 2;3 4];a(:,:,2)=rand(2,2)
 a(1,1,:)
-
 size(a)
-
 a(:,:,1) //dimensionality reduction
 type(a(:,:,1))
-
 [a a]
  ]]></programlisting>
     </refsection>

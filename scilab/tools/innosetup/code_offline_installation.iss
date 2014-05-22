@@ -80,7 +80,7 @@ begin
   if IsOnline then
     WizardForm.TypesCombo.ItemIndex := 0
   else
-    WizardForm.TypesCombo.ItemIndex := 2;
+    WizardForm.TypesCombo.ItemIndex := 1;
 
   // Bug: need to trigger manually the TypesCombo.OnChange event
   WizardForm.TypesCombo.OnChange(WizardForm);

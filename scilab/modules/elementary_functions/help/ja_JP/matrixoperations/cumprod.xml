@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -10,96 +11,412 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
+
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="cumprod" xml:lang="ja">
+    
     <refnamediv>
+        
         <refname>cumprod</refname>
-        <refpurpose>累積積</refpurpose>
+        
+        <refpurpose>配列要素の累積積</refpurpose>
+        
     </refnamediv>
+    
     <refsynopsisdiv>
+        
         <title>呼び出し手順</title>
-        <synopsis>y=cumprod(x)
-            y=cumprod(x,'r') or y=cumprod(x,1)
-            y=cumprod(x,'c') or y=cumprod(x,2)
-            y=cumprod(x,'m')
-        </synopsis>
+        
+        <synopsis>y=cumprod(x)</synopsis>
+        
+        <synopsis>y=cumprod(x,orientation)</synopsis>
+        
+        <synopsis>y=cumprod(x,outtype)</synopsis>
+        
+        <synopsis>y=cumprod(x,orientation,outtype)</synopsis>
+        
     </refsynopsisdiv>
+    
     <refsection>
-        <title>パラメータ</title>
+        
+        <title>引数</title>
+        
         <variablelist>
+            
             <varlistentry>
+                
                 <term>x</term>
+                
                 <listitem>
-                    <para>ベクトルまたは行列 (実数または複素数)</para>
+                    
+                    <para>
+                        
+                        実数, 複素数, 論理値, 多項式または有理数の
+                        
+                        配列
+                        
+                    </para>
+                    
                 </listitem>
+                
             </varlistentry>
+            
             <varlistentry>
-                <term>y</term>
+                
+                <term>orientation</term>
+                
                 <listitem>
-                    <para>ベクトルまたは行列 (実数または複素数)</para>
+                    
+                    <para>
+                        
+                        以下のどちらかを指定します
+                        
+                    </para>
+                    
+                    <itemizedlist>
+                        
+                        <listitem>
+                            
+                            <para>
+                                
+                                文字列で,指定可能な値は
+                                
+                                <literal>"*"</literal>, <literal>"r"</literal>, 
+                                
+                                <literal>"c"</literal> または  <literal>"m"</literal>
+                                
+                            </para>
+                            
+                        </listitem>
+                        
+                        <listitem>
+                            
+                            <para>正の整数値</para>
+                            
+                        </listitem>
+                        
+                    </itemizedlist>
+                    
                 </listitem>
+                
             </varlistentry>
+            
+            <varlistentry>
+                
+                <term>outtype</term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        文字列で,指定可能な値は
+                        
+                        <literal>"native"</literal> または
+                        
+                        <literal>"double"</literal>. 
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>y</term>
+                
+                <listitem>
+                    
+                    <para>スカラーまたは配列</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
         </variablelist>
+        
     </refsection>
+    
     <refsection>
+        
         <title>説明</title>
+        
         <para>
-            <literal>y=cumprod(x)</literal>は,
-            <literal>x</literal>がベクトルまたは行列の場合,
-            <literal>x</literal>の全てのエントリの列方向の
-            累積積を<literal>y</literal>に返します.
+            
+            配列<literal>x</literal>の場合,
+            
+            <literal>y=cumprod(x)</literal> は
+            
+            <literal>x</literal>の全要素の累積積を
+            
+            スカラー<literal>y</literal>に返します.
+            
         </para>
+        
         <para>
-            <literal>y=cumprod(x,'c')</literal> (または, 等価的に,
-            <literal>y=cumprod(x,2)</literal>) は
-            <literal>x</literal>の列の
-            要素毎の累積積を<literal>y</literal>に返します:
-            <literal> y(i,:)=cumprod(x(i,:))</literal>
+            
+            <literal>y=cumprod(x,orientation)</literal> は,
+            
+            <literal>orientation</literal>で指定した次元方向の
+            
+            <literal>x</literal>の累積積を
+            
+            <literal>y</literal>に返します.
+            
         </para>
+        
+        <itemizedlist>
+            
+            <listitem>
+                
+                <para>
+                    
+                    <literal>orientation</literal> が 1 または "r" の場合:
+                    
+                </para>
+                
+                <para>
+                    
+                    <latex><![CDATA[ y(\mathbf{l},j) = \prod_{\mathbf{i}=1}^l x(\mathbf{i},j)]]></latex>
+                    
+                </para>
+                
+                <para>または </para>
+                
+                <para>
+                    
+                    <latex><![CDATA[ y(\mathbf{l},j,k,\ldots) = \prod_{\mathbf{i}=1}^l x(\mathbf{i},j,k,\ldots)]]></latex>
+                    
+                </para>
+                
+            </listitem>
+            
+            <listitem>
+                
+                <para>
+                    
+                    <literal>orientation</literal> が 2 または "c" の場合:
+                    
+                </para>
+                
+                <para>
+                    
+                    <latex><![CDATA[ y(i,\mathbf{l}) = \prod_{\mathbf{j}=1}^l x(i,{\mathbf{j})]]></latex>
+                    
+                </para>
+                
+                <para> または </para>
+                
+                <para>
+                    
+                    <latex><![CDATA[ y(i,\mathbf{l},k,\ldots) = \prod_{\mathbf{j}=1}^l x(i,\mathbf{j},k,\ldots)]]></latex>
+                    
+                </para>
+                
+            </listitem>
+            
+            <listitem>
+                
+                <para>
+                    
+                    <literal>orientation</literal> がnの場合:
+                    
+                </para>
+                
+                <para>
+                    
+                    <latex><![CDATA[ y(i_1,\ldots,i_{n-1},\mathbf{l},i_{n+1},\ldots) = \prod_{\mathbf{i_n}=1}^l x(i_1,\ldots,i_{n-1},\mathbf{i_n},i_{n+1},\ldots)]]></latex>
+                    
+                </para>
+                
+            </listitem>
+            
+            <listitem>
+                
+                <para>
+                    
+                    <literal>y=cumprod(x,"*")</literal> は
+                    
+                    <literal>y=cumprod(x)</literal> と等価です.
+                    
+                </para>
+                
+            </listitem>
+            
+            <listitem>
+                
+                <para>
+                    
+                    <literal>y=cumprod(x,"m")</literal> は
+                    
+                    <literal>y=cumprod(x,orientation)</literal> と等価です.
+                    
+                    ただし,<literal>orientation</literal> は,
+                    
+                    <literal>x</literal>の1より大きい最初の次元の添字です.
+                    
+                    このオプションはMatlabとの互換性のために使用されます.
+                    
+                </para>
+                
+            </listitem>
+            
+        </itemizedlist>
+        
+        <para/>
+        
         <para>
-            <literal>y=cumprod(x,'r')</literal> (または, 等価的に,
-            <literal>y=cumprod(x,2)</literal>) は
-            <literal>x</literal>の行の
-            要素毎の累積積を<literal>y</literal>に返します:
-            <literal> y(:,i)=cumprod(x(:,i))</literal>.
+            
+            <literal>outtype</literal>引数は積算の動作を指定します:
+            
         </para>
-        <para>
-            <literal>y=cumprod(x,'m')</literal> は
-            <literal>x</literal>の最初の1より大きい次元方向の
-            累積積となります(Matlabとの互換性用).
-        </para>
+        
+        <itemizedlist>
+            
+            <listitem>
+                
+                <para>
+                    
+                    float, 多項式, 有理数の配列の場合,
+                    
+                    評価は常に浮動小数点計算で行われます.
+                    
+                    <literal>"double"</literal> または
+                    
+                    <literal>"native"</literal> オプションは等価です.
+                    
+                </para>
+                
+            </listitem>
+            
+            <listitem>
+                
+                <para>整数の配列の場合,</para>
+                
+                <para>
+                    
+                    <literal>outtype="native"</literal> の場合,
+                    
+                    評価は整数比較(モジュロ 2^b, ただし b は使用されるビット数)
+                    
+                    により行われます,
+                    
+                </para>
+                
+                <para>
+                    
+                    <literal>outtype="double"</literal> の場合,
+                    
+                    評価は浮動小数点計算で行われます.
+                    
+                </para>
+                
+                <para>
+                    
+                    デフォルト値は <literal>outtype="native"</literal>です.
+                    
+                </para>
+                
+            </listitem>
+            
+            <listitem>
+                
+                <para>論理値の配列の場合,</para>
+                
+                <para>
+                    
+                    <literal>outtype="native"</literal>の場合,
+                    
+                    評価は論理値計算(* は &amp;で置換)により行われます,
+                    
+                </para>
+                
+                <para>
+                    
+                    <literal>outtype="double"</literal>の場合,
+                    
+                    評価は浮動小数点計算で行われます
+                    
+                    (%t は値1, %f は値0で置換されます).
+                    
+                </para>
+                
+                <para>
+                    
+                    デフォルト値は<literal>outtype="double"</literal>です.
+                    
+                </para>
+                
+            </listitem>
+            
+        </itemizedlist>
+        
     </refsection>
+    
     <refsection>
+        
+        <title>注意</title>
+        
+        <para>
+            
+            この関数には,
+            
+            <link linkend="sparse">疎行列</link> および
+            
+            <link linkend="hypermat">ハイパー行列</link>と
+            
+            同じ規則が適用されます.
+            
+        </para>
+        
+    </refsection>
+    
+    <refsection>
+        
         <title>例</title>
+        
         <programlisting role="example"><![CDATA[ 
 A=[1,2;3,4];
-
 cumprod(A)
-cumprod(A,'r')
-cumprod(A,'c')
+cumprod(A,1)
 
-rand('seed',0);
-a=rand(3,4);
-[m,n]=size(a);
-w=zeros(a);
-w(1,:)=a(1,:);
-for k=2:m;
-  w(k,:)=w(k-1,:).*a(k,:);
-end;
-w-cumprod(a,'r')
+I=uint8([2 95 103;254 9 0])
+cumprod(I) //native evaluation
+cumprod(I,"double")
+cumprod(I,2,"double")
+
+s=poly(0,"s");
+P=[s,%i+s;s^2,1];
+cumprod(P),
+cumprod(P,2)
+
+B=[%t %t %f %f];
+cumprod(B) //evaluation in float
+cumprod(B,"native") //similar to and(B)
  ]]></programlisting>
+        
     </refsection>
+    
     <refsection role="see also">
+        
         <title>参照</title>
+        
         <simplelist type="inline">
+            
             <member>
-                <link linkend="cumsum">cumsum</link>
-            </member>
-            <member>
-                <link linkend="sum">sum</link>
-            </member>
-            <member>
+                
                 <link linkend="prod">prod</link>
+                
             </member>
+            
+            <member>
+                
+                <link linkend="cumsum">cumsum</link>
+                
+            </member>
+            
         </simplelist>
+        
     </refsection>
+    
 </refentry>
+

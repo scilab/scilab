@@ -16,11 +16,11 @@
         <refpurpose>線形システムのシミュレーション (時間応答)</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>呼び出しの手順</title>
+        <title>呼び出し手順</title>
         <synopsis>[y [,x]]=csim(u,t,sl,[x0 [,tol]])</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>u</term>
@@ -41,7 +41,7 @@
                 <term>sl</term>
                 <listitem>
                     <para>
-                        リスト (<literal>syslin</literal>)
+                        連続時間系の<literal>syslin</literal>リスト (SIMO線形システム)
                     </para>
                 </listitem>
             </varlistentry>
@@ -64,7 +64,7 @@
             <varlistentry>
                 <term>tol</term>
                 <listitem>
-                    <para>２つの要素 [atol rtol] からなるベクトルであり、それぞれ
+                    <para>2つの要素 [atol rtol] からなるベクトルであり、それぞれ
                         ODEソルバ(ode参照)の絶対許容誤差および相対許容誤差を定義する
                     </para>
                 </listitem>
@@ -74,19 +74,18 @@
     <refsection>
         <title>説明</title>
         <para>
-            線形制御系 <literal>sl</literal>のシミュレーションを行う.
-            <literal>sl</literal>は、
-            <literal>syslin</literal>リストで表された連続時間システムの
-            入力を前提とする.
+            線形制御系 <literal>sl</literal>のシミュレーションを行います.
+            ただし,<literal>sl</literal>は,
+            <literal>syslin</literal>リストで表された連続時間システムとします.
         </para>
         <para>
-            <literal>u</literal> は制御入力、<literal>x0</literal> は状態量初期値である.
+            <literal>u</literal> は制御入力,<literal>x0</literal> は状態量初期値です.
         </para>
         <para>
-            <literal>y</literal> は出力、<literal>x</literal> は状態量である.
+            <literal>y</literal> は出力,<literal>x</literal> は状態量です.
         </para>
         <para>
-            制御入力は以下のいずれかとすることができる:
+            制御入力は以下のいずれかとすることができます:
         </para>
         <para>
             1. 関数 : <literal>[inputs]=u(t)</literal>
@@ -96,14 +95,13 @@
             ただし、<literal>inputs=ut(t,parameter1,....,parametern)</literal> (<literal>ut</literal> は関数)
         </para>
         <para>
-            3. インパルス応答の計算を表す文字列 <literal>"impuls"</literal> 
-            (ここで、<literal>sl</literal> は直達項を有さず、<literal>x0=0</literal>である
-            SISO系であると仮定)
+            3. インパルス応答の計算を表す文字列 <literal>"impuls"</literal>
+            (ここで,<literal>sl</literal>の入力は単一で<literal>x0=0</literal>が必要).
+            直達項を有する系の場合, t=0における無限インパルスは無視されます.
         </para>
         <para>
             4. ステップ応答の計算を表す文字列 <literal>"step"</literal> 
-            (ここで、<literal>sl</literal> は直達項を有さず、<literal>x0=0</literal>である
-            SISO系であると仮定)
+            (ここで、<literal>sl</literal>の入力は単一で,<literal>x0=0</literal>が必要)
         </para>
         <para>
             5. t の各値に対応する u　の値を指定するベクトル.
@@ -111,24 +109,91 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
-s=poly(0,'s');rand('seed',0);w=ssrand(1,1,3);w('A')=w('A')-2*eye();
+        <programlisting role="example"><![CDATA[
+s=poly(0,'s');
+rand('seed',0);
+w=ssrand(1,1,3);
+w('A')=w('A')-2*eye();
 t=0:0.05:5;
 //impulse(w) = step (s * w)
-clf(0);xset("window",0);show_window();
 plot2d([t',t'],[(csim('step',t,tf2ss(s)*w))',0*t'])
-clf(1);xset("window",1);show_window();
-plot2d([t',t'],[(csim('impulse',t,w))',0*t'])
-//step(w) = impulse (s^-1 * w)
-clf(3);xset("window",3);show_window();
-plot2d([t',t'],[(csim('step',t,w))',0*t'])
-clf(4);xset("window",4);show_window();
-plot2d([t',t'],[(csim('impulse',t,tf2ss(1/s)*w))',0*t'])
-
-//input defined by a time function
-deff('u=input(t)','u=abs(sin(t))')
-clf();plot2d([t',t'],[(csim(input,t,w))',0*t'])
 ]]></programlisting>
+        <scilab:image>
+            s=poly(0,'s');
+            rand('seed',0);
+            w=ssrand(1,1,3);
+            w('A')=w('A')-2*eye();
+            t=0:0.05:5;
+            plot2d([t',t'],[(csim('step',t,tf2ss(s)*w))',0*t'])
+        </scilab:image>
+        <programlisting role="example"><![CDATA[
+s=poly(0,'s');
+rand('seed',0);
+w=ssrand(1,1,3);
+w('A')=w('A')-2*eye();
+t=0:0.05:5;
+plot2d([t',t'],[(csim('impulse',t,w))',0*t'])
+]]></programlisting>
+        <scilab:image>
+            s=poly(0,'s');
+            rand('seed',0);
+            w=ssrand(1,1,3);
+            w('A')=w('A')-2*eye();
+            t=0:0.05:5;
+            plot2d([t',t'],[(csim('impulse',t,w))',0*t'])
+        </scilab:image>
+        <programlisting role="example"><![CDATA[
+s=poly(0,'s');
+rand('seed',0);
+w=ssrand(1,1,3);
+w('A')=w('A')-2*eye();
+t=0:0.05:5;
+//step(w) = impulse (s^-1 * w)
+plot2d([t',t'],[(csim('step',t,w))',0*t'])
+]]></programlisting>
+        <scilab:image>
+            s=poly(0,'s');
+            rand('seed',0);
+            w=ssrand(1,1,3);
+            w('A')=w('A')-2*eye();
+            t=0:0.05:5;
+            plot2d([t',t'],[(csim('step',t,w))',0*t'])
+        </scilab:image>
+        <programlisting role="example"><![CDATA[
+s=poly(0,'s');
+rand('seed',0);
+w=ssrand(1,1,3);
+w('A')=w('A')-2*eye();
+t=0:0.05:5;
+plot2d([t',t'],[(csim('impulse',t,tf2ss(1/s)*w))',0*t'])
+]]></programlisting>
+        <scilab:image>
+            s=poly(0,'s');
+            rand('seed',0);
+            w=ssrand(1,1,3);
+            w('A')=w('A')-2*eye();
+            t=0:0.05:5;
+            plot2d([t',t'],[(csim('impulse',t,tf2ss(1/s)*w))',0*t'])
+        </scilab:image>
+        <programlisting role="example"><![CDATA[
+s=poly(0,'s');
+rand('seed',0);
+w=ssrand(1,1,3);
+w('A')=w('A')-2*eye();
+t=0:0.05:5;
+//時間関数で定義された入力
+deff('u=timefun(t)','u=abs(sin(t))')
+clf();plot2d([t',t'],[(csim(timefun,t,w))',0*t'])
+]]></programlisting>
+        <scilab:image>
+            s=poly(0,'s');
+            rand('seed',0);
+            w=ssrand(1,1,3);
+            w('A')=w('A')-2*eye();
+            t=0:0.05:5;
+            deff('u=timefun(t)','u=abs(sin(t))')
+            clf();plot2d([t',t'],[(csim(timefun,t,w))',0*t'])
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>参照</title>

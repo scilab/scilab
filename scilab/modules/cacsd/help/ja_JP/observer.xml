@@ -155,7 +155,6 @@ Sys2=ss2tf(syslin('c',A,B,H))  //Transfer u-->z
 Idu=eye(nu,nu);Sys3=ss2tf(H*U(:,m+1:$)*Obs*[Idu;Sys])  
 //Transfer u-->[u;y=Sys*u]-->Obs-->xhat-->HUxhat=zhat  i.e. u-->output of Obs
 //this transfer must equal Sys2, the u-->z transfer  (H2=eye).
-
 //Assume a Kalman model
 //dotx = A x + B u + G w
 // y   = C x + D u + H w + v

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Allan CORNET
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ -->
+
+<!-- This document was created with Syntext Serna Free. -->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="javasci_v1_limitations" scilab:needs-examples="no" xml:lang="ja">
+    
+    <refnamediv>
+        
+        <refname>javasci v1 の制限</refname>
+        
+        <refpurpose>なぜjavasci v1は廃止されたのですか?</refpurpose>
+        
+    </refnamediv>
+    
+    <refsection>
+        
+        <title>説明</title>
+        
+        <para>javasciのバージョンV1には以下に示すいくつかの重要な制限がありました:</para>
+        
+        <itemizedlist>
+            
+            <listitem>
+                
+                Scilab言語か任意の変数を取得するためには,
+                
+                事前に変数の型を知ることが必要でした.
+                
+            </listitem>
+            
+            <listitem>
+                
+                インターフェイスにより管理されるのは小数の型のみでした
+                
+                (論理値, double, 複素数および文字列).
+                
+            </listitem>
+            
+            <listitem>
+                
+                ScilabとJavaの間で整合性を欠いていました.
+                
+                例えば, Scilab では,スカラー ([1,1]の行列)は行列です.
+                
+                Javaインターフェイスでは, 異なる2種類のデータ型
+                
+                (例: SciDouble および SciDoubleArray)となります.
+                
+            </listitem>
+            
+            <listitem>
+                
+                多くのデータ型ではシリアル化ができませんでした.
+                
+            </listitem>
+            
+            <listitem>
+                
+                Scilab関数のコールはExecメソッドでのみ可能で,
+                
+                複数の出力引数を取得する場合に複雑になっていました.
+                
+            </listitem>
+            
+            <listitem>
+                
+                パッケージ名はScilabおよびScilab Java checkstyleの
+                
+                パッケージ名命名規則に従っていませんでした.
+                
+            </listitem>
+            
+            <listitem>
+                
+                グラフィックウインドウの管理が大変でした
+                
+                (この問題はJavasci v2でもまだ未解決です).
+                
+            </listitem>
+            
+            <listitem>
+                
+                イベントループとの連携がありません
+                
+                (この問題はJavasci v2でもまだ未解決です).
+                
+            </listitem>
+            
+        </itemizedlist>
+        
+    </refsection>
+    
+    <refsection role="see also">
+        
+        <title>参照</title>
+        
+        <simplelist type="inline">
+            
+            <member>
+                
+                <link type="remote" linkend="javasci/javadoc/index.html">Javasci v2の文書</link> を閲覧(これによりWebブラウザがオープンします).
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="compile_and_run_javasci_v2">Javasciでコンパイル/実行</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="javasci_faq_v2">Javasci FAQ</link>
+                
+            </member>
+            
+        </simplelist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>履歴</title>
+        
+        <revhistory>
+            
+            <revision>
+                
+                <revnumber>5.4.0</revnumber>
+                
+                <revdescription>
+                    
+                    Javasci v1 が削除されました.
+                    
+                </revdescription>
+                
+            </revision>
+            
+        </revhistory>
+        
+    </refsection>
+    
+</refentry>
+

@@ -108,6 +108,8 @@
             time defined in the in the Setup item of the simulate Menu
             (scs_m.props.tf).
         </para>
+        <para>Note that the 'Final simulation time' item (on diagram settings) always end the simulation at the specified time. This block should be configured to end the simulation before this setting.
+        </para>
     </refsection>
     <refsection id="Dialogbox_END_c">
         <title>Dialog box</title>

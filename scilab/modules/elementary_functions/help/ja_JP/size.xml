@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -10,147 +11,332 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="size" xml:lang="ja">
-    <refnamediv>
-        <refname>size</refname>
-        <refpurpose>オブジェクトの大きさ</refpurpose>
-    </refnamediv>
-    <refsynopsisdiv>
-        <title>呼び出し手順</title>
-        <synopsis>y=size(x [,sel])
-            [nr,nc]=size(x)
-        </synopsis>
-    </refsynopsisdiv>
-    <refsection>
-        <title>パラメータ</title>
-        <variablelist>
-            <varlistentry>
-                <term>x</term>
-                <listitem>
-                    <para>行列 (伝達関数を含む) またはリストまたは線形システム
-                        (<literal>syslin</literal>)
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>y</term>
-                <listitem>
-                    <para>
-                        <literal> 1x2</literal> 整数ベクトル または整数値
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>sel</term>
-                <listitem>
-                    <para>スカラーまたは文字列</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>nr,nc</term>
-                <listitem>
-                    <para>2つの整数</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>説明</title>
-        <variablelist>
-            <varlistentry>
-                <term>用法 :</term>
-                <listitem>
-                    <para>
-                        左辺引数が
-                        行列 (定数, 多項式, 文字列, 論理値, 有理数)
-                        <literal>x</literal>のみの場合, 
-                        <literal>size</literal>は<literal>1</literal>x<literal>2</literal>ベクトル
-                        [行数,列数]を返します.
-                        左辺引数の数=2でコールされた場合,
-                        <literal>nr,nc</literal> = [行数, 列数]となります.
-                        <literal>sel</literal> は以下のように取得する次元を指定するために使用されます:
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>1または'r'</term>
-                <listitem>
-                    <para>行の数を取得</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>2 or 'c'</term>
-                <listitem>
-                    <para>列の数を取得</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>'*'</term>
-                <listitem>
-                    <para>列と行の数の積を取得</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>用法:</term>
-                <listitem>
-                    <para>リストの場合, 要素の数が返されます. この場合,
-                        <literal>y=size(x)</literal> 構文のみが使用可能です.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>用法:</term>
-                <listitem>
-                    <para>
-                        線形システムの場合, <literal>y=size(x)</literal> は,
-                        (行)ベクトル <literal>y</literal> [出力の数,入力の数]
-                        すなわち,伝達関数に対応する次元,となります.
-                        構文 <literal>[nr,nc]=size(x)</literal> も有効です
-                        (<literal>(nr,nc)=(y(1),y(2)</literal>となります).
-                        <literal>x</literal> が状態空間形式の線形システムの場合,
-                        <literal>[nr,nc,nx]=size(x)</literal> は<literal>x</literal>の
-                        <literal>A</literal> 行列の次元 <literal>nx</literal>も返します.
-                    </para>
-                    <para>
-                        ハイパー行列の場合, <literal> y=size(x)
-                        </literal>
-                        はハイパー行列の次元を返します. <literal>
-                            [n1,n2,...nn]=size(x) 
-                        </literal>
-                        はハイパー行列の次元を返します.
-                        <literal> ni=size(x,i) </literal> はi番目の次元, 
-                        <literal>size(x,'*') </literal> は次元の積を返します.
-                    </para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
-        <title>例</title>
-        <programlisting role="example"><![CDATA[ 
-[n,m]=size(rand(3,2))
-[n,m]=size(['a','b';'c','d'])
-x=ssrand(3,2,4);[ny,nu]=size(x)
-[ny,nu]=size(ss2tf(x))
-[ny,nu,nx]=size(x)
 
-// Returns the number of rows
-n=size(rand(3,2),"r")
-// Returns the number of columns
-m=size(rand(3,2),"c")
-// Returns the product of the dimensions
-nm=size(rand(3,2),"*")
- ]]></programlisting>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="size" xml:lang="ja">
+    
+    <refnamediv>
+        
+        <refname>size</refname>
+        
+        <refpurpose>オブジェクトの大きさ</refpurpose>
+        
+    </refnamediv>
+    
+    <refsynopsisdiv>
+        
+        <title>呼び出し手順</title>
+        
+        <synopsis>
+            
+            sz = size(x)
+            
+            [n1, n2] = size(x)
+            
+            [n1, n2, n3, ...] = size(x)
+            
+            n = size(x, sel)
+            
+        </synopsis>
+        
+    </refsynopsisdiv>
+    
+    <refsection>
+        
+        <title>引数</title>
+        
+        <variablelist>
+            
+            <varlistentry>
+                
+                <term>x</term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        任意の型またはリストの2次元またはn次元配列
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>sz</term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        <literal>1</literal>行<link linkend="ndims">ndims(x)</link>
+                        
+                        列整数ベクトル
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>sel</term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        整数値の正のスカラーまたは1文字の文字列
+                        
+                        'r', 'c' または '*'
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>n1, n2, ...</term>
+                
+                <listitem>
+                    
+                    <para>整数値の数値</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>n</term>
+                
+                <listitem>
+                    
+                    <para>整数値の数値</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+        </variablelist>
+        
     </refsection>
+    
+    <refsection>
+        
+        <title>説明</title>
+        
+        <variablelist>
+            
+            <varlistentry>
+                
+                <term>適用先 :</term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        配列またはn次元配列 (定数, 多項式, 文字列, 論理値, 有理数)
+                        
+                    </para>
+                    
+                    <itemizedlist>
+                        
+                        <listitem>
+                            
+                            <literal>sz = size(x)</literal> は
+                            
+                            <literal>1</literal>行<literal>ndims(x)</literal>列のベクトルを返します. 
+                            
+                            各エントリは対応する次元の値を指定します. 
+                            
+                        </listitem>
+                        
+                        <listitem>
+                            
+                            <literal>[n1, n2, ...] = size(x)</literal>, この関数は各引数に対応する次元の値を返します.
+                            
+                        </listitem>
+                        
+                        <listitem>
+                            
+                            構文 <literal>n = size(x, sel)</literal> を取得する次元を指定するために使用できます:
+                            
+                            
+                            
+                            <itemizedlist mark="dash"><listitem>
+                                    
+                                    行数を取得するには,
+                                    
+                                    <literal>sel</literal> に 1または <literal>'r'</literal> を指定してください.
+                                    
+                                </listitem>
+                                
+                                <listitem>
+                                    
+                                    列数を取得するには,
+                                    
+                                    <literal>sel</literal> に2 または<literal>'c'</literal>を指定してください.
+                                    
+                                </listitem>
+                                
+                                <listitem>
+                                    
+                                    <literal>sel</literal> に<literal>m</literal>を指定してください.
+                                    
+                                    ただし,<literal>m</literal> は,<literal>m</literal>番目の次元を得るための
+                                    
+                                    正の整数です.
+                                    
+                                    <literal>m</literal> が<literal>ndims(x)</literal>より大きい場合,
+                                    
+                                    <literal>size(x,m)</literal>は 1を返します.
+                                    
+                                </listitem>
+                                
+                                <listitem>
+                                    
+                                    次元の積を得るには,
+                                    
+                                    <literal>sel</literal> に<literal>'*'</literal> を指定してください.
+                                    
+                                </listitem>
+                                
+                            </itemizedlist>
+                            
+                            
+                            
+                            
+                            
+                        </listitem>
+                        
+                    </itemizedlist>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>適用先:</term>
+                
+                <listitem>
+                    
+                    <para>リスト; 
+                        
+                        要素数を返します. この場合,
+                        
+                        <literal>y = size(x)</literal> 構文のみを使用できます.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>適用先:</term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        線形システム; <literal>y= size(x)</literal> は,
+                        
+                        <literal>y</literal>に,(行)ベクトル[出力の数, 入力の数],
+                        
+                        すなわち,対応する伝達行列の次元,を返します.
+                        
+                        構文 <literal>[nr, nc] = size(x)</literal> 
+                        
+                        (ただし,<literal>(nr, nc) = (y(1), y(2))</literal>)も有効です.
+                        
+                        <literal>x</literal>が状態空間形式の線形システムの場合,
+                        
+                        <literal>[nr, nc, nx] = size(x)</literal> は,
+                        
+                        行列<literal>x</literal>の次元<literal>nx</literal>も返します.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+        </variablelist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>例</title>
+        
+        <programlisting role="example">
+            
+            [n, m] = size(rand(3, 2))
+            
+            [n, m] = size(['a', 'b'; 'c', 'd'])
+            
+            
+            
+            x = ssrand(3, 2, 4);
+            
+            [ny, nu] = size(x)
+            
+            [ny, nu] = size(ss2tf(x))
+            
+            [ny, nu, nx] = size(x)
+            
+            
+            
+            // 行数を返します
+            
+            n = size(rand(3, 2), "r")
+            
+            // 列数を返します
+            
+            m = size(rand(3, 2), "c")
+            
+            // 次元の積を返します
+            
+            nm = size(rand(3, 2), "*")
+            
+        </programlisting>
+        
+    </refsection>
+    
     <refsection role="see also">
+        
         <title>参照</title>
+        
         <simplelist type="inline">
+            
             <member>
+                
                 <link linkend="length">length</link>
+                
             </member>
+            
             <member>
-                <link linkend="syslin">syslin</link>
+                
+                <link linkend="ndims">ndims</link>
+                
             </member>
+            
+            <member>
+                
+                <link linkend="syslin">syslin</link>
+                
+            </member>
+            
         </simplelist>
+        
     </refsection>
+    
 </refentry>
+

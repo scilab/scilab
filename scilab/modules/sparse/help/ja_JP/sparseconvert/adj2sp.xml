@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -10,87 +11,374 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
+
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="adj2sp" xml:lang="ja">
+    
     <refnamediv>
+        
         <refname>adj2sp</refname>
+        
         <refpurpose>隣接形式を疎行列に変換.</refpurpose>
+        
     </refnamediv>
+    
+    <refsynopsisdiv>
+        
+        <title>呼び出し手順</title>
+        
+        <synopsis>
+            
+            A=adj2sp(xadj,iadj,v)
+            
+            A=adj2sp(xadj,iadj,v,mn)
+            
+        </synopsis>
+        
+    </refsynopsisdiv>
+    
     <refsection>
-        <title>パラメータ</title>
+        
+        <title>引数</title>
+        
         <variablelist>
+            
             <varlistentry>
+                
                 <term>xadj</term>
+                
                 <listitem>
-                    <para>長さ (n+1)の整数ベクトル.</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>adjncy</term>
-                <listitem>
-                    <para>anzの要素に対応する行添え字を含む長さ nz の整数ベクトル</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>anz</term>
-                <listitem>
-                    <para>Aの非ゼロ要素を有する長さ nzの列ベクトル</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>mn</term>
-                <listitem>
+                    
                     <para>
-                        2つのエントリを有する行ベクトル, <literal>mn=size(A)</literal>
-                        (optional).
+                        
+                        長さ (n+1)の整数ベクトル.
+                        
+                        <literal>j=1:n</literal>の場合,
+                        
+                        浮動小数点整数
+                        
+                        <literal>xadj(j+1)-xadj(j)</literal> は
+                        
+                        j列における非ゼロエントリの数です.
+                        
                     </para>
+                    
                 </listitem>
+                
             </varlistentry>
+            
             <varlistentry>
-                <term>A</term>
+                
+                <term>iadj</term>
+                
                 <listitem>
-                    <para>実数または複素数の疎行列 (nz 個の非ゼロエントリ)</para>
+                    
+                    <para>
+                        
+                        nz行1列の浮動小数点整数の行列, 非ゼロエントリの行添字.
+                        
+                        <literal>j=1:n</literal>および, 
+                        
+                        <literal>k = xadj(j):xadj(j+1)-1</literal>に関して, 
+                        
+                        浮動小数点整数 <literal>i = iadj(k)</literal> は
+                        
+                        非ゼロエントリ #k の行添字です.
+                        
+                    </para>
+                    
                 </listitem>
+                
             </varlistentry>
+            
+            <varlistentry>
+                
+                <term>v</term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        nz行1列の浮動小数点整数の行列, Aの非ゼロエントリ.
+                        
+                        <literal>j=1:n</literal>および, 
+                        
+                        <literal>k = xadj(j):xadj(j+1)-1</literal>に関して, 
+                        
+                        浮動小数点整数<literal>Aij = v(k)</literal>は
+                        
+                        非ゼロエントリ #k の値です.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>mn</term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        1行2列または2行1列の浮動小数点整数の行列(オプション),
+                        
+                        <literal>mn(1)</literal> はAの行数,
+                        
+                        <literal>mn(2)</literal> はAの列数です.
+                        
+                        <literal>mn</literal> が指定されない場合, 
+                        
+                        <literal>mn=[m,n]</literal> は,
+                        
+                        <literal>m=max(iadj)</literal> および
+                        
+                        <literal>n=size(xadj,"*")-1</literal>がデフォルトとなります.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>A</term>
+                
+                <listitem>
+                    
+                    <para>m行n列実数または複素数の疎行列 (nz 個の非ゼロエントリ)</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
         </variablelist>
+        
     </refsection>
+    
     <refsection>
+        
         <title>説明</title>
-        <programlisting role=""><![CDATA[ 
-sp2adj は行列の隣接表現形式を標準的な Scilab 表現に変換します
-(ユーティリティ関数).
-xadj, adjncy, anz = Aの隣接表現 すなわち:
- ]]></programlisting>
+        
         <para>
-            <literal>xadj(j+1)-xadj(j)</literal> = j行目の
-            非ゼロ円取りの数.
-            <literal>adjncy</literal> = 
-            行 1, 行 2,..., 行 nの非ゼロエントリの非ゼロエントリの列添え字.
-            <literal>anz</literal> = 行 1, 行 2,..., 行 nの非ゼロ円取りの値.
-            <literal>xadj</literal> は 大きさ n+1 の(列)ベクトル,
-            <literal>adjncy</literal>は大きさ<literal>nz=nnz(A)</literal>の
-            整数(列)ベクトルです.
-            <literal>anz</literal> は,<literal>nz=nnz(A)</literal>の大きさ実数ベクトルです.
+            
+            adj2sp は,隣接形式を疎行列に変換します.
+            
+            隣接形式の値は列毎に保存されています.
+            
+            これは,この形式がしばしば
+            
+            "Compressed sparse column" または CSCと呼ばれる理由です.
+            
         </para>
+        
     </refsection>
+    
     <refsection>
+        
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
-A = sprand(100,50,.05);
-[xadj,adjncy,anz]= sp2adj(A);
-[n,m] = size(A);
-p = adj2sp(xadj,adjncy,anz,[n,m]);
-A-p
+        
+        <para>
+            
+            以下の例では,隣接形式から疎行列を作成します.
+            
+            その後,期待した疎行列と一致するかどうかを確認します.
+            
+        </para>
+        
+        <programlisting role="example"><![CDATA[
+xadj = [1 3 4 7 9 11]';
+iadj = [3 5 3 1 2 4 3 5 1 4]';
+v = [1 2 3 4 5 6 7 8 9 10]';
+B=adj2sp(xadj,iadj,v)
+A = [
+0 0 4 0 9
+0 0 5 0 0
+1 3 0 7 0
+0 0 6 0 10
+2 0 0 8 0
+];
+C=sparse(A)
+and(B==C)
  ]]></programlisting>
+        
+        <para>
+            
+            以下の例では,隣接形式から疎行列を作成します.
+            
+            その後,期待した疎行列と一致するかどうかを確認します.
+            
+        </para>
+        
+        <programlisting role="example"><![CDATA[
+xadj = [1 2 3 4 5 5 6 6 7 8 9]';
+iadj = [2 5 2 3 1 2 7 6]';
+v = [3 7 5 3 6 5 2 3]';
+C=adj2sp(xadj,iadj,v)
+A = [
+0 0 0 0 0 6 0 0 0 0
+3 0 5 0 0 0 0 5 0 0
+0 0 0 3 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0
+0 7 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 3
+0 0 0 0 0 0 0 0 2 0
+];
+B=sparse(A)
+and(B==C)
+ ]]></programlisting>
+        
+        <para>
+            
+            以下の例では,mnパラメータの使用法を確認します.
+            
+            mnパラメータとxadjおよびiadjの実際の内容の整合性をadj2spで確認します.
+            
+        </para>
+        
+        <programlisting role="example"><![CDATA[
+xadj = [1 2 3 4 5 5 6 6 7 8 9]';
+iadj = [2 5 2 3 1 2 7 6]';
+v = [3 7 5 3 6 5 2 3]';
+mn=[7 10];
+C=adj2sp(xadj,iadj,v,mn)
+ ]]></programlisting>
+        
+        <para>
+            
+            以下の例では,3行3列の疎行列を作成します.
+            
+            この例は, SciPyの文書からの引用です.
+            
+        </para>
+        
+        <programlisting role="example"><![CDATA[
+xadj =  [1,3,4,7]
+iadj =  [1,3,3,1,2,3]
+v = [1,2,3,4,5,6]
+full(adj2sp(xadj,iadj,v))
+ ]]></programlisting>
+        
+        <para>
+            
+            前のスクリプトは以下の出力を生成します.
+            
+        </para>
+        
+        <programlisting role="no-scilab-exec"><![CDATA[
+-->full(adj2sp(xadj,iadj,v))
+ ans  =
+    1.    0.    4.
+    0.    0.    5.
+    2.    3.    6.
+ ]]></programlisting>
+        
+        <para>
+            
+            以下の例では,sp2adjおよびadj2sp関数が逆関数であることを
+            
+            確認します.
+            
+        </para>
+        
+        <programlisting role="example"><![CDATA[
+// Templates for the Solution of Algebraic Eigenvalue Problems: a Practical Guide
+// Edited by Zhaojun Bai, James Demmel, Jack Dongarra, Axel Ruhe, and Henk van der Vorst
+// "Sparse Matrix Storage Formats", J. Dongarra
+// http://web.eecs.utk.edu/~dongarra/etemplates/book.html
+
+A = [
+10 0 0 0 -2 0
+3 9 0 0 0 3
+0 7 8 7 0 0
+3 0 8 7 5 0
+0 8 0 9 9 13
+0 4 0 0 2 -1
+];
+A = sparse(A)
+
+// To get the Compressed Sparse Column (CSC) :
+[col_ptr,row_ind,val]=sp2adj(A)
+// To convert back to sparse:
+AAsp=adj2sp(col_ptr,row_ind,val)
+// Check the conversion
+AAsp - A
+
+// To get the Compressed Sparse Row (CSR) :
+[row_ptr,col_ind,val]=sp2adj(A')
+// To convert back to sparse:
+AAsp=adj2sp(row_ptr,col_ind,val)'
+// Check the conversion
+AAsp - A
+ ]]></programlisting>
+        
     </refsection>
+    
     <refsection role="see also">
+        
         <title>参照</title>
+        
         <simplelist type="inline">
+            
             <member>
+                
                 <link linkend="sp2adj">sp2adj</link>
+                
             </member>
+            
             <member>
-                <link linkend="spcompack">spcompack</link>
+                
+                <link linkend="sparse">sparse</link>
+                
             </member>
+            
+            <member>
+                
+                <link linkend="spcompack">spcompack</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="spget">spget</link>
+                
+            </member>
+            
         </simplelist>
+        
     </refsection>
+    
+    <refsection>
+        
+        <title>参考文献</title>
+        
+        <para>
+            
+            "Implementation of Lipsol in Scilab", Hector E. Rubio Scola, INRIA, Decembre 1997, Rapport Technique No 0215
+            
+        </para>
+        
+        <para>
+            
+            "Solving Large Linear Optimization Problems with Scilab : Application to Multicommodity Problems", Hector E. Rubio Scola, Janvier 1999, Rapport Technique No 0227
+            
+        </para>
+        
+        <para>
+            
+            "Toolbox Scilab : Detection signal design for failure detection and isolation for linear dynamic systems User's Guide", Hector E. Rubio Scola, 2000, Rapport Technique No 0241
+            
+        </para>
+        
+        <para>
+            
+            "Computer Solution of Large Sparse Positive Definite Systems", A. George, Prentice-Hall, Inc. Englewood Cliffs, New Jersey, 1981.
+            
+        </para>
+        
+    </refsection>
+    
 </refentry>
+

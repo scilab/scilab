@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - DIGITEO - Sylvestre Ledru
+ * 
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="MPI_Init" xml:lang="ja">
+    <refnamediv>
+        <refname>MPI_Init</refname>
+        <refpurpose>MPI環境を初期化する</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>res = MPI_Init()</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>value</term>
+                <listitem>
+                    <para>指定したノードに送信する値.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>node</term>
+                <listitem>
+                    <para>データを送信するノード</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>res</term>
+                <listitem>
+                    <para>処理結果 (成功時にtrue,失敗した場合に false)</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            指定したノードに変数を送信します.
+            その値は,関数<link linkend="MPI_Send">MPI_Send</link>により
+            ノードで取得されます.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example">//TODO</programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="MPI_Recv">MPI_Recv</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

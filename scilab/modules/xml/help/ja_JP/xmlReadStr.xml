@@ -69,12 +69,10 @@
     xmlDump(e)
     doc.root.children(1).attributes.att
     doc.root.children(1).attributes.rib
-
     // 属性を修正
     doc.root.children(1).attributes.att = "truc"
     doc.root.children(1).attributes.rib = "machin"
     xmlDump(doc.root.children(1))
-
     // 文書を削除します
     xmlDelete(doc);
     ]]></programlisting>

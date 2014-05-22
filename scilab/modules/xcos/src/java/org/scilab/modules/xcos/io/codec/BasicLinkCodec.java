@@ -25,6 +25,8 @@ import org.w3c.dom.Node;
 import com.mxgraph.io.mxCodec;
 import com.mxgraph.io.mxCodecRegistry;
 
+import static org.scilab.modules.xcos.io.codec.XcosCodec.LOG;
+
 public class BasicLinkCodec extends XcosObjectCodec {
 
     public static void register() {
@@ -54,20 +56,24 @@ public class BasicLinkCodec extends XcosObjectCodec {
 
         if (!(l.getSource() instanceof BasicPort)) {
             trace(enc, node, "Invalid source");
+            LOG.warning("The saved file might be incomplete, '" + l + "' is not connected");
         } else {
             final BasicPort p = (BasicPort) l.getSource();
 
             if (!(p.getParent() instanceof BasicBlock)) {
                 trace(enc, node, "Invalid source parent");
+                LOG.warning("The saved file might be incomplete, '" + l + "' is wrongly connected");
             }
         }
         if (!(l.getTarget() instanceof BasicPort)) {
             trace(enc, node, "Invalid target");
+            LOG.warning("The saved file might be incomplete, '" + l + "' is not connected");
         } else {
             final BasicPort p = (BasicPort) l.getTarget();
 
             if (!(p.getParent() instanceof BasicBlock)) {
                 trace(enc, node, "Invalid target parent");
+                LOG.warning("The saved file might be incomplete, '" + l + "' is wrongly connected");
             }
         }
 

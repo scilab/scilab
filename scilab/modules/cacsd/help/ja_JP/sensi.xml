@@ -86,7 +86,6 @@
             コマンド 
             <literal> P = augment(G,'S')</literal>, <literal>Se=lft(P,K)</literal>
             により指定することができます.
-            
             <literal>flag</literal> = <literal>'i'</literal>の場合, 
             <literal>[Si,Ri,Ti]=sensi(G,K,'i')</literal>は
             入力感度関数を返します.

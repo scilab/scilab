@@ -20,7 +20,6 @@
         <title>呼び出し手順</title>
         <synopsis>
             f = factorial ( n )
-            
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -55,17 +54,14 @@
 // Make a table of factorial
 n = (0:30)';
 [n factorial(n)]
-
 // See the limits of factorial: f(171)=%inf
 factorial(170) // 7.257415615307998967e306
 factorial(171) // %inf
-
 // Plot the function on all its range.
 scf();
 plot ( 1:170 , factorial , "b-o" )
 h = gcf();
 h.children.log_flags="nln";
-
    ]]></programlisting>
     </refsection>
     <refsection>

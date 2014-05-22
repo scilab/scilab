@@ -80,12 +80,15 @@ function [scs_m,cpr,needcompile,ok]=do_eval(scs_m,cpr,%scicos_context)
     deff("[ok,tt]        = MODCOM(funam,tt,vinp,vout,vparam,vparamv,vpprop)",..
     "[dirF, nameF, extF] = fileparts(funam);..
     [modelica_path, modelica_directory] = getModelicaPath();..
+    funam1 = []; ..
     if (extF == """")  then, ..
         funam1 = modelica_directory + nameF + "".mo""; ..
     elseif fileinfo(funam) == [] then, ..
         funam1 = funam; ..
     end; ..
-    mputl(tt, funam1);")
+    if funam1 <> [] then, ..
+        mputl(tt, funam1); ..
+    end");
     %nx=lstsize(scs_m.objs)
     funcprot(%mprt)
     for %kk=1:%nx
@@ -192,7 +195,7 @@ function [scs_m,cpr,needcompile,ok]=do_eval(scs_m,cpr,%scicos_context)
 
                     scs_m.objs(%kk)=o
                 else
-                    error(msprintf(gettext("%s: Error while calling block %s [uid=''%s'']: invalid parameter (ier=%f, \%scicos_prob=%%%s).\n"), "do_eval", o.gui, o.model.uid, ier, string(%scicos_prob)));
+                    error(msprintf(gettext("%s: Error while calling block %s [uid=''%s'']: invalid parameter (ier=%f, %%scicos_prob=%%%s).\n"), "do_eval", o.gui, o.model.uid, ier, string(%scicos_prob)));
                     ok=%f
                     return
                 end

@@ -112,7 +112,6 @@ s=poly(0,'s');
 h=syslin('c',(s-1)/(s^3+5*s+20))
 frq=0:0.05:3;repf=repfreq(h,frq);
 clean(frep2tf(frq,repf,3))
-
 Sys=ssrand(1,1,10); 
 frq=logspace(-3,2,200);
 [frq,rep]=repfreq(Sys,frq);  //Sysの周波数応答
@@ -120,8 +119,6 @@ frq=logspace(-3,2,200);
 [frq,rep2]=repfreq(Sys2,frq); //Sys2の周波数応答
 clf();bode(frq,[rep;rep2])   //Sys と Sys2の応答
 [gsort(spec(Sys('A'))),gsort(roots(Sys2('den')))] //極
-
-
 dom=1/1000; // サンプリング時間
 z=poly(0,'z');
 h=syslin(dom,(z^2+0.5)/(z^3+0.1*z^2-0.5*z+0.08))

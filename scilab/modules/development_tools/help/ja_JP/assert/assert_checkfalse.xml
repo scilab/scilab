@@ -22,7 +22,6 @@
             flag = assert_checkfalse ( condition )
             flag = assert_checkfalse ( condition )
             [flag,errmsg] = assert_checkfalse ( condition )
-            
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -92,16 +91,13 @@ assert_checkfalse ( %f );
 flag = assert_checkfalse ( %f )
 [flag,errmsg] = assert_checkfalse ( %f )
 [flag,errmsg] = assert_checkfalse ( [%f %f] );
-
 // テストは失敗する
 assert_checkfalse ( [%t %f] );
 flag = assert_checkfalse ( [%t %f] )
 // エラーは生成されない
 [flag,errmsg] = assert_checkfalse ( [%t %f] )
-
 // 誤ったコール
 assert_checkfalse ( "a" )
-
    ]]></programlisting>
     </refsection>
     <refsection>

@@ -9,7 +9,7 @@
         <synopsis>tl_coef = cshep2d(xyz)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>xyz</term>
@@ -70,7 +70,6 @@ xy = grand(n,2,"unf",0,2*%pi);
 z = cos(xy(:,1)).*cos(xy(:,2));
 xyz = [xy z];
 tl_coef = cshep2d(xyz);
-
 // グリッドにおける評価
 m = 30;
 xx = linspace(0,2*%pi,m);
@@ -94,5 +93,16 @@ show_window()
                 <link linkend="eval_cshep2d">eval_cshep2d</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>
+                    以前は,入力引数の虚部は暗黙的に無視されていました.
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

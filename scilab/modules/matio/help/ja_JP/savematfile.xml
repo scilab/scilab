@@ -30,7 +30,7 @@
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>filename</term>
@@ -127,18 +127,26 @@
     <refsection>
         <title>説明</title>
         <para>
-            Scilabから Matlab MATファイルに変数を保存しま. Scilabのデータ型は
+            Scilabから Matlab MATファイルに変数を保存します. Scilabのデータ型は
             等価なMatlabのデータ型に変換されます.
         </para>
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
-A = rand(10,10);
-B = sprand(100,100,0.1);
-savematfile('test_matfile.mat','A','B','-v6');
+        <programlisting role="example"><![CDATA[
+A = rand(10, 10);
+B = sprand(100, 100, 0.1);
+savematfile("test_matfile.mat", "A", "B", "-v6");
 clear;
-loadmatfile('test_matfile.mat');
+loadmatfile("test_matfile.mat");
+disp(A)
+disp(B)
+// Matlab 7.3ファイル
+A = rand(10, 10);
+B = sprand(100, 100, 0.1);
+savematfile("test_matfile.mat", "A", "B", "-v7.3");
+clear;
+loadmatfile("test_matfile.mat");
 disp(A)
 disp(B)
  ]]></programlisting>

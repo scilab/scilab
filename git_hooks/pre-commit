@@ -100,16 +100,16 @@ indent() {
     # get the modified files per kind filtering out ignored files and call the
     # __indent_XXX helper
 
-    FILES=$(git diff --cached --name-only $against |grep -E "\.(xcos|xml|xsl)$" |grep -v -F "$XMLINDENT_IGNORED")
+    FILES=$(git diff --cached --name-only --diff-filter=ACM $against |grep -E "\.(xcos|xml|xsl)$" |grep -v -F "$XMLINDENT_IGNORED")
     [ -z "$FILES" ] || __indent_xml;
 
-    FILES=$(git diff --cached --name-only $against |grep -E "\.(h|c|hxx|cpp)$" |grep -v -F "$ASTYLE_IGNORED")
+    FILES=$(git diff --cached --name-only --diff-filter=ACM $against |grep -E "\.(h|c|hxx|cpp)$" |grep -v -F "$ASTYLE_IGNORED")
     [ -z "$FILES" ] || __indent_C;
 
-    FILES=$(git diff --cached --name-only $against |grep -E "\.java$" |grep -v -F "$ASTYLE_IGNORED")
+    FILES=$(git diff --cached --name-only --diff-filter=ACM $against |grep -E "\.java$" |grep -v -F "$ASTYLE_IGNORED")
     [ -z "$FILES" ] || __indent_java;
 
-    FILES=$(git diff --cached --name-only $against |grep -E "\.(sce|sci|tst)$")
+    FILES=$(git diff --cached --name-only --diff-filter=ACM $against |grep -E "\.(sce|sci|tst)$")
     [ -z "$FILES" ] || __indent_scilab;
 
     return 0;

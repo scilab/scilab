@@ -20,7 +20,7 @@
         <synopsis>logspace(d1,d2, [n])</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>d1,d2</term>
@@ -34,7 +34,7 @@
             <varlistentry>
                 <term>n</term>
                 <listitem>
-                    <para>整数 (値の数) (デフォルト値 = 50)</para>
+                    <para>整数: 要求された値の数. 2以上にすることが必要です (デフォルト値 = 50)</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -43,7 +43,7 @@
         <title>説明</title>
         <para>
             <latex>10^{d1}</latex> および
-            <latex>10^{d2}</latex>の間に指数的に等しい間隔にとった
+            <latex>10^{d2}</latex>の間に指数的に等間隔にとった
             <literal>n</literal>個の点からなる行ベクトルを返します.
             <latex>d2=\pi</latex> の場合,
             <latex>10^{d1}</latex> および <latex>\pi</latex>の間の
@@ -52,8 +52,9 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 logspace(1,2,10)
+logspace([1:3]',[4:6]',4)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -63,5 +64,16 @@ logspace(1,2,10)
                 <link linkend="linspace">linspace</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>logspace関数は最初の2つの入力引数に列ベクトルを
+                    受け付けるようになりました.
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

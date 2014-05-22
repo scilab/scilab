@@ -171,7 +171,7 @@ public abstract class AbstractGraduations implements Graduations {
             } else if (maxDisplayedValue >= 1e6) {
                 numberFormat = new DecimalFormat("0.##########E00");
             } else if (maxDisplayedValue < 1) {
-                numberFormat = new DecimalFormat("0.##########E00");
+                numberFormat = new DecimalFormat("0.######");
             } else {
                 numberFormat = new DecimalFormat("#,##0.####");
             }

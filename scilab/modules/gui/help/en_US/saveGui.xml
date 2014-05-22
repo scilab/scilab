@@ -36,7 +36,7 @@
         </para>
         <para>
             <literal>saveGui(f, filename)</literal> save a current graphic handle f in file
-            defined by <literal>filename</literal>.
+            defined by <literal>filename</literal>. If the operation failed an error message in the Scilab console will be printed.
         </para>
     </refsection>
     <refsection>

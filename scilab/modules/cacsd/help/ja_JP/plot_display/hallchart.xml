@@ -18,7 +18,6 @@
     <refsynopsisdiv>
         <title>呼び出し手順</title>
         <synopsis>hallchart([ modules [,args [,colors]]])</synopsis>
-        
     </refsynopsisdiv>
     <refsection>
         <title>パラメータ</title>
@@ -87,7 +86,6 @@
     i=4; //-4dB曲線のインデックス
     ci=c(i); //-4dB曲線のハンドル
     ci.children(1).foreground=color('red'); //赤で描く
-
     j=3; // the index of the -45°曲線のインデックス
     cj=c(10+j); // -45° 曲線のハンドル
     cj.children(1).thickness=3;//線幅を太くする
@@ -99,7 +97,6 @@
             i=4;
             ci=c(i);
             ci.children(1).foreground=color('red');
-            
             j=3;
             cj=c(10+j);
             cj.children(1).thickness=3;

@@ -226,7 +226,6 @@ libscigui_la_CPPFLAGS = \
 			-I$(srcdir)/src/cpp/ \
 			-I$(srcdir)/src/c/ \
 			-I$(srcdir)/src/jni/ \
-			-I$(top_srcdir)/libs/hashtable/ \
 			-I$(top_srcdir)/modules/api_scilab/includes/ \
 			-I$(top_srcdir)/modules/commons/src/jni/ \
 			-I$(top_srcdir)/modules/console/includes/ \
@@ -247,7 +246,7 @@ libscigui_la_CPPFLAGS = \
 			-I$(top_srcdir)/modules/renderer/src/cpp/ \
 			$(JAVA_JNI_INCLUDE) \
 			$(TCL_INC_PATH) \
-			$(Tk_INC_PATH) \
+			$(TK_INC_PATH) \
 			$(AM_CPPFLAGS)
 
 # Without the GUI module

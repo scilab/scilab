@@ -13,7 +13,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="h_inf">
     <refnamediv>
         <refname>h_inf</refname>
-        <refpurpose>H無限大 (中心) コントローラ</refpurpose>
+        <refpurpose>連続時間H無限大 (中心) コントローラ</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
@@ -22,13 +22,13 @@
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>P</term>
                 <listitem>
                     <para>
-                        <literal>syslin</literal> リスト : 連続時間線形システム 
+                        連続時間線形動的システム
                         (状態空間形式または伝達形式で指定した``拡張'' プラント)
                     </para>
                 </listitem>
@@ -127,5 +127,22 @@
                 <link linkend="leqr">leqr</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>著者</title>
+        <para>F.Delebecque INRIA (1990)  </para>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>
+                    <literal>Sl</literal>が
+                    連続時間線形システムであることを確認するようになりました.
+                    この修正は,この <ulink url="http://gitweb.scilab.org/?p=scilab.git;a=commit;h=3d7083daae3339813ba747c8adcda1f9599bb80d">コミット</ulink>により導入されました.
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

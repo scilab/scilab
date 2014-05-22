@@ -21,7 +21,6 @@
         <synopsis>
             assert_generror ( errormsg )
             assert_generror ( errormsg , errornb )
-            
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -70,7 +69,6 @@
 // 以下のコールは共にエラーを発生します
 assert_generror ( "oups" );
 assert_generror ( "oups" , 123456789 );
-
 // 以下のコールはエラーを発生します
 assert_checktrue ( [%t %f] );
 //
@@ -101,7 +99,6 @@ back=funcprot();
 funcprot(0);
 assert_generror = olderrorfunction;
 funcprot(back);
-
    ]]></programlisting>
     </refsection>
     <refsection>

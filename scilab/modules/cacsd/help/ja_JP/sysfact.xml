@@ -70,7 +70,6 @@
             ABCD行列形式の線形システム <literal>(A+B*Gain, B , Gain, I)</literal>
             および直列システム <literal>Sys*S</literal> の最小実現である <literal>Series</literal>
             を返します.
-            
             <literal>flag</literal> が <literal>'pre'</literal>に等しい場合,  
             <literal>sysfact</literal> は線形システム
             <literal>(A+Gain*C, Gain , C, I)</literal> および

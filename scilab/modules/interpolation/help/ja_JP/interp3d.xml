@@ -9,7 +9,7 @@
         <synopsis>[fp[,dfpdx,dfpdy,dfpdz]]=interp3d(xp,yp,zp,tl,out_mode)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>xp, yp, zp</term>
@@ -20,7 +20,9 @@
             <varlistentry>
                 <term>tl</term>
                 <listitem>
-                    <para>s"splin3d"型のtlistで, 3dスプラインを以下のように定義します</para>
+                    <para>
+                        "splin3d"型のtlistで, 3次元テンソルスプライン(以下,<literal>s</literal>と呼ぶ)を定義します
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -50,7 +52,7 @@
                         <literal>xp</literal>,
                         <literal>yp</literal> および <literal>zp</literal> 
                         と同じ形式のベクトル (または行列) で,
-                        これらの点における<literal>s</literal>の用途毎の1次微分値.
+                        これらの点における<literal>s</literal>の用途毎の1階微分値.
                     </para>
                 </listitem>
             </varlistentry>
@@ -77,7 +79,6 @@
             すなわち, <emphasis>(xp(i),yp(i),zp(i)) が
                 [xmin,xmax]x[ymin,ymax]x[zmin,zmax]の範囲にない場合
             </emphasis>
-            ,
             の評価方法を定義します:
         </para>
         <variablelist>
@@ -130,5 +131,14 @@
                 <link linkend="bsplin3val">bsplin3val</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>以前では, 入力引数の虚部は暗黙のうちに無視されていました.</revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

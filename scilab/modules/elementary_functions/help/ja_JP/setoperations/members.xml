@@ -153,15 +153,11 @@
                                         
                                         <literal>H</literal>の行で検索が行われます.
                                         
-                                        
-                                        
                                         <literal>"cols"</literal> が使用された場合,
                                         
                                         <literal>"cols"</literal>が
                                         
                                         <literal>N</literal> 及び <literal>H</literal>の列に適用されます.
-                                        
-                                        
                                         
                                         <literal>"cols"</literal> を使用した場合,
                                         
@@ -192,8 +188,6 @@
                                         <literal>H</literal>の<literal>[3 5 7]</literal>にマッチしません.
                                         
                                         <literal>"shuffle"</literal> が指定された場合, 
-                                        
-                                        
                                         
                                         例えば<literal>[3 5 7]</literal>の交換は
                                         
@@ -333,17 +327,11 @@
             
             要素が見つからない場合, 0 が返されます.
             
-            
-            
             <literal>N(i,j,...)</literal>が現れる最初(デフォルト)または
             
-            <literal>"last"</literal>(最後)の<literal>H</literal>の
+            <literal>"last"</literal>(最後)の<literal>H</literal>の添字を,
             
-            添字を,
-            
-            2番目のオプションの出力<literal>loc</literal>により
-            
-            取得できます.
+            2番目のオプションの出力<literal>loc</literal>により取得できます.
             
             <literal>"rows"</literal> または <literal>"cols"</literal> 
             
@@ -412,37 +400,30 @@
         <programlisting role="example"><![CDATA[
 N = [1 8 4 5 2 1];
 H = [9 7 4 2 1 4];
-
 [nb, loc] = members(N, H, "last")
 // nb  = [1 0 2 0 1 1] を返す: 例えば, Hの中に4が2回現れる.
 // そして loc = [5 0 6 0 4 5]: 4が最後に現れるのはHの6番目の位置
-
 [nb, loc] = members(N, H)
 // loc = [5 0 3 0 4 5]を返す: 4が最初に現れるのはHの3番目の位置
-
 // ハイパー行列の場合. 前記の N 及び Hを利用:
 N = matrix(N, [3 1 2]);
 H = matrix(H, [3 1 2]);
 [nb, loc] = members(N, H, "last")
-
 // 整数の場合:
 N = int8(grand(3, 2, "uin", -5, 5));
 H = int8(grand(4, 4, "uin", -5, 5));
 [nb, loc] = members(N, H)
-
 // 多項式の場合 (複素数の係数を指定可能):
 z = %z;
 N = [z (1-z)^2 ; -4 %i*z ];
 H = [2  %i*z -z  3-z  z  z^3 z];
 [nb, loc] = members(N, H)
-
 // テキストの場合:
 N = [ "Hi" "Hu" "Allo"];
 H = [ "Hello" "Bonjour" "Allo"
       "Holà"  "Allo"  "Hallo"
       "Hi"    "Hé"    "Salud" ];
 [nb, loc] = members(N, H, "last")
-
 // 行の場合:
  H = [
   3  3  0
@@ -464,11 +445,9 @@ H = [ "Hello" "Bonjour" "Allo"
  [nb, loc] = members(N, H, "rows")
  [nb, loc] = members(N, H, "rows","last")
  [nb, loc] = members(N, H, "rows","shuffle") // [4 1 0], [0 1 4] 及び [0 4 1] は同一とみなされる
-
 // 列の場合: 定義済みの N 及び H を利用:
  N = N.', H = H.'
  [nb, loc] = members(N, H, "cols", "shuffle")
-
 ]]></programlisting>
         
     </refsection>

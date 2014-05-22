@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="gridbag_constraints_properties">
+    <refnamediv>
+        <refname>gridbag拘束プロパティ</refname>
+        <refpurpose>gridbag拘束プロパティの説明.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>
+            constraints = createConstraints("gridbag")
+            constraints = createConstraints("gridbag", grid)
+            constraints = createConstraints("gridbag", grid, weight)
+            constraints = createConstraints("gridbag", grid, weight, fill)
+            constraints = createConstraints("gridbag", grid, weight, fill, anchor)
+            constraints = createConstraints("gridbag", grid, weight, fill, anchor, padding)
+            constraints = createConstraints("gridbag", grid, weight, fill, anchor, padding, preferredsize)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>grid</term>
+                <listitem>
+                    <para>
+                        <literal>[pos_x, pos_y, width, height]</literal> 1行4列double行列,
+                        デフォルトは [0, 0, 0, 0].
+                    </para>
+                    <para>
+                        <literal>pos_x</literal> および <literal>pos_x</literal> は
+                        仮想グリッドの要素の座標です.
+                    </para>
+                    <para>
+                        <literal>width</literal> および <literal>height</literal>は
+                        仮想グリッドの要素の幅と高さです.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>weight</term>
+                <listitem>
+                    <para>
+                        <literal>[weight_x, weight_y]</literal> 1行2列double行列, 
+                        デフォルトは [0, 0].
+                    </para>
+                    <para>どちらかの軸のリサイズに適用される重み.</para>
+                    <para>
+                        より大きな値は,リサイズ時に要素がより空白を得ることを
+                        意味します.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fill</term>
+                <listitem>
+                    <para>文字列</para>
+                    <para>{"none"} | "horizontal" | "vertical" | "both"</para>
+                    <para>
+                        どちらかの方向(または両方)のリサイズする際に
+                        利用可能な空間を埋める方法を示します.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>anchor</term>
+                <listitem>
+                    <para>文字列</para>
+                    <para>{"center"} | "upper" | "upper_right" | "right" | "lower_right" | "lower" | "lower_left" | "left" | "upper_left"</para>
+                    <para>
+                        ネストした領域より小さい時,要素を固定する場所を指定.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>padding</term>
+                <listitem>
+                    <para>
+                        <literal>[pad_x, pad_y]</literal> 1行2列double行列, 
+                        デフォルトは [0 0]
+                    </para>
+                    <para>
+                        この要素と周辺の要素の間にパディング.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>preferred_size</term>
+                <listitem>
+                    <para>
+                        <literal>[p_size_x, p_size_y]</literal> 
+                        1行2列double行列, デフォルトは[-1 -1]
+                    </para>
+                    <para>
+                        拘束されていない時の好ましい大きさ(単位:ピクセル)であり,
+                        ネストしたフレームをリサイズする際,大きさを変更する
+                        ことを回避する際に使用されます.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>constraints</term>
+                <listitem>
+                    <para>作成された拘束.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+          //Creates the figure with a gridbag layout
+          f = figure( ...
+          "dockable"        , "off",...
+          "infobar_visible" , "off",...
+          "toolbar"         , "none",...
+          "menubar_visible" , "off",...
+          "menubar"         , "none",...
+          "default_axes"    , "off",...
+          "layout"          , "gridbag",...
+          "visible"         , "on");
+         redf_grid   = [1, 1, 2, 1]; //Red frame is placed at 1x1 and is a 2x1 rectangle
+         greenf_grid = [3, 1, 1, 2]; //Green frame is at 3x1 and is a 1x2 rectangle
+         bluef_grid  = [1, 2, 1, 1]; //Blue frame is at 2x1 and is a 1x1 rectangle
+         yelf_grid   = [1, 3, 2, 2]; //Yellow frame is at 1x3 and is a 2x2 rectangle
+         magf_grid   = [3, 4, 1, 1]; //Magenta frame is at 3x4 and is a 1x1 rectangle
+         cyanf_grid  = [2, 2, 1, 1]; //Cyan is at 2x2 and is a 1x1 rectangle
+         whitf_grid  = [3, 3, 1, 1]; //White is at 3x3 and is a 1x1 rectangle
+         c = createConstraints("gridbag",[1, 1, 1, 1], [1, 1], "both", "center", [0, 0], [50, 50]);
+         c.grid = redf_grid;
+         u_grid1 = uicontrol(f , ...
+         "style"               , "frame"                     , ...
+         "backgroundcolor"     , [1 0 0]                     , ...
+         "constraints"         , c);
+         sleep(500);
+         c.grid = greenf_grid;
+         c.weight = [0.1,1]; //Last column will fill horizontal space 10 times less than other columns
+         u_grid2 = uicontrol(f , ...
+         "style"               , "frame"                     , ...
+         "backgroundcolor"     , [0 1 0]                     , ...
+         "constraints"         , c);
+         sleep(500);
+         c.grid = bluef_grid;
+         c.weight = [1,1];
+         c.fill = "none" //This will force the blue square to be at the preferred size
+         u_grid3 = uicontrol(f , ...
+         "style"               , "frame"                     , ...
+         "backgroundcolor"     , [0 0 1]                     , ...
+         "constraints"         , c);
+         sleep(500);
+         c.grid = cyanf_grid;
+         c.fill = "vertical" // this will fill the empty space with cyan vertically
+         c.anchor = "right" //this will position the cyan stripe on the right
+         c.padding = [100,0] //this will extend the cyan stripe horizontally up to 100 pixel if space is available
+         u_grid1 = uicontrol(f , ...
+         "style"               , "frame"                     , ...
+         "backgroundcolor"     , [0 1 1]                     , ...
+         "constraints"         , c);
+         sleep(500);
+         c.grid = yelf_grid;
+         c.fill = "both";
+         c.anchor ="center";
+         c.padding = [0,0];
+         u_grid4 = uicontrol(f , ...
+         "style"               , "frame"                     , ...
+         "backgroundcolor"     , [1 1 0]                     , ...
+         "constraints"         , c);
+         sleep(500);
+         c.grid = whitf_grid;
+         c.weight = [0.1,1]
+         u_grid1 = uicontrol(f , ...
+         "style"               , "frame"                     , ...
+         "backgroundcolor"     , [1 1 1]                     , ...
+         "constraints"         , c);
+         sleep(500);
+         c.grid = magf_grid;
+         c.weight = [0.1,1]
+         u_grid5 = uicontrol(f , ...
+         "style"               , "frame"                     , ...
+         "backgroundcolor"     , [1 0 1]                     , ...
+         "constraints"         , c);
+         ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            この関数は,
+            uicontrols <literal>constraints</literal>属性を設定する
+            gridbag拘束を作成します.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="layout">layout</link>
+            </member>
+            <member>
+                <link linkend="uicontrol">uicontrol</link>
+            </member>
+            <member>
+                <link linkend="uicontrol_properties">uicontrol_properties</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>
+                    関数 <function>createBorder</function> が導入されました.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

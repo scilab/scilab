@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="createWindow">
+    <refnamediv>
+        <refname>createWindow</refname>
+        <refpurpose>ウインドウを作成</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>
+            f = createWindow();
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>説明</title>
+        <para>
+            このルーチンは,デフォルトのプロパティで
+            グラフィックウインドウを作成します:
+            <itemizedlist>
+                <listitem>
+                    <para>dockable = "off"</para>
+                </listitem>
+                <listitem>
+                    <para>default_axes = "off"</para>
+                </listitem>
+                <listitem>
+                    <para>infobar_visible = "off"</para>
+                </listitem>
+                <listitem>
+                    <para>toolbar_visible = "off"</para>
+                </listitem>
+                <listitem>
+                    <para>menubar_visible = "off"</para>
+                </listitem>
+            </itemizedlist>
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+// ウインドウを作成
+f = createWindow()
+f.axes_size = [400 400];
+uicontrol(f, "style", "pushbutton", "units", "normalized", "position", [0 0 0.5 0.5], "string", "Button", "horizontalalignment", "center");
+uicontrol(f, "style", "text", "units", "normalized", "position", [0 0.5 0.5 0.5], "string", "Label", "horizontalalignment", "center");
+uicontrol(f, "style", "radiobutton", "units", "normalized", "position", [0.5 0 0.5 0.5], "string", "Radiobutton", "horizontalalignment", "center", "groupname", "grouptest");
+uicontrol(f, "style", "checkbox", "units", "normalized", "position", [0.5 0.5 0.5 0.5], "string", "Checkbox", "horizontalalignment", "center", "groupname", "grouptest");
+]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="figure">figure</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>
+                    関数 <function>createWindow</function> が導入されました.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

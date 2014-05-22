@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) ????-2006 - INRIA - Scilab 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+    *
+    -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="mapsound">
+    <refnamediv>
+        <refname>mapsound</refname>
+        <refpurpose>サウンドマップをプロット</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>mapsound (w,dt,fmin,fmax,simpl,rate)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>dt,fmin,fmax,simpl,rate</term>
+                <listitem>
+                    <para>スカラー. デフォルト値 dt=0.1,fmin=100,fmax=1500,simpl=1,rate=22050;</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            音のサウンドマップをプロット. 時間増分dt毎にFFTを行います.
+            <literal>rate</literal> はサンプリング・レートです. 
+            速度面を考慮して<literal>simpl</literal> 点が収集されます.
+            <literal>fmin</literal> および <literal>fmax</literal> が
+            グラフィック境界として使用されます.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
+// まず0.5秒分のサウンドパラメータを生成
+t=soundsec(0.5);
+// 次にサウンドを生成.
+s=sin(440*t)+sin(220*t)/2+sin(880*t)/2;
+[nr,nc]=size(t);
+s(nc/2:nc)=sin(330*t(nc/2:nc));
+mapsound(s);
+ ]]></programlisting>
+        <scilab:image>
+            t=soundsec(0.5);
+            s=sin(440*t)+sin(220*t)/2+sin(880*t)/2;
+            [nr,nc]=size(t);
+            s(nc/2:nc)=sin(330*t(nc/2:nc));
+            mapsound(s);
+        </scilab:image>
+    </refsection>
+</refentry>

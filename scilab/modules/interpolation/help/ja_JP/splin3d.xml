@@ -9,7 +9,7 @@
         <synopsis>tl = splin3d(x, y, z, v, [order])</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>x,y,z</term>
@@ -84,7 +84,6 @@
         <programlisting role="example"><![CDATA[ 
 // 例1
 // =============================================================================
-
 func =  "v=cos(2*%pi*x).*sin(2*%pi*y).*cos(2*%pi*z)";
 deff("v=f(x,y,z)",func);
 n = 10;  // n x n x n  補間点
@@ -99,11 +98,11 @@ vp_exact = f(xp,yp,zp);
 vp_interp = interp3d(xp,yp,zp, tl);
 er = max(abs(vp_exact - vp_interp))
 // n=20で再試行し,誤差を見る
-
+ ]]></programlisting>
+        <programlisting role="example"><![CDATA[ 
 // 例 2 (linear_interpn のヘルプを参照ください, 
 //       trilinear補間に関する同じ例があります)
 // =============================================================================
-
 exec("SCI/modules/interpolation/demos/interp_demo.sci")
 func =  "v=(x-0.5).^2 + (y-0.5).^3 + (z-0.5).^2";
 deff("v=f(x,y,z)",func);
@@ -137,6 +136,38 @@ plot3d(XF, YF, list(ZF,color), flag=[-1 6 4])
 xtitle("3d spline interpolation of "+func)
 show_window()
  ]]></programlisting>
+        <scilab:image localized="true">
+            exec("SCI/modules/interpolation/demos/interp_demo.sci")
+            func =  "v=(x-0.5).^2 + (y-0.5).^3 + (z-0.5).^2";
+            deff("v=f(x,y,z)",func);
+            n = 5;
+            x = linspace(0,1,n); y=x; z=x;
+            [X,Y,Z] = ndgrid(x,y,z);
+            V = f(X,Y,Z);
+            tl = splin3d(x,y,z,V);
+            m = 41;
+            direction = ["z="  "z="  "z="  "x="  "y="];
+            val = [ 0.1   0.5   0.9   0.5   0.5];
+            ebox = [0 1 0 1 0 1];
+            XF=[]; YF=[]; ZF=[]; VF=[];
+            for i = 1:length(val)
+            [Xm,Xp,Ym,Yp,Zm,Zp] = slice_parallelepiped(direction(i), val(i), ebox, m, m, m);
+            Vm = interp3d(Xm,Ym,Zm, tl);
+            [xf,yf,zf,vf] = nf3dq(Xm,Ym,Zm,Vm,1);
+            XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf]; VF = [VF vf]; 
+            Vp = interp3d(Xp,Yp,Zp, tl);
+            [xf,yf,zf,vf] = nf3dq(Xp,Yp,Zp,Vp,1);
+            XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf]; VF = [VF vf]; 
+            end
+            nb_col = 128;
+            vmin = min(VF); vmax = max(VF);
+            color_example = dsearch(VF,linspace(vmin,vmax,nb_col+1));
+            xset("colormap",jetcolormap(nb_col));
+            clf(); xset("hidden3d",xget("background"));
+            colorbar(vmin,vmax)
+            plot3d(XF, YF, list(ZF,color_example), flag=[-1 6 4])
+            xtitle("3d spline interpolation of "+func)
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>参照</title>
@@ -151,5 +182,14 @@ show_window()
                 <link linkend="bsplin3val">bsplin3val</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>以前では, 入力引数の虚部は暗黙のうちに無視されていました.</revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

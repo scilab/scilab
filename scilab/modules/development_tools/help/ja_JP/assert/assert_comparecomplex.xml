@@ -22,7 +22,6 @@
             order = assert_comparecomplex ( a , b )
             order = assert_comparecomplex ( a , b , reltol )
             order = assert_comparecomplex ( a , b , reltol , abstol )
-            
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -119,24 +118,20 @@
 assert_comparecomplex ( 1 , -1 ) // 1
 assert_comparecomplex ( -1 , 1 ) // -1
 assert_comparecomplex ( 1 , 1 ) // 0
-
 // 複素数を比較 #1
 assert_comparecomplex ( 1+2*%i , 1+3*%i ) // -1
 assert_comparecomplex ( 1+3*%i , 1+2*%i ) // 1
 assert_comparecomplex ( 1+2*%i , 1+2*%i ) // 0
-
 // 複素数を比較 #2
 assert_comparecomplex ( 1+%i , -1+%i ) // 1
 assert_comparecomplex ( -1+%i , 1+%i ) // -1
 assert_comparecomplex ( 1+%i , 1+%i ) // 0
 [order,msg] = assert_comparecomplex ( 1+%i , 1+%i )
-
 // 許容誤差を指定して比較: 等号の場合
 assert_comparecomplex ( 1.2345+%i , 1.2346+%i , %eps , 1.e-3 ) // 0
 assert_comparecomplex ( 1.2345+%i , 1.2346+%i , 1.e12*%eps , 0 ) // 0
 assert_comparecomplex ( 1+1.2345*%i , 1+1.2347*%i , %eps , 1.e-3 ) // 0
 assert_comparecomplex ( 1+1.2345*%i , 1+1.2347*%i , 1.e12*%eps , 0 ) // 0
-
 // より実際的なデータの比較
 x = [
 -0.123452 - 0.123454 * %i
@@ -149,7 +144,6 @@ for i = 1 : size(x,"*")-1
 order = assert_comparecomplex ( x(i) , x(i+1) , 1.e-4 );
 mprintf("compare(x(%d),x(%d))=%d\n",i,i+1,order)
 end
-
 // バグ#415からのデータを比較
 x = [
 -1.9914145
@@ -172,7 +166,6 @@ for i = 1 : size(x,"*")-1
 order = assert_comparecomplex ( x(i) , x(i+1) , 1.e-5 );
 mprintf("compare(x(%d),x(%d))=%d\n",i,i+1,order)
 end
-
    ]]></programlisting>
     </refsection>
     <refsection>

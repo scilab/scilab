@@ -1,6 +1,91 @@
 ﻿                     Changes between version 5.5.0 and 5.5.1
                      =======================================
 
+Obsolete & Removed Functions
+============================
+
+* datatipContextMenu() and datatipEventhandler() removed (See bug #8646).
+
+
+Scilab Bug Fixes
+================
+
+* Bug #7549 fixed - edit_curv did not disable standard plot menus.
+
+* Bug #8646 fixed - The datatips contextual menu opened a selection list which
+                    was not ergonomic.
+
+* Bug #10555 fixed - Scilab failed to build with some configure options.
+
+* Bug #12700 fixed - edit_curv (used by CURV_f) was broken.
+
+* Bug #13291 fixed - xmltojar([],[],'ja_JP') might lead to a crash when the
+                     locale was not available system-wide.
+
+* Bug #13313 fixed - Setting datatips orientation did not disable
+                     auto_orientation mode.
+
+* Bug #13331 fixed - Users are no longer able to write inconsistent options to mopen,
+                     mopen(file, "wr") now exits with a proper error.
+
+* Bug #13333 fixed - Selecting "Offline mode" in Scilab installer installed
+                     Scilab in "Command line mode" (without GUI modules).
+
+* Bug #13344 fixed - User defined ticks were not drawn at the right position.
+
+* Bug #13378 fixed - The "Console" handle display was not homogeneous with others.
+
+* Bug #13381 fixed - eigs was failing when using a function as first input argument.
+
+* Bug #13383 fixed - newaxes help page did not mention the call with a graphic
+                     handle as input.
+
+* Bug #13384 fixed - uicontrol help page did not mention axes could be contained
+                     in frame style uicontrols.
+
+* Bug #13386 fixed - An exception occurred when using entity picker on legends.
+
+* Bug #13388 fixed - Display of Waitbar and Progressionbar handles did not show
+                     Tag and Userdata properties.
+
+* Bug #13397 fixed - saveGui() returned an undocumented boolean parameter (success/failure flag).
+
+* Bug #13401 fixed - Closing Scilab during halt() did not quit the Scilab process.
+
+* Bug #13402 fixed - Bounding boxes of xarcs were not correct.
+
+* Bug #13403 fixed - Regression on axes labeling fixed.
+
+* Bug #13404 fixed - rect property was not taken into account in polarplot.
+
+* Bug #13409 fixed - permute(x, dims) failed when dims was greater than the dimensions of size(x)
+                     now permute treats extra dimensions as 1
+
+
+Xcos Bug Fixes
+==============
+
+* Bug #9996 fixed - The RELATION_OP box drawn in the work space is not compliant
+                    to the programming.
+
+* Bug #11823 fixed - Ctrl+F2 shortcut did not work on a selected block.
+
+* Bug #12718 fixed - Modelica Generic block reshaped the output ports and the label was double-written.
+
+* Bug #12751 fixed - cdummy_ entry point was not found when using Code Generation.
+
+* Bug #13285 fixed - There was no appropriate example of the syntax for scifunc_block_m GUI
+                     on the help page.
+
+* Bug #13318 fixed - Multiplication matrix * vector using MATMUL did not work correctly.
+
+* Bug #13385 fixed - TOWS_c and FROMWSB Xcos blocs needed better examples on how
+                     to get or write a Scilab variable.
+                     
+* Bug #13391 fixed - scifunc_block_m help page was not clear about the block using.
+                     Example has been added.  
+
+* Bug #13396 fixed - MBLOCK did not work with an external file containing the modelica class.
 
 
                      Changes between version 5.4.1 and 5.5.0
@@ -2956,6 +3041,8 @@ Scilab Bug Fixes
 
 * Bug #8234 fixed - strtod did not return an empty matrix when the input argument was an
                     empty matrix.
+
+* Bug #8667 fixed - Handling of %nan in functions min,max,median is not correctly documented.
 
 * Bug #8264 fixed - Matlab to Scilab dictionary help page updated for atan2.
 

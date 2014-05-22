@@ -1,0 +1,861 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="dnaupd" xml:lang="ja">
+    <refnamediv>
+        <refname>dnaupd</refname>
+        <refpurpose>
+            暗黙のうちに再開されるArnoldi反復へのインターフェイスで,
+            実線形演算子の小数の固有値/ベクトルの組を近似的に計算します.
+            <emphasis role="bold">
+                この関数は廃止されました. <link linkend="eigs">eigs</link>を使用してください
+            </emphasis>
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>[IDO, RESID, V, IPARAM, IPNTR, WORKD, WORKL, INFO] = dnaupd(ID0, BMAT, N, WHICH, NEV, TOL, RESID, NCV, V, IPARAM, IPNTR, WORKD, WORKL, INFO)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>ID0</term>
+                <listitem>
+                    <para>
+                        Integer. (INPUT/OUTPUT)
+                    </para>
+                    <para>
+                        Reverse communication flag. IDO must
+                        be zero on the first call to dnaupd. IDO will be set internally to
+                        indicate the type of operation to be performed. Control is then
+                        given back to the calling routine which has the responsibility to
+                        carry out the requested operation and call dnaupd with the result.
+                        The operand is given in WORKD(IPNTR(1)), the result must be put in
+                        WORKD(IPNTR(2)).
+                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                IDO = 0: first call to the reverse communication
+                                interface.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                IDO = -1: compute Y = OP * X where IPNTR(1) is the pointer
+                                into WORKD for X, IPNTR(2) is the pointer into WORKD for Y. This
+                                is for the initialization phase to force the starting vector
+                                into the range of OP.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                IDO = 1: compute Y = OP * X where IPNTR(1) is the pointer
+                                into WORKD for X, IPNTR(2) is the pointer into WORKD for Y. In
+                                mode 3 and 4, the vector B * X is already available in
+                                WORKD(ipntr(3)). It does not need to be recomputed in forming OP
+                                * X.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                IDO = 2: compute Y = B * X where IPNTR(1) is the pointer
+                                into WORKD for X, IPNTR(2) is the pointer into WORKD for
+                                Y.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                IDO = 3: compute the IPARAM(8) real and imaginary parts of
+                                the shifts where INPTR(14) is the pointer into WORKL for placing
+                                the shifts. See Remark 5 below.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>IDO = 99: done.</para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>BMAT</term>
+                <listitem>
+                    <para>
+                        Character. (INPUT)
+                    </para>
+                    <para>
+                        specifies the type of the matrix B that defines the
+                        semi-inner product for the operator OP.
+                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>'I' - standard eigenvalue problem A * x = lambda * x</para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                'G' - generalized eigenvalue problem A * x =
+                                lambda * B * x
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>N</term>
+                <listitem>
+                    <para>Integer. (INPUT)</para>
+                    <para>dimension of the eigenproblem.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>WHICH</term>
+                <listitem>
+                    <para>
+                        string of length 2. (INPUT)
+                    </para>
+                    <para>
+                        Specifies which of the Ritz values of OP to
+                        compute.
+                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                'LM' - want the NEV eigenvalues of largest
+                                magnitude.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                'SM' - want the NEV eigenvalues of smallest
+                                magnitude.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                'LR' - want the NEV eigenvalues of largest real
+                                part.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                'SR' - want the NEV eigenvalues of smallest real
+                                part.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                'LI' - want the NEV eigenvalues of largest imaginary
+                                part.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                'SI' - want the NEV eigenvalues of smallest imaginary
+                                part.
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>NEV</term>
+                <listitem>
+                    <para>
+                        Integer. (INPUT)
+                    </para>
+                    <para>
+                        number of eigenvalues of OP to be computed. 0 &lt;
+                        NEV &lt; N-1.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>TOL</term>
+                <listitem>
+                    <para>
+                        scalar. (INPUT)
+                    </para>
+                    <para>
+                        Stopping criterion: the relative accuracy of the Ritz
+                        value is considered acceptable if BOUNDS(I) &lt;= TOL*ABS(RITZ(I)).
+                        If TOL &lt;= 0. is passed the machine precision is set.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>RESID</term>
+                <listitem>
+                    <para>array of length N. (INPUT/OUTPUT)</para>
+                    <para>
+                        On INPUT: If INFO = 0, a random initial residual vector is
+                        used, else RESID contains the initial residual vector, possibly from
+                        a previous run.
+                    </para>
+                    <para>On OUTPUT: RESID contains the final residual vector.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>NCV</term>
+                <listitem>
+                    <para>
+                        Integer. (INPUT)
+                    </para>
+                    <para>
+                        number of columns of the matrix V. NCV must satisfy
+                        the two inequalities 2 &lt;= NCV - NEV and NCV &lt;= N.
+                    </para>
+                    <para>
+                        This will indicate how many Arnoldi vectors are generated at
+                        each iteration.
+                    </para>
+                    <para>
+                        After the startup phase in which NEV Arnoldi vectors are
+                        generated, the algorithm generates approximately NCV - NEV Arnoldi
+                        vectors at each subsequent update iteration. Most of the cost in
+                        generating each Arnoldi vector is in the matrix-vector operation
+                        OP * x.
+                    </para>
+                    <para>
+                        NOTE: 2 &lt;= NCV - NEV in order that complex conjugate pairs of
+                        Ritz values are kept together. (See remark 4 below)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>V</term>
+                <listitem>
+                    <para>
+                        N by NCV array. (OUTPUT)
+                    </para>
+                    <para>
+                        Contains the final set of Arnoldi basis
+                        vectors.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>IPARAM</term>
+                <listitem>
+                    <para>array of length 11. (INPUT/OUTPUT)</para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                IPARAM(1) = ISHIFT: method for selecting the implicit
+                                shifts. The shifts selected at each iteration are used to
+                                restart the Arnoldi iteration in an implicit fashion.
+                            </para>
+                            <itemizedlist>
+                                <listitem>
+                                    <para>
+                                        ISHIFT = 0: the shifts are provided by the user via
+                                        reverse communication. The real and imaginary parts of the
+                                        NCV eigenvalues of the Hessenberg matrix H are returned in
+                                        the part of the WORKL array corresponding to RITZR and
+                                        RITZI. See remark 5 below.
+                                    </para>
+                                </listitem>
+                                <listitem>
+                                    <para>
+                                        ISHIFT = 1: exact shifts with respect to the current
+                                        Hessenberg matrix H. This is equivalent to restarting the
+                                        iteration with a starting vector that is a linear
+                                        combination of approximate Schur vectors associated with the
+                                        "wanted" Ritz values.
+                                    </para>
+                                </listitem>
+                            </itemizedlist>
+                        </listitem>
+                        <listitem>
+                            <para>IPARAM(2) = LEVEC. No longer referenced.</para>
+                        </listitem>
+                        <listitem>
+                            <para>IPARAM(3) = MXITER </para>
+                            <para>
+                                On INPUT: maximum number of Arnoldi update iterations
+                                allowed.
+                            </para>
+                            <para>
+                                On OUTPUT: actual number of Arnoldi update iterations
+                                taken.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                IPARAM(4) = NB: blocksize to be used in the recurrence.
+                                The code currently works only for NB = 1.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                IPARAM(5) = NCONV: number of "converged" Ritz values. This
+                                represents the number of Ritz values that satisfy the
+                                convergence criterion.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                IPARAM(6) = IUPD No longer referenced. Implicit restarting
+                                is ALWAYS used.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                IPARAM(7) = MODE On INPUT determines what type of
+                                eigenproblem is being solved. Must be 1,2,3,4; See under
+                                Description of dnaupd for the five modes available.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                IPARAM(8) = NP When ido = 3 and the user provides shifts
+                                through reverse communication (IPARAM(1)=0), dnaupd returns NP,
+                                the number of shifts the user is to provide.
+                            </para>
+                            <para>0 &lt; NP &lt;= NCV-NEV. See Remark 5 below.</para>
+                        </listitem>
+                        <listitem>
+                            <para>IPARAM(9) = NUMOP, </para>
+                            <para>IPARAM(10) = NUMOPB, </para>
+                            <para>IPARAM(11) = NUMREO, </para>
+                            <para>
+                                On OUTPUT: NUMOP = total number of OP*x operations, NUMOPB
+                                = total number of B*x operations if BMAT='G', NUMREO = total
+                                number of steps of re-orthogonalization.
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>IPNTR</term>
+                <listitem>
+                    <para>
+                        array of length 14. (OUTPUT)
+                    </para>
+                    <para>
+                        Pointer to mark the starting locations in
+                        the WORKD and WORKL arrays for matrices/vectors used by the Arnoldi
+                        iteration.
+                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                IPNTR(1): pointer to the current operand vector X in
+                                WORKD.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                IPNTR(2): pointer to the current result vector Y in
+                                WORKD.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                IPNTR(3): pointer to the vector B * X in WORKD when used
+                                in the shift-and-invert mode.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                IPNTR(4): pointer to the next available location in WORKL
+                                that is untouched by the program.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                IPNTR(5): pointer to the NCV by NCV upper Hessenberg
+                                matrix H in WORKL.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                IPNTR(6): pointer to the real part of the ritz value array
+                                RITZR in WORKL.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                IPNTR(7): pointer to the imaginary part of the ritz value
+                                array RITZI in WORKL.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                IPNTR(8): pointer to the Ritz estimates in array WORKL
+                                associated with the Ritz values located in RITZR and RITZI in
+                                WORKL.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                IPNTR(14): pointer to the NP shifts in WORKL. See Remark 5
+                                below.
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                    <para>
+                        Note: IPNTR(9:13) is only referenced by dneupd . See Remark
+                        2.
+                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                IPNTR(9): pointer to the real part of the NCV RITZ values
+                                of the original system.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                IPNTR(10): pointer to the imaginary part of the NCV RITZ
+                                values of the original system.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                IPNTR(11): pointer to the NCV corresponding error
+                                bounds.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                IPNTR(12):pointer to the NCV by NCV upper quasi-triangular
+                                Schur matrix for H.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                IPNTR(13): pointer to the NCV by NCV matrix of
+                                eigenvectors of the upper Hessenberg matrix H. Only referenced
+                                by dneupd if RVEC = 1 See Remark 2 below.
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>WORKD</term>
+                <listitem>
+                    <para>
+                        Double precision work array of length 3 * N. (REVERSE
+                        COMMUNICATION)
+                    </para>
+                    <para>
+                        Distributed array to be used in the basic Arnoldi iteration
+                        for reverse communication. The user should not use WORKD as
+                        temporary workspace during the iteration. Upon termination
+                        WORKD(1:N) contains B*RESID(1:N). If an invariant subspace
+                        associated with the converged Ritz values is desired, see remark 2
+                        below, subroutine dneupd uses this output. See Data Distribution
+                        Note below.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>WORKL</term>
+                <listitem>
+                    <para>
+                        work array of length at least 3 * NCV ** 2 + 6 * NCV.
+                        (OUTPUT/WORKSPACE)
+                    </para>
+                    <para>
+                        Private (replicated) array on each PE or array
+                        allocated on the front end. See Data Distribution Note below.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>INFO</term>
+                <listitem>
+                    <para>Integer. (INPUT/OUTPUT)</para>
+                    <para>
+                        If INFO == 0, a randomly initial residual vector is used, else
+                        RESID contains the initial residual vector, possibly from a previous
+                        run.
+                    </para>
+                    <para>Error flag on output.</para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>0: Normal exit.</para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                1: Maximum number of iterations taken. All possible
+                                eigenvalues of OP has been found. IPARAM(5) returns the number
+                                of wanted converged Ritz values.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                2: No longer an informational error. Deprecated starting
+                                with release 2 of ARPACK.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                3: No shifts could be applied during a cycle of the
+                                Implicitly restarted Arnoldi iteration. One possibility is to
+                                increase the size of NCV relative to NEV. See remark 4
+                                below.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>-1: N must be positive.</para>
+                        </listitem>
+                        <listitem>
+                            <para>-2: NEV must be positive.</para>
+                        </listitem>
+                        <listitem>
+                            <para>-3: NCV-NEV &gt;= 2 and less than or equal to N.</para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                -4: The maximum number of Arnoldi update iterations
+                                allowed must be greater than zero.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                -5: WHICH must be one of 'LM', 'SM', 'LR', 'SR', 'LI',
+                                'SI'.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>-6: BMAT must be one of 'I' or 'G'.</para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                -7: Length of private work array WORKL is not
+                                sufficient.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                -8: Error return from LAPACK eigenvalue
+                                calculation.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>-9: Starting vector is zero.</para>
+                        </listitem>
+                        <listitem>
+                            <para>-10: IPARAM(7) must be 1, 2, 3, 4.</para>
+                        </listitem>
+                        <listitem>
+                            <para>-11: IPARAM(7) = 1 and BMAT = 'G' are incompatable.</para>
+                        </listitem>
+                        <listitem>
+                            <para>-12: IPARAM(1) must be equal to 0 or 1.</para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                -9999: Could not build an Arnoldi factorization. IPARAM(5)
+                                returns the size of the current Arnoldi factorization. The user
+                                is advised to check that enough workspace and array storage has
+                                been allocated.
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Reverse communication interface for the Implicitly Restarted Arnoldi
+            iteration. This subroutine computes approximations to a few eigenpairs of
+            a linear operator "OP" with respect to a semi-inner product defined by a
+            symmetric positive semi-definite real matrix B. B may be the identity
+            matrix. NOTE: If the linear operator "OP" is real and symmetric with
+            respect to the real positive semi-definite symmetric matrix B, i.e. B*OP =
+            (OP`)*B, then subroutine dsaupd should be used instead.
+        </para>
+        <para>
+            The computed approximate eigenvalues are called Ritz values and the
+            corresponding approximate eigenvectors are called Ritz vectors.
+        </para>
+        <para>
+            dnaupd is usually called iteratively to solve one of the following
+            problems:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    Mode 1: A*x = lambda*x. <literal>
+                        OP = A , B =
+                        I
+                    </literal>
+                    .
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Mode 2: A*x = lambda*M*x, M symmetric positive definite
+                    <literal>OP = inv[M]*A, B = M</literal>. (If M can be factored see
+                    remark 3 below)
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Mode 3: A*x = lambda*M*x, M symmetric positive semi-definite.
+                    <literal>OP = Real_Part{ inv[A - sigma*M]*M }, B = M</literal>.
+                    shift-and-invert mode (in real arithmetic)
+                </para>
+                <para>
+                    If <literal>OP*x = amu*x</literal>, then
+                </para>
+                <para>
+                    <literal>
+                        amu = 1/2 * [ 1/(lambda-sigma) +
+                        1/(lambda-conjg(sigma))]
+                    </literal>
+                    .
+                </para>
+                <para>
+                    Note: If sigma is real, i.e. imaginary part of sigma is zero;
+                    <literal>
+                        Real_Part{ inv[A - sigma*M]*M } == inv[A -
+                        sigma*M]*M
+                    </literal>
+                    <literal>
+                        amu ==
+                        1/(lambda-sigma)
+                    </literal>
+                    .
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    Mode 4: A*x = lambda*M*x, M symmetric semi-definite <literal>
+                        OP
+                        = Imaginary_Part{ inv[A - sigma*M]*M } , B = M
+                    </literal>
+                    .
+                    shift-and-invert mode (in real arithmetic)
+                </para>
+                <para>
+                    If <literal>OP*x = amu*x</literal>, then <literal>
+                        amu = 1/2i * [
+                        1/(lambda-sigma) - 1/(lambda-conjg(sigma)) ]
+                    </literal>
+                    .
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            Both mode 3 and 4 give the same enhancement to eigenvalues close to
+            the (complex) shift sigma. However, as lambda goes to infinity, the
+            operator OP in mode 4 dampens the eigenvalues more strongly than does OP
+            defined in mode 3.
+        </para>
+        <para>
+            NOTE: The action of w &lt;- inv[A - sigma * M] * v or w &lt;- inv[M] * v
+            should be accomplished either by a direct method using a sparse matrix
+            factorization and solving <literal>[A - sigma * M] * w = v</literal> or
+            <literal>M * w = v</literal>, or through an iterative method for solving
+            these systems. If an iterative method is used, the convergence test must
+            be more stringent than the accuracy requirements for the eigenvalue
+            approximations.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Example</title>
+        <programlisting role="example">
+            <![CDATA[
+// The following sets dimensions for this problem.
+nx    = 10;
+nev   = 3;
+ncv   = 6;
+bmat  = 'I';
+which = 'LM';
+// Local Arrays
+iparam  = zeros(11, 1);
+ipntr   = zeros(14, 1);
+_select = zeros(ncv, 1);
+dr       = zeros(nev + 1, 1);
+di      = zeros(nev + 1, 1);
+z       = zeros(nx, nev + 1);
+resid   = zeros(nx, 1);
+v       = zeros(nx, ncv);
+workd   = zeros(3 * nx, 1);
+workev  = zeros(3 * ncv, 1);
+workl   = zeros(3 * ncv * ncv + 6 * ncv, 1);
+// Build the test matrix
+A            = diag(10 * ones(nx, 1));
+A(1:$-1,2:$) = A(1:$-1,2:$) + diag(6 * ones(nx-1,1));
+A(2:$,1:$-1) = A(2:$,1:$-1) + diag(-6 * ones(nx-1,1));
+tol    = 0;
+ido    = 0;
+ishfts = 1;
+maxitr = 300;
+mode1  = 1;
+iparam(1) = ishfts;
+iparam(3) = maxitr;
+iparam(7) = mode1;
+sigmar = 0; // the real part of the shift
+sigmai = 0; // the imaginary part of the shift
+info_dnaupd = 0;
+// M A I N   L O O P (Reverse communication)
+while(ido <> 99)
+  // Repeatedly call the routine DNAUPD and take actions indicated by parameter IDO until
+  // either convergence is indicated or maxitr has been exceeded.
+  [ido, resid, v, iparam, ipntr, workd, workl, info_dnaupd] = dnaupd(ido, bmat, nx, which, nev, tol, resid, ncv, v, iparam, ipntr, workd, workl, info_dnaupd);
+  if(info_dnaupd < 0)
+    printf('\nError with dnaupd, info = %d\n',info_dnaupd);
+    printf('Check the documentation of dnaupd\n\n');
+  end
+  if(ido == -1 | ido == 1)
+    // Perform matrix vector multiplication
+    workd(ipntr(2):ipntr(2) + nx -1) = A * workd(ipntr(1):ipntr(1) + nx - 1);
+  end
+end
+// Post-Process using DNEUPD.
+rvec    = 1;
+howmany = 'A';
+info_dneupd = 0;
+[dr, di, z, resid, v, iparam, ipntr, workd, workl, info_dneupd] = dneupd(rvec, howmany, _select, dr, di, z, sigmar, sigmai, workev, ...
+                                                                       bmat, nx, which, nev, tol, resid, ncv, v, ...
+                                                                       iparam, ipntr, workd, workl, info_dneupd);
+if(info_dneupd < 0)
+  printf('\nError with dneupd, info = %d\n', info_dneupd);
+  printf('Check the documentation of dneupd.\n\n');
+end
+printf('\nDNSIMP\n');
+printf('======\n');
+printf('\n');
+printf('Size of the matrix is %d\n', nx);
+printf('The number of Ritz values requested is %d\n', nev);
+printf('The number of Arnoldi vectors generated (NCV) is %d\n', ncv);
+printf('What portion of the spectrum: %s\n', which);
+printf('The number of Implicit Arnoldi update iterations taken is %d\n', iparam(3));
+printf('The number of OP*x is %d\n', iparam(9));
+printf('The convergence criterion is %d\n', tol);
+]]>
+        </programlisting>
+    </refsection>
+    <refsection>
+        <title>Remarks</title>
+        <para>
+            1. The computed Ritz values are approximate eigenvalues of OP. The
+            selection of WHICH should be made with this in mind when Mode = 3 and 4.
+            After convergence, approximate eigenvalues of the original problem may be
+            obtained with the ARPACK subroutine dneupd.
+        </para>
+        <para>
+            2. If a basis for the invariant subspace corresponding to the
+            converged Ritz values is needed, the user must call dneupd immediately
+            following completion of dnaupd. This is new starting with release 2 of
+            ARPACK.
+        </para>
+        <para>
+            3. If M can be factored into a Cholesky factorization M = LL` then
+            Mode = 2 should not be selected. Instead one should use Mode = 1 with OP =
+            inv(L) * A * inv(L`). Appropriate triangular linear systems should be solved
+            with L and L` rather than computing inverses. After convergence, an
+            approximate eigenvector z of the original problem is recovered by solving
+            L`z = x where x is a Ritz vector of OP.
+        </para>
+        <para>
+            4. At present there is no a-priori analysis to guide the selection
+            of NCV relative to NEV. The only formal requirement is that NCV &gt; NEV +
+            2. However, it is recommended that NCV &gt;= 2 * NEV + 1. If many problems of
+            the same type are to be solved, one should experiment with increasing NCV
+            while keeping NEV fixed for a given test problem. This will usually
+            decrease the required number of OP*x operations but it also increases the
+            work and storage required to maintain the orthogonal basis vectors. The
+            optimal "cross-over" with respect to CPU time is problem dependent and
+            must be determined empirically. See Chapter 8 of Reference 2 for further
+            information.
+        </para>
+        <para>
+            5. When IPARAM(1) = 0, and IDO = 3, the user needs to provide the NP
+            = IPARAM(8) real and imaginary parts of the shifts in locations
+        </para>
+        <programlisting>
+            real part                  imaginary part
+            -----------------------    --------------
+            1   WORKL(IPNTR(14))           WORKL(IPNTR(14) + NP)
+            2   WORKL(IPNTR(14) + 1)         WORKL(IPNTR(14) + NP + 1)
+            .                          .
+            .                          .
+            .                          .
+            NP  WORKL(IPNTR(14) + NP - 1)      WORKL(IPNTR(14) + 2 * NP - 1).
+        </programlisting>
+        <para>
+            Only complex conjugate pairs of shifts may be applied and the pairs
+            must be placed in consecutive locations. The real part of the eigenvalues
+            of the current upper Hessenberg matrix are located in WORKL(IPNTR(6))
+            through WORKL(IPNTR(6) + NCV - 1) and the imaginary part in WORKL(IPNTR(7))
+            through WORKL(IPNTR(7) + NCV - 1). They are ordered according to the order
+            defined by WHICH. The complex conjugate pairs are kept together and the
+            associated Ritz estimates are located in WORKL(IPNTR(8)),
+            WORKL(IPNTR(8)+1), ... , WORKL(IPNTR(8) + NCV - 1).
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="dsaupd">dsaupd</link>
+            </member>
+            <member>
+                <link linkend="dneupd">dneupd</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>Bibliography</title>
+        <para>
+            1. D.C. Sorensen, "Implicit Application of Polynomial Filters in a
+            k-Step Arnoldi Method", SIAM J. Matr. Anal. Apps., 13 (1992), pp
+            357-385.
+        </para>
+        <para>
+            2. R.B. Lehoucq, "Analysis and Implementation of an Implicitly
+            Restarted Arnoldi Iteration", Rice University Technical Report TR95-13,
+            Department of Computational and Applied Mathematics.
+        </para>
+        <para>
+            3. B.N. Parlett, "The Symmetric Eigenvalue Problem". Prentice-Hall,
+            1980.
+        </para>
+        <para>
+            4. B.N. Parlett, B. Nour-Omid, "Towards a Black Box Lanczos
+            Program", Computer Physics Communications, 53 (1989), pp 169-179.
+        </para>
+        <para>
+            5. B. Nour-Omid, B.N. Parlett, T. Ericson, P.S. Jensen, "How to
+            Implement the Spectral Transformation", Math. Comp., 48 (1987), pp
+            663-673.
+        </para>
+        <para>
+            6. R.G. Grimes, J.G. Lewis and H.D. Simon, "A Shifted Block Lanczos
+            Algorithm for Solving Sparse Symmetric Generalized Eigenproblems", SIAM J.
+            Matr. Anal. Apps., January (1993).
+        </para>
+        <para>
+            7. L. Reichel, W.B. Gragg, "Algorithm 686: FORTRAN Subroutines for
+            Updating the QR decomposition", ACM TOMS, December 1990, Volume 16 Number
+            4, pp 369-377.
+        </para>
+        <para>
+            8. R.B. Lehoucq, D.C. Sorensen, "Implementation of Some Spectral
+            Transformations in a k-Step Arnoldi Method". In Preparation.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Used Functions</title>
+        <para>Based on ARPACK routine dnaupd</para>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>
+                    関数は廃止され,<link linkend="eigs">eigs</link>に代替されました.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

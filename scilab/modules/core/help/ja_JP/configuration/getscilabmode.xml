@@ -30,4 +30,12 @@
 getscilabmode()
  ]]></programlisting>
     </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="scilab">scilab</link>
+            </member>
+        </simplelist>
+    </refsection>
 </refentry>

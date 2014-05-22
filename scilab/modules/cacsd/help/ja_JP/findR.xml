@@ -263,7 +263,6 @@ SYS=syslin(0.1,A,B,C);
 U=(ones(1,1000)+rand(1,1000,'normal')); 
 Y=(flts(U,SYS)+0.5*rand(1,1000,'normal'));
 // Rを計算
-
 [R,N,SVAL] = findR(15,Y',U');
 SVAL
 N

@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Allan CORNET
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ -->
+
+<!-- This document was created with Syntext Serna Free. -->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="javasci" xml:lang="ja">
+    
+    <refnamediv>
+        
+        <refname>javasci</refname>
+        
+        <refpurpose>JavaアプリケーションからScilabエンジンをコール</refpurpose>
+        
+    </refnamediv>
+    
+    <refsection>
+        
+        <title>説明</title>
+        
+        <para>
+            
+            Scilab はJavaアプリケーションからコールできる機能を提供します.
+            
+        </para>
+        
+        <para>
+            
+            このヘルプは, javasci APIの機能を記述するものです.
+            
+        </para>
+        
+        <para>
+            
+            Scilab バージョン 5.3.0以降, 
+            
+            Javasci v2と呼ばれる Javasciの新バージョンが導入されました.
+            
+            このバージョンは,
+            
+            <link linkend="javasci_v1_limitations">Javasci v1の制限</link>の多くを修正しています.
+            
+        </para>
+        
+        <para>
+            
+            <link type="remote" linkend="javasci/javadoc/index.html">Javasci v2の文書</link> を閲覧 
+            
+            (これによりWebブラウザがオープンします).
+            
+        </para>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>Javasci v2の例</title>
+        
+        <programlisting role="java"><![CDATA[
+// javasci v2を使用する簡単なJavaの例
+// Filename: DisplayPI.java
+
+import org.scilab.modules.javasci.Scilab;
+import org.scilab.modules.types.ScilabType;
+import org.scilab.modules.types.ScilabDouble;
+
+class Example1 {
+
+    public static void main(String[] args) {
+
+      try {
+            Scilab sci = new Scilab();
+            sci.open();
+            sci.exec("disp(%pi);");
+
+            ScilabDouble a = new ScilabDouble(3.14);
+            sci.put("a",a);
+            sci.exec("b=sin(a);");
+            ScilabType b = sci.get("b");
+            System.out.println("b = " + b);
+
+            sci.close();
+
+      } catch (org.scilab.modules.javasci.JavasciException e) {
+            System.err.println("An exception occurred: " + e.getLocalizedMessage());
+      }
+
+    }
+}
+
+]]></programlisting>
+        
+    </refsection>
+    
+    <refsection role="see also">
+        
+        <title>参照</title>
+        
+        <simplelist type="inline">
+            
+            <member>
+                
+                <link type="remote" linkend="javasci/javadoc/index.html">
+                    
+                    Javasci v2の文書
+                </link>
+                を閲覧 (これによりWebブラウザがオープンします).
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="compile_and_run_javasci_v2">Javasci v2でコンパイル/実行</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="javasci_faq_v2">Javasci v2 FAQ</link>
+                
+            </member>
+            
+        </simplelist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>履歴</title>
+        
+        <revhistory>
+            
+            <revision>
+                
+                <revnumber>5.4.0</revnumber>
+                
+                <revdescription>
+                    
+                    Javasci v1 が削除されました.
+                    
+                </revdescription>
+                
+            </revision>
+            
+            <revision>
+                
+                <revnumber>5.4.0</revnumber>
+                
+                <revdescription>新規メソッド追加:
+                    
+                    <itemizedlist>
+                        
+                        <listitem>Scilab.execException(String)
+                            
+                            <para>
+                                
+                                Scilab.exec(String) と同じですが, Scilabエラーが
+                                
+                                発生した際に例外を返します
+                                
+                            </para>
+                            
+                        </listitem>
+                        
+                        <listitem>Scilab.execException(String[])
+                            
+                            <para>
+                                
+                                Scilab.exec(String[]) と同じですが, Scilabエラーが
+                                
+                                発生した際に例外を返します
+                                
+                            </para>
+                            
+                        </listitem>
+                        
+                        <listitem>Scilab.execException(File)
+                            
+                            <para>
+                                
+                                Scilab.exec(File) と同じですが, Scilabエラーが
+                                
+                                発生した際に例外を返します
+                                
+                            </para>
+                            
+                        </listitem>
+                        
+                    </itemizedlist>
+                    
+                </revdescription>
+                
+            </revision>
+            
+            <revision>
+                
+                <revnumber>5.4.0</revnumber>
+                
+                <revdescription>
+                    
+                    <itemizedlist>
+                        
+                        <listitem>Javasci は疎行列と論理値疎行列データ型をサポートします.</listitem>
+                        
+                        <listitem>Javasci はtlists, mlists およびリストデータ型をサポートします.</listitem>
+                        
+                        <listitem>Javasci 多項式データ型をサポートします.</listitem>
+                        
+                        <listitem>mList形式のJavasciデータ型構造体をサポートします.
+                            
+                        </listitem>
+                        
+                    </itemizedlist>
+                    
+                </revdescription>
+                
+            </revision>
+            
+        </revhistory>
+        
+    </refsection>
+    
+</refentry>
+

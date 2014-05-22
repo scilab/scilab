@@ -42,7 +42,6 @@
             値<literal>(x(i,j)-xbar)</literal>を
             行列 <literal>s</literal> の要素<literal>(i,j)</literal> に返します.
             ただし,<literal>xbar</literal> は,<literal>x</literal>の係数の値の平均です.
-            
             <literal>s=center(x,'r')</literal>      (もしくは等価な<literal>s=center(x,1)</literal>) は,
             <literal>x</literal>の値の行方向の中心化です.
             この関数は,<literal>xbarv(j)</literal>を<literal>j</literal>列の平均として,

@@ -253,7 +253,6 @@ y(k)   = Cx(k) + Du(k),
  ]]></programlisting>
         <para>
             where 
-            
             x(k)  は,(時刻 kにおける) n 次元状態ベクトルで,
         </para>
         <para>
@@ -320,17 +319,14 @@ SYS=syslin(0.1,A,B,C);
 nsmp=100;
 U=prbs_a(nsmp,nsmp/5);
 Y=(flts(U,SYS)+0.3*rand(1,nsmp,'normal'));
-
 // Rを計算
 S=15;L=1;
 [R,N,SVAL] = findR(S,Y',U');
-
 N=3;
 METH=3;TOL=-1;
 [A,C] = findAC(S,N,L,R,METH,TOL);
 [X0,B,D] = findBD(1,1,2,A,C,Y',U')
 SYS1=syslin(1,A,B,C,D,X0);
-
 Y1=flts(U,SYS1);
 clf();plot2d((1:nsmp)',[Y',Y1'])
 ]]></programlisting>

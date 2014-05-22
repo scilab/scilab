@@ -1,7 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-
-
 <!--
  *
  * Copyright (C) 2012-2013 - Michael Baudin
@@ -15,9 +12,6 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
-
-
-
 <refentry version="5.0-subset Scilab" xml:id="cov" xml:lang="ja"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -26,179 +20,92 @@
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:scilab="http://www.scilab.org"
           xmlns:db="http://docbook.org/ns/docbook">
-    
     <refnamediv>
-        
         <refname>cov</refname>
-        
         <refpurpose>共分散行列</refpurpose>
-        
     </refnamediv>
-    
     <refsynopsisdiv>
-        
         <title>呼び出し手順</title>
-        
         <synopsis>
-            
             C = cov(x)
-            
             C = cov(x, 0)
-            
             C = cov(x, 1)
-            
             C = cov(x, y)
-            
             C = cov(x, y, 0)
-            
             C = cov(x, y, 1)
-            
         </synopsis>
-        
     </refsynopsisdiv>
-    
     <refsection>
-        
         <title>パラメータ</title>
-        
         <variablelist>
-            
             <varlistentry>
-                
                 <term>x</term>
-                
                 <listitem>
-                    
                     <para>nobs x 1 またはnobs x nvar のdouble行列</para>
-                    
                 </listitem>
-                
             </varlistentry>
-            
             <varlistentry>
-                
                 <term>y</term>
-                
                 <listitem>
-                    
                     <para>nobs x 1 または nobs x nvar のdouble行列</para>
-                    
                 </listitem>
-                
             </varlistentry>
-            
             <varlistentry>
-                
                 <term>C</term>
-                
                 <listitem>
-                    
                     <para>doublesの正方行列, 経験的共分散</para>
-                    
                 </listitem>
-                
             </varlistentry>
-            
         </variablelist>
-        
     </refsection>
-    
     <refsection>
-        
         <title>説明</title>
-        
         <para>
-            
             x が nobs x 1 行列の場合,
-            
             <literal>cov(x)</literal> はxの共分散を nobs-1 で正規化して返します.
-            
         </para>
-        
         <para>
-            
             x が nobs x nvar 行列の場合,
-            
             <literal>cov(x)</literal> は xの列の nvar x nvar 共分散行列を
-            
             nobs - 1で正規化して返します.
-            
             ここで,xの各列は変数でxの各行は観測値です.
-            
         </para>
-        
         <para>
-            
             x と y が nobs x 1 の行列の場合,
-            
             <literal>cov(x, y)</literal> は x および y の2 x 2 共分散行列,
-            
             nobs-1で正規化したものを返します.
-            
             ただし,nobsは観測値の数です.
-            
         </para>
-        
         <para>
-            
             <literal>cov(x, 0)</literal> は <literal>cov(x)</literal> と同じ,
-            
             <literal>cov(x, y, 0)</literal> は <literal>cov(x, y)</literal>と同じです.
-            
             この場合, 母集団が正規分布の場合,
-            
             Cは共分散行列のバイアスなしの最良の推定値です.
-            
         </para>
-        
         <para>
-            
             <literal>cov(x, 1)</literal> および
-            
             <literal>cov(x, y, 1)</literal> は　nobs で正規化します.
-            
             この場合, Cは観測量の平均に関する2次モーメント行列です.
-            
         </para>
-        
         <para>
-            
             XおよびYの共分散は次のように定義されます:
-            
         </para>
-        
         <para>
-            
             <latex>
-                
                 Cov(X, Y) = E( (X-E(X)) (Y-E(Y))^T )
-                
             </latex>
-            
         </para>
-        
         <para>
-            
             ただし, E は期待値です.
-            
         </para>
-        
         <para>
-            
             この関数は Matlabと互換性があります.
-            
         </para>
-        
         <para>
-            
         </para>
-        
     </refsection>
-    
     <refsection>
-        
         <title>例</title>
-        
         <programlisting role="example"><![CDATA[
 x = [1; 2];
 y = [3; 4];
@@ -206,7 +113,6 @@ C = cov(x, y)
 expected = [0.5, 0.5; 0.5, 0.5];
 C = cov([x, y])
    ]]></programlisting>
-        
         <programlisting role="example"><![CDATA[
 x = [230; 181; 165; 150; 97; 192; 181; 189; 172; 170];
 y = [125; 99; 97; 115; 120; 100; 80; 90; 95; 125];
@@ -217,7 +123,6 @@ expected = [
 C = cov(x, y)
 C = cov([x, y])
    ]]></programlisting>
-        
         <programlisting role="example"><![CDATA[
 // Source [3]
 A = [
@@ -234,53 +139,28 @@ S = [
 ];
 C = cov(A)
    ]]></programlisting>
-        
     </refsection>
-    
     <refsection>
-        
         <title>参考文献</title>
-        
         <para>
-            
             <ulink url="http://en.wikipedia.org/wiki/Covariance_matrix">Wikipedia: Covariance matrix</ulink>
-            
         </para>
-        
         <para>
-            
             [3] <ulink url="http://www.itl.nist.gov/div898/handbook/pmc/section5/pmc541.htm">NIST/SEMATECH e-Handbook of Statistical Methods, 6.5.4.1. Mean Vector and Covariance Matrix</ulink>
-            
         </para>
-        
         <para>
-            
             "Introduction to probability and statistics for engineers and scientists", Sheldon Ross
-            
         </para>
-        
     </refsection>
-    
     <refsection>
-        
         <title>履歴</title>
-        
         <revhistory>
-            
             <revision>
-                
                 <revnumber>5.5.0</revnumber>
-                
                 <revdescription>mvvacov(廃止予定)を改善するために,
-                    
                     cov 関数が追加されました
                 </revdescription>
-                
             </revision>
-            
         </revhistory>
-        
     </refsection>
-    
 </refentry>
-

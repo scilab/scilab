@@ -160,9 +160,9 @@
                         </para>
                         <latex>
                             $$
-                            S^(2) (x_1) = 0
-                            \vdots
-                            S^(2) (x_n) = 0
+                            S^{(2)} (x_1) = 0 \\
+                            \vdots \\
+                            S^{(2)} (x_n) = 0 \\
                             $$
                         </latex>
                         <para>This method is only available for Real and complex data types.
@@ -176,12 +176,12 @@
                         </para>
                         <latex>
                             $$
-                            S^(3) (x_2^-) = S^(3) (x_2^+)
-                            \vdots
-                            S^(3) (x_{n-1}^-) = S^(3) (x_{n-1}^+)
+                            S^{(3)} (x_2^-) = S^{(3)} (x_2^+) \\
+                            \vdots \\
+                            S^{(3)} (x_{n-1}^-) = S^{(3)} (x_{n-1}^+) \\
                             $$
                         </latex>
-                        <para>This method is only available for Real and complex data types.
+                        <para>This method is only available for Real and Complex data types.
                         </para>
                     </listitem>
                 </itemizedlist>
@@ -315,6 +315,23 @@
                 <para>SCI/modules/scicos_blocks/macros/Sources/FROMWSB.sci</para>
             </listitem>
         </itemizedlist>
+    </refsection>
+    <refsection id="Example_FROMWSB">
+        <title>Example</title>
+        <programlisting role="example"><![CDATA[ 
+            // Create the variable to load from
+            V.time = (1:1000)'; //the values must be on a column vector
+            V.values = cos(2* %pi * V.time / 20); 
+            ]]></programlisting>
+        <para>
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/sources_pal/en_US/FROMWSB_en_US.zcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata align="center" fileref="../../../../examples/sources_pal/en_US/FROMWSB_en_US.zcos" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+        </para>
     </refsection>
     <refsection id="Seealso_FROMWSB">
         <title>See also</title>

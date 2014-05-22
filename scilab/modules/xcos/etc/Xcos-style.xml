@@ -412,8 +412,8 @@
         <add as="displayedLabel" value="x  == %s&lt;br/&gt;x' == %s"/>
     </add>
     <!-- MODELICA -->
-    <add as="MBLOCK" extend="Icon">
-        <add as="image" value="$SCILAB/modules/xcos/images/blocks/Modelica.svg"/>
+    <add as="MBLOCK" extend="blockWithLabel">
+        <add as="displayedLabel" value="Modelica&lt;BR&gt; generic"/>
     </add>
     <add as="FROMMO" extend="blockWithLabel">
         <add as="shape" value="hexagon"/>
@@ -759,8 +759,8 @@
         <add as="fillColor" value="white"/>
     </add>
     <add as="RELATIONALOP" extend="blockWithLabel">
-        <!-- FIXME : Show parameters over block  -->
-        <add as="displayedLabel" value="Relational&lt;BR&gt;         op : &amp;&lt;"/>
+        <add as="displayedLabel"/>
+        <!-- value for the label defined in the interface function of block -->  
     </add>
     <add as="TEXT_f" extend="Label">
         <!-- <add as="displayedLabel" value="Text"/>  -->

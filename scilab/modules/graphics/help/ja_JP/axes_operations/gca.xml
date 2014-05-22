@@ -1,76 +1,152 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <!--
+
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+
  * Copyright (C) INRIA - Djalel Abdemouche
+
  * 
+
  * This file must be used under the terms of the CeCILL.
+
  * This source file is licensed as described in the file COPYING, which
+
  * you should have received as part of this distribution.  The terms
+
  * are also available at    
+
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+
  *
+
  -->
+
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="gca">
+    
     <refnamediv>
+        
         <refname>gca</refname>
+        
         <refpurpose>カレントの軸のハンドルを返す. </refpurpose>
+        
     </refnamediv>
+    
     <refsynopsisdiv>
+        
         <title>呼び出し手順</title>
+        
         <synopsis>a = gca()</synopsis>
+        
     </refsynopsisdiv>
+    
     <refsection>
-        <title>パラメータ</title>
+        
+        <title>引数</title>
+        
         <variablelist>
+            
             <varlistentry>
+                
                 <term>a</term>
+                
                 <listitem>
+                    
                     <para>カレント軸エンティティのハンドル (ハンドル型).</para>
+                    
                 </listitem>
+                
             </varlistentry>
+            
         </variablelist>
+        
     </refsection>
+    
     <refsection>
+        
         <title>説明</title>
+        
         <para>
-            このルーチンはカレントの図のカレント軸のハンドルを返す.
+            
+            このルーチンは,カレントの図のカレント軸のハンドルを返します.
+            
         </para>
+        
     </refsection>
+    
     <refsection>
+        
         <title>例</title>
+        
         <programlisting role="example"><![CDATA[ 
+
 subplot(211)
-a=gca() //get the current axes
+
+a=gca() //カレントの軸を取得
+
 a.box="off";
+
 t=-%pi:0.3:%pi;plot3d(t,t,sin(t)'*cos(t),80,50,'X@Y@Z',[5,2,4]);
+
 subplot(212)
-plot2d(); //simple plot
-a=gca() //get the current axes
+
+plot2d(); //簡単なプロット
+
+a=gca() //カレントの軸を取得
+
 a.box="off";
+
 a.x_location="middle";
+
 a.parent.background=4;
-delete(gca()) // delete the current axes    
-xdel(0) //delete a graphics window 
+
+delete(gca()) // カレントの軸を削除
+
+xdel(0) //カレントのウインドウを削除
+
  ]]></programlisting>
+        
     </refsection>
+    
     <refsection role="see also">
+        
         <title>参照</title>
+        
         <simplelist type="inline">
+            
             <member>
+                
                 <link linkend="gda">gda</link>
+                
             </member>
+            
             <member>
+                
                 <link linkend="gcf">gcf</link>
+                
             </member>
+            
             <member>
+                
                 <link linkend="gce">gce</link>
+                
             </member>
+            
             <member>
+                
                 <link linkend="get">get</link>
+                
             </member>
+            
             <member>
+                
                 <link linkend="graphics_entities">graphics_entities</link>
+                
             </member>
+            
         </simplelist>
+        
     </refsection>
+    
 </refentry>
+

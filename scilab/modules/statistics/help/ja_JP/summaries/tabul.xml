@@ -92,11 +92,9 @@
 X = [2 8 0 3 7 6 8 7 9 1 6 7 7 2 5 2 2 2 9 7]
 m1 = tabul(X)
 m2 = tabul(X, "i")
-
 // 二番目の例
 X = ["ba" "baba" "a" "A" "AA" "a" "aa" "aa" "aa" "A" "ba"]
 m = tabul(X,"i")
-
 // 3番目の例
 n = 50000;
 X = grand(n,1,"bin",70,0.5);
@@ -104,7 +102,6 @@ m = tabul(X,"i");
 clf()
 plot2d3(m(:,1), m(:,2)/n)
 xtitle("empirical probabilities of B(70,0.5)")
-
 // 最後の例 : scilabライセンスにおける単語の頻度を計算
 text = read(SCI+"/license.txt",-1,1,"(A)"); // scilabライセンスを読む
 bigstr = strcat(text," ");                  // 全ての行を一つの大きな文字列にする

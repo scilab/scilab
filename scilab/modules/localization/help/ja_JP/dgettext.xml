@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2007 - INRIA - Allan CORNET
+ * Copyright (C) 2007 - INRIA - Sylvestre LEDRU
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ -->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="dgettext">
+    
+    <refnamediv>
+        
+        <refname>dgettext</refname>
+        
+        <refpurpose>
+            
+            カレントのロケールおよび指定したドメインに翻訳されたテキストを取得
+            
+        </refpurpose>
+        
+    </refnamediv>
+    
+    <refsynopsisdiv>
+        
+        <title>呼び出し手順</title>
+        
+        <synopsis>msg=dgettext(domain, myString)</synopsis>
+        
+    </refsynopsisdiv>
+    
+    <refsection>
+        
+        <title>引数</title>
+        
+        <variablelist>
+            
+            <varlistentry>
+                
+                <term>domain</term>
+                
+                <listitem>
+                    
+                    <para>文字列, メッセージドメインの名前</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>myString</term>
+                
+                <listitem>
+                    
+                    <para>文字列, 翻訳するメッセージ</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+        </variablelist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>説明</title>
+        
+        <para>
+            
+            <literal>dgettext</literal> は文字列 <literal>myString</literal>を
+            
+            指定したメッセージドメイン<literal>domain</literal>の
+            
+            カレントのロケールへの翻訳したものを取得します.
+            
+        </para>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>例</title>
+        
+        <programlisting role="example"><![CDATA[ 
+dgettext('scilab','Startup execution:')
+ ]]></programlisting>
+        
+    </refsection>
+    
+    <refsection role="see also">
+        
+        <title>参照</title>
+        
+        <simplelist type="inline">
+            
+            <member>
+                
+                <link linkend="gettext">gettext</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="_">_</link>
+                
+            </member>
+            
+        </simplelist>
+        
+    </refsection>
+    
+</refentry>
+

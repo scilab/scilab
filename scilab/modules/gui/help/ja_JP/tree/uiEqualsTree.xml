@@ -46,10 +46,8 @@ node1 = uiCreateNode('Node 1', 'default', 'node1Callback')
 node2 = uiCreateNode('Node 2', 'default', 'node2Callback')
 myTree1 = uiCreateTree(root, node1, node2)
 myTree2 = uiCreateTree(root, node1, node2)
-
 // myTree1 と myTree2を比較
 isEqual = uiEqualsTree(myTree1, myTree2)
-
 // will return 'isEqual = T'
  ]]></programlisting>
     </refsection>

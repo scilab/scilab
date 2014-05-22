@@ -89,7 +89,6 @@ FORCE_HDF_1.8_API =  -DH5Dopen_vers=2 -DH5Topen_vers=2 -DH5Dcreate_vers=2 -DH5Ai
 libscihdf5_la_CPPFLAGS = -I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \
 				-I$(srcdir)/src/cpp/ \
-				-I$(srcdir)/src/jni/ \
 				-I$(top_srcdir)/modules/output_stream/includes/ \
 				-I$(top_srcdir)/modules/api_scilab/includes/ \
                 -I$(top_srcdir)/modules/jvm/includes/ \

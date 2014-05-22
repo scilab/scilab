@@ -146,28 +146,20 @@
     doc = xmlReadStr(s);
     first = doc.root.children(1);
     b = first.children(1);
-
     // "new_attribute"という名前の属性を新規に追加
     first.attributes.new_attribute = "value";
-
     // firstの子の名前空間を表示
     first.namespace
-
     // ノードの内容を表示
     first.content
-
     // bは親を有します
     b.parent
-
     // firstに子を追加できます.
     first.children(3) = b
-
     // 整数でない添字により挿入を行えます.
     first.children(1.5) = "<d> Scilab</d>"
-
     // firstの子が上の行で定義されています...
     b.line
-
     xmlDump(first)
     xmlDelete(doc);
     ]]></programlisting>
@@ -186,20 +178,15 @@
         "<b>Hello</b><c> world</c></bar:a></root>"
     doc = xmlReadStr(s);
     first = doc.root.children(1);
-
     // 属性を読み込みます
     first.attributes.att
-
     // 空の属性を設定します
     first.attributes.att = "";
-
     // 新しい属性を追加します
     first.attributes.hello = "world";
-
     // 添字を使用します
     first.attributes(1) = "Bonjour";
     first.attributes(1)
-
     xmlDump(first)
     xmlDelete(doc);
     ]]></programlisting>
@@ -229,7 +216,6 @@
     ns = doc.root.children(1).namespace;
     ns.href
     ns.prefix
-
     xmlDelete(doc);
     ]]></programlisting>
     </refsection>
@@ -251,31 +237,22 @@
         <programlisting role="example"><![CDATA[
     doc = xmlReadStr("<root><a>Hello</a><b> world</b></root>");
     c = doc.root.children;
-
     // 2つの要素があることが確認できます
     c.size
-
     // 最初の要素を読み込みます
     xmlDump(c(1))
-
     // 特定の要素を他の要素で置換します
     c(1) = "<c>Hello</c>"
-
     // 新しい要素を最初の要素と二番目の要素の間に挿入します
     c(1.5) = "<d> Scilab</d>" // 1.5 or 1.234...
-
     // 新しい要素を末尾またはリストの先頭に挿入します
     c(0) = "<e>Head </e>"
     c(217) = "<f> Tail</f>"
-
     xmlDump(c)
-
     // ノードの名前を取得します
     c.name
-
     // ノードの内容を取得します
     c.content
-
     xmlDelete(doc);
     ]]></programlisting>
     </refsection>
@@ -293,13 +270,10 @@
     doc = xmlReadStr("<root><a><b>Hello</b></a><a>World</a></root>");
     s = xmlXPath(doc, "//a")
     s.size
-
     s(1).content
     s(2).content
-
     // または ...
     s.content
-
     xmlDelete(doc);
     ]]></programlisting>
     </refsection>
@@ -313,12 +287,10 @@
     dtd = xmlDTD("SCI/modules/xml/tests/unit_tests/library.dtd");
     schema = xmlSchema("SCI/modules/xml/tests/unit_tests/library.xsd");
     rng = xmlRelaxNG("SCI/modules/xml/tests/unit_tests/library.rng");
-
     // 検証
     xmlValidate(doc, dtd);
     xmlValidate(doc, rng);
     xmlValidate(doc, schema);
-
     xmlDelete("all");
     ]]></programlisting>
     </refsection>

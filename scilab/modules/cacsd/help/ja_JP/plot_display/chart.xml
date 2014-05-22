@@ -13,7 +13,10 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="chart">
     <refnamediv>
         <refname>chart</refname>
-        <refpurpose>ニコルス線図における等高線プロット</refpurpose>
+        <refpurpose>
+            ニコルス線図.
+            <emphasis role="bold">この関数は廃止されます.</emphasis>
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
@@ -23,7 +26,7 @@
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>gain</term>
@@ -102,7 +105,6 @@ s=poly(0,'s')
 h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
 black(h,0.01,100)
 chart(list(1,0,2,3));
-
 clf()
 h1=h*syslin('c',(s^2+2*0.1*15.1*s+228.01)/(s^2+2*0.9*15*s+225))
 black([h1;h],0.01,100,['h1';'h'])
@@ -119,6 +121,21 @@ chart(list(1,0));
             <member>
                 <link linkend="black">black</link>
             </member>
+            <member>
+                <link linkend="nicholschart">nicholschart</link>
+            </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revdescription>
+                    関数が廃止予定となりました. 5.5.1で削除されます. 
+                    代わりに <link linkend="nicholschart">nicholschart</link> を使用してください.
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

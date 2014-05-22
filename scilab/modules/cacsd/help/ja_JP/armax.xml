@@ -131,7 +131,6 @@ Acoeff=Armaest('a');    //Coefficients of the polynomial A(x)
 Bcoeff=Armaest('b')     //Coefficients of the polynomial B(x)
 Dcoeff=Armaest('d');    //Coefficients of the polynomial D(x)
 [Ax,Bx,Dx]=arma2p(Armaest)   //Results in polynomial form. 
-
 //-Ex2- Arma1: y_t -0.8*y_{t-1} + 0.2*y_{t-2} =  sig*e(t)
 ny=1,nu=1;sig=0.001;
 // First step: simulation the Arma1 model, for that we define

@@ -13,14 +13,14 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="matfile_open">
     <refnamediv>
         <refname>matfile_open</refname>
-        <refpurpose>Matlab V5 バイナリ MATファイルを開く.</refpurpose>
+        <refpurpose>Matlab バイナリ MAT-ファイルを開く.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>fd = matfile_open(filename[, mode])</synopsis>
+        <synopsis>fd = matfile_open(filename[, mode[, version]])</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>filename</term>
@@ -42,7 +42,27 @@
                         </listitem>
                         <listitem>
                             <para>
-                                <emphasis>"w"</emphasis>: 書き込み用にファイルを開く.
+                                <emphasis>"w"</emphasis>: 書き込み用に空のファイルを作成またはファイルを開く.
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>version</term>
+                <listitem>
+                    <para>
+                        スカラー文字列: ファイル形式のバージョン (デフォルト:<literal>"5"</literal>).
+                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                <emphasis>"5"</emphasis>: Matlab 5 ファイル.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <emphasis>"7.3"</emphasis>: Matlab 7.3 ファイル.
                             </para>
                         </listitem>
                     </itemizedlist>
@@ -62,6 +82,26 @@
             Matlab バイナリ MATファイルをデータ読み込み用または書き込み用に
             開きます.
         </para>
+        <para>
+            <warning>
+                <varname>mode</varname> が <literal>w</literal>に設定された場合, 
+                <varname>filename</varname> の内容はリセットされます.
+            </warning>
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+A = rand(10, 10);
+B = sprand(100, 100, 0.1);
+savematfile("test_matfile.mat", "A", "B", "-v6");
+clear();
+fd = matfile_open("test_matfile.mat");
+matfile_listvar(fd)
+matfile_close(fd);
+//fd = matfile_open("test_matfile.mat", "w"); // 空のtest_matfile.mat
+//fd = matfile_open("test_matfile.mat", "w", "7.3"); // Matlab 7.3 ファイル用の空の test_matfile.mat
+ ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>参照</title>
@@ -89,5 +129,14 @@
             </literal>
             )を使用しています.
         </para>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>Matlab 7.3ファイルをサポート.</revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

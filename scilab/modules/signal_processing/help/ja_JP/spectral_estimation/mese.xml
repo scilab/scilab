@@ -76,7 +76,6 @@
             plot(fr,xm)
         </scilab:image>
     </refsection>
-    
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[ 

@@ -82,6 +82,8 @@ public class XcosCodec extends mxCodec {
         OrientationCodec.register();
     }
 
+    public static final Logger LOG = Logger.getLogger(XcosCodec.class.getSimpleName());
+
     /**
      * Default constructor
      */
@@ -136,8 +138,13 @@ public class XcosCodec extends mxCodec {
     @Override
     public Object lookup(String id) {
         final Element element = getDocument().getElementById(id);
-        final mxObjectCodec decoder = mxCodecRegistry.getCodec(element.getNodeName());
-        return decoder.decode(this, element);
+        if (element == null) {
+            LOG.warning("Your file might be corrupted, '" + id + "' is not indexed in the document ID list");
+            return null;
+        } else {
+            final mxObjectCodec decoder = mxCodecRegistry.getCodec(element.getNodeName());
+            return decoder.decode(this, element);
+        }
     }
 
     public static Object enableBinarySerialization(ScilabList dictionary) {

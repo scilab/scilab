@@ -11,8 +11,8 @@
     <refsection>
         <title>説明</title>
         <para>
-            <literal>whereami()</literal>を含む命令への呼び出しツリーを表示します.
-            <literal>pause</literal>レベル内で使用可能です.
+	  <code>whereami()</code>を含む命令への呼び出しツリーを表示します.
+          <function>pause</function>レベル内で使用可能です.
         </para>
     </refsection>
     <refsection>

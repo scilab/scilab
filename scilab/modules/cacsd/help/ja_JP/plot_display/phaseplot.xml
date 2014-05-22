@@ -179,7 +179,6 @@
                        ["$\frac{s^2+18 s+100}{s^2+6.06 s+102.1}$";
                         "$\frac{s^2+3.02 s+228.01}{s^2+27 s+225}$"])
     title('Phaseplot')
-
     ]]></programlisting>
         <para>
             <scilab:image localized="true">
@@ -214,11 +213,11 @@
         </simplelist>
     </refsection>
     <refsection>
-        <title>ヒストリ</title>
+        <title>履歴</title>
         <revhistory>
             <revision>
                 <revnumber>5.4.0</revnumber>
-                <revremark>Function phaseplot introduced.</revremark>
+                <revremark>関数phaseplotが導入されました.</revremark>
             </revision>
         </revhistory>
     </refsection>

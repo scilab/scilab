@@ -2,12 +2,12 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="error_table" xml:lang="ja">
     <refnamediv>
         <refname>error_table</refname>
-        <refpurpose>エラーメッセージのテーブル</refpurpose>
+        <refpurpose>エラーメッセージの表</refpurpose>
     </refnamediv>
     <refsection>
         <title>説明</title>
         <para>このページは
-            定義済みエラーメッセージとそれらの関連するエラー番号のテーブルを示します.
+            定義済みエラーメッセージとそれらの関連するエラー番号の表を示します.
             これらのエラーメッセージのいくつかは,
             パーサエラーや特定の組み込みエラーのために
             Scilab自体で使用されています.
@@ -315,10 +315,29 @@
         <para>278 "%s: Input arguments should have the same formal variable
             name."
         </para>
+        <para>
+            <note>
+                将来のリリースでは変更される可能性があるため,
+                このリストの使用は避けてください.
+            </note>
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+    error(43);
+    // Display "Not implemented in scilab..."
+    error(42);
+    // Display "Incompatible input argument."
+    lasterror()
+ ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">
+            <member>
+                <link linkend="error">error</link>
+            </member>
             <member>
                 <link linkend="warning">warning</link>
             </member>

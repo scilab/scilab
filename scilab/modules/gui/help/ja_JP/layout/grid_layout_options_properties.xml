@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="grid_layout_options_properties">
+    <refnamediv>
+        <refname>grid配置オプションプロパティ</refname>
+        <refpurpose>grid配置オプションプロパティの説明.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>
+            layout_options = createLayoutOptions("grid")
+            layout_options = createLayoutOptions("grid", size)
+            layout_options = createLayoutOptions("grid", size, padding)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>size</term>
+                <listitem>
+                    <para>
+                        <literal>[width, heigth]</literal> 1行2列double行列, 
+                        デフォルトは [0,0]
+                    </para>
+                    <para>
+                        要素におけるグリッドの
+                        <literal>width</literal> および <literal>heigth</literal> 
+                        (ピクセルではない).
+                    </para>
+                    <para>
+                        グリッドの行または列上の要素数を規定しない
+                        <literal>width</literal> または <literal>heigth</literal> 
+                        のどちらかにの値を 0　にする.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>padding</term>
+                <listitem>
+                    <para>
+                        <literal>[pad_x, pad_y]</literal> 1行2列double行列, 
+                        デフォルトは [0,0].
+                    </para>
+                    <para>グリッド要素間のパディング(単位:ピクセル).</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>layout_options</term>
+                <listitem>
+                    <para>作成した layout_options.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            この関数は,
+            uicontrols <literal>layout_options</literal> 属性を設定する
+            グリッド配置オプションを作成します.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+         //Create a figure with a grid layout 
+         f = figure( ...
+         "dockable"        , "off",...
+         "infobar_visible" , "off",...
+         "toolbar"         , "none",...
+         "menubar_visible" , "off",...
+         "menubar"         , "none",...
+         "default_axes"    , "off",...
+         "layout"          , "grid",...
+         "visible"         , "on");
+         //Set the grid to be 2 by 3 elements
+         lay_opt = createLayoutOptions("grid", [2,3]);
+         set(f,"layout_options",lay_opt);
+         //Insert uicontrols on the grid
+         //Each uicontrol is inserted from left to right
+         //and top to bottom
+         c = createConstraints("grid"); //Create the constraint for nested uicontrols
+         u_grid1 = uicontrol(f,...
+         "style", "frame",...
+         "backgroundcolor", [1 0 0],...
+         "constraints", c);
+         sleep(500);
+         u_grid2 = uicontrol(f,...
+         "style", "frame",...
+         "backgroundcolor", [0 1 0],...
+         "constraints", c);
+         sleep(500);
+         u_grid3 = uicontrol(f,...
+         "style", "frame",...
+         "backgroundcolor", [0 0 1],...
+         "constraints", c);
+         sleep(500);
+         u_grid4 = uicontrol(f,...
+         "style", "frame",...
+         "backgroundcolor", [1 1 0],...
+         "constraints", c);
+         sleep(500);
+         u_grid5 = uicontrol(f,...
+         "style", "frame",...
+         "backgroundcolor", [1 0 1],...
+         "constraints", c);
+         sleep(500);
+         u_grid6 = uicontrol(f,...
+         "style", "frame",...
+         "backgroundcolor", [0 1 1],...
+         "constraints", c);
+         ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="layout">layout</link>
+            </member>
+            <member>
+                <link linkend="createLayoutOptions">createLayoutOptions</link>
+            </member>
+            <member>
+                <link linkend="uicontrol">uicontrol</link>
+            </member>
+            <member>
+                <link linkend="uicontrol_properties">uicontrol_properties</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>
+                    関数 <function>createBorder</function> が導入されました.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

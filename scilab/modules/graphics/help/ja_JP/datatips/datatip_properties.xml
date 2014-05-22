@@ -1,0 +1,540 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="ja" xml:id="datatip_properties">
+    
+    <refnamediv>
+        
+        <refname>datatipプロパティ</refname>
+        
+        <refpurpose>datatipエンティティプロパティの説明
+            
+        </refpurpose>
+        
+    </refnamediv>
+    
+    <refsection>
+        
+        <title>説明</title>
+        
+        <para>datatipエンティティはグラフィックエンティティ階層の葉です.
+            
+            このエンティティはdatatipのパラメータを定義します.
+            
+        </para>
+        
+        <variablelist>
+            
+            <varlistentry>
+                
+                <term>parent: </term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        <literal>
+                            
+                            <link linkend="polyline_properties">polyline_properties</link>
+                            
+                        </literal>
+                        
+                        ヘルプページを参照.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>children: </term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        <literal>
+                            
+                            <link linkend="polyline_properties">polyline_properties</link>
+                            
+                        </literal>
+                        
+                        ヘルプページを参照.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>visible: </term>
+                
+                <listitem>
+                    
+                    <para> 
+                        
+                        <literal>
+                            
+                            <link linkend="polyline_properties">polyline_properties</link>
+                            
+                        </literal>
+                        
+                        ヘルプページを参照.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>data: </term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        <literal>
+                            
+                            <link linkend="polyline_properties">polyline_properties</link>
+                            
+                        </literal>
+                        
+                        ヘルプページを参照.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>box_mode: </term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        このフィールドはdatatipの<literal>box_mode</literal>プロパティの
+                        
+                        デフォルト値を表します.
+                        
+                        この値は,
+                        
+                        <literal>"on" </literal>(箱を描画) または
+                        
+                        <literal>"off"</literal> (箱を描画しない)とします.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>label_mode: </term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        このフィールドはdatatipの<literal>label_mode</literal>プロパティの
+                        
+                        デフォルト値を表します. この値は,
+                        
+                        <literal>"on" </literal>(ラベルを描画) または
+                        
+                        <literal>"off"</literal> (ラベルを描画しない)とします.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>orientation: </term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        このフィールドは,ポリラインの点に関するテキストボックスの位置を指定します.
+                        
+                        指定可能な値は 0, 1, 2 または 3 です.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>z_component: </term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        このフィールドは箱の中にz位置を追加します.
+                        
+                        この値は,<literal>"on" </literal>(z位置を書く)または
+                        
+                        <literal>"off"</literal> (z位置を書かない)とします.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>auto_orientation: </term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        このフィールドはdatatipの<literal>auto_orientation</literal>プロパティの
+                        
+                        デフォルト値を表します. この値は,
+                        
+                        <literal>"on" </literal>(自動的に向きを設定) または
+                        
+                        <literal>"off"</literal> (自動的に向きを設定しない)とします.
+                        
+                        <literal>"off"</literal>の場合については,<literal>orientation</literal>
+                        
+                        プロパティを参照ください.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>interp_mode: </term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        このフィールドはtipの位置の補間モードを指定します.
+                        
+                        この値は <literal>"on" </literal> (格子点間で補間を行う)または
+                        
+                        <literal>"off" </literal> (tipsは格子点にのみ配置可能)とします.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>display_function: </term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        <literal>
+                            
+                            <link linkend="polyline_properties">polyline_properties</link>
+                            
+                        </literal>
+                        
+                        のヘルプページを参照.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>font_foreground: </term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        このフィールドは,<literal>font_foreground</literal>プロパティのデフォルト値を有します.
+                        
+                        この値は(カレントのカラーマップに関する)色添字とします.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>foreground: </term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        このフィールドは,箱を描画する際に使用される<literal>foreground</literal>
+                        
+                        プロパティのデフォルト値を有します.
+                        
+                        この値は(カレントのカラーマップに関する)色添字とします.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>background: </term>
+                
+                <listitem>
+                    
+                    <para> 
+                        
+                        <literal>
+                            
+                            <link linkend="polyline_properties">polyline_properties</link>
+                            
+                        </literal>
+                        
+                        のヘルプページを参照.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>mark_mode: </term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        <literal>
+                            
+                            <link linkend="polyline_properties">polyline_properties</link>
+                            
+                        </literal>
+                        
+                        のヘルプページを参照.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>mark_style: </term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        <literal>
+                            
+                            <link linkend="polyline_properties">polyline_properties</link>
+                            
+                        </literal>
+                        
+                        のヘルプページを参照.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>mark_size_unit: </term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        <literal>
+                            
+                            <link linkend="polyline_properties">polyline_properties</link>
+                            
+                        </literal>
+                        
+                        のヘルプページを参照.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>mark_size: </term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        <literal>
+                            
+                            <link linkend="polyline_properties">polyline_properties</link>
+                            
+                        </literal>
+                        
+                        のヘルプページを参照.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>mark_foreground: </term>
+                
+                <listitem>
+                    
+                    <para> 
+                        
+                        <literal>
+                            
+                            <link linkend="polyline_properties">polyline_properties</link>
+                            
+                        </literal>
+                        
+                        のヘルプページを参照.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>mark_background: </term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        <literal>
+                            
+                            <link linkend="polyline_properties">polyline_properties</link>
+                            
+                        </literal>
+                        
+                        のヘルプページを参照.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>user_data: </term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        <literal>
+                            
+                            <link linkend="polyline_properties">polyline_properties</link>
+                            
+                        </literal>
+                        
+                        のヘルプページを参照.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>tag: </term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        このフィールドは一般にコントロールを識別する際に使用される
+                        
+                        文字列を有します.
+                        
+                        <literal>
+                            
+                            <link linkend="figure_properties">figure_properties</link>
+                            
+                        </literal>
+                        
+                        のヘルプページを参照.
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+        </variablelist>
+        
+    </refsection>
+    
+    <refsection role="see also">
+        
+        <title>参照</title>
+        
+        <simplelist type="inline">
+            
+            <member>
+                
+                <link linkend="polyline_properties">polyline_properties</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="figure_properties">figure_properties</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="graphics_entities">graphics_entities</link>
+                
+            </member>
+            
+        </simplelist>
+        
+    </refsection>
+    
+</refentry>
+

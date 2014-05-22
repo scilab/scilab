@@ -35,16 +35,21 @@ import org.scilab.modules.gui.editor.PolylineHandler;
 public class LegendHandler {
 
     public static Integer searchLegend(Integer uid) {
-
         if (uid == null) {
             return null;
         }
-        Integer childCount = (Integer)GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_CHILDREN_COUNT__);
+
+        int childCount = (Integer)GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_CHILDREN_COUNT__);
         Integer[] child = (Integer[])GraphicController.getController().getProperty(uid, GraphicObjectProperties.__GO_CHILDREN__);
-        for (Integer i = 0; i < childCount; i++) {
-            Integer type = (Integer)GraphicController.getController().getProperty(child[i], GraphicObjectProperties.__GO_TYPE__);
-            if (type == GraphicObjectProperties.__GO_LEGEND__) {
-                return child[i];
+        if (child != null) {
+            for (int i = 0; i < childCount; i++) {
+                Object o = GraphicController.getController().getProperty(child[i], GraphicObjectProperties.__GO_TYPE__);
+                if (o instanceof Integer) {
+                    Integer type = (Integer) o;
+                    if (type == GraphicObjectProperties.__GO_LEGEND__) {
+                        return child[i];
+                    }
+                }
             }
         }
         return null;
@@ -59,10 +64,10 @@ public class LegendHandler {
     */
 
     public static void setLegend(Integer axes, Integer polyline, String text) {
-
         if (text == null || text == "" || polyline == null || axes == null) {
             return;
         }
+
         Integer legend = searchLegend(axes);
         Integer[] dimension = { 0, 0 };
         ArrayList<String> texts = new ArrayList<String>();
@@ -71,8 +76,8 @@ public class LegendHandler {
         if (legend != null) {
             String[] textOld = (String[])GraphicController.getController().getProperty(legend, GraphicObjectProperties.__GO_TEXT_STRINGS__);
             Integer[] linksOld = (Integer[])GraphicController.getController().getProperty(legend, GraphicObjectProperties.__GO_LINKS__);
-            Integer length = linksOld.length;
-            for (Integer i = 0; i < length; i++) {
+            int length = linksOld.length;
+            for (int i = 0; i < length; i++) {
                 if (polyline != linksOld[i]) {
                     texts.add(textOld[i]);
                     links.add(linksOld[i]);
@@ -111,10 +116,10 @@ public class LegendHandler {
     */
 
     public static void removeLegend(Integer axes, Integer polyline) {
-
         if (polyline == null || axes == null) {
             return;
         }
+
         Integer legend = searchLegend(axes);
         Integer[] dimension = { 0, 0 };
         ArrayList<String> texts = new ArrayList<String>();
@@ -124,15 +129,15 @@ public class LegendHandler {
         } else {
             String[] textOld = (String[])GraphicController.getController().getProperty(legend, GraphicObjectProperties.__GO_TEXT_STRINGS__);
             Integer[] linksOld = (Integer[])GraphicController.getController().getProperty(legend, GraphicObjectProperties.__GO_LINKS__);
-            Integer remove = -1;
-            for (Integer i = 0; i < linksOld.length; i++) {
+            int remove = -1;
+            for (int i = 0; i < linksOld.length; i++) {
                 if (polyline != linksOld[i]) {
                     links.add(linksOld[i]);
                 } else {
                     remove = i;
                 }
             }
-            for (Integer i = 0; i < textOld.length; i++) {
+            for (int i = 0; i < textOld.length; i++) {
                 if (i != (textOld.length - remove - 1)) {
                     texts.add(textOld[i]);
                 }
@@ -164,7 +169,6 @@ public class LegendHandler {
     */
 
     public static String getLegendText(Integer axes, Integer polyline) {
-
         if (polyline != null && axes != null) {
             Integer legend = searchLegend(axes);
             if (legend == null) {
@@ -172,7 +176,7 @@ public class LegendHandler {
             } else {
                 String[] textOld = (String[])GraphicController.getController().getProperty(legend, GraphicObjectProperties.__GO_TEXT_STRINGS__);
                 Integer[] linksOld = (Integer[])GraphicController.getController().getProperty(legend, GraphicObjectProperties.__GO_LINKS__);
-                for (Integer i = 0; i < linksOld.length; i++) {
+                for (int i = 0; i < linksOld.length; i++) {
                     if (linksOld[i] == polyline) {
                         return textOld[linksOld.length - i - 1];
                     }
@@ -191,7 +195,6 @@ public class LegendHandler {
     */
 
     public static void dragLegend(Integer legend, Integer[] position, Integer[] nextPosition) {
-
         ObjectSearcher searcher = new ObjectSearcher();
         Integer axes = searcher.searchParent(legend, GraphicObjectProperties.__GO_AXES__);
         Integer figure = searcher.searchParent(legend, GraphicObjectProperties.__GO_FIGURE__);
@@ -222,7 +225,6 @@ public class LegendHandler {
     * @return Links of the legend
     */
     public static Integer[] getLinks(Integer legend) {
-
         if (legend == null) {
             return null;
         } else {
@@ -237,7 +239,6 @@ public class LegendHandler {
     * @return Text of the legend
     */
     public static String[] getText(Integer legend) {
-
         if (legend == null) {
             return null;
         } else {
@@ -252,7 +253,6 @@ public class LegendHandler {
     * @return The legend position
     */
     public static Double[] getPosition(Integer legend) {
-
         if (legend == null) {
             return null;
         } else {

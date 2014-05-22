@@ -20,7 +20,7 @@
         <synopsis>[arc,resid]=armax1(r,s,q,y,u [,b0f])</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>y</term>
@@ -125,6 +125,24 @@ y(t)= coef'* z(t) + sig*e(t).
             この際, e(t-i)は推定値により置換されます.
             q=0の場合,この手法は逐次型のarmaxに完全に一致します.
         </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
+a = [1, -2.851, 2.717, -0.865];
+b = [0, 1, 1, 1];
+d = [1, 0.7, 0.2];
+ar = armac(a, b, d, 1, 1, 1);
+disp(_("Simulation of an ARMAX process:"));
+disp(ar);
+n = 300;
+u = -prbs_a(n, 1, int([2.5,5,10,17.5,20,22,27,35]*100/12));
+zd = narsimul(ar, u);
+// armax1を使用: 有色ノイズ同定
+// 同じ例を以下のように試すことができます
+[arc1, resid] = armax1(3,3,2,zd(1:n),u,1);
+disp(arc1);
+ ]]></programlisting>
     </refsection>
     <refsection>
         <title>重要な警告</title>

@@ -21,7 +21,7 @@
         <synopsis>[fd,SST,Sheetnames,Sheetpos] = xls_open(file_path)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>file_path</term>
@@ -33,7 +33,7 @@
             <varlistentry>
                 <term>fd</term>
                 <listitem>
-                    <para>数値, Excelストリームの論理ユニット.
+                    <para>数値: Excelストリームの論理ユニット.
                     </para>
                 </listitem>
             </varlistentry>
@@ -81,7 +81,9 @@
             使用することができます.
         </para>
         <para>
-            <warning> BIFF8 Excelファイル(最近のExcelファイルのバージョン(2003))のみが処理可能です.</warning> 
+          <warning>
+	    BIFF8 Excelファイル(最近のExcelファイルのバージョン(2003))のみが処理可能です.
+	  </warning> 
         </para>
     </refsection>
     <refsection>

@@ -20,18 +20,18 @@
         <synopsis>y = erf(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>実数ベクトルまたは行列</para>
+                    <para>ベクトルまたは行列</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>y</term>
                 <listitem>
-                    <para>(xと同じ大きさの)実数ベクトルまたは行列 </para>
+                    <para>(xと同じ大きさの)ベクトルまたは行列 </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -46,16 +46,21 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 deff('y=f(t)','y=exp(-t^2)');
 erf(0.5)-2/sqrt(%pi)*intg(0,0.5,f)
-
-
 x = [1+2*%i, -1+2*%i, 1e-6+2e-6*%i,0+2*%i];
 a=erf(x)
-
+// 以下と等価
 1-erfc(x)
 ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>アルゴリズム</title>
+        <para>
+            この関数は <ulink url="http://ab-initio.mit.edu/Faddeeva">Faddeevaパッケージ</ulink>
+            ライブラリに基づきます.
+        </para>
     </refsection>
     <refsection role="see also">
         <title>参照</title>
@@ -76,5 +81,14 @@ a=erf(x)
                 <link linkend="erfinv">erfinv</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>erf関数が複素数の要素をサポート</revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

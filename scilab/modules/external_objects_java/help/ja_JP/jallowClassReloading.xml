@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+*
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2010 - 2011 - Calixte DENIZET <calixte@contrib.scilab.org>
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+*
+*
+-->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="jallowClassReloading">
+    
+    <refnamediv>
+        
+        <refname>jallowClassReloading</refname>
+        
+        <refpurpose>クラスリロード機能を有効にする</refpurpose>
+        
+    </refnamediv>
+    
+    <refsynopsisdiv>
+        
+        <title>呼び出し手順</title>
+        
+        <synopsis>
+            
+            jallowClassReloading(bool)
+            
+            isAllowed = jallowClassReloading()
+            
+        </synopsis>
+        
+    </refsynopsisdiv>
+    
+    <refsection>
+        
+        <title>パラメータ</title>
+        
+        <variablelist>
+            
+            <varlistentry>
+                
+                <term>bool</term>
+                
+                <listitem>
+                    
+                    <para>論理値, 有効または無効</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>isAllowed</term>
+                
+                <listitem>
+                    
+                    <para>クラスのリロードの有効・無効を示す論理値
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+        </variablelist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>説明</title>
+        
+        <para>
+            
+            クラスのリロード機能を有効または無効にします.
+            
+            リロード機能はJavaフレームワークで配布されていないクラスで
+            
+            のみ利用可能です. 
+            
+            <literal>jimport</literal> 関数はこのパラメータを使用します.
+            
+        </para>
+        
+        <para>
+            
+            デフォルトで, この値はfalseに設定されています
+            
+            (開発用ツールのため).
+            
+        </para>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>例</title>
+        
+        <programlisting role="example"><![CDATA[
+               jallowClassReloading(%t);
+               jallowClassReloading()
+               jallowClassReloading(%f);
+      ]]></programlisting>
+        
+    </refsection>
+    
+    <refsection role="see also">
+        
+        <title>参照</title>
+        
+        <simplelist type="inline">
+            
+            <member>
+                
+                <link linkend="jimport">jimport</link>
+                
+            </member>
+            
+        </simplelist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>履歴</title>
+        
+        <revhistory>
+            
+            <revision>
+                
+                <revnumber>5.5.0</revnumber>
+                
+                <revremark>
+                    
+                    関数が導入されました. 'JIMS'モジュールに基づきます.
+                    
+                    JIMSモジュールとの動作上の主な違いは,
+                    
+                    <link linkend="jautoUnwrap">jautoUnwrap</link>がデフォルトで
+                    
+                    有効になっていることです.
+                    
+                </revremark>
+                
+            </revision>
+            
+        </revhistory>
+        
+    </refsection>
+    
+</refentry>
+
+
+
