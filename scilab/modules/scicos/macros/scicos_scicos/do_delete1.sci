@@ -155,7 +155,7 @@ function [scs_m,DEL,DELL]=do_delete1(scs_m,K,gr)
                         end
                         o1.to=o2.to;
 
-                        DEL = [DEL connected(1)] // supress one link
+                        DEL = [DEL connected(1)] // suppress one link
                         DELL=[DELL  connected(1)]
                         scs_m.objs(connected(2))=o1 //change link
 
@@ -203,7 +203,7 @@ function [scs_m,DEL,DELL]=do_delete1(scs_m,K,gr)
                         o1.to=o2.to;
 
 
-                        DEL=[DEL connected(1)] // supress one link
+                        DEL=[DEL connected(1)] // suppress one link
                         DELL=[DELL  connected(1)]
                         scs_m.objs(connected(2))=o1 //change link
 
@@ -251,5 +251,3 @@ function [scs_m,DEL,DELL]=do_delete1(scs_m,K,gr)
         scs_m.objs(k) = mlist("Deleted"); //** mark the object as "Deleted"
     end
 endfunction
-
-

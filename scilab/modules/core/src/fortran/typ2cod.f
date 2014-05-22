@@ -1,10 +1,10 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 c Copyright (C) INRIA
-c 
+c
 c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
 c you should have received as part of this distribution.  The terms
-c are also available at    
+c are also available at
 c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
       subroutine typ2cod(il,name,n)
@@ -20,7 +20,7 @@ c     following common defines the initial database of type names
       integer tp(maxtyp),ptr(maxtyp),ln(maxtyp),namrec(nmmax),ptmax
 cDEC$ IF DEFINED (FORDLL)
 cDEC$ ATTRIBUTES DLLIMPORT:: /typnams/
-cDEC$ ENDIF      
+cDEC$ ENDIF
       common /typnams/ tp,ptr,ln,namrec,ptmax
       integer name(*)
       integer iadr,sadr
@@ -56,7 +56,7 @@ c     look for itype in dynamically added types
          n=ln(it)
          call icopy(n,namrec(ptr(it)),1,name,1)
       endif
-c      
+c
       return
  9000 continue
       n=0
@@ -74,12 +74,12 @@ c     following common defines the initial database of type names
       integer tp(maxtyp),ptr(maxtyp),ln(maxtyp),namrec(nmmax),ptmax
 cDEC$ IF DEFINED (FORDLL)
 cDEC$ ATTRIBUTES DLLIMPORT:: /typnams/
-cDEC$ ENDIF      
+cDEC$ ENDIF
       common /typnams/ tp,ptr,ln,namrec,ptmax
       character*15 nam1
 c
       ierr=0
-c     
+c
       n=len(nam)
       if(n.gt.0) then
 c     add a type
@@ -115,7 +115,7 @@ c     .     check if new type is the same as old type
          call cvstr(n,namrec(ptmax),nam,0)
          ptmax=ptmax+n
       else
-c     supress a type
+c     suppress a type
          if(typ.le.20) then
             pos=typ
             if(ln(pos).eq.0) return

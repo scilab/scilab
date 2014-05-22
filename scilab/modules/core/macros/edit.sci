@@ -38,7 +38,7 @@ function edit(macroname,linenumber)
         else
             tmpfile = tmpdir + macroname + ".sci";
             if funptr(macroname)<>0 then
-                error(msprintf(gettext("%s: %s is a uneditable hard coded function.\n"), "edit", macroname));
+                error(msprintf(gettext("%s: %s is an uneditable hard coded function.\n"), "edit", macroname));
             end
             libr = whereis(macroname);
             if libr <> [] then // macroname is the name of a defined function
