@@ -11,6 +11,8 @@
 *
 */
 
+#include <fstream>
+#include <iostream>
 #include <sstream>
 #include "macrofile.hxx"
 #include "context.hxx"
@@ -18,6 +20,7 @@
 #include "scilabWrite.hxx"
 #include "parser.hxx"
 #include "configvariable.hxx"
+#include "deserializervisitor.hxx"
 
 using namespace ast;
 namespace types
@@ -80,22 +83,21 @@ bool MacroFile::parse(void)
     if (m_pMacro == NULL)
     {
         //load file, only for the first call
-        Parser parser;
-        parser.parseFile(m_stPath, L"parse macro file");
-        if (parser.getExitStatus() !=  Parser::Succeded)
-        {
-            scilabWriteW(L"Unable to parse ");
-            scilabWriteW(m_stPath.c_str());
-            scilabWriteW(L"\n\n");
-            scilabWriteW(parser.getErrorMessage());
-            return false;
-        }
+        std::ifstream f(wide_string_to_UTF8(m_stPath.c_str()), ios::in | ios::binary | ios::ate);
+
+        int size = (int)f.tellg();
+        unsigned char* binAst = new unsigned char[size];
+        f.seekg(0);
+        f.read((char*)binAst, size);
+        f.close();
+        ast::DeserializeVisitor* d = new ast::DeserializeVisitor(binAst);
+        ast::Exp* tree = d->deserialize();
 
         //find FunctionDec
         FunctionDec* pFD = NULL;
 
-        std::list<Exp *>::iterator j;
-        std::list<Exp *>LExp = ((SeqExp*)parser.getTree())->exps_get();
+        std::list<ast::Exp *>::iterator j;
+        std::list<ast::Exp *>LExp = ((ast::SeqExp*)tree)->exps_get();
 
         for (j = LExp.begin() ; j != LExp.end() ; j++)
         {

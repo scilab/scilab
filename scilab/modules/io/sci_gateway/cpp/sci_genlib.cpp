@@ -32,6 +32,9 @@
 #include "expandPathVariable.h"
 #include "configvariable.hxx"
 #include "string.hxx"
+#include "library.hxx"
+#include "macrofile.hxx"
+#include "serializervisitor.hxx"
 
 extern "C"
 {
@@ -42,6 +45,9 @@ extern "C"
 #include "FileExist.h"
 #include "deleteafile.h"
 #include "os_swprintf.h"
+#include "splitpath.h"
+#include "os_wfopen.h"
+#include "sciprint.h"
 }
 
 
@@ -158,6 +164,12 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
             //version with direct parsing
             //parse the file to find all functions
             wstring stFullPath = wstring(pstParsePath) + wstring(FILE_SEPARATOR) + wstring(pstPath[k]);
+            wstring stFullPathBin(stFullPath);
+            stFullPathBin.replace(stFullPathBin.end() - 3, stFullPathBin.end(), L"bin");
+            wstring pstPathBin(pstPath[k]);
+            pstPathBin.replace(pstPathBin.end() - 3, pstPathBin.end(), L"bin");
+
+            //sciprint(_("%ls: Processing file: %ls\n"), L"genlib", pstPath[k]);
 
             Parser parser;
             parser.parseFile(stFullPath, ConfigVariable::getSCIPath());
@@ -169,6 +181,16 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
                 continue;
             }
 
+            //serialize ast
+            ast::SerializeVisitor* s = new ast::SerializeVisitor(parser.getTree());
+
+            unsigned char* serialAst = s->serialize();
+            //buffer size is store size + lenght of size
+            unsigned int size = ((unsigned int*)serialAst)[0] + sizeof(unsigned int);
+
+            FILE* f = os_wfopen(stFullPathBin.c_str(), L"wb");
+            fwrite(serialAst, 1, size, f);
+            fclose(f);
             std::list<ast::Exp *>::iterator j;
             std::list<ast::Exp *>LExp = ((ast::SeqExp*)parser.getTree())->exps_get();
 
@@ -177,16 +199,17 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
                 ast::FunctionDec* pFD = dynamic_cast<ast::FunctionDec*>(*j);
                 if (pFD)
                 {
-                    if (AddMacroToXML(pWriter, pair<wstring, wstring>(pFD->name_get().name_get(), pstPath[k])) == false)
+                    if (AddMacroToXML(pWriter, pair<wstring, wstring>(pFD->name_get().name_get(), pstPathBin)) == false)
                     {
                         os_swprintf(pstVerbose, 65535, _W("%ls: Warning: %ls information cannot be added to file %ls. File ignored\n"), L"genlib", pFD->name_get().name_get().c_str(), pstPath[k]);
                         scilabWriteW(pstVerbose);
                     }
 
-                    pLib->add(pFD->name_get().name_get(), new MacroFile(pFD->name_get().name_get(), stFullPath, pstLibName));
+                    pLib->add(pFD->name_get().name_get(), new types::MacroFile(pFD->name_get().name_get(), stFullPathBin, pstLibName));
                 }
             }
 
+            free(serialAst);
             delete parser.getTree();
         }
 
