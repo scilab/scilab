@@ -34,6 +34,10 @@ static wchar_t* replaceAndCountLines(wchar_t* _pwstInput, int* _piLines, int* _p
 
 wchar_t** scilab_sprintf(char* _pstName, wchar_t* _pwstInput, typed_list &in, ArgumentPosition* _pArgs, int _iArgsCount, int* _piOutputRows, int* _piNewLine)
 {
+    /* Force Windows display to have two-digit exponent. */
+#ifdef _MSC_VER
+    _set_output_format(_TWO_DIGIT_EXPONENT);
+#endif
     wchar_t** pwstOutput        = NULL;
     wchar_t* pwstFirstOutput    = NULL;
     *_piNewLine = 0;
