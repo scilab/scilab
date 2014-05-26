@@ -74,9 +74,6 @@ Scilab Bug Fixes
 Xcos Bug Fixes
 ==============
 
-* Bug #9996 fixed - The RELATION_OP box drawn in the work space is not compliant
-                    to the programming.
-
 * Bug #11823 fixed - Ctrl+F2 shortcut did not work on a selected block.
 
 * Bug #12718 fixed - Modelica Generic block reshaped the output ports and the label was double-written.
