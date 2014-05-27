@@ -34,6 +34,8 @@ Scilab Bug Fixes
 * Bug #13291 fixed - xmltojar([],[],'ja_JP') might lead to a crash when the
                      locale was not available system-wide.
 
+* Bug #13299 fixed - The pkgconfig file did not used the right Tcl/Tk version.
+
 * Bug #13313 fixed - Setting datatips orientation did not disable
                      auto_orientation mode.
 
