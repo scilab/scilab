@@ -234,6 +234,7 @@
     <ClInclude Include="..\includes\dynlib_differential_equations_gw.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="cpp\differential_equations_gw.cpp" />
     <ClCompile Include="cpp\sci_bvode.cpp" />
     <ClCompile Include="cpp\sci_daskr.cpp" />
     <ClCompile Include="cpp\sci_dasrt.cpp" />

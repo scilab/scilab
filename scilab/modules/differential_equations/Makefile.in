@@ -218,7 +218,7 @@ am__objects_4 = sci_gateway/fortran/Ex-ode.lo \
 	sci_gateway/fortran/Ex-dasrt.lo \
 	sci_gateway/fortran/Ex-dassl.lo \
 	sci_gateway/fortran/Ex-bvode.lo
-am__objects_5 =  \
+am__objects_5 = sci_gateway/cpp/libscidifferential_equations_la-differential_equations_gw.lo \
 	sci_gateway/cpp/libscidifferential_equations_la-sci_int2d.lo \
 	sci_gateway/cpp/libscidifferential_equations_la-sci_int3d.lo \
 	sci_gateway/cpp/libscidifferential_equations_la-sci_intg.lo \
@@ -703,6 +703,7 @@ sci_gateway/fortran/Ex-dassl.f \
 sci_gateway/fortran/Ex-bvode.f
 
 GATEWAY_CPP_SOURCES = \
+sci_gateway/cpp/differential_equations_gw.cpp \
 sci_gateway/cpp/sci_int2d.cpp \
 sci_gateway/cpp/sci_int3d.cpp \
 sci_gateway/cpp/sci_intg.cpp \
@@ -1099,6 +1100,9 @@ sci_gateway/cpp/$(am__dirstamp):
 sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) sci_gateway/cpp/$(DEPDIR)
 	@: > sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscidifferential_equations_la-differential_equations_gw.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/cpp/libscidifferential_equations_la-sci_int2d.lo:  \
 	sci_gateway/cpp/$(am__dirstamp) \
 	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
@@ -1152,6 +1156,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscidifferential_equations_la-differential_equations_gw.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscidifferential_equations_la-sci_bvode.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscidifferential_equations_la-sci_daskr.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscidifferential_equations_la-sci_dasrt.Plo@am__quote@
@@ -1283,6 +1288,13 @@ src/cpp/libscidifferential_equations_algo_la-differentialequationfunctions.lo: s
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/differentialequationfunctions.cpp' object='src/cpp/libscidifferential_equations_algo_la-differentialequationfunctions.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscidifferential_equations_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscidifferential_equations_algo_la-differentialequationfunctions.lo `test -f 'src/cpp/differentialequationfunctions.cpp' || echo '$(srcdir)/'`src/cpp/differentialequationfunctions.cpp
+
+sci_gateway/cpp/libscidifferential_equations_la-differential_equations_gw.lo: sci_gateway/cpp/differential_equations_gw.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscidifferential_equations_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscidifferential_equations_la-differential_equations_gw.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscidifferential_equations_la-differential_equations_gw.Tpo -c -o sci_gateway/cpp/libscidifferential_equations_la-differential_equations_gw.lo `test -f 'sci_gateway/cpp/differential_equations_gw.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/differential_equations_gw.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscidifferential_equations_la-differential_equations_gw.Tpo sci_gateway/cpp/$(DEPDIR)/libscidifferential_equations_la-differential_equations_gw.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/differential_equations_gw.cpp' object='sci_gateway/cpp/libscidifferential_equations_la-differential_equations_gw.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscidifferential_equations_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscidifferential_equations_la-differential_equations_gw.lo `test -f 'sci_gateway/cpp/differential_equations_gw.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/differential_equations_gw.cpp
 
 sci_gateway/cpp/libscidifferential_equations_la-sci_int2d.lo: sci_gateway/cpp/sci_int2d.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscidifferential_equations_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscidifferential_equations_la-sci_int2d.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscidifferential_equations_la-sci_int2d.Tpo -c -o sci_gateway/cpp/libscidifferential_equations_la-sci_int2d.lo `test -f 'sci_gateway/cpp/sci_int2d.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_int2d.cpp

@@ -231,6 +231,9 @@
     <ProjectReference Include="..\data_structures\src\c\data_structures.vcxproj">
       <Project>{b7a168a0-dfc0-4c6d-b0cc-6079912a4a76}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\differential_equations\sci_gateway\differential_equations_gw.vcxproj">
+      <Project>{99d6bdd6-2226-43a1-b0fa-9d412bbca6dd}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\dynamic_link\sci_gateway\cpp\dynamic_link_gw.vcxproj">
       <Project>{f93ff3ee-217a-4554-ab17-2f8d56b4bf4b}</Project>
     </ProjectReference>

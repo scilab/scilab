@@ -11,8 +11,8 @@
 */
 
 /*--------------------------------------------------------------------------*/
-#ifndef __DYNLIB_DIFFERENTIAL_EQUATIONS_GW_H__
-#define __DYNLIB_DIFFERENTIAL_EQUATIONS_GW_H__
+#ifndef __DIFFERENTIAL_EQUATIONS_GW_H__
+#define __DIFFERENTIAL_EQUATIONS_GW_H__
 
 #ifdef _MSC_VER
 #ifdef DIFFERENTIAL_EQUATIONS_GW_EXPORTS
@@ -24,5 +24,5 @@
 #define DIFFERENTIAL_EQUATIONS_GW_IMPEXP
 #endif
 
-#endif /* __DYNLIB_DIFFERENTIAL_EQUATIONS_GW_H__ */
+#endif /* __DIFFERENTIAL_EQUATIONS_GW_H__ */
 /*--------------------------------------------------------------------------*/

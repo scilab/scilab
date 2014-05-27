@@ -94,12 +94,6 @@ public :
     static int Load();
 };
 
-class DifferentialEquationsModule : public GenericModule
-{
-public :
-    static int Load();
-};
-
 class SpreadsheetModule : public GenericModule
 {
 public :

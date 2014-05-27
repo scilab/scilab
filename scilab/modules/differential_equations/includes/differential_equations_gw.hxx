@@ -20,25 +20,35 @@ extern "C"
 #include "dynlib_differential_equations_gw.h"
 }
 
+class DifferentialEquationsModule
+{
+private :
+    DifferentialEquationsModule() {};
+    ~DifferentialEquationsModule() {};
+
+public :
+    DIFFERENTIAL_EQUATIONS_GW_IMPEXP static int Load();
+};
+
 // equation 1
-CPP_GATEWAY_PROTOTYPE_EXPORT(sci_ode, DIFFERENTIAL_EQUATIONS_GW_IMPEXP);
+CPP_GATEWAY_PROTOTYPE(sci_ode);
 
 // equation 2
-CPP_GATEWAY_PROTOTYPE_EXPORT(sci_impl, DIFFERENTIAL_EQUATIONS_GW_IMPEXP);    // Old function name was sciimpl
-CPP_GATEWAY_PROTOTYPE_EXPORT(sci_dassl, DIFFERENTIAL_EQUATIONS_GW_IMPEXP);   // Old function name dassli
-CPP_GATEWAY_PROTOTYPE_EXPORT(sci_dasrt, DIFFERENTIAL_EQUATIONS_GW_IMPEXP);   // Old function name was dasrti
-CPP_GATEWAY_PROTOTYPE_EXPORT(sci_daskr, DIFFERENTIAL_EQUATIONS_GW_IMPEXP);
+CPP_GATEWAY_PROTOTYPE(sci_impl);    // Old function name was sciimpl
+CPP_GATEWAY_PROTOTYPE(sci_dassl);   // Old function name dassli
+CPP_GATEWAY_PROTOTYPE(sci_dasrt);   // Old function name was dasrti
+CPP_GATEWAY_PROTOTYPE(sci_daskr);
 
 // equation 3
-CPP_GATEWAY_PROTOTYPE_EXPORT(sci_odedc, DIFFERENTIAL_EQUATIONS_GW_IMPEXP);   // Old function name was sci_odc
+CPP_GATEWAY_PROTOTYPE(sci_odedc);   // Old function name was sci_odc
 
 // equation 4
-CPP_GATEWAY_PROTOTYPE_EXPORT(sci_intg, DIFFERENTIAL_EQUATIONS_GW_IMPEXP);
-CPP_GATEWAY_PROTOTYPE_EXPORT(sci_int2d, DIFFERENTIAL_EQUATIONS_GW_IMPEXP);
-CPP_GATEWAY_PROTOTYPE_EXPORT(sci_int3d, DIFFERENTIAL_EQUATIONS_GW_IMPEXP);
-CPP_GATEWAY_PROTOTYPE_EXPORT(sci_feval, DIFFERENTIAL_EQUATIONS_GW_IMPEXP);
+CPP_GATEWAY_PROTOTYPE(sci_intg);
+CPP_GATEWAY_PROTOTYPE(sci_int2d);
+CPP_GATEWAY_PROTOTYPE(sci_int3d);
+CPP_GATEWAY_PROTOTYPE(sci_feval);
 
 // equation 6
-CPP_GATEWAY_PROTOTYPE_EXPORT(sci_bvode, DIFFERENTIAL_EQUATIONS_GW_IMPEXP);   // Old function name was scibvode
+CPP_GATEWAY_PROTOTYPE(sci_bvode);   // Old function name was scibvode
 
 #endif /* !__DIFFERENTIAL_EQUATIONS_GW_HXX__ */

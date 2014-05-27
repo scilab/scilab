@@ -88,6 +88,7 @@ sci_gateway/fortran/Ex-dassl.f \
 sci_gateway/fortran/Ex-bvode.f
 
 GATEWAY_CPP_SOURCES = \
+sci_gateway/cpp/differential_equations_gw.cpp \
 sci_gateway/cpp/sci_int2d.cpp \
 sci_gateway/cpp/sci_int3d.cpp \
 sci_gateway/cpp/sci_intg.cpp \
