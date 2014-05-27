@@ -17,8 +17,9 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>drawaxis([options])
-            // options: x,y,dir,sub_int,fontsize,format_n,seg,textcolor,ticscolor,tics
+        <synopsis>
+            drawaxis([options]); // options: x,y,dir,sub_int,fontsize,format_n,seg,textcolor,ticscolor,tics
+            e = drawaxis([options]);
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -97,13 +98,22 @@
                     </para>
                 </listitem>
             </varlistentry>
+            <varlistentry>
+                <term>e</term>
+                <listitem>
+                    <para>
+                        handle, the handle of the created axis.
+                    </para>
+                </listitem>
+            </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
         <title>Description</title>
         <para>
             <literal>drawaxis</literal> is used to draw an axis in vertical or horizontal 
-            direction. the direction of the axis is given by dir 
+            direction. This function returns the handle of the created axis. 
+            The direction of the axis is given by dir 
             <literal>dir = 'u'</literal> or <literal>'d'</literal> gives a horizontal axis 
             with tics going up (<literal>'u'</literal>) or down (<literal>'d'</literal>). 
             <literal>dir = 'r'</literal> or <literal>'l'</literal> give a vertical axis 
@@ -144,20 +154,20 @@
         <programlisting role="example"><![CDATA[ 
 plot2d(1:10,1:10,1,"020")
 // horizontal axis 
-drawaxis(x=2:7,y=4,dir='u',tics='v')
+e = drawaxis(x=2:7,y=4,dir='u',tics='v')
 // horizontal axis on top of the frame
 drawaxis(x=2:7,dir='u',tics='v') 
 // horizontal axis at the bottom of the frame
-drawaxis(x=2:7,dir='d',tics='v') 
+e = drawaxis(x=2:7,dir='d',tics='v') 
 
 // horizontal axis given by a range 
 drawaxis(x=[2,7,3],y=4,dir='d',tics='r') 
 
 // vertical axis 
-drawaxis(x=4,y=2:7,dir='r',tics='v')
-drawaxis(x=2,y=[2,7,3],dir='l',tics='r')
-drawaxis(y=2:7,dir='r',tics='v')
-drawaxis(y=2:7,dir='l',tics='v')
+e = drawaxis(x=4,y=2:7,dir='r',tics='v')
+e = drawaxis(x=2,y=[2,7,3],dir='l',tics='r')
+e = drawaxis(y=2:7,dir='r',tics='v')
+e = drawaxis(y=2:7,dir='l',tics='v')
 
 // horizontal axis with strings displayed at tics positions
 drawaxis(x=2:7,y=8,dir='u',tics='v',val='A'+string(1:6));
@@ -165,8 +175,8 @@ drawaxis(x=2:7,y=8,dir='u',tics='v',val='A'+string(1:6));
 drawaxis(x=8,y=2:7,dir='r',tics='v',val='B'+string(1:6));
 
 // horizontal axis given with a 'i' range. 
-drawaxis(x=[2,5,0,3],y=9,dir='u',tics='i');
-drawaxis(x=9,y=[2,5,0,3],dir='r',tics='i',sub_int=5);
+e = drawaxis(x=[2,5,0,3],y=9,dir='u',tics='i');
+e = drawaxis(x=9,y=[2,5,0,3],dir='r',tics='i',sub_int=5);
 
 // horizontal axis again 
 drawaxis(x=2:7,y=4,dir='u',tics='v',fontsize=10,textcolor=9,ticscolor=7,seg=0,sub_int=20) 
