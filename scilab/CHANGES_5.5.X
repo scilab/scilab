@@ -23,6 +23,8 @@ Scilab Bug Fixes
 * Bug #8646 fixed - The datatips contextual menu opened a selection list which
                     was not ergonomic.
 
+* Bug #8781 fixed - There was no error message when error was called with a complex value.
+
 * Bug #8898 fixed - Help page of getdate improved.
 
 * Bug #9052 fixed - Some demonstrations in graphics were automatically closed at
