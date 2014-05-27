@@ -949,22 +949,19 @@ interface for JOGL2 - or libGL (OpenGL library) are installed and if the version
 
                 # Jhall
                 AC_JAVA_CHECK_PACKAGE([jhall],[javax.help.JHelp],[Scilab Help Browser],"yes")
-                JHALL=$PACKAGE_JAR_FILE
-
                 # Named differently under Mandriva or Fedora
-                if test -z "$JHALL"; then
+                if test -z "$PACKAGE_JAR_FILE"; then
                     AC_JAVA_CHECK_PACKAGE([javahelp2],[javax.help.JHelp],[Scilab Help Browser])
-                    JHALL=$PACKAGE_JAR_FILE
                 fi
+                JHALL=$PACKAGE_JAR_FILE
                 AC_SUBST(JHALL)
 
                 # Console API
                 AC_JAVA_CHECK_PACKAGE([jrosetta-API],[com.artenum.rosetta.interfaces.core.ConsoleConfiguration],[JRosetta : Console API Artenum / Scilab],"yes")
-                JROSETTA_API=$PACKAGE_JAR_FILE
-        if test -z "$JROSETTA_API"; then
+                if test -z "$PACKAGE_JAR_FILE"; then
                     AC_JAVA_CHECK_PACKAGE([jrosetta-api],[com.artenum.rosetta.interfaces.core.ConsoleConfiguration],[JRosetta : Console API Artenum / Scilab])
-                    JROSETTA_API=$PACKAGE_JAR_FILE
-        fi
+                fi
+                JROSETTA_API=$PACKAGE_JAR_FILE
                 AC_SUBST(JROSETTA_API)
 
                 # Console Core
@@ -1095,6 +1092,10 @@ interface for JOGL2 - or libGL (OpenGL library) are installed and if the version
 
         # Junit 4 (java unitary test)
         AC_JAVA_CHECK_PACKAGE([junit4],[org.junit.Assert],[Junit4 - Unit tests],"yes")
+        if test -z "$PACKAGE_JAR_FILE"; then
+                AC_JAVA_CHECK_PACKAGE([junit],[org.junit.Assert],[Junit4 -
+Unit tests],"yes")
+        fi
         JUNIT4=$PACKAGE_JAR_FILE
         AC_SUBST(JUNIT4)
 
@@ -1105,12 +1106,11 @@ interface for JOGL2 - or libGL (OpenGL library) are installed and if the version
 
         # ASM (a dependency of Cobertura)
         AC_JAVA_CHECK_PACKAGE([asm3],[org.objectweb.asm.Type],[Java bytecode manipulation (dep of cobertura)],"yes")
-        ASM3=$PACKAGE_JAR_FILE
-        AC_SUBST(ASM3)
         if test -z "$ASM3"; then
                 AC_JAVA_CHECK_PACKAGE([asm],[org.objectweb.asm.Type],[Java bytecode manipulation (dep of cobertura)],"yes")
-                ASM3=$PACKAGE_JAR_FILE
         fi
+        ASM3=$PACKAGE_JAR_FILE
+        AC_SUBST(ASM3)
 
         AC_JAVA_CHECK_PACKAGE([ecj],[org.eclipse.jdt.core.compiler.batch.BatchCompiler],[Eclipse Java compiler],"yes")
         ECJ=$PACKAGE_JAR_FILE
