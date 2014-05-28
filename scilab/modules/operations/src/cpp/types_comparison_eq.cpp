@@ -15,12 +15,13 @@
 #include "double.hxx"
 #include "string.hxx"
 #include "polynom.hxx"
-#include "list.hxx"
+//#include "list.hxx"
 #include "cell.hxx"
 #include "struct.hxx"
 #include "sparse.hxx"
 #include "int.hxx"
 #include "graphichandle.hxx"
+#include "mlist.hxx"
 
 using namespace types;
 
@@ -338,7 +339,7 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
             int iRank       = 0;
 
             pR->getRealRank(&iRank);
-            if(iRank != 0) // check rank
+            if (iRank != 0) // check rank
             {
                 memset(piResult, 0x00, iSize * sizeof(int));
             }
@@ -347,24 +348,24 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
                 // check values
                 double dR       = pR->get(0)->getCoef()->get(0);
                 double* pdblL   = pL->get();
-                if(pL->isComplex() && pR->isComplex())
+                if (pL->isComplex() && pR->isComplex())
                 {
                     double dRImg    = pR->get(0)->getCoef()->getImg(0);
-                    double* pdblLImg= pL->getImg();
+                    double* pdblLImg = pL->getImg();
                     for (int i = 0 ; i < iSize; i++)
                     {
                         piResult[i] = (int)((dR == pdblL[i]) && (dRImg == pdblLImg[i]));
                     }
                 }
-                else if(pL->isComplex())
+                else if (pL->isComplex())
                 {
-                    double* pdblLImg= pL->getImg();
+                    double* pdblLImg = pL->getImg();
                     for (int i = 0 ; i < iSize; i++)
                     {
                         piResult[i] = (int)((dR == pdblL[i]) && (pdblLImg[i] == 0));
                     }
                 }
-                else if(pR->isComplex())
+                else if (pR->isComplex())
                 {
                     double dRImg    = pR->get(0)->getCoef()->getImg(0);
                     for (int i = 0 ; i < iSize; i++)
@@ -395,12 +396,12 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
 
             pR->getRealRank(piRank);
 
-            if(pL->isComplex() && pR->isComplex())
+            if (pL->isComplex() && pR->isComplex())
             {
                 double dLImg = pL->getImg(0);
                 for (int i = 0 ; i < iSize; i++)
                 {
-                    if(piRank[i] == 0)
+                    if (piRank[i] == 0)
                     {
                         piResult[i] = (int)(dL == pR->get(i)->getCoef()->get(0) &&
                                             dLImg == pR->get(i)->getCoef()->getImg(0));
@@ -411,12 +412,12 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
                     }
                 }
             }
-            else if(pL->isComplex())
+            else if (pL->isComplex())
             {
                 double dLImg = pL->getImg(0);
                 for (int i = 0 ; i < iSize; i++)
                 {
-                    if(piRank[i] == 0)
+                    if (piRank[i] == 0)
                     {
                         piResult[i] = (int)(dL == pR->get(i)->getCoef()->get(0) &&
                                             dLImg == 0);
@@ -427,11 +428,11 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
                     }
                 }
             }
-            else if(pR->isComplex())
+            else if (pR->isComplex())
             {
                 for (int i = 0 ; i < iSize; i++)
                 {
-                    if(piRank[i] == 0)
+                    if (piRank[i] == 0)
                     {
                         piResult[i] = (int)(dL == pR->get(i)->getCoef()->get(0) &&
                                             pR->get(i)->getCoef()->getImg(0) == 0);
@@ -481,12 +482,12 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
 
         pR->getRealRank(piRank);
 
-        if(pL->isComplex() && pR->isComplex())
+        if (pL->isComplex() && pR->isComplex())
         {
             double* pdblLImg = pL->getImg();
             for (int i = 0 ; i < iSize; i++)
             {
-                if(piRank[i] == 0)
+                if (piRank[i] == 0)
                 {
                     piResult[i] = (int)(pdblL[i] == pR->get(i)->getCoef()->get(0) &&
                                         pdblLImg[i] == pR->get(i)->getCoef()->getImg(0));
@@ -497,12 +498,12 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
                 }
             }
         }
-        else if(pL->isComplex())
+        else if (pL->isComplex())
         {
             double* pdblLImg = pL->getImg();
             for (int i = 0 ; i < iSize; i++)
             {
-                if(piRank[i] == 0)
+                if (piRank[i] == 0)
                 {
                     piResult[i] = (int)(pdblL[i] == pR->get(i)->getCoef()->get(0) &&
                                         pdblLImg[i] == 0);
@@ -513,11 +514,11 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
                 }
             }
         }
-        else if(pR->isComplex())
+        else if (pR->isComplex())
         {
             for (int i = 0 ; i < iSize; i++)
             {
-                if(piRank[i] == 0)
+                if (piRank[i] == 0)
                 {
                     piResult[i] = (int)(pdblL[i] == pR->get(i)->getCoef()->get(0) &&
                                         pR->get(i)->getCoef()->getImg(0) == 0);
@@ -838,6 +839,69 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
 
         clearAlloc(bAllocL, pIL, bAllocR, pIR);
         return pResult;
+    }
+
+    /*
+    ** TList == TList
+    */
+    if (TypeL == GenericType::RealTList && TypeR == GenericType::RealTList)
+    {
+        TList* pLL = pIL->getAs<TList>();
+        TList* pLR = pIR->getAs<TList>();
+
+        if (pLL->getSize() != pLR->getSize())
+        {
+            clearAlloc(bAllocL, pIL, bAllocR, pIR);
+            return new Bool(false);
+        }
+
+        if (pLL->getSize() == 0 && pLR->getSize() == 0)
+        {
+            //list() == list() -> return true
+            clearAlloc(bAllocL, pIL, bAllocR, pIR);
+            return new Bool(true);
+        }
+
+        Bool* pB = new Bool(1, pLL->getSize());
+        for (int i = 0 ; i < pLL->getSize() ; i++)
+        {
+            pB->set(i, *pLL->get(i) == *pLR->get(i));
+        }
+
+        clearAlloc(bAllocL, pIL, bAllocR, pIR);
+        return pB;
+    }
+
+
+    /*
+    ** MList == MList
+    */
+    if (TypeL == GenericType::RealMList && TypeR == GenericType::RealMList)
+    {
+        MList* pLL = pIL->getAs<MList>();
+        MList* pLR = pIR->getAs<MList>();
+
+        if (pLL->getSize() != pLR->getSize())
+        {
+            clearAlloc(bAllocL, pIL, bAllocR, pIR);
+            return new Bool(false);
+        }
+
+        if (pLL->getSize() == 0 && pLR->getSize() == 0)
+        {
+            //list() == list() -> return true
+            clearAlloc(bAllocL, pIL, bAllocR, pIR);
+            return new Bool(true);
+        }
+
+        Bool* pB = new Bool(1, pLL->getSize());
+        for (int i = 0 ; i < pLL->getSize() ; i++)
+        {
+            pB->set(i, *pLL->get(i) == *pLR->get(i));
+        }
+
+        clearAlloc(bAllocL, pIL, bAllocR, pIR);
+        return pB;
     }
 
     /*

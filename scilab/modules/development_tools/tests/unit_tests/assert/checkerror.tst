@@ -80,7 +80,7 @@ MY_assert_equal ( lerr , asserterrmsg );
 //
 instr = "[o1,o2,o3]=assert_checkerror ( ""y=f(1)"" , """" )";
 ierr=execstr(instr,"errcatch");
-MY_assert_equal ( ierr , 59 );
+MY_assert_equal ( ierr , 999 );
 //
 // Check error message when type of 1st argument of assert_checkerror is false
 instr = "assert_checkerror ( 1 , """" )";
