@@ -125,6 +125,10 @@
                     <para> formats the date given by x (number of seconds since Jan 1, 1970, 00:00 UTC) in format given above. 
                         In this case dt(10) is always equal to 0.
                     </para>
+                    <para>
+                        <literal>getdate(0)</literal> will return Jan 1, 1970, 00:00 if the time zone concerned is UTC, but if the time zone is UTC+1, hour
+                        returned will be 01:00.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
