@@ -165,6 +165,17 @@ void cdf_error(char const * const fname, int status, double bound)
     }
 }
 
+int checkInteger(int row, int col, double *data, int pos, char const * const fname){
+    int i;
+    for(i = 0 ; i < row * col ; i++)
+    {
+        if ((int)data[i] - data[i] != 0){
+            return 1;
+        }
+    }
+    return 0;
+}
+
 /**
  * Older generic interface to DCDLIB's cdf functions.
  * @param fname scilab caller's function name
@@ -182,10 +193,19 @@ int CdfBase(char const * const fname, void* pvApiCtx, int inarg, int oarg, int s
     int rows[MAXARG], cols[MAXARG];
 #undef MAXARG
 
-    double bound;
-    int errlevel;
-    int i;
-    int *p;
+    double bound = 0;
+    int errlevel = 0;
+    int i = 0;
+    int *p = NULL;
+    int siz = strlen(fname);
+    int *df;
+    int row, col;
+    double *datas;
+    int resc;
+    int pos = 0;
+    int pos1 = 0;
+
+    char *option = create_string(pvApiCtx, 1);
 
     if ( Rhs != inarg + 1 )
     {
@@ -198,19 +218,6 @@ int CdfBase(char const * const fname, void* pvApiCtx, int inarg, int oarg, int s
         int j = 0;
         getVarAddressFromPosition(pvApiCtx, i + 2, &p);
         getMatrixOfDouble(pvApiCtx, p, &rows[i], &cols[i], &data[i]);
-        /*check data are integers, by pass Inf and NaN*/
-
-        for(j = 0 ; j < rows[i] * cols[i] ; j++)
-        {
-            if (data[i][j] == data[i][j] && data[i][j] + 1 != data[i][j]) // NaN and Inf will be handled in the program
-            {
-                if ((int)data[i][j] - data[i][j] != 0)
-                {
-                    Scierror(999, _("%s: Wrong value for input argument #%d: A matrix of integer value expected.\n"), fname, i + 1);
-                    return 1;
-                }
-            }
-        }
     }
 
     for (i = 1; i < inarg ; ++i)
@@ -225,6 +232,159 @@ int CdfBase(char const * const fname, void* pvApiCtx, int inarg, int oarg, int s
     for (i = 0; i < oarg; ++i)
     {
         allocMatrixOfDouble(pvApiCtx, Rhs + i + 1, rows[0], cols[0], &data[i + inarg]);
+    }
+
+    //check which scilab function is called
+    switch(siz)
+    {
+        case 4:
+            //cdff
+            if(fname[3] == 'f')
+            {
+                if(strcmp(option,"PQ") ==0)
+                {
+                    pos = 3;
+                    pos1 = 4;
+                }
+                else if(strcmp(option,"F") ==0)
+                {
+                    pos = 2;
+                    pos1 = 3;
+                }
+                else if(strcmp(option,"Dfn") ==0)
+                {
+                    pos = 2;
+                }
+                else if(strcmp(option,"Dfd") ==0)
+                {
+                    pos = 5;
+                }
+            }
+            //cdft
+            else
+            {
+                if(strcmp(option,"PQ") ==0)
+                    {
+                        pos = 3;
+                    }
+                    else if(strcmp(option,"T") ==0)
+                    {
+                        pos = 2;
+                    }
+            }
+            break;
+        case 6 :
+            //cdfbet
+            if(fname[4] == 'e')
+            {
+
+            }
+            //cdfbin
+            else if(fname[4] == 'i')
+            {
+
+            }
+            //cdffnc
+            else if(fname[4] == 'n')
+            {
+                 if(strcmp(option,"PQ") ==0)
+                {
+                    pos = 3;
+                    pos1 = 4;
+                }
+                else if(strcmp(option,"F") ==0)
+                {
+                    pos = 2;
+                    pos1 = 3;
+                }
+                else if(strcmp(option,"Dfn") ==0)
+                {
+                    pos = 2;
+                }
+                else if(strcmp(option,"Dfd") ==0)
+                {
+                    pos = 6;
+                }
+                else if(strcmp(option,"Pnonc") ==0)
+                {
+                    pos = 5;
+                    pos1 = 6;
+                }
+            }
+            //cdfgam
+            else if(fname[4] == 'a')
+            {
+
+            }
+            //cdfnbn
+            else if(fname[4] == 'b')
+            {
+
+            }
+            else if(fname[4] == 'h')
+            {
+                //cdfchi
+                if(fname[5] == 'i')
+                {
+                    if(strcmp(option,"PQ") ==0)
+                    {
+                        pos = 3;
+                    }
+                    else if(strcmp(option,"X") ==0)
+                    {
+                        pos = 2;
+                    }
+                }
+                //cdfchn
+                else
+                {
+                    if(strcmp(option,"PQ") ==0)
+                    {
+                        pos = 3;
+                    }
+                    else if(strcmp(option,"X") ==0)
+                    {
+                        pos = 2;
+                    }
+                    else if(strcmp(option,"Pnonc") ==0)
+                    {
+                        pos = 5;
+                    }
+                }
+            }
+            else
+            {
+                //cdfnor
+                if(fname[5] == 'r')
+                {
+
+                }
+                //cdfpoi
+                else
+                {
+
+                }
+            }
+            break;
+    }
+
+    if(pos != 0)
+    {
+        getVarAddressFromPosition(pvApiCtx, pos, &df);
+        getMatrixOfDouble(pvApiCtx, df, &row, &col, &datas);
+        resc = checkInteger(row,col,datas, pos, fname);
+        if(resc == 1){
+            sciprint(_("%s: Warning: using non integer values for argument #%d may lead to incorrect results.\n"), fname, pos);
+        }
+    }
+    if(pos1 != 0)
+    {
+        getVarAddressFromPosition(pvApiCtx, pos1, &df);
+        getMatrixOfDouble(pvApiCtx, df, &row, &col, &datas);
+        resc = checkInteger(row,col,datas, pos1, fname);
+        if(resc == 1){
+            sciprint(_("%s: Warning: using non integer values for argument #%d may lead to incorrect results.\n"), fname, pos1);
+        }
     }
 #define callpos(i) rotate(i, shift, inarg + oarg)
     for (i = 0; i < rows[0] * cols[0]; ++i)
@@ -241,7 +401,6 @@ int CdfBase(char const * const fname, void* pvApiCtx, int inarg, int oarg, int s
                 (*fun)(&which, &(data[callpos(0)][i]), &(data[callpos(1)][i]), &(data[callpos(2)][i]), &(data[callpos(3)][i]), &(data[callpos(4)][i]), &(data[callpos(5)][i]), &errlevel, &bound);
                 break;
         }
-
         if (errlevel != 0)
         {
             cdf_error(fname, errlevel, bound);
