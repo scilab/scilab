@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2014 - Michael BAUDIN <michael.baudin@contrib.scilab.org>
+ * Copyright (C) 2014 - Scilab Enterprises - Pierre-Aime AGNEL
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="output_ga_default" xml:lang="en">
+    <refnamediv>
+        <refname>output_ga_default</refname>
+        <refpurpose>A simple output function used for logging purposes</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>stop = output_ga_default(gen_index, nb_generation, Pop, FObj_Pop, param)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>gen_index</term>
+                <listitem>
+                    <para>The index of the current generation.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>nb_generation</term>
+                <listitem>
+                    <para>The maximum number of generations.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Pop</term>
+                <listitem>
+                    <para>The current population.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>FObj_Pop</term>
+                <listitem>
+                    <para>The evaluation for each member of the population.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>param</term>
+                <listitem>
+                    <para>A parameter list for optional parameters.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>stop</term>
+                <listitem>
+                    <para>A boolean. If %F, will stop the execution of the genetic algorithm.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            This function displays information on the current step of the genetic algorithm.
+        </para>
+        <para>
+            Use this function to implement a callback after each iteration of the genetic algorithm.
+            This can be used, for instance, to plot intermediate result or log more information on
+            the population.
+        </para>
+        <para>
+            The output parameter <varname>stop</varname> can be used to stop the genetic algorithm
+            altogether if set to %F.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="optim_moga"> optim_moga </link>
+            </member>
+            <member>
+                <link linkend="optim_nsga"> optim_nsga </link>
+            </member>
+            <member>
+                <link linkend="optim_nsga2"> optim_nsga2 </link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>
