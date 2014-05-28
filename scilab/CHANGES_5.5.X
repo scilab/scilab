@@ -25,6 +25,9 @@ Scilab Bug Fixes
 
 * Bug #8898 fixed - Help page of getdate improved.
 
+* Bug #9052 fixed - Some demonstrations in graphics were automatically closed at
+                    the end of their execution.
+
 * Bug #10555 fixed - Scilab failed to build with some configure options.
 
 * Bug #10583 fixed - ./configure --without-xcos did not work.
