@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - Yann COLLETTE <yann.collette@renault.com>
+// Copyright (C) 2014 - Michael Baudin <michael.baudin@contrib.scilab.org>
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -91,19 +92,14 @@ function [pop_opt, fobj_pop_opt, pop_init, fobj_pop_init] = optim_ga(ga_f, pop_s
         Wheel = cumsum(Efficiency);
         for j=1:nb_couples
             // Selection of the first individual in the couple
-            Shoot = grand(1,1,"def")*Wheel($);
-            Index = 1;
-            while((Wheel(Index)<Shoot)&(Index<length(Wheel)))
-                Index = Index + 1;
-            end
+            Shoot = grand(1,1,"unf", 0, Wheel($));
+            Index = find(Shoot <= Wheel, 1);
             Indiv1(j)      = Pop(Index);
             FObj_Indiv1(j) = FObj_Pop(Index);
             // Selection of the second individual in the couple
-            Shoot = grand(1,1,"def")*Wheel($);
+            Shoot = grand(1,1,"unf", 0, Wheel($));
             Index = 1;
-            while((Wheel(Index)<Shoot)&(Index<length(Wheel)))
-                Index = Index + 1;
-            end
+            Index = find(Shoot <= Wheel, 1);
             Indiv2(j)      = Pop(Index);
             FObj_Indiv2(j) = FObj_Pop(Index);
         end
