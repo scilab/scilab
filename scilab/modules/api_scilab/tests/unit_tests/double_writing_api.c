@@ -16,7 +16,7 @@
 #include "sciprint.h"
 #include "MALLOC.h"
 
-int write_double(char *fname, unsigned long fname_len)
+int write_double(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int i, j;

@@ -16,7 +16,7 @@
 #include "sciprint.h"
 #include "MALLOC.h"
 
-int write_string(char *fname, unsigned long fname_len)
+int write_string(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     //variable info : matrix of string 2 x 3

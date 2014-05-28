@@ -26,6 +26,7 @@ function scilabincludeslist = dlwGetScilabIncludes()
     "$(SCIDIR)/modules/symbol/includes"; ..
     "$(SCIDIR)/modules/types/includes"; ..
     "$(SCIDIR)/modules/operations/includes"; ..
-    "$(SCIDIR)/modules/ast/includes"];
+    "$(SCIDIR)/modules/ast/includes"; ..
+    "$(SCIDIR)/modules/ast/includes/exps"];
 endfunction
 //=============================================================================

@@ -85,6 +85,7 @@ function libn = ilib_compile(lib_name, ..
                 cflags=" -I"+SCI+"/modules/"+x+"/includes/ "+cflags;
             end
 
+            cflags=" -I"+SCI+"/modules/ast/includes/exps "+cflags;
             for x = defaultModulesFHeader(:)';
                 fflags=" -I"+SCI+"/modules/"+x+"/includes/ " + fflags;
             end

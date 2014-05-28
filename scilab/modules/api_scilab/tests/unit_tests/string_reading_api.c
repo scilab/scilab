@@ -16,7 +16,7 @@
 #include "sciprint.h"
 #include "MALLOC.h"
 
-int read_string(char *fname, unsigned long fname_len)
+int read_string(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int i, j;

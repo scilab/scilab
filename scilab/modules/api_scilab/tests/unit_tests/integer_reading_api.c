@@ -18,7 +18,7 @@
 
 void* create_output(int _iCoeff, int _iSize, int _iRows, int _iCols, void* _pvDataIn);
 
-int read_integer(char *fname, unsigned long fname_len)
+int read_integer(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     //output variable info
