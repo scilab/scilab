@@ -74,7 +74,7 @@ function ilib_build(ilib_name, ..
 
     if getos() == "Windows" then
         if ~isdef("makename") | (makename == "") | (makename == []) then
-            // Load dynamic_link Internal lib if it"s not already loaded
+            // Load dynamic_link Internal lib if it's not already loaded
             if ~exists("dynamic_linkwindowslib") then
                 load("SCI/modules/dynamic_link/macros/windows/lib");
             end

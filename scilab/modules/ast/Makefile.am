@@ -57,4 +57,78 @@ libsciast_la_etcdir = $(mydatadir)/etc
 libsciast_la_etc_DATA = etc/ast.quit etc/ast.start
 
 
+#### ast : include files ####
+libsciast_scilab_la_includedir=$(pkgincludedir)
+libsciast_scilab_la_include_HEADERS = \
+includes/exps/alldec.hxx \
+includes/exps/allexp.hxx \
+includes/exps/all.hxx \
+includes/exps/allvar.hxx \
+includes/exps/anydecs.hxx \
+includes/exps/arraylistexp.hxx \
+includes/exps/arraylistvar.hxx \
+includes/exps/assignexp.hxx \
+includes/exps/assignlistexp.hxx \
+includes/exps/ast.hxx \
+includes/exps/boolexp.hxx \
+includes/exps/breakexp.hxx \
+includes/exps/callexp.hxx \
+includes/exps/caseexp.hxx \
+includes/exps/cellcallexp.hxx \
+includes/exps/cellexp.hxx \
+includes/exps/colonvar.hxx \
+includes/exps/commentexp.hxx \
+includes/exps/constexp.hxx \
+includes/exps/continueexp.hxx \
+includes/exps/controlexp.hxx \
+includes/exps/dec.hxx \
+includes/exps/decls.hxx \
+includes/exps/decs.hxx \
+includes/exps/dollarvar.hxx \
+includes/exps/doubleexp.hxx \
+includes/exps/exp.hxx \
+includes/exps/fieldexp.hxx \
+includes/exps/floatexp.hxx \
+includes/exps/forexp.hxx \
+includes/exps/functiondec.hxx \
+includes/exps/ifexp.hxx \
+includes/exps/intexp.hxx \
+includes/exps/listexp.hxx \
+includes/exps/location.hxx \
+includes/exps/logicalopexp.hxx \
+includes/exps/mathexp.hxx \
+includes/exps/matrixexp.hxx \
+includes/exps/matrixlineexp.hxx \
+includes/exps/nilexp.hxx \
+includes/exps/notexp.hxx \
+includes/exps/opexp.hxx \
+includes/exps/returnexp.hxx \
+includes/exps/selectexp.hxx \
+includes/exps/seqexp.hxx \
+includes/exps/simplevar.hxx \
+includes/exps/stringexp.hxx \
+includes/exps/token.hxx \
+includes/exps/transposeexp.hxx \
+includes/exps/trycatchexp.hxx \
+includes/exps/vardec.hxx \
+includes/exps/var.hxx \
+includes/exps/whileexp.hxx \
+includes/debugvisitor.hxx \
+includes/deserializervisitor.hxx \
+includes/dummyvisitor.hxx \
+includes/dynlib_ast_tools.hxx \
+includes/execvisitor.hxx \
+includes/expHistory.hxx \
+includes/macrovarvisitor.hxx \
+includes/mutevisitor.hxx \
+includes/printvisitor.hxx \
+includes/runvisitor.hxx \
+includes/scilabexception.hxx \
+includes/serializervisitor.hxx \
+includes/shortcutvisitor.hxx \
+includes/stepvisitor.hxx \
+includes/timedvisitor.hxx \
+includes/visitor.hxx \
+includes/visitor_common.hxx
+
 include $(top_srcdir)/Makefile.incl.am

@@ -24,6 +24,9 @@ Source: bin\{#AST}.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\{#AST_TOOLS}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\{#AST_TOOLS}.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
+Source: modules\{#AST}\includes\*.*; DestDir: {app}\modules\{#AST}\includes; Components: {#COMPN_SCILAB}
+Source: modules\{#AST}\includes\exps\*.*; DestDir: {app}\modules\{#AST}\includes\exps; Components: {#COMPN_SCILAB}
+;
 Source: modules\{#AST}\etc\{#AST}.quit; DestDir: {app}\modules\{#AST}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#AST}\etc\{#AST}.start; DestDir: {app}\modules\{#AST}\etc; Components: {#COMPN_SCILAB}
 ;

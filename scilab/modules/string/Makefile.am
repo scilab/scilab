@@ -135,5 +135,33 @@ libscistring_la_etc_DATA = etc/string.quit etc/string.start
 libscistring_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscistring_la_sci_gateway_DATA = sci_gateway/string_gateway.xml
 
+#### string : include files ####
+libscistring_la_includedir=$(pkgincludedir)
+libscistring_la_include_HEADERS = \
+includes/complex_array.h \
+includes/convstr.h \
+includes/cvstr.h \
+includes/dynlib_string_gw.h \
+includes/dynlib_string.h \
+includes/getfastcode.h \
+includes/men_Sutils.h \
+includes/os_strdup.h \
+includes/os_stricmp.h \
+includes/os_swprintf.h \
+includes/os_wcsdup.h \
+includes/os_wcsicmp.h \
+includes/os_wcstok.h \
+includes/pcre_private.h \
+includes/scistrtostr.h \
+includes/stricmp.h \
+includes/StringConvert.h \
+includes/string_gw.hxx \
+includes/stringToComplex.h \
+includes/stringToDouble.h \
+includes/stristr.h \
+includes/strsubst.h
+
+
+
 include $(top_srcdir)/Makefile.incl.am
 

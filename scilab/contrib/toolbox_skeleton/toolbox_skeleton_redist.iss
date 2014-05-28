@@ -37,7 +37,7 @@ Source: macros\buildmacros.sce; DestDir: {app}\macros
 Source: macros\lib; DestDir: {app}\macros
 ;Source: macros\names; DestDir: {app}\macros
 Source: macros\*.sci; DestDir: {app}\macros
-;Source: macros\*.bin; DestDir: {app}\macros
+Source: macros\*.bin; DestDir: {app}\macros
 Source: sci_gateway\loader_gateway.sce; DestDir: {app}\sci_gateway
 Source: sci_gateway\c\loader.sce; DestDir: {app}\sci_gateway\c
 Source: sci_gateway\c\skeleton_c.dll; DestDir: {app}\sci_gateway\c

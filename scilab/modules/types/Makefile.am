@@ -26,6 +26,60 @@ libscitypes_la_etc_DATA = etc/types.quit \
 
 include $(top_srcdir)/Makefile.incl.am
 
+#### types : include files ####
+libscitypes_la_includedir=$(pkgincludedir)
+libscitypes_la_include_HEADERS = \
+includes/alltypes.hxx \
+includes/arrayof.hxx \
+includes/bool.hxx \
+includes/callable.hxx \
+includes/cell.hxx \
+includes/c_gateway_prototype.h \
+includes/colon.hxx \
+includes/container.hxx \
+includes/cpp_gateway_prototype.hxx \
+includes/dollar.hxx \
+includes/double.hxx \
+includes/dynlib_types_gw.h \
+includes/dynlib_types.h \
+includes/file.hxx \
+includes/float.hxx \
+includes/function.hxx \
+includes/gatewaystruct.hxx \
+includes/GetScilabVariable.h \
+includes/graphichandle.hxx \
+includes/implicitlist.hxx \
+includes/inspector.hxx \
+includes/internal.hxx \
+includes/int.hxx \
+includes/library.hxx \
+includes/listdelete.hxx \
+includes/list.hxx \
+includes/listinsert.hxx \
+includes/listoperation.hxx \
+includes/listundefined.hxx \
+includes/macrofile.hxx \
+includes/macro.hxx \
+includes/matrixiterator.hxx \
+includes/mlist.hxx \
+includes/pointer.hxx \
+includes/polynom.hxx \
+includes/ScilabToJava.hxx \
+includes/singlepoly.hxx \
+includes/singlestruct.hxx \
+includes/sparse.hxx \
+includes/sparseOp.hxx \
+includes/string.hxx \
+includes/struct.hxx \
+includes/threadId.hxx \
+includes/tlist.hxx \
+includes/tostring_common.hxx \
+includes/types_gw.hxx \
+includes/types.hxx \
+includes/types_tools.hxx \
+includes/user.hxx \
+includes/void.hxx \
+includes/typesdecl.hxx
 
 TYPES_JAVA_C_SOURCES = src/jni/getScilabVariable_wrap.c
 

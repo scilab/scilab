@@ -1,6 +1,6 @@
 ;
 ; Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-; Copyright (C) DIGITEO - 2010 - Allan CORNET
+; Copyright (C) 2014 - Scilab Enterprises
 ;
 ; This file must be used under the terms of the CeCILL.
 ; This source file is licensed as described in the file COPYING, which
@@ -12,13 +12,14 @@
 ; Inno Setup Script (5.3 and more) for Scilab (UNICODE version required)
 ;
 ;--------------------------------------------------------------------------------------------------------------
-; api_scilab module
+; symbol module
 ;--------------------------------------------------------------------------------------------------------------
 ;
-#define SYSTEM_ENV "system_env"
+#define SYMBOL "symbol"
 ;
-Source: bin\{#SYSTEM_ENV}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-Source: bin\{#SYSTEM_ENV}.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\{#SYMBOL}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\{#SYMBOL}.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#SYSTEM_ENV}\includes\*.*; DestDir: {app}\modules\{#SYSTEM_ENV}\includes; Components: {#COMPN_SCILAB}
+Source: modules\{#SYMBOL}\includes\*.*; DestDir: {app}\modules\{#SYMBOL}\includes; Components: {#COMPN_SCILAB}
+;
 ;--------------------------------------------------------------------------------------------------------------

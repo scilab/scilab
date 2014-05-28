@@ -47,6 +47,7 @@ libscithreads_la_rootdir = $(mydatadir)
 #### threads : include files ####
 libscithreads_la_includedir=$(pkgincludedir)
 libscithreads_la_include_HEADERS = \
-includes/Thread_Wrapper.h
+includes/Thread_Wrapper.h \
+includes/dynlib_threads.h
 
 include $(top_srcdir)/Makefile.incl.am

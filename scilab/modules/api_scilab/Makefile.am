@@ -103,6 +103,20 @@ includes/api_sparse.h \
 includes/api_string.h \
 includes/api_handle.h \
 includes/api_optional.h \
-includes/api_scilab.h
+includes/api_scilab.h \
+includes/dynlib_api_scilab.h \
+includes/api_boolean.hxx \
+includes/api_common.hxx \
+includes/api_double.hxx \
+includes/api_handle.hxx \
+includes/api_int.hxx \
+includes/api_list.hxx \
+includes/api_pointer.hxx \
+includes/api_scilab.hxx \
+includes/api_sparse.hxx \
+includes/api_string.hxx \
+includes/api_variable.hxx \
+includes/overload.hxx
+
 
 include $(top_srcdir)/Makefile.incl.am

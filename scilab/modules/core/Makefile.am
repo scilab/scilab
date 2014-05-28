@@ -289,7 +289,9 @@ includes/getversion.h \
 includes/backtrace_print.h \
 includes/sci_mem_alloc.h \
 includes/hashtable.h \
-includes/hashtable_utility.h
+includes/hashtable_utility.h \
+includes/exit_status.hxx \
+includes/timer.hxx
 
 
 if GUI

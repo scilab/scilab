@@ -34,6 +34,7 @@ Source: modules\{#LINEAR_ALGEBRA}\macros\buildmacros.bat; DestDir: {app}\modules
 Source: modules\{#LINEAR_ALGEBRA}\macros\cleanmacros.bat; DestDir: {app}\modules\{#LINEAR_ALGEBRA}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#LINEAR_ALGEBRA}\macros\lib; DestDir: {app}\modules\{#LINEAR_ALGEBRA}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#LINEAR_ALGEBRA}\macros\*.sci; DestDir: {app}\modules\{#LINEAR_ALGEBRA}\macros; Components: {#COMPN_SCILAB}
+Source: modules\{#LINEAR_ALGEBRA}\macros\*.bin; DestDir: {app}\modules\{#LINEAR_ALGEBRA}\macros; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#LINEAR_ALGEBRA}\examples\*.*; DestDir: {app}\modules\{#LINEAR_ALGEBRA}\examples; Flags: recursesubdirs;  Components: {#COMPN_SCILAB}
 ;

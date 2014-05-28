@@ -20,6 +20,8 @@
 Source: bin\{#PARSE}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\{#PARSE}.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
+Source: modules\{#PARSE}\includes\*.*; DestDir: {app}\modules\{#PARSE}\includes; Components: {#COMPN_SCILAB}
+;
 Source: modules\{#PARSE}\etc\{#PARSE}.quit; DestDir: {app}\modules\{#PARSE}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#PARSE}\etc\{#PARSE}.start; DestDir: {app}\modules\{#PARSE}\etc; Components: {#COMPN_SCILAB}
 ;

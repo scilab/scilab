@@ -36,6 +36,7 @@
 ##########
 
 
+
 VPATH = @srcdir@
 am__is_gnu_make = test -n '$(MAKEFILE_LIST)' && test -n '$(MAKELEVEL)'
 am__make_running_with_option = \
@@ -102,7 +103,8 @@ build_triplet = @build@
 host_triplet = @host@
 DIST_COMMON = $(top_srcdir)/Makefile.incl.am $(srcdir)/Makefile.in \
 	$(srcdir)/Makefile.am $(top_srcdir)/config/mkinstalldirs \
-	$(top_srcdir)/config/depcomp
+	$(top_srcdir)/config/depcomp \
+	$(libscistring_la_include_HEADERS)
 @NEED_JAVA_TRUE@am__append_1 = java
 subdir = modules/string
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -159,7 +161,8 @@ am__uninstall_files_from_dir = { \
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscistring_la_etcdir)" \
 	"$(DESTDIR)$(libscistring_la_rootdir)" \
-	"$(DESTDIR)$(libscistring_la_sci_gatewaydir)"
+	"$(DESTDIR)$(libscistring_la_sci_gatewaydir)" \
+	"$(DESTDIR)$(libscistring_la_includedir)"
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libscistring_algo_la_LIBADD =
 am__dirstamp = $(am__leading_dot)dirstamp
@@ -300,6 +303,7 @@ am__can_run_installinfo = \
   esac
 DATA = $(libscistring_la_etc_DATA) $(libscistring_la_root_DATA) \
 	$(libscistring_la_sci_gateway_DATA)
+HEADERS = $(libscistring_la_include_HEADERS)
 am__tagged_files = $(HEADERS) $(SOURCES) $(TAGS_FILES) $(LISP)
 # Read a list of newline-separated strings from the standard input,
 # and print each of them once, without duplicates.  Input order is
@@ -726,6 +730,33 @@ libscistring_la_etc_DATA = etc/string.quit etc/string.start
 #### string : gateway declaration ####
 libscistring_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscistring_la_sci_gateway_DATA = sci_gateway/string_gateway.xml
+
+#### string : include files ####
+libscistring_la_includedir = $(pkgincludedir)
+libscistring_la_include_HEADERS = \
+includes/complex_array.h \
+includes/convstr.h \
+includes/cvstr.h \
+includes/dynlib_string_gw.h \
+includes/dynlib_string.h \
+includes/getfastcode.h \
+includes/men_Sutils.h \
+includes/os_strdup.h \
+includes/os_stricmp.h \
+includes/os_swprintf.h \
+includes/os_wcsdup.h \
+includes/os_wcsicmp.h \
+includes/os_wcstok.h \
+includes/pcre_private.h \
+includes/scistrtostr.h \
+includes/stricmp.h \
+includes/StringConvert.h \
+includes/string_gw.hxx \
+includes/stringToComplex.h \
+includes/stringToDouble.h \
+includes/stristr.h \
+includes/strsubst.h
+
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
@@ -1626,6 +1657,27 @@ uninstall-libscistring_la_sci_gatewayDATA:
 	@list='$(libscistring_la_sci_gateway_DATA)'; test -n "$(libscistring_la_sci_gatewaydir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
 	dir='$(DESTDIR)$(libscistring_la_sci_gatewaydir)'; $(am__uninstall_files_from_dir)
+install-libscistring_la_includeHEADERS: $(libscistring_la_include_HEADERS)
+	@$(NORMAL_INSTALL)
+	@list='$(libscistring_la_include_HEADERS)'; test -n "$(libscistring_la_includedir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(libscistring_la_includedir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(libscistring_la_includedir)" || exit 1; \
+	fi; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_HEADER) $$files '$(DESTDIR)$(libscistring_la_includedir)'"; \
+	  $(INSTALL_HEADER) $$files "$(DESTDIR)$(libscistring_la_includedir)" || exit $$?; \
+	done
+
+uninstall-libscistring_la_includeHEADERS:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libscistring_la_include_HEADERS)'; test -n "$(libscistring_la_includedir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(libscistring_la_includedir)'; $(am__uninstall_files_from_dir)
 
 ID: $(am__tagged_files)
 	$(am__define_uniq_tagged_files); mkid -fID $$unique
@@ -1712,9 +1764,9 @@ distdir: $(DISTFILES)
 check-am: all-am
 	$(MAKE) $(AM_MAKEFLAGS) check-local
 check: check-am
-all-am: Makefile $(LTLIBRARIES) $(DATA) all-local
+all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscistring_la_etcdir)" "$(DESTDIR)$(libscistring_la_rootdir)" "$(DESTDIR)$(libscistring_la_sci_gatewaydir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscistring_la_etcdir)" "$(DESTDIR)$(libscistring_la_rootdir)" "$(DESTDIR)$(libscistring_la_sci_gatewaydir)" "$(DESTDIR)$(libscistring_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -1777,6 +1829,7 @@ info: info-am
 info-am:
 
 install-data-am: install-data-local install-libscistring_la_etcDATA \
+	install-libscistring_la_includeHEADERS \
 	install-libscistring_la_rootDATA \
 	install-libscistring_la_sci_gatewayDATA
 
@@ -1825,6 +1878,7 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libscistring_la_etcDATA \
+	uninstall-libscistring_la_includeHEADERS \
 	uninstall-libscistring_la_rootDATA \
 	uninstall-libscistring_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
@@ -1841,6 +1895,7 @@ uninstall-am: uninstall-libscistring_la_etcDATA \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-html-local install-info \
 	install-info-am install-libscistring_la_etcDATA \
+	install-libscistring_la_includeHEADERS \
 	install-libscistring_la_rootDATA \
 	install-libscistring_la_sci_gatewayDATA install-man \
 	install-pdf install-pdf-am install-pkglibLTLIBRARIES \
@@ -1850,6 +1905,7 @@ uninstall-am: uninstall-libscistring_la_etcDATA \
 	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
 	tags tags-am uninstall uninstall-am \
 	uninstall-libscistring_la_etcDATA \
+	uninstall-libscistring_la_includeHEADERS \
 	uninstall-libscistring_la_rootDATA \
 	uninstall-libscistring_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES

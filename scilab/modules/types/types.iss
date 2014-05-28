@@ -16,10 +16,15 @@
 ;--------------------------------------------------------------------------------------------------------------
 ;
 #define TYPES "types"
+#define TYPESMACRO "typesmacro"
 ;
 Source: bin\{#TYPES}_gw.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\{#TYPES}_gw.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\{#TYPES}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\{#TYPES}.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\{#TYPESMACRO}.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+;
+Source: modules\{#TYPES}\includes\*.*; DestDir: {app}\modules\{#TYPES}\includes; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#TYPES}\jar\org.scilab.modules.{#TYPES}.jar;DestDir: {app}\modules\{#TYPES}\jar; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;

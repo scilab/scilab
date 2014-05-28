@@ -196,4 +196,33 @@ if GUI
 USEANT=1
 endif
 
+#### console : include files ####
+libsciconsole_la_includedir=$(pkgincludedir)
+libsciconsole_la_include_HEADERS = \
+includes/autoCompletionCli.h \
+includes/charactersManagement.h \
+includes/cliDisplayManagement.h \
+includes/cliHistory.h \
+includes/cliPrompt.h \
+includes/console_gw.hxx \
+includes/ConsolePrintf.h \
+includes/ConsoleRead.h \
+includes/dynlib_console_gw.h \
+includes/dynlib_console.h \
+includes/GetCommandLine.h \
+includes/getKey.h \
+includes/getNbrLine.h \
+includes/gotoFunctions.h \
+includes/gw_console.h \
+includes/initConsoleMode.h \
+includes/InitializeConsole.h \
+includes/initMacOSXEnv.h \
+includes/more.h \
+includes/prompt.h \
+includes/scilabRead.h \
+includes/scilines.h \
+includes/SetConsolePrompt.h \
+includes/termcapManagement.h
+
+
 include $(top_srcdir)/Makefile.incl.am

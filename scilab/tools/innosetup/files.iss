@@ -100,4 +100,5 @@
 #include BinariesSourcePath + "\modules\functions_manager\functions_manager.iss"
 #include BinariesSourcePath + "\modules\parse\parse.iss"
 #include BinariesSourcePath + "\modules\system_env\system_env.iss"
+#include BinariesSourcePath + "\modules\symbol\symbol.iss"
 ;-------------------------------------------------------------------------------

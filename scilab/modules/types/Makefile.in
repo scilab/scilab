@@ -43,6 +43,7 @@
 ##########
 
 
+
 VPATH = @srcdir@
 am__is_gnu_make = test -n '$(MAKEFILE_LIST)' && test -n '$(MAKELEVEL)'
 am__make_running_with_option = \
@@ -109,7 +110,7 @@ build_triplet = @build@
 host_triplet = @host@
 DIST_COMMON = $(top_srcdir)/Makefile.incl.am $(srcdir)/Makefile.in \
 	$(srcdir)/Makefile.am $(top_srcdir)/config/mkinstalldirs \
-	$(top_srcdir)/config/depcomp
+	$(top_srcdir)/config/depcomp $(libscitypes_la_include_HEADERS)
 @NEED_JAVA_TRUE@am__append_1 = java
 @ENABLE_DEBUG_TRUE@am__append_2 = src/cpp/inspector.cpp
 @GIWS_TRUE@am__append_3 = giws
@@ -181,7 +182,8 @@ am__uninstall_files_from_dir = { \
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscitypes_la_etcdir)" \
 	"$(DESTDIR)$(libscitypes_la_rootdir)" \
-	"$(DESTDIR)$(libscitypes_la_sci_gatewaydir)"
+	"$(DESTDIR)$(libscitypes_la_sci_gatewaydir)" \
+	"$(DESTDIR)$(libscitypes_la_includedir)"
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libscitypes_algo_la_LIBADD =
 am__libscitypes_algo_la_SOURCES_DIST = src/cpp/types.cpp \
@@ -357,6 +359,7 @@ am__can_run_installinfo = \
   esac
 DATA = $(libscitypes_la_etc_DATA) $(libscitypes_la_root_DATA) \
 	$(libscitypes_la_sci_gateway_DATA)
+HEADERS = $(libscitypes_la_include_HEADERS)
 am__tagged_files = $(HEADERS) $(SOURCES) $(TAGS_FILES) $(LISP)
 # Read a list of newline-separated strings from the standard input,
 # and print each of them once, without duplicates.  Input order is
@@ -768,6 +771,62 @@ JARMASK = *.jar
 HELP_CHAPTERDIR = help/
 HELP_CHAPTERFILE = addchapter.sce
 HELP_CHAPTERLANG = en_US fr_FR pt_BR
+
+#### types : include files ####
+libscitypes_la_includedir = $(pkgincludedir)
+libscitypes_la_include_HEADERS = \
+includes/alltypes.hxx \
+includes/arrayof.hxx \
+includes/bool.hxx \
+includes/callable.hxx \
+includes/cell.hxx \
+includes/c_gateway_prototype.h \
+includes/colon.hxx \
+includes/container.hxx \
+includes/cpp_gateway_prototype.hxx \
+includes/dollar.hxx \
+includes/double.hxx \
+includes/dynlib_types_gw.h \
+includes/dynlib_types.h \
+includes/file.hxx \
+includes/float.hxx \
+includes/function.hxx \
+includes/gatewaystruct.hxx \
+includes/GetScilabVariable.h \
+includes/graphichandle.hxx \
+includes/implicitlist.hxx \
+includes/inspector.hxx \
+includes/internal.hxx \
+includes/int.hxx \
+includes/library.hxx \
+includes/listdelete.hxx \
+includes/list.hxx \
+includes/listinsert.hxx \
+includes/listoperation.hxx \
+includes/listundefined.hxx \
+includes/macrofile.hxx \
+includes/macro.hxx \
+includes/matrixiterator.hxx \
+includes/mlist.hxx \
+includes/pointer.hxx \
+includes/polynom.hxx \
+includes/ScilabToJava.hxx \
+includes/singlepoly.hxx \
+includes/singlestruct.hxx \
+includes/sparse.hxx \
+includes/sparseOp.hxx \
+includes/string.hxx \
+includes/struct.hxx \
+includes/threadId.hxx \
+includes/tlist.hxx \
+includes/tostring_common.hxx \
+includes/types_gw.hxx \
+includes/types.hxx \
+includes/types_tools.hxx \
+includes/user.hxx \
+includes/void.hxx \
+includes/typesdecl.hxx
+
 TYPES_JAVA_C_SOURCES = src/jni/getScilabVariable_wrap.c
 TYPES_CPP_SOURCES = src/cpp/types.cpp src/cpp/string.cpp \
 	src/cpp/double.cpp src/cpp/bool.cpp src/cpp/float.cpp \
@@ -1733,6 +1792,27 @@ uninstall-libscitypes_la_sci_gatewayDATA:
 	@list='$(libscitypes_la_sci_gateway_DATA)'; test -n "$(libscitypes_la_sci_gatewaydir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
 	dir='$(DESTDIR)$(libscitypes_la_sci_gatewaydir)'; $(am__uninstall_files_from_dir)
+install-libscitypes_la_includeHEADERS: $(libscitypes_la_include_HEADERS)
+	@$(NORMAL_INSTALL)
+	@list='$(libscitypes_la_include_HEADERS)'; test -n "$(libscitypes_la_includedir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(libscitypes_la_includedir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(libscitypes_la_includedir)" || exit 1; \
+	fi; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_HEADER) $$files '$(DESTDIR)$(libscitypes_la_includedir)'"; \
+	  $(INSTALL_HEADER) $$files "$(DESTDIR)$(libscitypes_la_includedir)" || exit $$?; \
+	done
+
+uninstall-libscitypes_la_includeHEADERS:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libscitypes_la_include_HEADERS)'; test -n "$(libscitypes_la_includedir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(libscitypes_la_includedir)'; $(am__uninstall_files_from_dir)
 
 ID: $(am__tagged_files)
 	$(am__define_uniq_tagged_files); mkid -fID $$unique
@@ -1914,9 +1994,9 @@ check-am: all-am
 	$(MAKE) $(AM_MAKEFLAGS) check-TESTS check-local
 check: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) check-am
-all-am: Makefile $(LTLIBRARIES) $(DATA) all-local
+all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscitypes_la_etcdir)" "$(DESTDIR)$(libscitypes_la_rootdir)" "$(DESTDIR)$(libscitypes_la_sci_gatewaydir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscitypes_la_etcdir)" "$(DESTDIR)$(libscitypes_la_rootdir)" "$(DESTDIR)$(libscitypes_la_sci_gatewaydir)" "$(DESTDIR)$(libscitypes_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: $(BUILT_SOURCES)
@@ -1981,6 +2061,7 @@ info: info-am
 info-am:
 
 install-data-am: install-data-local install-libscitypes_la_etcDATA \
+	install-libscitypes_la_includeHEADERS \
 	install-libscitypes_la_rootDATA \
 	install-libscitypes_la_sci_gatewayDATA
 
@@ -2029,6 +2110,7 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libscitypes_la_etcDATA \
+	uninstall-libscitypes_la_includeHEADERS \
 	uninstall-libscitypes_la_rootDATA \
 	uninstall-libscitypes_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
@@ -2045,7 +2127,9 @@ uninstall-am: uninstall-libscitypes_la_etcDATA \
 	install-data-local install-dvi install-dvi-am install-exec \
 	install-exec-am install-html install-html-am \
 	install-html-local install-info install-info-am \
-	install-libscitypes_la_etcDATA install-libscitypes_la_rootDATA \
+	install-libscitypes_la_etcDATA \
+	install-libscitypes_la_includeHEADERS \
+	install-libscitypes_la_rootDATA \
 	install-libscitypes_la_sci_gatewayDATA install-man install-pdf \
 	install-pdf-am install-pkglibLTLIBRARIES install-ps \
 	install-ps-am install-strip installcheck installcheck-am \
@@ -2053,6 +2137,7 @@ uninstall-am: uninstall-libscitypes_la_etcDATA \
 	mostlyclean mostlyclean-compile mostlyclean-generic \
 	mostlyclean-libtool pdf pdf-am ps ps-am tags tags-am uninstall \
 	uninstall-am uninstall-libscitypes_la_etcDATA \
+	uninstall-libscitypes_la_includeHEADERS \
 	uninstall-libscitypes_la_rootDATA \
 	uninstall-libscitypes_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES

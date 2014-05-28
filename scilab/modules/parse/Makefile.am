@@ -67,4 +67,12 @@ libsciparse_la_CPPFLAGS = \
 	-I$(top_builddir)/modules/system_env/includes \
 	$(AM_CPPFLAGS)
 
+#### parse : include files ####
+libsciparse_la_includedir=$(pkgincludedir)
+libsciparse_la_include_HEADERS = includes/isatty.hxx \
+includes/parse.hxx \
+includes/parser.hxx \
+includes/parser_private.hxx \
+includes/parsescilab.hxx
+
 include $(top_srcdir)/Makefile.incl.am

@@ -40,6 +40,7 @@ Source: modules\{#PREFERENCES}\macros\buildmacros.bat; DestDir: {app}\modules\{#
 Source: modules\{#PREFERENCES}\macros\cleanmacros.bat; DestDir: {app}\modules\{#PREFERENCES}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#PREFERENCES}\macros\lib; DestDir: {app}\modules\{#PREFERENCES}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#PREFERENCES}\macros\*.sci; DestDir: {app}\modules\{#PREFERENCES}\macros; Components: {#COMPN_SCILAB}
+Source: modules\{#PREFERENCES}\macros\*.bin; DestDir: {app}\modules\{#PREFERENCES}\macros; Components: {#COMPN_SCILAB}
 ;
 ;Source: modules\{#PREFERENCES}\examples\*.*; DestDir: {app}\modules\{#PREFERENCES}\examples; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;

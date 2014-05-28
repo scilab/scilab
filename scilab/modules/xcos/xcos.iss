@@ -44,6 +44,7 @@ Source: modules\{#XCOS}\macros\buildmacros.bat; DestDir: {app}\modules\{#XCOS}\m
 Source: modules\{#XCOS}\macros\cleanmacros.bat; DestDir: {app}\modules\{#XCOS}\macros; Components: {#COMPN_XCOS}
 ;Source: modules\{#XCOS}\macros\lib; DestDir: {app}\modules\{#XCOS}\macros; Components: {#COMPN_XCOS}
 Source: modules\{#XCOS}\macros\*.sci; DestDir: {app}\modules\{#XCOS}\macros; Components: {#COMPN_XCOS}
+;Source: modules\{#XCOS}\macros\*.bin; DestDir: {app}\modules\{#XCOS}\macros; Components: {#COMPN_XCOS}
 ;
 Source: modules\{#XCOS}\examples\*.*; DestDir: {app}\modules\{#XCOS}\examples; Flags: recursesubdirs; Components: {#COMPN_XCOS}
 ;

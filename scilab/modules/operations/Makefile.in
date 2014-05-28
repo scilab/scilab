@@ -36,6 +36,7 @@
 ##########
 
 
+
 VPATH = @srcdir@
 am__is_gnu_make = test -n '$(MAKEFILE_LIST)' && test -n '$(MAKELEVEL)'
 am__make_running_with_option = \
@@ -102,7 +103,8 @@ build_triplet = @build@
 host_triplet = @host@
 DIST_COMMON = $(top_srcdir)/Makefile.incl.am $(srcdir)/Makefile.in \
 	$(srcdir)/Makefile.am $(top_srcdir)/config/mkinstalldirs \
-	$(top_srcdir)/config/depcomp
+	$(top_srcdir)/config/depcomp \
+	$(libscioperations_la_include_HEADERS)
 @NEED_JAVA_TRUE@am__append_1 = java
 subdir = modules/operations
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -157,7 +159,8 @@ am__uninstall_files_from_dir = { \
          $(am__cd) "$$dir" && rm -f $$files; }; \
   }
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
-	"$(DESTDIR)$(libsciboolean_la_etcdir)"
+	"$(DESTDIR)$(libsciboolean_la_etcdir)" \
+	"$(DESTDIR)$(libscioperations_la_includedir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscioperations_la_DEPENDENCIES =
 am__dirstamp = $(am__leading_dot)dirstamp
@@ -255,6 +258,7 @@ am__can_run_installinfo = \
     *) (install-info --version) >/dev/null 2>&1;; \
   esac
 DATA = $(libsciboolean_la_etc_DATA)
+HEADERS = $(libscioperations_la_include_HEADERS)
 am__tagged_files = $(HEADERS) $(SOURCES) $(TAGS_FILES) $(LISP)
 # Read a list of newline-separated strings from the standard input,
 # and print each of them once, without duplicates.  Input order is
@@ -614,6 +618,13 @@ modulename = operations
 #### operations : init scripts ####
 libsciboolean_la_etcdir = $(mydatadir)/etc
 libsciboolean_la_etc_DATA = etc/operations.quit etc/operations.start
+
+#### api_scilab : include files ####
+libscioperations_la_includedir = $(pkgincludedir)
+libscioperations_la_include_HEADERS = \
+    includes/doublecomplex.h \
+    includes/dynlib_operations.hxx
+
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
@@ -1100,6 +1111,27 @@ uninstall-libsciboolean_la_etcDATA:
 	@list='$(libsciboolean_la_etc_DATA)'; test -n "$(libsciboolean_la_etcdir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
 	dir='$(DESTDIR)$(libsciboolean_la_etcdir)'; $(am__uninstall_files_from_dir)
+install-libscioperations_la_includeHEADERS: $(libscioperations_la_include_HEADERS)
+	@$(NORMAL_INSTALL)
+	@list='$(libscioperations_la_include_HEADERS)'; test -n "$(libscioperations_la_includedir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(libscioperations_la_includedir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(libscioperations_la_includedir)" || exit 1; \
+	fi; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_HEADER) $$files '$(DESTDIR)$(libscioperations_la_includedir)'"; \
+	  $(INSTALL_HEADER) $$files "$(DESTDIR)$(libscioperations_la_includedir)" || exit $$?; \
+	done
+
+uninstall-libscioperations_la_includeHEADERS:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libscioperations_la_include_HEADERS)'; test -n "$(libscioperations_la_includedir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(libscioperations_la_includedir)'; $(am__uninstall_files_from_dir)
 
 ID: $(am__tagged_files)
 	$(am__define_uniq_tagged_files); mkid -fID $$unique
@@ -1186,9 +1218,9 @@ distdir: $(DISTFILES)
 check-am: all-am
 	$(MAKE) $(AM_MAKEFLAGS) check-local
 check: check-am
-all-am: Makefile $(LTLIBRARIES) $(DATA) all-local
+all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libsciboolean_la_etcdir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libsciboolean_la_etcdir)" "$(DESTDIR)$(libscioperations_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -1248,7 +1280,8 @@ info: info-am
 
 info-am:
 
-install-data-am: install-data-local install-libsciboolean_la_etcDATA
+install-data-am: install-data-local install-libsciboolean_la_etcDATA \
+	install-libscioperations_la_includeHEADERS
 
 install-dvi: install-dvi-am
 
@@ -1295,6 +1328,7 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libsciboolean_la_etcDATA \
+	uninstall-libscioperations_la_includeHEADERS \
 	uninstall-pkglibLTLIBRARIES
 
 .MAKE: check-am install-am install-strip
@@ -1308,13 +1342,16 @@ uninstall-am: uninstall-libsciboolean_la_etcDATA \
 	install-data-local install-dvi install-dvi-am install-exec \
 	install-exec-am install-html install-html-am \
 	install-html-local install-info install-info-am \
-	install-libsciboolean_la_etcDATA install-man install-pdf \
-	install-pdf-am install-pkglibLTLIBRARIES install-ps \
-	install-ps-am install-strip installcheck installcheck-am \
-	installdirs maintainer-clean maintainer-clean-generic \
-	mostlyclean mostlyclean-compile mostlyclean-generic \
-	mostlyclean-libtool pdf pdf-am ps ps-am tags tags-am uninstall \
-	uninstall-am uninstall-libsciboolean_la_etcDATA \
+	install-libsciboolean_la_etcDATA \
+	install-libscioperations_la_includeHEADERS install-man \
+	install-pdf install-pdf-am install-pkglibLTLIBRARIES \
+	install-ps install-ps-am install-strip installcheck \
+	installcheck-am installdirs maintainer-clean \
+	maintainer-clean-generic mostlyclean mostlyclean-compile \
+	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
+	tags tags-am uninstall uninstall-am \
+	uninstall-libsciboolean_la_etcDATA \
+	uninstall-libscioperations_la_includeHEADERS \
 	uninstall-pkglibLTLIBRARIES
 
 

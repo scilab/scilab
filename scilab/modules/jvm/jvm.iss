@@ -53,6 +53,7 @@ Source: modules\{#JVM}\macros\buildmacros.bat; DestDir: {app}\modules\{#JVM}\mac
 Source: modules\{#JVM}\macros\cleanmacros.bat; DestDir: {app}\modules\{#JVM}\macros; Components: {#COMPN_JVM_MODULE}
 Source: modules\{#JVM}\macros\lib; DestDir: {app}\modules\{#JVM}\macros; Components: {#COMPN_JVM_MODULE}
 Source: modules\{#JVM}\macros\*.sci; DestDir: {app}\modules\{#JVM}\macros; Components: {#COMPN_JVM_MODULE}
+Source: modules\{#JVM}\macros\*.bin; DestDir: {app}\modules\{#JVM}\macros; Components: {#COMPN_JVM_MODULE}
 ;
 Source: modules\{#JVM}\tests\*.*; DestDir: {app}\modules\{#JVM}\tests; Flags: recursesubdirs; Components: {#COMPN_JVM_MODULE} and {#COMPN_TESTS}
 ;

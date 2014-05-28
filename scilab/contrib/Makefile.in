@@ -455,7 +455,12 @@ toolbox_skeleton/readme.txt \
 toolbox_skeleton/sci_gateway/builder_gateway.sce \
 toolbox_skeleton/sci_gateway/c/builder_gateway_c.sce \
 toolbox_skeleton/sci_gateway/cpp/builder_gateway_cpp.sce \
+toolbox_skeleton/sci_gateway/cpp/sci_cpperror.cpp \
 toolbox_skeleton/sci_gateway/cpp/sci_cpp_find.cxx \
+toolbox_skeleton/sci_gateway/cpp/sci_cppfoo.cpp \
+toolbox_skeleton/sci_gateway/cpp/sci_cppmultiplybypi.cpp \
+toolbox_skeleton/sci_gateway/cpp/sci_cppsub.cpp \
+toolbox_skeleton/sci_gateway/cpp/sci_cppsum.cpp \
 toolbox_skeleton/sci_gateway/c/sci_cerror.c \
 toolbox_skeleton/sci_gateway/c/sci_csub.c \
 toolbox_skeleton/sci_gateway/c/sci_csum.c \

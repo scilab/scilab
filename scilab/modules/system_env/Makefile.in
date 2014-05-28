@@ -544,8 +544,24 @@ libscisystem_env_la_CPPFLAGS = \
 	-I $(top_srcdir)/modules/localization/includes/ \
 	$(AM_CPPFLAGS)
 
-libscisystem_env_la_includedir = $(pkgincludedir)/system_env
-libscisystem_env_la_include_HEADERS = includes/setenvvar.hxx \
+
+#### system_env : include files ####
+libscisystem_env_la_includedir = $(pkgincludedir)
+libscisystem_env_la_include_HEADERS = includes/configvariable.hxx \
+includes/dynlib_system_env.h \
+includes/home.h \
+includes/promptmode.h \
+includes/sci_home.h \
+includes/sci_mode.h \
+includes/sci_simpMode.h \
+includes/setenvvar.hxx \
+includes/context_get.h \
+includes/formatmode.h \
+includes/lasterror.h \
+includes/reference_modules.h \
+includes/sci_ieee.h \
+includes/sci_path.h \
+includes/sci_tmpdir.h \
 includes/warningmode.h
 
 all: all-am
