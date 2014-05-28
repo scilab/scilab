@@ -197,17 +197,18 @@ void Context::put(Variable* _var, types::InternalType* _pIT)
     {
         (*varStack.top())[_var->name_get()] = _var;
     }
+
+    if (_pIT->isLibrary())
+    {
+        Library* lib = libraries.getOrCreate(_var->name_get());
+        lib->put((types::Library*)_pIT, m_iLevel);
+    }
 }
 
 void Context::put(const Symbol& _key, types::InternalType* _pIT)
 {
     Variable* var = variables.getOrCreate(_key);
     put(var, _pIT);
-    if (_pIT->isLibrary())
-    {
-        Library* lib = libraries.getOrCreate(_key);
-        lib->put((types::Library*)_pIT, m_iLevel);
-    }
 }
 
 bool Context::remove(const Symbol& _key)
@@ -248,7 +249,8 @@ bool Context::putInPreviousScope(Variable* _var, types::InternalType* _pIT)
 
 bool Context::addFunction(types::Function *_info)
 {
-    put(Symbol(_info->getName()), _info);
+    Variable* var = variables.getOrCreate(Symbol(_info->getName()));
+    variables.putInPreviousScope(var, _info, 1);
     return true;
 }
 

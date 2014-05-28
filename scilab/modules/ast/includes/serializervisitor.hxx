@@ -30,6 +30,7 @@ private :
     int buflen;
     int bufsize;
     ast::Exp* ast;
+    bool saveNodeNumber;
 
     unsigned char* get_buf(void)
     {
@@ -59,7 +60,14 @@ private :
     {
         Location loc = e.location_get();
         add_uint8(code);
-        add_uint64(e.nodeNumber_get());
+        if (saveNodeNumber)
+        {
+            add_uint64(e.nodeNumber_get());
+        }
+        else
+        {
+            add_uint64((unsigned long long)0);
+        }
         add_location(e.location_get());
         add_uint8(e.is_verbose());
         add_uint8(e.is_break());
@@ -569,10 +577,11 @@ private :
     }
 
 public :
-    SerializeVisitor(ast::Exp* _ast) : ast(_ast), buf(NULL), buflen(0), bufsize(0) {}
+    SerializeVisitor(ast::Exp* _ast) : ast(_ast), buf(NULL), buflen(0), bufsize(0), saveNodeNumber(true) {}
 
-    unsigned char* serialize()
+    unsigned char* serialize(bool _saveNodeNumber = true)
     {
+        saveNodeNumber = _saveNodeNumber;
         ast->accept(*this);
         return get_buf();
     }

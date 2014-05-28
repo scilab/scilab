@@ -71,7 +71,7 @@ public:
     virtual FunctionDec* clone()
     {
         Location* newloc = const_cast<Location*>(&location_get())->clone();
-        FunctionDec* cloned = new FunctionDec(*newloc, name_get(), *args_get().clone(), *returns_get().clone(), *body_get().clone());
+        FunctionDec* cloned = new FunctionDec(*newloc, *new symbol::Symbol(name_get().name_get()), *args_get().clone(), *returns_get().clone(), *body_get().clone());
         cloned->set_verbose(is_verbose());
         return cloned;
     }

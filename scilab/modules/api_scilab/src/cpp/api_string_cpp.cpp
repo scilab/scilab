@@ -15,7 +15,7 @@ namespace api_scilab
 {
 String::String(int _iRows, int _iCols)
 {
-    data = new types::String(_iRows, _iRows);
+    data = new types::String(_iRows, _iCols);
     created = true;
 }
 

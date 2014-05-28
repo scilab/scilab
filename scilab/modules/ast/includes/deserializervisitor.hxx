@@ -571,7 +571,11 @@ private :
         {
             exp->continuable_set();
         }
-        exp->nodeNumber_set(nodeNumber);
+
+        if (nodeNumber != 0)
+        {
+            exp->nodeNumber_set(nodeNumber);
+        }
 
         return exp;
     }

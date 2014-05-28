@@ -14,7 +14,6 @@ function scilablibrarieslist = dlwGetScilabLibraries()
     "core.lib"; ..
     "core_f.lib"; ..
     "lapack.lib"; ..
-    "libintl.lib"; ..
     "output_stream.lib"; ..
     "dynamic_link.lib"; ..
     "integer.lib"; ..
@@ -26,9 +25,20 @@ function scilablibrarieslist = dlwGetScilabLibraries()
     "time.lib"; ..
     "api_scilab.lib"; ..
     "types.lib"; ..
+    "typesmacro.lib"; ..
     "operations.lib"; ..
     "symbol.lib"; ..
     "libintl.lib"; ..
+    "ast.lib"; ..
+    "fileio.lib"; ..
+    "io.lib"; ..
+    "parse.lib"; ..
+    "ast-tools.lib"; ..
+    "symbol.lib"; ..
+    "system_env.lib"; ..
+    "string.lib"; ..
+    "threads.lib"; ..
+    "sciconsole.lib"; ..
     "scilab_windows.lib"];
 endfunction
 //=============================================================================

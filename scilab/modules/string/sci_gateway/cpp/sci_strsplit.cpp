@@ -31,7 +31,7 @@ types::Function::ReturnValue sci_strsplit(types::typed_list &in, int _iRetCount,
     types::String* pStrIn = NULL;
     int iValueThree = 0;
 
-    if (in.size() < 1 && in.size() > 3)
+    if (in.size() < 1 || in.size() > 3)
     {
         Scierror(999, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "strsplit", 1, 3);
         return types::Function::Error;

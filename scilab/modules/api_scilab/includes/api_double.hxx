@@ -47,6 +47,7 @@ public :
     };
 
     static Double* getAsDouble(types::InternalType* _pdbl);
+    static Double* Empty();
 
     types::InternalType::ScilabType getType()
     {

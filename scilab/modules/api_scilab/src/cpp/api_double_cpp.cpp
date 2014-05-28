@@ -13,6 +13,11 @@
 
 namespace api_scilab
 {
+Double* Double::Empty()
+{
+    return new Double(0, 0);
+}
+
 Double::Double(double _dbl)
 {
     data = new types::Double(_dbl);

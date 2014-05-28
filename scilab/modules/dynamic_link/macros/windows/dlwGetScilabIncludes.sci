@@ -24,10 +24,14 @@ function scilabincludeslist = dlwGetScilabIncludes()
     "$(SCIDIR)/modules/time/includes"; ..
     "$(SCIDIR)/modules/windows_tools/includes"; ..
     "$(SCIDIR)/modules/symbol/includes"; ..
+    "$(SCIDIR)/modules/system_env/includes"; ..
+    "$(SCIDIR)/modules/threads/includes"; ..
     "$(SCIDIR)/modules/types/includes"; ..
     "$(SCIDIR)/modules/operations/includes"; ..
     "$(SCIDIR)/modules/ast/includes"; ..
     "$(SCIDIR)/modules/ast/includes/exps"; ..
+    "$(SCIDIR)/modules/string/includes"; ..
+    "$(SCIDIR)/modules/console/includes"; ..
     "$(SCIDIR)/libs/Eigen/includes"];
 endfunction
 //=============================================================================
