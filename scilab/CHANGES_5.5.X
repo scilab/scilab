@@ -110,6 +110,12 @@ Scilab Bug Fixes
 * Bug #13409 fixed - permute(x, dims) failed when dims was greater than the dimensions of size(x)
                      now permute treats extra dimensions as 1.
 
+* Bug #13418 fixed - Help page for crossover_ga_binary was unclear.
+                     Also added mix to check the crossover positions.
+
+* Bug #13424 fixed - crossover_ga_binary algorithm was not the classical point crossover one.
+                     Also fixed the usage of binary length.
+
 * Bug #13425 fixed - optim_ga and optim_moga needed optimization.
 
 * Bug #13435 fixed - Windows version crashes when calling xmlRemove on the first child.

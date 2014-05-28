@@ -2,6 +2,8 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - Yann COLLETTE <yann.collette@renault.com>
+ * Copyright (C) 2014 - Michael BAUDIN <michael.baudin@contrib.scilab.org>
+ * Copyright (C) Scilab Enterprises - 2014 - Pierre-Aime AGNEL
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -17,7 +19,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>[Crossed_Indiv1,Crossed_Indiv2] = crossover_ga_binary(Indiv1,Indiv2,param)</synopsis>
+        <synopsis>[Crossed_Indiv1, Crossed_Indiv2, mix] = crossover_ga_binary(Indiv1, Indiv2, param)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -25,6 +27,7 @@
             <varlistentry>
                 <term>Indiv1</term>
                 <listitem>
+                    <para>A string</para>
                     <para>the first individual (here a binary code) to be
                         crossed-over.
                     </para>
@@ -33,25 +36,31 @@
             <varlistentry>
                 <term>Indiv2</term>
                 <listitem>
+                    <para>A string</para>
                     <para>the second individual to be crossed-over.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>param</term>
                 <listitem>
-                    <para>a list of parameters. </para>
+                    <para>a list of parameters.</para>
                     <itemizedlist>
                         <listitem>
-                            <para> 'binary_length': the length of the binary code. </para>
-                        </listitem>
-                        <listitem>
-                            <para> 'multi_cross': a boolean. If %T then we allow several
-                                cuts in the binary code. 
+                            <para>
+                                <literal>"binary_length"</literal>: an integer, the length of the binary
+                                code (default 8).
                             </para>
                         </listitem>
                         <listitem>
-                            <para> 'multi_cross_nb': the number of cuts in the binary code.
-                                Only used when multi_cross is set to %T.
+                            <para>
+                                <literal>"multi_cross"</literal>: a boolean. If <literal>%T</literal> then we allow several
+                                cuts in the binary code (default <literal>%F</literal>).
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>"multi_cross_nb"</literal>: an integer, the number of cuts in the binary code.
+                                Only used when multi_cross is set to %T (default 2).
                             </para>
                         </listitem>
                     </itemizedlist>
@@ -60,6 +69,7 @@
             <varlistentry>
                 <term>Crossed_Indiv1</term>
                 <listitem>
+                    <para>A string</para>
                     <para>The first individual obtained by the cross-over
                         function.
                     </para>
@@ -68,20 +78,124 @@
             <varlistentry>
                 <term>Crossed_Indiv2</term>
                 <listitem>
+                    <para>A string</para>
                     <para>The second individual obtained by the cross-over
                         function.
                     </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>mix</term>
+                <listitem>
+                    <para>A vector of integers</para>
+                    <para>The positions the crossover occurred.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
         <title>Description</title>
-        <itemizedlist>
-            <listitem>
-                <para>This function implements a classical binary cross-over.</para>
-            </listitem>
-        </itemizedlist>
+        <para>This function implements a classical binary cross-over.</para>
+        <para>
+            <literal>crossover_ga_binary(Indiv1, Indiv2)</literal> generates
+            the crossover between <varname>Indiv1</varname> and <varname>Indiv2</varname>
+            by merging the characters from each string.
+        </para>
+        <para>
+            A position <literal>i</literal> is chosen randomly
+            between 1 and the length of the binary code.
+        </para>
+        <para>
+            Then <literal>Indiv1</literal> and <literal>Indiv2</literal>
+            are split in two parts:
+            the first <literal>i</literal> characters (the head),
+            and the remaining characters (the tail).
+            The crossover swaps the tails of the binary codes.
+        </para>
+        <para>
+            The following schema presents the crossover:
+            <programlisting role="explanation"><![CDATA[
+                Indiv1=[H1 T1]
+                Indiv2=[H2 T2]
+                Crossed_Indiv1=[H1 T2]
+                Crossed_Indiv2=[H2 T1]
+                ]]></programlisting>
+        </para>
+        <para>
+            The behaviour of the function can be modified with the use of <varname>param</varname>:
+        </para>
+        <variablelist>
+            <varlistentry>
+                <term>
+                    binary_length
+                </term>
+                <listitem>
+                    <para>
+                        changes the minimal length of the binary code, by default 8 characters.
+                    </para>
+                    <para>
+                        Binary code for <varname>Indiv1</varname> or <varname>Indiv2</varname>
+                        of lower length are zero padded to the right to be of
+                        <literal>binary_length</literal> length or <literal>max([length(Indiv1), length(Indiv2)])</literal>
+                        whichever is greater.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>multi_cross</term>
+                <listitem>
+                    <para>
+                        if set to <literal>%T</literal> multiple crossovers
+                        can happen (default <literal>%F</literal>)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>multi_cross_nb</term>
+                <listitem>
+                    <para>
+                        the number of locations for crossovers.
+                        (default 2 if
+                        multi_cross is set to <literal>%T</literal>, 1 otherwise)
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title> Random number generator </title>
+        <para>
+            <literal>crossover_ga_binary</literal> is based
+            on <link linkend="grand">grand</link>
+            for generating the random samples.
+            Use <literal>grand("setsd", seed)</literal> to change the seed
+            for <literal>crossover_ga_binary</literal>.
+        </para>
+        <programlisting role="example"><![CDATA[
+            seed = getdate("s");
+            grand("setsd", seed); //sets the seed to current date
+
+            seed = 0;
+            grand("setsd", seed); //sets the seed to default value
+            ]]>
+        </programlisting>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+            A = "11100000"
+            B = "00011111"
+            [A_crossed, B_crossed, mix] = crossover_ga_binary(A, B)
+
+            C = dec2bin(2^16 - 1, 16)
+            D = "0"
+            param = init_param();
+            param = add_param(param, "binary_length", 16);  // Code of length 16
+            param = add_param(param, "multi_cross", %T);    // Multiple Crossover
+            param = add_param(param, "multi_cross_nb", 3);  // Occurs over 3 locations
+
+            [C_crossed, D_crossed, mix] = crossover_ga_binary(C, D, param)
+ ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>
@@ -100,6 +214,9 @@
             </member>
             <member>
                 <link linkend="optim_ga"> optim_ga </link>
+            </member>
+            <member>
+                <link linkend="grand">grand</link>
             </member>
         </simplelist>
     </refsection>
