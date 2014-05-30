@@ -221,7 +221,7 @@ function [pop_opt, fobj_pop_opt, pop_init, fobj_pop_init] = optim_nsga(ga_f, pop
         [Pop, FObj_Pop, Efficiency, MO_FObj_Pop] = selection_func(Pop, Indiv1, Indiv2, FObj_Pop, FObj_Indiv1, FObj_Indiv2, ...
         MO_FObj_Pop, MO_FObj_Indiv1, MO_FObj_Indiv2, param);
         if (Log) then
-            stop = output_func(i, nb_generation, Pop, FObj_Pop, param);
+            stop = output_func(i, nb_generation, Pop, MO_FObj_Pop, param);
             if stop then
                 break
             end

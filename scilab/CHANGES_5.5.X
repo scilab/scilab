@@ -122,6 +122,8 @@ Scilab Bug Fixes
 * Bug #13421 fixed - Callback functions for genetic algorithms were missing.
                      Now the user can set functions to stop iterations and access the population.
 
+* Bug #13422 fixed - Genetic algorithms did not log the minimum and maximum values properly.
+
 * Bug #13424 fixed - crossover_ga_binary algorithm was not the classical point crossover one.
                      Also fixed the usage of binary length.
 
