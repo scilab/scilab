@@ -124,6 +124,8 @@ Scilab Bug Fixes
 
 * Bug #13425 fixed - optim_ga and optim_moga needed optimization.
 
+* Bug #13426 fixed - optim help page was written with bad indentation.
+
 * Bug #13435 fixed - Windows version crashes when calling xmlRemove on the first child.
 
 * Bug #13438 fixed - drawaxis did not return the handle of the created axis.
