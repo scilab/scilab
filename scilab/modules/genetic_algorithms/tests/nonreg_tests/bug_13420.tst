@@ -1,0 +1,31 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2014 - Scilab Enterprises - Pierre-Aime Agnel
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+//
+// <-- Non-regression test for bug  -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/13420
+//
+// <-- Short Description -->
+// mutation_ga_binary did not properly write mutliple mutations
+//
+// <-- CLI SHELL MODE -->
+
+param = init_param("binary_length", 8, "multi_mut", %t, "multi_mut_nb", 6);
+
+for i = 1:100
+    A = "11100011";
+    [A_mut, pos] = mutation_ga_binary(A, param);
+
+    A = strsplit(A);
+    A_mut = strsplit(A_mut);
+
+    tst_mut = A(pos) <> A_mut(pos);
+    tst_notmut = A(setdiff(1:8, pos)) == A_mut(setdiff(1:8, pos));
+
+    assert_checktrue(and(tst_mut));
+    assert_checktrue(and(tst_notmut));
+end

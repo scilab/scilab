@@ -115,6 +115,8 @@ Scilab Bug Fixes
 * Bug #13418 fixed - Help page for crossover_ga_binary was unclear.
                      Also added mix to check the crossover positions.
 
+* Bug #13420 fixed - mutation_ga_binary did not calculate properly multiple mutations.
+
 * Bug #13424 fixed - crossover_ga_binary algorithm was not the classical point crossover one.
                      Also fixed the usage of binary length.
 
