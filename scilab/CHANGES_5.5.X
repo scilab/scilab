@@ -32,6 +32,8 @@ Scilab Bug Fixes
 
 * Bug #9783 fixed - Insertion overloading did not seem to work with mlists.
 
+* Bug #10168 fixed - kron produced a segfault in some cases.
+
 * Bug #10555 fixed - Scilab failed to build with some configure options.
 
 * Bug #10583 fixed - ./configure --without-xcos did not work.
