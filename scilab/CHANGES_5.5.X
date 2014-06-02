@@ -18,6 +18,8 @@ Scilab Bug Fixes
 
 * Bug #7804 fixed - Small improvements made in struct help page.
 
+* Bug #8502 fixed - Axis labels wrongly used number with 3 digits in the exponent.
+
 * Bug #8646 fixed - The datatips contextual menu opened a selection list which
                     was not ergonomic.
 
