@@ -28,6 +28,8 @@ Scilab Bug Fixes
 * Bug #9052 fixed - Some demonstrations in graphics were automatically closed at
                     the end of their execution.
 
+* Bug #9252 fixed - Some error prototypes produced screwed display.
+
 * Bug #9783 fixed - Insertion overloading did not seem to work with mlists.
 
 * Bug #10555 fixed - Scilab failed to build with some configure options.
