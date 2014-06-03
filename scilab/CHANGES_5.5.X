@@ -38,6 +38,8 @@ Scilab Bug Fixes
 
 * Bug #10168 fixed - kron produced a segfault in some cases.
 
+* Bug #10336 fixed - Default key of rand was changed from "uniform" to "normal".
+
 * Bug #10555 fixed - Scilab failed to build with some configure options.
 
 * Bug #10583 fixed - ./configure --without-xcos did not work.
