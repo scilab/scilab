@@ -151,9 +151,9 @@ Double::Double(double _dblReal, double _dblImg)
     int piDims[2] = {1, 1};
     double *pdblR;
     double *pdblI;
-    create(piDims, 2, &pdblR, &pdblI);
     setViewAsInteger(false);
     setViewAsZComplex(false);
+    create(piDims, 2, &pdblR, &pdblI);
 
     pdblR[0] = _dblReal;
     pdblI[0] = _dblImg;
@@ -165,9 +165,9 @@ Double::Double(double _dblReal, double _dblImg)
 Double::Double(int _iRows, int _iCols, double **_pdblReal)
 {
     int piDims[2] = {_iRows, _iCols};
-    create(piDims, 2, _pdblReal, NULL);
     setViewAsInteger(false);
     setViewAsZComplex(false);
+    create(piDims, 2, _pdblReal, NULL);
 
 #ifndef NDEBUG
     Inspector::addItem(this);
@@ -177,9 +177,9 @@ Double::Double(int _iRows, int _iCols, double **_pdblReal)
 Double::Double(int _iRows, int _iCols, double **_pdblReal, double **_pdblImg)
 {
     int piDims[2] = {_iRows, _iCols};
-    create(piDims, 2, _pdblReal, _pdblImg);
     setViewAsInteger(false);
     setViewAsZComplex(false);
+    create(piDims, 2, _pdblReal, _pdblImg);
 
 #ifndef NDEBUG
     Inspector::addItem(this);
@@ -191,6 +191,8 @@ Double::Double(int _iDims, int* _piDims, bool _bComplex, bool _bZComplex)
     double *pReal   = NULL;
     double *pImg	= NULL;
     setViewAsZComplex(_bZComplex);
+    setViewAsInteger(false);
+
     if (_bComplex == false || _bZComplex)
     {
         create(_piDims, _iDims, &pReal, NULL);
@@ -202,7 +204,6 @@ Double::Double(int _iDims, int* _piDims, bool _bComplex, bool _bZComplex)
 
     m_bComplex = _bComplex || _bZComplex;
 
-    setViewAsInteger(false);
 #ifndef NDEBUG
     Inspector::addItem(this);
 #endif
