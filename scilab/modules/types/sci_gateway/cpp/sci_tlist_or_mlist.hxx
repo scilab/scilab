@@ -80,10 +80,12 @@ Function::ReturnValue sci_tlist_or_mlist(typed_list &in, int _piRetCount, typed_
     }
 
     //fill empty field with []
+    InternalType* pITEmpty = Double::Empty();
     while (pRetVal->getSize() < pS->getSize())
     {
-        pRetVal->append(Double::Empty());
+        pRetVal->append(pITEmpty);
     }
+    delete pITEmpty;
 
     out.push_back(pRetVal);
     return Function::OK;

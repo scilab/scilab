@@ -216,7 +216,8 @@ public :
             (*it)->accept(*this);
             if (result_getSize() > 1)
             {
-                for (int i = 0 ; i < result_getSize() ; i++)
+                const int size = result_getSize();
+                for (int i = 0 ; i < size; i++)
                 {
                     pArgs->push_back(result_get(i));
                 }

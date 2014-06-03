@@ -354,8 +354,7 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
 
     if (result_get()->isImplicitList())
     {
-        ImplicitList * pVar = pIT->getAs<ImplicitList>();
-
+        ImplicitList* pVar = pIT->getAs<ImplicitList>();
         for (int i = 0; i < pVar->getSize(); ++i)
         {
             //TODO : maybe it would be interesting here to reuse the same InternalType (to avoid delete/new)

@@ -25,10 +25,9 @@ public :
     List();
     ~List();
 
-private :
-    List(List *_oListCopyMe);
 protected :
     std::vector<InternalType *>*    getData();
+    List(List *_oListCopyMe);
 public :
     int                             getSize();
 

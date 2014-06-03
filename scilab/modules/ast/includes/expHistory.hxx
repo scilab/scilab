@@ -42,6 +42,7 @@ public :
     int*                    getArgsDimsArray();
     void                    computeArgs();
     bool                    needResize();
+    void                    setArgsOwner(bool);
 
     // current InternalType a
     bool                    setCurrent(types::InternalType*);
@@ -82,6 +83,7 @@ private :
     int                     m_iLevel;
 
     bool                    m_bCellExp;
+    bool                    m_pArgsOwner;
 };
 
 #endif /* __EXPHISTORY_HXX__ */

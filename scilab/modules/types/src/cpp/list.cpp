@@ -71,8 +71,7 @@ List::List(List *_oListCopyMe)
 
     for (int i = 0 ; i < _oListCopyMe->getData()->size() ; i++)
     {
-        InternalType* pIT = (*_oListCopyMe->getData())[i];
-        append(pIT->clone());
+        append((*_oListCopyMe->getData())[i]);
     }
 
     m_iSize = static_cast<int>(m_plData->size());
@@ -286,10 +285,13 @@ InternalType* List::insert(typed_list* _pArgs, InternalType* _pSource)
         while (m_plData->size() < idx)
         {
             //incease list size and fill with "Undefined"
-            m_plData->push_back(new ListUndefined());
+            InternalType* pLU = new ListUndefined();
+            pLU->IncreaseRef();
+            m_plData->push_back(pLU);
         }
 
         InternalType* pIT = (*m_plData)[idx - 1];
+        pIT->DecreaseRef();
         if (pIT && pIT->isDeletable())
         {
             delete pIT;

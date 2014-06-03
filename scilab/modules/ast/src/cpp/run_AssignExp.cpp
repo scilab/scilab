@@ -117,12 +117,20 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
             std::list<ExpHistory*> fields;
             if (getFieldsFromExp(pCell, fields) == false)
             {
+                for (std::list<ExpHistory*>::const_iterator i = fields.begin(), end = fields.end(); i != end; i++)
+                {
+                    delete *i;
+                }
                 std::wostringstream os;
                 os << _W("Get fields from expression failed.");
                 throw ast::ScilabError(os.str(), 999, e.right_exp_get().location_get());
             }
 
             pOut = evaluateFields(pCell, fields, pITR);
+            for (std::list<ExpHistory*>::const_iterator i = fields.begin(), end = fields.end(); i != end; i++)
+            {
+                delete *i;
+            }
 
             if (pOut == NULL)
             {
@@ -190,12 +198,20 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
             std::list<ExpHistory*> fields;
             if (getFieldsFromExp(pCall, fields) == false)
             {
+                for (std::list<ExpHistory*>::const_iterator i = fields.begin(), end = fields.end(); i != end; i++)
+                {
+                    delete *i;
+                }
                 std::wostringstream os;
                 os << _W("Get fields from expression failed.");
                 throw ast::ScilabError(os.str(), 999, e.right_exp_get().location_get());
             }
 
             pOut = evaluateFields(pCall, fields, pITR);
+            for (std::list<ExpHistory*>::const_iterator i = fields.begin(), end = fields.end(); i != end; i++)
+            {
+                delete *i;
+            }
 
             if (pOut == NULL)
             {
@@ -251,10 +267,13 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
             {
                 //create a new AssignExp and run it
                 types::InternalType* pIT = exec.result_get(i);
+                //protect temporary result from delete
                 pIT->IncreaseRef();
-                AssignExp* pAssign = new AssignExp((*it)->location_get(), *(*it), *const_cast<Exp*>(&e.right_exp_get()), pIT);
-                pAssign->set_verbose(e.is_verbose());
-                pAssign->accept(*this);
+                AssignExp pAssign((*it)->location_get(), *(*it), *const_cast<Exp*>(&e.right_exp_get()), pIT);
+                pAssign.set_lr_owner(false);
+                pAssign.set_verbose(e.is_verbose());
+                pAssign.accept(*this);
+                //unprotect temporary result
                 pIT->DecreaseRef();
                 //clear result to take care of [n,n]
                 exec.result_set(i, NULL);
@@ -286,6 +305,10 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
             std::list<ExpHistory*> fields;
             if (getFieldsFromExp(pField, fields) == false)
             {
+                for (std::list<ExpHistory*>::const_iterator i = fields.begin(), end = fields.end(); i != end; i++)
+                {
+                    delete *i;
+                }
                 std::wostringstream os;
                 os << _W("Get fields from expression failed.");
                 throw ast::ScilabError(os.str(), 999, e.right_exp_get().location_get());
@@ -293,9 +316,18 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
 
             if (evaluateFields(pField, fields, pIT) == NULL)
             {
+                for (std::list<ExpHistory*>::const_iterator i = fields.begin(), end = fields.end(); i != end; i++)
+                {
+                    delete *i;
+                }
                 std::wostringstream os;
                 os << _W("Fields evaluation failed.");
                 throw ast::ScilabError(os.str(), 999, e.right_exp_get().location_get());
+            }
+
+            for (std::list<ExpHistory*>::const_iterator i = fields.begin(), end = fields.end(); i != end; i++)
+            {
+                delete *i;
             }
 
             if (e.is_verbose() && ConfigVariable::isPromptShow())

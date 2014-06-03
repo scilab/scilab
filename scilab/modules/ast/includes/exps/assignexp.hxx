@@ -30,6 +30,7 @@ public:
         : Exp (location),
           _left_exp (&left_exp),
           _right_exp (&right_exp),
+          lr_owner(true),
           _pIT(NULL)
     {
     }
@@ -41,6 +42,7 @@ public:
         : Exp (location),
           _left_exp (&left_exp),
           _right_exp (&right_exp),
+          lr_owner(true),
           _pIT(pIT)
     {
     }
@@ -49,8 +51,11 @@ public:
     ** Delete var et exp (see constructor). */
     virtual ~AssignExp ()
     {
-        delete  _left_exp;
-        delete  _right_exp;
+        if (lr_owner)
+        {
+            delete  _left_exp;
+            delete  _right_exp;
+        }
     }
     /** \} */
 
@@ -115,6 +120,12 @@ public:
     {
         return true;
     }
+
+    void set_lr_owner(const bool b)
+    {
+        lr_owner = b;
+    }
+
     /** \} */
 
 protected:
@@ -123,6 +134,7 @@ protected:
     /** \brief Right expression which affect var. */
     Exp* _right_exp;
     types::InternalType* _pIT;
+    bool lr_owner;
 };
 } // namespace ast
 

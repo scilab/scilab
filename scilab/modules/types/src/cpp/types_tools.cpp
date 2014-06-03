@@ -138,10 +138,11 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
             //[T F F T F]
             Bool *pB    = pIT->getAs<types::Bool>();
             int *piB    = pB->get();
+            const int size = pB->getSize();
 
             //find true item count
             int iItemCount = 0;
-            for (int j = 0 ; j < pB->getSize() ; j++)
+            for (int j = 0 ; j < size; j++)
             {
                 if (piB[j])
                 {
@@ -154,7 +155,7 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
             double* pdbl    = pDbl->getReal();
 
             int j = 0;
-            for (int l = 0 ; l < pB->getSize() ; l++)
+            for (int l = 0 ; l < size; l++)
             {
                 if (piB[l])
                 {
@@ -171,14 +172,22 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
 
         if (pCurrentArg)
         {
-            _piCountDim[i] = pCurrentArg->getSize();
+            const int iCountDim = pCurrentArg->getSize();
             _piMaxDim[i] = 0;
-            for (int j = 0 ; j < _piCountDim[i] ; j++)
+            for (int j = 0 ; j < iCountDim ; j++)
             {
-                _piMaxDim[i] = Max(_piMaxDim[i], static_cast<int>(pCurrentArg->get(j)));
+                const int d = static_cast<int>(pCurrentArg->get(j));
+                if (d > _piMaxDim[i])
+                {
+                    _piMaxDim[i] = d;
+                }
             }
 
-            iSeqCount *= _piCountDim[i];
+            iSeqCount *= iCountDim;
+            if (_piCountDim)
+            {
+                _piCountDim[i] = iCountDim;
+            }
         }
 
         _pArgsOut->push_back(pCurrentArg);
@@ -198,6 +207,7 @@ void getIndexesWithDims(int _iIndex, int* _piIndexes, int* _piDims, int _iDims)
         _piIndexes[i] = (int)(_iIndex / iMul) % _piDims[i];
         iMul *= _piDims[i];
     }
+
     //matrix [2,4,3]
     //index = 12 ( 0,2,1) = 1 * 4 * 2 + 2 * 2 + 0 = 12
     //loop 1

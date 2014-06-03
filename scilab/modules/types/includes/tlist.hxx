@@ -27,7 +27,7 @@ public :
     TList();
     ~TList();
 protected :
-    TList(TList *_oTListCopyMe);
+    TList(TList *_oTListCopyMe) : List(_oTListCopyMe) {}
 
 public :
     void                            whoAmI(void)

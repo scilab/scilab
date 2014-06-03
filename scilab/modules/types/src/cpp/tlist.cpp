@@ -44,25 +44,6 @@ TList::~TList()
     Inspector::removeItem(this);
 #endif
 }
-/**
-** Private Copy Constructor and data Access
-*/
-TList::TList(TList *_oTListCopyMe)
-{
-    std::vector<InternalType *>::iterator itValues;
-    m_plData = new std::vector<InternalType *>;
-
-    for (int i = 0 ; i < _oTListCopyMe->getData()->size() ; i++)
-    {
-        InternalType* pIT = (*_oTListCopyMe->getData())[i];
-        append(pIT->clone());
-    }
-
-    m_iSize = static_cast<int>(m_plData->size());
-#ifndef NDEBUG
-    Inspector::addItem(this);
-#endif
-}
 
 /**
 ** Clone
