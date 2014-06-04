@@ -89,6 +89,7 @@ Scilab Bug Fixes
 * Bug #13409 fixed - permute(x, dims) failed when dims was greater than the dimensions of size(x)
                      now permute treats extra dimensions as 1
 
+* Bug #13435 fixed - Windows version crashes when calling xmlRemove on the first child.
 
 
 Xcos Bug Fixes
@@ -109,9 +110,9 @@ Xcos Bug Fixes
 
 * Bug #13385 fixed - TOWS_c and FROMWSB Xcos blocs needed better examples on how
                      to get or write a Scilab variable.
-                     
+
 * Bug #13391 fixed - scifunc_block_m help page was not clear about the block using.
-                     Example has been added.  
+                     Example has been added.
 
 * Bug #13396 fixed - MBLOCK did not work with an external file containing the modelica class.
 
