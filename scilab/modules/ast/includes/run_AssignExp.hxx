@@ -243,10 +243,12 @@ void visitprivate(const AssignExp  &e)
             for (it = pList->exps_get().rbegin() ; it != pList->exps_get().rend() ; it++, i--)
             {
                 //create a new AssignExp and run it
-                AssignExp* pAssign = new AssignExp((*it)->location_get(), *(*it), *const_cast<Exp*>(&e.right_exp_get()), exec.result_get(i));
+                types::InternalType* pIT = exec.result_get(i);
+                pIT->IncreaseRef();
+                AssignExp* pAssign = new AssignExp((*it)->location_get(), *(*it), *const_cast<Exp*>(&e.right_exp_get()), pIT);
                 pAssign->set_verbose(e.is_verbose());
                 pAssign->accept(*this);
-
+                pIT->DecreaseRef();
                 //clear result to take care of [n,n]
                 exec.result_set(i, NULL);
             }
