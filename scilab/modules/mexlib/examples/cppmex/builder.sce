@@ -15,7 +15,7 @@
 ilib_name  = "libmex"
 
 // objects files (but do not give mexfiles here)
-files = ["temptst2.o"];
+files = ["temptst2.cpp"];
 
 // other libs needed for linking (must be shared library names)
 libs  = [];
