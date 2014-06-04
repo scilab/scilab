@@ -175,13 +175,7 @@ types::Function::ReturnValue sci_ltitr(types::typed_list &in, int _iRetCount, ty
         C2F(dadd)(&iRowsA, pdblW, &iOne, pdblWgr + ig, &iOne);
     }
 
-    /*** retrun output arguments ***/
-    types::Double* pDblOutX = new types::Double(iRowsA, iColsU);
-    double* pdblOutX = pDblOutX->get();
-    int iSize = pDblOutX->getSize();
-    C2F(dcopy)(&iSize, pdblWgr, &iOne, pdblOutX, &iOne);
-    out.push_back(pDblOutX);
-
+    /*** return output arguments ***/
     if (_iRetCount == 2)
     {
         types::Double* pDblOutXf = new types::Double(iRowsA, 1);
@@ -189,6 +183,13 @@ types::Function::ReturnValue sci_ltitr(types::typed_list &in, int _iRetCount, ty
         C2F(dcopy)(&iRowsA, pdblWgr + ig, &iOne, pdblOutXf, &iOne);
         out.push_back(pDblOutXf);
     }
+
+    types::Double* pDblOutX = new types::Double(iRowsA, iColsU);
+    double* pdblOutX = pDblOutX->get();
+    int iSize = pDblOutX->getSize();
+    C2F(dcopy)(&iSize, pdblWgr, &iOne, pdblOutX, &iOne);
+    out.push_back(pDblOutX);
+
 
     delete[] pdblW;
     delete[] pdblWgr;
