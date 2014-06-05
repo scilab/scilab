@@ -172,6 +172,7 @@ sci_gateway/c/sci_sorder.c \
 sci_gateway/c/sci_findbd.c
 
 GATEWAY_CPP_SOURCES = \
+sci_gateway/cpp/cacsd_gw.cpp \
 sci_gateway/cpp/sci_arl2_ius.cpp \
 sci_gateway/cpp/sci_ldiv.cpp \
 sci_gateway/cpp/sci_tzer.cpp \

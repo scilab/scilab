@@ -10,6 +10,9 @@
 *
 */
 /*--------------------------------------------------------------------------*/
+#ifndef __DYNLIB_CACSD_GW_H__
+#define __DYNLIB_CACSD_GW_H__
+
 #ifdef _MSC_VER
 #if CACSD_GW_EXPORTS
 #define EXTERN_CACSD_GW __declspec (dllexport)
@@ -19,3 +22,5 @@
 #else
 #define EXTERN_CACSD_GW
 #endif
+
+#endif /* __DYNLIB_CACSD_GW_H__ */

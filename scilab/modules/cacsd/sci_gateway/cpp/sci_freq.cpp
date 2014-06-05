@@ -22,12 +22,12 @@ extern "C"
 #include "localization.h"
 #include "elem_common.h"
 
-extern void C2F(dfrmg)( int*, int*, int*, int*, int*, int*, int*,
-                        double*, double*, double*, double*, double*,
-                        double*, double*, double*, double*, int*);
+    extern void C2F(dfrmg)( int*, int*, int*, int*, int*, int*, int*,
+                            double*, double*, double*, double*, double*,
+                            double*, double*, double*, double*, int*);
 
-extern void C2F(dadd)(int*, double*, int*, double*, int*);
-extern void C2F(horner)(double*, int*, double*, double*, double*, double*);
+    extern void C2F(dadd)(int*, double*, int*, double*, int*);
+    extern void C2F(horner)(double*, int*, double*, double*, double*, double*);
 }
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue freqRational(types::typed_list &in, int _iRetCount, types::typed_list &out);
@@ -51,7 +51,7 @@ types::Function::ReturnValue sci_freq(types::typed_list &in, int _iRetCount, typ
         return types::Function::Error;
     }
 
-    if(in.size() == 3) // systeme defini par sa representation rationnelle n./d
+    if (in.size() == 3) // systeme defini par sa representation rationnelle n./d
     {
         return freqRational(in, _iRetCount, out);
     }
@@ -84,7 +84,7 @@ types::Function::ReturnValue freqRational(types::typed_list &in, int _iRetCount,
 
     /*** get inputs arguments ***/
     // get f
-    if(in[2]->isDouble() == false)
+    if (in[2]->isDouble() == false)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A matrix expected.\n"), "freq", 3);
         return types::Function::Error;
@@ -94,7 +94,7 @@ types::Function::ReturnValue freqRational(types::typed_list &in, int _iRetCount,
     iSizeF = pDblF->getSize();
     pdblF = pDblF->get();
 
-    if(pDblF->isComplex())
+    if (pDblF->isComplex())
     {
         pdblFImg = pDblF->getImg();
         iComplex = 1;
@@ -107,11 +107,11 @@ types::Function::ReturnValue freqRational(types::typed_list &in, int _iRetCount,
     try
     {
         // get DEN
-        if(in[1]->isDouble())
+        if (in[1]->isDouble())
         {
             types::Double* pDblDen = in[1]->getAs<types::Double>();
             double* pdbl = pDblDen->get();
-            if(pDblDen->isComplex())
+            if (pDblDen->isComplex())
             {
                 Scierror(999, _("%s: Wrong type for input argument #%d: A real matrix expected.\n"), "freq", 2);
                 return types::Function::Error;
@@ -124,15 +124,15 @@ types::Function::ReturnValue freqRational(types::typed_list &in, int _iRetCount,
             memset(piRankDen, 0x00, pDblDen->getSize() * sizeof(int));
 
             pdblDen = new double*[pDblDen->getSize()];
-            for(int i = 0; i < pDblDen->getSize(); i++)
+            for (int i = 0; i < pDblDen->getSize(); i++)
             {
                 pdblDen[i] = pdbl + i;
             }
         }
-        else if(in[1]->isPoly())
+        else if (in[1]->isPoly())
         {
             types::Polynom* pPolyDen = in[1]->getAs<types::Polynom>();
-            if(pPolyDen->isComplex())
+            if (pPolyDen->isComplex())
             {
                 Scierror(999, _("%s: Wrong type for input argument #%d: A real polynom expected.\n"), "freq", 2);
                 return types::Function::Error;
@@ -145,7 +145,7 @@ types::Function::ReturnValue freqRational(types::typed_list &in, int _iRetCount,
             pPolyDen->getRealRank(piRankDen);
 
             pdblDen = new double*[pPolyDen->getSize()];
-            for(int i = 0; i < pPolyDen->getSize(); i++)
+            for (int i = 0; i < pPolyDen->getSize(); i++)
             {
                 pdblDen[i] = pPolyDen->get(i)->getCoef()->get();
             }
@@ -157,11 +157,11 @@ types::Function::ReturnValue freqRational(types::typed_list &in, int _iRetCount,
         }
 
         // get NUM
-        if(in[0]->isDouble())
+        if (in[0]->isDouble())
         {
             types::Double* pDblNum = in[0]->getAs<types::Double>();
             double* pdbl = pDblNum->get();
-            if(pDblNum->isComplex())
+            if (pDblNum->isComplex())
             {
                 Scierror(999, _("%s: Wrong type for input argument #%d: A real matrix expected.\n"), "freq", 1);
                 throw 1;
@@ -174,15 +174,15 @@ types::Function::ReturnValue freqRational(types::typed_list &in, int _iRetCount,
             memset(piRankNum, 0x00, pDblNum->getSize() * sizeof(int));
 
             pdblNum = new double*[pDblNum->getSize()];
-            for(int i = 0; i < pDblNum->getSize(); i++)
+            for (int i = 0; i < pDblNum->getSize(); i++)
             {
                 pdblNum[i] = pdbl + i;
             }
         }
-        else if(in[0]->isPoly())
+        else if (in[0]->isPoly())
         {
             types::Polynom* pPolyNum = in[0]->getAs<types::Polynom>();
-            if(pPolyNum->isComplex())
+            if (pPolyNum->isComplex())
             {
                 Scierror(999, _("%s: Wrong type for input argument #%d: A real polynom expected.\n"), "freq", 1);
                 throw 1;
@@ -195,7 +195,7 @@ types::Function::ReturnValue freqRational(types::typed_list &in, int _iRetCount,
             pPolyNum->getRealRank(piRankNum);
 
             pdblNum = new double*[pPolyNum->getSize()];
-            for(int i = 0; i < pPolyNum->getSize(); i++)
+            for (int i = 0; i < pPolyNum->getSize(); i++)
             {
                 pdblNum[i] = pPolyNum->get(i)->getCoef()->get();
             }
@@ -206,7 +206,7 @@ types::Function::ReturnValue freqRational(types::typed_list &in, int _iRetCount,
             return types::Function::Error;
         }
 
-        if(iRowNum != iRowDen || iColNum != iColDen)
+        if (iRowNum != iRowDen || iColNum != iColDen)
         {
             Scierror(60, _("%s: Wrong size for argument: Incompatible dimensions.\n"), "freq");
             throw 1;
@@ -225,19 +225,19 @@ types::Function::ReturnValue freqRational(types::typed_list &in, int _iRetCount,
         double* pdblRTemp = pdblR;
         double* pdblITemp = pdblI;
 
-        for(int i = 0; i < iSizeF; i++)
+        for (int i = 0; i < iSizeF; i++)
         {
-            for(int j = 0; j < iRowDen * iColDen; j++)
+            for (int j = 0; j < iRowDen * iColDen; j++)
             {
                 C2F(horner)(pdblNum[j], piRankNum + j, pdblF, pdblFImg, &dVr, &dVi);
                 C2F(horner)(pdblDen[j], piRankDen + j, pdblF, pdblFImg, &dUr, &dUi);
-                if(dUr * dUr + dUi * dUi == 0)
+                if (dUr * dUr + dUi * dUi == 0)
                 {
                     Scierror(27, _("%s: Division by zero...\n"), "freq");
                     throw 1;
                 }
 
-                if(iComplex)
+                if (iComplex)
                 {
                     C2F(wdiv)(&dVr, &dVi, &dUr, &dUi, pdblRTemp, pdblITemp);
                 }
@@ -255,12 +255,12 @@ types::Function::ReturnValue freqRational(types::typed_list &in, int _iRetCount,
         }
 
         /*** retrun output arguments ***/
-        types::Double* pDblOut = new types::Double(iRowDen, iColDen * iSizeF, iComplex);
+        types::Double* pDblOut = new types::Double(iRowDen, iColDen * iSizeF, iComplex == 1);
         double* pdblOut = pDblOut->get();
         int iSizeOut = pDblOut->getSize();
         C2F(dcopy)(&iSizeOut, pdblR, &iOne, pdblOut, &iOne);
 
-        if(iComplex)
+        if (iComplex)
         {
             double* pdblOutImg = pDblOut->getImg();
             C2F(dcopy)(&iSizeOut, pdblI, &iOne, pdblOutImg, &iOne);
@@ -268,7 +268,7 @@ types::Function::ReturnValue freqRational(types::typed_list &in, int _iRetCount,
 
         out.push_back(pDblOut);
     }
-    catch(int iErr)
+    catch (int iErr)
     {
         iError = iErr;
     }
@@ -277,25 +277,25 @@ types::Function::ReturnValue freqRational(types::typed_list &in, int _iRetCount,
     delete[] piRankDen;
     delete[] pdblDen;
 
-    if(pdblR)
+    if (pdblR)
     {
         delete[] pdblR;
     }
-    if(pdblI)
+    if (pdblI)
     {
         delete[] pdblI;
     }
 
-    if(piRankNum)
+    if (piRankNum)
     {
         delete[] piRankNum;
     }
-    if(pdblNum)
+    if (pdblNum)
     {
         delete[] pdblNum;
     }
 
-    if(iError)
+    if (iError)
     {
         return types::Function::Error;
     }
@@ -324,17 +324,17 @@ types::Function::ReturnValue freqState(types::typed_list &in, int _iRetCount, ty
     double* pdblFImg    = NULL;
 
     /*** get inputs arguments ***/
-    int iNbInputArg = in.size();
+    int iNbInputArg = (int)in.size();
     // get f
-    if(in[iNbInputArg-1]->isDouble() == false)
+    if (in[iNbInputArg - 1]->isDouble() == false)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A matrix expected.\n"), "freq", iNbInputArg);
         return types::Function::Error;
     }
 
-    pDblF = in[iNbInputArg-1]->getAs<types::Double>();
+    pDblF = in[iNbInputArg - 1]->getAs<types::Double>();
     pdblF = pDblF->get();
-    if(pDblF->isComplex())
+    if (pDblF->isComplex())
     {
         pdblFImg = pDblF->getImg();
         iComplex = 1;
@@ -345,16 +345,17 @@ types::Function::ReturnValue freqState(types::typed_list &in, int _iRetCount, ty
     }
 
 
-    if(iNbInputArg == 5)
-    {   //get D
-        if(in[3]->isDouble() == false)
+    if (iNbInputArg == 5)
+    {
+        //get D
+        if (in[3]->isDouble() == false)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A matrix expected.\n"), "freq", 4);
             return types::Function::Error;
         }
 
         pDblD = in[3]->getAs<types::Double>();
-        if(pDblD->isComplex())
+        if (pDblD->isComplex())
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A real matrix expected.\n"), "freq", 4);
             return types::Function::Error;
@@ -362,7 +363,7 @@ types::Function::ReturnValue freqState(types::typed_list &in, int _iRetCount, ty
     }
 
     // get C
-    if(in[2]->isDouble() == false)
+    if (in[2]->isDouble() == false)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A matrix expected.\n"), "freq", 3);
         return types::Function::Error;
@@ -370,14 +371,14 @@ types::Function::ReturnValue freqState(types::typed_list &in, int _iRetCount, ty
 
     pDblC = in[2]->getAs<types::Double>();
 
-    if(pDblC->isComplex())
+    if (pDblC->isComplex())
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A real matrix expected.\n"), "freq", 3);
         return types::Function::Error;
     }
 
     // get B
-    if(in[1]->isDouble() == false)
+    if (in[1]->isDouble() == false)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A matrix expected.\n"), "freq", 2);
         return types::Function::Error;
@@ -385,14 +386,14 @@ types::Function::ReturnValue freqState(types::typed_list &in, int _iRetCount, ty
 
     pDblB = in[1]->getAs<types::Double>();
 
-    if(pDblB->isComplex())
+    if (pDblB->isComplex())
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A real matrix expected.\n"), "freq", 2);
         return types::Function::Error;
     }
 
     // get A
-    if(in[0]->isDouble() == false)
+    if (in[0]->isDouble() == false)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A matrix expected.\n"), "freq", 1);
         return types::Function::Error;
@@ -400,13 +401,13 @@ types::Function::ReturnValue freqState(types::typed_list &in, int _iRetCount, ty
 
     pDblA = in[0]->getAs<types::Double>();
 
-    if(pDblA->isComplex())
+    if (pDblA->isComplex())
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A real matrix expected.\n"), "freq", 1);
         return types::Function::Error;
     }
 
-    if(pDblA->getRows() != pDblA->getCols())
+    if (pDblA->getRows() != pDblA->getCols())
     {
         Scierror(999, _("%s: Wrong size for input argument #%d: A square matrix expected.\n"), "freq", 1);
         return types::Function::Error;
@@ -417,13 +418,13 @@ types::Function::ReturnValue freqState(types::typed_list &in, int _iRetCount, ty
     iRowsC = pDblC->getRows();
     iSizeF = pDblF->getSize();
 
-    if(iRowsA != pDblB->getRows() || iRowsA != pDblC->getCols())
+    if (iRowsA != pDblB->getRows() || iRowsA != pDblC->getCols())
     {
         Scierror(999, _("%s: Wrong size for argument: Incompatible dimensions.\n"), "ppol");
         return types::Function::Error;
     }
 
-    if(iNbInputArg == 5 && (pDblD->getRows() != pDblC->getRows() || pDblD->getCols() != pDblB->getCols()))
+    if (iNbInputArg == 5 && (pDblD->getRows() != pDblC->getRows() || pDblD->getCols() != pDblB->getCols()))
     {
         Scierror(999, _("%s: Wrong size for argument: Incompatible dimensions.\n"), "ppol");
         return types::Function::Error;
@@ -439,14 +440,14 @@ types::Function::ReturnValue freqState(types::typed_list &in, int _iRetCount, ty
     double* pdblWgr = new double[iColsB * iSizeF * iRowsC];
     double* pdblWgi = new double[iColsB * iSizeF * iRowsC];
 
-    for(int i = 0; i < iSizeF; i++)
+    for (int i = 0; i < iSizeF; i++)
     {
         int ig = i * iColsB * iRowsC;
         C2F(dfrmg)( &iJob, &iRowsA, &iRowsA, &iRowsC, &iRowsC, &iColsB, &iRowsA,
                     pDblA->get(), pDblB->get(), pDblC->get(), pdblF,
                     pdblFImg, pdblWgr + ig, pdblWgi + ig, &dRcond, pdblW, pdblW1);
 
-        if(bFirst && dRcond + 1 == 1)
+        if (bFirst && dRcond + 1 == 1)
         {
             char strValue[256];
             sprintf(strValue, "%lf", dRcond);
@@ -455,7 +456,7 @@ types::Function::ReturnValue freqState(types::typed_list &in, int _iRetCount, ty
             bFirst = false;
         }
 
-        if(iNbInputArg == 5)
+        if (iNbInputArg == 5)
         {
             int iSize = iColsB * iRowsC;
             C2F(dadd)(&iSize, pDblD->get(), &iOne, pdblWgr + ig, &iOne);
@@ -466,13 +467,13 @@ types::Function::ReturnValue freqState(types::typed_list &in, int _iRetCount, ty
     }
 
     /*** retrun output arguments ***/
-    types::Double* pDblOut  = new types::Double(iRowsC, iColsB * iSizeF, iComplex);
+    types::Double* pDblOut  = new types::Double(iRowsC, iColsB * iSizeF, iComplex == 1);
     double* pdblOutReal     = pDblOut->get();
     double* pdblOutImg      = pDblOut->getImg();
     int iSizeOut            = pDblOut->getSize();
 
     C2F(dcopy)(&iSizeOut, pdblWgr, &iOne, pdblOutReal, &iOne);
-    if(iComplex)
+    if (iComplex)
     {
         C2F(dcopy)(&iSizeOut, pdblWgi, &iOne, pdblOutImg, &iOne);
     }

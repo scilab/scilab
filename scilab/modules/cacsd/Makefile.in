@@ -239,7 +239,8 @@ am__objects_4 = sci_gateway/c/libscicacsd_la-gw_cacsd.lo \
 	sci_gateway/c/libscicacsd_la-sci_sident.lo \
 	sci_gateway/c/libscicacsd_la-sci_sorder.lo \
 	sci_gateway/c/libscicacsd_la-sci_findbd.lo
-am__objects_5 = sci_gateway/cpp/libscicacsd_la-sci_arl2_ius.lo \
+am__objects_5 = sci_gateway/cpp/libscicacsd_la-cacsd_gw.lo \
+	sci_gateway/cpp/libscicacsd_la-sci_arl2_ius.lo \
 	sci_gateway/cpp/libscicacsd_la-sci_ldiv.lo \
 	sci_gateway/cpp/libscicacsd_la-sci_tzer.lo \
 	sci_gateway/cpp/libscicacsd_la-sci_residu.lo \
@@ -805,6 +806,7 @@ sci_gateway/c/sci_sorder.c \
 sci_gateway/c/sci_findbd.c
 
 GATEWAY_CPP_SOURCES = \
+sci_gateway/cpp/cacsd_gw.cpp \
 sci_gateway/cpp/sci_arl2_ius.cpp \
 sci_gateway/cpp/sci_ldiv.cpp \
 sci_gateway/cpp/sci_tzer.cpp \
@@ -1380,6 +1382,9 @@ sci_gateway/cpp/$(am__dirstamp):
 sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) sci_gateway/cpp/$(DEPDIR)
 	@: > sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscicacsd_la-cacsd_gw.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/cpp/libscicacsd_la-sci_arl2_ius.lo:  \
 	sci_gateway/cpp/$(am__dirstamp) \
 	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
@@ -1443,6 +1448,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscicacsd_la-sci_sident.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscicacsd_la-sci_sorder.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscicacsd_la-sci_zrankqr.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicacsd_la-cacsd_gw.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicacsd_la-sci_arl2_ius.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicacsd_la-sci_ereduc.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicacsd_la-sci_freq.Plo@am__quote@
@@ -1600,6 +1606,13 @@ sci_gateway/c/libscicacsd_la-sci_findbd.lo: sci_gateway/c/sci_findbd.c
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LTCXXCOMPILE) -c -o $@ $<
+
+sci_gateway/cpp/libscicacsd_la-cacsd_gw.lo: sci_gateway/cpp/cacsd_gw.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicacsd_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscicacsd_la-cacsd_gw.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscicacsd_la-cacsd_gw.Tpo -c -o sci_gateway/cpp/libscicacsd_la-cacsd_gw.lo `test -f 'sci_gateway/cpp/cacsd_gw.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/cacsd_gw.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscicacsd_la-cacsd_gw.Tpo sci_gateway/cpp/$(DEPDIR)/libscicacsd_la-cacsd_gw.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/cacsd_gw.cpp' object='sci_gateway/cpp/libscicacsd_la-cacsd_gw.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicacsd_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscicacsd_la-cacsd_gw.lo `test -f 'sci_gateway/cpp/cacsd_gw.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/cacsd_gw.cpp
 
 sci_gateway/cpp/libscicacsd_la-sci_arl2_ius.lo: sci_gateway/cpp/sci_arl2_ius.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicacsd_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscicacsd_la-sci_arl2_ius.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscicacsd_la-sci_arl2_ius.Tpo -c -o sci_gateway/cpp/libscicacsd_la-sci_arl2_ius.lo `test -f 'sci_gateway/cpp/sci_arl2_ius.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_arl2_ius.cpp

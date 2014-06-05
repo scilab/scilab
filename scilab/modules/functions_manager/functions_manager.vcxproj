@@ -219,6 +219,9 @@
       <Project>{09e6cf32-ef2f-4c63-a2b8-b04964768bd6}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+    <ProjectReference Include="..\cacsd\src\c\cacsd.vcxproj">
+      <Project>{d5dd1407-3926-4f6c-ad7b-3a6b2de56049}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\console\sci_gateway\cpp\console_gw.vcxproj">
       <Project>{273b1f5c-c137-46d1-b516-ffe5764fabe5}</Project>
     </ProjectReference>

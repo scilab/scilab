@@ -15,7 +15,7 @@
 /*--------------------------------------------------------------------------*/
 #include "machine.h"
 #include "dynlib_cacsd.h"
-//#include "c_gateway_prototype.h"
+#include "c_gateway_prototype.h"
 /*--------------------------------------------------------------------------*/
 // use in mex gateways
 #define CSIZE 64000
@@ -27,16 +27,17 @@ int checkParam(void* _pvCtx, int _iPos, char* fname);
 char getIntegerValue(void* _pvCtx, int _iPos);
 
 /*--------------------------------------------------------------------------*/
-CACSD_IMPEXP int sci_dhinf(char* fname, void* pvApiCtx);
-CACSD_IMPEXP int sci_hinf(char* fname, void* pvApiCtx);
-CACSD_IMPEXP int sci_linmeq(char* fname, void* pvApiCtx);
-CACSD_IMPEXP int sci_mucomp(char* fname, void* pvApiCtx);
-CACSD_IMPEXP int sci_rankqr(char* fname, void* pvApiCtx);
-CACSD_IMPEXP int sci_ricc(char* fname, void* pvApiCtx);
-CACSD_IMPEXP int sci_ricc(char* fname, void* pvApiCtx);
-CACSD_IMPEXP int sci_sident(char* fname, void* pvApiCtx);
-CACSD_IMPEXP int sci_sorder(char* fname, void* pvApiCtx);
-CACSD_IMPEXP int sci_findbd(char* fname, void* pvApiCtx);
+C_GATEWAY_PROTOTYPE(sci_contr);
+C_GATEWAY_PROTOTYPE(sci_dhinf);
+C_GATEWAY_PROTOTYPE(sci_hinf);
+C_GATEWAY_PROTOTYPE(sci_linmeq);
+C_GATEWAY_PROTOTYPE(sci_mucomp);
+C_GATEWAY_PROTOTYPE(sci_rankqr);
+C_GATEWAY_PROTOTYPE(sci_ricc);
+C_GATEWAY_PROTOTYPE(sci_sident);
+C_GATEWAY_PROTOTYPE(sci_sorder);
+C_GATEWAY_PROTOTYPE(sci_findbd);
+
 #endif /*  __GW_CACSD__ */
 /*--------------------------------------------------------------------------*/
 

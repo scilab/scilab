@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -210,6 +210,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\sci_gateway\cpp\cacsd_gw.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_arl2_ius.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_ereduc.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_freq.cpp" />
