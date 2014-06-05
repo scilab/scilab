@@ -282,7 +282,6 @@ cd ..
     <ClCompile Include="chkvar.c" />
     <ClCompile Include="ddmpev.c" />
     <ClCompile Include="dimin.c" />
-    <ClCompile Include="dmp2pm.c" />
     <ClCompile Include="dmpad.c" />
     <ClCompile Include="dmpadj.c" />
     <ClCompile Include="dmpcle.c" />
@@ -342,7 +341,6 @@ cd ..
     <f2c_rule Include="chkvar.f" />
     <f2c_rule Include="ddmpev.f" />
     <f2c_rule Include="dimin.f" />
-    <f2c_rule Include="dmp2pm.f" />
     <f2c_rule Include="dmpad.f" />
     <f2c_rule Include="dmpadj.f" />
     <f2c_rule Include="dmpcle.f" />

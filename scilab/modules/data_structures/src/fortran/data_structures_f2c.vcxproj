@@ -268,7 +268,6 @@ cd ..
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_definedfields.c" />
     <ClCompile Include="extractfields.c" />
     <ClCompile Include="forcerhs.c" />
     <ClCompile Include="gratyp.c" />
@@ -279,7 +278,6 @@ cd ..
     <ClCompile Include="udptr.c" />
   </ItemGroup>
   <ItemGroup>
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_definedfields.f" />
     <f2c_rule Include="extractfields.f" />
     <f2c_rule Include="forcerhs.f" />
     <f2c_rule Include="gratyp.f" />

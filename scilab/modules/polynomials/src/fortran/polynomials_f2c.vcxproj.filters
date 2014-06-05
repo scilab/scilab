@@ -36,9 +36,6 @@
     <ClCompile Include="dimin.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="dmp2pm.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="dmpad.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -210,9 +207,6 @@
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="dimin.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="dmp2pm.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="dmpad.f">

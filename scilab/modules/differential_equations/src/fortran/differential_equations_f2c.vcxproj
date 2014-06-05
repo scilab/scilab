@@ -282,7 +282,9 @@ cd ..
     <ClCompile Include="cfode.c" />
     <ClCompile Include="colnew.c" />
     <ClCompile Include="..\c\commons_f2c.c" />
+    <ClCompile Include="daux.c" />
     <ClCompile Include="dcutet.c" />
+    <ClCompile Include="ddaskr.c" />
     <ClCompile Include="ddasrt.c" />
     <ClCompile Include="ddassl.c" />
     <ClCompile Include="dgbsl.c" />
@@ -348,7 +350,9 @@ cd ..
     <f2c_rule Include="bnorm.f" />
     <f2c_rule Include="cfode.f" />
     <f2c_rule Include="colnew.f" />
+    <f2c_rule Include="daux.f" />
     <f2c_rule Include="dcutet.f" />
+    <f2c_rule Include="ddaskr.f" />
     <f2c_rule Include="ddasrt.f" />
     <f2c_rule Include="ddassl.f" />
     <f2c_rule Include="dgbsl.f" />

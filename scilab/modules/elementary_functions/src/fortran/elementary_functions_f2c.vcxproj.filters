@@ -207,12 +207,6 @@
     <ClCompile Include="ortran.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="psi.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="pythag.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="rat.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -543,12 +537,6 @@
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="ortran.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="psi.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="pythag.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="rat.f">
