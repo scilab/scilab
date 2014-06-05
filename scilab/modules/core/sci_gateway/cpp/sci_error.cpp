@@ -1,6 +1,7 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2011-2011 - DIGITEO - Bruno JOFRET
+ *  Copyright (C) 2014 - Scilab Enterprises - Anais AUBERT
  *
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which
@@ -71,23 +72,8 @@ Function::ReturnValue sci_error(types::typed_list &in, int _iRetCount, types::ty
         }
         else
         {
-            if (in[0]->getAs<Double>()->getSize() != 1)
-            {
-                Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), "error", 1);
-                return Function::Error;
-            }
-
-            if (in[0]->getAs<Double>()->getReal(0, 0) <= 0 || in[0]->getAs<Double>()->isComplex())
-            {
-                Scierror(999, _("%s: Wrong value for input argument #%d: Value greater than 0 expected.\n"), "error", 1);
-                return Function::Error;
-            }
-
-
-            // FIXME : Find a way to retrieve error message from given ID.
-            Scierror((int)in[0]->getAs<Double>()->getReal(0, 0),
-                     "[Error %d]: message given by ID... Should avoid this !!",
-                     (int) in[0]->getAs<Double>()->getReal(0, 0));
+            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "error", 1);
+            return Function::Error;
         }
     }
     else
