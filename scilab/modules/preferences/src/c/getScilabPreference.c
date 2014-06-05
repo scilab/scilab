@@ -22,6 +22,7 @@
 #include "os_strdup.h"
 #include "getshortpathname.h"
 #include "BOOL.h"
+#include "sci_home.h"
 
 #define XCONF "%s/XConfiguration.xml"
 

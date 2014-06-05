@@ -87,7 +87,7 @@ BOOL setlanguage(wchar_t *lang)
                 /* Load the user locale from the system */
                 if (pstLang == NULL || *pstLang == 0)
                 {
-                    pstLang = getLocaleUserInfo();
+                    pstLang = wide_string_to_UTF8(getLocaleUserInfo());
                 }
 #endif
 
@@ -155,8 +155,8 @@ BOOL setlanguage(wchar_t *lang)
                 if (ret == NULL)
                 {
 #ifndef _MSC_VER
-                    fprintf(stderr, "Warning: Localization issue. Does not support the locale '%ls'\nReturned: %ls\nCurrent system locale: %s\nDid you install the system locales?\n", lang,
-                            ret, setlocale(LC_MESSAGES, NULL));
+                    fprintf(stderr, "Warning: Localization issue. Does not support the locale '%ls'\nReturned: NULL\nCurrent system locale: %s\nDid you install the system locales?\n", lang,
+                            setlocale(LC_MESSAGES, NULL));
 #else
                     fprintf(stderr, "Warning: Localization issue. Cannot detect user locale.\n");
 #endif
