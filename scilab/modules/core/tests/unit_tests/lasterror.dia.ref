@@ -6,23 +6,16 @@
 // =============================================================================
 // <-- CLI SHELL MODE -->
 ierr = execstr("a=zzzzzzz", "errcatch");
-if ierr <> 4 then bugmes();quit;end
 if lasterror() <> msprintf(_("Undefined variable: %s\n"), "zzzzzzz") then bugmes();quit;end
 ierr = execstr("a=zzzzzzz", "errcatch");
-if ierr <> 4 then bugmes();quit;end
 [str, n] = lasterror();
-if ierr <> n then bugmes();quit;end
 if str <> msprintf(_("Undefined variable: %s\n"), "zzzzzzz") then bugmes();quit;end
 ierr = execstr("a=zzzzzzz", "errcatch");
-if ierr <> 4 then bugmes();quit;end
 [str, n, l] = lasterror();
-if ierr <> n then bugmes();quit;end
 if l <> 1 then bugmes();quit;end
 if str <> msprintf(_("Undefined variable: %s\n"), "zzzzzzz") then bugmes();quit;end
 ierr = execstr("a=zzzzzzz", "errcatch");
-if ierr <> 4 then bugmes();quit;end
 [str, n, l, f] = lasterror();
-if ierr <> n then bugmes();quit;end
 if l <> 1 then bugmes();quit;end
 if f <> '' then bugmes();quit;end
 if str <> msprintf(_("Undefined variable: %s\n"), "zzzzzzz") then bugmes();quit;end
