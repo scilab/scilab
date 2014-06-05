@@ -10,20 +10,38 @@ Obsolete & Removed Functions
 Scilab Bug Fixes
 ================
 
+* Bug #7203 fixed - Help page of titlepage was unclear.
+
 * Bug #7549 fixed - edit_curv did not disable standard plot menus.
+
+* Bug #7804 fixed - Small improvements made in struct help page.
 
 * Bug #8646 fixed - The datatips contextual menu opened a selection list which
                     was not ergonomic.
 
 * Bug #10555 fixed - Scilab failed to build with some configure options.
 
+* Bug #10777 fixed - Home and End keys were not trapped in CLI mode.
+
+* Bug #10784 fixed - clc function was not available in CLI & ADV-CLI modes.
+
 * Bug #12700 fixed - edit_curv (used by CURV_f) was broken.
+
+* Bug #12918 fixed - OpenSUSE 12.3 x64 did not have gluegen2-rt in librarypath.
+
+* Bug #13180 fixed - surf did not handle degenerate cases.
 
 * Bug #13291 fixed - xmltojar([],[],'ja_JP') might lead to a crash when the
                      locale was not available system-wide.
 
+* Bug #13299 fixed - The pkgconfig file did not used the right Tcl/Tk version.
+
 * Bug #13313 fixed - Setting datatips orientation did not disable
                      auto_orientation mode.
+
+* Bug #13316 fixed - There were missing tooltips on File Browser buttons.
+
+* Bug #13324 fixed - Legends were completely modified when an item was clicked and modified.
 
 * Bug #13331 fixed - Users are no longer able to write inconsistent options to mopen,
                      mopen(file, "wr") now exits with a proper error.
@@ -32,6 +50,14 @@ Scilab Bug Fixes
                      Scilab in "Command line mode" (without GUI modules).
 
 * Bug #13344 fixed - User defined ticks were not drawn at the right position.
+
+* Bug #13349 fixed - Double-clicking on a MAT-file in file browser did not load it.
+
+* Bug #13351 fixed - xstringb failed with LaTeX code.
+
+* Bug #13358 fixed - Intersect and unique were slow due to an issue in quicksort implementation.
+
+* Bug #13365 fixed - Data bounds werenot correctly updated in 3-D.
 
 * Bug #13378 fixed - The "Console" handle display was not homogeneous with others.
 
@@ -62,15 +88,15 @@ Scilab Bug Fixes
                      now permute treats extra dimensions as 1
 
 
+
 Xcos Bug Fixes
 ==============
-
-* Bug #9996 fixed - The RELATION_OP box drawn in the work space is not compliant
-                    to the programming.
 
 * Bug #11823 fixed - Ctrl+F2 shortcut did not work on a selected block.
 
 * Bug #12718 fixed - Modelica Generic block reshaped the output ports and the label was double-written.
+
+* Bug #12723 fixed - Loading a .scg file in the CURVE bloc produced an error.
 
 * Bug #12751 fixed - cdummy_ entry point was not found when using Code Generation.
 
@@ -86,6 +112,7 @@ Xcos Bug Fixes
                      Example has been added.  
 
 * Bug #13396 fixed - MBLOCK did not work with an external file containing the modelica class.
+
 
 
                      Changes between version 5.4.1 and 5.5.0

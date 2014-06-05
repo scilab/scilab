@@ -33,9 +33,9 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>titlepage</literal> displays the matrix of strings <literal>str</literal> in the middle of 
+            <function>titlepage</function> displays the matrix of strings <varname>str</varname> in the middle of 
             the current graphics window
-            with a font as big as possible.
+            with a font as big as possible, depending on the current axes and its geometry.
         </para>
     </refsection>
     
@@ -48,6 +48,28 @@ titlepage("This is the title of the page");
             titlepage("This is the title of the page");
         </scilab:image>
         
+        <programlisting role="example"><![CDATA[ 
+f=scf();
+a1=f.children;
+a1.margins(3)=0.61;
+a2=newaxes();
+a2.margins(4)=0.39;
+sca(a1);
+titlepage("Bottom title");
+sca(a2);
+titlepage("Top title");
+ ]]></programlisting>
+        <scilab:image localized="true">
+            f=scf();
+            a1=f.children;
+            a1.margins(3)=0.61;
+            a2=newaxes();
+            a2.margins(4)=0.39;
+            sca(a1);
+            titlepage("Bottom title");
+            sca(a2);
+            titlepage("Top title");
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

@@ -120,13 +120,16 @@ function [x,y,ok,gc]=edit_curv(x,y,job,tit,gc)
     execstr("Data_"+string(curwin)+"=Data");
     menubar(curwin,menus)
     //
-    f = gcf(); a = gca();
-    a.data_bounds = [rect(1),rect(2);rect(3),rect(4)]
-    a.axes_visible="on";
-    a.grid=[4 4];
+    edit_curv_figure = gcf();
+    edit_curv_figure.figure_name = "edit_curv";
+
+    edit_curv_axes = gca();
+    edit_curv_axes.data_bounds = [rect(1),rect(2);rect(3),rect(4)]
+    edit_curv_axes.axes_visible="on";
+    edit_curv_axes.grid=[4 4];
     if x<>[] then
         xpolys(x*[1 1],y*[1 1],[1,-1])
-        hdl=a.children.children
+        hdl=edit_curv_axes.children.children
     else
         hdl=[]
     end
@@ -155,15 +158,15 @@ function [x,y,ok,gc]=edit_curv(x,y,job,tit,gc)
             break
 
         case "Ok" then    //    -- ok menu
-            rect = matrix(a.data_bounds',1,4);
+            rect = matrix(edit_curv_axes.data_bounds',1,4);
             gc   = list(rect,axisdata);
-            delete(f)
+            delete(edit_curv_figure)
             return;
 
         case "Abort" then //    -- abort menu
             x = xsav
             y = ysav
-            delete(f)
+            delete(edit_curv_figure)
             ok = %f;
             return
 
@@ -195,7 +198,7 @@ function [x,y,ok,gc]=edit_curv(x,y,job,tit,gc)
                 if dx==0 then dx=max(xmx/2,1),xmn=xmn-dx/10;xmx=xmx+dx/10;end
                 if dy==0 then dy=max(ymx/2,1),ymn=ymn-dy/5;ymx=ymx+dy/10;end
                 rect=[xmn,ymn,xmx,ymx];
-                a.data_bounds=[rect(1),rect(2);rect(3),rect(4)]
+                edit_curv_axes.data_bounds=[rect(1),rect(2);rect(3),rect(4)]
             end
 
         case "Clear" then
@@ -215,7 +218,7 @@ function [x,y,ok,gc]=edit_curv(x,y,job,tit,gc)
                 xmn=0;ymn=0;xmx=1;ymx=1;dx=1;dy=1
             end
             rect=[xmn,ymn,xmx,ymx];
-            a.data_bounds=[rect(1),rect(2);rect(3),rect(4)]
+            edit_curv_axes.data_bounds=[rect(1),rect(2);rect(3),rect(4)]
             if x<>[]&y<>[] then
                 if hdl==[] then
                     xpolys(x(1)*[1 1],y(1)*[1 1],[1,-1])
@@ -298,7 +301,7 @@ function [x,y] = addpt(c1,x,y)
         x = c1(1);
         y = c1(2);
         xpolys(x*[1 1],y*[1 1],[1,-1]);
-        hdl = resume(a.children(1).children)
+        hdl = resume(edit_curv_axes.children(1).children)
     end
     //recherche des intervalles en x contenant l'abscisse designee
     kk=[]
@@ -361,31 +364,115 @@ endfunction
 
 
 function [x,y] = readxy()
-    fn=uigetfile("*.xy")
-    if fn<>emptystr() then
-        if execstr("load(fn)","errcatch")<>0 then
-            xy=read(fn,-1,2)
-            x=xy(:,1);y=xy(:,2)
+
+    function xy = findPolyline(children)
+        xy = [];
+        for i = 1:length(children)
+            select children(i).type,
+            case "Polyline" then
+                xy = children(i).data;
+                return
+            case "Axes" then
+                xy = findPolyline(children(i).children);
+                return
+            case "Compound" then
+                xy = findPolyline(children(i).children);
+                return
+            end
+        end
+    endfunction
+
+    fn=uigetfile(["*.scg";"*.sod";"*.xy"], "", _("Select a file to load"));
+    if fn <> "" then
+        [pth, fnm, ext] = fileparts(fn);
+        flname = fnm + ext;
+
+        select ext
+        case ".scg" then
+            loaded_figure=figure("visible", "off");
+            if execstr("xload(fn, loaded_figure.figure_id)","errcatch") == 0 then
+                loaded_figure.visible = "off";
+                scf(edit_curv_figure);
+                xy = findPolyline(loaded_figure.children);
+                delete(loaded_figure);
+                if xy <> [] then
+                    x=xy(:,1);y=xy(:,2);
+                else
+                    messagebox(msprintf(_("%s: The file "'%s"' does not " +..
+                    "contains any "'Polyline"' graphic entity.\n"), "edit_curve", flname));
+                    return
+                end
+            else
+                messagebox(msprintf(_("%s: Cannot open file "'%s"' " +..
+                "for reading.\n"), "edit_curv", flname), "modal");
+                return
+            end
+        case ".xy" then
+            if execstr("xy = read(fn,-1,2)","errcatch") == 0 then
+                x=xy(:,1);y=xy(:,2);
+            else
+                messagebox(msprintf(_("%s: Cannot open file "'%s"' " +..
+                "for reading.\n"), "edit_curv", flname), "modal");
+                return
+            end
+        case ".sod" then
+            if execstr("load(fn)","errcatch") == 0 then
+                x=xy(:,1);y=xy(:,2);
+            else
+                messagebox(msprintf(_("%s: Cannot open file "'%s"' " +..
+                "for reading.\n"), "edit_curv", flname), "modal");
+                return
+            end
         else
-            x=xy(:,1);y=xy(:,2)
+            messagebox(_("Error in file format."), "modal");
+            return
         end
     else
         x=x
         y=y
     end
-
 endfunction
 
 
 function savexy(x,y)
-    fn = uigetfile("*.xy")
-    if fn<>emptystr()  then
+    fn=uiputfile(["*.sod";"*.xy"], "", _("Select a file to write"));
+    if fn <> "" then
+        [pth, fnm, ext] = fileparts(fn);
+        flname = fnm + ext;
         xy = [x y];
-        fil=fn+".xy"
-        if execstr("save(fil,""xy"")","errcatch")<>0 then
-            messagebox(["Impossible to save in the selected file";
-            "Check file and directory access"],"modal");
-            return
+        fil = fn;
+
+        select ext
+        case "" then
+            fil = fil + ".xy";
+            ext = ".xy";
+        case ".xy" then
+            // empty case fil = fn
+        case ".sod" then
+            // empty case fil = fn
+        else
+            fil = pth + fnm + ".xy";
+            ext = ".xy";
+        end
+
+        select ext
+        case ".sod" then
+            if execstr("save(fil,""xy"")","errcatch")<>0 then
+                messagebox(msprintf(_("%s: The file "'%s"' " +..
+                "cannot be written.\n"), "edit_curv", flname), "modal");
+                return
+            end
+        case ".xy" then
+            isErr = execstr("write(fil,xy)","errcatch")
+            if isErr == 240 then
+                mdelete(fil); // write cannot overwrite an existing file
+                isErr = execstr("write(fil,xy)","errcatch");
+            end
+            if isErr <> 0 then
+                messagebox(msprintf(_("%s: The file "'%s"' " +..
+                "cannot be written.\n"), "edit_curv", flname), "modal");
+                return
+            end
         end
     end
 endfunction

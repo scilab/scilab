@@ -13,25 +13,21 @@
 
 package org.scilab.modules.gui.editor;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.ArrayList;
+
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 
-import org.scilab.modules.gui.editor.ObjectSearcher;
-import org.scilab.modules.gui.editor.PolylineHandler;
-
 
 /**
-* Implements all legend manipulation functions for the editor.
-*
-* @author Caio Souza <caioc2bolado@gmail.com>
-* @author Pedro Souza <bygrandao@gmail.com>
-*
-* @since 2012-06-01
-*/
+ * Implements all legend manipulation functions for the editor.
+ *
+ * @author Caio Souza <caioc2bolado@gmail.com>
+ * @author Pedro Souza <bygrandao@gmail.com>
+ *
+ * @since 2012-06-01
+ */
 public class LegendHandler {
 
     public static Integer searchLegend(Integer uid) {
@@ -56,19 +52,18 @@ public class LegendHandler {
     }
 
     /**
-    * Set or create a legend for one polyline.
-    *
-    * @param axes The axes that will recieve the legend.
-    * @param polyline The polyline to set/create legend.
-    * @param text The text for the legend.
-    */
+     * Set or create a legend for one polyline.
+     *
+     * @param axes The axes that will recieve the legend.
+     * @param polyline The polyline to set/create legend.
+     * @param text The text for the legend.
+     */
 
-    public static void setLegend(Integer axes, Integer polyline, String text) {
-        if (text == null || text == "" || polyline == null || axes == null) {
+    public static void setLegend(Integer legend, Integer axes, Integer polyline, String text) {
+        if (text == null || text == "" || polyline == null || axes == null || legend == null) {
             return;
         }
 
-        Integer legend = searchLegend(axes);
         Integer[] dimension = { 0, 0 };
         ArrayList<String> texts = new ArrayList<String>();
         ArrayList<Integer> links = new ArrayList<Integer>();
@@ -78,14 +73,16 @@ public class LegendHandler {
             Integer[] linksOld = (Integer[])GraphicController.getController().getProperty(legend, GraphicObjectProperties.__GO_LINKS__);
             int length = linksOld.length;
             for (int i = 0; i < length; i++) {
-                if (polyline != linksOld[i]) {
-                    texts.add(textOld[i]);
-                    links.add(linksOld[i]);
-                } else {
-                    removeLegend(axes, polyline);
-                    setLegend(axes, polyline, text);
+                if (linksOld[i].equals(polyline)) {
+                    textOld[length - i - 1] = text;
+                    GraphicController.getController().setProperty(legend, GraphicObjectProperties.__GO_TEXT_STRINGS__, textOld);
                     return;
                 }
+            }
+
+            for (Integer i = 0; i < length; i++) {
+                texts.add(textOld[i]);
+                links.add(linksOld[i]);
             }
             CommonHandler.delete(legend);
         }
@@ -109,11 +106,11 @@ public class LegendHandler {
     }
 
     /**
-    * Remove a legend from axes.
-    *
-    * @param axes The axes to remove the legend.
-    * @param polyline The polyline that is linked to the legend.
-    */
+     * Remove a legend from axes.
+     *
+     * @param axes The axes to remove the legend.
+     * @param polyline The polyline that is linked to the legend.
+     */
 
     public static void removeLegend(Integer axes, Integer polyline) {
         if (polyline == null || axes == null) {
@@ -161,12 +158,12 @@ public class LegendHandler {
     }
 
     /**
-    * Get the text of the legend.
-    *
-    * @param axes The axes where is the legend.
-    * @param polyline The polyline that is linked to the legend.
-    * @return The text of the legend.
-    */
+     * Get the text of the legend.
+     *
+     * @param axes The axes where is the legend.
+     * @param polyline The polyline that is linked to the legend.
+     * @return The text of the legend.
+     */
 
     public static String getLegendText(Integer axes, Integer polyline) {
         if (polyline != null && axes != null) {
@@ -187,12 +184,12 @@ public class LegendHandler {
     }
 
     /**
-    * Drag the given legend.
-    *
-    * @param legend  the legend uid.
-    * @param position click position (x,y).
-    * @param nextPosition dragged position (x,y).
-    */
+     * Drag the given legend.
+     *
+     * @param legend  the legend uid.
+     * @param position click position (x,y).
+     * @param nextPosition dragged position (x,y).
+     */
 
     public static void dragLegend(Integer legend, Integer[] position, Integer[] nextPosition) {
         ObjectSearcher searcher = new ObjectSearcher();
@@ -219,11 +216,11 @@ public class LegendHandler {
     }
 
     /**
-    * Get the links of a Legend
-    *
-    * @param legend The legend to get the links
-    * @return Links of the legend
-    */
+     * Get the links of a Legend
+     *
+     * @param legend The legend to get the links
+     * @return Links of the legend
+     */
     public static Integer[] getLinks(Integer legend) {
         if (legend == null) {
             return null;
@@ -233,11 +230,11 @@ public class LegendHandler {
     }
 
     /**
-    * Get the text of a Legend
-    *
-    * @param legend The legend to get the text
-    * @return Text of the legend
-    */
+     * Get the text of a Legend
+     *
+     * @param legend The legend to get the text
+     * @return Text of the legend
+     */
     public static String[] getText(Integer legend) {
         if (legend == null) {
             return null;
@@ -247,11 +244,11 @@ public class LegendHandler {
     }
 
     /**
-    * Get the position of a Legend
-    *
-    * @param legend The legend to get the position
-    * @return The legend position
-    */
+     * Get the position of a Legend
+     *
+     * @param legend The legend to get the position
+     * @return The legend position
+     */
     public static Double[] getPosition(Integer legend) {
         if (legend == null) {
             return null;

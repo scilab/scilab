@@ -7,7 +7,7 @@
 
 // <-- CLI SHELL MODE -->
 
-// <-- Non-regression test for bug 3070, 3089 & 3568 -->
+// <-- Non-regression test for bug 3070, 3089 and 3568 -->
 //
 // <-- Bugzilla URL -->
 // http://bugzilla.scilab.org/show_bug.cgi?id=3070
@@ -20,9 +20,9 @@
 
 mprintf("°\n\n");
 
-printf('µ m\n');
+printf("µ m\n");
 
-mprintf('Torbjørn Pettersen');
+mprintf("Torbjørn Pettersen");
 
 mprintf("清除控制台");
 mprintf("모든 인간은 태어날 때부터 자유로우며 그 존엄과 권리에 있어 동등하다. 인간은 천부적으로 이성과 양심을 부여받았으며 서로 형제애의 정신으로 행동하여야 한다.");

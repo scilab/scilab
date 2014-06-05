@@ -990,7 +990,7 @@ static void updateXYZDataBounds(int iSubwinUID, double rect[6])
     int * piFirstPlot = &firstPlot;
 
     getGraphicObjectProperty(iSubwinUID, __GO_FIRST_PLOT__, jni_bool, (void **)&piFirstPlot);
-    if (firstPlot != 0)
+    if (!firstPlot)
     {
         double * dataBounds = NULL;
         getGraphicObjectProperty(iSubwinUID, __GO_DATA_BOUNDS__, jni_double_vector, (void **)&dataBounds);

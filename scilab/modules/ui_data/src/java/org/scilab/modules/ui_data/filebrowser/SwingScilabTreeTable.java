@@ -52,6 +52,7 @@ import org.scilab.modules.ui_data.filebrowser.actions.ChangeCWDAction;
 import org.scilab.modules.ui_data.filebrowser.actions.EditFileWithDefaultAppAction;
 import org.scilab.modules.ui_data.filebrowser.actions.ExecuteFileInConsoleAction;
 import org.scilab.modules.ui_data.filebrowser.actions.ExecuteFileInXcosAction;
+import org.scilab.modules.ui_data.filebrowser.actions.ExecuteMatFileAction;
 import org.scilab.modules.ui_data.filebrowser.actions.LoadFileAsGraphAction;
 import org.scilab.modules.ui_data.filebrowser.actions.LoadFileInScilabAction;
 import org.scilab.modules.ui_data.filebrowser.actions.OpenFileInSciNotesAction;
@@ -359,6 +360,7 @@ public class SwingScilabTreeTable extends JTable {
         final ActionMap actions = getActionMap();
         actions.put("scinotes", new OpenFileInSciNotesAction(this));
         actions.put("xcos", new ExecuteFileInXcosAction(this));
+        actions.put("mat", new ExecuteMatFileAction(this));
         actions.put("console", new ExecuteFileInConsoleAction(this));
         actions.put("load", new LoadFileInScilabAction(this));
         actions.put("graph", new LoadFileAsGraphAction(this));

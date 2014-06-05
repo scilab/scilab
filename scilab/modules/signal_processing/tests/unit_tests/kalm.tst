@@ -8,10 +8,10 @@
 
 w=%pi/4; // angular frequency
 T=0.1; // period
-t=0:T:5
+t=0:T:5;
 signal=cos(w*t);
 // Sinusoid with noise
-v=0:1:50
+v=0:1:50;
 y=signal+v;
 // System
 n=2; // system order

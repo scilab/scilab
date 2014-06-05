@@ -250,7 +250,7 @@ function Info = scicos_simulate(scs_m, Info, updated_vars, flag, Ignb)
         error(["Incorrect context definition, " + lasterror()])
     end
 
-    // perform block supression only on partial compilation and full compilation
+    // perform block suppression only on partial compilation and full compilation
     if needcompile > 1 then
         need_suppress  =%t
     else
