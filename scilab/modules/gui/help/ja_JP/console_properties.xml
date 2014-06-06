@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2014 - Scilab Enterprises - Vincent Couvert
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="console_properties">
+    <refnamediv>
+        <refname>consoleプロパティ</refname>
+        <refpurpose>consoleオブジェクトプロパティの説明.</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>説明</title>
+        <para>
+            このオブジェクトは<literal>get(0)</literal>をコールする際に
+            返され,ハンドルおよびuicontrolのパラメータを修正できるようになります.
+        </para>
+        <variablelist>
+            <varlistentry>
+                <term>Consoleプロパティ</term>
+                <listitem>
+                    <variablelist>
+                        <varlistentry>
+                            <term>ShowHiddenHandles:</term>
+                            <listitem>
+                                <para>論理値または文字列</para>
+                                <para>
+                                    デフォルトのメニューを含む図の全ての子ハンドル
+                                    の表示を管理.
+                                </para>
+                                <para>
+                                    デフォルト値は <literal>"off"</literal>です.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>UseDeprecatedSkin:</term>
+                            <listitem>
+                                <para>論理値または文字列</para>
+                                <para>uicontrolのレンダリングを管理.</para>
+                                <para>
+                                    デフォルト値は<literal>"off"</literal>で,
+                                    uicontrolのルックアンドフィールは
+                                    オペレーティングシステムにより管理されます.
+                                </para>
+                                <para>
+                                    この値を<literal>"on"</literal>または
+                                    <literal>%T</literal>に設定すると,
+                                    uicontrolは,
+                                    古いTKのルックアンドフィールになります.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>ShowHiddenProperties:</term>
+                            <listitem>
+                                <para>論理値または文字列</para>
+                                <para>uicontrolプロパティの表示を管理.</para>
+                                <para>
+                                    デフォルト値は<literal>"off"</literal>で,
+                                    Java側で使用されるuicontrolプロパティのみが
+                                    表示されます.
+                                </para>
+                                <para>
+                                    この値を<literal>"on"</literal>または
+                                    <literal>%T</literal>に設定すると,
+                                    全ての利用可能なプロパティが表示されます.
+                                    (例えば,<literal>ListboxTop</literal>
+                                    プロパティは
+                                    <literal>pushbutton</literal> uicontrolで
+                                    表示されます).
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
+f=gcf() // Do no display hidden handles
+c = get(0);
+set(c, "ShowHiddenHandles", "on");
+f=gcf() // Show menu handles as children
+h=uicontrol(); // Button with OS look & feel
+set(c, "UseDeprecatedSkin", "on");
+h=uicontrol(); // Button with old TK look & feel
+h=uicontrol() // Minimal display of properties
+set(c, "ShowHiddenProperties", "on");
+h=uicontrol() // Full display of properties
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="uicontrol">uicontrol</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

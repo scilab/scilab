@@ -65,10 +65,9 @@ void sciqsort(char *a, char *tab, int flag, int n, int es, int es1, int (*cmp)()
 {
     char *pa, *pb, *pc, *pd, *pl, *pm, *pn;
     char *taba, *tabb, *tabc, *tabd, *tabl, *tabm, *tabn;
-    int d, dind, r, r1,  swap_cnt;
+    int d, dind, r, r1;
 
 loop:
-    swap_cnt = 0;
     if (n < 7)   /* Insertion sort on smallest arrays */
     {
         for (pm = a + es, tabm = tab + es1 ; pm < (char *) a + n * es; pm += es, tabm += es1 )
@@ -134,7 +133,6 @@ loop:
             if (r == 0)  /*The pivot and  value pointed to by pb are equal */
             {
                 /* store the equal value at the location pa and increase pa */
-                swap_cnt = 1;
                 swapind(taba, tabb);
                 taba += es1;
                 swap(pa, pb);
@@ -151,7 +149,6 @@ loop:
             if (r == 0)  /*The pivot and  value pointed to by pc are equal */
             {
                 /* store the equal value at the location pd and decrease pd */
-                swap_cnt = 1;
                 swapind(tabc, tabd);
                 tabd -= es1;
                 swap(pc, pd);
@@ -180,7 +177,6 @@ loop:
         tabb += es1;
         tabc -= es1;
         swap(pb, pc);
-        swap_cnt = 1;
         /* increase pb and decrease pc */
         pb += es;
         pc -= es;
@@ -190,18 +186,6 @@ loop:
         */
     }
 
-    if (swap_cnt == 0)    /* Switch to insertion sort */
-    {
-        for (pm = a + es, tabm = tab + es1 ; pm < (char *) a + n * es; pm += es, tabm += es1)
-        {
-            for (pl = pm, tabl = tabm ; pl > (char *) a && cmp(pl - es, pl, tabl - es1, tabl, flag) > 0;  pl -= es, tabl -= es1)
-            {
-                swapind(tabl, tabl - es1);
-                swap(pl, pl - es);
-            }
-        }
-        return;
-    }
     /* put the equal values in the middle */
     pn = a + n * es;
     r = (int)Min(pa - (char *)a, pb - pa);

@@ -266,19 +266,15 @@ SYS=syslin(0.1,A,B,C);
 nsmp=100;
 U=prbs_a(nsmp,nsmp/5);
 Y=(flts(U,SYS)+0.3*rand(1,nsmp,'normal'));
-
 // Rを計算
 S=15;L=1;
 [R,N,SVAL] = findR(S,Y',U');
-
 N=3;
 METH=3;TOL=-1;
 [A,C] = findAC(S,N,L,R,METH,TOL);
 [B,D,K] = findBDK(S,N,L,R,A,C);
 SYS1=syslin(1,A,B,C,D);
-
 SYS1.X0 = inistate(SYS1,Y',U');
-
 Y1=flts(U,SYS1);
 clf();plot2d((1:nsmp)',[Y',Y1'])
 ]]></programlisting>

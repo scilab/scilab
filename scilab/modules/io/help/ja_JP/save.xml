@@ -22,7 +22,7 @@
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>filename</term>
@@ -106,7 +106,6 @@ save('val.dat',a,b);
 clear a
 clear b
 load('val.dat','a','b');
-
 // ファイルにシーケンシャルに保存
 fd=mopen('TMPDIR/foo','wb')
 for k=1:4, x=k^2;save(fd,x,k),end
@@ -114,14 +113,12 @@ mclose(fd)
 fd=mopen('TMPDIR/foo','rb')
 for i=1:4, load(fd,'x','k');x,k,end
 mclose(fd)
-
 // 変数を既存のファイルに追加
 fd=mopen('TMPDIR/foo','rb+')
 mseek(0,fd,'end') 
 lst=list(1,2,3)
 save(fd,lst)
 mclose(fd)
-
 // Scilab 5.4.X および Scilab 6 ファミリーで可読なバイナリ形式
 a=eye(2,2);b=ones(a);
 save("val.sod", "a", "b");

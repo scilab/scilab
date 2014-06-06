@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010 - DIGITEO - Sylvestre LEDRU
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ -->
+
+<!-- This document was created with Syntext Serna Free. -->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="javasci_step_by_step" scilab:needs-examples="no" xml:lang="ja">
+    
+    <refnamediv>
+        
+        <refname>javasci - ステップバイステップ</refname>
+        
+        <refpurpose>javasci v2に基づくアプリケーションの書き方</refpurpose>
+        
+    </refnamediv>
+    
+    <refsection>
+        
+        <title>ステップ1 - コード本体</title>
+        
+        <para>Javasci v2 では Java APIからScilabエンジンをコールできます.
+            
+        </para>
+        
+        <para>
+            
+            いくつかのオブジェクトとメソッドがこのようなタスクを実行するために
+            
+            提供されています.
+            
+            メインクラスは <emphasis role="italic">Scilab</emphasis>です. 
+            
+            このオブジェクトにより, Scilabエンジンからのデータ送信/受信,
+            
+            エラー管理およびScilabスクリプト/コードの実行ができるようになります.
+            
+        </para>
+        
+        <para>クラスは以下の2つのパッケージに分割されています: </para>
+        
+        <itemizedlist>
+            
+            <listitem>org.scilab.modules.javasci.*; // 主要なScilabクラスを含む</listitem>
+            
+            <listitem>org.scilab.modules.types.*; // Scilab &lt;=&gt; Javaマッピングを含む</listitem>
+            
+        </itemizedlist>
+        
+        <para>
+            
+            <para>以下に古典的な使用例を示します:</para>
+            
+        </para>
+        
+        <programlisting role="java"><![CDATA[
+/*
+ *
+ * This file is released under the 3-clause BSD license. See COPYING-BSD.
+ *
+ */
+
+import org.scilab.modules.javasci.Scilab;
+import org.scilab.modules.types.ScilabType;
+import org.scilab.modules.types.ScilabDouble;
+
+class Example1 {
+
+    public static void main(String[] args) {
+        try {
+            Scilab sci = new Scilab();
+            if (sci.open()) {
+                /* Send a Scilab instruction */
+                sci.exec("foo = [ 2, 4, 6; 4, 0, 10; 6, 10, 12 ];");
+
+/* Retrieve the variable foo */
+                ScilabType foo = sci.get("foo");
+
+/* Display the variable */
+                System.out.println("Representation of  : "+foo);
+
+/* Get the data and retrieve the 2,2 value */
+                double[][] aReal = ((ScilabDouble)foo).getRealPart();
+                System.out.println("foo[1,1] = " + aReal[1][1]);
+
+/* Change the value of 2,2 */
+                aReal[1][1] = Math.PI;
+
+/* Create a new variable */
+                ScilabDouble bar = new ScilabDouble(aReal);
+
+/* Send it to Scilab */
+                sci.put("bar",bar);
+
+/* Display it through Scilab */
+                sci.exec("disp(bar)");
+
+                sci.close();
+            } else {
+                System.out.println("Could not start Scilab ");
+            }
+
+
+/* Can be improved by other exceptions: AlreadyRunningException,
+ * InitializationException, UndefinedVariableException,
+ * UnknownTypeException, etc
+ */
+        } catch (org.scilab.modules.javasci.JavasciException e) {
+            System.err.println("An exception occurred: " + e.getLocalizedMessage());
+        }
+    }
+}
+
+
+        ]]></programlisting>
+        
+        <para>ソースは SCI/modules/javasci/examples/v2/ で提供されています</para>
+        
+        <para>このプログラムの出力は以下のようになります:</para>
+        
+        <programlisting><![CDATA[Representation of  : [2.0, 4.0, 6.0 ; 4.0, 0.0, 10.0 ; 6.0, 10.0, 12.0]
+foo[1,1] = 0.0
+
+2.    4.           6.
+4.    3.1415927    10.
+6.    10.          12.
+        ]]></programlisting>
+        
+        <para>
+            
+            オブジェクトおよびメソッドに関する詳細については,
+            
+            <link type="remote" linkend="javasci/javadoc/index.html">Javasci v2の文書</link>
+            
+            を閲覧してください (これによりWebブラウザがオープンします).
+            
+        </para>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>ステップ 2 - 構築</title>
+        
+        <para>
+            
+            GNU/Linux および Mac OS Xでは
+            
+            Scilabデータへのパスも指定します
+            
+            (Microsoft Windowsでは,自動的に検出されます).
+            
+        </para>
+        
+        <programlisting><![CDATA[# Variable SCI
+# GNU/LinuxのScilabバイナリのパス:
+/path/to/scilab-xxx/share/scilab/
+# GNU/LinuxおよびMac OS Xのソースツリーでは, パスはソースツリーのトップです
+/path/to/scilab/sources/
+# Mac OS X上の パス:
+/Applications/scilab-xxx/Contents/MacOS/share/scilab/
+# Windows上のパス:
+C:\Program Files\Scilab-5.3.0\
+        ]]></programlisting>
+        
+        <para>
+            
+            Javasci v2によりコードを構築するには,
+            
+            CLASSPATHに2つのjarファイルがある必要があります.
+            
+        </para>
+        
+        <programlisting role="example"><![CDATA[# 例えば, 変数CLASSPATHを作成
+$(SCI)/modules/javasci/jar/org.scilab.modules.javasci.jar
+$(SCI)/modules/types/jar/org.scilab.modules.types.jar
+]]></programlisting>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>ステップ3 - 実行</title>
+        
+        <para>構築ステップと同様, 2つのjarを指定します. </para>
+        
+        <para>
+            
+            JavaがScilabと通信するためにネーティブライブラリへのパスを設定する必要があります.
+            
+        </para>
+        
+        <para>
+            
+            Javasci v2は,2つのライブラリ
+            
+            libjavasci2.{so,dylib,dll} および libscilab.{so,dylib,dll}がロードされていることを
+            
+            必要とします.他のライブラリは透過的にロードされます.
+            
+        </para>
+        
+        <programlisting role="example"><![CDATA[# 例えば, 変数CLASSPATHを作成
+# GNU/LinuxのScilabバイナリのパス:
+/path/to/scilab-xxx/lib/scilab/
+# GNU/LinuxおよびMac OS Xのソースツリーのパス:
+$(SCI)/modules/javasci/.libs/:$(SCI)/modules/.libs/
+# Mac OS X上の パス:
+/Applications/scilab-xxx/Contents/MacOS/lib/scilab/
+# Windows上のパス:
+set LIBPATH="C:\Program Files\Scilab-5.3.0\bin"
+        ]]></programlisting>
+        
+        <para>プログラムを起動するコマンドは以下のようになります:</para>
+        
+        <programlisting>java -cp $CLASSPATH:. -DSCI=$SCI -Djava.library.path=$LIBPATH Example1</programlisting>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>Makefileの例</title>
+        
+        <para>シンプルなMakefileは以下のようになります:</para>
+        
+        <programlisting><![CDATA[SCI = /path/to/scilab/share/scilab/
+CLASSPATH = $(SCI)/modules/javasci/jar/org.scilab.modules.javasci.jar:$(SCI)/modules/types/jar/org.scilab.modules.types.jar
+LIB_PATH = /path/to/scilab/lib/scilab
+all:
+javac -cp $(CLASSPATH) Example1.java
+java -cp $(CLASSPATH):. -DSCI=$(SCI) -Djava.library.path=$(LIB_PATH) Example1
+        ]]></programlisting>
+        
+    </refsection>
+    
+    <para>SCI/modules/javasci/examples/v2 ディレクトリにある
+        
+        Windows用build.batを参照ください.
+    </para>
+    
+    <refsection>
+        
+        <title>参照</title>
+        
+        <simplelist type="inline">
+            
+            <member>
+                
+                <link type="remote" linkend="javasci/javadoc/index.html">Javasci v2の文書</link> を閲覧(これによりWebブラウザがオープンします).
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="compile_and_run_javasci_v2">Javasci v2でコンパイル/実行</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="javasci_faq_v2">Javasci v2 FAQ</link>
+                
+            </member>
+            
+        </simplelist>
+        
+    </refsection>
+    
+</refentry>
+

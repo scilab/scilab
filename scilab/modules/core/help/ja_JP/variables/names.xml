@@ -2,7 +2,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="names">
     <refnamediv>
         <refname>names</refname>
-        <refpurpose>scilab 名前の構文</refpurpose>
+        <refpurpose>Scilab 名前の構文</refpurpose>
     </refnamediv>
     <refsection>
         <title>説明</title>
@@ -17,9 +17,13 @@
             を含む任意の特殊文字とすることができます.
         </para>
         <para>
-            名前は任意の長さとすることができますが,
-            最初の24文字のみが認識されます.
+            大文字小文字は区別されます.
+        </para>
+        <para>
+            名前は任意の長さとすることができますが,最初の24文字のみが認識されます.
             大文字と小文字は区別されます.
+            この制限を超えた場合,警告が発生します.
+            この制限はScilab 6のリリースでも変わらないことに注意してください.
         </para>
     </refsection>
     <refsection>
@@ -32,6 +36,14 @@ A1=123
 My_Special_Color_Table=rand(10,3)
 //無効な名前
 //1A , b%, .C
+//長い名前
+Try_to_use_a_long_name = 1 // 長いが長すぎない
+Try_to_use_a_too_long_name = 1 // 長すぎる
+// 同様な長い名前を有する2番目の変数を挿入してみましょう
+Try_to_use_a_too_long_name2 = 2
+// ... 最初の変数の値を見てみましょう
+disp(Try_to_use_a_too_long_name)
+// この制限は Scilab 6のリリースでも変わらないことに注意してください.
  ]]></programlisting>
     </refsection>
 </refentry>

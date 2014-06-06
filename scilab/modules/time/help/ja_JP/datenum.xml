@@ -53,25 +53,19 @@
         <programlisting role="example"><![CDATA[ 
 // N = datenum()	
 datenum()
-
 // N = datenum(DT)
 A = [ 0 1 1 0 0 0 ; 2005 2 8 21 37 30 ]
 datenum(A)
-
 // N = datenum(Y, M, D)
-
 Years = [0; 1973; 2006]
 Months = [1; 8; 2]
 Days = [1; 4; 8]
 datenum(Years,Months,Days)
-
 Years = [0 0 0 ; 0 0 0]
 Months = [1 1 1 ; 1 1 1]
 Days = [1 2 3 ; 4 5 6]
 datenum(Years,Months,Days)
-
 // N = datenum(Y, M, D, H, MI, S)
-
 Years = grand(5,10,'uin',0,2006)
 Months = grand(5,10,'uin',1,12)
 Days = grand(5,10,'uin',1,28)

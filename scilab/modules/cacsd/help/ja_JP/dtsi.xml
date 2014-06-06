@@ -13,20 +13,22 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="dtsi">
     <refnamediv>
         <refname>dtsi</refname>
-        <refpurpose>安定な非安定分解</refpurpose>
+        <refpurpose>
+            連続時間動的システムの安定な非安定分解
+        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
         <synopsis>[Ga,Gs,Gi]=dtsi(G,[tol])</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>G</term>
                 <listitem>
                     <para>
-                        線形システム (<literal>syslin</literal> リスト)
+                        連続時間線形システム.
                     </para>
                 </listitem>
             </varlistentry>
@@ -34,7 +36,7 @@
                 <term>Ga</term>
                 <listitem>
                     <para>
-                        線形システム (<literal>syslin</literal> リスト) 非安定で厳密にプロパー
+                        連続時間線形システム,非安定で厳密にプロパー
                     </para>
                 </listitem>
             </varlistentry>
@@ -42,7 +44,7 @@
                 <term>Gs</term>
                 <listitem>
                     <para>
-                        線形システム (<literal>syslin</literal> リスト) 安定で厳密にプロパー
+                        連続時間線形システム,安定で厳密にプロパー
                     </para>
                 </listitem>
             </varlistentry>
@@ -90,5 +92,27 @@
                 <link linkend="pfss">pfss</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
+a=0.5;
+b=1;
+c=2;
+sl=syslin('c',a,b,c);
+dtsi(sl)
+ ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>
+                    <literal>Sl</literal>は,連続時間線形システムとして確認されます.
+                    この修正は, <ulink url="http://gitweb.scilab.org/?p=scilab.git;a=commit;h=3d7083daae3339813ba747c8adcda1f9599bb80d">コミット</ulink> により導入されました.
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

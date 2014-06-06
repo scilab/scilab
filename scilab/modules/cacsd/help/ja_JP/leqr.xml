@@ -99,7 +99,6 @@ K=-inv(R)*(B2'*inv(inv(X)+B2*inv(R)*B2'-Vx)*Abar+S')
             ただし, <literal>Abar=A-B2*inv(R)*S'</literal> および <literal>Qbar=Q-S*inv(R)*S'</literal>
         </para>
         <para>
-            
             これらのリカッチ方程式に関連する3ブロック行列ペンシルは次のように
             なります:
         </para>

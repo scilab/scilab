@@ -223,7 +223,7 @@ EOF
 #
 # VARIABLES SET:
 #    JAVAC
-#    ac_java_jvm_version can be set to 1.4, 1.5, 1.6 or 1.7
+#    ac_java_jvm_version can be set to 1.4, 1.5, 1.6, 1.7, 1.8
 #    ac_java_jvm_dir can be set to the jvm's root directory
 #
 # DEPENDS ON:
@@ -306,6 +306,9 @@ Maybe JAVA_HOME is pointing to a JRE (Java Runtime Environment) instead of a JDK
 
     # The class java.nio.file.Path is new to 1.7
     AC_JAVA_TRY_COMPILE([import java.nio.file.Path;], , "no", ac_java_jvm_version=1.7)
+
+    # The class java.util.stream.DoubleStream is new to 1.8
+    AC_JAVA_TRY_COMPILE([import java.util.stream.DoubleStream;], , "no", ac_java_jvm_version=1.8)
 
     if test "x$ac_java_jvm_version" = "x" ; then
         AC_MSG_ERROR([Could not detect Java version, 1.4 or newer is required])
@@ -711,15 +714,15 @@ AC_DEFUN([AC_JAVA_JNI_LIBS], [
 
 AC_DEFUN([AC_JAVA_WITH_JDK], [
     AC_ARG_WITH(jdk,
-    AC_HELP_STRING([--with-jdk=DIR],[use JDK from DIR]),
-    ok=$withval, ok=no)
-    if test "$ok" = "no" ; then
+    AC_HELP_STRING([--with-jdk=DIR],[use JDK from DIR]))
+
+    if test "$with_jdk" = "no" -o -z "$with_jdk"; then
         NO=op
-    elif test "$ok" = "yes" || test ! -d "$ok"; then
+    elif test "$with_jdk" = "yes" -o \( ! -d "$with_jdk" \); then
         AC_MSG_ERROR([--with-jdk=DIR option, must pass a valid DIR])
-    elif test "$ok" != "no" ; then
-        AC_MSG_RESULT([Use JDK path specified ($ok)])
-        ac_java_jvm_dir=$ok
+    elif test "$with_jdk" != "no" ; then
+        AC_MSG_RESULT([Use JDK path specified ($with_jdk)])
+        ac_java_jvm_dir=$with_jdk
         ac_java_jvm_name=jdk
     fi
 ])

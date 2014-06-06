@@ -6,13 +6,14 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼出し手順</title>
-        <synopsis>s=getvariablesonstack()
+        <synopsis>
+            s=getvariablesonstack()
             s=getvariablesonstack('local')
             s=getvariablesonstack('global')
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>s</term>
@@ -25,10 +26,17 @@
     <refsection>
         <title>説明</title>
         <para>
+            <literal>s = getvariablesonstack()</literal>は,
             Scilabスタック上の変数名を<literal>s</literal>に返します.
         </para>
-        <para>getvariablesonstack('local') はScilabスタック上のローカル変数を返します.</para>
-        <para>getvariablesonstack('global') はScilabスタック上のグローバル変数を返します.</para>
+        <para>
+            <literal>getvariablesonstack('local')</literal>
+            は,Scilabスタック上のローカル変数を返します.
+        </para>
+        <para>
+            <literal>getvariablesonstack('global')</literal>
+            は,Scilabスタック上のグローバル変数を返します.
+        </para>
         <para>変数はアルファベット順にソートされます.</para>
     </refsection>
     <refsection>

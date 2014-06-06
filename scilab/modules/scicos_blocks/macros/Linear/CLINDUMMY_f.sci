@@ -29,7 +29,7 @@ function [x,y,typ]=CLINDUMMY_f(job,arg1,arg2)
     case "define" then
         x0=0;
         model=scicos_model()
-        model.sim="cdummy"
+        model.sim=list("cdummy",4)
         model.state=x0
         model.blocktype="c"
         model.firing=[]

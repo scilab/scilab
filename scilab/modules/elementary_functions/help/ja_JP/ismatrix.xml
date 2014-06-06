@@ -71,8 +71,11 @@
         <para>
             
             <literal>
+                
                 ismatrix(<varname>x</varname>)
+                
             </literal>
+            
             は,
             
             <varname>x</varname>が行列の場合にtrueを返します.

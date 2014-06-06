@@ -168,7 +168,6 @@
 [0,0,0,A44,*,*]  [0  B42]
 [0,0,0,0,A55,*]  [0   0 ]
 [0,0,0,0,0,A66]  [0   0 ]
-
 [0,0,0,*,*,*]    [0  D2]
  ]]></programlisting>
         <para>
@@ -228,23 +227,15 @@
         <programlisting role=""><![CDATA[ 
 DDPS:
    Find u=Fx+Rd=[F,R]*[x;d] which rejects Q*d and stabilizes the plant:
-
     xdot = Ax+Bu+Qd
        y = Cx+Du+Td
-
 Im(Q)がVg + Im(B)に含まれる場合,DDPS は解を有し,可安定性の仮定は満たされます.
-
-
-
 Let G=(X(:,dimVg+1:$))'= left annihilator of Vg i.e. G*Vg=0;
 B2=G*B; Q2=G*Q; DDPS solvable iff [B2;D]*R + [Q2;T] =0 has a solution.
-
 G=(X(:,dimVg+1:$))'= Vgの左零化イデアル, すなわち G*Vg=0 とおくと,
 B2=G*B; Q2=G*Q; DDPS が可解であることは,
 [B2;D]*R + [Q2;T] =0が解を有することと必要十分の関係にあります.
-
 対 F,R  (F=abinvの出力)は解です.
-
 Im(B2)の中にあるIm(Q2)は,B2の列圧縮=>Q2の列圧縮を意味します.
 これにより, C*[(sI-A-B*F)^(-1)+D]*(Q+B*R) =0   (<=>G*(Q+B*R)=0)
  ]]></programlisting>
@@ -266,7 +257,6 @@ trzeros(Sys)
 spec(A+B*F)   //nr=2 evals at -1 and noc-dimV=2 evals at -2.
 clean(ss2tf(Sys*Z))
  ]]></programlisting>
-        
         <programlisting role="example"><![CDATA[ 
 nx=6;ny=3;nu=2;
 A=diag(1:6);A(2,2)=-7;A(5,5)=-9;B=[1,2;0,3;0,4;0,5;0,0;0,0];

@@ -2,16 +2,24 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="then">
     <refnamediv>
         <refname>then</refname>
-        <refpurpose>if-then-elseのキーワード</refpurpose>
+        <refpurpose>'if'および'select'のキーワード</refpurpose>
     </refnamediv>
     <refsection>
         <title>説明</title>
         <para>
-            <literal>if</literal>と共に使用されます.
+          制御フロー<literal>if</literal>および<literal>select</literal>において
+	  使用されます.
+	  各<literal>then</literal>キーワードは,
+	  <literal>if</literal>, <literal>elseif</literal> または
+	  <literal>case</literal>キーワードと同じ行に置く必要があります.
+        </para>
+        <para>
+          キーワード<literal>then</literal> はキャレッジリターンまたはカンマで
+	  置換できます.
         </para>
     </refsection>
     <refsection>
-        <title>Examples</title>
+        <title>例</title>
         <programlisting role="example"><![CDATA[
 if 2*2 == 4 then
    disp("It works")
@@ -34,6 +42,15 @@ end
         <simplelist type="inline">
             <member>
                 <link linkend="if">if</link>
+            </member>
+            <member>
+                <link linkend="elseif">elseif</link>
+            </member>
+            <member>
+                <link linkend="select">select</link>
+            </member>
+            <member>
+                <link linkend="case">case</link>
             </member>
         </simplelist>
     </refsection>

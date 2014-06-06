@@ -144,7 +144,6 @@
     ax=gca();Leg=ax.children(1);
     Leg.legend_location="in_lower_right";
     nicholschart(colors=color('light gray')*[1 1])
-
     ]]></programlisting>
         <para>
             <scilab:image localized="true">

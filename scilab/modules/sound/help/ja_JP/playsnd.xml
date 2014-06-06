@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) ????-2006 - INRIA - Scilab
+    *
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at
+    * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+    *
+    -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="playsnd">
+    <refnamediv>
+        <refname>playsnd</refname>
+        <refpurpose>サウンドプレイヤー機能</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>[]=playsnd(y)
+            []=playsnd(y,rate,bits [,command])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>行列. 各行は1チャネルを記述</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fs</term>
+                <listitem>
+                    <para>実数, サンプリング周波数 (デフォルト値は22050).</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>bits</term>
+                <listitem>
+                    <para>実数, ビット長 (通常 8 または 16). 未使用.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>command</term>
+                <listitem>
+                    <para>
+                        Unixシステムのみで使用され,
+                        サウンド(wav)ファイルを演奏する際に使用されるコマンド名を指定します.
+                        デフォルト値は<literal>play</literal>です.
+                        <literal>/dev/audio</literal>が指定された場合,
+                        8ビットmu-law rawサウンドが生成され,
+                        <literal>/dev/audio</literal>に送信されます.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            Scilab行列で指定されたマルチチャネル信号を演奏します.
+            ただし, サウンドのサンプリングレートは<literal>rate</literal>です.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+// a two channel signal
+y=loadwave("SCI/modules/sound/demos/chimes.wav");
+playsnd(y)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="lin2mu">lin2mu</link>
+            </member>
+            <member>
+                <link linkend="wavread">wavread</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

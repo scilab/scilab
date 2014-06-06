@@ -267,16 +267,11 @@
         </para>
         <programlisting role=""><![CDATA[
 op(A)*X + X*op(B) = C,                           (1a)
-
 op(A)*X*op(B) + X = C,                           (1b)
-
 op(A)'*X + X*op(A) = C,                          (2a)
-
 op(A)'*X*op(A) - X = C,                          (2b)
-
 op(A)'*(op(X)'*op(X)) + (op(X)'*op(X))*op(A) =
                       -  op(C)'*op(C),           (3a)
-
 op(A)'*(op(X)'*op(X))*op(A) - op(X)'*op(X) =
                             - op(C)'*op(C),      (3b)
  ]]></programlisting>
@@ -366,7 +361,6 @@ A = [-0.02, 0.02,-0.10, 0.02,-0.03, 0.12;
       0.02,-0.10, 0.03,-0.06, 0.08, 0.11;      
      -0.03,-0.02,-0.04, 0.08, 0.14,-0.07;   
       0.12,-0.14,-0.04, 0.11,-0.07, 0.04]    
-
 C=rand(A);
 X=linmeq(3,A,C,[1 0]);
 norm(A'*X'*X*A - X'*X +C'*C,1)

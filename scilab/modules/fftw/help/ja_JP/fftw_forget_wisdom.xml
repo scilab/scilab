@@ -26,22 +26,29 @@
         </para>
     </refsection>
     <refsection>
+        <title>注意</title>
+        <para> 
+	  この関数は, 
+	  MKL intelライブラリを使用する
+	  Scilabバージョンではなにもしません
+	  (特にWindows用のScilab公式版).
+        </para>
+    </refsection>
+
+    <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[ 
-//return fftw wisdom
+//fftw wisdomを返す
 txt=get_fftw_wisdom();
-//set fftw wisdom
+//fftw wisdomを設定
 set_fftw_wisdom(txt);
-//reset fftw wisdom
+//fftw wisdomをリセット
 fftw_forget_wisdom();
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">
-            <member>
-                <link linkend="fftw">fftw</link>
-            </member>
             <member>
                 <link linkend="get_fftw_wisdom">get_fftw_wisdom</link>
             </member>

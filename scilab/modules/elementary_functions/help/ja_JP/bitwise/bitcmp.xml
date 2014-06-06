@@ -19,7 +19,8 @@
     <refsynopsisdiv>
         <title>呼び出し手順</title>
         <synopsis>
-            y = bitcmp(x,n)
+            y = bitcmp(x)
+            y = bitcmp(x, bitnum)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -29,9 +30,14 @@
                 <term>x :</term>
                 <listitem>
                     <para>
-                        m行n列の行列(double)またはm1 x m2 x ... x mm ハイパー行列(double)
-                        または符合なし整数(uint8, uint16 または uint32)の
-                        m行n列行列.値は正の整数値である必要があります.
+                        <literal>m</literal>行<literal>n</literal>列の行列(double)または
+                        <literal>m1</literal> x <literal>m2</literal> 
+                        x ... x <literal>mm</literal> ハイパー行列(double)
+                        または符合なし整数(
+                        <literal>uint8</literal>, <literal>uint16</literal> または
+                        <literal>uint32</literal>)の
+                        <literal>m</literal>行<literal>n</literal>列行列.
+                        値は正の整数値である必要があります.
                     </para>
                 </listitem>
             </varlistentry>
@@ -39,13 +45,20 @@
                 <term>n :</term>
                 <listitem>
                     <para>
-                        m行n列の行列(double)またはm1 x m2 x ... x mm ハイパー行列(double)
-                        または符合なし整数(uint8, uint16 または uint32)の
-                        m行n列行列.
-                        入力<literal>n</literal>は 1,2,...,bitmax の範囲であることが
-                        必要です.
-                        ただし,bitmax は x の最大ビット数です.
-                        値は正の整数値である必要があります.
+                        <literal>m</literal>行<literal>n</literal>列の行列(double)または
+                        <literal>m1</literal> x <literal>m2</literal> 
+                        x ... x <literal>mm</literal> ハイパー行列(double)
+                        または符合なし整数(
+                        <literal>uint8</literal>, <literal>uint16</literal> または
+                        <literal>uint32</literal>)の
+                        <literal>m</literal>行<literal>n</literal>列行列.
+                        入力<literal>n</literal>は 1,2,...,<literal>bitmax</literal>
+                        の範囲であることが必要です.
+                        ただし,<literal>bitmax</literal> は <varname>x</varname>
+                        の最大ビット数です.
+                        <varname>bitnum</varname>は,正の整数値である必要があります.
+                        <varname>bitnum</varname>のデフォルト値は
+                        <literal>bitmax</literal>です.
                     </para>
                 </listitem>
             </varlistentry>
@@ -53,8 +66,11 @@
                 <term>y :</term>
                 <listitem>
                     <para>
-                        m行n列の行列(double)またはm1 x m2 x ... x mm ハイパー行列(double)
-                        または符合なし整数のm行n列行列.
+                        <literal>m</literal>行<literal>n</literal>列の行列(double)または
+                        <literal>m1</literal> x <literal>m2</literal> 
+                        x ... x <literal>mm</literal> ハイパー行列(double)
+                        または符合なし整数の
+                        <literal>m</literal>行<literal>n</literal>列行列.
                     </para>
                 </listitem>
             </varlistentry>
@@ -65,15 +81,21 @@
         <para>
             符合なし整数<literal>x</literal>を指定すると, この関数は
             <literal>x</literal>の2進数形式の補数を値とする
-            符合なし整数を返します.
+            符合なし整数<varname>y</varname>を返します.
         </para>
         <para>
-            整数 <literal>n</literal> は最大ビット数を指定します.
+            整数 <varname>bitnum</varname> は最大ビット数を指定します.
         </para>
         <para>
-            <literal>x</literal>の2進数表現のビット数が bitmax の値 (8, 16 または 32)
-            よりも小さい場合, bitmax ビット (8, 16 または 32)の補数とするために
+            <literal>x</literal>の2進数表現のビット数が<literal>bitmax</literal>
+            の値 (8, 16 または 32)
+            よりも小さい場合, <literal>bitmax</literal>ビット
+            (8, 16 または 32)の補数とするために
             ビット '1' がこの補数に付加されます.
+        </para>
+        <para>
+            入力引数が1つのみの場合,
+            <varname>x</varname> は符号無し整数の行列とする必要があります.
         </para>
     </refsection>
     <refsection>
@@ -86,7 +108,6 @@
 // which is 242
 bitcmp(13,8)
 expected = 242
-
 // The input argument can be an unsigned int
 bitcmp(uint8(99),8)
 expected = 156

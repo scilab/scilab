@@ -16,9 +16,9 @@
         <refpurpose>誤差関数を計算する.</refpurpose>
     </refnamediv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
-            <varlistentry>
+            <varlistentry>                
                 <term>x</term>
                 <listitem>
                     <para>実数ベクトルまたは行列</para>
@@ -46,7 +46,7 @@
         </para>
         <para>
             <literal>calerf(x,1)</literal> は相補誤差関数
-            f<literal>erfc(x)</literal>を計算します
+            <literal>erfc(x)</literal>を計算します
         </para>
         <para>
             <literal>calerf(x,2)</literal> はスケーリング付き相補誤差関数
@@ -62,7 +62,14 @@ calerf(1,0)
  ]]></programlisting>
     </refsection>
     <refsection>
-        <title>S参照</title>
+        <title>アルゴリズム</title>
+        <para>
+            この関数は<ulink url="http://ab-initio.mit.edu/Faddeeva">Faddeevaパッケージ</ulink>ライブラリ
+            に基づきます.
+        </para>
+    </refsection>
+    <refsection>
+        <title>参照</title>
         <simplelist type="inline">
             <member>
                 <link linkend="erf">erf</link>
@@ -74,5 +81,14 @@ calerf(1,0)
                 <link linkend="erfcx">erfcx</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>calerf関数はfadddeevaパッケージを使用しています</revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

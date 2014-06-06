@@ -97,7 +97,6 @@ write(%io(2),A,'('' | '',3(f10.3,'' | ''))')
 write(%io(2),string(1:10))
 write(%io(2),strcat(string(1:10),','))
 write(%io(2),1:10,'(10(i2,3x))')
-
 if getos() == 'Windows' then unix('del foo');
 else unix('rm -f foo'); end
 write('foo',A)

@@ -35,9 +35,12 @@ function [x,y,typ]=CONST(job,arg1,arg2)
             if ~ok then
                 break,
             end
+            sz=size(C);
             nout=size(C,"*")
             if nout==0 then
                 message("C must have at least one element")
+            elseif and(sz > 1) then
+                message("C matrix is not supported, use CONST_m instead")
             else
                 model.rpar=C(:);model.out=nout
                 graphics.exprs=exprs;

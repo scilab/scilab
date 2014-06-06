@@ -148,9 +148,6 @@ x = 2;
 // 標準偏差 = - 1.5606083
 Std = cdfnor("Std",p,q,x,Mean)
    ]]></programlisting>
-        
-        
-        
         <programlisting role="example"><![CDATA[
 // 関数をプロット
 h = scf();
@@ -190,7 +187,6 @@ legend(lgd);
             end
             legend(lgd);
         </scilab:image>
-        
         <programlisting role="example"><![CDATA[
 // 逆累積標準関数をプロット
 Mean = 0;
@@ -201,8 +197,6 @@ x = cdfnor("X",Mean*ones(p),Std*ones(p),p,q);
 plot(p,x)
 xtitle("Inverse Cumulated Distribution Normal Standard Function","p","x");
    ]]></programlisting>
-        
-        
         <scilab:image localized="true">
             Mean = 0;
             Std = 1;
@@ -212,7 +206,6 @@ xtitle("Inverse Cumulated Distribution Normal Standard Function","p","x");
             plot(p,x)
             xtitle("Inverse Cumulated Distribution Normal Standard Function","p","x");
         </scilab:image>
-        
         <programlisting role="example"><![CDATA[
 // pが0.5に近い時,逆正規CDFは悪条件となります.
 // これは,p=0.5では,関数値が0にも関わらず1階微分がゼロでなくなるためです.

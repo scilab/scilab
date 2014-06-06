@@ -68,7 +68,6 @@ libscicompletion_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/external_objects/includes \
     $(JAVA_JNI_INCLUDE) \
     $(XML_FLAGS) \
-    $(COMPLETION_FLAGS) \
     $(AM_CPPFLAGS)
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding

@@ -68,66 +68,52 @@
         <title>例</title>
         <programlisting role="example"><![CDATA[
     doc = xmlRead("http://www.w3.org/TR/2009/REC-xml-names-20091208/xml-names-10-3e.xml");
-
     // "note"に名前が等しいノードを取得
     xp = xmlXPath(doc, "//note");
     s = size(xp);
     for i=1:s(2)
         xmlDump(xp(i))
     end
-
     // 名前が"note"に等しいノードの数を数える
     xp = xmlXPath(doc, "count(//note)")
-
     // id="Philosophy"のノードを取得
     xp = xmlXPath(doc, "//*[@id=""Philosophy""]");
     s = size(xp);
     if (s(2) <> 0) then
         xmlDump(xp(1))
     end
-
     // 属性番号が5に等しいノードを取得
     xp = xmlXPath(doc, "//*[number(@num)=5]");
     s = size(xp);
     if (s(2) <> 0) then
         xmlDump(xp(1))
     end
-
     // 'emph'という名前のノードの全ての属性の名前と内容を取得
     xp = xmlXPath(doc, "//emph/@*");
     xp.name
     xp.content
-
     xmlDelete(doc);
-
     // 名前空間を検索
     t = "<root xmlns:scilab=""http://www.scilab.org"">"+..
         "<scilab:a att=""foo"" rib=""bar""><b>Hello</b></scilab:a></root>"
     doc = xmlReadStr(t);
-
     // aという名前の要素を探します
     xmlXPath(doc, "//a") // => nothing
     xmlXPath(doc, "//scilab:a", ["scilab" "http://www.scilab.org"]) // => OK
-
     // このコードは失敗します:
     // xmlXPath(doc, "//scilab:a") // => エラー
-
     xmlDelete(doc);
-
     // 要素で始まるクエリ
     t = "<root att=""attribute""><a a1=""A1"" a2=""A2"" a3=""A3"">"+..
         "<b>Hello</b><c>Scilab</c><b>World</b></a><b>Nothing</b></root>"
     doc = xmlReadStr(t);
     e = doc.root.children(1);
-
     // eの属性を取得
     xp = xmlXPath(e, "@*");
     xmlAsText(xp)
-
     // eから'b'を取得
     xp = xmlXPath(e, "b");
     xmlAsText(xp)
-
     xmlDelete(doc);
     ]]></programlisting>
     </refsection>

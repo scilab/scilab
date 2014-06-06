@@ -7,10 +7,20 @@
     <refsection>
         <title>説明</title>
         <para>
-            <literal>abort</literal> は現在の評価を中断し,
-            プロンプトを表示します.<literal>pause</literal> 中の場合,
-            <literal>abort</literal>はレベル0プロンプトに戻します.
+	  <code>abort</code> は現在の評価を中断し,
+          プロンプトを表示します.
+	  <code>pause</code>レベルの中の場合,
+          <code>abort</code>はレベル0プロンプトに戻します.
         </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+a=2
+b=3
+abort // 実行はここで停止します.
+c=4   // c は定義されません
+ ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>参照</title>
@@ -23,6 +33,9 @@
             </member>
             <member>
                 <link linkend="break">break</link>
+            </member>
+            <member>
+                <link linkend="resume">resume</link>
             </member>
         </simplelist>
     </refsection>

@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="dseupd" xml:lang="ja">
+    <refnamediv>
+        <refname>dseupd</refname>
+        <refpurpose>
+            暗黙のうちに再開されるArnoldi反復へのインターフェイスで,
+            A * z = lambda * B * z の固有値を収束的近似により計算します.
+            <emphasis role="bold">
+                この関数は廃止されました. <link linkend="eigs">eigs</link>を使用してください
+            </emphasis>
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            [D, Z, RESID, V, IPARAM, IPNTR, WORKD, WORKL, INFO] = dseupd(RVEC, HOWMANY, SELECT, D, Z, SIGMA, BMAT, N, WHICH,
+            NEV, TOL, RESID, NCV, V, IPARAM, IPNTR, WORKD, WORKL, INFO)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>RVEC</term>
+                <listitem>
+                    <para>Integer. (INPUT) </para>
+                    <para>
+                        Specifies whether Ritz vectors corresponding to the Ritz value
+                        approximations to the eigenproblem A * z = lambda * B * z are
+                        computed.
+                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>RVEC = 0 Compute Ritz values only.</para>
+                        </listitem>
+                        <listitem>
+                            <para>RVEC = 1 Compute Ritz vectors.</para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>HOWMNY</term>
+                <listitem>
+                    <para>Character*1. (INPUT) </para>
+                    <para>
+                        Specifies how many Ritz vectors are wanted and the form of Z
+                        the matrix of Ritz vectors. See remark 1 below.
+                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>'A': compute NEV Ritz vectors;</para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                'S': compute some of the Ritz vectors, specified by the
+                                integer array SELECT.
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>SELECT</term>
+                <listitem>
+                    <para>Integer array of dimension NCV. (INPUT/WORKSPACE) </para>
+                    <para>
+                        If HOWMANY = 'S', SELECT specifies the Ritz vectors to be
+                        computed. To select the Ritz vector corresponding to a Ritz value
+                        D(j), SELECT(j) must be set to 1.
+                    </para>
+                    <para>
+                        If HOWMANY = 'A' , SELECT is used as a workspace for
+                        reordering the Ritz values.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>D</term>
+                <listitem>
+                    <para>Double precision array of dimension NEV. (OUTPUT) </para>
+                    <para>
+                        On exit, D contains the Ritz value approximations to the
+                        eigenvalues of A * z = lambda * B * z. The values are returned in
+                        ascending order.
+                    </para>
+                    <para>
+                        If IPARAM(7) = 3, 4, 5 then D represents the Ritz values of OP
+                        computed by dsaupd transformed to those of the original eigensystem
+                        A * z = lambda * B * z.
+                    </para>
+                    <para>
+                        If IPARAM(7) = 1, 2 then the Ritz values of OP are the same as
+                        the those of A * z = lambda * B * z.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Z</term>
+                <listitem>
+                    <para>Double precision N by NEV array.</para>
+                    <para>
+                        If HOWMNY = 'A'. (OUTPUT) On exit, Z contains the
+                        B-orthonormal Ritz vectors of the eigensystemA * z = lambda * B * z
+                        corresponding to the Ritz value approximations.
+                    </para>
+                    <para>If RVEC = 0 then Z is not referenced. </para>
+                    <para>
+                        NOTE: The array Z may be set equal to first NEV columns of the
+                        Arnoldi/Lanczos basis array V computed by DSAUPD .
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>SIGMA</term>
+                <listitem>
+                    <para>Double precision (INPUT) </para>
+                    <para>
+                        If IPARAM(7) = 3, 4, 5 represents the shift. Not referenced if
+                        IPARAM(7) = 1 or 2.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+        <para>
+            NOTE: The remaining arguments BMAT, N, WHICH, NEV, TOL, RESID, NCV,
+            V, IPARAM, IPNTR, WORKD, WORKL, LWORKL, INFO must be passed directly to
+            DSEUPD following the last call to DSAUPD .
+        </para>
+        <para>
+            These arguments MUST NOT BE MODIFIED between the last call to
+            DSAUPD and the call to DSEUPD.
+        </para>
+        <para>
+            Two of these parameters (WORKL, INFO) are also output
+            parameters.
+        </para>
+        <variablelist>
+            <varlistentry>
+                <term>WORKL</term>
+                <listitem>
+                    <para>
+                        Double precision work array of length LWORKL.
+                        (OUTPUT/WORKSPACE)
+                    </para>
+                    <para>
+                        WORKL(1:4*ncv) contains information obtained in dsaupd. They
+                        are not changed by dseupd.
+                    </para>
+                    <para>
+                        WORKL(4*ncv+1:ncv*ncv+8*ncv) holds the untransformed Ritz
+                        values, the computed error estimates, and the associated eigenvector
+                        matrix of H.
+                    </para>
+                    <para>
+                        Note: IPNTR(8:10) contains the pointer into WORKL for
+                        addresses of the above information computed by dseupd .
+                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                IPNTR(8): pointer to the NCV RITZ values of the original
+                                system.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                IPNTR(9): pointer to the NCV corresponding error bounds.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                IPNTR(10): pointer to the NCV by NCV matrix of
+                                eigenvectors of the tridiagonal matrix T. Only referenced by
+                                dseupd if RVEC = 1 See Remarks.
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>INFO</term>
+                <listitem>
+                    <para>Integer. (OUTPUT) </para>
+                    <para>Error flag on output.</para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>0: Normal exit.</para>
+                        </listitem>
+                        <listitem>
+                            <para>-1: N must be positive.</para>
+                        </listitem>
+                        <listitem>
+                            <para>-2: NEV must be positive.</para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                -3: NCV must be greater than NEV and less than or equal to
+                                N.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                -5: WHICH must be one of 'LM', 'SM', 'LA', 'SA' or
+                                'BE'.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>-6: BMAT must be one of 'I' or 'G'.</para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                -7: Length of private work WORKL array is not
+                                sufficient.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                -8: Error return from trid. eigenvalue calculation;
+                                Information error from LAPACK routine dsteqr.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>-9: Starting vector is zero.</para>
+                        </listitem>
+                        <listitem>
+                            <para>-10: IPARAM(7) must be 1, 2, 3, 4, 5.</para>
+                        </listitem>
+                        <listitem>
+                            <para>-11: IPARAM(7) = 1 and BMAT = 'G' are incompatible.</para>
+                        </listitem>
+                        <listitem>
+                            <para>-12: NEV and WHICH = 'BE' are incompatible.</para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                -14: DSAUPD did not find any eigenvalues to sufficient
+                                accuracy.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>-15: HOWMNY must be one of 'A' or 'S' if RVEC = 1.</para>
+                        </listitem>
+                        <listitem>
+                            <para>-16: HOWMNY = 'S' not yet implemented.</para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                -17: DSEUPD got a different count of the number of
+                                converged Ritz values than DSAUPD got. This indicates the user
+                                probably made an error in passing data from DSAUPD to DSEUPD or
+                                that the data was modified before entering DSEUPD.
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            This subroutine returns the converged approximations to eigenvalues
+            of A * z = lambda * B * z and (optionally):
+        </para>
+        <orderedlist>
+            <listitem>
+                <para>the corresponding approximate eigenvectors,</para>
+            </listitem>
+            <listitem>
+                <para>
+                    an orthonormal (Lanczos) basis for the associated approximate
+                    invariant subspace,
+                </para>
+            </listitem>
+            <listitem>
+                <para>Both. </para>
+            </listitem>
+        </orderedlist>
+        <para>
+            There is negligible additional cost to obtain eigenvectors. An
+            orthonormal (Lanczos) basis is always computed. There is an additional
+            storage cost of n*nev if both are requested (in this case a separate array
+            Z must be supplied).
+        </para>
+        <para>
+            These quantities are obtained from the Lanczos factorization
+            computed by DSAUPD for the linear operator OP prescribed by the MODE
+            selection (see IPARAM(7) in DSAUPD documentation.) DSAUPD must be called
+            before this routine is called.
+        </para>
+        <para>
+            These approximate eigenvalues and vectors are commonly called Ritz
+            values and Ritz vectors respectively. They are referred to as such in the
+            comments that follow.
+        </para>
+        <para>
+            The computed orthonormal basis for the invariant subspace
+            corresponding to these Ritz values is referred to as a Lanczos basis.
+        </para>
+        <para>
+            See documentation in the header of the subroutine DSAUPD for a
+            definition of OP as well as other terms and the relation of computed Ritz
+            values and vectors of OP with respect to the given problem A * z = lambda * B * z.
+        </para>
+        <para>
+            The approximate eigenvalues of the original problem are returned in
+            ascending algebraic order.
+        </para>
+        <para>
+            The user may elect to call this routine once for each desired Ritz
+            vector and store it peripherally if desired. There is also the option of
+            computing a selected set of these vectors with a single call.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Remarks</title>
+        <para>
+            1. The converged Ritz values are always returned in increasing
+            (algebraic) order. c 2. Currently only HOWMNY = 'A' is implemented. It is
+            included at this stage for the user who wants to incorporate it.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Example</title>
+        <programlisting role="example">
+            <![CDATA[ 
+// The following sets dimensions for this problem.
+nx    = 10;
+nev   = 3;
+ncv   = 6;
+bmat  = 'I';
+which = 'LM';
+// Local Arrays
+iparam  = zeros(11, 1);
+ipntr   = zeros(14, 1);
+_select = zeros(ncv, 1);
+d       = zeros(nev, 1);
+z       = zeros(nx, nev);
+resid   = zeros(nx, 1); 
+v       = zeros(nx, ncv);
+workd   = zeros(3 * nx, 1); 
+workl   = zeros(ncv * ncv + 8 * ncv, 1);
+// Build the symmetric test matrix
+A            = diag(10 * ones(nx,1));
+A(1:$-1,2:$) = A(1:$-1,2:$) + diag(6 * ones(nx-1,1));
+A(2:$,1:$-1) = A(2:$,1:$-1) + diag(6 * ones(nx-1,1));
+tol    = 0;
+ido    = 0;
+ishfts = 1;
+maxitr = 300;
+mode1  = 1;
+iparam(1) = ishfts;
+iparam(3) = maxitr;
+iparam(7) = mode1;
+sigma = 0; // the real part of the shift
+info_dsaupd = 0;
+// M A I N   L O O P (Reverse communication)
+while(ido <> 99)
+  // Repeatedly call the routine DSAUPD and take actions indicated by parameter IDO until
+  // either convergence is indicated or maxitr has been exceeded.
+  [ido, resid, v, iparam, ipntr, workd, workl, info_dsaupd] = dsaupd(ido, bmat, nx, which, nev, tol, resid, ncv, v, iparam, ipntr, workd, workl, info_dsaupd);
+  if(info_dsaupd < 0)
+    printf('\nError with dsaupd, info = %d\n',info_dsaupd);
+    printf('Check the documentation of dsaupd\n\n');
+  end
+  if(ido == -1 | ido == 1)
+    // Perform matrix vector multiplication 
+    workd(ipntr(2):ipntr(2) + nx - 1) = A * workd(ipntr(1):ipntr(1) + nx - 1);
+  end
+end
+// Post-Process using DSEUPD.
+rvec    = 1;
+howmany = 'A';
+info_dseupd = 0;
+[d, z, resid, v, iparam, ipntr, workd, workl, info_dseupd] = dseupd(rvec, howmany, _select, d, z, sigma, bmat, nx, which, nev, tol, resid, ncv, v, ...
+                                                                    iparam, ipntr, workd, workl, info_dseupd);
+if(info_dseupd < 0)
+  printf('\nError with dseupd, info = %d\n', info_dseupd);
+  printf('Check the documentation of dseupd.\n\n');
+end
+// Done with program dssimp.
+printf('\nDSSIMP\n');
+printf('======\n');
+printf('\n');
+printf('Size of the matrix is %d\n', nx);
+printf('The number of Ritz values requested is %d\n', nev);
+printf('The number of Arnoldi vectors generated (NCV) is %d\n', ncv);
+printf('What portion of the spectrum: %s\n', which);
+printf('The number of Implicit Arnoldi update iterations taken is %d\n', iparam(3));
+printf('The number of OP*x is %d\n', iparam(9));
+printf('The convergence criterion is %d\n', tol);
+]]>
+        </programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="dsaupd">dsaupd</link>
+            </member>
+            <member>
+                <link linkend="dneupd">dneupd</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>Bibliography</title>
+        <para>
+            1. D.C. Sorensen, "Implicit Application of Polynomial Filters in
+            k-Step Arnoldi Method", SIAM J. Matr. Anal. Apps., 13 (1992), pp
+            357-385.
+        </para>
+        <para>
+            2. R.B. Lehoucq, "Analysis and Implementation of an Implicitly
+            Restarted Arnoldi Iteration", Rice University Technical Report TR95-13,
+            Department of Computational and Applied Mathematics.
+        </para>
+        <para>
+            3. B.N. Parlett and Y. Saad, "Complex Shift and Invert Strategies
+            for Real Matrices", Linear Algebra and its Applications, vol 88/89, pp
+            575-595, (1987).
+        </para>
+    </refsection>
+    <refsection>
+        <title>Used Functions</title>
+        <para>Based on ARPACK routine dseupd</para>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>
+                    関数は廃止され,<link linkend="eigs">eigs</link>に代替されました.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

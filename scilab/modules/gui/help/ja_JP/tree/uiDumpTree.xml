@@ -42,11 +42,9 @@ node1 = uiCreateNode('Node 1', 'iconNode1', 'callbackNode1')
 node2 = uiCreateNode('Node 2', 'iconNode2', 'callbackNode2')
 node3 = uiCreateNode('Node 3', 'iconNode3', 'callbackNode3')
 root = uiCreateNode('Root', 'iconRoot', 'callbackRoot')
-
 treeNode1 = uiCreateTree(node1, leaf11,leaf12)
 treeNode3 = uiCreateTree(node3, leaf31,leaf32)
 treeRoot = uiCreateTree(root, node1,node2,node3)
-
 uiDumpTree(treeRoot)
  ]]></programlisting>
     </refsection>

@@ -67,11 +67,8 @@ endfunction
         ]]></programlisting>
         <screen>
             -->foo(a=1,b=2)
-            
             1.    2.
-            
             -->foo(b=1,a=2)
-            
             1.    2.
         </screen>
         <para>結果は同じですが, 引数は逆になります.</para>
@@ -85,7 +82,6 @@ function exampl(a,varargin)
         disp(varargin)
     end
 endfunction
-
 exampl(1)
 exampl()
 exampl(1,2,3)

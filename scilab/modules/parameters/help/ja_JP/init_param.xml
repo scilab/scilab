@@ -45,7 +45,6 @@
 // 空の plistを作成
 mylist = init_param();
 mylist = add_param(mylist,'minbound',[0 0 0]);
-
 // 代入済みのplistを作成
 mylist_2 = init_param('minbound', [0 0 0], 'maxbound', [1 1 1]);
  ]]></programlisting>

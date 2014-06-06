@@ -6,16 +6,16 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼出し手順</title>
-        <synopsis>version=getversion()
-            [version,opts]=getversion()
-            ver=getversion('scilab')
-            versioninfo=getversion('scilab','string_info')
-            ver=getversion('&lt;module&gt;')
-            versioninfo=getversion('&lt;module&gt;','string_info')
+        <synopsis>version = getversion()
+            [version, opts] = getversion()
+            version_numbers = getversion('scilab')
+            versioninfo = getversion('scilab', 'string_info')
+            version_numbers = getversion('&lt;module&gt;')
+            versioninfo = getversion('&lt;module&gt;','string_info')
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>version</term>
@@ -42,8 +42,9 @@
             <varlistentry>
                 <term>opts</term>
                 <listitem>
-                    <para>7個のエントリを有するベクトル
-                        :<literal>[compiler, tk, modelicac, release_mode, release_date, release_time]</literal>
+                    <para>
+		      文字列のベクトル:
+		      <literal>[compiler, architecture,[tk, modelicac, ] release_mode, release_date, release_time]</literal>
                     </para>
                 </listitem>
             </varlistentry>
@@ -52,22 +53,43 @@
     <refsection>
         <title>説明</title>
         <para>
-            Scilab バージョン名を<literal>version</literal>,
-            構築オプションを <literal>opts</literal>に返します.
-            この構築オプションは,
-            Scilabが tk または modelica を組み込んで構築されたかどうかを
-            定義するために使用され, リリース日や時間も含まれます.
+	  <literal>[version, opts] = getversion()</literal>は
+          Scilab バージョン名を<literal>version</literal>,
+          構築オプションを <literal>opts</literal>に返します.
+          この構築オプションは,
+          Scilabが tk または modelica を組み込んで構築されたかどうかを
+          定義するために使用され, リリース日や時間も含まれます.
         </para>
+        <para> [tk, modelicac, atlas,] はオプションです. </para>
+        <para> compiler: 
+	  はscilab構築に使用されたコンパイラ ('GCC', 'VC++', 'PGI', 'ICC', 'SUN', 'UKN' unknown)
+	  を返します
+	</para>
+        <para> architecture: 'x86' または 'x64'.</para>
+        <para> tk: tcl/tk が有効な場合は 'tk'.</para>
+        <para> modelicac: 
+	  modelica コンパイラが scilab/xcosに同梱されている場合は 'modelicac'.
+	</para>
     </refsection>
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[ 
 getversion()
-[version,opts]=getversion()
-ver=getversion('scilab')
-verstr=getversion('scilab','string_info')
-ver=getversion('overloading')
-verstr=getversion('overloading','string_info')
+
+[version, opts] = getversion()
+COMPILER = opts(1)
+ARCH = opts(2)
+or(opts == 'modelicac')
+or(opts == 'tk')
+RELEASE_MODE = opts($-2)
+RELEASE_DATE = opts($-1)
+RELEASE_TIME = opts($)
+
+version = getversion('scilab')
+versionstr = getversion('scilab','string_info')
+version = getversion('overloading')
+versionstr = getversion('overloading','string_info')
+
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

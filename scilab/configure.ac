@@ -3,6 +3,7 @@
 # Copyright (C) INRIA - 2006-2008 - Sylvestre Ledru
 # Copyright (C) DIGITEO - 2009-2011 - Sylvestre Ledru
 # Copyright (C) DIGITEO - 2009 - Pierre MARECHAL <pierre.marechal@scilab.org>
+# Copyright (C) Scilab Enterprises - 2014 - Clement DAVID <clement.david@scilab-enterprises.com>
 #
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
@@ -827,16 +828,17 @@ AM_CONDITIONAL(XCOS, test "$XCOS_ENABLE" != no)
 ###########################
 ## test for JAVA compiler
 ###########################
-
 if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no; then
 
-   # See if --with-jdk command line argument is given
+     # See if --with-jdk command line argument is given
      # Try to detect the installed JVM, this could be controlled
      # by the above --with options
      AC_JAVA_WITH_JDK
+     if test "$with_jdk" != no; then
+     
      AC_JAVA_DETECT_JVM
      case "$ac_java_jvm_version" in
-        1.6 | 1.7)
+        1.6 | 1.7 | 1.8)
         ;;
         *)
             AC_MSG_ERROR([Wrong version of Java. Expected at least 1.6. Found $ac_java_jvm_version])
@@ -978,22 +980,19 @@ interface for JOGL2 - or libGL (OpenGL library) are installed and if the version
 
                 # Jhall
                 AC_JAVA_CHECK_PACKAGE([jhall],[javax.help.JHelp],[Scilab Help Browser],"yes")
-                JHALL=$PACKAGE_JAR_FILE
-
                 # Named differently under Mandriva or Fedora
-                if test -z "$JHALL"; then
+                if test -z "$PACKAGE_JAR_FILE"; then
                     AC_JAVA_CHECK_PACKAGE([javahelp2],[javax.help.JHelp],[Scilab Help Browser])
-                    JHALL=$PACKAGE_JAR_FILE
                 fi
+                JHALL=$PACKAGE_JAR_FILE
                 AC_SUBST(JHALL)
 
                 # Console API
                 AC_JAVA_CHECK_PACKAGE([jrosetta-API],[com.artenum.rosetta.interfaces.core.ConsoleConfiguration],[JRosetta : Console API Artenum / Scilab],"yes")
-                JROSETTA_API=$PACKAGE_JAR_FILE
-        if test -z "$JROSETTA_API"; then
+                if test -z "$PACKAGE_JAR_FILE"; then
                     AC_JAVA_CHECK_PACKAGE([jrosetta-api],[com.artenum.rosetta.interfaces.core.ConsoleConfiguration],[JRosetta : Console API Artenum / Scilab])
-                    JROSETTA_API=$PACKAGE_JAR_FILE
-        fi
+                fi
+                JROSETTA_API=$PACKAGE_JAR_FILE
                 AC_SUBST(JROSETTA_API)
 
                 # Console Core
@@ -1016,7 +1015,7 @@ interface for JOGL2 - or libGL (OpenGL library) are installed and if the version
                 FOP=$PACKAGE_JAR_FILE
                 AC_SUBST(FOP)
 
-                AC_ARG_WITH(emf, [AS_HELP_STRING([--without-emf-export],
+                AC_ARG_WITH(emf, [AS_HELP_STRING([--without-emf],
                     [disable support for EMF (Windows Metafile) export])])
                 if test "x$with_emf" != xno; then
                     # Freehep Graphics2D
@@ -1124,6 +1123,10 @@ interface for JOGL2 - or libGL (OpenGL library) are installed and if the version
 
         # Junit 4 (java unitary test)
         AC_JAVA_CHECK_PACKAGE([junit4],[org.junit.Assert],[Junit4 - Unit tests],"yes")
+        if test -z "$PACKAGE_JAR_FILE"; then
+                AC_JAVA_CHECK_PACKAGE([junit],[org.junit.Assert],[Junit4 -
+Unit tests],"yes")
+        fi
         JUNIT4=$PACKAGE_JAR_FILE
         AC_SUBST(JUNIT4)
 
@@ -1134,12 +1137,11 @@ interface for JOGL2 - or libGL (OpenGL library) are installed and if the version
 
         # ASM (a dependency of Cobertura)
         AC_JAVA_CHECK_PACKAGE([asm3],[org.objectweb.asm.Type],[Java bytecode manipulation (dep of cobertura)],"yes")
-        ASM3=$PACKAGE_JAR_FILE
-        AC_SUBST(ASM3)
         if test -z "$ASM3"; then
                 AC_JAVA_CHECK_PACKAGE([asm],[org.objectweb.asm.Type],[Java bytecode manipulation (dep of cobertura)],"yes")
-                ASM3=$PACKAGE_JAR_FILE
         fi
+        ASM3=$PACKAGE_JAR_FILE
+        AC_SUBST(ASM3)
 
         AC_JAVA_CHECK_PACKAGE([ecj],[org.eclipse.jdt.core.compiler.batch.BatchCompiler],[Eclipse Java compiler],"yes")
         ECJ=$PACKAGE_JAR_FILE
@@ -1181,22 +1183,23 @@ interface for JOGL2 - or libGL (OpenGL library) are installed and if the version
     if test "$enable_build_giws" != no -a "$enable_build_giws" != ""; then
         AC_GIWS([1.3.0])
     fi
+
+    fi # "$with_jdk" != no;
 fi
 
 JAVA_ENABLE=yes
-
 if test -z "$JAVAC"; then
-   JAVA_ENABLE=no
+    JAVA_ENABLE=no
 fi
 
 AC_SUBST(JAVA_ENABLE)
 
 # Xcos is not checked here because gui=no disables it
-AM_CONDITIONAL(NEED_JAVA, test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no)
-AM_CONDITIONAL(GUI, test "$with_gui" != no)
-AM_CONDITIONAL(JAVASCI, test "$with_javasci" != no)
-AM_CONDITIONAL(SWIG, test "$with_build_swig" != no -a "$with_build_swig" != "")
-AM_CONDITIONAL(GIWS, test "$enable_build_giws" != no  -a "$enable_build_giws" != "")
+AM_CONDITIONAL(NEED_JAVA, [test "$with_jdk" != no -a \( "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no \)])
+AM_CONDITIONAL(GUI, [test "$with_jdk" != no -a "$with_gui" != no])
+AM_CONDITIONAL(JAVASCI, [test "$with_jdk" != no -a "$with_javasci" != no])
+AM_CONDITIONAL(SWIG, [test "$with_jdk" != no -a "$with_build_swig" != no -a "$with_build_swig" != ""])
+AM_CONDITIONAL(GIWS, [test "$with_jdk" != no -a "$enable_build_giws" != no -a "$enable_build_giws" != ""])
 
 ##############################################################
 ## GUI module

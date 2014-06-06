@@ -20,18 +20,18 @@
         <synopsis>y = erfcx(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>実数ベクトルまたは行列</para>
+                    <para>ベクトルまたは行列</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>y</term>
                 <listitem>
-                    <para>(xと同じ大きさの)実数ベクトルまたは行列</para>
+                    <para>(xと同じ大きさの)ベクトルまたは行列</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -42,17 +42,22 @@
             <literal>erfcx</literal> はスケーリング付き相互関数を計算します:<latex>e^{x^2} \operatorname{erfc}(x)</latex>
         </para>
     </refsection>
-    
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[
 x = [1+2*%i,-1+2*%i,1e-6+2e-6*%i,0+2*%i];
 erfcx(x)
-// ==
+// 以下と等価
 exp (x.^2) .* erfc(x)
  ]]></programlisting>
     </refsection>
-    
+    <refsection>
+        <title>アルゴリズム</title>
+        <para>
+            この関数は <ulink url="http://ab-initio.mit.edu/Faddeeva">Faddeevaパッケージ</ulink>
+            ライブラリに基づきます.
+        </para>
+    </refsection>
     <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">
@@ -66,5 +71,14 @@ exp (x.^2) .* erfc(x)
                 <link linkend="calerf">calerf</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>erfcx関数が複素数の要素をサポート</revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

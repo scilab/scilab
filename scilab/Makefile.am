@@ -89,8 +89,6 @@ COMMON_LIBS = $(LTLIBINTL)
 
 scilab_bin_SOURCES = modules/startup/src/cpp/scilab.cpp
 
-scilab_bin_LDADD 		= $(COMMON_LIBS)
-
 # the scilab-bin object file itself uses symbols from at least libscilab-cli.la,
 # libsciconsole-minimal.la and libscijvm-disable.la, so we have to link with these
 # libraries explicitly unless we link with -Wl,--copy-dt-needed-entries

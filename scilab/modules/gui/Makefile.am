@@ -370,6 +370,7 @@ images/icons/16x16/mimetypes/text-csv.png \
 images/icons/16x16/mimetypes/text-html.png \
 images/icons/16x16/mimetypes/text-x-generic.png \
 images/icons/16x16/mimetypes/text-xml.png \
+images/icons/16x16/mimetypes/application-mat.png \
 images/icons/16x16/places/folder.png \
 images/icons/16x16/places/folder-saved-search.png \
 images/icons/16x16/places/scilab-folder.png \

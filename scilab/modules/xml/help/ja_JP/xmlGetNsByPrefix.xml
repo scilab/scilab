@@ -58,7 +58,6 @@
     doc = xmlReadStr(s)
     c = doc.root.children(1).children(2);
     xmlGetNsByPrefix(c, "scilab")
-
     xmlDelete(doc);
     ]]></programlisting>
     </refsection>

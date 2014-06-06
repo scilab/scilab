@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -10,60 +11,141 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
+
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="round" xml:lang="ja">
+    
     <refnamediv>
+        
         <refname>round</refname>
-        <refpurpose>丸め処理</refpurpose>
+        
+        <refpurpose>最も近い整数に丸める</refpurpose>
+        
     </refnamediv>
+    
     <refsynopsisdiv>
+        
         <title>呼び出し手順</title>
+        
         <synopsis>y=round(x)</synopsis>
+        
     </refsynopsisdiv>
+    
     <refsection>
-        <title>パラメータ</title>
+        
+        <title>引数</title>
+        
         <variablelist>
+            
             <varlistentry>
+                
                 <term>x</term>
+                
                 <listitem>
+                    
                     <para>実数または複素数の行列r</para>
+                    
                 </listitem>
+                
             </varlistentry>
+            
             <varlistentry>
+                
                 <term>y</term>
+                
                 <listitem>
-                    <para>整数または複素数 (実部と虚部は整数) の行列</para>
+                    
+                    <para>整数値の行列 (または実部と虚部が整数の複素数行列)</para>
+                    
                 </listitem>
+                
             </varlistentry>
+            
         </variablelist>
+        
     </refsection>
+    
     <refsection>
+        
         <title>説明</title>
+        
         <para>
+            
             <literal>round(x)</literal> は
+            
             <literal>x</literal> の要素を最も近い整数に丸めます.
+            
         </para>
+        
+        <para>
+            
+            中間の場合,この関数は無限大方向に丸めます.
+            
+            これは,<literal>x</literal>が正で2つの整数の中間の場合,
+            
+            <literal>round(x)</literal> は <literal>%inf</literal>方向に
+            
+            丸められます.
+            
+            <literal>x</literal>が負で2つの整数の中間の場合,
+            
+            <literal>round(x)</literal> は <literal>-%inf</literal>方向に
+            
+            丸められます.
+            
+            言い換えると,<literal>x</literal>が正の場合, 
+            
+            <literal>round(x)</literal>は<literal>int(x+0.5)</literal>に等しく, 
+            
+            <literal>x</literal>が負の場合,
+            
+            <literal>round(x)</literal>は<literal>int(x-0.5)</literal>に等しくなります.
+            
+        </para>
+        
     </refsection>
+    
     <refsection>
+        
         <title>例</title>
+        
         <programlisting role="example"><![CDATA[ 
-round([1.9 -2.5])-[2,-3]
-round(1.6+2.1*%i)-(2+2*%i)
-round(-%inf)
-x=rand()*10^20;round(x)-x
+// Notice that round(1.5)==2
+round([1.3 1.5 1.7 2.5 3.7])
+// Notice the result for x negative
+// Notice that round(-1.5)==-2
+round([-1.3 -1.5 -1.7 -2.5 -3.7])
+round([2.2+%i*23, %pi*%i, -%i ])
  ]]></programlisting>
+        
     </refsection>
+    
     <refsection role="see also">
+        
         <title>参照</title>
+        
         <simplelist type="inline">
+            
             <member>
+                
                 <link linkend="int">int</link>
+                
             </member>
+            
             <member>
+                
                 <link linkend="floor">floor</link>
+                
             </member>
+            
             <member>
+                
                 <link linkend="ceil">ceil</link>
+                
             </member>
+            
         </simplelist>
+        
     </refsection>
+    
 </refentry>
+

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="createBorder">
+    <refnamediv>
+        <refname>createBorder</refname>
+        <refpurpose>frame uicontrolの境界を作成.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>
+            border = createBorder(borderType, varargin)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>borderType</term>
+                <listitem>
+                    <para>文字列</para>
+                    <para>
+                        作成する境界の型.利用可能な境界の型を
+                        以下に示します.
+                        各々のプロパティの詳細は個々のヘルプページで参照可能です:
+                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>"none": フレームに境界は追加されません (デフォルト). 
+                                この型に利用可能なプロパティはありません.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                "line": 簡単な<link linkend="line_border_properties">線境界</link>.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                "bevel": 影を用いる<link linkend="bevel_border_properties">ベベル境界</link>.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                "softbevel": 隅をソフトにした影を用いた
+                                <link linkend="softbevel_border_properties">ソフトベベル境界</link>.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                "etched": <link linkend="etched_border_properties">くっきりした境界</link>.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                "titled": <link linkend="titled_border_properties">表題付きの境界</link>.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                "empty": 描画されないがスペースをとる
+                                <link linkend="empty_border_properties">空の境界</link>.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                "compound": 他の型の境界を混用する
+                                <link linkend="compound_border_properties">複合境界</link>.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                "matte": <link linkend="matte_border_properties">マット調境界</link>.
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>varargin</term>
+                <listitem>
+                    <para>
+                        <literal>borderType</literal>固有の全プロパティ.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>border</term>
+                <listitem>
+                    <para>作成された境界.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            この関数は <literal>frame</literal> uicontrolsの境界を作成します. 
+            詳細については,
+            <link linkend="uicontrol_properties">uicontrolプロパティ</link>を参照ください.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="createBorderFont">createBorderFont</link>
+            </member>
+            <member>
+                <link linkend="uicontrol">uicontrol</link>
+            </member>
+            <member>
+                <link linkend="uicontrol_properties">uicontrol_properties</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>
+                    関数 <function>createBorder</function>が導入されました.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

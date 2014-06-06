@@ -13,137 +13,132 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="fftw_flags" xml:lang="ja">
     <refnamediv>
         <refname>fftw_flags</refname>
-        <refpurpose>fftw関数の高速フーリエ変換の計算手法を設定する</refpurpose>
+        <refpurpose>fftプランナアルゴリズム選択用手法を設定する</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>[a,[S]]=fftw_flags([x1;x2;...])</synopsis>
+        <synopsis>[a,[S]]=fftw_flags(flag)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
-                <term>[x1;x2;...]</term>
+                <term>flag</term>
                 <listitem>
-                    <para>文字列および整数の行列.
-                        fftwのfft計算の手法を切替えるエントリ.
+                    <para>
+                        文字列または整数. プランナアルゴリズムを指定.
+			下記参照.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>a</term>
                 <listitem>
-                    <para>整数. fftw関数のフラグのカレントの値を指定します.</para>
+                    <para>整数. プランナコード.下記参照.
+		    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>S</term>
                 <listitem>
-                    <para>文字列行列. fftwフラグの文字列の値を指定します.</para>
+                    <para>文字列行列. プランナ名.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
         <title>説明</title>
-        <para>この関数は,
-            <link linkend="fftw">fftw</link>関数で使用される
-            <literal>fftw_plan_guru_split_dft</literal>関数の
-            <literal>unsigned flags</literal>パラメータを変更します. 
+        <para>
+	  この関数により,fftwプランナアルゴリズムを定義する際に
+	  使用されるアルゴリズムを選択できます.
+	  プランナはfftを計算する効率的な手法を定義する
+	  際に使用されます.
         </para>
-        <para>デフォルト値はFFTW_ESTIMATEです</para>
-        <para>以下のエントリが使用可能です :</para>
+        <para>
+          <warning>
+            警告: デフォルト値 "FFTW_ESTIMATE" は通常かなり効率的な
+	    プランです.
+	    fft効率が実際に重要で
+	    類似のコールを数多く行う場合にのみ変更を検討ください.
+          </warning>
+        </para>
+        <para>以下のエントリを指定可能です :</para>
         <itemizedlist>
             <listitem>
-                <para>FFTW_MEASURE または 0</para>
+                <para>{FFTW_ESTIMATE} または 64. 
+		  これを指定すると, 他のアルゴリズムで使用される
+		  実際の観測量の代わりに, 
+		  (おそらく準最適の)プランを簡単に選択できる
+		  簡単な経験則が使用されます.
+		  このフラグを指定すると,
+		  入力/出力配列はプランニングの間は上書きされません.
+		  これがデフォルト値です.
+                </para>
             </listitem>
             <listitem>
-                <para>FFTW_DESTROY_INPUT または 1</para>
+                <para>FFTW_MEASURE または 0. 
+		  実際に計算した複数回のFFTとそれらの実行時間
+		  の計測値から最適なプランをみつけるようFFTWに指示します.
+		  実行する計算機に依存した時間がかかります(通常は数秒).
+                </para>
             </listitem>
             <listitem>
-                <para>FFTW_UNALIGNED または 2</para>
+                <para>FFTW_PATIENT または 32. 
+		  "FFTW_MEASURE"と似ていますが, 
+		  より広範なアルゴリズムを検討し,しばしば
+		  "より最適な"プランを出力します
+		  (特に大規模な変換の場合).
+		  しかし,プランニング時間は数倍かかります
+		  (特に大規模な変換の場合).
+                </para>
             </listitem>
+            
             <listitem>
-                <para>FFTW_CONSERVE_MEMORY または 4</para>
-            </listitem>
-            <listitem>
-                <para>FFTW_EXHAUSTIVE または 8</para>
-            </listitem>
-            <listitem>
-                <para>FFTW_PRESERVE_INPUT または 16</para>
-            </listitem>
-            <listitem>
-                <para>FFTW_PATIENT または 32</para>
-            </listitem>
-            <listitem>
-                <para>FFTW_ESTIMATE または 64</para>
-            </listitem>
-            <listitem>
-                <para>FFTW_ESTIMATE_PATIENT または 128</para>
-            </listitem>
-            <listitem>
-                <para>FFTW_BELIEVE_PCOST または 256</para>
-            </listitem>
-            <listitem>
-                <para>FFTW_NO_DFT_R2HC または512</para>
-            </listitem>
-            <listitem>
-                <para>FFTW_NO_NONTHREADED または 1024</para>
-            </listitem>
-            <listitem>
-                <para>FFTW_NO_BUFFERING または 2048</para>
-            </listitem>
-            <listitem>
-                <para>FFTW_NO_INDIRECT_OP または 4096</para>
-            </listitem>
-            <listitem>
-                <para>FFTW_ALLOW_LARGE_GENERIC または 8192</para>
-            </listitem>
-            <listitem>
-                <para>FFTW_NO_RANK_SPLITS または 16384</para>
-            </listitem>
-            <listitem>
-                <para>FFTW_NO_VRANK_SPLITS または 32768</para>
-            </listitem>
-            <listitem>
-                <para>FFTW_NO_VRECURSE または 65536</para>
-            </listitem>
-            <listitem>
-                <para>FFTW_NO_SIMD または 131072</para>
-            </listitem>
-            <listitem>
-                <para>FFTW_NO_SLOW または 262144</para>
-            </listitem>
-            <listitem>
-                <para>FFTW_NO_FIXED_RADIX_LARGE_N または 524288</para>
-            </listitem>
-            <listitem>
-                <para>FFTW_ALLOW_PRUNING または 1048576</para>
+                <para>FFTW_EXHAUSTIVE または 8. 
+		  "FFTW_PATIENT"に似ていますが, 
+		  高速と思われないようなものを多く含む
+		  さらにより広範なアルゴリズムを検討します.
+		  最も最適なプランを出力しますが,
+		  プランニング時間は著しく増加します.
+                </para>
             </listitem>
         </itemizedlist>
-        <para>注意 :  FFTW_MEASURE/FFTW_PATIENT/FFTW_EXHAUSTIVE を使用した場合,
-            fftwを2回コールする必要があります.
-            (最初のコールは初期化のため, 二回目以降は計算のためです)
+        
+        
+        <para>注意 : FFTW_MEASURE/FFTW_PATIENT/FFTW_EXHAUSTIVE を使用する時,
+	  fftwを2回コールする必要があります.
+	  (最初のコールは初期化用, 2回目以降は計算用)
         </para>
     </refsection>
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[ 
-//return the integer value of the flag
-fftw_flags()
+A=rand(1, 2^9 + 2^15);
+fftw_forget_wisdom();
+fftw_flags("FFTW_ESTIMATE");
+timer(); y=fft(A); timer()//最初のコールでプランを定義
+timer(); y=fft(A); timer() //同じコールを続ける
+fftw_flags("FFTW_MEASURE");
+fftw_forget_wisdom();
+timer(); y=fft(A); timer()//最初のコールでプランを定義, 5分ほどかかる
+timer(); y=fft(A); timer() //同じコールを続ける
 
-//change flags
-fftw_flags(["FFTW_MEASURE";"FFTW_CONSERVE_MEMORY"]);
-
-//change flags and display current value of fftw flags (both integer and strings)
-[a,S]=fftw_flags("FFTW_PATIENT")
  ]]></programlisting>
     </refsection>
     <refsection>
         <title>参考</title>
         <simplelist type="inline">
             <member>
-                <link linkend="fftw">fftw</link>
+                <link linkend="fft">fft</link>
+            </member>
+            <member>
+                <link linkend="set_fftw_wisdom">set_fftw_wisdom</link>
+            </member>
+            <member>
+                <link linkend="get_fftw_wisdom">get_fftw_wisdom</link>
+            </member>
+            <member>
+                <link linkend="fftw_forget_wisdom">fftw_forget_wisdom</link>
             </member>
         </simplelist>
     </refsection>

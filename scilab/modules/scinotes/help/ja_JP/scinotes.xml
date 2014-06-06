@@ -25,8 +25,9 @@
             scinotes(file, line_number, macro_name)
             scinotes([file1, file2], [line_number1, line_number2])
             scinotes(file, 'readonly')
+            scinotes(file, ['indent','trailing','quote'])
             scinotes([file1, file2], 'readonly')
-            
+            scinotes([file1, file2], ['indent','trailing','quote'])
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -89,6 +90,32 @@
         </para>
         <para>
             オプション'readonly'を指定すると, ファイルは読込モードで開かれ,修正できません.
+        </para>
+        <para>
+            オプション 'indent', 'quote' または 'trailing'を指定すると, 
+            エディタはオープンせずに,ファイルが指定した処理を行います.
+            以下の処理が定義されています:
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        'indent'処理はファイルを正しくインデントします.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        'trailing'処理は末尾の空白文字を削除します.
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        'quote'処理はシングルクォートで括られた文字列を全てダブルクオートで置換します.
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </para>
+        <para>
+            1つまたは複数の処理を同時に行うことができます.
+            例: 'trailing' または ['indent','quote'].
         </para>
         <para>
             ほとんど全ての編集動作についてキーボードショートカットが定義されており,
@@ -507,22 +534,42 @@
         <programlisting role="example"><![CDATA[ 
 // パラメータなしでエディタを起動
 scinotes();
-    
 // ファイル名を指定してエディタを起動
 scinotes('SCI/modules/time/macros/datenum.sci');
-    
 // ファイル名の行列を指定してエディタを起動
 scinotes(['SCI/modules/time/macros/datenum.sci','SCI/modules/time/macros/datevec.sci']);
-    
 // ファイル名とハイライト表示する行を指定してエディタを起動
 scinotes('SCI/modules/time/macros/datenum.sci', 5);
-
 // ファイル名とハイライト表示する行を指定してエディタを起動
 scinotes('SCI/modules/time/macros/datenum.sci', 8, 'datenum');
-
 // ファイル名の行列と対応するハイライト表示する行の行列を指定してエディタを起動
 // ファイル名の行列とハイライト表示する行の行列は同じ大きさにします
 scinotes(['SCI/modules/time/macros/datenum.sci','SCI/modules/time/macros/datevec.sci'], [5,10]);
  ]]></programlisting>
+        Scilabコードをインデント
+        <programlisting role="example"><![CDATA[
+f=TMPDIR + "/file_to_correct.sci";
+mputl(["a=''abcdef''									";
+       "if a==1";
+       "   b=1+""abcdef''         ";
+       "   			c=2";
+       " d=3			";
+       "					        if		                 		";
+       "a=''abcdef""""""";
+       "           end";
+       "				end              "], f);
+scinotes(f, ["indent" "trailing" "quote"]);
+// 結果を表示
+mgetl(f)
+ ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.1</revnumber>
+                <revremark>['indent','trailing','quote'] オプションが追加されました.</revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

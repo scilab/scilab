@@ -92,7 +92,6 @@
     repmat("Scilab",3,2)
     t="Scilab";t(ones(3,2))
     repmat([1/%s;2/(%s+1)],1,3)
-
  ]]></programlisting>
     </refsection>
     <refsection>
@@ -108,5 +107,14 @@
                 <link linkend="size">size</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.3.1</revnumber>
+                <revremark>関数 repmat が導入されました.</revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

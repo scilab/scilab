@@ -113,14 +113,12 @@ xhat(t+1)=(A+K*C2)*xhat(t) - K*y(t).
 //=
 //[G*Q_e*G' G*N;
 // N*G' R]
-
 //To find (B1,D21) given (G,Q_e,R,N) form bigR =[G*Q_e*G' G*N;N'*G' R].
 //Then [W,Wt]=fullrf(bigR);  B1=W(1:size(G,1),:);
 //D21=W(($+1-size(C2,1)):$,:)
 //
 //P21=syslin('c',A,B1,C2,D21);
 //[K,X]=lqe(P21);
-
 //Example:
 nx=5;ne=2;ny=3;
 A=-diag(1:nx);G=ones(nx,ne);
@@ -134,7 +132,6 @@ P21=syslin('c',A,B1,C2,D21);
 //Riccati check:
 S=G*N;Q=B1*B1';
 (A-S*inv(R)*C2)*X+X*(A-S*inv(R)*C2)'-X*C2'*inv(R)*C2*X+Q-S*inv(R)*S'
-
 //Stability check:
 spec(A+K*C)
  ]]></programlisting>

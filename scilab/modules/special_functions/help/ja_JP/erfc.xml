@@ -25,13 +25,13 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>実数ベクトルまたは行列</para>
+                    <para>ベクトルまたは行列</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>y</term>
                 <listitem>
-                    <para>(xと同じ大きさの)実数ベクトルまたは行列</para>
+                    <para>(xと同じ大きさの)ベクトルまたは行列</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -46,10 +46,16 @@
         <title>例</title>
         <programlisting role="example"><![CDATA[
 erf([0.5,0.2])+erfc([0.5,0.2])
-
 x = [1+2*%i,-1+2*%i,1e-6+2e-6*%i,0+2*%i];
 erfc(x)
  ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>アルゴリズム</title>
+        <para>
+            この関数は <ulink url="http://ab-initio.mit.edu/Faddeeva">Faddeevaパッケージ</ulink>
+            ライブラリに基づきます.
+        </para>
     </refsection>
     <refsection role="see also">
         <title>参照</title>
@@ -64,5 +70,14 @@ erfc(x)
                 <link linkend="calerf">calerf</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>erfc関数が複素数の要素をサポート</revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

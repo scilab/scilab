@@ -16,7 +16,7 @@
 // mget and mgetl accepted decimal values as number of lines.
 curdir = pwd();
 cd(TMPDIR);
-fd = mopen("test", "wr"); // Open a file
+fd = mopen("test", "w"); // Open a file
 refMsg = msprintf(_("%s: Wrong value for input argument #%d: A positive integer value expected.\n"), "mget", 1);
 assert_checkerror("mget(-1, ""d"", fd)", refMsg);
 refMsg = msprintf(_("%s: Wrong value for input argument #%d: A positive integer value expected.\n"), "mget", 1);

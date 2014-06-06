@@ -136,11 +136,11 @@ function [d, v] = eigs(varargin)
             B = varargin(3);
 
         case 4
-            B = varagin(3);
+            B = varargin(3);
             nev = varargin(4);
 
         case 5
-            B = varagin(3);
+            B = varargin(3);
             nev = varargin(4);
             sigma = varargin(5);
 
@@ -692,8 +692,8 @@ function [res_d, res_v] = feigs(A_fun, nA, %_B, nev, which, maxiter, tol, ncv, c
     //*************************
     //NEV :
     //*************************
-    //verification du type de nev
-    //check if nev is complex?
+    // type of nev check
+    // check if nev is complex?
     if(typeof(nev) <> "constant") | (~isreal(nev)) | (size(nev,"*") <> 1)
         error(msprintf(gettext("%s: Wrong type for input argument #%d: A scalar expected.\n"), "eigs", 3));
     end
@@ -836,7 +836,7 @@ function [res_d, res_v] = feigs(A_fun, nA, %_B, nev, which, maxiter, tol, ncv, c
     end
 
     if(a_real & Breal)
-        //resid complexe ?
+        //resid complex ?
         if(~isreal(resid))
             error(msprintf(gettext("%s: Wrong type for input argument #%d: Start vector opts.resid must be real for real problems.\n"), "eigs", 10));
         end
@@ -1089,7 +1089,9 @@ function [res_d, res_v] = feigs(A_fun, nA, %_B, nev, which, maxiter, tol, ncv, c
                     index = find(di~=0);
                     index = index(1:2:$);
                     res_v = z;
-                    res_v(:,[index index+1]) = [complex(res_v(:,index), res_v(:,index+1)), complex(res_v(:,index), -res_v(:,index+1))];
+                    if ~isempty(index) then
+                        res_v(:,[index index+1]) = [complex(res_v(:,index), res_v(:,index+1)), complex(res_v(:,index), -res_v(:,index+1))];
+                    end
                     res_d = diag(res_d);
                     res_v = res_v(:,1:nev);
                 end

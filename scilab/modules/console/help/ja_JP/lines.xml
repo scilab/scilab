@@ -17,17 +17,30 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>lines([nl [,nc]])
-            ncl=lines()
+        <synopsis>lines(nl)
+            lines(nl, nc)
+            lines(ncl)
+            ncl = lines()
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
-                <term>nl : 整数, 垂直方向のページ切替制御の行数. </term>
+                <term>nl</term>
                 <listitem>
-                    <para>0の場合,垂直方向のページ切替制御は行われません.</para>
+                    <para>整数, 垂直方向のページ切替制御の行数.</para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>0の場合,垂直方向のページ切替制御は行われません.</para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                -1の場合: 垂直ページング制御をウインドウの現在
+                                の大きさにリセット.
+                            </para>
+                        </listitem>
+                    </itemizedlist>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -82,5 +95,25 @@
                 <link linkend="print">print</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revdescription>
+                    <itemizedlist>
+                        <listitem>lines はデフォルトで 0に設定されます. 
+                            引数 -1 が追加されます.
+                            詳細については, SEP #67 を参照ください.
+                        </listitem>
+                        <listitem>
+                            lines は,
+                            入力引数として 1x2 ベクトル [nc, nl] を管理します.
+                        </listitem>
+                    </itemizedlist>
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

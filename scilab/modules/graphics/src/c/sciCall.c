@@ -125,14 +125,81 @@ void Objarc(double* angle1    ,
     int iSubwinUID = 0;
     int iObjUID = 0;
     double rect[6];
+    const double two_pi = 2 * M_PI;
 
     iSubwinUID = getCurrentSubWin();
     checkRedrawing();
 
-    rect[0] = *x;
-    rect[1] = *x + *width;
-    rect[2] = *y - *height;
-    rect[3] = *y;
+    if (abs(*angle2) >= two_pi)
+    {
+        rect[0] = *x;
+        rect[1] = *x + *width;
+        rect[2] = *y - *height;
+        rect[3] = *y;
+    }
+    else
+    {
+        double a = *angle1;
+        double s = *angle2;
+        double a1, b1;
+        double b;
+
+        a -= (floor(a / two_pi)) * two_pi;
+        b = a + s;
+
+        if (s >= 0)
+        {
+            b = a + s;
+        }
+        else
+        {
+            b = a;
+            a += s;
+        }
+
+        b1 = b / M_PI;
+        a1 = a / M_PI;
+
+        // is there a 2k\pi in [a,b] ?
+        if (ceil(a1 / 2) <= floor(b1 / 2))
+        {
+            rect[1] = *x + *width;
+        }
+        else
+        {
+            rect[1] = *x + 0.5 * *width * (1 + Max(cos(a), cos(b)));
+        }
+
+        // is there a (2k+1)\pi in [a,b] ?
+        if (ceil((a1 - 1) / 2) <= floor((b1 - 1) / 2))
+        {
+            rect[0] = *x;
+        }
+        else
+        {
+            rect[0] = *x + 0.5 * *width * (1 + Min(cos(a), cos(b)));
+        }
+
+        // is there a (2k+1/2)\pi in [a,b] ?
+        if (ceil((a1 - 0.5) / 2) <= floor((b1 - 0.5) / 2))
+        {
+            rect[3] = *y;
+        }
+        else
+        {
+            rect[3] = *y + 0.5 * *height * (-1 + Max(sin(a), sin(b)));
+        }
+
+        // is there a (2k+3/2)\pi in [a,b] ?
+        if (ceil((a1 - 1.5) / 2) <= floor((b1 - 1.5) / 2))
+        {
+            rect[2] = *y - *height;
+        }
+        else
+        {
+            rect[2] = *y + 0.5 * *height * (-1 + Min(sin(a), sin(b)));
+        }
+    }
 
     updateXYDataBounds(iSubwinUID, rect);
 
@@ -811,9 +878,9 @@ void Objdrawaxis (char     dir    ,
         matData = getStrMatData(tics_labels);
 
         /*
-        * The labels vector size must be computed using the matrix's dimensions.
-        * To be modified when the labels computation is moved to the Model.
-        */
+         * The labels vector size must be computed using the matrix's dimensions.
+         * To be modified when the labels computation is moved to the Model.
+         */
         setGraphicObjectProperty(iObjUID, __GO_TICKS_LABELS__, matData, jni_string_vector, tics_labels->nbCol * tics_labels->nbRow);
 
         deleteMatrix(tics_labels);
@@ -822,10 +889,10 @@ void Objdrawaxis (char     dir    ,
     {
         int i = 0;
         /*
-        * Labels are set using the str argument; the previous code tested whether each element of the
-        * str array was null and set the corresponding Axis' element to NULL, though there was no
-        * apparent reason to do so. This is still checked, but now aborts building the Axis.
-        */
+         * Labels are set using the str argument; the previous code tested whether each element of the
+         * str array was null and set the corresponding Axis' element to NULL, though there was no
+         * apparent reason to do so. This is still checked, but now aborts building the Axis.
+         */
 
         if (nb_tics_labels == -1)
         {
@@ -923,7 +990,7 @@ static void updateXYZDataBounds(int iSubwinUID, double rect[6])
     int * piFirstPlot = &firstPlot;
 
     getGraphicObjectProperty(iSubwinUID, __GO_FIRST_PLOT__, jni_bool, (void **)&piFirstPlot);
-    if (firstPlot != 0)
+    if (!firstPlot)
     {
         double * dataBounds = NULL;
         getGraphicObjectProperty(iSubwinUID, __GO_DATA_BOUNDS__, jni_double_vector, (void **)&dataBounds);

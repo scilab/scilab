@@ -23,12 +23,12 @@
         <synopsis>res = fullpath(relative_path)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>res</term>
                 <listitem>
-                    <para>文字列</para>
+                    <para>文字列または文字列の行列</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -36,7 +36,7 @@
             <varlistentry>
                 <term>relative_path</term>
                 <listitem>
-                    <para>文字列</para>
+                    <para>文字列または文字列の行列</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -44,18 +44,33 @@
     <refsection>
         <title>説明</title>
         <para>
+            <code>fullpath(relative_path)</code>は,
             指定した相対パス名に関する完全なパス名を作成します.
         </para>
-        <para>linuxでは, 'relative_path' が存在する必要があります.</para>
     </refsection>
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[ 
-mkdir(TMPDIR+'/niv1');
-mkdir(TMPDIR+'/niv1/niv2');
-mputl(' ',TMPDIR+'/niv1/test.txt');
-cd(TMPDIR+'/niv1/niv2');
-fullpath('../test.txt')
+cd(TMPDIR);
+mkdir(TMPDIR + "/niv1");
+mkdir(TMPDIR + "/niv1/niv2");
+mkdir(TMPDIR + "/niv1/niv2/niv3");
+mputl(' ', TMPDIR + "/niv1/test1.txt");
+mputl(' ' , TMPDIR + "/niv1/niv2/test2.txt");
+cd(TMPDIR + "/niv1/niv2/niv3");
+r1 = fullpath("../../test1.txt")
+r2 = fullpath("../test2.txt")
+M = ["../../test1.txt", "../test2.txt"];
+R = fullpath(M)
  ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>管理された文字列の行列 (SEP 72)</revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

@@ -21,7 +21,6 @@
         <title>呼び出し手順</title>
         <synopsis>
             z = bitand(x,y)
-            
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -31,9 +30,13 @@
                 <term>x :</term>
                 <listitem>
                     <para>
-                        m行n列の行列(double)またはm1 x m2 x ... x mm ハイパー行列(double)
-                        または符合なし整数(uint8, uint16 または uint32)の
-                        m行n列行列.値は正の整数値である必要があります.
+                        <literal>m</literal>行<literal>n</literal>列の行列(double)
+                        または<literal>m1</literal> x <literal>m2</literal> 
+                        x ... x <literal>mm</literal> ハイパー行列(double)
+                        または符合なし整数(<literal>uint8</literal>, 
+                        <literal>uint16</literal> または <literal>uint32</literal>)の
+                        <literal>m</literal>行<literal>n</literal>列行列.
+                        値は正の整数値である必要があります.
                     </para>
                 </listitem>
             </varlistentry>
@@ -41,9 +44,13 @@
                 <term>y :</term>
                 <listitem>
                     <para>
-                        m行n列の行列(double)またはm1 x m2 x ... x mm ハイパー行列(double)
-                        または符合なし整数(uint8, uint16 または uint32)の
-                        m行n列行列.値は正の整数値である必要があります.
+                        <literal>m</literal>行<literal>n</literal>列の行列(double)
+                        または<literal>m1</literal> x <literal>m2</literal> x ... x 
+                        <literal>mm</literal> ハイパー行列(double)
+                        または符合なし整数(<literal>uint8</literal>, 
+                        <literal>uint16</literal> または <literal>uint32</literal>)の
+                        <literal>m</literal>行<literal>n</literal>列行列.
+                        値は正の整数値である必要があります.
                     </para>
                 </listitem>
             </varlistentry>
@@ -51,7 +58,10 @@
                 <term>z :</term>
                 <listitem>
                     <para>
-                        m行n列の行列(double)またはm1 x m2 x ... x mm ハイパー行列(double)
+                        <literal>m</literal>行<literal>n</literal>列の
+                        行列(double)または<literal>m1</literal> x 
+                        <literal>m2</literal> x ... x <literal>mm</literal> 
+                        ハイパー行列(double)
                         または符合なし整数.
                     </para>
                 </listitem>
@@ -61,12 +71,14 @@
     <refsection>
         <title>説明</title>
         <para>
-            2つの正の整数 x および y を指定すると,この関数は2進形式が
-            x および y の2進形式の論理積となるような10進数を返します.
+            2つの正の整数 <varname>x</varname> および <varname>y</varname> 
+            を指定すると,この関数は2進形式が
+            <varname>x</varname> および <varname>y</varname> の
+            2進形式の論理積となるような10進数を返します.
         </para>
         <para>
-            <literal>x</literal>,
-            <literal>y</literal>, <literal>z</literal> の大きさは同じです. 
+            <varname>x</varname>, <varname>y</varname>, <varname>z</varname>
+            の大きさは同じです. 
         </para>
     </refsection>
     <refsection>
@@ -79,34 +91,28 @@
 x=86; 
 y=91;
 z=bitand(x,y)
-
 // Compute the bitwise AND of two matrices of doubles.
 x=[12,45];
 y=[25,49];
 z=bitand(x,y)
-
 // Compute the bitwise AND of two matrices of doubles.
 x = [0 1 0 1];
 y = [0 0 1 1];
 z = bitand(x, y)
 expected = [0 0 0 1];
-
 // Compute the bitwise AND of two matrices of integers.
 x = uint8([0 1 0 1]);
 y = uint8([0 0 1 1]);
 z = bitand(x, y)
-
 // The types of x and y cannot be mixed (error).
 x = [0 1 0 1];
 y = uint8([0 0 1 1]);
 // z = bitand(x, y)
-
 //  13 is (01101)_2
 //  27 is (11011)_2
 // AND is (01001)_2 which is 9.
 bitand(uint8(13), uint8(27))
 bitand(13, 27)
-
    ]]></programlisting>
     </refsection>
     <refsection role="see also">

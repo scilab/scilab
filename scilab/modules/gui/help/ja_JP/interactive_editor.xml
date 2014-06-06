@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="ieditor">
+    <refnamediv>
+        <refname>対話型エディタ</refname>
+        <refpurpose>対話型プロットエディタ</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>説明</title>
+        <para>
+            対話型プロットエディタはscilabに追加された新規機能であり,
+            ユーザは1行もコードを書くことなく
+            プロットウインドウとグラフィックオブジェクトを
+            関係づけることができます.
+        </para>
+        <para>
+            対話型プロットエディタは以下の機能を提供します:
+        </para>
+        <para>
+            エディタメニュー: 
+        </para>
+        <para>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="../images/editor_menu.png"/>
+                </imageobject>
+            </inlinemediaobject>
+        </para>
+        <itemizedlist>
+            <listitem><para>
+                    Graphicエンティティ選択
+                </para>
+                ユーザは,プロットウインドウ上で曲線, 面および凡例を選択できます.
+                <para>
+                    エンティティを選択するには, その上でクリックするだけで構いません.
+                </para>
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="../images/editor_selected.png"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </listitem>
+            <listitem><para>
+                    コピー, 切り取り, 貼り付け
+                </para>
+                選択されたエンティティは,コピー/切り取りし,
+                他の図に貼り付けることができます
+                (凡例を除く).
+                <para>
+                    エンティティをコピー/切り取り: 選択し, 右クリック コピー/切り取り.
+                </para>
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="../images/editor_copy.png"/>
+                    </imageobject>
+                    <imageobject>
+                        <imagedata fileref="../images/editor_paste.png"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </listitem>
+            <listitem><para>
+                    軸スタイルをコピー
+                </para>
+                軸プロパティは,図に間で容易に整形するために
+                コピーおよび貼り付けすることができます.
+                <para>
+                    軸スタイルをコピーするには: 図の上で右クリックし "スタイルをコピー".
+                </para>
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="../images/editor_copy_style.png"/>
+                    </imageobject>
+                    <imageobject>
+                        <imagedata fileref="../images/editor_paste_style.png"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </listitem>
+            <listitem><para>
+                    クリップボードにコピー
+                </para>
+                図はシステムのクリップボードにコピーでき,
+                (Wordのような)他のプログラムに貼り付けることができます.
+                <para>
+                    図をクリップボードにコピーするには: 右クリック, クリップボードにコピー
+                </para>
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="../images/editor_copy_clipboard.png"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </listitem>
+            <listitem><para>
+                    削除
+                </para>
+                選択したエンティティを削除.
+                <para>
+                    エンティティを削除するには: 選択肢, 右クリック, 削除
+                </para>
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="../images/editor_delete.png"/>
+                    </imageobject>
+                    <imageobject>
+                        <imagedata fileref="../images/editor_deleted.png"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </listitem>
+            <listitem><para>
+                    隠す, 見せる
+                </para>
+                選択したエンティティをユーザが隠し,全ての隠されたエンティティを
+                見せることを可能にします.
+                <para>
+                    エンティティを隠すには: 選択し, 右クリック, 隠す.
+                </para>
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="../images/editor_hide.png"/>
+                    </imageobject>
+                    <imageobject>
+                        <imagedata fileref="../images/editor_hidden.png"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </listitem>
+            <listitem><para>
+                    アンドゥ/ リドゥ
+                </para>
+                エディタで行ったほぼ全ての動作をアンドゥ/ リドゥできます.
+                <para>
+                    動作をアンドゥ/ リドゥするには 右クリック, "アンドゥ"/リドゥ.
+                </para>
+            </listitem>
+            <listitem><para>
+                    ラベル
+                </para>
+                <para>
+                    右クリックするだけで, ユーザが軸内にラベルを挿入することができます,
+                    ラベルのテキスト上でダブルクリックすることで,テキストを編集する
+                    ダイアログが開きます.
+                </para>
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="../images/editor_edit_label.png"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </listitem>
+            <listitem><para>
+                    凡例
+                </para>
+                <para>
+                    右クリックするだけで,ユーザは選択した曲線に凡例を挿入または
+                    削除できます.
+                    凡例ボックス上でダブルクリックをするとテキストを編集する
+                    ダイアログを開きます.
+                </para>
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="../images/editor_edit_legend.png"/>
+                    </imageobject>
+                    <!-- <imageobject>
+            <imagedata fileref="../images/editor_remove_legend.png"/>
+          </imageobject>
+          <imageobject>
+            <imagedata fileref="../images/editor_removed_legend.png"/>
+          </imageobject> -->
+                </inlinemediaobject>
+            </listitem>
+            <listitem><para>
+                    消去
+                </para>
+                図を消去します.
+                <para>
+                    消去動作は,アンドゥ/リドゥ履歴に追加されません.
+                </para>
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="../images/editor_clear.png"/>
+                    </imageobject>
+                    <imageobject>
+                        <imagedata fileref="../images/editor_clean.png"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </listitem>
+            <listitem><para>
+                    GEDを開く
+                </para>
+                右クリックするだけで,ユーザは,
+                選択した/右クリックしたエンティティからプロパティを指定して
+                gedを開くことができます.
+            </listitem>
+        </itemizedlist>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    オブジェクトを移動
+                </para>
+                <para>
+                    オブジェクトを移動するには: データ編集モードを有効にし,
+                    選択し,  オブジェクトをドラッグします.
+                </para>
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="../images/editor_enable_edit.png"/>
+                    </imageobject>
+                    <imageobject>
+                        <imagedata fileref="../images/editor_move_curve.png"/>
+                    </imageobject>
+                </inlinemediaobject>
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="../images/editor_move_legend.png"/>
+                    </imageobject>
+                    <imageobject>
+                        <imagedata fileref="../images/editor_moved_legend.png"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </listitem>
+            <listitem>
+                <para>
+                    グラフィックによる曲線データエディタ
+                </para>
+                <para>
+                    曲線データを編集するには: データ編集モードを有効にし, オブジェクトを選択, 
+                    右クリック, 曲線データを編集または曲線上をダブルクリック.
+                </para>
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="../images/editor_enable_curve_edit.png"/>
+                    </imageobject>
+                </inlinemediaobject>
+                <para>
+                    点を追加するには: 編集モードで選択した曲線上で, 右クリック, 
+                    "挿入" または曲線上でダブルクリック.
+                </para>
+                <para>
+                    点を削除するには: 編集モードで選択した曲線上で, 右クリック, "削除".
+                </para>
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="../images/editor_add_point.png"/>
+                    </imageobject>
+                </inlinemediaobject>
+                <para>
+                    点を移動するには: 編集モードで選択した曲線上で, 点をクリックしてドラッグ.
+                </para>
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="../images/editor_move_point.png"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+</refentry>

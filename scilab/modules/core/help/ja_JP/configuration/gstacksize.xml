@@ -13,7 +13,7 @@
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>n</term>
@@ -32,28 +32,41 @@
     <refsection>
         <title>説明</title>
         <para>
-            Scilab は, グローバル変数をスタックに保存します
+            Scilab は, グローバル変数をスタックに保存します.
         </para>
         <para>
-            <literal>gstacksize(n)</literal> により,
-            ユーザはこのスタックの大きさを増減させることができます.
-            その最大値は,
-            その時点で利用可能な空きメモリおよびスワップ空間大きさに依存します.
+	   <code>gstacksize(n)</code> により,
+           ユーザはこのスタックの大きさを増減させることができます.
+           その最大値は,
+           その時点で利用可能な空きメモリおよびスワップ空間大きさに依存します.
+        </para>
+        <para>
+          <note>
             Scilabは必要に応じてグローバルなスタックの大きさを自動的に増加させる
             ことに注意してください.
+          </note>
         </para>
         <para>
-            <literal>sz=gstacksize()</literal> は, カレントのグローバルスタックの大きさと
-            使用中のグローバルスタックの大きさを含む要素2個のベクトルを返します.
+          <code>sz=gstacksize()</code> は, カレントのグローバルスタックの大きさと
+          使用中のグローバルスタックの大きさを含む要素数2のベクトルを返します.
         </para>
         <para>
-            <literal>gstacksize('max')</literal> により,ユーザは
-            グローバルスタックの大きさを最大値に増加させることができます.
+          <code>gstacksize('max')</code> により,ユーザは
+          グローバルスタックの大きさを最大値に増加させることができます.
         </para>
         <para>
-            <literal>gstacksize('min')</literal> により,ユーザは
-            グローバルスタックの大きさを最小値に減少させることができます.
+          <code>gstacksize('min')</code>により,ユーザは
+          グローバルスタックの大きさを最小値に減少させることができます.
         </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
+currentStackSize = gstacksize();
+disp("Maximum stacksize: " + string(currentStackSize(1)))
+disp("Current usage: "+ string(currentStackSize(2)))
+
+ ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>参照</title>

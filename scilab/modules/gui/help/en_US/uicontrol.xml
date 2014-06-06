@@ -70,7 +70,7 @@
                 <para>Edit: an editable string zone.</para>
             </listitem>
             <listitem>
-                <para>Frame: a container for other uicontrols.
+                <para>Frame: a container for other uicontrols or axes.
                 </para>
             </listitem>
             <listitem>
@@ -78,7 +78,7 @@
             </listitem>
             <listitem>
                 <para>
-                    Layer: a container for <literal>frame</literal> style uicontrols enbaling to switch between them programmatically using the <literal>value</literal> property.
+                    Layer: a container for <literal>frame</literal> style uicontrols enabling to switch between them programmatically using the <literal>value</literal> property.
                 </para>
             </listitem>
             <listitem>

@@ -1,0 +1,700 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+*
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2013 - S/E - Sylvestre Ledru
+* Copyright (C) 2012 - CNES - Simon Billemont
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+*
+*
+-->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="jims-getting-started">
+    
+    <refnamediv>
+        
+        <refname>入門 - 第1ステップ</refname>
+        
+        <refpurpose>Java Scilab バインディングを使用するには?</refpurpose>
+        
+    </refnamediv>
+    
+    <refsection>
+        
+        <title>説明</title>
+        
+        <para>
+            
+            このモジュールの目的は, Javaオブジェクトおよびデータ型を
+            
+            読込み, 相互作用を行えるようにすることです.
+            
+        </para>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>基本</title>
+        
+        <para>
+            
+            始める前に, 多くの重要な関数とその動作を知っておくと良いでしょう.
+            
+            これらの多く使用される関数は, 以下のScilab関数です:
+            
+            <itemizedlist>
+                
+                <listitem>
+                    
+                    <link linkend="jimport">jimport</link>: Javaクラスをインポート
+                    
+                </listitem>
+                
+                <listitem>
+                    
+                    <link linkend="jimport">jinvoke</link>: Javaオブジェクトのメソッドをコール
+                    
+                </listitem>
+                
+            </itemizedlist>
+            
+        </para>
+        
+        <para>
+            
+            jimport はjava命令 'import' の機能を模擬する関数で,
+            
+            指定したクラス定義/指定したクラスのテンプレートをメモリに読込みます.
+            
+            読み込まれた際, この定義が静的メソッド/メンバへのアクセス,
+            
+            新規オブジェクト作成の際に使用されます.
+            
+            k        
+        </para>
+        
+        <para>
+            
+            jinvoke はjavaクラスまたはオブジェクトの指定したメソッドを
+            
+            コール(invoke)する関数です.
+            
+            このinvokeは,実際のメンバシグネチャと一致する
+            
+            一連のオプションのパラメータを有します.
+            
+            これは,同数のパラメータを指定し,これらの引数が正しい型を有している
+            
+            必要があることを意味します.
+            
+        </para>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>例1: 基底クラスを作成し, 簡単なメソッドをコール</title>
+        
+        <para>
+            
+            この最初の例では,Javaを動作させる3つの基本的な柱を扱います.
+            
+            最初はクラスの読込みで,
+            
+            次はインスタンスの構築,
+            
+            最後はこのメソッドまたはメンバの一つをコールすることです.
+            
+        </para>
+        
+        <para>
+            
+            例<literal>HelloWorld</literal>で示されたものと同様の基底クラスを考えます.
+            
+            このクラスは,構築時にメッセージを生成するデフォルトのコンストラクタを有し,
+            
+            コール時にメッセージを表示する公開メソッドを1つ有します.
+            
+            このクラスは, javaバイトコードにコンパイルする必要があります.
+            
+            コードを開発する際には, この部分は通常IDE(integrated development environment)
+            
+            により処理されます.
+            
+            外部ライブラリを使用する場合, プリコンパイル形式(JARでパックされた)のものが
+            
+            利用可能です.
+            
+        </para>
+        
+        <programlisting role="java"><![CDATA[
+// HelloWorld.javaという名前で保存
+package com.foo;
+public class HelloWorld {
+   public HelloWorld() {
+      System.err.println("HelloWorld constructed!");
+  }
+
+  public void message() {
+      System.err.println("Hello world!");
+  }
+}
+      ]]></programlisting>
+        
+        <programlisting role="example"><![CDATA[
+// ScilabからJavaコードをコンパイルする方法
+javacode=mgetl(fullfile(TMPDIR, 'HelloWorld.java'));
+jcompile("com.foo.HelloWorld",javacode);
+      ]]></programlisting>
+        
+        <para>
+            
+            このJavaクラスのコンパイル版が既に存在する場合, Scilabを起動し,
+            
+            Scilabに種々のメッセージを表示させることができます.
+            
+            HelloWorldクラスをワークスペースにインポートすることができます.
+            
+            これは, 前述のインポート手順により以下のように行うことができます:
+            
+            <screen>
+                
+                -->jimport com.foo.HelloWorld
+                
+                
+                
+                -->HelloWorld
+                
+                HelloWorld  =
+                
+                
+                
+                class com.foo.HelloWorld
+                
+                
+                
+                -->whos -name HelloWorld
+                
+                Name                     Type           Size           Bytes
+                
+                
+                
+                HelloWorld               _EClass        ?              168
+                
+            </screen>
+            
+            <para>
+                
+                完了後, HelloWorldという名前の変数が作成されています.
+                
+                これは, Javaにおけるクラスオブジェクトと等価です. このクラスオブジェクトから,
+                
+                HelloWorld型の新規オブジェクトを作成できます.
+                
+            </para>
+            
+            <para>
+                
+                オブジェクトのインスタンスの作成は,クラス定義に
+                
+                <link linkend="new">new</link>を呼び出すことで行います.
+                
+                このクラスの引数は, Javaコンストラクタに移譲されるパラメータです.
+                
+                この処理の結果は, Javaオブジェクトへのリファレンスで, 
+                
+                後で使用するために変数に保存できます.
+                
+            </para>
+            
+            <screen>
+                
+                -->object = HelloWorld.new();
+                
+                HelloWorld constructed!
+                
+                
+                
+                -->object
+                
+                object  =
+                
+                
+                
+                com.foo.HelloWorld@49aacd5f
+                
+                
+                
+                -->whos -name object
+                
+                Name                     Type           Size           Bytes
+                
+                
+                
+                object                   _EObj          ?              160
+                
+            </screen>
+            
+            <para>
+                
+                <link linkend="new">new</link> 演算子が JClassでコールされた際,
+                
+                Javaコンストラクタが透過的に呼び出され, メッセージ"HelloWorld constructed!"が
+                
+                表示されます.
+                
+                生成されたHelloWorld オブジェクトは"object"変数に保存されます.
+                
+                このメッセージはHelloWorldクラスのtoStringメソッドをオーバーライドすることにより
+                
+                カスタマイズできます.
+                
+            </para>
+            
+            <para>
+                
+                ここで,特定のHelloWorldオブジェクトが作成され,
+                
+                宣言された公開メソッドがを以下のようにコールできるようになりました; 
+                
+                <literal>HelloWorld\#message()</literal>. 
+                
+                <link linkend="new">new</link>と同様な技法を
+                
+                メソッドを呼び出す際に使用できます:
+                
+            </para>
+            
+            <screen>
+                
+                -->object.message();
+                
+                Hello world!
+                
+            </screen>
+            
+            <para>
+                
+                ドット演算子 (オブジェクトとメッセージの間にドット)は
+                
+                便利なショートカットで,以下のようなScilabコードのスニペットを拡張します.
+                
+                このショートカットの仕様により,
+                
+                メソッドを呼び出したり,
+                
+                メンバ変数を取得したりすることがより簡単かつ明快になります.
+                
+            </para>
+            
+            <screen>
+                
+                -->jinvoke(object, 'message');
+                
+                Hello world!
+                
+            </screen>
+            
+        </para>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>例 2: Scilab と Java のプリミティブを相互変換</title>
+        
+        <para>
+            
+            この例は,基本的なデータ型と文字列をScilabとJavaの間で交換
+            
+            する手法を扱います.
+            
+            複数の型のオブジェクトをこれらの2つの言語の間で渡します.
+            
+        </para>
+        
+        <para>
+            
+            ここでは,例となるクラス(Class Inspector 参照)が
+            
+            オブジェクトを入出力するよう定義されます.
+            
+            2つのメソッドが定義されています.
+            
+            最初のメソッドは doubleを1つ引数とし,算術演算をして,
+            
+            結果を返します: Inspector#eval(double).
+            
+            もう一つのメソッドは, 任意のオブジェクトを引数とし,
+            
+            基本的な情報を表示して,返します: Inspector#inspect(Object).
+            
+        </para>
+        
+        <programlisting role="java"><![CDATA[
+// Inspector.java という名前で保存
+package com.foo;
+public class Inspector {
+	public double eval(double x) {
+		return x / 2.;
+	}
+
+	public Object inspect(Object prototype) {
+		System.err.println("Inspecting: '" + prototype + "'");
+		System.err.println("Class: " + prototype.getClass().getSimpleName());
+		return prototype;
+	}
+}
+      ]]></programlisting>
+        
+        <para>
+            
+            前の例と同様に, このコードは使用前にコンパイルしておく必要があります.
+            
+        </para>
+        
+        <programlisting role="example"><![CDATA[
+// Scilab から Javaコードをコンパイルする方法
+javacode= mgetl(fullfile(TMPDIR, 'Inspector.java'));
+jcompile("com.foo.Inspector",javacode);
+      ]]></programlisting>
+        
+        まず, Inspectorクラスをインポートし,
+        
+        Inspectorオブジェクトを作成します:
+        
+        <screen>
+            
+            -->jimport('com.foo.Inspector');
+            
+            
+            
+            -->myInspector = Inspector.new()
+            
+            myInspector  =
+            
+            
+            
+            com.foo.Inspector@2a788315
+            
+        </screen>
+        
+        これにより, 2つのシステム間で情報を交換できるようになります.任意のScilabデータ型をJavaに指定すると, 自動的に Javaの等価な型にラップ(<link linkend="jwrap">jwrap</link>参照)されます.まず, Scilabで最も良く使用される型の使用例として, 実数(定数)を示します. 実数を渡すと, この型は自動的に Scilab型doubleにマップされます. 試してみましょう;
+        
+        <screen>
+            
+            -->result = myInspector.eval(12.5)
+            
+            result  =
+            
+            
+            
+            6.25
+            
+            
+            
+            -->result * 2
+            
+            ans  =
+            
+            
+            
+            12.5
+            
+            
+            
+            -->whos -name result
+            
+            Name                     Type           Size           Bytes
+            
+            
+            
+            result                   constant       1 by 1         24
+            
+        </screen>
+        
+        自動変換は, jautoUnwrap関数により制御されます. この関数を利用しない場合,全ての変換を陽に行う必要があります.
+        
+        <screen>
+            
+            -->result = myInspector.eval(12.5)
+            
+            result  =
+            
+            
+            
+            6.25
+            
+            
+            
+            -->result * 2
+            
+            ans  =
+            
+            
+            
+            null
+            
+            
+            
+            -->whos -name result
+            
+            Name                     Type           Size           Bytes
+            
+            
+            
+            result                   _EObj          ?              160
+            
+        </screen>
+        
+        返された結果は一見して正しいように見えます ($12.5/2=6.25$). しかし, よく見ると, 関数コールから返された値は数値ではありません. 受けたものは, 別の Javaオブジェクト (この場合は Double)です. 再びScilabで指定したデータを使用できるようにするには, jautoUnwrapを trueに設定していない場合, 前述の <link linkend="junwrap">junwrap</link>機能を使用できます.
+        
+        この変換は Java型を等価な Scilab形式に戻します. これを行うと, 通常の数値を再度得ることができます:
+        
+        <screen>
+            
+            -->result = junwrap(result)
+            
+            result  =
+            
+            
+            
+            6.25
+            
+            
+            
+            -->whos -name result
+            
+            Name                     Type           Size           Bytes
+            
+            
+            
+            result                   constant       1 by 1         24
+            
+            
+            
+            -->result * 2
+            
+            ans  =
+            
+            
+            
+            12.5
+            
+        </screen>
+        
+        
+        
+        この例から, doubleが Java VM により使用され,返される Doubleに自動的に変換される流れが明確になりました. 返された変数を指定して <link linkend="junwrap">junwrap</link>をコールした際, ネーティブなScilab型に戻されます.しかし, 他の型の場合はどうでしょう? 他の基本型についても調べてみましょう;
+        
+        <screen>
+            
+            -->jautoUnwrap(%f) // 自動unwrapを無効にします
+            
+            
+            
+            -->result = myInspector.inspect("Hello world!");
+            
+            Inspecting: 'Hello world!'
+            
+            Class: String
+            
+            
+            
+            -->whos -name result
+            
+            Name                     Type           Size           Bytes
+            
+            
+            
+            result                   _EObj          ?              160
+            
+            
+            
+            -->result = junwrap(result)
+            
+            result  =
+            
+            
+            
+            Hello world!
+            
+            
+            
+            -->whos -name result
+            
+            Name                     Type           Size           Bytes
+            
+            
+            
+            result                   string         1 by 1         72
+            
+            
+            
+            // 整数
+            
+            -->result = myInspector.inspect(int32(150));
+            
+            Inspecting: '150'
+            
+            Class: Integer
+            
+            
+            
+            -->result = junwrap(result)
+            
+            result  =
+            
+            
+            
+            150
+            
+            
+            
+            -->whos -name result
+            
+            Name                     Type           Size           Bytes
+            
+            
+            
+            result                   int32          1 by 1         40
+            
+            
+            
+            // 論理値
+            
+            -->result = myInspector.inspect(%t);
+            
+            Inspecting: 'true'
+            
+            Class: Boolean
+            
+            
+            
+            -->result = junwrap(result)
+            
+            result  =
+            
+            
+            
+            T
+            
+            
+            
+            -->whos -name result
+            
+            Name                     Type           Size           Bytes
+            
+            
+            
+            result                   boolean        1 by 1         16
+            
+            
+            
+        </screen>
+        
+        
+        
+        見てわかるように, 全ての関連するデータ型は Scilab と Java型の間で透過的に変換できます. しかし, これはそのまま行列にも拡張できます;
+        
+        <screen>
+            
+            --> jautoUnwrap(%t) // コールを自動unwrapするデフォルトのモードに戻します
+            
+            
+            
+            -->result = myInspector.inspect(1:5)
+            
+            Inspecting: '[D@b05236'
+            
+            Class: double[]
+            
+            result  =
+            
+            
+            
+            1.    2.    3.    4.    5.
+            
+            
+            
+            -->whos -name result
+            
+            Name                     Type           Size           Bytes
+            
+            
+            
+            result                   constant       1 by 5         56
+            
+            
+            
+            -->result = myInspector.inspect(testmatrix('magi',3))
+            
+            Inspecting: '[[D@11d13272'
+            
+            Class: double[][]
+            
+            result  =
+            
+            
+            
+            8.    1.    6.
+            
+            3.    5.    7.
+            
+            4.    9.    2.
+            
+            
+            
+            -->whos -name result
+            
+            Name                     Type           Size           Bytes
+            
+            
+            
+            result                   constant       3 by 3         88
+            
+        </screen>
+        
+        これらのラップされた行列のクラスを見ると, Javaはこれらを適当な大きさの配列として保存していることがわかります. 2次元行列の場合, これに等価なJava配列は列優先(デフォルト)または行優先モードで保存されます. 列優先モードでは, 最初の配列が各列へのポインタを有します. 一方, 行優先モードでは, 最初の配列が各行のデータを有します. 詳細については,<link linkend="jautoTranspose">jautoTranspose</link>を参照ください.
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>履歴</title>
+        
+        <revhistory>
+            
+            <revision>
+                
+                <revnumber>5.5.0</revnumber>
+                
+                <revremark>
+                    
+                    関数が導入されました. 'JIMS'モジュールに基づきます.
+                    
+                    JIMSモジュールとの動作上の主な違いは,
+                    
+                    <link linkend="jautoUnwrap">jautoUnwrap</link>がデフォルトで
+                    
+                    有効になっていることです.
+                    
+                </revremark>
+                
+            </revision>
+            
+        </revhistory>
+        
+    </refsection>
+    
+</refentry>
+
+
+

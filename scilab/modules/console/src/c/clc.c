@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Allan CORNET
+ * Copyright (C) 2014 - Scilab Enterprises - Anais AUBERT
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -11,6 +12,7 @@
  */
 /*--------------------------------------------------------------------------*/
 #include <stdlib.h>
+#include <stdio.h>
 #include "clc.h"
 #include "sci_mode.h"
 #include "ClearConsole.h"
@@ -18,6 +20,8 @@
 #ifdef _MSC_VER
 #include "windows/clrscr_nw.h"
 #include "windows/clrscrPart_nw.h"
+#else
+#include "others/clrscr_nw.h"
 #endif
 /*--------------------------------------------------------------------------*/
 BOOL clc(int nblines)
@@ -32,19 +36,14 @@ BOOL clc(int nblines)
             clrscrPart_nw(nblines);
             bOK = TRUE;
 #else
-            /* impossible in this mode */
-            bOK = FALSE;
+            printf("\033[%dA\033[J", nblines + 2);
+            bOK = TRUE;
 #endif
         }
         else
         {
-#ifdef  _MSC_VER
             clrscr_nw();
             bOK = TRUE;
-#else
-            /* only on Windows */
-            bOK = FALSE;
-#endif
         }
     }
     else

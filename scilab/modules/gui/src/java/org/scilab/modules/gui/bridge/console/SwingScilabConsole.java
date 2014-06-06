@@ -43,6 +43,7 @@ import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.console.OneCharKeyEventListener;
 import org.scilab.modules.console.SciConsole;
 import org.scilab.modules.console.SciHistoryManager;
+import org.scilab.modules.console.SciInputCommandView;
 import org.scilab.modules.console.SciOutputView;
 import org.scilab.modules.graphic_objects.graphicObject.CallBack;
 import org.scilab.modules.gui.bridge.contextmenu.SwingScilabContextMenu;
@@ -59,6 +60,7 @@ import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.history_manager.HistoryManagement;
 import org.scilab.modules.localization.Messages;
 import org.scilab.modules.commons.xml.XConfiguration;
+
 import static org.scilab.modules.commons.xml.XConfiguration.XConfAttribute;
 
 import com.artenum.rosetta.interfaces.ui.InputCommandView;
@@ -254,6 +256,9 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
         if (getCanReadUserInputValue().availablePermits() == 0) {
             setUserInputValue((int) 'n');
         }
+
+        // interrupt any mscanf call (input, halt and so on)
+        ((SciInputCommandView) this.getConfiguration().getInputCommandView()).interrupt();
     }
 
     /**

@@ -11,7 +11,7 @@
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>n</term>
@@ -30,30 +30,32 @@
     <refsection>
         <title>説明</title>
         <para>
-            <literal>errcatch</literal> は,
-            <literal>n</literal>型のエラーが発生した時に
-            実行される "処理" (エラーハンドラ)を指定します,
-            <literal>n</literal> は以下の意味を有します:
+          <function>errcatch</function> は,
+          <literal>n</literal>型のエラーが発生した時に
+          実行される "アクション" (エラーハンドラ)を指定します,
         </para>
         <para>
-            <literal>n&gt;0</literal>の場合, <literal>n</literal> は
-            捕捉するエラー番号となります.
+          <varname>n</varname> は以下の意味を有します:
         </para>
         <para>
-            <literal>n&lt;0</literal>  の場合,全てのエラーが捕捉されます.
+          <varname>n</varname><literal>&gt;0</literal>の場合, <varname>n</varname> は
+          捕捉するエラー番号となります.
         </para>
         <para>
-            <literal>action</literal> は以下の文字列のどれかとなります:
+          <varname>n</varname><literal>&lt;0</literal> の場合,全てのエラーが捕捉されます.
+        </para>
+        <para>
+          <varname>action</varname>は以下の文字列のどれかとなります:
         </para>
         <variablelist>
             <varlistentry>
                 <term>"pause"</term>
                 <listitem>
                     <para>
-                        誤差を捕捉した際に pause が実行されます.
-                        このオプションはデバッグの際に有用です.
-                        カレントのコンテキストで情報を取得するには
-                        <literal>whereami()</literal>を使用してください.
+                      誤差を捕捉した際に pause が実行されます.
+                      このオプションはデバッグの際に有用です.
+                      カレントのコンテキストで情報を取得するには
+                      <code>whereami()</code>を使用してください.
                     </para>
                 </listitem>
             </varlistentry>
@@ -61,18 +63,18 @@
                 <term>"continue"</term>
                 <listitem>
                     <para>
-                        関数または実行ファイルないの次の命令が実行され,
-                        カレントの命令は無視されます.
-                        <literal>iserror</literal>関数により,
-                        エラーが発生したかどうかを調べることが可能です.できるだけ早く
-                        <literal>errclear</literal>関数によりエラーをクリアすることを
-                        忘れないようにしてください.
-                        このオプションはエラーからの回復の際に有用です.
-                        多くの場合,
-                        <link linkend="execstr">execstr</link> 関数または
-                        <link linkend="try">try</link>制御構造を使用することにより
-                        <literal>errcatch(n,"continue",..)</literal>を
-                        置換することができます.
+                      関数または実行ファイルないの次の命令が実行され,
+                      カレントの命令は無視されます.
+                      <link linkend="iserror">iserror</link>関数により,
+                      エラーが発生したかどうかを調べることが可能です.できるだけ早く
+                      <link linkend="errclear">errclear</link>関数によりエラーをクリアすることを
+                      忘れないようにしてください.
+                      このオプションはエラーからの回復の際に有用です.
+                      多くの場合,
+                      <link linkend="execstr">execstr</link> 関数または
+                      <link linkend="try">try</link>制御構造を使用することにより
+                      <literal>errcatch(n,"continue",..)</literal>を
+                      置換することができます.
                     </para>
                 </listitem>
             </varlistentry>
@@ -94,28 +96,43 @@
             </varlistentry>
         </variablelist>
         <para>
-            <literal>option</literal> は中断時のエラーメッセージである
-            文字列 <literal>'nomessage'</literal> です.
+          <varname>option</varname> は中断時のエラーメッセージである
+          文字列 <literal>'nomessage'</literal> です.
         </para>
         <para>
-            デフォルトモードに戻すためには,
-            <literal>errcatch(-1,"kill")</literal>または
-            <literal>errcatch(-1)</literal> と入力してください.
-            <literal>errcatch()</literal> は以前使用されていた <literal>errcatch(-1)</literal> と
+          デフォルトモードに戻すためには,
+          <code>errcatch(-1,"kill")</code> または
+          <code>errcatch(-1)</code>と入力してください.
+          <code>errcatch()</code> は以前使用されていた<code>errcatch(-1)</code>と
             等価です. 
         </para>
         <para/>
         <para>
-            <literal>errcatch</literal>のアクションはカレントの評価コンテキスト
-            (function, exec, pause) およびサブレベル全体に適用されます.
-            あるサブレベル内で<literal>errcatch</literal> を2回コールすると
-            このサブレベルでの最初のコールが隠蔽され,
-            最初の関数コールの効果は削除されます.
+          <function>errcatch</function>のアクションはカレントの評価コンテキスト
+          (function, exec, pause) およびサブレベル全体に適用されます.
+          あるサブレベル内で<function>errcatch</function>を2回コールすると
+          このサブレベルでの最初のコールが隠蔽され,
+          最初の関数コールの効果は削除されます.
         </para>
         <para> 
-            Scilab関数または exec のコンテキスト内でコールされた場合,
-            <literal>errcatch</literal>は,関数のリターンの時に自動的にリセットされます.
+          Scilab関数または exec のコンテキスト内でコールされた場合,
+          <function>errcatch</function>は,関数のリターンの時に自動的にリセットされます.
         </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
+errcatch(144,"continue")
+2/"foo"
+disp(a) // Without the errcatch, this line would not be executed
+
+errcatch(-1,"kill") // Come back in the normal mode
+errcatch(144,"pause")
+2/"foo" // Enter in "pause" mode
+
+errcatch(27,'continue','nomessage')
+b=2/0 // No error message but b will not exist
+ ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>参照</title>
@@ -134,6 +151,12 @@
             </member>
             <member>
                 <link linkend="execstr">execstr</link>
+            </member>
+            <member>
+                <link linkend="exec">exec</link>
+            </member>
+            <member>
+                <link linkend="pause">pause</link>
             </member>
         </simplelist>
     </refsection>

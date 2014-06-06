@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - DIGITEO - Sylvestre Ledru
+ * 
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="MPI_Recv" xml:lang="ja">
+    <refnamediv>
+        <refname>MPI_Recv</refname>
+        <refpurpose>ノードからデータを受信する</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>value = MPI_Recv(rank,tag)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>rank</term>
+                <listitem>
+                    <para>ランク. TODO</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>tag</term>
+                <listitem>
+                    <para>タグ. TODO</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>res</term>
+                <listitem>
+                    <para>MPI_Sendから取得した値.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            指定したノードから値を取得します.
+            その値は,通常,関数
+            <link linkend="MPI_Send">MPI_Send</link>から送信されます.
+        </para>
+    </refsection>
+    <refsection>
+        <title>技術的実装</title>
+        <para>
+            Scilab/MPIの実装に関する詳細については,
+            <link linkend="mpi_technical">実装に関する技術的詳細</link>を
+            参照ください.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example">
+            MPI_Init();
+            rnk =    MPI_Comm_rank();
+            sizeNodes =    MPI_Comm_size();
+            SLV = rnk;                // 便利なショートカット, マスターはランク 0
+            Master = ~ SLV;            // その他は全てスレーブ
+            tag=0;
+            if Master
+            // マスターノード
+            for slaveId = 1:sizeNodes-1
+            // Send data to the slaves
+            value = rand(100,100) + rand(100,100) * %i;
+            MPI_Send(value, slaveId);
+            end
+            for slaveId = 1:sizeNodes-1
+            valueBack=MPI_Recv(slaveId, tag);
+            // スレーブが期待するものを送信したか確認
+            assert_checkequal(valueBack,value + 1);
+            end
+            else
+            // スレーブ
+            rankSource=0;
+            // マスターから情報を受信
+            value=MPI_Recv(rankSource);
+            // 値を1つ増加
+            value=value+1;
+            // マスターに戻す
+            MPI_Send(value,0);
+            end
+            MPI_Finalize();
+        </programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="MPI_Send">MPI_Send</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

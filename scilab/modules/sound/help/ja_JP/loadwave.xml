@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) ????-2006 - INRIA - Scilab 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+    *
+    -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="loadwave" xml:lang="ja">
+    <refnamediv>
+        <refname>loadwave</refname>
+        <refpurpose>サウンドwavファイルをscilabに読み込む</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>x=loadwave(filename);
+            [x,y]=loadwave(filename);
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>filename</term>
+                <listitem>
+                    <para>文字列. 読み込むwavファイルのパス</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>行列,各チャネル毎に1行</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>
+                        ベクトル,
+                        [データ形式, チャネル数, 各チャネルのサンプル/秒,
+                        所要バイト/秒の推定値,
+                        基本サンプリングブロックのバイト並び,
+                        ビット/サンプル, サウンドデータ長(単位:バイト),
+                        バイト/サンプル(チャネル毎)].
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            サウンドファイル<literal>.wav</literal>をScilabに行列として読み込みます.
+            yが指定された場合, サンプルに関する情報が代入されます
+            <literal>loadwave</literal>により送信されたメッセージを参照).
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
+// まず0.5秒分のサウンドパラメータを作成.
+t=soundsec(0.5);
+// 次にサウンドを生成: 2チャンネルのサウンド.
+s=[sin(2*%pi*440*t);sin(2*%pi*350*t)];
+savewave(TMPDIR+'/foo.wav',s);
+s1=loadwave(TMPDIR+'/foo.wav');
+max(abs(s1-s))
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="savewave">savewave</link>
+            </member>
+            <member>
+                <link linkend="analyze">analyze</link>
+            </member>
+            <member>
+                <link linkend="mapsound">mapsound</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

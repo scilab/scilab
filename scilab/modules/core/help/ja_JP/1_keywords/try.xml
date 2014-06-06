@@ -50,8 +50,8 @@
             これは,特に構文エラーを処理する際に有用です.
         </para>
         <para>
-            <literal>try-catch</literal> は
-            に多少なりとも似ていることにも注意してください:
+            <literal>try-catch</literal> は以下に
+	    多少なりとも似ていることにも注意してください:
         </para>
         <programlisting role=""><![CDATA[ 
 if execstr("<try instructions>","errcatch")<>0 then
@@ -98,10 +98,10 @@ try
   disp("try 1")
   try
     disp("try 2")
-    z=a+1;  // err when string
+    z=a+1;  // 文字列の場合はエラー
   catch
     disp("catch 2")
-    t=b+1;  // err when string
+    t=b+1;  // 文字列の場合はエラー
   end
   disp("after try 2")
 catch

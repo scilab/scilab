@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - DIGITEO - Sylvestre Ledru
+ * 
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="MPI_Bcast" xml:lang="ja">
+    <refnamediv>
+        <refname>MPI_Bcast</refname>
+        <refpurpose>
+            ランクルートを有するプロセスからグループの
+            他の全プロセスにメッセージをブロードキャストする.
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>res = MPI_Bcast(value,rootID)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>value</term>
+                <listitem>
+                    <para>全ノードに送信する値.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>rootID</term>
+                <listitem>
+                    <para>メッセージのソース</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>res</term>
+                <listitem>
+                    <para>ブロードキャストされた値</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            全ノードに変数を送信します.
+            この値は関数<link linkend="MPI_Recv">MPI_Recv</link>により
+            ノードで取得されます.
+        </para>
+        <para>
+            内部的な技術面では,2つのブロードキャストが透過的に
+            使用されます.
+            初回はデータの大きさ,2回目はデータ自体を送信します.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example">
+            MPI_Init();
+            rnk =    MPI_Comm_rank();
+            sizeNodes =    MPI_Comm_size();
+            SLV = rnk;                // 手軽なショートカット, マスターはランク0です
+            Master = ~ SLV;            // その他は全てスレーブ
+            a=-1
+            if Master
+            // aを宣言
+            a=42
+            end
+            b=MPI_Bcast(a, 0);
+            assert_checkequal(b,42);
+            MPI_Finalize();
+        </programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="MPI_Recv">MPI_Recv</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -30,10 +30,13 @@
     <refsection>
         <title>Description</title>
         <para>
-            La fonction <literal>struc</literal>t retourne une struct avec des noms de
-            champs <literal>field1</literal>, <literal>field2</literal>, .., et dont les valeurs
-            respectives sont <literal>value</literal><literal>1</literal>, <literal>value2</literal>,
+            La fonction <function>struct</function> retourne une struct avec des noms de
+            champs <varname>field1</varname>, <varname>field2</varname>, .., et dont les valeurs
+            respectives sont <varname>value1</varname>, <varname>value2</varname>,
             ...
+        </para>
+        <para>
+            Notez que <literal>type(st)</literal> retourne <literal>17</literal> et que <literal>typeof(st)</literal> retourne <literal>st</literal>.
         </para>
     </refsection>
     <refsection>
@@ -49,6 +52,20 @@ date_st.annee=1973;
 
 // ajouter un champ 'semaine'
 date_st.semaine=32
+
+//creation d'une structure test
+test=struct('list1',list('testlist',1,2), 'matrix1', [1 2 3; 4 5 6], 'boolean1', %t);
+//ajout d'un polynôme
+s=poly(0,'s')
+test.pol1=s;
+//ajout d'un système linéaire (représentation d'état)
+A=[0,1;0,0]; B=[1;1];C=[1,1];
+test.ss1=syslin('c',A,B,C);
+//Affichage de la liste
+test.list1
+getfield(3,test)
+//Affichage du type
+type(test)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -56,6 +73,18 @@ date_st.semaine=32
         <simplelist type="inline">
             <member>
                 <link linkend="cell">cell</link>
+            </member>
+            <member>
+                <link linkend="mlist">mlist</link>
+            </member>
+            <member>
+                <link linkend="tlist">tlist</link>
+            </member>
+            <member>
+                <link linkend="getfield">getfield</link>
+            </member>
+            <member>
+                <link linkend="setfield">setfield</link>
             </member>
         </simplelist>
     </refsection>

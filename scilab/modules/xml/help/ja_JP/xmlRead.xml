@@ -68,11 +68,9 @@
     e.name
     e.content
     xmlDump(e)
-
     // 'href'属性を有するノードを全て取得できます
     q = xmlXPath(doc, "//*[@href]");
     q(1).attributes.href
-
     // 文書を削除します
     xmlDelete(doc);
     ]]></programlisting>

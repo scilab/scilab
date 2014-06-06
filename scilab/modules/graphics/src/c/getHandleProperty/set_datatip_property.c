@@ -41,6 +41,8 @@ int set_tip_orientation_property(void* _pvCtx, int iObj, void* _pvData, int valu
 
     if (status == TRUE)
     {
+        int auto_orientation = 0;
+        setGraphicObjectProperty(iObj, __GO_DATATIP_AUTOORIENTATION__, &auto_orientation, jni_bool, 1);
         return SET_PROPERTY_SUCCEED;
     }
     else

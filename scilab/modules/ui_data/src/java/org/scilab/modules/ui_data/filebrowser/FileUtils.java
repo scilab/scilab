@@ -47,6 +47,7 @@ public final class FileUtils {
     private static final Icon UPICON = new ImageIcon(FindIconHelper.findIcon("dynamic-blue-up"));
     private static final Icon SCIICON = new ImageIcon(FindIconHelper.findIcon("scilab-folder"));
     private static final Icon OPENSCIICON = new ImageIcon(FindIconHelper.findIcon("scilab-folder-open"));
+    private static final Icon MATICON = new ImageIcon(FindIconHelper.findIcon("application-mat"));
 
     private static final int CHARTOREAD = 128;
 
@@ -75,6 +76,7 @@ public final class FileUtils {
         extToIcon.put("htm", HTMLICON);
         extToIcon.put("xml", XMLICON);
         extToIcon.put("csv", CSVICON);
+        extToIcon.put("mat", MATICON);
     }
 
     /**

@@ -21,23 +21,24 @@
         <synopsis>[Value,TextInd] = xls_read(fd,Sheetpos)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>fd</term>
                 <listitem>
                     <para>
-                        数値, <link linkend="xls_open">xls_open</link>により返されたExcelストリームの論理ユニット.
+                        数値: <link linkend="xls_open">xls_open</link>により返されたExcelストリームの論理ユニット.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>Sheetpos</term>
                 <listitem>
-                    <para> 数値: 
-                        Excelストリームにおけるシートの開始位置. この位置は
-                        <link linkend="xls_open">xls_open</link>により返された値です.
-                    </para>
+                  <para>
+		    数値: 
+                    Excelストリームにおけるシートの開始位置. この位置は
+                    <link linkend="xls_open">xls_open</link>により返された値です.
+                  </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -75,7 +76,9 @@
             使用することができます.
         </para>
         <para>
-            <warning> BIFF8 Excelファイル(最近のExcelファイルのバージョン(2003))のみが処理可能です.</warning> 
+          <warning>
+	    BIFF8 Excelファイル(最近のExcelファイルのバージョン(2003))のみが処理可能です.
+	  </warning> 
         </para>
     </refsection>
     <refsection>
@@ -102,14 +105,16 @@ mclose(fd)
     </refsection>
     <refsection>
         <title>参考文献</title>
-        <para>この関数は,OpenOfficeのExcel
-            ストリームに関する説明   (<ulink url="http://sc.openoffice.org/spreadsheetfileformat.pdf">http://sc.openoffice.org/spreadsheetfileformat.pdf</ulink>)に基づいています.
+        <para>
+	  この関数は,OpenOfficeのExcelストリームに関する説明
+	  (<ulink url="http://sc.openoffice.org/spreadsheetfileformat.pdf">
+	    http://sc.openoffice.org/spreadsheetfileformat.pdf</ulink>)に基づいています.
         </para>
     </refsection>
     <refsection>
         <title>使用される関数</title>
         <para>
-            この関数は, Sclabソース版のディレクトリSCIDIR/modules/spreadsheet/src/c
+            この関数は, Scilabソース版のディレクトリSCIDIR/modules/spreadsheet/src/c
             にあるxls.cを使用します.
         </para>
     </refsection>

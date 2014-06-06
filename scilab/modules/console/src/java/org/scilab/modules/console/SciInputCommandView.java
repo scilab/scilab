@@ -188,6 +188,15 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
     }
 
     /**
+     * Interrupt the 'await input commant' queue. This will throw an {@link InterruptedException} back to the Scilab engine.
+     */
+    final public void interrupt() {
+        if (concurrentThread != null) {
+            concurrentThread.interrupt();
+        }
+    }
+
+    /**
      * Sets the command buffer after a user input in input command view
      * @param command the string to set to the buffer
      * @param displayFlag boolean indicating if the command has to be displayed

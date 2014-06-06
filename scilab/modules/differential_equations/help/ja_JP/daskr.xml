@@ -243,6 +243,7 @@ r=res(t,y,ydot,x1,x2,...)
                             </para>
                             
                             <para>
+                                
                                 警告: この形式は<literal>関数</literal>に渡す別の引数が存在しない場合には
                                 
                                 使用するべきではありません.
@@ -266,7 +267,7 @@ void res(double *t, double y[], double yd[], double r[],
          int *ires, double rpar[], int ipar[])
  ]]></programlisting>
                             
-                            <para>Fortranの場合, 以下としま:</para>
+                            <para>Fortranの場合, 以下とします:</para>
                             
                             <programlisting role="no-scilab-exec"><![CDATA[
 subroutine res(t,y,yd,r,ires,rpar,ipar)
@@ -309,6 +310,7 @@ integer ires,ipar(*)
                             <para>Scilab関数.</para>
                             
                             <para>
+                                
                                 呼び出し手順は <literal>r=jac(t,y,ydot,cj)</literal> で,
                                 
                                 <literal>jac</literal> 関数は
@@ -393,6 +395,8 @@ integer ipar(*)
                     <para>
                         
                         <link linkend="external">external</link> (関数またはリストまたは文字列). 
+                        
+                        k                        
                         
                         <literal>ng</literal>個の要素を有する列ベクトル <literal>surf(t,y)</literal> の値を計算します.
                         
@@ -537,6 +541,7 @@ integer ny,ng
                                         "dg(i)/dy(j)+cj*dg(i)/dydot(j)"
                                         
                                     </literal>
+                                    
                                     で計算するバンド行列の定義域<literal>[ml,mu]</literal>を指定します.
                                     
                                     <literal>info(3)=[]</literal>の場合, <literal>jac</literal> は通常の行列
@@ -1156,13 +1161,10 @@ y(t0) = y0  and   ydot(t0) = ydot0
 // g2 = log(y) - 2.2491
 y0 = 1; t = 2:6; t0 = 1; y0d = 3;
 atol = 1.d-6; rtol = 0; ng = 2;
-
 deff('[delta,ires] = res1(t,y,ydot)','ires = 0; delta = ydot-((2*log(y)+8)/t-5)*y')
 deff('[rts] = gr1(t,y)','rts = [((2*log(y)+8)/t-5)*y; log(y)-2.2491]')
-
 [yy,nn] = daskr([y0,y0d],t0,t,atol,rtol,res1,ng,gr1);
 nn
-
 // nn = [2.4698972 2] を返します
  ]]></programlisting>
         

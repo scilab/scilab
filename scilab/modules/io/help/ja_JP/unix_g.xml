@@ -74,7 +74,6 @@ function d=DIR(path)
     d=unix_g('ls '+path)
   end
 endfunction
-
 DIR('SCI/etc')
  ]]></programlisting>
     </refsection>

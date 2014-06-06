@@ -71,8 +71,11 @@
         <para>
             
             <literal>
+                
                 iscolumn(<varname>x</varname>)
+                
             </literal>
+            
             は
             
             <varname>x</varname>が列ベクトルの場合にtrueを返します.

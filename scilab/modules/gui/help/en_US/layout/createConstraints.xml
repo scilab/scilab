@@ -31,7 +31,7 @@
                         </listitem>
                         <listitem>
                             <para>
-                                "border": A <link linkend="border_constraints_properties">border layout constraint</link>. 
+                                "border": A <link linkend="border_constraints_properties">border layout constraint</link>.
                             </para>
                         </listitem>
                         <listitem>
@@ -61,7 +61,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            This function creates the constraints structure for uicontrols <literal>constraints</literal> attribute. See <link linkend="uicontrol_properties">uicontrol properties.</link> for more details.
+            This function creates the constraints structure for uicontrols <literal>constraints</literal> attribute. See <link linkend="uicontrol_properties">uicontrol properties</link> for more details.
         </para>
     </refsection>
     <refsection role="see also">

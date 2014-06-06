@@ -13,20 +13,20 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="matfile_listvar">
     <refnamediv>
         <refname>matfile_listvar</refname>
-        <refpurpose>Matlab V5 バイナリ MATファイルの中の変数の一覧を得る.</refpurpose>
+        <refpurpose>Matlab バイナリ MATファイルの中の変数の一覧を得る.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
         <synopsis>[names[, classes[, types]]] = matfile_listvar(fd)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>fd</term>
                 <listitem>
                     <para>
-                        実数: ファイル記述子 ( <link linkend="matfile_open">matfile_open</link>いにより返された).
+                        実数: (<link linkend="matfile_open">matfile_open</link>により返された)ファイル記述子.
                     </para>
                 </listitem>
             </varlistentry>
@@ -56,6 +56,26 @@
             <link linkend="matfile_open">matfile_open</link>により開かれた
             MatlabバイナルMATファイルの中の変数の一覧を取得します.
         </para>
+        <para>
+            ファイルに変数がない場合, 空の行列が返されます.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+A = rand(10,10);
+B = sprand(100,100,0.1);
+C = "foo";
+D = "bar";
+savematfile('test_matfile.mat','A','B','C','D','-v6');
+clear();
+fd = matfile_open("test_matfile.mat");
+[name, classes, types]=matfile_listvar(fd);
+matfile_close(fd);
+for i=1:size(name,"*") do
+disp("The variable " + name(i) + " has type " + string(types(i)) + " and class " + string(classes(i)))
+end
+ ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>参照</title>

@@ -61,7 +61,6 @@ det(U)
 clean([p1,p2]*U)
 thelcm=p1*U(1,2)
 lcm([p1,p2])
-
 // 整数の場合
 i1=int32(2*3^5); i2=int32(2^3*3^2);
 [thegcd,U]=bezout(i1,i2)

@@ -819,15 +819,13 @@ libsciexternal_objects_la_CFLAGS = -I$(srcdir)/includes/ \
 
 libsciexternal_objects_la_CPPFLAGS = -I$(srcdir)/includes/ \
     -I$(srcdir)/src/cpp/ \
-    -I$(srcdir)/src/c/ \
     -I$(top_srcdir)/modules/localization/includes \
     -I$(top_srcdir)/modules/api_scilab/includes \
     -I$(top_srcdir)/modules/output_stream/includes \
     -I$(top_srcdir)/modules/string/includes \
     -I$(top_srcdir)/modules/fileio/includes \
     -I$(top_srcdir)/modules/core/src/c \
-	-I$(top_srcdir)/modules/operations/includes \
-    $(EXTERNAL_OBJECTS_FLAGS)
+	-I$(top_srcdir)/modules/operations/includes
 
 pkglib_LTLIBRARIES = libsciexternal_objects.la 
 noinst_LTLIBRARIES = libsciexternal_objects-algo.la 

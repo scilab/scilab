@@ -18,9 +18,7 @@
     <refsynopsisdiv>
         <title>呼び出し手順</title>
         <synopsis>lmitool()
-            
             lmitool(filename)
-            
             txt=lmitool(probname,varlist,datalist)
         </synopsis>
     </refsynopsisdiv>

@@ -94,8 +94,6 @@ P = [ 0 |  G]   -->'T'
         </para>
         <para>
             入力感度関数に関連した拡張プラント,つまり,
-            
-            
             The augmented plant associated with input sensitivity functions, namely
         </para>
         <programlisting role=""><![CDATA[ 

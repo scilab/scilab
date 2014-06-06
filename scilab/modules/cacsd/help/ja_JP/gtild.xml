@@ -105,7 +105,6 @@ Gt=gtild(G,'d');
 Gt-horner(G,1/s)'*s^3  //離散時間解釈
 G=ssrand(2,2,3);Gt=gtild(G);   //状態空間 (G はデフォルトで連続時間系)
 clean((horner(ss2tf(G),-s))'-ss2tf(Gt))   //確認
-
 // 離散時間 
 z=poly(0,'z');
 Gss=ssrand(2,2,3);Gss('dt')='d'; //離散時間 
@@ -113,7 +112,6 @@ Gss(5)=[1,2;0,1];   //定数D行列を指定
 G=ss2tf(Gss);Gt1=horner(G,1/z)';
 Gt=gtild(Gss);
 Gt2=clean(ss2tf(Gt)); clean(Gt1-Gt2)  //確認
-
 // プロパーでないシステム
 z=poly(0,'z');
 Gss=ssrand(2,2,3);Gss(7)='d'; //離散時間 

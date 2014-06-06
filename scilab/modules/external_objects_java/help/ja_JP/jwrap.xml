@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+*
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2010 - 2011 - Calixte DENIZET <calixte@contrib.scilab.org>
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+*
+*
+-->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="jwrap">
+    
+    <refnamediv>
+        
+        <refname>jwrap</refname>
+        
+        <refpurpose>
+            
+            Scilab変数をJava変数にラップする
+            
+        </refpurpose>
+        
+    </refnamediv>
+    
+    <refsynopsisdiv>
+        
+        <title>呼び出し手順</title>
+        
+        <synopsis>
+            
+            [jw_1, jw_2, ...] = jwrap(sc_1 [, sc_2 [, sc_3 [,... ]]])
+            
+        </synopsis>
+        
+    </refsynopsisdiv>
+    
+    <refsection>
+        
+        <title>パラメータ</title>
+        
+        <variablelist>
+            
+            <varlistentry>
+                
+                <term>sc_i</term>
+                
+                <listitem>
+                    
+                    <para>Scilab変数</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>jw_i</term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        指定したScilab変数を
+                        
+                        Javaラッピングしたもの
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+        </variablelist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>説明</title>
+        
+        <para>
+            
+            Scilab変数をJava変数にラップします.
+            
+            現時点では,以下のプリミティブな型のみがラップできます:
+            
+            <simplelist type="inline">
+                
+                <member>定数 (複素数でない実数) は double;</member>
+                
+                <member>文字列は String;</member>
+                
+                <member>論理値は boolean;</member>
+                
+                <member>int8 は byte;</member>
+                
+                <member>uint8 は short;</member>
+                
+                <member>int16 は short;</member>
+                
+                <member>uint16 は int;</member>
+                
+                <member>int32 は int;</member>
+                
+                <member>uint32 は long</member>に変換されます.
+                
+            </simplelist>
+            
+            行列は配列にラップされます.
+            
+            例えば, 3x4のint8行列は,
+            
+            <link linkend="jconvMatrixMethod">jconvMatrixMethod</link>
+            
+            コマンドにより変更可能な変換法により,
+            
+            <literal>byte[3][4]</literal> または <literal>byte[4][3]</literal>
+            
+            にラップされます.
+            
+            添字の範囲はJavaと同じであることに注意してください,
+            
+            このため,<literal>a(0)</literal> は有効です.
+            
+        </para>
+        
+        <para>
+            
+            <link linkend="jwrapinfloat">jwrapinfloat</link> 
+            
+            および <link linkend="jwrapinchar">jwrapinchar</link>により,
+            
+            それぞれJava型floatまたはcharにラップすることも可能です.
+            
+        </para>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>例</title>
+        
+        <programlisting role="example"><![CDATA[
+               [a,b,c] = jwrap(1, [1 2;3 4], ["hello" "world"]);
+               a, b(1, 1), c(1)
+      ]]></programlisting>
+        
+    </refsection>
+    
+    <refsection role="see also">
+        
+        <title>参照</title>
+        
+        <simplelist type="inline">
+            
+            <member>
+                
+                <link linkend="jconvMatrixMethod">jconvMatrixMethod</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="jwrapinfloat">jwrapinfloat</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="jwrapinchar">jwrapinchar</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="junwrap">junwrap</link>
+                
+            </member>
+            
+        </simplelist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>履歴</title>
+        
+        <revhistory>
+            
+            <revision>
+                
+                <revnumber>5.5.0</revnumber>
+                
+                <revremark>
+                    
+                    関数が導入されました. 'JIMS'モジュールに基づきます.
+                    
+                    JIMSモジュールとの動作上の主な違いは,
+                    
+                    <link linkend="jautoUnwrap">jautoUnwrap</link>がデフォルトで
+                    
+                    有効になっていることです.
+                    
+                </revremark>
+                
+            </revision>
+            
+        </revhistory>
+        
+    </refsection>
+    
+</refentry>
+
+
+

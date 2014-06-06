@@ -50,7 +50,6 @@
     doc = xmlRead("http://www.w3.org/TR/2009/REC-xml-names-20091208/xml-names-10-3e.xml");
     root = doc.root
     xmlDelete(doc);
-
     // ルートは有効ではなくなりました.. したがって,ルートにアクセスすると
     // エラーを発生します.
     // disp(root) => これは失敗します

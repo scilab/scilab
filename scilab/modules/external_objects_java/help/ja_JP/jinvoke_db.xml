@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+*
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2010 - 2011 - Calixte DENIZET <calixte@contrib.scilab.org>
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+*
+*
+-->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="jinvoke_db">
+    
+    <refnamediv>
+        
+        <refname>jinvoke_db</refname>
+        
+        <refpurpose>
+            
+            JavaダイレクトバッファによりJavaオブジェクトのメソッドを
+            
+            呼び出す
+            
+        </refpurpose>
+        
+    </refnamediv>
+    
+    <refsynopsisdiv>
+        
+        <title>呼び出し手順</title>
+        
+        <synopsis>
+            
+            ret = jinvoke_db(object, methodName [, varName_1 [, varName_2...]])
+            
+        </synopsis>
+        
+    </refsynopsisdiv>
+    
+    <refsection>
+        
+        <title>パラメータ</title>
+        
+        <variablelist>
+            
+            <varlistentry>
+                
+                <term>object</term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        _JObjまたは_JClass型のmlistまたはScilab変数
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>methodName</term>
+                
+                <listitem>
+                    
+                    <para>メソッド名を指定する文字列</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>varName_i</term>
+                
+                <listitem>
+                    
+                    <para>
+                        
+                        引数用のScilab変数の名前を指定する文字列
+                        
+                    </para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+        </variablelist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>説明</title>
+        
+        <para>
+            
+            指定したオブジェクトのmethodNameという名前の
+            
+            (静的またはそれ以外の)Javaメソッドをコールします.
+            
+            varNameiという名前のScilab変数のポインタを取得し,
+            
+            ダイレクトバッファが作成されます.
+            
+            <emphasis role="bold">注意: 
+                
+                ダイレクトバッファ上にリファレンスを保持する
+                
+                べきではありません.
+                
+                Scilabメモリに直接アクセスするため,何らかの理由で
+                
+                Scilab変数を移動したり破棄したりする場合,
+                
+                意図しない読み書きが発生するリスクがあります!
+                
+                問題を回避するには,各バッファのリミットに
+                
+                0を設定してください.
+                
+            </emphasis>
+            
+        </para>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>例</title>
+        
+        <programlisting role="example"><![CDATA[
+               c = jcompile("TestDirectBuffer",["import java.nio.DoubleBuffer;";
+                                                "public class TestDirectBuffer {";
+                                                "public static void increment(DoubleBuffer x) {";
+                                                "for (int i = 0; i < x.capacity(); i++) x.put(i, x.get(i) + 1);";
+                                                "}";
+                                                "}"])
+               a = 1:10000;
+               b = a + 1; // only used to compare with the following...
+               jinvoke_db(c, "increment", "a");
+               and(a==b)
+
+               jremove c;
+      ]]></programlisting>
+        
+    </refsection>
+    
+    <refsection role="see also">
+        
+        <title>参照</title>
+        
+        <simplelist type="inline">
+            
+            <member>
+                
+                <link linkend="jinvoke">jinvoke</link>
+                
+            </member>
+            
+        </simplelist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>履歴</title>
+        
+        <revhistory>
+            
+            <revision>
+                
+                <revnumber>5.5.0</revnumber>
+                
+                <revremark>
+                    
+                    関数が導入されました. 'JIMS'モジュールに基づきます.
+                    
+                    JIMSモジュールとの動作上の主な違いは,
+                    
+                    <link linkend="jautoUnwrap">jautoUnwrap</link>がデフォルトで
+                    
+                    有効になっていることです.
+                    
+                </revremark>
+                
+            </revision>
+            
+        </revhistory>
+        
+    </refsection>
+    
+</refentry>
+
+
+

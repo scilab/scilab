@@ -27,7 +27,7 @@ function y = permute(x, dims)
         error(msprintf(gettext("%s: Wrong size for argument #%d: Vector expected.\n"), "permute", 2));
 
     elseif or(gsort(dims,"c","i") <> (1:prod(size(dims)))) then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d.\n"), "permute", 2));
+        error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be a valid permutation vector.\n"), "permute", 2));
 
     elseif prod(size(dims)) < ndims(x) then
         error(msprintf(gettext("%s: Wrong size for input argument #%d: At least the size of input argument #%d expected.\n"), "permute", 2, 1));
@@ -43,6 +43,10 @@ function y = permute(x, dims)
     // Existing indices
     s = size(x)
     p = size(x, "*")
+
+    // Treat extra dimensions for permutations as 1
+    s = [s ones(1, length(dims) - length(s))];
+
     n = 1
     for i = 1:length(s)
         t = "x%d = ones(1,p/(prod(s(1:%d)))) .*. ((1:s(%d)) .*. ones(1,n)) ;"+..

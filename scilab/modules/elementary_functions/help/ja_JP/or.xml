@@ -19,7 +19,6 @@
         <title>呼び出し手順</title>
         <synopsis>or(A), or(A,'*')
             or(A,'r'), or(A,1)
-            
             or(A,'c'), or(A,2)
         </synopsis>
     </refsynopsisdiv>
@@ -28,7 +27,6 @@
         <para>
             <literal>or(A)</literal> は論理値行列<literal>A</literal>の
             要素の <literal>or</literal> を取得します.
-            
             <literal>or(A)</literal> は,
             <literal>A</literal>の少なくとも1個の要素が<literal>%t</literal>
             の場合に限り,

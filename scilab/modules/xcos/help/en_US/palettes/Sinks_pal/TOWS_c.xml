@@ -100,8 +100,15 @@
         <para>That block is used to put simulated data in the scilab
             workspace.
         </para>
-        <para>Each sampling time, both dates and values of input are
+        <para>
+            Each sampling time, both dates and values of input are
             recorded.
+        </para>
+        <para>
+            Records are available after the simulation in Scilab's workspace
+            as <literal>variable.time</literal> and <literal>variable.values</literal>
+            where <literal>variable</literal> is the name given in the
+            <emphasis role="bold">Scilab variable name</emphasis> field.
         </para>
     </refsection>
     <refsection id="Dialogbox_TOWS_c">

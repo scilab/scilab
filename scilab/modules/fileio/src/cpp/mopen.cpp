@@ -30,6 +30,8 @@ extern "C"
 /*--------------------------------------------------------------------------*/
 int mopen(wchar_t* _pstFilename, wchar_t* _pstMode, int _iSwap, int* _piID)
 {
+    int lenChar = 0, testRep = 1;
+
     if (getWarningMode() && FileManager::isOpened(_pstFilename))
     {
         char* pst = wide_string_to_UTF8(_pstFilename);
@@ -52,7 +54,8 @@ int mopen(wchar_t* _pstFilename, wchar_t* _pstMode, int _iSwap, int* _piID)
         return MOPEN_INVALID_STATUS;
     }
 
-    if (wcslen(_pstMode) == 0)
+    lenChar = wcslen(_pstMode);
+    if (( lenChar == 0 ) || ( lenChar > 3 ))
     {
         return MOPEN_INVALID_STATUS;
     }
@@ -60,6 +63,14 @@ int mopen(wchar_t* _pstFilename, wchar_t* _pstMode, int _iSwap, int* _piID)
     if ((_pstMode[0] != L'a') && (_pstMode[0] != L'r') && (_pstMode[0] != L'w'))
     {
         return MOPEN_INVALID_STATUS;
+    }
+
+    for ( testRep = 1; testRep < lenChar ; testRep++ )
+    {
+        if (( _pstMode[testRep] != '+' ) && ( _pstMode[testRep] != 'b' ) && ( _pstMode[testRep] != 't' ))
+        {
+            return MOPEN_INVALID_STATUS;
+        }
     }
 
     if (isdirW(_pstFilename))

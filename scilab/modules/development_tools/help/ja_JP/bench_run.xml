@@ -92,15 +92,12 @@
 bench_run();
 bench_run([]);
 bench_run([],[]);
-
 // 1つまたは複数のモジュールをテスト
 bench_run('core');
 bench_run('core',[]);
 bench_run(['core','string']);
-
 // 指定したモジュールの1つまたは複数のテストを実行
 bench_run('core',['trycatch','opcode']);
-
 // オプションを指定
 bench_run([],[],'list');
 bench_run([],[],'help');
@@ -116,20 +113,15 @@ bench_run([],[],'nb_run=2000');
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
 //==============================================================================
 // Benchmark for chol function
 //==============================================================================
-
 // <-- BENCH NB RUN : 10 -->
-
 stacksize(30000000);
-
 a = 0;
 b = 0;
 a = rand(900, 900, 'n');
 a = a'*a;
-
 // <-- BENCH START -->
 b = chol(a);
 // <-- BENCH END -->
@@ -137,9 +129,7 @@ b = chol(a);
         <para>テストの結果</para>
         <programlisting role="example"><![CDATA[
 -->bench_run('linear_algebra','bench_chol')
-
            For Loop (as reference) ...........................      143.00 ms [ 1000000 x]
-
   001/001 - [linear_algebra] bench_chol ......................      130.60 ms [      10 x]
  ]]></programlisting>
     </refsection>

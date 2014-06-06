@@ -18,21 +18,21 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>[str]=pol2str(p)</synopsis>
+        <synopsis>strs = pol2str(p)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>p</term>
                 <listitem>
-                    <para>実数または複素係数行列多項式</para>
+                    <para>実数または複素係数の多項式の行列またはハイパー行列</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>str</term>
+                <term>strs</term>
                 <listitem>
-                    <para>文字列</para>
+                    <para>文字列の行列またはハイパー行列</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -44,24 +44,20 @@
         </para>
         <para>
             <note>
-                係数の出力フォーマットは、<link linkend="format">format(..)</link> によって決定される.
+                係数の出力フォーマットは、<link linkend="format">format(..)</link> によって設定されます.
             </note>
         </para>
     </refsection>
-    
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[
 pol2str(%z)
-
 p = poly ([1, 2, 3], "x","coeff");
 pol2str(p)
-
 p = (1+%i+%z)^(1:4)
 pol2str(p)
 ]]></programlisting>
     </refsection>
-    
     <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">
@@ -77,11 +73,14 @@ pol2str(p)
         </simplelist>
     </refsection>
     <refsection role="history tag">
-        <title>ヒストリカル</title>
+        <title>履歴</title>
         <revhistory>
             <revision>
                 <revnumber>5.5.0</revnumber>
-                <revdescription>複素係数とhypermatricesと多項式への拡張。多項式のベクトル化処理テーブル</revdescription>
+                <revdescription>
+                    pol2str() は複素係数を有する多項式およびハイパー行列に拡張されました.
+                    配列処理がベクトル化されました.
+                </revdescription>
             </revision>
         </revhistory>
     </refsection>

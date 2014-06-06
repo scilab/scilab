@@ -79,8 +79,11 @@
             (size(<varname>x</varname>が1, type(<varname>x</varname>,1) も 1)の場合,
             
             <literal>
+                
                 IsAScalar(<varname>x</varname>)
+                
             </literal>
+            
             は true を返します.
             
             <warning>この関数は廃止予定です.</warning>

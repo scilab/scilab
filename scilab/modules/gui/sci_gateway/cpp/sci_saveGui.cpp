@@ -138,8 +138,7 @@ int sci_saveGui(char *fname, void* pvApiCtx)
     }
 
     free(ret);
-    createScalarBoolean(pvApiCtx, iRhs + 1, 1);
-    AssignOutputVariable(pvApiCtx, 1) = iRhs + 1;
+    AssignOutputVariable(pvApiCtx, 1) = 0;
     ReturnArguments(pvApiCtx);
     return 0;
 }

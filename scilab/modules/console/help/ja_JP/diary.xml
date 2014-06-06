@@ -19,30 +19,23 @@
         <title>呼び出し手順</title>
         <synopsis>      diary(filename)
             [id,filename] = diary(filename, ['new'|'append'])
-            
             [ids, filenames] = diary()
             [ids, filenames] = diary([], 'list')
-            
             diary([], 'close')
             diary(0)
             diary(filename, 'close')
             diary(id, 'close')
-            
             diary([], 'pause'|'off')
             diary(filename, 'pause'|'off')
             diary(id, 'pause'|'off')
-            
             diary([], 'resume'|'on')
             diary(filename, 'resume'|'on')
             diary(id, 'resume'|'on')
-            
             diary(filenames, 'exists')
             diary(ids, 'exists')
-            
             diary(filename, 'new'|'append', 'prefix=YYYY-MM-DD hh:mm:ss') 
             diary(filename, 'new'|'append', 'prefix=U')
             diary(filename, 'new'|'append', [ 'prefix=YYYY-MM-DD hh:mm:ss' ; 'prefix-only-commands' ] );
-            
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -225,18 +218,14 @@
         <programlisting role="example"><![CDATA[ 
 d1 = diary(TMPDIR + '/diary1.txt')
 d2 = diary(TMPDIR + '/diary2.txt')
-
 // 何らかのScilab命令 …
 cd TMPDIR
 dir
-
 // オープンされたダイアリに関する情報を返す
 [ids, filenames]  = diary()
-
 // ダイアリd1を閉じる
 diary(d1,'close')
 [ids, filenames]  = diary()
-
 // ダイアリd2を閉じる
 diary(TMPDIR + '/diary2.txt')
 [ids, filenames]  = diary()

@@ -9,14 +9,21 @@
         <synopsis>C = splin2d(x, y, z, [,spline_type])</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
-                <term>x,y</term>
+                <term>x</term>
                 <listitem>
-                    <para>
-                        補間グリッドを定義する単調増加の行ベクトル
-                        (要素数は2以上)
+                    <para> 1行nx列のdouble行列, 補間点のx座標. i=1,2,...,nx-1について,
+                        x(i)&lt;x(i+1)であることが必要です.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para> 1行ny列のdouble行列, 補間点のy座標. i=1,2,...,ny-1について,
+                        y(i)&lt;y(i+1)であることが必要です.
                     </para>
                 </listitem>
             </varlistentry>
@@ -24,22 +31,23 @@
                 <term>z</term>
                 <listitem>
                     <para>
-                        nx x ny 行列 (nx は <literal>x</literal>の長さ,
-                        ny は <literal>y</literal>の長さ)
+                        nx行ny列のdouble行列, 関数値.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>spline_type</term>
                 <listitem>
-                    <para>(オプション) 計算する双3次スプラインの種類を選択する文字列</para>
+                    <para>1行1列の文字列行列, 計算するスプラインの型.
+                        利用可能な値は, spline_type="not_a_knot"および spline_type="periodic".
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>C</term>
                 <listitem>
                     <para>
-                        双3次パッチの係数を有するベクトル(詳細は注記を参照))
+                        双3次パッチの係数. このsplin2dの出力引数はinterp2d関数の入力引数です.
                     </para>
                 </listitem>
             </varlistentry>
@@ -48,7 +56,7 @@
     <refsection>
         <title>説明</title>
         <para>
-            この関数は点<emphasis>(xi,yj,zij)</emphasis>を補間する,
+            この関数は,点<emphasis>(xi,yj,zij)</emphasis>を補間する,
             すなわち,全ての<emphasis>i=1,..,nx</emphasis>および
             <emphasis>j=1,..,ny</emphasis>について
             <emphasis>s(xi,yj)=zij</emphasis>となるような,
@@ -75,14 +83,12 @@
             <emphasis>s</emphasis>の評価を行う必要があります.
             適当な<literal>spline_type</literal>パラメータを選択することにより,
             複数の種類のスプラインを計算することができます.
-            
             双3次スプライン(またはサブスプライン)を計算するために使用する方法は,
             古い形式の手法,すなわち,
             各グリッドの点<emphasis>(xi,yj)</emphasis>において
             1階微分<emphasis>ds/dx(xi,yj)</emphasis> および
             <emphasis>ds/dy(xi,yj)</emphasis>と相互微分
             <emphasis>d2s/dxdy(xi,yj)</emphasis>の近似値を計算する手法です.
-            
             これらの微係数は,C2関数
             (<emphasis>s</emphasis>は連続2階微分可能)となる
             1次元スプライン法の平均,または
@@ -121,7 +127,8 @@
         <para>
             <emphasis role="bold">natural</emphasis>, <emphasis role="bold">monotone</emphasis>, <emphasis role="bold">fast</emphasis> (または
             <emphasis role="bold">fast_periodic</emphasis>) 型は,
-            例えば振動を防止したい場合(<emphasis role="bold">monotone</emphasis> がこの用途には最も強力です)に有用です.
+            例えば発振を防止したい場合(<emphasis role="bold">monotone</emphasis> 
+            がこの用途には最も強力です)に有用です.
         </para>
         <para>より簡便な方法で双三次パッチの係数を得るには,
             <literal>c = hypermat([4,4,nx-1,ny-1],C)</literal>を使用し,
@@ -155,7 +162,26 @@ plot3d(xx, yy, zz, flag=[2 4 4])
 param3d1(X,Y,list(z,-9*ones(1,n)), flag=[0 0])
 str = msprintf(" with %d x %d interpolation points. ermax = %g",n,n,emax) 
 xtitle("spline interpolation of cos(x)cos(y)"+str)
-
+]]></programlisting>
+        <scilab:image>
+            n = 7;  // a regular grid with n x n interpolation points
+            // will be used
+            x = linspace(0,2*%pi,n); y = x;
+            z = cos(x')*cos(y);
+            C = splin2d(x, y, z, "periodic");
+            m = 50; // discretization parameter of the evaluation grid
+            xx = linspace(0,2*%pi,m); yy = xx;
+            [XX,YY] = ndgrid(xx,yy);
+            zz = interp2d(XX,YY, x, y, C);
+            emax = max(abs(zz - cos(xx')*cos(yy)));
+            clf()
+            plot3d(xx, yy, zz, flag=[2 4 4])
+            [X,Y] = ndgrid(x,y);
+            param3d1(X,Y,list(z,-9*ones(1,n)), flag=[0 0])
+            str = msprintf(" with %d x %d interpolation points. ermax = %g",n,n,emax) 
+            xtitle("spline interpolation of cos(x)cos(y)"+str)
+        </scilab:image>
+        <programlisting role="example"><![CDATA[ 
 // 例2 : ランダムなデータに異なる補間関数を適用
 n = 6;
 x = linspace(0,1,n); y = x;
@@ -182,7 +208,36 @@ subplot(2,2,4)
 plot3d1(xp, yp, ZP4, flag=[2 2 4])
 xtitle("monotone")
 show_window()
-
+ ]]></programlisting>
+        <scilab:image>
+            // example 2 : different interpolation functions on random data
+            n = 6;
+            x = linspace(0,1,n); y = x;   
+            z = rand(n,n);
+            np = 50;
+            xp = linspace(0,1,np); yp = xp;
+            [XP, YP] = ndgrid(xp,yp);
+            ZP1 = interp2d(XP, YP, x, y, splin2d(x, y, z, "not_a_knot"));
+            ZP2 = linear_interpn(XP, YP, x, y, z);
+            ZP3 = interp2d(XP, YP, x, y, splin2d(x, y, z, "natural"));
+            ZP4 = interp2d(XP, YP, x, y, splin2d(x, y, z, "monotone"));
+            xset("colormap", jetcolormap(64))
+            clf()
+            subplot(2,2,1)
+            plot3d1(xp, yp, ZP1, flag=[2 2 4])
+            xtitle("not_a_knot")
+            subplot(2,2,2)
+            plot3d1(xp, yp, ZP2, flag=[2 2 4])
+            xtitle("bilinear interpolation")
+            subplot(2,2,3)
+            plot3d1(xp, yp, ZP3, flag=[2 2 4])
+            xtitle("natural")
+            subplot(2,2,4)
+            plot3d1(xp, yp, ZP4, flag=[2 2 4])
+            xtitle("monotone")
+            show_window()
+        </scilab:image>
+        <programlisting role="example"><![CDATA[ 
 // 例3 : ステップ関数のnot_a_knot スプラインおよびmonotoneスプライン
 //             
 a = 0; b = 1; c = 0.25; d = 0.75;
@@ -221,5 +276,14 @@ xtitle("subspline (monotone)")
                 <link linkend="interp2d">interp2d</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>以前では, 入力引数の虚部は暗黙のうちに無視されていました.</revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

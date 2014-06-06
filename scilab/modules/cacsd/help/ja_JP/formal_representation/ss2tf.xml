@@ -19,14 +19,10 @@
         <title>呼び出し手順</title>
         <synopsis>[h]=ss2tf(sl)
             [Ds,NUM,chi]=ss2tf(sl)
-            
             [h]=ss2tf(sl,"b")
             [Ds,NUM,chi]=ss2tf(sl,"b")
-            
-            
             [h]=ss2tf(sl,rmax)
             [Ds,NUM,chi]=ss2tf(sl,rmax)
-            
         </synopsis>
     </refsynopsisdiv>
     <refsection>

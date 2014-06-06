@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Serge Steer
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ -->
+
+
+
+<refentry xml:id="xcos_debug_gui" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+    
+    <refnamediv>
+        
+        <refname>xcos_debug_gui</refname>
+        
+        
+        
+        <refpurpose>
+            
+            Debug Xcosブロックで使用される対話的デバッグ機能
+            
+        </refpurpose>
+        
+    </refnamediv>
+    
+    
+    
+    <refsection>
+        
+        <title>説明</title>
+        
+        
+        
+        <para>
+            
+            Xcos Debug ブロックにより 
+            
+            シミュレーション時に各ブロックの
+            
+            実行前および実行後に実行されるScilab命令を設定できるように
+            
+            なります.
+            
+            Debugブロック命令用xcos_debug_gui()命令を設定することにより,
+            
+            シミュレーション開始時にグラフィックユーザインターフェイス
+            
+            がオープンされます.
+            
+            このGUIにより対話的デバッグが可能となります.
+            
+            特にシミュレーションを中断させる条件(ブレークポイント)を
+            
+            動的に指定することができるようになります.
+            
+            ブレークポイントで中断した際に, ユーザは
+            
+            ブロックの
+            
+            カレントの値, 状態, 入力, ....を調べることができます.
+            
+        </para>
+        
+        
+        
+        <para>
+            
+            いつでも, ユーザは以下の累積条件の集合によりブレークポイントを
+            
+            指定することができます:
+            
+        </para>
+        
+        
+        
+        <itemizedlist>
+            
+            <listitem>
+                
+                <para>
+                    
+                    カレントのブロックがコールされたフラグの値
+                    
+                </para>
+                
+            </listitem>
+            
+            
+            
+            <listitem>
+                
+                <para>カレントの日付の値</para>
+                
+            </listitem>
+            
+            
+            
+            <listitem>
+                
+                <para>
+                    
+                    ブレークがブロックコールの前に起きたかどうか
+                    
+                </para>
+                
+            </listitem>
+            
+            
+            
+            <listitem>
+                
+                <para>
+                    
+                    Scilab論理式の値により,
+                    
+                    ブレークは条件がtrueに評価された場合に
+                    
+                    アクティブになります.
+                    
+                    この式では,
+                    
+                    カレントのブロック要素と
+                    
+                    Scilab関数 
+                    
+                    <link	linkend="curblock">curblock</link> および 
+                    
+                    <link linkend="scicos_time">scicos_time</link>
+                    
+                    を有する
+                    
+                    ブロック変数　<link linkend="C_struct">C_struct</link> 
+                    
+                    を使用できます.
+                    
+                </para>
+                
+            </listitem>
+            
+        </itemizedlist>
+        
+        
+        
+        <mediaobject>
+            
+            <imageobject>
+                
+                <imagedata fileref="../images/Xcos_Debug.png" format="PNG"/>
+                
+            </imageobject>
+            
+        </mediaobject>
+        
+        
+        
+        <para>
+            
+            シミュレーションが中断した場合, 
+            
+            グラフィックユーザインターフェイスが
+            
+            カレントの時間とカレントのフラグの値,
+            
+            ブロック番号とスーパーブロック階層におけるブロックのパス
+            
+            を表示します.
+            
+        </para>
+        
+        
+        
+        <para>
+            
+            "Next" ボタンにより次の中断条件までシミュレーションが
+            
+            再実行されます
+            
+        </para>
+        
+        
+        
+        <para>
+            
+            "End debug" ボタンにより条件が全て無効となり,
+            
+            シミュレーションが終了します
+            
+        </para>
+        
+        
+        
+        <para>
+            
+            "Pause" ボタンにより,Scilabコンソール内で
+            
+            Scilab命令を実行するカレントのブロックに関連する
+            
+            ブロックデータ構造体を対話的に観測できるようになります.
+            
+            ユーザは戻る際に"return"命令を入力する必要があります.
+            
+        </para>
+        
+    </refsection>
+    
+    
+    
+    
+    
+    <refsection>
+        
+        <title>著者</title>
+        
+        
+        
+        <simplelist type="vert">
+            
+            <member>Serge Steer, INRIA</member>
+            
+        </simplelist>
+        
+    </refsection>
+    
+    
+    
+    <refsection>
+        
+        <title>履歴</title>
+        
+        
+        
+        <revhistory>
+            
+            <revision>
+                
+                <revnumber>0.0</revnumber>
+                
+                
+                
+                <revdescription>関数 xcos_debug_gui が追加されました</revdescription>
+                
+            </revision>
+            
+        </revhistory>
+        
+    </refsection>
+    
+</refentry>
+

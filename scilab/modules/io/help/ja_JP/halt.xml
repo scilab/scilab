@@ -29,7 +29,6 @@
         <title>例</title>
         <programlisting role="example"><![CDATA[ 
 halt('Press a key')
-
 halt()
  ]]></programlisting>
     </refsection>

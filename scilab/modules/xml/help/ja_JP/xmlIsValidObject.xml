@@ -57,10 +57,8 @@
     r = doc.root
     // %Tを返します
     xmlIsValidObject(r)
-
     // 文書を削除
     xmlDelete(doc);
-
     // [%F %F]を返します
     xmlIsValidObject(["doc" "r"])
     ]]></programlisting>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="createConstraints">
+    <refnamediv>
+        <refname>createConstraints</refname>
+        <refpurpose>uicontrol用の配置拘束構造体を作成.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>
+            constraints = createConstraints(constraintsType, varargin)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>constraintsType</term>
+                <listitem>
+                    <para>文字列</para>
+                    <para>
+                        作成する配置拘束の型.
+                        利用可能な拘束の型の一覧を以下に示します,
+                        個々のプロパティについては個々のヘルプページを
+                        参照ください:
+                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                "none" または "nolayout": 
+                                uicontrol配置に拘束は追加されません
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                "grid": 
+                                <link linkend="grid_constraints_properties">
+                                    グリッド配置拘束
+                                </link>
+                                .
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                "border": 
+                                <link linkend="border_constraints_properties">
+                                    境界配置拘束
+                                </link>
+                                .
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                "gridbag": 
+                                <link linkend="gridbag_constraints_properties">
+                                    gridbag配置拘束
+                                </link>
+                                .
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>varargin</term>
+                <listitem>
+                    <para>
+                        <literal>constraintsType</literal>専用プロパティ.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>constraints</term>
+                <listitem>
+                    <para>作成された拘束.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            この関数は
+            uicontrols <literal>constraints</literal> 属性の拘束構造体を作成します. 
+            詳細については,
+            <link linkend="uicontrol_properties">uicontrolプロパティ</link>
+            を参照ください.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="uicontrol">uicontrol</link>
+            </member>
+            <member>
+                <link linkend="uicontrol_properties">uicontrol_properties</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>
+                    関数<function>createBorder</function>が導入されました.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

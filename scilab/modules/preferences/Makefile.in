@@ -629,7 +629,6 @@ GATEWAY_CXX_SOURCES = sci_gateway/cpp/sci_addModulePreferences.cpp \
 
 libscipreferences_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
     -I$(srcdir)/includes/ \
-    -I$(srcdir)/src/cpp/ \
     -I$(srcdir)/src/c/ \
     -I$(srcdir)/src/jni/ \
     $(XML_FLAGS) \

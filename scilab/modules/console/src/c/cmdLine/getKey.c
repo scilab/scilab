@@ -87,10 +87,11 @@ static void caseHomeOrEndKey(wchar_t * commandLine, unsigned int *cursorLocation
 
 /*
  * If second key was L'['
- * It means this could be an arrow key or delete key.
+ * It means this could be an arrow key, a delete key or home/end key.
  */
 static void caseDelOrArrowKey(wchar_t ** commandLine, unsigned int *cursorLocation)
 {
+    int * cmd = *commandLine;
     switch (getwchar())
     {
         case L'A':
@@ -115,6 +116,13 @@ static void caseDelOrArrowKey(wchar_t ** commandLine, unsigned int *cursorLocati
                 updateTokenInScilabHistory(commandLine);
                 break;
             }
+        //home or end key in some consoles
+        case L'H':
+            begLine(cmd, cursorLocation);
+            break;
+        case L'F':
+            endLine(cmd, cursorLocation);
+            break;
     }
 }
 
@@ -139,6 +147,7 @@ static void caseMetaKey(wchar_t ** commandLine, unsigned int *cursorLocation)
         case L'O':
             caseHomeOrEndKey(*commandLine, cursorLocation);
             break;
+
     }
 }
 
@@ -210,7 +219,7 @@ static void getKey(wchar_t ** commandLine, unsigned int *cursorLocation)
 
     key = getwchar();
 
-    // Need to clear the stdin
+	// Need to clear the stdin
     if (key == WEOF && feof(stdin))
     {
         clearerr(stdin);
@@ -232,6 +241,7 @@ static void getKey(wchar_t ** commandLine, unsigned int *cursorLocation)
         case CTRL_D:
             rmChar(*commandLine, SCI_DELETE, cursorLocation);
             updateTokenInScilabHistory(commandLine);
+            exit(0);
             break;
         case CTRL_E:
             endLine(*commandLine, cursorLocation);

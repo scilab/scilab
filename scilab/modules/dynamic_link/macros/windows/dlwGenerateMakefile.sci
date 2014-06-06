@@ -162,7 +162,11 @@ function ilib_gen_Make_win32(name, ..
                 MEXCFLAGS = "-Dmexfunction_=mex" + table(i,2) + "_ -DmexFunction=mex_" + table(i,2);
                 MEXFFLAGS = "-Dmexfunction=mex" + table(i,2);
                 if table(i,3)=="cmex" then
-                    filenameMex = table(i,2) + ".c";
+                    if find(listfiles() == table(i,2)+".cpp") then
+                        filenameMex = table(i,2) + ".cpp";
+                    else
+                        filenameMex = table(i,2) + ".c";
+                    end
                 else
                     filenameMex = table(i,2) + ".f";
                 end

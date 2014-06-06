@@ -41,14 +41,11 @@
         <programlisting role="example"><![CDATA[ 
 // 最初の例
 datevec(720840)
-
 // ２番目の例
 datevec(datenum())
-
 // ３番目の例 (整数値を指定)
 A = grand(10,12,'uin',1,1000000)
 datevec(A)
-
 // ４番目の例 (実数値を指定)
 A = grand(10,12,'unf',1,1000000)
 datevec(A)

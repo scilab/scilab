@@ -355,8 +355,8 @@ libdummy_elementary_functions_la_CPPFLAGS = -I$(srcdir)/includes/ \
 # Includes need for the compilation
 libscielementary_functions_la_CPPFLAGS = \
     -I$(srcdir)/includes/ \
-	-I$(srcdir)/src/cpp/ \
 	-I$(srcdir)/src/c/ \
+	-I$(srcdir)/src/cpp/ \
 	-I$(top_srcdir)/modules/dynamic_link/includes \
 	-I$(top_srcdir)/modules/api_scilab/includes/ \
 	-I$(top_srcdir)/modules/console/includes/ \

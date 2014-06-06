@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="titled_border_properties">
+    <refnamediv>
+        <refname>titled境界プロパティ</refname>
+        <refpurpose>titled境界プロパティの説明.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>
+            titledBorder = createBorder("titled", title)
+            titledBorder = createBorder("titled", border)
+            titledBorder = createBorder("titled", border, title)
+            titledBorder = createBorder("titled", border, title, justification, position)
+            titledBorder = createBorder("titled", border, title, justification, position, font)
+            titledBorder = createBorder("titled", border, title, justification, position, font, color)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>title</term>
+                <listitem>
+                    <para>文字列</para>
+                    <para>境界の表題.</para>
+                    <para>
+                        <literal>border</literal>引数が指定されない場合, 
+                        (カレントのルックアンドフィールに基づく)デフォルトの境界
+                        が作成されます.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>border</term>
+                <listitem>
+                    <para>Borderオブジェクト</para>
+                    <para>
+                        <link linkend="createBorder">createBorder</link>により作成された境界.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>justification</term>
+                <listitem>
+                    <para>"left" | "center" | "right" | {"leading"} | "trailing"</para>
+                    <para>表題の水平揃え.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>position</term>
+                <listitem>
+                    <para>"above_top" | {"top"} | "below_top" | "above_bottom" | "bottom" | "below_bottom"</para>
+                    <para>境界に関連する表題の垂直位置.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>font</term>
+                <listitem>
+                    <para>Fontオブジェクト</para>
+                    <para>
+                        <link linkend="createBorderFont">createBorderFont</link>で
+                        作成された境界用フォント.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>color</term>
+                <listitem>
+                    <para>文字列</para>
+                    <para>表題の色.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>titledBorder</term>
+                <listitem>
+                    <para>作成された境界.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            この関数は,
+            <literal>frame</literal> uicontrols用の表題付き境界を作成します.
+            詳細については,
+            <link linkend="uicontrol_properties">uicontrolプロパティ</link>を参照ください.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="createBorder">createBorder</link>
+            </member>
+            <member>
+                <link linkend="createBorderFont">createBorderFont</link>
+            </member>
+            <member>
+                <link linkend="uicontrol">uicontrol</link>
+            </member>
+            <member>
+                <link linkend="uicontrol_properties">uicontrol_properties</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>
+                    関数<function>createBorder</function>が導入されました.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

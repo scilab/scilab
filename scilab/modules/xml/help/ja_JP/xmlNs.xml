@@ -60,7 +60,6 @@
     doc.root.children(1) = "<a>hello</a>";
     doc.root.children(1).namespace = ns;
     xmlDump(doc)
-
     xmlDelete(doc);
     ]]></programlisting>
     </refsection>
