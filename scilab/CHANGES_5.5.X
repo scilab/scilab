@@ -21,6 +21,8 @@ Scilab Bug Fixes
 
 * Bug #10555 fixed - Scilab failed to build with some configure options.
 
+* Bug #10583 fixed - ./configure --without-xcos did not work.
+
 * Bug #10777 fixed - Home and End keys were not trapped in CLI mode.
 
 * Bug #10784 fixed - clc function was not available in CLI & ADV-CLI modes.
