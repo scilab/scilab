@@ -36,6 +36,12 @@ Deprecated behavior
  1..
  2
 
+Removed functions
+==================
+
+* derivative removed. Please use numderivative instead.
+
+
 Scilab Bug Fixes
 ================
 
