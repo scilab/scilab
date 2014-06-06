@@ -259,7 +259,7 @@ int callScilabFunction(void* _pvCtx, char* _pstName, int _iStart, int _iLhs, int
 
     if (callResult == Function::OK)
     {
-        int iCallerRhs = pStr->m_pIn->size();
+        int iCallerRhs = (int)pStr->m_pIn->size();
         pStr->m_pIn->resize(iCallerRhs + _iRhs + _iLhs, NULL);
         for (int i = 0 ; i < _iLhs ; i++)
         {

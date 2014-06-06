@@ -23,7 +23,6 @@
 //disable warnings about exports STL items
 #pragma warning (disable : 4251)
 
-using namespace ast;
 namespace types
 {
 class TYPES_IMPEXP Callable : public InternalType

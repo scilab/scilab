@@ -77,7 +77,7 @@ Function::ReturnValue sci_length(typed_list &in, int _iRetCount, typed_list &out
         if (pFunc && pFunc->isCallable())
         {
             //call overload
-            Overload::generateNameAndCall(L"length", in, _iRetCount, out, new ExecVisitor());
+            Overload::generateNameAndCall(L"length", in, _iRetCount, out, new ast::ExecVisitor());
             return Function::OK;
         }
 

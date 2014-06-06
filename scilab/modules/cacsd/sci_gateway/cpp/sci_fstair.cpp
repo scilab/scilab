@@ -20,8 +20,8 @@ extern "C"
 #include "Scierror.h"
 #include "localization.h"
 
-extern void C2F(fstair)(double*, double*, double*, double*, int*, int*, int*, int*, double*,
-                        int*, int*, int*, int*, int*, int*, double*, int*, int*);
+    extern void C2F(fstair)(double*, double*, double*, double*, int*, int*, int*, int*, double*,
+                            int*, int*, int*, int*, int*, int*, double*, int*, int*);
 }
 
 /*--------------------------------------------------------------------------*/
@@ -51,12 +51,12 @@ types::Function::ReturnValue sci_fstair(types::typed_list &in, int _iRetCount, t
 
     /*** get inputs arguments ***/
     // get the 4 input/output arguments
-    for(int i = 0; i < 4; i++)
+    for (int i = 0; i < 4; i++)
     {
-        if(in[i]->isDouble() == false)
+        if (in[i]->isDouble() == false)
         {
             std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_fstair";
-            return Overload::call(wstFuncName, in, _iRetCount, out, new ExecVisitor());
+            return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
         }
 
         pDblOut[i] = in[i]->clone()->getAs<types::Double>();
@@ -69,11 +69,11 @@ types::Function::ReturnValue sci_fstair(types::typed_list &in, int _iRetCount, t
     }
 
     // get next input arguemnts
-    for(int i = 4; i < 7; i++)
+    for (int i = 4; i < 7; i++)
     {
-        if(in[i]->isDouble() == false)
+        if (in[i]->isDouble() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A matrix expected.\n"), "fstair", i+1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A matrix expected.\n"), "fstair", i + 1);
             return types::Function::Error;
         }
 
@@ -84,38 +84,38 @@ types::Function::ReturnValue sci_fstair(types::typed_list &in, int _iRetCount, t
     }
 
     // check size of input arguments
-    if(iRows[2] != iCols[2])
+    if (iRows[2] != iCols[2])
     {
         Scierror(999, _("%s: Wrong size for input argument #%d: A square matrix expected.\n"), "fstair", 3);
         return types::Function::Error;
     }
 
-    if(iRows[3] != iCols[3])
+    if (iRows[3] != iCols[3])
     {
         Scierror(999, _("%s: Wrong size for input argument #%d: A square matrix expected.\n"), "fstair", 4);
         return types::Function::Error;
     }
 
-    if(iRows[4] != 1)
+    if (iRows[4] != 1)
     {
         Scierror(999, _("%s: Wrong size for input argument #%d: A row vector expected.\n"), "fstair", 5);
         return types::Function::Error;
     }
 
-    if(iRows[5] * iCols[5] != 1)
+    if (iRows[5] * iCols[5] != 1)
     {
         Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), "fstair", 6);
         return types::Function::Error;
     }
 
-    if(iRows[6] * iCols[6] != 1)
+    if (iRows[6] * iCols[6] != 1)
     {
         Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), "fstair", 7);
         return types::Function::Error;
     }
 
-    if(iRows[0] != iRows[1] || iRows[0] != iRows[2] || iRows[0] != iCols[2] || iRows[0] != iCols[4] ||
-       iCols[0] != iCols[1] || iCols[0] != iCols[3] || iCols[0] != iRows[3])
+    if (iRows[0] != iRows[1] || iRows[0] != iRows[2] || iRows[0] != iCols[2] || iRows[0] != iCols[4] ||
+            iCols[0] != iCols[1] || iCols[0] != iCols[3] || iCols[0] != iRows[3])
     {
         Scierror(999, _("%s: Incompatible input argument.\n"), "fstair");
         return types::Function::Error;
@@ -127,7 +127,7 @@ types::Function::ReturnValue sci_fstair(types::typed_list &in, int _iRetCount, t
 
     // convert input argument 5 from double to int
     int* piIn5 = new int[iCols[4]];
-    for(int i = 0; i < iCols[4]; i++)
+    for (int i = 0; i < iCols[4]; i++)
     {
         piIn5[i] = (int)pdblIn[4][i];
     }
@@ -143,11 +143,11 @@ types::Function::ReturnValue sci_fstair(types::typed_list &in, int _iRetCount, t
     pDblOut[8] = new types::Double(1, iRows[0] + 1);
     pDblOut[9] = new types::Double(4, 1);
 
-    for(int i = 4; i < 10; i++)
+    for (int i = 4; i < 10; i++)
     {
         pdblOut[i]      = pDblOut[i]->get();
         piSizeOut[i]    = pDblOut[i]->getSize();
-        piOut[i-4]      = new int[piSizeOut[i]];
+        piOut[i - 4]      = new int[piSizeOut[i]];
     }
 
     // create working arrays
@@ -162,15 +162,15 @@ types::Function::ReturnValue sci_fstair(types::typed_list &in, int _iRetCount, t
     delete[] piWork;
     delete[] piIn5;
 
-    if(iErr)
+    if (iErr)
     {
         Scierror(999, _("%s: The algorithm has failed.\n"), "fstair");
-        for(int i = 0; i < 10; i++)
+        for (int i = 0; i < 10; i++)
         {
             delete[] pDblOut[i];
         }
 
-        for(int i = 0; i < 6; i++)
+        for (int i = 0; i < 6; i++)
         {
             delete[] piOut[i];
         }
@@ -180,18 +180,18 @@ types::Function::ReturnValue sci_fstair(types::typed_list &in, int _iRetCount, t
 
     /*** retrun output arguments ***/
     // convert blcks, muk, nuk, muk0, nuk0, mnei from int to double
-    for(int i = 4; i < 10; i++)
+    for (int i = 4; i < 10; i++)
     {
-        for(int j = 0; j < piSizeOut[i]; j++)
+        for (int j = 0; j < piSizeOut[i]; j++)
         {
-            pdblOut[i][j] = (double)(piOut[i-4][j]);
+            pdblOut[i][j] = (double)(piOut[i - 4][j]);
         }
 
-        delete[] piOut[i-4];
+        delete[] piOut[i - 4];
     }
 
     // retrun output arguments
-    for(int i = 0; i < 10; i++)
+    for (int i = 0; i < 10; i++)
     {
         out.push_back(pDblOut[i]);
     }

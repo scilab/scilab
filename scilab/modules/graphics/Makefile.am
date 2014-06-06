@@ -491,6 +491,7 @@ libscigraphics_la_CPPFLAGS = \
 -I$(top_srcdir)/modules/operations/includes/ \
 -I$(top_srcdir)/modules/types/includes/ \
 -I$(top_srcdir)/modules/ast/includes/ \
+-I$(top_srcdir)/modules/ast/includes/exps \
 -I$(top_srcdir)/modules/symbol/includes/ \
 -I$(top_srcdir)/modules/localization/includes/ \
 -I$(top_srcdir)/modules/threads/includes/ \
@@ -574,6 +575,7 @@ libscigraphics_disable_la_CPPFLAGS = \
 -I$(top_srcdir)/modules/types/includes/ \
 -I$(top_srcdir)/modules/core/includes/ \
 -I$(top_srcdir)/modules/ast/includes/ \
+-I$(top_srcdir)/modules/ast/includes/exps \
 -I$(top_srcdir)/modules/symbol/includes/ \
 -I$(top_srcdir)/modules/localization/includes/ \
 -I$(top_srcdir)/modules/dynamic_link/includes \

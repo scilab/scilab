@@ -28,6 +28,7 @@
 #include "setenvvar.hxx"
 #include "filemanager.hxx"
 #include "runner.hxx"
+#include "visitor_common.hxx"
 
 extern "C"
 {
@@ -254,7 +255,7 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
             _pSEI->pstFile = NULL;
         }
     }
-    catch (ScilabException se)
+    catch (ast::ScilabException se)
     {
         scilabErrorW(se.GetErrorMessage().c_str());
     }

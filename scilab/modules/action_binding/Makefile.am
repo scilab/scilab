@@ -45,6 +45,7 @@ libsciaction_binding_disable_la_CPPFLAGS = 	-I$(srcdir)/includes/ \
 											-I$(top_srcdir)/modules/localization/includes/ \
 											-I$(top_srcdir)/modules/output_stream/includes \
 											-I$(top_srcdir)/modules/ast/includes \
+                                        	-I$(top_srcdir)/modules/ast/includes/exps \
 											-I$(top_srcdir)/modules/symbol/includes \
 											-I$(top_srcdir)/modules/system_env/includes \
 											-I$(top_srcdir)/modules/types/includes \
@@ -65,6 +66,7 @@ $(JAVA_JNI_INCLUDE) \
 -I$(top_srcdir)/modules/symbol/includes \
 -I$(top_srcdir)/modules/functions_manager/includes \
 -I$(top_srcdir)/modules/ast/includes \
+-I$(top_srcdir)/modules/ast/includes/exps \
 -I$(top_srcdir)/modules/system_env/includes \
 -I$(top_srcdir)/modules/types/includes \
 -I$(top_srcdir)/modules/dynamic_link/includes \

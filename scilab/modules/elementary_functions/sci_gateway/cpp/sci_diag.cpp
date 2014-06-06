@@ -56,7 +56,7 @@ types::Function::ReturnValue sci_diag(types::typed_list &in, int _iRetCount, typ
         if (pDblIn->getDims() > 2)
         {
             std::wstring wstFuncName = L"%hm_diag";
-            return Overload::call(wstFuncName, in, _iRetCount, out, new ExecVisitor());
+            return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
         }
     }
     else if (in[0]->isString())
@@ -66,7 +66,7 @@ types::Function::ReturnValue sci_diag(types::typed_list &in, int _iRetCount, typ
         if (pStrIn->getDims() > 2)
         {
             std::wstring wstFuncName = L"%hm_diag";
-            return Overload::call(wstFuncName, in, _iRetCount, out, new ExecVisitor());
+            return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
         }
     }
     else if (in[0]->isBool()) // bool
@@ -84,7 +84,7 @@ types::Function::ReturnValue sci_diag(types::typed_list &in, int _iRetCount, typ
         if (pPolyIn->getDims() > 2)
         {
             std::wstring wstFuncName = L"%hm_diag";
-            return Overload::call(wstFuncName, in, _iRetCount, out, new ExecVisitor());
+            return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
         }
     }
     else if (in[0]->isInt8()) // int
@@ -162,7 +162,7 @@ types::Function::ReturnValue sci_diag(types::typed_list &in, int _iRetCount, typ
     else
     {
         std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_diag";
-        return Overload::call(wstFuncName, in, _iRetCount, out, new ExecVisitor());
+        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
     }
 
     if (in.size() == 2)

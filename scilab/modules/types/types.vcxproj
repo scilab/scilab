@@ -80,7 +80,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;../../libs/Eigen/includes;../../libs/intl;../elementary_functions/includes;../core/includes;../operations/includes;../symbol//includes;../ast/includes;../output_stream/includes;../localization/includes;../parse/includes;../system_env/includes;../windows_tools/includes;../functions_manager/includes;../string/includes;../threads/includes;../dynamic_link/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;../../libs/Eigen/includes;../../libs/intl;../elementary_functions/includes;../core/includes;../operations/includes;../symbol//includes;../ast/includes;../output_stream/includes;../localization/includes;../parse/includes;../system_env/includes;../windows_tools/includes;../functions_manager/includes;../string/includes;../threads/includes;../dynamic_link/includes;../ast/includes/exps;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;WIN32;_DEBUG;_WINDOWS;_USRDLL;TYPES_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader>
@@ -110,7 +110,7 @@ lib /DEF:"$(ProjectDir)operations_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;../../libs/Eigen/includes;../../libs/intl;../elementary_functions/includes;../core/includes;../operations/includes;../symbol//includes;../ast/includes;../output_stream/includes;../localization/includes;../parse/includes;../system_env/includes;../windows_tools/includes;../functions_manager/includes;../string/includes;../threads/includes;../dynamic_link/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;../../libs/Eigen/includes;../../libs/intl;../elementary_functions/includes;../core/includes;../operations/includes;../symbol//includes;../ast/includes;../output_stream/includes;../localization/includes;../parse/includes;../system_env/includes;../windows_tools/includes;../functions_manager/includes;../string/includes;../threads/includes;../dynamic_link/includes;../ast/includes/exps;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;WIN32;_DEBUG;_WINDOWS;_USRDLL;TYPES_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader>
@@ -136,7 +136,7 @@ lib /DEF:"$(ProjectDir)operations_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>includes;../../libs/Eigen/includes;../../libs/intl;../elementary_functions/includes;../core/includes;../operations/includes;../symbol//includes;../ast/includes;../output_stream/includes;../localization/includes;../parse/includes;../system_env/includes;../windows_tools/includes;../functions_manager/includes;../string/includes;../threads/includes;../dynamic_link/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;../../libs/Eigen/includes;../../libs/intl;../elementary_functions/includes;../core/includes;../operations/includes;../symbol//includes;../ast/includes;../output_stream/includes;../localization/includes;../parse/includes;../system_env/includes;../windows_tools/includes;../functions_manager/includes;../string/includes;../threads/includes;../dynamic_link/includes;../ast/includes/exps;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;WIN32;NDEBUG;_WINDOWS;_USRDLL;TYPES_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -166,7 +166,7 @@ lib /DEF:"$(ProjectDir)operations_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
       <TargetEnvironment>X64</TargetEnvironment>
     </Midl>
     <ClCompile>
-      <AdditionalIncludeDirectories>includes;../../libs/Eigen/includes;../../libs/intl;../elementary_functions/includes;../core/includes;../operations/includes;../symbol//includes;../ast/includes;../output_stream/includes;../localization/includes;../parse/includes;../system_env/includes;../windows_tools/includes;../functions_manager/includes;../string/includes;../threads/includes;../dynamic_link/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;../../libs/Eigen/includes;../../libs/intl;../elementary_functions/includes;../core/includes;../operations/includes;../symbol//includes;../ast/includes;../output_stream/includes;../localization/includes;../parse/includes;../system_env/includes;../windows_tools/includes;../functions_manager/includes;../string/includes;../threads/includes;../dynamic_link/includes;../ast/includes/exps;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;WIN32;NDEBUG;_WINDOWS;_USRDLL;TYPES_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>

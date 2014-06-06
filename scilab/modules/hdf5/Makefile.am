@@ -101,6 +101,7 @@ libscihdf5_la_CPPFLAGS = \
 	-I$(top_srcdir)/modules/operations/includes/ \
 	-I$(top_srcdir)/modules/types/includes/ \
 	-I$(top_srcdir)/modules/ast/includes/ \
+	-I$(top_srcdir)/modules/ast/includes/exps \
 	$(JAVA_JNI_INCLUDE) \
 	$(HDF5_CFLAGS) \
 	$(AM_CPPFLAGS) \

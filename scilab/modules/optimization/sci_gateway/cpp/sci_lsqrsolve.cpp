@@ -357,7 +357,7 @@ types::Function::ReturnValue sci_lsqrsolve(types::typed_list &in, int _iRetCount
                         pdblJac, &iM, piPvt, pDblQtf, pdblWork1, pdblWork2, pdblWork3, pdblWork4);
         }
     }
-    catch (ScilabError &e)
+    catch (ast::ScilabError &e)
     {
         char* pstrMsg = wide_string_to_UTF8(e.GetErrorMessage().c_str());
         sciprint(_("%s: exception caught in '%s' subroutine.\n"), "lsqrsolve", pstrFunc);

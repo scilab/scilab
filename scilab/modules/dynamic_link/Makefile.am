@@ -38,6 +38,7 @@ libscidynamic_link_la_CPPFLAGS = \
 	-I$(top_srcdir)/modules/output_stream/includes/ \
 	-I$(top_srcdir)/modules/functions_manager/includes/ \
 	-I$(top_srcdir)/modules/ast/includes/ \
+	-I$(top_srcdir)/modules/ast/includes/exps \
     -I$(top_srcdir)/modules/string/includes/ \
     -I$(top_srcdir)/modules/fileio/includes/ \
     -I$(top_srcdir)/modules/system_env/includes/ \

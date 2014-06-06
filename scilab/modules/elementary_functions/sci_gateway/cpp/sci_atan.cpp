@@ -48,7 +48,7 @@ types::Function::ReturnValue sci_atan(types::typed_list &in, int _iRetCount, typ
     if (in[0]->isDouble() == false)
     {
         std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_atan";
-        return Overload::call(wstFuncName, in, _iRetCount, out, new ExecVisitor());
+        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
     }
 
     pDblX = in[0]->getAs<types::Double>();

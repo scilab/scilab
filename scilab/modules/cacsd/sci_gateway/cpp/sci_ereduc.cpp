@@ -20,7 +20,7 @@ extern "C"
 #include "Scierror.h"
 #include "localization.h"
 
-extern void C2F(ereduc)(double*, int*, int*, double*, double*, int*, int*, double*);
+    extern void C2F(ereduc)(double*, int*, int*, double*, double*, int*, int*, double*);
 }
 
 /*--------------------------------------------------------------------------*/
@@ -45,10 +45,10 @@ types::Function::ReturnValue sci_ereduc(types::typed_list &in, int _iRetCount, t
 
     /*** get inputs arguments ***/
     // get X
-    if(in[0]->isDouble() == false)
+    if (in[0]->isDouble() == false)
     {
         std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_ereduc";
-        return Overload::call(wstFuncName, in, _iRetCount, out, new ExecVisitor());
+        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
     }
 
     types::Double* pDblX = in[0]->clone()->getAs<types::Double>();
@@ -57,7 +57,7 @@ types::Function::ReturnValue sci_ereduc(types::typed_list &in, int _iRetCount, t
     iRowsX  = pDblX->getRows();
 
     // get Tol
-    if(in[1]->isDouble() == false)
+    if (in[1]->isDouble() == false)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A matrix expected.\n"), "ereduc", 2);
         return types::Function::Error;
@@ -65,7 +65,7 @@ types::Function::ReturnValue sci_ereduc(types::typed_list &in, int _iRetCount, t
 
     types::Double* pDblTol = in[1]->getAs<types::Double>();
 
-    if(pDblTol->isScalar() == false)
+    if (pDblTol->isScalar() == false)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), "ereduc", 2);
         return types::Function::Error;
@@ -89,7 +89,7 @@ types::Function::ReturnValue sci_ereduc(types::typed_list &in, int _iRetCount, t
     out.push_back(pDblX);
 
     // return Q
-    if(_iRetCount > 1)
+    if (_iRetCount > 1)
     {
         out.push_back(pDblQ);
     }
@@ -99,7 +99,7 @@ types::Function::ReturnValue sci_ereduc(types::typed_list &in, int _iRetCount, t
     }
 
     // return Z
-    if(_iRetCount > 2)
+    if (_iRetCount > 2)
     {
         out.push_back(pDblZ);
     }
@@ -109,11 +109,11 @@ types::Function::ReturnValue sci_ereduc(types::typed_list &in, int _iRetCount, t
     }
 
     // return Stair
-    if(_iRetCount > 3)
+    if (_iRetCount > 3)
     {
         types::Double* pDblStair = new types::Double(1, iRowsX);
         double* pdblStair = pDblStair->get();
-        for(int i = 0; i < iRowsX; i++)
+        for (int i = 0; i < iRowsX; i++)
         {
             pdblStair[i] = (double)(piStair[i]);
         }
@@ -124,7 +124,7 @@ types::Function::ReturnValue sci_ereduc(types::typed_list &in, int _iRetCount, t
     delete[] piStair;
 
     // return rk
-    if(_iRetCount > 4)
+    if (_iRetCount > 4)
     {
         out.push_back(new types::Double((double)iRk));
     }

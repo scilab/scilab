@@ -32,7 +32,7 @@ types::Function::ReturnValue sci_cell(types::typed_list &in, int _iRetCount, typ
         if (in[i]->isDouble() == false)
         {
             std::wstring wstFuncName = L"%_cell";
-            return Overload::call(wstFuncName, in, _iRetCount, out, new ExecVisitor());
+            return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
         }
     }
 

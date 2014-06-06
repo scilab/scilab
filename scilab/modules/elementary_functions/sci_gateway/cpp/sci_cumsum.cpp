@@ -142,7 +142,7 @@ types::Function::ReturnValue sci_cumsum(types::typed_list &in, int _iRetCount, t
     else
     {
         std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_cumsum";
-        return Overload::call(wstFuncName, in, _iRetCount, out, new ExecVisitor());
+        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
     }
 
     if (in.size() >= 2)

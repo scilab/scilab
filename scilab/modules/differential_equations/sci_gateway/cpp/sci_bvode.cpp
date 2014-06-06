@@ -553,7 +553,7 @@ types::Function::ReturnValue sci_bvode(types::typed_list &in, int _iRetCount, ty
     {
         C2F(colnew)(&ncomp, M, &aleft, &aright, pDblZeta->get(), ipar, ltol, pDblTol->get(), pDblFixpnt->get(), iwork, rwork, &iflag, bvode_fsub, bvode_dfsub, bvode_gsub, bvode_dgsub, bvode_guess);
     }
-    catch (ScilabError &e)
+    catch (ast::ScilabError &e)
     {
         char* pstrMsg = wide_string_to_UTF8(e.GetErrorMessage().c_str());
         sciprint(_("%s: exception caught in '%s' subroutine.\n"), "bvode", "colnew");

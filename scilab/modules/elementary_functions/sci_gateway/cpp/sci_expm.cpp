@@ -45,7 +45,7 @@ types::Function::ReturnValue sci_expm(types::typed_list &in, int _iRetCount, typ
     if (in[0]->isDouble() == false)
     {
         std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_expm";
-        return Overload::call(wstFuncName, in, _iRetCount, out, new ExecVisitor());
+        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
     }
 
     pDblIn = in[0]->getAs<types::Double>();
@@ -53,7 +53,7 @@ types::Function::ReturnValue sci_expm(types::typed_list &in, int _iRetCount, typ
     if (pDblIn->getDims() > 2)
     {
         std::wstring wstFuncName = L"%hm_expm";
-        return Overload::call(wstFuncName, in, _iRetCount, out, new ExecVisitor());
+        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
     }
 
     if (pDblIn->getSize() == 0)

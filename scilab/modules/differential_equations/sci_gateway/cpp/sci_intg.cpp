@@ -240,7 +240,7 @@ types::Function::ReturnValue sci_intg(types::typed_list &in, int _iRetCount, typ
                    &result, &abserr, &neval, &ier,
                    &limit, &lenw, &last, iwork, dwork);
     }
-    catch (ScilabError &e)
+    catch (ast::ScilabError &e)
     {
         char* pstrMsg = wide_string_to_UTF8(e.GetErrorMessage().c_str());
         sciprint(_("%s: exception caught in '%s' subroutine.\n"), "intg", "dqags");

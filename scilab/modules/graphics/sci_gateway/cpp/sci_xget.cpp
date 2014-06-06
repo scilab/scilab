@@ -51,7 +51,7 @@ types::Function::ReturnValue sci_xget(types::typed_list &in, int _iRetCount, typ
 
     if (in.size() == 0)
     {
-        return Overload::call(L"%_xget", in, _iRetCount, out, new ExecVisitor());
+        return Overload::call(L"%_xget", in, _iRetCount, out, new ast::ExecVisitor());
     }
 
     if (in.size() > 2)
@@ -66,7 +66,7 @@ types::Function::ReturnValue sci_xget(types::typed_list &in, int _iRetCount, typ
         return types::Function::Error;
     }
 
-    if(in[0]->isString() == false)
+    if (in[0]->isString() == false)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A single string expected.\n"), "xget", 1);
         return types::Function::Error;
@@ -74,7 +74,7 @@ types::Function::ReturnValue sci_xget(types::typed_list &in, int _iRetCount, typ
 
     types::String* pStr = in[0]->getAs<types::String>();
 
-    if(pStr->isScalar() == false)
+    if (pStr->isScalar() == false)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A single string expected.\n"), "xget", 1);
         return types::Function::Error;
@@ -92,7 +92,7 @@ types::Function::ReturnValue sci_xget(types::typed_list &in, int _iRetCount, typ
 
     if (in.size() == 2)
     {
-        if(in[1]->isDouble() == false)
+        if (in[1]->isDouble() == false)
         {
             Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), "xget", 2);
             return types::Function::Error;
@@ -110,7 +110,7 @@ types::Function::ReturnValue sci_xget(types::typed_list &in, int _iRetCount, typ
         dValue = pDbl->get(0);
     }
 
-    switch(ConfigGraphicVariable::getPropertyValue(pwcsWhat))
+    switch (ConfigGraphicVariable::getPropertyValue(pwcsWhat))
     {
         case 15 : // fpf
         {
@@ -320,7 +320,7 @@ types::Function::ReturnValue sci_xget(types::typed_list &in, int _iRetCount, typ
             getGraphicObjectProperty(getCurrentFigure(), __GO_COLORMAP_SIZE__, jni_int, (void**)&piNumColors);
 
             /* White is lqst colormap index + 2 */
-            out.push_back(new types::Double((double)(iNumColors+ 2)));
+            out.push_back(new types::Double((double)(iNumColors + 2)));
         }
         break;
         case 33 : // wresize

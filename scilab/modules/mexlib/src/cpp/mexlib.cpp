@@ -56,6 +56,7 @@
 #include "configvariable.hxx"
 #include "overload.hxx"
 #include "execvisitor.hxx"
+#include "printvisitor.hxx"
 
 #include "types.hxx"
 #include "int8.hxx"
@@ -78,6 +79,7 @@ extern "C"
 #include "machine.h"
 #include "mex.h"
 #include "freeArrayOfString.h"
+#include "os_swprintf.h"
 }
 
 #ifdef getType
@@ -88,6 +90,7 @@ extern "C"
 #undef isComplex
 #endif
 
+using namespace ast;
 static char *the_current_mex_name;
 static void (*exitFcn)(void);
 
@@ -756,7 +759,7 @@ void *mxGetImagData(const mxArray *ptr)
 
 void mexErrMsgTxt(const char *error_msg)
 {
-    throw new ast::ScilabException(error_msg);
+    throw new ScilabException(error_msg);
 }
 
 mxArray *mxCreateDoubleMatrix(int m, int n, mxComplexity complexFlag)

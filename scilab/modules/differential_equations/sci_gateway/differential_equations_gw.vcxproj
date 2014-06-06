@@ -81,7 +81,7 @@
     <ClCompile>
       <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../includes;../src/c;../../types/includes;../../ast/includes;../../core/includes;../../../libs/intl;../../localization/includes;../../system_env/includes;../../api_scilab/includes;../../symbol/includes;../../operations/includes;../../threads/includes;../../output_stream/includes;../../elementary_functions/includes;../../string/includes;../../../libs/Eigen/includes;../../console/includes;../../dynamic_link/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../includes;../src/c;../../types/includes;../../ast/includes;../../core/includes;../../../libs/intl;../../localization/includes;../../system_env/includes;../../api_scilab/includes;../../symbol/includes;../../operations/includes;../../threads/includes;../../output_stream/includes;../../elementary_functions/includes;../../string/includes;../../../libs/Eigen/includes;../../console/includes;../../dynamic_link/includes;../../ast/includes/exps;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;DIFFERENTIAL_EQUATIONS_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -116,7 +116,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../includes;../src/c;../../types/includes;../../ast/includes;../../core/includes;../../../libs/intl;../../localization/includes;../../system_env/includes;../../api_scilab/includes;../../symbol/includes;../../operations/includes;../../threads/includes;../../output_stream/includes;../../elementary_functions/includes;../../string/includes;../../../libs/Eigen/includes;../../console/includes;../../dynamic_link/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../includes;../src/c;../../types/includes;../../ast/includes;../../core/includes;../../../libs/intl;../../localization/includes;../../system_env/includes;../../api_scilab/includes;../../symbol/includes;../../operations/includes;../../threads/includes;../../output_stream/includes;../../elementary_functions/includes;../../string/includes;../../../libs/Eigen/includes;../../console/includes;../../dynamic_link/includes;../../ast/includes/exps;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;DIFFERENTIAL_EQUATIONS_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -152,7 +152,7 @@
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>../includes;../src/c;../../types/includes;../../ast/includes;../../core/includes;../../../libs/intl;../../localization/includes;../../system_env/includes;../../api_scilab/includes;../../symbol/includes;../../operations/includes;../../threads/includes;../../output_stream/includes;../../elementary_functions/includes;../../string/includes;../../../libs/Eigen/includes;../../console/includes;../../dynamic_link/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../includes;../src/c;../../types/includes;../../ast/includes;../../core/includes;../../../libs/intl;../../localization/includes;../../system_env/includes;../../api_scilab/includes;../../symbol/includes;../../operations/includes;../../threads/includes;../../output_stream/includes;../../elementary_functions/includes;../../string/includes;../../../libs/Eigen/includes;../../console/includes;../../dynamic_link/includes;../../ast/includes/exps;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;DIFFERENTIAL_EQUATIONS_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -195,7 +195,7 @@
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>../includes;../src/c;../../types/includes;../../ast/includes;../../core/includes;../../../libs/intl;../../localization/includes;../../system_env/includes;../../api_scilab/includes;../../symbol/includes;../../operations/includes;../../threads/includes;../../output_stream/includes;../../elementary_functions/includes;../../string/includes;../../../libs/Eigen/includes;../../console/includes;../../dynamic_link/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../includes;../src/c;../../types/includes;../../ast/includes;../../core/includes;../../../libs/intl;../../localization/includes;../../system_env/includes;../../api_scilab/includes;../../symbol/includes;../../operations/includes;../../threads/includes;../../output_stream/includes;../../elementary_functions/includes;../../string/includes;../../../libs/Eigen/includes;../../console/includes;../../dynamic_link/includes;../../ast/includes/exps;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;DIFFERENTIAL_EQUATIONS_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>

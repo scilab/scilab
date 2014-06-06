@@ -116,7 +116,7 @@ types::Function::ReturnValue sci_triu(types::typed_list &in, int _iRetCount, typ
     else
     {
         std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_triu";
-        return Overload::call(wstFuncName, in, _iRetCount, out, new ExecVisitor());
+        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
     }
 
     return types::Function::OK;

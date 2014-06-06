@@ -63,7 +63,7 @@ types::Function::ReturnValue sci_simp(types::typed_list &in, int _iRetCount, typ
     {
         // rational case
         std::wstring wstFuncName = L"%r_simp";
-        return Overload::call(wstFuncName, in, _iRetCount, out, new ExecVisitor());
+        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
     }
     else // simp(num, den)
     {
@@ -97,13 +97,13 @@ types::Function::ReturnValue sci_simp(types::typed_list &in, int _iRetCount, typ
         if (bComplex)
         {
             std::wstring wstFuncName = L"%p_simp";
-            return Overload::call(wstFuncName, in, _iRetCount, out, new ExecVisitor());
+            return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
         }
 
         if (iDouble == 3) // simp(double, double)
         {
             std::wstring wstFuncName = L"%s_simp";
-            return Overload::call(wstFuncName, in, _iRetCount, out, new ExecVisitor());
+            return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
         }
 
         switch (iDouble)

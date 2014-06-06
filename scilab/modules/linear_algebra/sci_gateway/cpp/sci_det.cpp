@@ -22,6 +22,7 @@ extern "C"
 #include "localization.h"
 #include "Scierror.h"
 #include "det.h"
+#include "doublecomplex.h"
 }
 /*--------------------------------------------------------------------------*/
 
@@ -47,7 +48,7 @@ types::Function::ReturnValue sci_det(types::typed_list &in, int _iRetCount, type
     if ((in[0]->isDouble() == false))
     {
         std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_det";
-        return Overload::call(wstFuncName, in, _iRetCount, out, new ExecVisitor());
+        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
     }
 
     pDbl = in[0]->getAs<types::Double>()->clone()->getAs<types::Double>();

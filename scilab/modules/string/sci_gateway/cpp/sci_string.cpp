@@ -38,10 +38,10 @@ using namespace types;
 static void getMacroString(Macro* _pM, InternalType** _pOut, InternalType** _pIn, InternalType** _pBody)
 {
     //get body
-    Exp* exp = _pM->getBody();
+    ast::Exp* exp = _pM->getBody();
 
     std::wostringstream ostr;
-    PrintVisitor pv(ostr, false);
+    ast::PrintVisitor pv(ostr, false);
 
     exp->accept(pv);
 
@@ -297,7 +297,7 @@ Function::ReturnValue sci_string(typed_list &in, int _iRetCount, typed_list &out
         case GenericType::RealPoly :
         {
             std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_string";
-            return Overload::call(wstFuncName, in, _iRetCount, out, new ExecVisitor());
+            return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
         }
         default :
         {

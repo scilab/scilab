@@ -54,6 +54,7 @@ libscilinear_algebra_la_CPPFLAGS = \
 -I$(top_srcdir)/modules/symbol/includes \
 -I$(top_srcdir)/modules/types/includes \
 -I$(top_srcdir)/modules/ast/includes \
+-I$(top_srcdir)/modules/ast/includes/exps \
 -I$(top_srcdir)/modules/output_stream/includes \
 -I$(top_srcdir)/modules/api_scilab/includes \
 -I$(top_srcdir)/modules/console/includes \

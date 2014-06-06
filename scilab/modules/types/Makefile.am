@@ -134,6 +134,7 @@ libscitypes_la_CPPFLAGS = \
 	-I$(top_srcdir)/modules/operations/includes \
 	-I$(top_srcdir)/modules/symbol/includes \
 	-I$(top_srcdir)/modules/ast/includes \
+	-I$(top_srcdir)/modules/ast/includes/exps \
 	-I$(top_srcdir)/modules/output_stream/includes \
 	-I$(top_srcdir)/modules/parse/includes \
 	-I$(top_srcdir)/modules/system_env/includes \

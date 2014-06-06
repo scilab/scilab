@@ -25,10 +25,12 @@ extern "C"
 #include "MALLOC.h"
 #include "localization.h"
 #include "Scierror.h"
+#include "sciprint.h"
 #include "scifunctions.h"
 #include "elem_common.h"
 #include "checkodeerror.h"
 #include "xerhlt.h"
+
 }
 
 /*--------------------------------------------------------------------------*/
@@ -685,7 +687,7 @@ types::Function::ReturnValue sci_dassl(types::typed_list &in, int _iRetCount, ty
                 Scierror(999, _("%s: dassl return with state %d.\n"), "dassl", idid);
             }
         }
-        catch (ScilabError &e)
+        catch (ast::ScilabError &e)
         {
             char* pstrMsg = wide_string_to_UTF8(e.GetErrorMessage().c_str());
             sciprint(_("%s: exception caught in '%s' subroutine.\n"), "dassl", "dassl");

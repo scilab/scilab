@@ -76,7 +76,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;..\ast\includes;..\symbol\includes;..\core\includes;../types/includes;../localization/includes;../output_stream/includes;../../libs/intl;../string/includes;../system_env/includes;../dynamic_link/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;..\ast\includes;../ast/includes/exps;..\symbol\includes;..\core\includes;../types/includes;../localization/includes;../output_stream/includes;../../libs/intl;../string/includes;../system_env/includes;../dynamic_link/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;PARSE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -103,7 +103,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;..\ast\includes;..\symbol\includes;..\core\includes;../types/includes;../localization/includes;../output_stream/includes;../../libs/intl;../string/includes;../system_env/includes;../dynamic_link/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;..\ast\includes;../ast/includes/exps;..\symbol\includes;..\core\includes;../types/includes;../localization/includes;../output_stream/includes;../../libs/intl;../string/includes;../system_env/includes;../dynamic_link/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;PARSE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -128,7 +128,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>includes;..\ast\includes;..\symbol\includes;..\core\includes;../types/includes;../localization/includes;../output_stream/includes;../../libs/intl;../string/includes;../system_env/includes;../dynamic_link/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;..\ast\includes;../ast/includes/exps;..\symbol\includes;..\core\includes;../types/includes;../localization/includes;../output_stream/includes;../../libs/intl;../string/includes;../system_env/includes;../dynamic_link/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;PARSE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -155,7 +155,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>includes;..\ast\includes;..\symbol\includes;..\core\includes;../types/includes;../localization/includes;../output_stream/includes;../../libs/intl;../string/includes;../system_env/includes;../dynamic_link/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;..\ast\includes;../ast/includes/exps;..\symbol\includes;..\core\includes;../types/includes;../localization/includes;../output_stream/includes;../../libs/intl;../string/includes;../system_env/includes;../dynamic_link/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;PARSE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>

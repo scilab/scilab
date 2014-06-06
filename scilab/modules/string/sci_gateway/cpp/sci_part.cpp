@@ -61,7 +61,7 @@ Function::ReturnValue sci_part(typed_list &in, int _iRetCount, typed_list &out)
     if (in[0]->isString() == false)
     {
         std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_part";
-        return Overload::call(wstFuncName, in, _iRetCount, out, new ExecVisitor());
+        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
     }
 
     String* pS = in[0]->getAs<types::String>();
@@ -69,7 +69,7 @@ Function::ReturnValue sci_part(typed_list &in, int _iRetCount, typed_list &out)
     if (in[1]->isDouble() == false)
     {
         std::wstring wstFuncName = L"%"  + in[1]->getShortTypeStr() + L"_part";
-        return Overload::call(wstFuncName, in, _iRetCount, out, new ExecVisitor());
+        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
     }
 
 

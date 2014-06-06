@@ -105,7 +105,7 @@ types::Function::ReturnValue sci_pppdiv(types::typed_list &in, int _iRetCount, t
         else
         {
             std::wstring wstFuncName = L"%"  + in[i]->getShortTypeStr() + L"_pppdiv";
-            return Overload::call(wstFuncName, in, _iRetCount, out, new ExecVisitor());
+            return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
         }
     }
 

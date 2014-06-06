@@ -100,6 +100,7 @@ libscixml_la_CPPFLAGS = -I$(srcdir)/includes/ \
 	-I$(top_srcdir)/modules/string/includes/ \
 	-I$(top_srcdir)/modules/types/includes/ \
 	-I$(top_srcdir)/modules/ast/includes/ \
+	-I$(top_srcdir)/modules/ast/includes/exps \
     $(XML_FLAGS) \
     $(AM_CPPFLAGS)
 

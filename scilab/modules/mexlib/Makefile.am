@@ -19,6 +19,7 @@ MEXLIB_FLAGS = \
 	-I$(top_srcdir)/modules/types/includes \
 	-I$(top_srcdir)/modules/symbol/includes \
 	-I$(top_srcdir)/modules/ast/includes \
+	-I$(top_srcdir)/modules/ast/includes/exps \
 	-I$(top_srcdir)/modules/parse/includes \
 	-I$(top_srcdir)/modules/system_env/includes \
 	-I$(top_srcdir)/modules/threads/includes/ \

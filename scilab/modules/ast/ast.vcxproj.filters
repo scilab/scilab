@@ -4,9 +4,6 @@
     <ClCompile Include="src\cpp\debugvisitor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\cpp\libAst.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\cpp\mutevisitor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -25,218 +22,21 @@
     <ClCompile Include="src\cpp\expHistory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="includes\all.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\ast.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\alldec.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\allexp.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\allvar.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\anydecs.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\arraylistexp.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\arraylistvar.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\assignexp.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\assignlistexp.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\boolexp.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\controlexp.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\breakexp.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\callexp.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\caseexp.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\cellcallexp.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\cellexp.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\colonvar.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\commentexp.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\constexp.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\continueexp.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\debugvisitor.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\intexp.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\dec.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\decls.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\decs.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\dollarvar.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\doubleexp.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\dummyvisitor.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\execvisitor.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\exp.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\fieldexp.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\floatexp.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\forexp.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\functiondec.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\ifexp.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\listexp.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\whileexp.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\logicalopexp.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\mathexp.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\matrixexp.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\matrixlineexp.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\mutevisitor.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\nilexp.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\notexp.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\opexp.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\printvisitor.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\returnexp.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\run_AssignExp.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\run_CallExp.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\run_MatrixExp.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\run_OpExp.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\runvisitor.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\selectexp.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\seqexp.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\shortcutvisitor.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\simplevar.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\stringexp.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\timedvisitor.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\token.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\transposeexp.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\trycatchexp.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\var.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\vardec.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\visitor.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\visitor_common.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\libAst.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\stepvisitor.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\macrovarvisitor.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\expHistory.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
+    <ClCompile Include="src\cpp\runvisitor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\run_AssignExp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\run_MatrixExp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\run_OpExp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\run_CallExp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\..\bin\blasplus.lib" />
@@ -253,10 +53,222 @@
     <Filter Include="Libraries Dependencies">
       <UniqueIdentifier>{31bac480-5190-44fd-8c11-aa2cf27d3069}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\exps">
+      <UniqueIdentifier>{145230a5-48e4-4b42-899c-680c6ced09cb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="core_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="includes\exps\all.hxx">
+      <Filter>Header Files\exps</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\exps\alldec.hxx">
+      <Filter>Header Files\exps</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\exps\allexp.hxx">
+      <Filter>Header Files\exps</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\exps\allvar.hxx">
+      <Filter>Header Files\exps</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\exps\anydecs.hxx">
+      <Filter>Header Files\exps</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\exps\arraylistexp.hxx">
+      <Filter>Header Files\exps</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\exps\arraylistvar.hxx">
+      <Filter>Header Files\exps</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\exps\assignexp.hxx">
+      <Filter>Header Files\exps</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\exps\assignlistexp.hxx">
+      <Filter>Header Files\exps</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\exps\ast.hxx">
+      <Filter>Header Files\exps</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\exps\boolexp.hxx">
+      <Filter>Header Files\exps</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\exps\breakexp.hxx">
+      <Filter>Header Files\exps</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\exps\callexp.hxx">
+      <Filter>Header Files\exps</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\exps\caseexp.hxx">
+      <Filter>Header Files\exps</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\exps\cellcallexp.hxx">
+      <Filter>Header Files\exps</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\exps\cellexp.hxx">
+      <Filter>Header Files\exps</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\exps\colonvar.hxx">
+      <Filter>Header Files\exps</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\exps\commentexp.hxx">
+      <Filter>Header Files\exps</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\exps\constexp.hxx">
+      <Filter>Header Files\exps</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\exps\continueexp.hxx">
+      <Filter>Header Files\exps</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\exps\controlexp.hxx">
+      <Filter>Header Files\exps</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\exps\dec.hxx">
+      <Filter>Header Files\exps</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\exps\decls.hxx">
+      <Filter>Header Files\exps</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\exps\decs.hxx">
+      <Filter>Header Files\exps</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\exps\dollarvar.hxx">
+      <Filter>Header Files\exps</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\exps\doubleexp.hxx">
+      <Filter>Header Files\exps</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\exps\exp.hxx">
+      <Filter>Header Files\exps</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\exps\fieldexp.hxx">
+      <Filter>Header Files\exps</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\exps\floatexp.hxx">
+      <Filter>Header Files\exps</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\exps\forexp.hxx">
+      <Filter>Header Files\exps</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\exps\functiondec.hxx">
+      <Filter>Header Files\exps</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\exps\ifexp.hxx">
+      <Filter>Header Files\exps</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\exps\intexp.hxx">
+      <Filter>Header Files\exps</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\exps\listexp.hxx">
+      <Filter>Header Files\exps</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\exps\location.hxx">
+      <Filter>Header Files\exps</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\exps\logicalopexp.hxx">
+      <Filter>Header Files\exps</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\exps\mathexp.hxx">
+      <Filter>Header Files\exps</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\exps\matrixexp.hxx">
+      <Filter>Header Files\exps</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\exps\matrixlineexp.hxx">
+      <Filter>Header Files\exps</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\exps\nilexp.hxx">
+      <Filter>Header Files\exps</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\exps\notexp.hxx">
+      <Filter>Header Files\exps</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\exps\opexp.hxx">
+      <Filter>Header Files\exps</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\exps\returnexp.hxx">
+      <Filter>Header Files\exps</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\exps\selectexp.hxx">
+      <Filter>Header Files\exps</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\exps\seqexp.hxx">
+      <Filter>Header Files\exps</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\exps\simplevar.hxx">
+      <Filter>Header Files\exps</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\exps\stepvisitor.hxx">
+      <Filter>Header Files\exps</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\exps\stringexp.hxx">
+      <Filter>Header Files\exps</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\exps\token.hxx">
+      <Filter>Header Files\exps</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\exps\transposeexp.hxx">
+      <Filter>Header Files\exps</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\exps\trycatchexp.hxx">
+      <Filter>Header Files\exps</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\exps\var.hxx">
+      <Filter>Header Files\exps</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\exps\vardec.hxx">
+      <Filter>Header Files\exps</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\exps\whileexp.hxx">
+      <Filter>Header Files\exps</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\debugvisitor.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\dummyvisitor.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\dynlib_ast_tools.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\execvisitor.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\expHistory.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\macrovarvisitor.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\mutevisitor.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\printvisitor.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\runvisitor.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\scilabexception.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\shortcutvisitor.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\stepvisitor.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\timedvisitor.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\visitor.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\visitor_common.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

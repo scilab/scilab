@@ -80,7 +80,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../includes;../../../functions_manager/includes;../../../types/includes;../../../symbol/includes;../../../ast/includes;../../../elementary_functions/includes;../../../core/includes;../../../operations/includes;../../../api_scilab/includes;../../../localization/includes;../../../../libs/intl;../../../output_stream/includes;../../../../libs/Eigen/includes;../../../system_env/includes;../../../threads/includes;../../../string/includes;../../../console/includes;../../../dynamic_link/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../../functions_manager/includes;../../../types/includes;../../../symbol/includes;../../../ast/includes;../../../ast/includes/exps;../../../elementary_functions/includes;../../../core/includes;../../../operations/includes;../../../api_scilab/includes;../../../localization/includes;../../../../libs/intl;../../../output_stream/includes;../../../../libs/Eigen/includes;../../../system_env/includes;../../../threads/includes;../../../string/includes;../../../console/includes;../../../dynamic_link/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;BOOLEAN_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -104,7 +104,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../includes;../../../functions_manager/includes;../../../types/includes;../../../symbol/includes;../../../ast/includes;../../../elementary_functions/includes;../../../core/includes;../../../operations/includes;../../../api_scilab/includes;../../../localization/includes;../../../../libs/intl;../../../output_stream/includes;../../../../libs/Eigen/includes;../../../system_env/includes;../../../threads/includes;../../../string/includes;../../../console/includes;../../../dynamic_link/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../../functions_manager/includes;../../../types/includes;../../../symbol/includes;../../../ast/includes;../../../ast/includes/exps;../../../elementary_functions/includes;../../../core/includes;../../../operations/includes;../../../api_scilab/includes;../../../localization/includes;../../../../libs/intl;../../../output_stream/includes;../../../../libs/Eigen/includes;../../../system_env/includes;../../../threads/includes;../../../string/includes;../../../console/includes;../../../dynamic_link/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;BOOLEAN_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -126,7 +126,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>../../includes;../../../functions_manager/includes;../../../types/includes;../../../symbol/includes;../../../ast/includes;../../../elementary_functions/includes;../../../core/includes;../../../operations/includes;../../../api_scilab/includes;../../../localization/includes;../../../../libs/intl;../../../output_stream/includes;../../../../libs/Eigen/includes;../../../system_env/includes;../../../threads/includes;../../../string/includes;../../../console/includes;../../../dynamic_link/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../../functions_manager/includes;../../../types/includes;../../../symbol/includes;../../../ast/includes;../../../ast/includes/exps;../../../elementary_functions/includes;../../../core/includes;../../../operations/includes;../../../api_scilab/includes;../../../localization/includes;../../../../libs/intl;../../../output_stream/includes;../../../../libs/Eigen/includes;../../../system_env/includes;../../../threads/includes;../../../string/includes;../../../console/includes;../../../dynamic_link/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;BOOLEAN_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -153,7 +153,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>../../includes;../../../functions_manager/includes;../../../types/includes;../../../symbol/includes;../../../ast/includes;../../../elementary_functions/includes;../../../core/includes;../../../operations/includes;../../../api_scilab/includes;../../../localization/includes;../../../../libs/intl;../../../output_stream/includes;../../../../libs/Eigen/includes;../../../system_env/includes;../../../threads/includes;../../../string/includes;../../../console/includes;../../../dynamic_link/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../../functions_manager/includes;../../../types/includes;../../../symbol/includes;../../../ast/includes;../../../ast/includes/exps;../../../elementary_functions/includes;../../../core/includes;../../../operations/includes;../../../api_scilab/includes;../../../localization/includes;../../../../libs/intl;../../../output_stream/includes;../../../../libs/Eigen/includes;../../../system_env/includes;../../../threads/includes;../../../string/includes;../../../console/includes;../../../dynamic_link/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;BOOLEAN_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>

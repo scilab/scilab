@@ -538,6 +538,7 @@ libsciparse_la_CPPFLAGS = \
     -I$(top_srcdir)/libs/MALLOC/includes \
 	-I$(top_builddir)/modules/core/includes \
 	-I$(top_builddir)/modules/ast/includes \
+	-I$(top_srcdir)/modules/ast/includes/exps \
 	-I$(top_builddir)/modules/localization/includes \
 	-I$(top_builddir)/modules/symbol/includes \
 	-I$(top_builddir)/modules/types/includes \

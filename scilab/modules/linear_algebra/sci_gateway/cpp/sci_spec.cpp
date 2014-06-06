@@ -55,7 +55,7 @@ types::Function::ReturnValue sci_spec(types::typed_list &in, int _iRetCount, typ
     if ((in[0]->isDouble() == false))
     {
         std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_spec";
-        return Overload::call(wstFuncName, in, _iRetCount, out, new ExecVisitor());
+        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
     }
     pDblA = in[0]->getAs<types::Double>()->clone()->getAs<types::Double>();
 
@@ -253,7 +253,7 @@ types::Function::ReturnValue sci_spec(types::typed_list &in, int _iRetCount, typ
         if ((in[1]->isDouble() == false))
         {
             std::wstring wstFuncName = L"%"  + in[1]->getShortTypeStr() + L"_spec";
-            return Overload::call(wstFuncName, in, _iRetCount, out, new ExecVisitor());
+            return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
         }
         pDblB = in[1]->getAs<types::Double>()->clone()->getAs<types::Double>();
         if ((pDblA->getRows() != pDblB->getRows()) && (pDblA->getCols() != pDblB->getCols()))

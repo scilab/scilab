@@ -158,7 +158,11 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libsciast_la_LIBADD =
 am__dirstamp = $(am__leading_dot)dirstamp
-am_libsciast_la_OBJECTS = src/cpp/libsciast_la-libAst.lo \
+am_libsciast_la_OBJECTS = src/cpp/libsciast_la-runvisitor.lo \
+	src/cpp/libsciast_la-run_CallExp.lo \
+	src/cpp/libsciast_la-run_MatrixExp.lo \
+	src/cpp/libsciast_la-run_OpExp.lo \
+	src/cpp/libsciast_la-run_AssignExp.lo \
 	src/cpp/libsciast_la-visitor_common.lo \
 	src/cpp/libsciast_la-printvisitor.lo \
 	src/cpp/libsciast_la-debugvisitor.lo \
@@ -520,7 +524,11 @@ top_srcdir = @top_srcdir@
 yacc_present = @yacc_present@
 pkglib_LTLIBRARIES = libsciast.la
 libsciast_la_SOURCES = \
-	src/cpp/libAst.cpp \
+	src/cpp/runvisitor.cpp \
+	src/cpp/run_CallExp.cpp \
+	src/cpp/run_MatrixExp.cpp \
+	src/cpp/run_OpExp.cpp \
+	src/cpp/run_AssignExp.cpp \
 	src/cpp/visitor_common.cpp \
 	src/cpp/printvisitor.cpp \
 	src/cpp/debugvisitor.cpp \
@@ -532,6 +540,7 @@ libsciast_la_SOURCES = \
 
 libsciast_la_CPPFLAGS = \
 	-Iincludes \
+	-Iincludes/exps \
 	-Isrc/cpp \
     -I$(top_srcdir)/modules/dynamic_link/includes \
     -I$(top_srcdir)/modules/symbol/includes \
@@ -707,7 +716,15 @@ src/cpp/$(am__dirstamp):
 src/cpp/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) src/cpp/$(DEPDIR)
 	@: > src/cpp/$(DEPDIR)/$(am__dirstamp)
-src/cpp/libsciast_la-libAst.lo: src/cpp/$(am__dirstamp) \
+src/cpp/libsciast_la-runvisitor.lo: src/cpp/$(am__dirstamp) \
+	src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libsciast_la-run_CallExp.lo: src/cpp/$(am__dirstamp) \
+	src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libsciast_la-run_MatrixExp.lo: src/cpp/$(am__dirstamp) \
+	src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libsciast_la-run_OpExp.lo: src/cpp/$(am__dirstamp) \
+	src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libsciast_la-run_AssignExp.lo: src/cpp/$(am__dirstamp) \
 	src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libsciast_la-visitor_common.lo: src/cpp/$(am__dirstamp) \
 	src/cpp/$(DEPDIR)/$(am__dirstamp)
@@ -739,10 +756,14 @@ distclean-compile:
 
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciast_la-debugvisitor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciast_la-expHistory.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciast_la-libAst.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciast_la-macrovarvisitor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciast_la-mutevisitor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciast_la-printvisitor.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciast_la-run_AssignExp.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciast_la-run_CallExp.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciast_la-run_MatrixExp.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciast_la-run_OpExp.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciast_la-runvisitor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciast_la-scilabexception.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciast_la-shortcutvisitor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciast_la-visitor_common.Plo@am__quote@
@@ -771,12 +792,40 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LTCXXCOMPILE) -c -o $@ $<
 
-src/cpp/libsciast_la-libAst.lo: src/cpp/libAst.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libsciast_la-libAst.lo -MD -MP -MF src/cpp/$(DEPDIR)/libsciast_la-libAst.Tpo -c -o src/cpp/libsciast_la-libAst.lo `test -f 'src/cpp/libAst.cpp' || echo '$(srcdir)/'`src/cpp/libAst.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libsciast_la-libAst.Tpo src/cpp/$(DEPDIR)/libsciast_la-libAst.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/libAst.cpp' object='src/cpp/libsciast_la-libAst.lo' libtool=yes @AMDEPBACKSLASH@
+src/cpp/libsciast_la-runvisitor.lo: src/cpp/runvisitor.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libsciast_la-runvisitor.lo -MD -MP -MF src/cpp/$(DEPDIR)/libsciast_la-runvisitor.Tpo -c -o src/cpp/libsciast_la-runvisitor.lo `test -f 'src/cpp/runvisitor.cpp' || echo '$(srcdir)/'`src/cpp/runvisitor.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libsciast_la-runvisitor.Tpo src/cpp/$(DEPDIR)/libsciast_la-runvisitor.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/runvisitor.cpp' object='src/cpp/libsciast_la-runvisitor.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libsciast_la-libAst.lo `test -f 'src/cpp/libAst.cpp' || echo '$(srcdir)/'`src/cpp/libAst.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libsciast_la-runvisitor.lo `test -f 'src/cpp/runvisitor.cpp' || echo '$(srcdir)/'`src/cpp/runvisitor.cpp
+
+src/cpp/libsciast_la-run_CallExp.lo: src/cpp/run_CallExp.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libsciast_la-run_CallExp.lo -MD -MP -MF src/cpp/$(DEPDIR)/libsciast_la-run_CallExp.Tpo -c -o src/cpp/libsciast_la-run_CallExp.lo `test -f 'src/cpp/run_CallExp.cpp' || echo '$(srcdir)/'`src/cpp/run_CallExp.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libsciast_la-run_CallExp.Tpo src/cpp/$(DEPDIR)/libsciast_la-run_CallExp.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/run_CallExp.cpp' object='src/cpp/libsciast_la-run_CallExp.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libsciast_la-run_CallExp.lo `test -f 'src/cpp/run_CallExp.cpp' || echo '$(srcdir)/'`src/cpp/run_CallExp.cpp
+
+src/cpp/libsciast_la-run_MatrixExp.lo: src/cpp/run_MatrixExp.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libsciast_la-run_MatrixExp.lo -MD -MP -MF src/cpp/$(DEPDIR)/libsciast_la-run_MatrixExp.Tpo -c -o src/cpp/libsciast_la-run_MatrixExp.lo `test -f 'src/cpp/run_MatrixExp.cpp' || echo '$(srcdir)/'`src/cpp/run_MatrixExp.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libsciast_la-run_MatrixExp.Tpo src/cpp/$(DEPDIR)/libsciast_la-run_MatrixExp.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/run_MatrixExp.cpp' object='src/cpp/libsciast_la-run_MatrixExp.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libsciast_la-run_MatrixExp.lo `test -f 'src/cpp/run_MatrixExp.cpp' || echo '$(srcdir)/'`src/cpp/run_MatrixExp.cpp
+
+src/cpp/libsciast_la-run_OpExp.lo: src/cpp/run_OpExp.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libsciast_la-run_OpExp.lo -MD -MP -MF src/cpp/$(DEPDIR)/libsciast_la-run_OpExp.Tpo -c -o src/cpp/libsciast_la-run_OpExp.lo `test -f 'src/cpp/run_OpExp.cpp' || echo '$(srcdir)/'`src/cpp/run_OpExp.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libsciast_la-run_OpExp.Tpo src/cpp/$(DEPDIR)/libsciast_la-run_OpExp.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/run_OpExp.cpp' object='src/cpp/libsciast_la-run_OpExp.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libsciast_la-run_OpExp.lo `test -f 'src/cpp/run_OpExp.cpp' || echo '$(srcdir)/'`src/cpp/run_OpExp.cpp
+
+src/cpp/libsciast_la-run_AssignExp.lo: src/cpp/run_AssignExp.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libsciast_la-run_AssignExp.lo -MD -MP -MF src/cpp/$(DEPDIR)/libsciast_la-run_AssignExp.Tpo -c -o src/cpp/libsciast_la-run_AssignExp.lo `test -f 'src/cpp/run_AssignExp.cpp' || echo '$(srcdir)/'`src/cpp/run_AssignExp.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libsciast_la-run_AssignExp.Tpo src/cpp/$(DEPDIR)/libsciast_la-run_AssignExp.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/run_AssignExp.cpp' object='src/cpp/libsciast_la-run_AssignExp.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libsciast_la-run_AssignExp.lo `test -f 'src/cpp/run_AssignExp.cpp' || echo '$(srcdir)/'`src/cpp/run_AssignExp.cpp
 
 src/cpp/libsciast_la-visitor_common.lo: src/cpp/visitor_common.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libsciast_la-visitor_common.lo -MD -MP -MF src/cpp/$(DEPDIR)/libsciast_la-visitor_common.Tpo -c -o src/cpp/libsciast_la-visitor_common.lo `test -f 'src/cpp/visitor_common.cpp' || echo '$(srcdir)/'`src/cpp/visitor_common.cpp

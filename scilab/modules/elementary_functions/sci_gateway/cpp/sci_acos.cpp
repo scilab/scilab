@@ -45,7 +45,7 @@ types::Function::ReturnValue sci_acos(types::typed_list &in, int _iRetCount, typ
     if (in[0]->isDouble() == false)
     {
         std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_acos";
-        return Overload::call(wstFuncName, in, _iRetCount, out, new ExecVisitor());
+        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
     }
 
     pDblIn = in[0]->getAs<types::Double>();

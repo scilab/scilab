@@ -15,9 +15,11 @@
 #include "functions_gw.hxx"
 #include "execvisitor.hxx"
 #include "mutevisitor.hxx"
+#include "printvisitor.hxx"
 #include "scilabWrite.hxx"
 #include "scilabexception.hxx"
 #include "configvariable.hxx"
+#include "context.hxx"
 
 #include <iostream>
 #include <fstream>
@@ -28,7 +30,9 @@ extern "C"
 #include "MALLOC.h"
 #include "os_wcsicmp.h"
 #include "Scierror.h"
+#include "sciprint.h"
 #include "localization.h"
+#include "os_swprintf.h"
 }
 
 #define MUTE_FLAG       L"n"
@@ -360,7 +364,7 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
                 ConfigVariable::setPromptMode(oldVal);
                 //throw ScilabMessage(szError, 1, (*j)->location_get());
                 //print already done, so just foward exception but with message
-                //throw ScilabError();
+                //throw ast::ScilabError();
                 return Function::Error;
             }
             break;

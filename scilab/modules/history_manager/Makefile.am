@@ -63,6 +63,7 @@ $(JAVA_JNI_INCLUDE) \
 -I$(top_srcdir)/modules/symbol/includes/ \
 -I$(top_srcdir)/modules/types/includes/ \
 -I$(top_srcdir)/modules/ast/includes/ \
+-I$(top_srcdir)/modules/ast/includes/exps \
 -I$(top_srcdir)/modules/string/includes/ \
 -I$(top_srcdir)/modules/dynamic_link/includes \
 $(AM_CPPFLAGS)

@@ -16,6 +16,7 @@
 #include "polynom.hxx"
 #include "overload.hxx"
 #include "execvisitor.hxx"
+#include "context.hxx"
 
 extern "C"
 {
@@ -51,7 +52,7 @@ types::Function::ReturnValue sci_poly(types::typed_list &in, int _iRetCount, typ
     if (in[0]->isDouble() == false)
     {
         std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_poly";
-        return Overload::call(wstFuncName, in, _iRetCount, out, new ExecVisitor());
+        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
     }
 
     pDblIn = in[0]->getAs<types::Double>();
@@ -114,7 +115,7 @@ types::Function::ReturnValue sci_poly(types::typed_list &in, int _iRetCount, typ
             types::optional_list tlOpt;
             tlInput.push_back(pDblIn);
             types::Function *funcSpec = symbol::Context::getInstance()->get(symbol::Symbol(L"spec"))->getAs<types::Function>();
-            funcSpec->call(tlInput, tlOpt, 1, tlOutput, new ExecVisitor());
+            funcSpec->call(tlInput, tlOpt, 1, tlOutput, new ast::ExecVisitor());
             pDblIn = tlOutput[0]->getAs<types::Double>();
             bDeleteInput = true;
         }

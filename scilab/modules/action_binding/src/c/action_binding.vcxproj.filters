@@ -38,9 +38,6 @@
     <ClCompile Include="..\jni\Signal.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\cpp\action_binding_GiwsExports.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\dynlib_action_binding.h">
@@ -50,9 +47,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\jni\Signal.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\action_binding_GiwsExports.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -51,7 +51,7 @@ types::Function::ReturnValue sci_sfact(types::typed_list &in, int _iRetCount, ty
     if (in[0]->isPoly() == false)
     {
         std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_sfact";
-        return Overload::call(wstFuncName, in, _iRetCount, out, new ExecVisitor());
+        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
     }
 
     pPolyIn = in[0]->getAs<types::Polynom>();

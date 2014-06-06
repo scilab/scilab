@@ -20,7 +20,6 @@ extern "C"
 }
 
 #include "function.hxx"
-#include "action_binding_GiwsExports.hxx"
 #include "action_binding_gw.hxx"
 #include "string.hxx"
 #include "Signal.hxx"

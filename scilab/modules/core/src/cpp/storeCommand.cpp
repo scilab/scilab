@@ -70,10 +70,10 @@ int StoreCommandWithFlag (wchar_t *command, int flag)
         }
         else
         {
-            throw ScilabException(parser.getErrorMessage());
+            throw ast::ScilabException(parser.getErrorMessage());
         }
     }
-    catch (ScilabException se)
+    catch (ast::ScilabException se)
     {
         scilabErrorW(L"\n");
         scilabErrorW(L"\n");
@@ -107,10 +107,10 @@ int StorePrioritaryCommandWithFlag (wchar_t *command, int flag)
         }
         else
         {
-            throw ScilabException(parser.getErrorMessage());
+            throw ast::ScilabException(parser.getErrorMessage());
         }
     }
-    catch (ScilabException se)
+    catch (ast::ScilabException se)
     {
         scilabErrorW(L"\n");
         scilabErrorW(L"\n");

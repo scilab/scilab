@@ -39,9 +39,9 @@ types::Function::ReturnValue sci_iconvert(types::typed_list &in, int _iRetCount,
     {
         // call overload
         std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_iconvert";
-        return Overload::call(wstFuncName, in, _iRetCount, out, new ExecVisitor());
+        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
     }
 
     // perfom operation
-    return Overload::call(L"%_iconvert", in, _iRetCount, out, new ExecVisitor());
+    return Overload::call(L"%_iconvert", in, _iRetCount, out, new ast::ExecVisitor());
 }

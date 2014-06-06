@@ -45,8 +45,8 @@ types::Function::ReturnValue sci_where(types::typed_list &in, int _iRetCount, ty
     }
 
     std::list<std::pair<int, std::wstring> >::const_iterator it;
-    types::Double* pDblLines = new types::Double(lWhereAmI.size() - 1, 1);
-    types::String* pStrNames = new types::String(lWhereAmI.size() - 1, 1);
+    types::Double* pDblLines = new types::Double((int)lWhereAmI.size() - 1, 1);
+    types::String* pStrNames = new types::String((int)lWhereAmI.size() - 1, 1);
 
     it = lWhereAmI.begin();
     pDblLines->set(0, (double)it->first);
@@ -57,7 +57,7 @@ types::Function::ReturnValue sci_where(types::typed_list &in, int _iRetCount, ty
         pStrNames->set(i, it->second.c_str());
     }
 
-    pStrNames->set(lWhereAmI.size() - 1, lWhereAmI.front().second.c_str());
+    pStrNames->set((int)lWhereAmI.size() - 1, lWhereAmI.front().second.c_str());
 
     out.push_back(pDblLines);
     out.push_back(pStrNames);

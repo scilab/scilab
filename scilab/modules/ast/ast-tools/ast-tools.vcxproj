@@ -77,7 +77,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\includes;..\..\symbol\includes;..\..\types\includes;..\..\functions_manager\includes;..\../core/includes;..\..\elementary_functions\includes;..\../operations/includes;..\../localization/includes;..\../../libs/intl;..\../output_stream/includes;..\../system_env/includes;..\../string/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\includes;../includes/exps;..\..\symbol\includes;..\..\types\includes;..\..\functions_manager\includes;..\../core/includes;..\..\elementary_functions\includes;..\../operations/includes;..\../localization/includes;..\../../libs/intl;..\../output_stream/includes;..\../system_env/includes;..\../string/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;AST_TOOLS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -107,7 +107,7 @@ lib /DEF:"$(ProjectDir)core_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) 
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\includes;..\..\symbol\includes;..\..\types\includes;..\..\functions_manager\includes;..\../core/includes;..\..\elementary_functions\includes;..\../operations/includes;..\../localization/includes;..\../../libs/intl;..\../output_stream/includes;..\../system_env/includes;..\../string/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\includes;../includes/exps;..\..\symbol\includes;..\..\types\includes;..\..\functions_manager\includes;..\../core/includes;..\..\elementary_functions\includes;..\../operations/includes;..\../localization/includes;..\../../libs/intl;..\../output_stream/includes;..\../system_env/includes;..\../string/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;AST_TOOLS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -135,7 +135,7 @@ lib /DEF:"$(ProjectDir)core_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) 
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>..\includes;..\..\symbol\includes;..\..\types\includes;..\..\functions_manager\includes;..\../core/includes;..\..\elementary_functions\includes;..\../operations/includes;..\../localization/includes;..\../../libs/intl;..\../output_stream/includes;..\../system_env/includes;..\../string/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\includes;../includes/exps;..\..\symbol\includes;..\..\types\includes;..\..\functions_manager\includes;..\../core/includes;..\..\elementary_functions\includes;..\../operations/includes;..\../localization/includes;..\../../libs/intl;..\../output_stream/includes;..\../system_env/includes;..\../string/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;AST_TOOLS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -165,7 +165,7 @@ lib /DEF:"$(ProjectDir)core_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) 
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>..\includes;..\..\symbol\includes;..\..\types\includes;..\..\functions_manager\includes;..\../core/includes;..\..\elementary_functions\includes;..\../operations/includes;..\../localization/includes;..\../../libs/intl;..\../output_stream/includes;..\../system_env/includes;..\../string/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\includes;../includes/exps;..\..\symbol\includes;..\..\types\includes;..\..\functions_manager\includes;..\../core/includes;..\..\elementary_functions\includes;..\../operations/includes;..\../localization/includes;..\../../libs/intl;..\../output_stream/includes;..\../system_env/includes;..\../string/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;AST_TOOLS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>

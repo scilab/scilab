@@ -47,7 +47,7 @@ Function::ReturnValue sci_eye(types::typed_list &in, int _iRetCount, types::type
         if (in[0]->isGenericType() == false)
         {
             std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_eye";
-            return Overload::call(wstFuncName, in, _iRetCount, out, new ExecVisitor());
+            return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
         }
 
         iRows = in[0]->getAs<GenericType>()->getRows();

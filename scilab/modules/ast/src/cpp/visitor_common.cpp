@@ -24,8 +24,9 @@
 #include "alltypes.hxx"
 
 using namespace types;
+using namespace ast;
 
-size_t ast::Ast::globalNodeNumber = 0;
+size_t Ast::globalNodeNumber = 0;
 static bool isIntTrue(InternalType* _pIT);
 
 bool bConditionState(types::InternalType *_pITResult)
@@ -752,7 +753,7 @@ types::InternalType* callOverload(const Exp& e, std::wstring _strType, types::ty
 }
 
 
-bool getFieldsFromExp(const ast::Exp* _pExp, std::list<ExpHistory*>& fields)
+bool getFieldsFromExp(const Exp* _pExp, std::list<ExpHistory*>& fields)
 {
     const FieldExp* pField      = dynamic_cast<const FieldExp*>(_pExp);
     const SimpleVar* pVar       = dynamic_cast<const SimpleVar*>(_pExp);
@@ -816,7 +817,7 @@ bool getFieldsFromExp(const ast::Exp* _pExp, std::list<ExpHistory*>& fields)
     }
 }
 
-types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*>& fields, InternalType* _pAssignValue)
+types::InternalType* evaluateFields(const Exp* _pExp, std::list<ExpHistory*>& fields, InternalType* _pAssignValue)
 {
     std::list<ExpHistory*> evalFields;
 

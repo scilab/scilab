@@ -17,7 +17,7 @@
 #include "getmode.hxx"
 #include "overload.hxx"
 #include "execvisitor.hxx"
-
+#include "context.hxx"
 
 extern "C"
 {
@@ -42,7 +42,7 @@ Function::ReturnValue sci_size(types::typed_list &in, int _iRetCount, types::typ
         case InternalType::RealMList:
         {
             std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_size";
-            Overload::call(wstFuncName, in, _iRetCount, out, new ExecVisitor());
+            Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
             break;
         }
         case InternalType::RealTList:
@@ -52,7 +52,7 @@ Function::ReturnValue sci_size(types::typed_list &in, int _iRetCount, types::typ
             types::InternalType *pIT = symbol::Context::getInstance()->get(symbol::Symbol(wstFuncName));
             if (pIT)
             {
-                return Overload::call(wstFuncName, in, _iRetCount, out, new ExecVisitor());
+                return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
             }
         }
         case InternalType::RealList:

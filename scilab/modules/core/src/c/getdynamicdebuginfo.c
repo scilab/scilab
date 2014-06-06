@@ -278,7 +278,6 @@ nextline:
 
 char **getDynamicDebugInfo(int *sizeArray, int* pvApiCtx)
 {
-    SciErr sciErr;
     int i = 0;
     char *value = NULL;
     char **outputDynamicList = NULL;
@@ -290,6 +289,7 @@ char **getDynamicDebugInfo(int *sizeArray, int* pvApiCtx)
     /* Stuff for the function meminfo() */
     int shift = 10;
     unsigned KLONG buffers_plus_cached = 0;
+    SciErr sciErr;
 #endif
 
 #ifdef _MSC_VER

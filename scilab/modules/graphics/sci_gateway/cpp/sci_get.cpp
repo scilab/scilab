@@ -59,7 +59,7 @@ types::Function::ReturnValue sci_get(types::typed_list &in, int _iRetCount, type
 
     if (p1->isMList() || p1->isTList())
     {
-        ExecVisitor exec;
+        ast::ExecVisitor exec;
         Overload::generateNameAndCall(L"get", in, _iRetCount, out, &exec);
         return types::Function::OK;
     }
@@ -67,7 +67,7 @@ types::Function::ReturnValue sci_get(types::typed_list &in, int _iRetCount, type
     if (p1->isDouble())
     {
         types::Double* pDbll1 = p1->getAs<types::Double>();
-        if(pDbll1->isScalar())
+        if (pDbll1->isScalar())
         {
             Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), "get", 1);
             return types::Function::Error;
@@ -76,7 +76,7 @@ types::Function::ReturnValue sci_get(types::typed_list &in, int _iRetCount, type
         double pdbll1 = pDbll1->get(0);
         if (pdbll1 != 0)
         {
-            ExecVisitor exec;
+            ast::ExecVisitor exec;
             Overload::generateNameAndCall(L"get", in, _iRetCount, out, &exec);
             return types::Function::OK;
         }
@@ -127,7 +127,7 @@ types::Function::ReturnValue sci_get(types::typed_list &in, int _iRetCount, type
         types::GraphicHandle* pH = p1->getAs<types::GraphicHandle>();
         if (pH->isScalar() == false)
         {
-            ExecVisitor exec;
+            ast::ExecVisitor exec;
             return Overload::call(L"%h_get", in, _iRetCount, out, &exec);
         }
 
@@ -182,12 +182,12 @@ types::Function::ReturnValue sci_get(types::typed_list &in, int _iRetCount, type
         wchar_t* pstProperty = pS->get(0);
 
         if (wcscmp(pstProperty, L"default_figure")  &&
-            wcscmp(pstProperty, L"default_axes")    &&
-            wcscmp(pstProperty, L"current_figure")  &&
-            wcscmp(pstProperty, L"current_axes")    &&
-            wcscmp(pstProperty, L"current_entity")  &&
-            wcscmp(pstProperty, L"hdl")             &&
-            wcscmp(pstProperty, L"figures_id"))
+                wcscmp(pstProperty, L"default_axes")    &&
+                wcscmp(pstProperty, L"current_figure")  &&
+                wcscmp(pstProperty, L"current_axes")    &&
+                wcscmp(pstProperty, L"current_entity")  &&
+                wcscmp(pstProperty, L"hdl")             &&
+                wcscmp(pstProperty, L"figures_id"))
         {
             char* pstProperty = wide_string_to_UTF8(pS->get(0));
             int uid = search_path(pstProperty);
@@ -202,14 +202,14 @@ types::Function::ReturnValue sci_get(types::typed_list &in, int _iRetCount, type
                     return types::Function::OK;
                 }
 
-                if(in[1]->isString() == false)
+                if (in[1]->isString() == false)
                 {
                     Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), "get", 2);
                     return types::Function::Error;
                 }
 
                 pS = in[1]->getAs<types::String>();
-                if(pS->isScalar() == false)
+                if (pS->isScalar() == false)
                 {
                     Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), "get", 2);
                     return types::Function::Error;
@@ -225,8 +225,8 @@ types::Function::ReturnValue sci_get(types::typed_list &in, int _iRetCount, type
     else
     {
         // Overload
-        ExecVisitor exec;
-        return Overload::call(L"%"+p1->getShortTypeStr()+L"_get", in, _iRetCount, out, &exec);
+        ast::ExecVisitor exec;
+        return Overload::call(L"%" + p1->getShortTypeStr() + L"_get", in, _iRetCount, out, &exec);
     }
 
     char* pstProperty = wide_string_to_UTF8(pS->get(0));

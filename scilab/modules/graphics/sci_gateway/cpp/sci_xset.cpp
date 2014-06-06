@@ -57,7 +57,7 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
 
     if (in.size() == 0)
     {
-        return Overload::call(L"%_xset", in, _iRetCount, out, new ExecVisitor());
+        return Overload::call(L"%_xset", in, _iRetCount, out, new ast::ExecVisitor());
     }
 
     if (in.size() > 6)

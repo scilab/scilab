@@ -145,7 +145,7 @@ wchar_t* getModuleVersionInfoAsString(wchar_t* _pwstModule)
     {
         if (wcscmp(_pwstModule, SCILAB_STRING) == 0)
         {
-            infoString = getScilabVersionAsString();
+            infoString = getScilabVersionAsWideString();
             return infoString;
         }
     }

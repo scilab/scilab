@@ -55,7 +55,7 @@ types::Function::ReturnValue sci_schur(types::typed_list &in, int _iRetCount, ty
     if (in[0]->isDouble() == false)
     {
         std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_schur";
-        return Overload::call(wstFuncName, in, _iRetCount, out, new ExecVisitor());
+        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
     }
 
     pDbl[0] = in[0]->getAs<types::Double>();
@@ -130,7 +130,7 @@ types::Function::ReturnValue sci_schur(types::typed_list &in, int _iRetCount, ty
         else
         {
             std::wstring wstFuncName = L"%"  + in[1]->getShortTypeStr() + L"_schur";
-            return Overload::call(wstFuncName, in, _iRetCount, out, new ExecVisitor());
+            return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
         }
     }
 
@@ -139,7 +139,7 @@ types::Function::ReturnValue sci_schur(types::typed_list &in, int _iRetCount, ty
         if (in[2]->isString() == false && in[2]->isCallable() == false)
         {
             std::wstring wstFuncName = L"%"  + in[2]->getShortTypeStr() + L"_schur";
-            return Overload::call(wstFuncName, in, _iRetCount, out, new ExecVisitor());
+            return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
         }
 
         if (in[2]->isString())

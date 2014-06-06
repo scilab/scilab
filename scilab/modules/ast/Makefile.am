@@ -14,7 +14,11 @@
 pkglib_LTLIBRARIES 	= libsciast.la
 
 libsciast_la_SOURCES = \
-	src/cpp/libAst.cpp \
+	src/cpp/runvisitor.cpp \
+	src/cpp/run_CallExp.cpp \
+	src/cpp/run_MatrixExp.cpp \
+	src/cpp/run_OpExp.cpp \
+	src/cpp/run_AssignExp.cpp \
 	src/cpp/visitor_common.cpp \
 	src/cpp/printvisitor.cpp \
 	src/cpp/debugvisitor.cpp \
@@ -26,6 +30,7 @@ libsciast_la_SOURCES = \
 
 libsciast_la_CPPFLAGS = \
 	-Iincludes \
+	-Iincludes/exps \
 	-Isrc/cpp \
     -I$(top_srcdir)/modules/dynamic_link/includes \
     -I$(top_srcdir)/modules/symbol/includes \

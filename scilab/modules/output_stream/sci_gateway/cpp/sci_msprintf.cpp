@@ -48,7 +48,7 @@ types::Callable::ReturnValue sci_msprintf(types::typed_list &in, int _iRetCount,
         if (in[i]->isDouble() == false && in[i]->isString() == false)
         {
             std::wstring wstFuncName = L"%"  + in[i]->getShortTypeStr() + L"_msprintf";
-            return Overload::call(wstFuncName, in, _iRetCount, out, new ExecVisitor());
+            return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
         }
     }
 

@@ -26,6 +26,7 @@ extern "C"
 #include "MALLOC.h"
 #include "localization.h"
 #include "Scierror.h"
+#include "sciprint.h"
 #include "scifunctions.h"
 #include "elem_common.h"
 #include "checkodeerror.h"
@@ -1051,7 +1052,7 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
                 Scierror(999, _("%s: ddaskr return with state %d.\n"), "daskr", ididtmp);
             }
         }
-        catch (ScilabError &e)
+        catch (ast::ScilabError &e)
         {
             char* pstrMsg = wide_string_to_UTF8(e.GetErrorMessage().c_str());
             sciprint(_("%s: exception caught in '%s' subroutine.\n"), "daskr", "ddaskr");

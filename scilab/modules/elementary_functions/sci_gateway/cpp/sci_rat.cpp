@@ -52,20 +52,20 @@ Function::ReturnValue sci_rat(types::typed_list &in, int _iRetCount, types::type
     if (in[0]->isDouble() == false)
     {
         std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_rat";
-        return Overload::call(wstFuncName, in, _iRetCount, out, new ExecVisitor());
+        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
     }
 
     pDblIn = in[0]->getAs<types::Double>();
 
     if (pDblIn->getDims() > 2)
     {
-        return Overload::call(L"%hm_rat", in, _iRetCount, out, new ExecVisitor());
+        return Overload::call(L"%hm_rat", in, _iRetCount, out, new ast::ExecVisitor());
     }
 
     if (pDblIn->isComplex())
     {
         std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_rat";
-        return Overload::call(wstFuncName, in, _iRetCount, out, new ExecVisitor());
+        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
     }
 
     if (in.size() == 2)

@@ -17,6 +17,7 @@
 #include "functions_gw.hxx"
 #include "execvisitor.hxx"
 #include "mutevisitor.hxx"
+#include "printvisitor.hxx"
 #include "scilabWrite.hxx"
 #include "scilabexception.hxx"
 #include "configvariable.hxx"
@@ -39,6 +40,7 @@ extern "C"
 #include "PATH_MAX.h"
 }
 
+using namespace ast;
 bool checkPrompt(int _iMode, int _iCheck);
 void printLine(const std::string& _stPrompt, const std::string& _stLine, bool _bLF);
 std::string printExp(std::ifstream& _File, Exp* _pExp, const std::string& _stPrompt, int* _piLine /* in/out */, int* _piCol /* in/out */, std::string& _stPreviousBuffer);
@@ -417,7 +419,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
                 ConfigVariable::setPromptMode(oldVal);
                 //throw ScilabMessage(szError, 1, (*j)->location_get());
                 //print already done, so just foward exception but with message
-                throw ScilabError();
+                throw ast::ScilabError();
             }
             break;
         }

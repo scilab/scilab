@@ -15,6 +15,7 @@
 #include "overload.hxx"
 #include "execvisitor.hxx"
 #include "string.hxx"
+#include "context.hxx"
 
 extern "C" {
 #include "Scierror.h"
@@ -35,13 +36,13 @@ types::Function::ReturnValue sci_typeof(types::typed_list &in, int _iRetCount, t
     if (in.size() == 1)
     {
         // calls the overload if it exists.
-        if(in[0]->isList())
+        if (in[0]->isList())
         {
             std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_typeof";
             types::InternalType *pIT = symbol::Context::getInstance()->get(symbol::Symbol(wstFuncName));
-            if(pIT)
+            if (pIT)
             {
-                return Overload::call(wstFuncName, in, _iRetCount, out, new ExecVisitor());
+                return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
 
             }
         }

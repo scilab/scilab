@@ -49,7 +49,7 @@ Function::ReturnValue sci_disp(typed_list &in, int _iRetCount, typed_list &out)
         if (isTList || isMList)
         {
             wchar_t* wcsStr = NULL;
-            if(isTList)
+            if (isTList)
             {
                 TList* pTL = (*it)->getAs<TList>();
                 wcsStr = pTL->get(0)->getAs<String>()->get(0);
@@ -65,7 +65,7 @@ Function::ReturnValue sci_disp(typed_list &in, int _iRetCount, typed_list &out)
             std::wstring wstFuncName = L"%"  + std::wstring(wcsStr) + L"_p";
             if (symbol::Context::getInstance()->get(symbol::Symbol(wstFuncName)))
             {
-                return Overload::call(wstFuncName, input, 1, out, new ExecVisitor());
+                return Overload::call(wstFuncName, input, 1, out, new ast::ExecVisitor());
             }
         }
 

@@ -84,13 +84,13 @@ types::Function::ReturnValue Overload::call(std::wstring _stOverloadingFunctionN
         types::optional_list opt;
         return pCall->call(in, opt, _iRetCount, out, _execMe);
     }
-    catch (ScilabMessage sm)
+    catch (ast::ScilabMessage sm)
     {
         if (pCall->isMacro() || pCall->isMacroFile())
         {
             wchar_t szError[bsiz];
             os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n"), sm.GetErrorLocation().first_line, pCall->getName().c_str());
-            throw ScilabMessage(szError);
+            throw ast::ScilabMessage(szError);
         }
         else
         {
@@ -104,61 +104,61 @@ std::wstring Overload::getNameFromOper(ast::OpExp::Oper _oper)
     switch (_oper)
     {
             /* standard operators */
-        case OpExp::plus :
+        case ast::OpExp::plus :
             return std::wstring(L"a");
-        case OpExp::unaryMinus :
-        case OpExp::minus :
+        case ast::OpExp::unaryMinus :
+        case ast::OpExp::minus :
             return std::wstring(L"s");
-        case OpExp::times :
+        case ast::OpExp::times :
             return std::wstring(L"m");
-        case OpExp::rdivide :
+        case ast::OpExp::rdivide :
             return std::wstring(L"r");
-        case OpExp::ldivide :
+        case ast::OpExp::ldivide :
             return std::wstring(L"l");
-        case OpExp::power :
+        case ast::OpExp::power :
             return std::wstring(L"p");
             /* dot operators */
-        case OpExp::dottimes :
+        case ast::OpExp::dottimes :
             return std::wstring(L"x");
-        case OpExp::dotrdivide :
+        case ast::OpExp::dotrdivide :
             return std::wstring(L"d");
-        case OpExp::dotldivide :
+        case ast::OpExp::dotldivide :
             return std::wstring(L"q");
-        case OpExp::dotpower :
+        case ast::OpExp::dotpower :
             return std::wstring(L"j");
             /* Kron operators */
-        case OpExp::krontimes :
+        case ast::OpExp::krontimes :
             return std::wstring(L"k");
-        case OpExp::kronrdivide :
+        case ast::OpExp::kronrdivide :
             return std::wstring(L"y");
-        case OpExp::kronldivide :
+        case ast::OpExp::kronldivide :
             return std::wstring(L"z");
             /* Control Operators ??? */
-        case OpExp::controltimes :
+        case ast::OpExp::controltimes :
             return std::wstring(L"u");
-        case OpExp::controlrdivide :
+        case ast::OpExp::controlrdivide :
             return std::wstring(L"v");
-        case OpExp::controlldivide :
+        case ast::OpExp::controlldivide :
             return std::wstring(L"w");
-        case OpExp::eq :
+        case ast::OpExp::eq :
             return std::wstring(L"o");
-        case OpExp::ne :
+        case ast::OpExp::ne :
             return std::wstring(L"n");
-        case OpExp::lt :
+        case ast::OpExp::lt :
             return std::wstring(L"1");
-        case OpExp::le :
+        case ast::OpExp::le :
             return std::wstring(L"3");
-        case OpExp::gt :
+        case ast::OpExp::gt :
             return std::wstring(L"2");
-        case OpExp::ge :
+        case ast::OpExp::ge :
             return std::wstring(L"4");
-        case OpExp::logicalAnd :
+        case ast::OpExp::logicalAnd :
             return std::wstring(L"h");
-        case OpExp::logicalOr :
+        case ast::OpExp::logicalOr :
             return std::wstring(L"g");
-        case OpExp::logicalShortCutAnd :
+        case ast::OpExp::logicalShortCutAnd :
             return std::wstring(L"h");
-        case OpExp::logicalShortCutOr :
+        case ast::OpExp::logicalShortCutOr :
             return std::wstring(L"g");
         default :
             return std::wstring(L"???");

@@ -121,6 +121,7 @@ libsciconsole_minimal_la_CPPFLAGS = \
 -I$(top_srcdir)/modules/system_env/includes \
 -I$(top_srcdir)/modules/types/includes \
 -I$(top_srcdir)/modules/ast/includes \
+-I$(top_srcdir)/modules/ast/includes/exps \
 -I$(top_srcdir)/modules/threads/includes \
 -I$(top_srcdir)/modules/string/includes \
 -I$(top_srcdir)/modules/symbol/includes \
@@ -146,6 +147,7 @@ libsciconsole_la_CPPFLAGS = \
 -I$(top_srcdir)/modules/types/includes \
 -I$(top_srcdir)/modules/system_env/includes \
 -I$(top_srcdir)/modules/ast/includes \
+-I$(top_srcdir)/modules/ast/includes/exps \
 -I$(top_srcdir)/modules/output_stream/includes \
 -I$(top_srcdir)/modules/symbol/includes \
 -I$(top_srcdir)/modules/string/includes \

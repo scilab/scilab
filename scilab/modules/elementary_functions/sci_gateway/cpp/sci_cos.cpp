@@ -112,7 +112,7 @@ types::Function::ReturnValue sci_cos(types::typed_list &in, int _iRetCount, type
     else
     {
         std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_cos";
-        return Overload::call(wstFuncName, in, _iRetCount, out, new ExecVisitor());
+        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
     }
 
     return types::Function::OK;

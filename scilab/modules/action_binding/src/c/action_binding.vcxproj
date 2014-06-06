@@ -254,7 +254,6 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\cpp\action_binding_GiwsExports.cpp" />
     <ClCompile Include="DllmainAction_Binding.c" />
     <ClCompile Include="InterpreterManagement.c" />
     <ClCompile Include="..\jni\InterpreterManagement_wrap.c" />
@@ -262,7 +261,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\dynlib_action_binding.h" />
-    <ClInclude Include="..\..\includes\action_binding_GiwsExports.hxx" />
     <ClInclude Include="InterpreterManagement.h" />
     <ClInclude Include="..\jni\Signal.hxx" />
   </ItemGroup>

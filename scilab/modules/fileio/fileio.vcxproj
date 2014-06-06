@@ -80,7 +80,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;src/c;src/cpp;../windows_tools/includes;../api_scilab/includes;../core/includes;../string/includes;../output_stream/includes;../io/includes;../localization/includes;../../libs/intl;../operations/includes;../symbol/includes;../types/includes;../ast/includes;../system_env/includes;../../libs/curl/include;../../libs/libxml2;../dynamic_link/includes;../preferences/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c;src/cpp;../windows_tools/includes;../api_scilab/includes;../core/includes;../string/includes;../output_stream/includes;../io/includes;../localization/includes;../../libs/intl;../operations/includes;../symbol/includes;../types/includes;../ast/includes;../system_env/includes;../../libs/curl/include;../../libs/libxml2;../dynamic_link/includes;../preferences/includes;../ast/includes/exps;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;FILEIO_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -112,7 +112,7 @@ lib /DEF:"$(ProjectDir)preferences_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;src/c;src/cpp;../windows_tools/includes;../api_scilab/includes;../core/includes;../string/includes;../output_stream/includes;../io/includes;../localization/includes;../../libs/intl;../operations/includes;../symbol/includes;../types/includes;../ast/includes;../system_env/includes;../../libs/curl/include;../../libs/libxml2;../dynamic_link/includes;../preferences/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c;src/cpp;../windows_tools/includes;../api_scilab/includes;../core/includes;../string/includes;../output_stream/includes;../io/includes;../localization/includes;../../libs/intl;../operations/includes;../symbol/includes;../types/includes;../ast/includes;../system_env/includes;../../libs/curl/include;../../libs/libxml2;../dynamic_link/includes;../preferences/includes;../ast/includes/exps;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;FILEIO_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -142,7 +142,7 @@ lib /DEF:"$(ProjectDir)preferences_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>includes;src/c;src/cpp;../windows_tools/includes;../api_scilab/includes;../core/includes;../string/includes;../output_stream/includes;../io/includes;../localization/includes;../../libs/intl;../operations/includes;../symbol/includes;../types/includes;../ast/includes;../system_env/includes;../../libs/curl/include;../../libs/libxml2;../dynamic_link/includes;../preferences/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c;src/cpp;../windows_tools/includes;../api_scilab/includes;../core/includes;../string/includes;../output_stream/includes;../io/includes;../localization/includes;../../libs/intl;../operations/includes;../symbol/includes;../types/includes;../ast/includes;../system_env/includes;../../libs/curl/include;../../libs/libxml2;../dynamic_link/includes;../preferences/includes;../ast/includes/exps;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;FILEIO_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -180,7 +180,7 @@ lib /DEF:"$(ProjectDir)preferences_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>includes;src/c;src/cpp;../windows_tools/includes;../api_scilab/includes;../core/includes;../string/includes;../output_stream/includes;../io/includes;../localization/includes;../../libs/intl;../operations/includes;../symbol/includes;../types/includes;../ast/includes;../system_env/includes;../../libs/curl/include;../../libs/libxml2;../dynamic_link/includes;../preferences/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c;src/cpp;../windows_tools/includes;../api_scilab/includes;../core/includes;../string/includes;../output_stream/includes;../io/includes;../localization/includes;../../libs/intl;../operations/includes;../symbol/includes;../types/includes;../ast/includes;../system_env/includes;../../libs/curl/include;../../libs/libxml2;../dynamic_link/includes;../preferences/includes;../ast/includes/exps;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;FILEIO_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>

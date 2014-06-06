@@ -120,7 +120,7 @@ types::Function::ReturnValue sci_find(types::typed_list &in, int _iRetCount, typ
     {
         //call overload for other types
         std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_find";
-        return Overload::call(wstFuncName, in, _iRetCount, out, new ExecVisitor());
+        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
     }
 
     if (iValues == 0)

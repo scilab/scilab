@@ -51,7 +51,7 @@ types::Function::ReturnValue sci_varn(types::typed_list &in, int _iRetCount, typ
         }
 
         std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_varn";
-        return Overload::call(wstFuncName, in, _iRetCount, out, new ExecVisitor());
+        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
     }
 
     pPolyIn = in[0]->getAs<types::Polynom>();

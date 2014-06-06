@@ -86,6 +86,7 @@ libscistring_la_CPPFLAGS= $(PCRE_CFLAGS) \
 	-I$(top_srcdir)/modules/functions_manager/includes \
 	-I$(top_srcdir)/modules/symbol/includes \
 	-I$(top_srcdir)/modules/ast/includes \
+	-I$(top_srcdir)/modules/ast/includes/exps \
 	-I$(top_srcdir)/modules/elementary_funcions/includes \
 	-I$(top_srcdir)/modules/core/includes \
 	-I$(top_srcdir)/modules/types/includes \

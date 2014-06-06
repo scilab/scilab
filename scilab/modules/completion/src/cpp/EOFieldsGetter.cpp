@@ -41,7 +41,7 @@ const char ** EOFieldsGetter::getFieldsName(const std::string & typeName, int * 
     {
         fields = env.getCompletion(idObj, fieldPath, fieldPathLen);
     }
-    catch (const std::exception & e)
+    catch (const std::exception & /*e*/)
     {
         return 0;
     }

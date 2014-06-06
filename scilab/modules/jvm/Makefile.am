@@ -30,6 +30,7 @@ libscijvm_la_CPPFLAGS = \
 			-I$(srcdir)/includes/ \
 			-I$(srcdir)/src/c \
 			-I$(top_srcdir)/modules/ast/includes/ \
+        	-I$(top_srcdir)/modules/ast/includes/exps \
 			-I$(top_srcdir)/modules/types/includes/ \
 			-I$(top_srcdir)/modules/symbol/includes/ \
 			-I$(top_srcdir)/modules/api_scilab/includes/ \
@@ -113,6 +114,7 @@ libscijvm_disable_la_SOURCES = $(JVM_DISABLE_C_SOURCES) $(JVM_DISABLE_CPP_SOURCE
 
 libscijvm_disable_la_CPPFLAGS = -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/ast/includes/ \
+        	-I$(top_srcdir)/modules/ast/includes/exps \
 			-I$(top_srcdir)/modules/types/includes/ \
 			-I$(top_srcdir)/modules/symbol/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes/ \
