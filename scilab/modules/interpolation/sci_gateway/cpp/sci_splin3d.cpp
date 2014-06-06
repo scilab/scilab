@@ -64,6 +64,12 @@ types::Function::ReturnValue sci_splin3d(types::typed_list &in, int _iRetCount, 
 
         pDblXYZ[i] = in[i]->getAs<types::Double>();
 
+        if (pDblXYZ[i]->isComplex())
+        {
+            Scierror(999, _("%s: Wrong type for argument #%d: Real matrix expected.\n"), "splin3d", i + 1);
+            return types::Function::Error;
+        }
+
         if (pDblXYZ[i]->getRows() != 1 || pDblXYZ[i]->getSize() < 3)
         {
             Scierror(999, _("%s: Wrong size for input argument #%d : A row vector of size at least 3 expected.\n"), "splin3d", i + 1);

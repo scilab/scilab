@@ -46,7 +46,7 @@ types::Function::ReturnValue sci_linear_interpn(types::typed_list &in, int _iRet
         return types::Function::Error;
     }
 
-    n = (in.size() + 1) / 2 - 1;
+    n = ((int)in.size() + 1) / 2 - 1;
 
     // *** check number of output args according the methode. ***
     if (_iRetCount > 1)
@@ -70,6 +70,12 @@ types::Function::ReturnValue sci_linear_interpn(types::typed_list &in, int _iRet
         if (i != 0 && (lpDblXp[i - 1]->getRows() != lpDblXp[i]->getRows() || lpDblXp[i - 1]->getCols() != lpDblXp[i]->getCols()))
         {
             Scierror(999, _("%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"), "linear_interpn", i, i + 1);
+            return types::Function::Error;
+        }
+
+        if (lpDblXp[i]->isComplex())
+        {
+            Scierror(999, _("%s: Wrong type for argument #%d: Real matrix expected.\n"), "linear_interpn", i + 1);
             return types::Function::Error;
         }
     }

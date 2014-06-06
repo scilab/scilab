@@ -60,6 +60,12 @@ types::Function::ReturnValue sci_cshep2d(types::typed_list &in, int _iRetCount, 
 
     pDblXYZ = in[0]->getAs<types::Double>()->clone()->getAs<types::Double>();
 
+    if (pDblXYZ->isComplex())
+    {
+        Scierror(999, _("%s: Wrong type for argument #%d: Real matrix expected.\n"), "cshep2d", 1);
+        return types::Function::Error;
+    }
+
     if (pDblXYZ->getCols() != 3 || pDblXYZ->getRows() < 10)
     {
         Scierror(999, _("%s: Wrong size for input argument #%d : A matrix of size n x 3 expected.(n >= 10)\n"), "cshep2d", 1);

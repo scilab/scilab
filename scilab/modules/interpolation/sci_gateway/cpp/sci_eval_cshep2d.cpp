@@ -72,6 +72,12 @@ types::Function::ReturnValue sci_eval_cshep2d(types::typed_list &in, int _iRetCo
 
     pDblXp = in[0]->getAs<types::Double>();
 
+    if (pDblXp->isComplex())
+    {
+        Scierror(999, _("%s: Wrong type for argument #%d: Real matrix expected.\n"), "eval_cshep2d", 1);
+        return types::Function::Error;
+    }
+
     //yp
     if (in[1]->isDouble() == false)
     {
@@ -84,6 +90,12 @@ types::Function::ReturnValue sci_eval_cshep2d(types::typed_list &in, int _iRetCo
     if (pDblYp->getRows() != pDblXp->getRows() || pDblYp->getCols() != pDblXp->getCols())
     {
         Scierror(999, _("%s: Wrong size for input arguments #%d ans #%d: Same size expected.\n"), "eval_cshep2d", 1, 2);
+        return types::Function::Error;
+    }
+
+    if (pDblYp->isComplex())
+    {
+        Scierror(999, _("%s: Wrong type for argument #%d: Real matrix expected.\n"), "eval_cshep2d", 2);
         return types::Function::Error;
     }
 

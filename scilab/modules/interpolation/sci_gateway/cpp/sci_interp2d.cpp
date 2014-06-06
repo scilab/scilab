@@ -72,6 +72,12 @@ types::Function::ReturnValue sci_interp2d(types::typed_list &in, int _iRetCount,
     pDblXp = in[0]->getAs<types::Double>();
     sizeOfXp = pDblXp->getSize();
 
+    if (pDblXp->isComplex())
+    {
+        Scierror(999, _("%s: Wrong type for argument #%d: Real matrix expected.\n"), "interp2d", 1);
+        return types::Function::Error;
+    }
+
     // yp
     if (in[1]->isDouble() == false)
     {
@@ -83,6 +89,12 @@ types::Function::ReturnValue sci_interp2d(types::typed_list &in, int _iRetCount,
     if (pDblXp->getRows() != pDblYp->getRows() || pDblXp->getCols() != pDblYp->getCols())
     {
         Scierror(999, _("%s: Wrong size for input arguments #%d and #%d: Same size expected.\n"), "interp2d", 1, 2);
+        return types::Function::Error;
+    }
+
+    if (pDblYp->isComplex())
+    {
+        Scierror(999, _("%s: Wrong type for argument #%d: Real matrix expected.\n"), "interp2d", 2);
         return types::Function::Error;
     }
 
@@ -99,6 +111,12 @@ types::Function::ReturnValue sci_interp2d(types::typed_list &in, int _iRetCount,
     if (pDblX->getRows() != 1 || pDblX->getSize() < 2)
     {
         Scierror(999, _("%s: Wrong size for input arguments #%d: A row vector of size at least 2 expected.\n"), "interp2d", 3);
+        return types::Function::Error;
+    }
+
+    if (pDblX->isComplex())
+    {
+        Scierror(999, _("%s: Wrong type for argument #%d: Real matrix expected.\n"), "interp2d", 3);
         return types::Function::Error;
     }
 

@@ -64,6 +64,13 @@ types::Function::ReturnValue sci_splin2d(types::typed_list &in, int _iRetCount, 
 
     pDblX = in[0]->getAs<types::Double>();
     sizeOfX = pDblX->getSize();
+
+    if (pDblX->isComplex())
+    {
+        Scierror(999, _("%s: Wrong type for argument #%d: Real matrix expected.\n"), "splin2d", 1);
+        return types::Function::Error;
+    }
+
     if (pDblX->getRows() != 1 || pDblX->getSize() < 2)
     {
         Scierror(999, _("%s: Wrong size for input argument #%d : A row vector of size at least 2 expected.\n"), "splin2d", 1);
@@ -86,6 +93,12 @@ types::Function::ReturnValue sci_splin2d(types::typed_list &in, int _iRetCount, 
     pDblY = in[1]->getAs<types::Double>();
     sizeOfY = pDblY->getSize();
 
+    if (pDblY->isComplex())
+    {
+        Scierror(999, _("%s: Wrong type for argument #%d: Real matrix expected.\n"), "splin2d", 2);
+        return types::Function::Error;
+    }
+
     if (pDblY->getRows() != 1 || pDblY->getSize() < 2)
     {
         Scierror(999, _("%s: Wrong size for input argument #%d : A row vector of size at least 2 expected.\n"), "splin2d", 2);
@@ -106,6 +119,12 @@ types::Function::ReturnValue sci_splin2d(types::typed_list &in, int _iRetCount, 
     }
 
     pDblZ = in[2]->getAs<types::Double>();
+
+    if (pDblZ->isComplex())
+    {
+        Scierror(999, _("%s: Wrong type for argument #%d: Real matrix expected.\n"), "splin2d", 3);
+        return types::Function::Error;
+    }
 
     if (pDblZ->getRows() != pDblX->getCols() || pDblZ->getCols() != pDblY->getCols())
     {

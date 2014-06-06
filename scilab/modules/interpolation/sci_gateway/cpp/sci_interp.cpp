@@ -66,6 +66,13 @@ types::Function::ReturnValue sci_interp(types::typed_list &in, int _iRetCount, t
 
     pDblXp = in[0]->getAs<types::Double>();
     sizeOfXp = pDblXp->getSize();
+
+    if (pDblXp->isComplex())
+    {
+        Scierror(999, _("%s: Wrong type for argument #%d: Real matrix expected.\n"), "interp", 1);
+        return types::Function::Error;
+    }
+
     // x
     if (in[1]->isDouble() == false)
     {
@@ -81,6 +88,12 @@ types::Function::ReturnValue sci_interp(types::typed_list &in, int _iRetCount, t
     }
     sizeOfX = pDblX->getSize();
 
+    if (pDblX->isComplex())
+    {
+        Scierror(999, _("%s: Wrong type for argument #%d: Real matrix expected.\n"), "interp", 2);
+        return types::Function::Error;
+    }
+
     // y
     if (in[2]->isDouble() == false)
     {
@@ -89,6 +102,12 @@ types::Function::ReturnValue sci_interp(types::typed_list &in, int _iRetCount, t
     }
     pDblY = in[2]->getAs<types::Double>();
 
+    if (pDblY->isComplex())
+    {
+        Scierror(999, _("%s: Wrong type for argument #%d: Real matrix expected.\n"), "interp", 3);
+        return types::Function::Error;
+    }
+
     // d
     if (in[3]->isDouble() == false)
     {
@@ -96,6 +115,12 @@ types::Function::ReturnValue sci_interp(types::typed_list &in, int _iRetCount, t
         return types::Function::Error;
     }
     pDblD = in[3]->getAs<types::Double>();
+
+    if (pDblD->isComplex())
+    {
+        Scierror(999, _("%s: Wrong type for argument #%d: Real matrix expected.\n"), "interp", 4);
+        return types::Function::Error;
+    }
 
     if ( pDblX->getRows() != pDblY->getRows() ||
             pDblX->getCols() != pDblY->getCols() ||

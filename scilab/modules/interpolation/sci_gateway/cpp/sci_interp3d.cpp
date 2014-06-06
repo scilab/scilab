@@ -48,9 +48,9 @@ types::Function::ReturnValue sci_interp3d(types::typed_list &in, int _iRetCount,
     int sizeOfXp;
 
     // *** check the minimal number of input args. ***
-    if (in.size() != 5)
+    if ((in.size() < 4) || (5 < in.size()))
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "interp3d", 5);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "interp3d", 4);
         return types::Function::Error;
     }
 
@@ -78,6 +78,12 @@ types::Function::ReturnValue sci_interp3d(types::typed_list &in, int _iRetCount,
             Scierror(999, _("%s: Wrong size for input argument #%d : Same size as argument %d expected.\n"), "interp3d", i + 1, 1);
             return types::Function::Error;
         }
+
+        if (pDblXYZ[i]->isComplex())
+        {
+            Scierror(999, _("%s: Wrong type for argument #%d: Real matrix expected.\n"), "interp3d", i + 1);
+            return types::Function::Error;
+        }
     }
 
     sizeOfXp = pDblXYZ[0]->getSize();
@@ -102,36 +108,44 @@ types::Function::ReturnValue sci_interp3d(types::typed_list &in, int _iRetCount,
     pDblCoef = pTList->getField(L"bcoef")->getAs<types::Double>();
     pDblXyzminmax = pTList->getField(L"xyzminmax")->getAs<types::Double>();
 
-    if (in[4]->isString() == false)
+    if (in.size() == 5)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d : A string expected.\n"), "interp3d", 5);
-        return types::Function::Error;
+        if (in[4]->isString() == false)
+        {
+            Scierror(999, _("%s: Wrong type for input argument #%d : A string expected.\n"), "interp3d", 5);
+            return types::Function::Error;
+        }
+
+        wchar_t* wcsType = in[4]->getAs<types::String>()->get(0);
+
+        if (wcscmp(wcsType, L"C0") == 0)
+        {
+            iType = 8;
+        }
+        else if (wcscmp(wcsType, L"by_zero") == 0)
+        {
+            iType = 7;
+        }
+        else if (wcscmp(wcsType, L"periodic") == 0)
+        {
+            iType = 3;
+        }
+        else if (wcscmp(wcsType, L"by_nan") == 0)
+        {
+            iType = 10;
+        }
+        else // undefined
+        {
+            char* pstType = wide_string_to_UTF8(wcsType);
+            Scierror(999, _("%s: Wrong values for input argument #%d : '%s' is a unknow '%s' type.\n"), "interp3d", 5, pstType, "outmode");
+            FREE(pstType);
+            return types::Function::Error;
+        }
     }
-
-    wchar_t* wcsType = in[4]->getAs<types::String>()->get(0);
-
-    if (wcscmp(wcsType, L"C0") == 0)
+    else
     {
+        //"C0"
         iType = 8;
-    }
-    else if (wcscmp(wcsType, L"by_zero") == 0)
-    {
-        iType = 7;
-    }
-    else if (wcscmp(wcsType, L"periodic") == 0)
-    {
-        iType = 3;
-    }
-    else if (wcscmp(wcsType, L"by_nan") == 0)
-    {
-        iType = 10;
-    }
-    else // undefined
-    {
-        char* pstType = wide_string_to_UTF8(wcsType);
-        Scierror(999, _("%s: Wrong values for input argument #%d : '%s' is a unknow '%s' type.\n"), "interp3d", 5, pstType, "outmode");
-        FREE(pstType);
-        return types::Function::Error;
     }
 
     // *** Perform operation. ***

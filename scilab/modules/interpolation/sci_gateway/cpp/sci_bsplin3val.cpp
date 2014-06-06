@@ -66,12 +66,19 @@ types::Function::ReturnValue sci_bsplin3val(types::typed_list &in, int _iRetCoun
 
         pDblXYZ[i] = in[i]->getAs<types::Double>();
 
+        if (pDblXYZ[i]->isComplex())
+        {
+            Scierror(999, _("%s: Wrong type for argument #%d: Real matrix expected.\n"), "bsplin3val", i + 1);
+            return types::Function::Error;
+        }
+
         if (pDblXYZ[0]->getRows() != pDblXYZ[i]->getRows() || pDblXYZ[0]->getCols() != pDblXYZ[i]->getCols())
         {
             Scierror(999, _("%s: Wrong size for input argument #%d : Same size as argument %d expected.\n"), "bsplin3val", i + 1, 1);
             return types::Function::Error;
         }
     }
+
 
     if (in[3]->isTList() == false)
     {
