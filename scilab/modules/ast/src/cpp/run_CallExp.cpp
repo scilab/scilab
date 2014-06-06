@@ -10,22 +10,7 @@
  *
  */
 
-#include "runvisitor.hxx"
-#include "execvisitor.hxx"
-#include "stepvisitor.hxx"
-#include "timedvisitor.hxx"
-
-#include "visitor_common.hxx"
-
-#include "context.hxx"
-
-extern "C"
-{
-#include "os_swprintf.h"
-}
-
-namespace ast
-{
+//file included in runvisitor.cpp
 template<class T>
 void RunVisitorT<T>::visitprivate(const CallExp &e)
 {
@@ -747,9 +732,4 @@ void RunVisitorT<T>::visitprivate(const CellCallExp &e)
         // visitprivate(SimpleVar) will throw the right exception.
     }
 }
-}
-
-template EXTERN_AST class ast::RunVisitorT<ast::ExecVisitor>;
-template EXTERN_AST class ast::RunVisitorT<ast::StepVisitor>;
-template EXTERN_AST class ast::RunVisitorT<ast::TimedVisitor>;
 

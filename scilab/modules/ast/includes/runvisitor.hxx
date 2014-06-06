@@ -220,15 +220,15 @@ public :
 
 public :
     //not use
-    void visitprivate(const IntExp  &e) {}
-    void visitprivate(const FloatExp  &e) {}
+    void visitprivate(const IntExp  &/*e*/) {}
+    void visitprivate(const FloatExp  &/*e*/) {}
 
     //process in another node
-    void visitprivate(const MatrixLineExp &e) {}
-    void visitprivate(const CommentExp &e) {}
-    void visitprivate(const ArrayListVar &e) {}
-    void visitprivate(const CaseExp &e) {}
-    void visitprivate(const AssignListExp  &e) {}
+    void visitprivate(const MatrixLineExp &/*e*/) {}
+    void visitprivate(const CommentExp &/*e*/) {}
+    void visitprivate(const ArrayListVar &/*e*/) {}
+    void visitprivate(const CaseExp &/*e*/) {}
+    void visitprivate(const AssignListExp  &/*e*/) {}
 
     void visitprivate(const CellExp &e);
     void visitprivate(const FieldExp &e);
@@ -473,9 +473,5 @@ public :
     types::InternalType* callOverloadMatrixExp(std::wstring strType, types::InternalType* _paramL, types::InternalType* _paramR);
 };
 }
-
-#ifdef _MSC_VER
-//template class RunVisitorT<ExecVisitor>;
-#endif
 
 #endif // !AST_RUNVISITOR_HXX

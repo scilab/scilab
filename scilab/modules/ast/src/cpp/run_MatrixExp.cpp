@@ -10,15 +10,8 @@
  *
  */
 
-#include "runvisitor.hxx"
-#include "execvisitor.hxx"
-#include "stepvisitor.hxx"
-#include "timedvisitor.hxx"
+//file included in runvisitor.cpp
 
-#include "visitor_common.hxx"
-
-namespace ast
-{
 /*
     [1,2;3,4] with/without special character $ and :
 */
@@ -252,9 +245,3 @@ types::InternalType* RunVisitorT<T>::callOverloadMatrixExp(std::wstring strType,
 
     return out[0];
 }
-}
-
-template EXTERN_AST class ast::RunVisitorT<ast::ExecVisitor>;
-template EXTERN_AST class ast::RunVisitorT<ast::StepVisitor>;
-template EXTERN_AST class ast::RunVisitorT<ast::TimedVisitor>;
-

@@ -186,10 +186,6 @@
     <ClCompile Include="src\cpp\mutevisitor.cpp" />
     <ClCompile Include="src\cpp\printvisitor.cpp" />
     <ClCompile Include="src\cpp\runvisitor.cpp" />
-    <ClCompile Include="src\cpp\run_AssignExp.cpp" />
-    <ClCompile Include="src\cpp\run_CallExp.cpp" />
-    <ClCompile Include="src\cpp\run_MatrixExp.cpp" />
-    <ClCompile Include="src\cpp\run_OpExp.cpp" />
     <ClCompile Include="src\cpp\shortcutvisitor.cpp" />
     <ClCompile Include="src\cpp\visitor_common.cpp" />
   </ItemGroup>

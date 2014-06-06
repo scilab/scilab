@@ -566,7 +566,7 @@ bool Struct::resize(int _iNewRows, int _iNewCols)
 
 bool Struct::resize(int* _piDims, int _iDims)
 {
-    bool bRes = ArrayOf::resize(_piDims, _iDims);
+    bool bRes = ArrayOf<SingleStruct*>::resize(_piDims, _iDims);
     if (bRes)
     {
         // insert field(s) only in new element(s) of current struct

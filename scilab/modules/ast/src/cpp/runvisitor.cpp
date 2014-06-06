@@ -24,6 +24,8 @@
 
 #include "context.hxx"
 #include "matrix_transpose_int.hxx"
+#include "generic_operations.hxx"
+#include "types_or_and.hxx"
 
 extern "C"
 {
@@ -1478,9 +1480,13 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
         throw error;
     }
 }
+
+#include "run_CallExp.cpp"
+#include "run_MatrixExp.cpp"
+#include "run_OpExp.cpp"
+#include "run_AssignExp.cpp"
 }
 
 template EXTERN_AST class ast::RunVisitorT<ast::ExecVisitor>;
 template EXTERN_AST class ast::RunVisitorT<ast::StepVisitor>;
 template EXTERN_AST class ast::RunVisitorT<ast::TimedVisitor>;
-

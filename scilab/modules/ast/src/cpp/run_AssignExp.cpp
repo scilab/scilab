@@ -10,17 +10,8 @@
  *
  */
 
-#include "runvisitor.hxx"
-#include "execvisitor.hxx"
-#include "stepvisitor.hxx"
-#include "timedvisitor.hxx"
+//file included in runvisitor.cpp
 
-#include "visitor_common.hxx"
-
-#include "context.hxx"
-
-namespace ast
-{
 template<class T>
 void RunVisitorT<T>::visitprivate(const AssignExp  &e)
 {
@@ -322,9 +313,3 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
         throw error;
     }
 }
-}
-
-template EXTERN_AST class ast::RunVisitorT<ast::ExecVisitor>;
-template EXTERN_AST class ast::RunVisitorT<ast::StepVisitor>;
-template EXTERN_AST class ast::RunVisitorT<ast::TimedVisitor>;
-

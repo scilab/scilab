@@ -10,18 +10,8 @@
 *
 */
 
-#include "runvisitor.hxx"
-#include "execvisitor.hxx"
-#include "stepvisitor.hxx"
-#include "timedvisitor.hxx"
+//file included in runvisitor.cpp
 
-#include "visitor_common.hxx"
-
-#include "generic_operations.hxx"
-#include "types_or_and.hxx"
-
-namespace ast
-{
 template<class T>
 void RunVisitorT<T>::visitprivate(const OpExp &e)
 {
@@ -384,9 +374,3 @@ types::InternalType* RunVisitorT<T>::callOverloadOpExp(OpExp::Oper _oper, types:
     _paramR->DecreaseRef();
     return out[0];
 }
-}
-
-template EXTERN_AST class ast::RunVisitorT<ast::ExecVisitor>;
-template EXTERN_AST class ast::RunVisitorT<ast::StepVisitor>;
-template EXTERN_AST class ast::RunVisitorT<ast::TimedVisitor>;
-

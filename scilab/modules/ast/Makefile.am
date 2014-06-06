@@ -15,10 +15,6 @@ pkglib_LTLIBRARIES 	= libsciast.la
 
 libsciast_la_SOURCES = \
 	src/cpp/runvisitor.cpp \
-	src/cpp/run_CallExp.cpp \
-	src/cpp/run_MatrixExp.cpp \
-	src/cpp/run_OpExp.cpp \
-	src/cpp/run_AssignExp.cpp \
 	src/cpp/visitor_common.cpp \
 	src/cpp/printvisitor.cpp \
 	src/cpp/debugvisitor.cpp \
@@ -62,4 +58,3 @@ libsciast_la_etc_DATA = etc/ast.quit etc/ast.start
 
 
 include $(top_srcdir)/Makefile.incl.am
-
