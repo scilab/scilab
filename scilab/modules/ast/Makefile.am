@@ -19,7 +19,6 @@ libsciast_la_SOURCES = \
 	src/cpp/run_MatrixExp.cpp \
 	src/cpp/run_OpExp.cpp \
 	src/cpp/run_AssignExp.cpp \
-
 	src/cpp/visitor_common.cpp \
 	src/cpp/printvisitor.cpp \
 	src/cpp/debugvisitor.cpp \
