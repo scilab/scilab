@@ -15,7 +15,7 @@
 #include "parser_private.hxx"
 
 #include "context.hxx"
- 
+
 extern "C"
 {
 #include "charEncoding.h"
@@ -748,17 +748,18 @@ assign			"="
 
   {spaces}({plus}|{minus}){integer}			{
    int i;
-    for (i = yyleng - 1 ; i >= 0 ; --i)
-      {
-	unput(yytext[i]);
-      }
-    yy_push_state(MATRIXMINUSID);
-    if (last_token != LBRACK
-	&& last_token != EOL
-	&& last_token != SEMI)
-      {
-	return scan_throw(COMMA);
-      }
+   for (i = yyleng - 1 ; i >= 0 ; --i)
+   {
+       unput(yytext[i]);
+   }
+   yy_push_state(MATRIXMINUSID);
+   if (last_token != LBRACK
+       && last_token != EOL
+       && last_token != SEMI
+       && last_token != COMMA)
+   {
+       return scan_throw(COMMA);
+   }
   }
 
   {spaces}({plus}|{minus}){number}	{
