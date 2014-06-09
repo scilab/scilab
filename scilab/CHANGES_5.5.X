@@ -44,6 +44,8 @@ Scilab Bug Fixes
 
 * Bug #11035 fixed - Scilab crashed when loading a file created with Matlab 7.12.
 
+* Bug #11284 fixed - Some calling sequences added in file help page.
+
 * Bug #12700 fixed - edit_curv (used by CURV_f) was broken.
 
 * Bug #12918 fixed - OpenSUSE 12.3 x64 did not have gluegen2-rt in librarypath.

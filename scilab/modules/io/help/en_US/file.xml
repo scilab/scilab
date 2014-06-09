@@ -17,8 +17,11 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>[unit [,err]]=file('open', file-name [,status] [,access [,recl]] [,format])
-            file(action,unit)
+        <synopsis>[unit [,err]]=file("open", file-name [,status] [,access [,recl]] [,format])
+            file("close", unit)
+            file("rewind", unit)
+            file("backspace", unit)
+            file("last", unit)
             [units [,typ [,nams [,mod [,swap]]]]] = file([unit])
         </synopsis>
     </refsynopsisdiv>
@@ -226,89 +229,105 @@
                     </para>
                 </listitem>
             </varlistentry>
-            <varlistentry>
-                <term>action</term>
-                <listitem>
-                    <para>is one of the following strings:</para>
-                    <variablelist>
-                        <varlistentry>
-                            <term>"close"</term>
-                            <listitem>
-                                <para>closes the file(s) given by the logical unit descriptors
-                                    given in <literal>units</literal>
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>"rewind"</term>
-                            <listitem>
-                                <para>puts the pointer at beginning of file</para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>"backspace"</term>
-                            <listitem>
-                                <para>puts the pointer at beginning of last record.</para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>"last"</term>
-                            <listitem>
-                                <para>puts the pointer after last record.</para>
-                            </listitem>
-                        </varlistentry>
-                    </variablelist>
-                </listitem>
-            </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
         <title>Description</title>
         <para>
-            selects a logical unit <literal>unit</literal> and manages the file
-            <literal>file-name</literal>.
+            selects a logical unit <varname>unit</varname> and manages the file
+            <varname>file-name</varname>.
         </para>
+        <variablelist>
+            <varlistentry>
+                <term>[unit [,err]]=file("open", file-name [,status] [,access
+                    [,recl]][,format])
+                </term>
+                <listitem>
+                    <para>
+                        allows to open a file with specified
+                        properties and to get the associated unit number <varname>unit</varname>.
+                        This unit number may be used for further actions on this file or as file
+                        descriptor in <function>read</function>, <function>write</function>,
+                        <function>readb</function>,
+                        <function>writb</function>,<function>save</function>, <function>load</function>
+                        function calls.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    file("close", unit)
+                </term>
+                <listitem>
+                    <para>
+                        allows to close the file, or move the current file pointer.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    file("rewind", unit)
+                </term>
+                <listitem>
+                    <para>
+                        puts the pointer at the beginning of file.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    file("backspace", unit)
+                </term>
+                <listitem>
+                    <para>
+                        puts the pointer at the beginning of last record.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    file("last", unit)
+                </term>
+                <listitem>
+                    <para>
+                        puts the pointer after last record.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>
+                    file()
+                </term>
+                <listitem>
+                    <para>
+                        returns the logical unit descriptors of
+                        the opened files. So <literal>file("close",file())</literal> closes all
+                        user opened files (C or Fortran type).
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
         <para>
-            <literal>[unit [,err]]=file('open', file-name [,status] [,access
-                [,recl]][,format])
-            </literal>
-            allows to open a file with specified
-            properties and to get the associated unit number <literal>unit</literal>.
-            This unit number may be used for further actions on this file or as file
-            descriptor in <literal>read</literal>, <literal>write</literal>,
-            <literal>readb</literal>,
-            <literal>writb</literal>,<literal>save</literal>, <literal>load</literal>
-            function calls.
-        </para>
-        <para>This function can not open a UTF filename. In this case, please uses
+            This function can not open a UTF filename. In this case, please uses
             mopen.
-        </para>
-        <para>
-            <literal>file(action,unit)</literal> allows to close the file , or
-            move the current file pointer .
-        </para>
-        <para>
-            <literal>file()</literal> returns the logical unit descriptors of
-            the opened files. So <literal>file('close',file() )</literal> closes all
-            user opened files (C or Fortran type).
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-u=file('open',TMPDIR+'/foo','unknown')
+u=file("open",TMPDIR+"/foo","unknown")
 for k=1:4
   a=rand(1,4)
   write(u,a)
 end
-file('rewind',u)
+file("rewind",u)
 x=read(u,2,4)
-file('close',u)
+file("close",u)
 //
-u1=file('open',TMPDIR+'/foo','unknown')
-u2=mopen(TMPDIR+'/foo1','wb')
+u1=file("open",TMPDIR+"/foo","unknown")
+u2=mopen(TMPDIR+"/foo1","wb")
 [units,typs,nams]=file()
-file('close',u1);
+file("close",u1);
 mclose(u2);
  ]]></programlisting>
     </refsection>
