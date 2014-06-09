@@ -13,10 +13,10 @@ grand('setgen','clcg4');
 //     A test program for the bottom level routines
 //     Scilab implementation of tstbot.f
 //**********************************************************************
-NB       = 10;
-NR       = 1000;
+NB       = 10
+NR       = 1000
 answer   = ones(NB,NR);
-genlst   = [1,5,10,20,32];
+genlst   = [1,5,10,20,32]
 nbad     = 0;
 
 str      = ['For five virtual generators of the 101\n' ..
@@ -39,7 +39,7 @@ grand('setall',12345,54321,6789,9876);
 for ixgen = 1:5
     igen = genlst(ixgen)
     grand('setcgn',igen);
-    mprintf(' Testing generator '+string(igen));
+    mprintf(' Testing generator '+string(igen)+'\n');
     //
     //     Use NB blocks
     //
@@ -73,6 +73,6 @@ for ixgen = 1:5
     end
 
     mprintf(' Finished testing generator '+string(igen)+'\n');
-    mprintf(' Test completed successfully');
+    mprintf(' Test completed successfully\n');
 	
 end
