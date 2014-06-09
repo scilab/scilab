@@ -62,6 +62,8 @@ Scilab Bug Fixes
 
 * Bug #13324 fixed - Legends were completely modified when an item was clicked and modified.
 
+* Bug #13330 fixed - gtk2-oxygen theme engine (used by KDE) crashed Scilab.
+
 * Bug #13331 fixed - Users are no longer able to write inconsistent options to mopen,
                      mopen(file, "wr") now exits with a proper error.
 
@@ -136,6 +138,16 @@ Xcos Bug Fixes
                      Example has been added.
 
 * Bug #13396 fixed - MBLOCK did not work with an external file containing the modelica class.
+
+
+Known issues
+=============
+
+* On GNU/Linux with KDE and on some distributions, gtk2-oxygen theming engine
+  crashes Scilab. As a workaround, see http://bugzilla.scilab.org/show_bug.cgi?id=13330#c6.
+
+Besides these points, do not hesitate to report bugs on:
+http://bugzilla.scilab.org/
 
 
 
