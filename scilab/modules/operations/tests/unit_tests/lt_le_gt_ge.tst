@@ -13,17 +13,17 @@ R3(:,:,1) = R;
 R3(:,:,2) = R';
 
 // double < double
-assert_checkfalse(r < r)
-assert_checkfalse(r > r)
-assert_checktrue(r >= r)
-assert_checktrue(r <= r)
+assert_checkfalse(r < r);
+assert_checkfalse(r > r);
+assert_checktrue(r >= r);
+assert_checktrue(r <= r);
 
 // DOUBLE < DOUBLE
-assert_checkfalse(R < R)
-assert_checkfalse(R > R)
-assert_checktrue(R >= R)
-assert_checktrue(R <= R)
-assert_checkfalse(R3 < R3)
-assert_checkfalse(R3 > R3)
-assert_checktrue(R3 <= R3)
-assert_checktrue(R3 >= R3)
+assert_checkfalse(R < R);
+assert_checkfalse(R > R);
+assert_checktrue(R >= R);
+assert_checktrue(R <= R);
+assert_checkfalse(R3 < R3);
+assert_checkfalse(R3 > R3);
+assert_checktrue(R3 <= R3);
+assert_checktrue(R3 >= R3);

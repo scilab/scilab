@@ -18,11 +18,11 @@ C3(:,:,1) = C;
 C3(:,:,2) = C';
 
 // double == double
-assert_checkfalse(r <> r)
-assert_checkfalse(c <> c)
+assert_checkfalse(r <> r);
+assert_checkfalse(c <> c);
 
 // DOUBLE == DOUBLE
-assert_checkfalse(R <> R)
-assert_checkfalse(C <> C)
-assert_checkfalse(R3 <> R3)
-assert_checkfalse(C3 <> C3)
+assert_checkfalse(R <> R);
+assert_checkfalse(C <> C);
+assert_checkfalse(R3 <> R3);
+assert_checkfalse(C3 <> C3);

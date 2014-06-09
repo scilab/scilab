@@ -25,94 +25,94 @@ assert_checkequal(TT, 2*[1, 2, 3;4, 5, 6]);
 //double \ double
 
 //r \ r
-assert_checkalmostequal(r \ r, 1)
+assert_checkalmostequal(r \ r, 1);
 //r \ c
-assert_checkalmostequal(r \ c, c / r)
+assert_checkalmostequal(r \ c, c / r);
 //c \ r
-assert_checkalmostequal(c \ r, r / c)
+assert_checkalmostequal(c \ r, r / c);
 //c \ c
-assert_checkalmostequal(c \ c, 1)
+assert_checkalmostequal(c \ c, 1);
 
 
 
 //double \ DOUBLE
 
 //r \ R
-assert_checkalmostequal(r \ R, R / r)
+assert_checkalmostequal(r \ R, R / r);
 //r \ C
-assert_checkalmostequal(r \ C, C / r)
+assert_checkalmostequal(r \ C, C / r);
 //c \ R
-assert_checkalmostequal(c \ R, R / c)
+assert_checkalmostequal(c \ R, R / c);
 //c \ C
-assert_checkalmostequal(c \ C, C / c)
+assert_checkalmostequal(c \ C, C / c);
 
 
 //DOUBLE \ double
 
 //R \ r
-assert_checkalmostequal(R \ r, [-4,2;3,-1])
+assert_checkalmostequal(R \ r, [-4,2;3,-1]);
 //R \ c
-assert_checkalmostequal(R \ c, [-2-4*%i , 1+2*%i ; 1.5+3*%i, -0.5-%i])
+assert_checkalmostequal(R \ c, [-2-4*%i , 1+2*%i ; 1.5+3*%i, -0.5-%i]);
 //C \ r
-assert_checkalmostequal(C \ r, [-0.8+1.6*%i,0.4-0.8*%i;0.6-1.2*%i,-0.2+0.4*%i])
+assert_checkalmostequal(C \ r, [-0.8+1.6*%i,0.4-0.8*%i;0.6-1.2*%i,-0.2+0.4*%i]);
 //C \ c
-assert_checkalmostequal(C \ c, [-2,1;1.5,-0.5])
+assert_checkalmostequal(C \ c, [-2,1;1.5,-0.5]);
 
 
 //DOUBLE \ DOUBLE
 
 //R \ R
-assert_checkalmostequal(R \ R, R / R)
+assert_checkalmostequal(R \ R, R / R);
 //R \ C
-assert_checkalmostequal(R \ C, C / R)
+assert_checkalmostequal(R \ C, C / R);
 //C \ R
-assert_checkalmostequal(C \ R, R / C, [], %eps)
+assert_checkalmostequal(C \ R, R / C, [], %eps);
 //C \ C
-assert_checkalmostequal(C \ C, C / C)
+assert_checkalmostequal(C \ C, C / C);
 
 // dot left division
 //double .\ double
 
 //r .\ r
-assert_checkalmostequal(r .\ r, 1)
+assert_checkalmostequal(r .\ r, 1);
 //r .\ c
-assert_checkalmostequal(r .\ c, c ./ r)
+assert_checkalmostequal(r .\ c, c ./ r);
 //c .\ r
-assert_checkalmostequal(c .\ r, r ./ c)
+assert_checkalmostequal(c .\ r, r ./ c);
 //c .\ c
-assert_checkalmostequal(c .\ c, 1)
+assert_checkalmostequal(c .\ c, 1);
 
 
 
 //double .\ DOUBLE
 
 //r .\ R
-assert_checkalmostequal(r .\ R, R ./ r)
+assert_checkalmostequal(r .\ R, R ./ r);
 //r .\ C
-assert_checkalmostequal(r .\ C, C ./ r)
+assert_checkalmostequal(r .\ C, C ./ r);
 //c .\ R
-assert_checkalmostequal(c .\ R, R ./ c)
+assert_checkalmostequal(c .\ R, R ./ c);
 //c .\ C
-assert_checkalmostequal(c .\ C, C ./ c)
+assert_checkalmostequal(c .\ C, C ./ c);
 
 
 //DOUBLE .\ double
 
 //R .\ c
-assert_checkalmostequal(R .\ c, c ./ R)
+assert_checkalmostequal(R .\ c, c ./ R);
 //C .\ r
-assert_checkalmostequal(C .\ r, r ./ C)
+assert_checkalmostequal(C .\ r, r ./ C);
 //C .\ c
-assert_checkalmostequal(C .\ c, c ./ C)
+assert_checkalmostequal(C .\ c, c ./ C);
 
 
 //DOUBLE .\ DOUBLE
 
 //R .\ R
-assert_checkalmostequal(R .\ R, R ./ R)
+assert_checkalmostequal(R .\ R, R ./ R);
 //R .\ C
-assert_checkalmostequal(R .\ C, C ./ R)
+assert_checkalmostequal(R .\ C, C ./ R);
 //C .\ R
-assert_checkalmostequal(C .\ R, R ./ C)
+assert_checkalmostequal(C .\ R, R ./ C);
 //C .\ C
-assert_checkalmostequal(C .\ C, C ./ C)
+assert_checkalmostequal(C .\ C, C ./ C);
