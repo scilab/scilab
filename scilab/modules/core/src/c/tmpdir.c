@@ -11,6 +11,8 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
+
+
 #include <stdio.h>
 #include <string.h>
 
@@ -20,9 +22,6 @@
 #endif
 
 #if defined(__STDC__) || defined(_MSC_VER)
-#if defined(__linux__)
-#define __USE_FORTIFY_LEVEL 0 /* Avoid dependency on GLIBC_2.4 (__realpath_chk) */
-#endif
 #include <stdlib.h>
 #ifndef _MSC_VER
 #include <sys/types.h>

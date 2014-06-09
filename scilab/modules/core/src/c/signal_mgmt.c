@@ -17,6 +17,7 @@
   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdarg.h>
@@ -24,10 +25,7 @@
 #include <string.h>
 #include <libintl.h>
 
-#if defined(__linux__)
-#define __USE_FORTIFY_LEVEL 0   /* Avoid dependency on GLIBC_2.11 (__longjmp_chk) */
-#endif
-#include <setjmp.h>             /* this declaration should remain close the __USE_FORTIFY_LEVEL define */
+#include <setjmp.h>
 
 #include <sys/types.h>          /* getpid */
 #include <unistd.h>             /* gethostname */
@@ -36,7 +34,6 @@
 #include "localization.h"
 #include "backtrace.h"
 #include "signal_mgmt.h"
-#include "machine.h"
 #include "Scierror.h"
 #include "suspendProcess.h"
 #include "scilabmode.h"

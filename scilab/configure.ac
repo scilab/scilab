@@ -559,8 +559,7 @@ case "$CC" in
 
    if test "$enable_debug_C" = yes; then
       DEBUG_CFLAGS="-pipe -Wformat -Wshadow -Wfloat-equal -Wpointer-arith -Wcast-align -Wmissing-prototypes -Wmissing-declarations  -Wstrict-prototypes  -Wmissing-noreturn -Wendif-labels -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wwrite-strings -Winline -Wredundant-decls -Wall -Wchar-subscripts -Wextra  -Wuninitialized -Wno-format-y2k -Wmissing-format-attribute -Wno-missing-field-initializers -Wno-strict-aliasing  -Wold-style-definition -g3 -Wunsafe-loop-optimizations"
-      # used to be -O
-      # -D_FORTIFY_SOURCE=2
+      # used to be -O0
       case "$host" in
       *-linux-gnu )
       # Only doing that under Linux
