@@ -32,6 +32,16 @@
 
 #include "decls.hxx"
 
+#ifdef _MSC_VER
+#if AST_EXPORTS
+#define EXTERN_AST __declspec (dllexport)
+#else
+#define EXTERN_AST __declspec (dllimport)
+#endif
+#else
+#define EXTERN_AST
+#endif
+
 namespace ast
 {
 
@@ -72,7 +82,7 @@ namespace ast
    **
    ** GenVisitor<CONSTNESS-SELECTOR> is the root class of all
    ** visitors. */
-  class GenVisitor
+  class EXTERN_AST GenVisitor
   {
     /** \name Ctor & dtor.
      ** \{ */

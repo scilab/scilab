@@ -21,16 +21,6 @@
 #include "location.hxx"
 #include "visitor.hxx"
 
-#ifdef _MSC_VER
-#if AST_EXPORTS
-#define EXTERN_AST __declspec (dllexport)
-#else
-#define EXTERN_AST __declspec (dllimport)
-#endif
-#else
-#define EXTERN_AST
-#endif
-
 namespace ast
 {
 
