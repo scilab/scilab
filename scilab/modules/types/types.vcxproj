@@ -202,10 +202,7 @@ lib /DEF:"$(ProjectDir)operations_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <ClCompile Include="src\cpp\graphichandle.cpp" />
     <ClCompile Include="src\cpp\ImplicitList.cpp" />
     <ClCompile Include="src\cpp\inspector.cpp" />
-    <ClCompile Include="src\cpp\int16.cpp" />
-    <ClCompile Include="src\cpp\int32.cpp" />
-    <ClCompile Include="src\cpp\int64.cpp" />
-    <ClCompile Include="src\cpp\int8.cpp" />
+    <ClCompile Include="src\cpp\int.cpp" />
     <ClCompile Include="src\cpp\library.cpp" />
     <ClCompile Include="src\cpp\list.cpp" />
     <ClCompile Include="src\cpp\listdelete.cpp" />
@@ -224,10 +221,6 @@ lib /DEF:"$(ProjectDir)operations_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <ClCompile Include="src\cpp\tostring_common.cpp" />
     <ClCompile Include="src\cpp\types.cpp" />
     <ClCompile Include="src\cpp\types_tools.cpp" />
-    <ClCompile Include="src\cpp\uint16.cpp" />
-    <ClCompile Include="src\cpp\uint32.cpp" />
-    <ClCompile Include="src\cpp\uint64.cpp" />
-    <ClCompile Include="src\cpp\uint8.cpp" />
     <ClCompile Include="src\cpp\void.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -251,10 +244,6 @@ lib /DEF:"$(ProjectDir)operations_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <ClInclude Include="includes\implicitlist.hxx" />
     <ClInclude Include="includes\inspector.hxx" />
     <ClInclude Include="includes\int.hxx" />
-    <ClInclude Include="includes\int16.hxx" />
-    <ClInclude Include="includes\int32.hxx" />
-    <ClInclude Include="includes\int64.hxx" />
-    <ClInclude Include="includes\int8.hxx" />
     <ClInclude Include="includes\internal.hxx" />
     <ClInclude Include="includes\library.hxx" />
     <ClInclude Include="includes\list.hxx" />
@@ -278,10 +267,6 @@ lib /DEF:"$(ProjectDir)operations_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <ClInclude Include="includes\types.hxx" />
     <ClInclude Include="includes\typesdecl.hxx" />
     <ClInclude Include="includes\types_tools.hxx" />
-    <ClInclude Include="includes\uint16.hxx" />
-    <ClInclude Include="includes\uint32.hxx" />
-    <ClInclude Include="includes\uint64.hxx" />
-    <ClInclude Include="includes\uint8.hxx" />
     <ClInclude Include="includes\user.hxx" />
     <ClInclude Include="includes\void.hxx" />
   </ItemGroup>

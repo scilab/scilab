@@ -16,7 +16,7 @@
 #include "double.hxx"
 #include "string.hxx"
 #include "tlist.hxx"
-#include "int32.hxx"
+#include "int.hxx"
 
 extern "C"
 {

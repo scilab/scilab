@@ -13,7 +13,7 @@
 #include "string.hxx"
 #include "double.hxx"
 #include "list.hxx"
-#include "int32.hxx"
+#include "int.hxx"
 
 namespace types
 {

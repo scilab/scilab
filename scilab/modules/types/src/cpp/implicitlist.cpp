@@ -14,14 +14,7 @@
 #include "double.hxx"
 #include "polynom.hxx"
 #include "implicitlist.hxx"
-#include "int8.hxx"
-#include "int16.hxx"
-#include "int32.hxx"
-#include "int64.hxx"
-#include "uint8.hxx"
-#include "uint16.hxx"
-#include "uint32.hxx"
-#include "uint64.hxx"
+#include "int.hxx"
 #include "formatmode.h"
 
 #ifndef NDEBUG

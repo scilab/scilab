@@ -42,18 +42,6 @@
     <ClCompile Include="src\cpp\ImplicitList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\cpp\int16.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\int32.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\int64.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\int8.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\cpp\list.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -99,18 +87,6 @@
     <ClCompile Include="src\cpp\types_tools.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\cpp\uint16.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\uint32.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\uint64.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\uint8.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\cpp\singlestruct.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -127,6 +103,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\cpp\library.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\int.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -183,18 +162,6 @@
     <ClInclude Include="includes\int.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="includes\int16.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\int32.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\int64.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\int8.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="includes\internal.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -241,18 +208,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="includes\types_tools.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\uint16.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\uint32.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\uint64.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\uint8.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="includes\singlestruct.hxx">

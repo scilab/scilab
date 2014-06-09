@@ -55,14 +55,7 @@ src/cpp/file.cpp \
 src/cpp/mlist.cpp \
 src/cpp/threadId.cpp \
 src/cpp/arrayof.cpp \
-src/cpp/int8.cpp \
-src/cpp/uint8.cpp \
-src/cpp/int16.cpp \
-src/cpp/uint16.cpp \
-src/cpp/int32.cpp \
-src/cpp/uint32.cpp \
-src/cpp/int64.cpp \
-src/cpp/uint64.cpp \
+src/cpp/int.cpp \
 src/cpp/sparse.cpp \
 src/cpp/graphichandle.cpp \
 src/cpp/types_tools.cpp \

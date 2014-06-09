@@ -11,7 +11,6 @@ SPARSE_FORTRAN_SOURCES = \
     src/fortran/sz2ptr.f \
     src/fortran/spreshape.f \
     src/fortran/ordmmd.f
-    
 
 GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/sparse_gw.cpp \
@@ -30,7 +29,9 @@ GATEWAY_CPP_SOURCES = \
 libscisparse_la_CPPFLAGS = \
     -I$(srcdir)/includes/ \
     -I$(top_srcdir)/modules/ast/includes/ \
-	-I$(top_srcdir)/modules/ast/includes/exps \
+    -I$(top_srcdir)/modules/ast/includes/exps \
+    -I$(top_srcdir)/modules/string/includes/ \
+    -I$(top_srcdir)/modules/system_env/includes/ \
     -I$(top_srcdir)/modules/types/includes/ \
     -I$(top_srcdir)/modules/symbol/includes/ \
     -I$(top_srcdir)/modules/dynamic_link/includes/ \

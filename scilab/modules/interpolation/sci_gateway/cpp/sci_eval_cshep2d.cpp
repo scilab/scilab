@@ -11,12 +11,12 @@
 */
 /*--------------------------------------------------------------------------*/
 
+#include "int.hxx"
 #include "interpolation_gw.hxx"
 #include "function.hxx"
 #include "double.hxx"
 #include "string.hxx"
 #include "tlist.hxx"
-#include "int32.hxx"
 
 extern "C"
 {
