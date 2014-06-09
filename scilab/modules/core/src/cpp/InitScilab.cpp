@@ -525,7 +525,7 @@ static int batchMain(ScilabEngineInfo* _pSEI)
 
     parser->setParseTrace(_pSEI->iParseTrace != 0);
 
-    wchar_t *pwstFileName = to_wide_string(_pSEI->pstFile);
+    wchar_t *pwstFileName = to_wide_string(_pSEI->pstParseFile);
 
     /*
      ** -*- PARSING -*-
