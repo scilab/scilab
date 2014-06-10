@@ -328,9 +328,11 @@ static int IntLogicalAndInt(K* _pL, K* _pR, InternalType** _pOut)
     if (_pL->isScalar())
     {
         K *pI = new K(_pR->getDims(), _pR->getDimsArray());
+        const typename K::type x = _pL->get(0);
+
         for (int i = 0 ; i < pI->getSize() ; i++)
         {
-            pI->set(i, _pL->get(0) & _pR->get(i));
+            pI->set(i, x & _pR->get(i));
         }
 
         *_pOut = pI;
@@ -341,9 +343,11 @@ static int IntLogicalAndInt(K* _pL, K* _pR, InternalType** _pOut)
     if (_pR->isScalar())
     {
         K *pI = new K(_pL->getDims(), _pL->getDimsArray());
+        const typename K::type x = _pL->get(0);
+
         for (int i = 0 ; i < pI->getSize() ; i++)
         {
-            pI->set(i, _pR->get(0) & _pL->get(i));
+            pI->set(i, x & _pL->get(i));
         }
 
         *_pOut = pI;
@@ -426,9 +430,11 @@ static int IntLogicalOrInt(K* _pL, K* _pR, InternalType** _pOut)
     if (_pL->isScalar())
     {
         K *pI = new K(_pR->getDims(), _pR->getDimsArray());
+        const typename K::type x = _pL->get(0);
+
         for (int i = 0 ; i < pI->getSize() ; i++)
         {
-            pI->set(i, _pL->get(0) | _pR->get(i));
+            pI->set(i, x | _pR->get(i));
         }
 
         *_pOut = pI;
@@ -439,9 +445,11 @@ static int IntLogicalOrInt(K* _pL, K* _pR, InternalType** _pOut)
     if (_pR->isScalar())
     {
         K *pI = new K(_pL->getDims(), _pL->getDimsArray());
+        const typename K::type x = _pL->get(0);
+
         for (int i = 0 ; i < pI->getSize() ; i++)
         {
-            pI->set(i, _pR->get(0) | _pL->get(i));
+            pI->set(i, x | _pL->get(i));
         }
 
         *_pOut = pI;

@@ -41,6 +41,9 @@ TYPES_IMPEXP bool checkArgValidity(typed_list& _pArg);
 template <typename T>
 class TYPES_IMPEXP ArrayOf : public GenericType
 {
+public:
+    typedef T type;
+
 protected :
     bool                    m_bComplex;
     T*                      m_pRealData;
@@ -111,7 +114,7 @@ protected :
                 {
                     char message[bsiz];
                     sprintf(message, _("Can not allocate %.2f MB memory.\n"),  (double) ((double) m_iSize * (double) m_piDims[i] * sizeof(T)) / 1.e6);
-                    throw(ast::ScilabError(message));
+                    throw (ast::ScilabError(message));
                 }
 
                 m_iSize = iTmpSize;
@@ -260,12 +263,12 @@ public :
         return true;
     }
 
-    T* get() const
+    inline T* get() const
     {
         return m_pRealData;
     }
 
-    T get(int _iPos)
+    inline T get(int _iPos)
     {
         if (m_pRealData)
         {
@@ -274,7 +277,7 @@ public :
         return T();
     }
 
-    T get(int _iRows, int _iCols)
+    inline T get(int _iRows, int _iCols)
     {
         int piIndexes[2] = {_iRows, _iCols};
         return get(getIndex(piIndexes));
@@ -327,12 +330,12 @@ public :
         return true;
     }
 
-    T* getImg() const
+    inline T* getImg() const
     {
         return m_pImgData;
     }
 
-    T getImg(int _iPos)
+    inline T getImg(int _iPos)
     {
         if (m_pImgData)
         {
@@ -341,7 +344,7 @@ public :
         return T();
     }
 
-    T getImg(int _iRows, int _iCols)
+    inline T getImg(int _iRows, int _iCols)
     {
         int piIndexes[2] = {_iRows, _iCols};
         return getImg(getIndex(piIndexes));
@@ -1389,13 +1392,6 @@ public :
         m_iCols	= m_piDims[1];
         m_iSize = iNewSize;
         return true;
-    }
-
-    /* ArrayOf */
-    template <typename V>
-    V* getAs(void)
-    {
-        return dynamic_cast<V*>(this);
     }
 
     /*dimensions functions*/

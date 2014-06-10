@@ -951,14 +951,14 @@ int EqualToDoubleAndDouble(types::Double* _pDouble1, types::Double* _pDouble2, t
             double dblRefI = _pDouble2->getImg(0);
             for (int i = 0 ; i < _pDouble1->getSize() ; i++)
             {
-                pB->getAs<Bool>()->set(i, (_pDouble1->get(i) == dblRefR) && (_pDouble1->getImg(i) == dblRefI));
+                pB->set(i, (_pDouble1->get(i) == dblRefR) && (_pDouble1->getImg(i) == dblRefI));
             }
         }
         else
         {
             for (int i = 0 ; i < _pDouble1->getSize() ; i++)
             {
-                pB->getAs<Bool>()->set(i, _pDouble1->get(i) == dblRefR);
+                pB->set(i, _pDouble1->get(i) == dblRefR);
             }
         }
 
@@ -976,14 +976,14 @@ int EqualToDoubleAndDouble(types::Double* _pDouble1, types::Double* _pDouble2, t
             double dblRefI = _pDouble1->getImg(0);
             for (int i = 0 ; i < _pDouble2->getSize() ; i++)
             {
-                pB->getAs<Bool>()->set(i, (dblRefR == _pDouble2->get(i)) && (dblRefI == _pDouble2->getImg(i)));
+                pB->set(i, (dblRefR == _pDouble2->get(i)) && (dblRefI == _pDouble2->getImg(i)));
             }
         }
         else
         {
             for (int i = 0 ; i < _pDouble2->getSize() ; i++)
             {
-                pB->getAs<Bool>()->set(i, dblRefR == _pDouble2->get(i));
+                pB->set(i, dblRefR == _pDouble2->get(i));
             }
         }
 
@@ -1181,10 +1181,11 @@ static int EqualToArrayAndArray(T* _pL, T* _pR, GenericType** _pOut)
         Bool *pB = new Bool(_pR->getDims(), _pR->getDimsArray());
 
         int* pb = pB->get();
+        const typename T::type x = _pL->get(0);
 
         for (int i = 0 ; i < pB->getSize() ; i++)
         {
-            pb[i] = _pL->get(0) == _pR->get(i);
+            pb[i] = x == _pR->get(i);
         }
 
         *_pOut = pB;
@@ -1196,10 +1197,11 @@ static int EqualToArrayAndArray(T* _pL, T* _pR, GenericType** _pOut)
         Bool *pB = new Bool(_pL->getDims(), _pL->getDimsArray());
 
         int* pb = pB->get();
+        const typename T::type x = _pL->get(0);
 
         for (int i = 0 ; i < pB->getSize() ; i++)
         {
-            pb[i] = _pR->get(0) == _pL->get(i);
+            pb[i] = x == _pL->get(i);
         }
 
         *_pOut = pB;

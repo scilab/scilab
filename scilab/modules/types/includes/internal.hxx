@@ -157,7 +157,7 @@ public :
     */
 
     template <class T>
-    T*                              getAs(void)
+    inline T*                              getAs(void)
     {
         return static_cast<T*>(this);
     }

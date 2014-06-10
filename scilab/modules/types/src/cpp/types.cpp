@@ -46,22 +46,6 @@ bool InternalType::isGenericType(void)
     return true;
 }
 
-/*commun functions*/
-int GenericType::getCols()
-{
-    return m_iCols;
-}
-
-int GenericType::getRows()
-{
-    return m_iRows;
-}
-
-int GenericType::getSize()
-{
-    return m_iSize;
-}
-
 std::wstring GenericType::DimToString()
 {
     std::wostringstream ostr;
@@ -121,16 +105,6 @@ bool GenericType::hasAllIndexesOfCol(int _iCol, int* _piCoord, int _iCoordCount)
         }
     }
     return bAll;
-}
-
-int GenericType::getDims()
-{
-    return m_iDims;
-}
-
-int* GenericType::getDimsArray()
-{
-    return m_piDims;
 }
 
 int GenericType::getVarMaxDim(int _iCurrentDim, int _iMaxDim)

@@ -52,25 +52,48 @@ public :
     {
         std::cout << "types::GenericType";
     }
+
     virtual bool                isComplex()
     {
         return false;
     }
+
     virtual bool                isScalar()
     {
         return false;
     }
+
     /*commun functions*/
-    int                         getCols();
-    int                         getRows();
-    int                         getSize();
-    int                         getDims();
-    int*                        getDimsArray();
+    inline int                         getCols()
+    {
+        return m_iCols;
+    }
+
+    inline int                         getRows()
+    {
+        return m_iRows;
+    }
+
+    inline int                         getSize()
+    {
+        return m_iSize;
+    }
+
+    inline int                         getDims()
+    {
+        return m_iDims;
+    }
+
+    inline int*                        getDimsArray()
+    {
+        return m_piDims;
+    }
+
     int                         getVarMaxDim(int _iCurrentDim, int _iMaxDim);
 
     std::wstring                DimToString();
 
-    bool                        isGenericType()
+    inline bool                        isGenericType()
     {
         return true;
     }

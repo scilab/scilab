@@ -468,10 +468,11 @@ static int IntLessInt(T* _pL, T* _pR, types::GenericType** _pOut)
         Bool *pB = new Bool(_pR->getDims(), _pR->getDimsArray());
 
         int* pb = pB->get();
+        const typename T::type x = _pL->get(0);
 
         for (int i = 0 ; i < pB->getSize() ; i++)
         {
-            pb[i] = _pL->get(0) < _pR->get(i);
+            pb[i] = x < _pR->get(i);
         }
 
         *_pOut = pB;
@@ -483,10 +484,11 @@ static int IntLessInt(T* _pL, T* _pR, types::GenericType** _pOut)
         Bool *pB = new Bool(_pL->getDims(), _pL->getDimsArray());
 
         int* pb = pB->get();
+        const typename T::type x = _pR->get(0);
 
         for (int i = 0 ; i < pB->getSize() ; i++)
         {
-            pb[i] = _pL->get(i) < _pR->get(0);
+            pb[i] = _pL->get(i) < x;
         }
 
         *_pOut = pB;
@@ -568,10 +570,11 @@ static int IntLessEqualInt(T* _pL, T* _pR, types::GenericType** _pOut)
         Bool *pB = new Bool(_pR->getDims(), _pR->getDimsArray());
 
         int* pb = pB->get();
+        const typename T::type x = _pL->get(0);
 
         for (int i = 0 ; i < pB->getSize() ; i++)
         {
-            pb[i] = _pL->get(0) <= _pR->get(i);
+            pb[i] = x <= _pR->get(i);
         }
 
         *_pOut = pB;
@@ -583,10 +586,11 @@ static int IntLessEqualInt(T* _pL, T* _pR, types::GenericType** _pOut)
         Bool *pB = new Bool(_pL->getDims(), _pL->getDimsArray());
 
         int* pb = pB->get();
+        const typename T::type x = _pR->get(0);
 
         for (int i = 0 ; i < pB->getSize() ; i++)
         {
-            pb[i] = _pL->get(i) <= _pR->get(0);
+            pb[i] = _pL->get(i) <= x;
         }
 
         *_pOut = pB;
