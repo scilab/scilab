@@ -16,7 +16,7 @@
 #include "sciprint.h"
 #include "MALLOC.h"
 
-int read_write_boolean(char *fname, unsigned long fname_len)
+int read_write_boolean(char *fname, void *pvApiCtx)
 {
     SciErr sciErr;
     int i;

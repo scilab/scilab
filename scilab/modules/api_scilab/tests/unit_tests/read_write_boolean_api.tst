@@ -6,6 +6,7 @@
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
+setenv("DEBUG_SCILAB_DYNAMIC_LINK", "YES");
 ilib_verbose(0);
 mkdir(pathconvert(TMPDIR+"/read_write_boolean_api"));
 cd(pathconvert(TMPDIR+"/read_write_boolean_api"));
