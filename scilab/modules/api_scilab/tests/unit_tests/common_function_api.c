@@ -18,7 +18,7 @@
 
 SciErr printf_info(void* _pvCtx, int _iVar);
 
-int common_function(char *fname, unsigned long fname_len)
+int common_function(char *fname, void *pvApiCtx )
 {
     SciErr sciErr;
     int i;
