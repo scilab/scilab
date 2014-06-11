@@ -1,6 +1,5 @@
 #include <math.h>
 #include "api_scilab.h"
-#include "api_oldstack.h"
 
 static double fun2(double x);
 
@@ -14,7 +13,7 @@ static double fun2(double x)
     return( sin(x + 1));
 }
 
-int intfun1(char *fname, int* _piKey)
+int intfun1(char *fname, void *pvApiCtx)
 {
     SciErr sciErr;
     int* piAddr = NULL;
@@ -23,17 +22,17 @@ int intfun1(char *fname, int* _piKey)
     CheckRhs(1, 1);
     CheckLhs(1, 1);
 
-    sciErr = getVarAddressFromPosition(_piKey, 1, &piAddr);
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
     if (sciErr.iErr != 0)
     {
         //error
         return 1;
     }
 
-    getScalarDouble(_piKey, piAddr, &dblIn);
+    getScalarDouble(pvApiCtx, piAddr, &dblIn);
     fun1(&dblIn, &dblOut);
 
-    createScalarDouble(_piKey, Rhs + 1, dblOut);
+    createScalarDouble(pvApiCtx, Rhs + 1, dblOut);
     LhsVar(1) = Rhs + 1;
     return 0;
 }
