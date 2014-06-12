@@ -28,6 +28,11 @@ types::InternalType *GenericKrontimes(types::InternalType *_pLeftOperand, types:
         types::Double *pL = _pLeftOperand->getAs<types::Double>();
         types::Double *pR = _pRightOperand->getAs<types::Double>();
 
+        if (pL->getDims() > 2 || pR->getDims() > 2)
+        {
+            return NULL;
+        }
+
         int iResult = KroneckerMultiplyDoubleByDouble(pL, pR, &pResult);
         if (iResult)
         {
