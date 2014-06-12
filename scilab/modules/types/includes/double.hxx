@@ -72,6 +72,17 @@ public :
         return true;
     }
 
+
+    bool isTrue()
+    {
+        if (isEmpty() || isComplex())
+        {
+            return false;
+        }
+
+        return type_traits::isTrue<double>(m_iSize, m_pRealData);
+    }
+
     void                        setViewAsInteger(bool _bViewAsInteger = true)
     {
         m_bViewAsInteger = _bViewAsInteger;

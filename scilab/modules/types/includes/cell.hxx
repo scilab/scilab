@@ -93,6 +93,11 @@ public :
     }
     bool                subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims);
 
+    bool isTrue()
+    {
+        return false;
+    }
+
 private :
     virtual InternalType*   getNullValue();
     virtual Cell*           createEmpty(int _iDims, int* _piDims, bool _bComplex = false);

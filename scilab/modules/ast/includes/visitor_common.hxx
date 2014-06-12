@@ -26,8 +26,6 @@
 
 #define bsiz	4096
 
-EXTERN_AST bool bConditionState(types::InternalType *_pITResult);
-
 //EXTERN_AST void ExpandList(int ** _piList, int *_piListSize, int _iListSizeSize, int *_piResultList);
 
 EXTERN_AST types::InternalType* AddElementToVariable(

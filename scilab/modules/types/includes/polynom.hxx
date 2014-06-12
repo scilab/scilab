@@ -93,6 +93,11 @@ public :
         return L"p";
     }
 
+    bool isTrue()
+    {
+        return false;
+    }
+
 protected :
     std::wstring            m_szVarName;
     void                    createPoly(std::wstring _szVarName, int _iDims, int* _piDims, const int *_piRank);

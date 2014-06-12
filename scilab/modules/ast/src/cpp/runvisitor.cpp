@@ -255,7 +255,7 @@ void RunVisitorT<T>::visitprivate(const IfExp  &e)
     e.test_get().accept(SCTest);
     e.test_get().accept(*this);
 
-    bTestStatus = bConditionState(result_get());
+    bTestStatus = result_get()->isTrue();
     result_clear();
     if (bTestStatus == true)
     {
@@ -348,7 +348,7 @@ void RunVisitorT<T>::visitprivate(const WhileExp  &e)
 
     //condition
     e.test_get().accept(*this);
-    while (bConditionState(result_get()))
+    while (result_get()->isTrue())
     {
         e.body_get().accept(*this);
         if (e.body_get().is_break())

@@ -19,6 +19,7 @@
 #include "types_tools.hxx"
 #include "scilabexception.hxx"
 #include "inspector.hxx"
+#include "type_traits.hxx"
 
 extern "C"
 {
@@ -158,6 +159,11 @@ public :
     bool isArrayOf()
     {
         return true;
+    }
+
+    bool isTrue()
+    {
+        return type_traits::isTrue<T>(m_iSize, m_pRealData);
     }
 
     virtual bool isVector() //only one dim must be != 1
@@ -714,7 +720,7 @@ public :
 
     virtual bool append(int _iRows, int _iCols, InternalType* _poSource)
     {
-        ArrayOf* pGT = _poSource->getAs<ArrayOf>();
+        ArrayOf * pGT = _poSource->getAs<ArrayOf>();
         int iRows = pGT->getRows();
         int iCols = pGT->getCols();
 

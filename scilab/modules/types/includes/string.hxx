@@ -72,6 +72,11 @@ public :
         return true;
     }
 
+    bool isTrue()
+    {
+        return false;
+    }
+
 private :
     void                    deleteString(int _iRows, int _iCols);
     void                    deleteString(int _iPos);

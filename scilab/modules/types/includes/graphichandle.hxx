@@ -58,6 +58,12 @@ public :
     {
         return false;
     }
+
+    bool isTrue()
+    {
+        return false;
+    }
+
 protected :
     ScilabType				getType(void);
 
