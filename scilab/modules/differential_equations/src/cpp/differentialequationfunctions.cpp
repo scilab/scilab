@@ -36,19 +36,19 @@ std::map<__threadId, DifferentialEquationFunctions*> DifferentialEquation::m_map
 void DifferentialEquation::addDifferentialEquationFunctions(DifferentialEquationFunctions* _deFunction)
 {
     types::ThreadId* pThread = ConfigVariable::getLastRunningThread();
-    m_mapDifferentialEquationFunctions[pThread->getId()] = _deFunction;
+    m_mapDifferentialEquationFunctions[pThread->getThreadId()] = _deFunction;
 }
 
 void DifferentialEquation::removeDifferentialEquationFunctions()
 {
     types::ThreadId* pThread = ConfigVariable::getLastRunningThread();
-    m_mapDifferentialEquationFunctions.erase(pThread->getId());
+    m_mapDifferentialEquationFunctions.erase(pThread->getThreadId());
 }
 
 DifferentialEquationFunctions* DifferentialEquation::getDifferentialEquationFunctions()
 {
     types::ThreadId* pThread = ConfigVariable::getLastRunningThread();
-    return m_mapDifferentialEquationFunctions[pThread->getId()];
+    return m_mapDifferentialEquationFunctions[pThread->getThreadId()];
 }
 
 

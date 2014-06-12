@@ -32,11 +32,6 @@ InternalType* Void::clone(void)
     return new Void();
 }
 
-InternalType::ScilabType Void::getType(void)
-{
-    return ScilabVoid;
-}
-
 bool Void::toString(std::wostringstream& ostr)
 {
     ostr << L"" << std::endl;

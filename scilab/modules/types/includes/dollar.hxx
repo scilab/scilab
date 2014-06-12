@@ -42,9 +42,13 @@ public :
         return new Dollar();
     }
 
-    InternalType::ScilabType getType()
+    inline ScilabType getType()
     {
         return ScilabDollar;
+    }
+    inline ScilabId getId()
+    {
+        return IdDollar;
     }
 
     bool isDollar()

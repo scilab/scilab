@@ -51,6 +51,11 @@ public :
         return ScilabColon;
     }
 
+    inline ScilabId getId(void)
+    {
+        return IdColon;
+    }
+
     bool isColon()
     {
         return true;

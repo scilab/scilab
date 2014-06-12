@@ -176,11 +176,6 @@ bool Polynom::getRealRank(int *_piRank)
     return true;
 }
 
-GenericType::ScilabType Polynom::getType()
-{
-    return ScilabPolynom;
-}
-
 void Polynom::whoAmI(void)
 {
     std::cout << "types::SinglePoly";

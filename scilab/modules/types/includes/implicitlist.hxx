@@ -57,10 +57,15 @@ public :
 
     InternalType*           clone();
 
-    ScilabType                getType(void)
+    inline ScilabType       getType(void)
     {
         return ScilabImplicitList;
     }
+    inline ScilabId         getId(void)
+    {
+        return IdImplicitList;
+    }
+
     bool                    isImplicitList()
     {
         return true;

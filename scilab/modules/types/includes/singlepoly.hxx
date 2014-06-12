@@ -77,7 +77,14 @@ public :
         return L"p";
     }
 protected :
-    ScilabType                getType(void);
+    inline ScilabType       getType(void)
+    {
+        return ScilabSinglePolynom;
+    }
+    inline ScilabId         getId(void)
+    {
+        return IdSinglePolynom;
+    }
 
 private :
     void                    toStringInternal(double *_pdblVal, std::wstring _szVar, std::list<std::wstring>* _pListExp , std::list<std::wstring>* _pListCoef);

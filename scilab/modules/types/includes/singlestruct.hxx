@@ -34,9 +34,13 @@ private :
 public :
     SingleStruct*                           clone();
 
-    ScilabType                                getType(void)
+    inline ScilabType                       getType(void)
     {
         return ScilabSingleStruct;
+    }
+    inline ScilabId                         getId(void)
+    {
+        return IdSingleStruct;
     }
 
     bool                                    toString(std::wostringstream& ostr);

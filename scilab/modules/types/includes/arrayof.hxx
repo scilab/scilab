@@ -200,7 +200,7 @@ public :
         return m_bComplex;
     }
 
-    virtual bool isScalar() //2 dims and each dim == 1
+    inline virtual bool isScalar() //2 dims and each dim == 1
     {
         if (m_iDims == 2 && m_piDims[0] == 1 && m_piDims[1] == 1)
         {

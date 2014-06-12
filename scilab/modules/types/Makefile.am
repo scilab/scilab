@@ -43,7 +43,6 @@ includes/double.hxx \
 includes/dynlib_types_gw.h \
 includes/dynlib_types.h \
 includes/file.hxx \
-includes/float.hxx \
 includes/function.hxx \
 includes/gatewaystruct.hxx \
 includes/GetScilabVariable.h \
@@ -88,7 +87,6 @@ src/cpp/types.cpp \
 src/cpp/string.cpp \
 src/cpp/double.cpp \
 src/cpp/bool.cpp \
-src/cpp/float.cpp \
 src/cpp/implicitlist.cpp \
 src/cpp/polynom.cpp \
 src/cpp/singlepoly.cpp \

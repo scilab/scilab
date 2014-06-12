@@ -52,11 +52,24 @@ public :
 
     virtual void            setComplex(bool _bComplex);
 
-    virtual ScilabType        getType();
-    bool                    isPoly()
+    inline ScilabType       getType(void)
+    {
+        return ScilabPolynom;
+    }
+
+    inline ScilabId         getId(void)
+    {
+        return isScalar() ? isComplex() ? IdScalarPolynomComplex
+               : IdScalarPolynom
+       : isComplex() ? IdPolynomComplex
+               : IdPolynom;
+    }
+
+    inline bool             isPoly()
     {
         return true;
     }
+
     void                    whoAmI(void);
     std::wstring            getVariableName();
     void                    setVariableName(std::wstring);

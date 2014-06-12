@@ -67,7 +67,14 @@ public :
     }
     InternalType*           clone();
 
-    ScilabType                getType();//			{ return ScilabString; }
+    inline ScilabType       getType()
+    {
+        return ScilabString;
+    }
+    inline ScilabId         getId()
+    {
+        return isScalar() ? IdScalarString : IdString;
+    }
     bool                    isString()
     {
         return true;

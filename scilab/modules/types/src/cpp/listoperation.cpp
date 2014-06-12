@@ -32,11 +32,6 @@ InternalType* ListOperation::clone(void)
     return new ListOperation();
 }
 
-InternalType::ScilabType ListOperation::getType(void)
-{
-    return ScilabListOperation;
-}
-
 bool ListOperation::toString(std::wostringstream& ostr)
 {
     ostr << L"FIXME : Implement ListOperation::toString" << std::endl;

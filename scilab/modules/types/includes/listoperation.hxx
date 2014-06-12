@@ -27,7 +27,15 @@ public :
 
     InternalType*           clone();
 
-    ScilabType                getType(void);
+    inline ScilabType       getType(void)
+    {
+        return ScilabListOperation;
+    }
+    inline ScilabId         getId(void)
+    {
+        return IdListOperation;
+    }
+
     bool                    isListOperation()
     {
         return true;

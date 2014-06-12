@@ -48,11 +48,6 @@ InternalType* ListInsert::clone(void)
     return new ListInsert(m_pInsert);
 }
 
-InternalType::ScilabType ListInsert::getType(void)
-{
-    return ScilabListInsertOperation;
-}
-
 bool ListInsert::toString(std::wostringstream& ostr)
 {
     ostr << L"FIXME : Implement ListInsert::toString" << std::endl;

@@ -112,53 +112,6 @@ void Int<unsigned long long>::whoAmI()
     std::cout << "types::UInt64";
 }
 
-template<>
-InternalType::ScilabType Int<char>::getType()
-{
-    return InternalType::ScilabInt8;
-}
-
-template<>
-InternalType::ScilabType Int<short>::getType()
-{
-    return InternalType::ScilabInt16;
-}
-
-template<>
-InternalType::ScilabType Int<int>::getType()
-{
-    return InternalType::ScilabInt32;
-}
-
-template<>
-InternalType::ScilabType Int<long long>::getType()
-{
-    return InternalType::ScilabInt64;
-}
-
-template<>
-InternalType::ScilabType Int<unsigned char>::getType()
-{
-    return InternalType::ScilabUInt8;
-}
-
-template<>
-InternalType::ScilabType Int<unsigned short>::getType()
-{
-    return InternalType::ScilabUInt16;
-}
-
-template<>
-InternalType::ScilabType Int<unsigned int>::getType()
-{
-    return InternalType::ScilabUInt32;
-}
-
-template<>
-InternalType::ScilabType Int<unsigned long long>::getType()
-{
-    return InternalType::ScilabUInt64;
-}
 
 #ifdef _MSC_VER
 template TYPES_IMPEXP class ArrayOf<char>;

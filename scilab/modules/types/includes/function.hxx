@@ -68,10 +68,15 @@ public :
     static Function*        createFunction(std::wstring _wstFunctionName, std::wstring _wstEntryPointName, std::wstring _wstLibName, FunctionType _iType, LOAD_DEPS _pLoadDeps, std::wstring _wstModule, bool _bCloseLibAfterCall = false);
     static Function*        createFunction(std::wstring _wstFunctionName, std::wstring _wstEntryPointName, std::wstring _wstLibName, FunctionType _iType, std::wstring _wstLoadDepsName, std::wstring _wstModule, bool _bCloseLibAfterCall = false);
 
-    ScilabType                getType(void)
+    inline ScilabType       getType(void)
     {
         return ScilabFunction;
     }
+    inline ScilabId         getId(void)
+    {
+        return IdFunction;
+    }
+
     bool                    isFunction()
     {
         return true;

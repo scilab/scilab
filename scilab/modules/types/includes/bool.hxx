@@ -66,7 +66,14 @@ public :
     }
 
 protected :
-    ScilabType				getType(void);
+    inline ScilabType       getType(void)
+    {
+        return ScilabBool;
+    }
+    inline ScilabId         getId(void)
+    {
+        return isScalar() ? IdScalarBool : IdBool;
+    }
 
 private :
     virtual bool            subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims);

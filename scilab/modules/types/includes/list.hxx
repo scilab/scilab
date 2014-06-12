@@ -37,9 +37,13 @@ public :
         std::cout << "types::List";
     };
 
-    ScilabType                        getType(void)
+    inline ScilabType               getType(void)
     {
         return ScilabList;
+    }
+    inline ScilabId                 getId(void)
+    {
+        return IdList;
     }
 
     /**

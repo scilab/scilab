@@ -37,12 +37,12 @@ ThreadId::ThreadId(__threadId _id, __threadKey _key)
     m_threadStatus = Running;
 }
 
-__threadId ThreadId::getId()
+__threadId ThreadId::getThreadId()
 {
     return m_threadId;
 }
 
-void ThreadId::setId(__threadId _id)
+void ThreadId::setThreadId(__threadId _id)
 {
     this->m_threadId = _id;
 }
@@ -60,11 +60,6 @@ void ThreadId::setKey(__threadKey _key)
 InternalType* ThreadId::clone()
 {
     return this;
-}
-
-InternalType::ScilabType ThreadId::getType()
-{
-    return InternalType::ScilabThreadId;
 }
 
 std::wstring ThreadId::StatusToString(Status _status)

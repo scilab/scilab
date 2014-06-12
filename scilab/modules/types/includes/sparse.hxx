@@ -127,7 +127,7 @@ struct TYPES_IMPEXP Sparse : GenericType
         return sp->isComplex();
     }
 
-    bool isScalar()
+    inline bool isScalar()
     {
         return (getRows() == 1 && getCols() == 1);
     }
@@ -435,7 +435,20 @@ struct TYPES_IMPEXP Sparse : GenericType
     void fill(Double& dest, int r = 0, int c = 0) SPARSE_CONST;
 
 
-    ScilabType getType(void) SPARSE_CONST;
+    inline ScilabType  getType(void) SPARSE_CONST
+    {
+        return ScilabSparse;
+    }
+
+    inline ScilabId    getId(void) SPARSE_CONST
+    {
+        if (isComplex())
+        {
+            return IdSparseComplex;
+        }
+        return IdSparse;
+    }
+
 
 
     SparseBool* newLesserThan(Sparse const&o);
@@ -570,9 +583,17 @@ struct TYPES_IMPEXP SparseBool : GenericType
     /* return type as short string ( s, i, ce, l, ... )*/
     virtual std::wstring getShortTypeStr() SPARSE_CONST {return std::wstring(L"spb");}
 
-    ScilabType getType(void) SPARSE_CONST;
+    inline ScilabType getType(void) SPARSE_CONST
+    {
+        return ScilabSparseBool;
+    }
 
-    bool isScalar()
+    inline ScilabId getId(void) SPARSE_CONST
+    {
+        return IdSparseBool;
+    }
+
+    inline bool isScalar()
     {
         return (getRows() == 1 && getCols() == 1);
     }

@@ -82,6 +82,70 @@ public :
         ScilabLibrary
     };
 
+    enum ScilabId
+    {
+        IdNull, //no type, no data, nothing !
+        /* Internal Type */
+        IdInternal,
+        /* Generic Types */
+        IdGeneric,
+        IdEmpty,
+        IdIdentity,
+        IdInt8,
+        IdUInt8,
+        IdInt16,
+        IdUInt16,
+        IdInt32,
+        IdUInt32,
+        IdInt64,
+        IdUInt64,
+        IdString,
+        IdScalarString,
+        IdDouble,
+        IdDoubleComplex,
+        IdScalarDouble,
+        IdScalarDoubleComplex,
+        IdBool,
+        IdScalarBool,
+        IdPolynom,
+        IdScalarPolynomComplex,
+        IdScalarPolynom,
+        IdPolynomComplex,
+        IdSinglePolynom,
+        /* Callable */
+        IdFunction,
+        IdMacro,
+        IdMacroFile,
+        /* Implicit List */
+        IdImplicitList,
+        /* Container */
+        IdContainer,
+        IdList,
+        IdTList,
+        IdMList,
+        IdSingleStruct,
+        IdStruct,
+        IdCell,
+        /* User */
+        IdUserType,
+        /*For list operation*/
+        IdListOperation, //parent type
+        IdListInsertOperation,
+        IdListDeleteOperation,
+        IdListUndefinedOperation,
+        IdFile,
+        IdColon,
+        IdDollar,
+        IdThreadId,
+        IdSparse,
+        IdSparseComplex,
+        IdSparseBool,
+        IdHandle,
+        IdScalarHandle,
+        IdVoid,
+        IdLibrary
+    };
+
 protected :
     InternalType() : m_iRef(0), m_bAllowDelete(true), m_bPrintFromStart(true), m_iSavePrintState(0), m_iRows1PrintState(0), m_iRows2PrintState(0), m_iCols1PrintState(0), m_iCols2PrintState(0) {}
 
@@ -96,7 +160,8 @@ public :
     {
         return false;
     }
-    virtual ScilabType                getType(void) = 0 ; //{ return ScilabInternal; }
+    virtual ScilabType              getType(void) = 0 ; //{ return ScilabInternal; }
+    virtual ScilabId                getId(void) = 0 ; //{ return ScilabInternal; }
 
     virtual bool                    hasToString()
     {

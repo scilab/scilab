@@ -30,7 +30,15 @@ public :
     //FIXME : Should not return NULL
     InternalType*           clone();
 
-    ScilabType                getType(void);
+    inline ScilabType       getType(void)
+    {
+        return ScilabMacroFile;
+    }
+    inline ScilabId         getId(void)
+    {
+        return IdMacroFile;
+    }
+
     bool                    isMacroFile()
     {
         return true;

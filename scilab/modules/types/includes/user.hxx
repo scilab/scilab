@@ -28,9 +28,13 @@ public :
         return this;
     }
     //non virtual function to prevent overriding in user derived class
-    ScilabType                getType(void)
+    inline ScilabType       getType(void)
     {
         return ScilabUserType;
+    }
+    inline ScilabId         getId(void)
+    {
+        return IdUserType;
     }
 
     /*

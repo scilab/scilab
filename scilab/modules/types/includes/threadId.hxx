@@ -47,8 +47,8 @@ public :
     }
     InternalType*           clone();
 
-    __threadId              getId();
-    void                    setId(__threadId _id);
+    __threadId              getThreadId();
+    void                    setThreadId(__threadId _id);
     __threadKey             getKey();
     void                    setKey(__threadKey _key);
 
@@ -73,7 +73,15 @@ private :
     std::wstring            StatusToString(Status _status);
 
 protected :
-    ScilabType                getType();
+    inline ScilabType       getType()
+    {
+        return ScilabThreadId;
+    }
+    inline ScilabId         getId()
+    {
+        return IdThreadId;
+    }
+
 
 private :
     __threadId              m_threadId;

@@ -130,7 +130,19 @@ public :
         return L"s";
     }
 protected :
-    ScilabType                    getType(void);
+    inline ScilabType           getType(void)
+    {
+        return ScilabDouble;
+    }
+    inline ScilabId             getId(void)
+    {
+        return isIdentity() ? IdIdentity
+               : isEmpty() ? IdEmpty
+               : isComplex() ? isScalar() ? IdScalarDoubleComplex
+               : IdDoubleComplex
+       : isScalar() ? IdScalarDouble
+               : IdDouble;
+    }
 
 private :
     virtual bool                subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims);

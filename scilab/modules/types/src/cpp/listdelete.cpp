@@ -32,11 +32,6 @@ InternalType* ListDelete::clone(void)
     return new ListDelete();
 }
 
-InternalType::ScilabType ListDelete::getType(void)
-{
-    return ScilabListDeleteOperation;
-}
-
 bool ListDelete::toString(std::wostringstream& ostr)
 {
     ostr << L"FIXME : Implement ListDelete::toString" << std::endl;

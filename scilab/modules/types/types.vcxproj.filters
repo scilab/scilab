@@ -33,9 +33,6 @@
     <ClCompile Include="src\cpp\file.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\cpp\float.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\cpp\function.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -148,9 +145,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="includes\file.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\float.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="includes\function.hxx">

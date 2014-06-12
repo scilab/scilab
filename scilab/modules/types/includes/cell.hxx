@@ -49,6 +49,10 @@ public :
     {
         return ScilabCell;
     }
+    ScilabId            getId(void)
+    {
+        return IdCell;
+    }
     bool                isCell()
     {
         return true;

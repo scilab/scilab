@@ -50,11 +50,6 @@ void MacroFile::whoAmI()
     std::cout << "types::MacroFile";
 }
 
-InternalType::ScilabType MacroFile::getType(void)
-{
-    return ScilabMacroFile;
-}
-
 bool MacroFile::toString(std::wostringstream& ostr)
 {
     ostr << L"FIXME : Implement MacroFile::toString" << std::endl;

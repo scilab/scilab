@@ -67,11 +67,6 @@ void Macro::whoAmI()
     std::cout << "types::Macro";
 }
 
-InternalType::ScilabType Macro::getType(void)
-{
-    return ScilabMacro;
-}
-
 ast::SeqExp* Macro::getBody(void)
 {
     return m_body;

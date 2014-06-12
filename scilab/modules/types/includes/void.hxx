@@ -27,7 +27,15 @@ public :
 
     InternalType*           clone();
 
-    ScilabType                getType(void);
+    inline ScilabType       getType(void)
+    {
+        return ScilabVoid;
+    }
+    inline ScilabId         getId(void)
+    {
+        return IdVoid;
+    }
+
     bool                    isVoid()
     {
         return true;

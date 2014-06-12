@@ -42,7 +42,7 @@ types::Function::ReturnValue sci_abort(types::typed_list &in, int _iRetCount, ty
     ThreadId* pThreadId = NULL;
     while ((pThreadId = ConfigVariable::getLastPausedThread()) != NULL)
     {
-        __threadId id = pThreadId->getId();
+        __threadId id = pThreadId->getThreadId();
         pThreadId->abort();
         __WaitThreadDie(id);
     }

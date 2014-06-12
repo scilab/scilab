@@ -238,11 +238,6 @@ void Double::whoAmI()
     std::cout << "types::Double";
 }
 
-GenericType::ScilabType Double::getType(void)
-{
-    return ScilabDouble;
-}
-
 bool Double::setZeros()
 {
     if (m_pRealData != NULL)

@@ -41,10 +41,15 @@ public :
         return L"f";
     }
 
-    ScilabType getType(void)
+    inline ScilabType getType(void)
     {
         return ScilabLibrary;
-    };
+    }
+    inline ScilabId getId(void)
+    {
+        return IdLibrary;
+    }
+
     bool toString(std::wostringstream& ostr);
     InternalType* clone();
     bool isAssignable()

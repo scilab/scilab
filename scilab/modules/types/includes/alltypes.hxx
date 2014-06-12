@@ -23,7 +23,6 @@
 #include "internal.hxx"
 #include "types.hxx"
 #include "double.hxx"
-#include "float.hxx"
 #include "string.hxx"
 #include "bool.hxx"
 #include "callable.hxx"

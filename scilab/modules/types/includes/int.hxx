@@ -152,7 +152,8 @@ public :
     }
 
 protected :
-    InternalType::ScilabType getType(void);
+    inline InternalType::ScilabType getType(void);
+    inline InternalType::ScilabId   getId(void);
 
 private :
     virtual bool subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims)
@@ -433,6 +434,72 @@ private :
         return is_same_int<T, unsigned long long>::value;
     }
 };
+
+template<> inline InternalType::ScilabType Int<char>::getType()
+{
+    return ScilabInt8;
+}
+template<> inline InternalType::ScilabType Int<unsigned char>::getType()
+{
+    return ScilabUInt8;
+}
+template<> inline InternalType::ScilabType Int<short>::getType()
+{
+    return ScilabInt16;
+}
+template<> inline InternalType::ScilabType Int<unsigned short>::getType()
+{
+    return ScilabUInt16;
+}
+template<> inline InternalType::ScilabType Int<int>::getType()
+{
+    return ScilabInt32;
+}
+template<> inline InternalType::ScilabType Int<unsigned int>::getType()
+{
+    return ScilabUInt32;
+}
+template<> inline InternalType::ScilabType Int<long long>::getType()
+{
+    return ScilabInt64;
+}
+template<> inline InternalType::ScilabType Int<unsigned long long>::getType()
+{
+    return ScilabUInt64;
+}
+
+template<> inline InternalType::ScilabId Int<char>::getId()
+{
+    return IdInt8;
+}
+template<> inline InternalType::ScilabId Int<unsigned char>::getId()
+{
+    return IdUInt8;
+}
+template<> inline InternalType::ScilabId Int<short>::getId()
+{
+    return IdInt16;
+}
+template<> inline InternalType::ScilabId Int<unsigned short>::getId()
+{
+    return IdUInt16;
+}
+template<> inline InternalType::ScilabId Int<int>::getId()
+{
+    return IdInt32;
+}
+template<> inline InternalType::ScilabId Int<unsigned int>::getId()
+{
+    return IdUInt32;
+}
+template<> inline InternalType::ScilabId Int<long long>::getId()
+{
+    return IdInt64;
+}
+template<> inline InternalType::ScilabId Int<unsigned long long>::getId()
+{
+    return IdUInt64;
+}
 
 typedef Int<char> Int8;
 typedef Int<short> Int16;

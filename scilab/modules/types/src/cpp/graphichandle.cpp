@@ -77,11 +77,6 @@ GraphicHandle::~GraphicHandle()
 #endif
 }
 
-InternalType::ScilabType GraphicHandle::getType(void)
-{
-    return ScilabHandle;
-}
-
 InternalType* GraphicHandle::clone()
 {
     GraphicHandle* pGH = new GraphicHandle(getDims(), getDimsArray());

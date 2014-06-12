@@ -33,19 +33,19 @@ std::map<__threadId, OptimizationFunctions*> Optimization::m_mapOptimizationFunc
 void Optimization::addOptimizationFunctions(OptimizationFunctions* _deFunction)
 {
     types::ThreadId* pThread = ConfigVariable::getLastRunningThread();
-    m_mapOptimizationFunctions[pThread->getId()] = _deFunction;
+    m_mapOptimizationFunctions[pThread->getThreadId()] = _deFunction;
 }
 
 void Optimization::removeOptimizationFunctions()
 {
     types::ThreadId* pThread = ConfigVariable::getLastRunningThread();
-    m_mapOptimizationFunctions.erase(pThread->getId());
+    m_mapOptimizationFunctions.erase(pThread->getThreadId());
 }
 
 OptimizationFunctions* Optimization::getOptimizationFunctions()
 {
     types::ThreadId* pThread = ConfigVariable::getLastRunningThread();
-    return m_mapOptimizationFunctions[pThread->getId()];
+    return m_mapOptimizationFunctions[pThread->getThreadId()];
 }
 
 /*

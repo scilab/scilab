@@ -28,7 +28,15 @@ public :
     // FIXME : Should not return NULL;
     InternalType*           clone();
 
-    ScilabType                getType(void);
+    inline ScilabType       getType(void)
+    {
+        return ScilabListDeleteOperation;
+    }
+    inline ScilabId         getId(void)
+    {
+        return IdListDeleteOperation;
+    }
+
     bool                    isListDelete()
     {
         return true;

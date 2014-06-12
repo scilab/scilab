@@ -38,10 +38,15 @@ public :
         std::cout << "types::Struct";
     };
 
-    ScilabType                    getType(void)
+    inline ScilabType           getType(void)
     {
         return ScilabStruct;
     }
+    inline ScilabId             getId(void)
+    {
+        return IdStruct;
+    }
+
     bool                        isStruct()
     {
         return true;

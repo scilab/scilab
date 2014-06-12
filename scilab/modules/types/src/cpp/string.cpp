@@ -135,11 +135,6 @@ void String::deleteImg()
     return;
 }
 
-GenericType::ScilabType String::getType()
-{
-    return GenericType::ScilabString;
-}
-
 bool String::subMatrixToString(wostringstream& ostr, int* _piDims, int _iDims)
 {
     int iPrecision = getFormatSize();

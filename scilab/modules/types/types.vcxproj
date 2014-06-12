@@ -197,7 +197,6 @@ lib /DEF:"$(ProjectDir)operations_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <ClCompile Include="src\cpp\cell.cpp" />
     <ClCompile Include="src\cpp\double.cpp" />
     <ClCompile Include="src\cpp\file.cpp" />
-    <ClCompile Include="src\cpp\float.cpp" />
     <ClCompile Include="src\cpp\function.cpp" />
     <ClCompile Include="src\cpp\graphichandle.cpp" />
     <ClCompile Include="src\cpp\ImplicitList.cpp" />
@@ -237,7 +236,6 @@ lib /DEF:"$(ProjectDir)operations_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <ClInclude Include="includes\double.hxx" />
     <ClInclude Include="includes\dynlib_types.h" />
     <ClInclude Include="includes\file.hxx" />
-    <ClInclude Include="includes\float.hxx" />
     <ClInclude Include="includes\function.hxx" />
     <ClInclude Include="includes\gatewaystruct.hxx" />
     <ClInclude Include="includes\graphichandle.hxx" />
