@@ -12,13 +12,16 @@
  */
 
 #include "types_addition.hxx"
-#include "core_math.h"
+#include "operations.hxx"
+#include "double.hxx"
+#include "int.hxx"
 
 #include "scilabexception.hxx"
 
 extern "C"
 {
 #include <stdio.h>
+#include "core_math.h"
 #include "matrix_addition.h"
 #include "localization.h"
 #include "charEncoding.h"
@@ -28,48 +31,627 @@ extern "C"
 
 using namespace types;
 
+//define arrays on operation functions
+static add_function pAddfunction[types::InternalType::IdLast][types::InternalType::IdLast] = {NULL};
+
+add_function getAddFunction(types::InternalType::ScilabId leftId, types::InternalType::ScilabId rightId)
+{
+    return pAddfunction[leftId][rightId];
+}
+
+void fillAddFunction()
+{
+    //Double
+    add_function* pD = pAddfunction[types::InternalType::IdDouble];
+    //Matrix + Matrix
+    pD[types::InternalType::IdDouble] = (add_function)&add_M_M<Double, Double, Double>;
+    pD[types::InternalType::IdInt8] = (add_function)&add_M_M<Double, Int8, Int8>;
+    pD[types::InternalType::IdUInt8] = (add_function)&add_M_M<Double, UInt8, UInt8>;
+    pD[types::InternalType::IdInt16] = (add_function)&add_M_M<Double, Int16, Int16>;
+    pD[types::InternalType::IdUInt16] = (add_function)&add_M_M<Double, UInt16, UInt16>;
+    pD[types::InternalType::IdInt32] = (add_function)&add_M_M<Double, Int32, Int32>;
+    pD[types::InternalType::IdUInt32] = (add_function)&add_M_M<Double, UInt32, UInt32>;
+    pD[types::InternalType::IdInt64] = (add_function)&add_M_M<Double, Int64, Int64>;
+    pD[types::InternalType::IdUInt64] = (add_function)&add_M_M<Double, UInt64, UInt64>;
+    pD[types::InternalType::IdBool] = (add_function)&add_M_M<Double, Bool, Double>;
+
+    //Matrix + Matrix Complex
+    pD[types::InternalType::IdDoubleComplex] = (add_function)&add_M_MC<Double, Double, Double>;
+
+    //Matrix + Scalar
+    pD[types::InternalType::IdScalarDouble] = (add_function)&add_M_S<Double, Double, Double>;
+    pD[types::InternalType::IdScalarInt8] = (add_function)&add_M_S<Double, Int8, Int8>;
+    pD[types::InternalType::IdScalarUInt8] = (add_function)&add_M_S<Double, UInt8, UInt8>;
+    pD[types::InternalType::IdScalarInt16] = (add_function)&add_M_S<Double, Int16, Int16>;
+    pD[types::InternalType::IdScalarUInt16] = (add_function)&add_M_S<Double, UInt16, UInt16>;
+    pD[types::InternalType::IdScalarInt32] = (add_function)&add_M_S<Double, Int32, Int32>;
+    pD[types::InternalType::IdScalarUInt32] = (add_function)&add_M_S<Double, UInt32, UInt32>;
+    pD[types::InternalType::IdScalarInt64] = (add_function)&add_M_S<Double, Int64, Int64>;
+    pD[types::InternalType::IdScalarUInt64] = (add_function)&add_M_S<Double, UInt64, UInt64>;
+    pD[types::InternalType::IdScalarBool] = (add_function)&add_M_S<Double, Bool, Double>;
+
+    //Matrix + Scalar Complex
+    pD[types::InternalType::IdScalarDoubleComplex] = (add_function)&add_M_SC<Double, Double, Double>;
+    //Matrix + Empty
+    pD[types::InternalType::IdEmpty] = (add_function)&add_M_E<Double, Double, Double>;
+
+
+    add_function* pDC = pAddfunction[types::InternalType::IdDoubleComplex];
+    //Scalar Complex + Matrix
+    pDC[types::InternalType::IdDouble] = (add_function)&add_MC_M<Double, Double, Double>;
+    pDC[types::InternalType::IdDoubleComplex] = (add_function)&add_MC_MC<Double, Double, Double>;
+    pDC[types::InternalType::IdScalarDouble] = (add_function)&add_MC_S<Double, Double, Double>;
+    pDC[types::InternalType::IdScalarDoubleComplex] = (add_function)&add_MC_SC<Double, Double, Double>;
+    pDC[types::InternalType::IdEmpty] = (add_function)&add_MC_E<Double, Double, Double>;
+
+    //Scalar + Matrix
+    add_function* pD1 = pAddfunction[types::InternalType::IdScalarDouble];
+    pD1[types::InternalType::IdDouble] = (add_function)&add_S_M<Double, Double, Double>;
+    pD1[types::InternalType::IdInt8] = (add_function)&add_S_M<Double, Int8, Int8>;
+    pD1[types::InternalType::IdUInt8] = (add_function)&add_S_M<Double, UInt8, UInt8>;
+    pD1[types::InternalType::IdInt16] = (add_function)&add_S_M<Double, Int16, Int16>;
+    pD1[types::InternalType::IdUInt16] = (add_function)&add_S_M<Double, UInt16, UInt16>;
+    pD1[types::InternalType::IdInt32] = (add_function)&add_S_M<Double, Int32, Int32>;
+    pD1[types::InternalType::IdUInt32] = (add_function)&add_S_M<Double, UInt32, UInt32>;
+    pD1[types::InternalType::IdInt64] = (add_function)&add_S_M<Double, Int64, Int64>;
+    pD1[types::InternalType::IdUInt64] = (add_function)&add_S_M<Double, UInt64, UInt64>;
+    pD1[types::InternalType::IdBool] = (add_function)&add_S_M<Double, Bool, Double>;
+
+    //Scalar + Matrix Complex
+    pD1[types::InternalType::IdDoubleComplex] = (add_function)&add_S_MC<Double, Double, Double>;
+
+    //Scalar + Scalar
+    pD1[types::InternalType::IdScalarDouble] = (add_function)&add_S_S<Double, Double, Double>;
+    pD1[types::InternalType::IdScalarInt8] = (add_function)&add_S_S<Double, Int8, Int8>;
+    pD1[types::InternalType::IdScalarUInt8] = (add_function)&add_S_S<Double, UInt8, UInt8>;
+    pD1[types::InternalType::IdScalarInt16] = (add_function)&add_S_S<Double, Int16, Int16>;
+    pD1[types::InternalType::IdScalarUInt16] = (add_function)&add_S_S<Double, UInt16, UInt16>;
+    pD1[types::InternalType::IdScalarInt32] = (add_function)&add_S_S<Double, Int32, Int32>;
+    pD1[types::InternalType::IdScalarUInt32] = (add_function)&add_S_S<Double, UInt32, UInt32>;
+    pD1[types::InternalType::IdScalarInt64] = (add_function)&add_S_S<Double, Int64, Int64>;
+    pD1[types::InternalType::IdScalarUInt64] = (add_function)&add_S_S<Double, UInt64, UInt64>;
+    pD1[types::InternalType::IdScalarBool] = (add_function)&add_S_S<Double, Bool, Double>;
+
+    //Scalar + Scalar Complex
+    pD1[types::InternalType::IdScalarDoubleComplex] = (add_function)&add_S_SC<Double, Double, Double>;
+
+    //Scalar + Empty
+    pD1[types::InternalType::IdEmpty] = (add_function)&add_S_E<Double, Double, Double>;
+
+    add_function* pD1C = pAddfunction[types::InternalType::IdScalarDoubleComplex];
+    pD1C[types::InternalType::IdDouble] = (add_function)&add_SC_M<Double, Double, Double>;
+    pD1C[types::InternalType::IdDoubleComplex] = (add_function)&add_SC_MC<Double, Double, Double>;
+    pD1C[types::InternalType::IdScalarDouble] = (add_function)&add_SC_S<Double, Double, Double>;
+    pD1C[types::InternalType::IdScalarDoubleComplex] = (add_function)&add_SC_SC<Double, Double, Double>;
+    pD1C[types::InternalType::IdEmpty] = (add_function)&add_SC_E<Double, Double, Double>;
+
+    add_function* pE = pAddfunction[types::InternalType::IdEmpty];
+    //Empty + Matrix
+    pE[types::InternalType::IdDouble] = (add_function)&add_E_M<Double, Double, Double>;
+    pE[types::InternalType::IdInt8] = (add_function)&add_E_M<Double, Int8, Int8>;
+    pE[types::InternalType::IdUInt8] = (add_function)&add_E_M<Double, UInt8, UInt8>;
+    pE[types::InternalType::IdInt16] = (add_function)&add_E_M<Double, Int16, Int16>;
+    pE[types::InternalType::IdUInt16] = (add_function)&add_E_M<Double, UInt16, UInt16>;
+    //pE[types::InternalType::IdInt32] = (add_function)&add_E_M<Double, Int32, Int32>;
+    pE[types::InternalType::IdUInt32] = (add_function)&add_E_M<Double, UInt32, UInt32>;
+    pE[types::InternalType::IdInt64] = (add_function)&add_E_M<Double, Int64, Int64>;
+    pE[types::InternalType::IdUInt64] = (add_function)&add_E_M<Double, UInt64, UInt64>;
+    //pE[types::InternalType::IdBool] = (add_function)&add_E_M<Double, Bool, Double>;
+    //Empty + Matrix Complex
+    pE[types::InternalType::IdDoubleComplex] = (add_function)&add_E_MC<Double, Double, Double>;
+    //Empty + Scalar
+    pE[types::InternalType::IdScalarDouble] = (add_function)&add_E_S<Double, Double, Double>;
+    pE[types::InternalType::IdScalarInt8] = (add_function)&add_E_S<Double, Int8, Int8>;
+    pE[types::InternalType::IdScalarUInt8] = (add_function)&add_E_S<Double, UInt8, UInt8>;
+    pE[types::InternalType::IdScalarInt16] = (add_function)&add_E_S<Double, Int16, Int16>;
+    pE[types::InternalType::IdScalarUInt16] = (add_function)&add_E_S<Double, UInt16, UInt16>;
+    pE[types::InternalType::IdScalarInt32] = (add_function)&add_E_S<Double, Int32, Int32>;
+    pE[types::InternalType::IdScalarUInt32] = (add_function)&add_E_S<Double, UInt32, UInt32>;
+    pE[types::InternalType::IdScalarInt64] = (add_function)&add_E_S<Double, Int64, Int64>;
+    pE[types::InternalType::IdScalarUInt64] = (add_function)&add_E_S<Double, UInt64, UInt64>;
+    pE[types::InternalType::IdScalarBool] = (add_function)&add_E_S<Double, Bool, Double>;
+
+    //Empty + Scalar Complex
+    pE[types::InternalType::IdScalarDoubleComplex] = (add_function)&add_E_SC<Double, Double, Double>;
+    //Empty + Empty
+    pE[types::InternalType::IdEmpty] = (add_function)&add_E_E<Double, Double, Double>;
+
+    //Int8
+    add_function* pI8 = pAddfunction[types::InternalType::IdInt8];
+    //Matrix + Matrix
+    pI8[types::InternalType::IdDouble] = (add_function)&add_M_M<Int8, Double, Int8>;
+    pI8[types::InternalType::IdInt8] = (add_function)&add_M_M<Int8, Int8, Int8>;
+    pI8[types::InternalType::IdUInt8] = (add_function)&add_M_M<Int8, UInt8, UInt8>;
+    pI8[types::InternalType::IdInt16] = (add_function)&add_M_M<Int8, Int16, Int16>;
+    pI8[types::InternalType::IdUInt16] = (add_function)&add_M_M<Int8, UInt16, UInt16>;
+    pI8[types::InternalType::IdInt32] = (add_function)&add_M_M<Int8, Int32, Int32>;
+    pI8[types::InternalType::IdUInt32] = (add_function)&add_M_M<Int8, UInt32, UInt32>;
+    pI8[types::InternalType::IdInt64] = (add_function)&add_M_M<Int8, Int64, Int64>;
+    pI8[types::InternalType::IdUInt64] = (add_function)&add_M_M<Int8, UInt64, UInt64>;
+    pI8[types::InternalType::IdBool] = (add_function)&add_M_M<Int8, Bool, Int8>;
+    pI8[types::InternalType::IdEmpty] = (add_function)&add_M_M<Int8, Double, Int8>;
+
+    //Matrix + Scalar
+    pI8[types::InternalType::IdScalarDouble] = (add_function)&add_M_S<Int8, Double, Int8>;
+    pI8[types::InternalType::IdScalarInt8] = (add_function)&add_M_S<Int8, Int8, Int8>;
+    pI8[types::InternalType::IdScalarUInt8] = (add_function)&add_M_S<Int8, UInt8, UInt8>;
+    pI8[types::InternalType::IdScalarInt16] = (add_function)&add_M_S<Int8, Int16, Int16>;
+    pI8[types::InternalType::IdScalarUInt16] = (add_function)&add_M_S<Int8, UInt16, UInt16>;
+    pI8[types::InternalType::IdScalarInt32] = (add_function)&add_M_S<Int8, Int32, Int32>;
+    pI8[types::InternalType::IdScalarUInt32] = (add_function)&add_M_S<Int8, UInt32, UInt32>;
+    pI8[types::InternalType::IdScalarInt64] = (add_function)&add_M_S<Int8, Int64, Int64>;
+    pI8[types::InternalType::IdScalarUInt64] = (add_function)&add_M_S<Int8, UInt64, UInt64>;
+    pI8[types::InternalType::IdScalarBool] = (add_function)&add_M_S<Int8, Bool, Int8>;
+
+    add_function* pI81 = pAddfunction[types::InternalType::IdScalarInt8];
+    //Scalar + Matrix
+    pI81[types::InternalType::IdDouble] = (add_function)&add_S_M<Int8, Double, Int8>;
+    pI81[types::InternalType::IdInt8] = (add_function)&add_S_M<Int8, Int8, Int8>;
+    pI81[types::InternalType::IdUInt8] = (add_function)&add_S_M<Int8, UInt8, UInt8>;
+    pI81[types::InternalType::IdInt16] = (add_function)&add_S_M<Int8, Int16, Int16>;
+    pI81[types::InternalType::IdUInt16] = (add_function)&add_S_M<Int8, UInt16, UInt16>;
+    pI81[types::InternalType::IdInt32] = (add_function)&add_S_M<Int8, Int32, Int32>;
+    pI81[types::InternalType::IdUInt32] = (add_function)&add_S_M<Int8, UInt32, UInt32>;
+    pI81[types::InternalType::IdInt64] = (add_function)&add_S_M<Int8, Int64, Int64>;
+    pI81[types::InternalType::IdUInt64] = (add_function)&add_S_M<Int8, UInt64, UInt64>;
+    pI81[types::InternalType::IdBool] = (add_function)&add_S_M<Int8, Bool, Int8>;
+    pI81[types::InternalType::IdEmpty] = (add_function)&add_M_M<Int8, Double, Int8>;
+
+    //Scalar + Scalar
+    pI81[types::InternalType::IdScalarDouble] = (add_function)&add_S_S<Int8, Double, Int8>;
+    pI81[types::InternalType::IdScalarInt8] = (add_function)&add_S_S<Int8, Int8, Int8>;
+    pI81[types::InternalType::IdScalarUInt8] = (add_function)&add_S_S<Int8, UInt8, UInt8>;
+    pI81[types::InternalType::IdScalarInt16] = (add_function)&add_S_S<Int8, Int16, Int16>;
+    pI81[types::InternalType::IdScalarUInt16] = (add_function)&add_S_S<Int8, UInt16, UInt16>;
+    pI81[types::InternalType::IdScalarInt32] = (add_function)&add_S_S<Int8, Int32, Int32>;
+    pI81[types::InternalType::IdScalarUInt32] = (add_function)&add_S_S<Int8, UInt32, UInt32>;
+    pI81[types::InternalType::IdScalarInt64] = (add_function)&add_S_S<Int8, Int64, Int64>;
+    pI81[types::InternalType::IdScalarUInt64] = (add_function)&add_S_S<Int8, UInt64, UInt64>;
+    pI81[types::InternalType::IdScalarBool] = (add_function)&add_S_S<Int8, Bool, Int8>;
+
+    //UInt8
+    add_function* pUI8 = pAddfunction[types::InternalType::IdUInt8];
+    //Matrix + Matrix
+    pUI8[types::InternalType::IdDouble] = (add_function)&add_M_M<UInt8, Double, UInt8>;
+    pUI8[types::InternalType::IdInt8] = (add_function)&add_M_M<UInt8, Int8, UInt8>;
+    pUI8[types::InternalType::IdUInt8] = (add_function)&add_M_M<UInt8, UInt8, UInt8>;
+    pUI8[types::InternalType::IdInt16] = (add_function)&add_M_M<UInt8, Int16, UInt16>;
+    pUI8[types::InternalType::IdUInt16] = (add_function)&add_M_M<UInt8, UInt16, UInt16>;
+    pUI8[types::InternalType::IdInt32] = (add_function)&add_M_M<UInt8, Int32, UInt32>;
+    pUI8[types::InternalType::IdUInt32] = (add_function)&add_M_M<UInt8, UInt32, UInt32>;
+    pUI8[types::InternalType::IdInt64] = (add_function)&add_M_M<UInt8, Int64, UInt64>;
+    pUI8[types::InternalType::IdUInt64] = (add_function)&add_M_M<UInt8, UInt64, UInt64>;
+    pUI8[types::InternalType::IdBool] = (add_function)&add_M_M<UInt8, Bool, UInt8>;
+    pUI8[types::InternalType::IdEmpty] = (add_function)&add_M_M<UInt8, Double, UInt8>;
+
+    //Matrix + Scalar
+    pUI8[types::InternalType::IdScalarDouble] = (add_function)&add_M_S<UInt8, Double, UInt8>;
+    pUI8[types::InternalType::IdScalarInt8] = (add_function)&add_M_S<UInt8, Int8, UInt8>;
+    pUI8[types::InternalType::IdScalarUInt8] = (add_function)&add_M_S<UInt8, UInt8, UInt8>;
+    pUI8[types::InternalType::IdScalarInt16] = (add_function)&add_M_S<UInt8, Int16, UInt16>;
+    pUI8[types::InternalType::IdScalarUInt16] = (add_function)&add_M_S<UInt8, UInt16, UInt16>;
+    pUI8[types::InternalType::IdScalarInt32] = (add_function)&add_M_S<UInt8, Int32, UInt32>;
+    pUI8[types::InternalType::IdScalarUInt32] = (add_function)&add_M_S<UInt8, UInt32, UInt32>;
+    pUI8[types::InternalType::IdScalarInt64] = (add_function)&add_M_S<UInt8, Int64, UInt64>;
+    pUI8[types::InternalType::IdScalarUInt64] = (add_function)&add_M_S<UInt8, UInt64, UInt64>;
+    pUI8[types::InternalType::IdScalarBool] = (add_function)&add_M_S<UInt8, Bool, UInt8>;
+
+    add_function* pUI81 = pAddfunction[types::InternalType::IdScalarUInt8];
+    //Scalar + Matrix
+    pUI81[types::InternalType::IdDouble] = (add_function)&add_S_M<UInt8, Double, UInt8>;
+    pUI81[types::InternalType::IdInt8] = (add_function)&add_S_M<UInt8, Int8, UInt8>;
+    pUI81[types::InternalType::IdUInt8] = (add_function)&add_S_M<UInt8, UInt8, UInt8>;
+    pUI81[types::InternalType::IdInt16] = (add_function)&add_S_M<UInt8, Int16, UInt16>;
+    pUI81[types::InternalType::IdUInt16] = (add_function)&add_S_M<UInt8, UInt16, UInt16>;
+    pUI81[types::InternalType::IdInt32] = (add_function)&add_S_M<UInt8, Int32, UInt32>;
+    pUI81[types::InternalType::IdUInt32] = (add_function)&add_S_M<UInt8, UInt32, UInt32>;
+    pUI81[types::InternalType::IdInt64] = (add_function)&add_S_M<UInt8, Int64, UInt64>;
+    pUI81[types::InternalType::IdUInt64] = (add_function)&add_S_M<UInt8, UInt64, UInt64>;
+    pUI81[types::InternalType::IdBool] = (add_function)&add_S_M<UInt8, Bool, UInt8>;
+    pUI81[types::InternalType::IdEmpty] = (add_function)&add_S_M<UInt8, Double, UInt8>;
+
+    //Scalar + Scalar
+    pUI81[types::InternalType::IdScalarDouble] = (add_function)&add_S_S<UInt8, Double, UInt8>;
+    pUI81[types::InternalType::IdScalarInt8] = (add_function)&add_S_S<UInt8, Int8, UInt8>;
+    pUI81[types::InternalType::IdScalarUInt8] = (add_function)&add_S_S<UInt8, UInt8, UInt8>;
+    pUI81[types::InternalType::IdScalarInt16] = (add_function)&add_S_S<UInt8, Int16, UInt16>;
+    pUI81[types::InternalType::IdScalarUInt16] = (add_function)&add_S_S<UInt8, UInt16, UInt16>;
+    pUI81[types::InternalType::IdScalarInt32] = (add_function)&add_S_S<UInt8, Int32, UInt32>;
+    pUI81[types::InternalType::IdScalarUInt32] = (add_function)&add_S_S<UInt8, UInt32, UInt32>;
+    pUI81[types::InternalType::IdScalarInt64] = (add_function)&add_S_S<UInt8, Int64, UInt64>;
+    pUI81[types::InternalType::IdScalarUInt64] = (add_function)&add_S_S<UInt8, UInt64, UInt64>;
+    pUI81[types::InternalType::IdScalarBool] = (add_function)&add_S_S<UInt8, Bool, UInt8>;
+
+    //Int16
+    add_function* pI16 = pAddfunction[types::InternalType::IdInt16];
+    //Matrix + Matrix
+    pI16[types::InternalType::IdDouble] = (add_function)&add_M_M<Int16, Double, Int16>;
+    pI16[types::InternalType::IdInt8] = (add_function)&add_M_M<Int16, Int8, Int16>;
+    pI16[types::InternalType::IdUInt8] = (add_function)&add_M_M<Int16, UInt8, UInt16>;
+    pI16[types::InternalType::IdInt16] = (add_function)&add_M_M<Int16, Int16, Int16>;
+    pI16[types::InternalType::IdUInt16] = (add_function)&add_M_M<Int16, UInt16, UInt16>;
+    pI16[types::InternalType::IdInt32] = (add_function)&add_M_M<Int16, Int32, Int32>;
+    pI16[types::InternalType::IdUInt32] = (add_function)&add_M_M<Int16, UInt32, UInt32>;
+    pI16[types::InternalType::IdInt64] = (add_function)&add_M_M<Int16, Int64, Int64>;
+    pI16[types::InternalType::IdUInt64] = (add_function)&add_M_M<Int16, UInt64, UInt64>;
+    pI16[types::InternalType::IdBool] = (add_function)&add_M_M<Int16, Bool, Int16>;
+    pI16[types::InternalType::IdEmpty] = (add_function)&add_M_M<Int16, Double, Int16>;
+
+    //Matrix + Scalar
+    pI16[types::InternalType::IdScalarDouble] = (add_function)&add_M_S<Int16, Double, Int16>;
+    pI16[types::InternalType::IdScalarInt8] = (add_function)&add_M_S<Int16, Int8, Int16>;
+    pI16[types::InternalType::IdScalarUInt8] = (add_function)&add_M_S<Int16, UInt8, UInt16>;
+    pI16[types::InternalType::IdScalarInt16] = (add_function)&add_M_S<Int16, Int16, Int16>;
+    pI16[types::InternalType::IdScalarUInt16] = (add_function)&add_M_S<Int16, UInt16, UInt16>;
+    pI16[types::InternalType::IdScalarInt32] = (add_function)&add_M_S<Int16, Int32, Int32>;
+    pI16[types::InternalType::IdScalarUInt32] = (add_function)&add_M_S<Int16, UInt32, UInt32>;
+    pI16[types::InternalType::IdScalarInt64] = (add_function)&add_M_S<Int16, Int64, Int64>;
+    pI16[types::InternalType::IdScalarUInt64] = (add_function)&add_M_S<Int16, UInt64, UInt64>;
+    pI16[types::InternalType::IdScalarBool] = (add_function)&add_M_S<Int16, Bool, Int16>;
+
+    add_function* pI161 = pAddfunction[types::InternalType::IdScalarInt16];
+    //Scalar + Matrix
+    pI161[types::InternalType::IdDouble] = (add_function)&add_S_M<Int16, Double, Int16>;
+    pI161[types::InternalType::IdInt8] = (add_function)&add_S_M<Int16, Int8, Int16>;
+    pI161[types::InternalType::IdUInt8] = (add_function)&add_S_M<Int16, UInt8, UInt16>;
+    pI161[types::InternalType::IdInt16] = (add_function)&add_S_M<Int16, Int16, Int16>;
+    pI161[types::InternalType::IdUInt16] = (add_function)&add_S_M<Int16, UInt16, UInt16>;
+    pI161[types::InternalType::IdInt32] = (add_function)&add_S_M<Int16, Int32, Int32>;
+    pI161[types::InternalType::IdUInt32] = (add_function)&add_S_M<Int16, UInt32, UInt32>;
+    pI161[types::InternalType::IdInt64] = (add_function)&add_S_M<Int16, Int64, Int64>;
+    pI161[types::InternalType::IdUInt64] = (add_function)&add_S_M<Int16, UInt64, UInt64>;
+    pI161[types::InternalType::IdBool] = (add_function)&add_S_M<Int16, Bool, Int16>;
+    pI161[types::InternalType::IdEmpty] = (add_function)&add_M_M<Int16, Double, Int16>;
+
+    //Scalar + Scalar
+    pI161[types::InternalType::IdScalarDouble] = (add_function)&add_S_S<Int16, Double, Int16>;
+    pI161[types::InternalType::IdScalarInt8] = (add_function)&add_S_S<Int16, Int8, Int16>;
+    pI161[types::InternalType::IdScalarUInt8] = (add_function)&add_S_S<Int16, UInt8, UInt16>;
+    pI161[types::InternalType::IdScalarInt16] = (add_function)&add_S_S<Int16, Int16, Int16>;
+    pI161[types::InternalType::IdScalarUInt16] = (add_function)&add_S_S<Int16, UInt16, UInt16>;
+    pI161[types::InternalType::IdScalarInt32] = (add_function)&add_S_S<Int16, Int32, Int32>;
+    pI161[types::InternalType::IdScalarUInt32] = (add_function)&add_S_S<Int16, UInt32, UInt32>;
+    pI161[types::InternalType::IdScalarInt64] = (add_function)&add_S_S<Int16, Int64, Int64>;
+    pI161[types::InternalType::IdScalarUInt64] = (add_function)&add_S_S<Int16, UInt64, UInt64>;
+    pI161[types::InternalType::IdScalarBool] = (add_function)&add_S_S<Int16, Bool, Int16>;
+
+    //UInt16
+    add_function* pUI16 = pAddfunction[types::InternalType::IdUInt16];
+    //Matrix + Matrix
+    pUI16[types::InternalType::IdDouble] = (add_function)&add_M_M<UInt16, Double, UInt16>;
+    pUI16[types::InternalType::IdInt8] = (add_function)&add_M_M<UInt16, Int8, UInt16>;
+    pUI16[types::InternalType::IdUInt8] = (add_function)&add_M_M<UInt16, UInt8, UInt16>;
+    pUI16[types::InternalType::IdInt16] = (add_function)&add_M_M<UInt16, Int16, UInt16>;
+    pUI16[types::InternalType::IdUInt16] = (add_function)&add_M_M<UInt16, UInt16, UInt16>;
+    pUI16[types::InternalType::IdInt32] = (add_function)&add_M_M<UInt16, Int32, UInt32>;
+    pUI16[types::InternalType::IdUInt32] = (add_function)&add_M_M<UInt16, UInt32, UInt32>;
+    pUI16[types::InternalType::IdInt64] = (add_function)&add_M_M<UInt16, Int64, UInt64>;
+    pUI16[types::InternalType::IdUInt64] = (add_function)&add_M_M<UInt16, UInt64, UInt64>;
+    pUI16[types::InternalType::IdBool] = (add_function)&add_M_M<UInt16, Bool, UInt16>;
+    pUI16[types::InternalType::IdEmpty] = (add_function)&add_M_M<UInt16, Double, UInt16>;
+
+    //Matrix + Scalar
+    pUI16[types::InternalType::IdScalarDouble] = (add_function)&add_M_S<UInt16, Double, UInt16>;
+    pUI16[types::InternalType::IdScalarInt8] = (add_function)&add_M_S<UInt16, Int8, UInt16>;
+    pUI16[types::InternalType::IdScalarUInt8] = (add_function)&add_M_S<UInt16, UInt8, UInt16>;
+    pUI16[types::InternalType::IdScalarInt16] = (add_function)&add_M_S<UInt16, Int16, UInt16>;
+    pUI16[types::InternalType::IdScalarUInt16] = (add_function)&add_M_S<UInt16, UInt16, UInt16>;
+    pUI16[types::InternalType::IdScalarInt32] = (add_function)&add_M_S<UInt16, Int32, UInt32>;
+    pUI16[types::InternalType::IdScalarUInt32] = (add_function)&add_M_S<UInt16, UInt32, UInt32>;
+    pUI16[types::InternalType::IdScalarInt64] = (add_function)&add_M_S<UInt16, Int64, UInt64>;
+    pUI16[types::InternalType::IdScalarUInt64] = (add_function)&add_M_S<UInt16, UInt64, UInt64>;
+    pUI16[types::InternalType::IdScalarBool] = (add_function)&add_M_S<UInt16, Bool, UInt16>;
+
+    add_function* pUI161 = pAddfunction[types::InternalType::IdScalarUInt16];
+    //Scalar + Matrix
+    pUI161[types::InternalType::IdDouble] = (add_function)&add_S_M<UInt16, Double, UInt16>;
+    pUI161[types::InternalType::IdInt8] = (add_function)&add_S_M<UInt16, Int8, UInt16>;
+    pUI161[types::InternalType::IdUInt8] = (add_function)&add_S_M<UInt16, UInt8, UInt16>;
+    pUI161[types::InternalType::IdInt16] = (add_function)&add_S_M<UInt16, Int16, UInt16>;
+    pUI161[types::InternalType::IdUInt16] = (add_function)&add_S_M<UInt16, UInt16, UInt16>;
+    pUI161[types::InternalType::IdInt32] = (add_function)&add_S_M<UInt16, Int32, UInt32>;
+    pUI161[types::InternalType::IdUInt32] = (add_function)&add_S_M<UInt16, UInt32, UInt32>;
+    pUI161[types::InternalType::IdInt64] = (add_function)&add_S_M<UInt16, Int64, UInt64>;
+    pUI161[types::InternalType::IdUInt64] = (add_function)&add_S_M<UInt16, UInt64, UInt64>;
+    pUI161[types::InternalType::IdBool] = (add_function)&add_S_M<UInt16, Bool, UInt16>;
+    pUI161[types::InternalType::IdEmpty] = (add_function)&add_S_M<UInt16, Double, UInt16>;
+
+    //Scalar + Scalar
+    pUI161[types::InternalType::IdScalarDouble] = (add_function)&add_S_S<UInt16, Double, UInt16>;
+    pUI161[types::InternalType::IdScalarInt8] = (add_function)&add_S_S<UInt16, Int8, UInt16>;
+    pUI161[types::InternalType::IdScalarUInt8] = (add_function)&add_S_S<UInt16, UInt8, UInt16>;
+    pUI161[types::InternalType::IdScalarInt16] = (add_function)&add_S_S<UInt16, Int16, UInt16>;
+    pUI161[types::InternalType::IdScalarUInt16] = (add_function)&add_S_S<UInt16, UInt16, UInt16>;
+    pUI161[types::InternalType::IdScalarInt32] = (add_function)&add_S_S<UInt16, Int32, UInt32>;
+    pUI161[types::InternalType::IdScalarUInt32] = (add_function)&add_S_S<UInt16, UInt32, UInt32>;
+    pUI161[types::InternalType::IdScalarInt64] = (add_function)&add_S_S<UInt16, Int64, UInt64>;
+    pUI161[types::InternalType::IdScalarUInt64] = (add_function)&add_S_S<UInt16, UInt64, UInt64>;
+    pUI161[types::InternalType::IdScalarBool] = (add_function)&add_S_S<UInt16, Bool, UInt16>;
+
+    //Int32
+    add_function* pI32 = pAddfunction[types::InternalType::IdInt32];
+    //Matrix + Matrix
+    pI32[types::InternalType::IdDouble] = (add_function)&add_M_M<Int32, Double, Int32>;
+    pI32[types::InternalType::IdInt8] = (add_function)&add_M_M<Int32, Int8, Int32>;
+    pI32[types::InternalType::IdUInt8] = (add_function)&add_M_M<Int32, UInt8, UInt32>;
+    pI32[types::InternalType::IdInt16] = (add_function)&add_M_M<Int32, Int16, Int32>;
+    pI32[types::InternalType::IdUInt16] = (add_function)&add_M_M<Int32, UInt16, UInt32>;
+    pI32[types::InternalType::IdInt32] = (add_function)&add_M_M<Int32, Int32, Int32>;
+    pI32[types::InternalType::IdUInt32] = (add_function)&add_M_M<Int32, UInt32, UInt32>;
+    pI32[types::InternalType::IdInt64] = (add_function)&add_M_M<Int32, Int64, Int64>;
+    pI32[types::InternalType::IdUInt64] = (add_function)&add_M_M<Int32, UInt64, UInt64>;
+    pI32[types::InternalType::IdBool] = (add_function)&add_M_M<Int32, Bool, Int32>;
+    pI32[types::InternalType::IdEmpty] = (add_function)&add_M_M<Int32, Double, Int32>;
+
+    //Matrix + Scalar
+    pI32[types::InternalType::IdScalarDouble] = (add_function)&add_M_S<Int32, Double, Int32>;
+    pI32[types::InternalType::IdScalarInt8] = (add_function)&add_M_S<Int32, Int8, Int32>;
+    pI32[types::InternalType::IdScalarUInt8] = (add_function)&add_M_S<Int32, UInt8, UInt32>;
+    pI32[types::InternalType::IdScalarInt16] = (add_function)&add_M_S<Int32, Int16, Int32>;
+    pI32[types::InternalType::IdScalarUInt16] = (add_function)&add_M_S<Int32, UInt16, UInt32>;
+    pI32[types::InternalType::IdScalarInt32] = (add_function)&add_M_S<Int32, Int32, Int32>;
+    pI32[types::InternalType::IdScalarUInt32] = (add_function)&add_M_S<Int32, UInt32, UInt32>;
+    pI32[types::InternalType::IdScalarInt64] = (add_function)&add_M_S<Int32, Int64, Int64>;
+    pI32[types::InternalType::IdScalarUInt64] = (add_function)&add_M_S<Int32, UInt64, UInt64>;
+    pI32[types::InternalType::IdScalarBool] = (add_function)&add_M_S<Int32, Bool, Int32>;
+
+    add_function* pI321 = pAddfunction[types::InternalType::IdScalarInt32];
+    //Scalar + Matrix
+    pI321[types::InternalType::IdDouble] = (add_function)&add_S_M<Int32, Double, Int32>;
+    pI321[types::InternalType::IdInt8] = (add_function)&add_S_M<Int32, Int8, Int32>;
+    pI321[types::InternalType::IdUInt8] = (add_function)&add_S_M<Int32, UInt8, UInt32>;
+    pI321[types::InternalType::IdInt16] = (add_function)&add_S_M<Int32, Int16, Int32>;
+    pI321[types::InternalType::IdUInt16] = (add_function)&add_S_M<Int32, UInt16, UInt32>;
+    pI321[types::InternalType::IdInt32] = (add_function)&add_S_M<Int32, Int32, Int32>;
+    pI321[types::InternalType::IdUInt32] = (add_function)&add_S_M<Int32, UInt32, UInt32>;
+    pI321[types::InternalType::IdInt64] = (add_function)&add_S_M<Int32, Int64, Int64>;
+    pI321[types::InternalType::IdUInt64] = (add_function)&add_S_M<Int32, UInt64, UInt64>;
+    pI321[types::InternalType::IdBool] = (add_function)&add_S_M<Int32, Bool, Int32>;
+    pI321[types::InternalType::IdEmpty] = (add_function)&add_M_M<Int32, Double, Int32>;
+
+    //Scalar + Scalar
+    pI321[types::InternalType::IdScalarDouble] = (add_function)&add_S_S<Int32, Double, Int32>;
+    pI321[types::InternalType::IdScalarInt8] = (add_function)&add_S_S<Int32, Int8, Int32>;
+    pI321[types::InternalType::IdScalarUInt8] = (add_function)&add_S_S<Int32, UInt8, UInt32>;
+    pI321[types::InternalType::IdScalarInt16] = (add_function)&add_S_S<Int32, Int16, Int32>;
+    pI321[types::InternalType::IdScalarUInt16] = (add_function)&add_S_S<Int32, UInt16, UInt32>;
+    pI321[types::InternalType::IdScalarInt32] = (add_function)&add_S_S<Int32, Int32, Int32>;
+    pI321[types::InternalType::IdScalarUInt32] = (add_function)&add_S_S<Int32, UInt32, UInt32>;
+    pI321[types::InternalType::IdScalarInt64] = (add_function)&add_S_S<Int32, Int64, Int64>;
+    pI321[types::InternalType::IdScalarUInt64] = (add_function)&add_S_S<Int32, UInt64, UInt64>;
+    pI321[types::InternalType::IdScalarBool] = (add_function)&add_S_S<Int32, Bool, Int32>;
+
+    //UInt32
+    add_function* pUI32 = pAddfunction[types::InternalType::IdUInt32];
+    //Matrix + Matrix
+    pUI32[types::InternalType::IdDouble] = (add_function)&add_M_M<UInt32, Double, UInt32>;
+    pUI32[types::InternalType::IdInt8] = (add_function)&add_M_M<UInt32, Int8, UInt32>;
+    pUI32[types::InternalType::IdUInt8] = (add_function)&add_M_M<UInt32, UInt8, UInt32>;
+    pUI32[types::InternalType::IdInt16] = (add_function)&add_M_M<UInt32, Int16, UInt32>;
+    pUI32[types::InternalType::IdUInt16] = (add_function)&add_M_M<UInt32, UInt16, UInt32>;
+    pUI32[types::InternalType::IdInt32] = (add_function)&add_M_M<UInt32, Int32, UInt32>;
+    pUI32[types::InternalType::IdUInt32] = (add_function)&add_M_M<UInt32, UInt32, UInt32>;
+    pUI32[types::InternalType::IdInt64] = (add_function)&add_M_M<UInt32, Int64, UInt64>;
+    pUI32[types::InternalType::IdUInt64] = (add_function)&add_M_M<UInt32, UInt64, UInt64>;
+    pUI32[types::InternalType::IdBool] = (add_function)&add_M_M<UInt32, Bool, UInt32>;
+    pUI32[types::InternalType::IdEmpty] = (add_function)&add_M_M<UInt32, Double, UInt32>;
+
+    //Matrix + Scalar
+    pUI32[types::InternalType::IdScalarDouble] = (add_function)&add_M_S<UInt32, Double, UInt32>;
+    pUI32[types::InternalType::IdScalarInt8] = (add_function)&add_M_S<UInt32, Int8, UInt32>;
+    pUI32[types::InternalType::IdScalarUInt8] = (add_function)&add_M_S<UInt32, UInt8, UInt32>;
+    pUI32[types::InternalType::IdScalarInt16] = (add_function)&add_M_S<UInt32, Int16, UInt32>;
+    pUI32[types::InternalType::IdScalarUInt16] = (add_function)&add_M_S<UInt32, UInt16, UInt32>;
+    pUI32[types::InternalType::IdScalarInt32] = (add_function)&add_M_S<UInt32, Int32, UInt32>;
+    pUI32[types::InternalType::IdScalarUInt32] = (add_function)&add_M_S<UInt32, UInt32, UInt32>;
+    pUI32[types::InternalType::IdScalarInt64] = (add_function)&add_M_S<UInt32, Int64, UInt64>;
+    pUI32[types::InternalType::IdScalarUInt64] = (add_function)&add_M_S<UInt32, UInt64, UInt64>;
+    pUI32[types::InternalType::IdScalarBool] = (add_function)&add_M_S<UInt32, Bool, UInt32>;
+
+    add_function* pUI321 = pAddfunction[types::InternalType::IdScalarUInt32];
+    //Scalar + Matrix
+    pUI321[types::InternalType::IdDouble] = (add_function)&add_S_M<UInt32, Double, UInt32>;
+    pUI321[types::InternalType::IdInt8] = (add_function)&add_S_M<UInt32, Int8, UInt32>;
+    pUI321[types::InternalType::IdUInt8] = (add_function)&add_S_M<UInt32, UInt8, UInt32>;
+    pUI321[types::InternalType::IdInt16] = (add_function)&add_S_M<UInt32, Int16, UInt32>;
+    pUI321[types::InternalType::IdUInt16] = (add_function)&add_S_M<UInt32, UInt16, UInt32>;
+    pUI321[types::InternalType::IdInt32] = (add_function)&add_S_M<UInt32, Int32, UInt32>;
+    pUI321[types::InternalType::IdUInt32] = (add_function)&add_S_M<UInt32, UInt32, UInt32>;
+    pUI321[types::InternalType::IdInt64] = (add_function)&add_S_M<UInt32, Int64, UInt64>;
+    pUI321[types::InternalType::IdUInt64] = (add_function)&add_S_M<UInt32, UInt64, UInt64>;
+    pUI321[types::InternalType::IdBool] = (add_function)&add_S_M<UInt32, Bool, UInt32>;
+    pUI321[types::InternalType::IdEmpty] = (add_function)&add_S_M<UInt32, Double, UInt32>;
+
+    //Scalar + Scalar
+    pUI321[types::InternalType::IdScalarDouble] = (add_function)&add_S_S<UInt32, Double, UInt32>;
+    pUI321[types::InternalType::IdScalarInt8] = (add_function)&add_S_S<UInt32, Int8, UInt32>;
+    pUI321[types::InternalType::IdScalarUInt8] = (add_function)&add_S_S<UInt32, UInt8, UInt32>;
+    pUI321[types::InternalType::IdScalarInt16] = (add_function)&add_S_S<UInt32, Int16, UInt32>;
+    pUI321[types::InternalType::IdScalarUInt16] = (add_function)&add_S_S<UInt32, UInt16, UInt32>;
+    pUI321[types::InternalType::IdScalarInt32] = (add_function)&add_S_S<UInt32, Int32, UInt32>;
+    pUI321[types::InternalType::IdScalarUInt32] = (add_function)&add_S_S<UInt32, UInt32, UInt32>;
+    pUI321[types::InternalType::IdScalarInt64] = (add_function)&add_S_S<UInt32, Int64, UInt64>;
+    pUI321[types::InternalType::IdScalarUInt64] = (add_function)&add_S_S<UInt32, UInt64, UInt64>;
+    pUI321[types::InternalType::IdScalarBool] = (add_function)&add_S_S<UInt32, Bool, UInt32>;
+
+    //Int64
+    add_function* pI64 = pAddfunction[types::InternalType::IdInt64];
+    //Matrix + Matrix
+    pI64[types::InternalType::IdDouble] = (add_function)&add_M_M<Int64, Double, Int64>;
+    pI64[types::InternalType::IdInt8] = (add_function)&add_M_M<Int64, Int8, Int64>;
+    pI64[types::InternalType::IdUInt8] = (add_function)&add_M_M<Int64, UInt8, UInt64>;
+    pI64[types::InternalType::IdInt16] = (add_function)&add_M_M<Int64, Int16, Int64>;
+    pI64[types::InternalType::IdUInt16] = (add_function)&add_M_M<Int64, UInt16, UInt64>;
+    pI64[types::InternalType::IdInt32] = (add_function)&add_M_M<Int64, Int32, Int64>;
+    pI64[types::InternalType::IdUInt32] = (add_function)&add_M_M<Int64, UInt32, UInt64>;
+    pI64[types::InternalType::IdInt64] = (add_function)&add_M_M<Int64, Int64, Int64>;
+    pI64[types::InternalType::IdUInt64] = (add_function)&add_M_M<Int64, UInt64, UInt64>;
+    pI64[types::InternalType::IdBool] = (add_function)&add_M_M<Int64, Bool, Int64>;
+    pI64[types::InternalType::IdEmpty] = (add_function)&add_M_M<Int64, Double, Int64>;
+
+    //Matrix + Scalar
+    pI64[types::InternalType::IdScalarDouble] = (add_function)&add_M_S<Int64, Double, Int64>;
+    pI64[types::InternalType::IdScalarInt8] = (add_function)&add_M_S<Int64, Int8, Int64>;
+    pI64[types::InternalType::IdScalarUInt8] = (add_function)&add_M_S<Int64, UInt8, UInt64>;
+    pI64[types::InternalType::IdScalarInt16] = (add_function)&add_M_S<Int64, Int16, Int64>;
+    pI64[types::InternalType::IdScalarUInt16] = (add_function)&add_M_S<Int64, UInt16, UInt64>;
+    pI64[types::InternalType::IdScalarInt32] = (add_function)&add_M_S<Int64, Int32, Int64>;
+    pI64[types::InternalType::IdScalarUInt32] = (add_function)&add_M_S<Int64, UInt32, UInt64>;
+    pI64[types::InternalType::IdScalarInt64] = (add_function)&add_M_S<Int64, Int64, Int64>;
+    pI64[types::InternalType::IdScalarUInt64] = (add_function)&add_M_S<Int64, UInt64, UInt64>;
+    pI64[types::InternalType::IdScalarBool] = (add_function)&add_M_S<Int64, Bool, Int64>;
+
+    add_function* pI641 = pAddfunction[types::InternalType::IdScalarInt64];
+    //Scalar + Matrix
+    pI641[types::InternalType::IdDouble] = (add_function)&add_S_M<Int64, Double, Int64>;
+    pI641[types::InternalType::IdInt8] = (add_function)&add_S_M<Int64, Int8, Int64>;
+    pI641[types::InternalType::IdUInt8] = (add_function)&add_S_M<Int64, UInt8, UInt64>;
+    pI641[types::InternalType::IdInt16] = (add_function)&add_S_M<Int64, Int16, Int64>;
+    pI641[types::InternalType::IdUInt16] = (add_function)&add_S_M<Int64, UInt16, UInt64>;
+    pI641[types::InternalType::IdInt32] = (add_function)&add_S_M<Int64, Int32, Int64>;
+    pI641[types::InternalType::IdUInt32] = (add_function)&add_S_M<Int64, UInt32, UInt64>;
+    pI641[types::InternalType::IdInt64] = (add_function)&add_S_M<Int64, Int64, Int64>;
+    pI641[types::InternalType::IdUInt64] = (add_function)&add_S_M<Int64, UInt64, UInt64>;
+    pI641[types::InternalType::IdBool] = (add_function)&add_S_M<Int64, Bool, Int64>;
+    pI641[types::InternalType::IdEmpty] = (add_function)&add_M_M<Int64, Double, Int64>;
+
+    //Scalar + Scalar
+    pI641[types::InternalType::IdScalarDouble] = (add_function)&add_S_S<Int64, Double, Int64>;
+    pI641[types::InternalType::IdScalarInt8] = (add_function)&add_S_S<Int64, Int8, Int64>;
+    pI641[types::InternalType::IdScalarUInt8] = (add_function)&add_S_S<Int64, UInt8, UInt64>;
+    pI641[types::InternalType::IdScalarInt16] = (add_function)&add_S_S<Int64, Int16, Int64>;
+    pI641[types::InternalType::IdScalarUInt16] = (add_function)&add_S_S<Int64, UInt16, UInt64>;
+    pI641[types::InternalType::IdScalarInt32] = (add_function)&add_S_S<Int64, Int32, Int64>;
+    pI641[types::InternalType::IdScalarUInt32] = (add_function)&add_S_S<Int64, UInt32, UInt64>;
+    pI641[types::InternalType::IdScalarInt64] = (add_function)&add_S_S<Int64, Int64, Int64>;
+    pI641[types::InternalType::IdScalarUInt64] = (add_function)&add_S_S<Int64, UInt64, UInt64>;
+    pI641[types::InternalType::IdScalarBool] = (add_function)&add_S_S<Int64, Bool, Int64>;
+
+    //UInt64
+    add_function* pUI64 = pAddfunction[types::InternalType::IdUInt64];
+    //Matrix + Matrix
+    pUI64[types::InternalType::IdDouble] = (add_function)&add_M_M<UInt64, Double, UInt64>;
+    pUI64[types::InternalType::IdInt8] = (add_function)&add_M_M<UInt64, Int8, UInt64>;
+    pUI64[types::InternalType::IdUInt8] = (add_function)&add_M_M<UInt64, UInt8, UInt64>;
+    pUI64[types::InternalType::IdInt16] = (add_function)&add_M_M<UInt64, Int16, UInt64>;
+    pUI64[types::InternalType::IdUInt16] = (add_function)&add_M_M<UInt64, UInt16, UInt64>;
+    pUI64[types::InternalType::IdInt32] = (add_function)&add_M_M<UInt64, Int32, UInt64>;
+    pUI64[types::InternalType::IdUInt32] = (add_function)&add_M_M<UInt64, UInt32, UInt64>;
+    pUI64[types::InternalType::IdInt64] = (add_function)&add_M_M<UInt64, Int64, UInt64>;
+    pUI64[types::InternalType::IdUInt64] = (add_function)&add_M_M<UInt64, UInt64, UInt64>;
+    pUI64[types::InternalType::IdBool] = (add_function)&add_M_M<UInt64, Bool, UInt64>;
+    pUI64[types::InternalType::IdEmpty] = (add_function)&add_M_M<UInt64, Double, UInt64>;
+
+    //Matrix + Scalar
+    pUI64[types::InternalType::IdScalarDouble] = (add_function)&add_M_S<UInt64, Double, UInt64>;
+    pUI64[types::InternalType::IdScalarInt8] = (add_function)&add_M_S<UInt64, Int8, UInt64>;
+    pUI64[types::InternalType::IdScalarUInt8] = (add_function)&add_M_S<UInt64, UInt8, UInt64>;
+    pUI64[types::InternalType::IdScalarInt16] = (add_function)&add_M_S<UInt64, Int16, UInt64>;
+    pUI64[types::InternalType::IdScalarUInt16] = (add_function)&add_M_S<UInt64, UInt16, UInt64>;
+    pUI64[types::InternalType::IdScalarInt32] = (add_function)&add_M_S<UInt64, Int32, UInt64>;
+    pUI64[types::InternalType::IdScalarUInt32] = (add_function)&add_M_S<UInt64, UInt32, UInt64>;
+    pUI64[types::InternalType::IdScalarInt64] = (add_function)&add_M_S<UInt64, Int64, UInt64>;
+    pUI64[types::InternalType::IdScalarUInt64] = (add_function)&add_M_S<UInt64, UInt64, UInt64>;
+    pUI64[types::InternalType::IdScalarBool] = (add_function)&add_M_S<UInt64, Bool, UInt64>;
+
+    add_function* pUI641 = pAddfunction[types::InternalType::IdScalarUInt64];
+    //Scalar + Matrix
+    pUI641[types::InternalType::IdDouble] = (add_function)&add_S_M<UInt64, Double, UInt64>;
+    pUI641[types::InternalType::IdInt8] = (add_function)&add_S_M<UInt64, Int8, UInt64>;
+    pUI641[types::InternalType::IdUInt8] = (add_function)&add_S_M<UInt64, UInt8, UInt64>;
+    pUI641[types::InternalType::IdInt16] = (add_function)&add_S_M<UInt64, Int16, UInt64>;
+    pUI641[types::InternalType::IdUInt16] = (add_function)&add_S_M<UInt64, UInt16, UInt64>;
+    pUI641[types::InternalType::IdInt32] = (add_function)&add_S_M<UInt64, Int32, UInt64>;
+    pUI641[types::InternalType::IdUInt32] = (add_function)&add_S_M<UInt64, UInt32, UInt64>;
+    pUI641[types::InternalType::IdInt64] = (add_function)&add_S_M<UInt64, Int64, UInt64>;
+    pUI641[types::InternalType::IdUInt64] = (add_function)&add_S_M<UInt64, UInt64, UInt64>;
+    pUI641[types::InternalType::IdBool] = (add_function)&add_S_M<UInt64, Bool, UInt64>;
+    pUI641[types::InternalType::IdEmpty] = (add_function)&add_S_M<UInt64, Double, UInt64>;
+
+    //Scalar + Scalar
+    pUI641[types::InternalType::IdScalarDouble] = (add_function)&add_S_S<UInt64, Double, UInt64>;
+    pUI641[types::InternalType::IdScalarInt8] = (add_function)&add_S_S<UInt64, Int8, UInt64>;
+    pUI641[types::InternalType::IdScalarUInt8] = (add_function)&add_S_S<UInt64, UInt8, UInt64>;
+    pUI641[types::InternalType::IdScalarInt16] = (add_function)&add_S_S<UInt64, Int16, UInt64>;
+    pUI641[types::InternalType::IdScalarUInt16] = (add_function)&add_S_S<UInt64, UInt16, UInt64>;
+    pUI641[types::InternalType::IdScalarInt32] = (add_function)&add_S_S<UInt64, Int32, UInt64>;
+    pUI641[types::InternalType::IdScalarUInt32] = (add_function)&add_S_S<UInt64, UInt32, UInt64>;
+    pUI641[types::InternalType::IdScalarInt64] = (add_function)&add_S_S<UInt64, Int64, UInt64>;
+    pUI641[types::InternalType::IdScalarUInt64] = (add_function)&add_S_S<UInt64, UInt64, UInt64>;
+    pUI641[types::InternalType::IdScalarBool] = (add_function)&add_S_S<UInt64, Bool, UInt64>;
+
+    //Bool
+    add_function* pB = pAddfunction[types::InternalType::IdBool];
+    //Matrix + Matrix
+    pB[types::InternalType::IdDouble] = (add_function)&add_M_M<Bool, Double, Double>;
+    pB[types::InternalType::IdInt8] = (add_function)&add_M_M<Bool, Int8, Int8>;
+    pB[types::InternalType::IdUInt8] = (add_function)&add_M_M<Bool, UInt8, UInt8>;
+    pB[types::InternalType::IdInt16] = (add_function)&add_M_M<Bool, Int16, Int16>;
+    pB[types::InternalType::IdUInt16] = (add_function)&add_M_M<Bool, UInt16, UInt16>;
+    pB[types::InternalType::IdInt32] = (add_function)&add_M_M<Bool, Int32, Int32>;
+    pB[types::InternalType::IdUInt32] = (add_function)&add_M_M<Bool, UInt32, UInt32>;
+    pB[types::InternalType::IdInt64] = (add_function)&add_M_M<Bool, Int64, Int64>;
+    pB[types::InternalType::IdUInt64] = (add_function)&add_M_M<Bool, UInt64, UInt64>;
+    pB[types::InternalType::IdBool] = (add_function)&add_M_M<Bool, Bool, Bool>;
+    pB[types::InternalType::IdEmpty] = (add_function)&add_M_M<Bool, Double, Double>;
+
+    //Matrix + Scalar
+    pB[types::InternalType::IdScalarDouble] = (add_function)&add_M_S<Bool, Double, Double>;
+    pB[types::InternalType::IdScalarInt8] = (add_function)&add_M_S<Bool, Int8, Int8>;
+    pB[types::InternalType::IdScalarUInt8] = (add_function)&add_M_S<Bool, UInt8, UInt8>;
+    pB[types::InternalType::IdScalarInt16] = (add_function)&add_M_S<Bool, Int16, Int16>;
+    pB[types::InternalType::IdScalarUInt16] = (add_function)&add_M_S<Bool, UInt16, UInt16>;
+    pB[types::InternalType::IdScalarInt32] = (add_function)&add_M_S<Bool, Int32, Int32>;
+    pB[types::InternalType::IdScalarUInt32] = (add_function)&add_M_S<Bool, UInt32, UInt32>;
+    pB[types::InternalType::IdScalarInt64] = (add_function)&add_M_S<Bool, Int64, Int64>;
+    pB[types::InternalType::IdScalarUInt64] = (add_function)&add_M_S<Bool, UInt64, UInt64>;
+    pB[types::InternalType::IdScalarBool] = (add_function)&add_M_S<Bool, Bool, Bool>;
+
+    add_function* pB1 = pAddfunction[types::InternalType::IdScalarBool];
+    //Scalar + Matrix
+    pB1[types::InternalType::IdDouble] = (add_function)&add_S_M<Bool, Double, Double>;
+    pB1[types::InternalType::IdInt8] = (add_function)&add_S_M<Bool, Int8, Int8>;
+    pB1[types::InternalType::IdUInt8] = (add_function)&add_S_M<Bool, UInt8, UInt8>;
+    pB1[types::InternalType::IdInt16] = (add_function)&add_S_M<Bool, Int16, Int16>;
+    pB1[types::InternalType::IdUInt16] = (add_function)&add_S_M<Bool, UInt16, UInt16>;
+    pB1[types::InternalType::IdInt32] = (add_function)&add_S_M<Bool, Int32, Int32>;
+    pB1[types::InternalType::IdUInt32] = (add_function)&add_S_M<Bool, UInt32, UInt32>;
+    pB1[types::InternalType::IdInt64] = (add_function)&add_S_M<Bool, Int64, Int64>;
+    pB1[types::InternalType::IdUInt64] = (add_function)&add_S_M<Bool, UInt64, UInt64>;
+    pB1[types::InternalType::IdBool] = (add_function)&add_S_M<Bool, Bool, Bool>;
+    pB1[types::InternalType::IdEmpty] = (add_function)&add_M_M<Bool, Double, Double>;
+
+    //Scalar + Scalar
+    pB1[types::InternalType::IdScalarDouble] = (add_function)&add_S_S<Bool, Double, Double>;
+    pB1[types::InternalType::IdScalarInt8] = (add_function)&add_S_S<Bool, Int8, Int8>;
+    pB1[types::InternalType::IdScalarUInt8] = (add_function)&add_S_S<Bool, UInt8, UInt8>;
+    pB1[types::InternalType::IdScalarInt16] = (add_function)&add_S_S<Bool, Int16, Int16>;
+    pB1[types::InternalType::IdScalarUInt16] = (add_function)&add_S_S<Bool, UInt16, UInt16>;
+    pB1[types::InternalType::IdScalarInt32] = (add_function)&add_S_S<Bool, Int32, Int32>;
+    pB1[types::InternalType::IdScalarUInt32] = (add_function)&add_S_S<Bool, UInt32, UInt32>;
+    pB1[types::InternalType::IdScalarInt64] = (add_function)&add_S_S<Bool, Int64, Int64>;
+    pB1[types::InternalType::IdScalarUInt64] = (add_function)&add_S_S<Bool, UInt64, UInt64>;
+    pB1[types::InternalType::IdScalarBool] = (add_function)&add_S_S<Bool, Bool, Bool>;
+}
+
 InternalType *GenericPlus(InternalType *_pLeftOperand, InternalType *_pRightOperand)
 {
     InternalType *pResult = NULL;
 
-    if (_pLeftOperand->isDouble() && _pLeftOperand->getAs<Double>()->isEmpty())
+    add_function add = pAddfunction[_pLeftOperand->getId()][_pRightOperand->getId()];
+    if (add)
     {
-        return _pRightOperand->clone();
-    }
-
-    if (_pRightOperand->isDouble() && _pRightOperand->getAs<Double>()->isEmpty())
-    {
-        return _pLeftOperand->clone();
-    }
-
-    /*
-    ** DOUBLE + DOUBLE
-    */
-    if (_pLeftOperand->isDouble() && _pRightOperand->isDouble())
-    {
-        Double *pL = (Double*)_pLeftOperand;
-        Double *pR = (Double*)_pRightOperand;
-
-        int iResult = AddDoubleToDouble(pL, pR, (Double**)&pResult);
-        if (iResult != 0)
+        pResult = add(_pLeftOperand, _pRightOperand);
+        if (pResult)
         {
-            wchar_t pMsg[bsiz];
-            os_swprintf(pMsg, bsiz, _W("Error: operator %ls: Matrix dimensions must agree (op1 is %ls, op2 is %ls).\n"), L"+", pL->DimToString().c_str(), pR->DimToString().c_str());
-            throw ast::ScilabError(pMsg);
+            return pResult;
         }
-        return pResult;
     }
-
-    // FIXME: Overload or dedicated function.
-    //    else if(TypeL == GenericType::ScilabBool && TypeR == GenericType::ScilabBool)
-    //    {
-    //        //nothing to do, all in macro : %b_+_b
-    //    }
 
     /*
     ** STRING + STRING
     */
-    else if (_pLeftOperand->isString() && _pRightOperand->isString())
+    if (_pLeftOperand->isString() && _pRightOperand->isString())
     {
         String *pL = _pLeftOperand->getAs<String>();
         String *pR = _pRightOperand->getAs<String>();
@@ -246,264 +828,6 @@ InternalType *GenericPlus(InternalType *_pLeftOperand, InternalType *_pRightOper
     return NULL;
 }
 
-
-int AddDoubleToDouble(Double *_pDouble1, Double *_pDouble2, Double** _pDoubleOut)
-{
-    if (_pDouble1->isIdentity())
-    {
-        int iDims2 = _pDouble2->getDims();
-        if (iDims2 > 2)
-        {
-            //unable to add identity matrix and greater than 2 dimensions matrix
-            return 1;
-        }
-
-        bool bComplex1 = _pDouble1->isComplex();
-        bool bComplex2 = _pDouble2->isComplex();
-
-        (*_pDoubleOut) = new Double(_pDouble2->getRows(), _pDouble2->getCols(), bComplex1 || bComplex2);
-
-        if (bComplex1 == false && bComplex2 == false)
-        {
-            iAddRealIdentityToRealMatrix(
-                _pDouble1->getReal()[0],
-                _pDouble2->getReal(), _pDouble2->getRows(), _pDouble2->getCols(),
-                (*_pDoubleOut)->getReal());
-        }
-        else if (bComplex1 == false && bComplex2 == true)
-        {
-            iAddRealIdentityToComplexMatrix(
-                _pDouble1->getReal()[0],
-                _pDouble2->getReal(), _pDouble2->getImg(), _pDouble2->getRows(), _pDouble2->getCols(),
-                (*_pDoubleOut)->getReal(), (*_pDoubleOut)->getImg());
-        }
-        else if (bComplex1 == true && bComplex2 == false)
-        {
-            iAddComplexIdentityToRealMatrix(
-                _pDouble1->getReal()[0], _pDouble1->getImg()[0],
-                _pDouble2->getReal(), _pDouble2->getRows(), _pDouble2->getCols(),
-                (*_pDoubleOut)->getReal(), (*_pDoubleOut)->getImg());
-        }
-        else if (bComplex1 == true && bComplex2 == true)
-        {
-            iAddComplexIdentityToComplexMatrix(
-                _pDouble1->getReal()[0], _pDouble1->getImg()[0],
-                _pDouble2->getReal(), _pDouble2->getImg(), _pDouble2->getRows(), _pDouble2->getCols(),
-                (*_pDoubleOut)->getReal(), (*_pDoubleOut)->getImg());
-        }
-
-        return 0;
-    }
-
-    if (_pDouble2->isIdentity())
-    {
-        int iDims1 = _pDouble1->getDims();
-        if (iDims1 > 2)
-        {
-            //unable to multiply identity matrix and greater than 2 dimensions matrix
-            return 1;
-        }
-
-        bool bComplex1 = _pDouble1->isComplex();
-        bool bComplex2 = _pDouble2->isComplex();
-
-        (*_pDoubleOut) = new Double(_pDouble1->getRows(), _pDouble1->getCols(), bComplex1 || bComplex2);
-        if (bComplex1 == false && bComplex2 == false)
-        {
-            iAddRealIdentityToRealMatrix(
-                _pDouble2->getReal()[0],
-                _pDouble1->getReal(), _pDouble1->getRows(), _pDouble1->getCols(),
-                (*_pDoubleOut)->getReal());
-        }
-        else if (bComplex1 == false && bComplex2 == true)
-        {
-            iAddComplexIdentityToRealMatrix(
-                _pDouble2->getReal()[0], _pDouble2->getImg()[0],
-                _pDouble1->getReal(), _pDouble1->getRows(), _pDouble1->getCols(),
-                (*_pDoubleOut)->getReal(), (*_pDoubleOut)->getImg());
-        }
-        else if (bComplex1 == true && bComplex2 == false)
-        {
-            iAddRealIdentityToComplexMatrix(
-                _pDouble2->getReal()[0],
-                _pDouble1->getReal(), _pDouble1->getImg(), _pDouble1->getRows(), _pDouble1->getCols(),
-                (*_pDoubleOut)->getReal(), (*_pDoubleOut)->getImg());
-        }
-        else if (bComplex1 == true && bComplex2 == true)
-        {
-            iAddComplexIdentityToComplexMatrix(
-                _pDouble2->getReal()[0], _pDouble2->getImg()[0],
-                _pDouble1->getReal(), _pDouble1->getImg(), _pDouble1->getRows(), _pDouble1->getCols(),
-                (*_pDoubleOut)->getReal(), (*_pDoubleOut)->getImg());
-        }
-        return 0;
-    }
-
-    bool bScalar1 = _pDouble1->isScalar();
-    bool bScalar2 = _pDouble2->isScalar();
-
-    if (bScalar1 && bScalar2)
-    {
-        bool bComplex1 = _pDouble1->isComplex();
-        bool bComplex2 = _pDouble2->isComplex();
-
-        if (bComplex1 == false && bComplex2 == false)
-        {
-            (*_pDoubleOut) = new Double(_pDouble1->get(0) + _pDouble2->get(0));
-        }
-        else if (bComplex1 == false && bComplex2 == true)
-        {
-            (*_pDoubleOut) = new Double(_pDouble1->get(0) + _pDouble2->get(0), _pDouble2->getImg(0));
-        }
-        else if (bComplex1 == true && bComplex2 == false)
-        {
-            (*_pDoubleOut) = new Double(_pDouble1->get(0) + _pDouble2->get(0), _pDouble1->getImg(0));
-        }
-        else if (bComplex1 == true && bComplex2 == true)
-        {
-            (*_pDoubleOut) = new Double(_pDouble1->get(0) + _pDouble2->get(0), _pDouble1->getImg(0) + _pDouble2->getImg(0));
-        }
-
-        return 0;
-    }
-
-    if (bScalar1)
-    {
-        //add pL with each element of pR
-        bool bComplex1  = _pDouble1->isComplex();
-        bool bComplex2  = _pDouble2->isComplex();
-        int iDims2      = _pDouble2->getDims();
-        int* piDims2    = _pDouble2->getDimsArray();
-
-        (*_pDoubleOut) = new Double(iDims2, piDims2, bComplex1 || bComplex2);
-        if (bComplex1 == false && bComplex2 == false)
-        {
-            iAddRealScalarToRealMatrix(
-                _pDouble1->getReal()[0],
-                _pDouble2->getReal(), piDims2, iDims2,
-                (*_pDoubleOut)->getReal());
-        }
-        else if (bComplex1 == false && bComplex2 == true)
-        {
-            iAddRealScalarToComplexMatrix(
-                _pDouble1->getReal()[0],
-                _pDouble2->getReal(), _pDouble2->getImg(), piDims2, iDims2,
-                (*_pDoubleOut)->getReal(), (*_pDoubleOut)->getImg());
-        }
-        else if (bComplex1 == true && bComplex2 == false)
-        {
-            iAddComplexScalarToRealMatrix(
-                _pDouble1->getReal()[0], _pDouble1->getImg()[0],
-                _pDouble2->getReal(), piDims2, iDims2,
-                (*_pDoubleOut)->getReal(), (*_pDoubleOut)->getImg());
-        }
-        else if (bComplex1 == true && bComplex2 == true)
-        {
-            iAddComplexScalarToComplexMatrix(
-                _pDouble1->getReal()[0], _pDouble1->getImg()[0],
-                _pDouble2->getReal(), _pDouble2->getImg(), piDims2, iDims2,
-                (*_pDoubleOut)->getReal(), (*_pDoubleOut)->getImg());
-        }
-
-        return 0;
-    }
-
-    if (bScalar2)
-    {
-        //add pL with each element of pR
-        bool bComplex1  = _pDouble1->isComplex();
-        bool bComplex2  = _pDouble2->isComplex();
-        int iDims1      = _pDouble1->getDims();
-        int* piDims1    = _pDouble1->getDimsArray();
-
-        (*_pDoubleOut) = new Double(iDims1, piDims1, bComplex1 || bComplex2);
-        if (bComplex1 == false && bComplex2 == false)
-        {
-            iAddRealScalarToRealMatrix(
-                _pDouble2->getReal()[0],
-                _pDouble1->getReal(), piDims1, iDims1,
-                (*_pDoubleOut)->getReal());
-        }
-        else if (bComplex1 == false && bComplex2 == true)
-        {
-            iAddComplexScalarToRealMatrix(
-                _pDouble2->getReal()[0], _pDouble2->getImg()[0],
-                _pDouble1->getReal(), piDims1, iDims1,
-                (*_pDoubleOut)->getReal(), (*_pDoubleOut)->getImg());
-        }
-        else if (bComplex1 == true && bComplex2 == false)
-        {
-            iAddRealScalarToComplexMatrix(
-                _pDouble2->getReal()[0],
-                _pDouble1->getReal(), _pDouble1->getImg(), piDims1, iDims1,
-                (*_pDoubleOut)->getReal(), (*_pDoubleOut)->getImg());
-        }
-        else if (bComplex1 == true && bComplex2 == true)
-        {
-            iAddComplexScalarToComplexMatrix(
-                _pDouble2->getReal()[0], _pDouble2->getImg()[0],
-                _pDouble1->getReal(), _pDouble1->getImg(), piDims1, iDims1,
-                (*_pDoubleOut)->getReal(), (*_pDoubleOut)->getImg());
-        }
-
-        return 0;
-    }
-
-    int iDims1 = _pDouble1->getDims();
-    int iDims2 = _pDouble2->getDims();
-
-    //check dimension compatibilities ( same number of dimension and same size for each dimension
-    if (iDims1 != iDims2)
-    {
-        return 1;
-    }
-
-    int* piDims1 = _pDouble1->getDimsArray();
-    int* piDims2 = _pDouble2->getDimsArray();
-
-    for (int i = 0 ; i < iDims1 ; i++)
-    {
-        if (piDims1[i] != piDims2[i])
-        {
-            return 1;
-        }
-    }
-
-    bool bComplex1 = _pDouble1->isComplex();
-    bool bComplex2 = _pDouble2->isComplex();
-
-    (*_pDoubleOut) = new Double(iDims2, piDims2, bComplex1 || bComplex2);
-    if (bComplex1 == false && bComplex2 == false)
-    {
-        iAddRealMatrixToRealMatrix(
-            _pDouble1->getReal(),
-            _pDouble2->getReal(), piDims2, iDims2,
-            (*_pDoubleOut)->getReal());
-    }
-    else if (bComplex1 == false && bComplex2 == true)
-    {
-        iAddRealMatrixToComplexMatrix(
-            _pDouble1->getReal(),
-            _pDouble2->getReal(), _pDouble2->getImg(), piDims2, iDims2,
-            (*_pDoubleOut)->getReal(), (*_pDoubleOut)->getImg());
-    }
-    else if (bComplex1 == true && bComplex2 == false)
-    {
-        iAddRealMatrixToComplexMatrix(
-            _pDouble2->getReal(),
-            _pDouble1->getReal(), _pDouble1->getImg(), piDims1, iDims1,
-            (*_pDoubleOut)->getReal(), (*_pDoubleOut)->getImg());
-    }
-    else if (bComplex1 == true && bComplex2 == true)
-    {
-        iAddComplexMatrixToComplexMatrix(
-            _pDouble1->getReal(), _pDouble1->getImg(),
-            _pDouble2->getReal(), _pDouble2->getImg(), piDims2, iDims2,
-            (*_pDoubleOut)->getReal(), (*_pDoubleOut)->getImg());
-    }
-
-    return 0;
-}
 
 int AddDoubleToPoly(Polynom *_pPoly, Double *_pDouble, Polynom ** _pPolyOut)
 {
@@ -1228,3 +1552,249 @@ int AddDoubleToSparse(Double* d, Sparse* sp, GenericType** pDRes)
     /* uses commutativity */
     return AddSparseToDouble(sp, d, pDRes);
 }
+
+
+template<class T, class U, class O>
+types::InternalType* add_M_M(T *_pL, U *_pR)
+{
+    int iDimsL = _pL->getDims();
+    int iDimsR = _pR->getDims();
+
+    if (iDimsL != iDimsR)
+    {
+        return NULL;
+    }
+
+    int* piDimsL = _pL->getDimsArray();
+    int* piDimsR = _pR->getDimsArray();
+
+    for (int i = 0 ; i < iDimsL ; ++i)
+    {
+        if (piDimsL[i] != piDimsR[i])
+        {
+            return NULL;
+        }
+    }
+
+    O* pOut = new O(iDimsL, piDimsL);
+
+    add(_pL->get(), (long long)_pL->getSize(), _pR->get(), pOut->get());
+    return pOut;
+}
+
+template<class T, class U, class O>
+types::InternalType* add_M_MC(T *_pL, U *_pR)
+{
+    int iDimsL = _pL->getDims();
+    int iDimsR = _pR->getDims();
+
+    if (iDimsL != iDimsR)
+    {
+        return NULL;
+    }
+
+    int* piDimsL = _pL->getDimsArray();
+    int* piDimsR = _pR->getDimsArray();
+
+    for (int i = 0 ; i < iDimsL ; ++i)
+    {
+        if (piDimsL[i] != piDimsR[i])
+        {
+            return NULL;
+        }
+    }
+
+    O* pOut = new O(iDimsL, piDimsL, true);
+
+    add(_pL->get(), (long long)_pL->getSize(), _pR->get(), _pR->getImg(), pOut->get(), pOut->getImg());
+    return pOut;
+}
+
+template<class T, class U, class O>
+types::InternalType* add_M_S(T *_pL, U *_pR)
+{
+    O* pOut = new O(_pL->getDims(), _pL->getDimsArray());
+    add(_pL->get(), (long long)_pL->getSize(), _pR->get(0), pOut->get());
+    return pOut;
+}
+
+template<class T, class U, class O>
+types::InternalType* add_M_SC(T *_pL, U *_pR)
+{
+    O* pOut = new O(_pL->getDims(), _pL->getDimsArray(), true);
+    add(_pL->get(), (long long)_pL->getSize(), _pR->get(0), _pR->getImg(0), pOut->get(), pOut->getImg());
+    return pOut;
+}
+
+template<class T, class U, class O>
+types::InternalType* add_M_E(T *_pL, U *_pR)
+{
+    O* pOut = new O(_pL->getDims(), _pL->getDimsArray());
+    add(_pL->get(), (long long)_pL->getSize(), pOut->get());
+    return pOut;
+}
+
+
+template<class T, class U, class O>
+types::InternalType* add_MC_M(T *_pL, U *_pR)
+{
+    return add_M_MC<U, T, O>(_pR, _pL);
+}
+
+template<class T, class U, class O>
+types::InternalType* add_MC_MC(T *_pL, U *_pR)
+{
+    int iDimsL = _pL->getDims();
+    int iDimsR = _pR->getDims();
+
+    if (iDimsL != iDimsR)
+    {
+        return NULL;
+    }
+
+    int* piDimsL = _pL->getDimsArray();
+    int* piDimsR = _pR->getDimsArray();
+
+    for (int i = 0 ; i < iDimsL ; ++i)
+    {
+        if (piDimsL[i] != piDimsR[i])
+        {
+            return NULL;
+        }
+    }
+
+    O* pOut = new O(iDimsL, piDimsL, true);
+
+    add(_pL->get(), _pL->getImg(), (long long)_pL->getSize(), _pR->get(), _pR->getImg(), pOut->get(), pOut->getImg());
+    return pOut;
+}
+
+template<class T, class U, class O>
+types::InternalType* add_MC_S(T *_pL, U *_pR)
+{
+    O* pOut = new O(_pL->getDims(), _pL->getDimsArray(), true);
+    add(_pL->get(), _pL->getImg(), (long long)_pL->getSize(), _pR->get(0), pOut->get(), pOut->getImg());
+    return pOut;
+}
+
+template<class T, class U, class O>
+types::InternalType* add_MC_SC(T *_pL, U *_pR)
+{
+    O* pOut = new O(_pL->getDims(), _pL->getDimsArray(), true);
+    add(_pL->get(), _pL->getImg(), (long long)_pL->getSize(), _pR->get(0), _pR->getImg(0), pOut->get(), pOut->getImg());
+    return pOut;
+}
+
+template<class T, class U, class O>
+types::InternalType* add_MC_E(T *_pL, U *_pR)
+{
+    O* pOut = new O(_pL->getDims(), _pL->getDimsArray(), true);
+    add(_pL->get(), _pL->getImg(), (long long)_pL->getSize(), pOut->get(), pOut->getImg());
+    return pOut;
+}
+
+
+template<class T, class U, class O>
+types::InternalType* add_S_M(T *_pL, U *_pR)
+{
+    return add_M_S<U, T, O>(_pR, _pL);
+}
+
+template<class T, class U, class O>
+types::InternalType* add_S_MC(T *_pL, U *_pR)
+{
+    return add_MC_S<U, T, O>(_pR, _pL);
+}
+
+template<class T, class U, class O>
+types::InternalType* add_S_S(T *_pL, U *_pR)
+{
+    O* pOut = new O(0);
+    add(_pL->get(0), _pR->get(0), pOut->get());
+    return pOut;
+}
+
+template<class T, class U, class O>
+types::InternalType* add_S_SC(T *_pL, U *_pR)
+{
+    O* pOut = new O(0.0, 0.0);
+    add(_pL->get(), 1, _pR->get(0), _pR->getImg(0), pOut->get(), pOut->getImg());
+    return pOut;
+}
+
+template<class T, class U, class O>
+types::InternalType* add_S_E(T *_pL, U *_pR)
+{
+    O* pOut = new O(0);
+    add(_pL->get(0), pOut->get());
+    return pOut;
+}
+
+
+template<class T, class U, class O>
+types::InternalType* add_SC_M(T *_pL, U *_pR)
+{
+    return add_M_SC<U, T, O>(_pR, _pL);
+}
+
+template<class T, class U, class O>
+types::InternalType* add_SC_MC(T *_pL, U *_pR)
+{
+    return add_MC_SC<U, T, O>(_pR, _pL);
+}
+
+template<class T, class U, class O>
+types::InternalType* add_SC_S(T *_pL, U *_pR)
+{
+    return add_S_SC<U, T, O>(_pR, _pL);
+}
+
+template<class T, class U, class O>
+types::InternalType* add_SC_SC(T *_pL, U *_pR)
+{
+    O* pOut = new O(0.0, 0.0);
+    add(_pL->get(0), _pL->getImg(0), _pR->get(0), _pR->getImg(0), pOut->get(), pOut->getImg());
+    return pOut;
+}
+
+template<class T, class U, class O>
+types::InternalType* add_SC_E(T *_pL, U *_pR)
+{
+    O* pOut = new O(0.0, 0.0);
+    add(_pL->get(0), _pL->getImg(0), pOut->get(), pOut->getImg());
+    return pOut;
+}
+
+
+template<class T, class U, class O>
+types::InternalType* add_E_M(T *_pL, U *_pR)
+{
+    return add_M_E<U, T, O>(_pR, _pL);
+}
+
+template<class T, class U, class O>
+types::InternalType* add_E_MC(T *_pL, U *_pR)
+{
+    return add_MC_E<U, T, O>(_pR, _pL);
+}
+
+template<class T, class U, class O>
+types::InternalType* add_E_S(T *_pL, U *_pR)
+{
+    return add_S_E<U, T, O>(_pR, _pL);
+}
+
+template<class T, class U, class O>
+types::InternalType* add_E_SC(T *_pL, U *_pR)
+{
+    return add_SC_E<U, T, O>(_pR, _pL);
+}
+
+template<class T, class U, class O>
+types::InternalType* add_E_E(T *_pL, U *_pR)
+{
+    Double* pOut = Double::Empty();
+    add();
+    return pOut;
+}
+

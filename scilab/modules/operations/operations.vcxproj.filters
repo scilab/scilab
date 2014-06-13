@@ -90,6 +90,9 @@
     <ClCompile Include="src\c\invert_matrix.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\cpp\interface_addition.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\doublecomplex.h">
@@ -174,6 +177,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="includes\invert_matrix.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\operations.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\interface_addition.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

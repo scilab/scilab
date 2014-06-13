@@ -29,6 +29,7 @@
 #include "filemanager.hxx"
 #include "runner.hxx"
 #include "visitor_common.hxx"
+#include "operations.hxx"
 
 extern "C"
 {
@@ -635,6 +636,7 @@ static int InitializeEnvironnement(void)
     ConfigVariable::setFormatMode(1);
     Add_All_Variables();
     FileManager::initialize();
+    initOperationArray();
     return 0;
 }
 

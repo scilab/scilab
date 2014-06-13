@@ -181,6 +181,7 @@ am__objects_2 = src/cpp/libscioperations_la-operations.lo \
 	src/cpp/libscioperations_la-types_divide.lo \
 	src/cpp/libscioperations_la-types_ldivide.lo \
 	src/cpp/libscioperations_la-types_addition.lo \
+	src/cpp/libscioperations_la-interface_addition.lo \
 	src/cpp/libscioperations_la-types_power.lo \
 	src/cpp/libscioperations_la-types_finite.lo \
 	src/cpp/libscioperations_la-types_comparison_eq.lo \
@@ -580,6 +581,7 @@ OPERATIONS_CPP_SOURCES = src/cpp/operations.cpp \
     src/cpp/types_divide.cpp \
     src/cpp/types_ldivide.cpp \
     src/cpp/types_addition.cpp \
+    src/cpp/interface_addition.cpp \
     src/cpp/types_power.cpp \
     src/cpp/types_finite.cpp \
     src/cpp/types_comparison_eq.cpp \
@@ -814,6 +816,8 @@ src/cpp/libscioperations_la-types_ldivide.lo: src/cpp/$(am__dirstamp) \
 	src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscioperations_la-types_addition.lo:  \
 	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscioperations_la-interface_addition.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscioperations_la-types_power.lo: src/cpp/$(am__dirstamp) \
 	src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscioperations_la-types_finite.lo: src/cpp/$(am__dirstamp) \
@@ -853,6 +857,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscioperations_la-matrix_substraction.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscioperations_la-matrix_transpose.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscioperations_la-operations_tools.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscioperations_la-interface_addition.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscioperations_la-operations.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscioperations_la-types_addition.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscioperations_la-types_comparison_eq.Plo@am__quote@
@@ -1033,6 +1038,13 @@ src/cpp/libscioperations_la-types_addition.lo: src/cpp/types_addition.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/types_addition.cpp' object='src/cpp/libscioperations_la-types_addition.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioperations_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscioperations_la-types_addition.lo `test -f 'src/cpp/types_addition.cpp' || echo '$(srcdir)/'`src/cpp/types_addition.cpp
+
+src/cpp/libscioperations_la-interface_addition.lo: src/cpp/interface_addition.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioperations_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscioperations_la-interface_addition.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscioperations_la-interface_addition.Tpo -c -o src/cpp/libscioperations_la-interface_addition.lo `test -f 'src/cpp/interface_addition.cpp' || echo '$(srcdir)/'`src/cpp/interface_addition.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscioperations_la-interface_addition.Tpo src/cpp/$(DEPDIR)/libscioperations_la-interface_addition.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/interface_addition.cpp' object='src/cpp/libscioperations_la-interface_addition.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioperations_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscioperations_la-interface_addition.lo `test -f 'src/cpp/interface_addition.cpp' || echo '$(srcdir)/'`src/cpp/interface_addition.cpp
 
 src/cpp/libscioperations_la-types_power.lo: src/cpp/types_power.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioperations_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscioperations_la-types_power.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscioperations_la-types_power.Tpo -c -o src/cpp/libscioperations_la-types_power.lo `test -f 'src/cpp/types_power.cpp' || echo '$(srcdir)/'`src/cpp/types_power.cpp

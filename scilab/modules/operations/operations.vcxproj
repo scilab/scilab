@@ -226,6 +226,7 @@ lib /DEF:"$(ProjectDir)core_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) 
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\cpp\interface_addition.cpp" />
     <ClCompile Include="src\cpp\types_or_and.cpp" />
     <ClCompile Include="src\cpp\types_comparison_eq.cpp" />
     <ClCompile Include="src\cpp\types_comparison_lt_le_gt_ge.cpp" />
@@ -255,6 +256,7 @@ lib /DEF:"$(ProjectDir)core_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) 
     <ClInclude Include="includes\doublecomplex.h" />
     <ClInclude Include="includes\dynlib_operations.hxx" />
     <ClInclude Include="includes\generic_operations.hxx" />
+    <ClInclude Include="includes\interface_addition.h" />
     <ClInclude Include="includes\invert_matrix.h" />
     <ClInclude Include="includes\matrix_addition.h" />
     <ClInclude Include="includes\matrix_division.h" />
@@ -267,6 +269,7 @@ lib /DEF:"$(ProjectDir)core_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) 
     <ClInclude Include="includes\matrix_substraction.h" />
     <ClInclude Include="includes\matrix_transpose.h" />
     <ClInclude Include="includes\matrix_transpose_int.hxx" />
+    <ClInclude Include="includes\operations.hxx" />
     <ClInclude Include="includes\operations_tools.h" />
     <ClInclude Include="includes\types_addition.hxx" />
     <ClInclude Include="includes\types_or_and.hxx" />

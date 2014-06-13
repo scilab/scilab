@@ -470,35 +470,35 @@ template<> inline InternalType::ScilabType Int<unsigned long long>::getType()
 
 template<> inline InternalType::ScilabId Int<char>::getId()
 {
-    return IdInt8;
+    return isScalar() ? IdScalarInt8 : IdInt8;
 }
 template<> inline InternalType::ScilabId Int<unsigned char>::getId()
 {
-    return IdUInt8;
+    return isScalar() ? IdScalarUInt8 : IdUInt8;
 }
 template<> inline InternalType::ScilabId Int<short>::getId()
 {
-    return IdInt16;
+    return isScalar() ? IdScalarInt16 : IdInt16;
 }
 template<> inline InternalType::ScilabId Int<unsigned short>::getId()
 {
-    return IdUInt16;
+    return isScalar() ? IdScalarUInt16 : IdUInt16;
 }
 template<> inline InternalType::ScilabId Int<int>::getId()
 {
-    return IdInt32;
+    return isScalar() ? IdScalarInt32 : IdInt32;
 }
 template<> inline InternalType::ScilabId Int<unsigned int>::getId()
 {
-    return IdUInt32;
+    return isScalar() ? IdScalarUInt32 : IdUInt32;
 }
 template<> inline InternalType::ScilabId Int<long long>::getId()
 {
-    return IdInt64;
+    return isScalar() ? IdScalarInt64 : IdInt64;
 }
 template<> inline InternalType::ScilabId Int<unsigned long long>::getId()
 {
-    return IdUInt64;
+    return isScalar() ? IdScalarUInt64 : IdUInt64;
 }
 
 typedef Int<char> Int8;

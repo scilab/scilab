@@ -16,6 +16,33 @@ C = [1+2*%i,2+4*%i;3+6*%i,4+8*%i];
 C3(:,:,1) = C;
 C3(:,:,2) = C';
 
+//[] + []
+assert_checkequal([] + [], []);
+
+//double + []
+//r + []
+assert_checkequal(r + [], r);
+//c + []
+assert_checkequal(c + [], c);
+
+//[] + double
+//[] + r
+assert_checkequal([] + r, r);
+//[] + c
+assert_checkequal([] + c, c);
+
+//DOUBLE + []
+//R + []
+assert_checkequal(R + [], R);
+//C + []
+assert_checkequal(C + [], C);
+
+//[] + DOUBLE
+//[] + R
+assert_checkequal([] + R, R);
+//[] + C
+assert_checkequal([] + C, C);
+
 
 // double + double
 

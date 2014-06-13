@@ -92,13 +92,21 @@ public :
         IdEmpty,
         IdIdentity,
         IdInt8,
+        IdScalarInt8,
         IdUInt8,
+        IdScalarUInt8,
         IdInt16,
+        IdScalarInt16,
         IdUInt16,
+        IdScalarUInt16,
         IdInt32,
+        IdScalarInt32,
         IdUInt32,
+        IdScalarUInt32,
         IdInt64,
+        IdScalarInt64,
         IdUInt64,
+        IdScalarUInt64,
         IdString,
         IdScalarString,
         IdDouble,
@@ -143,7 +151,8 @@ public :
         IdHandle,
         IdScalarHandle,
         IdVoid,
-        IdLibrary
+        IdLibrary,
+        IdLast //msut always be the last value
     };
 
 protected :
