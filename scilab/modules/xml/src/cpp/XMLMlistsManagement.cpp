@@ -10,6 +10,11 @@
  *
  */
 
+#include "mlist.hxx"
+#include "tlist.hxx"
+#include "internal.hxx"
+#include "string.hxx"
+
 extern "C"
 {
 #include <string.h>
@@ -18,11 +23,6 @@ extern "C"
 #include "Scierror.h"
 #include "MALLOC.h"
 }
-
-#include "mlist.hxx"
-#include "tlist.hxx"
-#include "internal.hxx"
-#include "string.hxx"
 
 static const char *_XMLDoc[] = { "XMLDoc", "_id" };
 static const char *_XMLElem[] = { "XMLElem", "_id" };

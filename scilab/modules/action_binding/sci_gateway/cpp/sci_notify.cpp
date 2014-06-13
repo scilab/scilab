@@ -11,6 +11,12 @@
 *
 */
 /*--------------------------------------------------------------------------*/
+
+#include "function.hxx"
+#include "action_binding_gw.hxx"
+#include "string.hxx"
+#include "Signal.hxx"
+
 extern "C"
 {
 #include "getScilabJavaVM.h"
@@ -18,11 +24,6 @@ extern "C"
 #include "localization.h"
 #include "Scierror.h"
 }
-
-#include "function.hxx"
-#include "action_binding_gw.hxx"
-#include "string.hxx"
-#include "Signal.hxx"
 
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_notify(types::typed_list &in, int _iRetCount, types::typed_list &out)

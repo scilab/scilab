@@ -105,6 +105,7 @@ libscihdf5_la_CPPFLAGS = \
 	$(JAVA_JNI_INCLUDE) \
 	$(HDF5_CFLAGS) \
 	$(AM_CPPFLAGS) \
+	$(EIGEN_CPPFLAGS) \
 	$(FORCE_HDF_1.8_API)
 
 

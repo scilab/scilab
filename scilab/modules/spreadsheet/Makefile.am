@@ -48,6 +48,7 @@ libscispreadsheet_la_CPPFLAGS= \
 -I$(top_srcdir)/modules/string/src/c/ \
 -I$(top_srcdir)/modules/io/includes/ \
 -I$(top_srcdir)/modules/dynamic_link/includes \
+$(EIGEN_CPPFLAGS) \
 $(AM_CPPFLAGS)
 
 GATEWAY_C_SOURCES = \

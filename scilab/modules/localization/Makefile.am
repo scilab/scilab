@@ -45,14 +45,15 @@ libscilocalization_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 				-I$(top_srcdir)/modules/core/includes/ \
 				-I$(top_srcdir)/modules/symbol/includes/ \
 				-I$(top_srcdir)/modules/ast/includes/ \
-            	-I$(top_srcdir)/modules/ast/includes/exps \
+		            	-I$(top_srcdir)/modules/ast/includes/exps \
 				-I$(top_srcdir)/modules/system_env/includes/ \
 				-I$(top_srcdir)/modules/string/includes/ \
 				-I$(top_srcdir)/modules/fileio/includes/ \
 				-I$(top_srcdir)/modules/api_scilab/includes/ \
 				-I$(top_srcdir)/modules/operations/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes/ \
-                -I$(top_srcdir)/modules/dynamic_link/includes \
+				-I$(top_srcdir)/modules/dynamic_link/includes/ \
+				$(EIGEN_CPPFLAGS) \
 				$(AM_CPPFLAGS)
 
 pkglib_LTLIBRARIES = libscilocalization.la

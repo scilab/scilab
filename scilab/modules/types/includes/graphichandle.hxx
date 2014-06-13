@@ -14,6 +14,7 @@
 #define __GRAPHICHANDLE_HXX__
 
 #include "arrayof.hxx"
+#include "bool.hxx"
 
 namespace types
 {
@@ -60,6 +61,11 @@ public :
     }
 
     bool isTrue()
+    {
+        return false;
+    }
+
+    virtual bool neg(InternalType *& out)
     {
         return false;
     }

@@ -750,21 +750,22 @@ GATEWAY_CXX_SOURCES = sci_gateway/cpp/sci_xmlRead.cpp \
 		      sci_gateway/cpp/sci_htmlDump.cpp
 
 libscixml_la_CPPFLAGS = -I$(srcdir)/includes/ \
-    -I$(srcdir)/src/cpp/ \
-    -I$(srcdir)/src/c/ \
-    -I$(top_srcdir)/modules/core/includes/ \
-    -I$(top_srcdir)/modules/api_scilab/includes/ \
-    -I$(top_srcdir)/modules/localization/includes/ \
-    -I$(top_srcdir)/modules/output_stream/includes/ \
-    -I$(top_srcdir)/modules/string/includes/ \
-    -I$(top_srcdir)/modules/fileio/includes/ \
+	-I$(srcdir)/src/cpp/ \
+	-I$(srcdir)/src/c/ \
+	-I$(top_srcdir)/modules/core/includes/ \
+	-I$(top_srcdir)/modules/api_scilab/includes/ \
+	-I$(top_srcdir)/modules/localization/includes/ \
+	-I$(top_srcdir)/modules/output_stream/includes/ \
+	-I$(top_srcdir)/modules/string/includes/ \
+	-I$(top_srcdir)/modules/fileio/includes/ \
 	-I$(top_srcdir)/modules/operations/includes/ \
 	-I$(top_srcdir)/modules/string/includes/ \
 	-I$(top_srcdir)/modules/types/includes/ \
 	-I$(top_srcdir)/modules/ast/includes/ \
 	-I$(top_srcdir)/modules/ast/includes/exps \
-    $(XML_FLAGS) \
-    $(AM_CPPFLAGS)
+	$(XML_FLAGS) \
+	$(EIGEN_CPPFLAGS) \
+	$(AM_CPPFLAGS)
 
 pkglib_LTLIBRARIES = libscixml.la
 noinst_LTLIBRARIES = libscixml-algo.la

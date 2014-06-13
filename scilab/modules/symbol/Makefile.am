@@ -21,7 +21,7 @@ libscisymbol_la_SOURCES 	= $(SYMBOL_CXX_SOURCES)
 libscisymbol_la_CPPFLAGS = \
 	-I includes/ \
 	-I src/cpp \
-    -I$(top_srcdir)/modules/dynamic_link/includes \
+        -I$(top_srcdir)/modules/dynamic_link/includes \
 	-I$(top_builddir)/modules/types/includes \
 	-I$(top_builddir)/modules/functions_manager/includes \
 	-I$(top_builddir)/modules/elementary_functions/includes \
@@ -29,6 +29,7 @@ libscisymbol_la_CPPFLAGS = \
 	-I$(top_builddir)/modules/ast/includes \
 	-I$(top_builddir)/modules/ast/includes/exps \
 	-I$(top_builddir)/modules/localization/includes \
+	$(EIGEN_CPPFLAGS) \
 	$(AM_CPPFLAGS)
 
 

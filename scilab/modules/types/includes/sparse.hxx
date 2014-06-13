@@ -15,9 +15,9 @@
 
 //only on windows 32 bits with Microsoft C/C++ compiler
 #if defined(_MSC_VER) && !defined(_WIN64) && !defined(__INTEL_COMPILER)
-    //since VS2012 /arch flag has change and Eigen failed to compile with SSE2 enabled
-    #define _mm_free(a)      _aligned_free(a)
-    #define _mm_malloc(a, b)    _aligned_malloc(a, b)
+//since VS2012 /arch flag has change and Eigen failed to compile with SSE2 enabled
+#define _mm_free(a)      _aligned_free(a)
+#define _mm_malloc(a, b)    _aligned_malloc(a, b)
 #endif
 
 #include <Eigen/Sparse>
@@ -575,6 +575,15 @@ struct TYPES_IMPEXP SparseBool : GenericType
     bool isScalar()
     {
         return (getRows() == 1 && getCols() == 1);
+    }
+
+    bool neg(InternalType *& out)
+    {
+        SparseBool * _out = new SparseBool(getRows(), getCols());
+        type_traits::neg(getRows(), getCols(), matrixBool, _out->matrixBool);
+        out = _out;
+
+        return true;
     }
 
     void whoAmI() SPARSE_CONST;

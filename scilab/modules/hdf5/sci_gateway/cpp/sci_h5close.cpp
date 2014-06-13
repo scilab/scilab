@@ -10,11 +10,12 @@
  *
  */
 
+#include "mlist.hxx"
+#include "int.hxx"
+
 #include "H5Exception.hxx"
 #include "HDF5Scilab.hxx"
 #include "H5Object.hxx"
-#include "mlist.hxx"
-#include "int.hxx"
 
 extern "C"
 {

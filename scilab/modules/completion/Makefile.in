@@ -655,6 +655,7 @@ libscicompletion_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/dynamic_link/includes \
     -I$(top_srcdir)/modules/external_objects/includes \
     $(JAVA_JNI_INCLUDE) \
+    $(EIGEN_CPPFLAGS) \
     $(XML_FLAGS) \
     $(AM_CPPFLAGS)
 

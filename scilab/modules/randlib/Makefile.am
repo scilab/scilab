@@ -44,21 +44,22 @@ RANDLIB_CPP_SOURCES = src/cpp/grand.cpp
 GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_grand.cpp
 
 libscirandlib_la_CPPFLAGS = \
-                -I$(srcdir)/includes/ \
-				-I$(top_srcdir)/modules/output_stream/includes/ \
-				-I$(top_srcdir)/modules/api_scilab/includes/ \
-				-I$(top_srcdir)/modules/localization/includes/ \
-				-I$(top_srcdir)/modules/dynamic_link/includes/ \
-				-I$(top_srcdir)/modules/symbol/includes/ \
-				-I$(top_srcdir)/modules/ast/includes/ \
-            	-I$(top_srcdir)/modules/ast/includes/exps \
-				-I$(top_srcdir)/modules/threads/includes/ \
-				-I$(top_srcdir)/modules/system_env/includes/ \
-                -I$(top_srcdir)/modules/dynamic_link/includes \
-				-I$(top_srcdir)/modules/types/includes/ \
-				-I$(top_srcdir)/modules/operations/includes/ \
-				-I$(top_srcdir)/modules/elementary_functions/includes/ \
-				$(AM_CPPFLAGS)
+	-I$(srcdir)/includes/ \
+	-I$(top_srcdir)/modules/output_stream/includes/ \
+	-I$(top_srcdir)/modules/api_scilab/includes/ \
+	-I$(top_srcdir)/modules/localization/includes/ \
+	-I$(top_srcdir)/modules/dynamic_link/includes/ \
+	-I$(top_srcdir)/modules/symbol/includes/ \
+	-I$(top_srcdir)/modules/ast/includes/ \
+	-I$(top_srcdir)/modules/ast/includes/exps \
+	-I$(top_srcdir)/modules/threads/includes/ \
+	-I$(top_srcdir)/modules/system_env/includes/ \
+	-I$(top_srcdir)/modules/dynamic_link/includes \
+	-I$(top_srcdir)/modules/types/includes/ \
+	-I$(top_srcdir)/modules/operations/includes/ \
+	-I$(top_srcdir)/modules/elementary_functions/includes/ \
+	$(EIGEN_CPPFLAGS) \
+	$(AM_CPPFLAGS)
 
 pkglib_LTLIBRARIES = libscirandlib.la
 noinst_LTLIBRARIES = libscirandlib-algo.la

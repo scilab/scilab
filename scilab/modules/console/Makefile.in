@@ -712,6 +712,7 @@ libsciconsole_minimal_la_CPPFLAGS = \
 -I$(top_srcdir)/modules/symbol/includes \
 -I$(top_srcdir)/modules/operations/includes \
 -I$(top_srcdir)/modules/dynamic_link/includes \
+$(EIGEN_CPPFLAGS) \
 $(AM_CPPFLAGS)
 
 
@@ -739,7 +740,8 @@ libsciconsole_la_CPPFLAGS =  \
 	-I$(top_srcdir)/modules/localization/includes \
 	-I$(top_srcdir)/modules/commons/src/jni \
 	-I$(top_srcdir)/modules/dynamic_link/includes \
-	$(JAVA_JNI_INCLUDE) $(AM_CPPFLAGS) $(am__append_4)
+	$(JAVA_JNI_INCLUDE) $(EIGEN_CPPFLAGS) $(AM_CPPFLAGS) \
+	$(am__append_4)
 
 # Name of the library
 pkglib_LTLIBRARIES = libsciconsole-minimal.la $(am__append_5)

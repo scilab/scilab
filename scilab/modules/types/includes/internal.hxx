@@ -142,6 +142,11 @@ public :
         return false;
     }
 
+    virtual bool neg(InternalType *& out)
+    {
+        return false;
+    }
+
     /* return type as string ( double, int, cell, list, ... )*/
     virtual std::wstring            getTypeStr() = 0;
     /* return type as short string ( s, i, ce, l, ... )*/

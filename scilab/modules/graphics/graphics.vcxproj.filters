@@ -1513,6 +1513,7 @@
     <None Include="locales\graphics.pot" />
     <None Include="locales\graphics.pot" />
     <None Include="locales\graphics.pot" />
+    <None Include="locales\graphics.pot" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="graphic.rc">

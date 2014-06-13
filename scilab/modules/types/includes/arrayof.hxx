@@ -39,8 +39,12 @@ TYPES_IMPEXP int getIntValueFromDouble(InternalType* _pIT, int _iPos);
 TYPES_IMPEXP double* getDoubleArrayFromDouble(InternalType* _pIT);
 TYPES_IMPEXP bool checkArgValidity(typed_list& _pArg);
 
+/*    template<typename T>
+    inline bool _neg_(InternalType * in, InternalType *& out);
+*/
+
 template <typename T>
-class TYPES_IMPEXP ArrayOf : public GenericType
+class ArrayOf : public GenericType
 {
 public:
     typedef T type;
@@ -165,6 +169,10 @@ public :
     {
         return type_traits::isTrue<T>(m_iSize, m_pRealData);
     }
+
+    // The function is not write here because we needs to create a Bool which inherits from ArrayOf<int>
+    // so it will create a cyclic dependency... so the body of the function is in bool.hxx after the Bool definition.
+    virtual bool neg(InternalType *& out);
 
     virtual bool isVector() //only one dim must be != 1
     {
@@ -1527,6 +1535,8 @@ public :
         return ostr.str();
     }
 };
+
+
 }
 
 #endif /* !__ARRAYOF_HXX__ */

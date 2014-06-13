@@ -93,6 +93,7 @@ libscisignal_processing_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/operations/includes/ \
     -I$(top_srcdir)/modules/symbol/includes/ \
     -I$(top_srcdir)/modules/dynamic_link/includes/ \
+    $(EIGEN_CPPFLAGS) \
 	$(AM_CPPFLAGS)
 
 

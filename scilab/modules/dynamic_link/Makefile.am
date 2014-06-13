@@ -30,8 +30,8 @@ GATEWAY_CPP_SOURCES = \
 libscidynamic_link_la_CPPFLAGS = \
 	-I$(srcdir)/includes/ \
 	-I$(srcdir)/src/c/ \
-    -I$(top_srcdir)/modules/io/includes/ \
-    -I$(top_srcdir)/modules/api_scilab/includes/ \
+	-I$(top_srcdir)/modules/io/includes/ \
+	-I$(top_srcdir)/modules/api_scilab/includes/ \
 	-I$(top_srcdir)/modules/operations/includes/ \
 	-I$(top_srcdir)/modules/symbol/includes/ \
 	-I$(top_srcdir)/modules/types/includes/ \
@@ -39,12 +39,13 @@ libscidynamic_link_la_CPPFLAGS = \
 	-I$(top_srcdir)/modules/functions_manager/includes/ \
 	-I$(top_srcdir)/modules/ast/includes/ \
 	-I$(top_srcdir)/modules/ast/includes/exps \
-    -I$(top_srcdir)/modules/string/includes/ \
-    -I$(top_srcdir)/modules/fileio/includes/ \
-    -I$(top_srcdir)/modules/system_env/includes/ \
-    -I$(top_srcdir)/modules/threads/includes/ \
-    -I$(top_srcdir)/modules/localization/includes/ \
-    $(AM_CPPFLAGS)
+	-I$(top_srcdir)/modules/string/includes/ \
+	-I$(top_srcdir)/modules/fileio/includes/ \
+	-I$(top_srcdir)/modules/system_env/includes/ \
+	-I$(top_srcdir)/modules/threads/includes/ \
+	-I$(top_srcdir)/modules/localization/includes/ \
+	$(EIGEN_CPPFLAGS) \
+	$(AM_CPPFLAGS)
 
 if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libscidynamic_link.la

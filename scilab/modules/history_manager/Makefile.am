@@ -66,6 +66,7 @@ $(JAVA_JNI_INCLUDE) \
 -I$(top_srcdir)/modules/ast/includes/exps \
 -I$(top_srcdir)/modules/string/includes/ \
 -I$(top_srcdir)/modules/dynamic_link/includes \
+$(EIGEN_CPPFLAGS) \
 $(AM_CPPFLAGS)
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding

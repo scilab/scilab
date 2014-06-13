@@ -19,6 +19,7 @@
 #define __INT_HXX__
 
 #include "arrayof.hxx"
+#include "bool.hxx"
 #include "dynlib_types.h"
 #include "internal.hxx"
 
@@ -86,7 +87,7 @@ public :
 
     InternalType* clone()
     {
-        Int<T> *pbClone =  new Int<T>(GenericType::getDims(), GenericType::getDimsArray());
+        Int<T> *pbClone = new Int<T>(GenericType::getDims(), GenericType::getDimsArray());
         pbClone->set(ArrayOf<T>::get());
         return pbClone;
     }
@@ -96,6 +97,14 @@ public :
 
     bool isInt()
     {
+        return true;
+    }
+
+    bool neg(InternalType *& out)
+    {
+        out = new Int<T>(this->getDims(), this->getDimsArray());
+        type_traits::bin_neg<T, T>(this->m_iSize, this->m_pRealData, static_cast<Int<T> *>(out)->get());
+
         return true;
     }
 

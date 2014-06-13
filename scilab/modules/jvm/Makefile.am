@@ -30,7 +30,7 @@ libscijvm_la_CPPFLAGS = \
 			-I$(srcdir)/includes/ \
 			-I$(srcdir)/src/c \
 			-I$(top_srcdir)/modules/ast/includes/ \
-        	-I$(top_srcdir)/modules/ast/includes/exps \
+			-I$(top_srcdir)/modules/ast/includes/exps \
 			-I$(top_srcdir)/modules/types/includes/ \
 			-I$(top_srcdir)/modules/symbol/includes/ \
 			-I$(top_srcdir)/modules/api_scilab/includes/ \
@@ -42,9 +42,10 @@ libscijvm_la_CPPFLAGS = \
 			-I$(top_srcdir)/modules/functions_manager/includes/ \
 			-I$(top_srcdir)/modules/system_env/includes/ \
 			-I$(top_srcdir)/modules/fileio/includes/ \
-            -I$(top_srcdir)/modules/dynamic_link/includes \
+			-I$(top_srcdir)/modules/dynamic_link/includes \
 			-I$(top_srcdir)/modules/preferences/includes/ \
 			$(XML_FLAGS) \
+			$(EIGEN_CPPFLAGS) \
 			$(AM_CPPFLAGS)
 
 pkglib_LTLIBRARIES = libscijvm-disable.la
@@ -114,7 +115,7 @@ libscijvm_disable_la_SOURCES = $(JVM_DISABLE_C_SOURCES) $(JVM_DISABLE_CPP_SOURCE
 
 libscijvm_disable_la_CPPFLAGS = -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/ast/includes/ \
-        	-I$(top_srcdir)/modules/ast/includes/exps \
+			-I$(top_srcdir)/modules/ast/includes/exps \
 			-I$(top_srcdir)/modules/types/includes/ \
 			-I$(top_srcdir)/modules/symbol/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes/ \

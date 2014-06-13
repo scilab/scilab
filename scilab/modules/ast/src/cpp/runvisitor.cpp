@@ -916,102 +916,51 @@ void RunVisitorT<T>::visitprivate(const NotExp &e)
     */
     e.exp_get().accept(*this);
 
-    if (result_get()->isDouble())
+    InternalType * pValue = result_get();
+    InternalType * pReturn = NULL;
+    if (pValue->neg(pReturn))
     {
-        InternalType* pVar  = result_get();
-        Double *pdbl        = pVar->getAs<Double>();
-        Bool *pReturn       = new Bool(pdbl->getDims(), pdbl->getDimsArray());
-        double *pR		    = pdbl->getReal();
-        int *piB            = pReturn->get();
-        for (int i = 0 ; i < pdbl->getSize() ; i++)
+        if (pValue->isDeletable())
         {
-            piB[i] = pR[i] == 0 ? 1 : 0;
-        }
-
-        if (result_get()->isDeletable())
-        {
-            delete result_get();
+            delete pValue;
         }
 
         result_set(pReturn);
     }
-    else if (result_get()->isBool())
+    else
     {
-        InternalType* pIT   = result_get();
-        Bool *pb            = pIT->getAs<types::Bool>();
-        Bool *pReturn       = new Bool(pb->getDims(), pb->getDimsArray());
-        int *piR            = pb->get();
-        int *piB            = pReturn->get();
+        // neg returned false so the negation is not possible so we call the overload (%foo_5)
+        types::typed_list in;
+        types::typed_list out;
 
-        for (int i = 0 ; i < pb->getSize() ; i++)
+        pValue->IncreaseRef();
+        in.push_back(pValue);
+
+        Callable::ReturnValue Ret = Overload::call(L"%" + result_get()->getShortTypeStr() + L"_5", in, 1, out, this);
+        if (Ret != Callable::OK)
         {
-            piB[i] = piR[i] == 1 ? 0 : 1;
+            throw ScilabError();
         }
 
-        if (result_get()->isDeletable())
+        if (out.size() == 0)
         {
-            delete result_get();
+            result_set(NULL);
         }
-
-        result_set(pReturn);
-    }
-    else if (result_get()->isSparseBool())
-    {
-        InternalType* pIT   = result_get();
-        SparseBool *pb            = pIT->getAs<types::SparseBool>();
-        SparseBool *pReturn       = new SparseBool(pb->getRows(), pb->getCols());
-
-        for (int iRows = 0 ; iRows < pb->getRows() ; iRows++)
+        else if (out.size() == 1)
         {
-            for (int iCols = 0 ; iCols < pb->getCols() ; iCols++)
+            out[0]->DecreaseRef();
+            result_set(out[0]);
+        }
+        else
+        {
+            for (int i = 0 ; i < static_cast<int>(out.size()) ; i++)
             {
-                pReturn->set(iRows, iCols, !pb->get(iRows, iCols));
+                out[i]->DecreaseRef();
+                result_set(i, out[i]);
             }
         }
 
-
-        result_set(pReturn);
-    }
-    else if (result_get()->isInt())
-    {
-        InternalType* pReturn = NULL;
-        InternalType* pIT = result_get();
-        switch (result_get()->getType())
-        {
-            case InternalType::ScilabInt8 :
-                pReturn = notInt< Int8, char >(pIT->getAs<Int8>());
-                break;
-            case InternalType::ScilabUInt8 :
-                pReturn = notInt<UInt8, unsigned char>(pIT->getAs<UInt8>());
-                break;
-            case InternalType::ScilabInt16 :
-                pReturn = notInt< Int16, short >(pIT->getAs<Int16>());
-                break;
-            case InternalType::ScilabUInt16 :
-                pReturn = notInt<UInt16, unsigned short>(pIT->getAs<UInt16>());
-                break;
-            case InternalType::ScilabInt32 :
-                pReturn = notInt<Int32, int>(pIT->getAs<Int32>());
-                break;
-            case InternalType::ScilabUInt32 :
-                pReturn = notInt<UInt32, unsigned int>(pIT->getAs<UInt32>());
-                break;
-            case InternalType::ScilabInt64 :
-                pReturn = notInt<Int64, long long>(pIT->getAs<Int64>());
-                break;
-            case InternalType::ScilabUInt64 :
-                pReturn = notInt<UInt64, unsigned long long>(pIT->getAs<UInt64>());
-                break;
-            default :
-                break;
-        }
-
-        if (result_get()->isDeletable())
-        {
-            delete result_get();
-        }
-
-        result_set(pReturn);
+        pValue->DecreaseRef();
     }
 }
 

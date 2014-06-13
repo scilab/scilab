@@ -249,6 +249,7 @@ libscigui_la_CPPFLAGS = \
 -I$(top_srcdir)/modules/commons/src/jni/ \
 -I$(top_srcdir)/modules/dynamic_link/includes \
 $(JAVA_JNI_INCLUDE) \
+$(EIGEN_CPPFLAGS) \
 $(AM_CPPFLAGS)
 
 # Without the GUI module

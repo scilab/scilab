@@ -84,6 +84,11 @@ public :
         return false;
     }
 
+    virtual bool neg(InternalType *& out)
+    {
+        return false;
+    }
+
     bool                        subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims);
     String*                     getFieldNames();
     bool                        exists(const std::wstring& _sKey);

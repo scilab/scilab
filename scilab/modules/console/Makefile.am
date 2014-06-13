@@ -127,6 +127,7 @@ libsciconsole_minimal_la_CPPFLAGS = \
 -I$(top_srcdir)/modules/symbol/includes \
 -I$(top_srcdir)/modules/operations/includes \
 -I$(top_srcdir)/modules/dynamic_link/includes \
+$(EIGEN_CPPFLAGS) \
 $(AM_CPPFLAGS)
 
 # Includes need for the compilation
@@ -157,6 +158,7 @@ libsciconsole_la_CPPFLAGS = \
 -I$(top_srcdir)/modules/commons/src/jni \
 -I$(top_srcdir)/modules/dynamic_link/includes \
 $(JAVA_JNI_INCLUDE) \
+$(EIGEN_CPPFLAGS) \
 $(AM_CPPFLAGS)
 
 

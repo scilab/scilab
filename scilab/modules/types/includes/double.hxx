@@ -23,6 +23,7 @@
 #define __DOUBLE_HXX__
 
 #include "arrayof.hxx"
+#include "bool.hxx"
 #include "dynlib_types.h"
 
 namespace types
@@ -81,6 +82,17 @@ public :
         }
 
         return type_traits::isTrue<double>(m_iSize, m_pRealData);
+    }
+
+    bool neg(InternalType *& out)
+    {
+        if (isEmpty())
+        {
+            out = Empty();
+            return true;
+        }
+
+        return ArrayOf<double>::neg(out);
     }
 
     void                        setViewAsInteger(bool _bViewAsInteger = true)

@@ -38,6 +38,7 @@ libscidata_structures_la_CPPFLAGS = \
 -I$(top_srcdir)/modules/localization/includes/ \
 -I$(top_srcdir)/modules/api_scilab/includes/ \
 -I$(top_srcdir)/modules/operations/includes/ \
+$(EIGEN_CPPFLAGS) \
 $(AM_CPPFLAGS)
 
 if MAINTAINER_MODE

@@ -26,6 +26,7 @@
 #include <list>
 
 #include "arrayof.hxx"
+#include "bool.hxx"
 #include "dynlib_types.h"
 
 namespace types
@@ -73,6 +74,11 @@ public :
     }
 
     bool isTrue()
+    {
+        return false;
+    }
+
+    virtual bool neg(InternalType *& out)
     {
         return false;
     }

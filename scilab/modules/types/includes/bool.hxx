@@ -78,6 +78,17 @@ private :
     virtual void            deleteImg();
     virtual int*            allocData(int _iSize);
 };
+
+// See the comment before ArrayOf<T>::neg to explain why the definition is here !!
+template<typename T>
+inline bool ArrayOf<T>::neg(InternalType *& out)
+{
+    out = new Bool(this->m_iDims, this->m_piDims);
+    type_traits::neg<T, int>(this->m_iSize, this->m_pRealData, static_cast<Bool *>(out)->get());
+
+    return true;
+}
+
 }
 
 #ifdef _MSC_VER

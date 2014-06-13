@@ -98,6 +98,11 @@ public :
         return false;
     }
 
+    virtual bool neg(InternalType *& out)
+    {
+        return false;
+    }
+
 private :
     virtual InternalType*   getNullValue();
     virtual Cell*           createEmpty(int _iDims, int* _piDims, bool _bComplex = false);

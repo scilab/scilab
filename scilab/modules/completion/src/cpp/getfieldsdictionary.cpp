@@ -10,6 +10,10 @@
 *
 */
 
+#include "context.hxx"
+#include "struct.hxx"
+#include "tlist.hxx"
+
 extern "C"
 {
 #include <string.h> /* strcmp */
@@ -24,10 +28,6 @@ extern "C"
 #include "charEncoding.h"
 #include "getfields.h"
 }
-
-#include "context.hxx"
-#include "struct.hxx"
-#include "tlist.hxx"
 
 static int isInitialized = 0;
 
