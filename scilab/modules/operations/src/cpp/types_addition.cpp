@@ -31,6 +31,7 @@ extern "C"
 
 using namespace types;
 
+
 //define arrays on operation functions
 static add_function pAddfunction[types::InternalType::IdLast][types::InternalType::IdLast] = {NULL};
 
@@ -39,599 +40,599 @@ add_function getAddFunction(types::InternalType::ScilabId leftId, types::Interna
     return pAddfunction[leftId][rightId];
 }
 
+
 void fillAddFunction()
 {
+#define scilab_fill_add(id1, id2, func, typeIn1, typeIn2, typeOut) \
+    pAddfunction[types::InternalType::Id ## id1][types::InternalType::Id ## id2] = (add_function)&add_##func<typeIn1, typeIn2, typeOut>
+
     //Double
-    add_function* pD = pAddfunction[types::InternalType::IdDouble];
     //Matrix + Matrix
-    pD[types::InternalType::IdDouble] = (add_function)&add_M_M<Double, Double, Double>;
-    pD[types::InternalType::IdInt8] = (add_function)&add_M_M<Double, Int8, Int8>;
-    pD[types::InternalType::IdUInt8] = (add_function)&add_M_M<Double, UInt8, UInt8>;
-    pD[types::InternalType::IdInt16] = (add_function)&add_M_M<Double, Int16, Int16>;
-    pD[types::InternalType::IdUInt16] = (add_function)&add_M_M<Double, UInt16, UInt16>;
-    pD[types::InternalType::IdInt32] = (add_function)&add_M_M<Double, Int32, Int32>;
-    pD[types::InternalType::IdUInt32] = (add_function)&add_M_M<Double, UInt32, UInt32>;
-    pD[types::InternalType::IdInt64] = (add_function)&add_M_M<Double, Int64, Int64>;
-    pD[types::InternalType::IdUInt64] = (add_function)&add_M_M<Double, UInt64, UInt64>;
-    pD[types::InternalType::IdBool] = (add_function)&add_M_M<Double, Bool, Double>;
+    scilab_fill_add(Double, Double, M_M, Double, Double, Double);
+    scilab_fill_add(Double, Int8  , M_M, Double, Int8  , Int8);
+    scilab_fill_add(Double, UInt8 , M_M, Double, UInt8 , UInt8);
+    scilab_fill_add(Double, Int16 , M_M, Double, Int16 , Int16);
+    scilab_fill_add(Double, UInt16, M_M, Double, UInt16, UInt16);
+    scilab_fill_add(Double, Int32 , M_M, Double, Int32 , Int32);
+    scilab_fill_add(Double, UInt32, M_M, Double, UInt32, UInt32);
+    scilab_fill_add(Double, Int64 , M_M, Double, Int64 , Int64);
+    scilab_fill_add(Double, UInt64, M_M, Double, UInt64, UInt64);
+    scilab_fill_add(Double, Bool  , M_M, Double, Bool  , Double);
 
     //Matrix + Matrix Complex
-    pD[types::InternalType::IdDoubleComplex] = (add_function)&add_M_MC<Double, Double, Double>;
+    scilab_fill_add(Double, DoubleComplex, M_MC, Double, Double, Double);
 
     //Matrix + Scalar
-    pD[types::InternalType::IdScalarDouble] = (add_function)&add_M_S<Double, Double, Double>;
-    pD[types::InternalType::IdScalarInt8] = (add_function)&add_M_S<Double, Int8, Int8>;
-    pD[types::InternalType::IdScalarUInt8] = (add_function)&add_M_S<Double, UInt8, UInt8>;
-    pD[types::InternalType::IdScalarInt16] = (add_function)&add_M_S<Double, Int16, Int16>;
-    pD[types::InternalType::IdScalarUInt16] = (add_function)&add_M_S<Double, UInt16, UInt16>;
-    pD[types::InternalType::IdScalarInt32] = (add_function)&add_M_S<Double, Int32, Int32>;
-    pD[types::InternalType::IdScalarUInt32] = (add_function)&add_M_S<Double, UInt32, UInt32>;
-    pD[types::InternalType::IdScalarInt64] = (add_function)&add_M_S<Double, Int64, Int64>;
-    pD[types::InternalType::IdScalarUInt64] = (add_function)&add_M_S<Double, UInt64, UInt64>;
-    pD[types::InternalType::IdScalarBool] = (add_function)&add_M_S<Double, Bool, Double>;
+    scilab_fill_add(Double, ScalarDouble, M_S, Double, Double, Double);
+    scilab_fill_add(Double, ScalarInt8  , M_S, Double, Int8  , Int8);
+    scilab_fill_add(Double, ScalarUInt8 , M_S, Double, UInt8 , UInt8);
+    scilab_fill_add(Double, ScalarInt16 , M_S, Double, Int16 , Int16);
+    scilab_fill_add(Double, ScalarUInt16, M_S, Double, UInt16, UInt16);
+    scilab_fill_add(Double, ScalarInt32 , M_S, Double, Int32 , Int32);
+    scilab_fill_add(Double, ScalarUInt32, M_S, Double, UInt32, UInt32);
+    scilab_fill_add(Double, ScalarInt64 , M_S, Double, Int64 , Int64);
+    scilab_fill_add(Double, ScalarUInt64, M_S, Double, UInt64, UInt64);
+    scilab_fill_add(Double, ScalarBool  , M_S, Double, Bool  , Double);
 
     //Matrix + Scalar Complex
-    pD[types::InternalType::IdScalarDoubleComplex] = (add_function)&add_M_SC<Double, Double, Double>;
+    scilab_fill_add(Double, ScalarDoubleComplex, M_SC, Double, Double, Double);
     //Matrix + Empty
-    pD[types::InternalType::IdEmpty] = (add_function)&add_M_E<Double, Double, Double>;
+    scilab_fill_add(Double, Empty, M_E, Double, Double, Double);
 
 
-    add_function* pDC = pAddfunction[types::InternalType::IdDoubleComplex];
     //Scalar Complex + Matrix
-    pDC[types::InternalType::IdDouble] = (add_function)&add_MC_M<Double, Double, Double>;
-    pDC[types::InternalType::IdDoubleComplex] = (add_function)&add_MC_MC<Double, Double, Double>;
-    pDC[types::InternalType::IdScalarDouble] = (add_function)&add_MC_S<Double, Double, Double>;
-    pDC[types::InternalType::IdScalarDoubleComplex] = (add_function)&add_MC_SC<Double, Double, Double>;
-    pDC[types::InternalType::IdEmpty] = (add_function)&add_MC_E<Double, Double, Double>;
+    scilab_fill_add(DoubleComplex, Double, MC_M, Double, Double, Double);
+    scilab_fill_add(DoubleComplex, DoubleComplex, MC_MC, Double, Double, Double);
+    scilab_fill_add(DoubleComplex, ScalarDouble, MC_S, Double, Double, Double);
+    scilab_fill_add(DoubleComplex, ScalarDoubleComplex, MC_SC, Double, Double, Double);
+    scilab_fill_add(DoubleComplex, Empty, MC_E, Double, Double, Double);
 
     //Scalar + Matrix
-    add_function* pD1 = pAddfunction[types::InternalType::IdScalarDouble];
-    pD1[types::InternalType::IdDouble] = (add_function)&add_S_M<Double, Double, Double>;
-    pD1[types::InternalType::IdInt8] = (add_function)&add_S_M<Double, Int8, Int8>;
-    pD1[types::InternalType::IdUInt8] = (add_function)&add_S_M<Double, UInt8, UInt8>;
-    pD1[types::InternalType::IdInt16] = (add_function)&add_S_M<Double, Int16, Int16>;
-    pD1[types::InternalType::IdUInt16] = (add_function)&add_S_M<Double, UInt16, UInt16>;
-    pD1[types::InternalType::IdInt32] = (add_function)&add_S_M<Double, Int32, Int32>;
-    pD1[types::InternalType::IdUInt32] = (add_function)&add_S_M<Double, UInt32, UInt32>;
-    pD1[types::InternalType::IdInt64] = (add_function)&add_S_M<Double, Int64, Int64>;
-    pD1[types::InternalType::IdUInt64] = (add_function)&add_S_M<Double, UInt64, UInt64>;
-    pD1[types::InternalType::IdBool] = (add_function)&add_S_M<Double, Bool, Double>;
+    scilab_fill_add(ScalarDouble, Double, S_M, Double, Double, Double);
+    scilab_fill_add(ScalarDouble, Int8, S_M, Double, Int8, Int8);
+    scilab_fill_add(ScalarDouble, UInt8, S_M, Double, UInt8, UInt8);
+    scilab_fill_add(ScalarDouble, Int16, S_M, Double, Int16, Int16);
+    scilab_fill_add(ScalarDouble, UInt16, S_M, Double, UInt16, UInt16);
+    scilab_fill_add(ScalarDouble, Int32, S_M, Double, Int32, Int32);
+    scilab_fill_add(ScalarDouble, UInt32, S_M, Double, UInt32, UInt32);
+    scilab_fill_add(ScalarDouble, Int64, S_M, Double, Int64, Int64);
+    scilab_fill_add(ScalarDouble, UInt64, S_M, Double, UInt64, UInt64);
+    scilab_fill_add(ScalarDouble, Bool, S_M, Double, Bool, Double);
 
     //Scalar + Matrix Complex
-    pD1[types::InternalType::IdDoubleComplex] = (add_function)&add_S_MC<Double, Double, Double>;
+    scilab_fill_add(ScalarDouble, DoubleComplex, S_MC, Double, Double, Double);
 
     //Scalar + Scalar
-    pD1[types::InternalType::IdScalarDouble] = (add_function)&add_S_S<Double, Double, Double>;
-    pD1[types::InternalType::IdScalarInt8] = (add_function)&add_S_S<Double, Int8, Int8>;
-    pD1[types::InternalType::IdScalarUInt8] = (add_function)&add_S_S<Double, UInt8, UInt8>;
-    pD1[types::InternalType::IdScalarInt16] = (add_function)&add_S_S<Double, Int16, Int16>;
-    pD1[types::InternalType::IdScalarUInt16] = (add_function)&add_S_S<Double, UInt16, UInt16>;
-    pD1[types::InternalType::IdScalarInt32] = (add_function)&add_S_S<Double, Int32, Int32>;
-    pD1[types::InternalType::IdScalarUInt32] = (add_function)&add_S_S<Double, UInt32, UInt32>;
-    pD1[types::InternalType::IdScalarInt64] = (add_function)&add_S_S<Double, Int64, Int64>;
-    pD1[types::InternalType::IdScalarUInt64] = (add_function)&add_S_S<Double, UInt64, UInt64>;
-    pD1[types::InternalType::IdScalarBool] = (add_function)&add_S_S<Double, Bool, Double>;
+    scilab_fill_add(ScalarDouble, ScalarDouble, S_S, Double, Double, Double);
+    scilab_fill_add(ScalarDouble, ScalarInt8, S_S, Double, Int8, Int8);
+    scilab_fill_add(ScalarDouble, ScalarUInt8, S_S, Double, UInt8, UInt8);
+    scilab_fill_add(ScalarDouble, ScalarInt16, S_S, Double, Int16, Int16);
+    scilab_fill_add(ScalarDouble, ScalarUInt16, S_S, Double, UInt16, UInt16);
+    scilab_fill_add(ScalarDouble, ScalarInt32, S_S, Double, Int32, Int32);
+    scilab_fill_add(ScalarDouble, ScalarUInt32, S_S, Double, UInt32, UInt32);
+    scilab_fill_add(ScalarDouble, ScalarInt64, S_S, Double, Int64, Int64);
+    scilab_fill_add(ScalarDouble, ScalarUInt64, S_S, Double, UInt64, UInt64);
+    scilab_fill_add(ScalarDouble, ScalarBool, S_S, Double, Bool, Double);
 
     //Scalar + Scalar Complex
-    pD1[types::InternalType::IdScalarDoubleComplex] = (add_function)&add_S_SC<Double, Double, Double>;
+    scilab_fill_add(ScalarDouble, ScalarDoubleComplex, S_SC, Double, Double, Double);
 
     //Scalar + Empty
-    pD1[types::InternalType::IdEmpty] = (add_function)&add_S_E<Double, Double, Double>;
+    scilab_fill_add(ScalarDouble, Empty, S_E, Double, Double, Double);
 
-    add_function* pD1C = pAddfunction[types::InternalType::IdScalarDoubleComplex];
-    pD1C[types::InternalType::IdDouble] = (add_function)&add_SC_M<Double, Double, Double>;
-    pD1C[types::InternalType::IdDoubleComplex] = (add_function)&add_SC_MC<Double, Double, Double>;
-    pD1C[types::InternalType::IdScalarDouble] = (add_function)&add_SC_S<Double, Double, Double>;
-    pD1C[types::InternalType::IdScalarDoubleComplex] = (add_function)&add_SC_SC<Double, Double, Double>;
-    pD1C[types::InternalType::IdEmpty] = (add_function)&add_SC_E<Double, Double, Double>;
+    //Scalar Complex + Matrix
+    scilab_fill_add(ScalarDoubleComplex, Double, SC_M, Double, Double, Double);
+    //Scalar Complex + Matrix Complex
+    scilab_fill_add(ScalarDoubleComplex, DoubleComplex, SC_MC, Double, Double, Double);
+    //Scalar Complex + Scalar
+    scilab_fill_add(ScalarDoubleComplex, ScalarDouble, SC_S, Double, Double, Double);
+    //Scalar Complex + Scalar Complex
+    scilab_fill_add(ScalarDoubleComplex, ScalarDoubleComplex, SC_SC, Double, Double, Double);
+    //Scalar Complex + Empty
+    scilab_fill_add(ScalarDoubleComplex, Empty, SC_E, Double, Double, Double);
 
-    add_function* pE = pAddfunction[types::InternalType::IdEmpty];
     //Empty + Matrix
-    pE[types::InternalType::IdDouble] = (add_function)&add_E_M<Double, Double, Double>;
-    pE[types::InternalType::IdInt8] = (add_function)&add_E_M<Double, Int8, Int8>;
-    pE[types::InternalType::IdUInt8] = (add_function)&add_E_M<Double, UInt8, UInt8>;
-    pE[types::InternalType::IdInt16] = (add_function)&add_E_M<Double, Int16, Int16>;
-    pE[types::InternalType::IdUInt16] = (add_function)&add_E_M<Double, UInt16, UInt16>;
-    //pE[types::InternalType::IdInt32] = (add_function)&add_E_M<Double, Int32, Int32>;
-    pE[types::InternalType::IdUInt32] = (add_function)&add_E_M<Double, UInt32, UInt32>;
-    pE[types::InternalType::IdInt64] = (add_function)&add_E_M<Double, Int64, Int64>;
-    pE[types::InternalType::IdUInt64] = (add_function)&add_E_M<Double, UInt64, UInt64>;
-    //pE[types::InternalType::IdBool] = (add_function)&add_E_M<Double, Bool, Double>;
+    scilab_fill_add(Empty, Double, E_M, Double, Double, Double);
+    scilab_fill_add(Empty, Int8, E_M, Double, Int8, Int8);
+    scilab_fill_add(Empty, UInt8, E_M, Double, UInt8, UInt8);
+    scilab_fill_add(Empty, Int16, E_M, Double, Int16, Int16);
+    scilab_fill_add(Empty, UInt16, E_M, Double, UInt16, UInt16);
+    //scilab_fill_add(Empty, Int32, E_M, Double, Int32, Int32);
+    scilab_fill_add(Empty, UInt32, E_M, Double, UInt32, UInt32);
+    scilab_fill_add(Empty, Int64, E_M, Double, Int64, Int64);
+    scilab_fill_add(Empty, UInt64, E_M, Double, UInt64, UInt64);
+    //scilab_fill_add(Empty, Bool, E_M, Double, Bool, Double);
+    scilab_fill_add(Empty, String, E_M, Double, String, String);
+
     //Empty + Matrix Complex
-    pE[types::InternalType::IdDoubleComplex] = (add_function)&add_E_MC<Double, Double, Double>;
+    scilab_fill_add(Empty, DoubleComplex, E_MC, Double, Double, Double);
     //Empty + Scalar
-    pE[types::InternalType::IdScalarDouble] = (add_function)&add_E_S<Double, Double, Double>;
-    pE[types::InternalType::IdScalarInt8] = (add_function)&add_E_S<Double, Int8, Int8>;
-    pE[types::InternalType::IdScalarUInt8] = (add_function)&add_E_S<Double, UInt8, UInt8>;
-    pE[types::InternalType::IdScalarInt16] = (add_function)&add_E_S<Double, Int16, Int16>;
-    pE[types::InternalType::IdScalarUInt16] = (add_function)&add_E_S<Double, UInt16, UInt16>;
-    pE[types::InternalType::IdScalarInt32] = (add_function)&add_E_S<Double, Int32, Int32>;
-    pE[types::InternalType::IdScalarUInt32] = (add_function)&add_E_S<Double, UInt32, UInt32>;
-    pE[types::InternalType::IdScalarInt64] = (add_function)&add_E_S<Double, Int64, Int64>;
-    pE[types::InternalType::IdScalarUInt64] = (add_function)&add_E_S<Double, UInt64, UInt64>;
-    pE[types::InternalType::IdScalarBool] = (add_function)&add_E_S<Double, Bool, Double>;
+    scilab_fill_add(Empty, ScalarDouble, E_S, Double, Double, Double);
+    scilab_fill_add(Empty, ScalarInt8, E_S, Double, Int8, Int8);
+    scilab_fill_add(Empty, ScalarUInt8, E_S, Double, UInt8, UInt8);
+    scilab_fill_add(Empty, ScalarInt16, E_S, Double, Int16, Int16);
+    scilab_fill_add(Empty, ScalarUInt16, E_S, Double, UInt16, UInt16);
+    scilab_fill_add(Empty, ScalarInt32, E_S, Double, Int32, Int32);
+    scilab_fill_add(Empty, ScalarUInt32, E_S, Double, UInt32, UInt32);
+    scilab_fill_add(Empty, ScalarInt64, E_S, Double, Int64, Int64);
+    scilab_fill_add(Empty, ScalarUInt64, E_S, Double, UInt64, UInt64);
+    scilab_fill_add(Empty, ScalarBool, E_S, Double, Bool, Double);
+    scilab_fill_add(Empty, ScalarString, E_S, Double, String, String);
 
     //Empty + Scalar Complex
-    pE[types::InternalType::IdScalarDoubleComplex] = (add_function)&add_E_SC<Double, Double, Double>;
+    scilab_fill_add(Empty, ScalarDoubleComplex, E_SC, Double, Double, Double);
     //Empty + Empty
-    pE[types::InternalType::IdEmpty] = (add_function)&add_E_E<Double, Double, Double>;
+    scilab_fill_add(Empty, Empty, E_E, Double, Double, Double);
 
     //Int8
-    add_function* pI8 = pAddfunction[types::InternalType::IdInt8];
     //Matrix + Matrix
-    pI8[types::InternalType::IdDouble] = (add_function)&add_M_M<Int8, Double, Int8>;
-    pI8[types::InternalType::IdInt8] = (add_function)&add_M_M<Int8, Int8, Int8>;
-    pI8[types::InternalType::IdUInt8] = (add_function)&add_M_M<Int8, UInt8, UInt8>;
-    pI8[types::InternalType::IdInt16] = (add_function)&add_M_M<Int8, Int16, Int16>;
-    pI8[types::InternalType::IdUInt16] = (add_function)&add_M_M<Int8, UInt16, UInt16>;
-    pI8[types::InternalType::IdInt32] = (add_function)&add_M_M<Int8, Int32, Int32>;
-    pI8[types::InternalType::IdUInt32] = (add_function)&add_M_M<Int8, UInt32, UInt32>;
-    pI8[types::InternalType::IdInt64] = (add_function)&add_M_M<Int8, Int64, Int64>;
-    pI8[types::InternalType::IdUInt64] = (add_function)&add_M_M<Int8, UInt64, UInt64>;
-    pI8[types::InternalType::IdBool] = (add_function)&add_M_M<Int8, Bool, Int8>;
-    pI8[types::InternalType::IdEmpty] = (add_function)&add_M_M<Int8, Double, Int8>;
+    scilab_fill_add(Int8, Double, M_M, Int8, Double, Int8);
+    scilab_fill_add(Int8, Int8, M_M, Int8, Int8, Int8);
+    scilab_fill_add(Int8, UInt8, M_M, Int8, UInt8, UInt8);
+    scilab_fill_add(Int8, Int16, M_M, Int8, Int16, Int16);
+    scilab_fill_add(Int8, UInt16, M_M, Int8, UInt16, UInt16);
+    scilab_fill_add(Int8, Int32, M_M, Int8, Int32, Int32);
+    scilab_fill_add(Int8, UInt32, M_M, Int8, UInt32, UInt32);
+    scilab_fill_add(Int8, Int64, M_M, Int8, Int64, Int64);
+    scilab_fill_add(Int8, UInt64, M_M, Int8, UInt64, UInt64);
+    scilab_fill_add(Int8, Bool, M_M, Int8, Bool, Int8);
+    scilab_fill_add(Int8, Empty, M_M, Int8, Double, Int8);
 
     //Matrix + Scalar
-    pI8[types::InternalType::IdScalarDouble] = (add_function)&add_M_S<Int8, Double, Int8>;
-    pI8[types::InternalType::IdScalarInt8] = (add_function)&add_M_S<Int8, Int8, Int8>;
-    pI8[types::InternalType::IdScalarUInt8] = (add_function)&add_M_S<Int8, UInt8, UInt8>;
-    pI8[types::InternalType::IdScalarInt16] = (add_function)&add_M_S<Int8, Int16, Int16>;
-    pI8[types::InternalType::IdScalarUInt16] = (add_function)&add_M_S<Int8, UInt16, UInt16>;
-    pI8[types::InternalType::IdScalarInt32] = (add_function)&add_M_S<Int8, Int32, Int32>;
-    pI8[types::InternalType::IdScalarUInt32] = (add_function)&add_M_S<Int8, UInt32, UInt32>;
-    pI8[types::InternalType::IdScalarInt64] = (add_function)&add_M_S<Int8, Int64, Int64>;
-    pI8[types::InternalType::IdScalarUInt64] = (add_function)&add_M_S<Int8, UInt64, UInt64>;
-    pI8[types::InternalType::IdScalarBool] = (add_function)&add_M_S<Int8, Bool, Int8>;
+    scilab_fill_add(Int8, ScalarDouble, M_S, Int8, Double, Int8);
+    scilab_fill_add(Int8, ScalarInt8, M_S, Int8, Int8, Int8);
+    scilab_fill_add(Int8, ScalarUInt8, M_S, Int8, UInt8, UInt8);
+    scilab_fill_add(Int8, ScalarInt16, M_S, Int8, Int16, Int16);
+    scilab_fill_add(Int8, ScalarUInt16, M_S, Int8, UInt16, UInt16);
+    scilab_fill_add(Int8, ScalarInt32, M_S, Int8, Int32, Int32);
+    scilab_fill_add(Int8, ScalarUInt32, M_S, Int8, UInt32, UInt32);
+    scilab_fill_add(Int8, ScalarInt64, M_S, Int8, Int64, Int64);
+    scilab_fill_add(Int8, ScalarUInt64, M_S, Int8, UInt64, UInt64);
+    scilab_fill_add(Int8, ScalarBool, M_S, Int8, Bool, Int8);
 
-    add_function* pI81 = pAddfunction[types::InternalType::IdScalarInt8];
     //Scalar + Matrix
-    pI81[types::InternalType::IdDouble] = (add_function)&add_S_M<Int8, Double, Int8>;
-    pI81[types::InternalType::IdInt8] = (add_function)&add_S_M<Int8, Int8, Int8>;
-    pI81[types::InternalType::IdUInt8] = (add_function)&add_S_M<Int8, UInt8, UInt8>;
-    pI81[types::InternalType::IdInt16] = (add_function)&add_S_M<Int8, Int16, Int16>;
-    pI81[types::InternalType::IdUInt16] = (add_function)&add_S_M<Int8, UInt16, UInt16>;
-    pI81[types::InternalType::IdInt32] = (add_function)&add_S_M<Int8, Int32, Int32>;
-    pI81[types::InternalType::IdUInt32] = (add_function)&add_S_M<Int8, UInt32, UInt32>;
-    pI81[types::InternalType::IdInt64] = (add_function)&add_S_M<Int8, Int64, Int64>;
-    pI81[types::InternalType::IdUInt64] = (add_function)&add_S_M<Int8, UInt64, UInt64>;
-    pI81[types::InternalType::IdBool] = (add_function)&add_S_M<Int8, Bool, Int8>;
-    pI81[types::InternalType::IdEmpty] = (add_function)&add_M_M<Int8, Double, Int8>;
+    scilab_fill_add(ScalarInt8, Double, S_M, Int8, Double, Int8);
+    scilab_fill_add(ScalarInt8, Int8, S_M, Int8, Int8, Int8);
+    scilab_fill_add(ScalarInt8, UInt8, S_M, Int8, UInt8, UInt8);
+    scilab_fill_add(ScalarInt8, Int16, S_M, Int8, Int16, Int16);
+    scilab_fill_add(ScalarInt8, UInt16, S_M, Int8, UInt16, UInt16);
+    scilab_fill_add(ScalarInt8, Int32, S_M, Int8, Int32, Int32);
+    scilab_fill_add(ScalarInt8, UInt32, S_M, Int8, UInt32, UInt32);
+    scilab_fill_add(ScalarInt8, Int64, S_M, Int8, Int64, Int64);
+    scilab_fill_add(ScalarInt8, UInt64, S_M, Int8, UInt64, UInt64);
+    scilab_fill_add(ScalarInt8, Bool, S_M, Int8, Bool, Int8);
+    scilab_fill_add(ScalarInt8, Empty, M_M, Int8, Double, Int8);
 
     //Scalar + Scalar
-    pI81[types::InternalType::IdScalarDouble] = (add_function)&add_S_S<Int8, Double, Int8>;
-    pI81[types::InternalType::IdScalarInt8] = (add_function)&add_S_S<Int8, Int8, Int8>;
-    pI81[types::InternalType::IdScalarUInt8] = (add_function)&add_S_S<Int8, UInt8, UInt8>;
-    pI81[types::InternalType::IdScalarInt16] = (add_function)&add_S_S<Int8, Int16, Int16>;
-    pI81[types::InternalType::IdScalarUInt16] = (add_function)&add_S_S<Int8, UInt16, UInt16>;
-    pI81[types::InternalType::IdScalarInt32] = (add_function)&add_S_S<Int8, Int32, Int32>;
-    pI81[types::InternalType::IdScalarUInt32] = (add_function)&add_S_S<Int8, UInt32, UInt32>;
-    pI81[types::InternalType::IdScalarInt64] = (add_function)&add_S_S<Int8, Int64, Int64>;
-    pI81[types::InternalType::IdScalarUInt64] = (add_function)&add_S_S<Int8, UInt64, UInt64>;
-    pI81[types::InternalType::IdScalarBool] = (add_function)&add_S_S<Int8, Bool, Int8>;
+    scilab_fill_add(ScalarInt8, ScalarDouble, S_S, Int8, Double, Int8);
+    scilab_fill_add(ScalarInt8, ScalarInt8, S_S, Int8, Int8, Int8);
+    scilab_fill_add(ScalarInt8, ScalarUInt8, S_S, Int8, UInt8, UInt8);
+    scilab_fill_add(ScalarInt8, ScalarInt16, S_S, Int8, Int16, Int16);
+    scilab_fill_add(ScalarInt8, ScalarUInt16, S_S, Int8, UInt16, UInt16);
+    scilab_fill_add(ScalarInt8, ScalarInt32, S_S, Int8, Int32, Int32);
+    scilab_fill_add(ScalarInt8, ScalarUInt32, S_S, Int8, UInt32, UInt32);
+    scilab_fill_add(ScalarInt8, ScalarInt64, S_S, Int8, Int64, Int64);
+    scilab_fill_add(ScalarInt8, ScalarUInt64, S_S, Int8, UInt64, UInt64);
+    scilab_fill_add(ScalarInt8, ScalarBool, S_S, Int8, Bool, Int8);
 
     //UInt8
-    add_function* pUI8 = pAddfunction[types::InternalType::IdUInt8];
     //Matrix + Matrix
-    pUI8[types::InternalType::IdDouble] = (add_function)&add_M_M<UInt8, Double, UInt8>;
-    pUI8[types::InternalType::IdInt8] = (add_function)&add_M_M<UInt8, Int8, UInt8>;
-    pUI8[types::InternalType::IdUInt8] = (add_function)&add_M_M<UInt8, UInt8, UInt8>;
-    pUI8[types::InternalType::IdInt16] = (add_function)&add_M_M<UInt8, Int16, UInt16>;
-    pUI8[types::InternalType::IdUInt16] = (add_function)&add_M_M<UInt8, UInt16, UInt16>;
-    pUI8[types::InternalType::IdInt32] = (add_function)&add_M_M<UInt8, Int32, UInt32>;
-    pUI8[types::InternalType::IdUInt32] = (add_function)&add_M_M<UInt8, UInt32, UInt32>;
-    pUI8[types::InternalType::IdInt64] = (add_function)&add_M_M<UInt8, Int64, UInt64>;
-    pUI8[types::InternalType::IdUInt64] = (add_function)&add_M_M<UInt8, UInt64, UInt64>;
-    pUI8[types::InternalType::IdBool] = (add_function)&add_M_M<UInt8, Bool, UInt8>;
-    pUI8[types::InternalType::IdEmpty] = (add_function)&add_M_M<UInt8, Double, UInt8>;
+    scilab_fill_add(UInt8, Double, M_M, UInt8, Double, UInt8);
+    scilab_fill_add(UInt8, Int8, M_M, UInt8, Int8, UInt8);
+    scilab_fill_add(UInt8, UInt8, M_M, UInt8, UInt8, UInt8);
+    scilab_fill_add(UInt8, Int16, M_M, UInt8, Int16, UInt16);
+    scilab_fill_add(UInt8, UInt16, M_M, UInt8, UInt16, UInt16);
+    scilab_fill_add(UInt8, Int32, M_M, UInt8, Int32, UInt32);
+    scilab_fill_add(UInt8, UInt32, M_M, UInt8, UInt32, UInt32);
+    scilab_fill_add(UInt8, Int64, M_M, UInt8, Int64, UInt64);
+    scilab_fill_add(UInt8, UInt64, M_M, UInt8, UInt64, UInt64);
+    scilab_fill_add(UInt8, Bool, M_M, UInt8, Bool, UInt8);
+    scilab_fill_add(UInt8, Empty, M_M, UInt8, Double, UInt8);
 
     //Matrix + Scalar
-    pUI8[types::InternalType::IdScalarDouble] = (add_function)&add_M_S<UInt8, Double, UInt8>;
-    pUI8[types::InternalType::IdScalarInt8] = (add_function)&add_M_S<UInt8, Int8, UInt8>;
-    pUI8[types::InternalType::IdScalarUInt8] = (add_function)&add_M_S<UInt8, UInt8, UInt8>;
-    pUI8[types::InternalType::IdScalarInt16] = (add_function)&add_M_S<UInt8, Int16, UInt16>;
-    pUI8[types::InternalType::IdScalarUInt16] = (add_function)&add_M_S<UInt8, UInt16, UInt16>;
-    pUI8[types::InternalType::IdScalarInt32] = (add_function)&add_M_S<UInt8, Int32, UInt32>;
-    pUI8[types::InternalType::IdScalarUInt32] = (add_function)&add_M_S<UInt8, UInt32, UInt32>;
-    pUI8[types::InternalType::IdScalarInt64] = (add_function)&add_M_S<UInt8, Int64, UInt64>;
-    pUI8[types::InternalType::IdScalarUInt64] = (add_function)&add_M_S<UInt8, UInt64, UInt64>;
-    pUI8[types::InternalType::IdScalarBool] = (add_function)&add_M_S<UInt8, Bool, UInt8>;
+    scilab_fill_add(UInt8, ScalarDouble, M_S, UInt8, Double, UInt8);
+    scilab_fill_add(UInt8, ScalarInt8, M_S, UInt8, Int8, UInt8);
+    scilab_fill_add(UInt8, ScalarUInt8, M_S, UInt8, UInt8, UInt8);
+    scilab_fill_add(UInt8, ScalarInt16, M_S, UInt8, Int16, UInt16);
+    scilab_fill_add(UInt8, ScalarUInt16, M_S, UInt8, UInt16, UInt16);
+    scilab_fill_add(UInt8, ScalarInt32, M_S, UInt8, Int32, UInt32);
+    scilab_fill_add(UInt8, ScalarUInt32, M_S, UInt8, UInt32, UInt32);
+    scilab_fill_add(UInt8, ScalarInt64, M_S, UInt8, Int64, UInt64);
+    scilab_fill_add(UInt8, ScalarUInt64, M_S, UInt8, UInt64, UInt64);
+    scilab_fill_add(UInt8, ScalarBool, M_S, UInt8, Bool, UInt8);
 
-    add_function* pUI81 = pAddfunction[types::InternalType::IdScalarUInt8];
     //Scalar + Matrix
-    pUI81[types::InternalType::IdDouble] = (add_function)&add_S_M<UInt8, Double, UInt8>;
-    pUI81[types::InternalType::IdInt8] = (add_function)&add_S_M<UInt8, Int8, UInt8>;
-    pUI81[types::InternalType::IdUInt8] = (add_function)&add_S_M<UInt8, UInt8, UInt8>;
-    pUI81[types::InternalType::IdInt16] = (add_function)&add_S_M<UInt8, Int16, UInt16>;
-    pUI81[types::InternalType::IdUInt16] = (add_function)&add_S_M<UInt8, UInt16, UInt16>;
-    pUI81[types::InternalType::IdInt32] = (add_function)&add_S_M<UInt8, Int32, UInt32>;
-    pUI81[types::InternalType::IdUInt32] = (add_function)&add_S_M<UInt8, UInt32, UInt32>;
-    pUI81[types::InternalType::IdInt64] = (add_function)&add_S_M<UInt8, Int64, UInt64>;
-    pUI81[types::InternalType::IdUInt64] = (add_function)&add_S_M<UInt8, UInt64, UInt64>;
-    pUI81[types::InternalType::IdBool] = (add_function)&add_S_M<UInt8, Bool, UInt8>;
-    pUI81[types::InternalType::IdEmpty] = (add_function)&add_S_M<UInt8, Double, UInt8>;
+    scilab_fill_add(ScalarUInt8, Double, S_M, UInt8, Double, UInt8);
+    scilab_fill_add(ScalarUInt8, Int8, S_M, UInt8, Int8, UInt8);
+    scilab_fill_add(ScalarUInt8, UInt8, S_M, UInt8, UInt8, UInt8);
+    scilab_fill_add(ScalarUInt8, Int16, S_M, UInt8, Int16, UInt16);
+    scilab_fill_add(ScalarUInt8, UInt16, S_M, UInt8, UInt16, UInt16);
+    scilab_fill_add(ScalarUInt8, Int32, S_M, UInt8, Int32, UInt32);
+    scilab_fill_add(ScalarUInt8, UInt32, S_M, UInt8, UInt32, UInt32);
+    scilab_fill_add(ScalarUInt8, Int64, S_M, UInt8, Int64, UInt64);
+    scilab_fill_add(ScalarUInt8, UInt64, S_M, UInt8, UInt64, UInt64);
+    scilab_fill_add(ScalarUInt8, Bool, S_M, UInt8, Bool, UInt8);
+    scilab_fill_add(ScalarUInt8, Empty, S_M, UInt8, Double, UInt8);
 
     //Scalar + Scalar
-    pUI81[types::InternalType::IdScalarDouble] = (add_function)&add_S_S<UInt8, Double, UInt8>;
-    pUI81[types::InternalType::IdScalarInt8] = (add_function)&add_S_S<UInt8, Int8, UInt8>;
-    pUI81[types::InternalType::IdScalarUInt8] = (add_function)&add_S_S<UInt8, UInt8, UInt8>;
-    pUI81[types::InternalType::IdScalarInt16] = (add_function)&add_S_S<UInt8, Int16, UInt16>;
-    pUI81[types::InternalType::IdScalarUInt16] = (add_function)&add_S_S<UInt8, UInt16, UInt16>;
-    pUI81[types::InternalType::IdScalarInt32] = (add_function)&add_S_S<UInt8, Int32, UInt32>;
-    pUI81[types::InternalType::IdScalarUInt32] = (add_function)&add_S_S<UInt8, UInt32, UInt32>;
-    pUI81[types::InternalType::IdScalarInt64] = (add_function)&add_S_S<UInt8, Int64, UInt64>;
-    pUI81[types::InternalType::IdScalarUInt64] = (add_function)&add_S_S<UInt8, UInt64, UInt64>;
-    pUI81[types::InternalType::IdScalarBool] = (add_function)&add_S_S<UInt8, Bool, UInt8>;
+    scilab_fill_add(ScalarUInt8, ScalarDouble, S_S, UInt8, Double, UInt8);
+    scilab_fill_add(ScalarUInt8, ScalarInt8, S_S, UInt8, Int8, UInt8);
+    scilab_fill_add(ScalarUInt8, ScalarUInt8, S_S, UInt8, UInt8, UInt8);
+    scilab_fill_add(ScalarUInt8, ScalarInt16, S_S, UInt8, Int16, UInt16);
+    scilab_fill_add(ScalarUInt8, ScalarUInt16, S_S, UInt8, UInt16, UInt16);
+    scilab_fill_add(ScalarUInt8, ScalarInt32, S_S, UInt8, Int32, UInt32);
+    scilab_fill_add(ScalarUInt8, ScalarUInt32, S_S, UInt8, UInt32, UInt32);
+    scilab_fill_add(ScalarUInt8, ScalarInt64, S_S, UInt8, Int64, UInt64);
+    scilab_fill_add(ScalarUInt8, ScalarUInt64, S_S, UInt8, UInt64, UInt64);
+    scilab_fill_add(ScalarUInt8, ScalarBool, S_S, UInt8, Bool, UInt8);
 
     //Int16
-    add_function* pI16 = pAddfunction[types::InternalType::IdInt16];
     //Matrix + Matrix
-    pI16[types::InternalType::IdDouble] = (add_function)&add_M_M<Int16, Double, Int16>;
-    pI16[types::InternalType::IdInt8] = (add_function)&add_M_M<Int16, Int8, Int16>;
-    pI16[types::InternalType::IdUInt8] = (add_function)&add_M_M<Int16, UInt8, UInt16>;
-    pI16[types::InternalType::IdInt16] = (add_function)&add_M_M<Int16, Int16, Int16>;
-    pI16[types::InternalType::IdUInt16] = (add_function)&add_M_M<Int16, UInt16, UInt16>;
-    pI16[types::InternalType::IdInt32] = (add_function)&add_M_M<Int16, Int32, Int32>;
-    pI16[types::InternalType::IdUInt32] = (add_function)&add_M_M<Int16, UInt32, UInt32>;
-    pI16[types::InternalType::IdInt64] = (add_function)&add_M_M<Int16, Int64, Int64>;
-    pI16[types::InternalType::IdUInt64] = (add_function)&add_M_M<Int16, UInt64, UInt64>;
-    pI16[types::InternalType::IdBool] = (add_function)&add_M_M<Int16, Bool, Int16>;
-    pI16[types::InternalType::IdEmpty] = (add_function)&add_M_M<Int16, Double, Int16>;
+    scilab_fill_add(Int16, Double, M_M, Int16, Double, Int16);
+    scilab_fill_add(Int16, Int8, M_M, Int16, Int8, Int16);
+    scilab_fill_add(Int16, UInt8, M_M, Int16, UInt8, UInt16);
+    scilab_fill_add(Int16, Int16, M_M, Int16, Int16, Int16);
+    scilab_fill_add(Int16, UInt16, M_M, Int16, UInt16, UInt16);
+    scilab_fill_add(Int16, Int32, M_M, Int16, Int32, Int32);
+    scilab_fill_add(Int16, UInt32, M_M, Int16, UInt32, UInt32);
+    scilab_fill_add(Int16, Int64, M_M, Int16, Int64, Int64);
+    scilab_fill_add(Int16, UInt64, M_M, Int16, UInt64, UInt64);
+    scilab_fill_add(Int16, Bool, M_M, Int16, Bool, Int16);
+    scilab_fill_add(Int16, Empty, M_M, Int16, Double, Int16);
 
     //Matrix + Scalar
-    pI16[types::InternalType::IdScalarDouble] = (add_function)&add_M_S<Int16, Double, Int16>;
-    pI16[types::InternalType::IdScalarInt8] = (add_function)&add_M_S<Int16, Int8, Int16>;
-    pI16[types::InternalType::IdScalarUInt8] = (add_function)&add_M_S<Int16, UInt8, UInt16>;
-    pI16[types::InternalType::IdScalarInt16] = (add_function)&add_M_S<Int16, Int16, Int16>;
-    pI16[types::InternalType::IdScalarUInt16] = (add_function)&add_M_S<Int16, UInt16, UInt16>;
-    pI16[types::InternalType::IdScalarInt32] = (add_function)&add_M_S<Int16, Int32, Int32>;
-    pI16[types::InternalType::IdScalarUInt32] = (add_function)&add_M_S<Int16, UInt32, UInt32>;
-    pI16[types::InternalType::IdScalarInt64] = (add_function)&add_M_S<Int16, Int64, Int64>;
-    pI16[types::InternalType::IdScalarUInt64] = (add_function)&add_M_S<Int16, UInt64, UInt64>;
-    pI16[types::InternalType::IdScalarBool] = (add_function)&add_M_S<Int16, Bool, Int16>;
+    scilab_fill_add(Int16, ScalarDouble, M_S, Int16, Double, Int16);
+    scilab_fill_add(Int16, ScalarInt8, M_S, Int16, Int8, Int16);
+    scilab_fill_add(Int16, ScalarUInt8, M_S, Int16, UInt8, UInt16);
+    scilab_fill_add(Int16, ScalarInt16, M_S, Int16, Int16, Int16);
+    scilab_fill_add(Int16, ScalarUInt16, M_S, Int16, UInt16, UInt16);
+    scilab_fill_add(Int16, ScalarInt32, M_S, Int16, Int32, Int32);
+    scilab_fill_add(Int16, ScalarUInt32, M_S, Int16, UInt32, UInt32);
+    scilab_fill_add(Int16, ScalarInt64, M_S, Int16, Int64, Int64);
+    scilab_fill_add(Int16, ScalarUInt64, M_S, Int16, UInt64, UInt64);
+    scilab_fill_add(Int16, ScalarBool, M_S, Int16, Bool, Int16);
 
-    add_function* pI161 = pAddfunction[types::InternalType::IdScalarInt16];
     //Scalar + Matrix
-    pI161[types::InternalType::IdDouble] = (add_function)&add_S_M<Int16, Double, Int16>;
-    pI161[types::InternalType::IdInt8] = (add_function)&add_S_M<Int16, Int8, Int16>;
-    pI161[types::InternalType::IdUInt8] = (add_function)&add_S_M<Int16, UInt8, UInt16>;
-    pI161[types::InternalType::IdInt16] = (add_function)&add_S_M<Int16, Int16, Int16>;
-    pI161[types::InternalType::IdUInt16] = (add_function)&add_S_M<Int16, UInt16, UInt16>;
-    pI161[types::InternalType::IdInt32] = (add_function)&add_S_M<Int16, Int32, Int32>;
-    pI161[types::InternalType::IdUInt32] = (add_function)&add_S_M<Int16, UInt32, UInt32>;
-    pI161[types::InternalType::IdInt64] = (add_function)&add_S_M<Int16, Int64, Int64>;
-    pI161[types::InternalType::IdUInt64] = (add_function)&add_S_M<Int16, UInt64, UInt64>;
-    pI161[types::InternalType::IdBool] = (add_function)&add_S_M<Int16, Bool, Int16>;
-    pI161[types::InternalType::IdEmpty] = (add_function)&add_M_M<Int16, Double, Int16>;
+    scilab_fill_add(ScalarInt16, Double, S_M, Int16, Double, Int16);
+    scilab_fill_add(ScalarInt16, Int8, S_M, Int16, Int8, Int16);
+    scilab_fill_add(ScalarInt16, UInt8, S_M, Int16, UInt8, UInt16);
+    scilab_fill_add(ScalarInt16, Int16, S_M, Int16, Int16, Int16);
+    scilab_fill_add(ScalarInt16, UInt16, S_M, Int16, UInt16, UInt16);
+    scilab_fill_add(ScalarInt16, Int32, S_M, Int16, Int32, Int32);
+    scilab_fill_add(ScalarInt16, UInt32, S_M, Int16, UInt32, UInt32);
+    scilab_fill_add(ScalarInt16, Int64, S_M, Int16, Int64, Int64);
+    scilab_fill_add(ScalarInt16, UInt64, S_M, Int16, UInt64, UInt64);
+    scilab_fill_add(ScalarInt16, Bool, S_M, Int16, Bool, Int16);
+    scilab_fill_add(ScalarInt16, Empty, M_M, Int16, Double, Int16);
 
     //Scalar + Scalar
-    pI161[types::InternalType::IdScalarDouble] = (add_function)&add_S_S<Int16, Double, Int16>;
-    pI161[types::InternalType::IdScalarInt8] = (add_function)&add_S_S<Int16, Int8, Int16>;
-    pI161[types::InternalType::IdScalarUInt8] = (add_function)&add_S_S<Int16, UInt8, UInt16>;
-    pI161[types::InternalType::IdScalarInt16] = (add_function)&add_S_S<Int16, Int16, Int16>;
-    pI161[types::InternalType::IdScalarUInt16] = (add_function)&add_S_S<Int16, UInt16, UInt16>;
-    pI161[types::InternalType::IdScalarInt32] = (add_function)&add_S_S<Int16, Int32, Int32>;
-    pI161[types::InternalType::IdScalarUInt32] = (add_function)&add_S_S<Int16, UInt32, UInt32>;
-    pI161[types::InternalType::IdScalarInt64] = (add_function)&add_S_S<Int16, Int64, Int64>;
-    pI161[types::InternalType::IdScalarUInt64] = (add_function)&add_S_S<Int16, UInt64, UInt64>;
-    pI161[types::InternalType::IdScalarBool] = (add_function)&add_S_S<Int16, Bool, Int16>;
+    scilab_fill_add(ScalarInt16, ScalarDouble, S_S, Int16, Double, Int16);
+    scilab_fill_add(ScalarInt16, ScalarInt8, S_S, Int16, Int8, Int16);
+    scilab_fill_add(ScalarInt16, ScalarUInt8, S_S, Int16, UInt8, UInt16);
+    scilab_fill_add(ScalarInt16, ScalarInt16, S_S, Int16, Int16, Int16);
+    scilab_fill_add(ScalarInt16, ScalarUInt16, S_S, Int16, UInt16, UInt16);
+    scilab_fill_add(ScalarInt16, ScalarInt32, S_S, Int16, Int32, Int32);
+    scilab_fill_add(ScalarInt16, ScalarUInt32, S_S, Int16, UInt32, UInt32);
+    scilab_fill_add(ScalarInt16, ScalarInt64, S_S, Int16, Int64, Int64);
+    scilab_fill_add(ScalarInt16, ScalarUInt64, S_S, Int16, UInt64, UInt64);
+    scilab_fill_add(ScalarInt16, ScalarBool, S_S, Int16, Bool, Int16);
 
     //UInt16
-    add_function* pUI16 = pAddfunction[types::InternalType::IdUInt16];
     //Matrix + Matrix
-    pUI16[types::InternalType::IdDouble] = (add_function)&add_M_M<UInt16, Double, UInt16>;
-    pUI16[types::InternalType::IdInt8] = (add_function)&add_M_M<UInt16, Int8, UInt16>;
-    pUI16[types::InternalType::IdUInt8] = (add_function)&add_M_M<UInt16, UInt8, UInt16>;
-    pUI16[types::InternalType::IdInt16] = (add_function)&add_M_M<UInt16, Int16, UInt16>;
-    pUI16[types::InternalType::IdUInt16] = (add_function)&add_M_M<UInt16, UInt16, UInt16>;
-    pUI16[types::InternalType::IdInt32] = (add_function)&add_M_M<UInt16, Int32, UInt32>;
-    pUI16[types::InternalType::IdUInt32] = (add_function)&add_M_M<UInt16, UInt32, UInt32>;
-    pUI16[types::InternalType::IdInt64] = (add_function)&add_M_M<UInt16, Int64, UInt64>;
-    pUI16[types::InternalType::IdUInt64] = (add_function)&add_M_M<UInt16, UInt64, UInt64>;
-    pUI16[types::InternalType::IdBool] = (add_function)&add_M_M<UInt16, Bool, UInt16>;
-    pUI16[types::InternalType::IdEmpty] = (add_function)&add_M_M<UInt16, Double, UInt16>;
+    scilab_fill_add(UInt16, Double, M_M, UInt16, Double, UInt16);
+    scilab_fill_add(UInt16, Int8, M_M, UInt16, Int8, UInt16);
+    scilab_fill_add(UInt16, UInt8, M_M, UInt16, UInt8, UInt16);
+    scilab_fill_add(UInt16, Int16, M_M, UInt16, Int16, UInt16);
+    scilab_fill_add(UInt16, UInt16, M_M, UInt16, UInt16, UInt16);
+    scilab_fill_add(UInt16, Int32, M_M, UInt16, Int32, UInt32);
+    scilab_fill_add(UInt16, UInt32, M_M, UInt16, UInt32, UInt32);
+    scilab_fill_add(UInt16, Int64, M_M, UInt16, Int64, UInt64);
+    scilab_fill_add(UInt16, UInt64, M_M, UInt16, UInt64, UInt64);
+    scilab_fill_add(UInt16, Bool, M_M, UInt16, Bool, UInt16);
+    scilab_fill_add(UInt16, Empty, M_M, UInt16, Double, UInt16);
 
     //Matrix + Scalar
-    pUI16[types::InternalType::IdScalarDouble] = (add_function)&add_M_S<UInt16, Double, UInt16>;
-    pUI16[types::InternalType::IdScalarInt8] = (add_function)&add_M_S<UInt16, Int8, UInt16>;
-    pUI16[types::InternalType::IdScalarUInt8] = (add_function)&add_M_S<UInt16, UInt8, UInt16>;
-    pUI16[types::InternalType::IdScalarInt16] = (add_function)&add_M_S<UInt16, Int16, UInt16>;
-    pUI16[types::InternalType::IdScalarUInt16] = (add_function)&add_M_S<UInt16, UInt16, UInt16>;
-    pUI16[types::InternalType::IdScalarInt32] = (add_function)&add_M_S<UInt16, Int32, UInt32>;
-    pUI16[types::InternalType::IdScalarUInt32] = (add_function)&add_M_S<UInt16, UInt32, UInt32>;
-    pUI16[types::InternalType::IdScalarInt64] = (add_function)&add_M_S<UInt16, Int64, UInt64>;
-    pUI16[types::InternalType::IdScalarUInt64] = (add_function)&add_M_S<UInt16, UInt64, UInt64>;
-    pUI16[types::InternalType::IdScalarBool] = (add_function)&add_M_S<UInt16, Bool, UInt16>;
+    scilab_fill_add(UInt16, ScalarDouble, M_S, UInt16, Double, UInt16);
+    scilab_fill_add(UInt16, ScalarInt8, M_S, UInt16, Int8, UInt16);
+    scilab_fill_add(UInt16, ScalarUInt8, M_S, UInt16, UInt8, UInt16);
+    scilab_fill_add(UInt16, ScalarInt16, M_S, UInt16, Int16, UInt16);
+    scilab_fill_add(UInt16, ScalarUInt16, M_S, UInt16, UInt16, UInt16);
+    scilab_fill_add(UInt16, ScalarInt32, M_S, UInt16, Int32, UInt32);
+    scilab_fill_add(UInt16, ScalarUInt32, M_S, UInt16, UInt32, UInt32);
+    scilab_fill_add(UInt16, ScalarInt64, M_S, UInt16, Int64, UInt64);
+    scilab_fill_add(UInt16, ScalarUInt64, M_S, UInt16, UInt64, UInt64);
+    scilab_fill_add(UInt16, ScalarBool, M_S, UInt16, Bool, UInt16);
 
-    add_function* pUI161 = pAddfunction[types::InternalType::IdScalarUInt16];
     //Scalar + Matrix
-    pUI161[types::InternalType::IdDouble] = (add_function)&add_S_M<UInt16, Double, UInt16>;
-    pUI161[types::InternalType::IdInt8] = (add_function)&add_S_M<UInt16, Int8, UInt16>;
-    pUI161[types::InternalType::IdUInt8] = (add_function)&add_S_M<UInt16, UInt8, UInt16>;
-    pUI161[types::InternalType::IdInt16] = (add_function)&add_S_M<UInt16, Int16, UInt16>;
-    pUI161[types::InternalType::IdUInt16] = (add_function)&add_S_M<UInt16, UInt16, UInt16>;
-    pUI161[types::InternalType::IdInt32] = (add_function)&add_S_M<UInt16, Int32, UInt32>;
-    pUI161[types::InternalType::IdUInt32] = (add_function)&add_S_M<UInt16, UInt32, UInt32>;
-    pUI161[types::InternalType::IdInt64] = (add_function)&add_S_M<UInt16, Int64, UInt64>;
-    pUI161[types::InternalType::IdUInt64] = (add_function)&add_S_M<UInt16, UInt64, UInt64>;
-    pUI161[types::InternalType::IdBool] = (add_function)&add_S_M<UInt16, Bool, UInt16>;
-    pUI161[types::InternalType::IdEmpty] = (add_function)&add_S_M<UInt16, Double, UInt16>;
+    scilab_fill_add(ScalarUInt16, Double, S_M, UInt16, Double, UInt16);
+    scilab_fill_add(ScalarUInt16, Int8, S_M, UInt16, Int8, UInt16);
+    scilab_fill_add(ScalarUInt16, UInt8, S_M, UInt16, UInt8, UInt16);
+    scilab_fill_add(ScalarUInt16, Int16, S_M, UInt16, Int16, UInt16);
+    scilab_fill_add(ScalarUInt16, UInt16, S_M, UInt16, UInt16, UInt16);
+    scilab_fill_add(ScalarUInt16, Int32, S_M, UInt16, Int32, UInt32);
+    scilab_fill_add(ScalarUInt16, UInt32, S_M, UInt16, UInt32, UInt32);
+    scilab_fill_add(ScalarUInt16, Int64, S_M, UInt16, Int64, UInt64);
+    scilab_fill_add(ScalarUInt16, UInt64, S_M, UInt16, UInt64, UInt64);
+    scilab_fill_add(ScalarUInt16, Bool, S_M, UInt16, Bool, UInt16);
+    scilab_fill_add(ScalarUInt16, Empty, S_M, UInt16, Double, UInt16);
 
     //Scalar + Scalar
-    pUI161[types::InternalType::IdScalarDouble] = (add_function)&add_S_S<UInt16, Double, UInt16>;
-    pUI161[types::InternalType::IdScalarInt8] = (add_function)&add_S_S<UInt16, Int8, UInt16>;
-    pUI161[types::InternalType::IdScalarUInt8] = (add_function)&add_S_S<UInt16, UInt8, UInt16>;
-    pUI161[types::InternalType::IdScalarInt16] = (add_function)&add_S_S<UInt16, Int16, UInt16>;
-    pUI161[types::InternalType::IdScalarUInt16] = (add_function)&add_S_S<UInt16, UInt16, UInt16>;
-    pUI161[types::InternalType::IdScalarInt32] = (add_function)&add_S_S<UInt16, Int32, UInt32>;
-    pUI161[types::InternalType::IdScalarUInt32] = (add_function)&add_S_S<UInt16, UInt32, UInt32>;
-    pUI161[types::InternalType::IdScalarInt64] = (add_function)&add_S_S<UInt16, Int64, UInt64>;
-    pUI161[types::InternalType::IdScalarUInt64] = (add_function)&add_S_S<UInt16, UInt64, UInt64>;
-    pUI161[types::InternalType::IdScalarBool] = (add_function)&add_S_S<UInt16, Bool, UInt16>;
+    scilab_fill_add(ScalarUInt16, ScalarDouble, S_S, UInt16, Double, UInt16);
+    scilab_fill_add(ScalarUInt16, ScalarInt8, S_S, UInt16, Int8, UInt16);
+    scilab_fill_add(ScalarUInt16, ScalarUInt8, S_S, UInt16, UInt8, UInt16);
+    scilab_fill_add(ScalarUInt16, ScalarInt16, S_S, UInt16, Int16, UInt16);
+    scilab_fill_add(ScalarUInt16, ScalarUInt16, S_S, UInt16, UInt16, UInt16);
+    scilab_fill_add(ScalarUInt16, ScalarInt32, S_S, UInt16, Int32, UInt32);
+    scilab_fill_add(ScalarUInt16, ScalarUInt32, S_S, UInt16, UInt32, UInt32);
+    scilab_fill_add(ScalarUInt16, ScalarInt64, S_S, UInt16, Int64, UInt64);
+    scilab_fill_add(ScalarUInt16, ScalarUInt64, S_S, UInt16, UInt64, UInt64);
+    scilab_fill_add(ScalarUInt16, ScalarBool, S_S, UInt16, Bool, UInt16);
 
     //Int32
-    add_function* pI32 = pAddfunction[types::InternalType::IdInt32];
     //Matrix + Matrix
-    pI32[types::InternalType::IdDouble] = (add_function)&add_M_M<Int32, Double, Int32>;
-    pI32[types::InternalType::IdInt8] = (add_function)&add_M_M<Int32, Int8, Int32>;
-    pI32[types::InternalType::IdUInt8] = (add_function)&add_M_M<Int32, UInt8, UInt32>;
-    pI32[types::InternalType::IdInt16] = (add_function)&add_M_M<Int32, Int16, Int32>;
-    pI32[types::InternalType::IdUInt16] = (add_function)&add_M_M<Int32, UInt16, UInt32>;
-    pI32[types::InternalType::IdInt32] = (add_function)&add_M_M<Int32, Int32, Int32>;
-    pI32[types::InternalType::IdUInt32] = (add_function)&add_M_M<Int32, UInt32, UInt32>;
-    pI32[types::InternalType::IdInt64] = (add_function)&add_M_M<Int32, Int64, Int64>;
-    pI32[types::InternalType::IdUInt64] = (add_function)&add_M_M<Int32, UInt64, UInt64>;
-    pI32[types::InternalType::IdBool] = (add_function)&add_M_M<Int32, Bool, Int32>;
-    pI32[types::InternalType::IdEmpty] = (add_function)&add_M_M<Int32, Double, Int32>;
+    scilab_fill_add(Int32, Double, M_M, Int32, Double, Int32);
+    scilab_fill_add(Int32, Int8, M_M, Int32, Int8, Int32);
+    scilab_fill_add(Int32, UInt8, M_M, Int32, UInt8, UInt32);
+    scilab_fill_add(Int32, Int16, M_M, Int32, Int16, Int32);
+    scilab_fill_add(Int32, UInt16, M_M, Int32, UInt16, UInt32);
+    scilab_fill_add(Int32, Int32, M_M, Int32, Int32, Int32);
+    scilab_fill_add(Int32, UInt32, M_M, Int32, UInt32, UInt32);
+    scilab_fill_add(Int32, Int64, M_M, Int32, Int64, Int64);
+    scilab_fill_add(Int32, UInt64, M_M, Int32, UInt64, UInt64);
+    scilab_fill_add(Int32, Bool, M_M, Int32, Bool, Int32);
+    scilab_fill_add(Int32, Empty, M_M, Int32, Double, Int32);
 
     //Matrix + Scalar
-    pI32[types::InternalType::IdScalarDouble] = (add_function)&add_M_S<Int32, Double, Int32>;
-    pI32[types::InternalType::IdScalarInt8] = (add_function)&add_M_S<Int32, Int8, Int32>;
-    pI32[types::InternalType::IdScalarUInt8] = (add_function)&add_M_S<Int32, UInt8, UInt32>;
-    pI32[types::InternalType::IdScalarInt16] = (add_function)&add_M_S<Int32, Int16, Int32>;
-    pI32[types::InternalType::IdScalarUInt16] = (add_function)&add_M_S<Int32, UInt16, UInt32>;
-    pI32[types::InternalType::IdScalarInt32] = (add_function)&add_M_S<Int32, Int32, Int32>;
-    pI32[types::InternalType::IdScalarUInt32] = (add_function)&add_M_S<Int32, UInt32, UInt32>;
-    pI32[types::InternalType::IdScalarInt64] = (add_function)&add_M_S<Int32, Int64, Int64>;
-    pI32[types::InternalType::IdScalarUInt64] = (add_function)&add_M_S<Int32, UInt64, UInt64>;
-    pI32[types::InternalType::IdScalarBool] = (add_function)&add_M_S<Int32, Bool, Int32>;
+    scilab_fill_add(Int32, ScalarDouble, M_S, Int32, Double, Int32);
+    scilab_fill_add(Int32, ScalarInt8, M_S, Int32, Int8, Int32);
+    scilab_fill_add(Int32, ScalarUInt8, M_S, Int32, UInt8, UInt32);
+    scilab_fill_add(Int32, ScalarInt16, M_S, Int32, Int16, Int32);
+    scilab_fill_add(Int32, ScalarUInt16, M_S, Int32, UInt16, UInt32);
+    scilab_fill_add(Int32, ScalarInt32, M_S, Int32, Int32, Int32);
+    scilab_fill_add(Int32, ScalarUInt32, M_S, Int32, UInt32, UInt32);
+    scilab_fill_add(Int32, ScalarInt64, M_S, Int32, Int64, Int64);
+    scilab_fill_add(Int32, ScalarUInt64, M_S, Int32, UInt64, UInt64);
+    scilab_fill_add(Int32, ScalarBool, M_S, Int32, Bool, Int32);
 
-    add_function* pI321 = pAddfunction[types::InternalType::IdScalarInt32];
     //Scalar + Matrix
-    pI321[types::InternalType::IdDouble] = (add_function)&add_S_M<Int32, Double, Int32>;
-    pI321[types::InternalType::IdInt8] = (add_function)&add_S_M<Int32, Int8, Int32>;
-    pI321[types::InternalType::IdUInt8] = (add_function)&add_S_M<Int32, UInt8, UInt32>;
-    pI321[types::InternalType::IdInt16] = (add_function)&add_S_M<Int32, Int16, Int32>;
-    pI321[types::InternalType::IdUInt16] = (add_function)&add_S_M<Int32, UInt16, UInt32>;
-    pI321[types::InternalType::IdInt32] = (add_function)&add_S_M<Int32, Int32, Int32>;
-    pI321[types::InternalType::IdUInt32] = (add_function)&add_S_M<Int32, UInt32, UInt32>;
-    pI321[types::InternalType::IdInt64] = (add_function)&add_S_M<Int32, Int64, Int64>;
-    pI321[types::InternalType::IdUInt64] = (add_function)&add_S_M<Int32, UInt64, UInt64>;
-    pI321[types::InternalType::IdBool] = (add_function)&add_S_M<Int32, Bool, Int32>;
-    pI321[types::InternalType::IdEmpty] = (add_function)&add_M_M<Int32, Double, Int32>;
+    scilab_fill_add(ScalarInt32, Double, S_M, Int32, Double, Int32);
+    scilab_fill_add(ScalarInt32, Int8, S_M, Int32, Int8, Int32);
+    scilab_fill_add(ScalarInt32, UInt8, S_M, Int32, UInt8, UInt32);
+    scilab_fill_add(ScalarInt32, Int16, S_M, Int32, Int16, Int32);
+    scilab_fill_add(ScalarInt32, UInt16, S_M, Int32, UInt16, UInt32);
+    scilab_fill_add(ScalarInt32, Int32, S_M, Int32, Int32, Int32);
+    scilab_fill_add(ScalarInt32, UInt32, S_M, Int32, UInt32, UInt32);
+    scilab_fill_add(ScalarInt32, Int64, S_M, Int32, Int64, Int64);
+    scilab_fill_add(ScalarInt32, UInt64, S_M, Int32, UInt64, UInt64);
+    scilab_fill_add(ScalarInt32, Bool, S_M, Int32, Bool, Int32);
+    scilab_fill_add(ScalarInt32, Empty, M_M, Int32, Double, Int32);
 
     //Scalar + Scalar
-    pI321[types::InternalType::IdScalarDouble] = (add_function)&add_S_S<Int32, Double, Int32>;
-    pI321[types::InternalType::IdScalarInt8] = (add_function)&add_S_S<Int32, Int8, Int32>;
-    pI321[types::InternalType::IdScalarUInt8] = (add_function)&add_S_S<Int32, UInt8, UInt32>;
-    pI321[types::InternalType::IdScalarInt16] = (add_function)&add_S_S<Int32, Int16, Int32>;
-    pI321[types::InternalType::IdScalarUInt16] = (add_function)&add_S_S<Int32, UInt16, UInt32>;
-    pI321[types::InternalType::IdScalarInt32] = (add_function)&add_S_S<Int32, Int32, Int32>;
-    pI321[types::InternalType::IdScalarUInt32] = (add_function)&add_S_S<Int32, UInt32, UInt32>;
-    pI321[types::InternalType::IdScalarInt64] = (add_function)&add_S_S<Int32, Int64, Int64>;
-    pI321[types::InternalType::IdScalarUInt64] = (add_function)&add_S_S<Int32, UInt64, UInt64>;
-    pI321[types::InternalType::IdScalarBool] = (add_function)&add_S_S<Int32, Bool, Int32>;
+    scilab_fill_add(ScalarInt32, ScalarDouble, S_S, Int32, Double, Int32);
+    scilab_fill_add(ScalarInt32, ScalarInt8, S_S, Int32, Int8, Int32);
+    scilab_fill_add(ScalarInt32, ScalarUInt8, S_S, Int32, UInt8, UInt32);
+    scilab_fill_add(ScalarInt32, ScalarInt16, S_S, Int32, Int16, Int32);
+    scilab_fill_add(ScalarInt32, ScalarUInt16, S_S, Int32, UInt16, UInt32);
+    scilab_fill_add(ScalarInt32, ScalarInt32, S_S, Int32, Int32, Int32);
+    scilab_fill_add(ScalarInt32, ScalarUInt32, S_S, Int32, UInt32, UInt32);
+    scilab_fill_add(ScalarInt32, ScalarInt64, S_S, Int32, Int64, Int64);
+    scilab_fill_add(ScalarInt32, ScalarUInt64, S_S, Int32, UInt64, UInt64);
+    scilab_fill_add(ScalarInt32, ScalarBool, S_S, Int32, Bool, Int32);
 
     //UInt32
-    add_function* pUI32 = pAddfunction[types::InternalType::IdUInt32];
     //Matrix + Matrix
-    pUI32[types::InternalType::IdDouble] = (add_function)&add_M_M<UInt32, Double, UInt32>;
-    pUI32[types::InternalType::IdInt8] = (add_function)&add_M_M<UInt32, Int8, UInt32>;
-    pUI32[types::InternalType::IdUInt8] = (add_function)&add_M_M<UInt32, UInt8, UInt32>;
-    pUI32[types::InternalType::IdInt16] = (add_function)&add_M_M<UInt32, Int16, UInt32>;
-    pUI32[types::InternalType::IdUInt16] = (add_function)&add_M_M<UInt32, UInt16, UInt32>;
-    pUI32[types::InternalType::IdInt32] = (add_function)&add_M_M<UInt32, Int32, UInt32>;
-    pUI32[types::InternalType::IdUInt32] = (add_function)&add_M_M<UInt32, UInt32, UInt32>;
-    pUI32[types::InternalType::IdInt64] = (add_function)&add_M_M<UInt32, Int64, UInt64>;
-    pUI32[types::InternalType::IdUInt64] = (add_function)&add_M_M<UInt32, UInt64, UInt64>;
-    pUI32[types::InternalType::IdBool] = (add_function)&add_M_M<UInt32, Bool, UInt32>;
-    pUI32[types::InternalType::IdEmpty] = (add_function)&add_M_M<UInt32, Double, UInt32>;
+    scilab_fill_add(UInt32, Double, M_M, UInt32, Double, UInt32);
+    scilab_fill_add(UInt32, Int8, M_M, UInt32, Int8, UInt32);
+    scilab_fill_add(UInt32, UInt8, M_M, UInt32, UInt8, UInt32);
+    scilab_fill_add(UInt32, Int16, M_M, UInt32, Int16, UInt32);
+    scilab_fill_add(UInt32, UInt16, M_M, UInt32, UInt16, UInt32);
+    scilab_fill_add(UInt32, Int32, M_M, UInt32, Int32, UInt32);
+    scilab_fill_add(UInt32, UInt32, M_M, UInt32, UInt32, UInt32);
+    scilab_fill_add(UInt32, Int64, M_M, UInt32, Int64, UInt64);
+    scilab_fill_add(UInt32, UInt64, M_M, UInt32, UInt64, UInt64);
+    scilab_fill_add(UInt32, Bool, M_M, UInt32, Bool, UInt32);
+    scilab_fill_add(UInt32, Empty, M_M, UInt32, Double, UInt32);
 
     //Matrix + Scalar
-    pUI32[types::InternalType::IdScalarDouble] = (add_function)&add_M_S<UInt32, Double, UInt32>;
-    pUI32[types::InternalType::IdScalarInt8] = (add_function)&add_M_S<UInt32, Int8, UInt32>;
-    pUI32[types::InternalType::IdScalarUInt8] = (add_function)&add_M_S<UInt32, UInt8, UInt32>;
-    pUI32[types::InternalType::IdScalarInt16] = (add_function)&add_M_S<UInt32, Int16, UInt32>;
-    pUI32[types::InternalType::IdScalarUInt16] = (add_function)&add_M_S<UInt32, UInt16, UInt32>;
-    pUI32[types::InternalType::IdScalarInt32] = (add_function)&add_M_S<UInt32, Int32, UInt32>;
-    pUI32[types::InternalType::IdScalarUInt32] = (add_function)&add_M_S<UInt32, UInt32, UInt32>;
-    pUI32[types::InternalType::IdScalarInt64] = (add_function)&add_M_S<UInt32, Int64, UInt64>;
-    pUI32[types::InternalType::IdScalarUInt64] = (add_function)&add_M_S<UInt32, UInt64, UInt64>;
-    pUI32[types::InternalType::IdScalarBool] = (add_function)&add_M_S<UInt32, Bool, UInt32>;
+    scilab_fill_add(UInt32, ScalarDouble, M_S, UInt32, Double, UInt32);
+    scilab_fill_add(UInt32, ScalarInt8, M_S, UInt32, Int8, UInt32);
+    scilab_fill_add(UInt32, ScalarUInt8, M_S, UInt32, UInt8, UInt32);
+    scilab_fill_add(UInt32, ScalarInt16, M_S, UInt32, Int16, UInt32);
+    scilab_fill_add(UInt32, ScalarUInt16, M_S, UInt32, UInt16, UInt32);
+    scilab_fill_add(UInt32, ScalarInt32, M_S, UInt32, Int32, UInt32);
+    scilab_fill_add(UInt32, ScalarUInt32, M_S, UInt32, UInt32, UInt32);
+    scilab_fill_add(UInt32, ScalarInt64, M_S, UInt32, Int64, UInt64);
+    scilab_fill_add(UInt32, ScalarUInt64, M_S, UInt32, UInt64, UInt64);
+    scilab_fill_add(UInt32, ScalarBool, M_S, UInt32, Bool, UInt32);
 
-    add_function* pUI321 = pAddfunction[types::InternalType::IdScalarUInt32];
     //Scalar + Matrix
-    pUI321[types::InternalType::IdDouble] = (add_function)&add_S_M<UInt32, Double, UInt32>;
-    pUI321[types::InternalType::IdInt8] = (add_function)&add_S_M<UInt32, Int8, UInt32>;
-    pUI321[types::InternalType::IdUInt8] = (add_function)&add_S_M<UInt32, UInt8, UInt32>;
-    pUI321[types::InternalType::IdInt16] = (add_function)&add_S_M<UInt32, Int16, UInt32>;
-    pUI321[types::InternalType::IdUInt16] = (add_function)&add_S_M<UInt32, UInt16, UInt32>;
-    pUI321[types::InternalType::IdInt32] = (add_function)&add_S_M<UInt32, Int32, UInt32>;
-    pUI321[types::InternalType::IdUInt32] = (add_function)&add_S_M<UInt32, UInt32, UInt32>;
-    pUI321[types::InternalType::IdInt64] = (add_function)&add_S_M<UInt32, Int64, UInt64>;
-    pUI321[types::InternalType::IdUInt64] = (add_function)&add_S_M<UInt32, UInt64, UInt64>;
-    pUI321[types::InternalType::IdBool] = (add_function)&add_S_M<UInt32, Bool, UInt32>;
-    pUI321[types::InternalType::IdEmpty] = (add_function)&add_S_M<UInt32, Double, UInt32>;
+    scilab_fill_add(ScalarUInt32, Double, S_M, UInt32, Double, UInt32);
+    scilab_fill_add(ScalarUInt32, Int8, S_M, UInt32, Int8, UInt32);
+    scilab_fill_add(ScalarUInt32, UInt8, S_M, UInt32, UInt8, UInt32);
+    scilab_fill_add(ScalarUInt32, Int16, S_M, UInt32, Int16, UInt32);
+    scilab_fill_add(ScalarUInt32, UInt16, S_M, UInt32, UInt16, UInt32);
+    scilab_fill_add(ScalarUInt32, Int32, S_M, UInt32, Int32, UInt32);
+    scilab_fill_add(ScalarUInt32, UInt32, S_M, UInt32, UInt32, UInt32);
+    scilab_fill_add(ScalarUInt32, Int64, S_M, UInt32, Int64, UInt64);
+    scilab_fill_add(ScalarUInt32, UInt64, S_M, UInt32, UInt64, UInt64);
+    scilab_fill_add(ScalarUInt32, Bool, S_M, UInt32, Bool, UInt32);
+    scilab_fill_add(ScalarUInt32, Empty, S_M, UInt32, Double, UInt32);
 
     //Scalar + Scalar
-    pUI321[types::InternalType::IdScalarDouble] = (add_function)&add_S_S<UInt32, Double, UInt32>;
-    pUI321[types::InternalType::IdScalarInt8] = (add_function)&add_S_S<UInt32, Int8, UInt32>;
-    pUI321[types::InternalType::IdScalarUInt8] = (add_function)&add_S_S<UInt32, UInt8, UInt32>;
-    pUI321[types::InternalType::IdScalarInt16] = (add_function)&add_S_S<UInt32, Int16, UInt32>;
-    pUI321[types::InternalType::IdScalarUInt16] = (add_function)&add_S_S<UInt32, UInt16, UInt32>;
-    pUI321[types::InternalType::IdScalarInt32] = (add_function)&add_S_S<UInt32, Int32, UInt32>;
-    pUI321[types::InternalType::IdScalarUInt32] = (add_function)&add_S_S<UInt32, UInt32, UInt32>;
-    pUI321[types::InternalType::IdScalarInt64] = (add_function)&add_S_S<UInt32, Int64, UInt64>;
-    pUI321[types::InternalType::IdScalarUInt64] = (add_function)&add_S_S<UInt32, UInt64, UInt64>;
-    pUI321[types::InternalType::IdScalarBool] = (add_function)&add_S_S<UInt32, Bool, UInt32>;
+    scilab_fill_add(ScalarUInt32, ScalarDouble, S_S, UInt32, Double, UInt32);
+    scilab_fill_add(ScalarUInt32, ScalarInt8, S_S, UInt32, Int8, UInt32);
+    scilab_fill_add(ScalarUInt32, ScalarUInt8, S_S, UInt32, UInt8, UInt32);
+    scilab_fill_add(ScalarUInt32, ScalarInt16, S_S, UInt32, Int16, UInt32);
+    scilab_fill_add(ScalarUInt32, ScalarUInt16, S_S, UInt32, UInt16, UInt32);
+    scilab_fill_add(ScalarUInt32, ScalarInt32, S_S, UInt32, Int32, UInt32);
+    scilab_fill_add(ScalarUInt32, ScalarUInt32, S_S, UInt32, UInt32, UInt32);
+    scilab_fill_add(ScalarUInt32, ScalarInt64, S_S, UInt32, Int64, UInt64);
+    scilab_fill_add(ScalarUInt32, ScalarUInt64, S_S, UInt32, UInt64, UInt64);
+    scilab_fill_add(ScalarUInt32, ScalarBool, S_S, UInt32, Bool, UInt32);
 
     //Int64
-    add_function* pI64 = pAddfunction[types::InternalType::IdInt64];
     //Matrix + Matrix
-    pI64[types::InternalType::IdDouble] = (add_function)&add_M_M<Int64, Double, Int64>;
-    pI64[types::InternalType::IdInt8] = (add_function)&add_M_M<Int64, Int8, Int64>;
-    pI64[types::InternalType::IdUInt8] = (add_function)&add_M_M<Int64, UInt8, UInt64>;
-    pI64[types::InternalType::IdInt16] = (add_function)&add_M_M<Int64, Int16, Int64>;
-    pI64[types::InternalType::IdUInt16] = (add_function)&add_M_M<Int64, UInt16, UInt64>;
-    pI64[types::InternalType::IdInt32] = (add_function)&add_M_M<Int64, Int32, Int64>;
-    pI64[types::InternalType::IdUInt32] = (add_function)&add_M_M<Int64, UInt32, UInt64>;
-    pI64[types::InternalType::IdInt64] = (add_function)&add_M_M<Int64, Int64, Int64>;
-    pI64[types::InternalType::IdUInt64] = (add_function)&add_M_M<Int64, UInt64, UInt64>;
-    pI64[types::InternalType::IdBool] = (add_function)&add_M_M<Int64, Bool, Int64>;
-    pI64[types::InternalType::IdEmpty] = (add_function)&add_M_M<Int64, Double, Int64>;
+    scilab_fill_add(Int64, Double, M_M, Int64, Double, Int64);
+    scilab_fill_add(Int64, Int8, M_M, Int64, Int8, Int64);
+    scilab_fill_add(Int64, UInt8, M_M, Int64, UInt8, UInt64);
+    scilab_fill_add(Int64, Int16, M_M, Int64, Int16, Int64);
+    scilab_fill_add(Int64, UInt16, M_M, Int64, UInt16, UInt64);
+    scilab_fill_add(Int64, Int32, M_M, Int64, Int32, Int64);
+    scilab_fill_add(Int64, UInt32, M_M, Int64, UInt32, UInt64);
+    scilab_fill_add(Int64, Int64, M_M, Int64, Int64, Int64);
+    scilab_fill_add(Int64, UInt64, M_M, Int64, UInt64, UInt64);
+    scilab_fill_add(Int64, Bool, M_M, Int64, Bool, Int64);
+    scilab_fill_add(Int64, Empty, M_M, Int64, Double, Int64);
 
     //Matrix + Scalar
-    pI64[types::InternalType::IdScalarDouble] = (add_function)&add_M_S<Int64, Double, Int64>;
-    pI64[types::InternalType::IdScalarInt8] = (add_function)&add_M_S<Int64, Int8, Int64>;
-    pI64[types::InternalType::IdScalarUInt8] = (add_function)&add_M_S<Int64, UInt8, UInt64>;
-    pI64[types::InternalType::IdScalarInt16] = (add_function)&add_M_S<Int64, Int16, Int64>;
-    pI64[types::InternalType::IdScalarUInt16] = (add_function)&add_M_S<Int64, UInt16, UInt64>;
-    pI64[types::InternalType::IdScalarInt32] = (add_function)&add_M_S<Int64, Int32, Int64>;
-    pI64[types::InternalType::IdScalarUInt32] = (add_function)&add_M_S<Int64, UInt32, UInt64>;
-    pI64[types::InternalType::IdScalarInt64] = (add_function)&add_M_S<Int64, Int64, Int64>;
-    pI64[types::InternalType::IdScalarUInt64] = (add_function)&add_M_S<Int64, UInt64, UInt64>;
-    pI64[types::InternalType::IdScalarBool] = (add_function)&add_M_S<Int64, Bool, Int64>;
+    scilab_fill_add(Int64, ScalarDouble, M_S, Int64, Double, Int64);
+    scilab_fill_add(Int64, ScalarInt8, M_S, Int64, Int8, Int64);
+    scilab_fill_add(Int64, ScalarUInt8, M_S, Int64, UInt8, UInt64);
+    scilab_fill_add(Int64, ScalarInt16, M_S, Int64, Int16, Int64);
+    scilab_fill_add(Int64, ScalarUInt16, M_S, Int64, UInt16, UInt64);
+    scilab_fill_add(Int64, ScalarInt32, M_S, Int64, Int32, Int64);
+    scilab_fill_add(Int64, ScalarUInt32, M_S, Int64, UInt32, UInt64);
+    scilab_fill_add(Int64, ScalarInt64, M_S, Int64, Int64, Int64);
+    scilab_fill_add(Int64, ScalarUInt64, M_S, Int64, UInt64, UInt64);
+    scilab_fill_add(Int64, ScalarBool, M_S, Int64, Bool, Int64);
 
-    add_function* pI641 = pAddfunction[types::InternalType::IdScalarInt64];
     //Scalar + Matrix
-    pI641[types::InternalType::IdDouble] = (add_function)&add_S_M<Int64, Double, Int64>;
-    pI641[types::InternalType::IdInt8] = (add_function)&add_S_M<Int64, Int8, Int64>;
-    pI641[types::InternalType::IdUInt8] = (add_function)&add_S_M<Int64, UInt8, UInt64>;
-    pI641[types::InternalType::IdInt16] = (add_function)&add_S_M<Int64, Int16, Int64>;
-    pI641[types::InternalType::IdUInt16] = (add_function)&add_S_M<Int64, UInt16, UInt64>;
-    pI641[types::InternalType::IdInt32] = (add_function)&add_S_M<Int64, Int32, Int64>;
-    pI641[types::InternalType::IdUInt32] = (add_function)&add_S_M<Int64, UInt32, UInt64>;
-    pI641[types::InternalType::IdInt64] = (add_function)&add_S_M<Int64, Int64, Int64>;
-    pI641[types::InternalType::IdUInt64] = (add_function)&add_S_M<Int64, UInt64, UInt64>;
-    pI641[types::InternalType::IdBool] = (add_function)&add_S_M<Int64, Bool, Int64>;
-    pI641[types::InternalType::IdEmpty] = (add_function)&add_M_M<Int64, Double, Int64>;
+    scilab_fill_add(ScalarInt64, Double, S_M, Int64, Double, Int64);
+    scilab_fill_add(ScalarInt64, Int8, S_M, Int64, Int8, Int64);
+    scilab_fill_add(ScalarInt64, UInt8, S_M, Int64, UInt8, UInt64);
+    scilab_fill_add(ScalarInt64, Int16, S_M, Int64, Int16, Int64);
+    scilab_fill_add(ScalarInt64, UInt16, S_M, Int64, UInt16, UInt64);
+    scilab_fill_add(ScalarInt64, Int32, S_M, Int64, Int32, Int64);
+    scilab_fill_add(ScalarInt64, UInt32, S_M, Int64, UInt32, UInt64);
+    scilab_fill_add(ScalarInt64, Int64, S_M, Int64, Int64, Int64);
+    scilab_fill_add(ScalarInt64, UInt64, S_M, Int64, UInt64, UInt64);
+    scilab_fill_add(ScalarInt64, Bool, S_M, Int64, Bool, Int64);
+    scilab_fill_add(ScalarInt64, Empty, M_M, Int64, Double, Int64);
 
     //Scalar + Scalar
-    pI641[types::InternalType::IdScalarDouble] = (add_function)&add_S_S<Int64, Double, Int64>;
-    pI641[types::InternalType::IdScalarInt8] = (add_function)&add_S_S<Int64, Int8, Int64>;
-    pI641[types::InternalType::IdScalarUInt8] = (add_function)&add_S_S<Int64, UInt8, UInt64>;
-    pI641[types::InternalType::IdScalarInt16] = (add_function)&add_S_S<Int64, Int16, Int64>;
-    pI641[types::InternalType::IdScalarUInt16] = (add_function)&add_S_S<Int64, UInt16, UInt64>;
-    pI641[types::InternalType::IdScalarInt32] = (add_function)&add_S_S<Int64, Int32, Int64>;
-    pI641[types::InternalType::IdScalarUInt32] = (add_function)&add_S_S<Int64, UInt32, UInt64>;
-    pI641[types::InternalType::IdScalarInt64] = (add_function)&add_S_S<Int64, Int64, Int64>;
-    pI641[types::InternalType::IdScalarUInt64] = (add_function)&add_S_S<Int64, UInt64, UInt64>;
-    pI641[types::InternalType::IdScalarBool] = (add_function)&add_S_S<Int64, Bool, Int64>;
+    scilab_fill_add(ScalarInt64, ScalarDouble, S_S, Int64, Double, Int64);
+    scilab_fill_add(ScalarInt64, ScalarInt8, S_S, Int64, Int8, Int64);
+    scilab_fill_add(ScalarInt64, ScalarUInt8, S_S, Int64, UInt8, UInt64);
+    scilab_fill_add(ScalarInt64, ScalarInt16, S_S, Int64, Int16, Int64);
+    scilab_fill_add(ScalarInt64, ScalarUInt16, S_S, Int64, UInt16, UInt64);
+    scilab_fill_add(ScalarInt64, ScalarInt32, S_S, Int64, Int32, Int64);
+    scilab_fill_add(ScalarInt64, ScalarUInt32, S_S, Int64, UInt32, UInt64);
+    scilab_fill_add(ScalarInt64, ScalarInt64, S_S, Int64, Int64, Int64);
+    scilab_fill_add(ScalarInt64, ScalarUInt64, S_S, Int64, UInt64, UInt64);
+    scilab_fill_add(ScalarInt64, ScalarBool, S_S, Int64, Bool, Int64);
 
     //UInt64
-    add_function* pUI64 = pAddfunction[types::InternalType::IdUInt64];
     //Matrix + Matrix
-    pUI64[types::InternalType::IdDouble] = (add_function)&add_M_M<UInt64, Double, UInt64>;
-    pUI64[types::InternalType::IdInt8] = (add_function)&add_M_M<UInt64, Int8, UInt64>;
-    pUI64[types::InternalType::IdUInt8] = (add_function)&add_M_M<UInt64, UInt8, UInt64>;
-    pUI64[types::InternalType::IdInt16] = (add_function)&add_M_M<UInt64, Int16, UInt64>;
-    pUI64[types::InternalType::IdUInt16] = (add_function)&add_M_M<UInt64, UInt16, UInt64>;
-    pUI64[types::InternalType::IdInt32] = (add_function)&add_M_M<UInt64, Int32, UInt64>;
-    pUI64[types::InternalType::IdUInt32] = (add_function)&add_M_M<UInt64, UInt32, UInt64>;
-    pUI64[types::InternalType::IdInt64] = (add_function)&add_M_M<UInt64, Int64, UInt64>;
-    pUI64[types::InternalType::IdUInt64] = (add_function)&add_M_M<UInt64, UInt64, UInt64>;
-    pUI64[types::InternalType::IdBool] = (add_function)&add_M_M<UInt64, Bool, UInt64>;
-    pUI64[types::InternalType::IdEmpty] = (add_function)&add_M_M<UInt64, Double, UInt64>;
+    scilab_fill_add(UInt64, Double, M_M, UInt64, Double, UInt64);
+    scilab_fill_add(UInt64, Int8, M_M, UInt64, Int8, UInt64);
+    scilab_fill_add(UInt64, UInt8, M_M, UInt64, UInt8, UInt64);
+    scilab_fill_add(UInt64, Int16, M_M, UInt64, Int16, UInt64);
+    scilab_fill_add(UInt64, UInt16, M_M, UInt64, UInt16, UInt64);
+    scilab_fill_add(UInt64, Int32, M_M, UInt64, Int32, UInt64);
+    scilab_fill_add(UInt64, UInt32, M_M, UInt64, UInt32, UInt64);
+    scilab_fill_add(UInt64, Int64, M_M, UInt64, Int64, UInt64);
+    scilab_fill_add(UInt64, UInt64, M_M, UInt64, UInt64, UInt64);
+    scilab_fill_add(UInt64, Bool, M_M, UInt64, Bool, UInt64);
+    scilab_fill_add(UInt64, Empty, M_M, UInt64, Double, UInt64);
 
     //Matrix + Scalar
-    pUI64[types::InternalType::IdScalarDouble] = (add_function)&add_M_S<UInt64, Double, UInt64>;
-    pUI64[types::InternalType::IdScalarInt8] = (add_function)&add_M_S<UInt64, Int8, UInt64>;
-    pUI64[types::InternalType::IdScalarUInt8] = (add_function)&add_M_S<UInt64, UInt8, UInt64>;
-    pUI64[types::InternalType::IdScalarInt16] = (add_function)&add_M_S<UInt64, Int16, UInt64>;
-    pUI64[types::InternalType::IdScalarUInt16] = (add_function)&add_M_S<UInt64, UInt16, UInt64>;
-    pUI64[types::InternalType::IdScalarInt32] = (add_function)&add_M_S<UInt64, Int32, UInt64>;
-    pUI64[types::InternalType::IdScalarUInt32] = (add_function)&add_M_S<UInt64, UInt32, UInt64>;
-    pUI64[types::InternalType::IdScalarInt64] = (add_function)&add_M_S<UInt64, Int64, UInt64>;
-    pUI64[types::InternalType::IdScalarUInt64] = (add_function)&add_M_S<UInt64, UInt64, UInt64>;
-    pUI64[types::InternalType::IdScalarBool] = (add_function)&add_M_S<UInt64, Bool, UInt64>;
+    scilab_fill_add(UInt64, ScalarDouble, M_S, UInt64, Double, UInt64);
+    scilab_fill_add(UInt64, ScalarInt8, M_S, UInt64, Int8, UInt64);
+    scilab_fill_add(UInt64, ScalarUInt8, M_S, UInt64, UInt8, UInt64);
+    scilab_fill_add(UInt64, ScalarInt16, M_S, UInt64, Int16, UInt64);
+    scilab_fill_add(UInt64, ScalarUInt16, M_S, UInt64, UInt16, UInt64);
+    scilab_fill_add(UInt64, ScalarInt32, M_S, UInt64, Int32, UInt64);
+    scilab_fill_add(UInt64, ScalarUInt32, M_S, UInt64, UInt32, UInt64);
+    scilab_fill_add(UInt64, ScalarInt64, M_S, UInt64, Int64, UInt64);
+    scilab_fill_add(UInt64, ScalarUInt64, M_S, UInt64, UInt64, UInt64);
+    scilab_fill_add(UInt64, ScalarBool, M_S, UInt64, Bool, UInt64);
 
-    add_function* pUI641 = pAddfunction[types::InternalType::IdScalarUInt64];
     //Scalar + Matrix
-    pUI641[types::InternalType::IdDouble] = (add_function)&add_S_M<UInt64, Double, UInt64>;
-    pUI641[types::InternalType::IdInt8] = (add_function)&add_S_M<UInt64, Int8, UInt64>;
-    pUI641[types::InternalType::IdUInt8] = (add_function)&add_S_M<UInt64, UInt8, UInt64>;
-    pUI641[types::InternalType::IdInt16] = (add_function)&add_S_M<UInt64, Int16, UInt64>;
-    pUI641[types::InternalType::IdUInt16] = (add_function)&add_S_M<UInt64, UInt16, UInt64>;
-    pUI641[types::InternalType::IdInt32] = (add_function)&add_S_M<UInt64, Int32, UInt64>;
-    pUI641[types::InternalType::IdUInt32] = (add_function)&add_S_M<UInt64, UInt32, UInt64>;
-    pUI641[types::InternalType::IdInt64] = (add_function)&add_S_M<UInt64, Int64, UInt64>;
-    pUI641[types::InternalType::IdUInt64] = (add_function)&add_S_M<UInt64, UInt64, UInt64>;
-    pUI641[types::InternalType::IdBool] = (add_function)&add_S_M<UInt64, Bool, UInt64>;
-    pUI641[types::InternalType::IdEmpty] = (add_function)&add_S_M<UInt64, Double, UInt64>;
+    scilab_fill_add(ScalarUInt64, Double, S_M, UInt64, Double, UInt64);
+    scilab_fill_add(ScalarUInt64, Int8, S_M, UInt64, Int8, UInt64);
+    scilab_fill_add(ScalarUInt64, UInt8, S_M, UInt64, UInt8, UInt64);
+    scilab_fill_add(ScalarUInt64, Int16, S_M, UInt64, Int16, UInt64);
+    scilab_fill_add(ScalarUInt64, UInt16, S_M, UInt64, UInt16, UInt64);
+    scilab_fill_add(ScalarUInt64, Int32, S_M, UInt64, Int32, UInt64);
+    scilab_fill_add(ScalarUInt64, UInt32, S_M, UInt64, UInt32, UInt64);
+    scilab_fill_add(ScalarUInt64, Int64, S_M, UInt64, Int64, UInt64);
+    scilab_fill_add(ScalarUInt64, UInt64, S_M, UInt64, UInt64, UInt64);
+    scilab_fill_add(ScalarUInt64, Bool, S_M, UInt64, Bool, UInt64);
+    scilab_fill_add(ScalarUInt64, Empty, S_M, UInt64, Double, UInt64);
 
     //Scalar + Scalar
-    pUI641[types::InternalType::IdScalarDouble] = (add_function)&add_S_S<UInt64, Double, UInt64>;
-    pUI641[types::InternalType::IdScalarInt8] = (add_function)&add_S_S<UInt64, Int8, UInt64>;
-    pUI641[types::InternalType::IdScalarUInt8] = (add_function)&add_S_S<UInt64, UInt8, UInt64>;
-    pUI641[types::InternalType::IdScalarInt16] = (add_function)&add_S_S<UInt64, Int16, UInt64>;
-    pUI641[types::InternalType::IdScalarUInt16] = (add_function)&add_S_S<UInt64, UInt16, UInt64>;
-    pUI641[types::InternalType::IdScalarInt32] = (add_function)&add_S_S<UInt64, Int32, UInt64>;
-    pUI641[types::InternalType::IdScalarUInt32] = (add_function)&add_S_S<UInt64, UInt32, UInt64>;
-    pUI641[types::InternalType::IdScalarInt64] = (add_function)&add_S_S<UInt64, Int64, UInt64>;
-    pUI641[types::InternalType::IdScalarUInt64] = (add_function)&add_S_S<UInt64, UInt64, UInt64>;
-    pUI641[types::InternalType::IdScalarBool] = (add_function)&add_S_S<UInt64, Bool, UInt64>;
+    scilab_fill_add(ScalarUInt64, ScalarDouble, S_S, UInt64, Double, UInt64);
+    scilab_fill_add(ScalarUInt64, ScalarInt8, S_S, UInt64, Int8, UInt64);
+    scilab_fill_add(ScalarUInt64, ScalarUInt8, S_S, UInt64, UInt8, UInt64);
+    scilab_fill_add(ScalarUInt64, ScalarInt16, S_S, UInt64, Int16, UInt64);
+    scilab_fill_add(ScalarUInt64, ScalarUInt16, S_S, UInt64, UInt16, UInt64);
+    scilab_fill_add(ScalarUInt64, ScalarInt32, S_S, UInt64, Int32, UInt64);
+    scilab_fill_add(ScalarUInt64, ScalarUInt32, S_S, UInt64, UInt32, UInt64);
+    scilab_fill_add(ScalarUInt64, ScalarInt64, S_S, UInt64, Int64, UInt64);
+    scilab_fill_add(ScalarUInt64, ScalarUInt64, S_S, UInt64, UInt64, UInt64);
+    scilab_fill_add(ScalarUInt64, ScalarBool, S_S, UInt64, Bool, UInt64);
 
     //Bool
-    add_function* pB = pAddfunction[types::InternalType::IdBool];
     //Matrix + Matrix
-    pB[types::InternalType::IdDouble] = (add_function)&add_M_M<Bool, Double, Double>;
-    pB[types::InternalType::IdInt8] = (add_function)&add_M_M<Bool, Int8, Int8>;
-    pB[types::InternalType::IdUInt8] = (add_function)&add_M_M<Bool, UInt8, UInt8>;
-    pB[types::InternalType::IdInt16] = (add_function)&add_M_M<Bool, Int16, Int16>;
-    pB[types::InternalType::IdUInt16] = (add_function)&add_M_M<Bool, UInt16, UInt16>;
-    pB[types::InternalType::IdInt32] = (add_function)&add_M_M<Bool, Int32, Int32>;
-    pB[types::InternalType::IdUInt32] = (add_function)&add_M_M<Bool, UInt32, UInt32>;
-    pB[types::InternalType::IdInt64] = (add_function)&add_M_M<Bool, Int64, Int64>;
-    pB[types::InternalType::IdUInt64] = (add_function)&add_M_M<Bool, UInt64, UInt64>;
-    pB[types::InternalType::IdBool] = (add_function)&add_M_M<Bool, Bool, Bool>;
-    pB[types::InternalType::IdEmpty] = (add_function)&add_M_M<Bool, Double, Double>;
+    scilab_fill_add(Bool, Double, M_M, Bool, Double, Double);
+    scilab_fill_add(Bool, Int8, M_M, Bool, Int8, Int8);
+    scilab_fill_add(Bool, UInt8, M_M, Bool, UInt8, UInt8);
+    scilab_fill_add(Bool, Int16, M_M, Bool, Int16, Int16);
+    scilab_fill_add(Bool, UInt16, M_M, Bool, UInt16, UInt16);
+    scilab_fill_add(Bool, Int32, M_M, Bool, Int32, Int32);
+    scilab_fill_add(Bool, UInt32, M_M, Bool, UInt32, UInt32);
+    scilab_fill_add(Bool, Int64, M_M, Bool, Int64, Int64);
+    scilab_fill_add(Bool, UInt64, M_M, Bool, UInt64, UInt64);
+    scilab_fill_add(Bool, Bool, M_M, Bool, Bool, Bool);
+    scilab_fill_add(Bool, Empty, M_M, Bool, Double, Double);
 
     //Matrix + Scalar
-    pB[types::InternalType::IdScalarDouble] = (add_function)&add_M_S<Bool, Double, Double>;
-    pB[types::InternalType::IdScalarInt8] = (add_function)&add_M_S<Bool, Int8, Int8>;
-    pB[types::InternalType::IdScalarUInt8] = (add_function)&add_M_S<Bool, UInt8, UInt8>;
-    pB[types::InternalType::IdScalarInt16] = (add_function)&add_M_S<Bool, Int16, Int16>;
-    pB[types::InternalType::IdScalarUInt16] = (add_function)&add_M_S<Bool, UInt16, UInt16>;
-    pB[types::InternalType::IdScalarInt32] = (add_function)&add_M_S<Bool, Int32, Int32>;
-    pB[types::InternalType::IdScalarUInt32] = (add_function)&add_M_S<Bool, UInt32, UInt32>;
-    pB[types::InternalType::IdScalarInt64] = (add_function)&add_M_S<Bool, Int64, Int64>;
-    pB[types::InternalType::IdScalarUInt64] = (add_function)&add_M_S<Bool, UInt64, UInt64>;
-    pB[types::InternalType::IdScalarBool] = (add_function)&add_M_S<Bool, Bool, Bool>;
+    scilab_fill_add(Bool, ScalarDouble, M_S, Bool, Double, Double);
+    scilab_fill_add(Bool, ScalarInt8, M_S, Bool, Int8, Int8);
+    scilab_fill_add(Bool, ScalarUInt8, M_S, Bool, UInt8, UInt8);
+    scilab_fill_add(Bool, ScalarInt16, M_S, Bool, Int16, Int16);
+    scilab_fill_add(Bool, ScalarUInt16, M_S, Bool, UInt16, UInt16);
+    scilab_fill_add(Bool, ScalarInt32, M_S, Bool, Int32, Int32);
+    scilab_fill_add(Bool, ScalarUInt32, M_S, Bool, UInt32, UInt32);
+    scilab_fill_add(Bool, ScalarInt64, M_S, Bool, Int64, Int64);
+    scilab_fill_add(Bool, ScalarUInt64, M_S, Bool, UInt64, UInt64);
+    scilab_fill_add(Bool, ScalarBool, M_S, Bool, Bool, Bool);
 
-    add_function* pB1 = pAddfunction[types::InternalType::IdScalarBool];
     //Scalar + Matrix
-    pB1[types::InternalType::IdDouble] = (add_function)&add_S_M<Bool, Double, Double>;
-    pB1[types::InternalType::IdInt8] = (add_function)&add_S_M<Bool, Int8, Int8>;
-    pB1[types::InternalType::IdUInt8] = (add_function)&add_S_M<Bool, UInt8, UInt8>;
-    pB1[types::InternalType::IdInt16] = (add_function)&add_S_M<Bool, Int16, Int16>;
-    pB1[types::InternalType::IdUInt16] = (add_function)&add_S_M<Bool, UInt16, UInt16>;
-    pB1[types::InternalType::IdInt32] = (add_function)&add_S_M<Bool, Int32, Int32>;
-    pB1[types::InternalType::IdUInt32] = (add_function)&add_S_M<Bool, UInt32, UInt32>;
-    pB1[types::InternalType::IdInt64] = (add_function)&add_S_M<Bool, Int64, Int64>;
-    pB1[types::InternalType::IdUInt64] = (add_function)&add_S_M<Bool, UInt64, UInt64>;
-    pB1[types::InternalType::IdBool] = (add_function)&add_S_M<Bool, Bool, Bool>;
-    pB1[types::InternalType::IdEmpty] = (add_function)&add_M_M<Bool, Double, Double>;
+    scilab_fill_add(ScalarBool, Double, S_M, Bool, Double, Double);
+    scilab_fill_add(ScalarBool, Int8, S_M, Bool, Int8, Int8);
+    scilab_fill_add(ScalarBool, UInt8, S_M, Bool, UInt8, UInt8);
+    scilab_fill_add(ScalarBool, Int16, S_M, Bool, Int16, Int16);
+    scilab_fill_add(ScalarBool, UInt16, S_M, Bool, UInt16, UInt16);
+    scilab_fill_add(ScalarBool, Int32, S_M, Bool, Int32, Int32);
+    scilab_fill_add(ScalarBool, UInt32, S_M, Bool, UInt32, UInt32);
+    scilab_fill_add(ScalarBool, Int64, S_M, Bool, Int64, Int64);
+    scilab_fill_add(ScalarBool, UInt64, S_M, Bool, UInt64, UInt64);
+    scilab_fill_add(ScalarBool, Bool, S_M, Bool, Bool, Bool);
+    scilab_fill_add(ScalarBool, Empty, M_M, Bool, Double, Double);
 
     //Scalar + Scalar
-    pB1[types::InternalType::IdScalarDouble] = (add_function)&add_S_S<Bool, Double, Double>;
-    pB1[types::InternalType::IdScalarInt8] = (add_function)&add_S_S<Bool, Int8, Int8>;
-    pB1[types::InternalType::IdScalarUInt8] = (add_function)&add_S_S<Bool, UInt8, UInt8>;
-    pB1[types::InternalType::IdScalarInt16] = (add_function)&add_S_S<Bool, Int16, Int16>;
-    pB1[types::InternalType::IdScalarUInt16] = (add_function)&add_S_S<Bool, UInt16, UInt16>;
-    pB1[types::InternalType::IdScalarInt32] = (add_function)&add_S_S<Bool, Int32, Int32>;
-    pB1[types::InternalType::IdScalarUInt32] = (add_function)&add_S_S<Bool, UInt32, UInt32>;
-    pB1[types::InternalType::IdScalarInt64] = (add_function)&add_S_S<Bool, Int64, Int64>;
-    pB1[types::InternalType::IdScalarUInt64] = (add_function)&add_S_S<Bool, UInt64, UInt64>;
-    pB1[types::InternalType::IdScalarBool] = (add_function)&add_S_S<Bool, Bool, Bool>;
+    scilab_fill_add(ScalarBool, ScalarDouble, S_S, Bool, Double, Double);
+    scilab_fill_add(ScalarBool, ScalarInt8, S_S, Bool, Int8, Int8);
+    scilab_fill_add(ScalarBool, ScalarUInt8, S_S, Bool, UInt8, UInt8);
+    scilab_fill_add(ScalarBool, ScalarInt16, S_S, Bool, Int16, Int16);
+    scilab_fill_add(ScalarBool, ScalarUInt16, S_S, Bool, UInt16, UInt16);
+    scilab_fill_add(ScalarBool, ScalarInt32, S_S, Bool, Int32, Int32);
+    scilab_fill_add(ScalarBool, ScalarUInt32, S_S, Bool, UInt32, UInt32);
+    scilab_fill_add(ScalarBool, ScalarInt64, S_S, Bool, Int64, Int64);
+    scilab_fill_add(ScalarBool, ScalarUInt64, S_S, Bool, UInt64, UInt64);
+    scilab_fill_add(ScalarBool, ScalarBool, S_S, Bool, Bool, Bool);
+
+    //String
+    scilab_fill_add(String, String, M_M, String, String, String);
+    scilab_fill_add(String, ScalarString, M_S, String, String, String);
+    scilab_fill_add(String, Empty, M_E, String, Double, String);
+
+    scilab_fill_add(ScalarString, String, S_M, String, String, String);
+    scilab_fill_add(ScalarString, ScalarString, S_S, String, String, String);
+    scilab_fill_add(ScalarString, Empty, S_E, String, Double, String);
+
+#undef scilab_fill_add
 }
 
 InternalType *GenericPlus(InternalType *_pLeftOperand, InternalType *_pRightOperand)
@@ -649,33 +650,9 @@ InternalType *GenericPlus(InternalType *_pLeftOperand, InternalType *_pRightOper
     }
 
     /*
-    ** STRING + STRING
-    */
-    if (_pLeftOperand->isString() && _pRightOperand->isString())
-    {
-        String *pL = _pLeftOperand->getAs<String>();
-        String *pR = _pRightOperand->getAs<String>();
-
-        int iResult = AddStringToString(pL, pR, (String**)&pResult);
-
-        if (iResult != 0)
-        {
-            wchar_t pMsg[bsiz];
-            os_swprintf(pMsg, bsiz, _W("Error: operator %ls: Matrix dimensions must agree (op1 is %ls, op2 is %ls).\n"), L"+", pL->DimToString().c_str(), pR->DimToString().c_str());
-            throw ast::ScilabError(pMsg);
-        }
-        return pResult;
-    }
-
-    // FIXME: Overload or dedicated function.
-    //    else if(TypeL == GenericType::ScilabInt && TypeR == GenericType::ScilabInt)
-    //    {
-    //    }
-
-    /*
     ** DOUBLE + POLY
     */
-    else if (_pLeftOperand->isDouble() && _pRightOperand->isPoly())
+    if (_pLeftOperand->isDouble() && _pRightOperand->isPoly())
     {
         Double *pL  = _pLeftOperand->getAs<Double>();
         Polynom *pR = _pRightOperand->getAs<Polynom>();
@@ -786,40 +763,6 @@ InternalType *GenericPlus(InternalType *_pLeftOperand, InternalType *_pRightOper
         }
 
         return pResult;
-    }
-
-    /*
-    ** DOUBLE + STRING
-    */
-    else if (_pLeftOperand->isDouble() && _pRightOperand->isString())
-    {
-        if (_pLeftOperand->getAs<Double>()->getSize() == 0)
-        {
-            //[] + "" -> ""
-            return _pRightOperand->clone();
-        }
-        else
-        {
-            // Don't know how to manage this Addition : Return NULL will Call Overloading.
-            return NULL;
-        }
-    }
-
-    /*
-    ** STRING + DOUBLE
-    */
-    else if (_pLeftOperand->isString() && _pRightOperand->isDouble())
-    {
-        if (_pRightOperand->getAs<Double>()->getSize() == 0)
-        {
-            //"text" + [] -> ""
-            return _pLeftOperand->clone();
-        }
-        else
-        {
-            // Don't know how to manage this Addition :  Return NULL will Call Overloading.
-            return NULL;
-        }
     }
 
     /*
@@ -1227,87 +1170,6 @@ int AddPolyToPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom ** _pPolyOut)
     return 0;
 }
 
-int AddStringToString(String *_pString1, String *_pString2, String **_pStringOut)
-{
-    if (_pString1->isScalar())
-    {
-        //concat pL with each element of pR
-        (*_pStringOut)  = new String(_pString2->getDims(), _pString2->getDimsArray());
-
-        int iCommonLen = (int)wcslen(_pString1->get(0));
-
-        for (int i = 0 ; i < _pString2->getSize() ; i++)
-        {
-            int iLen = (int)wcslen(_pString2->get(i));
-            wchar_t* psz = new wchar_t[iLen + iCommonLen + 1];
-            memset(psz, 0x00, (iLen + iCommonLen + 1) * sizeof(wchar_t));
-            memcpy(psz, _pString1->get(0), iCommonLen * sizeof(wchar_t));
-            memcpy(psz + iCommonLen, _pString2->get(i), iLen * sizeof(wchar_t));
-            (*_pStringOut)->set(i, psz);
-            delete[] psz;
-        }
-        return 0;
-    }
-
-    if (_pString2->isScalar())
-    {
-        //concat each element of pL with pR
-        (*_pStringOut)  = new String(_pString1->getDims(), _pString1->getDimsArray());
-        int iCommonLen = (int)wcslen(_pString2->get(0));
-
-        for (int i = 0 ; i < _pString1->getSize() ; i++)
-        {
-            int iLen = (int)wcslen(_pString1->get(i));
-            wchar_t* psz = new wchar_t[iLen + iCommonLen + 1];
-            memset(psz, 0x00, (iLen + iCommonLen + 1) * sizeof(wchar_t));
-
-            memcpy(psz, _pString1->get(i), iLen * sizeof(wchar_t));
-            memcpy(psz + iLen, _pString2->get(0), iCommonLen * sizeof(wchar_t));
-
-            (*_pStringOut)->set(i, psz);
-            delete[] psz;
-        }
-
-        return 0;
-    }
-
-    int iDims1 = _pString1->getDims();
-    int iDims2 = _pString2->getDims();
-
-    if (iDims1 != iDims2)
-    {
-        return 1;
-    }
-
-    int* piDims1 = _pString1->getDimsArray();
-    int* piDims2 = _pString2->getDimsArray();
-
-    for (int i = 0 ; i < iDims1 ; i++)
-    {
-        if (piDims1[i] != piDims2[i])
-        {
-            return 1;
-        }
-    }
-
-    (*_pStringOut) = new String(_pString1->getDims(), _pString1->getDimsArray());
-    for (int i = 0 ; i < _pString1->getSize() ; i++)
-    {
-        int iLenL = (int)wcslen(_pString1->get(i));
-        int iLenR = (int)wcslen(_pString2->get(i));
-        wchar_t* psz = new wchar_t[iLenL + iLenR + 1];
-        memset(psz, 0x00, (iLenL + iLenR + 1) * sizeof(wchar_t));
-
-        memcpy(psz          , _pString1->get(i), iLenL * sizeof(wchar_t));
-        memcpy(psz + iLenL  , _pString2->get(i), iLenR * sizeof(wchar_t));
-
-        (*_pStringOut)->set(i, psz);
-        delete[] psz;
-    }
-
-    return 0;
-}
-
 int AddSparseToSparse(Sparse* sp1, Sparse* sp2, Sparse** pSpRes)
 {
     //check scalar hidden in a sparse ;)
@@ -1553,7 +1415,6 @@ int AddDoubleToSparse(Double* d, Sparse* sp, GenericType** pDRes)
     return AddSparseToDouble(sp, d, pDRes);
 }
 
-
 template<class T, class U, class O>
 types::InternalType* add_M_M(T *_pL, U *_pR)
 {
@@ -1796,5 +1657,143 @@ types::InternalType* add_E_E(T *_pL, U *_pR)
     Double* pOut = Double::Empty();
     add();
     return pOut;
+}
+
+//specifiaction for String Matrix + String Matrix
+template<>
+types::InternalType* add_M_M<String, String, String>(String* _pL, String* _pR)
+{
+    int iDimsL = _pL->getDims();
+    int iDimsR = _pR->getDims();
+
+    if (iDimsL != iDimsR)
+    {
+        return NULL;
+    }
+
+    int* piDimsL = _pL->getDimsArray();
+    int* piDimsR = _pR->getDimsArray();
+
+    for (int i = 0 ; i < iDimsL ; ++i)
+    {
+        if (piDimsL[i] != piDimsR[i])
+        {
+            return NULL;
+        }
+    }
+
+    String* pOut = new String(iDimsL, piDimsL);
+    int size = _pL->getSize();
+    int* sizeOut = new int[size];
+    for (int i = 0 ; i < size ; ++i)
+    {
+        wchar_t* pwstL = _pL->get(i);
+        wchar_t* pwstR = _pR->get(i);
+        int sizeL = (int)wcslen(pwstL);
+        int sizeR = (int)wcslen(pwstR);
+
+        sizeOut[i] = sizeL + sizeR + 1;
+        wchar_t* pwstOut = new wchar_t[sizeOut[i]];
+        //assign ptr without strdup
+        pOut->get()[i] =  pwstOut;
+    }
+
+    add(_pL->get(), size, _pR->get(), sizeOut, pOut->get());
+    delete[] sizeOut;
+    return pOut;
+}
+
+//specifiaction for String Matrix + String Scalar
+template<>
+types::InternalType* add_S_M<String, String, String>(String* _pL, String* _pR)
+{
+    String* pOut = new String(_pR->getDims(), _pR->getDimsArray());
+    int size = _pR->getSize();
+    int* sizeOut = new int[size];
+    wchar_t* pwstL = _pL->get(0);
+    int sizeL = (int)wcslen(pwstL);
+
+    for (int i = 0 ; i < size ; ++i)
+    {
+        wchar_t* pwstR = _pR->get(i);
+        int sizeR = (int)wcslen(pwstR);
+
+        sizeOut[i] = sizeL + sizeR + 1;
+        wchar_t* pwstOut = new wchar_t[sizeOut[i]];
+        //assign ptr without strdup
+        pOut->get()[i] = pwstOut;
+    }
+
+    add(pwstL, size, _pR->get(), sizeOut, pOut->get());
+    delete[] sizeOut;
+    return pOut;
+}
+
+//specifiaction for String Scalar + String MAtrix
+template<>
+types::InternalType* add_M_S<String, String, String>(String* _pL, String* _pR)
+{
+    String* pOut = new String(_pL->getDims(), _pL->getDimsArray());
+    int size = _pL->getSize();
+    int* sizeOut = new int[size];
+    wchar_t* pwstR = _pR->get(0);
+    int sizeR = (int)wcslen(pwstR);
+
+    for (int i = 0 ; i < size ; ++i)
+    {
+        wchar_t* pwstL = _pL->get(i);
+        int sizeL = (int)wcslen(pwstL);
+
+        sizeOut[i] = sizeL + sizeR + 1;
+        wchar_t* pwstOut = new wchar_t[sizeOut[i]];
+        //assign ptr without strdup
+        pOut->get()[i] = pwstOut;
+    }
+
+    add(_pL->get(), size, pwstR, sizeOut, pOut->get());
+    return pOut;
+}
+
+//specifiaction for String Scalar + String Scalar
+template<>
+types::InternalType* add_S_S<String, String, String>(String* _pL, String* _pR)
+{
+    String* pOut = new String(1, 1);
+    wchar_t* pwstL = _pL->get(0);
+    wchar_t* pwstR = _pR->get(0);
+    int sizeL = (int)wcslen(pwstL);
+    int sizeR = (int)wcslen(pwstR);
+
+    int sizeOut = sizeL + sizeR + 1;
+    wchar_t* pwstOut = new wchar_t[sizeOut];
+    //assign ptr without strdup
+    pOut->get()[0] = pwstOut;
+    add(pwstL, pwstR, sizeOut, *pOut->get());
+    return pOut;
+}
+
+template<>
+types::InternalType* add_M_E<String, Double, String>(String* _pL, Double* _pR)
+{
+    return _pL->clone();
+}
+
+template<>
+types::InternalType* add_S_E<String, Double, String>(String* _pL, Double* _pR)
+{
+    return _pL->clone();
+}
+
+template<>
+types::InternalType* add_E_M<Double, String, String>(Double* _pL, String* _pR)
+
+{
+    return _pR->clone();
+}
+
+template<>
+types::InternalType* add_E_S<Double, String, String>(Double* _pL, String* _pR)
+{
+    return _pR->clone();
 }
 

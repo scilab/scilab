@@ -20,6 +20,11 @@
 #include "string.hxx"
 #include "polynom.hxx"
 #include "sparse.hxx"
+#include "string.hxx"
+extern "C"
+{
+#include "os_swprintf.h"
+}
 
 void fillAddFunction();
 
@@ -59,14 +64,34 @@ template<class T, class U, class O> inline types::InternalType* add_E_S(T *_pL, 
 template<class T, class U, class O> inline types::InternalType* add_E_SC(T *_pL, U *_pR);
 template<class T, class U, class O> inline types::InternalType* add_E_E(T *_pL, U *_pR);
 
+
+//String specilization
+template<> types::InternalType* add_M_M<types::String, types::String, types::String>(types::String* _pL, types::String* _pR);
+template<> types::InternalType* add_S_M<types::String, types::String, types::String>(types::String* _pL, types::String* _pR);
+template<> types::InternalType* add_M_S<types::String, types::String, types::String>(types::String* _pL, types::String* _pR);
+template<> types::InternalType* add_S_S<types::String, types::String, types::String>(types::String* _pL, types::String* _pR);
+template<> types::InternalType* add_M_E<types::String, types::Double, types::String>(types::String* _pL, types::Double* _pR);
+template<> types::InternalType* add_S_E<types::String, types::Double, types::String>(types::String* _pL, types::Double* _pR);
+template<> types::InternalType* add_E_M<types::Double, types::String, types::String>(types::Double* _pL, types::String* _pR);
+template<> types::InternalType* add_E_S<types::Double, types::String, types::String>(types::Double* _pL, types::String* _pR);
+
+
 //add matrix + matrix ( double, int, bool )
 //same type
-
 template<typename T, typename O> inline static void add(T* l, long long size, T* r, O* o)
 {
     for (int i = 0; i < size ; ++i)
     {
         o[i] = (O)l[i] + (O)r[i];
+    }
+}
+
+//string version
+inline static void add(wchar_t** l, long long size, wchar_t** r, int* lenght , wchar_t** o)
+{
+    for (int i = 0; i < size ; ++i)
+    {
+        os_swprintf(o[i], lenght[i], L"%ls%ls", l[i], r[i]);
     }
 }
 
@@ -78,6 +103,7 @@ template<typename T, typename U, typename O> inline static void add(T* l, long l
         o[i] = (O)l[i] + (O)r[i];
     }
 }
+
 
 //x + xC
 template<typename T, typename U, typename O> inline static void add(T* l, long long size, U* r, U* rc, O* o, O* oc)
@@ -138,6 +164,15 @@ template<typename T, typename U, typename O> inline static void add(T* l, long l
     }
 }
 
+//string version
+inline static void add(wchar_t** l, long long size, wchar_t* r, int* lenght , wchar_t** o)
+{
+    for (int i = 0; i < size ; ++i)
+    {
+        os_swprintf(o[i], lenght[i], L"%ls%ls", l[i], r);
+    }
+}
+
 //xC + x1
 template<typename T, typename U, typename O> inline static void add(T* l, T* lc, long long size, U r, O* o, O* oc)
 {
@@ -175,6 +210,15 @@ template<typename T, typename U, typename O> inline static void add(T l, long lo
     for (int i = 0; i < size ; ++i)
     {
         o[i] = (O)l + (O)r[i];
+    }
+}
+
+//string version
+inline static void add(wchar_t* l, long long size, wchar_t** r, int* lenght , wchar_t** o)
+{
+    for (int i = 0; i < size ; ++i)
+    {
+        os_swprintf(o[i], lenght[i], L"%ls%ls", l, r[i]);
     }
 }
 
@@ -221,6 +265,12 @@ template<typename T, typename U, typename O> inline static void add(T l, U r, O*
     *o = (O)l + (O)r;
 }
 
+//string version
+inline static void add(wchar_t* l, wchar_t* r, int lenght , wchar_t* o)
+{
+    os_swprintf(o, lenght, L"%ls%ls", l, r);
+}
+
 //x1C + x1C
 template<typename T, typename U, typename O> inline static void add(T l, T lc, U r, U rc, O* o, O* oc)
 {
@@ -250,9 +300,6 @@ inline static void add()
 //Poly
 int AddDoubleToPoly(types::Polynom *_pPoly, types::Double *_pDouble, types::Polynom ** _pPolyOut);
 int AddPolyToPoly(types::Polynom* pPoly1, types::Polynom* _pPoly2, types::Polynom ** _pPolyOut);
-
-//String
-int AddStringToString(types::String *_pString1, types::String *_pString2, types::String** _pStringOut);
 
 //Sparse
 int AddSparseToSparse(types::Sparse *_pSparse1, types::Sparse *_pSparse2, types::Sparse** _pSparseOut);
