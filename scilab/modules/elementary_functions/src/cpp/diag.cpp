@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - DIGITEO - Cedric Delamarre
+ * Copyright (C) 2014 - Scilab Enterprises - Sylvain GENIN
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -139,7 +140,7 @@ types::Polynom* diag(types::Polynom* pIn,  int iStartPos)
         {
             for (int i = 0; i < iSize; i++)
             {
-                iRank = pIn->get(i)->getRank();
+                iRank = pIn->get(i * (iSize + 1))->getRank();
                 pSP = new types::SinglePoly(&pdRData, &pdIData, iRank);
                 iPos = (i + iStartCol) * iRows + (i + iStartRow);
 
@@ -158,7 +159,7 @@ types::Polynom* diag(types::Polynom* pIn,  int iStartPos)
         {
             for (int i = 0; i < iSize; i++)
             {
-                iRank = pIn->get(i)->getRank();
+                iRank = pIn->get(i * (iSize + 1))->getRank();
                 pSP = new types::SinglePoly(&pdRData, iRank);
                 iPos = (i + iStartCol) * iRows + (i + iStartRow);
 
@@ -194,7 +195,7 @@ types::Polynom* diag(types::Polynom* pIn,  int iStartPos)
         {
             for (int i = 0; i < iSizeOfVector; i++)
             {
-                iRank = pIn->get(i)->getRank();
+                iRank = pIn->get(i * (iSize + 1))->getRank();
                 pSP = new types::SinglePoly(&pdRData, &pdIData, iRank);
                 iPos = (i + iStartCol) * iSize + (i + iStartRow);
 
@@ -213,7 +214,7 @@ types::Polynom* diag(types::Polynom* pIn,  int iStartPos)
         {
             for (int i = 0; i < iSizeOfVector; i++)
             {
-                iRank = pIn->get(i)->getRank();
+                iRank = pIn->get(i * (iSize + 1))->getRank();
                 pSP = new types::SinglePoly(&pdRData, iRank);
                 iPos = (i + iStartCol) * iSize + (i + iStartRow);
 
