@@ -13,10 +13,6 @@ function  generatePoFile(LANGUAGE)
         error(999, "Used only under Windows");
     end
 
-    if ~isdef("%c_a_c") then
-        exec("SCI/modules/overloading/macros/%c_a_c.sci");
-    end
-
     LC = "LC_MESSAGES";
     DEST_FILE_MO = SCI + filesep() + "locale" + filesep() + LANGUAGE + filesep() + LC + filesep() + "scilab.mo";
     DEST_FILE_PO = strsubst(DEST_FILE_MO, "scilab.mo", "scilab.po");

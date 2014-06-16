@@ -11,7 +11,6 @@
  */
 
 #include "api_scilab.h"
-#include "MALLOC.h"
 
 int booleanExample(char *fname, void* pvApiCtx)
 {

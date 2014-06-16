@@ -200,7 +200,7 @@ function bOK = generateLoader(name, tables, libs, libname, flag, loadername)
             end
             mfprintf(fd, "];\n");
 
-            mfprintf(fd, "addinter(%s_path + filesep() + ''%s'' + getdynlibext(), ''%s_gw'', list_functions);\n", shortlibname_path, ..
+            mfprintf(fd, "addinter(%s_path + filesep() + ''%s'' + getdynlibext(), ''%s'', list_functions);\n", shortlibname_path, ..
             name, name);
         else
             // on link then a set of addinter

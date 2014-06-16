@@ -14,9 +14,8 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "sciprint.h"
-#include "MALLOC.h"
 
-int sparseExample(char *fname, unsigned long fname_len)
+int sparseExample(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int* piAddr = NULL;

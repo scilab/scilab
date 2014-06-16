@@ -14,9 +14,9 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "sciprint.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 
-int read_poly(char *fname, unsigned long fname_len)
+int read_poly(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int i, j;
@@ -86,13 +86,13 @@ int read_poly(char *fname, unsigned long fname_len)
     }
 
     //alloc arrays of data
-    pdblReal    = (double**)malloc(sizeof(double*) * iRows * iCols);
-    pdblImg     = (double**)malloc(sizeof(double*) * iRows * iCols);
+    pdblReal    = (double**)MALLOC(sizeof(double*) * iRows * iCols);
+    pdblImg     = (double**)MALLOC(sizeof(double*) * iRows * iCols);
 
     for (i = 0 ; i < iRows * iCols ; i++)
     {
-        pdblReal[i] = (double*)malloc(sizeof(double) * piNbCoef[i]);
-        pdblImg[i] = (double*)malloc(sizeof(double) * piNbCoef[i]);
+        pdblReal[i] = (double*)MALLOC(sizeof(double) * piNbCoef[i]);
+        pdblImg[i] = (double*)MALLOC(sizeof(double) * piNbCoef[i]);
     }
 
     //Third call: retrieve data
@@ -146,15 +146,15 @@ int read_poly(char *fname, unsigned long fname_len)
     }
 
     //free OS memory
-    free(pstVarname);
-    free(piNbCoef);
+    FREE(pstVarname);
+    FREE(piNbCoef);
     for (i = 0 ; i < iRows * iCols ; i++)
     {
-        free(pdblReal[i]);
-        free(pdblImg[i]);
+        FREE(pdblReal[i]);
+        FREE(pdblImg[i]);
     }
-    free(pdblReal);
-    free(pdblImg);
+    FREE(pdblReal);
+    FREE(pdblImg);
     //assign allocated variables to Lhs position
     AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
     return 0;

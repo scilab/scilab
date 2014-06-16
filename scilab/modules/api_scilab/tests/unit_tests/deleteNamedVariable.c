@@ -11,9 +11,8 @@
  */
 
 #include "api_scilab.h"
-#include "MALLOC.h"
 
-int sci_deleteNamedVariable(char *fname, unsigned long fname_len)
+int sci_deleteNamedVariable(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int iRet = 0;

@@ -11,7 +11,7 @@ mkdir(pathconvert(TMPDIR+"/common_function"));
 cd(pathconvert(TMPDIR+"/common_function"));
 copyfile(SCI+"/modules/api_scilab/tests/unit_tests/common_function_api.c",pathconvert(TMPDIR+"/common_function/common_function_api.c",%F));
 cflags = "-I"+SCI+"/modules/localization/includes";
-ilib_build("common_function",["common_function","common_function"],"common_function_api.c",[],"","",cflags);
+ilib_build("gw_common_function",["common_function","common_function"],"common_function_api.c",[],"","",cflags);
 exec("loader.sce");
 
 l1 = [1,2*%i,3;%i,2,3*%i];

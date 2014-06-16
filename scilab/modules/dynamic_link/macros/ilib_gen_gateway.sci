@@ -79,7 +79,7 @@ function gateway_filename = ilib_gen_gateway(name,tables)
         "";
         "#define MODULE_NAME L""" + tname + """";
         "";
-        "int " + tname + "_gw(wchar_t* _pwstFuncName)";
+        "int " + tname + "(wchar_t* _pwstFuncName)";
         "{";
         "    if(wcscmp(_pwstFuncName, L""" + table(:,1) + """) == 0){ " + "symbol::Context::getInstance()->addFunction(types::Function::createFunction(L""" + table(:,1) + """, &" + names(:) + ", MODULE_NAME)); }";
         "";
@@ -124,7 +124,7 @@ function gateway_filename = ilib_gen_gateway(name,tables)
         "#define " + TNAME + "_GW_IMPEXP";
         "#endif";
         "";
-        "extern ""C"" " + TNAME + "_GW_IMPEXP int " + tname + "_gw(wchar_t* _pwstFuncName);";
+        "extern ""C"" " + TNAME + "_GW_IMPEXP int " + tname + "(wchar_t* _pwstFuncName);";
         "";
         gate(:, 2);
         "";

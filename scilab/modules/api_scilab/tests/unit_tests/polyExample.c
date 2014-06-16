@@ -14,7 +14,6 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "sciprint.h"
-#include "MALLOC.h"
 
 int polyExample(char *fname, void* pvApiCtx)
 {

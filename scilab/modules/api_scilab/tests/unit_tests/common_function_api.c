@@ -14,7 +14,6 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "sciprint.h"
-#include "MALLOC.h"
 
 SciErr printf_info(void* _pvCtx, int _iVar);
 

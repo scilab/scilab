@@ -14,7 +14,7 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "sciprint.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 
 int write_string(char *fname, void* pvApiCtx)
 {
@@ -31,7 +31,7 @@ int write_string(char *fname, void* pvApiCtx)
     char string13[]	= "puffin";
     char string23[]	= "you";
     //alloc new array
-    pstData			= (char**)malloc(sizeof(char*) * iRows * iCols);
+    pstData			= (char**)MALLOC(sizeof(char*) * iRows * iCols);
     //copy data address to the "main" array
     pstData[0]		= string11;
     pstData[1]		= string21;
@@ -42,14 +42,14 @@ int write_string(char *fname, void* pvApiCtx)
 
     //create the variable
     sciErr = createMatrixOfString(pvApiCtx, nbInputArgument(pvApiCtx) + 1, iRows, iCols, pstData);
+    //free container
+    FREE(pstData);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
         return 0;
     }
 
-    //free container
-    free(pstData);
     //assign allocated variables to Lhs position
     AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
     return 0;

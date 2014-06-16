@@ -10,7 +10,7 @@ mkdir(pathconvert(TMPDIR+"/hypermatIntExample"));
 cd(pathconvert(TMPDIR+"/hypermatIntExample"));
 copyfile(SCI+"/modules/api_scilab/tests/unit_tests/hypermatIntExample.c",pathconvert(TMPDIR+"/hypermatIntExample/hypermatIntExample.c",%F));
 cflags = "-I"+SCI+"/modules/localization/includes";
-ilib_build("gw_hypermatIntExample",["hypermatIntExample","hypermatIntExample"],"hypermatIntExample.c",[],"","",cflags);
+ilib_build("hypermatIntExample",["hypermatIntExample","hypermatIntExample"],"hypermatIntExample.c",[],"","",cflags);
 exec("loader.sce");
 a = hypermat([1 2 3], int8(1:6));
 b = hypermat([1 2 3], uint8(1:6));

@@ -14,7 +14,6 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "sciprint.h"
-#include "MALLOC.h"
 
 int stringExample(char *fname, void* pvApiCtx)
 {

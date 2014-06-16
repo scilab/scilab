@@ -14,7 +14,7 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "sciprint.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 
 int read_string(char *fname, void* pvApiCtx)
 {
@@ -52,7 +52,7 @@ int read_string(char *fname, void* pvApiCtx)
         return 0;
     }
 
-    piLen = (int*)malloc(sizeof(int) * iRows * iCols);
+    piLen = (int*)MALLOC(sizeof(int) * iRows * iCols);
 
     //second call to retrieve length of each string
     sciErr = getMatrixOfString(pvApiCtx, piAddr, &iRows, &iCols, piLen, NULL);
@@ -62,10 +62,10 @@ int read_string(char *fname, void* pvApiCtx)
         return 0;
     }
 
-    pstData = (char**)malloc(sizeof(char*) * iRows * iCols);
+    pstData = (char**)MALLOC(sizeof(char*) * iRows * iCols);
     for (i = 0 ; i < iRows * iCols ; i++)
     {
-        pstData[i] = (char*)malloc(sizeof(char) * (piLen[i] + 1));//+ 1 for null termination
+        pstData[i] = (char*)MALLOC(sizeof(char) * (piLen[i] + 1));//+ 1 for null termination
     }
 
     //third call to retrieve data
@@ -83,7 +83,7 @@ int read_string(char *fname, void* pvApiCtx)
     }
 
     //alloc output variable
-    pstOut = (char*)malloc(sizeof(char) * (iLen + iRows * iCols));
+    pstOut = (char*)MALLOC(sizeof(char) * (iLen + iRows * iCols));
     //initialize string to 0x00
     memset(pstOut, 0x00, sizeof(char) * (iLen + iRows * iCols));
 
@@ -110,15 +110,15 @@ int read_string(char *fname, void* pvApiCtx)
     }
 
     //free memory
-    free(piLen);
+    FREE(piLen);
 
     for (i = 0 ; i < iRows * iCols ; i++)
     {
-        free(pstData[i]);
+        FREE(pstData[i]);
     }
 
-    free(pstData);
-    free(pstOut);
+    FREE(pstData);
+    FREE(pstOut);
     AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
     return 0;
 }

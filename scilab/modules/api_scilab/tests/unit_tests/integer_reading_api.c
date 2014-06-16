@@ -14,7 +14,7 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "sciprint.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 
 void* create_output(int _iCoeff, int _iSize, int _iRows, int _iCols, void* _pvDataIn);
 
@@ -252,6 +252,14 @@ int read_integer(char *fname, void* pvApiCtx)
         return 0;
     }
 
+    FREE(pcDataOut);
+    FREE(pucDataOut);
+    FREE(psDataOut);
+    FREE(pusDataOut);
+    FREE(piDataOut);
+    FREE(puiDataOut);
+
+
     //assign allocated variables to Lhs position
     AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
     AssignOutputVariable(pvApiCtx, 2) = nbInputArgument(pvApiCtx) + 2;
@@ -265,7 +273,7 @@ int read_integer(char *fname, void* pvApiCtx)
 void* create_output(int _iCoeff, int _iSize, int _iRows, int _iCols, void* _pvDataIn)
 {
     int i = 0;
-    void* pvDataOut = (void*)malloc(_iSize * _iRows * _iCols);
+    void* pvDataOut = (void*)MALLOC(_iSize * _iRows * _iCols);
     for (i = 0 ; i < _iRows * _iCols ; i++)
     {
         int iVal = 0;

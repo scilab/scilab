@@ -14,7 +14,7 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "sciprint.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 
 static int iTab = 0;
 void insert_indent(void)
@@ -218,7 +218,7 @@ int get_poly_info(void* _pvCtx, int _iRhs, int* _piParent, int *_piAddr, int _iI
             return 0;
         }
 
-        piCoeff     = (int*)malloc(sizeof(int) * iRows * iCols);
+        piCoeff     = (int*)MALLOC(sizeof(int) * iRows * iCols);
         sciErr = getMatrixOfPoly(_pvCtx, _piAddr, &iRows, &iCols, piCoeff, NULL);
         if (sciErr.iErr)
         {
@@ -226,13 +226,13 @@ int get_poly_info(void* _pvCtx, int _iRhs, int* _piParent, int *_piAddr, int _iI
             return 0;
         }
 
-        pdblReal    = (double**)malloc(sizeof(double*) * iRows * iCols);
-        pdblImg     = (double**)malloc(sizeof(double*) * iRows * iCols);
+        pdblReal    = (double**)MALLOC(sizeof(double*) * iRows * iCols);
+        pdblImg     = (double**)MALLOC(sizeof(double*) * iRows * iCols);
 
         for (i = 0 ; i < iRows * iCols ; i++)
         {
-            pdblReal[i] = (double*)malloc(sizeof(double) * piCoeff[i]);
-            pdblImg[i]  = (double*)malloc(sizeof(double) * piCoeff[i]);
+            pdblReal[i] = (double*)MALLOC(sizeof(double) * piCoeff[i]);
+            pdblImg[i]  = (double*)MALLOC(sizeof(double) * piCoeff[i]);
         }
 
         if (isVarComplex(_pvCtx, _piAddr))
@@ -263,7 +263,7 @@ int get_poly_info(void* _pvCtx, int _iRhs, int* _piParent, int *_piAddr, int _iI
             return 0;
         }
 
-        piCoeff = (int*)malloc(sizeof(int) * iRows * iCols);
+        piCoeff = (int*)MALLOC(sizeof(int) * iRows * iCols);
 
         sciErr = getMatrixOfPolyInList(_pvCtx, _piParent, _iItemPos, &iRows, &iCols, piCoeff, NULL);
         if (sciErr.iErr)
@@ -272,13 +272,13 @@ int get_poly_info(void* _pvCtx, int _iRhs, int* _piParent, int *_piAddr, int _iI
             return 0;
         }
 
-        pdblReal    = (double**)malloc(sizeof(double*) * iRows * iCols);
-        pdblImg     = (double**)malloc(sizeof(double*) * iRows * iCols);
+        pdblReal    = (double**)MALLOC(sizeof(double*) * iRows * iCols);
+        pdblImg     = (double**)MALLOC(sizeof(double*) * iRows * iCols);
 
         for (i = 0 ; i < iRows * iCols ; i++)
         {
-            pdblReal[i] = (double*)malloc(sizeof(double) * piCoeff[i]);
-            pdblImg[i]  = (double*)malloc(sizeof(double) * piCoeff[i]);
+            pdblReal[i] = (double*)MALLOC(sizeof(double) * piCoeff[i]);
+            pdblImg[i]  = (double*)MALLOC(sizeof(double) * piCoeff[i]);
         }
 
         if (isVarComplex(_pvCtx, _piAddr))
@@ -302,13 +302,13 @@ int get_poly_info(void* _pvCtx, int _iRhs, int* _piParent, int *_piAddr, int _iI
 
     for (i = 0 ; i < iRows * iCols ; i++)
     {
-        free(pdblReal[i]);
-        free(pdblImg[i]);
+        FREE(pdblReal[i]);
+        FREE(pdblImg[i]);
     }
 
-    free(pdblReal);
-    free(pdblImg);
-    free(piCoeff);
+    FREE(pdblReal);
+    FREE(pdblImg);
+    FREE(piCoeff);
     return 0;;
 }
 int get_boolean_info(void* _pvCtx, int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
@@ -522,7 +522,7 @@ int get_string_info(void* _pvCtx, int _iRhs, int* _piParent, int *_piAddr, int _
             return 0;
         }
 
-        piLen = (int*)malloc(sizeof(int) * iRows * iCols);
+        piLen = (int*)MALLOC(sizeof(int) * iRows * iCols);
         sciErr = getMatrixOfString(_pvCtx, _piAddr, &iRows, &iCols, piLen, NULL);
         if (sciErr.iErr)
         {
@@ -530,11 +530,11 @@ int get_string_info(void* _pvCtx, int _iRhs, int* _piParent, int *_piAddr, int _
             return 0;
         }
 
-        pstData = (char**)malloc(sizeof(char*) * iRows * iCols);
+        pstData = (char**)MALLOC(sizeof(char*) * iRows * iCols);
 
         for (i = 0 ; i < iRows * iCols ; i++)
         {
-            pstData[i] = (char*)malloc(sizeof(char) * (piLen[i] + 1));//+ 1 for null termination
+            pstData[i] = (char*)MALLOC(sizeof(char) * (piLen[i] + 1));//+ 1 for null termination
         }
 
         sciErr = getMatrixOfString(_pvCtx, _piAddr, &iRows, &iCols, piLen, pstData);
@@ -553,7 +553,7 @@ int get_string_info(void* _pvCtx, int _iRhs, int* _piParent, int *_piAddr, int _
             return 0;
         }
 
-        piLen = (int*)malloc(sizeof(int) * iRows * iCols);
+        piLen = (int*)MALLOC(sizeof(int) * iRows * iCols);
 
         sciErr = getMatrixOfStringInList(_pvCtx, _piParent, _iItemPos, &iRows, &iCols, piLen, NULL);
         if (sciErr.iErr)
@@ -562,11 +562,11 @@ int get_string_info(void* _pvCtx, int _iRhs, int* _piParent, int *_piAddr, int _
             return 0;
         }
 
-        pstData = (char**)malloc(sizeof(char*) * iRows * iCols);
+        pstData = (char**)MALLOC(sizeof(char*) * iRows * iCols);
 
         for (i = 0 ; i < iRows * iCols ; i++)
         {
-            pstData[i] = (char*)malloc(sizeof(char) * (piLen[i] + 1));//+ 1 for null termination
+            pstData[i] = (char*)MALLOC(sizeof(char) * (piLen[i] + 1));//+ 1 for null termination
         }
 
         sciErr = getMatrixOfStringInList(_pvCtx, _piParent, _iItemPos, &iRows, &iCols, piLen, pstData);

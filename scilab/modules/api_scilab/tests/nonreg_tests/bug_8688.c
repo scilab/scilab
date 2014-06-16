@@ -8,10 +8,10 @@
 #include <stdlib.h>
 #include <api_scilab.h>
 #include <Scierror.h>
-#include <MALLOC.h>
+#include <sci_malloc.h>
 #include <localization.h>
 
-int sci_bug_8688(char *fname)
+int sci_bug_8688(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int N = 20000000;
