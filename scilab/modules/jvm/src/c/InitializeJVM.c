@@ -23,7 +23,7 @@
 #include "sci_path.h"
 #include "getScilabJNIEnv.h"
 #include "getScilabJavaVM.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "JVM.h"
 #include "createMainScilabObject.h"
 #include "scilabDefaults.h"

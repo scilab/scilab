@@ -16,7 +16,7 @@
 #endif
 
 #include <string.h>
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "TCL_ArrayDim.h"
 #include "Scierror.h"
 #include "localization.h"

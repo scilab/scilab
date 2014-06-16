@@ -15,7 +15,7 @@
 #include <stdio.h>
 #include "machine.h"
 #include "os_swprintf.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "localization.h"
 /*---------------------------------------------------------------------------*/
 #ifndef NULL

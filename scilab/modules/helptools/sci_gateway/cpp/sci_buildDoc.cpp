@@ -26,7 +26,7 @@ extern "C"
 #include "localization.h"
 #include "setgetlanguage.h"
 #include "getScilabJavaVM.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #ifdef _MSC_VER
 #include "ConvertSlash.h"
 #endif

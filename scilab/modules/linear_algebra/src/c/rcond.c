@@ -12,7 +12,7 @@
 */
 #include "machine.h"
 #include "doublecomplex.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "rcond.h"
 
 /* Lapack routines doing the real work */

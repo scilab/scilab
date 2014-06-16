@@ -29,7 +29,7 @@
 #include "sciprint.h"
 #include "GrayPlot.h"
 
-#include "MALLOC.h" /* MALLOC */
+#include "sci_malloc.h" /* MALLOC */
 #include "localization.h"
 #include "Plot2d.h"
 #include "get_ticks_utils.h"

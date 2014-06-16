@@ -32,7 +32,7 @@
 #include "SetPropertyStatus.h"
 #include "BasicAlgos.h"
 #include "set_data_property.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "sci_types.h"
 #include "api_scilab.h"
 

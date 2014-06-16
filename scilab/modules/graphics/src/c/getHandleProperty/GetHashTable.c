@@ -20,7 +20,7 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "getDictionaryGetProperties.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 /**
  * use for the singleton to know if the hashtable has already be created.
  */

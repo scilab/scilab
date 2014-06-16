@@ -14,7 +14,7 @@
 #include <string.h>
 #include "gw_windows_tools.h"
 #include "sci_mode.h"
-#include "MALLOC.h" /* MALLOC */
+#include "sci_malloc.h" /* MALLOC */
 #include "stack-c.h"
 #include "sciprint.h"
 #include "WinConsole.h"

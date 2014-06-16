@@ -15,7 +15,7 @@
 #include <Windows.h>
 #include <windowsx.h>
 #include "WndThread.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "version.h"
 #include "wmcopydata.h"
 #include "storeCommand.h"

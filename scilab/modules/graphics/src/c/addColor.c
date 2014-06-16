@@ -15,7 +15,7 @@
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 
-#include "MALLOC.h"
+#include "sci_malloc.h"
 
 int addColor(int _iFig, double* _pdblNewColor)
 {

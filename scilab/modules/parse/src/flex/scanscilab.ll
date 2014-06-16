@@ -19,7 +19,7 @@
 extern "C"
 {
 #include "charEncoding.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 }
 
 static int matrix_level = 0;

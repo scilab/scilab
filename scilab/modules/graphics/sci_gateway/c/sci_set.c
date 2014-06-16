@@ -30,7 +30,7 @@
 #include "SetHashTable.h"
 #include "SetPropertyStatus.h"
 
-#include "MALLOC.h"             /* MALLOC */
+#include "sci_malloc.h"             /* MALLOC */
 #include "localization.h"
 #include "stricmp.h"
 #include "api_scilab.h"

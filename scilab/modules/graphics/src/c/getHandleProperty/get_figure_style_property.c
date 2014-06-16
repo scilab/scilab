@@ -24,7 +24,7 @@
 #include "returnProperty.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 
 /*------------------------------------------------------------------------*/
 void* get_figure_style_property(void* _pvCtx, int iObjUID)

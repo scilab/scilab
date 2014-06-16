@@ -10,7 +10,7 @@
  *
  */
 
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "BOOL.h"
 #include "stack-c.h"
 #include "sciprint.h"

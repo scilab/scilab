@@ -15,7 +15,7 @@
 #define __GETMATLABVARIABLE_H__
 
 #include "matfile_manager.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "sciprint.h"

@@ -31,7 +31,7 @@
 #include "scicos.h"
 #include "import.h"
 #include "localization.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 
 #ifdef _MSC_VER
 #define snprintf _snprintf

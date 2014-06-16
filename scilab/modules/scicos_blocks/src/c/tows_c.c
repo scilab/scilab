@@ -26,7 +26,7 @@
 #include "api_scilab.h"
 #include "Scierror.h"
 #include "stack-def.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "scicos_print.h"
 #include "cvstr.h"
 #include "mopen.h"

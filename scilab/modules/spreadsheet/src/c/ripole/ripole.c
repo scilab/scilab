@@ -14,7 +14,7 @@
 
 #undef WITHMAIN
 
-#include "MALLOC.h"
+#include "sci_malloc.h"
 
 #define ROLE_VERSION "0.2.0"
 

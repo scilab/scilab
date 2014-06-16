@@ -14,7 +14,7 @@
 #include <string.h>
 #include "GetFunctionByName.h"
 #include "dynamic_link.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 /*--------------------------------------------------------------------------*/
 static BOOL SearchComp(FTAB *Ftab, char *op, void (**realop) ());
 static void Emptyfunc(void) {}

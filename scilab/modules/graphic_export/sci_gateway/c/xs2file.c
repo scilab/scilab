@@ -25,7 +25,7 @@
 #include "Scierror.h"
 #include "expandPathVariable.h"
 #include "PATH_MAX.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "FigureList.h"
 #include "freeArrayOfString.h"
 #include "../../../graphics/src/c/getHandleProperty/getPropertyAssignedValue.h"

@@ -22,7 +22,7 @@
 extern "C"
 {
 #include "charEncoding.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 }
 
 #ifdef _MSC_VER

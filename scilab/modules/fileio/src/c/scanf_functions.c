@@ -11,7 +11,7 @@
  *
  */
 /*--------------------------------------------------------------------------*/
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "do_xxscanf.h"
 #include "scanf_functions.h"
 #include "cvstr.h"

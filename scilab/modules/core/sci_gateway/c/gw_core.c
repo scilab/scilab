@@ -11,7 +11,7 @@
  */
 #include <string.h>
 #include "gw_core.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "api_scilab.h"
 #include "machine.h"
 #include "callFunctionFromGateway.h"

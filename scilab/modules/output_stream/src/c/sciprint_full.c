@@ -23,7 +23,7 @@
 #include <string.h>
 #include "sciprint_full.h"
 #include "sciprint.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "localization.h"
 #include "scilines.h"
 /*--------------------------------------------------------------------------*/

@@ -19,7 +19,7 @@
 #include <string.h>
 #include "fprintfMat.h"
 #include "charEncoding.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "core_math.h"
 #include "strsubst.h"
 #include "BOOL.h"

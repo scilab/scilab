@@ -13,7 +13,7 @@
 #ifndef _MSC_VER
 #define _GNU_SOURCE             /* basename crashes this extension otherwise */
 #endif
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include <curl/curl.h>
 #include <libxml/uri.h>
 #include <string.h>

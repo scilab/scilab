@@ -18,7 +18,7 @@ extern "C"
 {
 #include "getfileinfo.h"
 #include "charEncoding.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 }
 /*--------------------------------------------------------------------------*/
 void C2F(getfileinfo)(int *fd, FILE *fa, int *swap2, int *type, int *mode, char *filename, int *lf, int *ierr)

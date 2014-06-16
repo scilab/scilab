@@ -15,7 +15,7 @@
 #include "sci_types.h"
 #include "api_scilab.h"
 #include "freeArrayOfString.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 
 matvar_t *GetCellVariable(void *pvApiCtx, int iVar, const char *name, int matfile_version, int * parent, int item_position)
 {

@@ -16,7 +16,7 @@ extern "C"
 {
 #include "strsubst.h"
 #include "os_wcsdup.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "elem_common.h"
 }
 /*

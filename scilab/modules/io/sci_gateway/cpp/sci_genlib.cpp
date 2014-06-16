@@ -38,7 +38,7 @@
 
 extern "C"
 {
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "localization.h"
 #include "PATH_MAX.h"
 #include "findfiles.h"

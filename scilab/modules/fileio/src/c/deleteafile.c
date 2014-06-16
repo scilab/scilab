@@ -20,7 +20,7 @@
 #include <Windows.h>
 #endif
 #include "charEncoding.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 /*--------------------------------------------------------------------------*/
 BOOL deleteafile(char *filename)
 {

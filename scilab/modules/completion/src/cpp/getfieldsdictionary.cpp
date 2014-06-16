@@ -20,7 +20,7 @@ extern "C"
 #include <stdlib.h> /* qsort */
 #include "Scierror.h"
 #include "api_scilab.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "getfieldsdictionary.h"
 #include "getPartLine.h"
 #include "completion.h"

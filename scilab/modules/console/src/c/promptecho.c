@@ -14,7 +14,7 @@
 #include <string.h>
 #include "promptecho.h"
 #include "basout.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "prompt.h"
 #include "os_strdup.h"
 /*--------------------------------------------------------------------------*/

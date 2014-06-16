@@ -13,7 +13,7 @@
 #include <stdio.h>
 
 #include "core_math.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "doublecomplex.h"
 #include "qr.h"
 #include "elem_common.h"

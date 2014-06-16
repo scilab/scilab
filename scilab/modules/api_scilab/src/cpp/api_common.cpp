@@ -36,7 +36,7 @@ extern "C"
 #include "Scierror.h"
 #include "sciprint.h"
 #include "localization.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 }
 
 static int api_fake_int; //only for compatibility with Scilab 5 stack functions

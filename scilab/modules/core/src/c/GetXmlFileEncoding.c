@@ -12,7 +12,7 @@
 #include <string.h>
 #include "GetXmlFileEncoding.h"
 #include "libxml/xmlreader.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "os_strdup.h"
 #include "BOOL.h"
 #include "getshortpathname.h"

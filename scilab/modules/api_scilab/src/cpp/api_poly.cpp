@@ -27,7 +27,7 @@ extern "C"
 #include "api_internal_poly.h"
 #include "api_internal_common.h"
 #include "localization.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "charEncoding.h"
 }
 using namespace types;

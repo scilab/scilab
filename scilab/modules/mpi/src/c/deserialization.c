@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include "api_scilab.h"
 #include "BOOL.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "deserialization.h"
 
 static int deserialize_double(void *_pvCtx, int *_piBuffer, int _iBufferSize)

@@ -13,7 +13,7 @@
 #include "diary_manager.hxx"
 #include "DiaryList.hxx"
 #include "diary.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 /*--------------------------------------------------------------------------*/
 static DiaryList *SCIDIARY = NULL;
 /*--------------------------------------------------------------------------*/

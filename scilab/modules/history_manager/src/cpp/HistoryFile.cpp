@@ -23,7 +23,7 @@ extern "C"
 #include <string.h>
 #include <time.h>
 #include <stdlib.h>
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "BOOL.h"
 #include "sciprint.h"
 #include "PATH_MAX.h"

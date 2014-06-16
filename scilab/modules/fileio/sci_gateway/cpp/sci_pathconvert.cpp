@@ -18,7 +18,7 @@
 
 extern "C"
 {
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "pathconvert.h"

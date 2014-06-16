@@ -70,7 +70,7 @@
  */
 
 #include <math.h>
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "sciumfpack.h"
 #include "taucs_scilab.h"
 #include "common_umfpack.h"

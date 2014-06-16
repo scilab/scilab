@@ -23,7 +23,7 @@ extern "C"
 #include "getos.h"
 #include "localization.h"
 #include "Scierror.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "os_swprintf.h"
 }
 /*--------------------------------------------------------------------------*/

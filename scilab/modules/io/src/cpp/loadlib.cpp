@@ -17,7 +17,7 @@
 
 extern "C"
 {
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "stricmp.h"
 #include "os_strdup.h"
 #include "expandPathVariable.h"

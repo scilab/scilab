@@ -16,7 +16,7 @@
 #include "scicurdir.h"
 #include "localization.h"
 #include "expandPathVariable.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "localization.h"
 #include "api_scilab.h"
 #include "isdir.h"

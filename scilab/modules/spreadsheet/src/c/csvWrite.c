@@ -22,7 +22,7 @@
 #include "expandPathVariable.h"
 #include "FileExist.h"
 #include "mclose.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "core_math.h"
 #include "csvDefault.h"
 #include "utftolatin.h"

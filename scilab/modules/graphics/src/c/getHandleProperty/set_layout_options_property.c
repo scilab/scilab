@@ -16,7 +16,7 @@
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
 #include "api_scilab.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "freeArrayOfString.h"
 #include "Scierror.h"
 #include "localization.h"

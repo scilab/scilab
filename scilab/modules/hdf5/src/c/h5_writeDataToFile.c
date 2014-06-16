@@ -13,7 +13,7 @@
 #define H5_USE_16_API
 
 #include <hdf5.h>
-#include <MALLOC.h>
+#include <sci_malloc.h>
 #include <math.h>
 #include <string.h>
 #include <stdlib.h>

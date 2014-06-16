@@ -17,7 +17,7 @@
 #include "Scierror.h"
 #include "msgs.h"
 #include "zbeshv.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
 int sci_besselh(char *fname, void* pvApiCtx)

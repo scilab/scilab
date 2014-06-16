@@ -42,6 +42,7 @@
 #include "home.h"
 #include "sci_path.h"
 #include "sci_tmpdir.h"
+#include "sci_malloc.h"
 
 using namespace std;
 

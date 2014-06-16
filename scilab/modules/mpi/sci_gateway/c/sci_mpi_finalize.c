@@ -16,7 +16,7 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "api_scilab.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 
 static void mpi_finalize_internal()
 {

@@ -44,7 +44,7 @@
 #include "localization.h"
 #include "gw_umfpack.h"
 #include "api_scilab.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "callFunctionFromGateway.h"
 #include "taucs_scilab.h"
 /*--------------------------------------------------------------------------*/

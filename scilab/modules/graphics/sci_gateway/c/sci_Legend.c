@@ -23,7 +23,7 @@
 #include "gw_graphics.h"
 #include "api_scilab.h"
 #include "BuildObjects.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "freeArrayOfString.h"

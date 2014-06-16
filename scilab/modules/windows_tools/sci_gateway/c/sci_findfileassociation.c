@@ -14,7 +14,7 @@
 #include <windows.h>
 #include <string.h>
 #include "gw_windows_tools.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "Scierror.h"
 #include "FindFileAssociation.h"
 #include "PATH_MAX.h"

@@ -24,7 +24,7 @@
 #include "ConsoleRead.h"
 #include "SetConsolePrompt.h"
 #include "sci_mode.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "prompt.h"
 #include "HistoryManager.h"
 #include "storeCommand.h"       /* for ismenu() */

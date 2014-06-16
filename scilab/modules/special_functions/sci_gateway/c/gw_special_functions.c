@@ -15,7 +15,7 @@
 #include "gw_special_functions.h"
 #include "callFunctionFromGateway.h"
 #include "api_scilab.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "xerhlt.h"
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/

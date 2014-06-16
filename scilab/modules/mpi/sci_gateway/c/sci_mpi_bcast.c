@@ -15,7 +15,7 @@
 #include <mpi.h>
 #include "gw_mpi.h"
 #include "Scierror.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "localization.h"
 #include "serialization.h"
 #include "deserialization.h"

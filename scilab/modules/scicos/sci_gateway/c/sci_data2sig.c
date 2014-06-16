@@ -24,7 +24,7 @@
 #include "stack-c.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 /*--------------------------------------------------------------------------*/
 extern int *listentry(int *header, int i);
 extern void str2sci(char** x, int n, int m);

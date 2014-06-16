@@ -11,7 +11,7 @@
  */
 #include <string.h>
 #include "commandwords.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "BOOL.h"
 #include "os_strdup.h"
 

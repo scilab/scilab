@@ -28,7 +28,7 @@
 #include <locale.h>
 #endif
 
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "InitializeLocalization.h"
 #include "localization.h"
 #include "sci_path.h"

@@ -15,7 +15,7 @@
 #include "PATH_MAX.h"
 #include "filesmanagement.h"
 #include "core_math.h" /* Min Max */
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "os_strdup.h"
 #include "fullpath.h"
 /*--------------------------------------------------------------------------*/

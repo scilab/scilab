@@ -18,7 +18,7 @@
 
 extern "C"
 {
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "getCommentDateSession.h"
 #include "HistoryManager.h"
 #include "localization.h"

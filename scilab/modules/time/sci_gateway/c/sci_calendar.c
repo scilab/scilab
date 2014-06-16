@@ -14,7 +14,7 @@
 /*--------------------------------------------------------------------------*/
 #include "gw_time.h"
 #include "api_scilab.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "Scierror.h"
 #include "transposeMatrix.h"
 #include "localization.h"

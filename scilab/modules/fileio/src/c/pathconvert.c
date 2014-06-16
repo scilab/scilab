@@ -12,7 +12,7 @@
 /*--------------------------------------------------------------------------*/
 #include <wctype.h>
 #include "pathconvert.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "expandPathVariable.h"
 #include "splitpath.h"
 #include "charEncoding.h"

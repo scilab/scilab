@@ -14,7 +14,7 @@
 #include <string.h>
 #include "FindScilab.h"
 #include "version.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "WndThread.h"
 #include "os_strdup.h"
 /*--------------------------------------------------------------------------*/

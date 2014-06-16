@@ -18,7 +18,7 @@
 #include "spawncommand.h"
 #else
 #include <sys/wait.h>
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #endif
 #include "charEncoding.h"
 #include "systemc.h"

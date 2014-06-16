@@ -13,7 +13,7 @@
 /*--------------------------------------------------------------------------*/
 #include <string.h>
 #include "gw_jvm.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "stack-c.h"
 #include "system_setproperty.h"
 #include "Scierror.h"

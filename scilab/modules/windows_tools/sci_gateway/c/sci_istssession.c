@@ -15,7 +15,7 @@
 #include <string.h>
 #include "BOOL.h"
 #include "gw_windows_tools.h"
-#include "MALLOC.h" /* MALLOC */
+#include "sci_malloc.h" /* MALLOC */
 #include "stack-c.h"
 /*--------------------------------------------------------------------------*/
 int sci_istssession(char *fname, unsigned long l)

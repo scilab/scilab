@@ -19,7 +19,7 @@
 #include "PATH_MAX.h"
 #include "fileinfo.h"
 #include "charEncoding.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "returnanan.h"
 #include "os_swprintf.h"
 #include "expandPathVariable.h"

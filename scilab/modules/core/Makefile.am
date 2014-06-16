@@ -270,7 +270,7 @@ includes/getmemory.h \
 includes/getos.h \
 includes/machine.h \
 includes/mode_exec.h \
-includes/MALLOC.h \
+includes/sci_malloc.h \
 includes/PATH_MAX.h \
 includes/scilabDefaults.h \
 includes/scisparse.h \

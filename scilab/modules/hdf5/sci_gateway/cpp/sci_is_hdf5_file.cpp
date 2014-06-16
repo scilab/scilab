@@ -22,7 +22,7 @@ extern "C"
 #include "h5_fileManagement.h"
 #include "sciprint.h"
 #include "expandPathVariable.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 }
 
 

@@ -17,7 +17,7 @@
 #include "copyfile.h"
 #include "BOOL.h"
 #include "charEncoding.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "isdir.h"
 #include "createdirectory.h"
 #include "PATH_MAX.h"

@@ -23,7 +23,7 @@
 #include <string.h>
 #include <locale.h>
 #include "charEncoding.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
 #include <Windows.h>

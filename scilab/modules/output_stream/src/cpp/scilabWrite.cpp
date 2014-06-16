@@ -19,7 +19,7 @@ extern "C"
 #include "promptmode.h"
 #include <stdio.h>
 #include "charEncoding.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "diary.h"
 #include "sci_mode.h"
 }

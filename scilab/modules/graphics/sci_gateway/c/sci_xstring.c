@@ -20,7 +20,7 @@
 #include "gw_graphics.h"
 #include "api_scilab.h"
 #include "sciCall.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "freeArrayOfString.h"
 #include "localization.h"
 #include "Scierror.h"

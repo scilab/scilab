@@ -20,7 +20,7 @@
 extern "C"
 {
 #include "api_scilab.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 }
 
 using namespace org_modules_external_objects;

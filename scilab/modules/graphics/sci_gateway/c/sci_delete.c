@@ -18,7 +18,7 @@
 /* desc : interface for delete routine                                    */
 /*------------------------------------------------------------------------*/
 
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "gw_graphics.h"
 #include "api_scilab.h"
 #include "DestroyObjects.h"

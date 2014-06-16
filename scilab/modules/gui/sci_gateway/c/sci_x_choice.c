@@ -12,7 +12,7 @@
  */
 
 #include "gw_gui.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "api_scilab.h"
 #include "localization.h"
 #include "CallMessageBox.h"

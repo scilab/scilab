@@ -17,7 +17,7 @@
 #include "dynamiclibrary.h"
 #include "JVM.h"
 #include "JVM_functions.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "getScilabJavaVM.h"
 #include "getScilabJNIEnv.h"
 #include "fromjava.h"

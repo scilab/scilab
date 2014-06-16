@@ -20,7 +20,7 @@
 #include <windows.h>
 #endif
 #include "gw_fileio.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "localization.h"
 #include "api_scilab.h"
 #include "Scierror.h"

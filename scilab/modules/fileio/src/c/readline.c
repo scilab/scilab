@@ -17,7 +17,7 @@
 #include "mgetl.h"
 #include "stack-def.h" /* bsiz */
 #include "freeArrayOfString.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 /*--------------------------------------------------------------------------*/
 #define EMPTYSTR ""
 /*--------------------------------------------------------------------------*/

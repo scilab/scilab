@@ -18,7 +18,7 @@
 /*--------------------------------------------------------------------------*/
 #include "gw_history_manager.h"
 #include "api_scilab.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
 int gw_history_manager(void)

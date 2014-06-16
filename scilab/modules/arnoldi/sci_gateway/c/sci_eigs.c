@@ -22,7 +22,7 @@
 #include "stdlib.h"
 #include "sciprint.h"
 #include "doublecomplex.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "eigs.h"
 
 int sci_eigs(char *fname, void* pvApiCtx)

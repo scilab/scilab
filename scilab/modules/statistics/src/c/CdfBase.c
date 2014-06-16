@@ -18,7 +18,7 @@
 #include "Scierror.h"
 #include "sciprint.h"
 #include "localization.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "sci_string_matrix.h"
 #include <string.h>
 

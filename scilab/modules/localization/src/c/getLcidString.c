@@ -18,7 +18,7 @@
 #endif
 #include "os_strdup.h"
 #include "getLcidString.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "charEncoding.h"
 #include "stack-def.h"
 /*--------------------------------------------------------------------------*/

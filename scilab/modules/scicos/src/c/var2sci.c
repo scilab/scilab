@@ -22,7 +22,7 @@
 #include "var2sci.h"
 #include "import.h"
 #include "stack-c.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 /*--------------------------------------------------------------------------*/
 int var2sci(void *x, int n, int m, int typ_var)
 {

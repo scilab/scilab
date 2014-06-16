@@ -10,7 +10,7 @@
  *
  */
 #include <string.h>
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "getRange.h"
 #include "os_strdup.h"
 // =============================================================================

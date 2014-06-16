@@ -70,7 +70,7 @@ function gateway_filename = ilib_gen_gateway(name,tables)
         t = [ "#include <mex.h> ";
         "#include <sci_gateway.h>";
         "#include <api_scilab.h>";
-        "#include <MALLOC.h>";
+        "#include <sci_malloc.h>";
         "static int direct_gateway(char *fname,void F(void)) { F();return 0;};";
         "extern Gatefunc " + names(:) + ";";
         "static GenericTable Tab[]={";

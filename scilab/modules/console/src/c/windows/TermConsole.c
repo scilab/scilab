@@ -14,7 +14,7 @@
 #include <stdio.h>
 #include <ctype.h>
 #include "TermConsole.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "TermCommand.h"
 #include "FocusOnConsole.h"
 #include "os_strdup.h"

@@ -19,7 +19,7 @@
 #include "FileExist.h"
 #include "addToLibrarypath.h"
 #include "sci_path.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "localization.h"
 #include "stricmp.h"
 #include "os_strdup.h"

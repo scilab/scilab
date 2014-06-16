@@ -10,7 +10,7 @@
  *
  */
 
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "core_math.h" // Max
 #include "machine.h" // C2F
 #include "doublecomplex.h"

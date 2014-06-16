@@ -17,7 +17,7 @@ extern "C" {
 #include <stdlib.h>
 #include "getScilabJavaVM.h"
 #include "RendererFontManager.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "os_strdup.h"
 }
 

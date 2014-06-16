@@ -21,7 +21,7 @@
 /*--------------------------------------------------------------------------*/
 #include "machine.h"
 #include "sciblk2.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 /*--------------------------------------------------------------------------*/
 extern int C2F(scierr)();
 extern void C2F(itosci)();

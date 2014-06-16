@@ -11,7 +11,7 @@
  */
 #include <stdio.h>                      // for NULL, fprintf, stderr
 #include <mpi.h>
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "BOOL.h"                       // for ::TRUE, ::FALSE, BOOL
 #include "api_scilab.h"                 // for pvApiCtx, etc
 

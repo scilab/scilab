@@ -24,7 +24,7 @@
 
 extern "C" {
 #include "more.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 }
 
 using namespace types;

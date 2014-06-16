@@ -17,7 +17,7 @@
 //#include "api_scilab.h"
 #include "returnProperty.h"
 #include <string.h>
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "double.hxx"
 #include "string.hxx"
 #include "graphichandle.hxx"

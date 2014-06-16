@@ -14,7 +14,7 @@
 #include "InitializeGUI.h"
 #include "sci_mode.h"
 #include "setMainWindowTitle.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "buildMainWindowTitle.h"
 #ifdef _MSC_VER
 #include "WindowShow.h"

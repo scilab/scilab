@@ -21,7 +21,7 @@ extern "C"
     //XML API
 #include <libxml/xpath.h>
 #include <libxml/xmlreader.h>
-#include "MALLOC.h"
+#include "sci_malloc.h"
 }
 
 using namespace types;

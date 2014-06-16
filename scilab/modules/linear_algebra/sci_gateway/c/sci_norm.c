@@ -14,7 +14,7 @@
 #include "gw_linear_algebra2.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "norm.h"
 
 /*--------------------------------------------------------------------------*/

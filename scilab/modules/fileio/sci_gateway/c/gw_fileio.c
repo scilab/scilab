@@ -13,7 +13,7 @@
 /*--------------------------------------------------------------------------*/
 #include "gw_fileio.h"
 #include "callFunctionFromGateway.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "api_scilab.h"
 /*--------------------------------------------------------------------------*/
 int gw_fileio(void)

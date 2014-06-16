@@ -19,7 +19,7 @@
 extern "C"
 {
 #include "charEncoding.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 }
 /*--------------------------------------------------------------------------*/
 Diary::Diary(std::wstring _wfilename, int _mode, int ID, bool autorename)

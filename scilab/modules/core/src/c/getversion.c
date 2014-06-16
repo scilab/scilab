@@ -20,7 +20,7 @@
 #include "with_module.h"
 #include "loadversion.h"
 #include "freeArrayOfString.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "../../../io/includes/getenvc.h"
 #include "os_wcsdup.h"
 #include "charEncoding.h"

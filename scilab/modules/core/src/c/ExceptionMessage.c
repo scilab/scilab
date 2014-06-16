@@ -9,7 +9,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "GetExceptionCode.h"
 #include "ExceptionMessage.h"
 #include "sciprint.h"

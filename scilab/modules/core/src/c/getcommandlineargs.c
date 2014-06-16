@@ -12,7 +12,7 @@
 
 #include <string.h>
 #include "getcommandlineargs.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "os_strdup.h"
 /*--------------------------------------------------------------------------*/
 static int scilab_nbargs = 0;

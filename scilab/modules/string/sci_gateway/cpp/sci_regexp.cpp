@@ -22,7 +22,7 @@ using regular expression .                                      */
 
 extern "C"
 {
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "localization.h"
 #include "pcre.h"
 #include "pcre_private.h"

@@ -16,7 +16,7 @@
 #include "PATH_MAX.h"
 #include "scicurdir.h" /* scigetcwd */
 #include "findfiles.h" /* findfiles */
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "expandPathVariable.h"
 #include "machine.h"
 #include "isdir.h"

@@ -15,7 +15,7 @@
 
 extern "C" {
 #include "gw_xcos.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "freeArrayOfString.h"
 #include "api_scilab.h"
 #include "localization.h"

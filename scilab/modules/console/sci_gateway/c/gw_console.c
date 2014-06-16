@@ -13,7 +13,7 @@
 #include <string.h>
 #include "gw_console.h"
 #include "api_scilab.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
 int gw_console(void)

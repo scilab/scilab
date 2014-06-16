@@ -12,7 +12,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "completion.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "getvariablesname.h"
 #include "commandwords.h"
 #include "getfunctionsname.h"

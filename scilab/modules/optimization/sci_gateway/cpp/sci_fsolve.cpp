@@ -24,7 +24,7 @@ extern "C"
 #include "Scierror.h"
 #include "sciprint.h"
 #include "scioptimfunctions.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 }
 /*--------------------------------------------------------------------------*/
 

@@ -13,7 +13,7 @@
 #include <string.h>
 #include "transposeMatrix.h"
 #include "os_strdup.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 /*--------------------------------------------------------------------------*/
 double *transposeMatrixDouble(int C, int L, double *MatrixDouble)
 {

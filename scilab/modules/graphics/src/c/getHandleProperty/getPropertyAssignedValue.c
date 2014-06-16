@@ -19,7 +19,7 @@
 #include "getPropertyAssignedValue.h"
 #include "api_scilab.h"
 #include "localization.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "BasicAlgos.h"
 #include "freeArrayOfString.h"
 #include "Scierror.h"

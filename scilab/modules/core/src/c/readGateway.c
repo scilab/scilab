@@ -21,7 +21,7 @@
 #include "scilabDefaults.h"
 #include "FileExist.h"
 #include "with_module.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "GetXmlFileEncoding.h"
 #include "localization.h"
 #include "os_strdup.h"

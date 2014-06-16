@@ -19,7 +19,7 @@
 #ifdef _MSC_VER
 #include "TermPrintf.h"
 #endif
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "charEncoding.h"
 #include "scilabWrite.hxx"
 /*--------------------------------------------------------------------------*/

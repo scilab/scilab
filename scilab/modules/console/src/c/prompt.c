@@ -16,7 +16,7 @@
 #include "sciprint.h"
 #include "warningmode.h"
 #include "localization.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "os_strdup.h"
 #include "BOOL.h"
 /*------------------------------------------------------------------------*/

@@ -16,7 +16,7 @@
 #include "gw_matio.h"
 #include "localization.h"
 #include "Scierror.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "freeArrayOfString.h"
 #include "os_strdup.h"
 

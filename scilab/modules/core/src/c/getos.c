@@ -20,7 +20,7 @@
 #include <sys/utsname.h>
 #endif
 #include "getos.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "os_strdup.h"
 
 /*--------------------------------------------------------------------------*/

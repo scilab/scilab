@@ -9,7 +9,7 @@
 #include "bytedecoders.h"
 #include "olestream-unwrap.h"
 #include "localization.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "charEncoding.h"
 #include "os_strdup.h"
 

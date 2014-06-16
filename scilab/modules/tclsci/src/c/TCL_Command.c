@@ -20,7 +20,7 @@
 #endif
 
 #include "os_strdup.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "TCL_Command.h"
 #include "GlobalTclInterp.h"
 

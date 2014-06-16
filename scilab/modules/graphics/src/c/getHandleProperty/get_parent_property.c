@@ -25,7 +25,7 @@
 #include "getHandleProperty.h"
 #include "HandleManagement.h"
 #include "returnProperty.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "CurrentObject.h"
 
 #include "getGraphicObjectProperty.h"

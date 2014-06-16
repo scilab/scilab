@@ -28,7 +28,7 @@
 #include "graphicObjectProperties.h"
 #include "setGraphicObjectProperty.h"
 #include "api_scilab.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 /*------------------------------------------------------------------------*/
 int set_callback_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {

@@ -12,7 +12,7 @@
 #include <string.h>
 #include <stdio.h>
 #include "csvRead.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "freeArrayOfString.h"
 #include "mopen.h"
 #include "mgetl.h"

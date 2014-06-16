@@ -106,7 +106,7 @@
 #include "sciprint.h"
 #include "localization.h"
 #include "BOOL.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "gw_cacsd.h"
 #include "elem_common.h"
 /*--------------------------------------------------------------------------*/

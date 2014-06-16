@@ -20,7 +20,7 @@
 #include "HistoryManager.h"
 #include "TermConsole.h"
 #include "localization.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "TermPosition.h"
 #include "../../../windows_tools/src/c/scilab_windows/console.h"
 #include "os_strdup.h"

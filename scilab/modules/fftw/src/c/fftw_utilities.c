@@ -12,7 +12,7 @@
  *
  */
 #include "fftw_utilities.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "callfftw.h"
 #include <math.h>
 int check_1D_symmetry(double *Ar, double *Ai, int nA, int iA);

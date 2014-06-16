@@ -10,7 +10,7 @@
  *
  */
 #include <stdlib.h>
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "stack-def.h"
 #include "scimem.h"
 #include "sciprint.h"

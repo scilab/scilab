@@ -17,7 +17,7 @@
 
 #include <string.h>
 #include "stack-c.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "stack-def.h"
 
 static int IsEqualDoubleMat(double *d1, double *d2);

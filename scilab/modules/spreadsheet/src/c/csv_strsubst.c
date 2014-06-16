@@ -14,7 +14,7 @@
 #include <stddef.h>
 #endif
 #include "csv_strsubst.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "os_strdup.h"
 // =============================================================================
 char *csv_strsubst(const char *input_string, const char *string_to_search, const char *replacement_string)

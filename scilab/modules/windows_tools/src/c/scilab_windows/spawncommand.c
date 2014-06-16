@@ -14,7 +14,7 @@
 /*--------------------------------------------------------------------------*/
 #include <stdio.h>
 #include "PATH_MAX.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "FileExist.h"
 #include "sci_mode.h"
 #include "sci_tmpdir.h"

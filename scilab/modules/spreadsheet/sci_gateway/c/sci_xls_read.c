@@ -21,7 +21,7 @@
 #include "xls.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 /*--------------------------------------------------------------------------*/
 int sci_xls_read(char *fname, unsigned long fname_len)
 {

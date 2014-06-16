@@ -22,7 +22,7 @@ extern "C"
 #include "api_internal_common.h"
 #include "api_internal_sparse.h"
 #include "localization.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "call_scilab.h"
 }
 

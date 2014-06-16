@@ -16,7 +16,7 @@
 #include "dl_genErrorMessage.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 /*---------------------------------------------------------------------------*/
 void dl_genErrorMessage(wchar_t* _pwstCallerName, int _iErr, wchar_t* _pwstLibraryName)
 {

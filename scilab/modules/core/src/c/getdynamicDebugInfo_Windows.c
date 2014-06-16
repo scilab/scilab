@@ -18,7 +18,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "getDynamicDebugInfo_Windows.h"
 #include "localization.h"
 #include "getos.h"

@@ -91,7 +91,7 @@ public:
         return nodeNumber;
     }
 
-    void nodeNumber_set(long long _nodeNumber)
+    void nodeNumber_set(size_t _nodeNumber)
     {
         nodeNumber = _nodeNumber;
     }

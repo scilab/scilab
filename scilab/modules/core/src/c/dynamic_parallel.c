@@ -12,7 +12,7 @@
 /*--------------------------------------------------------------------------*/
 //#include "callDynamicGateway.h"
 #include "gw_dynamic_generic.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "dynamic_parallel.h"
 /*--------------------------------------------------------------------------*/
 /* PARALLEL module */

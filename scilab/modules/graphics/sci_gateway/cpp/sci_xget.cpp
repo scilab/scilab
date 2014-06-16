@@ -38,7 +38,7 @@ extern "C"
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 #include "BuildObjects.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "getHandleProperty.h"
 #include "CurrentFigure.h"
 }

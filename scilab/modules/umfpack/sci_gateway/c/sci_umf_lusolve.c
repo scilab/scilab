@@ -63,7 +63,7 @@
 #include "common_umfpack.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 
 extern CellAdr *ListNumeric;
 

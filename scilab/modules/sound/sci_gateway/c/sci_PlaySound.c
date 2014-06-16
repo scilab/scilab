@@ -22,7 +22,7 @@
 #include "Scierror.h"
 #include "api_scilab.h"
 #include "localization.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 /*--------------------------------------------------------------------------*/
 static int playsound(wchar_t *wcFilename);
 /*--------------------------------------------------------------------------*/

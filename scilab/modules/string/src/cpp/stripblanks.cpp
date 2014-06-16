@@ -15,7 +15,7 @@
 
 extern "C"
 {
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "os_wcsdup.h"
 }
 

@@ -21,7 +21,7 @@ extern "C"
 #include "xml_mlist.h"
 #include "api_scilab.h"
 #include "Scierror.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 }
 
 static const char *_XMLDoc[] = { "XMLDoc", "_id" };

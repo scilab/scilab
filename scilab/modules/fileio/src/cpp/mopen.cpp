@@ -18,7 +18,7 @@
 
 extern "C"
 {
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "mopen.h"
 #include "sciprint.h"
 #include "charEncoding.h"

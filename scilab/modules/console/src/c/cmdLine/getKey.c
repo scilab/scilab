@@ -26,7 +26,7 @@
 #include "initConsoleMode.h"
 #include "cliPrompt.h"
 #include "getKey.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "HistoryManager.h"
 #include "charEncoding.h"
 #include "cliDisplayManagement.h"

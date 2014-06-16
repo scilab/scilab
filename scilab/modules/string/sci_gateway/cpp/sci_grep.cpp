@@ -26,7 +26,7 @@ extern "C"
 #include "localization.h"
 #include "pcre.h"
 #include "pcreposix.h"
-#include "MALLOC.h" /* MALLOC */
+#include "sci_malloc.h" /* MALLOC */
 #include "charEncoding.h"
 #include "pcre_private.h"
 #include "pcre_error.h"

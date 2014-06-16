@@ -18,7 +18,7 @@
 #include "localization.h"
 #include "gw_tclsci.h"
 #include "api_scilab.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "sci_mode.h"
 #include "callFunctionFromGateway.h"
 #include "InitTclTk.h" /* isTkStarted */

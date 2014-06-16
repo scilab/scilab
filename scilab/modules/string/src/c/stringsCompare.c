@@ -14,7 +14,7 @@
 /*--------------------------------------------------------------------------*/
 #include <string.h>
 #include "stringsCompare.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "stricmp.h"
 /*--------------------------------------------------------------------------*/
 static int sign(int x)

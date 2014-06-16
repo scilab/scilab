@@ -13,7 +13,7 @@
 #include <stdio.h>
 #include "api_scilab.h"
 #include "BOOL.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "serialization.h"
 
 static int serialize_double(void *_pvCtx, int *_piAddr, int **_piBuffer, int *_piBufferSize)

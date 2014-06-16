@@ -12,7 +12,7 @@
 /*----------------------------------------------------------------------------*/
 #include <string.h>
 #include "strsplit.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "freeArrayOfString.h"
 /*----------------------------------------------------------------------------*/
 wchar_t **strsplit(wchar_t * wcstringToSplit, double *indices, int sizeIndices, strsplit_error *ierr)

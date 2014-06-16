@@ -14,7 +14,7 @@
 #include <jni.h>
 #include "api_scilab.h"
 #include "sci_types.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "BOOL.h"
 
 #ifdef __cplusplus

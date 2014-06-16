@@ -16,7 +16,7 @@
 #include <stdio.h>
 #include <string.h>             /* strlen */
 #include "getCommentDateSession.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "BOOL.h"
 #include "localization.h"
 #include "os_strdup.h"

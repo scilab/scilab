@@ -15,7 +15,7 @@
 #include <string.h>
 #include "api_scilab.h"
 #include "callfftw.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "gw_fftw.h"
 #include "localization.h"
 #include "freeArrayOfString.h"

@@ -15,7 +15,7 @@
 #include "gw_dynamic_generic.h"
 #include "sci_mode.h"
 #include "with_module.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 /*--------------------------------------------------------------------------*/
 /* tclsci module */
 #define TCLSCI_MODULE_NAME "tclsci"

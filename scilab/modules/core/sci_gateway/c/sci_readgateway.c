@@ -14,7 +14,7 @@
 #include "gw_core.h"
 #include "stack-c.h"
 #include "readGateway.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "freeArrayOfString.h"

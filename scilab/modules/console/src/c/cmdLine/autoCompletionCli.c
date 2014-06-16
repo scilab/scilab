@@ -22,7 +22,7 @@
 #include "cliDisplayManagement.h"
 #include "freeArrayOfString.h"
 #include "cliPrompt.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "completion.h"
 #include "getPartLine.h"
 #include "getCommonPart.h"

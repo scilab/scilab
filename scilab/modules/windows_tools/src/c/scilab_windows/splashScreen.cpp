@@ -28,7 +28,7 @@ extern "C"
 #include "charEncoding.h"
 #include "getScilabDirectory.h"
 #include "InnosetupMutex.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 };
 /*--------------------------------------------------------------------------*/
 #define SPLASH_WINDOW_CLASSNAME "Scilab splashscreen"

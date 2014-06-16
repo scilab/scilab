@@ -15,7 +15,7 @@
 #include <string.h>
 #include "system_setproperty.h"
 #include "getScilabJNIEnv.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "catchIfJavaException.h"
 #include "os_strdup.h"
 /*--------------------------------------------------------------------------*/

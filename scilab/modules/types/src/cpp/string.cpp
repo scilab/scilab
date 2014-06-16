@@ -20,7 +20,7 @@ extern "C"
 {
 #include "charEncoding.h"
 #include "os_wcsdup.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 }
 
 using namespace std;

@@ -20,7 +20,7 @@
 #include <math.h>
 #include "stringToDouble.h"
 #include "core_math.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "os_strdup.h"
 #include "os_wcsdup.h"
 #include "stricmp.h"

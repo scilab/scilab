@@ -24,7 +24,7 @@
 #include "stack-c.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "copyvarfromlistentry.h"
 /*--------------------------------------------------------------------------*/
 extern int *listentry(int *header, int i);

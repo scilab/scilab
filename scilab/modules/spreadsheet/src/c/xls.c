@@ -16,7 +16,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "core_math.h"
-#include "MALLOC.h" /* MALLOC */
+#include "sci_malloc.h" /* MALLOC */
 #include "sciprint.h"
 #include "returnanan.h"
 #include "xls.h"

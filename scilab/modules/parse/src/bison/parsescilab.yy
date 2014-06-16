@@ -32,7 +32,7 @@
 #include "location.hxx"
 #include "symbol.hxx"
 #include "charEncoding.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 
 #define StopOnError()                                           \
     {                                                           \

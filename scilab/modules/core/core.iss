@@ -42,7 +42,7 @@ Source: modules\{#CORE}\includes\getos.h; DestDir: {app}\modules\{#CORE}\include
 Source: modules\{#CORE}\includes\getmemory.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
 Source: modules\{#CORE}\includes\machine.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
 Source: modules\{#CORE}\includes\mode_exec.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
-Source: modules\{#CORE}\includes\MALLOC.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
+Source: modules\{#CORE}\includes\sci_malloc.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
 Source: modules\{#CORE}\includes\PATH_MAX.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
 Source: modules\{#CORE}\includes\scisparse.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
 Source: modules\{#CORE}\includes\scilabDefaults.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}

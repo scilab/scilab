@@ -23,7 +23,7 @@
 #include "sciCall.h"
 #include "localization.h"
 #include "Scierror.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_plot2d1_1 (char *fname, void *pvApiCtx)

@@ -13,7 +13,7 @@
 
 /*--------------------------------------------------------------------------*/
 #include <string.h>
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "CreateEmptystr.h"
 #include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/

@@ -26,7 +26,7 @@ extern "C"
 #include <string.h>
 #include "BrowseVarManager.h"
 #include "localization.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "BOOL.h"
 #include "stackinfo.h"
 #include "api_scilab.h"

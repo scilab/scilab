@@ -18,7 +18,7 @@ extern "C"
 #include "completionDictionary.h"
 #include "charEncoding.h"
 #include "freeArrayOfString.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "os_strdup.h"
 #include "commandwords.h" // to get old keywords
 #include "getDictionarySetProperties.h" // to get old set properties

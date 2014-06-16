@@ -15,7 +15,7 @@
 #include "gw_data_structures1.h"
 #include "callFunctionFromGateway.h"
 #include "api_scilab.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/
 int gw_data_structures1(void)

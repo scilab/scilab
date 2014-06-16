@@ -69,7 +69,7 @@
 #include "storeCommand.h"
 #include "syncexec.h"
 #include "realtime.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "cvstr.h"
 #include "ezxml.h"
 #include "xscion.h"

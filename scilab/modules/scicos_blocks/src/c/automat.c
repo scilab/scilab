@@ -24,7 +24,7 @@
 #include "scicos_free.h"
 #include "localization.h"
 #include "scicos.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/
 /* A swithcing mechansim for building hybrid automata */

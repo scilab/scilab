@@ -242,7 +242,7 @@ private :
     {
         Exp* exp;
         int code = get_uint8();
-        long long nodeNumber = get_uint64();
+        size_t nodeNumber = get_uint64();
         Location *loc = get_location();
         bool is_verbose = get_bool();
         int is_break = get_bool();

@@ -13,7 +13,7 @@
 #include <string.h>
 #include "gw_optimization.h"
 #include "api_scilab.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
 /*

@@ -23,7 +23,7 @@ extern "C"
 #include "xml_mlist.h"
 #include "libxml/tree.h"
 #include "expandPathVariable.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "localization.h"
 #include "os_strdup.h"
 }

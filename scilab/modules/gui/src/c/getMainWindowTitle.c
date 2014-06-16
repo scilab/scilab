@@ -15,7 +15,7 @@
 #include "getMainWindowTitle.h"
 #include "getScilabJNIEnv.h"
 #include "getScilabObject.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "os_strdup.h"
 /*--------------------------------------------------------------------------*/
 char * getMainWindowTitle(void)

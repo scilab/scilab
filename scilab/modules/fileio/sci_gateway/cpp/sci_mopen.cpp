@@ -24,7 +24,7 @@ extern "C"
 #include "expandPathVariable.h"
 #include "mopen.h"
 #include "charEncoding.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "fullpath.h"
 }
 

@@ -18,7 +18,7 @@
 #endif
 #include "gw_sound.h"
 #include "os_strdup.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "api_scilab.h"

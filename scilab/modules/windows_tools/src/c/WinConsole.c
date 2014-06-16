@@ -17,7 +17,7 @@
 #include "WinConsole.h"
 #include "version.h"
 #include "sci_mode.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "scilab_windows/console.h"
 /*--------------------------------------------------------------------------*/
 static int Windows_Console_State = 0;/* 0 Hide 1 Show */

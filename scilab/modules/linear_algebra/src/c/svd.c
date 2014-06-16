@@ -14,7 +14,7 @@
 #include <stdio.h>
 #include "doublecomplex.h"
 #include "machine.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "core_math.h"
 #include "svd.h"
 

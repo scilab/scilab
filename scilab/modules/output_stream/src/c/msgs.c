@@ -15,7 +15,7 @@
 #include "sciprint.h"
 #include "stack-def.h" /* C2F(cha1) */
 #include "stack-c.h" /* Fin */
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "msgs.h"
 #include "localization.h"
 #include "cvstr.h"

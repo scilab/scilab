@@ -23,7 +23,7 @@
 #include <stdlib.h>
 #include "MlistGetFieldNumber.h"
 #include "cvstr.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "core_math.h"
 #include "stack-def.h"
 /*--------------------------------------------------------------------------*/

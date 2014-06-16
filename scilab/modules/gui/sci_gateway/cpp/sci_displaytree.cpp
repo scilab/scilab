@@ -27,7 +27,7 @@ extern "C"
 #include "sciprint.h"
 #include "localization.h"
 #include "Scierror.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "getScilabJavaVM.h"
 #include "os_strdup.h"
 }

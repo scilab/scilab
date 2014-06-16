@@ -15,7 +15,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "convertbase.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "freeArrayOfString.h"
 #include "stack-def.h"
 /*--------------------------------------------------------------------------*/

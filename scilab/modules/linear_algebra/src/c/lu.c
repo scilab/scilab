@@ -11,7 +11,7 @@
  */
 #include "machine.h"
 #include "core_math.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "lu.h"
 #include "doublecomplex.h"
 

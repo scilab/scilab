@@ -27,7 +27,7 @@
 #include "scicos.h"
 #include "scicos_print.h"
 #include "cvstr.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "mopen.h"
 #include "mget.h"
 #include "mclose.h"

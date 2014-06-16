@@ -21,7 +21,7 @@
 #endif
 #include "os_strdup.h"
 #include "FindFileExtension.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
 char *FindFileExtension(char *filename)

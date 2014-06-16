@@ -22,7 +22,7 @@
 /*--------------------------------------------------------------------------*/
 #include "gw_scicos.h"
 #include "stack-c.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 /*--------------------------------------------------------------------------*/
 int sci_diffobjs(char *fname, unsigned long fname_len)
 {

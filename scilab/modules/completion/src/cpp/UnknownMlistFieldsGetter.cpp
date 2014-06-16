@@ -17,7 +17,7 @@ extern "C"
 {
 #include "freeArrayOfString.h"
 #include "api_scilab.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 }
 
 namespace org_modules_completion

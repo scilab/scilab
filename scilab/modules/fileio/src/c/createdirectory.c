@@ -21,7 +21,7 @@
 #include <Windows.h>
 #endif
 #include "charEncoding.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "createdirectory.h"
 #include "isdir.h"
 #include "splitpath.h"

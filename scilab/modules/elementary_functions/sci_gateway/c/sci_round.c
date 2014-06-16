@@ -12,7 +12,7 @@
 /*--------------------------------------------------------------------------*/
 #include <string.h>
 #include "gw_elementary_functions.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "basic_functions.h"
 #include "api_scilab.h"
 #include "Scierror.h"

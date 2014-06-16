@@ -19,7 +19,7 @@
 #include <ctype.h>              /* isdigit */
 #include <string.h>
 #include "BOOL.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "do_xxscanf.h"
 #include "Scierror.h"
 #include "localization.h"

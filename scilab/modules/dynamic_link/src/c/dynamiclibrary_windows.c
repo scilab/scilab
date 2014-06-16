@@ -13,7 +13,7 @@
 #include <stdio.h>
 #include "dynamiclibrary_windows.h"
 #include "charEncoding.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "machine.h"
 #include "os_swprintf.h"
 /*---------------------------------------------------------------------------*/

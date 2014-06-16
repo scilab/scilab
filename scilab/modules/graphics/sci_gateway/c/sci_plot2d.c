@@ -27,7 +27,7 @@
 #include <sciprint.h>
 
 #include "BuildObjects.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 
 /*------------------------------------------------------------------------*/
 int sci_plot2d(char* fname, void *pvApiCtx)

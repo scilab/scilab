@@ -13,7 +13,7 @@
 
 #include "CreateMatlabVariable.h"
 #include "api_scilab.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 
 int CreateDoubleVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * parent, int item_position)
 {

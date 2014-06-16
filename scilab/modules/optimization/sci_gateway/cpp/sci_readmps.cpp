@@ -21,7 +21,7 @@ extern "C"
 #include "localization.h"
 #include "Scierror.h"
 #include "elem_common.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 
     void C2F(rdmpsz)(int*, int*, int*, int*, int*, char*, int*);
     int  C2F(clunit)(int*, char*, int*, int);

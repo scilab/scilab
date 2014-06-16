@@ -25,7 +25,7 @@
 
 #include <stdlib.h> /* bsearch / strtoul */
 
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "getmemory.h"
 #include "getdynamicdebuginfo.h"
 #include "api_scilab.h"

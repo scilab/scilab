@@ -16,7 +16,7 @@ extern "C"
 #include <string.h>
 #include <stdio.h>
 #include "gw_hdf5.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "sciprint.h"

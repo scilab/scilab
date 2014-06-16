@@ -37,7 +37,7 @@
 #include <string.h>
 #include "math_graphics.h"
 #include "Format.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "GetProperty.h"
 #include "BasicAlgos.h"
 #include "sciprint.h"

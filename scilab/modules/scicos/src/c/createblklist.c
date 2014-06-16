@@ -24,7 +24,7 @@
 #include "stack-c.h"
 #include "import.h"
 #include "var2sci.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 /*--------------------------------------------------------------------------*/
 extern void str2sci(char** x, int n, int m); /* core/src/c/str2sci.h */
 extern void C2F(itosci)();

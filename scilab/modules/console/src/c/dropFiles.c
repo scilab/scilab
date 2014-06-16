@@ -16,7 +16,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "dropFiles.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "storeCommand.h" /* storecommand */
 #include "FindFileExtension.h"
 #include "URIFileToFilename.h"

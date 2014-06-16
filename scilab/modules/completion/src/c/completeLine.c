@@ -16,7 +16,7 @@
 #include <string.h>
 #include <ctype.h>
 #include "completeLine.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "os_strdup.h"
 #include "getPartLine.h"
 #include "splitpath.h"

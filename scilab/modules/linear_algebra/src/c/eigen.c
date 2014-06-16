@@ -13,7 +13,7 @@
 #include <string.h> /* memset */
 #include "core_math.h"
 #include "machine.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 
 #include "eigen.h"
 

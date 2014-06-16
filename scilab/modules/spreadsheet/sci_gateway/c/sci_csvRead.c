@@ -20,7 +20,7 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "freeArrayOfString.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "csvRead.h"
 #include "stringToComplex.h"
 #include "csvDefault.h"

@@ -25,7 +25,7 @@
 #include "scicos_block4.h"
 #include "scicos_print.h"
 #include "localization.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/
 SCICOS_BLOCKS_IMPEXP void summation_ui16e(scicos_block *block, int flag)

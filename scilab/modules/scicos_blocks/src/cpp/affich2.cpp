@@ -20,7 +20,7 @@ extern "C"
 {
 #include "machine.h"
 #include "dynlib_scicos_blocks.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "scicos_block4.h"
 #include "scicos.h"
 #include "core_math.h"

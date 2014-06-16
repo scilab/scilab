@@ -12,7 +12,7 @@
  */
 #include "gw_core.h"
 #include "api_scilab.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "fromc.h"
 #include "localization.h"
 #include "Scierror.h"

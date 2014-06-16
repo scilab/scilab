@@ -24,7 +24,7 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "InitObjects.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 
 #include "HandleManagement.h"
 #include "FigureModel.h"

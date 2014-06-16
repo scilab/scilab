@@ -13,7 +13,7 @@
  */
 
 #include "api_scilab.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "matfile_manager.h"
 #include "gw_matio.h"
 #include "localization.h"

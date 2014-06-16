@@ -21,7 +21,7 @@ extern "C"
 #include "Scierror.h"
 #include "gw_gui.h"
 #include "BOOL.h"
-#include"MALLOC.h"
+#include"sci_malloc.h"
 }
 /*--------------------------------------------------------------------------*/
 using namespace org_scilab_modules_gui_bridge;

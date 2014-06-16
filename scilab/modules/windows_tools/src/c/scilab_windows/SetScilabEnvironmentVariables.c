@@ -17,7 +17,7 @@
 #include "SetScilabEnvironmentVariables.h"
 #include "PATH_MAX.h"
 #include "sci_path.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "getScilabDirectory.h"
 #include "scilabDefaults.h"
 #include "ConvertSlash.h"

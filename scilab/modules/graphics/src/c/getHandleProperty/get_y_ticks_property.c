@@ -25,7 +25,7 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "get_ticks_utils.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "BasicAlgos.h"
 
 #include "getGraphicObjectProperty.h"

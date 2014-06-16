@@ -19,7 +19,7 @@
 
 #include <string.h>
 #include "sciMatrix.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 
 /*----------------------------------------------------------------------------------*/
 sciMatrix * emptyMatrix(void)

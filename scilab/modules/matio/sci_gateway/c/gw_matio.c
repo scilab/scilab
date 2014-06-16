@@ -16,7 +16,7 @@
 /*-----------------------------------------------------------------------------------*/
 #include "gw_matio.h"
 #include "api_scilab.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "callFunctionFromGateway.h"
 /*-----------------------------------------------------------------------------------*/
 int gw_matio(void)

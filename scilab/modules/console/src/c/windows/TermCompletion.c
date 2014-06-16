@@ -14,7 +14,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "TermCompletion.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "freeArrayOfString.h"
 #include "localization.h"
 #include "TermLine.h"

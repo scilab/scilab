@@ -17,7 +17,7 @@ extern "C"
 #include <stdlib.h>
 #include <stdio.h>
 #include "os_strdup.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 }
 #include "HistorySearch.hxx"
 /*------------------------------------------------------------------------*/

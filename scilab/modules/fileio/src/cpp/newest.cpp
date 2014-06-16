@@ -20,7 +20,7 @@ extern "C"
 {
     //#include "PATH_MAX.h"
     //#include "gw_io.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
     //#include "sciprint.h"
     //#include "stack-c.h"
 #include "expandPathVariable.h"

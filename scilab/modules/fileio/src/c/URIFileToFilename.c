@@ -15,7 +15,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "URIFileToFilename.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "os_strdup.h"
 /*--------------------------------------------------------------------------*/
 #if _MSC_VER

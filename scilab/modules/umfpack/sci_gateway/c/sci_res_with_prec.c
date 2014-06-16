@@ -45,7 +45,7 @@
 #include "common_umfpack.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 
 int sci_res_with_prec(char* fname, void* pvApiCtx)
 {

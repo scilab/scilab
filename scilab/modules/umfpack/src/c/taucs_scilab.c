@@ -34,7 +34,7 @@
 #include <math.h>
 #include "taucs_scilab.h"
 #include "machine.h"   /* F2C macro */
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "BOOL.h"
 #include "sciprint.h"
 #include "localization.h"

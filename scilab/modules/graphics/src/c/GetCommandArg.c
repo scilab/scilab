@@ -28,7 +28,7 @@
 #include "Scierror.h"
 #include "BuildObjects.h"
 #include "api_scilab.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 
 static char logFlagsCpy[3] ; /* real logflags may use either this or the stack */
 

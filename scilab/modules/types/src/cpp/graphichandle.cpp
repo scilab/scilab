@@ -20,7 +20,7 @@ extern "C"
 #include <stdio.h>
 #include "localization.h"
 #include "os_strdup.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 }
 
 using namespace std;

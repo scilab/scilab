@@ -11,7 +11,7 @@
  */
 #include "gw_mpi.h"
 #include "api_scilab.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "callFunctionFromGateway.h"
 /*-----------------------------------------------------------------------------------*/
 static gw_generic_table Tab[] =

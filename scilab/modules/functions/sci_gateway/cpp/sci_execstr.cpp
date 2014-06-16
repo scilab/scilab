@@ -28,7 +28,7 @@
 
 extern "C"
 {
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "os_wcsicmp.h"
 #include "Scierror.h"
 #include "sciprint.h"

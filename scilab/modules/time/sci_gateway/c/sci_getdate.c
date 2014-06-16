@@ -14,7 +14,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "gw_time.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "getdate.h"
 #include "Scierror.h"
 #include "localization.h"

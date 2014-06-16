@@ -17,7 +17,7 @@
 #include <stdio.h>
 #include "stringsstrrev.h"
 #include "freeArrayOfString.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "os_wcsdup.h"
 /*----------------------------------------------------------------------------*/
 wchar_t **strings_strrev(wchar_t **Input_strings, int Dim_Input_strings)

@@ -18,7 +18,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "fscanfMat.h"
 #include "charEncoding.h"
 #include "BOOL.h"

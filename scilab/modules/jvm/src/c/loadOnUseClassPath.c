@@ -15,7 +15,7 @@
 #include <stdio.h>
 #include <libxml/xpath.h>
 #include <libxml/xmlreader.h>
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "scilabDefaults.h"
 #include "getScilabJNIEnv.h"
 #include "localization.h"

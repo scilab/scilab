@@ -18,7 +18,7 @@
 #include "gw_gui.h"
 #include "api_scilab.h"
 #include "Scierror.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "sciprint.h"
 #include "sci_mode.h"
 #include "localization.h"

@@ -14,7 +14,7 @@
 #include "gw_core.h"
 #include "api_scilab.h"
 #include "version.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "freeArrayOfString.h"
 #ifdef _MSC_VER
 #include "getdynamicDebugInfo_Windows.h"

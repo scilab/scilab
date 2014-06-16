@@ -22,7 +22,7 @@
 extern "C"
 {
 #include "Scierror.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "localization.h"
 #include "freeArrayOfString.h"
 }

@@ -10,7 +10,7 @@
 /*--------------------------------------------------------------------------*/
 #include "gw_windows_tools.h"
 #include "stack-c.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "createGUID.h"

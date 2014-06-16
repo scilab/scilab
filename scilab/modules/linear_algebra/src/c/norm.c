@@ -11,7 +11,7 @@
  */
 
 #include "norm.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 
 #ifdef _MSC_VER
 int isinf(double dbl)

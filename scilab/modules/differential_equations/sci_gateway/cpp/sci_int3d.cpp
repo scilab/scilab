@@ -21,7 +21,7 @@
 
 extern "C"
 {
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "elem_common.h"
 #include "localization.h"
 #include "Scierror.h"

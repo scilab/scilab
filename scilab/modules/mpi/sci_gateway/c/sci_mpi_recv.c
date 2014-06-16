@@ -14,7 +14,7 @@
 #include "api_scilab.h"
 #include "gw_mpi.h"
 #include "Scierror.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "localization.h"
 #include "deserialization.h"
 

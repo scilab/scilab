@@ -13,7 +13,7 @@
 */
 #include <string.h>
 #include <stdlib.h>
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "localization.h"
 #include "gw_localization.h"
 #include "api_scilab.h"

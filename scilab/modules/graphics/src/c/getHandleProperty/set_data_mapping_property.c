@@ -33,7 +33,7 @@
 
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 
 /*------------------------------------------------------------------------*/
 int set_data_mapping_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)

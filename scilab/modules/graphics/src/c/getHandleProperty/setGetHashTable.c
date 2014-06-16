@@ -21,7 +21,7 @@
 #include "stricmp.h"
 
 #include "setGetHashTable.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "os_strdup.h"
 /*--------------------------------------------------------------------------*/
 /* see http://www.cse.yorku.ca/~oz/hash.html */

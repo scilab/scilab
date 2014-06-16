@@ -15,7 +15,7 @@
 #include <libxml/xpath.h>
 #include <libxml/xmlreader.h>
 #include "getmodules.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "sci_path.h"
 #include "localization.h"
 #include "string.h"

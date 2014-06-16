@@ -11,7 +11,7 @@
 
 #include "sci_string_matrix.h"
 #include "api_scilab.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 
 struct string_matrix* create_string_matrix(void* pvApiCtx, int arg)
 {

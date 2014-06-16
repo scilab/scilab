@@ -16,7 +16,7 @@
 #include "gw_linear_algebra2.h"
 #include "callFunctionFromGateway.h"
 #include "api_scilab.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 /*--------------------------------------------------------------------------*/
 int gw_linear_algebra2(void)
 {

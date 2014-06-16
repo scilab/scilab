@@ -35,7 +35,7 @@
 #include "sciprint.h"
 #include "Scierror.h"
 
-#include "MALLOC.h"             /* MALLOC */
+#include "sci_malloc.h"             /* MALLOC */
 #include "scitokenize.h"
 #include "localization.h"
 #include "get_ticks_utils.h"

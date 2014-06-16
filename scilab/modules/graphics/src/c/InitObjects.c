@@ -39,7 +39,7 @@
 #include "HandleManagement.h"
 #include "BasicAlgos.h"
 
-#include "MALLOC.h"             /* MALLOC */
+#include "sci_malloc.h"             /* MALLOC */
 #include "localization.h"
 
 #include "createGraphicObject.h"

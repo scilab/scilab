@@ -13,7 +13,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "call_scilab.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "localization.h"
 #include "freeArrayOfString.h"
 #include "os_strdup.h"

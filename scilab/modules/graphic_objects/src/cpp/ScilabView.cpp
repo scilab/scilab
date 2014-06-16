@@ -29,7 +29,7 @@ extern "C"
 #include "graphicObjectProperties.h"
 #include "getScilabJavaVM.h"
 #include "deleteGraphicObject.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 }
 
 /**

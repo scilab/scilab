@@ -19,7 +19,7 @@
 #include "GetProperty.h"
 #include "SetProperty.h"
 #include "BuildObjects.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "getDictionaryGetProperties.h"
 #include "getDictionarySetProperties.h"
 #include "graphicModuleLoad.h"

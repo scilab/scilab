@@ -21,7 +21,7 @@ extern "C"
 #include "Scierror.h"
 #include "localization.h"
 #include "BOOL.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 }
 /*--------------------------------------------------------------------------*/
 int sci_setlookandfeel(char *fname, void* pvApiCtx)

@@ -27,7 +27,7 @@ extern "C"
 #include <stdio.h>
 #include "localization.h"
 #include "Scierror.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "sci_mode.h"
 #include "mputl.h"
 }

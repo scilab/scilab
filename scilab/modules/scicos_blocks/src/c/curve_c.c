@@ -21,7 +21,7 @@
 /*--------------------------------------------------------------------------*/
 #include "scicos.h"
 #include "scicos_block4.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "scicos_malloc.h"
 #include "scicos_free.h"
 #include "scicos_evalhermite.h"

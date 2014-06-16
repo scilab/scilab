@@ -29,7 +29,7 @@
 #include "scicos.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 /*--------------------------------------------------------------------------*/
 /* variable defined in scicos.c */
 extern COSIM_struct C2F(cosim);

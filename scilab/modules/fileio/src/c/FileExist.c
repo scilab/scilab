@@ -18,7 +18,7 @@
 #endif
 #include "FileExist.h"
 #include "charEncoding.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 /*--------------------------------------------------------------------------*/
 BOOL FileExist(char *filename)
 {

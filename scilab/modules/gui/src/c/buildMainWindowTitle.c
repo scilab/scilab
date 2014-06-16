@@ -17,7 +17,7 @@
 #include "../../../windows_tools/src/c/scilab_windows/buildMainWindowTitle_Windows.h"
 #endif
 #include "version.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 /*--------------------------------------------------------------------------*/
 char *buildMainWindowTitle(void)
 {

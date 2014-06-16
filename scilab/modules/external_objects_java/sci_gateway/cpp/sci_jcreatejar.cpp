@@ -13,7 +13,7 @@
 extern "C" {
 #include "Scierror.h"
 #include "gw_external_objects_java.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 }
 
 #include "ScilabJavaEnvironment.hxx"

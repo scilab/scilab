@@ -16,7 +16,7 @@
 #include "stack-c.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 
 /**
  * This function returns the rank of a process

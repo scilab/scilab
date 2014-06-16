@@ -24,7 +24,7 @@
 #include "CurrentSubwin.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 
 #include "createGraphicObject.h"
 #include "BuildObjects.h"

@@ -12,7 +12,7 @@
 /*--------------------------------------------------------------------------*/
 #include "gw_io.h"
 #include "api_scilab.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "callFunctionFromGateway.h"
 #include "recursionFunction.h"
 /*--------------------------------------------------------------------------*/

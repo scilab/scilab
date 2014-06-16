@@ -20,7 +20,7 @@ extern "C"
 #include "api_scilab.h"
 #include "localization.h"
 #include "expandPathVariable.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 
 #include "gw_graphic_export.h"
 }

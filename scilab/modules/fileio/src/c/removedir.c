@@ -29,7 +29,7 @@
 #include "sciprint.h"
 #include "removedir.h"
 #include "isdir.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "charEncoding.h"
 #include "os_swprintf.h"
 /*--------------------------------------------------------------------------*/

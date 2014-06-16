@@ -30,7 +30,7 @@ extern "C"
 #include "CommandHistory_Wrap.h"
 #include "localization.h"
 #include "getCommentDateSession.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "HistoryManager.h"
 };
 /*------------------------------------------------------------------------*/

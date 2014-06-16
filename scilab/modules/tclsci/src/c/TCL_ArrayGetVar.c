@@ -14,7 +14,7 @@
 #include <string.h>
 #include <stdio.h>
 #include "TCL_ArrayGetVar.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "os_strdup.h"
 /*--------------------------------------------------------------------------*/
 #define TCL_NOT_DEFINE "#NOT DEF.#"

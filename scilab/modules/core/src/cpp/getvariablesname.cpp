@@ -13,7 +13,7 @@
 #include "context.hxx"
 
 extern "C" {
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "getvariablesname.h"
 #include "charEncoding.h"
 }

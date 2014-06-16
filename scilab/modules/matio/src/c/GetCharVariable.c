@@ -16,7 +16,7 @@
 #include "api_scilab.h"
 #include "sci_types.h"
 #include "freeArrayOfString.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "localization.h"
 
 matvar_t *GetCharVariable(void *pvApiCtx, int iVar, const char *name, int * parent, int item_position)

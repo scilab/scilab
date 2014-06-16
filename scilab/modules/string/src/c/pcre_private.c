@@ -20,7 +20,7 @@
 #include <locale.h>
 #include <errno.h>
 #include <pcre.h>
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "BOOL.h"
 #include "pcre_private.h"
 #include "os_strdup.h"

@@ -17,7 +17,7 @@ extern "C" {
 #include "expandPathVariable.h"
 #include "getScilabJavaVM.h"
 #include "scicurdir.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "fullpath.h"
 }
 /*------------------------------------------------------------------------*/

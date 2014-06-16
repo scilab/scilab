@@ -25,7 +25,7 @@
 #include "PATH_MAX.h"
 #include "getshortpathname.h"
 #include "FileExist.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "os_strdup.h"
 /*--------------------------------------------------------------------------*/
 char *createtempfilename(const char *prefix, BOOL bShortFormat)

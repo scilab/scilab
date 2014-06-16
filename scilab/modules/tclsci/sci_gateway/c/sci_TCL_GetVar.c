@@ -20,7 +20,7 @@
 #include "TCL_ArrayExist.h"
 #include "TCL_ArrayDim.h"
 #include "TCL_ArrayGetVar.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "GlobalTclInterp.h"
 #include "os_strdup.h"
 #include "freeArrayOfString.h"

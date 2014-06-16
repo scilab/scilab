@@ -18,7 +18,7 @@
 #include <string.h>
 #include "setenvc.h"
 #include "../../../core/src/c/dynamic_tclsci.h"
-#include "MALLOC.h" /* MALLOC */
+#include "sci_malloc.h" /* MALLOC */
 #include "charEncoding.h"
 #include "os_swprintf.h"
 /*--------------------------------------------------------------------------*/

@@ -20,7 +20,7 @@ extern "C"
 #include <stdio.h>
 #include "gw_xml.h"
 #include "Scierror.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "api_scilab.h"
 #include "xml_mlist.h"
 #include "localization.h"

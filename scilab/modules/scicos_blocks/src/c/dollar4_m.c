@@ -23,7 +23,7 @@
 #include "scicos_block4.h"
 #include "scicos_malloc.h"
 #include "scicos_free.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/
 typedef struct

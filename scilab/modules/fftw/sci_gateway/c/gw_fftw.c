@@ -12,13 +12,13 @@
 
 #include "callfftw.h"
 #include "Scierror.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "fftwlibname.h"
 #include "gw_fftw.h"
 #include "callFunctionFromGateway.h"
 #include "localization.h"
 #include "api_scilab.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 /*--------------------------------------------------------------------------*/
 int gw_fftw(void)
 {

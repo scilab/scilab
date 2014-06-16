@@ -18,7 +18,7 @@
 #include "loadversion.h"
 #include "with_module.h"
 #include "sci_path.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "GetXmlFileEncoding.h"
 #include "scilabDefaults.h"
 #include "localization.h"

@@ -22,7 +22,7 @@
 #include <shlwapi.h>
 #include "version.h"
 #include "FilesAssociations.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "FindScilab.h"
 #include "wmcopydata.h"
 #include "os_strdup.h"

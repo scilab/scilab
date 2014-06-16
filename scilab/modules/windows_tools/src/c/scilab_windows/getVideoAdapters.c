@@ -12,7 +12,7 @@
 /*--------------------------------------------------------------------------*/
 #include <Windows.h>
 #include "getVideoAdapters.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "BOOL.h"
 #include "os_strdup.h"
 /*--------------------------------------------------------------------------*/

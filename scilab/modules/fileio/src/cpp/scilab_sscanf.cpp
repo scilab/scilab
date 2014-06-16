@@ -20,7 +20,7 @@ extern "C"
 {
 #include <stdio.h>
 #include "Scierror.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "localization.h"
 #include "charEncoding.h"
 #include "BOOL.h"

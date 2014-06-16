@@ -15,7 +15,7 @@
 #include "gw_special_functions.h"
 #include "Scierror.h"
 #include "msgs.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
 extern void  C2F(dbesyv) (double *x, int* nx, double *alpha, int *na, int *kode,
