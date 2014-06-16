@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
  * Copyright (C) 2011 - DIGITEO - Antoine ELIAS
+ * Copyright (C) 2014 - Scilab Enterprises - Sylvain GENIN
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -13,6 +14,7 @@
 /*--------------------------------------------------------------------------*/
 #include "elem_func_gw.hxx"
 #include "api_scilab.hxx"
+#include "polynom.hxx"
 
 extern "C"
 {
@@ -22,6 +24,7 @@ extern "C"
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_zeros(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
+    types::Polynom* pPolyIn = NULL;
     api_scilab::Double* pOut = NULL;
     if (in.size() == 0)
     {
@@ -29,25 +32,42 @@ types::Function::ReturnValue sci_zeros(types::typed_list &in, int _iRetCount, ty
     }
     else if (in.size() == 1)
     {
-        if (api_scilab::isMatrix(in[0]) == false)
+        //yes until polynom are managed by api_scilab++
+        if (api_scilab::isMatrix(in[0]) == false && in[0]->isPoly() == false)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: Matrix expected.\n"), "zeros", 1);
             return types::Function::Error;
         }
 
-        api_scilab::Matrix* pIn = api_scilab::getAsMatrix(in[0]);
-        int iDims = pIn->getDims();
-        int* piDims = pIn->getDimsArray();
+        int iDims = 0;
+        int* piDims = NULL;
 
-        // zeros(:)
-        if (pIn->getRows() == -1 && pIn->getCols() == -1)
+        if (api_scilab::isMatrix(in[0]))
         {
-            Scierror(21, _("Invalid index.\n"));
-            return types::Function::Error;
+            api_scilab::Matrix* pIn = api_scilab::getAsMatrix(in[0]);
+            iDims = pIn->getDims();
+            piDims = pIn->getDimsArray();
+
+            // zeros(:)
+            if (pIn->getRows() == -1 && pIn->getCols() == -1)
+            {
+                Scierror(21, _("Invalid index.\n"));
+                return types::Function::Error;
+            }
+
+            pOut = new api_scilab::Double(iDims, piDims);
+
+            delete pIn;
+        }
+        else
+        {
+            pPolyIn = in[0]->getAs<types::Polynom>();
+            iDims = pPolyIn->getDims();
+            piDims = pPolyIn->getDimsArray();
+
+            pOut = new api_scilab::Double(iDims, piDims);
         }
 
-        pOut = new api_scilab::Double(iDims, piDims);
-        delete pIn;
     }
     else //size > 1
     {
