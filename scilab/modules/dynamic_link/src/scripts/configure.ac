@@ -41,6 +41,13 @@ AC_PROG_LIBTOOL
 # Specify which Makefile.in should be "adapted"
 AC_CONFIG_FILES([Makefile])
 
+#################
+## EIGEN
+#################
+AC_PROG_CPP
+AC_PROG_GREP
+AC_EIGEN()
+
 # x86_64 needs -fPIC
 case "$host" in
   x86_64-*-linux*)
@@ -82,4 +89,5 @@ echo "  CXXFLAGS         = $CXXFLAGS"
 echo "  F77              = $F77"
 echo "  FFLAGS           = $FFLAGS"
 echo "  F77_LDFLAGS      = $F77_LDFLAGS"
+echo "  EIGEN CPPFLAGS   = $EIGEN_CPPFLAGS"
 echo ""

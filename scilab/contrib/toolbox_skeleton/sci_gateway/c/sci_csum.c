@@ -4,7 +4,7 @@
 /* ==================================================================== */
 #include "api_scilab.h"
 #include "Scierror.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "csum.h"
 #include <localization.h>
 
