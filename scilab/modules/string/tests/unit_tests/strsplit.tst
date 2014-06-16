@@ -2,6 +2,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2007-2008 - INRIA
 // Copyright (C) 2009 - DIGITEO - Allan CORNET
+// Copyright (C) 2014 - Scilab Enterprises - Anais AUBERT
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
@@ -10,6 +11,7 @@
 //===============================
 // unit tests strsplit
 //===============================
+funcprot(0);
 STR_SPLITED = ['strsplit splits';'a string';'into';'a vector of strings'];
 STR = 'strsplit splits a string into a vector of strings';
 INDICES = [15 25 30];
@@ -186,3 +188,4 @@ c = "י";
 [r_1,r_2] = strsplit(v,c);
 assert_checkequal(strcat(r_1,r_2), v);
 //===============================
+funcprot(1);
