@@ -51,10 +51,10 @@ if or(c <> ref) then pause,end
 a = ['a';'b';'e'];
 b = ['c';'d'];
 ierr = execstr('c = a + b;','errcatch');
-if ierr <> 8 then pause,end
+if ierr == 0 then pause,end
 
 a = ['a';'b'];
 b = ['c';'d';'e'];
 ierr = execstr('c = a + b;','errcatch');
-if ierr <> 8 then pause,end
+if ierr == 0 then pause,end
 

@@ -43,8 +43,8 @@ if or(c <> ref) then bugmes();quit;end
 a = ['a';'b';'e'];
 b = ['c';'d'];
 ierr = execstr('c = a + b;','errcatch');
-if ierr <> 8 then bugmes();quit;end
+if ierr <> 999 then bugmes();quit;end
 a = ['a';'b'];
 b = ['c';'d';'e'];
 ierr = execstr('c = a + b;','errcatch');
-if ierr <> 8 then bugmes();quit;end
+if ierr <>  999 then bugmes();quit;end

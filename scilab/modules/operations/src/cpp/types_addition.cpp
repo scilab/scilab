@@ -654,7 +654,7 @@ void fillAddFunction()
     scilab_fill_add(Identity, Identity, I_I, Double, Double, Double);
     scilab_fill_add(Identity, IdentityComplex, I_IC, Double, Double, Double);
     scilab_fill_add(Identity, Empty, I_E, Double, Double, Double);
-    
+
     scilab_fill_add(IdentityComplex, Double, IC_M, Double, Double, Double);
     scilab_fill_add(IdentityComplex, DoubleComplex, IC_MC, Double, Double, Double);
     scilab_fill_add(IdentityComplex, ScalarDouble, IC_S, Double, Double, Double);
@@ -662,8 +662,8 @@ void fillAddFunction()
     scilab_fill_add(IdentityComplex, Identity, IC_I, Double, Double, Double);
     scilab_fill_add(IdentityComplex, IdentityComplex, IC_IC, Double, Double, Double);
     scilab_fill_add(IdentityComplex, Empty, IC_E, Double, Double, Double);
-    
-    
+
+
 
 #undef scilab_fill_add
 }
@@ -1456,7 +1456,7 @@ types::InternalType* add_M_M(T *_pL, U *_pR)
 
     if (iDimsL != iDimsR)
     {
-        return NULL;
+        throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
     }
 
     int* piDimsL = _pL->getDimsArray();
@@ -1466,7 +1466,7 @@ types::InternalType* add_M_M(T *_pL, U *_pR)
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            return NULL;
+            throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
         }
     }
 
@@ -1484,7 +1484,7 @@ types::InternalType* add_M_MC(T *_pL, U *_pR)
 
     if (iDimsL != iDimsR)
     {
-        return NULL;
+        throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
     }
 
     int* piDimsL = _pL->getDimsArray();
@@ -1494,7 +1494,7 @@ types::InternalType* add_M_MC(T *_pL, U *_pR)
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            return NULL;
+            throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
         }
     }
 
@@ -1543,7 +1543,7 @@ types::InternalType* add_MC_MC(T *_pL, U *_pR)
 
     if (iDimsL != iDimsR)
     {
-        return NULL;
+        throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
     }
 
     int* piDimsL = _pL->getDimsArray();
@@ -1553,7 +1553,7 @@ types::InternalType* add_MC_MC(T *_pL, U *_pR)
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            return NULL;
+            throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
         }
     }
 
@@ -1938,7 +1938,7 @@ types::InternalType* add_M_M<String, String, String>(String* _pL, String* _pR)
 
     if (iDimsL != iDimsR)
     {
-        return NULL;
+        throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
     }
 
     int* piDimsL = _pL->getDimsArray();
@@ -1948,7 +1948,7 @@ types::InternalType* add_M_M<String, String, String>(String* _pL, String* _pR)
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            return NULL;
+            throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
         }
     }
 
