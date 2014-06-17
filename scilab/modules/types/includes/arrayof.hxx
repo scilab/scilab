@@ -548,7 +548,10 @@ public :
                 set(iPos, pRealData[0]);
                 if (bComplex)
                 {
-                    setImg(iPos, pImgData[0]);
+                    if (pImgData != NULL)
+                    {
+                        setImg(iPos, pImgData[0]);
+                    }
                 }
             }
             else

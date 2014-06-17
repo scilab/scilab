@@ -845,13 +845,7 @@ bool Double::operator==(const InternalType& it)
         }
     }
 
-    if (pdbl->isComplex() != isComplex())
-    {
-        return false;
-    }
-
     double *pdblReal = pdbl->getReal();
-
     for (int i = 0 ; i < getSize() ; i++)
     {
         if (m_pRealData[i] != pdblReal[i])
@@ -860,10 +854,11 @@ bool Double::operator==(const InternalType& it)
         }
     }
 
-    if (isComplex())
+    //both complex
+    if (isComplex() && pdbl->isComplex())
     {
         double *pdblImg = pdbl->getImg();
-        for (int i = 0 ; i < getSize() ; i++)
+        for (int i = 0 ; i < m_iSize ; i++)
         {
             if (m_pImgData[i] != pdblImg[i])
             {
@@ -871,20 +866,30 @@ bool Double::operator==(const InternalType& it)
             }
         }
     }
+    //pdbl complex check all img values == 0
+    else if (pdbl->isComplex())
+    {
+        for (int i = 0 ; i < m_iSize ; i++)
+        {
+            if (m_pImgData[i])
+            {
+                return false;
+            }
+        }
+    }
+    //complex check all img values == 0
+    else if (isComplex())
+    {
+        double *pdblImg = pdbl->getImg();
+        for (int i = 0 ; i < m_iSize ; i++)
+        {
+            if (pdblImg[i])
+            {
+                return false;
+            }
+        }
+    }
 
-    //if(memcmp(m_pRealData, pdblReal, getSize() * sizeof(double)) != 0)
-    //{
-    //	return false;
-    //}
-
-    //if(isComplex())
-    //{
-    //	double *pdblImg = pdbl->getImg();
-    //	if(memcmp(m_pImgData, pdblImg, getSize() * sizeof(double)) != 0)
-    //	{
-    //		return false;
-    //	}
-    //}
     return true;
 }
 
