@@ -136,8 +136,8 @@ public :
     }
     inline ScilabId             getId(void)
     {
-        return isIdentity() ? IdIdentity
-               : isEmpty() ? IdEmpty
+        return isIdentity() ? isComplex() ? IdIdentityComplex : IdIdentity
+       : isEmpty() ? IdEmpty
                : isComplex() ? isScalar() ? IdScalarDoubleComplex
                : IdDoubleComplex
        : isScalar() ? IdScalarDouble

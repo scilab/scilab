@@ -80,7 +80,7 @@ void fillAddFunction()
     scilab_fill_add(Double, Empty, M_E, Double, Double, Double);
 
 
-    //Scalar Complex + Matrix
+    //Matrix Complex + Matrix
     scilab_fill_add(DoubleComplex, Double, MC_M, Double, Double, Double);
     scilab_fill_add(DoubleComplex, DoubleComplex, MC_MC, Double, Double, Double);
     scilab_fill_add(DoubleComplex, ScalarDouble, MC_S, Double, Double, Double);
@@ -163,6 +163,20 @@ void fillAddFunction()
     scilab_fill_add(Empty, ScalarDoubleComplex, E_SC, Double, Double, Double);
     //Empty + Empty
     scilab_fill_add(Empty, Empty, E_E, Double, Double, Double);
+    //Empty + eye
+    scilab_fill_add(Empty, Identity, E_I, Double, Double, Double);
+    scilab_fill_add(Empty, IdentityComplex, E_IC, Double, Double, Double);
+
+    //Matrix + Identity
+    scilab_fill_add(Double, Identity, M_I, Double, Double, Double);
+    scilab_fill_add(Double, IdentityComplex, M_IC, Double, Double, Double);
+    scilab_fill_add(DoubleComplex, Identity, MC_I, Double, Double, Double);
+    scilab_fill_add(DoubleComplex, IdentityComplex, MC_IC, Double, Double, Double);
+    scilab_fill_add(ScalarDouble, Identity, S_I, Double, Double, Double);
+    scilab_fill_add(ScalarDouble, IdentityComplex, S_IC, Double, Double, Double);
+    scilab_fill_add(ScalarDoubleComplex, Identity, SC_I, Double, Double, Double);
+    scilab_fill_add(ScalarDoubleComplex, IdentityComplex, SC_IC, Double, Double, Double);
+
 
     //Int8
     //Matrix + Matrix
@@ -631,6 +645,25 @@ void fillAddFunction()
     scilab_fill_add(ScalarString, String, S_M, String, String, String);
     scilab_fill_add(ScalarString, ScalarString, S_S, String, String, String);
     scilab_fill_add(ScalarString, Empty, S_E, String, Double, String);
+
+    //eye
+    scilab_fill_add(Identity, Double, I_M, Double, Double, Double);
+    scilab_fill_add(Identity, DoubleComplex, I_MC, Double, Double, Double);
+    scilab_fill_add(Identity, ScalarDouble, I_S, Double, Double, Double);
+    scilab_fill_add(Identity, ScalarDoubleComplex, I_SC, Double, Double, Double);
+    scilab_fill_add(Identity, Identity, I_I, Double, Double, Double);
+    scilab_fill_add(Identity, IdentityComplex, I_IC, Double, Double, Double);
+    scilab_fill_add(Identity, Empty, I_E, Double, Double, Double);
+    
+    scilab_fill_add(IdentityComplex, Double, IC_M, Double, Double, Double);
+    scilab_fill_add(IdentityComplex, DoubleComplex, IC_MC, Double, Double, Double);
+    scilab_fill_add(IdentityComplex, ScalarDouble, IC_S, Double, Double, Double);
+    scilab_fill_add(IdentityComplex, ScalarDoubleComplex, IC_SC, Double, Double, Double);
+    scilab_fill_add(IdentityComplex, Identity, IC_I, Double, Double, Double);
+    scilab_fill_add(IdentityComplex, IdentityComplex, IC_IC, Double, Double, Double);
+    scilab_fill_add(IdentityComplex, Empty, IC_E, Double, Double, Double);
+    
+    
 
 #undef scilab_fill_add
 }
@@ -1658,6 +1691,243 @@ types::InternalType* add_E_E(T *_pL, U *_pR)
     add();
     return pOut;
 }
+
+template<class T, class U, class O>
+types::InternalType* add_I_M(T *_pL, U *_pR)
+{
+    int iDims = _pR->getDims();
+    int* piDims = _pR->getDimsArray();
+    O* pOut = (O*)_pR->clone();
+    int iLeadDims = piDims[0];
+    int* piIndex = new int[iDims];
+    piIndex[0] = 0;
+    //find smaller dims
+    for (int i = 1 ; i < iDims ; ++i)
+    {
+        //init
+        piIndex[i] = 0;
+
+        if (iLeadDims > piDims[i])
+        {
+            iLeadDims = piDims[i];
+        }
+    }
+
+    for (int i = 0 ; i < iLeadDims ; ++i)
+    {
+        for (int j = 0 ; j < iDims ; ++j)
+        {
+            piIndex[j] = i;
+        }
+
+        int index = _pR->getIndex(piIndex);
+
+        add(_pL->get(0), _pR->get(index), &(pOut->get()[index]));
+    }
+
+    return pOut;
+}
+
+template<class T, class U, class O>
+types::InternalType* add_I_MC(T *_pL, U *_pR)
+{
+    return add_I_M<T, U, O>(_pL, _pR);
+}
+
+template<class T, class U, class O>
+types::InternalType* add_IC_M(T *_pL, U *_pR)
+{
+    int iDims = _pR->getDims();
+    int* piDims = _pR->getDimsArray();
+    O* pOut = (O*)_pR->clone();
+    pOut->setComplex(true);
+    int iLeadDims = piDims[0];
+    int* piIndex = new int[iDims];
+    piIndex[0] = 0;
+    //find smaller dims
+    for (int i = 1 ; i < iDims ; ++i)
+    {
+        //init
+        piIndex[i] = 0;
+
+        if (iLeadDims > piDims[i])
+        {
+            iLeadDims = piDims[i];
+        }
+    }
+
+    for (int i = 0 ; i < iLeadDims ; ++i)
+    {
+        for (int j = 0 ; j < iDims ; ++j)
+        {
+            piIndex[j] = i;
+        }
+
+        int index = _pR->getIndex(piIndex);
+        add(_pR->get() + index, 1, _pL->get(0), _pL->getImg(0), pOut->get() + index, pOut->getImg() + index);
+    }
+
+    return pOut;
+}
+
+template<class T, class U, class O>
+types::InternalType* add_IC_MC(T *_pL, U *_pR)
+{
+    int iDims = _pR->getDims();
+    int* piDims = _pR->getDimsArray();
+    O* pOut = (O*)_pR->clone();
+    int iLeadDims = piDims[0];
+    int* piIndex = new int[iDims];
+    piIndex[0] = 0;
+    //find smaller dims
+    for (int i = 1 ; i < iDims ; ++i)
+    {
+        //init
+        piIndex[i] = 0;
+
+        if (iLeadDims > piDims[i])
+        {
+            iLeadDims = piDims[i];
+        }
+    }
+
+    for (int i = 0 ; i < iLeadDims ; ++i)
+    {
+        for (int j = 0 ; j < iDims ; ++j)
+        {
+            piIndex[j] = i;
+        }
+
+        int index = _pR->getIndex(piIndex);
+
+        add(_pL->get(0), _pL->getImg(0), _pR->get(index), _pR->getImg(index), pOut->get() + index, pOut->getImg() + index);
+    }
+
+    return pOut;
+}
+
+template<class T, class U, class O>
+types::InternalType* add_I_S(T *_pL, U *_pR)
+{
+    O* pOut = new O(0);
+    add(_pL->get(0), _pR->get(0), pOut->get());
+    return pOut;
+}
+
+template<class T, class U, class O>
+types::InternalType* add_IC_S(T *_pL, U *_pR)
+{
+    O* pOut = new O(0.0, 0.0);
+    add( _pR->get(), 1, _pL->get(0), _pL->getImg(0), pOut->get(), pOut->getImg());
+    return pOut;
+}
+
+template<class T, class U, class O>
+types::InternalType* add_I_SC(T *_pL, U *_pR)
+{
+    O* pOut = new O(0.0, 0.0);
+    add(_pL->get(), 1, _pR->get(0), _pR->getImg(0), pOut->get(), pOut->getImg());
+    return pOut;
+}
+
+template<class T, class U, class O>
+types::InternalType* add_IC_SC(T *_pL, U *_pR)
+{
+    O* pOut = new O(0.0, 0.0);
+    add(_pL->get(), _pL->getImg(), 1, _pR->get(0), _pR->getImg(0), pOut->get(), pOut->getImg());
+    return pOut;
+}
+
+template<class T, class U, class O> types::InternalType* add_M_I(T *_pL, U *_pR)
+{
+    return add_I_M<U, T, O>(_pR, _pL);
+}
+
+template<class T, class U, class O> types::InternalType* add_MC_I(T *_pL, U *_pR)
+{
+    return add_I_MC<U, T, O>(_pR, _pL);
+}
+
+template<class T, class U, class O> types::InternalType* add_M_IC(T *_pL, U *_pR)
+{
+    return add_IC_M<U, T, O>(_pR, _pL);
+}
+
+template<class T, class U, class O> types::InternalType* add_MC_IC(T *_pL, U *_pR)
+{
+    return add_IC_MC<U, T, O>(_pR, _pL);
+}
+
+template<class T, class U, class O> types::InternalType* add_S_I(T *_pL, U *_pR)
+{
+    return add_I_S<U, T, O>(_pR, _pL);
+}
+
+template<class T, class U, class O> types::InternalType* add_SC_I(T *_pL, U *_pR)
+{
+    return add_I_SC<U, T, O>(_pR, _pL);
+}
+
+template<class T, class U, class O> types::InternalType* add_S_IC(T *_pL, U *_pR)
+{
+    return add_IC_S<U, T, O>(_pR, _pL);
+}
+
+template<class T, class U, class O> types::InternalType* add_SC_IC(T *_pL, U *_pR)
+{
+    return add_IC_SC<U, T, O>(_pR, _pL);
+}
+
+template<class T, class U, class O> types::InternalType* add_I_I(T *_pL, U *_pR)
+{
+    O* pOut = (O*)_pL->clone();
+    add(_pL->get(0), _pR->get(0), pOut->get());
+    return pOut;
+}
+
+template<class T, class U, class O> types::InternalType* add_I_IC(T *_pL, U *_pR)
+{
+    O* pOut = (O*)_pR->clone();
+    add(_pL->get(), 1, _pR->get(0), _pR->getImg(0), pOut->get(), pOut->getImg());
+    return pOut;
+}
+
+template<class T, class U, class O> types::InternalType* add_IC_I(T *_pL, U *_pR)
+{
+    return add_I_IC<U, T, O>(_pR, _pL);
+}
+
+template<class T, class U, class O> types::InternalType* add_IC_IC(T *_pL, U *_pR)
+{
+    O* pOut = (O*)_pL->clone();
+    add(_pL->get(0), _pL->getImg(0), _pR->get(0), _pR->getImg(0), pOut->get(), pOut->getImg());
+    return pOut;
+}
+
+template<class T, class U, class O> types::InternalType* add_I_E(T *_pL, U *_pR)
+{
+    O* pOut = (O*)_pL->clone();
+    return pOut;
+}
+
+template<class T, class U, class O> types::InternalType* add_IC_E(T *_pL, U *_pR)
+{
+    O* pOut = (O*)_pL->clone();
+    return pOut;
+}
+
+template<class T, class U, class O> types::InternalType* add_E_I(T *_pL, U *_pR)
+{
+    O* pOut = (O*)_pR->clone();
+    return pOut;
+}
+
+template<class T, class U, class O> types::InternalType* add_E_IC(T *_pL, U *_pR)
+{
+    O* pOut = (O*)_pR->clone();
+    return pOut;
+}
+
 
 //specifiaction for String Matrix + String Matrix
 template<>

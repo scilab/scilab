@@ -64,6 +64,35 @@ template<class T, class U, class O> inline types::InternalType* add_E_S(T *_pL, 
 template<class T, class U, class O> inline types::InternalType* add_E_SC(T *_pL, U *_pR);
 template<class T, class U, class O> inline types::InternalType* add_E_E(T *_pL, U *_pR);
 
+template<class T, class U, class O> inline types::InternalType* add_I_M(T *_pL, U *_pR);
+template<class T, class U, class O> inline types::InternalType* add_I_MC(T *_pL, U *_pR);
+template<class T, class U, class O> inline types::InternalType* add_IC_M(T *_pL, U *_pR);
+template<class T, class U, class O> inline types::InternalType* add_IC_MC(T *_pL, U *_pR);
+
+template<class T, class U, class O> inline types::InternalType* add_I_S(T *_pL, U *_pR);
+template<class T, class U, class O> inline types::InternalType* add_I_SC(T *_pL, U *_pR);
+template<class T, class U, class O> inline types::InternalType* add_IC_S(T *_pL, U *_pR);
+template<class T, class U, class O> inline types::InternalType* add_IC_SC(T *_pL, U *_pR);
+
+template<class T, class U, class O> inline types::InternalType* add_M_I(T *_pL, U *_pR);
+template<class T, class U, class O> inline types::InternalType* add_MC_I(T *_pL, U *_pR);
+template<class T, class U, class O> inline types::InternalType* add_M_IC(T *_pL, U *_pR);
+template<class T, class U, class O> inline types::InternalType* add_MC_IC(T *_pL, U *_pR);
+
+template<class T, class U, class O> inline types::InternalType* add_S_I(T *_pL, U *_pR);
+template<class T, class U, class O> inline types::InternalType* add_SC_I(T *_pL, U *_pR);
+template<class T, class U, class O> inline types::InternalType* add_S_IC(T *_pL, U *_pR);
+template<class T, class U, class O> inline types::InternalType* add_SC_IC(T *_pL, U *_pR);
+
+template<class T, class U, class O> inline types::InternalType* add_I_I(T *_pL, U *_pR);
+template<class T, class U, class O> inline types::InternalType* add_I_IC(T *_pL, U *_pR);
+template<class T, class U, class O> inline types::InternalType* add_IC_I(T *_pL, U *_pR);
+template<class T, class U, class O> inline types::InternalType* add_IC_IC(T *_pL, U *_pR);
+
+template<class T, class U, class O> inline types::InternalType* add_I_E(T *_pL, U *_pR);
+template<class T, class U, class O> inline types::InternalType* add_IC_E(T *_pL, U *_pR);
+template<class T, class U, class O> inline types::InternalType* add_E_I(T *_pL, U *_pR);
+template<class T, class U, class O> inline types::InternalType* add_E_IC(T *_pL, U *_pR);
 
 //String specilization
 template<> types::InternalType* add_M_M<types::String, types::String, types::String>(types::String* _pL, types::String* _pR);

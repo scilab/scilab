@@ -91,6 +91,7 @@ public :
         IdGeneric,
         IdEmpty,
         IdIdentity,
+        IdIdentityComplex,
         IdInt8,
         IdScalarInt8,
         IdUInt8,

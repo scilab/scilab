@@ -13,6 +13,11 @@ c = 1 + 2*%i;
 C = [1+2*%i,2+4*%i;3+6*%i,4+8*%i];
 C3(:,:,1) = C;
 C3(:,:,2) = C';
+e = eye();
+ei = (5+%i) * eye()
+ei  = 
+eye *
+  5. + i
 //[] + []
 assert_checkequal([] + [], []);
 //double + []
@@ -107,3 +112,53 @@ assert_checkequal(C + C, [2+4*%i,4+8*%i;6+12*%i,8+16*%i]);
 C3C3ref(:,:,1) = [2+4*%i,4+8*%i;6+12*%i,8+16*%i];
 C3C3ref(:,:,2) = [2-4*%i,6-12*%i;4-8*%i,8-16*%i];
 assert_checkequal(C3 + C3, C3C3ref);
+//identity
+//e + R
+assert_checkequal(e + R, [2 2 ;3 5]);
+//R + e
+assert_checkequal(R + e, [2 2 ;3 5]);
+//e + C
+assert_checkequal(e + C, [2+2*%i,2+4*%i;3+6*%i,5+8*%i]);
+//C + e
+assert_checkequal(C + e, [2+2*%i,2+4*%i;3+6*%i,5+8*%i]);
+//e + r
+assert_checkequal(e + r, 3);
+//r + e
+assert_checkequal(r + e, 3);
+//e + c
+assert_checkequal(e + c, 2+2*%i);
+//c + e
+assert_checkequal(c + e, 2+2*%i);
+//e + []
+assert_checkequal(e + [], e);
+//[] + e
+assert_checkequal([] + e, e);
+//e + e
+assert_checkequal(e + e, 2* eye());
+//e + ei
+assert_checkequal(e + ei, (6+%i) * eye());
+//identity complex
+//ei + R
+assert_checkequal(ei + R, [6+%i,2;3,9+%i]);
+//R + ei
+assert_checkequal(R + ei, [6+%i,2;3,9+%i]);
+//ei + C
+assert_checkequal(ei + C, [6+3*%i,2+4*%i;3+6*%i,9+9*%i]);
+//C + ei
+assert_checkequal(C + ei, [6+3*%i,2+4*%i;3+6*%i,9+9*%i]);
+//ei + r
+assert_checkequal(ei + r, 7 + %i);
+//r + ei
+assert_checkequal(r + ei, 7 + %i);
+//ei + c
+assert_checkequal(ei + c, 6+3*%i);
+//c + ei
+assert_checkequal(c + ei, 6+3*%i);
+//ei + []
+assert_checkequal(ei + [], ei);
+//[] + ei
+assert_checkequal([] + ei, ei);
+//ei + e
+assert_checkequal(ei + e, (6+%i) * eye());
+//ei + ei
+assert_checkequal(ei + ei, (10+2*%i) * eye());
