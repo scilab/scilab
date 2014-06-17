@@ -12,6 +12,7 @@
  */
 /*--------------------------------------------------------------------------*/
 #include "Xcos.hxx"
+#include "loadStatus.hxx"
 
 extern "C" {
 #include "gw_xcos.h"
@@ -43,10 +44,10 @@ int sci_Xcos(char *fname, void *pvApiCtx)
      */
     if (Rhs == 0)
     {
+        int ret = callXcos(fname, NULL, NULL);
         LhsVar(1) = 0;
         PutLhsVar();
-
-        return callXcos(fname, NULL, NULL);
+        return ret;
     }
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVar);
@@ -215,6 +216,8 @@ int sci_Xcos(char *fname, void *pvApiCtx)
 
 static int callXcos(char *fname, char* file, char* var)
 {
+    set_loaded_status(XCOS_CALLED);
+
     try
     {
         Xcos::xcos(getScilabJavaVM(), file, var);

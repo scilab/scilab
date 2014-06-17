@@ -17,8 +17,6 @@
 /*--------------------------------------------------------------------------*/
 #include "dynlib_xcos.h"
 /*--------------------------------------------------------------------------*/
-XCOS_IMPEXP int gw_xcos(void);
-/*--------------------------------------------------------------------------*/
 XCOS_IMPEXP int sci_Xcos(char *fname, void *pvApiCtx);
 XCOS_IMPEXP int sci_xcosNotify(char *fname, void *pvApiCtx);
 XCOS_IMPEXP int sci_warnBlockByUID(char *fname, void *pvApiCtx);
@@ -39,12 +37,6 @@ XCOS_IMPEXP int sci_xcosUpdateBlock(char *fname, void *pvApiCtx);
 XCOS_IMPEXP int sci_loadXcos(char *fname, void *pvApiCtx);
 XCOS_IMPEXP int sci_xcosSimulationStarted(char *fname, void *pvApiCtx);
 XCOS_IMPEXP int sci_xcosPalGet(char *fname, void *pvApiCtx);
-/*--------------------------------------------------------------------------*/
-/**
-* xcos already started
-* @return 1 if xcos started else 0
-*/
-XCOS_IMPEXP int xcosStarted(void);
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_XCOS__ */
 /*--------------------------------------------------------------------------*/

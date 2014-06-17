@@ -238,8 +238,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\cpp\loadStatus.cpp" />
     <ClCompile Include="DllmainXCOS.c" />
-    <ClCompile Include="..\..\sci_gateway\c\gw_xcos.c" />
     <ClCompile Include="..\jni\Modelica.cpp" />
     <ClCompile Include="..\jni\Palette.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_closeXcosFromScilab.cpp" />
@@ -266,6 +266,7 @@
     <ClInclude Include="..\..\includes\dynlib_xcos.h" />
     <ClInclude Include="..\..\includes\gw_xcos.h" />
     <ClInclude Include="..\..\includes\xcosUtilities.hxx" />
+    <ClInclude Include="..\cpp\loadStatus.hxx" />
     <ClInclude Include="..\jni\Modelica.hxx" />
     <ClInclude Include="..\jni\Palette.hxx" />
     <ClInclude Include="..\jni\Xcos.hxx" />

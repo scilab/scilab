@@ -14,6 +14,7 @@
 /*--------------------------------------------------------------------------*/
 #include "Xcos.hxx"
 #include "GiwsException.hxx"
+#include "loadStatus.hxx"
 
 extern "C"
 {
@@ -36,7 +37,7 @@ int sci_closeXcosFromScilab(char *fname, void* pvApiCtx)
     CheckLhs(0, 1);
 
     // only if xcos was already opened and with supported mode
-    if ((getScilabMode() != SCILAB_NWNI) && xcosStarted())
+    if ((getScilabMode() != SCILAB_NWNI) && get_loaded_status() == XCOS_CALLED)
     {
         try
         {

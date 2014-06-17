@@ -73,6 +73,7 @@ extern "C" {
     */
     BOOL IsValidUTF8(const char* pStText);
 
+
 #ifdef __cplusplus
 }
 #endif

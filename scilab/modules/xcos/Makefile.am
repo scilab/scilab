@@ -34,13 +34,16 @@ libscixcos_la_etc_DATA = \
 	etc/XConfiguration-xcos.xsl \
 	etc/XConfiguration-xcos.xml
 
-XCOS_CXX_SOURCES = 	src/jni/Xcos.cpp \
+XCOS_CXX_SOURCES =	\
+            src/jni/Xcos.cpp \
 			src/jni/Xcos.hxx \
 			src/jni/Palette.cpp \
 			src/jni/Palette.hxx \
 			src/jni/Modelica.cpp \
 			src/jni/Modelica.hxx \
-			src/cpp/xcosUtilities.cpp
+			src/cpp/xcosUtilities.cpp \
+            src/cpp/loadStatus.cpp
+
 
 GIWS_WRAPPERS = src/jni/Xcos.giws.xml \
 			src/jni/Palette.giws.xml \
@@ -51,7 +54,7 @@ BUILT_SOURCES=giws
 endif
 
 
-GATEWAY_C_SOURCES = sci_gateway/c/gw_xcos.c
+GATEWAY_C_SOURCES = 
 
 GATEWAY_CXX_SOURCES = \
 	sci_gateway/cpp/sci_Xcos.cpp \

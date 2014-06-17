@@ -15,7 +15,6 @@
 # core is the main module of Scilab. All the compilation deps has been removed
 # since it already linked almost the whole world
 
-
 SUBDIRS = \
 prebuildjava \
 threads \
@@ -161,8 +160,7 @@ NO_GUI_LIBS = $(top_builddir)/modules/gui/libscigui-disable.la \
 	$(top_builddir)/modules/scinotes/libsciscinotes-disable.la \
 	$(top_builddir)/modules/ui_data/libsciui_data-disable.la \
 	$(top_builddir)/modules/history_browser/libscihistory_browser-disable.la \
-	$(top_builddir)/modules/commons/libscicommons-disable.la \
-	$(top_builddir)/modules/helptools/libscihelptools-disable.la
+	$(top_builddir)/modules/commons/libscicommons-disable.la
 
 
 ENGINE_LIBS =	$(top_builddir)/modules/fileio/libscifileio.la \

@@ -13,6 +13,7 @@
 #include "Modelica.hxx"
 #include "GiwsException.hxx"
 #include "xcosUtilities.hxx"
+#include "loadStatus.hxx"
 
 extern "C"
 {
@@ -47,6 +48,7 @@ int sci_xcosConfigureXmlFile(char *fname, void* pvApiCtx)
     }
 
     /* Call the java implementation */
+    set_loaded_status(XCOS_CALLED);
     try
     {
         Modelica::load(getScilabJavaVM(), init, relations);

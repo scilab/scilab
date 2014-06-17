@@ -13,6 +13,7 @@
 /*--------------------------------------------------------------------------*/
 #include "Xcos.hxx"
 #include "GiwsException.hxx"
+#include "loadStatus.hxx"
 
 extern "C"
 {
@@ -88,6 +89,7 @@ int sci_xcosDiagramToScilab(char *fname, void *pvApiCtx)
      */
     int iRet = 0;
 
+    set_loaded_status(XCOS_CALLED);
     try
     {
         iRet = Xcos::xcosDiagramToScilab(getScilabJavaVM(), pstXcosFile);

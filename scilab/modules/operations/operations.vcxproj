@@ -268,7 +268,6 @@ lib /DEF:"$(ProjectDir)core_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) 
     <ClInclude Include="includes\matrix_right_division.h" />
     <ClInclude Include="includes\matrix_substraction.h" />
     <ClInclude Include="includes\matrix_transpose.h" />
-    <ClInclude Include="includes\matrix_transpose_int.hxx" />
     <ClInclude Include="includes\operations.hxx" />
     <ClInclude Include="includes\operations_tools.h" />
     <ClInclude Include="includes\types_addition.hxx" />

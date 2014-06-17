@@ -17,6 +17,7 @@ bin/xml2-config
 .dirstamp
 .deps
 .libs
+/config.cache
 Makefile
 
 #

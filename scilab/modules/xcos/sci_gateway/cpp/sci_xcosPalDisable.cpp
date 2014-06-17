@@ -13,6 +13,7 @@
 #include "Palette.hxx"
 #include "GiwsException.hxx"
 #include "xcosUtilities.hxx"
+#include "loadStatus.hxx"
 
 extern "C"
 {
@@ -41,6 +42,7 @@ int sci_xcosPalDisable(char *fname, void* pvApiCtx)
     }
 
     /* Call the java implementation */
+    set_loaded_status(XCOS_CALLED);
     try
     {
         Palette::enable(getScilabJavaVM(), name, nameLength, false);

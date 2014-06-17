@@ -167,9 +167,6 @@
     <ClInclude Include="includes\generic_operations.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="includes\matrix_transpose_int.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="includes\types_ldivide.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>

@@ -331,6 +331,8 @@ bool FuncManager::CreateModuleList(void)
     m_ModuleMap.insert(pair<wstring, GW_MOD>(L"call_scilab", &CallScilabModule::Load));
     m_ModuleMap.insert(pair<wstring, GW_MOD>(L"completion", &CompletionModule::Load));
     m_ModuleMap.insert(pair<wstring, GW_MOD>(L"xml", &XmlModule::Load));
+    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"scicos", &ScicosModule::Load));
+    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"xcos", &XcosModule::Load));
 
     if (ConfigVariable::getScilabMode() != SCILAB_NWNI)
     {

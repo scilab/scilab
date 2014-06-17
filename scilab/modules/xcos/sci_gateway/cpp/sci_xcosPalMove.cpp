@@ -13,6 +13,7 @@
 #include "Palette.hxx"
 #include "GiwsException.hxx"
 #include "xcosUtilities.hxx"
+#include "loadStatus.hxx"
 
 extern "C"
 {
@@ -50,6 +51,7 @@ int sci_xcosPalMove(char *fname, void* pvApiCtx)
     }
 
     /* Call the java implementation */
+    set_loaded_status(XCOS_CALLED);
     try
     {
         Palette::move(getScilabJavaVM(), source, sourceLength, target, targetLength);

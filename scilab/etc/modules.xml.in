@@ -60,8 +60,8 @@
 <module name="spreadsheet" activate="yes"/>
 <module name="call_scilab" activate="yes"/>
 <!-- comments -->
-<module name="scicos" activate="no"/><!-- @XCOS_ENABLE@ -->
-<module name="scicos_blocks" activate="no"/><!-- @XCOS_ENABLE@ -->
+<module name="scicos" activate="@XCOS_ENABLE@"/>
+<module name="scicos_blocks" activate="@XCOS_ENABLE@"/>
 <!-- comments -->
 <module name="fftw" activate="no"/><!-- @FFTW_ENABLE@ -->
 <module name="umfpack" activate="@UMFPACK_ENABLE@"/>
@@ -74,7 +74,7 @@
 <module name="matio" activate="@MATIO_ENABLE@"/>
 <module name="types" activate="@JAVA_ENABLE@"/>
 <module name="hdf5" activate="yes"/>
-<module name="xcos" activate="no"/><!-- @GUI_ENABLE@ -->
+<module name="xcos" activate="@GUI_ENABLE@"/>
 <module name="mpi" activate="@MPI_ENABLE@"/>
 <module name="graphic_objects" activate="@GUI_ENABLE@"/>
 <module name="scinotes" activate="@GUI_ENABLE@"/>

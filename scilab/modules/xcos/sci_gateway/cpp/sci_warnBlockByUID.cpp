@@ -13,6 +13,8 @@
 /*--------------------------------------------------------------------------*/
 #include "Xcos.hxx"
 #include "xcosUtilities.hxx"
+#include "loadStatus.hxx"
+
 extern "C"
 {
 #include "gw_xcos.h"
@@ -56,6 +58,7 @@ int sci_warnBlockByUID(char *fname, void* pvApiCtx)
     }
 
     /* call the implementation */
+    set_loaded_status(XCOS_CALLED);
     Xcos::warnCellByUID(getScilabJavaVM(), path, pathLength, msg);
 
     for (i = 0; i < pathLength; i++)
