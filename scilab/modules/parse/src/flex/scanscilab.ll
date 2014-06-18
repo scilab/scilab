@@ -93,7 +93,7 @@ id              (([a-zA-Z_%#?$]|{utf})([a-zA-Z_0-9#?$]|{utf})*)
 newline			("\r"|"\n"|"\r\n")
 blankline		{spaces}+{newline}
 emptyline               {newline}({spaces}|[,;])+{newline}
-next			(".."|"...")
+next			\.\.+
 
 boolnot			("@"|"~")
 booltrue		("%t"|"%T")
