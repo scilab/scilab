@@ -29,6 +29,7 @@ libscisymbol_la_CPPFLAGS = \
 	-I$(top_builddir)/modules/ast/includes \
 	-I$(top_builddir)/modules/ast/includes/exps \
 	-I$(top_builddir)/modules/localization/includes \
+	-I$(top_builddir)/modules/string/includes \
 	$(EIGEN_CPPFLAGS) \
 	$(AM_CPPFLAGS)
 

@@ -292,10 +292,19 @@ struct TYPES_IMPEXP Sparse : GenericType
      */
     Sparse* dotMultiply(Sparse SPARSE_CONST& o) const;
 
-    /* create a new sparse matrix containing the result of a transposition
-       @return ptr to the new matrix, 0 in case of failure
-     */
-    Sparse* newTransposed() const;
+    bool neg(InternalType *& out);
+
+    bool transpose(InternalType *& out)
+    {
+	out = new Sparse(matrixReal ? new RealSparse_t(matrixReal->transpose()) : 0, matrixCplx ? new CplxSparse_t(matrixCplx->transpose()) : 0);
+        return true;
+    }
+
+    bool adjoint(InternalType *& out)
+    {
+	out = new Sparse(matrixReal ? new RealSparse_t(matrixReal->adjoint()) : 0, matrixCplx ? new CplxSparse_t(matrixCplx->adjoint()) : 0);
+        return true;
+    }
 
     /** create a new sparse matrix containing the non zero values set to 1.
        equivalent but faster than calling one_set() on a new copy of the
@@ -545,10 +554,11 @@ struct TYPES_IMPEXP SparseBool : GenericType
         return NULL;
     }
 
-    /* create a new sparse matrix containing the result of a transposition
-       @return ptr to the new matrix, 0 in case of failure
-     */
-    SparseBool* newTransposed() const;
+    bool transpose(InternalType *& out)
+    {
+	out = new SparseBool(new BoolSparse_t(matrixBool->transpose()));
+        return true;
+    }
 
     /** @return the nb of non zero values.
      */

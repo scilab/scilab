@@ -602,6 +602,7 @@ libsciaction_binding_disable_la_CPPFLAGS = -I$(srcdir)/includes/ \
 	-I$(top_srcdir)/modules/system_env/includes \
 	-I$(top_srcdir)/modules/types/includes \
 	-I$(top_srcdir)/libs/dynamiclibrary/includes \
+	-I$(top_srcdir)/modules/operations/includes \
 	$(EIGEN_CPPFLAGS) \
 	$(AM_CPPFLAGS)
 
@@ -624,6 +625,8 @@ $(JAVA_JNI_INCLUDE) \
 -I$(top_srcdir)/modules/system_env/includes \
 -I$(top_srcdir)/modules/types/includes \
 -I$(top_srcdir)/modules/dynamic_link/includes \
+-I$(top_srcdir)/modules/operations/includes \
+-I$(top_srcdir)/modules/string/includes \
 $(EIGEN_CPPFLAGS) \
 $(AM_CPPFLAGS)
 

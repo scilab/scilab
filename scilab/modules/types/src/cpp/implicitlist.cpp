@@ -594,6 +594,34 @@ void ImplicitList::extractFullMatrix(T *_pT)
         _pT[i] = tStart + i * tStep;
     }
 }
+
+    bool ImplicitList::transpose(InternalType *& out)
+    {
+	if (compute())
+	{
+	    Double * pIT = new Double(m_iSize, 1);
+	    out = pIT;
+	    extractFullMatrix(pIT->get());
+
+	    return true;
+	}
+
+	return false;
+    }
+
+    bool ImplicitList::neg(InternalType *& out)
+    {
+	if (compute() && m_poStart->isDouble() && m_poStep->isDouble() && m_poEnd->isDouble())
+	{
+	    out = new Bool(1, m_iSize);
+	    type_traits::neg(m_poStart->getAs<Double>()->get(0), m_poStep->getAs<Double>()->get(0), m_poEnd->getAs<Double>()->get(0), static_cast<Bool *>(out)->get());
+
+	    return true;
+	}
+
+	return false;
+    }
+
 }
 
 std::wstring printInLinePoly(types::SinglePoly* _pPoly, std::wstring _stVar)

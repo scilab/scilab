@@ -99,6 +99,30 @@ Cell::Cell(Cell *_oCellCopyMe)
 #endif
 }
 
+bool Cell::transpose(InternalType *& out)
+{
+    if (isScalar())
+    {
+	out = clone();
+	return true;
+    }
+
+    if (m_iDims == 2)
+    {
+	Cell * pC = new Cell();
+	out = pC;
+	InternalType** pIT = NULL;
+	int piDims[2] = {getCols(), getRows()};
+	pC->create(piDims, 2, &pIT, NULL);
+	    
+	Transposition::transpose_clone(getRows(), getCols(), m_pRealData, pC->m_pRealData);
+	
+	return true;
+    }
+    
+    return false;
+}
+
 bool Cell::set(int _iRows, int _iCols, InternalType* _pIT)
 {
     if (_iRows < getRows() && _iCols < getCols())

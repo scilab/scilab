@@ -219,6 +219,62 @@ InternalType* Polynom::clone()
     return pMP;
 }
 
+bool Polynom::transpose(InternalType *& out)
+{
+    if (isScalar())
+    {
+	out = clone();
+	return true;
+    }
+
+    if (m_iDims == 2)
+    {
+	Polynom * pMP = new Polynom();
+	out = pMP;
+	pMP->m_szVarName = this-> m_szVarName;
+	SinglePoly** pPoly = NULL;
+	int piDims[2] = {getCols(), getRows()};
+	pMP->create(piDims, 2, &pPoly, NULL);
+	pMP->setComplex(isComplex());
+	    
+	Transposition::transpose_clone(getRows(), getCols(), m_pRealData, pMP->m_pRealData);
+	
+	return true;
+    }
+    
+    return false;
+	
+}
+
+bool Polynom::adjoint(InternalType *& out)
+{
+    if (isComplex())
+    {
+	if (m_iDims == 2)
+	{
+	    Polynom * pMP = new Polynom();
+	    out = pMP;
+	    pMP->m_szVarName = this-> m_szVarName;
+	    SinglePoly** pPoly = NULL;
+	    int piDims[2] = {getCols(), getRows()};
+	    pMP->create(piDims, 2, &pPoly, NULL);
+	    pMP->setComplex(true);
+	    
+	    Transposition::adjoint_clone(getRows(), getCols(), m_pRealData, pMP->m_pRealData);
+	    
+	    return true;
+	}
+	else
+	{
+	    return false;
+	}
+    }
+    else
+    {
+	return transpose(out);
+    }
+}
+
 Double* Polynom::evaluate(Double* _pdblValue)
 {
     double *pR	= _pdblValue->getReal();

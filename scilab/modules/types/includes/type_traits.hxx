@@ -10,11 +10,12 @@
  *
  */
 
-
 #ifndef __TYPE_TRAITS_HXX__
 #define __TYPE_TRAITS_HXX__
 
+#include <cmath>
 #include <Eigen/Sparse>
+#include "types_transposition.hxx"
 
 namespace types
 {
@@ -36,6 +37,25 @@ struct type_traits
         return true;
     }
 
+    inline static bool isTrue(const double start, const double step, const double end)
+    {
+	if (start == 0 || end == 0 || step == 0)
+	{
+	    return false;
+	}
+
+	if ((start < 0 && end > 0) || (start > 0 && end < 0))
+	{
+	    double q = start / step;
+	    if (std::floor(q) == q)
+	    {
+		return false;
+	    }
+	}
+
+	return true;
+    }
+
     template<typename T, typename U>
     inline static void neg(const int size, const T * const in, U * const out)
     {
@@ -45,7 +65,18 @@ struct type_traits
         }
     }
 
-    inline static void neg(const int r, const int c, const Eigen::SparseMatrix<bool> * const in, Eigen::SparseMatrix<bool> * const out)
+    template<typename T>
+    inline static void neg(const T start, const T step, const T end, int * const out)
+    {
+	int j = 0;
+	for (T i = start; i < end; i += step, j++)
+	{
+	    out[j] = i == 0;
+	}
+    }
+
+    template<typename T>
+    inline static void neg(const int r, const int c, const T * const in, Eigen::SparseMatrix<bool> * const out)
     {
         for (int i = 0; i < r; i++)
         {
@@ -66,6 +97,27 @@ struct type_traits
             out[i] = ~in[i];
         }
     }
+
+    template<typename T>
+    inline static bool transpose(T & in, InternalType *& out)
+	{
+	    if (in.isScalar())
+	    {
+		out = in.clone();
+		return true;
+	    }
+	    
+	    if (in.getDims() == 2)
+	    {
+		T * pReturn = new T(in.getCols(), in.getRows());
+		out = pReturn;
+		Transposition::transpose(in.getRows(), in.getCols(), in.get(), pReturn->get());
+		
+		return true;
+	    }
+	    
+	    return false;
+	}
 };
 
 } // namespace types

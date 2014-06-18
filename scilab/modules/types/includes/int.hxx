@@ -22,6 +22,7 @@
 #include "bool.hxx"
 #include "dynlib_types.h"
 #include "internal.hxx"
+#include "types_transposition.hxx"
 
 #include <sstream>
 #include <string>
@@ -108,6 +109,11 @@ public :
         return true;
     }
 
+    virtual bool transpose(InternalType *& out)
+    {
+	return type_traits::transpose(*this, out);
+    }
+    
     bool operator==(const InternalType& it)
     {
         if (const_cast<InternalType &>(it).getType() != getType())

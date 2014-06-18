@@ -25,6 +25,8 @@
 #include "internal.hxx"
 #include "double.hxx"
 #include "dynlib_types.h"
+#include "type_traits.hxx"
+
 namespace types
 {
 /*
@@ -119,6 +121,20 @@ public :
     template<typename T>
     void					extractFullMatrix(T *_pT);
     void                    extractFullMatrix(double *_pdbl);
+
+    virtual bool isTrue()
+    {
+	// TODO : manage int & co
+	if (m_poStart->isDouble() && m_poStep->isDouble() && m_poEnd->isDouble())
+	{
+	    return type_traits::isTrue(m_poStart->getAs<Double>()->get(0), m_poStep->getAs<Double>()->get(0), m_poEnd->getAs<Double>()->get(0));
+	}
+
+	return false;
+    }
+
+    virtual bool transpose(InternalType *& out);
+    virtual bool neg(InternalType *& out);
 };
 }
 

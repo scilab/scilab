@@ -35,6 +35,7 @@ public :
 
     // FIXME : Should not return NULL;
     SinglePoly*             clone();
+    SinglePoly*             conjugate();
 
     bool                    isSinglePoly()
     {

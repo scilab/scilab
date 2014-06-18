@@ -65,6 +65,11 @@ public :
         return L"b";
     }
 
+    virtual bool transpose(InternalType *& out)
+    {
+	return type_traits::transpose(*this, out);
+    }
+
 protected :
     inline ScilabType       getType(void)
     {

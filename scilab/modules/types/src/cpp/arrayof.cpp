@@ -101,16 +101,4 @@ bool checkArgValidity(typed_list& _Arg)
 
     return true;
 }
-/*
-    template<typename T>
-    bool _neg_(InternalType * in, InternalType *& out)
-    {
-	ArrayOf<T> * _in = static_cast<ArrayOf<T> *>(in);
-	Bool * _out = new Bool(_in->getDims(), _in->getDimsArray());
-	type_traits::neg<T, int>(_in->getSize(), _in->get(), _out->get());
-	out = _out;
-
-	return true;
-    }
-*/
 }

@@ -112,6 +112,30 @@ InternalType* Struct::clone()
     return new Struct(this);
 }
 
+bool Struct::transpose(InternalType *& out)
+{
+    if (isScalar())
+    {
+	out = clone();
+	return true;
+    }
+
+    if (m_iDims == 2)
+    {
+	Struct * pSt = new Struct();
+	out = pSt;
+	SingleStruct** pSSt = NULL;
+	int piDims[2] = {getCols(), getRows()};
+	pSt->create(piDims, 2, &pSSt, NULL);
+	    
+	Transposition::transpose_clone(getRows(), getCols(), m_pRealData, pSt->m_pRealData);
+	
+	return true;
+    }
+    
+    return false;
+}
+
 bool Struct::set(int _iRows, int _iCols, SingleStruct* _pIT)
 {
     if (_iRows < getRows() && _iCols < getCols())

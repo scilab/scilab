@@ -548,6 +548,7 @@ libsciparse_la_CPPFLAGS = \
 	-I$(top_builddir)/modules/output_stream/includes \
 	-I$(top_builddir)/modules/string/includes \
 	-I$(top_builddir)/modules/system_env/includes \
+	-I$(top_builddir)/modules/operations/includes \
 	$(EIGEN_CPPFLAGS) \
 	$(AM_CPPFLAGS)
 

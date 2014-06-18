@@ -23,7 +23,6 @@
 #include "visitor_common.hxx"
 
 #include "context.hxx"
-#include "matrix_transpose_int.hxx"
 #include "generic_operations.hxx"
 #include "types_or_and.hxx"
 
@@ -31,7 +30,6 @@ extern "C"
 {
 #include "sciprint.h"
 #include "os_swprintf.h"
-#include "matrix_transpose.h"
 }
 
 namespace ast
@@ -969,253 +967,64 @@ void RunVisitorT<T>::visitprivate(const TransposeExp &e)
 {
     e.exp_get().accept(*this);
 
-    bool bConjug = e.conjugate_get() == TransposeExp::_Conjugate_;
+    InternalType * pValue = result_get();
+    InternalType * pReturn = NULL;
+    const bool bConjug = e.conjugate_get() == TransposeExp::_Conjugate_;
 
-    if (result_get()->isImplicitList())
+    if ((bConjug && pValue->adjoint(pReturn)) || (!bConjug && pValue->transpose(pReturn)))
     {
-        InternalType *pIT = ((InternalType*)result_get())->getAs<ImplicitList>()->extractFullMatrix();
-        if (result_get()->isDeletable())
+        if (pValue->isDeletable())
         {
-            delete result_get();
+            delete pValue;
+        }
+	
+        result_set(pReturn);
+	
+	return;
+    }
+    else
+    {
+        // transpose returned false so the negation is not possible so we call the overload (%foo_t or %foo_0)
+        types::typed_list in;
+        types::typed_list out;
+
+        pValue->IncreaseRef();
+        in.push_back(pValue);
+
+        Callable::ReturnValue Ret;
+	if (bConjug)
+	{
+	    Ret = Overload::call(L"%" + result_get()->getShortTypeStr() + L"_t", in, 1, out, this);
+	}
+	else
+	{
+	    Ret = Overload::call(L"%" + result_get()->getShortTypeStr() + L"_0", in, 1, out, this);
+	}
+
+        if (Ret != Callable::OK)
+        {
+            throw ScilabError();
         }
 
-        result_set(pIT);
-    }
-
-    if (result_get()->isDouble())
-    {
-        InternalType* pVar  = result_get();
-        Double *pdbl		= pVar->getAs<Double>();
-        Double *pReturn	    = NULL;
-
-        if (pdbl->isComplex())
+        if (out.size() == 0)
         {
-            pReturn         = new Double(pdbl->getCols(), pdbl->getRows(), true);
-            double *pInR    = pdbl->getReal();
-            double *pInI    = pdbl->getImg();
-            double *pOutR   = pReturn->getReal();
-            double *pOutI   = pReturn->getImg();
-
-            vTransposeComplexMatrix(pInR, pInI, pdbl->getRows(), pdbl->getCols(), pOutR, pOutI, bConjug);
+            result_set(NULL);
+        }
+        else if (out.size() == 1)
+        {
+            out[0]->DecreaseRef();
+            result_set(out[0]);
         }
         else
         {
-            pReturn         = new Double(pdbl->getCols(), pdbl->getRows(), false);
-            double *pInR    = pdbl->getReal();
-            double *pOutR   = pReturn->getReal();
-
-            vTransposeRealMatrix(pInR, pdbl->getRows(), pdbl->getCols(), pOutR);
-        }
-
-        if (result_get()->isDeletable())
-        {
-            delete result_get();
-        }
-
-        result_set(pReturn);
-    }
-    else if (result_get()->isPoly())
-    {
-        InternalType *pIT   = result_get();
-        Polynom *pMP        = pIT->getAs<types::Polynom>();
-        Polynom *pReturn    = NULL;
-
-        //prepare rank array
-        int* piRank = new int[pMP->getSize()];
-
-        for (int i = 0 ; i < pMP->getRows() ; i++)
-        {
-            for (int j = 0 ; j < pMP->getCols() ; j++)
+            for (int i = 0 ; i < static_cast<int>(out.size()) ; i++)
             {
-                piRank[i * pMP->getCols() + j] = pMP->get(i, j)->getRank();
+                out[i]->DecreaseRef();
+                result_set(i, out[i]);
             }
         }
 
-        pReturn = new Polynom(pMP->getVariableName(), pMP->getCols(), pMP->getRows(), piRank);
-        pReturn->setComplex(pMP->isComplex());
-
-        if (pMP->isComplex() && bConjug)
-        {
-            for (int i = 0 ; i < pMP->getRows() ; i++)
-            {
-                for (int j = 0 ; j < pMP->getCols() ; j++)
-                {
-                    pReturn->setCoef(j, i, pMP->get(i, j)->getCoef());
-                    double *pdblImg = pReturn->get(j, i)->getCoefImg();
-                    for (int k = 0 ; k < pReturn->get(j, i)->getRank() ; k++)
-                    {
-                        pdblImg[k] *= -1;
-                    }
-                }
-            }
-        }
-        else
-        {
-            for (int i = 0 ; i < pMP->getRows() ; i++)
-            {
-                for (int j = 0 ; j < pMP->getCols() ; j++)
-                {
-                    pReturn->setCoef(j, i, pMP->get(i, j)->getCoef());
-                }
-            }
-        }
-
-        if (result_get()->isDeletable())
-        {
-            delete result_get();
-        }
-
-        result_set(pReturn);
-    }
-    else if (result_get()->isString())
-    {
-        InternalType* pVar  = result_get();
-        types::String *pS          = pVar->getAs<types::String>();
-        types::String* pReturn     = new types::String(pS->getCols(), pS->getRows());
-
-        for (int i = 0 ; i < pS->getRows() ; i++)
-        {
-            for (int j = 0 ; j < pS->getCols() ; j++)
-            {
-                pReturn->set(j, i, pS->get(i, j));
-            }
-        }
-
-        if (result_get()->isDeletable())
-        {
-            delete result_get();
-        }
-
-        result_set(pReturn);
-    }
-    else if (result_get()->isBool())
-    {
-        InternalType* pVar  = result_get();
-        types::Bool *pB = pVar->getAs<types::Bool>();
-        types::Bool* pReturn = new types::Bool(pB->getCols(), pB->getRows());
-
-        for (int i = 0 ; i < pB->getRows() ; i++)
-        {
-            for (int j = 0 ; j < pB->getCols() ; j++)
-            {
-                pReturn->set(j, i, pB->get(i, j));
-            }
-        }
-
-        if (result_get()->isDeletable())
-        {
-            delete result_get();
-        }
-
-        result_set(pReturn);
-    }
-    else if (result_get()->isSparse())
-    {
-        types::InternalType* pIT = result_get();
-        result_set(pIT->getAs<types::Sparse>()->newTransposed());
-    }
-    else if (result_get()->isSparseBool())
-    {
-        types::InternalType* pIT = result_get();
-        result_set(pIT->getAs<types::SparseBool>()->newTransposed());
-    }
-    else if (result_get()->isInt())
-    {
-        InternalType* pVar      = result_get();
-        InternalType* pReturn   = NULL;
-
-        switch (pVar->getType())
-        {
-            case types::InternalType::ScilabInt8 :
-            {
-                types::Int8* pIntIn  = pVar->getAs<types::Int8>();
-                types::Int8* pIntOut = new types::Int8(pIntIn->getCols(), pIntIn->getRows());
-                char* pIn  = pIntIn->get();
-                char* pOut = pIntOut->get();
-                vTransposeIntMatrix<char>(pIn, pIntIn->getRows(), pIntIn->getCols(), pOut);
-                pReturn = pIntOut;
-                break;
-            }
-            case types::InternalType::ScilabUInt8 :
-            {
-                types::UInt8* pIntIn  = pVar->getAs<types::UInt8>();
-                types::UInt8* pIntOut = new types::UInt8(pIntIn->getCols(), pIntIn->getRows());
-                unsigned char* pIn  = pIntIn->get();
-                unsigned char* pOut = pIntOut->get();
-                vTransposeIntMatrix<unsigned char>(pIn, pIntIn->getRows(), pIntIn->getCols(), pOut);
-                pReturn = pIntOut;
-                break;
-            }
-            case types::InternalType::ScilabInt16 :
-            {
-                types::Int16* pIntIn  = pVar->getAs<types::Int16>();
-                types::Int16* pIntOut = new types::Int16(pIntIn->getCols(), pIntIn->getRows());
-                short* pIn  = pIntIn->get();
-                short* pOut = pIntOut->get();
-                vTransposeIntMatrix<short>(pIn, pIntIn->getRows(), pIntIn->getCols(), pOut);
-                pReturn = pIntOut;
-                break;
-            }
-            case types::InternalType::ScilabUInt16 :
-            {
-                types::UInt16* pIntIn  = pVar->getAs<types::UInt16>();
-                types::UInt16* pIntOut = new types::UInt16(pIntIn->getCols(), pIntIn->getRows());
-                unsigned short* pIn  = pIntIn->get();
-                unsigned short* pOut = pIntOut->get();
-                vTransposeIntMatrix<unsigned short>(pIn, pIntIn->getRows(), pIntIn->getCols(), pOut);
-                pReturn = pIntOut;
-                break;
-            }
-            case types::InternalType::ScilabInt32 :
-            {
-                types::Int32* pIntIn  = pVar->getAs<types::Int32>();
-                types::Int32* pIntOut = new types::Int32(pIntIn->getCols(), pIntIn->getRows());
-                int* pIn  = pIntIn->get();
-                int* pOut = pIntOut->get();
-                vTransposeIntMatrix<int>(pIn, pIntIn->getRows(), pIntIn->getCols(), pOut);
-                pReturn = pIntOut;
-                break;
-            }
-            case types::InternalType::ScilabUInt32 :
-            {
-                types::UInt32* pIntIn  = pVar->getAs<types::UInt32>();
-                types::UInt32* pIntOut = new types::UInt32(pIntIn->getCols(), pIntIn->getRows());
-                unsigned int* pIn  = pIntIn->get();
-                unsigned int* pOut = pIntOut->get();
-                vTransposeIntMatrix<unsigned int>(pIn, pIntIn->getRows(), pIntIn->getCols(), pOut);
-                pReturn = pIntOut;
-                break;
-            }
-            case types::InternalType::ScilabInt64 :
-            {
-                types::Int64* pIntIn  = pVar->getAs<types::Int64>();
-                types::Int64* pIntOut = new types::Int64(pIntIn->getCols(), pIntIn->getRows());
-                long long* pIn  = pIntIn->get();
-                long long* pOut = pIntOut->get();
-                vTransposeIntMatrix<long long>(pIn, pIntIn->getRows(), pIntIn->getCols(), pOut);
-                pReturn = pIntOut;
-                break;
-            }
-            case types::InternalType::ScilabUInt64 :
-            {
-                types::UInt64* pIntIn  = pVar->getAs<types::UInt64>();
-                types::UInt64* pIntOut = new types::UInt64(pIntIn->getCols(), pIntIn->getRows());
-                unsigned long long* pIn  = pIntIn->get();
-                unsigned long long* pOut = pIntOut->get();
-                vTransposeIntMatrix<unsigned long long>(pIn, pIntIn->getRows(), pIntIn->getCols(), pOut);
-                pReturn = pIntOut;
-                break;
-            }
-            default:
-                break;
-        }
-
-        if (pVar->isDeletable())
-        {
-            delete pVar;
-        }
-
-        result_set(pReturn);
+        pValue->DecreaseRef();
     }
 }
 

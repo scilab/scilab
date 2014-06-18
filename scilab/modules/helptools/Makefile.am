@@ -56,6 +56,7 @@ libscihelptools_la_CPPFLAGS= \
 	-I$(top_srcdir)/modules/ast/includes/exps \
 	-I$(top_srcdir)/modules/commons/src/jni \
 	-I$(top_srcdir)/modules/dynamic_link/includes \
+	-I$(top_srcdir)/modules/string/includes \
 	$(EIGEN_CPPFLAGS) \
 	$(AM_CPPFLAGS)
 

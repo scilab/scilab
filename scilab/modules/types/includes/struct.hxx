@@ -53,6 +53,8 @@ public :
     }
     bool                        isEmpty();
 
+    bool transpose(InternalType *& out);
+
 
     /**
     ** Clone

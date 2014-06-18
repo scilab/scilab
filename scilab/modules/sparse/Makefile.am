@@ -38,6 +38,7 @@ libscisparse_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/localization/includes/ \
     -I$(top_srcdir)/modules/output_stream/includes/ \
     -I$(top_srcdir)/modules/elementary_functions/includes/ \
+    -I$(top_srcdir)/modules/operations/includes/ \
     $(EIGEN_CPPFLAGS) \
     $(AM_CPPFLAGS)
 

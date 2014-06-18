@@ -111,6 +111,9 @@ public :
         return false;
     }
 
+    bool transpose(InternalType *& out);
+    bool adjoint(InternalType *& out);
+
 protected :
     std::wstring            m_szVarName;
     void                    createPoly(std::wstring _szVarName, int _iDims, int* _piDims, const int *_piRank);

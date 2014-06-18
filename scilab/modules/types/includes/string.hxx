@@ -28,81 +28,88 @@
 #include "arrayof.hxx"
 #include "bool.hxx"
 #include "dynlib_types.h"
+#include "types_transposition.hxx"
+#include "type_traits.hxx"
 
 namespace types
 {
-class TYPES_IMPEXP String : public ArrayOf<wchar_t*>
-{
-public :
-    String(int _iRows, int _iCols);
-    String(int _iDims, int* _piDims);
-    String(int _iRows, int _iCols, wchar_t** _pstData);
-    String(const wchar_t *_pstData);
-    String(const char *_pstData);
-    virtual                 ~String();
-
-    void                    whoAmI();
-
-    virtual bool            set(int _iPos, const wchar_t* _pwstData);
-    virtual bool            set(int _iRows, int _iCols, const wchar_t* _pwstData);
-    virtual bool            set(const wchar_t* const* _pwstData);
-
-    virtual bool            set(int _iPos, const char* _pcData);
-    virtual bool            set(int _iRows, int _iCols, const char* _pcData);
-    virtual bool            set(const char* const* _pstrData);
-
-    bool                    operator==(const InternalType& it);
-    bool                    operator!=(const InternalType& it);
-
-    bool                    subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims);
-    /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::wstring    getTypeStr()
+    class TYPES_IMPEXP String : public ArrayOf<wchar_t*>
     {
-        return L"string";
-    }
-    /* return type as short string ( s, i, ce, l, ... )*/
-    virtual std::wstring    getShortTypeStr()
-    {
-        return L"c";
-    }
-    InternalType*           clone();
+    public :
+        String(int _iRows, int _iCols);
+        String(int _iDims, int* _piDims);
+        String(int _iRows, int _iCols, wchar_t** _pstData);
+        String(const wchar_t *_pstData);
+        String(const char *_pstData);
+        virtual                 ~String();
 
-    inline ScilabType       getType()
-    {
-        return ScilabString;
-    }
-    inline ScilabId         getId()
-    {
-        return isScalar() ? IdScalarString : IdString;
-    }
-    bool                    isString()
-    {
-        return true;
-    }
+        void                    whoAmI();
 
-    bool isTrue()
-    {
-        return false;
-    }
+        virtual bool            set(int _iPos, const wchar_t* _pwstData);
+        virtual bool            set(int _iRows, int _iCols, const wchar_t* _pwstData);
+        virtual bool            set(const wchar_t* const* _pwstData);
 
-    virtual bool neg(InternalType *& out)
-    {
-        return false;
-    }
+        virtual bool            set(int _iPos, const char* _pcData);
+        virtual bool            set(int _iRows, int _iCols, const char* _pcData);
+        virtual bool            set(const char* const* _pstrData);
 
-private :
-    void                    deleteString(int _iRows, int _iCols);
-    void                    deleteString(int _iPos);
+        bool                    operator==(const InternalType& it);
+        bool                    operator!=(const InternalType& it);
 
-    void                    createString(int _iDims, int* _piDims);
-    virtual wchar_t*        copyValue(wchar_t* _pwstData);
-    virtual wchar_t*        copyValue(const wchar_t* _pwstData);
-    virtual String*         createEmpty(int _iDims, int* _piDims, bool _bComplex = false);
-    virtual wchar_t*        getNullValue();
-    virtual void            deleteAll();
-    virtual void            deleteImg();
-    virtual wchar_t**       allocData(int _iSize);
-};
+        bool                    subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims);
+        /* return type as string ( double, int, cell, list, ... )*/
+        virtual std::wstring    getTypeStr()
+        {
+            return L"string";
+        }
+        /* return type as short string ( s, i, ce, l, ... )*/
+        virtual std::wstring    getShortTypeStr()
+        {
+            return L"c";
+        }
+        InternalType*           clone();
+
+        inline ScilabType       getType()
+        {
+            return ScilabString;
+        }
+        inline ScilabId         getId()
+        {
+            return isScalar() ? IdScalarString : IdString;
+        }
+        bool                    isString()
+        {
+            return true;
+        }
+
+        bool isTrue()
+        {
+            return false;
+        }
+
+        virtual bool neg(InternalType *& out)
+        {
+            return false;
+        }
+
+        virtual bool transpose(InternalType *& out)
+        {
+            return type_traits::transpose(*this, out);
+        }
+
+    private :
+        void                    deleteString(int _iRows, int _iCols);
+        void                    deleteString(int _iPos);
+
+        void                    createString(int _iDims, int* _piDims);
+        virtual wchar_t*        copyValue(wchar_t* _pwstData);
+        virtual wchar_t*        copyValue(const wchar_t* _pwstData);
+        virtual String*         createEmpty(int _iDims, int* _piDims, bool _bComplex = false);
+        virtual wchar_t*        getNullValue();
+        virtual void            deleteAll();
+        virtual void            deleteImg();
+        virtual wchar_t**       allocData(int _iSize);
+    };
 }
 
 #ifdef _MSC_VER

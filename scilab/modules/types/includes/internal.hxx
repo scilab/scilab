@@ -222,6 +222,16 @@ public :
         return false;
     }
 
+    virtual bool transpose(InternalType *& out)
+    {
+        return false;
+    }
+
+    virtual bool adjoint(InternalType *& out)
+    {
+        return transpose(out);
+    }
+
     /* return type as string ( double, int, cell, list, ... )*/
     virtual std::wstring            getTypeStr() = 0;
     /* return type as short string ( s, i, ce, l, ... )*/

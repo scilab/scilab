@@ -462,6 +462,16 @@ void Sparse::finalize()
 
 }
 
+    bool Sparse::neg(InternalType *& out)
+    {
+        SparseBool * _out = new SparseBool(getRows(), getCols());
+        type_traits::neg(getRows(), getCols(), matrixReal, _out->matrixBool);
+        out = _out;
+
+        return true;
+    }
+
+
 bool Sparse::isComplex() const
 {
     return static_cast<bool>(matrixCplx != NULL);
@@ -1740,12 +1750,6 @@ Sparse* Sparse::dotMultiply(Sparse SPARSE_CONST& o) const
     return new Sparse(realSp, cplxSp);
 }
 
-Sparse* Sparse::newTransposed() const
-{
-    return new Sparse( matrixReal ? new RealSparse_t(matrixReal->adjoint()) : 0
-                       , matrixCplx ? new CplxSparse_t(matrixCplx->adjoint()) : 0);
-}
-
 struct BoolCast
 {
     BoolCast(std::complex<double> const& c): b(c.real() || c.imag()) {}
@@ -3008,11 +3012,6 @@ InternalType* SparseBool::extract(typed_list* _pArgs)
     }
 
     return pOut;
-}
-
-SparseBool* SparseBool::newTransposed() const
-{
-    return new SparseBool(new BoolSparse_t(matrixBool->adjoint()));
 }
 
 std::size_t SparseBool::nbTrue() const

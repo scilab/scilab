@@ -499,6 +499,25 @@ SinglePoly* SinglePoly::clone()
     }
     return pPoly;
 }
+
+SinglePoly* SinglePoly::conjugate()
+{
+    SinglePoly* pPoly = NULL;
+    if (isComplex())
+    {
+	double *pR = NULL;
+        double *pI = NULL;
+        SinglePoly * pPoly = new SinglePoly(&pR, &pI, getRank());
+
+	Transposition::conjugate(getRank(), getCoefReal(), pR, getCoefImg(), pI);
+
+	return pPoly;
+    }
+    else
+    {
+	return clone();
+    }
+}
 }
 
 

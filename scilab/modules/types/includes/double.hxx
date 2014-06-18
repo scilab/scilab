@@ -25,6 +25,7 @@
 #include "arrayof.hxx"
 #include "bool.hxx"
 #include "dynlib_types.h"
+#include "types_transposition.hxx"
 
 namespace types
 {
@@ -142,6 +143,101 @@ public :
                : IdDoubleComplex
        : isScalar() ? IdScalarDouble
                : IdDouble;
+    }
+
+    inline bool conjugate(InternalType *& out)
+    {
+	if (isEmpty() || isIdentity() || !isComplex())
+        {
+            out = clone();
+            return true;
+        }
+
+	if (isScalar())
+	{
+	    out = new Double(m_pRealData[0], -m_pImgData[0]);
+	    return true;
+	}
+
+	if (m_iDims == 2)
+	{
+	    Double * pReturn = new Double(getCols(), getRows(), true);
+	    out = pReturn;
+	    
+	    Transposition::conjugate(getSize(), m_pRealData, pReturn->m_pRealData, m_pImgData, pReturn->m_pImgData);
+	    return true;
+	}
+
+	return false;
+
+    }
+
+    virtual bool adjoint(InternalType *& out)
+    {
+	if (isEmpty() || isIdentity())
+        {
+            out = clone();
+            return true;
+        }
+
+	if (isScalar())
+	{
+	    if (m_bComplex)
+	    {
+		out = new Double(m_pRealData[0], -m_pImgData[0]);
+	    }
+	    else
+	    {
+		out = clone();
+	    }
+
+	    return true;
+	}
+
+	if (m_iDims == 2)
+	{
+	    Double * pReturn = new Double(getCols(), getRows(), m_bComplex);
+	    out = pReturn;
+	    if (m_bComplex)
+	    {
+		Transposition::adjoint(getRows(), getCols(), m_pRealData, pReturn->m_pRealData, m_pImgData, pReturn->m_pImgData);
+	    }
+	    else
+	    {
+		Transposition::adjoint(getRows(), getCols(), m_pRealData, pReturn->m_pRealData);
+	    }
+
+	    return true;
+	}
+
+	return false;
+    }
+
+    virtual bool transpose(InternalType *& out)
+    {
+	if (isEmpty() || isIdentity() || isScalar())
+        {
+            out = clone();
+            return true;
+        }
+
+	if (m_iDims == 2)
+	{
+	    Double * pReturn = new Double(getCols(), getRows(), m_bComplex);
+	    out = pReturn;
+	    if (m_bComplex)
+	    {
+		Transposition::transpose(getRows(), getCols(), m_pRealData, pReturn->m_pRealData, m_pImgData, pReturn->m_pImgData);
+	    }
+	    else
+	    {
+		Transposition::transpose(getRows(), getCols(), m_pRealData, pReturn->m_pRealData);
+	    }
+
+	    return true;
+	}
+
+	return false;
     }
 
 private :

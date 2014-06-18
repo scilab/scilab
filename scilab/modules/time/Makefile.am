@@ -31,6 +31,7 @@ libscitime_la_CPPFLAGS= -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/dynamic_link/includes \
 			-I$(top_srcdir)/modules/localization/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes/ \
+			-I$(top_srcdir)/modules/string/includes/ \
 			$(EIGEN_CPPFLAGS) \
 			$(AM_CPPFLAGS)
 
