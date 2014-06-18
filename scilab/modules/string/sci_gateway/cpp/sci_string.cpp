@@ -1,6 +1,7 @@
 /*
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
+*  Copyright (C) 2014 - Scilab Enterprises - Anais AUBERT
 *
 *  This file must be used under the terms of the CeCILL.
 *  This source file is licensed as described in the file COPYING, which
@@ -12,6 +13,7 @@
 
 #include <math.h>
 #include <sstream>
+#include <string>
 #include "string.hxx"
 #include "double.hxx"
 #include "function.hxx"
@@ -203,6 +205,90 @@ Function::ReturnValue sci_string(typed_list &in, int _iRetCount, typed_list &out
 
     switch (in[0]->getType())
     {
+        case GenericType::ScilabSparse :
+        {
+            //C=sparse([0 0 4 0 9;0 0 5 0 0;1 3 0 7 0;0 0 6 0 10;2 0 0 8 0]);string(C)
+            types::Sparse* pS = in[0]->getAs<Sparse>();
+            int iRows = pS->getRows();
+            int iCols = pS->getCols();
+            bool isComplex = pS->isComplex();
+            std::wostringstream ostr;
+            std::vector<std::wstring> vect;
+            int st;
+            string *stemp = new string();
+
+
+            ostr << "(" << iRows << "," << iCols << ") sparse matrix";
+
+            vect.push_back(ostr.str());
+            ostr.str(L"");
+            ostr.clear();
+
+            for (int i = 0 ; i < iRows ; i++)
+            {
+                for (int j = 0 ; j < iCols ; j++)
+                {
+                    std::wostringstream temp;
+                    double real = pS->getReal(i, j);
+                    double cplx = 0;
+                    if (isComplex)
+                    {
+                        cplx = pS->getImg(i, j).imag();
+                    }
+
+                    if (real || cplx )
+                    {
+                        temp << L"(" << i + 1 << L"," << j + 1 << L")    ";
+
+                        if (real)
+                        {
+                            temp << pS->getReal(i, j);
+                        }
+
+                        if (cplx)
+                        {
+                            if (real && cplx > 0)
+                            {
+                                temp << L"+";
+                            }
+                            else if (cplx < 0)
+                            {
+                                temp << L"-";
+                            }
+
+                            temp << L"%i*" << std::abs(cplx);
+                        }
+
+                        ostr << temp.str();
+                        vect.push_back(ostr.str());
+                        ostr.str(L"");
+                        ostr.clear();
+                    }
+                }
+            }
+
+            types::String* pSt = new String(vect.size(), 1);
+            for (int i = 0 ; i < vect.size(); i++)
+            {
+                pSt->set(i, vect[i].c_str());
+            }
+
+            out.push_back(pSt);
+            break;
+        }
+
+        case GenericType::ScilabInt8 :
+        case GenericType::ScilabUInt8 :
+        case GenericType::ScilabInt16 :
+        case GenericType::ScilabUInt16 :
+        case GenericType::ScilabInt32 :
+        case GenericType::ScilabUInt32 :
+        case GenericType::ScilabInt64 :
+        case GenericType::ScilabUInt64 :
+        {
+            out.push_back(new types::String("not yet implemented"));
+            break;
+        }
         case GenericType::ScilabDouble :
         {
             types::Double* pDbl = in[0]->getAs<Double>();
