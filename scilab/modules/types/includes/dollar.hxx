@@ -48,7 +48,7 @@ public :
     }
     inline ScilabId getId()
     {
-        return IdDollar;
+        return IdScalarPolynom;
     }
 
     bool isDollar()

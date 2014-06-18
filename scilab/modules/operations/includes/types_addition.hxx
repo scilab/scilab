@@ -32,78 +32,92 @@ void fillAddFunction();
 typedef types::InternalType*(*add_function)(types::InternalType*, types::InternalType*);
 add_function getAddFunction(types::InternalType::ScilabId leftId, types::InternalType::ScilabId rightId);
 
+#define DECLARE_ADD_PROTO(x) template<class T, class U, class O> inline types::InternalType* x(T *_pL, U *_pR)
 //Double, int , bool
-template<class T, class U, class O> inline types::InternalType* add_M_M(T *_pL, U *_pR);
-template<class T, class U, class O> inline types::InternalType* add_M_MC(T *_pL, U *_pR);
-template<class T, class U, class O> inline types::InternalType* add_M_S(T *_pL, U *_pR);
-template<class T, class U, class O> inline types::InternalType* add_M_SC(T *_pL, U *_pR);
-template<class T, class U, class O> inline types::InternalType* add_M_E(T *_pL, U *_pR);
+DECLARE_ADD_PROTO(add_M_M);
+DECLARE_ADD_PROTO(add_M_MC);
+DECLARE_ADD_PROTO(add_M_S);
+DECLARE_ADD_PROTO(add_M_SC);
+DECLARE_ADD_PROTO(add_M_E);
 
-template<class T, class U, class O> inline types::InternalType* add_MC_M(T *_pL, U *_pR);
-template<class T, class U, class O> inline types::InternalType* add_MC_MC(T *_pL, U *_pR);
-template<class T, class U, class O> inline types::InternalType* add_MC_S(T *_pL, U *_pR);
-template<class T, class U, class O> inline types::InternalType* add_MC_SC(T *_pL, U *_pR);
-template<class T, class U, class O> inline types::InternalType* add_MC_E(T *_pL, U *_pR);
+DECLARE_ADD_PROTO(add_MC_M);
+DECLARE_ADD_PROTO(add_MC_MC);
+DECLARE_ADD_PROTO(add_MC_S);
+DECLARE_ADD_PROTO(add_MC_SC);
+DECLARE_ADD_PROTO(add_MC_E);
 
-template<class T, class U, class O> inline types::InternalType* add_S_M(T *_pL, U *_pR);
-template<class T, class U, class O> inline types::InternalType* add_S_MC(T *_pL, U *_pR);
-template<class T, class U, class O> inline types::InternalType* add_S_S(T *_pL, U *_pR);
-template<class T, class U, class O> inline types::InternalType* add_S_SC(T *_pL, U *_pR);
-template<class T, class U, class O> inline types::InternalType* add_S_E(T *_pL, U *_pR);
+DECLARE_ADD_PROTO(add_S_M);
+DECLARE_ADD_PROTO(add_S_MC);
+DECLARE_ADD_PROTO(add_S_S);
+DECLARE_ADD_PROTO(add_S_SC);
+DECLARE_ADD_PROTO(add_S_E);
 
-template<class T, class U, class O> inline types::InternalType* add_SC_M(T *_pL, U *_pR);
-template<class T, class U, class O> inline types::InternalType* add_SC_MC(T *_pL, U *_pR);
-template<class T, class U, class O> inline types::InternalType* add_SC_S(T *_pL, U *_pR);
-template<class T, class U, class O> inline types::InternalType* add_SC_SC(T *_pL, U *_pR);
-template<class T, class U, class O> inline types::InternalType* add_SC_E(T *_pL, U *_pR);
+DECLARE_ADD_PROTO(add_SC_M);
+DECLARE_ADD_PROTO(add_SC_MC);
+DECLARE_ADD_PROTO(add_SC_S);
+DECLARE_ADD_PROTO(add_SC_SC);
+DECLARE_ADD_PROTO(add_SC_E);
 
+//[]
+DECLARE_ADD_PROTO(add_E_M);
+DECLARE_ADD_PROTO(add_E_MC);
+DECLARE_ADD_PROTO(add_E_S);
+DECLARE_ADD_PROTO(add_E_SC);
+DECLARE_ADD_PROTO(add_E_E);
 
-template<class T, class U, class O> inline types::InternalType* add_E_M(T *_pL, U *_pR);
-template<class T, class U, class O> inline types::InternalType* add_E_MC(T *_pL, U *_pR);
-template<class T, class U, class O> inline types::InternalType* add_E_S(T *_pL, U *_pR);
-template<class T, class U, class O> inline types::InternalType* add_E_SC(T *_pL, U *_pR);
-template<class T, class U, class O> inline types::InternalType* add_E_E(T *_pL, U *_pR);
+//eye
+DECLARE_ADD_PROTO(add_I_M);
+DECLARE_ADD_PROTO(add_I_MC);
+DECLARE_ADD_PROTO(add_IC_M);
+DECLARE_ADD_PROTO(add_IC_MC);
 
-template<class T, class U, class O> inline types::InternalType* add_I_M(T *_pL, U *_pR);
-template<class T, class U, class O> inline types::InternalType* add_I_MC(T *_pL, U *_pR);
-template<class T, class U, class O> inline types::InternalType* add_IC_M(T *_pL, U *_pR);
-template<class T, class U, class O> inline types::InternalType* add_IC_MC(T *_pL, U *_pR);
+DECLARE_ADD_PROTO(add_I_S);
+DECLARE_ADD_PROTO(add_I_SC);
+DECLARE_ADD_PROTO(add_IC_S);
+DECLARE_ADD_PROTO(add_IC_SC);
 
-template<class T, class U, class O> inline types::InternalType* add_I_S(T *_pL, U *_pR);
-template<class T, class U, class O> inline types::InternalType* add_I_SC(T *_pL, U *_pR);
-template<class T, class U, class O> inline types::InternalType* add_IC_S(T *_pL, U *_pR);
-template<class T, class U, class O> inline types::InternalType* add_IC_SC(T *_pL, U *_pR);
+DECLARE_ADD_PROTO(add_M_I);
+DECLARE_ADD_PROTO(add_MC_I);
+DECLARE_ADD_PROTO(add_M_IC);
+DECLARE_ADD_PROTO(add_MC_IC);
 
-template<class T, class U, class O> inline types::InternalType* add_M_I(T *_pL, U *_pR);
-template<class T, class U, class O> inline types::InternalType* add_MC_I(T *_pL, U *_pR);
-template<class T, class U, class O> inline types::InternalType* add_M_IC(T *_pL, U *_pR);
-template<class T, class U, class O> inline types::InternalType* add_MC_IC(T *_pL, U *_pR);
+DECLARE_ADD_PROTO(add_S_I);
+DECLARE_ADD_PROTO(add_SC_I);
+DECLARE_ADD_PROTO(add_S_IC);
+DECLARE_ADD_PROTO(add_SC_IC);
 
-template<class T, class U, class O> inline types::InternalType* add_S_I(T *_pL, U *_pR);
-template<class T, class U, class O> inline types::InternalType* add_SC_I(T *_pL, U *_pR);
-template<class T, class U, class O> inline types::InternalType* add_S_IC(T *_pL, U *_pR);
-template<class T, class U, class O> inline types::InternalType* add_SC_IC(T *_pL, U *_pR);
+DECLARE_ADD_PROTO(add_I_I);
+DECLARE_ADD_PROTO(add_I_IC);
+DECLARE_ADD_PROTO(add_IC_I);
+DECLARE_ADD_PROTO(add_IC_IC);
 
-template<class T, class U, class O> inline types::InternalType* add_I_I(T *_pL, U *_pR);
-template<class T, class U, class O> inline types::InternalType* add_I_IC(T *_pL, U *_pR);
-template<class T, class U, class O> inline types::InternalType* add_IC_I(T *_pL, U *_pR);
-template<class T, class U, class O> inline types::InternalType* add_IC_IC(T *_pL, U *_pR);
+DECLARE_ADD_PROTO(add_I_E);
+DECLARE_ADD_PROTO(add_IC_E);
+DECLARE_ADD_PROTO(add_E_I);
+DECLARE_ADD_PROTO(add_E_IC);
 
-template<class T, class U, class O> inline types::InternalType* add_I_E(T *_pL, U *_pR);
-template<class T, class U, class O> inline types::InternalType* add_IC_E(T *_pL, U *_pR);
-template<class T, class U, class O> inline types::InternalType* add_E_I(T *_pL, U *_pR);
-template<class T, class U, class O> inline types::InternalType* add_E_IC(T *_pL, U *_pR);
+#undef DECLARE_ADD_PROTO
 
 //String specilization
-template<> types::InternalType* add_M_M<types::String, types::String, types::String>(types::String* _pL, types::String* _pR);
-template<> types::InternalType* add_S_M<types::String, types::String, types::String>(types::String* _pL, types::String* _pR);
-template<> types::InternalType* add_M_S<types::String, types::String, types::String>(types::String* _pL, types::String* _pR);
-template<> types::InternalType* add_S_S<types::String, types::String, types::String>(types::String* _pL, types::String* _pR);
-template<> types::InternalType* add_M_E<types::String, types::Double, types::String>(types::String* _pL, types::Double* _pR);
-template<> types::InternalType* add_S_E<types::String, types::Double, types::String>(types::String* _pL, types::Double* _pR);
-template<> types::InternalType* add_E_M<types::Double, types::String, types::String>(types::Double* _pL, types::String* _pR);
-template<> types::InternalType* add_E_S<types::Double, types::String, types::String>(types::Double* _pL, types::String* _pR);
 
+template<> inline types::InternalType* add_M_M<types::String, types::String, types::String>(types::String* _pL, types::String* _pR);
+template<> inline types::InternalType* add_S_M<types::String, types::String, types::String>(types::String* _pL, types::String* _pR);
+template<> inline types::InternalType* add_M_S<types::String, types::String, types::String>(types::String* _pL, types::String* _pR);
+template<> inline types::InternalType* add_S_S<types::String, types::String, types::String>(types::String* _pL, types::String* _pR);
+template<> inline types::InternalType* add_M_E<types::String, types::Double, types::String>(types::String* _pL, types::Double* _pR);
+template<> inline types::InternalType* add_S_E<types::String, types::Double, types::String>(types::String* _pL, types::Double* _pR);
+template<> inline types::InternalType* add_E_M<types::Double, types::String, types::String>(types::Double* _pL, types::String* _pR);
+template<> inline types::InternalType* add_E_S<types::Double, types::String, types::String>(types::Double* _pL, types::String* _pR);
+
+template<> inline types::InternalType* add_M_M<types::Polynom, types::Polynom, types::Polynom>(types::Polynom* _pL, types::Polynom* _pR);
+template<> inline types::InternalType* add_M_M<types::Polynom, types::Double, types::Polynom>(types::Polynom* _pL, types::Double* _pR);
+template<> inline types::InternalType* add_M_M<types::Double, types::Polynom, types::Polynom>(types::Double* _pL, types::Polynom* _pR);
+
+template<> inline types::InternalType* add_M_M<types::Sparse, types::Sparse, types::Sparse>(types::Sparse* _pL, types::Sparse* _pR);
+template<> inline types::InternalType* add_M_M<types::Double, types::Sparse, types::Double>(types::Double* _pL, types::Sparse* _pR);
+template<> inline types::InternalType* add_M_M<types::Sparse, types::Double, types::Double>(types::Sparse* _pL, types::Double* _pR);
+template<> inline types::InternalType* add_M_M<types::Double, types::Sparse, types::Sparse>(types::Double* _pL, types::Sparse* _pR);
+template<> inline types::InternalType* add_M_M<types::Sparse, types::Double, types::Sparse>(types::Sparse* _pL, types::Double* _pR);
 
 //add matrix + matrix ( double, int, bool )
 //same type
@@ -116,11 +130,11 @@ template<typename T, typename O> inline static void add(T* l, long long size, T*
 }
 
 //string version
-inline static void add(wchar_t** l, long long size, wchar_t** r, int* lenght , wchar_t** o)
+inline static void add(wchar_t** l, long long size, wchar_t** r, int* length , wchar_t** o)
 {
     for (int i = 0; i < size ; ++i)
     {
-        os_swprintf(o[i], lenght[i], L"%ls%ls", l[i], r[i]);
+        os_swprintf(o[i], length[i], L"%ls%ls", l[i], r[i]);
     }
 }
 
@@ -194,11 +208,11 @@ template<typename T, typename U, typename O> inline static void add(T* l, long l
 }
 
 //string version
-inline static void add(wchar_t** l, long long size, wchar_t* r, int* lenght , wchar_t** o)
+inline static void add(wchar_t** l, long long size, wchar_t* r, int* length , wchar_t** o)
 {
     for (int i = 0; i < size ; ++i)
     {
-        os_swprintf(o[i], lenght[i], L"%ls%ls", l[i], r);
+        os_swprintf(o[i], length[i], L"%ls%ls", l[i], r);
     }
 }
 
@@ -243,11 +257,11 @@ template<typename T, typename U, typename O> inline static void add(T l, long lo
 }
 
 //string version
-inline static void add(wchar_t* l, long long size, wchar_t** r, int* lenght , wchar_t** o)
+inline static void add(wchar_t* l, long long size, wchar_t** r, int* length , wchar_t** o)
 {
     for (int i = 0; i < size ; ++i)
     {
-        os_swprintf(o[i], lenght[i], L"%ls%ls", l, r[i]);
+        os_swprintf(o[i], length[i], L"%ls%ls", l, r[i]);
     }
 }
 
@@ -295,9 +309,9 @@ template<typename T, typename U, typename O> inline static void add(T l, U r, O*
 }
 
 //string version
-inline static void add(wchar_t* l, wchar_t* r, int lenght , wchar_t* o)
+inline static void add(wchar_t* l, wchar_t* r, int length , wchar_t* o)
 {
-    os_swprintf(o, lenght, L"%ls%ls", l, r);
+    os_swprintf(o, length, L"%ls%ls", l, r);
 }
 
 //x1C + x1C
@@ -325,10 +339,6 @@ inline static void add()
 {
 }
 
-
-//Poly
-int AddDoubleToPoly(types::Polynom *_pPoly, types::Double *_pDouble, types::Polynom ** _pPolyOut);
-int AddPolyToPoly(types::Polynom* pPoly1, types::Polynom* _pPoly2, types::Polynom ** _pPolyOut);
 
 //Sparse
 int AddSparseToSparse(types::Sparse *_pSparse1, types::Sparse *_pSparse2, types::Sparse** _pSparseOut);
