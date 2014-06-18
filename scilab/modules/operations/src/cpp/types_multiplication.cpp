@@ -1100,7 +1100,7 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
     int* piRank = new int[_pPoly1->getRows() * _pPoly2->getCols()];
     for (int i = 0 ; i < _pPoly1->getRows() * _pPoly2->getCols() ; i++)
     {
-        piRank[i] = _pPoly1->getMaxRank() * _pPoly2->getMaxRank();
+        piRank[i] = _pPoly1->getMaxRank() + _pPoly2->getMaxRank() - 1;
     }
 
     (*_pPolyOut) = new Polynom(_pPoly1->getVariableName(), _pPoly1->getRows(), _pPoly2->getCols(), piRank);
