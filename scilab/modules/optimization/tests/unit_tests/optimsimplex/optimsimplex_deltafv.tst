@@ -13,7 +13,7 @@
 //
 // Test optimsimplex_deltafv
 //
-
+funcprot(0);
 //
 // Test with 3 vertices
 //
@@ -43,3 +43,4 @@ df = optimsimplex_deltafv ( s1 );
 assert_checkalmostequal ( df , [3.0 6.0 8.0 10.0]' , %eps );
 s1 = optimsimplex_destroy ( s1 );
 
+funcprot(1);
