@@ -77,6 +77,20 @@ InternalType* Library::clone()
     return this;
 }
 
+bool Library::extract(const std::wstring & name, InternalType *& out)
+{
+    out = get(name);
+    if (out == NULL)
+    {
+        wchar_t szError[bsiz];
+        os_swprintf(szError, bsiz, _W("Unknown field : %ls.\n"), name.c_str());
+
+        throw std::wstring(szError);
+    }
+
+    return true;
+}
+
 void Library::add(const std::wstring& _wstName, MacroFile* _macro)
 {
     _macro->IncreaseRef();

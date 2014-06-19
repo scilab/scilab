@@ -93,6 +93,17 @@ bool TList::exists(const std::wstring& _sKey)
     return false;
 }
 
+bool TList::extract(const std::wstring & name, InternalType *& out)
+{
+    if (exists(name))
+    {
+        out = getField(name);
+        return true;
+    }
+
+    return false;
+}
+
 InternalType* TList::getField(const std::wstring& _sKey)
 {
     return List::get(getIndexFromString(_sKey));

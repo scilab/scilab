@@ -52,6 +52,14 @@ public :
     bool                            set(const std::wstring& _sKey, InternalType* _pIT);
     bool                            set(const int _iIndex, InternalType* _pIT);
 
+    using List::extract; // to avoid this extract to hide extract in list
+    bool                            extract(const std::wstring & name, InternalType *& out);
+
+    bool isFieldExtractionOverloadable() const
+    {
+        return true;
+    }
+
     std::vector<InternalType*>      extractStrings(const std::list<std::wstring>& _stFields);
 
     /* return type as string ( double, int, cell, list, ... )*/

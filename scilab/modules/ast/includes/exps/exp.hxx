@@ -161,6 +161,12 @@ public:
     {
         return _bContinuable;
     }
+
+    inline virtual bool is_simple_var() const
+    {
+        return false;
+    }
+
 private:
     bool _verbose;
     bool _bBreak;

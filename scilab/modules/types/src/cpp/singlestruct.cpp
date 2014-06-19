@@ -317,7 +317,7 @@ bool SingleStruct::operator==(const InternalType& it)
             return false;
         }
 
-        if (*itFieldData != *itOtherFieldData)
+        if (*(*itFieldData) != *(*itOtherFieldData))
         {
             return false;
         }

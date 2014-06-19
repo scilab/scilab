@@ -232,6 +232,16 @@ public :
         return transpose(out);
     }
 
+    virtual bool extract(const std::wstring & name, InternalType *& out)
+    {
+        return false;
+    }
+
+    virtual bool isFieldExtractionOverloadable() const
+    {
+        return false;
+    }
+
     /* return type as string ( double, int, cell, list, ... )*/
     virtual std::wstring            getTypeStr() = 0;
     /* return type as short string ( s, i, ce, l, ... )*/

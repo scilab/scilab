@@ -10,6 +10,8 @@
 //
 //
 
+// <-- JVM NOT MANDATORY -->
+
 cd TMPDIR;
 
 //create 2 lib with the same symbol ( "lib_test" for exemple )

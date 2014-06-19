@@ -91,6 +91,14 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
     /*
     a.b
     */
+
+    if (!e.tail_get()->is_simple_var())
+    {
+        wchar_t szError[bsiz];
+        os_swprintf(szError, bsiz, _W("/!\\ Unmanaged FieldExp.\n"));
+        throw ScilabError(szError, 999, e.location_get());
+    }
+
     try
     {
         e.head_get()->accept(*this);
@@ -100,19 +108,6 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
         throw error;
     }
 
-    SimpleVar *psvRightMember = dynamic_cast<SimpleVar *>(const_cast<Exp *>(e.tail_get()));
-    std::wstring wstField = L"";
-    if (psvRightMember != NULL)
-    {
-        wstField = psvRightMember->name_get().name_get();
-    }
-    else
-    {
-        wchar_t szError[bsiz];
-        os_swprintf(szError, bsiz, _W("/!\\ Unmanaged FieldExp.\n"));
-        throw ScilabError(szError, 999, e.location_get());
-    }
-
     if (result_get() == NULL)
     {
         wchar_t szError[bsiz];
@@ -120,119 +115,74 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
         throw ScilabError(szError, 999, e.location_get());
     }
 
-    if (result_get()->isStruct())
+    SimpleVar * psvRightMember = static_cast<SimpleVar *>(const_cast<Exp *>(e.tail_get()));
+    std::wstring wstField = psvRightMember->name_get().name_get();
+    InternalType * pValue = result_get();
+    InternalType * pReturn = NULL;
+    bool ok;
+
+    try
     {
-        InternalType* pTemp = result_get();
-        result_set(NULL);
-        Struct* psValue = pTemp->getAs<Struct>();
-        if (psValue->exists(wstField))
-        {
-            if (psValue->getSize() != 1)
-            {
-                std::vector<std::wstring> wstFields;
-                wstFields.push_back(wstField);
-                std::vector<InternalType*> result;
-                result = psValue->extractFields(wstFields);
-                result_set(result[0]);
-            }
-            else
-            {
-                InternalType* pIT = psValue->get(0)->get(wstField)->clone();
-                result_set(pIT);
-            }
-        }
-        else
-        {
-            wchar_t szError[bsiz];
-            os_swprintf(szError, bsiz, _W("Unknown field : %ls.\n"), wstField.c_str());
-            throw ScilabError(szError, 999, e.tail_get()->location_get());
-        }
+        ok = pValue->extract(wstField, pReturn);
     }
-    else if (result_get()->isMList() || result_get()->isTList())
+    catch (std::wstring & err)
     {
-        TList* psValue = ((InternalType*)result_get())->getAs<MList>();
-
-        if (psValue->exists(wstField))
-        {
-            //without overloading function, extract by name
-            result_set(psValue->getField(wstField));
-        }
-        else
-        {
-            //call %mlisttype_e
-            std::wostringstream ostr;
-            types::typed_list in;
-            types::optional_list opt;
-            types::typed_list out;
-
-            //firt argument: index
-            String* pS = new String(wstField.c_str());
-            pS->IncreaseRef();
-            in.push_back(pS);
-
-            //second argument: me ( mlist or tlist )
-            psValue->IncreaseRef();
-            in.push_back(psValue);
-
-            Callable::ReturnValue Ret = Overload::call(L"%" + psValue->getShortTypeStr() + L"_e", in, 1, out, this);
-
-            if (Ret != Callable::OK)
-            {
-                throw ScilabError();
-            }
-
-            if (out.size() == 0)
-            {
-                result_set(NULL);
-            }
-            else if (out.size() == 1)
-            {
-                out[0]->DecreaseRef();
-                result_set(out[0]);
-            }
-            else
-            {
-                for (int i = 0 ; i < static_cast<int>(out.size()) ; i++)
-                {
-                    out[i]->DecreaseRef();
-                    result_set(i, out[i]);
-                }
-            }
-
-            psValue->DecreaseRef();
-            pS->DecreaseRef();
-        }
+        throw ScilabError(err.c_str(), 999, e.tail_get()->location_get());
     }
-    else if (result_get()->isHandle())
+
+    if (ok)
     {
-        typed_list in;
-        typed_list out;
-        optional_list opt;
+        /*
+        // segfault on insert.tst... check why ??
+               // probably extractor needs to increaseref of extracted field...
 
-        String* pField = new String(wstField.c_str());
-        in.push_back(pField);
-        in.push_back(result_get());
+        if (pValue->isDeletable())
+               {
+                   delete pValue;
+        }
+        */
 
-        Function* pCall = (Function*)symbol::Context::getInstance()->get(symbol::Symbol(L"%h_e"));
-        Callable::ReturnValue ret =  pCall->call(in, opt, 1, out, this);
-        if (ret == Callable::OK)
+        result_set(pReturn);
+    }
+    else if (pValue->isFieldExtractionOverloadable())
+    {
+        types::typed_list in;
+        types::typed_list out;
+
+        String* pS = new String(wstField.c_str());
+        pS->IncreaseRef();
+        in.push_back(pS);
+
+        pValue->IncreaseRef();
+        in.push_back(pValue);
+
+        Callable::ReturnValue Ret = Overload::call(L"%" + pValue->getShortTypeStr() + L"_e", in, 1, out, this);
+
+        if (Ret != Callable::OK)
         {
+            throw ScilabError();
+        }
+
+        if (out.size() == 0)
+        {
+            result_set(NULL);
+        }
+        else if (out.size() == 1)
+        {
+            out[0]->DecreaseRef();
             result_set(out[0]);
         }
-    }
-    else if (result_get()->isLibrary())
-    {
-        Library* pLib = ((InternalType*)result_get())->getAs<Library>();
-
-        InternalType* pIT = pLib->get(wstField);
-        if (pIT == NULL)
+        else
         {
-            wchar_t szError[bsiz];
-            os_swprintf(szError, bsiz, _W("Unknown macro %ls in library.\n"), wstField.c_str());
-            throw ScilabError(szError, 999, e.tail_get()->location_get());
+            for (int i = 0 ; i < static_cast<int>(out.size()) ; i++)
+            {
+                out[i]->DecreaseRef();
+                result_set(i, out[i]);
+            }
         }
 
-        result_set(pIT);
+        pValue->DecreaseRef();
+        pS->DecreaseRef();
     }
     else
     {
@@ -977,10 +927,10 @@ void RunVisitorT<T>::visitprivate(const TransposeExp &e)
         {
             delete pValue;
         }
-	
+
         result_set(pReturn);
-	
-	return;
+
+        return;
     }
     else
     {
@@ -992,14 +942,14 @@ void RunVisitorT<T>::visitprivate(const TransposeExp &e)
         in.push_back(pValue);
 
         Callable::ReturnValue Ret;
-	if (bConjug)
-	{
-	    Ret = Overload::call(L"%" + result_get()->getShortTypeStr() + L"_t", in, 1, out, this);
-	}
-	else
-	{
-	    Ret = Overload::call(L"%" + result_get()->getShortTypeStr() + L"_0", in, 1, out, this);
-	}
+        if (bConjug)
+        {
+            Ret = Overload::call(L"%" + result_get()->getShortTypeStr() + L"_t", in, 1, out, this);
+        }
+        else
+        {
+            Ret = Overload::call(L"%" + result_get()->getShortTypeStr() + L"_0", in, 1, out, this);
+        }
 
         if (Ret != Callable::OK)
         {

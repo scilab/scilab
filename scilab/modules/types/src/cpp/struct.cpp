@@ -116,24 +116,41 @@ bool Struct::transpose(InternalType *& out)
 {
     if (isScalar())
     {
-	out = clone();
-	return true;
+        out = clone();
+        return true;
     }
 
     if (m_iDims == 2)
     {
-	Struct * pSt = new Struct();
-	out = pSt;
-	SingleStruct** pSSt = NULL;
-	int piDims[2] = {getCols(), getRows()};
-	pSt->create(piDims, 2, &pSSt, NULL);
-	    
-	Transposition::transpose_clone(getRows(), getCols(), m_pRealData, pSt->m_pRealData);
-	
-	return true;
+        Struct * pSt = new Struct();
+        out = pSt;
+        SingleStruct** pSSt = NULL;
+        int piDims[2] = {getCols(), getRows()};
+        pSt->create(piDims, 2, &pSSt, NULL);
+
+        Transposition::transpose_clone(getRows(), getCols(), m_pRealData, pSt->m_pRealData);
+
+        return true;
     }
-    
+
     return false;
+}
+
+bool Struct::extract(const std::wstring & name, InternalType *& out)
+{
+    if (exists(name))
+    {
+        out = extractField(name);
+    }
+    else
+    {
+        wchar_t szError[bsiz];
+        os_swprintf(szError, bsiz, _W("Unknown field : %ls.\n"), name.c_str());
+
+        throw std::wstring(szError);
+    }
+
+    return true;
 }
 
 bool Struct::set(int _iRows, int _iCols, SingleStruct* _pIT)
@@ -452,37 +469,42 @@ std::vector<InternalType*> Struct::extractFields(std::vector<std::wstring> _wstF
 
     for (int i = 0 ; i < _wstFields.size() ; i++)
     {
-        if (_wstFields[i] == L"dims")
-        {
-            Int32* pDims = new Int32(1, getDims());
-            for (int j = 0 ; j < getDims() ; j++)
-            {
-                pDims->set(j, getDimsArray()[j]);
-            }
-
-            ResultList.push_back(pDims);
-        }
-        else
-        {
-            if (getSize() == 1)
-            {
-                ResultList.push_back(get(0)->get(_wstFields[i])->clone());
-            }
-            else
-            {
-                List* pL = new List();
-                for (int j = 0 ; j < getSize() ; j++)
-                {
-                    pL->append(get(j)->get(_wstFields[i])->clone());
-                }
-
-                ResultList.push_back(pL);
-            }
-        }
+        ResultList.push_back(extractField(_wstFields[i]));
     }
+
     return ResultList;
 }
 
+InternalType * Struct::extractField(const std::wstring & wstField)
+{
+    if (wstField == L"dims")
+    {
+        Int32 * pDims = new Int32(1, getDims());
+        for (int j = 0 ; j < getDims() ; j++)
+        {
+            pDims->set(j, getDimsArray()[j]);
+        }
+
+        return pDims;
+    }
+    else
+    {
+        if (getSize() == 1)
+        {
+            return get(0)->get(wstField)->clone();
+        }
+        else
+        {
+            List * pL = new List();
+            for (int j = 0 ; j < getSize() ; j++)
+            {
+                pL->append(get(j)->get(wstField)->clone());
+            }
+
+            return pL;
+        }
+    }
+}
 
 std::vector<InternalType*> Struct::extractFields(typed_list* _pArgs)
 {

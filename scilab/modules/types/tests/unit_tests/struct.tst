@@ -10,6 +10,8 @@
 //
 //
 
+// <-- JVM NOT MANDATORY -->
+
 //function struct
 
 firstname       = "firstname";

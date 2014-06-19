@@ -96,6 +96,11 @@ public:
         return _name == rhs.name_get();
     }
 
+    inline bool is_simple_var() const
+    {
+        return true;
+    }
+
 protected:
     /** \brief Variable's name */
     symbol::Symbol& _name;

@@ -9,19 +9,14 @@
 //
 //
 // <-- CLI SHELL MODE -->
-
 a=rand(3,4);
 spz = spzeros(a);
 assert_checkequal(size(spz), size(a));
-
 spz = spzeros(69, 73);
 assert_checkequal(size(spz), [69 73]);
-
 spz = spzeros(["abc"; "def"]);
 assert_checkequal(size(spz), [2 1]);
-
 err = execstr("spzeros(list(1,2))", "errcatch");
 assert_checktrue(err <> 0);
-
 err = execstr("spzeros("""", """")", "errcatch");
 assert_checktrue(err <> 0);

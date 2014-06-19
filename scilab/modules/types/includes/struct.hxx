@@ -106,6 +106,7 @@ public :
     List*                       extractFieldWithoutClone(std::wstring _wstField);
     std::vector<InternalType*>  extractFields(std::vector<std::wstring> _wstFields);
     std::vector<InternalType*>  extractFields(typed_list* _pArgs);
+    inline InternalType *       extractField(const std::wstring & wstField);
 
     bool                        resize(int* _piDims, int _iDims);
     bool                        resize(int _iNewRows, int _iNewCols);
@@ -114,6 +115,9 @@ public :
     InternalType*               insertWithoutClone(typed_list* _pArgs, InternalType* _pSource);
     InternalType*               extractWithoutClone(typed_list* _pArgs);
     void                        setCloneInCopyValue(bool _val);
+
+    using ArrayOf<SingleStruct *>::extract;
+    bool extract(const std::wstring & name, InternalType *& out);
 
 private :
     virtual SingleStruct*       getNullValue();

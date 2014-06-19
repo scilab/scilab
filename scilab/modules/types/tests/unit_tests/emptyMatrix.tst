@@ -10,6 +10,8 @@
 //
 //
 
+// <-- JVM NOT MANDATORY -->
+
 a=[];
 assert_checkequal(a, []);
 a=[ [] , [] ];

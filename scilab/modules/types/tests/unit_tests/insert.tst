@@ -9,6 +9,8 @@
 //
 //
 
+// <-- JVM NOT MANDATORY -->
+
 oldFuncProt = funcprot(0);
 ref = [0 0 0 ; 0 1 4 ; 0 2 5];
 a = zeros(3,3);a(:) = 1:9;

@@ -9,6 +9,7 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 //
 //
+// <-- JVM NOT MANDATORY -->
 cd TMPDIR;
 //create 2 lib with the same symbol ( "lib_test" for exemple )
 //create the "lib_test" macro file in TMPDIR/lib1

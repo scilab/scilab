@@ -72,7 +72,12 @@ public :
 
     virtual bool transpose(InternalType *& out)
     {
-	return type_traits::transpose(*this, out);
+        return type_traits::transpose(*this, out);
+    }
+
+    virtual bool isFieldExtractionOverloadable() const
+    {
+        return true;
     }
 
 protected :
