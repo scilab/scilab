@@ -134,22 +134,9 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
     }
     else if (in.size() > m_inputArgs->size())
     {
-        wostringstream ostr;
-        ostr << _W("Excepted: ") << m_inputArgs->size() << std::endl;
-        if (m_inputArgs->size() > 0)
-        {
-            ostr << _W("Arguments are:") << std::endl << std::endl;
-            ostr << " ";
-            for (std::list<symbol::Variable*>::iterator it =  m_inputArgs->begin() ; it != m_inputArgs->end() ; ++it)
-            {
-                ostr << (*it)->name_get() << L"    ";
-            }
-            ostr << std::endl;
-        }
+       
 
-        char* pst = wide_string_to_UTF8(ostr.str().c_str());
-        Scierror(58, _("Wrong number of input arguments."));
-        sciprint("%s", pst);
+        Scierror(999, _("Wrong number of input arguments: %d expected.\n"), m_inputArgs->size());
         pContext->scope_end();
         ConfigVariable::macroFirstLine_end();
         return Callable::Error;
