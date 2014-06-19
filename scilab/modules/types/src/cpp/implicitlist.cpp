@@ -30,6 +30,12 @@ extern "C"
 #include "finite.h"
 }
 
+/* ISNAN overloading for Mac OS X */
+#ifdef __APPLE__
+#undef ISNAN
+#define ISNAN std::isnan
+#endif
+
 std::wstring printInLinePoly(types::SinglePoly* _pPoly, std::wstring _stVar);
 std::wstring printDouble(types::Double* _pD);
 long long convert_input(types::InternalType* _poIT);

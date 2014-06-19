@@ -16,6 +16,12 @@
 #include "types_tools.hxx"
 #include "max.hxx"
 
+/* ISNAN overloading for Mac OS X */
+#ifdef __APPLE__
+#undef ISNAN
+#define ISNAN std::isnan
+#endif
+
 /*--------------------------- Double ---------------------------------------*/
 void max(std::vector<types::Double*> vectIn, int iOrientation, types::Double* pDblIndex, types::Double* pOut)
 {
