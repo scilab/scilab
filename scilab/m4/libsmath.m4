@@ -305,6 +305,7 @@ dnl @author Sylvestre Ledru <sylvestre.ledru@scilab-enterprises.com>
 
 AC_DEFUN([ACX_ARPACK], [
 AC_REQUIRE([ACX_BLAS])
+AC_REQUIRE([ACX_LAPACK])
 acx_arpack_ok=no
 
 AC_ARG_WITH(arpack-library,
@@ -320,13 +321,13 @@ ARPACK_LIBS="-larpack"
 AC_F77_FUNC(znaupd)
 
 # We cannot use ARPACK if BLAS is not found
-if test "x$acx_blas_ok" != xyes; then
+if test "x$acx_blas_ok" != xyes -a "x$acx_lapack_ok" != xyes ; then
         acx_arpack_ok=noblas
 fi
 
 # First, check ARPACK_LIBS environment variable
 if test "x$ARPACK_LIBS" != x; then
-        save_LIBS="$LIBS"; LIBS="$ARPACK_LIBS $BLAS_LIBS $LIBS $FLIBS"
+        save_LIBS="$LIBS"; LIBS="$ARPACK_LIBS $LAPACK_LIBS $BLAS_LIBS $LIBS $FLIBS"
         AC_MSG_CHECKING([for $znaupd in $ARPACK_LIBS])
         AC_TRY_LINK_FUNC($znaupd, [acx_arpack_ok=yes], [ARPACK_LIBS="-larpack"])
         AC_MSG_RESULT($acx_arpack_ok)
@@ -368,7 +369,7 @@ dnl This code is released under the GPL license.
 dnl
 AC_DEFUN([CHECK_ARPACK_OK], [
   AC_LANG_PUSH(C++)
-  save_LIBS="$LIBS"; LIBS="$ARPACK_LIBS $BLAS_LIBS $LIBS $FLIBS"
+  save_LIBS="$LIBS"; LIBS="$ARPACK_LIBS $LAPACK_LIBS $BLAS_LIBS $LIBS $FLIBS"
   AC_CACHE_CHECK([whether the arpack library works],
     [lib_cv_arpack_ok], [
       AC_RUN_IFELSE([AC_LANG_PROGRAM([[

@@ -40,6 +40,9 @@ Scilab Bug Fixes
 
 * Bug #10583 fixed - ./configure --without-xcos did not work.
 
+* Bug #10646 fixed - ./configure ARPACK check linked `-larpack -lblas` instead
+                     of `-larpack -llapack -lblas`.
+
 * Bug #10777 fixed - Home and End keys were not trapped in CLI mode.
 
 * Bug #10784 fixed - clc function was not available in CLI & ADV-CLI modes.
