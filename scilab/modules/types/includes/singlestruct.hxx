@@ -43,6 +43,11 @@ public :
         return IdSingleStruct;
     }
 
+    bool                                    isSingleStruct()
+    {
+        return true;
+    }
+
     bool                                    toString(std::wostringstream& ostr);
 
     bool                                    set(const std::wstring& _sKey, InternalType *_typedValue);
@@ -58,6 +63,9 @@ public :
     int                                     getFieldIndex(const std::wstring& _field);
     bool                                    removeField(const std::wstring& _sKey);
     void                                    addFieldsFront(String* _pStrFieldNames);
+
+    bool                                    operator==(const InternalType& it);
+    bool                                    operator!=(const InternalType& it);
 
     /* return type as string ( double, int, cell, list, ... )*/
     virtual std::wstring                    getTypeStr()

@@ -282,4 +282,53 @@ bool SingleStruct::toString(std::wostringstream& ostr)
     return true;
 }
 
+bool SingleStruct::operator==(const InternalType& it)
+{
+    if (const_cast<InternalType &>(it).isSingleStruct() == false)
+    {
+        return false;
+    }
+
+    SingleStruct* other = const_cast<InternalType &>(it).getAs<SingleStruct>();
+
+    std::list<std::wstring> otherFieldNames = other->getFields();
+    std::list<InternalType*> otherFieldData = other->getData();
+
+    if (m_wstFields.size() != otherFieldNames.size())
+    {
+        return false;
+    }
+
+    if (m_Data.size() != otherFieldData.size())
+    {
+        return false;
+    }
+
+    std::list<std::wstring>::iterator itFieldNames = m_wstFields.begin();
+    std::list<InternalType*>::iterator itFieldData = m_Data.begin();
+
+    std::list<std::wstring>::iterator itOtherFieldNames = otherFieldNames.begin();
+    std::list<InternalType*>::iterator itOtherFieldData = otherFieldData.begin();
+
+    for (; itFieldNames != m_wstFields.end(); itFieldNames++, itOtherFieldNames++, itFieldData++, itOtherFieldData++)
+    {
+        if (*itFieldNames != *itOtherFieldNames)
+        {
+            return false;
+        }
+
+        if (*itFieldData != *itOtherFieldData)
+        {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+bool SingleStruct::operator!=(const InternalType& it)
+{
+    return !(*this == it);
+}
+
 }

@@ -3053,8 +3053,8 @@ bool SparseBool::operator==(const InternalType& it) SPARSE_CONST
 {
     SparseBool* otherSparse = const_cast<SparseBool*>(dynamic_cast<SparseBool const*>(&it));/* types::GenericType is not const-correct :( */
     return (otherSparse
-    && (otherSparse->getRows() != getRows())
-    && (otherSparse->getCols() != getCols())
+    && (otherSparse->getRows() == getRows())
+    && (otherSparse->getCols() == getCols())
     && equal(*matrixBool, *otherSparse->matrixBool));
 }
 

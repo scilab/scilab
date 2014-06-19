@@ -869,9 +869,10 @@ bool Double::operator==(const InternalType& it)
     //pdbl complex check all img values == 0
     else if (pdbl->isComplex())
     {
+        double *pdblImg = pdbl->getImg();
         for (int i = 0 ; i < m_iSize ; i++)
         {
-            if (m_pImgData[i])
+            if (pdblImg[i])
             {
                 return false;
             }
@@ -880,10 +881,9 @@ bool Double::operator==(const InternalType& it)
     //complex check all img values == 0
     else if (isComplex())
     {
-        double *pdblImg = pdbl->getImg();
         for (int i = 0 ; i < m_iSize ; i++)
         {
-            if (pdblImg[i])
+            if (m_pImgData[i])
             {
                 return false;
             }
