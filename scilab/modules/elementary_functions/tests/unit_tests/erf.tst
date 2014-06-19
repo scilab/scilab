@@ -7,6 +7,8 @@
 
 // <-- CLI SHELL MODE -->
 
+funcprot(0);
+
 //maple code
 //writeto("erf.ref"):interface(prettyprint=0):
 //for i from 0 to 40 do print(evalf[30](erf(10^(-(200-i*5))),30)): od:
@@ -2089,3 +2091,6 @@ deff("y=f(t)","y=exp(-t^2)");
 if (abs(erf(x5)-2/sqrt(%pi)*intg(0,x5,f))>10*%eps) then pause,end
 if (abs(erf(w5)-2/sqrt(%pi)*intg(0,w5,f))>10*%eps) then pause,end
 if (abs(erf(z5)-2/sqrt(%pi)*intg(0,z5,f))>10*%eps) then pause,end
+
+funcprot(1);
+
