@@ -377,7 +377,7 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
                 scilabErrorW(se.GetErrorMessage().c_str());
 
                 //write positino
-                sciprint(_("in  execstr instruction    called by :\n"));
+               // sciprint(_("in  execstr instruction    called by :\n"));
                 //restore previous prompt mode
                 ConfigVariable::setPromptMode(oldVal);
                 //throw ast::ScilabMessage(szError, 1, (*j)->location_get());
