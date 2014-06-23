@@ -195,7 +195,7 @@ types::Polynom* diag(types::Polynom* pIn,  int iStartPos)
         {
             for (int i = 0; i < iSizeOfVector; i++)
             {
-                iRank = pIn->get(i * (iSize + 1))->getRank();
+                iRank = pIn->get(i)->getRank();
                 pSP = new types::SinglePoly(&pdRData, &pdIData, iRank);
                 iPos = (i + iStartCol) * iSize + (i + iStartRow);
 
@@ -214,7 +214,7 @@ types::Polynom* diag(types::Polynom* pIn,  int iStartPos)
         {
             for (int i = 0; i < iSizeOfVector; i++)
             {
-                iRank = pIn->get(i * (iSize + 1))->getRank();
+                iRank = pIn->get(i)->getRank();
                 pSP = new types::SinglePoly(&pdRData, iRank);
                 iPos = (i + iStartCol) * iSize + (i + iStartRow);
 
