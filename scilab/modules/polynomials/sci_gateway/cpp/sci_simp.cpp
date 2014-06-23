@@ -53,10 +53,8 @@ types::Function::ReturnValue sci_simp(types::typed_list &in, int _iRetCount, typ
 
     if (ConfigVariable::getSimpMode() == 0)
     {
-        for (int i = 0; i < _iRetCount; i++)
-        {
-            out.push_back(in[i]);
-        }
+        std::copy(in.begin(), in.end(), std::back_inserter(out));
+        return types::Function::OK;
     }
 
     if (in.size() == 1)
