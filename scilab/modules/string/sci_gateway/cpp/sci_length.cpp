@@ -110,11 +110,12 @@ static Double* lengthStrings(String* _pS)
     }
 
     Double* pD = new Double(_pS->getDims(), _pS->getDimsArray());
-    double* pdblData = pD->getReal();
+    wchar_t** pwst  = _pS->get();
+    double* pdbl    = pD->get();
 
     for (int i = 0 ; i < _pS->getSize() ; i++)
     {
-        pdblData[i] = static_cast<double>(wcslen(_pS->get()[i]));
+        pdbl[i] = static_cast<double>(wcslen(pwst[i]));
     }
     return pD;
 }
