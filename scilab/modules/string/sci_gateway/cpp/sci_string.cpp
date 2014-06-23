@@ -195,6 +195,68 @@ static void DoubleComplexMatrix2String(std::wostringstream *_postr,  double _dbl
     }
 }
 
+template <class T>
+Function::ReturnValue intString(T* pInt, typed_list &out)
+{
+    int iDims = pInt->getDims();
+    int* piDimsArray = pInt->getDimsArray();
+    String *pstOutput = new String(iDims, piDimsArray);
+    int iSize = pInt->getSize();
+    for (int i = 0 ; i < iSize ; i++)
+    {
+        std::wostringstream ostr;
+        DoubleComplexMatrix2String(&ostr, pInt->get(i), 0);
+        pstOutput->set(i, ostr.str().c_str());
+    }
+
+    out.push_back(pstOutput);
+    return Function::OK;
+}
+
+
+Function::ReturnValue doubleString(types::Double* pDbl, typed_list &out)
+{
+    int iDims = pDbl->getDims();
+    int* piDimsArray = pDbl->getDimsArray();
+    double* pdblReal = pDbl->get();
+
+    // Special case string([]) == []
+    if (pDbl->isEmpty())
+    {
+        out.push_back(Double::Empty());
+        return Function::OK;
+    }
+    else if (piDimsArray[0] == -1 && piDimsArray[1] == -1)
+    {
+        out.push_back(new String(L""));
+        return Function::OK;
+    }
+
+    String *pstOutput = new String(iDims, piDimsArray);
+    if (pDbl->isComplex())
+    {
+        double* pdblImg = pDbl->getImg();
+        for (int i = 0; i < pDbl->getSize(); ++i)
+        {
+            std::wostringstream ostr;
+            DoubleComplexMatrix2String(&ostr, pdblReal[i], pdblImg[i]);
+            pstOutput->set(i, ostr.str().c_str());
+        }
+    }
+    else
+    {
+        double dblImg  = 0.0;
+        for (int i = 0; i < pDbl->getSize(); ++i)
+        {
+            std::wostringstream ostr;
+            DoubleComplexMatrix2String(&ostr, pdblReal[i], dblImg);
+            pstOutput->set(i, ostr.str().c_str());
+        }
+    }
+    out.push_back(pstOutput);
+    return Function::OK;
+}
+
 Function::ReturnValue sci_string(typed_list &in, int _iRetCount, typed_list &out)
 {
     if (in.size() != 1)
@@ -278,60 +340,40 @@ Function::ReturnValue sci_string(typed_list &in, int _iRetCount, typed_list &out
         }
 
         case GenericType::ScilabInt8 :
+        {
+            return intString(in[0]->getAs<types::Int8>(), out);
+        }
         case GenericType::ScilabUInt8 :
+        {
+            return intString(in[0]->getAs<types::UInt8>(), out);
+        }
         case GenericType::ScilabInt16 :
+        {
+            return intString(in[0]->getAs<types::Int16>(), out);
+        }
         case GenericType::ScilabUInt16 :
+        {
+            return intString(in[0]->getAs<types::UInt16>(), out);
+        }
         case GenericType::ScilabInt32 :
+        {
+            return intString(in[0]->getAs<types::Int32>(), out);
+        }
         case GenericType::ScilabUInt32 :
+        {
+            return intString(in[0]->getAs<types::UInt32>(), out);
+        }
         case GenericType::ScilabInt64 :
+        {
+            return intString(in[0]->getAs<types::Int64>(), out);
+        }
         case GenericType::ScilabUInt64 :
         {
-            out.push_back(new types::String("not yet implemented"));
-            break;
+            return intString(in[0]->getAs<types::UInt64>(), out);
         }
         case GenericType::ScilabDouble :
         {
-            types::Double* pDbl = in[0]->getAs<Double>();
-            int iDims = pDbl->getDims();
-            int* piDimsArray = pDbl->getDimsArray();
-            double* pdblReal = pDbl->get();
-
-            // Special case string([]) == []
-            if (pDbl->isEmpty())
-            {
-                out.push_back(Double::Empty());
-                return Function::OK;
-            }
-            else if (piDimsArray[0] == -1 && piDimsArray[1] == -1)
-            {
-                out.push_back(new String(L""));
-                return Function::OK;
-            }
-
-            String *pstOutput = new String(iDims, piDimsArray);
-            if (pDbl->isComplex())
-            {
-                double* pdblImg = pDbl->getImg();
-                for (int i = 0; i < pDbl->getSize(); ++i)
-                {
-                    std::wostringstream ostr;
-                    DoubleComplexMatrix2String(&ostr, pdblReal[i], pdblImg[i]);
-                    pstOutput->set(i, ostr.str().c_str());
-                }
-            }
-            else
-            {
-                double dblImg  = 0.0;
-                for (int i = 0; i < pDbl->getSize(); ++i)
-                {
-                    std::wostringstream ostr;
-                    DoubleComplexMatrix2String(&ostr, pdblReal[i], dblImg);
-                    pstOutput->set(i, ostr.str().c_str());
-                }
-            }
-
-            out.push_back(pstOutput);
-            break;
+            return doubleString(in[0]->getAs<Double>(), out);
         }
         case GenericType::ScilabString :
         {

@@ -55,6 +55,12 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
 
             if (pIT->isAssignable() == false)
             {
+                if (pIT->isListDelete())
+                {
+                    //used to delete a variable in current scope
+                    symbol::Context::getInstance()->remove(pVar->name_get());
+                }
+
                 result_set(NULL);
                 return;
             }

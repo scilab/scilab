@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2007-2008 - INRIA
+// Copyright (C) 2014 - Scilab Enterprises - Anais AUBERT
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -68,4 +69,3 @@ assert_checkequal(string(C), string(uint32(C)));
 assert_checkequal(string(D), string(int8(D)));
 assert_checkequal(string(E), string(int16(E)));
 assert_checkequal(string(F), string(int32(F)));
-
