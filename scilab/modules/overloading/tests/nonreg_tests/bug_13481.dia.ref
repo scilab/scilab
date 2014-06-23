@@ -19,10 +19,15 @@ x = poly(0, "x");
 num = 3 + x + x^2;
 den = 1 - x + 2*x^2;
 R = num / den;
+R.dt = 'c';
 assert_checkequal("x", varn(R));
 num = varn(num, "z");
 den = varn(den, "z");
-assert_checkequal(num / den, varn(R, "z"));
+R2 = varn(R, "z");
+// Check varn created the same num and den
+assert_checkequal(num / den, R2.num / R2.den);
+// Check dt is kept with varn
+assert_checkequal(R.dt, R2.dt);
 // Test on matrix of rationals
 matrix_R = [R, 2*R + x, R.den/R.num];
 assert_checkequal(varn(matrix_R), "x");

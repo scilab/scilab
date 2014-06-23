@@ -197,6 +197,9 @@ Scilab Bug Fixes
 
 * Bug #13481 fixed - varn did not work on rational fractions
 
+* Bug #13482 fixed - pfss changed the variable of the rational fractions.
+                     varn also modified to keep variable "dt" of rational fractions
+
 * Bug #13491 fixed - intg now properly returns when the user function produces an error.
 
 * Bug #13501 fixed - Typos fixed in English help pages.

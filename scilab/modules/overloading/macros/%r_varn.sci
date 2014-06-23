@@ -9,8 +9,8 @@
 
 function  rep = %r_varn(p, varname)
     if argn(2)==1 then
-        rep = varn(p("num"))
+        rep = varn(p("num"));
     else
-        rep = rlist(varn(p.num, varname), varn(p.den, varname), [])
+        rep = rlist(varn(p.num, varname), varn(p.den, varname), p.dt);
     end
 endfunction
