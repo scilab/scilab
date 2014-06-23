@@ -2,12 +2,12 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="varn">
     <refnamediv>
         <refname>varn</refname>
-        <refpurpose>symbolic variable of a polynomial</refpurpose>
+        <refpurpose>symbolic variable of a polynomial or a rational</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
         <synopsis>[symb]=varn(p)
-            [pm]=varn(x,var)
+            [pm]=varn(p,varname)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -16,31 +16,27 @@
             <varlistentry>
                 <term>p</term>
                 <listitem>
-                    <para>polynomial (or polynomial matrix)</para>
+                    <para>matrix of polynomials or of rationals</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>symb</term>
                 <listitem>
-                    <para>character string</para>
+                    <para>character string: name of the variable</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>x</term>
+                <term>varname</term>
                 <listitem>
-                    <para>polynomial or polynomial matrix</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>var</term>
-                <listitem>
-                    <para>symbolic variable (character string)</para>
+                    <para>
+                        character string: the new name of the variable of <literal>p</literal>, set for <literal>pm</literal>
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>pm</term>
                 <listitem>
-                    <para>polynomial (or polynomial matrix)</para>
+                    <para>matrix of polynomials or of rationals</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -52,27 +48,45 @@
             (i.e. <literal>varn(poly(0,'x'))</literal> is <literal>'x'</literal>).
         </para>
         <para>
-            <literal>varn(x,'s')</literal> returns a polynomial matrix with same coefficients
-            as <literal>x</literal> but with <literal>'s'</literal> as symbolic variable (change of variable name).
+            <literal>varn(p,'s')</literal> returns a polynomial matrix with same coefficients
+            as <literal>p</literal> but with <literal>'s'</literal> as symbolic variable (change of variable name).
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
-s=poly(0,'s');p=[s^2+1,s];
+s = poly(0,'s'); p = [s^2+1,s];
 varn(p)
 varn(p,'x')
+
+f = %z / (%z-1); f = [f f^2]
+varn(f)
+varn(f,"x")
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="horner">horner</link>
-            </member>
-            <member>
                 <link linkend="poly">poly</link>
             </member>
+            <member>
+                <link linkend="rlist">rlist</link>
+            </member>
+            <member>
+                <link linkend="horner">horner</link>
+            </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.1</revnumber>
+                <revdescription>
+                    <para>Extension to rationals</para>
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>
