@@ -213,6 +213,21 @@ Function::ReturnValue intString(T* pInt, typed_list &out)
     return Function::OK;
 }
 
+Function::ReturnValue booleanString(types::Bool* pB, typed_list &out)
+{
+    int iDims = pB->getDims();
+    int* piDimsArray = pB->getDimsArray();
+    int* pb = pB->get();
+    String *pstOutput = new String(iDims, piDimsArray);
+    int iSize = pB->getSize();
+    for (int i = 0 ; i < iSize ; i++)
+    {
+        pstOutput->set(i, pb[i] == 0 ? "F" : "T");
+    }
+
+    out.push_back(pstOutput);
+    return Function::OK;
+}
 
 Function::ReturnValue doubleString(types::Double* pDbl, typed_list &out)
 {
@@ -426,6 +441,10 @@ Function::ReturnValue sci_string(typed_list &in, int _iRetCount, typed_list &out
         {
             std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_string";
             return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
+        }
+        case GenericType::ScilabBool :
+        {
+            return booleanString(in[0]->getAs<Bool>(), out);
         }
         default :
         {
