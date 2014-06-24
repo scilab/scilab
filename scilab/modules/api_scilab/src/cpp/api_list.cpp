@@ -30,6 +30,7 @@ extern "C"
 #include <stdio.h>
 #include <string.h>
 #include "call_scilab.h"
+#include "doublecomplex.h"
 #include "api_scilab.h"
 #include "api_internal_common.h"
 #include "api_internal_double.h"
@@ -148,26 +149,26 @@ static void popNamedListAddress(std::string _stNamedList)
 {
     StackNamedList::iterator it = stackNamedListPosition.find(_stNamedList);
     // FIXME
-//    if (it != stackNamedListPosition.end())
-//    {
-//        delete it->second->back();
-//        it->second->pop_back();
-//        if (it->second->size() > 0 && it->second->back()->m_iLast == 1)
-//        {
-//            //close cascade
-//            popNamedListAddress(_stNamedList);
-//        }
-//
-//        StackNamedList::iterator jt = stackNamedListPosition.find(_stNamedList);
-//        if (jt != stackNamedListPosition.end() && jt->second->empty())
-//        {
-//            int iVarID[nsiz];
-//            delete jt->second;
-//            stackNamedListPosition.erase(jt);
-//            C2F(str2name)(_stNamedList.c_str(), iVarID, (unsigned long)_stNamedList.size());
-//            createNamedVariable(iVarID);
-//        }
-//    }
+    //    if (it != stackNamedListPosition.end())
+    //    {
+    //        delete it->second->back();
+    //        it->second->pop_back();
+    //        if (it->second->size() > 0 && it->second->back()->m_iLast == 1)
+    //        {
+    //            //close cascade
+    //            popNamedListAddress(_stNamedList);
+    //        }
+    //
+    //        StackNamedList::iterator jt = stackNamedListPosition.find(_stNamedList);
+    //        if (jt != stackNamedListPosition.end() && jt->second->empty())
+    //        {
+    //            int iVarID[nsiz];
+    //            delete jt->second;
+    //            stackNamedListPosition.erase(jt);
+    //            C2F(str2name)(_stNamedList.c_str(), iVarID, (unsigned long)_stNamedList.size());
+    //            createNamedVariable(iVarID);
+    //        }
+    //    }
 }
 
 /*get last store address*/
@@ -1273,8 +1274,8 @@ SciErr fillCommonMatrixOfStringInList(void* _pvCtx, int _iVar, int* _piParent, i
 {
     SciErr sciErr = sciErrInit();
 #if 0
-=======
-    SciErr sciErr;
+    == == == =
+        SciErr sciErr;
     sciErr.iErr = 0;
     sciErr.iMsgCount = 0;
     int iNbItem   = 0;
@@ -1485,29 +1486,29 @@ static SciErr fillMatrixOfBoolInList(void* _pvCtx, int _iVar, int* _piParent, in
         return sciErr;
     }
 
-        if (iNbItem < _iItemPos)
-        {
-            addErrorMessage(&sciErr, API_ERROR_ITEM_LIST_NUMBER, _("%s: Unable to create list item #%d in Scilab memory"), "createMatrixOfBooleanInList", _iItemPos + 1);
-            return sciErr;
-        }
+    if (iNbItem < _iItemPos)
+    {
+        addErrorMessage(&sciErr, API_ERROR_ITEM_LIST_NUMBER, _("%s: Unable to create list item #%d in Scilab memory"), "createMatrixOfBooleanInList", _iItemPos + 1);
+        return sciErr;
+    }
 
 
-        sciErr = allocCommonItemInList(_pvCtx, _piParent, _iItemPos, &piChildAddr);
-        if (sciErr.iErr)
-        {
-            addErrorMessage(&sciErr, API_ERROR_FILL_BOOLEAN_IN_LIST, _("%s: Unable to create list item #%d in Scilab memory"), "createMatrixOfBoolInList", _iItemPos + 1);
-            return sciErr;
-        }
+    sciErr = allocCommonItemInList(_pvCtx, _piParent, _iItemPos, &piChildAddr);
+    if (sciErr.iErr)
+    {
+        addErrorMessage(&sciErr, API_ERROR_FILL_BOOLEAN_IN_LIST, _("%s: Unable to create list item #%d in Scilab memory"), "createMatrixOfBoolInList", _iItemPos + 1);
+        return sciErr;
+    }
 
-        sciErr = fillMatrixOfBoolean(_pvCtx, piChildAddr, _iRows, _iCols, _piBool);
-        if (sciErr.iErr)
-        {
-            addErrorMessage(&sciErr, API_ERROR_FILL_BOOLEAN_IN_LIST, _("%s: Unable to create list item #%d in Scilab memory"), "createMatrixOfBoolInList", _iItemPos + 1);
-            return sciErr;
-        }
+    sciErr = fillMatrixOfBoolean(_pvCtx, piChildAddr, _iRows, _iCols, _piBool);
+    if (sciErr.iErr)
+    {
+        addErrorMessage(&sciErr, API_ERROR_FILL_BOOLEAN_IN_LIST, _("%s: Unable to create list item #%d in Scilab memory"), "createMatrixOfBoolInList", _iItemPos + 1);
+        return sciErr;
+    }
 
-        piOffset      = _piParent + 2;
-        piOffset[_iItemPos] = piOffset[_iItemPos - 1] + ((3 + _iRows * _iCols + !((_iRows * _iCols) % 2)) / 2);
+    piOffset      = _piParent + 2;
+    piOffset[_iItemPos] = piOffset[_iItemPos - 1] + ((3 + _iRows * _iCols + !((_iRows * _iCols) % 2)) / 2);
 
 #endif
     return sciErr;

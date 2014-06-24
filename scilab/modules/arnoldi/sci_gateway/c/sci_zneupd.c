@@ -12,10 +12,11 @@
 
 #include <math.h>
 #include <string.h>
+
+#include "doublecomplex.h"
 #include "api_scilab.h"
 #include "gw_arnoldi.h"
 #include "core_math.h"
-#include "doublecomplex.h"
 #include "localization.h"
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/
@@ -407,19 +408,19 @@ int sci_zneupd(char *fname, void *pvApiCtx)
     LDZ = LDV;
 
     /* Check some sizes */
-    if (mIPARAM*nIPARAM != 11)
+    if (mIPARAM * nIPARAM != 11)
     {
         Scierror(999, _("%s: Wrong size for input argument %s: An array of size %d expected.\n"), fname, "IPARAM", 11);
         return 1;
     }
 
-    if (mIPNTR*nIPNTR != 14)
+    if (mIPNTR * nIPNTR != 14)
     {
         Scierror(999, _("%s: Wrong size for input argument %s: An array of size %d expected.\n"), fname, "IPNTR", 14);
         return 1;
     }
 
-    if (mRESID*nRESID != pN[0])
+    if (mRESID * nRESID != pN[0])
     {
         Scierror(999, _("%s: Wrong size for input argument %s: An array of size %d expected.\n"), fname, "RESID", pN[0]);
         return 1;
@@ -431,13 +432,13 @@ int sci_zneupd(char *fname, void *pvApiCtx)
         return 1;
     }
 
-    if (mSELECT*nSELECT != pNCV[0])
+    if (mSELECT * nSELECT != pNCV[0])
     {
         Scierror(999, _("%s: Wrong size for input argument %s: An array of size %d expected.\n"), fname, "SELECT", pNCV[0]);
         return 1;
     }
 
-    if (mD*nD != (pNEV[0] + 1))
+    if (mD * nD != (pNEV[0] + 1))
     {
         Scierror(999, _("%s: Wrong size for input argument %s: An array of size %d expected.\n"), fname, "D", pNEV[0] + 1);
         return 1;
@@ -449,7 +450,7 @@ int sci_zneupd(char *fname, void *pvApiCtx)
         return 1;
     }
 
-    if (mWORKev*nWORKev != 2 * pNCV[0])
+    if (mWORKev * nWORKev != 2 * pNCV[0])
     {
         Scierror(999, _("%s: Wrong size for input argument %s: An array of size %d expected.\n"), fname, "WORKev", 2 * pNCV[0]);
         return 1;

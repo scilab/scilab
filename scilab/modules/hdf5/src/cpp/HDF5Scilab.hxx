@@ -29,6 +29,7 @@
 
 extern "C"
 {
+#include "doublecomplex.h"
 #include "api_scilab.h"
 #include "Scierror.h"
 #include "HDF5Objects.h"
@@ -44,7 +45,8 @@ class HDF5Scilab
 
 public:
 
-    enum H5ObjectType {
+    enum H5ObjectType
+    {
         H5FILE,
         H5GROUP,
         H5DATASET,

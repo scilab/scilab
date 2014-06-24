@@ -10,6 +10,8 @@
  *
  */
 #include <stdio.h>
+
+#include "doublecomplex.h"
 #include "api_scilab.h"
 #include "gw_linear_algebra2.h"
 #include "Scierror.h"

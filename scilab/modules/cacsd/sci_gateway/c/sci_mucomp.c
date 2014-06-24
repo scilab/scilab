@@ -10,6 +10,8 @@
  *
  */
 #include "gw_cacsd.h"
+
+#include "doublecomplex.h"
 #include "api_scilab.h"
 #include "Scierror.h"
 #include "localization.h"

@@ -12,6 +12,8 @@
 
 #include <math.h>
 #include <string.h>
+
+#include "doublecomplex.h"
 #include "isanan.h"
 #include "core_math.h"
 #include "gw_arnoldi.h"

@@ -22,6 +22,7 @@
 
 extern "C"
 {
+#include "doublecomplex.h"
 #include "api_scilab.h"
 #include "api_internal_common.h"
 #include "api_internal_double.h"

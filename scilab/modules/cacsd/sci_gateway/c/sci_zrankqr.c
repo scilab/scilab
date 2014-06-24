@@ -10,6 +10,8 @@
  *
  */
 #include "sci_rankqr.h"
+
+#include "doublecomplex.h"
 #include "api_scilab.h"
 #include "Scierror.h"
 #include "localization.h"
