@@ -22,21 +22,21 @@
  * change language
  * @param lang
  */
-BOOL setlanguage(wchar_t *lang);
+BOOL setlanguage(const wchar_t *lang);
 
 
 /**
  * returns current language
  * @return
  */
-wchar_t *getlanguage(void);
+const wchar_t *getlanguage(void);
 
 /**
  * returns current alias
  * example : en_US --> en
  * @return
  */
-wchar_t *getlanguagealias(void);
+const wchar_t *getlanguagealias(void);
 
 /**
  * return internal code associated with a language
@@ -49,28 +49,28 @@ int getcurrentlanguagecode(void);
  * @param code
  * @return
  */
-wchar_t *getlanguagefromcode(int code);
+const wchar_t *getlanguagefromcode(int code);
 
 /**
  * get code of a language
  * @param language
  * @return
  */
-int getcodefromlanguage(wchar_t *language);
+int getcodefromlanguage(const wchar_t *language);
 
 /**
 * try to convert strlanguage (alias) to a good language string
 * @param language
 * @return
 */
-wchar_t *convertlanguagealias(wchar_t *strlanguage);
+const wchar_t *convertlanguagealias(const wchar_t *strlanguage);
 
 /**
 * test if lang is defined language
 * @param lang
 * @return TRUE or FALSE
 */
-BOOL LanguageIsOK(wchar_t *lang);
+BOOL LanguageIsOK(const wchar_t *lang);
 
 /**
  * Check if the current language is the same we are trying to switch to
@@ -78,7 +78,7 @@ BOOL LanguageIsOK(wchar_t *lang);
  * @param language The language we want to switch to
  * @return If we need to change the language or not
  */
-BOOL needtochangelanguage(wchar_t *language);
+BOOL needtochangelanguage(const wchar_t *language);
 
 
 /**
@@ -87,19 +87,19 @@ BOOL needtochangelanguage(wchar_t *language);
  * @param the locale we want to export
  * @return if is worked
  */
-BOOL exportLocaleToSystem(wchar_t *locale);
+BOOL exportLocaleToSystem(const wchar_t *locale);
 
 /**
  * Set the default language and save it in the registry (Windows)
  * @param lang the new language
  */
-void setdefaultlanguage(char * lang);
+void setdefaultlanguage(const char * lang);
 
 /**
  * Get the default language from the registry (Windows)
  * @return the default language
  */
-char * getdefaultlanguage();
+const char * getdefaultlanguage();
 
 
 #endif /* __SETGETLANGUAGE_H__ */

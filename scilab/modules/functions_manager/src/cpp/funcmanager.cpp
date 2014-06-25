@@ -412,11 +412,11 @@ bool FuncManager::ExecuteStartFile(wstring _stModule)
         parser.getTree()->accept(execStart);
 
     }
-    catch (ast::ScilabMessage sm)
+    catch (const ast::ScilabMessage& sm)
     {
         scilabWriteW(sm.GetErrorMessage().c_str());
     }
-    catch (ast::ScilabError se)
+    catch (const ast::ScilabError& se)
     {
         scilabWriteW(se.GetErrorMessage().c_str());
     }

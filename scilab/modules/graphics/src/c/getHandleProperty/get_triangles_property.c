@@ -48,7 +48,7 @@ void* get_triangles_property(void* _pvCtx, int iObjUID)
     if (piNumTriangles == NULL)
     {
         Scierror(999, _("Wrong value for '%s' property.\n"), "triangles");
-        return -1;
+        return NULL;
     }
 
     return sciReturnMatrix(triangles, numTriangles , 5);

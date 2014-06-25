@@ -25,7 +25,7 @@ void* get_display_function_data_property(void* _pvCtx, int iObjUID)
     int *piDisplayDataSize = &iDisplayDataSize;
     int *piDisplayData = NULL;
 
-    int status = 0;
+    void* status = NULL;
 
     getGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_DISPLAY_FUNCTION_SIZE__, jni_int, (void **)&piDisplayDataSize);
     getGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_DISPLAY_FUNCTION__, jni_int_vector, (void **)&piDisplayData);

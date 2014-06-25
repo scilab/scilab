@@ -18,7 +18,7 @@
 #include "localization.h"
 #include "sci_malloc.h"
 /*---------------------------------------------------------------------------*/
-void dl_genErrorMessage(wchar_t* _pwstCallerName, int _iErr, wchar_t* _pwstLibraryName)
+void dl_genErrorMessage(const wchar_t * _pwstCallerName, int _iErr, const wchar_t * _pwstLibraryName)
 {
     char* pstCaller = wide_string_to_UTF8(_pwstCallerName);
     char* pstLibName = wide_string_to_UTF8(_pwstLibraryName);

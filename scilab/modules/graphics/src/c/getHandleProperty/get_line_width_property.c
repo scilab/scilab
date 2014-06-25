@@ -36,7 +36,7 @@ void* get_line_width_property(void* _pvCtx, int iObjUID)
     if (pdblLineWidth == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "line_width");
-        return -1;
+        return NULL;
     }
 
     return sciReturnDouble(dblLineWidth);

@@ -79,7 +79,7 @@ BOOL InitializeLocalization(void)
             textdomain(NAMELOCALIZATIONDOMAIN);
             bind_textdomain_codeset (NAMELOCALIZATIONDOMAIN, "UTF-8");
 #ifndef _MSC_VER
-            setlanguage("");
+            setlanguage(L"");
 #else
             /* We look if registry value LANGUAGE exists */
             /* If not exists the "" means that we will try to use the language of the system.*/

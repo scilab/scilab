@@ -228,7 +228,7 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
             }
             else
             {
-                char* pstrExpected = NULL;
+                const char* pstrExpected = NULL;
                 if (in.size() == 2)
                 {
                     pstrExpected = "\"*\",\"r\",\"c\",\"m\",\"native\",\"double\"";

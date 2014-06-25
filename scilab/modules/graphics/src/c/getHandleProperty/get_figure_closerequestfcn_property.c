@@ -32,7 +32,7 @@ void* get_figure_closerequestfcn_property(void* _pvCtx, int iObjUID)
     if (piType == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "type");
-        return -1;
+        return NULL;
     }
     if (iType != __GO_FIGURE__)
     {

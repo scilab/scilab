@@ -56,7 +56,7 @@ char ** createCopyStringMatrixFromStack(void* _pvData, int _iNbItem)
 
 }
 /*--------------------------------------------------------------------------*/
-int tryGetBooleanValueFromStack(void* _pvData, int _iType, int _iRows, int _iCols, char* _pstPropertyName)
+int tryGetBooleanValueFromStack(void* _pvData, int _iType, int _iRows, int _iCols, char const* _pstPropertyName)
 {
     if (_iType == sci_strings)
     {

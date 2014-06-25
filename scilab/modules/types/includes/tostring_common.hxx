@@ -101,7 +101,7 @@ void getSignedIntFormat(T _TVal, int *_piWidth)
 template <typename T>
 void addUnsignedIntValue(std::wostringstream *_postr, T _TVal, int _iWidth, bool bPrintPlusSign = false, bool bPrintOne = true)
 {
-    wchar_t* pwstSign = NULL;
+    const wchar_t * pwstSign = PLUS_STRING;
     wchar_t pwstFormat[32];
     wchar_t pwstOutput[32];
     if (bPrintPlusSign == true)

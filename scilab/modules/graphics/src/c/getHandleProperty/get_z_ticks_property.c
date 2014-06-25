@@ -53,7 +53,7 @@ void* get_z_ticks_property(void* _pvCtx, int iObjUID)
     if (piView == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "view");
-        return -1;
+        return NULL;
     }
 
     if (iNbTicks == 0 || iView == 0)

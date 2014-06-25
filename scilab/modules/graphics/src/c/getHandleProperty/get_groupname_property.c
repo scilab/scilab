@@ -33,7 +33,7 @@ void* get_groupname_property(void* _pvCtx, int iObjUID)
     if (pstGroupName == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "groupname");
-        return -1;
+        return NULL;
     }
 
     return sciReturnString(pstGroupName);

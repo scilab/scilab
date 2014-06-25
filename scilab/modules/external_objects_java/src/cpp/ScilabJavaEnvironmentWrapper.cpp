@@ -645,7 +645,7 @@ void ScilabJavaEnvironmentWrapper::unwraprowstring(int id, const ScilabStringSta
     jboolean isCopy = JNI_FALSE;
     char ** addr = new char*[lenRow];
     jstring * resString = new jstring[lenRow];
-    char * empty = "";
+    char empty = '\0';
 
     for (jsize i = 0; i < lenRow; i++)
     {
@@ -656,7 +656,7 @@ void ScilabJavaEnvironmentWrapper::unwraprowstring(int id, const ScilabStringSta
         }
         else
         {
-            addr[i] = empty;
+            addr[i] = &empty;
         }
     }
 
@@ -698,7 +698,7 @@ void ScilabJavaEnvironmentWrapper::unwrapmatstring(int id, const ScilabStringSta
     jint lenCol = curEnv->GetArrayLength(oneDim);
     char ** addr = new char*[lenRow * lenCol];
     jstring * resString = new jstring[lenRow * lenCol];
-    char * empty = "";
+    char empty = '\0';
 
     for (int i = 0; i < lenRow; i++)
     {
@@ -715,7 +715,7 @@ void ScilabJavaEnvironmentWrapper::unwrapmatstring(int id, const ScilabStringSta
                 }
                 else
                 {
-                    addr[pos] = empty;
+                    addr[pos] = &empty;
                 }
             }
         }
@@ -731,7 +731,7 @@ void ScilabJavaEnvironmentWrapper::unwrapmatstring(int id, const ScilabStringSta
                 }
                 else
                 {
-                    addr[pos] = empty;
+                    addr[pos] = &empty;
                 }
             }
         }

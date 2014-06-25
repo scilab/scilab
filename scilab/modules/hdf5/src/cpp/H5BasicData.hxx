@@ -18,7 +18,7 @@
 #include "H5Object.hxx"
 #include "H5DataConverter.hxx"
 
-#define __SCILAB_STACK_CREATOR__(U,NAME) static void create(void * pvApiCtx, const int position, const int rows, const int cols, U * ptr, int * list, const int listPosition) \
+#define __SCILAB_STACK_CREATOR__(U,NAME) static void create(void * pvApiCtx, const int position, const int rows, const int cols, U const* ptr, int * list, const int listPosition) \
     {                                                                   \
         SciErr err;                                                     \
         if (list)                                                       \

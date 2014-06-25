@@ -39,7 +39,7 @@ void* get_layout_options_property(void* _pvCtx, int iObjUID)
     if (piLayout == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "layout_options");
-        return -1;
+        return NULL;
     }
 
     switch (iLayout)
@@ -65,14 +65,14 @@ void* get_layout_options_property(void* _pvCtx, int iObjUID)
             if (piGrid == NULL)
             {
                 Scierror(999, _("'%s' property does not exist for this handle.\n"), "layout_options");
-                return -1;
+                return NULL;
             }
 
             getGraphicObjectProperty(iObjUID, __GO_GRID_OPT_PADDING__, jni_int_vector, (void **)&piPadding);
             if (piPadding == NULL)
             {
                 Scierror(999, _("'%s' property does not exist for this handle.\n"), "layout_options");
-                return -1;
+                return NULL;
             }
 
             //convert to double
@@ -99,7 +99,7 @@ void* get_layout_options_property(void* _pvCtx, int iObjUID)
             if (piPadding == NULL)
             {
                 Scierror(999, _("'%s' property does not exist for this handle.\n"), "layout_options");
-                return -1;
+                return NULL;
             }
 
             //convert to double

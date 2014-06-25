@@ -36,10 +36,10 @@
 * print a string
 * @param[in] buffer to disp
 */
-static void printf_scilab(char* buffer);
-static void printf_scilabW(wchar_t* buffer);
+static void printf_scilab(const char* buffer);
+static void printf_scilabW(const wchar_t* buffer);
 /*--------------------------------------------------------------------------*/
-void sciprint(char* fmt, ...)
+void sciprint(const char* fmt, ...)
 {
     va_list ap;
 
@@ -82,7 +82,7 @@ void sciprint(char* fmt, ...)
 //	return count;
 //}
 /*--------------------------------------------------------------------------*/
-int scivprint(char *fmt, va_list args)
+int scivprint(const char *fmt, va_list args)
 {
     static char s_buf[MAXPRINTF];
     int count = 0;
@@ -108,7 +108,7 @@ int scivprint(char *fmt, va_list args)
     return count;
 }
 /*--------------------------------------------------------------------------*/
-static void printf_scilabW(wchar_t* buffer)
+static void printf_scilabW(const wchar_t* buffer)
 {
     if (buffer)
     {
@@ -136,7 +136,7 @@ static void printf_scilabW(wchar_t* buffer)
     }
 }
 /*--------------------------------------------------------------------------*/
-static void printf_scilab(char *buffer)
+static void printf_scilab(const char *buffer)
 {
     if (buffer)
     {

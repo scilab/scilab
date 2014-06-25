@@ -30,7 +30,7 @@
 void* get_datatips_property(void* _pvCtx, int iObjUID)
 {
     int i = 0;
-    int status = 0;
+    void* status = 0;
     int iDatatipCount = 0;
     int* piDatatipCount = &iDatatipCount;
     int* piDatatip = NULL;

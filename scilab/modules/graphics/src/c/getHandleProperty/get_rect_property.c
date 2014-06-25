@@ -37,7 +37,7 @@ void* get_rect_property(void* _pvCtx, int iObjUID)
     if (rect == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "rect");
-        return -1;
+        return NULL;
     }
 
     _rect[0] = rect[0];

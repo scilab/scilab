@@ -172,7 +172,7 @@ int sci_uigetdir(char *fname, void* pvApiCtx)
     }
     else
     {
-        char* empty = "";
+        const char * empty = "";
         /* The user canceled the selection --> returns an empty string */
         sciErr = createMatrixOfString(pvApiCtx, nbInputArgument(pvApiCtx) + 1, 1, 1, &empty);
         if (sciErr.iErr)

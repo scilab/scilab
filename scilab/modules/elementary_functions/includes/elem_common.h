@@ -57,7 +57,7 @@
 #define getOverflowThreshold()					C2F(dlamch)((char*)"o", 1L)
 #define isEqual(x,y)										fabs((double)x - (double)y) <= getRelativeMachinePrecision()
 
-extern double C2F(dlamch) (char *_pszCommand, unsigned long int);
+extern double C2F(dlamch) (const char *_pszCommand, unsigned long int);
 extern double C2F(logp1) (double *_pdblVal);
 extern int C2F(dgemm) (char *_pstTransA, char *_pstTransB, int *_piN, int *_piM, int *_piK, double *_pdblAlpha, double *_pdblA, int *_piLdA,
                        double *_pdblB, int *_piLdB, double *_pdblBeta, double *_pdblC, int *_piLdC);

@@ -343,13 +343,13 @@ int mxGetM(const mxArray *ptr)
     types::InternalType *pIT = (types::InternalType *) ptr;
     if (pIT == NULL)
     {
-        return NULL;
+        return 0;
     }
 
     types::GenericType *pGT = pIT->getAs<types::GenericType>();
     if (pGT == NULL)
     {
-        return NULL;
+        return 0;
     }
     return pGT->getRows();
 }
@@ -403,13 +403,13 @@ int mxGetN(const mxArray *ptr)
     types::InternalType * pIT = (types::InternalType *) ptr;
     if (pIT == NULL)
     {
-        return NULL;
+        return 0;
     }
 
     types::GenericType * pGT = pIT->getAs<types::GenericType>();
-    if (pGT == NULL)
+    if (pGT == 0)
     {
-        return NULL;
+        return 0;
     }
     return pGT->getCols();
 }

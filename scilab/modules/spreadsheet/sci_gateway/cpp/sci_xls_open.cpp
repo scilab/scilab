@@ -194,7 +194,6 @@ types::Function::ReturnValue sci_xls_open(types::typed_list &in, int _iRetCount,
             Scierror(999, _("%s: invalid status.\n"), "xls_open");
         }
 
-        FREE(TMP);
         FREE(filename_IN);
         return types::Function::Error;
     }

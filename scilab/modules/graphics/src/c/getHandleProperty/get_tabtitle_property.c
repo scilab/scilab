@@ -51,7 +51,7 @@ void* get_title_position_property(void* _pvCtx, int iObjUID)
     if (piPos == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "title_position");
-        return -1;
+        return NULL;
     }
 
     switch (iPos)

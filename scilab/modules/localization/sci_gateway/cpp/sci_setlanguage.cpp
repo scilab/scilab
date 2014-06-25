@@ -49,7 +49,7 @@ Function::ReturnValue sci_setlanguage(typed_list &in, int _piRetCount, typed_lis
     }
 
     wchar_t *param = in[0]->getAs<types::String>()->get(0);
-    wchar_t *newlanguage = convertlanguagealias(param);
+    const wchar_t *newlanguage = convertlanguagealias(param);
 
     if ( !LanguageIsOK(param) && (newlanguage == NULL) )
     {

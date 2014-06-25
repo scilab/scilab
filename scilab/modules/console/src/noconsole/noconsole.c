@@ -33,7 +33,7 @@ char *ConsoleRead(void)
     return NULL;
 }
 /*--------------------------------------------------------------------------*/
-int ConsolePrintf(char *line)
+int ConsolePrintf(const char *line)
 {
     int len = 0;
     return len;

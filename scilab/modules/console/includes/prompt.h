@@ -45,7 +45,7 @@ CONSOLE_IMPEXP void C2F(setprlev) (int *pause);
 
 CONSOLE_IMPEXP void GetCurrentPrompt(char *CurrentPrompt);
 
-CONSOLE_IMPEXP void SetTemporaryPrompt(char *tempPrompt);
+CONSOLE_IMPEXP void SetTemporaryPrompt(const char *tempPrompt);
 
 CONSOLE_IMPEXP char *GetTemporaryPrompt(void);
 

@@ -33,7 +33,7 @@ extern "C"
 
     EXTERN_SYSTEM_ENV void setScilabMode(scilabMode newmode);
 
-    EXTERN_SYSTEM_ENV char * getScilabModeString(void);
+    EXTERN_SYSTEM_ENV const char * getScilabModeString(void);
 
 #ifdef __cplusplus
 }

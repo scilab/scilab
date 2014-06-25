@@ -39,7 +39,7 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
 {
     // Methode
     types::String* pStrType     = NULL;
-    wchar_t* wcsType            = L"lsoda";
+    const wchar_t* wcsType            = L"lsoda";
     int meth                    = 0;
 
     // y0

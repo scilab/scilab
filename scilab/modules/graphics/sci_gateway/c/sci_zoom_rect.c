@@ -188,7 +188,7 @@ int sci_zoom_rect(char *fname, void *pvApiCtx)
         if (checkInputArgumentType(pvApiCtx, 1, sci_handles))
         {
             int iZoomedObject = getZoomedObject(pvApiCtx, fname);
-            if (iZoomedObject == NULL)
+            if (iZoomedObject == 0)
             {
                 return -1;
             }

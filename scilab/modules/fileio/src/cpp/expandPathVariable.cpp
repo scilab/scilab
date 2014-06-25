@@ -33,8 +33,8 @@ extern "C"
 /*--------------------------------------------------------------------------*/
 struct VARIABLEALIAS
 {
-    wchar_t *Alias;
-    wchar_t *VariableName;
+    const wchar_t *Alias;
+    const wchar_t *VariableName;
     symbol::Variable* var;
 };
 /*--------------------------------------------------------------------------*/

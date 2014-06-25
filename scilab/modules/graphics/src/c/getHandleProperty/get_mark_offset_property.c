@@ -36,7 +36,7 @@ void* get_mark_offset_property(void* _pvCtx, int iObjUID)
     if (piMarkOffset == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "mark_offset");
-        return -1;
+        return NULL;
     }
 
     return sciReturnDouble(iMarkOffset);

@@ -34,7 +34,7 @@ types::Function::ReturnValue sci_cshep2d(types::typed_list &in, int _iRetCount, 
     //output
     types::TList* pTListCoef = NULL;
 
-    wchar_t* wcsStr[] = {L"cshep2d", L"xyz", L"lcell", L"lnext", L"grdim", L"rmax", L"rw", L"a"};
+    const wchar_t * wcsStr[] = {L"cshep2d", L"xyz", L"lcell", L"lnext", L"grdim", L"rmax", L"rw", L"a"};
 
     // *** check the minimal number of input args. ***
     if (in.size() != 1)

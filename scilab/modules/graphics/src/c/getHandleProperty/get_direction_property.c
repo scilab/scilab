@@ -31,7 +31,7 @@ void* get_direction_property(void* _pvCtx, int iObjUID)
     if (direction == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "direction");
-        return -1;
+        return NULL;
     }
 
     return sciReturnRowVector(direction, 3);

@@ -34,7 +34,7 @@ void* get_layout_property(void* _pvCtx, int iObjUID)
     if (piLayout == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "layout");
-        return -1;
+        return NULL;
     }
 
     switch (iLayout)

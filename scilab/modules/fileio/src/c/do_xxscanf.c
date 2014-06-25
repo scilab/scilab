@@ -44,7 +44,7 @@ static void set_xxscanf(FILE * fp, XXSCANF * xxscanf, wchar_t **target, wchar_t 
 }
 
 /*--------------------------------------------------------------------------*/
-int do_xxscanf (wchar_t *fname, FILE *fp, wchar_t *format, int *nargs, wchar_t *strv, int *retval, rec_entry *buf, sfdir *type)
+int do_xxscanf (const wchar_t *fname, FILE *fp, const wchar_t *format, int *nargs, wchar_t *strv, int *retval, rec_entry *buf, sfdir *type)
 {
     int nc[MAXSCAN];
     int n_directive_count = 0;

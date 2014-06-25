@@ -187,7 +187,7 @@ int sci_dec2base(char *fname, void* pvApiCtx)
         }
     }
 
-    sciErr = createMatrixOfString(pvApiCtx, nbInputArgument(pvApiCtx) + 1, m, n, convertedValues);
+    sciErr = createMatrixOfString(pvApiCtx, nbInputArgument(pvApiCtx) + 1, m, n, (char const* const*) convertedValues);
     freeArrayOfString(convertedValues, m * n);
     convertedValues = NULL;
 

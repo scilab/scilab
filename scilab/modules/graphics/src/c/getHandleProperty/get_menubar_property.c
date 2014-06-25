@@ -28,7 +28,7 @@ void* get_menubar_property(void* _pvCtx, int iObjUID)
     if (piMenu == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "menubar");
-        return -1;
+        return NULL;
     }
 
     switch (iMenu)
@@ -50,7 +50,7 @@ void* get_menubar_visible_property(void* _pvCtx, int iObjUID)
     if (piVisible == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "menubar_visible");
-        return FALSE;
+        return NULL;
     }
 
     if (iVisible == 0)

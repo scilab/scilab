@@ -368,8 +368,10 @@ DynamicFunction::DynamicFunction(std::wstring _wstName, std::wstring _wstEntryPo
     m_bLoaded               = false;
     m_iType                 = _iType;
     m_pFunc                 = NULL;
+    m_pOptFunc              = NULL;
     m_pOldFunc              = NULL;
     m_pMexFunc              = NULL;
+    m_pFunction             = NULL;
     m_hLib                  = NULL;
 }
 
@@ -385,8 +387,10 @@ DynamicFunction::DynamicFunction(std::wstring _wstName, std::wstring _wstEntryPo
     m_bLoaded               = false;
     m_iType                 = _iType;
     m_pFunc                 = NULL;
+    m_pOptFunc              = NULL;
     m_pOldFunc              = NULL;
     m_pMexFunc              = NULL;
+    m_pFunction             = NULL;
     m_hLib                  = NULL;
 }
 

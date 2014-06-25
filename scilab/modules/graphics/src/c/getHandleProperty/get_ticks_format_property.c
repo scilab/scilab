@@ -38,7 +38,7 @@ void* get_ticks_format_property(void* _pvCtx, int iObjUID)
         if (fmts[i] == NULL)
         {
             Scierror(999, _("'%s' property does not exist for this handle.\n"), "ticks_format");
-            return -1;
+            return NULL;
         }
     }
 

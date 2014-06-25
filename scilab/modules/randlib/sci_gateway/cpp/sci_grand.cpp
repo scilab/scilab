@@ -36,7 +36,7 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
     };
 
     //  names at the scilab level
-    wchar_t* names_gen[6] = {L"mt", L"kiss", L"clcg4", L"clcg2", L"urand", L"fsultra"};
+    const wchar_t* names_gen[6] = {L"mt", L"kiss", L"clcg4", L"clcg2", L"urand", L"fsultra"};
 
     types::String* pStrMethod   = NULL;
     types::String* pStrGenOrPhr = NULL;

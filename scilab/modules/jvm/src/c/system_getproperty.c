@@ -18,7 +18,7 @@
 #include "sci_malloc.h"
 #include "os_strdup.h"
 /*--------------------------------------------------------------------------*/
-char * system_getproperty(char *property, char *defaultproperty)
+char * system_getproperty(const char * property, const char * defaultproperty)
 {
     char *retValue = NULL;
     JNIEnv * currentENV = getScilabJNIEnv();

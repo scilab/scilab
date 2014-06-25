@@ -33,7 +33,7 @@ void* get_material_shininess_property(void* _pvCtx, int iObjUID)
     if (pShininess == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "material_shininess");
-        return -1;
+        return NULL;
     }
 
     return sciReturnDouble(shininess);

@@ -928,7 +928,7 @@ SciErr createPList(void* _pvCtx, int _iVar, int ** _piAddress, char ** _pstLabel
         label_list[i] = os_strdup(_pstLabelNames[i - 1]);
     }
 
-    _SciErr = createMatrixOfStringInList(_pvCtx, _iVar, *_piAddress, 1, 1, _iNbParams + 1, label_list);
+    _SciErr = createMatrixOfStringInList(_pvCtx, _iVar, *_piAddress, 1, 1, _iNbParams + 1, (char const* const*) label_list);
 
     if (label_list)
     {
@@ -996,7 +996,7 @@ SciErr createStringInPList(void* _pvCtx, int _iVar, int * _piAddress, char * _ps
 #endif
 
     tmp_val[0] = os_strdup(_pstValue);
-    _SciErr = createMatrixOfStringInList(_pvCtx, _iVar, _piAddress, itemPos, 1, 1, tmp_val);
+    _SciErr = createMatrixOfStringInList(_pvCtx, _iVar, _piAddress, itemPos, 1, 1, (char const* const*) tmp_val);
 
     if (tmp_val[0])
     {

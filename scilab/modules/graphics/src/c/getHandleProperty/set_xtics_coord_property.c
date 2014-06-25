@@ -107,14 +107,14 @@ int set_xtics_coord_property(void* _pvCtx, int iObjUID, void* _pvData, int value
     {
         /* Something wrong happened */
         FREE(vector);
-        return -1;
+        return SET_PROPERTY_ERROR;
     }
 
     if (ComputeC_format(iObjUID, c_format) != 0)
     {
         /* Something wrong happened */
         FREE(vector);
-        return -1;
+        return SET_PROPERTY_ERROR;
     }
 
     stringVector = copyFormatedArray(vector, N, c_format, 256);

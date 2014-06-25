@@ -38,7 +38,7 @@ void* get_ticks_st_property(void* _pvCtx, int iObjUID)
         if (dbls == NULL)
         {
             Scierror(999, _("'%s' property does not exist for this handle.\n"), "ticks_st");
-            return -1;
+            return NULL;
         }
         factors[2 * i] = dbls[0];
         factors[2 * i + 1] = dbls[1];

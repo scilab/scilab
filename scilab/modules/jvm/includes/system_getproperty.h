@@ -20,7 +20,7 @@
 * @param property name
 * @return property value
 */
-char * system_getproperty(char *property, char *defaultproperty);
+char * system_getproperty(const char * property, const char * defaultproperty);
 
 #endif /* __SYSTEM_GETPROPERTY_H__ */
 /*--------------------------------------------------------------------------*/

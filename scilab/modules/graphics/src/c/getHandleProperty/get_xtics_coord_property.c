@@ -47,7 +47,7 @@ void* get_xtics_coord_property(void* _pvCtx, int iObjUID)
     if (xNumberTicks == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "xtics_coord");
-        return -1;
+        return NULL;
     }
 
     return sciReturnRowVector(xTicksCoords, *xNumberTicks);

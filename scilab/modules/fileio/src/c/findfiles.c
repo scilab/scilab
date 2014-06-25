@@ -116,7 +116,7 @@ char** findfiles(char *path, char *filespec, int *sizeListReturned, BOOL warning
 }
 #else
 /*--------------------------------------------------------------------------*/
-char **findfiles(char *path, char *filespec, int *sizeListReturned, BOOL warning)
+char **findfiles(const char *path, const char *filespec, int *sizeListReturned, BOOL warning)
 {
     char **ListFiles = NULL;
     int nbElements = 0;
@@ -161,7 +161,7 @@ char **findfiles(char *path, char *filespec, int *sizeListReturned, BOOL warning
     return ListFiles;
 }
 /*--------------------------------------------------------------------------*/
-wchar_t** findfilesW(wchar_t* path, wchar_t* filespec, int* sizeListReturned, BOOL warning)
+wchar_t** findfilesW(const wchar_t* path, const wchar_t* filespec, int* sizeListReturned, BOOL warning)
 {
     int i = 0;
     char* pstPath = wide_string_to_UTF8(path);

@@ -72,7 +72,7 @@ void GetCurrentPrompt(char *CurrentPrompt)
     }
 }
 /*------------------------------------------------------------------------*/
-void SetTemporaryPrompt(char *tempPrompt)
+void SetTemporaryPrompt(const char *tempPrompt)
 {
     ClearTemporaryPrompt();
     temporaryPrompt = os_strdup(tempPrompt);

@@ -282,7 +282,7 @@ xmlTextWriterPtr openXMLFile(const wchar_t *_pstFilename, const wchar_t* _pstLib
     iLen = xmlTextWriterWriteAttribute(pWriter, (xmlChar*)"name", (xmlChar*)pstLibName);
     if (iLen < 0)
     {
-        return false;
+        return NULL;
     }
 
     FREE(pstFilename);

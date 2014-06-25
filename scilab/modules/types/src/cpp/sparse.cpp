@@ -12,10 +12,12 @@
 
 #include <sstream>
 #include <math.h>
-#include "sparse.hxx"
+#include <Eigen/Sparse>
 #include <complex>
 #include <iterator>
 #include <algorithm>
+
+#include "sparse.hxx"
 #include "types.hxx"
 #include "tostring_common.hxx"
 #include "double.hxx"

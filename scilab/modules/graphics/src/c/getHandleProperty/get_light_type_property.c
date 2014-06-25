@@ -33,7 +33,7 @@ void* get_light_type_property(void* _pvCtx, int iObjUID)
     if (piType == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "light_type");
-        return -1;
+        return NULL;
     }
 
     if (type == 0)

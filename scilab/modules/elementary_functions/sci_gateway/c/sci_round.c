@@ -196,7 +196,7 @@ SciErr round_poly(void* pvApiCtx, int* _piAddress)
             }
         }
 
-        sciErr = createComplexMatrixOfPoly(pvApiCtx, Rhs + 1, pstVarName, iRows, iCols, piCoeff, pdblRealRet, pdblImgRet);
+        sciErr = createComplexMatrixOfPoly(pvApiCtx, Rhs + 1, pstVarName, iRows, iCols, piCoeff, (const double * const*) pdblRealRet, (const double * const*) pdblImgRet);
         if (sciErr.iErr)
         {
             return sciErr;
@@ -240,7 +240,7 @@ SciErr round_poly(void* pvApiCtx, int* _piAddress)
             }
         }
 
-        sciErr = createMatrixOfPoly(pvApiCtx, Rhs + 1, pstVarName, iRows, iCols, piCoeff, pdblRealRet);
+        sciErr = createMatrixOfPoly(pvApiCtx, Rhs + 1, pstVarName, iRows, iCols, piCoeff, (const double * const*) pdblRealRet);
         if (sciErr.iErr)
         {
             return sciErr;

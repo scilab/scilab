@@ -21,13 +21,13 @@ using namespace types;
 Function::ReturnValue sci_funclist(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     symbol::Context* pContext = symbol::Context::getInstance();
-
-    wchar_t* pstLibName = NULL;
+;
     if (in.size() > 1)
     {
         return Function::Error;
     }
 
+    std::wstring pstLibName;
     if (in.size() == 1)
     {
         InternalType* pIT = in[0];

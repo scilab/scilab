@@ -24,7 +24,7 @@ extern "C"
 #include "warningmode.h"
 #include "charEncoding.h"
 
-extern int C2F(clunit)(int* , char*, int*, int);
+extern int C2F(clunit)(int* , const char*, int*, int);
 }
 /*--------------------------------------------------------------------------*/
 int mcloseCurrentFile()
@@ -68,7 +68,7 @@ int mclose(int _iID)
         if(pFile->getFileType() == 1)
         {
             int iFileNum = -_iID; // -_iID to close file _iID
-            char* stFilename = ""; // file will be closed by this num
+            const char* stFilename = ""; // file will be closed by this num
             int iMode = 0; // not used in close mode
             return C2F(clunit)(&iFileNum, stFilename, &iMode, 1L);
         }

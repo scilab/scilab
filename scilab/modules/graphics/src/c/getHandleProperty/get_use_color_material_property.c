@@ -33,7 +33,7 @@ void* get_use_color_material_property(void* _pvCtx, int iObjUID)
     if (piColorMaterial == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "use_color_material");
-        return -1;
+        return NULL;
     }
 
     if (iColorMaterial)

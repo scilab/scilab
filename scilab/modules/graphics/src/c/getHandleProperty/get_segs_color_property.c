@@ -50,7 +50,7 @@ void* get_segs_color_property(void* _pvCtx, int iObjUID)
     if (piNbSegs == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "segs_color");
-        return -1;
+        return NULL;
     }
 
     return sciReturnRowIntVector(segsColors, iNbSegs);

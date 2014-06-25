@@ -37,7 +37,7 @@ types::Function::ReturnValue sci_impl(types::typed_list &in, int _iRetCount, typ
 {
     // Methode
     types::String* pStrType     = NULL;
-    wchar_t* wcsType            = L"lsoda";
+    const wchar_t * wcsType     = L"lsoda";
     int meth                    = 2;// default methode is stiff
 
     // y0

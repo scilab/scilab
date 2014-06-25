@@ -29,7 +29,9 @@
 #include "dynlib_types.h"
 
 //disable warnings about exports STL items
+#ifdef _MSC_VER
 #pragma warning (disable : 4251)
+#endif
 
 namespace types
 {

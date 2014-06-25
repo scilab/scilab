@@ -30,9 +30,9 @@ extern "C"
 #include "os_wcsdup.h"
 }
 
-static wchar_t* replaceAndCountLines(wchar_t* _pwstInput, int* _piLines, int* _piNewLine);
+static wchar_t* replaceAndCountLines(const wchar_t* _pwstInput, int* _piLines, int* _piNewLine);
 
-wchar_t** scilab_sprintf(char* _pstName, wchar_t* _pwstInput, typed_list &in, ArgumentPosition* _pArgs, int _iArgsCount, int* _piOutputRows, int* _piNewLine)
+wchar_t** scilab_sprintf(const char* _pstName, const wchar_t* _pwstInput, typed_list &in, ArgumentPosition* _pArgs, int _iArgsCount, int* _piOutputRows, int* _piNewLine)
 {
     /* Force Windows display to have two-digit exponent. */
 #ifdef _MSC_VER
@@ -360,7 +360,7 @@ wchar_t** scilab_sprintf(char* _pstName, wchar_t* _pwstInput, typed_list &in, Ar
 // replace "\\n" "\\r" "\\t" "\\r\\n" by '\n' '\r' '\t' '\n'
 // count number of lines
 // indicate if one '\n' is at the end of string
-static wchar_t* replaceAndCountLines(wchar_t* _pwstInput, int* _piLines, int* _piNewLine)
+static wchar_t* replaceAndCountLines(const wchar_t* _pwstInput, int* _piLines, int* _piNewLine)
 {
     size_t iInputLen = wcslen(_pwstInput);
     wchar_t* pwstFirstOutput = (wchar_t*)MALLOC(sizeof(wchar_t) * (iInputLen + 1));

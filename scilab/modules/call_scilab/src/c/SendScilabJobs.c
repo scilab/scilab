@@ -61,7 +61,7 @@ int SendScilabJob(char *job)
         SetLastJob(command);
 
         /* Creation of a temp variable in Scilab which contains the command */
-        sciErr = createNamedMatrixOfString(NULL, "TMP_EXEC_STRING", 1, 1, &command);
+        sciErr = createNamedMatrixOfString(NULL, "TMP_EXEC_STRING", 1, 1, (char const* const*) &command);
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);

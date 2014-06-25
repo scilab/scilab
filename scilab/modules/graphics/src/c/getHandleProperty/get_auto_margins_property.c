@@ -36,7 +36,7 @@ void* get_auto_margins_property(void* _pvCtx, int iObjUID)
     if (piAutoMargins == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "auto_margins");
-        return -1;
+        return NULL;
     }
 
     if (iAutoMargins)

@@ -61,7 +61,7 @@ BOOL setenvc(const char *stringIn, const char *valueIn)
 #endif
 }
 /*--------------------------------------------------------------------------*/
-BOOL setenvcW(wchar_t *wstringIn, wchar_t *wvalueIn)
+BOOL setenvcW(const wchar_t *wstringIn, const wchar_t *wvalueIn)
 {
     BOOL ret = TRUE;
     int len_env = 0;

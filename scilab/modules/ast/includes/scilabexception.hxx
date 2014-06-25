@@ -19,7 +19,9 @@
 #include "dynlib_ast_tools.hxx"
 
 //disable warnings about exports STL items
+#ifdef _MSC_VER
 #pragma warning (disable : 4251)
+#endif
 
 namespace ast
 {
@@ -34,13 +36,13 @@ public :
     virtual ~ScilabException() throw() {};
 
     void            SetErrorMessage(std::wstring _wstErrorMesssage);
-    std::wstring    GetErrorMessage(void);
+    std::wstring    GetErrorMessage(void) const;
 
     void            SetErrorNumber(int _iErrorNumber);
-    int             GetErrorNumber(void);
+    int             GetErrorNumber(void) const;
 
     void            SetErrorLocation(const Location& _ErrorLocation);
-    Location&       GetErrorLocation(void);
+    const Location& GetErrorLocation(void) const;
 protected :
     std::wstring    m_wstErrorMessage;
 

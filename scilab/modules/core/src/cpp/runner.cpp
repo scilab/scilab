@@ -39,7 +39,7 @@ void *Runner::launch(void *args)
         me->getProgram()->accept(*(me->getVisitor()));
         //ConfigVariable::clearLastError();
     }
-    catch (ast::ScilabException se)
+    catch (const ast::ScilabException& se)
     {
         // remove the last call from where in case pause/abort
         ConfigVariable::where_end();
@@ -114,7 +114,7 @@ void Runner::execAndWait(ast::Exp* _theProgram, ast::ExecVisitor *_visitor)
             __WaitThreadDie(threadId);
         }
     }
-    catch (ast::ScilabException se)
+    catch (const ast::ScilabException& se)
     {
         throw se;
     }

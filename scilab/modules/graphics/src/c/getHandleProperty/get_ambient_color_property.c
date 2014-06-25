@@ -31,7 +31,7 @@ void* get_ambient_color_property(void* _pvCtx, int iObjUID)
     if (color == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "ambient_color");
-        return -1;
+        return NULL;
     }
 
     return sciReturnMatrix(color, 1, 3);

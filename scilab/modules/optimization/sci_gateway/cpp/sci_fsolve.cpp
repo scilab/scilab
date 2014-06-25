@@ -267,7 +267,7 @@ types::Function::ReturnValue sci_fsolve(types::typed_list &in, int _iRetCount, t
     // alloc output data
     pDblV = new types::Double(pDblX->getDims(), pDblX->getDimsArray());
 
-    char* pstrFunc = "fct";
+    char const * pstrFunc = "fct";
     try
     {
         if (bJac)

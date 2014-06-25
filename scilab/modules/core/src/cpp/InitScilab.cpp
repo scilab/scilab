@@ -103,24 +103,10 @@ using namespace ast;
 
 ScilabEngineInfo* InitScilabEngineInfo()
 {
-    ScilabEngineInfo* pSEI = (ScilabEngineInfo*)MALLOC(sizeof(ScilabEngineInfo));
-    pSEI->iParseTrace   = 0;
-    pSEI->iPrintAst     = 0;
+    // Disable all but AST parsing.
+    ScilabEngineInfo* pSEI = (ScilabEngineInfo*)CALLOC(1, sizeof(ScilabEngineInfo));
     pSEI->iExecAst      = 1;
-    pSEI->iDumpAst      = 0;
-    pSEI->iDumpStack    = 0;
-    pSEI->iTimed        = 0;
-    pSEI->iAstTimed     = 0;
-    pSEI->iExecVerbose  = 0;
-    pSEI->iConsoleMode  = 0;
-    pSEI->iNoJvm        = 0;
-    pSEI->iNoStart      = 0;
-    pSEI->iShowVersion  = 0;
 
-    pSEI->pstParseFile  = NULL;
-    pSEI->pstFile       = NULL;
-    pSEI->pstExec       = NULL;
-    pSEI->pstLang       = NULL;
     return pSEI;
 }
 
@@ -258,7 +244,7 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
             _pSEI->pstFile = NULL;
         }
     }
-    catch (ast::ScilabException se)
+    catch (const ast::ScilabException& se)
     {
         scilabErrorW(se.GetErrorMessage().c_str());
     }

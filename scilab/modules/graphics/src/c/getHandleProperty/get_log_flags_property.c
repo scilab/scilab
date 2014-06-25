@@ -51,7 +51,7 @@ void* get_log_flags_property(void* _pvCtx, int iObjUID)
     if (piLogFlag == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "log_flag");
-        return -1;
+        return NULL;
     }
 
     logFlags[1] = iLogFlag;
@@ -60,7 +60,7 @@ void* get_log_flags_property(void* _pvCtx, int iObjUID)
     if (piLogFlag == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "log_flag");
-        return -1;
+        return NULL;
     }
 
     logFlags[2] = iLogFlag;

@@ -31,10 +31,10 @@ extern "C"
 #include "mclose.h"
 #include "mseek.h"
 
-    extern int C2F(clunit)(int* , char*, int*, int);
+    extern int C2F(clunit)(int* , char const*, int*, int);
     extern int C2F(rewindinter)(int*);
     extern int C2F(backspaceinter)(int*);
-    extern int C2F(readinter)(int*, char*, int);
+    extern int C2F(readinter)(int*, char const*, int);
 }
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_file_no_rhs(types::typed_list &in, int _iRetCount, types::typed_list &out);

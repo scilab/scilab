@@ -43,7 +43,7 @@ void* get_position_property(void* _pvCtx, int iObjUID)
     if (piType == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "type");
-        return -1;
+        return NULL;
     }
 
     /* Special figure case */
@@ -96,7 +96,7 @@ void* get_position_property(void* _pvCtx, int iObjUID)
         if (position == NULL)
         {
             Scierror(999, _("'%s' property does not exist for this handle.\n"), "position");
-            return -1;
+            return NULL;
         }
 
         return sciReturnRowVector(position, 3);

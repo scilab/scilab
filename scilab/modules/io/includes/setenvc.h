@@ -25,7 +25,7 @@
  * @return FALSE if there is a problem otherwise TRUE
  */
 IO_IMPEXP BOOL setenvc(const char *string, const char *value);
-IO_IMPEXP BOOL setenvcW(wchar_t *string, wchar_t *value);
+IO_IMPEXP BOOL setenvcW(const wchar_t *string, const wchar_t *value);
 
 #endif /* __SETENVC_H__ */
 /*--------------------------------------------------------------------------*/

@@ -47,7 +47,7 @@ void* get_ytics_coord_property(void* _pvCtx, int iObjUID)
     if (piYNumberTicks == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "ytics_coord");
-        return -1;
+        return NULL;
     }
 
     return sciReturnRowVector(yTicksCoords, iYNumberTicks);

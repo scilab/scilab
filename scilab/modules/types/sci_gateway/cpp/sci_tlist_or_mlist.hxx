@@ -28,7 +28,7 @@ extern "C"
 using namespace types;
 
 template <typename TorMList>
-Function::ReturnValue sci_tlist_or_mlist(typed_list &in, int _piRetCount, typed_list &out, wchar_t *_pstrFunName)
+Function::ReturnValue sci_tlist_or_mlist(typed_list &in, int _piRetCount, typed_list &out, const wchar_t *_pstrFunName)
 {
     TorMList* pRetVal = NULL;
 

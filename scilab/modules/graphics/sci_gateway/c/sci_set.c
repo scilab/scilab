@@ -197,7 +197,7 @@ int sci_set(char *fname, void *pvApiCtx)
 
         if (iPropertyFound)
         {
-            callSetProperty(pvApiCtx, NULL, pvData, iType2, iRows2, iCols2, pstProperty);
+            callSetProperty(pvApiCtx, 0, pvData, iType2, iRows2, iCols2, pstProperty);
             if (iType2 == sci_strings)
             {
                 //free allocated data

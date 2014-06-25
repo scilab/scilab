@@ -153,7 +153,7 @@ void* getLineBorder(types::InternalType* _pITParent, int _iPos, int _iObjUID)
     int* piRounded      = &iRounded;
     int iListSize       = 4;
 
-    wchar_t* pstFieldList[] = {L"LineBorder", L"color", L"thickness", L"rounded"};
+    const wchar_t * pstFieldList[] = {L"LineBorder", L"color", L"thickness", L"rounded"};
 
     getGraphicObjectProperty(_iObjUID, __GO_UI_FRAME_BORDER_COLOR__, jni_string, (void **)&pstColor);
     if (pstColor == NULL)
@@ -212,24 +212,24 @@ void* getSoftBevelBorder(types::InternalType* _pITParent, int _iPos, int _iObjUI
 /*------------------------------------------------------------------------*/
 void* getCommonBevelBorder(types::InternalType* _pITParent, int _iPos, int _iObjUID, int _iBevel)
 {
-    wchar_t* pstFieldList1[]       = {L"BevelBorder", L"type", L"hlouter", L"hlinner", L"shadowouter", L"shadowinner"};
-    wchar_t* pstFieldList2[]       = {L"BevelBorder", L"type", L"hlouter", L"shadowouter"};
-    wchar_t** pstFieldList         = pstFieldList1;
+    const wchar_t * pstFieldList1[]     = {L"BevelBorder", L"type", L"hlouter", L"hlinner", L"shadowouter", L"shadowinner"};
+    const wchar_t * pstFieldList2[]     = {L"BevelBorder", L"type", L"hlouter", L"shadowouter"};
+    wchar_t const* const* pstFieldList  = pstFieldList1;
 
-    wchar_t* pstSoftFieldList1[]   = {L"SoftBevelBorder", L"type", L"hlouter", L"hlinner", L"shadowouter", L"shadowinner"};
-    wchar_t* pstSoftFieldList2[]   = {L"SoftBevelBorder", L"type", L"hlouter", L"shadowouter"};
-    wchar_t** pstSoftFieldList     = pstSoftFieldList1;
+    const wchar_t * pstSoftFieldList1[] = {L"SoftBevelBorder", L"type", L"hlouter", L"hlinner", L"shadowouter", L"shadowinner"};
+    const wchar_t * pstSoftFieldList2[] = {L"SoftBevelBorder", L"type", L"hlouter", L"shadowouter"};
+    wchar_t const* const* pstSoftFieldList = pstSoftFieldList1;
 
     int iListSize = 6;
 
     // properties
-    int iType               = 0;
-    int* piType             = &iType;
-    wchar_t* pstType[]      = {L"raised", L"lowered"};
-    char* pstHlOutColor     = NULL;
-    char* pstHlInColor      = NULL;
-    char* pstShadowOutColor = NULL;
-    char* pstShadowInColor  = NULL;
+    int iType                   = 0;
+    int* piType                 = &iType;
+    const wchar_t * pstType[]   = {L"raised", L"lowered"};
+    char* pstHlOutColor         = NULL;
+    char* pstHlInColor          = NULL;
+    char* pstShadowOutColor     = NULL;
+    char* pstShadowInColor      = NULL;
 
     getGraphicObjectProperty(_iObjUID, __GO_UI_FRAME_BORDER_TYPE__, jni_int, (void **)&piType);
     if (piType == NULL)
@@ -296,17 +296,17 @@ void* getCommonBevelBorder(types::InternalType* _pITParent, int _iPos, int _iObj
 /*------------------------------------------------------------------------*/
 void* getEtchedBorder(types::InternalType* _pITParent, int _iPos, int _iObjUID)
 {
-    wchar_t* pstFieldList1[]    = {L"EtchedBorder", L"type", L"hl", L"shadow"};
-    wchar_t* pstFieldList2[]    = {L"EtchedBorder", L"hl", L"shadow"};
-    wchar_t** pstFieldList      = pstFieldList1;
-    int iListSize               = 4;
+    const wchar_t * pstFieldList1[] = {L"EtchedBorder", L"type", L"hl", L"shadow"};
+    const wchar_t * pstFieldList2[] = {L"EtchedBorder", L"hl", L"shadow"};
+    wchar_t const* const* pstFieldList = pstFieldList1;
+    int iListSize                   = 4;
 
     // properties
-    int iType               = 0;
-    int* piType             = &iType;
-    wchar_t* pstType[]      = {L"raised", L"lowered"};
-    char* pstHlOutColor     = NULL;
-    char* pstShadowOutColor = NULL;
+    int iType                   = 0;
+    int* piType                 = &iType;
+    const wchar_t * pstType[]   = {L"raised", L"lowered"};
+    char* pstHlOutColor         = NULL;
+    char* pstShadowOutColor     = NULL;
 
     getGraphicObjectProperty(_iObjUID, __GO_UI_FRAME_BORDER_TYPE__, jni_int, (void **)&piType);
     getGraphicObjectProperty(_iObjUID, __GO_UI_FRAME_BORDER_HIGHLIGHT_OUT__, jni_string, (void **)&pstHlOutColor);
@@ -363,11 +363,11 @@ void* getEtchedBorder(types::InternalType* _pITParent, int _iPos, int _iObjUID)
 /*------------------------------------------------------------------------*/
 void* getTitledBorder(types::InternalType* _pITParent, int _iPos, int _iObjUID)
 {
-    wchar_t* pstFieldList1[]    = {L"TitledBorder", L"border", L"title", L"justification", L"position", L"font", L"color"};
-    wchar_t* pstFieldList2[]    = {L"TitledBorder", L"title"};
-    wchar_t** pstFieldList      = pstFieldList1;
-    wchar_t* pstJustification[] = {L"leading" , L"left" , L"center" , L"right" , L"trailing"};
-    wchar_t* pstPosition[]      = {L"top" , L"above_top" , L"below_top" , L"bottom" , L"above_bottom", L"below_bottom"};
+    const wchar_t * pstFieldList1[]     = {L"TitledBorder", L"border", L"title", L"justification", L"position", L"font", L"color"};
+    const wchar_t * pstFieldList2[]     = {L"TitledBorder", L"title"};
+    wchar_t const* const* pstFieldList  = pstFieldList1;
+    const wchar_t * pstJustification[]  = {L"leading" , L"left" , L"center" , L"right" , L"trailing"};
+    const wchar_t * pstPosition[]       = {L"top" , L"above_top" , L"below_top" , L"bottom" , L"above_bottom", L"below_bottom"};
 
     int iListSize = 7;
 
@@ -486,7 +486,7 @@ void* getTitledBorder(types::InternalType* _pITParent, int _iPos, int _iObjUID)
 /*------------------------------------------------------------------------*/
 void* getEmptyBorder(types::InternalType* _pITParent, int _iPos, int _iObjUID)
 {
-    wchar_t* pstFieldList[] = {L"EmptyBorder", L"top", L"left", L"bottom", L"right"};
+    const wchar_t * pstFieldList[] = {L"EmptyBorder", L"top", L"left", L"bottom", L"right"};
     int iListSize           = 5;
     double* pdblPosition    = NULL;
 
@@ -521,7 +521,7 @@ void* getEmptyBorder(types::InternalType* _pITParent, int _iPos, int _iObjUID)
 /*------------------------------------------------------------------------*/
 void* getCompoundBorder(types::InternalType* _pITParent, int _iPos, int _iObjUID)
 {
-    wchar_t* pstFieldList[] = {L"CompoundBorder", L"outer", L"inner"};
+    const wchar_t * pstFieldList[] = {L"CompoundBorder", L"outer", L"inner"};
     int iListSize           = 3;
 
     // properties
@@ -568,7 +568,7 @@ void* getCompoundBorder(types::InternalType* _pITParent, int _iPos, int _iObjUID
 /*------------------------------------------------------------------------*/
 void* getMatteBorder(types::InternalType* _pITParent, int _iPos, int _iObjUID)
 {
-    wchar_t* pstFieldList[] = {L"MatteBorder", L"top", L"left", L"bottom", L"right", L"color"};
+    const wchar_t * pstFieldList[] = {L"MatteBorder", L"top", L"left", L"bottom", L"right", L"color"};
     int iListSize           = 6;
 
     // properties

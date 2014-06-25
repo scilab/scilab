@@ -46,7 +46,7 @@ int sci_pwd(char *fname, void* pvApiCtx)
         int m1 = (int)strlen(path);
 
         n1 = 1;
-        sciErr = createMatrixOfString(pvApiCtx, Rhs + 1, 1, 1, &path);
+        sciErr = createMatrixOfString(pvApiCtx, Rhs + 1, 1, 1, (char const* const*) &path);
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);

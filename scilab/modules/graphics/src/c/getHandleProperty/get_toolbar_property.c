@@ -28,7 +28,7 @@ void* get_toolbar_property(void* _pvCtx, int iObjUID)
     if (pitool == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "toolbar");
-        return -1;
+        return NULL;
     }
 
     switch (itool)

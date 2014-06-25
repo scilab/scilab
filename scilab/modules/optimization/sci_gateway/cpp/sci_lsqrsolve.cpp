@@ -340,7 +340,7 @@ types::Function::ReturnValue sci_lsqrsolve(types::typed_list &in, int _iRetCount
     // alloc output data
     pDblV = new types::Double(iM, 1);
 
-    char* pstrFunc = "fct";
+    char const* pstrFunc = "fct";
     try
     {
         if (bJac)

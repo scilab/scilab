@@ -20,7 +20,7 @@
 #include "Scierror.h"
 #include "pcre_error.h"
 
-void pcre_error(char *fname, int errorCode)
+void pcre_error(char const * fname, int errorCode)
 {
     switch (errorCode)
     {

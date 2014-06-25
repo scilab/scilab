@@ -36,7 +36,7 @@ types::Function::ReturnValue sci_splin3d(types::typed_list &in, int _iRetCount, 
     // output
     types::TList* pTListOut = NULL;
 
-    wchar_t* wcsStr[] = {L"tensbs3d", L"tx", L"ty", L"tz", L"order", L"bcoef", L"xyzminmax"};
+    const wchar_t * wcsStr[] = {L"tensbs3d", L"tx", L"ty", L"tz", L"order", L"bcoef", L"xyzminmax"};
 
     // *** check the minimal number of input args. ***
     if (in.size() < 4 || in.size() > 5)

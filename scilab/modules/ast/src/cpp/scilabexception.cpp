@@ -65,7 +65,7 @@ void ScilabException::SetErrorMessage(std::wstring _wstErrorMesssage)
     m_wstErrorMessage = _wstErrorMesssage;
 }
 
-std::wstring ScilabException::GetErrorMessage(void)
+std::wstring ScilabException::GetErrorMessage(void) const
 {
     return m_wstErrorMessage;
 }
@@ -75,7 +75,7 @@ void ScilabException::SetErrorNumber(int _iErrorNumber)
     m_iErrorNumber = _iErrorNumber;
 }
 
-int ScilabException::GetErrorNumber(void)
+int ScilabException::GetErrorNumber(void) const
 {
     return m_iErrorNumber;
 }
@@ -85,7 +85,7 @@ void ScilabException::SetErrorLocation(const Location& _ErrorLocation)
     m_ErrorLocation = _ErrorLocation;
 }
 
-Location& ScilabException::GetErrorLocation(void)
+const Location& ScilabException::GetErrorLocation(void) const
 {
     return m_ErrorLocation;
 }

@@ -204,7 +204,7 @@ int sci_fscanfMat(char *fname, void* pvApiCtx)
             {
                 if (results->text)
                 {
-                    sciErr = createMatrixOfString(pvApiCtx, Rhs + 2, results->sizeText, 1, results->text);
+                    sciErr = createMatrixOfString(pvApiCtx, Rhs + 2, results->sizeText, 1, (char const* const*) results->text);
                     if (sciErr.iErr)
                     {
                         FREE(filename);

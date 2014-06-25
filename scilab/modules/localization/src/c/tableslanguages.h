@@ -25,15 +25,15 @@
 typedef struct languages_struct
 {
     int code;
-    wchar_t alphacode[LengthAlphacode];
-    wchar_t languagedescription[LengthLanguage];
+    const wchar_t *alphacode;
+    const wchar_t *languagedescription;
 
 } LanguagesTable;
 /*--------------------------------------------------------------------------*/
 typedef struct languagesalias_struct
 {
-    wchar_t alias[LengthAlphacode];
-    wchar_t alphacode[LengthAlphacode];
+    const wchar_t *alias;
+    const wchar_t *alphacode;
 
 } LanguagesTableAlias;
 /*--------------------------------------------------------------------------*/
@@ -314,7 +314,7 @@ static LanguagesTable LANGUAGE_COUNTRY_TAB[NumberLanguages] =
 // These two charsets are currently supported by Scilab, this is why there are
 // no other ones.
 #define NumberOfCharsets 2
-static char* CHARSETS[NumberOfCharsets] =
+static const char* CHARSETS[NumberOfCharsets] =
 {
     "UTF-8",
     "ISO-8859-1"

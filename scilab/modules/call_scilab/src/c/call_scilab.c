@@ -44,7 +44,7 @@
 
 extern char *getCmdLine(void);
 
-static void TermPrintf(char *text)
+static void TermPrintf(const char *text)
 {
     //std::cout << text;
     printf("%s", text);

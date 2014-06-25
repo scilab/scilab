@@ -82,7 +82,7 @@ String::String(int _iRows, int _iCols)
 #endif
 }
 
-String::String(int _iRows, int _iCols, wchar_t** _pstData)
+String::String(int _iRows, int _iCols, wchar_t const* const* _pstData)
 {
     wchar_t** pwsData = NULL;
     int piDims[] = {_iRows, _iCols};

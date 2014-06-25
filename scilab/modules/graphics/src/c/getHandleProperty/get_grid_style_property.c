@@ -40,7 +40,7 @@ void* get_grid_style_property(void* _pvCtx, int iObjUID)
     if (piGridStyle == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "grid_style");
-        return -1;
+        return NULL;
     }
 
     grid[0] = (double) iGridStyle;
@@ -49,7 +49,7 @@ void* get_grid_style_property(void* _pvCtx, int iObjUID)
     if (piGridStyle == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "grid_style");
-        return -1;
+        return NULL;
     }
 
     grid[1] = (double) iGridStyle;
@@ -58,7 +58,7 @@ void* get_grid_style_property(void* _pvCtx, int iObjUID)
     if (piGridStyle == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "grid_style");
-        return -1;
+        return NULL;
     }
 
     grid[2] = (double) iGridStyle;

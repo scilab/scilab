@@ -53,7 +53,7 @@ void* get_grid_property(void* _pvCtx, int iObjUID)
     if (piGridColor == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "grid");
-        return -1;
+        return NULL;
     }
 
     grid[1] = (double) iGridColor;
@@ -62,7 +62,7 @@ void* get_grid_property(void* _pvCtx, int iObjUID)
     if (piGridColor == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "grid");
-        return -1;
+        return NULL;
     }
 
     grid[2] = (double) iGridColor;

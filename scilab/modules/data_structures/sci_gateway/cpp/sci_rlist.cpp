@@ -39,7 +39,7 @@ types::Function::ReturnValue sci_rlist(types::typed_list &in, int _iRetCount, ty
     }
 
     types::TList* pTLOut = new types::TList();
-    wchar_t* wcsFields[4] = {L"r", L"num", L"den", L"dt"};
+    const wchar_t * wcsFields[4] = {L"r", L"num", L"den", L"dt"};
     types::String* pStr = new types::String(1, 4, wcsFields);
     pTLOut->set(0, pStr);
 

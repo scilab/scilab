@@ -46,7 +46,7 @@ void* get_sub_tics_property(void* _pvCtx, int iObjUID)
     if (piType == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "type");
-        return -1;
+        return NULL;
     }
 
     /*
@@ -84,7 +84,7 @@ void* get_sub_tics_property(void* _pvCtx, int iObjUID)
         if (piSubTicks == NULL)
         {
             Scierror(999, _("'%s' property does not exist for this handle.\n"), "sub_ticks");
-            return -1;
+            return NULL;
         }
 
         sub_ticks[1] = iSubTicks;
@@ -93,7 +93,7 @@ void* get_sub_tics_property(void* _pvCtx, int iObjUID)
         if (piSubTicks == NULL)
         {
             Scierror(999, _("'%s' property does not exist for this handle.\n"), "sub_ticks");
-            return -1;
+            return NULL;
         }
 
         sub_ticks[2] = iSubTicks;
@@ -102,7 +102,7 @@ void* get_sub_tics_property(void* _pvCtx, int iObjUID)
         if (piView == NULL)
         {
             Scierror(999, _("'%s' property does not exist for this handle.\n"), "view");
-            return -1;
+            return NULL;
         }
 
         if (iView == 1)

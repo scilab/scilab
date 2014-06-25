@@ -59,12 +59,12 @@
 static wchar_t CURRENTLANGUAGESTRING[LengthAlphacode] = L"en_US";
 static int  CURRENTLANGUAGECODE = SCILABDEFAULTLANGUAGECODE;
 /*--------------------------------------------------------------------------*/
-static int FindLanguageCode(wchar_t *lang);
-static BOOL setlanguagecode(wchar_t *lang);
-static wchar_t *FindAlias(wchar_t *lang);
-static wchar_t *GetLanguageFromAlias(wchar_t *langAlias);
+static int FindLanguageCode(const wchar_t *lang);
+static BOOL setlanguagecode(const wchar_t *lang);
+static const wchar_t *FindAlias(const wchar_t *lang);
+static const wchar_t *GetLanguageFromAlias(const wchar_t *langAlias);
 /*--------------------------------------------------------------------------*/
-BOOL setlanguage(wchar_t *lang)
+BOOL setlanguage(const wchar_t *lang)
 {
     if (lang)
     {
@@ -218,7 +218,7 @@ BOOL setlanguage(wchar_t *lang)
     return FALSE;
 }
 /*--------------------------------------------------------------------------*/
-wchar_t *getlanguage(void)
+const wchar_t *getlanguage(void)
 {
     return CURRENTLANGUAGESTRING;
 }
@@ -228,7 +228,7 @@ int getcurrentlanguagecode(void)
     return CURRENTLANGUAGECODE;
 }
 /*--------------------------------------------------------------------------*/
-wchar_t *getlanguagefromcode(int code)
+const wchar_t *getlanguagefromcode(int code)
 {
     int i = 0;
 
@@ -242,12 +242,12 @@ wchar_t *getlanguagefromcode(int code)
     return NULL;
 }
 /*--------------------------------------------------------------------------*/
-int getcodefromlanguage(wchar_t *language)
+int getcodefromlanguage(const wchar_t *language)
 {
     return FindLanguageCode(language);
 }
 /*--------------------------------------------------------------------------*/
-BOOL LanguageIsOK(wchar_t *lang)
+BOOL LanguageIsOK(const wchar_t *lang)
 {
     int i = 0;
 
@@ -268,7 +268,7 @@ BOOL LanguageIsOK(wchar_t *lang)
     return FALSE;
 }
 /*--------------------------------------------------------------------------*/
-static int FindLanguageCode(wchar_t *lang)
+static int FindLanguageCode(const wchar_t *lang)
 {
     int i = 0;
 
@@ -282,7 +282,7 @@ static int FindLanguageCode(wchar_t *lang)
     return -1;
 }
 /*--------------------------------------------------------------------------*/
-static BOOL setlanguagecode(wchar_t *lang)
+static BOOL setlanguagecode(const wchar_t *lang)
 {
     int tmpCode = FindLanguageCode(lang);
 
@@ -294,7 +294,7 @@ static BOOL setlanguagecode(wchar_t *lang)
     return FALSE;
 }
 /*--------------------------------------------------------------------------*/
-static wchar_t *FindAlias(wchar_t *lang)
+static const wchar_t *FindAlias(const wchar_t *lang)
 {
     int i = 0;
     for (i = 0 ; i < NumberLanguagesAlias ; i++)
@@ -307,7 +307,7 @@ static wchar_t *FindAlias(wchar_t *lang)
     return NULL;
 }
 /*--------------------------------------------------------------------------*/
-static wchar_t *GetLanguageFromAlias(wchar_t *langAlias)
+static const wchar_t *GetLanguageFromAlias(const wchar_t *langAlias)
 {
     int i = 0;
     for (i = 0 ; i < NumberLanguagesAlias ; i++)
@@ -320,14 +320,14 @@ static wchar_t *GetLanguageFromAlias(wchar_t *langAlias)
     return NULL;
 }
 /*--------------------------------------------------------------------------*/
-wchar_t *getlanguagealias(void)
+const wchar_t *getlanguagealias(void)
 {
     return FindAlias(CURRENTLANGUAGESTRING);
 }
 /*--------------------------------------------------------------------------*/
-BOOL needtochangelanguage(wchar_t *language)
+BOOL needtochangelanguage(const wchar_t *language)
 {
-    wchar_t *currentlanguage = getlanguage();
+	const wchar_t *currentlanguage = getlanguage();
 
     if (wcscmp(language, currentlanguage))
     {
@@ -337,9 +337,9 @@ BOOL needtochangelanguage(wchar_t *language)
     return FALSE;
 }
 /*--------------------------------------------------------------------------*/
-wchar_t *convertlanguagealias(wchar_t *strlanguage)
+const wchar_t *convertlanguagealias(const wchar_t *strlanguage)
 {
-    wchar_t *correctlanguage = NULL;
+	const wchar_t *correctlanguage = NULL;
 
     if ( (wcslen(strlanguage) == 2) || (wcscmp(strlanguage, L"en_US") == 0) ) /* If the user wants to change to en_US ... use the default locale */
     {
@@ -368,7 +368,7 @@ wchar_t *convertlanguagealias(wchar_t *strlanguage)
  *
  * @param locale the locale (ex : fr_FR or en_US)
  */
-BOOL exportLocaleToSystem(wchar_t *locale)
+BOOL exportLocaleToSystem(const wchar_t *locale)
 {
 
     if (locale == NULL)

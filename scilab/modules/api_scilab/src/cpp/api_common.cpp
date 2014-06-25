@@ -73,13 +73,13 @@ int* getNbInputArgument(void* _pvCtx)
     if (pStr == NULL)
     {
         std::cout << "pStr == NULL" << std::endl;
-        return 0;
+        return NULL;
     }
 
     if (pStr->m_pIn == NULL)
     {
         std::cout << "pStr->m_pin == NULL" << std::endl;
-        return 0;
+        return NULL;
     }
 
     return &pStr->m_iIn;;
@@ -231,7 +231,7 @@ int checkOutputArgumentAtMost(void* _pvCtx, int _iMax)
 }
 
 /*--------------------------------------------------------------------------*/
-int callScilabFunction(void* _pvCtx, char* _pstName, int _iStart, int _iLhs, int _iRhs)
+int callScilabFunction(void* _pvCtx, char const* _pstName, int _iStart, int _iLhs, int _iRhs)
 {
     GatewayStruct* pStr = (GatewayStruct*)_pvCtx;
     Function::ReturnValue callResult;
@@ -731,7 +731,8 @@ SciErr getProcessMode(void *_pvCtx, int _iPos, int *_piAddRef, int *_piMode)
     else if (iType2 == sci_strings)
     {
         int iLen = 0;
-        char *pstMode[1] = { "" };
+        char initialValue = '\0';
+        char *pstMode[1] = { &initialValue };
 
         sciErr = getVarDimension(_pvCtx, piAddr2, &iRows2, &iCols2);
         if (sciErr.iErr)
@@ -1574,6 +1575,7 @@ int decreaseValRef(void* _pvCtx, int* _piAddress)
     return 0;
 }
 /*--------------------------------------------------------------------------*/
+static char eostr = '\0';
 SciErr sciErrInit()
 {
     int i = 0 ;
@@ -1583,7 +1585,7 @@ SciErr sciErrInit()
 
     for (; i < MESSAGE_STACK_SIZE ; i++)
     {
-        sciErr.pstMsg[i] = "";
+        sciErr.pstMsg[i] = &eostr;
     }
 
     return sciErr;

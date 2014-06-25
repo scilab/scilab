@@ -22,7 +22,7 @@ extern "C" {
 
 using namespace  org_scilab_modules_gui_bridge;
 
-int ConsolePrintf(char *line)
+int ConsolePrintf(const char *line)
 {
     JavaVM *vm = getScilabJavaVM();
     if (vm == NULL)

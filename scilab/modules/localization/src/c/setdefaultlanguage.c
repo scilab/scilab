@@ -18,7 +18,7 @@
 #endif
 
 /*--------------------------------------------------------------------------*/
-void setdefaultlanguage(char * lang)
+void setdefaultlanguage(const char * lang)
 {
 
 #ifdef _MSC_VER
@@ -35,7 +35,7 @@ void setdefaultlanguage(char * lang)
 
 }
 /*--------------------------------------------------------------------------*/
-char * getdefaultlanguage(void)
+const char* getdefaultlanguage(void)
 {
 
 #ifdef _MSC_VER

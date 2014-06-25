@@ -47,7 +47,7 @@ void* get_data_bounds_property(void* _pvCtx, int iObjUID)
     if (piView == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "view");
-        return -1;
+        return NULL;
     }
 
     /**DJ.Abdemouche 2003**/

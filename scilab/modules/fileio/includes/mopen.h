@@ -37,7 +37,7 @@ typedef enum
     MOPEN_INVALID_STATUS = 5
 } mopenError;
 
-FILEIO_IMPEXP int mopen(wchar_t* _pstFilename, wchar_t* _pstMode, int _iSwap, int* _piID);
+FILEIO_IMPEXP int mopen(const wchar_t* _pstFilename, const wchar_t* _pstMode, int _iSwap, int* _piID);
 
 #endif  /* __MOPEN_H__ */
 /*--------------------------------------------------------------------------*/

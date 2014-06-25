@@ -191,10 +191,10 @@ extern "C"
 #include <unistd.h>
 #endif
     extern char *getCmdLine(void);
-    extern void ConsolePrintf(char *);
+    extern void ConsolePrintf(const char *);
 }
 
-static void TermPrintf(char *text)
+static void TermPrintf(const char *text)
 {
     //std::cout << text;
     printf("%s", text);

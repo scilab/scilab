@@ -288,14 +288,14 @@ SetPropertyHashTable *createScilabSetHashTable(void)
 }
 
 /*--------------------------------------------------------------------------*/
-int callSetProperty(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol, char *propertyName)
+int callSetProperty(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol, const char *propertyName)
 {
     setPropertyFunc accessor = searchSetHashtable(setHashTable, propertyName);
 
     if (accessor == NULL)
     {
         Scierror(999, _("Unknown property: %s.\n"), propertyName);
-        return -1;
+        return NULL;
     }
     return accessor(_pvCtx, iObjUID, _pvData, valueType, nbRow, nbCol);
 }

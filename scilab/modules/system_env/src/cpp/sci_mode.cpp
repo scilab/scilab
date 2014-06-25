@@ -24,7 +24,7 @@ void setScilabMode(scilabMode newmode)
     ConfigVariable::setScilabMode(static_cast<int>(newmode));
 }
 
-char * getScilabModeString(void)
+const char * getScilabModeString(void)
 {
     scilabMode smMode = getScilabMode();
     switch (smMode)

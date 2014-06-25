@@ -51,6 +51,6 @@ typedef union
 } entry;
 typedef enum {SF_C, SF_S, SF_LUI, SF_SUI, SF_UI, SF_LI, SF_SI, SF_I, SF_LF, SF_F} sfdir;
 
-FILEIO_IMPEXP int do_xxscanf (wchar_t *fname, FILE *fp, wchar_t *format, int *nargs, wchar_t *strv, int *retval, rec_entry *buf, sfdir *type);
+FILEIO_IMPEXP int do_xxscanf (const wchar_t *fname, FILE *fp, const wchar_t *format, int *nargs, wchar_t *strv, int *retval, rec_entry *buf, sfdir *type);
 #endif /* __DO_XXSCANF_H__ */
 

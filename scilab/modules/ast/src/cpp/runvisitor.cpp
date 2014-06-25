@@ -103,7 +103,7 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
     {
         e.head_get()->accept(*this);
     }
-    catch (ScilabError error)
+    catch (const ScilabError& error)
     {
         throw error;
     }
@@ -787,7 +787,7 @@ void RunVisitorT<T>::visitprivate(const SeqExp  &e)
                 break;
             }
         }
-        catch (ScilabMessage sm)
+        catch (const ScilabMessage& sm)
         {
             scilabErrorW(sm.GetErrorMessage().c_str());
 
@@ -813,7 +813,7 @@ void RunVisitorT<T>::visitprivate(const SeqExp  &e)
 
             throw ScilabMessage((*itExp)->location_get());
         }
-        catch (ScilabError se)
+        catch (const ScilabError& se)
         {
             // check on error number because error message can be empty.
             if (ConfigVariable::getLastErrorNumber() == 0)
@@ -1182,7 +1182,7 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
         os_swprintf(szError, bsiz, _W("%ls: Wrong type for argument %d: Real scalar expected.\n"), L"':'", iPos);
         throw ScilabError(szError, 999, e.location_get());
     }
-    catch (ScilabError error)
+    catch (const ScilabError& error)
     {
         //TODO YaSp : Overloading
         throw error;

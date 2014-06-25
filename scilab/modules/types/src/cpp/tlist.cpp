@@ -195,7 +195,7 @@ bool TList::toString(std::wostringstream& ostr)
              wcscmp((*m_plData)[0]->getAs<types::String>()->get(0), L"lss") == 0)
     {
         int iPosition = 1;
-        wchar_t* wcsDesc[7] = {L"  (state-space system:)", L"= A matrix =", L"= B matrix =", L"= C matrix =", L"= D matrix =", L"= X0 (initial state) =", L"= Time domain ="};
+        const wchar_t * wcsDesc[7] = {L"  (state-space system:)", L"= A matrix =", L"= B matrix =", L"= C matrix =", L"= D matrix =", L"= X0 (initial state) =", L"= Time domain ="};
         std::vector<InternalType *>::iterator itValues;
         for (itValues = m_plData->begin() ; itValues != m_plData->end() ; ++itValues, ++iPosition)
         {

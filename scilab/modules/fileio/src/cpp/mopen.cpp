@@ -28,7 +28,7 @@ extern "C"
 #include "os_wfopen.h"
 }
 /*--------------------------------------------------------------------------*/
-int mopen(wchar_t* _pstFilename, wchar_t* _pstMode, int _iSwap, int* _piID)
+int mopen(const wchar_t* _pstFilename, const wchar_t* _pstMode, int _iSwap, int* _piID)
 {
     int lenChar = 0, testRep = 1;
 

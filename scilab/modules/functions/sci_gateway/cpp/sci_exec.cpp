@@ -365,7 +365,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
                 }
             }
         }
-        catch (ScilabMessage sm)
+        catch (const ScilabMessage& sm)
         {
             scilabErrorW(sm.GetErrorMessage().c_str());
 
@@ -407,7 +407,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
             mclose(iID);
             throw ast::ScilabMessage((*j)->location_get());
         }
-        catch (ast::ScilabError se)
+        catch (const ast::ScilabError& se)
         {
             if (ConfigVariable::getLastErrorNumber() == 0)
             {

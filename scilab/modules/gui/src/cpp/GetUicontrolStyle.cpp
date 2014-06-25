@@ -20,7 +20,7 @@ extern "C"
  ** \brief Get the style of an uicontrol object
  */
 
-char *IntToStyle(int _iStyle)
+const char *IntToStyle(int _iStyle)
 {
     switch (_iStyle)
     {

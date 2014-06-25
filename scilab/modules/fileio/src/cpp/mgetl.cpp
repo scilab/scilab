@@ -33,7 +33,12 @@ extern "C"
 #include <iostream>
 #include <fstream>
 /*--------------------------------------------------------------------------*/
+// we do not want to depend on the OS specific LINE_MAX setting
+#ifdef LINE_MAX
+#undef LINE_MAX
+#endif
 #define LINE_MAX 4096
+
 #define CR L'\r'
 #define LF L'\n'
 #define EMPTYSTRW L""

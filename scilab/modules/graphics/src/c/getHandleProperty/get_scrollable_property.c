@@ -27,7 +27,7 @@ void* get_scrollable_property(void* _pvCtx, int iObjUID)
     if (piScrollable == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "scrollable");
-        return -1;
+        return NULL;
     }
 
     if (iScrollable)
