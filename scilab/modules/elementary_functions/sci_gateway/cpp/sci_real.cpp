@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2006 - INRIA - Allan CORNET
+ * Copyright (C) 2014 - Scilab Enterprises - Anais AUBERT
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -10,311 +10,103 @@
  *
  */
 /*--------------------------------------------------------------------------*/
-#include <string.h>
-#include "sparse.hxx"
-#include "gatewaystruct.hxx"
+#include "elem_func_gw.hxx"
+#include "function.hxx"
+#include "double.hxx"
+#include "overload.hxx"
+#include "execvisitor.hxx"
+
 
 extern "C"
 {
-#include "gw_elementary_functions.h"
-#include "sci_malloc.h"
-#include "basic_functions.h"
-#include "api_scilab.h"
 #include "Scierror.h"
-
+#include "localization.h"
+#include "elem_common.h"
 }
-
-SciErr real_poly(void* pvApiCtx, int* _piAddress);
-SciErr real_sparse(void* pvApiCtx, int* _piAddress);
-SciErr real_double(void* pvApiCtx, int* _piAddress);
 
 /*--------------------------------------------------------------------------*/
-int sci_real(char *fname, void* pvApiCtx)
+types::Function::ReturnValue sci_real(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    SciErr sciErr;
-    int iType 		= 0;
-    int* piAddr		= NULL;
-
-    CheckRhs(1, 1);
-    CheckLhs(1, 1);
-
-    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
-    if (sciErr.iErr)
+    if (in.size() != 1)
     {
-        printError(&sciErr, 0);
-        return 0;
+        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "real", 1);
+        return types::Function::Error;
     }
 
-    sciErr = getVarType(pvApiCtx, piAddr, &iType);
-    if (sciErr.iErr)
+    if (_iRetCount > 1)
     {
-        printError(&sciErr, 0);
-        return 0;
+        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "real", 1);
+        return types::Function::Error;
     }
 
-    switch (iType)
+    if (in[0]->isDouble())
     {
-        case sci_matrix :
-            sciErr = real_double(pvApiCtx, piAddr);
-            break;
-        case sci_poly :
-            sciErr = real_poly(pvApiCtx, piAddr);
-            break;
-        case sci_sparse :
-            sciErr = real_sparse(pvApiCtx, piAddr);
-            break;
-        default:
-            OverLoad(1);
-            break;
+        types::Double* pDblIn = in[0]->getAs<types::Double>();
+        if (pDblIn->isComplex() == false)
+        {
+            out.push_back(pDblIn);
+            return types::Function::OK;
+        }
+
+        types::Double* pDblOut = new types::Double(pDblIn->getDims(), pDblIn->getDimsArray());
+        pDblOut->set(pDblIn->get()) ;
+        out.push_back(pDblOut);
     }
-
-    if (sciErr.iErr)
+    else if (in[0]->isSparse())
     {
-        printError(&sciErr, 0);
-        return 0;
+        types::Sparse* pSparseIn = in[0]->getAs<types::Sparse>();
+        if (pSparseIn->isComplex() == false)
+        {
+            out.push_back(pSparseIn);
+            return types::Function::OK;
+        }
+
+        types::Sparse* pSparseOut = new types::Sparse(pSparseIn->getRows(), pSparseIn->getCols());
+        int const nonZeros = static_cast<int>(pSparseIn->nonZeros());
+        int* pRows = new int[nonZeros * 2];
+        pSparseIn->outputRowCol(pRows);
+        int* pCols = pRows + nonZeros;
+
+        for (int i = 0 ; i < nonZeros ; i++)
+        {
+            double real = pSparseIn->getReal(pRows[i] - 1, pCols[i] - 1);
+            pSparseOut->set(pRows[i] - 1, pCols[i] - 1, real, false);
+        }
+
+        pSparseOut->finalize();
+
+        delete[] pRows;
+
+        out.push_back(pSparseOut);
     }
-
-    LhsVar(1) = Rhs + 1;
-    PutLhsVar();
-    return 0;
-}
-
-SciErr real_poly(void* pvApiCtx, int* _piAddress)
-{
-    SciErr sciErr;
-    int i, j;
-    int iRows							= 0;
-    int iCols							= 0;
-    int iLen							= 0;
-    int *piCoeff					= NULL;
-    char* pstVarName			= NULL;
-
-    double** pdblReal			= NULL;
-    double** pdblImg			= NULL;
-    double** pdblRealRet	= NULL;
-
-    sciErr = getPolyVariableName(pvApiCtx, _piAddress, pstVarName, &iLen);
-    if (sciErr.iErr)
+    else if (in[0]->isPoly())
     {
-        return sciErr;
-    }
-
-    pstVarName = (char*)MALLOC(sizeof(char) * (iLen + 1));
-
-    sciErr = getPolyVariableName(pvApiCtx, _piAddress, pstVarName, &iLen);
-    if (sciErr.iErr)
-    {
-        return sciErr;
-    }
-
-    if (isVarComplex(pvApiCtx, _piAddress))
-    {
-        sciErr = getComplexMatrixOfPoly(pvApiCtx, _piAddress, &iRows, &iCols, NULL, NULL, NULL);
-        if (sciErr.iErr)
+        types::Polynom* pPolyIn = in[0]->getAs<types::Polynom>();
+        if (pPolyIn->isComplex() == false)
         {
-            return sciErr;
+            out.push_back(pPolyIn);
+            return types::Function::OK;
         }
 
-        piCoeff	= (int*)malloc(iRows * iCols * sizeof(int));
-        sciErr = getComplexMatrixOfPoly(pvApiCtx, _piAddress, &iRows, &iCols, piCoeff, NULL, NULL);
-        if (sciErr.iErr)
+        int* piRanks = new int[pPolyIn->getSize()];
+        pPolyIn->getRank(piRanks);
+
+        types::Polynom* pPolyOut = new types::Polynom(pPolyIn->getVariableName(), pPolyIn->getDims(), pPolyIn->getDimsArray(), piRanks);
+        for (int i = 0; i < pPolyIn->getSize(); i++)
         {
-            return sciErr;
+            memcpy(pPolyOut->get(i)->getCoef()->get(), pPolyIn->get(i)->getCoef()->get(), (piRanks[i] + 1) * sizeof(double));
         }
 
-        pdblReal		= (double**)malloc(sizeof(double*) * iRows * iCols);
-        pdblImg			= (double**)malloc(sizeof(double*) * iRows * iCols);
-
-        for (i = 0 ; i < iRows * iCols ; i++)
-        {
-            pdblReal[i]			= (double*)malloc(sizeof(double) * piCoeff[i]);
-            pdblImg[i]			= (double*)malloc(sizeof(double) * piCoeff[i]);
-        }
-
-        sciErr = getComplexMatrixOfPoly(pvApiCtx, _piAddress, &iRows, &iCols, piCoeff, pdblReal, pdblImg);
-        if (sciErr.iErr)
-        {
-            return sciErr;
-        }
-
-        for (i = 0 ; i < iRows * iCols ; i++)
-        {
-            int iCoeff = piCoeff[i];
-            for (j = iCoeff - 1 ; j >= 0 ; j--)
-            {
-                if (pdblReal[i][j] == 0)
-                {
-                    piCoeff[i]--;
-                }
-                else
-                {
-                    break;
-                }
-            }
-        }
-
-        sciErr = createMatrixOfPoly(pvApiCtx, Rhs + 1, pstVarName, iRows, iCols, piCoeff, pdblReal);
-        if (sciErr.iErr)
-        {
-            return sciErr;
-        }
+        delete[] piRanks;
+        pPolyOut->updateRank();
+        out.push_back(pPolyOut);
     }
     else
     {
-        sciErr  = getMatrixOfPoly(pvApiCtx, _piAddress, &iRows, &iCols, NULL, NULL);
-        if (sciErr.iErr)
-        {
-            return sciErr;
-        }
-
-        piCoeff	= (int*)malloc(iRows * iCols * sizeof(int));
-        sciErr = getMatrixOfPoly(pvApiCtx, _piAddress, &iRows, &iCols, piCoeff, NULL);
-        if (sciErr.iErr)
-        {
-            return sciErr;
-        }
-
-        pdblReal = (double**)malloc(sizeof(double*) * iRows * iCols);
-
-        for (i = 0 ; i < iRows * iCols ; i++)
-        {
-            pdblReal[i] = (double*)malloc(sizeof(double) * piCoeff[i]);
-        }
-
-        sciErr = getMatrixOfPoly(pvApiCtx, _piAddress, &iRows, &iCols, piCoeff, pdblReal);
-        if (sciErr.iErr)
-        {
-            return sciErr;
-        }
-
-        sciErr = createMatrixOfPoly(pvApiCtx, Rhs + 1, pstVarName, iRows, iCols, piCoeff, pdblReal);
-        if (sciErr.iErr)
-        {
-            return sciErr;
-        }
-    }
-    return sciErr;
-}
-
-SciErr real_sparse(void* pvApiCtx, int* _piAddress)
-{
-    SciErr sciErr;
-    sciErr.iErr = 0;
-
-    types::Sparse* pS = (types::Sparse*)_piAddress;
-    types::Sparse* pSReal = pS->newReal();
-
-    types::GatewayStruct* pStr = (types::GatewayStruct*)pvApiCtx;
-    types::typed_list in = *pStr->m_pIn;
-    types::InternalType** out = pStr->m_pOut;
-
-    int rhs = 1;
-    out[rhs - 1] = pSReal;
-
-    //int i,j,x,y;
-    //int iRows						= 0;
-    //int iCols						= 0;
-    //int iNbItem					= 0;
-    //int *piNbItemRow		= NULL;
-    //int *piColPos				= NULL;
-
-    //int iNbItemNew			= 0;
-    //int* piNbItemRowNew	= NULL;
-    //int* piColPosNew		= NULL;
-
-    //double *pdblReal		= 0;
-    //double *pdblImg			= 0;
-    //double *pdblRealRet	= NULL;
-
-    //if(isVarComplex(pvApiCtx, _piAddress))
-    //{
-    //	sciErr = getComplexSparseMatrix(pvApiCtx, _piAddress, &iRows, &iCols, &iNbItem, &piNbItemRow, &piColPos, &pdblReal, &pdblImg);
-    //	if(sciErr.iErr)
-    //	{
-    //		return sciErr;
-    //	}
-
-    //	for(i = 0 ; i < iNbItem ; i++)
-    //	{
-    //		if(pdblReal[i] != 0)
-    //		{
-    //			iNbItemNew++;
-    //		}
-    //	}
-
-    //	sciErr = allocSparseMatrix(pvApiCtx, Rhs + 1, iRows, iCols, iNbItemNew, &piNbItemRowNew, &piColPosNew, &pdblRealRet);
-    //	if(sciErr.iErr)
-    //	{
-    //		return sciErr;
-    //	}
-
-    //	x = 0;
-    //	y = 0;
-    //	for(i = 0 ; i < iRows ; i++)
-    //	{
-    //		piNbItemRowNew[i] = 0;
-    //		for(j = 0 ; j < piNbItemRow[i] ; j++)
-    //		{
-    //			if(pdblReal[x] != 0)
-    //			{
-    //				piNbItemRowNew[i]++;
-    //				piColPosNew[y] = piColPos[x];
-    //				pdblRealRet[y] = pdblReal[x];
-    //				y++;
-    //			}
-    //			x++;
-    //		}
-    //	}
-    //}
-    //else
-    //{
-    //	sciErr = getSparseMatrix(pvApiCtx, _piAddress, &iRows, &iCols, &iNbItem, &piNbItemRow, &piColPos, &pdblReal);
-    //	if(sciErr.iErr)
-    //	{
-    //		return sciErr;
-    //	}
-
-    //	sciErr = createSparseMatrix(pvApiCtx, Rhs + 1, iRows, iCols, iNbItem, piNbItemRow, piColPos, pdblReal);
-    //	if(sciErr.iErr)
-    //	{
-    //		return sciErr;
-    //	}
-    //}
-    return sciErr;
-}
-
-SciErr real_double(void* pvApiCtx, int* _piAddress)
-{
-    SciErr sciErr;
-    int iRows						= 0;
-    int iCols						= 0;
-    double *pdblReal		= NULL;
-    double *pdblImg			= NULL;
-    double *pdblRealRet = NULL;
-
-    if (isVarComplex(pvApiCtx, _piAddress))
-    {
-        sciErr = getComplexMatrixOfDouble(pvApiCtx, _piAddress, &iRows, &iCols, &pdblReal, &pdblImg);
-        if (sciErr.iErr)
-        {
-            return sciErr;
-        }
-    }
-    else
-    {
-        sciErr = getMatrixOfDouble(pvApiCtx, _piAddress, &iRows, &iCols, &pdblReal);
-        if (sciErr.iErr)
-        {
-            return sciErr;
-        }
+        std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_real";
+        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
     }
 
-    sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, iRows, iCols, pdblReal);
-    if (sciErr.iErr)
-    {
-        return sciErr;
-    }
-
-    return sciErr;
+    return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/
