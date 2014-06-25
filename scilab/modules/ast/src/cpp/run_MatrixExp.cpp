@@ -50,6 +50,7 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
 
                 if (pIT->isGenericType() == false)
                 {
+                    pIT->killMe();
                     std::wostringstream os;
                     os << _W("unable to concatenate\n");
                     throw ast::ScilabError(os.str(), 999, (*col)->location_get());
@@ -61,15 +62,13 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                 {
                     ImplicitList *pIL = pGT->getAs<ImplicitList>();
                     InternalType* pIT2 = pIL->extractFullMatrix();
-                    if (pGT->isDeletable())
-                    {
-                        delete pGT;
-                    }
+                    pGT->killMe();
                     pGT = pIT2->getAs<GenericType>();
                 }
 
                 if (pGT->isDouble() && pGT->getAs<Double>()->isEmpty())
                 {
+                    pGT->killMe();
                     continue;
                 }
 
@@ -85,6 +84,7 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                 if (pGT->isList() || pGTResult->isList())
                 {
                     poRow = callOverloadMatrixExp(L"c", pGTResult, pGT);
+                    pGT->killMe();
                     continue;
                 }
 
@@ -92,12 +92,18 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                 if (pGT->getDims() > 2)
                 {
                     poRow = callOverloadMatrixExp(L"c", pGTResult, pGT);
+                    pGT->killMe();
                     continue;
                 }
 
                 //check dimension
                 if (pGT->getDims() != 2 || pGT->getRows() != pGTResult->getRows())
                 {
+                    poRow->killMe();
+                    if (poRow != pGT)
+                    {
+                        pGT->killMe();
+                    }
                     std::wostringstream os;
                     os << _W("inconsistent row/column dimensions\n");
                     throw ast::ScilabError(os.str(), 999, (*row)->location_get());
@@ -116,16 +122,15 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
 
                 InternalType *p = AddElementToVariable(NULL, poRow, pGTResult->getRows(), pGTResult->getCols() + pGT->getCols());
                 p = AddElementToVariable(p, pGT, 0, pGTResult->getCols());
-                if (poRow->isDeletable())
+                if (poRow != pGT)
                 {
-                    delete poRow;
+                    pGT->killMe();
                 }
-
-                if (pGT->isDeletable())
+                if (p != poRow)
                 {
-                    delete pGT;
+                    poRow->killMe();
+                    poRow = p;
                 }
-                poRow = p;
             }
 
             if (poRow == NULL)
@@ -146,6 +151,7 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
             if (pGT->isList() || pGTResult->isList())
             {
                 poResult = callOverloadMatrixExp(L"f", pGTResult, pGT);
+                poRow->killMe();
                 continue;
             }
 
@@ -153,12 +159,18 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
             if (pGT->getDims() > 2)
             {
                 poResult = callOverloadMatrixExp(L"f", pGTResult, pGT);
+                poRow->killMe();
                 continue;
             }
 
             //check dimension
             if (pGT->getCols() != pGTResult->getCols())
             {
+                poRow->killMe();
+                if (poResult)
+                {
+                    poResult->killMe();
+                }
                 std::wostringstream os;
                 os << _W("inconsistent row/column dimensions\n");
                 throw ast::ScilabError(os.str(), 999, (*e.lines_get().begin())->location_get());
@@ -177,17 +189,15 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
 
             InternalType *p = AddElementToVariable(NULL, poResult, pGTResult->getRows() + pGT->getRows(), pGT->getCols());
             p = AddElementToVariable(p, pGT, pGTResult->getRows(), 0);
-            if (poResult->isDeletable())
+            if (poResult != poRow)
             {
-                delete poResult;
+                poRow->killMe();
             }
-
-            if (pGT->isDeletable())
+            if (p != poResult)
             {
-                delete pGT;
+                poResult->killMe();
+                poResult = p;
             }
-
-            poResult = p;
         }
 
         if (poResult)
@@ -229,7 +239,11 @@ types::InternalType* RunVisitorT<T>::callOverloadMatrixExp(std::wstring strType,
     _paramL->DecreaseRef();
     _paramR->DecreaseRef();
 
-    out[0]->IncreaseRef();
+    if (!out.empty())
+    {
+        // TODO: avoid crash if out is empty but must return an error...
+        out[0]->IncreaseRef();
+    }
 
     if (_paramL->isDeletable())
     {
@@ -241,7 +255,12 @@ types::InternalType* RunVisitorT<T>::callOverloadMatrixExp(std::wstring strType,
         delete _paramR;
     }
 
-    out[0]->DecreaseRef();
+    if (!out.empty())
+    {
+        out[0]->DecreaseRef();
 
-    return out[0];
+        return out[0];
+    }
+
+    return NULL;
 }

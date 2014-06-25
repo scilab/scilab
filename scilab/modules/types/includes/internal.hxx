@@ -186,12 +186,20 @@ public :
     virtual InternalType*           clone(void) = 0;
 
 
-    virtual void IncreaseRef()
+    inline void killMe()
+    {
+        if (isDeletable())
+        {
+            delete this;
+        }
+    }
+
+    inline void IncreaseRef()
     {
         m_iRef++;
     }
 
-    void DecreaseRef()
+    inline void DecreaseRef()
     {
         if (m_iRef > 0)
         {
@@ -199,15 +207,17 @@ public :
         }
     }
 
-    virtual bool isDeletable()
+    inline bool isDeletable()
     {
         return m_iRef == 0;
     }
-    bool isRef(int _iRef = 0)
+
+    inline bool isRef(int _iRef = 0)
     {
         return m_iRef > _iRef;
     }
-    int getRef()
+
+    inline int getRef()
     {
         return m_iRef;
     }
