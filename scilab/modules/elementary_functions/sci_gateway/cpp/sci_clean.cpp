@@ -190,6 +190,7 @@ types::Function::ReturnValue sci_clean(types::typed_list &in, int _iRetCount, ty
     else if (in[0]->isPoly())
     {
         pPolyOut->setCoef(pDblOut);
+        pPolyOut->updateRank();
         delete pDblOut;
         pDblOut = NULL;
         out.push_back(pPolyOut);
