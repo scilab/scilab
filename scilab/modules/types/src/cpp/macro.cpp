@@ -134,9 +134,9 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
     }
     else if (in.size() > m_inputArgs->size())
     {
-       
 
-        Scierror(999, _("Wrong number of input arguments: %d expected.\n"), m_inputArgs->size());
+
+        Scierror(999, _("Wrong number of input arguments."));
         pContext->scope_end();
         ConfigVariable::macroFirstLine_end();
         return Callable::Error;
