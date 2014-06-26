@@ -15,29 +15,32 @@
 template<class T>
 void RunVisitorT<T>::visitprivate(const OpExp &e)
 {
+    InternalType * pITL = NULL, * pITR = NULL, * pResult = NULL;
     try
     {
         /*getting what to assign*/
         e.left_get().accept(*this);
-        InternalType *pITL = result_get();
         if (is_single_result() == false)
         {
+            result_clear();
             std::wostringstream os;
             os << _W("Incompatible output argument.\n");
             //os << ((Location)e.right_get().location_get()).location_getString() << std::endl;
             throw ast::ScilabError(os.str(), 999, e.right_get().location_get());
         }
+        pITL = result_get();
 
         /*getting what to assign*/
         e.right_get().accept(*this);
-        InternalType *pITR = result_get();
         if (is_single_result() == false)
         {
+            result_clear();
             std::wostringstream os;
             os << _W("Incompatible output argument.\n");
             //os << ((Location)e.right_get().location_get()).location_getString() << std::endl;
             throw ast::ScilabError(os.str(), 999, e.right_get().location_get());
         }
+        pITR = result_get();
 
         if (pITL->getType() == GenericType::ScilabImplicitList)
         {
@@ -45,6 +48,7 @@ void RunVisitorT<T>::visitprivate(const OpExp &e)
             if (pIL->isComputable())
             {
                 pITL = pIL->extractFullMatrix();
+                pIL->killMe();
             }
         }
 
@@ -54,10 +58,9 @@ void RunVisitorT<T>::visitprivate(const OpExp &e)
             if (pIR->isComputable())
             {
                 pITR = pIR->extractFullMatrix();
+                pIR->killMe();
             }
         }
-
-        InternalType *pResult   = NULL;
 
         switch (e.oper_get())
         {
@@ -170,41 +173,37 @@ void RunVisitorT<T>::visitprivate(const OpExp &e)
         {
             // We did not have any algorithm matching, so we try to call OverLoad
             pResult = callOverloadOpExp(e.oper_get(), pITL, pITR);
-            result_set(pResult);
-
-            // protect output to manage case where output is an input.
-            pResult->IncreaseRef();
-            //clear left and/or right operands
-            if (pITL->isDeletable())
-            {
-                delete pITL;
-            }
-
-            if (pITR->isDeletable())
-            {
-                delete pITR;
-            }
-
-            pResult->DecreaseRef();
-            return;
         }
 
         result_set(pResult);
 
         //clear left and/or right operands
-        if (pITL->isDeletable())
+        if (pResult != pITL)
         {
-            delete pITL;
+            pITL->killMe();
         }
 
-        if (pITR->isDeletable())
+        if (pResult != pITR)
         {
-            delete pITR;
+            pITR->killMe();
         }
     }
-    catch (ast::ScilabError error)
+    catch (ast::ScilabError & error)
     {
-        result_clear();
+        result_set(NULL);
+        if (pResult)
+        {
+            pResult->killMe();
+        }
+        if (pITL && (pITL != pResult))
+        {
+            pITL->killMe();
+        }
+        if (pITR && (pITR != pResult))
+        {
+            pITR->killMe();
+        }
+
         error.SetErrorLocation(e.location_get());
         throw error;
     }

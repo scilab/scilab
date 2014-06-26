@@ -1523,9 +1523,11 @@ types::InternalType* add_M_SC(T *_pL, U *_pR)
 template<class T, class U, class O>
 types::InternalType* add_M_E(T *_pL, U *_pR)
 {
-    O* pOut = new O(_pL->getDims(), _pL->getDimsArray());
-    add(_pL->get(), (long long)_pL->getSize(), pOut->get());
-    return pOut;
+    //O* pOut = new O(_pL->getDims(), _pL->getDimsArray());
+    //add(_pL->get(), (long long)_pL->getSize(), pOut->get());
+    //return pOut;
+
+    return _pL;
 }
 
 

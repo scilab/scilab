@@ -18,6 +18,10 @@ C3(:,:,2) = C';
 e = eye();
 ei = (5+%i) * eye()
 
+assert_checkequal((1:3) + 1, 2:4);
+assert_checkequal((1:3) + (4:6), [5 7 9]);
+assert_checkequal(1 + (1:3), 2:4);
+
 //[] + []
 assert_checkequal([] + [], []);
 

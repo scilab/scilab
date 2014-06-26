@@ -46,7 +46,7 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                 }
 
                 //reset result but whitout delete the value
-                result_set(NULL);
+                result_clear_except_first();
 
                 if (pIT->isGenericType() == false)
                 {

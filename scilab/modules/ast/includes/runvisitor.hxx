@@ -48,27 +48,40 @@ public:
         result_clear();
     }
 
+    void result_clear_except_first()
+    {
+        if (!is_single_result() && _resultVect.size() > 1)
+        {
+            for (vector<types::InternalType*>::iterator rv = _resultVect.begin() + 1, end = _resultVect.end(); rv != end; ++rv)
+            {
+                if (*rv != NULL)
+                {
+                    (*rv)->killMe();
+                    *rv = NULL;
+                }
+            }
+        }
+    }
+
     void result_clear()
     {
         if (is_single_result())
         {
-            if (_result != NULL && _result->isDeletable() == true)
+            if (_result != NULL)
             {
                 //					std::cout << "before single delete : " << _result << std::endl;
-                delete _result;
+                _result->killMe();
                 //					std::cout << "after single delete" << std::endl;
             }
-            _result = NULL;
         }
         else
         {
-            for (unsigned int i = 0 ; i < _resultVect.size() ; i++)
+            for (vector<types::InternalType*>::iterator rv = _resultVect.begin(), end = _resultVect.end(); rv != end; ++rv)
             {
-                if (_resultVect[i] != NULL && _resultVect[i]->isDeletable() == true)
+                if (*rv != NULL)
                 {
-                    delete _resultVect[i];
+                    (*rv)->killMe();
                 }
-                _resultVect[i] = NULL;
             }
         }
         _resultVect.clear();
@@ -106,7 +119,7 @@ public:
         _excepted_result = _iSize;
     }
 
-    types::InternalType* result_get(void)
+    inline types::InternalType* result_get(void)
     {
         if (is_single_result())
         {
@@ -171,7 +184,7 @@ public:
         _result = const_cast<types::InternalType *>(gtVal);
     }
 
-    bool is_single_result()
+    inline bool is_single_result()
     {
         return m_bSingleResult;
     }
