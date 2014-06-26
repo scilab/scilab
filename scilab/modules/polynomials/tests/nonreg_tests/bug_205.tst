@@ -19,14 +19,14 @@
 //    On Scilab 2.5 with " determ " function
 //    The Error Messages are:
 //
-//    Commands: // scilab dit que le polynome caracteristique de 
+//    Commands: // scilab dit que le polynome caracteristique de
 //    // cette matrice de dimension
 //    // 30 est de degre 21
 //    N=30
 //    a=rand(N,N)
 //    s=poly(0,'s')
 //    p=determ(eye(N,N)*s-a)
-//    degree(p)                                           
+//    degree(p)
 //
 //    Gaubert on Linux PPC version 2.2.13 distribution  with  X/kde as window manager
 //    France  February 10, 2001 at 11:55:40
@@ -34,7 +34,6 @@
 
 N = 30;
 A = rand(N,N);
-s = poly(0,'s');
 P = determ( eye(N,N)*%s - A );
 
 if degree(P)<>30 then pause,end
