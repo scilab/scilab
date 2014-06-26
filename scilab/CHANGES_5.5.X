@@ -193,6 +193,9 @@ Xcos Bug Fixes
 
 * Bug #13396 fixed - MBLOCK did not work with an external file containing the modelica class.
 
+* Bug #13513 fixed - EXPRESSION block with "u1" as expression failed with a 
+                     singularity error.
+
 
 Known issues
 =============
