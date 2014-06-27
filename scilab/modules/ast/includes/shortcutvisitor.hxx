@@ -23,7 +23,7 @@
 
 namespace ast
 {
-class EXTERN_AST ShortCutVisitor : public DummyVisitor
+class ShortCutVisitor : public DummyVisitor
 {
 public:
     ShortCutVisitor() {}

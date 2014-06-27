@@ -326,7 +326,7 @@ protected:
 };
 
 template <class T>
-class EXTERN_AST RunVisitorT : public RunVisitor
+class RunVisitorT : public RunVisitor
 {
 public :
     RunVisitorT() : RunVisitor()

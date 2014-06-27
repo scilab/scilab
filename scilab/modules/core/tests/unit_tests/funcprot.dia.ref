@@ -15,10 +15,9 @@ funcprot(1);
 if funcprot() <> 1 then bugmes();quit;end
 if execstr("deff(""foo()"",""a=3"");","errcatch") <> 0 then bugmes();quit;end
 Warning : redefining function: foo                     . Use funcprot(0) to avoid this message
-
 deff("foo()","a=4")
 Warning : redefining function: foo                     . Use funcprot(0) to avoid this message
-
 funcprot(2);
 if funcprot() <> 2 then bugmes();quit;end
 if execstr("deff(""foo()"",""a=5"");","errcatch") == 0 then bugmes();quit;end
+if execstr("deff(""foo()"",""a=4"");","errcatch") <> 0 then bugmes();quit;end

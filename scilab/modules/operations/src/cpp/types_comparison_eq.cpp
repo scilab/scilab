@@ -22,6 +22,8 @@
 #include "int.hxx"
 #include "graphichandle.hxx"
 #include "mlist.hxx"
+#include "macro.hxx"
+#include "macrofile.hxx"
 
 using namespace types;
 
@@ -902,6 +904,31 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
 
         clearAlloc(bAllocL, pIL, bAllocR, pIR);
         return pB;
+    }
+
+    if (TypeL == GenericType::ScilabMacro || TypeL == GenericType::ScilabMacroFile)
+    {
+        bool ret = false;
+        if (TypeL == GenericType::ScilabMacroFile)
+        {
+            types::MacroFile* pL = _pLeftOperand->getAs<types::MacroFile>();
+            ret = *pL == *_pRightOperand;
+        }
+        else if (TypeL == GenericType::ScilabMacro)
+        {
+            types::Macro* pL = _pLeftOperand->getAs<types::Macro>();
+            if (TypeR == GenericType::ScilabMacroFile)
+            {
+                types::MacroFile* pR = _pRightOperand->getAs<types::MacroFile>();
+                ret = *pR == *pL;
+            }
+            else
+            {
+                ret = *pL == *_pRightOperand;
+            }
+        }
+
+        return new Bool(ret == true ? 1 : 0);
     }
 
     /*

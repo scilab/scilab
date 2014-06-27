@@ -102,7 +102,7 @@ bool MacroFile::parse(void)
             if (pFD) // &&	pFD->name_get() == m_stName
             {
                 symbol::Context* pContext = symbol::Context::getInstance();
-                types::InternalType* pFunc = pContext->getFunction(pFD->name_get());
+                InternalType* pFunc = pContext->getFunction(pFD->name_get());
                 if (pFunc && pFunc->isMacroFile())
                 {
                     MacroFile* pMacro = pContext->getFunction(pFD->name_get())->getAs<MacroFile>();
@@ -160,5 +160,28 @@ Macro* MacroFile::getMacro(void)
 void MacroFile::setFirstLine(int _iLine)
 {
     getMacro()->setFirstLine(_iLine);
+}
+
+bool MacroFile::operator==(const InternalType& it)
+{
+    if (const_cast<InternalType &>(it).isMacro() == false && const_cast<InternalType &>(it).isMacroFile() == false)
+    {
+        return false;
+    }
+
+    Macro* pL = getMacro();
+    Macro* pR = NULL;
+
+    if (const_cast<InternalType &>(it).isMacroFile())
+    {
+        MacroFile* pMF = const_cast<InternalType &>(it).getAs<types::MacroFile>();
+        pR = pMF->getMacro();
+    }
+    else
+    {
+        pR = const_cast<InternalType &>(it).getAs<types::Macro>();
+    }
+
+    return (*pL == *pR);
 }
 }

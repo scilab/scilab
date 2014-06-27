@@ -238,7 +238,7 @@
     <ClInclude Include="includes\debugvisitor.hxx" />
     <ClInclude Include="includes\deserializervisitor.hxx" />
     <ClInclude Include="includes\dummyvisitor.hxx" />
-    <ClInclude Include="includes\dynlib_ast_tools.hxx" />
+    <ClInclude Include="includes\dynlib_ast.h" />
     <ClInclude Include="includes\execvisitor.hxx" />
     <ClInclude Include="includes\expHistory.hxx" />
     <ClInclude Include="includes\exps\all.hxx" />

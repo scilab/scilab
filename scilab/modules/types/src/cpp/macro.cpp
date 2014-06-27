@@ -21,6 +21,7 @@
 #include "scilabexception.hxx"
 #include "configvariable.hxx"
 #include "mutevisitor.hxx"
+#include "serializervisitor.hxx"
 
 extern "C"
 {
@@ -355,5 +356,73 @@ int Macro::getNbOutputArgument(void)
     }
 
     return (int)m_outputArgs->size();
+}
+
+bool Macro::operator==(const InternalType& it)
+{
+    if (const_cast<InternalType &>(it).isMacro() == false)
+    {
+        return false;
+    }
+
+    std::list<symbol::Variable*>* pInput = NULL;
+    std::list<symbol::Variable*>* pOutput = NULL;
+    types::Macro* pRight = const_cast<InternalType &>(it).getAs<types::Macro>();
+
+    //check inputs
+    pInput = pRight->inputs_get();
+    if (pInput->size() != m_inputArgs->size())
+    {
+        return false;
+    }
+
+    std::list<symbol::Variable*>::iterator itOld = pInput->begin();
+    std::list<symbol::Variable*>::iterator itEndOld = pInput->end();
+    std::list<symbol::Variable*>::iterator itMacro = m_inputArgs->begin();
+
+    for (; itOld != itEndOld ; ++itOld, ++itMacro)
+    {
+        if ((*itOld)->name_get() != (*itMacro)->name_get())
+        {
+            return false;
+        }
+    }
+
+    //check outputs
+    pOutput = pRight->outputs_get();
+    itOld = pOutput->begin();
+    itEndOld = pOutput->end();
+    itMacro = m_outputArgs->begin();
+
+    for (; itOld != itEndOld ; ++itOld, ++itMacro)
+    {
+        if ((*itOld)->name_get() != (*itMacro)->name_get())
+        {
+            return false;
+        }
+    }
+
+    ast::Exp* pExp = pRight->getBody();
+    ast::SerializeVisitor serialOld(pExp);
+    unsigned char* oldSerial = serialOld.serialize(false);
+    ast::SerializeVisitor serialMacro(m_body);
+    unsigned char* macroSerial = serialMacro.serialize(false);
+
+    //check buffer length
+    unsigned int oldSize = ((unsigned int*)oldSerial)[0] + sizeof(unsigned int);
+    unsigned int macroSize = ((unsigned int*)macroSerial)[0] + sizeof(unsigned int);
+    if (oldSize != macroSize)
+    {
+        free(oldSerial);
+        free(macroSerial);
+        return false;
+    }
+
+    bool ret = (memcmp(oldSerial, macroSerial, oldSize + sizeof(unsigned int)) == 0);
+
+    free(oldSerial);
+    free(macroSerial);
+
+    return ret;
 }
 }

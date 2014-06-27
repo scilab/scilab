@@ -27,6 +27,9 @@
 #include "types_or_and.hxx"
 #include "localization.hxx"
 
+#include "macrofile.hxx"
+#include "macro.hxx"
+
 extern "C"
 {
 #include "sciprint.h"
@@ -967,39 +970,6 @@ void RunVisitorT<T>::visitprivate(const FunctionDec & e)
 
     // funcprot(0) : do nothing
     // funcprot(1) && warning(on) : warning
-    // funcprot(2) : error
-    if (ConfigVariable::getFuncprot() == 1 && ConfigVariable::getWarningMode())
-    {
-        types::InternalType* pITFunc = symbol::Context::getInstance()->get(const_cast<FunctionDec&>(e).stack_get());
-
-        if (pITFunc && pITFunc->isCallable())
-        {
-            wchar_t pwstFuncName[1024];
-            os_swprintf(pwstFuncName, 1024, L"%-24ls", e.name_get().name_get().c_str());
-            char* pstFuncName = wide_string_to_UTF8(pwstFuncName);
-
-            sciprint(_("Warning : redefining function: %s. Use funcprot(0) to avoid this message"), pstFuncName);
-            sciprint("\n");
-            FREE(pstFuncName);
-        }
-    }
-    else if (ConfigVariable::getFuncprot() == 2)
-    {
-        types::InternalType* pITFunc = symbol::Context::getInstance()->get(((FunctionDec&)e).stack_get());
-
-        if (pITFunc && pITFunc->isCallable())
-        {
-            char pstError[1024];
-            char* pstFuncName = wide_string_to_UTF8(e.name_get().name_get().c_str());
-            sprintf(pstError, _("It is not possible to redefine the %s primitive this way (see clearfun).\n"), pstFuncName);
-            wchar_t* pwstError = to_wide_string(pstError);
-            std::wstring wstError(pwstError);
-            FREE(pstFuncName);
-            FREE(pwstError);
-            throw ScilabError(wstError, 999, e.location_get());
-        }
-    }
-
     //get input parameters list
     std::list<symbol::Variable*> *pVarList = new std::list<symbol::Variable*>();
     const ArrayListVar *pListVar = &e.args_get();
@@ -1019,7 +989,55 @@ void RunVisitorT<T>::visitprivate(const FunctionDec & e)
     types::Macro *pMacro = new types::Macro(e.name_get().name_get(), *pVarList, *pRetList,
                                             const_cast<SeqExp&>(static_cast<const SeqExp&>(e.body_get())), L"script");
     pMacro->setFirstLine(e.location_get().first_line);
+
+    bool bEquals = false;
+    int iFuncProt = ConfigVariable::getFuncprot();
+    if (iFuncProt != 0)
+    {
+        types::InternalType* pITFunc = symbol::Context::getInstance()->get(((FunctionDec&)e).stack_get());
+        if (pITFunc && pITFunc->isCallable())
+        {
+            if (pITFunc->isMacroFile())
+            {
+                types::MacroFile* pMF = pITFunc->getAs<types::MacroFile>();
+                bEquals = *pMF->getMacro() == *pMacro;
+            }
+            else if (pITFunc->isMacro())
+            {
+                types::Macro* pM = pITFunc->getAs<types::Macro>();
+                bEquals = *pM == *pMacro;
+            }
+        }
+        else
+        {
+            bEquals = true; //avoid msg but keep assignation
+        }
+    }
+
+    if (bEquals == false && iFuncProt == 1 && ConfigVariable::getWarningMode())
+    {
+        wchar_t pwstFuncName[1024];
+        os_swprintf(pwstFuncName, 1024, L"%-24ls", e.name_get().name_get().c_str());
+        char* pstFuncName = wide_string_to_UTF8(pwstFuncName);
+
+        sciprint(_("Warning : redefining function: %s. Use funcprot(0) to avoid this message"), pstFuncName);
+        sciprint("\n");
+        FREE(pstFuncName);
+    }
+    else if (bEquals == false && iFuncProt == 2)
+    {
+        char pstError[1024];
+        char* pstFuncName = wide_string_to_UTF8(e.name_get().name_get().c_str());
+        sprintf(pstError, _("It is not possible to redefine the %s primitive this way (see clearfun).\n"), pstFuncName);
+        wchar_t* pwstError = to_wide_string(pstError);
+        std::wstring wstError(pwstError);
+        FREE(pstFuncName);
+        FREE(pwstError);
+        throw ScilabError(wstError, 999, e.location_get());
+    }
+
     symbol::Context::getInstance()->addMacro(pMacro);
+
 }
 
 template <class T>

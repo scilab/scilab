@@ -161,11 +161,6 @@
     <ClInclude Include="..\includes\macro.hxx" />
     <ClInclude Include="..\includes\macrofile.hxx" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\system_env\system_env.vcxproj">
-      <Project>{7ca60aef-9afa-4d06-af28-613c0aa27640}</Project>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

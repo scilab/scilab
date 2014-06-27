@@ -21,7 +21,7 @@
 
 namespace ast
 {
-class StepVisitor : public RunVisitorT<StepVisitor>
+class EXTERN_AST StepVisitor : public RunVisitorT<StepVisitor>
 {
     void visit(const SeqExp &e)
     {

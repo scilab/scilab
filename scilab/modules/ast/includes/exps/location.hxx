@@ -25,7 +25,7 @@
 #include "dynlib_ast_tools.hxx"
 
 /** \brief Abstract a Location. */
-class EXTERN_AST_TOOLS Location
+class Location
 {
     /** \name Ctor & dtor.
     ** \{ */

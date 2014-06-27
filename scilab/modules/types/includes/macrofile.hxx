@@ -69,6 +69,8 @@ public :
     virtual int getNbInputArgument(void);
     virtual int getNbOutputArgument(void);
 
+    bool operator==(const InternalType& it);
+
 private :
     Macro*                  m_pMacro;
     std::wstring            m_stPath;

@@ -23,27 +23,27 @@
 
 namespace ast
 {
-  class EXTERN_AST MuteVisitor : public GenVisitor<const_kind>
-  {
-  public:
+class MuteVisitor : public GenVisitor<const_kind>
+{
+public:
     MuteVisitor() {}
 
     /** \name Visit Matrix Expressions nodes.
      ** \{ */
-  public :
+public :
     virtual void visit (const MatrixExp &e);
     virtual void visit (const MatrixLineExp &e);
     /** \} */
 
     /** \name Visit Cell Expressions nodes.
      ** \{ */
-  public :
+public :
     virtual void visit (const CellExp &e);
     /** \} */
 
     /** \name Visit Constant Expressions nodes.
      ** \{ */
-  public :
+public :
     virtual void visit (const StringExp &e);
     virtual void visit (const CommentExp &e);
     virtual void visit (const IntExp  &e);
@@ -98,9 +98,9 @@ namespace ast
 
     /** \name Visit Type dedicated Expressions related node.
      ** \{ */
-  public:
+public:
     virtual void visit(const ListExp &e);
     /** \} */
-  };
+};
 }
 #endif // !AST_MUTEVISITOR_HXX

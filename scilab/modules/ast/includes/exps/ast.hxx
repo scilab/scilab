@@ -25,7 +25,7 @@ namespace ast
 {
 
 /** \brief Abstract an Abstract Syntax Tree node. */
-class EXTERN_AST Ast
+class Ast
 {
     /** \name Ctor & dtor.
     ** \{ */
@@ -106,7 +106,7 @@ private:
     Location _location;
     double m_dblElapsedTime;
     size_t nodeNumber;
-    static size_t globalNodeNumber;
+    static EXTERN_AST size_t globalNodeNumber;
 };
 
 } // namespace ast

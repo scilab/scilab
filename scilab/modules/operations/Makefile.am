@@ -46,6 +46,7 @@ libscioperations_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/elementary_functions/includes \
     -I$(top_srcdir)/modules/output_stream/includes \
     -I$(top_srcdir)/modules/system_env/includes \
+    -I$(top_srcdir)/modules/dynamic_link/includes \
     $(EIGEN_CPPFLAGS) \
     $(AM_CPPFLAGS)
 

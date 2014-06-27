@@ -23,45 +23,46 @@
 #include "symbol.hxx"
 #include <list>
 #include "expHistory.hxx"
-
+#include "dynlib_ast.h"
 #define bsiz	4096
 
-//EXTERN_AST void ExpandList(int ** _piList, int *_piListSize, int _iListSizeSize, int *_piResultList);
+//void ExpandList(int ** _piList, int *_piListSize, int _iListSizeSize, int *_piResultList);
 
-EXTERN_AST types::InternalType* AddElementToVariable(
+types::InternalType* AddElementToVariable(
     types::InternalType* _poDest,
     types::InternalType* _poSource,
     int _iRows, int _iCols);
 
-EXTERN_AST types::InternalType* AddElementToVariableFromCol(
+types::InternalType* AddElementToVariableFromCol(
     types::InternalType* _poDest,
     types::InternalType* _poSource,
     int _iRows, int _iCols, int *_piCols);
 
-EXTERN_AST types::InternalType* AddElementToVariableFromRow(
+types::InternalType* AddElementToVariableFromRow(
     types::InternalType* _poDest,
     types::InternalType* _poSource,
     int _iRows, int _iCols, int *_piRows);
 
-EXTERN_AST const std::wstring* getStructNameFromExp(const ast::Exp* _pExp);
+const std::wstring* getStructNameFromExp(const ast::Exp* _pExp);
 
-EXTERN_AST bool getFieldsFromExp(ast::Exp* _pExp, std::list<ExpHistory*>& fields);
+bool getFieldsFromExp(ast::Exp* _pExp, std::list<ExpHistory*>& fields);
 
-EXTERN_AST types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*>& fields, types::InternalType* pIT);
+types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*>& fields, types::InternalType* pIT);
 
-EXTERN_AST types::InternalType* callOverload(const ast::Exp& e,
-        std::wstring _strType,
-        types::typed_list* _pArgs,
-        types::InternalType* _source,
-        types::InternalType* _dest);
+types::InternalType* callOverload(const ast::Exp& e,
+                                  std::wstring _strType,
+                                  types::typed_list* _pArgs,
+                                  types::InternalType* _source,
+                                  types::InternalType* _dest);
 
-EXTERN_AST types::InternalType* callOverload(std::wstring strType, types::InternalType* _paramL, types::InternalType* _paramR);
+types::InternalType* callOverload(std::wstring strType, types::InternalType* _paramL, types::InternalType* _paramR);
+
+
+types::List* getPropertyTree(ast::Exp* e, types::List* pList);
+
+types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs, types::InternalType* _pVar, types::InternalType* _pInsert);
 
 EXTERN_AST void callOnPrompt(void);
-
-EXTERN_AST types::List* getPropertyTree(ast::Exp* e, types::List* pList);
-
-EXTERN_AST types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs, types::InternalType* _pVar, types::InternalType* _pInsert);
 EXTERN_AST ast::Exp* callTyper(ast::Exp* _tree, std::wstring _msg = std::wstring(L""));
 
 #endif //!AST_VISITOR_COMMON_HXX
