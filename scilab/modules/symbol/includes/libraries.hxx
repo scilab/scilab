@@ -54,11 +54,7 @@ struct EXTERN_SYMBOL Library
             if (pLib != _pLib)
             {
                 pLib->DecreaseRef();
-                if (pLib->isDeletable())
-                {
-                    delete pLib;
-                }
-
+                pLib->killMe();
                 top()->m_pLib = _pLib;
                 _pLib->IncreaseRef();
             }
@@ -163,11 +159,7 @@ struct Libraries
                 {
                     types::Library* pIT = it->second->top()->m_pLib;
                     pIT->DecreaseRef();
-                    if (pIT->isDeletable())
-                    {
-                        delete pIT;
-                    }
-
+                    pIT->killMe();
                     it->second->pop();
                     return true;
                 }
@@ -189,6 +181,24 @@ struct Libraries
         }
 
         return names;
+    }
+
+    void clearAll()
+    {
+        for (MapLibs::iterator it = libs.begin(); it != libs.end() ; ++it)
+        {
+            while (!it->second->empty())
+            {
+                ScopedLibrary * pSL = it->second->top();
+                types::InternalType * pIT = pSL->m_pLib;
+                pIT->DecreaseRef();
+                pIT->killMe();
+                it->second->pop();
+                delete pSL;
+            }
+
+            delete it->second;
+        }
     }
 
 private:

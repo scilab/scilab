@@ -57,11 +57,7 @@ struct EXTERN_SYMBOL Variable
             if (pIT != _pIT)
             {
                 pIT->DecreaseRef();
-                if (pIT->isDeletable())
-                {
-                    delete pIT;
-                }
-
+                pIT->killMe();
                 top()->m_pIT = _pIT;
                 _pIT->IncreaseRef();
             }
@@ -148,10 +144,7 @@ struct EXTERN_SYMBOL Variable
             if (m_GlobalValue)
             {
                 m_GlobalValue->DecreaseRef();
-                if (m_GlobalValue->isDeletable())
-                {
-                    delete m_GlobalValue;
-                }
+                m_GlobalValue->killMe();
             }
 
             m_GlobalValue = _pIT;
@@ -257,11 +250,7 @@ struct Variables
             {
                 types::InternalType* pIT = _var->top()->m_pIT;
                 pIT->DecreaseRef();
-                if (pIT->isDeletable())
-                {
-                    delete pIT;
-                }
-
+                pIT->killMe();
                 _var->pop();
             }
         }
@@ -388,6 +377,24 @@ struct Variables
         }
 
         remove(pVar, _iLevel);
+    }
+
+    void clearAll()
+    {
+        for (MapVars::iterator it = vars.begin(); it != vars.end() ; ++it)
+        {
+            while (!it->second->empty())
+            {
+                ScopedVariable * pSV = it->second->top();
+                types::InternalType * pIT = pSV->m_pIT;
+                pIT->DecreaseRef();
+                pIT->killMe();
+                it->second->pop();
+                delete pSV;
+            }
+
+            delete it->second;
+        }
     }
 
 private:

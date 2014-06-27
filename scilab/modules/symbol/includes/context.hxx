@@ -34,6 +34,8 @@ class EXTERN_SYMBOL Context
 public :
     static Context* getInstance(void);
 
+    static void destroyInstance(void);
+
     /** Open a context scope i.e
     ** open the heap table one
     ** and the env table too. */
@@ -85,6 +87,8 @@ public :
     //clearglobal
     void removeGlobalAll();
 
+    void clearAll();
+
     /*set variable visible/hidden in current global scope*/
     void setGlobalVisible(const Symbol& key, bool bVisible);
     void setGlobal(const Symbol& key);
@@ -121,6 +125,8 @@ private :
     int m_iLevel;
 
     Context();
+    ~Context();
+
     static Context* me;
 };
 

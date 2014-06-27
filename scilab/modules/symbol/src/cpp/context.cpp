@@ -27,6 +27,21 @@ Context::Context()
     globals = new std::list<Symbol>();
 }
 
+Context::~Context()
+{
+    while (!varStack.empty())
+    {
+        VarList * pVL = varStack.top();
+        pVL->clear();
+        delete pVL;
+        varStack.pop();
+    }
+    if (globals)
+    {
+        delete globals;
+    }
+}
+
 Context* Context::getInstance(void)
 {
     if (me == 0)
@@ -36,10 +51,24 @@ Context* Context::getInstance(void)
     return me;
 }
 
+void Context::destroyInstance(void)
+{
+    if (me)
+    {
+        delete me;
+    }
+}
+
 void Context::scope_begin()
 {
     m_iLevel++;
     varStack.push(new VarList());
+}
+
+void Context::clearAll()
+{
+    libraries.clearAll();
+    variables.clearAll();
 }
 
 void Context::scope_end()
@@ -68,11 +97,7 @@ bool Context::clearCurrentScope(bool _bClose)
         {
             types::InternalType* pIT = it->second->top()->m_pIT;
             pIT->DecreaseRef();
-            if (pIT->isDeletable())
-            {
-                delete pIT;
-            }
-
+            pIT->killMe();
             it->second->pop();
         }
     }

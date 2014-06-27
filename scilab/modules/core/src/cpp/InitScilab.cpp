@@ -309,8 +309,9 @@ void StopScilabEngine(ScilabEngineInfo* _pSEI)
 
 
     //close main scope
-    symbol::Context::getInstance()->scope_end();
-
+    //symbol::Context::getInstance()->scope_end();
+    symbol::Context::getInstance()->clearAll();
+    symbol::Context::destroyInstance();
 
     if (_pSEI->iNoJvm == 0)
     {
@@ -497,6 +498,7 @@ static int interactiveMain(ScilabEngineInfo* _pSEI)
 #ifdef DEBUG
     std::cerr << "To end program press [ENTER]" << std::endl;
 #endif
+
     return ConfigVariable::getExitStatus();
 }
 
