@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - DIGITEO - Cedric DELAMARRE
+ * Copyright (C) 2014 - Scilab Enterprises - Anais AUBERT
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -48,26 +49,26 @@ types::Function::ReturnValue sci_diag(types::typed_list &in, int _iRetCount, typ
         return types::Function::Error;
     }
 
+    if (in[0]->isGenericType() == false)
+    {
+        std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_diag";
+        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
+    }
+
+    if (in[0]->getAs<types::GenericType>()->getDims() > 2)
+    {
+        std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_diag";
+        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
+    }
+
     /***** get data *****/
     if (in[0]->isDouble())
     {
         pDblIn = in[0]->getAs<types::Double>();
-
-        if (pDblIn->getDims() > 2)
-        {
-            std::wstring wstFuncName = L"%hm_diag";
-            return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
-        }
     }
     else if (in[0]->isString())
     {
         pStrIn = in[0]->getAs<types::String>();
-
-        if (pStrIn->getDims() > 2)
-        {
-            std::wstring wstFuncName = L"%hm_diag";
-            return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
-        }
     }
     else if (in[0]->isBool()) // bool
     {
@@ -81,11 +82,6 @@ types::Function::ReturnValue sci_diag(types::typed_list &in, int _iRetCount, typ
     else if (in[0]->isPoly())
     {
         pPolyIn = in[0]->getAs<types::Polynom>();
-        if (pPolyIn->getDims() > 2)
-        {
-            std::wstring wstFuncName = L"%hm_diag";
-            return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
-        }
     }
     else if (in[0]->isInt8()) // int
     {
