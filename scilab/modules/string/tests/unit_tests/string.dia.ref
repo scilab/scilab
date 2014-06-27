@@ -1,7 +1,6 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2007-2008 - INRIA
-// Copyright (C) 2014 - Scilab Enterprises - Anais AUBERT
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -43,14 +42,17 @@ deff('y = mymacro(x)', 'y = x + 1');
 [out, in, text] = string(mymacro);
 assert_checkequal(out, 'y');
 assert_checkequal(in, 'x');
-assert_checkequal(text, ['y = x + 1']);
+assert_checkequal(text, [' '; 'y = x + 1'; ' ']);
 //===============================
 mymacro = null();
 deff('y = mymacro(x)', 'y = x + 1', 'n');
 [out, in, text]=string(mymacro);
 assert_checkequal(out, 'y');
 assert_checkequal(in, 'x');
-assert_checkequal(text, ['y = x + 1']);
+assert_checkequal(text, [' '; 'y = x + 1'; ' ']);
+//===============================
+R = string(corelib);
+assert_checkequal(strsubst(R(1),'\','/'), 'SCI/modules/core/macros/');
 //===============================
 A = floor(abs(2^8  * rand(10,10)));
 B = floor(abs(2^16 * rand(10,10)));
