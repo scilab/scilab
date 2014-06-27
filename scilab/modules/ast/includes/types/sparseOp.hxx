@@ -14,6 +14,7 @@
 #define __SPARSEOP_HH__
 
 #include "sparse.hxx"
+#include "keepForSparse.hxx"
 
 
 /*
@@ -95,17 +96,6 @@ template<> struct greater_equal<std::complex<double> >: std::binary_function<std
 
 namespace
 {
-/*
- * used by Eigen to prune sparse matrices.
- * Scilab <6 keeps values <%eps, so we prune only 0. but it should really be a property of the sparse matrix.
- */
-template<typename T>
-bool keepForSparse(std::size_t /* unused */, std::size_t /* unused */, T const& v)
-{
-    static T const zero(0);
-    return v != zero;
-}
-
 /*
  * Operations on sparse matrices can require full traversal of the sparse args if the default (0 or false) value
  * of one arg does not set the result to the default result value.

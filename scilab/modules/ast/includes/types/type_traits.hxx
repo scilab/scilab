@@ -16,6 +16,7 @@
 #include <cmath>
 #include <Eigen/Sparse>
 #include "types_transposition.hxx"
+#include "keepForSparse.hxx"
 
 namespace types
 {
@@ -85,6 +86,9 @@ struct type_traits
                 out->coeffRef(i, j) = !in->coeff(i, j);
             }
         }
+
+        out->prune(&keepForSparse<bool>);
+        out->finalize();
     }
 
     template<typename T, typename U>
