@@ -23,6 +23,7 @@ extern "C"
 #include <stdio.h>
 #include "core_math.h"
 #include "matrix_addition.h"
+#include "sci_malloc.h"
 #include "localization.h"
 #include "charEncoding.h"
 #include "os_swprintf.h"
@@ -2017,7 +2018,7 @@ types::InternalType* add_M_S<String, String, String>(String* _pL, String* _pR)
         int sizeL = (int)wcslen(pwstL);
 
         sizeOut[i] = sizeL + sizeR + 1;
-        wchar_t* pwstOut = new wchar_t[sizeOut[i]];
+        wchar_t* pwstOut = (wchar_t*) MALLOC(sizeOut[i] * sizeof(wchar_t));
         //assign ptr without strdup
         pOut->get()[i] = pwstOut;
     }
@@ -2037,7 +2038,7 @@ types::InternalType* add_S_S<String, String, String>(String* _pL, String* _pR)
     int sizeR = (int)wcslen(pwstR);
 
     int sizeOut = sizeL + sizeR + 1;
-    wchar_t* pwstOut = new wchar_t[sizeOut];
+    wchar_t* pwstOut = (wchar_t*) MALLOC(sizeOut * sizeof(wchar_t));
     //assign ptr without strdup
     pOut->get()[0] = pwstOut;
     add(pwstL, pwstR, sizeOut, *pOut->get());
