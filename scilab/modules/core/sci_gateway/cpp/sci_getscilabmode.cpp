@@ -20,6 +20,7 @@ extern "C"
 #include "Scierror.h"
 #include "localization.h"
 #include "os_strdup.h"
+#include "sci_malloc.h"
 }
 /*--------------------------------------------------------------------------*/
 
@@ -36,7 +37,8 @@ Function::ReturnValue sci_getscilabmode(types::typed_list &in, int _iRetCount, t
         return Function::Error;
     }
 
-    String* pS = new String(getScilabModeString());
+    const char* pst = getScilabModeString();
+    String* pS = new String(pst);
     out.push_back(pS);
 
     return Function::OK;

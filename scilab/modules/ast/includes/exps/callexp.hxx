@@ -44,13 +44,15 @@ public:
 
     virtual ~CallExp ()
     {
-        delete _name;
-        std::list<Exp *>::const_iterator i;
-        for (i = _args->begin() ; i != _args->end() ; i++)
+        std::list<Exp *>::const_iterator it = _args->begin();
+        std::list<Exp *>::const_iterator itEnd = _args->end();
+        for (;it != itEnd ; ++it)
         {
-            delete *i;
+            delete *it;
         }
+
         delete _args;
+        delete _name;
     }
 
     virtual CallExp* clone()

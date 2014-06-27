@@ -236,6 +236,7 @@ void RunVisitorT<T>::visitprivate(const LogicalOpExp &e)
             if (pIL->isComputable())
             {
                 pITL = pIL->extractFullMatrix();
+                pIL->killMe();
             }
         }
 
@@ -272,6 +273,7 @@ void RunVisitorT<T>::visitprivate(const LogicalOpExp &e)
                     if (pIR->isComputable())
                     {
                         pITR = pIR->extractFullMatrix();
+                        pIR->killMe();
                     }
                 }
                 pResult = GenericLogicalAnd(pITL, pITR);
@@ -325,14 +327,10 @@ void RunVisitorT<T>::visitprivate(const LogicalOpExp &e)
         result_set(pResult);
 
         //clear left and/or right operands
-        if (pITL->isDeletable())
+        pITL->killMe();
+        if(pITR)
         {
-            delete pITL;
-        }
-
-        if (pITR && pITR->isDeletable())
-        {
-            delete pITR;
+            pITR->killMe();
         }
     }
     catch (ast::ScilabError error)

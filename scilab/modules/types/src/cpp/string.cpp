@@ -66,7 +66,9 @@ String::String(const char *_pstData)
     wchar_t** pwsData = NULL;
     int piDims[] = {1, 1};
     create(piDims, 2, &pwsData, NULL);
-    set(0, 0, to_wide_string(const_cast<char*>(_pstData)));
+    wchar_t* data = to_wide_string(const_cast<char*>(_pstData));
+    set(0, 0, data);
+    FREE(data);
 #ifndef NDEBUG
     Inspector::addItem(this);
 #endif

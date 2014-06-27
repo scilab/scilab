@@ -39,10 +39,7 @@ public:
         if (_bigBool)
         {
             _bigBool->DecreaseRef();
-            if (_bigBool->isDeletable())
-            {
-                delete _bigBool;
-            }
+            _bigBool->killMe();
         }
     }
     /** \} */
@@ -89,14 +86,12 @@ public:
     /** \brief Set the big bool */
     void setBigBool(types::Bool *pB)
     {
-        if (_bigBool && _bigBool->isRef())
+        if (_bigBool)
         {
             _bigBool->DecreaseRef();
-            if (_bigBool->isDeletable())
-            {
-                delete _bigBool;
-            }
+            _bigBool->killMe();
         }
+        
         _bigBool = pB;
         _bigBool->IncreaseRef();
     }

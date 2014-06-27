@@ -139,6 +139,7 @@ int sci_getenv(char *fname, void* pvApiCtx)
     }
 
     getenvc(&ierr, pStVarOne, env_value, &length_env, &iflag);
+    freeAllocatedSingleString(pStVarOne);
 
     //create variable on stack and return it.
     if (createSingleString(pvApiCtx, Rhs + 1, env_value))

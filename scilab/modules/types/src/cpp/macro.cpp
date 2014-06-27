@@ -54,6 +54,20 @@ Macro::Macro(const std::wstring& _stName, std::list<symbol::Variable*>& _inputAr
 Macro::~Macro()
 {
     delete m_body;
+    m_pDblArgIn->DecreaseRef();
+    m_pDblArgIn->killMe();
+    m_pDblArgOut->DecreaseRef();
+    m_pDblArgOut->killMe();
+
+    if (m_inputArgs)
+    {
+        delete m_inputArgs;
+    }
+
+    if (m_outputArgs)
+    {
+        delete m_outputArgs;
+    }
 }
 
 InternalType* Macro::clone()
@@ -179,8 +193,24 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
     //common part with or without varargin/varargout
 
     // Declare nargin & nargout in function context.
+    if (m_pDblArgIn->getRef() > 1)
+    {
+        m_pDblArgIn->DecreaseRef();
+        m_pDblArgIn = (Double*)m_pDblArgIn->clone();
+        m_pDblArgIn->IncreaseRef();
+    }
+
     m_pDblArgIn->set(0, static_cast<double>(in.size()));
+
+    if (m_pDblArgOut->getRef() > 1)
+    {
+        m_pDblArgOut->DecreaseRef();
+        m_pDblArgOut = (Double*)m_pDblArgOut->clone();
+        m_pDblArgOut->IncreaseRef();
+    }
+
     m_pDblArgOut->set(0, _iRetCount);
+
     pContext->put(m_Nargin, m_pDblArgIn);
     pContext->put(m_Nargout, m_pDblArgOut);
 

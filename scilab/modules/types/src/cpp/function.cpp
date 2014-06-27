@@ -435,6 +435,7 @@ Callable::ReturnValue DynamicFunction::Init()
 
     char* pstLibName = wide_string_to_UTF8(m_wstLibName.c_str());
     m_hLib = LoadDynLibrary(pstLibName);
+    FREE(pstLibName);
     if (m_hLib == NULL)
     {
         //2nd chance for linux !
@@ -488,22 +489,24 @@ Callable::ReturnValue DynamicFunction::Init()
     /*Load gateway*/
     if (m_wstName != L"")
     {
-        char* _pstEntryPoint = wide_string_to_UTF8(m_wstEntryPoint.c_str());
+        char* pstEntryPoint = wide_string_to_UTF8(m_wstEntryPoint.c_str());
         switch (m_iType)
         {
             case EntryPointCPPOpt :
-                m_pOptFunc = (GW_FUNC_OPT)GetDynLibFuncPtr(m_hLib, _pstEntryPoint);
+                m_pOptFunc = (GW_FUNC_OPT)GetDynLibFuncPtr(m_hLib, pstEntryPoint);
                 break;
             case EntryPointCPP :
-                m_pFunc = (GW_FUNC)GetDynLibFuncPtr(m_hLib, _pstEntryPoint);
+                m_pFunc = (GW_FUNC)GetDynLibFuncPtr(m_hLib, pstEntryPoint);
                 break;
             case EntryPointC :
-                m_pOldFunc = (OLDGW_FUNC)GetDynLibFuncPtr(m_hLib, _pstEntryPoint);
+                m_pOldFunc = (OLDGW_FUNC)GetDynLibFuncPtr(m_hLib, pstEntryPoint);
                 break;
             case EntryPointMex :
-                m_pMexFunc = (MEXGW_FUNC)GetDynLibFuncPtr(m_hLib, _pstEntryPoint);
+                m_pMexFunc = (MEXGW_FUNC)GetDynLibFuncPtr(m_hLib, pstEntryPoint);
                 break;
         }
+
+        FREE(pstEntryPoint);
     }
 
     if (m_pFunc == NULL && m_pOldFunc == NULL && m_pMexFunc == NULL && m_pOptFunc == NULL)

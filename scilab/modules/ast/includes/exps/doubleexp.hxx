@@ -41,10 +41,7 @@ public:
         if (_bigDouble)
         {
             _bigDouble->DecreaseRef();
-            if (_bigDouble->isDeletable())
-            {
-                delete _bigDouble;
-            }
+            _bigDouble->killMe();
         }
     }
     /** \} */
@@ -89,14 +86,12 @@ public:
 
     void setBigDouble(types::Double *pdbl)
     {
-        if (_bigDouble && _bigDouble->isRef())
+        if (_bigDouble)
         {
             _bigDouble->DecreaseRef();
-            if (_bigDouble->isDeletable())
-            {
-                delete _bigDouble;
-            }
+            _bigDouble->killMe();
         }
+        
         _bigDouble = pdbl;
         _bigDouble->IncreaseRef();
     }

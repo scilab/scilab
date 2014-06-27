@@ -49,6 +49,7 @@ void getenvc(int *ierr, const char *var, char *buf, int *buflen, int *iflag)
             sciprint(_("Undefined environment variable %s.\n"), var);
         }
 
+        FREE(wvar);
         *ierr = 1;
         return;
     }
@@ -62,12 +63,15 @@ void getenvc(int *ierr, const char *var, char *buf, int *buflen, int *iflag)
                 sciprint(_("Undefined environment variable %s.\n"), var);
             }
 
+            FREE(wvar);
             *ierr = 1;
             return;
         }
     }
 
     temp = wide_string_to_UTF8(wbuf);
+    FREE(wbuf);
+    FREE(wvar);
     *buflen = (int)strlen(temp);
     if (buf)
     {

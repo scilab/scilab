@@ -125,7 +125,7 @@ int* assignOutputVariable(void* _pvCtx, int _iVal)
 
 int returnArguments(void* _pvCtx)
 {
-    return 0;
+    return 1;
 }
 
 int checkInputArgument(void* _pvCtx, int _iMin, int _iMax)

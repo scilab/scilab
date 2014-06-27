@@ -44,11 +44,13 @@ public:
 
     virtual ~MatrixLineExp ()
     {
-        std::list<Exp *>::const_iterator i;
-        for (i = _columns->begin() ; i != _columns->end() ; i++)
+        std::list<Exp *>::const_iterator it = _columns->begin();
+        std::list<Exp *>::const_iterator itEnd = _columns->end();
+        for (; it != itEnd ; ++it)
         {
-            delete *i;
+            delete *it;
         }
+        
         delete _columns;
     }
 

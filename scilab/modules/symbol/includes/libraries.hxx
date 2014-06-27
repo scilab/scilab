@@ -157,10 +157,12 @@ struct Libraries
             {
                 if (it->second->top()->m_iLevel == _iLevel)
                 {
-                    types::Library* pIT = it->second->top()->m_pLib;
+                    ScopedLibrary * pSL = it->second->top();
+                    types::Library* pIT = pSL->m_pLib;
                     pIT->DecreaseRef();
                     pIT->killMe();
                     it->second->pop();
+                    delete pSL;
                     return true;
                 }
             }
@@ -173,7 +175,8 @@ struct Libraries
     {
         std::list<std::wstring>* names = new std::list<std::wstring>();
         MapLibs::iterator it = libs.begin();
-        for (; it != libs.end() ; ++it)
+        MapLibs::iterator itEnd = libs.end();
+        for (; it != itEnd ; ++it)
         {
             std::list<std::wstring>* temp = it->second->getMacrosName();
             names->insert(names->end(), temp->begin(), temp->end());

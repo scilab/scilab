@@ -39,10 +39,7 @@ public:
         if (_bigString)
         {
             _bigString->DecreaseRef();
-            if (_bigString->isDeletable())
-            {
-                delete _bigString;
-            }
+            _bigString->killMe();            
         }
     }
     /** \} */
@@ -77,13 +74,10 @@ public:
 
     void setBigString(types::String *_pS)
     {
-        if (_bigString && _bigString->isRef())
+        if (_bigString)
         {
             _bigString->DecreaseRef();
-            if (_bigString->isDeletable())
-            {
-                delete _bigString;
-            }
+            _bigString->killMe();
         }
         _bigString = _pS;
         _bigString->IncreaseRef();

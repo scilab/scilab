@@ -25,6 +25,7 @@ extern "C"
 #include "localization.h"
 #include "Scierror.h"
 #include "with_module.h"
+#include "freeArrayOfString.h"
 }
 /*--------------------------------------------------------------------------*/
 #define VERSION_STRING L"string_info"
@@ -64,7 +65,7 @@ Function::ReturnValue sci_getversion(types::typed_list &in, int _iRetCount, type
             String* pOut2 = new String(1, iOption);
             pOut2->set(pwstOption);
             out.push_back(pOut2);
-            FREE(pwstOption);
+            freeArrayOfWideString(pwstOption, iOption);
         }
 
     }

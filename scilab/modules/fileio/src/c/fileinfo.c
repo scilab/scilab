@@ -85,7 +85,6 @@ static double *fileinfo_WindowsW(wchar_t* _pwstFilename, int *_piErr)
         return NULL;
     }
 
-    FILEINFO_ARRAY = (double*)MALLOC(sizeof(double) * FILEINFO_ARRAY_SIZE);
     os_swprintf(DriveTemp, PATH_MAX + FILENAME_MAX + 1, L"%ls", _pwstFilename);
     if ( (DriveTemp[wcslen(DriveTemp) - 1] == L'/') || (DriveTemp[wcslen(DriveTemp) - 1] == L'\\') )
     {
@@ -127,6 +126,7 @@ static double *fileinfo_WindowsW(wchar_t* _pwstFilename, int *_piErr)
                 else
                 {
                     *_piErr = FILEINFO_DEFAULT_ERROR;
+                    FREE(FILEINFO_ARRAY);
                     return NULL;
                 }
             }
@@ -134,6 +134,7 @@ static double *fileinfo_WindowsW(wchar_t* _pwstFilename, int *_piErr)
         else
         {
             *_piErr = result;
+            FREE(FILEINFO_ARRAY);
             return NULL;
         }
     }
@@ -160,6 +161,7 @@ static double *fileinfo_WindowsW(wchar_t* _pwstFilename, int *_piErr)
         else
         {
             *_piErr = FILEINFO_DEFAULT_ERROR;
+            FREE(FILEINFO_ARRAY);
             return NULL;
         }
     }

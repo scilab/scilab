@@ -62,7 +62,8 @@ public:
 
     virtual ~FunctionDec ()
     {
-        delete _body;
+        //body will be deleted by types::Macro
+        //delete _body;
         delete _args;
         delete _returns;
         delete &_name;

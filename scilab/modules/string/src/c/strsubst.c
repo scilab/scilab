@@ -373,7 +373,7 @@ wchar_t *wcssub(const wchar_t* _pwstInput, const wchar_t* _pwstSearch, const wch
 
     pwstOutput = (wchar_t*)MALLOC(sizeof(wchar_t) * (wcslen(_pwstInput) + iOffset + 1));
     memset(pwstOutput, 0x00, sizeof(wchar_t) * (wcslen(_pwstInput) + iOffset + 1));
-
+    
     if (iOccurs == 0)
     {
         wcscpy(pwstOutput, _pwstInput);
@@ -399,6 +399,7 @@ wchar_t *wcssub(const wchar_t* _pwstInput, const wchar_t* _pwstSearch, const wch
         wcscpy(pwstOutput + wcslen(pwstOutput), _pwstInput + piStart[iOccurs - 1] + iSearch);
     }
 
+    FREE(piStart);
     return pwstOutput;
 }
 /*-------------------------------------------------------------------------------------*/

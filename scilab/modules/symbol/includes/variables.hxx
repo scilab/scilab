@@ -35,6 +35,24 @@ struct EXTERN_SYMBOL ScopedVariable
 struct EXTERN_SYMBOL Variable
 {
     Variable(const Symbol& _name) : name(_name), m_Global(false), m_GlobalValue(NULL) {};
+    ~Variable()
+    {
+        while (!empty())
+        {
+            ScopedVariable * pSV = top();
+            types::InternalType * pIT = pSV->m_pIT;
+            pIT->DecreaseRef();
+            pIT->killMe();
+            pop();
+            delete pSV;
+        }
+
+        if (m_GlobalValue)
+        {
+            m_GlobalValue->DecreaseRef();
+            m_GlobalValue->killMe();
+        }
+    }
 
     void put(types::InternalType* _pIT, int _iLevel)
     {
@@ -235,6 +253,7 @@ struct Variables
                 it->second->pop();
                 types::InternalType* pIT = getAllButCurrentLevel(_key, _iLevel);
                 it->second->put(pSave->m_pIT, pSave->m_iLevel);
+                delete pSave;
                 return pIT;
             }
         }
@@ -248,10 +267,12 @@ struct Variables
         {
             if (_var->top()->m_iLevel == _iLevel)
             {
-                types::InternalType* pIT = _var->top()->m_pIT;
+                ScopedVariable* pSave = _var->top();
+                types::InternalType* pIT = pSave->m_pIT;
                 pIT->DecreaseRef();
                 pIT->killMe();
                 _var->pop();
+                delete pSave;
             }
         }
 
@@ -326,6 +347,7 @@ struct Variables
             _var->pop();
             putInPreviousScope(_var, _pIT, _iLevel);
             _var->put(pVar->m_pIT, pVar->m_iLevel);
+            delete pVar;
         }
         else
         {
@@ -383,16 +405,6 @@ struct Variables
     {
         for (MapVars::iterator it = vars.begin(); it != vars.end() ; ++it)
         {
-            while (!it->second->empty())
-            {
-                ScopedVariable * pSV = it->second->top();
-                types::InternalType * pIT = pSV->m_pIT;
-                pIT->DecreaseRef();
-                pIT->killMe();
-                it->second->pop();
-                delete pSV;
-            }
-
             delete it->second;
         }
     }

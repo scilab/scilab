@@ -48,12 +48,6 @@ public:
         std::list<Exp *>::const_iterator i;
         for (i = _l_body->begin() ; i != _l_body->end() ; i++)
         {
-            FunctionDec* pDec = dynamic_cast<FunctionDec*>(*i);
-            if (pDec)
-            {
-                //do not delete function declaration.
-                continue;
-            }
             delete *i;
         }
         delete _l_body;
@@ -100,6 +94,11 @@ public:
     std::list<Exp *>&	exps_get()
     {
         return *_l_body;
+    }
+
+    void exps_clear()
+    {
+        _l_body->clear();
     }
     /** \} */
 

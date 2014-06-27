@@ -23,6 +23,7 @@ extern "C"
 #include <string.h>
 #include "Scierror.h"
 #include "localization.h"
+#include "sci_malloc.h"
 }
 /*--------------------------------------------------------------------------*/
 
@@ -39,6 +40,7 @@ types::Function::ReturnValue sci_pathsep(types::typed_list &in, int _iRetCount, 
 
     types::String* pOut = new types::String(2, dimsArray);
     pOut->set(0, wcsSep);
+    FREE(wcsSep);
     out.push_back(pOut);
     return types::Function::OK;
 }

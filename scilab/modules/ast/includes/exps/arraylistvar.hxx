@@ -44,16 +44,24 @@ public:
 
     virtual ~ArrayListVar ()
     {
+        std::list<Var *>::iterator it = _vars->begin();
+        std::list<Var *>::iterator itEnd = _vars->end();
+        for (; it != itEnd ; ++it)
+        {
+            delete *it;
+        }
+
         delete _vars;
     }
 
     virtual ArrayListVar* clone()
     {
         std::list<Var *>* vars = new std::list<Var *>;
-        std::list<Var *>::const_iterator it;
-        for (it = vars_get().begin() ; it != vars_get().end() ; it++)
+        std::list<Var *>::const_iterator it = _vars->begin();
+        std::list<Var *>::const_iterator itEnd = _vars->end();
+        for (;it != itEnd ; ++it)
         {
-            Var* var = dynamic_cast<Var*>((*it)->clone());
+            Var* var = static_cast<Var*>((*it)->clone());
             vars->push_back(var);
         }
 

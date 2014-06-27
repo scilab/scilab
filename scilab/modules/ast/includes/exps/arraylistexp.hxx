@@ -44,14 +44,22 @@ public:
 
     virtual ~ArrayListExp ()
     {
-        delete _exps;
+        std::list<Exp *>::const_iterator it = _exps->begin();
+        std::list<Exp *>::const_iterator itEnd = _exps->begin();
+        for (; it != itEnd ; ++it)
+        {
+            delete *it;
+        }
+
+       delete _exps;
     }
 
     virtual ArrayListExp* clone()
     {
         std::list<Exp *>* exps = new std::list<Exp *>;
-        std::list<Exp *>::const_iterator it;
-        for (it = _exps->begin() ; it != _exps->end() ; it++)
+        std::list<Exp *>::const_iterator it = _exps->begin();
+        std::list<Exp *>::const_iterator itEnd = _exps->begin();
+        for (; it != itEnd ; ++it)
         {
             exps->push_back((*it)->clone());
         }

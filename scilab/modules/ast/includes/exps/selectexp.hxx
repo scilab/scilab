@@ -52,7 +52,16 @@ public :
     ~SelectExp()
     {
         delete _selectme;
+        
+        cases_t::iterator it = _cases->begin();
+        cases_t::iterator itEnd = _cases->end();
+        for(; it != itEnd ; ++it)
+        {
+            delete *it;
+        }
+        
         delete _cases;
+        
         if (_default != NULL)
         {
             delete _default;

@@ -130,7 +130,6 @@ int ScinotesModule::Load()
     }
 
     FREE(pwstLibName);
-
     return 1;
 }
 
@@ -153,7 +152,6 @@ int FunctionsModule::Load()
     }
 
     FREE(pwstLibName);
-
     return 1;
 }
 
@@ -175,7 +173,6 @@ int StatisticsModule::Load()
     }
 
     FREE(pwstLibName);
-
     return 1;
 }
 
@@ -197,7 +194,6 @@ int SignalProcessingModule::Load()
     }
 
     FREE(pwstLibName);
-
     return 1;
 }
 
@@ -228,7 +224,6 @@ int HelptoolsModule::Load()
     }
 
     FREE(pwstLibName);
-
     return 1;
 }
 
@@ -250,7 +245,6 @@ int MatioModule::Load()
     }
 
     FREE(pwstLibName);
-
     return 1;
 }
 
@@ -270,7 +264,6 @@ int Hdf5Module::Load()
     }
 
     FREE(pwstLibName);
-
     return 1;
 }
 
@@ -292,7 +285,6 @@ int ActionBindingModule::Load()
     }
 
     FREE(pwstLibName);
-
     return 1;
 }
 
@@ -312,7 +304,6 @@ int SpreadsheetModule::Load()
     }
 
     FREE(pwstLibName);
-
     return 1;
 }
 
@@ -334,7 +325,6 @@ int InterpolationModule::Load()
     }
 
     FREE(pwstLibName);
-
     return 1;
 }
 
@@ -356,7 +346,6 @@ int SoundModule::Load()
     }
 
     FREE(pwstLibName);
-
     return 1;
 }
 
@@ -376,7 +365,6 @@ int RandlibModule::Load()
     }
 
     FREE(pwstLibName);
-
     return 1;
 }
 
@@ -396,7 +384,6 @@ int UmfpackModule::Load()
     }
 
     FREE(pwstLibName);
-
     return 1;
 }
 
@@ -416,7 +403,6 @@ int OptimizationModule::Load()
     }
 
     FREE(pwstLibName);
-
     return 1;
 }
 
@@ -436,7 +422,6 @@ int SpecialFunctionModule::Load()
     }
 
     FREE(pwstLibName);
-
     return 1;
 }
 
@@ -456,7 +441,6 @@ int GraphicExportModule::Load()
     }
 
     FREE(pwstLibName);
-
     return 1;
 }
 
@@ -476,7 +460,6 @@ int ArnoldiModule::Load()
     }
 
     FREE(pwstLibName);
-
     return 1;
 }
 
@@ -496,7 +479,6 @@ int CallScilabModule::Load()
     }
 
     FREE(pwstLibName);
-
     return 1;
 }
 
@@ -516,7 +498,6 @@ int CompletionModule::Load()
     }
 
     FREE(pwstLibName);
-
     return 1;
 }
 
@@ -535,6 +516,7 @@ int XmlModule::Load()
         symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
     }
 
+    FREE(pwstLibName);
     return 1;
 }
 
@@ -553,6 +535,7 @@ int ScicosModule::Load()
         symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
     }
 
+    FREE(pwstLibName);
     return 1;
 }
 
@@ -581,6 +564,7 @@ int XcosModule::Load()
         symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, &XcosModule::LoadDeps, wstModuleName));
     }
 
+    FREE(pwstLibName);
     return 1;
 }
 

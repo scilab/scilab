@@ -111,7 +111,7 @@ types::Function::ReturnValue sci_tokens(types::typed_list &in, int _iRetCount, t
     int dims = 2;
 
     wchar_t** Output_Strings = stringTokens(pString->get(0), seps, &dimsArray[0]);
-
+    FREE(seps);
     if (Output_Strings == NULL)
     {
         //return empty matrix

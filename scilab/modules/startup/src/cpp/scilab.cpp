@@ -11,6 +11,11 @@
  *
  */
 
+//#define DEBUG_VLD
+#if defined(DEBUG_VLD)
+#include <vld.h>
+#endif
+
 #pragma comment(lib,"../../../../../bin/libintl.lib")
 
 #include <cstdio>
@@ -27,6 +32,7 @@ extern "C"
 #include "scilabRead.h"
 #include "ConsoleRead.h"
 #include "version.h"
+#include "sci_malloc.h"
 
     extern char *getCmdLine(void);
 }
@@ -283,5 +289,6 @@ int main(int argc, char *argv[])
     StartScilabEngine(pSEI);
     iRet = RunScilabEngine(pSEI);
     StopScilabEngine(pSEI);
+    FREE(pSEI);
     return iRet;
 }

@@ -176,7 +176,7 @@ types::Library* loadlib(std::wstring _wstXML, bool _isFile, bool _bAddInContext)
     }
 
     xmlFreeDoc(doc);
-
+    FREE(pstLibName);
     return lib;
 }
 

@@ -209,6 +209,7 @@ BOOL setlanguage(const wchar_t *lang)
                 }
 #endif
 #endif
+                FREE(ret);
                 return TRUE;
             }
 #ifndef _MSC_VER

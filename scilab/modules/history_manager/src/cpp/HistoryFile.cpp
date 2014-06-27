@@ -79,11 +79,12 @@ BOOL HistoryFile::setDefaultFilename(void)
     char* SCIHOME = getSCIHOME();
     std::string stDefaultFilename;
 
-    stDefaultFilename = std::string(getSCIHOME());
+    stDefaultFilename = std::string(SCIHOME);
     stDefaultFilename += std::string(DIR_SEPARATOR);
     stDefaultFilename += std::string(DEFAULT_HISTORY_FILE);
 
     setFilename(stDefaultFilename);
+    FREE(SCIHOME);
     return TRUE;
 }
 /*------------------------------------------------------------------------*/

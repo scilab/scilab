@@ -219,7 +219,9 @@ private :
     symbol::Symbol* get_Symbol(void)
     {
         std::wstring* s = get_wstring();
-        return new symbol::Symbol(*s);
+        symbol::Symbol *sym = new symbol::Symbol(*s);
+        delete s;
+        return sym;
     }
 
     double get_double(void)
@@ -265,12 +267,14 @@ private :
             {
                 std::wstring* s = get_wstring();
                 exp = new StringExp(*loc, *s);
+                delete s;
                 break;
             }
             case 3:
             {
                 std::wstring* s = get_wstring();
                 exp = new CommentExp(*loc, s);
+                //delete s;
                 break;
             }
             case 6:
