@@ -311,7 +311,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
                             if (pCall->isMacro() || pCall->isMacroFile())
                             {
                                 wchar_t szError[bsiz];
-                                os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n"), (*j)->location_get().first_line, pCall->getName().c_str());
+                                os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n").c_str(), (*j)->location_get().first_line, pCall->getName().c_str());
                                 throw ast::ScilabMessage(szError);
                             }
                             else
@@ -335,9 +335,9 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
                         {
                             wstring szAllError;
                             wchar_t szError[bsiz];
-                            os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n"), sm.GetErrorLocation().first_line, pCall->getName().c_str());
+                            os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n").c_str(), sm.GetErrorLocation().first_line, pCall->getName().c_str());
                             szAllError = szError + os.str();
-                            os_swprintf(szError, bsiz, _W("at line % 5d of exec file called by :\n"), (*j)->location_get().first_line);
+                            os_swprintf(szError, bsiz, _W("at line % 5d of exec file called by :\n").c_str(), (*j)->location_get().first_line);
                             szAllError += szError;
                             throw ast::ScilabMessage(szAllError);
                         }
@@ -388,7 +388,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
 
                     //add info on file failed
                     wchar_t szError[bsiz];
-                    os_swprintf(szError, bsiz, _W("at line % 5d of exec file called by :\n"), (*j)->location_get().first_line);
+                    os_swprintf(szError, bsiz, _W("at line % 5d of exec file called by :\n").c_str(), (*j)->location_get().first_line);
                     os << szError;
 
                     if (ConfigVariable::getLastErrorFunction() == L"")
@@ -431,7 +431,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
 
                 //write position
                 wchar_t szError[bsiz];
-                os_swprintf(szError, bsiz, _W("at line % 5d of exec file called by :\n"), (*j)->location_get().first_line);
+                os_swprintf(szError, bsiz, _W("at line % 5d of exec file called by :\n").c_str(), (*j)->location_get().first_line);
                 scilabErrorW(szError);
                 mclose(iID);
                 //restore previous prompt mode

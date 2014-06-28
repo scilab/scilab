@@ -299,7 +299,6 @@
     <ClInclude Include="includes\mutevisitor.hxx" />
     <ClInclude Include="includes\printvisitor.hxx" />
     <ClInclude Include="includes\runvisitor.hxx" />
-    <ClInclude Include="includes\scilabexception.hxx" />
     <ClInclude Include="includes\serializervisitor.hxx" />
     <ClInclude Include="includes\shortcutvisitor.hxx" />
     <ClInclude Include="includes\stepvisitor.hxx" />

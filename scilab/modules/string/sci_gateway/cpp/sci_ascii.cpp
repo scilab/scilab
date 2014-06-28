@@ -141,9 +141,8 @@ String* TypeToString(T* _pI)
         }
     }
 
-    wchar_t* pwst = to_wide_string(pst);
-    pOut = new String(1, 1);
-    pOut->set(0, 0, pwst);
+    pOut = new String(pst);
+    FREE(pst);
     return pOut;
 }
 /*--------------------------------------------------------------------------*/

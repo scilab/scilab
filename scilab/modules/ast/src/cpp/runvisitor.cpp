@@ -25,6 +25,7 @@
 #include "context.hxx"
 #include "generic_operations.hxx"
 #include "types_or_and.hxx"
+#include "localization.hxx"
 
 extern "C"
 {
@@ -95,7 +96,7 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
     if (!e.tail_get()->is_simple_var())
     {
         wchar_t szError[bsiz];
-        os_swprintf(szError, bsiz, _W("/!\\ Unmanaged FieldExp.\n"));
+        os_swprintf(szError, bsiz, _W("/!\\ Unmanaged FieldExp.\n").c_str());
         throw ScilabError(szError, 999, e.location_get());
     }
 
@@ -111,7 +112,7 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
     if (result_get() == NULL)
     {
         wchar_t szError[bsiz];
-        os_swprintf(szError, bsiz, _W("Attempt to reference field of non-structure array.\n"));
+        os_swprintf(szError, bsiz, _W("Attempt to reference field of non-structure array.\n").c_str());
         throw ScilabError(szError, 999, e.location_get());
     }
 
@@ -187,7 +188,7 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
     else
     {
         wchar_t szError[bsiz];
-        os_swprintf(szError, bsiz, _W("Attempt to reference field of non-structure array.\n"));
+        os_swprintf(szError, bsiz, _W("Attempt to reference field of non-structure array.\n").c_str());
         throw ScilabError(szError, 999, e.location_get());
     }
 }
@@ -718,7 +719,7 @@ void RunVisitorT<T>::visitprivate(const SeqExp  &e)
                             if (pCall->isMacro() || pCall->isMacroFile())
                             {
                                 wchar_t szError[bsiz];
-                                os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n"), (*itExp)->location_get().first_line, pCall->getName().c_str());
+                                os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n").c_str(), (*itExp)->location_get().first_line, pCall->getName().c_str());
                                 throw ScilabMessage(szError);
                             }
                             else
@@ -741,7 +742,7 @@ void RunVisitorT<T>::visitprivate(const SeqExp  &e)
                         if (pCall->isMacro() || pCall->isMacroFile())
                         {
                             wchar_t szError[bsiz];
-                            os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n"), sm.GetErrorLocation().first_line, pCall->getName().c_str());
+                            os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n").c_str(), sm.GetErrorLocation().first_line, pCall->getName().c_str());
                             throw ScilabMessage(szError + os.str());
                         }
                         else
@@ -1179,7 +1180,7 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
     catch (int iPos)
     {
         wchar_t szError[bsiz];
-        os_swprintf(szError, bsiz, _W("%ls: Wrong type for argument %d: Real scalar expected.\n"), L"':'", iPos);
+        os_swprintf(szError, bsiz, _W("%ls: Wrong type for argument %d: Real scalar expected.\n").c_str(), L"':'", iPos);
         throw ScilabError(szError, 999, e.location_get());
     }
     catch (const ScilabError& error)

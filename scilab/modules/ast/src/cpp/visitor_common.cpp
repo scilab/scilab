@@ -22,6 +22,7 @@
 #include "execvisitor.hxx"
 #include "serializervisitor.hxx"
 #include "deserializervisitor.hxx"
+#include "localization.hxx"
 
 #include "alltypes.hxx"
 

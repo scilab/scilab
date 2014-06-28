@@ -14,6 +14,7 @@
 #include "double.hxx"
 #include "list.hxx"
 #include "int.hxx"
+#include "localization.hxx"
 
 namespace types
 {
@@ -145,8 +146,7 @@ bool Struct::extract(const std::wstring & name, InternalType *& out)
     else
     {
         wchar_t szError[bsiz];
-        os_swprintf(szError, bsiz, _W("Unknown field : %ls.\n"), name.c_str());
-
+        os_swprintf(szError, bsiz, _W("Unknown field : %ls.\n").c_str(), name.c_str());
         throw std::wstring(szError);
     }
 

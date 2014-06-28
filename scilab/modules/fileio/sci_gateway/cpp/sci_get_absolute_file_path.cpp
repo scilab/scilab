@@ -65,6 +65,7 @@ Function::ReturnValue sci_get_absolute_file_path(types::typed_list &in, int _iRe
             {
                 types::String* pStringOut = new types::String(2, dimsArray);
                 pStringOut->set(0, wcsPath);
+                FREE(wcsPath);
                 out.push_back(pStringOut);
                 return types::Function::OK;
             }

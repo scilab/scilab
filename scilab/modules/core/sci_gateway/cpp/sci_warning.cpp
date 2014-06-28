@@ -86,12 +86,10 @@ types::Function::ReturnValue sci_warning(types::typed_list &in, int _iRetCount, 
         for (int i = 0; i < psInput->getSize() ; ++i)
         {
             wchar_t* pwstTemp = psInput->get(i);
-            wchar_t* pwstWarn = _W("WARNING: %ls\n");
-            size_t iSize = (wcslen(pwstTemp) + wcslen(pwstWarn) + 1);
+            size_t iSize = (wcslen(pwstTemp) + 10 + 1);
             wchar_t* pwstToPrint = (wchar_t*)MALLOC(sizeof(wchar_t) * iSize);
-            os_swprintf(pwstToPrint, iSize, pwstWarn, pwstTemp);
+            os_swprintf(pwstToPrint, iSize, _W("WARNING: %ls\n").c_str(), pwstTemp);
             scilabForcedWriteW(pwstToPrint);
-            FREE(pwstWarn);
             FREE(pwstToPrint);
         }
     }

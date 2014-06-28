@@ -17,6 +17,7 @@
 #include <stdexcept>
 #include "location.hxx"
 #include "dynlib_ast_tools.hxx"
+#include "localization.hxx"
 
 //disable warnings about exports STL items
 #ifdef _MSC_VER

@@ -16,12 +16,7 @@
 #include "string.hxx"
 #include "double.hxx"
 #include "scilabexception.hxx"
-
-extern "C"
-{
-#include "localization.h"
-#include "charEncoding.h"
-}
+#include "localization.hxx"
 
 namespace types
 {

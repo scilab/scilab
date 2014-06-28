@@ -66,6 +66,7 @@
 #include "struct.hxx"
 #include "container.hxx"
 #include "cell.hxx"
+#include "localization.hxx"
 
 extern "C"
 {
@@ -1565,7 +1566,7 @@ int mexEvalString(const char *name)
                         if (pCall->isMacro() || pCall->isMacroFile())
                         {
                             wchar_t szError[bsiz];
-                            os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n"), (*j)->location_get().first_line, pCall->getName().c_str());
+                            os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n").c_str(), (*j)->location_get().first_line, pCall->getName().c_str());
                             throw ast::ScilabMessage(szError);
                         }
                         else
@@ -1589,9 +1590,9 @@ int mexEvalString(const char *name)
                     {
                         wstring szAllError;
                         wchar_t szError[bsiz];
-                        os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n"), sm.GetErrorLocation().first_line, pCall->getName().c_str());
+                        os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n").c_str(), sm.GetErrorLocation().first_line, pCall->getName().c_str());
                         szAllError = szError + os.str();
-                        os_swprintf(szError, bsiz, _W("in  execstr instruction    called by :\n"));
+                        os_swprintf(szError, bsiz, _W("in  execstr instruction    called by :\n").c_str());
                         szAllError += szError;
                         throw ast::ScilabMessage(szAllError);
                     }
@@ -1643,7 +1644,7 @@ int mexEvalString(const char *name)
 
                         //add info on file failed
                         wchar_t szError[bsiz];
-                        os_swprintf(szError, bsiz, _W("at line % 5d of exec file called by :\n"), (*j)->location_get().first_line);
+                        os_swprintf(szError, bsiz, _W("at line % 5d of exec file called by :\n").c_str(), (*j)->location_get().first_line);
                         os << szError;
 
                         if (ConfigVariable::getLastErrorFunction() == L"")
@@ -1686,7 +1687,7 @@ int mexEvalString(const char *name)
 
                 //write positino
                 wchar_t szError[bsiz];
-                os_swprintf(szError, bsiz, _W("at line % 5d of exec file called by :\n"), (*j)->location_get().first_line);
+                os_swprintf(szError, bsiz, _W("at line % 5d of exec file called by :\n").c_str(), (*j)->location_get().first_line);
                 //restore previous prompt mode
                 ConfigVariable::setPromptMode(oldVal);
                 throw ast::ScilabMessage(szError, 1, (*j)->location_get());

@@ -48,6 +48,7 @@ extern "C"
 #include "splitpath.h"
 #include "os_wfopen.h"
 #include "sciprint.h"
+#include "freeArrayOfString.h"
 }
 
 
@@ -125,7 +126,7 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
 
     if (bVerbose)
     {
-        os_swprintf(pstVerbose, 65535, _W("-- Creation of [%ls] (Macros) --\n"), pstLibName);
+        os_swprintf(pstVerbose, 65535, _W("-- Creation of [%ls] (Macros) --\n").c_str(), pstLibName);
 
         //save current prompt mode
         int oldVal = ConfigVariable::getPromptMode();
@@ -145,7 +146,7 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
 
     if (pWriter == NULL)
     {
-        os_swprintf(pstVerbose, 65535, _W("%ls: Cannot open file ''%ls''.\n"), L"genlib", pstParseFile);
+        os_swprintf(pstVerbose, 65535, _W("%ls: Cannot open file ''%ls''.\n").c_str(), L"genlib", pstParseFile);
         scilabWriteW(pstVerbose);
 
         out.push_back(new Bool(0));
@@ -175,7 +176,7 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
             parser.parseFile(stFullPath, ConfigVariable::getSCIPath());
             if (parser.getExitStatus() !=  Parser::Succeded)
             {
-                os_swprintf(pstVerbose, 65535, _W("%ls: Warning: Error in file %ls : %ls. File ignored\n"), L"genlib", pstPath[k], parser.getErrorMessage());
+                os_swprintf(pstVerbose, 65535, _W("%ls: Warning: Error in file %ls : %ls. File ignored\n").c_str(), L"genlib", pstPath[k], parser.getErrorMessage());
                 scilabWriteW(pstVerbose);
                 delete parser.getTree();
                 continue;
@@ -201,7 +202,7 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
                 {
                     if (AddMacroToXML(pWriter, pair<wstring, wstring>(pFD->name_get().name_get(), pstPathBin)) == false)
                     {
-                        os_swprintf(pstVerbose, 65535, _W("%ls: Warning: %ls information cannot be added to file %ls. File ignored\n"), L"genlib", pFD->name_get().name_get().c_str(), pstPath[k]);
+                        os_swprintf(pstVerbose, 65535, _W("%ls: Warning: %ls information cannot be added to file %ls. File ignored\n").c_str(), L"genlib", pFD->name_get().name_get().c_str(), pstPath[k]);
                         scilabWriteW(pstVerbose);
                     }
 
@@ -216,7 +217,7 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
         symbol::Context::getInstance()->put(symbol::Symbol(pstLibName), pLib);
     }
 
-
+    freeArrayOfWideString(pstPath, iNbFile);
     out.push_back(new Bool(1));
     FREE(pstParsePath);
     closeXMLFile(pWriter);

@@ -17,6 +17,7 @@
 #include "listinsert.hxx"
 #include "types_tools.hxx"
 #include "scilabexception.hxx"
+#include "localization.hxx"
 
 #ifndef NDEBUG
 #include "inspector.hxx"
@@ -24,8 +25,6 @@
 
 extern "C"
 {
-#include "localization.h"
-#include "charEncoding.h"
 #include "os_wcsdup.h"
 }
 

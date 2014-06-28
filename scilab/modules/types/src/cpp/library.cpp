@@ -13,13 +13,13 @@
 #include <sstream>
 #include "macrofile.hxx"
 #include "library.hxx"
+#include "localization.hxx"
 
 extern "C"
 {
 #include <wchar.h>
 #include "os_swprintf.h"
 #include "formatmode.h"
-#include "localization.h"
 }
 
 namespace types
@@ -48,7 +48,7 @@ Library::~Library()
 bool Library::toString(std::wostringstream& ostr)
 {
     wchar_t output[1024] = {0};
-    os_swprintf(output, 1024, _W("Functions files location : %s.\n"), m_wstPath.c_str());
+    os_swprintf(output, 1024, _W("Functions files location : %s.\n").c_str(), m_wstPath.c_str());
 
     ostr << output << std::endl;
 
@@ -83,7 +83,7 @@ bool Library::extract(const std::wstring & name, InternalType *& out)
     if (out == NULL)
     {
         wchar_t szError[bsiz];
-        os_swprintf(szError, bsiz, _W("Unknown field : %ls.\n"), name.c_str());
+        os_swprintf(szError, bsiz, _W("Unknown field : %ls.\n").c_str(), name.c_str());
 
         throw std::wstring(szError);
     }

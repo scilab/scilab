@@ -26,16 +26,15 @@ extern "C"
 #include "Scierror.h"
 #include "localization.h"
 #include "newest.h"
+#include "freeArrayOfString.h"
 }
 /*--------------------------------------------------------------------------*/
 
 types::Function::ReturnValue sci_newest(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    int dimsArray[2]                = {1, 1};
-    int iRet                        = 0;
-    int iNbrString                  = 0;
-    wchar_t** pwcsStringInput       = NULL;
-    types::Double* pStringOutput    = NULL;
+    int iRet                    = 0;
+    int iNbrString              = 0;
+    wchar_t** pwcsStringInput   = NULL;
 
     if (in.size() == 0)
     {
@@ -61,9 +60,7 @@ types::Function::ReturnValue sci_newest(types::typed_list &in, int _iRetCount, t
 
         if (in[0]->getAs<types::String>()->isScalar())
         {
-            pStringOutput = new types::Double(2, dimsArray);
-            pStringOutput->set(0, 1);
-            out.push_back(pStringOutput);
+            out.push_back(new types::Double(1));
             return types::Function::OK;
         }
         else
@@ -76,16 +73,15 @@ types::Function::ReturnValue sci_newest(types::typed_list &in, int _iRetCount, t
             }
 
             iRet = newest(pwcsStringInput, iNbrString);
-
-            pStringOutput = new types::Double(2, dimsArray);
-            pStringOutput->set(0, iRet);
-            out.push_back(pStringOutput);
+            FREE(pwcsStringInput);
+            out.push_back(new types::Double(iRet));
         }
     }
     else
     {
-        pwcsStringInput = (wchar_t**)MALLOC(in.size() * sizeof(wchar_t*));
-        for (iNbrString = 0; iNbrString < in.size(); iNbrString++)
+        int size = (int)in.size();
+        pwcsStringInput = (wchar_t**)MALLOC(size * sizeof(wchar_t*));
+        for (iNbrString = 0; iNbrString < size; iNbrString++)
         {
             if (in[iNbrString]->isString() == FALSE)
             {
@@ -102,10 +98,8 @@ types::Function::ReturnValue sci_newest(types::typed_list &in, int _iRetCount, t
         }
 
         iRet = newest(pwcsStringInput, iNbrString);
-
-        pStringOutput = new types::Double(2, dimsArray);
-        pStringOutput->set(0, iRet);
-        out.push_back(pStringOutput);
+        FREE(pwcsStringInput);
+        out.push_back(new types::Double((double)iRet));
     }
 
     return types::Function::OK;

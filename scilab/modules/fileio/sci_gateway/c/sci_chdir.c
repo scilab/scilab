@@ -131,6 +131,7 @@ int sci_chdir(char *fname, void* pvApiCtx)
             return 0;
         }
 
+        FREE(expandedPath);
         LhsVar(1) = Rhs + 1;
         PutLhsVar();
     }

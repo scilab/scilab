@@ -240,9 +240,6 @@
     <ClInclude Include="includes\runvisitor.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="includes\scilabexception.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="includes\shortcutvisitor.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>

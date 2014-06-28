@@ -188,7 +188,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
             if (pCall->isMacro() || pCall->isMacroFile())
             {
                 wchar_t szError[bsiz];
-                os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n"), sm.GetErrorLocation().first_line, pCall->getName().c_str());
+                os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n").c_str(), sm.GetErrorLocation().first_line, pCall->getName().c_str());
                 throw ast::ScilabMessage(szError);
             }
             else
@@ -552,7 +552,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                             else
                             {
                                 wchar_t szError[bsiz];
-                                os_swprintf(szError, bsiz, _W("Field \"%ls\" does not exists\n"), wstField.c_str());
+                                os_swprintf(szError, bsiz, _W("Field \"%ls\" does not exists\n").c_str(), wstField.c_str());
                                 throw ast::ScilabError(szError, 999, (*e.args_get().begin())->location_get());
                             }
                         }

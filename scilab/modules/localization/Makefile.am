@@ -9,26 +9,31 @@
 
 
 LOCALIZATION_C_SOURCES = \
-src/c/InitializeLocalization.c \
-src/c/setgetlanguage.c \
-src/c/getLcidString.c \
-src/c/charEncoding.c \
-src/c/setdefaultlanguage.c
+    src/c/InitializeLocalization.c \
+    src/c/setgetlanguage.c \
+    src/c/getLcidString.c \
+    src/c/charEncoding.c \
+    src/c/setdefaultlanguage.c
 
 if NEED_JAVA
-LOCALIZATION_C_SOURCES+=src/jni/Messages_wrap.c \
-src/jni/LocaleToLCID_wrap.c \
-src/jni/setdefaultlanguage_wrap.c
+LOCALIZATION_C_SOURCES += \
+    src/jni/Messages_wrap.c \
+    src/jni/LocaleToLCID_wrap.c \
+    src/jni/setdefaultlanguage_wrap.c
 endif
 
 if IS_MACOSX
-LOCALIZATION_C_SOURCES += src/c/getLocaleInfo_Apple.c
+LOCALIZATION_C_SOURCES += \
+    src/c/getLocaleInfo_Apple.c
 endif
 
+LOCALIZATION_CPP_SOURCES = \
+    src/cpp/localization.cpp
+
 GATEWAY_C_SOURCES = \
-sci_gateway/c/gw_localization.c \
-sci_gateway/c/sci_addlocalizationdomain.c \
-sci_gateway/c/sci_gettext.c
+    sci_gateway/c/gw_localization.c \
+    sci_gateway/c/sci_addlocalizationdomain.c \
+    sci_gateway/c/sci_gettext.c
 
 GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/localization_gw.cpp \
@@ -38,23 +43,23 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_getlanguage.cpp
 
 libscilocalization_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
-				-I$(srcdir)/includes/ \
-				-I$(srcdir)/src/c/ \
-				-I$(top_srcdir)/modules/functions_manager/includes/ \
-				-I$(top_srcdir)/modules/types/includes/ \
-				-I$(top_srcdir)/modules/core/includes/ \
-				-I$(top_srcdir)/modules/symbol/includes/ \
-				-I$(top_srcdir)/modules/ast/includes/ \
-		            	-I$(top_srcdir)/modules/ast/includes/exps \
-				-I$(top_srcdir)/modules/system_env/includes/ \
-				-I$(top_srcdir)/modules/string/includes/ \
-				-I$(top_srcdir)/modules/fileio/includes/ \
-				-I$(top_srcdir)/modules/api_scilab/includes/ \
-				-I$(top_srcdir)/modules/operations/includes/ \
-				-I$(top_srcdir)/modules/output_stream/includes/ \
-				-I$(top_srcdir)/modules/dynamic_link/includes/ \
-				$(EIGEN_CPPFLAGS) \
-				$(AM_CPPFLAGS)
+    -I$(srcdir)/includes/ \
+    -I$(srcdir)/src/c/ \
+    -I$(top_srcdir)/modules/functions_manager/includes/ \
+    -I$(top_srcdir)/modules/types/includes/ \
+    -I$(top_srcdir)/modules/core/includes/ \
+    -I$(top_srcdir)/modules/symbol/includes/ \
+    -I$(top_srcdir)/modules/ast/includes/ \
+    -I$(top_srcdir)/modules/ast/includes/exps \
+    -I$(top_srcdir)/modules/system_env/includes/ \
+    -I$(top_srcdir)/modules/string/includes/ \
+    -I$(top_srcdir)/modules/fileio/includes/ \
+    -I$(top_srcdir)/modules/api_scilab/includes/ \
+    -I$(top_srcdir)/modules/operations/includes/ \
+    -I$(top_srcdir)/modules/output_stream/includes/ \
+    -I$(top_srcdir)/modules/dynamic_link/includes/ \
+    $(EIGEN_CPPFLAGS) \
+    $(AM_CPPFLAGS)
 
 pkglib_LTLIBRARIES = libscilocalization.la
 noinst_LTLIBRARIES = libscilocalization-algo.la
@@ -62,7 +67,7 @@ noinst_LTLIBRARIES = libscilocalization-algo.la
 libscilocalization_la_LDFLAGS = $(AM_LDFLAGS)
 libscilocalization_la_CFLAGS = $(AM_CFLAGS)
 
-libscilocalization_algo_la_SOURCES = $(LOCALIZATION_C_SOURCES)
+libscilocalization_algo_la_SOURCES = $(LOCALIZATION_C_SOURCES) $(LOCALIZATION_CPP_SOURCES)
 libscilocalization_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
 libscilocalization_algo_la_CPPFLAGS = $(libscilocalization_la_CPPFLAGS)
 

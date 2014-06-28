@@ -12,19 +12,19 @@
 
 #include "banner.hxx"
 #include "scilabWrite.hxx"
+#include "localization.hxx"
 
 extern "C"
 {
 #include <string.h>
 #include <math.h>
 #include "version.h"
-#include "localization.h"
 #include "charEncoding.h"
 }
 /*--------------------------------------------------------------------------*/
 static wchar_t *line = L"        ___________________________________________        ";
 /*--------------------------------------------------------------------------*/
-static void centerPrint(wchar_t *str);
+static void centerPrint(const wchar_t *str);
 
 void banner(void)
 {
@@ -34,10 +34,10 @@ void banner(void)
     centerPrint(SCI_VERSION_WIDE_STRING);
     scilabForcedWriteW(L"\n\n");
 
-    centerPrint(_W("Scilab Enterprises\n"));
-    centerPrint(_W("Copyright (c) 2011-2013 (Scilab Enterprises)\n"));
-    centerPrint(_W("Copyright (c) 1989-2012 (INRIA)\n"));
-    centerPrint(_W("Copyright (c) 1989-2007 (ENPC)\n"));
+    centerPrint(_W("Scilab Enterprises\n").c_str());
+    centerPrint(_W("Copyright (c) 2011-2013 (Scilab Enterprises)\n").c_str());
+    centerPrint(_W("Copyright (c) 1989-2012 (INRIA)\n").c_str());
+    centerPrint(_W("Copyright (c) 1989-2007 (ENPC)\n").c_str());
 
     scilabForcedWriteW(line);
     scilabForcedWriteW(L"\n");
@@ -51,7 +51,7 @@ void banner(void)
 }
 
 /*--------------------------------------------------------------------------*/
-static void centerPrint(wchar_t *str)
+static void centerPrint(const wchar_t *str)
 {
     int i = 0;
     int startVersion = (int)(floor((double)(wcslen(line) / 2)) - floor((double)(wcslen(str) / 2)));

@@ -91,6 +91,7 @@ Function::ReturnValue sci_part(typed_list &in, int _iRetCount, typed_list &out)
 
     String* pOut = new String(pS->getRows(), pS->getCols());
     pOut->set(pwstOut);
+    freeArrayOfWideString(pwstOut, pOut->getSize());
     out.push_back(pOut);
     return Function::OK;
     //int i = 0;

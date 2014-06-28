@@ -60,7 +60,7 @@ InternalType* GenericLogicalAnd(InternalType* _pL, InternalType* _pR)
         if (iResult != 0)
         {
             wchar_t pMsg[bsiz];
-            os_swprintf(pMsg, bsiz, _W("Error: operator %ls: Matrix dimensions must agree (op1 is %ls, op2 is %ls).\n"), L"&", pL->DimToString().c_str(), pR->DimToString().c_str());
+            os_swprintf(pMsg, bsiz, _W("Error: operator %ls: Matrix dimensions must agree (op1 is %ls, op2 is %ls).\n").c_str(), L"&", pL->DimToString().c_str(), pR->DimToString().c_str());
             throw ast::ScilabError(pMsg);
         }
         return pResult;
@@ -74,7 +74,7 @@ InternalType* GenericLogicalAnd(InternalType* _pL, InternalType* _pR)
             GenericType* pL = _pL->getAs<GenericType>();
             GenericType* pR = _pR->getAs<GenericType>();
             wchar_t pMsg[bsiz];
-            os_swprintf(pMsg, bsiz, _W("Error: operator %ls: Matrix dimensions must agree (op1 is %ls, op2 is %ls).\n"), L"&", pL->DimToString().c_str(), pR->DimToString().c_str());
+            os_swprintf(pMsg, bsiz, _W("Error: operator %ls: Matrix dimensions must agree (op1 is %ls, op2 is %ls).\n").c_str(), L"&", pL->DimToString().c_str(), pR->DimToString().c_str());
             throw ast::ScilabError(pMsg);
         }
         return pResult;
@@ -88,7 +88,7 @@ InternalType* GenericLogicalAnd(InternalType* _pL, InternalType* _pR)
             GenericType* pL = _pL->getAs<GenericType>();
             GenericType* pR = _pR->getAs<GenericType>();
             wchar_t pMsg[bsiz];
-            os_swprintf(pMsg, bsiz, _W("Error: operator %ls: Matrix dimensions must agree (op1 is %ls, op2 is %ls).\n"), L"&", pL->DimToString().c_str(), pR->DimToString().c_str());
+            os_swprintf(pMsg, bsiz, _W("Error: operator %ls: Matrix dimensions must agree (op1 is %ls, op2 is %ls).\n").c_str(), L"&", pL->DimToString().c_str(), pR->DimToString().c_str());
             throw ast::ScilabError(pMsg);
         }
         return pResult;
@@ -134,7 +134,7 @@ InternalType* GenericLogicalOr(InternalType* _pL, InternalType* _pR)
         if (iResult != 0)
         {
             wchar_t pMsg[bsiz];
-            os_swprintf(pMsg, bsiz, _W("Error: operator %ls: Matrix dimensions must agree (op1 is %ls, op2 is %ls).\n"), L"|", pL->DimToString().c_str(), pR->DimToString().c_str());
+            os_swprintf(pMsg, bsiz, _W("Error: operator %ls: Matrix dimensions must agree (op1 is %ls, op2 is %ls).\n").c_str(), L"|", pL->DimToString().c_str(), pR->DimToString().c_str());
             throw ast::ScilabError(pMsg);
         }
         return pResult;
@@ -148,7 +148,7 @@ InternalType* GenericLogicalOr(InternalType* _pL, InternalType* _pR)
             GenericType* pL = _pL->getAs<GenericType>();
             GenericType* pR = _pR->getAs<GenericType>();
             wchar_t pMsg[bsiz];
-            os_swprintf(pMsg, bsiz, _W("Error: operator %ls: Matrix dimensions must agree (op1 is %ls, op2 is %ls).\n"), L"|", pL->DimToString().c_str(), pR->DimToString().c_str());
+            os_swprintf(pMsg, bsiz, _W("Error: operator %ls: Matrix dimensions must agree (op1 is %ls, op2 is %ls).\n").c_str(), L"|", pL->DimToString().c_str(), pR->DimToString().c_str());
             throw ast::ScilabError(pMsg);
         }
         return pResult;
@@ -162,7 +162,7 @@ InternalType* GenericLogicalOr(InternalType* _pL, InternalType* _pR)
             GenericType* pL = _pL->getAs<GenericType>();
             GenericType* pR = _pR->getAs<GenericType>();
             wchar_t pMsg[bsiz];
-            os_swprintf(pMsg, bsiz, _W("Error: operator %ls: Matrix dimensions must agree (op1 is %ls, op2 is %ls).\n"), L"|", pL->DimToString().c_str(), pR->DimToString().c_str());
+            os_swprintf(pMsg, bsiz, _W("Error: operator %ls: Matrix dimensions must agree (op1 is %ls, op2 is %ls).\n").c_str(), L"|", pL->DimToString().c_str(), pR->DimToString().c_str());
             throw ast::ScilabError(pMsg);
         }
         return pResult;

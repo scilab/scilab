@@ -21,6 +21,7 @@ extern "C"
 #include "tasks.hxx"
 #include "scilabWrite.hxx"
 #include "scilabexception.hxx"
+#include "localization.hxx"
 
 using namespace ast;
 /*--------------------------------------------------------------------------*/
@@ -82,7 +83,7 @@ int StoreCommandWithFlag (wchar_t *command, int flag)
         scilabErrorW(L"\n");
         scilabErrorW(se.GetErrorMessage().c_str());
         scilabErrorW(L"\n");
-        scilabErrorW(_W("while executing a callback"));
+        scilabErrorW(_W("while executing a callback").c_str());
     }
 
     delete parser.getTree();
@@ -119,7 +120,7 @@ int StorePrioritaryCommandWithFlag (wchar_t *command, int flag)
         scilabErrorW(L"\n");
         scilabErrorW(se.GetErrorMessage().c_str());
         scilabErrorW(L"\n");
-        scilabErrorW(_W("while executing a callback"));
+        scilabErrorW(_W("while executing a callback").c_str());
     }
 
     delete parser.getTree();

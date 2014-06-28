@@ -13,11 +13,11 @@
 extern "C"
 {
 #include "stdarg.h"
-#include "localization.h"
 #include "os_swprintf.h"
 #include "sci_malloc.h"
 }
 
+#include "localization.hxx"
 #include "callable.hxx"
 #include "overload.hxx"
 #include "context.hxx"
@@ -89,7 +89,7 @@ types::Function::ReturnValue Overload::call(std::wstring _stOverloadingFunctionN
         if (pCall->isMacro() || pCall->isMacroFile())
         {
             wchar_t szError[bsiz];
-            os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n"), sm.GetErrorLocation().first_line, pCall->getName().c_str());
+            os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n").c_str(), sm.GetErrorLocation().first_line, pCall->getName().c_str());
             throw ast::ScilabMessage(szError);
         }
         else

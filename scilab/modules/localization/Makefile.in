@@ -105,11 +105,14 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-@NEED_JAVA_TRUE@am__append_1 = src/jni/Messages_wrap.c \
-@NEED_JAVA_TRUE@src/jni/LocaleToLCID_wrap.c \
-@NEED_JAVA_TRUE@src/jni/setdefaultlanguage_wrap.c
+@NEED_JAVA_TRUE@am__append_1 = \
+@NEED_JAVA_TRUE@    src/jni/Messages_wrap.c \
+@NEED_JAVA_TRUE@    src/jni/LocaleToLCID_wrap.c \
+@NEED_JAVA_TRUE@    src/jni/setdefaultlanguage_wrap.c
 
-@IS_MACOSX_TRUE@am__append_2 = src/c/getLocaleInfo_Apple.c
+@IS_MACOSX_TRUE@am__append_2 = \
+@IS_MACOSX_TRUE@    src/c/getLocaleInfo_Apple.c
+
 
 # FIXME: platform dependent things should be in configure.ac
 @IS_MACOSX_TRUE@am__append_3 = -framework Cocoa
@@ -184,7 +187,7 @@ am__libscilocalization_algo_la_SOURCES_DIST =  \
 	src/c/getLcidString.c src/c/charEncoding.c \
 	src/c/setdefaultlanguage.c src/jni/Messages_wrap.c \
 	src/jni/LocaleToLCID_wrap.c src/jni/setdefaultlanguage_wrap.c \
-	src/c/getLocaleInfo_Apple.c
+	src/c/getLocaleInfo_Apple.c src/cpp/localization.cpp
 am__dirstamp = $(am__leading_dot)dirstamp
 @NEED_JAVA_TRUE@am__objects_1 = src/jni/libscilocalization_algo_la-Messages_wrap.lo \
 @NEED_JAVA_TRUE@	src/jni/libscilocalization_algo_la-LocaleToLCID_wrap.lo \
@@ -197,7 +200,9 @@ am__objects_3 =  \
 	src/c/libscilocalization_algo_la-charEncoding.lo \
 	src/c/libscilocalization_algo_la-setdefaultlanguage.lo \
 	$(am__objects_1) $(am__objects_2)
-am_libscilocalization_algo_la_OBJECTS = $(am__objects_3)
+am__objects_4 = src/cpp/libscilocalization_algo_la-localization.lo
+am_libscilocalization_algo_la_OBJECTS = $(am__objects_3) \
+	$(am__objects_4)
 libscilocalization_algo_la_OBJECTS =  \
 	$(am_libscilocalization_algo_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
@@ -207,17 +212,17 @@ am__v_lt_1 =
 am__DEPENDENCIES_1 =
 libscilocalization_la_DEPENDENCIES = libscilocalization-algo.la \
 	$(am__DEPENDENCIES_1)
-am__objects_4 =  \
+am__objects_5 =  \
 	sci_gateway/c/libscilocalization_la-gw_localization.lo \
 	sci_gateway/c/libscilocalization_la-sci_addlocalizationdomain.lo \
 	sci_gateway/c/libscilocalization_la-sci_gettext.lo
-am__objects_5 =  \
+am__objects_6 =  \
 	sci_gateway/cpp/libscilocalization_la-localization_gw.lo \
 	sci_gateway/cpp/libscilocalization_la-sci_setdefaultlanguage.lo \
 	sci_gateway/cpp/libscilocalization_la-sci_getdefaultlanguage.lo \
 	sci_gateway/cpp/libscilocalization_la-sci_setlanguage.lo \
 	sci_gateway/cpp/libscilocalization_la-sci_getlanguage.lo
-am_libscilocalization_la_OBJECTS = $(am__objects_4) $(am__objects_5)
+am_libscilocalization_la_OBJECTS = $(am__objects_5) $(am__objects_6)
 libscilocalization_la_OBJECTS = $(am_libscilocalization_la_OBJECTS)
 libscilocalization_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX \
 	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CXXLD) \
@@ -595,10 +600,13 @@ LOCALIZATION_C_SOURCES = src/c/InitializeLocalization.c \
 	src/c/setgetlanguage.c src/c/getLcidString.c \
 	src/c/charEncoding.c src/c/setdefaultlanguage.c \
 	$(am__append_1) $(am__append_2)
+LOCALIZATION_CPP_SOURCES = \
+    src/cpp/localization.cpp
+
 GATEWAY_C_SOURCES = \
-sci_gateway/c/gw_localization.c \
-sci_gateway/c/sci_addlocalizationdomain.c \
-sci_gateway/c/sci_gettext.c
+    sci_gateway/c/gw_localization.c \
+    sci_gateway/c/sci_addlocalizationdomain.c \
+    sci_gateway/c/sci_gettext.c
 
 GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/localization_gw.cpp \
@@ -608,29 +616,29 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_getlanguage.cpp
 
 libscilocalization_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
-				-I$(srcdir)/includes/ \
-				-I$(srcdir)/src/c/ \
-				-I$(top_srcdir)/modules/functions_manager/includes/ \
-				-I$(top_srcdir)/modules/types/includes/ \
-				-I$(top_srcdir)/modules/core/includes/ \
-				-I$(top_srcdir)/modules/symbol/includes/ \
-				-I$(top_srcdir)/modules/ast/includes/ \
-		            	-I$(top_srcdir)/modules/ast/includes/exps \
-				-I$(top_srcdir)/modules/system_env/includes/ \
-				-I$(top_srcdir)/modules/string/includes/ \
-				-I$(top_srcdir)/modules/fileio/includes/ \
-				-I$(top_srcdir)/modules/api_scilab/includes/ \
-				-I$(top_srcdir)/modules/operations/includes/ \
-				-I$(top_srcdir)/modules/output_stream/includes/ \
-				-I$(top_srcdir)/modules/dynamic_link/includes/ \
-				$(EIGEN_CPPFLAGS) \
-				$(AM_CPPFLAGS)
+    -I$(srcdir)/includes/ \
+    -I$(srcdir)/src/c/ \
+    -I$(top_srcdir)/modules/functions_manager/includes/ \
+    -I$(top_srcdir)/modules/types/includes/ \
+    -I$(top_srcdir)/modules/core/includes/ \
+    -I$(top_srcdir)/modules/symbol/includes/ \
+    -I$(top_srcdir)/modules/ast/includes/ \
+    -I$(top_srcdir)/modules/ast/includes/exps \
+    -I$(top_srcdir)/modules/system_env/includes/ \
+    -I$(top_srcdir)/modules/string/includes/ \
+    -I$(top_srcdir)/modules/fileio/includes/ \
+    -I$(top_srcdir)/modules/api_scilab/includes/ \
+    -I$(top_srcdir)/modules/operations/includes/ \
+    -I$(top_srcdir)/modules/output_stream/includes/ \
+    -I$(top_srcdir)/modules/dynamic_link/includes/ \
+    $(EIGEN_CPPFLAGS) \
+    $(AM_CPPFLAGS)
 
 pkglib_LTLIBRARIES = libscilocalization.la
 noinst_LTLIBRARIES = libscilocalization-algo.la
 libscilocalization_la_LDFLAGS = $(AM_LDFLAGS) $(am__append_3)
 libscilocalization_la_CFLAGS = $(AM_CFLAGS) $(am__append_5)
-libscilocalization_algo_la_SOURCES = $(LOCALIZATION_C_SOURCES)
+libscilocalization_algo_la_SOURCES = $(LOCALIZATION_C_SOURCES) $(LOCALIZATION_CPP_SOURCES)
 libscilocalization_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
 libscilocalization_algo_la_CPPFLAGS = $(libscilocalization_la_CPPFLAGS)
 
@@ -854,9 +862,17 @@ src/jni/libscilocalization_algo_la-setdefaultlanguage_wrap.lo:  \
 	src/jni/$(am__dirstamp) src/jni/$(DEPDIR)/$(am__dirstamp)
 src/c/libscilocalization_algo_la-getLocaleInfo_Apple.lo:  \
 	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
+src/cpp/$(am__dirstamp):
+	@$(MKDIR_P) src/cpp
+	@: > src/cpp/$(am__dirstamp)
+src/cpp/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) src/cpp/$(DEPDIR)
+	@: > src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscilocalization_algo_la-localization.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
 
 libscilocalization-algo.la: $(libscilocalization_algo_la_OBJECTS) $(libscilocalization_algo_la_DEPENDENCIES) $(EXTRA_libscilocalization_algo_la_DEPENDENCIES) 
-	$(AM_V_CCLD)$(LINK)  $(libscilocalization_algo_la_OBJECTS) $(libscilocalization_algo_la_LIBADD) $(LIBS)
+	$(AM_V_CXXLD)$(CXXLINK)  $(libscilocalization_algo_la_OBJECTS) $(libscilocalization_algo_la_LIBADD) $(LIBS)
 sci_gateway/c/$(am__dirstamp):
 	@$(MKDIR_P) sci_gateway/c
 	@: > sci_gateway/c/$(am__dirstamp)
@@ -905,6 +921,8 @@ mostlyclean-compile:
 	-rm -f sci_gateway/cpp/*.lo
 	-rm -f src/c/*.$(OBJEXT)
 	-rm -f src/c/*.lo
+	-rm -f src/cpp/*.$(OBJEXT)
+	-rm -f src/cpp/*.lo
 	-rm -f src/jni/*.$(OBJEXT)
 	-rm -f src/jni/*.lo
 
@@ -925,6 +943,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscilocalization_algo_la-getLocaleInfo_Apple.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscilocalization_algo_la-setdefaultlanguage.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscilocalization_algo_la-setgetlanguage.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscilocalization_algo_la-localization.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libscilocalization_algo_la-LocaleToLCID_wrap.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libscilocalization_algo_la-Messages_wrap.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libscilocalization_algo_la-setdefaultlanguage_wrap.Plo@am__quote@
@@ -1061,6 +1080,13 @@ sci_gateway/c/libscilocalization_la-sci_gettext.lo: sci_gateway/c/sci_gettext.c
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LTCXXCOMPILE) -c -o $@ $<
 
+src/cpp/libscilocalization_algo_la-localization.lo: src/cpp/localization.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscilocalization_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscilocalization_algo_la-localization.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscilocalization_algo_la-localization.Tpo -c -o src/cpp/libscilocalization_algo_la-localization.lo `test -f 'src/cpp/localization.cpp' || echo '$(srcdir)/'`src/cpp/localization.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscilocalization_algo_la-localization.Tpo src/cpp/$(DEPDIR)/libscilocalization_algo_la-localization.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/localization.cpp' object='src/cpp/libscilocalization_algo_la-localization.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscilocalization_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscilocalization_algo_la-localization.lo `test -f 'src/cpp/localization.cpp' || echo '$(srcdir)/'`src/cpp/localization.cpp
+
 sci_gateway/cpp/libscilocalization_la-localization_gw.lo: sci_gateway/cpp/localization_gw.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscilocalization_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscilocalization_la-localization_gw.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscilocalization_la-localization_gw.Tpo -c -o sci_gateway/cpp/libscilocalization_la-localization_gw.lo `test -f 'sci_gateway/cpp/localization_gw.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/localization_gw.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscilocalization_la-localization_gw.Tpo sci_gateway/cpp/$(DEPDIR)/libscilocalization_la-localization_gw.Plo
@@ -1104,6 +1130,7 @@ clean-libtool:
 	-rm -rf sci_gateway/c/.libs sci_gateway/c/_libs
 	-rm -rf sci_gateway/cpp/.libs sci_gateway/cpp/_libs
 	-rm -rf src/c/.libs src/c/_libs
+	-rm -rf src/cpp/.libs src/cpp/_libs
 	-rm -rf src/jni/.libs src/jni/_libs
 install-libscilocalization_la_etcDATA: $(libscilocalization_la_etc_DATA)
 	@$(NORMAL_INSTALL)
@@ -1314,6 +1341,8 @@ distclean-generic:
 	-rm -f sci_gateway/cpp/$(am__dirstamp)
 	-rm -f src/c/$(DEPDIR)/$(am__dirstamp)
 	-rm -f src/c/$(am__dirstamp)
+	-rm -f src/cpp/$(DEPDIR)/$(am__dirstamp)
+	-rm -f src/cpp/$(am__dirstamp)
 	-rm -f src/jni/$(DEPDIR)/$(am__dirstamp)
 	-rm -f src/jni/$(am__dirstamp)
 
@@ -1327,7 +1356,7 @@ clean-am: clean-generic clean-libtool clean-local \
 	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
-	-rm -rf sci_gateway/c/$(DEPDIR) sci_gateway/cpp/$(DEPDIR) src/c/$(DEPDIR) src/jni/$(DEPDIR)
+	-rm -rf sci_gateway/c/$(DEPDIR) sci_gateway/cpp/$(DEPDIR) src/c/$(DEPDIR) src/cpp/$(DEPDIR) src/jni/$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-local distclean-tags
@@ -1377,7 +1406,7 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-	-rm -rf sci_gateway/c/$(DEPDIR) sci_gateway/cpp/$(DEPDIR) src/c/$(DEPDIR) src/jni/$(DEPDIR)
+	-rm -rf sci_gateway/c/$(DEPDIR) sci_gateway/cpp/$(DEPDIR) src/c/$(DEPDIR) src/cpp/$(DEPDIR) src/jni/$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

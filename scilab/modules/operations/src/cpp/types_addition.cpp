@@ -695,7 +695,7 @@ InternalType *GenericPlus(InternalType *_pLeftOperand, InternalType *_pRightOper
         if (iResult != 0)
         {
             wchar_t pMsg[bsiz];
-            os_swprintf(pMsg, bsiz, _W("Error: operator %ls: Matrix dimensions must agree (op1 is %ls, op2 is %ls).\n"),  L"+", pL->DimToString().c_str(), pR->DimToString().c_str());
+            os_swprintf(pMsg, bsiz, _W("Error: operator %ls: Matrix dimensions must agree (op1 is %ls, op2 is %ls).\n").c_str(), L"+", pL->DimToString().c_str(), pR->DimToString().c_str());
             throw ast::ScilabError(pMsg);
         }
         return pResult;
@@ -713,7 +713,7 @@ InternalType *GenericPlus(InternalType *_pLeftOperand, InternalType *_pRightOper
         if (iResult != 0)
         {
             wchar_t pMsg[bsiz];
-            os_swprintf(pMsg, bsiz, _W("Error: operator %ls: Matrix dimensions must agree (op1 is %ls, op2 is %ls).\n"),  L"+", pL->DimToString().c_str(), pR->DimToString().c_str());
+            os_swprintf(pMsg, bsiz, _W("Error: operator %ls: Matrix dimensions must agree (op1 is %ls, op2 is %ls).\n").c_str(), L"+", pL->DimToString().c_str(), pR->DimToString().c_str());
             throw ast::ScilabError(pMsg);
         }
         return pResult;
@@ -733,7 +733,7 @@ InternalType *GenericPlus(InternalType *_pLeftOperand, InternalType *_pRightOper
             if (iResult == 1)
             {
                 wchar_t pMsg[bsiz];
-                os_swprintf(pMsg, bsiz, _W("Error: operator %ls: Matrix dimensions must agree (op1 is %ls, op2 is %ls).\n"),  L"+", pL->DimToString().c_str(), pR->DimToString().c_str());
+                os_swprintf(pMsg, bsiz, _W("Error: operator %ls: Matrix dimensions must agree (op1 is %ls, op2 is %ls).\n").c_str(), L"+", pL->DimToString().c_str(), pR->DimToString().c_str());
                 throw ast::ScilabError(pMsg);
             }
             else if (iResult == 2)

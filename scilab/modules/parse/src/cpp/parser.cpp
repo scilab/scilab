@@ -83,7 +83,7 @@ void ParserSingleInstance::parseFile(const wstring& fileName, const wstring& pro
     if (!yyin)
     {
         wchar_t szError[bsiz];
-        os_swprintf(szError, bsiz, _W("%ls: Cannot open file %ls.\n"), L"parser", fileName.c_str());
+        os_swprintf(szError, bsiz, _W("%ls: Cannot open file %ls.\n").c_str(), L"parser", fileName.c_str());
         throw ast::ScilabError(szError, 999, *new Location());
     }
 
