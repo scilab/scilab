@@ -1966,7 +1966,7 @@ types::InternalType* add_M_M<String, String, String>(String* _pL, String* _pR)
         int sizeR = (int)wcslen(pwstR);
 
         sizeOut[i] = sizeL + sizeR + 1;
-        wchar_t* pwstOut = new wchar_t[sizeOut[i]];
+        wchar_t* pwstOut = (wchar_t*) MALLOC(sizeOut[i] * sizeof(wchar_t));
         //assign ptr without strdup
         pOut->get()[i] =  pwstOut;
     }
@@ -1992,7 +1992,7 @@ types::InternalType* add_S_M<String, String, String>(String* _pL, String* _pR)
         int sizeR = (int)wcslen(pwstR);
 
         sizeOut[i] = sizeL + sizeR + 1;
-        wchar_t* pwstOut = new wchar_t[sizeOut[i]];
+        wchar_t* pwstOut = (wchar_t*) MALLOC(sizeOut[i] * sizeof(wchar_t));
         //assign ptr without strdup
         pOut->get()[i] = pwstOut;
     }
