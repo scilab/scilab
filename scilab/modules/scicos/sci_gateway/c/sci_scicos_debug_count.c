@@ -26,11 +26,11 @@
 #include "gw_scicos.h"
 #include "stack-c.h"
 /*--------------------------------------------------------------------------*/
-extern int C2F(scicosdebugcount) (char *fname, unsigned long fname_len); /* fortran */
+extern int C2F(scicosdebugcount) (char *fname, void* pvApiCtx); /* fortran */
 /*--------------------------------------------------------------------------*/
-int sci_scicos_debug_count(char *fname, unsigned long fname_len)
+int sci_scicos_debug_count(char *fname, void* pvApiCtx)
 {
-    //C2F(scicosdebugcount)(fname, fname_len);
+    //C2F(scicosdebugcount)(fname, pvApiCtx);
     //PutLhsVar();
     return 0;
 }

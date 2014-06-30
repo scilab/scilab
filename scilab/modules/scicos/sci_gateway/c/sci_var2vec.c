@@ -26,11 +26,11 @@
 #include "machine.h" /* C2F */
 #include "gw_scicos.h"
 /*--------------------------------------------------------------------------*/
-extern int C2F(intvar2vec)(char *fname, unsigned long fname_len); /* fortran */
+extern int C2F(intvar2vec)(char *fname, void* pvApiCtx); /* fortran */
 /*--------------------------------------------------------------------------*/
-int sci_var2vec(char *fname, unsigned long fname_len)
+int sci_var2vec(char *fname, void* pvApiCtx)
 {
-    C2F(intvar2vec)(fname, fname_len);
+    C2F(intvar2vec)(fname, pvApiCtx);
     return 0;
 }
 /*--------------------------------------------------------------------------*/

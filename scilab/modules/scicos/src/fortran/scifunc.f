@@ -57,7 +57,8 @@ C
 C     
       icall = 5
       krec = -1
-      include "callinter.h.f"
+C      FIXME implement for YaSp
+C      include "callinter.h.f"
  200  lhs = ids(1,pt)
       rhs = ids(2,pt)
       pt = pt - 1

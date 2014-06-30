@@ -31,7 +31,7 @@
 static void duplicata(int *n, double *v, double *w, double *ww, int *nw);
 static void comp_size(double *v, int *nw, int n);
 /*--------------------------------------------------------------------------*/
-int sci_duplicate(char *fname, unsigned long fname_len)
+int sci_duplicate(char *fname, void* pvApiCtx)
 {
     //int m1 = 0, m2 = 0, m3 = 0, n1 = 0, n2 = 0, n3 = 0, l1 = 0, l2 = 0, l3 = 0, n = 0;
 

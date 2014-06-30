@@ -10,3 +10,8 @@ cosdebugcounter_
 scsptr_
 cosdebug_
 getscilabel_
+putlhsvar_
+createvar_
+checklhs_
+checkrhs_
+getrhsvar_

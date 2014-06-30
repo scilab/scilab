@@ -33,9 +33,9 @@
 /*--------------------------------------------------------------------------*/
 extern int *listentry(int *header, int i);
 /*--------------------------------------------------------------------------*/
-int sci_callblk(char *fname, unsigned long fname_len)
+int sci_callblk(char *fname, void* pvApiCtx)
 {
-    #if 0
+#if 0
     /* auxilary variables -dimension and address-
     * for scilab stack variables
     */

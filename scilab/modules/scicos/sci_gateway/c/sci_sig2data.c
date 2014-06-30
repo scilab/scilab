@@ -73,7 +73,7 @@ extern int *listentry(int *header, int i);
 * initial rev 08/11/07, Alan
 *
 */
-int sci_sig2data(char *fname, unsigned long fname_len)
+int sci_sig2data(char *fname, void* pvApiCtx)
 {
     //int m1 = 0, n1 = 0;
     //int *il1 = NULL;

@@ -19,13 +19,10 @@
  * See the file ./license.txt
  */
 
-/**
- * INRIA 2008
- * Bruno JOFRET
- * Simone MANNORI
- */
 #include "gw_scicos.h"
-#include "stack-c.h"
+#include "api_scilab.h"
+#include "Scierror.h"
+#include "localization.h"
 
 /*--------------------------------------------------------------------------*/
 typedef struct
@@ -34,20 +31,19 @@ typedef struct
 }  COSHLT_struct;
 extern COSHLT_struct  C2F(coshlt);
 /*--------------------------------------------------------------------------*/
-int sci_haltscicos(char *fname, unsigned long fname_len)
+int sci_haltscicos(char *fname, void* pvApiCtx)
 {
+    CheckInputArgument(pvApiCtx, 0, 0);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
-    //CheckLhs(0, 1);
-    //CheckRhs(0, 0);
+    // MAGIC VALUE: 0 is used to continue the simulation
+    // MAGIC VALUE: 1 is used to halt the simulator
+    // MAGIC VALUE: 2 is used to switch to the final time
+    //                        then halt the simulator
+    C2F(coshlt).halt = 2;
 
-    //// MAGIC VALUE: 0 is used to continue the simulation
-    //// MAGIC VALUE: 1 is used to halt the simulator
-    //// MAGIC VALUE: 2 is used to switch to the final time
-    ////                        then halt the simulator
-    //C2F(coshlt).halt = 2;
-
-    //LhsVar(1) = 0;
-    //PutLhsVar();
+    AssignOutputVariable(pvApiCtx, 1) = 0;
+    ReturnArguments(pvApiCtx);
     return 0;
 }
 /*--------------------------------------------------------------------------*/

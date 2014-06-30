@@ -24,7 +24,7 @@
 #include "stack-c.h"
 #include "tree.h"
 /*--------------------------------------------------------------------------*/
-int sci_ctree2(char *fname, unsigned long fname_len)
+int sci_ctree2(char *fname, void* pvApiCtx)
 {
     //int one = 1, ipvec = 0, nvec = 0, mvec = 0, noin = 0, moin = 0, ipoin = 0, noinr = 0, moinr = 0, ipoinr = 0;
     //int ndep = 0, mdep = 0, ipdep = 0, ndepuptr = 0, mdepuptr = 0, ipdepuptr = 0, ipord = 0, ipok = 0, n = 0, nord = 0;

@@ -40,7 +40,7 @@
 * 12/02/07 : update lhs to double output
 *
 */
-int sci_curblockc(char *fname, unsigned long fname_len)
+int sci_curblockc(char *fname, void* pvApiCtx)
 {
     ///***********************
     //* variables declaration

@@ -53,7 +53,7 @@
 *
 */
 /*--------------------------------------------------------------------------*/
-int sci_buildouttb(char *fname, unsigned long fname_len)
+int sci_buildouttb(char *fname, void* pvApiCtx)
 {
 #if 0
     static int l1 = 0, m1 = 0,   n1 = 0;

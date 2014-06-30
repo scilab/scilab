@@ -11,16 +11,18 @@
 */
 
 #include "gw_scicos.h"
-#include "stack-c.h"
+#include "api_scilab.h"
+#include "Scierror.h"
+#include "localization.h"
 
 /*
  * Stub function to load the gateway
  */
-int sci_loadScicos(char *fname, unsigned long fname_len)
+int sci_loadScicos(char *fname, void* pvApiCtx)
 {
-    //CheckRhs(0, 1);
-    //LhsVar(1) = 0;
-    //PutLhsVar();
+    CheckInputArgument(pvApiCtx, 0, 0);
+    AssignOutputVariable(pvApiCtx, 1) = 0;
+    ReturnArguments(pvApiCtx);
     return 0;
 }
 

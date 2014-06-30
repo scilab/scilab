@@ -29,7 +29,7 @@
 /*--------------------------------------------------------------------------*/
 extern COSIM_struct C2F(cosim);
 /*--------------------------------------------------------------------------*/
-int sci_phase_simulation(char *fname, unsigned long fname_len)
+int sci_phase_simulation(char *fname, void* pvApiCtx)
 {
     //int isrun = C2F(cosim).isrun;
 

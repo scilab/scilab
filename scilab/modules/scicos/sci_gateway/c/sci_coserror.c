@@ -43,7 +43,7 @@ extern struct
 } C2F(cosim);
 extern COSERR_struct coserr;
 /*--------------------------------------------------------------------------*/
-int sci_coserror(char *fname, unsigned long fname_len)
+int sci_coserror(char *fname, void* pvApiCtx)
 /* renvoi un message erreur */
 {
     /* auxilary variables for dimension and address */

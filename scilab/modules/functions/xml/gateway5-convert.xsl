@@ -29,10 +29,10 @@
             <xsl:for-each select="GATEWAY/PRIMITIVE">
                 <gateway type="0">
                     <xsl:attribute name="name">
-                        <xsl:value-of select="@primitiveName" />
+                        <xsl:value-of select="concat('sci_', @primitiveName)" />
                     </xsl:attribute>
                     <xsl:attribute name="function">
-                        <xsl:value-of select="concat('sci_', @primitiveName)" />
+                        <xsl:value-of select="@primitiveName" />
                     </xsl:attribute>
                     <xsl:attribute name="type">0</xsl:attribute>
                 </gateway>

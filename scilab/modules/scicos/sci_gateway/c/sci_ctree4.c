@@ -23,7 +23,7 @@
 #include "stack-c.h"
 #include "tree.h"
 /*--------------------------------------------------------------------------*/
-int sci_ctree4(char *fname, unsigned long fname_len)
+int sci_ctree4(char *fname, void* pvApiCtx)
 {
     //int one = 1, ipvec = 0, nvec = 0, mvec = 0, noin = 0, moin = 0, ipoin = 0, noinr = 0, moinr = 0, ipoinr = 0;
     //int nnd = 0, mnd = 0, ipnd = 0, ntyp = 0, mtyp = 0, iptyp = 0, ipr1 = 0, ipr2 = 0, n = 0, nr = 0, nn = 0;

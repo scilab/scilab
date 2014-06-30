@@ -72,7 +72,7 @@ extern int C2F(mkmlist)();
 *
 */
 /*--------------------------------------------------------------------------*/
-int sci_data2sig(char *fname, unsigned long fname_len)
+int sci_data2sig(char *fname, void* pvApiCtx)
 {
     //int m1 = 0, n1 = 0, it = 0;
     //int p1 = 0;

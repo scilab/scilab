@@ -24,7 +24,7 @@
 #include "stack-c.h"
 #include "sci_malloc.h"
 /*--------------------------------------------------------------------------*/
-int sci_diffobjs(char *fname, unsigned long fname_len)
+int sci_diffobjs(char *fname, void* pvApiCtx)
 {
 #if 0
     int one = 1, l3 = 0, k = 0;

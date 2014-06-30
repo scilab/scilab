@@ -1,61 +1,54 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-
-<!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
-<GATEWAY name="scicos">
-    <!-- =================== -->
-    <!--
- Scilab
- Interface description. In this file, we define the list of the function which
- will be available into Scilab and the link to the "native" function.
-
- gatewayId is the position in the hashtable 'Interfaces' defined in the
- file SCI/modules/core/src/c/callinterf.h
-
- primitiveId is the position in the hashtable '<module>Table Tab[]' defined
- in the file modules/<module>/sci_gateway/c/gw_<module>.c
-
- primitiveName is the name of the Scilab function
-
- @author Allan CORNET
- @author Sylvestre LEDRU
- @date INRIA 2007
- ===================
- Don't touch if you do not know what you are doing
--->
-    <!-- =================== -->
-    <PRIMITIVE gatewayId="45" primitiveId="1" primitiveName="var2vec" />
-    <PRIMITIVE gatewayId="45" primitiveId="2" primitiveName="vec2var" />
-    <PRIMITIVE gatewayId="45" primitiveId="3" primitiveName="getblocklabel" />
-    <PRIMITIVE gatewayId="45" primitiveId="4" primitiveName="scicos_debug" />
-    <PRIMITIVE gatewayId="45" primitiveId="5" primitiveName="scicos_debug_count" />
-    <PRIMITIVE gatewayId="45" primitiveId="6" primitiveName="sctree" />
-    <PRIMITIVE gatewayId="45" primitiveId="7" primitiveName="sci_tree2" />
-    <PRIMITIVE gatewayId="45" primitiveId="8" primitiveName="sci_tree3" />
-    <PRIMITIVE gatewayId="45" primitiveId="9" primitiveName="sci_tree4" />
-    <PRIMITIVE gatewayId="45" primitiveId="10" primitiveName="curblock" />
-    <!-- =================== -->
-    <PRIMITIVE gatewayId="45" primitiveId="11" primitiveName="scicos_time" />
-    <PRIMITIVE gatewayId="45" primitiveId="12" primitiveName="duplicate" />
-    <PRIMITIVE gatewayId="45" primitiveId="13" primitiveName="diffobjs" />
-    <PRIMITIVE gatewayId="45" primitiveId="14" primitiveName="pointer_xproperty" />
-    <PRIMITIVE gatewayId="45" primitiveId="15" primitiveName="phase_simulation" />
-    <PRIMITIVE gatewayId="45" primitiveId="16" primitiveName="set_xproperty" />
-    <PRIMITIVE gatewayId="45" primitiveId="17" primitiveName="set_blockerror" />
-    <PRIMITIVE gatewayId="45" primitiveId="18" primitiveName="ctree2" />
-    <PRIMITIVE gatewayId="45" primitiveId="19" primitiveName="ctree3" />
-    <PRIMITIVE gatewayId="45" primitiveId="20" primitiveName="ctree4" />
-    <PRIMITIVE gatewayId="45" primitiveId="21" primitiveName="scicosim" />
-    <PRIMITIVE gatewayId="45" primitiveId="22" primitiveName="getscicosvars" />
-    <PRIMITIVE gatewayId="45" primitiveId="23" primitiveName="curblockc" />
-    <PRIMITIVE gatewayId="45" primitiveId="24" primitiveName="buildouttb" />
-    <PRIMITIVE gatewayId="45" primitiveId="25" primitiveName="end_scicosim" />
-    <PRIMITIVE gatewayId="45" primitiveId="26" primitiveName="coserror" />
-    <PRIMITIVE gatewayId="45" primitiveId="27" primitiveName="sci_haltscicos" />
-    <!-- =================== -->
-    <PRIMITIVE gatewayId="45" primitiveId="28" primitiveName="data2sig" />
-    <PRIMITIVE gatewayId="45" primitiveId="29" primitiveName="sig2data" />
-    <PRIMITIVE gatewayId="45" primitiveId="30" primitiveName="model2blk" />
-    <PRIMITIVE gatewayId="45" primitiveId="31" primitiveName="callblk" />
-    <!-- =================== -->
-    <PRIMITIVE gatewayId="45" primitiveId="32" primitiveName="loadScicos" />
-</GATEWAY>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE module SYSTEM "../../functions/xml/gateway.dtd">
+<!--
+            /*
+            *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+            *  Copyright (C) 2014 - Scilab Enterprises - Clement DAVID
+            *
+            *  This file must be used under the terms of the CeCILL.
+            *  This source file is licensed as described in the file COPYING, which
+            *  you should have received as part of this distribution.  The terms
+            *  are also available at
+            *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+            *
+            */
+            Scilab
+            Interface description. In this file, we define the list of the function which
+            will be available into Scilab and the link to the "native" function.
+            
+            Don't touch if you do not know what you are doing !
+        -->
+<module name="scicos">
+    <gateway type="0" name="sci_var2vec" function="var2vec"/>
+    <gateway type="0" name="sci_vec2var" function="vec2var"/>
+    <gateway type="0" name="sci_getblocklabel" function="getblocklabel"/>
+    <gateway type="0" name="sci_scicos_debug" function="scicos_debug"/>
+    <gateway type="0" name="sci_scicos_debug_count" function="scicos_debug_count"/>
+    <gateway type="0" name="sci_sctree" function="sctree"/>
+    <gateway type="0" name="sci_tree2" function="sci_tree2"/>
+    <gateway type="0" name="sci_tree3" function="sci_tree3"/>
+    <gateway type="0" name="sci_tree4" function="sci_tree4"/>
+    <gateway type="0" name="sci_curblock" function="curblock"/>
+    <gateway type="0" name="sci_scicos_time" function="scicos_time"/>
+    <gateway type="0" name="sci_duplicate" function="duplicate"/>
+    <gateway type="0" name="sci_diffobjs" function="diffobjs"/>
+    <gateway type="0" name="sci_pointer_xproperty" function="pointer_xproperty"/>
+    <gateway type="0" name="sci_phase_simulation" function="phase_simulation"/>
+    <gateway type="0" name="sci_set_xproperty" function="set_xproperty"/>
+    <gateway type="0" name="sci_set_blockerror" function="set_blockerror"/>
+    <gateway type="0" name="sci_ctree2" function="ctree2"/>
+    <gateway type="0" name="sci_ctree3" function="ctree3"/>
+    <gateway type="0" name="sci_ctree4" function="ctree4"/>
+    <gateway type="0" name="sci_scicosim" function="scicosim"/>
+    <gateway type="0" name="sci_getscicosvars" function="getscicosvars"/>
+    <gateway type="0" name="sci_curblockc" function="curblockc"/>
+    <gateway type="0" name="sci_buildouttb" function="buildouttb"/>
+    <gateway type="0" name="sci_end_scicosim" function="end_scicosim"/>
+    <gateway type="0" name="sci_coserror" function="coserror"/>
+    <gateway type="0" name="sci_haltscicos" function="sci_haltscicos"/>
+    <gateway type="0" name="sci_data2sig" function="data2sig"/>
+    <gateway type="0" name="sci_sig2data" function="sig2data"/>
+    <gateway type="0" name="sci_model2blk" function="model2blk"/>
+    <gateway type="0" name="sci_callblk" function="callblk"/>
+    <gateway type="0" name="sci_loadScicos" function="loadScicos"/>
+</module>

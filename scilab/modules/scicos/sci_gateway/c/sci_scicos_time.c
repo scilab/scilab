@@ -24,7 +24,7 @@
 #include "stack-c.h"
 #include "scicos.h"
 /*--------------------------------------------------------------------------*/
-int sci_scicos_time(char *fname, unsigned long fname_len)
+int sci_scicos_time(char *fname, void* pvApiCtx)
 {
 #if 0
     int one = 1, l1 = 0;

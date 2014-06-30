@@ -82,7 +82,7 @@ extern OpTab tabsim[];
 *                  check in/out size and type
 *
 */
-int sci_model2blk(char *fname, unsigned long fname_len)
+int sci_model2blk(char *fname, void* pvApiCtx)
 {
 #if 0
     int m1 = 0, n1 = 0;

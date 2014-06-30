@@ -21,6 +21,7 @@ extern "C"
 #include <libxml/xpath.h>
 #include <libxml/xmlreader.h>
 #include "sci_malloc.h"
+#include "sci_mode.h"
 }
 
 using namespace types;
@@ -522,10 +523,15 @@ int XmlModule::Load()
 int ScicosModule::Load()
 {
     wstring wstModuleName = L"scicos";
+    const wchar_t* wstLibName = wstModuleName.c_str();
+    if (getScilabMode() == SCILAB_NWNI)
+    {
+        wstLibName = L"scicos-cli";
+    }
 #ifdef _MSC_VER
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
+    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstLibName, DYNLIB_NAME_FORMAT_1);
 #else
-    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
+    wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstLibName, DYNLIB_NAME_FORMAT_3);
 #endif
     vectGateway vect = loadGatewaysName(wstModuleName);
 
