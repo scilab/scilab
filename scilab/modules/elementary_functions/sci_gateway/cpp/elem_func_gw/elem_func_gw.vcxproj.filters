@@ -51,9 +51,6 @@
     <ClCompile Include="..\..\c\sci_number_properties.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\c\sci_sign.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\c\sci_sqrt.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -169,6 +166,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\sci_round.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sci_sign.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
