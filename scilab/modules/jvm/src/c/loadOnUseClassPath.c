@@ -36,7 +36,6 @@ BOOL loadOnUseClassPath(char const* tag)
     char *classpathfile = (char*)MALLOC(sizeof(char) * (strlen(sciPath) + strlen(XMLCLASSPATH) + 1));
 
     sprintf(classpathfile, XMLCLASSPATH, sciPath);
-    FREE(sciPath);
 
     // Load the XML
     if ( FileExist(classpathfile) )
@@ -72,6 +71,7 @@ BOOL loadOnUseClassPath(char const* tag)
                 classpathfile = NULL;
             }
 
+            FREE(sciPath);
             return bOK;
         }
 
