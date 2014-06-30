@@ -60,8 +60,7 @@ public:
 
     virtual ListExp* clone()
     {
-        Location* newloc = const_cast<Location*>(&location_get())->clone();
-        ListExp* cloned = new ListExp(*newloc, *start_get().clone(), *step_get().clone(), *end_get().clone());
+        ListExp* cloned = new ListExp(location_get(), *start_get().clone(), *step_get().clone(), *end_get().clone());
         cloned->set_verbose(is_verbose());
         return cloned;
     }

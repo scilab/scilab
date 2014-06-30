@@ -44,28 +44,23 @@ public:
 
     virtual ~ArrayListExp ()
     {
-        std::list<Exp *>::const_iterator it = _exps->begin();
-        std::list<Exp *>::const_iterator itEnd = _exps->begin();
-        for (; it != itEnd ; ++it)
+        for (std::list<Exp *>::const_iterator it = _exps->begin(), itEnd = _exps->end(); it != itEnd ; ++it)
         {
             delete *it;
         }
 
-       delete _exps;
+        delete _exps;
     }
 
     virtual ArrayListExp* clone()
     {
         std::list<Exp *>* exps = new std::list<Exp *>;
-        std::list<Exp *>::const_iterator it = _exps->begin();
-        std::list<Exp *>::const_iterator itEnd = _exps->begin();
-        for (; it != itEnd ; ++it)
+        for (std::list<Exp *>::const_iterator it = _exps->begin(), itEnd = _exps->end(); it != itEnd ; ++it)
         {
             exps->push_back((*it)->clone());
         }
 
-        Location* newloc = const_cast<Location*>(&location_get())->clone();
-        ArrayListExp* cloned = new ArrayListExp(*newloc, *exps);
+        ArrayListExp* cloned = new ArrayListExp(location_get(), *exps);
         cloned->set_verbose(is_verbose());
         return cloned;
     }

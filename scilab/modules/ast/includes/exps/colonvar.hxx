@@ -43,8 +43,7 @@ public:
 
     virtual ColonVar* clone()
     {
-        Location* newloc = const_cast<Location*>(&location_get())->clone();
-        ColonVar* cloned = new ColonVar(*newloc);
+        ColonVar* cloned = new ColonVar(location_get());
         cloned->set_verbose(is_verbose());
         return cloned;
     }

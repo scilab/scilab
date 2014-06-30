@@ -106,8 +106,7 @@ public:
 
     virtual OpExp* clone()
     {
-        Location* newloc = const_cast<Location*>(&location_get())->clone();
-        OpExp* cloned = new OpExp(*newloc, *left_get().clone(), oper_get(), *right_get().clone());
+        OpExp* cloned = new OpExp(location_get(), *left_get().clone(), oper_get(), *right_get().clone());
         cloned->set_verbose(is_verbose());
         return cloned;
     }

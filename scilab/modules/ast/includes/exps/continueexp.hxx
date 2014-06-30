@@ -41,8 +41,7 @@ public:
 
     virtual ContinueExp* clone()
     {
-        Location* newloc = const_cast<Location*>(&location_get())->clone();
-        ContinueExp* cloned = new ContinueExp(*newloc);
+        ContinueExp* cloned = new ContinueExp(location_get());
         cloned->set_verbose(is_verbose());
         return cloned;
     }

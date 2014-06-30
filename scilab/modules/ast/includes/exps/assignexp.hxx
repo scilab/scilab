@@ -29,9 +29,9 @@ public:
                Exp& right_exp)
         : Exp (location),
           _left_exp (&left_exp),
-          _right_exp (&right_exp)
+          _right_exp (&right_exp),
+          _pIT(NULL)
     {
-        _pIT = NULL;
     }
 
     AssignExp (const Location& location,
@@ -56,8 +56,7 @@ public:
 
     virtual AssignExp* clone()
     {
-        Location* newloc = const_cast<Location*>(&location_get())->clone();
-        AssignExp* cloned = new AssignExp(*newloc, *left_exp_get().clone(), *right_exp_get().clone());
+        AssignExp* cloned = new AssignExp(location_get(), *left_exp_get().clone(), *right_exp_get().clone());
         cloned->set_verbose(is_verbose());
         return cloned;
     }
@@ -110,6 +109,11 @@ public:
     types::InternalType* right_val_get() const
     {
         return _pIT;
+    }
+
+    inline bool is_assign_exp() const
+    {
+        return true;
     }
     /** \} */
 

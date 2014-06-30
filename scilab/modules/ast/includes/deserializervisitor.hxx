@@ -57,20 +57,20 @@ private :
         return get_uint8() == 1;
     }
 
-    Location *get_location(void)
+    Location get_location(void)
     {
-        Location *loc = new Location();
-        loc->first_line = get_uint32();
-        loc->first_column = get_uint32();
-        loc->last_line = get_uint32();
-        loc->last_column = get_uint32();
+        Location loc;
+        loc.first_line = get_uint32();
+        loc.first_column = get_uint32();
+        loc.last_line = get_uint32();
+        loc.last_column = get_uint32();
         return loc;
     }
 
     std::list<Exp*>* get_exps(void)
     {
         int nitems = get_uint32();
-        std::list<Exp*> *list = new  std::list<Exp*>;
+        std::list<Exp*> *list = new std::list<Exp*>;
         for (int i = 0; i < nitems; i++)
         {
             Exp* exp = get_exp();
@@ -82,12 +82,12 @@ private :
     std::list<MatrixLineExp*>* get_MatrixLines(void)
     {
         int nitems = get_uint32();
-        std::list<MatrixLineExp*> *list = new  std::list<MatrixLineExp*>;
+        std::list<MatrixLineExp*> *list = new std::list<MatrixLineExp*>;
         for (int i = 0; i < nitems; i++)
         {
-            Location *line_loc = get_location();
+            Location line_loc = get_location();
             std::list<Exp*>* columns = get_exps();
-            MatrixLineExp* line = new MatrixLineExp(*line_loc, * columns);
+            MatrixLineExp* line = new MatrixLineExp(line_loc, * columns);
             list->push_back(line);
         }
         return list;
@@ -99,7 +99,7 @@ private :
         std::list<Var*> *list = new  std::list<Var*>;
         for (int i = 0; i < nitems; i++)
         {
-            Var* var = dynamic_cast<Var*>(get_exp());
+            Var* var = static_cast<Var*>(get_exp());
             list->push_back(var);
         }
         return list;
@@ -231,11 +231,11 @@ private :
         return d;
     }
 
-    VarDec* get_VarDec(Location *vardec_location)
+    VarDec* get_VarDec(Location & vardec_location)
     {
         symbol::Symbol *name = get_Symbol();
         Exp *init = get_exp();
-        VarDec* vardec = new VarDec(*vardec_location, *name, *init);
+        VarDec* vardec = new VarDec(vardec_location, *name, *init);
         return vardec;
     }
 
@@ -245,7 +245,7 @@ private :
         Exp* exp;
         int code = get_uint8();
         size_t nodeNumber = get_uint64();
-        Location *loc = get_location();
+        Location loc = get_location();
         bool is_verbose = get_bool();
         int is_break = get_bool();
         int is_breakable = get_bool();
@@ -260,67 +260,67 @@ private :
             case 1:
             {
                 std::list<Exp *>* l_body = get_exps();
-                exp = new SeqExp(*loc, *l_body);
+                exp = new SeqExp(loc, *l_body);
                 break;
             }
             case 2:
             {
                 std::wstring* s = get_wstring();
-                exp = new StringExp(*loc, *s);
+                exp = new StringExp(loc, *s);
                 delete s;
                 break;
             }
             case 3:
             {
                 std::wstring* s = get_wstring();
-                exp = new CommentExp(*loc, s);
+                exp = new CommentExp(loc, s);
                 //delete s;
                 break;
             }
             case 6:
             {
                 double d = get_double();
-                exp = new DoubleExp(*loc, d);
+                exp = new DoubleExp(loc, d);
                 break;
             }
             case 7:
             {
                 bool b = get_bool();
-                exp = new BoolExp(*loc, b);
+                exp = new BoolExp(loc, b);
                 break;
             }
             case 8:
             {
-                exp = new NilExp(*loc);
+                exp = new NilExp(loc);
                 break;
             }
             case 9:
             {
                 symbol::Symbol *name = get_Symbol();
-                exp = new SimpleVar(*loc, *name);
+                exp = new SimpleVar(loc, *name);
                 break;
             }
             case 10:
             {
-                exp = new ColonVar(*loc);
+                exp = new ColonVar(loc);
                 break;
             }
             case 11:
             {
-                exp = new DollarVar(*loc);
+                exp = new DollarVar(loc);
                 break;
             }
             case 12:
             {
                 std::list<Var*>* vars = get_vars();
-                exp = new ArrayListVar(*loc, *vars);
+                exp = new ArrayListVar(loc, *vars);
                 break;
             }
             case 13:
             {
                 Exp *head = get_exp();
                 Exp *tail = get_exp();
-                exp = new FieldExp(*loc, *head, *tail);
+                exp = new FieldExp(loc, *head, *tail);
                 break;
             }
             case 14:
@@ -332,49 +332,49 @@ private :
                 if ( has_else )
                 {
                     Exp* _else = get_exp();
-                    ifexp = new IfExp(*loc, *test, *_then, *_else);
+                    ifexp = new IfExp(loc, *test, *_then, *_else);
                 }
                 else
                 {
-                    ifexp = new IfExp(*loc, *test, *_then);
+                    ifexp = new IfExp(loc, *test, *_then);
                 }
                 exp = ifexp;
                 break;
             }
             case 15:
             {
-                Location *try_location = get_location();
-                Location *catch_location = get_location();
+                Location try_location = get_location();
+                Location catch_location = get_location();
                 std::list<Exp *>* try_exps = get_exps();
                 std::list<Exp *>* catch_exps = get_exps();
-                SeqExp *tryexp = new SeqExp(*try_location, *try_exps);
-                SeqExp *catchexp = new SeqExp(*catch_location, *catch_exps);
-                exp = new TryCatchExp(*loc, *tryexp, *catchexp);
+                SeqExp *tryexp = new SeqExp(try_location, *try_exps);
+                SeqExp *catchexp = new SeqExp(catch_location, *catch_exps);
+                exp = new TryCatchExp(loc, *tryexp, *catchexp);
                 break;
             }
             case 16:
             {
                 Exp* test = get_exp();
                 Exp* body = get_exp();
-                exp = new WhileExp(*loc, *test, *body);
+                exp = new WhileExp(loc, *test, *body);
                 break;
             }
             case 17:
             {
-                Location *vardec_location = get_location();
+                Location vardec_location = get_location();
                 VarDec* vardec = get_VarDec(vardec_location);
                 Exp* body = get_exp();
-                exp = new ForExp(*loc, *vardec, *body);
+                exp = new ForExp(loc, *vardec, *body);
                 break;
             }
             case 18:
             {
-                exp = new BreakExp(*loc);
+                exp = new BreakExp(loc);
                 break;
             }
             case 19:
             {
-                exp = new ContinueExp(*loc);
+                exp = new ContinueExp(loc);
                 break;
             }
             case 20:
@@ -382,12 +382,12 @@ private :
                 bool is_global = get_bool();
                 if ( is_global )
                 {
-                    exp = new ReturnExp(*loc);
+                    exp = new ReturnExp(loc);
                 }
                 else
                 {
                     Exp* returnExp_exp = get_exp();
-                    exp = new ReturnExp(*loc, returnExp_exp);
+                    exp = new ReturnExp(loc, returnExp_exp);
                 }
                 break;
             }
@@ -397,9 +397,9 @@ private :
                 SeqExp * default_case = NULL;
                 if ( has_default )
                 {
-                    Location *default_case_location = get_location();
+                    Location default_case_location = get_location();
                     std::list<Exp *>* default_case_exps = get_exps();
-                    default_case = new SeqExp(*default_case_location,
+                    default_case = new SeqExp(default_case_location,
                                               *default_case_exps);
                 }
                 Exp* select = get_exp();
@@ -409,24 +409,24 @@ private :
                 for (int i = 0; i < nitems; i++)
                 {
 
-                    Location *case_location = get_location();
-                    Location *body_location = get_location();
+                    Location case_location = get_location();
+                    Location body_location = get_location();
                     Exp* test = get_exp();
                     std::list<Exp *>* body_exps = get_exps();
-                    SeqExp *body = new SeqExp(*body_location,  *body_exps);
+                    SeqExp *body = new SeqExp(body_location,  *body_exps);
 
-                    CaseExp* _case = new CaseExp(*case_location, *test, *body);
+                    CaseExp* _case = new CaseExp(case_location, *test, *body);
                     cases->push_back(_case);
                 }
 
 
                 if ( has_default )
                 {
-                    exp = new SelectExp(*loc, *select, *cases, *default_case);
+                    exp = new SelectExp(loc, *select, *cases, *default_case);
                 }
                 else
                 {
-                    exp = new SelectExp(*loc, *select, *cases);
+                    exp = new SelectExp(loc, *select, *cases);
                 }
                 break;
             }
@@ -439,32 +439,32 @@ private :
             case 23:
             {
                 std::list<MatrixLineExp *>* lines = get_MatrixLines();
-                exp = new CellExp(*loc, *lines);
+                exp = new CellExp(loc, *lines);
                 break;
             }
             case 24:
             {
                 std::list<Exp *>* exps = get_exps();
-                exp = new ArrayListExp(*loc, *exps);
+                exp = new ArrayListExp(loc, *exps);
                 break;
             }
             case 25:
             {
                 std::list<Exp *>* exps = get_exps();
-                exp = new AssignListExp(*loc, *exps);
+                exp = new AssignListExp(loc, *exps);
                 break;
             }
             case 26:
             {
                 Exp* notexp = get_exp();
-                exp = new NotExp(*loc, *notexp);
+                exp = new NotExp(loc, *notexp);
                 break;
             }
             case 27:
             {
                 TransposeExp::Kind kind = get_TransposeExp_Kind();
                 Exp* _exp = get_exp();
-                exp = new TransposeExp(*loc, *_exp, kind);
+                exp = new TransposeExp(loc, *_exp, kind);
                 break;
             }
             case 28:
@@ -475,14 +475,14 @@ private :
             case 29:
             {
                 symbol::Symbol* name = get_Symbol();
-                Location *args_loc = get_location();
-                Location *returns_loc = get_location();
+                Location args_loc = get_location();
+                Location returns_loc = get_location();
                 Exp* body = get_exp();
                 std::list <Var*>* args_list = get_vars();
                 std::list <Var*>* returns_list = get_vars();
-                ArrayListVar *args = new ArrayListVar(*args_loc, *args_list);
-                ArrayListVar *returns = new ArrayListVar(*returns_loc, *returns_list);
-                exp = new FunctionDec(*loc, *name, *args, *returns, *body);
+                ArrayListVar *args = new ArrayListVar(args_loc, *args_list);
+                ArrayListVar *returns = new ArrayListVar(returns_loc, *returns_list);
+                exp = new FunctionDec(loc, *name, *args, *returns, *body);
                 break;
             }
             case 30:
@@ -490,14 +490,14 @@ private :
                 Exp* _start = get_exp();
                 Exp* _step = get_exp();
                 Exp* _end = get_exp();
-                exp = new ListExp(*loc, *_start, *_step, *_end);
+                exp = new ListExp(loc, *_start, *_step, *_end);
                 break;
             }
             case 31:
             {
                 Exp* _left = get_exp();
                 Exp* _right = get_exp();
-                exp = new AssignExp(*loc, *_left, *_right);
+                exp = new AssignExp(loc, *_left, *_right);
                 break;
             }
             case 32:
@@ -505,7 +505,7 @@ private :
                 OpExp::Oper oper = get_OpExp_Oper();
                 Exp *left = get_exp();
                 Exp *right = get_exp();
-                OpExp *_opexp  = new OpExp(*loc, *left, oper, *right);
+                OpExp *_opexp  = new OpExp(loc, *left, oper, *right);
                 exp = _opexp;
                 break;
             }
@@ -515,21 +515,21 @@ private :
                 Exp *left = get_exp();
                 Exp *right = get_exp();
                 LogicalOpExp *_opexp  =
-                    new LogicalOpExp(*loc, *left, oper, *right);
+                    new LogicalOpExp(loc, *left, oper, *right);
                 exp = _opexp;
                 break;
             }
             case 34:
             {
                 std::list<MatrixLineExp *>* lines = get_MatrixLines();
-                exp = new MatrixExp(*loc, *lines);
+                exp = new MatrixExp(loc, *lines);
                 break;
             }
             case 35:
             {
                 Exp* name = get_exp();
                 std::list<Exp *> * args = get_exps();
-                exp = new CallExp(*loc, *name, *args);
+                exp = new CallExp(loc, *name, *args);
                 break;
             }
             /* SHOULD NEVER HAPPEN
@@ -542,7 +542,7 @@ private :
             {
                 Exp* name = get_exp();
                 std::list<Exp *>* args = get_exps();
-                exp = new CellCallExp(*loc, *name, *args);
+                exp = new CellCallExp(loc, *name, *args);
                 break;
             }
             default:

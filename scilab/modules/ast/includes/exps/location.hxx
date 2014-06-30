@@ -38,6 +38,14 @@ public:
     }
     /** \} */
 
+    Location(int _first_line, int _last_line, int _first_column, int _last_column) : first_line(_first_line), last_line(_last_line), first_column(_first_column), last_column(_last_column)
+    {
+    }
+
+    Location(const Location & l) : first_line(l.first_line), last_line(l.last_line), first_column(l.first_column), last_column(l.last_column)
+    {
+    }
+
     Location* clone()
     {
         Location* ret = new Location();

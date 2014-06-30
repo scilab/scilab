@@ -38,8 +38,7 @@ public:
 
     virtual FloatExp* clone()
     {
-        Location* newloc = const_cast<Location*>(&location_get())->clone();
-        FloatExp* cloned = new FloatExp(*newloc, value_get());
+        FloatExp* cloned = new FloatExp(location_get(), value_get());
         cloned->set_verbose(is_verbose());
         return cloned;
     }

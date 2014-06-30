@@ -31,6 +31,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
         // manage case [a,b]=foo() where foo is defined as a=foo()
         if (pCall->getNbOutputArgument() != -1 && pCall->getNbOutputArgument() < iRetCount)
         {
+            pIT->killMe();
             std::wostringstream os;
             os << _W("Wrong number of output arguments.\n") << std::endl;
             throw ast::ScilabError(os.str(), 999, e.location_get());
@@ -39,21 +40,26 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
         //get function arguments
         for (itExp = e.args_get().begin (); itExp != e.args_get().end (); ++itExp)
         {
-            AssignExp* pAssign = dynamic_cast<AssignExp*>(*itExp);
-            if (pAssign)
+            if ((*itExp)->is_assign_exp())
             {
+                AssignExp* pAssign = static_cast<AssignExp*>(*itExp);
                 //optional parameter
                 Exp* pL = &pAssign->left_exp_get();
-                SimpleVar* pVar = dynamic_cast<SimpleVar*>(pL);
-                if (pVar == NULL)
+                if (!pL->is_simple_var())
                 {
+                    pIT->killMe();
+                    for (optional_list::const_iterator o = opt.begin(), end = opt.end(); o != end; ++o)
+                    {
+                        o->second->killMe();
+                    }
                     std::wostringstream os;
                     os << _W("left side of optional parameter must be a variable") << std::endl;
                     throw ast::ScilabError(os.str(), 999, e.location_get());
                 }
 
+                SimpleVar* pVar = static_cast<SimpleVar*>(pL);
                 Exp* pR = &pAssign->right_exp_get();
-                pR->accept (*this);
+                pR->accept(*this);
                 InternalType* pITR = result_get();
 
                 opt.push_back(std::pair<std::wstring, InternalType*>(pVar->name_get().name_get(), pITR));
@@ -67,7 +73,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
             }
 
             expected_setSize(1);
-            (*itExp)->accept (*this);
+            (*itExp)->accept(*this);
 
             if (result_get() == NULL)
             {
@@ -76,7 +82,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
             }
 
             pIT = result_get();
-            if (result_get()->isImplicitList())
+            if (pIT->isImplicitList())
             {
                 types::ImplicitList* pIL = pIT->getAs<types::ImplicitList>();
                 if (pIL->isComputable() == false)
@@ -89,6 +95,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                 {
                     result_set(pIL->extractFullMatrix());
                 }
+                pIT->killMe();
             }
 
             if (is_single_result())
@@ -100,8 +107,9 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
             {
                 for (int i = 0 ; i < result_getSize() ; i++)
                 {
-                    in.push_back(result_get(i));
-                    result_get(i)->IncreaseRef();
+                    InternalType * pIT = result_get(i);
+                    pIT->IncreaseRef();
+                    in.push_back(pIT);
                 }
             }
         }
@@ -110,7 +118,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
         {
             int iSaveExpectedSize = iRetCount;
             expected_setSize(iSaveExpectedSize);
-            iRetCount = Max(1, iRetCount);
+            iRetCount = std::max(1, iRetCount);
 
             //reset previous error before call function
             ConfigVariable::resetError();
@@ -134,15 +142,10 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                         //clear input parameters
                         for (unsigned int k = 0; k < in.size(); k++)
                         {
-                            if (in[k] == NULL)
+                            if (in[k])
                             {
-                                continue;
-                            }
-
-                            in[k]->DecreaseRef();
-                            if (in[k]->isDeletable())
-                            {
-                                delete in[k];
+                                in[k]->DecreaseRef();
+                                in[k]->killMe();
                             }
                         }
 
@@ -171,79 +174,74 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                 throw ast::ScilabError();
             }
         }
-        catch (ScilabMessage sm)
+        catch (ScilabException & se)
         {
             // remove the last call from where
             ConfigVariable::where_end();
 
             //clear input parameters
-            for (unsigned int k = 0; k < in.size(); k++)
+            for (typed_list::const_iterator k = in.begin(), end = in.end(); k != end; ++k)
             {
-                if (in[k] && in[k]->isDeletable())
+                if (*k)
                 {
-                    delete in[k];
+                    (*k)->killMe();
                 }
+            }
+
+            if (!out.empty())
+            {
+                for (typed_list::iterator o = out.begin(), end = out.end(); o != end; ++o)
+                {
+                    (*o)->DecreaseRef();
+                    (*o)->killMe();
+                }
+                out.clear();
             }
 
             if (pCall->isMacro() || pCall->isMacroFile())
             {
                 wchar_t szError[bsiz];
-                os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n").c_str(), sm.GetErrorLocation().first_line, pCall->getName().c_str());
+                os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n").c_str(), se.GetErrorLocation().first_line, pCall->getName().c_str());
                 throw ast::ScilabMessage(szError);
             }
             else
             {
-                throw sm;
+                throw se;
             }
         }
 
         //clear input parameters but take care in case of in[k] == out[i]
-        for (unsigned int k = 0; k < in.size(); k++)
+        for (typed_list::const_iterator i = in.begin(), end = in.end(); i != end; ++i)
         {
-            if (in[k] == NULL)
+            if (*i)
             {
-                continue;
-            }
-
-            //check if input data are use as output data
-            bool bFind = false;
-            for (int i = 0 ; i < (int)out.size() ; i++)
-            {
-                if (out[i] == in[k])
+                //check if input data are use as output data
+                bool bFind = false;
+                for (typed_list::const_iterator o = out.begin(), end = out.end(); o != end; ++o)
                 {
-                    bFind = true;
-                    break;
+                    if (*i == *o)
+                    {
+                        bFind = true;
+                        break;
+                    }
                 }
-            }
 
-            in[k]->DecreaseRef();
-            if (bFind == false)
-            {
-                if (in[k]->isDeletable())
+                (*i)->DecreaseRef();
+                if (bFind == false)
                 {
-                    delete in[k];
+                    (*i)->killMe();
                 }
             }
         }
+
+        pCall->killMe();
     }
     else if (result_get() != NULL)
     {
         //a(xxx) with a variable, extraction
 
         //get symbol of variable
-        types::InternalType *pIT = NULL;
-
-        //WARNING can be a fieldexp
-        const SimpleVar *Var = dynamic_cast<const SimpleVar*>(&e.name_get());
-        if (Var != NULL)
-        {
-            pIT = symbol::Context::getInstance()->get(((SimpleVar*)Var)->stack_get());
-        }
-        else
-        {
-            pIT = result_get();
-        }
-
+        types::InternalType *pIT = result_get();
         int iArgDim = static_cast<int>(e.args_get().size());
         types::InternalType *pOut = NULL;
         std::vector<types::InternalType*> ResultList;
@@ -251,7 +249,6 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
         //To manage extraction without parameter like SCI()
         if (iArgDim == 0)
         {
-            result_set(pIT);
             return;
         }
         else
@@ -641,6 +638,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                 }
                 else
                 {
+                    pIT->killMe();
                     std::wostringstream os;
                     os << _W("Invalid index.\n");
                     //os << ((*e.args_get().begin())->location_get()).location_getString() << std::endl;
@@ -659,12 +657,18 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                 }
                 else
                 {
+                    pIT->killMe();
                     std::wostringstream os;
                     os << _W("inconsistent row/column dimensions\n");
                     //os << ((*e.args_get().begin())->location_get()).location_getString() << std::endl;
                     throw ast::ScilabError(os.str(), 999, (*e.args_get().begin())->location_get());
                 }
             }
+        }
+
+        if (result_get() != pIT)
+        {
+            pIT->killMe();
         }
     }
     else

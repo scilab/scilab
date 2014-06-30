@@ -46,8 +46,7 @@ public:
 
     virtual BoolExp* clone()
     {
-        Location* newloc = const_cast<Location*>(&location_get())->clone();
-        BoolExp* cloned = new BoolExp(*newloc, value_get());
+        BoolExp* cloned = new BoolExp(location_get(), value_get());
         cloned->set_verbose(is_verbose());
         return cloned;
     }
@@ -91,7 +90,7 @@ public:
             _bigBool->DecreaseRef();
             _bigBool->killMe();
         }
-        
+
         _bigBool = pB;
         _bigBool->IncreaseRef();
     }

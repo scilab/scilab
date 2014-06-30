@@ -90,7 +90,7 @@ template <class T>
 void RunVisitorT<T>::visitprivate(const FieldExp &e)
 {
     /*
-    a.b
+      a.b
     */
 
     if (!e.tail_get()->is_simple_var())
@@ -135,11 +135,11 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
     {
         /*
         // segfault on insert.tst... check why ??
-               // probably extractor needs to increaseref of extracted field...
+        // probably extractor needs to increaseref of extracted field...
 
         if (pValue->isDeletable())
-               {
-                   delete pValue;
+        {
+        delete pValue;
         }
         */
 
@@ -343,44 +343,41 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
     e.vardec_get().accept(*this);
     InternalType* pIT = result_get();
     //allow break and continue operations
-    const_cast<Exp*>(&e.body_get())->breakable_set();
-    const_cast<Exp*>(&e.body_get())->continuable_set();
+    const_cast<Exp&>(e.body_get()).breakable_set();
+    const_cast<Exp&>(e.body_get()).continuable_set();
 
     //allow return operation
     if (e.is_returnable())
     {
-        (&e.body_get())->is_returnable();
+        e.body_get().is_returnable();
     }
 
     if (result_get()->isImplicitList())
     {
-        ImplicitList* pVar = pIT->getAs<ImplicitList>();
+        ImplicitList * pVar = pIT->getAs<ImplicitList>();
 
-        InternalType *pIL = NULL;
-        pIL = pVar->extractValue(0);
-        symbol::Symbol varName = e.vardec_get().name_get();
-
-        for (int i = 0 ; i < pVar->getSize() ; i++)
+        for (int i = 0; i < pVar->getSize(); ++i)
         {
-            pIL = pVar->extractValue(i);
+            //TODO : maybe it would be interesting here to reuse the same InternalType (to avoid delete/new)
+            InternalType * pIL = pVar->extractValue(i);
             symbol::Context::getInstance()->put(e.vardec_get().stack_get(), pIL);
 
             e.body_get().accept(*this);
             if (e.body_get().is_break())
             {
-                const_cast<Exp*>(&(e.body_get()))->break_reset();
+                const_cast<Exp&>(e.body_get()).break_reset();
                 break;
             }
 
             if (e.body_get().is_continue())
             {
-                const_cast<Exp*>(&(e.body_get()))->continue_reset();
+                const_cast<Exp&>(e.body_get()).continue_reset();
                 continue;
             }
 
             if (e.body_get().is_return())
             {
-                const_cast<ForExp*>(&e)->return_set();
+                const_cast<ForExp&>(e).return_set();
                 break;
             }
         }
@@ -388,10 +385,12 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
     else if (result_get()->isList())
     {
         List* pL = pIT->getAs<List>();
-        for (int i = 0 ; i < pL->getSize() ; i++)
+        const int size = pL->getSize();
+        for (int i = 0; i < size; ++i)
         {
             InternalType* pNew = pL->get(i);
             symbol::Context::getInstance()->put(e.vardec_get().stack_get(), pNew);
+
             e.body_get().accept(*this);
             if (e.body_get().is_break())
             {
@@ -418,13 +417,17 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
         GenericType* pVar = pIT->getAs<GenericType>();
         if (pVar->getDims() > 2)
         {
+            pIT->DecreaseRef();
+            pIT->killMe();
+
             throw ScilabError(_W("for expression can only manage 1 or 2 dimensions variables\n"), 999, e.vardec_get().location_get());
         }
 
-        for (int i = 0 ; i < pVar->getCols() ; i++)
+        for (int i = 0; i < pVar->getCols(); i++)
         {
             GenericType* pNew = pVar->getColumnValues(i);
             symbol::Context::getInstance()->put(e.vardec_get().stack_get(), pNew);
+
             e.body_get().accept(*this);
             if (e.body_get().is_break())
             {
@@ -447,10 +450,7 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
     }
 
     pIT->DecreaseRef();
-    if (pIT->isDeletable())
-    {
-        delete pIT;
-    }
+    pIT->killMe();
 
     result_set(NULL);
 }
@@ -649,7 +649,7 @@ template <class T>
 void RunVisitorT<T>::visitprivate(const SeqExp  &e)
 {
     //T execMe;
-    std::list<Exp *>::const_iterator	itExp;
+    std::list<Exp *>::const_iterator        itExp;
 
     for (itExp = e.exps_get().begin (); itExp != e.exps_get().end (); ++itExp)
     {
@@ -676,13 +676,14 @@ void RunVisitorT<T>::visitprivate(const SeqExp  &e)
             result_set(NULL);
             expected_setSize(-1);
             (*itExp)->accept(*this);
+            InternalType * pIT = result_get();
 
-            if (result_get() != NULL)
+            if (pIT != NULL)
             {
                 bool bImplicitCall = false;
-                if (result_get()->isCallable()) //to manage call without ()
+                if (pIT->isCallable()) //to manage call without ()
                 {
-                    Callable *pCall = ((InternalType*)result_get())->getAs<Callable>();
+                    Callable *pCall = pIT->getAs<Callable>();
                     typed_list out;
                     typed_list in;
                     optional_list opt;
@@ -753,9 +754,8 @@ void RunVisitorT<T>::visitprivate(const SeqExp  &e)
                     }
                 }
 
-                SimpleVar* pVar = dynamic_cast<SimpleVar*>(*itExp);
                 //don't output Simplevar and empty result
-                if (result_get() != NULL && (pVar == NULL || bImplicitCall))
+                if (result_get() != NULL && (!(*itExp)->is_simple_var() || bImplicitCall))
                 {
                     //symbol::Context::getInstance()->put(symbol::Symbol(L"ans"), *execMe.result_get());
                     InternalType* pITAns = result_get();
@@ -767,6 +767,8 @@ void RunVisitorT<T>::visitprivate(const SeqExp  &e)
                         VariableToString(pITAns, L"ans");
                     }
                 }
+
+                pIT->killMe();
             }
 
             if ((&e)->is_breakable() && (*itExp)->is_break())
@@ -853,6 +855,9 @@ void RunVisitorT<T>::visitprivate(const SeqExp  &e)
             scilabErrorW(L"\n");
             throw ScilabMessage((*itExp)->location_get());
         }
+
+        // If something other than NULL is given to result_set, then that would imply
+        // to make a cleanup in visit(ForExp) for example (e.body_get().accept(*this);)
         result_set(NULL);
     }
 }
@@ -861,7 +866,7 @@ template <class T>
 void RunVisitorT<T>::visitprivate(const NotExp &e)
 {
     /*
-    @ or ~ !
+      @ or ~ !
     */
     e.exp_get().accept(*this);
 
@@ -983,8 +988,8 @@ template <class T>
 void RunVisitorT<T>::visitprivate(const FunctionDec  &e)
 {
     /*
-    function foo
-    endfunction
+      function foo
+      endfunction
     */
 
     // funcprot(0) : do nothing
@@ -992,7 +997,7 @@ void RunVisitorT<T>::visitprivate(const FunctionDec  &e)
     // funcprot(2) : error
     if (ConfigVariable::getFuncprot() == 1 && ConfigVariable::getWarningMode())
     {
-        types::InternalType* pITFunc = symbol::Context::getInstance()->get(((FunctionDec&)e).stack_get());
+        types::InternalType* pITFunc = symbol::Context::getInstance()->get(const_cast<FunctionDec&>(e).stack_get());
 
         if (pITFunc && pITFunc->isCallable())
         {
@@ -1022,7 +1027,7 @@ void RunVisitorT<T>::visitprivate(const FunctionDec  &e)
         }
     }
 
-    std::list<Var *>::const_iterator	i;
+    std::list<Var *>::const_iterator        i;
 
     //get input parameters list
     std::list<symbol::Variable*> *pVarList = new std::list<symbol::Variable*>();
@@ -1041,7 +1046,7 @@ void RunVisitorT<T>::visitprivate(const FunctionDec  &e)
     }
 
     //            Location* newloc = const_cast<Location*>(&location_get())->clone();
-    Exp* exp = const_cast<Exp*>(&e.body_get())->clone();
+    Exp* exp = const_cast<Exp&>(e.body_get()).clone();
 
     //MuteVisitor mute;
     //exp->accept(mute);
@@ -1056,138 +1061,130 @@ void RunVisitorT<T>::visitprivate(const FunctionDec  &e)
 template <class T>
 void RunVisitorT<T>::visitprivate(const ListExp &e)
 {
-    try
+    e.start_get().accept(*this);
+    GenericType* pITStart = static_cast<GenericType*>(result_get());
+    if (pITStart->getRows() != 1 || pITStart->getCols() != 1 || (pITStart->isDouble() && pITStart->getAs<Double>()->isComplex()))
     {
-        e.start_get().accept(*this);
-        GenericType* pITStart = static_cast<GenericType*>(result_get());
-        if (pITStart->getRows() != 1 || pITStart->getCols() != 1)
-        {
-            throw 1;
-        }
-        InternalType* piStart = result_get();
+        pITStart->killMe();
+        wchar_t szError[bsiz];
+        os_swprintf(szError, bsiz, _W("%ls: Wrong type for argument %d: Real scalar expected.\n").c_str(), L"':'", 1);
+        throw ScilabError(szError, 999, e.location_get());
+    }
+    InternalType * piStart = pITStart;
 
-        e.step_get().accept(*this);
-        GenericType* pITStep = static_cast<GenericType*>(result_get());
-        if (pITStep->getRows() != 1 || pITStep->getCols() != 1)
-        {
-            throw 2;
-        }
-        InternalType* piStep = result_get();
+    e.step_get().accept(*this);
+    GenericType* pITStep = static_cast<GenericType*>(result_get());
+    if (pITStep->getRows() != 1 || pITStep->getCols() != 1 || (pITStep->isDouble() && pITStep->getAs<Double>()->isComplex()))
+    {
+        pITStart->killMe();
+        pITStep->killMe();
+        wchar_t szError[bsiz];
+        os_swprintf(szError, bsiz, _W("%ls: Wrong type for argument %d: Real scalar expected.\n").c_str(), L"':'", 2);
+        throw ScilabError(szError, 999, e.location_get());
+    }
+    InternalType* piStep = pITStep;
 
-        e.end_get().accept(*this);
-        GenericType* pITEnd = static_cast<GenericType*>(result_get());
-        if (pITEnd->getRows() != 1 || pITEnd->getCols() != 1)
-        {
-            throw 3;
-        }
-        InternalType* piEnd = result_get();
+    e.end_get().accept(*this);
+    GenericType* pITEnd = static_cast<GenericType*>(result_get());
+    if (pITEnd->getRows() != 1 || pITEnd->getCols() != 1 || (pITEnd->isDouble() && pITEnd->getAs<Double>()->isComplex()))
+    {
+        pITStart->killMe();
+        pITStep->killMe();
+        pITEnd->killMe();
+        wchar_t szError[bsiz];
+        os_swprintf(szError, bsiz, _W("%ls: Wrong type for argument %d: Real scalar expected.\n").c_str(), L"':'", 3);
+        throw ScilabError(szError, 999, e.location_get());
+    }
+    InternalType* piEnd = pITEnd;
 
-        //check compatibility
+    //check compatibility
 
-        if (piStart->isInt())
+    //TODO: refactor these if...else..if...
+    if (piStart->isInt())
+    {
+        //if Step or End are Int too, they must have the same precision
+        if (piStep->isInt())
         {
-            //if Step or End are Int too, they must have the same precision
-            if (piStep->isInt())
+            if (piStep->getType() != piStart->getType())
             {
-                if (piStep->getType() != piStart->getType())
-                {
-                    throw ScilabError(_W("Undefined operation for the given operands.\n"), 999, e.step_get().location_get());
-                }
-            }
-            else if (piStep->isPoly())
-            {
+                pITStart->killMe();
+                pITStep->killMe();
+                pITEnd->killMe();
                 throw ScilabError(_W("Undefined operation for the given operands.\n"), 999, e.step_get().location_get());
-            }
-
-
-            if (piEnd->isInt())
-            {
-                if (piEnd->getType() != piStart->getType())
-                {
-                    throw ScilabError(_W("Undefined operation for the given operands.\n"), 999, e.end_get().location_get());
-                }
-            }
-            else if (piEnd->isPoly())
-            {
-                throw ScilabError(_W("Undefined operation for the given operands.\n"), 999, e.end_get().location_get());
-            }
-        }
-        else if (piStart->isPoly())
-        {
-            if (piStep->isInt())
-            {
-                throw ScilabError(_W("Undefined operation for the given operands.\n"), 999, e.step_get().location_get());
-            }
-
-            if (piEnd->isInt())
-            {
-                throw ScilabError(_W("Undefined operation for the given operands.\n"), 999, e.end_get().location_get());
-            }
-        }
-        else if (piStep->isInt())
-        {
-            //if End is Int too, they must have the same precision
-            if (piEnd->isInt())
-            {
-                if (piEnd->getType() != piStep->getType())
-                {
-                    throw ScilabError(_W("Undefined operation for the given operands.\n"), 999, e.end_get().location_get());
-                }
             }
         }
         else if (piStep->isPoly())
         {
-            if (piEnd->isInt())
+            pITStart->killMe();
+            pITStep->killMe();
+            pITEnd->killMe();
+            throw ScilabError(_W("Undefined operation for the given operands.\n"), 999, e.step_get().location_get());
+        }
+
+
+        if (piEnd->isInt())
+        {
+            if (piEnd->getType() != piStart->getType())
             {
-                throw ScilabError(_W("Undefined operation for the given operands.\n"), 999, e.step_get().location_get());
+                pITStart->killMe();
+                pITStep->killMe();
+                pITEnd->killMe();
+                throw ScilabError(_W("Undefined operation for the given operands.\n"), 999, e.end_get().location_get());
             }
         }
-
-        if (piStart->isDouble() && piStart->getAs<Double>()->isComplex())
+        else if (piEnd->isPoly())
         {
-            throw 1;
-        }
-
-        if (piStep->isDouble() && piStep->getAs<Double>()->isComplex())
-        {
-            throw 2;
-        }
-
-        if (piEnd->isDouble() && piEnd->getAs<Double>()->isComplex())
-        {
-            throw 3;
-        }
-
-        ImplicitList *pIL = new ImplicitList(piStart, piStep, piEnd);
-
-        result_set(pIL);
-
-        if (piStart && piStart->isDeletable())
-        {
-            delete piStart;
-        }
-
-        if (piStep && piStep->isDeletable())
-        {
-            delete piStep;
-        }
-
-        if (piEnd && piEnd->isDeletable())
-        {
-            delete piEnd;
+            pITStart->killMe();
+            pITStep->killMe();
+            pITEnd->killMe();
+            throw ScilabError(_W("Undefined operation for the given operands.\n"), 999, e.end_get().location_get());
         }
     }
-    catch (int iPos)
+    else if (piStart->isPoly())
     {
-        wchar_t szError[bsiz];
-        os_swprintf(szError, bsiz, _W("%ls: Wrong type for argument %d: Real scalar expected.\n").c_str(), L"':'", iPos);
-        throw ScilabError(szError, 999, e.location_get());
+        if (piStep->isInt())
+        {
+            pITStart->killMe();
+            pITStep->killMe();
+            pITEnd->killMe();
+            throw ScilabError(_W("Undefined operation for the given operands.\n"), 999, e.step_get().location_get());
+        }
+
+        if (piEnd->isInt())
+        {
+            pITStart->killMe();
+            pITStep->killMe();
+            pITEnd->killMe();
+            throw ScilabError(_W("Undefined operation for the given operands.\n"), 999, e.end_get().location_get());
+        }
     }
-    catch (const ScilabError& error)
+    else if (piStep->isInt())
     {
-        //TODO YaSp : Overloading
-        throw error;
+        //if End is Int too, they must have the same precision
+        if (piEnd->isInt())
+        {
+            if (piEnd->getType() != piStep->getType())
+            {
+                pITStart->killMe();
+                pITStep->killMe();
+                pITEnd->killMe();
+                throw ScilabError(_W("Undefined operation for the given operands.\n"), 999, e.end_get().location_get());
+            }
+        }
     }
+    else if (piStep->isPoly())
+    {
+        if (piEnd->isInt())
+        {
+            pITStart->killMe();
+            pITStep->killMe();
+            pITEnd->killMe();
+            throw ScilabError(_W("Undefined operation for the given operands.\n"), 999, e.step_get().location_get());
+        }
+    }
+
+    // No need to kill piStart, ... because Implicit list ctor will incref them
+    result_set(new ImplicitList(piStart, piStep, piEnd));
 }
 
 #include "run_CallExp.cpp"

@@ -34,8 +34,7 @@ public:
 
     virtual NilExp* clone()
     {
-        Location* newloc = const_cast<Location*>(&location_get())->clone();
-        NilExp* cloned = new NilExp(*newloc);
+        NilExp* cloned = new NilExp(location_get());
         cloned->set_verbose(is_verbose());
         return cloned;
     }

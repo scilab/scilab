@@ -62,15 +62,14 @@ public:
 
     virtual ReturnExp* clone()
     {
-        Location* newloc = const_cast<Location*>(&location_get())->clone();
         ReturnExp* cloned = NULL;
         if (is_global())
         {
-            cloned = new ReturnExp(*newloc);
+            cloned = new ReturnExp(location_get());
         }
         else
         {
-            cloned = new ReturnExp(*newloc, exp_get().clone());
+            cloned = new ReturnExp(location_get(), exp_get().clone());
         }
 
         cloned->set_verbose(is_verbose());
@@ -109,6 +108,12 @@ public:
     {
         return _is_global;
     }
+
+    inline virtual bool is_return_exp() const
+    {
+        return true;
+    }
+
     /** \} */
 
 

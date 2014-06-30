@@ -48,8 +48,7 @@ public:
 
     virtual SimpleVar* clone()
     {
-        Location* newloc = const_cast<Location*>(&location_get())->clone();
-        SimpleVar* cloned = new SimpleVar(*newloc, *new symbol::Symbol(name_get().name_get()));
+        SimpleVar* cloned = new SimpleVar(location_get(), *new symbol::Symbol(name_get().name_get()));
         cloned->set_verbose(is_verbose());
         return cloned;
     }

@@ -62,8 +62,7 @@ public:
 
     virtual FieldExp* clone()
     {
-        Location* newloc = const_cast<Location*>(&location_get())->clone();
-        FieldExp* cloned = new FieldExp(*newloc, *head_get()->clone(), *tail_get()->clone());
+        FieldExp* cloned = new FieldExp(location_get(), *head_get()->clone(), *tail_get()->clone());
         cloned->set_verbose(is_verbose());
         return cloned;
     }

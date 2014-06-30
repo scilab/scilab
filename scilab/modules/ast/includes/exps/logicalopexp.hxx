@@ -55,8 +55,7 @@ public:
 
     virtual LogicalOpExp* clone()
     {
-        Location* newloc = const_cast<Location*>(&location_get())->clone();
-        LogicalOpExp* cloned = new LogicalOpExp(*newloc, *left_get().clone(), oper_get(), *right_get().clone());
+        LogicalOpExp* cloned = new LogicalOpExp(location_get(), *left_get().clone(), oper_get(), *right_get().clone());
         cloned->set_verbose(is_verbose());
         return cloned;
     }

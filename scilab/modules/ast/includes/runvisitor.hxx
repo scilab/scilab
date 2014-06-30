@@ -178,7 +178,7 @@ public:
         _resultVect[_iPos] = const_cast<types::InternalType *>(gtVal);
     }
 
-    void result_set(const types::InternalType *gtVal)
+    inline void result_set(const types::InternalType *gtVal)
     {
         m_bSingleResult = true;
         _result = const_cast<types::InternalType *>(gtVal);

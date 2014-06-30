@@ -40,8 +40,7 @@ public:
 
     virtual CommentExp* clone()
     {
-        Location* newloc = const_cast<Location*>(&location_get())->clone();
-        CommentExp* cloned = new CommentExp(*newloc, new std::wstring(comment_get()));
+        CommentExp* cloned = new CommentExp(location_get(), new std::wstring(comment_get()));
         cloned->set_verbose(is_verbose());
         return cloned;
     }

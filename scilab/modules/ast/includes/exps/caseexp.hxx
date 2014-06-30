@@ -38,8 +38,7 @@ public :
 
     virtual CaseExp* clone()
     {
-        Location* newloc = const_cast<Location*>(&location_get())->clone();
-        CaseExp* cloned = new CaseExp(*newloc, *test_get()->clone(), *body_get()->clone());
+        CaseExp* cloned = new CaseExp(location_get(), *test_get()->clone(), *body_get()->clone());
         cloned->set_verbose(is_verbose());
         return cloned;
     }

@@ -55,114 +55,129 @@ public:
 
 public:
     /** \brief Return if an expression should be displayed or not. */
-    void mute(void)
+    inline void mute(void)
     {
         _verbose = false;
     }
 
     /** \brief Return if an expression should be displayed or not. */
-    void set_verbose(bool verbose)
+    inline void set_verbose(bool verbose)
     {
         _verbose = verbose;
     }
 
     /** \brief Return if an expression should be displayed or not. */
-    bool is_verbose(void) const
+    inline bool is_verbose(void) const
     {
         return _verbose;
     }
 
-    void break_set(void)
+    inline void break_set(void)
     {
         _bBreak = true;
     }
 
-    void break_reset(void)
+    inline void break_reset(void)
     {
         _bBreak = false;
     }
 
-    bool is_break(void) const
+    inline bool is_break(void) const
     {
         return _bBreak;
     }
 
-    void breakable_set(void)
+    inline void breakable_set(void)
     {
         _bBreakable = true;
     }
 
-    void breakable_reset(void)
+    inline void breakable_reset(void)
     {
         _bBreakable = false;
     }
 
-    bool is_breakable(void) const
+    inline bool is_breakable(void) const
     {
         return _bBreakable;
     }
 
-    void return_set(void)
+    inline void return_set(void)
     {
         _bReturn = true;
     }
 
-    void return_reset(void)
+    inline void return_reset(void)
     {
         _bReturn = false;
     }
 
-    bool is_return(void) const
+    inline bool is_return(void) const
     {
         return _bReturn;
     }
 
-    void returnable_set(void)
+    inline void returnable_set(void)
     {
         _bReturnable = true;
     }
 
-    void returnable_reset(void)
+    inline void returnable_reset(void)
     {
         _bReturnable = false;
     }
 
-    bool is_returnable(void) const
+    inline bool is_returnable(void) const
     {
         return _bReturnable;
     }
 
-    void continue_set(void)
+    inline void continue_set(void)
     {
         _bContinue = true;
     }
 
-    void continue_reset(void)
+    inline void continue_reset(void)
     {
         _bContinue = false;
     }
 
-    bool is_continue(void) const
+    inline bool is_continue(void) const
     {
         return _bContinue;
     }
 
-    void continuable_set(void)
+    inline void continuable_set(void)
     {
         _bContinuable = true;
     }
 
-    void continuable_reset(void)
+    inline void continuable_reset(void)
     {
         _bContinuable = false;
     }
 
-    bool is_continuable(void) const
+    inline bool is_continuable(void) const
     {
         return _bContinuable;
     }
 
     inline virtual bool is_simple_var() const
+    {
+        return false;
+    }
+
+    inline virtual bool is_assign_exp() const
+    {
+        return false;
+    }
+
+    inline virtual bool is_return_exp() const
+    {
+        return false;
+    }
+
+    inline virtual bool is_cellcall_exp() const
     {
         return false;
     }

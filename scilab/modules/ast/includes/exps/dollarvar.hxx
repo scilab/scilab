@@ -44,8 +44,7 @@ public:
 
     virtual DollarVar* clone()
     {
-        Location* newloc = const_cast<Location*>(&location_get())->clone();
-        DollarVar* cloned = new DollarVar(*newloc);
+        DollarVar* cloned = new DollarVar(location_get());
         cloned->set_verbose(is_verbose());
         return cloned;
     }

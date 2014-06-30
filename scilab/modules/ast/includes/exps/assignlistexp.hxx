@@ -43,14 +43,12 @@ public:
     virtual AssignListExp* clone()
     {
         std::list<Exp *>* exps = new std::list<Exp *>;
-        std::list<Exp *>::const_iterator it;
-        for (it = _exps->begin() ; it != _exps->end() ; it++)
+        for (std::list<Exp *>::const_iterator it = _exps->begin() ; it != _exps->end() ; ++it)
         {
             exps->push_back((*it)->clone());
         }
 
-        Location* newloc = const_cast<Location*>(&location_get())->clone();
-        AssignListExp* cloned = new AssignListExp(*newloc, *exps);
+        AssignListExp* cloned = new AssignListExp(location_get(), *exps);
         cloned->set_verbose(is_verbose());
         return cloned;
     }

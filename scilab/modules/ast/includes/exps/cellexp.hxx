@@ -45,14 +45,12 @@ public:
     virtual CellExp* clone()
     {
         std::list<MatrixLineExp *>* lines = new std::list<MatrixLineExp *>;
-        std::list<MatrixLineExp *>::const_iterator it;
-        for (it = lines_get().begin() ; it != lines_get().end() ; it++)
+        for (std::list<MatrixLineExp *>::const_iterator it = lines_get().begin() ; it != lines_get().end() ; ++it)
         {
             lines->push_back((*it)->clone());
         }
 
-        Location* newloc = const_cast<Location*>(&location_get())->clone();
-        CellExp* cloned = new CellExp(*newloc, *lines);
+        CellExp* cloned = new CellExp(location_get(), *lines);
         cloned->set_verbose(is_verbose());
         return cloned;
     }

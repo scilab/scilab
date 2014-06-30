@@ -59,8 +59,7 @@ public:
 
     virtual WhileExp* clone()
     {
-        Location* newloc = const_cast<Location*>(&location_get())->clone();
-        WhileExp* cloned = new WhileExp(*newloc, *test_get().clone(), *body_get().clone());
+        WhileExp* cloned = new WhileExp(location_get(), *test_get().clone(), *body_get().clone());
         cloned->set_verbose(is_verbose());
         return cloned;
     }

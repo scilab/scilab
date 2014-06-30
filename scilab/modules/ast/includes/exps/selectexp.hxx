@@ -44,24 +44,22 @@ public :
               cases_t& cases)
         : ControlExp (location),
           _selectme (&select),
-          _cases (&cases)
+          _cases (&cases),
+          _default(NULL)
     {
-        _default = NULL;
     }
 
     ~SelectExp()
     {
         delete _selectme;
-        
-        cases_t::iterator it = _cases->begin();
-        cases_t::iterator itEnd = _cases->end();
-        for(; it != itEnd ; ++it)
+
+        for (cases_t::const_iterator it = _cases->begin(), itEnd = _cases->end(); it != itEnd ; ++it)
         {
             delete *it;
         }
-        
+
         delete _cases;
-        
+
         if (_default != NULL)
         {
             delete _default;
@@ -70,10 +68,8 @@ public :
 
     virtual SelectExp* clone()
     {
-        Location* newloc = const_cast<Location*>(&location_get())->clone();
         cases_t* cases = new cases_t;
-        cases_t::const_iterator it;
-        for (it = cases_get()->begin() ; it != cases_get()->end() ; it++)
+        for (cases_t::const_iterator it = cases_get()->begin() ; it != cases_get()->end() ; it++)
         {
             cases->push_back((*it)->clone());
         }
@@ -81,11 +77,11 @@ public :
         SelectExp* cloned = NULL;
         if (_default != NULL)
         {
-            cloned = new SelectExp(*newloc, *select_get()->clone(), *cases, *default_case_get()->clone());
+            cloned = new SelectExp(location_get(), *select_get()->clone(), *cases, *default_case_get()->clone());
         }
         else
         {
-            cloned = new SelectExp(*newloc, *select_get()->clone(), *cases);
+            cloned = new SelectExp(location_get(), *select_get()->clone(), *cases);
         }
 
         cloned->set_verbose(is_verbose());

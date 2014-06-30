@@ -50,21 +50,19 @@ public:
         {
             delete *it;
         }
-        
+
         delete _columns;
     }
 
     virtual MatrixLineExp* clone()
     {
         std::list<Exp *>* columns = new std::list<Exp *>;
-        std::list<Exp *>::const_iterator it;
-        for (it = columns_get().begin() ; it != columns_get().end() ; it++)
+        for (std::list<Exp *>::const_iterator it = columns_get().begin() ; it != columns_get().end() ; ++it)
         {
             columns->push_back((*it)->clone());
         }
 
-        Location* newloc = const_cast<Location*>(&location_get())->clone();
-        MatrixLineExp* cloned = new MatrixLineExp(*newloc, *columns);
+        MatrixLineExp* cloned = new MatrixLineExp(location_get(), *columns);
         cloned->set_verbose(is_verbose());
         return cloned;
     }

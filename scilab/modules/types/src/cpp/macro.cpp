@@ -70,6 +70,15 @@ Macro::~Macro()
     }
 }
 
+void Macro::cleanCall(symbol::Context * pContext, int oldPromptMode)
+{
+    //restore previous prompt mode
+    ConfigVariable::setPromptMode(oldPromptMode);
+    //close the current scope
+    pContext->scope_end();
+    ConfigVariable::macroFirstLine_end();
+}
+
 InternalType* Macro::clone()
 {
     IncreaseRef();
@@ -148,15 +157,7 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
     }
     else if (in.size() > m_inputArgs->size())
     {
-        if (m_inputArgs->size() == 0)
-        {
-            Scierror(999, _("Wrong number of input arguments: This function has no input argument.\n"));
-        }
-        else
-        {
-            Scierror(999, _("Wrong number of input arguments."));
-        }
-
+        Scierror(999, _("Wrong number of input arguments: %d expected.\n"), m_inputArgs->size());
         pContext->scope_end();
         ConfigVariable::macroFirstLine_end();
         return Callable::Error;
@@ -193,24 +194,8 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
     //common part with or without varargin/varargout
 
     // Declare nargin & nargout in function context.
-    if (m_pDblArgIn->getRef() > 1)
-    {
-        m_pDblArgIn->DecreaseRef();
-        m_pDblArgIn = (Double*)m_pDblArgIn->clone();
-        m_pDblArgIn->IncreaseRef();
-    }
-
     m_pDblArgIn->set(0, static_cast<double>(in.size()));
-
-    if (m_pDblArgOut->getRef() > 1)
-    {
-        m_pDblArgOut->DecreaseRef();
-        m_pDblArgOut = (Double*)m_pDblArgOut->clone();
-        m_pDblArgOut->IncreaseRef();
-    }
-
     m_pDblArgOut->set(0, _iRetCount);
-
     pContext->put(m_Nargin, m_pDblArgIn);
     pContext->put(m_Nargout, m_pDblArgOut);
 
@@ -231,93 +216,91 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
         {
             m_body->returnable_set();
         }
-
-        //varargout management
-        if (bVarargout)
-        {
-            InternalType* pOut = pContext->get(m_Varargout);
-            if (pOut == NULL)
-            {
-                Scierror(999, _("Invalid index.\n"));
-                return Callable::Error;
-            }
-
-            if (pOut->isList() == false || pOut->getAs<List>()->getSize() == 0)
-            {
-                Scierror(999, _("Invalid index.\n"));
-                return Callable::Error;
-            }
-
-            List* pVarOut = pOut->getAs<List>();
-            for (int i = 0 ; i < Max(pVarOut->getSize(), _iRetCount) ; i++)
-            {
-                InternalType* pIT = pVarOut->get(i)->clone();
-                if (pIT->isListUndefined())
-                {
-                    Scierror(999, _("List element number %d is Undefined.\n"), i + 1);
-                    return Callable::Error;
-                }
-
-                out.push_back(pIT);
-            }
-        }
-        else
-        {
-            //normal output management
-            std::list<symbol::Variable*>::iterator i;
-            for (i = m_outputArgs->begin(); i != m_outputArgs->end() && _iRetCount; ++i, --_iRetCount)
-            {
-                InternalType *pIT = pContext->get((*i));
-                if (pIT != NULL)
-                {
-                    out.push_back(pIT);
-                    pIT->IncreaseRef();
-                }
-                else
-                {
-                    char* pst = wide_string_to_UTF8((*i)->name_get().name_get().c_str());
-                    Scierror(999, _("Undefined variable %s.\n"), pst);
-                    FREE(pst);
-                    return Callable::Error;
-                }
-            }
-        }
     }
-    catch (ast::ScilabMessage se)
+    catch (ast::ScilabException & se)
     {
-        //restore previous prompt mode
-        ConfigVariable::setPromptMode(oldVal);
-        //close the current scope
-        pContext->scope_end();
-        ConfigVariable::macroFirstLine_end();
-        for (size_t j = 0; j < out.size(); ++j)
-        {
-            out[j]->DecreaseRef();
-        }
+        cleanCall(pContext, oldVal);
         throw se;
     }
-    catch (ast::InternalAbort sa)
+
+    //varargout management
+    if (bVarargout)
     {
-        //restore previous prompt mode
-        ConfigVariable::setPromptMode(oldVal);
-        //close the current scope
-        pContext->scope_end();
-        ConfigVariable::macroFirstLine_end();
-        for (size_t j = 0; j < out.size(); ++j)
+        InternalType* pOut = pContext->get(m_Varargout);
+        if (pOut == NULL)
         {
-            out[j]->DecreaseRef();
+            cleanCall(pContext, oldVal);
+            Scierror(999, _("Invalid index.\n"));
+            return Callable::Error;
         }
-        throw sa;
+
+        if (pOut->isList() == false || pOut->getAs<List>()->getSize() == 0)
+        {
+            cleanCall(pContext, oldVal);
+            Scierror(999, _("Invalid index.\n"));
+            return Callable::Error;
+        }
+
+        List* pVarOut = pOut->getAs<List>();
+        const unsigned int size = std::max(pVarOut->getSize(), _iRetCount);
+        for (int i = 0 ; i < size ; ++i)
+        {
+            InternalType* pIT = pVarOut->get(i);
+            if (pIT->isListUndefined())
+            {
+                for (int j = 0; j < i; ++j)
+                {
+                    out[j]->DecreaseRef();
+                    out[j]->killMe();
+                }
+                out.clear();
+                cleanCall(pContext, oldVal);
+
+                Scierror(999, _("List element number %d is Undefined.\n"), i + 1);
+                return Callable::Error;
+            }
+
+            out.push_back(pIT->clone());
+        }
+    }
+    else
+    {
+        //normal output management
+        for (std::list<symbol::Variable*>::iterator i = m_outputArgs->begin(); i != m_outputArgs->end() && _iRetCount; ++i, --_iRetCount)
+        {
+            InternalType * pIT = pContext->get(*i);
+            if (pIT)
+            {
+                out.push_back(pIT);
+                pIT->IncreaseRef();
+            }
+            else
+            {
+                const unsigned int size = out.size();
+                for (int j = 0; j < size; ++j)
+                {
+                    out[j]->DecreaseRef();
+                    out[j]->killMe();
+                }
+                out.clear();
+                cleanCall(pContext, oldVal);
+
+                char* pst = wide_string_to_UTF8((*i)->name_get().name_get().c_str());
+                Scierror(999, _("Undefined variable %s.\n"), pst);
+                FREE(pst);
+                return Callable::Error;
+            }
+        }
     }
 
     //close the current scope
-    pContext->scope_end();
-    ConfigVariable::macroFirstLine_end();
+    cleanCall(pContext, oldVal);
 
-    for (size_t j = 0; j < out.size(); ++j)
+    for (typed_list::iterator i = out.begin(), end = out.end(); i != end; ++i)
     {
-        out[j]->DecreaseRef();
+        (*i)->DecreaseRef();
     }
+
     return RetVal;
 }
 

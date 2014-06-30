@@ -44,9 +44,7 @@ public:
 
     virtual ~ArrayListVar ()
     {
-        std::list<Var *>::iterator it = _vars->begin();
-        std::list<Var *>::iterator itEnd = _vars->end();
-        for (; it != itEnd ; ++it)
+        for (std::list<Var *>::iterator it = _vars->begin(), itEnd = _vars->end(); it != itEnd ; ++it)
         {
             delete *it;
         }
@@ -57,16 +55,12 @@ public:
     virtual ArrayListVar* clone()
     {
         std::list<Var *>* vars = new std::list<Var *>;
-        std::list<Var *>::const_iterator it = _vars->begin();
-        std::list<Var *>::const_iterator itEnd = _vars->end();
-        for (;it != itEnd ; ++it)
+        for (std::list<Var *>::const_iterator it = _vars->begin(), itEnd = _vars->end(); it != itEnd ; ++it)
         {
-            Var* var = static_cast<Var*>((*it)->clone());
-            vars->push_back(var);
+            vars->push_back(static_cast<Var*>((*it)->clone()));
         }
 
-        Location* newloc = const_cast<Location*>(&location_get())->clone();
-        ArrayListVar* cloned = new ArrayListVar(*newloc, *vars);
+        ArrayListVar* cloned = new ArrayListVar(location_get(), *vars);
         cloned->set_verbose(is_verbose());
         return cloned;
     }

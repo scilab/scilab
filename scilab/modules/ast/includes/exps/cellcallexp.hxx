@@ -46,15 +46,13 @@ public:
 
     virtual CellCallExp* clone()
     {
-        Location* newloc = const_cast<Location*>(&location_get())->clone();
         std::list<Exp *>* args = new std::list<Exp *>;
-        std::list<Exp *>::const_iterator it;
-        for (it = _args->begin() ; it != _args->end() ; it++)
+        for (std::list<Exp *>::const_iterator it = _args->begin() ; it != _args->end() ; ++it)
         {
             args->push_back((*it)->clone());
         }
 
-        CellCallExp* cloned = new CellCallExp(*newloc, *name_get().clone(), *args);
+        CellCallExp* cloned = new CellCallExp(location_get(), *name_get().clone(), *args);
         cloned->set_verbose(is_verbose());
         return cloned;
     }
@@ -71,6 +69,11 @@ public:
     virtual void accept (ConstVisitor& v) const
     {
         v.visit (*this);
+    }
+
+    inline virtual bool is_cellcall_exp() const
+    {
+        return true;
     }
     /** \} */
 

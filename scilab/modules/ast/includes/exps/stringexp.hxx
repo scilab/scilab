@@ -39,15 +39,14 @@ public:
         if (_bigString)
         {
             _bigString->DecreaseRef();
-            _bigString->killMe();            
+            _bigString->killMe();
         }
     }
     /** \} */
 
     virtual StringExp* clone()
     {
-        Location* newloc = const_cast<Location*>(&location_get())->clone();
-        StringExp* cloned = new StringExp(*newloc, value_get());
+        StringExp* cloned = new StringExp(location_get(), value_get());
         cloned->set_verbose(is_verbose());
         return cloned;
     }

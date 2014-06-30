@@ -59,6 +59,8 @@ public :
 
     Callable::ReturnValue       call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc);
 
+    inline void cleanCall(symbol::Context * pContext, int oldPromptMode);
+
     ast::SeqExp*                getBody();
 
     /* return type as string ( double, int, cell, list, ... )*/

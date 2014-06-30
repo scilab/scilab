@@ -18,8 +18,13 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
     /*Create local exec visitor*/
     try
     {
+        SimpleVar * pVar = NULL;
+        if (e.left_exp_get().is_simple_var())
+        {
+            pVar = static_cast<SimpleVar*>(&e.left_exp_get());
+        }
+
         /*get king of left hand*/
-        SimpleVar *pVar = dynamic_cast<SimpleVar*>(&e.left_exp_get());
         if (pVar)
         {
             // x = ?
@@ -65,8 +70,7 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                 return;
             }
 
-            const ReturnExp *pReturn = dynamic_cast<const ReturnExp*>(&e.right_exp_get());
-            if (pReturn)
+            if (e.right_exp_get().is_return_exp())
             {
                 //ReturnExp so, put the value in the previous scope
                 symbol::Context::getInstance()->putInPreviousScope(pVar->stack_get(), pIT);

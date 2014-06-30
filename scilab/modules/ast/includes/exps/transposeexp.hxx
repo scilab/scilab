@@ -59,8 +59,7 @@ public:
 
     virtual TransposeExp* clone()
     {
-        Location* newloc = const_cast<Location*>(&location_get())->clone();
-        TransposeExp* cloned = new TransposeExp(*newloc, *exp_get().clone(), conjugate_get());
+        TransposeExp* cloned = new TransposeExp(location_get(), *exp_get().clone(), conjugate_get());
         cloned->set_verbose(is_verbose());
         return cloned;
     }

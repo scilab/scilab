@@ -63,17 +63,7 @@ public:
 
     virtual IfExp* clone()
     {
-        Location* newloc = const_cast<Location*>(&location_get())->clone();
-        IfExp* cloned = NULL;
-        if (has_else())
-        {
-            cloned = new IfExp(*newloc, *test_get().clone(), *then_get().clone(), *else_get().clone());
-        }
-        else
-        {
-            cloned = new IfExp(*newloc, *test_get().clone(), *then_get().clone());
-        }
-
+        IfExp* cloned = new IfExp(location_get(), *test_get().clone(), *then_get().clone(), *else_get().clone());
         cloned->set_verbose(is_verbose());
         return cloned;
     }

@@ -44,9 +44,7 @@ public:
 
     virtual ~CallExp ()
     {
-        std::list<Exp *>::const_iterator it = _args->begin();
-        std::list<Exp *>::const_iterator itEnd = _args->end();
-        for (;it != itEnd ; ++it)
+        for (std::list<Exp *>::const_iterator it = _args->begin(), itEnd = _args->end(); it != itEnd; ++it)
         {
             delete *it;
         }
@@ -57,15 +55,13 @@ public:
 
     virtual CallExp* clone()
     {
-        Location* newloc = const_cast<Location*>(&location_get())->clone();
         std::list<Exp *>* args = new std::list<Exp *>;
-        std::list<Exp *>::const_iterator it;
-        for (it = _args->begin() ; it != _args->end() ; it++)
+        for (std::list<Exp *>::const_iterator it = _args->begin() ; it != _args->end() ; ++it)
         {
             args->push_back((*it)->clone());
         }
 
-        CallExp* cloned = new CallExp(*newloc, *name_get().clone(), *args);
+        CallExp* cloned = new CallExp(location_get(), *name_get().clone(), *args);
         cloned->set_verbose(is_verbose());
         return cloned;
     }

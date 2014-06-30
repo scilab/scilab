@@ -95,10 +95,12 @@ bool Context::clearCurrentScope(bool _bClose)
     {
         if (it->second->empty() == false && it->second->top()->m_iLevel == m_iLevel)
         {
-            types::InternalType* pIT = it->second->top()->m_pIT;
+            ScopedVariable * pSV = it->second->top();
+            types::InternalType * pIT = pSV->m_pIT;
             pIT->DecreaseRef();
             pIT->killMe();
             it->second->pop();
+            delete pSV;
         }
     }
 
@@ -261,7 +263,7 @@ bool Context::putInPreviousScope(Variable* _var, types::InternalType* _pIT)
     //add variable in stack of using variables
     if (varStack.empty() == false)
     {
-        VarList *list =  varStack.top();
+        VarList * list = varStack.top();
         varStack.pop();
         if (varStack.empty() == false)
         {

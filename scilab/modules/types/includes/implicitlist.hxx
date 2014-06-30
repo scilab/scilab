@@ -75,13 +75,25 @@ public :
 
     ScilabType                getOutputType();
 
-    InternalType*           getStart();
+    inline InternalType* getStart()
+    {
+        return m_poStart;
+    }
+
     void                    setStart(InternalType*	_poIT);
 
-    InternalType*           getStep();
+    inline InternalType* getStep()
+    {
+        return m_poStep;
+    }
+
     void                    setStep(InternalType* _poIT);
 
-    InternalType*           getEnd();
+    inline InternalType* getEnd()
+    {
+        return m_poEnd;
+    }
+
     void                    setEnd(InternalType* _poIT);
 
     bool                    compute();
@@ -94,7 +106,10 @@ public :
     InternalType::ScilabType  getStepType();
     InternalType::ScilabType  getEndType();
 
-    long long               getSize();
+    inline long long getSize()
+    {
+        return m_iSize;
+    }
 
     //extract single value in a InternalType
     InternalType*           extractValue(int _iOccur); //Single value
@@ -124,13 +139,13 @@ public :
 
     virtual bool isTrue()
     {
-	// TODO : manage int & co
-	if (m_poStart->isDouble() && m_poStep->isDouble() && m_poEnd->isDouble())
-	{
-	    return type_traits::isTrue(m_poStart->getAs<Double>()->get(0), m_poStep->getAs<Double>()->get(0), m_poEnd->getAs<Double>()->get(0));
-	}
+        // TODO : manage int & co
+        if (m_poStart->isDouble() && m_poStep->isDouble() && m_poEnd->isDouble())
+        {
+            return type_traits::isTrue(m_poStart->getAs<Double>()->get(0), m_poStep->getAs<Double>()->get(0), m_poEnd->getAs<Double>()->get(0));
+        }
 
-	return false;
+        return false;
     }
 
     virtual bool transpose(InternalType *& out);

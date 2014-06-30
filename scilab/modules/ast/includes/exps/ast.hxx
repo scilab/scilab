@@ -60,13 +60,13 @@ public:
         return *this;
     }
     /** \brief Get scanner position informations stored. */
-    const Location& location_get () const
+    inline const Location& location_get () const
     {
         return _location;
     }
 
     /** \brief Get scanner position informations stored. */
-    Location& location_get ()
+    inline Location& location_get ()
     {
         return _location;
     }

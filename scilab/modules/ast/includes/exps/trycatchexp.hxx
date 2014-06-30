@@ -53,8 +53,7 @@ public:
 
     virtual TryCatchExp* clone()
     {
-        Location* newloc = const_cast<Location*>(&location_get())->clone();
-        TryCatchExp* cloned = new TryCatchExp(*newloc, *try_get().clone(), *catch_get().clone());
+        TryCatchExp* cloned = new TryCatchExp(location_get(), *try_get().clone(), *catch_get().clone());
         cloned->set_verbose(is_verbose());
         return cloned;
     }

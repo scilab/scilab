@@ -82,7 +82,7 @@ struct EXTERN_SYMBOL Variable
         }
     }
 
-    types::InternalType* get() const
+    inline types::InternalType* get() const
     {
         if (empty())
         {
@@ -99,39 +99,39 @@ struct EXTERN_SYMBOL Variable
         }
     }
 
-    bool empty() const
+    inline bool empty() const
     {
         return stack.empty();
     }
 
-    ScopedVariable* top() const
+    inline ScopedVariable* top() const
     {
         return stack.top();
     }
 
-    void pop()
+    inline void pop()
     {
         stack.pop();
     }
 
-    Symbol name_get() const
+    inline Symbol name_get() const
     {
         return name;
     }
 
     //globals
 
-    void setGlobal(bool _bGlobal)
+    inline void setGlobal(bool _bGlobal)
     {
         m_Global = _bGlobal;
     }
 
-    bool isGlobal()
+    inline bool isGlobal()
     {
         return m_Global;
     }
 
-    bool isGlobalVisible(int _iLevel)
+    inline bool isGlobalVisible(int _iLevel)
     {
         if (empty() == false)
         {
@@ -173,7 +173,7 @@ struct EXTERN_SYMBOL Variable
         }
     }
 
-    types::InternalType* getGlobalValue()
+    inline types::InternalType* getGlobalValue()
     {
         return m_GlobalValue;
     }
@@ -192,7 +192,6 @@ struct Variables
 
     Variable* getOrCreate(const Symbol& _key)
     {
-        std::wstring toto = _key.name_get();
         MapVars::const_iterator it = vars.find(_key);
         if (it == vars.end())
         {

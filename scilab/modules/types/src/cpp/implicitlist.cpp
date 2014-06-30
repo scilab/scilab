@@ -137,11 +137,6 @@ InternalType::ScilabType ImplicitList::getEndType()
     return m_poEnd->getType();
 }
 
-InternalType* ImplicitList::getStart()
-{
-    return m_poStart;
-}
-
 void ImplicitList::setStart(InternalType *_poIT)
 {
     if (m_poStart)
@@ -162,11 +157,6 @@ void ImplicitList::setStart(InternalType *_poIT)
         m_eStartType = m_poStart->getType();
     }
     m_bComputed = false;
-}
-
-InternalType* ImplicitList::getStep()
-{
-    return m_poStep;
 }
 
 void ImplicitList::setStep(InternalType *_poIT)
@@ -191,11 +181,6 @@ void ImplicitList::setStep(InternalType *_poIT)
     m_bComputed = false;
 }
 
-InternalType* ImplicitList::getEnd()
-{
-    return m_poEnd;
-}
-
 void ImplicitList::setEnd(InternalType* _poIT)
 {
     if (m_poEnd)
@@ -216,11 +201,6 @@ void ImplicitList::setEnd(InternalType* _poIT)
         m_eEndType = m_poEnd->getType();
     }
     m_bComputed = false;
-}
-
-long long ImplicitList::getSize()
-{
-    return m_iSize;
 }
 
 bool ImplicitList::compute()
@@ -601,32 +581,32 @@ void ImplicitList::extractFullMatrix(T *_pT)
     }
 }
 
-    bool ImplicitList::transpose(InternalType *& out)
+bool ImplicitList::transpose(InternalType *& out)
+{
+    if (compute())
     {
-	if (compute())
-	{
-	    Double * pIT = new Double(m_iSize, 1);
-	    out = pIT;
-	    extractFullMatrix(pIT->get());
+        Double * pIT = new Double(m_iSize, 1);
+        out = pIT;
+        extractFullMatrix(pIT->get());
 
-	    return true;
-	}
-
-	return false;
+        return true;
     }
 
-    bool ImplicitList::neg(InternalType *& out)
+    return false;
+}
+
+bool ImplicitList::neg(InternalType *& out)
+{
+    if (compute() && m_poStart->isDouble() && m_poStep->isDouble() && m_poEnd->isDouble())
     {
-	if (compute() && m_poStart->isDouble() && m_poStep->isDouble() && m_poEnd->isDouble())
-	{
-	    out = new Bool(1, m_iSize);
-	    type_traits::neg(m_poStart->getAs<Double>()->get(0), m_poStep->getAs<Double>()->get(0), m_poEnd->getAs<Double>()->get(0), static_cast<Bool *>(out)->get());
+        out = new Bool(1, m_iSize);
+        type_traits::neg(m_poStart->getAs<Double>()->get(0), m_poStep->getAs<Double>()->get(0), m_poEnd->getAs<Double>()->get(0), static_cast<Bool *>(out)->get());
 
-	    return true;
-	}
-
-	return false;
+        return true;
     }
+
+    return false;
+}
 
 }
 

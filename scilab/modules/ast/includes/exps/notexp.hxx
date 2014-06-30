@@ -50,8 +50,7 @@ public:
 
     virtual NotExp* clone()
     {
-        Location* newloc = const_cast<Location*>(&location_get())->clone();
-        NotExp* cloned = new NotExp(*newloc, *exp_get().clone());
+        NotExp* cloned = new NotExp(location_get(), *exp_get().clone());
         cloned->set_verbose(is_verbose());
         return cloned;
     }

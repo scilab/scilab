@@ -41,8 +41,7 @@ public:
 
     virtual BreakExp* clone()
     {
-        Location* newloc = const_cast<Location*>(&location_get())->clone();
-        BreakExp* cloned = new BreakExp(*newloc);
+        BreakExp* cloned = new BreakExp(location_get());
         cloned->set_verbose(is_verbose());
         return cloned;
     }

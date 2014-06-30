@@ -45,8 +45,7 @@ public:
 
     virtual ~SeqExp ()
     {
-        std::list<Exp *>::const_iterator i;
-        for (i = _l_body->begin() ; i != _l_body->end() ; i++)
+        for (std::list<Exp *>::const_iterator i = _l_body->begin() ; i != _l_body->end() ; ++i)
         {
             delete *i;
         }
@@ -56,14 +55,12 @@ public:
     virtual SeqExp* clone()
     {
         std::list<Exp *>* exp = new std::list<Exp *>;
-        std::list<Exp *>::const_iterator it;
-        for (it = exps_get().begin() ; it != exps_get().end() ; it++)
+        for (std::list<Exp *>::const_iterator it = exps_get().begin() ; it != exps_get().end() ; ++it)
         {
             exp->push_back((*it)->clone());
         }
 
-        Location* newloc = const_cast<Location*>(&location_get())->clone();
-        SeqExp* cloned = new SeqExp(*newloc, *exp);
+        SeqExp* cloned = new SeqExp(location_get(), *exp);
         cloned->set_verbose(is_verbose());
         return cloned;
     }

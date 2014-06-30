@@ -44,8 +44,7 @@ public:
 
     virtual ~MatrixExp ()
     {
-        std::list<MatrixLineExp *>::const_iterator i;
-        for (i = _lines->begin() ; i != _lines->end() ; i++)
+        for (std::list<MatrixLineExp *>::const_iterator i = _lines->begin() ; i != _lines->end() ; ++i)
         {
             delete *i;
         }
@@ -55,14 +54,12 @@ public:
     virtual MatrixExp* clone()
     {
         std::list<MatrixLineExp *>* lines = new std::list<MatrixLineExp *>;
-        std::list<MatrixLineExp *>::const_iterator it;
-        for (it = lines_get().begin() ; it != lines_get().end() ; it++)
+        for (std::list<MatrixLineExp *>::const_iterator it = lines_get().begin(), end = lines_get().end(); it != end; ++it)
         {
             lines->push_back((*it)->clone());
         }
 
-        Location* newloc = const_cast<Location*>(&location_get())->clone();
-        MatrixExp* cloned = new MatrixExp(*newloc, *lines);
+        MatrixExp* cloned = new MatrixExp(location_get(), *lines);
         cloned->set_verbose(is_verbose());
         return cloned;
     }
