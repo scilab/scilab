@@ -210,6 +210,7 @@ BOOL setlanguage(const wchar_t *lang)
 #endif
 #endif
                 FREE(ret);
+                FREE(pstLang);
                 return TRUE;
             }
 #ifndef _MSC_VER
