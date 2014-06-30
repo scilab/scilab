@@ -35,20 +35,17 @@ extern "C"
 #define EXTERN_PARSE
 #endif
 
-using namespace std;
-
 class EXTERN_PARSE Parser
 {
 public:
-    Parser()
+    Parser() :
+    _stop_on_first_error(false),
+    _strict_mode(false),
+    _parse_trace(false),
+    _exit_status(Succeded),
+    _control_status(AllControlClosed),
+    _the_program(NULL)
     {
-        _stop_on_first_error = false;
-        _strict_mode = false;
-        _parse_trace = false;
-        _exit_status = Succeded;
-        _control_status = AllControlClosed;
-        _error_message = NULL;
-        _the_program = NULL;
     }
 
     ~Parser()
@@ -88,7 +85,7 @@ public:
 public:
 
     /** \brief parse the given file name */
-    void parseFile(const wstring& name, const wstring& progName);
+    void parseFile(const std::wstring& name, const std::wstring& progName);
 
     /** \brief parse the given file command */
     void parse(wchar_t *command);
@@ -135,9 +132,9 @@ public:
 
     wchar_t *getErrorMessage(void)
     {
-        return const_cast<wchar_t *>(_error_message->c_str());
+        return const_cast<wchar_t *>(_error_message.c_str());
     }
-    void setErrorMessage(wstring *errorMessage)
+    void setErrorMessage(std::wstring& errorMessage)
     {
         _error_message = errorMessage;
     }
@@ -166,9 +163,9 @@ public:
     /** \} */
 
 private :
-    const wstring* _file_name;
-    const wstring* _prog_name;
-    wstring* _error_message;
+    const std::wstring _file_name;
+    const std::wstring _prog_name;
+    std::wstring _error_message;
     bool _parse_trace;
     bool _strict_mode;
     bool _stop_on_first_error;
@@ -178,3 +175,4 @@ private :
 };
 
 #endif /* !__PARSER_HXX__ */
+

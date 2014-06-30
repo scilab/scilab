@@ -39,7 +39,7 @@ extern FILE*    yyin;
 extern int      yyparse();
 extern int      yydebug;
 
-void Parser::parseFile(const wstring& fileName, const wstring& progName)
+void Parser::parseFile(const std::wstring& fileName, const std::wstring& progName)
 {
     // Calling Parse state machine in C with global values
     // Must be locked to avoid concurrent access
@@ -68,7 +68,7 @@ void Parser::parseFile(const wstring& fileName, const wstring& progName)
 
 
 /** \brief parse the given file name */
-void ParserSingleInstance::parseFile(const wstring& fileName, const wstring& progName)
+void ParserSingleInstance::parseFile(const std::wstring& fileName, const std::wstring& progName)
 {
     yylloc.first_line = yylloc.last_line = 1;
     yylloc.first_column = yylloc.last_column = 1;
@@ -223,14 +223,14 @@ char *ParserSingleInstance::getCodeLine(int line, char **codeLine)
     return *codeLine;
 }
 
-wstring *ParserSingleInstance::getErrorMessage(void)
+std::wstring& ParserSingleInstance::getErrorMessage(void)
 {
     return _error_message;
 }
 
-void ParserSingleInstance::appendErrorMessage(wstring message)
+void ParserSingleInstance::appendErrorMessage(std::wstring message)
 {
-    *_error_message += message;
+    _error_message += message;
 }
 
 /** \brief enable Bison trace mode */
@@ -245,12 +245,13 @@ void ParserSingleInstance::disableParseTrace(void)
     yydebug = 0;
 }
 
-wstring ParserSingleInstance::_file_name = L"";
-wstring ParserSingleInstance::_prog_name = L"";
-wstring* ParserSingleInstance::_error_message = new wstring();
+std::wstring ParserSingleInstance::_file_name;
+std::wstring ParserSingleInstance::_prog_name;
+std::wstring ParserSingleInstance::_error_message;
 bool ParserSingleInstance::_strict_mode = false;
 bool ParserSingleInstance::_stop_on_first_error = false;
 ast::Exp* ParserSingleInstance::_the_program = NULL;
 Parser::ParserStatus ParserSingleInstance::_exit_status = Parser::Succeded;
-std::list<Parser::ControlStatus> *ParserSingleInstance::_control_status = new std::list<Parser::ControlStatus>();
+std::list<Parser::ControlStatus> ParserSingleInstance::_control_status;
 FILE* ParserSingleInstance::fileLocker = NULL;
+

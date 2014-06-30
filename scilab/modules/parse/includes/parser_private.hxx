@@ -20,9 +20,9 @@ class ParserSingleInstance
 public :
     static Parser::ControlStatus getControlStatus(void)
     {
-        if (!_control_status->empty())
+        if (!_control_status.empty())
         {
-            return _control_status->front();
+            return _control_status.front();
         }
         return Parser::AllControlClosed;
     }
@@ -30,22 +30,22 @@ public :
     static void pushControlStatus(Parser::ControlStatus control_status)
     {
         //std::cout << "Push front : " << control_status << std::endl;
-        _control_status->push_front(control_status);
+        _control_status.push_front(control_status);
     }
 
     static void popControlStatus(void)
     {
-        if (!_control_status->empty())
+        if (!_control_status.empty())
         {
             //std::cout << "Pop front" << std::endl;
-            //std::cout << "size = " << _control_status->size() << std::endl;
-            _control_status->pop_front();
+            //std::cout << "size = " << _control_status.size() << std::endl;
+            _control_status.pop_front();
         }
     }
 
     static void resetControlStatus(void)
     {
-        _control_status->clear();
+        _control_status.clear();
     }
 
     static Parser::ParserStatus getExitStatus(void)
@@ -70,7 +70,7 @@ public :
     ** Parsing functions
     */
     static void parse(char *command);
-    static void parseFile(const wstring& fileName, const wstring& progName);
+    static void parseFile(const std::wstring& fileName, const std::wstring& progName);
 
     /*
     ** Manage strict Mode
@@ -113,11 +113,11 @@ public :
     /*
     ** File name management
     */
-    static const wstring getFileName(void)
+    static const std::wstring getFileName(void)
     {
         return _file_name;
     }
-    static void setFileName(const wstring& fileName)
+    static void setFileName(const std::wstring& fileName)
     {
         _file_name = fileName;
     }
@@ -125,11 +125,11 @@ public :
     /*
     ** Program Name Management
     */
-    static const wstring getProgName(void)
+    static const std::wstring getProgName(void)
     {
         return L"Scilab6";
     }
-    static void setProgName(const wstring& progName)
+    static void setProgName(const std::wstring& progName)
     {
         _prog_name = progName;
     }
@@ -137,11 +137,11 @@ public :
     /*
     ** Error Message management
     */
-    static wstring* getErrorMessage(void);
-    static void appendErrorMessage(wstring ostr);
+    static std::wstring& getErrorMessage(void);
+    static void appendErrorMessage(std::wstring ostr);
     static void resetErrorMessage(void)
     {
-        _error_message->clear();
+        _error_message.clear();
     }
 
     /*
@@ -156,16 +156,17 @@ public :
     static void PrintError(std::wstring msg);
 
 private :
-    static wstring _file_name;
-    static wstring _prog_name;
-    static wstring* _error_message;
+    static std::wstring _file_name;
+    static std::wstring _prog_name;
+    static std::wstring _error_message;
     static bool _strict_mode;
     static bool _stop_on_first_error;
     static ast::Exp* _the_program;
     static Parser::ParserStatus _exit_status;
-    static std::list<Parser::ControlStatus> *_control_status;
+    static std::list<Parser::ControlStatus> _control_status;
     static FILE* fileLocker;
 
 };
 
 #endif /* !__PARSER_PRIVATE_HXX__ */
+
