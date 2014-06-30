@@ -25,6 +25,10 @@ private :
     ~StatisticsModule() {};
 public :
     EXTERN_STATISTICS_GW static int Load();
+    EXTERN_STATISTICS_GW static int Unload()
+    {
+        return 1;
+    }
 };
 
 #endif /* !__STATISTICS_GW_HXX__ */

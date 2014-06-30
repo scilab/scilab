@@ -51,6 +51,42 @@ bool FileExist(std::string _szFile);
 bool FileExist(std::wstring _szFile);
 char *GetXmlFileEncoding(string _filename);
 
+FuncManager* FuncManager::me = NULL;
+
+FuncManager* FuncManager::getInstance()
+{
+    if (me == NULL)
+    {
+        me = new FuncManager();
+        me->CreateModuleList();
+        /*get module activation list from xml file*/
+        if (me->GetModules() == true)
+        {
+            if (me->AppendModules() == false)
+            {
+                destroyInstance();
+                return NULL;
+            }
+        }
+        else
+        {
+            destroyInstance();
+            return NULL;
+        }
+    }
+
+    return me;
+}
+
+void FuncManager::destroyInstance()
+{
+    if (me)
+    {
+        delete me;
+        me = NULL;
+    }
+}
+
 FuncManager::FuncManager(void)
 {
     m_bNoStart = false;
@@ -58,26 +94,6 @@ FuncManager::FuncManager(void)
 
 FuncManager::~FuncManager(void)
 {
-}
-
-bool FuncManager::LoadModules(bool _bNoStart)
-{
-    m_bNoStart = _bNoStart;
-    if (CreateModuleList() == false)
-    {
-        return false;
-    }
-
-    /*get module activation list from xml file*/
-    if (GetModules() == true)
-    {
-        if (AppendModules() == false)
-        {
-            return false;
-        }
-    }
-
-    return LoadFuncByModule();
 }
 
 bool FuncManager::GetModules()
@@ -289,78 +305,116 @@ char *GetXmlFileEncoding(string _filename)
 
 bool FuncManager::CreateModuleList(void)
 {
-    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"elementary_functions", &ElemFuncModule::Load));
-    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"types", &TypesModule::Load));
-    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"sparse", &SparseModule::Load));
-    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"boolean", &BooleanModule::Load));
-    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"integer", &IntegerModule::Load));
-    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"core", &CoreModule::Load));
-    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"io", &IoModule::Load));
-    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"functions", &FunctionsModule::Load));
-    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"output_stream", &OutputStreamModule::Load));
-    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"matio", &MatioModule::Load));
-    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"fileio", &FileioModule::Load));
-    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"gui", &GuiModule::Load));
-    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"time", &TimeModule::Load));
-    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"string", &StringModule::Load));
-    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"scinotes", &ScinotesModule::Load));
-    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"localization", &LocalizationModule::Load));
-    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"helptools", &HelptoolsModule::Load));
-    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"hdf5", &Hdf5Module::Load));
-    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"dynamic_link", &DynamicLinkModule::Load));
-    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"action_binding", &ActionBindingModule::Load));
-    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"history_manager", &HistoryManagerModule::Load));
-    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"console", &ConsoleModule::Load));
-    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"signal_processing", &SignalProcessingModule::Load));
-    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"linear_algebra", &LinearAlgebraModule::Load));
-    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"statistics", &StatisticsModule::Load));
-    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"differential_equations", &DifferentialEquationsModule::Load));
-    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"cacsd", &CacsdModule::Load));
-    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"spreadsheet", &SpreadsheetModule::Load));
-    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"randlib", &RandlibModule::Load));
-    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"graphics", &GraphicsModule::Load));
-    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"interpolation", &InterpolationModule::Load));
-    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"sound", &SoundModule::Load));
-    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"umfpack", &UmfpackModule::Load));
-    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"optimization", &OptimizationModule::Load));
-    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"special_functions", &SpecialFunctionModule::Load));
-    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"graphic_export", &GraphicExportModule::Load));
-    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"polynomials", &PolynomialsModule::Load));
-    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"arnoldi", &ArnoldiModule::Load));
-    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"data_structures", &DataStructuresModule::Load));
-    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"call_scilab", &CallScilabModule::Load));
-    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"completion", &CompletionModule::Load));
-    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"xml", &XmlModule::Load));
-    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"scicos", &ScicosModule::Load));
-    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"xcos", &XcosModule::Load));
+    m_ModuleMap[L"elementary_functions"] = pair<GW_MOD, GW_MOD>(&ElemFuncModule::Load, &ElemFuncModule::Unload);
+    m_ModuleMap[L"types"] = pair<GW_MOD, GW_MOD>(&TypesModule::Load, &TypesModule::Unload);
+    m_ModuleMap[L"sparse"] = pair<GW_MOD, GW_MOD>(&SparseModule::Load, &SparseModule::Unload);
+    m_ModuleMap[L"boolean"] = pair<GW_MOD, GW_MOD>(&BooleanModule::Load, &BooleanModule::Unload);
+    m_ModuleMap[L"integer"] = pair<GW_MOD, GW_MOD>(&IntegerModule::Load, &IntegerModule::Unload);
+    m_ModuleMap[L"core"] = pair<GW_MOD, GW_MOD>(&CoreModule::Load, &CoreModule::Unload);
+    m_ModuleMap[L"io"] = pair<GW_MOD, GW_MOD>(&IoModule::Load, &IoModule::Unload);
+    m_ModuleMap[L"functions"] = pair<GW_MOD, GW_MOD>(&FunctionsModule::Load, &FunctionsModule::Unload);
+    m_ModuleMap[L"output_stream"] = pair<GW_MOD, GW_MOD>(&OutputStreamModule::Load, &OutputStreamModule::Unload);
+    m_ModuleMap[L"matio"] = pair<GW_MOD, GW_MOD>(&MatioModule::Load, &MatioModule::Unload);
+    m_ModuleMap[L"fileio"] = pair<GW_MOD, GW_MOD>(&FileioModule::Load, &FileioModule::Unload);
+    m_ModuleMap[L"gui"] = pair<GW_MOD, GW_MOD>(&GuiModule::Load, &GuiModule::Unload);
+    m_ModuleMap[L"time"] = pair<GW_MOD, GW_MOD>(&TimeModule::Load, &TimeModule::Unload);
+    m_ModuleMap[L"string"] = pair<GW_MOD, GW_MOD>(&StringModule::Load, &StringModule::Unload);
+    m_ModuleMap[L"scinotes"] = pair<GW_MOD, GW_MOD>(&ScinotesModule::Load, &ScinotesModule::Unload);
+    m_ModuleMap[L"localization"] = pair<GW_MOD, GW_MOD>(&LocalizationModule::Load, &LocalizationModule::Unload);
+    m_ModuleMap[L"helptools"] = pair<GW_MOD, GW_MOD>(&HelptoolsModule::Load, &HelptoolsModule::Unload);
+    m_ModuleMap[L"hdf5"] = pair<GW_MOD, GW_MOD>(&Hdf5Module::Load, &Hdf5Module::Unload);
+    m_ModuleMap[L"dynamic_link"] = pair<GW_MOD, GW_MOD>(&DynamicLinkModule::Load, &DynamicLinkModule::Unload);
+    m_ModuleMap[L"action_binding"] = pair<GW_MOD, GW_MOD>(&ActionBindingModule::Load, &ActionBindingModule::Unload);
+    m_ModuleMap[L"history_manager"] = pair<GW_MOD, GW_MOD>(&HistoryManagerModule::Load, &HistoryManagerModule::Unload);
+    m_ModuleMap[L"console"] = pair<GW_MOD, GW_MOD>(&ConsoleModule::Load, &ConsoleModule::Unload);
+    m_ModuleMap[L"signal_processing"] = pair<GW_MOD, GW_MOD>(&SignalProcessingModule::Load, &SignalProcessingModule::Unload);
+    m_ModuleMap[L"linear_algebra"] = pair<GW_MOD, GW_MOD>(&LinearAlgebraModule::Load, &LinearAlgebraModule::Unload);
+    m_ModuleMap[L"statistics"] = pair<GW_MOD, GW_MOD>(&StatisticsModule::Load, &StatisticsModule::Unload);
+    m_ModuleMap[L"differential_equations"] = pair<GW_MOD, GW_MOD>(&DifferentialEquationsModule::Load, &DifferentialEquationsModule::Unload);
+    m_ModuleMap[L"cacsd"] = pair<GW_MOD, GW_MOD>(&CacsdModule::Load, &CacsdModule::Unload);
+    m_ModuleMap[L"spreadsheet"] = pair<GW_MOD, GW_MOD>(&SpreadsheetModule::Load, &SpreadsheetModule::Unload);
+    m_ModuleMap[L"randlib"] = pair<GW_MOD, GW_MOD>(&RandlibModule::Load, &RandlibModule::Unload);
+    m_ModuleMap[L"graphics"] = pair<GW_MOD, GW_MOD>(&GraphicsModule::Load, &GraphicsModule::Unload);
+    m_ModuleMap[L"interpolation"] = pair<GW_MOD, GW_MOD>(&InterpolationModule::Load, &InterpolationModule::Unload);
+    m_ModuleMap[L"sound"] = pair<GW_MOD, GW_MOD>(&SoundModule::Load, &SoundModule::Unload);
+    m_ModuleMap[L"umfpack"] = pair<GW_MOD, GW_MOD>(&UmfpackModule::Load, &UmfpackModule::Unload);
+    m_ModuleMap[L"optimization"] = pair<GW_MOD, GW_MOD>(&OptimizationModule::Load, &OptimizationModule::Unload);
+    m_ModuleMap[L"special_functions"] = pair<GW_MOD, GW_MOD>(&SpecialFunctionModule::Load, &SpecialFunctionModule::Unload);
+    m_ModuleMap[L"graphic_export"] = pair<GW_MOD, GW_MOD>(&GraphicExportModule::Load, &GraphicExportModule::Unload);
+    m_ModuleMap[L"polynomials"] = pair<GW_MOD, GW_MOD>(&PolynomialsModule::Load, &PolynomialsModule::Unload);
+    m_ModuleMap[L"arnoldi"] = pair<GW_MOD, GW_MOD>(&ArnoldiModule::Load, &ArnoldiModule::Unload);
+    m_ModuleMap[L"data_structures"] = pair<GW_MOD, GW_MOD>(&DataStructuresModule::Load, &DataStructuresModule::Unload);
+    m_ModuleMap[L"call_scilab"] = pair<GW_MOD, GW_MOD>(&CallScilabModule::Load, &CallScilabModule::Unload);
+    m_ModuleMap[L"completion"] = pair<GW_MOD, GW_MOD>(&CompletionModule::Load, &CompletionModule::Unload);
+    m_ModuleMap[L"xml"] = pair<GW_MOD, GW_MOD>(&XmlModule::Load, &XmlModule::Unload);
+    m_ModuleMap[L"scicos"] = pair<GW_MOD, GW_MOD>(&ScicosModule::Load, &ScicosModule::Unload);
+    m_ModuleMap[L"xcos"] = pair<GW_MOD, GW_MOD>(&XcosModule::Load, &XcosModule::Unload);
 
     if (ConfigVariable::getScilabMode() != SCILAB_NWNI)
     {
-        m_ModuleMap.insert(pair<wstring, GW_MOD>(L"jvm", &JvmModule::Load));
+        m_ModuleMap[L"jvm"] = pair<GW_MOD, GW_MOD>(&JvmModule::Load, &JvmModule::Unload);
     }
 #ifdef _MSC_VER
-    m_ModuleMap.insert(pair<wstring, GW_MOD>(L"windows_tools", &WindowsToolsModule::Load));
+    m_ModuleMap[L"windows_tools"] = pair<GW_MOD, GW_MOD>(&WindowsToolsModule::Load, &WindowsToolsModule::Unload);
 #endif
     return true;
 }
 
-bool FuncManager::LoadFuncByModule(void)
+bool FuncManager::ExecuteFile(wstring _stFile)
 {
+    Parser parser;
+
+    parser.parseFile(_stFile, ConfigVariable::getSCIPath());
+
+    if (parser.getExitStatus() == Parser::Failed)
+    {
+        std::wostringstream ostr;
+        ostr << _W("Unable to execute : ") << _stFile << endl;
+        scilabWriteW(ostr.str().c_str());
+        delete parser.getTree();
+        return false;
+    }
+
+    ExecVisitor exec;
+
+    //save current prompt mode
+    int oldVal = ConfigVariable::getPromptMode();
+    //set mode silent for errors
+    ConfigVariable::setPromptMode(-1);
+    try
+    {
+        parser.getTree()->accept(exec);
+
+    }
+    catch (const ast::ScilabMessage& sm)
+    {
+        scilabWriteW(sm.GetErrorMessage().c_str());
+    }
+    catch (const ast::ScilabError& se)
+    {
+        scilabWriteW(se.GetErrorMessage().c_str());
+    }
+
+    //restore previous prompt mode
+    ConfigVariable::setPromptMode(oldVal);
+    delete parser.getTree();
+    return true;
+}
+
+bool FuncManager::LoadModules(bool _bNoStart)
+{
+    m_bNoStart = _bNoStart;
     bool bRet	= true;
     list<wstring>::const_iterator itName;
 
     //load gateways
     for (itName = m_ModuleName.begin() ; itName != m_ModuleName.end() ; itName++)
     {
-        std::map<wstring, GW_MOD>::iterator itModule = m_ModuleMap.find(*itName);
+        ModuleMap::iterator itModule = m_ModuleMap.find(*itName);
         if (itModule != m_ModuleMap.end())
         {
-            //check if module have gateways
-            if (itModule->second != NULL)
-            {
-                //call ::Load function
-                itModule->second();
-            }
+            //call ::Load function
+            itModule->second.first();
         }
     }
 
@@ -370,6 +424,36 @@ bool FuncManager::LoadFuncByModule(void)
         for (itName = m_ModuleName.begin() ; itName != m_ModuleName.end() ; itName++)
         {
             ExecuteStartFile(*itName);
+        }
+    }
+
+    //protected all variables after scilab start
+    symbol::Context::getInstance()->scope_begin();
+    return bRet;
+}
+
+bool FuncManager::UnloadModules(bool _bNoStart)
+{
+    bool bRet	= true;
+    list<wstring>::const_iterator itName;
+
+    if (m_bNoStart == false)
+    {
+        //excute .quit file
+        for (itName = m_ModuleName.begin() ; itName != m_ModuleName.end() ; itName++)
+        {
+            ExecuteQuitFile(*itName);
+        }
+    }
+
+    //load gateways
+    for (itName = m_ModuleName.begin() ; itName != m_ModuleName.end() ; itName++)
+    {
+        ModuleMap::iterator itModule = m_ModuleMap.find(*itName);
+        if (itModule != m_ModuleMap.end())
+        {
+            //call ::Unload function
+            itModule->second.second();
         }
     }
 
@@ -388,41 +472,18 @@ bool FuncManager::ExecuteStartFile(wstring _stModule)
     stPath += _stModule;
     stPath += START_EXT;
 
-    Parser parser;
+    return ExecuteFile(stPath);
+}
 
-    parser.parseFile(stPath, ConfigVariable::getSCIPath());
+bool FuncManager::ExecuteQuitFile(wstring _stModule)
+{
+    //build .quit filename
+    wstring stPath = ConfigVariable::getSCIPath();
+    stPath += MODULE_DIR;
+    stPath += _stModule;
+    stPath += ETC_DIR;
+    stPath += _stModule;
+    stPath += QUIT_EXT;
 
-    if (parser.getExitStatus() == Parser::Failed)
-    {
-        std::wostringstream ostr;
-        ostr << _W("Unable to execute : ") << stPath << endl;
-        scilabWriteW(ostr.str().c_str());
-        delete parser.getTree();
-        return false;
-    }
-
-    ExecVisitor execStart;
-
-    //save current prompt mode
-    int oldVal = ConfigVariable::getPromptMode();
-    //set mode silent for errors
-    ConfigVariable::setPromptMode(-1);
-    try
-    {
-        parser.getTree()->accept(execStart);
-
-    }
-    catch (const ast::ScilabMessage& sm)
-    {
-        scilabWriteW(sm.GetErrorMessage().c_str());
-    }
-    catch (const ast::ScilabError& se)
-    {
-        scilabWriteW(se.GetErrorMessage().c_str());
-    }
-
-    //restore previous prompt mode
-    ConfigVariable::setPromptMode(oldVal);
-    delete parser.getTree();
-    return true;
+    return ExecuteFile(stPath);
 }

@@ -12,7 +12,6 @@
 
 #include "dynamic_modules.hxx"
 #include "context.hxx"
-#include "funcmanager.hxx"
 #include "configvariable.hxx"
 
 extern "C"

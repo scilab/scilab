@@ -27,6 +27,10 @@ private :
     ~IoModule() {};
 public :
     IO_GW_IMPEXP static int Load();
+    IO_GW_IMPEXP static int Unload()
+    {
+        return 1;
+    }
 };
 
 #endif /* __IO_GW_HXX__ */

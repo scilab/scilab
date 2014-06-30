@@ -40,6 +40,10 @@ protected :
 public :
     GenericModule() {};
     ~GenericModule() {};
+    static int Unload()
+    {
+        return 1;
+    }
 };
 
 class ScinotesModule : public GenericModule

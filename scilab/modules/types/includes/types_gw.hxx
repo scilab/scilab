@@ -26,6 +26,10 @@ private :
 
 public :
     TYPES_GW_IMPEXP static int Load();
+    TYPES_GW_IMPEXP static int Unload()
+    {
+        return 1;
+    }
 };
 
 CPP_GATEWAY_PROTOTYPE(sci_list);

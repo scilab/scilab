@@ -27,6 +27,10 @@ private :
     ~BooleanModule() {};
 public :
     BOOLEAN_GW_IMPEXP static int Load();
+    BOOLEAN_GW_IMPEXP static int Unload()
+    {
+        return 1;
+    }
 };
 
 CPP_GATEWAY_PROTOTYPE(sci_bool2s);

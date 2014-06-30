@@ -33,6 +33,10 @@ private :
 
 public :
     EXTERN_FILEIO_GW static int Load();
+    EXTERN_FILEIO_GW static int Unload()
+    {
+        return 1;
+    }
 };
 
 CPP_GATEWAY_PROTOTYPE(sci_mopen);

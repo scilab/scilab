@@ -307,7 +307,8 @@ void StopScilabEngine(ScilabEngineInfo* _pSEI)
         execScilabQuitTask(_pSEI->iSerialize != 0);
     }
 
-
+    UnloadModules(_pSEI->iNoStart);
+    destroyfunctionManagerInstance();
     //close main scope
     //symbol::Context::getInstance()->scope_end();
     symbol::Context::getInstance()->clearAll();

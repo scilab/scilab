@@ -19,6 +19,23 @@ extern "C"
 
 void LoadModules(int _iNoStart)
 {
-    FuncManager FM;
-    FM.LoadModules(_iNoStart != 0);
+    FuncManager* pFM = FuncManager::getInstance();
+    if (pFM)
+    {
+        pFM->LoadModules(_iNoStart != 0);
+    }
+}
+
+void UnloadModules(int _iNoStart)
+{
+    FuncManager* pFM = FuncManager::getInstance();
+    if (pFM)
+    {
+        pFM->UnloadModules(_iNoStart != 0);
+    }
+}
+
+void destroyfunctionManagerInstance(void)
+{
+    FuncManager::destroyInstance();
 }

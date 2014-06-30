@@ -26,6 +26,10 @@ private :
 
 public :
     SPARSE_GW_IMPEXP static int Load();
+    SPARSE_GW_IMPEXP static int Unload()
+    {
+        return 1;
+    }
 };
 
 CPP_GATEWAY_PROTOTYPE(sci_adj2sp);

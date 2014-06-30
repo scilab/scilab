@@ -26,6 +26,10 @@ private :
     ~HistoryManagerModule() {};
 public :
     HISTORY_MANAGER_GW_IMPEXP static int Load();
+    HISTORY_MANAGER_GW_IMPEXP static int Unload()
+    {
+        return 1;
+    }
 };
 
 CPP_GATEWAY_PROTOTYPE(sci_loadhistory);

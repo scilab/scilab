@@ -25,6 +25,10 @@ private :
     ~StringModule() {};
 public :
     EXTERN_STRING_GW static int Load();
+    EXTERN_STRING_GW static int Unload()
+    {
+        return 1;
+    }
 };
 
 CPP_GATEWAY_PROTOTYPE(sci_grep);

@@ -29,6 +29,10 @@ private:
 
 public:
     CACSD_IMPEXP static int Load();
+    CACSD_IMPEXP static int Unload()
+    {
+        return 1;
+    }
 };
 
 CPP_GATEWAY_PROTOTYPE(sci_arl2_ius);

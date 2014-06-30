@@ -23,6 +23,10 @@ private :
     ~PolynomialsModule() {};
 public :
     EXTERN_POLYNOMIALS_GW static int Load();
+    EXTERN_POLYNOMIALS_GW static int Unload()
+    {
+        return 1;
+    }
 };
 
 CPP_GATEWAY_PROTOTYPE(sci_poly);

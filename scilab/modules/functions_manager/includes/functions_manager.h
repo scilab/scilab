@@ -17,5 +17,6 @@
 
 
 FUNCMAN_IMEXP void LoadModules(int _iNoStart);
-
+FUNCMAN_IMEXP void UnloadModules(int _iNoStart);
+FUNCMAN_IMEXP void destroyfunctionManagerInstance(void);
 #endif /* !__FUNCMANAGER_H__ */

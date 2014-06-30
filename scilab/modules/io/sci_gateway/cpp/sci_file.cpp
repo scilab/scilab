@@ -13,7 +13,6 @@
  */
 
 /*--------------------------------------------------------------------------*/
-#include "funcmanager.hxx"
 #include "context.hxx"
 #include "io_gw.hxx"
 #include "filemanager.hxx"

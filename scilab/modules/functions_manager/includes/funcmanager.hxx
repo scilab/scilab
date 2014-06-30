@@ -38,7 +38,7 @@ using namespace std;
 #define ETC_DIR     L"/etc/"
 #define SCI_EXT     L"*.sci"
 #define START_EXT   L".start"
-#define END_EXT     L".end"
+#define QUIT_EXT    L".quit"
 
 //Gateway function pointer
 typedef int (*GW_MOD)(void);
@@ -47,27 +47,33 @@ class EXTERN_FUNC_MAN FuncManager
 {
 private :
     //	map <string, FuncInfo*>	m_FuncMap;
-    map<wstring, GW_MOD>    m_ModuleMap;
+    typedef map<wstring, std::pair<GW_MOD, GW_MOD> >  ModuleMap;
+    ModuleMap  m_ModuleMap;
     map<wstring, GW_MOD>    m_ActivModuleMap;
     list<wstring>           m_ModuleName;
     wstring                 m_szXmlFile;
     bool                    m_bNoStart;
 public:
+    static FuncManager* getInstance();
+    static void destroyInstance();
+
+    bool LoadModules(bool _bNoStart);
+    bool UnloadModules(bool _bNoStart);
+
+private :
     FuncManager(void);
     ~FuncManager(void);
 
-    bool LoadModules(bool _bNoStart);
-
-private :
     bool GetModules();
     bool AppendModules();
     bool VerifyModule(wchar_t* ModuleName);
 
     bool CreateModuleList(void);
-    bool LoadFuncByModule(void);
 
     bool ExecuteStartFile(wstring _stModule);
-
+    bool ExecuteQuitFile(wstring _stModule);
+    bool ExecuteFile(wstring _stFile);
+    static FuncManager* me;
 };
 
 #endif //__FUNCMANAGER_HH__

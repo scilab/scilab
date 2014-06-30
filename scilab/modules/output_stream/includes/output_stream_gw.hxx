@@ -28,6 +28,10 @@ private :
 
 public :
     OUTPUT_STREAM_IMPEXP_GW static int Load();
+    OUTPUT_STREAM_IMPEXP_GW static int Unload()
+    {
+        return 1;
+    }
 };
 
 CPP_GATEWAY_PROTOTYPE(sci_disp);

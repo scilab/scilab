@@ -2,3 +2,5 @@ LIBRARY    functions_manager.dll
 
 EXPORTS
 LoadModules
+UnloadModules
+destroyfunctionManagerInstance

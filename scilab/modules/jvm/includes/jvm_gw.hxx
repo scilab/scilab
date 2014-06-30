@@ -28,6 +28,10 @@ private :
 
 public :
     JVM_GW_IMPEXP static int Load();
+    JVM_GW_IMPEXP static int Unload()
+    {
+        return 1;
+    }
 };
 CPP_GATEWAY_PROTOTYPE(sci_system_getproperty);
 

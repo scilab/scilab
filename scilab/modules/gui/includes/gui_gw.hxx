@@ -24,6 +24,10 @@ private :
 public :
     GUI_GW_IMPEXP static void LoadDeps(void);
     GUI_GW_IMPEXP static int Load();
+    GUI_GW_IMPEXP static int Unload()
+    {
+        return 1;
+    }
 
     static bool loadedDep;
 };

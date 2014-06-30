@@ -24,7 +24,6 @@
 
 #include <string.h>
 #include "parser.hxx"
-#include "funcmanager.hxx"
 #include "context.hxx"
 #include "io_gw.hxx"
 #include "setenvvar.hxx"

@@ -16,7 +16,6 @@
 
 #include "dynlib_windows_tools.h"
 
-#include "funcmanager.hxx"
 #include "context.hxx"
 
 
@@ -28,6 +27,10 @@ private :
 
 public :
     WINDOWS_TOOLS_IMPEXP static int Load();
+    WINDOWS_TOOLS_IMPEXP static int Unload()
+    {
+        return 1;
+    }
 };
 
 

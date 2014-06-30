@@ -26,6 +26,10 @@ private :
     ~SignalProcessingModule() {};
 public :
     EXTERN_SIGNAL_PROCESSING_GW static int Load();
+    EXTERN_SIGNAL_PROCESSING_GW static int Unload()
+    {
+        return 1;
+    }
 };
 
 CPP_GATEWAY_PROTOTYPE_EXPORT(sci_rpem, EXTERN_SIGNAL_PROCESSING_GW);

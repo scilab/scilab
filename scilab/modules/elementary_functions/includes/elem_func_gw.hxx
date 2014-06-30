@@ -24,6 +24,10 @@ private :
     ~ElemFuncModule() {};
 public :
     EXTERN_EF_GW static int Load();
+    EXTERN_EF_GW static int Unload()
+    {
+        return 1;
+    }
 };
 
 CPP_GATEWAY_PROTOTYPE(sci_isequal);

@@ -28,6 +28,10 @@ private :
 
 public :
     DIFFERENTIAL_EQUATIONS_GW_IMPEXP static int Load();
+    DIFFERENTIAL_EQUATIONS_GW_IMPEXP static int Unload()
+    {
+        return 1;
+    }
 };
 
 // equation 1

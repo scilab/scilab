@@ -27,6 +27,10 @@ private :
     ~LinearAlgebraModule() {};
 public :
     LINEAR_ALGEBRA_GW_IMPEXP static int Load();
+    LINEAR_ALGEBRA_GW_IMPEXP static int Unload()
+    {
+        return 1;
+    }
 };
 
 CPP_GATEWAY_PROTOTYPE(sci_chol);

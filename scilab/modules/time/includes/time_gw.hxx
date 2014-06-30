@@ -25,6 +25,10 @@ private :
     ~TimeModule() {};
 public :
     EXTERN_TIME_GW static int Load();
+    EXTERN_TIME_GW static int Unload()
+    {
+        return 1;
+    }
 };
 
 CPP_GATEWAY_PROTOTYPE(sci_tic);

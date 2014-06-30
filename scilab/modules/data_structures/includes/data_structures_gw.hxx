@@ -25,6 +25,10 @@ private:
 
 public:
     DATA_STRUCTURES_IMPEXP static int Load();
+    DATA_STRUCTURES_IMPEXP static int Unload()
+    {
+        return 1;
+    }
 };
 
 CPP_GATEWAY_PROTOTYPE(sci_getfield);

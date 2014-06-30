@@ -32,6 +32,10 @@ private :
 
 public :
     HELPTOOLS_IMPEXP static int Load();
+    HELPTOOLS_IMPEXP static int Unload()
+    {
+        return 1;
+    }
 };
 
 #endif /* !__HELPTOOLS_GW_HXX__ */

@@ -24,6 +24,10 @@ private :
     ~IntegerModule() {};
 public :
     INTEGER_GW_IMPEXP static int Load();
+    INTEGER_GW_IMPEXP static int Unload()
+    {
+        return 1;
+    }
 };
 
 CPP_GATEWAY_PROTOTYPE(sci_inttype);

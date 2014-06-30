@@ -25,6 +25,10 @@ private:
 
 public:
     DYNAMIC_LINK_GW_IMPEXP static int Load();
+    DYNAMIC_LINK_GW_IMPEXP static int Unload()
+    {
+        return 1;
+    }
 };
 
 CPP_GATEWAY_PROTOTYPE(sci_getdynlibext);
