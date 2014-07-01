@@ -87,9 +87,7 @@ Function::Function(std::wstring _wstName, GW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, 
 
 Function::~Function()
 {
-    if (isDeletable() == true)
-    {
-    }
+
 }
 
 Function::ReturnValue Function::call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc)
@@ -415,6 +413,14 @@ Function::ReturnValue DynamicFunction::call(typed_list &in, optional_list &opt, 
     }
 
     return OK;
+}
+
+DynamicFunction::~DynamicFunction()
+{
+    if (m_pFunction)
+    {
+        delete m_pFunction;
+    }
 }
 
 Callable::ReturnValue DynamicFunction::Init()
