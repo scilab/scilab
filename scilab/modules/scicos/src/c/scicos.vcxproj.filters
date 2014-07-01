@@ -24,6 +24,21 @@
     <Filter Include="Resource Files">
       <UniqueIdentifier>{fd4c7059-9d6b-4302-ab5f-e44fe487e4f2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\MVC">
+      <UniqueIdentifier>{68aaeac9-796f-4fe3-b827-5d0a8bcf1083}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\MVC\model">
+      <UniqueIdentifier>{1c3a578c-0cc6-4969-8177-9e0a5fea33e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\MVC\view_scilab">
+      <UniqueIdentifier>{73cd347f-ad23-40c4-8854-4aba4340b9b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\MVC">
+      <UniqueIdentifier>{a4e1d553-6029-4bae-a9dd-2a23872f00a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\MVC\view_scilab">
+      <UniqueIdentifier>{dfbdebf3-32a6-4baa-88b9-15eb57b917af}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="copyvarfromlistentry.c">
@@ -185,6 +200,54 @@
     <ClCompile Include="scilab5_needed_stubs.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\cpp\Controller.cpp">
+      <Filter>Source Files\MVC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\LoggerView.cpp">
+      <Filter>Source Files\MVC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\Model.cpp">
+      <Filter>Source Files\MVC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\Model_getObjectProperties.cpp">
+      <Filter>Source Files\MVC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\Model_setObjectProperties.cpp">
+      <Filter>Source Files\MVC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\view_scilab\CprAdapter.cpp">
+      <Filter>Source Files\MVC\view_scilab</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\view_scilab\DiagramAdapter.cpp">
+      <Filter>Source Files\MVC\view_scilab</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\view_scilab\GraphicsAdapter.cpp">
+      <Filter>Source Files\MVC\view_scilab</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\view_scilab\LinkAdapter.cpp">
+      <Filter>Source Files\MVC\view_scilab</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\view_scilab\ModelAdapter.cpp">
+      <Filter>Source Files\MVC\view_scilab</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\view_scilab\ScsAdapter.cpp">
+      <Filter>Source Files\MVC\view_scilab</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\view_scilab\StateAdapter.cpp">
+      <Filter>Source Files\MVC\view_scilab</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\view_scilab\TextAdapter.cpp">
+      <Filter>Source Files\MVC\view_scilab</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\view_scilab\Adapters.cpp">
+      <Filter>Source Files\MVC\view_scilab</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\view_scilab\BlockAdapter.cpp">
+      <Filter>Source Files\MVC\view_scilab</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_scicos_new.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="copyvarfromlistentry.h">
@@ -252,6 +315,51 @@
     </ClInclude>
     <ClInclude Include="sciblk4.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cpp\Controller.hxx">
+      <Filter>Header Files\MVC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cpp\LoggerView.hxx">
+      <Filter>Header Files\MVC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cpp\Model.hxx">
+      <Filter>Header Files\MVC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cpp\View.hxx">
+      <Filter>Header Files\MVC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cpp\view_scilab\TextAdapter.hxx">
+      <Filter>Header Files\MVC\view_scilab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cpp\view_scilab\Adapters.hxx">
+      <Filter>Header Files\MVC\view_scilab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cpp\view_scilab\BaseAdapter.hxx">
+      <Filter>Header Files\MVC\view_scilab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cpp\view_scilab\BlockAdapter.hxx">
+      <Filter>Header Files\MVC\view_scilab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cpp\view_scilab\CprAdapter.hxx">
+      <Filter>Header Files\MVC\view_scilab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cpp\view_scilab\DiagramAdapter.hxx">
+      <Filter>Header Files\MVC\view_scilab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cpp\view_scilab\GraphicsAdapter.hxx">
+      <Filter>Header Files\MVC\view_scilab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cpp\view_scilab\LinkAdapter.hxx">
+      <Filter>Header Files\MVC\view_scilab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cpp\view_scilab\ModelAdapter.hxx">
+      <Filter>Header Files\MVC\view_scilab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cpp\view_scilab\ScsAdapter.hxx">
+      <Filter>Header Files\MVC\view_scilab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cpp\view_scilab\StateAdapter.hxx">
+      <Filter>Header Files\MVC\view_scilab</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

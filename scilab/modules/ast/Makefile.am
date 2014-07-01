@@ -47,7 +47,7 @@ libsciast_la_SOURCES = \
     src/c/operations/matrix_finite.c \
     src/c/operations/matrix_addition.c \
     src/c/operations/doublecomplex.c \
-    src/cpp/parse/parser.cpp \  
+    src/cpp/parse/parser.cpp \
     src/cpp/parse/parsescilab.cpp \
     src/cpp/parse/printerror.cpp \
     src/cpp/parse/scanscilab.cpp \
@@ -177,7 +177,7 @@ includes/operations/invert_matrix.h \
 includes/operations/interface_addition.h \
 includes/operations/matrix_multiplication.h \
 includes/operations/matrix_division.h \
-includes/exps/floatexp.hxx \ 
+includes/exps/floatexp.hxx \
 includes/exps/intexp.hxx \
 includes/exps/returnexp.hxx \
 includes/exps/doubleexp.hxx \

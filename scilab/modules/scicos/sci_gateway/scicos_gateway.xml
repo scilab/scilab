@@ -51,4 +51,6 @@
     <gateway type="0" name="sci_model2blk" function="model2blk"/>
     <gateway type="0" name="sci_callblk" function="callblk"/>
     <gateway type="0" name="sci_loadScicos" function="loadScicos"/>
+    <!-- C++ Gateways -->
+    <gateway type="1" name="sci_scicos_new" function="scicos_new"/>
 </module>

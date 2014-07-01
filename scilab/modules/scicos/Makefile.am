@@ -13,6 +13,24 @@ DISABLE_HELP_CLEAN=yes
 
 #### Source listing ######
 
+SCICOS_CXX_SOURCES = \
+src/cpp/Controller.cpp \
+src/cpp/LoggerView.cpp \
+src/cpp/Model.cpp \
+src/cpp/Model_getObjectProperties.cpp \
+src/cpp/Model_setObjectProperties.cpp \
+src/cpp/view_scilab/Adapters.cpp \
+src/cpp/view_scilab/BlockAdapter.cpp \
+src/cpp/view_scilab/CprAdapter.cpp \
+src/cpp/view_scilab/DiagramAdapter.cpp \
+src/cpp/view_scilab/GraphicsAdapter.cpp \
+src/cpp/view_scilab/LinkAdapter.cpp \
+src/cpp/view_scilab/ModelAdapter.cpp \
+src/cpp/view_scilab/ScsAdapter.cpp \
+src/cpp/view_scilab/StateAdapter.cpp \
+src/cpp/view_scilab/TextAdapter.cpp
+
+
 SCICOS_C_SOURCES = \
 src/c/scilab5_needed_stubs.c \
 src/c/tree.c \
@@ -49,6 +67,9 @@ src/fortran/scitoi.f \
 src/fortran/scifunc.f
 
 NO_SCICOS_C_SOURCES = src/c/noscicos/noscicos.c
+
+GATEWAY_CXX_SOURCES = \
+sci_gateway/cpp/sci_scicos_new.cpp
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_scicos.c \
 sci_gateway/c/sci_buildouttb.c \
@@ -113,6 +134,10 @@ libsciscicos_la_LDFLAGS = $(AM_LDFLAGS)
 if XCOS
 libsciscicos_algo_la_CPPFLAGS= -I$(srcdir)/includes/ \
 			-I$(srcdir)/src/c/ \
+			-I$(srcdir)/src/cpp/ \
+			-I$(srcdir)/src/scicos_sundials/include/ \
+			-I$(srcdir)/src/scicos_sundials/include/sundials/ \
+			-I$(srcdir)/src/scicos_sundials/src/ida/ \
 			-I$(top_srcdir)/modules/output_stream/includes/ \
 			-I$(top_srcdir)/modules/dynamic_link/includes/ \
 			-I$(top_srcdir)/modules/string/includes/ \
@@ -122,9 +147,14 @@ libsciscicos_algo_la_CPPFLAGS= -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/action_binding/includes/ \
 			-I$(top_srcdir)/modules/time/includes/ \
 			-I$(top_srcdir)/modules/api_scilab/includes/ \
-			-I$(top_srcdir)/modules/scicos/src/scicos_sundials/include/ \
-			-I$(top_srcdir)/modules/scicos/src/scicos_sundials/include/sundials/ \
-			-I$(top_srcdir)/modules/scicos/src/scicos_sundials/src/ida/ \
+			-I$(top_srcdir)/modules/types/includes/ \
+			-I$(top_srcdir)/modules/ast/includes/ast/ \
+			-I$(top_srcdir)/modules/ast/includes/exps/ \
+			-I$(top_srcdir)/modules/ast/includes/operations/ \
+			-I$(top_srcdir)/modules/ast/includes/system_env/ \
+			-I$(top_srcdir)/modules/ast/includes/types/ \
+			-I$(top_srcdir)/modules/operations/includes/ \
+			$(EIGEN_CPPFLAGS) \
 			$(AM_CPPFLAGS)
 else
 libsciscicos_algo_la_CPPFLAGS= -I$(top_srcdir)/modules/output_stream/includes/ \
@@ -136,9 +166,9 @@ libsciscicos_cli_la_CPPFLAGS = $(libsciscicos_algo_la_CPPFLAGS)
 libsciscicos_la_CPPFLAGS = $(libsciscicos_algo_la_CPPFLAGS)
 
 if XCOS
-libsciscicos_algo_la_SOURCES = $(SCICOS_C_SOURCES) $(SCICOS_FORTRAN_SOURCES)
-libsciscicos_cli_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
-libsciscicos_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libsciscicos_algo_la_SOURCES = $(SCICOS_CXX_SOURCES) $(SCICOS_C_SOURCES) $(SCICOS_FORTRAN_SOURCES)
+libsciscicos_cli_la_SOURCES = $(GATEWAY_CXX_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libsciscicos_la_SOURCES = $(GATEWAY_CXX_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 else
 libsciscicos_algo_la_SOURCES = $(NO_SCICOS_C_SOURCES)
 libsciscicos_cli_la_SOURCES =
@@ -256,7 +286,7 @@ libscisundials_la_CFLAGS = -I$(top_srcdir)/modules/scicos/src/scicos_sundials/in
 
 libscisundials_la_SOURCES = $(SUNDIALS_SOURCES)
 
-.NOTPARALLEL: libscisundials.la libsciscicos-algo.la
+#.NOTPARALLEL: libscisundials.la libsciscicos-algo.la
 
 include $(top_srcdir)/Makefile.incl.am
 
