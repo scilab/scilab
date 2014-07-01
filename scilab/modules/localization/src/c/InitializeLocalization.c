@@ -84,7 +84,7 @@ BOOL InitializeLocalization(void)
             /* We look if registry value LANGUAGE exists */
             /* If not exists the "" means that we will try to use the language of the system.*/
             {
-                char *loadLanguage = getLanguagePreferences();
+                wchar_t* loadLanguage = getLanguagePreferences();
                 setlanguage(loadLanguage);
                 if (loadLanguage)
                 {
