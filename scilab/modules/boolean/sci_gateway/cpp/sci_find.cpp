@@ -192,12 +192,12 @@ types::Function::ReturnValue sci_find(types::typed_list &in, int _iRetCount, typ
             out.push_back(pOut);
         }
 
-        delete piDims;
+        delete[] piDims;
         for (int i = 0 ; i < iValues ; i++)
         {
-            delete piCoord[i];
+            delete[] piCoord[i];
         }
-        delete piCoord;
+        delete[] piCoord;
     }
     return types::Function::OK;
 }
