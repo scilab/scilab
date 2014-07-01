@@ -12,6 +12,8 @@
 #ifndef __DYNAMICLIBRARY_WINDOWS_H__
 #define __DYNAMICLIBRARY_WINDOWS_H__
 
+//avoid declaration on macro min/max
+#define NOMINMAX
 #include <Windows.h>
 #include "dynlib_dynamic_link.h"
 
