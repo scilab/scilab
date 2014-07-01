@@ -211,8 +211,7 @@ public :
     types::typed_list* GetArgumentList(std::list<Exp *>const& _plstArg)
     {
         types::typed_list* pArgs = new types::typed_list();
-        std::list<Exp *>::const_iterator it;
-        for (it = _plstArg.begin() ; it != _plstArg.end() ; it++)
+        for (std::list<Exp *>::const_iterator it = _plstArg.begin() ; it != _plstArg.end() ; ++it)
         {
             (*it)->accept(*this);
             if (result_getSize() > 1)

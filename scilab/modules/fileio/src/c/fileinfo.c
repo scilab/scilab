@@ -179,6 +179,7 @@ static double* fileinfo_OthersW(wchar_t* _pwstFilename, int* _piErr)
     *_piErr = 0;
 
     result = stat(pstFilename, &buf );
+    FREE(pstFilename);
     if (result == 0)
     {
         FILEINFO_ARRAY = (double*)MALLOC(sizeof(double) * FILEINFO_ARRAY_SIZE);

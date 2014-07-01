@@ -2024,6 +2024,7 @@ types::InternalType* add_M_S<String, String, String>(String* _pL, String* _pR)
     }
 
     add(_pL->get(), size, pwstR, sizeOut, pOut->get());
+    delete[] sizeOut;
     return pOut;
 }
 

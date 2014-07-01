@@ -98,9 +98,15 @@ types::Library* loadlib(std::wstring _wstXML, bool _isFile, bool _bAddInContext)
             /* we found the tag name */
             const char *str = (const char*)attrib->children->content;
             pstLibName = to_wide_string(str);
+            xmlXPathFreeObject(xpathObj);
         }
         else
         {
+            if (xpathCtxt)
+            {
+                xmlXPathFreeContext(xpathCtxt);
+            }
+            xmlXPathFreeObject(xpathObj);
             return NULL;
         }
     }

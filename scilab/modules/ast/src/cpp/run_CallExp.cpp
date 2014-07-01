@@ -184,6 +184,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
             {
                 if (*k)
                 {
+                    (*k)->DecreaseRef();
                     (*k)->killMe();
                 }
             }
@@ -192,7 +193,6 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
             {
                 for (typed_list::iterator o = out.begin(), end = out.end(); o != end; ++o)
                 {
-                    (*o)->DecreaseRef();
                     (*o)->killMe();
                 }
                 out.clear();
