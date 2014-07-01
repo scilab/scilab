@@ -16,7 +16,7 @@
 #include "stricmp.h"
 /*--------------------------------------------------------------------------*/
 char **completion_generic(char **dictionary, int sizedictionary,
-                          char *somechars, int *sizeArrayReturned)
+                          const char *somechars, int *sizeArrayReturned)
 {
     char **results = NULL;
     int nbElements = 0;

@@ -557,9 +557,11 @@ int IntLessInt(types::InternalType* _pL, types::InternalType*  _pR, types::Gener
         {
             return IntLessInt(_pL->getAs<UInt64>(), _pR->getAs<UInt64>(), _pOut);
         }
+        default:
+        {
+            return 0;
+        }
     }
-
-    return 0;
 }
 
 template <class T>
@@ -659,7 +661,9 @@ int IntLessEqualInt(types::InternalType* _pL, types::InternalType* _pR, types::G
         {
             return IntLessEqualInt(_pL->getAs<UInt64>(), _pR->getAs<UInt64>(), _pOut);
         }
+        default:
+        {
+            return 0;
+        }
     }
-
-    return 0;
 }

@@ -75,7 +75,7 @@ int StoreCommandWithFlag (wchar_t *command, int flag)
             throw ast::ScilabException(parser.getErrorMessage());
         }
     }
-    catch (ast::ScilabException se)
+    catch (const ast::ScilabException& se)
     {
         scilabErrorW(L"\n");
         scilabErrorW(L"\n");
@@ -112,7 +112,7 @@ int StorePrioritaryCommandWithFlag (wchar_t *command, int flag)
             throw ast::ScilabException(parser.getErrorMessage());
         }
     }
-    catch (ast::ScilabException se)
+    catch (const ast::ScilabException& se)
     {
         scilabErrorW(L"\n");
         scilabErrorW(L"\n");

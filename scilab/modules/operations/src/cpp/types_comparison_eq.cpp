@@ -1272,9 +1272,11 @@ int EqualToIntAndInt(InternalType* _pL, InternalType*  _pR, GenericType** _pOut)
         {
             return EqualToArrayAndArray(_pL->getAs<UInt64>(), _pR->getAs<UInt64>(), _pOut);
         }
+        default:
+        {
+            return 3;
+        }
     }
-
-    return 3;
 }
 
 static void clearAlloc(bool _bAllocL, InternalType* _pIL, bool _bAllocR, InternalType* _pIR)

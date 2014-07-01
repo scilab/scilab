@@ -149,7 +149,7 @@ H5Data & H5DataFactory::getObjectData(H5Object & parent, const hsize_t totalSize
                 case 4:
                     return *new H5Bitfield4Data(parent, totalSize, dataSize, ndims, dims, static_cast<unsigned int *>(data), stride, offset, dataOwner);
                 case 8:
-                    //return *new H5BitfieldData<unsigned long long>(parent, totalSize, dataSize, ndims, dims, static_cast<unsigned long long *>(data), stride, offset, false);
+                //return *new H5BitfieldData<unsigned long long>(parent, totalSize, dataSize, ndims, dims, static_cast<unsigned long long *>(data), stride, offset, false);
                 default:
                     throw H5Exception(__LINE__, __FILE__, _("Bitfield is too big"));
             }
@@ -240,6 +240,9 @@ void H5DataFactory::getNativeData(const hid_t obj, const hid_t space, hsize_t * 
                     *totalSize *= (*dims)[i];
                 }
                 hyperslab = true;
+                break;
+            default:
+                break;
         }
     }
 

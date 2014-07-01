@@ -26,9 +26,9 @@
 #include "os_strdup.h"
 #include "stdio.h"
 /*--------------------------------------------------------------------------*/
-char **completionOnDictionary(char **dictionary, int sizedictionary, char *somechars, int *sizearrayreturned);
+char **completionOnDictionary(char **dictionary, int sizedictionary, const char *somechars, int *sizearrayreturned);
 /*--------------------------------------------------------------------------*/
-char **completion(char *somechars, int *sizeArrayReturned)
+char **completion(const char *somechars, int *sizeArrayReturned)
 {
     char **ListWords = NULL;
 
@@ -93,7 +93,7 @@ char **completion(char *somechars, int *sizeArrayReturned)
     return ListWords;
 }
 /*--------------------------------------------------------------------------*/
-char **completionOnFunctions(char *somechars, int *sizeArrayReturned)
+char **completionOnFunctions(const char *somechars, int *sizeArrayReturned)
 {
     char **ListWords = NULL;
     char **dictionary = NULL;
@@ -113,7 +113,7 @@ char **completionOnFunctions(char *somechars, int *sizeArrayReturned)
     return ListWords;
 }
 /*--------------------------------------------------------------------------*/
-char **completionOnCommandWords(char *somechars, int *sizeArrayReturned)
+char **completionOnCommandWords(const char *somechars, int *sizeArrayReturned)
 {
     char **ListWords = NULL;
     char **dictionary = NULL;
@@ -134,7 +134,7 @@ char **completionOnCommandWords(char *somechars, int *sizeArrayReturned)
     return ListWords;
 }
 /*--------------------------------------------------------------------------*/
-char **completionOnMacros(char *somechars, int *sizeArrayReturned)
+char **completionOnMacros(const char *somechars, int *sizeArrayReturned)
 {
     char **ListWords = NULL;
     char **dictionary = NULL;
@@ -154,7 +154,7 @@ char **completionOnMacros(char *somechars, int *sizeArrayReturned)
     return ListWords;
 }
 /*--------------------------------------------------------------------------*/
-char **completionOnVariables(char *somechars, int *sizeArrayReturned)
+char **completionOnVariables(const char *somechars, int *sizeArrayReturned)
 {
     int i = 0;
     char **ListWords = NULL;
@@ -167,7 +167,7 @@ char **completionOnVariables(char *somechars, int *sizeArrayReturned)
     return ListWords;
 }
 /*--------------------------------------------------------------------------*/
-char **completionOnVariablesWithoutMacros(char *somechars, int *sizeArrayReturned)
+char **completionOnVariablesWithoutMacros(const char *somechars, int *sizeArrayReturned)
 {
     int i = 0;
     int j = 0;
@@ -282,7 +282,7 @@ char **completionOnVariablesWithoutMacros(char *somechars, int *sizeArrayReturne
     return ListWords;
 }
 /*--------------------------------------------------------------------------*/
-char **completionOnFiles(char *somechars, int *sizeArrayReturned)
+char **completionOnFiles(const char *somechars, int *sizeArrayReturned)
 {
     char **ListWords = NULL;
     char **dictionary = NULL;
@@ -325,7 +325,7 @@ char **completionOnFields(char *lineBeforeCaret, char *pattern, int *sizeArrayRe
     return ListWords;
 }
 /*--------------------------------------------------------------------------*/
-char **completionOnHandleGraphicsProperties(char *somechars, int *sizeArrayReturned)
+char **completionOnHandleGraphicsProperties(const char *somechars, int *sizeArrayReturned)
 {
     char **ListWords = NULL;
     char **dictionary = NULL;
@@ -373,7 +373,7 @@ char **completionOnHandleGraphicsProperties(char *somechars, int *sizeArrayRetur
     return ListWords;
 }
 /*--------------------------------------------------------------------------*/
-char **completionOnDictionary(char **dictionary, int sizedictionary, char *somechars, int *sizearrayreturned)
+char **completionOnDictionary(char **dictionary, int sizedictionary, const char *somechars, int *sizearrayreturned)
 {
     char **ListWords = NULL;
 

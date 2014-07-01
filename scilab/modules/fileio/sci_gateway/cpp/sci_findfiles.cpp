@@ -42,7 +42,7 @@ types::Function::ReturnValue sci_findfiles(types::typed_list &in, int _iRetCount
     wchar_t* pwstSpec   = NULL;
     bool bAllocatedSpec = false;
 
-    if (in.size() < 0 || in.size() > 2)
+    if (in.size() > 2)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "findfiles", 0, 2);
         return types::Function::Error;

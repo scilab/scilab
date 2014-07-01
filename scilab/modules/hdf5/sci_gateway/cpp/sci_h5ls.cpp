@@ -32,7 +32,7 @@ using namespace org_modules_hdf5;
   - h5ls(obj)
   - h5ls(obj, name)
   - h5ls(filename, name)
-/*
+*/
 
 /*--------------------------------------------------------------------------*/
 int sci_h5ls(char *fname, int* pvApiCtx)

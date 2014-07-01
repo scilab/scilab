@@ -24,7 +24,7 @@ extern "C"
 #include "toolsdictionary.h"
 }
 /*--------------------------------------------------------------------------*/
-static types::InternalType* doCompletion(char* _pcSomechars, char** (*pvFunction)(char*, int*));
+static types::InternalType* doCompletion(const char* _pcSomechars, char** (*pvFunction)(const char*, int*));
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_completion(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
@@ -144,7 +144,7 @@ types::Function::ReturnValue sci_completion(types::typed_list &in, int _iRetCoun
     return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/
-static types::InternalType* doCompletion(char* _pcSomechars, char** (*pvFunction)(char*, int*))
+static types::InternalType* doCompletion(const char* _pcSomechars, char** (*pvFunction)(const char*, int*))
 {
     char** pstrResults  = NULL;
     int iSizeResults    = 0;

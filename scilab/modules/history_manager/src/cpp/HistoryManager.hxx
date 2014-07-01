@@ -169,7 +169,7 @@ public:
     * @param token (a string)
     * @return TRUE or FALSE
     */
-    BOOL setToken(char* _pstToken);
+    BOOL setToken(const char* _pstToken);
 
     /**
     * get token searched in history

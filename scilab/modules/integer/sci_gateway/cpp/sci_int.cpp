@@ -95,6 +95,8 @@ void convertInt(types::InternalType* _pIn, T* _pOut)
             convert_int(pD->get(), pD->getSize(), _pOut->get());
             break;
         }
+        default:
+            return;
     }
 }
 

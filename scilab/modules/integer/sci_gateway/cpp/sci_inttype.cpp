@@ -70,6 +70,8 @@ Function::ReturnValue sci_inttype(typed_list &in, int _piRetCount, typed_list &o
         case InternalType::ScilabUInt64 :
             pRetVal = new Double(SCI_UINT64);
             break;
+        default:
+            pRetVal = NULL;
     }
 
     out.push_back(pRetVal);

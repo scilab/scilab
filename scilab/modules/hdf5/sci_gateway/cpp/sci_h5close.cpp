@@ -33,7 +33,7 @@ using namespace org_modules_hdf5;
   Scilab prototype:
   - h5close()
   - h5close(obj)
-/*
+*/
 
 /*--------------------------------------------------------------------------*/
 int sci_h5close(char *fname, int* pvApiCtx)

@@ -95,8 +95,8 @@ Function::ReturnValue sci_error(types::typed_list &in, int _iRetCount, types::ty
             return Function::Error;
         }
 
-        if (in[0]->isDouble() == false && in[1]->isDouble() == false ||
-                in[0]->isString() == false && in[1]->isString() == false )
+        if ((in[0]->isDouble() == false && in[1]->isDouble() == false) ||
+                (in[0]->isString() == false && in[1]->isString() == false) )
         {
             Scierror(999, _("%s: Wrong type for input argument #%d.\n"), "error", 2);
             return Function::Error;

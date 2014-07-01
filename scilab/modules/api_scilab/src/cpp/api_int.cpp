@@ -73,6 +73,8 @@ SciErr getMatrixOfIntegerPrecision(void* _pvCtx, int* _piAddress, int* _piPrecis
         case GenericType::ScilabUInt64 :
             *_piPrecision = SCI_UINT64;
             break;
+        default:
+            return sciErr;
     }
     return sciErr;
 }
@@ -178,6 +180,8 @@ SciErr getCommonMatrixOfInteger(void* _pvCtx, int* _piAddress, int _iPrecision, 
         case GenericType::ScilabUInt64 :
             *_piData	= (void*)((InternalType*)_piAddress)->getAs<types::UInt64>()->get();
             break;
+        default:
+            return sciErr;
     }
 
     return sciErr;
@@ -928,7 +932,7 @@ SciErr readCommonNamedMatrixOfInteger(void* _pvCtx, const char* _pstName, int _i
         addErrorMessage(&sciErr, API_ERROR_READ_NAMED_INT, _("%s: Unable to get variable \"%s\""), "readNamedMatrixOfInteger", _pstName);
         return sciErr;
     }
-    iSize = *_piRows * *_piCols;
+    iSize = *_piRows **_piCols;
 
     if (pvData == NULL || _pvData == NULL)
     {

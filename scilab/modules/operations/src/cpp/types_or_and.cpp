@@ -257,9 +257,11 @@ int IntOrInt(InternalType* _pL, Bool** _pOut)
         {
             return IntOrInt(_pL->getAs<UInt64>(), _pOut);
         }
+        default:
+        {
+            return 3;
+        }
     }
-
-    return 3;
 }
 
 template <class K>
@@ -316,9 +318,11 @@ int IntAndInt(InternalType* _pL, Bool** _pOut)
         {
             return IntAndInt(_pL->getAs<UInt64>(), _pOut);
         }
+        default:
+        {
+            return 3;
+        }
     }
-
-    return 3;
 }
 
 template <class K>
@@ -418,9 +422,11 @@ int IntLogicalAndInt(InternalType* _pL, InternalType*  _pR, InternalType** _pOut
         {
             return IntLogicalAndInt(_pL->getAs<UInt64>(), _pR->getAs<UInt64>(), _pOut);
         }
+        default:
+        {
+            return 3;
+        }
     }
-
-    return 3;
 }
 
 template <class K>
@@ -536,9 +542,11 @@ int IntLogicalOrInt(InternalType* _pL, InternalType*  _pR, InternalType** _pOut)
             UInt64* pI2 = _pR->getAs<UInt64>();
             return IntLogicalOrInt(pI1, pI2, _pOut);
         }
+        default:
+        {
+            return 3;
+        }
     }
-
-    return 3;
 }
 
 int BoolLogicalOrBool(Bool* _pL, Bool*  _pR, Bool** _pOut)

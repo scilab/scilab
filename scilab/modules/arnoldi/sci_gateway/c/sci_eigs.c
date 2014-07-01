@@ -416,7 +416,6 @@ int sci_eigs(char *fname, void* pvApiCtx)
         if (isVarComplex(pvApiCtx, piAddressVarSeven))
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: %s must be an integer scalar.\n"), "eigs", 7, "opts.ncv");
-            0;
         }
         else
         {
@@ -458,7 +457,7 @@ int sci_eigs(char *fname, void* pvApiCtx)
     }
 
     sciErr = getVarType(pvApiCtx, piAddressVarEight, &iTypeVarEight);
-    if (sciErr.iErr || iTypeVarEight != sci_matrix && iTypeVarEight != sci_boolean)
+    if (sciErr.iErr || (iTypeVarEight != sci_matrix && iTypeVarEight != sci_boolean))
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: %s must be an integer scalar or a boolean.\n"), "eigs", 8, "opts.cholB");
         return 1;

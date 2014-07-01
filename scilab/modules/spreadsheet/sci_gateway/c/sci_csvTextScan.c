@@ -317,6 +317,9 @@ int sci_csvTextScan(char *fname, void* pvApiCtx)
 
             case CSV_READ_READLINES_ERROR:
             case CSV_READ_ERROR:
+            case CSV_READ_MOPEN_ERROR:
+            case CSV_READ_FILE_NOT_EXIST:
+            case CSV_READ_REGEXP_ERROR:
             {
                 Scierror(999, _("%s: can not read text.\n"), fname);
             }

@@ -1682,7 +1682,7 @@ void DifferentialEquationFunctions::callInt3dMacroF(double* xyz, int* numfun, do
     if (pDblOut->getSize() != *numfun)
     {
         char* pstrName = wide_string_to_UTF8(m_pCallFFunction->getName().c_str());
-        sprintf(errorMsg, _("%s: Wrong size for output argument #%d: Matrix of size %d expected.\n"), pstrName, 1, numfun);
+        sprintf(errorMsg, _("%s: Wrong size for output argument #%d: Matrix of size %d expected.\n"), pstrName, 1, *numfun);
         FREE(pstrName);
         throw ast::ScilabError(errorMsg);
     }
@@ -2417,7 +2417,7 @@ void DifferentialEquationFunctions::callImplMacroG(int* neq, double* t, double* 
         throw ast::ScilabError(errorMsg);
     }
 
-    int size = *neq * *nrowp;
+    int size = *neq **nrowp;
     C2F(dcopy)(&size, pDblOutP->get(), &one, p, &one);
     if (out[0]->isDeletable())
     {
@@ -2515,7 +2515,7 @@ void DifferentialEquationFunctions::callImplMacroJac(int* neq, double* t, double
         throw ast::ScilabError(errorMsg);
     }
 
-    int size = *neq * *nrowp;
+    int size = *neq **nrowp;
     C2F(dcopy)(&size, pDblOutP->get(), &one, p, &one);
     if (out[0]->isDeletable())
     {
@@ -2988,18 +2988,18 @@ void DifferentialEquationFunctions::callDaskrMacroPjac(double* res, int* ires, i
     types::Double* pDblOutIer = out[2]->getAs<types::Double>();
 
     // check size of output argument
-    if (pDblOutWp->getSize() != *neq * *neq)
+    if (pDblOutWp->getSize() != *neq **neq)
     {
         char* pstrName = wide_string_to_UTF8(m_pCallPjacFunction->getName().c_str());
-        sprintf(errorMsg, _("%s: Wrong size for output argument #%d: A matrix of size %d expected.\n"), pstrName, 1, *neq * *neq);
+        sprintf(errorMsg, _("%s: Wrong size for output argument #%d: A matrix of size %d expected.\n"), pstrName, 1, *neq **neq);
         FREE(pstrName);
         throw ast::ScilabError(errorMsg);
     }
 
-    if (pDblOutIwp->getSize() != 2 * *neq * *neq)
+    if (pDblOutIwp->getSize() != 2 * *neq **neq)
     {
         char* pstrName = wide_string_to_UTF8(m_pCallPjacFunction->getName().c_str());
-        sprintf(errorMsg, _("%s: Wrong size for output argument #%d: A matrix of size %d expected.\n"), pstrName, 2, 2 * *neq * *neq);
+        sprintf(errorMsg, _("%s: Wrong size for output argument #%d: A matrix of size %d expected.\n"), pstrName, 2, 2 * *neq **neq);
         FREE(pstrName);
         throw ast::ScilabError(errorMsg);
     }
@@ -3059,12 +3059,12 @@ void DifferentialEquationFunctions::callDaskrMacroPsol(int* neq, double* t, doub
     ast::ExecVisitor execFunc;
 
     // input arguments psol(R, iR, b)
-    types::Double* pDblR = new types::Double(1, *neq * *neq);
+    types::Double* pDblR = new types::Double(1, *neq **neq);
     pDblR->set(wp);
     pDblR->IncreaseRef();
     in.push_back(pDblR);
 
-    types::Double* pDblIR = new types::Double(1, 2 * *neq * *neq);
+    types::Double* pDblIR = new types::Double(1, 2 * *neq **neq);
     double* pdblIR = pDblIR->get();
     for (int i = 0; i < pDblIR->getSize(); i++)
     {

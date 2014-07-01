@@ -631,7 +631,7 @@ char* HistoryManager::getNextLine(void)
     return NULL;
 }
 /*--------------------------------------------------------------------------*/
-BOOL HistoryManager::setToken(char* _pstToken)
+BOOL HistoryManager::setToken(const char* _pstToken)
 {
     m_HS.setHistory(m_Commands);
 

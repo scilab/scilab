@@ -604,8 +604,8 @@ int dbdiaga(int _iLeadDim, int _iSize, double *_pdblVal, double _dblEps,
                     }
                 }
             }
-            // Warning, case 1 continue to default process
-            //break;
+        // Warning, case 1 continue to default process
+        //break;
         default :	//compute right transformation
             iLoop22	= 1;
             while (iLoop22 <= _iSize)
@@ -1923,7 +1923,7 @@ L710:
             continue;
         }
 
-        for (iIndex28 = iIndex27 ; iIndex28 < _iSize ; iIndex28)
+        for (iIndex28 = iIndex27 ; iIndex28 < _iSize ; iIndex28++)
         {
             _pdblTrans[iIndex27 + iIndex28 * _iSize] = _pdblHessUp[iIndex27 + iIndex28 * _iSize];
         }

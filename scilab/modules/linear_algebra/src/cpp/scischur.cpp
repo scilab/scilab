@@ -92,8 +92,8 @@ int schur_sb02ox(double* _real, double* _img, double* _beta) // discrete
 int schur_sb02ow(double* _real, double* _img, double* _beta) // continu
 {
     return  (*_real < 0 && *_beta > 0) ||
-            (*_real > 0 && *_beta < 0) &&
-            (fabs(*_beta) > fabs(*_real) * C2F(dlamch)((char*)"p", 1L)) ? 1 : 0;
+            ((*_real > 0 && *_beta < 0) &&
+             (fabs(*_beta) > fabs(*_real) * C2F(dlamch)((char*)"p", 1L))) ? 1 : 0;
 }
 int schur_dgges(double* _real, double* _img, double* _beta)
 {

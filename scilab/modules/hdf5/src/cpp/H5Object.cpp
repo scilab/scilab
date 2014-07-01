@@ -114,7 +114,7 @@ void H5Object::getAccessibleAttribute(const std::string & _name, const int pos, 
 
     if (lower == "name")
     {
-	const std::string name = getName();
+        const std::string name = getName();
         const char * _name = name.c_str();
         err = createMatrixOfString(pvApiCtx, pos, 1, 1, &_name);
         if (err.iErr)
@@ -126,7 +126,7 @@ void H5Object::getAccessibleAttribute(const std::string & _name, const int pos, 
     }
     else if (lower == "path")
     {
-	const std::string completePath = getCompletePath();
+        const std::string completePath = getCompletePath();
         const char * path = completePath.c_str();
         err = createMatrixOfString(pvApiCtx, pos, 1, 1, &path);
         if (err.iErr)
@@ -594,6 +594,8 @@ herr_t H5Object::filterIterator(hid_t g_id, const char * name, const H5L_info_t 
                 opdata.name->push_back(name);
                 return (herr_t)0;
             }
+            break;
+        default:
             break;
     }
 
