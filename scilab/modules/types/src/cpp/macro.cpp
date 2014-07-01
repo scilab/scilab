@@ -157,7 +157,15 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
     }
     else if (in.size() > m_inputArgs->size())
     {
-        Scierror(999, _("Wrong number of input arguments: %d expected.\n"), m_inputArgs->size());
+        if (m_inputArgs->size() == 0)
+        {
+            Scierror(999, _("Wrong number of input arguments: This function has no input argument.\n"));
+        }
+        else
+        {
+            Scierror(999, _("Wrong number of input arguments."));
+        }
+
         pContext->scope_end();
         ConfigVariable::macroFirstLine_end();
         return Callable::Error;
@@ -194,8 +202,22 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
     //common part with or without varargin/varargout
 
     // Declare nargin & nargout in function context.
+    if (m_pDblArgIn->getRef() > 1)
+    {
+        m_pDblArgIn->DecreaseRef();
+        m_pDblArgIn = (Double*)m_pDblArgIn->clone();
+        m_pDblArgIn->IncreaseRef();
+    }
     m_pDblArgIn->set(0, static_cast<double>(in.size()));
+
+    if (m_pDblArgOut->getRef() > 1)
+    {
+        m_pDblArgOut->DecreaseRef();
+        m_pDblArgOut = (Double*)m_pDblArgOut->clone();
+        m_pDblArgOut->IncreaseRef();
+    }
     m_pDblArgOut->set(0, _iRetCount);
+
     pContext->put(m_Nargin, m_pDblArgIn);
     pContext->put(m_Nargout, m_pDblArgOut);
 
