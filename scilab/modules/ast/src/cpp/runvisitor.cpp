@@ -1000,12 +1000,10 @@ void RunVisitorT<T>::visitprivate(const FunctionDec & e)
         }
     }
 
-    std::list<Var *>::const_iterator        i;
-
     //get input parameters list
     std::list<symbol::Variable*> *pVarList = new std::list<symbol::Variable*>();
     const ArrayListVar *pListVar = &e.args_get();
-    for (i = pListVar->vars_get().begin() ; i != pListVar->vars_get().end() ; i++)
+    for (std::list<Var *>::const_iterator i = pListVar->vars_get().begin(), end = pListVar->vars_get().end(); i != end; ++i)
     {
         pVarList->push_back(static_cast<SimpleVar*>(*i)->stack_get());
     }
@@ -1013,20 +1011,13 @@ void RunVisitorT<T>::visitprivate(const FunctionDec & e)
     //get output parameters list
     std::list<symbol::Variable*> *pRetList = new std::list<symbol::Variable*>();
     const ArrayListVar *pListRet = &e.returns_get();
-    for (i = pListRet->vars_get().begin() ; i != pListRet->vars_get().end() ; i++)
+    for (std::list<Var *>::const_iterator i = pListRet->vars_get().begin(), end = pListRet->vars_get().end(); i != end; ++i)
     {
         pRetList->push_back(static_cast<SimpleVar*>(*i)->stack_get());
     }
 
-    //            Location* newloc = const_cast<Location*>(&location_get())->clone();
-    Exp* exp = const_cast<Exp&>(e.body_get()).clone();
-
-    //MuteVisitor mute;
-    //exp->accept(mute);
-
-    //types::Macro macro(VarList, RetList, (SeqExp&)e.body_get());
     types::Macro *pMacro = new types::Macro(e.name_get().name_get(), *pVarList, *pRetList,
-                                            static_cast<SeqExp&>(*exp), L"script");
+                                            const_cast<SeqExp&>(static_cast<const SeqExp&>(e.body_get())), L"script");
     pMacro->setFirstLine(e.location_get().first_line);
     symbol::Context::getInstance()->addMacro(pMacro);
 }
