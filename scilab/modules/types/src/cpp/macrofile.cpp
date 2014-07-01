@@ -131,10 +131,7 @@ bool MacroFile::parse(void)
                     }
                 }
             }
-            else
-            {
-                delete *j;
-            }
+            delete *j;
         }
 
         ((ast::SeqExp*)tree)->exps_clear();
