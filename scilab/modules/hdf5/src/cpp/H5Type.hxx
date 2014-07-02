@@ -138,14 +138,8 @@ public:
         return (hid_t) - 1;
     }
 
-private:
-
-    void init();
-
-    static std::map<std::string, hid_t> initMap()
+    static void initMap()
     {
-        std::map<std::string, hid_t> nameToType;
-
         nameToType.insert(std::pair<std::string, hid_t>("H5T_STD_I8BE", H5T_STD_I8BE));
         nameToType.insert(std::pair<std::string, hid_t>("H5T_STD_I8LE", H5T_STD_I8LE));
         nameToType.insert(std::pair<std::string, hid_t>("H5T_STD_I16BE", H5T_STD_I16BE));
@@ -268,20 +262,27 @@ private:
         nameToType.insert(std::pair<std::string, hid_t>("H5T_MIPS_B64", H5T_MIPS_B64));
         nameToType.insert(std::pair<std::string, hid_t>("H5T_STD_REF_OBJ", H5T_STD_REF_OBJ));
         /*
-                        nameToType.insert(std::pair<std::string, hid_t>("H5T_UNIX_D32BE", H5T_UNIX_D32BE));
-                        nameToType.insert(std::pair<std::string, hid_t>("H5T_UNIX_D32LE", H5T_UNIX_D32LE));
-                        nameToType.insert(std::pair<std::string, hid_t>("H5T_UNIX_D64BE", H5T_UNIX_D64BE));
-                        nameToType.insert(std::pair<std::string, hid_t>("H5T_UNIX_D64LE", H5T_UNIX_D64LE));
-        		nameToType.insert(std::pair<std::string, hid_t>("H5T_STRING", H5T_STRING));
-        		nameToType.insert(std::pair<std::string, hid_t>("H5T_OPAQUE", H5T_OPAQUE));
-        		nameToType.insert(std::pair<std::string, hid_t>("H5T_COMPOUND", H5T_COMPOUND));
-        		nameToType.insert(std::pair<std::string, hid_t>("H5T_ENUM", H5T_ENUM));
-        		nameToType.insert(std::pair<std::string, hid_t>("H5T_VLEN", H5T_VLEN));
-        		nameToType.insert(std::pair<std::string, hid_t>("H5T_ARRAY", H5T_ARRAY));
+        nameToType.insert(std::pair<std::string, hid_t>("H5T_UNIX_D32BE", H5T_UNIX_D32BE));
+        nameToType.insert(std::pair<std::string, hid_t>("H5T_UNIX_D32LE", H5T_UNIX_D32LE));
+        nameToType.insert(std::pair<std::string, hid_t>("H5T_UNIX_D64BE", H5T_UNIX_D64BE));
+        nameToType.insert(std::pair<std::string, hid_t>("H5T_UNIX_D64LE", H5T_UNIX_D64LE));
+        nameToType.insert(std::pair<std::string, hid_t>("H5T_STRING", H5T_STRING));
+        nameToType.insert(std::pair<std::string, hid_t>("H5T_OPAQUE", H5T_OPAQUE));
+        nameToType.insert(std::pair<std::string, hid_t>("H5T_COMPOUND", H5T_COMPOUND));
+        nameToType.insert(std::pair<std::string, hid_t>("H5T_ENUM", H5T_ENUM));
+        nameToType.insert(std::pair<std::string, hid_t>("H5T_VLEN", H5T_VLEN));
+        nameToType.insert(std::pair<std::string, hid_t>("H5T_ARRAY", H5T_ARRAY));
         */
-
-        return nameToType;
     }
+
+    static void cleanMap()
+    {
+        nameToType.clear();
+    }
+
+
+private:
+    void init();
 };
 }
 

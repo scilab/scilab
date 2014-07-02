@@ -202,6 +202,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\sci_gateway\cpp\hdf5_gw.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_h5attr.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_h5close.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_h5cp.cpp" />
@@ -253,7 +254,6 @@
     <ClCompile Include="..\cpp\import_from_hdf5_v1.cpp" />
     <ClCompile Include="..\cpp\listvar_in_hdf5_v1.cpp" />
     <ClCompile Include="DllmainHdf5.c" />
-    <ClCompile Include="..\..\sci_gateway\c\gw_hdf5.c" />
     <ClCompile Include="h5_fileManagement.c" />
     <ClCompile Include="h5_readDataFromFile.c" />
     <ClCompile Include="h5_readDataFromFile_v1.c" />

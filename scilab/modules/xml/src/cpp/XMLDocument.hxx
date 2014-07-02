@@ -46,7 +46,7 @@ class XMLValidation;
  */
 class XML_SCILAB_IMPEXP XMLDocument: public XMLObject
 {
-    static std::list < XMLDocument * >&openDocs;
+    static std::list < XMLDocument * > openDocs;
     xmlDoc *document;
 
 public:
@@ -227,9 +227,10 @@ private:
      */
     static htmlParserCtxt *initHTMLContext(std::string * error);
 
-    static std::string * errorBuffer;
-    static std::string * errorXPathBuffer;
+    static std::string errorBuffer;
+    static std::string errorXPathBuffer;
 };
 }
 
 #endif
+

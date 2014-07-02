@@ -21,7 +21,7 @@
 namespace org_modules_hdf5
 {
 
-H5Object & H5Object::root = *new H5Object();
+H5Object* H5Object::root = NULL;
 
 H5Object::H5Object(H5Object & _parent, const std::string & _name) : parent(_parent), children(std::set<H5Object *>()), locked(false), scilabId(-1), name(_name)
 {
@@ -97,7 +97,7 @@ H5File & H5Object::getFile() const
 {
     const H5Object * sobj = this;
     const H5Object * obj = &parent;
-    while (obj != &root)
+    while (obj != root)
     {
         sobj = obj;
         obj = &(obj->parent);
@@ -711,3 +711,4 @@ herr_t H5Object::filterSoftLinkIterator(hid_t g_id, const char * name, const H5L
     return (herr_t)0;
 }
 }
+

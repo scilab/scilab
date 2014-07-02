@@ -29,6 +29,7 @@ extern "C"
 #include "os_swprintf.h"
 #include "lasterror.h"
 #include "reference_modules.h"
+#include "dynamic_module.h"
 }
 
 namespace types
@@ -365,14 +366,12 @@ DynamicFunction::DynamicFunction(std::wstring _wstName, std::wstring _wstEntryPo
     m_wstLoadDepsName       = _wstLoadDepsName;
     m_pLoadDeps             = NULL;
     m_bCloseLibAfterCall    = _bCloseLibAfterCall;
-    m_bLoaded               = false;
     m_iType                 = _iType;
     m_pFunc                 = NULL;
     m_pOptFunc              = NULL;
     m_pOldFunc              = NULL;
     m_pMexFunc              = NULL;
     m_pFunction             = NULL;
-    m_hLib                  = NULL;
 }
 
 DynamicFunction::DynamicFunction(std::wstring _wstName, std::wstring _wstEntryPointName, std::wstring _wstLibName, FunctionType _iType, LOAD_DEPS _pLoadDeps, std::wstring _wstModule, bool _bCloseLibAfterCall)
@@ -384,30 +383,26 @@ DynamicFunction::DynamicFunction(std::wstring _wstName, std::wstring _wstEntryPo
     m_pLoadDeps             = _pLoadDeps;
     m_wstLoadDepsName       = L"";
     m_bCloseLibAfterCall    = _bCloseLibAfterCall;
-    m_bLoaded               = false;
     m_iType                 = _iType;
     m_pFunc                 = NULL;
     m_pOptFunc              = NULL;
     m_pOldFunc              = NULL;
     m_pMexFunc              = NULL;
     m_pFunction             = NULL;
-    m_hLib                  = NULL;
 }
 
 Function::ReturnValue DynamicFunction::call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc)
 {
     ReturnValue ret = OK;
-    if (m_bLoaded == false)
+    if (m_pFunction == NULL)
     {
         if (Init() != OK)
         {
             return Error;
         }
-        /*Create function object*/
-        m_bLoaded = true;
     }
-    /*call function*/
 
+    /*call function*/
     if (m_pFunction->call(in, opt, _iRetCount, out, execFunc) != OK)
     {
         return Error;
@@ -417,7 +412,6 @@ Function::ReturnValue DynamicFunction::call(typed_list &in, optional_list &opt, 
     if (m_bCloseLibAfterCall)
     {
         Clear();
-        m_bLoaded = false;
     }
 
     return OK;
@@ -433,57 +427,71 @@ Callable::ReturnValue DynamicFunction::Init()
         return Error;
     }
 
-    char* pstLibName = wide_string_to_UTF8(m_wstLibName.c_str());
-    m_hLib = LoadDynLibrary(pstLibName);
-    FREE(pstLibName);
-    if (m_hLib == NULL)
+    DynLibHandle hLib = getDynModule(m_wstLibName.c_str());
+    if (hLib == (DynLibHandle) - 1)
     {
-        //2nd chance for linux !
-#ifndef _MSC_VER
-        char* pstError = GetLastDynLibError();
+        char* pstLibName = wide_string_to_UTF8(m_wstLibName.c_str());
+        hLib = LoadDynLibrary(pstLibName);
+        FREE(pstLibName);
 
-        /* Haven't been able to find the lib with dlopen...
-         * This can happen for two reasons:
-         * - the lib must be dynamically linked
-         * - Some silly issues under Suse (see bug #2875)
-         * Note that we are handling only the "source tree build"
-         * because libraries are split (they are in the same directory
-         * in the binary)
-         */
-        wchar_t* pwstScilabPath = getSCIW();
-        wchar_t pwstModulesPath[] = L"/modules/";
-        wchar_t pwstLTDir[] =  L".libs/";
-
-        /* Build the full path to the library */
-        int iPathToLibLen = (wcslen(pwstScilabPath) + wcslen(pwstModulesPath) + wcslen(m_wstModule.c_str()) + wcslen(L"/") + wcslen(pwstLTDir) + wcslen(m_wstLibName.c_str()) + 1);
-        wchar_t* pwstPathToLib = (wchar_t*)MALLOC(iPathToLibLen * sizeof(wchar_t));
-        os_swprintf(pwstPathToLib, iPathToLibLen, L"%ls%ls%ls/%ls%ls", pwstScilabPath, pwstModulesPath, m_wstModule.c_str(), pwstLTDir, m_wstLibName.c_str());
-        char* pstPathToLib = wide_string_to_UTF8(pwstPathToLib);
-        m_hLib = LoadDynLibrary(pstPathToLib);
-
-        FREE(pwstPathToLib);
-
-        if (m_hLib == NULL)
+        if (hLib == (DynLibHandle) - 1)
         {
-            if (pstError != NULL)
-            {
-                Scierror(999, _("A error has been detected while loading %s: %s\n"), pstLibName, pstError);
-            }
-            return Error;
-        }
-#else
-        char* pstError = wide_string_to_UTF8(m_wstLibName.c_str());
-        Scierror(999, _("Impossible to load %s library\n"), pstError);
-        FREE(pstError);
-        return Error;
-#endif
-    }
+            //2nd chance for linux !
+#ifndef _MSC_VER
+            char* pstError = GetLastDynLibError();
 
-    /*Load deps*/
-    if (m_wstLoadDepsName.empty() == false && m_pLoadDeps == NULL)
-    {
-        char* pstLoadDepsName = wide_string_to_UTF8(m_wstLoadDepsName.c_str());
-        m_pLoadDeps = (LOAD_DEPS)GetDynLibFuncPtr(m_hLib, pstLoadDepsName);
+            /* Haven't been able to find the lib with dlopen...
+            * This can happen for two reasons:
+            * - the lib must be dynamically linked
+            * - Some silly issues under Suse (see bug #2875)
+            * Note that we are handling only the "source tree build"
+            * because libraries are split (they are in the same directory
+            * in the binary)
+            */
+            wchar_t* pwstScilabPath = getSCIW();
+            wchar_t pwstModulesPath[] = L"/modules/";
+            wchar_t pwstLTDir[] =  L".libs/";
+
+            /* Build the full path to the library */
+            int iPathToLibLen = (wcslen(pwstScilabPath) + wcslen(pwstModulesPath) + wcslen(m_wstModule.c_str()) + wcslen(L"/") + wcslen(pwstLTDir) + wcslen(m_wstLibName.c_str()) + 1);
+            wchar_t* pwstPathToLib = (wchar_t*)MALLOC(iPathToLibLen * sizeof(wchar_t));
+            os_swprintf(pwstPathToLib, iPathToLibLen, L"%ls%ls%ls/%ls%ls", pwstScilabPath, pwstModulesPath, m_wstModule.c_str(), pwstLTDir, m_wstLibName.c_str());
+            char* pstPathToLib = wide_string_to_UTF8(pwstPathToLib);
+            hLib = LoadDynLibrary(pstPathToLib);
+
+            FREE(pwstPathToLib);
+
+            if (hLib == (DynLibHandle) - 1)
+            {
+                if (pstError != NULL)
+                {
+                    Scierror(999, _("A error has been detected while loading %s: %s\n"), pstLibName, pstError);
+                }
+                return Error;
+            }
+#else
+            char* pstError = wide_string_to_UTF8(m_wstLibName.c_str());
+            Scierror(999, _("Impossible to load %s library\n"), pstError);
+            FREE(pstError);
+            return Error;
+#endif
+        }
+        addDynModule(m_wstLibName.c_str(), hLib);
+
+        //call init module function
+        INIT_MODULE pInit = (INIT_MODULE)GetDynLibFuncPtr(hLib, "Initialize");
+        if (pInit)
+        {
+            pInit();
+        }
+
+        /*Load deps*/
+        if (m_wstLoadDepsName.empty() == false && m_pLoadDeps == NULL)
+        {
+            char* pstLoadDepsName = wide_string_to_UTF8(m_wstLoadDepsName.c_str());
+            m_pLoadDeps = (LOAD_DEPS)GetDynLibFuncPtr(hLib, pstLoadDepsName);
+        }
+
     }
 
     /*Load gateway*/
@@ -493,16 +501,16 @@ Callable::ReturnValue DynamicFunction::Init()
         switch (m_iType)
         {
             case EntryPointCPPOpt :
-                m_pOptFunc = (GW_FUNC_OPT)GetDynLibFuncPtr(m_hLib, pstEntryPoint);
+                m_pOptFunc = (GW_FUNC_OPT)GetDynLibFuncPtr(hLib, pstEntryPoint);
                 break;
             case EntryPointCPP :
-                m_pFunc = (GW_FUNC)GetDynLibFuncPtr(m_hLib, pstEntryPoint);
+                m_pFunc = (GW_FUNC)GetDynLibFuncPtr(hLib, pstEntryPoint);
                 break;
             case EntryPointC :
-                m_pOldFunc = (OLDGW_FUNC)GetDynLibFuncPtr(m_hLib, pstEntryPoint);
+                m_pOldFunc = (OLDGW_FUNC)GetDynLibFuncPtr(hLib, pstEntryPoint);
                 break;
             case EntryPointMex :
-                m_pMexFunc = (MEXGW_FUNC)GetDynLibFuncPtr(m_hLib, pstEntryPoint);
+                m_pMexFunc = (MEXGW_FUNC)GetDynLibFuncPtr(hLib, pstEntryPoint);
                 break;
         }
 
@@ -544,12 +552,6 @@ Callable::ReturnValue DynamicFunction::Init()
 
 void DynamicFunction::Clear()
 {
-    if (m_hLib)
-    {
-        FreeDynLibrary(m_hLib);
-        m_hLib = NULL;
-    }
-
     m_pFunc     = NULL;
     m_pOldFunc  = NULL;
     m_pMexFunc  = NULL;

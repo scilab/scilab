@@ -15,7 +15,7 @@
 namespace org_modules_hdf5
 {
 
-std::map<std::string, hid_t> H5Type::nameToType = initMap();
+std::map<std::string, hid_t> H5Type::nameToType;
 
 void H5Type::init()
 {

@@ -31,7 +31,6 @@
 #include "sciblk4.h"
 #include "sciblk2.h"
 #include "MlistGetFieldNumber.h"
-#include "dynamic_link.h"
 #include "createblklist.h"
 #include "scicos.h"
 /*--------------------------------------------------------------------------*/

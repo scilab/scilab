@@ -17,6 +17,7 @@
 
 #include <wchar.h> /* wchar_t */
 #include "dynlib_dynamic_link.h"
+#include "dynamiclibrary.h"
 #include "BOOL.h"
 
 /**
@@ -32,7 +33,7 @@ DYNAMIC_LINK_IMPEXP int Sci_dlopen(wchar_t* _pwstDynLibPath);
 * return value is == 0 if the FreeDynLibrary failed
 * @param loaded_file
 */
-DYNAMIC_LINK_IMPEXP int Sci_dlclose(unsigned long long _hLib);
+DYNAMIC_LINK_IMPEXP int Sci_dlclose(DynLibHandle _hLib);
 
 /**
 * This routine load the entryname ename

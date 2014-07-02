@@ -757,6 +757,53 @@ std::list<ConfigVariable::EntryPointStr*>* ConfigVariable::getEntryPointList()
     return &m_EntryPointList;
 }
 
+//dynamic modules
+std::map<std::wstring, DynLibHandle> ConfigVariable::m_DynModules;
+
+void ConfigVariable::addDynModule(std::wstring _name, DynLibHandle _lib)
+{
+    m_DynModules[_name] = _lib;
+}
+
+void ConfigVariable::removeDynModule(std::wstring _name)
+{
+    m_DynModules.erase(_name);
+}
+
+DynLibHandle ConfigVariable::getDynModule(std::wstring _name)
+{
+    std::map<std::wstring, DynLibHandle>::iterator it;
+    it = m_DynModules.find(_name);
+    if (it != m_DynModules.end())
+    {
+        return it->second;
+    }
+
+    return (DynLibHandle) - 1;
+}
+
+int ConfigVariable::getDynModuleCount()
+{
+    return (int)m_DynModules.size();
+}
+
+DynLibHandle* ConfigVariable::getAllDynModule()
+{
+    DynLibHandle* moduleList = new DynLibHandle[m_DynModules.size()];
+    std::map<std::wstring, DynLibHandle>::iterator it = m_DynModules.begin();
+    std::map<std::wstring, DynLibHandle>::iterator itEnd = m_DynModules.end();
+    for (int i = 0; it != itEnd ; ++it, ++i)
+    {
+        moduleList[i] = it->second;
+    }
+
+    return moduleList;
+}
+
+void ConfigVariable::cleanDynModule()
+{
+    m_DynModules.clear();
+}
 
 // Command Line Arguments
 std::vector<std::wstring> ConfigVariable::m_Args;

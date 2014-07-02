@@ -11,14 +11,34 @@
  *
  */
 /*--------------------------------------------------------------------------*/
+
+#include "H5Type.hxx"
+#include "H5VariableScope.hxx"
+#include "H5Object.hxx"
+
+extern "C"
+{
 #include "gw_hdf5.h"
 #include "callFunctionFromGateway.h"
 #include "api_scilab.h"
 #include "sci_malloc.h"
+}
 /*--------------------------------------------------------------------------*/
-int gw_hdf5(void)
+int Initialize(void)
 {
+    org_modules_hdf5::H5Type::initMap();
+    org_modules_hdf5::H5VariableScope::initScope();
+    org_modules_hdf5::H5Object::initRoot();
     return 0;
 }
 /*--------------------------------------------------------------------------*/
+int Finalize(void)
+{
+    org_modules_hdf5::H5Type::cleanMap();
+    //org_modules_hdf5::H5VariableScope::clearScope();
+    org_modules_hdf5::H5Object::clearRoot();
+    return 0;
+}
+/*--------------------------------------------------------------------------*/
+
 

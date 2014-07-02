@@ -21,7 +21,6 @@ extern "C"
 #include <stdio.h>
 #include <stdlib.h>
 #include "dynamic_link.h"
-#include "dynamiclibrary.h"
 #include "men_Sutils.h"
 #include "sci_malloc.h" /* MALLOC */
 #include "warningmode.h"
@@ -162,9 +161,9 @@ static void Underscores(BOOL _bFortran, wchar_t* _pwstEntryPointName, wchar_t* _
     return;
 }
 /*---------------------------------------------------------------------------*/
-int Sci_dlclose(unsigned long long _hLib)
+int Sci_dlclose(DynLibHandle _hLib)
 {
-    return FreeDynLibrary((DynLibHandle)_hLib);
+    return FreeDynLibrary(_hLib);
 }
 /*---------------------------------------------------------------------------*/
 int Sci_dlopen(wchar_t* _pwstDynLibPath)
@@ -191,7 +190,7 @@ int Sci_dlopen(wchar_t* _pwstDynLibPath)
 
     ConfigVariable::DynamicLibraryStr* pDL = ConfigVariable::getNewDynamicLibraryStr();
     ConfigVariable::setLibraryName(pDL, _pwstDynLibPath);
-    pDL->hLib = (unsigned long long)hLib;
+    pDL->hLib = hLib;
 
 
     return ConfigVariable::addDynamicLibrary(pDL);

@@ -459,6 +459,22 @@ bool FuncManager::UnloadModules(bool _bNoStart)
 
     //protected all variables after scilab start
     symbol::Context::getInstance()->scope_begin();
+
+    //call finalize function on dynamic modules
+    int iCount = ConfigVariable::getDynModuleCount();
+    DynLibHandle* libs = ConfigVariable::getAllDynModule();
+    for (int i = 0 ; i < iCount ; i++)
+    {
+        FINALIZE_MODULE pFinalize = (FINALIZE_MODULE)GetDynLibFuncPtr(libs[i], "Finalize");
+        if (pFinalize)
+        {
+            pFinalize();
+        }
+        FreeDynLibrary(libs[i]);
+    }
+
+    ConfigVariable::cleanDynModule();
+    delete[] libs;
     return bRet;
 }
 

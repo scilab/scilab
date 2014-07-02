@@ -32,9 +32,9 @@ extern "C"
 namespace org_modules_xml
 {
 
-    std::string * XMLDocument::errorBuffer = 0;
-    std::string * XMLDocument::errorXPathBuffer = 0;
-    std::list < XMLDocument * >&XMLDocument::openDocs = *new std::list < XMLDocument * >();
+    std::string XMLDocument::errorBuffer;
+    std::string XMLDocument::errorXPathBuffer;
+    std::list < XMLDocument *> XMLDocument::openDocs;
 
     XMLDocument::XMLDocument(const char *path, bool validate, std::string * error, const char * encoding, const bool html): XMLObject()
     {
@@ -126,16 +126,6 @@ namespace org_modules_xml
             }
             xmlFreeDoc(document);
         }
-        if (errorBuffer)
-        {
-            delete errorBuffer;
-            errorBuffer = 0;
-        }
-        if (errorXPathBuffer)
-        {
-            delete errorXPathBuffer;
-            errorXPathBuffer = 0;
-        }
     }
 
     void *XMLDocument::getRealXMLPointer() const
@@ -145,18 +135,14 @@ namespace org_modules_xml
 
     const XMLXPath *XMLDocument::makeXPathQuery(const char *query, char **namespaces, int length, const XMLElement * e, std::string * error)
     {
-        if (errorXPathBuffer)
-        {
-            delete errorXPathBuffer;
-        }
-        errorXPathBuffer = new std::string();
+        errorXPathBuffer.clear();
 
         xmlXPathContext *ctxt = xmlXPathNewContext(document);
 
         if (!ctxt)
         {
-            errorXPathBuffer->append(gettext("Cannot create a parser context"));
-            *error = *errorXPathBuffer;
+            errorXPathBuffer.append(gettext("Cannot create a parser context"));
+            *error = errorXPathBuffer;
             return 0;
         }
 
@@ -180,7 +166,7 @@ namespace org_modules_xml
         {
             xmlSetStructuredErrorFunc(ctxt, 0);
             xmlXPathFreeContext(ctxt);
-            *error = *errorXPathBuffer;
+            *error = errorXPathBuffer;
             return 0;
         }
 
@@ -191,7 +177,7 @@ namespace org_modules_xml
         xmlXPathFreeCompExpr(expr);
         if (!xpath)
         {
-            *error = *errorXPathBuffer;
+            *error = errorXPathBuffer;
             return 0;
         }
 
@@ -356,7 +342,7 @@ namespace org_modules_xml
         doc = xmlCtxtReadFile(ctxt, filename, encoding, options);
         if (!doc || !ctxt->valid)
         {
-            *error = *errorBuffer;
+            *error = errorBuffer;
         }
 
         xmlSetGenericErrorFunc(0, errorFunctionWithoutOutput);
@@ -380,7 +366,7 @@ namespace org_modules_xml
         doc = htmlCtxtReadFile(ctxt, filename, encoding, options);
         if (!doc || !ctxt->valid)
         {
-            *error = *errorBuffer;
+            *error = errorBuffer;
         }
 
         xmlSetGenericErrorFunc(0, errorFunctionWithoutOutput);
@@ -409,7 +395,7 @@ namespace org_modules_xml
         doc = xmlCtxtReadDoc(ctxt, (const xmlChar *)xmlCode.c_str(), 0, encoding, options);
         if (!doc || !ctxt->valid)
         {
-            *error = *errorBuffer;
+            *error = errorBuffer;
         }
 
         xmlSetGenericErrorFunc(0, errorFunctionWithoutOutput);
@@ -433,7 +419,7 @@ namespace org_modules_xml
         doc = htmlCtxtReadDoc(ctxt, (const xmlChar *)htmlCode.c_str(), 0, encoding, options);
         if (!doc || !ctxt->valid)
         {
-            *error = *errorBuffer;
+            *error = errorBuffer;
         }
 
         xmlSetGenericErrorFunc(0, errorFunctionWithoutOutput);
@@ -470,17 +456,13 @@ namespace org_modules_xml
     {
         xmlParserCtxt *ctxt;
 
-        if (errorBuffer)
-        {
-            delete errorBuffer;
-        }
-        errorBuffer = new std::string();
+        errorBuffer.clear();
 
         ctxt = xmlNewParserCtxt();
         if (!ctxt)
         {
-            errorBuffer->append(gettext("Cannot create a parser context"));
-            *error = *errorBuffer;
+            errorBuffer.append(gettext("Cannot create a parser context"));
+            *error = errorBuffer;
             return 0;
         }
 
@@ -498,17 +480,13 @@ namespace org_modules_xml
     {
         htmlParserCtxt *ctxt;
 
-        if (errorBuffer)
-        {
-            delete errorBuffer;
-        }
-        errorBuffer = new std::string();
+        errorBuffer.clear();
 
         ctxt = htmlNewParserCtxt();
         if (!ctxt)
         {
-            errorBuffer->append(gettext("Cannot create a parser context"));
-            *error = *errorBuffer;
+            errorBuffer.append(gettext("Cannot create a parser context"));
+            *error = errorBuffer;
             return 0;
         }
 
@@ -525,11 +503,12 @@ namespace org_modules_xml
         va_start(args, msg);
         vsnprintf(str, BUFFER_SIZE, msg, args);
         va_end(args);
-        errorBuffer->append(str);
+        errorBuffer.append(str);
     }
 
     void XMLDocument::errorXPathFunction(void *ctx, xmlError * error)
     {
-        errorXPathBuffer->append(error->message);
+        errorXPathBuffer.append(error->message);
     }
 }
+

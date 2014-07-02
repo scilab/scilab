@@ -32,8 +32,6 @@ struct GatewayStr
 
 typedef std::vector<GatewayStr> vectGateway;
 
-vectGateway loadGatewaysName(std::wstring _wstModuleName);
-
 class GenericModule
 {
 protected :

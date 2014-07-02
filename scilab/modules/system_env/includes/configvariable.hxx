@@ -29,6 +29,7 @@ extern "C"
 {
 #include "dynlib_system_env.h"
 #include "Thread_Wrapper.h"
+#include "dynamiclibrary.h"
 }
 
 class EXTERN_SYSTEM_ENV ConfigVariable
@@ -249,7 +250,7 @@ public :
     typedef struct
     {
         wchar_t* pwstLibraryName;   /** name of dynamic library **/
-        unsigned long long hLib;        /** handle of the library **/
+        DynLibHandle hLib;        /** handle of the library **/
     } DynamicLibraryStr;
 
     typedef struct
@@ -286,6 +287,17 @@ public :
     static void removeEntryPoint(int _iEntryPointIndex);
     static EntryPointStr* getEntryPoint(wchar_t* _pwstEntryPointName, int _iDynamicLibraryIndex = -1);
     static std::vector<std::wstring> getEntryPointNameList();
+
+    //dynamic modules
+private :
+    static std::map<std::wstring, DynLibHandle> m_DynModules;
+public :
+    static void addDynModule(std::wstring _name, DynLibHandle _lib);
+    static void removeDynModule(std::wstring _name);
+    static DynLibHandle getDynModule(std::wstring _name);
+    static int getDynModuleCount();
+    static DynLibHandle* getAllDynModule();
+    static void cleanDynModule();
 
     // Command Line Arguments
 private :

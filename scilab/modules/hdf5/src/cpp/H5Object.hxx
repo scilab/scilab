@@ -49,7 +49,7 @@ class H5File;
 
 class H5Object
 {
-    static H5Object & root;
+    static H5Object* root;
 
     bool locked;
     H5Object & parent;
@@ -66,6 +66,16 @@ public :
     H5Object(H5Object & _parent);
     H5Object(H5Object & _parent, const std::string & _name);
     virtual ~H5Object();
+
+    static void clearRoot()
+    {
+        delete root;
+    }
+
+    static void initRoot()
+    {
+        root = new H5Object();
+    }
 
     virtual void cleanup();
 
@@ -273,7 +283,7 @@ public :
 
     bool isRoot() const
     {
-        return this == &root;
+        return this == root;
     }
 
     void unregisterChild(H5Object * child)
@@ -291,18 +301,18 @@ public :
 
     static H5Object & getRoot()
     {
-        return root;
+        return *root;
     }
 
     static void cleanAll()
     {
-        root.locked = true;
-        for (std::set<H5Object *>::iterator it = root.children.begin(); it != root.children.end(); it++)
+        root->locked = true;
+        for (std::set<H5Object *>::iterator it = root->children.begin(); it != root->children.end(); it++)
         {
             delete *it;
         }
-        root.children.clear();
-        root.locked = false;
+        root->children.clear();
+        root->locked = false;
         H5VariableScope::clearScope();
     }
 
@@ -427,3 +437,4 @@ private :
 #undef __H5_LS_LENGTH__
 
 #endif // __H5OBJECT_HXX__
+

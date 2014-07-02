@@ -42,6 +42,7 @@ using namespace std;
 
 //Gateway function pointer
 typedef int (*GW_MOD)(void);
+typedef int (*FINALIZE_MODULE)(void);
 
 class EXTERN_FUNC_MAN FuncManager
 {

@@ -60,6 +60,9 @@
     <ClCompile Include="src\cpp\reference_modules.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\cpp\dynamic_module.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\configvariable.hxx">
@@ -105,6 +108,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="includes\reference_modules.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\dynamic_module.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

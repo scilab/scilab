@@ -22,7 +22,6 @@
 #define __SCICOS_H
 
 #include "machine.h"
-#include "scicos_block4.h"
 #include "import.h"
 
 /* maximum value for sum of number of inputs and outputs ports of a given

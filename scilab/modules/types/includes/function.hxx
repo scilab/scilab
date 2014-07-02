@@ -46,6 +46,7 @@ public :
     };
 
     typedef void (*LOAD_DEPS)(void);
+    typedef int (*INIT_MODULE)(void);
     typedef ReturnValue (*GW_FUNC)(typed_list &in, int _iRetCount, typed_list &out);
     typedef ReturnValue (*GW_FUNC_OPT)(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out);
 
@@ -189,14 +190,12 @@ private :
     std::wstring            m_wstEntryPoint;
     std::wstring            m_wstLoadDepsName;
     bool                    m_bCloseLibAfterCall;
-    bool                    m_bLoaded;
     FunctionType            m_iType;
     GW_FUNC                 m_pFunc;
     GW_FUNC_OPT             m_pOptFunc;
     OLDGW_FUNC              m_pOldFunc;
     MEXGW_FUNC              m_pMexFunc;
     Function*               m_pFunction;
-    DynLibHandle            m_hLib;
 };
 
 }

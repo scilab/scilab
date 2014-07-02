@@ -11,3 +11,6 @@ SetError
 isError
 resetError
 checkReferenceModule
+addDynModule
+removeDynModule
+getDynModule
