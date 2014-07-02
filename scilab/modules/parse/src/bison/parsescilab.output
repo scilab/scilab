@@ -23,7 +23,7 @@ Grammaire
     1 program: expressions
     2        | "end of line" expressions
     3        | expressionLineBreak
-    4        | /* vide */
+    4        | %empty
 
     5 expressions: recursiveExpression
     6            | recursiveExpression expression
@@ -131,7 +131,7 @@ Grammaire
 
    97 functionDeclarationArguments: "(" idList ")"
    98                             | "(" ")"
-   99                             | /* vide */
+   99                             | %empty
 
   100 idList: idList "," "identifier"
   101       | "identifier"
@@ -143,7 +143,7 @@ Grammaire
   106                         | "," "end of line"
 
   107 functionBody: expressions
-  108             | /* vide */
+  108             | %empty
 
   109 condition: functionCall
   110          | variable
@@ -340,10 +340,10 @@ Grammaire
   282          | "if" condition then thenBody elseIfControl "end"
 
   283 thenBody: expressions
-  284         | /* vide */
+  284         | %empty
 
   285 elseBody: expressions
-  286         | /* vide */
+  286         | %empty
 
   287 ifConditionBreak: ";"
   288                 | ";" "end of line"
@@ -356,7 +356,7 @@ Grammaire
   294     | ifConditionBreak "then" "end of line"
   295     | "then" ifConditionBreak
   296     | ifConditionBreak
-  297     | /* vide */
+  297     | %empty
 
   298 else: "else"
   299     | "else" ","
@@ -402,7 +402,7 @@ Grammaire
   332             | casesControl "case" functionCall caseControlBreak caseBody
 
   333 caseBody: expressions
-  334         | /* vide */
+  334         | %empty
 
   335 caseControlBreak: "then"
   336                 | ","
@@ -415,7 +415,7 @@ Grammaire
   343                 | "then" "," "end of line"
   344                 | "then" ";"
   345                 | "then" ";" "end of line"
-  346                 | /* vide */
+  346                 | %empty
 
   347 forControl: "for" "identifier" "=" forIterator forConditionBreak forBody "end"
   348           | "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
@@ -430,15 +430,15 @@ Grammaire
   355                  | "," "end of line"
   356                  | "do"
   357                  | "do" "end of line"
-  358                  | /* vide */
+  358                  | %empty
 
   359 forBody: expressions
-  360        | /* vide */
+  360        | %empty
 
   361 whileControl: "while" condition whileConditionBreak whileBody "end"
 
   362 whileBody: expressions
-  363          | /* vide */
+  363          | %empty
 
   364 whileConditionBreak: ","
   365                    | ";"
@@ -466,7 +466,7 @@ Grammaire
   385          | "end of line" expressions
   386          | "," expressions
   387          | "end of line"
-  388          | /* vide */
+  388          | %empty
 
   389 returnControl: "return"
   390              | "return" variable
@@ -773,7 +773,7 @@ keywords (148)
     1 program: . expressions
     2        | . "end of line" expressions
     3        | . expressionLineBreak
-    4        | .  ["end of file"]
+    4        | . %empty  ["end of file"]
     5 expressions: . recursiveExpression
     6            | . recursiveExpression expression
     7            | . recursiveExpression expression "line comment"
@@ -2421,7 +2421,7 @@ keywords (148)
   385          | . "end of line" expressions
   386          | . "," expressions
   387          | . "end of line"
-  388          | .  ["end", "catch"]
+  388          | . %empty  ["end", "catch"]
   389 returnControl: . "return"
   390              | . "return" variable
   391              | . "return" functionCall
@@ -3970,7 +3970,7 @@ keywords (148)
   191 listableEnd: . listableBegin ":" variable
   192            | . listableBegin ":" functionCall
   193            | . listableBegin
-  195 variable: "~ or @" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "'", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", ".", ".'", "+", "-", "*", ".*", ".*.", "*.", "/", "./", "/.", "./.", "\\", ".\\", "\\.", ".\\.", "** or ^", ".^", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
+  195 variable: "~ or @" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "'", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", ".'", "+", "-", "*", ".*", ".*.", "*.", "/", "./", "/.", "./.", "\\", ".\\", "\\.", ".\\.", "** or ^", ".^", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
   199         | functionCall . "." variable
   200         | functionCall . "." keywords
   201         | functionCall . "." functionCall
@@ -3978,6 +3978,7 @@ keywords (148)
   220         | functionCall . "(" functionArgs ")"
 
     "("  décalage et aller à l'état 182
+    "."  décalage et aller à l'état 183
 
     $défaut  réduction par utilisation de la règle 195 (variable)
 
@@ -3989,7 +3990,7 @@ keywords (148)
     Conflit entre la règle 195 et le jeton "'" résolu par réduction ("'" < NOT).
     Conflit entre la règle 195 et le jeton ":" résolu par réduction (":" < NOT).
     Conflit entre la règle 195 et le jeton "(" résolu par décalage (NOT < "(").
-    Conflit entre la règle 195 et le jeton "." résolu par réduction ("." < NOT).
+    Conflit entre la règle 195 et le jeton "." résolu par décalage (NOT < ".").
     Conflit entre la règle 195 et le jeton ".'" résolu par réduction (".'" < NOT).
     Conflit entre la règle 195 et le jeton "+" résolu par réduction ("+" < NOT).
     Conflit entre la règle 195 et le jeton "-" résolu par réduction ("-" < NOT).
@@ -4092,7 +4093,7 @@ keywords (148)
   191 listableEnd: . listableBegin ":" variable
   192            | . listableBegin ":" functionCall
   193            | . listableBegin
-  194 variable: "~ or @" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "'", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", ".", ".'", "+", "-", "*", ".*", ".*.", "*.", "/", "./", "/.", "./.", "\\", ".\\", "\\.", ".\\.", "** or ^", ".^", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
+  194 variable: "~ or @" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "'", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", ".'", "+", "-", "*", ".*", ".*.", "*.", "/", "./", "/.", "./.", "\\", ".\\", "\\.", ".\\.", "** or ^", ".^", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
   196         | variable . "." "identifier"
   197         | variable . "." keywords
   198         | variable . "." functionCall
@@ -4101,6 +4102,7 @@ keywords (148)
   219         | variable . "(" functionArgs ")"
 
     "("  décalage et aller à l'état 184
+    "."  décalage et aller à l'état 185
 
     $défaut  réduction par utilisation de la règle 194 (variable)
 
@@ -4112,7 +4114,7 @@ keywords (148)
     Conflit entre la règle 194 et le jeton "'" résolu par réduction ("'" < NOT).
     Conflit entre la règle 194 et le jeton ":" résolu par réduction (":" < NOT).
     Conflit entre la règle 194 et le jeton "(" résolu par décalage (NOT < "(").
-    Conflit entre la règle 194 et le jeton "." résolu par réduction ("." < NOT).
+    Conflit entre la règle 194 et le jeton "." résolu par décalage (NOT < ".").
     Conflit entre la règle 194 et le jeton ".'" résolu par réduction (".'" < NOT).
     Conflit entre la règle 194 et le jeton "+" résolu par réduction ("+" < NOT).
     Conflit entre la règle 194 et le jeton "-" résolu par réduction ("-" < NOT).
@@ -6102,7 +6104,7 @@ keywords (148)
   294     | . ifConditionBreak "then" "end of line"
   295     | . "then" ifConditionBreak
   296     | . ifConditionBreak
-  297     | .  [error, "%t or %T", "%f or %F", "~ or @", "$", "(", "[", "{", "+", "-", "if", "else", "elseif", "end", "select", "switch", "function", "#function", "hidden", "for", "while", "break", "continue", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
+  297     | . %empty  [error, "%t or %T", "%f or %F", "~ or @", "$", "(", "[", "{", "+", "-", "if", "else", "elseif", "end", "select", "switch", "function", "#function", "hidden", "for", "while", "break", "continue", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
 
     "end of line"  décalage et aller à l'état 213
     ","            décalage et aller à l'état 214
@@ -6265,7 +6267,7 @@ keywords (148)
    79                    | "function" "identifier" . functionDeclarationArguments functionDeclarationBreak functionBody "end"
    97 functionDeclarationArguments: . "(" idList ")"
    98                             | . "(" ")"
-   99                             | .  ["end of line", ",", ";", "line comment"]
+   99                             | . %empty  ["end of line", ",", ";", "line comment"]
 
     "("  décalage et aller à l'état 223
     "="  décalage et aller à l'état 224
@@ -6300,7 +6302,7 @@ keywords (148)
    87                    | "#function" "identifier" . functionDeclarationArguments functionDeclarationBreak functionBody "end"
    97 functionDeclarationArguments: . "(" idList ")"
    98                             | . "(" ")"
-   99                             | .  ["end of line", ",", ";", "line comment"]
+   99                             | . %empty  ["end of line", ",", ";", "line comment"]
 
     "("  décalage et aller à l'état 223
     "="  décalage et aller à l'état 228
@@ -14694,7 +14696,7 @@ keywords (148)
   282          | . "if" condition then thenBody elseIfControl "end"
   282          | "if" condition then . thenBody elseIfControl "end"
   283 thenBody: . expressions
-  284         | .  ["else", "elseif", "end"]
+  284         | . %empty  ["else", "elseif", "end"]
   307 selectControl: . select selectable selectConditionBreak casesControl "end"
   308              | . select selectable selectConditionBreak casesControl defaultCase elseBody "end"
   309              | . select selectable "line comment" selectConditionBreak casesControl "end"
@@ -14914,7 +14916,7 @@ keywords (148)
    95                    | "hidden" "function" "identifier" . functionDeclarationArguments functionDeclarationBreak functionBody "end"
    97 functionDeclarationArguments: . "(" idList ")"
    98                             | . "(" ")"
-   99                             | .  ["end of line", ",", ";", "line comment"]
+   99                             | . %empty  ["end of line", ",", ";", "line comment"]
 
     "("  décalage et aller à l'état 223
     "="  décalage et aller à l'état 424
@@ -15262,7 +15264,7 @@ keywords (148)
   361 whileControl: . "while" condition whileConditionBreak whileBody "end"
   361             | "while" condition whileConditionBreak . whileBody "end"
   362 whileBody: . expressions
-  363          | .  ["end"]
+  363          | . %empty  ["end"]
   382 tryControl: . "try" catchBody "catch" catchBody "end"
   383           | . "try" catchBody "end"
   389 returnControl: . "return"
@@ -15511,7 +15513,7 @@ keywords (148)
   385          | . "end of line" expressions
   386          | . "," expressions
   387          | . "end of line"
-  388          | .  ["end"]
+  388          | . %empty  ["end"]
   389 returnControl: . "return"
   390              | . "return" variable
   391              | . "return" functionCall
@@ -26634,7 +26636,7 @@ keywords (148)
    76                    | "function" "identifier" "=" "identifier" . functionDeclarationArguments functionDeclarationBreak functionBody "end"
    97 functionDeclarationArguments: . "(" idList ")"
    98                             | . "(" ")"
-   99                             | .  ["end of line", ",", ";", "line comment"]
+   99                             | . %empty  ["end of line", ",", ";", "line comment"]
 
     "("  décalage et aller à l'état 223
 
@@ -26743,7 +26745,7 @@ keywords (148)
    94                    | . "hidden" "function" "[" "]" "=" "identifier" functionDeclarationArguments functionDeclarationBreak functionBody "end"
    95                    | . "hidden" "function" "identifier" functionDeclarationArguments functionDeclarationBreak functionBody "end"
   107 functionBody: . expressions
-  108             | .  ["end", "endfunction"]
+  108             | . %empty  ["end", "endfunction"]
   111 comparison: . variable rightComparable
   112           | . functionCall rightComparable
   143 operation: . variable rightOperand
@@ -26931,7 +26933,7 @@ keywords (148)
    84                    | "#function" "identifier" "=" "identifier" . functionDeclarationArguments functionDeclarationBreak functionBody "end"
    97 functionDeclarationArguments: . "(" idList ")"
    98                             | . "(" ")"
-   99                             | .  ["end of line", ",", ";", "line comment"]
+   99                             | . %empty  ["end of line", ",", ";", "line comment"]
 
     "("  décalage et aller à l'état 223
 
@@ -27006,7 +27008,7 @@ keywords (148)
    94                    | . "hidden" "function" "[" "]" "=" "identifier" functionDeclarationArguments functionDeclarationBreak functionBody "end"
    95                    | . "hidden" "function" "identifier" functionDeclarationArguments functionDeclarationBreak functionBody "end"
   107 functionBody: . expressions
-  108             | .  ["end", "endfunction"]
+  108             | . %empty  ["end", "endfunction"]
   111 comparison: . variable rightComparable
   112           | . functionCall rightComparable
   143 operation: . variable rightOperand
@@ -27575,7 +27577,7 @@ keywords (148)
   355                  | . "," "end of line"
   356                  | . "do"
   357                  | . "do" "end of line"
-  358                  | .  [error, "%t or %T", "%f or %F", "~ or @", "$", "(", "[", "{", "+", "-", "if", "end", "select", "switch", "function", "#function", "hidden", "for", "while", "break", "continue", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
+  358                  | . %empty  [error, "%t or %T", "%f or %F", "~ or @", "$", "(", "[", "{", "+", "-", "if", "end", "select", "switch", "function", "#function", "hidden", "for", "while", "break", "continue", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
 
     "end of line"  décalage et aller à l'état 493
     ","            décalage et aller à l'état 494
@@ -28831,7 +28833,7 @@ keywords (148)
   281          | "if" condition then thenBody else . elseBody "end"
   282          | . "if" condition then thenBody elseIfControl "end"
   285 elseBody: . expressions
-  286         | .  ["end"]
+  286         | . %empty  ["end"]
   307 selectControl: . select selectable selectConditionBreak casesControl "end"
   308              | . select selectable selectConditionBreak casesControl defaultCase elseBody "end"
   309              | . select selectable "line comment" selectConditionBreak casesControl "end"
@@ -28917,7 +28919,7 @@ keywords (148)
    78                    | "function" "[" "]" "=" "identifier" . functionDeclarationArguments functionDeclarationBreak functionBody "end"
    97 functionDeclarationArguments: . "(" idList ")"
    98                             | . "(" ")"
-   99                             | .  ["end of line", ",", ";", "line comment"]
+   99                             | . %empty  ["end of line", ",", ";", "line comment"]
 
     "("  décalage et aller à l'état 223
 
@@ -29012,7 +29014,7 @@ keywords (148)
    86                    | "#function" "[" "]" "=" "identifier" . functionDeclarationArguments functionDeclarationBreak functionBody "end"
    97 functionDeclarationArguments: . "(" idList ")"
    98                             | . "(" ")"
-   99                             | .  ["end of line", ",", ";", "line comment"]
+   99                             | . %empty  ["end of line", ",", ";", "line comment"]
 
     "("  décalage et aller à l'état 223
 
@@ -29081,7 +29083,7 @@ keywords (148)
    92                    | "hidden" "function" "identifier" "=" "identifier" . functionDeclarationArguments functionDeclarationBreak functionBody "end"
    97 functionDeclarationArguments: . "(" idList ")"
    98                             | . "(" ")"
-   99                             | .  ["end of line", ",", ";", "line comment"]
+   99                             | . %empty  ["end of line", ",", ";", "line comment"]
 
     "("  décalage et aller à l'état 223
 
@@ -29156,7 +29158,7 @@ keywords (148)
    95                    | . "hidden" "function" "identifier" functionDeclarationArguments functionDeclarationBreak functionBody "end"
    95                    | "hidden" "function" "identifier" functionDeclarationArguments functionDeclarationBreak . functionBody "end"
   107 functionBody: . expressions
-  108             | .  ["end", "endfunction"]
+  108             | . %empty  ["end", "endfunction"]
   111 comparison: . variable rightComparable
   112           | . functionCall rightComparable
   143 operation: . variable rightOperand
@@ -29517,7 +29519,7 @@ keywords (148)
   347           | "for" "identifier" "=" forIterator forConditionBreak . forBody "end"
   348           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
   359 forBody: . expressions
-  360        | .  ["end"]
+  360        | . %empty  ["end"]
   361 whileControl: . "while" condition whileConditionBreak whileBody "end"
   382 tryControl: . "try" catchBody "catch" catchBody "end"
   383           | . "try" catchBody "end"
@@ -29743,7 +29745,7 @@ keywords (148)
   343                 | . "then" "," "end of line"
   344                 | . "then" ";"
   345                 | . "then" ";" "end of line"
-  346                 | .  [error, "%t or %T", "%f or %F", "~ or @", "$", "[", "{", "if", "else", "end", "select", "switch", "case", "otherwise", "function", "#function", "hidden", "for", "while", "break", "continue", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
+  346                 | . %empty  [error, "%t or %T", "%f or %F", "~ or @", "$", "[", "{", "if", "else", "end", "select", "switch", "case", "otherwise", "function", "#function", "hidden", "for", "while", "break", "continue", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
 
     "end of line"  décalage et aller à l'état 544
     "'"            décalage et aller à l'état 122
@@ -29885,7 +29887,7 @@ keywords (148)
   343                 | . "then" "," "end of line"
   344                 | . "then" ";"
   345                 | . "then" ";" "end of line"
-  346                 | .  [error, "%t or %T", "%f or %F", "~ or @", "$", "[", "{", "if", "else", "end", "select", "switch", "case", "otherwise", "function", "#function", "hidden", "for", "while", "break", "continue", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
+  346                 | . %empty  [error, "%t or %T", "%f or %F", "~ or @", "$", "[", "{", "if", "else", "end", "select", "switch", "case", "otherwise", "function", "#function", "hidden", "for", "while", "break", "continue", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
 
     "end of line"  décalage et aller à l'état 544
     "'"            décalage et aller à l'état 158
@@ -30226,7 +30228,7 @@ keywords (148)
   281          | . "if" condition then thenBody else elseBody "end"
   282          | . "if" condition then thenBody elseIfControl "end"
   285 elseBody: . expressions
-  286         | .  ["end"]
+  286         | . %empty  ["end"]
   307 selectControl: . select selectable selectConditionBreak casesControl "end"
   308              | . select selectable selectConditionBreak casesControl defaultCase elseBody "end"
   308              | select selectable selectConditionBreak casesControl defaultCase . elseBody "end"
@@ -30450,7 +30452,7 @@ keywords (148)
   294     | . ifConditionBreak "then" "end of line"
   295     | . "then" ifConditionBreak
   296     | . ifConditionBreak
-  297     | .  [error, "%t or %T", "%f or %F", "~ or @", "$", "(", "[", "{", "+", "-", "if", "else", "elseif", "end", "select", "switch", "function", "#function", "hidden", "for", "while", "break", "continue", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
+  297     | . %empty  [error, "%t or %T", "%f or %F", "~ or @", "$", "(", "[", "{", "+", "-", "if", "else", "elseif", "end", "select", "switch", "function", "#function", "hidden", "for", "while", "break", "continue", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
   304 elseIfControl: "elseif" condition . then thenBody
   305              | "elseif" condition . then thenBody else elseBody
   306              | "elseif" condition . then thenBody elseIfControl
@@ -30514,7 +30516,7 @@ keywords (148)
    77                    | "function" "[" functionDeclarationReturns "]" "=" "identifier" . functionDeclarationArguments functionDeclarationBreak functionBody "end"
    97 functionDeclarationArguments: . "(" idList ")"
    98                             | . "(" ")"
-   99                             | .  ["end of line", ",", ";", "line comment"]
+   99                             | . %empty  ["end of line", ",", ";", "line comment"]
 
     "("  décalage et aller à l'état 223
 
@@ -30589,7 +30591,7 @@ keywords (148)
    94                    | . "hidden" "function" "[" "]" "=" "identifier" functionDeclarationArguments functionDeclarationBreak functionBody "end"
    95                    | . "hidden" "function" "identifier" functionDeclarationArguments functionDeclarationBreak functionBody "end"
   107 functionBody: . expressions
-  108             | .  ["end", "endfunction"]
+  108             | . %empty  ["end", "endfunction"]
   111 comparison: . variable rightComparable
   112           | . functionCall rightComparable
   143 operation: . variable rightOperand
@@ -30789,7 +30791,7 @@ keywords (148)
    85                    | "#function" "[" functionDeclarationReturns "]" "=" "identifier" . functionDeclarationArguments functionDeclarationBreak functionBody "end"
    97 functionDeclarationArguments: . "(" idList ")"
    98                             | . "(" ")"
-   99                             | .  ["end of line", ",", ";", "line comment"]
+   99                             | . %empty  ["end of line", ",", ";", "line comment"]
 
     "("  décalage et aller à l'état 223
 
@@ -30864,7 +30866,7 @@ keywords (148)
    94                    | . "hidden" "function" "[" "]" "=" "identifier" functionDeclarationArguments functionDeclarationBreak functionBody "end"
    95                    | . "hidden" "function" "identifier" functionDeclarationArguments functionDeclarationBreak functionBody "end"
   107 functionBody: . expressions
-  108             | .  ["end", "endfunction"]
+  108             | . %empty  ["end", "endfunction"]
   111 comparison: . variable rightComparable
   112           | . functionCall rightComparable
   143 operation: . variable rightOperand
@@ -31043,7 +31045,7 @@ keywords (148)
    94                    | "hidden" "function" "[" "]" "=" "identifier" . functionDeclarationArguments functionDeclarationBreak functionBody "end"
    97 functionDeclarationArguments: . "(" idList ")"
    98                             | . "(" ")"
-   99                             | .  ["end of line", ",", ";", "line comment"]
+   99                             | . %empty  ["end of line", ",", ";", "line comment"]
 
     "("  décalage et aller à l'état 223
 
@@ -31100,7 +31102,7 @@ keywords (148)
   355                  | . "," "end of line"
   356                  | . "do"
   357                  | . "do" "end of line"
-  358                  | .  [error, "%t or %T", "%f or %F", "~ or @", "$", "(", "[", "{", "+", "-", "if", "end", "select", "switch", "function", "#function", "hidden", "for", "while", "break", "continue", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
+  358                  | . %empty  [error, "%t or %T", "%f or %F", "~ or @", "$", "(", "[", "{", "+", "-", "if", "end", "select", "switch", "function", "#function", "hidden", "for", "while", "break", "continue", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
 
     "end of line"  décalage et aller à l'état 493
     ","            décalage et aller à l'état 494
@@ -31303,7 +31305,7 @@ keywords (148)
   281          | . "if" condition then thenBody else elseBody "end"
   282          | . "if" condition then thenBody elseIfControl "end"
   285 elseBody: . expressions
-  286         | .  ["end"]
+  286         | . %empty  ["end"]
   307 selectControl: . select selectable selectConditionBreak casesControl "end"
   308              | . select selectable selectConditionBreak casesControl defaultCase elseBody "end"
   309              | . select selectable "line comment" selectConditionBreak casesControl "end"
@@ -31576,7 +31578,7 @@ keywords (148)
   312       | . "switch"
   328 casesControl: "case" functionCall caseControlBreak . caseBody
   333 caseBody: . expressions
-  334         | .  ["else", "end", "case", "otherwise"]
+  334         | . %empty  ["else", "end", "case", "otherwise"]
   347 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
   348           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
   361 whileControl: . "while" condition whileConditionBreak whileBody "end"
@@ -31802,7 +31804,7 @@ keywords (148)
   312       | . "switch"
   327 casesControl: "case" variable caseControlBreak . caseBody
   333 caseBody: . expressions
-  334         | .  ["else", "end", "case", "otherwise"]
+  334         | . %empty  ["else", "end", "case", "otherwise"]
   347 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
   348           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
   361 whileControl: . "while" condition whileConditionBreak whileBody "end"
@@ -31962,7 +31964,7 @@ keywords (148)
   343                 | . "then" "," "end of line"
   344                 | . "then" ";"
   345                 | . "then" ";" "end of line"
-  346                 | .  [error, "%t or %T", "%f or %F", "~ or @", "$", "[", "{", "if", "else", "end", "select", "switch", "case", "otherwise", "function", "#function", "hidden", "for", "while", "break", "continue", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
+  346                 | . %empty  [error, "%t or %T", "%f or %F", "~ or @", "$", "[", "{", "if", "else", "end", "select", "switch", "case", "otherwise", "function", "#function", "hidden", "for", "while", "break", "continue", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
 
     "end of line"  décalage et aller à l'état 544
     "'"            décalage et aller à l'état 122
@@ -32104,7 +32106,7 @@ keywords (148)
   343                 | . "then" "," "end of line"
   344                 | . "then" ";"
   345                 | . "then" ";" "end of line"
-  346                 | .  [error, "%t or %T", "%f or %F", "~ or @", "$", "[", "{", "if", "else", "end", "select", "switch", "case", "otherwise", "function", "#function", "hidden", "for", "while", "break", "continue", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
+  346                 | . %empty  [error, "%t or %T", "%f or %F", "~ or @", "$", "[", "{", "if", "else", "end", "select", "switch", "case", "otherwise", "function", "#function", "hidden", "for", "while", "break", "continue", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
 
     "end of line"  décalage et aller à l'état 544
     "'"            décalage et aller à l'état 158
@@ -32279,7 +32281,7 @@ keywords (148)
   343                 | . "then" "," "end of line"
   344                 | . "then" ";"
   345                 | . "then" ";" "end of line"
-  346                 | .  [error, "%t or %T", "%f or %F", "~ or @", "$", "[", "{", "if", "else", "end", "select", "switch", "case", "otherwise", "function", "#function", "hidden", "for", "while", "break", "continue", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
+  346                 | . %empty  [error, "%t or %T", "%f or %F", "~ or @", "$", "[", "{", "if", "else", "end", "select", "switch", "case", "otherwise", "function", "#function", "hidden", "for", "while", "break", "continue", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
 
     "end of line"  décalage et aller à l'état 544
     "'"            décalage et aller à l'état 122
@@ -32421,7 +32423,7 @@ keywords (148)
   343                 | . "then" "," "end of line"
   344                 | . "then" ";"
   345                 | . "then" ";" "end of line"
-  346                 | .  [error, "%t or %T", "%f or %F", "~ or @", "$", "[", "{", "if", "else", "end", "select", "switch", "case", "otherwise", "function", "#function", "hidden", "for", "while", "break", "continue", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
+  346                 | . %empty  [error, "%t or %T", "%f or %F", "~ or @", "$", "[", "{", "if", "else", "end", "select", "switch", "case", "otherwise", "function", "#function", "hidden", "for", "while", "break", "continue", "try", "return", "string", "identifier", "integer", "float", "number", "line comment"]
 
     "end of line"  décalage et aller à l'état 544
     "'"            décalage et aller à l'état 158
@@ -32642,7 +32644,7 @@ keywords (148)
   281          | . "if" condition then thenBody else elseBody "end"
   282          | . "if" condition then thenBody elseIfControl "end"
   283 thenBody: . expressions
-  284         | .  ["else", "elseif", "end"]
+  284         | . %empty  ["else", "elseif", "end"]
   304 elseIfControl: "elseif" condition then . thenBody
   305              | "elseif" condition then . thenBody else elseBody
   306              | "elseif" condition then . thenBody elseIfControl
@@ -32793,7 +32795,7 @@ keywords (148)
    94                    | . "hidden" "function" "[" "]" "=" "identifier" functionDeclarationArguments functionDeclarationBreak functionBody "end"
    95                    | . "hidden" "function" "identifier" functionDeclarationArguments functionDeclarationBreak functionBody "end"
   107 functionBody: . expressions
-  108             | .  ["end", "endfunction"]
+  108             | . %empty  ["end", "endfunction"]
   111 comparison: . variable rightComparable
   112           | . functionCall rightComparable
   143 operation: . variable rightOperand
@@ -33048,7 +33050,7 @@ keywords (148)
    94                    | . "hidden" "function" "[" "]" "=" "identifier" functionDeclarationArguments functionDeclarationBreak functionBody "end"
    95                    | . "hidden" "function" "identifier" functionDeclarationArguments functionDeclarationBreak functionBody "end"
   107 functionBody: . expressions
-  108             | .  ["end", "endfunction"]
+  108             | . %empty  ["end", "endfunction"]
   111 comparison: . variable rightComparable
   112           | . functionCall rightComparable
   143 operation: . variable rightOperand
@@ -33264,7 +33266,7 @@ keywords (148)
    93                    | "hidden" "function" "[" functionDeclarationReturns "]" "=" "identifier" . functionDeclarationArguments functionDeclarationBreak functionBody "end"
    97 functionDeclarationArguments: . "(" idList ")"
    98                             | . "(" ")"
-   99                             | .  ["end of line", ",", ";", "line comment"]
+   99                             | . %empty  ["end of line", ",", ";", "line comment"]
 
     "("  décalage et aller à l'état 223
 
@@ -33339,7 +33341,7 @@ keywords (148)
    94                    | . "hidden" "function" "[" "]" "=" "identifier" functionDeclarationArguments functionDeclarationBreak functionBody "end"
    95                    | . "hidden" "function" "identifier" functionDeclarationArguments functionDeclarationBreak functionBody "end"
   107 functionBody: . expressions
-  108             | .  ["end", "endfunction"]
+  108             | . %empty  ["end", "endfunction"]
   111 comparison: . variable rightComparable
   112           | . functionCall rightComparable
   143 operation: . variable rightOperand
@@ -33670,7 +33672,7 @@ keywords (148)
   348           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
   348           | "for" "(" "identifier" "=" forIterator ")" forConditionBreak . forBody "end"
   359 forBody: . expressions
-  360        | .  ["end"]
+  360        | . %empty  ["end"]
   361 whileControl: . "while" condition whileConditionBreak whileBody "end"
   382 tryControl: . "try" catchBody "catch" catchBody "end"
   383           | . "try" catchBody "end"
@@ -33967,7 +33969,7 @@ keywords (148)
   312       | . "switch"
   332 casesControl: casesControl "case" functionCall caseControlBreak . caseBody
   333 caseBody: . expressions
-  334         | .  ["else", "end", "case", "otherwise"]
+  334         | . %empty  ["else", "end", "case", "otherwise"]
   347 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
   348           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
   361 whileControl: . "while" condition whileConditionBreak whileBody "end"
@@ -34193,7 +34195,7 @@ keywords (148)
   312       | . "switch"
   331 casesControl: casesControl "case" variable caseControlBreak . caseBody
   333 caseBody: . expressions
-  334         | .  ["else", "end", "case", "otherwise"]
+  334         | . %empty  ["else", "end", "case", "otherwise"]
   347 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
   348           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
   361 whileControl: . "while" condition whileConditionBreak whileBody "end"
@@ -34440,7 +34442,7 @@ keywords (148)
   312       | . "switch"
   330 casesControl: comments "case" functionCall caseControlBreak . caseBody
   333 caseBody: . expressions
-  334         | .  ["else", "end", "case", "otherwise"]
+  334         | . %empty  ["else", "end", "case", "otherwise"]
   347 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
   348           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
   361 whileControl: . "while" condition whileConditionBreak whileBody "end"
@@ -34666,7 +34668,7 @@ keywords (148)
   312       | . "switch"
   329 casesControl: comments "case" variable caseControlBreak . caseBody
   333 caseBody: . expressions
-  334         | .  ["else", "end", "case", "otherwise"]
+  334         | . %empty  ["else", "end", "case", "otherwise"]
   347 forControl: . "for" "identifier" "=" forIterator forConditionBreak forBody "end"
   348           | . "for" "(" "identifier" "=" forIterator ")" forConditionBreak forBody "end"
   361 whileControl: . "while" condition whileConditionBreak whileBody "end"
@@ -34835,7 +34837,7 @@ keywords (148)
    94                    | . "hidden" "function" "[" "]" "=" "identifier" functionDeclarationArguments functionDeclarationBreak functionBody "end"
    95                    | . "hidden" "function" "identifier" functionDeclarationArguments functionDeclarationBreak functionBody "end"
   107 functionBody: . expressions
-  108             | .  ["end", "endfunction"]
+  108             | . %empty  ["end", "endfunction"]
   111 comparison: . variable rightComparable
   112           | . functionCall rightComparable
   143 operation: . variable rightOperand
@@ -35083,7 +35085,7 @@ keywords (148)
    94                    | . "hidden" "function" "[" "]" "=" "identifier" functionDeclarationArguments functionDeclarationBreak functionBody "end"
    95                    | . "hidden" "function" "identifier" functionDeclarationArguments functionDeclarationBreak functionBody "end"
   107 functionBody: . expressions
-  108             | .  ["end", "endfunction"]
+  108             | . %empty  ["end", "endfunction"]
   111 comparison: . variable rightComparable
   112           | . functionCall rightComparable
   143 operation: . variable rightOperand
@@ -35322,7 +35324,7 @@ keywords (148)
    94                    | "hidden" "function" "[" "]" "=" "identifier" functionDeclarationArguments functionDeclarationBreak . functionBody "end"
    95                    | . "hidden" "function" "identifier" functionDeclarationArguments functionDeclarationBreak functionBody "end"
   107 functionBody: . expressions
-  108             | .  ["end", "endfunction"]
+  108             | . %empty  ["end", "endfunction"]
   111 comparison: . variable rightComparable
   112           | . functionCall rightComparable
   143 operation: . variable rightOperand
@@ -35716,7 +35718,7 @@ keywords (148)
   281          | . "if" condition then thenBody else elseBody "end"
   282          | . "if" condition then thenBody elseIfControl "end"
   285 elseBody: . expressions
-  286         | .  ["end"]
+  286         | . %empty  ["end"]
   305 elseIfControl: "elseif" condition then thenBody else . elseBody
   307 selectControl: . select selectable selectConditionBreak casesControl "end"
   308              | . select selectable selectConditionBreak casesControl defaultCase elseBody "end"
@@ -35918,7 +35920,7 @@ keywords (148)
    94                    | . "hidden" "function" "[" "]" "=" "identifier" functionDeclarationArguments functionDeclarationBreak functionBody "end"
    95                    | . "hidden" "function" "identifier" functionDeclarationArguments functionDeclarationBreak functionBody "end"
   107 functionBody: . expressions
-  108             | .  ["end", "endfunction"]
+  108             | . %empty  ["end", "endfunction"]
   111 comparison: . variable rightComparable
   112           | . functionCall rightComparable
   143 operation: . variable rightOperand

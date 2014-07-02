@@ -300,9 +300,9 @@
 
 %left QUOTE DOTQUOTE
 
-%left DOT
-
 %left NOT
+
+%left DOT
 
 %nonassoc FUNCTIONCALL
 %nonassoc BOOLTRUE BOOLFALSE
