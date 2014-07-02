@@ -13,6 +13,8 @@
 #ifndef AST_RUNVISITOR_HXX
 #define AST_RUNVISITOR_HXX
 
+#include <set>
+
 #include "all.hxx"
 #include "types.hxx"
 #include "alltypes.hxx"
@@ -147,6 +149,8 @@ public:
 
     vector<types::InternalType*>* result_list_get()
     {
+        // TODO: this function is not used but it could lead to a memleak
+        // (in the first case the vector is allocated and so must be freed)
         if (result_getSize() == 1)
         {
             vector<types::InternalType*>* pList = new vector<types::InternalType*>;
@@ -162,15 +166,14 @@ public:
     void result_set(int _iPos, const types::InternalType *gtVal)
     {
         m_bSingleResult = false;
-        if (_iPos <  static_cast<int>(_resultVect.size()))
+        if (_iPos < static_cast<int>(_resultVect.size()))
         {
-            if (_resultVect[_iPos] != NULL && _resultVect[_iPos]->isDeletable())
+            if (_resultVect[_iPos])
             {
-                delete _resultVect[_iPos];
+                _resultVect[_iPos]->killMe();
             }
         }
-
-        if (_iPos >=  static_cast<int>(_resultVect.size()))
+        else
         {
             _resultVect.resize(_iPos + 1, NULL);
         }
@@ -184,9 +187,108 @@ public:
         _result = const_cast<types::InternalType *>(gtVal);
     }
 
+    inline void result_set(const types::typed_list & out)
+    {
+        if (out.size() == 0)
+        {
+            result_set(NULL);
+        }
+        else if (out.size() == 1)
+        {
+            result_set(out[0]);
+        }
+        else
+        {
+            /*for (int i = 0 ; i < static_cast<int>(out.size()) ; i++)
+            {
+            result_set(i, out[i]);
+            }*/
+
+            m_bSingleResult = false;
+            for (vector<types::InternalType*>::const_iterator it = _resultVect.begin(); it != _resultVect.end(); ++it)
+            {
+                if (*it)
+                {
+                    (*it)->killMe();
+                }
+            }
+            _resultVect.clear();
+
+            for (types::typed_list::const_iterator it = out.begin(); it != out.end(); ++it)
+            {
+                _resultVect.push_back(*it);
+            }
+        }
+    }
+
     inline bool is_single_result()
     {
         return m_bSingleResult;
+    }
+
+    void clean_in(const types::typed_list & in, const types::typed_list & out)
+    {
+        // Check if in contains entries which are in out too.
+        // When an entry is in in and not in out, then in is killed.
+        if (!in.empty())
+        {
+            if (out.empty())
+            {
+                for (types::typed_list::const_iterator i = in.begin(); i != in.end(); ++i)
+                {
+                    (*i)->DecreaseRef();
+                    (*i)->killMe();
+                }
+            }
+            else
+            {
+                std::set<InternalType *> common;
+
+                for (types::typed_list::const_iterator i = in.begin(); i != in.end(); ++i)
+                {
+                    types::typed_list::const_iterator o = out.begin();
+                    for (; o != out.end(); ++o)
+                    {
+                        if (*i == *o)
+                        {
+                            break;
+                        }
+                    }
+
+                    if (o == out.end())
+                    {
+                        (*i)->DecreaseRef();
+                        (*i)->killMe();
+                    }
+                    else
+                    {
+                        std::set<InternalType *>::const_iterator nc = common.find(*i);
+                        if (nc == common.end())
+                        {
+                            common.insert(*i);
+                            (*i)->DecreaseRef();
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    inline void clean_in_out(const types::typed_list & in, const types::typed_list & out)
+    {
+        clean_in(in, out);
+        clean_out(out);
+    }
+
+    void clean_out(const types::typed_list & out)
+    {
+        if (!out.empty())
+        {
+            for (types::typed_list::const_iterator o = out.begin(); o != out.end(); ++o)
+            {
+                (*o)->killMe();
+            }
+        }
     }
 
     /*-------------.

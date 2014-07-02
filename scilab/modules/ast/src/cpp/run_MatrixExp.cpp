@@ -220,6 +220,7 @@ types::InternalType* RunVisitorT<T>::callOverloadMatrixExp(std::wstring strType,
 {
     types::typed_list in;
     types::typed_list out;
+    Callable::ReturnValue Ret;
 
     _paramL->IncreaseRef();
     _paramR->IncreaseRef();
@@ -229,38 +230,21 @@ types::InternalType* RunVisitorT<T>::callOverloadMatrixExp(std::wstring strType,
 
     if (_paramR->isGenericType() && _paramR->getAs<types::GenericType>()->getDims() > 2)
     {
-        Overload::call(L"%hm_" + strType + L"_hm", in, 1, out, this);
+        Ret = Overload::call(L"%hm_" + strType + L"_hm", in, 1, out, this);
     }
     else
     {
-        Overload::call(L"%" + _paramL->getAs<List>()->getShortTypeStr() + L"_" + strType + L"_" + _paramR->getAs<List>()->getShortTypeStr(), in, 1, out, this);
+        Ret = Overload::call(L"%" + _paramL->getAs<List>()->getShortTypeStr() + L"_" + strType + L"_" + _paramR->getAs<List>()->getShortTypeStr(), in, 1, out, this);
     }
 
-    _paramL->DecreaseRef();
-    _paramR->DecreaseRef();
-
-    if (!out.empty())
+    if (Ret != Callable::OK)
     {
-        // TODO: avoid crash if out is empty but must return an error...
-        out[0]->IncreaseRef();
+        clean_in_out(in, out);
+        throw ScilabError();
     }
 
-    if (_paramL->isDeletable())
-    {
-        delete _paramL;
-    }
-
-    if (_paramR->isDeletable())
-    {
-        delete _paramR;
-    }
-
-    if (!out.empty())
-    {
-        out[0]->DecreaseRef();
-
-        return out[0];
-    }
+    result_set(out);
+    clean_in(in, out);
 
     return NULL;
 }

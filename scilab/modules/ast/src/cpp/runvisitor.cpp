@@ -66,19 +66,23 @@ void RunVisitorT<T>::visitprivate(const CellExp &e)
     int j = 0;
 
     //insert items in cell
-    for (i = 0, row = e.lines_get().begin() ; row != e.lines_get().end() ; row++, i++ )
+    for (i = 0, row = e.lines_get().begin() ; row != e.lines_get().end() ; ++row, ++i)
     {
-        for (j = 0, col = (*row)->columns_get().begin() ; col != (*row)->columns_get().end() ; col++, j++)
+        for (j = 0, col = (*row)->columns_get().begin() ; col != (*row)->columns_get().end() ; ++col, ++j)
         {
             (*col)->accept(*this);
             InternalType *pIT = result_get();
             if (pIT->isImplicitList())
             {
-                pIT = pIT->getAs<ImplicitList>()->extractFullMatrix();
+                InternalType * _pIT = pIT->getAs<ImplicitList>()->extractFullMatrix();
+                pC->set(i, j, _pIT);
+                _pIT->killMe();
             }
-
-            pC->set(i, j, pIT);
-            result_set(NULL);
+            else
+            {
+                pC->set(i, j, pIT);
+            }
+            result_clear();
         }
     }
 
@@ -116,6 +120,17 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
         throw ScilabError(szError, 999, e.location_get());
     }
 
+    // TODO: handle case where getSize() > 1
+    // l=list(struct("toto","coucou"),struct("toto","hello"),1,2);[a,b]=l(1:2).toto
+    //
+    if (result_getSize() > 1)
+    {
+        result_clear();
+        wchar_t szError[bsiz];
+        os_swprintf(szError, bsiz, _W("Not yet implemented in Scilab.\n").c_str());
+        throw ScilabError(szError, 999, e.location_get());
+    }
+
     SimpleVar * psvRightMember = static_cast<SimpleVar *>(const_cast<Exp *>(e.tail_get()));
     std::wstring wstField = psvRightMember->name_get().name_get();
     InternalType * pValue = result_get();
@@ -128,6 +143,7 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
     }
     catch (std::wstring & err)
     {
+        pValue->killMe();
         throw ScilabError(err.c_str(), 999, e.tail_get()->location_get());
     }
 
@@ -137,7 +153,7 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
         // segfault on insert.tst... check why ??
         // probably extractor needs to increaseref of extracted field...
 
-        if (pValue->isDeletable())
+        if (pValue != pReturn && pValue->isDeletable())
         {
         delete pValue;
         }
@@ -151,42 +167,31 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
         types::typed_list out;
 
         String* pS = new String(wstField.c_str());
-        pS->IncreaseRef();
-        in.push_back(pS);
 
+        //TODO: in the case where overload is a macro there is no need to incref in
+        // because args will be put in context, removed and killed if required.
+        // But if the overload is a function... it is another story...
+
+        pS->IncreaseRef();
         pValue->IncreaseRef();
+
+        in.push_back(pS);
         in.push_back(pValue);
 
         Callable::ReturnValue Ret = Overload::call(L"%" + pValue->getShortTypeStr() + L"_e", in, 1, out, this);
 
         if (Ret != Callable::OK)
         {
+            clean_in_out(in, out);
             throw ScilabError();
         }
 
-        if (out.size() == 0)
-        {
-            result_set(NULL);
-        }
-        else if (out.size() == 1)
-        {
-            out[0]->DecreaseRef();
-            result_set(out[0]);
-        }
-        else
-        {
-            for (int i = 0 ; i < static_cast<int>(out.size()) ; i++)
-            {
-                out[i]->DecreaseRef();
-                result_set(i, out[i]);
-            }
-        }
-
-        pValue->DecreaseRef();
-        pS->DecreaseRef();
+        result_set(out);
+        clean_in(in, out);
     }
     else
     {
+        pValue->killMe();
         wchar_t szError[bsiz];
         os_swprintf(szError, bsiz, _W("Attempt to reference field of non-structure array.\n").c_str());
         throw ScilabError(szError, 999, e.location_get());
@@ -873,9 +878,9 @@ void RunVisitorT<T>::visitprivate(const NotExp &e)
     InternalType * pReturn = NULL;
     if (pValue->neg(pReturn))
     {
-        if (pValue->isDeletable())
+        if (pValue != pReturn)
         {
-            delete pValue;
+            pValue->killMe();
         }
 
         result_set(pReturn);
@@ -889,31 +894,16 @@ void RunVisitorT<T>::visitprivate(const NotExp &e)
         pValue->IncreaseRef();
         in.push_back(pValue);
 
-        Callable::ReturnValue Ret = Overload::call(L"%" + result_get()->getShortTypeStr() + L"_5", in, 1, out, this);
+        Callable::ReturnValue Ret = Overload::call(L"%" + pValue->getShortTypeStr() + L"_5", in, 1, out, this);
+
         if (Ret != Callable::OK)
         {
+            clean_in_out(in, out);
             throw ScilabError();
         }
 
-        if (out.size() == 0)
-        {
-            result_set(NULL);
-        }
-        else if (out.size() == 1)
-        {
-            out[0]->DecreaseRef();
-            result_set(out[0]);
-        }
-        else
-        {
-            for (int i = 0 ; i < static_cast<int>(out.size()) ; i++)
-            {
-                out[i]->DecreaseRef();
-                result_set(i, out[i]);
-            }
-        }
-
-        pValue->DecreaseRef();
+        result_set(out);
+        clean_in(in, out);
     }
 }
 
@@ -928,9 +918,9 @@ void RunVisitorT<T>::visitprivate(const TransposeExp &e)
 
     if ((bConjug && pValue->adjoint(pReturn)) || (!bConjug && pValue->transpose(pReturn)))
     {
-        if (pValue->isDeletable())
+        if (pValue != pReturn)
         {
-            delete pValue;
+            pValue->killMe();
         }
 
         result_set(pReturn);
@@ -958,33 +948,17 @@ void RunVisitorT<T>::visitprivate(const TransposeExp &e)
 
         if (Ret != Callable::OK)
         {
+            clean_in_out(in, out);
             throw ScilabError();
         }
 
-        if (out.size() == 0)
-        {
-            result_set(NULL);
-        }
-        else if (out.size() == 1)
-        {
-            out[0]->DecreaseRef();
-            result_set(out[0]);
-        }
-        else
-        {
-            for (int i = 0 ; i < static_cast<int>(out.size()) ; i++)
-            {
-                out[i]->DecreaseRef();
-                result_set(i, out[i]);
-            }
-        }
-
-        pValue->DecreaseRef();
+        result_set(out);
+        clean_in(in, out);
     }
 }
 
 template <class T>
-void RunVisitorT<T>::visitprivate(const FunctionDec  &e)
+void RunVisitorT<T>::visitprivate(const FunctionDec & e)
 {
     /*
       function foo

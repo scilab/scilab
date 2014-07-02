@@ -89,7 +89,7 @@ public :
     {
         if (isEmpty())
         {
-            out = Empty();
+            out = this;
             return true;
         }
 
@@ -147,97 +147,109 @@ public :
 
     inline bool conjugate(InternalType *& out)
     {
-	if (isEmpty() || isIdentity() || !isComplex())
+        if (isEmpty() || isIdentity() || !isComplex())
         {
             out = clone();
             return true;
         }
 
-	if (isScalar())
-	{
-	    out = new Double(m_pRealData[0], -m_pImgData[0]);
-	    return true;
-	}
+        if (isScalar())
+        {
+            out = new Double(m_pRealData[0], -m_pImgData[0]);
+            return true;
+        }
 
-	if (m_iDims == 2)
-	{
-	    Double * pReturn = new Double(getCols(), getRows(), true);
-	    out = pReturn;
-	    
-	    Transposition::conjugate(getSize(), m_pRealData, pReturn->m_pRealData, m_pImgData, pReturn->m_pImgData);
-	    return true;
-	}
+        if (m_iDims == 2)
+        {
+            Double * pReturn = new Double(getCols(), getRows(), true);
+            out = pReturn;
 
-	return false;
+            Transposition::conjugate(getSize(), m_pRealData, pReturn->m_pRealData, m_pImgData, pReturn->m_pImgData);
+            return true;
+        }
+
+        return false;
 
     }
 
     virtual bool adjoint(InternalType *& out)
     {
-	if (isEmpty() || isIdentity())
+        if (isEmpty())
+        {
+            out = this;
+            return true;
+        }
+
+        if (isIdentity())
         {
             out = clone();
             return true;
         }
 
-	if (isScalar())
-	{
-	    if (m_bComplex)
-	    {
-		out = new Double(m_pRealData[0], -m_pImgData[0]);
-	    }
-	    else
-	    {
-		out = clone();
-	    }
+        if (isScalar())
+        {
+            if (m_bComplex)
+            {
+                out = new Double(m_pRealData[0], -m_pImgData[0]);
+            }
+            else
+            {
+                out = clone();
+            }
 
-	    return true;
-	}
+            return true;
+        }
 
-	if (m_iDims == 2)
-	{
-	    Double * pReturn = new Double(getCols(), getRows(), m_bComplex);
-	    out = pReturn;
-	    if (m_bComplex)
-	    {
-		Transposition::adjoint(getRows(), getCols(), m_pRealData, pReturn->m_pRealData, m_pImgData, pReturn->m_pImgData);
-	    }
-	    else
-	    {
-		Transposition::adjoint(getRows(), getCols(), m_pRealData, pReturn->m_pRealData);
-	    }
+        if (m_iDims == 2)
+        {
+            Double * pReturn = new Double(getCols(), getRows(), m_bComplex);
+            out = pReturn;
+            if (m_bComplex)
+            {
+                Transposition::adjoint(getRows(), getCols(), m_pRealData, pReturn->m_pRealData, m_pImgData, pReturn->m_pImgData);
+            }
+            else
+            {
+                Transposition::adjoint(getRows(), getCols(), m_pRealData, pReturn->m_pRealData);
+            }
 
-	    return true;
-	}
+            return true;
+        }
 
-	return false;
+        return false;
     }
 
     virtual bool transpose(InternalType *& out)
     {
-	if (isEmpty() || isIdentity() || isScalar())
+        if (isEmpty())
+        {
+            out = this;
+            return true;
+        }
+
+        if (isIdentity() || isScalar())
         {
             out = clone();
             return true;
         }
 
-	if (m_iDims == 2)
-	{
-	    Double * pReturn = new Double(getCols(), getRows(), m_bComplex);
-	    out = pReturn;
-	    if (m_bComplex)
-	    {
-		Transposition::transpose(getRows(), getCols(), m_pRealData, pReturn->m_pRealData, m_pImgData, pReturn->m_pImgData);
-	    }
-	    else
-	    {
-		Transposition::transpose(getRows(), getCols(), m_pRealData, pReturn->m_pRealData);
-	    }
+        if (m_iDims == 2)
+        {
+            Double * pReturn = new Double(getCols(), getRows(), m_bComplex);
+            out = pReturn;
+            if (m_bComplex)
+            {
+                Transposition::transpose(getRows(), getCols(), m_pRealData, pReturn->m_pRealData, m_pImgData, pReturn->m_pImgData);
+            }
+            else
+            {
+                Transposition::transpose(getRows(), getCols(), m_pRealData, pReturn->m_pRealData);
+            }
 
-	    return true;
-	}
+            return true;
+        }
 
-	return false;
+        return false;
     }
 
 private :
