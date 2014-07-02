@@ -47,7 +47,7 @@ BOOL FreeDynLibrary(DynLibHandle hInstance)
     return FALSE;
 }
 /*---------------------------------------------------------------------------*/
-DynLibFuncPtr GetDynLibFuncPtr(DynLibHandle hInstance, char *funcName)
+DynLibFuncPtr GetDynLibFuncPtr(DynLibHandle hInstance, const char *funcName)
 {
     if (hInstance)
     {

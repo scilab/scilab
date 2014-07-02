@@ -779,7 +779,7 @@ DynLibHandle ConfigVariable::getDynModule(std::wstring _name)
         return it->second;
     }
 
-    return (DynLibHandle) - 1;
+    return 0;
 }
 
 int ConfigVariable::getDynModuleCount()

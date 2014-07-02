@@ -40,7 +40,7 @@ BOOL FreeDynLibrary(DynLibHandle hInstance);
 * @param string that specifies the function
 * @return a pointer
 */
-DynLibFuncPtr GetDynLibFuncPtr(DynLibHandle hInstance, char *funcName);
+DynLibFuncPtr GetDynLibFuncPtr(DynLibHandle hInstance, const char *funcName);
 
 /**
 * return last dynamic linking error

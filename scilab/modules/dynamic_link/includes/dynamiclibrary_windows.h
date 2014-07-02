@@ -50,7 +50,7 @@ DYNAMIC_LINK_IMPEXP BOOL FreeDynLibrary(DynLibHandle hInstance);
 * @param string that specifies the function
 * @return
 */
-DYNAMIC_LINK_IMPEXP DynLibFuncPtr GetDynLibFuncPtr(DynLibHandle hInstance, char *funcName);
+DYNAMIC_LINK_IMPEXP DynLibFuncPtr GetDynLibFuncPtr(DynLibHandle hInstance, const char *funcName);
 
 /**
 * return last dynamic linking error

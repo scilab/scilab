@@ -428,17 +428,16 @@ Callable::ReturnValue DynamicFunction::Init()
     }
 
     DynLibHandle hLib = getDynModule(m_wstLibName.c_str());
-    if (hLib == (DynLibHandle) - 1)
+    if (hLib == 0)
     {
         char* pstLibName = wide_string_to_UTF8(m_wstLibName.c_str());
         hLib = LoadDynLibrary(pstLibName);
-        FREE(pstLibName);
 
-        if (hLib == (DynLibHandle) - 1)
+        if (hLib == 0)
         {
             //2nd chance for linux !
 #ifndef _MSC_VER
-            char* pstError = GetLastDynLibError();
+            char* pstError = strdup(GetLastDynLibError());
 
             /* Haven't been able to find the lib with dlopen...
             * This can happen for two reasons:
@@ -461,21 +460,28 @@ Callable::ReturnValue DynamicFunction::Init()
 
             FREE(pwstPathToLib);
 
-            if (hLib == (DynLibHandle) - 1)
+            if (hLib == 0)
             {
-                if (pstError != NULL)
-                {
-                    Scierror(999, _("A error has been detected while loading %s: %s\n"), pstLibName, pstError);
-                }
+                Scierror(999, _("A error has been detected while loading %s: %s\n"), pstLibName, pstError);
+                FREE(pstError);
+
+                pstError = GetLastDynLibError();
+                Scierror(999, _("A error has been detected while loading %s: %s\n"), pstPathToLib, pstError);
+
+                FREE(pstLibName);
+                FREE(pstPathToLib);
                 return Error;
             }
+            FREE(pstPathToLib);
 #else
             char* pstError = wide_string_to_UTF8(m_wstLibName.c_str());
             Scierror(999, _("Impossible to load %s library\n"), pstError);
             FREE(pstError);
+            FREE(pstLibName);
             return Error;
 #endif
         }
+        FREE(pstLibName);
         addDynModule(m_wstLibName.c_str(), hLib);
 
         //call init module function
