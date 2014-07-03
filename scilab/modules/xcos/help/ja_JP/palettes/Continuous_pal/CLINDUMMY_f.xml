@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+* Scicos
+*
+* Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+* Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+*
+* This program is free software; you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation; either version 2 of the License, or
+*  (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with this program; if not, write to the Free Software
+* Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+*
+* See the file ./license.txt
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="CLINDUMMY_f" xml:lang="ja">
+    <refnamediv>
+        <refname>CLINDUMMY_f</refname>
+        <refpurpose>ダミー</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>ブロックのスクリーンショット</title>
+        <para>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="../../../../images/palettes/CLINDUMMY_f.png" align="center" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+        </para>
+    </refsection>
+    <refsection id="Contents_CLINDUMMY_f">
+        <title>内容</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="CLINDUMMY_f">ダミー</link>
+                </para>
+            </listitem>
+            <listitem>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            <xref linkend="Palette_CLINDUMMY_f">パレット</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Description_CLINDUMMY_f">説明</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Defaultproperties_CLINDUMMY_f">デフォルトプロパティ</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Interfacingfunction_CLINDUMMY_f">インターフェイス用関数
+                            </xref>
+                        </para>
+                    </listitem>
+                </itemizedlist>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Palette_CLINDUMMY_f">
+        <title>パレット</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="Continuous_pal">連続時間システムパレット</link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Description_CLINDUMMY_f">
+        <title>説明</title>
+        <para>
+            このブロックは,ゼロ交差ブロックを有するが,
+            システムが連続系状態量を有さない場合,
+            全てのブロックダイアグラムに配置する必要があります.
+            その理由は,ゼロ交差面を見つけるodeソルバです.
+        </para>
+    </refsection>
+    <refsection id="Defaultproperties_CLINDUMMY_f">
+        <title>デフォルトのプロパティ</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">常にアクティブ:</emphasis> yes
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">直達項:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">ゼロ交差:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">モード:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">アクティベーション入力の数/大きさ:</emphasis> 0
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">アクティベーション出力の数/大きさ:</emphasis> 0
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">連続時間状態量:</emphasis> yes
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">離散時間状態量:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">オブジェクト離散時間状態量:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">計算用関数の名前:</emphasis>
+                    <emphasis role="italic">cdummy</emphasis>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Interfacingfunction_CLINDUMMY_f">
+        <title>インターフェイス用関数</title>
+        <itemizedlist>
+            <listitem>
+                <para> SCI/modules/scicos_blocks/macros/Linear/CLINDUMMY_f.sci</para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+</refentry>
