@@ -104,7 +104,7 @@ vectGateway loadGatewaysName(wstring _wstModuleName)
 //Scinotes module
 
 bool ScinotesModule::loadedDep = false;
-void ScinotesModule::LoadDeps(void)
+void ScinotesModule::LoadDeps(std::wstring _functionName)
 {
     if (loadedDep == false)
     {
@@ -196,7 +196,7 @@ int SignalProcessingModule::Load()
     return 1;
 }
 
-void HelptoolsModule::LoadDeps(void)
+void HelptoolsModule::LoadDeps(std::wstring _functionName)
 {
     if (loadedDep == false)
     {
@@ -539,9 +539,9 @@ int ScicosModule::Load()
 }
 
 bool XcosModule::loadedDep = false;
-void XcosModule::LoadDeps(void)
+void XcosModule::LoadDeps(std::wstring _functionName)
 {
-    if (loadedDep == false)
+    if (loadedDep == false && _functionName != L"closeXcos")
     {
         loadOnUseClassPath("Xcos");
         loadedDep = true;

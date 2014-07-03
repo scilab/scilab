@@ -27,7 +27,7 @@ using namespace types;
 
 bool GraphicsModule::loadedDep = false;
 
-void GraphicsModule::LoadDeps(void)
+void GraphicsModule::LoadDeps(std::wstring _functionName)
 {
     if (loadedDep == false)
     {

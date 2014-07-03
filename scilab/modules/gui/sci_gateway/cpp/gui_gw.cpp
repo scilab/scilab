@@ -25,7 +25,7 @@ using namespace types;
 
 bool GuiModule::loadedDep = false;
 
-void GuiModule::LoadDeps(void)
+void GuiModule::LoadDeps(std::wstring _functionName)
 {
     if (loadedDep == false)
     {
@@ -33,6 +33,7 @@ void GuiModule::LoadDeps(void)
         loadedDep = true;
     }
 }
+
 int GuiModule::Load()
 {
     symbol::Context::getInstance()->addFunction(Function::createFunction(L"x_dialog", &sci_x_dialog, &GuiModule::LoadDeps, MODULE_NAME));

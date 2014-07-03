@@ -96,7 +96,7 @@ Function::ReturnValue Function::call(typed_list &in, optional_list &opt, int _iR
 {
     if (m_pLoadDeps != NULL)
     {
-        m_pLoadDeps();
+        m_pLoadDeps(m_wstName);
     }
     return this->m_pFunc(in, _iRetCount, out);
 }
@@ -145,7 +145,7 @@ Function::ReturnValue OptFunction::call(typed_list &in, optional_list &opt, int 
 {
     if (m_pLoadDeps != NULL)
     {
-        m_pLoadDeps();
+        m_pLoadDeps(m_wstName);
     }
     return this->m_pFunc(in, opt, _iRetCount, out);
 }
@@ -175,7 +175,7 @@ Function::ReturnValue WrapFunction::call(typed_list &in, optional_list &opt, int
 {
     if (m_pLoadDeps != NULL)
     {
-        m_pLoadDeps();
+        m_pLoadDeps(m_wstName);
     }
 
     ReturnValue retVal = Callable::OK;
@@ -325,7 +325,7 @@ Function::ReturnValue WrapMexFunction::call(typed_list &in, optional_list &opt, 
 {
     if (m_pLoadDeps != NULL)
     {
-        m_pLoadDeps();
+        m_pLoadDeps(m_wstName);
     }
 
     ReturnValue retVal = Callable::OK;

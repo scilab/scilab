@@ -24,7 +24,7 @@ private :
 
 
 public :
-    GRAPHICS_GW_IMPEXP static void LoadDeps(void);
+    GRAPHICS_GW_IMPEXP static void LoadDeps(std::wstring _functionName);
     GRAPHICS_GW_IMPEXP static int Load();
     GRAPHICS_GW_IMPEXP static int Unload()
     {
