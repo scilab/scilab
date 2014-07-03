@@ -1418,7 +1418,7 @@ if test "$with_openmp" != no; then
 #   AC_OPENMP
     OPENMP_CFLAGS="-fopenmp"
     OPENMP_CXXFLAGS="-fopenmp"
-    OPENMP_LIBS="-lgomp"
+    OPENMP_LIBS="-lgomp -lstdc++" # Force -lstdc++ because some compilers do not add it automatically.
 
     AC_CHECK_HEADERS([omp.h], [],
      [AC_MSG_ERROR([Could not find omp.h])])
