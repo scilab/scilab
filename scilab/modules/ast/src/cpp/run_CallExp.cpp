@@ -10,6 +10,7 @@
  *
  */
 
+
 //file included in runvisitor.cpp
 template<class T>
 void RunVisitorT<T>::visitprivate(const CallExp &e)
@@ -137,35 +138,18 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
             {
                 if (expected_getSize() == 1 && out.size() == 0) //some function have no returns
                 {
-                    if (static_cast<int>(out.size()) < iRetCount)
+                    if (0 < iRetCount)
                     {
-                        //clear input parameters
-                        for (unsigned int k = 0; k < in.size(); k++)
-                        {
-                            if (in[k])
-                            {
-                                in[k]->DecreaseRef();
-                                in[k]->killMe();
-                            }
-                        }
-
                         std::wostringstream os;
                         os << _W("bad lhs, expected : ") << iRetCount << _W(" returned : ") << out.size() << std::endl;
                         throw ast::ScilabError(os.str(), 999, e.location_get());
                     }
                 }
 
-                if (out.size() == 1)
-                {
-                    result_set(out[0]);
-                }
-                else
-                {
-                    for (int i = 0 ; i < static_cast<int>(out.size()) ; i++)
-                    {
-                        result_set(i, out[i]);
-                    }
-                }
+                result_set(out);
+                clean_in(in, out);
+                clean_opt(opt);
+                pCall->killMe();
             }
             else if (Ret == types::Callable::Error)
             {
@@ -174,67 +158,43 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                 throw ast::ScilabError();
             }
         }
-        catch (ScilabException & se)
+        catch (ScilabMessage & sm)
         {
-            // remove the last call from where
             ConfigVariable::where_end();
-
-            //clear input parameters
-            for (typed_list::const_iterator k = in.begin(), end = in.end(); k != end; ++k)
-            {
-                if (*k)
-                {
-                    (*k)->DecreaseRef();
-                    (*k)->killMe();
-                }
-            }
-
-            if (!out.empty())
-            {
-                for (typed_list::iterator o = out.begin(), end = out.end(); o != end; ++o)
-                {
-                    (*o)->killMe();
-                }
-                out.clear();
-            }
+            clean_in_out(in, out);
+            clean_opt(opt);
 
             if (pCall->isMacro() || pCall->isMacroFile())
             {
+                pCall->killMe();
                 wchar_t szError[bsiz];
-                os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n").c_str(), se.GetErrorLocation().first_line, pCall->getName().c_str());
+                os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n").c_str(), sm.GetErrorLocation().first_line, pCall->getName().c_str());
                 throw ast::ScilabMessage(szError);
             }
             else
             {
-                throw se;
+                pCall->killMe();
+                throw sm;
             }
         }
-
-        //clear input parameters but take care in case of in[k] == out[i]
-        for (typed_list::const_iterator i = in.begin(), end = in.end(); i != end; ++i)
+        catch (ScilabError & se)
         {
-            if (*i)
-            {
-                //check if input data are use as output data
-                bool bFind = false;
-                for (typed_list::const_iterator o = out.begin(), end = out.end(); o != end; ++o)
-                {
-                    if (*i == *o)
-                    {
-                        bFind = true;
-                        break;
-                    }
-                }
+            ConfigVariable::where_end();
+            clean_in_out(in, out);
+            clean_opt(opt);
+            pCall->killMe();
 
-                (*i)->DecreaseRef();
-                if (bFind == false)
-                {
-                    (*i)->killMe();
-                }
-            }
+            throw se;
         }
+        catch (InternalAbort & ia)
+        {
+            ConfigVariable::where_end();
+            clean_in_out(in, out);
+            clean_opt(opt);
+            pCall->killMe();
 
-        pCall->killMe();
+            throw ia;
+        }
     }
     else if (result_get() != NULL)
     {

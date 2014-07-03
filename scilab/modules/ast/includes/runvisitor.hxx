@@ -291,6 +291,17 @@ public:
         }
     }
 
+    void clean_opt(const types::optional_list & opt)
+    {
+        if (!opt.empty())
+        {
+            for (types::optional_list::const_iterator o = opt.begin(); o != opt.end(); ++o)
+            {
+                o->second->killMe();
+            }
+        }
+    }
+
     /*-------------.
     | Attributes.  |
     `-------------*/
