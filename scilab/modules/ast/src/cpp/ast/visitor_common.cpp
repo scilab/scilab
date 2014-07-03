@@ -1801,28 +1801,36 @@ InternalType* insertionCall(const ast::Exp& e, typed_list* _pArgs, InternalType*
         {
             Polynom* pDest = _pVar->getAs<Polynom>();
             Double* pIns = _pInsert->getAs<Double>();
+            bool isComplexIns = pIns->isComplex();
             int iSize = pIns->getSize();
             int* piRanks = new int[iSize];
             memset(piRanks, 0x00, iSize * sizeof(int));
+
+            //create a new polynom with Double to insert it into dest polynom
             Polynom* pP = new Polynom(pDest->getVariableName(), pIns->getDims(), pIns->getDimsArray(), piRanks);
             delete[] piRanks;
-            pP->setComplex(pIns->isComplex());
 
-            if (pP->isComplex())
+            if (isComplexIns)
             {
+                double* pR = pIns->get();
+                double* pI = pIns->getImg();
+                SinglePoly** pSP = pP->get();
                 for (int idx = 0 ; idx < pP->getSize() ; idx++)
                 {
-                    double dblR = pIns->get(idx);
-                    double dblI = pIns->getImg(idx);
-                    pP->get(idx)->setCoef(&dblR, &dblI);
+                    double dblR = pR[idx];
+                    double dblI = pI[idx];
+                    pSP[idx]->setComplex(true);
+                    pSP[idx]->setCoef(&dblR, &dblI);
                 }
             }
             else
             {
+                double* pdblR = pIns->get();
+                SinglePoly** pSP = pP->get();
                 for (int idx = 0 ; idx < pP->getSize() ; idx++)
                 {
-                    double dblR = pIns->get(idx);
-                    pP->get(idx)->setCoef(&dblR, NULL);
+                    double dblR = pdblR[idx];
+                    pSP[idx]->setCoef(&dblR, NULL);
                 }
             }
 
