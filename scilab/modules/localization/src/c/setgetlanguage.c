@@ -87,6 +87,10 @@ BOOL setlanguage(const wchar_t *lang)
                 /* Load the user locale from the system */
                 if (pstLang == NULL || *pstLang == 0)
                 {
+                    if (pstLang)
+                    {
+                        FREE(pstLang);
+                    }
                     pstLang = wide_string_to_UTF8(getLocaleUserInfo());
                 }
 #endif
@@ -100,7 +104,7 @@ BOOL setlanguage(const wchar_t *lang)
                             FREE(pstLang);
                         }
 
-                        pstLang = getenv("LANG");
+                        pstLang = strdup(getenv("LANG"));
                     }
 
                     pstRet = setlocale(LC_CTYPE, pstLang);
