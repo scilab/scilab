@@ -198,8 +198,7 @@ std::list<Symbol>* Context::getFunctionList(std::wstring _stModuleName)
 
 std::list<std::wstring>* Context::getVarsName()
 {
-    return new std::list<std::wstring>();
-    //return scopes.getVarsName();
+    return variables.getVarsName();
 }
 
 std::list<std::wstring>* Context::getMacrosName()
@@ -213,8 +212,7 @@ std::list<std::wstring>* Context::getMacrosName()
 
 std::list<std::wstring>* Context::getFunctionsName()
 {
-    return new std::list<std::wstring>();
-    //return scopes.getFunctionsName();
+    return variables.getFunctionsName();
 }
 
 void Context::put(Variable* _var, types::InternalType* _pIT)

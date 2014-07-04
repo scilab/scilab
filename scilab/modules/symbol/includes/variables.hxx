@@ -309,6 +309,47 @@ struct Variables
         return plOut;
     }
 
+    std::list<std::wstring>* getVarsName()
+    {
+        std::list<std::wstring>* plOut = new std::list<std::wstring>();
+        MapVars::const_iterator it = vars.begin();
+        for (; it != vars.end(); ++it)
+        {
+            if (it->second->empty() == false)
+            {
+                types::InternalType* pIT = it->second->top()->m_pIT;
+                if (pIT &&
+                        pIT->isMacro() == false &&
+                        pIT->isMacroFile() == false &&
+                        pIT->isFunction() == false)
+                {
+                    plOut->push_back(it->first.name_get().c_str());
+                }
+            }
+        }
+
+        return plOut;
+    }
+
+    std::list<std::wstring>* getFunctionsName()
+    {
+        std::list<std::wstring>* plOut = new std::list<std::wstring>();
+        MapVars::const_iterator it = vars.begin();
+        for (; it != vars.end(); ++it)
+        {
+            if (it->second->empty() == false)
+            {
+                types::InternalType* pIT = it->second->top()->m_pIT;
+                if (pIT && pIT->isFunction())
+                {
+                    plOut->push_back(it->first.name_get().c_str());
+                }
+            }
+        }
+
+        return plOut;
+    }
+
     std::list<Symbol>* getFunctionList(std::wstring _stModuleName, int _iLevel)
     {
         std::list<Symbol>* symb = new std::list<Symbol>();
