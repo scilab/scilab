@@ -24,6 +24,13 @@
 
 #define bsiz 4096
 
+//#define _SCILAB_DEBUGREF_ 1
+#ifdef _SCILAB_DEBUGREF_
+#define DecreaseRef() _decreaseref(__FILE__, __LINE__)
+#define IncreaseRef() _increaseref(__FILE__, __LINE__)
+#define killMe() _killme(__FILE__, __LINE__)
+#endif
+
 namespace types
 {
 class TYPES_IMPEXP InternalType
@@ -157,10 +164,18 @@ public :
     };
 
 protected :
-    InternalType() : m_iRef(0), m_bAllowDelete(true), m_bPrintFromStart(true), m_iSavePrintState(0), m_iRows1PrintState(0), m_iCols1PrintState(0), m_iRows2PrintState(0), m_iCols2PrintState(0) {}
+    InternalType() : m_iRef(0), m_bAllowDelete(true), m_bPrintFromStart(true), m_iSavePrintState(0), m_iRows1PrintState(0), m_iCols1PrintState(0), m_iRows2PrintState(0), m_iCols2PrintState(0)
+    {
+
+#ifdef _SCILAB_DEBUGREF_
+        std::cout << "new IT =" << (void*)this << std::endl;
+#endif
+
+    }
 
 public :
-    virtual                         ~InternalType() {};
+    virtual                         ~InternalType() { }
+
     virtual void                    whoAmI(void)
     {
         std::cout << "types::Inernal";
@@ -186,6 +201,31 @@ public :
     virtual InternalType*           clone(void) = 0;
 
 
+#ifdef _SCILAB_DEBUGREF_
+    inline void _killme(const char * f, int l)
+    {
+        std::cout << "killme (" << m_iRef << ")=" << (void*)this << " in " << f << " at line " << l << std::endl;
+        if (isDeletable())
+        {
+            delete this;
+        }
+    }
+
+    inline void _increaseref(const char * f, int l)
+    {
+        m_iRef++;
+        std::cout << "incref (" << m_iRef << ")=" << (void*)this << " in " << f << " at line " << l << std::endl;
+    }
+
+    inline void _decreaseref(const char * f, int l)
+    {
+        if (m_iRef > 0)
+        {
+            m_iRef--;
+        }
+        std::cout << "decref (" << m_iRef << ")=" << (void*)this << " in " << f << " at line " << l << std::endl;
+    }
+#else
     inline void killMe()
     {
         if (isDeletable())
@@ -206,6 +246,7 @@ public :
             m_iRef--;
         }
     }
+#endif
 
     inline bool isDeletable()
     {
@@ -480,5 +521,9 @@ typedef std::vector<InternalType *> typed_list;
 typedef std::vector<std::pair<std::wstring, InternalType *> > optional_list;
 
 }
+
+#ifdef _SCILAB_DEBUGREF_
+#undef _SCILAB_DEBUGREF_
+#endif
 
 #endif /* !__INTERNAL_HXX__ */

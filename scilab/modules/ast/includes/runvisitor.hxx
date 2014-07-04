@@ -236,8 +236,11 @@ public:
             {
                 for (types::typed_list::const_iterator i = in.begin(); i != in.end(); ++i)
                 {
-                    (*i)->DecreaseRef();
-                    (*i)->killMe();
+                    if (*i)
+                    {
+                        (*i)->DecreaseRef();
+                        (*i)->killMe();
+                    }
                 }
             }
             else
@@ -246,27 +249,30 @@ public:
 
                 for (types::typed_list::const_iterator i = in.begin(); i != in.end(); ++i)
                 {
-                    types::typed_list::const_iterator o = out.begin();
-                    for (; o != out.end(); ++o)
+                    if (*i)
                     {
-                        if (*i == *o)
+                        types::typed_list::const_iterator o = out.begin();
+                        for (; o != out.end(); ++o)
                         {
-                            break;
+                            if (*i == *o)
+                            {
+                                break;
+                            }
                         }
-                    }
 
-                    if (o == out.end())
-                    {
-                        (*i)->DecreaseRef();
-                        (*i)->killMe();
-                    }
-                    else
-                    {
-                        std::set<InternalType *>::const_iterator nc = common.find(*i);
-                        if (nc == common.end())
+                        if (o == out.end())
                         {
-                            common.insert(*i);
                             (*i)->DecreaseRef();
+                            (*i)->killMe();
+                        }
+                        else
+                        {
+                            std::set<InternalType *>::const_iterator nc = common.find(*i);
+                            if (nc == common.end())
+                            {
+                                common.insert(*i);
+                                (*i)->DecreaseRef();
+                            }
                         }
                     }
                 }
@@ -286,7 +292,10 @@ public:
         {
             for (types::typed_list::const_iterator o = out.begin(); o != out.end(); ++o)
             {
-                (*o)->killMe();
+                if (*o)
+                {
+                    (*o)->killMe();
+                }
             }
         }
     }
@@ -297,7 +306,10 @@ public:
         {
             for (types::optional_list::const_iterator o = opt.begin(); o != opt.end(); ++o)
             {
-                o->second->killMe();
+                if (o->second)
+                {
+                    o->second->killMe();
+                }
             }
         }
     }
