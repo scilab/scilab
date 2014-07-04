@@ -111,7 +111,7 @@ c     determination du format devant representer a
                   iw(ldef)=n2+32*n1
                elseif(typ.lt.0) then
                   iw(ldef)=typ
-                  fl=4
+                  fl=5
                else
                   iw(ldef)=1
                   fl=maxc
@@ -217,7 +217,7 @@ c
                      fl=n1
                   elseif(ifmt.lt.0) then
 c     Inf/Nan
-                     fl=3
+                     fl=4
                      n2=1
                   endif
 c
