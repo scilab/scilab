@@ -138,6 +138,8 @@ Scilab Bug Fixes
 
 * Bug #13438 fixed - drawaxis did not return the handle of the created axis.
 
+* Bug #13501 fixed - Typos fixed in English help pages.
+
 
 Xcos Bug Fixes
 ==============

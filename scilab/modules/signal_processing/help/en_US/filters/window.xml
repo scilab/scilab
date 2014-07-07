@@ -32,8 +32,8 @@
                         width and  <literal>df</literal> rules the side lobe height
                         (<literal>df&gt;0</literal>).
                     </para>
-                    <para>Only one of these two value should be specified the other one
-                        should set equal to a nonpositive value.
+                    <para>Only one of these two value should be specified, the other one
+                        must be equal to a nonpositive value.
                     </para>
                 </listitem>
             </varlistentry>
@@ -127,26 +127,30 @@
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
     clf()
-    N=24;
-    whm=window('hm',N);//Hamming window
-    wkr=window('kr',N,6);//Hamming Kaiser window
-    wch=window('ch',N,[0.005,-1]);//Chebychev window
-    //plot the window profile
-    subplot(121);plot((1:N)',[whm;wkr;wch]')
-    set(gca(),'grid',[1 1]*color('gray'))
+    N = 24;
+    whm = window('hm', N); // Hamming window
+    wkr = window('kr', N, 6); // Hamming Kaiser window
+    wch = window('ch', N, [0.005 -1]); // Chebychev window
+
+    // Plot the window profile
+    subplot(121);
+    plot((1:N)', [whm; wkr; wch]')
+    set(gca(), 'grid', [1 1]*color('gray'))
     xlabel("n")
     ylabel("w_n")
     title(gettext("Profile plot"))
-    //plot the magnitude of the frequency responses
-    n=256;
-    [Whm,fr]=frmag(whm,n);
-    [Wkr,fr]=frmag(wkr,n);
-    [Wch,fr]=frmag(wch,n);
-    subplot(122);plot(fr',20*log10([Whm;Wkr;Wch]'))
-    set(gca(),'grid',[1 1]*color('gray'))
-    xlabel(gettext("Pulsation (rd/s)"))
+
+    // Plot the magnitude of the frequency responses
+    n = 256;
+    [Whm,fr] = frmag(whm, n);
+    [Wkr,fr] = frmag(wkr, n);
+    [Wch,fr] = frmag(wch, n);
+    subplot(122);
+    plot(fr', 20*log10([Whm; Wkr; Wch]'))
+    set(gca(), 'grid', [1 1]*color('gray'))
+    xlabel(gettext("Pulsation (rad/s)"))
     ylabel(gettext("Magnitude (dB)"))
-    legend(["Hamming N=24";"Kaiser N=24, Beta=6";"Chebychev N=24, dp=0.005"]);
+    legend(["Hamming N=24"; "Kaiser N=24, Beta=6"; "Chebychev N=24, dp=0.005"]);
     title(gettext("Magnitude plot"))
     ]]></programlisting>
         <para>
@@ -169,7 +173,7 @@
                 [Wch,fr]=frmag(wch,n);
                 subplot(122);plot(fr',20*log10([Whm;Wkr;Wch]'))
                 set(gca(),'grid',[1 1]*color('gray'))
-                xlabel(gettext("Pulsation (rd/s)"))
+                xlabel(gettext("Pulsation (rad/s)"))
                 ylabel(gettext("Magnitude (dB)"))
                 legend(["Hamming N=24";"Kaiser N=24, Beta=6";"Chebychev N=24, dp=0.005"]);
                 title(gettext("Magnitude plot"))
@@ -177,17 +181,17 @@
         </para>
         <programlisting role="example"><![CDATA[
     clf()
-    N=140;
-    w1=window('kr',N,1);
-    w2=window('kr',N,2);
-    w4=window('kr',N,4);
-    w8=window('kr',N,8);
-    w16=window('kr',N,16);
+    N = 140;
+    w1 = window('kr', N, 1);
+    w2 = window('kr', N, 2);
+    w4 = window('kr', N, 4);
+    w8 = window('kr', N, 8);
+    w16 = window('kr', N, 16);
 
-    //plot the window profile
-    plot((1:N)',[w1;w2;w4;w8;w16]')
-    set(gca(),'grid',[1 1]*color('gray'))
-    legend("$\beta="+string([1;2;4;8;16])+'$',[55,0.3])
+    // Plot the window profile
+    plot((1:N)', [w1; w2; w4; w8; w16]')
+    set(gca(), 'grid', [1 1]*color('gray'))
+    legend("$\beta = "+string([1;2;4;8;16])+'$',[55,0.3])
     xlabel("n")
     ylabel("w_n")
     title(gettext("Comparison of Kaiser window profiles"))
@@ -213,28 +217,31 @@
         </para>
         <programlisting role="example"><![CDATA[
     clf()
-    N=140;
-    w1=window('ch',N,[0.001,-1]);
-    w2=window('ch',N,[0.05,-1]);
-    w3=window('ch',N,[-1,0.4]);
+    N = 140;
+    w1 = window('ch', N, [0.001 -1]);
+    w2 = window('ch', N, [0.05 -1]);
+    w3 = window('ch', N, [-1 0.4]);
 
-    //plot the window profile
-    subplot(121);plot((1:N)',[w1;w2;w3]')
-    set(gca(),'grid',[1 1]*color('gray'))
-    //legend("$\beta="+string([1;2;4;8;16])+'$',[55,0.3])
+    // Plot the window profile
+    subplot(121);
+    plot((1:N)', [w1; w2; w3]')
+    set(gca(), 'grid', [1 1]*color('gray'))
+    //legend("$\beta = "+string([1;2;4;8;16])+'$',[55,0.3])
     xlabel("n")
     ylabel("w_n")
     title(gettext("Comparison of Chebychev window profiles"))
-    //plot the magnitude of the frequency responses
-    n=256;
-    [W1,fr]=frmag(w1,n);
-    [W2,fr]=frmag(w2,n);
-    [W3,fr]=frmag(w3,n);
-    subplot(122);plot(fr',20*log10([W1;W2;W3]'))
-    set(gca(),'grid',[1 1]*color('gray'))
-    xlabel(gettext("Pulsation (rd/s)"))
+
+    // Plot the magnitude of the frequency responses
+    n = 256;
+    [W1,fr] = frmag(w1, n);
+    [W2,fr] = frmag(w2, n);
+    [W3,fr] = frmag(w3, n);
+    subplot(122);
+    plot(fr', 20*log10([W1; W2; W3]'))
+    set(gca(), 'grid', [1 1]*color('gray'))
+    xlabel(gettext("Pulsation (rad/s)"))
     ylabel(gettext("Magnitude (dB)"))
-    legend(["Chebychef dp=0.001";"Chebychef dp=0.05";"Chebychef df=0.4"]);
+    legend(["Chebychef dp=0.001"; "Chebychef dp=0.05"; "Chebychef df=0.4"]);
     title(gettext("Chebychev window Magnitude plot"))
     ]]></programlisting>
         <para>
@@ -258,7 +265,7 @@
                 [W3,fr]=frmag(w3,n);
                 subplot(122);plot(fr',20*log10([W1;W2;W3]'))
                 set(gca(),'grid',[1 1]*color('gray'))
-                xlabel(gettext("Pulsation (rd/s)"))
+                xlabel(gettext("Pulsation (rad/s)"))
                 ylabel(gettext("Magnitude (dB)"))
                 legend(["Chebychef dp=0.001";"Chebychef dp=0.05";"Chebychef df=0.4"]);
                 title(gettext("Chebychev window Magnitude plot"))

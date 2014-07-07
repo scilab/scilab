@@ -39,7 +39,7 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>polynomial vector [x1;x2]</para>
+                    <para>polynomial vector [x1; x2]</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -47,23 +47,26 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal> diophant</literal> solves the bezout equation:
+            <literal>diophant</literal> solves the bezout equation:
         </para>
         <para>
             <literal>p1*x1+p2*x2=b</literal> with  <literal>p1p2</literal> a polynomial vector.
-            If the equation is not solvable
+            If the equation is not solvable, <literal>err = ||p1*x1 + p2*x2 - b|| / ||b||</literal>
         </para>
         <para>
-            else <literal>err=0</literal>
+            else <literal>err = 0</literal>.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-s=poly(0,'s');p1=(s+3)^2;p2=(1+s);
-x1=s;x2=(2+s);
-[x,err]=diophant([p1,p2],p1*x1+p2*x2);
-p1*x1+p2*x2-p1*x(1)-p2*x(2)
+        <programlisting role="example"><![CDATA[
+s = poly(0, 's');
+p1 = (s+3)^2;
+p2 = (1+s);
+x1 = s;
+x2 = (2+s);
+[x,err] = diophant([p1 p2], p1*x1 + p2*x2);
+p1*x1 + p2*x2 - p1*x(1) - p2*x(2)
  ]]></programlisting>
     </refsection>
 </refentry>
