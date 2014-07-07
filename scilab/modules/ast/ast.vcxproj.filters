@@ -59,9 +59,6 @@
     <None Include="core_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
-    <None Include="localization_Import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
     <None Include="elementary_functions_f_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
@@ -874,6 +871,9 @@
       <Filter>Source Files\operations</Filter>
     </ClCompile>
     <ClCompile Include="src\cpp\types\overload.cpp">
+      <Filter>Source Files\types</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\types\callable.cpp">
       <Filter>Source Files\types</Filter>
     </ClCompile>
   </ItemGroup>

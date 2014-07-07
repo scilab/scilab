@@ -14,6 +14,7 @@
 #include "graphichandle.hxx"
 #include "tostring_common.hxx"
 #include "scilabexception.hxx"
+#include "overload.hxx"
 
 extern "C"
 {
@@ -180,4 +181,24 @@ long long* GraphicHandle::allocData(int _iSize)
     return new long long[_iSize];
 }
 
+bool GraphicHandle::invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_list & out, ast::ConstVisitor & execFunc, const ast::CallExp & e)
+{
+    if (in.size() == 0)
+    {
+        out.push_back(this);
+    }
+    else if (in.size() == 1 && in[0]->isString())
+    {
+        this->IncreaseRef();
+        in.push_back(this);
+
+        Overload::call(L"%h_e", in, 1, out, &execFunc);
+    }
+    else
+    {
+        return ArrayOf<long long>::invoke(in, opt, _iRetCount, out, execFunc, e);
+    }
+
+    return true;
+}
 }

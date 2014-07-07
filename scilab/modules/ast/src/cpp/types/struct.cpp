@@ -153,6 +153,55 @@ bool Struct::extract(const std::wstring & name, InternalType *& out)
     return true;
 }
 
+bool Struct::invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_list & out, ast::ConstVisitor & execFunc, const ast::CallExp & e)
+{
+    if (in.size() == 0)
+    {
+        out.push_back(this);
+        return true;
+    }
+    else if (in.size() == 1)
+    {
+        InternalType * arg = in[0];
+        std::vector<InternalType *> _out;
+        if (arg->isString())
+        {
+            std::vector<std::wstring> wstFields;
+            String * pString = arg->getAs<types::String>();
+            for (int i = 0; i < pString->getSize(); ++i)
+            {
+                std::wstring wstField(pString->get(i));
+                if (this->exists(wstField))
+                {
+                    wstFields.push_back(wstField);
+                }
+                else
+                {
+                    wchar_t szError[bsiz];
+                    os_swprintf(szError, bsiz, _W("Field \"%ls\" does not exists\n").c_str(), wstField.c_str());
+                    throw ast::ScilabError(szError, 999, (*e.args_get().begin())->location_get());
+                }
+            }
+
+            _out = extractFields(wstFields);
+            if (_out.size() == 1)
+            {
+                InternalType * pIT = _out[0];
+                if (pIT->isList() && pIT->getAs<List>()->getSize() == 1)
+                {
+                    out.push_back(pIT->getAs<List>()->get(0));
+                    return true;
+                }
+            }
+        }
+
+        out.swap(_out);
+        return true;
+    }
+
+    return ArrayOf<SingleStruct*>::invoke(in, opt, _iRetCount, out, execFunc, e);
+}
+
 bool Struct::set(int _iRows, int _iCols, SingleStruct* _pIT)
 {
     if (_iRows < getRows() && _iCols < getCols())

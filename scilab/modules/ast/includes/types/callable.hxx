@@ -49,6 +49,28 @@ public :
 
     virtual ReturnValue   call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc) = 0;
 
+    virtual bool invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_list & out, ast::ConstVisitor & execFunc, const ast::CallExp & e);
+
+    virtual bool isInvokable() const
+    {
+        return true;
+    }
+
+    virtual bool hasInvokeOption() const
+    {
+        return true;
+    }
+
+    virtual int getInvokeNbIn()
+    {
+        return getNbInputArgument();
+    }
+
+    virtual int getInvokeNbOut()
+    {
+        return getNbOutputArgument();
+    }
+
     void                  setName(std::wstring _wstName)
     {
         m_wstName = _wstName;

@@ -208,6 +208,7 @@ am__libsciast_la_SOURCES_DIST = src/cpp/ast/runvisitor.cpp \
 	src/cpp/types/listundefined.cpp src/cpp/types/string.cpp \
 	src/cpp/types/implicitlist.cpp src/cpp/types/macro.cpp \
 	src/cpp/types/struct.cpp src/cpp/types/macrofile.cpp \
+	src/cpp/types/callable.cpp \
 	src/cpp/system_env/dynamic_module.cpp \
 	src/cpp/system_env/setenvvar.cpp \
 	src/cpp/system_env/sci_home.cpp \
@@ -296,6 +297,7 @@ am_libsciast_la_OBJECTS = src/cpp/ast/libsciast_la-runvisitor.lo \
 	src/cpp/types/libsciast_la-macro.lo \
 	src/cpp/types/libsciast_la-struct.lo \
 	src/cpp/types/libsciast_la-macrofile.lo \
+	src/cpp/types/libsciast_la-callable.lo \
 	src/cpp/system_env/libsciast_la-dynamic_module.lo \
 	src/cpp/system_env/libsciast_la-setenvvar.lo \
 	src/cpp/system_env/libsciast_la-sci_home.lo \
@@ -732,6 +734,7 @@ libsciast_la_SOURCES = src/cpp/ast/runvisitor.cpp \
 	src/cpp/types/listundefined.cpp src/cpp/types/string.cpp \
 	src/cpp/types/implicitlist.cpp src/cpp/types/macro.cpp \
 	src/cpp/types/struct.cpp src/cpp/types/macrofile.cpp \
+	src/cpp/types/callable.cpp \
 	src/cpp/system_env/dynamic_module.cpp \
 	src/cpp/system_env/setenvvar.cpp \
 	src/cpp/system_env/sci_home.cpp \
@@ -1322,6 +1325,8 @@ src/cpp/types/libsciast_la-struct.lo: src/cpp/types/$(am__dirstamp) \
 src/cpp/types/libsciast_la-macrofile.lo:  \
 	src/cpp/types/$(am__dirstamp) \
 	src/cpp/types/$(DEPDIR)/$(am__dirstamp)
+src/cpp/types/libsciast_la-callable.lo: src/cpp/types/$(am__dirstamp) \
+	src/cpp/types/$(DEPDIR)/$(am__dirstamp)
 src/cpp/system_env/$(am__dirstamp):
 	@$(MKDIR_P) src/cpp/system_env
 	@: > src/cpp/system_env/$(am__dirstamp)
@@ -1460,6 +1465,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/system_env/$(DEPDIR)/libsciast_la-warningmode.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/types/$(DEPDIR)/libsciast_la-arrayof.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/types/$(DEPDIR)/libsciast_la-bool.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/types/$(DEPDIR)/libsciast_la-callable.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/types/$(DEPDIR)/libsciast_la-cell.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/types/$(DEPDIR)/libsciast_la-double.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/types/$(DEPDIR)/libsciast_la-file.Plo@am__quote@
@@ -2028,6 +2034,13 @@ src/cpp/types/libsciast_la-macrofile.lo: src/cpp/types/macrofile.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/types/macrofile.cpp' object='src/cpp/types/libsciast_la-macrofile.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/types/libsciast_la-macrofile.lo `test -f 'src/cpp/types/macrofile.cpp' || echo '$(srcdir)/'`src/cpp/types/macrofile.cpp
+
+src/cpp/types/libsciast_la-callable.lo: src/cpp/types/callable.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/types/libsciast_la-callable.lo -MD -MP -MF src/cpp/types/$(DEPDIR)/libsciast_la-callable.Tpo -c -o src/cpp/types/libsciast_la-callable.lo `test -f 'src/cpp/types/callable.cpp' || echo '$(srcdir)/'`src/cpp/types/callable.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/types/$(DEPDIR)/libsciast_la-callable.Tpo src/cpp/types/$(DEPDIR)/libsciast_la-callable.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/types/callable.cpp' object='src/cpp/types/libsciast_la-callable.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/types/libsciast_la-callable.lo `test -f 'src/cpp/types/callable.cpp' || echo '$(srcdir)/'`src/cpp/types/callable.cpp
 
 src/cpp/system_env/libsciast_la-dynamic_module.lo: src/cpp/system_env/dynamic_module.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/system_env/libsciast_la-dynamic_module.lo -MD -MP -MF src/cpp/system_env/$(DEPDIR)/libsciast_la-dynamic_module.Tpo -c -o src/cpp/system_env/libsciast_la-dynamic_module.lo `test -f 'src/cpp/system_env/dynamic_module.cpp' || echo '$(srcdir)/'`src/cpp/system_env/dynamic_module.cpp

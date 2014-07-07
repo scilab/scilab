@@ -144,6 +144,18 @@ public :
                : IdDouble;
     }
 
+    virtual bool invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_list & out, ast::ConstVisitor & execFunc, const ast::CallExp & e)
+    {
+        if (isEmpty())
+        {
+            out.push_back(this);
+
+            return true;
+        }
+
+        return ArrayOf<double>::invoke(in, opt, _iRetCount, out, execFunc, e);
+    }
+
     inline bool conjugate(InternalType *& out)
     {
         if (isEmpty() || isIdentity() || !isComplex())

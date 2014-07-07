@@ -46,6 +46,8 @@ public :
         return false;
     }
 
+    virtual bool invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_list & out, ast::ConstVisitor & execFunc, const ast::CallExp & e);
+
 protected :
     MList(MList *_oMListCopyMe) : TList(_oMListCopyMe) {}
 };

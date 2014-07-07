@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -237,7 +237,6 @@ lib /DEF:"$(ProjectDir)fileio_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <None Include="fileio_Import.def" />
     <None Include="io_Import.def" />
     <None Include="linear_algebra_f_Import.def" />
-    <None Include="localization_Import.def" />
     <None Include="output_stream_Import.def" />
     <None Include="polynomials_f_Import.def" />
     <None Include="threads_Import.def" />
@@ -464,6 +463,7 @@ lib /DEF:"$(ProjectDir)fileio_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClCompile Include="src\cpp\system_env\warningmode.cpp" />
     <ClCompile Include="src\cpp\types\arrayof.cpp" />
     <ClCompile Include="src\cpp\types\bool.cpp" />
+    <ClCompile Include="src\cpp\types\callable.cpp" />
     <ClCompile Include="src\cpp\types\cell.cpp" />
     <ClCompile Include="src\cpp\types\double.cpp" />
     <ClCompile Include="src\cpp\types\file.cpp" />

@@ -17,6 +17,11 @@
 #include "arrayof.hxx"
 #include "singlestruct.hxx"
 
+extern "C"
+{
+#include "localization.h"
+}
+
 namespace types
 {
 class EXTERN_AST Struct : public ArrayOf<SingleStruct*>
@@ -117,6 +122,13 @@ public :
 
     using ArrayOf<SingleStruct *>::extract;
     bool extract(const std::wstring & name, InternalType *& out);
+
+    virtual bool invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_list & out, ast::ConstVisitor & execFunc, const ast::CallExp & e);
+
+    virtual int getInvokeNbOut()
+    {
+        return -1;
+    }
 
 private :
     virtual SingleStruct*       getNullValue();

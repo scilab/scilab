@@ -198,6 +198,48 @@ struct EXTERN_AST Sparse : GenericType
 
      */
     InternalType* extract(typed_list* _pArgs);
+
+    virtual bool invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_list & out, ast::ConstVisitor & execFunc, const ast::CallExp & e)
+    {
+        if (in.size() == 0)
+        {
+            out.push_back(this);
+        }
+        else
+        {
+            InternalType * _out = extract(&in);
+            if (!_out)
+            {
+                std::wostringstream os;
+                os << _W("Invalid index.\n");
+                throw ast::ScilabError(os.str(), 999, (*e.args_get().begin())->location_get());
+            }
+            out.push_back(_out);
+        }
+
+        return true;
+    }
+
+    virtual bool isInvokable() const
+    {
+        return true;
+    }
+
+    virtual bool hasInvokeOption() const
+    {
+        return false;
+    }
+
+    virtual int getInvokeNbIn()
+    {
+        return -1;
+    }
+
+    virtual int getInvokeNbOut()
+    {
+        return 1;
+    }
+
     Sparse* extract(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, int* _piDimSize, bool _bAsVector) SPARSE_CONST;
 
     /*
@@ -545,6 +587,47 @@ struct EXTERN_AST SparseBool : GenericType
     static InternalType* insertNew(typed_list* _pArgs, InternalType* _pSource);
     SparseBool* extract(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, int* _piDimSize, bool _bAsVector) SPARSE_CONST;
     InternalType* extract(typed_list* _pArgs);
+
+    virtual bool invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_list & out, ast::ConstVisitor & execFunc, const ast::CallExp & e)
+    {
+        if (in.size() == 0)
+        {
+            out.push_back(this);
+        }
+        else
+        {
+            InternalType * _out = extract(&in);
+            if (!_out)
+            {
+                std::wostringstream os;
+                os << _W("Invalid index.\n");
+                throw ast::ScilabError(os.str(), 999, (*e.args_get().begin())->location_get());
+            }
+            out.push_back(_out);
+        }
+
+        return true;
+    }
+
+    virtual bool isInvokable() const
+    {
+        return true;
+    }
+
+    virtual bool hasInvokeOption() const
+    {
+        return false;
+    }
+
+    virtual int getInvokeNbIn()
+    {
+        return -1;
+    }
+
+    virtual int getInvokeNbOut()
+    {
+        return 1;
+    }
 
     SparseBool* getColumnValues(int _iPos)
     {

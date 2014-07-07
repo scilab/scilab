@@ -54,6 +54,8 @@ public :
     using List::extract; // to avoid this extract to hide extract in list
     bool                            extract(const std::wstring & name, InternalType *& out);
 
+    virtual bool invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_list & out, ast::ConstVisitor & execFunc, const ast::CallExp & e);
+
     bool isFieldExtractionOverloadable() const
     {
         return true;

@@ -16,6 +16,8 @@
 #include "list.hxx"
 #include "tlist.hxx"
 #include "listundefined.hxx"
+#include "callable.hxx"
+#include "overload.hxx"
 
 #ifndef NDEBUG
 #include "inspector.hxx"
@@ -72,6 +74,61 @@ bool TList::exists(const std::wstring& _sKey)
         }
     }
     return false;
+}
+
+bool TList::invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_list & out, ast::ConstVisitor & execFunc, const ast::CallExp & e)
+{
+    if (in.size() == 0)
+    {
+        out.push_back(this);
+        return true;
+    }
+    else if (in.size() == 1)
+    {
+        InternalType * arg = in[0];
+        std::vector<InternalType *> _out;
+        if (arg->isDouble() || arg->isInt() || arg->isBool() || arg->isImplicitList() || arg->isColon() || arg->isDollar())
+        {
+            _out = List::extract(&in);
+        }
+        else if (arg->isString())
+        {
+            std::list<std::wstring> stFields;
+            String * pString = arg->getAs<types::String>();
+            for (int i = 0; i < pString->getSize(); ++i)
+            {
+                stFields.push_back(pString->get(i));
+            }
+
+            _out = extractStrings(stFields);
+        }
+
+        if (!_out.empty())
+        {
+            out.swap(_out);
+            return true;
+        }
+    }
+
+    Callable::ReturnValue ret;
+    this->IncreaseRef();
+    in.push_back(this);
+
+    try
+    {
+        ret = Overload::call(L"%" + getShortTypeStr() + L"_e", in, 1, out, &execFunc);
+    }
+    catch (ast::ScilabError & se)
+    {
+        ret = Overload::call(L"%l_e", in, 1, out, &execFunc);
+    }
+
+    if (ret == Callable::Error)
+    {
+        throw ast::ScilabError();
+    }
+
+    return true;
 }
 
 bool TList::extract(const std::wstring & name, InternalType *& out)

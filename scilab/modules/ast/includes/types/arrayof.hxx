@@ -982,6 +982,47 @@ public :
         return pOut;
     }
 
+    virtual bool invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_list & out, ast::ConstVisitor & execFunc, const ast::CallExp & e)
+    {
+        if (in.size() == 0)
+        {
+            out.push_back(this);
+        }
+        else
+        {
+            InternalType * _out = extract(&in);
+            if (!_out)
+            {
+                std::wostringstream os;
+                os << _W("Invalid index.\n");
+                throw ast::ScilabError(os.str(), 999, (*e.args_get().begin())->location_get());
+            }
+            out.push_back(_out);
+        }
+
+        return true;
+    }
+
+    virtual bool isInvokable() const
+    {
+        return true;
+    }
+
+    virtual bool hasInvokeOption() const
+    {
+        return false;
+    }
+
+    virtual int getInvokeNbIn()
+    {
+        return -1;
+    }
+
+    virtual int getInvokeNbOut()
+    {
+        return 1;
+    }
+
     InternalType* extract(typed_list* _pArgs)
     {
         ArrayOf<T>* pOut    = NULL;
