@@ -142,6 +142,8 @@ Scilab Bug Fixes
 
 * Bug #13501 fixed - Typos fixed in English help pages.
 
+* Bug #13503 fixed - xarrows made Scilab crash in some cases.
+
 
 Xcos Bug Fixes
 ==============
