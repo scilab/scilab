@@ -308,6 +308,8 @@ public:
             {
                 if (o->second)
                 {
+                    //decreasef ref after increaseref in callexp
+                    o->second->DecreaseRef();
                     o->second->killMe();
                 }
             }

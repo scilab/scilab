@@ -233,10 +233,7 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                 VariableToString(pOut, wcsVarName);
             }
 
-            if (pITR->isDeletable())
-            {
-                delete pITR;
-            }
+            pITR->killMe();
 
             result_clear();
             return;

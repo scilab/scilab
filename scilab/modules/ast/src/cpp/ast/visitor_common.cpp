@@ -1544,9 +1544,9 @@ InternalType* insertionCall(const ast::Exp& e, typed_list* _pArgs, InternalType*
 
             if (_pArgs->size() != 1 || pS->isScalar() == false)
             {
-                if (pIL && pIL->isDeletable())
+                if (pIL)
                 {
-                    delete pIL;
+                    pIL->killMe();
                 }
                 //manage error
                 std::wostringstream os;
@@ -1775,9 +1775,9 @@ InternalType* insertionCall(const ast::Exp& e, typed_list* _pArgs, InternalType*
                 String *pS = (*_pArgs)[0]->getAs<types::String>();
                 if (pS->isScalar() == false)
                 {
-                    if (pIL && pIL->isDeletable())
+                    if (pIL)
                     {
-                        delete pIL;
+                        pIL->killMe();
                     }
                     //manage error
                     std::wostringstream os;
@@ -1861,9 +1861,9 @@ InternalType* insertionCall(const ast::Exp& e, typed_list* _pArgs, InternalType*
                     String *pS = (*_pArgs)[0]->getAs<types::String>();
                     if (pS->isScalar() == false)
                     {
-                        if (pIL && pIL->isDeletable())
+                        if (pIL)
                         {
-                            delete pIL;
+                            pIL->killMe();
                         }
 
                         //manage error
@@ -1983,9 +1983,9 @@ InternalType* insertionCall(const ast::Exp& e, typed_list* _pArgs, InternalType*
         pOut = pRet;
     }
 
-    if (pIL && pIL->isDeletable())
+    if (pIL)
     {
-        delete pIL;
+        pIL->killMe();
     }
 
     return pOut;

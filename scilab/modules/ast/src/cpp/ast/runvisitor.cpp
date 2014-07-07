@@ -322,10 +322,7 @@ void RunVisitorT<T>::visitprivate(const WhileExp  &e)
         //clear old result value before evaluate new one
         if (result_get() != NULL)
         {
-            if (result_get()->isDeletable())
-            {
-                delete result_get();
-            }
+            result_get()->killMe();
         }
 
         e.test_get().accept(*this);

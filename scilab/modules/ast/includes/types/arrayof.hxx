@@ -590,9 +590,9 @@ public :
         //free pArg content
         for (int iArg = 0 ; iArg < pArg.size() ; iArg++)
         {
-            if (pArg[iArg] != (*_pArgs)[iArg] && pArg[iArg]->isDeletable())
+            if (pArg[iArg] != (*_pArgs)[iArg])
             {
-                delete pArg[iArg];
+                pArg[iArg]->killMe();
             }
         }
 
@@ -663,10 +663,7 @@ public :
             if (piMaxDim[i] == 1)
             {
                 iDims--;
-                if (pArg.back()->isDeletable())
-                {
-                    delete pArg.back();
-                }
+                pArg.back()->killMe();
                 pArg.pop_back();
             }
             else
@@ -723,9 +720,9 @@ public :
         //free pArg content
         for (int iArg = 0 ; iArg < pArg.size() ; iArg++)
         {
-            if (pArg[iArg] != (*_pArgs)[iArg] && pArg[iArg]->isDeletable())
+            if (pArg[iArg] != (*_pArgs)[iArg])
             {
-                delete pArg[iArg];
+                pArg[iArg]->killMe();
             }
         }
 
@@ -975,9 +972,9 @@ public :
         //free pArg content
         for (int iArg = 0 ; iArg < pArg.size() ; iArg++)
         {
-            if (pArg[iArg] != (*_pArgs)[iArg] && pArg[iArg]->isDeletable())
+            if (pArg[iArg] != (*_pArgs)[iArg])
             {
-                delete pArg[iArg];
+                pArg[iArg]->killMe();
             }
         }
 
@@ -1211,9 +1208,9 @@ public :
         //free pArg content
         for (int iArg = 0 ; iArg < pArg.size() ; iArg++)
         {
-            if (pArg[iArg] != (*_pArgs)[iArg] && pArg[iArg]->isDeletable())
+            if (pArg[iArg] != (*_pArgs)[iArg])
             {
-                delete pArg[iArg];
+                pArg[iArg]->killMe();
             }
         }
 
