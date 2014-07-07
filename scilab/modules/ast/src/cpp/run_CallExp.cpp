@@ -75,16 +75,17 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
 
             expected_setSize(1);
             (*itExp)->accept(*this);
+
             if (result_get() == NULL)
             {
                 //special case for empty extraction of list ( list()(:) )
                 continue;
             }
 
-            types::InternalType* pITArg = result_get();
-            if (pITArg->isImplicitList())
+            pIT = result_get();
+            if (pIT->isImplicitList())
             {
-                types::ImplicitList* pIL = pITArg->getAs<types::ImplicitList>();
+                types::ImplicitList* pIL = pIT->getAs<types::ImplicitList>();
                 if (pIL->isComputable() == false)
                 {
                     types::Double* pVal = new types::Double(-1, -1);
@@ -95,7 +96,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                 {
                     result_set(pIL->extractFullMatrix());
                 }
-                pITArg->killMe();
+                pIT->killMe();
             }
 
             if (is_single_result())
@@ -107,9 +108,9 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
             {
                 for (int i = 0 ; i < result_getSize() ; i++)
                 {
-                    InternalType * pITArg = result_get(i);
-                    pITArg->IncreaseRef();
-                    in.push_back(pITArg);
+                    InternalType * pIT = result_get(i);
+                    pIT->IncreaseRef();
+                    in.push_back(pIT);
                 }
             }
         }

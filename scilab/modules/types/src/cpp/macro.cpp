@@ -112,6 +112,12 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
     //store the line number where is stored this macro in file.
     ConfigVariable::macroFirstLine_begin(getFirstLine());
 
+    //add optional paramter in current scope
+    optional_list::const_iterator it;
+    for (it = opt.begin() ; it != opt.end() ; it++)
+    {
+        pContext->put(symbol::Symbol(it->first), it->second);
+    }
     //check excepted and input/output parameters numbers
     // Scilab Macro can be called with less than prototyped arguments,
     // but not more execpts with varargin
@@ -137,23 +143,13 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
         }
 
         //create varargin only if previous variable are assigned
-        optional_list::const_iterator it = opt.begin();
         if (in.size() >= m_inputArgs->size() - 1)
         {
             //create and fill varargin
             List* pL = new List();
             while (itValue != in.end())
             {
-                if (*itValue != NULL)
-                {
-                    pL->append(*itValue);
-                }
-                else
-                {
-                    pL->append(it->second);
-                    it++;
-                }
-
+                pL->append(*itValue);
                 itValue++;
             }
             pContext->put(m_Varargin, pL);
@@ -176,13 +172,6 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
     }
     else
     {
-        //add optional paramter in current scope
-        optional_list::const_iterator it;
-        for (it = opt.begin() ; it != opt.end() ; it++)
-        {
-            pContext->put(symbol::Symbol(it->first), it->second);
-        }
-
         //assign value to variable in the new context
         std::list<symbol::Variable*>::iterator i;
         typed_list::const_iterator j;
