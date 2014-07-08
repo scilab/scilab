@@ -416,7 +416,9 @@ void SinglePoly::toStringInternal(double *_pdblVal, wstring _szVar, list<wstring
 
             bool bFirst = ostemp.str().size() == 2;
 
-            df.bPrintPoint = false;
+            // In scientific notation case bExp == true, so we have to print point (2.000D+10s)
+            // In other case don't print point (2s)
+            df.bPrintPoint = df.bExp;
             df.bPrintPlusSign = ostemp.str().size() != 2;
             df.bPrintOne = i == 0;
             addDoubleValue(&ostemp, _pdblVal[i], &df);
