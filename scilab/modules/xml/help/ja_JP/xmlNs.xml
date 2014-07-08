@@ -18,7 +18,7 @@
     <refsynopsisdiv>
         <title>呼び出し手順</title>
         <synopsis>
-            ns = xmlNs(elem, [prefix, [, href]])
+            ns = xmlNs(elem, prefix, href)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
