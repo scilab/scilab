@@ -63,7 +63,7 @@ function x=%s_pow(a,p)
             end
             x=u*diag(diag(s).^p)*inv(u);
         end
-        if int(p)==p&r then x=real(x),end
+        if real(p)==p&r then x=real(x),end
     else
         error(43)
     end

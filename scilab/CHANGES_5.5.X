@@ -148,8 +148,9 @@ Scilab Bug Fixes
 
 * Bug #13503 fixed - xarrows made Scilab crash in some cases.
 
-* Bug #13509 fixed - It was not possible to have an empty prefix with xmlNs.
+* Bug #13507 fixed - Imaginary part in result of a complex power was missing (Real^Complex).
 
+* Bug #13509 fixed - It was not possible to have an empty prefix with xmlNs.
 
 
 Xcos Bug Fixes
