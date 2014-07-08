@@ -74,8 +74,8 @@
                 <listitem>
                     <para>
                         scalar boolean.
-                        <varname>normalization=%f (default)</varname>: <varname>cf</varname> represents the total number of points in each class,
-                        <varname>normalization=%t</varname>: <varname>cf</varname> represents the number of points in each class, relatively to the total number of points
+                        <varname>normalization=%t (default)</varname>: <varname>cf</varname> represents the number of points in each class, relatively to the total number of points,
+                        <varname>normalization=%f</varname>: <varname>cf</varname> represents the total number of points in each class
                     </para>
                 </listitem>
             </varlistentry>
