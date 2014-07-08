@@ -356,7 +356,10 @@ public :
         return static_cast<T*>(this);
     }
 
-    virtual bool                    isGenericType(void);
+    virtual bool                    isGenericType(void)
+    {
+        return false;
+    }
     virtual bool                    isArrayOf(void)
     {
         return false;

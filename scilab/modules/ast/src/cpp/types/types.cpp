@@ -41,11 +41,6 @@ static bool isCoordIndex(int _iIndex, int* _piCoord, int _iCoordCount)
     return bFind;
 }
 
-bool InternalType::isGenericType(void)
-{
-    return true;
-}
-
 std::wstring GenericType::DimToString()
 {
     std::wostringstream ostr;
