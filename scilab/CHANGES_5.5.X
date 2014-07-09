@@ -32,6 +32,8 @@ Scilab Bug Fixes
 
 * Bug #9252 fixed - Some error prototypes produced screwed display.
 
+* Bug #9381 fixed - parallel_run did not work on CentOS (GLIBC issue).
+
 * Bug #9783 fixed - Insertion overloading did not seem to work with mlists.
 
 * Bug #10168 fixed - kron produced a segfault in some cases.
@@ -53,7 +55,13 @@ Scilab Bug Fixes
 
 * Bug #12700 fixed - edit_curv (used by CURV_f) was broken.
 
+* Bug #12834 fixed - Graphics did not work on Fedora (GLIBC issue).
+
 * Bug #12918 fixed - OpenSUSE 12.3 x64 did not have gluegen2-rt in librarypath.
+
+* Bug #12986 fixed - Scilab did not start on CentOS 5.9 (GLIBC issue).
+
+* Bug #12987 fixed - Scilab did not start on Ubuntu 10.04 (GLIBC issue).
 
 * Bug #13180 fixed - surf did not handle degenerate cases.
 
@@ -79,11 +87,15 @@ Scilab Bug Fixes
 
 * Bug #13344 fixed - User defined ticks were not drawn at the right position.
 
+* Bug #13345 fixed - Scilab did not start on Debian Wheezy (GLIBC issue).
+
 * Bug #13349 fixed - Double-clicking on a MAT-file in file browser did not load it.
 
 * Bug #13351 fixed - xstringb failed with LaTeX code.
 
 * Bug #13358 fixed - Intersect and unique were slow due to an issue in quicksort implementation.
+
+* Bug #13364 fixed - Scilab did not start on CentOS 6.5, RedHat 5.4, RedHat 5.5 (GLIBC issue).
 
 * Bug #13365 fixed - Data bounds werenot correctly updated in 3-D.
 
@@ -137,6 +149,8 @@ Scilab Bug Fixes
 * Bug #13435 fixed - Windows version crashes when calling xmlRemove on the first child.
 
 * Bug #13438 fixed - drawaxis did not return the handle of the created axis.
+
+* Bug #13459 fixed - A warning message about libcurl.so version was displayed at Scilab startup.
 
 * Bug #13471 fixed - ilib_build_jar infinite loop when used on an empty directory fixed.
 
