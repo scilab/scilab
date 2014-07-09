@@ -350,14 +350,14 @@ public class Datatip extends Text {
 
         String errMsg =  Messages.gettext("Wrong value for ''%s'' property: A valid function name expected.\n");
         String updateCommand = "try;" +
-                               "    d = getcallbackobject(" + getIdentifier() + ");" +
-                               "    d.text = " + fnc + "(d);" +
-                               "    clear(\"d\");" +
+                               "GDZa786XBSq7899SHKp=getcallbackobject(" + getIdentifier() + ");" +
+                               "set(GDZa786XBSq7899SHKp,\"text\"," + fnc + "(GDZa786XBSq7899SHKp));" +
+                               "clear(\"GDZa786XBSq7899SHKp\");" +
                                "catch;" +
-                               "    d.display_function = \"\";" +
-                               "    d.parent.display_function = \"\";" +
-                               "    clear(\"d\");" +
-                               "    error(msprintf(\"" + errMsg + "\", \"display_function\"));" +
+                               "set(GDZa786XBSq7899SHKp,\"display_function\",\"\");" +
+                               "set(GDZa786XBSq7899SHKp.parent,\"display_function\",\"\");" +
+                               "clear(\"GDZa786XBSq7899SHKp\");" +
+                               "error(msprintf(\"" + errMsg + "\", \"display_function\"));" +
                                "end;";
         InterpreterManagement.requestScilabExec(updateCommand);
     }

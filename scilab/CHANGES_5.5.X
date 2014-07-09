@@ -166,6 +166,8 @@ Scilab Bug Fixes
 
 * Bug #13509 fixed - It was not possible to have an empty prefix with xmlNs.
 
+* Bug #13510 fixed - Datatip callback cleared 'd'.
+
 
 Xcos Bug Fixes
 ==============

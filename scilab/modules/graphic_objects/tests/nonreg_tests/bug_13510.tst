@@ -1,0 +1,28 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2014 - Scilab Enterprises - Calixte DENIZET
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
+// <-- TEST WITH GRAPHIC -->
+
+// <-- Non-regression test for bug 13510 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/13510
+//
+// <-- Short Description -->
+// Datatip callback cleared 'd'
+
+clear("pl", "ax", "h", "s", "d", "d1");
+s = poly(0,"s");
+h = syslin("c", 1 / (s + 1));
+nyquist(h);
+
+d = 123;
+ax = gca();
+pl = ax.children(1).children(2);
+d1 = datatipCreate(pl, 200);
+
+assert_checkequal(d, 123);
