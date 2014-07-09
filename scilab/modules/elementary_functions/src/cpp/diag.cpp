@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2012 - DIGITEO - Cedric Delamarre
+ * Copyright (C) 2012-2014 - DIGITEO - Cedric Delamarre
  * Copyright (C) 2014 - Scilab Enterprises - Sylvain GENIN
  *
  * This file must be used under the terms of the CeCILL.
@@ -14,89 +14,7 @@
 
 #include "diag.hxx"
 
-types::Double* diag(types::Double* pIn,  int iStartPos)
-{
-    types::Double* pDblOut = NULL;
-
-    int iRows = pIn->getRows();
-    int iCols = pIn->getCols();
-
-    int iSize       = 0;
-    int iStartRow   = 0;
-    int iStartCol   = 0;
-    int iPos        = 0;
-
-    if (iRows != 1 && iCols != 1) // pIn is a matrix
-    {
-        if (iStartPos < 0)
-        {
-            iSize = std::max(0, std::min(iRows + iStartPos, iCols));
-            iStartRow = -iStartPos;
-        }
-        else
-        {
-            iSize = std::max(0, std::min(iRows, iCols - iStartPos));
-            iStartCol = iStartPos;
-        }
-
-        if (iSize)
-        {
-            pDblOut = new types::Double(iSize, 1, pIn->isComplex());
-        }
-        else
-        {
-            return types::Double::Empty();
-        }
-
-        for (int i = 0; i < iSize; i++)
-        {
-            iPos = (i + iStartCol) * iRows + (i + iStartRow);
-            pDblOut->set(i, pIn->get(iPos));
-
-            if (pIn->isComplex())
-            {
-                pDblOut->setImg(i, pIn->getImg(iPos));
-            }
-        }
-    }
-    else // pIn is a vector
-    {
-        int iSizeOfVector = std::max(iRows, iCols);
-        if (iStartPos < 0)
-        {
-            iSize = iSizeOfVector - iStartPos;
-            iStartRow = -iStartPos;
-        }
-        else
-        {
-            iSize = iSizeOfVector + iStartPos;
-            iStartCol = iStartPos;
-        }
-
-        pDblOut = new types::Double(iSize, iSize, pIn->isComplex());
-        memset(pDblOut->get(), 0x00, iSize * iSize * sizeof(double));
-
-        if (pIn->isComplex())
-        {
-            memset(pDblOut->getImg(), 0x00, iSize * iSize * sizeof(double));
-        }
-
-        for (int i = 0; i < iSizeOfVector; i++)
-        {
-            iPos = (i + iStartCol) * iSize + (i + iStartRow);
-            pDblOut->set(iPos, pIn->get(i));
-
-            if (pIn->isComplex())
-            {
-                pDblOut->setImg(iPos, pIn->getImg(i));
-            }
-        }
-    }
-
-    return pDblOut;
-}
-
-types::Polynom* diag(types::Polynom* pIn,  int iStartPos)
+types::InternalType* diag(types::Polynom* pIn,  int iStartPos)
 {
     types::Polynom* pPolyOut    = NULL;
     types::SinglePoly* pSP      = NULL;
@@ -133,7 +51,7 @@ types::Polynom* diag(types::Polynom* pIn,  int iStartPos)
         }
         else
         {
-            return NULL;
+            return types::Double::Empty();
         }
 
         if (pIn->isComplex())
@@ -234,8 +152,7 @@ types::Polynom* diag(types::Polynom* pIn,  int iStartPos)
     return pPolyOut;
 }
 
-
-types::String* diag(types::String* pIn,  int iStartPos)
+types::InternalType* diag(types::String* pIn,  int iStartPos)
 {
     types::String* pStrOut = NULL;
 
@@ -266,7 +183,7 @@ types::String* diag(types::String* pIn,  int iStartPos)
         }
         else
         {
-            return NULL;
+            return types::Double::Empty();
         }
 
         for (int i = 0; i < iSize; i++)
@@ -305,4 +222,3 @@ types::String* diag(types::String* pIn,  int iStartPos)
 
     return pStrOut;
 }
-
