@@ -14,23 +14,23 @@
         <title>Paramètres</title>
         <variablelist>
             <varlistentry>
-                <term>p  </term>
+                <term>p</term>
                 <listitem>
-                    <para>vecteur de polynômes (type égal à 2) ou d'entiers (type égal à 8)
+                    <para>vecteur de polynômes (type égal à 2) ou d'entiers (type égal à 1 ou 8)
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>fact  </term>
+                <term>fact</term>
                 <listitem>
                     <para>vecteur de polynômes ou d'entiers
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>pp  </term>
+                <term>pp</term>
                 <listitem>
-                    <para>polynôme ou un entier
+                    <para>polynôme ou entier
                     </para>
                 </listitem>
             </varlistentry>
@@ -52,18 +52,25 @@
             Le plus petit commun multiple d'une matrice <literal>p</literal> de réels peut s'obtenir en la convertissant
             en polynôme avant d'appeler <literal>lcm</literal>, grâce à la commande <literal>p = inv_coeff(p, 0)</literal>.
         </para>
+        <para>
+            Si <literal>p</literal> est donné comme un flottant entier (type 1), alors il est traité comme un <literal>int32</literal>.
+        </para>
     </refsection>
     <refsection>
         <title>Exemples</title>
         <programlisting role="example"><![CDATA[
-//cas des polynomes
-s=poly(0,'s');
-p=[s,s*(s+1)^2,s^2*(s+2)];
-[pp,fact]=lcm(p);
+// Cas des polynômes
+s = %s;
+p = [s s*(s+1)^2 s^2*(s+2)];
+[pp,fact] = lcm(p);
 p.*fact, pp
 
-//cas des entiers
-V=int32([2^2*3^5, 2^3*3^2,2^2*3^4*5]);
+// Cas des entiers
+V = int32([2^2*3^5, 2^3*3^2,2^2*3^4*5]);
+lcm(V)
+
+// Cas des doubles
+V = [2^2*3^5, 2^3*3^2,2^2*3^4*5];
 lcm(V)
  ]]></programlisting>
     </refsection>

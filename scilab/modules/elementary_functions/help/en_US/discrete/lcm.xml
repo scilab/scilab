@@ -27,7 +27,7 @@
                 <listitem>
                     <para>
                         a polynomial row vector <literal>p = [p1, ..., pn]</literal> (type equal to 2) or
-                        an integer row vector (type equal to 8).
+                        an integer row vector (type equal to 1 or 8).
                     </para>
                 </listitem>
             </varlistentry>
@@ -60,18 +60,25 @@
             The least common multiple of an array <literal>p</literal> of real numbers can be obtained by
             converting it to a polynomial before calling <literal>lcm</literal>, through <code>p = inv_coeff(p, 0)</code>.
         </para>
+        <para>
+            If <literal>p</literal> is given as an integer double (type 1), then it is treated as an <literal>int32</literal>.
+        </para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-//polynomial case
-s=poly(0,'s');
-p=[s,s*(s+1)^2,s^2*(s+2)];
-[pp,fact]=lcm(p);
+// Polynomial case
+s = %s;
+p = [s s*(s+1)^2 s^2*(s+2)];
+[pp,fact] = lcm(p);
 p.*fact, pp
 
-//integer case
-V=int32([2^2*3^5, 2^3*3^2,2^2*3^4*5]);
+// Integer case
+V = int32([2^2*3^5, 2^3*3^2,2^2*3^4*5]);
+lcm(V)
+
+// Double case
+V = [2^2*3^5, 2^3*3^2,2^2*3^4*5];
 lcm(V)
  ]]></programlisting>
     </refsection>

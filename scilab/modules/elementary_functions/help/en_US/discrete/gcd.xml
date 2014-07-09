@@ -27,7 +27,23 @@
                 <listitem>
                     <para>
                         a polynomial row vector <literal>p = [p1, ..., pn]</literal> (type equal to 2) or
-                        an integer row vector (type equal to 8).
+                        an integer row vector (type equal to 1 or 8).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>pgcd</term>
+                <listitem>
+                    <para>
+                        vector of the same type as <literal>p</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>U</term>
+                <listitem>
+                    <para>
+                        matrix of the same type as <literal>p</literal>
                     </para>
                 </listitem>
             </varlistentry>
@@ -51,27 +67,34 @@
             The greatest common divisor of an array <literal>p</literal> of real numbersof real numbers can be obtained by
             converting it to a polynomial before calling <literal>gcd</literal>, through <code>p = inv_coeff(p, 0)</code>.
         </para>
+        <para>
+            If <literal>p</literal> is given as an integer double (type 1), then it is treated as an <literal>int32</literal>.
+        </para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-//polynomial case
-s=poly(0,'s');
-p=[s,s*(s+1)^2,2*s^2+s^3];
-[pgcd,u]=gcd(p);
+// Polynomial case
+s = %s;
+p = [s  s*(s+1)^2 2*s^2+s^3];
+[pgcd,u] = gcd(p);
 p*u
 
-//integer case
-V=int32([2^2*3^5, 2^3*3^2,2^2*3^4*5]);
-[thegcd,U]=gcd(V)
+// Integer case
+V = int32([2^2*3^5 2^3*3^2 2^2*3^4*5]);
+[thegcd,U] = gcd(V)
+V*U
+
+// Double case
+V = [2^2*3^5 2^3*3^2 2^2*3^4*5];
+[thegcd,U] = gcd(V)
 V*U
 
 gcd(uint8([15 20]))
 
-gcd([iconvert(15,4) iconvert(20,4)])
+gcd([iconvert(15, 4) iconvert(20, 4)])
 
-gcd(iconvert([15 20],4))
-
+gcd(iconvert([15 20], 4))
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

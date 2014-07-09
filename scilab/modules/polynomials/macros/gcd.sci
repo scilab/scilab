@@ -14,8 +14,16 @@ function [x, uu] = gcd(p)
     //with minimal degree such that [p1 p2]*u=[0 ... 0 pgcd]
     //!
 
-    if (type(p)<>2 & type(p)<>8) then
+    if type(p)<>1 & type(p)<>2 & type(p)<>8 then
         error(msprintf(_("%s: Wrong type for argument #%d: Integer array or Polynomial expected.\n"), "gcd", 1));
+    end
+
+    if type(p)==1 then
+        if floor(p)<>p then
+            error(msprintf(_("%s: Wrong type for argument #%d: Integer array or Polynomial expected.\n"), "gcd", 1));
+        else
+            p = iconvert(p,4);
+        end
     end
 
     [lhs,rhs]=argn(0)
