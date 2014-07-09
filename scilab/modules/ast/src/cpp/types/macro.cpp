@@ -401,6 +401,11 @@ bool Macro::operator==(const InternalType& it)
 
     //check outputs
     pOutput = pRight->outputs_get();
+    if (pOutput->size() != m_outputArgs->size())
+    {
+        return false;
+    }
+
     itOld = pOutput->begin();
     itEndOld = pOutput->end();
     itMacro = m_outputArgs->begin();
