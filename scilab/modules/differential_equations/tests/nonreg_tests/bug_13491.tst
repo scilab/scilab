@@ -20,7 +20,7 @@ deff("y = f(x)", "y = sin(x) ./ x");
 refMsg = msprintf(_("Division by zero...\n"));
 assert_checkerror("intg(-1, 1, f)", refMsg);
 
-deff("y = f(x)", "y = b");
+deff("y = g(x)", "y = b");
 // In any evaluation point, 'b' is unknown so the function will yield an error.
 refMsg = msprintf(_("Undefined variable: %s\n"), "b");
-assert_checkerror("intg(-1, 1, f)", refMsg);
+assert_checkerror("intg(-1, 1, g)", refMsg);
