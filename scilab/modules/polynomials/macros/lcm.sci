@@ -22,7 +22,8 @@ function [p, fact] = lcm(p)
         if floor(p)<>p then
             error(msprintf(_("%s: Wrong type for argument #%d: Integer array or Polynomial expected.\n"), "lcm", 1));
         else
-            p = iconvert(p,4);
+            if argn(1)==2 then [p, fact] = %s_lcm(p), else p = %s_lcm(p), end
+            return
         end
     end
 

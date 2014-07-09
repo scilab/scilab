@@ -67,9 +67,6 @@
             The greatest common divisor of an array <literal>p</literal> of real numbersof real numbers can be obtained by
             converting it to a polynomial before calling <literal>gcd</literal>, through <code>p = inv_coeff(p, 0)</code>.
         </para>
-        <para>
-            If <literal>p</literal> is given as an integer double (type 1), then it is treated as an <literal>int32</literal>.
-        </para>
     </refsection>
     <refsection>
         <title>Examples</title>

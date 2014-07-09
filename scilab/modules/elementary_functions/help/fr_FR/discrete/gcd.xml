@@ -49,9 +49,6 @@
             Le PGCD d'une matrice <literal>p</literal> de réels peut s'obtenir en la convertissant en polynôme
             avant d'appeler <literal>gcd</literal>, grâce à la commande <literal>p = inv_coeff(p, 0)</literal>.
         </para>
-        <para>
-            Si <literal>p</literal> est donné comme un flottant entier (type 1), alors il est traité comme un <literal>int32</literal>.
-        </para>
     </refsection>
     <refsection>
         <title>Exemples</title>

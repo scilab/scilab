@@ -18,15 +18,17 @@ function [x, uu] = gcd(p)
         error(msprintf(_("%s: Wrong type for argument #%d: Integer array or Polynomial expected.\n"), "gcd", 1));
     end
 
+    [lhs,rhs]=argn(0);
+
     if type(p)==1 then
         if floor(p)<>p then
             error(msprintf(_("%s: Wrong type for argument #%d: Integer array or Polynomial expected.\n"), "gcd", 1));
         else
-            p = iconvert(p,4);
+            if lhs==2 then [x,uu]=%s_gcd(p), else x=%s_gcd(p), end
+            return
         end
     end
 
-    [lhs,rhs]=argn(0)
     if type(p)==8 then
         if lhs==2 then [x,uu]=%i_gcd(p), else x=%i_gcd(p), end
         return

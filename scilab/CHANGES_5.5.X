@@ -189,6 +189,8 @@ Scilab Bug Fixes
 
 * Bug #13510 fixed - Datatip callback cleared 'd'.
 
+* Bug #13511 fixed - lcm returned incorrect results when used with doubles.
+
 * Bug #13512 fixed - dae crashed if the evaluation function had wrong prototype.
 
 * Bug #13515 fixed - There were wrong results for matrix/hypermatrix with bitset function.
@@ -197,7 +199,7 @@ Scilab Bug Fixes
 
 * Bug #13527 fixed - hilb did not check correctly the type of first input argument.
 
-* Bug #13554 fixed - rubberbox returns wrong values.
+* Bug #13554 fixed - rubberbox returned wrong values.
 
 * Bug #13585 fixed - suitesparse 4.3.1 was not supported.
 

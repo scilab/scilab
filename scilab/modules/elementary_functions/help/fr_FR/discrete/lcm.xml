@@ -52,9 +52,6 @@
             Le plus petit commun multiple d'une matrice <literal>p</literal> de réels peut s'obtenir en la convertissant
             en polynôme avant d'appeler <literal>lcm</literal>, grâce à la commande <literal>p = inv_coeff(p, 0)</literal>.
         </para>
-        <para>
-            Si <literal>p</literal> est donné comme un flottant entier (type 1), alors il est traité comme un <literal>int32</literal>.
-        </para>
     </refsection>
     <refsection>
         <title>Exemples</title>
@@ -66,11 +63,11 @@ p = [s s*(s+1)^2 s^2*(s+2)];
 p.*fact, pp
 
 // Cas des entiers
-V = int32([2^2*3^5, 2^3*3^2,2^2*3^4*5]);
+V = int32([2^2*3^5 2^3*3^2 2^2*3^4*5]);
 lcm(V)
 
 // Cas des doubles
-V = [2^2*3^5, 2^3*3^2,2^2*3^4*5];
+V = [2^2*3^5 2^3*3^2 2^2*3^4*5];
 lcm(V)
  ]]></programlisting>
     </refsection>

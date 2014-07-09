@@ -34,7 +34,7 @@ c
       ilb=iadr(lstk(top))
       ilbr=ilb
       if(istk(ilb).lt.0) ilb=iadr(istk(ilb+1))
-      if(istk(ilb).gt.2) then
+      if(istk(ilb).eq.1.or.istk(ilb).gt.2) then
          fun=-1
          call funnam(ids(1,pt+1),'bezout',ilb)
          return

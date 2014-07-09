@@ -25,7 +25,7 @@
             <varlistentry>
                 <term>p1, p2</term>
                 <listitem>
-                    <para>two real polynomials or two integer scalars (type equal to 8)</para>
+                    <para>two real polynomials or two integer scalars (type equal to 1 or 8)</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -65,21 +65,30 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-// Polynomial case
-x = poly(0, 'x');
+// Polynomials
+x = poly(0,'x');
 p1 = (x+1)*(x-3)^5;
 p2 = (x-2)*(x-3)^3;
-[thegcd,U] = bezout(p1, p2)
+[pgcd,U] = bezout(p1, p2)
 det(U)
 clean([p1 p2]*U)
-thelcm = p1*U(1,2)
+ppcm = p1*U(1,2)
 lcm([p1 p2])
 
-// Integer case
+// Integers
 i1 = int32(2*3^5);
 i2 = int32(2^3*3^2);
 [thegcd,U] = bezout(i1, i2)
 V = int32([2^2*3^5 2^3*3^2 2^2*3^4*5]);
+[thegcd,U] = gcd(V)
+V*U
+lcm(V)
+
+// Doubles
+i1 = 2*3^5;
+i2 = 2^3*3^2;
+[thegcd,U] = bezout(i1, i2)
+V = [2^2*3^5 2^3*3^2 2^2*3^4*5];
 [thegcd,U] = gcd(V)
 V*U
 lcm(V)
