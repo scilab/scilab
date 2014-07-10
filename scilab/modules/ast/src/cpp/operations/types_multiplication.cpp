@@ -528,28 +528,28 @@ int MultiplyDoubleByPoly(Double* _pDouble, Polynom* _pPoly, Polynom** _pPolyOut)
         for (int i = 0 ; i < _pPoly->getSize() ; i++)
         {
             SinglePoly *pPolyIn     = _pPoly->get(i);
-            double* pRealIn         = pPolyIn->getCoef()->get();
-            double* pImgIn          = pPolyIn->getCoef()->getImg();
+            double* pRealIn         = pPolyIn->get();
+            double* pImgIn          = pPolyIn->getImg();
 
             SinglePoly *pPolyOut    = (*_pPolyOut)->get(i);
-            double* pRealOut        = pPolyOut->getCoef()->get();
-            double* pImgOut         = pPolyOut->getCoef()->getImg();
+            double* pRealOut        = pPolyOut->get();
+            double* pImgOut         = pPolyOut->getImg();
 
             if (bComplex1 == false && bComplex2 == false)
             {
-                iMultiRealScalarByRealMatrix(_pDouble->get(0), pRealIn, 1, pPolyIn->getRank(), pRealOut);
+                iMultiRealScalarByRealMatrix(_pDouble->get(0), pRealIn, 1, pPolyIn->getSize(), pRealOut);
             }
             else if (bComplex1 == false && bComplex2 == true)
             {
-                iMultiRealScalarByComplexMatrix(_pDouble->get(0), pRealIn, pImgIn, 1, pPolyIn->getRank(), pRealOut, pImgOut);
+                iMultiRealScalarByComplexMatrix(_pDouble->get(0), pRealIn, pImgIn, 1, pPolyIn->getSize(), pRealOut, pImgOut);
             }
             else if (bComplex1 == true && bComplex2 == false)
             {
-                iMultiComplexScalarByRealMatrix(_pDouble->get(0), _pDouble->getImg(0), pRealIn, 1, pPolyIn->getRank(), pRealOut, pImgOut);
+                iMultiComplexScalarByRealMatrix(_pDouble->get(0), _pDouble->getImg(0), pRealIn, 1, pPolyIn->getSize(), pRealOut, pImgOut);
             }
             else if (bComplex1 == true && bComplex2 == true)
             {
-                iMultiComplexScalarByComplexMatrix(_pDouble->get(0), _pDouble->getImg(0), pRealIn, pImgIn, 1, pPolyIn->getRank(), pRealOut, pImgOut);
+                iMultiComplexScalarByComplexMatrix(_pDouble->get(0), _pDouble->getImg(0), pRealIn, pImgIn, 1, pPolyIn->getSize(), pRealOut, pImgOut);
             }
         }
         (*_pPolyOut)->updateRank();
@@ -575,30 +575,30 @@ int MultiplyDoubleByPoly(Double* _pDouble, Polynom* _pPoly, Polynom** _pPolyOut)
         double *pDoubleI    = _pDouble->getImg();
 
         SinglePoly *pPolyIn = _pPoly->get(0);
-        double* pRealIn     = pPolyIn->getCoef()->get();
-        double* pImgIn      = pPolyIn->getCoef()->getImg();
+        double* pRealIn     = pPolyIn->get();
+        double* pImgIn      = pPolyIn->getImg();
 
         for (int i = 0 ; i < _pDouble->getSize() ; i++)
         {
             SinglePoly *pPolyOut    = (*_pPolyOut)->get(i);
-            double* pRealOut        = pPolyOut->getCoef()->get();
-            double* pImgOut         = pPolyOut->getCoef()->getImg();
+            double* pRealOut        = pPolyOut->get();
+            double* pImgOut         = pPolyOut->getImg();
 
             if (bComplex1 == false && bComplex2 == false)
             {
-                iMultiRealScalarByRealMatrix(pDoubleR[i], pRealIn, 1, pPolyIn->getRank(), pRealOut);
+                iMultiRealScalarByRealMatrix(pDoubleR[i], pRealIn, 1, pPolyIn->getSize(), pRealOut);
             }
             else if (bComplex1 == false && bComplex2 == true)
             {
-                iMultiRealScalarByComplexMatrix(pDoubleR[i], pRealIn, pImgIn, 1, pPolyIn->getRank(), pRealOut, pImgOut);
+                iMultiRealScalarByComplexMatrix(pDoubleR[i], pRealIn, pImgIn, 1, pPolyIn->getSize(), pRealOut, pImgOut);
             }
             else if (bComplex1 == true && bComplex2 == false)
             {
-                iMultiComplexScalarByRealMatrix(pDoubleR[i], pDoubleI[i], pRealIn, 1, pPolyIn->getRank(), pRealOut, pImgOut);
+                iMultiComplexScalarByRealMatrix(pDoubleR[i], pDoubleI[i], pRealIn, 1, pPolyIn->getSize(), pRealOut, pImgOut);
             }
             else if (bComplex1 == true && bComplex2 == true)
             {
-                iMultiComplexScalarByComplexMatrix(pDoubleR[i], pDoubleI[i], pRealIn, pImgIn, 1, pPolyIn->getRank(), pRealOut, pImgOut);
+                iMultiComplexScalarByComplexMatrix(pDoubleR[i], pDoubleI[i], pRealIn, pImgIn, 1, pPolyIn->getSize(), pRealOut, pImgOut);
             }
         }
 
@@ -612,9 +612,10 @@ int MultiplyDoubleByPoly(Double* _pDouble, Polynom* _pPoly, Polynom** _pPolyOut)
     }
 
     int* piRank = new int[_pDouble->getRows() * _pPoly->getCols()];
+    int iMaxRank = _pPoly->getMaxRank();
     for (int i = 0 ; i < _pDouble->getRows() * _pPoly->getCols() ; i++)
     {
-        piRank[i] = _pPoly->getMaxRank();
+        piRank[i] = iMaxRank;
     }
 
     (*_pPolyOut) = new Polynom(_pPoly->getVariableName(), _pDouble->getRows(), _pPoly->getCols(), piRank);
@@ -685,30 +686,30 @@ int MultiplyPolyByDouble(Polynom* _pPoly, Double* _pDouble, Polynom **_pPolyOut)
         double *pDoubleI    = _pDouble->getImg();
 
         SinglePoly *pPolyIn = _pPoly->get(0);
-        double* pRealIn     = pPolyIn->getCoef()->get();
-        double* pImgIn      = pPolyIn->getCoef()->getImg();
+        double* pRealIn     = pPolyIn->get();
+        double* pImgIn      = pPolyIn->getImg();
 
         for (int i = 0 ; i < _pDouble->getSize() ; i++)
         {
             SinglePoly *pPolyOut    = (*_pPolyOut)->get(i);
-            double* pRealOut        = pPolyOut->getCoef()->get();
-            double* pImgOut         = pPolyOut->getCoef()->getImg();
+            double* pRealOut        = pPolyOut->get();
+            double* pImgOut         = pPolyOut->getImg();
 
             if (bComplex1 == false && bComplex2 == false)
             {
-                iMultiRealScalarByRealMatrix(pDoubleR[i], pRealIn, 1, pPolyIn->getRank(), pRealOut);
+                iMultiRealScalarByRealMatrix(pDoubleR[i], pRealIn, 1, pPolyIn->getSize(), pRealOut);
             }
             else if (bComplex1 == false && bComplex2 == true)
             {
-                iMultiComplexScalarByRealMatrix(pDoubleR[i], pDoubleI[i], pRealIn, 1, pPolyIn->getRank(), pRealOut, pImgOut);
+                iMultiComplexScalarByRealMatrix(pDoubleR[i], pDoubleI[i], pRealIn, 1, pPolyIn->getSize(), pRealOut, pImgOut);
             }
             else if (bComplex1 == true && bComplex2 == false)
             {
-                iMultiRealScalarByComplexMatrix(pDoubleR[i], pRealIn, pImgIn, 1, pPolyIn->getRank(), pRealOut, pImgOut);
+                iMultiRealScalarByComplexMatrix(pDoubleR[i], pRealIn, pImgIn, 1, pPolyIn->getSize(), pRealOut, pImgOut);
             }
             else if (bComplex1 == true && bComplex2 == true)
             {
-                iMultiComplexScalarByComplexMatrix(pDoubleR[i], pDoubleI[i], pRealIn, pImgIn, 1, pPolyIn->getRank(), pRealOut, pImgOut);
+                iMultiComplexScalarByComplexMatrix(pDoubleR[i], pDoubleI[i], pRealIn, pImgIn, 1, pPolyIn->getSize(), pRealOut, pImgOut);
             }
         }
 
@@ -733,28 +734,28 @@ int MultiplyPolyByDouble(Polynom* _pPoly, Double* _pDouble, Polynom **_pPolyOut)
         for (int i = 0 ; i < _pPoly->getSize() ; i++)
         {
             SinglePoly *pPolyIn = _pPoly->get(i);
-            double* pRealIn     = pPolyIn->getCoef()->get();
-            double* pImgIn      = pPolyIn->getCoef()->getImg();
+            double* pRealIn     = pPolyIn->get();
+            double* pImgIn      = pPolyIn->getImg();
 
             SinglePoly *pPolyOut    = (*_pPolyOut)->get(i);
-            double* pRealOut        = pPolyOut->getCoef()->get();
-            double* pImgOut         = pPolyOut->getCoef()->getImg();
+            double* pRealOut        = pPolyOut->get();
+            double* pImgOut         = pPolyOut->getImg();
 
             if (bComplex1 == false && bComplex2 == false)
             {
-                iMultiRealScalarByRealMatrix(_pDouble->get(0), pRealIn, 1, pPolyIn->getRank(), pRealOut);
+                iMultiRealScalarByRealMatrix(_pDouble->get(0), pRealIn, 1, pPolyIn->getSize(), pRealOut);
             }
             else if (bComplex1 == false && bComplex2 == true)
             {
-                iMultiComplexScalarByRealMatrix(_pDouble->get(0), _pDouble->getImg(0), pRealIn, 1, pPolyIn->getRank(), pRealOut, pImgOut);
+                iMultiComplexScalarByRealMatrix(_pDouble->get(0), _pDouble->getImg(0), pRealIn, 1, pPolyIn->getSize(), pRealOut, pImgOut);
             }
             else if (bComplex1 == true && bComplex2 == false)
             {
-                iMultiRealScalarByComplexMatrix(_pDouble->get(0), pRealIn, pImgIn, 1, pPolyIn->getRank(), pRealOut, pImgOut);
+                iMultiRealScalarByComplexMatrix(_pDouble->get(0), pRealIn, pImgIn, 1, pPolyIn->getSize(), pRealOut, pImgOut);
             }
             else if (bComplex1 == true && bComplex2 == true)
             {
-                iMultiComplexScalarByComplexMatrix(_pDouble->get(0), _pDouble->getImg(0), pRealIn, pImgIn, 1, pPolyIn->getRank(), pRealOut, pImgOut);
+                iMultiComplexScalarByComplexMatrix(_pDouble->get(0), _pDouble->getImg(0), pRealIn, pImgIn, 1, pPolyIn->getSize(), pRealOut, pImgOut);
             }
         }
 
@@ -768,9 +769,10 @@ int MultiplyPolyByDouble(Polynom* _pPoly, Double* _pDouble, Polynom **_pPolyOut)
     }
 
     int* piRank = new int[_pPoly->getRows() * _pDouble->getCols()];
+    int iMaxRank = _pPoly->getMaxRank();
     for (int i = 0 ; i < _pPoly->getRows() * _pDouble->getCols() ; i++)
     {
-        piRank[i] = _pPoly->getMaxRank();
+        piRank[i] = iMaxRank;
     }
 
     (*_pPolyOut) = new Polynom(_pPoly->getVariableName(), _pPoly->getRows(), _pDouble->getCols(), piRank);
@@ -780,7 +782,6 @@ int MultiplyPolyByDouble(Polynom* _pPoly, Double* _pDouble, Polynom **_pPolyOut)
         (*_pPolyOut)->setComplex(true);
     }
 
-
     //Distribution a la mano par appels a des sous-fonctions ( iMulti...ScalarBy...Scalar ) plus iAdd...To... )
 
     //for each line of _pPoly
@@ -789,51 +790,47 @@ int MultiplyPolyByDouble(Polynom* _pPoly, Double* _pDouble, Polynom **_pPolyOut)
         //for each col of _pDouble
         for (int iCol2 = 0 ; iCol2 < _pDouble->getCols() ; iCol2++)
         {
+            SinglePoly* pSPOut = (*_pPolyOut)->get(iRow1, iCol2);
+            pSPOut->setZeros();
+
             //for each rows of _pDouble / cols of _pPoly
             for (int iRow2 = 0 ; iRow2 < _pDouble->getRows() ; iRow2++)
             {
-                Double *pPolyCoef = _pPoly->get(iRow1, iRow2)->getCoef();
+                // SinglePoly(iRow1, iRow2) * Double(iRow2, iCol2)
+                SinglePoly* pSPIn = _pPoly->get(iRow1, iRow2);
+                int iSize = pSPIn->getSize();
+                double* pdblMult = new double[iSize];
 
-                Double *pDouble = NULL;
-                if (bComplex2 == false)
+                if (bComplex1 == false && bComplex2 == false)
                 {
-                    pDouble = new Double(_pDouble->get(iRow2, iCol2));
+                    //Real Matrix by Real Scalar
+                    iMultiRealScalarByRealMatrix(_pDouble->get(iRow2, iCol2), pSPIn->get(), iSize, 1, pdblMult);
+                    add(pSPOut->get(), (long long)iSize, pdblMult, pSPOut->get());
                 }
-                else
+                else if (bComplex1 == false && bComplex2 == true)
                 {
-                    pDouble = new Double(_pDouble->get(iRow2, iCol2), _pDouble->getImg(iRow2, iCol2));
+                    //Real Matrix by Scalar Complex
+                    double* pdblMultImg = new double[iSize];
+                    iMultiComplexScalarByRealMatrix(_pDouble->get(iRow2, iCol2), _pDouble->getImg(iRow2, iCol2), pSPIn->get(), pSPIn->getSize(), 1, pdblMult, pdblMultImg);
+                    add(pSPOut->get(), pSPOut->getImg(), (long long)iSize, pdblMult, pdblMultImg, pSPOut->get(), pSPOut->getImg());
+                    delete[] pdblMultImg;
                 }
-
-                Double *TimeDouble = NULL; //(pPolyCoef->getRows(), pPolyCoef->getCols(), bComplexOut);
-                MultiplyDoubleByDouble(pPolyCoef, pDouble, &TimeDouble);
-
-                //Adjust size to allow vector multiplication
-                Double* pCoef = (*_pPolyOut)->get(iRow1, iCol2)->getCoef();
-
-                if (TimeDouble->getRows() > pCoef->getRows())
+                else if (bComplex1 == true && bComplex2 == false)
                 {
-                    pCoef->resize(TimeDouble->getRows(), pCoef->getCols());
+                    double* pdblMultImg = new double[iSize];
+                    iMultiRealScalarByComplexMatrix(_pDouble->get(iRow2, iCol2), pSPIn->get(), pSPIn->getImg(), pSPIn->getSize(), 1, pdblMult, pdblMultImg);
+                    add(pSPOut->get(), pSPOut->getImg(), (long long)iSize, pdblMult, pdblMultImg, pSPOut->get(), pSPOut->getImg());
+                    delete[] pdblMultImg;
                 }
-                else if (TimeDouble->getRows() < pCoef->getRows())
+                else //if(bComplex1 == true && bComplex2 == true)
                 {
-                    TimeDouble->resize(pCoef->getRows(), TimeDouble->getCols());
-                }
-
-                if (TimeDouble->getCols() > pCoef->getCols())
-                {
-                    pCoef->resize(pCoef->getRows(), TimeDouble->getCols());
-                }
-                else if (TimeDouble->getCols() < pCoef->getCols())
-                {
-                    TimeDouble->resize(TimeDouble->getRows(), pCoef->getCols());
+                    double* pdblMultImg = new double[iSize];
+                    iMultiComplexScalarByComplexMatrix(_pDouble->get(iRow2, iCol2), _pDouble->getImg(iRow2, iCol2), pSPIn->get(), pSPIn->getImg(), pSPIn->getSize(), 1, pdblMult, pdblMultImg);
+                    add(pSPOut->get(), pSPOut->getImg(), (long long)iSize, pdblMult, pdblMultImg, pSPOut->get(), pSPOut->getImg());
+                    delete[] pdblMultImg;
                 }
 
-                add_function pAdd = getAddFunction(TimeDouble->getId(), pCoef->getId());
-                Double *pAddDouble = (Double*)pAdd(TimeDouble, pCoef);
-                (*_pPolyOut)->setCoef(iRow1, iCol2, pAddDouble);
-
-                delete pAddDouble;
-                delete pDouble;
+                delete[] pdblMult;
             }//for(int iRow2 = 0 ; iRow2 < _pDouble->getRows() ; iRow2++)
         }//for(int iCol2 = 0 ; iCol2 < _pDouble->getCols() ; iCol2++)
     }//for(int iRow1 = 0 ; iRow1 < _pPoly->getRows() ; iRow1++)
@@ -850,15 +847,12 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
     if (_pPoly1->isScalar() && _pPoly2->isScalar())
     {
         //poly1(0) * poly2(0)
-        int* piRank = new int[1];
-        piRank[0] = _pPoly1->get(0)->getRealRank() + _pPoly2->get(0)->getRealRank() + 1;
-
-        (*_pPolyOut) = new Polynom(_pPoly1->getVariableName(), 1, 1, piRank);
+        int iRank = _pPoly1->get(0)->getRank() + _pPoly2->get(0)->getRank();
+        (*_pPolyOut) = new Polynom(_pPoly1->getVariableName(), 1, 1, &iRank);
         if (bComplex1 || bComplex2)
         {
             (*_pPolyOut)->setComplex(true);
         }
-        delete[] piRank;
 
         if (bComplex1 == false && bComplex2 == false)
         {
@@ -866,12 +860,12 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
             SinglePoly *pPoly2  = _pPoly2->get(0);
             SinglePoly *pPolyOut = (*_pPolyOut)->get(0);
 
-            pPolyOut->getCoef()->setZeros();
+            pPolyOut->setZeros();
 
             iMultiScilabPolynomByScilabPolynom(
-                pPoly1->getCoef()->get(), pPoly1->getRank(),
-                pPoly2->getCoef()->get(), pPoly2->getRank(),
-                pPolyOut->getCoef()->get(), pPolyOut->getRank());
+                pPoly1->get(), pPoly1->getSize(),
+                pPoly2->get(), pPoly2->getSize(),
+                pPolyOut->get(), pPolyOut->getSize());
         }
         else if (bComplex1 == false && bComplex2 == true)
         {
@@ -879,12 +873,12 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
             SinglePoly *pPoly2  = _pPoly2->get(0);
             SinglePoly *pPolyOut = (*_pPolyOut)->get(0);
 
-            pPolyOut->getCoef()->setZeros();
+            pPolyOut->setZeros();
 
             iMultiScilabPolynomByComplexPoly(
-                pPoly1->getCoef()->get(), pPoly1->getRank(),
-                pPoly2->getCoef()->get(), pPoly2->getCoef()->getImg(), pPoly2->getRank(),
-                pPolyOut->getCoef()->get(), pPolyOut->getCoef()->getImg(), pPolyOut->getRank());
+                pPoly1->get(), pPoly1->getSize(),
+                pPoly2->get(), pPoly2->getImg(), pPoly2->getSize(),
+                pPolyOut->get(), pPolyOut->getImg(), pPolyOut->getSize());
         }
         else if (bComplex1 == true && bComplex2 == false)
         {
@@ -892,28 +886,25 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
             SinglePoly *pPoly2  = _pPoly2->get(0);
             SinglePoly *pPolyOut = (*_pPolyOut)->get(0);
 
-            pPolyOut->getCoef()->setZeros();
+            pPolyOut->setZeros();
 
             iMultiComplexPolyByScilabPolynom(
-                pPoly1->getCoef()->get(), pPoly1->getCoef()->getImg(), pPoly1->getRank(),
-                pPoly2->getCoef()->get(), pPoly2->getRank(),
-                pPolyOut->getCoef()->get(), pPolyOut->getCoef()->getImg(), pPolyOut->getRank());
+                pPoly1->get(), pPoly1->getImg(), pPoly1->getSize(),
+                pPoly2->get(), pPoly2->getSize(),
+                pPolyOut->get(), pPolyOut->getImg(), pPolyOut->getSize());
         }
         else if (bComplex1 == true && bComplex2 == true)
         {
             SinglePoly *pPoly1   = _pPoly1->get(0);
             SinglePoly *pPoly2   = _pPoly2->get(0);
             SinglePoly *pPolyOut  = (*_pPolyOut)->get(0);
-            Double *pCoef1  = pPoly1->getCoef();
-            Double *pCoef2  = pPoly2->getCoef();
-            Double *pCoefOut = pPolyOut->getCoef();
 
-            pCoefOut->setZeros();
+            pPolyOut->setZeros();
 
             iMultiComplexPolyByComplexPoly(
-                pCoef1->get(), pCoef1->getImg(), pPoly1->getRank(),
-                pCoef2->get(), pCoef2->getImg(), pPoly2->getRank(),
-                pCoefOut->get(), pCoefOut->getImg(), pPolyOut->getRank());
+                pPoly1->get(), pPoly1->getImg(), pPoly1->getSize(),
+                pPoly2->get(), pPoly2->getImg(), pPoly2->getSize(),
+                pPolyOut->get(), pPolyOut->getImg(), pPolyOut->getSize());
         }
 
         (*_pPolyOut)->updateRank();
@@ -926,7 +917,7 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
         int* piRank = new int[_pPoly2->getSize()];
         for (int i = 0 ; i < _pPoly2->getSize() ; i++)
         {
-            piRank[i] = _pPoly1->get(0)->getRealRank() + _pPoly2->get(i)->getRealRank() + 1;
+            piRank[i] = _pPoly1->get(0)->getRank() + _pPoly2->get(i)->getRank();
         }
 
         (*_pPolyOut) = new Polynom(_pPoly1->getVariableName(), _pPoly2->getDims(), _pPoly2->getDimsArray(), piRank);
@@ -945,12 +936,12 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
                 SinglePoly *pPoly2  = _pPoly2->get(iPoly);
                 SinglePoly *pPolyOut = (*_pPolyOut)->get(iPoly);
 
-                pPolyOut->getCoef()->setZeros();
+                pPolyOut->setZeros();
 
                 iMultiScilabPolynomByScilabPolynom(
-                    pPoly1->getCoef()->get(), pPoly1->getRank(),
-                    pPoly2->getCoef()->get(), pPoly2->getRank(),
-                    pPolyOut->getCoef()->get(), pPolyOut->getRank());
+                    pPoly1->get(), pPoly1->getSize(),
+                    pPoly2->get(), pPoly2->getSize(),
+                    pPolyOut->get(), pPolyOut->getSize());
             }
         }
         else if (bComplex1 == false && bComplex2 == true)
@@ -960,12 +951,12 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
                 SinglePoly *pPoly2  = _pPoly2->get(iPoly);
                 SinglePoly *pPolyOut = (*_pPolyOut)->get(iPoly);
 
-                pPolyOut->getCoef()->setZeros();
+                pPolyOut->setZeros();
 
                 iMultiScilabPolynomByComplexPoly(
-                    pPoly1->getCoef()->get(), pPoly1->getRank(),
-                    pPoly2->getCoef()->get(), pPoly2->getCoef()->getImg(), pPoly2->getRank(),
-                    pPolyOut->getCoef()->get(), pPolyOut->getCoef()->getImg(), pPolyOut->getRank());
+                    pPoly1->get(), pPoly1->getSize(),
+                    pPoly2->get(), pPoly2->getImg(), pPoly2->getSize(),
+                    pPolyOut->get(), pPolyOut->getImg(), pPolyOut->getSize());
             }
         }
         else if (bComplex1 == true && bComplex2 == false)
@@ -975,30 +966,27 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
                 SinglePoly *pPoly2  = _pPoly2->get(iPoly);
                 SinglePoly *pPolyOut = (*_pPolyOut)->get(iPoly);
 
-                pPolyOut->getCoef()->setZeros();
+                pPolyOut->setZeros();
 
                 iMultiComplexPolyByScilabPolynom(
-                    pPoly1->getCoef()->get(), pPoly1->getCoef()->getImg(), pPoly1->getRank(),
-                    pPoly2->getCoef()->get(), pPoly2->getRank(),
-                    pPolyOut->getCoef()->get(), pPolyOut->getCoef()->getImg(), pPolyOut->getRank());
+                    pPoly1->get(), pPoly1->getImg(), pPoly1->getSize(),
+                    pPoly2->get(), pPoly2->getSize(),
+                    pPolyOut->get(), pPolyOut->getImg(), pPolyOut->getSize());
             }
         }
         else if (bComplex1 == true && bComplex2 == true)
         {
-            Double *pCoef1  = pPoly1->getCoef();
             for (int iPoly = 0 ; iPoly < _pPoly2->getSize() ; iPoly++)
             {
                 SinglePoly *pPoly2   = _pPoly2->get(iPoly);
                 SinglePoly *pPolyOut  = (*_pPolyOut)->get(iPoly);
-                Double *pCoef2  = pPoly2->getCoef();
-                Double *pCoefOut = pPolyOut->getCoef();
 
-                pCoefOut->setZeros();
+                pPolyOut->setZeros();
 
                 iMultiComplexPolyByComplexPoly(
-                    pCoef1->get(), pCoef1->getImg(), pPoly1->getRank(),
-                    pCoef2->get(), pCoef2->getImg(), pPoly2->getRank(),
-                    pCoefOut->get(), pCoefOut->getImg(), pPolyOut->getRank());
+                    pPoly1->get(), pPoly1->getImg(), pPoly1->getSize(),
+                    pPoly2->get(), pPoly2->getImg(), pPoly2->getSize(),
+                    pPolyOut->get(), pPolyOut->getImg(), pPolyOut->getSize());
             }
         }
 
@@ -1012,7 +1000,7 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
         int* piRank = new int[_pPoly1->getSize()];
         for (int i = 0 ; i < _pPoly1->getSize() ; i++)
         {
-            piRank[i] = _pPoly2->get(0)->getRealRank() + _pPoly1->get(i)->getRealRank() + 1;
+            piRank[i] = _pPoly2->get(0)->getRank() + _pPoly1->get(i)->getRank();
         }
 
         (*_pPolyOut) = new Polynom(_pPoly1->getVariableName(), _pPoly1->getDims(), _pPoly1->getDimsArray(), piRank);
@@ -1030,12 +1018,12 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
                 SinglePoly *pPoly1  = _pPoly1->get(iPoly);
                 SinglePoly *pPolyOut = (*_pPolyOut)->get(iPoly);
 
-                pPolyOut->getCoef()->setZeros();
+                pPolyOut->setZeros();
 
                 iMultiScilabPolynomByScilabPolynom(
-                    pPoly1->getCoef()->get(), pPoly1->getRank(),
-                    pPoly2->getCoef()->get(), pPoly2->getRank(),
-                    pPolyOut->getCoef()->get(), pPolyOut->getRank());
+                    pPoly1->get(), pPoly1->getSize(),
+                    pPoly2->get(), pPoly2->getSize(),
+                    pPolyOut->get(), pPolyOut->getSize());
             }
         }
         else if (bComplex1 == false && bComplex2 == true)
@@ -1045,12 +1033,12 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
                 SinglePoly *pPoly1  = _pPoly1->get(iPoly);
                 SinglePoly *pPolyOut = (*_pPolyOut)->get(iPoly);
 
-                pPolyOut->getCoef()->setZeros();
+                pPolyOut->setZeros();
 
                 iMultiScilabPolynomByComplexPoly(
-                    pPoly1->getCoef()->get(), pPoly1->getRank(),
-                    pPoly2->getCoef()->get(), pPoly2->getCoef()->getImg(), pPoly2->getRank(),
-                    pPolyOut->getCoef()->get(), pPolyOut->getCoef()->getImg(), pPolyOut->getRank());
+                    pPoly1->get(), pPoly1->getSize(),
+                    pPoly2->get(), pPoly2->getImg(), pPoly2->getSize(),
+                    pPolyOut->get(), pPolyOut->getImg(), pPolyOut->getSize());
             }
         }
         else if (bComplex1 == true && bComplex2 == false)
@@ -1060,30 +1048,27 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
                 SinglePoly *pPoly1  = _pPoly1->get(iPoly);
                 SinglePoly *pPolyOut = (*_pPolyOut)->get(iPoly);
 
-                pPolyOut->getCoef()->setZeros();
+                pPolyOut->setZeros();
 
                 iMultiComplexPolyByScilabPolynom(
-                    pPoly1->getCoef()->get(), pPoly1->getCoef()->getImg(), pPoly1->getRank(),
-                    pPoly2->getCoef()->get(), pPoly2->getRank(),
-                    pPolyOut->getCoef()->get(), pPolyOut->getCoef()->getImg(), pPolyOut->getRank());
+                    pPoly1->get(), pPoly1->getImg(), pPoly1->getSize(),
+                    pPoly2->get(), pPoly2->getSize(),
+                    pPolyOut->get(), pPolyOut->getImg(), pPolyOut->getSize());
             }
         }
         else if (bComplex1 == true && bComplex2 == true)
         {
-            Double *pCoef2  = pPoly2->getCoef();
             for (int iPoly = 0 ; iPoly < _pPoly1->getSize() ; iPoly++)
             {
                 SinglePoly *pPoly1   = _pPoly1->get(iPoly);
                 SinglePoly *pPolyOut  = (*_pPolyOut)->get(iPoly);
-                Double *pCoef1  = pPoly1->getCoef();
-                Double *pCoefOut = pPolyOut->getCoef();
 
-                pCoefOut->setZeros();
+                pPolyOut->setZeros();
 
                 iMultiComplexPolyByComplexPoly(
-                    pCoef1->get(), pCoef1->getImg(), pPoly1->getRank(),
-                    pCoef2->get(), pCoef2->getImg(), pPoly2->getRank(),
-                    pCoefOut->get(), pCoefOut->getImg(), pPolyOut->getRank());
+                    pPoly1->get(), pPoly1->getImg(), pPoly1->getSize(),
+                    pPoly2->get(), pPoly2->getImg(), pPoly2->getSize(),
+                    pPolyOut->get(), pPolyOut->getImg(), pPolyOut->getSize());
             }
         }
 
@@ -1098,9 +1083,10 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
 
     // matrix by matrix
     int* piRank = new int[_pPoly1->getRows() * _pPoly2->getCols()];
+    int iMaxRank = _pPoly1->getMaxRank() + _pPoly2->getMaxRank();
     for (int i = 0 ; i < _pPoly1->getRows() * _pPoly2->getCols() ; i++)
     {
-        piRank[i] = _pPoly1->getMaxRank() + _pPoly2->getMaxRank() - 1;
+        piRank[i] = iMaxRank;
     }
 
     (*_pPolyOut) = new Polynom(_pPoly1->getVariableName(), _pPoly1->getRows(), _pPoly2->getCols(), piRank);
@@ -1122,24 +1108,24 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
             for (int iCol = 0 ; iCol < _pPoly2->getCols() ; iCol++)
             {
                 SinglePoly *pResult = (*_pPolyOut)->get(iRow, iCol);
-                pResult->getCoef()->setZeros();
+                pResult->setZeros();
 
                 for (int iCommon = 0 ; iCommon < _pPoly1->getCols() ; iCommon++)
                 {
                     SinglePoly *pL   = _pPoly1->get(iRow, iCommon);
                     SinglePoly *pR   = _pPoly2->get(iCommon, iCol);
 
-                    pTemp->getCoef()->setZeros();
+                    pTemp->setZeros();
 
                     iMultiScilabPolynomByScilabPolynom(
-                        pL->getCoef()->get(), pL->getRank(),
-                        pR->getCoef()->get(), pR->getRank(),
-                        pTemp->getCoef()->get(), pL->getRank() + pR->getRank() - 1);
+                        pL->get(), pL->getSize(),
+                        pR->get(), pR->getSize(),
+                        pTemp->get(), pL->getRank() + pR->getRank() + 1);
 
                     iAddScilabPolynomToScilabPolynom(
-                        pResult->getCoef()->get(), pResult->getRank(),
-                        pTemp->getCoef()->get(), pResult->getRank(),
-                        pResult->getCoef()->get(), pResult->getRank());
+                        pResult->get(), pResult->getSize(),
+                        pTemp->get(), pResult->getSize(),
+                        pResult->get(), pResult->getSize());
                 }
             }
         }
@@ -1155,24 +1141,24 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
             for (int iCol = 0 ; iCol < _pPoly2->getCols() ; iCol++)
             {
                 SinglePoly *pResult = (*_pPolyOut)->get(iRow, iCol);
-                pResult->getCoef()->setZeros();
+                pResult->setZeros();
 
                 for (int iCommon = 0 ; iCommon < _pPoly1->getCols() ; iCommon++)
                 {
                     SinglePoly *pL   = _pPoly1->get(iRow, iCommon);
                     SinglePoly *pR   = _pPoly2->get(iCommon, iCol);
 
-                    pTemp->getCoef()->setZeros();
+                    pTemp->setZeros();
 
                     iMultiScilabPolynomByComplexPoly(
-                        pL->getCoef()->get(), pL->getRank(),
-                        pR->getCoef()->get(), pR->getCoef()->getImg(), pR->getRank(),
-                        pTemp->getCoef()->get(), pTemp->getCoef()->getImg(), pL->getRank() + pR->getRank() - 1);
+                        pL->get(), pL->getSize(),
+                        pR->get(), pR->getImg(), pR->getSize(),
+                        pTemp->get(), pTemp->getImg(), pL->getRank() + pR->getRank() + 1);
 
                     iAddComplexPolyToComplexPoly(
-                        pResult->getCoef()->get(), pResult->getCoef()->getImg(), pResult->getRank(),
-                        pTemp->getCoef()->get(), pTemp->getCoef()->getImg(), pResult->getRank(),
-                        pResult->getCoef()->get(), pResult->getCoef()->getImg(), pResult->getRank());
+                        pResult->get(), pResult->getImg(), pResult->getSize(),
+                        pTemp->get(), pTemp->getImg(), pResult->getSize(),
+                        pResult->get(), pResult->getImg(), pResult->getSize());
                 }
             }
         }
@@ -1188,24 +1174,24 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
             for (int iCol = 0 ; iCol < _pPoly2->getCols() ; iCol++)
             {
                 SinglePoly *pResult = (*_pPolyOut)->get(iRow, iCol);
-                pResult->getCoef()->setZeros();
+                pResult->setZeros();
 
                 for (int iCommon = 0 ; iCommon < _pPoly1->getCols() ; iCommon++)
                 {
                     SinglePoly *pL   = _pPoly1->get(iRow, iCommon);
                     SinglePoly *pR   = _pPoly2->get(iCommon, iCol);
 
-                    pTemp->getCoef()->setZeros();
+                    pTemp->setZeros();
 
                     iMultiScilabPolynomByComplexPoly(
-                        pR->getCoef()->get(), pR->getRank(),
-                        pL->getCoef()->get(), pL->getCoef()->getImg(), pL->getRank(),
-                        pTemp->getCoef()->get(), pTemp->getCoef()->getImg(), pL->getRank() + pR->getRank() - 1);
+                        pR->get(), pR->getSize(),
+                        pL->get(), pL->getImg(), pL->getSize(),
+                        pTemp->get(), pTemp->getImg(), pL->getRank() + pR->getRank() + 1);
 
                     iAddComplexPolyToComplexPoly(
-                        pResult->getCoef()->get(), pResult->getCoef()->getImg(), pResult->getRank(),
-                        pTemp->getCoef()->get(), pTemp->getCoef()->getImg(), pResult->getRank(),
-                        pResult->getCoef()->get(), pResult->getCoef()->getImg(), pResult->getRank());
+                        pResult->get(), pResult->getImg(), pResult->getSize(),
+                        pTemp->get(), pTemp->getImg(), pResult->getSize(),
+                        pResult->get(), pResult->getImg(), pResult->getSize());
                 }
             }
         }
@@ -1221,24 +1207,24 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
             for (int iCol = 0 ; iCol < _pPoly2->getCols() ; iCol++)
             {
                 SinglePoly *pResult = (*_pPolyOut)->get(iRow, iCol);
-                pResult->getCoef()->setZeros();
+                pResult->setZeros();
 
                 for (int iCommon = 0 ; iCommon < _pPoly1->getCols() ; iCommon++)
                 {
                     SinglePoly *pL   = _pPoly1->get(iRow, iCommon);
                     SinglePoly *pR   = _pPoly2->get(iCommon, iCol);
 
-                    pTemp->getCoef()->setZeros();
+                    pTemp->setZeros();
 
                     iMultiComplexPolyByComplexPoly(
-                        pL->getCoef()->get(), pL->getCoef()->getImg(), pL->getRank(),
-                        pR->getCoef()->get(), pR->getCoef()->getImg(), pR->getRank(),
-                        pTemp->getCoef()->get(), pTemp->getCoef()->getImg(), pL->getRank() + pR->getRank() - 1);
+                        pL->get(), pL->getImg(), pL->getSize(),
+                        pR->get(), pR->getImg(), pR->getSize(),
+                        pTemp->get(), pTemp->getImg(), pL->getRank() + pR->getRank() + 1);
 
                     iAddComplexPolyToComplexPoly(
-                        pResult->getCoef()->get(), pResult->getCoef()->getImg(), pResult->getRank(),
-                        pTemp->getCoef()->get(), pTemp->getCoef()->getImg(), pResult->getRank(),
-                        pResult->getCoef()->get(), pResult->getCoef()->getImg(), pResult->getRank());
+                        pResult->get(), pResult->getImg(), pResult->getSize(),
+                        pTemp->get(), pTemp->getImg(), pResult->getSize(),
+                        pResult->get(), pResult->getImg(), pResult->getSize());
                 }
             }
         }
@@ -1680,14 +1666,18 @@ int DotMultiplyPolyByDouble(Polynom* _pPoly, Double* _pDouble, Polynom** _pPolyO
 
 int DotMultiplyDoubleByPoly(Double* _pDouble, Polynom* _pPoly, Polynom** _pPolyOut)
 {
+    int iSize = _pDouble->getSize();
     if (_pDouble->isScalar() == false &&
             _pPoly->isScalar() == false &&
-            _pDouble->getSize() != _pPoly->getSize())
+            iSize != _pPoly->getSize())
     {
         return 1;
     }
 
-    Polynom* pPolyTemp = new Polynom(_pPoly->getVariableName(), _pDouble->getDims(), _pDouble->getDimsArray());
+    int* piRanks = new int[iSize];
+    memset(piRanks, 0x00, iSize * sizeof(int));
+    Polynom* pPolyTemp = new Polynom(_pPoly->getVariableName(), _pDouble->getDims(), _pDouble->getDimsArray(), piRanks);
+    delete[] piRanks;
     pPolyTemp->setCoef(_pDouble);
     int iErr = DotMultiplyPolyByPoly(pPolyTemp, _pPoly, _pPolyOut);
     delete pPolyTemp;
@@ -1710,7 +1700,7 @@ int DotMultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOu
         int* piRank = new int[_pPoly1->getSize()];
         for (int i = 0 ; i < _pPoly1->getSize() ; i++)
         {
-            piRank[i] = _pPoly1->get(i)->getRank() + _pPoly2->get(i)->getRank() - 1;
+            piRank[i] = _pPoly1->get(i)->getRank() + _pPoly2->get(i)->getRank();
         }
 
         (*_pPolyOut) = new Polynom(_pPoly1->getVariableName(), _pPoly1->getDims(), _pPoly1->getDimsArray(), piRank);
@@ -1723,16 +1713,13 @@ int DotMultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOu
                 SinglePoly *pSP1    = _pPoly1->get(i);
                 SinglePoly *pSP2    = _pPoly2->get(i);
                 SinglePoly *pSPOut  = (*_pPolyOut)->get(i);
-                Double *pCoef1      = pSP1->getCoef();
-                Double *pCoef2      = pSP2->getCoef();
-                Double *pCoefOut    = pSPOut->getCoef();
 
-                pCoefOut->setZeros();
+                pSPOut->setZeros();
 
                 iMultiComplexPolyByComplexPoly(
-                    pCoef1->get(), pCoef1->getImg(), pSP1->getRank(),
-                    pCoef2->get(), pCoef2->getImg(), pSP2->getRank(),
-                    pCoefOut->get(), pCoefOut->getImg(), pSPOut->getRank());
+                    pSP1->get(), pSP1->getImg(), pSP1->getSize(),
+                    pSP2->get(), pSP2->getImg(), pSP2->getSize(),
+                    pSPOut->get(), pSPOut->getImg(), pSPOut->getSize());
 
             }
         }
@@ -1745,12 +1732,12 @@ int DotMultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOu
                 SinglePoly *pSP2   = _pPoly2->get(i);
                 SinglePoly *pSPOut = (*_pPolyOut)->get(i);
 
-                pSPOut->getCoef()->setZeros();
+                pSPOut->setZeros();
 
                 iMultiComplexPolyByScilabPolynom(
-                    pSP1->getCoef()->get(), pSP1->getCoef()->getImg(), pSP1->getRank(),
-                    pSP2->getCoef()->get(), pSP2->getRank(),
-                    pSPOut->getCoef()->get(), pSPOut->getCoef()->getImg(), pSPOut->getRank());
+                    pSP1->get(), pSP1->getImg(), pSP1->getSize(),
+                    pSP2->get(), pSP2->getSize(),
+                    pSPOut->get(), pSPOut->getImg(), pSPOut->getSize());
             }
         }
         else if (_pPoly2->isComplex())
@@ -1762,12 +1749,12 @@ int DotMultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOu
                 SinglePoly *pSP2   = _pPoly2->get(i);
                 SinglePoly *pSPOut = (*_pPolyOut)->get(i);
 
-                pSPOut->getCoef()->setZeros();
+                pSPOut->setZeros();
 
                 iMultiScilabPolynomByComplexPoly(
-                    pSP1->getCoef()->get(), pSP1->getRank(),
-                    pSP2->getCoef()->get(), pSP2->getCoef()->getImg(), pSP2->getRank(),
-                    pSPOut->getCoef()->get(), pSPOut->getCoef()->getImg(), pSPOut->getRank());
+                    pSP1->get(), pSP1->getSize(),
+                    pSP2->get(), pSP2->getImg(), pSP2->getSize(),
+                    pSPOut->get(), pSPOut->getImg(), pSPOut->getSize());
             }
         }
         else
@@ -1778,12 +1765,12 @@ int DotMultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOu
                 SinglePoly *pSP2   = _pPoly2->get(i);
                 SinglePoly *pSPOut = (*_pPolyOut)->get(i);
 
-                pSPOut->getCoef()->setZeros();
+                pSPOut->setZeros();
 
                 iMultiScilabPolynomByScilabPolynom(
-                    pSP1->getCoef()->get(), pSP1->getRank(),
-                    pSP2->getCoef()->get(), pSP2->getRank(),
-                    pSPOut->getCoef()->get(), pSPOut->getRank());
+                    pSP1->get(), pSP1->getSize(),
+                    pSP2->get(), pSP2->getSize(),
+                    pSPOut->get(), pSPOut->getSize());
             }
         }
     }

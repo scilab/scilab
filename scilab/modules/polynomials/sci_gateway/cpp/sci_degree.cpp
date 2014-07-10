@@ -55,7 +55,7 @@ types::Function::ReturnValue sci_degree(types::typed_list &in, int _iRetCount, t
 
         for (int i = 0; i < pDblOut->getSize(); i++)
         {
-            pdblOut[i] = (double)pPolyIn->get(i)->getRank() - 1;
+            pdblOut[i] = (double)pPolyIn->get(i)->getRank();
         }
     }
     else

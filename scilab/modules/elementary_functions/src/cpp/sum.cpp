@@ -120,26 +120,19 @@ types::Polynom* sum(types::Polynom* pIn, int iOrientation)
         int iRankMax = pIn->getMaxRank();
         pOut = new types::Polynom(pIn->getVariableName(), 1, 1, &iRankMax);
         pOut->setComplex(pIn->isComplex());
+        pOut->setZeros();
 
         // do sum
-        double* dblRealOut = pOut->get(0)->getCoef()->getReal();
+        double* dblRealOut = pOut->get(0)->get();
         if (pIn->isComplex())
         {
-            double* dblImgOut = pOut->get(0)->getCoef()->getImg();
-
-            // init output
-            for (int iRankN = 0; iRankN < iRankMax; iRankN++)
-            {
-                dblRealOut[iRankN] = 0;
-                dblImgOut[iRankN]  = 0;
-            }
-
+            double* dblImgOut = pOut->get(0)->get();
             // perform operations
             for (int i = 0; i < pIn->getSize(); i++)
             {
-                double* dblRealIn = pIn->get(i)->getCoef()->getReal();
-                double* dblImgIn = pIn->get(i)->getCoef()->getImg();
-                for (int iRankN = 0; iRankN < piRanks[i]; iRankN++)
+                double* dblRealIn = pIn->get(i)->get();
+                double* dblImgIn = pIn->get(i)->getImg();
+                for (int iRankN = 0; iRankN < piRanks[i] + 1; iRankN++)
                 {
                     dblRealOut[iRankN] += dblRealIn[iRankN];
                     dblImgOut[iRankN]  += dblImgIn[iRankN];
@@ -148,17 +141,11 @@ types::Polynom* sum(types::Polynom* pIn, int iOrientation)
         }
         else
         {
-            // init output
-            for (int iRankN = 0; iRankN < iRankMax; iRankN++)
-            {
-                dblRealOut[iRankN] = 0;
-            }
-
             // perform operations
             for (int i = 0; i < pIn->getSize(); i++)
             {
-                double* dblRealIn = pIn->get(i)->getCoef()->getReal();
-                for (int iRankN = 0; iRankN < piRanks[i]; iRankN++)
+                double* dblRealIn = pIn->get(i)->get();
+                for (int iRankN = 0; iRankN < piRanks[i] + 1; iRankN++)
                 {
                     dblRealOut[iRankN] += dblRealIn[iRankN];
                 }
@@ -218,6 +205,7 @@ types::Polynom* sum(types::Polynom* pIn, int iOrientation)
         // create the outpout polynom
         pOut = new types::Polynom(pIn->getVariableName(), iDims, piDims, piRankMax);
         pOut->setComplex(pIn->isComplex());
+        pOut->setZeros();
 
         if (pIn->isComplex())
         {
@@ -231,11 +219,11 @@ types::Polynom* sum(types::Polynom* pIn, int iOrientation)
                 int iIndex = pOut->getIndex(piIndex);
 
                 // make the sum for each ranks
-                double* dblRealIn = pIn->get(i)->getCoef()->getReal();
-                double* dblRealOut = pOut->get(iIndex)->getCoef()->getReal();
-                double* dblImgIn = pIn->get(i)->getCoef()->getImg();
-                double* dblImgOut = pOut->get(iIndex)->getCoef()->getImg();
-                for (int iRankN = 0; iRankN < piRanks[i]; iRankN++)
+                double* dblRealIn = pIn->get(i)->get();
+                double* dblRealOut = pOut->get(iIndex)->get();
+                double* dblImgIn = pIn->get(i)->getImg();
+                double* dblImgOut = pOut->get(iIndex)->getImg();
+                for (int iRankN = 0; iRankN < piRanks[i] + 1; iRankN++)
                 {
                     dblRealOut[iRankN] += dblRealIn[iRankN];
                     dblImgOut[iRankN]  += dblImgIn[iRankN];
@@ -254,9 +242,9 @@ types::Polynom* sum(types::Polynom* pIn, int iOrientation)
                 int iIndex = pOut->getIndex(piIndex);
 
                 // make sum on each ranks
-                double* dblRealIn = pIn->get(i)->getCoef()->getReal();
-                double* dblRealOut = pOut->get(iIndex)->getCoef()->getReal();
-                for (int iRankN = 0; iRankN < piRanks[i]; iRankN++)
+                double* dblRealIn = pIn->get(i)->get();
+                double* dblRealOut = pOut->get(iIndex)->get();
+                for (int iRankN = 0; iRankN < piRanks[i] + 1; iRankN++)
                 {
                     dblRealOut[iRankN] += dblRealIn[iRankN];
                 }

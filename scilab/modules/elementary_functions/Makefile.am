@@ -59,7 +59,8 @@ ELEMENTARIES_FUNCTIONS_CXX_SOURCES = \
     src/cpp/prod.cpp \
     src/cpp/sum.cpp \
     src/cpp/max.cpp \
-    src/cpp/min.cpp
+    src/cpp/min.cpp \
+    src/cpp/clean.cpp
 
 SLATEC_SOURCES = \
     src/fortran/slatec/zwrsk.f \

@@ -71,9 +71,9 @@ public:
         {
             if (_result != NULL)
             {
-                //					std::cout << "before single delete : " << _result << std::endl;
+                //                    std::cout << "before single delete : " << _result << std::endl;
                 _result->killMe();
-                //					std::cout << "after single delete" << std::endl;
+                //                    std::cout << "after single delete" << std::endl;
             }
         }
         else
@@ -299,8 +299,8 @@ public:
     | Attributes.  |
     `-------------*/
 protected:
-    vector<types::InternalType*>	_resultVect;
-    types::InternalType*	_result;
+    vector<types::InternalType*>    _resultVect;
+    types::InternalType*    _result;
     bool m_bSingleResult;
     int _excepted_result;
     symbol::Variable* m_pAns;

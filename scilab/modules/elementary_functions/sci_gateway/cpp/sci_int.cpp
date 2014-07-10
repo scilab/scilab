@@ -142,24 +142,24 @@ types::Function::ReturnValue sci_int(types::typed_list &in, int _iRetCount, type
                 int rank = pPolyIn->get(i)->getRank();
                 types::SinglePoly* pSP = new types::SinglePoly(&dataReal, &dataImg, rank);
 
-                for (int j = 0; j < rank; j++)
+                for (int j = 0; j < rank + 1; j++)
                 {
-                    if (finite(pPolyIn->get(i)->getCoefReal()[j]))
+                    if (finite(pPolyIn->get(i)->get()[j]))
                     {
-                        dataReal[j] = (double)(long long int)pPolyIn->get(i)->getCoefReal()[j];
+                        dataReal[j] = (double)(long long int)pPolyIn->get(i)->get()[j];
                     }
                     else
                     {
-                        dataReal[j] = pPolyIn->get(i)->getCoefReal()[j];
+                        dataReal[j] = pPolyIn->get(i)->get()[j];
                     }
 
-                    if (finite(pPolyIn->get(i)->getCoefImg()[j]))
+                    if (finite(pPolyIn->get(i)->getImg()[j]))
                     {
-                        dataImg[j]  = (double)(long long int)pPolyIn->get(i)->getCoefImg()[j];
+                        dataImg[j]  = (double)(long long int)pPolyIn->get(i)->getImg()[j];
                     }
                     else
                     {
-                        dataImg[j] = pPolyIn->get(i)->getCoefImg()[j];
+                        dataImg[j] = pPolyIn->get(i)->getImg()[j];
                     }
                 }
 
@@ -176,9 +176,9 @@ types::Function::ReturnValue sci_int(types::typed_list &in, int _iRetCount, type
                 int rank = pPolyIn->get(i)->getRank();
                 pSP = new types::SinglePoly(&dataReal, rank);
 
-                for (int j = 0; j < rank; j++)
+                for (int j = 0; j < rank + 1; j++)
                 {
-                    double dblVal = pPolyIn->get(i)->getCoefReal()[j];
+                    double dblVal = pPolyIn->get(i)->get()[j];
                     if (finite(dblVal))
                     {
                         dataReal[j] = (double)((long long)dblVal);

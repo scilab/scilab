@@ -331,7 +331,8 @@ am__objects_6 = src/cpp/libscielementary_functions_algo_la-getmode.lo \
 	src/cpp/libscielementary_functions_algo_la-prod.lo \
 	src/cpp/libscielementary_functions_algo_la-sum.lo \
 	src/cpp/libscielementary_functions_algo_la-max.lo \
-	src/cpp/libscielementary_functions_algo_la-min.lo
+	src/cpp/libscielementary_functions_algo_la-min.lo \
+	src/cpp/libscielementary_functions_algo_la-clean.lo
 am_libscielementary_functions_algo_la_OBJECTS = $(am__objects_1) \
 	$(am__objects_2) $(am__objects_3) $(am__objects_4) \
 	$(am__objects_5) $(am__objects_6)
@@ -843,7 +844,8 @@ ELEMENTARIES_FUNCTIONS_CXX_SOURCES = \
     src/cpp/prod.cpp \
     src/cpp/sum.cpp \
     src/cpp/max.cpp \
-    src/cpp/min.cpp
+    src/cpp/min.cpp \
+    src/cpp/clean.cpp
 
 SLATEC_SOURCES = \
     src/fortran/slatec/zwrsk.f \
@@ -1927,6 +1929,8 @@ src/cpp/libscielementary_functions_algo_la-max.lo:  \
 	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscielementary_functions_algo_la-min.lo:  \
 	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscielementary_functions_algo_la-clean.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
 
 libscielementary_functions-algo.la: $(libscielementary_functions_algo_la_OBJECTS) $(libscielementary_functions_algo_la_DEPENDENCIES) $(EXTRA_libscielementary_functions_algo_la_DEPENDENCIES) 
 	$(AM_V_CXXLD)$(CXXLINK) $(am_libscielementary_functions_algo_la_rpath) $(libscielementary_functions_algo_la_OBJECTS) $(libscielementary_functions_algo_la_LIBADD) $(LIBS)
@@ -2217,6 +2221,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscielementary_functions_algo_la-vfrexp.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscielementary_functions_algo_la-vmul.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscielementary_functions_algo_la-xerhlt.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscielementary_functions_algo_la-clean.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscielementary_functions_algo_la-cumprod.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscielementary_functions_algo_la-cumsum.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscielementary_functions_algo_la-diag.Plo@am__quote@
@@ -2708,6 +2713,13 @@ src/cpp/libscielementary_functions_algo_la-min.lo: src/cpp/min.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/min.cpp' object='src/cpp/libscielementary_functions_algo_la-min.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscielementary_functions_algo_la-min.lo `test -f 'src/cpp/min.cpp' || echo '$(srcdir)/'`src/cpp/min.cpp
+
+src/cpp/libscielementary_functions_algo_la-clean.lo: src/cpp/clean.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscielementary_functions_algo_la-clean.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscielementary_functions_algo_la-clean.Tpo -c -o src/cpp/libscielementary_functions_algo_la-clean.lo `test -f 'src/cpp/clean.cpp' || echo '$(srcdir)/'`src/cpp/clean.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscielementary_functions_algo_la-clean.Tpo src/cpp/$(DEPDIR)/libscielementary_functions_algo_la-clean.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/clean.cpp' object='src/cpp/libscielementary_functions_algo_la-clean.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscielementary_functions_algo_la-clean.lo `test -f 'src/cpp/clean.cpp' || echo '$(srcdir)/'`src/cpp/clean.cpp
 
 sci_gateway/cpp/libscielementary_functions_la-sci_isequal.lo: sci_gateway/cpp/sci_isequal.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscielementary_functions_la-sci_isequal.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_isequal.Tpo -c -o sci_gateway/cpp/libscielementary_functions_la-sci_isequal.lo `test -f 'sci_gateway/cpp/sci_isequal.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_isequal.cpp

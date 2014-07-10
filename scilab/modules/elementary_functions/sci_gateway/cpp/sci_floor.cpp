@@ -113,10 +113,10 @@ types::Function::ReturnValue sci_floor(types::typed_list &in, int _iRetCount, ty
                 int rank = pPolyIn->get(i)->getRank();
                 types::SinglePoly* pSP = new types::SinglePoly(&dataReal, &dataImg, rank);
 
-                for (int j = 0; j < rank; j++)
+                for (int j = 0; j < rank + 1; j++)
                 {
-                    dataReal[j] = dfloors(pPolyIn->get(i)->getCoefReal()[j]);
-                    dataImg[j]  = dfloors(pPolyIn->get(i)->getCoefImg()[j]);
+                    dataReal[j] = dfloors(pPolyIn->get(i)->get()[j]);
+                    dataImg[j]  = dfloors(pPolyIn->get(i)->getImg()[j]);
                 }
 
                 pPolyOut->set(i, pSP);
@@ -131,9 +131,9 @@ types::Function::ReturnValue sci_floor(types::typed_list &in, int _iRetCount, ty
                 int rank = pPolyIn->get(i)->getRank();
                 types::SinglePoly* pSP = new types::SinglePoly(&dataReal, rank);
 
-                for (int j = 0; j < rank; j++)
+                for (int j = 0; j < rank + 1; j++)
                 {
-                    dataReal[j] = dfloors(pPolyIn->get(i)->getCoefReal()[j]);
+                    dataReal[j] = dfloors(pPolyIn->get(i)->get()[j]);
                 }
 
                 pPolyOut->set(i, pSP);

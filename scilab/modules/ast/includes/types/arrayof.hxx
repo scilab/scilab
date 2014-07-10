@@ -53,12 +53,11 @@ public:
     typedef T type;
 
 protected :
-    bool                    m_bComplex;
     T*                      m_pRealData;
     T*                      m_pImgData;
 
 
-    ArrayOf() : GenericType(), m_bComplex(false), m_pRealData(NULL), m_pImgData(NULL) {}
+    ArrayOf() : GenericType(), m_pRealData(NULL), m_pImgData(NULL) {}
 
     virtual                 ~ArrayOf()
     {
@@ -143,7 +142,6 @@ protected :
         {
             m_pImgData = allocData(m_iSize);
             *_pImgData = m_pImgData;
-            m_bComplex = true;
         }
         else
         {
@@ -200,7 +198,7 @@ public :
 
     virtual bool isComplex()
     {
-        return m_bComplex;
+        return m_pImgData != NULL;
     }
 
     inline virtual bool isScalar() //2 dims and each dim == 1
@@ -216,19 +214,17 @@ public :
     {
         if (_bComplex == false)
         {
-            if (isComplex() == true)
+            if (m_pImgData != NULL)
             {
                 deleteImg();
-                m_bComplex = false;
             }
         }
         else // _bComplex == true
         {
-            if (isComplex() == false)
+            if (m_pImgData == NULL)
             {
                 m_pImgData = allocData(m_iSize);
                 memset(m_pImgData, 0x00, sizeof(T) * m_iSize);
-                m_bComplex = true;
             }
         }
     }
@@ -303,7 +299,7 @@ public :
     /*internal function to manage img part*/
     bool setImg(int _iPos, T _data)
     {
-        if (isComplex() == false || m_pImgData == NULL || _iPos >= m_iSize)
+        if (m_pImgData == NULL || _iPos >= m_iSize)
         {
             return false;
         }
@@ -508,7 +504,7 @@ public :
         }
 
         //update complexity
-        if (pSource->isComplex() && isComplex() == false)
+        if (pSource->isComplex() && m_pImgData == NULL)
         {
             setComplex(true);
         }
@@ -549,25 +545,22 @@ public :
             {
                 //element-wise insertion
                 set(iPos, pRealData[0]);
-                if (bComplex)
+                if (pImgData != NULL && bComplex)
                 {
-                    if (pImgData != NULL)
-                    {
-                        setImg(iPos, pImgData[0]);
-                    }
+                    setImg(iPos, pImgData[0]);
                 }
             }
             else
             {
                 set(iPos, pRealData[i]);
-                if (bComplex)
+                if (pImgData != NULL && bComplex)
                 {
                     setImg(iPos, pImgData[i]);
                 }
             }
 
             // reset imaginary part
-            if (isComplex() && bComplex == false)
+            if (m_pImgData != NULL && bComplex == false)
             {
                 setImg(iPos, 0);
             }
@@ -753,21 +746,29 @@ public :
         {
             setComplex(true);
         }
-
-        if (isComplex())
+        else if (isComplex())
         {
             pGT->setComplex(true);
         }
 
-
-        for (int i = 0 ; i < iRows ; i++)
+        if (pGT->isComplex())
         {
-            for (int j = 0 ; j < iCols ; j++)
+            for (int i = 0 ; i < iRows ; i++)
             {
-                set(_iRows + i, _iCols + j, pGT->get(i, j));
-                if (pGT->isComplex())
+                for (int j = 0 ; j < iCols ; j++)
                 {
+                    set(_iRows + i, _iCols + j, pGT->get(i, j));
                     setImg(_iRows + i, _iCols + j, pGT->getImg(i, j));
+                }
+            }
+        }
+        else
+        {
+            for (int i = 0 ; i < iRows ; i++)
+            {
+                for (int j = 0 ; j < iCols ; j++)
+                {
+                    set(_iRows + i, _iCols + j, pGT->get(i, j));
                 }
             }
         }
@@ -922,20 +923,20 @@ public :
                 {
                     //special case for row vector
                     int piRealDim[2] = {1, iNewDimSize};
-                    pOut = createEmpty(2, piRealDim, isComplex());
+                    pOut = createEmpty(2, piRealDim, m_pImgData != NULL);
                     //in this case we have to care of 2nd dimension
                     //iNotEntire = 1;
                 }
                 else
                 {
                     int piRealDim[2] = {iNewDimSize, 1};
-                    pOut = createEmpty(2, piRealDim, isComplex());
+                    pOut = createEmpty(2, piRealDim, m_pImgData != NULL);
                 }
             }
         }
         else
         {
-            pOut = createEmpty(iDims, piNewDims, isComplex());
+            pOut = createEmpty(iDims, piNewDims, m_pImgData != NULL);
         }
 
         delete[] piNewDims;
@@ -968,7 +969,7 @@ public :
             {
                 //compute new index
                 pOut->set(iNewPos, get(i));
-                if (isComplex())
+                if (m_pImgData != NULL)
                 {
                     pOut->setImg(iNewPos, getImg(i));
                 }
@@ -1119,19 +1120,19 @@ public :
                 {
                     //special case for row vector
                     int piRealDim[2] = {1, piCountDim[0]};
-                    pOut = createEmpty(2, piRealDim, isComplex());
+                    pOut = createEmpty(2, piRealDim, m_pImgData != NULL);
                 }
                 else
                 {
                     if (getSize() == 1)
                     {
                         //for extraction on scalar
-                        pOut = createEmpty(pArg[0]->getAs<GenericType>()->getDims(), pArg[0]->getAs<GenericType>()->getDimsArray(), isComplex());
+                        pOut = createEmpty(pArg[0]->getAs<GenericType>()->getDims(), pArg[0]->getAs<GenericType>()->getDimsArray(), m_pImgData != NULL);
                     }
                     else
                     {
                         int piRealDim[2] = {piCountDim[0], 1};
-                        pOut = createEmpty(2, piRealDim, isComplex());
+                        pOut = createEmpty(2, piRealDim, m_pImgData != NULL);
                     }
                 }
             }
@@ -1139,7 +1140,7 @@ public :
         else
         {
             //matrix
-            pOut = createEmpty(iDims, piCountDim, isComplex());
+            pOut = createEmpty(iDims, piCountDim, m_pImgData != NULL);
         }
 
         int* piIndex    = new int[_pArgs->size()];
@@ -1203,7 +1204,7 @@ public :
             }
 
             pOut->set(i, get(iPos));
-            if (isComplex())
+            if (m_pImgData != NULL)
             {
                 pOut->setImg(i, getImg(iPos));
             }
@@ -1295,7 +1296,7 @@ public :
         T* pImgData = NULL;
 
         int iNewSize = 0;
-        if (isComplex())
+        if (m_pImgData != NULL)
         {
             iNewSize = get_max_size(_piDims, _iDims);
             if (m_iSizeMax < iNewSize)
@@ -1327,8 +1328,8 @@ public :
                 //delete all array
                 deleteAll();
                 //replace old array by new one
-                m_pRealData	= pRealData;
-                m_pImgData	= pImgData;
+                m_pRealData    = pRealData;
+                m_pImgData    = pImgData;
             }
             else
             {
@@ -1399,7 +1400,7 @@ public :
                 //delete all array
                 deleteAll();
                 //replace old array by new one
-                m_pRealData	= pRealData;
+                m_pRealData    = pRealData;
             }
             else
             {
@@ -1454,7 +1455,7 @@ public :
             }
         }
         m_iRows = m_piDims[0];
-        m_iCols	= m_piDims[1];
+        m_iCols    = m_piDims[1];
         m_iSize = iNewSize;
         return true;
     }
@@ -1483,7 +1484,7 @@ public :
         if (_iPos < m_iCols)
         {
             int piDims[2] = {m_iRows, 1};
-            pOut = createEmpty(2, piDims, isComplex());
+            pOut = createEmpty(2, piDims, m_pImgData != NULL);
             T* pReal    = pOut->get();
             T* pImg     = pOut->getImg();
             for (int i = 0 ; i < m_iRows ; i++)
@@ -1491,7 +1492,7 @@ public :
                 pReal[i] = copyValue(get(i, _iPos));
             }
 
-            if (isComplex())
+            if (m_pImgData != NULL)
             {
                 for (int i = 0 ; i < m_iRows ; i++)
                 {

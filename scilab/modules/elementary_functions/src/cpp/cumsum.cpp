@@ -118,12 +118,12 @@ int cumsum(types::Polynom* pIn, int iOrientation, types::Polynom* pOut)
     {
         // set first element
         iRank = pIn->get(0)->getRank();
-        pdblReal = pIn->get(0)->getCoefReal();
+        pdblReal = pIn->get(0)->get();
         if (bComplex)
         {
             pSP = new types::SinglePoly(&pdRData, &pdIData, iRank);
-            pdblImg = pIn->get(0)->getCoefImg();
-            for (int j = 0; j < iRank; j++)
+            pdblImg = pIn->get(0)->getImg();
+            for (int j = 0; j < iRank + 1; j++)
             {
                 pdRData[j] = pdblReal[j];
                 pdIData[j] = pdblImg[j];
@@ -132,7 +132,7 @@ int cumsum(types::Polynom* pIn, int iOrientation, types::Polynom* pOut)
         else
         {
             pSP = new types::SinglePoly(&pdRData, iRank);
-            for (int j = 0; j < iRank; j++)
+            for (int j = 0; j < iRank + 1; j++)
             {
                 pdRData[j] = pdblReal[j];
             }
@@ -148,15 +148,15 @@ int cumsum(types::Polynom* pIn, int iOrientation, types::Polynom* pOut)
         {
             for (int i = 1; i < pIn->getSize(); i++)
             {
-                pdblReal = pIn->get(i)->getCoefReal();
-                pdblImg  = pIn->get(i)->getCoefImg();
+                pdblReal = pIn->get(i)->get();
+                pdblImg  = pIn->get(i)->getImg();
                 iRank    = pIn->get(i)->getRank();
 
                 iOutRank = std::max(iRank, iLastRank);
                 iMin     = std::min(iRank, iLastRank);
 
                 pSP = new types::SinglePoly(&pdRData, &pdIData, iOutRank);
-                for (int j = 0; j < iMin; j++)
+                for (int j = 0; j < iMin + 1; j++)
                 {
                     pdRData[j] = pdblReal[j] + pdblLastReal[j];
                     pdIData[j] = pdblImg[j]  + pdblLastImg[j];
@@ -164,7 +164,7 @@ int cumsum(types::Polynom* pIn, int iOrientation, types::Polynom* pOut)
 
                 if (iOutRank == iRank)
                 {
-                    for (int j = iMin; j < iOutRank; j++)
+                    for (int j = iMin + 1; j < iOutRank + 1; j++)
                     {
                         pdRData[j] = pdblReal[j];
                         pdIData[j] = pdblImg[j];
@@ -172,7 +172,7 @@ int cumsum(types::Polynom* pIn, int iOrientation, types::Polynom* pOut)
                 }
                 else
                 {
-                    for (int j = iMin; j < iOutRank; j++)
+                    for (int j = iMin + 1; j < iOutRank + 1; j++)
                     {
                         pdRData[j] = pdblLastReal[j];
                         pdIData[j] = pdblLastImg[j];
@@ -190,28 +190,28 @@ int cumsum(types::Polynom* pIn, int iOrientation, types::Polynom* pOut)
         {
             for (int i = 1; i < pIn->getSize(); i++)
             {
-                pdblReal = pIn->get(i)->getCoefReal();
+                pdblReal = pIn->get(i)->get();
                 iRank    = pIn->get(i)->getRank();
 
                 iOutRank = std::max(iRank, iLastRank);
                 iMin     = std::min(iRank, iLastRank);
 
                 pSP = new types::SinglePoly(&pdRData, iOutRank);
-                for (int j = 0; j < iMin; j++)
+                for (int j = 0; j < iMin + 1; j++)
                 {
                     pdRData[j] = pdblReal[j] + pdblLastReal[j];
                 }
 
                 if (iOutRank == iRank)
                 {
-                    for (int j = iMin; j < iOutRank; j++)
+                    for (int j = iMin + 1; j < iOutRank + 1; j++)
                     {
                         pdRData[j] = pdblReal[j];
                     }
                 }
                 else
                 {
-                    for (int j = iMin; j < iOutRank; j++)
+                    for (int j = iMin + 1; j < iOutRank + 1; j++)
                     {
                         pdRData[j] = pdblLastReal[j];
                     }
@@ -240,13 +240,13 @@ int cumsum(types::Polynom* pIn, int iOrientation, types::Polynom* pOut)
             {
                 for (int i = j; i < iIncrement + j; i++) // set the first values in out
                 {
-                    pdblReal = pIn->get(i)->getCoefReal();
-                    pdblImg  = pIn->get(i)->getCoefImg();
+                    pdblReal = pIn->get(i)->get();
+                    pdblImg  = pIn->get(i)->getImg();
                     iRank    = pIn->get(i)->getRank();
 
                     pSP = new types::SinglePoly(&pdRData, &pdIData, iRank);
 
-                    for (int j = 0; j < iRank; j++)
+                    for (int j = 0; j < iRank + 1; j++)
                     {
                         pdRData[j] = pdblReal[j];
                         pdIData[j] = pdblImg[j];
@@ -260,18 +260,18 @@ int cumsum(types::Polynom* pIn, int iOrientation, types::Polynom* pOut)
                     for (int i = (iIncrement * k) + j; i < (iIncrement * (k + 1)) + j; i++)
                     {
                         iLastRank    = pOut->get(i - iIncrement)->getRank();
-                        pdblLastReal = pOut->get(i - iIncrement)->getCoefReal();
-                        pdblLastImg  = pOut->get(i - iIncrement)->getCoefImg();
+                        pdblLastReal = pOut->get(i - iIncrement)->get();
+                        pdblLastImg  = pOut->get(i - iIncrement)->getImg();
 
                         iRank    = pIn->get(i)->getRank();
-                        pdblReal = pIn->get(i)->getCoefReal();
-                        pdblImg  = pIn->get(i)->getCoefImg();
+                        pdblReal = pIn->get(i)->get();
+                        pdblImg  = pIn->get(i)->getImg();
 
                         iOutRank = std::max(iRank, iLastRank);
                         iMin     = std::min(iRank, iLastRank);
 
                         pSP = new types::SinglePoly(&pdRData, &pdIData, iOutRank);
-                        for (int j = 0; j < iMin; j++)
+                        for (int j = 0; j < iMin + 1; j++)
                         {
                             pdRData[j] = pdblReal[j] + pdblLastReal[j];
                             pdIData[j] = pdblImg[j]  + pdblLastImg[j];
@@ -279,7 +279,7 @@ int cumsum(types::Polynom* pIn, int iOrientation, types::Polynom* pOut)
 
                         if (iOutRank == iRank)
                         {
-                            for (int j = iMin; j < iOutRank; j++)
+                            for (int j = iMin + 1; j < iOutRank + 1; j++)
                             {
                                 pdRData[j] = pdblReal[j];
                                 pdIData[j] = pdblImg[j];
@@ -287,7 +287,7 @@ int cumsum(types::Polynom* pIn, int iOrientation, types::Polynom* pOut)
                         }
                         else
                         {
-                            for (int j = iMin; j < iOutRank; j++)
+                            for (int j = iMin + 1; j < iOutRank + 1; j++)
                             {
                                 pdRData[j] = pdblLastReal[j];
                                 pdIData[j] = pdblLastImg[j];
@@ -305,12 +305,12 @@ int cumsum(types::Polynom* pIn, int iOrientation, types::Polynom* pOut)
             {
                 for (int i = j; i < iIncrement + j; i++) // set the first values in out
                 {
-                    pdblReal = pIn->get(i)->getCoefReal();
+                    pdblReal = pIn->get(i)->get();
                     iRank    = pIn->get(i)->getRank();
 
                     pSP = new types::SinglePoly(&pdRData, iRank);
 
-                    for (int j = 0; j < iRank; j++)
+                    for (int j = 0; j < iRank + 1; j++)
                     {
                         pdRData[j] = pdblReal[j];
                     }
@@ -323,30 +323,30 @@ int cumsum(types::Polynom* pIn, int iOrientation, types::Polynom* pOut)
                     for (int i = (iIncrement * k) + j; i < (iIncrement * (k + 1)) + j; i++)
                     {
                         iLastRank    = pOut->get(i - iIncrement)->getRank();
-                        pdblLastReal = pOut->get(i - iIncrement)->getCoefReal();
+                        pdblLastReal = pOut->get(i - iIncrement)->get();
 
                         iRank    = pIn->get(i)->getRank();
-                        pdblReal = pIn->get(i)->getCoefReal();
+                        pdblReal = pIn->get(i)->get();
 
                         iOutRank = std::max(iRank, iLastRank);
                         iMin     = std::min(iRank, iLastRank);
 
                         pSP = new types::SinglePoly(&pdRData, iOutRank);
-                        for (int j = 0; j < iMin; j++)
+                        for (int j = 0; j < iMin + 1; j++)
                         {
                             pdRData[j] = pdblReal[j] + pdblLastReal[j];
                         }
 
                         if (iOutRank == iRank)
                         {
-                            for (int j = iMin; j < iOutRank; j++)
+                            for (int j = iMin + 1; j < iOutRank + 1; j++)
                             {
                                 pdRData[j] = pdblReal[j];
                             }
                         }
                         else
                         {
-                            for (int j = iMin; j < iOutRank; j++)
+                            for (int j = iMin + 1; j < iOutRank + 1; j++)
                             {
                                 pdRData[j] = pdblLastReal[j];
                             }

@@ -19,14 +19,16 @@
 
 namespace types
 {
-class EXTERN_AST SinglePoly : public GenericType
+class EXTERN_AST SinglePoly : public ArrayOf<double>
 {
 public :
     SinglePoly();
     SinglePoly(double** _pdblCoefR, int _iRank);
     SinglePoly(double** _pdblCoefR, double** _pdblcoefI, int _iRank);
-    SinglePoly(Double** _poCoefR, int _iRank);
+
     virtual                 ~SinglePoly();
+    virtual void            deleteAll();
+    virtual void            deleteImg();
 
     // FIXME : Should not return NULL;
     SinglePoly*             clone();
@@ -38,22 +40,21 @@ public :
     }
     /*Config management*/
     void                    whoAmI();
-    bool                    isComplex();
-    void                    setComplex(bool _bComplex);
 
+    virtual double          getNullValue();
+    virtual SinglePoly*     createEmpty(int _iDims, int* _piDims, bool _bComplex);
+    virtual double*         allocData(int _iSize);
+    virtual double          copyValue(double _dblData);
+    virtual bool            subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims);
+
+    bool                    setZeros();
     int                     getRank();
-    int                     getRealRank();
     bool                    setRank(int _iRank, bool bSave = false);
-    Double*                 getCoef();
-    double*                 getCoefReal();
-    double*                 getCoefImg();
     bool                    setCoef(Double *_poPow);
     bool                    setCoef(double *_pdblCoefR, double *_pdblCoefI);
     bool                    evaluate(double _dblInR, double _dblInI, double *_pdblOutR, double *_pdblOutI);
     void                    updateRank(void);
 
-    GenericType*            getColumnValues(int _iPos);
-    void                    createPoly(double**_pdblCoefR, double**_pdblCoefI, int _iRank);
     void                    toStringReal(std::wstring _szVar, std::list<std::wstring>* _pListExp , std::list<std::wstring>* _pListCoef);
     void                    toStringImg(std::wstring _szVar, std::list<std::wstring>* _pListExp , std::list<std::wstring>* _pListCoef);
 
@@ -85,11 +86,6 @@ protected :
 private :
     void                    toStringInternal(double *_pdblVal, std::wstring _szVar, std::list<std::wstring>* _pListExp , std::list<std::wstring>* _pListCoef);
 
-
-private :
-    bool                    m_bComplex;
-    Double*                 m_pdblCoef;
-    int                     m_iRank;
 };
 }
 

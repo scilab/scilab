@@ -142,12 +142,12 @@ types::Function::ReturnValue freqRational(types::typed_list &in, int _iRetCount,
             iColDen = pPolyDen->getCols();
 
             piRankDen = new int[pPolyDen->getSize()];
-            pPolyDen->getRealRank(piRankDen);
+            pPolyDen->getRank(piRankDen);
 
             pdblDen = new double*[pPolyDen->getSize()];
             for (int i = 0; i < pPolyDen->getSize(); i++)
             {
-                pdblDen[i] = pPolyDen->get(i)->getCoef()->get();
+                pdblDen[i] = pPolyDen->get(i)->get();
             }
         }
         else
@@ -192,12 +192,12 @@ types::Function::ReturnValue freqRational(types::typed_list &in, int _iRetCount,
             iColNum = pPolyNum->getCols();
 
             piRankNum = new int[pPolyNum->getSize()];
-            pPolyNum->getRealRank(piRankNum);
+            pPolyNum->getRank(piRankNum);
 
             pdblNum = new double*[pPolyNum->getSize()];
             for (int i = 0; i < pPolyNum->getSize(); i++)
             {
-                pdblNum[i] = pPolyNum->get(i)->getCoef()->get();
+                pdblNum[i] = pPolyNum->get(i)->get();
             }
         }
         else

@@ -21,8 +21,8 @@ extern "C"
 #include "localization.h"
 #include "elem_common.h"
 
-extern void C2F(dtild)(int*, double*, int*);
-extern void C2F(expan)(double*, int*, double*, int*, double*, int*);
+    extern void C2F(dtild)(int*, double*, int*);
+    extern void C2F(expan)(double*, int*, double*, int*, double*, int*);
 }
 
 /*--------------------------------------------------------------------------*/
@@ -52,10 +52,10 @@ types::Function::ReturnValue sci_ldiv(types::typed_list &in, int _iRetCount, typ
 
     /*** get inputs arguments ***/
     // get first polynom
-    if(in[0]->isPoly())
+    if (in[0]->isPoly())
     {
         types::Polynom* pPoly1 = in[0]->getAs<types::Polynom>();
-        if(pPoly1->isComplex())
+        if (pPoly1->isComplex())
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A real polynom expected.\n"), "ldiv", 1);
             return types::Function::Error;
@@ -66,18 +66,18 @@ types::Function::ReturnValue sci_ldiv(types::typed_list &in, int _iRetCount, typ
         iCols = pPoly1->getCols();
 
         piRank1 = new int[iSize];
-        pPoly1->getRealRank(piRank1);
+        pPoly1->getRank(piRank1);
 
         pdblCoef1 = new double*[iSize];
-        for(int i = 0; i < iSize; i++)
+        for (int i = 0; i < iSize; i++)
         {
-            pdblCoef1[i] = pPoly1->get(i)->getCoef()->get();
+            pdblCoef1[i] = pPoly1->get(i)->get();
         }
     }
-    else if(in[0]->isDouble())
+    else if (in[0]->isDouble())
     {
         types::Double* pDbl1 = in[0]->getAs<types::Double>();
-        if(pDbl1->isComplex())
+        if (pDbl1->isComplex())
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A real matrix expected.\n"), "ldiv", 1);
             return types::Function::Error;
@@ -92,7 +92,7 @@ types::Function::ReturnValue sci_ldiv(types::typed_list &in, int _iRetCount, typ
 
         pdblCoef1 = new double*[iSize];
         double* pdbl = pDbl1->get();
-        for(int i = 0; i < iSize; i++)
+        for (int i = 0; i < iSize; i++)
         {
             pdblCoef1[i] = pdbl + i;
         }
@@ -104,40 +104,40 @@ types::Function::ReturnValue sci_ldiv(types::typed_list &in, int _iRetCount, typ
     }
 
     // get second polynom
-    if(in[1]->isPoly())
+    if (in[1]->isPoly())
     {
         types::Polynom* pPoly2 = in[1]->getAs<types::Polynom>();
-        if(pPoly2->isComplex())
+        if (pPoly2->isComplex())
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A real polynom expected.\n"), "ldiv", 2);
             return types::Function::Error;
         }
 
-        if(pPoly2->getRows() != iRows || pPoly2->getCols() != iCols)
+        if (pPoly2->getRows() != iRows || pPoly2->getCols() != iCols)
         {
             Scierror(999, _("%s: Wrong size for input argument #%d: A same size as input argument %d expected.\n"), "ldiv", 2, 1);
             return types::Function::Error;
         }
 
         piRank2 = new int[iSize];
-        pPoly2->getRealRank(piRank2);
+        pPoly2->getRank(piRank2);
 
         pdblCoef2 = new double*[iSize];
-        for(int i = 0; i < iSize; i++)
+        for (int i = 0; i < iSize; i++)
         {
-            pdblCoef2[i] = pPoly2->get(i)->getCoef()->get();
+            pdblCoef2[i] = pPoly2->get(i)->get();
         }
     }
-    else if(in[1]->isDouble())
+    else if (in[1]->isDouble())
     {
         types::Double* pDbl2 = in[1]->getAs<types::Double>();
-        if(pDbl2->isComplex())
+        if (pDbl2->isComplex())
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A real matrix expected.\n"), "ldiv", 2);
             return types::Function::Error;
         }
 
-        if(pDbl2->getRows() != iRows || pDbl2->getCols() != iCols)
+        if (pDbl2->getRows() != iRows || pDbl2->getCols() != iCols)
         {
             Scierror(999, _("%s: Wrong size for input argument #%d: A same size as input argument %d expected.\n"), "ldiv", 2, 1);
             return types::Function::Error;
@@ -148,7 +148,7 @@ types::Function::ReturnValue sci_ldiv(types::typed_list &in, int _iRetCount, typ
 
         pdblCoef2 = new double*[iSize];
         double* pdbl = pDbl2->get();
-        for(int i = 0; i < iSize; i++)
+        for (int i = 0; i < iSize; i++)
         {
             pdblCoef2[i] = pdbl + i;
         }
@@ -160,7 +160,7 @@ types::Function::ReturnValue sci_ldiv(types::typed_list &in, int _iRetCount, typ
     }
 
     // get k
-    if(in[2]->isDouble() == false)
+    if (in[2]->isDouble() == false)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), "ldiv", 3);
         return types::Function::Error;
@@ -168,13 +168,13 @@ types::Function::ReturnValue sci_ldiv(types::typed_list &in, int _iRetCount, typ
 
     types::Double* pDbl = in[2]->getAs<types::Double>();
 
-    if(pDbl->isComplex())
+    if (pDbl->isComplex())
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A real scalar expected.\n"), "ldiv", 3);
         return types::Function::Error;
     }
 
-    if(pDbl->isScalar() == false)
+    if (pDbl->isScalar() == false)
     {
         Scierror(999, _("%s: Wrong size for input argument #%d: A real scalar expected.\n"), "ldiv", 3);
         return types::Function::Error;
@@ -183,10 +183,10 @@ types::Function::ReturnValue sci_ldiv(types::typed_list &in, int _iRetCount, typ
     iK = (int)pDbl->get(0);
 
     /*** perform operations ***/
-    types::Double* pDblOut = new types::Double(iRows*iK, iCols);
+    types::Double* pDblOut = new types::Double(iRows * iK, iCols);
     double* pdblout = pDblOut->get();
 
-    for(int i = 0; i < iSize; i++)
+    for (int i = 0; i < iSize; i++)
     {
         int iSize1 = piRank1[i] + 1;
         int iSize2 = piRank2[i] + 1;

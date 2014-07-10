@@ -29,201 +29,214 @@ namespace types
 {
 SinglePoly::SinglePoly()
 {
-    int iRank = 1;
     double* pdblCoefR = NULL;
-    createPoly(&pdblCoefR, NULL, iRank);
+    int piDims[2] = {1, 1};
+    create(piDims, 2, &pdblCoefR, NULL);
     pdblCoefR[0] = 0;
 }
 
 SinglePoly::SinglePoly(double** _pdblCoefR, int _iRank)
 {
-    createPoly(_pdblCoefR, NULL, _iRank);
+    int piDims[2] = {_iRank + 1, 1};
+    create(piDims, 2, _pdblCoefR, NULL);
 }
 
 SinglePoly::SinglePoly(double** _pdblCoefR, double** _pdblCoefI, int _iRank)
 {
-    createPoly(_pdblCoefR, _pdblCoefI, _iRank);
+    int piDims[2] = {_iRank + 1, 1};
+    create(piDims, 2, _pdblCoefR, _pdblCoefI);
 }
-
-SinglePoly::SinglePoly(Double** _poCoefR, int _iRank)
-{
-    double *pR	= NULL;
-    double *pI	= NULL;
-    createPoly(&pR, &pI, _iRank);
-    *_poCoefR = m_pdblCoef;
-}
-
 
 SinglePoly::~SinglePoly()
 {
-    if (m_pdblCoef)
+    deleteAll();
+}
+
+void SinglePoly::deleteAll()
+{
+    delete[] m_pRealData;
+    m_pRealData = NULL;
+    deleteImg();
+}
+
+void SinglePoly::deleteImg()
+{
+    if (m_pImgData != NULL)
     {
-        delete m_pdblCoef;
+        delete[] m_pImgData;
+        m_pImgData = NULL;
     }
 }
 
-/*Real constructor, private only*/
-void SinglePoly::createPoly(double** _pdblCoefR, double** _pdblCoefI, int _iRank)
+double SinglePoly::getNullValue()
 {
-    double *pR	= NULL;
-    double *pI	= NULL;
-    m_bComplex	= false;
-    m_iRank     = _iRank;
+    return 0;
+}
 
-    if (m_iRank == 0)
+SinglePoly* SinglePoly::createEmpty(int _iDims, int* _piDims, bool _bComplex)
+{
+    double* pdblData = NULL;
+    SinglePoly* pSP = new SinglePoly(&pdblData, _piDims[0] - 1);
+    pSP->setComplex(_bComplex);
+
+    return pSP;
+}
+
+double* SinglePoly::allocData(int _iSize)
+{
+    double* pDbl = NULL;
+    try
     {
-        m_pdblCoef = NULL;
-        return;
+        if (_iSize < 0)
+        {
+            m_pRealData = NULL;
+            m_pImgData = NULL;
+            char message[bsiz];
+            sprintf(message, _("Can not allocate negative size (%d).\n"),  _iSize);
+            ast::ScilabError se(message);
+            se.SetErrorNumber(999);
+            throw (se);
+        }
+        else
+        {
+            pDbl = new double[_iSize];
+        }
+    }
+    catch (std::bad_alloc &e)
+    {
+        char message[bsiz];
+        sprintf(message, _("Can not allocate %.2f MB memory.\n"),  (double) (_iSize * sizeof(double)) / 1.e6);
+        ast::ScilabError se(message);
+        se.SetErrorNumber(999);
+        throw (se);
     }
 
-    if (_pdblCoefI != NULL)
-    {
-        m_pdblCoef = new Double(1, _iRank, &pR, &pI);
-    }
-    else
-    {
-        m_pdblCoef = new Double(1, _iRank, &pR);
-    }
+    return pDbl;
+}
 
-    m_pdblCoef->IncreaseRef();
-    m_pdblCoef->setZeros();
-    if (_pdblCoefR != NULL)
-    {
-        *_pdblCoefR = pR;
-    }
-
-    if (_pdblCoefI != NULL)
-    {
-        m_bComplex = true;
-        *_pdblCoefI = pI;
-    }
+double SinglePoly::copyValue(double _dblData)
+{
+    return _dblData;
 }
 
 int SinglePoly::getRank()
 {
-    return m_iRank;
-}
-
-int SinglePoly::getRealRank()
-{
-    return m_iRank - 1;
+    return m_iSize - 1;
 }
 
 bool SinglePoly::setRank(int _iRank, bool bSave)
 {
-    double *pR	= NULL;
-    double *pI	= NULL;
+    double *pR = NULL;
+    double *pI = NULL;
     if (bSave == false)
     {
-        if (m_iRank != _iRank)
+        if (getRank() != _iRank)
         {
-            delete m_pdblCoef;
-
-            if (m_bComplex == false)
+            int piDims[2] = {_iRank + 1, 1};
+            if (m_pImgData == false)
             {
-                createPoly(&pR, NULL, _iRank);
+                deleteAll();
+                create(piDims, 2, &pR, NULL);
             }
             else
             {
-                createPoly(&pR, &pI, _iRank);
+                deleteAll();
+                create(piDims, 2, &pR, &pI);
             }
+
             return true;
         }
+
         return true;
     }
     else
     {
-        Double *pCoef = NULL;
-        if (_iRank != 0)
+        double* pdblOldReal = m_pRealData;
+        double* pdblOldImg  = m_pImgData;
+        int iMinSize = Min(m_iSize, _iRank + 1);
+        int piDims[2] = {_iRank + 1, 1};
+
+        if (m_pImgData == false)
         {
-            pCoef = new Double(1, _iRank, &pR, &pI);
-            pCoef->set(m_pdblCoef->getReal());
-            pCoef->setComplex(m_pdblCoef->isComplex());
-            if (m_pdblCoef->isComplex())
-            {
-                pCoef->setImg(m_pdblCoef->getImg());
-            }
-            m_iRank = _iRank;
+            create(piDims, 2, &pR, NULL);
         }
         else
         {
-            m_iRank = 1;
-            pCoef = new Double(1, 1, &pR, &pI);
-            pCoef->setComplex(m_pdblCoef->isComplex());
-            pCoef->set(0, 0, 0);
+            create(piDims, 2, &pR, &pI);
+            memcpy(m_pImgData, pdblOldImg, iMinSize * sizeof(double));
         }
 
-        m_pdblCoef->DecreaseRef();
-        if (m_pdblCoef->isDeletable())
+        memcpy(m_pRealData, pdblOldReal, iMinSize * sizeof(double));
+
+        if (pdblOldImg)
         {
-            delete m_pdblCoef;
+            delete[] pdblOldImg;
+            pdblOldImg = NULL;
         }
 
-        m_pdblCoef = pCoef;
-        m_pdblCoef->IncreaseRef();
+        delete[] pdblOldReal;
+        pdblOldReal = NULL;
+
         return true;
     }
+
     return false;
 }
 
-Double* SinglePoly::getCoef()
+bool SinglePoly::setZeros()
 {
-    return m_pdblCoef;
-}
+    if (m_pRealData != NULL)
+    {
+        memset(m_pRealData, 0x00, m_iSize * sizeof(double));
+    }
+    else
+    {
+        return false;
+    }
 
-double* SinglePoly::getCoefReal()
-{
-    return m_pdblCoef->getReal();
-}
+    if (isComplex() == true)
+    {
+        if (m_pImgData != NULL)
+        {
+            memset(m_pImgData, 0x00, m_iSize * sizeof(double));
+        }
+        else
+        {
+            return false;
+        }
+    }
 
-double* SinglePoly::getCoefImg()
-{
-    return m_pdblCoef->getImg();
+    return true;
 }
 
 bool SinglePoly::setCoef(Double* _pdblCoefR)
 {
-    if (m_pdblCoef == NULL || _pdblCoefR == NULL)
+    if (m_pRealData == NULL || _pdblCoefR == NULL)
     {
         return false;
     }
 
-    double *pInR	= _pdblCoefR->getReal();
-    double *pInI	= _pdblCoefR->getImg();
+    double *pInR    = _pdblCoefR->getReal();
+    double *pInI    = _pdblCoefR->getImg();
 
     return setCoef(pInR, pInI);
 }
 
-void SinglePoly::setComplex(bool _bComplex)
-{
-    m_pdblCoef->setComplex(_bComplex);
-    m_bComplex = _bComplex;
-}
-
 bool SinglePoly::setCoef(double* _pdblCoefR, double* _pdblCoefI)
 {
-    if (m_pdblCoef == NULL)
-    {
-        return false;
-    }
-
     if (_pdblCoefI != NULL && isComplex() == false)
     {
-        m_pdblCoef->setComplex(true);
-        m_bComplex = true;
+        setComplex(true);
     }
 
-    double *pR = m_pdblCoef->getReal();
-    double *pI = m_pdblCoef->getImg();
-
-    if (_pdblCoefR != NULL && pR != NULL)
+    if (_pdblCoefR != NULL)
     {
-        memcpy(pR, _pdblCoefR, m_iRank * sizeof(double));
+        memcpy(m_pRealData, _pdblCoefR, m_iSize * sizeof(double));
     }
 
-    if (_pdblCoefI != NULL && pI != NULL)
+    if (_pdblCoefI != NULL)
     {
-        memcpy(pI, _pdblCoefI, m_iRank * sizeof(double));
+        memcpy(m_pImgData, _pdblCoefI, m_iSize * sizeof(double));
     }
 
     return true;
@@ -234,108 +247,66 @@ void SinglePoly::whoAmI()
     std::cout << "types::SinglePoly";
 }
 
-bool SinglePoly::isComplex()
-{
-    return m_bComplex;
-}
-
-GenericType* SinglePoly::getColumnValues(int _iPos)
-{
-    return NULL;
-}
-
 bool SinglePoly::evaluate(double _dblInR, double _dblInI, double *_pdblOutR, double *_pdblOutI)
 {
-    double *pCoefR = m_pdblCoef->getReal();
-    double *pCoefI = m_pdblCoef->getImg();
-
     *_pdblOutR = 0;
     *_pdblOutI = 0;
-    if (m_iRank == 0)
+    if (m_iSize == 0)
     {
         return true;
     }
 
-    for (int i = 0 ; i < m_iRank ; i++)
+    for (int i = 0 ; i < m_iSize ; i++)
     {
         //real part
-        *_pdblOutR += pCoefR[i] * pow(_dblInR, i);
+        *_pdblOutR += m_pRealData[i] * pow(_dblInR, i);
         //only if variable is complex
-        if (m_pdblCoef->isComplex())
+        if (isComplex())
         {
-            *_pdblOutR -= pCoefI[i] * pow(_dblInI, i);
+            *_pdblOutR -= m_pImgData[i] * pow(_dblInI, i);
             //img part
-            *_pdblOutI += pCoefI[i] * pow(_dblInR, i);
+            *_pdblOutI += m_pRealData[i] * pow(_dblInR, i);
         }
-        *_pdblOutI += pCoefR[i] * pow(_dblInI, i);
+        *_pdblOutI += m_pRealData[i] * pow(_dblInI, i);
     }
 
-    //old version, does not work
-    //for(int i = m_iRank - 1 ; i >= 0 ; i--)
-    //{
-    //	//(a1 + ib1)(a2 + ib2)**n = (a1 + ib1) * exp(n * log(a2 + ib2))
-    //	double dblLogR = 0;
-    //	double dblLogI = 0;
-    //	double dblExpR = 0;
-    //	double dblExpI = 0;
-
-    //	//log(a2 + ib2)
-    //	if(_dblInI != 0)
-    //	{
-    //		wlog(_dblInR, _dblInI, &dblLogR, &dblLogI);
-    //	}
-    //	else
-    //	{
-    //		dblLogR = dlogs(_dblInR);
-    //	}
-
-    //	//n * log(a2 + ib2)
-    //	dblLogR *= i;
-    //	dblLogI *= i;
-
-    //	//exp(n * log(a2 + ib2))
-    //	if(dblLogI != 0)
-    //	{
-    //		zexps(dblLogR, dblLogI, &dblExpR, &dblExpI);
-    //	}
-    //	else
-    //	{
-    //		dblExpR = dexps(dblLogR);
-    //	}
-
-    //	//(a1 + ib1) * exp(n * log(a2 + ib2))
-    //	if(m_pdblCoef->isComplex())
-    //	{
-    //		*_pdblOutR += (dblExpR * pCoefR[i] - dblExpI * pCoefI[i]);
-    //		*_pdblOutI += (dblExpR * pCoefI[i] + dblExpI * pCoefR[i]);
-    //	}
-    //	else
-    //	{
-    //		*_pdblOutR += (dblExpR * pCoefR[i]);
-    //		*_pdblOutI += (dblExpI * pCoefR[i]);
-    //	}
-    //}
     return true;
 }
 
 void SinglePoly::updateRank(void)
 {
     double dblEps = getRelativeMachinePrecision();
-    int iNewRank = m_iRank;
-    double *pCoefR = getCoef()->getReal();
-    double *pCoefI = getCoef()->getImg();
-    for (int i = m_iRank - 1; i > 0 ; i--)
+    int iNewRank = getRank();
+    if (m_pImgData)
     {
-        if (fabs(pCoefR[i]) <= dblEps && (pCoefI != NULL ? fabs(pCoefI[i]) : 0) <= dblEps)
+        for (int i = getRank(); i > 0 ; i--)
         {
-            iNewRank--;
-        }
-        else
-        {
-            break;
+            if (fabs(m_pRealData[i]) <= dblEps && abs(m_pImgData[i]) <= dblEps)
+            {
+                iNewRank--;
+            }
+            else
+            {
+                break;
+            }
         }
     }
-    if (iNewRank < m_iRank)
+    else
+    {
+        for (int i = getRank(); i > 0 ; i--)
+        {
+            if (fabs(m_pRealData[i]) <= dblEps)
+            {
+                iNewRank--;
+            }
+            else
+            {
+                break;
+            }
+        }
+    }
+
+    if (iNewRank < getRank())
     {
         setRank(iNewRank, true);
     }
@@ -349,7 +320,7 @@ bool SinglePoly::toString(std::wostringstream& ostr)
 
 void SinglePoly::toStringReal(wstring _szVar, list<wstring>* _pListExp , list<wstring>* _pListCoef)
 {
-    toStringInternal(m_pdblCoef->getReal(), _szVar, _pListExp, _pListCoef);
+    toStringInternal(m_pRealData, _szVar, _pListExp, _pListCoef);
 }
 
 void SinglePoly::toStringImg(wstring _szVar, list<wstring>* _pListExp , list<wstring>* _pListCoef)
@@ -361,7 +332,12 @@ void SinglePoly::toStringImg(wstring _szVar, list<wstring>* _pListExp , list<wst
         return;
     }
 
-    toStringInternal(m_pdblCoef->getImg(), _szVar, _pListExp, _pListCoef);
+    toStringInternal(m_pImgData, _szVar, _pListExp, _pListCoef);
+}
+
+bool SinglePoly::subMatrixToString(wostringstream& ostr, int* _piDims, int _iDims)
+{
+    return false;
 }
 
 void SinglePoly::toStringInternal(double *_pdblVal, wstring _szVar, list<wstring>* _pListExp , list<wstring>* _pListCoef)
@@ -376,11 +352,11 @@ void SinglePoly::toStringInternal(double *_pdblVal, wstring _szVar, list<wstring
     ostemp2 << L"";
 
     //to add exponant value a the good place
-    int *piIndexExp = new int[m_iRank];
+    int *piIndexExp = new int[m_iSize];
 
-    int iLen				= 0;
-    int iLastFlush	= 2;
-    for (int i = 0 ; i < m_iRank ; i++)
+    int iLen = 0;
+    int iLastFlush = 2;
+    for (int i = 0 ; i < m_iSize ; i++)
     {
         piIndexExp[i] = 0;
         if (isRealZero(_pdblVal[i]) == false)
@@ -435,7 +411,7 @@ void SinglePoly::toStringInternal(double *_pdblVal, wstring _szVar, list<wstring
 
     if (iLastFlush != 0)
     {
-        for (int j = iLastFlush ; j < m_iRank ; j++)
+        for (int j = iLastFlush ; j < m_iSize ; j++)
         {
             if (piIndexExp[j] == 0)
             {
@@ -482,7 +458,52 @@ bool SinglePoly::operator==(const InternalType& it)
         return false;
     }
 
-    return *(getCoef()) == *(pP->getCoef());
+    double *pdblReal = pP->get();
+    for (int i = 0 ; i < getSize() ; i++)
+    {
+        if (m_pRealData[i] != pdblReal[i])
+        {
+            return false;
+        }
+    }
+
+    //both complex
+    if (isComplex() && pP->isComplex())
+    {
+        double *pdblImg = pP->getImg();
+        for (int i = 0 ; i < m_iSize ; i++)
+        {
+            if (m_pImgData[i] != pdblImg[i])
+            {
+                return false;
+            }
+        }
+    }
+    //pdbl complex check all img values == 0
+    else if (pP->isComplex())
+    {
+        double *pdblImg = pP->getImg();
+        for (int i = 0 ; i < m_iSize ; i++)
+        {
+            if (pdblImg[i])
+            {
+                return false;
+            }
+        }
+    }
+    //complex check all img values == 0
+    else if (isComplex())
+    {
+        for (int i = 0 ; i < m_iSize ; i++)
+        {
+            if (m_pImgData[i])
+            {
+                return false;
+            }
+        }
+    }
+
+    return true;
 }
 
 bool SinglePoly::operator!=(const InternalType& it)
@@ -498,12 +519,12 @@ SinglePoly* SinglePoly::clone()
     {
         double *pI = NULL;
         pPoly = new SinglePoly(&pR, &pI, getRank());
-        pPoly->setCoef(getCoefReal(), getCoefImg());
+        pPoly->setCoef(m_pRealData, m_pImgData);
     }
     else
     {
         pPoly = new SinglePoly(&pR, getRank());
-        pPoly->setCoef(getCoefReal(), NULL);
+        pPoly->setCoef(m_pRealData, NULL);
     }
     return pPoly;
 }
@@ -517,7 +538,7 @@ SinglePoly* SinglePoly::conjugate()
         double *pI = NULL;
         SinglePoly * pPoly = new SinglePoly(&pR, &pI, getRank());
 
-        Transposition::conjugate(getRank(), getCoefReal(), pR, getCoefImg(), pI);
+        Transposition::conjugate(m_iSize, m_pRealData, pR, m_pImgData, pI);
 
         return pPoly;
     }

@@ -113,10 +113,10 @@ types::Function::ReturnValue sci_ceil(types::typed_list &in, int _iRetCount, typ
                 int rank = pPolyIn->get(i)->getRank();
                 types::SinglePoly* pSP = new types::SinglePoly(&dataReal, &dataImg, rank);
 
-                for (int j = 0; j < rank; j++)
+                for (int j = 0; j < rank + 1; j++)
                 {
-                    dataReal[j] = dceils(pPolyIn->get(i)->getCoefReal()[j]);
-                    dataImg[j]  = dceils(pPolyIn->get(i)->getCoefImg()[j]);
+                    dataReal[j] = dceils(pPolyIn->get(i)->get()[j]);
+                    dataImg[j]  = dceils(pPolyIn->get(i)->getImg()[j]);
                 }
 
                 pPolyOut->set(i, pSP);
@@ -131,9 +131,9 @@ types::Function::ReturnValue sci_ceil(types::typed_list &in, int _iRetCount, typ
                 int rank = pPolyIn->get(i)->getRank();
                 types::SinglePoly* pSP = new types::SinglePoly(&dataReal, rank);
 
-                for (int j = 0; j < rank; j++)
+                for (int j = 0; j < rank + 1; j++)
                 {
-                    dataReal[j] = dceils(pPolyIn->get(i)->getCoefReal()[j]);
+                    dataReal[j] = dceils(pPolyIn->get(i)->get()[j]);
                 }
 
                 pPolyOut->set(i, pSP);

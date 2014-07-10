@@ -73,6 +73,10 @@ public :
         return true;
     }
 
+    bool isComplex()
+    {
+        return (m_pImgData != NULL) || isViewAsZComplex();
+    }
 
     bool isTrue()
     {
@@ -199,7 +203,7 @@ public :
 
         if (isScalar())
         {
-            if (m_bComplex)
+            if (isComplex())
             {
                 out = new Double(m_pRealData[0], -m_pImgData[0]);
             }
@@ -213,9 +217,9 @@ public :
 
         if (m_iDims == 2)
         {
-            Double * pReturn = new Double(getCols(), getRows(), m_bComplex);
+            Double * pReturn = new Double(getCols(), getRows(), isComplex());
             out = pReturn;
-            if (m_bComplex)
+            if (isComplex())
             {
                 Transposition::adjoint(getRows(), getCols(), m_pRealData, pReturn->m_pRealData, m_pImgData, pReturn->m_pImgData);
             }
@@ -246,9 +250,9 @@ public :
 
         if (m_iDims == 2)
         {
-            Double * pReturn = new Double(getCols(), getRows(), m_bComplex);
+            Double * pReturn = new Double(getCols(), getRows(), isComplex());
             out = pReturn;
-            if (m_bComplex)
+            if (isComplex())
             {
                 Transposition::transpose(getRows(), getCols(), m_pRealData, pReturn->m_pRealData, m_pImgData, pReturn->m_pImgData);
             }

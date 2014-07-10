@@ -339,7 +339,7 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
             int iSize       = pL->getSize();
             int iRank       = 0;
 
-            pR->getRealRank(&iRank);
+            pR->getRank(&iRank);
             if (iRank != 0) // check rank
             {
                 memset(piResult, 0x00, iSize * sizeof(int));
@@ -347,11 +347,11 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
             else
             {
                 // check values
-                double dR       = pR->get(0)->getCoef()->get(0);
+                double dR       = pR->get(0)->get(0);
                 double* pdblL   = pL->get();
                 if (pL->isComplex() && pR->isComplex())
                 {
-                    double dRImg    = pR->get(0)->getCoef()->getImg(0);
+                    double dRImg    = pR->get(0)->getImg(0);
                     double* pdblLImg = pL->getImg();
                     for (int i = 0 ; i < iSize; i++)
                     {
@@ -368,7 +368,7 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
                 }
                 else if (pR->isComplex())
                 {
-                    double dRImg    = pR->get(0)->getCoef()->getImg(0);
+                    double dRImg    = pR->get(0)->getImg(0);
                     for (int i = 0 ; i < iSize; i++)
                     {
                         piResult[i] = (int)((dR == pdblL[i]) && (dRImg == 0));
@@ -395,7 +395,7 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
             int* piRank     = new int[iSize];
             double dL       = pL->get(0);
 
-            pR->getRealRank(piRank);
+            pR->getRank(piRank);
 
             if (pL->isComplex() && pR->isComplex())
             {
@@ -404,8 +404,8 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
                 {
                     if (piRank[i] == 0)
                     {
-                        piResult[i] = (int)(dL == pR->get(i)->getCoef()->get(0) &&
-                                            dLImg == pR->get(i)->getCoef()->getImg(0));
+                        piResult[i] = (int)(dL == pR->get(i)->get(0) &&
+                                            dLImg == pR->get(i)->getImg(0));
                     }
                     else
                     {
@@ -420,7 +420,7 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
                 {
                     if (piRank[i] == 0)
                     {
-                        piResult[i] = (int)(dL == pR->get(i)->getCoef()->get(0) &&
+                        piResult[i] = (int)(dL == pR->get(i)->get(0) &&
                                             dLImg == 0);
                     }
                     else
@@ -435,8 +435,8 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
                 {
                     if (piRank[i] == 0)
                     {
-                        piResult[i] = (int)(dL == pR->get(i)->getCoef()->get(0) &&
-                                            pR->get(i)->getCoef()->getImg(0) == 0);
+                        piResult[i] = (int)(dL == pR->get(i)->get(0) &&
+                                            pR->get(i)->getImg(0) == 0);
                     }
                     else
                     {
@@ -448,7 +448,7 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
             {
                 for (int i = 0 ; i < iSize; i++)
                 {
-                    piResult[i] = piRank[i] ? 0 : (int)(dL == pR->get(i)->getCoef()->get(0));
+                    piResult[i] = piRank[i] ? 0 : (int)(dL == pR->get(i)->get(0));
                 }
             }
 
@@ -481,7 +481,7 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
         int* piRank     = new int[iSize];
         double* pdblL   = pL->get();
 
-        pR->getRealRank(piRank);
+        pR->getRank(piRank);
 
         if (pL->isComplex() && pR->isComplex())
         {
@@ -490,8 +490,8 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
             {
                 if (piRank[i] == 0)
                 {
-                    piResult[i] = (int)(pdblL[i] == pR->get(i)->getCoef()->get(0) &&
-                                        pdblLImg[i] == pR->get(i)->getCoef()->getImg(0));
+                    piResult[i] = (int)(pdblL[i] == pR->get(i)->get(0) &&
+                                        pdblLImg[i] == pR->get(i)->getImg(0));
                 }
                 else
                 {
@@ -506,7 +506,7 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
             {
                 if (piRank[i] == 0)
                 {
-                    piResult[i] = (int)(pdblL[i] == pR->get(i)->getCoef()->get(0) &&
+                    piResult[i] = (int)(pdblL[i] == pR->get(i)->get(0) &&
                                         pdblLImg[i] == 0);
                 }
                 else
@@ -521,8 +521,8 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
             {
                 if (piRank[i] == 0)
                 {
-                    piResult[i] = (int)(pdblL[i] == pR->get(i)->getCoef()->get(0) &&
-                                        pR->get(i)->getCoef()->getImg(0) == 0);
+                    piResult[i] = (int)(pdblL[i] == pR->get(i)->get(0) &&
+                                        pR->get(i)->getImg(0) == 0);
                 }
                 else
                 {
@@ -534,7 +534,7 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
         {
             for (int i = 0 ; i < iSize; i++)
             {
-                piResult[i] = piRank[i] ? 0 : (int)(pdblL[i] == pR->get(i)->getCoef()->get(0));
+                piResult[i] = piRank[i] ? 0 : (int)(pdblL[i] == pR->get(i)->get(0));
             }
         }
 

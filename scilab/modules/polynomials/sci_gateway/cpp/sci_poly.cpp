@@ -99,9 +99,10 @@ types::Function::ReturnValue sci_poly(types::typed_list &in, int _iRetCount, typ
         // [] case
         if (pDblIn->getSize() == 0)
         {
-            types::Polynom* pPolyOut = new types::Polynom(wstrName, 1, 1);
-            types::Double* pDblCoef = new types::Double(1);
-            pPolyOut->setCoef(0, pDblCoef);
+            int iRank = 0;
+            types::Polynom* pPolyOut = new types::Polynom(wstrName, 1, 1, &iRank);
+            double* pdblCoef = pPolyOut->get(0)->get();
+            *pdblCoef = 1;
             out.push_back(pPolyOut);
             return types::Function::OK;
         }
@@ -124,25 +125,25 @@ types::Function::ReturnValue sci_poly(types::typed_list &in, int _iRetCount, typ
         double* pdblInReal = pDblIn->get();
         int piDimsArray[2] = {1, 1};
         int iSize = pDblIn->getSize();
-        int iRanks = iSize + 1;
+        int iRanks = iSize;
         pPolyOut = new types::Polynom(wstrName, 2, piDimsArray, &iRanks);
-        double* pdblCoefReal = pPolyOut->get(0)->getCoefReal();
+        double* pdblCoefReal = pPolyOut->get(0)->get();
         if (pDblIn->isComplex())
         {
             pPolyOut->setComplex(true);
             double* pdblInImg   = pDblIn->getImg();
-            double* pdblCoefImg = pPolyOut->get(0)->getCoefImg();
-            C2F(wprxc)(&iSize, pdblInReal, pdblInImg, pdblCoefReal, pdblCoefImg);
+            double* pdblCoefImg = pPolyOut->get(0)->getImg();
+            C2F(wprxc)(&iRanks, pdblInReal, pdblInImg, pdblCoefReal, pdblCoefImg);
 
             // if imaginary part is null, set polynom real
-            if (C2F(dasum)(&iRanks, pdblCoefImg, &iOne) == 0)
+            if (C2F(dasum)(&iSize, pdblCoefImg, &iOne) == 0)
             {
                 pPolyOut->setComplex(false);
             }
         }
         else
         {
-            C2F(dprxc)(&iSize, pdblInReal, pdblCoefReal);
+            C2F(dprxc)(&iRanks, pdblInReal, pdblCoefReal);
         }
 
         if (bDeleteInput)
@@ -166,7 +167,7 @@ types::Function::ReturnValue sci_poly(types::typed_list &in, int _iRetCount, typ
         }
 
         int piDimsArray[2] = {1, 1};
-        int iRanks = pDblIn->getSize();
+        int iRanks = pDblIn->getSize() - 1;
         pPolyOut = new types::Polynom(wstrName, 2, piDimsArray, &iRanks);
         pPolyOut->setComplex(pDblIn->isComplex());
         pPolyOut->setCoef(0, pDblIn);

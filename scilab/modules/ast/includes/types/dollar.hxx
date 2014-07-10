@@ -23,16 +23,17 @@ public :
 
     Dollar()
     {
-        int piDims[2]   = {1, 1};
-        m_szVarName	    = L"$";
-        m_bComplex	    = false;
-        SinglePoly** pPoly    = NULL;
+        int piDims[2] = {1, 1};
+        m_szVarName   = L"$";
+        SinglePoly** pPoly = NULL;
         create(piDims, 2, &pPoly, NULL);
 
-        Double dblCoef(1, 2);
-        dblCoef.set(0, 0, 0);
-        dblCoef.set(0, 1, 1.0);
-        setCoef(0, &dblCoef);
+        double* pdblCoef = NULL;
+        SinglePoly* SPCoef = new SinglePoly(&pdblCoef, 1);
+        pdblCoef[0] = 0;
+        pdblCoef[1] = 1.0;
+
+        m_pRealData[0] = SPCoef;
     }
 
     Dollar* clone()

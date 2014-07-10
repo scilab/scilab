@@ -318,11 +318,12 @@ types::Function::ReturnValue sci_cumsum(types::typed_list &in, int _iRetCount, t
         }
         else
         {
-            int* piRanks = (int*)malloc(pPolyIn->getSize() * sizeof(int));
+            int* piRanks = new int[pPolyIn->getSize()];
             pPolyIn->getRank(piRanks);
             pPolyOut = new types::Polynom(pPolyIn->getVariableName(), pPolyIn->getDims(), pPolyIn->getDimsArray(), piRanks);
             pPolyOut->setComplex(pPolyIn->isComplex());
             cumsum(pPolyIn, iOrientation, pPolyOut);
+            delete[] piRanks;
         }
     }
 

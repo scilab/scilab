@@ -1150,11 +1150,11 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
                     // first lime is the time of result stored in second line.
                     int size = 2 * iSizeList;
                     int* iRanks = (int*)MALLOC(size * sizeof(int));
-
+                    int iMaxRank = pPolyY0->getMaxRank();
                     for(int i = 0; i < iSizeList; i++)
                     {
                         iRanks[i * 2] = 1; // time rank
-                        iRanks[i * 2 + 1] = pPolyY0->getMaxRank(); // result rank
+                        iRanks[i * 2 + 1] = iMaxRank; // result rank
                     }
 
                     pPolyYOut = new types::Polynom(pPolyY0->getVariableName(), 2, iSizeList, iRanks);
@@ -1200,9 +1200,10 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
                 {
                     int size = pDblT->getSize();
                     int* iRanks = (int*)MALLOC(size * sizeof(int));
+                    int iMaxRank = pPolyY0->getMaxRank();
                     for(int i = 0; i < size; i++)
                     {
-                        iRanks[i] = pPolyY0->getMaxRank();
+                        iRanks[i] = iMaxRank;
                     }
 
                     pPolyYOut = new types::Polynom(pPolyY0->getVariableName(), 1, pDblT->getSize(), iRanks);
