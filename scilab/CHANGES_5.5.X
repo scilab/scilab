@@ -180,6 +180,8 @@ Scilab Bug Fixes
 
 * Bug #13510 fixed - Datatip callback cleared 'd'.
 
+* Bug #13512 fixed - dae crashed if the evaluation function had wrong prototype.
+
 
 Xcos Bug Fixes
 ==============
