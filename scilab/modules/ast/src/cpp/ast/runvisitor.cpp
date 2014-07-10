@@ -903,6 +903,14 @@ void RunVisitorT<T>::visitprivate(const TransposeExp &e)
 {
     e.exp_get().accept(*this);
 
+    if (result_getSize() != 1)
+    {
+        result_clear();
+        wchar_t szError[bsiz];
+        os_swprintf(szError, bsiz, _W("%ls: Can not transpose multiple elements.\n").c_str(), L"Transpose");
+        throw ScilabError(szError, 999, e.location_get());
+    }
+
     InternalType * pValue = result_get();
     InternalType * pReturn = NULL;
     const bool bConjug = e.conjugate_get() == TransposeExp::_Conjugate_;
