@@ -14,19 +14,11 @@
 /*--------------------------------------------------------------------------*/
 #include "Scierror.h"
 #include "gw_jvm.h"
-#include "InitializeJVM.h"
-#include "TerminateJVM.h"
-#include "loadBackGroundClassPath.h"
-#include "loadOnUseClassPath.h"
 #include "localization.h"
 
 #ifdef _MSC_VER
-#include "getScilabJNIEnv.h"
-#include "getScilabJavaVM.h"
 #include "getScilabObject.h"
 #include "addToClasspath.h"
-#include "addToLibrarypath.h"
-#include "catchIfJavaException.h"
 #endif
 
 /*--------------------------------------------------------------------------*/

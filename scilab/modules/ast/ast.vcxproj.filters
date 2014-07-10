@@ -1,32 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="src\cpp\debugvisitor.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\mutevisitor.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\printvisitor.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\shortcutvisitor.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\visitor_common.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\macrovarvisitor.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\expHistory.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\runvisitor.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
     <Library Include="..\..\bin\blasplus.lib" />
     <Library Include="..\..\bin\lapack.lib" />
     <Library Include="..\..\bin\libintl.lib" />
@@ -44,9 +18,78 @@
     <Filter Include="Header Files\exps">
       <UniqueIdentifier>{145230a5-48e4-4b42-899c-680c6ced09cb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\ast">
+      <UniqueIdentifier>{9542b108-afa0-483b-81fc-002205e4b475}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\symbol">
+      <UniqueIdentifier>{3f3ac880-9512-4942-9e79-53e3037d91ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\system_env">
+      <UniqueIdentifier>{9fdd15cb-e93b-4979-88f5-bd2d30a06097}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\types">
+      <UniqueIdentifier>{8cbfe58a-a873-4914-9286-f3ba9ae21e8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ast">
+      <UniqueIdentifier>{031a9e69-ca61-42f6-983c-d86d4080e377}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\symbol">
+      <UniqueIdentifier>{7a11933e-e930-4488-ad47-bb8da46a6ebc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\system_env">
+      <UniqueIdentifier>{b7106398-ce68-4c76-adb4-8f41551a2079}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\types">
+      <UniqueIdentifier>{7569b6d8-6671-4af2-89ce-cdd579c25cad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\parse">
+      <UniqueIdentifier>{a53b5cad-8e0d-4297-ad2f-5432654c4ac3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\parse">
+      <UniqueIdentifier>{12c11a29-6883-4fc5-bb38-9a333b7ecc5a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\operations">
+      <UniqueIdentifier>{8fb2f5f2-07b7-44d9-b8f6-d53b1f008b7a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\operations">
+      <UniqueIdentifier>{cc482308-cd44-4b1f-b6e7-c807532f307d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="core_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="localization_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="elementary_functions_f_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="elementary_functions_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="linear_algebra_f_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="polynomials_f_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="io_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="console_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="dynamic_link_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="fileio_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="output_stream_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="threads_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
   </ItemGroup>
@@ -213,53 +256,625 @@
     <ClInclude Include="includes\exps\whileexp.hxx">
       <Filter>Header Files\exps</Filter>
     </ClInclude>
-    <ClInclude Include="includes\debugvisitor.hxx">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="includes\ast\debugvisitor.hxx">
+      <Filter>Header Files\ast</Filter>
     </ClInclude>
-    <ClInclude Include="includes\dummyvisitor.hxx">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="includes\ast\deserializervisitor.hxx">
+      <Filter>Header Files\ast</Filter>
     </ClInclude>
-    <ClInclude Include="includes\execvisitor.hxx">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="includes\ast\dummyvisitor.hxx">
+      <Filter>Header Files\ast</Filter>
     </ClInclude>
-    <ClInclude Include="includes\expHistory.hxx">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="includes\ast\dynlib_ast.h">
+      <Filter>Header Files\ast</Filter>
     </ClInclude>
-    <ClInclude Include="includes\macrovarvisitor.hxx">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="includes\ast\execvisitor.hxx">
+      <Filter>Header Files\ast</Filter>
     </ClInclude>
-    <ClInclude Include="includes\mutevisitor.hxx">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="includes\ast\expHistory.hxx">
+      <Filter>Header Files\ast</Filter>
     </ClInclude>
-    <ClInclude Include="includes\printvisitor.hxx">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="includes\ast\macrovarvisitor.hxx">
+      <Filter>Header Files\ast</Filter>
     </ClInclude>
-    <ClInclude Include="includes\runvisitor.hxx">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="includes\ast\mutevisitor.hxx">
+      <Filter>Header Files\ast</Filter>
     </ClInclude>
-    <ClInclude Include="includes\shortcutvisitor.hxx">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="includes\ast\printvisitor.hxx">
+      <Filter>Header Files\ast</Filter>
     </ClInclude>
-    <ClInclude Include="includes\stepvisitor.hxx">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="includes\ast\runvisitor.hxx">
+      <Filter>Header Files\ast</Filter>
     </ClInclude>
-    <ClInclude Include="includes\timedvisitor.hxx">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="includes\ast\scilabexception.hxx">
+      <Filter>Header Files\ast</Filter>
     </ClInclude>
-    <ClInclude Include="includes\visitor.hxx">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="includes\ast\serializervisitor.hxx">
+      <Filter>Header Files\ast</Filter>
     </ClInclude>
-    <ClInclude Include="includes\visitor_common.hxx">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="includes\ast\shortcutvisitor.hxx">
+      <Filter>Header Files\ast</Filter>
     </ClInclude>
-    <ClInclude Include="includes\deserializervisitor.hxx">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="includes\ast\stepvisitor.hxx">
+      <Filter>Header Files\ast</Filter>
     </ClInclude>
-    <ClInclude Include="includes\serializervisitor.hxx">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="includes\ast\timedvisitor.hxx">
+      <Filter>Header Files\ast</Filter>
     </ClInclude>
-    <ClInclude Include="includes\dynlib_ast.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="includes\ast\visitor.hxx">
+      <Filter>Header Files\ast</Filter>
     </ClInclude>
+    <ClInclude Include="includes\ast\visitor_common.hxx">
+      <Filter>Header Files\ast</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\types\alltypes.hxx">
+      <Filter>Header Files\types</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\types\arrayof.hxx">
+      <Filter>Header Files\types</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\types\bool.hxx">
+      <Filter>Header Files\types</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\types\c_gateway_prototype.h">
+      <Filter>Header Files\types</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\types\callable.hxx">
+      <Filter>Header Files\types</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\types\cell.hxx">
+      <Filter>Header Files\types</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\types\colon.hxx">
+      <Filter>Header Files\types</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\types\container.hxx">
+      <Filter>Header Files\types</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\types\cpp_gateway_prototype.hxx">
+      <Filter>Header Files\types</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\types\dollar.hxx">
+      <Filter>Header Files\types</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\types\double.hxx">
+      <Filter>Header Files\types</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\types\file.hxx">
+      <Filter>Header Files\types</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\types\function.hxx">
+      <Filter>Header Files\types</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\types\gatewaystruct.hxx">
+      <Filter>Header Files\types</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\types\graphichandle.hxx">
+      <Filter>Header Files\types</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\types\implicitlist.hxx">
+      <Filter>Header Files\types</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\types\inspector.hxx">
+      <Filter>Header Files\types</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\types\int.hxx">
+      <Filter>Header Files\types</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\types\internal.hxx">
+      <Filter>Header Files\types</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\types\library.hxx">
+      <Filter>Header Files\types</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\types\list.hxx">
+      <Filter>Header Files\types</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\types\listdelete.hxx">
+      <Filter>Header Files\types</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\types\listinsert.hxx">
+      <Filter>Header Files\types</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\types\listoperation.hxx">
+      <Filter>Header Files\types</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\types\listundefined.hxx">
+      <Filter>Header Files\types</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\types\macro.hxx">
+      <Filter>Header Files\types</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\types\macrofile.hxx">
+      <Filter>Header Files\types</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\types\matrixiterator.hxx">
+      <Filter>Header Files\types</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\types\mlist.hxx">
+      <Filter>Header Files\types</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\types\pointer.hxx">
+      <Filter>Header Files\types</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\types\polynom.hxx">
+      <Filter>Header Files\types</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\types\singlepoly.hxx">
+      <Filter>Header Files\types</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\types\singlestruct.hxx">
+      <Filter>Header Files\types</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\types\sparse.hxx">
+      <Filter>Header Files\types</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\types\sparseOp.hxx">
+      <Filter>Header Files\types</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\types\string.hxx">
+      <Filter>Header Files\types</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\types\struct.hxx">
+      <Filter>Header Files\types</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\types\threadId.hxx">
+      <Filter>Header Files\types</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\types\tlist.hxx">
+      <Filter>Header Files\types</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\types\tostring_common.hxx">
+      <Filter>Header Files\types</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\types\type_traits.hxx">
+      <Filter>Header Files\types</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\types\types.hxx">
+      <Filter>Header Files\types</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\types\types_tools.hxx">
+      <Filter>Header Files\types</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\types\typesdecl.hxx">
+      <Filter>Header Files\types</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\types\user.hxx">
+      <Filter>Header Files\types</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\types\void.hxx">
+      <Filter>Header Files\types</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\system_env\configvariable.hxx">
+      <Filter>Header Files\system_env</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\system_env\context_get.h">
+      <Filter>Header Files\system_env</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\system_env\dynamic_module.h">
+      <Filter>Header Files\system_env</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\system_env\formatmode.h">
+      <Filter>Header Files\system_env</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\system_env\home.h">
+      <Filter>Header Files\system_env</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\system_env\lasterror.h">
+      <Filter>Header Files\system_env</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\system_env\promptmode.h">
+      <Filter>Header Files\system_env</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\system_env\reference_modules.h">
+      <Filter>Header Files\system_env</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\system_env\sci_home.h">
+      <Filter>Header Files\system_env</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\system_env\sci_ieee.h">
+      <Filter>Header Files\system_env</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\system_env\sci_mode.h">
+      <Filter>Header Files\system_env</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\system_env\sci_path.h">
+      <Filter>Header Files\system_env</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\system_env\sci_simpMode.h">
+      <Filter>Header Files\system_env</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\system_env\sci_tmpdir.h">
+      <Filter>Header Files\system_env</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\system_env\warningmode.h">
+      <Filter>Header Files\system_env</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\symbol\context.hxx">
+      <Filter>Header Files\symbol</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\symbol\libraries.hxx">
+      <Filter>Header Files\symbol</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\symbol\symbol.hxx">
+      <Filter>Header Files\symbol</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\symbol\variables.hxx">
+      <Filter>Header Files\symbol</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\parse\isatty.hxx">
+      <Filter>Header Files\parse</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\parse\parse.hxx">
+      <Filter>Header Files\parse</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\parse\parser.hxx">
+      <Filter>Header Files\parse</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\parse\parser_private.hxx">
+      <Filter>Header Files\parse</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\parse\parsescilab.hxx">
+      <Filter>Header Files\parse</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\system_env\setenvvar.h">
+      <Filter>Header Files\system_env</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\operations\doublecomplex.h">
+      <Filter>Header Files\operations</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\operations\generic_operations.hxx">
+      <Filter>Header Files\operations</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\operations\interface_addition.h">
+      <Filter>Header Files\operations</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\operations\invert_matrix.h">
+      <Filter>Header Files\operations</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\operations\matrix_addition.h">
+      <Filter>Header Files\operations</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\operations\matrix_division.h">
+      <Filter>Header Files\operations</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\operations\matrix_finite.h">
+      <Filter>Header Files\operations</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\operations\matrix_kronecker.h">
+      <Filter>Header Files\operations</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\operations\matrix_left_division.h">
+      <Filter>Header Files\operations</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\operations\matrix_multiplication.h">
+      <Filter>Header Files\operations</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\operations\matrix_power.h">
+      <Filter>Header Files\operations</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\operations\matrix_right_division.h">
+      <Filter>Header Files\operations</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\operations\matrix_substraction.h">
+      <Filter>Header Files\operations</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\operations\matrix_transpose.h">
+      <Filter>Header Files\operations</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\operations\operations.hxx">
+      <Filter>Header Files\operations</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\operations\operations_tools.h">
+      <Filter>Header Files\operations</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\operations\operation_f.h">
+      <Filter>Header Files\operations</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\operations\types_addition.hxx">
+      <Filter>Header Files\operations</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\operations\types_comparison_eq.hxx">
+      <Filter>Header Files\operations</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\operations\types_comparison_lt_le_gt_ge.hxx">
+      <Filter>Header Files\operations</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\operations\types_comparison_ne.hxx">
+      <Filter>Header Files\operations</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\operations\types_divide.hxx">
+      <Filter>Header Files\operations</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\operations\types_finite.hxx">
+      <Filter>Header Files\operations</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\operations\types_kronecker.hxx">
+      <Filter>Header Files\operations</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\operations\types_ldivide.hxx">
+      <Filter>Header Files\operations</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\operations\types_multiplication.hxx">
+      <Filter>Header Files\operations</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\operations\types_or_and.hxx">
+      <Filter>Header Files\operations</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\operations\types_power.hxx">
+      <Filter>Header Files\operations</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\operations\types_substraction.hxx">
+      <Filter>Header Files\operations</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\operations\types_transposition.hxx">
+      <Filter>Header Files\operations</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\types\overload.hxx">
+      <Filter>Header Files\types</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\cpp\ast\debugvisitor.cpp">
+      <Filter>Source Files\ast</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\ast\expHistory.cpp">
+      <Filter>Source Files\ast</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\ast\macrovarvisitor.cpp">
+      <Filter>Source Files\ast</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\ast\mutevisitor.cpp">
+      <Filter>Source Files\ast</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\ast\printvisitor.cpp">
+      <Filter>Source Files\ast</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\ast\runvisitor.cpp">
+      <Filter>Source Files\ast</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\ast\shortcutvisitor.cpp">
+      <Filter>Source Files\ast</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\ast\visitor_common.cpp">
+      <Filter>Source Files\ast</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\types\arrayof.cpp">
+      <Filter>Source Files\types</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\types\bool.cpp">
+      <Filter>Source Files\types</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\types\cell.cpp">
+      <Filter>Source Files\types</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\types\double.cpp">
+      <Filter>Source Files\types</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\types\file.cpp">
+      <Filter>Source Files\types</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\types\function.cpp">
+      <Filter>Source Files\types</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\types\graphichandle.cpp">
+      <Filter>Source Files\types</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\types\implicitlist.cpp">
+      <Filter>Source Files\types</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\types\inspector.cpp">
+      <Filter>Source Files\types</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\types\int.cpp">
+      <Filter>Source Files\types</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\types\library.cpp">
+      <Filter>Source Files\types</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\types\list.cpp">
+      <Filter>Source Files\types</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\types\listdelete.cpp">
+      <Filter>Source Files\types</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\types\listinsert.cpp">
+      <Filter>Source Files\types</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\types\listoperation.cpp">
+      <Filter>Source Files\types</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\types\listundefined.cpp">
+      <Filter>Source Files\types</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\types\macro.cpp">
+      <Filter>Source Files\types</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\types\macrofile.cpp">
+      <Filter>Source Files\types</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\types\mlist.cpp">
+      <Filter>Source Files\types</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\types\polynom.cpp">
+      <Filter>Source Files\types</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\types\singlepoly.cpp">
+      <Filter>Source Files\types</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\types\singlestruct.cpp">
+      <Filter>Source Files\types</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\types\sparse.cpp">
+      <Filter>Source Files\types</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\types\string.cpp">
+      <Filter>Source Files\types</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\types\struct.cpp">
+      <Filter>Source Files\types</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\types\threadId.cpp">
+      <Filter>Source Files\types</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\types\tlist.cpp">
+      <Filter>Source Files\types</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\types\tostring_common.cpp">
+      <Filter>Source Files\types</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\types\types.cpp">
+      <Filter>Source Files\types</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\types\types_tools.cpp">
+      <Filter>Source Files\types</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\types\void.cpp">
+      <Filter>Source Files\types</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\symbol\context.cpp">
+      <Filter>Source Files\symbol</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\symbol\symbol.cpp">
+      <Filter>Source Files\symbol</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\system_env\configvariable.cpp">
+      <Filter>Source Files\system_env</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\system_env\context_get.cpp">
+      <Filter>Source Files\system_env</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\system_env\dynamic_module.cpp">
+      <Filter>Source Files\system_env</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\system_env\formatmode.cpp">
+      <Filter>Source Files\system_env</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\system_env\home.cpp">
+      <Filter>Source Files\system_env</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\system_env\lasterror.cpp">
+      <Filter>Source Files\system_env</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\system_env\promptmode.cpp">
+      <Filter>Source Files\system_env</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\system_env\reference_modules.cpp">
+      <Filter>Source Files\system_env</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\system_env\sci_home.cpp">
+      <Filter>Source Files\system_env</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\system_env\sci_ieee.cpp">
+      <Filter>Source Files\system_env</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\system_env\sci_mode.cpp">
+      <Filter>Source Files\system_env</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\system_env\sci_path.cpp">
+      <Filter>Source Files\system_env</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\system_env\sci_simpMode.cpp">
+      <Filter>Source Files\system_env</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\system_env\sci_tmpdir.cpp">
+      <Filter>Source Files\system_env</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\system_env\setenvvar.cpp">
+      <Filter>Source Files\system_env</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\system_env\warningmode.cpp">
+      <Filter>Source Files\system_env</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\parse\parser.cpp">
+      <Filter>Source Files\parse</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\parse\parsescilab.cpp">
+      <Filter>Source Files\parse</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\parse\printerror.cpp">
+      <Filter>Source Files\parse</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\parse\scanscilab.cpp">
+      <Filter>Source Files\parse</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\operations\interface_addition.cpp">
+      <Filter>Source Files\operations</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\operations\operations.cpp">
+      <Filter>Source Files\operations</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\operations\types_addition.cpp">
+      <Filter>Source Files\operations</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\operations\types_comparison_eq.cpp">
+      <Filter>Source Files\operations</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\operations\types_comparison_lt_le_gt_ge.cpp">
+      <Filter>Source Files\operations</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\operations\types_comparison_ne.cpp">
+      <Filter>Source Files\operations</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\operations\types_divide.cpp">
+      <Filter>Source Files\operations</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\operations\types_finite.cpp">
+      <Filter>Source Files\operations</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\operations\types_kronecker.cpp">
+      <Filter>Source Files\operations</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\operations\types_ldivide.cpp">
+      <Filter>Source Files\operations</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\operations\types_multiplication.cpp">
+      <Filter>Source Files\operations</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\operations\types_or_and.cpp">
+      <Filter>Source Files\operations</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\operations\types_power.cpp">
+      <Filter>Source Files\operations</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\operations\types_substraction.cpp">
+      <Filter>Source Files\operations</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\operations\doublecomplex.c">
+      <Filter>Source Files\operations</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\operations\invert_matrix.c">
+      <Filter>Source Files\operations</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\operations\matrix_addition.c">
+      <Filter>Source Files\operations</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\operations\matrix_division.c">
+      <Filter>Source Files\operations</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\operations\matrix_finite.c">
+      <Filter>Source Files\operations</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\operations\matrix_kronecker.c">
+      <Filter>Source Files\operations</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\operations\matrix_multiplication.c">
+      <Filter>Source Files\operations</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\operations\matrix_power.c">
+      <Filter>Source Files\operations</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\operations\matrix_substraction.c">
+      <Filter>Source Files\operations</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\operations\matrix_transpose.c">
+      <Filter>Source Files\operations</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\operations\operations_tools.c">
+      <Filter>Source Files\operations</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\types\overload.cpp">
+      <Filter>Source Files\types</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -662,21 +662,34 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @SWIG_TRUE@BUILT_SOURCES = swig
 libscihistory_browser_la_CFLAGS = 
 libscihistory_browser_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
--I$(srcdir)/src/jni/ \
--I$(srcdir)/includes/ \
--I$(top_srcdir)/modules/jvm/includes/ \
--I$(top_srcdir)/modules/system_env/includes/ \
--I$(top_srcdir)/modules/commons/src/jni/ \
--I$(top_srcdir)/modules/localization/includes/ \
--I$(top_srcdir)/modules/output_stream/includes/ \
-$(AM_CPPFLAGS)
+    -I$(srcdir)/src/jni/ \
+    -I$(srcdir)/includes/ \
+    -I$(top_srcdir)/modules/ast/includes/ast/ \
+    -I$(top_srcdir)/modules/ast/includes/exps/ \
+    -I$(top_srcdir)/modules/ast/includes/operations/ \
+    -I$(top_srcdir)/modules/ast/includes/parse/ \
+    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+    -I$(top_srcdir)/modules/ast/includes/types/ \
+    -I$(top_srcdir)/modules/jvm/includes/ \
+    -I$(top_srcdir)/modules/commons/src/jni/ \
+    -I$(top_srcdir)/modules/localization/includes/ \
+    -I$(top_srcdir)/modules/output_stream/includes/ \
+    $(AM_CPPFLAGS)
 
 
 # Without the history_browser module
-libscihistory_browser_disable_la_CPPFLAGS = -I$(srcdir)/includes/ \
+libscihistory_browser_disable_la_CPPFLAGS = \
+    -I$(srcdir)/includes/ \
+    -I$(top_srcdir)/modules/ast/includes/ast/ \
+    -I$(top_srcdir)/modules/ast/includes/exps/ \
+    -I$(top_srcdir)/modules/ast/includes/operations/ \
+    -I$(top_srcdir)/modules/ast/includes/parse/ \
+    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+    -I$(top_srcdir)/modules/ast/includes/types/ \
     -I$(top_srcdir)/modules/localization/includes/ \
     -I$(top_srcdir)/modules/output_stream/includes/ \
-    -I$(top_srcdir)/modules/system_env/includes/ \
      $(AM_CPPFLAGS)
 
 HISTORY_BROWSER_DISABLE_C_SOURCES = src/nohistory_browser/CommandHistory_Wrap_Fake.c src/nohistory_browser/nohistory_browser.c

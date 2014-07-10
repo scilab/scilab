@@ -597,66 +597,68 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 yacc_present = @yacc_present@
-SIGNAL_PROCESSING_C_SOURCES = src/c/corrtable.c \
-src/c/conv2.c
+SIGNAL_PROCESSING_C_SOURCES = \
+    src/c/corrtable.c \
+    src/c/conv2.c
 
-SIGNAL_PROCESSING_FORTRAN_SOURCES = src/fortran/degree.f \
-src/fortran/parcha.f \
-src/fortran/ouch.f \
-src/fortran/dfftbi.f \
-src/fortran/dsqrtc.f \
-src/fortran/tranze.f \
-src/fortran/tscccf.f \
-src/fortran/dsn2.f \
-src/fortran/hammin.f \
-src/fortran/bounn.f \
-src/fortran/nstabl.f \
-src/fortran/ino.f \
-src/fortran/desia.f \
-src/fortran/desi11.f \
-src/fortran/cmpse3.f \
-src/fortran/cheby.f \
-src/fortran/trbize.f \
-src/fortran/r2tx.f \
-src/fortran/deli2.f \
-src/fortran/gee.f \
-src/fortran/r4tx.f \
-src/fortran/transn.f \
-src/fortran/r8tx.f \
-src/fortran/deli11.f \
-src/fortran/compel.f \
-src/fortran/filbut.f \
-src/fortran/desi01.f \
-src/fortran/desi22.f \
-src/fortran/amell.f \
-src/fortran/desi24.f \
-src/fortran/dellk.f \
-src/fortran/syredi.f \
-src/fortran/coeft.f \
-src/fortran/tranpo.f \
-src/fortran/blnumz.f \
-src/fortran/sn.f \
-src/fortran/bldenz.f \
-src/fortran/desib.f \
-src/fortran/freque.f \
-src/fortran/desi12.f \
-src/fortran/cmpse2.f \
-src/fortran/desi14.f \
-src/fortran/delip.f \
-src/fortran/deli1.f \
-src/fortran/trbipo.f \
-src/fortran/rpem.f \
-src/fortran/dfft2.f \
-src/fortran/dgee01.f \
-src/fortran/romeg.f \
-src/fortran/snell.f \
-src/fortran/fft842.f \
-src/fortran/tg02ad.f \
-src/fortran/remez.f \
-src/fortran/poles.f \
-src/fortran/desi00.f \
-src/fortran/desi21.f \
-src/fortran/dfftmx.f
+SIGNAL_PROCESSING_FORTRAN_SOURCES = \
+    src/fortran/degree.f \
+    src/fortran/parcha.f \
+    src/fortran/ouch.f \
+    src/fortran/dfftbi.f \
+    src/fortran/dsqrtc.f \
+    src/fortran/tranze.f \
+    src/fortran/tscccf.f \
+    src/fortran/dsn2.f \
+    src/fortran/hammin.f \
+    src/fortran/bounn.f \
+    src/fortran/nstabl.f \
+    src/fortran/ino.f \
+    src/fortran/desia.f \
+    src/fortran/desi11.f \
+    src/fortran/cmpse3.f \
+    src/fortran/cheby.f \
+    src/fortran/trbize.f \
+    src/fortran/r2tx.f \
+    src/fortran/deli2.f \
+    src/fortran/gee.f \
+    src/fortran/r4tx.f \
+    src/fortran/transn.f \
+    src/fortran/r8tx.f \
+    src/fortran/deli11.f \
+    src/fortran/compel.f \
+    src/fortran/filbut.f \
+    src/fortran/desi01.f \
+    src/fortran/desi22.f \
+    src/fortran/amell.f \
+    src/fortran/desi24.f \
+    src/fortran/dellk.f \
+    src/fortran/syredi.f \
+    src/fortran/coeft.f \
+    src/fortran/tranpo.f \
+    src/fortran/blnumz.f \
+    src/fortran/sn.f \
+    src/fortran/bldenz.f \
+    src/fortran/desib.f \
+    src/fortran/freque.f \
+    src/fortran/desi12.f \
+    src/fortran/cmpse2.f \
+    src/fortran/desi14.f \
+    src/fortran/delip.f \
+    src/fortran/deli1.f \
+    src/fortran/trbipo.f \
+    src/fortran/rpem.f \
+    src/fortran/dfft2.f \
+    src/fortran/dgee01.f \
+    src/fortran/romeg.f \
+    src/fortran/snell.f \
+    src/fortran/fft842.f \
+    src/fortran/tg02ad.f \
+    src/fortran/remez.f \
+    src/fortran/poles.f \
+    src/fortran/desi00.f \
+    src/fortran/desi21.f \
+    src/fortran/dfftmx.f
 
 GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/sci_rpem.cpp \
@@ -666,9 +668,9 @@ GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/sci_syredi.cpp
 
 GATEWAY_C_SOURCES = \
-sci_gateway/c/sci_remez.c \
-sci_gateway/c/sci_amell.c \
-sci_gateway/c/sci_conv2.c
+    sci_gateway/c/sci_remez.c \
+    sci_gateway/c/sci_amell.c \
+    sci_gateway/c/sci_conv2.c
 
 GATEWAY_FORTRAN_SOURCES = \
     sci_gateway/fortran/Ex-corr.f
@@ -676,16 +678,18 @@ GATEWAY_FORTRAN_SOURCES = \
 libscisignal_processing_la_CPPFLAGS = \
     -I$(srcdir)/includes/ \
     -I$(srcdir)/src/c/ \
+    -I$(top_srcdir)/modules/ast/includes/ast/ \
+    -I$(top_srcdir)/modules/ast/includes/exps/ \
+    -I$(top_srcdir)/modules/ast/includes/operations/ \
+    -I$(top_srcdir)/modules/ast/includes/parse/ \
+    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+    -I$(top_srcdir)/modules/ast/includes/types/ \
     -I$(top_srcdir)/modules/api_scilab/includes/ \
     -I$(top_srcdir)/modules/localization/includes/ \
     -I$(top_srcdir)/modules/output_stream/includes/ \
     -I$(top_srcdir)/modules/elementary_functions/includes/ \
-    -I$(top_srcdir)/modules/types/includes/ \
-    -I$(top_srcdir)/modules/ast/includes/ \
-	-I$(top_srcdir)/modules/ast/includes/exps \
     -I$(top_srcdir)/modules/functions_manager/includes/ \
-    -I$(top_srcdir)/modules/operations/includes/ \
-    -I$(top_srcdir)/modules/symbol/includes/ \
     -I$(top_srcdir)/modules/dynamic_link/includes/ \
     -I$(top_srcdir)/modules/string/includes/ \
     $(EIGEN_CPPFLAGS) \
@@ -711,7 +715,10 @@ libscisignal_processing_la_root_DATA = license.txt
 
 ####�signal_processing : init scripts ####
 libscisignal_processing_la_etcdir = $(mydatadir)/etc
-libscisignal_processing_la_etc_DATA = etc/signal_processing.quit etc/signal_processing.start
+libscisignal_processing_la_etc_DATA = \
+    etc/signal_processing.quit \
+    etc/signal_processing.start
+
 
 ####�signal_processing : gateway declaration ####
 libscisignal_processing_la_sci_gatewaydir = $(mydatadir)/sci_gateway

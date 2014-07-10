@@ -576,18 +576,21 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 yacc_present = @yacc_present@
 @BUILD_HELP_TRUE@@GUI_TRUE@USEANT = 1
-@BUILD_HELP_TRUE@@GUI_TRUE@HELPTOOLS_SOURCES = src/jni/BuildDocObject.cpp \
+@BUILD_HELP_TRUE@@GUI_TRUE@HELPTOOLS_SOURCES = \
+@BUILD_HELP_TRUE@@GUI_TRUE@    src/jni/BuildDocObject.cpp \
 @BUILD_HELP_TRUE@@GUI_TRUE@	src/jni/SciDocMain.cpp
 
 @BUILD_HELP_TRUE@@GUI_TRUE@GATEWAY_C_SOURCES = sci_gateway/c/gw_helptools.c
 @BUILD_HELP_FALSE@@GUI_TRUE@GATEWAY_CXX_SOURCES = sci_gateway/nogui/nogui.cpp
 @BUILD_HELP_TRUE@@GUI_TRUE@GATEWAY_CXX_SOURCES = sci_gateway/cpp/sci_buildDoc.cpp
 @GUI_FALSE@GATEWAY_CXX_SOURCES = sci_gateway/nogui/nogui.cpp
-@BUILD_HELP_TRUE@@GUI_TRUE@GIWS_WRAPPERS = src/jni/BuildDocObject.giws.xml \
+@BUILD_HELP_TRUE@@GUI_TRUE@GIWS_WRAPPERS = \
+@BUILD_HELP_TRUE@@GUI_TRUE@    src/jni/BuildDocObject.giws.xml \
 @BUILD_HELP_TRUE@@GUI_TRUE@	src/jni/BuildDocObjectv2.giws.xml
 
-@BUILD_HELP_TRUE@@GUI_TRUE@libscihelptools_la_LIBADD = libscihelptools-algo.la \
-@BUILD_HELP_TRUE@@GUI_TRUE@		$(top_builddir)/modules/commons/libscicommons.la
+@BUILD_HELP_TRUE@@GUI_TRUE@libscihelptools_la_LIBADD = \
+@BUILD_HELP_TRUE@@GUI_TRUE@    libscihelptools-algo.la \
+@BUILD_HELP_TRUE@@GUI_TRUE@    $(top_builddir)/modules/commons/libscicommons.la
 
 @BUILD_HELP_TRUE@@GUI_TRUE@libscihelptools_algo_la_SOURCES = $(HELPTOOLS_SOURCES)
 @BUILD_HELP_TRUE@@GUI_TRUE@libscihelptools_algo_la_CPPFLAGS = $(libscihelptools_la_CPPFLAGS)
@@ -599,16 +602,17 @@ libscihelptools_la_CPPFLAGS = \
 	$(JAVA_JNI_INCLUDE) \
 	-I$(srcdir)/src/jni/ \
 	-I$(srcdir)/includes/ \
+    -I$(top_srcdir)/modules/ast/includes/ast/ \
+    -I$(top_srcdir)/modules/ast/includes/exps/ \
+    -I$(top_srcdir)/modules/ast/includes/operations/ \
+    -I$(top_srcdir)/modules/ast/includes/parse/ \
+    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+    -I$(top_srcdir)/modules/ast/includes/types/ \
 	-I$(top_srcdir)/modules/localization/includes/ \
 	-I$(top_srcdir)/modules/jvm/includes/ \
 	-I$(top_srcdir)/modules/output_stream/includes/ \
-	-I$(top_srcdir)/modules/system_env/includes/ \
-	-I$(top_srcdir)/modules/operations/includes/ \
 	-I$(top_srcdir)/modules/api_scilab/includes/ \
-	-I$(top_srcdir)/modules/symbol/includes/ \
-	-I$(top_srcdir)/modules/types/includes/ \
-	-I$(top_srcdir)/modules/ast/includes/ \
-	-I$(top_srcdir)/modules/ast/includes/exps \
 	-I$(top_srcdir)/modules/commons/src/jni \
 	-I$(top_srcdir)/modules/dynamic_link/includes \
 	-I$(top_srcdir)/modules/string/includes \
@@ -660,7 +664,8 @@ libscihelptools_la_xsl_fo_DATA = xsl/fo/docbook.xsl
 
 #### helptools : schema files ####
 libscihelptools_la_schemadir = $(mydatadir)/schema
-libscihelptools_la_schema_DATA = schema/docbook.rng \
+libscihelptools_la_schema_DATA = \
+schema/docbook.rng \
 schema/dbits.rng \
 schema/mathml3-common.rng \
 schema/docbookxi.rng \
@@ -673,7 +678,8 @@ schema/extendedStyle.xsl
 
 #### helptools : pages files ####
 libscihelptools_la_data_pagesdir = $(mydatadir)/data/pages
-libscihelptools_la_data_pages_DATA = data/pages/error.html \
+libscihelptools_la_data_pages_DATA = \
+data/pages/error.html \
 data/pages/homepage-en_US.html \
 data/pages/homepage-ru_RU.html \
 data/pages/homepage-fr_FR.html \

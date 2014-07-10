@@ -80,7 +80,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;src/c/ripole;src/c;sci_gateway/cpp;src/cpp;../core/includes;../fileio/includes;../io/includes;../windows_tools/includes;../output_stream/includes;../localization/includes;../../libs/intl;../api_scilab/includes;../string/includes;../types/includes;../ast/includes;../operations/includes;../system_env/includes;../dynamic_link/includes;../ast/includes/exps;../../libs/Eigen/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c/ripole;src/c;sci_gateway/cpp;src/cpp;../../libs/intl;../../libs/Eigen/includes;../core/includes;../fileio/includes;../io/includes;../windows_tools/includes;../output_stream/includes;../localization/includes;../api_scilab/includes;../string/includes;../dynamic_link/includes;../ast/includes/types;../ast/includes/ast;../ast/includes/exps;../ast/includes/operations;../ast/includes/symbol;../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;_DEBUG;_WINDOWS;_USRDLL;SPREADSHEET_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -107,7 +107,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;src/c/ripole;src/c;sci_gateway/cpp;src/cpp;../core/includes;../fileio/includes;../io/includes;../windows_tools/includes;../output_stream/includes;../localization/includes;../../libs/intl;../api_scilab/includes;../string/includes;../types/includes;../ast/includes;../operations/includes;../system_env/includes;../dynamic_link/includes;../ast/includes/exps;../../libs/Eigen/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c/ripole;src/c;sci_gateway/cpp;src/cpp;../../libs/intl;../../libs/Eigen/includes;../core/includes;../fileio/includes;../io/includes;../windows_tools/includes;../output_stream/includes;../localization/includes;../api_scilab/includes;../string/includes;../dynamic_link/includes;../ast/includes/types;../ast/includes/ast;../ast/includes/exps;../ast/includes/operations;../ast/includes/symbol;../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;_DEBUG;_WINDOWS;_USRDLL;SPREADSHEET_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -132,7 +132,7 @@
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>includes;src/c/ripole;src/c;sci_gateway/cpp;src/cpp;../core/includes;../fileio/includes;../io/includes;../windows_tools/includes;../output_stream/includes;../localization/includes;../../libs/intl;../api_scilab/includes;../string/includes;../types/includes;../ast/includes;../operations/includes;../system_env/includes;../dynamic_link/includes;../ast/includes/exps;../../libs/Eigen/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c/ripole;src/c;sci_gateway/cpp;src/cpp;../../libs/intl;../../libs/Eigen/includes;../core/includes;../fileio/includes;../io/includes;../windows_tools/includes;../output_stream/includes;../localization/includes;../api_scilab/includes;../string/includes;../dynamic_link/includes;../ast/includes/types;../ast/includes/ast;../ast/includes/exps;../ast/includes/operations;../ast/includes/symbol;../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;NDEBUG;_WINDOWS;_USRDLL;SPREADSHEET_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -165,7 +165,7 @@
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>includes;src/c/ripole;src/c;sci_gateway/cpp;src/cpp;../core/includes;../fileio/includes;../io/includes;../windows_tools/includes;../output_stream/includes;../localization/includes;../../libs/intl;../api_scilab/includes;../string/includes;../types/includes;../ast/includes;../operations/includes;../system_env/includes;../dynamic_link/includes;../ast/includes/exps;../../libs/Eigen/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c/ripole;src/c;sci_gateway/cpp;src/cpp;../../libs/intl;../../libs/Eigen/includes;../core/includes;../fileio/includes;../io/includes;../windows_tools/includes;../output_stream/includes;../localization/includes;../api_scilab/includes;../string/includes;../dynamic_link/includes;../ast/includes/types;../ast/includes/ast;../ast/includes/exps;../ast/includes/operations;../ast/includes/symbol;../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;NDEBUG;_WINDOWS;_USRDLL;SPREADSHEET_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -205,6 +205,9 @@
     <ProjectReference Include="..\api_scilab\api_scilab.vcxproj">
       <Project>{43c5bab1-1dca-4743-a183-77e0d42fe7d0}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\ast\ast.vcxproj">
+      <Project>{0d3fa25b-8116-44ec-a45e-260789daa3d9}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\core\src\c\core.vcxproj">
       <Project>{c6e2bc17-34d8-46e4-85f3-6293cb21adcd}</Project>
     </ProjectReference>
@@ -216,21 +219,12 @@
       <Project>{ecffeb0c-1eda-45ee-9a10-b18143852e17}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
-    <ProjectReference Include="..\operations\operations.vcxproj">
-      <Project>{1bb396f7-ce61-4cfc-9c22-266b2cfb2e74}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\output_stream\src\c\output_stream.vcxproj">
       <Project>{a5911cd7-f8e8-440c-a23e-4843a0636f3a}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="..\string\src\c\string.vcxproj">
       <Project>{8d45767a-9b03-4905-97f6-d2f3f79141ea}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\system_env\system_env.vcxproj">
-      <Project>{7ca60aef-9afa-4d06-af28-613c0aa27640}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\types\types.vcxproj">
-      <Project>{64e090da-dcb5-4f4d-93d7-e88ddec9c2ef}</Project>
     </ProjectReference>
     <ProjectReference Include="..\windows_tools\src\c\scilab_windows\scilab_windows.vcxproj">
       <Project>{8028f371-6a94-4a26-8804-6e7f05f1d1aa}</Project>

@@ -80,7 +80,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../includes;../../src/cpp;../../../functions_manager/includes;../../../types/includes;../../../symbol/includes;../../../ast/includes;../../../elementary_functions/includes;../../../core/includes;../../../operations/includes;../../../api_scilab/includes;../../../../libs/libxml2;../../../fileio/includes;../../../system_env/includes;../../../parse/includes;../../../output_stream/includes;../../../localization/includes;../../../../libs/intl;../../../string/includes;../../../threads/includes;../../src/c;../../../dynamic_link/includes;../../../ast/includes/exps;../../../../libs/Eigen/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../src/c;../../src/cpp;../../../../libs/libxml2;../../../../libs/intl;../../../../libs/Eigen/includes;../../../functions_manager/includes;../../../elementary_functions/includes;../../../core/includes;../../../api_scilab/includes;../../../fileio/includes;../../../output_stream/includes;../../../localization/includes;../../../string/includes;../../../threads/includes;../../../dynamic_link/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;../../../ast/includes/parse;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;IO_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -108,7 +108,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../includes;../../src/cpp;../../../functions_manager/includes;../../../types/includes;../../../symbol/includes;../../../ast/includes;../../../elementary_functions/includes;../../../core/includes;../../../operations/includes;../../../api_scilab/includes;../../../../libs/libxml2;../../../fileio/includes;../../../system_env/includes;../../../parse/includes;../../../output_stream/includes;../../../localization/includes;../../../../libs/intl;../../../string/includes;../../../threads/includes;../../src/c;../../../dynamic_link/includes;../../../ast/includes/exps;../../../../libs/Eigen/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../src/c;../../src/cpp;../../../../libs/libxml2;../../../../libs/intl;../../../../libs/Eigen/includes;../../../functions_manager/includes;../../../elementary_functions/includes;../../../core/includes;../../../api_scilab/includes;../../../fileio/includes;../../../output_stream/includes;../../../localization/includes;../../../string/includes;../../../threads/includes;../../../dynamic_link/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;../../../ast/includes/parse;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;IO_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -134,7 +134,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>../../includes;../../src/cpp;../../../functions_manager/includes;../../../types/includes;../../../symbol/includes;../../../ast/includes;../../../elementary_functions/includes;../../../core/includes;../../../operations/includes;../../../api_scilab/includes;../../../../libs/libxml2;../../../fileio/includes;../../../system_env/includes;../../../parse/includes;../../../output_stream/includes;../../../localization/includes;../../../../libs/intl;../../../string/includes;../../../threads/includes;../../src/c;../../../dynamic_link/includes;../../../ast/includes/exps;../../../../libs/Eigen/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../src/c;../../src/cpp;../../../../libs/libxml2;../../../../libs/intl;../../../../libs/Eigen/includes;../../../functions_manager/includes;../../../elementary_functions/includes;../../../core/includes;../../../api_scilab/includes;../../../fileio/includes;../../../output_stream/includes;../../../localization/includes;../../../string/includes;../../../threads/includes;../../../dynamic_link/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;../../../ast/includes/parse;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;IO_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -165,7 +165,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>../../includes;../../src/cpp;../../../functions_manager/includes;../../../types/includes;../../../symbol/includes;../../../ast/includes;../../../elementary_functions/includes;../../../core/includes;../../../operations/includes;../../../api_scilab/includes;../../../../libs/libxml2;../../../fileio/includes;../../../system_env/includes;../../../parse/includes;../../../output_stream/includes;../../../localization/includes;../../../../libs/intl;../../../string/includes;../../../threads/includes;../../src/c;../../../dynamic_link/includes;../../../ast/includes/exps;../../../../libs/Eigen/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../src/c;../../src/cpp;../../../../libs/libxml2;../../../../libs/intl;../../../../libs/Eigen/includes;../../../functions_manager/includes;../../../elementary_functions/includes;../../../core/includes;../../../api_scilab/includes;../../../fileio/includes;../../../output_stream/includes;../../../localization/includes;../../../string/includes;../../../threads/includes;../../../dynamic_link/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;../../../ast/includes/parse;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;IO_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -225,9 +225,6 @@
     <ProjectReference Include="..\..\..\api_scilab\api_scilab.vcxproj">
       <Project>{43c5bab1-1dca-4743-a183-77e0d42fe7d0}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\ast\ast-tools\ast-tools.vcxproj">
-      <Project>{1f4a0344-99ed-461b-bd53-1593788fb34d}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\ast\ast.vcxproj">
       <Project>{0d3fa25b-8116-44ec-a45e-260789daa3d9}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
@@ -247,25 +244,6 @@
     <ProjectReference Include="..\..\..\output_stream\src\c\output_stream.vcxproj">
       <Project>{a5911cd7-f8e8-440c-a23e-4843a0636f3a}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\parse\parse.vcxproj">
-      <Project>{74d43792-dbfc-47f0-adbc-4d7a20cdada2}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\symbol\symbol.vcxproj">
-      <Project>{2c60033b-0dbd-4ca4-80d3-176c9be9ce2f}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\system_env\system_env.vcxproj">
-      <Project>{7ca60aef-9afa-4d06-af28-613c0aa27640}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\types\types.vcxproj">
-      <Project>{64e090da-dcb5-4f4d-93d7-e88ddec9c2ef}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\types\typesmacro\typesmacro.vcxproj">
-      <Project>{9252a034-7f22-4cb1-a634-4577da69f2d0}</Project>
     </ProjectReference>
     <ProjectReference Include="..\c\io.vcxproj">
       <Project>{80c0f142-184b-4e08-a8ee-5e71437cf904}</Project>

@@ -81,7 +81,7 @@
     <ClCompile>
       <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../includes;.;../jni;../cpp;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/intl;../../../api_scilab/includes;../../../core/includes;../../../localization/includes;../../../jvm/includes;../../../fileio/includes;../../../output_stream/includes;../../../commons/src/jni;../../../../libs/libxml2;../../../string/includes;../../../windows_tools/includes;../../../operations/includes;../../../system_env/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;.;../jni;../cpp;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/intl;../../../../libs/libxml2;../../../api_scilab/includes;../../../core/includes;../../../localization/includes;../../../jvm/includes;../../../fileio/includes;../../../output_stream/includes;../../../commons/src/jni;../../../string/includes;../../../windows_tools/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;PREFERENCES_SCILAB_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -118,7 +118,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../includes;.;../jni;../cpp;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/intl;../../../api_scilab/includes;../../../core/includes;../../../localization/includes;../../../jvm/includes;../../../fileio/includes;../../../output_stream/includes;../../../commons/src/jni;../../../../libs/libxml2;../../../string/includes;../../../windows_tools/includes;../../../operations/includes;../../../system_env/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;.;../jni;../cpp;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/intl;../../../../libs/libxml2;../../../api_scilab/includes;../../../core/includes;../../../localization/includes;../../../jvm/includes;../../../fileio/includes;../../../output_stream/includes;../../../commons/src/jni;../../../string/includes;../../../windows_tools/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;PREFERENCES_SCILAB_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -155,7 +155,7 @@
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>../../includes;.;../jni;../cpp;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/intl;../../../api_scilab/includes;../../../core/includes;../../../localization/includes;../../../jvm/includes;../../../fileio/includes;../../../output_stream/includes;../../../commons/src/jni;../../../../libs/libxml2;../../../string/includes;../../../windows_tools/includes;../../../operations/includes;../../../system_env/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;.;../jni;../cpp;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/intl;../../../../libs/libxml2;../../../api_scilab/includes;../../../core/includes;../../../localization/includes;../../../jvm/includes;../../../fileio/includes;../../../output_stream/includes;../../../commons/src/jni;../../../string/includes;../../../windows_tools/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;PREFERENCES_SCILAB_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -199,7 +199,7 @@
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>../../includes;.;../jni;../cpp;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/intl;../../../api_scilab/includes;../../../core/includes;../../../localization/includes;../../../jvm/includes;../../../fileio/includes;../../../output_stream/includes;../../../commons/src/jni;../../../../libs/libxml2;../../../string/includes;../../../windows_tools/includes;../../../operations/includes;../../../system_env/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;.;../jni;../cpp;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/intl;../../../../libs/libxml2;../../../api_scilab/includes;../../../core/includes;../../../localization/includes;../../../jvm/includes;../../../fileio/includes;../../../output_stream/includes;../../../commons/src/jni;../../../string/includes;../../../windows_tools/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;PREFERENCES_SCILAB_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -249,6 +249,9 @@
       <Project>{43c5bab1-1dca-4743-a183-77e0d42fe7d0}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\ast\ast.vcxproj">
+      <Project>{0d3fa25b-8116-44ec-a45e-260789daa3d9}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\commons\src\c\commons.vcxproj">
       <Project>{eca09a1e-6d12-4a47-92e1-a671c181df77}</Project>
     </ProjectReference>
@@ -266,9 +269,6 @@
     <ProjectReference Include="..\..\..\output_stream\src\c\output_stream.vcxproj">
       <Project>{a5911cd7-f8e8-440c-a23e-4843a0636f3a}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\system_env\system_env.vcxproj">
-      <Project>{7ca60aef-9afa-4d06-af28-613c0aa27640}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\windows_tools\src\c\scilab_windows\scilab_windows.vcxproj">
       <Project>{8028f371-6a94-4a26-8804-6e7f05f1d1aa}</Project>

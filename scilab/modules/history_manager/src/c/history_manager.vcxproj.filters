@@ -90,9 +90,6 @@
     <None Include="localization_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
-    <None Include="System_env_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
     <None Include="..\..\history_manager.iss" />
     <None Include="..\..\sci_gateway\history_manager_gateway.xml" />
     <None Include="..\..\Makefile.am" />

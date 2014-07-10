@@ -585,15 +585,20 @@ libscifftw_la_rootdir = $(mydatadir)
 
 #### fftw : init scripts ####
 libscifftw_la_etcdir = $(mydatadir)/etc
-libscifftw_la_etc_DATA = etc/fftw.quit etc/fftw.start
-@FFTW_FALSE@FFTW_C_SOURCES = src/nofftw/nofftw.c
-@FFTW_TRUE@FFTW_C_SOURCES = src/c/callfftw.c \
-@FFTW_TRUE@src/c/fftwlibname.c \
-@FFTW_TRUE@src/c/fftw_utilities.c \
-@FFTW_TRUE@src/c/sci_data_utilities.c \
-@FFTW_TRUE@src/c/with_fftw.c
+libscifftw_la_etc_DATA = \
+    etc/fftw.quit \
+    etc/fftw.start
 
-@FFTW_TRUE@GATEWAY_C_SOURCES = sci_gateway/c/gw_fftw.c \
+@FFTW_FALSE@FFTW_C_SOURCES = src/nofftw/nofftw.c
+@FFTW_TRUE@FFTW_C_SOURCES = \
+@FFTW_TRUE@    src/c/callfftw.c \
+@FFTW_TRUE@    src/c/fftwlibname.c \
+@FFTW_TRUE@    src/c/fftw_utilities.c \
+@FFTW_TRUE@    src/c/sci_data_utilities.c \
+@FFTW_TRUE@    src/c/with_fftw.c
+
+@FFTW_TRUE@GATEWAY_C_SOURCES = \
+@FFTW_TRUE@    sci_gateway/c/gw_fftw.c \
 @FFTW_TRUE@	sci_gateway/c/sci_fftwlibraryisloaded.c \
 @FFTW_TRUE@	sci_gateway/c/sci_disposefftwlibrary.c \
 @FFTW_TRUE@	sci_gateway/c/sci_fftw.c \
@@ -621,25 +626,40 @@ libscifftw_la_etc_DATA = etc/fftw.quit etc/fftw.start
 @FFTW_TRUE@CHECK_SRC = $(FFTW_C_SOURCES) $(GATEWAY_C_SOURCES)
 @FFTW_TRUE@INCLUDE_FLAGS = $(libscifftw_la_CPPFLAGS)
 @FFTW_TRUE@libscifftw_la_LIBADD = libscifftw-algo.la $(FFTW3_LIB)
-@FFTW_FALSE@libscifftw_la_CPPFLAGS = -I$(srcdir)/includes/ \
-@FFTW_FALSE@			-I$(srcdir)/src/c/ \
-@FFTW_FALSE@			-I$(top_srcdir)/modules/api_scilab/includes/ \
-@FFTW_FALSE@			-I$(top_srcdir)/modules/output_stream/includes/ \
-@FFTW_FALSE@			-I$(top_srcdir)/modules/localization/includes/ \
-@FFTW_FALSE@			$(AM_CPPFLAGS)
+@FFTW_FALSE@libscifftw_la_CPPFLAGS = \
+@FFTW_FALSE@-I$(srcdir)/includes/ \
+@FFTW_FALSE@    -I$(srcdir)/src/c/ \
+@FFTW_FALSE@    -I$(top_srcdir)/modules/ast/includes/ast/ \
+@FFTW_FALSE@    -I$(top_srcdir)/modules/ast/includes/exps/ \
+@FFTW_FALSE@    -I$(top_srcdir)/modules/ast/includes/operations/ \
+@FFTW_FALSE@    -I$(top_srcdir)/modules/ast/includes/parse/ \
+@FFTW_FALSE@    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+@FFTW_FALSE@    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+@FFTW_FALSE@    -I$(top_srcdir)/modules/ast/includes/types/ \
+@FFTW_FALSE@    -I$(top_srcdir)/modules/api_scilab/includes/ \
+@FFTW_FALSE@    -I$(top_srcdir)/modules/output_stream/includes/ \
+@FFTW_FALSE@    -I$(top_srcdir)/modules/localization/includes/ \
+@FFTW_FALSE@    $(AM_CPPFLAGS)
 
-@FFTW_TRUE@libscifftw_la_CPPFLAGS = -I$(srcdir)/includes/ \
-@FFTW_TRUE@			-I$(srcdir)/src/c/ \
-@FFTW_TRUE@			-I$(top_srcdir)/modules/dynamic_link/includes/ \
-@FFTW_TRUE@			-I$(top_srcdir)/modules/fileio/includes/ \
-@FFTW_TRUE@			-I$(top_srcdir)/modules/output_stream/includes/ \
-@FFTW_TRUE@			-I$(top_srcdir)/modules/operations/includes/ \
-@FFTW_TRUE@			-I$(top_srcdir)/modules/api_scilab/includes/ \
-@FFTW_TRUE@			-I$(top_srcdir)/modules/string/includes/ \
-@FFTW_TRUE@			-I$(top_srcdir)/modules/localization/includes/ \
-@FFTW_TRUE@			-I$(top_srcdir)/modules/elementary_functions/includes/ \
-@FFTW_TRUE@			$(FFTW3_CFLAGS) \
-@FFTW_TRUE@			$(AM_CPPFLAGS)
+@FFTW_TRUE@libscifftw_la_CPPFLAGS = \
+@FFTW_TRUE@    -I$(srcdir)/includes/ \
+@FFTW_TRUE@    -I$(srcdir)/src/c/ \
+@FFTW_TRUE@    -I$(top_srcdir)/modules/ast/includes/ast/ \
+@FFTW_TRUE@    -I$(top_srcdir)/modules/ast/includes/exps/ \
+@FFTW_TRUE@    -I$(top_srcdir)/modules/ast/includes/operations/ \
+@FFTW_TRUE@    -I$(top_srcdir)/modules/ast/includes/parse/ \
+@FFTW_TRUE@    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+@FFTW_TRUE@    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+@FFTW_TRUE@    -I$(top_srcdir)/modules/ast/includes/types/ \
+@FFTW_TRUE@    -I$(top_srcdir)/modules/dynamic_link/includes/ \
+@FFTW_TRUE@    -I$(top_srcdir)/modules/fileio/includes/ \
+@FFTW_TRUE@    -I$(top_srcdir)/modules/output_stream/includes/ \
+@FFTW_TRUE@    -I$(top_srcdir)/modules/api_scilab/includes/ \
+@FFTW_TRUE@    -I$(top_srcdir)/modules/string/includes/ \
+@FFTW_TRUE@    -I$(top_srcdir)/modules/localization/includes/ \
+@FFTW_TRUE@    -I$(top_srcdir)/modules/elementary_functions/includes/ \
+@FFTW_TRUE@    $(FFTW3_CFLAGS) \
+@FFTW_TRUE@    $(AM_CPPFLAGS)
 
 
 # Where all the Scilab stuff is installed (macros, help, ...)

@@ -80,7 +80,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../includes;../../../core/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../dynamic_link/src/c;../../../localization/includes;../../../core/src/c;../../../../libs/intl;../../../elementary_functions/includes;../../../api_scilab/includes;../../../operations/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../../../libs/intl;../../../core/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../dynamic_link/src/c;../../../localization/includes;../../../core/src/c;../../../elementary_functions/includes;../../../api_scilab/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;LINEAR_ALGEBRA_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -110,7 +110,7 @@ lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../includes;../../../core/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../dynamic_link/src/c;../../../localization/includes;../../../core/src/c;../../../../libs/intl;../../../elementary_functions/includes;../../../api_scilab/includes;../../../operations/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../../../libs/intl;../../../core/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../dynamic_link/src/c;../../../localization/includes;../../../core/src/c;../../../elementary_functions/includes;../../../api_scilab/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;LINEAR_ALGEBRA_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -138,7 +138,7 @@ lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>../../includes;../../../core/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../dynamic_link/src/c;../../../localization/includes;../../../core/src/c;../../../../libs/intl;../../../elementary_functions/includes;../../../api_scilab/includes;../../../operations/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../../../libs/intl;../../../core/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../dynamic_link/src/c;../../../localization/includes;../../../core/src/c;../../../elementary_functions/includes;../../../api_scilab/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;LINEAR_ALGEBRA_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -173,7 +173,7 @@ lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>../../includes;../../../core/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../dynamic_link/src/c;../../../localization/includes;../../../core/src/c;../../../../libs/intl;../../../elementary_functions/includes;../../../api_scilab/includes;../../../operations/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../../../libs/intl;../../../core/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../dynamic_link/src/c;../../../localization/includes;../../../core/src/c;../../../elementary_functions/includes;../../../api_scilab/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;LINEAR_ALGEBRA_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -262,10 +262,6 @@ lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     </ProjectReference>
     <ProjectReference Include="..\..\..\localization\src\localization.vcxproj">
       <Project>{ecffeb0c-1eda-45ee-9a10-b18143852e17}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\operations\operations.vcxproj">
-      <Project>{1bb396f7-ce61-4cfc-9c22-266b2cfb2e74}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="..\..\..\output_stream\src\c\output_stream.vcxproj">

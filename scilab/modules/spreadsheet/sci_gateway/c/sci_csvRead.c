@@ -425,21 +425,21 @@ int sci_csvRead(char *fname, void* pvApiCtx)
                         if (haveRegexp == 0)
                         {
                             char **emptyStringMatrix = NULL;
-                            emptyStringMatrix = (char**) malloc(sizeof(char*));
+                            emptyStringMatrix = (char**)MALLOC(sizeof(char*));
                             emptyStringMatrix[0] = "";
                             sciErr = createMatrixOfString(pvApiCtx, Rhs + 2, 1, 1, emptyStringMatrix);
-                            free(emptyStringMatrix);
+                            FREE(emptyStringMatrix);
                         }
                         else
                         {
                             if (result->nbComments > 0)
                             {
-                               sciErr = createMatrixOfString(pvApiCtx, Rhs + 2, result->nbComments, 1, result->pstrComments);
+                                sciErr = createMatrixOfString(pvApiCtx, Rhs + 2, result->nbComments, 1, result->pstrComments);
                             }
                             else
                             {
-                               iErrEmpty = createEmptyMatrix(pvApiCtx, Rhs+2);
-                               sciErr.iErr = iErrEmpty;
+                                iErrEmpty = createEmptyMatrix(pvApiCtx, Rhs + 2);
+                                sciErr.iErr = iErrEmpty;
                             }
                         }
                         if (sciErr.iErr)

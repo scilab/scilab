@@ -80,7 +80,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;../../includes;../../../string/includes;../../../core/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../dynamic_link/src/c;../../../localization/includes;../../../core/src/c;../../../../libs/intl;../../../data_structures/includes;../../../api_scilab/includes;../../../operations/includes;../../../symbol/includes;../../../types/includes;../../../ast/includes;../../../ast/includes/exps;../../../../libs/Eigen/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../../../../libs/intl;../../../../libs/Eigen/includes;../../../string/includes;../../../core/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../dynamic_link/src/c;../../../localization/includes;../../../core/src/c;../../../data_structures/includes;../../../api_scilab/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;DATA_STRUCTURES_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -109,7 +109,7 @@ lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;../../includes;../../../string/includes;../../../core/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../dynamic_link/src/c;../../../localization/includes;../../../core/src/c;../../../../libs/intl;../../../data_structures/includes;../../../api_scilab/includes;../../../operations/includes;../../../symbol/includes;../../../types/includes;../../../ast/includes;../../../ast/includes/exps;../../../../libs/Eigen/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../../../../libs/intl;../../../../libs/Eigen/includes;../../../string/includes;../../../core/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../dynamic_link/src/c;../../../localization/includes;../../../core/src/c;../../../data_structures/includes;../../../api_scilab/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;DATA_STRUCTURES_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -136,7 +136,7 @@ lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;../../includes;../../../string/includes;../../../core/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../dynamic_link/src/c;../../../localization/includes;../../../core/src/c;../../../../libs/intl;../../../data_structures/includes;../../../api_scilab/includes;../../../operations/includes;../../../symbol/includes;../../../types/includes;../../../ast/includes;../../../ast/includes/exps;../../../../libs/Eigen/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../../../../libs/intl;../../../../libs/Eigen/includes;../../../string/includes;../../../core/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../dynamic_link/src/c;../../../localization/includes;../../../core/src/c;../../../data_structures/includes;../../../api_scilab/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;DATA_STRUCTURES_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -170,7 +170,7 @@ lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;../../includes;../../../string/includes;../../../core/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../dynamic_link/src/c;../../../localization/includes;../../../core/src/c;../../../../libs/intl;../../../data_structures/includes;../../../api_scilab/includes;../../../operations/includes;../../../symbol/includes;../../../types/includes;../../../ast/includes;../../../ast/includes/exps;../../../../libs/Eigen/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../../../../libs/intl;../../../../libs/Eigen/includes;../../../string/includes;../../../core/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../dynamic_link/src/c;../../../localization/includes;../../../core/src/c;../../../data_structures/includes;../../../api_scilab/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;DATA_STRUCTURES_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -238,6 +238,9 @@ lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
     <ProjectReference Include="..\..\..\api_scilab\api_scilab.vcxproj">
       <Project>{43c5bab1-1dca-4743-a183-77e0d42fe7d0}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\ast\ast.vcxproj">
+      <Project>{0d3fa25b-8116-44ec-a45e-260789daa3d9}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\integer\src\c\integer.vcxproj">
       <Project>{c7865caa-ec7c-41eb-8324-2b81c384ca20}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
@@ -249,12 +252,6 @@ lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
     <ProjectReference Include="..\..\..\string\src\c\string.vcxproj">
       <Project>{8d45767a-9b03-4905-97f6-d2f3f79141ea}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\symbol\symbol.vcxproj">
-      <Project>{2c60033b-0dbd-4ca4-80d3-176c9be9ce2f}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\types\types.vcxproj">
-      <Project>{64e090da-dcb5-4f4d-93d7-e88ddec9c2ef}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

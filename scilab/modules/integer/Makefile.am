@@ -4,64 +4,66 @@
 # This file is distributed under the same license as the Scilab package.
 
 INTEGER_C_SOURCES = \
-src/c/genconcatcol.c \
-src/c/genprod.c \
-src/c/genrdiv.c \
-src/c/genextrac1.c \
-src/c/genextrac2.c \
-src/c/gencopy.c \
-src/c/gentril.c \
-src/c/gencheck.c \
-src/c/tpconv.c \
-src/c/genscal.c \
-src/c/gentriu.c \
-src/c/genvmul.c \
-src/c/genconcatrow.c \
-src/c/geninsert1.c \
-src/c/geninsert2.c \
-src/c/gendot.c \
-src/c/db2int.c \
-src/c/genadd.c \
-src/c/genset.c \
-src/c/gencusum.c \
-src/c/gensubst.c \
-src/c/genmdsp.c \
-src/c/gensum.c \
-src/c/genmmul.c \
-src/c/genmsum.c \
-src/c/genmprod.c \
-src/c/genmtran.c \
-src/c/genisany.c \
-src/c/genmcopy.c \
-src/c/gencuprod.c \
-src/c/genbitops.c \
-src/c/genimpl.c
+    src/c/genconcatcol.c \
+    src/c/genprod.c \
+    src/c/genrdiv.c \
+    src/c/genextrac1.c \
+    src/c/genextrac2.c \
+    src/c/gencopy.c \
+    src/c/gentril.c \
+    src/c/gencheck.c \
+    src/c/tpconv.c \
+    src/c/genscal.c \
+    src/c/gentriu.c \
+    src/c/genvmul.c \
+    src/c/genconcatrow.c \
+    src/c/geninsert1.c \
+    src/c/geninsert2.c \
+    src/c/gendot.c \
+    src/c/db2int.c \
+    src/c/genadd.c \
+    src/c/genset.c \
+    src/c/gencusum.c \
+    src/c/gensubst.c \
+    src/c/genmdsp.c \
+    src/c/gensum.c \
+    src/c/genmmul.c \
+    src/c/genmsum.c \
+    src/c/genmprod.c \
+    src/c/genmtran.c \
+    src/c/genisany.c \
+    src/c/genmcopy.c \
+    src/c/gencuprod.c \
+    src/c/genbitops.c \
+    src/c/genimpl.c
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_integer.c
 
 GATEWAY_CPP_SOURCES = \
-				sci_gateway/cpp/integer_gw.cpp \
-				sci_gateway/cpp/sci_inttype.cpp \
-				sci_gateway/cpp/sci_double.cpp \
-				sci_gateway/cpp/sci_int.cpp \
-				sci_gateway/cpp/sci_iconvert.cpp
+    sci_gateway/cpp/integer_gw.cpp \
+    sci_gateway/cpp/sci_inttype.cpp \
+    sci_gateway/cpp/sci_double.cpp \
+    sci_gateway/cpp/sci_int.cpp \
+    sci_gateway/cpp/sci_iconvert.cpp
 
-libsciinteger_la_CPPFLAGS = -I$(srcdir)/includes/ \
-				-I$(top_srcdir)/modules/api_scilab/includes/ \
-				-I$(top_srcdir)/modules/output_stream/includes/ \
-				-I$(top_srcdir)/modules/operations/includes/ \
-				-I$(top_srcdir)/modules/localization/includes/ \
-				-I$(top_srcdir)/modules/types/includes/ \
-				-I$(top_srcdir)/modules/ast/includes/ \
-            	-I$(top_srcdir)/modules/ast/includes/exps \
-				-I$(top_srcdir)/modules/symbol/includes/ \
-				-I$(top_srcdir)/modules/dynamic_link/includes/ \
-				-I$(top_srcdir)/modules/system_env/includes/ \
-				-I$(top_srcdir)/modules/threads/includes/ \
-				-I$(top_srcdir)/modules/string/includes/ \
-				-I$(top_srcdir)/modules/console/includes/ \
-				$(EIGEN_CPPFLAGS)
-				$(AM_CPPFLAGS)
+libsciinteger_la_CPPFLAGS = \
+    -I$(srcdir)/includes/ \
+    -I$(top_srcdir)/modules/ast/includes/ast/ \
+    -I$(top_srcdir)/modules/ast/includes/exps/ \
+    -I$(top_srcdir)/modules/ast/includes/operations/ \
+    -I$(top_srcdir)/modules/ast/includes/parse/ \
+    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+    -I$(top_srcdir)/modules/ast/includes/types/ \
+    -I$(top_srcdir)/modules/api_scilab/includes/ \
+    -I$(top_srcdir)/modules/output_stream/includes/ \
+    -I$(top_srcdir)/modules/localization/includes/ \
+    -I$(top_srcdir)/modules/dynamic_link/includes/ \
+    -I$(top_srcdir)/modules/threads/includes/ \
+    -I$(top_srcdir)/modules/string/includes/ \
+    -I$(top_srcdir)/modules/console/includes/ \
+    $(EIGEN_CPPFLAGS)
+    $(AM_CPPFLAGS)
 
 if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libsciinteger.la
@@ -95,7 +97,9 @@ libsciinteger_la_root_DATA =  license.txt
 
 #### integer : init scripts ####
 libsciinteger_la_etcdir = $(mydatadir)/etc
-libsciinteger_la_etc_DATA = etc/integer.quit etc/integer.start
+libsciinteger_la_etc_DATA = \
+    etc/integer.quit \
+    etc/integer.start
 
 #### integer : gateway declaration ####
 libsciinteger_la_sci_gatewaydir = $(mydatadir)/sci_gateway

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -80,7 +80,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;../../includes;../../../core/includes;../../../elementary_functions/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../dynamic_link/src/c;../../../localization/includes;../../../core/src/c;../../../../libs/intl;../../../sparse/includes;../../../api_scilab/includes;../../../operations/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../../../core/includes;../../../elementary_functions/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../dynamic_link/src/c;../../../localization/includes;../../../core/src/c;../../../../libs/intl;../../../sparse/includes;../../../api_scilab/includes;../../../ast/includes/operations;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;SPARSE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -107,7 +107,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;../../includes;../../../core/includes;../../../elementary_functions/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../dynamic_link/src/c;../../../localization/includes;../../../core/src/c;../../../../libs/intl;../../../sparse/includes;../../../api_scilab/includes;../../../operations/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../../../core/includes;../../../elementary_functions/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../dynamic_link/src/c;../../../localization/includes;../../../core/src/c;../../../../libs/intl;../../../sparse/includes;../../../api_scilab/includes;../../../ast/includes/operations;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;SPARSE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -132,7 +132,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;../../includes;../../../core/includes;../../../elementary_functions/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../dynamic_link/src/c;../../../localization/includes;../../../core/src/c;../../../../libs/intl;../../../sparse/includes;../../../api_scilab/includes;../../../operations/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../../../core/includes;../../../elementary_functions/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../dynamic_link/src/c;../../../localization/includes;../../../core/src/c;../../../../libs/intl;../../../sparse/includes;../../../api_scilab/includes;../../../ast/includes/operations;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;SPARSE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -164,7 +164,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;../../includes;../../../core/includes;../../../elementary_functions/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../dynamic_link/src/c;../../../localization/includes;../../../core/src/c;../../../../libs/intl;../../../sparse/includes;../../../api_scilab/includes;../../../operations/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../../../core/includes;../../../elementary_functions/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../dynamic_link/src/c;../../../localization/includes;../../../core/src/c;../../../../libs/intl;../../../sparse/includes;../../../api_scilab/includes;../../../ast/includes/operations;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;SPARSE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>

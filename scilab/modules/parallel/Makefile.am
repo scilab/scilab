@@ -14,21 +14,26 @@
 
 #PARALLEL_C_SOURCES =
 
-GATEWAY_C_SOURCES = sci_gateway/c/gw_parallel.c
-#					sci_gateway/c/sci_parallel_concurrency.c
+GATEWAY_C_SOURCES = \
+    sci_gateway/c/gw_parallel.c
 
-libsciparallel_la_CPPFLAGS= $(OPENMP_CXXFLAGS) \
--I$(srcdir)/includes/ \
--I$(top_srcdir)/modules/core/includes \
--I$(srcdir)/src/cpp/ \
--I$(top_srcdir)/modules/api_scilab/includes \
--I$(top_srcdir)/modules/localization/includes \
--I$(top_srcdir)/modules/output_stream/includes \
--I$(top_srcdir)/modules/parameters/includes \
--I$(top_srcdir)/modules/dynamic_link/includes \
--I$(top_srcdir)/modules/operations/includes \
--I$(top_srcdir)/modules/system_env/includes
-
+libsciparallel_la_CPPFLAGS= \
+    $(OPENMP_CXXFLAGS) \
+    -I$(srcdir)/includes/ \
+    -I$(srcdir)/src/cpp/ \
+    -I$(top_srcdir)/modules/ast/includes/ast/ \
+    -I$(top_srcdir)/modules/ast/includes/exps/ \
+    -I$(top_srcdir)/modules/ast/includes/operations/ \
+    -I$(top_srcdir)/modules/ast/includes/parse/ \
+    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+    -I$(top_srcdir)/modules/ast/includes/types/ \
+    -I$(top_srcdir)/modules/core/includes \
+    -I$(top_srcdir)/modules/api_scilab/includes \
+    -I$(top_srcdir)/modules/localization/includes \
+    -I$(top_srcdir)/modules/output_stream/includes \
+    -I$(top_srcdir)/modules/parameters/includes \
+    -I$(top_srcdir)/modules/dynamic_link/includes
 
 pkglib_LTLIBRARIES = libsciparallel.la
 
@@ -58,7 +63,9 @@ libsciparallel_la_root_DATA = license.txt
 
 #### parallel : init scripts ####
 libsciparallel_la_etcdir = $(mydatadir)/etc
-libsciparallel_la_etc_DATA = etc/parallel.quit etc/parallel.start
+libsciparallel_la_etc_DATA = \
+    etc/parallel.quit \
+    etc/parallel.start
 
 #### parallel : gateway declaration ####
 libsciparallel_la_sci_gatewaydir = $(mydatadir)/sci_gateway
@@ -69,5 +76,4 @@ libsciparallel_la_includedir=$(pkgincludedir)
 libsciparallel_la_include_HEADERS =
 
 include $(top_srcdir)/Makefile.incl.am
-
 

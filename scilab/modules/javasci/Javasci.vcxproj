@@ -79,7 +79,7 @@
     <ClCompile>
       <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;../core/includes;../api_scilab/includes;../output_stream/includes;../windows_tools/includes;../tclsci/includes;../tclsci/includes/tcltk/include;../../java/jdk/include/;../../java/jdk/include/win32;../../libs/intl;../call_scilab/includes;src/c;../operations/includes;../system_env/includes;../localization/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src/c;includes;../../java/jdk/include/;../../java/jdk/include/win32;../../libs/intl;../tclsci/includes/tcltk/include;../core/includes;../api_scilab/includes;../output_stream/includes;../windows_tools/includes;../tclsci/includes;../call_scilab/includes;../localization/includes;../graphic_objects/includes;../ast/includes/types;../ast/includes/ast;../ast/includes/exps;../ast/includes/operations;../ast/includes/symbol;../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_DEBUG;_USRDLL;JAVA_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -117,7 +117,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;../core/includes;../api_scilab/includes;../output_stream/includes;../windows_tools/includes;../tclsci/includes;../tclsci/includes/tcltk/include;../../java/jdk/include/;../../java/jdk/include/win32;../../libs/intl;../call_scilab/includes;src/c;../operations/includes;../system_env/includes;../localization/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src/c;includes;../../java/jdk/include/;../../java/jdk/include/win32;../../libs/intl;../tclsci/includes/tcltk/include;../core/includes;../api_scilab/includes;../output_stream/includes;../windows_tools/includes;../tclsci/includes;../call_scilab/includes;../localization/includes;../graphic_objects/includes;../ast/includes/types;../ast/includes/ast;../ast/includes/exps;../ast/includes/operations;../ast/includes/symbol;../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_DEBUG;_USRDLL;JAVA_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -152,7 +152,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
-      <AdditionalIncludeDirectories>includes;../core/includes;../api_scilab/includes;../output_stream/includes;../windows_tools/includes;../tclsci/includes;../tclsci/includes/tcltk/include;../../java/jdk/include/;../../java/jdk/include/win32;../../libs/intl;../call_scilab/includes;src/c;../operations/includes;../system_env/includes;../localization/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src/c;includes;../../java/jdk/include/;../../java/jdk/include/win32;../../libs/intl;../tclsci/includes/tcltk/include;../core/includes;../api_scilab/includes;../output_stream/includes;../windows_tools/includes;../tclsci/includes;../call_scilab/includes;../localization/includes;../graphic_objects/includes;../ast/includes/types;../ast/includes/ast;../ast/includes/exps;../ast/includes/operations;../ast/includes/symbol;../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>NDEBUG;_USRDLL;JAVA_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
@@ -193,7 +193,7 @@
     </Midl>
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
-      <AdditionalIncludeDirectories>includes;../core/includes;../api_scilab/includes;../output_stream/includes;../windows_tools/includes;../tclsci/includes;../tclsci/includes/tcltk/include;../../java/jdk/include/;../../java/jdk/include/win32;../../libs/intl;../call_scilab/includes;src/c;../operations/includes;../system_env/includes;../localization/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src/c;includes;../../java/jdk/include/;../../java/jdk/include/win32;../../libs/intl;../tclsci/includes/tcltk/include;../core/includes;../api_scilab/includes;../output_stream/includes;../windows_tools/includes;../tclsci/includes;../call_scilab/includes;../localization/includes;../graphic_objects/includes;../ast/includes/types;../ast/includes/ast;../ast/includes/exps;../ast/includes/operations;../ast/includes/symbol;../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>NDEBUG;_USRDLL;JAVA_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
@@ -250,6 +250,9 @@
       <Project>{43c5bab1-1dca-4743-a183-77e0d42fe7d0}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+    <ProjectReference Include="..\ast\ast.vcxproj">
+      <Project>{0d3fa25b-8116-44ec-a45e-260789daa3d9}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\call_scilab\call_scilab.vcxproj">
       <Project>{6a6a6f76-ccc0-40c4-8aee-8a010f49a604}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
@@ -266,10 +269,6 @@
     </ProjectReference>
     <ProjectReference Include="..\output_stream\src\c\output_stream.vcxproj">
       <Project>{a5911cd7-f8e8-440c-a23e-4843a0636f3a}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\system_env\system_env.vcxproj">
-      <Project>{7ca60aef-9afa-4d06-af28-613c0aa27640}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="..\windows_tools\src\c\scilab_windows\scilab_windows.vcxproj">

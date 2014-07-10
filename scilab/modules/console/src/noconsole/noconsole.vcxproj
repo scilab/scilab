@@ -80,7 +80,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../includes;../c;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../completion/includes;../../../localization/includes;../../../operations/includes;../../../history_manager/includes;../../../ui_data/includes;../../../../libs/intl;../../../system_env/includes;../../../threads/includes;../../../string/includes;../../../fileio/includes;../../../jvm/includes;../../../core/includes../../../../libs/intl;../../../types/includes;../../../ast/includes;../../../commons/src/jni;../../../dynamic_link/includes;../../../ast/includes/exps;../../../../libs/Eigen/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../c;../../../../libs/intl;../../../../libs/Eigen/includes;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../completion/includes;../../../localization/includes;../../../history_manager/includes;../../../ui_data/includes;../../../threads/includes;../../../string/includes;../../../fileio/includes;../../../jvm/includes;../../../commons/src/jni;../../../dynamic_link/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;CONSOLE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -106,7 +106,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../includes;../c;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../completion/includes;../../../localization/includes;../../../operations/includes;../../../history_manager/includes;../../../ui_data/includes;../../../../libs/intl;../../../system_env/includes;../../../threads/includes;../../../string/includes;../../../fileio/includes;../../../jvm/includes;../../../core/includes../../../../libs/intl;../../../types/includes;../../../ast/includes;../../../commons/src/jni;../../../dynamic_link/includes;../../../ast/includes/exps;../../../../libs/Eigen/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../c;../../../../libs/intl;../../../../libs/Eigen/includes;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../completion/includes;../../../localization/includes;../../../history_manager/includes;../../../ui_data/includes;../../../threads/includes;../../../string/includes;../../../fileio/includes;../../../jvm/includes;../../../commons/src/jni;../../../dynamic_link/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;CONSOLE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -130,7 +130,7 @@
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>../../includes;../c;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../completion/includes;../../../localization/includes;../../../operations/includes;../../../history_manager/includes;../../../ui_data/includes;../../../../libs/intl;../../../system_env/includes;../../../threads/includes;../../../string/includes;../../../fileio/includes;../../../jvm/includes;../../../core/includes../../../../libs/intl;../../../types/includes;../../../ast/includes;../../../commons/src/jni;../../../dynamic_link/includes;../../../ast/includes/exps;../../../../libs/Eigen/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../c;../../../../libs/intl;../../../../libs/Eigen/includes;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../completion/includes;../../../localization/includes;../../../history_manager/includes;../../../ui_data/includes;../../../threads/includes;../../../string/includes;../../../fileio/includes;../../../jvm/includes;../../../commons/src/jni;../../../dynamic_link/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;CONSOLE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -161,7 +161,7 @@
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>../../includes;../c;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../completion/includes;../../../localization/includes;../../../operations/includes;../../../history_manager/includes;../../../ui_data/includes;../../../../libs/intl;../../../system_env/includes;../../../threads/includes;../../../string/includes;../../../fileio/includes;../../../jvm/includes;../../../core/includes../../../../libs/intl;../../../types/includes;../../../ast/includes;../../../commons/src/jni;../../../dynamic_link/includes;../../../ast/includes/exps;../../../../libs/Eigen/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../c;../../../../libs/intl;../../../../libs/Eigen/includes;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../completion/includes;../../../localization/includes;../../../history_manager/includes;../../../ui_data/includes;../../../threads/includes;../../../string/includes;../../../fileio/includes;../../../jvm/includes;../../../commons/src/jni;../../../dynamic_link/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;CONSOLE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -219,6 +219,9 @@
     <ProjectReference Include="..\..\..\api_scilab\api_scilab.vcxproj">
       <Project>{43c5bab1-1dca-4743-a183-77e0d42fe7d0}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\ast\ast.vcxproj">
+      <Project>{0d3fa25b-8116-44ec-a45e-260789daa3d9}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\completion\src\c\completion.vcxproj">
       <Project>{ccce1ead-8e62-4dc0-ab17-972c06ef0c89}</Project>
     </ProjectReference>
@@ -241,14 +244,8 @@
     <ProjectReference Include="..\..\..\output_stream\src\c\output_stream.vcxproj">
       <Project>{a5911cd7-f8e8-440c-a23e-4843a0636f3a}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\system_env\system_env.vcxproj">
-      <Project>{7ca60aef-9afa-4d06-af28-613c0aa27640}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\threads\threads.vcxproj">
       <Project>{50a1ffc8-adc2-4d9e-a2d0-5dcd63188ae9}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\types\types.vcxproj">
-      <Project>{64e090da-dcb5-4f4d-93d7-e88ddec9c2ef}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\ui_data\src\c\ui_data.vcxproj">
       <Project>{142d643b-a9ec-49db-9d48-a925a20f63b1}</Project>

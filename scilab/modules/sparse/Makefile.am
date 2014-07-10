@@ -28,17 +28,19 @@ GATEWAY_CPP_SOURCES = \
 
 libscisparse_la_CPPFLAGS = \
     -I$(srcdir)/includes/ \
-    -I$(top_srcdir)/modules/ast/includes/ \
-    -I$(top_srcdir)/modules/ast/includes/exps \
+    -I$(top_srcdir)/modules/ast/includes/ast/ \
+    -I$(top_srcdir)/modules/ast/includes/exps/ \
+    -I$(top_srcdir)/modules/ast/includes/operations/ \
+    -I$(top_srcdir)/modules/ast/includes/parse/ \
+    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+    -I$(top_srcdir)/modules/ast/includes/types/ \
+    -I$(top_srcdir)/modules/threads/includes/ \
     -I$(top_srcdir)/modules/string/includes/ \
-    -I$(top_srcdir)/modules/system_env/includes/ \
-    -I$(top_srcdir)/modules/types/includes/ \
-    -I$(top_srcdir)/modules/symbol/includes/ \
     -I$(top_srcdir)/modules/dynamic_link/includes/ \
     -I$(top_srcdir)/modules/localization/includes/ \
     -I$(top_srcdir)/modules/output_stream/includes/ \
     -I$(top_srcdir)/modules/elementary_functions/includes/ \
-    -I$(top_srcdir)/modules/operations/includes/ \
     $(EIGEN_CPPFLAGS) \
     $(AM_CPPFLAGS)
 
@@ -73,7 +75,9 @@ libscisparse_la_root_DATA =  license.txt
 
 #### sparse : init scripts ####
 libscisparse_la_etcdir = $(mydatadir)/etc
-libscisparse_la_etc_DATA = etc/sparse.quit etc/sparse.start
+libscisparse_la_etc_DATA = \
+    etc/sparse.quit \
+    etc/sparse.start
 
 #### sparse : gateway declaration ####
 libscisparse_la_sci_gatewaydir = $(mydatadir)/sci_gateway

@@ -81,7 +81,7 @@
     <ClCompile>
       <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;..;../../../../core/includes;../../../../core/src/c;../../../../gui/includes;../../../../gui/src/c;../../../../localization/includes;../../../../localization/src/c;../../../../output_stream/includes;../../../../fileio/includes;../../../../action_binding/includes;../../../../../libs/intl;../../../includes;../../../../system_env/includes;../../../../string/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;..;../../../includes;../../../../../libs/intl;../../../../core/includes;../../../../core/src/c;../../../../gui/includes;../../../../gui/src/c;../../../../localization/includes;../../../../localization/src/c;../../../../output_stream/includes;../../../../fileio/includes;../../../../action_binding/includes;../../../../string/includes;../../../../ast/includes/types;../../../../ast/includes/ast;../../../../ast/includes/exps;../../../../ast/includes/operations;../../../../ast/includes/symbol;../../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;SCILAB_WINDOWS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -96,11 +96,10 @@
       <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Gui_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scigui.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)system_env.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core.lib;scilocalization.lib;scigui.lib;system_env.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;scilocalization.lib;scigui.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>
       </ModuleDefinitionFile>
@@ -121,7 +120,7 @@ lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;..;../../../../core/includes;../../../../core/src/c;../../../../gui/includes;../../../../gui/src/c;../../../../localization/includes;../../../../localization/src/c;../../../../output_stream/includes;../../../../fileio/includes;../../../../action_binding/includes;../../../../../libs/intl;../../../includes;../../../../system_env/includes;../../../../string/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;..;../../../includes;../../../../../libs/intl;../../../../core/includes;../../../../core/src/c;../../../../gui/includes;../../../../gui/src/c;../../../../localization/includes;../../../../localization/src/c;../../../../output_stream/includes;../../../../fileio/includes;../../../../action_binding/includes;../../../../string/includes;../../../../ast/includes/types;../../../../ast/includes/ast;../../../../ast/includes/exps;../../../../ast/includes/operations;../../../../ast/includes/symbol;../../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;SCILAB_WINDOWS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -136,11 +135,10 @@ lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
       <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Gui_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scigui.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)system_env.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core.lib;scilocalization.lib;scigui.lib;system_env.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;scilocalization.lib;scigui.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>
       </ModuleDefinitionFile>
@@ -159,7 +157,7 @@ lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;..;../../../../core/includes;../../../../core/src/c;../../../../gui/includes;../../../../gui/src/c;../../../../localization/includes;../../../../localization/src/c;../../../../output_stream/includes;../../../../fileio/includes;../../../../action_binding/includes;../../../../../libs/intl;../../../includes;../../../../system_env/includes;../../../../string/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;..;../../../includes;../../../../../libs/intl;../../../../core/includes;../../../../core/src/c;../../../../gui/includes;../../../../gui/src/c;../../../../localization/includes;../../../../localization/src/c;../../../../output_stream/includes;../../../../fileio/includes;../../../../action_binding/includes;../../../../string/includes;../../../../ast/includes/types;../../../../ast/includes/ast;../../../../ast/includes/exps;../../../../ast/includes/operations;../../../../ast/includes/symbol;../../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;SCILAB_WINDOWS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -175,11 +173,10 @@ lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
       <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Gui_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scigui.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)system_env.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core.lib;scilocalization.lib;scigui.lib;system_env.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;scilocalization.lib;scigui.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>
       </ModuleDefinitionFile>
@@ -204,7 +201,7 @@ lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;..;../../../../core/includes;../../../../core/src/c;../../../../gui/includes;../../../../gui/src/c;../../../../localization/includes;../../../../localization/src/c;../../../../output_stream/includes;../../../../fileio/includes;../../../../action_binding/includes;../../../../../libs/intl;../../../includes;../../../../system_env/includes;../../../../string/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;..;../../../includes;../../../../../libs/intl;../../../../core/includes;../../../../core/src/c;../../../../gui/includes;../../../../gui/src/c;../../../../localization/includes;../../../../localization/src/c;../../../../output_stream/includes;../../../../fileio/includes;../../../../action_binding/includes;../../../../string/includes;../../../../ast/includes/types;../../../../ast/includes/ast;../../../../ast/includes/exps;../../../../ast/includes/operations;../../../../ast/includes/symbol;../../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;SCILAB_WINDOWS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -220,11 +217,10 @@ lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
       <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Gui_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scigui.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)system_env.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core.lib;scilocalization.lib;scigui.lib;system_env.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;scilocalization.lib;scigui.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>
       </ModuleDefinitionFile>
@@ -296,7 +292,6 @@ lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <None Include="Gui_Import.def" />
     <None Include="core_import.def" />
     <None Include="Localization_Import.def" />
-    <None Include="System_env_Import.def" />
     <None Include="windows_tools_Import.def" />
   </ItemGroup>
   <ItemGroup>
@@ -306,6 +301,9 @@ lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <ProjectReference Include="..\..\..\..\..\tools\Dumpexts\Dumpexts.vcxproj">
       <Project>{3170e4c2-1173-4264-a222-7ee8ccb3ddf7}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\ast\ast.vcxproj">
+      <Project>{0d3fa25b-8116-44ec-a45e-260789daa3d9}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\..\fileio\fileio.vcxproj">
       <Project>{4fc72d4a-80ee-4b1a-8724-0201c1a35621}</Project>

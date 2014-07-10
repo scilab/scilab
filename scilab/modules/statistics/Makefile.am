@@ -73,7 +73,7 @@ STATISTICS_FORTRAN_SOURCES = \
     src/dcdflib/bup.f \
     src/dcdflib/cdfbet.f
 
-GATEWAY_C_SOURCES = sci_gateway/c/gw_statistics.c \
+GATEWAY_C_SOURCES = \
 	sci_gateway/c/sci_cdfchi.c \
 	sci_gateway/c/sci_cdft.c \
 	sci_gateway/c/sci_cdfgam.c \
@@ -87,18 +87,20 @@ GATEWAY_C_SOURCES = sci_gateway/c/gw_statistics.c \
 	sci_gateway/c/sci_cdfnor.c
 
 libscistatistics_la_CPPFLAGS = \
--I$(srcdir)/includes/ \
--I$(srcdir)/src/c/ \
--I$(top_srcdir)/modules/api_scilab/includes/ \
--I$(top_srcdir)/modules/symbol/includes/ \
--I$(top_srcdir)/modules/types/includes/ \
--I$(top_srcdir)/modules/ast/includes/ \
--I$(top_srcdir)/modules/ast/includes/exps \
--I$(top_srcdir)/modules/operations/includes/ \
--I$(top_srcdir)/modules/output_stream/includes/ \
--I$(top_srcdir)/modules/localization/includes/ \
--I$(top_srcdir)/modules/dynamic_link/includes \
-$(AM_CPPFLAGS)
+    -I$(srcdir)/includes/ \
+    -I$(srcdir)/src/c/ \
+    -I$(top_srcdir)/modules/ast/includes/ast/ \
+    -I$(top_srcdir)/modules/ast/includes/exps/ \
+    -I$(top_srcdir)/modules/ast/includes/operations/ \
+    -I$(top_srcdir)/modules/ast/includes/parse/ \
+    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+    -I$(top_srcdir)/modules/ast/includes/types/ \
+    -I$(top_srcdir)/modules/api_scilab/includes/ \
+    -I$(top_srcdir)/modules/output_stream/includes/ \
+    -I$(top_srcdir)/modules/localization/includes/ \
+    -I$(top_srcdir)/modules/dynamic_link/includes \
+    $(AM_CPPFLAGS)
 
 pkglib_LTLIBRARIES = libscistatistics.la
 noinst_LTLIBRARIES = libscistatistics-algo.la

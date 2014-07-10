@@ -187,9 +187,7 @@ am__v_lt_1 =
 @MAINTAINER_MODE_FALSE@am_libscidynamic_link_algo_la_rpath =
 @MAINTAINER_MODE_TRUE@am_libscidynamic_link_algo_la_rpath =
 libscidynamic_link_la_DEPENDENCIES = libscidynamic_link-algo.la
-am__objects_3 =  \
-	sci_gateway/c/libscidynamic_link_la-gw_dynamic_link.lo \
-	sci_gateway/c/libscidynamic_link_la-sci_call.lo
+am__objects_3 = sci_gateway/c/libscidynamic_link_la-sci_call.lo
 am__objects_4 =  \
 	sci_gateway/cpp/libscidynamic_link_la-dynamic_link_gw.lo \
 	sci_gateway/cpp/libscidynamic_link_la-sci_link.lo \
@@ -584,7 +582,6 @@ DYNAMIC_LINK_CPP_SOURCES = \
     src/cpp/addinter.cpp
 
 GATEWAY_C_SOURCES = \
-    sci_gateway/c/gw_dynamic_link.c \
     sci_gateway/c/sci_call.c
 
 GATEWAY_CPP_SOURCES = \
@@ -599,18 +596,19 @@ GATEWAY_CPP_SOURCES = \
 libscidynamic_link_la_CPPFLAGS = \
 	-I$(srcdir)/includes/ \
 	-I$(srcdir)/src/c/ \
+    -I$(top_srcdir)/modules/ast/includes/ast/ \
+    -I$(top_srcdir)/modules/ast/includes/exps/ \
+    -I$(top_srcdir)/modules/ast/includes/operations/ \
+    -I$(top_srcdir)/modules/ast/includes/parse/ \
+    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+    -I$(top_srcdir)/modules/ast/includes/types/ \
 	-I$(top_srcdir)/modules/io/includes/ \
 	-I$(top_srcdir)/modules/api_scilab/includes/ \
-	-I$(top_srcdir)/modules/operations/includes/ \
-	-I$(top_srcdir)/modules/symbol/includes/ \
-	-I$(top_srcdir)/modules/types/includes/ \
 	-I$(top_srcdir)/modules/output_stream/includes/ \
 	-I$(top_srcdir)/modules/functions_manager/includes/ \
-	-I$(top_srcdir)/modules/ast/includes/ \
-	-I$(top_srcdir)/modules/ast/includes/exps \
 	-I$(top_srcdir)/modules/string/includes/ \
 	-I$(top_srcdir)/modules/fileio/includes/ \
-	-I$(top_srcdir)/modules/system_env/includes/ \
 	-I$(top_srcdir)/modules/threads/includes/ \
 	-I$(top_srcdir)/modules/localization/includes/ \
 	$(EIGEN_CPPFLAGS) \
@@ -643,7 +641,10 @@ libscidynamic_link_la_root_DATA = license.txt
 
 #### dynamic_link : init scripts #### 
 libscidynamic_link_la_etcdir = $(mydatadir)/etc
-libscidynamic_link_la_etc_DATA = etc/dynamic_link.quit etc/dynamic_link.start
+libscidynamic_link_la_etc_DATA = \
+    etc/dynamic_link.quit \
+    etc/dynamic_link.start
+
 
 #### dynamic_link : internal functions ####
 MACROSDIRSEXT = macros/utils
@@ -859,9 +860,6 @@ sci_gateway/c/$(am__dirstamp):
 sci_gateway/c/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) sci_gateway/c/$(DEPDIR)
 	@: > sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
-sci_gateway/c/libscidynamic_link_la-gw_dynamic_link.lo:  \
-	sci_gateway/c/$(am__dirstamp) \
-	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/c/libscidynamic_link_la-sci_call.lo:  \
 	sci_gateway/c/$(am__dirstamp) \
 	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
@@ -945,7 +943,6 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscidynamic_link_la-gw_dynamic_link.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscidynamic_link_la-sci_call.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscidynamic_link_la-dynamic_link_gw.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscidynamic_link_la-sci_addinter.Plo@am__quote@
@@ -1012,13 +1009,6 @@ src/c/libscidynamic_link_algo_la-dynamiclibrary_others.lo: src/c/dynamiclibrary_
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/dynamiclibrary_others.c' object='src/c/libscidynamic_link_algo_la-dynamiclibrary_others.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscidynamic_link_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscidynamic_link_algo_la-dynamiclibrary_others.lo `test -f 'src/c/dynamiclibrary_others.c' || echo '$(srcdir)/'`src/c/dynamiclibrary_others.c
-
-sci_gateway/c/libscidynamic_link_la-gw_dynamic_link.lo: sci_gateway/c/gw_dynamic_link.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscidynamic_link_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscidynamic_link_la-gw_dynamic_link.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscidynamic_link_la-gw_dynamic_link.Tpo -c -o sci_gateway/c/libscidynamic_link_la-gw_dynamic_link.lo `test -f 'sci_gateway/c/gw_dynamic_link.c' || echo '$(srcdir)/'`sci_gateway/c/gw_dynamic_link.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscidynamic_link_la-gw_dynamic_link.Tpo sci_gateway/c/$(DEPDIR)/libscidynamic_link_la-gw_dynamic_link.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/gw_dynamic_link.c' object='sci_gateway/c/libscidynamic_link_la-gw_dynamic_link.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscidynamic_link_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscidynamic_link_la-gw_dynamic_link.lo `test -f 'sci_gateway/c/gw_dynamic_link.c' || echo '$(srcdir)/'`sci_gateway/c/gw_dynamic_link.c
 
 sci_gateway/c/libscidynamic_link_la-sci_call.lo: sci_gateway/c/sci_call.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscidynamic_link_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscidynamic_link_la-sci_call.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscidynamic_link_la-sci_call.Tpo -c -o sci_gateway/c/libscidynamic_link_la-sci_call.lo `test -f 'sci_gateway/c/sci_call.c' || echo '$(srcdir)/'`sci_gateway/c/sci_call.c

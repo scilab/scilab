@@ -637,105 +637,108 @@ libsciconsole_la_etc_DATA = \
 
 #### console : List of the cpp files ####
 CONSOLE_CPP_JNI_SOURCES = src/jni/CallScilabBridge.cpp
-CONSOLE_CPP_SOURCES = src/cpp/ClearConsole.cpp \
-src/cpp/ClearConsolePart.cpp \
-src/cpp/ConsolePrintf.cpp \
-src/cpp/ConsoleRead.cpp \
-src/cpp/ConsoleIsWaitingForInput.cpp \
-src/cpp/GetCharWithoutOutput.cpp \
-src/cpp/PromptToHome.cpp \
-src/cpp/ScilabLinesUpdate.cpp \
-src/cpp/SetConsolePrompt.cpp
+CONSOLE_CPP_SOURCES = \
+    src/cpp/ClearConsole.cpp \
+    src/cpp/ClearConsolePart.cpp \
+    src/cpp/ConsolePrintf.cpp \
+    src/cpp/ConsoleRead.cpp \
+    src/cpp/ConsoleIsWaitingForInput.cpp \
+    src/cpp/GetCharWithoutOutput.cpp \
+    src/cpp/PromptToHome.cpp \
+    src/cpp/ScilabLinesUpdate.cpp \
+    src/cpp/SetConsolePrompt.cpp
 
 
 #### console : List of the c files ####
-CONSOLE_C_JNI_SOURCES = src/jni/GuiManagement_wrap.c \
-src/jni/DropFiles_wrap.c
+CONSOLE_C_JNI_SOURCES = \
+    src/jni/GuiManagement_wrap.c \
+    src/jni/DropFiles_wrap.c
 
 GIWS_WRAPPERS = src/jni/CallScilabBridge.giws.xml
 BUILT_SOURCES = $(am__append_1) $(am__append_2)
 
 # List of the c files
-libsciconsole_minimal_la_SOURCES = src/noconsole/noconsole.c \
-sci_gateway/c/gw_console.c \
-sci_gateway/cpp/sci_clc.cpp \
-sci_gateway/cpp/sci_tohome.cpp \
-sci_gateway/cpp/sci_lines.cpp \
-sci_gateway/cpp/sci_prompt.cpp \
-sci_gateway/cpp/sci_iswaitingforinput.cpp \
-src/c/clc.c \
-src/c/tohome.c \
-src/c/more.c \
-src/c/scilines.c \
-src/c/GetCommandLine.c \
-src/c/others/gotoxy_nw.c \
-src/c/others/clrscr_nw.c \
-src/c/prompt.c \
-src/c/promptecho.c \
-src/c/cmdLine/autoCompletionCli.c \
-src/c/cmdLine/charactersManagement.c \
-src/c/cmdLine/cliDisplayManagement.c \
-src/c/cmdLine/cliHistory.c \
-src/c/cmdLine/cliPrompt.c \
-src/c/cmdLine/getKey.c \
-src/c/cmdLine/getNbrLine.c \
-src/c/cmdLine/gotoFunctions.c \
-src/c/cmdLine/initConsoleMode.c \
-src/c/cmdLine/termcapManagement.c \
-src/cpp/scilabRead.cpp \
-sci_gateway/cpp/console_gw.cpp
+libsciconsole_minimal_la_SOURCES = \
+    src/noconsole/noconsole.c \
+    sci_gateway/c/gw_console.c \
+    sci_gateway/cpp/sci_clc.cpp \
+    sci_gateway/cpp/sci_tohome.cpp \
+    sci_gateway/cpp/sci_lines.cpp \
+    sci_gateway/cpp/sci_prompt.cpp \
+    sci_gateway/cpp/sci_iswaitingforinput.cpp \
+    src/c/clc.c \
+    src/c/tohome.c \
+    src/c/more.c \
+    src/c/scilines.c \
+    src/c/GetCommandLine.c \
+    src/c/others/gotoxy_nw.c \
+    src/c/others/clrscr_nw.c \
+    src/c/prompt.c \
+    src/c/promptecho.c \
+    src/c/cmdLine/autoCompletionCli.c \
+    src/c/cmdLine/charactersManagement.c \
+    src/c/cmdLine/cliDisplayManagement.c \
+    src/c/cmdLine/cliHistory.c \
+    src/c/cmdLine/cliPrompt.c \
+    src/c/cmdLine/getKey.c \
+    src/c/cmdLine/getNbrLine.c \
+    src/c/cmdLine/gotoFunctions.c \
+    src/c/cmdLine/initConsoleMode.c \
+    src/c/cmdLine/termcapManagement.c \
+    src/cpp/scilabRead.cpp \
+    sci_gateway/cpp/console_gw.cpp
 
 CONSOLE_C_SOURCES = src/c/GuiManagement.c src/c/dropFiles.c \
 	$(am__append_3)
 libsciconsole_minimal_la_CPPFLAGS = \
--I$(srcdir)/includes/ \
--I$(srcdir)/src/c/ \
--I$(top_srcdir)/modules/fileio/includes/ \
--I$(top_srcdir)/modules/output_stream/includes/ \
--I$(top_srcdir)/modules/history_manager/includes/ \
--I$(top_srcdir)/modules/output_stream/includes/ \
--I$(top_srcdir)/modules/core/includes/ \
--I$(top_srcdir)/modules/completion/includes/ \
--I$(top_srcdir)/modules/localization/includes/ \
--I$(top_srcdir)/modules/action_binding/includes/ \
--I$(top_srcdir)/modules/fileio/src/c/ \
--I$(top_srcdir)/modules/api_scilab/includes/ \
--I$(top_srcdir)/modules/fileio/includes/ \
--I$(top_srcdir)/modules/ui_data/includes/ \
--I$(top_srcdir)/modules/jvm/includes \
--I$(top_srcdir)/modules/system_env/includes \
--I$(top_srcdir)/modules/types/includes \
--I$(top_srcdir)/modules/ast/includes \
--I$(top_srcdir)/modules/ast/includes/exps \
--I$(top_srcdir)/modules/threads/includes \
--I$(top_srcdir)/modules/string/includes \
--I$(top_srcdir)/modules/symbol/includes \
--I$(top_srcdir)/modules/operations/includes \
--I$(top_srcdir)/modules/dynamic_link/includes \
-$(EIGEN_CPPFLAGS) \
-$(AM_CPPFLAGS)
+    -I$(srcdir)/includes/ \
+    -I$(srcdir)/src/c/ \
+    -I$(top_srcdir)/modules/ast/includes/ast/ \
+    -I$(top_srcdir)/modules/ast/includes/exps/ \
+    -I$(top_srcdir)/modules/ast/includes/operations/ \
+    -I$(top_srcdir)/modules/ast/includes/parse/ \
+    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+    -I$(top_srcdir)/modules/ast/includes/types/ \
+    -I$(top_srcdir)/modules/fileio/includes/ \
+    -I$(top_srcdir)/modules/output_stream/includes/ \
+    -I$(top_srcdir)/modules/history_manager/includes/ \
+    -I$(top_srcdir)/modules/output_stream/includes/ \
+    -I$(top_srcdir)/modules/core/includes/ \
+    -I$(top_srcdir)/modules/completion/includes/ \
+    -I$(top_srcdir)/modules/localization/includes/ \
+    -I$(top_srcdir)/modules/action_binding/includes/ \
+    -I$(top_srcdir)/modules/fileio/src/c/ \
+    -I$(top_srcdir)/modules/api_scilab/includes/ \
+    -I$(top_srcdir)/modules/fileio/includes/ \
+    -I$(top_srcdir)/modules/ui_data/includes/ \
+    -I$(top_srcdir)/modules/jvm/includes \
+    -I$(top_srcdir)/modules/threads/includes \
+    -I$(top_srcdir)/modules/string/includes \
+    -I$(top_srcdir)/modules/dynamic_link/includes \
+    $(EIGEN_CPPFLAGS) \
+    $(AM_CPPFLAGS)
 
 
 # Includes need for the compilation
 libsciconsole_la_CPPFLAGS =  \
 	-I$(top_srcdir)/modules/api_scilab/includes \
 	-I$(srcdir)/includes/ -I$(srcdir)/src/cpp/ -I$(srcdir)/src/c/ \
-	-I$(srcdir)/src/jni/ -I$(top_srcdir)/modules/jvm/includes/ \
+	-I$(srcdir)/src/jni/ -I$(top_srcdir)/modules/ast/includes/ast/ \
+	-I$(top_srcdir)/modules/ast/includes/exps/ \
+	-I$(top_srcdir)/modules/ast/includes/operations/ \
+	-I$(top_srcdir)/modules/ast/includes/parse/ \
+	-I$(top_srcdir)/modules/ast/includes/symbol/ \
+	-I$(top_srcdir)/modules/ast/includes/system_env/ \
+	-I$(top_srcdir)/modules/ast/includes/types/ \
+	-I$(top_srcdir)/modules/jvm/includes/ \
 	-I$(top_srcdir)/modules/action_binding/includes \
 	-I$(top_srcdir)/modules/history_manager/includes/ \
-	-I$(top_srcdir)/modules/operations/includes \
-	-I$(top_srcdir)/modules/system_env/includes \
 	-I$(top_srcdir)/modules/ui_data/includes/ \
 	-I$(top_srcdir)/modules/threads/includes \
 	-I$(top_srcdir)/modules/completion/includes \
-	-I$(top_srcdir)/modules/types/includes \
-	-I$(top_srcdir)/modules/system_env/includes \
-	-I$(top_srcdir)/modules/ast/includes \
-	-I$(top_srcdir)/modules/ast/includes/exps \
 	-I$(top_srcdir)/modules/output_stream/includes \
-	-I$(top_srcdir)/modules/symbol/includes \
 	-I$(top_srcdir)/modules/string/includes \
-	-I$(top_srcdir)/modules/system_env/includes \
 	-I$(top_srcdir)/modules/fileio/includes \
 	-I$(top_srcdir)/modules/localization/includes \
 	-I$(top_srcdir)/modules/commons/src/jni \

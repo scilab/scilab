@@ -29,9 +29,6 @@
     <ClCompile Include="GetFunctionByName.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\gw_dynamic_link.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ilib_verbose.c">
       <Filter>Source Files</Filter>
     </ClCompile>

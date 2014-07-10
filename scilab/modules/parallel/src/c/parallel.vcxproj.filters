@@ -12,9 +12,6 @@
     <Filter Include="localization">
       <UniqueIdentifier>{393fdd5c-f2ae-4bb0-8cfd-fc828992206c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Swig Files">
-      <UniqueIdentifier>{fb12dde7-2d84-4f75-a732-f4e9fbb3f236}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Libraries Dependencies">
       <UniqueIdentifier>{5c666eb7-0126-4c9f-9e58-271aedb79942}</UniqueIdentifier>
     </Filter>

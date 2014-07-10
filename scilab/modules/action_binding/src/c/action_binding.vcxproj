@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -85,7 +85,7 @@
     <ClCompile>
       <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;../../includes;../jni;../../../output_stream/includes;../../../core/includes;../../../jvm/includes;../../../../java/jdk/include;../../../api_scilab/includes;../../../../java/jdk/include/win32;../../../localization/includes;../../../../libs/intl;../../../types/includes;../../../commons/src/jni;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../jni;../../../output_stream/includes;../../../core/includes;../../../jvm/includes;../../../../java/jdk/include;../../../api_scilab/includes;../../../../java/jdk/include/win32;../../../localization/includes;../../../../libs/intl;../../../commons/src/jni;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;ACTION_BINDING_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -125,7 +125,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;../../includes;../jni;../../../output_stream/includes;../../../core/includes;../../../jvm/includes;../../../../java/jdk/include;../../../api_scilab/includes;../../../../java/jdk/include/win32;../../../localization/includes;../../../../libs/intl;../../../types/includes;../../../commons/src/jni;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../jni;../../../output_stream/includes;../../../core/includes;../../../jvm/includes;../../../../java/jdk/include;../../../api_scilab/includes;../../../../java/jdk/include/win32;../../../localization/includes;../../../../libs/intl;../../../commons/src/jni;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;ACTION_BINDING_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -166,7 +166,7 @@
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;../../includes;../jni;../../../output_stream/includes;../../../core/includes;../../../jvm/includes;../../../../java/jdk/include;../../../api_scilab/includes;../../../../java/jdk/include/win32;../../../localization/includes;../../../../libs/intl;../../../types/includes;../../../commons/src/jni;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../jni;../../../output_stream/includes;../../../core/includes;../../../jvm/includes;../../../../java/jdk/include;../../../api_scilab/includes;../../../../java/jdk/include/win32;../../../localization/includes;../../../../libs/intl;../../../commons/src/jni;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;ACTION_BINDING_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -214,7 +214,7 @@
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;../../includes;../jni;../../../output_stream/includes;../../../core/includes;../../../jvm/includes;../../../../java/jdk/include;../../../api_scilab/includes;../../../../java/jdk/include/win32;../../../localization/includes;../../../../libs/intl;../../../types/includes;../../../commons/src/jni;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../jni;../../../output_stream/includes;../../../core/includes;../../../jvm/includes;../../../../java/jdk/include;../../../api_scilab/includes;../../../../java/jdk/include/win32;../../../localization/includes;../../../../libs/intl;../../../commons/src/jni;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;ACTION_BINDING_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>

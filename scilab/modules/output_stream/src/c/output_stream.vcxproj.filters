@@ -88,9 +88,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="api_scilab_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
     <None Include="Console_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
@@ -101,9 +98,6 @@
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="String_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
-    <None Include="System_env_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="output_stream_export.def">
@@ -202,9 +196,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="api_scilab_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
     <None Include="Console_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>

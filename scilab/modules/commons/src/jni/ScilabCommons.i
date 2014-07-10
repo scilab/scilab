@@ -18,13 +18,13 @@
 */
 %module ScilabCommons
 %{
-#include "../../../system_env/includes/sci_home.h"
-#include "../../../system_env/includes/sci_tmpdir.h"
-#include "../../../fileio/includes/createtempfilename.h"
-#include "../../../localization/includes/setgetlanguage.h"
-#include "../../../core/includes/getversion.h"
-#include "../../../core/includes/setieee.h"
-#include "../../../core/includes/setformat.h"
+#include "sci_home.h"
+#include "sci_tmpdir.h"
+#include "createtempfilename.h"
+#include "setgetlanguage.h"
+#include "getversion.h"
+#include "setieee.h"
+#include "setformat.h"
 %}
 
 /* JavaDoc for ScilabCommonsJNI class */

@@ -8,29 +8,39 @@
 # http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 
-GATEWAY_C_SOURCES = sci_gateway/c/gw_symbolic.c \
-sci_gateway/c/sci_mulf.c \
-sci_gateway/c/sci_ldivf.c \
-sci_gateway/c/sci_addsubf.c \
-sci_gateway/c/sci_rdivf.c
+GATEWAY_C_SOURCES = \
+    sci_gateway/c/gw_symbolic.c \
+    sci_gateway/c/sci_mulf.c \
+    sci_gateway/c/sci_ldivf.c \
+    sci_gateway/c/sci_addsubf.c \
+    sci_gateway/c/sci_rdivf.c
 
-GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_f_addsubf.f \
-sci_gateway/fortran/sci_f_mulf.f \
-sci_gateway/fortran/sci_f_ldivf.f \
-sci_gateway/fortran/sci_f_rdivf.f
+GATEWAY_FORTRAN_SOURCES = \
+    sci_gateway/fortran/sci_f_addsubf.f \
+    sci_gateway/fortran/sci_f_mulf.f \
+    sci_gateway/fortran/sci_f_ldivf.f \
+    sci_gateway/fortran/sci_f_rdivf.f
 
-FORTRAN_SOURCES = src/fortran/atome.f \
-src/fortran/iseye.f \
-src/fortran/isnum.f \
-src/fortran/termf.f
+FORTRAN_SOURCES = \
+    src/fortran/atome.f \
+    src/fortran/iseye.f \
+    src/fortran/isnum.f \
+    src/fortran/termf.f
 
-libscisymbolic_la_CPPFLAGS = -I$(srcdir)/includes/ \
-				-I$(top_srcdir)/modules/output_stream/includes/ \
-				-I$(top_srcdir)/modules/api_scilab/includes/ \
-				-I$(top_srcdir)/modules/localization/includes/ \
-				-I$(top_srcdir)/modules/operations/includes/ \
-				$(AM_CPPFLAGS)
-#-Isrc/c/
+libscisymbolic_la_CPPFLAGS = \
+    -I$(srcdir)/includes/ \
+    -I$(top_srcdir)/modules/ast/includes/ast/ \
+    -I$(top_srcdir)/modules/ast/includes/exps/ \
+    -I$(top_srcdir)/modules/ast/includes/operations/ \
+    -I$(top_srcdir)/modules/ast/includes/parse/ \
+    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+    -I$(top_srcdir)/modules/ast/includes/types/ \
+    -I$(top_srcdir)/modules/output_stream/includes/ \
+    -I$(top_srcdir)/modules/api_scilab/includes/ \
+    -I$(top_srcdir)/modules/localization/includes/ \
+    $(AM_CPPFLAGS)
+
 pkglib_LTLIBRARIES = libscisymbolic.la
 noinst_LTLIBRARIES = libscisymbolic-algo.la
 
@@ -57,7 +67,9 @@ libscisymbolic_la_root_DATA =  license.txt
 
 #### symbolic : init scripts ####
 libscisymbolic_la_etcdir = $(mydatadir)/etc
-libscisymbolic_la_etc_DATA = etc/symbolic.quit etc/symbolic.start
+libscisymbolic_la_etc_DATA = \
+    etc/symbolic.quit \
+    etc/symbolic.start
 
 #### symbolic : gateway declaration ####
 libscisymbolic_la_sci_gatewaydir = $(mydatadir)/sci_gateway

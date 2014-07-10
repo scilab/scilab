@@ -88,8 +88,6 @@ using namespace ast;
 static char *the_current_mex_name;
 static void (*exitFcn)(void);
 
-using namespace ast;
-
 mxClassID mxGetClassID(const mxArray *ptr)
 {
     types::InternalType *pIT = (types::InternalType *) ptr;

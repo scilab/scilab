@@ -61,11 +61,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\src\c\dcd_f_Import.def">
-      <Filter>Source Files</Filter>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <Library Include="..\..\..\..\bin\dcd_f.lib" />
   </ItemGroup>
 </Project>

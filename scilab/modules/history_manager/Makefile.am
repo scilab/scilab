@@ -5,29 +5,32 @@
 
 # List of the cpp files
 HISTORY_MANAGER_CPP_SOURCES = \
-src/cpp/HistoryFile.cpp \
-src/cpp/HistoryManager.cpp \
-src/cpp/HistorySearch.cpp
+    src/cpp/HistoryFile.cpp \
+    src/cpp/HistoryManager.cpp \
+    src/cpp/HistorySearch.cpp
+    
 # List of the c files
 HISTORY_MANAGER_C_SOURCES = src/c/getCommentDateSession.c
 
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/gw_history_manager.c
 
-GATEWAY_CPP_SOURCES = sci_gateway/cpp/history_manager_gw.cpp \
-sci_gateway/cpp/sci_addhistory.cpp \
-sci_gateway/cpp/sci_displayhistory.cpp \
-sci_gateway/cpp/sci_gethistory.cpp \
-sci_gateway/cpp/sci_gethistoryfile.cpp \
-sci_gateway/cpp/sci_historysize.cpp \
-sci_gateway/cpp/sci_loadhistory.cpp \
-sci_gateway/cpp/sci_removelinehistory.cpp \
-sci_gateway/cpp/sci_resethistory.cpp \
-sci_gateway/cpp/sci_saveafterncommands.cpp \
-sci_gateway/cpp/sci_saveconsecutivecommands.cpp \
-sci_gateway/cpp/sci_savehistory.cpp \
-sci_gateway/cpp/sci_sethistoryfile.cpp \
-sci_gateway/cpp/sci_historymanager.cpp
+GATEWAY_CPP_SOURCES = \
+    sci_gateway/cpp/history_manager_gw.cpp \
+    sci_gateway/cpp/sci_addhistory.cpp \
+    sci_gateway/cpp/sci_displayhistory.cpp \
+    sci_gateway/cpp/sci_gethistory.cpp \
+    sci_gateway/cpp/sci_gethistoryfile.cpp \
+    sci_gateway/cpp/sci_historysize.cpp \
+    sci_gateway/cpp/sci_loadhistory.cpp \
+    sci_gateway/cpp/sci_removelinehistory.cpp \
+    sci_gateway/cpp/sci_resethistory.cpp \
+    sci_gateway/cpp/sci_saveafterncommands.cpp \
+    sci_gateway/cpp/sci_saveconsecutivecommands.cpp \
+    sci_gateway/cpp/sci_savehistory.cpp \
+    sci_gateway/cpp/sci_sethistoryfile.cpp \
+    sci_gateway/cpp/sci_historymanager.cpp
+    
 if GUI
 
 # List of the c files
@@ -47,27 +50,28 @@ endif
 
 # Includes need for the compilation
 libscihistory_manager_la_CPPFLAGS = \
-$(JAVA_JNI_INCLUDE) \
--I$(srcdir)/includes/ \
--I$(srcdir)/src/cpp/ \
--I$(srcdir)/src/c/ \
--I$(srcdir)/src/jni/ \
--I$(top_srcdir)/modules/fileio/includes/ \
--I$(top_srcdir)/modules/api_scilab/includes \
--I$(top_srcdir)/modules/localization/includes \
--I$(top_srcdir)/modules/console/includes/ \
--I$(top_srcdir)/modules/output_stream/includes/ \
--I$(top_srcdir)/modules/system_env/includes/ \
--I$(top_srcdir)/modules/operations/includes/ \
--I$(top_srcdir)/modules/history_browser/includes/ \
--I$(top_srcdir)/modules/symbol/includes/ \
--I$(top_srcdir)/modules/types/includes/ \
--I$(top_srcdir)/modules/ast/includes/ \
--I$(top_srcdir)/modules/ast/includes/exps \
--I$(top_srcdir)/modules/string/includes/ \
--I$(top_srcdir)/modules/dynamic_link/includes \
-$(EIGEN_CPPFLAGS) \
-$(AM_CPPFLAGS)
+    $(JAVA_JNI_INCLUDE) \
+    -I$(srcdir)/includes/ \
+    -I$(srcdir)/src/cpp/ \
+    -I$(srcdir)/src/c/ \
+    -I$(srcdir)/src/jni/ \
+    -I$(top_srcdir)/modules/ast/includes/ast/ \
+    -I$(top_srcdir)/modules/ast/includes/exps/ \
+    -I$(top_srcdir)/modules/ast/includes/operations/ \
+    -I$(top_srcdir)/modules/ast/includes/parse/ \
+    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+    -I$(top_srcdir)/modules/ast/includes/types/ \
+    -I$(top_srcdir)/modules/fileio/includes/ \
+    -I$(top_srcdir)/modules/api_scilab/includes \
+    -I$(top_srcdir)/modules/localization/includes \
+    -I$(top_srcdir)/modules/console/includes/ \
+    -I$(top_srcdir)/modules/output_stream/includes/ \
+    -I$(top_srcdir)/modules/history_browser/includes/ \
+    -I$(top_srcdir)/modules/string/includes/ \
+    -I$(top_srcdir)/modules/dynamic_link/includes \
+    $(EIGEN_CPPFLAGS) \
+    $(AM_CPPFLAGS)
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)
@@ -106,11 +110,12 @@ libscihistory_manager_la_sci_gateway_DATA = sci_gateway/history_manager_gateway.
 
 #### history_manager : include files ####
 libscihistory_manager_la_includedir=$(pkgincludedir)
-libscihistory_manager_la_include_HEADERS = includes/gw_history_manager.h \
-includes/HistoryManager.h \
-includes/InitializeHistoryManager.h \
-includes/TerminateHistoryManager.h \
-includes/dynlib_history_manager.h
+libscihistory_manager_la_include_HEADERS = \
+    includes/gw_history_manager.h \
+    includes/HistoryManager.h \
+    includes/InitializeHistoryManager.h \
+    includes/TerminateHistoryManager.h \
+    includes/dynlib_history_manager.h
 
 #### SWIG Declaration ####
 SWIG_WRAPPERS = src/jni/HistoryManagement.i

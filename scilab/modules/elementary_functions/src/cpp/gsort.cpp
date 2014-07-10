@@ -33,12 +33,12 @@ extern "C"
 template <typename T>
 bool increasing (T left, T right)
 {
-    if (ISNAN(left))
+    if (ISNAN((double)left))
     {
         return false;
     }
 
-    if (ISNAN(right))
+    if (ISNAN((double)right))
     {
         return true;
     }
@@ -49,12 +49,12 @@ bool increasing (T left, T right)
 template <typename T>
 bool descendent (T left, T right)
 {
-    if (ISNAN(left))
+    if (ISNAN((double)left))
     {
         return true;
     }
 
-    if (ISNAN(right))
+    if (ISNAN((double)right))
     {
         return false;
     }

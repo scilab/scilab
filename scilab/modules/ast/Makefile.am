@@ -14,33 +14,118 @@
 pkglib_LTLIBRARIES 	= libsciast.la
 
 libsciast_la_SOURCES = \
-	src/cpp/runvisitor.cpp \
-	src/cpp/visitor_common.cpp \
-	src/cpp/printvisitor.cpp \
-	src/cpp/debugvisitor.cpp \
-	src/cpp/mutevisitor.cpp \
-	src/cpp/shortcutvisitor.cpp \
-	src/cpp/scilabexception.cpp \
-	src/cpp/macrovarvisitor.cpp \
-	src/cpp/expHistory.cpp
+	src/cpp/ast/runvisitor.cpp \
+	src/cpp/ast/visitor_common.cpp \
+	src/cpp/ast/printvisitor.cpp \
+	src/cpp/ast/debugvisitor.cpp \
+	src/cpp/ast/mutevisitor.cpp \
+	src/cpp/ast/shortcutvisitor.cpp \
+	src/cpp/ast/macrovarvisitor.cpp \
+	src/cpp/ast/expHistory.cpp \
+    src/cpp/operations/interface_addition.cpp \
+    src/cpp/operations/types_finite.cpp \
+    src/cpp/operations/operations.cpp \
+    src/cpp/operations/types_kronecker.cpp \
+    src/cpp/operations/types_addition.cpp \
+    src/cpp/operations/types_ldivide.cpp \
+    src/cpp/operations/types_comparison_eq.cpp \
+    src/cpp/operations/types_multiplication.cpp \
+    src/cpp/operations/types_comparison_lt_le_gt_ge.cpp \
+    src/cpp/operations/types_or_and.cpp \
+    src/cpp/operations/types_comparison_ne.cpp \
+    src/cpp/operations/types_power.cpp \
+    src/cpp/operations/types_divide.cpp \
+    src/cpp/operations/types_substraction.cpp \
+    src/c/operations/matrix_multiplication.c \
+    src/c/operations/matrix_transpose.c \
+    src/c/operations/matrix_kronecker.c \
+    src/c/operations/operations_tools.c \
+    src/c/operations/matrix_substraction.c \
+    src/c/operations/invert_matrix.c \
+    src/c/operations/matrix_power.c \
+    src/c/operations/matrix_division.c \
+    src/c/operations/matrix_finite.c \
+    src/c/operations/matrix_addition.c \
+    src/c/operations/doublecomplex.c \
+    src/cpp/parse/parser.cpp \  
+    src/cpp/parse/parsescilab.cpp \
+    src/cpp/parse/printerror.cpp \
+    src/cpp/parse/scanscilab.cpp \
+    src/cpp/symbol/context.cpp \
+    src/cpp/symbol/symbol.cpp \
+    src/cpp/types/arrayof.cpp \
+    src/cpp/types/int.cpp \
+    src/cpp/types/mlist.cpp \
+    src/cpp/types/threadId.cpp \
+    src/cpp/types/bool.cpp \
+    src/cpp/types/library.cpp \
+    src/cpp/types/overload.cpp \
+    src/cpp/types/tlist.cpp \
+    src/cpp/types/cell.cpp \
+    src/cpp/types/list.cpp \
+    src/cpp/types/polynom.cpp \
+    src/cpp/types/tostring_common.cpp \
+    src/cpp/types/double.cpp \
+    src/cpp/types/listdelete.cpp \
+    src/cpp/types/singlepoly.cpp \
+    src/cpp/types/types.cpp \
+    src/cpp/types/file.cpp \
+    src/cpp/types/listinsert.cpp \
+    src/cpp/types/singlestruct.cpp \
+    src/cpp/types/types_tools.cpp \
+    src/cpp/types/function.cpp \
+    src/cpp/types/listoperation.cpp \
+    src/cpp/types/sparse.cpp \
+    src/cpp/types/void.cpp \
+    src/cpp/types/graphichandle.cpp \
+    src/cpp/types/listundefined.cpp \
+    src/cpp/types/string.cpp \
+    src/cpp/types/implicitlist.cpp \
+    src/cpp/types/macro.cpp \
+    src/cpp/types/struct.cpp \
+    src/cpp/types/macrofile.cpp \
+    src/cpp/system_env/dynamic_module.cpp \
+    src/cpp/system_env/setenvvar.cpp \
+    src/cpp/system_env/sci_home.cpp \
+    src/cpp/system_env/context_get.cpp \
+    src/cpp/system_env/configvariable.cpp \
+    src/cpp/system_env/sci_path.cpp \
+    src/cpp/system_env/sci_ieee.cpp \
+    src/cpp/system_env/lasterror.cpp \
+    src/cpp/system_env/sci_mode.cpp \
+    src/cpp/system_env/promptmode.cpp \
+    src/cpp/system_env/sci_simpMode.cpp \
+    src/cpp/system_env/home.cpp \
+    src/cpp/system_env/sci_tmpdir.cpp \
+    src/cpp/system_env/reference_modules.cpp \
+    src/cpp/system_env/formatmode.cpp \
+    src/cpp/system_env/warningmode.cpp
 
+if ENABLE_DEBUG
+libsciast_la_SOURCES += src/cpp/types/inspector.cpp
+endif
+
+ 
 libsciast_la_CPPFLAGS = \
-	-Iincludes \
+	-Iincludes/ast \
 	-Iincludes/exps \
+	-Iincludes/operations \
+	-Iincludes/parse \
+	-Iincludes/symbol \
+	-Iincludes/system_env \
+	-Iincludes/types \
 	-Isrc/cpp \
     -I$(top_srcdir)/modules/dynamic_link/includes \
-    -I$(top_srcdir)/modules/symbol/includes \
-	-I$(top_srcdir)/modules/types/includes \
 	-I$(top_srcdir)/modules/functions_manager/includes \
 	-I$(top_srcdir)/modules/console/includes \
 	-I$(top_srcdir)/modules/elementary_functions/includes \
-	-I$(top_srcdir)/modules/operations/includes \
 	-I$(top_srcdir)/modules/output_stream/includes \
-	-I$(top_srcdir)/modules/system_env/includes \
 	-I$(top_srcdir)/modules/api_scilab/includes \
 	-I$(top_srcdir)/modules/string/includes \
 	-I$(top_srcdir)/modules/threads/includes \
 	-I$(top_srcdir)/modules/localization/includes \
+	-I$(top_srcdir)/modules/io/includes \
+	-I$(top_srcdir)/modules/fileio/includes \
     $(EIGEN_CPPFLAGS) \
 	$(AM_CPPFLAGS)
 
@@ -54,81 +139,187 @@ modulename=ast
 
 ####io : init scripts ####
 libsciast_la_etcdir = $(mydatadir)/etc
-libsciast_la_etc_DATA = etc/ast.quit etc/ast.start
+libsciast_la_etc_DATA = \
+    etc/ast.quit \
+    etc/ast.start
 
 
 #### ast : include files ####
 libsciast_scilab_la_includedir=$(pkgincludedir)
 libsciast_scilab_la_include_HEADERS = \
-includes/exps/alldec.hxx \
-includes/exps/allexp.hxx \
-includes/exps/all.hxx \
-includes/exps/allvar.hxx \
-includes/exps/anydecs.hxx \
-includes/exps/arraylistexp.hxx \
-includes/exps/arraylistvar.hxx \
-includes/exps/assignexp.hxx \
-includes/exps/assignlistexp.hxx \
-includes/exps/ast.hxx \
-includes/exps/boolexp.hxx \
-includes/exps/breakexp.hxx \
-includes/exps/callexp.hxx \
-includes/exps/caseexp.hxx \
-includes/exps/cellcallexp.hxx \
-includes/exps/cellexp.hxx \
-includes/exps/colonvar.hxx \
+includes/operations/matrix_power.h \
+includes/operations/types_substraction.hxx \
+includes/operations/types_addition.hxx \
+includes/operations/types_kronecker.hxx \
+includes/operations/generic_operations.hxx \
+includes/operations/types_divide.hxx \
+includes/operations/types_finite.hxx \
+includes/operations/types_transposition.hxx \
+includes/operations/matrix_addition.h \
+includes/operations/matrix_substraction.h \
+includes/operations/doublecomplex.h \
+includes/operations/types_comparison_eq.hxx \
+includes/operations/matrix_transpose.h \
+includes/operations/matrix_kronecker.h \
+includes/operations/matrix_right_division.h \
+includes/operations/types_comparison_ne.hxx \
+includes/operations/types_multiplication.hxx \
+includes/operations/types_ldivide.hxx \
+includes/operations/types_or_and.hxx \
+includes/operations/matrix_left_division.h \
+includes/operations/types_power.hxx \
+includes/operations/matrix_finite.h \
+includes/operations/operations_tools.h \
+includes/operations/operations.hxx \
+includes/operations/operation_f.h \
+includes/operations/types_comparison_lt_le_gt_ge.hxx \
+includes/operations/invert_matrix.h \
+includes/operations/interface_addition.h \
+includes/operations/matrix_multiplication.h \
+includes/operations/matrix_division.h \
+includes/exps/floatexp.hxx \ 
+includes/exps/intexp.hxx \
+includes/exps/returnexp.hxx \
+includes/exps/doubleexp.hxx \
+includes/exps/dollarvar.hxx \
 includes/exps/commentexp.hxx \
-includes/exps/constexp.hxx \
+includes/exps/simplevar.hxx \
 includes/exps/continueexp.hxx \
-includes/exps/controlexp.hxx \
+includes/exps/matrixlineexp.hxx \
+includes/exps/ast.hxx \
+includes/exps/breakexp.hxx \
+includes/exps/mathexp.hxx \
+includes/exps/constexp.hxx \
+includes/exps/seqexp.hxx \
+includes/exps/boolexp.hxx \
 includes/exps/dec.hxx \
+includes/exps/logicalopexp.hxx \
 includes/exps/decls.hxx \
 includes/exps/decs.hxx \
-includes/exps/dollarvar.hxx \
-includes/exps/doubleexp.hxx \
-includes/exps/exp.hxx \
-includes/exps/fieldexp.hxx \
-includes/exps/floatexp.hxx \
-includes/exps/forexp.hxx \
-includes/exps/functiondec.hxx \
-includes/exps/ifexp.hxx \
-includes/exps/intexp.hxx \
-includes/exps/listexp.hxx \
-includes/exps/location.hxx \
-includes/exps/logicalopexp.hxx \
-includes/exps/mathexp.hxx \
-includes/exps/matrixexp.hxx \
-includes/exps/matrixlineexp.hxx \
-includes/exps/nilexp.hxx \
-includes/exps/notexp.hxx \
-includes/exps/opexp.hxx \
-includes/exps/returnexp.hxx \
-includes/exps/selectexp.hxx \
-includes/exps/seqexp.hxx \
-includes/exps/simplevar.hxx \
-includes/exps/stringexp.hxx \
-includes/exps/token.hxx \
 includes/exps/transposeexp.hxx \
-includes/exps/trycatchexp.hxx \
-includes/exps/vardec.hxx \
-includes/exps/var.hxx \
+includes/exps/ifexp.hxx \
 includes/exps/whileexp.hxx \
-includes/debugvisitor.hxx \
-includes/deserializervisitor.hxx \
-includes/dummyvisitor.hxx \
-includes/dynlib_ast_tools.hxx \
-includes/execvisitor.hxx \
-includes/expHistory.hxx \
-includes/macrovarvisitor.hxx \
-includes/mutevisitor.hxx \
-includes/printvisitor.hxx \
-includes/runvisitor.hxx \
-includes/scilabexception.hxx \
-includes/serializervisitor.hxx \
-includes/shortcutvisitor.hxx \
-includes/stepvisitor.hxx \
-includes/timedvisitor.hxx \
-includes/visitor.hxx \
-includes/visitor_common.hxx
+includes/exps/alldec.hxx \
+includes/exps/callexp.hxx \
+includes/exps/caseexp.hxx \
+includes/exps/assignexp.hxx \
+includes/exps/all.hxx \
+includes/exps/location.hxx \
+includes/exps/arraylistexp.hxx \
+includes/exps/trycatchexp.hxx \
+includes/exps/stringexp.hxx \
+includes/exps/var.hxx \
+includes/exps/cellcallexp.hxx \
+includes/exps/exp.hxx \
+includes/exps/arraylistvar.hxx \
+includes/exps/colonvar.hxx \
+includes/exps/vardec.hxx \
+includes/exps/selectexp.hxx \
+includes/exps/stepvisitor.hxx \
+includes/exps/controlexp.hxx \
+includes/exps/assignlistexp.hxx \
+includes/exps/anydecs.hxx \
+includes/exps/matrixexp.hxx \
+includes/exps/allexp.hxx \
+includes/exps/allvar.hxx \
+includes/exps/notexp.hxx \
+includes/exps/listexp.hxx \
+includes/exps/cellexp.hxx \
+includes/exps/fieldexp.hxx \
+includes/exps/functiondec.hxx \
+includes/exps/token.hxx \
+includes/exps/nilexp.hxx \
+includes/exps/forexp.hxx \
+includes/exps/opexp.hxx \
+includes/ast/printvisitor.hxx \
+includes/ast/timedvisitor.hxx \
+includes/ast/visitor.hxx \
+includes/ast/mutevisitor.hxx \
+includes/ast/serializervisitor.hxx \
+includes/ast/expHistory.hxx \
+includes/ast/scilabexception.hxx \
+includes/ast/shortcutvisitor.hxx \
+includes/ast/macrovarvisitor.hxx \
+includes/ast/debugvisitor.hxx \
+includes/ast/visitor_common.hxx \
+includes/ast/stepvisitor.hxx \
+includes/ast/runvisitor.hxx \
+includes/ast/deserializervisitor.hxx \
+includes/ast/dynlib_ast.h \
+includes/ast/execvisitor.hxx \
+includes/ast/dummyvisitor.hxx \
+includes/types/dollar.hxx \
+includes/types/user.hxx \
+includes/types/bool.hxx \
+includes/types/colon.hxx \
+includes/types/listundefined.hxx \
+includes/types/sparse.hxx \
+includes/types/mlist.hxx \
+includes/types/listinsert.hxx \
+includes/types/listdelete.hxx \
+includes/types/pointer.hxx \
+includes/types/matrixiterator.hxx \
+includes/types/function.hxx \
+includes/types/c_gateway_prototype.h \
+includes/types/macro.hxx \
+includes/types/threadId.hxx \
+includes/types/singlestruct.hxx \
+includes/types/double.hxx \
+includes/types/alltypes.hxx \
+includes/types/int.hxx \
+includes/types/tostring_common.hxx \
+includes/types/inspector.hxx \
+includes/types/type_traits.hxx \
+includes/types/container.hxx \
+includes/types/gatewaystruct.hxx \
+includes/types/arrayof.hxx \
+includes/types/typesdecl.hxx \
+includes/types/overload.hxx \
+includes/types/callable.hxx \
+includes/types/void.hxx \
+includes/types/graphichandle.hxx \
+includes/types/cpp_gateway_prototype.hxx \
+includes/types/types.hxx \
+includes/types/implicitlist.hxx \
+includes/types/library.hxx \
+includes/types/list.hxx \
+includes/types/cell.hxx \
+includes/types/internal.hxx \
+includes/types/polynom.hxx \
+includes/types/singlepoly.hxx \
+includes/types/struct.hxx \
+includes/types/macrofile.hxx \
+includes/types/file.hxx \
+includes/types/tlist.hxx \
+includes/types/listoperation.hxx \
+includes/types/types_tools.hxx \
+includes/types/sparseOp.hxx \
+includes/types/string.hxx \
+includes/parse/parsescilab.hxx \
+includes/parse/parser_private.hxx \
+includes/parse/parser.hxx \
+includes/parse/isatty.hxx \
+includes/parse/parse.hxx \
+includes/symbol/symbol.hxx \
+includes/symbol/context.hxx \
+includes/symbol/variables.hxx \
+includes/symbol/libraries.hxx \
+includes/system_env/setenvvar.h \
+includes/system_env/sci_simpMode.h \
+includes/system_env/dynamic_module.h \
+includes/system_env/reference_modules.h \
+includes/system_env/sci_tmpdir.h \
+includes/system_env/context_get.h \
+includes/system_env/lasterror.h \
+includes/system_env/promptmode.h \
+includes/system_env/sci_path.h \
+includes/system_env/sci_mode.h \
+includes/system_env/sci_ieee.h \
+includes/system_env/formatmode.h \
+includes/system_env/sci_home.h \
+includes/system_env/warningmode.h \
+includes/system_env/configvariable.hxx \
+includes/system_env/home.h
+
 
 include $(top_srcdir)/Makefile.incl.am

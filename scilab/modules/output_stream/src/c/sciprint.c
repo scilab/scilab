@@ -15,7 +15,7 @@
 #include "diary.h"
 #include "stack-def.h" /* bsiz */
 #include "sci_mode.h"
-#include "../../console/includes/ConsolePrintf.h"
+#include "ConsolePrintf.h"
 #ifdef _MSC_VER
 #include "TermPrintf.h"
 #endif

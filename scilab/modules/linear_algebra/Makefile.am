@@ -7,19 +7,20 @@ LINEAR_ALGEBRA_CPP_SOURCES = \
     src/cpp/scischur.cpp \
     src/cpp/schurSelect.cpp
 
-LINEAR_ALGEBRA_C_SOURCES = src/c/schurtable.c \
-src/c/issymmetric.c \
-src/c/lu.c \
-src/c/qr.c \
-src/c/hess.c \
-src/c/eigen.c \
-src/c/balanc.c \
-src/c/chol.c \
-src/c/svd.c \
-src/c/rcond.c \
-src/c/det.c \
-src/c/lsq.c \
-src/c/norm.c
+LINEAR_ALGEBRA_C_SOURCES = \
+    src/c/schurtable.c \
+    src/c/issymmetric.c \
+    src/c/lu.c \
+    src/c/qr.c \
+    src/c/hess.c \
+    src/c/eigen.c \
+    src/c/balanc.c \
+    src/c/chol.c \
+    src/c/svd.c \
+    src/c/rcond.c \
+    src/c/det.c \
+    src/c/lsq.c \
+    src/c/norm.c
 
 LINEAR_ALGEBRA_FORTRAN_SOURCES = \
     src/fortran/DGELSY1.f \
@@ -48,26 +49,27 @@ GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/sci_schur.cpp
 
 libscilinear_algebra_la_CPPFLAGS = \
--I$(srcdir)/includes/ \
--I$(srcdir)/src/c/ \
--I$(srcdir)/src/cpp/ \
--I$(top_srcdir)/modules/symbol/includes \
--I$(top_srcdir)/modules/types/includes \
--I$(top_srcdir)/modules/ast/includes \
--I$(top_srcdir)/modules/ast/includes/exps \
--I$(top_srcdir)/modules/output_stream/includes \
--I$(top_srcdir)/modules/api_scilab/includes \
--I$(top_srcdir)/modules/console/includes \
--I$(top_srcdir)/modules/threads/includes \
--I$(top_srcdir)/modules/system_env/includes \
--I$(top_srcdir)/modules/string/includes \
--I$(top_srcdir)/modules/elementary_functions/includes \
--I$(top_srcdir)/modules/dynamic_link/includes \
--I$(top_srcdir)/modules/operations/includes \
--I$(top_srcdir)/modules/dynamic_link/includes \
--I$(top_srcdir)/modules/localization/includes/ \
-$(EIGEN_CPPFLAGS) \
-$(AM_CPPFLAGS)
+    -I$(srcdir)/includes/ \
+    -I$(srcdir)/src/c/ \
+    -I$(srcdir)/src/cpp/ \
+    -I$(top_srcdir)/modules/ast/includes/ast/ \
+    -I$(top_srcdir)/modules/ast/includes/exps/ \
+    -I$(top_srcdir)/modules/ast/includes/operations/ \
+    -I$(top_srcdir)/modules/ast/includes/parse/ \
+    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+    -I$(top_srcdir)/modules/ast/includes/types/ \
+    -I$(top_srcdir)/modules/output_stream/includes \
+    -I$(top_srcdir)/modules/api_scilab/includes \
+    -I$(top_srcdir)/modules/console/includes \
+    -I$(top_srcdir)/modules/threads/includes \
+    -I$(top_srcdir)/modules/string/includes \
+    -I$(top_srcdir)/modules/elementary_functions/includes \
+    -I$(top_srcdir)/modules/dynamic_link/includes \
+    -I$(top_srcdir)/modules/dynamic_link/includes \
+    -I$(top_srcdir)/modules/localization/includes/ \
+    $(EIGEN_CPPFLAGS) \
+    $(AM_CPPFLAGS)
 
 if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libscilinear_algebra.la

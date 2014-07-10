@@ -1,0 +1,5 @@
+LIBRARY    sciconsole.dll
+
+
+EXPORTS
+linesmore

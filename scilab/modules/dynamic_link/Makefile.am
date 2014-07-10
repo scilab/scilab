@@ -15,7 +15,6 @@ DYNAMIC_LINK_CPP_SOURCES = \
     src/cpp/addinter.cpp
 
 GATEWAY_C_SOURCES = \
-    sci_gateway/c/gw_dynamic_link.c \
     sci_gateway/c/sci_call.c
 
 GATEWAY_CPP_SOURCES = \
@@ -30,18 +29,19 @@ GATEWAY_CPP_SOURCES = \
 libscidynamic_link_la_CPPFLAGS = \
 	-I$(srcdir)/includes/ \
 	-I$(srcdir)/src/c/ \
+    -I$(top_srcdir)/modules/ast/includes/ast/ \
+    -I$(top_srcdir)/modules/ast/includes/exps/ \
+    -I$(top_srcdir)/modules/ast/includes/operations/ \
+    -I$(top_srcdir)/modules/ast/includes/parse/ \
+    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+    -I$(top_srcdir)/modules/ast/includes/types/ \
 	-I$(top_srcdir)/modules/io/includes/ \
 	-I$(top_srcdir)/modules/api_scilab/includes/ \
-	-I$(top_srcdir)/modules/operations/includes/ \
-	-I$(top_srcdir)/modules/symbol/includes/ \
-	-I$(top_srcdir)/modules/types/includes/ \
 	-I$(top_srcdir)/modules/output_stream/includes/ \
 	-I$(top_srcdir)/modules/functions_manager/includes/ \
-	-I$(top_srcdir)/modules/ast/includes/ \
-	-I$(top_srcdir)/modules/ast/includes/exps \
 	-I$(top_srcdir)/modules/string/includes/ \
 	-I$(top_srcdir)/modules/fileio/includes/ \
-	-I$(top_srcdir)/modules/system_env/includes/ \
 	-I$(top_srcdir)/modules/threads/includes/ \
 	-I$(top_srcdir)/modules/localization/includes/ \
 	$(EIGEN_CPPFLAGS) \
@@ -80,7 +80,9 @@ libscidynamic_link_la_root_DATA =  license.txt
 
 #### dynamic_link : init scripts #### 
 libscidynamic_link_la_etcdir = $(mydatadir)/etc
-libscidynamic_link_la_etc_DATA = etc/dynamic_link.quit etc/dynamic_link.start
+libscidynamic_link_la_etc_DATA = \
+    etc/dynamic_link.quit \
+    etc/dynamic_link.start
 
 #### dynamic_link : internal functions ####
 MACROSDIRSEXT = macros/utils

@@ -113,6 +113,9 @@
     <ClInclude Include="src\jni\Driver.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="includes\xs2file.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="graphic_export.rc">

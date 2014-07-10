@@ -191,12 +191,12 @@ static void SWIGUNUSED SWIG_JavaThrowException(JNIEnv *jenv, SWIG_JavaExceptionC
 #define ENABLE_HELPERS
 #include "javasci2_helper.h"
 #include "sci_malloc.h"
-#include "../../../call_scilab/includes/call_scilab.h"
-#include "../../../call_scilab/includes/fromjava.h"
-#include "../../../api_scilab/includes/api_scilab.h"
-#include "../../../system_env/includes/lasterror.h"
-#include "../../../modules/graphic_objects/includes/FigureList.h"
-#include "../../../core/includes/sci_types.h"
+#include "call_scilab.h"
+#include "fromjava.h"
+#include "api_scilab.h"
+#include "lasterror.h"
+#include "FigureList.h"
+#include "sci_types.h"
 
 
 #ifdef __cplusplus

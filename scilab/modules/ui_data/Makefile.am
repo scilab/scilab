@@ -28,23 +28,26 @@ libsciui_data_la_etc_DATA = \
 	etc/XConfiguration-variables.xml \
 	etc/XConfiguration-variables.xsl
 
-UI_DATA_JNI_SOURCES = src/jni/BrowseVar.cpp \
-		      src/jni/EditVar.cpp \
-		      src/jni/FileBrowser.cpp
+UI_DATA_JNI_SOURCES = \
+    src/jni/BrowseVar.cpp \
+    src/jni/EditVar.cpp \
+	src/jni/FileBrowser.cpp
 
-UI_DATA_C_SOURCES = src/jni/ui_data_wrap.c \
-                    src/c/PutScilabVariable.c
+UI_DATA_C_SOURCES = \
+    src/jni/ui_data_wrap.c \
+    src/c/PutScilabVariable.c
 
-UI_DATA_CXX_SOURCES = src/cpp/BrowseVarManager.cpp \
-		      src/cpp/FileBrowserChDir.cpp
+UI_DATA_CXX_SOURCES = \
+    src/cpp/BrowseVarManager.cpp \
+    src/cpp/FileBrowserChDir.cpp
 
 GIWS_WRAPPERS = \
-src/jni/BrowseVar.giws.xml \
-src/jni/EditVar.giws.xml \
-src/jni/FileBrowser.giws.xml
+    src/jni/BrowseVar.giws.xml \
+    src/jni/EditVar.giws.xml \
+    src/jni/FileBrowser.giws.xml
 
 SWIG_WRAPPERS = \
-src/jni/ui_data.i
+    src/jni/ui_data.i
 
 BUILT_SOURCES=
 if GIWS
@@ -58,35 +61,49 @@ endif
 GATEWAY_C_SOURCES = sci_gateway/c/gw_ui_data.c
 
 
-GATEWAY_CXX_SOURCES = sci_gateway/cpp/sci_editvar.cpp \
-		      sci_gateway/cpp/sci_browsevar.cpp \
-		      sci_gateway/cpp/sci_filebrowser.cpp \
-			sci_gateway/cpp/sci_updatebrowsevar.cpp \
-			sci_gateway/cpp/sci_closeEditvar.cpp
+GATEWAY_CXX_SOURCES = \
+    sci_gateway/cpp/sci_editvar.cpp \
+    sci_gateway/cpp/sci_browsevar.cpp \
+    sci_gateway/cpp/sci_filebrowser.cpp \
+    sci_gateway/cpp/sci_updatebrowsevar.cpp \
+    sci_gateway/cpp/sci_closeEditvar.cpp
 
 
-libsciui_data_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
-			-I$(srcdir)/includes/ \
-			-I$(srcdir)/src/cpp/ \
-			-I$(srcdir)/src/c/ \
-			-I$(srcdir)/src/jni/ \
-	 		-I$(top_srcdir)/modules/jvm/includes/ \
-			-I$(top_srcdir)/modules/output_stream/includes/ \
-			-I$(top_srcdir)/modules/operations/includes/ \
-            -I$(top_srcdir)/modules/system_env/includes/ \
-			-I$(top_srcdir)/modules/commons/src/jni/ \
-			-I$(top_srcdir)/modules/localization/includes/ \
-			-I$(top_srcdir)/modules/api_scilab/includes/ \
-			-I$(top_srcdir)/modules/fileio/includes/ \
-			-I$(top_srcdir)/modules/string/includes/ \
-			$(AM_CPPFLAGS)
+libsciui_data_la_CPPFLAGS = \
+    $(JAVA_JNI_INCLUDE) \
+    -I$(srcdir)/includes/ \
+    -I$(srcdir)/src/cpp/ \
+    -I$(srcdir)/src/c/ \
+    -I$(srcdir)/src/jni/ \
+    -I$(top_srcdir)/modules/ast/includes/ast/ \
+    -I$(top_srcdir)/modules/ast/includes/exps/ \
+    -I$(top_srcdir)/modules/ast/includes/operations/ \
+    -I$(top_srcdir)/modules/ast/includes/parse/ \
+    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+    -I$(top_srcdir)/modules/ast/includes/types/ \
+    -I$(top_srcdir)/modules/jvm/includes/ \
+    -I$(top_srcdir)/modules/output_stream/includes/ \
+    -I$(top_srcdir)/modules/commons/src/jni/ \
+    -I$(top_srcdir)/modules/localization/includes/ \
+    -I$(top_srcdir)/modules/api_scilab/includes/ \
+    -I$(top_srcdir)/modules/fileio/includes/ \
+    -I$(top_srcdir)/modules/string/includes/ \
+    $(AM_CPPFLAGS)
 
 # Without the ui_data module
-libsciui_data_disable_la_CPPFLAGS = -I$(srcdir)/includes/ \
-			-I$(top_srcdir)/modules/localization/includes/ \
-			-I$(top_srcdir)/modules/output_stream/includes \
-			-I$(top_srcdir)/modules/system_env/includes \
-			$(AM_CPPFLAGS)
+libsciui_data_disable_la_CPPFLAGS = \
+    -I$(srcdir)/includes/ \
+    -I$(top_srcdir)/modules/ast/includes/ast/ \
+    -I$(top_srcdir)/modules/ast/includes/exps/ \
+    -I$(top_srcdir)/modules/ast/includes/operations/ \
+    -I$(top_srcdir)/modules/ast/includes/parse/ \
+    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+    -I$(top_srcdir)/modules/ast/includes/types/ \
+    -I$(top_srcdir)/modules/localization/includes/ \
+    -I$(top_srcdir)/modules/output_stream/includes \
+    $(AM_CPPFLAGS)
 
 UI_DATA_DISABLE_C_SOURCES = src/noui_data/noui_data.c
 libsciui_data_disable_la_SOURCES = $(UI_DATA_DISABLE_C_SOURCES)
@@ -120,7 +137,8 @@ libsciui_data_la_sci_gateway_DATA = sci_gateway/ui_data_gateway.xml
 # Generated with:
 #    $ find images/ -type f -printf "%p \\\\\n" -name *.svg -or -name *.gif -or -name *.jpg -or -name *.png |sort -u
 libsciui_data_la_iconsdir=$(mydatadir)/
-nobase_libsciui_data_la_icons_DATA = images/icons/16x16/mimetypes/array_up.png \
+nobase_libsciui_data_la_icons_DATA = \
+images/icons/16x16/mimetypes/array_up.png \
 images/icons/16x16/mimetypes/boolean.png \
 images/icons/16x16/mimetypes/cell.png \
 images/icons/16x16/mimetypes/double.png \

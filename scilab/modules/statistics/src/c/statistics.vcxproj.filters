@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
@@ -15,15 +15,15 @@
     <Filter Include="Resource Files">
       <UniqueIdentifier>{b28ebfa3-78c3-46ad-b5f4-0fa846e6994b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Libraries Dependencies">
+      <UniqueIdentifier>{674c2ade-7e52-4f03-9a6c-0dbf6581c1bb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CdfBase.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="DllMainStatistics.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\gw_statistics.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ipmpar1.c">
@@ -48,17 +48,17 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="core_import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\statistics.iss" />
     <None Include="..\..\sci_gateway\statistics_gateway.xml" />
     <None Include="..\..\locales\statistics.pot">
       <Filter>localization</Filter>
     </None>
+    <None Include="core_import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
     <None Include="dcd_f_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
+      <Filter>Libraries Dependencies</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

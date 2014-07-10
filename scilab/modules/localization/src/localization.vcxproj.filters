@@ -32,9 +32,6 @@
     <None Include="core_import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
-    <None Include="System_env_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
     <None Include="localization_export.def">
       <Filter>Libraries Dependencies\Export</Filter>
     </None>
@@ -43,6 +40,12 @@
     <None Include="..\Makefile.am" />
     <None Include="..\locales\localization.pot">
       <Filter>localization</Filter>
+    </None>
+    <None Include="ast_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
+    <None Include="fileio_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

@@ -643,46 +643,55 @@ HELP_CHAPTERFILE = addchapter.sce
 HELP_CHAPTERLANG = en_US fr_FR pt_BR
 
 #### List of the gateway files ####
-@MATIO_TRUE@GATEWAY_C_SOURCES = sci_gateway/c/gw_matio.c \
-@MATIO_TRUE@		    sci_gateway/c/sci_matfile_open.c \
-@MATIO_TRUE@		    sci_gateway/c/sci_matfile_close.c \
-@MATIO_TRUE@		    sci_gateway/c/sci_matfile_listvar.c \
-@MATIO_TRUE@		    sci_gateway/c/sci_matfile_varreadnext.c \
-@MATIO_TRUE@		    sci_gateway/c/sci_matfile_varwrite.c
+@MATIO_TRUE@GATEWAY_C_SOURCES = \
+@MATIO_TRUE@    sci_gateway/c/gw_matio.c \
+@MATIO_TRUE@    sci_gateway/c/sci_matfile_open.c \
+@MATIO_TRUE@    sci_gateway/c/sci_matfile_close.c \
+@MATIO_TRUE@    sci_gateway/c/sci_matfile_listvar.c \
+@MATIO_TRUE@    sci_gateway/c/sci_matfile_varreadnext.c \
+@MATIO_TRUE@    sci_gateway/c/sci_matfile_varwrite.c
 
 @MATIO_FALSE@MATIO_C_SOURCES = 
 
 #### List of the C files ####
-@MATIO_TRUE@MATIO_C_SOURCES = src/c/matfile_manager.c \
-@MATIO_TRUE@		  src/c/CreateMatlabVariable.c \
-@MATIO_TRUE@		  src/c/CreateBooleanVariable.c \
-@MATIO_TRUE@		  src/c/CreateCharVariable.c \
-@MATIO_TRUE@		  src/c/CreateDoubleVariable.c \
-@MATIO_TRUE@		  src/c/CreateIntegerVariable.c \
-@MATIO_TRUE@		  src/c/CreateHyperMatrixVariable.c \
-@MATIO_TRUE@		  src/c/CreateStructVariable.c \
-@MATIO_TRUE@		  src/c/CreateSparseVariable.c \
-@MATIO_TRUE@		  src/c/CreateCellVariable.c \
-@MATIO_TRUE@		  src/c/GetMatlabVariable.c \
-@MATIO_TRUE@		  src/c/GetDoubleVariable.c \
-@MATIO_TRUE@		  src/c/GetCharVariable.c \
-@MATIO_TRUE@		  src/c/GetIntegerVariable.c \
-@MATIO_TRUE@		  src/c/GetMlistVariable.c \
-@MATIO_TRUE@		  src/c/GetCellVariable.c \
-@MATIO_TRUE@		  src/c/GetStructVariable.c \
-@MATIO_TRUE@		  src/c/GetSparseVariable.c
+@MATIO_TRUE@MATIO_C_SOURCES = \
+@MATIO_TRUE@    src/c/matfile_manager.c \
+@MATIO_TRUE@    src/c/CreateMatlabVariable.c \
+@MATIO_TRUE@    src/c/CreateBooleanVariable.c \
+@MATIO_TRUE@    src/c/CreateCharVariable.c \
+@MATIO_TRUE@    src/c/CreateDoubleVariable.c \
+@MATIO_TRUE@    src/c/CreateIntegerVariable.c \
+@MATIO_TRUE@    src/c/CreateHyperMatrixVariable.c \
+@MATIO_TRUE@    src/c/CreateStructVariable.c \
+@MATIO_TRUE@    src/c/CreateSparseVariable.c \
+@MATIO_TRUE@    src/c/CreateCellVariable.c \
+@MATIO_TRUE@    src/c/GetMatlabVariable.c \
+@MATIO_TRUE@    src/c/GetDoubleVariable.c \
+@MATIO_TRUE@    src/c/GetCharVariable.c \
+@MATIO_TRUE@    src/c/GetIntegerVariable.c \
+@MATIO_TRUE@    src/c/GetMlistVariable.c \
+@MATIO_TRUE@    src/c/GetCellVariable.c \
+@MATIO_TRUE@    src/c/GetStructVariable.c \
+@MATIO_TRUE@    src/c/GetSparseVariable.c
 
 @MATIO_TRUE@libscimatio_la_LDFLAGS = $(AM_LDFLAGS)
 @MATIO_FALSE@GATEWAY_CPP_SOURCES = 
-libscimatio_la_CPPFLAGS = -I$(srcdir)/includes/ \
-			-I$(srcdir)/src/c/ \
-			-I$(top_srcdir)/modules/api_scilab/includes/ \
-			-I$(top_srcdir)/modules/localization/includes/ \
-			-I$(top_srcdir)/modules/output_stream/includes/ \
-			-I$(top_srcdir)/modules/operations/includes/ \
-			-I$(top_srcdir)/modules/string/includes/ \
-			$(MATIO_CFLAGS) \
-			$(AM_CPPFLAGS)
+libscimatio_la_CPPFLAGS = \
+    -I$(srcdir)/includes/ \
+    -I$(srcdir)/src/c/ \
+    -I$(top_srcdir)/modules/ast/includes/ast/ \
+    -I$(top_srcdir)/modules/ast/includes/exps/ \
+    -I$(top_srcdir)/modules/ast/includes/operations/ \
+    -I$(top_srcdir)/modules/ast/includes/parse/ \
+    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+    -I$(top_srcdir)/modules/ast/includes/types/ \
+    -I$(top_srcdir)/modules/api_scilab/includes/ \
+    -I$(top_srcdir)/modules/localization/includes/ \
+    -I$(top_srcdir)/modules/output_stream/includes/ \
+    -I$(top_srcdir)/modules/string/includes/ \
+    $(MATIO_CFLAGS) \
+    $(AM_CPPFLAGS)
 
 pkglib_LTLIBRARIES = libscimatio.la
 noinst_LTLIBRARIES = libscimatio-algo.la

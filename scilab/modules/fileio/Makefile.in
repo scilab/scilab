@@ -765,16 +765,17 @@ libscifileio_la_CPPFLAGS = \
     -I$(srcdir)/includes/ \
 	-I$(srcdir)/src/c/ \
 	-I$(srcdir)/src/cpp/ \
+    -I$(top_srcdir)/modules/ast/includes/ast/ \
+    -I$(top_srcdir)/modules/ast/includes/exps/ \
+    -I$(top_srcdir)/modules/ast/includes/operations/ \
+    -I$(top_srcdir)/modules/ast/includes/parse/ \
+    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+    -I$(top_srcdir)/modules/ast/includes/types/ \
 	-I$(top_srcdir)/modules/api_scilab/includes \
 	-I$(top_srcdir)/modules/output_stream/includes \
-	-I$(top_srcdir)/modules/operations/includes \
-	-I$(top_srcdir)/modules/types/includes \
 	-I$(top_srcdir)/modules/functions_manager/includes \
-	-I$(top_srcdir)/modules/ast/includes \
-	-I$(top_srcdir)/modules/ast/includes/exps \
-	-I$(top_srcdir)/modules/symbol/includes \
 	-I$(top_srcdir)/modules/string/includes \
-	-I$(top_srcdir)/modules/system_env/includes \
 	-I$(top_srcdir)/modules/io/includes \
 	-I$(top_srcdir)/modules/shell/includes \
 	-I$(top_srcdir)/modules/threads/includes \

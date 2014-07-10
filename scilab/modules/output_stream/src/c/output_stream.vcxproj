@@ -80,27 +80,24 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;../../includes;../jni;../cpp;../../../core/includes;;../../../dynamic_link/includes;../../../api_scilab/includes;../../../jvm/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../localization/includes;../../../../libs/intl;../../../string/includes;../../../windows_tools/includes;../../../system_env/includes;../../../operations/includes;../../../types/includes;../../../console/includes;../../../console/src/c/windows;../../../threads/includes;../../../ast/includes;../../../ast/includes/exps;../../../../libs/Eigen/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../jni;../cpp;../../../../libs/Eigen/includes;../../../../libs/intl;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../core/includes;../../../dynamic_link/includes;../../../api_scilab/includes;../../../jvm/includes;../../../localization/includes;../../../string/includes;../../../windows_tools/includes;../../../console/includes;../../../console/src/c/windows;../../../threads/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;OUTPUT_STREAM_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)fileio_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)fileio.lib"  1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)Console_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)sciconsole.lib" 1&gt;NUL 2&gt;NUL
+      <Command>lib /DEF:"$(ProjectDir)Console_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)sciconsole.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)String_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)string.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)Scilab_Windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)scilab_windows.lib"  1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)scilocalization.lib"  1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Output_stream_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)Output_stream_f.lib"  1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)api_scilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)api_scilab.lib"  1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)system_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)system_env.lib"  1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)core_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)core.lib"  1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)core_f.lib"  1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)ast_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)ast.lib"  1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core.lib;fileio.lib;sciconsole.lib;string.lib;scilocalization.lib;output_stream_f.lib;api_scilab.lib;system_env.lib;core_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ast.lib;core.lib;sciconsole.lib;string.lib;output_stream_f.lib;core_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>output_stream_export.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -119,27 +116,24 @@ lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;../../includes;../jni;../cpp;../../../core/includes;;../../../dynamic_link/includes;../../../api_scilab/includes;../../../jvm/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../localization/includes;../../../../libs/intl;../../../string/includes;../../../windows_tools/includes;../../../system_env/includes;../../../operations/includes;../../../types/includes;../../../console/includes;../../../console/src/c/windows;../../../threads/includes;../../../ast/includes;../../../ast/includes/exps;../../../../libs/Eigen/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../jni;../cpp;../../../../libs/Eigen/includes;../../../../libs/intl;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../core/includes;../../../dynamic_link/includes;../../../api_scilab/includes;../../../jvm/includes;../../../localization/includes;../../../string/includes;../../../windows_tools/includes;../../../console/includes;../../../console/src/c/windows;../../../threads/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;OUTPUT_STREAM_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)fileio_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)fileio.lib"  1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)Console_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)sciconsole.lib" 1&gt;NUL 2&gt;NUL
+      <Command>lib /DEF:"$(ProjectDir)Console_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)sciconsole.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)String_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)string.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)Scilab_Windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)scilab_windows.lib"  1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)scilocalization.lib"  1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Output_stream_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)Output_stream_f.lib"  1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)api_scilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)api_scilab.lib"  1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)system_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)system_env.lib"  1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)core_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)core.lib"  1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)core_f.lib"  1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)ast_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)ast.lib"  1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core.lib;fileio.lib;sciconsole.lib;string.lib;scilocalization.lib;output_stream_f.lib;api_scilab.lib;system_env.lib;core_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ast.lib;core.lib;sciconsole.lib;string.lib;output_stream_f.lib;core_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>output_stream_export.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -156,7 +150,7 @@ lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;../../includes;../jni;../cpp;../../../core/includes;;../../../dynamic_link/includes;../../../api_scilab/includes;../../../jvm/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../localization/includes;../../../../libs/intl;../../../string/includes;../../../windows_tools/includes;../../../system_env/includes;../../../operations/includes;../../../types/includes;../../../console/includes;../../../console/src/c/windows;../../../threads/includes;../../../ast/includes;../../../ast/includes/exps;../../../../libs/Eigen/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../jni;../cpp;../../../../libs/Eigen/includes;../../../../libs/intl;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../core/includes;../../../dynamic_link/includes;../../../api_scilab/includes;../../../jvm/includes;../../../localization/includes;../../../string/includes;../../../windows_tools/includes;../../../console/includes;../../../console/src/c/windows;../../../threads/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;OUTPUT_STREAM_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -165,20 +159,17 @@ lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)fileio_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)fileio.lib"  1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)Console_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)sciconsole.lib" 1&gt;NUL 2&gt;NUL
+      <Command>lib /DEF:"$(ProjectDir)Console_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)sciconsole.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)String_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)string.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)Scilab_Windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)scilab_windows.lib"  1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)scilocalization.lib"  1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Output_stream_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)Output_stream_f.lib"  1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)api_scilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)api_scilab.lib"  1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)system_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)system_env.lib"  1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)core_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)core.lib"  1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)core_f.lib"  1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)ast_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)ast.lib"  1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core.lib;fileio.lib;sciconsole.lib;string.lib;scilocalization.lib;output_stream_f.lib;api_scilab.lib;system_env.lib;core_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ast.lib;core.lib;sciconsole.lib;string.lib;output_stream_f.lib;core_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>output_stream_export.def</ModuleDefinitionFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
@@ -200,7 +191,7 @@ lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;../../includes;../jni;../cpp;../../../core/includes;;../../../dynamic_link/includes;../../../api_scilab/includes;../../../jvm/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../localization/includes;../../../../libs/intl;../../../string/includes;../../../windows_tools/includes;../../../system_env/includes;../../../operations/includes;../../../types/includes;../../../console/includes;../../../console/src/c/windows;../../../threads/includes;../../../ast/includes;../../../ast/includes/exps;../../../../libs/Eigen/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../jni;../cpp;../../../../libs/Eigen/includes;../../../../libs/intl;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../core/includes;../../../dynamic_link/includes;../../../api_scilab/includes;../../../jvm/includes;../../../localization/includes;../../../string/includes;../../../windows_tools/includes;../../../console/includes;../../../console/src/c/windows;../../../threads/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;OUTPUT_STREAM_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -209,20 +200,17 @@ lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)fileio_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)fileio.lib"  1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)Console_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)sciconsole.lib" 1&gt;NUL 2&gt;NUL
+      <Command>lib /DEF:"$(ProjectDir)Console_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)sciconsole.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)String_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)string.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)Scilab_Windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)scilab_windows.lib"  1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)scilocalization.lib"  1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Output_stream_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)Output_stream_f.lib"  1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)api_scilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)api_scilab.lib"  1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)system_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)system_env.lib"  1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)core_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)core.lib"  1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)core_f.lib"  1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)ast_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)ast.lib"  1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core.lib;fileio.lib;sciconsole.lib;string.lib;scilocalization.lib;output_stream_f.lib;api_scilab.lib;system_env.lib;core_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ast.lib;core.lib;sciconsole.lib;string.lib;output_stream_f.lib;core_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>output_stream_export.def</ModuleDefinitionFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
@@ -261,14 +249,12 @@ lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\locales\output_stream.pot" />
-    <None Include="api_scilab_Import.def" />
     <None Include="Console_Import.def" />
     <None Include="Core_f_Import.def" />
     <None Include="core_import.def" />
     <None Include="Localization_Import.def" />
     <None Include="output_stream_f_Import.def" />
     <None Include="String_Import.def" />
-    <None Include="System_env_Import.def" />
     <None Include="output_stream_export.def" />
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\output_stream.iss" />
@@ -281,6 +267,9 @@ lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ProjectReference Include="..\..\..\..\tools\Dumpexts\Dumpexts.vcxproj">
       <Project>{3170e4c2-1173-4264-a222-7ee8ccb3ddf7}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\localization\src\localization.vcxproj">
+      <Project>{ecffeb0c-1eda-45ee-9a10-b18143852e17}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

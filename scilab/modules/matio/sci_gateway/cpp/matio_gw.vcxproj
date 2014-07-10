@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -80,7 +80,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../src/c;../../includes;../../../functions_manager/includes;../../../types/includes;../../../symbol/includes;../../../ast/includes;../../../elementary_functions/includes;../../../core/includes;../../../operations/includes;../../../api_scilab/includes;../../../localization/includes;../../../../libs/intl;../../../../libs/matio;../../../../libs/zlib;../../../output_stream/includes;../../../string/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../src/c;../../includes;../../../functions_manager/includes;../../../elementary_functions/includes;../../../core/includes;../../../ast/includes/operations;../../../api_scilab/includes;../../../localization/includes;../../../../libs/intl;../../../../libs/matio;../../../../libs/zlib;../../../output_stream/includes;../../../string/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;MATIO_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -104,7 +104,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../src/c;../../includes;../../../functions_manager/includes;../../../types/includes;../../../symbol/includes;../../../ast/includes;../../../elementary_functions/includes;../../../core/includes;../../../operations/includes;../../../api_scilab/includes;../../../localization/includes;../../../../libs/intl;../../../../libs/matio;../../../../libs/zlib;../../../output_stream/includes;../../../string/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../src/c;../../includes;../../../functions_manager/includes;../../../elementary_functions/includes;../../../core/includes;../../../ast/includes/operations;../../../api_scilab/includes;../../../localization/includes;../../../../libs/intl;../../../../libs/matio;../../../../libs/zlib;../../../output_stream/includes;../../../string/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;MATIO_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -126,7 +126,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>../../src/c;../../includes;../../../functions_manager/includes;../../../types/includes;../../../symbol/includes;../../../ast/includes;../../../elementary_functions/includes;../../../core/includes;../../../operations/includes;../../../api_scilab/includes;../../../localization/includes;../../../../libs/intl;../../../../libs/matio;../../../../libs/zlib;../../../output_stream/includes;../../../string/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../src/c;../../includes;../../../functions_manager/includes;../../../elementary_functions/includes;../../../core/includes;../../../ast/includes/operations;../../../api_scilab/includes;../../../localization/includes;../../../../libs/intl;../../../../libs/matio;../../../../libs/zlib;../../../output_stream/includes;../../../string/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;MATIO_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -153,7 +153,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>../../src/c;../../includes;../../../functions_manager/includes;../../../types/includes;../../../symbol/includes;../../../ast/includes;../../../elementary_functions/includes;../../../core/includes;../../../operations/includes;../../../api_scilab/includes;../../../localization/includes;../../../../libs/intl;../../../../libs/matio;../../../../libs/zlib;../../../output_stream/includes;../../../string/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../src/c;../../includes;../../../functions_manager/includes;../../../elementary_functions/includes;../../../core/includes;../../../ast/includes/operations;../../../api_scilab/includes;../../../localization/includes;../../../../libs/intl;../../../../libs/matio;../../../../libs/zlib;../../../output_stream/includes;../../../string/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;MATIO_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -203,14 +203,6 @@
     </ProjectReference>
     <ProjectReference Include="..\..\..\output_stream\src\c\output_stream.vcxproj">
       <Project>{a5911cd7-f8e8-440c-a23e-4843a0636f3a}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\symbol\symbol.vcxproj">
-      <Project>{2c60033b-0dbd-4ca4-80d3-176c9be9ce2f}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\types\types.vcxproj">
-      <Project>{64e090da-dcb5-4f4d-93d7-e88ddec9c2ef}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="..\..\matio.vcxproj">
       <Project>{7757b22f-9512-4380-9e40-efd50575028d}</Project>

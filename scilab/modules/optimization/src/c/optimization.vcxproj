@@ -80,7 +80,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../includes;../../../dynamic_link/includes;../../../output_stream/includes;../../../localization/includes;../../../core/includes;../../../../libs/intl;../../../api_scilab/includes;../../../operations/includes;../../../system_env/includes;../../../types/includes;../../../ast/includes;../../../symbol/includes;../../../threads/includes;../../../string/includes;../../../console/includes;../../../elementary_functions/includes;../../../../libs/eigen/includes;../../../ast/includes/exps;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../../../libs/intl;../../../../libs/Eigen/includes;../../../dynamic_link/includes;../../../output_stream/includes;../../../localization/includes;../../../core/includes;../../../api_scilab/includes;../../../threads/includes;../../../string/includes;../../../console/includes;../../../elementary_functions/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;OPTIMIZATION_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -109,7 +109,7 @@ lib /DEF:"$(ProjectDir)core_f_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../includes;../../../dynamic_link/includes;../../../output_stream/includes;../../../localization/includes;../../../core/includes;../../../../libs/intl;../../../api_scilab/includes;../../../operations/includes;../../../system_env/includes;../../../types/includes;../../../ast/includes;../../../symbol/includes;../../../threads/includes;../../../string/includes;../../../console/includes;../../../elementary_functions/includes;../../../../libs/eigen/includes;../../../ast/includes/exps;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../../../libs/intl;../../../../libs/Eigen/includes;../../../dynamic_link/includes;../../../output_stream/includes;../../../localization/includes;../../../core/includes;../../../api_scilab/includes;../../../threads/includes;../../../string/includes;../../../console/includes;../../../elementary_functions/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;OPTIMIZATION_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -136,7 +136,7 @@ lib /DEF:"$(ProjectDir)core_f_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>../../includes;../../../dynamic_link/includes;../../../output_stream/includes;../../../localization/includes;../../../core/includes;../../../../libs/intl;../../../api_scilab/includes;../../../operations/includes;../../../system_env/includes;../../../types/includes;../../../ast/includes;../../../symbol/includes;../../../threads/includes;../../../string/includes;../../../console/includes;../../../elementary_functions/includes;../../../../libs/eigen/includes;../../../ast/includes/exps;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../../../libs/intl;../../../../libs/Eigen/includes;../../../dynamic_link/includes;../../../output_stream/includes;../../../localization/includes;../../../core/includes;../../../api_scilab/includes;../../../threads/includes;../../../string/includes;../../../console/includes;../../../elementary_functions/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;OPTIMIZATION_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -170,7 +170,7 @@ lib /DEF:"$(ProjectDir)core_f_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>../../includes;../../../dynamic_link/includes;../../../output_stream/includes;../../../localization/includes;../../../core/includes;../../../../libs/intl;../../../api_scilab/includes;../../../operations/includes;../../../system_env/includes;../../../types/includes;../../../ast/includes;../../../symbol/includes;../../../threads/includes;../../../string/includes;../../../console/includes;../../../elementary_functions/includes;../../../../libs/eigen/includes;../../../ast/includes/exps;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../../../libs/intl;../../../../libs/Eigen/includes;../../../dynamic_link/includes;../../../output_stream/includes;../../../localization/includes;../../../core/includes;../../../api_scilab/includes;../../../threads/includes;../../../string/includes;../../../console/includes;../../../elementary_functions/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;OPTIMIZATION_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -243,9 +243,6 @@ lib /DEF:"$(ProjectDir)core_f_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ProjectReference Include="..\..\..\api_scilab\api_scilab.vcxproj">
       <Project>{43c5bab1-1dca-4743-a183-77e0d42fe7d0}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\ast\ast-tools\ast-tools.vcxproj">
-      <Project>{1f4a0344-99ed-461b-bd53-1593788fb34d}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\ast\ast.vcxproj">
       <Project>{0d3fa25b-8116-44ec-a45e-260789daa3d9}</Project>
     </ProjectReference>
@@ -263,9 +260,6 @@ lib /DEF:"$(ProjectDir)core_f_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
       <Project>{ecffeb0c-1eda-45ee-9a10-b18143852e17}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\operations\operations.vcxproj">
-      <Project>{1bb396f7-ce61-4cfc-9c22-266b2cfb2e74}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\output_stream\src\c\output_stream.vcxproj">
       <Project>{a5911cd7-f8e8-440c-a23e-4843a0636f3a}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
@@ -273,21 +267,8 @@ lib /DEF:"$(ProjectDir)core_f_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ProjectReference Include="..\..\..\string\src\c\string.vcxproj">
       <Project>{8d45767a-9b03-4905-97f6-d2f3f79141ea}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\symbol\symbol.vcxproj">
-      <Project>{2c60033b-0dbd-4ca4-80d3-176c9be9ce2f}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\system_env\system_env.vcxproj">
-      <Project>{7ca60aef-9afa-4d06-af28-613c0aa27640}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\threads\threads.vcxproj">
       <Project>{50a1ffc8-adc2-4d9e-a2d0-5dcd63188ae9}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\types\types.vcxproj">
-      <Project>{64e090da-dcb5-4f4d-93d7-e88ddec9c2ef}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\types\typesmacro\typesmacro.vcxproj">
-      <Project>{9252a034-7f22-4cb1-a634-4577da69f2d0}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -88,7 +88,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
-      <AdditionalIncludeDirectories>../../includes;../../../symbol/includes;../../../types/includes;../../../core/includes;../../../localization/includes;../../../ast/includes;../../../api_scilab/includes;../../../../libs/intl;../../../operations/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../../../libs/intl;../../../core/includes;../../../localization/includes;../../../api_scilab/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
@@ -112,7 +112,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <AdditionalIncludeDirectories>../../includes;../../../symbol/includes;../../../types/includes;../../../core/includes;../../../localization/includes;../../../ast/includes;../../../api_scilab/includes;../../../../libs/intl;../../../operations/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../../../libs/intl;../../../core/includes;../../../localization/includes;../../../api_scilab/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
@@ -134,7 +134,7 @@
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <AdditionalIncludeDirectories>../../includes;../../../symbol/includes;../../../types/includes;../../../core/includes;../../../localization/includes;../../../ast/includes;../../../api_scilab/includes;../../../../libs/intl;../../../operations/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../../../libs/intl;../../../core/includes;../../../localization/includes;../../../api_scilab/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
@@ -161,7 +161,7 @@
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <AdditionalIncludeDirectories>../../includes;../../../symbol/includes;../../../types/includes;../../../core/includes;../../../localization/includes;../../../ast/includes;../../../api_scilab/includes;../../../../libs/intl;../../../operations/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../../../libs/intl;../../../core/includes;../../../localization/includes;../../../api_scilab/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
@@ -192,18 +192,9 @@
     <ClInclude Include="..\..\includes\statistics_gw.hxx" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\symbol\symbol.vcxproj">
-      <Project>{2c60033b-0dbd-4ca4-80d3-176c9be9ce2f}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\types\types.vcxproj">
-      <Project>{64e090da-dcb5-4f4d-93d7-e88ddec9c2ef}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\..\src\c\statistics.vcxproj">
       <Project>{fe9eb721-b3c1-41d8-b585-3fb3a0083cec}</Project>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\src\c\dcd_f_Import.def" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\..\..\..\bin\dcd_f.lib" />

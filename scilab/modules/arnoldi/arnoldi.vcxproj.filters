@@ -88,5 +88,6 @@
       <Filter>localization</Filter>
     </None>
     <None Include="locales\arnoldi.pot" />
+    <None Include="locales\arnoldi.pot" />
   </ItemGroup>
 </Project>

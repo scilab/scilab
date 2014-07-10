@@ -15,32 +15,32 @@ FUNCTION_MANAGER_CPP_SOURCES = \
     src/cpp/dynamic_modules.cpp \
     src/cpp/functions_manager.cpp
 
-pkglib_LTLIBRARIES 	= libscifunctions_manager.la
+pkglib_LTLIBRARIES = libscifunctions_manager.la
 
-libscifunctions_manager_la_SOURCES 	= \
+libscifunctions_manager_la_SOURCES = \
     $(FUNCTION_MANAGER_CPP_SOURCES)
 
-libscifunctions_manager_la_CPPFLAGS	= \
+libscifunctions_manager_la_CPPFLAGS = \
     -Iincludes/ \
+    -I$(top_srcdir)/modules/ast/includes/ast/ \
+    -I$(top_srcdir)/modules/ast/includes/exps/ \
+    -I$(top_srcdir)/modules/ast/includes/operations/ \
+    -I$(top_srcdir)/modules/ast/includes/parse/ \
+    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+    -I$(top_srcdir)/modules/ast/includes/types/ \
     -I$(top_srcdir)/modules/dynamic_link/includes \
 	-I$(top_builddir)/modules/api_scilab/includes/ \
-	-I$(top_builddir)/modules/ast/includes/ \
-	-I$(top_srcdir)/modules/ast/includes/exps \
 	-I$(top_builddir)/modules/console/includes/ \
     -I$(top_builddir)/modules/core/includes/ \
 	-I$(top_builddir)/modules/elementary_functions/includes/ \
 	-I$(top_builddir)/modules/fileio/includes/ \
 	-I$(top_builddir)/modules/jvm/includes/ \
 	-I$(top_builddir)/modules/localization/includes/ \
-	-I$(top_builddir)/modules/parse/includes/ \
-	-I$(top_builddir)/modules/operations/includes/ \
 	-I$(top_builddir)/modules/output_stream/includes/ \
     -I$(top_builddir)/modules/signal_processing/includes/ \
 	-I$(top_builddir)/modules/string/includes/ \
-	-I$(top_builddir)/modules/symbol/includes/ \
-	-I$(top_builddir)/modules/system_env/includes/ \
 	-I$(top_builddir)/modules/threads/includes/ \
-    -I$(top_builddir)/modules/types/includes/ \
 	$(AM_CPPGFLAGS) \
     $(EIGEN_CPPFLAGS) \
 	$(XML_FLAGS)
@@ -52,17 +52,28 @@ libscifunctions_manager_la_include_HEADERS =
 ####################
 ## Automated test ##
 ####################
-check_INCLUDES 		=	-I$(top_builddir)/modules/types/includes/ \
-				-Iincludes/ \
-				-Isrc/cpp
+check_INCLUDES = \
+    -I$(top_srcdir)/modules/ast/includes/ast/ \
+    -I$(top_srcdir)/modules/ast/includes/exps/ \
+    -I$(top_srcdir)/modules/ast/includes/operations/ \
+    -I$(top_srcdir)/modules/ast/includes/parse/ \
+    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+    -I$(top_srcdir)/modules/ast/includes/types/ \
+    -Iincludes/ \
+    -Isrc/cpp
 
-check_PROGRAMS 		= testFunctionManager
+check_PROGRAMS = testFunctionManager
 
-TESTS			= testFunctionManager
+TESTS = testFunctionManager
 
-testFunctionManager_SOURCES 	=	src/cpp/test-function.cpp \
-					src/cpp/foo.cpp \
-					src/cpp/cosinus.cpp
+testFunctionManager_SOURCES = \
+    src/cpp/test-function.cpp \
+    src/cpp/foo.cpp \
+    src/cpp/cosinus.cpp
+
 testFunctionManager_CXXFLAGS 	= $(check_INCLUDES)
-testFunctionManager_LDADD	=	$(top_builddir)/modules/types/libsciTypes.la \
-					$(top_builddir)/modules/functions_manager/libscifunctions_manager.la
+testFunctionManager_LDADD	= \
+    $(top_builddir)/modules/types/libsciTypes.la \
+    $(top_builddir)/modules/functions_manager/libscifunctions_manager.la
+    

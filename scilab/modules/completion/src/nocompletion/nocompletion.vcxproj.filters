@@ -26,9 +26,6 @@
     <ClInclude Include="..\..\includes\dynlib_completion.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\gw_completion.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="nocompletion.rc">

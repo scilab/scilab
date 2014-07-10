@@ -25,7 +25,6 @@
 #include "parser.hxx"
 #include "context.hxx"
 #include "configvariable.hxx"
-#include "setenvvar.hxx"
 #include "filemanager.hxx"
 #include "runner.hxx"
 #include "visitor_common.hxx"
@@ -53,6 +52,7 @@ extern "C"
 #include "scilabRead.h"
 #include "functions_manager.h"
 #include "InitScilab.h"
+#include "setenvvar.h"
 #include "getScilabPreference.h"
 
 #ifdef _MSC_VER

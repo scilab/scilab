@@ -7,11 +7,18 @@
 WINDOWS_TOOLS_C_SOURCES = src/nowindows_tools/nowindows_tools.c
 
 # Includes need for the compilation
-libsciwindows_tools_la_CFLAGS=  -I$(srcdir)/includes/ \
-				-I$(srcdir)/src/c/ \
-				-I$(top_srcdir)/modules/api_scilab/includes \
-				-I$(top_srcdir)/modules/operations/includes \
-				-I$(top_srcdir)/modules/output_stream/includes
+libsciwindows_tools_la_CFLAGS=  \
+    -I$(srcdir)/includes/ \
+    -I$(srcdir)/src/c/ \
+    -I$(top_srcdir)/modules/ast/includes/ast/ \
+    -I$(top_srcdir)/modules/ast/includes/exps/ \
+    -I$(top_srcdir)/modules/ast/includes/operations/ \
+    -I$(top_srcdir)/modules/ast/includes/parse/ \
+    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+    -I$(top_srcdir)/modules/ast/includes/types/ \
+    -I$(top_srcdir)/modules/api_scilab/includes \
+    -I$(top_srcdir)/modules/output_stream/includes
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)

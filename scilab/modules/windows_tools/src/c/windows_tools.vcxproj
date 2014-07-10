@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -81,7 +81,7 @@
     <ClCompile>
       <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;../../includes;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../fileio/includes;../../../../libs/intl;../../../../libs/GetWindowsVersion;../../../call_scilab/src/c;../../../call_scilab/includes;./scilab_windows;../../../api_scilab/includes;../../../operations/includes;../../../system_env/includes;../../../string/includes;../../../functions_manager/includes;../../../symbol/includes;../../../types/includes;../../../ast/includes;../../../dynamic_link/includes;../../../ast/includes/exps;../../../../libs/Eigen/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../fileio/includes;../../../../libs/intl;../../../../libs/GetWindowsVersion;../../../call_scilab/src/c;../../../call_scilab/includes;./scilab_windows;../../../api_scilab/includes;../../../string/includes;../../../functions_manager/includes;../../../dynamic_link/includes;../../../../libs/Eigen/includes;../../../ast/includes/system_env;../../../ast/includes/symbol;../../../ast/includes/operations;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/exps;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;WINDOWS_TOOLS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -97,11 +97,10 @@
 lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilab_windows.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Call_scilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)call_scilab.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)system_env.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core.lib;scilab_windows.lib;scilocalization.lib;call_scilab.lib;system_env.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;scilab_windows.lib;scilocalization.lib;call_scilab.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>
       </ModuleDefinitionFile>
@@ -122,7 +121,7 @@ lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;../../includes;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../fileio/includes;../../../../libs/intl;../../../../libs/GetWindowsVersion;../../../call_scilab/src/c;../../../call_scilab/includes;./scilab_windows;../../../api_scilab/includes;../../../operations/includes;../../../system_env/includes;../../../string/includes;../../../functions_manager/includes;../../../symbol/includes;../../../types/includes;../../../ast/includes;../../../dynamic_link/includes;../../../ast/includes/exps;../../../../libs/Eigen/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../fileio/includes;../../../../libs/intl;../../../../libs/GetWindowsVersion;../../../call_scilab/src/c;../../../call_scilab/includes;./scilab_windows;../../../api_scilab/includes;../../../string/includes;../../../functions_manager/includes;../../../dynamic_link/includes;../../../../libs/Eigen/includes;../../../ast/includes/system_env;../../../ast/includes/symbol;../../../ast/includes/operations;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/exps;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;WINDOWS_TOOLS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -138,11 +137,10 @@ lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
 lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilab_windows.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Call_scilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)call_scilab.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)system_env.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core.lib;scilab_windows.lib;scilocalization.lib;call_scilab.lib;system_env.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;scilab_windows.lib;scilocalization.lib;call_scilab.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>
       </ModuleDefinitionFile>
@@ -164,7 +162,7 @@ lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;../../includes;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../fileio/includes;../../../../libs/intl;../../../../libs/GetWindowsVersion;../../../call_scilab/src/c;../../../call_scilab/includes;./scilab_windows;../../../api_scilab/includes;../../../operations/includes;../../../system_env/includes;../../../string/includes;../../../functions_manager/includes;../../../symbol/includes;../../../types/includes;../../../ast/includes;../../../dynamic_link/includes;../../../ast/includes/exps;../../../../libs/Eigen/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../fileio/includes;../../../../libs/intl;../../../../libs/GetWindowsVersion;../../../call_scilab/src/c;../../../call_scilab/includes;./scilab_windows;../../../api_scilab/includes;../../../string/includes;../../../functions_manager/includes;../../../dynamic_link/includes;../../../../libs/Eigen/includes;../../../ast/includes/system_env;../../../ast/includes/symbol;../../../ast/includes/operations;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/exps;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;WINDOWS_TOOLS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -181,11 +179,10 @@ lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
 lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilab_windows.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Call_scilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)call_scilab.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)system_env.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core.lib;scilab_windows.lib;scilocalization.lib;call_scilab.lib;system_env.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;scilab_windows.lib;scilocalization.lib;call_scilab.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>
       </ModuleDefinitionFile>
@@ -213,7 +210,7 @@ lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;../../includes;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../fileio/includes;../../../../libs/intl;../../../../libs/GetWindowsVersion;../../../call_scilab/src/c;../../../call_scilab/includes;./scilab_windows;../../../api_scilab/includes;../../../operations/includes;../../../system_env/includes;../../../string/includes;../../../functions_manager/includes;../../../symbol/includes;../../../types/includes;../../../ast/includes;../../../dynamic_link/includes;../../../ast/includes/exps;../../../../libs/Eigen/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../fileio/includes;../../../../libs/intl;../../../../libs/GetWindowsVersion;../../../call_scilab/src/c;../../../call_scilab/includes;./scilab_windows;../../../api_scilab/includes;../../../string/includes;../../../functions_manager/includes;../../../dynamic_link/includes;../../../../libs/Eigen/includes;../../../ast/includes/system_env;../../../ast/includes/symbol;../../../ast/includes/operations;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/exps;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;WINDOWS_TOOLS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -230,11 +227,10 @@ lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
 lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilab_windows.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Call_scilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)call_scilab.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)system_env.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core.lib;scilab_windows.lib;scilocalization.lib;call_scilab.lib;system_env.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;scilab_windows.lib;scilocalization.lib;call_scilab.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>
       </ModuleDefinitionFile>
@@ -282,7 +278,6 @@ lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <None Include="core_import.def" />
     <None Include="localization_Import.def" />
     <None Include="scilab_windows_Import.def" />
-    <None Include="System_env_Import.def" />
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\windows_tools.iss" />
     <None Include="..\..\sci_gateway\windows_tools_gateway.xml" />
@@ -307,20 +302,15 @@ lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
       <Project>{43c5bab1-1dca-4743-a183-77e0d42fe7d0}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\ast\ast.vcxproj">
+      <Project>{0d3fa25b-8116-44ec-a45e-260789daa3d9}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\fileio\fileio.vcxproj">
       <Project>{4fc72d4a-80ee-4b1a-8724-0201c1a35621}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="..\..\..\output_stream\src\c\output_stream.vcxproj">
       <Project>{a5911cd7-f8e8-440c-a23e-4843a0636f3a}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\symbol\symbol.vcxproj">
-      <Project>{2c60033b-0dbd-4ca4-80d3-176c9be9ce2f}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\types\types.vcxproj">
-      <Project>{64e090da-dcb5-4f4d-93d7-e88ddec9c2ef}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
   </ItemGroup>

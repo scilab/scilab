@@ -787,50 +787,50 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 yacc_present = @yacc_present@
 ELEMENTARIES_FUNCTIONS_C_SOURCES = \
-src/c/finite.c \
-src/c/vfinite.c \
-src/c/cmp.c \
-src/c/vceil.c \
-src/c/xerhlt.c \
-src/c/vfloor.c \
-src/c/vfrexp.c \
-src/c/scidcopy.c \
-src/c/int2db.c \
-src/c/rea2db.c \
-src/c/qsort.c \
-src/c/qsort-char.c \
-src/c/qsort-double.c \
-src/c/qsort-int.c \
-src/c/qsort-short.c \
-src/c/qsort-string.c \
-src/c/basic_functions.c \
-src/c/abs.c \
-src/c/acos.c \
-src/c/asin.c \
-src/c/atan.c \
-src/c/cos.c \
-src/c/cosh.c \
-src/c/sin.c \
-src/c/sinh.c \
-src/c/tan.c \
-src/c/exp.c \
-src/c/expm.c \
-src/c/log.c \
-src/c/sqrt.c \
-src/c/cupro.c \
-src/c/sign.c \
-src/c/ceil.c \
-src/c/eye.c \
-src/c/dmsum.c \
-src/c/dsearch.c \
-src/c/floor.c \
-src/c/mprod.c \
-src/c/pythag.c \
-src/c/matrix_generation.c \
-src/c/vmul.c \
-src/c/add_vector.c \
-src/c/sub_vector.c \
-src/c/convertbase.c
+    src/c/finite.c \
+    src/c/vfinite.c \
+    src/c/cmp.c \
+    src/c/vceil.c \
+    src/c/xerhlt.c \
+    src/c/vfloor.c \
+    src/c/vfrexp.c \
+    src/c/scidcopy.c \
+    src/c/int2db.c \
+    src/c/rea2db.c \
+    src/c/qsort.c \
+    src/c/qsort-char.c \
+    src/c/qsort-double.c \
+    src/c/qsort-int.c \
+    src/c/qsort-short.c \
+    src/c/qsort-string.c \
+    src/c/basic_functions.c \
+    src/c/abs.c \
+    src/c/acos.c \
+    src/c/asin.c \
+    src/c/atan.c \
+    src/c/cos.c \
+    src/c/cosh.c \
+    src/c/sin.c \
+    src/c/sinh.c \
+    src/c/tan.c \
+    src/c/exp.c \
+    src/c/expm.c \
+    src/c/log.c \
+    src/c/sqrt.c \
+    src/c/cupro.c \
+    src/c/sign.c \
+    src/c/ceil.c \
+    src/c/eye.c \
+    src/c/dmsum.c \
+    src/c/dsearch.c \
+    src/c/floor.c \
+    src/c/mprod.c \
+    src/c/pythag.c \
+    src/c/matrix_generation.c \
+    src/c/vmul.c \
+    src/c/add_vector.c \
+    src/c/sub_vector.c \
+    src/c/convertbase.c
 
 
 # List of the cpp files
@@ -1126,13 +1126,15 @@ EISPACK_SOURCES = src/fortran/eispack/balbak.f
 # Disable optimisation of the file hqror2.f comqr3.f pade.f
 noinst_LTLIBRARIES = libdummy-elementary_functions.la $(am__append_1) \
 	$(am__append_2)
-libdummy_elementary_functions_la_SOURCES = src/fortran/eispack/hqror2.f \
-	src/fortran/comqr3.f \
-	src/fortran/linpack/pade.f \
-	src/c/unsfdcopy.c \
-	src/fortran/linpack/icopy.f
+libdummy_elementary_functions_la_SOURCES = \
+    src/fortran/eispack/hqror2.f \
+    src/fortran/comqr3.f \
+    src/fortran/linpack/pade.f \
+    src/c/unsfdcopy.c \
+    src/fortran/linpack/icopy.f
 
-libdummy_elementary_functions_la_CPPFLAGS = -I$(srcdir)/includes/ \
+libdummy_elementary_functions_la_CPPFLAGS = \
+    -I$(srcdir)/includes/ \
     -I$(top_srcdir)/modules/core/includes/ \
     $(AM_CPPFLAGS)
 
@@ -1142,17 +1144,18 @@ libscielementary_functions_la_CPPFLAGS = \
     -I$(srcdir)/includes/ \
 	-I$(srcdir)/src/c/ \
 	-I$(srcdir)/src/cpp/ \
+    -I$(top_srcdir)/modules/ast/includes/ast/ \
+    -I$(top_srcdir)/modules/ast/includes/exps/ \
+    -I$(top_srcdir)/modules/ast/includes/operations/ \
+    -I$(top_srcdir)/modules/ast/includes/parse/ \
+    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+    -I$(top_srcdir)/modules/ast/includes/types/ \
 	-I$(top_srcdir)/modules/dynamic_link/includes \
 	-I$(top_srcdir)/modules/api_scilab/includes/ \
 	-I$(top_srcdir)/modules/console/includes/ \
 	-I$(top_srcdir)/modules/localization/includes/ \
 	-I$(top_srcdir)/modules/output_stream/includes/ \
-	-I$(top_srcdir)/modules/operations/includes/ \
-	-I$(top_srcdir)/modules/types/includes/ \
-	-I$(top_srcdir)/modules/ast/includes/ \
-	-I$(top_srcdir)/modules/ast/includes/exps \
-	-I$(top_srcdir)/modules/symbol/includes/ \
-	-I$(top_srcdir)/modules/system_env/includes/ \
 	-I$(top_srcdir)/modules/threads/includes/ \
 	-I$(top_srcdir)/modules/string/includes/ \
 	$(EIGEN_CPPFLAGS) \
@@ -1177,7 +1180,10 @@ libscielementary_functions_la_root_DATA = license.txt
 
 #### elementary_functions : init scripts ####
 libscielementary_functions_la_etcdir = $(mydatadir)/etc
-libscielementary_functions_la_etc_DATA = etc/elementary_functions.quit etc/elementary_functions.start
+libscielementary_functions_la_etc_DATA = \
+    etc/elementary_functions.quit \
+    etc/elementary_functions.start
+
 
 #### elementary_functions : gateway declaration ####
 libscielementary_functions_la_sci_gatewaydir = $(mydatadir)/sci_gateway

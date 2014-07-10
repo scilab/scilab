@@ -63,9 +63,6 @@
     <ClCompile Include="src\c\DllmainApi_scilab.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\cpp\overload.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\cpp\api_handle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -170,9 +167,6 @@
     <ClInclude Include="includes\dynlib_api_scilab.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="includes\overload.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="includes\api_handle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -229,9 +223,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="core_import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
-    <None Include="Localization_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="api_scilab_export.def">

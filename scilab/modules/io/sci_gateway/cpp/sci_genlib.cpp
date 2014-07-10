@@ -26,7 +26,6 @@
 #include "parser.hxx"
 #include "context.hxx"
 #include "io_gw.hxx"
-#include "setenvvar.hxx"
 #include "scilabWrite.hxx"
 #include "expandPathVariable.h"
 #include "configvariable.hxx"
@@ -37,6 +36,7 @@
 
 extern "C"
 {
+#include "setenvvar.h"
 #include "sci_malloc.h"
 #include "localization.h"
 #include "PATH_MAX.h"

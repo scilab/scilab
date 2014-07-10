@@ -6,35 +6,37 @@
 
 if TCLTK
 
-TCLSCI_C_SOURCES = src/c/TCL_Global.c \
-src/c/InitTclTk.c \
-src/c/ScilabEval.c \
-src/c/setenvtcl.c \
-src/c/InitializeTclTk.c \
-src/c/TerminateTclTk.c \
-src/c/setvar.c \
-src/c/TCL_ArrayDim.c \
-src/c/TCL_ArrayExist.c \
-src/c/TCL_ArrayGetVar.c \
-src/c/TCL_ArraySize.c \
-src/c/TCL_Command.c \
-src/c/GlobalTclInterp.c \
-src/c/TCL_getErrorLine.c
+TCLSCI_C_SOURCES = \
+    src/c/TCL_Global.c \
+    src/c/InitTclTk.c \
+    src/c/ScilabEval.c \
+    src/c/setenvtcl.c \
+    src/c/InitializeTclTk.c \
+    src/c/TerminateTclTk.c \
+    src/c/setvar.c \
+    src/c/TCL_ArrayDim.c \
+    src/c/TCL_ArrayExist.c \
+    src/c/TCL_ArrayGetVar.c \
+    src/c/TCL_ArraySize.c \
+    src/c/TCL_Command.c \
+    src/c/GlobalTclInterp.c \
+    src/c/TCL_getErrorLine.c
 
-GATEWAY_C_SOURCES =  sci_gateway/c/sci_opentk.c \
-sci_gateway/c/sci_TCL_SetVar.c \
-sci_gateway/c/sci_TCL_ExistVar.c \
-sci_gateway/c/sci_TCL_DoOneEvent.c \
-sci_gateway/c/sci_TCL_UnsetVar.c \
-sci_gateway/c/sci_TCL_ExistInterp.c \
-sci_gateway/c/gw_tclsci.c \
-sci_gateway/c/sci_TCL_EvalStr.c \
-sci_gateway/c/sci_TCL_DeleteInterp.c \
-sci_gateway/c/sci_TCL_GetVersion.c \
-sci_gateway/c/sci_TCL_EvalFile.c \
-sci_gateway/c/sci_TCL_GetVar.c \
-sci_gateway/c/sci_TCL_ExistArray.c \
-sci_gateway/c/sci_TCL_UpVar.c
+GATEWAY_C_SOURCES = \
+    sci_gateway/c/sci_opentk.c \
+    sci_gateway/c/sci_TCL_SetVar.c \
+    sci_gateway/c/sci_TCL_ExistVar.c \
+    sci_gateway/c/sci_TCL_DoOneEvent.c \
+    sci_gateway/c/sci_TCL_UnsetVar.c \
+    sci_gateway/c/sci_TCL_ExistInterp.c \
+    sci_gateway/c/gw_tclsci.c \
+    sci_gateway/c/sci_TCL_EvalStr.c \
+    sci_gateway/c/sci_TCL_DeleteInterp.c \
+    sci_gateway/c/sci_TCL_GetVersion.c \
+    sci_gateway/c/sci_TCL_EvalFile.c \
+    sci_gateway/c/sci_TCL_GetVar.c \
+    sci_gateway/c/sci_TCL_ExistArray.c \
+    sci_gateway/c/sci_TCL_UpVar.c
 
 else
 
@@ -49,22 +51,28 @@ noinst_LTLIBRARIES = libscitclsci-algo.la
 
 libscitclsci_la_LDFLAGS = $(AM_LDFLAGS)
 
-libscitclsci_la_CPPFLAGS= -I$(srcdir)/includes/ \
-			-I$(srcdir)/src/c \
-			-I$(srcdir)/sci_gateway/c/ \
-			$(TCL_INC_PATH) \
-			$(TK_INC_PATH) \
-			-I$(top_srcdir)/modules/action_binding/includes/ \
-			-I$(top_srcdir)/modules/fileio/includes/ \
-			-I$(top_srcdir)/modules/call_scilab/includes/ \
-			-I$(top_srcdir)/modules/output_stream/includes/ \
-			-I$(top_srcdir)/modules/localization/includes/ \
-			-I$(top_srcdir)/modules/api_scilab/includes/ \
-			-I$(top_srcdir)/modules/operations/includes/ \
-			-I$(top_srcdir)/modules/system_env/includes/ \
-			-I$(top_srcdir)/modules/threads/includes/ \
-			-I$(top_srcdir)/modules/string/includes/ \
-            $(AM_CPPFLAGS)
+libscitclsci_la_CPPFLAGS= \
+    -I$(srcdir)/includes/ \
+    -I$(srcdir)/src/c \
+    -I$(srcdir)/sci_gateway/c/ \
+    $(TCL_INC_PATH) \
+    $(TK_INC_PATH) \
+    -I$(top_srcdir)/modules/ast/includes/ast/ \
+    -I$(top_srcdir)/modules/ast/includes/exps/ \
+    -I$(top_srcdir)/modules/ast/includes/operations/ \
+    -I$(top_srcdir)/modules/ast/includes/parse/ \
+    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+    -I$(top_srcdir)/modules/ast/includes/types/ \
+    -I$(top_srcdir)/modules/action_binding/includes/ \
+    -I$(top_srcdir)/modules/fileio/includes/ \
+    -I$(top_srcdir)/modules/call_scilab/includes/ \
+    -I$(top_srcdir)/modules/output_stream/includes/ \
+    -I$(top_srcdir)/modules/localization/includes/ \
+    -I$(top_srcdir)/modules/api_scilab/includes/ \
+    -I$(top_srcdir)/modules/threads/includes/ \
+    -I$(top_srcdir)/modules/string/includes/ \
+    $(AM_CPPFLAGS)
 
 libscitclsci_algo_la_SOURCES = $(TCLSCI_C_SOURCES)
 libscitclsci_la_SOURCES = $(GATEWAY_C_SOURCES)
@@ -84,11 +92,14 @@ libscitclsci_la_root_DATA =  license.txt
 
 #### tclsci : init scripts ####
 libscitclsci_la_etcdir = $(mydatadir)/etc
-libscitclsci_la_etc_DATA = etc/tclsci.quit etc/tclsci.start
+libscitclsci_la_etc_DATA = \
+    etc/tclsci.quit \
+    etc/tclsci.start
 
 ### TCL macros ###
 libscitclsci_la_tcldir = $(mydatadir)
-nobase_libscitclsci_la_tcl_DATA = tcl/utils/Notebook.tcl \
+nobase_libscitclsci_la_tcl_DATA = \
+tcl/utils/Notebook.tcl \
 tcl/utils/Balloon.tcl \
 tcl/utils/Combobox.tcl \
 tcl/sciGUI/data/initial.help \

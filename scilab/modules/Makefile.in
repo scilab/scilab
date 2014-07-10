@@ -263,7 +263,7 @@ am__define_uniq_tagged_files = \
   done | $(am__uniquify_input)`
 ETAGS = etags
 CTAGS = ctags
-DIST_SUBDIRS = prebuildjava threads operations output_stream arnoldi \
+DIST_SUBDIRS = prebuildjava threads output_stream arnoldi \
 	elementary_functions functions_manager fileio mexlib functions \
 	parameters boolean cacsd signal_processing core call_scilab \
 	api_scilab data_structures differential_equations integer io \
@@ -275,9 +275,9 @@ DIST_SUBDIRS = prebuildjava threads operations output_stream arnoldi \
 	interpolation sound overloading m2sci development_tools \
 	compatibility_functions helptools umfpack demo_tools \
 	genetic_algorithms simulated_annealing matio atoms graph xcos \
-	system_env ast symbol parse scinotes parallel modules_manager \
-	ui_data history_browser preferences xml types external_objects \
-	external_objects_java scicos_blocks scicos mpi . javasci
+	ast scinotes parallel modules_manager ui_data history_browser \
+	preferences xml types external_objects external_objects_java \
+	scicos_blocks scicos mpi . javasci
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 am__relativize = \
   dir0=`pwd`; \
@@ -587,7 +587,7 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 yacc_present = @yacc_present@
-SUBDIRS = prebuildjava threads operations output_stream arnoldi \
+SUBDIRS = prebuildjava threads output_stream arnoldi \
 	elementary_functions functions_manager fileio mexlib functions \
 	parameters boolean cacsd signal_processing core call_scilab \
 	api_scilab data_structures differential_equations \
@@ -600,10 +600,10 @@ SUBDIRS = prebuildjava threads operations output_stream arnoldi \
 	interpolation sound overloading m2sci development_tools \
 	compatibility_functions helptools umfpack demo_tools \
 	genetic_algorithms simulated_annealing parameters matio atoms \
-	hdf5 graph xcos system_env ast symbol parse scinotes parallel \
-	modules_manager ui_data history_browser preferences xml types \
-	external_objects $(am__append_1) $(am__append_2) scicos \
-	$(am__append_3) . $(am__append_4)
+	hdf5 graph xcos ast scinotes parallel modules_manager ui_data \
+	history_browser preferences xml types external_objects \
+	$(am__append_1) $(am__append_2) scicos $(am__append_3) . \
+	$(am__append_4)
 
 #### Basic files ####
 libscilab_la_rootdir = $(mydatadir)
@@ -674,11 +674,7 @@ ENGINE_LIBS = $(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
 	$(top_builddir)/modules/threads/libscithreads.la \
 	$(top_builddir)/modules/ast/libsciast.la \
-	$(top_builddir)/modules/symbol/libscisymbol.la \
-	$(top_builddir)/modules/parse/libsciparse.la \
-	$(top_builddir)/modules/system_env/libscisystem_env.la \
 	$(top_builddir)/modules/functions_manager/libscifunctions_manager.la \
-	$(top_builddir)/modules/operations/libscioperations.la \
 	$(top_builddir)/modules/types/libscitypes.la \
 	$(top_builddir)/modules/xml/libscixml.la \
 	$(top_builddir)/modules/external_objects/libsciexternal_objects.la \

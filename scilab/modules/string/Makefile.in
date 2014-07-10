@@ -612,31 +612,31 @@ STRING_CPP_SOURCES = \
     src/cpp/sort_inter.cpp
 
 STRING_C_SOURCES = \
-src/c/convstr.c \
-src/c/men_Sutils.c \
-src/c/tokens.c \
-src/c/strsplit.c \
-src/c/partfunction.c \
-src/c/cvstr.c \
-src/c/getfastcode.c \
-src/c/pcre_private.c \
-src/c/pcre_error.c \
-src/c/isletter.c \
-src/c/isdigit.c \
-src/c/strsubst.c \
-src/c/stristr.c \
-src/c/stringsstrrev.c \
-src/c/stringsCompare.c \
-src/c/isalphanum.c \
-src/c/StringConvert.c \
-src/c/os_wcsdup.c \
-src/c/os_wcstok.c \
-src/c/scistrtostr.c \
-src/c/stringToDouble.c \
-src/c/stringToComplex.c \
-src/c/complex_array.c \
-src/c/isascii.c \
-src/c/isnum.c
+    src/c/convstr.c \
+    src/c/men_Sutils.c \
+    src/c/tokens.c \
+    src/c/strsplit.c \
+    src/c/partfunction.c \
+    src/c/cvstr.c \
+    src/c/getfastcode.c \
+    src/c/pcre_private.c \
+    src/c/pcre_error.c \
+    src/c/isletter.c \
+    src/c/isdigit.c \
+    src/c/strsubst.c \
+    src/c/stristr.c \
+    src/c/stringsstrrev.c \
+    src/c/stringsCompare.c \
+    src/c/isalphanum.c \
+    src/c/StringConvert.c \
+    src/c/os_wcsdup.c \
+    src/c/os_wcstok.c \
+    src/c/scistrtostr.c \
+    src/c/stringToDouble.c \
+    src/c/stringToComplex.c \
+    src/c/complex_array.c \
+    src/c/isascii.c \
+    src/c/isnum.c
 
 GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/sci_stripblanks.cpp \
@@ -669,32 +669,40 @@ GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/sci_strsplit.cpp \
     sci_gateway/cpp/sci_isnum.cpp
 
-libscistring_la_CFLAGS = $(PCRE_CFLAGS) \
+libscistring_la_CFLAGS = \
+    $(PCRE_CFLAGS) \
 	-I$(srcdir)/src/c \
 	-I$(srcdir)/includes/ \
-	-I$(top_srcdir)/modules/operations/includes \
+    -I$(top_srcdir)/modules/ast/includes/ast/ \
+    -I$(top_srcdir)/modules/ast/includes/exps/ \
+    -I$(top_srcdir)/modules/ast/includes/operations/ \
+    -I$(top_srcdir)/modules/ast/includes/parse/ \
+    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+    -I$(top_srcdir)/modules/ast/includes/types/ \
 	-I$(top_srcdir)/modules/functions/includes \
 	-I$(top_srcdir)/modules/api_scilab/includes \
 	-I$(top_srcdir)/modules/localization/includes \
-	-I$(top_srcdir)/modules/output_stream/includes \
-	-I$(top_srcdir)/modules/system_env/includes
+	-I$(top_srcdir)/modules/output_stream/includes
 
-libscistring_la_CPPFLAGS = $(PCRE_CFLAGS) \
+libscistring_la_CPPFLAGS = \
+    $(PCRE_CFLAGS) \
 	-I$(srcdir)/src/c \
 	-I$(srcdir)/src/cpp \
 	-I$(srcdir)/includes/ \
-	-I$(top_srcdir)/modules/operations/includes \
+    -I$(top_srcdir)/modules/ast/includes/ast/ \
+    -I$(top_srcdir)/modules/ast/includes/exps/ \
+    -I$(top_srcdir)/modules/ast/includes/operations/ \
+    -I$(top_srcdir)/modules/ast/includes/parse/ \
+    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+    -I$(top_srcdir)/modules/ast/includes/types/ \
 	-I$(top_srcdir)/modules/api_scilab/includes \
 	-I$(top_srcdir)/modules/localization/includes \
 	-I$(top_srcdir)/modules/output_stream/includes \
 	-I$(top_srcdir)/modules/functions_manager/includes \
-	-I$(top_srcdir)/modules/symbol/includes \
-	-I$(top_srcdir)/modules/ast/includes \
-	-I$(top_srcdir)/modules/ast/includes/exps \
 	-I$(top_srcdir)/modules/elementary_funcions/includes \
 	-I$(top_srcdir)/modules/core/includes \
-	-I$(top_srcdir)/modules/types/includes \
-	-I$(top_srcdir)/modules/system_env/includes \
     -I$(top_srcdir)/modules/dynamic_link/includes \
     -I$(top_srcdir)/modules/threads/includes \
     -I$(top_srcdir)/modules/console/includes \
@@ -725,7 +733,10 @@ libscistring_la_root_DATA = license.txt
 
 #### string : init scripts ####
 libscistring_la_etcdir = $(mydatadir)/etc
-libscistring_la_etc_DATA = etc/string.quit etc/string.start
+libscistring_la_etc_DATA = \
+    etc/string.quit \
+    etc/string.start
+
 
 #### string : gateway declaration ####
 libscistring_la_sci_gatewaydir = $(mydatadir)/sci_gateway

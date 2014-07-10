@@ -4,36 +4,42 @@
 # This file is distributed under the same license as the Scilab package.
 
 ### SOURCES ###
-TIME_C_SOURCES = src/c/realtime.c \
-src/c/timer.c \
-src/c/getdate.c 
+TIME_C_SOURCES = \
+    src/c/realtime.c \
+    src/c/timer.c \
+    src/c/getdate.c 
 
-GATEWAY_C_SOURCES = sci_gateway/c/sci_realtime.c \
-sci_gateway/c/sci_timer.c \
-sci_gateway/c/sci_calendar.c \
-sci_gateway/c/sci_xpause.c \
-sci_gateway/c/sci_sleep.c \
-sci_gateway/c/sci_getdate.c \
-sci_gateway/c/gw_time.c
+GATEWAY_C_SOURCES = \
+    sci_gateway/c/sci_realtime.c \
+    sci_gateway/c/sci_timer.c \
+    sci_gateway/c/sci_calendar.c \
+    sci_gateway/c/sci_xpause.c \
+    sci_gateway/c/sci_sleep.c \
+    sci_gateway/c/sci_getdate.c \
+    sci_gateway/c/gw_time.c
 
-GATEWAY_CPP_SOURCES = 	sci_gateway/cpp/time_gw.cpp \
-						sci_gateway/cpp/sci_tictoc.cpp
+GATEWAY_CPP_SOURCES = \
+    sci_gateway/cpp/time_gw.cpp \
+    sci_gateway/cpp/sci_tictoc.cpp
 
-libscitime_la_CPPFLAGS= -I$(srcdir)/includes/ \
-			-I$(srcdir)/src/c/ \
-			-I$(top_srcdir)/modules/api_scilab/includes/ \
-			-I$(top_srcdir)/modules/operations/includes/ \
-			-I$(top_srcdir)/modules/functions_manager/includes/ \
-			-I$(top_srcdir)/modules/symbol/includes/ \
-			-I$(top_srcdir)/modules/types/includes/ \
-			-I$(top_srcdir)/modules/ast/includes/ \
-			-I$(top_srcdir)/modules/ast/includes/exps \
-			-I$(top_srcdir)/modules/dynamic_link/includes \
-			-I$(top_srcdir)/modules/localization/includes/ \
-			-I$(top_srcdir)/modules/output_stream/includes/ \
-			-I$(top_srcdir)/modules/string/includes/ \
-			$(EIGEN_CPPFLAGS) \
-			$(AM_CPPFLAGS)
+libscitime_la_CPPFLAGS= \
+    -I$(srcdir)/includes/ \
+    -I$(srcdir)/src/c/ \
+    -I$(top_srcdir)/modules/ast/includes/ast/ \
+    -I$(top_srcdir)/modules/ast/includes/exps/ \
+    -I$(top_srcdir)/modules/ast/includes/operations/ \
+    -I$(top_srcdir)/modules/ast/includes/parse/ \
+    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+    -I$(top_srcdir)/modules/ast/includes/types/ \
+    -I$(top_srcdir)/modules/api_scilab/includes/ \
+    -I$(top_srcdir)/modules/functions_manager/includes/ \
+    -I$(top_srcdir)/modules/dynamic_link/includes \
+    -I$(top_srcdir)/modules/localization/includes/ \
+    -I$(top_srcdir)/modules/string/includes/ \
+    -I$(top_srcdir)/modules/output_stream/includes/ \
+    $(EIGEN_CPPFLAGS) \
+    $(AM_CPPFLAGS)
 
 if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libscitime.la

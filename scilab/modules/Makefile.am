@@ -18,7 +18,6 @@
 SUBDIRS = \
 prebuildjava \
 threads \
-operations \
 output_stream \
 arnoldi \
 elementary_functions \
@@ -85,10 +84,7 @@ atoms \
 hdf5 \
 graph \
 xcos \
-system_env \
 ast \
-symbol \
-parse \
 scinotes \
 parallel \
 modules_manager \
@@ -194,11 +190,7 @@ ENGINE_LIBS =	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
 	$(top_builddir)/modules/threads/libscithreads.la \
 	$(top_builddir)/modules/ast/libsciast.la \
-	$(top_builddir)/modules/symbol/libscisymbol.la \
-	$(top_builddir)/modules/parse/libsciparse.la \
-	$(top_builddir)/modules/system_env/libscisystem_env.la \
 	$(top_builddir)/modules/functions_manager/libscifunctions_manager.la \
-	$(top_builddir)/modules/operations/libscioperations.la \
 	$(top_builddir)/modules/types/libscitypes.la \
 	$(top_builddir)/modules/xml/libscixml.la \
 	$(top_builddir)/modules/external_objects/libsciexternal_objects.la \

@@ -188,8 +188,7 @@ am__DEPENDENCIES_1 =
 @UMFPACK_TRUE@	$(am__DEPENDENCIES_1)
 am__libsciumfpack_la_SOURCES_DIST = src/noumfpack/noumfpack.c \
 	src/c/taucs_scilab.c src/c/common_umfpack.c \
-	src/c/with_umfpack.c sci_gateway/c/gw_umfpack.c \
-	sci_gateway/c/sci_res_with_prec.c \
+	src/c/with_umfpack.c sci_gateway/c/sci_res_with_prec.c \
 	sci_gateway/c/sci_taucs_chdel.c \
 	sci_gateway/c/sci_taucs_chfact.c \
 	sci_gateway/c/sci_taucs_chget.c \
@@ -203,9 +202,7 @@ am__libsciumfpack_la_SOURCES_DIST = src/noumfpack/noumfpack.c \
 @UMFPACK_TRUE@am__objects_2 = src/c/libsciumfpack_la-taucs_scilab.lo \
 @UMFPACK_TRUE@	src/c/libsciumfpack_la-common_umfpack.lo \
 @UMFPACK_TRUE@	src/c/libsciumfpack_la-with_umfpack.lo
-@UMFPACK_TRUE@am__objects_3 =  \
-@UMFPACK_TRUE@	sci_gateway/c/libsciumfpack_la-gw_umfpack.lo \
-@UMFPACK_TRUE@	sci_gateway/c/libsciumfpack_la-sci_res_with_prec.lo \
+@UMFPACK_TRUE@am__objects_3 = sci_gateway/c/libsciumfpack_la-sci_res_with_prec.lo \
 @UMFPACK_TRUE@	sci_gateway/c/libsciumfpack_la-sci_taucs_chdel.lo \
 @UMFPACK_TRUE@	sci_gateway/c/libsciumfpack_la-sci_taucs_chfact.lo \
 @UMFPACK_TRUE@	sci_gateway/c/libsciumfpack_la-sci_taucs_chget.lo \
@@ -586,25 +583,29 @@ UMFPACK_license.txt
 
 #### umfpack : init scripts ####
 libsciumfpack_la_etcdir = $(mydatadir)/etc
-libsciumfpack_la_etc_DATA = etc/umfpack.quit etc/umfpack.start
-@UMFPACK_FALSE@UMFPACK_C_SOURCES = src/noumfpack/noumfpack.c
-@UMFPACK_TRUE@UMFPACK_C_SOURCES = src/c/taucs_scilab.c \
-@UMFPACK_TRUE@src/c/common_umfpack.c \
-@UMFPACK_TRUE@src/c/with_umfpack.c
+libsciumfpack_la_etc_DATA = \
+    etc/umfpack.quit \
+    etc/umfpack.start
 
-@UMFPACK_TRUE@GATEWAY_C_SOURCES = sci_gateway/c/gw_umfpack.c \
-@UMFPACK_TRUE@sci_gateway/c/sci_res_with_prec.c \
-@UMFPACK_TRUE@sci_gateway/c/sci_taucs_chdel.c \
-@UMFPACK_TRUE@sci_gateway/c/sci_taucs_chfact.c \
-@UMFPACK_TRUE@sci_gateway/c/sci_taucs_chget.c \
-@UMFPACK_TRUE@sci_gateway/c/sci_taucs_chinfo.c \
-@UMFPACK_TRUE@sci_gateway/c/sci_taucs_chsolve.c \
-@UMFPACK_TRUE@sci_gateway/c/sci_umf_ludel.c \
-@UMFPACK_TRUE@sci_gateway/c/sci_umf_lufact.c \
-@UMFPACK_TRUE@sci_gateway/c/sci_umf_luget.c \
-@UMFPACK_TRUE@sci_gateway/c/sci_umf_luinfo.c \
-@UMFPACK_TRUE@sci_gateway/c/sci_umf_lusolve.c \
-@UMFPACK_TRUE@sci_gateway/c/sci_umfpack.c
+@UMFPACK_FALSE@UMFPACK_C_SOURCES = src/noumfpack/noumfpack.c
+@UMFPACK_TRUE@UMFPACK_C_SOURCES = \
+@UMFPACK_TRUE@    src/c/taucs_scilab.c \
+@UMFPACK_TRUE@    src/c/common_umfpack.c \
+@UMFPACK_TRUE@    src/c/with_umfpack.c
+
+@UMFPACK_TRUE@GATEWAY_C_SOURCES = \
+@UMFPACK_TRUE@    sci_gateway/c/sci_res_with_prec.c \
+@UMFPACK_TRUE@    sci_gateway/c/sci_taucs_chdel.c \
+@UMFPACK_TRUE@    sci_gateway/c/sci_taucs_chfact.c \
+@UMFPACK_TRUE@    sci_gateway/c/sci_taucs_chget.c \
+@UMFPACK_TRUE@    sci_gateway/c/sci_taucs_chinfo.c \
+@UMFPACK_TRUE@    sci_gateway/c/sci_taucs_chsolve.c \
+@UMFPACK_TRUE@    sci_gateway/c/sci_umf_ludel.c \
+@UMFPACK_TRUE@    sci_gateway/c/sci_umf_lufact.c \
+@UMFPACK_TRUE@    sci_gateway/c/sci_umf_luget.c \
+@UMFPACK_TRUE@    sci_gateway/c/sci_umf_luinfo.c \
+@UMFPACK_TRUE@    sci_gateway/c/sci_umf_lusolve.c \
+@UMFPACK_TRUE@    sci_gateway/c/sci_umfpack.c
 
 
 #### umfpack : gateway declaration ####
@@ -620,28 +621,35 @@ libsciumfpack_la_etc_DATA = etc/umfpack.quit etc/umfpack.start
 @UMFPACK_TRUE@INCLUDE_FLAGS = $(libsciumfpack_la_CPPFLAGS)
 @UMFPACK_TRUE@libsciumfpack_la_LIBADD = libsciumfpack-algo.la \
 @UMFPACK_TRUE@	$(UMFPACK_LIB)
-@UMFPACK_FALSE@libsciumfpack_la_CPPFLAGS = -I$(top_srcdir)/modules/api_scilab/includes/ \
-@UMFPACK_FALSE@-I$(top_srcdir)/modules/umfpack/includes/ \
-@UMFPACK_FALSE@-I$(top_srcdir)/modules/output_stream/includes/ \
-@UMFPACK_FALSE@-I$(top_srcdir)/modules/localization/includes/ \
-@UMFPACK_FALSE@$(UMFPACK_CFLAGS) \
-@UMFPACK_FALSE@$(AM_CPPFLAGS)
+@UMFPACK_FALSE@libsciumfpack_la_CPPFLAGS = \
+@UMFPACK_FALSE@    -I$(top_srcdir)/modules/api_scilab/includes/ \
+@UMFPACK_FALSE@    -I$(top_srcdir)/modules/umfpack/includes/ \
+@UMFPACK_FALSE@    -I$(top_srcdir)/modules/output_stream/includes/ \
+@UMFPACK_FALSE@    -I$(top_srcdir)/modules/localization/includes/ \
+@UMFPACK_FALSE@    $(UMFPACK_CFLAGS) \
+@UMFPACK_FALSE@    $(AM_CPPFLAGS)
 
 
 # Crappy workaround to avoid an undefined symbol while using umfpack features
 # For some unknown reasons, -lumfpack will not load cholmod & colamd
 # libsciumfpack_la_LIBADD += -lcholmod -lcolamd
-@UMFPACK_TRUE@libsciumfpack_la_CPPFLAGS = -I$(srcdir)/includes/ \
-@UMFPACK_TRUE@			-I$(srcdir)/src/c/ \
-@UMFPACK_TRUE@			-I$(top_srcdir)/modules/dynamic_link/includes/ \
-@UMFPACK_TRUE@			-I$(top_srcdir)/modules/output_stream/includes/ \
-@UMFPACK_TRUE@			-I$(top_srcdir)/modules/api_scilab/includes/ \
-@UMFPACK_TRUE@			-I$(top_srcdir)/modules/localization/includes/ \
-@UMFPACK_TRUE@			-I$(top_srcdir)/modules/mexlib/includes/ \
-@UMFPACK_TRUE@			-I$(top_srcdir)/modules/operations/includes/ \
-@UMFPACK_TRUE@			-I$(top_srcdir)/modules/system_env/includes/ \
-@UMFPACK_TRUE@			$(UMFPACK_CFLAGS) \
-@UMFPACK_TRUE@			$(AM_CPPFLAGS)
+@UMFPACK_TRUE@libsciumfpack_la_CPPFLAGS = \
+@UMFPACK_TRUE@    -I$(srcdir)/includes/ \
+@UMFPACK_TRUE@    -I$(srcdir)/src/c/ \
+@UMFPACK_TRUE@    -I$(top_srcdir)/modules/ast/includes/ast/ \
+@UMFPACK_TRUE@    -I$(top_srcdir)/modules/ast/includes/exps/ \
+@UMFPACK_TRUE@    -I$(top_srcdir)/modules/ast/includes/operations/ \
+@UMFPACK_TRUE@    -I$(top_srcdir)/modules/ast/includes/parse/ \
+@UMFPACK_TRUE@    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+@UMFPACK_TRUE@    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+@UMFPACK_TRUE@    -I$(top_srcdir)/modules/ast/includes/types/ \
+@UMFPACK_TRUE@    -I$(top_srcdir)/modules/dynamic_link/includes/ \
+@UMFPACK_TRUE@    -I$(top_srcdir)/modules/output_stream/includes/ \
+@UMFPACK_TRUE@    -I$(top_srcdir)/modules/api_scilab/includes/ \
+@UMFPACK_TRUE@    -I$(top_srcdir)/modules/localization/includes/ \
+@UMFPACK_TRUE@    -I$(top_srcdir)/modules/mexlib/includes/ \
+@UMFPACK_TRUE@    $(UMFPACK_CFLAGS) \
+@UMFPACK_TRUE@    $(AM_CPPFLAGS)
 
 
 # Where all the Scilab stuff is installed (macros, help, ...)
@@ -836,9 +844,6 @@ sci_gateway/c/$(am__dirstamp):
 sci_gateway/c/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) sci_gateway/c/$(DEPDIR)
 	@: > sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
-sci_gateway/c/libsciumfpack_la-gw_umfpack.lo:  \
-	sci_gateway/c/$(am__dirstamp) \
-	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/c/libsciumfpack_la-sci_res_with_prec.lo:  \
 	sci_gateway/c/$(am__dirstamp) \
 	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
@@ -891,7 +896,6 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libsciumfpack_la-gw_umfpack.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libsciumfpack_la-sci_res_with_prec.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libsciumfpack_la-sci_taucs_chdel.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libsciumfpack_la-sci_taucs_chfact.Plo@am__quote@
@@ -992,13 +996,6 @@ src/c/libsciumfpack_la-with_umfpack.lo: src/c/with_umfpack.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/with_umfpack.c' object='src/c/libsciumfpack_la-with_umfpack.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciumfpack_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libsciumfpack_la-with_umfpack.lo `test -f 'src/c/with_umfpack.c' || echo '$(srcdir)/'`src/c/with_umfpack.c
-
-sci_gateway/c/libsciumfpack_la-gw_umfpack.lo: sci_gateway/c/gw_umfpack.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciumfpack_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libsciumfpack_la-gw_umfpack.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libsciumfpack_la-gw_umfpack.Tpo -c -o sci_gateway/c/libsciumfpack_la-gw_umfpack.lo `test -f 'sci_gateway/c/gw_umfpack.c' || echo '$(srcdir)/'`sci_gateway/c/gw_umfpack.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libsciumfpack_la-gw_umfpack.Tpo sci_gateway/c/$(DEPDIR)/libsciumfpack_la-gw_umfpack.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/gw_umfpack.c' object='sci_gateway/c/libsciumfpack_la-gw_umfpack.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciumfpack_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libsciumfpack_la-gw_umfpack.lo `test -f 'sci_gateway/c/gw_umfpack.c' || echo '$(srcdir)/'`sci_gateway/c/gw_umfpack.c
 
 sci_gateway/c/libsciumfpack_la-sci_res_with_prec.lo: sci_gateway/c/sci_res_with_prec.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciumfpack_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libsciumfpack_la-sci_res_with_prec.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libsciumfpack_la-sci_res_with_prec.Tpo -c -o sci_gateway/c/libsciumfpack_la-sci_res_with_prec.lo `test -f 'sci_gateway/c/sci_res_with_prec.c' || echo '$(srcdir)/'`sci_gateway/c/sci_res_with_prec.c

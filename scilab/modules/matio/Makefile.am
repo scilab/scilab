@@ -9,32 +9,34 @@ include $(top_srcdir)/Makefile.incl.am
 if MATIO
 
 #### List of the gateway files ####
-GATEWAY_C_SOURCES = sci_gateway/c/gw_matio.c \
-		    sci_gateway/c/sci_matfile_open.c \
-		    sci_gateway/c/sci_matfile_close.c \
-		    sci_gateway/c/sci_matfile_listvar.c \
-		    sci_gateway/c/sci_matfile_varreadnext.c \
-		    sci_gateway/c/sci_matfile_varwrite.c
+GATEWAY_C_SOURCES = \
+    sci_gateway/c/gw_matio.c \
+    sci_gateway/c/sci_matfile_open.c \
+    sci_gateway/c/sci_matfile_close.c \
+    sci_gateway/c/sci_matfile_listvar.c \
+    sci_gateway/c/sci_matfile_varreadnext.c \
+    sci_gateway/c/sci_matfile_varwrite.c
 
 #### List of the C files ####
-MATIO_C_SOURCES = src/c/matfile_manager.c \
-		  src/c/CreateMatlabVariable.c \
-		  src/c/CreateBooleanVariable.c \
-		  src/c/CreateCharVariable.c \
-		  src/c/CreateDoubleVariable.c \
-		  src/c/CreateIntegerVariable.c \
-		  src/c/CreateHyperMatrixVariable.c \
-		  src/c/CreateStructVariable.c \
-		  src/c/CreateSparseVariable.c \
-		  src/c/CreateCellVariable.c \
-		  src/c/GetMatlabVariable.c \
-		  src/c/GetDoubleVariable.c \
-		  src/c/GetCharVariable.c \
-		  src/c/GetIntegerVariable.c \
-		  src/c/GetMlistVariable.c \
-		  src/c/GetCellVariable.c \
-		  src/c/GetStructVariable.c \
-		  src/c/GetSparseVariable.c
+MATIO_C_SOURCES = \
+    src/c/matfile_manager.c \
+    src/c/CreateMatlabVariable.c \
+    src/c/CreateBooleanVariable.c \
+    src/c/CreateCharVariable.c \
+    src/c/CreateDoubleVariable.c \
+    src/c/CreateIntegerVariable.c \
+    src/c/CreateHyperMatrixVariable.c \
+    src/c/CreateStructVariable.c \
+    src/c/CreateSparseVariable.c \
+    src/c/CreateCellVariable.c \
+    src/c/GetMatlabVariable.c \
+    src/c/GetDoubleVariable.c \
+    src/c/GetCharVariable.c \
+    src/c/GetIntegerVariable.c \
+    src/c/GetMlistVariable.c \
+    src/c/GetCellVariable.c \
+    src/c/GetStructVariable.c \
+    src/c/GetSparseVariable.c
 
 libscimatio_la_LDFLAGS = $(AM_LDFLAGS)
 
@@ -45,15 +47,22 @@ GATEWAY_CPP_SOURCES	=
 
 endif
 
-libscimatio_la_CPPFLAGS = -I$(srcdir)/includes/ \
-			-I$(srcdir)/src/c/ \
-			-I$(top_srcdir)/modules/api_scilab/includes/ \
-			-I$(top_srcdir)/modules/localization/includes/ \
-			-I$(top_srcdir)/modules/output_stream/includes/ \
-			-I$(top_srcdir)/modules/operations/includes/ \
-			-I$(top_srcdir)/modules/string/includes/ \
-			$(MATIO_CFLAGS) \
-			$(AM_CPPFLAGS)
+libscimatio_la_CPPFLAGS = \
+    -I$(srcdir)/includes/ \
+    -I$(srcdir)/src/c/ \
+    -I$(top_srcdir)/modules/ast/includes/ast/ \
+    -I$(top_srcdir)/modules/ast/includes/exps/ \
+    -I$(top_srcdir)/modules/ast/includes/operations/ \
+    -I$(top_srcdir)/modules/ast/includes/parse/ \
+    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+    -I$(top_srcdir)/modules/ast/includes/types/ \
+    -I$(top_srcdir)/modules/api_scilab/includes/ \
+    -I$(top_srcdir)/modules/localization/includes/ \
+    -I$(top_srcdir)/modules/output_stream/includes/ \
+    -I$(top_srcdir)/modules/string/includes/ \
+    $(MATIO_CFLAGS) \
+    $(AM_CPPFLAGS)
 
 pkglib_LTLIBRARIES = libscimatio.la
 noinst_LTLIBRARIES = libscimatio-algo.la

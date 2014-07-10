@@ -4,39 +4,39 @@
 # This file is distributed under the same license as the Scilab package.
 
 GATEWAY_C_SOURCES = \
-sci_gateway/c/gw_functions.c
+    sci_gateway/c/gw_functions.c
 
 GATEWAY_CPP_SOURCES =  \
-sci_gateway/cpp/sci_exec.cpp \
-sci_gateway/cpp/sci_functionlist.cpp \
-sci_gateway/cpp/sci_whereis.cpp \
-sci_gateway/cpp/sci_execstr.cpp \
-sci_gateway/cpp/sci_getCurrentThreadId.cpp \
-sci_gateway/cpp/sci_getThreads.cpp \
-sci_gateway/cpp/sci_macrovar.cpp
+    sci_gateway/cpp/sci_exec.cpp \
+    sci_gateway/cpp/sci_functionlist.cpp \
+    sci_gateway/cpp/sci_whereis.cpp \
+    sci_gateway/cpp/sci_execstr.cpp \
+    sci_gateway/cpp/sci_getCurrentThreadId.cpp \
+    sci_gateway/cpp/sci_getThreads.cpp \
+    sci_gateway/cpp/sci_macrovar.cpp
 
 libscifunctions_la_CPPFLAGS = \
--I$(srcdir)/includes/ \
--I$(srcdir)/src/c/ \
--I$(top_srcdir)/modules/functions_manager/includes/ \
--I$(top_srcdir)/modules/symbol/includes/ \
--I$(top_srcdir)/modules/ast/includes/ \
--I$(top_srcdir)/modules/ast/includes/exps \
--I$(top_srcdir)/modules/api_scilab/includes/ \
--I$(top_srcdir)/modules/operations/includes/ \
--I$(top_srcdir)/modules/localization/includes/ \
--I$(top_srcdir)/modules/parse/includes/ \
--I$(top_srcdir)/modules/string/includes/ \
--I$(top_srcdir)/modules/fileio/includes \
--I$(top_srcdir)/modules/system_env/includes \
--I$(top_srcdir)/modules/console/includes \
--I$(top_srcdir)/modules/output_stream/includes \
--I$(top_srcdir)/modules/types/includes/ \
--I$(top_srcdir)/modules/threads/includes/ \
--I$(top_srcdir)/modules/elementary_functions/includes/ \
--I$(top_srcdir)/modules/dynamic_link/includes/ \
-$(EIGEN_CPPFLAGS) \
-$(AM_CPPFLAGS)
+    -I$(srcdir)/includes/ \
+    -I$(srcdir)/src/c/ \
+    -I$(top_srcdir)/modules/ast/includes/ast/ \
+    -I$(top_srcdir)/modules/ast/includes/exps/ \
+    -I$(top_srcdir)/modules/ast/includes/operations/ \
+    -I$(top_srcdir)/modules/ast/includes/parse/ \
+    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+    -I$(top_srcdir)/modules/ast/includes/types/ \
+    -I$(top_srcdir)/modules/functions_manager/includes/ \
+    -I$(top_srcdir)/modules/api_scilab/includes/ \
+    -I$(top_srcdir)/modules/localization/includes/ \
+    -I$(top_srcdir)/modules/string/includes/ \
+    -I$(top_srcdir)/modules/fileio/includes \
+    -I$(top_srcdir)/modules/console/includes \
+    -I$(top_srcdir)/modules/output_stream/includes \
+    -I$(top_srcdir)/modules/threads/includes/ \
+    -I$(top_srcdir)/modules/elementary_functions/includes/ \
+    -I$(top_srcdir)/modules/dynamic_link/includes/ \
+    $(EIGEN_CPPFLAGS) \
+    $(AM_CPPFLAGS)
 
 pkglib_LTLIBRARIES = libscifunctions.la
 
@@ -57,7 +57,9 @@ libscifunctions_la_root_DATA =  license.txt
 
 #### functions : init scripts ####
 libscifunctions_la_etcdir = $(mydatadir)/etc
-libscifunctions_la_etc_DATA = etc/functions.quit etc/functions.start
+libscifunctions_la_etc_DATA = \
+    etc/functions.quit \
+    etc/functions.start
 
 #### functions : gateway declaration ####
 libscifunctions_la_sci_gatewaydir = $(mydatadir)/sci_gateway

@@ -26,9 +26,10 @@ libscicommons_la_etc_DATA = \
 
 COMMONS_JNI_SOURCES = src/jni/FindIconHelper.cpp
 
-COMMONS_C_SOURCES =  src/jni/ScilabCommons_wrap.c \
-		     src/jni/CommonFileUtils_wrap.c \
-		     src/c/fileutils.c
+COMMONS_C_SOURCES =  \
+    src/jni/ScilabCommons_wrap.c \
+    src/jni/CommonFileUtils_wrap.c \
+    src/c/fileutils.c
 
 COMMONS_CPP_SOURCES = 
 if NEED_JAVA
@@ -37,12 +38,20 @@ endif
 
 COMMONS_FORTRAN_SOURCES = src/fortran/empty.f
 
-libscicommons_la_CPPFLAGS= $(JAVA_JNI_INCLUDE) \
-			-I$(srcdir)/includes/ \
-			-I$(srcdir)/src/jni/ \
-			-I$(top_srcdir)/modules/localization/includes/ \
-			-I$(top_srcdir)/modules/fileio/includes/ \
-			$(AM_CPPFLAGS)
+libscicommons_la_CPPFLAGS= \
+    $(JAVA_JNI_INCLUDE) \
+    -I$(srcdir)/includes/ \
+    -I$(srcdir)/src/jni/ \
+    -I$(top_srcdir)/modules/ast/includes/ast/ \
+    -I$(top_srcdir)/modules/ast/includes/exps/ \
+    -I$(top_srcdir)/modules/ast/includes/operations/ \
+    -I$(top_srcdir)/modules/ast/includes/parse/ \
+    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+    -I$(top_srcdir)/modules/ast/includes/types/ \
+    -I$(top_srcdir)/modules/localization/includes/ \
+    -I$(top_srcdir)/modules/fileio/includes/ \
+    $(AM_CPPFLAGS)
 
 
 libscicommons_disable_la_SOURCES = $(COMMONS_DISABLE_C_SOURCES)

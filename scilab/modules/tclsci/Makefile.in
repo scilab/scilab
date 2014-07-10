@@ -579,56 +579,64 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 yacc_present = @yacc_present@
 @TCLTK_FALSE@TCLSCI_C_SOURCES = src/notclsci/notclsci.c
-@TCLTK_TRUE@TCLSCI_C_SOURCES = src/c/TCL_Global.c \
-@TCLTK_TRUE@src/c/InitTclTk.c \
-@TCLTK_TRUE@src/c/ScilabEval.c \
-@TCLTK_TRUE@src/c/setenvtcl.c \
-@TCLTK_TRUE@src/c/InitializeTclTk.c \
-@TCLTK_TRUE@src/c/TerminateTclTk.c \
-@TCLTK_TRUE@src/c/setvar.c \
-@TCLTK_TRUE@src/c/TCL_ArrayDim.c \
-@TCLTK_TRUE@src/c/TCL_ArrayExist.c \
-@TCLTK_TRUE@src/c/TCL_ArrayGetVar.c \
-@TCLTK_TRUE@src/c/TCL_ArraySize.c \
-@TCLTK_TRUE@src/c/TCL_Command.c \
-@TCLTK_TRUE@src/c/GlobalTclInterp.c \
-@TCLTK_TRUE@src/c/TCL_getErrorLine.c
+@TCLTK_TRUE@TCLSCI_C_SOURCES = \
+@TCLTK_TRUE@    src/c/TCL_Global.c \
+@TCLTK_TRUE@    src/c/InitTclTk.c \
+@TCLTK_TRUE@    src/c/ScilabEval.c \
+@TCLTK_TRUE@    src/c/setenvtcl.c \
+@TCLTK_TRUE@    src/c/InitializeTclTk.c \
+@TCLTK_TRUE@    src/c/TerminateTclTk.c \
+@TCLTK_TRUE@    src/c/setvar.c \
+@TCLTK_TRUE@    src/c/TCL_ArrayDim.c \
+@TCLTK_TRUE@    src/c/TCL_ArrayExist.c \
+@TCLTK_TRUE@    src/c/TCL_ArrayGetVar.c \
+@TCLTK_TRUE@    src/c/TCL_ArraySize.c \
+@TCLTK_TRUE@    src/c/TCL_Command.c \
+@TCLTK_TRUE@    src/c/GlobalTclInterp.c \
+@TCLTK_TRUE@    src/c/TCL_getErrorLine.c
 
 @TCLTK_FALSE@GATEWAY_C_SOURCES = 
-@TCLTK_TRUE@GATEWAY_C_SOURCES = sci_gateway/c/sci_opentk.c \
-@TCLTK_TRUE@sci_gateway/c/sci_TCL_SetVar.c \
-@TCLTK_TRUE@sci_gateway/c/sci_TCL_ExistVar.c \
-@TCLTK_TRUE@sci_gateway/c/sci_TCL_DoOneEvent.c \
-@TCLTK_TRUE@sci_gateway/c/sci_TCL_UnsetVar.c \
-@TCLTK_TRUE@sci_gateway/c/sci_TCL_ExistInterp.c \
-@TCLTK_TRUE@sci_gateway/c/gw_tclsci.c \
-@TCLTK_TRUE@sci_gateway/c/sci_TCL_EvalStr.c \
-@TCLTK_TRUE@sci_gateway/c/sci_TCL_DeleteInterp.c \
-@TCLTK_TRUE@sci_gateway/c/sci_TCL_GetVersion.c \
-@TCLTK_TRUE@sci_gateway/c/sci_TCL_EvalFile.c \
-@TCLTK_TRUE@sci_gateway/c/sci_TCL_GetVar.c \
-@TCLTK_TRUE@sci_gateway/c/sci_TCL_ExistArray.c \
-@TCLTK_TRUE@sci_gateway/c/sci_TCL_UpVar.c
+@TCLTK_TRUE@GATEWAY_C_SOURCES = \
+@TCLTK_TRUE@    sci_gateway/c/sci_opentk.c \
+@TCLTK_TRUE@    sci_gateway/c/sci_TCL_SetVar.c \
+@TCLTK_TRUE@    sci_gateway/c/sci_TCL_ExistVar.c \
+@TCLTK_TRUE@    sci_gateway/c/sci_TCL_DoOneEvent.c \
+@TCLTK_TRUE@    sci_gateway/c/sci_TCL_UnsetVar.c \
+@TCLTK_TRUE@    sci_gateway/c/sci_TCL_ExistInterp.c \
+@TCLTK_TRUE@    sci_gateway/c/gw_tclsci.c \
+@TCLTK_TRUE@    sci_gateway/c/sci_TCL_EvalStr.c \
+@TCLTK_TRUE@    sci_gateway/c/sci_TCL_DeleteInterp.c \
+@TCLTK_TRUE@    sci_gateway/c/sci_TCL_GetVersion.c \
+@TCLTK_TRUE@    sci_gateway/c/sci_TCL_EvalFile.c \
+@TCLTK_TRUE@    sci_gateway/c/sci_TCL_GetVar.c \
+@TCLTK_TRUE@    sci_gateway/c/sci_TCL_ExistArray.c \
+@TCLTK_TRUE@    sci_gateway/c/sci_TCL_UpVar.c
 
 pkglib_LTLIBRARIES = libscitclsci.la
 noinst_LTLIBRARIES = libscitclsci-algo.la
 libscitclsci_la_LDFLAGS = $(AM_LDFLAGS)
-libscitclsci_la_CPPFLAGS = -I$(srcdir)/includes/ \
-			-I$(srcdir)/src/c \
-			-I$(srcdir)/sci_gateway/c/ \
-			$(TCL_INC_PATH) \
-			$(TK_INC_PATH) \
-			-I$(top_srcdir)/modules/action_binding/includes/ \
-			-I$(top_srcdir)/modules/fileio/includes/ \
-			-I$(top_srcdir)/modules/call_scilab/includes/ \
-			-I$(top_srcdir)/modules/output_stream/includes/ \
-			-I$(top_srcdir)/modules/localization/includes/ \
-			-I$(top_srcdir)/modules/api_scilab/includes/ \
-			-I$(top_srcdir)/modules/operations/includes/ \
-			-I$(top_srcdir)/modules/system_env/includes/ \
-			-I$(top_srcdir)/modules/threads/includes/ \
-			-I$(top_srcdir)/modules/string/includes/ \
-            $(AM_CPPFLAGS)
+libscitclsci_la_CPPFLAGS = \
+    -I$(srcdir)/includes/ \
+    -I$(srcdir)/src/c \
+    -I$(srcdir)/sci_gateway/c/ \
+    $(TCL_INC_PATH) \
+    $(TK_INC_PATH) \
+    -I$(top_srcdir)/modules/ast/includes/ast/ \
+    -I$(top_srcdir)/modules/ast/includes/exps/ \
+    -I$(top_srcdir)/modules/ast/includes/operations/ \
+    -I$(top_srcdir)/modules/ast/includes/parse/ \
+    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+    -I$(top_srcdir)/modules/ast/includes/types/ \
+    -I$(top_srcdir)/modules/action_binding/includes/ \
+    -I$(top_srcdir)/modules/fileio/includes/ \
+    -I$(top_srcdir)/modules/call_scilab/includes/ \
+    -I$(top_srcdir)/modules/output_stream/includes/ \
+    -I$(top_srcdir)/modules/localization/includes/ \
+    -I$(top_srcdir)/modules/api_scilab/includes/ \
+    -I$(top_srcdir)/modules/threads/includes/ \
+    -I$(top_srcdir)/modules/string/includes/ \
+    $(AM_CPPFLAGS)
 
 libscitclsci_algo_la_SOURCES = $(TCLSCI_C_SOURCES)
 libscitclsci_la_SOURCES = $(GATEWAY_C_SOURCES)
@@ -647,11 +655,15 @@ libscitclsci_la_root_DATA = license.txt
 
 #### tclsci : init scripts ####
 libscitclsci_la_etcdir = $(mydatadir)/etc
-libscitclsci_la_etc_DATA = etc/tclsci.quit etc/tclsci.start
+libscitclsci_la_etc_DATA = \
+    etc/tclsci.quit \
+    etc/tclsci.start
+
 
 ### TCL macros ###
 libscitclsci_la_tcldir = $(mydatadir)
-nobase_libscitclsci_la_tcl_DATA = tcl/utils/Notebook.tcl \
+nobase_libscitclsci_la_tcl_DATA = \
+tcl/utils/Notebook.tcl \
 tcl/utils/Balloon.tcl \
 tcl/utils/Combobox.tcl \
 tcl/sciGUI/data/initial.help \

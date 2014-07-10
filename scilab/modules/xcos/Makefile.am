@@ -35,19 +35,20 @@ libscixcos_la_etc_DATA = \
 	etc/XConfiguration-xcos.xml
 
 XCOS_CXX_SOURCES =	\
-            src/jni/Xcos.cpp \
-			src/jni/Xcos.hxx \
-			src/jni/Palette.cpp \
-			src/jni/Palette.hxx \
-			src/jni/Modelica.cpp \
-			src/jni/Modelica.hxx \
-			src/cpp/xcosUtilities.cpp \
-            src/cpp/loadStatus.cpp
+    src/jni/Xcos.cpp \
+    src/jni/Xcos.hxx \
+    src/jni/Palette.cpp \
+    src/jni/Palette.hxx \
+    src/jni/Modelica.cpp \
+    src/jni/Modelica.hxx \
+    src/cpp/xcosUtilities.cpp \
+    src/cpp/loadStatus.cpp
 
 
-GIWS_WRAPPERS = src/jni/Xcos.giws.xml \
-			src/jni/Palette.giws.xml \
-			src/jni/Modelica.giws.xml
+GIWS_WRAPPERS = \
+    src/jni/Xcos.giws.xml \
+    src/jni/Palette.giws.xml \
+    src/jni/Modelica.giws.xml
 
 if GIWS
 BUILT_SOURCES=giws
@@ -76,28 +77,40 @@ GATEWAY_CXX_SOURCES = \
 	sci_gateway/cpp/sci_xcosSimulationStarted.cpp
 
 libscixcos_la_CPPFLAGS = \
-			-I$(srcdir)/includes/ \
-			-I$(srcdir)/src/jni/ \
-			-I$(srcdir)/src/cpp/ \
-			-I$(srcdir)/src/c/ \
-	 		-I$(top_srcdir)/modules/jvm/includes/ \
-			-I$(top_srcdir)/modules/output_stream/includes/ \
-			-I$(top_srcdir)/modules/commons/src/jni/ \
-			-I$(top_srcdir)/modules/localization/includes/ \
-			-I$(top_srcdir)/modules/fileio/includes/ \
-			-I$(top_srcdir)/modules/scicos_blocks/src/jni/ \
-			-I$(top_srcdir)/modules/operations/includes/ \
-			-I$(top_srcdir)/modules/api_scilab/includes/ \
-			-I$(top_srcdir)/modules/system_env/includes/ \
-			$(JAVA_JNI_INCLUDE) \
-			$(AM_CPPFLAGS)
+    -I$(srcdir)/includes/ \
+    -I$(srcdir)/src/jni/ \
+    -I$(srcdir)/src/cpp/ \
+    -I$(srcdir)/src/c/ \
+    -I$(top_srcdir)/modules/ast/includes/ast/ \
+    -I$(top_srcdir)/modules/ast/includes/exps/ \
+    -I$(top_srcdir)/modules/ast/includes/operations/ \
+    -I$(top_srcdir)/modules/ast/includes/parse/ \
+    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+    -I$(top_srcdir)/modules/ast/includes/types/ \
+    -I$(top_srcdir)/modules/jvm/includes/ \
+    -I$(top_srcdir)/modules/output_stream/includes/ \
+    -I$(top_srcdir)/modules/commons/src/jni/ \
+    -I$(top_srcdir)/modules/localization/includes/ \
+    -I$(top_srcdir)/modules/fileio/includes/ \
+    -I$(top_srcdir)/modules/scicos_blocks/src/jni/ \
+    -I$(top_srcdir)/modules/api_scilab/includes/ \
+    $(JAVA_JNI_INCLUDE) \
+    $(AM_CPPFLAGS)
 
 # Without the xcos module
-libscixcos_disable_la_CPPFLAGS = -I$(srcdir)/includes/ \
-			-I$(top_srcdir)/modules/localization/includes/ \
-			-I$(top_srcdir)/modules/output_stream/includes \
-			-I$(top_srcdir)/modules/system_env/includes \
-			$(AM_CPPFLAGS)
+libscixcos_disable_la_CPPFLAGS = \
+    -I$(srcdir)/includes/ \
+    -I$(top_srcdir)/modules/ast/includes/ast/ \
+    -I$(top_srcdir)/modules/ast/includes/exps/ \
+    -I$(top_srcdir)/modules/ast/includes/operations/ \
+    -I$(top_srcdir)/modules/ast/includes/parse/ \
+    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+    -I$(top_srcdir)/modules/ast/includes/types/ \
+    -I$(top_srcdir)/modules/localization/includes/ \
+    -I$(top_srcdir)/modules/output_stream/includes \
+    $(AM_CPPFLAGS)
 
 XCOS_DISABLE_C_SOURCES = src/noxcos/noxcos.c
 libscixcos_disable_la_SOURCES = $(XCOS_DISABLE_C_SOURCES)
@@ -135,7 +148,8 @@ libscixcos_la_sci_gateway_DATA = sci_gateway/xcos_gateway.xml
 # Generated with:
 #   $ find images/ -type f -printf "%p \\\\\n" -name *.svg -or -name *.gif -or -name *.jpg -or -name *.png -not -name *_pal.jpg -not -name gui |sort |awk '$0 !~ /gui/{print;}' |awk '$0 !~ /_pal.jpg/{print;}'
 libscixcos_la_imagesdir=$(mydatadir)/
-nobase_libscixcos_la_images_DATA = images/blocks/3DSCOPE.svg \
+nobase_libscixcos_la_images_DATA = \
+images/blocks/3DSCOPE.svg \
 images/blocks/ANDBLK.svg \
 images/blocks/ASCOPE.svg \
 images/blocks/BACHE.svg \

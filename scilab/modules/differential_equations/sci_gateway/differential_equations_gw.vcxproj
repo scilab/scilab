@@ -81,7 +81,7 @@
     <ClCompile>
       <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../includes;../src/c;../../types/includes;../../ast/includes;../../core/includes;../../../libs/intl;../../localization/includes;../../system_env/includes;../../api_scilab/includes;../../symbol/includes;../../operations/includes;../../threads/includes;../../output_stream/includes;../../elementary_functions/includes;../../string/includes;../../../libs/Eigen/includes;../../console/includes;../../dynamic_link/includes;../../ast/includes/exps;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../includes;../src/c;../../../libs/intl;../../../libs/Eigen/includes;../../core/includes;../../localization/includes;../../api_scilab/includes;../../threads/includes;../../output_stream/includes;../../elementary_functions/includes;../../string/includes;../../console/includes;../../dynamic_link/includes;../../ast/includes/types;../../ast/includes/ast;../../ast/includes/exps;../../ast/includes/operations;../../ast/includes/symbol;../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;DIFFERENTIAL_EQUATIONS_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -116,7 +116,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../includes;../src/c;../../types/includes;../../ast/includes;../../core/includes;../../../libs/intl;../../localization/includes;../../system_env/includes;../../api_scilab/includes;../../symbol/includes;../../operations/includes;../../threads/includes;../../output_stream/includes;../../elementary_functions/includes;../../string/includes;../../../libs/Eigen/includes;../../console/includes;../../dynamic_link/includes;../../ast/includes/exps;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../includes;../src/c;../../../libs/intl;../../../libs/Eigen/includes;../../core/includes;../../localization/includes;../../api_scilab/includes;../../threads/includes;../../output_stream/includes;../../elementary_functions/includes;../../string/includes;../../console/includes;../../dynamic_link/includes;../../ast/includes/types;../../ast/includes/ast;../../ast/includes/exps;../../ast/includes/operations;../../ast/includes/symbol;../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;DIFFERENTIAL_EQUATIONS_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -152,7 +152,7 @@
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>../includes;../src/c;../../types/includes;../../ast/includes;../../core/includes;../../../libs/intl;../../localization/includes;../../system_env/includes;../../api_scilab/includes;../../symbol/includes;../../operations/includes;../../threads/includes;../../output_stream/includes;../../elementary_functions/includes;../../string/includes;../../../libs/Eigen/includes;../../console/includes;../../dynamic_link/includes;../../ast/includes/exps;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../includes;../src/c;../../../libs/intl;../../../libs/Eigen/includes;../../core/includes;../../localization/includes;../../api_scilab/includes;../../threads/includes;../../output_stream/includes;../../elementary_functions/includes;../../string/includes;../../console/includes;../../dynamic_link/includes;../../ast/includes/types;../../ast/includes/ast;../../ast/includes/exps;../../ast/includes/operations;../../ast/includes/symbol;../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;DIFFERENTIAL_EQUATIONS_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -195,7 +195,7 @@
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>../includes;../src/c;../../types/includes;../../ast/includes;../../core/includes;../../../libs/intl;../../localization/includes;../../system_env/includes;../../api_scilab/includes;../../symbol/includes;../../operations/includes;../../threads/includes;../../output_stream/includes;../../elementary_functions/includes;../../string/includes;../../../libs/Eigen/includes;../../console/includes;../../dynamic_link/includes;../../ast/includes/exps;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../includes;../src/c;../../../libs/intl;../../../libs/Eigen/includes;../../core/includes;../../localization/includes;../../api_scilab/includes;../../threads/includes;../../output_stream/includes;../../elementary_functions/includes;../../string/includes;../../console/includes;../../dynamic_link/includes;../../ast/includes/types;../../ast/includes/ast;../../ast/includes/exps;../../ast/includes/operations;../../ast/includes/symbol;../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;DIFFERENTIAL_EQUATIONS_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -248,8 +248,8 @@
     <ClCompile Include="cpp\sci_odedc.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\ast\ast-tools\ast-tools.vcxproj">
-      <Project>{1f4a0344-99ed-461b-bd53-1593788fb34d}</Project>
+    <ProjectReference Include="..\..\ast\ast.vcxproj">
+      <Project>{0d3fa25b-8116-44ec-a45e-260789daa3d9}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\console\src\c\console.vcxproj">
       <Project>{445d3b85-c9b1-498b-9c88-0a3c2390b1cc}</Project>
@@ -265,15 +265,6 @@
     </ProjectReference>
     <ProjectReference Include="..\..\output_stream\src\c\output_stream.vcxproj">
       <Project>{a5911cd7-f8e8-440c-a23e-4843a0636f3a}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\symbol\symbol.vcxproj">
-      <Project>{2c60033b-0dbd-4ca4-80d3-176c9be9ce2f}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\system_env\system_env.vcxproj">
-      <Project>{7ca60aef-9afa-4d06-af28-613c0aa27640}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\types\types.vcxproj">
-      <Project>{64e090da-dcb5-4f4d-93d7-e88ddec9c2ef}</Project>
     </ProjectReference>
     <ProjectReference Include="..\src\c\differential_equations.vcxproj">
       <Project>{f0190b5d-fb21-47a2-99ac-06627cdd0f8a}</Project>

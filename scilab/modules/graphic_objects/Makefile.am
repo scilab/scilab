@@ -20,8 +20,9 @@ libscigraphic_objects_la_root_DATA = changelog.txt license.txt readme.txt
 
 #### graphic_objects : init scripts ####
 libscigraphic_objects_la_etcdir = $(mydatadir)/etc
-libscigraphic_objects_la_etc_DATA = etc/graphic_objects.quit \
-				etc/graphic_objects.start
+libscigraphic_objects_la_etc_DATA = \
+    etc/graphic_objects.quit \
+	etc/graphic_objects.start
 
 include $(top_srcdir)/Makefile.incl.am
 
@@ -29,85 +30,103 @@ BUILT_SOURCES = 	includes/graphicObjectsProperties.h
 #This file is also generated, but can not be listed to prevent GCJ call.
 #src/java/org/scilab/modules/graphic_objects/graphicObject/GraphicObjectProperties.java
 
-GRAPHIC_OBJECTS_JNI_SOURCES = src/jni/CallGraphicController.cpp \
-                              src/jni/Builder.cpp \
-                              src/jni/CallXmlLoader.cpp
+GRAPHIC_OBJECTS_JNI_SOURCES = \
+    src/jni/CallGraphicController.cpp \
+    src/jni/Builder.cpp \
+    src/jni/CallXmlLoader.cpp
 
-GRAPHIC_OBJECTS_C_SOURCES = src/jni/DataLoader_wrap.c \
-							src/jni/ScilabNativeView_wrap.c \
-							src/jni/PolylineData_wrap.c \
-							src/jni/SurfaceData_wrap.c \
-                            src/jni/ObjectData_wrap.c
+GRAPHIC_OBJECTS_C_SOURCES = \
+    src/jni/DataLoader_wrap.c \
+    src/jni/ScilabNativeView_wrap.c \
+    src/jni/PolylineData_wrap.c \
+    src/jni/SurfaceData_wrap.c \
+    src/jni/ObjectData_wrap.c
 
-GRAPHIC_OBJECTS_CXX_SOURCES = 	src/cpp/createGraphicObject.cpp \
-								src/cpp/getGraphicObjectProperty.cpp \
-								src/cpp/getConsoleIdentifier.cpp \
-								src/cpp/setGraphicObjectProperty.cpp \
-								src/cpp/deleteGraphicObject.cpp \
-								src/cpp/dataModel.cpp \
-								src/cpp/Data3D.cpp \
-								src/cpp/DataLoader.cpp \
-								src/cpp/NgonData.cpp \
-								src/cpp/NgonGeneralData.cpp \
-								src/cpp/NgonGridData.cpp \
-								src/cpp/NgonGridMatplotData.cpp \
-								src/cpp/NgonPolylineData.cpp \
-								src/cpp/TriangleMeshData.cpp \
-								src/cpp/TriangleMeshFecData.cpp \
-								src/cpp/ColorComputer.cpp \
-								src/cpp/DecompositionUtils.cpp \
-								src/cpp/Fac3DColorComputer.cpp \
-								src/cpp/Fac3DDecomposer.cpp \
-								src/cpp/NgonGridDataDecomposer.cpp \
-								src/cpp/NgonGridGrayplotDataDecomposer.cpp \
-								src/cpp/MatPlotDecomposer.cpp \
-								src/cpp/NgonGridMatplotDataDecomposer.cpp \
-								src/cpp/Plot3DDecomposer.cpp \
-								src/cpp/PolylineDecomposer.cpp \
-								src/cpp/TriangleMeshFecDataDecomposer.cpp \
-								src/cpp/Triangulator.cpp \
-								src/cpp/ScilabView.cpp \
-								src/cpp/FigureList.cpp \
-								src/cpp/HandleManagement.cpp \
-								src/cpp/AxesModel.cpp \
-								src/cpp/FigureModel.cpp \
-								src/cpp/CurrentFigure.cpp \
-								src/cpp/CurrentObject.cpp \
-								src/cpp/CurrentSubwin.cpp \
-								src/cpp/createObjectData.cpp \
-								src/cpp/pickSurface.cpp \
-								src/cpp/Texture.cpp \
-								src/cpp/NormalGenerator.cpp
+GRAPHIC_OBJECTS_CXX_SOURCES = \
+    src/cpp/createGraphicObject.cpp \
+    src/cpp/getGraphicObjectProperty.cpp \
+    src/cpp/getConsoleIdentifier.cpp \
+    src/cpp/setGraphicObjectProperty.cpp \
+    src/cpp/deleteGraphicObject.cpp \
+    src/cpp/dataModel.cpp \
+    src/cpp/Data3D.cpp \
+    src/cpp/DataLoader.cpp \
+    src/cpp/NgonData.cpp \
+    src/cpp/NgonGeneralData.cpp \
+    src/cpp/NgonGridData.cpp \
+    src/cpp/NgonGridMatplotData.cpp \
+    src/cpp/NgonPolylineData.cpp \
+    src/cpp/TriangleMeshData.cpp \
+    src/cpp/TriangleMeshFecData.cpp \
+    src/cpp/ColorComputer.cpp \
+    src/cpp/DecompositionUtils.cpp \
+    src/cpp/Fac3DColorComputer.cpp \
+    src/cpp/Fac3DDecomposer.cpp \
+    src/cpp/NgonGridDataDecomposer.cpp \
+    src/cpp/NgonGridGrayplotDataDecomposer.cpp \
+    src/cpp/MatPlotDecomposer.cpp \
+    src/cpp/NgonGridMatplotDataDecomposer.cpp \
+    src/cpp/Plot3DDecomposer.cpp \
+    src/cpp/PolylineDecomposer.cpp \
+    src/cpp/TriangleMeshFecDataDecomposer.cpp \
+    src/cpp/Triangulator.cpp \
+    src/cpp/ScilabView.cpp \
+    src/cpp/FigureList.cpp \
+    src/cpp/HandleManagement.cpp \
+    src/cpp/AxesModel.cpp \
+    src/cpp/FigureModel.cpp \
+    src/cpp/CurrentFigure.cpp \
+    src/cpp/CurrentObject.cpp \
+    src/cpp/CurrentSubwin.cpp \
+    src/cpp/createObjectData.cpp \
+    src/cpp/pickSurface.cpp \
+    src/cpp/Texture.cpp \
+    src/cpp/NormalGenerator.cpp
 
-GIWS_WRAPPERS = src/jni/graphic_objects.giws.xml \
-                src/jni/builder.giws.xml
+GIWS_WRAPPERS = \
+    src/jni/graphic_objects.giws.xml \
+    src/jni/builder.giws.xml
 
 if GIWS
 BUILT_SOURCES += giws
 endif
 
 
-libscigraphic_objects_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
-			-I$(srcdir)/includes/ \
-			-I$(srcdir)/src/cpp/ \
-			-I$(srcdir)/src/c/ \
-			-I$(srcdir)/src/jni/ \
-			-I$(top_srcdir)/modules/api_scilab/includes/ \
-			-I$(top_srcdir)/modules/commons/src/jni/ \
-			-I$(top_srcdir)/modules/core/includes/ \
-	 		-I$(top_srcdir)/modules/jvm/includes/ \
-			-I$(top_srcdir)/modules/localization/includes/ \
-			-I$(top_srcdir)/modules/operations/includes/ \
-			-I$(top_srcdir)/modules/output_stream/includes/ \
-			-I$(top_srcdir)/modules/string/includes/ \
-			$(AM_CPPFLAGS)
+libscigraphic_objects_la_CPPFLAGS = \
+    -I$(srcdir)/includes/ \
+    -I$(srcdir)/src/cpp/ \
+    -I$(srcdir)/src/c/ \
+    -I$(srcdir)/src/jni/ \
+    -I$(top_srcdir)/modules/api_scilab/includes/ \
+    -I$(top_srcdir)/modules/commons/src/jni/ \
+    -I$(top_srcdir)/modules/core/includes/ \
+    -I$(top_srcdir)/modules/jvm/includes/ \
+    -I$(top_srcdir)/modules/localization/includes/ \
+    -I$(top_srcdir)/modules/ast/includes/ast/ \
+    -I$(top_srcdir)/modules/ast/includes/exps/ \
+    -I$(top_srcdir)/modules/ast/includes/operations/ \
+    -I$(top_srcdir)/modules/ast/includes/parse/ \
+    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+    -I$(top_srcdir)/modules/ast/includes/types/ \
+    -I$(top_srcdir)/modules/output_stream/includes/ \
+    -I$(top_srcdir)/modules/string/includes/ \
+    $(JAVA_JNI_INCLUDE) \
+    $(AM_CPPFLAGS)
 
 # Without the graphic_objects module
-libscigraphic_objects_disable_la_CPPFLAGS = -I$(srcdir)/includes/ \
-			-I$(top_srcdir)/modules/localization/includes/ \
-			-I$(top_srcdir)/modules/output_stream/includes/ \
-			-I$(top_srcdir)/modules/system_env/includes/ \
-			$(AM_CPPFLAGS)
+libscigraphic_objects_disable_la_CPPFLAGS = \
+    -I$(srcdir)/includes/ \
+    -I$(top_srcdir)/modules/localization/includes/ \
+    -I$(top_srcdir)/modules/output_stream/includes/ \
+    -I$(top_srcdir)/modules/ast/includes/ast/ \
+    -I$(top_srcdir)/modules/ast/includes/exps/ \
+    -I$(top_srcdir)/modules/ast/includes/operations/ \
+    -I$(top_srcdir)/modules/ast/includes/parse/ \
+    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+    -I$(top_srcdir)/modules/ast/includes/types/ \
+    $(AM_CPPFLAGS)
 
 GRAPHIC_OBJECTS_DISABLE_C_SOURCES = src/nographic_objects/nographic_objects.c
 libscigraphic_objects_disable_la_SOURCES = $(GRAPHIC_OBJECTS_DISABLE_C_SOURCES)
@@ -128,12 +147,13 @@ INCLUDE_FLAGS = $(libscigraphic_objects_la_CPPFLAGS)
 
 
 #### SWIG Declaration ####
-SWIG_WRAPPERS = src/jni/DataLoader.i \
-				src/jni/ScilabNativeView.i \
-				src/jni/PolylineData.i \
-				src/jni/SurfaceData.i \
-				src/jni/graphic_objects.i \
-				src/jni/ObjectData.i
+SWIG_WRAPPERS = \
+    src/jni/DataLoader.i \
+    src/jni/ScilabNativeView.i \
+    src/jni/PolylineData.i \
+    src/jni/SurfaceData.i \
+    src/jni/graphic_objects.i \
+    src/jni/ObjectData.i
 
 if SWIG
 BUILT_SOURCES+=swig

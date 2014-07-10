@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -80,7 +80,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../includes;../src/jni;../src/cpp;../../../java/jdk/include;../../../java/jdk/include/win32;../../jvm/includes;../../commons/src/jni;../../output_stream/includes;../../core/includes;../../api_scilab/includes;../../operations/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../includes;../src/jni;../src/cpp;../../../java/jdk/include;../../../java/jdk/include/win32;../../jvm/includes;../../commons/src/jni;../../output_stream/includes;../../core/includes;../../api_scilab/includes;../../ast/includes/operations;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;WIN32;_DEBUG;_WINDOWS;_USRDLL;TYPESJNI_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader>
@@ -108,7 +108,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../includes;../src/jni;../src/cpp;../../../java/jdk/include;../../../java/jdk/include/win32;../../jvm/includes;../../commons/src/jni;../../output_stream/includes;../../core/includes;../../api_scilab/includes;../../operations/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../includes;../src/jni;../src/cpp;../../../java/jdk/include;../../../java/jdk/include/win32;../../jvm/includes;../../commons/src/jni;../../output_stream/includes;../../core/includes;../../api_scilab/includes;../../ast/includes/operations;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;WIN32;_DEBUG;_WINDOWS;_USRDLL;TYPESJNI_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader>
@@ -132,7 +132,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>../includes;../src/jni;../src/cpp;../../../java/jdk/include;../../../java/jdk/include/win32;../../jvm/includes;../../commons/src/jni;../../output_stream/includes;../../core/includes;../../api_scilab/includes;../../operations/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../includes;../src/jni;../src/cpp;../../../java/jdk/include;../../../java/jdk/include/win32;../../jvm/includes;../../commons/src/jni;../../output_stream/includes;../../core/includes;../../api_scilab/includes;../../ast/includes/operations;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;WIN32;NDEBUG;_WINDOWS;_USRDLL;TYPESJNI_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -160,7 +160,7 @@
       <TargetEnvironment>X64</TargetEnvironment>
     </Midl>
     <ClCompile>
-      <AdditionalIncludeDirectories>../includes;../src/jni;../src/cpp;../../../java/jdk/include;../../../java/jdk/include/win32;../../jvm/includes;../../commons/src/jni;../../output_stream/includes;../../core/includes;../../api_scilab/includes;../../operations/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../includes;../src/jni;../src/cpp;../../../java/jdk/include;../../../java/jdk/include/win32;../../jvm/includes;../../commons/src/jni;../../output_stream/includes;../../core/includes;../../api_scilab/includes;../../ast/includes/operations;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;WIN32;NDEBUG;_WINDOWS;_USRDLL;TYPESJNI_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>

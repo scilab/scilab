@@ -28,100 +28,14 @@ include $(top_srcdir)/Makefile.incl.am
 
 #### types : include files ####
 libscitypes_la_includedir=$(pkgincludedir)
-libscitypes_la_include_HEADERS = \
-includes/alltypes.hxx \
-includes/arrayof.hxx \
-includes/bool.hxx \
-includes/callable.hxx \
-includes/cell.hxx \
-includes/c_gateway_prototype.h \
-includes/colon.hxx \
-includes/container.hxx \
-includes/cpp_gateway_prototype.hxx \
-includes/dollar.hxx \
-includes/double.hxx \
-includes/dynlib_types_gw.h \
-includes/dynlib_types.h \
-includes/file.hxx \
-includes/function.hxx \
-includes/gatewaystruct.hxx \
-includes/GetScilabVariable.h \
-includes/graphichandle.hxx \
-includes/implicitlist.hxx \
-includes/inspector.hxx \
-includes/internal.hxx \
-includes/int.hxx \
-includes/library.hxx \
-includes/listdelete.hxx \
-includes/list.hxx \
-includes/listinsert.hxx \
-includes/listoperation.hxx \
-includes/listundefined.hxx \
-includes/macrofile.hxx \
-includes/macro.hxx \
-includes/matrixiterator.hxx \
-includes/mlist.hxx \
-includes/pointer.hxx \
-includes/polynom.hxx \
-includes/ScilabToJava.hxx \
-includes/singlepoly.hxx \
-includes/singlestruct.hxx \
-includes/sparse.hxx \
-includes/sparseOp.hxx \
-includes/string.hxx \
-includes/struct.hxx \
-includes/threadId.hxx \
-includes/tlist.hxx \
-includes/tostring_common.hxx \
-includes/types_gw.hxx \
-includes/types.hxx \
-includes/types_tools.hxx \
-includes/user.hxx \
-includes/void.hxx \
-includes/typesdecl.hxx
 
 TYPES_JAVA_C_SOURCES = src/jni/getScilabVariable_wrap.c
 
-TYPES_CPP_SOURCES = \
-src/cpp/types.cpp \
-src/cpp/string.cpp \
-src/cpp/double.cpp \
-src/cpp/bool.cpp \
-src/cpp/implicitlist.cpp \
-src/cpp/polynom.cpp \
-src/cpp/singlepoly.cpp \
-src/cpp/tostring_common.cpp \
-src/cpp/function.cpp \
-src/cpp/macrofile.cpp \
-src/cpp/macro.cpp \
-src/cpp/list.cpp \
-src/cpp/listdelete.cpp \
-src/cpp/listinsert.cpp \
-src/cpp/listoperation.cpp \
-src/cpp/listundefined.cpp \
-src/cpp/struct.cpp \
-src/cpp/singlestruct.cpp \
-src/cpp/cell.cpp \
-src/cpp/tlist.cpp \
-src/cpp/file.cpp \
-src/cpp/mlist.cpp \
-src/cpp/threadId.cpp \
-src/cpp/arrayof.cpp \
-src/cpp/int.cpp \
-src/cpp/sparse.cpp \
-src/cpp/graphichandle.cpp \
-src/cpp/types_tools.cpp \
-src/cpp/void.cpp \
-src/cpp/library.cpp
-
-TYPES_JAVA_CPP_SOURCES = src/cpp/ScilabToJava.cpp \
-	            src/jni/ScilabVariables.cpp \
-	            src/jni/ScilabVariablesRefresh.cpp \
-		    src/jni/ScilabPolynomialToJava.cpp
-
-if ENABLE_DEBUG
-TYPES_CPP_SOURCES += src/cpp/inspector.cpp
-endif
+TYPES_JAVA_CPP_SOURCES = \
+    src/cpp/ScilabToJava.cpp \
+    src/jni/ScilabVariables.cpp \
+    src/jni/ScilabVariablesRefresh.cpp \
+    src/jni/ScilabPolynomialToJava.cpp
 
 GIWS_WRAPPERS = src/jni/ScilabVariables.giws.xml
 
@@ -157,32 +71,48 @@ TYPES_GATEWAY_CPP_SOURCES += \
 	sci_gateway/cpp/sci_inspectorGetFunctionList.cpp
 endif
 
-libscitypes_java_la_CFLAGS = $(JAVA_JNI_INCLUDE) \
-			-I$(srcdir)/includes
+libscitypes_java_la_CFLAGS = \
+    $(JAVA_JNI_INCLUDE) \
+    -I$(top_srcdir)/modules/ast/includes/ast/ \
+    -I$(top_srcdir)/modules/ast/includes/exps/ \
+    -I$(top_srcdir)/modules/ast/includes/operations/ \
+    -I$(top_srcdir)/modules/ast/includes/parse/ \
+    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+    -I$(top_srcdir)/modules/ast/includes/types/ \
+    -I$(srcdir)/includes
 
-libscitypes_java_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
-               -I$(srcdir)/src/jni \
-               -I$(srcdir)/src/cpp \
-               -I$(srcdir)/includes \
-               -I$(top_srcdir)/modules/commons/src/jni/ \
-               -I$(top_srcdir)/modules/jvm/includes/ \
-               -I$(top_srcdir)/modules/output_stream/includes/ \
-               -I$(top_srcdir)/modules/api_scilab/includes/ \
-               -I$(top_srcdir)/modules/operations/includes/ \
-				$(AM_CPPFLAGS)
+libscitypes_java_la_CPPFLAGS = \
+    $(JAVA_JNI_INCLUDE) \
+    -I$(srcdir)/src/jni \
+    -I$(srcdir)/src/cpp \
+    -I$(srcdir)/includes \
+    -I$(top_srcdir)/modules/ast/includes/ast/ \
+    -I$(top_srcdir)/modules/ast/includes/exps/ \
+    -I$(top_srcdir)/modules/ast/includes/operations/ \
+    -I$(top_srcdir)/modules/ast/includes/parse/ \
+    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+    -I$(top_srcdir)/modules/ast/includes/types/ \
+    -I$(top_srcdir)/modules/commons/src/jni/ \
+    -I$(top_srcdir)/modules/jvm/includes/ \
+    -I$(top_srcdir)/modules/output_stream/includes/ \
+    -I$(top_srcdir)/modules/api_scilab/includes/ \
+    $(AM_CPPFLAGS)
 
 
 libscitypes_la_CPPFLAGS = \
 	-I$(srcdir)/includes \
+    -I$(top_srcdir)/modules/ast/includes/ast/ \
+    -I$(top_srcdir)/modules/ast/includes/exps/ \
+    -I$(top_srcdir)/modules/ast/includes/operations/ \
+    -I$(top_srcdir)/modules/ast/includes/parse/ \
+    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+    -I$(top_srcdir)/modules/ast/includes/types/ \
 	-I$(top_srcdir)/modules/elementary_functions/includes \
 	-I$(top_srcdir)/modules/localization/includes \
-	-I$(top_srcdir)/modules/operations/includes \
-	-I$(top_srcdir)/modules/symbol/includes \
-	-I$(top_srcdir)/modules/ast/includes \
-	-I$(top_srcdir)/modules/ast/includes/exps \
 	-I$(top_srcdir)/modules/output_stream/includes \
-	-I$(top_srcdir)/modules/parse/includes \
-	-I$(top_srcdir)/modules/system_env/includes \
 	-I$(top_srcdir)/modules/functions_manager/includes \
 	-I$(top_srcdir)/modules/string/includes \
 	-I$(top_srcdir)/modules/threads/includes \
@@ -200,8 +130,9 @@ endif
 noinst_LTLIBRARIES = libscitypes-algo.la
 
 
-libscitypes_algo_la_CPPFLAGS = 	$(libscitypes_la_CPPFLAGS) \
-								$(AM_CPPFLAGS)
+libscitypes_algo_la_CPPFLAGS = 	\
+    $(libscitypes_la_CPPFLAGS) \
+    $(AM_CPPFLAGS)
 
 libscitypes_la_LIBADD = libscitypes-algo.la
 
@@ -237,9 +168,10 @@ endif
 ####################
 ## Automated test ##
 ####################
-check_INCLUDES 		= -Iincludes/ \
-			-Isrc/cpp \
-			-I$(top_srcdir)/modules/ast/includes
+check_INCLUDES = \
+    -Iincludes/ \
+    -Isrc/cpp \
+    -I$(top_srcdir)/modules/ast/includes
 
 check_PROGRAMS 		= testTypes
 

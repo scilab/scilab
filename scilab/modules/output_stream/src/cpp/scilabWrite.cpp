@@ -12,7 +12,6 @@
 
 
 #include "scilabWrite.hxx"
-#include "configvariable.hxx"
 
 extern "C"
 {

@@ -52,15 +52,24 @@ PREFERENCES_C_SOURCES = src/c/getScilabPreference.c
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_preferences.c
 
-GATEWAY_CXX_SOURCES = sci_gateway/cpp/sci_addModulePreferences.cpp \
-                      sci_gateway/cpp/sci_removeModulePreferences.cpp \
-                      sci_gateway/cpp/sci_preferences.cpp
+GATEWAY_CXX_SOURCES = \
+    sci_gateway/cpp/sci_addModulePreferences.cpp \
+    sci_gateway/cpp/sci_removeModulePreferences.cpp \
+    sci_gateway/cpp/sci_preferences.cpp
 
-libscipreferences_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
+libscipreferences_la_CPPFLAGS = \
+    $(JAVA_JNI_INCLUDE) \
     -I$(srcdir)/includes/ \
     -I$(srcdir)/src/c/ \
     -I$(srcdir)/src/jni/ \
     $(XML_FLAGS) \
+    -I$(top_srcdir)/modules/ast/includes/ast/ \
+    -I$(top_srcdir)/modules/ast/includes/exps/ \
+    -I$(top_srcdir)/modules/ast/includes/operations/ \
+    -I$(top_srcdir)/modules/ast/includes/parse/ \
+    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+    -I$(top_srcdir)/modules/ast/includes/types/ \
     -I$(top_srcdir)/modules/commons/src/jni/ \
     -I$(top_srcdir)/modules/jvm/includes/ \
     -I$(top_srcdir)/modules/fileio/includes/ \
@@ -70,15 +79,21 @@ libscipreferences_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
     -I$(top_srcdir)/modules/core/includes/ \
     -I$(top_srcdir)/modules/functions/includes/ \
     -I$(top_srcdir)/modules/string/includes/ \
-    -I$(top_srcdir)/modules/system_env/includes/ \
-    -I$(top_srcdir)/modules/operations/includes/ \
     $(AM_CPPFLAGS)
 
 # Without the preferences module
-libscipreferences_cli_la_CPPFLAGS = -I$(srcdir)/includes/ \
-	-I$(top_srcdir)/modules/localization/includes/ \
-	-I$(top_srcdir)/modules/output_stream/includes \
-	$(AM_CPPFLAGS)
+libscipreferences_cli_la_CPPFLAGS = \
+    -I$(srcdir)/includes/ \
+    -I$(top_srcdir)/modules/ast/includes/ast/ \
+    -I$(top_srcdir)/modules/ast/includes/exps/ \
+    -I$(top_srcdir)/modules/ast/includes/operations/ \
+    -I$(top_srcdir)/modules/ast/includes/parse/ \
+    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+    -I$(top_srcdir)/modules/ast/includes/types/ \
+    -I$(top_srcdir)/modules/localization/includes/ \
+    -I$(top_srcdir)/modules/output_stream/includes \
+    $(AM_CPPFLAGS)
 
 PREFERENCES_CLI_C_SOURCES = src/nopreferences/nopreferences.c
 libscipreferences_cli_la_SOURCES = $(PREFERENCES_CLI_C_SOURCES)

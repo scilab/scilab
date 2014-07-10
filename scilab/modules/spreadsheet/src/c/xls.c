@@ -475,7 +475,7 @@ void xls_open(int *err, int *fd, char ***sst, int *ns, char ***Sheetnames, int**
                 getBoundsheets(fd, Sheetnames, Abspos, nsheets, &cur_pos, err);
                 for (k = 0; k < *nsheets; k++)
                 {
-                    (*Abspos)[k] += init_pos;
+                    (*Abspos)[k] += (int)init_pos;
                 }
                 if (*err > 0)
                 {

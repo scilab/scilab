@@ -1949,10 +1949,7 @@ desktop/images/icons/Makefile
 desktop/Makefile
 modules/threads/Makefile
 modules/ast/Makefile
-modules/parse/Makefile
-modules/symbol/Makefile
 modules/functions_manager/Makefile
-modules/system_env/Makefile
 modules/helptools/Makefile
 modules/data_structures/Makefile
 modules/differential_equations/Makefile
@@ -2016,7 +2013,6 @@ modules/genetic_algorithms/Makefile
 modules/simulated_annealing/Makefile
 modules/parameters/Makefile
 modules/matio/Makefile
-modules/operations/Makefile
 modules/atoms/Makefile
 modules/xcos/Makefile
 modules/scinotes/Makefile

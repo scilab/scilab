@@ -81,7 +81,7 @@
     <ClCompile>
       <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;../../java/jdk/include;../../java/jdk/include/win32;../output_stream/includes;../fileio/includes;../gui/includes;../core/includes;../localization/includes;../../libs/intl;src/c;src/c/getHandleProperty;../renderer/includes;../jvm/includes;includes/handleDrawing;../action_binding/includes;../graphic_export/includes;../string/includes;../windows_tools/includes;../api_scilab/includes;../operations/includes;../system_env/includes;../elementary_functions/includes;../graphic_objects/includes;../types/includes;../ast/includes;../ast/includes/exps;../../libs/Eigen/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;includes/handleDrawing;src/c;src/c/getHandleProperty;../../libs/intl;../../libs/Eigen/includes;../../java/jdk/include;../../java/jdk/include/win32;../output_stream/includes;../fileio/includes;../gui/includes;../core/includes;../localization/includes;../renderer/includes;../jvm/includes;../action_binding/includes;../graphic_export/includes;../string/includes;../windows_tools/includes;../api_scilab/includes;../elementary_functions/includes;../graphic_objects/includes;../ast/includes/types;../ast/includes/ast;../ast/includes/exps;../ast/includes/operations;../ast/includes/symbol;../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;_DEBUG;_WINDOWS;_USRDLL;GRAPHICS_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -117,7 +117,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;../../java/jdk/include;../../java/jdk/include/win32;../output_stream/includes;../fileio/includes;../gui/includes;../core/includes;../localization/includes;../../libs/intl;src/c;src/c/getHandleProperty;../renderer/includes;../jvm/includes;includes/handleDrawing;../action_binding/includes;../graphic_export/includes;../string/includes;../windows_tools/includes;../api_scilab/includes;../operations/includes;../system_env/includes;../elementary_functions/includes;../graphic_objects/includes;../types/includes;../ast/includes;../ast/includes/exps;../../libs/Eigen/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;includes/handleDrawing;src/c;src/c/getHandleProperty;../../libs/intl;../../libs/Eigen/includes;../../java/jdk/include;../../java/jdk/include/win32;../output_stream/includes;../fileio/includes;../gui/includes;../core/includes;../localization/includes;../renderer/includes;../jvm/includes;../action_binding/includes;../graphic_export/includes;../string/includes;../windows_tools/includes;../api_scilab/includes;../elementary_functions/includes;../graphic_objects/includes;../ast/includes/types;../ast/includes/ast;../ast/includes/exps;../ast/includes/operations;../ast/includes/symbol;../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;_DEBUG;_WINDOWS;_USRDLL;GRAPHICS_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -153,7 +153,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
       <Optimization>MaxSpeed</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <AdditionalIncludeDirectories>includes;../../java/jdk/include;../../java/jdk/include/win32;../output_stream/includes;../fileio/includes;../gui/includes;../core/includes;../localization/includes;../../libs/intl;src/c;src/c/getHandleProperty;../renderer/includes;../jvm/includes;includes/handleDrawing;../action_binding/includes;../graphic_export/includes;../string/includes;../windows_tools/includes;../api_scilab/includes;../operations/includes;../system_env/includes;../elementary_functions/includes;../graphic_objects/includes;../types/includes;../ast/includes;../ast/includes/exps;../../libs/Eigen/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;includes/handleDrawing;src/c;src/c/getHandleProperty;../../libs/intl;../../libs/Eigen/includes;../../java/jdk/include;../../java/jdk/include/win32;../output_stream/includes;../fileio/includes;../gui/includes;../core/includes;../localization/includes;../renderer/includes;../jvm/includes;../action_binding/includes;../graphic_export/includes;../string/includes;../windows_tools/includes;../api_scilab/includes;../elementary_functions/includes;../graphic_objects/includes;../ast/includes/types;../ast/includes/ast;../ast/includes/exps;../ast/includes/operations;../ast/includes/symbol;../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;NDEBUG;_WINDOWS;_USRDLL;GRAPHICS_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -199,7 +199,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
       <Optimization>MaxSpeed</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <AdditionalIncludeDirectories>includes;../../java/jdk/include;../../java/jdk/include/win32;../output_stream/includes;../fileio/includes;../gui/includes;../core/includes;../localization/includes;../../libs/intl;src/c;src/c/getHandleProperty;../renderer/includes;../jvm/includes;includes/handleDrawing;../action_binding/includes;../graphic_export/includes;../string/includes;../windows_tools/includes;../api_scilab/includes;../operations/includes;../system_env/includes;../elementary_functions/includes;../graphic_objects/includes;../types/includes;../ast/includes;../ast/includes/exps;../../libs/Eigen/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;includes/handleDrawing;src/c;src/c/getHandleProperty;../../libs/intl;../../libs/Eigen/includes;../../java/jdk/include;../../java/jdk/include/win32;../output_stream/includes;../fileio/includes;../gui/includes;../core/includes;../localization/includes;../renderer/includes;../jvm/includes;../action_binding/includes;../graphic_export/includes;../string/includes;../windows_tools/includes;../api_scilab/includes;../elementary_functions/includes;../graphic_objects/includes;../ast/includes/types;../ast/includes/ast;../ast/includes/exps;../ast/includes/operations;../ast/includes/symbol;../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;NDEBUG;_WINDOWS;_USRDLL;GRAPHICS_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -757,6 +757,9 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ProjectReference Include="..\api_scilab\api_scilab.vcxproj">
       <Project>{43c5bab1-1dca-4743-a183-77e0d42fe7d0}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\ast\ast.vcxproj">
+      <Project>{0d3fa25b-8116-44ec-a45e-260789daa3d9}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\fileio\fileio.vcxproj">
       <Project>{4fc72d4a-80ee-4b1a-8724-0201c1a35621}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
@@ -778,13 +781,6 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ProjectReference Include="..\renderer\renderer.vcxproj">
       <Project>{b23b01c1-a545-4ba0-9950-7bcade201c5b}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\system_env\system_env.vcxproj">
-      <Project>{7ca60aef-9afa-4d06-af28-613c0aa27640}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\types\types.vcxproj">
-      <Project>{64e090da-dcb5-4f4d-93d7-e88ddec9c2ef}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

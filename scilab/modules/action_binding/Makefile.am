@@ -16,7 +16,8 @@ USEANT=1
 ACTION_BINDING_C_SOURCES = src/c/InterpreterManagement.c
 
 # List of the c++ file
-ACTION_BINDING_CPP_SOURCES = src/jni/Signal.cpp \
+ACTION_BINDING_CPP_SOURCES = \
+    src/jni/Signal.cpp \
     src/jni/Signal.hxx \
     src/cpp/action_binding_GiwsExports.cpp
 
@@ -41,41 +42,45 @@ BUILT_SOURCES+=giws
 endif
 
 libsciaction_binding_disable_la_SOURCES = src/noaction_binding/noaction_binding.cpp
-libsciaction_binding_disable_la_CPPFLAGS = 	-I$(srcdir)/includes/ \
-	-I$(top_srcdir)/modules/localization/includes/ \
+
+libsciaction_binding_disable_la_CPPFLAGS = \
+    -I$(srcdir)/includes/ \
+    -I$(top_srcdir)/modules/ast/includes/ast/ \
+    -I$(top_srcdir)/modules/ast/includes/exps/ \
+    -I$(top_srcdir)/modules/ast/includes/operations/ \
+    -I$(top_srcdir)/modules/ast/includes/parse/ \
+    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+    -I$(top_srcdir)/modules/ast/includes/types/ \
+    -I$(top_srcdir)/modules/localization/includes/ \
 	-I$(top_srcdir)/modules/output_stream/includes \
-	-I$(top_srcdir)/modules/ast/includes \
-	-I$(top_srcdir)/modules/ast/includes/exps \
-	-I$(top_srcdir)/modules/symbol/includes \
-	-I$(top_srcdir)/modules/system_env/includes \
-	-I$(top_srcdir)/modules/types/includes \
 	-I$(top_srcdir)/libs/dynamiclibrary/includes \
-	-I$(top_srcdir)/modules/operations/includes \
 	$(EIGEN_CPPFLAGS) \
 	$(AM_CPPFLAGS)
 
 # Includes need for the compilation
 libsciaction_binding_la_CPPFLAGS = \
-$(JAVA_JNI_INCLUDE) \
--I$(srcdir)/includes/ \
--I$(srcdir)/src/c/ \
--I$(srcdir)/src/jni/ \
--I$(top_srcdir)/modules/jvm/includes/ \
--I$(top_srcdir)/modules/api_scilab/includes/ \
--I$(top_srcdir)/modules/commons/src/jni/ \
--I$(top_srcdir)/modules/localization/includes/ \
--I$(top_srcdir)/modules/output_stream/includes \
--I$(top_srcdir)/modules/symbol/includes \
--I$(top_srcdir)/modules/functions_manager/includes \
--I$(top_srcdir)/modules/ast/includes \
--I$(top_srcdir)/modules/ast/includes/exps \
--I$(top_srcdir)/modules/system_env/includes \
--I$(top_srcdir)/modules/types/includes \
--I$(top_srcdir)/modules/dynamic_link/includes \
--I$(top_srcdir)/modules/operations/includes \
--I$(top_srcdir)/modules/string/includes \
-$(EIGEN_CPPFLAGS) \
-$(AM_CPPFLAGS)
+    $(JAVA_JNI_INCLUDE) \
+    -I$(srcdir)/includes/ \
+    -I$(srcdir)/src/c/ \
+    -I$(srcdir)/src/jni/ \
+    -I$(top_srcdir)/modules/ast/includes/ast/ \
+    -I$(top_srcdir)/modules/ast/includes/exps/ \
+    -I$(top_srcdir)/modules/ast/includes/operations/ \
+    -I$(top_srcdir)/modules/ast/includes/parse/ \
+    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+    -I$(top_srcdir)/modules/ast/includes/types/ \
+    -I$(top_srcdir)/modules/jvm/includes/ \
+    -I$(top_srcdir)/modules/api_scilab/includes/ \
+    -I$(top_srcdir)/modules/commons/src/jni/ \
+    -I$(top_srcdir)/modules/localization/includes/ \
+    -I$(top_srcdir)/modules/output_stream/includes \
+    -I$(top_srcdir)/modules/functions_manager/includes \
+    -I$(top_srcdir)/modules/dynamic_link/includes \
+    -I$(top_srcdir)/modules/string/includes \
+    $(EIGEN_CPPFLAGS) \
+    $(AM_CPPFLAGS)
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)
@@ -109,8 +114,9 @@ libsciaction_binding_la_root_DATA =  license.txt
 
 ####�action_binding : init scripts ####
 libsciaction_binding_la_etcdir = $(mydatadir)/etc
-libsciaction_binding_la_etc_DATA = etc/action_binding.quit etc/action_binding.start
-
+libsciaction_binding_la_etc_DATA = \
+    etc/action_binding.quit \
+    etc/action_binding.start
 
 ####�action_binding : gateway declaration ####
 libsciaction_binding_la_sci_gatewaydir = $(mydatadir)/sci_gateway

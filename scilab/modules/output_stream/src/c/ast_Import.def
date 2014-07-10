@@ -1,0 +1,8 @@
+	LIBRARY    ast.dll
+
+
+EXPORTS
+setLastError
+isPromptShow
+getWarningMode
+getSilentError

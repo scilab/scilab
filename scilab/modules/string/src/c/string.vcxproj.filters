@@ -127,9 +127,6 @@
     <None Include="..\..\locales\string.pot">
       <Filter>localization</Filter>
     </None>
-    <None Include="System_env_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="string.rc">

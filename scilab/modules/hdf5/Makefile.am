@@ -15,66 +15,68 @@ endif
 endif
 
 
-HDF5_SOURCES = src/c/h5_fileManagement.c \
-src/c/h5_writeDataToFile.c \
-src/c/h5_readDataFromFile.c \
-src/c/h5_readDataFromFile_v1.c \
-src/cpp/import_from_hdf5_v1.cpp \
-src/cpp/listvar_in_hdf5_v1.cpp
+HDF5_SOURCES = \
+    src/c/h5_fileManagement.c \
+    src/c/h5_writeDataToFile.c \
+    src/c/h5_readDataFromFile.c \
+    src/c/h5_readDataFromFile_v1.c \
+    src/cpp/import_from_hdf5_v1.cpp \
+    src/cpp/listvar_in_hdf5_v1.cpp
 
-HDF5_CXX_SOURCES = src/cpp/H5Attribute.cpp \
-		   src/cpp/H5AttributesList.cpp \
-		   src/cpp/H5DataConverter.cpp \
-		   src/cpp/H5Dataset.cpp \
-		   src/cpp/H5Dataspace.cpp \
-		   src/cpp/H5File.cpp \
-		   src/cpp/H5Group.cpp \
-		   src/cpp/H5Object.cpp \
-		   src/cpp/H5Type.cpp \
-		   src/cpp/H5DataFactory.cpp \
-		   src/cpp/H5VariableScope.cpp \
-		   src/cpp/H5SoftLink.cpp \
-		   src/cpp/H5ExternalLink.cpp \
-		   src/cpp/H5HardLink.cpp \
-		   src/cpp/H5Link.cpp \
-		   src/cpp/HDF5Scilab.cpp \
-		   src/cpp/H5StringData.cpp \
-		   src/cpp/H5ReferenceData.cpp \
-		   src/cpp/H5CompoundData.cpp \
-		   src/cpp/H5ArrayData.cpp \
-		   src/cpp/H5VlenData.cpp \
-		   src/cpp/H5Options.cpp
+HDF5_CXX_SOURCES = \
+    src/cpp/H5Attribute.cpp \
+    src/cpp/H5AttributesList.cpp \
+    src/cpp/H5DataConverter.cpp \
+    src/cpp/H5Dataset.cpp \
+    src/cpp/H5Dataspace.cpp \
+    src/cpp/H5File.cpp \
+    src/cpp/H5Group.cpp \
+    src/cpp/H5Object.cpp \
+    src/cpp/H5Type.cpp \
+    src/cpp/H5DataFactory.cpp \
+    src/cpp/H5VariableScope.cpp \
+    src/cpp/H5SoftLink.cpp \
+    src/cpp/H5ExternalLink.cpp \
+    src/cpp/H5HardLink.cpp \
+    src/cpp/H5Link.cpp \
+    src/cpp/HDF5Scilab.cpp \
+    src/cpp/H5StringData.cpp \
+    src/cpp/H5ReferenceData.cpp \
+    src/cpp/H5CompoundData.cpp \
+    src/cpp/H5ArrayData.cpp \
+    src/cpp/H5VlenData.cpp \
+    src/cpp/H5Options.cpp
 
 GATEWAY_CXX_SOURCES = \
-sci_gateway/cpp/hdf5_gw.cpp \
-sci_gateway/cpp/sci_export_to_hdf5.cpp \
-sci_gateway/cpp/sci_import_from_hdf5.cpp \
-sci_gateway/cpp/sci_is_hdf5_file.cpp \
-sci_gateway/cpp/sci_listvar_in_hdf5.cpp \
-sci_gateway/cpp/sci_h5dump.cpp \
-sci_gateway/cpp/sci_h5open.cpp \
-sci_gateway/cpp/sci_h5close.cpp \
-sci_gateway/cpp/sci_h5read.cpp \
-sci_gateway/cpp/sci_h5ls.cpp \
-sci_gateway/cpp/sci_percent_H5Object_p.cpp \
-sci_gateway/cpp/sci_percent_H5Object_e.cpp \
-sci_gateway/cpp/sci_h5group.cpp \
-sci_gateway/cpp/sci_h5rm.cpp \
-sci_gateway/cpp/sci_h5dataset.cpp \
-sci_gateway/cpp/sci_h5write.cpp \
-sci_gateway/cpp/sci_h5attr.cpp \
-sci_gateway/cpp/sci_h5ln.cpp \
-sci_gateway/cpp/sci_h5readattr.cpp \
-sci_gateway/cpp/sci_h5flush.cpp \
-sci_gateway/cpp/sci_h5cp.cpp \
-sci_gateway/cpp/sci_h5isfoo.cpp \
-sci_gateway/cpp/sci_h5mount.cpp \
-sci_gateway/cpp/sci_h5umount.cpp \
-sci_gateway/cpp/sci_h5mv.cpp \
-sci_gateway/cpp/sci_h5get.cpp \
-sci_gateway/cpp/sci_h5label.cpp \
-sci_gateway/cpp/sci_h5exists.cpp \
-sci_gateway/cpp/sci_percent_H5Object_fieldnames.cpp
+    sci_gateway/cpp/hdf5_gw.cpp \
+    sci_gateway/cpp/sci_export_to_hdf5.cpp \
+    sci_gateway/cpp/sci_import_from_hdf5.cpp \
+    sci_gateway/cpp/sci_is_hdf5_file.cpp \
+    sci_gateway/cpp/sci_listvar_in_hdf5.cpp \
+    sci_gateway/cpp/sci_h5dump.cpp \
+    sci_gateway/cpp/sci_h5open.cpp \
+    sci_gateway/cpp/sci_h5close.cpp \
+    sci_gateway/cpp/sci_h5read.cpp \
+    sci_gateway/cpp/sci_h5ls.cpp \
+    sci_gateway/cpp/sci_percent_H5Object_p.cpp \
+    sci_gateway/cpp/sci_percent_H5Object_e.cpp \
+    sci_gateway/cpp/sci_h5group.cpp \
+    sci_gateway/cpp/sci_h5rm.cpp \
+    sci_gateway/cpp/sci_h5dataset.cpp \
+    sci_gateway/cpp/sci_h5write.cpp \
+    sci_gateway/cpp/sci_h5attr.cpp \
+    sci_gateway/cpp/sci_h5ln.cpp \
+    sci_gateway/cpp/sci_h5readattr.cpp \
+    sci_gateway/cpp/sci_h5flush.cpp \
+    sci_gateway/cpp/sci_h5cp.cpp \
+    sci_gateway/cpp/sci_h5isfoo.cpp \
+    sci_gateway/cpp/sci_h5mount.cpp \
+    sci_gateway/cpp/sci_h5umount.cpp \
+    sci_gateway/cpp/sci_h5mv.cpp \
+    sci_gateway/cpp/sci_h5get.cpp \
+    sci_gateway/cpp/sci_h5label.cpp \
+    sci_gateway/cpp/sci_h5exists.cpp \
+    sci_gateway/cpp/sci_percent_H5Object_fieldnames.cpp
 
 if GIWS
 BUILT_SOURCES=giws
@@ -82,31 +84,41 @@ endif
 
 
 #### hdf5 : include files ####
-FORCE_HDF_1.8_API =  -DH5Dopen_vers=2 -DH5Topen_vers=2 -DH5Dcreate_vers=2 -DH5Aiterate_vers=2 \
- -DH5Gcreate_vers=2 -DH5Gopen_vers=2 -DH5Tget_array_dims_vers=2 \
- -DH5Acreate_vers=2 -DNO_DEPRECATED_SYMBOLS
+FORCE_HDF_1.8_API = \
+    -DH5Dopen_vers=2 \
+    -DH5Topen_vers=2 \
+    -DH5Dcreate_vers=2 \
+    -DH5Aiterate_vers=2 \
+    -DH5Gcreate_vers=2 \
+    -DH5Gopen_vers=2 \
+    -DH5Tget_array_dims_vers=2 \
+    -DH5Acreate_vers=2 -DNO_DEPRECATED_SYMBOLS
 
 libscihdf5_la_CPPFLAGS = \
-	-I$(srcdir)/includes/ \
-	-I$(srcdir)/src/c/ \
-	-I$(srcdir)/src/cpp/ \
-	-I$(top_srcdir)/modules/output_stream/includes/ \
-	-I$(top_srcdir)/modules/api_scilab/includes/ \
-	-I$(top_srcdir)/modules/jvm/includes/ \
-	-I$(top_srcdir)/modules/commons/src/jni/ \
-	-I$(top_srcdir)/modules/localization/includes/ \
-	-I$(top_srcdir)/modules/fileio/includes/ \
-	-I$(top_srcdir)/modules/string/includes/ \
-	-I$(top_srcdir)/modules/system_env/includes/ \
-	-I$(top_srcdir)/modules/operations/includes/ \
-	-I$(top_srcdir)/modules/types/includes/ \
-	-I$(top_srcdir)/modules/ast/includes/ \
-	-I$(top_srcdir)/modules/ast/includes/exps \
-	$(JAVA_JNI_INCLUDE) \
-	$(HDF5_CFLAGS) \
-	$(AM_CPPFLAGS) \
-	$(EIGEN_CPPFLAGS) \
-	$(FORCE_HDF_1.8_API)
+    -I$(srcdir)/includes/ \
+    -I$(srcdir)/src/c/ \
+    -I$(srcdir)/src/cpp/ \
+    -I$(top_srcdir)/modules/ast/includes/ast/ \
+    -I$(top_srcdir)/modules/ast/includes/exps/ \
+    -I$(top_srcdir)/modules/ast/includes/operations/ \
+    -I$(top_srcdir)/modules/ast/includes/parse/ \
+    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+    -I$(top_srcdir)/modules/ast/includes/types/ \
+    -I$(top_srcdir)/modules/threads/includes/ \
+    -I$(top_srcdir)/modules/dynamic_link/includes/ \
+    -I$(top_srcdir)/modules/output_stream/includes/ \
+    -I$(top_srcdir)/modules/api_scilab/includes/ \
+    -I$(top_srcdir)/modules/jvm/includes/ \
+    -I$(top_srcdir)/modules/commons/src/jni/ \
+    -I$(top_srcdir)/modules/localization/includes/ \
+    -I$(top_srcdir)/modules/fileio/includes/ \
+    -I$(top_srcdir)/modules/string/includes/ \
+    $(JAVA_JNI_INCLUDE) \
+    $(HDF5_CFLAGS) \
+    $(AM_CPPFLAGS) \
+    $(EIGEN_CPPFLAGS) \
+    $(FORCE_HDF_1.8_API)
 
 
 
@@ -145,7 +157,9 @@ libscihdf5_la_root_DATA =  license.txt
 
 #### hdf5 : init scripts ####
 libscihdf5_la_etcdir = $(mydatadir)/etc
-libscihdf5_la_etc_DATA = etc/hdf5.quit etc/hdf5.start
+libscihdf5_la_etc_DATA = \
+    etc/hdf5.quit \
+    etc/hdf5.start
 
 #### hdf5 : test file ####
 libscihdf5_la_testsampledatadir = $(mydatadir)/tests/sample_scilab_data

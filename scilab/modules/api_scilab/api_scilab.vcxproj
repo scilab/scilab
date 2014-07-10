@@ -81,7 +81,7 @@
     <ClCompile>
       <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;src/c;../core/includes;../call_scilab/includes;../string/includes;../operations/includes;../output_stream/includes;../localization/includes;../../libs/intl;../types/includes;../symbol/includes;../ast/includes;../elementary_functions/includes;../system_env/includes;../Threads/includes;../console/includes;../../libs/Eigen/includes;../dynamic_link/includes;../ast/includes/exps;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c;../core/includes;../call_scilab/includes;../string/includes;../output_stream/includes;../localization/includes;../../libs/intl;../elementary_functions/includes;../threads/includes;../console/includes;../../libs/Eigen/includes;../dynamic_link/includes;../ast/includes/types;../ast/includes/ast;../ast/includes/exps;../ast/includes/operations;../ast/includes/symbol;../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;_DEBUG;_WINDOWS;_USRDLL;API_SCILAB_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -94,7 +94,6 @@
     <PreLinkEvent>
       <Message>Make dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)linpack_f.lib" 1&gt;NUL 2&gt;NUL
 
@@ -107,7 +106,7 @@ cd .. &gt;nul
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>elementary_functions_f.lib;linpack_f.lib;core.lib;scilocalization.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>elementary_functions_f.lib;linpack_f.lib;core.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>api_scilab_export.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -133,7 +132,7 @@ cd .. &gt;nul
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;src/c;../core/includes;../call_scilab/includes;../string/includes;../operations/includes;../output_stream/includes;../localization/includes;../../libs/intl;../types/includes;../symbol/includes;../ast/includes;../elementary_functions/includes;../system_env/includes;../Threads/includes;../console/includes;../../libs/Eigen/includes;../dynamic_link/includes;../ast/includes/exps;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c;../core/includes;../call_scilab/includes;../string/includes;../output_stream/includes;../localization/includes;../../libs/intl;../elementary_functions/includes;../threads/includes;../console/includes;../../libs/Eigen/includes;../dynamic_link/includes;../ast/includes/types;../ast/includes/ast;../ast/includes/exps;../ast/includes/operations;../ast/includes/symbol;../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;_DEBUG;_WINDOWS;_USRDLL;API_SCILAB_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -146,7 +145,6 @@ cd .. &gt;nul
     <PreLinkEvent>
       <Message>Make dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)linpack_f.lib" 1&gt;NUL 2&gt;NUL
 
@@ -159,7 +157,7 @@ cd .. &gt;nul
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>elementary_functions_f.lib;linpack_f.lib;core.lib;scilocalization.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>elementary_functions_f.lib;linpack_f.lib;core.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>api_scilab_export.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -186,7 +184,7 @@ cd .. &gt;nul
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>includes;src/c;../core/includes;../call_scilab/includes;../string/includes;../operations/includes;../output_stream/includes;../localization/includes;../../libs/intl;../types/includes;../symbol/includes;../ast/includes;../elementary_functions/includes;../system_env/includes;../Threads/includes;../console/includes;../../libs/Eigen/includes;../dynamic_link/includes;../ast/includes/exps;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c;../core/includes;../call_scilab/includes;../string/includes;../output_stream/includes;../localization/includes;../../libs/intl;../elementary_functions/includes;../threads/includes;../console/includes;../../libs/Eigen/includes;../dynamic_link/includes;../ast/includes/types;../ast/includes/ast;../ast/includes/exps;../ast/includes/operations;../ast/includes/symbol;../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;NDEBUG;_WINDOWS;_USRDLL;API_SCILAB_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -202,7 +200,6 @@ cd .. &gt;nul
     <PreLinkEvent>
       <Message>Make dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)linpack_f.lib" 1&gt;NUL 2&gt;NUL
 
@@ -215,7 +212,7 @@ cd .. &gt;nul
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>elementary_functions_f.lib;linpack_f.lib;core.lib;scilocalization.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>elementary_functions_f.lib;linpack_f.lib;core.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>api_scilab_export.def</ModuleDefinitionFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
@@ -248,7 +245,7 @@ cd .. &gt;nul
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>includes;src/c;../core/includes;../call_scilab/includes;../string/includes;../operations/includes;../output_stream/includes;../localization/includes;../../libs/intl;../types/includes;../symbol/includes;../ast/includes;../elementary_functions/includes;../system_env/includes;../Threads/includes;../console/includes;../../libs/Eigen/includes;../dynamic_link/includes;../ast/includes/exps;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c;../core/includes;../call_scilab/includes;../string/includes;../output_stream/includes;../localization/includes;../../libs/intl;../elementary_functions/includes;../threads/includes;../console/includes;../../libs/Eigen/includes;../dynamic_link/includes;../ast/includes/types;../ast/includes/ast;../ast/includes/exps;../ast/includes/operations;../ast/includes/symbol;../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;NDEBUG;_WINDOWS;_USRDLL;API_SCILAB_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -264,7 +261,6 @@ cd .. &gt;nul
     <PreLinkEvent>
       <Message>Make dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)linpack_f.lib" 1&gt;NUL 2&gt;NUL
 
@@ -277,7 +273,7 @@ cd .. &gt;nul
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>elementary_functions_f.lib;linpack_f.lib;core.lib;scilocalization.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>elementary_functions_f.lib;linpack_f.lib;core.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>api_scilab_export.def</ModuleDefinitionFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
@@ -328,7 +324,6 @@ cd .. &gt;nul
     <ClCompile Include="src\cpp\returnProperty.cpp" />
     <ClCompile Include="src\cpp\returnPropertyList.cpp" />
     <ClCompile Include="src\c\DllmainApi_scilab.c" />
-    <ClCompile Include="src\cpp\overload.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\api_boolean.h" />
@@ -367,7 +362,6 @@ cd .. &gt;nul
     <ClInclude Include="includes\api_sparse.h" />
     <ClInclude Include="includes\api_string.h" />
     <ClInclude Include="includes\dynlib_api_scilab.h" />
-    <ClInclude Include="includes\overload.hxx" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="src\c\api_scilab.rc" />
@@ -377,7 +371,6 @@ cd .. &gt;nul
     <None Include="elementary_functions_f_Import.def" />
     <None Include="linpack_f_Import.def" />
     <None Include="locales\api_scilab.pot" />
-    <None Include="Localization_Import.def" />
     <None Include="api_scilab_export.def" />
     <None Include="api_scilab_header.def" />
     <None Include="api_scilab.iss" />
@@ -388,26 +381,14 @@ cd .. &gt;nul
       <Project>{3170e4c2-1173-4264-a222-7ee8ccb3ddf7}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
-    <ProjectReference Include="..\ast\ast-tools\ast-tools.vcxproj">
-      <Project>{1f4a0344-99ed-461b-bd53-1593788fb34d}</Project>
+    <ProjectReference Include="..\ast\ast.vcxproj">
+      <Project>{0d3fa25b-8116-44ec-a45e-260789daa3d9}</Project>
     </ProjectReference>
     <ProjectReference Include="..\localization\src\localization.vcxproj">
       <Project>{ecffeb0c-1eda-45ee-9a10-b18143852e17}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\operations\operations.vcxproj">
-      <Project>{1bb396f7-ce61-4cfc-9c22-266b2cfb2e74}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
     <ProjectReference Include="..\output_stream\src\c\output_stream.vcxproj">
       <Project>{a5911cd7-f8e8-440c-a23e-4843a0636f3a}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\symbol\symbol.vcxproj">
-      <Project>{2c60033b-0dbd-4ca4-80d3-176c9be9ce2f}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\types\types.vcxproj">
-      <Project>{64e090da-dcb5-4f4d-93d7-e88ddec9c2ef}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
   </ItemGroup>

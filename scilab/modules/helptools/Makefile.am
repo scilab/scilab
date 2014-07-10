@@ -8,18 +8,22 @@ if BUILD_HELP
 
 USEANT=1
 
-HELPTOOLS_SOURCES = src/jni/BuildDocObject.cpp \
+HELPTOOLS_SOURCES = \
+    src/jni/BuildDocObject.cpp \
 	src/jni/SciDocMain.cpp
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_helptools.c
 
 GATEWAY_CXX_SOURCES = sci_gateway/cpp/sci_buildDoc.cpp
 
-GIWS_WRAPPERS = src/jni/BuildDocObject.giws.xml \
+GIWS_WRAPPERS = \
+    src/jni/BuildDocObject.giws.xml \
 	src/jni/BuildDocObjectv2.giws.xml
 
-libscihelptools_la_LIBADD = libscihelptools-algo.la \
-		$(top_builddir)/modules/commons/libscicommons.la
+libscihelptools_la_LIBADD = \
+    libscihelptools-algo.la \
+    $(top_builddir)/modules/commons/libscicommons.la
+    
 libscihelptools_algo_la_SOURCES =  $(HELPTOOLS_SOURCES)
 libscihelptools_algo_la_CPPFLAGS = $(libscihelptools_la_CPPFLAGS)
 noinst_LTLIBRARIES = libscihelptools-algo.la
@@ -44,16 +48,17 @@ libscihelptools_la_CPPFLAGS= \
 	$(JAVA_JNI_INCLUDE) \
 	-I$(srcdir)/src/jni/ \
 	-I$(srcdir)/includes/ \
+    -I$(top_srcdir)/modules/ast/includes/ast/ \
+    -I$(top_srcdir)/modules/ast/includes/exps/ \
+    -I$(top_srcdir)/modules/ast/includes/operations/ \
+    -I$(top_srcdir)/modules/ast/includes/parse/ \
+    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+    -I$(top_srcdir)/modules/ast/includes/types/ \
 	-I$(top_srcdir)/modules/localization/includes/ \
 	-I$(top_srcdir)/modules/jvm/includes/ \
 	-I$(top_srcdir)/modules/output_stream/includes/ \
-	-I$(top_srcdir)/modules/system_env/includes/ \
-	-I$(top_srcdir)/modules/operations/includes/ \
 	-I$(top_srcdir)/modules/api_scilab/includes/ \
-	-I$(top_srcdir)/modules/symbol/includes/ \
-	-I$(top_srcdir)/modules/types/includes/ \
-	-I$(top_srcdir)/modules/ast/includes/ \
-	-I$(top_srcdir)/modules/ast/includes/exps \
 	-I$(top_srcdir)/modules/commons/src/jni \
 	-I$(top_srcdir)/modules/dynamic_link/includes \
 	-I$(top_srcdir)/modules/string/includes \
@@ -108,7 +113,8 @@ libscihelptools_la_xsl_fo_DATA = xsl/fo/docbook.xsl
 
 #### helptools : schema files ####
 libscihelptools_la_schemadir = $(mydatadir)/schema
-libscihelptools_la_schema_DATA = schema/docbook.rng \
+libscihelptools_la_schema_DATA = \
+schema/docbook.rng \
 schema/dbits.rng \
 schema/mathml3-common.rng \
 schema/docbookxi.rng \
@@ -120,7 +126,8 @@ schema/extendedStyle.xsl
 
 #### helptools : pages files ####
 libscihelptools_la_data_pagesdir = $(mydatadir)/data/pages
-libscihelptools_la_data_pages_DATA = data/pages/error.html \
+libscihelptools_la_data_pages_DATA = \
+data/pages/error.html \
 data/pages/homepage-en_US.html \
 data/pages/homepage-ru_RU.html \
 data/pages/homepage-fr_FR.html \

@@ -80,7 +80,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;../../includes;../../src/cpp;../../../dynamic_link/includes;../../../parameters/includes;../../../jvm/includes;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../windows_tools/src/c/scilab_windows;../../../operations/includes;../../../parallel/includes;../../../localization/includes;../../../windows_tools/includes;../../../../libs/intl;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../system_env/includes;../../../string/includes;../../../threads/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../../src/cpp;../../../../libs/intl;../../../dynamic_link/includes;../../../parameters/includes;../../../jvm/includes;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../windows_tools/src/c/scilab_windows;../../../parallel/includes;../../../localization/includes;../../../windows_tools/includes;../../../string/includes;../../../threads/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;PARALLEL_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <OpenMPSupport>true</OpenMPSupport>
@@ -111,7 +111,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;../../includes;../../src/cpp;../../../dynamic_link/includes;../../../parameters/includes;../../../jvm/includes;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../windows_tools/src/c/scilab_windows;../../../operations/includes;../../../parallel/includes;../../../localization/includes;../../../windows_tools/includes;../../../../libs/intl;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../system_env/includes;../../../string/includes;../../../threads/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../../src/cpp;../../../../libs/intl;../../../dynamic_link/includes;../../../parameters/includes;../../../jvm/includes;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../windows_tools/src/c/scilab_windows;../../../parallel/includes;../../../localization/includes;../../../windows_tools/includes;../../../string/includes;../../../threads/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;PARALLEL_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <OpenMPSupport>true</OpenMPSupport>
@@ -140,7 +140,7 @@
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;../../includes;../../src/cpp;../../../dynamic_link/includes;../../../parameters/includes;../../../jvm/includes;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../windows_tools/src/c/scilab_windows;../../../operations/includes;../../../parallel/includes;../../../localization/includes;../../../windows_tools/includes;../../../../libs/intl;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../system_env/includes;../../../string/includes;../../../threads/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../../src/cpp;../../../../libs/intl;../../../dynamic_link/includes;../../../parameters/includes;../../../jvm/includes;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../windows_tools/src/c/scilab_windows;../../../parallel/includes;../../../localization/includes;../../../windows_tools/includes;../../../string/includes;../../../threads/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;PARALLEL_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -176,7 +176,7 @@
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;../../includes;../../src/cpp;../../../dynamic_link/includes;../../../parameters/includes;../../../jvm/includes;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../windows_tools/src/c/scilab_windows;../../../operations/includes;../../../parallel/includes;../../../localization/includes;../../../windows_tools/includes;../../../../libs/intl;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../system_env/includes;../../../string/includes;../../../threads/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../../src/cpp;../../../../libs/intl;../../../dynamic_link/includes;../../../parameters/includes;../../../jvm/includes;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../windows_tools/src/c/scilab_windows;../../../parallel/includes;../../../localization/includes;../../../windows_tools/includes;../../../string/includes;../../../threads/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;PARALLEL_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>

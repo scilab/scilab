@@ -81,7 +81,7 @@
     <ClCompile>
       <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;../jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../includes;../../../core/includes;../../../graphics/includes;../../../graphic_export/includes;../../../graphics/src/c/getHandleProperty;../../../renderer/src/cpp;../../../renderer/src/jni;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../../libs/intl;;../../../string/includes;../../../windows_tools/includes;../../../renderer/includes;../../../api_scilab/includes;../../../system_env/includes;../../../operations/includes;../../../types/includes;../../../ast/includes;../../../symbol/includes;../../../commons/src/jni;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/intl;../../../core/includes;../../../graphics/includes;../../../graphic_export/includes;../../../graphics/src/c/getHandleProperty;../../../renderer/src/cpp;../../../renderer/src/jni;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../string/includes;../../../windows_tools/includes;../../../renderer/includes;../../../api_scilab/includes;../../../commons/src/jni;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;HELPTOOLS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -118,7 +118,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;../jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../includes;../../../core/includes;../../../graphics/includes;../../../graphic_export/includes;../../../graphics/src/c/getHandleProperty;../../../renderer/src/cpp;../../../renderer/src/jni;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../../libs/intl;;../../../string/includes;../../../windows_tools/includes;../../../renderer/includes;../../../api_scilab/includes;../../../system_env/includes;../../../operations/includes;../../../types/includes;../../../ast/includes;../../../symbol/includes;../../../commons/src/jni;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/intl;../../../core/includes;../../../graphics/includes;../../../graphic_export/includes;../../../graphics/src/c/getHandleProperty;../../../renderer/src/cpp;../../../renderer/src/jni;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../string/includes;../../../windows_tools/includes;../../../renderer/includes;../../../api_scilab/includes;../../../commons/src/jni;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;HELPTOOLS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -156,7 +156,7 @@
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;../jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../includes;../../../core/includes;../../../graphics/includes;../../../graphic_export/includes;../../../graphics/src/c/getHandleProperty;../../../renderer/src/cpp;../../../renderer/src/jni;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../../libs/intl;;../../../string/includes;../../../windows_tools/includes;../../../renderer/includes;../../../api_scilab/includes;../../../system_env/includes;../../../operations/includes;../../../types/includes;../../../ast/includes;../../../symbol/includes;../../../commons/src/jni;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/intl;../../../core/includes;../../../graphics/includes;../../../graphic_export/includes;../../../graphics/src/c/getHandleProperty;../../../renderer/src/cpp;../../../renderer/src/jni;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../string/includes;../../../windows_tools/includes;../../../renderer/includes;../../../api_scilab/includes;../../../commons/src/jni;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;HELPTOOLS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -201,7 +201,7 @@
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;../jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../includes;../../../core/includes;../../../graphics/includes;../../../graphic_export/includes;../../../graphics/src/c/getHandleProperty;../../../renderer/src/cpp;../../../renderer/src/jni;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../../libs/intl;;../../../string/includes;../../../windows_tools/includes;../../../renderer/includes;../../../api_scilab/includes;../../../system_env/includes;../../../operations/includes;../../../types/includes;../../../ast/includes;../../../symbol/includes;../../../commons/src/jni;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/intl;../../../core/includes;../../../graphics/includes;../../../graphic_export/includes;../../../graphics/src/c/getHandleProperty;../../../renderer/src/cpp;../../../renderer/src/jni;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../string/includes;../../../windows_tools/includes;../../../renderer/includes;../../../api_scilab/includes;../../../commons/src/jni;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;HELPTOOLS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -270,6 +270,9 @@
       <Project>{43c5bab1-1dca-4743-a183-77e0d42fe7d0}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\ast\ast.vcxproj">
+      <Project>{0d3fa25b-8116-44ec-a45e-260789daa3d9}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\commons\src\c\commons.vcxproj">
       <Project>{eca09a1e-6d12-4a47-92e1-a671c181df77}</Project>
     </ProjectReference>
@@ -283,18 +286,6 @@
     </ProjectReference>
     <ProjectReference Include="..\..\..\output_stream\src\c\output_stream.vcxproj">
       <Project>{a5911cd7-f8e8-440c-a23e-4843a0636f3a}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\symbol\symbol.vcxproj">
-      <Project>{2c60033b-0dbd-4ca4-80d3-176c9be9ce2f}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\system_env\system_env.vcxproj">
-      <Project>{7ca60aef-9afa-4d06-af28-613c0aa27640}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\types\types.vcxproj">
-      <Project>{64e090da-dcb5-4f4d-93d7-e88ddec9c2ef}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="..\..\..\windows_tools\src\c\scilab_windows\scilab_windows.vcxproj">

@@ -810,16 +810,16 @@ scilab_bin_LDFLAGS = $(AM_LDFLAGS) $(OPENMPI_LIBS) $(am__append_2) \
 	$(am__append_4) $(am__append_6)
 scilab_cli_bin_LDFLAGS = $(AM_LDFLAGS) $(OPENMPI_LIBS) $(am__append_3) \
 	$(am__append_5)
-scilab_bin_CPPFLAGS = -I$(top_srcdir)/modules/console/includes/ \
+scilab_bin_CPPFLAGS = -I$(top_srcdir)/modules/ast/includes/ast/ \
+	-I$(top_srcdir)/modules/ast/includes/exps/ \
+	-I$(top_srcdir)/modules/ast/includes/operations/ \
+	-I$(top_srcdir)/modules/ast/includes/parse/ \
+	-I$(top_srcdir)/modules/ast/includes/symbol/ \
+	-I$(top_srcdir)/modules/ast/includes/system_env/ \
+	-I$(top_srcdir)/modules/ast/includes/types/ \
+	-I$(top_srcdir)/modules/console/includes/ \
 	-I$(top_srcdir)/modules/output_stream/includes/ \
-	-I$(top_srcdir)/modules/parse/includes/ \
-	-I$(top_srcdir)/modules/ast/includes/ \
-	-I$(top_srcdir)/modules/ast/includes/exps \
-	-I$(top_srcdir)/modules/symbol/includes/ \
 	-I$(top_srcdir)/modules/functions_manager/includes/ \
-	-I$(top_srcdir)/modules/types/includes/ \
-	-I$(top_srcdir)/modules/system_env/includes/ \
-	-I$(top_srcdir)/modules/operations/includes/ \
 	-I$(top_srcdir)/modules/elementary_functions/includes/ \
 	-I$(top_srcdir)/modules/fileio/includes/ \
 	-I$(top_srcdir)/modules/string/includes/ \

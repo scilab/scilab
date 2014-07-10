@@ -171,15 +171,6 @@
     <ClCompile Include="src\cpp\scilab_sscanf.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sci_gateway\c\sci_tempname.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sci_gateway\c\sci_getURL.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sci_gateway\c\sci_splitURL.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\c\dlManager.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -397,9 +388,6 @@
     <None Include="sci_gateway\fileio_gateway.xml" />
     <None Include="Makefile.am" />
     <None Include="locales\fileio.pot" />
-    <None Include="System_env_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
     <None Include="locales\fileio.pot">
       <Filter>localization</Filter>
     </None>

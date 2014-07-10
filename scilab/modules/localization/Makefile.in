@@ -615,20 +615,22 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_setlanguage.cpp \
 	sci_gateway/cpp/sci_getlanguage.cpp
 
-libscilocalization_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
+libscilocalization_la_CPPFLAGS = \
+    $(JAVA_JNI_INCLUDE) \
     -I$(srcdir)/includes/ \
     -I$(srcdir)/src/c/ \
+    -I$(top_srcdir)/modules/ast/includes/ast/ \
+    -I$(top_srcdir)/modules/ast/includes/exps/ \
+    -I$(top_srcdir)/modules/ast/includes/operations/ \
+    -I$(top_srcdir)/modules/ast/includes/parse/ \
+    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+    -I$(top_srcdir)/modules/ast/includes/types/ \
     -I$(top_srcdir)/modules/functions_manager/includes/ \
-    -I$(top_srcdir)/modules/types/includes/ \
     -I$(top_srcdir)/modules/core/includes/ \
-    -I$(top_srcdir)/modules/symbol/includes/ \
-    -I$(top_srcdir)/modules/ast/includes/ \
-    -I$(top_srcdir)/modules/ast/includes/exps \
-    -I$(top_srcdir)/modules/system_env/includes/ \
     -I$(top_srcdir)/modules/string/includes/ \
     -I$(top_srcdir)/modules/fileio/includes/ \
     -I$(top_srcdir)/modules/api_scilab/includes/ \
-    -I$(top_srcdir)/modules/operations/includes/ \
     -I$(top_srcdir)/modules/output_stream/includes/ \
     -I$(top_srcdir)/modules/dynamic_link/includes/ \
     $(EIGEN_CPPFLAGS) \

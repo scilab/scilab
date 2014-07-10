@@ -203,8 +203,7 @@ am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
 am__v_lt_0 = --silent
 am__v_lt_1 = 
 libscistatistics_la_DEPENDENCIES = libscistatistics-algo.la
-am__objects_3 = sci_gateway/c/libscistatistics_la-gw_statistics.lo \
-	sci_gateway/c/libscistatistics_la-sci_cdfchi.lo \
+am__objects_3 = sci_gateway/c/libscistatistics_la-sci_cdfchi.lo \
 	sci_gateway/c/libscistatistics_la-sci_cdft.lo \
 	sci_gateway/c/libscistatistics_la-sci_cdfgam.lo \
 	sci_gateway/c/libscistatistics_la-sci_cdff.lo \
@@ -650,7 +649,7 @@ STATISTICS_FORTRAN_SOURCES = \
     src/dcdflib/bup.f \
     src/dcdflib/cdfbet.f
 
-GATEWAY_C_SOURCES = sci_gateway/c/gw_statistics.c \
+GATEWAY_C_SOURCES = \
 	sci_gateway/c/sci_cdfchi.c \
 	sci_gateway/c/sci_cdft.c \
 	sci_gateway/c/sci_cdfgam.c \
@@ -664,18 +663,20 @@ GATEWAY_C_SOURCES = sci_gateway/c/gw_statistics.c \
 	sci_gateway/c/sci_cdfnor.c
 
 libscistatistics_la_CPPFLAGS = \
--I$(srcdir)/includes/ \
--I$(srcdir)/src/c/ \
--I$(top_srcdir)/modules/api_scilab/includes/ \
--I$(top_srcdir)/modules/symbol/includes/ \
--I$(top_srcdir)/modules/types/includes/ \
--I$(top_srcdir)/modules/ast/includes/ \
--I$(top_srcdir)/modules/ast/includes/exps \
--I$(top_srcdir)/modules/operations/includes/ \
--I$(top_srcdir)/modules/output_stream/includes/ \
--I$(top_srcdir)/modules/localization/includes/ \
--I$(top_srcdir)/modules/dynamic_link/includes \
-$(AM_CPPFLAGS)
+    -I$(srcdir)/includes/ \
+    -I$(srcdir)/src/c/ \
+    -I$(top_srcdir)/modules/ast/includes/ast/ \
+    -I$(top_srcdir)/modules/ast/includes/exps/ \
+    -I$(top_srcdir)/modules/ast/includes/operations/ \
+    -I$(top_srcdir)/modules/ast/includes/parse/ \
+    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+    -I$(top_srcdir)/modules/ast/includes/types/ \
+    -I$(top_srcdir)/modules/api_scilab/includes/ \
+    -I$(top_srcdir)/modules/output_stream/includes/ \
+    -I$(top_srcdir)/modules/localization/includes/ \
+    -I$(top_srcdir)/modules/dynamic_link/includes \
+    $(AM_CPPFLAGS)
 
 pkglib_LTLIBRARIES = libscistatistics.la
 noinst_LTLIBRARIES = libscistatistics-algo.la
@@ -1007,9 +1008,6 @@ sci_gateway/c/$(am__dirstamp):
 sci_gateway/c/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) sci_gateway/c/$(DEPDIR)
 	@: > sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
-sci_gateway/c/libscistatistics_la-gw_statistics.lo:  \
-	sci_gateway/c/$(am__dirstamp) \
-	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/c/libscistatistics_la-sci_cdfchi.lo:  \
 	sci_gateway/c/$(am__dirstamp) \
 	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
@@ -1059,7 +1057,6 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscistatistics_la-gw_statistics.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscistatistics_la-sci_cdfbet.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscistatistics_la-sci_cdfbin.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscistatistics_la-sci_cdfchi.Plo@am__quote@
@@ -1119,13 +1116,6 @@ src/c/libscistatistics_algo_la-sci_string_matrix.lo: src/c/sci_string_matrix.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/sci_string_matrix.c' object='src/c/libscistatistics_algo_la-sci_string_matrix.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistatistics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscistatistics_algo_la-sci_string_matrix.lo `test -f 'src/c/sci_string_matrix.c' || echo '$(srcdir)/'`src/c/sci_string_matrix.c
-
-sci_gateway/c/libscistatistics_la-gw_statistics.lo: sci_gateway/c/gw_statistics.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistatistics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscistatistics_la-gw_statistics.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscistatistics_la-gw_statistics.Tpo -c -o sci_gateway/c/libscistatistics_la-gw_statistics.lo `test -f 'sci_gateway/c/gw_statistics.c' || echo '$(srcdir)/'`sci_gateway/c/gw_statistics.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscistatistics_la-gw_statistics.Tpo sci_gateway/c/$(DEPDIR)/libscistatistics_la-gw_statistics.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/gw_statistics.c' object='sci_gateway/c/libscistatistics_la-gw_statistics.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistatistics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscistatistics_la-gw_statistics.lo `test -f 'sci_gateway/c/gw_statistics.c' || echo '$(srcdir)/'`sci_gateway/c/gw_statistics.c
 
 sci_gateway/c/libscistatistics_la-sci_cdfchi.lo: sci_gateway/c/sci_cdfchi.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistatistics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscistatistics_la-sci_cdfchi.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscistatistics_la-sci_cdfchi.Tpo -c -o sci_gateway/c/libscistatistics_la-sci_cdfchi.lo `test -f 'sci_gateway/c/sci_cdfchi.c' || echo '$(srcdir)/'`sci_gateway/c/sci_cdfchi.c

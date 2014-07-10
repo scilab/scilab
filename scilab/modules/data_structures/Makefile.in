@@ -575,41 +575,43 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 yacc_present = @yacc_present@
 DATA_STRUCTURES_FORTRAN_SOURCES = \
-src/fortran/extractfields.f \
-src/fortran/forcerhs.f \
-src/fortran/lsstyp.f \
-src/fortran/udptr.f \
-src/fortran/rattyp.f \
-src/fortran/gratyp.f \
-src/fortran/mlist.f \
-src/fortran/insertfield.f
+    src/fortran/extractfields.f \
+    src/fortran/forcerhs.f \
+    src/fortran/lsstyp.f \
+    src/fortran/udptr.f \
+    src/fortran/rattyp.f \
+    src/fortran/gratyp.f \
+    src/fortran/mlist.f \
+    src/fortran/insertfield.f
 
 GATEWAY_C_SOURCES = \
-sci_gateway/c/sci_glist.c \
-sci_gateway/c/gw_data_structures1.c \
-sci_gateway/c/gw_data_structures2.c
+    sci_gateway/c/sci_glist.c \
+    sci_gateway/c/gw_data_structures1.c \
+    sci_gateway/c/gw_data_structures2.c
 
 GATEWAY_CPP_SOURCES = \
-sci_gateway/cpp/data_structures_gw.cpp \
-sci_gateway/cpp/sci_getfield.cpp \
-sci_gateway/cpp/sci_setfield.cpp \
-sci_gateway/cpp/sci_rlist.cpp \
-sci_gateway/cpp/sci_definedfields.cpp
+    sci_gateway/cpp/data_structures_gw.cpp \
+    sci_gateway/cpp/sci_getfield.cpp \
+    sci_gateway/cpp/sci_setfield.cpp \
+    sci_gateway/cpp/sci_rlist.cpp \
+    sci_gateway/cpp/sci_definedfields.cpp
 
 libscidata_structures_la_CPPFLAGS = \
--I$(srcdir)/includes/ \
--I$(top_srcdir)/modules/types/includes/ \
--I$(top_srcdir)/modules/ast/includes/ \
--I$(top_srcdir)/modules/ast/includes/exps \
--I$(top_srcdir)/modules/symbol/includes/ \
--I$(top_srcdir)/modules/dynamic_link/includes/ \
--I$(top_srcdir)/modules/string/includes/ \
--I$(top_srcdir)/modules/output_stream/includes/ \
--I$(top_srcdir)/modules/localization/includes/ \
--I$(top_srcdir)/modules/api_scilab/includes/ \
--I$(top_srcdir)/modules/operations/includes/ \
-$(EIGEN_CPPFLAGS) \
-$(AM_CPPFLAGS)
+    -I$(srcdir)/includes/ \
+    -I$(top_srcdir)/modules/ast/includes/ast/ \
+    -I$(top_srcdir)/modules/ast/includes/exps/ \
+    -I$(top_srcdir)/modules/ast/includes/operations/ \
+    -I$(top_srcdir)/modules/ast/includes/parse/ \
+    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+    -I$(top_srcdir)/modules/ast/includes/types/ \
+    -I$(top_srcdir)/modules/dynamic_link/includes/ \
+    -I$(top_srcdir)/modules/string/includes/ \
+    -I$(top_srcdir)/modules/output_stream/includes/ \
+    -I$(top_srcdir)/modules/localization/includes/ \
+    -I$(top_srcdir)/modules/api_scilab/includes/ \
+    $(EIGEN_CPPFLAGS) \
+    $(AM_CPPFLAGS)
 
 @MAINTAINER_MODE_TRUE@pkglib_LTLIBRARIES = libscidata_structures.la
 @MAINTAINER_MODE_FALSE@noinst_LTLIBRARIES = libscidata_structures-algo.la libscidata_structures.la
@@ -632,7 +634,10 @@ libscidata_structures_la_root_DATA = license.txt
 
 #### data_structures : init scripts ####
 libscidata_structures_la_etcdir = $(mydatadir)/etc
-libscidata_structures_la_etc_DATA = etc/data_structures.quit etc/data_structures.start
+libscidata_structures_la_etc_DATA = \
+    etc/data_structures.quit \
+    etc/data_structures.start
+
 
 #### data_structures : gateway declaration ####
 libscidata_structures_la_sci_gatewaydir = $(mydatadir)/sci_gateway

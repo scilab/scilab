@@ -9,123 +9,123 @@
 
 
 CORE_C_SOURCES = \
-src/c/csignal.c \
-src/c/cs2st.c \
-src/c/getval.c \
-src/c/md5.c \
-src/c/texmacs.c \
-src/c/str2sci.c \
-src/c/getmodules.c \
-src/c/getmemory.c \
-src/c/scimem.c \
-src/c/isanan.c \
-src/c/xscion.c \
-src/c/returnanan.c \
-src/c/loadversion.c \
-src/c/version.c \
-src/c/InitializeCore.c \
-src/c/coretable.c \
-src/c/GetXmlFileEncoding.c \
-src/c/islittleendian.c \
-src/c/ifexpr.c \
-src/c/getcommandlineargs.c \
-src/c/callFunctionFromGateway.c \
-src/c/commandwords.c \
-src/c/freeArrayOfString.c \
-src/c/getstaticdebuginfo.c \
-src/c/getdynamicdebuginfo.c \
-src/c/gw_dynamic_generic.c \
-src/c/dynamic_gateways.c \
-src/c/readGateway.c \
-src/c/comparehandles.c \
-src/c/setPrecisionFPU.c \
-src/c/LaunchScilabSignal.c \
-src/c/getos.c \
-src/c/mode_exec.c \
-src/c/transposeMatrix.c \
-src/c/recursionFunction.c \
-src/c/eqid.c \
-src/c/exitCodeValue.c \
-src/c/getversion.c \
-src/c/dynamic_tclsci.c \
-src/c/dynamic_parallel.c \
-src/c/backtrace.c \
-src/c/signal_mgmt.c \
-src/c/suspendProcess.c \
-src/c/setlines.c \
-src/c/setformat.c \
-src/c/InitializePreferences.c \
-src/c/saveCWDInPreferences.c \
-src/c/sci_tools.c \
-src/c/getmaxMALLOC.c \
-src/c/sci_mem_alloc.c \
-src/c/hashtable/hashtable.c \
-src/c/hashtable/hashtable_utility.c \
-src/c/scimem64.c
+    src/c/csignal.c \
+    src/c/cs2st.c \
+    src/c/getval.c \
+    src/c/md5.c \
+    src/c/texmacs.c \
+    src/c/str2sci.c \
+    src/c/getmodules.c \
+    src/c/getmemory.c \
+    src/c/scimem.c \
+    src/c/isanan.c \
+    src/c/xscion.c \
+    src/c/returnanan.c \
+    src/c/loadversion.c \
+    src/c/version.c \
+    src/c/InitializeCore.c \
+    src/c/coretable.c \
+    src/c/GetXmlFileEncoding.c \
+    src/c/islittleendian.c \
+    src/c/ifexpr.c \
+    src/c/getcommandlineargs.c \
+    src/c/callFunctionFromGateway.c \
+    src/c/commandwords.c \
+    src/c/freeArrayOfString.c \
+    src/c/getstaticdebuginfo.c \
+    src/c/getdynamicdebuginfo.c \
+    src/c/gw_dynamic_generic.c \
+    src/c/dynamic_gateways.c \
+    src/c/readGateway.c \
+    src/c/comparehandles.c \
+    src/c/setPrecisionFPU.c \
+    src/c/LaunchScilabSignal.c \
+    src/c/getos.c \
+    src/c/mode_exec.c \
+    src/c/transposeMatrix.c \
+    src/c/recursionFunction.c \
+    src/c/eqid.c \
+    src/c/exitCodeValue.c \
+    src/c/getversion.c \
+    src/c/dynamic_tclsci.c \
+    src/c/dynamic_parallel.c \
+    src/c/backtrace.c \
+    src/c/signal_mgmt.c \
+    src/c/suspendProcess.c \
+    src/c/setlines.c \
+    src/c/setformat.c \
+    src/c/InitializePreferences.c \
+    src/c/saveCWDInPreferences.c \
+    src/c/sci_tools.c \
+    src/c/getmaxMALLOC.c \
+    src/c/sci_mem_alloc.c \
+    src/c/hashtable/hashtable.c \
+    src/c/hashtable/hashtable_utility.c \
+    src/c/scimem64.c
 
 CORE_CPP_SOURCES = \
-src/cpp/namstr.cpp \
-src/cpp/demangle.cpp \
-src/cpp/backtrace_print.cpp \
-src/cpp/storeCommand.cpp \
-src/cpp/banner.cpp \
-src/cpp/with_module.cpp \
-src/cpp/runner.cpp \
-src/cpp/tasks.cpp \
-src/cpp/getvariablesname.cpp \
-src/cpp/getmacrosname.cpp \
-src/cpp/getfunctionsname.cpp \
-src/cpp/InitScilab.cpp
+    src/cpp/namstr.cpp \
+    src/cpp/demangle.cpp \
+    src/cpp/backtrace_print.cpp \
+    src/cpp/storeCommand.cpp \
+    src/cpp/banner.cpp \
+    src/cpp/with_module.cpp \
+    src/cpp/runner.cpp \
+    src/cpp/tasks.cpp \
+    src/cpp/getvariablesname.cpp \
+    src/cpp/getmacrosname.cpp \
+    src/cpp/getfunctionsname.cpp \
+    src/cpp/InitScilab.cpp
 
 CORE_FORTRAN_SOURCES = \
-src/fortran/clunit.f \
-src/fortran/getlin.f \
-src/fortran/allowptr.f \
-src/fortran/isany.f \
-src/fortran/setgetmode.f \
-src/fortran/showstack.f \
-src/fortran/setippty.f \
-src/fortran/cmplxt.f \
-src/fortran/folhp.f \
-src/fortran/cvname.f \
-src/fortran/prompt.f \
-src/fortran/intstr.f \
-src/fortran/createref.f \
-src/fortran/btof.f \
-src/fortran/btofm.f \
-src/fortran/find.f \
-src/fortran/ref2val.f \
-src/fortran/isbrk.f \
-src/fortran/xerbla.f \
-src/fortran/dtosci.f \
-src/fortran/bexec.f \
-src/fortran/savlod.f \
-src/fortran/error.f \
-src/fortran/cvdm.f \
-src/fortran/mkindx.f \
-src/fortran/whatln.f \
-src/fortran/errmgr.f \
-src/fortran/mklist.f \
-src/fortran/indxg.f \
-src/fortran/istrue.f \
-src/fortran/extlarg.f \
-src/fortran/lst2vars.f \
-src/fortran/basnms.f \
-src/fortran/ptrback.f \
-src/fortran/getch.f \
-src/fortran/ftob.f \
-src/fortran/expsum.f \
-src/fortran/copyvar.f \
-src/fortran/putid.f \
-src/fortran/itosci.f \
-src/fortran/stackr2d.f \
-src/fortran/stacki2d.f \
-src/fortran/stackc2i.f \
-src/fortran/isinstring.f \
-src/fortran/readinter.f \
-src/fortran/rewindinter.f \
-src/fortran/backspaceinter.f \
-src/fortran/relocstack.f
+    src/fortran/clunit.f \
+    src/fortran/getlin.f \
+    src/fortran/allowptr.f \
+    src/fortran/isany.f \
+    src/fortran/setgetmode.f \
+    src/fortran/showstack.f \
+    src/fortran/setippty.f \
+    src/fortran/cmplxt.f \
+    src/fortran/folhp.f \
+    src/fortran/cvname.f \
+    src/fortran/prompt.f \
+    src/fortran/intstr.f \
+    src/fortran/createref.f \
+    src/fortran/btof.f \
+    src/fortran/btofm.f \
+    src/fortran/find.f \
+    src/fortran/ref2val.f \
+    src/fortran/isbrk.f \
+    src/fortran/xerbla.f \
+    src/fortran/dtosci.f \
+    src/fortran/bexec.f \
+    src/fortran/savlod.f \
+    src/fortran/error.f \
+    src/fortran/cvdm.f \
+    src/fortran/mkindx.f \
+    src/fortran/whatln.f \
+    src/fortran/errmgr.f \
+    src/fortran/mklist.f \
+    src/fortran/indxg.f \
+    src/fortran/istrue.f \
+    src/fortran/extlarg.f \
+    src/fortran/lst2vars.f \
+    src/fortran/basnms.f \
+    src/fortran/ptrback.f \
+    src/fortran/getch.f \
+    src/fortran/ftob.f \
+    src/fortran/expsum.f \
+    src/fortran/copyvar.f \
+    src/fortran/putid.f \
+    src/fortran/itosci.f \
+    src/fortran/stackr2d.f \
+    src/fortran/stacki2d.f \
+    src/fortran/stackc2i.f \
+    src/fortran/isinstring.f \
+    src/fortran/readinter.f \
+    src/fortran/rewindinter.f \
+    src/fortran/backspaceinter.f \
+    src/fortran/relocstack.f
 
 GATEWAY_C_SOURCES = \
 	sci_gateway/c/gw_core.c \
@@ -171,43 +171,42 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_intppty.cpp
 
 libscicore_la_CPPFLAGS = \
--I$(srcdir)/includes/ \
--I$(srcdir)/src/c/ \
--I$(srcdir)/src/cpp/ \
--I$(top_srcdir)/modules/intersci/includes/ \
--I$(top_srcdir)/modules/call_scilab/includes/ \
--I$(top_srcdir)/modules/api_scilab/includes/ \
--I$(top_srcdir)/modules/action_binding/includes/ \
--I$(top_srcdir)/modules/output_stream/includes/ \
--I$(top_srcdir)/modules/localization/includes/ \
--I$(top_srcdir)/modules/functions_manager/includes/ \
--I$(top_srcdir)/modules/elementary_functions/includes/ \
--I$(top_srcdir)/modules/ast/includes/ \
--I$(top_srcdir)/modules/ast/includes/exps \
--I$(top_srcdir)/modules/parse/includes/ \
--I$(top_srcdir)/modules/symbol/includes/ \
--I$(top_srcdir)/modules/system_env/includes/ \
--I$(top_srcdir)/modules/types/includes/ \
--I$(top_srcdir)/modules/io/includes/ \
--I$(top_srcdir)/modules/tclsci/includes/ \
--I$(top_srcdir)/modules/dynamic_link/includes/ \
--I$(top_srcdir)/modules/elementary_functions/includes/ \
--I$(top_srcdir)/modules/string/includes/ \
--I$(top_srcdir)/modules/fileio/includes/ \
--I$(top_srcdir)/modules/operations/includes/ \
--I$(top_srcdir)/modules/console/includes/ \
--I$(top_srcdir)/modules/threads/includes/ \
--I$(top_srcdir)/modules/history_manager/includes/ \
--I$(top_srcdir)/modules/preferences/includes/ \
--I$(top_srcdir)/modules/external_objects/includes/ \
--I$(top_srcdir)/modules/jvm/includes/ \
--I$(top_srcdir)/modules/gui/includes/ \
--I$(top_srcdir)/modules/graphics/includes/ \
--I$(top_srcdir)/modules/system_env/includes/ \
--I$(top_srcdir)/modules/hdf5/includes/ \
-$(EIGEN_CPPFLAGS) \
-$(XML_FLAGS) \
-$(AM_CPPFLAGS)
+    -I$(srcdir)/includes/ \
+    -I$(srcdir)/src/c/ \
+    -I$(srcdir)/src/cpp/ \
+    -I$(top_srcdir)/modules/ast/includes/ast/ \
+    -I$(top_srcdir)/modules/ast/includes/exps/ \
+    -I$(top_srcdir)/modules/ast/includes/operations/ \
+    -I$(top_srcdir)/modules/ast/includes/parse/ \
+    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+    -I$(top_srcdir)/modules/ast/includes/types/ \
+    -I$(top_srcdir)/modules/intersci/includes/ \
+    -I$(top_srcdir)/modules/call_scilab/includes/ \
+    -I$(top_srcdir)/modules/api_scilab/includes/ \
+    -I$(top_srcdir)/modules/action_binding/includes/ \
+    -I$(top_srcdir)/modules/output_stream/includes/ \
+    -I$(top_srcdir)/modules/localization/includes/ \
+    -I$(top_srcdir)/modules/functions_manager/includes/ \
+    -I$(top_srcdir)/modules/elementary_functions/includes/ \
+    -I$(top_srcdir)/modules/io/includes/ \
+    -I$(top_srcdir)/modules/tclsci/includes/ \
+    -I$(top_srcdir)/modules/dynamic_link/includes/ \
+    -I$(top_srcdir)/modules/elementary_functions/includes/ \
+    -I$(top_srcdir)/modules/string/includes/ \
+    -I$(top_srcdir)/modules/fileio/includes/ \
+    -I$(top_srcdir)/modules/console/includes/ \
+    -I$(top_srcdir)/modules/threads/includes/ \
+    -I$(top_srcdir)/modules/history_manager/includes/ \
+    -I$(top_srcdir)/modules/preferences/includes/ \
+    -I$(top_srcdir)/modules/external_objects/includes/ \
+    -I$(top_srcdir)/modules/jvm/includes/ \
+    -I$(top_srcdir)/modules/gui/includes/ \
+    -I$(top_srcdir)/modules/graphics/includes/ \
+    -I$(top_srcdir)/modules/hdf5/includes/ \
+    $(EIGEN_CPPFLAGS) \
+    $(XML_FLAGS) \
+    $(AM_CPPFLAGS)
 
 # Used by sci_getdebuginfo:
 if TCLTK

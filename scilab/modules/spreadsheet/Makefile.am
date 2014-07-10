@@ -5,60 +5,60 @@
 
 
 SPREADSHEET_C_SOURCES = \
-src/c/xls.c \
-src/c/checkCsvWriteFormat.c \
-src/c/csvDefault.c \
-src/c/csvRead.c \
-src/c/csvWrite.c \
-src/c/getRange.c \
-src/c/splitLine.c \
-src/c/utftolatin.c
+    src/c/xls.c \
+    src/c/checkCsvWriteFormat.c \
+    src/c/csvDefault.c \
+    src/c/csvRead.c \
+    src/c/csvWrite.c \
+    src/c/getRange.c \
+    src/c/splitLine.c \
+    src/c/utftolatin.c
 
 RIPOLE_SOURCES = \
-src/c/ripole/olestream-unwrap.c \
-src/c/ripole/pldstr.c \
-src/c/ripole/ole.c \
-src/c/ripole/bytedecoders.c \
-src/c/ripole/logger.c \
-src/c/ripole/ripole.c \
-src/c/ripole/bt-int.c
+    src/c/ripole/olestream-unwrap.c \
+    src/c/ripole/pldstr.c \
+    src/c/ripole/ole.c \
+    src/c/ripole/bytedecoders.c \
+    src/c/ripole/logger.c \
+    src/c/ripole/ripole.c \
+    src/c/ripole/bt-int.c
 
 GATEWAY_CXX_SOURCES = \
-sci_gateway/cpp/sci_xls_read.cpp \
-sci_gateway/cpp/sci_xls_open.cpp
+    sci_gateway/cpp/sci_xls_read.cpp \
+    sci_gateway/cpp/sci_xls_open.cpp
 
 libscispreadsheet_la_CPPFLAGS= \
--I$(srcdir)/includes/ \
--I$(srcdir)/src/c/ \
--I$(srcdir)/src/c/ripole \
--I$(top_srcdir)/libs/MALLOC/includes/ \
--I$(top_srcdir)/modules/output_stream/includes \
--I$(top_srcdir)/modules/api_scilab/includes \
--I$(top_srcdir)/modules/dynamic_link/includes \
--I$(top_srcdir)/modules/symbol/includes \
--I$(top_srcdir)/modules/ast/includes \
--I$(top_srcdir)/modules/ast/includes/exps \
--I$(top_srcdir)/modules/threads/includes \
--I$(top_srcdir)/modules/operations/includes \
--I$(top_srcdir)/modules/system_env/includes \
--I$(top_srcdir)/modules/fileio/includes \
--I$(top_srcdir)/modules/types/includes/ \
--I$(top_srcdir)/modules/localization/includes/ \
--I$(top_srcdir)/modules/string/includes/ \
--I$(top_srcdir)/modules/string/src/c/ \
--I$(top_srcdir)/modules/io/includes/ \
--I$(top_srcdir)/modules/dynamic_link/includes \
-$(EIGEN_CPPFLAGS) \
-$(AM_CPPFLAGS)
+    -I$(srcdir)/includes/ \
+    -I$(srcdir)/src/c/ \
+    -I$(srcdir)/src/c/ripole \
+    -I$(top_srcdir)/modules/ast/includes/ast/ \
+    -I$(top_srcdir)/modules/ast/includes/exps/ \
+    -I$(top_srcdir)/modules/ast/includes/operations/ \
+    -I$(top_srcdir)/modules/ast/includes/parse/ \
+    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+    -I$(top_srcdir)/modules/ast/includes/types/ \
+    -I$(top_srcdir)/modules/output_stream/includes \
+    -I$(top_srcdir)/modules/api_scilab/includes \
+    -I$(top_srcdir)/modules/dynamic_link/includes \
+    -I$(top_srcdir)/modules/threads/includes \
+    -I$(top_srcdir)/modules/fileio/includes \
+    -I$(top_srcdir)/modules/localization/includes/ \
+    -I$(top_srcdir)/modules/string/includes/ \
+    -I$(top_srcdir)/modules/string/src/c/ \
+    -I$(top_srcdir)/modules/io/includes/ \
+    -I$(top_srcdir)/modules/dynamic_link/includes \
+    $(EIGEN_CPPFLAGS) \
+    $(AM_CPPFLAGS)
 
 GATEWAY_C_SOURCES = \
-sci_gateway/c/gw_spreadsheet.c \
-sci_gateway/c/gw_csv_helpers.c \
-sci_gateway/c/sci_csvDefault.c \
-sci_gateway/c/sci_csvRead.c \
-sci_gateway/c/sci_csvStringToDouble.c \
-sci_gateway/c/sci_csvTextScan.c \
-sci_gateway/c/sci_csvWrite.c
+    sci_gateway/c/gw_spreadsheet.c \
+    sci_gateway/c/gw_csv_helpers.c \
+    sci_gateway/c/sci_csvDefault.c \
+    sci_gateway/c/sci_csvRead.c \
+    sci_gateway/c/sci_csvStringToDouble.c \
+    sci_gateway/c/sci_csvTextScan.c \
+    sci_gateway/c/sci_csvWrite.c
 
 pkglib_LTLIBRARIES = libscispreadsheet.la
 noinst_LTLIBRARIES = libscispreadsheet-algo.la

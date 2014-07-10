@@ -66,25 +66,26 @@ GATEWAY_C_SOURCES = \
 GATEWAY_FORTRAN_SOURCES =
 
 libscioutput_stream_la_CPPFLAGS= \
--I$(srcdir)/includes/ \
--I$(top_srcdir)/modules/core/includes/ \
--I$(srcdir)/src/cpp/ \
--I$(srcdir)/src/c/ \
--I$(top_srcdir)/modules/api_scilab/includes \
--I$(top_srcdir)/modules/operations/includes \
--I$(top_srcdir)/modules/string/includes \
--I$(top_srcdir)/modules/types/includes \
--I$(top_srcdir)/modules/functions_manager/includes \
--I$(top_srcdir)/modules/symbol/includes \
--I$(top_srcdir)/modules/ast/includes \
--I$(top_srcdir)/modules/ast/includes/exps \
--I$(top_srcdir)/modules/system_env/includes \
--I$(top_srcdir)/modules/threads/includes \
--I$(top_srcdir)/modules/console/includes \
--I$(top_srcdir)/modules/dynamic_link/includes \
--I$(top_srcdir)/modules/localization/includes/ \
-$(EIGEN_CPPFLAGS) \
-$(AM_CPPFLAGS)
+    -I$(srcdir)/includes/ \
+    -I$(srcdir)/src/cpp/ \
+    -I$(srcdir)/src/c/ \
+    -I$(top_srcdir)/modules/ast/includes/ast/ \
+    -I$(top_srcdir)/modules/ast/includes/exps/ \
+    -I$(top_srcdir)/modules/ast/includes/operations/ \
+    -I$(top_srcdir)/modules/ast/includes/parse/ \
+    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+    -I$(top_srcdir)/modules/ast/includes/types/ \
+    -I$(top_srcdir)/modules/core/includes/ \
+    -I$(top_srcdir)/modules/api_scilab/includes \
+    -I$(top_srcdir)/modules/string/includes \
+    -I$(top_srcdir)/modules/functions_manager/includes \
+    -I$(top_srcdir)/modules/threads/includes \
+    -I$(top_srcdir)/modules/console/includes \
+    -I$(top_srcdir)/modules/dynamic_link/includes \
+    -I$(top_srcdir)/modules/localization/includes/ \
+    $(EIGEN_CPPFLAGS) \
+    $(AM_CPPFLAGS)
 
 if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libscioutput_stream.la
@@ -114,7 +115,9 @@ libscioutput_stream_la_root_DATA =  license.txt
 
 #### output_stream : init scripts ####
 libscioutput_stream_la_etcdir = $(mydatadir)/etc
-libscioutput_stream_la_etc_DATA = etc/output_stream.quit etc/output_stream.start
+libscioutput_stream_la_etc_DATA = \
+    etc/output_stream.quit \
+    etc/output_stream.start
 
 #### output_stream : gateway declaration ####
 libscioutput_stream_la_sci_gatewaydir = $(mydatadir)/sci_gateway

@@ -85,7 +85,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../src/c;../includes;../../core/includes;../../output_stream/includes;../../windows_tools/includes;../../fileio/includes;../../string/src/c;../../string/includes;../../../libs/intl;../../../libs/libxml2;../../../libs/libxml2/libxml;../../../java/jdk/include;../../../java/jdk/include/win32;../../../libs/GetWindowsVersion;../../api_scilab/includes;../../operations/includes;../../system_env/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../src/c;../includes;../../core/includes;../../output_stream/includes;../../windows_tools/includes;../../fileio/includes;../../string/src/c;../../string/includes;../../../libs/intl;../../../libs/libxml2;../../../libs/libxml2/libxml;../../../java/jdk/include;../../../java/jdk/include/win32;../../../libs/GetWindowsVersion;../../api_scilab/includes;../../ast/includes/types;../../ast/includes/ast;../../ast/includes/exps;../../ast/includes/operations;../../ast/includes/symbol;../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;_DLL;_DEBUG;_CRT_SECURE_NO_DEPRECATE;EXPORT_LOCALIZATION_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <AssemblerListingLocation>$(Configuration)/</AssemblerListingLocation>
@@ -99,12 +99,12 @@
     <PreLinkEvent>
       <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)io_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)io.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)system_env.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)fileio_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)fileio.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)ast_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)ast.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core.lib;io.lib;system_env.lib;fileio.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;io.lib;fileio.lib;ast.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\sci$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>localization_export.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -120,7 +120,7 @@ lib /DEF:"$(ProjectDir)fileio_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../src/c;../includes;../../core/includes;../../output_stream/includes;../../windows_tools/includes;../../fileio/includes;../../string/src/c;../../string/includes;../../../libs/intl;../../../libs/libxml2;../../../libs/libxml2/libxml;../../../java/jdk/include;../../../java/jdk/include/win32;../../../libs/GetWindowsVersion;../../api_scilab/includes;../../operations/includes;../../system_env/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../src/c;../includes;../../core/includes;../../output_stream/includes;../../windows_tools/includes;../../fileio/includes;../../string/src/c;../../string/includes;../../../libs/intl;../../../libs/libxml2;../../../libs/libxml2/libxml;../../../java/jdk/include;../../../java/jdk/include/win32;../../../libs/GetWindowsVersion;../../api_scilab/includes;../../ast/includes/types;../../ast/includes/ast;../../ast/includes/exps;../../ast/includes/operations;../../ast/includes/symbol;../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;_DLL;_DEBUG;_CRT_SECURE_NO_DEPRECATE;EXPORT_LOCALIZATION_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <AssemblerListingLocation>$(Configuration)/</AssemblerListingLocation>
@@ -134,12 +134,12 @@ lib /DEF:"$(ProjectDir)fileio_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <PreLinkEvent>
       <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)io_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)io.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)system_env.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)fileio_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)fileio.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)ast_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)ast.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core.lib;io.lib;system_env.lib;fileio.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;io.lib;fileio.lib;ast.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\sci$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>localization_export.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -154,7 +154,7 @@ lib /DEF:"$(ProjectDir)fileio_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <AdditionalIncludeDirectories>../src/c;../includes;../../core/includes;../../output_stream/includes;../../windows_tools/includes;../../fileio/includes;../../string/src/c;../../string/includes;../../../libs/intl;../../../libs/libxml2;../../../libs/libxml2/libxml;../../../java/jdk/include;../../../java/jdk/include/win32;../../../libs/GetWindowsVersion;../../api_scilab/includes;../../operations/includes;../../system_env/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../src/c;../includes;../../core/includes;../../output_stream/includes;../../windows_tools/includes;../../fileio/includes;../../string/src/c;../../string/includes;../../../libs/intl;../../../libs/libxml2;../../../libs/libxml2/libxml;../../../java/jdk/include;../../../java/jdk/include/win32;../../../libs/GetWindowsVersion;../../api_scilab/includes;../../ast/includes/types;../../ast/includes/ast;../../ast/includes/exps;../../ast/includes/operations;../../ast/includes/symbol;../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;EXPORT_LOCALIZATION_DLL;NDEBUG;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -171,12 +171,12 @@ lib /DEF:"$(ProjectDir)fileio_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <PreLinkEvent>
       <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)io_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)io.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)system_env.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)fileio_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)fileio.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)ast_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)ast.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core.lib;io.lib;system_env.lib;fileio.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;io.lib;fileio.lib;ast.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\sci$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>localization_export.def</ModuleDefinitionFile>
       <SupportUnloadOfDelayLoadedDLL>true</SupportUnloadOfDelayLoadedDLL>
@@ -192,7 +192,7 @@ lib /DEF:"$(ProjectDir)fileio_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <AdditionalIncludeDirectories>../src/c;../includes;../../core/includes;../../output_stream/includes;../../windows_tools/includes;../../fileio/includes;../../string/src/c;../../string/includes;../../../libs/intl;../../../libs/libxml2;../../../libs/libxml2/libxml;../../../java/jdk/include;../../../java/jdk/include/win32;../../../libs/GetWindowsVersion;../../api_scilab/includes;../../operations/includes;../../system_env/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../src/c;../includes;../../core/includes;../../output_stream/includes;../../windows_tools/includes;../../fileio/includes;../../string/src/c;../../string/includes;../../../libs/intl;../../../libs/libxml2;../../../libs/libxml2/libxml;../../../java/jdk/include;../../../java/jdk/include/win32;../../../libs/GetWindowsVersion;../../api_scilab/includes;../../ast/includes/types;../../ast/includes/ast;../../ast/includes/exps;../../ast/includes/operations;../../ast/includes/symbol;../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;EXPORT_LOCALIZATION_DLL;NDEBUG;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -209,12 +209,12 @@ lib /DEF:"$(ProjectDir)fileio_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <PreLinkEvent>
       <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)io_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)io.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)system_env.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)fileio_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)fileio.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)ast_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)ast.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core.lib;io.lib;system_env.lib;fileio.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;io.lib;fileio.lib;ast.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\sci$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>localization_export.def</ModuleDefinitionFile>
       <SupportUnloadOfDelayLoadedDLL>true</SupportUnloadOfDelayLoadedDLL>
@@ -226,9 +226,10 @@ lib /DEF:"$(ProjectDir)fileio_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
   </ItemDefinitionGroup>
   <ItemGroup>
     <None Include="..\locales\localization.pot" />
+    <None Include="ast_Import.def" />
+    <None Include="fileio_Import.def" />
     <None Include="io_Import.def" />
     <None Include="core_import.def" />
-    <None Include="System_env_Import.def" />
     <None Include="localization_export.def" />
     <None Include="..\localization.iss" />
     <None Include="..\sci_gateway\localization_gateway.xml" />
@@ -250,6 +251,9 @@ lib /DEF:"$(ProjectDir)fileio_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClCompile Include="jni\setdefaultlanguage_wrap.c" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\libs\GetWindowsVersion\GetWindowsVersion.vcxproj">
+      <Project>{982bf37f-42c4-4d37-8d14-60521b141503}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\tools\Dumpexts\Dumpexts.vcxproj">
       <Project>{3170e4c2-1173-4264-a222-7ee8ccb3ddf7}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
