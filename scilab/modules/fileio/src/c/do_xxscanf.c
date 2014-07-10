@@ -305,7 +305,7 @@ int do_xxscanf (const wchar_t *fname, FILE *fp, const wchar_t *format, int *narg
 
                 case L'n':
                     n_directive_count++;
-                //pass to next statement
+                    //pass to next statement
 
                 case L'i':
                 case L'd':
@@ -442,6 +442,10 @@ int do_xxscanf (const wchar_t *fname, FILE *fp, const wchar_t *format, int *narg
         }
     }
 
+    if (*retval == 0)
+    {
+        return DO_XXPRINTF_MISMATCH;
+    }
     return 0;
 }
 
