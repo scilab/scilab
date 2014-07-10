@@ -196,6 +196,8 @@ Xcos Bug Fixes
 * Bug #13513 fixed - EXPRESSION block with "u1" as expression failed with a 
                      singularity error.
 
+* Bug #13514 fixed - External modules' loader_pal.sce file contained absolute path.
+
 
 Known issues
 =============
