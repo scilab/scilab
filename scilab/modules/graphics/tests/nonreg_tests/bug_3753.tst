@@ -14,11 +14,11 @@
 //
 // <-- Short Description -->
 // Using draw axes in range mode ('r') produces labels are completely unreadable and show strange characters.
-// 
+//
 
 SC=3.2;
 square(-SC,-SC,SC,SC)
-drawaxis(x=[SC,-SC,8],y=-SC,dir='d',tics='r',format_n="%1.1f")
+drawaxis(x=[SC,-SC,8],y=-SC,dir="d",tics="r",format_n="%1.1f");
 
 axis = gce();
 if (axis.tics_labels <> ["3.2"  "2.4"  "1.6"  "0.8"  "0.0"  "-0.8"  "-1.6"  "-2.4"  "-3.2"]) then pause; end
