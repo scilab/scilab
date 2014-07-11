@@ -163,9 +163,6 @@
     </f2c_rule>
   </ItemGroup>
   <ItemGroup>
-    <None Include="core_import.def">
-      <Filter>Imports</Filter>
-    </None>
     <None Include="Output_stream_Import.def">
       <Filter>Imports</Filter>
     </None>

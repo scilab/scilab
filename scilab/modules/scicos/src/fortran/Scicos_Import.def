@@ -15,3 +15,11 @@ createvar_
 checklhs_
 checkrhs_
 getrhsvar_
+stack_
+vstk_
+iop_
+com_
+intersci_
+cha1_
+errgst_
+recu_
