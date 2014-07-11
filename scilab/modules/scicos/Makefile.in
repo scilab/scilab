@@ -998,13 +998,11 @@ libsciscicos_la_LDFLAGS = $(AM_LDFLAGS)
 @XCOS_TRUE@			-I$(top_srcdir)/modules/action_binding/includes/ \
 @XCOS_TRUE@			-I$(top_srcdir)/modules/time/includes/ \
 @XCOS_TRUE@			-I$(top_srcdir)/modules/api_scilab/includes/ \
-@XCOS_TRUE@			-I$(top_srcdir)/modules/types/includes/ \
 @XCOS_TRUE@			-I$(top_srcdir)/modules/ast/includes/ast/ \
 @XCOS_TRUE@			-I$(top_srcdir)/modules/ast/includes/exps/ \
 @XCOS_TRUE@			-I$(top_srcdir)/modules/ast/includes/operations/ \
 @XCOS_TRUE@			-I$(top_srcdir)/modules/ast/includes/system_env/ \
 @XCOS_TRUE@			-I$(top_srcdir)/modules/ast/includes/types/ \
-@XCOS_TRUE@			-I$(top_srcdir)/modules/operations/includes/ \
 @XCOS_TRUE@			$(EIGEN_CPPFLAGS) \
 @XCOS_TRUE@			$(AM_CPPFLAGS)
 
@@ -3049,6 +3047,8 @@ uninstall-am: uninstall-binPROGRAMS uninstall-libsciscicos_la_etcDATA \
 	uninstall-pkglibLTLIBRARIES
 
 
+.NOTPARALLEL: libscisundials.la libsciscicos-algo.la
+
 # This target enables tests for Scilab
 check-local: $(top_builddir)/scilab-bin test
 	if test -d $(mydatadir)/tests; then \
@@ -3640,8 +3640,6 @@ distclean-local:
 @OCAML_TRUE@@XCOS_TRUE@    ./src/translator/exceptionHandling/exceptHandler.cmx \
 @OCAML_TRUE@@XCOS_TRUE@    ./src/translator/translation/codeGeneration.cmx \
 @OCAML_TRUE@@XCOS_TRUE@    src/translator/translation/translator.cmi
-
-#.NOTPARALLEL: libscisundials.la libsciscicos-algo.la
 
 # Build modelica stuff
 

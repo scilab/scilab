@@ -147,13 +147,11 @@ libsciscicos_algo_la_CPPFLAGS= -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/action_binding/includes/ \
 			-I$(top_srcdir)/modules/time/includes/ \
 			-I$(top_srcdir)/modules/api_scilab/includes/ \
-			-I$(top_srcdir)/modules/types/includes/ \
 			-I$(top_srcdir)/modules/ast/includes/ast/ \
 			-I$(top_srcdir)/modules/ast/includes/exps/ \
 			-I$(top_srcdir)/modules/ast/includes/operations/ \
 			-I$(top_srcdir)/modules/ast/includes/system_env/ \
 			-I$(top_srcdir)/modules/ast/includes/types/ \
-			-I$(top_srcdir)/modules/operations/includes/ \
 			$(EIGEN_CPPFLAGS) \
 			$(AM_CPPFLAGS)
 else
@@ -286,7 +284,7 @@ libscisundials_la_CFLAGS = -I$(top_srcdir)/modules/scicos/src/scicos_sundials/in
 
 libscisundials_la_SOURCES = $(SUNDIALS_SOURCES)
 
-#.NOTPARALLEL: libscisundials.la libsciscicos-algo.la
+.NOTPARALLEL: libscisundials.la libsciscicos-algo.la
 
 include $(top_srcdir)/Makefile.incl.am
 
