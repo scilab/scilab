@@ -539,15 +539,18 @@ libjavasci2_la_root_DATA = license.txt
 
 #### javasci : init scripts ####
 libjavasci2_la_etcdir = $(mydatadir)/etc
-libjavasci2_la_etc_DATA = etc/javasci.quit etc/javasci.start
+libjavasci2_la_etc_DATA = \
+    etc/javasci.quit \
+    etc/javasci.start
+
 
 ### All the compilation process of java is deleguated to ant
 
 #### Javasci : sources ####
 @JAVASCI_TRUE@JAVASCI_V2_C_SOURCES = \
-@JAVASCI_TRUE@src/jni/call_scilab_wrap.c \
-@JAVASCI_TRUE@src/jni/putLists.c \
-@JAVASCI_TRUE@src/c/javasci2_helper.c
+@JAVASCI_TRUE@    src/jni/call_scilab_wrap.c \
+@JAVASCI_TRUE@    src/jni/putLists.c \
+@JAVASCI_TRUE@    src/c/javasci2_helper.c
 
 @JAVASCI_TRUE@pkglib_LTLIBRARIES = libjavasci2.la
 @JAVASCI_TRUE@libjavasci2_la_SOURCES = $(JAVASCI_V2_C_SOURCES)
@@ -555,20 +558,27 @@ libjavasci2_la_etc_DATA = etc/javasci.quit etc/javasci.start
 # For the code check (splint)
 @JAVASCI_TRUE@CHECK_SRC = $(JAVASCI_C_SOURCES)
 @JAVASCI_TRUE@INCLUDE_FLAGS = $(libjavasci2_la_CPPFLAGS)
-@JAVASCI_TRUE@libjavasci2_la_CPPFLAGS = -I$(srcdir)/includes/ \
-@JAVASCI_TRUE@			-I$(srcdir)/src/c/ \
-@JAVASCI_TRUE@			$(JAVA_JNI_INCLUDE) \
-@JAVASCI_TRUE@			$(TCL_INC_PATH) \
-@JAVASCI_TRUE@			$(TK_INC_PATH) \
-@JAVASCI_TRUE@			-I$(top_srcdir)/modules/tclsci/includes \
-@JAVASCI_TRUE@			-I$(top_srcdir)/modules/call_scilab/includes \
-@JAVASCI_TRUE@			-I$(top_srcdir)/modules/api_scilab/includes \
-@JAVASCI_TRUE@			-I$(top_srcdir)/modules/fileio/includes/ \
-@JAVASCI_TRUE@			-I$(top_srcdir)/modules/localization/includes/ \
-@JAVASCI_TRUE@			-I$(top_srcdir)/modules/output_stream/includes/ \
-@JAVASCI_TRUE@			-I$(top_srcdir)/modules/operations/includes \
-@JAVASCI_TRUE@			-I$(top_srcdir)/modules/system_env/includes/ \
-@JAVASCI_TRUE@			$(AM_CPPFLAGS)
+@JAVASCI_TRUE@libjavasci2_la_CPPFLAGS = \
+@JAVASCI_TRUE@    -I$(srcdir)/includes/ \
+@JAVASCI_TRUE@    -I$(srcdir)/src/c/ \
+@JAVASCI_TRUE@    $(JAVA_JNI_INCLUDE) \
+@JAVASCI_TRUE@    $(TCL_INC_PATH) \
+@JAVASCI_TRUE@    $(TK_INC_PATH) \
+@JAVASCI_TRUE@    -I$(top_srcdir)/modules/ast/includes/ast/ \
+@JAVASCI_TRUE@    -I$(top_srcdir)/modules/ast/includes/exps/ \
+@JAVASCI_TRUE@    -I$(top_srcdir)/modules/ast/includes/operations/ \
+@JAVASCI_TRUE@    -I$(top_srcdir)/modules/ast/includes/parse/ \
+@JAVASCI_TRUE@    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+@JAVASCI_TRUE@    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+@JAVASCI_TRUE@    -I$(top_srcdir)/modules/ast/includes/types/ \
+@JAVASCI_TRUE@    -I$(top_srcdir)/modules/tclsci/includes \
+@JAVASCI_TRUE@    -I$(top_srcdir)/modules/graphic_objects/includes \
+@JAVASCI_TRUE@    -I$(top_srcdir)/modules/call_scilab/includes \
+@JAVASCI_TRUE@    -I$(top_srcdir)/modules/api_scilab/includes \
+@JAVASCI_TRUE@    -I$(top_srcdir)/modules/fileio/includes/ \
+@JAVASCI_TRUE@    -I$(top_srcdir)/modules/localization/includes/ \
+@JAVASCI_TRUE@    -I$(top_srcdir)/modules/output_stream/includes/ \
+@JAVASCI_TRUE@    $(AM_CPPFLAGS)
 
 @JAVASCI_TRUE@libjavasci2_la_LIBADD = \
 @JAVASCI_TRUE@	$(top_builddir)/modules/api_scilab/libsciapi_scilab.la \
@@ -985,8 +995,8 @@ maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
 	@echo "it deletes files that may require special tools to rebuild."
 	-test -z "$(BUILT_SOURCES)" || rm -f $(BUILT_SOURCES)
-@JAVASCI_FALSE@clean-local:
 @JAVASCI_FALSE@install-data-local:
+@JAVASCI_FALSE@clean-local:
 @JAVASCI_FALSE@distclean-local:
 @JAVASCI_FALSE@install-html-local:
 clean: clean-am
