@@ -562,8 +562,7 @@ case "$CC" in
 
    if test "$enable_debug_C" = yes; then
       DEBUG_CFLAGS="-pipe -Wformat -Wshadow -Wfloat-equal -Wpointer-arith -Wcast-align -Wmissing-prototypes -Wmissing-declarations  -Wstrict-prototypes  -Wmissing-noreturn -Wendif-labels -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wwrite-strings -Winline -Wredundant-decls -Wall -Wchar-subscripts -Wextra  -Wuninitialized -Wno-format-y2k -Wmissing-format-attribute -Wno-missing-field-initializers -Wno-strict-aliasing  -Wold-style-definition -g3 -Wunsafe-loop-optimizations"
-      # used to be -O
-      # -D_FORTIFY_SOURCE=2
+      # used to be -O0
       case "$host" in
       *-linux-gnu )
       # Only doing that under Linux
@@ -1456,7 +1455,7 @@ if test "$with_openmp" != no; then
 #   AC_OPENMP
     OPENMP_CFLAGS="-fopenmp"
     OPENMP_CXXFLAGS="-fopenmp"
-    OPENMP_LIBS="-lgomp"
+    OPENMP_LIBS="-lgomp -lstdc++" # Force -lstdc++ because some compilers do not add it automatically.
 
     AC_CHECK_HEADERS([omp.h], [],
      [AC_MSG_ERROR([Could not find omp.h])])

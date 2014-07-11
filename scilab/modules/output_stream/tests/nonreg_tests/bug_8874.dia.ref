@@ -85,13 +85,13 @@ P
 Real part
 
  
-                2       
-  - 1 + s + Infs + Nans 
+                2      3  
+  - 1 + s + Infs + Nans   
 Imaginary part
 
  
-                     2      3  
-    Inf + Nans + Nans + Nans   
+                     2      3      
+    Inf + Nans + Nans + Nans       
 format("e")
 // Check string
 assert_checkequal(string(complex(0,%inf)),"%i*Inf");
@@ -156,10 +156,10 @@ P
 Real part
 
  
-                                 2      3  
-  - 1.000D+00 + 1.000D+00s + Infs + Nans   
+                                 2      3    
+  - 1.000D+00 + 1.000D+00s + Infs + Nans     
 Imaginary part
 
  
-                     2      3  
-    Inf + Nans + Nans + Nans   
+                     2      3      
+    Inf + Nans + Nans + Nans       

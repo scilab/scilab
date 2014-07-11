@@ -76,6 +76,8 @@ static int error_one_rhs(const char *fname)
 {
     SciErr sciErr;
     int *piAddressVarOne = NULL;
+    int iComplex = 0;
+
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
     if (sciErr.iErr)
     {
@@ -86,7 +88,15 @@ static int error_one_rhs(const char *fname)
     {
         if (isDoubleType(pvApiCtx, piAddressVarOne))
         {
-            return error_one_rhs_number(pvApiCtx, piAddressVarOne,  fname);
+            iComplex = isVarComplex(pvApiCtx, piAddressVarOne);
+            if (iComplex)
+            {
+                Scierror(999, _("%s: Wrong type for input argument #%d.\n"), fname, 1);
+            }
+            else
+            {
+                return error_one_rhs_number(pvApiCtx, piAddressVarOne,  fname);
+            }
         }
         else if (isStringType(pvApiCtx, piAddressVarOne))
         {
@@ -106,6 +116,8 @@ static int error_two_rhs(const char *fname)
     SciErr sciErr;
     int *piAddressVarOne = NULL;
     int *piAddressVarTwo = NULL;
+    int iComplexVarOne = 0;
+    int iComplexVarTwo = 0;
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
     if (sciErr.iErr)
@@ -125,15 +137,44 @@ static int error_two_rhs(const char *fname)
 
     if (isDoubleType(pvApiCtx, piAddressVarOne) && isStringType(pvApiCtx, piAddressVarTwo))
     {
-        return error_two_rhs_number_string(pvApiCtx, piAddressVarTwo, 2, piAddressVarOne, 1, fname);
+        iComplexVarOne = isVarComplex(pvApiCtx, piAddressVarOne);
+        if (iComplexVarOne)
+        {
+            Scierror(999, _("%s: Wrong type for input argument #%d.\n"), fname, 1);
+        }
+        else
+        {
+            return error_two_rhs_number_string(pvApiCtx, piAddressVarTwo, 2, piAddressVarOne, 1, fname);
+        }
     }
     else if (isDoubleType(pvApiCtx, piAddressVarTwo) && isStringType(pvApiCtx, piAddressVarOne))
     {
-        return error_two_rhs_number_string(pvApiCtx, piAddressVarOne, 1, piAddressVarTwo, 2, fname);
+        iComplexVarTwo = isVarComplex(pvApiCtx, piAddressVarTwo);
+        if (iComplexVarTwo)
+        {
+            Scierror(999, _("%s: Wrong type for input argument #%d.\n"), fname, 2);
+        }
+        else
+        {
+            return error_two_rhs_number_string(pvApiCtx, piAddressVarOne, 1, piAddressVarTwo, 2, fname);
+        }
     }
     else if (isDoubleType(pvApiCtx, piAddressVarTwo) && isDoubleType(pvApiCtx, piAddressVarOne))
     {
-        return error_two_rhs_number_number(pvApiCtx, piAddressVarOne, piAddressVarTwo, fname);
+        iComplexVarOne = isVarComplex(pvApiCtx, piAddressVarOne);
+        iComplexVarTwo = isVarComplex(pvApiCtx, piAddressVarTwo);
+        if (iComplexVarOne)
+        {
+            Scierror(999, _("%s: Wrong type for input argument #%d.\n"), fname, 1);
+        }
+        else if (iComplexVarTwo)
+        {
+            Scierror(999, _("%s: Wrong type for input argument #%d.\n"), fname, 2);
+        }
+        else
+        {
+            return error_two_rhs_number_number(pvApiCtx, piAddressVarOne, piAddressVarTwo, fname);
+        }
     }
     else
     {

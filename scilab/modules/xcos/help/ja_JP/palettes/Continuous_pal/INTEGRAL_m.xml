@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+* Scicos
+*
+* Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+* Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+*
+* This program is free software; you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation; either version 2 of the License, or
+*  (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with this program; if not, write to the Free Software
+* Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+*
+* See the file ./license.txt
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="INTEGRAL_m" xml:lang="ja">
+    <refnamediv>
+        <refname>INTEGRAL_m</refname>
+        <refpurpose>積分</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>ブロックのスクリーンショット</title>
+        <para>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../../../../images/palettes/INTEGRAL_m.png" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+        </para>
+    </refsection>
+    <refsection id="Contents_INTEGRAL_m">
+        <title>内容</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="INTEGRAL_m">積分</link>
+                </para>
+            </listitem>
+            <listitem>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            <xref linkend="Palette_INTEGRAL_m">パレット</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Description_INTEGRAL_m">説明</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Dialogbox_INTEGRAL_m">ダイアログボックス</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Defaultproperties_INTEGRAL_m">デフォルトプロパティ</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Interfacingfunction_INTEGRAL_m">インターフェイス用関数</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Computationalfunction_INTEGRAL_m">計算用関数</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Examples_INTEGRAL_m">例</xref>
+                        </para>
+                    </listitem>
+                </itemizedlist>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Palette_INTEGRAL_m">
+        <title>パレット</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="Continuous_pal">連続時間システムパレット
+                    </link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Description_INTEGRAL_m">
+        <title>説明</title>
+        <para>
+            このブロックは積分器です. 出力yは,カレント時間ステップtにおける
+            入力uの積分です.
+        </para>
+        <informalequation>
+            <mediaobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../../../mml/integral_m.mml"/>
+                </imageobject>
+            </mediaobject>
+        </informalequation>
+        ただし, y0 は初期条件, t0 は対応する時間です.
+    </refsection>
+    <refsection id="Dialogbox_INTEGRAL_m">
+        <title>ダイアログボックス</title>
+        <para>
+            パラメータダイアログボックスにより以下を定義します:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>初期条件における飽和リミット指定の有無.</para>
+            </listitem>
+        </itemizedlist>
+        <itemizedlist>
+            <listitem>
+                <para>積分の下限および上限リミット.</para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            ダイアログボックスにより,指定した初期条件に
+            状態変数をリセットするためのイベントポートをブロック
+            に追加できます.
+        </para>
+        <para>
+            "再初期化"を選択した場合, 以下が出力されます:
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    積分される値は積分ブロックポート番号1に接続できます.
+                    (積分ブロックの左上隅)
+                </para>
+            </listitem>
+        </itemizedlist>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    赤で記されたトリガーポートに
+                    トリガー信号を入力した際に積分が初期化される値は,
+                    積分ブロックポート番号2に接続できます(積分ブロックの左下隅のポート).
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para/>
+        <para>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../../../../images/gui/INTEGRAL_m_gui.gif" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+        </para>
+        <para/>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">初期条件</emphasis>
+                </para>
+                <para>ベクトル/スカラー初期条件.</para>
+                <para>
+                    このパラメータにより,入力/出力のデータ型を定義できます.
+                    実数または複素数型とすることができます.
+                </para>
+                <para>プロパティ: 大きさ [-1,-1]の 'mat'型.</para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">再初期化有りの場合</emphasis>
+                </para>
+                <para>
+                    状態量を外部信号に基づき指定した初期条件にリセットする場合,
+                    <emphasis role="bold">1</emphasis> を選択します.
+                </para>
+                <para>プロパティ : 大きさ1の'vec'型.</para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">飽和有りの場合</emphasis>
+                </para>
+                <para>
+                    選択された場合, 状態変数は
+                    下限飽和リミットおよび上限飽和リミットパラメータ
+                    の間の値に制限されます.
+                </para>
+                <para>プロパティ : 大きさ1の'vec'型.</para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">上限リミット</emphasis>
+                </para>
+                <para>積分の上限リミット.</para>
+                <para>プロパティ : 大きさ[-1,-1]の'mat'型.</para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">下限リミット</emphasis>
+                </para>
+                <para>積分の下限リミット.</para>
+                <para>プロパティ : 大きさ[-1,-1]の'mat'型.</para>
+                <para/>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Defaultproperties_INTEGRAL_m">
+        <title>デフォルトプロパティ</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">常にアクティブ:</emphasis> yes
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">直達項:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">ゼロ交差:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">モード:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">標準入力:</emphasis>
+                </para>
+                <para>
+                    <emphasis role="bold">- ポート 1 : 大きさ [1,1] / 1型
+                    </emphasis>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">標準出力:</emphasis>
+                </para>
+                <para>
+                    <emphasis role="bold">- ポート 1 : 大きさ [1,1] / 1型
+                    </emphasis>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">アクティベーション入力の数/大きさ:
+                    </emphasis>
+                    0
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">アクティベーション出力の数/大きさ:
+                    </emphasis>
+                    0
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">連続時間状態量:</emphasis>
+                    yes
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">離散時間状態量:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">オブジェクト離散時間状態量:</emphasis>
+                    no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">計算用関数の名前:</emphasis>
+                    <emphasis role="italic">integral_func</emphasis>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Interfacingfunction_INTEGRAL_m">
+        <title>インターフェイス用関数</title>
+        <itemizedlist>
+            <listitem>
+                <para>SCI/modules/scicos_blocks/macros/Linear/INTEGRAL_m.sci</para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Computationalfunction_INTEGRAL_m">
+        <title>計算用関数</title>
+        <itemizedlist>
+            <listitem>
+                <para>SCI/modules/scicos_blocks/src/c/integral_func.c</para>
+            </listitem>
+            <listitem>
+                <para>SCI/modules/scicos_blocks/src/c/integralz_func.c</para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Examples_INTEGRAL_m">
+        <title>例</title>
+        <refsection id="Example_INTEGRAL_m_1">
+            <title>例1</title>
+            <para>この例のモデルは積分器の状態ポートの使用例を示します.
+            </para>
+            <para>
+                再初期化パラメータを1, 上限リミットを 1, 下限リミットを -1に設定します.
+            </para>
+            <para>
+                <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/INTEGRAL_m_1_Example.zcos">
+                    <inlinemediaobject>
+                        <imageobject>
+                            <imagedata align="center" fileref="../../../../examples/continuous_pal/INTEGRAL_m_1_Example.zcos" valign="middle"/>
+                        </imageobject>
+                    </inlinemediaobject>
+                </link>
+                <scilab:image><![CDATA[
+importXcosDiagram(SCI + "/modules/xcos/examples/continuous_pal/INTEGRAL_m_1_Example.zcos");
+xcos_simulate(scs_m, 4);
+]]></scilab:image>
+            </para>
+        </refsection>
+        <refsection id="Example_INTEGRAL_m_2">
+            <title>例2</title>
+            <para>
+                <link type="scilab" linkend="scilab.xcos/xcos/examples/continuous_pal/INTEGRAL_m_2_Example.zcos">
+                    <inlinemediaobject>
+                        <imageobject>
+                            <imagedata align="center" fileref="../../../../examples/continuous_pal/INTEGRAL_m_2_Example.zcos" valign="middle"/>
+                        </imageobject>
+                    </inlinemediaobject>
+                </link>
+                <scilab:image><![CDATA[
+importXcosDiagram(SCI + "/modules/xcos/examples/continuous_pal/INTEGRAL_m_2_Example.zcos");
+xcos_simulate(scs_m, 4);
+]]></scilab:image>
+            </para>
+        </refsection>
+    </refsection>
+</refentry>

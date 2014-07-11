@@ -14,7 +14,7 @@
 // listvarinfile does not manage graphic handles
 
 clear;
-warning('off')
+warning("off")
 //figure
 hF = figure();
 
@@ -32,7 +32,7 @@ scf();
 t = [0 : 0.3 : 2*%pi]';
 z = sin(t) * cos(t');
 [xx, yy, zz] = genfac3d(t, t, z);
-plot3d([xx xx],[yy yy],list([zz zz+4],[4*ones(1,400) 5*ones(1,400)])) 
+plot3d([xx xx],[yy yy],list([zz zz+4],[4*ones(1,400) 5*ones(1,400)]))
 hFac3d = gce();
 clear t z xx yy zz;
 //Rectangle
@@ -74,7 +74,7 @@ scf();
 x = [0 1 0 -1];
 y = [0 0 1  1];
 T = [1 1 2 3 1;
-     2 3 4 1 1];
+2 3 4 1 1];
 z = [0 1 0 -1];
 fec(x, y, T, z, strf="040", mesh=%t)
 hFec = gce();
@@ -87,15 +87,15 @@ hText = gce();
 //Axis
 scf();
 plot2d(1:10,1:10,1,"020")
-// horizontal axis 
-drawaxis(x=2:7,y=4,dir='u',tics='v')
+// horizontal axis
+drawaxis(x=2:7,y=4,dir="u",tics="v");
 hAxis = gce();
 
 //uimenu
-hMenu = uimenu(hF,'label', 'windows');
+hMenu = uimenu(hF,"label", "windows");
 
 //uicontrol
-hUiControl = uicontrol(hF,'style','listbox', 'position', [10 10 150 160]);
+hUiControl = uicontrol(hF,"style","listbox", "position", [10 10 150 160]);
 
 save(TMPDIR + "/bug_4339.bin", hUiControl, hMenu, hAxis, hText, hFec, hMatplot, hGrayplot, hSeg, hChamp, hArc, hRectangle, hFac3d, hPlot2d, hPlot3d, hF);
 

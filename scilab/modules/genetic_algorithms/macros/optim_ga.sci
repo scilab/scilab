@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - Yann COLLETTE <yann.collette@renault.com>
+// Copyright (C) 2014 - Michael Baudin <michael.baudin@contrib.scilab.org>
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -11,64 +12,61 @@ function [pop_opt, fobj_pop_opt, pop_init, fobj_pop_init] = optim_ga(ga_f, pop_s
 
     [nargout, nargin] = argn();
 
-    if ~isdef("param","local") then
+    if ~isdef("param", "local") then
         param = [];
     end
 
-    [codage_func,err]    = get_param(param,"codage_func",coding_ga_identity);
-    [init_func,err]      = get_param(param,"init_func",init_ga_default);
-    [crossover_func,err] = get_param(param,"crossover_func",crossover_ga_default);
-    [mutation_func,err]  = get_param(param,"mutation_func",mutation_ga_default);
-    [selection_func,err] = get_param(param,"selection_func",selection_ga_elitist);
-    [nb_couples,err]     = get_param(param,"nb_couples",100);
-    [pressure,err]       = get_param(param,"pressure",0.05);
+    [codage_func, err]    = get_param(param, "codage_func", coding_ga_identity);
+    [init_func, err]      = get_param(param, "init_func", init_ga_default);
+    [crossover_func, err] = get_param(param, "crossover_func", crossover_ga_default);
+    [mutation_func, err]  = get_param(param, "mutation_func", mutation_ga_default);
+    [selection_func, err] = get_param(param, "selection_func", selection_ga_elitist);
+    [nb_couples, err]     = get_param(param, "nb_couples", 100);
+    [pressure, err]       = get_param(param, "pressure", 0.05);
+    [output_func, err] = get_param(param, "output_func", output_ga_default);
 
-    if ~isdef("ga_f","local") then
-        error(sprintf(gettext("%s: ga_f is mandatory"),"optim_ga"));
+    if ~isdef("ga_f", "local") then
+        error(sprintf(gettext("%s: ga_f is mandatory"), "optim_ga"));
     else
-        if typeof(ga_f)=="list" then
-            deff("y=_ga_f(x)","y=ga_f(1)(x, ga_f(2:$))");
+        if typeof(ga_f) == "list" then
+            deff("y = _ga_f(x)", "y = ga_f(1)(x, ga_f(2:$))");
         else
-            deff("y=_ga_f(x)","y=ga_f(x)");
+            deff("y = _ga_f(x)", "y = ga_f(x)");
         end
     end
 
-    if ~isdef("pop_size","local") then
+    if ~isdef("pop_size", "local") then
         pop_size = 100;
     end
-    if ~isdef("nb_generation","local") then
+    if ~isdef("nb_generation", "local") then
         nb_generation = 10;
     end
-    if ~isdef("p_mut","local") then
+    if ~isdef("p_mut", "local") then
         p_mut = 0.1;
     end
-    if ~isdef("p_cross","local") then
+    if ~isdef("p_cross", "local") then
         p_cross = 0.7;
     end
-    if ~isdef("Log","local") then
+    if ~isdef("Log", "local") then
         Log = %F;
     end
 
     // Initialization of the population
-    if (Log) then
-        printf(gettext("%s: Initialization of the population\n"),"optim_ga");
-    end
-
     Pop = list();
-    Pop = init_func(pop_size,param);
+    Pop = init_func(pop_size, param);
 
-    if (nargout>=3) then
+    if (nargout >= 3) then
         pop_init = Pop;
     end
 
     // Code the individuals
-    Pop = codage_func(Pop,"code",param);
+    Pop = codage_func(Pop, "code", param);
 
-    for i=1:length(Pop)
+    for i = 1:length(Pop)
         FObj_Pop(i) = _ga_f(Pop(i));
     end
 
-    if (nargout==4) then
+    if (nargout == 4) then
         fobj_pop_init = FObj_Pop;
     end
 
@@ -79,39 +77,31 @@ function [pop_opt, fobj_pop_opt, pop_init, fobj_pop_init] = optim_ga(ga_f, pop_s
     Efficiency = (1 - pressure) * (FObj_Pop_Max - FObj_Pop) / max([FObj_Pop_Max - FObj_Pop_Min %eps]) + pressure;
 
     // The genetic algorithm
-    for i=1:nb_generation
-        if (Log) then
-            printf(gettext("%s: iteration %d / %d"), "optim_ga", i, nb_generation);
-        end
+    for i = 1:nb_generation
         //
         // Selection
         //
         Indiv1 = list();
         Indiv2 = list();
         Wheel = cumsum(Efficiency);
-        for j=1:nb_couples
+        for j = 1:nb_couples
             // Selection of the first individual in the couple
-            Shoot = grand(1,1,"def")*Wheel($);
-            Index = 1;
-            while((Wheel(Index)<Shoot)&(Index<length(Wheel)))
-                Index = Index + 1;
-            end
+            Shoot = grand(1, 1, "unf", 0, Wheel($));
+            Index = find(Shoot <= Wheel, 1);
             Indiv1(j)      = Pop(Index);
             FObj_Indiv1(j) = FObj_Pop(Index);
             // Selection of the second individual in the couple
-            Shoot = grand(1,1,"def")*Wheel($);
+            Shoot = grand(1, 1, "unf", 0, Wheel($));
             Index = 1;
-            while((Wheel(Index)<Shoot)&(Index<length(Wheel)))
-                Index = Index + 1;
-            end
+            Index = find(Shoot <= Wheel, 1);
             Indiv2(j)      = Pop(Index);
             FObj_Indiv2(j) = FObj_Pop(Index);
         end
         //
         // Crossover
         //
-        for j=1:nb_couples
-            if (p_cross>grand(1,1,"def")) then
+        for j = 1:nb_couples
+            if (p_cross>grand(1, 1, "def")) then
                 [x1, x2] = crossover_func(Indiv1(j), Indiv2(j), param);
                 Indiv1(j) = x1;
                 Indiv2(j) = x2;
@@ -125,14 +115,14 @@ function [pop_opt, fobj_pop_opt, pop_init, fobj_pop_init] = optim_ga(ga_f, pop_s
         //
         // Mutation
         //
-        for j=1:nb_couples
-            if (p_mut>grand(1,1,"def")) then
-                x1 = mutation_func(Indiv1(j),param);
+        for j = 1:nb_couples
+            if (p_mut>grand(1, 1, "def")) then
+                x1 = mutation_func(Indiv1(j), param);
                 Indiv1(j) = x1;
                 ToCompute_I1(j) = %T;
             end
-            if (p_mut>grand(1,1,"def")) then
-                x2 = mutation_func(Indiv2(j),param);
+            if (p_mut>grand(1, 1, "def")) then
+                x2 = mutation_func(Indiv2(j), param);
                 Indiv2(j) = x2;
                 ToCompute_I2(j) = %T;
             end
@@ -140,7 +130,7 @@ function [pop_opt, fobj_pop_opt, pop_init, fobj_pop_init] = optim_ga(ga_f, pop_s
         //
         // Computation of the objective functions
         //
-        for j=1:nb_couples
+        for j = 1:nb_couples
             if ToCompute_I1(j) then FObj_Indiv1(j) = _ga_f(Indiv1(j)); end
             if ToCompute_I2(j) then FObj_Indiv2(j) = _ga_f(Indiv2(j)); end
         end
@@ -152,15 +142,18 @@ function [pop_opt, fobj_pop_opt, pop_init, fobj_pop_init] = optim_ga(ga_f, pop_s
         //
         // Recombination
         //
+        [Pop, FObj_Pop] = selection_func(Pop, Indiv1, Indiv2, FObj_Pop, FObj_Indiv1, FObj_Indiv2, [], [], [], param);
 
-        [Pop, FObj_Pop, Efficiency] = selection_func(Pop,Indiv1,Indiv2,FObj_Pop,FObj_Indiv1,FObj_Indiv2,[],[],[],param);
-
+        // Callback for plotting / printing intermediate results or stopping the algorithm
         if (Log) then
-            printf(gettext(" - min / max value found = %f / %f\n"), min(FObj_Pop), max(FObj_Pop));
+            stop = output_func(i, nb_generation, Pop, FObj_Pop, param);
+            if (stop) then
+                break
+            end
         end
     end
 
     pop_opt  = Pop;
-    pop_opt  = codage_func(pop_opt,"decode",param);
+    pop_opt  = codage_func(pop_opt, "decode", param);
     fobj_pop_opt = FObj_Pop;
 endfunction

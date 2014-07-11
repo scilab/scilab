@@ -29,6 +29,7 @@
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 #include "CurrentSubwin.h"
+#include "HandleManagement.h"
 
 /*--------------------------------------------------------------------------*/
 // get_optionals not yet managed
@@ -65,6 +66,7 @@ int sci_drawaxis(char *fname, void* pvApiCtx)
     double *x = NULL, *y = NULL;
     int nx = 0, ny = 0, ntics;
     int nb_tics_labels = -1;
+    int iRhs = nbInputArgument(pvApiCtx);
 
     nopt = NumOpt(pvApiCtx);
 
@@ -283,7 +285,8 @@ int sci_drawaxis(char *fname, void* pvApiCtx)
 
     Objdrawaxis(dir, tics, x, &nx, y, &ny, val, sub_int, format, fontsize, textcolor, ticscolor, 'n', seg_flag, nb_tics_labels);
 
-    AssignOutputVariable(pvApiCtx, 1) = 0;
+    createScalarHandle(pvApiCtx, iRhs + 1, getHandle(getCurrentObject()));
+    AssignOutputVariable(pvApiCtx, 1) = iRhs + 1;
     ReturnArguments(pvApiCtx);
     return 0;
 }

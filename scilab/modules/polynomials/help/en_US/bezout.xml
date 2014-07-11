@@ -28,16 +28,32 @@
                     <para>two real polynomials or two integer scalars (type equal to 8)</para>
                 </listitem>
             </varlistentry>
+            <varlistentry>
+                <term>thegcd</term>
+                <listitem>
+                    <para>
+                        scalar of the same type as <literal>p1</literal> and <literal>p2</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>U</term>
+                <listitem>
+                    <para>
+                        <literal>2x2</literal> matrix of the same type as <literal>p1</literal> and <literal>p2</literal>
+                    </para>
+                </listitem>
+            </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
         <title>Description</title>
         <para>
-            <literal>[thegcd,U]=bezout(p1,p2)</literal> computes GCD <literal>thegcd</literal> of <literal>p1</literal> and <literal>p2</literal> and in addition a (2x2)
+            <literal>[thegcd, U] = bezout(p1, p2)</literal> computes the GCD <literal>thegcd</literal> of <literal>p1</literal> and <literal>p2</literal>, and in addition a (2x2)
             unimodular matrix <literal>U</literal> such that:
         </para>
         <para>
-            <literal>[p1,p2]*U = [thegcd,0]</literal>
+            <literal>[p1 p2]*U = [thegcd 0]</literal>
         </para>
         <para>
             The lcm of <literal>p1</literal> and <literal>p2</literal> is given by:
@@ -48,21 +64,23 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-// polynomial case
-x=poly(0,'x');
-p1=(x+1)*(x-3)^5;p2=(x-2)*(x-3)^3;
-[thegcd,U]=bezout(p1,p2)
+        <programlisting role="example"><![CDATA[
+// Polynomial case
+x = poly(0, 'x');
+p1 = (x+1)*(x-3)^5;
+p2 = (x-2)*(x-3)^3;
+[thegcd,U] = bezout(p1, p2)
 det(U)
-clean([p1,p2]*U)
-thelcm=p1*U(1,2)
-lcm([p1,p2])
+clean([p1 p2]*U)
+thelcm = p1*U(1,2)
+lcm([p1 p2])
 
-// integer case
-i1=int32(2*3^5); i2=int32(2^3*3^2);
-[thegcd,U]=bezout(i1,i2)
-V=int32([2^2*3^5, 2^3*3^2,2^2*3^4*5]);
-[thegcd,U]=gcd(V)
+// Integer case
+i1 = int32(2*3^5);
+i2 = int32(2^3*3^2);
+[thegcd,U] = bezout(i1, i2)
+V = int32([2^2*3^5 2^3*3^2 2^2*3^4*5]);
+[thegcd,U] = gcd(V)
 V*U
 lcm(V)
  ]]></programlisting>

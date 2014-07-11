@@ -10,24 +10,58 @@ Obsolete & Removed Functions
 Scilab Bug Fixes
 ================
 
+* Bug #6979 fixed - Help page of rlist was unclear.
+
 * Bug #7203 fixed - Help page of titlepage was unclear.
 
 * Bug #7549 fixed - edit_curv did not disable standard plot menus.
 
 * Bug #7804 fixed - Small improvements made in struct help page.
 
+* Bug #8502 fixed - Axis labels wrongly used number with 3 digits in the exponent.
+
 * Bug #8646 fixed - The datatips contextual menu opened a selection list which
                     was not ergonomic.
 
+* Bug #8781 fixed - There was no error message when error was called with a complex value.
+
+* Bug #8898 fixed - Help page of getdate improved.
+
+* Bug #9052 fixed - Some demonstrations in graphics were automatically closed at
+                    the end of their execution.
+
+* Bug #9252 fixed - Some error prototypes produced screwed display.
+
+* Bug #9381 fixed - parallel_run did not work on CentOS (GLIBC issue).
+
+* Bug #9783 fixed - Insertion overloading did not seem to work with mlists.
+
+* Bug #10168 fixed - kron produced a segfault in some cases.
+
 * Bug #10555 fixed - Scilab failed to build with some configure options.
+
+* Bug #10583 fixed - ./configure --without-xcos did not work.
+
+* Bug #10646 fixed - ./configure ARPACK check linked `-larpack -lblas` instead
+                     of `-larpack -llapack -lblas`.
 
 * Bug #10777 fixed - Home and End keys were not trapped in CLI mode.
 
 * Bug #10784 fixed - clc function was not available in CLI & ADV-CLI modes.
 
+* Bug #11035 fixed - Scilab crashed when loading a file created with Matlab 7.12.
+
+* Bug #11284 fixed - Some calling sequences added in file help page.
+
 * Bug #12700 fixed - edit_curv (used by CURV_f) was broken.
 
+* Bug #12834 fixed - Graphics did not work on Fedora (GLIBC issue).
+
 * Bug #12918 fixed - OpenSUSE 12.3 x64 did not have gluegen2-rt in librarypath.
+
+* Bug #12986 fixed - Scilab did not start on CentOS 5.9 (GLIBC issue).
+
+* Bug #12987 fixed - Scilab did not start on Ubuntu 10.04 (GLIBC issue).
 
 * Bug #13180 fixed - surf did not handle degenerate cases.
 
@@ -43,6 +77,8 @@ Scilab Bug Fixes
 
 * Bug #13324 fixed - Legends were completely modified when an item was clicked and modified.
 
+* Bug #13330 fixed - gtk2-oxygen theme engine (used by KDE) crashed Scilab.
+
 * Bug #13331 fixed - Users are no longer able to write inconsistent options to mopen,
                      mopen(file, "wr") now exits with a proper error.
 
@@ -51,11 +87,15 @@ Scilab Bug Fixes
 
 * Bug #13344 fixed - User defined ticks were not drawn at the right position.
 
+* Bug #13345 fixed - Scilab did not start on Debian Wheezy (GLIBC issue).
+
 * Bug #13349 fixed - Double-clicking on a MAT-file in file browser did not load it.
 
 * Bug #13351 fixed - xstringb failed with LaTeX code.
 
 * Bug #13358 fixed - Intersect and unique were slow due to an issue in quicksort implementation.
+
+* Bug #13364 fixed - Scilab did not start on CentOS 6.5, RedHat 5.4, RedHat 5.5 (GLIBC issue).
 
 * Bug #13365 fixed - Data bounds werenot correctly updated in 3-D.
 
@@ -85,12 +125,52 @@ Scilab Bug Fixes
 * Bug #13404 fixed - rect property was not taken into account in polarplot.
 
 * Bug #13409 fixed - permute(x, dims) failed when dims was greater than the dimensions of size(x)
-                     now permute treats extra dimensions as 1
+                     now permute treats extra dimensions as 1.
 
+* Bug #13418 fixed - Help page for crossover_ga_binary was unclear.
+                     Also added mix to check the crossover positions.
+
+* Bug #13419 fixed - Help page for mutation_ga_binary function was not clear and lacked of examples.
+
+* Bug #13420 fixed - mutation_ga_binary did not calculate properly multiple mutations.
+
+* Bug #13421 fixed - Callback functions for genetic algorithms were missing.
+                     Now the user can set functions to stop iterations and access the population.
+
+* Bug #13422 fixed - Genetic algorithms did not log the minimum and maximum values properly.
+
+* Bug #13424 fixed - crossover_ga_binary algorithm was not the classical point crossover one.
+                     Also fixed the usage of binary length.
+
+* Bug #13425 fixed - optim_ga and optim_moga needed optimization.
+
+* Bug #13426 fixed - optim help page was written with bad indentation.
+
+* Bug #13435 fixed - Windows version crashes when calling xmlRemove on the first child.
+
+* Bug #13438 fixed - drawaxis did not return the handle of the created axis.
+
+* Bug #13459 fixed - A warning message about libcurl.so version was displayed at Scilab startup.
+
+* Bug #13471 fixed - ilib_build_jar infinite loop when used on an empty directory fixed.
+
+* Bug #13481 fixed - varn did not work on rational fractions
+
+* Bug #13491 fixed - intg now properly returns when the user function produces an error.
+
+* Bug #13501 fixed - Typos fixed in English help pages.
+
+* Bug #13503 fixed - xarrows made Scilab crash in some cases.
+
+* Bug #13507 fixed - Imaginary part in result of a complex power was missing (Real^Complex).
+
+* Bug #13509 fixed - It was not possible to have an empty prefix with xmlNs.
 
 
 Xcos Bug Fixes
 ==============
+
+* Bug #9996 fixed - The RELATION_OP box drawn in the work space is not compliant to the programming.
 
 * Bug #11823 fixed - Ctrl+F2 shortcut did not work on a selected block.
 
@@ -107,11 +187,21 @@ Xcos Bug Fixes
 
 * Bug #13385 fixed - TOWS_c and FROMWSB Xcos blocs needed better examples on how
                      to get or write a Scilab variable.
-                     
+
 * Bug #13391 fixed - scifunc_block_m help page was not clear about the block using.
-                     Example has been added.  
+                     Example has been added.
 
 * Bug #13396 fixed - MBLOCK did not work with an external file containing the modelica class.
+
+
+Known issues
+=============
+
+* On GNU/Linux with KDE and on some distributions, gtk2-oxygen theming engine
+  crashes Scilab. As a workaround, see http://bugzilla.scilab.org/show_bug.cgi?id=13330#c6.
+
+Besides these points, do not hesitate to report bugs on:
+http://bugzilla.scilab.org/
 
 
 

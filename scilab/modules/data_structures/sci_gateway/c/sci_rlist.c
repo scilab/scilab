@@ -20,6 +20,9 @@ extern int C2F(mtlist)(); /* fortran */
 /*--------------------------------------------------------------------------*/
 int sci_rlist(char *fname, void* pvApiCtx)
 {
+
+    CheckInputArgument(pvApiCtx, 0, 3);
+
     if (nbInputArgument(pvApiCtx) == 2)
     {
         int lw = 0;

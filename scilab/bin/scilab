@@ -612,8 +612,15 @@ fi
 
 if test $IS_SCILAB_BINARY -eq 1; then
 
-    TCL_LIBRARY="$SCIBINARYBASE/thirdparty/tcl8.5"
-    Tk_LIBRARY="$SCIBINARYBASE/thirdparty/tk8.5"
+    if test ! -d "$SCIBINARYBASE/thirdparty/tcl8.5"; then
+        # New packaging path (similar to Windows one)
+        TCL_LIBRARY="$SCIBINARYBASE/share/scilab/modules/tclsci/tcl/tcl8.5"
+        TK_LIBRARY="$SCIBINARYBASE/share/scilab/modules/tclsci/tcl/tk8.5"
+    else
+        # Old packaging path
+        TCL_LIBRARY="$SCIBINARYBASE/thirdparty/tcl8.5"
+        TK_LIBRARY="$SCIBINARYBASE/thirdparty/tk8.5"
+    fi
     LD_LIBRARY_PATH=$SCIBINARYBASE/lib/scilab:$SCIBINARYBASE/lib/thirdparty${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
     DOCBOOK_ROOT="$SCI/../../thirdparty/docbook"
     PATH="$PATH:$SCI/modules/scicos/"
@@ -622,7 +629,7 @@ if test $IS_SCILAB_BINARY -eq 1; then
     export PATH
     export LD_LIBRARY_PATH
     export TCL_LIBRARY
-    export Tk_LIBRARY
+    export TK_LIBRARY
 
     case $OS in
         *darwin* | *Darwin*)

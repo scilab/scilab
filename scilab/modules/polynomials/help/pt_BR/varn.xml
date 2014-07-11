@@ -1,22 +1,22 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="varn" xml:lang="en">
+ï»¿<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="varn" xml:lang="pt">
     <refnamediv>
         <refname>varn</refname>
-        <refpurpose>variável simbólica de um polinômio</refpurpose>
+        <refpurpose>variÃ¡vel simbÃ³lica de polinÃ´mios ou de fraÃ§Ãµes racionais</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title> Seqüência de Chamamento </title>
+        <title> SeqÃ¼Ãªncia de Chamamento </title>
         <synopsis>[symb]=varn(p)
-            [pm]=varn(x,var)
+            [pm]=varn(p,varname)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title> Parâmetros </title>
+        <title> ParÃ¢metros </title>
         <variablelist>
             <varlistentry>
                 <term>p</term>
                 <listitem>
-                    <para>polinômio (matriz de polinômios) </para>
+                    <para>matriz de polinÃ´mios ou de fraÃ§Ãµes racionais</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -26,56 +26,68 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>x</term>
-                <listitem>
-                    <para>polinômio ou matriz de polinômios </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
                 <term>var</term>
                 <listitem>
-                    <para>variável simbólica (string) </para>
+                    <para>variÃ¡vel simbÃ³lica (string) </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>pm</term>
                 <listitem>
-                    <para>polinômio (matriz de polinômios)</para>
+                    <para>matriz de polinÃ´mios ou de fraÃ§Ãµes racionais</para>
                 </listitem>
             </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
             <literal>symb=varn(p)</literal> retorna em <literal>symb</literal> a
-            variável simbólica de <literal>p</literal> (i.e.
+            variÃ¡vel simbÃ³lica de <literal>p</literal> (i.e.
             <literal>varn(poly(0,'x'))</literal> is <literal>'x'</literal>).
         </para>
         <para>
-            <literal>varn(x,'s')</literal> retorna uma matriz de polinômios com
-            os mesmos coeficientes que <literal>x</literal> mas com <literal>'s'
+            <literal>varn(p,'s')</literal> retorna uma matriz de polinÃ´mios com
+            os mesmos coeficientes que <literal>p</literal> mas com <literal>'s'
             </literal>
-            como variável simbólica (mudança do nome de variável).
+            como variÃ¡vel simbÃ³lica (mudanÃ§a do nome de variÃ¡vel).
         </para>
     </refsection>
     <refsection>
         <title>Exemplos</title>
         <programlisting role="example"><![CDATA[ 
-s=poly(0,'s');p=[s^2+1,s];
+s = poly(0,'s'); p = [s^2+1,s];
 varn(p)
 varn(p,'x')
+
+f = %z / (%z-1); f = [f f^2]
+varn(f)
+varn(f,"x")
  ]]></programlisting>
     </refsection>
     <refsection>
-        <title> Ver Também </title>
+        <title> Ver TambÃ©m </title>
         <simplelist type="inline">
-            <member>
-                <link linkend="horner">horner</link>
-            </member>
             <member>
                 <link linkend="poly">poly</link>
             </member>
+            <member>
+                <link linkend="rlist">rlist</link>
+            </member>
+            <member>
+                <link linkend="horner">horner</link>
+            </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>HistÃ³rico</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.1</revnumber>
+                <revdescription>
+                    <para>ExtensÃ£o de fraÃ§Ãµes racionais</para>
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

@@ -96,6 +96,8 @@ int sci_addlocalizationdomain(char *fname, void* pvApiCtx)
         return 0;
     }
 
+    bind_textdomain_codeset (pstDomain, "UTF-8"); /*such that gettext and dgettext return UTF8 string*/
+
     if (createScalarBoolean(pvApiCtx, iRhs + 1, 1))
     {
         Scierror(999, _("%s: Unable to add new domain %s.\n"), "addlocalizationdomain", pstDomain);

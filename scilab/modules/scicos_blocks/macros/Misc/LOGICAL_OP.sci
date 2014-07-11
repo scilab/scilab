@@ -134,6 +134,6 @@ function [x,y,typ]=LOGICAL_OP(job,arg1,arg2)
 
         exprs=[string(nin);string(ipar)]
         gr_i=[]
-        x=standard_define([3 2],model,exprs,gr_i)
+        x=standard_define([2 2],model,exprs,gr_i)
     end
 endfunction

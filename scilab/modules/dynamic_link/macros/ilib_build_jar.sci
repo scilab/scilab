@@ -20,6 +20,9 @@ function ilib_build_jar(jarFilePath, packageNames, sourcePaths, classPaths, mani
     // Returns all the java source files contained in a path tree
     function javaFilePaths = findJavaFiles(path, javaFilePaths)
         fileNames = listfiles(path)';
+        if (isempty(fileNames)) then
+            return;
+        end
         filePaths = fullfile(path, fileNames);
 
         // First, explore sub directories

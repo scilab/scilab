@@ -70,6 +70,9 @@ int sci_xfpolys(char *fname, void *pvApiCtx)
     int iVisible = 0;
     int *piVisible = &iVisible;
 
+    int iType = 0;
+    int *piType = &iType;
+
     CheckInputArgument(pvApiCtx, 2, 3);
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddrl1);
@@ -194,7 +197,14 @@ int sci_xfpolys(char *fname, void *pvApiCtx)
     }
 
     iSubWinUID = getOrCreateDefaultSubwin();
-    iFigureUID = getParentObject(iSubWinUID);
+    iFigureUID = iSubWinUID;
+    iType = 0;
+    while (iType != __GO_FIGURE__)
+    {
+        iFigureUID = getParentObject(iFigureUID);
+        getGraphicObjectProperty(iFigureUID, __GO_TYPE__, jni_int, (void **) &piType);
+    }
+
     getGraphicObjectProperty(iFigureUID, __GO_IMMEDIATE_DRAWING__, jni_bool, (void **)&piImmediateDrawing);
     setGraphicObjectProperty(iFigureUID, __GO_IMMEDIATE_DRAWING__, &iFalse, jni_bool, 1);
 

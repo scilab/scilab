@@ -6,20 +6,49 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
-        <synopsis>rlist()
-            rlist(a1,....an)
+        <synopsis>[r] = rlist()
+            [r] = rlist(N, D [,dom])
         </synopsis>
     </refsynopsisdiv>
     <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>N,D</term>
+                <listitem>
+                    <para>martices polynomiales.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>dom</term>
+                <listitem>
+                    <para>
+                        chaîne de caractères ou <literal>[]</literal>, ou un scalaire.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>r</term>
+                <listitem>
+                    <para>
+                        tlist (liste de type "r") représentant la fraction rationnelle.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
         <title>Description</title>
         <para>
-            <literal>rlist(a1,....an)</literal> est équivalent à
-            <literal>tlist(['r','num';'den','dt'], a1,....an)</literal> 
+            <literal>[r] = rlist(N, D, dom)</literal> est équivalent à
+            <literal>tlist(['r','num','den','dt'], N, D, dom)</literal>
         </para>
         <para>
-            Crée une <literal>tlist</literal> avec <literal>['r','num';'den','dt']</literal> comme premier argument et les <literal>ai</literal> comme termes suivants s'ils sont présents dans les arguments. Aucune vérification de type ou de taille n'est faite sur les <literal>ai</literal>.
-        </para>
-        <para>
+            Pour correspondre au domaine temporel d'un système linéaire, <varname>dom</varname> doit être égale à
+            <literal>'c'</literal>,<literal>'d'</literal>, <literal>[]</literal> ou à un scalaire.
+            D'une part, par analogie à des fonctions comme <link linkend="syslin">syslin</link>, 
+            et d'autre part, pour être compatible avec des fonctions comme <link linkend="tf2ss">tf2ss</link>,
+            il est nécessaire que <varname>dom</varname> soit égale à ces valeurs.
         </para>
     </refsection>
     <refsection>
@@ -31,6 +60,11 @@ W'*W
 Num=[s,s+2;1,s];
 Den=[s*s,s;s,s*s];
 rlist(Num,Den,[])
+
+H1=(1+2*s)/s^2;
+S1bis=syslin('c',H1)
+r=rlist(H1.num, H1.den, 'c')
+r == S1bis
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -44,6 +78,9 @@ rlist(Num,Den,[])
             </member>
             <member>
                 <link linkend="rational">rational</link>
+            </member>
+            <member>
+                <link linkend="tf2ss">tf2ss</link>
             </member>
         </simplelist>
     </refsection>

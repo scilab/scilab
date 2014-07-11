@@ -60,6 +60,13 @@ void XMLElement::remove() const
     if (node->parent && node->parent->children)
     {
         obj = scope->getXMLNodeListFromLibXMLPtr(node->parent->children);
+        if (obj && node->parent->children == node)
+        {
+            // node->parent->children == node => we remove the first child so parent->children
+            // needs to be correctly re-linked.
+            obj->removeElementAtPosition(1);
+            return;
+        }
     }
 
     xmlUnlinkNode(node);

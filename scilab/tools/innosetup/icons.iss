@@ -13,13 +13,13 @@
 ;
 ;-------------------------------------------------------------------------------
 
-Name: {commondesktop}\{#ScilabName}; Filename: {code:getExecNameForDesktop};Parameters: "-nwni";WorkingDir: "{userdocs}";Comment: "Start Scilab - The open source platform for numerical computation"; MinVersion: 4,4; Tasks: desktopicon;Components: not {#COMPN_JVM_MODULE};
-Name: {commondesktop}\{#ScilabName}; Filename: {code:getExecNameForDesktop};WorkingDir: "{userdocs}";Comment: "Start Scilab - The open source platform for numerical computation"; MinVersion: 4,4; Tasks: desktopicon;Components: {#COMPN_JVM_MODULE};
+Name: {commondesktop}\{#ScilabName}; Filename: {code:getExecNameForDesktop};Parameters: "-nwni";WorkingDir: "%USERPROFILE%\Documents";Comment: "Start Scilab - The open source platform for numerical computation"; MinVersion: 4,4; Tasks: desktopicon;Components: not {#COMPN_JVM_MODULE};
+Name: {commondesktop}\{#ScilabName}; Filename: {code:getExecNameForDesktop};WorkingDir: "%USERPROFILE%\Documents";Comment: "Start Scilab - The open source platform for numerical computation"; MinVersion: 4,4; Tasks: desktopicon;Components: {#COMPN_JVM_MODULE};
 ;
-Name: {group}\{#ScilabName}; Filename: {code:getExecNameForDesktop};Parameters: "-nwni";WorkingDir: "{userdocs}";Components: not {#COMPN_JVM_MODULE};
-Name: {group}\{#ScilabName}; Filename: {code:getExecNameForDesktop};WorkingDir: "{userdocs}";Components: {#COMPN_JVM_MODULE};
+Name: {group}\{#ScilabName}; Filename: {code:getExecNameForDesktop};Parameters: "-nwni";WorkingDir: "%USERPROFILE%\Documents";Components: not {#COMPN_JVM_MODULE};
+Name: {group}\{#ScilabName}; Filename: {code:getExecNameForDesktop};WorkingDir: "%USERPROFILE%\Documents";Components: {#COMPN_JVM_MODULE};
 
-Name: {group}\{cm:ConsoleIconName}; Filename: {app}\bin\scilex.exe;WorkingDir: "{userdocs}";Components: {#COMPN_JVM_MODULE};
+Name: {group}\{cm:ConsoleIconName}; Filename: {app}\bin\scilex.exe;WorkingDir: "%USERPROFILE%\Documents";Components: {#COMPN_JVM_MODULE};
 ;
 Name: "{group}\{cm:WebIconScilab}"; Filename: "{app}\scilabwebsite.url";
 
