@@ -612,11 +612,14 @@ case "$CC" in
     ;;
 
   *-*-darwin*)
-    ARCH_CFLAGS="$ARCH_CFLAGS -no_compact_linkedit"
-    ARCH_CXXFLAGS="$ARCH_CXXFLAGS -no_compact_linkedit"
-    ARCH_LDFLAGS="$ARCH_LDFLAGS -no_compact_linkedit"
+    # Flag no more added since :
+    #  - No more supported in recent gcc versions (> 4.6)
+    #  - only needed when compiling with flag -mmacosx-min-version=10.5
+    #ARCH_CFLAGS="$ARCH_CFLAGS -no_compact_linkedit"
+    #ARCH_CXXFLAGS="$ARCH_CXXFLAGS -no_compact_linkedit"
+    #ARCH_LDFLAGS="$ARCH_LDFLAGS -no_compact_linkedit"
     # We need this to be passed to all linker commands
-    LDFLAGS="$LDFLAGS -no_compact_linkedit"
+    #LDFLAGS="$LDFLAGS -no_compact_linkedit"
 
     case "$F77" in
          gfortran-*|gfortran)
