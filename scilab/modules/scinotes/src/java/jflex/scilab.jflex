@@ -43,6 +43,12 @@ import org.scilab.modules.commons.ScilabCommonsUtils;
     private Element elem;
     private boolean breakstring;
 
+    static {
+    	// For SciNotes colors in preferences 
+        commands.add("cos");
+	macros.add("cosh");
+    }
+
     public ScilabLexer(ScilabDocument doc) {
     	this(doc, true);
     }

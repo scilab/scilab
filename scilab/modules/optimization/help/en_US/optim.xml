@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Scilab (http://www.scilab.org/) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
  * Copyright (C) 2008 - 2009 - INRIA - Michael Baudin
  * Copyright (C) 2010 - 2011 - DIGITEO - Michael Baudin
@@ -118,11 +118,13 @@
                 <listitem>
                     <para>a sequence of arguments containing the parameters controlling
                         the convergence of the algorithm. The following sequences are
-                        available: <screen>              "ar",nap
-                            "ar",nap,iter
-                            "ar",nap,iter,epsg
-                            "ar",nap,iter,epsg,epsf
-                            "ar",nap,iter,epsg,epsf,epsx
+                        available:
+                        <screen><![CDATA[
+"ar",nap
+"ar",nap,iter
+"ar",nap,iter,epsg
+"ar",nap,iter,epsg,epsf
+"ar",nap,iter,epsg,epsf,epsx]]>
                         </screen>
                     </para>
                     <para>where:</para>
@@ -207,7 +209,7 @@
                                 parameters of the <literal>nird</literal> common, which is
                                 defined as:
                             </para>
-                            <screen>common /nird/ nizs,nrzs,ndzs    </screen>
+                            <screen>common /nird/ nizs,nrzs,ndzs</screen>
                             <para>This allows Scilab to allocate memory inside its internal
                                 workspace. The second time the objective function is called,
                                 <literal>ind</literal> is set to 11 and the objective function
@@ -523,14 +525,15 @@
         <para>This function solves unconstrained nonlinear optimization
             problems:
         </para>
-        <screen>min f(x)      </screen>
+        <screen>min f(x)</screen>
         <para>
             where <literal>x</literal> is a vector and <literal>f(x)</literal>
             is a function that returns a scalar. This function can also solve bound
             constrained nonlinear optimization problems:
         </para>
-        <screen>min f(x)
-            binf &lt;= x &lt;= bsup
+        <screen><![CDATA[
+min f(x)
+binf <= x <= bsup]]>
         </screen>
         <para>
             where <literal>binf</literal> is the lower bound and
@@ -552,7 +555,7 @@
                         If <literal>costf</literal> is a Scilab function, its calling
                         sequence must be:
                     </para>
-                    <screen>[f, g, ind] = costf(x, ind)      </screen>
+                    <screen>[f, g, ind] = costf(x, ind)</screen>
                     <para>
                         where <literal>x</literal> is the current point,
                         <literal>ind</literal> is an integer flag described below,
@@ -572,7 +575,10 @@
                         <literal>costf</literal> argument can be the list
                         <literal>(real_costf, arg1,...,argn)</literal>. In this case,
                         <literal>real_costf</literal>, the first element in the list, must
-                        be a Scilab function with calling sequence: <screen>        [f,g,ind]=real_costf(x,ind,arg1,...,argn)      </screen>
+                        be a Scilab function with calling sequence:
+                        <screen><![CDATA[
+[f,g,ind]=real_costf(x,ind,arg1,...,argn)]]>
+                        </screen>
                         The <literal>x</literal>, <literal>f</literal>,
                         <literal>g</literal>, <literal>ind</literal> arguments have the same
                         meaning as before. In this case, each time the objective function is
@@ -596,12 +602,12 @@
                                 <para>The calling sequence of the Fortran subroutine computing
                                     the objective must be:
                                 </para>
-                                <screen>subroutine costf(ind,n,x,f,g,ti,tr,td)      </screen>
+                                <screen>subroutine costf(ind,n,x,f,g,ti,tr,td)</screen>
                                 <para>with the following declarations:</para>
-                                <screen>integer ind,n ti(*)
-                                    double precision x(n),f,g(n),td(*)
-                                    real tr(*)
-                                </screen>
+                                <screen><![CDATA[
+integer ind,n ti(*)
+double precision x(n),f,g(n),td(*)
+real tr(*)]]></screen>
                                 <para>
                                     The argument <literal>ind</literal> is described
                                     below.
@@ -620,7 +626,7 @@
                                 <para>The calling sequence of the C function computing the
                                     objective must be:
                                 </para>
-                                <screen>void costf(int *ind, int *n, double *x, double *f, double *g, int *ti, float *tr, double *td)      </screen>
+                                <screen>void costf(int *ind, int *n, double *x, double *f, double *g, int *ti, float *tr, double *td)</screen>
                                 <para>
                                     The argument <literal>ind</literal> is described
                                     below.
@@ -715,40 +721,42 @@
             issues so that a direct optimization may be to use the value of "ind" to
             compute "f" and "g" only when needed.
         </para>
-        <programlisting role="example">function [f, g, ind] = cost(x, ind)
-            xref = [1; 2; 3];
-            f = 0.5 * norm(x - xref)^2;
-            g = x - xref;
-            endfunction
+        <programlisting role="example"><![CDATA[
+function [f, g, ind] = cost(x, ind)
+    xref = [1; 2; 3];
+    f = 0.5 * norm(x - xref)^2;
+    g = x - xref;
+endfunction
 
-            // Simplest call
-            x0 = [1; -1; 1];
-            [fopt, xopt] = optim(cost, x0)
+// Simplest call
+x0 = [1; -1; 1];
+[fopt, xopt] = optim(cost, x0)
 
-            // Use "gc" algorithm
-            [fopt, xopt, gopt] = optim(cost, x0, "gc")
+// Use "gc" algorithm
+[fopt, xopt, gopt] = optim(cost, x0, "gc")
 
-            // Use "nd" algorithm
-            [fopt, xopt, gopt] = optim(cost, x0, "nd")
+// Use "nd" algorithm
+[fopt, xopt, gopt] = optim(cost, x0, "nd")
 
-            // Upper and lower bounds on x
-            [fopt, xopt, gopt] = optim(cost, "b", [-1;0;2], [0.5;1;4], x0)
+// Upper and lower bounds on x
+[fopt, xopt, gopt] = optim(cost, "b", [-1;0;2], [0.5;1;4], x0)
 
-            // Upper and lower bounds on x and setting up the algorithm to "gc"
-            [fopt, xopt, gopt] = optim(cost, "b", [-1; 0; 2], [0.5; 1; 4], x0, "gc")
+// Upper and lower bounds on x and setting up the algorithm to "gc"
+[fopt, xopt, gopt] = optim(cost, "b", [-1; 0; 2], [0.5; 1; 4], x0, "gc")
 
-            // Bound on the number of calls to the objective function
-            [fopt, xopt, gopt] = optim(cost, "b", [-1; 0; 2], [0.5; 1; 4], x0, "gc", "ar", 3)
+// Bound on the number of calls to the objective function
+[fopt, xopt, gopt] = optim(cost, "b", [-1; 0; 2], [0.5; 1; 4], x0, "gc", "ar", 3)
 
-            // Set max number of calls to the objective function (3)
-            // Set max number of iterations (100)
-            // Set stopping threshold on the value of f (1e-6),
-            // on the value of the norm of the gradient of the objective function (1e-6)
-            // on the improvement on the parameters x_opt (1e-6;1e-6;1e-6)
-            [fopt, xopt, gopt] = optim(cost, "b", [-1; 0; 2], [0.5; 1; 4], x0, "gc", "ar", 3, 100, 1e-6, 1e-6, [1e-3; 1e-3; 1e-3])
+// Set max number of calls to the objective function (3)
+// Set max number of iterations (100)
+// Set stopping threshold on the value of f (1e-6),
+// on the value of the norm of the gradient of the objective function (1e-6)
+// on the improvement on the parameters x_opt (1e-6;1e-6;1e-6)
+[fopt, xopt, gopt] = optim(cost, "b", [-1; 0; 2], [0.5; 1; 4], x0, "gc", "ar", 3, 100, 1e-6, 1e-6, [1e-3; 1e-3; 1e-3])
 
-            // Additional messages are printed in the console.
-            [fopt, xopt] = optim(cost, x0, imp = 3)
+// Additional messages are printed in the console.
+[fopt, xopt] = optim(cost, x0, imp = 3)
+]]>
         </programlisting>
     </refsection>
     <refsection>
@@ -765,31 +773,38 @@
         <para>In the following example, we solve the Rosenbrock test case. For
             each iteration of the algorithm, we print the value of x, f and g.
         </para>
-        <programlisting role="example">function [f, g, ind] = cost(x, ind)
-            xref = [1; 2; 3];
-            f = 0.5 * norm(x - xref)^2;
-            g = x - xref;
-            if (ind == 1) then
-            mprintf("f(x) = %s, |g(x)|=%s\n", string(f), string(norm(g)))
-            end
-            endfunction
+        <programlisting role="example"><![CDATA[
+function [f, g, ind] = cost(x, ind)
+    xref = [1; 2; 3];
+    f = 0.5 * norm(x - xref)^2;
+    g = x - xref;
+    if (ind == 1) then
+        mprintf("f(x) = %s, |g(x)|=%s\n", string(f), string(norm(g)))
+    end
+endfunction
 
-            x0 = [1; -1; 1];
-            [fopt, xopt] = optim(cost, x0, imp = -1)
+x0 = [1; -1; 1];
+[fopt, xopt] = optim(cost, x0, imp = -1)
+]]>
         </programlisting>
         <para>The previous script produces the following output.</para>
-        <screen>--&gt;[fopt, xopt] = optim(cost, x0, imp = -1)
-            f(x) = 6.5, |g(x)|=3.6055513
-            f(x) = 2.8888889, |g(x)|=2.4037009
-            f(x) = 9.861D-31, |g(x)|=1.404D-15
-            f(x) = 0, |g(x)|=0
-            Norm of projected gradient lower than   0.0000000D+00.
-            xopt  =
-            1.
-            2.
-            3.
-            fopt  =
-            0.
+        <screen><![CDATA[
+-->[fopt, xopt] = optim(cost, x0, imp = -1)
+f(x) = 6.5, |g(x)|=3.6055513
+f(x) = 2.8888889, |g(x)|=2.4037009
+f(x) = 9.861D-31, |g(x)|=1.404D-15
+f(x) = 0, |g(x)|=0
+Norm of projected gradient lower than   0.0000000D+00.
+
+ xopt  =
+
+    1.
+    2.
+    3.
+ fopt  =
+
+    0.
+]]>
         </screen>
         <para>In the following example, we solve the Rosenbrock test case. For
             each iteration of the algorithm, we plot the current value of x into a 2D
@@ -797,70 +812,72 @@
             the progress of the algorithm while the algorithm is performing. We could
             as well write the value of x, f and g into a log file if needed.
         </para>
-        <programlisting role="example">// 1. Define Rosenbrock for optimization
-            function [f , g , ind] = rosenbrock (x , ind)
-            f = 100.0 *(x(2) - x(1)^2)^2 + (1 - x(1))^2;
-            g(1) = - 400. * ( x(2) - x(1)**2 ) * x(1) -2. * ( 1. - x(1) )
-            g(2) = 200. * ( x(2) - x(1)**2 )
-            endfunction
+        <programlisting role="example"><![CDATA[
+// 1. Define Rosenbrock for optimization
+function [f, g, ind] = rosenbrock (x, ind)
+    f = 100.0 *(x(2) - x(1)^2)^2 + (1 - x(1))^2;
+    g(1) = - 400. * (x(2) - x(1)**2) * x(1) -2. * (1. - x(1))
+    g(2) = 200. * (x(2) - x(1)**2)
+endfunction
 
-            // 2. Define rosenbrock for contouring
-            function f = rosenbrockC ( x1 , x2 )
-            x = [x1 x2]
-            ind = 4
-            [ f , g , ind ] = rosenbrock ( x , ind )
-            endfunction
+// 2. Define rosenbrock for contouring
+function f = rosenbrockC (x1, x2)
+    x = [x1 x2]
+    ind = 4
+    [f, g, ind] = rosenbrock (x, ind)
+endfunction
 
-            // 3. Define Rosenbrock for plotting
-            function [ f , g , ind ] = rosenbrockPlot ( x , ind )
-            [ f , g , ind ] = rosenbrock ( x , ind )
-            if (ind == 1) then
-            plot ( x(1) , x(2) , "g." )
-            end
-            endfunction
+// 3. Define Rosenbrock for plotting
+function [f, g, ind] = rosenbrockPlot (x, ind)
+    [f, g, ind] = rosenbrock (x, ind)
+    if (ind == 1) then
+        plot (x(1), x(2), "g.")
+    end
+endfunction
 
-            // 4. Draw the contour of Rosenbrock's function
-            x0 = [-1.2 1.0];
-            xopt = [1.0 1.0];
-            xdata = linspace(-2,2,100);
-            ydata = linspace(-2,2,100);
-            contour ( xdata , ydata , rosenbrockC , [1 10 100 500 1000])
-            plot(x0(1) , x0(2) , "b.")
-            plot(xopt(1) , xopt(2) , "r*")
+// 4. Draw the contour of Rosenbrock's function
+x0 = [-1.2 1.0];
+xopt = [1.0 1.0];
+xdata = linspace(-2,2,100);
+ydata = linspace(-2,2,100);
+contour (xdata, ydata, rosenbrockC, [1 10 100 500 1000])
+plot(x0(1), x0(2), "b.")
+plot(xopt(1), xopt(2), "r*")
 
-            // 5. Plot the optimization process, during optimization
-            [fopt, xopt] = optim ( rosenbrockPlot , x0 , imp = -1)
+// 5. Plot the optimization process, during optimization
+[fopt, xopt] = optim (rosenbrockPlot, x0, imp = -1)
+]]>
         </programlisting>
         <scilab:image>
             function [f, g, ind]=rosenbrock(x, ind)
             f = 100.0 *(x(2) - x(1)^2)^2 + (1 - x(1))^2;
-            g(1) = - 400. * ( x(2) - x(1)**2 ) * x(1) -2. * ( 1. - x(1) )
-            g(2) = 200. * ( x(2) - x(1)**2 )
+            g(1) = - 400. * (x(2) - x(1)**2) * x(1) -2. * (1. - x(1))
+            g(2) = 200. * (x(2) - x(1)**2)
             endfunction
-
+            
             function f=rosenbrockC(x1, x2)
             x = [x1 x2]
             ind = 4
-            [ f , g , ind ] = rosenbrock ( x , ind )
+            [f, g, ind] = rosenbrock (x, ind)
             endfunction
-
+            
             function [f, g, ind]=rosenbrockPlot(x, ind)
-            [ f , g , ind ] = rosenbrock ( x , ind )
+            [f, g, ind] = rosenbrock (x, ind)
             if (ind == 1) then
-            plot ( x(1) , x(2) , "g." )
+            plot (x(1), x(2), "g.")
             end
             endfunction
-
+            
             x0 = [-1.2 1.0];
             xopt = [1.0 1.0];
             xdata = linspace(-2,2,100);
             ydata = linspace(-2,2,100);
-            contour ( xdata , ydata , rosenbrockC , [1 10 100 500 1000])
-            plot(x0(1) , x0(2) , "b.")
-            plot(xopt(1) , xopt(2) , "r*")
-            [fopt, xopt] = optim ( rosenbrockPlot , x0 , imp = -1)
+            contour (xdata, ydata, rosenbrockC, [1 10 100 500 1000])
+            plot(x0(1), x0(2), "b.")
+            plot(xopt(1), xopt(2), "r*")
+            [fopt, xopt] = optim (rosenbrockPlot, x0, imp = -1)
         </scilab:image>
-
+        
     </refsection>
     <refsection>
         <title>Example: Optimizing with numerical derivatives</title>
@@ -869,21 +886,24 @@
             <literal>numderivative</literal> function to compute a numerical derivative of the
             cost function.
         </para>
-        <para>In the following example, we use the <literal>numderivative</literal> function to solve
+        <para>
+            In the following example, we use the <literal>numderivative</literal> function to solve
             Rosenbrock's problem.
         </para>
-        <programlisting role="example">function f = rosenbrock ( x )
-            f = 100.0 *(x(2)-x(1)^2)^2 + (1-x(1))^2;
-            endfunction
+        <programlisting role="example"><![CDATA[
+function f = rosenbrock (x)
+    f = 100.0 *(x(2)-x(1)^2)^2 + (1-x(1))^2;
+endfunction
 
-            function [ f , g , ind ] = rosenbrockCost ( x , ind )
-            f = rosenbrock ( x );
-            g = numderivative ( rosenbrock , x );
-            endfunction
+function [f, g, ind] = rosenbrockCost (x, ind)
+    f = rosenbrock (x);
+    g = numderivative (rosenbrock, x);
+endfunction
 
-            x0 = [-1.2 1.0];
+x0 = [-1.2 1.0];
 
-            [ fopt , xopt ] = optim ( rosenbrockCost , x0 )
+[fopt, xopt] = optim (rosenbrockCost, x0)
+]]>
         </programlisting>
     </refsection>
     <refsection>
@@ -903,17 +923,17 @@
         <programlisting role="example"><![CDATA[
 function [f, g, ind] = cost(x, ind)
     global _MYDATA_
-    if ( ind == 1 )
+    if (ind == 1)
         _MYDATA_.niter = _MYDATA_.niter + 1;
     end
     _MYDATA_.nfevals = _MYDATA_.nfevals + 1;
     xref = [1; 2; 3];
-    if ( ind == 2 | ind == 4 ) then
+    if (ind == 2 | ind == 4) then
         f = 0.5*norm(x-xref)^2;
     else
         f = 0;
     end
-    if ( ind == 3 | ind == 4 ) then
+    if (ind == 3 | ind == 4) then
         g = x-xref;
     else
         g = zeros(3, 1);
@@ -922,14 +942,14 @@ endfunction
 
 x0 = [1; -1; 1];
 global _MYDATA_
-_MYDATA_ = tlist ( ["MYDATA", "niter", "nfevals"]);
+_MYDATA_ = tlist (["MYDATA", "niter", "nfevals"]);
 _MYDATA_.niter = 0;
 _MYDATA_.nfevals = 0;
 
 [f, xopt] = optim(cost, x0, imp=-1);
-mprintf ( "Number of function evaluations: %d\n", _MYDATA_.nfevals );
-mprintf ( "Number of iterations: %d\n", _MYDATA_.niter );
-        ]]></programlisting>
+mprintf ("Number of function evaluations: %d\n", _MYDATA_.nfevals);
+mprintf ("Number of iterations: %d\n", _MYDATA_.niter);
+       ]]></programlisting>
         <para>While the previous example perfectly works, there is a risk that the
             same variable <literal>_MYDATA_</literal> is used by some internal
             function used by <literal>optim</literal>. In this case, the value may be
@@ -951,19 +971,21 @@ mprintf ( "Number of iterations: %d\n", _MYDATA_.niter );
             function. The additional variables are directly passed to the cost
             function.
         </para>
-        <programlisting role="example">function [ f , g , ind ] = costfunction ( x , ind , a , b , c , d )
-            f = a * ( x(1) - c ) ^2 + b * ( x(2) - d )^2
-            g(1) = 2 * a * ( x(1) - c )
-            g(2) = 2 * b * ( x(2) - d )
-            endfunction
+        <programlisting role="example"><![CDATA[
+function [f, g, ind] = costfunction (x, ind, a, b, c, d)
+    f = a * (x(1) - c) ^2 + b * (x(2) - d)^2
+    g(1) = 2 * a * (x(1) - c)
+    g(2) = 2 * b * (x(2) - d)
+endfunction
 
-            x0 = [1 1];
-            a = 1.0;
-            b = 2.0;
-            c = 3.0;
-            d = 4.0;
-            costf = list ( costfunction , a , b , c, d );
-            [fopt , xopt] = optim ( costf , x0 , imp = 2)
+x0 = [1 1];
+a = 1.0;
+b = 2.0;
+c = 3.0;
+d = 4.0;
+costf = list (costfunction, a, b, c, d);
+[fopt, xopt] = optim (costf, x0, imp = 2)
+]]>
         </programlisting>
         <para>In complex cases, the cost function may have so many parameters,
             that having a function which takes all arguments as inputs is not
@@ -974,53 +996,57 @@ mprintf ( "Number of iterations: %d\n", _MYDATA_.niter );
             example, we use a tlist to store the 4 input arguments. This method can
             easily be expanded to an arbitrary number of parameters.
         </para>
-        <programlisting role="example">function [f , g , ind] = costfunction ( x , ind , parameters)
-            // Get the parameters
-            a = parameters.a
-            b = parameters.b
-            c = parameters.c
-            d = parameters.d
-            f = a * ( x(1) - c ) ^2 + b * ( x(2) - d )^2
-            g(1) = 2 * a * ( x(1) - c )
-            g(2) = 2 * b * ( x(2) - d )
-            endfunction
+        <programlisting role="example"><![CDATA[
+function [f, g, ind] = costfunction (x, ind, parameters)
+    // Get the parameters
+    a = parameters.a
+    b = parameters.b
+    c = parameters.c
+    d = parameters.d
+    f = a * (x(1) - c) ^2 + b * (x(2) - d)^2
+    g(1) = 2 * a * (x(1) - c)
+    g(2) = 2 * b * (x(2) - d)
+endfunction
 
-            x0 = [1 1];
-            a = 1.0;
-            b = 2.0;
-            c = 3.0;
-            d = 4.0;
-            // Store the parameters
-            parameters = tlist ( [
-            "T_MYPARAMS"
-            "a"
-            "b"
-            "c"
-            "d"
-            ]);
+x0 = [1 1];
+a = 1.0;
+b = 2.0;
+c = 3.0;
+d = 4.0;
+// Store the parameters
+parameters = tlist ([
+"T_MYPARAMS"
+"a"
+"b"
+"c"
+"d"
+]);
 
-            parameters.a = a;
-            parameters.b = b;
-            parameters.c = c;
-            parameters.d = d;
-            costf = list ( costfunction , parameters );
-            [fopt , xopt] = optim ( costf , x0 , imp = 2)
+parameters.a = a;
+parameters.b = b;
+parameters.c = c;
+parameters.d = d;
+costf = list (costfunction, parameters);
+[fopt, xopt] = optim (costf, x0, imp = 2)
+            ]]>
         </programlisting>
         <para>In the following example, the parameters are defined before the
             optimizer is called. They are directly used in the cost function.
         </para>
-        <programlisting role="example">// The example NOT to follow
-            function [ f , g , ind ] = costfunction ( x , ind )
-            f = a * ( x(1) - c ) ^2 + b * ( x(2) - d )^2
-            g(1) = 2 * a * ( x(1) - c )
-            g(2) = 2 * b * ( x(2) - d )
-            endfunction
-            x0 = [1 1];
-            a = 1.0;
-            b = 2.0;
-            c = 3.0;
-            d = 4.0;
-            [ fopt , xopt ] = optim ( costfunction , x0 , imp = 2 )
+        <programlisting role="example"><![CDATA[
+// The example NOT to follow
+function [f, g, ind] = costfunction (x, ind)
+    f = a * (x(1) - c) ^2 + b * (x(2) - d)^2
+    g(1) = 2 * a * (x(1) - c)
+    g(2) = 2 * b * (x(2) - d)
+endfunction
+x0 = [1 1];
+a = 1.0;
+b = 2.0;
+c = 3.0;
+d = 4.0;
+[fopt, xopt] = optim (costfunction, x0, imp = 2)
+]]>
         </programlisting>
         <para>While the previous example perfectly works, there is a risk that the
             same variables are used by some internal function used by
@@ -1034,20 +1060,22 @@ mprintf ( "Number of iterations: %d\n", _MYDATA_.niter );
             parameters <literal>a, b, c</literal> and <literal>d</literal> are global
             variables. Then we declare and set the global variables.
         </para>
-        <programlisting role="example">// Another example NOT to follow
-            function [ f , g , ind ] = costfunction ( x , ind )
-            global a b c d
-            f = a * ( x(1) - c ) ^2 + b * ( x(2) - d )^2
-            g(1) = 2 * a * ( x(1) - c )
-            g(2) = 2 * b * ( x(2) - d )
-            endfunction
-            x0 = [1 1];
-            global a b c d
-            a = 1.0;
-            b = 2.0;
-            c = 3.0;
-            d = 4.0;
-            [ fopt , xopt ] = optim ( costfunction , x0 , imp = 2 )
+        <programlisting role="example"><![CDATA[
+// Another example NOT to follow
+function [f, g, ind] = costfunction (x, ind)
+    global a b c d
+    f = a * (x(1) - c) ^2 + b * (x(2) - d)^2
+    g(1) = 2 * a * (x(1) - c)
+    g(2) = 2 * b * (x(2) - d)
+endfunction
+x0 = [1 1];
+global a b c d
+a = 1.0;
+b = 2.0;
+c = 3.0;
+d = 4.0;
+[fopt, xopt] = optim (costfunction, x0, imp = 2)
+]]>
         </programlisting>
         <para>While the previous example perfectly works, there is a risk that the
             same variables are used by some internal function used by
@@ -1072,33 +1100,37 @@ mprintf ( "Number of iterations: %d\n", _MYDATA_.niter );
             <literal>simplified</literal> function is passed as an input argument of
             the <literal>numderivative</literal> function.
         </para>
-        <programlisting role="example">function [ f , g , index ] = rosenbrock ( x , index )
-            f = 100.0 *(x(2)-x(1)^2)^2 + (1-x(1))^2;
-            // Exact :
-            g(1) = - 400. * ( x(2) - x(1)**2 ) * x(1) -2. * ( 1. - x(1) )
-            // Wrong :
-            g(1) = - 1200. * ( x(2) - x(1)**2 ) * x(1) -2. * ( 1. - x(1) )
-            g(2) = 200. * ( x(2) - x(1)**2 )
-            endfunction
+        <programlisting role="example"><![CDATA[
+function [f, g, index] = rosenbrock (x, index)
+    f = 100.0 *(x(2)-x(1)^2)^2 + (1-x(1))^2;
+    // Exact :
+    g(1) = - 400. * (x(2) - x(1)**2) * x(1) -2. * (1. - x(1))
+    // Wrong :
+    g(1) = - 1200. * (x(2) - x(1)**2) * x(1) -2. * (1. - x(1))
+    g(2) = 200. * (x(2) - x(1)**2)
+endfunction
 
-            function f = simplified ( x )
-            index = 1;
-            [ f , g , index ] = rosenbrock ( x , index )
-            endfunction
+function f = simplified (x)
+    index = 1;
+    [f, g, index] = rosenbrock (x, index)
+endfunction
 
-            x0 = [-1.2 1];
-            index = 1;
-            [ f , g , index ] = rosenbrock ( x0 , index );
-            gnd = numderivative ( simplified , x0.' );
-            mprintf("Exact derivative:[%s]\n" , strcat ( string(g) , " " ));
-            mprintf("Numerical derivative:[%s]\n" , strcat ( string(gnd) , " " ));
+x0 = [-1.2 1];
+index = 1;
+[f, g, index] = rosenbrock (x0, index);
+gnd = numderivative (simplified, x0.');
+mprintf("Exact derivative:[%s]\n", strcat (string(g), " "));
+mprintf("Numerical derivative:[%s]\n", strcat (string(gnd), " "));
+]]>
         </programlisting>
         <para>The previous script produces the following output. Obviously, the
             difference between the two gradient is enormous, which shows that the
             wrong formula has been used in the gradient.
         </para>
-        <programlisting role="example">      Exact derivative:[-638 -88]
-            Numerical derivative:[-215.6 -88]
+        <programlisting role="example"><![CDATA[
+Exact derivative:[-638 -88]
+Numerical derivative:[-215.6 -88]
+]]>
         </programlisting>
     </refsection>
     <refsection>
@@ -1114,87 +1146,91 @@ mprintf ( "Number of iterations: %d\n", _MYDATA_.niter );
             arrays ti and td are the same that the content of the Scilab variable, as
             expected.
         </para>
-        <programlisting role="example">// External function written in C (C compiler required)
-            // write down the C code (Rosenbrock problem)
-            C=['#include &lt;math.h&gt;'
-            'double sq(double x)'
-            '{ return x*x;}'
-            'void rosenc(int *ind, int *n, double *x, double *f, double *g, '
-            '                                int *ti, float *tr, double *td)'
-            '{'
-            '  double p;'
-            '  int i;'
-            '  p=td[0];'
-            '  if (*ind==2||*ind==4) {'
-            '    *f=1.0;'
-            '    for (i=1;i&lt;*n;i++)'
-            '      *f+=p*sq(x[i]-sq(x[i-1]))+sq(1.0-x[i]);'
-            '  }'
-            '  if (*ind==3||*ind==4) {'
-            '    g[0]=-4.0*p*(x[1]-sq(x[0]))*x[0];'
-            '    for (i=1;i&lt;*n-1;i++)'
-            '      g[i]=2.0*p*(x[i]-sq(x[i-1]))-4.0*p*(x[i+1]-sq(x[i]))*x[i]-2.0*(1.0-x[i]);'
-            '    g[*n-1]=2.0*p*(x[*n-1]-sq(x[*n-2]))-2.0*(1.0-x[*n-1]);'
-            '  }'
-            '}'];
-            cd TMPDIR;
-            mputl(C, TMPDIR+'/rosenc.c')
+        <programlisting role="example"><![CDATA[
+// External function written in C (C compiler required)
+// write down the C code (Rosenbrock problem)
+C=['#include &lt;math.h&gt;'
+'double sq(double x)'
+'{ return x*x;}'
+'void rosenc(int *ind, int *n, double *x, double *f, double *g, '
+'                                int *ti, float *tr, double *td)'
+'{'
+'  double p;'
+'  int i;'
+'  p=td[0];'
+'  if (*ind==2||*ind==4) {'
+'    *f=1.0;'
+'    for (i=1;i&lt;*n;i++)'
+'      *f+=p*sq(x[i]-sq(x[i-1]))+sq(1.0-x[i]);'
+'  }'
+'  if (*ind==3||*ind==4) {'
+'    g[0]=-4.0*p*(x[1]-sq(x[0]))*x[0];'
+'    for (i=1;i&lt;*n-1;i++)'
+'      g[i]=2.0*p*(x[i]-sq(x[i-1]))-4.0*p*(x[i+1]-sq(x[i]))*x[i]-2.0*(1.0-x[i]);'
+'    g[*n-1]=2.0*p*(x[*n-1]-sq(x[*n-2]))-2.0*(1.0-x[*n-1]);'
+'  }'
+'}'];
+cd TMPDIR;
+mputl(C, TMPDIR+'/rosenc.c')
 
-            // compile the C code
-            l = ilib_for_link('rosenc', 'rosenc.c', [], 'c');
+// compile the C code
+l = ilib_for_link('rosenc', 'rosenc.c', [], 'c');
 
-            // incremental linking
-            link(l, 'rosenc', 'c')
+// incremental linking
+link(l, 'rosenc', 'c')
 
-            //solve the problem
-            x0 = [40; 10; 50];
-            p = 100;
-            [f, xo, go] = optim('rosenc', x0, 'td', p)
+//solve the problem
+x0 = [40; 10; 50];
+p = 100;
+[f, xo, go] = optim('rosenc', x0, 'td', p)
+]]>
         </programlisting>
     </refsection>
     <refsection>
         <title>Example: Fortran function</title>
         <para>The following is an example with a Fortran function.</para>
-        <programlisting role="example">// External function written in Fortran (Fortran compiler required)
-            // write down the Fortran  code (Rosenbrock problem)
-            F = [ '      subroutine rosenf(ind, n, x, f, g, ti, tr, td)'
-            '      integer ind,n,ti(*)'
-            '      double precision x(n),f,g(n),td(*)'
-            '      real tr(*)'
-            'c'
-            '      double precision y,p'
-            '      p=td(1)'
-            '      if (ind.eq.2.or.ind.eq.4) then'
-            '        f=1.0d0'
-            '        do i=2,n'
-            '          f=f+p*(x(i)-x(i-1)**2)**2+(1.0d0-x(i))**2'
-            '        enddo'
-            '      endif'
-            '      if (ind.eq.3.or.ind.eq.4) then'
-            '        g(1)=-4.0d0*p*(x(2)-x(1)**2)*x(1)'
-            '        if(n.gt.2) then'
-            '          do i=2,n-1'
-            '            g(i)=2.0d0*p*(x(i)-x(i-1)**2)-4.0d0*p*(x(i+1)-x(i)**2)*x(i)'
-            '     &amp;           -2.0d0*(1.0d0-x(i))'
-            '          enddo'
-            '        endif'
-            '        g(n)=2.0d0*p*(x(n)-x(n-1)**2)-2.0d0*(1.0d0-x(n))'
-            '      endif'
-            '      return'
-            '      end'];
-            cd TMPDIR;
-            mputl(F, TMPDIR+'/rosenf.f')
+        <programlisting role="example"><![CDATA[
+// External function written in Fortran (Fortran compiler required)
+// write down the Fortran  code (Rosenbrock problem)
+F = ['      subroutine rosenf(ind, n, x, f, g, ti, tr, td)'
+'      integer ind,n,ti(*)'
+'      double precision x(n),f,g(n),td(*)'
+'      real tr(*)'
+'c'
+'      double precision y,p'
+'      p=td(1)'
+'      if (ind.eq.2.or.ind.eq.4) then'
+'        f=1.0d0'
+'        do i=2,n'
+'          f=f+p*(x(i)-x(i-1)**2)**2+(1.0d0-x(i))**2'
+'        enddo'
+'      endif'
+'      if (ind.eq.3.or.ind.eq.4) then'
+'        g(1)=-4.0d0*p*(x(2)-x(1)**2)*x(1)'
+'        if(n.gt.2) then'
+'          do i=2,n-1'
+'            g(i)=2.0d0*p*(x(i)-x(i-1)**2)-4.0d0*p*(x(i+1)-x(i)**2)*x(i)'
+'     &amp;           -2.0d0*(1.0d0-x(i))'
+'          enddo'
+'        endif'
+'        g(n)=2.0d0*p*(x(n)-x(n-1)**2)-2.0d0*(1.0d0-x(n))'
+'      endif'
+'      return'
+'      end'];
+cd TMPDIR;
+mputl(F, TMPDIR+'/rosenf.f')
 
-            // compile the Fortran code
-            l = ilib_for_link('rosenf', 'rosenf.f', [], 'f');
+// compile the Fortran code
+l = ilib_for_link('rosenf', 'rosenf.f', [], 'f');
 
-            // incremental linking
-            link(l, 'rosenf', 'f')
+// incremental linking
+link(l, 'rosenf', 'f')
 
-            //solve the problem
-            x0 = [40; 10; 50];
-            p = 100;
-            [f, xo, go] = optim('rosenf', x0, 'td', p)
+//solve the problem
+x0 = [40; 10; 50];
+p = 100;
+[f, xo, go] = optim('rosenf', x0, 'td', p)
+]]>
         </programlisting>
     </refsection>
     <refsection>
@@ -1219,70 +1255,72 @@ mprintf ( "Number of iterations: %d\n", _MYDATA_.niter );
             Whenever the objective function is called, the izs, rzs and dzs arrays
             have the values that have been previously initialized.
         </para>
-        <programlisting role="example">//
-            // Define a fortran source code and compile it (fortran compiler required)
-            //
-            fortransource = ['      subroutine rosenf(ind,n,x,f,g,izs,rzs,dzs)'
-            'C     -------------------------------------------'
-            'c     Example of cost function given by a subroutine'
-            'c     if n&lt;=2 returns ind=0'
-            'c     f.bonnans, oct 86'
-            '      implicit double precision (a-h,o-z)'
-            '      real rzs(1)'
-            '      double precision dzs(*)'
-            '      dimension x(n),g(n),izs(*)'
-            '      common/nird/nizs,nrzs,ndzs'
-            '      if (n.lt.3) then'
-            '        ind=0'
-            '        return'
-            '      endif'
-            '      if(ind.eq.10) then'
-            '         nizs=2'
-            '         nrzs=1'
-            '         ndzs=1'
-            '         return'
-            '      endif'
-            '      if(ind.eq.11) then'
-            '         izs(1)=5'
-            '         izs(2)=10'
-            '         dzs(1)=100.0d+0'
-            '         return'
-            '      endif'
-            '      if(ind.eq.2)go to 5'
-            '      if(ind.eq.3)go to 20'
-            '      if(ind.eq.4)go to 5'
-            '      ind=-1'
-            '      return'
-            '5     f=1.0d+0'
-            '      do 10 i=2,n'
-            '        im1=i-1'
-            '10      f=f + dzs(1)*(x(i)-x(im1)**2)**2 + (1.0d+0-x(i))**2'
-            '      if(ind.eq.2)return'
-            '20    g(1)=-4.0d+0*dzs(1)*(x(2)-x(1)**2)*x(1)'
-            '      nm1=n-1'
-            '      do 30 i=2,nm1'
-            '        im1=i-1'
-            '        ip1=i+1'
-            '        g(i)=2.0d+0*dzs(1)*(x(i)-x(im1)**2)'
-            '30      g(i)=g(i) -4.0d+0*dzs(1)*(x(ip1)-x(i)**2)*x(i) - '
-            '     &amp;        2.0d+0*(1.0d+0-x(i))'
-            '      g(n)=2.0d+0*dzs(1)*(x(n)-x(nm1)**2) - 2.0d+0*(1.0d+0-x(n))'
-            '      return'
-            '      end'];
-            cd TMPDIR;
-            mputl(fortransource, TMPDIR + '/rosenf.f')
+        <programlisting role="example"><![CDATA[
+//
+// Define a fortran source code and compile it (fortran compiler required)
+//
+fortransource = ['      subroutine rosenf(ind,n,x,f,g,izs,rzs,dzs)'
+'C     -------------------------------------------'
+'c     Example of cost function given by a subroutine'
+'c     if n&lt;=2 returns ind=0'
+'c     f.bonnans, oct 86'
+'      implicit double precision (a-h,o-z)'
+'      real rzs(1)'
+'      double precision dzs(*)'
+'      dimension x(n),g(n),izs(*)'
+'      common/nird/nizs,nrzs,ndzs'
+'      if (n.lt.3) then'
+'        ind=0'
+'        return'
+'      endif'
+'      if(ind.eq.10) then'
+'         nizs=2'
+'         nrzs=1'
+'         ndzs=1'
+'         return'
+'      endif'
+'      if(ind.eq.11) then'
+'         izs(1)=5'
+'         izs(2)=10'
+'         dzs(1)=100.0d+0'
+'         return'
+'      endif'
+'      if(ind.eq.2)go to 5'
+'      if(ind.eq.3)go to 20'
+'      if(ind.eq.4)go to 5'
+'      ind=-1'
+'      return'
+'5     f=1.0d+0'
+'      do 10 i=2,n'
+'        im1=i-1'
+'10      f=f + dzs(1)*(x(i)-x(im1)**2)**2 + (1.0d+0-x(i))**2'
+'      if(ind.eq.2)return'
+'20    g(1)=-4.0d+0*dzs(1)*(x(2)-x(1)**2)*x(1)'
+'      nm1=n-1'
+'      do 30 i=2,nm1'
+'        im1=i-1'
+'        ip1=i+1'
+'        g(i)=2.0d+0*dzs(1)*(x(i)-x(im1)**2)'
+'30      g(i)=g(i) -4.0d+0*dzs(1)*(x(ip1)-x(i)**2)*x(i) - '
+'     &amp;        2.0d+0*(1.0d+0-x(i))'
+'      g(n)=2.0d+0*dzs(1)*(x(n)-x(nm1)**2) - 2.0d+0*(1.0d+0-x(n))'
+'      return'
+'      end'];
+cd TMPDIR;
+mputl(fortransource, TMPDIR + '/rosenf.f')
 
-            // compile the C code
-            libpath = ilib_for_link('rosenf', 'rosenf.f', [], 'f');
+// compile the C code
+libpath = ilib_for_link('rosenf', 'rosenf.f', [], 'f');
 
-            // incremental linking
-            linkid = link(libpath, 'rosenf', 'f');
+// incremental linking
+linkid = link(libpath, 'rosenf', 'f');
 
-            x0 = 1.2 * ones(1, 5);
-            //
-            // Solve the problem
-            //
-            [f, x, g] = optim('rosenf', x0, 'in');
+x0 = 1.2 * ones(1, 5);
+//
+// Solve the problem
+//
+[f, x, g] = optim('rosenf', x0, 'in');
+]]>
         </programlisting>
     </refsection>
     <refsection>
@@ -1303,16 +1341,18 @@ mprintf ( "Number of iterations: %d\n", _MYDATA_.niter );
             instructions, which allows the compiler to import the "nird"
             symbol.
         </para>
-        <programlisting role="example">fortransource = ['subroutine rosenf(ind,n,x,f,g,izs,rzs,dzs)'
-            'cDEC$ IF DEFINED (FORDLL)'
-            'cDEC$ ATTRIBUTES DLLIMPORT:: /nird/'
-            'cDEC$ ENDIF'
-            'C     -------------------------------------------'
-            'c     Example of cost function given by a subroutine'
-            'c     if n&lt;=2 returns ind=0'
-            'c     f.bonnans, oct 86'
-            '      implicit double precision (a-h,o-z)'
-            [etc...]
+        <programlisting role="example"><![CDATA[
+fortransource = ['subroutine rosenf(ind,n,x,f,g,izs,rzs,dzs)'
+'cDEC$ IF DEFINED (FORDLL)'
+'cDEC$ ATTRIBUTES DLLIMPORT:: /nird/'
+'cDEC$ ENDIF'
+'C     -------------------------------------------'
+'c     Example of cost function given by a subroutine'
+'c     if n&lt;=2 returns ind=0'
+'c     f.bonnans, oct 86'
+'      implicit double precision (a-h,o-z)'
+[etc...]
+]]>
         </programlisting>
     </refsection>
     <refsection>
@@ -1326,96 +1366,97 @@ mprintf ( "Number of iterations: %d\n", _MYDATA_.niter );
         <para>
             Those output arguments must be placed at the end of the output list.
         </para>
-        <programlisting role="example">
-            // Move into the temporary directory to create the temporary files there
-            cur_dir = pwd();
-            chdir(TMPDIR);
-            fortransource = ['      subroutine rosenf(ind,n,x,f,g,izs,rzs,dzs)'
-            'C     -------------------------------------------'
-            'c (DLL Digital Visual Fortran)'
-            'c On Windows , we need to import common nird from scilab'
-            'cDEC$ IF DEFINED (FORDLL)'
-            'cDEC$ ATTRIBUTES DLLIMPORT:: /nird/'
-            'cDEC$ ENDIF'
-            'C     -------------------------------------------'
-            'c     Example of cost function given by a subroutine'
-            'c     if n.le.2 returns ind=0'
-            'c     f.bonnans, oct 86'
-            '      implicit double precision (a-h,o-z)'
-            '      real rzs(1)'
-            '      double precision dzs(*)'
-            '      dimension x(n),g(n),izs(*)'
-            '      common/nird/nizs,nrzs,ndzs'
-            '      if (n.lt.3) then'
-            '        ind=0'
-            '        return'
-            '      endif'
-            '      if(ind.eq.10) then'
-            '         nizs=2'
-            '         nrzs=1'
-            '         ndzs=1'
-            '         return'
-            '      endif'
-            '      if(ind.eq.11) then'
-            '         izs(1)=5'
-            '         izs(2)=10'
-            '         dzs(1)=100.0d+0'
-            '         return'
-            '      endif'
-            '      if(ind.eq.2)go to 5'
-            '      if(ind.eq.3)go to 20'
-            '      if(ind.eq.4)go to 5'
-            '      ind=-1'
-            '      return'
-            '5     f=1.0d+0'
-            '      do 10 i=2,n'
-            '        im1=i-1'
-            '10      f=f + dzs(1)*(x(i)-x(im1)**2)**2 + (1.0d+0-x(i))**2'
-            '      if(ind.eq.2)return'
-            '20    g(1)=-4.0d+0*dzs(1)*(x(2)-x(1)**2)*x(1)'
-            '      nm1=n-1'
-            '      do 30 i=2,nm1'
-            '        im1=i-1'
-            '        ip1=i+1'
-            '        g(i)=2.0d+0*dzs(1)*(x(i)-x(im1)**2)'
-            '30      g(i)=g(i) -4.0d+0*dzs(1)*(x(ip1)-x(i)**2)*x(i) - '
-            '     &amp;        2.0d+0*(1.0d+0-x(i))'
-            '      g(n)=2.0d+0*dzs(1)*(x(n)-x(nm1)**2) - 2.0d+0*(1.0d+0-x(n))'
-            '      return'
-            '      end'];
-            mputl(fortransource, TMPDIR + '/rosenf.f');
-            ilib_for_link('rosenf', 'rosenf.f', [], 'f');
-            exec loader.sce;
-            chdir(cur_dir);
-            //
-            // Define some constants
-            //
-            Leps = 10e3 * 8.e-5;
-            bs = 10.*ones(1, 5);
-            bi = -bs;
-            x0 = 0.12 * bs;
-            epsx = 1.e-15 * x0;
-            xopt = .1*bs;
+        <programlisting role="example"><![CDATA[
+// Move into the temporary directory to create the temporary files there
+cur_dir = pwd();
+chdir(TMPDIR);
+fortransource = ['      subroutine rosenf(ind,n,x,f,g,izs,rzs,dzs)'
+'C     -------------------------------------------'
+'c (DLL Digital Visual Fortran)'
+'c On Windows, we need to import common nird from scilab'
+'cDEC$ IF DEFINED (FORDLL)'
+'cDEC$ ATTRIBUTES DLLIMPORT:: /nird/'
+'cDEC$ ENDIF'
+'C     -------------------------------------------'
+'c     Example of cost function given by a subroutine'
+'c     if n.le.2 returns ind=0'
+'c     f.bonnans, oct 86'
+'      implicit double precision (a-h,o-z)'
+'      real rzs(1)'
+'      double precision dzs(*)'
+'      dimension x(n),g(n),izs(*)'
+'      common/nird/nizs,nrzs,ndzs'
+'      if (n.lt.3) then'
+'        ind=0'
+'        return'
+'      endif'
+'      if(ind.eq.10) then'
+'         nizs=2'
+'         nrzs=1'
+'         ndzs=1'
+'         return'
+'      endif'
+'      if(ind.eq.11) then'
+'         izs(1)=5'
+'         izs(2)=10'
+'         dzs(1)=100.0d+0'
+'         return'
+'      endif'
+'      if(ind.eq.2)go to 5'
+'      if(ind.eq.3)go to 20'
+'      if(ind.eq.4)go to 5'
+'      ind=-1'
+'      return'
+'5     f=1.0d+0'
+'      do 10 i=2,n'
+'        im1=i-1'
+'10      f=f + dzs(1)*(x(i)-x(im1)**2)**2 + (1.0d+0-x(i))**2'
+'      if(ind.eq.2)return'
+'20    g(1)=-4.0d+0*dzs(1)*(x(2)-x(1)**2)*x(1)'
+'      nm1=n-1'
+'      do 30 i=2,nm1'
+'        im1=i-1'
+'        ip1=i+1'
+'        g(i)=2.0d+0*dzs(1)*(x(i)-x(im1)**2)'
+'30      g(i)=g(i) -4.0d+0*dzs(1)*(x(ip1)-x(i)**2)*x(i) - '
+'     &amp;        2.0d+0*(1.0d+0-x(i))'
+'      g(n)=2.0d+0*dzs(1)*(x(n)-x(nm1)**2) - 2.0d+0*(1.0d+0-x(n))'
+'      return'
+'      end'];
+mputl(fortransource, TMPDIR + '/rosenf.f');
+ilib_for_link('rosenf', 'rosenf.f', [], 'f');
+exec loader.sce;
+chdir(cur_dir);
+//
+// Define some constants
+//
+Leps = 10e3 * 8.e-5;
+bs = 10.*ones(1, 5);
+bi = -bs;
+x0 = 0.12 * bs;
+epsx = 1.e-15 * x0;
+xopt = .1*bs;
 
-            // 'ti' and 'td' always at the end of the output sequence
-            [f, x, ti, td]                           = optim('rosenf', x0, 'in', 'si', 'sd')
-            [f, x, g, ti, td]                        = optim('rosenf', x0, 'in', 'si', 'sd')
-            [f, x, g, w, ti, td]                     = optim('rosenf', x0, 'in', 'si', 'sd')
-            [f, x, g, w, niter, nevals, ti, td]      = optim('rosenf', x0, 'in', 'si', 'sd')
-            [f, x, g, w, niter, nevals, err, ti, td] = optim('rosenf', x0, 'in', 'si', 'sd')
+// 'ti' and 'td' always at the end of the output sequence
+[f, x, ti, td]                           = optim('rosenf', x0, 'in', 'si', 'sd')
+[f, x, g, ti, td]                        = optim('rosenf', x0, 'in', 'si', 'sd')
+[f, x, g, w, ti, td]                     = optim('rosenf', x0, 'in', 'si', 'sd')
+[f, x, g, w, niter, nevals, ti, td]      = optim('rosenf', x0, 'in', 'si', 'sd')
+[f, x, g, w, niter, nevals, err, ti, td] = optim('rosenf', x0, 'in', 'si', 'sd')
 
-            // With input argument 'in', ti and td will be initialized by rosenf function.
-            [f, x, ti, td] = optim('rosenf', x0, 'in', 'si', 'sd')
-            // Reuses the last ti and td for the next call and return it again.
-            [f, x, ti, td] = optim('rosenf', x0, 'ti', ti, 'td', td, 'si', 'sd')
+// With input argument 'in', ti and td will be initialized by rosenf function.
+[f, x, ti, td] = optim('rosenf', x0, 'in', 'si', 'sd')
+// Reuses the last ti and td for the next call and return it again.
+[f, x, ti, td] = optim('rosenf', x0, 'ti', ti, 'td', td, 'si', 'sd')
 
-            // Initializes ti and td but return only ti
-            [f, x, ti] = optim('rosenf', x0, 'in', 'si')
-            [f, x, ti] = optim('rosenf', x0, 'ti', ti, 'si')
+// Initializes ti and td but return only ti
+[f, x, ti] = optim('rosenf', x0, 'in', 'si')
+[f, x, ti] = optim('rosenf', x0, 'ti', ti, 'si')
 
-            // Initializes ti and td but return only td
-            [f, x, td] = optim('rosenf', x0, 'in', 'sd')
-            [f, x, td] = optim('rosenf', x0, 'td', td, 'sd')
+// Initializes ti and td but return only td
+[f, x, td] = optim('rosenf', x0, 'in', 'sd')
+[f, x, td] = optim('rosenf', x0, 'td', td, 'sd')
+]]>
         </programlisting>
     </refsection>
     <refsection role="see also">

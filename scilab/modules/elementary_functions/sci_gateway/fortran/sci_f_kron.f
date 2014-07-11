@@ -14,6 +14,7 @@ c
       integer tops
       logical refa,refb
       integer iadr,sadr
+      double precision s
 c
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
@@ -72,6 +73,14 @@ c
       ita=istk(il+3)
       la=sadr(il+4)
       mna=ma*na
+
+c     Check if there is enough free space
+      s=dble(mnb)*dble(mna)- lstk(bot)
+      if(s.gt.0.0d0) then
+         err=s
+         call error(17)
+         return
+      endif
 c
       l=sadr(ilr+4)
       l1=l+mnb*mna*(max(itb,ita)+1)

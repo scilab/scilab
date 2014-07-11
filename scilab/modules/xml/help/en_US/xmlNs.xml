@@ -18,7 +18,7 @@
     <refsynopsisdiv>
         <title>Calling Sequence</title>
         <synopsis>
-            ns = xmlNs(elem, [prefix, [, href]])
+            ns = xmlNs(elem, prefix, href)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -33,7 +33,7 @@
             <varlistentry>
                 <term>prefix</term>
                 <listitem>
-                    <para>a string giving the prefix for this namespace</para>
+                    <para>a string giving the prefix for this namespace or the empty matrix to have an empty prefix</para>
                 </listitem>
             </varlistentry>
             <varlistentry>

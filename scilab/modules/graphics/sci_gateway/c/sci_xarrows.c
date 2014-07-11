@@ -139,9 +139,10 @@ int sci_xarrows(char *fname, unsigned long fname_len)
                     Scierror(999, _("%s: Wrong size for input argument #%d: A real scalar expected.\n"), fname, 4);
                     return 1;
                 }
+
+                arsize = *dl4;
+                stylePos = 5;
             }
-            arsize = *dl4;
-            stylePos = 5;
         }
         else if (m3 == 1 && n3 == 1)
         {

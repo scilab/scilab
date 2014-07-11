@@ -134,6 +134,6 @@ library.external_objects_java.name=org.scilab.modules.external_objects_java.jar
 
 build_javasci=@JAVASCI_ENABLE@
 
-build_xcos=@xcos_ENABLE@
+build_xcos=@XCOS_ENABLE@
 
 

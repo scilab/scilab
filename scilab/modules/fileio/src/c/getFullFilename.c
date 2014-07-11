@@ -10,9 +10,6 @@
 *
 */
 /*--------------------------------------------------------------------------*/
-#if defined(__linux__)
-#undef _FORTIFY_SOURCE /* Avoid dependency on GLIBC_2.4 (__wcscat_chk/__wcscpy_chk) */
-#endif
 #include "getFullFilename.h"
 #include "charEncoding.h"
 #include "MALLOC.h"

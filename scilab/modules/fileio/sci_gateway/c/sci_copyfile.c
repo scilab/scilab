@@ -10,9 +10,7 @@
 *
 */
 /*--------------------------------------------------------------------------*/
-#if defined(__linux__)
-#undef _FORTIFY_SOURCE /* Avoid dependency on GLIBC_2.4 (__wcscat_chk/__wcscpy_chk) */
-#endif
+
 #ifndef _MSC_VER
 #include <errno.h>
 #else

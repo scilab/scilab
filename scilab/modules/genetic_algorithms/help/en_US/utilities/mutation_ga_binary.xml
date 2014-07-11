@@ -18,7 +18,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>Mut_Indiv = mutation_ga_binary(Indiv,param)</synopsis>
+        <synopsis>[Mut_Indiv, pos] = mutation_ga_binary(Indiv,param)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -26,16 +26,17 @@
             <varlistentry>
                 <term>Indiv</term>
                 <listitem>
-                    <para>the individual on which we will perform the mutation.</para>
+                    <para>A string.</para>
+                    <para>The individual on which we will perform the mutation.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>param</term>
                 <listitem>
-                    <para>a list of parameters. </para>
+                    <para>a list of parameters.</para>
                     <itemizedlist>
                         <listitem>
-                            <para> "binary_length": the size of the binary code. </para>
+                            <para> "binary_length": an integer scalar, the size of the binary code. </para>
                         </listitem>
                         <listitem>
                             <para> "multi_mut": a boolean. If %T, several random bits will
@@ -43,8 +44,8 @@
                             </para>
                         </listitem>
                         <listitem>
-                            <para> "multi_mut_nd": the number of bits to be flipped. Works
-                                only when multi_mut is set to %T.
+                            <para> "multi_mut_nb": an integer scalar, the number of bits to be flipped.
+                                Only used when multi_mut is set to %T (default 2).
                             </para>
                         </listitem>
                     </itemizedlist>
@@ -53,7 +54,23 @@
             <varlistentry>
                 <term>Mut_Indiv</term>
                 <listitem>
-                    <para>The mutated individual.</para>
+                    <para>
+                        A string.
+                    </para>
+                    <para>
+                        The mutated individual.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>pos</term>
+                <listitem>
+                    <para>
+                        A vector of integers.
+                    </para>
+                    <para>
+                        The positions of the mutated bits.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -64,6 +81,48 @@
             This function performs a classical multi-bits binary
             mutation.
         </para>
+        <para>
+            This generates the individual <varname>Mut_Indiv</varname> by inverting bits on random positions.
+        </para>
+        <para>
+            By default <literal>mutation_ga_binary(Indiv)</literal> selects randomly
+            an index <literal>i</literal> between 1 and <literal>length(Indiv)</literal>.
+            It then modifies the i-th character of Indiv to 1 if it was 0, or 0 if it was 1.
+        </para>
+        <para>
+            If <literal>"multi_mut"</literal> is set to <literal>%T</literal> multiple mutations may occur.
+            The maximal number of mutation is given by <literal>"multi_mut_nb"</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title> Random number generator </title>
+        <para>
+            <literal>mutation_ga_binary</literal> is based
+            on <link linkend="grand">grand</link>
+            for generating the random samples.
+            Use <literal>grand("setsd", seed)</literal> to change the seed
+            for <literal>crossover_ga_binary</literal>.
+        </para>
+        <programlisting role="example"><![CDATA[
+            seed = getdate("s");
+            grand("setsd", seed); //sets the seed to current date
+
+            seed = 0;
+            grand("setsd", seed); //sets the seed to default value
+            ]]>
+        </programlisting>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+            Indiv="00010000"
+            [Mut_Indiv, pos] = mutation_ga_binary(Indiv)
+            
+            // With multiple mutation
+            param=init_param("multi_mut",%t,"multi_mut_nb",3);
+            Indiv="00010000"
+            [Mut_Indiv, pos] = mutation_ga_binary(Indiv,param)
+ ]]></programlisting>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

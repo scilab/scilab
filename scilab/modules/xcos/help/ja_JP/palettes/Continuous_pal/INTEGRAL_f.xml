@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+* Scicos
+*
+* Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+* Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+*
+* This program is free software; you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation; either version 2 of the License, or
+*  (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with this program; if not, write to the Free Software
+* Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+*
+* See the file ./license.txt
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="INTEGRAL_f" xml:lang="ja">
+    <refnamediv>
+        <refname>INTEGRAL_f</refname>
+        <refpurpose>積分</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>ブロックのスクリーンショット</title>
+        <para>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../../../../images/palettes/INTEGRAL_f.png" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+        </para>
+    </refsection>
+    <refsection id="Contents_INTEGRAL_f">
+        <title>内容</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="INTEGRAL_f">積分</link>
+                </para>
+            </listitem>
+            <listitem>
+                <itemizedlist>
+                    <listitem>
+                        <para>
+                            <xref linkend="Palette_INTEGRAL_f">パレット</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Description_INTEGRAL_f">説明</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Dialogbox_INTEGRAL_f">ダイアログボックス</xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Defaultproperties_INTEGRAL_f">デフォルトプロパティ
+                            </xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Interfacingfunction_INTEGRAL_f">インターフェイス用関数
+                            </xref>
+                        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            <xref linkend="Computationalfunction_INTEGRAL_f">計算用関数
+                            </xref>
+                        </para>
+                    </listitem>
+                </itemizedlist>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Palette_INTEGRAL_f">
+        <title>パレット</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="Continuous_pal">連続時間系パレット</link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Description_INTEGRAL_f">
+        <title>説明</title>
+        <para>このブロックは積分器です. 出力は入力の積分です.
+        </para>
+    </refsection>
+    <refsection id="Dialogbox_INTEGRAL_f">
+        <title>ダイアログボックス</title>
+        <para>
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../../../../images/gui/INTEGRAL_f_gui.gif" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+        </para>
+        <para/>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">初期条件</emphasis>
+                </para>
+                <para>初期条件を指定するスカラー.</para>
+                <para>プロパティ : 大きさ1の'vec'型.</para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Defaultproperties_INTEGRAL_f">
+        <title>デフォルトプロパティ</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">常にアクティブ:</emphasis> yes
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">直達項:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">ゼロ交差:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">モード:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">標準入力:</emphasis>
+                </para>
+                <para>
+                    <emphasis role="bold">- ポート1 : 大きさ [1,1] / 1型</emphasis>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">regular outputs:</emphasis>
+                </para>
+                <para>
+                    <emphasis role="bold">- ポート1 : 大きさ [1,1] / 1型</emphasis>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">アクティベーション入力の数/大きさ:
+                    </emphasis>
+                    0
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">アクティベーション出力の数/大きさ:
+                    </emphasis>
+                    0
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">連続時間状態量:</emphasis>
+                    yes
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">離散時間状態量:</emphasis> no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">オブジェクト離散時間状態量:</emphasis>
+                    no
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">計算用関数の名前:</emphasis>
+                    <emphasis role="italic">integr</emphasis>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Interfacingfunction_INTEGRAL_f">
+        <title>インターフェイス用関数</title>
+        <itemizedlist>
+            <listitem>
+                <para>SCI/modules/scicos_blocks/macros/Linear/INTEGRAL_f.sci</para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Computationalfunction_INTEGRAL_f">
+        <title>計算用関数</title>
+        <itemizedlist>
+            <listitem>
+                <para>SCI/modules/scicos_blocks/src/fortran/integr.f (Type 0)</para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+</refentry>

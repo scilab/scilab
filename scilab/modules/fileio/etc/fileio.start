@@ -1,12 +1,42 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009-2011 - DIGITEO
-// 
+//
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 //Load  functions libraries
 // =============================================================================
-  load('SCI/modules/fileio/macros/lib');
+load('SCI/modules/fileio/macros/lib');
+
+// Initialize CURL environment
+// =============================================================================
+if getos()=="Linux" then
+
+    // List of hard-coded paths comes from curl sources (configure.ac)
+
+    userBundle = getenv("CURL_CA_BUNDLE", "");
+    if isempty(userBundle) then // Not defined by the user
+
+        standardFiles = ["/etc/ssl/certs/ca-certificates.crt";
+                "/etc/pki/tls/certs/ca-bundle.crt";
+                "/usr/share/ssl/certs/ca-bundle.crt";
+                "/usr/local/share/certs/ca-root.crt";
+                "/etc/ssl/cert.pem"];
+
+        for iFile = 1:size(standardFiles, "*")
+            if isfile(standardFiles(iFile)) then
+                setenv("CURL_CA_BUNDLE", standardFiles(iFile));
+                break
+            end
+        end
+    end
+
+    caBundle = getenv("CURL_CA_BUNDLE", "");
+    caPath = getenv("CURL_CA_PATH", "");
+    if isempty(caBundle) & isempty(caPath) then
+        setenv("CURL_CA_PATH", "/etc/ssl/certs/");
+    end
+end

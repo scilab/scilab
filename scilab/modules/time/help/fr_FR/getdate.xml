@@ -125,6 +125,10 @@
                     <para> renvoie dt au format ci-dessus, à partir de x (nombre de secondes depuis le 1er Janvier 1970). 
                         Dans ce cas, dt(10) est toujours égal à 0.
                     </para>
+                    <para>
+                        <literal>getdate(0)</literal> va donc retourner le 1er Janvier 1970, avec l'heure UTC correspondante. Ainsi, le 1er Janvier 1970, 01:00
+                        sera renvoyé si l'heure UTC est définie et égale à UTC+1.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
