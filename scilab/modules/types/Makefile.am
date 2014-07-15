@@ -127,20 +127,15 @@ pkglib_LTLIBRARIES = libscitypes.la
 if GUI
 pkglib_LTLIBRARIES += libscitypes-java.la
 endif
-noinst_LTLIBRARIES = libscitypes-algo.la
-
 
 libscitypes_algo_la_CPPFLAGS = 	\
     $(libscitypes_la_CPPFLAGS) \
     $(AM_CPPFLAGS)
 
-libscitypes_la_LIBADD = libscitypes-algo.la
-
 libscitypes_java_la_LIBADD = \
 			$(top_builddir)/modules/commons/libscicommons.la \
 			$(top_builddir)/modules/jvm/libscijvm.la
 
-libscitypes_algo_la_SOURCES = $(TYPES_CPP_SOURCES)
 libscitypes_java_la_SOURCES = $(TYPES_JAVA_C_SOURCES) $(TYPES_JAVA_CPP_SOURCES)
 libscitypes_la_SOURCES = $(TYPES_GATEWAY_CPP_SOURCES)
 
@@ -177,8 +172,7 @@ check_PROGRAMS 		= testTypes
 
 TESTS			= testTypes
 
-testTypes_SOURCES 	= src/cpp/test-types.cpp
-testTypes_CPPFLAGS 	= $(check_INCLUDES)
-testTypes_LDADD	= 	$(top_builddir)/modules/types/libscitypes-algo.la \
-					$(top_builddir)/modules/ast/libsciast.la
+testTypes_SOURCES = src/cpp/test-types.cpp
+testTypes_CPPFLAGS = $(check_INCLUDES)
+testTypes_LDADD = $(top_builddir)/modules/ast/libsciast.la
 

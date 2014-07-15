@@ -181,14 +181,7 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscitypes_la_etcdir)" \
 	"$(DESTDIR)$(libscitypes_la_rootdir)" \
 	"$(DESTDIR)$(libscitypes_la_sci_gatewaydir)"
-LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
-libscitypes_algo_la_LIBADD =
-am_libscitypes_algo_la_OBJECTS =
-libscitypes_algo_la_OBJECTS = $(am_libscitypes_algo_la_OBJECTS)
-AM_V_lt = $(am__v_lt_@AM_V@)
-am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
-am__v_lt_0 = --silent
-am__v_lt_1 = 
+LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscitypes_java_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/commons/libscicommons.la \
 	$(top_builddir)/modules/jvm/libscijvm.la
@@ -200,8 +193,12 @@ am__objects_2 = src/cpp/libscitypes_java_la-ScilabToJava.lo \
 	src/jni/libscitypes_java_la-ScilabPolynomialToJava.lo
 am_libscitypes_java_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libscitypes_java_la_OBJECTS = $(am_libscitypes_java_la_OBJECTS)
+AM_V_lt = $(am__v_lt_@AM_V@)
+am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
+am__v_lt_0 = --silent
+am__v_lt_1 = 
 @GUI_TRUE@am_libscitypes_java_la_rpath = -rpath $(pkglibdir)
-libscitypes_la_DEPENDENCIES = libscitypes-algo.la
+libscitypes_la_LIBADD =
 am__libscitypes_la_SOURCES_DIST = sci_gateway/cpp/types_gw.cpp \
 	sci_gateway/cpp/sci_list.cpp sci_gateway/cpp/sci_struct.cpp \
 	sci_gateway/cpp/sci_insert.cpp sci_gateway/cpp/sci_null.cpp \
@@ -242,9 +239,7 @@ am_libscitypes_la_OBJECTS = $(am__objects_4)
 libscitypes_la_OBJECTS = $(am_libscitypes_la_OBJECTS)
 am_testTypes_OBJECTS = src/cpp/testTypes-test-types.$(OBJEXT)
 testTypes_OBJECTS = $(am_testTypes_OBJECTS)
-testTypes_DEPENDENCIES =  \
-	$(top_builddir)/modules/types/libscitypes-algo.la \
-	$(top_builddir)/modules/ast/libsciast.la
+testTypes_DEPENDENCIES = $(top_builddir)/modules/ast/libsciast.la
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
 am__v_P_0 = false
@@ -297,11 +292,9 @@ AM_V_CXXLD = $(am__v_CXXLD_@AM_V@)
 am__v_CXXLD_ = $(am__v_CXXLD_@AM_DEFAULT_V@)
 am__v_CXXLD_0 = @echo "  CXXLD   " $@;
 am__v_CXXLD_1 = 
-SOURCES = $(libscitypes_algo_la_SOURCES) \
-	$(libscitypes_java_la_SOURCES) $(libscitypes_la_SOURCES) \
+SOURCES = $(libscitypes_java_la_SOURCES) $(libscitypes_la_SOURCES) \
 	$(testTypes_SOURCES)
-DIST_SOURCES = $(libscitypes_algo_la_SOURCES) \
-	$(libscitypes_java_la_SOURCES) \
+DIST_SOURCES = $(libscitypes_java_la_SOURCES) \
 	$(am__libscitypes_la_SOURCES_DIST) $(testTypes_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
@@ -793,17 +786,14 @@ libscitypes_la_CPPFLAGS = \
 	$(AM_CPPFLAGS)
 
 pkglib_LTLIBRARIES = libscitypes.la $(am__append_4)
-noinst_LTLIBRARIES = libscitypes-algo.la
 libscitypes_algo_la_CPPFLAGS = \
     $(libscitypes_la_CPPFLAGS) \
     $(AM_CPPFLAGS)
 
-libscitypes_la_LIBADD = libscitypes-algo.la
 libscitypes_java_la_LIBADD = \
 			$(top_builddir)/modules/commons/libscicommons.la \
 			$(top_builddir)/modules/jvm/libscijvm.la
 
-libscitypes_algo_la_SOURCES = $(TYPES_CPP_SOURCES)
 libscitypes_java_la_SOURCES = $(TYPES_JAVA_C_SOURCES) $(TYPES_JAVA_CPP_SOURCES)
 libscitypes_la_SOURCES = $(TYPES_GATEWAY_CPP_SOURCES)
 
@@ -830,9 +820,7 @@ check_INCLUDES = \
 
 testTypes_SOURCES = src/cpp/test-types.cpp
 testTypes_CPPFLAGS = $(check_INCLUDES)
-testTypes_LDADD = $(top_builddir)/modules/types/libscitypes-algo.la \
-					$(top_builddir)/modules/ast/libsciast.la
-
+testTypes_LDADD = $(top_builddir)/modules/ast/libsciast.la
 all: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) all-am
 
@@ -870,17 +858,6 @@ $(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 $(am__aclocal_m4_deps):
 
-clean-noinstLTLIBRARIES:
-	-test -z "$(noinst_LTLIBRARIES)" || rm -f $(noinst_LTLIBRARIES)
-	@list='$(noinst_LTLIBRARIES)'; \
-	locs=`for p in $$list; do echo $$p; done | \
-	      sed 's|^[^/]*$$|.|; s|/[^/]*$$||; s|$$|/so_locations|' | \
-	      sort -u`; \
-	test -z "$$locs" || { \
-	  echo rm -f $${locs}; \
-	  rm -f $${locs}; \
-	}
-
 install-pkglibLTLIBRARIES: $(pkglib_LTLIBRARIES)
 	@$(NORMAL_INSTALL)
 	@list='$(pkglib_LTLIBRARIES)'; test -n "$(pkglibdir)" || list=; \
@@ -915,9 +892,6 @@ clean-pkglibLTLIBRARIES:
 	  echo rm -f $${locs}; \
 	  rm -f $${locs}; \
 	}
-
-libscitypes-algo.la: $(libscitypes_algo_la_OBJECTS) $(libscitypes_algo_la_DEPENDENCIES) $(EXTRA_libscitypes_algo_la_DEPENDENCIES) 
-	$(AM_V_CCLD)$(LINK)  $(libscitypes_algo_la_OBJECTS) $(libscitypes_algo_la_LIBADD) $(LIBS)
 src/jni/$(am__dirstamp):
 	@$(MKDIR_P) src/jni
 	@: > src/jni/$(am__dirstamp)
@@ -1602,7 +1576,7 @@ maintainer-clean-generic:
 clean: clean-am
 
 clean-am: clean-checkPROGRAMS clean-generic clean-libtool clean-local \
-	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES mostlyclean-am
+	clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
 	-rm -rf sci_gateway/cpp/$(DEPDIR) src/cpp/$(DEPDIR) src/jni/$(DEPDIR)
@@ -1679,11 +1653,11 @@ uninstall-am: uninstall-libscitypes_la_etcDATA \
 
 .PHONY: CTAGS GTAGS TAGS all all-am all-local check check-TESTS \
 	check-am check-local clean clean-checkPROGRAMS clean-generic \
-	clean-libtool clean-local clean-noinstLTLIBRARIES \
-	clean-pkglibLTLIBRARIES cscopelist-am ctags ctags-am distclean \
-	distclean-compile distclean-generic distclean-libtool \
-	distclean-local distclean-tags distdir dvi dvi-am html html-am \
-	info info-am install install-am install-data install-data-am \
+	clean-libtool clean-local clean-pkglibLTLIBRARIES \
+	cscopelist-am ctags ctags-am distclean distclean-compile \
+	distclean-generic distclean-libtool distclean-local \
+	distclean-tags distdir dvi dvi-am html html-am info info-am \
+	install install-am install-data install-data-am \
 	install-data-local install-dvi install-dvi-am install-exec \
 	install-exec-am install-html install-html-am \
 	install-html-local install-info install-info-am \
