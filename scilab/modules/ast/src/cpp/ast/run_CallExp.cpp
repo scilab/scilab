@@ -94,17 +94,11 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
             if (pITArg->isImplicitList())
             {
                 types::ImplicitList* pIL = pITArg->getAs<types::ImplicitList>();
-                if (pIL->isComputable() == false)
-                {
-                    types::Double* pVal = new types::Double(-1, -1);
-                    pVal->getReal()[0] = 1;
-                    result_set(pVal);
-                }
-                else
+                if (pIL->isComputable())
                 {
                     result_set(pIL->extractFullMatrix());
+                    pITArg->killMe();
                 }
-                pITArg->killMe();
             }
 
             if (is_single_result())

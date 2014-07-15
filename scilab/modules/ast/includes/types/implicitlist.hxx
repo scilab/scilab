@@ -34,76 +34,84 @@ namespace types
 class EXTERN_AST ImplicitList : public InternalType
 {
 protected :
-    InternalType*		    m_poStart;
-    InternalType*		    m_poStep;
-    InternalType*		    m_poEnd;
+    InternalType*		        m_poStart;
+    InternalType*		        m_poStep;
+    InternalType*		        m_poEnd;
 
-    Double*		            m_pDblStart;
-    Double*		            m_pDblStep;
-    Double*		            m_pDblEnd;
+    Double*		                m_pDblStart;
+    Double*		                m_pDblStep;
+    Double*		                m_pDblEnd;
 
-    int			            m_iSize;
+    int			                m_iSize;
 
-    InternalType::ScilabType  m_eStartType;
-    InternalType::ScilabType  m_eStepType;
-    InternalType::ScilabType  m_eEndType;
-    InternalType::ScilabType  m_eOutType;
+    InternalType::ScilabType    m_eStartType;
+    InternalType::ScilabType    m_eStepType;
+    InternalType::ScilabType    m_eEndType;
+    InternalType::ScilabType    m_eOutType;
 
-    bool                    m_bComputed;
+    bool                        m_bComputed;
 
 public :
     ImplicitList();
     virtual ~ImplicitList();
     ImplicitList(InternalType* _poStart, InternalType* _poStep, InternalType* _poEnd);
 
-    InternalType*           clone();
+    InternalType* clone();
 
-    inline ScilabType       getType(void)
+    inline ScilabType getType(void)
     {
         return ScilabImplicitList;
     }
-    inline ScilabId         getId(void)
+    inline ScilabId getId(void)
     {
         return IdImplicitList;
     }
 
-    bool                    isImplicitList()
+    bool isImplicitList()
     {
         return true;
     }
 
-    ScilabType                getOutputType();
+    virtual bool isAssignable(void)
+    {
+        return true;
+    }
+
+    inline virtual bool isInvokable() const
+    {
+        return true;
+    }
+
+
+    ScilabType getOutputType();
 
     inline InternalType* getStart()
     {
         return m_poStart;
     }
-
-    void                    setStart(InternalType*	_poIT);
+    void setStart(InternalType*	_poIT);
 
     inline InternalType* getStep()
     {
         return m_poStep;
     }
-
-    void                    setStep(InternalType* _poIT);
+    void setStep(InternalType* _poIT);
 
     inline InternalType* getEnd()
     {
         return m_poEnd;
     }
+    void setEnd(InternalType* _poIT);
 
-    void                    setEnd(InternalType* _poIT);
+    bool compute();
+    bool isComputable();
 
-    bool                    compute();
-    bool                    isComputable();
-
-    bool                    toString(std::wostringstream& ostr);
+    bool toString(std::wostringstream& ostr);
 
 
-    InternalType::ScilabType  getStartType();
-    InternalType::ScilabType  getStepType();
-    InternalType::ScilabType  getEndType();
+    InternalType::ScilabType getStartType();
+    InternalType::ScilabType getStepType();
+    InternalType::ScilabType getEndType();
 
     inline long long getSize()
     {
@@ -111,30 +119,34 @@ public :
     }
 
     //extract single value in a InternalType
-    InternalType*           extractValue(int _iOccur); //Single value
-    double                  extractValueInDouble(int _iOccur);
-    long long               extractValueInInteger(int _iOccur);
-    unsigned long long      extractValueInUnsignedInteger(int _iOccur);
+    InternalType* extractValue(int _iOccur); //Single value
+    double extractValueInDouble(int _iOccur);
+    long long extractValueInInteger(int _iOccur);
+    unsigned long long extractValueInUnsignedInteger(int _iOccur);
 
     //extract matrix in a Internaltype
-    InternalType*           extractFullMatrix();
+    InternalType* extractFullMatrix();
+
+    virtual InternalType* ImplicitList::extract(typed_list* _pArgs);
+    virtual bool invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_list & out, ast::ConstVisitor & execFunc, const ast::CallExp & e);
+
 
     /* return type as string ( double, int, cell, list, ... )*/
-    virtual std::wstring    getTypeStr()
+    virtual std::wstring getTypeStr()
     {
         return L"implicitlist";
     }
     /* return type as short string ( s, i, ce, l, ... )*/
-    virtual std::wstring    getShortTypeStr()
+    virtual std::wstring getShortTypeStr()
     {
-        return L"";
+        return L"ip";
     }
 
     // templated extract for
     // double / char / short / int / long long / unsigned ...
     template<typename T>
-    void					extractFullMatrix(T *_pT);
-    void                    extractFullMatrix(double *_pdbl);
+    void extractFullMatrix(T *_pT);
+    void extractFullMatrix(double *_pdbl);
 
     virtual bool isTrue()
     {

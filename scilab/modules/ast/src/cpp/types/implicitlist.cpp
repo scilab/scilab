@@ -608,6 +608,107 @@ bool ImplicitList::neg(InternalType *& out)
     return false;
 }
 
+bool ImplicitList::invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_list & out, ast::ConstVisitor & execFunc, const ast::CallExp & e)
+{
+    if (in.size() == 0)
+    {
+        out.push_back(this);
+    }
+    else
+    {
+        InternalType * _out = extract(&in);
+        if (!_out)
+        {
+            std::wostringstream os;
+            os << _W("Invalid index.\n");
+            throw ast::ScilabError(os.str(), 999, (*e.args_get().begin())->location_get());
+        }
+        out.push_back(_out);
+    }
+
+    return true;
+}
+
+InternalType* ImplicitList::extract(typed_list* _pArgs)
+{
+    int iDims = (int)_pArgs->size();
+    typed_list pArg;
+    InternalType* pOut = NULL;
+    int index = 0;
+
+    int* piMaxDim = new int[iDims];
+    int* piCountDim = new int[iDims];
+
+    //evaluate each argument and replace by appropriate value and compute the count of combinations
+    int iSeqCount = checkIndexesArguments(this, _pArgs, &pArg, piMaxDim, piCountDim);
+    if (iSeqCount == 0)
+    {
+        return createEmptyDouble();
+    }
+
+    if (iDims == 1 && iSeqCount == 1)
+    {
+        if (piMaxDim[0] > 0 && piMaxDim[0] <= 3)
+        {
+            //standard case a(1)
+            Double* pDbl = pArg[0]->getAs<Double>();
+            index = (int)pDbl->get()[0] - 1;
+        }
+        else
+        {
+            index = 0;
+        }
+    }
+    else
+    {
+        int* piDims = new int[iDims];
+        for (int i = 0 ; i < iDims ; i++)
+        {
+            piDims[i] = 1;
+        }
+
+        for (int i = 0 ; i < iSeqCount ; i++)
+        {
+            int* pIndex = new int[iDims];
+            for (int j = 0 ; j < iDims ; j++)
+            {
+                Double* pDbl = pArg[j]->getAs<Double>();
+                pIndex[j] = (int)pDbl->get()[i] - 1;
+            }
+
+            index = getIndexWithDims(pIndex, piDims, iDims);
+        }
+    }
+
+    switch (index)
+    {
+        case 0 :
+            pOut = getStart();
+            break;
+        case 1 :
+            pOut = getStep();
+            break;
+        case 2 :
+            pOut = getEnd();
+            break;
+        default :
+            pOut = NULL;
+            break;
+    }
+
+    //free pArg content
+    for (int iArg = 0 ; iArg < pArg.size() ; iArg++)
+    {
+        if (pArg[iArg] != (*_pArgs)[iArg] && pArg[iArg]->isDeletable())
+        {
+            delete pArg[iArg];
+        }
+    }
+
+    delete[] piMaxDim;
+    delete[] piCountDim;
+    return pOut;
+}
 }
 
 std::wstring printInLinePoly(types::SinglePoly* _pPoly, std::wstring _stVar)
@@ -724,4 +825,5 @@ unsigned long long convert_unsigned_input(types::InternalType* _poIT)
             break;
     }
     return ullValue;
+
 }
