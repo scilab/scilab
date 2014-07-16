@@ -29,6 +29,8 @@
 #include "machine.h"
 /*--------------------------------------------------------------------------*/
 /* interface for the previous function Table */
+SCICOS_IMPEXP int gw_scicos(void);
+
 /*--------------------------------------------------------------------------*/
 SCICOS_IMPEXP int sci_var2vec(char *fname, void* pvApiCtx);
 SCICOS_IMPEXP int sci_vec2var(char *fname, void* pvApiCtx);

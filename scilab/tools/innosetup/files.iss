@@ -95,10 +95,6 @@
 #include BinariesSourcePath + "\modules\xml\xml.iss"
 #include BinariesSourcePath + "\modules\preferences\preferences.iss"
 #include BinariesSourcePath + "\modules\graphic_objects\graphic_objects.iss"
-#include BinariesSourcePath + "\modules\operations\operations.iss"
 #include BinariesSourcePath + "\modules\ast\ast.iss"
 #include BinariesSourcePath + "\modules\functions_manager\functions_manager.iss"
-#include BinariesSourcePath + "\modules\parse\parse.iss"
-#include BinariesSourcePath + "\modules\system_env\system_env.iss"
-#include BinariesSourcePath + "\modules\symbol\symbol.iss"
 ;-------------------------------------------------------------------------------
