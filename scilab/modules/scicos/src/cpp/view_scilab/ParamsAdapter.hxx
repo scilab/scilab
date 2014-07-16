@@ -10,14 +10,14 @@
  *
  */
 
-#ifndef DIAGRAMADAPTER_HXX_
-#define DIAGRAMADAPTER_HXX_
+#ifndef PARAMSADAPTER_HXX_
+#define PARAMSADAPTER_HXX_
 
 #include <string>
 #include <sstream>
 
-#include "utilities.hxx"
 #include "BaseAdapter.hxx"
+
 #include "model/Diagram.hxx"
 
 namespace org_scilab_modules_scicos
@@ -25,30 +25,24 @@ namespace org_scilab_modules_scicos
 namespace view_scilab
 {
 
-class DiagramAdapter : public BaseAdapter<DiagramAdapter, org_scilab_modules_scicos::model::Diagram>
+class ParamsAdapter : public BaseAdapter<ParamsAdapter, org_scilab_modules_scicos::model::Diagram>
 {
 public:
-    DiagramAdapter(const DiagramAdapter& o);
-    DiagramAdapter(org_scilab_modules_scicos::model::Diagram* o);
-    ~DiagramAdapter();
+    ParamsAdapter(const ParamsAdapter& o);
+    ParamsAdapter(org_scilab_modules_scicos::model::Diagram* o);
+    ~ParamsAdapter();
 
     static const std::wstring getSharedTypeStr()
     {
-        return L"Diagram";
+        return L"params";
     }
 
     bool toString(std::wostringstream& ostr);
     std::wstring getTypeStr();
     std::wstring getShortTypeStr();
-
-    types::InternalType* getContrib() const;
-    void setContrib(types::InternalType* contrib);
-
-private:
-    types::InternalType* contrib;
 };
 
-} /* view_scilab */
+} /* namespace view_scilab */
 } /* namespace org_scilab_modules_scicos */
 
-#endif /* MODELADAPTER_HXX_ */
+#endif /* PARAMSADAPTER_HXX_ */

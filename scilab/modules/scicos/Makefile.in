@@ -212,6 +212,7 @@ am__libsciscicos_algo_la_SOURCES_DIST = src/c/noscicos/noscicos.c \
 	src/cpp/view_scilab/GraphicsAdapter.cpp \
 	src/cpp/view_scilab/LinkAdapter.cpp \
 	src/cpp/view_scilab/ModelAdapter.cpp \
+	src/cpp/view_scilab/ParamsAdapter.cpp \
 	src/cpp/view_scilab/ScsAdapter.cpp \
 	src/cpp/view_scilab/StateAdapter.cpp \
 	src/cpp/view_scilab/TextAdapter.cpp \
@@ -242,6 +243,7 @@ am__objects_2 = src/cpp/libsciscicos_algo_la-Controller.lo \
 	src/cpp/view_scilab/libsciscicos_algo_la-GraphicsAdapter.lo \
 	src/cpp/view_scilab/libsciscicos_algo_la-LinkAdapter.lo \
 	src/cpp/view_scilab/libsciscicos_algo_la-ModelAdapter.lo \
+	src/cpp/view_scilab/libsciscicos_algo_la-ParamsAdapter.lo \
 	src/cpp/view_scilab/libsciscicos_algo_la-ScsAdapter.lo \
 	src/cpp/view_scilab/libsciscicos_algo_la-StateAdapter.lo \
 	src/cpp/view_scilab/libsciscicos_algo_la-TextAdapter.lo
@@ -882,6 +884,7 @@ src/cpp/view_scilab/DiagramAdapter.cpp \
 src/cpp/view_scilab/GraphicsAdapter.cpp \
 src/cpp/view_scilab/LinkAdapter.cpp \
 src/cpp/view_scilab/ModelAdapter.cpp \
+src/cpp/view_scilab/ParamsAdapter.cpp \
 src/cpp/view_scilab/ScsAdapter.cpp \
 src/cpp/view_scilab/StateAdapter.cpp \
 src/cpp/view_scilab/TextAdapter.cpp
@@ -1423,6 +1426,9 @@ src/cpp/view_scilab/libsciscicos_algo_la-LinkAdapter.lo:  \
 src/cpp/view_scilab/libsciscicos_algo_la-ModelAdapter.lo:  \
 	src/cpp/view_scilab/$(am__dirstamp) \
 	src/cpp/view_scilab/$(DEPDIR)/$(am__dirstamp)
+src/cpp/view_scilab/libsciscicos_algo_la-ParamsAdapter.lo:  \
+	src/cpp/view_scilab/$(am__dirstamp) \
+	src/cpp/view_scilab/$(DEPDIR)/$(am__dirstamp)
 src/cpp/view_scilab/libsciscicos_algo_la-ScsAdapter.lo:  \
 	src/cpp/view_scilab/$(am__dirstamp) \
 	src/cpp/view_scilab/$(DEPDIR)/$(am__dirstamp)
@@ -1933,6 +1939,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/view_scilab/$(DEPDIR)/libsciscicos_algo_la-GraphicsAdapter.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/view_scilab/$(DEPDIR)/libsciscicos_algo_la-LinkAdapter.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/view_scilab/$(DEPDIR)/libsciscicos_algo_la-ModelAdapter.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/view_scilab/$(DEPDIR)/libsciscicos_algo_la-ParamsAdapter.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/view_scilab/$(DEPDIR)/libsciscicos_algo_la-ScsAdapter.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/view_scilab/$(DEPDIR)/libsciscicos_algo_la-StateAdapter.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/view_scilab/$(DEPDIR)/libsciscicos_algo_la-TextAdapter.Plo@am__quote@
@@ -2591,6 +2598,13 @@ src/cpp/view_scilab/libsciscicos_algo_la-ModelAdapter.lo: src/cpp/view_scilab/Mo
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/view_scilab/ModelAdapter.cpp' object='src/cpp/view_scilab/libsciscicos_algo_la-ModelAdapter.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/view_scilab/libsciscicos_algo_la-ModelAdapter.lo `test -f 'src/cpp/view_scilab/ModelAdapter.cpp' || echo '$(srcdir)/'`src/cpp/view_scilab/ModelAdapter.cpp
+
+src/cpp/view_scilab/libsciscicos_algo_la-ParamsAdapter.lo: src/cpp/view_scilab/ParamsAdapter.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/view_scilab/libsciscicos_algo_la-ParamsAdapter.lo -MD -MP -MF src/cpp/view_scilab/$(DEPDIR)/libsciscicos_algo_la-ParamsAdapter.Tpo -c -o src/cpp/view_scilab/libsciscicos_algo_la-ParamsAdapter.lo `test -f 'src/cpp/view_scilab/ParamsAdapter.cpp' || echo '$(srcdir)/'`src/cpp/view_scilab/ParamsAdapter.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/view_scilab/$(DEPDIR)/libsciscicos_algo_la-ParamsAdapter.Tpo src/cpp/view_scilab/$(DEPDIR)/libsciscicos_algo_la-ParamsAdapter.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/view_scilab/ParamsAdapter.cpp' object='src/cpp/view_scilab/libsciscicos_algo_la-ParamsAdapter.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/view_scilab/libsciscicos_algo_la-ParamsAdapter.lo `test -f 'src/cpp/view_scilab/ParamsAdapter.cpp' || echo '$(srcdir)/'`src/cpp/view_scilab/ParamsAdapter.cpp
 
 src/cpp/view_scilab/libsciscicos_algo_la-ScsAdapter.lo: src/cpp/view_scilab/ScsAdapter.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/view_scilab/libsciscicos_algo_la-ScsAdapter.lo -MD -MP -MF src/cpp/view_scilab/$(DEPDIR)/libsciscicos_algo_la-ScsAdapter.Tpo -c -o src/cpp/view_scilab/libsciscicos_algo_la-ScsAdapter.lo `test -f 'src/cpp/view_scilab/ScsAdapter.cpp' || echo '$(srcdir)/'`src/cpp/view_scilab/ScsAdapter.cpp

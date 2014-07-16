@@ -26,6 +26,7 @@ src/cpp/view_scilab/DiagramAdapter.cpp \
 src/cpp/view_scilab/GraphicsAdapter.cpp \
 src/cpp/view_scilab/LinkAdapter.cpp \
 src/cpp/view_scilab/ModelAdapter.cpp \
+src/cpp/view_scilab/ParamsAdapter.cpp \
 src/cpp/view_scilab/ScsAdapter.cpp \
 src/cpp/view_scilab/StateAdapter.cpp \
 src/cpp/view_scilab/TextAdapter.cpp

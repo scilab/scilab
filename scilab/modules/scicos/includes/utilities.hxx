@@ -13,6 +13,8 @@
 #ifndef UTILITIES_HXX_
 #define UTILITIES_HXX_
 
+#include <iostream>
+
 namespace org_scilab_modules_scicos
 {
 
@@ -21,25 +23,29 @@ namespace org_scilab_modules_scicos
  *
  * The '0' value is used indicate that BaseObject is not handled by the controller.
  */
-typedef unsigned long long ScicosID;
-//struct ScicosID
-//{
-//    ScicosID() : v(0) {}
-//    ScicosID(const ScicosID& u) : v(u.v) {}
-//
-//    inline bool operator<(const ScicosID& u) const
-//    {
-//        return u.v < u.v;
-//    }
-//    inline bool operator==(const ScicosID& u) const
-//    {
-//        return u.v == u.v;
-//    }
-//private:
-//    typedef unsigned long long uid_container_type;
-//    ScicosID(uid_container_type u) : v(u) {}
-//    uid_container_type v;
-//};
+//typedef unsigned long long ScicosID;
+struct ScicosID
+{
+    ScicosID(const ScicosID& u) : v(u.v) {}
+    typedef unsigned long long uid_container_type;
+    ScicosID(uid_container_type u) : v(u) {}
+
+    inline bool operator<(const ScicosID& u) const
+    {
+        return v < u.v;
+    }
+    inline bool operator==(const ScicosID& u) const
+    {
+        return v == u.v;
+    }
+    inline void operator++(int added)
+    {
+        v = v + added;
+    }
+    friend std::ostream& operator<< (std::ostream &out, const ScicosID& u);
+private:
+    uid_container_type v;
+};
 
 /**
  * Return status of get and set

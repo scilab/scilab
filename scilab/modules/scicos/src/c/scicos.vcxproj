@@ -263,6 +263,7 @@ lib /DEF:"$(ProjectDir)differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /
     <ClCompile Include="..\cpp\view_scilab\GraphicsAdapter.cpp" />
     <ClCompile Include="..\cpp\view_scilab\LinkAdapter.cpp" />
     <ClCompile Include="..\cpp\view_scilab\ModelAdapter.cpp" />
+    <ClCompile Include="..\cpp\view_scilab\ParamsAdapter.cpp" />
     <ClCompile Include="..\cpp\view_scilab\ScsAdapter.cpp" />
     <ClCompile Include="..\cpp\view_scilab\StateAdapter.cpp" />
     <ClCompile Include="..\cpp\view_scilab\TextAdapter.cpp" />
@@ -333,6 +334,7 @@ lib /DEF:"$(ProjectDir)differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /
     <ClInclude Include="..\cpp\view_scilab\GraphicsAdapter.hxx" />
     <ClInclude Include="..\cpp\view_scilab\LinkAdapter.hxx" />
     <ClInclude Include="..\cpp\view_scilab\ModelAdapter.hxx" />
+    <ClInclude Include="..\cpp\view_scilab\ParamsAdapter.hxx" />
     <ClInclude Include="..\cpp\view_scilab\ScsAdapter.hxx" />
     <ClInclude Include="..\cpp\view_scilab\StateAdapter.hxx" />
     <ClInclude Include="..\cpp\view_scilab\TextAdapter.hxx" />

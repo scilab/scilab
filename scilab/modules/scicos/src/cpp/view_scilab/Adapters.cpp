@@ -20,6 +20,7 @@
 #include "GraphicsAdapter.hxx"
 #include "LinkAdapter.hxx"
 #include "ModelAdapter.hxx"
+#include "ParamsAdapter.hxx"
 #include "StateAdapter.hxx"
 #include "TextAdapter.hxx"
 
@@ -51,6 +52,7 @@ Adapters::Adapters()
     adapters.push_back(adapter_t(view_scilab::GraphicsAdapter::getSharedTypeStr(), GRAPHIC_ADAPTER));
     adapters.push_back(adapter_t(view_scilab::LinkAdapter::getSharedTypeStr(), LINK_ADAPTER));
     adapters.push_back(adapter_t(view_scilab::ModelAdapter::getSharedTypeStr(), MODEL_ADAPTER));
+    adapters.push_back(adapter_t(view_scilab::ParamsAdapter::getSharedTypeStr(), PARAMS_ADAPTER));
     adapters.push_back(adapter_t(view_scilab::StateAdapter::getSharedTypeStr(), STATE_ADAPTER));
     adapters.push_back(adapter_t(view_scilab::TextAdapter::getSharedTypeStr(), TEXT_ADAPTER));
 

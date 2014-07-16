@@ -37,6 +37,7 @@ public:
         GRAPHIC_ADAPTER,    //!< \see view_scilab::GraphicAdapter
         LINK_ADAPTER,       //!< \see view_scilab::LinkAdapter
         MODEL_ADAPTER,      //!< \see view_scilab::ModelAdapter
+        PARAMS_ADAPTER,    //!< \see view_scilab::ParamsAdapter
         SCS_ADAPTER,        //!< \see view_scilab::ScsAdapter
         STATE_ADAPTER,      //!< \see view_scilab::StateAdapter
         TEXT_ADAPTER,       //!< \see view_scilab::TextAdapter

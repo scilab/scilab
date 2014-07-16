@@ -27,27 +27,67 @@ namespace org_scilab_modules_scicos
 namespace model
 {
 
-struct Parameter
+/**
+ * Scilab data that can be passed to the simulator and simulation functions.
+ *
+ * This used the raw scicos-sim encoding to avoid any conversion out of the model.
+ */
+struct list_t
 {
-    // FIXME: list the possible parameters kind, name, and so on
-    double foo;
+    // re-use the scicos sim encoding
+    int n;
+    int* sz;
+    int* typ;
+    void** data;
 };
 
-// FIXME add more values there
-enum SchedulingProperties
+struct Parameter
+{
+    std::vector<double> rpar;
+    std::vector<int> ipar;
+    list_t opar;
+};
+
+struct State
+{
+    std::vector<double> state;
+    std::vector<int> dstate;
+    list_t odstate;
+};
+
+/**
+ * Mask list for all possible block scheduling descriptor from the simulator point of view.
+ *
+ * Examples:
+ *  * CONST_m == 0
+ *  * SUMMATION == DEP_U
+ *  * CLR == DEP_T
+ *  * SWITCH_f == DEP_U & DEP_T
+ */
+enum dep_ut_t
 {
     DEP_U       = 1 << 0, //!< y=f(u)
     DEP_T       = 1 << 1, //!< y=f(x)
-    BLOCKTYPE_H = 1 << 2, //!< y=f(u) but depends on t (if then else block)
+};
+
+enum blocktype_t
+{
+    BLOCKTYPE_C = 'c', //!< N/A ; dummy value used to represent a 'c' blocktype (eg. not 'd')
+    BLOCKTYPE_D = 'd', //!< N/A ; dummy value used to represent a 'd' blocktype (eg. not 'c')
+    BLOCKTYPE_H = 'h', //!< N/A ; used to represent blocks composed by blocks
+    BLOCKTYPE_L = 'l', //!< synchronization block ; ifthenelse and eselect
+    BLOCKTYPE_M = 'm', //!< memorization block ; see the Scicos original paper
+    BLOCKTYPE_X = 'x', //!< derivable block without state ; these blocks will be treated as if they contains a state.
+    BLOCKTYPE_Z = 'z', //!< zero-crossing block ; see the Scicos original paper.
 };
 
 struct Descriptor
 {
     std::string functionName;
-    int functionApi;
+    char functionApi;
 
-    // FIXME: should encode all possible values for dep_ut and blocktype
-    int schedulingProperties;
+    char dep_ut;            //!< dep_ut_t masked value
+    char blocktype;         //!< one of blocktype_t value
 };
 
 class Block: public BaseObject
@@ -143,14 +183,14 @@ private:
         this->out = out;
     }
 
-    const Parameter& getParameters() const
+    const Parameter& getParameter() const
     {
-        return parameters;
+        return parameter;
     }
 
-    void setParameters(const Parameter& parameters)
+    void setParameter(const Parameter& parameter)
     {
-        this->parameters = parameters;
+        this->parameter = parameter;
     }
 
     ScicosID getParentBlock() const
@@ -215,7 +255,8 @@ private:
     std::vector<ScicosID> ein;
     std::vector<ScicosID> eout;
 
-    Parameter parameters;
+    Parameter parameter;
+    State state;
 
     /**
      * SuperBlock: the blocks, links and so on contained into this block
