@@ -54,7 +54,7 @@ Macro::Macro(const std::wstring& _stName, std::list<symbol::Variable*>& _inputAr
 
 Macro::~Macro()
 {
-    //delete m_body;
+    delete m_body;
     m_pDblArgIn->DecreaseRef();
     m_pDblArgIn->killMe();
     m_pDblArgOut->DecreaseRef();
