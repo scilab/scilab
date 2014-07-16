@@ -481,7 +481,7 @@ types::Function::ReturnValue sci_MinMax(types::typed_list &in, int _iRetCount, t
 
     if (iCountElem == 1)
     {
-        delete iSizes;
+        delete[] iSizes;
         iSizes = NULL;
     }
 

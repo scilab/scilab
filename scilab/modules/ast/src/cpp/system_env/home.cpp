@@ -140,28 +140,18 @@ void putenvHOME(const char* _home)
     char *ShortPath = NULL;
     char *CopyOfDefaultPath = NULL;
 
-    CopyOfDefaultPath = new char[strlen(_home) + 1];
-    if (CopyOfDefaultPath)
-    {
-        /* to be sure that it's unix 8.3 format */
-        /* c:/progra~1/scilab-5.0 */
-        bool bConvertOK = false;
-        ShortPath = getshortpathname(_home, &bConvertOK);
-        AntislashToSlash(ShortPath, CopyOfDefaultPath);
-        setenvc("HOME", ShortPath);
-        if (CopyOfDefaultPath)
-        {
-            delete[] CopyOfDefaultPath;
-            CopyOfDefaultPath = NULL;
-        }
+    /* to be sure that it's unix 8.3 format */
+    /* c:/progra~1/scilab-5.0 */
+    bool bConvertOK = false;
+    ShortPath = getshortpathname(_home, &bConvertOK);
 
-        if (ShortPath)
-        {
-            delete[] ShortPath;
-            ShortPath = NULL;
-        }
-    }
-    return;
+    CopyOfDefaultPath = new char[strlen(_home) + 1];
+    AntislashToSlash(ShortPath, CopyOfDefaultPath);
+
+    setenvc("HOME", ShortPath);
+
+    delete[] CopyOfDefaultPath;
+    FREE(ShortPath);
 }
 
 /*--------------------------------------------------------------------------*/

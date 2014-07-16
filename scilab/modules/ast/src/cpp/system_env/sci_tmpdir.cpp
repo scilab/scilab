@@ -81,29 +81,19 @@ void putenvTMPDIR(const char *_sci_tmpdir)
     char *ShortPath = NULL;
     char *CopyOfDefaultPath = NULL;
 
-    CopyOfDefaultPath = new char[strlen(_sci_tmpdir) + 1];
-    if (CopyOfDefaultPath)
-    {
-        /* to be sure that it's unix 8.3 format */
-        /* c:/progra~1/scilab-5.0 */
-        bool bConvertOK = false;
-        ShortPath = getshortpathname(_sci_tmpdir, &bConvertOK);
-        //GetShortPathName(_sci_path,ShortPath,PATH_MAX);
-        AntislashToSlash(ShortPath, CopyOfDefaultPath);
-        setenvc("TMPDIR", ShortPath);
-        if (CopyOfDefaultPath)
-        {
-            delete[] CopyOfDefaultPath;
-            CopyOfDefaultPath = NULL;
-        }
+    /* to be sure that it's unix 8.3 format */
+    /* c:/progra~1/scilab-5.0 */
+    bool bConvertOK = false;
+    ShortPath = getshortpathname(_sci_tmpdir, &bConvertOK);
+    //GetShortPathName(_sci_path,ShortPath,PATH_MAX);
 
-        if (ShortPath)
-        {
-            delete[] ShortPath;
-            ShortPath = NULL;
-        }
-    }
-    return;
+    CopyOfDefaultPath = new char[strlen(_sci_tmpdir) + 1];
+    AntislashToSlash(ShortPath, CopyOfDefaultPath);
+
+    setenvc("TMPDIR", ShortPath);
+
+    delete[] CopyOfDefaultPath;
+    FREE(ShortPath);
 }
 
 /*--------------------------------------------------------------------------*/

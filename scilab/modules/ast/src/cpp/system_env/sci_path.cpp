@@ -89,7 +89,7 @@ void setSCI(const char* _sci_path)
     }
     if (ShortPath)
     {
-        delete[] ShortPath;
+        FREE(ShortPath);
     }
 }
 /*--------------------------------------------------------------------------*/
@@ -106,29 +106,19 @@ void putenvSCI(const char* _sci_path)
     char *ShortPath = NULL;
     char *CopyOfDefaultPath = NULL;
 
-    CopyOfDefaultPath = new char[strlen(_sci_path) + 1];
-    if (CopyOfDefaultPath)
-    {
-        /* to be sure that it's unix 8.3 format */
-        /* c:/progra~1/scilab-5.0 */
-        bool bConvertOK = false;
-        ShortPath = getshortpathname(_sci_path, &bConvertOK);
-        //GetShortPathName(_sci_path,ShortPath,PATH_MAX);
-        AntislashToSlash(ShortPath, CopyOfDefaultPath);
-        setenvc("SCI", ShortPath);
-        if (CopyOfDefaultPath)
-        {
-            delete[] CopyOfDefaultPath;
-            CopyOfDefaultPath = NULL;
-        }
+    /* to be sure that it's unix 8.3 format */
+    /* c:/progra~1/scilab-5.0 */
+    bool bConvertOK = false;
+    ShortPath = getshortpathname(_sci_path, &bConvertOK);
 
-        if (ShortPath)
-        {
-            delete[] ShortPath;
-            ShortPath = NULL;
-        }
-    }
-    return;
+    CopyOfDefaultPath = new char[strlen(_sci_path) + 1];
+    //GetShortPathName(_sci_path,ShortPath,PATH_MAX);
+    AntislashToSlash(ShortPath, CopyOfDefaultPath);
+
+    setenvc("SCI", ShortPath);
+
+    delete[] CopyOfDefaultPath;
+    FREE(ShortPath);
 }
 /*--------------------------------------------------------------------------*/
 wchar_t* getenvSCIW()
