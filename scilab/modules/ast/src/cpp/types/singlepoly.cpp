@@ -373,6 +373,7 @@ void SinglePoly::toStringInternal(double *_pdblVal, wstring _szVar, list<wstring
     wostringstream ostemp2;
 
     ostemp << L"  ";
+    ostemp2 << L"";
 
     //to add exponant value a the good place
     int *piIndexExp = new int[m_iRank];
@@ -449,6 +450,11 @@ void SinglePoly::toStringInternal(double *_pdblVal, wstring _szVar, list<wstring
         if (ostemp.str() == L"  ")
         {
             ostemp << L"  0";
+            addSpaces(&ostemp2, static_cast<int>(ostemp.str().size()));
+        }
+
+        if (ostemp2.str() == L"")
+        {
             addSpaces(&ostemp2, static_cast<int>(ostemp.str().size()));
         }
 
