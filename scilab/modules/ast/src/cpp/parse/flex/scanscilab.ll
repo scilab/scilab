@@ -87,12 +87,12 @@ utf3            ({utf31}|{utf32}|{utf33}|{utf34})
 utf4            ({utf41}|{utf42}|{utf43})
 
 utf             ({utf2}|{utf3}|{utf4})
-id              (([a-zA-Z_%#?$]|{utf})([a-zA-Z_0-9#?$]|{utf})*)
+id              ((([a-zA-Z_%#?]|{utf})([a-zA-Z_0-9#?$]|{utf})*)|([$]([a-zA-Z_0-9#?$]|{utf})+))
 
 
 newline			("\r"|"\n"|"\r\n")
 blankline		{spaces}+{newline}
-emptyline               {newline}({spaces}|[,;])+{newline}
+emptyline       {newline}({spaces}|[,;])+{newline}
 next			\.\.+
 
 boolnot			("@"|"~")
@@ -125,7 +125,7 @@ endblockcomment		"*/"
 dquote			"\""
 quote			"'"
 
-dot                     "."
+dot             "."
 dotquote		".'"
 dottimes		".*"
 dotrdivide		"./"
