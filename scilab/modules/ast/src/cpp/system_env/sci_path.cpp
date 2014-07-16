@@ -27,6 +27,7 @@ extern "C"
 #include "setenvc.h"
 #include "getenvc.h"
 #include "setenvvar.h"
+#include "getshortpathname.h"
 }
 
 using namespace std;
@@ -54,7 +55,7 @@ void setSCI(const char* _sci_path)
     //
     char *ShortPath = NULL;
     char *pstSlash = new char[strlen(_sci_path) + 1];
-    bool bConvertOK = false;
+    BOOL bConvertOK = FALSE;
     ShortPath = getshortpathname(_sci_path, &bConvertOK);
     AntislashToSlash(ShortPath, pstSlash);
 
@@ -108,7 +109,7 @@ void putenvSCI(const char* _sci_path)
 
     /* to be sure that it's unix 8.3 format */
     /* c:/progra~1/scilab-5.0 */
-    bool bConvertOK = false;
+    BOOL bConvertOK = FALSE;
     ShortPath = getshortpathname(_sci_path, &bConvertOK);
 
     CopyOfDefaultPath = new char[strlen(_sci_path) + 1];

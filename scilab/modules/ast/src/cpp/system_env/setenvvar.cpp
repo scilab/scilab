@@ -46,6 +46,7 @@ extern "C"
 #include "sci_path.h"
 #include "sci_tmpdir.h"
 #include "sci_malloc.h"
+#include "getshortpathname.h"
 }
 
 using namespace std;
@@ -265,62 +266,6 @@ bool convertSlash(const char *path_in, char *path_out, bool slashToAntislash)
 }
 
 /*--------------------------------------------------------------------------*/
-char *getshortpathname(const char *longpathname, bool *convertok)
-{
-    char *ShortName = NULL;
-
-    if (longpathname)
-    {
-#ifdef _MSC_VER
-        /* first we try to call to know path length */
-        int length = GetShortPathNameA(longpathname, NULL, 0);
-
-        if (length <= 0 )
-        {
-            length = MAX_PATH_SHORT;
-        }
-
-        ShortName = new char[length];
-
-        if (ShortName)
-        {
-            /* second converts path */
-            if ( GetShortPathNameA(longpathname, ShortName, length) )
-            {
-                *convertok = true;
-            }
-            else
-            {
-                /* FAILED */
-                strcpy(ShortName, longpathname);
-                *convertok = false;
-            }
-        }
-        else
-        {
-            /* FAILED */
-            *convertok = false;
-        }
-#else
-        /* Linux */
-        int length = (int)strlen(longpathname) + 1;
-        ShortName = new char[length];
-        if (ShortName)
-        {
-            strcpy(ShortName, longpathname);
-        }
-
-        *convertok = false;
-#endif
-    }
-    else
-    {
-        /* FAILED */
-        *convertok = false;
-    }
-    return ShortName;
-}
-
 bool isdir(const char * path)
 {
     bool bOK = false;

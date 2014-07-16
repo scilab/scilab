@@ -35,7 +35,6 @@ EXTERN_AST void SetScilabEnvironmentVariables(char *DefaultSCIPATH);
 EXTERN_AST bool convertSlash(const char *path_in, char *path_out, bool slashToAntislash);
 EXTERN_AST bool AntislashToSlash(const char *pathwindows, char *pathunix);
 EXTERN_AST bool SlashToAntislash(const char *pathwindows, char *pathunix);
-EXTERN_AST char *getshortpathname(const char *longpathname, bool *convertok);
 EXTERN_AST bool isdir(const char * path);
 EXTERN_AST bool createdirectory(const char *path);
 EXTERN_AST bool isDrive(const char *strname);

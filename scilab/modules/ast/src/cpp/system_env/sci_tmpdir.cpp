@@ -37,6 +37,7 @@ extern "C"
 #include "os_swprintf.h"
 #include "os_strdup.h"
 #include "setenvvar.h"
+#include "getshortpathname.h"
 }
 
 char* getTMPDIR(void)
@@ -83,7 +84,7 @@ void putenvTMPDIR(const char *_sci_tmpdir)
 
     /* to be sure that it's unix 8.3 format */
     /* c:/progra~1/scilab-5.0 */
-    bool bConvertOK = false;
+    BOOL bConvertOK = FALSE;
     ShortPath = getshortpathname(_sci_tmpdir, &bConvertOK);
     //GetShortPathName(_sci_path,ShortPath,PATH_MAX);
 

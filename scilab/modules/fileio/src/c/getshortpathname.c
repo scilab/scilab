@@ -45,7 +45,7 @@ int C2F(getshortpathname)(char *pathname, int *len)
     return 0;
 }
 /*--------------------------------------------------------------------------*/
-char *getshortpathname(char *longpathname, BOOL *convertok)
+char *getshortpathname(const char *longpathname, BOOL *convertok)
 {
     char *ShortName = NULL;
 

@@ -26,7 +26,7 @@
 * on Linux returns same path name
 * used for Windows
 */
-FILEIO_IMPEXP char *getshortpathname(char *longpathname, BOOL *convertok);
+FILEIO_IMPEXP char *getshortpathname(const char *longpathname, BOOL *convertok);
 
 FILEIO_IMPEXP int C2F(getshortpathname)(char *pathname, int *len);
 

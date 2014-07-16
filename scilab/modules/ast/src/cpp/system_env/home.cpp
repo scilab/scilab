@@ -28,6 +28,7 @@ extern "C"
 #include "setenvc.h"
 #include "getenvc.h"
 #include "setenvvar.h"
+#include "getshortpathname.h"
 }
 
 /*--------------------------------------------------------------------------*/
@@ -142,7 +143,7 @@ void putenvHOME(const char* _home)
 
     /* to be sure that it's unix 8.3 format */
     /* c:/progra~1/scilab-5.0 */
-    bool bConvertOK = false;
+    BOOL bConvertOK = FALSE;
     ShortPath = getshortpathname(_home, &bConvertOK);
 
     CopyOfDefaultPath = new char[strlen(_home) + 1];

@@ -29,6 +29,7 @@ extern "C"
 #include "setenvc.h"
 #include "getenvc.h"
 #include "setenvvar.h"
+#include "getshortpathname.h"
 }
 
 using namespace std;
@@ -88,7 +89,7 @@ char* computeSCIHOME(void)
 
     char USERHOMESYSTEM[PATH_MAX];
 
-    bool bConverted = false;
+    BOOL bConverted = FALSE;
 
     getenvc(&ierr, "APPDATA", USERHOMESYSTEM, &buflen, &iflag);
 
@@ -252,7 +253,7 @@ void putenvSCIHOME(const char* _sci_home)
 
     /* to be sure that it's unix 8.3 format */
     /* c:/progra~1/scilab-5.0 */
-    bool bConvertOK = false;
+    BOOL bConvertOK = FALSE;
     ShortPath = getshortpathname(_sci_home, &bConvertOK);
 
     CopyOfDefaultPath = new char[strlen(_sci_home) + 1];
