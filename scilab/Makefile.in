@@ -146,6 +146,7 @@ DIST_COMMON = $(top_srcdir)/Makefile.call_scilab.am \
 	$(top_srcdir)/modules/helptools/etc/SciDocConf.xml.in \
 	$(top_srcdir)/modules/core/includes/version.h.in \
 	$(top_srcdir)/modules/core/includes/stack.h.in \
+	$(top_srcdir)/modules/atoms/etc/repositories.in \
 	$(top_srcdir)/config/depcomp COPYING config/ar-lib \
 	config/compile config/config.guess config/config.rpath \
 	config/config.sub config/depcomp config/install-sh \
@@ -192,7 +193,8 @@ CONFIG_CLEAN_FILES = scilab.pc etc/modules.xml etc/classpath.xml \
 	etc/Info.plist etc/logging.properties scilab.properties \
 	scilab-lib.properties scilab-lib-doc.properties \
 	modules/helptools/etc/SciDocConf.xml \
-	modules/core/includes/version.h modules/core/includes/stack.h
+	modules/core/includes/version.h modules/core/includes/stack.h \
+	modules/atoms/etc/repositories
 CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(bindir)" \
 	"$(DESTDIR)$(infofilesdir)" "$(DESTDIR)$(pkgconfigdir)" \
@@ -1005,6 +1007,8 @@ modules/helptools/etc/SciDocConf.xml: $(top_builddir)/config.status $(top_srcdir
 modules/core/includes/version.h: $(top_builddir)/config.status $(top_srcdir)/modules/core/includes/version.h.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 modules/core/includes/stack.h: $(top_builddir)/config.status $(top_srcdir)/modules/core/includes/stack.h.in
+	cd $(top_builddir) && $(SHELL) ./config.status $@
+modules/atoms/etc/repositories: $(top_builddir)/config.status $(top_srcdir)/modules/atoms/etc/repositories.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 install-binPROGRAMS: $(bin_PROGRAMS)
 	@$(NORMAL_INSTALL)

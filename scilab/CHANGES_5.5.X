@@ -97,7 +97,9 @@ Scilab Bug Fixes
 
 * Bug #13364 fixed - Scilab did not start on CentOS 6.5, RedHat 5.4, RedHat 5.5 (GLIBC issue).
 
-* Bug #13365 fixed - Data bounds werenot correctly updated in 3-D.
+* Bug #13365 fixed - Data bounds were not correctly updated in 3-D.
+
+* Bug #13367 fixed - ATOMS default repository was 5.4 one instead of 5.5.
 
 * Bug #13378 fixed - The "Console" handle display was not homogeneous with others.
 
