@@ -106,7 +106,7 @@ if ENABLE_DEBUG
 libsciast_la_SOURCES += src/cpp/types/inspector.cpp
 endif
 
- 
+
 libsciast_la_CPPFLAGS = \
 	-Iincludes/ast \
 	-Iincludes/exps \
@@ -321,6 +321,31 @@ includes/system_env/sci_home.h \
 includes/system_env/warningmode.h \
 includes/system_env/configvariable.hxx \
 includes/system_env/home.h
+
+
+if BUILD_PARSER
+
+BUILT_SOURCES = $(FLEX_SCANSCILAB_CXX) $(BISON_PARSESCILAB_CXX)
+
+LFLAGS = --noline --nounistd -o $(FLEX_SCANSCILAB_CXX)
+FLEX_SCANSCILAB_LL	= src/cpp/parse/flex/scanscilab.ll
+FLEX_SCANSCILAB_CXX	= src/cpp/parse/scanscilab.cpp
+
+BISON_FLAGS = --no-lines -dvy -ra
+BISON_PARSESCILAB_YY	= src/cpp/parse/bison/parsescilab.yy
+BISON_PARSESCILAB_OUTPUT= src/cpp/parse/bison/parsescilab.output
+BISON_PARSESCILAB_HXX	= includes/parse/parsescilab.hxx
+BISON_PARSESCILAB_CXX = src/cpp/parse/parsescilab.cpp
+
+$(FLEX_SCANSCILAB_CXX): $(FLEX_SCANSCILAB_LL)
+	$(LEX) $(AM_FLAGS) $(LFLAGS) $(FLEX_SCANSCILAB_LL)
+
+$(BISON_PARSESCILAB_CXX): $(BISON_PARSESCILAB_YY)
+	$(YACC) $(AM_FLAGS) $(BISON_FLAGS) $(YFLAGS) $(BISON_PARSESCILAB_YY) \
+	&& mv y.tab.c $(BISON_PARSESCILAB_CXX) \
+	&& mv y.tab.h $(BISON_PARSESCILAB_HXX) \
+	&& mv y.output $(BISON_PARSESCILAB_OUTPUT)
+endif
 
 
 include $(top_srcdir)/Makefile.incl.am

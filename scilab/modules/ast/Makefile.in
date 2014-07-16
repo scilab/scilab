@@ -963,6 +963,15 @@ includes/system_env/warningmode.h \
 includes/system_env/configvariable.hxx \
 includes/system_env/home.h
 
+@BUILD_PARSER_TRUE@BUILT_SOURCES = $(FLEX_SCANSCILAB_CXX) $(BISON_PARSESCILAB_CXX)
+@BUILD_PARSER_TRUE@LFLAGS = --noline --nounistd -o $(FLEX_SCANSCILAB_CXX)
+@BUILD_PARSER_TRUE@FLEX_SCANSCILAB_LL = src/cpp/parse/flex/scanscilab.ll
+@BUILD_PARSER_TRUE@FLEX_SCANSCILAB_CXX = src/cpp/parse/scanscilab.cpp
+@BUILD_PARSER_TRUE@BISON_FLAGS = --no-lines -dvy -ra
+@BUILD_PARSER_TRUE@BISON_PARSESCILAB_YY = src/cpp/parse/bison/parsescilab.yy
+@BUILD_PARSER_TRUE@BISON_PARSESCILAB_OUTPUT = src/cpp/parse/bison/parsescilab.output
+@BUILD_PARSER_TRUE@BISON_PARSESCILAB_HXX = includes/parse/parsescilab.hxx
+@BUILD_PARSER_TRUE@BISON_PARSESCILAB_CXX = src/cpp/parse/parsescilab.cpp
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
@@ -1036,7 +1045,8 @@ JARMASK = *.jar
 HELP_CHAPTERDIR = help/
 HELP_CHAPTERFILE = addchapter.sce
 HELP_CHAPTERLANG = en_US fr_FR pt_BR
-all: all-am
+all: $(BUILT_SOURCES)
+	$(MAKE) $(AM_MAKEFLAGS) all-am
 
 .SUFFIXES:
 .SUFFIXES: .sci .bin .c .cpp .lo .o .obj
@@ -2321,13 +2331,15 @@ distdir: $(DISTFILES)
 	done
 check-am: all-am
 	$(MAKE) $(AM_MAKEFLAGS) check-local
-check: check-am
+check: $(BUILT_SOURCES)
+	$(MAKE) $(AM_MAKEFLAGS) check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
 installdirs:
 	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libsciast_la_etcdir)" "$(DESTDIR)$(libsciast_la_includedir)" "$(DESTDIR)$(libsciast_scilab_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
-install: install-am
+install: $(BUILT_SOURCES)
+	$(MAKE) $(AM_MAKEFLAGS) install-am
 install-exec: install-exec-am
 install-data: install-data-am
 uninstall: uninstall-am
@@ -2371,6 +2383,7 @@ distclean-generic:
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
 	@echo "it deletes files that may require special tools to rebuild."
+	-test -z "$(BUILT_SOURCES)" || rm -f $(BUILT_SOURCES)
 clean: clean-am
 
 clean-am: clean-generic clean-libtool clean-local \
@@ -2447,7 +2460,7 @@ uninstall-am: uninstall-libsciast_la_etcDATA \
 	uninstall-libsciast_scilab_la_includeHEADERS \
 	uninstall-pkglibLTLIBRARIES
 
-.MAKE: check-am install-am install-strip
+.MAKE: all check check-am install install-am install-strip
 
 .PHONY: CTAGS GTAGS TAGS all all-am all-local check check-am \
 	check-local clean clean-generic clean-libtool clean-local \
@@ -2472,6 +2485,15 @@ uninstall-am: uninstall-libsciast_la_etcDATA \
 	uninstall-libsciast_scilab_la_includeHEADERS \
 	uninstall-pkglibLTLIBRARIES
 
+
+@BUILD_PARSER_TRUE@$(FLEX_SCANSCILAB_CXX): $(FLEX_SCANSCILAB_LL)
+@BUILD_PARSER_TRUE@	$(LEX) $(AM_FLAGS) $(LFLAGS) $(FLEX_SCANSCILAB_LL)
+
+@BUILD_PARSER_TRUE@$(BISON_PARSESCILAB_CXX): $(BISON_PARSESCILAB_YY)
+@BUILD_PARSER_TRUE@	$(YACC) $(AM_FLAGS) $(BISON_FLAGS) $(YFLAGS) $(BISON_PARSESCILAB_YY) \
+@BUILD_PARSER_TRUE@	&& mv y.tab.c $(BISON_PARSESCILAB_CXX) \
+@BUILD_PARSER_TRUE@	&& mv y.tab.h $(BISON_PARSESCILAB_HXX) \
+@BUILD_PARSER_TRUE@	&& mv y.output $(BISON_PARSESCILAB_OUTPUT)
 
 # This target enables tests for Scilab
 check-local: $(top_builddir)/scilab-bin test
