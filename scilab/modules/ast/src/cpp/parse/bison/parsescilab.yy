@@ -588,13 +588,32 @@ variable			{
                   $$ = new ast::exps_t;
 				  $$->push_front(new ast::NilExp(@1));
 				  $$->push_front(new ast::NilExp(@1));
-}
-/*| // Epsilon 
-                {
-                  $$ = new ast::exps_t;
-				  $$->push_front(new ast::NilExp(@$));
+                  }
+| COMMA variable	{
+				  $$ = new ast::exps_t;
+				  $$->push_front(new ast::NilExp(@1));
+                  $$->push_back($2);
 				}
-*/| functionArgs COMMA variable	{
+| COMMA functionCall {
+				  $$ = new ast::exps_t;
+				  $$->push_front(new ast::NilExp(@1));
+                  $$->push_back($2);
+				}
+| COMMA COLON	{
+				  $$ = new ast::exps_t;
+				  $$->push_front(new ast::NilExp(@1));
+                  $$->push_back(new ast::ColonVar(@2));
+				}
+| COMMA variableDeclaration {
+				  $$ = new ast::exps_t;
+				  $$->push_front(new ast::NilExp(@1));
+                  $$->push_back($2);
+				}
+| functionArgs COMMA {
+                  $1->push_back(new ast::NilExp(@2));
+				  $$ = $1;
+				}
+| functionArgs COMMA variable	{
 				  $1->push_back($3);
 				  $$ = $1;
 				}
@@ -610,14 +629,14 @@ variable			{
 				  $1->push_back($3);
 				  $$ = $1;
 				}
-| functionArgs COMMA {
-                  $1->push_back(new ast::NilExp(@2));
-				  $$ = $1;
-				}
-| COMMA functionArgs {
-                  $2->push_front(new ast::NilExp(@1));
-				  $$ = $2;
-				}
+//| functionArgs COMMA {
+//                  $1->push_back(new ast::NilExp(@2));
+//				  $$ = $1;
+//				}
+//| COMMA functionArgs {
+//                  $2->push_front(new ast::NilExp(@1));
+//				  $$ = $2;
+//				}
 ;
 
 /*
@@ -1087,7 +1106,6 @@ NOT variable				%prec NOT	{ $$ = new ast::NotExp(@$, *$2); }
 							  $3->location_set(@$);
 							  $$ = $3;
 }
-| variable listableEnd					{ $$ = new ast::ListExp(@$, *$1, $2->step_get(), $2->end_get()); }
 | variable listableEnd					{ $$ = new ast::ListExp(@$, *$1, $2->step_get(), $2->end_get()); }
 | functionCall listableEnd		%prec UPLEVEL	{ $$ = new ast::ListExp(@$, *$1, $2->step_get(), $2->end_get()); }
 | matrix						{ $$ = $1; }

@@ -43,8 +43,8 @@ extern int yydebug;
 /* Token type.  */
 #ifndef YYTOKENTYPE
 # define YYTOKENTYPE
-enum yytokentype
-{
+  enum yytokentype
+  {
     YYEOF = 0,
     DOTS = 258,
     EOL = 259,
@@ -127,7 +127,7 @@ enum yytokentype
     LISTABLE = 336,
     CONTROLBREAK = 337,
     FUNCTIONCALL = 338
-};
+  };
 #endif
 /* Tokens.  */
 #define YYEOF 0
@@ -220,7 +220,7 @@ union YYSTYPE
 {
 
 
-    /* Tokens. */
+  /* Tokens. */
     double                      number;
     std::wstring*               str;
     std::wstring*               path;
@@ -260,7 +260,7 @@ union YYSTYPE
     ast::MatrixExp*             t_matrix_exp;
     ast::MatrixLineExp*         t_matrixline_exp;
     std::list<ast::MatrixLineExp *>*            \
-    t_list_mline;
+                                t_list_mline;
 
     ast::CellExp*               t_cell_exp;
 
@@ -285,10 +285,10 @@ union YYSTYPE
 typedef struct YYLTYPE YYLTYPE;
 struct YYLTYPE
 {
-    int first_line;
-    int first_column;
-    int last_line;
-    int last_column;
+  int first_line;
+  int first_column;
+  int last_line;
+  int last_column;
 };
 # define YYLTYPE_IS_DECLARED 1
 # define YYLTYPE_IS_TRIVIAL 1
