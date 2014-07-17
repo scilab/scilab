@@ -31,10 +31,10 @@ function %model_p(model)
     else
         txt=sim+" type: 0"
     end
+    mprintf("%s\n", txt)
+
     fn=getfield(1,model)
     for k=3:size(fn,"*")
-        txt=[txt
-        sci2exp(model(fn(k)),fn(k))]
+        mprintf("%s\n", sci2exp(model(fn(k)),fn(k)))
     end
-    write(%io(2),txt,"(a)")
 endfunction
