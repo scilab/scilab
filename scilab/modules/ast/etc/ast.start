@@ -7,3 +7,8 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+if ~isfile('SCI/modules/ast/macros/lib') then
+error(msprintf(gettext("%s: Could not find ''%s'': Please check that macros have been built.\n"), ..
+      "startModule", "SCI/modules/ast/macros/lib"));
+end
+load('SCI/modules/ast/macros/lib');

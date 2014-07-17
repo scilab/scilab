@@ -11,5 +11,5 @@ if (isdef("genlib") == %f) then
     exec(SCI+"/modules/functions/scripts/buildmacros/loadgenlib.sce");
 end
 //------------------------------------
-//genlib('api_scilablib','SCI/modules/api_scilab/macros',%f,%t);
+genlib("astlib","SCI/modules/ast/macros",%f,%t);
 //------------------------------------
