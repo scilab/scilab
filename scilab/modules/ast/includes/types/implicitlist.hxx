@@ -127,7 +127,7 @@ public :
     //extract matrix in a Internaltype
     InternalType* extractFullMatrix();
 
-    virtual InternalType* ImplicitList::extract(typed_list* _pArgs);
+    virtual InternalType* extract(typed_list* _pArgs);
     virtual bool invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_list & out, ast::ConstVisitor & execFunc, const ast::CallExp & e);
 
 
