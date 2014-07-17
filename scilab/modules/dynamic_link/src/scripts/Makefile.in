@@ -400,8 +400,8 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 
 # Without this, flags will be overriden
-AM_CFLAGS = @CFLAGS@
-AM_CXXFLAGS = @CXXFLAGS@
+AM_CFLAGS = @CFLAGS@ @EIGEN_CPPFLAGS@
+AM_CXXFLAGS = @CXXFLAGS@ @EIGEN_CPPFLAGS@
 AM_FFLAGS = @FFLAGS@
 AM_LDFLAGS = @LDFLAGS@
 ACLOCAL_AMFLAGS = -I m4

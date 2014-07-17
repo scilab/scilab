@@ -24,18 +24,10 @@ function scilablibrarieslist = dlwGetScilabLibraries()
     "call_scilab.lib"; ..
     "time.lib"; ..
     "api_scilab.lib"; ..
-    "types.lib"; ..
-    "typesmacro.lib"; ..
-    "operations.lib"; ..
-    "symbol.lib"; ..
     "libintl.lib"; ..
     "ast.lib"; ..
     "fileio.lib"; ..
     "io.lib"; ..
-    "parse.lib"; ..
-    "ast-tools.lib"; ..
-    "symbol.lib"; ..
-    "system_env.lib"; ..
     "string.lib"; ..
     "threads.lib"; ..
     "sciconsole.lib"; ..

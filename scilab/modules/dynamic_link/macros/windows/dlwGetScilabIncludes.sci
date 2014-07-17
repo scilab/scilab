@@ -23,13 +23,14 @@ function scilabincludeslist = dlwGetScilabIncludes()
     "$(SCIDIR)/modules/mexlib/includes"; ..
     "$(SCIDIR)/modules/time/includes"; ..
     "$(SCIDIR)/modules/windows_tools/includes"; ..
-    "$(SCIDIR)/modules/symbol/includes"; ..
-    "$(SCIDIR)/modules/system_env/includes"; ..
     "$(SCIDIR)/modules/threads/includes"; ..
-    "$(SCIDIR)/modules/types/includes"; ..
-    "$(SCIDIR)/modules/operations/includes"; ..
-    "$(SCIDIR)/modules/ast/includes"; ..
+    "$(SCIDIR)/modules/ast/includes/ast"; ..
     "$(SCIDIR)/modules/ast/includes/exps"; ..
+    "$(SCIDIR)/modules/ast/includes/operations"; ..
+    "$(SCIDIR)/modules/ast/includes/parse"; ..
+    "$(SCIDIR)/modules/ast/includes/symbol"; ..
+    "$(SCIDIR)/modules/ast/includes/system_env"; ..
+    "$(SCIDIR)/modules/ast/includes/types"; ..
     "$(SCIDIR)/modules/string/includes"; ..
     "$(SCIDIR)/modules/console/includes"; ..
     "$(SCIDIR)/libs/Eigen/includes"];
