@@ -27,7 +27,6 @@ import org.scilab.modules.gui.label.Label;
 import org.scilab.modules.gui.listbox.ListBox;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.popupmenu.PopupMenu;
-import org.scilab.modules.gui.radiobutton.RadioButton;
 import org.scilab.modules.gui.slider.Slider;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
@@ -314,23 +313,6 @@ public class ScilabTab extends ScilabContainer implements Tab {
      * @param member the CheckBox to remove
      */
     public void removeMember(CheckBox member) {
-        ScilabBridge.removeMember(this, member);
-    }
-
-    /**
-     * We want to be able to add directly a RadioButton in a Tab.
-     * @param member the RadioButton to add
-     * @return the position of the RadioButton in the member list.
-     */
-    public int addMember(RadioButton member) {
-        return ScilabBridge.addMember(this, member);
-    }
-
-    /**
-     * Remove a RadioButton from a Tab.
-     * @param member the RadioButton to remove
-     */
-    public void removeMember(RadioButton member) {
         ScilabBridge.removeMember(this, member);
     }
 

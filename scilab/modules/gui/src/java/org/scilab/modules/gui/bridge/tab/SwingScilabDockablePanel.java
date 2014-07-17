@@ -78,8 +78,6 @@ import org.scilab.modules.gui.bridge.popupmenu.SwingScilabPopupMenu;
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.bridge.radiobutton.SwingScilabRadioButton;
 import org.scilab.modules.gui.bridge.slider.SwingScilabScroll;
-import org.scilab.modules.gui.bridge.textbox.SwingScilabTextBox;
-import org.scilab.modules.gui.bridge.toolbar.SwingScilabToolBar;
 import org.scilab.modules.gui.bridge.tree.SwingScilabTree;
 import org.scilab.modules.gui.bridge.uidisplaytree.SwingScilabUiDisplayTree;
 import org.scilab.modules.gui.bridge.uitable.SwingScilabUiTable;
@@ -101,7 +99,6 @@ import org.scilab.modules.gui.label.Label;
 import org.scilab.modules.gui.listbox.ListBox;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.popupmenu.PopupMenu;
-import org.scilab.modules.gui.radiobutton.RadioButton;
 import org.scilab.modules.gui.slider.Slider;
 import org.scilab.modules.gui.tab.SimpleTab;
 import org.scilab.modules.gui.textbox.TextBox;
@@ -865,34 +862,6 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
      * @param member the CheckBox to remove
      */
     private void removeMember(SwingScilabCheckBox member) {
-    }
-
-    /**
-     * Add a member (dockable element) to container and returns its index
-     * @param member the member to add
-     * @return index of member in ArrayList
-     */
-    @Override
-    public int addMember(RadioButton member) {
-        return this.addMember((SwingScilabRadioButton) member.getAsSimpleRadioButton());
-    }
-
-    /**
-     * Add a member (dockable element) to container and returns its index
-     * @param member the member to add
-     * @return index of member in ArrayList
-     */
-    private int addMember(SwingScilabRadioButton member) {
-        return 0;
-    }
-
-    /**
-     * Remove a RadioButton from its container
-     * @param member the RadioButton to remove
-     */
-    @Override
-    public void removeMember(RadioButton member) {
-        this.removeMember((SwingScilabRadioButton) member.getAsSimpleRadioButton());
     }
 
     /**

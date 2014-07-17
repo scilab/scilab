@@ -23,7 +23,6 @@ import org.scilab.modules.gui.helpbrowser.HelpBrowser;
 import org.scilab.modules.gui.label.Label;
 import org.scilab.modules.gui.listbox.ListBox;
 import org.scilab.modules.gui.popupmenu.PopupMenu;
-import org.scilab.modules.gui.radiobutton.RadioButton;
 import org.scilab.modules.gui.slider.Slider;
 import org.scilab.modules.gui.tree.Tree;
 import org.scilab.modules.gui.utils.Size;
@@ -132,19 +131,6 @@ public interface Tab extends Container {
      * @param member the CheckBox to remove
      */
     void removeMember(CheckBox member);
-
-    /**
-     * We want to be able to add directly a RadioButton in a Tab.
-     * @param member the RadioButton to add
-     * @return the position of the RadioButton in the member list.
-     */
-    int addMember(RadioButton member);
-
-    /**
-     * Remove a RadioButton from a Tab.
-     * @param member the RadioButton to remove
-     */
-    void removeMember(RadioButton member);
 
     /**
      * We want to be able to add directly a Slider in a Tab.

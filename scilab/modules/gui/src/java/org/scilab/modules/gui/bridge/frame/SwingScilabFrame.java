@@ -83,7 +83,6 @@ import org.scilab.modules.gui.frame.SimpleFrame;
 import org.scilab.modules.gui.label.Label;
 import org.scilab.modules.gui.listbox.ListBox;
 import org.scilab.modules.gui.menubar.MenuBar;
-import org.scilab.modules.gui.radiobutton.RadioButton;
 import org.scilab.modules.gui.slider.Slider;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.textbox.TextBox;
@@ -531,26 +530,6 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
      * @return index of member in ArrayList
      */
     private int addMember(SwingScilabListBox member) {
-        this.add(member);
-        return this.getComponentZOrder(member);
-    }
-
-    /**
-     * Add a member (dockable element) to container and returns its index
-     * @param member the member to add
-     * @return index of member in ArrayList
-     */
-    public int addMember(RadioButton member) {
-        //		 FIXME replace member with member.getAsSimpleRadioButton() when ready
-        return this.addMember((SwingScilabRadioButton) member);
-    }
-
-    /**
-     * Add a member (dockable element) to container and returns its index
-     * @param member the member to add
-     * @return index of member in ArrayList
-     */
-    private int addMember(SwingScilabRadioButton member) {
         this.add(member);
         return this.getComponentZOrder(member);
     }

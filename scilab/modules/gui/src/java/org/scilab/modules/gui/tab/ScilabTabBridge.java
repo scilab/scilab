@@ -25,7 +25,6 @@ import org.scilab.modules.gui.label.Label;
 import org.scilab.modules.gui.listbox.ListBox;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.popupmenu.PopupMenu;
-import org.scilab.modules.gui.radiobutton.RadioButton;
 import org.scilab.modules.gui.uitable.UiTable;
 import org.scilab.modules.gui.uidisplaytree.UiDisplayTree;
 import org.scilab.modules.gui.slider.Slider;
@@ -260,26 +259,7 @@ public class ScilabTabBridge {
         tab.getAsSimpleTab().removeMember(member);
     }
 
-    /**
-     * Add a member (dockable element) to a tab and returns the index of this member
-     * @param tab the tab which we want to add the RadioButton to
-     * @param member the RadioButton to add
-     * @return the position of the RadioButton in the member list.
-     */
-    public static int addMember(Tab tab, RadioButton member) {
-        return (tab.getAsSimpleTab().addMember(member));
-    }
-
-    /**
-     * Remove a RadioButton member from a tab
-     * @param tab the tab which we want to remove the RadioButton from
-     * @param member the RadioButton to add
-     */
-    public static void removeMember(Tab tab, RadioButton member) {
-        tab.getAsSimpleTab().removeMember(member);
-    }
-
-    /**
+   /**
      * Add a member (dockable element) to a tab and returns the index of this member
      * @param tab the tab which we want to add the UiTable to
      * @param member the UiTable to add
