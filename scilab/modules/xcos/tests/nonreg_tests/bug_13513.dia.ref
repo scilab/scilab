@@ -6,13 +6,13 @@
 // =============================================================================
 // <-- XCOS TEST -->
 //
-// <-- Non-regression test for bug XXXXX -->
+// <-- Non-regression test for bug 13513 -->
 //
 // <-- Bugzilla URL -->
-// http://bugzilla.scilab.org/show_bug.cgi?id=XXXXX
+// http://bugzilla.scilab.org/show_bug.cgi?id=13513
 //
 // <-- Short Description -->
 // EXPRESSION block with parameter "u1" report a singularity error.
-assert_checktrue(importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_XXXXX.zcos"));
+assert_checktrue(importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_13513.zcos"));
 // compile and simulate
 xcos_simulate(scs_m, 4);
