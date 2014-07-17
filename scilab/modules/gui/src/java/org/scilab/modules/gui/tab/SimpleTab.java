@@ -24,7 +24,6 @@ import org.scilab.modules.gui.label.Label;
 import org.scilab.modules.gui.listbox.ListBox;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.popupmenu.PopupMenu;
-import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.radiobutton.RadioButton;
 import org.scilab.modules.gui.uitable.UiTable;
 import org.scilab.modules.gui.uidisplaytree.UiDisplayTree;
@@ -88,19 +87,6 @@ public interface SimpleTab {
      * @return the position of the console in the member list.
      */
     int addMember(Canvas member);
-
-    /**
-     * We want to be able to add directly a pushbutton in a Tab.
-     * @param member the pushbutton to add
-     * @return the position of the pushbutton in the member list.
-     */
-    int addMember(PushButton member);
-
-    /**
-     * Remove a PushButton from a Tab.
-     * @param member the pushbutton to add
-     */
-    void removeMember(PushButton member);
 
     /**
      * We want to be able to add directly a editbox in a Tab.

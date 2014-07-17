@@ -13,7 +13,7 @@
 
 package org.scilab.modules.gui.toolbar;
 
-import org.scilab.modules.gui.pushbutton.PushButton;
+import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.uielement.UIElement;
 
 /**
@@ -34,7 +34,7 @@ public interface ToolBar extends UIElement {
      * Add a PushButton to the ToolBar.
      * @param pushButton the PushButton to add .
      */
-    void add(PushButton pushButton);
+    //void add(SwingScilabPushButton pushButton);
 
     /**
      * Add a Separator to a toolbar

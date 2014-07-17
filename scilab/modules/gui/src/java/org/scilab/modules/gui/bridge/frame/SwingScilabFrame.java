@@ -83,7 +83,6 @@ import org.scilab.modules.gui.frame.SimpleFrame;
 import org.scilab.modules.gui.label.Label;
 import org.scilab.modules.gui.listbox.ListBox;
 import org.scilab.modules.gui.menubar.MenuBar;
-import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.radiobutton.RadioButton;
 import org.scilab.modules.gui.slider.Slider;
 import org.scilab.modules.gui.tab.Tab;
@@ -541,25 +540,6 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
      * @param member the member to add
      * @return index of member in ArrayList
      */
-    public int addMember(PushButton member) {
-        return this.addMember((SwingScilabPushButton) member.getAsSimplePushButton());
-    }
-
-    /**
-     * Add a member (dockable element) to container and returns its index
-     * @param member the member to add
-     * @return index of member in ArrayList
-     */
-    private int addMember(SwingScilabPushButton member) {
-        this.add(member);
-        return this.getComponentZOrder(member);
-    }
-
-    /**
-     * Add a member (dockable element) to container and returns its index
-     * @param member the member to add
-     * @return index of member in ArrayList
-     */
     public int addMember(RadioButton member) {
         //		 FIXME replace member with member.getAsSimpleRadioButton() when ready
         return this.addMember((SwingScilabRadioButton) member);
@@ -593,37 +573,6 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
     private int addMember(SwingScilabScroll member) {
         this.add(member);
         return this.getComponentZOrder(member);
-    }
-
-    /**
-     * Add a PushButton in a Frame with a BorderLayout.
-     * @param member the PushButton to add
-     * @param borderLayout the BorderLayout to use
-     * @return the position of the PushButton in the member list.
-     */
-    public int addMember(PushButton member, String borderLayout) {
-        return this.addMember((SwingScilabPushButton) member.getAsSimplePushButton(), borderLayout);
-    }
-
-    /**
-     * Add a PushButton (dockable element) to Frame and returns its index
-     * @param member the PushButton to add
-     * @param layoutPosition the layout Position to use
-     * @return index of member in ArrayList
-     */
-    private int addMember(SwingScilabPushButton member, int layoutPosition) {
-        this.add(member, layoutPosition);
-        return this.getComponentZOrder(member);
-    }
-
-    /**
-     * Add a PushButton in a Frame with a layout.
-     * @param member the PushButton to add
-     * @param layoutPosition the layout Position to use
-     * @return the position of the PushButton in the member list.
-     */
-    public int addMember(PushButton member, int layoutPosition) {
-        return this.addMember((SwingScilabPushButton) member.getAsSimplePushButton(), layoutPosition);
     }
 
     /**

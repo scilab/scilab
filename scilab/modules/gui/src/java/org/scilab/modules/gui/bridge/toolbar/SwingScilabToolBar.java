@@ -14,10 +14,7 @@ package org.scilab.modules.gui.bridge.toolbar;
 
 import javax.swing.JToolBar;
 
-import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
-import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.toolbar.SimpleToolBar;
-import org.scilab.modules.gui.utils.UIElementMapper;
 
 /**
  * Swing implementation for Scilab ToolBar in GUIs
@@ -36,14 +33,6 @@ public class SwingScilabToolBar extends JToolBar implements SimpleToolBar {
         super();
         setFloatable(false);
         setRollover(true); /* Bug 2752 */
-    }
-
-    /**
-     * Add a PushButton to the ToolBar.
-     * @param pushButton the PushButton to add .
-     */
-    public void add(PushButton pushButton) {
-        super.add((SwingScilabPushButton) pushButton.getAsSimplePushButton());
     }
 
     /**

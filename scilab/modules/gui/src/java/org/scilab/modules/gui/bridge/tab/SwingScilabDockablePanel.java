@@ -101,7 +101,6 @@ import org.scilab.modules.gui.label.Label;
 import org.scilab.modules.gui.listbox.ListBox;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.popupmenu.PopupMenu;
-import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.radiobutton.RadioButton;
 import org.scilab.modules.gui.slider.Slider;
 import org.scilab.modules.gui.tab.SimpleTab;
@@ -753,35 +752,6 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
     }
 
     private void removeMember(SwingScilabFrame member) {
-    }
-
-    /**
-     * Add a member (dockable element) to container and returns its index
-     * @param member the member to add
-     * @return index of member in ArrayList
-     */
-    @Override
-    public int addMember(PushButton member) {
-        return this.addMember((SwingScilabPushButton) member.getAsSimplePushButton());
-    }
-
-    /**
-     * Add a member (dockable element) to container and returns its index
-     * @param member the member to add
-     * @return index of member in ArrayList
-     */
-    private int addMember(SwingScilabPushButton member) {
-        repaint();
-        return 0;
-    }
-
-    /**
-     * Remove a PushButton from its container
-     * @param member the PushButton to remove
-     */
-    @Override
-    public void removeMember(PushButton member) {
-        this.removeMember((SwingScilabPushButton) member.getAsSimplePushButton());
     }
 
     /**

@@ -25,7 +25,6 @@ import org.scilab.modules.gui.label.Label;
 import org.scilab.modules.gui.listbox.ListBox;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.popupmenu.PopupMenu;
-import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.radiobutton.RadioButton;
 import org.scilab.modules.gui.uitable.UiTable;
 import org.scilab.modules.gui.uidisplaytree.UiDisplayTree;
@@ -202,25 +201,6 @@ public class ScilabTabBridge {
      */
     public static int addMember(Tab tab, Canvas member) {
         return (tab.getAsSimpleTab().addMember(member));
-    }
-
-    /**
-     * Add a member (dockable element) to a tab and returns the index of this member
-     * @param tab the tab which we want to add the pushbutton to
-     * @param member the pushbutton to add
-     * @return the position of the pushbutton in the member list.
-     */
-    public static int addMember(Tab tab, PushButton member) {
-        return (tab.getAsSimpleTab().addMember(member));
-    }
-
-    /**
-     * Remove a PushButton member from a tab
-     * @param tab the tab which we want to add the PushButton to
-     * @param member the PushButton to add
-     */
-    public static void removeMember(Tab tab, PushButton member) {
-        tab.getAsSimpleTab().removeMember(member);
     }
 
     /**

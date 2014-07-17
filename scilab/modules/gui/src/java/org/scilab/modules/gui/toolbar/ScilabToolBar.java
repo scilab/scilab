@@ -14,7 +14,6 @@
 package org.scilab.modules.gui.toolbar;
 
 import org.scilab.modules.gui.bridge.ScilabBridge;
-import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.uielement.ScilabUIElement;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
@@ -55,13 +54,6 @@ public class ScilabToolBar extends ScilabUIElement implements ToolBar {
         return component;
     }
 
-    /**
-     * Add a PushButton to the ToolBar.
-     * @param pushButton the PushButton to add .
-     */
-    public void add(PushButton pushButton) {
-        ScilabBridge.add(this, pushButton);
-    }
 
     /**
      * Add a separator in the toolbar

@@ -23,7 +23,6 @@ import org.scilab.modules.gui.helpbrowser.HelpBrowser;
 import org.scilab.modules.gui.label.Label;
 import org.scilab.modules.gui.listbox.ListBox;
 import org.scilab.modules.gui.popupmenu.PopupMenu;
-import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.radiobutton.RadioButton;
 import org.scilab.modules.gui.slider.Slider;
 import org.scilab.modules.gui.tree.Tree;
@@ -94,19 +93,6 @@ public interface Tab extends Container {
      * @param member the Frame to remove
      */
     void removeMember(Frame member);
-
-    /**
-     * We want to be able to add directly a pushbutton in a Tab.
-     * @param member the pushbutton to add
-     * @return the position of the pushbutton in the member list.
-     */
-    int addMember(PushButton member);
-
-    /**
-     * Remove a PushButton from a Tab.
-     * @param member the PushButton to remove
-     */
-    void removeMember(PushButton member);
 
     /**
      * We want to be able to add directly a editbox in a Tab.

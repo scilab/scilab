@@ -20,8 +20,6 @@ import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.plotbrowser.PlotBrowser;
 import org.scilab.modules.gui.plotbrowser.StartPlotBrowser;
 import org.scilab.modules.gui.plotbrowser.SwingPlotBrowser;
-import org.scilab.modules.gui.pushbutton.PushButton;
-import org.scilab.modules.gui.pushbutton.ScilabPushButton;
 
 /**
  * Refresh action class
@@ -53,12 +51,12 @@ public final class RefreshAction extends CommonCallBack {
      * @param title tooltip for the button
      * @return the button
      */
-    public static PushButton createButton(String title) {
-        PushButton button = ScilabPushButton.createPushButton();
-        ((SwingScilabPushButton) button.getAsSimplePushButton()).addActionListener(new RefreshAction(title));
+    public static SwingScilabPushButton createButton(String title) {
+        SwingScilabPushButton button = new SwingScilabPushButton();
+        button.addActionListener(new RefreshAction(title));
         button.setToolTipText(title);
         ImageIcon imageIcon = new ImageIcon(FindIconHelper.findIcon("view-refresh"));
-        ((SwingScilabPushButton) button.getAsSimplePushButton()).setIcon(imageIcon);
+        button.setIcon(imageIcon);
 
         return button;
     }
