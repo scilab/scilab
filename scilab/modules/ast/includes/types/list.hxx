@@ -77,12 +77,12 @@ public :
         else
         {
             std::vector<InternalType *> _out = extract(&in);
-            if (_out.empty())
-            {
-                std::wostringstream os;
-                os << _W("Invalid index.\n");
-                throw ast::ScilabError(os.str(), 999, (*e.args_get().begin())->location_get());
-            }
+            //if (_out.empty())
+            //{
+            //    std::wostringstream os;
+            //    os << _W("Invalid index.\n");
+            //    throw ast::ScilabError(os.str(), 999, (*e.args_get().begin())->location_get());
+            //}
             out.swap(_out);
         }
 

@@ -28,6 +28,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
         types::optional_list opt;
 
         int iRetCount = expected_getSize();
+        int iSaveExpectedSize = iRetCount;
 
         // manage case [a,b]=foo() where foo is defined as a=foo()
         if (pIT->getInvokeNbOut() != -1 && pIT->getInvokeNbOut() < iRetCount)
@@ -81,8 +82,10 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                 continue;
             }
 
-            expected_setSize(1);
+            int iSize = expected_getSize();
+            expected_setSize(-1);
             (*itExp)->accept(*this);
+            expected_setSize(iSize);
 
             if (result_get() == NULL)
             {
@@ -119,7 +122,6 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
 
         try
         {
-            int iSaveExpectedSize = iRetCount;
             expected_setSize(iSaveExpectedSize);
             iRetCount = std::max(1, iRetCount);
 
@@ -129,9 +131,10 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                 {
                     std::wostringstream os;
                     os << _W("bad lhs, expected : ") << iRetCount << _W(" returned : ") << out.size() << std::endl;
-                    throw ast::ScilabError(os.str(), 999, e.location_get());
+                    throw ScilabError(os.str(), 999, e.location_get());
                 }
 
+                expected_setSize(iSaveExpectedSize);
                 result_clear();
                 result_set(out);
                 clean_in(in, out);
@@ -147,6 +150,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
         }
         catch (ScilabMessage & sm)
         {
+            expected_setSize(iSaveExpectedSize);
             result_clear();
             clean_in_out(in, out);
             clean_opt(opt);
@@ -156,6 +160,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
         }
         catch (InternalAbort & ia)
         {
+            expected_setSize(iSaveExpectedSize);
             result_clear();
             clean_in_out(in, out);
             clean_opt(opt);
@@ -165,6 +170,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
         }
         catch (ScilabError & se)
         {
+            expected_setSize(iSaveExpectedSize);
             result_clear();
             clean_in_out(in, out);
             clean_opt(opt);
