@@ -1997,6 +1997,7 @@ modules/helptools/etc/SciDocConf.xml
 modules/core/includes/version.h
 modules/core/includes/stack.h
 modules/atoms/etc/repositories
+modules/atoms/tests/unit_tests/repositories.orig
 ])
 
 # Detection of the module for the future version of Scilab 6
