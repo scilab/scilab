@@ -54,7 +54,6 @@ import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.SwingViewWidget;
 import org.scilab.modules.gui.bridge.label.SwingScilabLabel.IconLabel.IconType;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
-import org.scilab.modules.gui.label.SimpleLabel;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
@@ -65,13 +64,14 @@ import org.scilab.modules.gui.utils.ScilabRelief;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.utils.WebBrowser;
+import org.scilab.modules.gui.widget.Widget;
 
 /**
  * Swing implementation for Scilab Labels in GUIs
  * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
  */
-public class SwingScilabLabel extends JScrollPane implements SwingViewObject, SimpleLabel {
+public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Widget {
 
     private enum LabelStyle {
         TEXT, LATEX, MATHML, HTML

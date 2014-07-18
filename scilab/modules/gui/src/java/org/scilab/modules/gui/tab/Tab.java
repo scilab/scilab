@@ -18,7 +18,6 @@ import org.scilab.modules.gui.container.Container;
 import org.scilab.modules.gui.editbox.EditBox;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.helpbrowser.HelpBrowser;
-import org.scilab.modules.gui.label.Label;
 import org.scilab.modules.gui.popupmenu.PopupMenu;
 import org.scilab.modules.gui.tree.Tree;
 import org.scilab.modules.gui.utils.Size;
@@ -88,19 +87,6 @@ public interface Tab extends Container {
      * @param member the EditBox to remove
      */
     void removeMember(EditBox member);
-
-    /**
-     * We want to be able to add directly a label in a Tab.
-     * @param member the label to add
-     * @return the position of the label in the member list.
-     */
-    int addMember(Label member);
-
-    /**
-     * Remove a Label from a Tab.
-     * @param member the Label to remove
-     */
-    void removeMember(Label member);
 
     /**
      * We want to be able to add directly a PopupMenu in a Tab.

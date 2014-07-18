@@ -21,7 +21,6 @@ import org.scilab.modules.gui.dockable.Dockable;
 import org.scilab.modules.gui.editbox.EditBox;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.helpbrowser.HelpBrowser;
-import org.scilab.modules.gui.label.Label;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.popupmenu.PopupMenu;
 import org.scilab.modules.gui.textbox.TextBox;
@@ -258,23 +257,6 @@ public class ScilabTab extends ScilabContainer implements Tab {
      * @param member the EditBox to remove
      */
     public void removeMember(EditBox member) {
-        ScilabBridge.removeMember(this, member);
-    }
-
-    /**
-     * We want to be able to add directly a label in a Tab.
-     * @param member the label to add
-     * @return the position of the label in the member list.
-     */
-    public int addMember(Label member) {
-        return ScilabBridge.addMember(this, member);
-    }
-
-    /**
-     * Remove a Label from a Tab.
-     * @param member the Label to remove
-     */
-    public void removeMember(Label member) {
         ScilabBridge.removeMember(this, member);
     }
 

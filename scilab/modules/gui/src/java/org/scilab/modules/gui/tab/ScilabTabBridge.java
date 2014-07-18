@@ -19,7 +19,6 @@ import org.scilab.modules.gui.console.Console;
 import org.scilab.modules.gui.editbox.EditBox;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.helpbrowser.HelpBrowser;
-import org.scilab.modules.gui.label.Label;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.popupmenu.PopupMenu;
 import org.scilab.modules.gui.uitable.UiTable;
@@ -195,25 +194,6 @@ public class ScilabTabBridge {
      * @param member the EditBox to add
      */
     public static void removeMember(Tab tab, EditBox member) {
-        tab.getAsSimpleTab().removeMember(member);
-    }
-
-    /**
-     * Add a member (dockable element) to a tab and returns the index of this member
-     * @param tab the tab which we want to add the Label to
-     * @param member the Label to add
-     * @return the position of the Label in the member list.
-     */
-    public static int addMember(Tab tab, Label member) {
-        return (tab.getAsSimpleTab().addMember(member));
-    }
-
-    /**
-     * Remove a Label member from a tab
-     * @param tab the tab which we want to remove the Label from
-     * @param member the Label to add
-     */
-    public static void removeMember(Tab tab, Label member) {
         tab.getAsSimpleTab().removeMember(member);
     }
 
