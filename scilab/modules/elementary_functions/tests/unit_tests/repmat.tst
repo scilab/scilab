@@ -21,7 +21,7 @@ H_ref=[1/s,1/s,1/s;2/(1+s),2/(1+s),2/(1+s)];
 assert_checkequal(numer(H),numer(H_ref));
 assert_checkequal(denom(H),denom(H_ref));
 assert_checkequal(repmat([],2,2),[]);
-B_ref=hypermat([2 4 2],int8([1;3;7;15;31;63;127;55;1;3;7;15;31;63;127;55]));
+B_ref=int8(hypermat([2 4 2],[1;3;7;15;31;63;127;55;1;3;7;15;31;63;127;55]));
 assert_checkequal(repmat(int8([1,7,31,127;3,15,63,55]),1,1,2),B_ref);
 C_ref = hypermat([2 3 2 2], 1:24);
 assert_checkequal(repmat(C_ref,1),C_ref);
