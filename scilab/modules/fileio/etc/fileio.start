@@ -13,30 +13,34 @@ load('SCI/modules/fileio/macros/lib');
 
 // Initialize CURL environment
 // =============================================================================
-if getos()=="Linux" then
+function startModule()
+    if getos()=="Linux" then
 
-    // List of hard-coded paths comes from curl sources (configure.ac)
+        // List of hard-coded paths comes from curl sources (configure.ac)
 
-    userBundle = getenv("CURL_CA_BUNDLE", "");
-    if isempty(userBundle) then // Not defined by the user
+        userBundle = getenv("CURL_CA_BUNDLE", "");
+        if isempty(userBundle) then // Not defined by the user
 
-        standardFiles = ["/etc/ssl/certs/ca-certificates.crt";
-                "/etc/pki/tls/certs/ca-bundle.crt";
-                "/usr/share/ssl/certs/ca-bundle.crt";
-                "/usr/local/share/certs/ca-root.crt";
-                "/etc/ssl/cert.pem"];
+            standardFiles = ["/etc/ssl/certs/ca-certificates.crt";
+                    "/etc/pki/tls/certs/ca-bundle.crt";
+                    "/usr/share/ssl/certs/ca-bundle.crt";
+                    "/usr/local/share/certs/ca-root.crt";
+                    "/etc/ssl/cert.pem"];
 
-        for iFile = 1:size(standardFiles, "*")
-            if isfile(standardFiles(iFile)) then
-                setenv("CURL_CA_BUNDLE", standardFiles(iFile));
-                break
+            for iFile = 1:size(standardFiles, "*")
+                if isfile(standardFiles(iFile)) then
+                    setenv("CURL_CA_BUNDLE", standardFiles(iFile));
+                    break
+                end
             end
         end
-    end
 
-    caBundle = getenv("CURL_CA_BUNDLE", "");
-    caPath = getenv("CURL_CA_PATH", "");
-    if isempty(caBundle) & isempty(caPath) then
-        setenv("CURL_CA_PATH", "/etc/ssl/certs/");
+        caBundle = getenv("CURL_CA_BUNDLE", "");
+        caPath = getenv("CURL_CA_PATH", "");
+        if isempty(caBundle) & isempty(caPath) then
+            setenv("CURL_CA_PATH", "/etc/ssl/certs/");
+        end
     end
-end
+endfunction
+startModule();
+clear startModule

@@ -837,7 +837,7 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
      # by the above --with options
      AC_JAVA_WITH_JDK
      if test "$with_jdk" != no; then
-     
+
      AC_JAVA_DETECT_JVM
      case "$ac_java_jvm_version" in
         1.6 | 1.7 | 1.8)
@@ -2041,6 +2041,8 @@ scilab-lib-doc.properties
 modules/helptools/etc/SciDocConf.xml
 modules/core/includes/version.h
 modules/core/includes/stack.h
+modules/atoms/etc/repositories
+modules/atoms/tests/unit_tests/repositories.orig
 ])
 
 # Detection of the module for the future version of Scilab 6

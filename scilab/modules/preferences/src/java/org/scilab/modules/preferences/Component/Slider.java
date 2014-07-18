@@ -15,6 +15,7 @@ package org.scilab.modules.preferences.Component;
 import java.awt.Color;
 
 import org.scilab.modules.gui.bridge.slider.SwingScilabSlider;
+import org.scilab.modules.gui.widget.Widget;
 import org.scilab.modules.preferences.XCommonManager;
 import org.scilab.modules.preferences.XComponent;
 import org.scilab.modules.preferences.XComponentAttributes;
@@ -26,7 +27,7 @@ import org.w3c.dom.Node;
  * @author Vincent COUVERT
  *
  */
-public class Slider extends SwingScilabSlider implements XComponent {
+public class Slider extends SwingScilabSlider implements XComponent, Widget {
 
     /** Universal identifier for serialization.
      *

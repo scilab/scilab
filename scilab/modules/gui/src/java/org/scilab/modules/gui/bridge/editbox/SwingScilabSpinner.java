@@ -19,7 +19,6 @@ import javax.swing.event.ChangeListener;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.SwingViewWidget;
-import org.scilab.modules.gui.editbox.SimpleEditBox;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.textbox.TextBox;
@@ -28,8 +27,9 @@ import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.PositionConverter;
 import org.scilab.modules.gui.utils.ScilabRelief;
 import org.scilab.modules.gui.utils.Size;
+import org.scilab.modules.gui.widget.Widget;
 
-public class SwingScilabSpinner extends JSpinner implements SwingViewObject, SimpleEditBox {
+public class SwingScilabSpinner extends JSpinner implements SwingViewObject, Widget {
     private static final long serialVersionUID = -8036645127098703686L;
 
     private Integer uid;

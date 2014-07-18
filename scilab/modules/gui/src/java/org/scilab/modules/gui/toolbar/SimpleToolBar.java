@@ -13,20 +13,12 @@
 
 package org.scilab.modules.gui.toolbar;
 
-import org.scilab.modules.gui.pushbutton.PushButton;
-
 /**
  * Interface for SimpleToolBar the associated object to Scilab GUIs ToolBar
  * @author Marouane BEN JELLOUL
  * @author Vincent COUVERT
  */
 public interface SimpleToolBar {
-
-    /**
-     * Add a PushButton to the ToolBar.
-     * @param pushButton the PushButton to add.
-     */
-    void add(PushButton pushButton);
 
     /**
      * Add a Separator to a toolbar

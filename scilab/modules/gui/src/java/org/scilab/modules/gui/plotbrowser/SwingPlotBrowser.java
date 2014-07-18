@@ -54,7 +54,7 @@ public class SwingPlotBrowser extends SwingScilabDockablePanel {
         addMenuBar(menuBar);
 
         ToolBar toolBar = ScilabToolBar.createToolBar();
-        toolBar.add(RefreshAction.createButton(MessagesPlotBrowser.refresh));
+        //toolBar.add(RefreshAction.createButton(MessagesPlotBrowser.refresh));
         toolBar.addSeparator();
 
         guiComponents();

@@ -16,8 +16,6 @@ import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.ged.MessagesGED;
 import org.scilab.modules.gui.ged.SwingInspector;
-import org.scilab.modules.gui.pushbutton.PushButton;
-import org.scilab.modules.gui.pushbutton.ScilabPushButton;
 
 /**
  * Show/Hide button class.
@@ -26,7 +24,7 @@ import org.scilab.modules.gui.pushbutton.ScilabPushButton;
  */
 public class ShowHide extends CommonCallBack {
     private static boolean click = true;
-    private static PushButton button;
+    private static SwingScilabPushButton button;
 
     /**
      * Constructor.
@@ -51,9 +49,9 @@ public class ShowHide extends CommonCallBack {
      * @param title tooltip for the button.
      * @return the button.
      */
-    public static PushButton createButton(String title) {
-        button = ScilabPushButton.createPushButton();
-        ((SwingScilabPushButton) button.getAsSimplePushButton()).addActionListener(new ShowHide(title));
+    public static SwingScilabPushButton createButton(String title) {
+        button = new SwingScilabPushButton();
+        button.addActionListener(new ShowHide(title));
         button.setToolTipText(title);
         setIcon(1);
 
@@ -391,16 +389,13 @@ public class ShowHide extends CommonCallBack {
     public static void setIcon(int intValue) {
         switch (intValue) {
             case 0:
-                ((SwingScilabPushButton) button.getAsSimplePushButton())
-                .setIcon(new ImageIcon(SwingInspector.icon_expand_all));
+                button.setIcon(new ImageIcon(SwingInspector.icon_expand_all));
                 break;
             case 1:
-                ((SwingScilabPushButton) button.getAsSimplePushButton())
-                .setIcon(new ImageIcon(SwingInspector.icon_collapse_all));
+                button.setIcon(new ImageIcon(SwingInspector.icon_collapse_all));
                 break;
             default:
-                ((SwingScilabPushButton) button.getAsSimplePushButton())
-                .setIcon(new ImageIcon(SwingInspector.icon_expand_all));
+                button.setIcon(new ImageIcon(SwingInspector.icon_expand_all));
                 break;
         }
     }

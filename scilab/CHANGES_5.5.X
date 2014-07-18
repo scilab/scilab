@@ -97,7 +97,9 @@ Scilab Bug Fixes
 
 * Bug #13364 fixed - Scilab did not start on CentOS 6.5, RedHat 5.4, RedHat 5.5 (GLIBC issue).
 
-* Bug #13365 fixed - Data bounds werenot correctly updated in 3-D.
+* Bug #13365 fixed - Data bounds were not correctly updated in 3-D.
+
+* Bug #13367 fixed - ATOMS default repository was 5.4 one instead of 5.5.
 
 * Bug #13378 fixed - The "Console" handle display was not homogeneous with others.
 
@@ -166,6 +168,8 @@ Scilab Bug Fixes
 
 * Bug #13509 fixed - It was not possible to have an empty prefix with xmlNs.
 
+* Bug #13510 fixed - Datatip callback cleared 'd'.
+
 
 Xcos Bug Fixes
 ==============
@@ -192,6 +196,11 @@ Xcos Bug Fixes
                      Example has been added.
 
 * Bug #13396 fixed - MBLOCK did not work with an external file containing the modelica class.
+
+* Bug #13513 fixed - EXPRESSION block with "u1" as expression failed with a 
+                     singularity error.
+
+* Bug #13514 fixed - External modules' loader_pal.sce file contained absolute path.
 
 
 Known issues

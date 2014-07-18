@@ -12,13 +12,15 @@
 package org.scilab.modules.gui.ged;
 
 import java.awt.CardLayout;
+
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
+import org.scilab.modules.gui.bridge.toolbar.SwingScilabToolBar;
 import org.scilab.modules.gui.ged.actions.CloseAction;
 import org.scilab.modules.gui.ged.actions.ShowHide;
-import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.gui.menubar.MenuBar;
@@ -64,7 +66,7 @@ public class SwingInspector extends SwingScilabDockablePanel {
         addMenuBar(menuBar);
 
         ToolBar toolBar = ScilabToolBar.createToolBar();
-        toolBar.add(ShowHide.createButton(MessagesGED.hide));
+        ((SwingScilabToolBar) toolBar.getAsSimpleToolBar()).add(ShowHide.createButton(MessagesGED.hide));
         toolBar.addSeparator();
 
         guiComponents();
