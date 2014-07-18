@@ -28,7 +28,7 @@ assert_checkalmostequal(sinc(x2),sin(x2)./x2, [], 1e-12);
 
 // Error messages
 error_msg = msprintf(gettext("Wrong number of input arguments."));
-assert_checkerror("sinc(1,2,3)",error_msg,58);
+assert_checkerror("sinc(1,2,3)",error_msg,999);
 error_msg=msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"sinc", 1);
 assert_checkerror("sinc()",error_msg);
 error_msg = msprintf(gettext("%s: Wrong type for input argument #%d: Real or complex, sparse or full matrix or hypermatrix expected.\n"),"sinc",1);
