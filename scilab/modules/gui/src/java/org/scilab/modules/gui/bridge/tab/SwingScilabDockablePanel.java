@@ -91,8 +91,6 @@ import org.scilab.modules.gui.editor.EditorEventListener;
 import org.scilab.modules.gui.events.GlobalEventWatcher;
 import org.scilab.modules.gui.events.ScilabEventListener;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
-import org.scilab.modules.gui.frame.Frame;
-import org.scilab.modules.gui.frame.SimpleFrame;
 import org.scilab.modules.gui.helpbrowser.HelpBrowser;
 import org.scilab.modules.gui.label.Label;
 import org.scilab.modules.gui.menubar.MenuBar;
@@ -694,58 +692,6 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
         // replace the current content pane
         this.setContentPane(member);
         return this.getComponentZOrder(member);
-    }
-
-    /**
-     * Add a member (dockable element) to container and returns its index
-     * @param member the member to add
-     * @return index of member in ArrayList
-     */
-    @Override
-    public int addMember(Frame member) {
-        SimpleFrame frame = member.getAsSimpleFrame();
-        if (frame instanceof SwingScilabFrame) {
-            return this.addMember((SwingScilabFrame) member.getAsSimpleFrame());
-        } else {
-            return this.addMember((SwingScilabScrollableFrame) member.getAsSimpleFrame());
-        }
-    }
-
-    /**
-     * Add a member (dockable element) to container and returns its index
-     * @param member the member to add
-     * @return index of member in ArrayList
-     */
-    private int addMember(SwingScilabScrollableFrame member) {
-        return 0;
-    }
-
-    private int addMember(SwingScilabFrame member) {
-        return 0;
-    }
-
-    /**
-     * Remove a Frame from its container
-     * @param member the Frame to remove
-     */
-    @Override
-    public void removeMember(Frame member) {
-        SimpleFrame frame = member.getAsSimpleFrame();
-        if (frame instanceof SwingScilabFrame) {
-            this.removeMember((SwingScilabFrame) member.getAsSimpleFrame());
-        } else {
-            this.removeMember((SwingScilabScrollableFrame) member.getAsSimpleFrame());
-        }
-    }
-
-    /**
-     * Remove a Frame from its container
-     * @param member the Frame to remove
-     */
-    private void removeMember(SwingScilabScrollableFrame member) {
-    }
-
-    private void removeMember(SwingScilabFrame member) {
     }
 
     /**

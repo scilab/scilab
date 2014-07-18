@@ -20,7 +20,6 @@ import org.scilab.modules.gui.container.ScilabContainer;
 import org.scilab.modules.gui.dockable.Dockable;
 import org.scilab.modules.gui.editbox.EditBox;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
-import org.scilab.modules.gui.frame.Frame;
 import org.scilab.modules.gui.helpbrowser.HelpBrowser;
 import org.scilab.modules.gui.label.Label;
 import org.scilab.modules.gui.menubar.MenuBar;
@@ -234,23 +233,6 @@ public class ScilabTab extends ScilabContainer implements Tab {
         // FIXME must be coded
         //return addMember(member);
         throw new UnsupportedOperationException();
-    }
-
-    /**
-     * Add a member (dockable element) to container and returns its index
-     * @param member the member to add
-     * @return index of member in ArrayList
-     */
-    public int addMember(Frame member) {
-        return ScilabBridge.addMember(this, member);
-    }
-
-    /**
-     * Remove a Frame from a Tab.
-     * @param member the Frame to remove
-     */
-    public void removeMember(Frame member) {
-        ScilabBridge.removeMember(this, member);
     }
 
     /**

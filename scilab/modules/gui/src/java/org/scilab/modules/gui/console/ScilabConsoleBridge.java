@@ -16,8 +16,6 @@ import java.awt.Cursor;
 import java.awt.Font;
 
 import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
-import org.scilab.modules.gui.frame.Frame;
-import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
@@ -60,16 +58,6 @@ public class ScilabConsoleBridge {
      */
     public static String readLine(Console console) {
         return console.getAsSimpleConsole().readLine();
-    }
-
-    /**
-     * Add a member (dockable element) to a tab and returns the index of this member
-     * @param tab the tab where we want to add the member
-     * @param member the member to add
-     * @return index of member in ArrayList
-     */
-    public static int addMember(Tab tab, Frame member) {
-        return tab.addMember(member);
     }
 
     /**

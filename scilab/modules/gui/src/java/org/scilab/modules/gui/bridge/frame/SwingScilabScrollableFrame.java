@@ -57,7 +57,6 @@ import org.scilab.modules.gui.bridge.textbox.SwingScilabTextBox;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.dockable.Dockable;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
-import org.scilab.modules.gui.frame.SimpleFrame;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
@@ -66,13 +65,14 @@ import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.PositionConverter;
 import org.scilab.modules.gui.utils.ScilabRelief;
 import org.scilab.modules.gui.utils.Size;
+import org.scilab.modules.gui.widget.Widget;
 
 /**
  * Swing implementation for Scilab frames in GUI
  * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
  */
-public class SwingScilabScrollableFrame extends JScrollPane implements SwingViewObject, SimpleFrame {
+public class SwingScilabScrollableFrame extends JScrollPane implements SwingViewObject, Widget {
 
     private static final long serialVersionUID = -7401084975837285447L;
 

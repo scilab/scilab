@@ -17,7 +17,6 @@ import org.scilab.modules.gui.console.Console;
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.editbox.EditBox;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
-import org.scilab.modules.gui.frame.Frame;
 import org.scilab.modules.gui.helpbrowser.HelpBrowser;
 import org.scilab.modules.gui.label.Label;
 import org.scilab.modules.gui.menubar.MenuBar;
@@ -49,19 +48,6 @@ public interface SimpleTab {
      * @param newTabName the Name we want to set to the tab
      */
     void setName(String newTabName);
-
-    /**
-     * We want to be able to add directly a Frame in a Tab.
-     * @param member the member to add
-     * @return the position of the frame in the member list.
-     */
-    int addMember(Frame member);
-
-    /**
-     * Remove a Frame from a Tab.
-     * @param member the Frame to remove
-     */
-    void removeMember(Frame member);
 
     /**
      * We want to be able to add directly a Console in a Tab.

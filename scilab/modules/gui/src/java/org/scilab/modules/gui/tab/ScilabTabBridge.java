@@ -18,7 +18,6 @@ import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.console.Console;
 import org.scilab.modules.gui.editbox.EditBox;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
-import org.scilab.modules.gui.frame.Frame;
 import org.scilab.modules.gui.helpbrowser.HelpBrowser;
 import org.scilab.modules.gui.label.Label;
 import org.scilab.modules.gui.menubar.MenuBar;
@@ -148,25 +147,6 @@ public class ScilabTabBridge {
      */
     public static void setVisible(Tab tab, boolean newVisibleState) {
         tab.getAsSimpleTab().setVisible(newVisibleState);
-    }
-
-    /**
-     * Add a member (dockable element) to a tab and returns the index of this member
-     * @param tab the tab where we want to add the member
-     * @param member the member to add
-     * @return index of member
-     */
-    public static int addMember(Tab tab, Frame member) {
-        return tab.getAsSimpleTab().addMember(member);
-    }
-
-    /**
-     * Remove a Frame member from a tab
-     * @param tab the tab which we want to add the Frame to
-     * @param member the Frame to add
-     */
-    public static void removeMember(Tab tab, Frame member) {
-        tab.getAsSimpleTab().removeMember(member);
     }
 
     /**
