@@ -96,7 +96,6 @@ import org.scilab.modules.gui.frame.Frame;
 import org.scilab.modules.gui.frame.SimpleFrame;
 import org.scilab.modules.gui.helpbrowser.HelpBrowser;
 import org.scilab.modules.gui.label.Label;
-import org.scilab.modules.gui.listbox.ListBox;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.popupmenu.PopupMenu;
 import org.scilab.modules.gui.tab.SimpleTab;
@@ -934,41 +933,6 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
      * @param member the UiTable to remove
      */
     private void removeMember(SwingScilabUiTable member) {
-    }
-
-    /**
-     * Add a member (dockable element) to container and returns its index
-     * @param member the member to add
-     * @return index of member in ArrayList
-     */
-    @Override
-    public int addMember(ListBox member) {
-        return this.addMember((SwingScilabListBox) member.getAsSimpleListBox());
-    }
-
-    /**
-     * Add a member (dockable element) to container and returns its index
-     * @param member the member to add
-     * @return index of member in ArrayList
-     */
-    private int addMember(SwingScilabListBox member) {
-        return 0;
-    }
-
-    /**
-     * Remove a ListBox from its container
-     * @param member the ListBox to remove
-     */
-    @Override
-    public void removeMember(ListBox member) {
-        this.removeMember((SwingScilabListBox) member.getAsSimpleListBox());
-    }
-
-    /**
-     * Remove a ListBox from its container
-     * @param member the ListBox to remove
-     */
-    private void removeMember(SwingScilabListBox member) {
     }
 
     /**

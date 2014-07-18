@@ -24,7 +24,6 @@ import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.frame.Frame;
 import org.scilab.modules.gui.helpbrowser.HelpBrowser;
 import org.scilab.modules.gui.label.Label;
-import org.scilab.modules.gui.listbox.ListBox;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.popupmenu.PopupMenu;
 import org.scilab.modules.gui.textbox.TextBox;
@@ -312,23 +311,6 @@ public class ScilabTab extends ScilabContainer implements Tab {
      * @param member the CheckBox to remove
      */
     public void removeMember(CheckBox member) {
-        ScilabBridge.removeMember(this, member);
-    }
-
-    /**
-     * We want to be able to add directly a ListBox in a Tab.
-     * @param member the ListBox to add
-     * @return the position of the ListBox in the member list.
-     */
-    public int addMember(ListBox member) {
-        return ScilabBridge.addMember(this, member);
-    }
-
-    /**
-     * Remove a ListBox from a Tab.
-     * @param member the ListBox to remove
-     */
-    public void removeMember(ListBox member) {
         ScilabBridge.removeMember(this, member);
     }
 

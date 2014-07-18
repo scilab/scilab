@@ -22,7 +22,6 @@ import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.frame.Frame;
 import org.scilab.modules.gui.helpbrowser.HelpBrowser;
 import org.scilab.modules.gui.label.Label;
-import org.scilab.modules.gui.listbox.ListBox;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.popupmenu.PopupMenu;
 import org.scilab.modules.gui.uitable.UiTable;
@@ -281,25 +280,6 @@ public class ScilabTabBridge {
         return (tab.getAsSimpleTab().addMember(member));
     }
     public static void removeMember(Tab tab, UiDisplayTree member) {
-        tab.getAsSimpleTab().removeMember(member);
-    }
-
-    /**
-     * Add a member (dockable element) to a tab and returns the index of this member
-     * @param tab the tab which we want to add the ListBox to
-     * @param member the ListBox to add
-     * @return the position of the ListBox in the member list.
-     */
-    public static int addMember(Tab tab, ListBox member) {
-        return (tab.getAsSimpleTab().addMember(member));
-    }
-
-    /**
-     * Remove a ListBox member from a tab
-     * @param tab the tab which we want to remove the ListBox from
-     * @param member the ListBox to add
-     */
-    public static void removeMember(Tab tab, ListBox member) {
         tab.getAsSimpleTab().removeMember(member);
     }
 
