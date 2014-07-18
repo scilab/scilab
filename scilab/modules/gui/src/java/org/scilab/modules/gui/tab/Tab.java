@@ -15,7 +15,6 @@ package org.scilab.modules.gui.tab;
 import org.scilab.modules.gui.console.Console;
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.container.Container;
-import org.scilab.modules.gui.editbox.EditBox;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.helpbrowser.HelpBrowser;
 import org.scilab.modules.gui.tree.Tree;
@@ -73,19 +72,6 @@ public interface Tab extends Container {
      * @return the position of the Tree Overview in the member list.
      */
     int addMember(Tree member);
-
-    /**
-     * We want to be able to add directly a editbox in a Tab.
-     * @param member the editbox to add
-     * @return the position of the editbox in the member list.
-     */
-    int addMember(EditBox member);
-
-    /**
-     * Remove an EditBox from a Tab.
-     * @param member the EditBox to remove
-     */
-    void removeMember(EditBox member);
 
     /**
      * We want to be able to remove directly a Canvas from a Tab.

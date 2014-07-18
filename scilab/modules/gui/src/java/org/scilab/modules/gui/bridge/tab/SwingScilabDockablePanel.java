@@ -65,19 +65,9 @@ import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.SwingViewWidget;
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
-import org.scilab.modules.gui.bridge.checkbox.SwingScilabCheckBox;
 import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
-import org.scilab.modules.gui.bridge.editbox.SwingScilabEditBox;
-import org.scilab.modules.gui.bridge.frame.SwingScilabFrame;
-import org.scilab.modules.gui.bridge.frame.SwingScilabScrollableFrame;
 import org.scilab.modules.gui.bridge.helpbrowser.SwingScilabHelpBrowser;
-import org.scilab.modules.gui.bridge.label.SwingScilabLabel;
-import org.scilab.modules.gui.bridge.listbox.SwingScilabListBox;
 import org.scilab.modules.gui.bridge.menubar.SwingScilabMenuBar;
-import org.scilab.modules.gui.bridge.popupmenu.SwingScilabPopupMenu;
-import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
-import org.scilab.modules.gui.bridge.radiobutton.SwingScilabRadioButton;
-import org.scilab.modules.gui.bridge.slider.SwingScilabScroll;
 import org.scilab.modules.gui.bridge.tree.SwingScilabTree;
 import org.scilab.modules.gui.bridge.uidisplaytree.SwingScilabUiDisplayTree;
 import org.scilab.modules.gui.bridge.uitable.SwingScilabUiTable;
@@ -86,7 +76,6 @@ import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.console.Console;
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.dockable.Dockable;
-import org.scilab.modules.gui.editbox.EditBox;
 import org.scilab.modules.gui.editor.EditorEventListener;
 import org.scilab.modules.gui.events.GlobalEventWatcher;
 import org.scilab.modules.gui.events.ScilabEventListener;
@@ -690,49 +679,6 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
         // replace the current content pane
         this.setContentPane(member);
         return this.getComponentZOrder(member);
-    }
-
-    /**
-     * Remove a PushButton from its container
-     * @param member the PushButton to remove
-     */
-    private void removeMember(SwingScilabPushButton member) {
-        contentPane.remove(member);
-    }
-
-    /**
-     * Add a member (dockable element) to container and returns its index
-     * @param member the member to add
-     * @return index of member in ArrayList
-     */
-    @Override
-    public int addMember(EditBox member) {
-        return this.addMember((SwingScilabEditBox) member.getAsSimpleEditBox());
-    }
-
-    /**
-     * Add a member (dockable element) to container and returns its index
-     * @param member the member to add
-     * @return index of member in ArrayList
-     */
-    private int addMember(SwingScilabEditBox member) {
-        return 0;
-    }
-
-    /**
-     * Remove an EditBox from its container
-     * @param member the EditBox to remove
-     */
-    @Override
-    public void removeMember(EditBox member) {
-        this.removeMember((SwingScilabEditBox) member.getAsSimpleEditBox());
-    }
-
-    /**
-     * Remove an EditBox from its container
-     * @param member the EditBox to remove
-     */
-    private void removeMember(SwingScilabEditBox member) {
     }
 
     /**

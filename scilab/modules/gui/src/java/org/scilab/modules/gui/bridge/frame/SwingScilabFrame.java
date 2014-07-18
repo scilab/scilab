@@ -57,8 +57,6 @@ import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.SwingViewWidget;
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
 import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
-import org.scilab.modules.gui.bridge.editbox.SwingScilabEditBox;
-import org.scilab.modules.gui.bridge.label.SwingScilabLabel;
 import org.scilab.modules.gui.bridge.tab.SwingScilabAxes;
 import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTabGroup;
@@ -66,7 +64,6 @@ import org.scilab.modules.gui.bridge.textbox.SwingScilabTextBox;
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.console.Console;
 import org.scilab.modules.gui.dockable.Dockable;
-import org.scilab.modules.gui.editbox.EditBox;
 import org.scilab.modules.gui.editor.EditorEventListener;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
@@ -359,25 +356,6 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, Widget 
      * @return index of member in ArrayList
      */
     private int addMember(SwingScilabConsole member) {
-        this.add(member);
-        return this.getComponentZOrder(member);
-    }
-
-    /**
-     * Add a member (dockable element) to container and returns its index
-     * @param member the member to add
-     * @return index of member in ArrayList
-     */
-    public int addMember(EditBox member) {
-        return this.addMember((SwingScilabEditBox) member.getAsSimpleEditBox());
-    }
-
-    /**
-     * Add a member (dockable element) to container and returns its index
-     * @param member the member to add
-     * @return index of member in ArrayList
-     */
-    private int addMember(SwingScilabEditBox member) {
         this.add(member);
         return this.getComponentZOrder(member);
     }
