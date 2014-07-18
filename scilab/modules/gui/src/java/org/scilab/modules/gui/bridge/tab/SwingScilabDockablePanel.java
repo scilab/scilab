@@ -87,7 +87,6 @@ import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.tree.Tree;
 import org.scilab.modules.gui.uidisplaytree.UiDisplayTree;
-import org.scilab.modules.gui.uitable.UiTable;
 import org.scilab.modules.gui.utils.BarUpdater;
 import org.scilab.modules.gui.utils.ClosingOperationsManager;
 import org.scilab.modules.gui.utils.Position;
@@ -712,39 +711,6 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
      * @param member the Tree to remove
      */
     private void removeMember(SwingScilabUiDisplayTree member) {
-    }
-
-    /**
-     * Add a member (dockable element) to container and returns its index
-     * @param member the member to add
-     * @return index of member in ArrayList
-     */
-    public int addMember(UiTable member) {
-        return this.addMember((SwingScilabUiTable) member.getAsSimpleUiTable());
-    }
-
-    /**
-     * Add a member (dockable element) to container and returns its index
-     * @param member the member to add
-     * @return index of member in ArrayList
-     */
-    private int addMember(SwingScilabUiTable member) {
-        return 0;
-    }
-
-    /**
-     * Remove a UiTable from its container
-     * @param member the UiTable to remove
-     */
-    public void removeMember(UiTable member) {
-        this.removeMember((SwingScilabUiTable) member.getAsSimpleUiTable());
-    }
-
-    /**
-     * Remove a UiTable from its container
-     * @param member the UiTable to remove
-     */
-    private void removeMember(SwingScilabUiTable member) {
     }
 
     /**

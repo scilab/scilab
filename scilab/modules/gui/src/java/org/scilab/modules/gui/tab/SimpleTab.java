@@ -18,7 +18,6 @@ import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.helpbrowser.HelpBrowser;
 import org.scilab.modules.gui.menubar.MenuBar;
-import org.scilab.modules.gui.uitable.UiTable;
 import org.scilab.modules.gui.uidisplaytree.UiDisplayTree;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
@@ -69,19 +68,6 @@ public interface SimpleTab {
 
     int addMember(UiDisplayTree member);
     void removeMember(UiDisplayTree member);
-
-    /**
-     * We want to be able to add directly a UiTable in a Tab.
-     * @param member the UiTable to add
-     * @return the position of the UiTable in the member list.
-     */
-    int addMember(UiTable member);
-
-    /**
-     * Remove a UiTable from a Tab.
-     * @param member the UiTable to remove
-     */
-    void removeMember(UiTable member);
 
     /**
      * We want to be able to remove directly a Canvas from a Tab.
