@@ -19,7 +19,7 @@ function xcos_skeletonlib = startModule()
   end
 // =============================================================================
 // force to load some libraries (dependancies)
-  loadScicos();
+  loadXcosLibs(); loadScicos();
 // =============================================================================
   etc_tlbx  = get_absolute_file_path("xcos_toolbox_skeleton.start");
   etc_tlbx  = getshortpathname(etc_tlbx);
