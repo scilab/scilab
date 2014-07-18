@@ -84,7 +84,6 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                 if (pGT->isList() || pGTResult->isList())
                 {
                     poRow = callOverloadMatrixExp(L"c", pGTResult, pGT);
-                    pGT->killMe();
                     continue;
                 }
 
@@ -92,7 +91,6 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                 if (pGT->getDims() > 2)
                 {
                     poRow = callOverloadMatrixExp(L"c", pGTResult, pGT);
-                    pGT->killMe();
                     continue;
                 }
 
@@ -151,7 +149,6 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
             if (pGT->isList() || pGTResult->isList())
             {
                 poResult = callOverloadMatrixExp(L"f", pGTResult, pGT);
-                poRow->killMe();
                 continue;
             }
 
@@ -159,7 +156,6 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
             if (pGT->getDims() > 2)
             {
                 poResult = callOverloadMatrixExp(L"f", pGTResult, pGT);
-                poRow->killMe();
                 continue;
             }
 
@@ -243,8 +239,13 @@ types::InternalType* RunVisitorT<T>::callOverloadMatrixExp(std::wstring strType,
         throw ScilabError();
     }
 
-    result_set(out);
     clean_in(in, out);
 
-    return NULL;
+    if (out.empty())
+    {
+        // TODO: avoid crash if out is empty but must return an error...
+        return NULL;
+    }
+
+    return out[0];
 }
