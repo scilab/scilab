@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) DIGITEO - 2010 - Allan CORNET
+// Copyright (C) Scilab Enterprises - 2014 - Antoine ELIAS
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -12,34 +13,42 @@ function bOK = dlwConfigureVcx64()
   bOK = %F;
   msvc = findmsvccompiler();
 
-  select msvc,
+  select msvc
+     // Microsoft Visual 2013 Studio Professional
+     case  'msvc120pro' then
+         bOK = dlwSetEnvVc12(msvc, %t);
+
+     // Microsoft Visual 2013 Express
+     case  'msvc120express' then
+         bOK = dlwSetEnvVc12(msvc, %t);
+
      // Microsoft Visual 2012 Studio Professional
      case  'msvc110pro' then
-     bOK = dlwSetEnvVc11(msvc, %t);
+         bOK = dlwSetEnvVc11(msvc, %t);
 
      // Microsoft Visual 2012 Express
      case  'msvc110express' then
-     bOK = dlwSetEnvVc11(msvc, %t);
+         bOK = dlwSetEnvVc11(msvc, %t);
      
      // Microsoft Visual 2010 Studio Professional
-     case  'msvc100pro' then
-     bOK = dlwSetEnvVc10(msvc, %t);
+        case  'msvc100pro' then
+         bOK = dlwSetEnvVc10(msvc, %t);
 
      // Microsoft Visual 2010 Express
      case  'msvc100express' then
-     bOK = dlwSetEnvVc10(msvc, %t);
+         bOK = dlwSetEnvVc10(msvc, %t);
 
      // Microsoft Visual 2008 Studio Professional
      case  'msvc90pro' then
-     bOK = dlwSetEnvVc90(msvc, %t);
+         bOK = dlwSetEnvVc90(msvc, %t);
 
      // Microsoft Visual 2008 Studio Standard
      case  'msvc90std' then
-     bOK = dlwSetEnvVc90(msvc, %t);
+         bOK = dlwSetEnvVc90(msvc, %t);
 
     // Microsoft Visual 2008 Express
     case  'msvc90express' then
-    bOK = dlwSetEnvVc90(msvc, %t);
+        bOK = dlwSetEnvVc90(msvc, %t);
   else
   end  
 endfunction
