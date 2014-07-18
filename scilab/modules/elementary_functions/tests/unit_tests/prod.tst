@@ -91,7 +91,7 @@ assert_checkerror("prod(d,1,1)", refMsg);
 d = sparse(d);
 assert_checkfalse(execstr("prod(d, ""orient"")"   ,"errcatch") == 0);
 refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),..
-            "prod",2,"""*"",""r"",""c"",""m""");
+"prod",2,"""*"",""r"",""c"",""m""");
 assert_checkerror("prod(d, ""orient"")", refMsg);
 
 assert_checkfalse(execstr("prod(d, [""r"", ""c""])"   ,"errcatch") == 0);
@@ -108,7 +108,7 @@ assert_checkerror("prod(d,""r"", [""nat"" ""dble""])", refMsg);
 
 assert_checkfalse(execstr("prod(d,""orient"", ""t"")"   ,"errcatch") == 0);
 refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),..
-            "prod",2,"""*"",""r"",""c"",""m""");
+"prod",2,"""*"",""r"",""c"",""m""");
 assert_checkerror("prod(d,""orient"", ""t"")", refMsg);
 
 assert_checkfalse(execstr("prod(d,1,1)"   ,"errcatch") == 0);
@@ -143,12 +143,11 @@ assert_checkerror("prod(d, [""r"", ""c""])", refMsg);
 s = poly(0, "s");
 d = [1/s 1/s^2; 1/s 1];
 assert_checkfalse(execstr("prod(d, ""orient"")"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),..
-            "prod",2,"""*"",""r"",""c"",""m""");
+refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),"prod",2,"""*"",""r"",""c"",""m"",""native"",""double""");
 assert_checkerror("prod(d, ""orient"")", refMsg);
 
 assert_checkfalse(execstr("prod(d, [""r"", ""c""])"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n"),"prod",2);
+refMsg = msprintf(_("%s: Wrong size for input argument #%d: A scalar string expected.\n"),"prod",2);
 assert_checkerror("prod(d, [""r"", ""c""])", refMsg);
 
 //empty matrices
