@@ -15,7 +15,6 @@ package org.scilab.modules.gui.tab;
 
 import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.canvas.Canvas;
-import org.scilab.modules.gui.checkbox.CheckBox;
 import org.scilab.modules.gui.console.Console;
 import org.scilab.modules.gui.editbox.EditBox;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
@@ -235,25 +234,6 @@ public class ScilabTabBridge {
      * @param member the Label to add
      */
     public static void removeMember(Tab tab, Label member) {
-        tab.getAsSimpleTab().removeMember(member);
-    }
-
-    /**
-     * Add a member (dockable element) to a tab and returns the index of this member
-     * @param tab the tab which we want to add the CheckBox to
-     * @param member the CheckBox to add
-     * @return the position of the CheckBox in the member list.
-     */
-    public static int addMember(Tab tab, CheckBox member) {
-        return (tab.getAsSimpleTab().addMember(member));
-    }
-
-    /**
-     * Remove a CheckBox member from a tab
-     * @param tab the tab which we want to remove the CheckBox from
-     * @param member the CheckBox to add
-     */
-    public static void removeMember(Tab tab, CheckBox member) {
         tab.getAsSimpleTab().removeMember(member);
     }
 

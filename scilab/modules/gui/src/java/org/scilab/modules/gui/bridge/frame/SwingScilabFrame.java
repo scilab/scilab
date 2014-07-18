@@ -72,7 +72,6 @@ import org.scilab.modules.gui.bridge.tab.SwingScilabTabGroup;
 import org.scilab.modules.gui.bridge.textbox.SwingScilabTextBox;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.canvas.Canvas;
-import org.scilab.modules.gui.checkbox.CheckBox;
 import org.scilab.modules.gui.console.Console;
 import org.scilab.modules.gui.dockable.Dockable;
 import org.scilab.modules.gui.editbox.EditBox;
@@ -491,26 +490,6 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
      */
     private int addMember(SwingScilabCanvas member) {
         return 0;
-    }
-
-    /**
-     * Add a member (dockable element) to container and returns its index
-     * @param member the member to add
-     * @return index of member in ArrayList
-     */
-    public int addMember(CheckBox member) {
-        // FIXME replace member with member.getAsSimpleCheckBox() when ready
-        return this.addMember((SwingScilabCheckBox) member);
-    }
-
-    /**
-     * Add a member (dockable element) to container and returns its index
-     * @param member the member to add
-     * @return index of member in ArrayList
-     */
-    private int addMember(SwingScilabCheckBox member) {
-        this.add(member);
-        return this.getComponentZOrder(member);
     }
 
     //	 TODO : Check if it should be possible to add a Tab to a frame and how it should behave

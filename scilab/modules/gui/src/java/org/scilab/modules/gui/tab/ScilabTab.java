@@ -15,7 +15,6 @@ package org.scilab.modules.gui.tab;
 
 import org.scilab.modules.gui.bridge.ScilabBridge;
 import org.scilab.modules.gui.canvas.Canvas;
-import org.scilab.modules.gui.checkbox.CheckBox;
 import org.scilab.modules.gui.console.Console;
 import org.scilab.modules.gui.container.ScilabContainer;
 import org.scilab.modules.gui.dockable.Dockable;
@@ -294,23 +293,6 @@ public class ScilabTab extends ScilabContainer implements Tab {
      * @param member the Label to remove
      */
     public void removeMember(Label member) {
-        ScilabBridge.removeMember(this, member);
-    }
-
-    /**
-     * We want to be able to add directly a checkbox in a Tab.
-     * @param member the checkbox to add
-     * @return the position of the checkbox in the member list.
-     */
-    public int addMember(CheckBox member) {
-        return ScilabBridge.addMember(this, member);
-    }
-
-    /**
-     * Remove a CheckBox from a Tab.
-     * @param member the CheckBox to remove
-     */
-    public void removeMember(CheckBox member) {
         ScilabBridge.removeMember(this, member);
     }
 

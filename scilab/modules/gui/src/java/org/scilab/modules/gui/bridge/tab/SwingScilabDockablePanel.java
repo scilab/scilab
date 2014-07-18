@@ -83,7 +83,6 @@ import org.scilab.modules.gui.bridge.uidisplaytree.SwingScilabUiDisplayTree;
 import org.scilab.modules.gui.bridge.uitable.SwingScilabUiTable;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.canvas.Canvas;
-import org.scilab.modules.gui.checkbox.CheckBox;
 import org.scilab.modules.gui.console.Console;
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.dockable.Dockable;
@@ -825,48 +824,6 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
      * @param member the Label to remove
      */
     private void removeMember(SwingScilabLabel member) {
-    }
-
-    /**
-     * Add a member (dockable element) to container and returns its index
-     * @param member the member to add
-     * @return index of member in ArrayList
-     */
-    @Override
-    public int addMember(CheckBox member) {
-        return this.addMember((SwingScilabCheckBox) member.getAsSimpleCheckBox());
-    }
-
-    /**
-     * Add a member (dockable element) to container and returns its index
-     * @param member the member to add
-     * @return index of member in ArrayList
-     */
-    private int addMember(SwingScilabCheckBox member) {
-        return 0;
-    }
-
-    /**
-     * Remove a CheckBox from its container
-     * @param member the CheckBox to remove
-     */
-    @Override
-    public void removeMember(CheckBox member) {
-        this.removeMember((SwingScilabCheckBox) member.getAsSimpleCheckBox());
-    }
-
-    /**
-     * Remove a CheckBox from its container
-     * @param member the CheckBox to remove
-     */
-    private void removeMember(SwingScilabCheckBox member) {
-    }
-
-    /**
-     * Remove a RadioButton from its container
-     * @param member the RadioButton to remove
-     */
-    private void removeMember(SwingScilabRadioButton member) {
     }
 
     /**

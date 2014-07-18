@@ -13,7 +13,6 @@
 
 package org.scilab.modules.gui.tab;
 
-import org.scilab.modules.gui.checkbox.CheckBox;
 import org.scilab.modules.gui.console.Console;
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.editbox.EditBox;
@@ -110,19 +109,6 @@ public interface SimpleTab {
      * @param member the Label to remove
      */
     void removeMember(Label member);
-
-    /**
-     * We want to be able to add directly a checkbox in a Tab.
-     * @param member the checkbox to add
-     * @return the position of the checkbox in the member list.
-     */
-    int addMember(CheckBox member);
-
-    /**
-     * Remove a CheckBox from a Tab.
-     * @param member the CheckBox to remove
-     */
-    void removeMember(CheckBox member);
 
     int addMember(UiDisplayTree member);
     void removeMember(UiDisplayTree member);
