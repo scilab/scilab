@@ -22,7 +22,6 @@ import org.scilab.modules.gui.editbox.EditBox;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.helpbrowser.HelpBrowser;
 import org.scilab.modules.gui.menubar.MenuBar;
-import org.scilab.modules.gui.popupmenu.PopupMenu;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.tree.Tree;
@@ -257,23 +256,6 @@ public class ScilabTab extends ScilabContainer implements Tab {
      * @param member the EditBox to remove
      */
     public void removeMember(EditBox member) {
-        ScilabBridge.removeMember(this, member);
-    }
-
-    /**
-     * We want to be able to add directly a PopupMenu in a Tab.
-     * @param member the PopupMenu to add
-     * @return the position of the PopupMenu in the member list.
-     */
-    public int addMember(PopupMenu member) {
-        return ScilabBridge.addMember(this, member);
-    }
-
-    /**
-     * Remove a PopupMenu from a Tab.
-     * @param member the PopupMenu to remove
-     */
-    public void removeMember(PopupMenu member) {
         ScilabBridge.removeMember(this, member);
     }
 

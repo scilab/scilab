@@ -41,7 +41,6 @@ import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.SwingViewWidget;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
-import org.scilab.modules.gui.popupmenu.SimplePopupMenu;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.ColorBox;
@@ -51,13 +50,14 @@ import org.scilab.modules.gui.utils.ScilabRelief;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.utils.SwingScilabListItem;
+import org.scilab.modules.gui.widget.Widget;
 
 /**
  * Swing implementation for Scilab PopupMenu in GUIs
  * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
  */
-public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, SimplePopupMenu {
+public class SwingScilabPopupMenu extends JComboBox implements SwingViewObject, Widget {
 
     private static final long serialVersionUID = -4366581303317502544L;
 

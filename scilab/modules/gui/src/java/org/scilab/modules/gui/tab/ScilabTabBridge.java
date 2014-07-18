@@ -20,7 +20,6 @@ import org.scilab.modules.gui.editbox.EditBox;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.helpbrowser.HelpBrowser;
 import org.scilab.modules.gui.menubar.MenuBar;
-import org.scilab.modules.gui.popupmenu.PopupMenu;
 import org.scilab.modules.gui.uitable.UiTable;
 import org.scilab.modules.gui.uidisplaytree.UiDisplayTree;
 import org.scilab.modules.gui.tree.Tree;
@@ -220,25 +219,6 @@ public class ScilabTabBridge {
         return (tab.getAsSimpleTab().addMember(member));
     }
     public static void removeMember(Tab tab, UiDisplayTree member) {
-        tab.getAsSimpleTab().removeMember(member);
-    }
-
-    /**
-     * Add a member (dockable element) to a tab and returns the index of this member
-     * @param tab the tab which we want to add the PopupMenu to
-     * @param member the PopupMenu to add
-     * @return the position of the PopupMenu in the member list.
-     */
-    public static int addMember(Tab tab, PopupMenu member) {
-        return (tab.getAsSimpleTab().addMember(member));
-    }
-
-    /**
-     * Remove a PopupMenu member from a tab
-     * @param tab the tab which we want to remove the PopupMenu from
-     * @param member the PopupMenu to add
-     */
-    public static void removeMember(Tab tab, PopupMenu member) {
         tab.getAsSimpleTab().removeMember(member);
     }
 

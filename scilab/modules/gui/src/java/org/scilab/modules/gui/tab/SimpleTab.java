@@ -19,7 +19,6 @@ import org.scilab.modules.gui.editbox.EditBox;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.helpbrowser.HelpBrowser;
 import org.scilab.modules.gui.menubar.MenuBar;
-import org.scilab.modules.gui.popupmenu.PopupMenu;
 import org.scilab.modules.gui.uitable.UiTable;
 import org.scilab.modules.gui.uidisplaytree.UiDisplayTree;
 import org.scilab.modules.gui.textbox.TextBox;
@@ -97,19 +96,6 @@ public interface SimpleTab {
      * @param member the UiTable to remove
      */
     void removeMember(UiTable member);
-
-    /**
-     * We want to be able to add directly a PopupMenu in a Tab.
-     * @param member the PopupMenu to add
-     * @return the position of the PopupMenu in the member list.
-     */
-    int addMember(PopupMenu member);
-
-    /**
-     * Remove a PopupMenu from a Tab.
-     * @param member the PopupMenu to remove
-     */
-    void removeMember(PopupMenu member);
 
     /**
      * We want to be able to remove directly a Canvas from a Tab.

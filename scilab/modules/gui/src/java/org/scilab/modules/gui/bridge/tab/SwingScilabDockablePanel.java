@@ -93,7 +93,6 @@ import org.scilab.modules.gui.events.ScilabEventListener;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.helpbrowser.HelpBrowser;
 import org.scilab.modules.gui.menubar.MenuBar;
-import org.scilab.modules.gui.popupmenu.PopupMenu;
 import org.scilab.modules.gui.tab.SimpleTab;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
@@ -800,41 +799,6 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
      * @param member the UiTable to remove
      */
     private void removeMember(SwingScilabUiTable member) {
-    }
-
-    /**
-     * Add a member (dockable element) to container and returns its index
-     * @param member the member to add
-     * @return index of member in ArrayList
-     */
-    @Override
-    public int addMember(PopupMenu member) {
-        return this.addMember((SwingScilabPopupMenu) member.getAsSimplePopupMenu());
-    }
-
-    /**
-     * Add a member (dockable element) to container and returns its index
-     * @param member the member to add
-     * @return index of member in ArrayList
-     */
-    private int addMember(SwingScilabPopupMenu member) {
-        return 0;
-    }
-
-    /**
-     * Remove a PopupMenu from its container
-     * @param member the PopupMenu to remove
-     */
-    @Override
-    public void removeMember(PopupMenu member) {
-        this.removeMember((SwingScilabPopupMenu) member.getAsSimplePopupMenu());
-    }
-
-    /**
-     * Remove a PopupMenu from its container
-     * @param member the PopupMenu to remove
-     */
-    private void removeMember(SwingScilabPopupMenu member) {
     }
 
     /**
