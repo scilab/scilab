@@ -29,11 +29,6 @@ LoggerView::~LoggerView()
 {
 }
 
-std::ostream& operator<< (std::ostream &out, const ScicosID& u)
-{
-    return out << u.v;
-}
-
 // generated with :
 // awk ' $2 == "//!<" {sub(",","", $1); print "case " $1 ":\n    os << \"" $1 "\";\n    break;" }' ~/work/branches/YaSp/scilab/modules/scicos/includes/utilities.hxx
 

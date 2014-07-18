@@ -19,7 +19,6 @@
 #include "utilities.hxx"
 #include "Model.hxx"
 #include "View.hxx"
-#include "model/BaseObject.hxx"
 
 namespace org_scilab_modules_scicos
 {
