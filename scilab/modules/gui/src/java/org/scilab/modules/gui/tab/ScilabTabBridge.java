@@ -27,7 +27,6 @@ import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.popupmenu.PopupMenu;
 import org.scilab.modules.gui.uitable.UiTable;
 import org.scilab.modules.gui.uidisplaytree.UiDisplayTree;
-import org.scilab.modules.gui.slider.Slider;
 import org.scilab.modules.gui.tree.Tree;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
@@ -282,25 +281,6 @@ public class ScilabTabBridge {
         return (tab.getAsSimpleTab().addMember(member));
     }
     public static void removeMember(Tab tab, UiDisplayTree member) {
-        tab.getAsSimpleTab().removeMember(member);
-    }
-
-    /**
-     * Add a member (dockable element) to a tab and returns the index of this member
-     * @param tab the tab which we want to add the Slider to
-     * @param member the Slider to add
-     * @return the position of the Slider in the member list.
-     */
-    public static int addMember(Tab tab, Slider member) {
-        return (tab.getAsSimpleTab().addMember(member));
-    }
-
-    /**
-     * Remove a Slider member from a tab
-     * @param tab the tab which we want to remove the Slider from
-     * @param member the Slider to add
-     */
-    public static void removeMember(Tab tab, Slider member) {
         tab.getAsSimpleTab().removeMember(member);
     }
 

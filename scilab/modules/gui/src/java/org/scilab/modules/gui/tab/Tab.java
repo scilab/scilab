@@ -23,7 +23,6 @@ import org.scilab.modules.gui.helpbrowser.HelpBrowser;
 import org.scilab.modules.gui.label.Label;
 import org.scilab.modules.gui.listbox.ListBox;
 import org.scilab.modules.gui.popupmenu.PopupMenu;
-import org.scilab.modules.gui.slider.Slider;
 import org.scilab.modules.gui.tree.Tree;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.window.Window;
@@ -131,19 +130,6 @@ public interface Tab extends Container {
      * @param member the CheckBox to remove
      */
     void removeMember(CheckBox member);
-
-    /**
-     * We want to be able to add directly a Slider in a Tab.
-     * @param member the Slider to add
-     * @return the position of the Slider in the member list.
-     */
-    int addMember(Slider member);
-
-    /**
-     * Remove a Slider from a Tab.
-     * @param member the Slider to remove
-     */
-    void removeMember(Slider member);
 
     /**
      * We want to be able to add directly a ListBox in a Tab.

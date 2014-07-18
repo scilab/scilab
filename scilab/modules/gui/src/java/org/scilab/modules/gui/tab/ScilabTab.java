@@ -27,7 +27,6 @@ import org.scilab.modules.gui.label.Label;
 import org.scilab.modules.gui.listbox.ListBox;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.popupmenu.PopupMenu;
-import org.scilab.modules.gui.slider.Slider;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.tree.Tree;
@@ -313,23 +312,6 @@ public class ScilabTab extends ScilabContainer implements Tab {
      * @param member the CheckBox to remove
      */
     public void removeMember(CheckBox member) {
-        ScilabBridge.removeMember(this, member);
-    }
-
-    /**
-     * We want to be able to add directly a Slider in a Tab.
-     * @param member the Slider to add
-     * @return the position of the Slider in the member list.
-     */
-    public int addMember(Slider member) {
-        return ScilabBridge.addMember(this, member);
-    }
-
-    /**
-     * Remove a Slider from a Tab.
-     * @param member the Slider to remove
-     */
-    public void removeMember(Slider member) {
         ScilabBridge.removeMember(this, member);
     }
 

@@ -26,7 +26,6 @@ import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.popupmenu.PopupMenu;
 import org.scilab.modules.gui.uitable.UiTable;
 import org.scilab.modules.gui.uidisplaytree.UiDisplayTree;
-import org.scilab.modules.gui.slider.Slider;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.tree.Tree;
@@ -141,19 +140,6 @@ public interface SimpleTab {
      * @param member the UiTable to remove
      */
     void removeMember(UiTable member);
-
-    /**
-     * We want to be able to add directly a Slider in a Tab.
-     * @param member the Slider to add
-     * @return the position of the Slider in the member list.
-     */
-    int addMember(Slider member);
-
-    /**
-     * Remove a Slider from a Tab.
-     * @param member the Slider to remove
-     */
-    void removeMember(Slider member);
 
     /**
      * We want to be able to add directly a ListBox in a Tab.

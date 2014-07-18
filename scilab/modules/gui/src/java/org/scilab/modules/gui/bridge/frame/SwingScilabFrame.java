@@ -83,7 +83,6 @@ import org.scilab.modules.gui.frame.SimpleFrame;
 import org.scilab.modules.gui.label.Label;
 import org.scilab.modules.gui.listbox.ListBox;
 import org.scilab.modules.gui.menubar.MenuBar;
-import org.scilab.modules.gui.slider.Slider;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
@@ -531,37 +530,6 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
      */
     private int addMember(SwingScilabListBox member) {
         this.add(member);
-        return this.getComponentZOrder(member);
-    }
-
-    /**
-     * Add a member (dockable element) to container and returns its index
-     * @param member the member to add
-     * @return index of member in ArrayList
-     */
-    public int addMember(Slider member) {
-        //		 FIXME replace member with member.getAsSimpleSlider() when ready
-        return this.addMember((SwingScilabScroll) member);
-    }
-
-    /**
-     * Add a member (dockable element) to container and returns its index
-     * @param member the member to add
-     * @return index of member in ArrayList
-     */
-    private int addMember(SwingScilabScroll member) {
-        this.add(member);
-        return this.getComponentZOrder(member);
-    }
-
-    /**
-     * Add a PushButton (dockable element) to Frame and returns its index
-     * @param member the PushButton to add
-     * @param borderLayout the BorderLayout to use
-     * @return index of member in ArrayList
-     */
-    private int addMember(SwingScilabPushButton member, String borderLayout) {
-        this.add(member, borderLayout);
         return this.getComponentZOrder(member);
     }
 

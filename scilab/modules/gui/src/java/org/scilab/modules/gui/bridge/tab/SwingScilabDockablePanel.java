@@ -99,7 +99,6 @@ import org.scilab.modules.gui.label.Label;
 import org.scilab.modules.gui.listbox.ListBox;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.popupmenu.PopupMenu;
-import org.scilab.modules.gui.slider.Slider;
 import org.scilab.modules.gui.tab.SimpleTab;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
@@ -935,40 +934,6 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
      * @param member the UiTable to remove
      */
     private void removeMember(SwingScilabUiTable member) {
-    }
-
-    /**
-     * Add a member (dockable element) to container and returns its index
-     * @param member the member to add
-     * @return index of member in ArrayList
-     */
-    public int addMember(Slider member) {
-        return this.addMember((SwingScilabScroll) member.getAsSimpleSlider());
-    }
-
-    /**
-     * Add a member (dockable element) to container and returns its index
-     * @param member the member to add
-     * @return index of member in ArrayList
-     */
-    private int addMember(SwingScilabScroll member) {
-        return 0;
-    }
-
-    /**
-     * Remove a Slider from its container
-     * @param member the Slider to remove
-     */
-    @Override
-    public void removeMember(Slider member) {
-        this.removeMember((SwingScilabScroll) member.getAsSimpleSlider());
-    }
-
-    /**
-     * Remove a Slider from its container
-     * @param member the Slider to remove
-     */
-    private void removeMember(SwingScilabScroll member) {
     }
 
     /**
