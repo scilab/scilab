@@ -152,16 +152,6 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
 
     if (ok)
     {
-        /*
-        // segfault on insert.tst... check why ??
-        // probably extractor needs to increaseref of extracted field...
-
-        if (pValue != pReturn && pValue->isDeletable())
-        {
-        delete pValue;
-        }
-        */
-
         result_set(pReturn);
     }
     else if (pValue->isFieldExtractionOverloadable())

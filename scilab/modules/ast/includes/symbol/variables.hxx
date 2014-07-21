@@ -73,10 +73,12 @@ struct Variable
             types::InternalType* pIT = top()->m_pIT;
             if (pIT != _pIT)
             {
-                pIT->DecreaseRef();
-                pIT->killMe();
+                // _pIT may contained in pIT
+                // so increases ref of _pIT before kill pIT
                 top()->m_pIT = _pIT;
                 _pIT->IncreaseRef();
+                pIT->DecreaseRef();
+                pIT->killMe();
             }
         }
     }
