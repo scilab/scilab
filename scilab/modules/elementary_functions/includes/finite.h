@@ -16,10 +16,6 @@
 #include "doublecomplex.h"
 #include "dynlib_elementary_functions.h"
 
-#ifndef HAVE_FINITE
-ELEMENTARY_FUNCTIONS_IMPEXP int finite(double x);
-#endif
-
 ELEMENTARY_FUNCTIONS_IMPEXP int finiteComplex(doublecomplex x);
 
 #endif /* __FINITE_H__ */

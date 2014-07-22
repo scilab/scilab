@@ -24,10 +24,6 @@
 /* Define if have termcap library */
 #define HAVE_TERMCAP 1
 
-/* define if have _finite function */
-/* http://msdn.microsoft.com/en-us/library/aa246875(VS.60).aspx */
-#define HAVE_FINITE
-
 /* CNAME(x,y) ==> xy **/
 
 #if defined(USE_SHARP_SIGN)

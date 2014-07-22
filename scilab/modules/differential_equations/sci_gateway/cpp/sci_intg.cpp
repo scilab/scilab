@@ -32,12 +32,6 @@ extern "C"
 #include "vfinite.h"
 }
 
-/* ISNAN overloading for Mac OS X */
-#ifdef __APPLE__
-#undef ISNAN
-#define ISNAN std::isnan
-#endif
-
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_intg(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {

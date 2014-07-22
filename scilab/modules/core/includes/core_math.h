@@ -22,16 +22,24 @@
 #ifndef _MSC_VER
 #endif
 
-#ifdef _MSC_VER
+#ifdef _MSC_VER     //windows
 #include <float.h>
 #define finite(x) _finite(x)
+#else               //linux & mac
+#ifdef __cplusplus // C++
+#define finite(x) std::isfinite(x)
+#endif
 #endif /* _MSC_VER */
 
-#ifdef _MSC_VER
+#ifdef _MSC_VER     // windows
 #include <float.h>
 #define ISNAN(x) _isnan(x)
 #else
+#ifndef __cplusplus // C
 #define ISNAN(x) isnan(x)
+#else //C++
+#define ISNAN(x) std::isnan(x)
+#endif
 #endif
 
 #define Abs(x) ( ( (x) >= 0) ? (x) : -( x) )

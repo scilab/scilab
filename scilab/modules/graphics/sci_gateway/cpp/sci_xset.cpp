@@ -286,7 +286,7 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
             int defaultBackground = -2;
 
             // reset format
-            ConfigGraphicVariable::setFPF(L'\0');
+            ConfigGraphicVariable::setFPF(L"");
 
             double* pdblColorMap = (double*)malloc(m * 3 * sizeof(double));
             if (pdblColorMap == NULL)

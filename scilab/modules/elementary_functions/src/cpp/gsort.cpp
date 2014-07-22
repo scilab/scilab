@@ -13,6 +13,7 @@
 /*--------------------------------------------------------------------------*/
 #include <algorithm>
 #include <vector>
+#include <vector>
 
 #include "gsort.hxx"
 
@@ -21,12 +22,6 @@ extern "C"
 #include "abs.h" // complex case
 #include "matrix_division.h"
 }
-
-/* ISNAN overloading for Mac OS X */
-#ifdef __APPLE__
-#undef ISNAN
-#define ISNAN std::isnan
-#endif
 
 /*------------------------ comparison function ------------------------------*/
 // Basic comparison.

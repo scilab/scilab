@@ -26,9 +26,6 @@
 #include "os_strdup.h"
 
 /*--------------------------------------------------------------------------*/
-#ifdef _MSC_VER
-#define finite(x) _finite(x)
-#endif
 #define EOL "\n"
 #define NanString "Nan"
 #define InfString "Inf"
