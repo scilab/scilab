@@ -310,6 +310,9 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
             case GEOMETRY:
                 o->getGeometry(v);
                 return true;
+            case ANGLE:
+                o->getAngle(v);
+                return true;
             default:
                 break;
         }
@@ -400,6 +403,9 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
         model::Block* o = static_cast<model::Block*>(getObject(uid));
         switch (p)
         {
+            case EXPRS:
+                o->getExprs(v);
+                return true;
             default:
                 break;
         }
@@ -451,6 +457,12 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
         model::Block* o = static_cast<model::Block*>(getObject(uid));
         switch (p)
         {
+            case INPUTS:
+                v = o->getIn();
+                return true;
+            case OUTPUTS:
+                v = o->getOut();
+                return true;
             default:
                 break;
         }

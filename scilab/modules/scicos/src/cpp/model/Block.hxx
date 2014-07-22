@@ -90,6 +90,30 @@ struct Descriptor
     char blocktype;         //!< one of blocktype_t value
 };
 
+/*
+ * Flip and theta
+ */
+struct Angle
+{
+    bool flip;
+    double theta;
+
+    Angle() : flip(0), theta(0) {};
+    Angle(const Angle& a) : flip(a.flip), theta(a.theta) {};
+    Angle(const std::vector<double>& a) : flip((a[0] == 0) ? false : true), theta(a[1]) {};
+
+    void fill(std::vector<double>& a) const
+    {
+        a.resize(2);
+        a[0] = (flip == false) ? 0 : 1;
+        a[1] = theta;
+    }
+    bool operator==(const Angle& a) const
+    {
+        return flip == a.flip && theta == a.theta;
+    }
+};
+
 class Block: public BaseObject
 {
 private:
@@ -149,6 +173,44 @@ private:
         }
 
         geometry = g;
+        return SUCCESS;
+    }
+
+    void getAngle(std::vector<double>& data) const
+    {
+        angle.fill(data);
+    }
+
+    update_status_t setAngle(const std::vector<double>& data)
+    {
+        if (data.size() != 2)
+        {
+            return FAIL;
+        }
+
+        Angle a = Angle(data);
+        if (a == angle)
+        {
+            return NO_CHANGES;
+        }
+
+        angle = a;
+        return SUCCESS;
+    }
+
+    void getExprs(std::vector<std::string>& data) const
+    {
+        data = exprs;
+    }
+
+    update_status_t setExprs(const std::vector<std::string>& data)
+    {
+        if (data == exprs)
+        {
+            return NO_CHANGES;
+        }
+
+        exprs = data;
         return SUCCESS;
     }
 
@@ -245,6 +307,8 @@ private:
     ScicosID parentDiagram;
     std::string interfaceFunction;
     Geometry geometry;
+    Angle angle;
+    std::vector<std::string> exprs;
     std::string style;
 
     Descriptor sim;
