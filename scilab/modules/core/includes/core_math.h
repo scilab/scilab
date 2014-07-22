@@ -68,7 +68,9 @@
 #undef round
 #endif
 
-#define		round(a)	(int)(((a)<0.0)?(a)-.5:(a)+.5)
+#ifndef __cplusplus
+#define round(a)       (int)(((a)<0.0)?(a)-.5:(a)+.5)
+#endif
 #define EPSILON 1.0e-13
 
 

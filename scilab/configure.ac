@@ -713,6 +713,9 @@ fi
 
 AM_CONDITIONAL(IS_64_BITS_CPU, test $IS_64_BITS_CPU = true)
 
+# check if the compiler supports c++11
+AX_CXX_COMPILE_STDCXX_11(noext,mandatory)
+
 ################
 ## SSE
 ## By default, for x86 CPU, enable the SSE.
