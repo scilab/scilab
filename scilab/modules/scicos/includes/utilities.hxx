@@ -15,9 +15,6 @@
 
 #include <iostream>
 
-namespace org_scilab_modules_scicos
-{
-
 /**
  * A unique ID is used to represent a reference to any object in the model.
  *
@@ -102,7 +99,5 @@ enum object_properties_t
     PORT_NUMBER,        //!< model::Port::portNumber value
     CONNECTED_SIGNALS,  //!< model::Port::connectedSignals value
 };
-
-} /* namespace org_scilab_modules_scicos */
 
 #endif /* UTILITIES_HXX_ */

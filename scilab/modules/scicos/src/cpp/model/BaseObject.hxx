@@ -13,6 +13,8 @@
 #ifndef BASEOBJECT_HXX_
 #define BASEOBJECT_HXX_
 
+#include <vector>
+
 #include "utilities.hxx"
 
 namespace org_scilab_modules_scicos
@@ -83,15 +85,15 @@ struct Geometry
 
     Geometry() : x(0), y(0), width(0), height(0) {};
     Geometry(const Geometry& g) : x(g.x), y(g.y), width(g.width), height(g.height) {};
-    Geometry(double* data) : x(data[0]), y(data[1]), width(data[2]), height(data[3]) {};
-    double* copy() const
+    Geometry(const std::vector<double>& v) : x(v[0]), y(v[1]), width(v[2]), height(v[3]) {};
+
+    void fill(std::vector<double>& v) const
     {
-        double* d = new double[4];
-        d[0] = x;
-        d[1] = y;
-        d[2] = width;
-        d[3] = height;
-        return d;
+        v.resize(4);
+        v[0] = x;
+        v[1] = y;
+        v[2] = width;
+        v[3] = height;
     }
     bool operator==(const Geometry& g) const
     {

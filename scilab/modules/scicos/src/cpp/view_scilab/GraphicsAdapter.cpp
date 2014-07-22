@@ -33,14 +33,12 @@ struct orig
         types::Double* o = new types::Double(1, 2, &data);
         model::Block* adaptee = adaptor.getAdaptee();
 
-        double* geom;
-        size_t len;
-        Controller::get_instance()->getObjectProperty(adaptee->id(), adaptee->kind(), GEOMETRY, &len, &geom);
+        std::vector<double> geom;
+        Controller::get_instance()->getObjectProperty(adaptee->id(), adaptee->kind(), GEOMETRY, geom);
 
         data[0] = geom[0];
         data[1] = geom[1];
 
-        delete[] geom;
         return o;
     }
 
@@ -58,15 +56,13 @@ struct orig
         }
 
         model::Block* adaptee = adaptor.getAdaptee();
-        double* geom;
-        size_t len;
-        Controller::get_instance()->getObjectProperty(adaptee->id(), adaptee->kind(), GEOMETRY, &len, &geom);
+        std::vector<double> geom;
+        Controller::get_instance()->getObjectProperty(adaptee->id(), adaptee->kind(), GEOMETRY, geom);
 
         geom[0] = current->get(0);
         geom[1] = current->get(1);
 
-        Controller::get_instance()->setObjectProperty(adaptee->id(), adaptee->kind(), GEOMETRY, len, geom);
-        delete[] geom;
+        Controller::get_instance()->setObjectProperty(adaptee->id(), adaptee->kind(), GEOMETRY, geom);
         return true;
     }
 };
@@ -80,13 +76,11 @@ struct sz
         types::Double* o = new types::Double(1, 2, &data);
         model::Block* adaptee = adaptor.getAdaptee();
 
-        double* geom;
-        size_t len;
-        Controller::get_instance()->getObjectProperty(adaptee->id(), adaptee->kind(), GEOMETRY, &len, &geom);
+        std::vector<double> geom;
+        Controller::get_instance()->getObjectProperty(adaptee->id(), adaptee->kind(), GEOMETRY, geom);
 
         data[0] = geom[2];
         data[1] = geom[3];
-        delete[] geom;
         return o;
     }
 
@@ -104,15 +98,13 @@ struct sz
         }
 
         model::Block* adaptee = adaptor.getAdaptee();
-        double* geom;
-        size_t len;
-        Controller::get_instance()->getObjectProperty(adaptee->id(), adaptee->kind(), GEOMETRY, &len, &geom);
+        std::vector<double> geom;
+        Controller::get_instance()->getObjectProperty(adaptee->id(), adaptee->kind(), GEOMETRY, geom);
 
         geom[2] = current->get(0);
         geom[3] = current->get(1);
 
-        Controller::get_instance()->setObjectProperty(adaptee->id(), adaptee->kind(), GEOMETRY, len, geom);
-        delete[] geom;
+        Controller::get_instance()->setObjectProperty(adaptee->id(), adaptee->kind(), GEOMETRY, geom);
         return true;
     }
 };

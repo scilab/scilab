@@ -43,31 +43,25 @@ public:
     model::BaseObject* getObject(ScicosID uid);
     update_status_t setObject(model::BaseObject* o);
 
-    bool getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, double* v);
-    bool getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, int* v);
-    bool getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, bool* v);
-    bool getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::string* v);
-    bool getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, ScicosID* v);
-    bool getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, size_t* len, double** v);
-    bool getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, size_t* len, int** v);
-    bool getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, size_t* len,
-                           std::string** v);
-    bool getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, size_t* len,
-                           ScicosID** v);
+    bool getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, double& v);
+    bool getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, int& v);
+    bool getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, bool& v);
+    bool getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::string& v);
+    bool getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, ScicosID& v);
+    bool getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::vector<double>& v);
+    bool getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::vector<int>& v);
+    bool getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::vector< std::string >& v);
+    bool getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::vector<ScicosID>& v);
 
     update_status_t setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, double v);
     update_status_t setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, int v);
     update_status_t setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, bool v);
     update_status_t setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, ScicosID v);
     update_status_t setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::string v);
-    update_status_t setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, size_t len,
-                                      double* v);
-    update_status_t setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, size_t len,
-                                      int* v);
-    update_status_t setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, size_t len,
-                                      std::string* v);
-    update_status_t setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, size_t len,
-                                      ScicosID* v);
+    update_status_t setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, const std::vector<double>& v);
+    update_status_t setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, const std::vector<int>& v);
+    update_status_t setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, const std::vector< std::string >& v);
+    update_status_t setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, const std::vector<ScicosID>& v);
 
 private:
     void dispatch(update_status_t status, ScicosID uid, kind_t k, object_properties_t p)
@@ -89,14 +83,6 @@ private:
     update_status_t generic_setObjectProp(ScicosID uid, kind_t k, object_properties_t p, T v)
     {
         update_status_t status = model.setObjectProperty(uid, k, p, v);
-        dispatch(status, uid, k, p);
-        return status;
-    }
-    template<typename T>
-    update_status_t generic_setObjectProp(ScicosID uid, kind_t k, object_properties_t p, size_t len,
-                                          T* v)
-    {
-        update_status_t status = model.setObjectProperty(uid, k, p, len, v);
         dispatch(status, uid, k, p);
         return status;
     }

@@ -10,6 +10,9 @@
  *
  */
 
+#include <string>
+#include <vector>
+
 #include "Model.hxx"
 #include "utilities.hxx"
 
@@ -23,7 +26,7 @@
 namespace org_scilab_modules_scicos
 {
 
-bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, double* v)
+bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, double& v)
 {
 
     if (k == ANNOTATION)
@@ -74,7 +77,7 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, dou
     return false;
 }
 
-bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, int* v)
+bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, int& v)
 {
 
     if (k == ANNOTATION)
@@ -125,7 +128,7 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, int
     return false;
 }
 
-bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, bool* v)
+bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, bool& v)
 {
 
     if (k == ANNOTATION)
@@ -176,7 +179,7 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, boo
     return false;
 }
 
-bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::string* v)
+bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::string& v)
 {
 
     if (k == ANNOTATION)
@@ -227,7 +230,7 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
     return false;
 }
 
-bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, ScicosID* v)
+bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, ScicosID& v)
 {
 
     if (k == ANNOTATION)
@@ -236,10 +239,10 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, Sci
         switch (p)
         {
             case PARENT_DIAGRAM:
-                *v = o->getParentDiagram();
+                v = o->getParentDiagram();
                 return true;
             case RELATED_TO:
-                *v = o->getRelatedTo();
+                v = o->getRelatedTo();
                 return true;
             default:
                 break;
@@ -251,7 +254,7 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, Sci
         switch (p)
         {
             case PARENT_DIAGRAM:
-                *v = o->getParentDiagram();
+                v = o->getParentDiagram();
                 return true;
             default:
                 break;
@@ -268,7 +271,7 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, Sci
         switch (p)
         {
             case PARENT_DIAGRAM:
-                *v = o->getParentDiagram();
+                v = o->getParentDiagram();
                 return true;
             default:
                 break;
@@ -284,8 +287,7 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, Sci
     return false;
 }
 
-bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, size_t* len,
-                              double** v)
+bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::vector<double>& v)
 {
 
     if (k == ANNOTATION)
@@ -294,7 +296,7 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, siz
         switch (p)
         {
             case GEOMETRY:
-                o->getGeometry(len, v);
+                o->getGeometry(v);
                 return true;
             default:
                 break;
@@ -306,7 +308,7 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, siz
         switch (p)
         {
             case GEOMETRY:
-                o->getGeometry(len, v);
+                o->getGeometry(v);
                 return true;
             default:
                 break;
@@ -330,7 +332,7 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, siz
     return false;
 }
 
-bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, size_t* len, int** v)
+bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::vector<int>& v)
 {
 
     if (k == ANNOTATION)
@@ -381,8 +383,7 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, siz
     return false;
 }
 
-bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, size_t* len,
-                              std::string** v)
+bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::vector< std::string >& v)
 {
 
     if (k == ANNOTATION)
@@ -433,8 +434,7 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, siz
     return false;
 }
 
-bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, size_t* len,
-                              ScicosID** v)
+bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::vector<ScicosID>& v)
 {
 
     if (k == ANNOTATION)

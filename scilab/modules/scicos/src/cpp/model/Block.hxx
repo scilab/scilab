@@ -130,20 +130,19 @@ private:
         this->eout = eout;
     }
 
-    void getGeometry(size_t* len, double** data) const
+    void getGeometry(std::vector<double>& v) const
     {
-        *len = 4;
-        *data = geometry.copy();
+        geometry.fill(v);
     }
 
-    update_status_t setGeometry(size_t len, double* data)
+    update_status_t setGeometry(const std::vector<double>& v)
     {
-        if (len != 4)
+        if (v.size() != 4)
         {
             return FAIL;
         }
 
-        Geometry g = Geometry(data);
+        Geometry g = Geometry(v);
         if (g == geometry)
         {
             return NO_CHANGES;
