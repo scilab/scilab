@@ -15,7 +15,6 @@
 #include "double.hxx"
 #include "string.hxx"
 #include "polynom.hxx"
-//#include "list.hxx"
 #include "cell.hxx"
 #include "struct.hxx"
 #include "sparse.hxx"
@@ -851,6 +850,17 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
         TList* pLL = pIL->getAs<TList>();
         TList* pLR = pIR->getAs<TList>();
 
+        // check if an overload exists
+        std::wstring function_name;
+        function_name = L"%" + pLL->getShortTypeStr() + L"_o_" + pLR->getShortTypeStr();
+        InternalType* pFunc = symbol::Context::getInstance()->get(symbol::Symbol(function_name));
+
+        if (pFunc)
+        {
+            //call overload
+            return NULL;
+        }
+
         if (pLL->getSize() != pLR->getSize())
         {
             clearAlloc(bAllocL, pIL, bAllocR, pIR);
@@ -883,6 +893,17 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
         MList* pLL = pIL->getAs<MList>();
         MList* pLR = pIR->getAs<MList>();
 
+        // check if an overload exists
+        std::wstring function_name;
+        function_name = L"%" + pLL->getShortTypeStr() + L"_o_" + pLR->getShortTypeStr();
+        InternalType* pFunc = symbol::Context::getInstance()->get(symbol::Symbol(function_name));
+
+        if (pFunc)
+        {
+            //call overload
+            return NULL;
+        }
+
         if (pLL->getSize() != pLR->getSize())
         {
             clearAlloc(bAllocL, pIL, bAllocR, pIR);
@@ -905,6 +926,10 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
         clearAlloc(bAllocL, pIL, bAllocR, pIR);
         return pB;
     }
+
+    /*
+    ** MACRO == MACROFILE
+    */
 
     if (TypeL == GenericType::ScilabMacro || TypeL == GenericType::ScilabMacroFile)
     {

@@ -13,6 +13,8 @@
 #include "types_comparison_ne.hxx"
 #include "types_comparison_eq.hxx"
 #include "bool.hxx"
+#include "mlist.hxx"
+#include "context.hxx"
 
 using namespace types;
 
@@ -31,6 +33,42 @@ InternalType *GenericComparisonNonEqual(InternalType *_pLeftOperand, InternalTyp
         }
 
         return pResult;
+    }
+    else if (_pLeftOperand->isTList() && _pRightOperand->isTList() ||
+             _pLeftOperand->isMList() && _pRightOperand->isMList())
+    {
+        TList* pLL = _pLeftOperand->getAs<TList>();
+        TList* pLR = _pRightOperand->getAs<TList>();
+
+        // check if an overload exists
+        std::wstring function_name;
+        function_name = L"%" + pLL->getShortTypeStr() + L"_n_" + pLR->getShortTypeStr();
+        InternalType* pFunc = symbol::Context::getInstance()->get(symbol::Symbol(function_name));
+
+        if (pFunc)
+        {
+            //call overload
+            return NULL;
+        }
+
+        if (pLL->getSize() != pLR->getSize())
+        {
+            return new Bool(true);
+        }
+
+        if (pLL->getSize() == 0 && pLR->getSize() == 0)
+        {
+            //list() == list() -> return true
+            return new Bool(false);
+        }
+
+        Bool* pB = new Bool(1, pLL->getSize());
+        for (int i = 0 ; i < pLL->getSize() ; i++)
+        {
+            pB->set(i, *pLL->get(i) != *pLR->get(i));
+        }
+
+        return pB;
     }
     else
     {
