@@ -120,7 +120,7 @@ types::Function::ReturnValue sci_bvode(types::typed_list &in, int _iRetCount, ty
     {
         M[i] = (int)pDblM->get(i);
         sumM += (int)pDblM->get(i);
-        maxM = Max(maxM, (int)pDblM->get(i));
+        maxM = std::max(maxM, (int)pDblM->get(i));
     }
 
     if (sumM > 40)
@@ -229,7 +229,7 @@ types::Function::ReturnValue sci_bvode(types::typed_list &in, int _iRetCount, ty
     // ipar(2)=0 then collpnt is set to max(max(m(j))+1, 5-max(m(j))).
     if (ipar[1] == 0)
     {
-        ipar[1] = Max(maxM + 1, 5 - maxM);
+        ipar[1] = std::max(maxM + 1, 5 - maxM);
     }
 
     if (ipar[1] < 0 || ipar[1] > 7)

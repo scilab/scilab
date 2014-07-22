@@ -193,14 +193,14 @@ types::Function::ReturnValue sci_semidef(types::typed_list &in, int _iRetCount, 
         n += piB[i];
         sz += piB[i] * (piB[i] + 1) / 2;
         upsz += piB[i] * piB[i];
-        maxn = Max(maxn, piB[i]);
+        maxn = std::max(maxn, piB[i]);
     }
 
     // optimal block size for dgels ????
     int nb = 32;
     int iSizeWork = (iSizeX + 2) * sz +
                     upsz + 2 * n +
-                    Max(Max(iSizeX + sz * nb, 3 * maxn + maxn * (maxn + 1)), 3 * iSizeX);
+                    std::max(std::max(iSizeX + sz * nb, 3 * maxn + maxn * (maxn + 1)), 3 * iSizeX);
 
     double* pdblWork = new double[iSizeWork];
     C2F(spf)(&iSizeX, &iSizeB, pDblF->get(), piB, pDblC->get(), pDblX->get(), pDblZ->get(),

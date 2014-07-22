@@ -98,7 +98,7 @@ types::Function::ReturnValue sci_rand(types::typed_list &in, int _iRetCount, typ
                     return types::Function::Error;
                 }
 
-                siRandSave = (int)Max(in[1]->getAs<types::Double>()->get(0), 0);
+                siRandSave = (int)std::max(in[1]->getAs<types::Double>()->get(0), double(0));
                 iForceInit = 1;
             }
             else

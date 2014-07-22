@@ -1131,7 +1131,7 @@ int mxGetString(const mxArray *ptr, char *str, int strl)
         char *dest = wide_string_to_UTF8(to_copy);
         int length = (int)strlen(dest);
         memcpy(str + index, dest, free_space);
-        index += Min(length, free_space);
+        index += std::min(length, free_space);
         free_space -= length;
         FREE(dest);
         if (free_space <= 0)

@@ -902,14 +902,14 @@ int AddSparseToDouble(Sparse* sp, Double* d, GenericType** pDRes)
         Sparse* pS = new Sparse(sp->getRows(), sp->getCols(), d->isComplex());
         if (pS->isComplex())
         {
-            for (int i = 0 ; i < Min(sp->getRows(), sp->getCols()) ; i++)
+            for (int i = 0 ; i < std::min(sp->getRows(), sp->getCols()) ; i++)
             {
                 pS->set(i, i, std::complex<double>(d->get(0), d->getImg(0)));
             }
         }
         else
         {
-            for (int i = 0 ; i < Min(sp->getRows(), sp->getCols()) ; i++)
+            for (int i = 0 ; i < std::min(sp->getRows(), sp->getCols()) ; i++)
             {
                 pS->set(i, i, d->get(0));
             }
@@ -1713,7 +1713,7 @@ template<> InternalType* add_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polyno
         _pR->getRank(pRank2);
         for (int i = 0 ; i < _pR->getSize() ; i++)
         {
-            pRank[i] = Max(pRank1[0], pRank2[i]);
+            pRank[i] = std::max(pRank1[0], pRank2[i]);
         }
 
         pOut = new Polynom(_pR->getVariableName(), _pR->getDims(), _pR->getDimsArray(), pRank);
@@ -1736,26 +1736,26 @@ template<> InternalType* add_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polyno
             double *pRR   = pCoefR->getReal();
             double *pRI   = pCoefR->getImg();
 
-            for (int j = 0 ; j < Min(pRank1[0], pRank2[i]) ; j++)
+            for (int j = 0 ; j < std::min(pRank1[0], pRank2[i]) ; j++)
             {
                 pRR[j] = p1R[j] + p2R[j];
             }
 
             double *pTemp = (pRank1[0] > pRank2[i] ? p1R : p2R);
-            for (int j = Min(pRank1[0], pRank2[i]) ; j < Max(pRank1[0], pRank2[i]) ; j++)
+            for (int j = std::min(pRank1[0], pRank2[i]) ; j < std::max(pRank1[0], pRank2[i]) ; j++)
             {
                 pRR[j] = pTemp[j];
             }
 
             if (pOut->isComplex())
             {
-                for (int j = 0 ; j < Min(pRank1[0], pRank2[i]) ; j++)
+                for (int j = 0 ; j < std::min(pRank1[0], pRank2[i]) ; j++)
                 {
                     pRI[j] = (p1I == NULL ? 0 : p1I[j]) + (p2I == NULL ? 0 : p2I[j]);
                 }
 
                 double *pTemp = (pRank1[0] > pRank2[i] ? p1I : p2I);
-                for (int j = Min(pRank1[0], pRank2[i]) ; j < Max(pRank1[0], pRank2[i]); j++)
+                for (int j = std::min(pRank1[0], pRank2[i]) ; j < std::max(pRank1[0], pRank2[i]); j++)
                 {
                     pRI[j] = pTemp == NULL ? 0 : pTemp[j];
                 }
@@ -1782,7 +1782,7 @@ template<> InternalType* add_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polyno
         _pR->getRank(pRank2);
         for (int i = 0 ; i < _pL->getSize() ; i++)
         {
-            pRank[i] = Max(pRank1[i], pRank2[0]);
+            pRank[i] = std::max(pRank1[i], pRank2[0]);
         }
 
         pOut = new Polynom(_pL->getVariableName(), _pL->getDims(), _pL->getDimsArray(), pRank);
@@ -1806,26 +1806,26 @@ template<> InternalType* add_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polyno
             double *pRR   = pCoefR->getReal();
             double *pRI   = pCoefR->getImg();
 
-            for (int j = 0 ; j < Min(pRank1[i], pRank2[0]) ; j++)
+            for (int j = 0 ; j < std::min(pRank1[i], pRank2[0]) ; j++)
             {
                 pRR[j] = p1R[j] + p2R[j];
             }
 
             double *pTemp = (pRank1[i] > pRank2[0] ? p1R : p2R);
-            for (int j = Min(pRank1[i], pRank2[0]) ; j < Max(pRank1[i], pRank2[0]) ; j++)
+            for (int j = std::min(pRank1[i], pRank2[0]) ; j < std::max(pRank1[i], pRank2[0]) ; j++)
             {
                 pRR[j] = pTemp[j];
             }
 
             if (pOut->isComplex())
             {
-                for (int j = 0 ; j < Min(pRank1[i], pRank2[0]) ; j++)
+                for (int j = 0 ; j < std::min(pRank1[i], pRank2[0]) ; j++)
                 {
                     pRI[j] = (p1I == NULL ? 0 : p1I[j]) + (p2I == NULL ? 0 : p2I[j]);
                 }
 
                 double *pTemp = (pRank1[i] > pRank2[0] ? p1I : p2I);
-                for (int j = Min(pRank1[i], pRank2[0]) ; j < Max(pRank1[i], pRank2[0]); j++)
+                for (int j = std::min(pRank1[i], pRank2[0]) ; j < std::max(pRank1[i], pRank2[0]); j++)
                 {
                     pRI[j] = pTemp == NULL ? 0 : pTemp[j];
                 }
@@ -1871,7 +1871,7 @@ template<> InternalType* add_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polyno
     _pR->getRank(pRank2);
     for (int i = 0 ; i < _pL->getSize() ; i++)
     {
-        pRank[i] = Max(pRank1[i], pRank2[i]);
+        pRank[i] = std::max(pRank1[i], pRank2[i]);
     }
 
     pOut = new Polynom(_pR->getVariableName(), _pL->getDims(), _pL->getDimsArray(), pRank);
@@ -2346,7 +2346,7 @@ template<> InternalType* add_M_M<Sparse, Double, Sparse>(Sparse* _pL, Double* _p
         Sparse* pS = new Sparse(_pL->getRows(), _pL->getCols(), _pR->isComplex());
         if (pS->isComplex())
         {
-            int size = Min(_pL->getRows(), _pL->getCols());
+            int size = std::min(_pL->getRows(), _pL->getCols());
             for (int i = 0 ; i < size ; i++)
             {
                 pS->set(i, i, std::complex<double>(_pR->get(0), _pR->getImg(0)));
@@ -2354,7 +2354,7 @@ template<> InternalType* add_M_M<Sparse, Double, Sparse>(Sparse* _pL, Double* _p
         }
         else
         {
-            int size = Min(_pL->getRows(), _pL->getCols());
+            int size = std::min(_pL->getRows(), _pL->getCols());
             for (int i = 0 ; i < size ; i++)
             {
                 pS->set(i, i, _pR->get(0));

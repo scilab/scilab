@@ -181,7 +181,7 @@ Function::ReturnValue WrapFunction::call(typed_list &in, optional_list &opt, int
     ReturnValue retVal = Callable::OK;
     int iRet ;
     GatewayStruct gStr;
-    _iRetCount = Max(1, _iRetCount);
+    _iRetCount = std::max(1, _iRetCount);
     gStr.m_iIn = (int)in.size() + (int)opt.size();
     gStr.m_iOut = _iRetCount;
 

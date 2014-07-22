@@ -194,7 +194,7 @@ types::Function::ReturnValue sci_splin2d(types::typed_list &in, int _iRetCount, 
     }
     else
     {
-        int nxy = Max(pDblX->getSize(), pDblY->getSize());
+        int nxy = std::max(pDblX->getSize(), pDblY->getSize());
         double* lA_d    = new double[nxy    ];
         double* lA_sd   = new double[nxy - 1];
         double* ld      = new double[sizeOfY];

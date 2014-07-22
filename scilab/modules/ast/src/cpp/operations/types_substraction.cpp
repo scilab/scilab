@@ -883,7 +883,7 @@ int SubstractPolyToPoly(Polynom *_pPoly1, Polynom *_pPoly2, Polynom **_pPolyOut)
         _pPoly2->getRank(pRank2);
         for (int i = 0 ; i < _pPoly2->getSize() ; i++)
         {
-            pRankOut[i] = Max(pRank1[0], pRank2[i]);
+            pRankOut[i] = std::max(pRank1[0], pRank2[i]);
         }
 
         (*_pPolyOut) = new Polynom(_pPoly2->getVariableName(), _pPoly2->getDims(), _pPoly2->getDimsArray(), pRankOut);
@@ -951,7 +951,7 @@ int SubstractPolyToPoly(Polynom *_pPoly1, Polynom *_pPoly2, Polynom **_pPolyOut)
         _pPoly2->getRank(pRank2);
         for (int i = 0 ; i < _pPoly1->getSize() ; i++)
         {
-            pRankOut[i] = Max(pRank1[i], pRank2[0]);
+            pRankOut[i] = std::max(pRank1[i], pRank2[0]);
         }
 
         (*_pPolyOut) = new Polynom(_pPoly1->getVariableName(), _pPoly1->getDims(), _pPoly1->getDimsArray(), pRankOut);
@@ -1034,7 +1034,7 @@ int SubstractPolyToPoly(Polynom *_pPoly1, Polynom *_pPoly2, Polynom **_pPolyOut)
     _pPoly2->getRank(pRank2);
     for (int i = 0 ; i < _pPoly1->getSize() ; i++)
     {
-        pRankOut[i] = Max(pRank1[i], pRank2[i]);
+        pRankOut[i] = std::max(pRank1[i], pRank2[i]);
     }
 
     (*_pPolyOut) = new Polynom(_pPoly2->getVariableName(), iDims1, piDims1, pRankOut);
@@ -1050,7 +1050,7 @@ int SubstractPolyToPoly(Polynom *_pPoly1, Polynom *_pPoly2, Polynom **_pPolyOut)
         double *p2R     = _pPoly2->get(i)->getCoef()->get();
         double *pOutR   = (*_pPolyOut)->get(i)->getCoef()->get();
 
-        for (int j = 0 ; j < Min(pRank1[i], pRank2[i]) ; j++)
+        for (int j = 0 ; j < std::min(pRank1[i], pRank2[i]) ; j++)
         {
             pOutR[j]    = p1R[j] - p2R[j];
         }
@@ -1068,7 +1068,7 @@ int SubstractPolyToPoly(Polynom *_pPoly1, Polynom *_pPoly2, Polynom **_pPolyOut)
             iCoef       = -1;
         }
 
-        for (int j = Min(pRank1[i], pRank2[i]) ; j < Max(pRank1[i], pRank2[i]) ; j++)
+        for (int j = std::min(pRank1[i], pRank2[i]) ; j < std::max(pRank1[i], pRank2[i]) ; j++)
         {
             pOutR[j]    = pTemp[j] * iCoef;
         }
@@ -1079,12 +1079,12 @@ int SubstractPolyToPoly(Polynom *_pPoly1, Polynom *_pPoly2, Polynom **_pPolyOut)
             double *p2I     = _pPoly2->get(i)->getCoef()->getImg();
             double *pOutI   = (*_pPolyOut)->get(i)->getCoef()->getImg();
 
-            for (int j = 0 ; j < Min(pRank1[i], pRank2[i]) ; j++)
+            for (int j = 0 ; j < std::min(pRank1[i], pRank2[i]) ; j++)
             {
                 pOutI[j]    = (p1I == NULL ? 0 : p1I[j]) - (p2I == NULL ? 0 : p2I[j]);
             }
 
-            for (int j = Min(pRank1[i], pRank2[i]) ; j < Max(pRank1[i], pRank2[i]) ; j++)
+            for (int j = std::min(pRank1[i], pRank2[i]) ; j < std::max(pRank1[i], pRank2[i]) ; j++)
             {
                 pOutI[j]  = pTemp[j] * iCoef;
             }
@@ -1185,14 +1185,14 @@ int SubstractSparseToDouble(Sparse* _pSparse, Double* _pDouble, GenericType **_p
         Sparse* pS = new Sparse(_pSparse->getRows(), _pSparse->getCols(), _pDouble->isComplex());
         if (pS->isComplex())
         {
-            for (int i = 0 ; i < Min(_pSparse->getRows() , _pSparse->getCols()) ; i++)
+            for (int i = 0 ; i < std::min(_pSparse->getRows() , _pSparse->getCols()) ; i++)
             {
                 pS->set(i, i, std::complex<double>(_pDouble->get(0), _pDouble->getImg(0)));
             }
         }
         else
         {
-            for (int i = 0 ; i < Min(_pSparse->getRows() , _pSparse->getCols()) ; i++)
+            for (int i = 0 ; i < std::min(_pSparse->getRows() , _pSparse->getCols()) ; i++)
             {
                 pS->set(i, i, _pDouble->get(0));
             }

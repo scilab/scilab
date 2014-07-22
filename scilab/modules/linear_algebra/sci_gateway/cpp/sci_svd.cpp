@@ -148,7 +148,7 @@ types::Function::ReturnValue sci_svd(types::typed_list &in, int _iRetCount, type
         case 0:
         case 1:
         {
-            pSV = new types::Double(Min(pDbl->getRows(), pDbl->getCols()), 1, false);
+            pSV = new types::Double(std::min(pDbl->getRows(), pDbl->getCols()), 1, false);
             iRet = iSvdM(pData, pDbl->getRows(), pDbl->getCols(), pDbl->isComplex(), economy, tol, pSV->get(), NULL, NULL, NULL, NULL);
         }
         break;
@@ -163,8 +163,8 @@ types::Function::ReturnValue sci_svd(types::typed_list &in, int _iRetCount, type
         case 2:
         case 3:
         {
-            int economyRows = economy ? Min(pDbl->getRows(), pDbl->getCols()) : pDbl->getRows();
-            int economyCols = economy ? Min(pDbl->getRows(), pDbl->getCols()) : pDbl->getCols();
+            int economyRows = economy ? std::min(pDbl->getRows(), pDbl->getCols()) : pDbl->getRows();
+            int economyCols = economy ? std::min(pDbl->getRows(), pDbl->getCols()) : pDbl->getCols();
 
             ptrsU = new types::Double(pDbl->getRows(), economyRows, pDbl->isComplex());
             ptrS  = new types::Double(economyRows, economyCols, false);

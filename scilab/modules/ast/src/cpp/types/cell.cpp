@@ -293,22 +293,22 @@ bool Cell::subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims
                         {
                             iTypeLen += static_cast<int>(log10(static_cast<double>(pGT->getDimsArray()[k])) + 1);
                         }
-                        piSizeLen[j] = Max(piSizeLen[j], iTypeLen + (pGT->getDims() - 1));//add number of "x"
+                        piSizeLen[j] = std::max(piSizeLen[j], iTypeLen + (pGT->getDims() - 1));//add number of "x"
                     }
                     else
                     {
                         //types non derived from ArrayOf.
                         int iSize = static_cast<int>(log10(static_cast<double>(pIT->getAs<GenericType>()->getRows())) + 1);
-                        piSizeLen[j] = Max(piSizeLen[j], iSize);
+                        piSizeLen[j] = std::max(piSizeLen[j], iSize);
                     }
                 }
                 else
                 {
                     //no size so let a white space, size == 1
-                    piSizeLen[j] = Max(piSizeLen[j], 1);
+                    piSizeLen[j] = std::max(piSizeLen[j], 1);
                 }
 
-                piTypeLen[j] = Max(piTypeLen[j], static_cast<int>(pIT->getTypeStr().size()));
+                piTypeLen[j] = std::max(piTypeLen[j], static_cast<int>(pIT->getTypeStr().size()));
             }
         }
 

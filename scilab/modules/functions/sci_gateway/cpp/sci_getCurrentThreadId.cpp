@@ -12,6 +12,7 @@
 
 extern "C"
 {
+#define NOMINMAX
 #include "Thread_Wrapper.h"
 #include "Scierror.h"
 #include "localization.h"

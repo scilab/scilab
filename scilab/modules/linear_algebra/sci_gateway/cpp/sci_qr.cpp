@@ -120,7 +120,7 @@ types::Function::ReturnValue sci_qr(types::typed_list &in, int _iRetCount, types
                 return types::Function::Error;
             }
 
-            iRowsToCompute = Min(pDbl->getRows(), pDbl->getCols());
+            iRowsToCompute = std::min(pDbl->getRows(), pDbl->getCols());
         }
         else if (in[1]->isDouble() == true)
         {

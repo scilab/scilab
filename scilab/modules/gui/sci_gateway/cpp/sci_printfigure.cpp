@@ -10,6 +10,7 @@
  *
  */
 
+#define NOMINMAX
 #include "CallScilabBridge.hxx"
 #include "GiwsException.hxx"
 
@@ -38,7 +39,7 @@ int sci_printfigure(char *fname, void* pvApiCtx)
     int * piAddr1   = NULL;
     double* l1      = NULL;
 
-    nbInputArgument(pvApiCtx) = Max(0, nbInputArgument(pvApiCtx));
+    nbInputArgument(pvApiCtx) = std::max(0, nbInputArgument(pvApiCtx));
     CheckInputArgument(pvApiCtx, 1, 1);
     CheckOutputArgument(pvApiCtx, 0, 1);
 

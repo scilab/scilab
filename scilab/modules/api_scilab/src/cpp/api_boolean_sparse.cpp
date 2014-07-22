@@ -66,7 +66,7 @@ SciErr getBooleanSparseMatrix(void* _pvCtx, int* _piAddress, int* _piRows, int* 
         return sciErr;
     }
 
-    int* piNbItemRows = (int*)MALLOC(sizeof(int) * *_piRows);
+    int* piNbItemRows = (int*)MALLOC(sizeof(int) **_piRows);
     *_piNbItemRow = pSpBool->getNbItemByRow(piNbItemRows);
 
     if (_piColPos == NULL)
@@ -74,7 +74,7 @@ SciErr getBooleanSparseMatrix(void* _pvCtx, int* _piAddress, int* _piRows, int* 
         return sciErr;
     }
 
-    int* piColPos = (int*)MALLOC(sizeof(int) * *_piNbItem);
+    int* piColPos = (int*)MALLOC(sizeof(int) **_piNbItem);
     *_piColPos = pSpBool->getColPos(piColPos);
 
     return sciErr;
@@ -134,8 +134,8 @@ SciErr fillBooleanSparseMatrix(void* _pvCtx, int *_piAddress, int _iRows, int _i
     }
 
     _piAddress[0]		= sci_boolean_sparse;
-    _piAddress[1]		= Min(_iRows, _iRows * _iCols);
-    _piAddress[2]		= Min(_iCols, _iRows * _iCols);
+    _piAddress[1]		= std::min(_iRows, _iRows * _iCols);
+    _piAddress[2]		= std::min(_iCols, _iRows * _iCols);
     _piAddress[3]		= 0;
 
     _piAddress[4]		= _iNbItem;
@@ -305,11 +305,11 @@ int getAllocatedBooleanSparseMatrix(void* _pvCtx, int* _piAddress, int* _piRows,
         return sciErr.iErr;
     }
 
-    *_piNbItemRow		= (int*)MALLOC(sizeof(int) * *_piRows);
-    memcpy(*_piNbItemRow, piNbItemRow, sizeof(int) * *_piRows);
+    *_piNbItemRow		= (int*)MALLOC(sizeof(int) **_piRows);
+    memcpy(*_piNbItemRow, piNbItemRow, sizeof(int) **_piRows);
 
-    *_piColPos			= (int*)MALLOC(sizeof(int) * *_piNbItem);
-    memcpy(*_piColPos, piColPos, sizeof(int) * *_piNbItem);
+    *_piColPos			= (int*)MALLOC(sizeof(int) **_piNbItem);
+    memcpy(*_piColPos, piColPos, sizeof(int) **_piNbItem);
 
     return 0;
 }
@@ -325,8 +325,8 @@ int getNamedAllocatedBooleanSparseMatrix(void* _pvCtx, const char* _pstName, int
         return sciErr.iErr;
     }
 
-    *_piNbItemRow		= (int*)MALLOC(sizeof(int) * *_piRows);
-    *_piColPos			= (int*)MALLOC(sizeof(int) * *_piNbItem);
+    *_piNbItemRow		= (int*)MALLOC(sizeof(int) **_piRows);
+    *_piColPos			= (int*)MALLOC(sizeof(int) **_piNbItem);
 
     sciErr = readNamedBooleanSparseMatrix(_pvCtx, _pstName, _piRows, _piCols, _piNbItem, *_piNbItemRow, *_piColPos);
     if (sciErr.iErr)

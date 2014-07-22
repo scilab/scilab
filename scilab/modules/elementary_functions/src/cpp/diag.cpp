@@ -30,12 +30,12 @@ types::Double* diag(types::Double* pIn,  int iStartPos)
     {
         if (iStartPos < 0)
         {
-            iSize = Max(0, Min(iRows + iStartPos, iCols));
+            iSize = std::max(0, std::min(iRows + iStartPos, iCols));
             iStartRow = -iStartPos;
         }
         else
         {
-            iSize = Max(0, Min(iRows, iCols - iStartPos));
+            iSize = std::max(0, std::min(iRows, iCols - iStartPos));
             iStartCol = iStartPos;
         }
 
@@ -61,7 +61,7 @@ types::Double* diag(types::Double* pIn,  int iStartPos)
     }
     else // pIn is a vector
     {
-        int iSizeOfVector = Max(iRows, iCols);
+        int iSizeOfVector = std::max(iRows, iCols);
         if (iStartPos < 0)
         {
             iSize = iSizeOfVector - iStartPos;
@@ -117,12 +117,12 @@ types::Polynom* diag(types::Polynom* pIn,  int iStartPos)
     {
         if (iStartPos < 0)
         {
-            iSize = Max(0, Min(iRows + iStartPos, iCols));
+            iSize = std::max(0, std::min(iRows + iStartPos, iCols));
             iStartRow = -iStartPos;
         }
         else
         {
-            iSize = Max(0, Min(iRows, iCols - iStartPos));
+            iSize = std::max(0, std::min(iRows, iCols - iStartPos));
             iStartCol = iStartPos;
         }
 
@@ -176,7 +176,7 @@ types::Polynom* diag(types::Polynom* pIn,  int iStartPos)
     }
     else // pIn is a vector
     {
-        int iSizeOfVector = Max(iRows, iCols);
+        int iSizeOfVector = std::max(iRows, iCols);
         if (iStartPos < 0)
         {
             iSize = iSizeOfVector - iStartPos;
@@ -251,12 +251,12 @@ types::String* diag(types::String* pIn,  int iStartPos)
     {
         if (iStartPos < 0)
         {
-            iSize = Max(0, Min(iRows + iStartPos, iCols));
+            iSize = std::max(0, std::min(iRows + iStartPos, iCols));
             iStartRow = -iStartPos;
         }
         else
         {
-            iSize = Max(0, Min(iRows, iCols - iStartPos));
+            iSize = std::max(0, std::min(iRows, iCols - iStartPos));
             iStartCol = iStartPos;
         }
 
@@ -277,7 +277,7 @@ types::String* diag(types::String* pIn,  int iStartPos)
     }
     else // pIn is a vector
     {
-        int iSizeOfVector = Max(iRows, iCols);
+        int iSizeOfVector = std::max(iRows, iCols);
         if (iStartPos < 0)
         {
             iSize = iSizeOfVector - iStartPos;

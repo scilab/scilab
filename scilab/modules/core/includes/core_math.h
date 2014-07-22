@@ -12,6 +12,11 @@
 
 #ifndef __BASE_MATH_H__
 #define __BASE_MATH_H__
+
+#ifdef _MSC_VER
+#define NOMINMAX
+#endif
+
 #include <limits.h>
 #include <math.h>
 
@@ -19,8 +24,6 @@
 #include <stdlib.h>
 #endif
 
-#ifndef _MSC_VER
-#endif
 
 #ifdef _MSC_VER     //windows
 #include <float.h>

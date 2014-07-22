@@ -234,7 +234,7 @@ wchar_t** scilab_sprintf(const char* _pstName, const wchar_t* _pwstInput, typed_
             iLoop = in[iFirstArg]->getAs<GenericType>()->getRows();
             for (int i = iFirstArg + 1 ; i < in.size() ; i++)
             {
-                iLoop = Min(iLoop, in[i]->getAs<GenericType>()->getRows());
+                iLoop = std::min(iLoop, in[i]->getAs<GenericType>()->getRows());
             }
         }
 

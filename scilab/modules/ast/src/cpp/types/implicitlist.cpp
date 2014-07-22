@@ -252,7 +252,7 @@ bool ImplicitList::compute()
 
             double dblVal = dblStart; // temp value
             double dblEps = getRelativeMachinePrecision();
-            double dblPrec = 2 * Max(fabs(dblStart), fabs(dblEnd)) * dblEps;
+            double dblPrec = 2 * std::max(fabs(dblStart), fabs(dblEnd)) * dblEps;
 
             while (dblStep * (dblVal - dblEnd) <= 0)
             {

@@ -534,8 +534,8 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
             /* Xwindows limits dimensions to 2^16 */
             if ((figureSize[0] > 65535) || (figureSize[1] > 65535))
             {
-                figureSize[0] = Min(figureSize[0], 65535);
-                figureSize[1] = Min(figureSize[1], 65535);
+                figureSize[0] = std::min(figureSize[0], 65535);
+                figureSize[1] = std::min(figureSize[1], 65535);
                 if (ConfigVariable::getWarningMode())
                 {
                     sciprint(_("%s: window dimensions have been set less than 2^16.\n"), "xset");

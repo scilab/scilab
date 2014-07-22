@@ -192,7 +192,7 @@ private :
                 int iWidth = 0;
                 int iPos = ArrayOf<T>::getIndex(_piDims);
                 getSignedIntFormat(ArrayOf<T>::get(iPos), &iWidth);
-                iWidthMax = Max(iWidthMax, iWidth);
+                iWidthMax = std::max(iWidthMax, iWidth);
             }
 
             for (int i = this->m_iRows1PrintState ; i < this->getRows() ; i++)
@@ -275,7 +275,7 @@ private :
                     int iPos    = ArrayOf<T>::getIndex(_piDims);
 
                     getSignedIntFormat(ArrayOf<T>::get(iPos), &iWidth);
-                    piSize[iCols1] = Max(piSize[iCols1], iWidth);
+                    piSize[iCols1] = std::max(piSize[iCols1], iWidth);
                 }
 
                 if (iLen + piSize[iCols1] > iLineLen)

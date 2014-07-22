@@ -77,7 +77,7 @@ types::Function::ReturnValue sci_bdiag(types::typed_list &in, int _iRetCount, ty
 
     if (pDblMatrix->getCols() == 0)
     {
-        int value = Min(_iRetCount, 3);
+        int value = std::min(_iRetCount, 3);
         for (int i = 0; i < value; i++)
         {
             out.push_back(types::Double::Empty());
@@ -106,9 +106,9 @@ types::Function::ReturnValue sci_bdiag(types::typed_list &in, int _iRetCount, ty
             double t = 0.0;
             for (int i = 0; i < pDblMatrix->getCols(); i++)
             {
-                t += Abs(pDblMatrix->get(i + j * pDblMatrix->getCols()));
+                t += std::abs(pDblMatrix->get(i + j * pDblMatrix->getCols()));
             }
-            rMax = Max(t, rMax);
+            rMax = std::max(t, rMax);
         }
     }
 

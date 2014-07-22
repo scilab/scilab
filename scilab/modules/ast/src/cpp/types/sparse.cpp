@@ -900,8 +900,8 @@ Sparse* Sparse::insert(typed_list* _pArgs, InternalType* _pSource)
         if (piMaxDim[0] > getRows() || piMaxDim[1] > getCols())
         {
             bNeedToResize = true;
-            iNewRows = Max(getRows(), piMaxDim[0]);
-            iNewCols = Max(getCols(), piMaxDim[1]);
+            iNewRows = std::max(getRows(), piMaxDim[0]);
+            iNewCols = std::max(getCols(), piMaxDim[1]);
         }
     }
 
@@ -1069,8 +1069,8 @@ Sparse* Sparse::insert(typed_list* _pArgs, Sparse* _pSource)
         if (piMaxDim[0] > getRows() || piMaxDim[1] > getCols())
         {
             bNeedToResize = true;
-            iNewRows = Max(getRows(), piMaxDim[0]);
-            iNewCols = Max(getCols(), piMaxDim[1]);
+            iNewRows = std::max(getRows(), piMaxDim[0]);
+            iNewCols = std::max(getCols(), piMaxDim[1]);
         }
     }
 
@@ -1710,11 +1710,11 @@ Sparse* Sparse::multiply(Sparse const& o) const
 
     if (isComplex() == false && o.isComplex() == false)
     {
-        realSp = new RealSparse_t(*matrixReal * *(o.matrixReal));
+        realSp = new RealSparse_t(*matrixReal **(o.matrixReal));
     }
     else if (isComplex() == false && o.isComplex() == true)
     {
-        cplxSp = new CplxSparse_t(matrixReal->cast<std::complex<double> >() * *(o.matrixCplx));
+        cplxSp = new CplxSparse_t(matrixReal->cast<std::complex<double> >() **(o.matrixCplx));
     }
     else if (isComplex() == true && o.isComplex() == false)
     {
@@ -1722,7 +1722,7 @@ Sparse* Sparse::multiply(Sparse const& o) const
     }
     else if (isComplex() == true && o.isComplex() == true)
     {
-        cplxSp = new CplxSparse_t(*matrixCplx * *(o.matrixCplx));
+        cplxSp = new CplxSparse_t(*matrixCplx **(o.matrixCplx));
     }
 
     return new Sparse(realSp, cplxSp);
@@ -2306,8 +2306,8 @@ SparseBool* SparseBool::insert(typed_list* _pArgs, SparseBool* _pSource)
         if (piMaxDim[0] > getRows() || piMaxDim[1] > getCols())
         {
             bNeedToResize = true;
-            iNewRows = Max(getRows(), piMaxDim[0]);
-            iNewCols = Max(getCols(), piMaxDim[1]);
+            iNewRows = std::max(getRows(), piMaxDim[0]);
+            iNewCols = std::max(getCols(), piMaxDim[1]);
         }
     }
 
@@ -2444,8 +2444,8 @@ SparseBool* SparseBool::insert(typed_list* _pArgs, InternalType* _pSource)
         if (piMaxDim[0] > getRows() || piMaxDim[1] > getCols())
         {
             bNeedToResize = true;
-            iNewRows = Max(getRows(), piMaxDim[0]);
-            iNewCols = Max(getCols(), piMaxDim[1]);
+            iNewRows = std::max(getRows(), piMaxDim[0]);
+            iNewCols = std::max(getCols(), piMaxDim[1]);
         }
     }
 

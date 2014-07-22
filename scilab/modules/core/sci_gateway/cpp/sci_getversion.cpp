@@ -130,7 +130,7 @@ Function::ReturnValue sci_getversion(types::typed_list &in, int _iRetCount, type
     }
 
     return Function::OK;
-    //Rhs = Max(0,Rhs);
+    //Rhs = std::max(0,Rhs);
 
     //	CheckRhs(0,2);
     //

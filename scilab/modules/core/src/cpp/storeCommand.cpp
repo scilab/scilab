@@ -12,6 +12,7 @@
 /*--------------------------------------------------------------------------*/
 extern "C"
 {
+#define NOMINMAX
 #include "storeCommand.h"
 #include "Thread_Wrapper.h"
 }

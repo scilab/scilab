@@ -158,7 +158,7 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
                 throw ast::ScilabMessage();
             }
 
-            memcpy(C2F(optim).nomsub, pst, Max(6, strlen(pst)));
+            memcpy(C2F(optim).nomsub, pst, std::max(size_t(6), strlen(pst)));
             FREE(pst);
         }
         else if (in[iPos]->isList())
@@ -184,7 +184,7 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
                     throw ast::ScilabMessage();
                 }
 
-                memcpy(C2F(optim).nomsub, pst, Max(6, strlen(pst)));
+                memcpy(C2F(optim).nomsub, pst, std::max(size_t(6), strlen(pst)));
                 FREE(pst);
             }
             else if (pList->get(0)->isCallable())
@@ -703,7 +703,7 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
                 {
                     for (int i = 0; i < iSizeX0; i++)
                     {
-                        dxmin = Min(dxmin, pdblEpsx[i]);
+                        dxmin = std::min(dxmin, pdblEpsx[i]);
                     }
                 }
             }
@@ -835,7 +835,7 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
             int nt = 2;
             if (bMem)
             {
-                nt = Max(1, iMem / 3);
+                nt = std::max(1, iMem / 3);
             }
 
             iWorkSize   = iSizeX0 * (5 + 3 * nt) + 2 * nt + 1;

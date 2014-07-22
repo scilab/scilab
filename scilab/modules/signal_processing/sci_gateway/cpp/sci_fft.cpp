@@ -105,7 +105,7 @@ types::Function::ReturnValue sci_fft(types::typed_list &in, int _iRetCount, type
 
             pIn1 = in[0]->getAs<types::Double>();
 
-            iDimCount = Max(iDimCount, ((pIn1->getRows() == 1 || pIn1->getCols() == 1) ? 1 : 2));
+            iDimCount = std::max(iDimCount, ((pIn1->getRows() == 1 || pIn1->getCols() == 1) ? 1 : 2));
             iSize = pIn1->getSize();
             break;
         default :

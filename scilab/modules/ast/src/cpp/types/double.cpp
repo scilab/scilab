@@ -40,7 +40,7 @@ Double* Double::Identity(int _iRows, int _iCols)
     double* pdbl = NULL;
     Double* pI = new Double(_iRows, _iCols, &pdbl);
     pI->setZeros();
-    for (int i = 0 ; i < Min(_iRows, _iCols) ; i++)
+    for (int i = 0 ; i < std::min(_iRows, _iCols) ; i++)
     {
         pI->set(i, i, 1);
     }
@@ -942,7 +942,7 @@ double* Double::allocData(int _iSize)
             sprintf(message, _("Can not allocate negative size (%d).\n"),  _iSize);
             ast::ScilabError se(message);
             se.SetErrorNumber(999);
-            throw(se);
+            throw (se);
         }
         else
         {
@@ -962,7 +962,7 @@ double* Double::allocData(int _iSize)
         sprintf(message, _("Can not allocate %.2f MB memory.\n"),  (double) (_iSize * sizeof(double)) / 1.e6);
         ast::ScilabError se(message);
         se.SetErrorNumber(999);
-        throw(se);
+        throw (se);
     }
     return pDbl;
 }

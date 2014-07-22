@@ -70,7 +70,7 @@ Function::ReturnValue sci_fileext(typed_list &in, int _iRetCount, typed_list &ou
 
     out.push_back(pOut);
     return Function::OK;
-    //Rhs = Max(Rhs,0);
+    //Rhs = std::max(Rhs,0);
 
     //CheckRhs(1,1);
     //CheckLhs(1,1);

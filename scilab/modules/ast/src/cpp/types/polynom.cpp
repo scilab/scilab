@@ -343,7 +343,7 @@ int Polynom::getMaxRank(void)
     int iMaxRank = 0;
     for (int i = 0 ; i < getSize() ; i++)
     {
-        iMaxRank = Max(iMaxRank, piRank[i]);
+        iMaxRank = std::max(iMaxRank, piRank[i]);
     }
     delete[] piRank;
     return iMaxRank;
@@ -566,7 +566,7 @@ wstring Polynom::getMatrixString(int* _piDims, int _iDims, bool _bComplex)
                     iLen = static_cast<int>(listCoefR.front().size());
                 }
             }
-            piMaxLen[iCols1] = Min(Max(piMaxLen[iCols1], iLen), iLineLen);
+            piMaxLen[iCols1] = std::min(std::max(piMaxLen[iCols1], iLen), iLineLen);
             listExpR.clear();
             listCoefR.clear();
         }

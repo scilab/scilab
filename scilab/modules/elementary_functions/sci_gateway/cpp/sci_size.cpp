@@ -137,7 +137,7 @@ Function::ReturnValue sci_size(types::typed_list &in, int _iRetCount, types::typ
             }
             else
             {
-                for (int i = 0 ; i < Min(_iRetCount, iDims) ; i++)
+                for (int i = 0 ; i < std::min(_iRetCount, iDims) ; i++)
                 {
                     Double* pD = new Double(piDims[i]);
                     out.push_back(pD);

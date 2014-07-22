@@ -21,7 +21,7 @@
 #include <iostream>
 
 #ifdef _MSC_VER
-
+#define NOMINMAX
 #include "windows.h"
 #define putenv _putenv
 

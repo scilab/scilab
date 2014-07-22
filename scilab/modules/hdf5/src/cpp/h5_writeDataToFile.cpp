@@ -297,7 +297,7 @@ int writeStringMatrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols,
 
     for (i = 0 ; i < _iRows * _iCols ; i++)
     {
-        iMaxLen = Max(iMaxLen, strlen(data[i]));
+        iMaxLen = std::max(iMaxLen, strlen(data[i]));
     }
 
     //Create string dataspace.  Setting maximum size to NULL sets the maximum size to be the current size.
