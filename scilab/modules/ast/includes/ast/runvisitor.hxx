@@ -232,49 +232,28 @@ public:
         // When an entry is in in and not in out, then in is killed.
         if (!in.empty())
         {
-            if (out.empty())
+            for (types::typed_list::const_iterator o = out.begin(); o != out.end(); ++o)
             {
-                for (types::typed_list::const_iterator i = in.begin(); i != in.end(); ++i)
+                if (*o)
                 {
-                    if (*i)
-                    {
-                        (*i)->DecreaseRef();
-                        (*i)->killMe();
-                    }
+                    (*o)->IncreaseRef();
                 }
             }
-            else
+
+            for (types::typed_list::const_iterator i = in.begin(); i != in.end(); ++i)
             {
-                std::set<InternalType *> common;
-
-                for (types::typed_list::const_iterator i = in.begin(); i != in.end(); ++i)
+                if (*i)
                 {
-                    if (*i)
-                    {
-                        types::typed_list::const_iterator o = out.begin();
-                        for (; o != out.end(); ++o)
-                        {
-                            if (*i == *o)
-                            {
-                                break;
-                            }
-                        }
+                    (*i)->DecreaseRef();
+                    (*i)->killMe();
+                }
+            }
 
-                        if (o == out.end())
-                        {
-                            (*i)->DecreaseRef();
-                            (*i)->killMe();
-                        }
-                        else
-                        {
-                            std::set<InternalType *>::const_iterator nc = common.find(*i);
-                            if (nc == common.end())
-                            {
-                                common.insert(*i);
-                                (*i)->DecreaseRef();
-                            }
-                        }
-                    }
+            for (types::typed_list::const_iterator o = out.begin(); o != out.end(); ++o)
+            {
+                if (*o)
+                {
+                    (*o)->DecreaseRef();
                 }
             }
         }
