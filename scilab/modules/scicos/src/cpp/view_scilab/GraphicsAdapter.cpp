@@ -21,6 +21,10 @@
 #include "Controller.hxx"
 #include "GraphicsAdapter.hxx"
 
+extern "C" {
+#include "sci_mem_alloc.h"
+}
+
 namespace org_scilab_modules_scicos
 {
 namespace view_scilab
@@ -29,14 +33,14 @@ namespace view_scilab
 struct orig
 {
 
-    static types::InternalType* get(const GraphicsAdapter& adaptor)
+    static types::InternalType* get(const GraphicsAdapter& adaptor, const Controller& controller)
     {
         double* data;
         types::Double* o = new types::Double(1, 2, &data);
         model::Block* adaptee = adaptor.getAdaptee();
 
         std::vector<double> geom;
-        Controller::get_instance()->getObjectProperty(adaptee->id(), adaptee->kind(), GEOMETRY, geom);
+        controller.getObjectProperty(adaptee->id(), adaptee->kind(), GEOMETRY, geom);
 
         data[0] = geom[0];
         data[1] = geom[1];
@@ -44,8 +48,9 @@ struct orig
         return o;
     }
 
-    static bool set(GraphicsAdapter& adaptor, types::InternalType* v)
+    static bool set(GraphicsAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
+
         if (v->getType() != types::InternalType::ScilabDouble)
         {
             return false;
@@ -59,12 +64,12 @@ struct orig
 
         model::Block* adaptee = adaptor.getAdaptee();
         std::vector<double> geom;
-        Controller::get_instance()->getObjectProperty(adaptee->id(), adaptee->kind(), GEOMETRY, geom);
+        controller.getObjectProperty(adaptee->id(), adaptee->kind(), GEOMETRY, geom);
 
         geom[0] = current->get(0);
         geom[1] = current->get(1);
 
-        Controller::get_instance()->setObjectProperty(adaptee->id(), adaptee->kind(), GEOMETRY, geom);
+        controller.setObjectProperty(adaptee->id(), adaptee->kind(), GEOMETRY, geom);
         return true;
     }
 };
@@ -72,21 +77,21 @@ struct orig
 struct sz
 {
 
-    static types::InternalType* get(const GraphicsAdapter& adaptor)
+    static types::InternalType* get(const GraphicsAdapter& adaptor, const Controller& controller)
     {
         double* data;
         types::Double* o = new types::Double(1, 2, &data);
         model::Block* adaptee = adaptor.getAdaptee();
 
         std::vector<double> geom;
-        Controller::get_instance()->getObjectProperty(adaptee->id(), adaptee->kind(), GEOMETRY, geom);
+        controller.getObjectProperty(adaptee->id(), adaptee->kind(), GEOMETRY, geom);
 
         data[0] = geom[2];
         data[1] = geom[3];
         return o;
     }
 
-    static bool set(GraphicsAdapter& adaptor, types::InternalType* v)
+    static bool set(GraphicsAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
         if (v->getType() != types::InternalType::ScilabDouble)
         {
@@ -101,12 +106,12 @@ struct sz
 
         model::Block* adaptee = adaptor.getAdaptee();
         std::vector<double> geom;
-        Controller::get_instance()->getObjectProperty(adaptee->id(), adaptee->kind(), GEOMETRY, geom);
+        controller.getObjectProperty(adaptee->id(), adaptee->kind(), GEOMETRY, geom);
 
         geom[2] = current->get(0);
         geom[3] = current->get(1);
 
-        Controller::get_instance()->setObjectProperty(adaptee->id(), adaptee->kind(), GEOMETRY, geom);
+        controller.setObjectProperty(adaptee->id(), adaptee->kind(), GEOMETRY, geom);
         return true;
     }
 };
@@ -114,20 +119,20 @@ struct sz
 struct flip
 {
 
-    static types::InternalType* get(const GraphicsAdapter& adaptor)
+    static types::InternalType* get(const GraphicsAdapter& adaptor, const Controller& controller)
     {
         int* data;
         types::Bool* o = new types::Bool(1, 1, &data);
         model::Block* adaptee = adaptor.getAdaptee();
 
         std::vector<double> angle;
-        Controller::get_instance()->getObjectProperty(adaptee->id(), adaptee->kind(), ANGLE, angle);
+        controller.getObjectProperty(adaptee->id(), adaptee->kind(), ANGLE, angle);
 
         data[0] = angle[0];
         return o;
     }
 
-    static bool set(GraphicsAdapter& adaptor, types::InternalType* v)
+    static bool set(GraphicsAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
         if (v->getType() != types::InternalType::ScilabBool)
         {
@@ -142,11 +147,11 @@ struct flip
 
         model::Block* adaptee = adaptor.getAdaptee();
         std::vector<double> angle;
-        Controller::get_instance()->getObjectProperty(adaptee->id(), adaptee->kind(), ANGLE, angle);
+        controller.getObjectProperty(adaptee->id(), adaptee->kind(), ANGLE, angle);
 
         angle[0] = (current->get(0) == false) ? 0 : 1;
 
-        Controller::get_instance()->setObjectProperty(adaptee->id(), adaptee->kind(), ANGLE, angle);
+        controller.setObjectProperty(adaptee->id(), adaptee->kind(), ANGLE, angle);
         return true;
     }
 };
@@ -154,20 +159,20 @@ struct flip
 struct theta
 {
 
-    static types::InternalType* get(const GraphicsAdapter& adaptor)
+    static types::InternalType* get(const GraphicsAdapter& adaptor, const Controller& controller)
     {
         double* data;
         types::Double* o = new types::Double(1, 1, &data);
         model::Block* adaptee = adaptor.getAdaptee();
 
         std::vector<double> angle;
-        Controller::get_instance()->getObjectProperty(adaptee->id(), adaptee->kind(), ANGLE, angle);
+        controller.getObjectProperty(adaptee->id(), adaptee->kind(), ANGLE, angle);
 
         data[0] = angle[1];
         return o;
     }
 
-    static bool set(GraphicsAdapter& adaptor, types::InternalType* v)
+    static bool set(GraphicsAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
         if (v->getType() != types::InternalType::ScilabDouble)
         {
@@ -182,11 +187,11 @@ struct theta
 
         model::Block* adaptee = adaptor.getAdaptee();
         std::vector<double> angle;
-        Controller::get_instance()->getObjectProperty(adaptee->id(), adaptee->kind(), ANGLE, angle);
+        controller.getObjectProperty(adaptee->id(), adaptee->kind(), ANGLE, angle);
 
         angle[1] = current->get(0);
 
-        Controller::get_instance()->setObjectProperty(adaptee->id(), adaptee->kind(), ANGLE, angle);
+        controller.setObjectProperty(adaptee->id(), adaptee->kind(), ANGLE, angle);
         return true;
     }
 };
@@ -194,23 +199,23 @@ struct theta
 struct exprs
 {
 
-    static types::InternalType* get(const GraphicsAdapter& adaptor)
+    static types::InternalType* get(const GraphicsAdapter& adaptor, const Controller& controller)
     {
         model::Block* adaptee = adaptor.getAdaptee();
 
         std::vector<std::string> exprs;
-        Controller::get_instance()->getObjectProperty(adaptee->id(), adaptee->kind(), EXPRS, exprs);
+        controller.getObjectProperty(adaptee->id(), adaptee->kind(), EXPRS, exprs);
 
         types::String* o = new types::String(exprs.size(), 1);
-
         for (size_t i = 0; i < exprs.size(); ++i)
         {
             o->set(i, exprs[i].data());
         }
+
         return o;
     }
 
-    static bool set(GraphicsAdapter& adaptor, types::InternalType* v)
+    static bool set(GraphicsAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
         if (v->getType() == types::InternalType::ScilabString)
         {
@@ -222,22 +227,19 @@ struct exprs
             }
 
             model::Block* adaptee = adaptor.getAdaptee();
-            std::vector<std::string> exprs;
-            Controller::get_instance()->getObjectProperty(adaptee->id(), adaptee->kind(), EXPRS, exprs);
-
-            exprs.resize(current->getRows());
-            for (int i = 0; i < exprs.size(); ++i)
+            std::vector<std::string> exprs = std::vector<std::string>(current->getSize());
+            for (size_t i = 0; i < exprs.size(); ++i)
             {
-                exprs[i] = (char*) current->get(i);
+                char* c_str = wide_string_to_UTF8(current->get(i));
+                exprs[i] = std::string(c_str);
+                FREE(c_str);
             }
 
-            Controller::get_instance()->setObjectProperty(adaptee->id(), adaptee->kind(), EXPRS, exprs);
+            controller.setObjectProperty(adaptee->id(), adaptee->kind(), EXPRS, exprs);
             return true;
         }
-
-        if (v->getType() == types::InternalType::ScilabDouble)
+        else if (v->getType() == types::InternalType::ScilabDouble)
         {
-
             types::Double* current = v->getAs<types::Double>();
             if (current->getRows() != 0 || current->getCols() != 0)
             {
@@ -246,144 +248,286 @@ struct exprs
 
             model::Block* adaptee = adaptor.getAdaptee();
             std::vector<std::string> exprs;
-            Controller::get_instance()->getObjectProperty(adaptee->id(), adaptee->kind(), EXPRS, exprs);
-
-            exprs.clear();
-
-            Controller::get_instance()->setObjectProperty(adaptee->id(), adaptee->kind(), EXPRS, exprs);
+            controller.setObjectProperty(adaptee->id(), adaptee->kind(), EXPRS, exprs);
             return true;
         }
+        return false;
     }
 };
 
-struct pin
+static types::Double* get_port(const GraphicsAdapter& adaptor, object_properties_t p, const Controller& controller)
 {
+    model::Block* adaptee = adaptor.getAdaptee();
 
-    static types::InternalType* get(const GraphicsAdapter& adaptor)
+    // retrieve the identifiers
+    std::vector<ScicosID> ids;
+    controller.getObjectProperty(adaptee->id(), adaptee->kind(), p, ids);
+
+    // allocate some space for the return value
+    double* ports;
+    types::Double* o = new types::Double(ids.size(), 1, &ports);
+
+    // translate identifiers to return values
+    for (std::vector<ScicosID>::iterator it = ids.begin(); it != ids.end(); ++it, ++ports)
     {
-        model::Block* adaptee = adaptor.getAdaptee();
+        std::vector<ScicosID> connectedSignals;
 
-        std::vector<ScicosID> ids;
-        Controller::get_instance()->getObjectProperty(adaptee->id(), adaptee->kind(), INPUTS, ids);
+        controller.getObjectProperty(*it, PORT, CONNECTED_SIGNALS, connectedSignals);
 
-        types::Double* o = new types::Double(ids.size(), 1);
-
-        for (size_t i = 0; i < ids.size(); ++i)
+        // always return the first connected signals, at scilab level a port can only be connected to one signal at a time.
+        if (connectedSignals.empty())
         {
-            o->set(i, ids[i]);
+            // if the port is not connected returns 0
+            *ports = 0;
         }
-        return o;
+        else
+        {
+            // if the port is connected, return the index of the link in the parent diagram
+            ScicosID link = connectedSignals[0];
+
+            ScicosID parentDiagram = 0;
+            controller.getObjectProperty(link, LINK, PARENT_DIAGRAM, parentDiagram);
+
+            std::vector<ScicosID> children;
+            controller.getObjectProperty(parentDiagram, DIAGRAM, CHILDREN, children);
+
+            std::vector<ScicosID>::iterator it = std::find(children.begin(), children.end(), link);
+            if (it != children.end())
+            {
+                int index = std::distance(children.begin(), it);
+                *ports = index;
+            }
+            else
+            {
+                *ports = 0;
+            }
+        }
+
+        ports++;
     }
 
-    static bool set(GraphicsAdapter& adaptor, types::InternalType* v)
+    return o;
+}
+
+static bool set_port(const GraphicsAdapter& adaptor, types::InternalType* v, object_properties_t p, Controller& controller)
+{
+    model::Block* adaptee = adaptor.getAdaptee();
+
+    if (v->getType() != types::InternalType::ScilabDouble)
     {
-        if (v->getType() != types::InternalType::ScilabDouble)
+        return false;
+    }
+    types::Double* value = v->getAs<types::Double>();
+
+    ScicosID parentDiagram;
+    controller.getObjectProperty(adaptee->id(), BLOCK, PARENT_DIAGRAM, parentDiagram);
+
+    std::vector<ScicosID> children;
+    if (parentDiagram != 0)
+    {
+        controller.getObjectProperty(parentDiagram, DIAGRAM, CHILDREN, children);
+    }
+
+    std::vector<int> newPorts = std::vector<int>(value->getSize());
+    double* d = value->getReal();
+    for (std::vector<int>::iterator it = newPorts.begin(); it != newPorts.end(); ++it, ++d)
+    {
+        if (0 > *d && *d >= children.size())
         {
             return false;
         }
 
-        types::Double* current = v->getAs<types::Double>();
+        *it = (int) * d;
+    }
+    std::vector<ScicosID> deletedObjects;
 
-        model::Block* adaptee = adaptor.getAdaptee();
-        std::vector<ScicosID> ids;
-        Controller::get_instance()->getObjectProperty(adaptee->id(), adaptee->kind(), INPUTS, ids);
+    // retrieve old data
+    std::vector<ScicosID> oldPorts;
+    controller.getObjectProperty(adaptee->id(), adaptee->kind(), p, oldPorts);
+    std::vector<ScicosID> previousPorts = oldPorts;
 
-        ids.resize(current->getSize());
-        for (int i = 0; i < ids.size(); ++i)
+    // updated ports
+    while (!oldPorts.empty() || !newPorts.empty())
+    {
+        ScicosID oldPort = oldPorts.back();
+        oldPorts.pop_back();
+        int newPort = newPorts.back();
+        newPorts.pop_back();
+
+        ScicosID oldSignal;
+        controller.getObjectProperty(oldPort, PORT, CONNECTED_SIGNALS, oldSignal);
+        ScicosID newSignal = children[newPort];
+
+        if (oldSignal != newSignal)
         {
-            ids[i] = current->get(i);
+            // disconnect the old link
+            ScicosID oldSignalSrc;
+            controller.getObjectProperty(oldSignal, LINK, SOURCE_PORT, oldSignalSrc);
+            ScicosID oldSignalDst;
+            controller.getObjectProperty(oldSignal, LINK, DESTINATION_PORT, oldSignalDst);
+
+            ScicosID unconnected = 0;
+            if (oldSignalSrc == oldPort)
+            {
+                controller.setObjectProperty(oldSignalDst, PORT, CONNECTED_SIGNALS, unconnected);
+            }
+            else // oldSignalDst == oldPort
+            {
+                controller.setObjectProperty(oldSignalSrc, PORT, CONNECTED_SIGNALS, unconnected);
+            }
+            // Link de-association is not performed as the link will be removed
+
+            // connect the new link
+            controller.setObjectProperty(newSignal, LINK, SOURCE_PORT, 0);
+            controller.setObjectProperty(oldPort, PORT, CONNECTED_SIGNALS, newSignal);
+
+            children.erase(std::find(children.begin(), children.end(), oldSignal));
+            deletedObjects.push_back(oldSignal);
+        }
+    }
+
+    // removed ports
+    if (!oldPorts.empty())
+    {
+        previousPorts.erase(previousPorts.begin() + oldPorts.size(), previousPorts.end());
+
+        while (!oldPorts.empty())
+        {
+            ScicosID oldPort = oldPorts.back();
+            oldPorts.pop_back();
+
+            ScicosID signal;
+            controller.getObjectProperty(oldPort, PORT, CONNECTED_SIGNALS, signal);
+            if (signal != 0)
+            {
+                // the link is connected, disconnect the other side
+                ScicosID oldSignalSrc;
+                controller.getObjectProperty(signal, LINK, SOURCE_PORT, oldSignalSrc);
+                ScicosID oldSignalDst;
+                controller.getObjectProperty(signal, LINK, DESTINATION_PORT, oldSignalDst);
+
+                ScicosID unconnected = 0;
+                if (oldSignalSrc == oldPort)
+                {
+                    controller.setObjectProperty(oldSignalDst, PORT, CONNECTED_SIGNALS, unconnected);
+                }
+                else     // oldSignalDst == oldPort
+                {
+                    controller.setObjectProperty(oldSignalSrc, PORT, CONNECTED_SIGNALS, unconnected);
+                }
+
+                children.erase(std::find(children.begin(), children.end(), signal));
+                deletedObjects.push_back(signal);
+            }
+
+            deletedObjects.push_back(oldPort);
         }
 
-        Controller::get_instance()->setObjectProperty(adaptee->id(), adaptee->kind(), INPUTS, ids);
-        return true;
+        controller.setObjectProperty(adaptee->id(), BLOCK, p, previousPorts);
+    }
+
+    // added ports
+    if (!newPorts.empty())
+    {
+        while (!newPorts.empty())
+        {
+            int newPort = newPorts.back();
+            oldPorts.pop_back();
+
+            ScicosID id = controller.createObject(PORT);
+            controller.setObjectProperty(id, PORT, SOURCE_BLOCK, adaptee->id());
+            // set the connected signal if applicable
+            if (newPort != 0)
+            {
+                ScicosID signal = children[newPort];
+                controller.setObjectProperty(id, PORT, CONNECTED_SIGNALS, signal);
+            }
+
+            previousPorts.push_back(id);
+        }
+
+        controller.setObjectProperty(adaptee->id(), BLOCK, p, previousPorts);
+    }
+
+    // remove objects from the model after de-association
+    if (parentDiagram != 0)
+    {
+        controller.setObjectProperty(parentDiagram, DIAGRAM, CHILDREN, children);
+    }
+    for (std::vector<ScicosID>::iterator it = deletedObjects.begin(); it != deletedObjects.end(); ++it)
+    {
+        controller.deleteObject(*it);
+    }
+
+    return true;
+}
+
+struct pin
+{
+
+    static types::InternalType* get(const GraphicsAdapter& adaptor, const Controller& controller)
+    {
+        return get_port(adaptor, INPUTS, controller);
+    }
+
+    static bool set(GraphicsAdapter& adaptor, types::InternalType* v, Controller& controller)
+    {
+        return set_port(adaptor, v, INPUTS, controller);
     }
 };
 
 struct pout
 {
 
-    static types::InternalType* get(const GraphicsAdapter& adaptor)
+    static types::InternalType* get(const GraphicsAdapter& adaptor, const Controller& controller)
     {
-        model::Block* adaptee = adaptor.getAdaptee();
-
-        std::vector<ScicosID> ids;
-        Controller::get_instance()->getObjectProperty(adaptee->id(), adaptee->kind(), OUTPUTS, ids);
-
-        types::Double* o = new types::Double(ids.size(), 1);
-
-        for (size_t i = 0; i < ids.size(); ++i)
-        {
-            o->set(i, ids[i]);
-        }
-        return o;
+        return get_port(adaptor, OUTPUTS, controller);
     }
 
-    static bool set(GraphicsAdapter& adaptor, types::InternalType* v)
+    static bool set(GraphicsAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        if (v->getType() != types::InternalType::ScilabDouble)
-        {
-            return false;
-        }
-
-        types::Double* current = v->getAs<types::Double>();
-
-        model::Block* adaptee = adaptor.getAdaptee();
-        std::vector<ScicosID> ids;
-        Controller::get_instance()->getObjectProperty(adaptee->id(), adaptee->kind(), OUTPUTS, ids);
-
-        ids.resize(current->getSize());
-        for (int i = 0; i < ids.size(); ++i)
-        {
-            ids[i] = current->get(i);
-        }
-
-        Controller::get_instance()->setObjectProperty(adaptee->id(), adaptee->kind(), OUTPUTS, ids);
-        return true;
+        return set_port(adaptor, v, OUTPUTS, controller);
     }
 };
 
 struct pein
 {
 
-    static types::InternalType* get(const GraphicsAdapter& adaptor)
+    static types::InternalType* get(const GraphicsAdapter& adaptor, const Controller& controller)
     {
-        //FIXME: implement
-        return 0;
+        return get_port(adaptor, EVENT_INPUTS, controller);
     }
 
-    static bool set(GraphicsAdapter& adaptor, types::InternalType* v)
+    static bool set(GraphicsAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        //FIXME: implement
-        return false;
+        return set_port(adaptor, v, EVENT_INPUTS, controller);
     }
 };
 
 struct peout
 {
 
-    static types::InternalType* get(const GraphicsAdapter& adaptor)
+    static types::InternalType* get(const GraphicsAdapter& adaptor, const Controller& controller)
     {
-        //FIXME: implement
-        return 0;
+        return get_port(adaptor, EVENT_OUTPUTS, controller);
     }
 
-    static bool set(GraphicsAdapter& adaptor, types::InternalType* v)
+    static bool set(GraphicsAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        //FIXME: implement
-        return false;
+        return set_port(adaptor, v, EVENT_OUTPUTS, controller);
     }
 };
 
 struct in_implicit
 {
 
-    static types::InternalType* get(const GraphicsAdapter& adaptor)
+    static types::InternalType* get(const GraphicsAdapter& adaptor, const Controller& controller)
     {
         //FIXME: implement
         return 0;
     }
 
-    static bool set(GraphicsAdapter& adaptor, types::InternalType* v)
+    static bool set(GraphicsAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
         //FIXME: implement
         return false;
@@ -393,13 +537,13 @@ struct in_implicit
 struct out_implicit
 {
 
-    static types::InternalType* get(const GraphicsAdapter& adaptor)
+    static types::InternalType* get(const GraphicsAdapter& adaptor, const Controller& controller)
     {
         //FIXME: implement
         return 0;
     }
 
-    static bool set(GraphicsAdapter& adaptor, types::InternalType* v)
+    static bool set(GraphicsAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
         //FIXME: implement
         return false;
@@ -409,13 +553,13 @@ struct out_implicit
 struct in_style
 {
 
-    static types::InternalType* get(const GraphicsAdapter& adaptor)
+    static types::InternalType* get(const GraphicsAdapter& adaptor, const Controller& controller)
     {
         //FIXME: implement
         return 0;
     }
 
-    static bool set(GraphicsAdapter& adaptor, types::InternalType* v)
+    static bool set(GraphicsAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
         //FIXME: implement
         return false;
@@ -425,13 +569,13 @@ struct in_style
 struct out_style
 {
 
-    static types::InternalType* get(const GraphicsAdapter& adaptor)
+    static types::InternalType* get(const GraphicsAdapter& adaptor, const Controller& controller)
     {
         //FIXME: implement
         return 0;
     }
 
-    static bool set(GraphicsAdapter& adaptor, types::InternalType* v)
+    static bool set(GraphicsAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
         //FIXME: implement
         return false;
@@ -441,13 +585,13 @@ struct out_style
 struct in_label
 {
 
-    static types::InternalType* get(const GraphicsAdapter& adaptor)
+    static types::InternalType* get(const GraphicsAdapter& adaptor, const Controller& controller)
     {
         //FIXME: implement
         return 0;
     }
 
-    static bool set(GraphicsAdapter& adaptor, types::InternalType* v)
+    static bool set(GraphicsAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
         //FIXME: implement
         return false;
@@ -457,13 +601,13 @@ struct in_label
 struct out_label
 {
 
-    static types::InternalType* get(const GraphicsAdapter& adaptor)
+    static types::InternalType* get(const GraphicsAdapter& adaptor, const Controller& controller)
     {
         //FIXME: implement
         return 0;
     }
 
-    static bool set(GraphicsAdapter& adaptor, types::InternalType* v)
+    static bool set(GraphicsAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
         //FIXME: implement
         return false;
@@ -473,13 +617,13 @@ struct out_label
 struct style
 {
 
-    static types::InternalType* get(const GraphicsAdapter& adaptor)
+    static types::InternalType* get(const GraphicsAdapter& adaptor, const Controller& controller)
     {
         //FIXME: implement
         return 0;
     }
 
-    static bool set(GraphicsAdapter& adaptor, types::InternalType* v)
+    static bool set(GraphicsAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
         //FIXME: implement
         return false;

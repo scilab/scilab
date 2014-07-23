@@ -33,8 +33,8 @@ class Port: public BaseObject
     friend class ::org_scilab_modules_scicos::Model;
 
 private:
-    Port() : BaseObject(PORT), dataType(0), sourceBlock(0), kind(UNDEF), portNumber(0) {};
-    Port(const Port& o) : BaseObject(PORT), dataType(o.dataType), sourceBlock(o.sourceBlock), kind(o.kind), portNumber(o.portNumber) {};
+    Port() : BaseObject(PORT), dataType(0), sourceBlock(0), kind(UNDEF) {};
+    Port(const Port& o) : BaseObject(PORT), dataType(o.dataType), sourceBlock(o.sourceBlock), kind(o.kind) {};
     ~Port() {};
 
     const std::vector<ScicosID>& getConnectedSignals() const
@@ -67,16 +67,6 @@ private:
         this->kind = kind;
     }
 
-    unsigned int getPortNumber() const
-    {
-        return portNumber;
-    }
-
-    void setPortNumber(unsigned int portNumber)
-    {
-        this->portNumber = portNumber;
-    }
-
     ScicosID getSourceBlock() const
     {
         return sourceBlock;
@@ -91,7 +81,6 @@ private:
     Datatype* dataType;
     ScicosID sourceBlock;
     portKind kind;
-    unsigned int portNumber;
 
     std::vector<ScicosID> connectedSignals;
 };

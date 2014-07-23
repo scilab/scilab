@@ -36,13 +36,12 @@ namespace view_scilab
 
 struct graphics
 {
-
-    static types::InternalType* get(const BlockAdapter& adaptor)
+    static types::InternalType* get(const BlockAdapter& adaptor, const Controller& controller)
     {
         return new GraphicsAdapter(adaptor.getAdaptee());
     }
 
-    static bool set(BlockAdapter& adaptor, types::InternalType* v)
+    static bool set(BlockAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
         if (v->getType() == types::InternalType::ScilabUserType
                 && v->getShortTypeStr() == GraphicsAdapter::getSharedTypeStr())
@@ -57,13 +56,12 @@ struct graphics
 
 struct model
 {
-
-    static types::InternalType* get(const BlockAdapter& adaptor)
+    static types::InternalType* get(const BlockAdapter& adaptor, const Controller& controller)
     {
         return new ModelAdapter(adaptor.getAdaptee());
     }
 
-    static bool set(BlockAdapter& adaptor, types::InternalType* v)
+    static bool set(BlockAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
         if (v->getType() == types::InternalType::ScilabUserType
                 && v->getShortTypeStr() == ModelAdapter::getSharedTypeStr())
@@ -78,17 +76,16 @@ struct model
 
 struct gui
 {
-
-    static types::InternalType* get(const BlockAdapter& adaptor)
+    static types::InternalType* get(const BlockAdapter& adaptor, const Controller& controller)
     {
         std::string interface;
         org_scilab_modules_scicos::model::Block* adaptee = adaptor.getAdaptee();
-        Controller::get_instance()->getObjectProperty(adaptee->id(), adaptee->kind(), INTERFACE_FUNCTION, interface);
+        controller.getObjectProperty(adaptee->id(), adaptee->kind(), INTERFACE_FUNCTION, interface);
 
         return new types::String(interface.data());
     }
 
-    static bool set(BlockAdapter& adaptor, types::InternalType* v)
+    static bool set(BlockAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
         if (v->getType() != types::InternalType::ScilabString)
         {
@@ -107,20 +104,19 @@ struct gui
         FREE(name);
 
         org_scilab_modules_scicos::model::Block* adaptee = adaptor.getAdaptee();
-        Controller::get_instance()->setObjectProperty(adaptee->id(), adaptee->kind(), INTERFACE_FUNCTION, stName);
+        controller.setObjectProperty(adaptee->id(), adaptee->kind(), INTERFACE_FUNCTION, stName);
         return true;
     }
 };
 
 struct doc
 {
-
-    static types::InternalType* get(const BlockAdapter& adaptor)
+    static types::InternalType* get(const BlockAdapter& adaptor, const Controller& controller)
     {
         return adaptor.getDocContent();
     }
 
-    static bool set(BlockAdapter& adaptor, types::InternalType* v)
+    static bool set(BlockAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
         adaptor.setDocContent(v->clone());
         return true;

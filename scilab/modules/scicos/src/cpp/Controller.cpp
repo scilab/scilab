@@ -19,60 +19,56 @@
 namespace org_scilab_modules_scicos
 {
 
-Controller* Controller::_instance = 0;
+Controller::SharedData* Controller::_instance = 0;
 
-Controller* Controller::get_instance()
-{
-    if (_instance == 0)
-    {
-        _instance = new Controller();
-    }
-    return _instance;
-}
-
-void Controller::delete_instance()
+void Controller::delete_all_instances()
 {
     if (_instance != 0)
     {
+        for (view_set_t::iterator iter = _instance->allViews.begin(); iter != _instance->allViews.end(); iter++)
+        {
+            delete *iter;
+        }
+        _instance->allViews.clear();
+
         delete _instance;
     }
 }
 
 Controller::Controller()
 {
-    LoggerView* v = new LoggerView();
+    if (_instance == 0)
+    {
+        _instance = new SharedData();
 
-    register_view(v);
+        LoggerView* v = new LoggerView();
+        register_view(v);
+    }
 }
 
 Controller::~Controller()
 {
-    for (view_set_t::iterator iter = allViews.begin(); iter != allViews.end(); iter++)
-    {
-        delete *iter;
-    }
-    allViews.clear();
 }
 
 void Controller::register_view(View* v)
 {
-    allViews.push_back(v);
+    _instance->allViews.push_back(v);
 }
 
 void Controller::unregister_view(View* v)
 {
-    view_set_t::iterator it = std::find(allViews.begin(), allViews.end(), v);
-    if (it != allViews.end())
+    view_set_t::iterator it = std::find(_instance->allViews.begin(), _instance->allViews.end(), v);
+    if (it != _instance->allViews.end())
     {
-        allViews.erase(it);
+        _instance->allViews.erase(it);
     }
 }
 
 ScicosID Controller::createObject(kind_t k)
 {
-    ScicosID id = model.createObject(k);
+    ScicosID id = _instance->model.createObject(k);
 
-    for (view_set_t::iterator iter = allViews.begin(); iter != allViews.end(); iter++)
+    for (view_set_t::iterator iter = _instance->allViews.begin(); iter != _instance->allViews.end(); iter++)
     {
         (*iter)->objectCreated(id, k);
     }
@@ -82,9 +78,9 @@ ScicosID Controller::createObject(kind_t k)
 
 void Controller::deleteObject(ScicosID uid)
 {
-    model.deleteObject(uid);
+    _instance->model.deleteObject(uid);
 
-    for (view_set_t::iterator iter = allViews.begin(); iter != allViews.end(); iter++)
+    for (view_set_t::iterator iter = _instance->allViews.begin(); iter != _instance->allViews.end(); iter++)
     {
         (*iter)->objectDeleted(uid);
     }
@@ -92,119 +88,21 @@ void Controller::deleteObject(ScicosID uid)
 
 model::BaseObject* Controller::getObject(ScicosID uid)
 {
-    return model.getObject(uid);
+    return _instance->model.getObject(uid);
 }
 
 update_status_t Controller::setObject(model::BaseObject* o)
 {
-    update_status_t status = model.setObject(o);
+    update_status_t status = _instance->model.setObject(o);
 
     if (status == SUCCESS)
     {
-        for (view_set_t::iterator iter = allViews.begin(); iter != allViews.end(); iter++)
+        for (view_set_t::iterator iter = _instance->allViews.begin(); iter != _instance->allViews.end(); iter++)
         {
             (*iter)->objectUpdated(o->id(), o->kind());
         }
     }
     return status;
-}
-
-bool Controller::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p,
-                                   double& v)
-{
-    return model.getObjectProperty(uid, k, p, v);
-}
-
-bool Controller::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, int& v)
-{
-    return model.getObjectProperty(uid, k, p, v);
-}
-
-bool Controller::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, bool& v)
-{
-    return model.getObjectProperty(uid, k, p, v);
-}
-
-bool Controller::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p,
-                                   std::string& v)
-{
-    return model.getObjectProperty(uid, k, p, v);
-}
-
-bool Controller::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p,
-                                   ScicosID& v)
-{
-    return model.getObjectProperty(uid, k, p, v);
-}
-
-bool Controller::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::vector<double>& v)
-{
-    return model.getObjectProperty(uid, k, p, v);
-}
-
-bool Controller::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::vector<int>& v)
-{
-    return model.getObjectProperty(uid, k, p, v);
-}
-
-bool Controller::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::vector<std::string>& v)
-{
-    return model.getObjectProperty(uid, k, p, v);
-}
-
-bool Controller::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::vector<ScicosID>& v)
-{
-    return model.getObjectProperty(uid, k, p, v);
-}
-
-update_status_t Controller::setObjectProperty(ScicosID uid, kind_t k, object_properties_t p,
-        double v)
-{
-    return generic_setObjectProp<double>(uid, k, p, v);
-}
-
-update_status_t Controller::setObjectProperty(ScicosID uid, kind_t k, object_properties_t p,
-        int v)
-{
-    return generic_setObjectProp<int>(uid, k, p, v);
-}
-
-update_status_t Controller::setObjectProperty(ScicosID uid, kind_t k, object_properties_t p,
-        bool v)
-{
-    return generic_setObjectProp<bool>(uid, k, p, v);
-}
-
-update_status_t Controller::setObjectProperty(ScicosID uid, kind_t k, object_properties_t p,
-        ScicosID v)
-{
-    return generic_setObjectProp<ScicosID>(uid, k, p, v);
-}
-
-update_status_t Controller::setObjectProperty(ScicosID uid, kind_t k, object_properties_t p,
-        std::string v)
-{
-    return generic_setObjectProp<std::string>(uid, k, p, v);
-}
-
-update_status_t Controller::setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, const std::vector<double>& v)
-{
-    return generic_setObjectProp< std::vector<double> >(uid, k, p, v);
-}
-
-update_status_t Controller::setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, const std::vector<int>& v)
-{
-    return generic_setObjectProp< std::vector<int> >(uid, k, p, v);
-}
-
-update_status_t Controller::setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, const std::vector< std::string >& v)
-{
-    return generic_setObjectProp< std::vector<std::string> >(uid, k, p, v);
-}
-
-update_status_t Controller::setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, const std::vector<ScicosID>& v)
-{
-    return generic_setObjectProp< std::vector<ScicosID> >(uid, k, p, v);
 }
 
 } /* namespace org_scilab_modules_scicos */

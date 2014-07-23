@@ -134,26 +134,6 @@ private:
         this->children = children;
     }
 
-    const std::vector<ScicosID>& getEin() const
-    {
-        return ein;
-    }
-
-    void setEin(const std::vector<ScicosID>& ein)
-    {
-        this->ein = ein;
-    }
-
-    const std::vector<ScicosID>& getEout() const
-    {
-        return eout;
-    }
-
-    void setEout(const std::vector<ScicosID>& eout)
-    {
-        this->eout = eout;
-    }
-
     void getGeometry(std::vector<double>& v) const
     {
         geometry.fill(v);
@@ -214,14 +194,19 @@ private:
         return SUCCESS;
     }
 
-    const std::vector<ScicosID>& getIn() const
+    void getIn(std::vector<ScicosID>& v) const
     {
-        return in;
+        v = in;
     }
 
-    void setIn(const std::vector<ScicosID>& in)
+    update_status_t setIn(const std::vector<ScicosID>& in)
     {
+        if (in == this->in)
+        {
+            return NO_CHANGES;
+        }
         this->in = in;
+        return SUCCESS;
     }
 
     const std::string& getInterfaceFunction() const
@@ -234,14 +219,49 @@ private:
         this->interfaceFunction = interfaceFunction;
     }
 
-    const std::vector<ScicosID>& getOut() const
+    void getOut(std::vector<ScicosID>& v) const
     {
-        return out;
+        v = out;
     }
 
-    void setOut(const std::vector<ScicosID>& out)
+    update_status_t setOut(const std::vector<ScicosID>& out)
     {
+        if (out == this->out)
+        {
+            return NO_CHANGES;
+        }
         this->out = out;
+        return SUCCESS;
+    }
+
+    void getEin(std::vector<ScicosID>& v) const
+    {
+        v = ein;
+    }
+
+    update_status_t setEin(const std::vector<ScicosID>& ein)
+    {
+        if (ein == this->ein)
+        {
+            return NO_CHANGES;
+        }
+        this->ein = ein;
+        return SUCCESS;
+    }
+
+    void getEout(std::vector<ScicosID>& v) const
+    {
+        v = eout;
+    }
+
+    update_status_t setEout(const std::vector<ScicosID>& eout)
+    {
+        if (eout == this->eout)
+        {
+            return NO_CHANGES;
+        }
+        this->eout = eout;
+        return SUCCESS;
     }
 
     const Parameter& getParameter() const

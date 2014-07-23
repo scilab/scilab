@@ -53,15 +53,15 @@ static const std::string funame = "scicos_new";
 template<class Adaptor, class Adaptee>
 Adaptor* alloc_and_set(kind_t k, types::String* type_name, types::typed_list &in)
 {
-    Controller* controller = Controller::get_instance();
-    ScicosID o = controller->createObject(k);
-    Adaptor* adaptor = new Adaptor(static_cast<Adaptee*>(controller->getObject(o)));
+    Controller controller = Controller();
+    ScicosID o = controller.createObject(k);
+    Adaptor* adaptor = new Adaptor(static_cast<Adaptee*>(controller.getObject(o)));
 
     // the first header entry is the type
     for (int i = 1; i < in.size(); i++)
     {
         std::wstring name = type_name->get(i);
-        if (!adaptor->setProperty(name, in[i]))
+        if (!adaptor->setProperty(name, in[i], controller))
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: unable to set \"%ls\".\n"), funame.data(), i, name.data());
             delete adaptor;

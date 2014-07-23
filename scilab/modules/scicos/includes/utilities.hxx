@@ -90,7 +90,7 @@ enum object_properties_t
     EVENT_INPUTS,       //!< model::Block::ein value
     EVENT_OUTPUTS,      //!< model::Block::eout value
     PARENT_BLOCK,       //!< model::Block::parentBlock value
-    CHILDREN,           //!< model::Block::children value
+    CHILDREN,           //!< model::Block::children for superblocks or model::Diagram::children value
     PORT_REFERENCE,     //!< model::Block::portReference value
     DESTINATION_PORT,   //!< model::Link::destinationPort value
     SOURCE_PORT,        //!< model::Link::sourcePort value

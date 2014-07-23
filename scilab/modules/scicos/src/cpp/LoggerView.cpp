@@ -101,6 +101,12 @@ static std::ostream& operator<<(std::ostream& os, object_properties_t p)
         case SIM_SCHEDULE:
             os << "SIM_SCHEDULE";
             break;
+        case ANGLE:
+            os << "ANGLE";
+            break;
+        case EXPRS:
+            os << "EXPRS";
+            break;
         case INPUTS:
             os << "INPUTS";
             break;
@@ -149,7 +155,6 @@ static std::ostream& operator<<(std::ostream& os, object_properties_t p)
     }
     return os;
 }
-;
 
 static const bool USE_SCILAB_WRITE = true;
 

@@ -37,8 +37,8 @@ template<typename Adaptor>
 struct property
 {
 public:
-    typedef types::InternalType* (*getter_t)(const Adaptor& adaptor);
-    typedef bool (*setter_t)(Adaptor& adaptor, types::InternalType* v);
+    typedef types::InternalType* (*getter_t)(const Adaptor& adaptor, const Controller& controller);
+    typedef bool (*setter_t)(Adaptor& adaptor, types::InternalType* v, Controller& controller);
 
     typedef std::vector< property<Adaptor> > props_t;
     typedef typename props_t::iterator props_t_it;
@@ -104,22 +104,22 @@ public:
         return found != property<Adaptor>::fields.end();
     }
 
-    types::InternalType* getProperty(const std::wstring& _sKey) const
+    types::InternalType* getProperty(const std::wstring& _sKey, Controller controller = Controller()) const
     {
         typename property<Adaptor>::props_t_it found = std::lower_bound(property<Adaptor>::fields.begin(), property<Adaptor>::fields.end(), _sKey);
         if (found != property<Adaptor>::fields.end())
         {
-            return found->get(static_cast<Adaptor*>(this));
+            return found->get(static_cast<Adaptor*>(this), controller);
         }
         return 0;
     }
 
-    bool setProperty(const std::wstring& _sKey, types::InternalType* v)
+    bool setProperty(const std::wstring& _sKey, types::InternalType* v, Controller controller = Controller())
     {
         typename property<Adaptor>::props_t_it found = std::lower_bound(property<Adaptor>::fields.begin(), property<Adaptor>::fields.end(), _sKey);
         if (found != property<Adaptor>::fields.end())
         {
-            return found->set(*static_cast<Adaptor*>(this), v);
+            return found->set(*static_cast<Adaptor*>(this), v, controller);
         }
         return false;
     }

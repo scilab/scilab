@@ -31,11 +31,13 @@ namespace org_scilab_modules_scicos
 class Controller
 {
 public:
-    static Controller* get_instance();
-    static void delete_instance();
+    Controller();
+    ~Controller();
 
-    void register_view(View* v);
-    void unregister_view(View* v);
+    static void delete_all_instances();
+
+    static void register_view(View* v);
+    static void unregister_view(View* v);
 
     ScicosID createObject(kind_t k);
     void deleteObject(ScicosID uid);
@@ -43,59 +45,49 @@ public:
     model::BaseObject* getObject(ScicosID uid);
     update_status_t setObject(model::BaseObject* o);
 
-    bool getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, double& v);
-    bool getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, int& v);
-    bool getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, bool& v);
-    bool getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::string& v);
-    bool getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, ScicosID& v);
-    bool getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::vector<double>& v);
-    bool getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::vector<int>& v);
-    bool getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::vector< std::string >& v);
-    bool getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::vector<ScicosID>& v);
-
-    update_status_t setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, double v);
-    update_status_t setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, int v);
-    update_status_t setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, bool v);
-    update_status_t setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, ScicosID v);
-    update_status_t setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::string v);
-    update_status_t setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, const std::vector<double>& v);
-    update_status_t setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, const std::vector<int>& v);
-    update_status_t setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, const std::vector< std::string >& v);
-    update_status_t setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, const std::vector<ScicosID>& v);
-
-private:
-    void dispatch(update_status_t status, ScicosID uid, kind_t k, object_properties_t p)
+    template<typename T>
+    inline bool getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, T& v) const
     {
+        return _instance->model.getObjectProperty(uid, k, p, v);
+    };
+
+    template<typename T>
+    inline update_status_t setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, T v)
+    {
+        update_status_t status = _instance->model.setObjectProperty(uid, k, p, v);
         if (status == SUCCESS)
         {
-            for (view_set_t::iterator iter = allViews.begin(); iter != allViews.end(); iter++)
+            for (view_set_t::iterator iter = _instance->allViews.begin(); iter != _instance->allViews.end(); iter++)
             {
                 (*iter)->propertyUpdated(uid, k, p);
             }
         }
-        for (view_set_t::iterator iter = allViews.begin(); iter != allViews.end(); iter++)
+        for (view_set_t::iterator iter = _instance->allViews.begin(); iter != _instance->allViews.end(); iter++)
         {
             (*iter)->propertyUpdated(uid, k, p, status);
         }
-    }
-
-    template<typename T>
-    update_status_t generic_setObjectProp(ScicosID uid, kind_t k, object_properties_t p, T v)
-    {
-        update_status_t status = model.setObjectProperty(uid, k, p, v);
-        dispatch(status, uid, k, p);
         return status;
     }
 
 private:
-    static Controller* _instance;
 
-    Model model;
     typedef std::vector<View*> view_set_t;
-    view_set_t allViews;
 
-    Controller();
-    ~Controller();
+    /**
+     * Shared data through all instance of the controllers
+     */
+    struct SharedData
+    {
+        Model model;
+        view_set_t allViews;
+    };
+
+    /**
+     * Shared instance of the data
+     *
+     * This will be allocated on-demand be Controller::get_instance()
+     */
+    static SharedData* _instance;
 };
 
 } /* namespace org_scilab_modules_scicos */
