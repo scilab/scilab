@@ -41,6 +41,7 @@ XCOS_CXX_SOURCES =	\
     src/jni/Palette.hxx \
     src/jni/Modelica.cpp \
     src/jni/Modelica.hxx \
+    src/jni/JavaController_wrap.cxx \
     src/cpp/xcosUtilities.cpp \
     src/cpp/loadStatus.cpp
 
@@ -49,13 +50,20 @@ GIWS_WRAPPERS = \
     src/jni/Xcos.giws.xml \
     src/jni/Palette.giws.xml \
     src/jni/Modelica.giws.xml
-
+SWIG_WRAPPERS = \
+    src/jni/JavaController.i
+# FORCE directors due to a bug into swig
+SWIG_OPTIONS=-c++ -directors
+BUILT_SOURCES=
 if GIWS
-BUILT_SOURCES=giws
+BUILT_SOURCES+=giws
+endif
+if SWIG
+BUILT_SOURCES+=swig
 endif
 
 
-GATEWAY_C_SOURCES = 
+GATEWAY_C_SOURCES =
 
 GATEWAY_CXX_SOURCES = \
 	sci_gateway/cpp/sci_Xcos.cpp \
@@ -81,6 +89,7 @@ libscixcos_la_CPPFLAGS = \
     -I$(srcdir)/src/jni/ \
     -I$(srcdir)/src/cpp/ \
     -I$(srcdir)/src/c/ \
+    -I$(top_srcdir)/modules/scicos/includes/ \
     -I$(top_srcdir)/modules/ast/includes/ast/ \
     -I$(top_srcdir)/modules/ast/includes/exps/ \
     -I$(top_srcdir)/modules/ast/includes/operations/ \
@@ -136,6 +145,7 @@ INCLUDE_FLAGS = $(libscixcos_la_CPPFLAGS)
 
 
 libscixcos_la_LIBADD = libscixcos-algo.la \
+		$(top_builddir)/modules/scicos/libsciscicos.la \
 		$(top_builddir)/modules/commons/libscicommons.la
 
 #### xcos : gateway declaration ####

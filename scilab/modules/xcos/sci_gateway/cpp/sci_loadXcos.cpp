@@ -1,6 +1,6 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2012 - Scilal Enterprises - Clément DAVID
+* Copyright (C) 2012 - Scilal Enterprises - Clement DAVID
 *
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
@@ -9,6 +9,7 @@
 * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 *
 */
+
 extern "C"
 {
 #include "gw_xcos.h"
@@ -25,4 +26,3 @@ int sci_loadXcos(char *fname, void *pvApiCtx)
     PutLhsVar();
     return 0;
 }
-

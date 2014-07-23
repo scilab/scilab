@@ -112,6 +112,9 @@ public final class Xcos {
     private static volatile Xcos sharedInstance;
 
     static {
+        /* register the main view */
+        JavaController.register_view(new XcosView());
+
         Scilab.registerInitialHook(new Runnable() {
             @Override
             public void run() {

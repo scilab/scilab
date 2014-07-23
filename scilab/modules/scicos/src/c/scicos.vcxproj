@@ -324,9 +324,10 @@ lib /DEF:"$(ProjectDir)differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\Controller.hxx" />
+    <ClInclude Include="..\..\includes\Model.hxx" />
+    <ClInclude Include="..\..\includes\model\BaseObject.hxx" />
     <ClInclude Include="..\..\includes\View.hxx" />
     <ClInclude Include="..\cpp\LoggerView.hxx" />
-    <ClInclude Include="..\cpp\Model.hxx" />
     <ClInclude Include="..\cpp\view_scilab\Adapters.hxx" />
     <ClInclude Include="..\cpp\view_scilab\BaseAdapter.hxx" />
     <ClInclude Include="..\cpp\view_scilab\BlockAdapter.hxx" />

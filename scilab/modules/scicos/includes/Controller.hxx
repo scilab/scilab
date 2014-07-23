@@ -19,6 +19,8 @@
 #include "Model.hxx"
 #include "View.hxx"
 
+#include "dynlib_scicos.h"
+
 namespace org_scilab_modules_scicos
 {
 
@@ -27,16 +29,16 @@ namespace org_scilab_modules_scicos
  *
  * All calls to objects should use this controller, all usable objects are referenced by this controller.
  */
-class Controller
+class SCICOS_IMPEXP Controller
 {
 public:
-    Controller();
-    ~Controller();
-
     static void delete_all_instances();
 
     static void register_view(View* v);
     static void unregister_view(View* v);
+
+    Controller();
+    ~Controller();
 
     ScicosID createObject(kind_t k);
     void deleteObject(ScicosID uid);
@@ -45,13 +47,13 @@ public:
     update_status_t setObject(model::BaseObject* o);
 
     template<typename T>
-    inline bool getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, T& v) const
+    bool getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, T& v) const
     {
         return _instance->model.getObjectProperty(uid, k, p, v);
     };
 
     template<typename T>
-    inline update_status_t setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, T v)
+    update_status_t setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, T v)
     {
         update_status_t status = _instance->model.setObjectProperty(uid, k, p, v);
         if (status == SUCCESS)
@@ -79,6 +81,9 @@ private:
     {
         Model model;
         view_set_t allViews;
+
+        SharedData();
+        ~SharedData();
     };
 
     /**

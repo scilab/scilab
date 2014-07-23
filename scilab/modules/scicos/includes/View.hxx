@@ -15,10 +15,12 @@
 
 #include "utilities.hxx"
 
+#include "dynlib_scicos.h"
+
 namespace org_scilab_modules_scicos
 {
 
-class View
+class SCICOS_IMPEXP View
 {
 public:
     View() {};
@@ -28,7 +30,7 @@ public:
     virtual void objectDeleted(const ScicosID& uid) = 0;
     virtual void objectUpdated(const ScicosID& uid, kind_t k) = 0;
     virtual void propertyUpdated(const ScicosID& uid, kind_t k, object_properties_t p) = 0;
-    virtual void propertyUpdated(const ScicosID& uid, kind_t k, object_properties_t p, update_status_t u) = 0;
+    virtual void propertyUpdated(const ScicosID& uid, kind_t k, object_properties_t p, update_status_t u) {};
 };
 
 } /* namespace org_scilab_modules_scicos */

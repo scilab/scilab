@@ -96,7 +96,7 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 @GUI_TRUE@am__append_1 = external_objects_java
-@XCOS_TRUE@am__append_2 = scicos_blocks
+@XCOS_TRUE@am__append_2 = scicos_blocks scicos xcos
 @MPI_TRUE@am__append_3 = mpi
 
 # javasci should be compile at the end because it needs libscilab.la
@@ -274,10 +274,10 @@ DIST_SUBDIRS = prebuildjava threads output_stream arnoldi \
 	graphic_export graphics optimization symbolic randlib \
 	interpolation sound overloading m2sci development_tools \
 	compatibility_functions helptools umfpack demo_tools \
-	genetic_algorithms simulated_annealing matio atoms graph xcos \
-	ast scinotes parallel modules_manager ui_data history_browser \
+	genetic_algorithms simulated_annealing matio atoms graph ast \
+	scinotes parallel modules_manager ui_data history_browser \
 	preferences xml types external_objects external_objects_java \
-	scicos_blocks scicos mpi . javasci
+	scicos_blocks scicos xcos mpi . javasci
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 am__relativize = \
   dir0=`pwd`; \
@@ -600,9 +600,9 @@ SUBDIRS = prebuildjava threads output_stream arnoldi \
 	interpolation sound overloading m2sci development_tools \
 	compatibility_functions helptools umfpack demo_tools \
 	genetic_algorithms simulated_annealing parameters matio atoms \
-	hdf5 graph xcos ast scinotes parallel modules_manager ui_data \
+	hdf5 graph ast scinotes parallel modules_manager ui_data \
 	history_browser preferences xml types external_objects \
-	$(am__append_1) $(am__append_2) scicos $(am__append_3) . \
+	$(am__append_1) $(am__append_2) $(am__append_3) . \
 	$(am__append_4)
 
 #### Basic files ####
