@@ -120,8 +120,12 @@ private:
     friend class ::org_scilab_modules_scicos::Model;
 
 private:
-    Block() : BaseObject(BLOCK), parentDiagram(0), interfaceFunction(), geometry(), parentBlock(0), portReference(0) {};
-    Block(const Block& o) : BaseObject(BLOCK), parentDiagram(o.parentDiagram), interfaceFunction(o.interfaceFunction), geometry(o.geometry), parentBlock(o.parentBlock), portReference(o.portReference) {};
+    Block() : BaseObject(BLOCK), parentDiagram(0), interfaceFunction(), geometry(),
+        angle(), exprs(), identifier(), style(), sim(), in(), out(), ein(), eout(),
+        parameter(), state(), parentBlock(0), children(), portReference(0) {};
+    Block(const Block& o) : BaseObject(BLOCK), parentDiagram(o.parentDiagram), interfaceFunction(o.interfaceFunction), geometry(o.geometry),
+        angle(o.angle), exprs(o.exprs), identifier(o.identifier), style(o.style), sim(o.sim), in(o.in), out(o.out), ein(o.ein), eout(o.eout),
+        parameter(o.parameter), state(o.state), parentBlock(o.parentBlock), children(o.children), portReference(o.portReference) {};
     ~Block() {}
 
     const std::vector<ScicosID>& getChildren() const
@@ -191,6 +195,22 @@ private:
         }
 
         exprs = data;
+        return SUCCESS;
+    }
+
+    void getIdentifier(std::string& data) const
+    {
+        data = identifier;
+    }
+
+    update_status_t setIdentifier(const std::string& data)
+    {
+        if (data == identifier)
+        {
+            return NO_CHANGES;
+        }
+
+        identifier = data;
         return SUCCESS;
     }
 
@@ -329,6 +349,7 @@ private:
     Geometry geometry;
     Angle angle;
     std::vector<std::string> exprs;
+    std::string identifier;
     std::string style;
 
     Descriptor sim;

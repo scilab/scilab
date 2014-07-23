@@ -85,6 +85,7 @@ enum object_properties_t
     SIM_SCHEDULE,       //!< model::Descriptor::schedulingProperties value (stored into model::Block::sim)
     ANGLE,              //!< model::Block::flip and theta values
     EXPRS,              //!< model::Block::exprs value
+    ID,                 //!< model::Block::id value
     INPUTS,             //!< model::Block::in value
     OUTPUTS,            //!< model::Block::out value
     EVENT_INPUTS,       //!< model::Block::ein value
@@ -98,6 +99,7 @@ enum object_properties_t
     DATATYPE,           //!< model::Port::dataType value
     SOURCE_BLOCK,       //!< model::Port::sourceBlock value
     PORT_KIND,          //!< model::Port::kind value
+    IMPLICIT,           //!< model::Port::implicit value
     PORT_NUMBER,        //!< model::Port::portNumber value
     CONNECTED_SIGNALS,  //!< model::Port::connectedSignals value
 };

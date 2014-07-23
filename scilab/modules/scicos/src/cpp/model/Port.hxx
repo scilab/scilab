@@ -33,8 +33,8 @@ class Port: public BaseObject
     friend class ::org_scilab_modules_scicos::Model;
 
 private:
-    Port() : BaseObject(PORT), dataType(0), sourceBlock(0), kind(UNDEF) {};
-    Port(const Port& o) : BaseObject(PORT), dataType(o.dataType), sourceBlock(o.sourceBlock), kind(o.kind) {};
+    Port() : BaseObject(PORT), dataType(0), sourceBlock(0), kind(UNDEF), implicit(false) {};
+    Port(const Port& o) : BaseObject(PORT), dataType(o.dataType), sourceBlock(o.sourceBlock), kind(o.kind), implicit(o.implicit) {};
     ~Port() {};
 
     const std::vector<ScicosID>& getConnectedSignals() const
@@ -77,10 +77,26 @@ private:
         this->sourceBlock = sourceBlock;
     }
 
+    void getImplicit(bool& v) const
+    {
+        v = implicit;
+    }
+
+    update_status_t setImplicit(bool implicit)
+    {
+        if (implicit == this->implicit)
+        {
+            return NO_CHANGES;
+        }
+        this->implicit = implicit;
+        return SUCCESS;
+    }
+
 private:
     Datatype* dataType;
     ScicosID sourceBlock;
     portKind kind;
+    bool implicit;
 
     std::vector<ScicosID> connectedSignals;
 };

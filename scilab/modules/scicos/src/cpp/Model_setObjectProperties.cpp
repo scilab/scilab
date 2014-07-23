@@ -169,6 +169,8 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
         model::Port* o = static_cast<model::Port*>(getObject(uid));
         switch (p)
         {
+            case IMPLICIT:
+                return o->setImplicit(v);
             default:
                 break;
         }
@@ -246,6 +248,8 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
         model::Block* o = static_cast<model::Block*>(getObject(uid));
         switch (p)
         {
+            case ID:
+                return o->setIdentifier(v);
             default:
                 break;
         }

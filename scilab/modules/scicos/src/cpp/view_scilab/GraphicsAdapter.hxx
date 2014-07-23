@@ -41,6 +41,11 @@ public:
     bool toString(std::wostringstream& ostr);
     std::wstring getTypeStr();
     std::wstring getShortTypeStr();
+
+    types::InternalType* getGrIContent() const;
+    void setGrIContent(types::InternalType* v);
+private:
+    types::InternalType* gr_i_content;
 };
 
 } /* view_scilab */
