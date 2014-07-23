@@ -23,6 +23,7 @@ public class JavaControllerJNI {
     public final static native void delete_Controller(long jarg1);
     public final static native long Controller_createObject(long jarg1, Controller jarg1_, int jarg2);
     public final static native void Controller_deleteObject(long jarg1, Controller jarg1_, long jarg2);
+    public final static native long Controller_cloneObject(long jarg1, Controller jarg1_, long jarg2);
     public final static native boolean Controller_getObjectProperty__SWIG_1(long jarg1, Controller jarg1_, long jarg2, int jarg3, int jarg4, int[] jarg5);
     public final static native boolean Controller_getObjectProperty__SWIG_2(long jarg1, Controller jarg1_, long jarg2, int jarg3, int jarg4, double[] jarg5);
     public final static native boolean Controller_getObjectProperty__SWIG_3(long jarg1, Controller jarg1_, long jarg2, int jarg3, int jarg4, String[] jarg5);

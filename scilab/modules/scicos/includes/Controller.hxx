@@ -43,6 +43,7 @@ public:
 
     ScicosID createObject(kind_t k);
     void deleteObject(ScicosID uid);
+    ScicosID cloneObject(ScicosID uid);
 
     model::BaseObject* getObject(ScicosID uid);
     update_status_t setObject(model::BaseObject* o);

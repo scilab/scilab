@@ -51,6 +51,10 @@ public class Controller {
         JavaControllerJNI.Controller_deleteObject(swigCPtr, this, uid);
     }
 
+    public long cloneObject(long uid) {
+        return JavaControllerJNI.Controller_cloneObject(swigCPtr, this, uid);
+    }
+
     public boolean getObjectProperty(long uid, Kind k, ObjectProperties p, int[] v) {
         return JavaControllerJNI.Controller_getObjectProperty__SWIG_1(swigCPtr, this, uid, k.ordinal(), p.ordinal(), v);
     }

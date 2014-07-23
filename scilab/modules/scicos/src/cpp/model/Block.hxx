@@ -512,19 +512,19 @@ private:
         {
             case DEP_U & DEP_T:
                 // data is already set to [0 0] here.
-                return;
+                break;
             case DEP_U:
                 data[0] = 1;
-                return;
+                break;
             case DEP_T:
                 data[1] = 1;
-                return;
+                break;
             case DEP_U | DEP_T:
                 data[0] = 1;
                 data[1] = 1;
-                return;
+                break;
             default:
-                return;
+                break;
         }
     }
 

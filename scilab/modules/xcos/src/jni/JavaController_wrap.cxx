@@ -863,6 +863,23 @@ SWIGEXPORT void JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_Controlle
 }
 
 
+SWIGEXPORT jlong JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_Controller_1cloneObject(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+  jlong jresult = 0 ;
+  org_scilab_modules_scicos::Controller *arg1 = (org_scilab_modules_scicos::Controller *) 0 ;
+  ScicosID arg2 ;
+  ScicosID result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(org_scilab_modules_scicos::Controller **)&jarg1; 
+  arg2 = (ScicosID)jarg2; 
+  result = (ScicosID)(arg1)->cloneObject(arg2);
+  jresult = (jlong)result; 
+  return jresult;
+}
+
+
 SWIGEXPORT jboolean JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_Controller_1getObjectProperty_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jint jarg3, jint jarg4, jintArray jarg5) {
   jboolean jresult = 0 ;
   org_scilab_modules_scicos::Controller *arg1 = (org_scilab_modules_scicos::Controller *) 0 ;

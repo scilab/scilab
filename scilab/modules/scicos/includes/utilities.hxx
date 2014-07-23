@@ -109,6 +109,7 @@ enum object_properties_t
     PROPERTIES,         //!< model::Diagram::tol & tf values
     DIAGRAM_CONTEXT,    //!< model::Diagram::context value
     VERSION_NUMBER,     //!< model::Diagram::version value
+    MAX_OBJECT_PROPERTIES //!< last valid value of the object_properties_t enum
 };
 
 #endif /* UTILITIES_HXX_ */

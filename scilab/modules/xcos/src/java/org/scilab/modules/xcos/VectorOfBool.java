@@ -9,70 +9,70 @@
 package org.scilab.modules.xcos;
 
 public class VectorOfBool {
-  private long swigCPtr;
-  protected boolean swigCMemOwn;
+    private long swigCPtr;
+    protected boolean swigCMemOwn;
 
-  protected VectorOfBool(long cPtr, boolean cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = cPtr;
-  }
-
-  protected static long getCPtr(VectorOfBool obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
-
-  protected void finalize() {
-    delete();
-  }
-
-  public synchronized void delete() {
-    if (swigCPtr != 0) {
-      if (swigCMemOwn) {
-        swigCMemOwn = false;
-        JavaControllerJNI.delete_VectorOfBool(swigCPtr);
-      }
-      swigCPtr = 0;
+    protected VectorOfBool(long cPtr, boolean cMemoryOwn) {
+        swigCMemOwn = cMemoryOwn;
+        swigCPtr = cPtr;
     }
-  }
 
-  public VectorOfBool() {
-    this(JavaControllerJNI.new_VectorOfBool__SWIG_0(), true);
-  }
+    protected static long getCPtr(VectorOfBool obj) {
+        return (obj == null) ? 0 : obj.swigCPtr;
+    }
 
-  public VectorOfBool(long n) {
-    this(JavaControllerJNI.new_VectorOfBool__SWIG_1(n), true);
-  }
+    protected void finalize() {
+        delete();
+    }
 
-  public long size() {
-    return JavaControllerJNI.VectorOfBool_size(swigCPtr, this);
-  }
+    public synchronized void delete() {
+        if (swigCPtr != 0) {
+            if (swigCMemOwn) {
+                swigCMemOwn = false;
+                JavaControllerJNI.delete_VectorOfBool(swigCPtr);
+            }
+            swigCPtr = 0;
+        }
+    }
 
-  public long capacity() {
-    return JavaControllerJNI.VectorOfBool_capacity(swigCPtr, this);
-  }
+    public VectorOfBool() {
+        this(JavaControllerJNI.new_VectorOfBool__SWIG_0(), true);
+    }
 
-  public void reserve(long n) {
-    JavaControllerJNI.VectorOfBool_reserve(swigCPtr, this, n);
-  }
+    public VectorOfBool(long n) {
+        this(JavaControllerJNI.new_VectorOfBool__SWIG_1(n), true);
+    }
 
-  public boolean isEmpty() {
-    return JavaControllerJNI.VectorOfBool_isEmpty(swigCPtr, this);
-  }
+    public long size() {
+        return JavaControllerJNI.VectorOfBool_size(swigCPtr, this);
+    }
 
-  public void clear() {
-    JavaControllerJNI.VectorOfBool_clear(swigCPtr, this);
-  }
+    public long capacity() {
+        return JavaControllerJNI.VectorOfBool_capacity(swigCPtr, this);
+    }
 
-  public void add(boolean x) {
-    JavaControllerJNI.VectorOfBool_add(swigCPtr, this, x);
-  }
+    public void reserve(long n) {
+        JavaControllerJNI.VectorOfBool_reserve(swigCPtr, this, n);
+    }
 
-  public boolean get(int i) {
-    return JavaControllerJNI.VectorOfBool_get(swigCPtr, this, i);
-  }
+    public boolean isEmpty() {
+        return JavaControllerJNI.VectorOfBool_isEmpty(swigCPtr, this);
+    }
 
-  public void set(int i, boolean val) {
-    JavaControllerJNI.VectorOfBool_set(swigCPtr, this, i, val);
-  }
+    public void clear() {
+        JavaControllerJNI.VectorOfBool_clear(swigCPtr, this);
+    }
+
+    public void add(boolean x) {
+        JavaControllerJNI.VectorOfBool_add(swigCPtr, this, x);
+    }
+
+    public boolean get(int i) {
+        return JavaControllerJNI.VectorOfBool_get(swigCPtr, this, i);
+    }
+
+    public void set(int i, boolean val) {
+        JavaControllerJNI.VectorOfBool_set(swigCPtr, this, i, val);
+    }
 
 }
