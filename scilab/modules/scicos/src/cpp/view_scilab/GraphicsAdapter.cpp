@@ -22,7 +22,7 @@
 #include "GraphicsAdapter.hxx"
 
 extern "C" {
-#include "sci_mem_alloc.h"
+#include "sci_malloc.h"
 }
 
 namespace org_scilab_modules_scicos
