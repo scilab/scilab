@@ -733,6 +733,12 @@ esac
 #######################
 AC_CHECK_UNDERSCORE_FORTRAN()
 
+#################
+## LLVM
+#################
+
+AC_LLVM_CONFIG()
+
 ###############################
 ### Regenerate the parser files
 ### Flex & Yacc
@@ -2336,7 +2342,6 @@ echo "  CURL_CFLAGS ........ = $CURL_CFLAGS"
 echo "  CURL_LIBS .......... = $CURL_LIBS"
 echo "  CURL_VERSION ....... = $CURL_VERSION"
 
-
 echo ""
 echo "SWIG Configuration:"
 if test ! -z "$SWIG_BIN"; then
@@ -2353,6 +2358,14 @@ echo "  GIWS_BIN ........... = $GIWS_BIN"
 else
 echo "  GIWS generation disabled"
 fi
+
+echo ""
+echo "LLVM configuration:"
+echo "  LLVM_VERSION ....... = $LLVM_VERSION"
+echo "  LLVM_CONFIG_BIN .... = $LLVM_CONFIG_BIN"
+echo "  LLVM_INCLUDE ....... = $LLVM_INCLUDE"
+echo "  LLVM_CPPFLAGS ...... = $LLVM_CPPFLAGS"
+echo "  LLVM_LDFLAGS ....... = $LLVM_LDFLAGS"
 
 echo ""
 echo "Libtool config:"

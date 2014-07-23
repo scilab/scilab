@@ -518,6 +518,9 @@
 /* With the HDF5 library */
 #undef WITH_HDF5
 
+/* With llvm-config */
+#undef WITH_LLVM_CONFIG
+
 /* With the MATIO library */
 #undef WITH_MATIO
 
