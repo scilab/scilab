@@ -1,6 +1,7 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
+* Copyright (C) 2014 - Scilab Enterprises - Sylvain GENIN
 *
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
@@ -374,12 +375,18 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
 
     // *** perform operation in according method string and return result. ***
 
+    types::Double* pDblOut =  NULL;
+
     if (itab[1] * itab[0] == 0)
     {
-        out.push_back(types::Double::Empty());
+        types::Double* pDblIn = in[0]->getAs<types::Double>();
+        pDblOut = new types::Double(pDblIn->getDims(), pDblIn->getDimsArray());
+    }
+    else
+    {
+        pDblOut = new types::Double(iDims, itab);
     }
 
-    types::Double* pDblOut = new types::Double(iDims, itab);
     delete[] itab;
 
     switch (meth)
