@@ -28,6 +28,7 @@
 #include "view_scilab/GraphicsAdapter.hxx"
 #include "view_scilab/LinkAdapter.hxx"
 #include "view_scilab/ModelAdapter.hxx"
+#include "view_scilab/ParamsAdapter.hxx"
 #include "view_scilab/ScsAdapter.hxx"
 #include "view_scilab/StateAdapter.hxx"
 #include "view_scilab/TextAdapter.hxx"
@@ -158,6 +159,14 @@ types::Function::ReturnValue sci_scicos_new(types::typed_list &in, int _iRetCoun
             break;
         case view_scilab::Adapters::MODEL_ADAPTER:
             returnType = alloc_and_set<view_scilab::ModelAdapter, model::Block>(BLOCK, type_name, in);
+            if (returnType == 0)
+            {
+                return types::Function::Error;
+            }
+            out.push_back(returnType);
+            break;
+        case view_scilab::Adapters::PARAMS_ADAPTER:
+            returnType = alloc_and_set<view_scilab::ParamsAdapter, model::Diagram>(DIAGRAM, type_name, in);
             if (returnType == 0)
             {
                 return types::Function::Error;

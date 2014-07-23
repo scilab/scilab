@@ -159,7 +159,7 @@ bool String::subMatrixToString(wostringstream& ostr, int* _piDims, int _iDims)
             _piDims[1] = 0;
             _piDims[0] = i;
             int iPos = getIndex(_piDims);
-            iMaxLen = Max(iMaxLen, static_cast<int>(wcslen(get(iPos))));
+            iMaxLen = std::max(iMaxLen, static_cast<int>(wcslen(get(iPos))));
         }
 
         iMaxLen += 2;
@@ -248,7 +248,7 @@ bool String::subMatrixToString(wostringstream& ostr, int* _piDims, int _iDims)
                 _piDims[1] = iCols1;
                 _piDims[0] = iRows1;
                 int iPos = getIndex(_piDims);
-                piSize[iCols1] = Max(piSize[iCols1], static_cast<int>(wcslen(get(iPos))));
+                piSize[iCols1] = std::max(piSize[iCols1], static_cast<int>(wcslen(get(iPos))));
             }
 
             if (iLen + piSize[iCols1] > iLineLen)

@@ -71,7 +71,7 @@ static std::ostream& operator<<(std::ostream& os, kind_t k)
     }
     return os;
 }
-;
+
 
 static std::ostream& operator<<(std::ostream& os, object_properties_t p)
 {

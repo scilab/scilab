@@ -83,7 +83,7 @@ struct gui
     {
         std::string interface;
         org_scilab_modules_scicos::model::Block* adaptee = adaptor.getAdaptee();
-        Controller::get_instance()->getObjectProperty(adaptee->id(), adaptee->kind(), INTERFACE_FUNCTION, &interface);
+        Controller::get_instance()->getObjectProperty(adaptee->id(), adaptee->kind(), INTERFACE_FUNCTION, interface);
 
         return new types::String(interface.data());
     }

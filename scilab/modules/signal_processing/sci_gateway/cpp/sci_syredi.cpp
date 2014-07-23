@@ -263,7 +263,7 @@ double maximum(double* _pDblVal, int _iSize)
     dblMax = _pDblVal[0];
     for (int i = 1 ; i < _iSize ; i++)
     {
-        dblMax = Max(_pDblVal[i], dblMax);
+        dblMax = std::max(_pDblVal[i], dblMax);
     }
     return dblMax;
 }
@@ -280,7 +280,7 @@ double minimum(double* _pDblVal, int _iSize)
     dblMin = _pDblVal[0];
     for (int i = 1 ; i < _iSize ; i++)
     {
-        dblMin = Min(_pDblVal[i], dblMin);
+        dblMin = std::min(_pDblVal[i], dblMin);
     }
     return dblMin;
 }

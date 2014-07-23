@@ -82,7 +82,7 @@
     </PreBuildEvent>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;../../includes;../cpp/;../cpp/model;../cpp/view_scilab;../scicos_sundials/include;../scicos_sundials/src/ida;../scicos_sundials/include/sundials;../../../../libs/intl;../../../../libs/Eigen/includes;../../../core/includes;../../../time/includes;../../../api_scilab/includes;../../../output_stream/includes;../../../scicos_blocks/includes;../../../windows_tools/includes;../../../graphics/includes;../../../localization/includes;../../../string/includes;../../../intersci/src/lib;../../../dynamic_link/includes;../../../action_binding/includes;../../../intersci/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;../../../ast/includes/parse;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../cpp/;../cpp/model;../cpp/view_scilab;../scicos_sundials/include;../scicos_sundials/src/ida;../scicos_sundials/include/sundials;../../../../libs/intl;../../../../libs/Eigen/includes;../../../core/includes;../../../time/includes;../../../api_scilab/includes;../../../output_stream/includes;../../../scicos_blocks/includes;../../../windows_tools/includes;../../../graphics/includes;../../../localization/includes;../../../string/includes;../../../intersci/src/lib;../../../dynamic_link/includes;../../../action_binding/includes;../../../intersci/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;../../../ast/includes/parse;../../../threads/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;SCICOS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -124,7 +124,7 @@ lib /DEF:"$(ProjectDir)differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;../../includes;../cpp/;../cpp/model;../cpp/view_scilab;../scicos_sundials/include;../scicos_sundials/src/ida;../scicos_sundials/include/sundials;../../../../libs/intl;../../../../libs/Eigen/includes;../../../core/includes;../../../time/includes;../../../api_scilab/includes;../../../output_stream/includes;../../../scicos_blocks/includes;../../../windows_tools/includes;../../../graphics/includes;../../../localization/includes;../../../string/includes;../../../intersci/src/lib;../../../dynamic_link/includes;../../../action_binding/includes;../../../intersci/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;../../../ast/includes/parse;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../cpp/;../cpp/model;../cpp/view_scilab;../scicos_sundials/include;../scicos_sundials/src/ida;../scicos_sundials/include/sundials;../../../../libs/intl;../../../../libs/Eigen/includes;../../../core/includes;../../../time/includes;../../../api_scilab/includes;../../../output_stream/includes;../../../scicos_blocks/includes;../../../windows_tools/includes;../../../graphics/includes;../../../localization/includes;../../../string/includes;../../../intersci/src/lib;../../../dynamic_link/includes;../../../action_binding/includes;../../../intersci/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;../../../ast/includes/parse;../../../threads/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;SCICOS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -164,7 +164,7 @@ lib /DEF:"$(ProjectDir)differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;../../includes;../cpp/;../cpp/model;../cpp/view_scilab;../scicos_sundials/include;../scicos_sundials/src/ida;../scicos_sundials/include/sundials;../../../../libs/intl;../../../../libs/Eigen/includes;../../../core/includes;../../../time/includes;../../../api_scilab/includes;../../../output_stream/includes;../../../scicos_blocks/includes;../../../windows_tools/includes;../../../graphics/includes;../../../localization/includes;../../../string/includes;../../../intersci/src/lib;../../../dynamic_link/includes;../../../action_binding/includes;../../../intersci/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;../../../ast/includes/parse;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../cpp/;../cpp/model;../cpp/view_scilab;../scicos_sundials/include;../scicos_sundials/src/ida;../scicos_sundials/include/sundials;../../../../libs/intl;../../../../libs/Eigen/includes;../../../core/includes;../../../time/includes;../../../api_scilab/includes;../../../output_stream/includes;../../../scicos_blocks/includes;../../../windows_tools/includes;../../../graphics/includes;../../../localization/includes;../../../string/includes;../../../intersci/src/lib;../../../dynamic_link/includes;../../../action_binding/includes;../../../intersci/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;../../../ast/includes/parse;../../../threads/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;SCICOS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -211,7 +211,7 @@ lib /DEF:"$(ProjectDir)differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;../../includes;../cpp/;../cpp/model;../cpp/view_scilab;../scicos_sundials/include;../scicos_sundials/src/ida;../scicos_sundials/include/sundials;../../../../libs/intl;../../../../libs/Eigen/includes;../../../core/includes;../../../time/includes;../../../api_scilab/includes;../../../output_stream/includes;../../../scicos_blocks/includes;../../../windows_tools/includes;../../../graphics/includes;../../../localization/includes;../../../string/includes;../../../intersci/src/lib;../../../dynamic_link/includes;../../../action_binding/includes;../../../intersci/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;../../../ast/includes/parse;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../cpp/;../cpp/model;../cpp/view_scilab;../scicos_sundials/include;../scicos_sundials/src/ida;../scicos_sundials/include/sundials;../../../../libs/intl;../../../../libs/Eigen/includes;../../../core/includes;../../../time/includes;../../../api_scilab/includes;../../../output_stream/includes;../../../scicos_blocks/includes;../../../windows_tools/includes;../../../graphics/includes;../../../localization/includes;../../../string/includes;../../../intersci/src/lib;../../../dynamic_link/includes;../../../action_binding/includes;../../../intersci/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;../../../ast/includes/parse;../../../threads/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;SCICOS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -263,6 +263,7 @@ lib /DEF:"$(ProjectDir)differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /
     <ClCompile Include="..\cpp\view_scilab\GraphicsAdapter.cpp" />
     <ClCompile Include="..\cpp\view_scilab\LinkAdapter.cpp" />
     <ClCompile Include="..\cpp\view_scilab\ModelAdapter.cpp" />
+    <ClCompile Include="..\cpp\view_scilab\ParamsAdapter.cpp" />
     <ClCompile Include="..\cpp\view_scilab\ScsAdapter.cpp" />
     <ClCompile Include="..\cpp\view_scilab\StateAdapter.cpp" />
     <ClCompile Include="..\cpp\view_scilab\TextAdapter.cpp" />
@@ -321,10 +322,10 @@ lib /DEF:"$(ProjectDir)differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /
     <ClCompile Include="var2sci.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\cpp\Controller.hxx" />
+    <ClInclude Include="..\..\includes\Controller.hxx" />
+    <ClInclude Include="..\..\includes\View.hxx" />
     <ClInclude Include="..\cpp\LoggerView.hxx" />
     <ClInclude Include="..\cpp\Model.hxx" />
-    <ClInclude Include="..\cpp\View.hxx" />
     <ClInclude Include="..\cpp\view_scilab\Adapters.hxx" />
     <ClInclude Include="..\cpp\view_scilab\BaseAdapter.hxx" />
     <ClInclude Include="..\cpp\view_scilab\BlockAdapter.hxx" />
@@ -333,6 +334,7 @@ lib /DEF:"$(ProjectDir)differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /
     <ClInclude Include="..\cpp\view_scilab\GraphicsAdapter.hxx" />
     <ClInclude Include="..\cpp\view_scilab\LinkAdapter.hxx" />
     <ClInclude Include="..\cpp\view_scilab\ModelAdapter.hxx" />
+    <ClInclude Include="..\cpp\view_scilab\ParamsAdapter.hxx" />
     <ClInclude Include="..\cpp\view_scilab\ScsAdapter.hxx" />
     <ClInclude Include="..\cpp\view_scilab\StateAdapter.hxx" />
     <ClInclude Include="..\cpp\view_scilab\TextAdapter.hxx" />

@@ -157,7 +157,7 @@ types::Function::ReturnValue sci_clean(types::typed_list &in, int _iRetCount, ty
     if (bComplex)
     {
         dNorm = wasums(iSize, pdReal, pdImg);
-        dEps = Max(dEpsA, dEpsR * dNorm);
+        dEps = std::max(dEpsA, dEpsR * dNorm);
 
         for (int i = 0 ; i < iSize ; i++)
         {
@@ -171,7 +171,7 @@ types::Function::ReturnValue sci_clean(types::typed_list &in, int _iRetCount, ty
     {
         int iOne = 1;
         dNorm = C2F(dasum)(&iSize, pdReal, &iOne);
-        dEps = Max(dEpsA, dEpsR * dNorm);
+        dEps = std::max(dEpsA, dEpsR * dNorm);
     }
 
     for (int i = 0 ; i < iSize ; i++)

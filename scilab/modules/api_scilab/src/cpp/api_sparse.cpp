@@ -92,7 +92,7 @@ SciErr getCommonSparseMatrix(void* _pvCtx, int* _piAddress, int _iComplex, int* 
     }
 
     //WARNING: leak memory, caller must free pointer
-    int* piNbItemRows = (int*)MALLOC(sizeof(int) * *_piRows);
+    int* piNbItemRows = (int*)MALLOC(sizeof(int) **_piRows);
     *_piNbItemRow = pS->getNbItemByRow(piNbItemRows);
 
     if (_piColPos == NULL)
@@ -101,7 +101,7 @@ SciErr getCommonSparseMatrix(void* _pvCtx, int* _piAddress, int _iComplex, int* 
     }
 
     //WARNING: leak memory, caller must free pointer
-    int* piColPos = (int*)MALLOC(sizeof(int) * *_piNbItem);
+    int* piColPos = (int*)MALLOC(sizeof(int) **_piNbItem);
     *_piColPos = pS->getColPos(piColPos);
 
     if (_pdblReal == NULL)
@@ -110,8 +110,8 @@ SciErr getCommonSparseMatrix(void* _pvCtx, int* _piAddress, int _iComplex, int* 
     }
 
     //WARNING: leak memory, caller must free pointers
-    double* pR = (double*)MALLOC(sizeof(double) * *_piNbItem);
-    double* pI = (double*)MALLOC(sizeof(double) * *_piNbItem);
+    double* pR = (double*)MALLOC(sizeof(double) **_piNbItem);
+    double* pI = (double*)MALLOC(sizeof(double) **_piNbItem);
     pS->outputValues(pR, pI);
 
     *_pdblReal = pR;
@@ -195,8 +195,8 @@ SciErr fillCommonSparseMatrix(void* _pvCtx, int *_piAddress, int _iComplex, int 
     }
 
     _piAddress[0] = sci_sparse;
-    _piAddress[1] = Min(_iRows, _iRows * _iCols);
-    _piAddress[2] = Min(_iCols, _iRows * _iCols);
+    _piAddress[1] = std::min(_iRows, _iRows * _iCols);
+    _piAddress[2] = std::min(_iCols, _iRows * _iCols);
     _piAddress[3] = _iComplex;
 
     _piAddress[4] = _iNbItem;

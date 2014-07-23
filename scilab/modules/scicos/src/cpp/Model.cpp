@@ -61,11 +61,33 @@ ScicosID Model::createObject(kind_t k)
      * Found the next unused id
      */
     lastId++;
-    objects_map_t::iterator iter = allObjects.lower_bound(lastId);
-    while (iter != allObjects.end() && !(lastId < iter->first))
+    if (lastId == 0)
     {
-        // while key is found
         lastId++;
+    }
+
+    // full map, detection
+    bool has_looped = false;
+
+    objects_map_t::iterator iter = allObjects.lower_bound(lastId);
+    while (iter != allObjects.end() && !(lastId < iter->first)) // while key is found
+    {
+        // try a valid ID
+        lastId++;
+        if (lastId == 0)
+        {
+            lastId++;
+
+            // if the map is full, return 0;
+            if (has_looped)
+            {
+                delete o;
+                return 0;
+            }
+            has_looped = true;
+        }
+
+        // look for it
         iter = allObjects.lower_bound(lastId);
     }
 

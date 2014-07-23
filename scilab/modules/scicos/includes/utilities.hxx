@@ -13,31 +13,34 @@
 #ifndef UTILITIES_HXX_
 #define UTILITIES_HXX_
 
-namespace org_scilab_modules_scicos
-{
+#include <iostream>
 
 /**
  * A unique ID is used to represent a reference to any object in the model.
  *
  * The '0' value is used indicate that BaseObject is not handled by the controller.
  */
-typedef unsigned long long ScicosID;
+typedef long long ScicosID;
 //struct ScicosID
 //{
-//    ScicosID() : v(0) {}
 //    ScicosID(const ScicosID& u) : v(u.v) {}
+//    typedef unsigned long long uid_container_type;
+//    ScicosID(uid_container_type u) : v(u) {}
 //
 //    inline bool operator<(const ScicosID& u) const
 //    {
-//        return u.v < u.v;
+//        return v < u.v;
 //    }
 //    inline bool operator==(const ScicosID& u) const
 //    {
-//        return u.v == u.v;
+//        return v == u.v;
 //    }
+//    inline void operator++(int added)
+//    {
+//        v = v + added;
+//    }
+//    friend std::ostream& operator<< (std::ostream &out, const ScicosID& u);
 //private:
-//    typedef unsigned long long uid_container_type;
-//    ScicosID(uid_container_type u) : v(u) {}
 //    uid_container_type v;
 //};
 
@@ -80,6 +83,8 @@ enum object_properties_t
     SIM_FUNCTION_NAME,  //!< model::Descriptor::functionName value (stored into model::Block::sim)
     SIM_FUNCTION_API,   //!< model::Descriptor::functionApi value (stored into model::Block::sim)
     SIM_SCHEDULE,       //!< model::Descriptor::schedulingProperties value (stored into model::Block::sim)
+    ANGLE,              //!< model::Block::flip and theta values
+    EXPRS,              //!< model::Block::exprs value
     INPUTS,             //!< model::Block::in value
     OUTPUTS,            //!< model::Block::out value
     EVENT_INPUTS,       //!< model::Block::ein value
@@ -96,7 +101,5 @@ enum object_properties_t
     PORT_NUMBER,        //!< model::Port::portNumber value
     CONNECTED_SIGNALS,  //!< model::Port::connectedSignals value
 };
-
-} /* namespace org_scilab_modules_scicos */
 
 #endif /* UTILITIES_HXX_ */

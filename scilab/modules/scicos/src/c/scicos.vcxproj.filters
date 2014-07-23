@@ -248,6 +248,9 @@
     <ClCompile Include="..\..\sci_gateway\cpp\sci_scicos_new.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\cpp\view_scilab\ParamsAdapter.cpp">
+      <Filter>Source Files\MVC\view_scilab</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="copyvarfromlistentry.h">
@@ -316,16 +319,10 @@
     <ClInclude Include="sciblk4.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\cpp\Controller.hxx">
-      <Filter>Header Files\MVC</Filter>
-    </ClInclude>
     <ClInclude Include="..\cpp\LoggerView.hxx">
       <Filter>Header Files\MVC</Filter>
     </ClInclude>
     <ClInclude Include="..\cpp\Model.hxx">
-      <Filter>Header Files\MVC</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cpp\View.hxx">
       <Filter>Header Files\MVC</Filter>
     </ClInclude>
     <ClInclude Include="..\cpp\view_scilab\TextAdapter.hxx">
@@ -360,6 +357,15 @@
     </ClInclude>
     <ClInclude Include="..\cpp\view_scilab\StateAdapter.hxx">
       <Filter>Header Files\MVC\view_scilab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cpp\view_scilab\ParamsAdapter.hxx">
+      <Filter>Header Files\MVC\view_scilab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\Controller.hxx">
+      <Filter>Header Files\MVC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\View.hxx">
+      <Filter>Header Files\MVC</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -840,7 +840,7 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
                     }
 
                     // ** projection to avoid boundaries **
-                    niv = Max(Min(niv, vectpDblInput[0]->getCols()), 1);
+                    niv = std::max(std::min(niv, vectpDblInput[0]->getCols()), 1);
                     pDblOut->set(vectpDblInput[1]->getSize() * j + i, static_cast<double>(niv));
                     iCur = niv - 1;
                 }

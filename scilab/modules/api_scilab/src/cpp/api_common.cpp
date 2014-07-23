@@ -837,7 +837,7 @@ SciErr getDimFromVar(void *_pvCtx, int *_piAddress, int *_piVal)
             return sciErr;
         }
 
-        *_piVal = (int)Max(pdblReal[0], 0);
+        *_piVal = (int)std::max(pdblReal[0], double(0));
     }
     else if (iType == sci_ints)
     {

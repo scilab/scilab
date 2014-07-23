@@ -223,7 +223,7 @@ Function::ReturnValue sci_regexp(typed_list &in, int _iRetCount, typed_list &out
         int iMax = 0;
         for (int i = 0 ; i < iOccurs ; i++)
         {
-            iMax = Max(iMax, piCapturedStringCount[i]);
+            iMax = std::max(iMax, piCapturedStringCount[i]);
         }
 
         String* pS = NULL;

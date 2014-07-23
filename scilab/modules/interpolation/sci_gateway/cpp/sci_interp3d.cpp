@@ -161,7 +161,7 @@ types::Function::ReturnValue sci_interp3d(types::typed_list &in, int _iRetCount,
 
     double* minmax = pDblXyzminmax->get();
 
-    int workSize = order[1] * order[2] + 3 * Max(order[0], Max(order[1], order[2])) + order[2];
+    int workSize = order[1] * order[2] + 3 * std::max(order[0], std::max(order[1], order[2])) + order[2];
     double* work = new double[workSize];
 
     if (_iRetCount == 1)

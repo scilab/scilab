@@ -74,9 +74,9 @@ types::Function::ReturnValue sci_cshep2d(types::typed_list &in, int _iRetCount, 
 
     // *** Perform operation. ***
     // choise for nc (can be a futur optionnal parameter)
-    int nc = Min(17, pDblXYZ->getRows() - 1);
+    int nc = std::min(17, pDblXYZ->getRows() - 1);
     // choise for nw
-    int nw = Min(30, pDblXYZ->getRows() - 1);
+    int nw = std::min(30, pDblXYZ->getRows() - 1);
     // choise for nr (grid nr x nr)
     int nr = (int) sqrt(pDblXYZ->getRows() / 3.0); // comme n >= 10 nr >= 1
 

@@ -154,7 +154,7 @@ void ExpHistory::computeArgs()
         }
         else
         {
-            const int size = Min(m_iArgsDims, m_pITCurrent->getAs<types::GenericType>()->getDims());
+            const int size = std::min(m_iArgsDims, m_pITCurrent->getAs<types::GenericType>()->getDims());
             for (int i = 0; i < size; i++)
             {
                 if (piDimsArray[i] > m_piArgsDimsArray[i])

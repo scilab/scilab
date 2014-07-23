@@ -282,7 +282,7 @@ types::Function::ReturnValue sci_int3d(types::typed_list &in, int _iRetCount, ty
         }
     }
 
-    maxpts = Max(maxpts, 43 * pDblX->getCols());
+    maxpts = std::max(maxpts, 43 * pDblX->getCols());
 
     // *** Perform operation. ***
     int one     = 1;
@@ -305,7 +305,7 @@ types::Function::ReturnValue sci_int3d(types::typed_list &in, int _iRetCount, ty
 
     // workspace
     int mdiv = 1; // default value, but can be changed on parallel computers. (see dcutet.f)
-    int dworkSize   = maxsub * (2 * nf + 1) + 7 * Max(8 * mdiv, pDblX->getCols()) * nf + 1;
+    int dworkSize   = maxsub * (2 * nf + 1) + 7 * std::max(8 * mdiv, pDblX->getCols()) * nf + 1;
     int iworkSize   = maxsub + mdiv;
     double* dwork   = (double*)MALLOC(dworkSize * sizeof(double));
     int* iwork      = (int*)MALLOC(iworkSize * sizeof(int));

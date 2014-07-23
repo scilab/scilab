@@ -98,7 +98,7 @@ types::Function::ReturnValue sci_lu(types::typed_list &in, int _iRetCount, types
         return types::Function::OK;
     }
 
-    iMinRowsCols = Min(pDbl->getRows(), pDbl->getCols());
+    iMinRowsCols = std::min(pDbl->getRows(), pDbl->getCols());
     pDblL = new types::Double(pDbl->getRows(), iMinRowsCols, pDbl->isComplex());
     pDblU = new types::Double(iMinRowsCols, pDbl->getCols(), pDbl->isComplex());
 

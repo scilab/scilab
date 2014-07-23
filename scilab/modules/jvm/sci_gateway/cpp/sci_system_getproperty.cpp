@@ -54,7 +54,7 @@ Function::ReturnValue sci_system_getproperty(typed_list &in, int _piRetCount, ty
     out.push_back(pS);
 
     return Function::OK;
-    //Rhs = Max(Rhs,0);
+    //Rhs = std::max(Rhs,0);
     //CheckRhs(1,1);
     //CheckLhs(0,1);
 

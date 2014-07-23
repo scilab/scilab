@@ -152,8 +152,8 @@ int cumsum(types::Polynom* pIn, int iOrientation, types::Polynom* pOut)
                 pdblImg  = pIn->get(i)->getCoefImg();
                 iRank    = pIn->get(i)->getRank();
 
-                iOutRank = Max(iRank, iLastRank);
-                iMin     = Min(iRank, iLastRank);
+                iOutRank = std::max(iRank, iLastRank);
+                iMin     = std::min(iRank, iLastRank);
 
                 pSP = new types::SinglePoly(&pdRData, &pdIData, iOutRank);
                 for (int j = 0; j < iMin; j++)
@@ -193,8 +193,8 @@ int cumsum(types::Polynom* pIn, int iOrientation, types::Polynom* pOut)
                 pdblReal = pIn->get(i)->getCoefReal();
                 iRank    = pIn->get(i)->getRank();
 
-                iOutRank = Max(iRank, iLastRank);
-                iMin     = Min(iRank, iLastRank);
+                iOutRank = std::max(iRank, iLastRank);
+                iMin     = std::min(iRank, iLastRank);
 
                 pSP = new types::SinglePoly(&pdRData, iOutRank);
                 for (int j = 0; j < iMin; j++)
@@ -267,8 +267,8 @@ int cumsum(types::Polynom* pIn, int iOrientation, types::Polynom* pOut)
                         pdblReal = pIn->get(i)->getCoefReal();
                         pdblImg  = pIn->get(i)->getCoefImg();
 
-                        iOutRank = Max(iRank, iLastRank);
-                        iMin     = Min(iRank, iLastRank);
+                        iOutRank = std::max(iRank, iLastRank);
+                        iMin     = std::min(iRank, iLastRank);
 
                         pSP = new types::SinglePoly(&pdRData, &pdIData, iOutRank);
                         for (int j = 0; j < iMin; j++)
@@ -328,8 +328,8 @@ int cumsum(types::Polynom* pIn, int iOrientation, types::Polynom* pOut)
                         iRank    = pIn->get(i)->getRank();
                         pdblReal = pIn->get(i)->getCoefReal();
 
-                        iOutRank = Max(iRank, iLastRank);
-                        iMin     = Min(iRank, iLastRank);
+                        iOutRank = std::max(iRank, iLastRank);
+                        iMin     = std::min(iRank, iLastRank);
 
                         pSP = new types::SinglePoly(&pdRData, iOutRank);
                         for (int j = 0; j < iMin; j++)

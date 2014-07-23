@@ -23,35 +23,9 @@
 #include "BOOL.h"
 #include "core_math.h"
 
-#ifdef _MSC_VER
-#include <float.h>
-#define finite(x) _finite(x)
-#else  /* _MSC_VER */
-/** This should only be provided when finite prototype is missing **/
-/** XXX : to be tested **/
-#ifndef __cplusplus
-int finite (double);
-#endif
-#endif /* _MSC_VER */
-
-#ifdef _MSC_VER
-#include <float.h>
-#define ISNAN(x) _isnan(x)
-#else
-#define ISNAN(x) isnan(x)
-#endif
-
-
 #define PI0 (int *) 0
 #define PD0 (double *) 0
 #define SMDOUBLE 1.e-200 /* Smalest number to avoid dividing by zero */
-
-/* angle conversion */
-#define		round(a)	(int)(((a)<0.0)?(a)-.5:(a)+.5)
-#define EPSILON 1.0e-13
-
-#define linint(x) ((int)  floor(x + 0.5 ))
-#define inint(x) ((int) floor(x + 0.5 ))
 
 #if (defined(sun) || defined(SYSV))
 #include <ieeefp.h>
@@ -67,10 +41,6 @@ int finite (double);
 #include <limits.h>
 #endif
 #endif
-#endif
-
-#ifndef M_PI
-#define M_PI 3.14159265358979323846
 #endif
 
 GRAPHICS_IMPEXP double Mini(const double vect[], int n);

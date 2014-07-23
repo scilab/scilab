@@ -30,12 +30,6 @@ extern "C"
 #include "finite.h"
 }
 
-/* ISNAN overloading for Mac OS X */
-#ifdef __APPLE__
-#undef ISNAN
-#define ISNAN std::isnan
-#endif
-
 std::wstring printInLinePoly(types::SinglePoly* _pPoly, std::wstring _stVar);
 std::wstring printDouble(types::Double* _pD);
 long long convert_input(types::InternalType* _poIT);
@@ -258,7 +252,7 @@ bool ImplicitList::compute()
 
             double dblVal = dblStart; // temp value
             double dblEps = getRelativeMachinePrecision();
-            double dblPrec = 2 * Max(fabs(dblStart), fabs(dblEnd)) * dblEps;
+            double dblPrec = 2 * std::max(fabs(dblStart), fabs(dblEnd)) * dblEps;
 
             while (dblStep * (dblVal - dblEnd) <= 0)
             {
