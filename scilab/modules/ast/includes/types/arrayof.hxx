@@ -608,7 +608,7 @@ public :
         int iDims           = (int)_pArgs->size();
         int* piMaxDim       = new int[iDims];
         int* piCountDim     = new int[iDims];
-        bool bComplex       = pSource->isComplex();
+        bool bComplex       = pSource->getImg() != NULL;
         bool bUndefine      = false;
 
         //evaluate each argument and replace by appropriate value and compute the count of combinations
@@ -699,14 +699,21 @@ public :
 
         //fill with null item
         ArrayOf* pArrayOut = pOut->getAs<ArrayOf>();
-
-        for (int i = 0 ; i < pArrayOut->getSize() ; i++)
+        T* pRealData = pArrayOut->get();
+        if (bComplex)
         {
-            //TODO: check if copyValue is mandatory
-            pArrayOut->set(i, pSource->getNullValue());
-            if (bComplex)
+            T* pImgData = pArrayOut->getImg();
+            for (int i = 0 ; i < pArrayOut->getSize() ; i++)
             {
-                pArrayOut->setImg(i, pSource->getNullValue());
+                pRealData[i] = pSource->getNullValue();
+                pImgData[i]  = pSource->getNullValue();
+            }
+        }
+        else
+        {
+            for (int i = 0 ; i < pArrayOut->getSize() ; i++)
+            {
+                pRealData[i] = pSource->getNullValue();
             }
         }
 
