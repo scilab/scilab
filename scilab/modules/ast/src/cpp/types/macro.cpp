@@ -98,8 +98,51 @@ ast::SeqExp* Macro::getBody(void)
 
 bool Macro::toString(std::wostringstream& ostr)
 {
-    ostr << L"FIXME : Implement Macro::toString" << std::endl;
+    ostr << L"[";
+
+    // output arguments [a,b,c] = ....
+    if (m_outputArgs->empty() == false)
+    {
+        std::list<symbol::Variable*>::iterator OutArg = m_outputArgs->begin();
+        std::list<symbol::Variable*>::iterator OutArgfter = OutArg;
+        OutArgfter++;
+
+        for (; OutArgfter != m_outputArgs->end(); OutArgfter++)
+        {
+            ostr << (*OutArg)->getSymbol().getName();
+            ostr << ",";
+            OutArg++;
+        }
+
+        ostr << (*OutArg)->getSymbol().getName();
+    }
+
+    ostr << L"]";
+
+    // function name
+    ostr << L"=" << getName() << L"(";
+
+    // input arguments function(a,b,c)
+    if (m_inputArgs->empty() == false)
+    {
+        std::list<symbol::Variable*>::iterator inArg = m_inputArgs->begin();
+        std::list<symbol::Variable*>::iterator inRagAfter = inArg;
+        inRagAfter++;
+
+        for (; inRagAfter != m_inputArgs->end(); inRagAfter++)
+        {
+            ostr << (*inArg)->getSymbol().getName();
+            ostr << ",";
+            inArg++;
+        }
+
+        ostr << (*inArg)->getSymbol().getName();
+    }
+
+    ostr << L")" << std::endl;
+
     scilabWriteW(ostr.str().c_str());
+
     return true;
 }
 
