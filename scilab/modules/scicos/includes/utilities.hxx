@@ -85,7 +85,6 @@ enum object_properties_t
     SIM_SCHEDULE,       //!< model::Descriptor::schedulingProperties value (stored into model::Block::sim)
     ANGLE,              //!< model::Block::flip and theta values
     EXPRS,              //!< model::Block::exprs value
-    ID,                 //!< model::Block::id value
     INPUTS,             //!< model::Block::in value
     OUTPUTS,            //!< model::Block::out value
     EVENT_INPUTS,       //!< model::Block::ein value
@@ -93,6 +92,8 @@ enum object_properties_t
     PARENT_BLOCK,       //!< model::Block::parentBlock value
     CHILDREN,           //!< model::Block::children for superblocks or model::Diagram::children value
     PORT_REFERENCE,     //!< model::Block::portReference value
+    STYLE,              //!< model::Block & Port::style value
+    LABEL,              //!< model::Block & Port::label value
     DESTINATION_PORT,   //!< model::Link::destinationPort value
     SOURCE_PORT,        //!< model::Link::sourcePort value
     CONTROL_POINTS,     //!< model::Link::controlPoints value

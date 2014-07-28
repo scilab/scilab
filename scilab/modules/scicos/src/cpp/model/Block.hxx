@@ -121,10 +121,10 @@ private:
 
 private:
     Block() : BaseObject(BLOCK), parentDiagram(0), interfaceFunction(), geometry(),
-        angle(), exprs(), identifier(), style(), sim(), in(), out(), ein(), eout(),
+        angle(), exprs(), label(), style(), sim(), in(), out(), ein(), eout(),
         parameter(), state(), parentBlock(0), children(), portReference(0) {};
     Block(const Block& o) : BaseObject(BLOCK), parentDiagram(o.parentDiagram), interfaceFunction(o.interfaceFunction), geometry(o.geometry),
-        angle(o.angle), exprs(o.exprs), identifier(o.identifier), style(o.style), sim(o.sim), in(o.in), out(o.out), ein(o.ein), eout(o.eout),
+        angle(o.angle), exprs(o.exprs), label(o.label), style(o.style), sim(o.sim), in(o.in), out(o.out), ein(o.ein), eout(o.eout),
         parameter(o.parameter), state(o.state), parentBlock(o.parentBlock), children(o.children), portReference(o.portReference) {};
     ~Block() {}
 
@@ -198,19 +198,19 @@ private:
         return SUCCESS;
     }
 
-    void getIdentifier(std::string& data) const
+    void getLabel(std::string& data) const
     {
-        data = identifier;
+        data = label;
     }
 
-    update_status_t setIdentifier(const std::string& data)
+    update_status_t setLabel(const std::string& data)
     {
-        if (data == identifier)
+        if (data == label)
         {
             return NO_CHANGES;
         }
 
-        identifier = data;
+        label = data;
         return SUCCESS;
     }
 
@@ -334,22 +334,29 @@ private:
         this->sim = sim;
     }
 
-    const std::string& getStyle() const
+    void getStyle(std::string& data) const
     {
-        return style;
+        data = style;
     }
 
-    void setStyle(const std::string& style)
+    update_status_t setStyle(const std::string& data)
     {
-        this->style = style;
+        if (data == style)
+        {
+            return NO_CHANGES;
+        }
+
+        style = data;
+        return SUCCESS;
     }
+
 private:
     ScicosID parentDiagram;
     std::string interfaceFunction;
     Geometry geometry;
     Angle angle;
     std::vector<std::string> exprs;
-    std::string identifier;
+    std::string label;
     std::string style;
 
     Descriptor sim;

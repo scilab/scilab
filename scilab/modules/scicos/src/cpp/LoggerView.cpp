@@ -107,9 +107,6 @@ static std::ostream& operator<<(std::ostream& os, object_properties_t p)
         case EXPRS:
             os << "EXPRS";
             break;
-        case ID:
-            os << "ID";
-            break;
         case INPUTS:
             os << "INPUTS";
             break;
@@ -130,6 +127,12 @@ static std::ostream& operator<<(std::ostream& os, object_properties_t p)
             break;
         case PORT_REFERENCE:
             os << "PORT_REFERENCE";
+            break;
+        case STYLE:
+            os << "STYLE";
+            break;
+        case LABEL:
+            os << "LABEL";
             break;
         case DESTINATION_PORT:
             os << "DESTINATION_PORT";
