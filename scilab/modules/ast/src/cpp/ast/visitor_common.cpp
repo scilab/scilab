@@ -319,6 +319,8 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
                             poResult->getAs<types::Polynom>()->setCoef(iCurRow + i, iCurCol + j, _poSource->getAs<types::Polynom>()->get(i, j)->getCoef());
                         }
                     }
+
+                    return poResult;
                 }
                 break;
             case types::GenericType::ScilabPolynom :
@@ -358,6 +360,8 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
                             }
                         }
                     }
+
+                    return poResult;
                 }
                 break;
             case types::GenericType::ScilabSparse :
@@ -422,6 +426,8 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
                             }
                         }
                     }
+
+                    return poResult;
                 }
                 break;
             case types::GenericType::ScilabSparseBool :
@@ -442,12 +448,15 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
                             }
                         }
                     }
+
+                    return poResult;
                 }
                 break;
             default:
                 break;
         }
-        return poResult;
+        // call overload
+        return NULL;
     }
     else
     {
@@ -533,11 +542,11 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
                 poResult->getAs<types::GraphicHandle>()->append(iCurRow, iCurCol, _poSource->getAs<types::GraphicHandle>());
                 break;
             default:
-                break;
+                // call overload
+                return NULL;
         }
         return poResult;
     }
-    return NULL;
 }
 
 const std::wstring* getStructNameFromExp(const ast::Exp* _pExp)
@@ -1802,31 +1811,35 @@ InternalType* insertionCall(const ast::Exp& e, typed_list* _pArgs, InternalType*
                     String* pStrInsertFieldsName = pStructInsert->getFieldNames();
                     Struct* pStructRet = NULL;
 
-                    // insert fields of pStruct in pStructInsert
-                    for (int i = pStrFieldsName->getSize(); i > 0; i--)
+                    // if not an empty struct
+                    if (pStrFieldsName)
                     {
-                        if (pStructInsert->exists(pStrFieldsName->get(i - 1)) == false)
+                        // insert fields of pStruct in pStructInsert
+                        for (int i = pStrFieldsName->getSize(); i > 0; i--)
                         {
-                            pStructInsert->addFieldFront(pStrFieldsName->get(i - 1));
-                        }
-                        else
-                        {
-                            std::wstring pwcsField = pStrFieldsName->get(i - 1);
-                            List* pLExtract = pStructInsert->extractFieldWithoutClone(pwcsField);
-
-                            for (int i = 0; i < pLExtract->getSize(); i++)
+                            if (pStructInsert->exists(pStrFieldsName->get(i - 1)) == false)
                             {
-                                // protect element wich are not cloned before call removeField.
-                                pLExtract->get(i)->IncreaseRef();
+                                pStructInsert->addFieldFront(pStrFieldsName->get(i - 1));
                             }
-
-                            pStructInsert->removeField(pwcsField);
-                            pStructInsert->addFieldFront(pwcsField);
-
-                            for (int i = 0; i < pLExtract->getSize(); i++)
+                            else
                             {
-                                // set elements in the new position
-                                pStructInsert->get(i)->set(pwcsField, pLExtract->get(i));
+                                std::wstring pwcsField = pStrFieldsName->get(i - 1);
+                                List* pLExtract = pStructInsert->extractFieldWithoutClone(pwcsField);
+
+                                for (int i = 0; i < pLExtract->getSize(); i++)
+                                {
+                                    // protect element wich are not cloned before call removeField.
+                                    pLExtract->get(i)->IncreaseRef();
+                                }
+
+                                pStructInsert->removeField(pwcsField);
+                                pStructInsert->addFieldFront(pwcsField);
+
+                                for (int i = 0; i < pLExtract->getSize(); i++)
+                                {
+                                    // set elements in the new position
+                                    pStructInsert->get(i)->set(pwcsField, pLExtract->get(i));
+                                }
                             }
                         }
                     }
