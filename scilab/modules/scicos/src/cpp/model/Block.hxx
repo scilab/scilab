@@ -77,14 +77,14 @@ enum blocktype_t
     BLOCKTYPE_H = 'h', //!< N/A ; used to represent blocks composed by blocks
     BLOCKTYPE_L = 'l', //!< synchronization block ; ifthenelse and eselect
     BLOCKTYPE_M = 'm', //!< memorization block ; see the Scicos original paper
-    BLOCKTYPE_X = 'x', //!< derivable block without state ; these blocks will be treated as if they contains a state.
+    BLOCKTYPE_X = 'x', //!< derivable block without state ; these blocks will be treated as if they contain a state.
     BLOCKTYPE_Z = 'z', //!< zero-crossing block ; see the Scicos original paper.
 };
 
 struct Descriptor
 {
     std::string functionName;
-    char functionApi;
+    int functionApi;
 
     char dep_ut;            //!< dep_ut_t masked value
     char blocktype;         //!< one of blocktype_t value
@@ -347,6 +347,38 @@ private:
         }
 
         style = data;
+        return SUCCESS;
+    }
+
+    void getSimFunctionName(std::string& data) const
+    {
+        data = sim.functionName;
+    }
+
+    update_status_t setSimFunctionName(const std::string& data)
+    {
+        if (data == sim.functionName)
+        {
+            return NO_CHANGES;
+        }
+
+        sim.functionName = data;
+        return SUCCESS;
+    }
+
+    void getSimFunctionApi(int& data) const
+    {
+        data = sim.functionApi;
+    }
+
+    update_status_t setSimFunctionApi(const int data)
+    {
+        if (data == sim.functionApi)
+        {
+            return NO_CHANGES;
+        }
+
+        sim.functionApi = data;
         return SUCCESS;
     }
 

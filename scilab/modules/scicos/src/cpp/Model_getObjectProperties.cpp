@@ -94,6 +94,9 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, int
         model::Block* o = static_cast<model::Block*>(getObject(uid));
         switch (p)
         {
+            case SIM_FUNCTION_API:
+                o->getSimFunctionApi(v);
+                return true;
             default:
                 break;
         }
@@ -199,6 +202,9 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
         model::Block* o = static_cast<model::Block*>(getObject(uid));
         switch (p)
         {
+            case SIM_FUNCTION_NAME:
+                o->getSimFunctionName(v);
+                return true;
             case STYLE:
                 o->getStyle(v);
                 return true;
@@ -415,7 +421,7 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
     return false;
 }
 
-bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::vector< std::string >& v)
+bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::vector<std::string>& v)
 {
 
     if (k == ANNOTATION)

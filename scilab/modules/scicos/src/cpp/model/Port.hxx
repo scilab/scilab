@@ -33,9 +33,10 @@ class Port: public BaseObject
     friend class ::org_scilab_modules_scicos::Model;
 
 private:
-    Port() : BaseObject(PORT), dataType(0), sourceBlock(0), kind(UNDEF), implicit(false), style(), label(), connectedSignals() {};
-    Port(const Port& o) : BaseObject(PORT), dataType(o.dataType), sourceBlock(o.sourceBlock),
-        kind(o.kind), implicit(o.implicit), style(o.style), label(o.label), connectedSignals(o.connectedSignals) {};
+    Port() : BaseObject(PORT), dataType(0), sourceBlock(0), kind(UNDEF), implicit(false),
+        style(), label(), connectedSignals() {};
+    Port(const Port& o) : BaseObject(PORT), dataType(o.dataType), sourceBlock(o.sourceBlock), kind(o.kind), implicit(o.implicit),
+        style(o.style), label(o.label), connectedSignals(o.connectedSignals) {};
     ~Port() {};
 
     const std::vector<ScicosID>& getConnectedSignals() const

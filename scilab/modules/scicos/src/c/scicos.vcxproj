@@ -267,7 +267,6 @@ lib /DEF:"$(ProjectDir)differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /
     <ClCompile Include="..\cpp\view_scilab\ScsAdapter.cpp" />
     <ClCompile Include="..\cpp\view_scilab\StateAdapter.cpp" />
     <ClCompile Include="..\cpp\view_scilab\TextAdapter.cpp" />
-    <ClCompile Include="..\cpp\view_scilab\ports_management.cpp" />
     <ClCompile Include="copyvarfromlistentry.c" />
     <ClCompile Include="createblklist.c" />
     <ClCompile Include="DllmainScicos.c" />
