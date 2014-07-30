@@ -267,6 +267,7 @@ lib /DEF:"$(ProjectDir)differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /
     <ClCompile Include="..\cpp\view_scilab\ScsAdapter.cpp" />
     <ClCompile Include="..\cpp\view_scilab\StateAdapter.cpp" />
     <ClCompile Include="..\cpp\view_scilab\TextAdapter.cpp" />
+    <ClCompile Include="..\cpp\view_scilab\ports_management.cpp" />
     <ClCompile Include="copyvarfromlistentry.c" />
     <ClCompile Include="createblklist.c" />
     <ClCompile Include="DllmainScicos.c" />
@@ -338,6 +339,7 @@ lib /DEF:"$(ProjectDir)differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /
     <ClInclude Include="..\cpp\view_scilab\ScsAdapter.hxx" />
     <ClInclude Include="..\cpp\view_scilab\StateAdapter.hxx" />
     <ClInclude Include="..\cpp\view_scilab\TextAdapter.hxx" />
+    <ClInclude Include="..\cpp\view_scilab\ports_management.hxx" />
     <ClInclude Include="copyvarfromlistentry.h" />
     <ClInclude Include="createblklist.h" />
     <ClInclude Include="..\..\includes\dynlib_scicos.h" />

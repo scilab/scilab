@@ -29,7 +29,8 @@ src/cpp/view_scilab/ModelAdapter.cpp \
 src/cpp/view_scilab/ParamsAdapter.cpp \
 src/cpp/view_scilab/ScsAdapter.cpp \
 src/cpp/view_scilab/StateAdapter.cpp \
-src/cpp/view_scilab/TextAdapter.cpp
+src/cpp/view_scilab/TextAdapter.cpp \
+src/cpp/view_scilab/ports_management.cpp
 
 
 SCICOS_C_SOURCES = \
