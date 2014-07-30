@@ -202,6 +202,8 @@ Xcos Bug Fixes
 
 * Bug #13514 fixed - External modules' loader_pal.sce file contained absolute path.
 
+* Bug #13540 fixed - Tkscale block did not respect min and max value.
+
 
 Known issues
 =============
