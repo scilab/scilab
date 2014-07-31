@@ -10,6 +10,10 @@
  *
  */
 
+#include <string>
+#include <vector>
+#include <algorithm>
+
 #include "list.hxx"
 #include "double.hxx"
 #include "string.hxx"
@@ -46,7 +50,7 @@ struct sim
         }
         else
         {
-            types::Double* Api = new types::Double(1, 1, (double) api);
+            types::Double* Api = new types::Double(1, 1, static_cast<double>(api));
             types::List* o = new types::List();
             o->set(0, Name);
             o->set(1, Api);
@@ -108,7 +112,7 @@ struct sim
             {
                 return false;
             }
-            int api_int = (int) api;
+            int api_int = static_cast<int>(api);
 
             controller.setObjectProperty(adaptee->id(), adaptee->kind(), SIM_FUNCTION_NAME, name);
             controller.setObjectProperty(adaptee->id(), adaptee->kind(), SIM_FUNCTION_API, api_int);
@@ -120,7 +124,6 @@ struct sim
         return true;
     }
 };
-
 
 struct in
 {
@@ -163,7 +166,6 @@ struct intyp
         return set_ports_property<ModelAdapter, DATATYPE_TYPE>(adaptor, INPUTS, controller, v);
     }
 };
-
 
 struct out
 {
@@ -235,6 +237,169 @@ struct evtout
     }
 };
 
+struct state
+{
+
+    static types::InternalType* get(const ModelAdapter& adaptor, const Controller& controller)
+    {
+        model::Block* adaptee = adaptor.getAdaptee();
+
+        std::vector<double> state;
+        controller.getObjectProperty(adaptee->id(), adaptee->kind(), STATE, state);
+
+        double* data;
+        types::Double* o = new types::Double(state.size(), 1, &data);
+
+        std::copy(state.begin(), state.end(), data);
+
+        return o;
+    }
+
+    static bool set(ModelAdapter& adaptor, types::InternalType* v, Controller& controller)
+    {
+
+        if (v->getType() != types::InternalType::ScilabDouble)
+        {
+            return false;
+        }
+
+        types::Double* current = v->getAs<types::Double>();
+        if (current->getCols() != 0 && current->getCols() != 1)
+        {
+            return false;
+        }
+
+        model::Block* adaptee = adaptor.getAdaptee();
+
+        std::vector<double> state;
+        std::copy(current->getReal(), current->getReal() + current->getSize(), state.begin());
+
+        controller.setObjectProperty(adaptee->id(), adaptee->kind(), STATE, state);
+        return true;
+    }
+};
+
+struct dstate
+{
+
+    static types::InternalType* get(const ModelAdapter& adaptor, const Controller& controller)
+    {
+        model::Block* adaptee = adaptor.getAdaptee();
+
+        std::vector<double> dstate;
+        controller.getObjectProperty(adaptee->id(), adaptee->kind(), DSTATE, dstate);
+
+        double* data;
+        types::Double* o = new types::Double(dstate.size(), 1, &data);
+
+        std::copy(dstate.begin(), dstate.end(), data);
+
+        return o;
+    }
+
+    static bool set(ModelAdapter& adaptor, types::InternalType* v, Controller& controller)
+    {
+
+        if (v->getType() != types::InternalType::ScilabDouble)
+        {
+            return false;
+        }
+
+        types::Double* current = v->getAs<types::Double>();
+        if (current->getCols() != 0 && current->getCols() != 1)
+        {
+            return false;
+        }
+
+        model::Block* adaptee = adaptor.getAdaptee();
+
+        std::vector<double> dstate;
+        std::copy(current->getReal(), current->getReal() + current->getSize(), dstate.begin());
+
+        controller.setObjectProperty(adaptee->id(), adaptee->kind(), DSTATE, dstate);
+        return true;
+    }
+};
+
+struct odstate
+{
+
+    static types::InternalType* get(const ModelAdapter& adaptor, const Controller& controller)
+    {
+        // FIXME: get odstate
+        return 0;
+    }
+
+    static bool set(ModelAdapter& adaptor, types::InternalType* v, Controller& controller)
+    {
+        model::Block* adaptee = adaptor.getAdaptee();
+
+        if (v->getType() != types::InternalType::ScilabList)
+        {
+            return false;
+        }
+
+        types::List* current = v->getAs<types::List>();
+
+        if (current->getSize() == 0)
+        {
+            return true;
+        }
+        else
+        {
+            // FIXME: get the input list and store it in the odstate field
+            return false;
+        }
+    }
+};
+
+struct blocktype
+{
+
+    static types::InternalType* get(const ModelAdapter& adaptor, const Controller& controller)
+    {
+        model::Block* adaptee = adaptor.getAdaptee();
+
+        int type;
+        controller.getObjectProperty(adaptee->id(), adaptee->kind(), SIM_BLOCKTYPE, type);
+
+        wchar_t Type = type;
+        types::String* o = new types::String(&Type);
+
+        return o;
+    }
+
+    static bool set(ModelAdapter& adaptor, types::InternalType* v, Controller& controller)
+    {
+        model::Block* adaptee = adaptor.getAdaptee();
+
+        if (v->getType() != types::InternalType::ScilabString)
+        {
+            return false;
+        }
+
+        types::String* current = v->getAs<types::String>();
+        if (current->getSize() != 1)
+        {
+            return false;
+        }
+        // The input must be a character
+        if (current->get(0)[0] == '\0')
+        {
+            return false;
+        }
+        if (current->get(0)[1] != '\0')
+        {
+            return false;
+        }
+
+        int type = current->get(0)[0];
+
+        controller.setObjectProperty(adaptee->id(), adaptee->kind(), SIM_BLOCKTYPE, type);
+        return true;
+    }
+};
+
 template<> property<ModelAdapter>::props_t property<ModelAdapter>::fields = property<ModelAdapter>::props_t();
 
 ModelAdapter::ModelAdapter(const ModelAdapter& o) :
@@ -245,7 +410,7 @@ ModelAdapter::ModelAdapter(org_scilab_modules_scicos::model::Block* o) :
 {
     if (property<ModelAdapter>::properties_has_not_been_set())
     {
-        property<ModelAdapter>::fields.reserve(7);
+        property<ModelAdapter>::fields.reserve(13);
         property<ModelAdapter>::add_property(L"sim", &sim::get, &sim::set);
         property<ModelAdapter>::add_property(L"in", &in::get, &in::set);
         property<ModelAdapter>::add_property(L"in2", &in2::get, &in2::set);
@@ -255,6 +420,10 @@ ModelAdapter::ModelAdapter(org_scilab_modules_scicos::model::Block* o) :
         property<ModelAdapter>::add_property(L"outtyp", &outtyp::get, &outtyp::set);
         property<ModelAdapter>::add_property(L"evtin", &evtin::get, &evtin::set);
         property<ModelAdapter>::add_property(L"evtout", &evtout::get, &evtout::set);
+        property<ModelAdapter>::add_property(L"state", &state::get, &state::set);
+        property<ModelAdapter>::add_property(L"dstate", &dstate::get, &dstate::set);
+        property<ModelAdapter>::add_property(L"odstate", &odstate::get, &odstate::set);
+        property<ModelAdapter>::add_property(L"blocktype", &blocktype::get, &blocktype::set);
     }
 }
 

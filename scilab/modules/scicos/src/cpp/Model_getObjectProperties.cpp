@@ -97,6 +97,9 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, int
             case SIM_FUNCTION_API:
                 o->getSimFunctionApi(v);
                 return true;
+            case SIM_BLOCKTYPE:
+                o->getSimBlocktype(v);
+                return true;
             default:
                 break;
         }
@@ -347,6 +350,12 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
                 return true;
             case ANGLE:
                 o->getAngle(v);
+                return true;
+            case STATE:
+                o->getState(v);
+                return true;
+            case DSTATE:
+                o->getDState(v);
                 return true;
             default:
                 break;

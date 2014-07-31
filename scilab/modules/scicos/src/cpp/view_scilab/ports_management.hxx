@@ -270,7 +270,7 @@ bool fillNewPorts(std::vector<int>& newPorts, const std::vector<ScicosID>& child
             }
         } // no check is performed for other properties as newPorts will contains value not index
 
-        *it = (int) (*d);
+        *it = static_cast<int>(*d);
     }
     return true;
 }

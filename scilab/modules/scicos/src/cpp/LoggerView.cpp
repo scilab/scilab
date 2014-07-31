@@ -101,6 +101,9 @@ std::ostream& operator<<(std::ostream& os, object_properties_t p)
         case SIM_SCHEDULE:
             os << "SIM_SCHEDULE";
             break;
+        case SIM_BLOCKTYPE:
+            os << "SIM_BLOCKTYPE";
+            break;
         case ANGLE:
             os << "ANGLE";
             break;
@@ -118,6 +121,15 @@ std::ostream& operator<<(std::ostream& os, object_properties_t p)
             break;
         case EVENT_OUTPUTS:
             os << "EVENT_OUTPUTS";
+            break;
+        case STATE:
+            os << "STATE";
+            break;
+        case DSTATE:
+            os << "DSTATE";
+            break;
+        case ODSTATE:
+            os << "ODSTATE";
             break;
         case PARENT_BLOCK:
             os << "PARENT_BLOCK";
@@ -146,6 +158,15 @@ std::ostream& operator<<(std::ostream& os, object_properties_t p)
         case DATATYPE:
             os << "DATATYPE";
             break;
+        case DATATYPE_ROWS:
+            os << "DATATYPE_ROWS";
+            break;
+        case DATATYPE_COLS:
+            os << "DATATYPE_COLS";
+            break;
+        case DATATYPE_TYPE:
+            os << "DATATYPE_TYPE";
+            break;
         case SOURCE_BLOCK:
             os << "SOURCE_BLOCK";
             break;
@@ -157,15 +178,6 @@ std::ostream& operator<<(std::ostream& os, object_properties_t p)
             break;
         case PORT_NUMBER:
             os << "PORT_NUMBER";
-            break;
-        case DATATYPE_ROWS:
-            os << "DATATYPE_ROWS";
-            break;
-        case DATATYPE_COLS:
-            os << "DATATYPE_COLS";
-            break;
-        case DATATYPE_TYPE:
-            os << "DATATYPE_TYPE";
             break;
         case CONNECTED_SIGNALS:
             os << "CONNECTED_SIGNALS";

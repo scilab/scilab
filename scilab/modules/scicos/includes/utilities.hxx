@@ -61,12 +61,16 @@ enum object_properties_t
     SIM_FUNCTION_NAME,  //!< model::Descriptor::functionName value (stored into model::Block::sim)
     SIM_FUNCTION_API,   //!< model::Descriptor::functionApi value (stored into model::Block::sim)
     SIM_SCHEDULE,       //!< model::Descriptor::schedulingProperties value (stored into model::Block::sim)
+    SIM_BLOCKTYPE,      //!< model::Descriptor::blocktype value (stored into model::Block::sim)
     ANGLE,              //!< model::Block::flip and theta values
     EXPRS,              //!< model::Block::exprs value
     INPUTS,             //!< model::Block::in value
     OUTPUTS,            //!< model::Block::out value
     EVENT_INPUTS,       //!< model::Block::ein value
     EVENT_OUTPUTS,      //!< model::Block::eout value
+    STATE,              //!< model::Block::state value
+    DSTATE,             //!< model::Block::dstate value
+    ODSTATE,            //!< model::Block::odstate value
     PARENT_BLOCK,       //!< model::Block::parentBlock value
     CHILDREN,           //!< model::Block::children for superblocks or model::Diagram::children value
     PORT_REFERENCE,     //!< model::Block::portReference value

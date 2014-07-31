@@ -92,9 +92,9 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
         switch (p)
         {
             case SIM_FUNCTION_API:
-            {
                 return o->setSimFunctionApi(v);
-            }
+            case SIM_BLOCKTYPE:
+                return o->setSimBlocktype(v);
             default:
                 break;
         }
@@ -319,6 +319,10 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
                 return o->setGeometry(v);
             case ANGLE:
                 return o->setAngle(v);
+            case STATE:
+                return o->setState(v);
+            case DSTATE:
+                return o->setDState(v);
             default:
                 break;
         }
