@@ -132,7 +132,7 @@ struct flip
         std::vector<double> angle;
         controller.getObjectProperty(adaptee->id(), adaptee->kind(), ANGLE, angle);
 
-        data[0] = angle[0];
+        data[0] = static_cast<int>(angle[0]);
         return o;
     }
 

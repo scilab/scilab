@@ -1206,7 +1206,7 @@ public :
         }
 
         //free pArg content
-        for (int iArg = 0 ; iArg < pArg.size() ; iArg++)
+        for (size_t iArg = 0 ; iArg < pArg.size() ; ++iArg)
         {
             if (pArg[iArg] != (*_pArgs)[iArg])
             {

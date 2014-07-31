@@ -58,7 +58,7 @@ Adaptor* alloc_and_set(kind_t k, types::String* type_name, types::typed_list &in
     Adaptor* adaptor = new Adaptor(static_cast<Adaptee*>(controller.getObject(o)));
 
     // the first header entry is the type
-    for (int i = 1; i < in.size(); i++)
+    for (size_t i = 1; i < in.size(); i++)
     {
         std::wstring name = type_name->get(i);
         if (!adaptor->setProperty(name, in[i], controller))
