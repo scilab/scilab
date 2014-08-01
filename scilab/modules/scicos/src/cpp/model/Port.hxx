@@ -13,6 +13,7 @@
 #ifndef PORT_HXX_
 #define PORT_HXX_
 
+#include <string>
 #include <vector>
 
 #include "Model.hxx"
@@ -152,6 +153,21 @@ private:
         return SUCCESS;
     }
 
+    void getFiring(double& f) const
+    {
+        f = firing;
+    }
+
+    update_status_t setFiring(double firing)
+    {
+        if (firing == this->firing)
+        {
+            return NO_CHANGES;
+        }
+        this->firing = firing;
+        return SUCCESS;
+    }
+
 private:
     Datatype* dataType;
     ScicosID sourceBlock;
@@ -159,6 +175,7 @@ private:
     bool implicit;
     std::string style;
     std::string label;
+    double firing;
 
     std::vector<ScicosID> connectedSignals;
 };

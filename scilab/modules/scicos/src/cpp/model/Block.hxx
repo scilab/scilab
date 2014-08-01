@@ -61,7 +61,7 @@ struct State
  *  * CONST_m == 0
  *  * SUMMATION == DEP_U
  *  * CLR == DEP_T
- *  * SWITCH_f == DEP_U & DEP_T
+ *  * SWITCH_f == DEP_U | DEP_T
  */
 enum dep_ut_t
 {
@@ -120,10 +120,10 @@ private:
 
 private:
     Block() : BaseObject(BLOCK), parentDiagram(0), interfaceFunction(), geometry(),
-        angle(), exprs(), label(), style(), sim(), in(), out(), ein(), eout(),
+        angle(), exprs(), label(), style(), nzcross(0), nmode(0), sim(), in(), out(), ein(), eout(),
         parameter(), state(), parentBlock(0), children(), portReference(0) {};
     Block(const Block& o) : BaseObject(BLOCK), parentDiagram(o.parentDiagram), interfaceFunction(o.interfaceFunction), geometry(o.geometry),
-        angle(o.angle), exprs(o.exprs), label(o.label), style(o.style), sim(o.sim), in(o.in), out(o.out), ein(o.ein), eout(o.eout),
+        angle(o.angle), exprs(o.exprs), label(o.label), style(o.style), nzcross(o.nzcross), nmode(o.nmode), sim(o.sim), in(o.in), out(o.out), ein(o.ein), eout(o.eout),
         parameter(o.parameter), state(o.state), parentBlock(o.parentBlock), children(o.children), portReference(o.portReference) {};
     ~Block() {}
 
@@ -349,6 +349,38 @@ private:
         return SUCCESS;
     }
 
+    void getNZcross(int& data) const
+    {
+        data = nzcross;
+    }
+
+    update_status_t setNZcross(const int data)
+    {
+        if (data == nzcross)
+        {
+            return NO_CHANGES;
+        }
+
+        nzcross = data;
+        return SUCCESS;
+    }
+
+    void getNMode(int& data) const
+    {
+        data = nmode;
+    }
+
+    update_status_t setNMode(const int data)
+    {
+        if (data == nmode)
+        {
+            return NO_CHANGES;
+        }
+
+        nmode = data;
+        return SUCCESS;
+    }
+
     void getSimFunctionName(std::string& data) const
     {
         data = sim.functionName;
@@ -403,10 +435,64 @@ private:
             case BLOCKTYPE_X:
             case BLOCKTYPE_Z:
                 sim.blocktype = data;
-                break;
+                return SUCCESS;
             default:
                 return FAIL;
         }
+    }
+
+    void getSimDepUT(std::vector<int>& data) const
+    {
+        data.resize(2, 0);
+        switch (sim.dep_ut)
+        {
+            case DEP_U & DEP_T:
+                // data is already set to [0 0] here.
+                return;
+            case DEP_U:
+                data[0] = 1;
+                return;
+            case DEP_T:
+                data[1] = 1;
+                return;
+            case DEP_U | DEP_T:
+                data[0] = 1;
+                data[1] = 1;
+            default:
+                return;
+        }
+    }
+
+    update_status_t setSimDepUT(const std::vector<int>& data)
+    {
+        if (data.size() != 2)
+        {
+            return FAIL;
+        }
+
+        int dep = DEP_U & DEP_T;
+        if (data[0])
+        {
+            if (data[1])
+            {
+                dep = DEP_U | DEP_T;
+            }
+            else
+            {
+                dep = DEP_U;
+            }
+        }
+        else if (data[1])
+        {
+            dep = DEP_T;
+        }
+
+        if (dep == sim.dep_ut)
+        {
+            return NO_CHANGES;
+        }
+
+        sim.dep_ut = dep;
         return SUCCESS;
     }
 
@@ -450,6 +536,8 @@ private:
     std::vector<std::string> exprs;
     std::string label;
     std::string style;
+    int nzcross;
+    int nmode;
 
     Descriptor sim;
 

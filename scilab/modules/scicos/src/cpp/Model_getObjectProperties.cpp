@@ -70,6 +70,9 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, dou
         model::Port* o = static_cast<model::Port*>(getObject(uid));
         switch (p)
         {
+            case FIRING:
+                o->getFiring(v);
+                return true;
             default:
                 break;
         }
@@ -99,6 +102,12 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, int
                 return true;
             case SIM_BLOCKTYPE:
                 o->getSimBlocktype(v);
+                return true;
+            case NZCROSS:
+                o->getNZcross(v);
+                return true;
+            case NMODE:
+                o->getNMode(v);
                 return true;
             default:
                 break;
@@ -396,6 +405,9 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
         model::Block* o = static_cast<model::Block*>(getObject(uid));
         switch (p)
         {
+            case SIM_DEP_UT:
+                o->getSimDepUT(v);
+                return true;
             default:
                 break;
         }

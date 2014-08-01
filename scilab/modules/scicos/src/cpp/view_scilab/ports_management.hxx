@@ -61,10 +61,10 @@ types::InternalType* get_ports_property(const Adaptor& adaptor, object_propertie
         }
         case DATATYPE_ROWS:
             datatypeIndex = 0;
-        // no break
+            // no break
         case DATATYPE_COLS:
             datatypeIndex = 1;
-        // no break
+            // no break
         case DATATYPE_TYPE:
         {
             datatypeIndex = 2;
@@ -218,6 +218,14 @@ bool set_ports_property(const Adaptor& adaptor, object_properties_t port_kind, C
         // Translate identifiers from values
         switch (p)
         {
+            case FIRING:
+                for (std::vector<ScicosID>::iterator it = ids.begin(); it != ids.end(); ++it, ++i)
+                {
+                    double firing = current->get(i);
+
+                    controller.setObjectProperty(*it, PORT, p, firing);
+                }
+                return true;
             case STYLE:
             case LABEL:
                 // Do nothing, because if the sizes match, then there are already zero concerned ports, so no ports to update
@@ -225,10 +233,10 @@ bool set_ports_property(const Adaptor& adaptor, object_properties_t port_kind, C
 
             case DATATYPE_ROWS:
                 datatypeIndex = 0;
-            // no break
+                // no break
             case DATATYPE_COLS:
                 datatypeIndex = 1;
-            // no break
+                // no break
             case DATATYPE_TYPE:
             {
                 datatypeIndex = 2;

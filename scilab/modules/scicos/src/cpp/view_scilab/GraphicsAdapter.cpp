@@ -358,6 +358,7 @@ struct id
         }
 
         model::Block* adaptee = adaptor.getAdaptee();
+
         std::string id;
         char* c_str = wide_string_to_UTF8(current->get(0));
         id = std::string(c_str);

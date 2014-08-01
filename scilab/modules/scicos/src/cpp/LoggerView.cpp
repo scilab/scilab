@@ -104,6 +104,9 @@ std::ostream& operator<<(std::ostream& os, object_properties_t p)
         case SIM_BLOCKTYPE:
             os << "SIM_BLOCKTYPE";
             break;
+        case SIM_DEP_UT:
+            os << "SIM_DEP_UT";
+            break;
         case ANGLE:
             os << "ANGLE";
             break;
@@ -130,6 +133,12 @@ std::ostream& operator<<(std::ostream& os, object_properties_t p)
             break;
         case ODSTATE:
             os << "ODSTATE";
+            break;
+        case NZCROSS:
+            os << "NZCROSS";
+            break;
+        case NMODE:
+            os << "NMODE";
             break;
         case PARENT_BLOCK:
             os << "PARENT_BLOCK";
@@ -166,6 +175,9 @@ std::ostream& operator<<(std::ostream& os, object_properties_t p)
             break;
         case DATATYPE_TYPE:
             os << "DATATYPE_TYPE";
+            break;
+        case FIRING:
+            os << "FIRING";
             break;
         case SOURCE_BLOCK:
             os << "SOURCE_BLOCK";
