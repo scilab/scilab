@@ -132,7 +132,7 @@ public :
     static int Load();
 };
 
-class SpecialFunctionModule : public GenericModule
+class SpecialFunctionsModule : public GenericModule
 {
 public :
     static int Load();

@@ -406,7 +406,7 @@ int OptimizationModule::Load()
     return 1;
 }
 
-int SpecialFunctionModule::Load()
+int SpecialFunctionsModule::Load()
 {
     wstring wstModuleName = L"special_functions";
 #ifdef _MSC_VER

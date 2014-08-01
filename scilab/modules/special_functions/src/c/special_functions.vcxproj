@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -110,7 +110,7 @@ lib /DEF:"$(ProjectDir)slatec_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;../../includes;../cpp;../../sci_gateway/cpp;../../../core/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../elementary_functions/includes;../../../dynamic_link/src/c;../../../localization/includes;../../../core/src/c;../../../../libs/intl;../../../special_functions/includes;../../../api_scilab/includes;../../../ast/includes/operations;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../../../../libs/intl;../../../../libs/Eigen/includes;../../../core/includes;../cpp;../../sci_gateway/cpp;../../../output_stream/includes;../../../dynamic_link/includes;../../../elementary_functions/includes;../../../dynamic_link/src/c;../../../localization/includes;../../../core/src/c;../../../special_functions/includes;../../../api_scilab/includes;../../../double/includes;../../../string/includes;../../../statistics/includes;../../../console/includes;../../../threads/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;SPECIAL_FUNCTIONS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -202,7 +202,10 @@ lib /DEF:"$(ProjectDir)slatec_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_dlgamma.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_faddeeva.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_gamma.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_lgamma.cpp" />
     <ClCompile Include="..\cpp\faddeeva.cpp" />
     <ClCompile Include="DllmainSpecial_functions.c" />
     <ClCompile Include="..\..\sci_gateway\c\gw_special_functions.c" />
@@ -212,15 +215,13 @@ lib /DEF:"$(ProjectDir)slatec_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     <ClCompile Include="..\..\sci_gateway\c\sci_besselk.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_bessely.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_beta.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_dlgamma.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_gamma.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_legendre.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_lgamma.c" />
     <ClCompile Include="zbeshv.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\dynlib_special_functions.h" />
     <ClInclude Include="..\..\includes\gw_special_functions.h" />
+    <ClInclude Include="..\..\includes\special_functions_gw.hxx" />
     <ClInclude Include="..\..\sci_gateway\cpp\sci_faddeeva.hxx" />
     <ClInclude Include="..\cpp\faddeeva.h" />
     <ClInclude Include="zbeshv.h" />
@@ -246,6 +247,9 @@ lib /DEF:"$(ProjectDir)slatec_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     </ProjectReference>
     <ProjectReference Include="..\..\..\api_scilab\api_scilab.vcxproj">
       <Project>{43c5bab1-1dca-4743-a183-77e0d42fe7d0}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\ast\ast.vcxproj">
+      <Project>{0d3fa25b-8116-44ec-a45e-260789daa3d9}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\elementary_functions\src\c\elementary_functions.vcxproj">
       <Project>{5b110267-7c18-437c-b87d-dba2b50729e9}</Project>
