@@ -13,6 +13,7 @@
 #ifndef MODEL_HXX_
 #define MODEL_HXX_
 
+#include <vector>
 #include <map>
 #include <string>
 
@@ -28,11 +29,12 @@ public:
     Model();
     ~Model();
 
+    /*
+     * Controller wrapped methods
+     */
+
     ScicosID createObject(kind_t k);
     void deleteObject(ScicosID uid);
-
-    model::BaseObject* getObject(ScicosID uid) const;
-    update_status_t setObject(model::BaseObject* o);
 
     bool getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, double& v);
     bool getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, int& v);
@@ -54,10 +56,23 @@ public:
     update_status_t setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, const std::vector< std::string >& v);
     update_status_t setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, const std::vector<ScicosID>& v);
 
+    /*
+     * Model internal methods
+     */
+
+    model::BaseObject* getObject(ScicosID uid) const;
+    update_status_t setObject(model::BaseObject* o);
+
+    model::Datatype* flyweight(const model::Datatype& d);
+    void erase(model::Datatype* d);
+
 private:
     ScicosID lastId;
     typedef std::map<ScicosID, model::BaseObject*> objects_map_t;
     objects_map_t allObjects;
+
+    typedef std::vector<model::Datatype*> datatypes_set_t;
+    datatypes_set_t datatypes;
 };
 
 } /* namespace org_scilab_modules_scicos */

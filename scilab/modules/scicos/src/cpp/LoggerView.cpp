@@ -32,7 +32,7 @@ LoggerView::~LoggerView()
 // generated with :
 // awk ' $2 == "//!<" {sub(",","", $1); print "case " $1 ":\n    os << \"" $1 "\";\n    break;" }' ~/work/branches/YaSp/scilab/modules/scicos/includes/utilities.hxx
 
-static std::ostream& operator<<(std::ostream& os, update_status_t u)
+std::ostream& operator<<(std::ostream& os, update_status_t u)
 {
     switch (u)
     {
@@ -49,7 +49,7 @@ static std::ostream& operator<<(std::ostream& os, update_status_t u)
     return os;
 }
 
-static std::ostream& operator<<(std::ostream& os, kind_t k)
+std::ostream& operator<<(std::ostream& os, kind_t k)
 {
     switch (k)
     {
@@ -73,7 +73,7 @@ static std::ostream& operator<<(std::ostream& os, kind_t k)
 }
 
 
-static std::ostream& operator<<(std::ostream& os, object_properties_t p)
+std::ostream& operator<<(std::ostream& os, object_properties_t p)
 {
     switch (p)
     {

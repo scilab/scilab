@@ -44,19 +44,47 @@ private:
         return connectedSignals;
     }
 
-    void setConnectedSignals(const std::vector<ScicosID>& connectedSignals)
+    update_status_t setConnectedSignals(const std::vector<ScicosID>& connectedSignals)
     {
+        if (this->connectedSignals == connectedSignals)
+        {
+            return NO_CHANGES;
+        }
+
         this->connectedSignals = connectedSignals;
+        return SUCCESS;
     }
 
-    Datatype* getDataType() const
+    void getDataType(std::vector<int> v) const
     {
-        return dataType;
+        if (dataType == 0)
+        {
+            v.resize(3, 0);
+        }
+        else
+        {
+            v.resize(3);
+            v[0] = dataType->rows;
+            v[1] = dataType->columns;
+            v[3] = dataType->datatype_id;
+        }
     }
 
-    void setDataType(Datatype* dataType)
+    update_status_t setDataType(Model* model, const std::vector<int>& v)
     {
-        this->dataType = dataType;
+        if (v.size() != 3)
+        {
+            return FAIL;
+        }
+
+        model::Datatype datatype = model::Datatype(v);
+        if (this->dataType != 0 && *this->dataType == datatype)
+        {
+            return NO_CHANGES;
+        }
+
+        this->dataType = model->flyweight(datatype);
+        return SUCCESS;
     }
 
     portKind getKind() const

@@ -10,6 +10,8 @@
  *
  */
 
+#include <algorithm>
+
 #include "Model.hxx"
 #include "utilities.hxx"
 
@@ -24,7 +26,7 @@ namespace org_scilab_modules_scicos
 {
 
 Model::Model() :
-    lastId(0)
+    lastId(0), allObjects(), datatypes()
 {
 }
 
@@ -139,6 +141,34 @@ update_status_t Model::setObject(model::BaseObject* o)
     delete iter->second;
     iter->second = o;
     return SUCCESS;
+}
+
+model::Datatype* Model::flyweight(const model::Datatype& d)
+{
+    datatypes_set_t::iterator iter = std::lower_bound(datatypes.begin(), datatypes.end(), &d);
+    if (iter != datatypes.end() && !(d < **iter)) // if d is found
+    {
+        (*iter)->refCount++;
+        return *iter;
+    }
+    else
+    {
+        return *datatypes.insert(iter, new model::Datatype(d));
+    }
+}
+
+void Model::erase(model::Datatype* d)
+{
+    datatypes_set_t::iterator iter = std::lower_bound(datatypes.begin(), datatypes.end(), d);
+    if (iter != datatypes.end() && !(*d < **iter)) // if d is found
+    {
+        (*iter)->refCount--;
+        if ((*iter)->refCount < 0)
+        {
+            datatypes.erase(iter);
+            delete *iter;
+        }
+    }
 }
 
 } /* namespace org_scilab_modules_scicos */

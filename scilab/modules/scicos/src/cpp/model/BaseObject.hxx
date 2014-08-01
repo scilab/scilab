@@ -109,10 +109,13 @@ struct Geometry
 struct Datatype
 {
 public:
-    Datatype(unsigned int datatype, unsigned int r, unsigned c) :
-        datatype_id(datatype), rows(r), columns(c)
+    Datatype(const std::vector<int>& v) :
+        refCount(0), datatype_id(v[0]), rows(v[1]), columns(v[2])
     {
     }
+
+    // reference counter for the flyweight pattern
+    size_t refCount;
 
     const int datatype_id;
     const int rows;
@@ -121,6 +124,11 @@ public:
     bool operator==(const Datatype& d) const
     {
         return datatype_id == d.datatype_id && rows == d.rows && columns == d.columns;
+    }
+
+    bool operator<(const Datatype& d) const
+    {
+        return datatype_id < d.datatype_id && rows < d.rows && columns < d.columns;
     }
 };
 

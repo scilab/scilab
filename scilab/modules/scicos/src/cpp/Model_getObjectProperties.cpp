@@ -414,6 +414,9 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
         model::Port* o = static_cast<model::Port*>(getObject(uid));
         switch (p)
         {
+            case DATATYPE:
+                o->getDataType(v);
+                return true;
             default:
                 break;
         }

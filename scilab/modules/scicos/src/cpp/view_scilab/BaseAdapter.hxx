@@ -18,7 +18,6 @@
 #include <utility>
 #include <iostream>
 
-#include "types.hxx"
 #include "user.hxx"
 
 #include "Controller.hxx"

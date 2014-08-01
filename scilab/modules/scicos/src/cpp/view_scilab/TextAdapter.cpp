@@ -13,9 +13,6 @@
 #include <string>
 
 #include "internal.hxx"
-#include "list.hxx"
-#include "types.hxx"
-#include "user.hxx"
 
 #include "Controller.hxx"
 #include "TextAdapter.hxx"

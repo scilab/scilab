@@ -13,7 +13,6 @@
 #ifndef BLOCK_HXX_
 #define BLOCK_HXX_
 
-#include <cassert>
 #include <string>
 #include <vector>
 #include <bitset>

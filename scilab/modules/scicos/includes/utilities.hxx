@@ -21,28 +21,6 @@
  * The '0' value is used indicate that BaseObject is not handled by the controller.
  */
 typedef long long ScicosID;
-//struct ScicosID
-//{
-//    ScicosID(const ScicosID& u) : v(u.v) {}
-//    typedef unsigned long long uid_container_type;
-//    ScicosID(uid_container_type u) : v(u) {}
-//
-//    inline bool operator<(const ScicosID& u) const
-//    {
-//        return v < u.v;
-//    }
-//    inline bool operator==(const ScicosID& u) const
-//    {
-//        return v == u.v;
-//    }
-//    inline void operator++(int added)
-//    {
-//        v = v + added;
-//    }
-//    friend std::ostream& operator<< (std::ostream &out, const ScicosID& u);
-//private:
-//    uid_container_type v;
-//};
 
 /**
  * Return status of get and set
@@ -98,13 +76,13 @@ enum object_properties_t
     SOURCE_PORT,        //!< model::Link::sourcePort value
     CONTROL_POINTS,     //!< model::Link::controlPoints value
     DATATYPE,           //!< model::Port::dataType value
+    DATATYPE_ROWS,      //!< model::Port::dataType adapter helper
+    DATATYPE_COLS,      //!< model::Port::dataType adapter helper
+    DATATYPE_TYPE,      //!< model::Port::dataType adapter helper
     SOURCE_BLOCK,       //!< model::Port::sourceBlock value
     PORT_KIND,          //!< model::Port::kind value
     IMPLICIT,           //!< model::Port::implicit value
     PORT_NUMBER,        //!< model::Port::portNumber value
-    DATATYPE_ROWS,      //!< model::Port::in value
-    DATATYPE_COLS,      //!< model::Port::in2 value
-    DATATYPE_TYPE,      //!< model::Port::intyp value
     CONNECTED_SIGNALS,  //!< model::Port::connectedSignals value
 };
 

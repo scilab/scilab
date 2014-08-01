@@ -99,7 +99,7 @@ types::Function::ReturnValue sci_scicos_new(types::typed_list &in, int _iRetCoun
         return types::Function::Error;
     }
 
-    if (type_name->getCols() != in.size())
+    if (type_name->getCols() != (int) in.size())
     {
         Scierror(999, _("%s: Wrong number of input argument: %d expected.\n"), funame.data(), type_name->getCols());
         return types::Function::Error;

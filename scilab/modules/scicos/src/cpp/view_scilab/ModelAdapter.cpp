@@ -121,6 +121,120 @@ struct sim
     }
 };
 
+
+struct in
+{
+
+    static types::InternalType* get(const ModelAdapter& adaptor, const Controller& controller)
+    {
+        return get_ports_property<ModelAdapter, DATATYPE_ROWS>(adaptor, INPUTS, controller);
+    }
+
+    static bool set(ModelAdapter& adaptor, types::InternalType* v, Controller& controller)
+    {
+        return update_ports_property<ModelAdapter, DATATYPE_ROWS>(adaptor, INPUTS, controller, v);
+    }
+};
+
+struct in2
+{
+
+    static types::InternalType* get(const ModelAdapter& adaptor, const Controller& controller)
+    {
+        return get_ports_property<ModelAdapter, DATATYPE_COLS>(adaptor, INPUTS, controller);
+    }
+
+    static bool set(ModelAdapter& adaptor, types::InternalType* v, Controller& controller)
+    {
+        return set_ports_property<ModelAdapter, DATATYPE_COLS>(adaptor, INPUTS, controller, v);
+    }
+};
+
+struct intyp
+{
+
+    static types::InternalType* get(const ModelAdapter& adaptor, const Controller& controller)
+    {
+        return get_ports_property<ModelAdapter, DATATYPE_TYPE>(adaptor, INPUTS, controller);
+    }
+
+    static bool set(ModelAdapter& adaptor, types::InternalType* v, Controller& controller)
+    {
+        return set_ports_property<ModelAdapter, DATATYPE_TYPE>(adaptor, INPUTS, controller, v);
+    }
+};
+
+
+struct out
+{
+
+    static types::InternalType* get(const ModelAdapter& adaptor, const Controller& controller)
+    {
+        return get_ports_property<ModelAdapter, DATATYPE_ROWS>(adaptor, OUTPUTS, controller);
+    }
+
+    static bool set(ModelAdapter& adaptor, types::InternalType* v, Controller& controller)
+    {
+        return update_ports_property<ModelAdapter, DATATYPE_ROWS>(adaptor, OUTPUTS, controller, v);
+    }
+};
+
+struct out2
+{
+
+    static types::InternalType* get(const ModelAdapter& adaptor, const Controller& controller)
+    {
+        return get_ports_property<ModelAdapter, DATATYPE_COLS>(adaptor, OUTPUTS, controller);
+    }
+
+    static bool set(ModelAdapter& adaptor, types::InternalType* v, Controller& controller)
+    {
+        return set_ports_property<ModelAdapter, DATATYPE_COLS>(adaptor, OUTPUTS, controller, v);
+    }
+};
+
+struct outtyp
+{
+
+    static types::InternalType* get(const ModelAdapter& adaptor, const Controller& controller)
+    {
+        return get_ports_property<ModelAdapter, DATATYPE_TYPE>(adaptor, OUTPUTS, controller);
+    }
+
+    static bool set(ModelAdapter& adaptor, types::InternalType* v, Controller& controller)
+    {
+        return set_ports_property<ModelAdapter, DATATYPE_TYPE>(adaptor, OUTPUTS, controller, v);
+    }
+};
+
+struct evtin
+{
+
+    static types::InternalType* get(const ModelAdapter& adaptor, const Controller& controller)
+    {
+        return get_ports_property<ModelAdapter, DATATYPE_ROWS>(adaptor, EVENT_INPUTS, controller);
+    }
+
+    static bool set(ModelAdapter& adaptor, types::InternalType* v, Controller& controller)
+    {
+        return update_ports_property<ModelAdapter, DATATYPE_ROWS>(adaptor, EVENT_INPUTS, controller, v);
+    }
+};
+
+struct evtout
+{
+
+    static types::InternalType* get(const ModelAdapter& adaptor, const Controller& controller)
+    {
+        return get_ports_property<ModelAdapter, DATATYPE_ROWS>(adaptor, EVENT_OUTPUTS, controller);
+    }
+
+    static bool set(ModelAdapter& adaptor, types::InternalType* v, Controller& controller)
+    {
+        return update_ports_property<ModelAdapter, DATATYPE_ROWS>(adaptor, EVENT_OUTPUTS, controller, v);
+    }
+};
+
 template<> property<ModelAdapter>::props_t property<ModelAdapter>::fields = property<ModelAdapter>::props_t();
 
 ModelAdapter::ModelAdapter(const ModelAdapter& o) :
@@ -131,8 +245,16 @@ ModelAdapter::ModelAdapter(org_scilab_modules_scicos::model::Block* o) :
 {
     if (property<ModelAdapter>::properties_has_not_been_set())
     {
-        property<ModelAdapter>::fields.reserve(1);
+        property<ModelAdapter>::fields.reserve(7);
         property<ModelAdapter>::add_property(L"sim", &sim::get, &sim::set);
+        property<ModelAdapter>::add_property(L"in", &in::get, &in::set);
+        property<ModelAdapter>::add_property(L"in2", &in2::get, &in2::set);
+        property<ModelAdapter>::add_property(L"intyp", &intyp::get, &intyp::set);
+        property<ModelAdapter>::add_property(L"out", &out::get, &out::set);
+        property<ModelAdapter>::add_property(L"out2", &out2::get, &out2::set);
+        property<ModelAdapter>::add_property(L"outtyp", &outtyp::get, &outtyp::set);
+        property<ModelAdapter>::add_property(L"evtin", &evtin::get, &evtin::set);
+        property<ModelAdapter>::add_property(L"evtout", &evtout::get, &evtout::set);
     }
 }
 

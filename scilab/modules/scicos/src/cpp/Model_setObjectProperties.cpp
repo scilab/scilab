@@ -397,6 +397,8 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
         model::Port* o = static_cast<model::Port*>(getObject(uid));
         switch (p)
         {
+            case DATATYPE:
+                return o->setDataType(this, v);
             default:
                 break;
         }
