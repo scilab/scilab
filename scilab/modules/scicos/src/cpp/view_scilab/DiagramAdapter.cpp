@@ -31,6 +31,8 @@ namespace org_scilab_modules_scicos
 {
 namespace view_scilab
 {
+namespace
+{
 
 struct props
 {
@@ -101,6 +103,8 @@ struct contrib
     }
 };
 
+} /* namespace */
+
 template<> property<DiagramAdapter>::props_t property<DiagramAdapter>::fields = property<DiagramAdapter>::props_t();
 
 DiagramAdapter::DiagramAdapter(const DiagramAdapter& o) :
@@ -121,12 +125,6 @@ DiagramAdapter::DiagramAdapter(org_scilab_modules_scicos::model::Diagram* o) :
 
 DiagramAdapter::~DiagramAdapter()
 {
-}
-
-bool DiagramAdapter::toString(std::wostringstream& ostr)
-{
-    ostr << L"DiagramAdapter.hxx: Dunno what to display there";
-    return true;
 }
 
 std::wstring DiagramAdapter::getTypeStr()

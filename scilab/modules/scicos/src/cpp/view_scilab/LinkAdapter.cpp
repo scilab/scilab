@@ -24,6 +24,10 @@ namespace org_scilab_modules_scicos
 {
 namespace view_scilab
 {
+namespace
+{
+
+} /* namespace */
 
 template<> property<LinkAdapter>::props_t property<LinkAdapter>::fields = property<LinkAdapter>::props_t();
 
@@ -41,12 +45,6 @@ LinkAdapter::LinkAdapter(org_scilab_modules_scicos::model::Link* o) :
 
 LinkAdapter::~LinkAdapter()
 {
-}
-
-bool LinkAdapter::toString(std::wostringstream& ostr)
-{
-    ostr << L"LinkAdapter.hxx: Dunno what to display there";
-    return true;
 }
 
 std::wstring LinkAdapter::getTypeStr()

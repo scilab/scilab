@@ -38,7 +38,6 @@ public:
         return L"graphics";
     }
 
-    bool toString(std::wostringstream& ostr);
     std::wstring getTypeStr();
     std::wstring getShortTypeStr();
 

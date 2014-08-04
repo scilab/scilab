@@ -24,6 +24,10 @@ namespace org_scilab_modules_scicos
 {
 namespace view_scilab
 {
+namespace
+{
+
+} /* namespace */
 
 template<> property<ScsAdapter>::props_t property<ScsAdapter>::fields = property<ScsAdapter>::props_t();
 
@@ -41,12 +45,6 @@ ScsAdapter::ScsAdapter(org_scilab_modules_scicos::model::Diagram* o) :
 
 ScsAdapter::~ScsAdapter()
 {
-}
-
-bool ScsAdapter::toString(std::wostringstream& ostr)
-{
-    ostr << L"ScsAdapter.hxx: Dunno what to display there";
-    return true;
 }
 
 std::wstring ScsAdapter::getTypeStr()

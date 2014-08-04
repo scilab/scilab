@@ -16,6 +16,10 @@ namespace org_scilab_modules_scicos
 {
 namespace view_scilab
 {
+namespace
+{
+
+} /* namespace */
 
 template<> property<ParamsAdapter>::props_t property<ParamsAdapter>::fields = property<ParamsAdapter>::props_t();
 
@@ -33,12 +37,6 @@ ParamsAdapter::ParamsAdapter(org_scilab_modules_scicos::model::Diagram* o) :
 
 ParamsAdapter::~ParamsAdapter()
 {
-}
-
-bool ParamsAdapter::toString(std::wostringstream& ostr)
-{
-    ostr << L"ParamsAdapter.hxx: Dunno what to display there";
-    return true;
 }
 
 std::wstring ParamsAdapter::getTypeStr()

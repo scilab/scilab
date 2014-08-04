@@ -26,6 +26,8 @@ namespace org_scilab_modules_scicos
 {
 namespace view_scilab
 {
+namespace
+{
 
 struct sim
 {
@@ -332,8 +334,6 @@ struct odstate
 
     static bool set(ModelAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        model::Block* adaptee = adaptor.getAdaptee();
-
         if (v->getType() != types::InternalType::ScilabList)
         {
             return false;
@@ -399,6 +399,8 @@ struct blocktype
         return true;
     }
 };
+
+} /* namespace */
 
 template<> property<ModelAdapter>::props_t property<ModelAdapter>::fields = property<ModelAdapter>::props_t();
 

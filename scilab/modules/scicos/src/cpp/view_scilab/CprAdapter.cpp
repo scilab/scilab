@@ -24,6 +24,10 @@ namespace org_scilab_modules_scicos
 {
 namespace view_scilab
 {
+namespace
+{
+
+} /* namespace */
 
 template<> property<CprAdapter>::props_t property<CprAdapter>::fields = property<CprAdapter>::props_t();
 

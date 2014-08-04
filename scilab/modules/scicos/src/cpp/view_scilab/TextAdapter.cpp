@@ -21,6 +21,10 @@ namespace org_scilab_modules_scicos
 {
 namespace view_scilab
 {
+namespace
+{
+
+} /* namespace */
 
 template<> property<TextAdapter>::props_t property<TextAdapter>::fields = property<TextAdapter>::props_t();
 
@@ -38,12 +42,6 @@ TextAdapter::TextAdapter(org_scilab_modules_scicos::model::Annotation* o) :
 
 TextAdapter::~TextAdapter()
 {
-}
-
-bool TextAdapter::toString(std::wostringstream& ostr)
-{
-    ostr << L"TextAdapter.hxx: Dunno what to display there";
-    return true;
 }
 
 std::wstring TextAdapter::getTypeStr()

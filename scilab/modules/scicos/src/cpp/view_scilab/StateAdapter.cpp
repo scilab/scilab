@@ -24,6 +24,10 @@ namespace org_scilab_modules_scicos
 {
 namespace view_scilab
 {
+namespace
+{
+
+} /* namespace */
 
 template<> property<StateAdapter>::props_t property<StateAdapter>::fields = property<StateAdapter>::props_t();
 
@@ -41,12 +45,6 @@ StateAdapter::StateAdapter(org_scilab_modules_scicos::model::Diagram* o) :
 
 StateAdapter::~StateAdapter()
 {
-}
-
-bool StateAdapter::toString(std::wostringstream& ostr)
-{
-    ostr << L"StateAdapter.hxx: Dunno what to display there";
-    return true;
 }
 
 std::wstring StateAdapter::getTypeStr()

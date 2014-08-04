@@ -30,6 +30,8 @@ namespace org_scilab_modules_scicos
 {
 namespace view_scilab
 {
+namespace
+{
 
 struct orig
 {
@@ -508,6 +510,8 @@ struct style
     }
 };
 
+} /* namespace */
+
 template<> property<GraphicsAdapter>::props_t property<GraphicsAdapter>::fields = property<GraphicsAdapter>::props_t();
 
 GraphicsAdapter::GraphicsAdapter(const GraphicsAdapter& o) :
@@ -520,7 +524,7 @@ GraphicsAdapter::GraphicsAdapter(org_scilab_modules_scicos::model::Block* o) :
 {
     if (property<GraphicsAdapter>::properties_has_not_been_set())
     {
-        property<GraphicsAdapter>::fields.reserve(17);
+        property<GraphicsAdapter>::fields.reserve(18);
         property<GraphicsAdapter>::add_property(L"orig", &orig::get, &orig::set);
         property<GraphicsAdapter>::add_property(L"sz", &sz::get, &sz::set);
         property<GraphicsAdapter>::add_property(L"flip", &flip::get, &flip::set);
@@ -535,6 +539,7 @@ GraphicsAdapter::GraphicsAdapter(org_scilab_modules_scicos::model::Block* o) :
         property<GraphicsAdapter>::add_property(L"in_implicit", &in_implicit::get, &in_implicit::set);
         property<GraphicsAdapter>::add_property(L"out_implicit", &out_implicit::get, &out_implicit::set);
         property<GraphicsAdapter>::add_property(L"in_style", &in_style::get, &in_style::set);
+        property<GraphicsAdapter>::add_property(L"out_style", &out_style::get, &out_style::set);
         property<GraphicsAdapter>::add_property(L"in_label", &in_label::get, &in_label::set);
         property<GraphicsAdapter>::add_property(L"out_label", &out_label::get, &out_label::set);
         property<GraphicsAdapter>::add_property(L"style", &style::get, &style::set);
@@ -546,12 +551,6 @@ GraphicsAdapter::GraphicsAdapter(org_scilab_modules_scicos::model::Block* o) :
 GraphicsAdapter::~GraphicsAdapter()
 {
     delete gr_i_content;
-}
-
-bool GraphicsAdapter::toString(std::wostringstream& ostr)
-{
-    ostr << L"GraphicsAdapter.hxx: Dunno what to display there" << std::endl;
-    return true;
 }
 
 std::wstring GraphicsAdapter::getTypeStr()
@@ -575,5 +574,5 @@ void GraphicsAdapter::setGrIContent(types::InternalType* v)
     gr_i_content = v->clone();
 }
 
-} /* view_scilab */
+} /* namespace view_scilab */
 } /* namespace org_scilab_modules_scicos */

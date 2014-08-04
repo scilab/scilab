@@ -37,7 +37,6 @@ public:
         return L"Text";
     }
 
-    bool toString(std::wostringstream& ostr);
     std::wstring getTypeStr();
     std::wstring getShortTypeStr();
 };

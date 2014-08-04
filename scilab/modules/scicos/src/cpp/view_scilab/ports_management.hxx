@@ -100,7 +100,10 @@ types::InternalType* get_ports_property(const Adaptor& adaptor, object_propertie
             controller.getObjectProperty(adaptee->id(), adaptee->kind(), PARENT_DIAGRAM, diagram);
 
             std::vector<ScicosID> children;
-            controller.getObjectProperty(diagram, DIAGRAM, CHILDREN, children);
+            if (diagram != 0)
+            {
+                controller.getObjectProperty(diagram, DIAGRAM, CHILDREN, children);
+            }
 
             for (std::vector<ScicosID>::iterator it = ids.begin(); it != ids.end(); ++it, ++i)
             {

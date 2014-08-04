@@ -33,6 +33,8 @@ namespace org_scilab_modules_scicos
 {
 namespace view_scilab
 {
+namespace
+{
 
 struct graphics
 {
@@ -123,6 +125,8 @@ struct doc
     }
 };
 
+} /* namespace */
+
 template<> property<BlockAdapter>::props_t property<BlockAdapter>::fields = property<BlockAdapter>::props_t();
 
 BlockAdapter::BlockAdapter(const BlockAdapter& o) :
@@ -146,12 +150,6 @@ BlockAdapter::BlockAdapter(org_scilab_modules_scicos::model::Block* o) :
 BlockAdapter::~BlockAdapter()
 {
     delete doc_content;
-}
-
-bool BlockAdapter::toString(std::wostringstream& ostr)
-{
-    ostr << L"BlockAdapter.hxx: Dunno what to display there";
-    return true;
 }
 
 std::wstring BlockAdapter::getTypeStr()

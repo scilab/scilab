@@ -39,7 +39,6 @@ public:
         return L"Block";
     }
 
-    bool toString(std::wostringstream& ostr);
     std::wstring getTypeStr();
     std::wstring getShortTypeStr();
 
