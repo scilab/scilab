@@ -15,8 +15,7 @@
 
 #include <algorithm>
 #include <string>
-#include <utility>
-#include <iostream>
+#include <sstream>
 
 #include "user.hxx"
 #include "internal.hxx"

@@ -12,7 +12,7 @@
 
 #include <string>
 #include <vector>
-#include <cassert>
+#include <sstream>
 
 #include "list.hxx"
 #include "double.hxx"

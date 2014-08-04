@@ -15,8 +15,6 @@
 
 #include <string>
 #include <vector>
-#include <bitset>
-#include <utility>
 
 #include "Model.hxx"
 #include "model/BaseObject.hxx"
@@ -120,16 +118,17 @@ private:
 
 private:
     Block() : BaseObject(BLOCK), parentDiagram(0), interfaceFunction(), geometry(),
-        angle(), exprs(), label(), style(), nzcross(0), nmode(0), sim(), in(), out(), ein(), eout(),
+        angle(), exprs(), label(), style(), nzcross(0), nmode(0), equations(), uid(), sim(), in(), out(), ein(), eout(),
         parameter(), state(), parentBlock(0), children(), portReference(0) {};
     Block(const Block& o) : BaseObject(BLOCK), parentDiagram(o.parentDiagram), interfaceFunction(o.interfaceFunction), geometry(o.geometry),
-        angle(o.angle), exprs(o.exprs), label(o.label), style(o.style), nzcross(o.nzcross), nmode(o.nmode), sim(o.sim), in(o.in), out(o.out), ein(o.ein), eout(o.eout),
-        parameter(o.parameter), state(o.state), parentBlock(o.parentBlock), children(o.children), portReference(o.portReference) {};
+        angle(o.angle), exprs(o.exprs), label(o.label), style(o.style), nzcross(o.nzcross), nmode(o.nmode), equations(o.equations), uid(o.uid),
+        sim(o.sim), in(o.in), out(o.out), ein(o.ein), eout(o.eout), parameter(o.parameter), state(o.state), parentBlock(o.parentBlock),
+        children(o.children), portReference(o.portReference) {};
     ~Block() {}
 
-    const std::vector<ScicosID>& getChildren() const
+    void getChildren(std::vector<ScicosID>& c) const
     {
-        return children;
+        c = children;
     }
 
     void setChildren(const std::vector<ScicosID>& children)
@@ -381,6 +380,54 @@ private:
         return SUCCESS;
     }
 
+    void getUID(std::string& data) const
+    {
+        data = uid;
+    }
+
+    update_status_t setUID(const std::string& data)
+    {
+        if (data == uid)
+        {
+            return NO_CHANGES;
+        }
+
+        uid = data;
+        return SUCCESS;
+    }
+
+    void getRpar(std::vector<double>& data) const
+    {
+        data = parameter.rpar;
+    }
+
+    update_status_t setRpar(const std::vector<double>& data)
+    {
+        if (data == parameter.rpar)
+        {
+            return NO_CHANGES;
+        }
+
+        parameter.rpar = data;
+        return SUCCESS;
+    }
+
+    void getIpar(std::vector<int>& data) const
+    {
+        data = parameter.ipar;
+    }
+
+    update_status_t setIpar(const std::vector<int>& data)
+    {
+        if (data == parameter.ipar)
+        {
+            return NO_CHANGES;
+        }
+
+        parameter.ipar = data;
+        return SUCCESS;
+    }
+
     void getSimFunctionName(std::string& data) const
     {
         data = sim.functionName;
@@ -538,6 +585,9 @@ private:
     std::string style;
     int nzcross;
     int nmode;
+    // FIXME: find an appropriate way to store 'equations'
+    std::vector<std::string> equations;
+    std::string uid;
 
     Descriptor sim;
 

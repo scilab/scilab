@@ -17,7 +17,6 @@
 #include <sstream>
 
 #include "BaseAdapter.hxx"
-
 #include "model/Block.hxx"
 
 namespace org_scilab_modules_scicos

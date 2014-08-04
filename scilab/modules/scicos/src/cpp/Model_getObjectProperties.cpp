@@ -223,6 +223,9 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
             case LABEL:
                 o->getLabel(v);
                 return true;
+            case UID:
+                o->getUID(v);
+                return true;
             default:
                 break;
         }
@@ -366,6 +369,9 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
             case DSTATE:
                 o->getDState(v);
                 return true;
+            case RPAR:
+                o->getRpar(v);
+                return true;
             default:
                 break;
         }
@@ -407,6 +413,9 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
         {
             case SIM_DEP_UT:
                 o->getSimDepUT(v);
+                return true;
+            case IPAR:
+                o->getIpar(v);
                 return true;
             default:
                 break;
@@ -527,6 +536,9 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
                 return true;
             case EVENT_OUTPUTS:
                 o->getEout(v);
+                return true;
+            case CHILDREN:
+                o->getChildren(v);
                 return true;
             default:
                 break;

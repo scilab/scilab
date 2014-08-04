@@ -13,10 +13,8 @@
 #ifndef GRAPHICSADAPTER_HXX_
 #define GRAPHICSADAPTER_HXX_
 
-#include <sstream>
 #include <string>
-#include <vector>
-#include <utility>
+#include <sstream>
 
 #include "BaseAdapter.hxx"
 #include "model/Block.hxx"

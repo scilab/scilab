@@ -74,6 +74,11 @@ enum object_properties_t
     ODSTATE,            //!< model::Block::odstate value
     NZCROSS,            //!< model::Block::nzcross value
     NMODE,              //!< model::Block::nmode value
+    RPAR,               //!< model::Block::rpar value
+    IPAR,               //!< model::Block::ipar value
+    OPAR,               //!< model::Block::opar value
+    EQUATIONS,          //!< model::Block::equations value
+    UID,                //!< model::Block::uid value
     PARENT_BLOCK,       //!< model::Block::parentBlock value
     CHILDREN,           //!< model::Block::children for superblocks or model::Diagram::children value
     PORT_REFERENCE,     //!< model::Block::portReference value
