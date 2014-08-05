@@ -122,7 +122,14 @@ void ExpHistory::computeArgs()
         types::typed_list* pNewArgs = new types::typed_list();
         int iCount = types::checkIndexesArguments(m_pITCurrent, m_pArgs, pNewArgs, m_piArgsDimsArray, NULL);
 
-        delete m_pArgs;
+        // Delete pArgs only if i'm the owner
+        // else it will be deleted by the expHistory
+        // which are the flag m_pArgsOwner = true
+        if (m_pArgsOwner)
+        {
+            delete m_pArgs;
+        }
+
         m_pArgs = pNewArgs;
         m_pArgsOwner = true;
 
@@ -184,7 +191,7 @@ int ExpHistory::getSizeFromArgs()
             computeArgs();
         }
 
-        size = m_pArgs->size();
+        size = (int)m_pArgs->size();
         for (int i = 0; i < size; i++)
         {
             iSizeFromArgs *= m_piArgsDimsArray[i];
