@@ -182,6 +182,8 @@ Scilab Bug Fixes
 
 * Bug #13512 fixed - dae crashed if the evaluation function had wrong prototype.
 
+* Bug #13515 fixed - There were wrong results for matrix/hypermatrix with bitset function.
+
 
 Xcos Bug Fixes
 ==============

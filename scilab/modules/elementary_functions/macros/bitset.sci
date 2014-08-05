@@ -26,7 +26,6 @@ function y = bitset(x,pos,v)
     end
 
     // case empty matrix
-
     if isempty(x)
         if ~isempty(pos) & prod(size(pos))<>1
             error(msprintf(gettext("%s: Wrong size for input arguments: Same sizes expected.\n"),"bitset"));
@@ -36,48 +35,43 @@ function y = bitset(x,pos,v)
         end
     end
 
-    // check size
+    // check v value
+    if rhs == 3 & or(v <> 0 & v <> 1) then
+        error(msprintf(gettext("%s: Wrong value for input argument #%d: 0 or 1 expected.\n"),"bitset",3));
+    elseif rhs == 2 then
+        v = ones(x);
+    end
 
-    if (size(x,"*")>1) & (size(pos,"*")>1) & (or(size(x)<>size(pos))) then
+    // check size
+    if or(size(x) <> size(pos)) | or(size(v) <> size(x)) then
         error(msprintf(gettext("%s: Wrong size for input arguments: Same sizes expected.\n"),"bitset"));
     end
 
     // check type
-
-    if    (type(x)==1  & (x-floor(x)<>0 | x<0)) ..
-        | (type(x)==8  & (inttype(x)<10)) ..
-        | (type(x)<>1  & type(x)<>8) then
-
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Scalar/matrix of unsigned integers expected.\n"),"bitset",1));
+    if (type(x) == 1  & (or(x-floor(x) <> 0) | or(x < 0))) ..
+        | (type(x) == 8  & (inttype(x) < 10)) ..
+        | (typeof(x) == "hypermat" & (or(x-floor(x) <> 0) | or(x < 0))) ..
+        | (type(x) <> 1 & type(x) <> 8 & typeof(x) <> "hypermat") then
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: Scalar/matrix/hypermatrix of unsigned integers expected.\n"),"bitset",1));
     end
 
-    if    (type(pos)==1  & (pos-floor(pos)<>0 | pos<0)) ..
-        | (type(pos)==8  & (inttype(pos)<10)) ..
-        | (type(pos)<>1  & type(pos)<>8) then
-
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Scalar/matrix of unsigned integers expected.\n"),"bitset",2));
+    if (type(pos) == 1  & (or(pos-floor(pos) <> 0) | or(pos < 0))) ..
+        | (type(pos) == 8  & (inttype(pos) < 10)) ..
+        | (typeof(pos) == "hypermat" & (or(pos-floor(pos) <> 0) | or(pos < 0))) ..
+        | (type(pos) <> 1 & type(pos) <> 8 & typeof(pos) <> "hypermat") then
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: Scalar/matrix/hypermatrix of unsigned integers expected.\n"),"bitset",2));
     end
 
     // check pos value
-
-    select inttype(x)
+    select inttype(x(1))
     case 0  then posmax = 52;
     case 11 then posmax = 8;
     case 12 then posmax = 16;
     case 14 then posmax = 32;
     end
 
-    if (pos>posmax) | (pos<1) then
+    if or(pos > posmax) | or(pos < 1) then
         error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be between %d and %d.\n"),"bitset",2,1,posmax));
-    end
-
-    // check v value
-
-    if rhs == 3 & ..
-        ( ((type(v)<>1) & (type(v)<>8)) ..
-        | ((type(x)==8) & (inttype(x)<10)) ..
-        | ((v<>0) & (v<>1)) ) then
-        error(msprintf(gettext("%s: Wrong value for input argument #%d: 0 or 1 expected\n"),"bitset",3));
     end
 
     // Algorithm
@@ -91,30 +85,27 @@ function y = bitset(x,pos,v)
         x    = ones(pos)*x;
     end
 
-    if rhs<3 then
-        v = 1;
-    end
+    vZero = find(v == 0);
+    vOne = find(v == 1);
+    sz = size(x);
 
-    if type(x)==8 then
+    if type(x(1)) == 8 then
 
-        select inttype(x)
-        case 11 then mask = uint8(2^(pos-1));
-        case 12 then mask = uint16(2^(pos-1));
-        case 14 then mask = uint32(2^(pos-1));
+        select inttype(x(1))
+        case 11 then mask = uint8(2^(pos(:)-1));
+        case 12 then mask = uint16(2^(pos(:)-1));
+        case 14 then mask = uint32(2^(pos(:)-1));
         end
 
-        if v==0 then
-            y = x & (~mask);
-        else
-            y = x | mask;
-        end
+        mask = matrix(mask, sz);
+        y(vZero) = x(vZero) & (~mask(vZero));
+        y(vOne) = x(vOne) | mask(vOne);
+        y = matrix(y, sz);
 
         return;
 
     else
-
         // type == 1
-
         a     = 2^32;
         mask  = uint32(zeros(pos));
 
@@ -123,27 +114,33 @@ function y = bitset(x,pos,v)
 
         y_LSB = uint32( x - double(uint32(x/a)) * a ); // LSB Less Significant Bits
         y_MSB = uint32( x/a );                         // MSB Most Significant Bits
+        yMSB  = y_MSB;
+        yLSB  = y_LSB;
 
         if or(pos<=32) then
-            mask(  pos<=32 ) = uint32( 2^(pos(pos<=32) -1 ));
-            if v==0 then
-                y_LSB( pos<=32 ) = y_LSB(pos<=32) & (~mask(pos<=32));
-            else
-                y_LSB( pos<=32 ) = y_LSB(pos<=32) | mask(pos<=32);
-            end
+            mask(pos<=32) = uint32(2^(pos(pos<=32) -1));
+            yLSB = y_LSB(pos<=32);
+            ymask = mask(pos<=32);
+            // v == 0
+            yLSB(vZero) = yLSB(vZero) & (~ymask(vZero));
+            // v == 1
+            yLSB(vOne) = yLSB(vOne) | ymask(vOne);
+            yLSB = matrix(yLSB, sz);
         end
 
         if or(pos>32) then
-            mask(  pos>32 ) = uint32( 2^(pos(pos>32) -32 -1 ));
-            if v==0 then
-                y_MSB( pos>32 ) = y_MSB(pos>32) & (~ mask(pos>32));
-            else
-                y_MSB( pos>32 ) = y_MSB(pos>32) | mask(pos>32);
-            end
+            mask(pos>32) = uint32(2^(pos(pos>32) -32 -1));
+            yMSB = y_MSB(pos>32);
+            ymask = mask(pos>32);
+            yMSB(vZero) = yMSB(vZero) & (~ymask(vZero));
+            yMSB(vOne) = yMSB(vOne) | ymask(vOne);
+            // v == 0
+            yMSB(vZero) = yMSB(vZero) & (~ymask(vZero));
+            // v == 1
+            yMSB(vOne) = yMSB(vOne) | ymask(vOne);
+            yMSB = matrix(yMSB, sz);
         end
-
-        y = double( a * y_MSB + y_LSB );
-
+        y = double(a * yMSB + yLSB);
     end
 
 endfunction
