@@ -143,11 +143,11 @@ assert_checkerror("prod(d, [""r"", ""c""])", refMsg);
 s = poly(0, "s");
 d = [1/s 1/s^2; 1/s 1];
 assert_checkfalse(execstr("prod(d, ""orient"")"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),"prod",2,"""*"",""r"",""c"",""m"",""native"",""double""");
+refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),"prod",2,"""*"",""r"",""c"",""m""");
 assert_checkerror("prod(d, ""orient"")", refMsg);
 
 assert_checkfalse(execstr("prod(d, [""r"", ""c""])"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong size for input argument #%d: A scalar string expected.\n"),"prod",2);
+refMsg = msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n"),"prod",2);
 assert_checkerror("prod(d, [""r"", ""c""])", refMsg);
 
 //empty matrices
@@ -194,7 +194,7 @@ for typ=T
     assert_checkequal(prod(i, "*", typ(:)), uint8(76));
     assert_checkequal(prod(i, 1, typ(:)), uint8([254 90]));
     assert_checkequal(prod(i, 2, typ(:)), uint8([10;238]));
-    assert_checkequal(prod(i, 3, typ(:)), double(i));
+    assert_checkequal(prod(i, 3, typ(:)), i);
 end
 
 assert_checkequal(prod(i, "double"), 22860);

@@ -315,11 +315,6 @@ types::Function::ReturnValue sci_prod(types::typed_list &in, int _iRetCount, typ
             {
                 pDblOut = pDblIn;
             }
-
-            if (in[0]->isBool() == false)
-            {
-                iOuttype = 2;
-            }
         }
         else
         {
