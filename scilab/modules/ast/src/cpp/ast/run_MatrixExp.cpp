@@ -37,6 +37,7 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
             InternalType* poRow = NULL;
             for (col = (*row)->columns_get().begin() ; col != (*row)->columns_get().end() ; col++)
             {
+                result_set(NULL); // Reset value on loop re-start
                 (*col)->accept(*this);
 
                 InternalType *pIT = result_get();
