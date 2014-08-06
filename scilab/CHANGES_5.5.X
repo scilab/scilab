@@ -164,6 +164,8 @@ Scilab Bug Fixes
 
 * Bug #13438 fixed - drawaxis did not return the handle of the created axis.
 
+* Bug #13441 fixed - Scilab crashed when uicontrol was called with a string for border property.
+
 * Bug #13459 fixed - A warning message about libcurl.so version was displayed at Scilab startup.
 
 * Bug #13471 fixed - ilib_build_jar infinite loop when used on an empty directory fixed.
