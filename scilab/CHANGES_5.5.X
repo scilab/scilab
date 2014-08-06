@@ -89,6 +89,9 @@ Scilab Bug Fixes
 
 * Bug #13336 fixed - In SciNotes it was not possible to complete brackets only at eol.
 
+* Bug #13343 fixed - In console popup menu, 'help about a selected text' moved
+                     from bottom to top for consistency with Scinotes.
+
 * Bug #13344 fixed - User defined ticks were not drawn at the right position.
 
 * Bug #13345 fixed - Scilab did not start on Debian Wheezy (GLIBC issue).
