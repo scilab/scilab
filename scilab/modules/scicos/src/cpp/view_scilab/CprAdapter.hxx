@@ -41,7 +41,7 @@ public:
     std::wstring getShortTypeStr();
 };
 
-} /* view_scilab */
+} /* namespace view_scilab */
 } /* namespace org_scilab_modules_scicos */
 
 #endif /* MODELADAPTER_HXX_ */

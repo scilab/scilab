@@ -146,5 +146,5 @@ void DiagramAdapter::setContrib(types::InternalType* contrib)
     this->contrib = contrib;
 }
 
-} /* view_scilab */
+} /* namespace view_scilab */
 } /* namespace org_scilab_modules_scicos */

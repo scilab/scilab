@@ -47,7 +47,7 @@ private:
     types::InternalType* contrib;
 };
 
-} /* view_scilab */
+} /* namespace view_scilab */
 } /* namespace org_scilab_modules_scicos */
 
 #endif /* MODELADAPTER_HXX_ */

@@ -48,7 +48,7 @@ private:
     types::InternalType* doc_content;
 };
 
-} /* view_scilab */
+} /* namespace view_scilab */
 } /* namespace org_scilab_modules_scicos */
 
 #endif /* BLOCKADAPTER_HXX_ */

@@ -471,7 +471,7 @@ bool update_ports_property(const Adaptor& adaptor, object_properties_t port_kind
 }
 
 
-} /* view_scilab */
+} /* namespace view_scilab */
 } /* namespace org_scilab_modules_scicos */
 
 #endif /* PORTS_MANAGEMENT_HXX_ */

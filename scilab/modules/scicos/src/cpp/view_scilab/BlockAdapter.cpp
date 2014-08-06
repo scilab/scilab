@@ -172,5 +172,5 @@ void BlockAdapter::setDocContent(types::InternalType* v)
     doc_content = v->clone();
 }
 
-} /* view_scilab */
+} /* namespace view_scilab */
 } /* namespace org_scilab_modules_scicos */

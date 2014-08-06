@@ -45,7 +45,7 @@ private:
     types::InternalType* gr_i_content;
 };
 
-} /* view_scilab */
+} /* namespace view_scilab */
 } /* namespace org_scilab_modules_scicos */
 
 #endif /* GRAPHICSADAPTER_HXX_ */
