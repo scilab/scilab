@@ -433,12 +433,6 @@ ModelAdapter::~ModelAdapter()
 {
 }
 
-bool ModelAdapter::toString(std::wostringstream& ostr)
-{
-    ostr << L"ModelAdapter.hxx: Dunno what to display there" << std::endl;
-    return true;
-}
-
 std::wstring ModelAdapter::getTypeStr()
 {
     return getSharedTypeStr();

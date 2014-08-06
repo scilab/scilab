@@ -47,12 +47,6 @@ CprAdapter::~CprAdapter()
 {
 }
 
-bool CprAdapter::toString(std::wostringstream& ostr)
-{
-    ostr << L"CprAdapter.hxx: Dunno what to display there";
-    return true;
-}
-
 std::wstring CprAdapter::getTypeStr()
 {
     return getSharedTypeStr();

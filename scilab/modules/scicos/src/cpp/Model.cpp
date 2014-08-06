@@ -106,7 +106,7 @@ void Model::deleteObject(ScicosID uid)
     objects_map_t::iterator iter = allObjects.lower_bound(uid);
     if (iter == allObjects.end() || uid < iter->first)
     {
-        throw "key has not been found";
+        throw std::string("key has not been found");
     }
 
     allObjects.erase(iter);
@@ -118,7 +118,7 @@ model::BaseObject* Model::getObject(ScicosID uid) const
     objects_map_t::const_iterator iter = allObjects.lower_bound(uid);
     if (iter == allObjects.end() || uid < iter->first)
     {
-        throw "key has not been found";
+        throw std::string("key has not been found");
     }
 
     return iter->second;
@@ -129,7 +129,7 @@ update_status_t Model::setObject(model::BaseObject* o)
     objects_map_t::iterator iter = allObjects.lower_bound(o->id());
     if (iter == allObjects.end() || o->id() < iter->first)
     {
-        throw "key has not been found";
+        throw std::string("key has not been found");
     }
 
     if (*iter->second == *o)
