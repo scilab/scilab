@@ -186,6 +186,8 @@ Scilab Bug Fixes
 
 * Bug #13515 fixed - There were wrong results for matrix/hypermatrix with bitset function.
 
+* Bug #13527 fixed - hilb did not check correctly the type of first input argument.
+
 
 Xcos Bug Fixes
 ==============
