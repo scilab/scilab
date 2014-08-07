@@ -194,7 +194,8 @@ int sci_strtod(char *fname, unsigned long fname_len)
 
             for (y = 0 ; y < first_nb ; y++)
             {
-                if (Input_StringMatrix_1[x][y] != ' ') // spaces are accepted
+                // spaces, tabs, cr are accepted
+                if (Input_StringMatrix_1[x][y] != ' ' && Input_StringMatrix_1[x][y] != '\t' && Input_StringMatrix_1[x][y] != '\r')
                 {
                     OutputDoubles[x] = not_a_number;
                     flag = 1;
