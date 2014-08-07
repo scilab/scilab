@@ -206,6 +206,8 @@ Xcos Bug Fixes
 
 * Bug #13540 fixed - Tkscale block did not respect min and max value.
 
+* Bug #13553 fixed - "Export all diagrams" failed if the directory did not exist.
+
 
 Known issues
 =============
