@@ -13,7 +13,8 @@ GATEWAY_CPP_SOURCES =  \
     sci_gateway/cpp/sci_execstr.cpp \
     sci_gateway/cpp/sci_getCurrentThreadId.cpp \
     sci_gateway/cpp/sci_getThreads.cpp \
-    sci_gateway/cpp/sci_macrovar.cpp
+    sci_gateway/cpp/sci_macrovar.cpp \
+    sci_gateway/cpp/sci_jit.cpp
 
 libscifunctions_la_CPPFLAGS = \
     -I$(srcdir)/includes/ \
@@ -25,6 +26,8 @@ libscifunctions_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/ast/includes/symbol/ \
     -I$(top_srcdir)/modules/ast/includes/system_env/ \
     -I$(top_srcdir)/modules/ast/includes/types/ \
+    -I$(top_srcdir)/modules/ast/includes/jit/ \
+    -I$(top_srcdir)/modules/ast/includes/analysis/ \
     -I$(top_srcdir)/modules/functions_manager/includes/ \
     -I$(top_srcdir)/modules/api_scilab/includes/ \
     -I$(top_srcdir)/modules/localization/includes/ \
@@ -35,6 +38,8 @@ libscifunctions_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/threads/includes/ \
     -I$(top_srcdir)/modules/elementary_functions/includes/ \
     -I$(top_srcdir)/modules/dynamic_link/includes/ \
+    $(LLVM_INCLUDE) \
+    $(LLVM_CPPFLAGS) \
     $(EIGEN_CPPFLAGS) \
     $(AM_CPPFLAGS)
 

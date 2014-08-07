@@ -54,6 +54,8 @@ scilab_cli_bin_LDFLAGS += -lstdc++
 #-static-libgfortran
 endif
 
+scilab_bin_LDFLAGS += $(LLVM_LDFLAGS) $(LLVM_LIBS)
+scilab_cli_bin_LDFLAGS += $(LLVM_LDFLAGS) $(LLVM_LIBS)
 
 if IS_MACOSX
 scilab_bin_LDFLAGS 		+= -framework Cocoa
@@ -79,6 +81,7 @@ scilab_bin_CPPFLAGS = \
     -I$(top_srcdir)/modules/localization/includes/ \
     -I$(top_srcdir)/modules/core/src/c/ \
     -I$(top_srcdir)/modules/dynamic_link/includes/ \
+    $(LLVM_INCLUDE) $(LLVM_CPPFLAGS) \
     $(EIGEN_CPPFLAGS) \
     $(AM_CPPFLAGS)
 

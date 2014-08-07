@@ -95,6 +95,11 @@ public:
         _bigDouble->IncreaseRef();
     }
 
+    inline bool is_double_exp() const
+    {
+        return true;
+    }
+
 protected:
     double     _value;
     types::Double*    _bigDouble;

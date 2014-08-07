@@ -2369,6 +2369,7 @@ echo "  LLVM_CONFIG_BIN .... = $LLVM_CONFIG_BIN"
 echo "  LLVM_INCLUDE ....... = $LLVM_INCLUDE"
 echo "  LLVM_CPPFLAGS ...... = $LLVM_CPPFLAGS"
 echo "  LLVM_LDFLAGS ....... = $LLVM_LDFLAGS"
+echo "  LLVM_LIBS .......... = $LLVM_LIBS"
 
 echo ""
 echo "Libtool config:"

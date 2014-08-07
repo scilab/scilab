@@ -23,6 +23,7 @@ namespace ast
 ** \b Example: 1:0.5:10 */
 class ListExp : public Exp
 {
+
 public:
     /** \name Ctor & dtor.
     ** \{ */
@@ -117,6 +118,23 @@ public:
         return *_end;
     }
 
+    inline virtual bool is_list_exp() const
+    {
+        return true;
+    }
+
+    inline void set_values(double start, double step, double end)
+    {
+        values[0] = start;
+        values[1] = step;
+        values[2] = end;
+    }
+
+    inline const double * get_values() const
+    {
+        return values;
+    }
+
     /** \} */
 
 protected:
@@ -126,6 +144,9 @@ protected:
     Exp* _step;
     /** \brief end expression of the list. */
     Exp* _end;
+
+    double values[3] = {NAN, NAN, NAN};
+    bool is_values_int[3] = {false, false, false};
 };
 
 } // namespace ast

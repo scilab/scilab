@@ -35,4 +35,15 @@ int DotMultiplySparseByDouble(types::Sparse* _pSparse1, types::Double* _pDouble2
 int DotMultiplyDoubleByPoly(types::Double* _pDouble, types::Polynom* _pPoly, types::Polynom**  _pPolyOut);
 int DotMultiplyPolyByDouble(types::Polynom* _pPoly, types::Double* _pDouble, types::Polynom**  _pPolyOut);
 int DotMultiplyPolyByPoly(types::Polynom* _pPoly1, types::Polynom* _pPoly2, types::Polynom**  _pPolyOut);
+
+//dot multiply matrix + matrix ( double, int, bool )
+//same type
+template<typename T, typename O> inline static void dotmul(T* l, long long size, T* r, O* o)
+{
+    for (int i = 0; i < size ; ++i)
+    {
+        o[i] = (O)l[i] * (O)r[i];
+    }
+}
+
 #endif /* __TYPES_MULTIPLICATION_HXX__ */

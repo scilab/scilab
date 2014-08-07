@@ -32,4 +32,14 @@ int SubstractSparseToSparse(Sparse* _pSparse1, Sparse* _pSparse2, GenericType **
 int SubstractSparseToDouble(Sparse* _pSparse, Double* _pDouble, GenericType **_pDoubleOut);
 int SubstractDoubleToSparse(Double* _pDouble, Sparse* _pSparse, GenericType **_pDoubleOut);
 
+//sub matrix + matrix ( double, int, bool )
+//same type
+template<typename T, typename O> inline static void sub(T* l, long long size, T* r, O* o)
+{
+    for (int i = 0; i < size ; ++i)
+    {
+        o[i] = (O)l[i] - (O)r[i];
+    }
+}
+
 #endif /* __TYPES_SUB_H__ */

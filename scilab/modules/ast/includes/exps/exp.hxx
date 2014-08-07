@@ -182,6 +182,16 @@ public:
         return false;
     }
 
+    inline virtual bool is_list_exp() const
+    {
+        return false;
+    }
+
+    inline virtual bool is_double_exp() const
+    {
+        return false;
+    }
+
 private:
     bool _verbose;
     bool _bBreak;

@@ -85,6 +85,7 @@ libsciast_la_SOURCES = \
     src/cpp/types/struct.cpp \
     src/cpp/types/macrofile.cpp \
     src/cpp/types/callable.cpp \
+    src/cpp/types/internal.cpp \
     src/cpp/system_env/dynamic_module.cpp \
     src/cpp/system_env/setenvvar.cpp \
     src/cpp/system_env/sci_home.cpp \
@@ -100,7 +101,10 @@ libsciast_la_SOURCES = \
     src/cpp/system_env/sci_tmpdir.cpp \
     src/cpp/system_env/reference_modules.cpp \
     src/cpp/system_env/formatmode.cpp \
-    src/cpp/system_env/warningmode.cpp
+    src/cpp/system_env/warningmode.cpp \
+    src/cpp/jit/JITVisitor.cpp \
+    src/cpp/jit/JITValues.cpp \
+    src/cpp/jit/operations.cpp
 
 if ENABLE_DEBUG
 libsciast_la_SOURCES += src/cpp/types/inspector.cpp
@@ -115,8 +119,10 @@ libsciast_la_CPPFLAGS = \
 	-Iincludes/symbol \
 	-Iincludes/system_env \
 	-Iincludes/types \
+	-Iincludes/jit \
+	-Iincludes/analysis \
 	-Isrc/cpp \
-    -I$(top_srcdir)/modules/dynamic_link/includes \
+        -I$(top_srcdir)/modules/dynamic_link/includes \
 	-I$(top_srcdir)/modules/functions_manager/includes \
 	-I$(top_srcdir)/modules/console/includes \
 	-I$(top_srcdir)/modules/elementary_functions/includes \
@@ -127,7 +133,10 @@ libsciast_la_CPPFLAGS = \
 	-I$(top_srcdir)/modules/localization/includes \
 	-I$(top_srcdir)/modules/io/includes \
 	-I$(top_srcdir)/modules/fileio/includes \
-    $(EIGEN_CPPFLAGS) \
+	$(LLVM_INCLUDE) \
+	$(LLVM_CPPFLAGS) \
+	$(LLVM_LDFLAGS) $(LLVM_LIBS) \
+	$(EIGEN_CPPFLAGS) \
 	$(AM_CPPFLAGS)
 
 
@@ -143,6 +152,8 @@ libsciast_la_etcdir = $(mydatadir)/etc
 libsciast_la_etc_DATA = \
     etc/ast.quit \
     etc/ast.start
+
+#libsciast_la_LIBADD = $(LLVM_LIBS_STATIC)
 
 
 #### ast : include files ####

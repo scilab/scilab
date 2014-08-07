@@ -210,7 +210,7 @@ am__libsciast_la_SOURCES_DIST = src/cpp/ast/runvisitor.cpp \
 	src/cpp/types/listundefined.cpp src/cpp/types/string.cpp \
 	src/cpp/types/implicitlist.cpp src/cpp/types/macro.cpp \
 	src/cpp/types/struct.cpp src/cpp/types/macrofile.cpp \
-	src/cpp/types/callable.cpp \
+	src/cpp/types/callable.cpp src/cpp/types/internal.cpp \
 	src/cpp/system_env/dynamic_module.cpp \
 	src/cpp/system_env/setenvvar.cpp \
 	src/cpp/system_env/sci_home.cpp \
@@ -225,7 +225,9 @@ am__libsciast_la_SOURCES_DIST = src/cpp/ast/runvisitor.cpp \
 	src/cpp/system_env/home.cpp src/cpp/system_env/sci_tmpdir.cpp \
 	src/cpp/system_env/reference_modules.cpp \
 	src/cpp/system_env/formatmode.cpp \
-	src/cpp/system_env/warningmode.cpp src/cpp/types/inspector.cpp
+	src/cpp/system_env/warningmode.cpp src/cpp/jit/JITVisitor.cpp \
+	src/cpp/jit/JITValues.cpp src/cpp/jit/operations.cpp \
+	src/cpp/types/inspector.cpp
 am__dirstamp = $(am__leading_dot)dirstamp
 @ENABLE_DEBUG_TRUE@am__objects_1 =  \
 @ENABLE_DEBUG_TRUE@	src/cpp/types/libsciast_la-inspector.lo
@@ -300,6 +302,7 @@ am_libsciast_la_OBJECTS = src/cpp/ast/libsciast_la-runvisitor.lo \
 	src/cpp/types/libsciast_la-struct.lo \
 	src/cpp/types/libsciast_la-macrofile.lo \
 	src/cpp/types/libsciast_la-callable.lo \
+	src/cpp/types/libsciast_la-internal.lo \
 	src/cpp/system_env/libsciast_la-dynamic_module.lo \
 	src/cpp/system_env/libsciast_la-setenvvar.lo \
 	src/cpp/system_env/libsciast_la-sci_home.lo \
@@ -316,7 +319,9 @@ am_libsciast_la_OBJECTS = src/cpp/ast/libsciast_la-runvisitor.lo \
 	src/cpp/system_env/libsciast_la-reference_modules.lo \
 	src/cpp/system_env/libsciast_la-formatmode.lo \
 	src/cpp/system_env/libsciast_la-warningmode.lo \
-	$(am__objects_1)
+	src/cpp/jit/libsciast_la-JITVisitor.lo \
+	src/cpp/jit/libsciast_la-JITValues.lo \
+	src/cpp/jit/libsciast_la-operations.lo $(am__objects_1)
 libsciast_la_OBJECTS = $(am_libsciast_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
@@ -530,7 +535,7 @@ LLVM_CPPFLAGS = @LLVM_CPPFLAGS@
 LLVM_INCLUDE = @LLVM_INCLUDE@
 LLVM_LDFLAGS = @LLVM_LDFLAGS@
 LLVM_LIBS = @LLVM_LIBS@
-LLVM_LIBSA = @LLVM_LIBSA@
+LLVM_LIBS_STATIC = @LLVM_LIBS_STATIC@
 LLVM_VERSION = @LLVM_VERSION@
 LN_S = @LN_S@
 LOGGING_LEVEL = @LOGGING_LEVEL@
@@ -744,7 +749,7 @@ libsciast_la_SOURCES = src/cpp/ast/runvisitor.cpp \
 	src/cpp/types/listundefined.cpp src/cpp/types/string.cpp \
 	src/cpp/types/implicitlist.cpp src/cpp/types/macro.cpp \
 	src/cpp/types/struct.cpp src/cpp/types/macrofile.cpp \
-	src/cpp/types/callable.cpp \
+	src/cpp/types/callable.cpp src/cpp/types/internal.cpp \
 	src/cpp/system_env/dynamic_module.cpp \
 	src/cpp/system_env/setenvvar.cpp \
 	src/cpp/system_env/sci_home.cpp \
@@ -759,7 +764,9 @@ libsciast_la_SOURCES = src/cpp/ast/runvisitor.cpp \
 	src/cpp/system_env/home.cpp src/cpp/system_env/sci_tmpdir.cpp \
 	src/cpp/system_env/reference_modules.cpp \
 	src/cpp/system_env/formatmode.cpp \
-	src/cpp/system_env/warningmode.cpp $(am__append_1)
+	src/cpp/system_env/warningmode.cpp src/cpp/jit/JITVisitor.cpp \
+	src/cpp/jit/JITValues.cpp src/cpp/jit/operations.cpp \
+	$(am__append_1)
 libsciast_la_CPPFLAGS = \
 	-Iincludes/ast \
 	-Iincludes/exps \
@@ -768,8 +775,10 @@ libsciast_la_CPPFLAGS = \
 	-Iincludes/symbol \
 	-Iincludes/system_env \
 	-Iincludes/types \
+	-Iincludes/jit \
+	-Iincludes/analysis \
 	-Isrc/cpp \
-    -I$(top_srcdir)/modules/dynamic_link/includes \
+        -I$(top_srcdir)/modules/dynamic_link/includes \
 	-I$(top_srcdir)/modules/functions_manager/includes \
 	-I$(top_srcdir)/modules/console/includes \
 	-I$(top_srcdir)/modules/elementary_functions/includes \
@@ -780,7 +789,10 @@ libsciast_la_CPPFLAGS = \
 	-I$(top_srcdir)/modules/localization/includes \
 	-I$(top_srcdir)/modules/io/includes \
 	-I$(top_srcdir)/modules/fileio/includes \
-    $(EIGEN_CPPFLAGS) \
+	$(LLVM_INCLUDE) \
+	$(LLVM_CPPFLAGS) \
+	$(LLVM_LDFLAGS) $(LLVM_LIBS) \
+	$(EIGEN_CPPFLAGS) \
 	$(AM_CPPFLAGS)
 
 libsciast_la_includedir = $(pkgincludedir)
@@ -795,6 +807,8 @@ libsciast_la_etc_DATA = \
     etc/ast.quit \
     etc/ast.start
 
+
+#libsciast_la_LIBADD = $(LLVM_LIBS_STATIC)
 
 #### ast : include files ####
 libsciast_scilab_la_includedir = $(pkgincludedir)
@@ -1347,6 +1361,8 @@ src/cpp/types/libsciast_la-macrofile.lo:  \
 	src/cpp/types/$(DEPDIR)/$(am__dirstamp)
 src/cpp/types/libsciast_la-callable.lo: src/cpp/types/$(am__dirstamp) \
 	src/cpp/types/$(DEPDIR)/$(am__dirstamp)
+src/cpp/types/libsciast_la-internal.lo: src/cpp/types/$(am__dirstamp) \
+	src/cpp/types/$(DEPDIR)/$(am__dirstamp)
 src/cpp/system_env/$(am__dirstamp):
 	@$(MKDIR_P) src/cpp/system_env
 	@: > src/cpp/system_env/$(am__dirstamp)
@@ -1401,6 +1417,18 @@ src/cpp/system_env/libsciast_la-formatmode.lo:  \
 src/cpp/system_env/libsciast_la-warningmode.lo:  \
 	src/cpp/system_env/$(am__dirstamp) \
 	src/cpp/system_env/$(DEPDIR)/$(am__dirstamp)
+src/cpp/jit/$(am__dirstamp):
+	@$(MKDIR_P) src/cpp/jit
+	@: > src/cpp/jit/$(am__dirstamp)
+src/cpp/jit/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) src/cpp/jit/$(DEPDIR)
+	@: > src/cpp/jit/$(DEPDIR)/$(am__dirstamp)
+src/cpp/jit/libsciast_la-JITVisitor.lo: src/cpp/jit/$(am__dirstamp) \
+	src/cpp/jit/$(DEPDIR)/$(am__dirstamp)
+src/cpp/jit/libsciast_la-JITValues.lo: src/cpp/jit/$(am__dirstamp) \
+	src/cpp/jit/$(DEPDIR)/$(am__dirstamp)
+src/cpp/jit/libsciast_la-operations.lo: src/cpp/jit/$(am__dirstamp) \
+	src/cpp/jit/$(DEPDIR)/$(am__dirstamp)
 src/cpp/types/libsciast_la-inspector.lo:  \
 	src/cpp/types/$(am__dirstamp) \
 	src/cpp/types/$(DEPDIR)/$(am__dirstamp)
@@ -1414,6 +1442,8 @@ mostlyclean-compile:
 	-rm -f src/c/operations/*.lo
 	-rm -f src/cpp/ast/*.$(OBJEXT)
 	-rm -f src/cpp/ast/*.lo
+	-rm -f src/cpp/jit/*.$(OBJEXT)
+	-rm -f src/cpp/jit/*.lo
 	-rm -f src/cpp/operations/*.$(OBJEXT)
 	-rm -f src/cpp/operations/*.lo
 	-rm -f src/cpp/parse/*.$(OBJEXT)
@@ -1447,6 +1477,9 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/ast/$(DEPDIR)/libsciast_la-runvisitor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/ast/$(DEPDIR)/libsciast_la-shortcutvisitor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/ast/$(DEPDIR)/libsciast_la-visitor_common.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/jit/$(DEPDIR)/libsciast_la-JITValues.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/jit/$(DEPDIR)/libsciast_la-JITVisitor.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/jit/$(DEPDIR)/libsciast_la-operations.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/operations/$(DEPDIR)/libsciast_la-interface_addition.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/operations/$(DEPDIR)/libsciast_la-operations.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/operations/$(DEPDIR)/libsciast_la-types_addition.Plo@am__quote@
@@ -1494,6 +1527,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/types/$(DEPDIR)/libsciast_la-implicitlist.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/types/$(DEPDIR)/libsciast_la-inspector.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/types/$(DEPDIR)/libsciast_la-int.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/types/$(DEPDIR)/libsciast_la-internal.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/types/$(DEPDIR)/libsciast_la-library.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/types/$(DEPDIR)/libsciast_la-list.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/types/$(DEPDIR)/libsciast_la-listdelete.Plo@am__quote@
@@ -2062,6 +2096,13 @@ src/cpp/types/libsciast_la-callable.lo: src/cpp/types/callable.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/types/libsciast_la-callable.lo `test -f 'src/cpp/types/callable.cpp' || echo '$(srcdir)/'`src/cpp/types/callable.cpp
 
+src/cpp/types/libsciast_la-internal.lo: src/cpp/types/internal.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/types/libsciast_la-internal.lo -MD -MP -MF src/cpp/types/$(DEPDIR)/libsciast_la-internal.Tpo -c -o src/cpp/types/libsciast_la-internal.lo `test -f 'src/cpp/types/internal.cpp' || echo '$(srcdir)/'`src/cpp/types/internal.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/types/$(DEPDIR)/libsciast_la-internal.Tpo src/cpp/types/$(DEPDIR)/libsciast_la-internal.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/types/internal.cpp' object='src/cpp/types/libsciast_la-internal.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/types/libsciast_la-internal.lo `test -f 'src/cpp/types/internal.cpp' || echo '$(srcdir)/'`src/cpp/types/internal.cpp
+
 src/cpp/system_env/libsciast_la-dynamic_module.lo: src/cpp/system_env/dynamic_module.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/system_env/libsciast_la-dynamic_module.lo -MD -MP -MF src/cpp/system_env/$(DEPDIR)/libsciast_la-dynamic_module.Tpo -c -o src/cpp/system_env/libsciast_la-dynamic_module.lo `test -f 'src/cpp/system_env/dynamic_module.cpp' || echo '$(srcdir)/'`src/cpp/system_env/dynamic_module.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/system_env/$(DEPDIR)/libsciast_la-dynamic_module.Tpo src/cpp/system_env/$(DEPDIR)/libsciast_la-dynamic_module.Plo
@@ -2174,6 +2215,27 @@ src/cpp/system_env/libsciast_la-warningmode.lo: src/cpp/system_env/warningmode.c
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/system_env/libsciast_la-warningmode.lo `test -f 'src/cpp/system_env/warningmode.cpp' || echo '$(srcdir)/'`src/cpp/system_env/warningmode.cpp
 
+src/cpp/jit/libsciast_la-JITVisitor.lo: src/cpp/jit/JITVisitor.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/jit/libsciast_la-JITVisitor.lo -MD -MP -MF src/cpp/jit/$(DEPDIR)/libsciast_la-JITVisitor.Tpo -c -o src/cpp/jit/libsciast_la-JITVisitor.lo `test -f 'src/cpp/jit/JITVisitor.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITVisitor.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/jit/$(DEPDIR)/libsciast_la-JITVisitor.Tpo src/cpp/jit/$(DEPDIR)/libsciast_la-JITVisitor.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/jit/JITVisitor.cpp' object='src/cpp/jit/libsciast_la-JITVisitor.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/jit/libsciast_la-JITVisitor.lo `test -f 'src/cpp/jit/JITVisitor.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITVisitor.cpp
+
+src/cpp/jit/libsciast_la-JITValues.lo: src/cpp/jit/JITValues.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/jit/libsciast_la-JITValues.lo -MD -MP -MF src/cpp/jit/$(DEPDIR)/libsciast_la-JITValues.Tpo -c -o src/cpp/jit/libsciast_la-JITValues.lo `test -f 'src/cpp/jit/JITValues.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITValues.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/jit/$(DEPDIR)/libsciast_la-JITValues.Tpo src/cpp/jit/$(DEPDIR)/libsciast_la-JITValues.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/jit/JITValues.cpp' object='src/cpp/jit/libsciast_la-JITValues.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/jit/libsciast_la-JITValues.lo `test -f 'src/cpp/jit/JITValues.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITValues.cpp
+
+src/cpp/jit/libsciast_la-operations.lo: src/cpp/jit/operations.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/jit/libsciast_la-operations.lo -MD -MP -MF src/cpp/jit/$(DEPDIR)/libsciast_la-operations.Tpo -c -o src/cpp/jit/libsciast_la-operations.lo `test -f 'src/cpp/jit/operations.cpp' || echo '$(srcdir)/'`src/cpp/jit/operations.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/jit/$(DEPDIR)/libsciast_la-operations.Tpo src/cpp/jit/$(DEPDIR)/libsciast_la-operations.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/jit/operations.cpp' object='src/cpp/jit/libsciast_la-operations.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/jit/libsciast_la-operations.lo `test -f 'src/cpp/jit/operations.cpp' || echo '$(srcdir)/'`src/cpp/jit/operations.cpp
+
 src/cpp/types/libsciast_la-inspector.lo: src/cpp/types/inspector.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/types/libsciast_la-inspector.lo -MD -MP -MF src/cpp/types/$(DEPDIR)/libsciast_la-inspector.Tpo -c -o src/cpp/types/libsciast_la-inspector.lo `test -f 'src/cpp/types/inspector.cpp' || echo '$(srcdir)/'`src/cpp/types/inspector.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/types/$(DEPDIR)/libsciast_la-inspector.Tpo src/cpp/types/$(DEPDIR)/libsciast_la-inspector.Plo
@@ -2188,6 +2250,7 @@ clean-libtool:
 	-rm -rf .libs _libs
 	-rm -rf src/c/operations/.libs src/c/operations/_libs
 	-rm -rf src/cpp/ast/.libs src/cpp/ast/_libs
+	-rm -rf src/cpp/jit/.libs src/cpp/jit/_libs
 	-rm -rf src/cpp/operations/.libs src/cpp/operations/_libs
 	-rm -rf src/cpp/parse/.libs src/cpp/parse/_libs
 	-rm -rf src/cpp/symbol/.libs src/cpp/symbol/_libs
@@ -2379,6 +2442,8 @@ distclean-generic:
 	-rm -f src/c/operations/$(am__dirstamp)
 	-rm -f src/cpp/ast/$(DEPDIR)/$(am__dirstamp)
 	-rm -f src/cpp/ast/$(am__dirstamp)
+	-rm -f src/cpp/jit/$(DEPDIR)/$(am__dirstamp)
+	-rm -f src/cpp/jit/$(am__dirstamp)
 	-rm -f src/cpp/operations/$(DEPDIR)/$(am__dirstamp)
 	-rm -f src/cpp/operations/$(am__dirstamp)
 	-rm -f src/cpp/parse/$(DEPDIR)/$(am__dirstamp)
@@ -2400,7 +2465,7 @@ clean-am: clean-generic clean-libtool clean-local \
 	clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
-	-rm -rf src/c/operations/$(DEPDIR) src/cpp/ast/$(DEPDIR) src/cpp/operations/$(DEPDIR) src/cpp/parse/$(DEPDIR) src/cpp/symbol/$(DEPDIR) src/cpp/system_env/$(DEPDIR) src/cpp/types/$(DEPDIR)
+	-rm -rf src/c/operations/$(DEPDIR) src/cpp/ast/$(DEPDIR) src/cpp/jit/$(DEPDIR) src/cpp/operations/$(DEPDIR) src/cpp/parse/$(DEPDIR) src/cpp/symbol/$(DEPDIR) src/cpp/system_env/$(DEPDIR) src/cpp/types/$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-local distclean-tags
@@ -2448,7 +2513,7 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-	-rm -rf src/c/operations/$(DEPDIR) src/cpp/ast/$(DEPDIR) src/cpp/operations/$(DEPDIR) src/cpp/parse/$(DEPDIR) src/cpp/symbol/$(DEPDIR) src/cpp/system_env/$(DEPDIR) src/cpp/types/$(DEPDIR)
+	-rm -rf src/c/operations/$(DEPDIR) src/cpp/ast/$(DEPDIR) src/cpp/jit/$(DEPDIR) src/cpp/operations/$(DEPDIR) src/cpp/parse/$(DEPDIR) src/cpp/symbol/$(DEPDIR) src/cpp/system_env/$(DEPDIR) src/cpp/types/$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

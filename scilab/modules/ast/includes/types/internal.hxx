@@ -15,6 +15,7 @@
 #ifndef __INTERNAL_HXX__
 #define __INTERNAL_HXX__
 
+#include <complex> // for internal.cpp
 #include <vector>
 #include <map>
 #include <iostream>
@@ -212,6 +213,9 @@ public :
         return getTypeStr();
     }
     virtual InternalType*           clone(void) = 0;
+
+    /** this template is specialized in internal.cpp */
+    template<typename T> static InternalType::ScilabId getScilabId();
 
 #ifdef _SCILAB_DEBUGREF_
     inline void _killme(const char * f, int l)
@@ -551,7 +555,6 @@ protected :
     int                     m_iCols2PrintState;
 
 };
-
 }
 
 #ifdef _SCILAB_DEBUGREF_

@@ -374,7 +374,7 @@ LLVM_CPPFLAGS = @LLVM_CPPFLAGS@
 LLVM_INCLUDE = @LLVM_INCLUDE@
 LLVM_LDFLAGS = @LLVM_LDFLAGS@
 LLVM_LIBS = @LLVM_LIBS@
-LLVM_LIBSA = @LLVM_LIBSA@
+LLVM_LIBS_STATIC = @LLVM_LIBS_STATIC@
 LLVM_VERSION = @LLVM_VERSION@
 LN_S = @LN_S@
 LOGGING_LEVEL = @LOGGING_LEVEL@
@@ -1005,10 +1005,10 @@ maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
 	@echo "it deletes files that may require special tools to rebuild."
 	-test -z "$(BUILT_SOURCES)" || rm -f $(BUILT_SOURCES)
-@JAVASCI_FALSE@distclean-local:
 @JAVASCI_FALSE@install-html-local:
-@JAVASCI_FALSE@clean-local:
+@JAVASCI_FALSE@distclean-local:
 @JAVASCI_FALSE@install-data-local:
+@JAVASCI_FALSE@clean-local:
 clean: clean-am
 
 clean-am: clean-generic clean-libtool clean-local \
