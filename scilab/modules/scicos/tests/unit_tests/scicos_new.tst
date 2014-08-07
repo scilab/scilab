@@ -11,6 +11,7 @@ p = funcprot();
 funcprot(0);
 mlist = scicos_new;
 tlist = scicos_new;
+setfield = scicos_setfield;
 funcprot(p);
 
 // sub-objects not mapped to the model

@@ -53,4 +53,5 @@
     <gateway type="0" name="sci_loadScicos" function="loadScicos"/>
     <!-- C++ Gateways -->
     <gateway type="1" name="sci_scicos_new" function="scicos_new"/>
+    <gateway type="1" name="sci_scicos_setfield" function="scicos_setfield"/>
 </module>

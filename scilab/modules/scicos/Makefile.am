@@ -70,7 +70,8 @@ src/fortran/scifunc.f
 NO_SCICOS_C_SOURCES = src/c/noscicos/noscicos.c
 
 GATEWAY_CXX_SOURCES = \
-sci_gateway/cpp/sci_scicos_new.cpp
+sci_gateway/cpp/sci_scicos_new.cpp \
+sci_gateway/cpp/sci_scicos_setfield.cpp
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_scicos.c \
 sci_gateway/c/sci_buildouttb.c \

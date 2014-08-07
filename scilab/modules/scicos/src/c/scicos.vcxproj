@@ -251,6 +251,7 @@ lib /DEF:"$(ProjectDir)differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\sci_gateway\cpp\sci_scicos_new.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_scicos_setfield.cpp" />
     <ClCompile Include="..\cpp\Controller.cpp" />
     <ClCompile Include="..\cpp\LoggerView.cpp" />
     <ClCompile Include="..\cpp\Model.cpp" />

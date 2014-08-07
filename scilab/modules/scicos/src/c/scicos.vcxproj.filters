@@ -248,6 +248,9 @@
     <ClCompile Include="..\..\sci_gateway\cpp\sci_scicos_new.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_scicos_setfield.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\cpp\view_scilab\ParamsAdapter.cpp">
       <Filter>Source Files\MVC\view_scilab</Filter>
     </ClCompile>
