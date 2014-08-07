@@ -39,11 +39,12 @@ public:
     ** \li "stop" is the end of the list (the max value)
     */
     ListExp (const Location& location,
-             Exp& start, Exp& step, Exp& end)
+             Exp& start, Exp& step, Exp& end, bool explicitStep=false)
         : Exp (location),
           _start (&start),
           _step (&step),
-          _end (&end)
+          _end (&end),
+          _explicitStep(explicitStep)
     {
     }
 
@@ -117,6 +118,12 @@ public:
         return *_end;
     }
 
+    /** \brief Return if expression has explicit step defined */
+    bool hasExplicitStep () const
+    {
+        return _explicitStep;
+    }
+
     /** \} */
 
 protected:
@@ -126,6 +133,8 @@ protected:
     Exp* _step;
     /** \brief end expression of the list. */
     Exp* _end;
+    /** \brief has list explicit step. */
+    bool _explicitStep;
 };
 
 } // namespace ast

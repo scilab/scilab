@@ -1080,8 +1080,8 @@ COLON variable				{ $$ = $2; }
 */
 /* Stride parameter or not. */
 listableEnd :
-listableBegin COLON variable		{ $$ = new ast::ListExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), *$1, *$3); }
-| listableBegin COLON functionCall	{ $$ = new ast::ListExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), *$1, *$3); }
+listableBegin COLON variable		{ $$ = new ast::ListExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), *$1, *$3, true); }
+| listableBegin COLON functionCall	{ $$ = new ast::ListExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), *$1, *$3, true); }
 | listableBegin %prec LISTABLE		{ $$ = new ast::ListExp(@$, *new ast::CommentExp(@$, new std::wstring(L"Should not stay in that state")), *new ast::DoubleExp(@$, 1.0), *$1); }
 ;
 
@@ -1106,8 +1106,14 @@ NOT variable				%prec NOT	{ $$ = new ast::NotExp(@$, *$2); }
 							  $3->location_set(@$);
 							  $$ = $3;
 }
-| variable listableEnd					{ $$ = new ast::ListExp(@$, *$1, $2->step_get(), $2->end_get()); }
-| functionCall listableEnd		%prec UPLEVEL	{ $$ = new ast::ListExp(@$, *$1, $2->step_get(), $2->end_get()); }
+| variable listableEnd					{
+    $$ = new ast::ListExp(@$, *$1, *($2->step_get().clone()), *($2->end_get().clone()), $2->hasExplicitStep());
+    delete($2);
+}
+| functionCall listableEnd		%prec UPLEVEL	{
+    $$ = new ast::ListExp(@$, *$1, *($2->step_get().clone()), *($2->end_get().clone()), $2->hasExplicitStep());
+    delete($2);
+}
 | matrix						{ $$ = $1; }
 | cell							{ $$ = $1; }
 | operation				%prec UPLEVEL		{ $$ = $1; }
