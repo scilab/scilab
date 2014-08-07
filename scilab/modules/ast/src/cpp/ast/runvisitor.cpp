@@ -1032,7 +1032,8 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
 {
     e.start_get().accept(*this);
     GenericType* pITStart = static_cast<GenericType*>(result_get());
-    if (pITStart->getRows() != 1 || pITStart->getCols() != 1 || (pITStart->isDouble() && pITStart->getAs<Double>()->isComplex()))
+    if ((pITStart->getSize() != 1 || (pITStart->isDouble() && pITStart->getAs<Double>()->isComplex())) &&
+            pITStart->isList() == false) // list case => call overload
     {
         pITStart->killMe();
         wchar_t szError[bsiz];
@@ -1043,7 +1044,8 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
 
     e.step_get().accept(*this);
     GenericType* pITStep = static_cast<GenericType*>(result_get());
-    if (pITStep->getRows() != 1 || pITStep->getCols() != 1 || (pITStep->isDouble() && pITStep->getAs<Double>()->isComplex()))
+    if ((pITStep->getSize() != 1 || (pITStep->isDouble() && pITStep->getAs<Double>()->isComplex())) &&
+            pITStep->isList() == false) // list case => call overload
     {
         pITStart->killMe();
         pITStep->killMe();
@@ -1055,7 +1057,8 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
 
     e.end_get().accept(*this);
     GenericType* pITEnd = static_cast<GenericType*>(result_get());
-    if (pITEnd->getRows() != 1 || pITEnd->getCols() != 1 || (pITEnd->isDouble() && pITEnd->getAs<Double>()->isComplex()))
+    if ((pITEnd->getSize() != 1 || (pITEnd->isDouble() && pITEnd->getAs<Double>()->isComplex())) &&
+            pITEnd->isList() == false) // list case => call overload
     {
         pITStart->killMe();
         pITStep->killMe();
@@ -1067,93 +1070,66 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
     InternalType* piEnd = pITEnd;
 
     //check compatibility
-
-    //TODO: refactor these if...else..if...
-    if (piStart->isInt())
+    // double : double : double or poly : poly : poly and mix like double : double : poly
+    if ((piStart->isPoly() || piStart->isDouble()) &&
+            (piStep->isPoly()  || piStep->isDouble())  &&
+            (piEnd->isPoly()   || piEnd->isDouble()))
     {
-        //if Step or End are Int too, they must have the same precision
-        if (piStep->isInt())
-        {
-            if (piStep->getType() != piStart->getType())
-            {
-                pITStart->killMe();
-                pITStep->killMe();
-                pITEnd->killMe();
-                throw ScilabError(_W("Undefined operation for the given operands.\n"), 999, e.step_get().location_get());
-            }
-        }
-        else if (piStep->isPoly())
-        {
-            pITStart->killMe();
-            pITStep->killMe();
-            pITEnd->killMe();
-            throw ScilabError(_W("Undefined operation for the given operands.\n"), 999, e.step_get().location_get());
-        }
-
-
-        if (piEnd->isInt())
-        {
-            if (piEnd->getType() != piStart->getType())
-            {
-                pITStart->killMe();
-                pITStep->killMe();
-                pITEnd->killMe();
-                throw ScilabError(_W("Undefined operation for the given operands.\n"), 999, e.end_get().location_get());
-            }
-        }
-        else if (piEnd->isPoly())
-        {
-            pITStart->killMe();
-            pITStep->killMe();
-            pITEnd->killMe();
-            throw ScilabError(_W("Undefined operation for the given operands.\n"), 999, e.end_get().location_get());
-        }
+        // No need to kill piStart, ... because Implicit list ctor will incref them
+        result_set(new ImplicitList(piStart, piStep, piEnd));
+        return;
     }
-    else if (piStart->isPoly())
-    {
-        if (piStep->isInt())
-        {
-            pITStart->killMe();
-            pITStep->killMe();
-            pITEnd->killMe();
-            throw ScilabError(_W("Undefined operation for the given operands.\n"), 999, e.step_get().location_get());
-        }
 
-        if (piEnd->isInt())
-        {
-            pITStart->killMe();
-            pITStep->killMe();
-            pITEnd->killMe();
-            throw ScilabError(_W("Undefined operation for the given operands.\n"), 999, e.end_get().location_get());
-        }
-    }
-    else if (piStep->isInt())
+    // int : double or int : int
+    if ( piStart->isInt()   &&
+            (piStep->isDouble() || piStep->isInt()) &&
+            piEnd->isInt())
     {
-        //if End is Int too, they must have the same precision
-        if (piEnd->isInt())
+        // check for same int type int8, int 16 ...
+        if (piStart->getType() == piEnd->getType()  &&
+                (piStart->getType() == piStep->getType() ||
+                 piStep->isDouble()))
         {
-            if (piEnd->getType() != piStep->getType())
-            {
-                pITStart->killMe();
-                pITStep->killMe();
-                pITEnd->killMe();
-                throw ScilabError(_W("Undefined operation for the given operands.\n"), 999, e.end_get().location_get());
-            }
-        }
-    }
-    else if (piStep->isPoly())
-    {
-        if (piEnd->isInt())
-        {
-            pITStart->killMe();
-            pITStep->killMe();
-            pITEnd->killMe();
-            throw ScilabError(_W("Undefined operation for the given operands.\n"), 999, e.step_get().location_get());
+            // No need to kill piStart, ... because Implicit list ctor will incref them
+            result_set(new ImplicitList(piStart, piStep, piEnd));
+            return;
         }
     }
 
-    // No need to kill piStart, ... because Implicit list ctor will incref them
-    result_set(new ImplicitList(piStart, piStep, piEnd));
+    // Call Overload
+    Callable::ReturnValue Ret;
+    types::typed_list in;
+    types::typed_list out;
+
+    piStart->IncreaseRef();
+    piStep->IncreaseRef();
+    piEnd->IncreaseRef();
+
+    in.push_back(piStart);
+    if (e.hasExplicitStep())
+    {
+        // 1:2:4
+        //call overload %typeStart_b_typeEnd
+        in.push_back(piStep);
+        in.push_back(piEnd);
+        Ret = Overload::call(L"%" + piStart->getShortTypeStr() + L"_b_" + piStep->getShortTypeStr(), in, 1, out, this, true);
+    }
+    else
+    {
+        // 1:2
+        //call overload %typeStart_b_typeStep
+        in.push_back(piEnd);
+        Ret = Overload::call(L"%" + piStart->getShortTypeStr() + L"_b_" + piEnd->getShortTypeStr(), in, 1, out, this, true);
+    }
+
+    if (Ret != Callable::OK)
+    {
+        clean_in_out(in, out);
+        throw ScilabError();
+    }
+
+    result_set(out);
+    clean_in(in, out);
 }
 
 #include "run_CallExp.cpp"
