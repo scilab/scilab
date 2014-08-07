@@ -14,6 +14,116 @@
 #include "JITVisitor.hxx"
 #include "jit_operations.hxx"
 
+#ifdef _MSC_VER
+double trunc(double d)
+{
+    return (d > 0) ? floor(d) : ceil(d);
+}
+
+//#pragma comment(lib, ".lib")
+#pragma comment(lib, "LLVMLinker.lib")
+#pragma comment(lib, "LLVMNVPTXCodeGen.lib")
+#pragma comment(lib, "LLVMNVPTXDesc.lib")
+#pragma comment(lib, "LLVMNVPTXInfo.lib")
+#pragma comment(lib, "LLVMObjCARCOpts.lib")
+#pragma comment(lib, "LLVMObject.lib")
+#pragma comment(lib, "LLVMOption.lib")
+#pragma comment(lib, "LLVMPowerPCAsmParser.lib")
+#pragma comment(lib, "LLVMPowerPCAsmPrinter.lib")
+#pragma comment(lib, "LLVMPowerPCCodeGen.lib")
+#pragma comment(lib, "LLVMPowerPCDesc.lib")
+#pragma comment(lib, "LLVMPowerPCInfo.lib")
+#pragma comment(lib, "LLVMR600AsmPrinter.lib")
+#pragma comment(lib, "LLVMR600CodeGen.lib")
+#pragma comment(lib, "LLVMR600Desc.lib")
+#pragma comment(lib, "LLVMR600Info.lib")
+#pragma comment(lib, "LLVMRuntimeDyld.lib")
+#pragma comment(lib, "LLVMScalarOpts.lib")
+#pragma comment(lib, "LLVMSelectionDAG.lib")
+#pragma comment(lib, "LLVMSparcCodeGen.lib")
+#pragma comment(lib, "LLVMSparcDesc.lib")
+#pragma comment(lib, "LLVMSparcInfo.lib")
+#pragma comment(lib, "LLVMSupport.lib")
+#pragma comment(lib, "LLVMSystemZAsmParser.lib")
+#pragma comment(lib, "LLVMSystemZAsmPrinter.lib")
+#pragma comment(lib, "LLVMSystemZCodeGen.lib")
+#pragma comment(lib, "LLVMSystemZDesc.lib")
+#pragma comment(lib, "LLVMSystemZDisassembler.lib")
+#pragma comment(lib, "LLVMSystemZInfo.lib")
+#pragma comment(lib, "LLVMTableGen.lib")
+#pragma comment(lib, "LLVMTarget.lib")
+#pragma comment(lib, "LLVMTransformUtils.lib")
+#pragma comment(lib, "LLVMVectorize.lib")
+#pragma comment(lib, "LLVMX86AsmParser.lib")
+#pragma comment(lib, "LLVMX86AsmPrinter.lib")
+#pragma comment(lib, "LLVMX86CodeGen.lib")
+#pragma comment(lib, "LLVMX86Desc.lib")
+#pragma comment(lib, "LLVMX86Disassembler.lib")
+#pragma comment(lib, "LLVMX86Info.lib")
+#pragma comment(lib, "LLVMX86Utils.lib")
+#pragma comment(lib, "LLVMXCoreAsmPrinter.lib")
+#pragma comment(lib, "LLVMXCoreCodeGen.lib")
+#pragma comment(lib, "LLVMXCoreDesc.lib")
+#pragma comment(lib, "LLVMXCoreDisassembler.lib")
+#pragma comment(lib, "LLVMXCoreInfo.lib")
+#pragma comment(lib, "LLVMipa.lib")
+#pragma comment(lib, "LLVMipo.lib")
+#pragma comment(lib, "LTO.lib")
+#pragma comment(lib, "gtest.lib")
+#pragma comment(lib, "gtest_main.lib")
+#pragma comment(lib, "LLVMAArch64AsmParser.lib")
+#pragma comment(lib, "LLVMAArch64AsmPrinter.lib")
+#pragma comment(lib, "LLVMAArch64CodeGen.lib")
+#pragma comment(lib, "LLVMAArch64Desc.lib")
+#pragma comment(lib, "LLVMAArch64Disassembler.lib")
+#pragma comment(lib, "LLVMAArch64Info.lib")
+#pragma comment(lib, "LLVMAArch64Utils.lib")
+#pragma comment(lib, "LLVMARMAsmParser.lib")
+#pragma comment(lib, "LLVMARMAsmPrinter.lib")
+#pragma comment(lib, "LLVMARMCodeGen.lib")
+#pragma comment(lib, "LLVMARMDesc.lib")
+#pragma comment(lib, "LLVMARMDisassembler.lib")
+#pragma comment(lib, "LLVMARMInfo.lib")
+#pragma comment(lib, "LLVMAnalysis.lib")
+#pragma comment(lib, "LLVMAsmParser.lib")
+#pragma comment(lib, "LLVMAsmPrinter.lib")
+#pragma comment(lib, "LLVMBitReader.lib")
+#pragma comment(lib, "LLVMBitWriter.lib")
+#pragma comment(lib, "LLVMCodeGen.lib")
+#pragma comment(lib, "LLVMCore.lib")
+#pragma comment(lib, "LLVMCppBackendCodeGen.lib")
+#pragma comment(lib, "LLVMCppBackendInfo.lib")
+#pragma comment(lib, "LLVMDebugInfo.lib")
+#pragma comment(lib, "LLVMExecutionEngine.lib")
+#pragma comment(lib, "LLVMHexagonAsmPrinter.lib")
+#pragma comment(lib, "LLVMHexagonCodeGen.lib")
+#pragma comment(lib, "LLVMHexagonDesc.lib")
+#pragma comment(lib, "LLVMHexagonInfo.lib")
+#pragma comment(lib, "LLVMIRReader.lib")
+#pragma comment(lib, "LLVMInstCombine.lib")
+#pragma comment(lib, "LLVMInstrumentation.lib")
+#pragma comment(lib, "LLVMInterpreter.lib")
+#pragma comment(lib, "LLVMJIT.lib")
+#pragma comment(lib, "LLVMLTO.lib")
+#pragma comment(lib, "LLVMLinker.lib")
+#pragma comment(lib, "LLVMMC.lib")
+#pragma comment(lib, "LLVMMCDisassembler.lib")
+#pragma comment(lib, "LLVMMCJIT.lib")
+#pragma comment(lib, "LLVMMCParser.lib")
+#pragma comment(lib, "LLVMMSP430AsmPrinter.lib")
+#pragma comment(lib, "LLVMMSP430CodeGen.lib")
+#pragma comment(lib, "LLVMMSP430Desc.lib")
+#pragma comment(lib, "LLVMMSP430Info.lib")
+#pragma comment(lib, "LLVMMipsAsmParser.lib")
+#pragma comment(lib, "LLVMMipsAsmPrinter.lib")
+#pragma comment(lib, "LLVMMipsCodeGen.lib")
+#pragma comment(lib, "LLVMMipsDesc.lib")
+#pragma comment(lib, "LLVMMipsDisassembler.lib")
+#pragma comment(lib, "LLVMMipsInfo.lib")
+#pragma comment(lib, "LLVMNVPTXAsmPrinter.lib")
+
+#endif
+
 namespace jit
 {
 const bool JITVisitor::__init__ = InitializeLLVM();
@@ -31,7 +141,10 @@ JITVisitor::JITVisitor(const analysis::AnalysisVisitor & _analysis) : ast::Const
     function(llvm::cast<llvm::Function>(module.getOrInsertFunction("jit_main", getLLVMTy<void>(context), nullptr))),
     builder(context),
     uintptrType(getPtrAsIntTy(module, context)),
-    _result(nullptr)
+    _result(nullptr),
+    start(0),
+    step(0),
+    end(0)
 {
     module.setDataLayout(engine->getDataLayout()->getStringRepresentation());
     llvm::BasicBlock * BB = llvm::BasicBlock::Create(context, "EntryBlock", function);
@@ -373,9 +486,15 @@ void JITVisitor::visit(const ast::ForExp &e)
 
         if (!ISNAN(list_values[0]) && !ISNAN(list_values[1]) && !ISNAN(list_values[2]))
         {
+#ifdef _MSC_VER
+            const double tstart = trunc(list_values[0]);
+            const double tstep = trunc(list_values[1]);
+            const double tend = trunc(list_values[2]);
+#else
             const double tstart = std::trunc(list_values[0]);
             const double tstep = std::trunc(list_values[1]);
             const double tend = std::trunc(list_values[2]);
+#endif
 
             inc = list_values[1] >= 0;
             known_step = true;

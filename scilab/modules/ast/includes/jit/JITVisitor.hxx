@@ -32,6 +32,8 @@
 #include "llvm/PassManager.h"
 #include "llvm/Analysis/Passes.h"
 #include "llvm/Transforms/Scalar.h"
+#include "llvm/ADT/Triple.h"
+#include "llvm/Support/Host.h"
 
 #include "visitor.hxx"
 #include "allexp.hxx"
@@ -39,12 +41,14 @@
 #include "ScilabJITTraits.hxx"
 #include "AnalysisVisitor.hxx"
 
+#include "dynlib_ast.h"
+
 namespace jit
 {
 
 class JITVal;
 
-class JITVisitor : public ast::ConstVisitor
+class EXTERN_AST JITVisitor : public ast::ConstVisitor
 {
     typedef std::map<symbol::Symbol, std::shared_ptr<JITVal>> JITSymbolMap;
 
@@ -67,10 +71,9 @@ class JITVisitor : public ast::ConstVisitor
 
     JITSymbolMap symMap3;
 
-    llvm::Value * start = 0;
-    llvm::Value * step = 0;
-    llvm::Value * end = 0;
-
+    llvm::Value * start;
+    llvm::Value * step;
+    llvm::Value * end;
 public:
 
     static llvm::Value * const ONE;

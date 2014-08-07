@@ -14,6 +14,7 @@
 #define AST_LISTEXP_HXX
 
 #include "exp.hxx"
+#include <limits>
 
 namespace ast
 {
@@ -46,6 +47,13 @@ public:
           _step (&step),
           _end (&end)
     {
+        values[0] = std::numeric_limits<double>::quiet_NaN();
+        values[1] = std::numeric_limits<double>::quiet_NaN();
+        values[2] = std::numeric_limits<double>::quiet_NaN();
+
+        is_values_int[0] = false;
+        is_values_int[1] = false;
+        is_values_int[2] = false;
     }
 
     /** \brief Destroy a Operation Expression node.
@@ -145,8 +153,8 @@ protected:
     /** \brief end expression of the list. */
     Exp* _end;
 
-    double values[3] = {NAN, NAN, NAN};
-    bool is_values_int[3] = {false, false, false};
+    double values[3];
+    bool is_values_int[3];
 };
 
 } // namespace ast

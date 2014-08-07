@@ -17,30 +17,31 @@
 #include "types_addition.hxx"
 #include "types_substraction.hxx"
 #include "types_multiplication.hxx"
+#include "dynlib_ast.h"
 
 extern "C"
 {
-    void putInContext_S_D_d(symbol::Context * ctxt, symbol::Variable * var, double x)
+    EXTERN_AST void putInContext_S_D_d(symbol::Context * ctxt, symbol::Variable * var, double x)
     {
         jit::putInContext_S<Double, double>(ctxt, var, x);
     }
 
-    void putInContext_M_D_ds(symbol::Context * ctxt, symbol::Variable * var, double * x, int r, int c)
+    EXTERN_AST void putInContext_M_D_ds(symbol::Context * ctxt, symbol::Variable * var, double * x, int r, int c)
     {
         jit::putInContext_M<Double, double>(ctxt, var, x, r, c);
     }
 
-    void add_M_M_d_d(double * l, long long size, double * r, double * o)
+    EXTERN_AST void add_M_M_d_d(double * l, long long size, double * r, double * o)
     {
         add<double, double>(l, size, r, o);
     }
 
-    void sub_M_M_d_d(double * l, long long size, double * r, double * o)
+    EXTERN_AST void sub_M_M_d_d(double * l, long long size, double * r, double * o)
     {
         sub<double, double>(l, size, r, o);
     }
 
-    void dotmul_M_M_d_d(double * l, long long size, double * r, double * o)
+    EXTERN_AST void dotmul_M_M_d_d(double * l, long long size, double * r, double * o)
     {
         dotmul<double, double>(l, size, r, o);
     }

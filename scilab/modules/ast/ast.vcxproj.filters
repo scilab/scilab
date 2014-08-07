@@ -54,6 +54,15 @@
     <Filter Include="Source Files\operations">
       <UniqueIdentifier>{cc482308-cd44-4b1f-b6e7-c807532f307d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\jit">
+      <UniqueIdentifier>{38f30468-926e-4319-8ead-31de49874864}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\jit">
+      <UniqueIdentifier>{2ed92cbe-2ad1-47c2-9beb-85f98528d230}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\analysis">
+      <UniqueIdentifier>{ed1a6ba0-722f-4b9c-b70c-85aedf40570a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="core_Import.def">
@@ -610,6 +619,21 @@
     <ClInclude Include="includes\types\overload.hxx">
       <Filter>Header Files\types</Filter>
     </ClInclude>
+    <ClInclude Include="includes\jit\ScilabJITTraits.hxx">
+      <Filter>Header Files\jit</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\JITVisitor.hxx">
+      <Filter>Header Files\jit</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\JITValues.hxx">
+      <Filter>Header Files\jit</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\jit_operations.hxx">
+      <Filter>Header Files\jit</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\AnalysisVisitor.hxx">
+      <Filter>Header Files\analysis</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\cpp\ast\debugvisitor.cpp">
@@ -875,6 +899,21 @@
     </ClCompile>
     <ClCompile Include="src\cpp\types\callable.cpp">
       <Filter>Source Files\types</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\jit\JITValues.cpp">
+      <Filter>Source Files\jit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\jit\JITVisitor.cpp">
+      <Filter>Source Files\jit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\jit\GlobalCFunctions.cpp">
+      <Filter>Source Files\jit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\types\internal.cpp">
+      <Filter>Source Files\types</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\jit\jit_operations.cpp">
+      <Filter>Source Files\jit</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

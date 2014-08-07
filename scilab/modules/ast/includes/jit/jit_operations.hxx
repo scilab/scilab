@@ -10,8 +10,8 @@
  *
  */
 
-#ifndef __OPERATIONS_HXX__
-#define __OPERATIONS_HXX__
+#ifndef __JIT_OPERATIONS_HXX__
+#define __JIT_OPERATIONS_HXX__
 
 #include "JITValues.hxx"
 #include "types_addition.hxx"
@@ -64,4 +64,4 @@ std::shared_ptr<JITVal> dotmul_M_M(std::shared_ptr<JITVal> & L, std::shared_ptr<
 
 }
 
-#endif // __OPERATIONS_HXX__
+#endif // __JIT_OPERATIONS_HXX__

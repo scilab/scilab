@@ -15,11 +15,11 @@
 
 #include <set>
 #include <memory>
+#include <limits>
 
 #include "visitor.hxx"
 #include "allexp.hxx"
 #include "allvar.hxx"
-
 namespace analysis
 {
 
@@ -288,7 +288,9 @@ private:
 
     void visit(const ast::ListExp &e)
     {
-        double start = NAN, step = NAN, end = NAN;
+        double start = std::numeric_limits<double>::quiet_NaN();
+        double step = std::numeric_limits<double>::quiet_NaN();
+        double end = std::numeric_limits<double>::quiet_NaN();
 
         if (e.start_get().is_double_exp())
         {

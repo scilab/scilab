@@ -77,8 +77,8 @@ public:
 
 protected:
 
-    llvm::Value * val = nullptr;
-    llvm::Type * type = nullptr;
+    llvm::Value * val;
+    llvm::Type * type;
 
     template<typename T>
     inline static llvm::Value * load(llvm::Value * v, bool _scalar, llvm::IRBuilder<> & builder)
@@ -178,9 +178,9 @@ public:
 template<typename T>
 class JITMatrixVal : public JITVal
 {
-    llvm::Value * r = nullptr;
-    llvm::Value * c = nullptr;
-    llvm::Value * must_be_freed = nullptr;
+    llvm::Value * r;
+    llvm::Value * c;
+    llvm::Value * must_be_freed;
 
 public:
 
