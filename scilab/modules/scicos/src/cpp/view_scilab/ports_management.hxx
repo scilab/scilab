@@ -343,7 +343,32 @@ bool addNewPort(ScicosID newPortID, int newPort, const std::vector<ScicosID>& ch
     else
     {
         // set the requested property, using newPort as a value
-        status = controller.setObjectProperty(newPortID, PORT, p, newPort);
+        switch (p)
+        {
+            case DATATYPE_ROWS:
+            {
+                std::vector<int> datatype (3);
+                controller.getObjectProperty(newPortID, PORT, DATATYPE, datatype);
+                datatype[0] = newPort;
+                return controller.setObjectProperty(newPortID, PORT, DATATYPE, datatype);
+            }
+            case DATATYPE_COLS:
+            {
+                std::vector<int> datatype (3);
+                controller.getObjectProperty(newPortID, PORT, DATATYPE, datatype);
+                datatype[1] = newPort;
+                return controller.setObjectProperty(newPortID, PORT, DATATYPE, datatype);
+            }
+            case DATATYPE_TYPE:
+            {
+                std::vector<int> datatype (3);
+                controller.getObjectProperty(newPortID, PORT, DATATYPE, datatype);
+                datatype[2] = newPort;
+                return controller.setObjectProperty(newPortID, PORT, DATATYPE, datatype);
+            }
+            default:
+                return controller.setObjectProperty(newPortID, PORT, p, newPort);
+        }
     }
 
     return status;
@@ -446,7 +471,7 @@ bool update_ports_property(const Adaptor& adaptor, object_properties_t port_kind
         while (!newPorts.empty())
         {
             int newPort = newPorts.back();
-            oldPorts.pop_back();
+            newPorts.pop_back();
 
             ScicosID id = controller.createObject(PORT);
             controller.setObjectProperty(id, PORT, SOURCE_BLOCK, adaptee->id());

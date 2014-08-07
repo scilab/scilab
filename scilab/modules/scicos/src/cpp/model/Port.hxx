@@ -98,14 +98,19 @@ private:
         this->kind = kind;
     }
 
-    ScicosID getSourceBlock() const
+    void getSourceBlock(ScicosID& sb) const
     {
-        return sourceBlock;
+        sb = sourceBlock;
     }
 
-    void setSourceBlock(ScicosID sourceBlock)
+    update_status_t setSourceBlock(const ScicosID sb)
     {
-        this->sourceBlock = sourceBlock;
+        if (sb == this->sourceBlock)
+        {
+            return NO_CHANGES;
+        }
+        this->sourceBlock = sb;
+        return SUCCESS;
     }
 
     void getImplicit(bool& v) const

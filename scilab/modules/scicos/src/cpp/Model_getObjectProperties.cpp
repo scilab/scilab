@@ -127,6 +127,12 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, int
         model::Link* o = static_cast<model::Link*>(getObject(uid));
         switch (p)
         {
+            case COLOR:
+                o->getColor(v);
+                return true;
+            case KIND:
+                o->getKind(v);
+                return true;
             default:
                 break;
         }
@@ -244,6 +250,9 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
         model::Link* o = static_cast<model::Link*>(getObject(uid));
         switch (p)
         {
+            case LABEL:
+                o->getLabel(v);
+                return true;
             default:
                 break;
         }
@@ -383,6 +392,17 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
     else if (k == LINK)
     {
         model::Link* o = static_cast<model::Link*>(getObject(uid));
+        switch (p)
+        {
+            case CONTROL_POINTS:
+                o->getControlPoints(v);
+                return true;
+            case THICK:
+                o->getThick(v);
+                return true;
+            default:
+                break;
+        }
     }
     else if (k == PORT)
     {

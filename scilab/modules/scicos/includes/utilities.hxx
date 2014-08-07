@@ -83,10 +83,13 @@ enum object_properties_t
     CHILDREN,           //!< model::Block::children for superblocks or model::Diagram::children value
     PORT_REFERENCE,     //!< model::Block::portReference value
     STYLE,              //!< model::Block & Port::style value
-    LABEL,              //!< model::Block & Port::label value
+    LABEL,              //!< model::Block & Port & Link::label or id value
     DESTINATION_PORT,   //!< model::Link::destinationPort value
     SOURCE_PORT,        //!< model::Link::sourcePort value
     CONTROL_POINTS,     //!< model::Link::controlPoints value
+    THICK,              //!< model::Link::thick value
+    COLOR,              //!< model::Link::color value
+    KIND,               //!< model::Link::kind value
     DATATYPE,           //!< model::Port::dataType value
     DATATYPE_ROWS,      //!< model::Port::dataType adapter helper
     DATATYPE_COLS,      //!< model::Port::dataType adapter helper
