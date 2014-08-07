@@ -14,7 +14,6 @@
 #define CPRADAPTER_HXX_
 
 #include <string>
-#include <sstream>
 
 #include "BaseAdapter.hxx"
 

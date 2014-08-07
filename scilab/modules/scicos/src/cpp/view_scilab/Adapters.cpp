@@ -10,6 +10,7 @@
  *
  */
 
+#include <string>
 #include <algorithm>
 
 #include "Adapters.hxx"

@@ -13,6 +13,7 @@
 #ifndef DIAGRAM_HXX_
 #define DIAGRAM_HXX_
 
+#include <string>
 #include <vector>
 
 #include "Model.hxx"

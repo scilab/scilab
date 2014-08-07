@@ -10,7 +10,6 @@
  *
  */
 
-#include <string>
 #include <iostream>
 #include <sstream>
 #include "scilabWrite.hxx"

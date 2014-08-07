@@ -14,7 +14,6 @@
 #define DIAGRAMADAPTER_HXX_
 
 #include <string>
-#include <sstream>
 
 #include "utilities.hxx"
 #include "BaseAdapter.hxx"

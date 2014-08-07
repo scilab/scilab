@@ -13,9 +13,7 @@
 #ifndef BLOCKADAPTER_HXX_
 #define BLOCKADAPTER_HXX_
 
-#include <sstream>
 #include <string>
-#include <vector>
 
 #include "utilities.hxx"
 #include "BaseAdapter.hxx"

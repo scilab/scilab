@@ -11,7 +11,6 @@
  */
 
 #include <string>
-#include <algorithm>
 
 #include "gw_scicos.hxx"
 

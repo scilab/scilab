@@ -14,7 +14,6 @@
 #define MODELADAPTER_HXX_
 
 #include <string>
-#include <sstream>
 
 #include "BaseAdapter.hxx"
 #include "model/Block.hxx"

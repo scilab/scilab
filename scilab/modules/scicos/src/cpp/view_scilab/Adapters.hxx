@@ -14,7 +14,6 @@
 #define ADAPTERS_H_
 
 #include <vector>
-#include <utility>
 #include <string>
 
 namespace org_scilab_modules_scicos

@@ -14,7 +14,6 @@
 #define TEXTADAPTER_HXX_
 
 #include <string>
-#include <sstream>
 
 #include "BaseAdapter.hxx"
 

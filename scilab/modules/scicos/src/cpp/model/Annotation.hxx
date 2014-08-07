@@ -13,8 +13,8 @@
 #ifndef ANNOTATION_HXX_
 #define ANNOTATION_HXX_
 
-#include <cassert>
 #include <string>
+#include <vector>
 
 #include "Model.hxx"
 #include "model/BaseObject.hxx"
