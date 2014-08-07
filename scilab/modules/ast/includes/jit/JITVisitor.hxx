@@ -89,6 +89,11 @@ public:
         return context;
     }
 
+    inline llvm::Module & getModule()
+    {
+        return module;
+    }
+
     inline llvm::IRBuilder<> & getBuilder()
     {
         return builder;

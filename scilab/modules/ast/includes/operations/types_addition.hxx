@@ -122,10 +122,9 @@ template<> inline types::InternalType* add_M_M<types::Sparse, types::Double, typ
 //same type
 template<typename T, typename O> inline static void add(T* l, long long size, T* r, O* o)
 {
-    //std::cout << "out=" << (void*)o << ":::" << size << std::endl;
     for (int i = 0; i < size ; ++i)
     {
-        //o[i] = (O)l[i] + (O)r[i];
+        o[i] = (O)l[i] + (O)r[i];
     }
 }
 

@@ -104,7 +104,8 @@ libsciast_la_SOURCES = \
     src/cpp/system_env/warningmode.cpp \
     src/cpp/jit/JITVisitor.cpp \
     src/cpp/jit/JITValues.cpp \
-    src/cpp/jit/operations.cpp
+    src/cpp/jit/operations.cpp \
+    src/cpp/jit/GlobalCFunctions.cpp
 
 if ENABLE_DEBUG
 libsciast_la_SOURCES += src/cpp/types/inspector.cpp

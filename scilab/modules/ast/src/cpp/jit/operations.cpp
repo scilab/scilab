@@ -49,7 +49,8 @@ std::shared_ptr<JITVal> add_M_M(std::shared_ptr<JITVal> & L, std::shared_ptr<JIT
     llvm::Value * alloc = llvm::CallInst::CreateMalloc(cur_block, getLLVMTy<int>(context), getLLVMTy<double>(context), malloc_size);
     cur_block->getInstList().push_back(llvm::cast<llvm::Instruction>(alloc));
 
-    llvm::Value * toCall = visitor.getPointer(reinterpret_cast<void *>((void (*)(double *, long long, double *, double*))&::add<double, double>), getLLVMPtrFuncTy<void, double *, long long, double *, double *>(context));
+    llvm::Value * toCall = visitor.getModule().getOrInsertFunction("add_M_M_d_d", getLLVMFuncTy<void, double *, long long, double *, double *>(context));
+
 
     size = builder.CreateIntCast(size, getLLVMTy<long long>(context), false);
     builder.CreateCall4(toCall, L.get()->load(visitor), size, R.get()->load(visitor), alloc);
@@ -71,7 +72,7 @@ std::shared_ptr<JITVal> sub_M_M(std::shared_ptr<JITVal> & L, std::shared_ptr<JIT
     llvm::Value * alloc = llvm::CallInst::CreateMalloc(cur_block, getLLVMTy<int>(context), getLLVMTy<double>(context), malloc_size);
     cur_block->getInstList().push_back(llvm::cast<llvm::Instruction>(alloc));
 
-    llvm::Value * toCall = visitor.getPointer(reinterpret_cast<void *>((void (*)(double *, long long, double *, double*))&::sub<double, double>), getLLVMPtrFuncTy<void, double *, long long, double *, double *>(context));
+    llvm::Value * toCall = visitor.getModule().getOrInsertFunction("sub_M_M_d_d", getLLVMFuncTy<void, double *, long long, double *, double *>(context));
 
     size = builder.CreateIntCast(size, getLLVMTy<long long>(context), false);
     builder.CreateCall4(toCall, L.get()->load(visitor), size, R.get()->load(visitor), alloc);
@@ -90,7 +91,7 @@ std::shared_ptr<JITVal> dotmul_M_M(std::shared_ptr<JITVal> & L, std::shared_ptr<
     llvm::Value * alloc = llvm::CallInst::CreateMalloc(cur_block, getLLVMTy<int>(context), getLLVMTy<double>(context), malloc_size);
     cur_block->getInstList().push_back(llvm::cast<llvm::Instruction>(alloc));
 
-    llvm::Value * toCall = visitor.getPointer(reinterpret_cast<void *>((void (*)(double *, long long, double *, double*))&::dotmul<double, double>), getLLVMPtrFuncTy<void, double *, long long, double *, double *>(context));
+    llvm::Value * toCall = visitor.getModule().getOrInsertFunction("dotmul_M_M_d_d", getLLVMFuncTy<void, double *, long long, double *, double *>(context));
 
     size = builder.CreateIntCast(size, getLLVMTy<long long>(context), false);
     builder.CreateCall4(toCall, L.get()->load(visitor), size, R.get()->load(visitor), alloc);

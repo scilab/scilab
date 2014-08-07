@@ -38,6 +38,16 @@
 #include "llvm/IR/LLVMContext.h"
 #include "llvm/IR/Module.h"
 #include "llvm/Target/TargetOptions.h"
+#include "llvm/PassManager.h"
+#include "llvm/ExecutionEngine/GenericValue.h"
+#include "llvm/ExecutionEngine/Interpreter.h"
+#include "llvm/ExecutionEngine/MCJIT.h"
+#include "llvm/IR/DataLayout.h"
+#include "llvm/Analysis/Passes.h"
+#include "llvm/IR/IRBuilder.h"
+#include "llvm/IR/Module.h"
+#include "llvm/Support/TargetSelect.h"
+#include "llvm/Transforms/Scalar.h"
 
 namespace jit
 {
@@ -237,11 +247,29 @@ struct _get_llvm_ty<int>
 };
 
 template<>
+struct _get_llvm_ty<uint32_t>
+{
+    inline static llvm::Type * get(llvm::LLVMContext & ctxt)
+    {
+        return llvm::Type::getInt32Ty(ctxt);
+    }
+};
+
+template<>
 struct _get_llvm_ty<long long>
 {
     inline static llvm::Type * get(llvm::LLVMContext & ctxt)
     {
         return llvm::Type::getInt64Ty(ctxt);
+    }
+};
+
+template<>
+struct _get_llvm_ty<long>
+{
+    inline static llvm::Type * get(llvm::LLVMContext & ctxt)
+    {
+        return llvm::IntegerType::get(ctxt, sizeof(long) * 8);
     }
 };
 
@@ -261,40 +289,40 @@ inline static llvm::Type * getLLVMTy(llvm::LLVMContext & ctxt)
 }
 
 template<typename Out>
-inline llvm::Type * getLLVMFuncTy(llvm::LLVMContext & ctxt)
+inline llvm::FunctionType * getLLVMFuncTy(llvm::LLVMContext & ctxt)
 {
     return llvm::FunctionType::get(getLLVMTy<Out>(ctxt), false);
 }
 
 template<typename Out, typename In1>
-inline llvm::Type * getLLVMFuncTy(llvm::LLVMContext & ctxt)
+inline llvm::FunctionType * getLLVMFuncTy(llvm::LLVMContext & ctxt)
 {
     return llvm::FunctionType::get(getLLVMTy<Out>(ctxt), llvm::ArrayRef<llvm::Type *>(getLLVMTy<In1>(ctxt)), false);
 }
 
 template<typename Out, typename In1, typename In2>
-inline llvm::Type * getLLVMFuncTy(llvm::LLVMContext & ctxt)
+inline llvm::FunctionType * getLLVMFuncTy(llvm::LLVMContext & ctxt)
 {
     llvm::Type * args[] = { getLLVMTy<In1>(ctxt), getLLVMTy<In2>(ctxt) };
     return llvm::FunctionType::get(getLLVMTy<Out>(ctxt), args, false);
 }
 
 template<typename Out, typename In1, typename In2, typename In3>
-inline llvm::Type * getLLVMFuncTy(llvm::LLVMContext & ctxt)
+inline llvm::FunctionType * getLLVMFuncTy(llvm::LLVMContext & ctxt)
 {
     llvm::Type * args[] = { getLLVMTy<In1>(ctxt), getLLVMTy<In2>(ctxt), getLLVMTy<In3>(ctxt) };
     return llvm::FunctionType::get(getLLVMTy<Out>(ctxt), llvm::ArrayRef<llvm::Type *>(args), false);
 }
 
 template<typename Out, typename In1, typename In2, typename In3, typename In4>
-inline llvm::Type * getLLVMFuncTy(llvm::LLVMContext & ctxt)
+inline llvm::FunctionType * getLLVMFuncTy(llvm::LLVMContext & ctxt)
 {
     llvm::Type * args[] = { getLLVMTy<In1>(ctxt), getLLVMTy<In2>(ctxt), getLLVMTy<In3>(ctxt), getLLVMTy<In4>(ctxt) };
     return llvm::FunctionType::get(getLLVMTy<Out>(ctxt), llvm::ArrayRef<llvm::Type *>(args), false);
 }
 
 template<typename Out, typename In1, typename In2, typename In3, typename In4, typename In5>
-inline llvm::Type * getLLVMFuncTy(llvm::LLVMContext & ctxt)
+inline llvm::FunctionType * getLLVMFuncTy(llvm::LLVMContext & ctxt)
 {
     llvm::Type * args[] = { getLLVMTy<In1>(ctxt), getLLVMTy<In2>(ctxt), getLLVMTy<In3>(ctxt), getLLVMTy<In4>(ctxt), getLLVMTy<In5>(ctxt) };
     return llvm::FunctionType::get(getLLVMTy<Out>(ctxt), llvm::ArrayRef<llvm::Type *>(args), false);
@@ -343,13 +371,13 @@ inline llvm::Type * getLLVMPtrFuncTy(llvm::LLVMContext & ctxt)
 }
 
 template<typename T, typename U>
-static void putInContext_S(symbol::Context * ctxt, symbol::Variable * var, U x)
+inline static void putInContext_S(symbol::Context * ctxt, symbol::Variable * var, U x)
 {
     ctxt->put(var, new T(x));
 }
 
 template<typename T, typename U>
-static void putInContext_M(symbol::Context * ctxt, symbol::Variable * var, U * x, int r, int c)
+inline static void putInContext_M(symbol::Context * ctxt, symbol::Variable * var, U * x, int r, int c)
 {
     double * data;
     ctxt->put(var, new T(r, c, &data));

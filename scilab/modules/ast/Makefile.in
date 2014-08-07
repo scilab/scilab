@@ -227,7 +227,7 @@ am__libsciast_la_SOURCES_DIST = src/cpp/ast/runvisitor.cpp \
 	src/cpp/system_env/formatmode.cpp \
 	src/cpp/system_env/warningmode.cpp src/cpp/jit/JITVisitor.cpp \
 	src/cpp/jit/JITValues.cpp src/cpp/jit/operations.cpp \
-	src/cpp/types/inspector.cpp
+	src/cpp/jit/GlobalCFunctions.cpp src/cpp/types/inspector.cpp
 am__dirstamp = $(am__leading_dot)dirstamp
 @ENABLE_DEBUG_TRUE@am__objects_1 =  \
 @ENABLE_DEBUG_TRUE@	src/cpp/types/libsciast_la-inspector.lo
@@ -321,7 +321,8 @@ am_libsciast_la_OBJECTS = src/cpp/ast/libsciast_la-runvisitor.lo \
 	src/cpp/system_env/libsciast_la-warningmode.lo \
 	src/cpp/jit/libsciast_la-JITVisitor.lo \
 	src/cpp/jit/libsciast_la-JITValues.lo \
-	src/cpp/jit/libsciast_la-operations.lo $(am__objects_1)
+	src/cpp/jit/libsciast_la-operations.lo \
+	src/cpp/jit/libsciast_la-GlobalCFunctions.lo $(am__objects_1)
 libsciast_la_OBJECTS = $(am_libsciast_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
@@ -766,7 +767,7 @@ libsciast_la_SOURCES = src/cpp/ast/runvisitor.cpp \
 	src/cpp/system_env/formatmode.cpp \
 	src/cpp/system_env/warningmode.cpp src/cpp/jit/JITVisitor.cpp \
 	src/cpp/jit/JITValues.cpp src/cpp/jit/operations.cpp \
-	$(am__append_1)
+	src/cpp/jit/GlobalCFunctions.cpp $(am__append_1)
 libsciast_la_CPPFLAGS = \
 	-Iincludes/ast \
 	-Iincludes/exps \
@@ -1429,6 +1430,9 @@ src/cpp/jit/libsciast_la-JITValues.lo: src/cpp/jit/$(am__dirstamp) \
 	src/cpp/jit/$(DEPDIR)/$(am__dirstamp)
 src/cpp/jit/libsciast_la-operations.lo: src/cpp/jit/$(am__dirstamp) \
 	src/cpp/jit/$(DEPDIR)/$(am__dirstamp)
+src/cpp/jit/libsciast_la-GlobalCFunctions.lo:  \
+	src/cpp/jit/$(am__dirstamp) \
+	src/cpp/jit/$(DEPDIR)/$(am__dirstamp)
 src/cpp/types/libsciast_la-inspector.lo:  \
 	src/cpp/types/$(am__dirstamp) \
 	src/cpp/types/$(DEPDIR)/$(am__dirstamp)
@@ -1477,6 +1481,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/ast/$(DEPDIR)/libsciast_la-runvisitor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/ast/$(DEPDIR)/libsciast_la-shortcutvisitor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/ast/$(DEPDIR)/libsciast_la-visitor_common.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/jit/$(DEPDIR)/libsciast_la-GlobalCFunctions.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/jit/$(DEPDIR)/libsciast_la-JITValues.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/jit/$(DEPDIR)/libsciast_la-JITVisitor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/jit/$(DEPDIR)/libsciast_la-operations.Plo@am__quote@
@@ -2235,6 +2240,13 @@ src/cpp/jit/libsciast_la-operations.lo: src/cpp/jit/operations.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/jit/operations.cpp' object='src/cpp/jit/libsciast_la-operations.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/jit/libsciast_la-operations.lo `test -f 'src/cpp/jit/operations.cpp' || echo '$(srcdir)/'`src/cpp/jit/operations.cpp
+
+src/cpp/jit/libsciast_la-GlobalCFunctions.lo: src/cpp/jit/GlobalCFunctions.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/jit/libsciast_la-GlobalCFunctions.lo -MD -MP -MF src/cpp/jit/$(DEPDIR)/libsciast_la-GlobalCFunctions.Tpo -c -o src/cpp/jit/libsciast_la-GlobalCFunctions.lo `test -f 'src/cpp/jit/GlobalCFunctions.cpp' || echo '$(srcdir)/'`src/cpp/jit/GlobalCFunctions.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/jit/$(DEPDIR)/libsciast_la-GlobalCFunctions.Tpo src/cpp/jit/$(DEPDIR)/libsciast_la-GlobalCFunctions.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/jit/GlobalCFunctions.cpp' object='src/cpp/jit/libsciast_la-GlobalCFunctions.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/jit/libsciast_la-GlobalCFunctions.lo `test -f 'src/cpp/jit/GlobalCFunctions.cpp' || echo '$(srcdir)/'`src/cpp/jit/GlobalCFunctions.cpp
 
 src/cpp/types/libsciast_la-inspector.lo: src/cpp/types/inspector.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/types/libsciast_la-inspector.lo -MD -MP -MF src/cpp/types/$(DEPDIR)/libsciast_la-inspector.Tpo -c -o src/cpp/types/libsciast_la-inspector.lo `test -f 'src/cpp/types/inspector.cpp' || echo '$(srcdir)/'`src/cpp/types/inspector.cpp

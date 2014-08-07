@@ -70,11 +70,14 @@ JITVisitor::JITVisitor(const analysis::AnalysisVisitor & _analysis) : ast::Const
 
 void JITVisitor::run()
 {
-    // on reinjecte les resultats ds l'environnement
+    // on reinjecte les resultats ds l'environnement a=1;jit("a=2");
     symbol::Context * ctxt = symbol::Context::getInstance();
     llvm::Value * llvmCtxt = getPointer(ctxt);
-    llvm::Value * toCall_S = getPointer(reinterpret_cast<void *>(&jit::putInContext_S<Double, double>), getLLVMPtrFuncTy<void, char *, char *, double>(context));
-    llvm::Value * toCall_M = getPointer(reinterpret_cast<void *>(&jit::putInContext_M<Double, double*>), getLLVMPtrFuncTy<void, char *, char *, double *, int, int>(context));
+    //llvm::Value * toCall_S = getPointer(reinterpret_cast<void *>(&jit::putInContext_S<Double, double>), getLLVMPtrFuncTy<void, char *, char *, double>(context));
+    llvm::Value * toCall_M = module.getOrInsertFunction("putInContext_M_D_ds", getLLVMFuncTy<void, char *, char *, double *, int , int>(context));
+    //llvm::Value * toCall_M = getPointer(reinterpret_cast<void *>(&jit::putInContext_M<Double, double*>), getLLVMPtrFuncTy<void, char *, char *, double *, int, int>(context));
+
+    llvm::Value * toCall_S = module.getOrInsertFunction("putInContext_S_D_d", getLLVMFuncTy<void, char *, char *, double>(context));
 
     for (JITSymbolMap::const_iterator i = symMap3.begin(), end = symMap3.end(); i != end; ++i)
     {
@@ -86,6 +89,7 @@ void JITVisitor::run()
         }
         else
         {
+            i->second.get()->load(*this)->dump();
             builder.CreateCall5(toCall_M, llvmCtxt, llvmVar, i->second.get()->load(*this), i->second.get()->loadR(*this), i->second.get()->loadC(*this));
         }
     }
@@ -361,44 +365,92 @@ void JITVisitor::visit(const ast::ForExp &e)
     {
         const ast::ListExp & list = static_cast<const ast::ListExp &>(init);
         const double * list_values = list.get_values();
-        llvm::Value * start, * step, * end;
+        llvm::Value * start = nullptr, * step, * end;
         bool use_int = false;
         bool use_uint = false;
+        bool inc = true;
+        bool known_step = false;
 
-        if (ISNAN(list_values[0]) || ISNAN(list_values[1]) || ISNAN(list_values[2]))
-        {
-            list.start_get().accept(*this);
-            start = result_get().get()->load(*this);
-
-            list.step_get().accept(*this);
-            step = result_get().get()->load(*this);
-
-            list.end_get().accept(*this);
-            end = result_get().get()->load(*this);
-        }
-        else
+        if (!ISNAN(list_values[0]) && !ISNAN(list_values[1]) && !ISNAN(list_values[2]))
         {
             const double tstart = std::trunc(list_values[0]);
             const double tstep = std::trunc(list_values[1]);
             const double tend = std::trunc(list_values[2]);
+
+            inc = list_values[1] >= 0;
+            known_step = true;
 
             if ((tstart == list_values[0]) && (tstep == list_values[1]))
             {
                 if (tstart >= 0 && tstep >= 0 && tstart <= list_values[2])
                 {
                     // we can use an unsigned int but take care to overflow...
-                    double k = std::floor(((double)std::numeric_limits<unsigned int>::max() - tstart) / tstep);
+                    double k = std::floor(((double)std::numeric_limits<uint64_t>::max() - tstart) / tstep);
                     if ((k * tstep + tstart) >= tend)
                     {
                         // no overflow
-                        start = getConstant((unsigned int)tstart);
-                        step = getConstant((unsigned int)tstep);
-                        end = getConstant((unsigned int)tend);
+                        start = getConstant((uint64_t)tstart);
+                        step = getConstant((uint64_t)tstep);
+                        end = getConstant((uint64_t)tend);
 
                         use_int = true;
                         use_uint = true;
                     }
                 }
+                else
+                {
+                    double k = std::floor(((double)(inc ? std::numeric_limits<int64_t>::max() : std::numeric_limits<int64_t>::min()) - tstart) / tstep);
+                    if ((inc && (k * tstep + tstart) >= tend) || (!inc && (k * tstep + tstart) <= tend))
+                    {
+                        // no overflow
+                        start = getConstant((int64_t)tstart);
+                        step = getConstant((int64_t)tstep);
+                        end = getConstant((int64_t)tend);
+
+                        use_int = true;
+                    }
+                }
+            }
+            else
+            {
+                start = getConstant(list_values[0]);
+                step = getConstant(list_values[1]);
+                end = getConstant(list_values[2]);
+            }
+        }
+
+        if (!start)
+        {
+            if (!ISNAN(list_values[0]))
+            {
+                start = getConstant(list_values[0]);
+            }
+            else
+            {
+                list.start_get().accept(*this);
+                start = result_get().get()->load(*this);
+            }
+
+            if (!ISNAN(list_values[1]))
+            {
+                step = getConstant(list_values[1]);
+                inc = list_values[1] >= 0;
+                known_step = true;
+            }
+            else
+            {
+                list.step_get().accept(*this);
+                step = result_get().get()->load(*this);
+            }
+
+            if (!ISNAN(list_values[2]))
+            {
+                end = getConstant(list_values[2]);
+            }
+            else
+            {
+                list.end_get().accept(*this);
+                end = result_get().get()->load(*this);
             }
         }
 
@@ -406,11 +458,28 @@ void JITVisitor::visit(const ast::ForExp &e)
         llvm::BasicBlock * BBAfter = llvm::BasicBlock::Create(context, "for_after", function);
 
         llvm::BasicBlock * cur_block = builder.GetInsertBlock();
-        llvm::Value * tmp = use_int ? (use_uint ? builder.CreateICmpULE(start, end) : builder.CreateICmpSLE(start, end)) : builder.CreateFCmpOLE(start, end);
+        llvm::Value * tmp;
+
+        if (known_step)
+        {
+            if (inc)
+            {
+                tmp = use_int ? (use_uint ? builder.CreateICmpULE(start, end) : builder.CreateICmpSLE(start, end)) : builder.CreateFCmpOLE(start, end);
+            }
+            else
+            {
+                tmp = use_int ? (use_uint ? builder.CreateICmpUGE(start, end) : builder.CreateICmpSGE(start, end)) : builder.CreateFCmpOGE(start, end);
+            }
+        }
+        else
+        {
+            //TODO: add something to handle this case
+        }
+
         builder.CreateCondBr(tmp, BBBody, BBAfter);
 
         builder.SetInsertPoint(BBBody);
-        llvm::PHINode * phi = use_int ? builder.CreatePHI(getLLVMTy<int>(context), 2) : builder.CreatePHI(getLLVMTy<double>(context), 2);
+        llvm::PHINode * phi = use_int ? builder.CreatePHI(getLLVMTy<int64_t>(context), 2) : builder.CreatePHI(getLLVMTy<double>(context), 2);
 
         JITSymbolMap::const_iterator i = symMap3.find(varName);
         tmp = use_int ? (use_uint ? builder.CreateUIToFP(phi, getLLVMTy<double>(context)) : builder.CreateSIToFP(phi, getLLVMTy<double>(context))) : phi;
@@ -424,12 +493,25 @@ void JITVisitor::visit(const ast::ForExp &e)
         tmp = use_int ? builder.CreateAdd(phi, step) : builder.CreateFAdd(phi, step);
         phi->addIncoming(tmp, builder.GetInsertBlock());
 
-        tmp = use_int ? (use_uint ? builder.CreateICmpULE(tmp, end) : builder.CreateICmpSLE(tmp, end)) : builder.CreateFCmpOLE(tmp, end);
+        if (known_step)
+        {
+            if (inc)
+            {
+                tmp = use_int ? (use_uint ? builder.CreateICmpULE(tmp, end) : builder.CreateICmpSLE(tmp, end)) : builder.CreateFCmpOLE(tmp, end);
+            }
+            else
+            {
+                tmp = use_int ? (use_uint ? builder.CreateICmpUGE(tmp, end) : builder.CreateICmpSGE(tmp, end)) : builder.CreateFCmpOGE(tmp, end);
+            }
+        }
+        else
+        {
+            //TODO: add something to handle this case
+        }
+
         builder.CreateCondBr(tmp, BBBody, BBAfter);
 
         builder.SetInsertPoint(BBAfter);
-
-        dump();
 
         //llvm::AllocaInst * cur = builder.CreateAlloca(getLLVMTy<double>(context));
         //llvm::StoreInst * cur_store = builder.CreateAlignedStore(phi, cur, sizeof(double));
