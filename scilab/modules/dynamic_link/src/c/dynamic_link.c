@@ -59,7 +59,8 @@ typedef struct
 {
     int ibuf[lsiz];
 } IBFU_struct;
-__declspec (dllexport) CINTER_struct C2F(ibfu);
+
+__declspec (dllexport) IBFU_struct C2F(ibfu);
 
 #endif
 /*---------------------------------------------------------------------------*/

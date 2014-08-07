@@ -103,6 +103,8 @@ Scilab Bug Fixes
 
 * Bug #13349 fixed - Double-clicking on a MAT-file in file browser did not load it.
 
+* Bug #13350 fixed - There was a buffer overrun with "call" function.
+
 * Bug #13351 fixed - xstringb failed with LaTeX code.
 
 * Bug #13358 fixed - Intersect and unique were slow due to an issue in quicksort implementation.
