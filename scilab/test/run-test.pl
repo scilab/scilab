@@ -135,6 +135,10 @@ if($quiet == 1)
 ###############################
 switch($ARGV[0])
 {
+    case "xcos"
+    {
+        xcos();
+    }
     case "control"
     {
 	control();
@@ -258,6 +262,41 @@ if( $all_control != 0)
     BadMsg($bad_control . " test(s) failed\n");
     StartMsg(($good_control/$all_control)*100 . "% passed\n");
     print "\n";
+}
+
+if( $all_xcos != 0)
+{
+    $good_xcos = $all_xcos - $bad_xcos;
+    StartMsg("Xcos tests\n");
+    InfoMsg( $all_xcos . " test(s)\n");
+    GoodMsg($good_xcos . " test(s) passed\n");
+    BadMsg($bad_xcos . " test(s) failed\n");
+    StartMsg(($good_xcos/$all_xcos)*100 . "% passed\n");
+    print "\n";
+}
+
+
+#######################
+## XCOS set of tests ##
+#######################
+sub xcos()
+{
+    StartMsg("[ Lets Go for A set of xcos tests ]\n");
+    while (defined($nextname = <xcos/*.cosf>))
+    {
+        $all_xcos = $all_xcos + 1;
+        InfoMsg("\n[ ----==== Running Test $nextname ====---- ]\n");
+        $RetVal = system($Yasp_Path . $Yasp_Bin . " -nw -e \"try loadXcosLibs();exec(\\\"" . $nextname . "\\\", -1);quit; catch exit(-1); end\"");
+        if($RetVal == 0)
+        {
+            GoodMsg("Test Passed\n\n");
+        }
+        else
+        {
+            BadMsg("Test Failed\n\n");
+            $bad_xcos += 1;
+        }
+    }
 }
 
 #######################
