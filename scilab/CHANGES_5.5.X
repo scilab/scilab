@@ -190,6 +190,8 @@ Scilab Bug Fixes
 
 * Bug #13527 fixed - hilb did not check correctly the type of first input argument.
 
+* Bug #13554 fixed - rubberbox returns wrong values.
+
 
 Xcos Bug Fixes
 ==============

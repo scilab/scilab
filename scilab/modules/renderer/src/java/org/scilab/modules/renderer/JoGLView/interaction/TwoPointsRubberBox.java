@@ -27,17 +27,4 @@ public class TwoPointsRubberBox extends RubberBox implements PointRubberBox {
         super(drawerVisitor);
     }
 
-    public double[] getResults() {
-        double result[] = {
-            mouseButton - 1,
-            Math.min(firstPoint.getX(), secondPoint.getX()),
-            Math.max(firstPoint.getY(), secondPoint.getY()),
-            Math.max(firstPoint.getZ(), secondPoint.getZ()),
-            Math.abs(firstPoint.getX() - secondPoint.getX()),
-            Math.abs(firstPoint.getY() - secondPoint.getY()),
-            Math.abs(firstPoint.getZ() - secondPoint.getZ())
-        };
-
-        return result;
-    }
 }
