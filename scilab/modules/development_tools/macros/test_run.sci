@@ -702,7 +702,7 @@ function status = test_single(_module, _testPath, _testName)
     "endfunction" ;
     "function []=bugmes(), printf(''error on test'');endfunction"
     "predef(''all'');";
-    "tmpdirToPrint = msprintf(''TMPDIR1=''''%s''''\n'',TMPDIR);"
+    "tmpdirToPrint = msprintf(''TMPDIR1=''''%s'''';//\n'',TMPDIR);"
     ];
 
     if xcosNeeded then
@@ -875,7 +875,7 @@ function status = test_single(_module, _testPath, _testName)
                         toRemove = grep(txt, "extension ""RANDR"" missing on display");
                         txt(toRemove) = [];
                     end
-                    
+
                     if isempty(txt) then
                         deletefile(tmp_err);
                     end
