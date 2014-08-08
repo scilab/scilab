@@ -19807,7 +19807,7 @@ State 308
   147 operation: functionCall . rightOperand
   154          | functionCall . "** or ^" variable
   155          | functionCall . "** or ^" functionCall
-  155          | functionCall "** or ^" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "+", "-", "*", ".*", ".*.", "*.", "/", "./", "/.", "./.", "\\", ".\\", "\\.", ".\\.", "** or ^", ".^", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
+  155          | functionCall "** or ^" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "+", "-", "*", ".*", ".*.", "*.", "/", "./", "/.", "./.", "\\", ".\\", "\\.", ".\\.", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
   158          | functionCall . ".^" variable
   159          | functionCall . ".^" functionCall
   162          | functionCall . "'"
@@ -19851,10 +19851,12 @@ State 308
   206         | functionCall . listableEnd
   222         | functionCall . "(" functionArgs ")"
 
-    "'"   shift, and go to state 122
-    "("   shift, and go to state 182
-    "."   shift, and go to state 183
-    ".'"  shift, and go to state 126
+    "'"        shift, and go to state 122
+    "("        shift, and go to state 182
+    "."        shift, and go to state 183
+    ".'"       shift, and go to state 126
+    "** or ^"  shift, and go to state 141
+    ".^"       shift, and go to state 142
 
     $default  reduce using rule 155 (operation)
 
@@ -19882,8 +19884,8 @@ State 308
     Conflict between rule 155 and token ".\\" resolved as reduce (".\\" < POWER).
     Conflict between rule 155 and token "\\." resolved as reduce ("\\." < POWER).
     Conflict between rule 155 and token ".\\." resolved as reduce (".\\." < POWER).
-    Conflict between rule 155 and token "** or ^" resolved as reduce (%left "** or ^").
-    Conflict between rule 155 and token ".^" resolved as reduce (%left ".^").
+    Conflict between rule 155 and token "** or ^" resolved as shift (%right "** or ^").
+    Conflict between rule 155 and token ".^" resolved as shift (%right ".^").
     Conflict between rule 155 and token "==" resolved as reduce ("==" < POWER).
     Conflict between rule 155 and token "<> or ~=" resolved as reduce ("<> or ~=" < POWER).
     Conflict between rule 155 and token "<" resolved as reduce ("<" < POWER).
@@ -19932,7 +19934,7 @@ State 309
   146 operation: variable . rightOperand
   152          | variable . "** or ^" variable
   153          | variable . "** or ^" functionCall
-  154          | functionCall "** or ^" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "+", "-", "*", ".*", ".*.", "*.", "/", "./", "/.", "./.", "\\", ".\\", "\\.", ".\\.", "** or ^", ".^", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
+  154          | functionCall "** or ^" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "+", "-", "*", ".*", ".*.", "*.", "/", "./", "/.", "./.", "\\", ".\\", "\\.", ".\\.", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
   156          | variable . ".^" variable
   157          | variable . ".^" functionCall
   160          | variable . "'"
@@ -19976,10 +19978,12 @@ State 309
   205         | variable . listableEnd
   221         | variable . "(" functionArgs ")"
 
-    "'"   shift, and go to state 158
-    "("   shift, and go to state 184
-    "."   shift, and go to state 185
-    ".'"  shift, and go to state 161
+    "'"        shift, and go to state 158
+    "("        shift, and go to state 184
+    "."        shift, and go to state 185
+    ".'"       shift, and go to state 161
+    "** or ^"  shift, and go to state 162
+    ".^"       shift, and go to state 163
 
     $default  reduce using rule 154 (operation)
 
@@ -20007,8 +20011,8 @@ State 309
     Conflict between rule 154 and token ".\\" resolved as reduce (".\\" < POWER).
     Conflict between rule 154 and token "\\." resolved as reduce ("\\." < POWER).
     Conflict between rule 154 and token ".\\." resolved as reduce (".\\." < POWER).
-    Conflict between rule 154 and token "** or ^" resolved as reduce (%left "** or ^").
-    Conflict between rule 154 and token ".^" resolved as reduce (%left ".^").
+    Conflict between rule 154 and token "** or ^" resolved as shift (%right "** or ^").
+    Conflict between rule 154 and token ".^" resolved as shift (%right ".^").
     Conflict between rule 154 and token "==" resolved as reduce ("==" < POWER).
     Conflict between rule 154 and token "<> or ~=" resolved as reduce ("<> or ~=" < POWER).
     Conflict between rule 154 and token "<" resolved as reduce ("<" < POWER).
@@ -20059,7 +20063,7 @@ State 310
   155          | functionCall . "** or ^" functionCall
   158          | functionCall . ".^" variable
   159          | functionCall . ".^" functionCall
-  159          | functionCall ".^" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "+", "-", "*", ".*", ".*.", "*.", "/", "./", "/.", "./.", "\\", ".\\", "\\.", ".\\.", "** or ^", ".^", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
+  159          | functionCall ".^" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "+", "-", "*", ".*", ".*.", "*.", "/", "./", "/.", "./.", "\\", ".\\", "\\.", ".\\.", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
   162          | functionCall . "'"
   163          | functionCall . ".'"
   164 rightOperand: . "+" variable
@@ -20101,10 +20105,12 @@ State 310
   206         | functionCall . listableEnd
   222         | functionCall . "(" functionArgs ")"
 
-    "'"   shift, and go to state 122
-    "("   shift, and go to state 182
-    "."   shift, and go to state 183
-    ".'"  shift, and go to state 126
+    "'"        shift, and go to state 122
+    "("        shift, and go to state 182
+    "."        shift, and go to state 183
+    ".'"       shift, and go to state 126
+    "** or ^"  shift, and go to state 141
+    ".^"       shift, and go to state 142
 
     $default  reduce using rule 159 (operation)
 
@@ -20132,8 +20138,8 @@ State 310
     Conflict between rule 159 and token ".\\" resolved as reduce (".\\" < DOTPOWER).
     Conflict between rule 159 and token "\\." resolved as reduce ("\\." < DOTPOWER).
     Conflict between rule 159 and token ".\\." resolved as reduce (".\\." < DOTPOWER).
-    Conflict between rule 159 and token "** or ^" resolved as reduce (%left "** or ^").
-    Conflict between rule 159 and token ".^" resolved as reduce (%left ".^").
+    Conflict between rule 159 and token "** or ^" resolved as shift (%right "** or ^").
+    Conflict between rule 159 and token ".^" resolved as shift (%right ".^").
     Conflict between rule 159 and token "==" resolved as reduce ("==" < DOTPOWER).
     Conflict between rule 159 and token "<> or ~=" resolved as reduce ("<> or ~=" < DOTPOWER).
     Conflict between rule 159 and token "<" resolved as reduce ("<" < DOTPOWER).
@@ -20184,7 +20190,7 @@ State 311
   153          | variable . "** or ^" functionCall
   156          | variable . ".^" variable
   157          | variable . ".^" functionCall
-  158          | functionCall ".^" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "+", "-", "*", ".*", ".*.", "*.", "/", "./", "/.", "./.", "\\", ".\\", "\\.", ".\\.", "** or ^", ".^", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
+  158          | functionCall ".^" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "+", "-", "*", ".*", ".*.", "*.", "/", "./", "/.", "./.", "\\", ".\\", "\\.", ".\\.", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
   160          | variable . "'"
   161          | variable . ".'"
   164 rightOperand: . "+" variable
@@ -20226,10 +20232,12 @@ State 311
   205         | variable . listableEnd
   221         | variable . "(" functionArgs ")"
 
-    "'"   shift, and go to state 158
-    "("   shift, and go to state 184
-    "."   shift, and go to state 185
-    ".'"  shift, and go to state 161
+    "'"        shift, and go to state 158
+    "("        shift, and go to state 184
+    "."        shift, and go to state 185
+    ".'"       shift, and go to state 161
+    "** or ^"  shift, and go to state 162
+    ".^"       shift, and go to state 163
 
     $default  reduce using rule 158 (operation)
 
@@ -20257,8 +20265,8 @@ State 311
     Conflict between rule 158 and token ".\\" resolved as reduce (".\\" < DOTPOWER).
     Conflict between rule 158 and token "\\." resolved as reduce ("\\." < DOTPOWER).
     Conflict between rule 158 and token ".\\." resolved as reduce (".\\." < DOTPOWER).
-    Conflict between rule 158 and token "** or ^" resolved as reduce (%left "** or ^").
-    Conflict between rule 158 and token ".^" resolved as reduce (%left ".^").
+    Conflict between rule 158 and token "** or ^" resolved as shift (%right "** or ^").
+    Conflict between rule 158 and token ".^" resolved as shift (%right ".^").
     Conflict between rule 158 and token "==" resolved as reduce ("==" < DOTPOWER).
     Conflict between rule 158 and token "<> or ~=" resolved as reduce ("<> or ~=" < DOTPOWER).
     Conflict between rule 158 and token "<" resolved as reduce ("<" < DOTPOWER).
@@ -23707,7 +23715,7 @@ State 354
   144                | . "<=" functionCall
   145                | . "<=" ":"
   147 operation: functionCall . rightOperand
-  153          | variable "** or ^" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "+", "-", "*", ".*", ".*.", "*.", "/", "./", "/.", "./.", "\\", ".\\", "\\.", ".\\.", "** or ^", ".^", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
+  153          | variable "** or ^" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "+", "-", "*", ".*", ".*.", "*.", "/", "./", "/.", "./.", "\\", ".\\", "\\.", ".\\.", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
   154          | functionCall . "** or ^" variable
   155          | functionCall . "** or ^" functionCall
   158          | functionCall . ".^" variable
@@ -23753,10 +23761,12 @@ State 354
   206         | functionCall . listableEnd
   222         | functionCall . "(" functionArgs ")"
 
-    "'"   shift, and go to state 122
-    "("   shift, and go to state 182
-    "."   shift, and go to state 183
-    ".'"  shift, and go to state 126
+    "'"        shift, and go to state 122
+    "("        shift, and go to state 182
+    "."        shift, and go to state 183
+    ".'"       shift, and go to state 126
+    "** or ^"  shift, and go to state 141
+    ".^"       shift, and go to state 142
 
     $default  reduce using rule 153 (operation)
 
@@ -23784,8 +23794,8 @@ State 354
     Conflict between rule 153 and token ".\\" resolved as reduce (".\\" < POWER).
     Conflict between rule 153 and token "\\." resolved as reduce ("\\." < POWER).
     Conflict between rule 153 and token ".\\." resolved as reduce (".\\." < POWER).
-    Conflict between rule 153 and token "** or ^" resolved as reduce (%left "** or ^").
-    Conflict between rule 153 and token ".^" resolved as reduce (%left ".^").
+    Conflict between rule 153 and token "** or ^" resolved as shift (%right "** or ^").
+    Conflict between rule 153 and token ".^" resolved as shift (%right ".^").
     Conflict between rule 153 and token "==" resolved as reduce ("==" < POWER).
     Conflict between rule 153 and token "<> or ~=" resolved as reduce ("<> or ~=" < POWER).
     Conflict between rule 153 and token "<" resolved as reduce ("<" < POWER).
@@ -23833,7 +23843,7 @@ State 355
   145                | . "<=" ":"
   146 operation: variable . rightOperand
   152          | variable . "** or ^" variable
-  152          | variable "** or ^" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "+", "-", "*", ".*", ".*.", "*.", "/", "./", "/.", "./.", "\\", ".\\", "\\.", ".\\.", "** or ^", ".^", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
+  152          | variable "** or ^" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "+", "-", "*", ".*", ".*.", "*.", "/", "./", "/.", "./.", "\\", ".\\", "\\.", ".\\.", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
   153          | variable . "** or ^" functionCall
   156          | variable . ".^" variable
   157          | variable . ".^" functionCall
@@ -23878,10 +23888,12 @@ State 355
   205         | variable . listableEnd
   221         | variable . "(" functionArgs ")"
 
-    "'"   shift, and go to state 158
-    "("   shift, and go to state 184
-    "."   shift, and go to state 185
-    ".'"  shift, and go to state 161
+    "'"        shift, and go to state 158
+    "("        shift, and go to state 184
+    "."        shift, and go to state 185
+    ".'"       shift, and go to state 161
+    "** or ^"  shift, and go to state 162
+    ".^"       shift, and go to state 163
 
     $default  reduce using rule 152 (operation)
 
@@ -23909,8 +23921,8 @@ State 355
     Conflict between rule 152 and token ".\\" resolved as reduce (".\\" < POWER).
     Conflict between rule 152 and token "\\." resolved as reduce ("\\." < POWER).
     Conflict between rule 152 and token ".\\." resolved as reduce (".\\." < POWER).
-    Conflict between rule 152 and token "** or ^" resolved as reduce (%left "** or ^").
-    Conflict between rule 152 and token ".^" resolved as reduce (%left ".^").
+    Conflict between rule 152 and token "** or ^" resolved as shift (%right "** or ^").
+    Conflict between rule 152 and token ".^" resolved as shift (%right ".^").
     Conflict between rule 152 and token "==" resolved as reduce ("==" < POWER).
     Conflict between rule 152 and token "<> or ~=" resolved as reduce ("<> or ~=" < POWER).
     Conflict between rule 152 and token "<" resolved as reduce ("<" < POWER).
@@ -23959,7 +23971,7 @@ State 356
   147 operation: functionCall . rightOperand
   154          | functionCall . "** or ^" variable
   155          | functionCall . "** or ^" functionCall
-  157          | variable ".^" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "+", "-", "*", ".*", ".*.", "*.", "/", "./", "/.", "./.", "\\", ".\\", "\\.", ".\\.", "** or ^", ".^", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
+  157          | variable ".^" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "+", "-", "*", ".*", ".*.", "*.", "/", "./", "/.", "./.", "\\", ".\\", "\\.", ".\\.", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
   158          | functionCall . ".^" variable
   159          | functionCall . ".^" functionCall
   162          | functionCall . "'"
@@ -24003,10 +24015,12 @@ State 356
   206         | functionCall . listableEnd
   222         | functionCall . "(" functionArgs ")"
 
-    "'"   shift, and go to state 122
-    "("   shift, and go to state 182
-    "."   shift, and go to state 183
-    ".'"  shift, and go to state 126
+    "'"        shift, and go to state 122
+    "("        shift, and go to state 182
+    "."        shift, and go to state 183
+    ".'"       shift, and go to state 126
+    "** or ^"  shift, and go to state 141
+    ".^"       shift, and go to state 142
 
     $default  reduce using rule 157 (operation)
 
@@ -24034,8 +24048,8 @@ State 356
     Conflict between rule 157 and token ".\\" resolved as reduce (".\\" < DOTPOWER).
     Conflict between rule 157 and token "\\." resolved as reduce ("\\." < DOTPOWER).
     Conflict between rule 157 and token ".\\." resolved as reduce (".\\." < DOTPOWER).
-    Conflict between rule 157 and token "** or ^" resolved as reduce (%left "** or ^").
-    Conflict between rule 157 and token ".^" resolved as reduce (%left ".^").
+    Conflict between rule 157 and token "** or ^" resolved as shift (%right "** or ^").
+    Conflict between rule 157 and token ".^" resolved as shift (%right ".^").
     Conflict between rule 157 and token "==" resolved as reduce ("==" < DOTPOWER).
     Conflict between rule 157 and token "<> or ~=" resolved as reduce ("<> or ~=" < DOTPOWER).
     Conflict between rule 157 and token "<" resolved as reduce ("<" < DOTPOWER).
@@ -24085,7 +24099,7 @@ State 357
   152          | variable . "** or ^" variable
   153          | variable . "** or ^" functionCall
   156          | variable . ".^" variable
-  156          | variable ".^" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "+", "-", "*", ".*", ".*.", "*.", "/", "./", "/.", "./.", "\\", ".\\", "\\.", ".\\.", "** or ^", ".^", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
+  156          | variable ".^" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "+", "-", "*", ".*", ".*.", "*.", "/", "./", "/.", "./.", "\\", ".\\", "\\.", ".\\.", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
   157          | variable . ".^" functionCall
   160          | variable . "'"
   161          | variable . ".'"
@@ -24128,10 +24142,12 @@ State 357
   205         | variable . listableEnd
   221         | variable . "(" functionArgs ")"
 
-    "'"   shift, and go to state 158
-    "("   shift, and go to state 184
-    "."   shift, and go to state 185
-    ".'"  shift, and go to state 161
+    "'"        shift, and go to state 158
+    "("        shift, and go to state 184
+    "."        shift, and go to state 185
+    ".'"       shift, and go to state 161
+    "** or ^"  shift, and go to state 162
+    ".^"       shift, and go to state 163
 
     $default  reduce using rule 156 (operation)
 
@@ -24159,8 +24175,8 @@ State 357
     Conflict between rule 156 and token ".\\" resolved as reduce (".\\" < DOTPOWER).
     Conflict between rule 156 and token "\\." resolved as reduce ("\\." < DOTPOWER).
     Conflict between rule 156 and token ".\\." resolved as reduce (".\\." < DOTPOWER).
-    Conflict between rule 156 and token "** or ^" resolved as reduce (%left "** or ^").
-    Conflict between rule 156 and token ".^" resolved as reduce (%left ".^").
+    Conflict between rule 156 and token "** or ^" resolved as shift (%right "** or ^").
+    Conflict between rule 156 and token ".^" resolved as shift (%right ".^").
     Conflict between rule 156 and token "==" resolved as reduce ("==" < DOTPOWER).
     Conflict between rule 156 and token "<> or ~=" resolved as reduce ("<> or ~=" < DOTPOWER).
     Conflict between rule 156 and token "<" resolved as reduce ("<" < DOTPOWER).
