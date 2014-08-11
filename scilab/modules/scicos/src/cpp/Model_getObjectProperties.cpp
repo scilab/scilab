@@ -142,6 +142,9 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, int
         model::Port* o = static_cast<model::Port*>(getObject(uid));
         switch (p)
         {
+            case PORT_KIND:
+                o->getKind(v);
+                return true;
             default:
                 break;
         }
@@ -220,6 +223,9 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
         model::Block* o = static_cast<model::Block*>(getObject(uid));
         switch (p)
         {
+            case INTERFACE_FUNCTION:
+                o->getInterfaceFunction(v);
+                return true;
             case SIM_FUNCTION_NAME:
                 o->getSimFunctionName(v);
                 return true;
@@ -319,10 +325,10 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, Sci
                 v = o->getParentDiagram();
                 return true;
             case SOURCE_PORT:
-                v = o->getSourcePort();
+                o->getSourcePort(v);
                 return true;
             case DESTINATION_PORT:
-                v = o->getDestinationPort();
+                o->getDestinationPort(v);
                 return true;
             default:
                 break;

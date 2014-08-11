@@ -95,7 +95,7 @@ struct Angle
     bool flip;
     double theta;
 
-    Angle() : flip(0), theta(0) {};
+    Angle() : flip(true), theta(0) {};
     Angle(const Angle& a) : flip(a.flip), theta(a.theta) {};
     Angle(const std::vector<double>& a) : flip((a[0] == 0) ? false : true), theta(a[1]) {};
 
@@ -223,18 +223,25 @@ private:
         {
             return NO_CHANGES;
         }
+
         this->in = in;
         return SUCCESS;
     }
 
-    const std::string& getInterfaceFunction() const
+    void getInterfaceFunction(std::string& fun) const
     {
-        return interfaceFunction;
+        fun = interfaceFunction;
     }
 
-    void setInterfaceFunction(const std::string& interfaceFunction)
+    update_status_t setInterfaceFunction(const std::string& fun)
     {
+        if (fun == this->interfaceFunction)
+        {
+            return NO_CHANGES;
+        }
+
         this->interfaceFunction = interfaceFunction;
+        return SUCCESS;
     }
 
     void getOut(std::vector<ScicosID>& v) const
@@ -248,6 +255,7 @@ private:
         {
             return NO_CHANGES;
         }
+
         this->out = out;
         return SUCCESS;
     }
@@ -263,6 +271,7 @@ private:
         {
             return NO_CHANGES;
         }
+
         this->ein = ein;
         return SUCCESS;
     }
@@ -278,6 +287,7 @@ private:
         {
             return NO_CHANGES;
         }
+
         this->eout = eout;
         return SUCCESS;
     }

@@ -43,7 +43,7 @@ types::InternalType* get_ports_property(const Adaptor& adaptor, object_propertie
 
     // Translate identifiers: shared variables
     int i = 0;
-    size_t datatypeIndex = 0;
+    size_t datatypeIndex = -1;
     // Translate identifiers to return values
     switch (p)
     {
@@ -59,22 +59,22 @@ types::InternalType* get_ports_property(const Adaptor& adaptor, object_propertie
             }
             return o;
         }
-        case DATATYPE_ROWS:
-            datatypeIndex = 0;
+        case DATATYPE_TYPE:
+            datatypeIndex++;
             // no break
         case DATATYPE_COLS:
-            datatypeIndex = 1;
+            datatypeIndex++;
             // no break
-        case DATATYPE_TYPE:
+        case DATATYPE_ROWS:
         {
-            datatypeIndex = 2;
-
-            types::Double* o = new types::Double(ids.size(), 1);
+            datatypeIndex++;
+            double* data;
+            types::Double* o = new types::Double(ids.size(), 1, &data);
             for (std::vector<ScicosID>::iterator it = ids.begin(); it != ids.end(); ++it, ++i)
             {
                 std::vector<int> v;
                 controller.getObjectProperty(*it, PORT, DATATYPE, v);
-                o[i] = v[datatypeIndex];
+                data[i] = v[datatypeIndex];
             }
             return o;
         }
@@ -174,8 +174,8 @@ bool set_ports_property(const Adaptor& adaptor, object_properties_t port_kind, C
             }
             case IMPLICIT:
             {
-                static const wchar_t E[] = L"E";
-                static const wchar_t I[] = L"I";
+                static const std::wstring E = L"E";
+                static const std::wstring I = L"I";
 
                 for (std::vector<ScicosID>::iterator it = ids.begin(); it != ids.end(); ++it, ++i)
                 {
@@ -214,7 +214,7 @@ bool set_ports_property(const Adaptor& adaptor, object_properties_t port_kind, C
 
         // Translate identifiers: shared variables
         int i = 0;
-        size_t datatypeIndex = 0;
+        size_t datatypeIndex = -1;
         // Translate identifiers from values
         switch (p)
         {
@@ -231,15 +231,15 @@ bool set_ports_property(const Adaptor& adaptor, object_properties_t port_kind, C
                 // Do nothing, because if the sizes match, then there are already zero concerned ports, so no ports to update
                 return true;
 
-            case DATATYPE_ROWS:
-                datatypeIndex = 0;
+            case DATATYPE_TYPE:
+                datatypeIndex++;
                 // no break
             case DATATYPE_COLS:
-                datatypeIndex = 1;
+                datatypeIndex++;
                 // no break
-            case DATATYPE_TYPE:
+            case DATATYPE_ROWS:
             {
-                datatypeIndex = 2;
+                datatypeIndex++;
 
                 for (std::vector<ScicosID>::iterator it = ids.begin(); it != ids.end(); ++it, ++i)
                 {
@@ -323,7 +323,25 @@ void updateNewPort(ScicosID oldPort, int newPort, Controller& controller,
     else
     {
         // update the p property, using newPort as a value
-        controller.setObjectProperty(oldPort, PORT, p, newPort);
+        int datatypeIndex = -1;
+        switch (p)
+        {
+            case DATATYPE_TYPE:
+                datatypeIndex++;
+            case DATATYPE_COLS:
+                datatypeIndex++;
+            case DATATYPE_ROWS:
+            {
+                datatypeIndex++;
+                std::vector<int> datatype;
+                controller.getObjectProperty(oldPort, PORT, DATATYPE, datatype);
+                datatype[datatypeIndex] = newPort;
+                controller.setObjectProperty(oldPort, PORT, DATATYPE, datatype);
+                return;
+            }
+            default:
+                controller.setObjectProperty(oldPort, PORT, p, newPort);
+        }
     }
 }
 
@@ -343,27 +361,19 @@ bool addNewPort(ScicosID newPortID, int newPort, const std::vector<ScicosID>& ch
     else
     {
         // set the requested property, using newPort as a value
+        int datatypeIndex = -1;
         switch (p)
         {
+            case DATATYPE_TYPE:
+                datatypeIndex++;
+            case DATATYPE_COLS:
+                datatypeIndex++;
             case DATATYPE_ROWS:
             {
-                std::vector<int> datatype (3);
+                datatypeIndex++;
+                std::vector<int> datatype;
                 controller.getObjectProperty(newPortID, PORT, DATATYPE, datatype);
-                datatype[0] = newPort;
-                return controller.setObjectProperty(newPortID, PORT, DATATYPE, datatype);
-            }
-            case DATATYPE_COLS:
-            {
-                std::vector<int> datatype (3);
-                controller.getObjectProperty(newPortID, PORT, DATATYPE, datatype);
-                datatype[1] = newPort;
-                return controller.setObjectProperty(newPortID, PORT, DATATYPE, datatype);
-            }
-            case DATATYPE_TYPE:
-            {
-                std::vector<int> datatype (3);
-                controller.getObjectProperty(newPortID, PORT, DATATYPE, datatype);
-                datatype[2] = newPort;
+                datatype[datatypeIndex] = newPort;
                 return controller.setObjectProperty(newPortID, PORT, DATATYPE, datatype);
             }
             default:

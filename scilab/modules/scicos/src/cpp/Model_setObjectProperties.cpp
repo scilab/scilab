@@ -135,6 +135,8 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
         model::Port* o = static_cast<model::Port*>(getObject(uid));
         switch (p)
         {
+            case PORT_KIND:
+                return o->setKind(v);
             default:
                 break;
         }
@@ -231,6 +233,10 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
         model::Link* o = static_cast<model::Link*>(getObject(uid));
         switch (p)
         {
+            case SOURCE_PORT:
+                return o->setSourcePort(v);
+            case DESTINATION_PORT:
+                return o->setDestinationPort(v);
             default:
                 break;
         }
@@ -242,6 +248,8 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
         {
             case SOURCE_BLOCK:
                 return o->setSourceBlock(v);
+            case CONNECTED_SIGNALS:
+                return o->setConnectedSignals(std::vector<ScicosID> (1, v));
             default:
                 break;
         }
@@ -267,6 +275,8 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
         model::Block* o = static_cast<model::Block*>(getObject(uid));
         switch (p)
         {
+            case INTERFACE_FUNCTION:
+                return o->setInterfaceFunction(v);
             case SIM_FUNCTION_NAME:
                 return o->setSimFunctionName(v);
             case STYLE:
@@ -544,6 +554,8 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
         model::Port* o = static_cast<model::Port*>(getObject(uid));
         switch (p)
         {
+            case CONNECTED_SIGNALS:
+                return o->setConnectedSignals(v);
             default:
                 break;
         }

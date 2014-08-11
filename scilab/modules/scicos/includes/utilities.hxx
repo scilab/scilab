@@ -90,6 +90,8 @@ enum object_properties_t
     THICK,              //!< model::Link::thick value
     COLOR,              //!< model::Link::color value
     KIND,               //!< model::Link::kind value
+    FROM,               //!< model::Link::from value
+    TO,                 //!< model::Link::to value
     DATATYPE,           //!< model::Port::dataType value
     DATATYPE_ROWS,      //!< model::Port::dataType adapter helper
     DATATYPE_COLS,      //!< model::Port::dataType adapter helper
