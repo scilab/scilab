@@ -8,14 +8,18 @@ function jit_check(init, str)
     tic();
     execstr(str);
     t2 = toc();
+    
     printf("%f to %f -> %f\n", t2, t1, t2/t1);
 endfunction
 
 //just check jit
 a=1;jit("a=2");
 
+//scalar addition
+jit_check("a=0;i=0", "for i=1:1:1e7;a=a+1;end;");
+
 //small scalar computation
-jit_check("a=1;b=1;i=1", "for i=1:1:1e7;a=a+i*3+b;b=b-i*a;end;");
+jit_check("a=1;b=1;i=1", "for i=1:1:1e7;a=a+i*3+b;b=b+i*a;end;");
 
 //matrix computation
 jit_check("a=[1 2;3 4];b=[5 6;7 8];i=1;c=zeros(a);", "for i=1:1:1e7;a=a+b;end;");
