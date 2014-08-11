@@ -103,7 +103,7 @@ void JITVisitor::run()
         FPM.run(*it);
     }
 
-    dump();
+    //dump();
 
     engine->finalizeObject();
 

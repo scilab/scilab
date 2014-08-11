@@ -55,7 +55,9 @@ LLVM_INCLUDE="-I`${LLVM_CONFIG_BIN} --includedir`"
 LLVM_LDFLAGS="-L`${LLVM_CONFIG_BIN} --libdir`"
 LLVM_LIBS="-lLLVM-${LLVM_MAJOR}.${LLVM_MINOR}"
 LLVM_LIBS_STATIC="`${LLVM_CONFIG_BIN} --libfiles core mcjit native`"
-LLVM_CPPFLAGS="`${LLVM_CONFIG_BIN} --cppflags | sed 's/-I[[^ ]]*[[ ]]*//g'`"
+LLVM_CPPFLAGS="`${LLVM_CONFIG_BIN} --cppflags | sed 's/-I[[^ ]]*[[ ]]*//g' | sed 's/-DNDEBUG//g'`"
+
+
 
 AC_SUBST(LLVM_VERSION)
 AC_SUBST(LLVM_CONFIG_BIN)
