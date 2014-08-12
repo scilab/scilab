@@ -29,7 +29,6 @@ void fillAddFunction();
 
 //define arrays on operation functions
 typedef types::InternalType*(*add_function)(types::InternalType*, types::InternalType*);
-add_function getAddFunction(types::InternalType::ScilabId leftId, types::InternalType::ScilabId rightId);
 
 #define DECLARE_ADD_PROTO(x) template<class T, class U, class O> inline types::InternalType* x(T *_pL, U *_pR)
 //Double, int , bool

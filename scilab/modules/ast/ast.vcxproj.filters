@@ -610,6 +610,9 @@
     <ClInclude Include="includes\types\overload.hxx">
       <Filter>Header Files\types</Filter>
     </ClInclude>
+    <ClInclude Include="includes\operations\types_opposite.hxx">
+      <Filter>Header Files\operations</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\cpp\ast\debugvisitor.cpp">
@@ -875,6 +878,9 @@
     </ClCompile>
     <ClCompile Include="src\cpp\types\callable.cpp">
       <Filter>Source Files\types</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\operations\types_opposite.cpp">
+      <Filter>Source Files\operations</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

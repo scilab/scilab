@@ -36,6 +36,7 @@ libsciast_la_SOURCES = \
     src/cpp/operations/types_power.cpp \
     src/cpp/operations/types_divide.cpp \
     src/cpp/operations/types_substraction.cpp \
+    src/cpp/operations/types_opposite.cpp \
     src/c/operations/matrix_multiplication.c \
     src/c/operations/matrix_transpose.c \
     src/c/operations/matrix_kronecker.c \

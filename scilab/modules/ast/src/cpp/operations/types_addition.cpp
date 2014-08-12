@@ -35,12 +35,6 @@ using namespace types;
 //define arrays on operation functions
 static add_function pAddfunction[types::InternalType::IdLast][types::InternalType::IdLast] = {NULL};
 
-add_function getAddFunction(types::InternalType::ScilabId leftId, types::InternalType::ScilabId rightId)
-{
-    return pAddfunction[leftId][rightId];
-}
-
-
 void fillAddFunction()
 {
 #define scilab_fill_add(id1, id2, func, typeIn1, typeIn2, typeOut) \

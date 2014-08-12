@@ -339,6 +339,7 @@ lib /DEF:"$(ProjectDir)fileio_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClInclude Include="includes\operations\types_kronecker.hxx" />
     <ClInclude Include="includes\operations\types_ldivide.hxx" />
     <ClInclude Include="includes\operations\types_multiplication.hxx" />
+    <ClInclude Include="includes\operations\types_opposite.hxx" />
     <ClInclude Include="includes\operations\types_or_and.hxx" />
     <ClInclude Include="includes\operations\types_power.hxx" />
     <ClInclude Include="includes\operations\types_substraction.hxx" />
@@ -436,6 +437,7 @@ lib /DEF:"$(ProjectDir)fileio_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClCompile Include="src\cpp\operations\types_kronecker.cpp" />
     <ClCompile Include="src\cpp\operations\types_ldivide.cpp" />
     <ClCompile Include="src\cpp\operations\types_multiplication.cpp" />
+    <ClCompile Include="src\cpp\operations\types_opposite.cpp" />
     <ClCompile Include="src\cpp\operations\types_or_and.cpp" />
     <ClCompile Include="src\cpp\operations\types_power.cpp" />
     <ClCompile Include="src\cpp\operations\types_substraction.cpp" />

@@ -19,17 +19,28 @@
 #include "polynom.hxx"
 #include "sparse.hxx"
 
-// FIXME : remove using namespace
-using namespace types;
+void fillSubtractFunction();
+void fillOppositeFunction();
 
-int SubstractDoubleToDouble(Double* _pDouble1, Double* _pDouble2, Double **_pDoubleOut);
-int SubstractPolyToDouble(Double *_pDouble, Polynom *_pPoly, Polynom **_pPolyOut);
-int SubstractDoubleToPoly(Polynom *_pPoly, Double *_pDouble, Polynom **_pPolyOut);
-int SubstractPolyToPoly(Polynom *_pPoly1, Polynom *_pPoly2, Polynom **_pPolyOut);
+//define arrays on operation functions
+typedef types::InternalType*(*opposite_function)(types::InternalType*);
+
+
+#define DECLARE_OPPOSITE_PROTO(x) template<class T, class O> inline types::InternalType* x(T *_pL)
+DECLARE_OPPOSITE_PROTO(opposite_S);
+DECLARE_OPPOSITE_PROTO(opposite_M);
+
+
+typedef types::InternalType*(*subtract_function)(types::InternalType*, types::InternalType*);
+
+int SubstractDoubleToDouble(types::Double* _pDouble1, types::Double* _pDouble2, types::Double **_pDoubleOut);
+int SubstractPolyToDouble(types::Double *_pDouble, types::Polynom *_pPoly, types::Polynom **_pPolyOut);
+int SubstractDoubleToPoly(types::Polynom *_pPoly, types::Double *_pDouble, types::Polynom **_pPolyOut);
+int SubstractPolyToPoly(types::Polynom *_pPoly1, types::Polynom *_pPoly2, types::Polynom **_pPolyOut);
 
 //Sparse
-int SubstractSparseToSparse(Sparse* _pSparse1, Sparse* _pSparse2, GenericType **_pSparseOut);
-int SubstractSparseToDouble(Sparse* _pSparse, Double* _pDouble, GenericType **_pDoubleOut);
-int SubstractDoubleToSparse(Double* _pDouble, Sparse* _pSparse, GenericType **_pDoubleOut);
+int SubstractSparseToSparse(types::Sparse* _pSparse1, types::Sparse* _pSparse2, types::GenericType **_pSparseOut);
+int SubstractSparseToDouble(types::Sparse* _pSparse, types::Double* _pDouble, types::GenericType **_pDoubleOut);
+int SubstractDoubleToSparse(types::Double* _pDouble, types::Sparse* _pSparse, types::GenericType **_pDoubleOut);
 
 #endif /* __TYPES_SUB_H__ */
