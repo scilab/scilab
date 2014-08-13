@@ -553,9 +553,6 @@
     <ClInclude Include="includes\operations\matrix_right_division.h">
       <Filter>Header Files\operations</Filter>
     </ClInclude>
-    <ClInclude Include="includes\operations\matrix_substraction.h">
-      <Filter>Header Files\operations</Filter>
-    </ClInclude>
     <ClInclude Include="includes\operations\matrix_transpose.h">
       <Filter>Header Files\operations</Filter>
     </ClInclude>
@@ -601,9 +598,6 @@
     <ClInclude Include="includes\operations\types_power.hxx">
       <Filter>Header Files\operations</Filter>
     </ClInclude>
-    <ClInclude Include="includes\operations\types_substraction.hxx">
-      <Filter>Header Files\operations</Filter>
-    </ClInclude>
     <ClInclude Include="includes\operations\types_transposition.hxx">
       <Filter>Header Files\operations</Filter>
     </ClInclude>
@@ -611,6 +605,12 @@
       <Filter>Header Files\types</Filter>
     </ClInclude>
     <ClInclude Include="includes\operations\types_opposite.hxx">
+      <Filter>Header Files\operations</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\operations\types_subtraction.hxx">
+      <Filter>Header Files\operations</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\operations\matrix_subtraction.h">
       <Filter>Header Files\operations</Filter>
     </ClInclude>
   </ItemGroup>
@@ -837,9 +837,6 @@
     <ClCompile Include="src\cpp\operations\types_power.cpp">
       <Filter>Source Files\operations</Filter>
     </ClCompile>
-    <ClCompile Include="src\cpp\operations\types_substraction.cpp">
-      <Filter>Source Files\operations</Filter>
-    </ClCompile>
     <ClCompile Include="src\c\operations\doublecomplex.c">
       <Filter>Source Files\operations</Filter>
     </ClCompile>
@@ -864,9 +861,6 @@
     <ClCompile Include="src\c\operations\matrix_power.c">
       <Filter>Source Files\operations</Filter>
     </ClCompile>
-    <ClCompile Include="src\c\operations\matrix_substraction.c">
-      <Filter>Source Files\operations</Filter>
-    </ClCompile>
     <ClCompile Include="src\c\operations\matrix_transpose.c">
       <Filter>Source Files\operations</Filter>
     </ClCompile>
@@ -880,6 +874,12 @@
       <Filter>Source Files\types</Filter>
     </ClCompile>
     <ClCompile Include="src\cpp\operations\types_opposite.cpp">
+      <Filter>Source Files\operations</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\operations\types_subtraction.cpp">
+      <Filter>Source Files\operations</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\operations\matrix_subtraction.c">
       <Filter>Source Files\operations</Filter>
     </ClCompile>
   </ItemGroup>

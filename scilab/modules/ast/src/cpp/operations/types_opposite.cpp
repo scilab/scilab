@@ -15,6 +15,7 @@
 #include "polynom.hxx"
 #include "int.hxx"
 #include "sparse.hxx"
+#include "bool.hxx"
 #include "generic_operations.hxx"
 
 using namespace types;
@@ -35,6 +36,7 @@ void fillOppositeFunction()
     //Scalar
     scilab_fill_opposite(ScalarDouble, S, Double, Double);
     scilab_fill_opposite(ScalarDoubleComplex, SC, Double, Double);
+    scilab_fill_opposite(ScalarBool, S, Bool, Bool);
     scilab_fill_opposite(ScalarInt8, S, Int8, Int8);
     scilab_fill_opposite(ScalarUInt8, S, UInt8, UInt8);
     scilab_fill_opposite(ScalarInt16, S, Int16, Int16);
@@ -49,6 +51,7 @@ void fillOppositeFunction()
     //Matrix
     scilab_fill_opposite(Double, M, Double, Double);
     scilab_fill_opposite(DoubleComplex, MC, Double, Double);
+    scilab_fill_opposite(Bool, M, Bool, Bool);
     scilab_fill_opposite(Int8, M, Int8, Int8);
     scilab_fill_opposite(UInt8, M, UInt8, UInt8);
     scilab_fill_opposite(Int16, M, Int16, Int16);
@@ -155,6 +158,23 @@ types::InternalType* opposite_MC(T *_pL)
     int iSize = pOut->getSize();
 
     opposite(_pL->get(), _pL->getImg(), iSize, pOut->get(), pOut->getImg());
+    return pOut;
+}
+
+//Boolean
+template<>
+types::InternalType* opposite_M<types::Bool, types::Double>(types::Bool* _pL)
+{
+    Double* pOut = new Double(_pL->getDims(), _pL->getDimsArray());
+    int iSize = _pL->getSize();
+
+    int* pI = _pL->get();
+    double* pD = pOut->get();
+    for (int i = 0 ; i < iSize ; ++i)
+    {
+        pD[i] = pI[i] == 0 ? 1 : 0;
+    }
+
     return pOut;
 }
 

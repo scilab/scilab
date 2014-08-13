@@ -325,7 +325,7 @@ lib /DEF:"$(ProjectDir)fileio_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClInclude Include="includes\operations\matrix_multiplication.h" />
     <ClInclude Include="includes\operations\matrix_power.h" />
     <ClInclude Include="includes\operations\matrix_right_division.h" />
-    <ClInclude Include="includes\operations\matrix_substraction.h" />
+    <ClInclude Include="includes\operations\matrix_subtraction.h" />
     <ClInclude Include="includes\operations\matrix_transpose.h" />
     <ClInclude Include="includes\operations\operations.hxx" />
     <ClInclude Include="includes\operations\operations_tools.h" />
@@ -342,7 +342,7 @@ lib /DEF:"$(ProjectDir)fileio_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClInclude Include="includes\operations\types_opposite.hxx" />
     <ClInclude Include="includes\operations\types_or_and.hxx" />
     <ClInclude Include="includes\operations\types_power.hxx" />
-    <ClInclude Include="includes\operations\types_substraction.hxx" />
+    <ClInclude Include="includes\operations\types_subtraction.hxx" />
     <ClInclude Include="includes\operations\types_transposition.hxx" />
     <ClInclude Include="includes\parse\isatty.hxx" />
     <ClInclude Include="includes\parse\parse.hxx" />
@@ -440,7 +440,7 @@ lib /DEF:"$(ProjectDir)fileio_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClCompile Include="src\cpp\operations\types_opposite.cpp" />
     <ClCompile Include="src\cpp\operations\types_or_and.cpp" />
     <ClCompile Include="src\cpp\operations\types_power.cpp" />
-    <ClCompile Include="src\cpp\operations\types_substraction.cpp" />
+    <ClCompile Include="src\cpp\operations\types_subtraction.cpp" />
     <ClCompile Include="src\cpp\parse\parser.cpp" />
     <ClCompile Include="src\cpp\parse\parsescilab.cpp" />
     <ClCompile Include="src\cpp\parse\printerror.cpp" />
@@ -504,7 +504,7 @@ lib /DEF:"$(ProjectDir)fileio_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClCompile Include="src\c\operations\matrix_kronecker.c" />
     <ClCompile Include="src\c\operations\matrix_multiplication.c" />
     <ClCompile Include="src\c\operations\matrix_power.c" />
-    <ClCompile Include="src\c\operations\matrix_substraction.c" />
+    <ClCompile Include="src\c\operations\matrix_subtraction.c" />
     <ClCompile Include="src\c\operations\matrix_transpose.c" />
     <ClCompile Include="src\c\operations\operations_tools.c" />
   </ItemGroup>

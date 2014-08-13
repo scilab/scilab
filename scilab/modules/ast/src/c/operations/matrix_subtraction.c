@@ -11,7 +11,7 @@
 */
 
 #include "core_math.h"
-#include "matrix_substraction.h"
+#include "matrix_subtraction.h"
 #include "operations_tools.h"
 #include "string.h"
 

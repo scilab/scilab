@@ -35,13 +35,13 @@ libsciast_la_SOURCES = \
     src/cpp/operations/types_comparison_ne.cpp \
     src/cpp/operations/types_power.cpp \
     src/cpp/operations/types_divide.cpp \
-    src/cpp/operations/types_substraction.cpp \
+    src/cpp/operations/types_subtraction.cpp \
     src/cpp/operations/types_opposite.cpp \
     src/c/operations/matrix_multiplication.c \
     src/c/operations/matrix_transpose.c \
     src/c/operations/matrix_kronecker.c \
     src/c/operations/operations_tools.c \
-    src/c/operations/matrix_substraction.c \
+    src/c/operations/matrix_subtraction.c \
     src/c/operations/invert_matrix.c \
     src/c/operations/matrix_power.c \
     src/c/operations/matrix_division.c \
@@ -150,7 +150,7 @@ libsciast_la_etc_DATA = \
 libsciast_scilab_la_includedir=$(pkgincludedir)
 libsciast_scilab_la_include_HEADERS = \
 includes/operations/matrix_power.h \
-includes/operations/types_substraction.hxx \
+includes/operations/types_subtraction.hxx \
 includes/operations/types_addition.hxx \
 includes/operations/types_kronecker.hxx \
 includes/operations/generic_operations.hxx \
@@ -158,7 +158,7 @@ includes/operations/types_divide.hxx \
 includes/operations/types_finite.hxx \
 includes/operations/types_transposition.hxx \
 includes/operations/matrix_addition.h \
-includes/operations/matrix_substraction.h \
+includes/operations/matrix_subtraction.h \
 includes/operations/doublecomplex.h \
 includes/operations/types_comparison_eq.hxx \
 includes/operations/matrix_transpose.h \

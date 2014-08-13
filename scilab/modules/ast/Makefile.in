@@ -178,13 +178,13 @@ am__libsciast_la_SOURCES_DIST = src/cpp/ast/runvisitor.cpp \
 	src/cpp/operations/types_comparison_ne.cpp \
 	src/cpp/operations/types_power.cpp \
 	src/cpp/operations/types_divide.cpp \
-	src/cpp/operations/types_substraction.cpp \
+	src/cpp/operations/types_subtraction.cpp \
 	src/cpp/operations/types_opposite.cpp \
 	src/c/operations/matrix_multiplication.c \
 	src/c/operations/matrix_transpose.c \
 	src/c/operations/matrix_kronecker.c \
 	src/c/operations/operations_tools.c \
-	src/c/operations/matrix_substraction.c \
+	src/c/operations/matrix_subtraction.c \
 	src/c/operations/invert_matrix.c \
 	src/c/operations/matrix_power.c \
 	src/c/operations/matrix_division.c \
@@ -249,13 +249,13 @@ am_libsciast_la_OBJECTS = src/cpp/ast/libsciast_la-runvisitor.lo \
 	src/cpp/operations/libsciast_la-types_comparison_ne.lo \
 	src/cpp/operations/libsciast_la-types_power.lo \
 	src/cpp/operations/libsciast_la-types_divide.lo \
-	src/cpp/operations/libsciast_la-types_substraction.lo \
+	src/cpp/operations/libsciast_la-types_subtraction.lo \
 	src/cpp/operations/libsciast_la-types_opposite.lo \
 	src/c/operations/libsciast_la-matrix_multiplication.lo \
 	src/c/operations/libsciast_la-matrix_transpose.lo \
 	src/c/operations/libsciast_la-matrix_kronecker.lo \
 	src/c/operations/libsciast_la-operations_tools.lo \
-	src/c/operations/libsciast_la-matrix_substraction.lo \
+	src/c/operations/libsciast_la-matrix_subtraction.lo \
 	src/c/operations/libsciast_la-invert_matrix.lo \
 	src/c/operations/libsciast_la-matrix_power.lo \
 	src/c/operations/libsciast_la-matrix_division.lo \
@@ -706,13 +706,13 @@ libsciast_la_SOURCES = src/cpp/ast/runvisitor.cpp \
 	src/cpp/operations/types_comparison_ne.cpp \
 	src/cpp/operations/types_power.cpp \
 	src/cpp/operations/types_divide.cpp \
-	src/cpp/operations/types_substraction.cpp \
+	src/cpp/operations/types_subtraction.cpp \
 	src/cpp/operations/types_opposite.cpp \
 	src/c/operations/matrix_multiplication.c \
 	src/c/operations/matrix_transpose.c \
 	src/c/operations/matrix_kronecker.c \
 	src/c/operations/operations_tools.c \
-	src/c/operations/matrix_substraction.c \
+	src/c/operations/matrix_subtraction.c \
 	src/c/operations/invert_matrix.c \
 	src/c/operations/matrix_power.c \
 	src/c/operations/matrix_division.c \
@@ -793,7 +793,7 @@ libsciast_la_etc_DATA = \
 libsciast_scilab_la_includedir = $(pkgincludedir)
 libsciast_scilab_la_include_HEADERS = \
 includes/operations/matrix_power.h \
-includes/operations/types_substraction.hxx \
+includes/operations/types_subtraction.hxx \
 includes/operations/types_addition.hxx \
 includes/operations/types_kronecker.hxx \
 includes/operations/generic_operations.hxx \
@@ -801,7 +801,7 @@ includes/operations/types_divide.hxx \
 includes/operations/types_finite.hxx \
 includes/operations/types_transposition.hxx \
 includes/operations/matrix_addition.h \
-includes/operations/matrix_substraction.h \
+includes/operations/matrix_subtraction.h \
 includes/operations/doublecomplex.h \
 includes/operations/types_comparison_eq.hxx \
 includes/operations/matrix_transpose.h \
@@ -1189,7 +1189,7 @@ src/cpp/operations/libsciast_la-types_power.lo:  \
 src/cpp/operations/libsciast_la-types_divide.lo:  \
 	src/cpp/operations/$(am__dirstamp) \
 	src/cpp/operations/$(DEPDIR)/$(am__dirstamp)
-src/cpp/operations/libsciast_la-types_substraction.lo:  \
+src/cpp/operations/libsciast_la-types_subtraction.lo:  \
 	src/cpp/operations/$(am__dirstamp) \
 	src/cpp/operations/$(DEPDIR)/$(am__dirstamp)
 src/cpp/operations/libsciast_la-types_opposite.lo:  \
@@ -1213,7 +1213,7 @@ src/c/operations/libsciast_la-matrix_kronecker.lo:  \
 src/c/operations/libsciast_la-operations_tools.lo:  \
 	src/c/operations/$(am__dirstamp) \
 	src/c/operations/$(DEPDIR)/$(am__dirstamp)
-src/c/operations/libsciast_la-matrix_substraction.lo:  \
+src/c/operations/libsciast_la-matrix_subtraction.lo:  \
 	src/c/operations/$(am__dirstamp) \
 	src/c/operations/$(DEPDIR)/$(am__dirstamp)
 src/c/operations/libsciast_la-invert_matrix.lo:  \
@@ -1432,7 +1432,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/operations/$(DEPDIR)/libsciast_la-matrix_kronecker.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/operations/$(DEPDIR)/libsciast_la-matrix_multiplication.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/operations/$(DEPDIR)/libsciast_la-matrix_power.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/c/operations/$(DEPDIR)/libsciast_la-matrix_substraction.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/operations/$(DEPDIR)/libsciast_la-matrix_subtraction.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/operations/$(DEPDIR)/libsciast_la-matrix_transpose.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/operations/$(DEPDIR)/libsciast_la-operations_tools.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/ast/$(DEPDIR)/libsciast_la-debugvisitor.Plo@am__quote@
@@ -1457,7 +1457,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/operations/$(DEPDIR)/libsciast_la-types_opposite.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/operations/$(DEPDIR)/libsciast_la-types_or_and.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/operations/$(DEPDIR)/libsciast_la-types_power.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/operations/$(DEPDIR)/libsciast_la-types_substraction.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/operations/$(DEPDIR)/libsciast_la-types_subtraction.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/parse/$(DEPDIR)/libsciast_la-parser.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/parse/$(DEPDIR)/libsciast_la-parsescilab.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/parse/$(DEPDIR)/libsciast_la-printerror.Plo@am__quote@
@@ -1566,12 +1566,12 @@ src/c/operations/libsciast_la-operations_tools.lo: src/c/operations/operations_t
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/operations/libsciast_la-operations_tools.lo `test -f 'src/c/operations/operations_tools.c' || echo '$(srcdir)/'`src/c/operations/operations_tools.c
 
-src/c/operations/libsciast_la-matrix_substraction.lo: src/c/operations/matrix_substraction.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/operations/libsciast_la-matrix_substraction.lo -MD -MP -MF src/c/operations/$(DEPDIR)/libsciast_la-matrix_substraction.Tpo -c -o src/c/operations/libsciast_la-matrix_substraction.lo `test -f 'src/c/operations/matrix_substraction.c' || echo '$(srcdir)/'`src/c/operations/matrix_substraction.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/operations/$(DEPDIR)/libsciast_la-matrix_substraction.Tpo src/c/operations/$(DEPDIR)/libsciast_la-matrix_substraction.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/operations/matrix_substraction.c' object='src/c/operations/libsciast_la-matrix_substraction.lo' libtool=yes @AMDEPBACKSLASH@
+src/c/operations/libsciast_la-matrix_subtraction.lo: src/c/operations/matrix_subtraction.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/operations/libsciast_la-matrix_subtraction.lo -MD -MP -MF src/c/operations/$(DEPDIR)/libsciast_la-matrix_subtraction.Tpo -c -o src/c/operations/libsciast_la-matrix_subtraction.lo `test -f 'src/c/operations/matrix_subtraction.c' || echo '$(srcdir)/'`src/c/operations/matrix_subtraction.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/operations/$(DEPDIR)/libsciast_la-matrix_subtraction.Tpo src/c/operations/$(DEPDIR)/libsciast_la-matrix_subtraction.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/operations/matrix_subtraction.c' object='src/c/operations/libsciast_la-matrix_subtraction.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/operations/libsciast_la-matrix_substraction.lo `test -f 'src/c/operations/matrix_substraction.c' || echo '$(srcdir)/'`src/c/operations/matrix_substraction.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/operations/libsciast_la-matrix_subtraction.lo `test -f 'src/c/operations/matrix_subtraction.c' || echo '$(srcdir)/'`src/c/operations/matrix_subtraction.c
 
 src/c/operations/libsciast_la-invert_matrix.lo: src/c/operations/invert_matrix.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/operations/libsciast_la-invert_matrix.lo -MD -MP -MF src/c/operations/$(DEPDIR)/libsciast_la-invert_matrix.Tpo -c -o src/c/operations/libsciast_la-invert_matrix.lo `test -f 'src/c/operations/invert_matrix.c' || echo '$(srcdir)/'`src/c/operations/invert_matrix.c
@@ -1786,12 +1786,12 @@ src/cpp/operations/libsciast_la-types_divide.lo: src/cpp/operations/types_divide
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/operations/libsciast_la-types_divide.lo `test -f 'src/cpp/operations/types_divide.cpp' || echo '$(srcdir)/'`src/cpp/operations/types_divide.cpp
 
-src/cpp/operations/libsciast_la-types_substraction.lo: src/cpp/operations/types_substraction.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/operations/libsciast_la-types_substraction.lo -MD -MP -MF src/cpp/operations/$(DEPDIR)/libsciast_la-types_substraction.Tpo -c -o src/cpp/operations/libsciast_la-types_substraction.lo `test -f 'src/cpp/operations/types_substraction.cpp' || echo '$(srcdir)/'`src/cpp/operations/types_substraction.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/operations/$(DEPDIR)/libsciast_la-types_substraction.Tpo src/cpp/operations/$(DEPDIR)/libsciast_la-types_substraction.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/operations/types_substraction.cpp' object='src/cpp/operations/libsciast_la-types_substraction.lo' libtool=yes @AMDEPBACKSLASH@
+src/cpp/operations/libsciast_la-types_subtraction.lo: src/cpp/operations/types_subtraction.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/operations/libsciast_la-types_subtraction.lo -MD -MP -MF src/cpp/operations/$(DEPDIR)/libsciast_la-types_subtraction.Tpo -c -o src/cpp/operations/libsciast_la-types_subtraction.lo `test -f 'src/cpp/operations/types_subtraction.cpp' || echo '$(srcdir)/'`src/cpp/operations/types_subtraction.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/operations/$(DEPDIR)/libsciast_la-types_subtraction.Tpo src/cpp/operations/$(DEPDIR)/libsciast_la-types_subtraction.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/operations/types_subtraction.cpp' object='src/cpp/operations/libsciast_la-types_subtraction.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/operations/libsciast_la-types_substraction.lo `test -f 'src/cpp/operations/types_substraction.cpp' || echo '$(srcdir)/'`src/cpp/operations/types_substraction.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/operations/libsciast_la-types_subtraction.lo `test -f 'src/cpp/operations/types_subtraction.cpp' || echo '$(srcdir)/'`src/cpp/operations/types_subtraction.cpp
 
 src/cpp/operations/libsciast_la-types_opposite.lo: src/cpp/operations/types_opposite.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/operations/libsciast_la-types_opposite.lo -MD -MP -MF src/cpp/operations/$(DEPDIR)/libsciast_la-types_opposite.Tpo -c -o src/cpp/operations/libsciast_la-types_opposite.lo `test -f 'src/cpp/operations/types_opposite.cpp' || echo '$(srcdir)/'`src/cpp/operations/types_opposite.cpp

@@ -16,6 +16,8 @@
 #include "internal.hxx"
 #include "sparse.hxx"
 #include "polynom.hxx"
+#include "bool.hxx"
+#include "double.hxx"
 
 void fillOppositeFunction();
 
@@ -32,6 +34,9 @@ DECLARE_OPPOSITE_PROTO(opposite_M);
 DECLARE_OPPOSITE_PROTO(opposite_MC);
 
 #undef DECLARE_OPPOSITE_PROTO
+
+//do not inline it
+template<> types::InternalType* opposite_M<types::Bool, types::Double>(types::Bool* _pL);
 
 template<> inline types::InternalType* opposite_M<types::Sparse, types::Sparse>(types::Sparse* _pL);
 template<> inline types::InternalType* opposite_MC<types::Sparse, types::Sparse>(types::Sparse* _pL);
