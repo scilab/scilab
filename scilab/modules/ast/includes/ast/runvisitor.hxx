@@ -537,7 +537,8 @@ public :
 
             try
             {
-                if (Overload::call(L"%" + pIT->getAs<TList>()->getShortTypeStr() + L"_p", in, 1, out, this) != Function::OK)
+                if (Overload::generateNameAndCall(L"p", in, 1, out, this) != Function::OK)
+                    //if (Overload::call(L"%" + pIT->getAs<TList>()->getShortTypeStr() + L"_p", in, 1, out, this) != Function::OK)
                 {
                     throw ScilabError();
                 }

@@ -25,7 +25,7 @@ public:
      ** depending on input parameters
      ** and maybe on number of result expected <further implementation>
      */
-    static std::wstring buildOverloadName(std::wstring _stFunctionName, types::typed_list &in, int _iRetCount, bool _isOperator = false);
+    static std::wstring buildOverloadName(std::wstring _stFunctionName, types::typed_list &in, int _iRetCount, bool _isOperator = false, bool _truncated = false);
 
     /**
      */
