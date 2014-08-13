@@ -59,6 +59,7 @@ void* get_constraints_property(void* _pvCtx, int iObjUID)
             char * variable_tlist[] = {"NoLayoutConstraint"};
             returnedList * tList = createReturnedList(0, variable_tlist);
             destroyReturnedList(tList);
+            return tList;
         }
         break;
         case LAYOUT_GRID :
@@ -66,6 +67,7 @@ void* get_constraints_property(void* _pvCtx, int iObjUID)
             char * variable_tlist[] = {"GridConstraints"};
             returnedList * tList = createReturnedList(0, variable_tlist);
             destroyReturnedList(tList);
+            return tList;
         }
         break;
         case LAYOUT_BORDER :
@@ -120,6 +122,7 @@ void* get_constraints_property(void* _pvCtx, int iObjUID)
             addRowVectorToReturnedList(tList, pdblPreferredSize, 2);
 
             destroyReturnedList(tList);
+            return tList;
         }
         break;
         case LAYOUT_GRIDBAG :
@@ -140,6 +143,7 @@ void* get_constraints_property(void* _pvCtx, int iObjUID)
 
             double pdblPreferredSize[2];
             int* piPreferredSize = NULL;
+
 
             getGraphicObjectProperty(iObjUID, __GO_UI_GRIDBAG_GRID__, jni_int_vector, (void **)&piGrid);
             if (piGrid == NULL)
@@ -250,6 +254,8 @@ void* get_constraints_property(void* _pvCtx, int iObjUID)
             addRowVectorToReturnedList(tList, pdblPadding, 2);
             addRowVectorToReturnedList(tList, pdblPreferredSize, 2);
             destroyReturnedList(tList);
+
+            return tList;
         }
         break;
     }
