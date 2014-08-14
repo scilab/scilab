@@ -11,6 +11,7 @@
 
 #include "function.hxx"
 #include "gatewaystruct.hxx"
+#include "alltypes.hxx"
 
 extern "C"
 {
@@ -38,6 +39,7 @@ int getOptionals(void* _pvCtx, char* pstFuncName, rhs_opts opts[])
     types::optional_list opt = *pStr->m_pOpt;
     for (int i = 0 ; i < opt.size() ; i++)
     {
+        int typeOfOpt = -1;
         char* pstOpts = wide_string_to_UTF8(opt[i].first.c_str());
         int index = findOptional(_pvCtx, pstOpts, opts);
         FREE(pstOpts);
@@ -51,11 +53,25 @@ int getOptionals(void* _pvCtx, char* pstFuncName, rhs_opts opts[])
 
         opts[index].iPos = i + 1;
         GenericType* pGT = (GenericType*)opt[i].second;
+        typeOfOpt = pGT->getType();
+        opts[index].iType = typeOfOpt;
 
-        opts[index].iRows = pGT->getRows();
-        opts[index].iCols = pGT->getCols();
-        getVarType(_pvCtx, (int*)pGT, &opts[index].iType);
-        opts[index].piAddr = (int*)pGT;
+        if (typeOfOpt == GenericType::ScilabImplicitList)
+        {
+            InternalType* pIT = NULL;
+            ImplicitList* pIL = pGT->getAs<ImplicitList>();
+            pIT = pIL->extractFullMatrix();
+            Double* impResult = (Double*)pIT;
+            opts[index].iRows = impResult->getRows();
+            opts[index].iCols = impResult->getCols();
+            opts[index].piAddr = (int*)impResult;
+        }
+        else
+        {
+            opts[index].iRows = pGT->getRows();
+            opts[index].iCols = pGT->getCols();
+            opts[index].piAddr = (int*)pGT;
+        }
     }
     //   int index = -1;
     //GatewayStruct* pStr = (GatewayStruct*)_pvCtx;
