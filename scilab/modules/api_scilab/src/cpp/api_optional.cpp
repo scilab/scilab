@@ -108,12 +108,12 @@ int NumOpt(void* _pvCtx)
 int FindOpt(void* _pvCtx, char* pstProperty, rhs_opts opts[])
 {
     int i = findOptional(_pvCtx, pstProperty, opts);
-    if (i > 0 && opts[i].iPos > 0)
+    if (i >= 0 && opts[i].iPos > 0)
     {
         return i;
     }
 
-    return 0;
+    return -1;
 }
 
 static int findOptional(void* _pvCtx, char *pstProperty, rhs_opts opts[])
