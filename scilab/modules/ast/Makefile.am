@@ -332,7 +332,7 @@ LFLAGS = --noline --nounistd -o $(FLEX_SCANSCILAB_CXX)
 FLEX_SCANSCILAB_LL	= src/cpp/parse/flex/scanscilab.ll
 FLEX_SCANSCILAB_CXX	= src/cpp/parse/scanscilab.cpp
 
-BISON_FLAGS = --no-lines -dvy -ra
+BISON_FLAGS = --no-lines -dvy -ra -Werror=conflicts-sr -Werror=conflicts-rr
 BISON_PARSESCILAB_YY	= src/cpp/parse/bison/parsescilab.yy
 BISON_PARSESCILAB_OUTPUT= src/cpp/parse/bison/parsescilab.output
 BISON_PARSESCILAB_HXX	= includes/parse/parsescilab.hxx
