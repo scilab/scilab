@@ -11,6 +11,7 @@ p = funcprot();
 funcprot(0);
 mlist = scicos_new;
 tlist = scicos_new;
+setfield = scicos_setfield;
 funcprot(p);
 
 // sub-objects not mapped to the model
@@ -29,6 +30,27 @@ o = scicos_block()
 // allocate a Link
 o = scicos_link()
 
-// allocate a Link
-o = scicos_diagram()
+// allocate a Diagram
+scs_m = scicos_diagram()
+
+// allocate a specific block
+blk = BIGSOM_f("define");
+
+// manipulate a field
+model = blk.model;
+model.in = [1 1 1 1]';
+blk.model = model;
+
+// add a block to a diagram
+scs_m.objs(1) = blk;
+
+// add another block to a diagram (have to perform a copy)
+scs_m.objs($+1) = blk;
+
+// add a link to connect blocks
+scs_m.objs($+1) = scicos_link();
+lnk = scs_m.objs($);
+lnk.from = [1 1 0]
+lnk.to = [2 1 1]
+scs_m.objs($+1) = lnk;
 

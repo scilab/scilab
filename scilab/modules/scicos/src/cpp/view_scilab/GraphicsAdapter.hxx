@@ -6,17 +6,14 @@
  *  This source file is licensed as described in the file COPYING, which
  *  you should have received as part of this distribution.  The terms
  *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
 #ifndef GRAPHICSADAPTER_HXX_
 #define GRAPHICSADAPTER_HXX_
 
-#include <sstream>
 #include <string>
-#include <vector>
-#include <utility>
 
 #include "BaseAdapter.hxx"
 #include "model/Block.hxx"
@@ -38,12 +35,16 @@ public:
         return L"graphics";
     }
 
-    bool toString(std::wostringstream& ostr);
     std::wstring getTypeStr();
     std::wstring getShortTypeStr();
+
+    types::InternalType* getGrIContent() const;
+    void setGrIContent(types::InternalType* v);
+private:
+    types::InternalType* gr_i_content;
 };
 
-} /* view_scilab */
+} /* namespace view_scilab */
 } /* namespace org_scilab_modules_scicos */
 
 #endif /* GRAPHICSADAPTER_HXX_ */

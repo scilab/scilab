@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function x=%s_pow(a,p)
     //   g_pow - A^p special cases
@@ -20,7 +20,6 @@ function x=%s_pow(a,p)
     // - A scalar and p square matrix
     // - A square matrix p is not an integer
     //!
-
     [m,n]=size(a)
     [mp,np]=size(p)
     if m*n==1&mp==np then  //a^P
@@ -37,7 +36,7 @@ function x=%s_pow(a,p)
         else
             [s,u,bs]=bdiag(p+0*%i);
             if max(bs)>1 then
-                error(msprintf(_("%s: unable to diagonalize!"),"%s_pow"));
+                error(msprintf(_("%s: Unable to diagonalize.\n"),"%s_pow"));
             end
             w=diag(s);
             x=u*diag(a.^diag(s))*inv(u);
@@ -60,11 +59,13 @@ function x=%s_pow(a,p)
             r=and(imag(a)==0)
             [s,u,bs]=bdiag(a+0*%i);
             if max(bs)>1 then
-                error(msprintf(_("%s: unable to diagonalize!"),"%s_pow"));
+                error(msprintf(_("%s: Unable to diagonalize.\n"),"%s_pow"));
             end
             x=u*diag(diag(s).^p)*inv(u);
         end
-        if int(p)==p&r then x=real(x),end
+        if int(p)==p & real(p)==p & r then
+            x=real(x);
+        end
     else
         error(43)
     end

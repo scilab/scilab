@@ -555,7 +555,7 @@ void ConfigVariable::deleteThread(__threadKey _key)
             (*it)->DecreaseRef();
             if ((*it)->isDeletable())
             {
-                delete (*it);
+                (*it)->killMe();
                 (*it) = NULL;
                 m_threadList.erase(it);
                 return;

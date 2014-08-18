@@ -62,6 +62,9 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                 Exp* pR = &pAssign->right_exp_get();
                 pR->accept(*this);
                 InternalType* pITR = result_get();
+                // IncreaseRef to protect opt argument of scope_end delete
+                // It will be deleted by clear_opt
+                pITR->IncreaseRef();
 
                 if (pIT->hasInvokeOption())
                 {
@@ -75,7 +78,6 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                 }
                 else
                 {
-                    pITR->IncreaseRef();
                     in.push_back(pITR);
                 }
 
@@ -235,10 +237,7 @@ void RunVisitorT<T>::visitprivate(const CellCallExp &e)
             //clean pArgs return by GetArgumentList
             for (int iArg = 0 ; iArg < (int)pArgs->size() ; iArg++)
             {
-                if ((*pArgs)[iArg]->isDeletable())
-                {
-                    delete (*pArgs)[iArg];
-                }
+                (*pArgs)[iArg]->killMe();
             }
             delete pArgs;
         }

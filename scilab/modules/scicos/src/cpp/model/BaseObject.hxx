@@ -6,7 +6,7 @@
  *  This source file is licensed as described in the file COPYING, which
  *  you should have received as part of this distribution.  The terms
  *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -109,15 +109,27 @@ struct Geometry
 struct Datatype
 {
 public:
-    Datatype(unsigned int datatype, unsigned int r, unsigned c) :
-        datatype_id(datatype), rows(r), collumns(c)
+    Datatype(const std::vector<int>& v) :
+        refCount(0), datatype_id(v[0]), rows(v[1]), columns(v[2])
     {
     }
 
-    const unsigned int datatype_id;
-    const unsigned int rows;
-    const unsigned int collumns;
+    // reference counter for the flyweight pattern
+    size_t refCount;
 
+    const int datatype_id;
+    const int rows;
+    const int columns;
+
+    bool operator==(const Datatype& d) const
+    {
+        return datatype_id == d.datatype_id && rows == d.rows && columns == d.columns;
+    }
+
+    bool operator<(const Datatype& d) const
+    {
+        return datatype_id < d.datatype_id && rows < d.rows && columns < d.columns;
+    }
 };
 
 /** @}*/

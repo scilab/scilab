@@ -125,35 +125,36 @@ types::Function::ReturnValue sci_coeff(types::typed_list &in, int _iRetCount, ty
     else if (in[0]->isPoly())
     {
         pPolyIn = in[0]->getAs<types::Polynom>();
+        int iPolySize = pPolyIn->getSize();
 
         if (in.size() == 1)
         {
-            pDblOut = new types::Double(pPolyIn->getRows(), pPolyIn->getCols() * pPolyIn->getMaxRank(), pPolyIn->isComplex());
+            pDblOut = new types::Double(pPolyIn->getRows(), pPolyIn->getCols() * (pPolyIn->getMaxRank() + 1), pPolyIn->isComplex());
             double* pdblOut = pDblOut->get();
             memset(pdblOut, 0x00, pDblOut->getSize() * sizeof(double));
             if (pPolyIn->isComplex())
             {
                 double* pdblOutI = pDblOut->getImg();
                 memset(pdblOutI, 0x00, pDblOut->getSize() * sizeof(double));
-                for (int i = 0; i < pPolyIn->getSize(); i++)
+                for (int i = 0; i < iPolySize; i++)
                 {
-                    double* pdblcoeffR = pPolyIn->get(i)->getCoefReal();
-                    double* pdblcoeffI = pPolyIn->get(i)->getCoefImg();
-                    for (int j = 0; j < pPolyIn->get(i)->getRank(); j++)
+                    double* pdblcoeffR = pPolyIn->get(i)->get();
+                    double* pdblcoeffI = pPolyIn->get(i)->getImg();
+                    for (int j = 0; j < pPolyIn->get(i)->getSize(); j++)
                     {
-                        pdblOut[j * pPolyIn->getSize() + i] = pdblcoeffR[j];
-                        pdblOutI[j * pPolyIn->getSize() + i] = pdblcoeffI[j];
+                        pdblOut[j * iPolySize + i] = pdblcoeffR[j];
+                        pdblOutI[j * iPolySize + i] = pdblcoeffI[j];
                     }
                 }
             }
             else
             {
-                for (int i = 0; i < pPolyIn->getSize(); i++)
+                for (int i = 0; i < iPolySize; i++)
                 {
-                    double* pdblcoeff = pPolyIn->get(i)->getCoefReal();
-                    for (int j = 0; j < pPolyIn->get(i)->getRank(); j++)
+                    double* pdblcoeff = pPolyIn->get(i)->get();
+                    for (int j = 0; j < pPolyIn->get(i)->getSize(); j++)
                     {
-                        pdblOut[j * pPolyIn->getSize() + i] = pdblcoeff[j];
+                        pdblOut[j * iPolySize + i] = pdblcoeff[j];
                     }
                 }
             }
@@ -167,41 +168,41 @@ types::Function::ReturnValue sci_coeff(types::typed_list &in, int _iRetCount, ty
             {
                 double* pdblOutI = pDblOut->getImg();
                 memset(pdblOutI, 0x00, pDblOut->getSize() * sizeof(double));
-                for (int i = 0; i < pPolyIn->getSize(); i++)
+                for (int i = 0; i < iPolySize; i++)
                 {
-                    double* pdblcoeffR = pPolyIn->get(i)->getCoefReal();
-                    double* pdblcoeffI = pPolyIn->get(i)->getCoefImg();
+                    double* pdblcoeffR = pPolyIn->get(i)->get();
+                    double* pdblcoeffI = pPolyIn->get(i)->getImg();
                     for (int j = 0; j < iVSize; j++)
                     {
                         int iCoeffPos = (int)pdblV[j];
                         if (iCoeffPos > pPolyIn->get(i)->getRank())
                         {
-                            pdblOut[j * pPolyIn->getSize() + i] = 0;
-                            pdblOutI[j * pPolyIn->getSize() + i] = 0;
+                            pdblOut[j * iPolySize + i] = 0;
+                            pdblOutI[j * iPolySize + i] = 0;
                         }
                         else
                         {
-                            pdblOut[j * pPolyIn->getSize() + i] = pdblcoeffR[iCoeffPos];
-                            pdblOutI[j * pPolyIn->getSize() + i] = pdblcoeffI[iCoeffPos];
+                            pdblOut[j * iPolySize + i] = pdblcoeffR[iCoeffPos];
+                            pdblOutI[j * iPolySize + i] = pdblcoeffI[iCoeffPos];
                         }
                     }
                 }
             }
             else
             {
-                for (int i = 0; i < pPolyIn->getSize(); i++)
+                for (int i = 0; i < iPolySize; i++)
                 {
-                    double* pdblcoeff = pPolyIn->get(i)->getCoefReal();
+                    double* pdblcoeff = pPolyIn->get(i)->get();
                     for (int j = 0; j < iVSize; j++)
                     {
                         int iCoeffPos = (int)pdblV[j];
                         if (iCoeffPos > pPolyIn->get(i)->getRank())
                         {
-                            pdblOut[j * pPolyIn->getSize() + i] = 0;
+                            pdblOut[j * iPolySize + i] = 0;
                         }
                         else
                         {
-                            pdblOut[j * pPolyIn->getSize() + i] = pdblcoeff[iCoeffPos];
+                            pdblOut[j * iPolySize + i] = pdblcoeff[iCoeffPos];
                         }
                     }
                 }

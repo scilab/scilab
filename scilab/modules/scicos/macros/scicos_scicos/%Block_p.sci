@@ -20,12 +20,17 @@
 //
 
 function %Block_p(block)
-    txt=["GUI     : "+block.gui
-    "Graphics: "
-    "          "+graphics2txt(block.graphics)
-    "Model   : "
-    "          "+model2txt(block.model)]
-    write(%io(2),txt,"(a)")
+    mprintf("GUI     : " + block.gui + "\n")
+    mprintf("Graphics: \n")
+    txt = graphics2txt(block.graphics);
+    for i = 1:size(txt, 'r')
+        mprintf("          %s\n", txt(i))
+    end
+    mprintf("Model   : " + "\n")
+    txt = model2txt(block.model);
+    for i = 1:size(txt, 'r')
+        mprintf("          %s\n", txt(i))
+    end
 endfunction
 
 function txt=graphics2txt(graphics)

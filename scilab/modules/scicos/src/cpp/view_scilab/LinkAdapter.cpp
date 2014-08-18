@@ -6,7 +6,7 @@
  *  This source file is licensed as described in the file COPYING, which
  *  you should have received as part of this distribution.  The terms
  *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -24,6 +24,10 @@ namespace org_scilab_modules_scicos
 {
 namespace view_scilab
 {
+namespace
+{
+
+} /* namespace */
 
 template<> property<LinkAdapter>::props_t property<LinkAdapter>::fields = property<LinkAdapter>::props_t();
 
@@ -43,12 +47,6 @@ LinkAdapter::~LinkAdapter()
 {
 }
 
-bool LinkAdapter::toString(std::wostringstream& ostr)
-{
-    ostr << L"LinkAdapter.hxx: Dunno what to display there";
-    return true;
-}
-
 std::wstring LinkAdapter::getTypeStr()
 {
     return getSharedTypeStr();
@@ -58,5 +56,5 @@ std::wstring LinkAdapter::getShortTypeStr()
     return getSharedTypeStr();
 }
 
-} /* view_scilab */
+} /* namespace view_scilab */
 } /* namespace org_scilab_modules_scicos */

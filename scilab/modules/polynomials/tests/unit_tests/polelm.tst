@@ -9,69 +9,69 @@
 
 //poly (coeff)
 
-v=[1 2 3];nam='s';job='c';p=1+2*%s+3*%s^2;
-if poly(v,'s','c')<>p then pause,end
-if poly(v+0,'s','c')<>p then pause,end
-if poly(v,nam,'c')<>p then pause,end
-if poly(v+0,nam,'c')<>p then pause,end
-if poly(v,'s',job)<>p then pause,end
-if poly(v+0,'s',job)<>p then pause,end
+v=[1 2 3];nam="s";job="c";p=1+2*%s+3*%s^2;
+if poly(v,"s","c")<>p then pause,end
+if poly(v+0,"s","c")<>p then pause,end
+if poly(v,nam,"c")<>p then pause,end
+if poly(v+0,nam,"c")<>p then pause,end
+if poly(v,"s",job)<>p then pause,end
+if poly(v+0,"s",job)<>p then pause,end
 if poly(v,nam,job)<>p then pause,end
 if poly(v+0,nam,job)<>p then pause,end
 v=[1+%i 2 3];p=1+%i+2*%s+3*%s^2;
-if poly(v,'s','c')<>p then pause,end
-if poly(v+0,'s','c')<>p then pause,end
-if poly(v,nam,'c')<>p then pause,end
-if poly(v+0,nam,'c')<>p then pause,end
-if poly(v,'s',job)<>p then pause,end
-if poly(v+0,'s',job)<>p then pause,end
+if poly(v,"s","c")<>p then pause,end
+if poly(v+0,"s","c")<>p then pause,end
+if poly(v,nam,"c")<>p then pause,end
+if poly(v+0,nam,"c")<>p then pause,end
+if poly(v,"s",job)<>p then pause,end
+if poly(v+0,"s",job)<>p then pause,end
 if poly(v,nam,job)<>p then pause,end
 if poly(v+0,nam,job)<>p then pause,end
 
 //poly (roots)
-v=[1 2 3];nam='s';job='r';p=-6+11*%s-6*%s^2+%s^3;
-if poly(v,'s','r')<>p then pause,end
-if poly(v+0,'s','r')<>p then pause,end
-if poly(v,nam,'r')<>p then pause,end
-if poly(v+0,nam,'r')<>p then pause,end
-if poly(v,'s',job)<>p then pause,end
-if poly(v+0,'s',job)<>p then pause,end
+v=[1 2 3];nam="s";job="r";p=-6+11*%s-6*%s^2+%s^3;
+if poly(v,"s","r")<>p then pause,end
+if poly(v+0,"s","r")<>p then pause,end
+if poly(v,nam,"r")<>p then pause,end
+if poly(v+0,nam,"r")<>p then pause,end
+if poly(v,"s",job)<>p then pause,end
+if poly(v+0,"s",job)<>p then pause,end
 if poly(v,nam,job)<>p then pause,end
 if poly(v+0,nam,job)<>p then pause,end
 v=[1+%i 2 3];p=-6-%i*6+(11+%i*5)*%s+(-6-%i)*%s^2+%s^3;
-if poly(v,'s','r')<>p then pause,end
-if poly(v+0,'s','r')<>p then pause,end
-if poly(v,nam,'r')<>p then pause,end
-if poly(v+0,nam,'r')<>p then pause,end
-if poly(v,'s',job)<>p then pause,end
-if poly(v+0,'s',job)<>p then pause,end
+if poly(v,"s","r")<>p then pause,end
+if poly(v+0,"s","r")<>p then pause,end
+if poly(v,nam,"r")<>p then pause,end
+if poly(v+0,nam,"r")<>p then pause,end
+if poly(v,"s",job)<>p then pause,end
+if poly(v+0,"s",job)<>p then pause,end
 if poly(v,nam,job)<>p then pause,end
 if poly(v+0,nam,job)<>p then pause,end
 
-v=[];p=poly(1,'s','c');
-if poly(v,'s','r')<>p then pause,end
-if poly([],'s','r')<>p then pause,end
-if poly(v,nam,'r')<>p then pause,end
-if poly([],nam,'r')<>p then pause,end
-if poly(v,'s',job)<>p then pause,end
-if poly([],'s',job)<>p then pause,end
+v=[];p=poly(1,"s","c");
+if poly(v,"s","r")<>p then pause,end
+if poly([],"s","r")<>p then pause,end
+if poly(v,nam,"r")<>p then pause,end
+if poly([],nam,"r")<>p then pause,end
+if poly(v,"s",job)<>p then pause,end
+if poly([],"s",job)<>p then pause,end
 if poly(v,nam,job)<>p then pause,end
 if poly([],nam,job)<>p then pause,end
 
 //poly (caracteristic)
-nam='s';a=[1 2;3 4];p=-2-5*%s+%s^2;
-if norm(coeff(poly(a,'s')-p))>100*%eps then pause,end
-if norm(coeff(poly(a+0,'s')-p))>100*%eps then pause,end
+nam="s";a=[1 2;3 4];p=-2-5*%s+%s^2;
+if norm(coeff(poly(a,"s")-p))>100*%eps then pause,end
+if norm(coeff(poly(a+0,"s")-p))>100*%eps then pause,end
 if norm(coeff(poly(a,nam)-p))>100*%eps then pause,end
 if norm(coeff(poly(a+0,nam)-p))>100*%eps then pause,end
 a=[1+%i 2;3 4];p=-2+%i*4+(-5-%i)*%s+%s^2 ;
-if norm(coeff(poly(a,'s')-p))>100*%eps then pause,end
-if norm(coeff(poly(a+0,'s')-p))>100*%eps then pause,end
+if norm(coeff(poly(a,"s")-p))>100*%eps then pause,end
+if norm(coeff(poly(a+0,"s")-p))>100*%eps then pause,end
 if norm(coeff(poly(a,nam)-p))>100*%eps then pause,end
 if norm(coeff(poly(a+0,nam)-p))>100*%eps then pause,end
-a=[];p=poly(1,'s','c');
-if poly(a,'s')<>p then pause,end
-if poly([],'s')<>p then pause,end
+a=[];p=poly(1,"s","c");
+if poly(a,"s")<>p then pause,end
+if poly([],"s")<>p then pause,end
 if poly(a,nam)<>p then pause,end
 if poly([],nam)<>p then pause,end
 
@@ -149,13 +149,13 @@ if or(coeff(p+0,sel)<>c) then pause,end
 if or(coeff(p,[])<>c) then pause,end
 if or(coeff(p+0,[])<>c) then pause,end
 
-p=[],sel=0,c=[];
+p=[];sel=0;c=[];
 if or(coeff(p)<>c) then pause,end
 if or(coeff([])<>c) then pause,end
 if or(coeff(p,sel)<>c) then pause,end
 if or(coeff([],sel)<>c) then pause,end
 
-//sum 
+//sum
 a=[1+%s 2;-3 4;5 -6];
 if sum(a)<>3+%s then pause,end
 if sum(a+0)<>3+%s then pause,end
@@ -164,9 +164,9 @@ if or(sum(a+0,1)<>[3+%s 0]) then pause,end
 n=1;
 if or(sum(a,n)<>[3+%s 0]) then pause,end
 if or(sum(a+0,n)<>[3+%s 0]) then pause,end
-if or(sum(a,'r')<>[3+%s 0]) then pause,end
-if or(sum(a+0,'r')<>[3+%s 0]) then pause,end
-n='r';
+if or(sum(a,"r")<>[3+%s 0]) then pause,end
+if or(sum(a+0,"r")<>[3+%s 0]) then pause,end
+n="r";
 if or(sum(a,n)<>[3+%s 0]) then pause,end
 if or(sum(a+0,n)<>[3+%s 0]) then pause,end
 
@@ -175,9 +175,9 @@ if or(sum(a+0,2)<>[3+%s;1;-1]) then pause,end
 n=2;
 if or(sum(a,n)<>[3+%s;1;-1]) then pause,end
 if or(sum(a+0,n)<>[3+%s;1;-1]) then pause,end
-if or(sum(a,'c')<>[3+%s;1;-1]) then pause,end
-if or(sum(a+0,'c')<>[3+%s;1;-1]) then pause,end
-n='c';
+if or(sum(a,"c")<>[3+%s;1;-1]) then pause,end
+if or(sum(a+0,"c")<>[3+%s;1;-1]) then pause,end
+n="c";
 if or(sum(a,n)<>[3+%s;1;-1]) then pause,end
 if or(sum(a+0,n)<>[3+%s;1;-1]) then pause,end
 
@@ -189,9 +189,9 @@ if or(sum(a+0,1)<>[3+%s 0]+0*%i) then pause,end
 n=1;
 if or(sum(a,n)<>[3+%s 0]+0*%i) then pause,end
 if or(sum(a+0,n)<>[3+%s 0]+0*%i) then pause,end
-if or(sum(a,'r')<>[3+%s 0]+0*%i) then pause,end
-if or(sum(a+0,'r')<>[3+%s 0]+0*%i) then pause,end
-n='r';
+if or(sum(a,"r")<>[3+%s 0]+0*%i) then pause,end
+if or(sum(a+0,"r")<>[3+%s 0]+0*%i) then pause,end
+n="r";
 if or(sum(a,n)<>[3+%s 0]+0*%i) then pause,end
 if or(sum(a+0,n)<>[3+%s 0]+0*%i) then pause,end
 
@@ -200,9 +200,9 @@ if or(sum(a+0,2)<>[3+%s;1;-1]+0*%i) then pause,end
 n=2;
 if or(sum(a,n)<>[3+%s;1;-1]+0*%i) then pause,end
 if or(sum(a+0,n)<>[3+%s;1;-1]+0*%i) then pause,end
-if or(sum(a,'c')<>[3+%s;1;-1]+0*%i) then pause,end
-if or(sum(a+0,'c')<>[3+%s;1;-1]+0*%i) then pause,end
-n='c';
+if or(sum(a,"c")<>[3+%s;1;-1]+0*%i) then pause,end
+if or(sum(a+0,"c")<>[3+%s;1;-1]+0*%i) then pause,end
+n="c";
 if or(sum(a,n)<>[3+%s;1;-1]+0*%i) then pause,end
 if or(sum(a+0,n)<>[3+%s;1;-1]+0*%i) then pause,end
 
@@ -215,9 +215,9 @@ if or(prod(a+0,1)<>[-15-15*%s,-48]) then pause,end
 n=1;
 if or(prod(a,n)<>[-15-15*%s,-48]) then pause,end
 if or(prod(a+0,n)<>[-15-15*%s,-48]) then pause,end
-if or(prod(a,'r')<>[-15-15*%s,-48]) then pause,end
-if or(prod(a+0,'r')<>[-15-15*%s,-48]) then pause,end
-n='r';
+if or(prod(a,"r")<>[-15-15*%s,-48]) then pause,end
+if or(prod(a+0,"r")<>[-15-15*%s,-48]) then pause,end
+n="r";
 if or(prod(a,n)<>[-15-15*%s,-48]) then pause,end
 if or(prod(a+0,n)<>[-15-15*%s,-48]) then pause,end
 
@@ -226,9 +226,9 @@ if or(prod(a+0,2)<>[2+2*%s;-12;-30]) then pause,end
 n=2;
 if or(prod(a,n)<>[2+2*%s;-12;-30]) then pause,end
 if or(prod(a+0,n)<>[2+2*%s;-12;-30]) then pause,end
-if or(prod(a,'c')<>[2+2*%s;-12;-30]) then pause,end
-if or(prod(a+0,'c')<>[2+2*%s;-12;-30]) then pause,end
-n='c';
+if or(prod(a,"c")<>[2+2*%s;-12;-30]) then pause,end
+if or(prod(a+0,"c")<>[2+2*%s;-12;-30]) then pause,end
+n="c";
 if or(prod(a,n)<>[2+2*%s;-12;-30]) then pause,end
 if or(prod(a+0,n)<>[2+2*%s;-12;-30]) then pause,end
 
@@ -240,9 +240,9 @@ if or(prod(a+0,1)<>[-15-15*%s,-48]+0*%i) then pause,end
 n=1;
 if or(prod(a,n)<>[-15-15*%s,-48]+0*%i) then pause,end
 if or(prod(a+0,n)<>[-15-15*%s,-48]+0*%i) then pause,end
-if or(prod(a,'r')<>[-15-15*%s,-48]+0*%i) then pause,end
-if or(prod(a+0,'r')<>[-15-15*%s,-48]+0*%i) then pause,end
-n='r';
+if or(prod(a,"r")<>[-15-15*%s,-48]+0*%i) then pause,end
+if or(prod(a+0,"r")<>[-15-15*%s,-48]+0*%i) then pause,end
+n="r";
 if or(prod(a,n)<>[-15-15*%s,-48]+0*%i) then pause,end
 if or(prod(a+0,n)<>[-15-15*%s,-48]+0*%i) then pause,end
 
@@ -251,9 +251,9 @@ if or(prod(a+0,2)<>[2+2*%s;-12;-30]+0*%i) then pause,end
 n=2;
 if or(prod(a,n)<>[2+2*%s;-12;-30]+0*%i) then pause,end
 if or(prod(a+0,n)<>[2+2*%s;-12;-30]+0*%i) then pause,end
-if or(prod(a,'c')<>[2+2*%s;-12;-30]+0*%i) then pause,end
-if or(prod(a+0,'c')<>[2+2*%s;-12;-30]+0*%i) then pause,end
-n='c';
+if or(prod(a,"c")<>[2+2*%s;-12;-30]+0*%i) then pause,end
+if or(prod(a+0,"c")<>[2+2*%s;-12;-30]+0*%i) then pause,end
+n="c";
 if or(prod(a,n)<>[2+2*%s;-12;-30]+0*%i) then pause,end
 if or(prod(a+0,n)<>[2+2*%s;-12;-30]+0*%i) then pause,end
 
@@ -265,7 +265,7 @@ if or(diag(a)<>[1+%s 0 0;0 2 0;0 0 3]) then pause,end
 if or(diag([1+%s %i 2])<>[1+%s 0 0;0 %i 0;0 0 2]) then pause,end
 a=[1+%s %i 2 ];
 if or(diag(a)<>[1+%s 0 0;0 %i 0;0 0 2]) then pause,end
-a=[1+%s 2 3 4;5 6 7 8];un=poly(1,'s','c');
+a=[1+%s 2 3 4;5 6 7 8];un=poly(1,"s","c");
 if or(diag(a)<>[1+%s;6]) then pause,end
 if or(diag(a+0)<>[1+%s;6]) then pause,end
 if or(diag(a,1)<>[2*un;7]) then pause,end
@@ -283,7 +283,7 @@ if or(diag(a+0,-1)<>[5*un]) then pause,end
 if diag(a,4)<>[] then pause,end
 
 //triu
-a=[1+%s 2 3 4;5 6 7 8];un=poly(1,'s','c');
+a=[1+%s 2 3 4;5 6 7 8];un=poly(1,"s","c");
 if or(triu(a)<>[1+%s 2 3 4;0 6 7 8]) then pause,end
 if or(triu(a+0)<>[1+%s 2 3 4;0 6 7 8]) then pause,end
 if or(triu(a,1)<>[0 2*un 3 4;0 0 7 8]) then pause,end
@@ -320,13 +320,13 @@ if or(tril(a,-3)<>0*a) then pause,end
 
 
 //simp_mode
-a=%t
+a=%t;
 simp_mode(%t);
 if simp_mode()<>%t then pause,end
 simp_mode(a);
 if simp_mode()<>%t then pause,end
-[n,d]=simp(%s,%s);if n<>poly(1,'s','c')|d<>poly(1,'s','c') then pause,end
-a=%f
+[n,d]=simp(%s,%s);if n<>poly(1,"s","c")|d<>poly(1,"s","c") then pause,end
+a=%f;
 simp_mode(%f);
 if simp_mode()<>%f then pause,end
 simp_mode(a);
@@ -335,18 +335,19 @@ if simp_mode()<>%f then pause,end
 
 //varn
 a=1+%s;
-if varn(a)<>'s' then pause,end
-if varn(a+0)<>'s' then pause,end
-if varn(a,'z')<>1+%z then pause,end
-if varn(a+0,'z')<>1+%z then pause,end
-nam='z';
+if varn(a)<>"s" then pause,end
+if varn(a+0)<>"s" then pause,end
+if varn(a,"z")<>1+%z then pause,end
+if varn(a+0,"z")<>1+%z then pause,end
+nam="z";
 if varn(a,nam)<>1+%z then pause,end
 if varn(a+0,nam)<>1+%z then pause,end
 a=[];
 if varn(a,nam)<>[] then pause,end
 if varn([],nam)<>[] then pause,end
 //clean
-a=[1 1.d-12 1.d-5 2d8+%s];un=poly(1,'s','c')
+a=[1 1.d-12 1.d-5 2d8+%s];
+un=poly(1,"s","c");
 b=[1 0 1.d-5 2d8+%s];
 if or(clean(a)<>b) then pause,end
 if or(clean(a+0)<>b) then pause,end
@@ -374,7 +375,7 @@ if or(clean(a,epsa)<>b) then pause,end
 if or(clean(a+0,epsa)<>b) then pause,end
 if or(clean(a,epsa+0)<>b) then pause,end
 if or(clean(a+0,epsa+0)<>b) then pause,end
-epsr=1.d-5;b=[1+%i 0 1.d-5 poly([2d8,0],'s','c')];
+epsr=1.d-5;b=[1+%i 0 1.d-5 2d8*un];
 if or(clean(a,epsa,epsr)<>b) then pause,end
 if or(clean(a+0,epsa,epsr)<>b) then pause,end
 if or(clean(a,epsa+0,epsr)<>b) then pause,end
@@ -390,7 +391,7 @@ p=[];
 [n,d]=simp(p,p);if n<>[]|p<>[] then pause,end
 [n,d]=simp([],[]);if n<>[]|p<>[] then pause,end
 
-un=poly(1,'s','c');p=%s;
+un=poly(1,"s","c");p=%s;
 [n,d]=simp(p,p);if n<>un|d<>un then pause,end
 [n,d]=simp(p+0,p);if n<>un|d<>un then pause,end
 [n,d]=simp(p,p+0);if n<>un|d<>un then pause,end
@@ -407,7 +408,7 @@ un=1;
 [n,d]=simp(1,p+0);if n<>un|d<>p then pause,end
 
 
-p=1+%s^10;un=poly(1,'s','c')
+p=1+%s^10;un=poly(1,"s","c");
 
 [n,d]=simp(p,p);if n<>un|d<>un then pause,end
 [n,d]=simp(p+0,p);if n<>un|d<>un then pause,end
@@ -424,8 +425,8 @@ un=1;
 [n,d]=simp(un,p+0);if n<>un|d<>p then pause,end
 [n,d]=simp(1,p+0);if n<>un|d<>p then pause,end
 
-un=poly(1,'s','c');p=%s;
-h=rlist(p,p,[]);un=rlist(poly(1,'s','c'),poly(1,'s','c'),[]);
+un=poly(1,"s","c");p=%s;
+h=rlist(p,p,[]);un=rlist(poly(1,"s","c"),poly(1,"s","c"),[]);
 
 if simp(h)<>un then pause,end
 if simp(rlist(p,p,[]))<>un then pause,end
@@ -439,7 +440,7 @@ if simp(h)<>h then pause,end
 if simp(rlist(1,p,[]))<>h then pause,end
 
 p=1+%s^10;
-h=rlist(p,p,[]);un=rlist(poly(1,'s','c'),poly(1,'s','c'),[]);
+h=rlist(p,p,[]);un=rlist(poly(1,"s","c"),poly(1,"s","c"),[]);
 
 if simp(h)<>un then pause,end
 if simp(rlist(p,p,[]))<>un then pause,end
@@ -568,6 +569,6 @@ w=sfact(p+0);if norm(coeff(w*numer(horner(w,1/%s))-p))>10*%eps  then pause,end
 
 
 F1=[%z-1/2,%z+1/2,%z^2+2;1,%z,-%z;%z^3+2*%z,%z,1/2-%z];
-P=F1*gtild(F1,'d');
-F=sfact(P);if norm(coeff(P-F*gtild(F,'d')))>100*%eps  then pause,end
-F=sfact(P+0);if norm(coeff(P-F*gtild(F,'d')))>100*%eps  then pause,end
+P=F1*gtild(F1,"d");
+F=sfact(P);if norm(coeff(P-F*gtild(F,"d")))>100*%eps  then pause,end
+F=sfact(P+0);if norm(coeff(P-F*gtild(F,"d")))>100*%eps  then pause,end

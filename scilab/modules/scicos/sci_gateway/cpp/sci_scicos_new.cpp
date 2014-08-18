@@ -6,12 +6,11 @@
  *  This source file is licensed as described in the file COPYING, which
  *  you should have received as part of this distribution.  The terms
  *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
 #include <string>
-#include <algorithm>
 
 #include "gw_scicos.hxx"
 
@@ -53,15 +52,15 @@ static const std::string funame = "scicos_new";
 template<class Adaptor, class Adaptee>
 Adaptor* alloc_and_set(kind_t k, types::String* type_name, types::typed_list &in)
 {
-    Controller* controller = Controller::get_instance();
-    ScicosID o = controller->createObject(k);
-    Adaptor* adaptor = new Adaptor(static_cast<Adaptee*>(controller->getObject(o)));
+    Controller controller = Controller();
+    ScicosID o = controller.createObject(k);
+    Adaptor* adaptor = new Adaptor(static_cast<Adaptee*>(controller.getObject(o)));
 
     // the first header entry is the type
-    for (int i = 1; i < in.size(); i++)
+    for (size_t i = 1; i < in.size(); i++)
     {
         std::wstring name = type_name->get(i);
-        if (!adaptor->setProperty(name, in[i]))
+        if (!adaptor->setProperty(name, in[i], controller))
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: unable to set \"%ls\".\n"), funame.data(), i, name.data());
             delete adaptor;
@@ -99,7 +98,7 @@ types::Function::ReturnValue sci_scicos_new(types::typed_list &in, int _iRetCoun
         return types::Function::Error;
     }
 
-    if (type_name->getCols() != in.size())
+    if (type_name->getCols() != (int) in.size())
     {
         Scierror(999, _("%s: Wrong number of input argument: %d expected.\n"), funame.data(), type_name->getCols());
         return types::Function::Error;

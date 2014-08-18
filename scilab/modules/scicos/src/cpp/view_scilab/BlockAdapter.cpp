@@ -6,7 +6,7 @@
  *  This source file is licensed as described in the file COPYING, which
  *  you should have received as part of this distribution.  The terms
  *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -33,16 +33,17 @@ namespace org_scilab_modules_scicos
 {
 namespace view_scilab
 {
+namespace
+{
 
 struct graphics
 {
-
-    static types::InternalType* get(const BlockAdapter& adaptor)
+    static types::InternalType* get(const BlockAdapter& adaptor, const Controller& controller)
     {
         return new GraphicsAdapter(adaptor.getAdaptee());
     }
 
-    static bool set(BlockAdapter& adaptor, types::InternalType* v)
+    static bool set(BlockAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
         if (v->getType() == types::InternalType::ScilabUserType
                 && v->getShortTypeStr() == GraphicsAdapter::getSharedTypeStr())
@@ -57,13 +58,12 @@ struct graphics
 
 struct model
 {
-
-    static types::InternalType* get(const BlockAdapter& adaptor)
+    static types::InternalType* get(const BlockAdapter& adaptor, const Controller& controller)
     {
         return new ModelAdapter(adaptor.getAdaptee());
     }
 
-    static bool set(BlockAdapter& adaptor, types::InternalType* v)
+    static bool set(BlockAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
         if (v->getType() == types::InternalType::ScilabUserType
                 && v->getShortTypeStr() == ModelAdapter::getSharedTypeStr())
@@ -78,17 +78,16 @@ struct model
 
 struct gui
 {
-
-    static types::InternalType* get(const BlockAdapter& adaptor)
+    static types::InternalType* get(const BlockAdapter& adaptor, const Controller& controller)
     {
         std::string interface;
         org_scilab_modules_scicos::model::Block* adaptee = adaptor.getAdaptee();
-        Controller::get_instance()->getObjectProperty(adaptee->id(), adaptee->kind(), INTERFACE_FUNCTION, interface);
+        controller.getObjectProperty(adaptee->id(), adaptee->kind(), INTERFACE_FUNCTION, interface);
 
         return new types::String(interface.data());
     }
 
-    static bool set(BlockAdapter& adaptor, types::InternalType* v)
+    static bool set(BlockAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
         if (v->getType() != types::InternalType::ScilabString)
         {
@@ -107,25 +106,26 @@ struct gui
         FREE(name);
 
         org_scilab_modules_scicos::model::Block* adaptee = adaptor.getAdaptee();
-        Controller::get_instance()->setObjectProperty(adaptee->id(), adaptee->kind(), INTERFACE_FUNCTION, stName);
+        controller.setObjectProperty(adaptee->id(), adaptee->kind(), INTERFACE_FUNCTION, stName);
         return true;
     }
 };
 
 struct doc
 {
-
-    static types::InternalType* get(const BlockAdapter& adaptor)
+    static types::InternalType* get(const BlockAdapter& adaptor, const Controller& controller)
     {
         return adaptor.getDocContent();
     }
 
-    static bool set(BlockAdapter& adaptor, types::InternalType* v)
+    static bool set(BlockAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
         adaptor.setDocContent(v->clone());
         return true;
     }
 };
+
+} /* namespace */
 
 template<> property<BlockAdapter>::props_t property<BlockAdapter>::fields = property<BlockAdapter>::props_t();
 
@@ -152,12 +152,6 @@ BlockAdapter::~BlockAdapter()
     delete doc_content;
 }
 
-bool BlockAdapter::toString(std::wostringstream& ostr)
-{
-    ostr << L"BlockAdapter.hxx: Dunno what to display there";
-    return true;
-}
-
 std::wstring BlockAdapter::getTypeStr()
 {
     return getSharedTypeStr();
@@ -178,5 +172,5 @@ void BlockAdapter::setDocContent(types::InternalType* v)
     doc_content = v->clone();
 }
 
-} /* view_scilab */
+} /* namespace view_scilab */
 } /* namespace org_scilab_modules_scicos */

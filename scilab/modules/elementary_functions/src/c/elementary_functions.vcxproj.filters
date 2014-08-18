@@ -200,6 +200,9 @@
     <ClCompile Include="..\cpp\prod.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\cpp\clean.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\dynlib_elementary_functions.h">
@@ -341,6 +344,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\gsort.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cpp\clean.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

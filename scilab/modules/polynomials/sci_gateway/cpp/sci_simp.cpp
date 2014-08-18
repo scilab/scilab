@@ -122,8 +122,8 @@ types::Function::ReturnValue sci_simp(types::typed_list &in, int _iRetCount, typ
                 pNumOut = new types::Polynom(wstrName, pNum->getRows(), pNum->getCols());
                 pDenOut = new types::Polynom(wstrName, pNum->getRows(), pNum->getCols());
 
-                iMaxDegrNum = pNum->getMaxRank() - 1;
-                iMaxDegrDen = pDen->getMaxRank() - 1;
+                iMaxDegrNum = pNum->getMaxRank();
+                iMaxDegrDen = pDen->getMaxRank();
 
                 int iMax = max(iMaxDegrNum, iMaxDegrDen) + 1;
                 int iSizeWork = 2 * (iMaxDegrNum + iMaxDegrDen) +
@@ -133,10 +133,10 @@ types::Function::ReturnValue sci_simp(types::typed_list &in, int _iRetCount, typ
 
                 for (int i = 0; i < iSize; i++)
                 {
-                    double* pdblNum = pNum->get(i)->getCoefReal();
-                    double* pdblDen = pDen->get(i)->getCoefReal();
-                    int iDegreeNum  = pNum->get(i)->getRank() - 1;
-                    int iDegreeDen  = pDen->get(i)->getRank() - 1;
+                    double* pdblNum = pNum->get(i)->get();
+                    double* pdblDen = pDen->get(i)->get();
+                    int iDegreeNum  = pNum->get(i)->getRank();
+                    int iDegreeDen  = pDen->get(i)->getRank();
 
                     double* pdblNumOut = NULL;
                     double* pdblDenOut = NULL;
@@ -160,8 +160,8 @@ types::Function::ReturnValue sci_simp(types::typed_list &in, int _iRetCount, typ
                         break;
                     }
 
-                    types::SinglePoly* pSPNum = new types::SinglePoly(&pdblNumOut, iRankNumOut);
-                    types::SinglePoly* pSPDen = new types::SinglePoly(&pdblDenOut, iRankDenOut);
+                    types::SinglePoly* pSPNum = new types::SinglePoly(&pdblNumOut, iRankNumOut - 1);
+                    types::SinglePoly* pSPDen = new types::SinglePoly(&pdblDenOut, iRankDenOut - 1);
 
                     memcpy(pdblNumOut, pdblNumTmp, iRankNumOut * sizeof(double));
                     memcpy(pdblDenOut, pdblDenTmp, iRankDenOut * sizeof(double));
@@ -186,7 +186,7 @@ types::Function::ReturnValue sci_simp(types::typed_list &in, int _iRetCount, typ
                 types::Polynom* pDen = in[1]->clone()->getAs<types::Polynom>();
 
                 wstrName    = pDen->getVariableName();
-                iMaxDegrDen = pDen->getMaxRank() - 1;
+                iMaxDegrDen = pDen->getMaxRank();
 
                 pNumOut = new types::Polynom(wstrName, pNum->getRows(), pNum->getCols());
                 pDenOut = new types::Polynom(wstrName, pNum->getRows(), pNum->getCols());
@@ -200,9 +200,9 @@ types::Function::ReturnValue sci_simp(types::typed_list &in, int _iRetCount, typ
                 for (int i = 0; i < iSize; i++)
                 {
                     double dblNum   = pNum->get(i);
-                    double* pdblDen = pDen->get(i)->getCoefReal();
+                    double* pdblDen = pDen->get(i)->get();
                     int iDegreeNum  = 0;
-                    int iDegreeDen  = pDen->get(i)->getRank() - 1;
+                    int iDegreeDen  = pDen->get(i)->getRank();
 
                     double* pdblNumOut = NULL;
                     double* pdblDenOut = NULL;
@@ -226,8 +226,8 @@ types::Function::ReturnValue sci_simp(types::typed_list &in, int _iRetCount, typ
                         break;
                     }
 
-                    types::SinglePoly* pSPNum = new types::SinglePoly(&pdblNumOut, iRankNumOut);
-                    types::SinglePoly* pSPDen = new types::SinglePoly(&pdblDenOut, iRankDenOut);
+                    types::SinglePoly* pSPNum = new types::SinglePoly(&pdblNumOut, iRankNumOut - 1);
+                    types::SinglePoly* pSPDen = new types::SinglePoly(&pdblDenOut, iRankDenOut - 1);
 
                     memcpy(pdblNumOut, pdblNumTmp, iRankNumOut * sizeof(double));
                     memcpy(pdblDenOut, pdblDenTmp, iRankDenOut * sizeof(double));
@@ -252,7 +252,7 @@ types::Function::ReturnValue sci_simp(types::typed_list &in, int _iRetCount, typ
                 types::Double* pDen  = in[1]->clone()->getAs<types::Double>();
 
                 wstrName    = pNum->getVariableName();
-                iMaxDegrNum = pNum->getMaxRank() - 1;
+                iMaxDegrNum = pNum->getMaxRank();
 
                 pNumOut = new types::Polynom(wstrName, pNum->getRows(), pNum->getCols());
                 pDenOut = new types::Polynom(wstrName, pNum->getRows(), pNum->getCols());
@@ -265,9 +265,9 @@ types::Function::ReturnValue sci_simp(types::typed_list &in, int _iRetCount, typ
 
                 for (int i = 0; i < iSize; i++)
                 {
-                    double* pdblNum = pNum->get(i)->getCoefReal();
+                    double* pdblNum = pNum->get(i)->get();
                     double dblDen   = pDen->get(i);
-                    int iDegreeNum  = pNum->get(i)->getRank() - 1;
+                    int iDegreeNum  = pNum->get(i)->getRank();
                     int iDegreeDen  = 0;
 
                     double* pdblNumOut = NULL;
@@ -292,8 +292,8 @@ types::Function::ReturnValue sci_simp(types::typed_list &in, int _iRetCount, typ
                         break;
                     }
 
-                    types::SinglePoly* pSPNum = new types::SinglePoly(&pdblNumOut, iRankNumOut);
-                    types::SinglePoly* pSPDen = new types::SinglePoly(&pdblDenOut, iRankDenOut);
+                    types::SinglePoly* pSPNum = new types::SinglePoly(&pdblNumOut, iRankNumOut - 1);
+                    types::SinglePoly* pSPDen = new types::SinglePoly(&pdblDenOut, iRankDenOut - 1);
 
                     memcpy(pdblNumOut, pdblNumTmp, iRankNumOut * sizeof(double));
                     memcpy(pdblDenOut, pdblDenTmp, iRankDenOut * sizeof(double));

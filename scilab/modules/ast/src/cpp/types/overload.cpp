@@ -15,16 +15,25 @@ extern "C"
 #include "stdarg.h"
 #include "os_swprintf.h"
 #include "sci_malloc.h"
+#include "sciprint.h"
 }
 
+#include "configvariable.hxx"
 #include "localization.hxx"
 #include "callable.hxx"
 #include "overload.hxx"
 #include "context.hxx"
 #include "scilabexception.hxx"
 
-std::wstring Overload::buildOverloadName(std::wstring _stFunctionName, types::typed_list &in, int _iRetCount, bool _isOperator)
+std::wstring Overload::buildOverloadName(std::wstring _stFunctionName, types::typed_list &in, int _iRetCount, bool _isOperator, bool _truncated)
 {
+    std::wstring stType0 = in[0]->getShortTypeStr();
+
+    if (_truncated)
+    {
+        stType0 = stType0.substr(0, 8);
+    }
+
     switch (in.size())
     {
         case 0 :
@@ -32,10 +41,10 @@ std::wstring Overload::buildOverloadName(std::wstring _stFunctionName, types::ty
         case 2:
             if (_isOperator)
             {
-                return L"%" + in[0]->getShortTypeStr() + L"_" + _stFunctionName + L"_" + in[1]->getShortTypeStr();
+                return L"%" + stType0 + L"_" + _stFunctionName + L"_" + in[1]->getShortTypeStr();
             }
         case 1:
-            return L"%" + in[0]->getShortTypeStr() + L"_" + _stFunctionName;
+            return L"%" + stType0 + L"_" + _stFunctionName;
         default :
             throw ast::ScilabError(L"Don't know how to overload " + _stFunctionName, 246, *new Location());
     }
@@ -44,7 +53,26 @@ std::wstring Overload::buildOverloadName(std::wstring _stFunctionName, types::ty
 
 types::Function::ReturnValue Overload::generateNameAndCall(std::wstring _stFunctionName, types::typed_list &in, int _iRetCount, types::typed_list &out, ast::ConstVisitor *_execMe, bool _isOperator)
 {
-    return call(buildOverloadName(_stFunctionName, in, _iRetCount, _isOperator), in, _iRetCount, out, _execMe, _isOperator);
+    std::wstring stFunc = buildOverloadName(_stFunctionName, in, _iRetCount, _isOperator);
+    types::Function::ReturnValue ret = types::Function::Error;
+    try
+    {
+        ret = call(stFunc, in, _iRetCount, out, _execMe, _isOperator);
+    }
+    catch (ast::ScilabError se)
+    {
+        std::wstring stFunc2 = buildOverloadName(_stFunctionName, in, _iRetCount, _isOperator, true);
+        ret = call(stFunc2, in, _iRetCount, out, _execMe, _isOperator);
+        if (ret == types::Function::OK && ConfigVariable::getWarningMode())
+        {
+            char* pstFunc2 = wide_string_to_UTF8(stFunc2.c_str());
+            char* pstFunc = wide_string_to_UTF8(stFunc.c_str());
+            sciprint(_("Warning : please rename your overloaded function\n \"%s\" to \"%s\"\n"), pstFunc2, pstFunc);
+            FREE(pstFunc);
+            FREE(pstFunc2);
+        }
+    }
+    return ret;
 }
 
 types::Function::ReturnValue Overload::call(std::wstring _stOverloadingFunctionName, types::typed_list &in, int _iRetCount, types::typed_list &out, ast::ConstVisitor *_execMe, bool _isOperator)

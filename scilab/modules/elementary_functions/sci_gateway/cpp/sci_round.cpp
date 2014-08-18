@@ -50,17 +50,17 @@ types::Function::ReturnValue sci_round(types::typed_list &in, int _iRetCount, ty
         /***** perform operation *****/
         for (int compterElem = 0; compterElem < pPolyIn->getSize(); compterElem++)
         {
-            types::Double* pDblIn  = pPolyIn->get(compterElem)->getCoef();
-            types::Double* pDblOut = pPolyOut->get(compterElem)->getCoef();
+            types::SinglePoly* pSPIn  = pPolyIn->get(compterElem);
+            types::SinglePoly* pSPOut = pPolyOut->get(compterElem);
 
-            double* pRealIn  = pDblIn->get();
-            double* pRealOut = pDblOut->get();
+            double* pRealIn  = pSPIn->get();
+            double* pRealOut = pSPOut->get();
 
             if (pPolyIn->isComplex())
             {
-                double* pImgIn  = pDblIn->getImg();
-                double* pImgOut = pDblOut->getImg();
-                for (int i = 0; i < piRankPolyIn[compterElem]; i++)
+                double* pImgIn  = pSPIn->getImg();
+                double* pImgOut = pSPOut->getImg();
+                for (int i = 0; i < piRankPolyIn[compterElem] + 1; i++)
                 {
                     pRealOut[i] = C2F(danints)(pRealIn + i);
                     pImgOut[i]  = C2F(danints)(pImgIn + i);
@@ -68,7 +68,7 @@ types::Function::ReturnValue sci_round(types::typed_list &in, int _iRetCount, ty
             }
             else
             {
-                for (int i = 0; i < piRankPolyIn[compterElem]; i++)
+                for (int i = 0; i < piRankPolyIn[compterElem] + 1; i++)
                 {
                     pRealOut[i] = C2F(danints)(pRealIn + i);
                 }

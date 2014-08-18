@@ -365,7 +365,7 @@ int RDividePolyByDouble(Polynom* _pPoly, Double* _pDouble, Polynom** _pPolyOut)
             bool bComplex1 = _pPoly->isComplex();
             bool bComplex2 = _pDouble->isComplex();
 
-            Double* pC = (*_pPolyOut)->get(i)->getCoef();
+            SinglePoly* pC = (*_pPolyOut)->get(i);
 
             if (bComplex1 == false && bComplex2 == false)
             {
@@ -395,9 +395,10 @@ int RDividePolyByDouble(Polynom* _pPoly, Double* _pDouble, Polynom** _pPolyOut)
         iColResult = _pDouble->getRows();
 
         piRank = new int[iRowResult * iRowResult];
+        int iMaxRank = _pPoly->getMaxRank();
         for (int i = 0 ; i < iRowResult * iRowResult ; i++)
         {
-            piRank[i] = _pPoly->getMaxRank();
+            piRank[i] = iMaxRank;
         }
 
         pTemp = new Polynom(_pPoly->getVariableName(), iRowResult, iRowResult, piRank);
@@ -406,10 +407,10 @@ int RDividePolyByDouble(Polynom* _pPoly, Double* _pDouble, Polynom** _pPolyOut)
             pTemp->setComplex(true);
         }
 
-        Double *pdblData = _pPoly->get(0)->getCoef();
+        SinglePoly *pdblData = _pPoly->get(0);
         for (int i = 0 ; i < iRowResult ; i++)
         {
-            pTemp->setCoef(i, i, pdblData);
+            pTemp->set(i, i, pdblData);
         }
     }
 
@@ -426,40 +427,40 @@ int RDividePolyByDouble(Polynom* _pPoly, Double* _pDouble, Polynom** _pPolyOut)
         for (int i = 0 ; i < _pPoly->getSize() ; i++)
         {
             SinglePoly *pPolyIn   = _pPoly->get(i);
-            double* pRealIn  = pPolyIn->getCoef()->getReal();
-            double* pImgIn  = pPolyIn->getCoef()->getImg();
+            double* pRealIn  = pPolyIn->get();
+            double* pImgIn  = pPolyIn->getImg();
 
             SinglePoly *pPolyOut  = (*_pPolyOut)->get(i);
-            double* pRealOut = pPolyOut->getCoef()->getReal();
-            double* pImgOut  = pPolyOut->getCoef()->getImg();
+            double* pRealOut = pPolyOut->get();
+            double* pImgOut  = pPolyOut->getImg();
 
             if (bComplex1 == false && bComplex2 == false)
             {
                 iRightDivisionRealMatrixByRealMatrix(
                     pRealIn, 1,
                     _pDouble->getReal(), 0,
-                    pRealOut, 1, pPolyOut->getRank());
+                    pRealOut, 1, pPolyOut->getSize());
             }
             else if (bComplex1 == false && bComplex2 == true)
             {
                 iRightDivisionRealMatrixByComplexMatrix(
                     pRealIn, 1,
                     _pDouble->getReal(), _pDouble->getImg(), 0,
-                    pRealOut, pImgOut, 1, pPolyOut->getRank());
+                    pRealOut, pImgOut, 1, pPolyOut->getSize());
             }
             else if (bComplex1 == true && bComplex2 == false)
             {
                 iRightDivisionComplexMatrixByRealMatrix(
                     pRealIn, pImgIn, 1,
                     _pDouble->getReal(), 0,
-                    pRealOut, pImgOut, 1, pPolyOut->getRank());
+                    pRealOut, pImgOut, 1, pPolyOut->getSize());
             }
             else if (bComplex1 == true && bComplex2 == true)
             {
                 iRightDivisionComplexMatrixByComplexMatrix(
                     pRealIn, pImgIn, 1,
                     _pDouble->getReal(), _pDouble->getImg(), 0,
-                    pRealOut, pImgOut, 1, pPolyOut->getRank());
+                    pRealOut, pImgOut, 1, pPolyOut->getSize());
             }
         }
     }
@@ -469,7 +470,7 @@ int RDividePolyByDouble(Polynom* _pPoly, Double* _pDouble, Polynom** _pPolyOut)
         double *pReal    = pResultCoef->getReal();
         double *pImg    = pResultCoef->getImg();
 
-        for (int i = 0 ; i < pTemp->get(0)->getRank() ; i++)
+        for (int i = 0 ; i < pTemp->get(0)->getSize() ; i++)
         {
             Double *pCoef    = pTemp->extractCoef(i);
             Double *pResultCoef = new Double(iRowResult, iColResult, pCoef->isComplex());
@@ -676,7 +677,7 @@ int DotRDividePolyByDouble(Polynom* _pPoly1, Double* _pDouble2, Polynom** _pPoly
     //check dimension compatibilities ( same number of dimension and same size for each dimension
     int iDims1      = _pPoly1->getDims();
     int* piDims1    = _pPoly1->getDimsArray();
-    int iMaxRank    = _pPoly1->getMaxRank();
+    int iMaxSize    = _pPoly1->getMaxRank() + 1;
     int iSizePoly   = _pPoly1->getSize();
     int iDims2      = _pDouble2->getDims();
     int* piDims2    = _pDouble2->getDimsArray();
@@ -698,21 +699,21 @@ int DotRDividePolyByDouble(Polynom* _pPoly1, Double* _pDouble2, Polynom** _pPoly
     int* piRanks = new int[iSizePoly];
     for (int i = 0; i < iSizePoly; i++)
     {
-        piRanks[i] = iMaxRank;
+        piRanks[i] = iMaxSize - 1;
     }
 
     // create output and working table
     (*_pPolyOut) = new Polynom(_pPoly1->getVariableName(), iDims2, piDims2, piRanks);
     delete[] piRanks;
-    Double* pDblCoefOut = new Double(_pPoly1->getRows(), _pPoly1->getCols() * iMaxRank, bComplex1 || bComplex2);
-    double* pdblCoef2   = new double[_pPoly1->getRows() * _pPoly1->getCols() * iMaxRank];
+    Double* pDblCoefOut = new Double(_pPoly1->getRows(), _pPoly1->getCols() * iMaxSize, bComplex1 || bComplex2);
+    double* pdblCoef2   = new double[_pPoly1->getRows() * _pPoly1->getCols() * iMaxSize];
     Double* pDblCoef1   = _pPoly1->getCoef();
 
     int iZero = 0;
     double* pdbl = _pDouble2->get();
     for (int i = 0; i < iSizePoly; i++)
     {
-        C2F(dcopy)(&iMaxRank, pdbl + i, &iZero, pdblCoef2 + i, &iSizePoly);
+        C2F(dcopy)(&iMaxSize, pdbl + i, &iZero, pdblCoef2 + i, &iSizePoly);
     }
 
     int iInc1       = 1;

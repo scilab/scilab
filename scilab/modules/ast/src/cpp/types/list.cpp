@@ -49,10 +49,7 @@ List::~List()
         for (itValues = m_plData->begin() ; itValues != m_plData->end() ; ++itValues)
         {
             (*itValues)->DecreaseRef();
-            if ((*itValues)->isDeletable())
-            {
-                delete *itValues;
-            }
+            (*itValues)->killMe();
         }
         delete m_plData;
     }
@@ -186,9 +183,9 @@ std::vector<InternalType*>	List::extract(typed_list* _pArgs)
     //free pArg content
     for (int iArg = 0 ; iArg < pArg.size() ; iArg++)
     {
-        if (pArg[iArg] != (*_pArgs)[iArg] && pArg[iArg]->isDeletable())
+        if (pArg[iArg] != (*_pArgs)[iArg])
         {
-            delete pArg[iArg];
+            pArg[iArg]->killMe();
         }
     }
 
@@ -238,9 +235,9 @@ InternalType* List::insert(typed_list* _pArgs, InternalType* _pSource)
         else if (idx <= m_plData->size())
         {
             InternalType* pIT = (*m_plData)[idx - 1];
-            if (pIT && pIT->isDeletable())
+            if (pIT)
             {
-                delete pIT;
+                pIT->killMe();
             }
             m_plData->erase(m_plData->begin() + idx - 1);
         }
@@ -292,9 +289,9 @@ InternalType* List::insert(typed_list* _pArgs, InternalType* _pSource)
 
         InternalType* pIT = (*m_plData)[idx - 1];
         pIT->DecreaseRef();
-        if (pIT && pIT->isDeletable())
+        if (pIT)
         {
-            delete pIT;
+            pIT->killMe();
         }
 
         (*m_plData)[idx - 1] = _pSource->clone();
@@ -306,9 +303,9 @@ InternalType* List::insert(typed_list* _pArgs, InternalType* _pSource)
     //free pArg content
     for (int iArg = 0 ; iArg < pArg.size() ; iArg++)
     {
-        if (pArg[iArg] != (*_pArgs)[iArg] && pArg[iArg]->isDeletable())
+        if (pArg[iArg] != (*_pArgs)[iArg])
         {
-            delete pArg[iArg];
+            pArg[iArg]->killMe();
         }
     }
 
@@ -347,10 +344,7 @@ bool List::set(const int _iIndex, InternalType* _pIT)
     if (pOld)
     {
         pOld->DecreaseRef();
-        if (pOld->isDeletable())
-        {
-            delete pOld;
-        }
+        pOld->killMe();
     }
 
     return true;

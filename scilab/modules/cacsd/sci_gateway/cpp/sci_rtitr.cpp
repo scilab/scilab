@@ -22,8 +22,8 @@ extern "C"
 #include "localization.h"
 #include "dmp2pm.h"
 
-extern void C2F(rtitr)( int*, int*, int*, double*, int*, int*, double*, int*, int*, double*,
-                        double*, int*, double*, double*, int*, int*, int*, double*, int*);
+    extern void C2F(rtitr)( int*, int*, int*, double*, int*, int*, double*, int*, int*, double*,
+                            double*, int*, double*, double*, int*, int*, int*, double*, int*);
 
 }
 
@@ -68,9 +68,9 @@ types::Function::ReturnValue sci_rtitr(types::typed_list &in, int _iRetCount, ty
 
     /*** get inputs arguments ***/
     // get up and yp
-    if(in.size() == 5)
+    if (in.size() == 5)
     {
-        if(in[4]->isDouble() == false)
+        if (in[4]->isDouble() == false)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A matrix expected.\n"), "rtitr", 5);
             return types::Function::Error;
@@ -78,7 +78,7 @@ types::Function::ReturnValue sci_rtitr(types::typed_list &in, int _iRetCount, ty
 
         pDblYp = in[4]->getAs<types::Double>();
 
-        if(pDblYp->isComplex())
+        if (pDblYp->isComplex())
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A real matrix expected.\n"), "rtitr", 5);
             return types::Function::Error;
@@ -86,7 +86,7 @@ types::Function::ReturnValue sci_rtitr(types::typed_list &in, int _iRetCount, ty
 
         pdblYp = pDblYp->get();
 
-        if(in[3]->isDouble() == false)
+        if (in[3]->isDouble() == false)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A matrix expected.\n"), "rtitr", 4);
             return types::Function::Error;
@@ -94,7 +94,7 @@ types::Function::ReturnValue sci_rtitr(types::typed_list &in, int _iRetCount, ty
 
         pDblUp = in[3]->getAs<types::Double>();
 
-        if(pDblUp->isComplex())
+        if (pDblUp->isComplex())
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A real matrix expected.\n"), "rtitr", 4);
             return types::Function::Error;
@@ -106,10 +106,10 @@ types::Function::ReturnValue sci_rtitr(types::typed_list &in, int _iRetCount, ty
     }
 
     // get Num
-    if(in[0]->isDouble())
+    if (in[0]->isDouble())
     {
         types::Double* pDblNum = in[0]->getAs<types::Double>();
-        if(pDblNum->isComplex())
+        if (pDblNum->isComplex())
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A real matrix expected.\n"), "rtitr", 1);
             return types::Function::Error;
@@ -120,17 +120,17 @@ types::Function::ReturnValue sci_rtitr(types::typed_list &in, int _iRetCount, ty
         iColsNum    = pDblNum->getCols();
         iMaxRankNum = 0;
         pdblNum     = new double*[iSizeNum];
-        double* pdbl= pDblNum->get();
+        double* pdbl = pDblNum->get();
 
-        for(int i = 0; i < iSizeNum; i++)
+        for (int i = 0; i < iSizeNum; i++)
         {
             pdblNum[i] = pdbl + i;
         }
     }
-    else if(in[0]->isPoly())
+    else if (in[0]->isPoly())
     {
         types::Polynom* pPolyNum = in[0]->getAs<types::Polynom>();
-        if(pPolyNum->isComplex())
+        if (pPolyNum->isComplex())
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A real polynom expected.\n"), "rtitr", 1);
             return types::Function::Error;
@@ -139,14 +139,14 @@ types::Function::ReturnValue sci_rtitr(types::typed_list &in, int _iRetCount, ty
         iSizeNum    = pPolyNum->getSize();
         iRowsNum    = pPolyNum->getRows();
         iColsNum    = pPolyNum->getCols();
-        iMaxRankNum = pPolyNum->getRealMaxRank();
+        iMaxRankNum = pPolyNum->getMaxRank();
         piRankNum   = new int[iSizeNum];
-        pPolyNum->getRealRank(piRankNum);
+        pPolyNum->getRank(piRankNum);
 
         pdblNum     = new double*[iSizeNum];
-        for(int i = 0; i < iSizeNum; i++)
+        for (int i = 0; i < iSizeNum; i++)
         {
-            pdblNum[i] = pPolyNum->get(i)->getCoef()->get();
+            pdblNum[i] = pPolyNum->get(i)->get();
         }
     }
     else
@@ -156,16 +156,16 @@ types::Function::ReturnValue sci_rtitr(types::typed_list &in, int _iRetCount, ty
     }
 
     // get Den
-    if(in[1]->isDouble())
+    if (in[1]->isDouble())
     {
         types::Double* pDblDen = in[1]->getAs<types::Double>();
-        if(pDblDen->isComplex())
+        if (pDblDen->isComplex())
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A real matrix expected.\n"), "rtitr", 2);
             return types::Function::Error;
         }
 
-        if(pDblDen->getRows() != pDblDen->getCols())
+        if (pDblDen->getRows() != pDblDen->getCols())
         {
             Scierror(999, _("%s: Wrong size for input argument #%d: A square matrix expected.\n"), "rtitr", 2);
             return types::Function::Error;
@@ -175,23 +175,23 @@ types::Function::ReturnValue sci_rtitr(types::typed_list &in, int _iRetCount, ty
         iRowsDen    = pDblDen->getRows();
         iMaxRankDen = 0;
         pdblDen     = new double*[iSizeDen];
-        double* pdbl= pDblDen->get();
+        double* pdbl = pDblDen->get();
 
-        for(int i = 0; i < iSizeDen; i++)
+        for (int i = 0; i < iSizeDen; i++)
         {
             pdblDen[i] = pdbl + i;
         }
     }
-    else if(in[1]->isPoly())
+    else if (in[1]->isPoly())
     {
         types::Polynom* pPolyDen = in[1]->getAs<types::Polynom>();
-        if(pPolyDen->isComplex())
+        if (pPolyDen->isComplex())
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A real polynom expected.\n"), "rtitr", 2);
             return types::Function::Error;
         }
 
-        if(pPolyDen->getRows() != pPolyDen->getCols())
+        if (pPolyDen->getRows() != pPolyDen->getCols())
         {
             Scierror(999, _("%s: Wrong size for input argument #%d: A square matrix expected.\n"), "rtitr", 2);
             return types::Function::Error;
@@ -199,14 +199,14 @@ types::Function::ReturnValue sci_rtitr(types::typed_list &in, int _iRetCount, ty
 
         iSizeDen    = pPolyDen->getSize();
         iRowsDen    = pPolyDen->getRows();
-        iMaxRankDen = pPolyDen->getRealMaxRank();
+        iMaxRankDen = pPolyDen->getMaxRank();
         piRankDen   = new int[iSizeDen];
-        pPolyDen->getRealRank(piRankDen);
+        pPolyDen->getRank(piRankDen);
 
         pdblDen     = new double*[iSizeDen];
-        for(int i = 0; i < iSizeDen; i++)
+        for (int i = 0; i < iSizeDen; i++)
         {
-            pdblDen[i] = pPolyDen->get(i)->getCoef()->get();
+            pdblDen[i] = pPolyDen->get(i)->get();
         }
     }
     else
@@ -216,7 +216,7 @@ types::Function::ReturnValue sci_rtitr(types::typed_list &in, int _iRetCount, ty
     }
 
     // get u
-    if(in[2]->isDouble() == false)
+    if (in[2]->isDouble() == false)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A matrix expected.\n"), "rtitr", 3);
         return types::Function::Error;
@@ -224,7 +224,7 @@ types::Function::ReturnValue sci_rtitr(types::typed_list &in, int _iRetCount, ty
 
     types::Double* pDblU = in[2]->getAs<types::Double>();
 
-    if(pDblU->isComplex())
+    if (pDblU->isComplex())
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A real matrix expected.\n"), "rtitr", 3);
         return types::Function::Error;
@@ -233,7 +233,7 @@ types::Function::ReturnValue sci_rtitr(types::typed_list &in, int _iRetCount, ty
     iRowsU = pDblU->getRows();
     iColsU = pDblU->getCols();
 
-    if(iRowsDen != iRowsNum || iColsNum != iRowsU)
+    if (iRowsDen != iRowsNum || iColsNum != iRowsU)
     {
         Scierror(60, _("%s: Wrong size for argument: Incompatible dimensions.\n"), "rtitr");
         return types::Function::Error;
@@ -242,27 +242,27 @@ types::Function::ReturnValue sci_rtitr(types::typed_list &in, int _iRetCount, ty
     pdblU = pDblU->get();
 
     // check size of input argument 4 and 5
-    if(in.size() == 5)
+    if (in.size() == 5)
     {
-        if(pDblYp->getRows() != iRowsDen && pDblYp->getRows() != 0)
+        if (pDblYp->getRows() != iRowsDen && pDblYp->getRows() != 0)
         {
             Scierror(60, _("%s: Wrong size for argument: Incompatible dimensions.\n"), "rtitr");
             return types::Function::Error;
         }
 
-        if(pDblYp->getCols() != iMaxRankDen)
+        if (pDblYp->getCols() != iMaxRankDen)
         {
             Scierror(60, _("%s: Wrong size for argument: Incompatible dimensions.\n"), "rtitr");
             return types::Function::Error;
         }
 
-        if(pDblUp->getRows() != iColsNum && pDblUp->getRows() != 0)
+        if (pDblUp->getRows() != iColsNum && pDblUp->getRows() != 0)
         {
             Scierror(60, _("%s: Wrong size for argument: Incompatible dimensions.\n"), "rtitr");
             return types::Function::Error;
         }
 
-        if(pDblUp->getCols() != iMaxRankDen)
+        if (pDblUp->getCols() != iMaxRankDen)
         {
             Scierror(60, _("%s: Wrong size for argument: Incompatible dimensions.\n"), "rtitr");
             return types::Function::Error;
@@ -288,9 +288,9 @@ types::Function::ReturnValue sci_rtitr(types::typed_list &in, int _iRetCount, ty
                pdblUp, pdblU, &iRowsU, pdblYp, pdblOut, &iRowsDen, &iJob, piWork, pdblWork, &iErr);
 
     // check error
-    if(iErr)
+    if (iErr)
     {
-        if(iErr == 1)
+        if (iErr == 1)
         {
             char strValue[256];
             sprintf(strValue, "%lf", pdblWork[0]);
@@ -298,7 +298,7 @@ types::Function::ReturnValue sci_rtitr(types::typed_list &in, int _iRetCount, ty
             sciprint(_("matrix is close to singular or badly scaled. rcond = %s\n"), strValue);
             iErr = 0;
         }
-        else if(iErr == 2)
+        else if (iErr == 2)
         {
             Scierror(19, _("Problem is singular.\n"), "rtitr");
         }
@@ -312,18 +312,18 @@ types::Function::ReturnValue sci_rtitr(types::typed_list &in, int _iRetCount, ty
     delete[] pdblDen;
     delete[] pdblNum;
 
-    if(piRankDen)
+    if (piRankDen)
     {
         delete[] piRankDen;
     }
 
-    if(piRankNum)
+    if (piRankNum)
     {
         delete[] piRankNum;
     }
 
     /*** retrun output arguments ***/
-    if(iErr)
+    if (iErr)
     {
         return types::Function::Error;
     }

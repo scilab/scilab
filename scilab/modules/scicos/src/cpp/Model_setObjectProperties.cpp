@@ -6,9 +6,12 @@
  *  This source file is licensed as described in the file COPYING, which
  *  you should have received as part of this distribution.  The terms
  *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
+
+#include <string>
+#include <vector>
 
 #include "Model.hxx"
 #include "utilities.hxx"
@@ -67,6 +70,8 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
         model::Port* o = static_cast<model::Port*>(getObject(uid));
         switch (p)
         {
+            case FIRING:
+                return o->setFiring(v);
             default:
                 break;
         }
@@ -91,6 +96,14 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
         model::Block* o = static_cast<model::Block*>(getObject(uid));
         switch (p)
         {
+            case SIM_FUNCTION_API:
+                return o->setSimFunctionApi(v);
+            case SIM_BLOCKTYPE:
+                return o->setSimBlocktype(v);
+            case NZCROSS:
+                return o->setNZcross(v);
+            case NMODE:
+                return o->setNMode(v);
             default:
                 break;
         }
@@ -169,6 +182,8 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
         model::Port* o = static_cast<model::Port*>(getObject(uid));
         switch (p)
         {
+            case IMPLICIT:
+                return o->setImplicit(v);
             default:
                 break;
         }
@@ -246,6 +261,14 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
         model::Block* o = static_cast<model::Block*>(getObject(uid));
         switch (p)
         {
+            case SIM_FUNCTION_NAME:
+                return o->setSimFunctionName(v);
+            case STYLE:
+                return o->setStyle(v);
+            case LABEL:
+                return o->setLabel(v);
+            case UID:
+                return o->setUID(v);
             default:
                 break;
         }
@@ -273,6 +296,10 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
         model::Port* o = static_cast<model::Port*>(getObject(uid));
         switch (p)
         {
+            case STYLE:
+                return o->setStyle(v);
+            case LABEL:
+                return o->setLabel(v);
             default:
                 break;
         }
@@ -303,6 +330,12 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
                 return o->setGeometry(v);
             case ANGLE:
                 return o->setAngle(v);
+            case STATE:
+                return o->setState(v);
+            case DSTATE:
+                return o->setDState(v);
+            case RPAR:
+                return o->setRpar(v);
             default:
                 break;
         }
@@ -354,6 +387,10 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
         model::Block* o = static_cast<model::Block*>(getObject(uid));
         switch (p)
         {
+            case SIM_DEP_UT:
+                return o->setSimDepUT(v);
+            case IPAR:
+                return o->setIpar(v);
             default:
                 break;
         }
@@ -381,6 +418,8 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
         model::Port* o = static_cast<model::Port*>(getObject(uid));
         switch (p)
         {
+            case DATATYPE:
+                return o->setDataType(this, v);
             default:
                 break;
         }
@@ -388,7 +427,7 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
     return FAIL;
 }
 
-update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, const std::vector< std::string >& v)
+update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, const std::vector<std::string>& v)
 {
 
     if (k == ANNOTATION)
@@ -459,19 +498,13 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
         switch (p)
         {
             case INPUTS:
-                if (v.size() > o->in.size()); // FIXME: Input port creation
-                if (v.size() < o->in.size()); // FIXME: Input port deletion
-                {
-                    o->setIn(v);
-                }
-                return SUCCESS;
+                return o->setIn(v);
             case OUTPUTS:
-                if (v.size() > o->out.size()); // FIXME: Output port creation
-                if (v.size() < o->out.size()); // FIXME: Output port deletion
-                {
-                    o->setOut(v);
-                }
-                return SUCCESS;
+                return o->setOut(v);
+            case EVENT_INPUTS:
+                return o->setEin(v);
+            case EVENT_OUTPUTS:
+                return o->setEout(v);
             default:
                 break;
         }

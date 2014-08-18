@@ -26,10 +26,10 @@ function model=scicos_model(v1,v2,v3,v4,v5,v6,v7,v8,v9,v10,v11,v12,v13,v14,v15,v
     if exists("sim","local")==0 then sim="",end
     if exists("in","local")==0 then in=[],end
     if exists("in2","local")==0 then in2=[],end
-    if exists("intyp","local")==0 then intyp=1,end
+    if exists("intyp","local")==0 then intyp=[],end
     if exists("out","local")==0 then out=[],end
     if exists("out2","local")==0 then out2=[],end
-    if exists("outtyp","local")==0 then outtyp=1,end
+    if exists("outtyp","local")==0 then outtyp=[],end
     if exists("evtin","local")==0 then evtin=[],end
     if exists("evtout","local")==0 then evtout=[],end
     if exists("state","local")==0 then state=[],end

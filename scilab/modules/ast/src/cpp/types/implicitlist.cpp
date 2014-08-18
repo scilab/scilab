@@ -708,18 +708,19 @@ InternalType* ImplicitList::extract(typed_list* _pArgs)
 std::wstring printInLinePoly(types::SinglePoly* _pPoly, std::wstring _stVar)
 {
     std::wostringstream ostr;
-    for (int i = 0 ; i < _pPoly->getRank() ; i++)
+    double* pdblIn = _pPoly->get();
+    for (int i = 0 ; i < _pPoly->getSize() ; i++)
     {
-        double dbl = _pPoly->getCoef()->getReal()[i];
-        if (dbl != 0)
+
+        if (pdblIn[i] != 0)
         {
             DoubleFormat df;
-            getDoubleFormat(dbl, &df);
+            getDoubleFormat(pdblIn[i], &df);
             df.bPrintPoint = ostr.str().size() != 0;
             df.bPrintPlusSign = true;
             df.bPrintOne = i == 0;
             df.bPaddSign = false;
-            addDoubleValue(&ostr, dbl, &df);
+            addDoubleValue(&ostr, pdblIn[i], &df);
             if (i != 0)
             {
                 ostr << _stVar;

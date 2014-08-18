@@ -71,9 +71,9 @@ public:
         {
             if (_result != NULL)
             {
-                //					std::cout << "before single delete : " << _result << std::endl;
+                //                    std::cout << "before single delete : " << _result << std::endl;
                 _result->killMe();
-                //					std::cout << "after single delete" << std::endl;
+                //                    std::cout << "after single delete" << std::endl;
             }
         }
         else
@@ -232,49 +232,28 @@ public:
         // When an entry is in in and not in out, then in is killed.
         if (!in.empty())
         {
-            if (out.empty())
+            for (types::typed_list::const_iterator o = out.begin(); o != out.end(); ++o)
             {
-                for (types::typed_list::const_iterator i = in.begin(); i != in.end(); ++i)
+                if (*o)
                 {
-                    if (*i)
-                    {
-                        (*i)->DecreaseRef();
-                        (*i)->killMe();
-                    }
+                    (*o)->IncreaseRef();
                 }
             }
-            else
+
+            for (types::typed_list::const_iterator i = in.begin(); i != in.end(); ++i)
             {
-                std::set<InternalType *> common;
-
-                for (types::typed_list::const_iterator i = in.begin(); i != in.end(); ++i)
+                if (*i)
                 {
-                    if (*i)
-                    {
-                        types::typed_list::const_iterator o = out.begin();
-                        for (; o != out.end(); ++o)
-                        {
-                            if (*i == *o)
-                            {
-                                break;
-                            }
-                        }
+                    (*i)->DecreaseRef();
+                    (*i)->killMe();
+                }
+            }
 
-                        if (o == out.end())
-                        {
-                            (*i)->DecreaseRef();
-                            (*i)->killMe();
-                        }
-                        else
-                        {
-                            std::set<InternalType *>::const_iterator nc = common.find(*i);
-                            if (nc == common.end())
-                            {
-                                common.insert(*i);
-                                (*i)->DecreaseRef();
-                            }
-                        }
-                    }
+            for (types::typed_list::const_iterator o = out.begin(); o != out.end(); ++o)
+            {
+                if (*o)
+                {
+                    (*o)->DecreaseRef();
                 }
             }
         }
@@ -308,6 +287,8 @@ public:
             {
                 if (o->second)
                 {
+                    //decreasef ref after increaseref in callexp
+                    o->second->DecreaseRef();
                     o->second->killMe();
                 }
             }
@@ -318,8 +299,8 @@ public:
     | Attributes.  |
     `-------------*/
 protected:
-    vector<types::InternalType*>	_resultVect;
-    types::InternalType*	_result;
+    vector<types::InternalType*>    _resultVect;
+    types::InternalType*    _result;
     bool m_bSingleResult;
     int _excepted_result;
     symbol::Variable* m_pAns;
@@ -556,7 +537,8 @@ public :
 
             try
             {
-                if (Overload::call(L"%" + pIT->getAs<TList>()->getShortTypeStr() + L"_p", in, 1, out, this) != Function::OK)
+                if (Overload::generateNameAndCall(L"p", in, 1, out, this) != Function::OK)
+                    //if (Overload::call(L"%" + pIT->getAs<TList>()->getShortTypeStr() + L"_p", in, 1, out, this) != Function::OK)
                 {
                     throw ScilabError();
                 }

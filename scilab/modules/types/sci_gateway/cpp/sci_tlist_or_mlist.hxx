@@ -49,7 +49,7 @@ Function::ReturnValue sci_tlist_or_mlist(typed_list &in, int _piRetCount, typed_
     String* pS = in[0]->getAs<types::String>();
 
     //check for rational type
-    if(pS->getSize() > 0 && wcscmp(pS->get(0), L"r") == 0)
+    if (pS->getSize() > 0 && wcscmp(pS->get(0), L"r") == 0)
     {
         Scierror(999, _("%ls: Can not create a %ls with input argument #%d.\n"), _pstrFunName, _pstrFunName, 1);
         return Function::Error;
@@ -85,7 +85,7 @@ Function::ReturnValue sci_tlist_or_mlist(typed_list &in, int _piRetCount, typed_
     {
         pRetVal->append(pITEmpty);
     }
-    delete pITEmpty;
+    pITEmpty->killMe();
 
     out.push_back(pRetVal);
     return Function::OK;

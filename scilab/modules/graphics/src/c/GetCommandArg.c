@@ -83,7 +83,7 @@ int get_style_arg(void* _pvCtx, char *fname, int pos, int n1, rhs_opts opts[], i
             }
         }
     }
-    else if ((kopt = FindOpt(_pvCtx, "style", opts)))
+    else if ((kopt = FindOpt(_pvCtx, "style", opts)) >= 0)
     {
         /* optinal argument: style=value */
         int* piData = NULL;
@@ -167,7 +167,7 @@ int get_rect_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], double ** 
             *rect = getDefRect();
         }
     }
-    else if ((kopt = FindOpt(_pvCtx, "rect", opts))) /* named argument: rect=value */
+    else if ((kopt = FindOpt(_pvCtx, "rect", opts)) >= 0) /* named argument: rect=value */
     {
         double* pdblData = NULL;
         getMatrixOfDouble(_pvCtx, opts[kopt].piAddr, &m, &n, &pdblData);
@@ -229,7 +229,7 @@ int get_strf_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], char ** st
             *strf = getDefStrf();
         }
     }
-    else if ((kopt = FindOpt(_pvCtx, "strf", opts)))
+    else if ((kopt = FindOpt(_pvCtx, "strf", opts)) >= 0)
     {
         char* pstData = NULL;
         getAllocatedSingleString(_pvCtx, opts[kopt].piAddr, &pstData);
@@ -273,7 +273,7 @@ int get_legend_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], char ** 
             *legend = getDefLegend();
         }
     }
-    else if ((kopt = FindOpt(_pvCtx, "leg", opts)))
+    else if ((kopt = FindOpt(_pvCtx, "leg", opts)) >= 0)
     {
         char* pstData = NULL;
         getAllocatedSingleString(_pvCtx, opts[kopt].piAddr, &pstData);
@@ -320,7 +320,7 @@ int get_labels_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], char ** 
             }
         }
     }
-    else if ((kopt = FindOpt(_pvCtx, "leg", opts)))
+    else if ((kopt = FindOpt(_pvCtx, "leg", opts)) >= 0)
     {
         char* pstData = NULL;
         getAllocatedSingleString(_pvCtx, opts[kopt].piAddr, &pstData);
@@ -377,7 +377,7 @@ int get_nax_arg(void* _pvCtx, int pos, rhs_opts opts[], int ** nax, BOOL * flagN
             *flagNax = FALSE;
         }
     }
-    else if ((kopt = FindOpt(_pvCtx, "nax", opts)))
+    else if ((kopt = FindOpt(_pvCtx, "nax", opts)) >= 0)
     {
         int* piData = NULL;
 
@@ -435,7 +435,7 @@ int get_zminmax_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], double 
             *zminmax = getDefZminMax();
         }
     }
-    else if ((kopt = FindOpt(_pvCtx, "zminmax", opts))) /* named argument: rect=value */
+    else if ((kopt = FindOpt(_pvCtx, "zminmax", opts)) >= 0) /* named argument: rect=value */
     {
         double* pdblData = NULL;
         getMatrixOfDouble(_pvCtx, opts[kopt].piAddr, &m, &n, &pdblData);
@@ -487,7 +487,7 @@ int get_colminmax_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], int *
             *colminmax = getDefColMinMax();
         }
     }
-    else if ((kopt = FindOpt(_pvCtx, "colminmax", opts)))
+    else if ((kopt = FindOpt(_pvCtx, "colminmax", opts)) >= 0)
     {
         int* piData = NULL;
 
@@ -538,7 +538,7 @@ int get_colout_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], int ** c
             *colout = getDefColOut();
         }
     }
-    else if ((kopt = FindOpt(_pvCtx, "colout", opts)))
+    else if ((kopt = FindOpt(_pvCtx, "colout", opts)) >= 0)
     {
         int* piData = NULL;
 
@@ -583,7 +583,7 @@ int get_with_mesh_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], BOOL 
             *withMesh = getDefWithMesh();
         }
     }
-    else if ((kopt = FindOpt(_pvCtx, "mesh", opts)))
+    else if ((kopt = FindOpt(_pvCtx, "mesh", opts)) >= 0)
     {
         int iData = 0;
 
@@ -618,7 +618,7 @@ int get_logflags_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], char *
 
         getVarAddressFromPosition(_pvCtx, pos, &piAddr);
     }
-    else if ((kopt = FindOpt(_pvCtx, "logflag", opts))) //optional argument
+    else if ((kopt = FindOpt(_pvCtx, "logflag", opts)) >= 0)//optional argument
     {
         piAddr = opts[kopt].piAddr;
     }
@@ -690,7 +690,7 @@ int get_optional_double_arg(void* _pvCtx, char* fname, int pos, char* name, doub
             *value = pdblData;
         }
     }
-    else if ((kopt = FindOpt(_pvCtx, name, opts)))
+    else if ((kopt = FindOpt(_pvCtx, name, opts)) >= 0)
     {
         double* pdblData = NULL;
         getMatrixOfDouble(_pvCtx, opts[kopt].piAddr, &m, &n, &pdblData);
@@ -727,7 +727,7 @@ int get_optional_int_arg(void* _pvCtx, char* fname, int pos, char* name, int** v
             *value = piData;
         }
     }
-    else if ((kopt = FindOpt(_pvCtx, name, opts)))
+    else if ((kopt = FindOpt(_pvCtx, name, opts)) >= 0)
     {
         int* piData = NULL;
 

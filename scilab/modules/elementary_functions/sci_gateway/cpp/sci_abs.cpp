@@ -97,9 +97,9 @@ types::Function::ReturnValue sci_abs(types::typed_list &in, int _iRetCount, type
                 int rank = pPolyIn->get(i)->getRank();
                 types::SinglePoly* pSP = new types::SinglePoly(&data, rank);
 
-                for (int j = 0; j < rank; j++)
+                for (int j = 0; j < rank + 1; j++)
                 {
-                    data[j] = dabsz(pPolyIn->get(i)->getCoefReal()[j], pPolyIn->get(i)->getCoefImg()[j]);
+                    data[j] = dabsz(pPolyIn->get(i)->get()[j], pPolyIn->get(i)->getImg()[j]);
                 }
 
                 pPolyOut->set(i, pSP);
@@ -114,9 +114,9 @@ types::Function::ReturnValue sci_abs(types::typed_list &in, int _iRetCount, type
                 int rank = pPolyIn->get(i)->getRank();
                 types::SinglePoly* pSP = new types::SinglePoly(&data, rank);
 
-                for (int j = 0; j < rank; j++)
+                for (int j = 0; j < rank + 1; j++)
                 {
-                    data[j] = dabss(pPolyIn->get(i)->getCoefReal()[j]);
+                    data[j] = dabss(pPolyIn->get(i)->get()[j]);
                 }
 
                 pPolyOut->set(i, pSP);

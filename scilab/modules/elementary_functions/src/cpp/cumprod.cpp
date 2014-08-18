@@ -103,9 +103,9 @@ int cumprod(types::Double* pIn, int iOrientation, types::Double* pOut)
 int cumprod(types::Polynom* pIn, int iOrientation, types::Polynom* pOut)
 {
     int iErr        = 0;
-    int iRank       = 0;
+    int iSize       = 0;
     int iOutRank    = 0;
-    int iLastRank   = 0;
+    int iLastSize   = 0;
 
     double* pdRData         = NULL;
     double* pdIData         = NULL;
@@ -120,13 +120,13 @@ int cumprod(types::Polynom* pIn, int iOrientation, types::Polynom* pOut)
     if (iOrientation == 0) // all
     {
         // set first element
-        iRank = pIn->get(0)->getRank();
-        pdblReal = pIn->get(0)->getCoefReal();
+        iSize = pIn->get(0)->getSize();
+        pdblReal = pIn->get(0)->get();
         if (bComplex)
         {
-            pSP = new types::SinglePoly(&pdRData, &pdIData, iRank);
-            pdblImg = pIn->get(0)->getCoefImg();
-            for (int j = 0; j < iRank; j++)
+            pSP = new types::SinglePoly(&pdRData, &pdIData, iSize - 1);
+            pdblImg = pIn->get(0)->getImg();
+            for (int j = 0; j < iSize; j++)
             {
                 pdRData[j] = pdblReal[j];
                 pdIData[j] = pdblImg[j];
@@ -134,15 +134,15 @@ int cumprod(types::Polynom* pIn, int iOrientation, types::Polynom* pOut)
         }
         else
         {
-            pSP = new types::SinglePoly(&pdRData, iRank);
-            for (int j = 0; j < iRank; j++)
+            pSP = new types::SinglePoly(&pdRData, iSize - 1);
+            for (int j = 0; j < iSize; j++)
             {
                 pdRData[j] = pdblReal[j];
             }
         }
 
         pOut->set(0, pSP);
-        iLastRank = iRank;
+        iLastSize = iSize;
         pdblLastReal = pdblReal;
         pdblLastImg = pdblImg;
 
@@ -151,23 +151,23 @@ int cumprod(types::Polynom* pIn, int iOrientation, types::Polynom* pOut)
         {
             for (int i = 1; i < pIn->getSize(); i++)
             {
-                pdblReal = pIn->get(i)->getCoefReal();
-                pdblImg = pIn->get(i)->getCoefImg();
-                iRank = pIn->get(i)->getRank();
+                pdblReal = pIn->get(i)->get();
+                pdblImg = pIn->get(i)->getImg();
+                iSize = pIn->get(i)->getSize();
 
-                iOutRank = iLastRank + iRank - 1;
+                iOutRank = iLastSize - 1 + iSize - 1;
 
                 pSP = new types::SinglePoly(&pdRData, &pdIData, iOutRank);
-                pSP->getCoef()->setZeros();
+                pSP->setZeros();
 
-                iMultiComplexPolyByComplexPoly( pdblReal, pdblImg, iRank,
-                                                pdblLastReal, pdblLastImg, iLastRank,
-                                                pdRData, pdIData, iOutRank);
+                iMultiComplexPolyByComplexPoly( pdblReal, pdblImg, iSize,
+                                                pdblLastReal, pdblLastImg, iLastSize,
+                                                pdRData, pdIData, iOutRank + 1);
 
                 pOut->set(i, pSP);
                 pdblLastReal = pdRData;
                 pdblLastImg = pdIData;
-                iLastRank = iOutRank;
+                iLastSize = iOutRank + 1;
                 delete pSP;
             }
         }
@@ -175,18 +175,18 @@ int cumprod(types::Polynom* pIn, int iOrientation, types::Polynom* pOut)
         {
             for (int i = 1; i < pIn->getSize(); i++)
             {
-                pdblReal = pIn->get(i)->getCoefReal();
-                iRank = pIn->get(i)->getRank();
+                pdblReal = pIn->get(i)->get();
+                iSize = pIn->get(i)->getSize();
 
-                iOutRank = iLastRank + iRank - 1;
+                iOutRank = iLastSize - 1 + iSize - 1;
 
                 pSP = new types::SinglePoly(&pdRData, iOutRank);
-                pSP->getCoef()->setZeros();
-                iMultiScilabPolynomByScilabPolynom(pdblReal, iRank, pdblLastReal, iLastRank, pdRData, iOutRank);
+                pSP->setZeros();
+                iMultiScilabPolynomByScilabPolynom(pdblReal, iSize, pdblLastReal, iLastSize, pdRData, iOutRank + 1);
 
                 pOut->set(i, pSP);
                 pdblLastReal = pdRData;
-                iLastRank = iOutRank;
+                iLastSize = iOutRank + 1;
                 delete pSP;
             }
         }
@@ -207,12 +207,12 @@ int cumprod(types::Polynom* pIn, int iOrientation, types::Polynom* pOut)
             {
                 for (int i = j; i < iIncrement + j; i++) // set the first values in out
                 {
-                    pdblReal = pIn->get(i)->getCoefReal();
-                    pdblImg = pIn->get(i)->getCoefImg();
-                    iRank = pIn->get(i)->getRank();
-                    pSP = new types::SinglePoly(&pdRData, &pdIData, iRank);
+                    pdblReal = pIn->get(i)->get();
+                    pdblImg = pIn->get(i)->getImg();
+                    iSize = pIn->get(i)->getSize();
+                    pSP = new types::SinglePoly(&pdRData, &pdIData, iSize - 1);
 
-                    for (int j = 0; j < iRank; j++)
+                    for (int j = 0; j < iSize; j++)
                     {
                         pdRData[j] = pdblReal[j];
                         pdIData[j] = pdblImg[j];
@@ -225,19 +225,19 @@ int cumprod(types::Polynom* pIn, int iOrientation, types::Polynom* pOut)
                 {
                     for (int i = (iIncrement * k) + j; i < (iIncrement * (k + 1)) + j; i++)
                     {
-                        iLastRank = pOut->get(i - iIncrement)->getRank();
-                        pdblLastReal = pOut->get(i - iIncrement)->getCoefReal();
-                        pdblLastImg = pOut->get(i - iIncrement)->getCoefImg();
-                        iRank = pIn->get(i)->getRank();
-                        pdblReal = pIn->get(i)->getCoefReal();
-                        pdblImg = pIn->get(i)->getCoefImg();
+                        iLastSize = pOut->get(i - iIncrement)->getSize();
+                        pdblLastReal = pOut->get(i - iIncrement)->get();
+                        pdblLastImg = pOut->get(i - iIncrement)->getImg();
+                        iSize = pIn->get(i)->getSize();
+                        pdblReal = pIn->get(i)->get();
+                        pdblImg = pIn->get(i)->getImg();
 
-                        iOutRank = iLastRank + iRank - 1;
+                        iOutRank = iLastSize - 1 + iSize - 1;
                         pSP = new types::SinglePoly(&pdRData, &pdIData, iOutRank);
 
-                        iMultiComplexPolyByComplexPoly(pdblReal, pdblImg, iRank,
-                                                       pdblLastReal, pdblLastImg, iLastRank,
-                                                       pdRData, pdIData, iOutRank);
+                        iMultiComplexPolyByComplexPoly(pdblReal, pdblImg, iSize,
+                                                       pdblLastReal, pdblLastImg, iLastSize,
+                                                       pdRData, pdIData, iOutRank + 1);
 
                         pOut->set(i, pSP);
                         delete pSP;
@@ -251,11 +251,11 @@ int cumprod(types::Polynom* pIn, int iOrientation, types::Polynom* pOut)
             {
                 for (int i = j; i < iIncrement + j; i++) // set the first values in out
                 {
-                    pdblReal = pIn->get(i)->getCoefReal();
-                    iRank = pIn->get(i)->getRank();
-                    pSP = new types::SinglePoly(&pdRData, iRank);
+                    pdblReal = pIn->get(i)->get();
+                    iSize = pIn->get(i)->getSize();
+                    pSP = new types::SinglePoly(&pdRData, iSize - 1);
 
-                    for (int j = 0; j < iRank; j++)
+                    for (int j = 0; j < iSize; j++)
                     {
                         pdRData[j] = pdblReal[j];
                     }
@@ -267,15 +267,15 @@ int cumprod(types::Polynom* pIn, int iOrientation, types::Polynom* pOut)
                 {
                     for (int i = (iIncrement * k) + j; i < (iIncrement * (k + 1)) + j; i++)
                     {
-                        iLastRank = pOut->get(i - iIncrement)->getRank();
-                        pdblLastReal = pOut->get(i - iIncrement)->getCoefReal();
-                        iRank = pIn->get(i)->getRank();
-                        pdblReal = pIn->get(i)->getCoefReal();
+                        iLastSize = pOut->get(i - iIncrement)->getSize();
+                        pdblLastReal = pOut->get(i - iIncrement)->get();
+                        iSize = pIn->get(i)->getSize();
+                        pdblReal = pIn->get(i)->get();
 
-                        iOutRank = iLastRank + iRank - 1;
+                        iOutRank = iLastSize - 1 + iSize - 1;
                         pSP = new types::SinglePoly(&pdRData, iOutRank);
 
-                        iMultiScilabPolynomByScilabPolynom(pdblReal, iRank, pdblLastReal, iLastRank, pdRData, iOutRank);
+                        iMultiScilabPolynomByScilabPolynom(pdblReal, iSize, pdblLastReal, iLastSize, pdRData, iOutRank + 1);
 
                         pOut->set(i, pSP);
                         delete pSP;

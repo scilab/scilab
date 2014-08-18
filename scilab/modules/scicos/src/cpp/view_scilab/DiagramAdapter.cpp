@@ -6,7 +6,7 @@
  *  This source file is licensed as described in the file COPYING, which
  *  you should have received as part of this distribution.  The terms
  *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -31,17 +31,19 @@ namespace org_scilab_modules_scicos
 {
 namespace view_scilab
 {
+namespace
+{
 
 struct props
 {
 
-    static types::InternalType* get(const DiagramAdapter& adaptor)
+    static types::InternalType* get(const DiagramAdapter& adaptor, const Controller& controller)
     {
 
         return new ParamsAdapter(adaptor.getAdaptee());
     }
 
-    static bool set(DiagramAdapter& adaptor, types::InternalType* v)
+    static bool set(DiagramAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
         if (v->getType() == types::InternalType::ScilabUserType
                 && v->getShortTypeStr() == ParamsAdapter::getSharedTypeStr())
@@ -57,13 +59,13 @@ struct props
 struct objs
 {
 
-    static types::InternalType* get(const DiagramAdapter& adaptor)
+    static types::InternalType* get(const DiagramAdapter& adaptor, const Controller& controller)
     {
 
         return 0;
     }
 
-    static bool set(DiagramAdapter& adaptor, types::InternalType* v)
+    static bool set(DiagramAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
         return false;
     }
@@ -72,7 +74,7 @@ struct objs
 struct version
 {
 
-    static types::InternalType* get(const DiagramAdapter& adaptor)
+    static types::InternalType* get(const DiagramAdapter& adaptor, const Controller& controller)
     {
         std::stringstream str;
         str << SCI_VERSION_MAJOR << '.' << SCI_VERSION_MINOR << '.' << SCI_VERSION_MAINTENANCE;
@@ -80,7 +82,7 @@ struct version
         return new types::String(str.str().c_str());
     }
 
-    static bool set(DiagramAdapter& adaptor, types::InternalType* v)
+    static bool set(DiagramAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
         //FIXME: handle version upgrade of the whole model
         return true;
@@ -90,16 +92,18 @@ struct version
 struct contrib
 {
 
-    static types::InternalType* get(const DiagramAdapter& adaptor)
+    static types::InternalType* get(const DiagramAdapter& adaptor, const Controller& controller)
     {
         return 0;
     }
 
-    static bool set(DiagramAdapter& adaptor, types::InternalType* v)
+    static bool set(DiagramAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
         return false;
     }
 };
+
+} /* namespace */
 
 template<> property<DiagramAdapter>::props_t property<DiagramAdapter>::fields = property<DiagramAdapter>::props_t();
 
@@ -123,12 +127,6 @@ DiagramAdapter::~DiagramAdapter()
 {
 }
 
-bool DiagramAdapter::toString(std::wostringstream& ostr)
-{
-    ostr << L"DiagramAdapter.hxx: Dunno what to display there";
-    return true;
-}
-
 std::wstring DiagramAdapter::getTypeStr()
 {
     return getSharedTypeStr();
@@ -148,5 +146,5 @@ void DiagramAdapter::setContrib(types::InternalType* contrib)
     this->contrib = contrib;
 }
 
-} /* view_scilab */
+} /* namespace view_scilab */
 } /* namespace org_scilab_modules_scicos */

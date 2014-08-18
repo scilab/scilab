@@ -228,7 +228,7 @@ Function::ReturnValue WrapFunction::call(typed_list &in, optional_list &opt, int
     {
         for (std::size_t i(0); i != _iRetCount && outOrder[i] != -1 && outOrder[i] != 0 ; ++i)
         {
-            if (outOrder[i] - 1 < in.size())
+            if (outOrder[i] - 1 < gStr.m_iIn)
             {
                 std::size_t const iPos(outOrder[i] - 1);
                 //protect variable to deletion
@@ -249,7 +249,7 @@ Function::ReturnValue WrapFunction::call(typed_list &in, optional_list &opt, int
             }
             else
             {
-                std::size_t const iPos(outOrder[i] - in.size() - 1);
+                std::size_t const iPos(outOrder[i] - gStr.m_iIn - 1);
                 if (tmpOut[iPos]->isDouble() && ((types::Double*)tmpOut[iPos])->isViewAsInteger())
                 {
                     types::Double* pD = tmpOut[iPos]->getAs<types::Double>();

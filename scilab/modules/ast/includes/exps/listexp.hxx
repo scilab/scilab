@@ -41,11 +41,12 @@ public:
     ** \li "stop" is the end of the list (the max value)
     */
     ListExp (const Location& location,
-             Exp& start, Exp& step, Exp& end)
+             Exp& start, Exp& step, Exp& end, bool explicitStep=false)
         : Exp (location),
           _start (&start),
           _step (&step),
-          _end (&end)
+          _end (&end),
+          _explicitStep(explicitStep)
     {
         values[0] = std::numeric_limits<double>::quiet_NaN();
         values[1] = std::numeric_limits<double>::quiet_NaN();
@@ -143,6 +144,12 @@ public:
         return values;
     }
 
+    /** \brief Return if expression has explicit step defined */
+    bool hasExplicitStep () const
+    {
+        return _explicitStep;
+    }
+
     /** \} */
 
 protected:
@@ -155,6 +162,8 @@ protected:
 
     double values[3];
     bool is_values_int[3];
+    /** \brief has list explicit step. */
+    bool _explicitStep;
 };
 
 } // namespace ast

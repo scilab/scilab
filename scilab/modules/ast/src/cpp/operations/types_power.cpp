@@ -110,7 +110,7 @@ InternalType *GenericDotPower(InternalType *_pLeftOperand, InternalType *_pRight
         Polynom *pL   = _pLeftOperand->getAs<Polynom>();
         Double *pR   = _pRightOperand->getAs<Double>();
 
-        int iResult = PowerPolyByDouble(pL, pR, &pResult);
+        int iResult = DotPowerPolyByDouble(pL, pR, &pResult);
         switch (iResult)
         {
             case 1 :
@@ -347,7 +347,7 @@ int PowerPolyByDouble(Polynom* _pPoly, Double* _pDouble, InternalType** _pOut)
                 return 0;
             }
 
-            piRank[i] = ((iRank - 1) * iInputRank) + 1;
+            piRank[i] = iRank * iInputRank;
         }
 
         Polynom* pOut = new Polynom(_pPoly->getVariableName(), _pDouble->getRows(), _pDouble->getCols(), piRank);
@@ -355,7 +355,7 @@ int PowerPolyByDouble(Polynom* _pPoly, Double* _pDouble, InternalType** _pOut)
 
         for (int i = 0 ; i < _pDouble->getSize() ; i++)
         {
-            Double* pCoeffOut = pOut->get(i)->getCoef();
+            SinglePoly* pCoeffOut = pOut->get(i);
 
             int iCurrentRank    = 0;
             int iLoop           = (int)_pDouble->get(i);
@@ -370,7 +370,7 @@ int PowerPolyByDouble(Polynom* _pPoly, Double* _pDouble, InternalType** _pOut)
             {
                 if (iLoop % 2)
                 {
-                    int iRank = pP->getMaxRank() - 1;
+                    int iRank = pP->getMaxRank();
                     if (bComplex1)
                     {
                         C2F(wpmul1)(pCoeffOut->get(), pCoeffOut->getImg(), &iCurrentRank, pP->getCoef()->get(), pP->getCoef()->getImg(), &iRank, pCoeffOut->get(), pCoeffOut->getImg());
@@ -395,6 +395,114 @@ int PowerPolyByDouble(Polynom* _pPoly, Double* _pDouble, InternalType** _pOut)
         }
         *_pOut = pOut;
     }
+    return 0;
+}
+
+int DotPowerPolyByDouble(Polynom* _pPoly, Double* _pDouble, InternalType** _pOut)
+{
+    if (_pDouble->isEmpty())
+    {
+        //p .^ []
+        *_pOut = Double::Empty();
+        return 0;
+    }
+
+    int iSize = _pPoly->getSize();
+    Double** pDblPower  = new Double*[iSize];
+    double* pdblPower   = _pDouble->get();
+
+    if (_pDouble->isScalar())
+    {
+        if (pdblPower[0] < 0)
+        {
+            //call overload
+            _pOut = NULL;
+            delete[] pDblPower;
+            return 0;
+        }
+
+        for (int i = 0; i < iSize; i++)
+        {
+            pDblPower[i] = new Double(pdblPower[0]);
+        }
+    }
+    else if (_pDouble->getSize() == iSize)
+    {
+        for (int i = 0; i < iSize; i++)
+        {
+            if (pdblPower[i] < 0)
+            {
+                //call overload
+                _pOut = NULL;
+                delete[] pDblPower;
+                return 0;
+            }
+
+            pDblPower[i] = new Double(pdblPower[i]);
+        }
+    }
+    else
+    {
+        delete[] pDblPower;
+        throw ast::ScilabError(_W("Invalid exponent.\n"));
+    }
+
+    InternalType* pITTempOut    = NULL;
+    Polynom* pPolyTemp          = new Polynom(_pPoly->getVariableName(), 1, 1);
+    Polynom* pPolyOut           = new Polynom(_pPoly->getVariableName(), _pPoly->getDims(), _pPoly->getDimsArray());
+    SinglePoly** pSPOut         = pPolyOut->get();
+    SinglePoly** pSPTemp        = pPolyTemp->get();
+    SinglePoly** pSP            = _pPoly->get();
+
+    int iResult = 0;
+    for (int i = 0; i < iSize; i++)
+    {
+        // set singlePoly of _pPoly in pPolyTemp without copy
+        pSPTemp[0] = pSP[i];
+        iResult = PowerPolyByDouble(pPolyTemp, pDblPower[i], &pITTempOut);
+        if (iResult)
+        {
+            break;
+        }
+
+        // get singlePoly of pITTempOut and set it in pPolyOut without copy
+        SinglePoly** pSPTempOut = pITTempOut->getAs<Polynom>()->get();
+        pSPOut[i] = pSPTempOut[0];
+        pSPTempOut[0] = NULL;
+        delete pITTempOut;
+    }
+
+    // delete exp
+    for (int i = 0; i < iSize; i++)
+    {
+        delete pDblPower[i];
+    }
+
+    delete pDblPower;
+
+    // delete temporary polynom
+    // do not delete the last SinglePoly of _pPoly setted without copy in pPolyTemp
+    pSPTemp[0] = NULL;
+    delete pPolyTemp;
+
+    switch (iResult)
+    {
+        case 1 :
+        {
+            delete pPolyOut;
+            throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
+        }
+        case 2 :
+        {
+            delete pPolyOut;
+            throw ast::ScilabError(_W("Invalid exponent.\n"));
+        }
+        default:
+            //OK
+            break;
+    }
+
+    *_pOut = pPolyOut;
     return 0;
 }
 

@@ -656,8 +656,11 @@ void PrintVisitor::visit(const ListExp &e)
 {
     *ostr << SCI_LPAREN;
     e.start_get().accept(*this);
-    *ostr << SCI_IMPLICIT_LIST;
-    e.step_get().accept(*this);
+    if (e.hasExplicitStep())
+    {
+        *ostr << SCI_IMPLICIT_LIST;
+        e.step_get().accept(*this);
+    }
     *ostr << SCI_IMPLICIT_LIST;
     e.end_get().accept(*this);
     *ostr << SCI_RPAREN;

@@ -153,19 +153,19 @@ types::Polynom* prod(types::Polynom* pIn, int iOrientation)
         pOut->setComplex(pIn->isComplex());
 
         // do prod
-        double* pdblRealOut = pOut->get(0)->getCoef()->getReal();
+        double* pdblRealOut = pOut->get(0)->get();
         if (pIn->isComplex())
         {
-            double* pdblImgOut = pOut->get(0)->getCoef()->getImg();
+            double* pdblImgOut = pOut->get(0)->getImg();
 
             // alloc temporary workspace
-            double* pdblTempReal = new double[iRankMax];
-            double* pdblTempImg  = new double[iRankMax];
+            double* pdblTempReal = new double[iRankMax + 1];
+            double* pdblTempImg  = new double[iRankMax + 1];
 
             // init output to 1 + 0s + 0s²...
             pdblRealOut[0] = 1;
             pdblImgOut[0]  = 0;
-            for (int iRankN = 1; iRankN < iRankMax; iRankN++)
+            for (int iRankN = 1; iRankN < iRankMax + 1; iRankN++)
             {
                 pdblRealOut[iRankN] = 0;
                 pdblImgOut[iRankN]  = 0;
@@ -174,13 +174,13 @@ types::Polynom* prod(types::Polynom* pIn, int iOrientation)
             // perform operations
             for (int i = 0; i < pIn->getSize(); i++)
             {
-                double* pdblRealIn = pIn->get(i)->getCoef()->getReal();
-                double* pdblImgIn = pIn->get(i)->getCoef()->getImg();
-                memcpy(pdblTempReal, pdblRealOut, iRankMax * sizeof(double));
-                memcpy(pdblTempImg,  pdblImgOut,  iRankMax * sizeof(double));
-                iMultiComplexPolyByComplexPoly(pdblTempReal, pdblTempImg, iRankMax,
-                                               pdblRealIn, pdblImgIn, piRanks[i],
-                                               pdblRealOut, pdblImgOut, iRankMax);
+                double* pdblRealIn = pIn->get(i)->get();
+                double* pdblImgIn = pIn->get(i)->getImg();
+                memcpy(pdblTempReal, pdblRealOut, (iRankMax + 1) * sizeof(double));
+                memcpy(pdblTempImg,  pdblImgOut,  (iRankMax + 1) * sizeof(double));
+                iMultiComplexPolyByComplexPoly(pdblTempReal, pdblTempImg, iRankMax + 1,
+                                               pdblRealIn, pdblImgIn, piRanks[i] + 1,
+                                               pdblRealOut, pdblImgOut, iRankMax + 1);
             }
 
             delete pdblTempReal;
@@ -189,11 +189,11 @@ types::Polynom* prod(types::Polynom* pIn, int iOrientation)
         else
         {
             // alloc temporary workspace
-            double* pdblTempReal = new double[iRankMax];
+            double* pdblTempReal = new double[iRankMax + 1];
 
             // init output to 1 + 0s + 0s²...
             pdblRealOut[0] = 1;
-            for (int iRankN = 1; iRankN < iRankMax; iRankN++)
+            for (int iRankN = 1; iRankN < iRankMax + 1; iRankN++)
             {
                 pdblRealOut[iRankN] = 0;
             }
@@ -201,11 +201,11 @@ types::Polynom* prod(types::Polynom* pIn, int iOrientation)
             // perform operations
             for (int i = 0; i < pIn->getSize(); i++)
             {
-                double* pdblRealIn = pIn->get(i)->getCoef()->getReal();
-                memcpy(pdblTempReal, pdblRealOut, iRankMax * sizeof(double));
-                iMultiScilabPolynomByScilabPolynom(pdblTempReal, iRankMax,
-                                                   pdblRealIn, piRanks[i],
-                                                   pdblRealOut, iRankMax);
+                double* pdblRealIn = pIn->get(i)->get();
+                memcpy(pdblTempReal, pdblRealOut, (iRankMax + 1) * sizeof(double));
+                iMultiScilabPolynomByScilabPolynom(pdblTempReal, iRankMax + 1,
+                                                   pdblRealIn, piRanks[i] + 1,
+                                                   pdblRealOut, iRankMax + 1);
             }
 
             delete pdblTempReal;
@@ -273,17 +273,17 @@ types::Polynom* prod(types::Polynom* pIn, int iOrientation)
         if (pIn->isComplex())
         {
             // alloc temporary workspace
-            double* pdblTempReal = new double[iMaxOutputRank];
-            double* pdblTempImg  = new double[iMaxOutputRank];
+            double* pdblTempReal = new double[iMaxOutputRank + 1];
+            double* pdblTempImg  = new double[iMaxOutputRank + 1];
 
             // init output to a matrix of 1 + 0s + 0s²...
             for (int i = 0; i < pOut->getSize(); i++)
             {
-                double* pdblRealOut = pOut->get(i)->getCoef()->getReal();
-                double* pdblImgOut = pOut->get(i)->getCoef()->getImg();
+                double* pdblRealOut = pOut->get(i)->get();
+                double* pdblImgOut = pOut->get(i)->getImg();
                 pdblRealOut[0] = 1;
                 pdblImgOut[0]  = 0;
-                for (int iRankN = 1; iRankN < piRankMax[i]; iRankN++)
+                for (int iRankN = 1; iRankN < piRankMax[i] + 1; iRankN++)
                 {
                     pdblRealOut[iRankN] = 0;
                     pdblImgOut[iRankN]  = 0;
@@ -301,15 +301,15 @@ types::Polynom* prod(types::Polynom* pIn, int iOrientation)
                 int iIndex = pOut->getIndex(piIndex);
 
                 // make sum on each ranks
-                double* pdblRealIn = pIn->get(i)->getCoef()->getReal();
-                double* pdblRealOut = pOut->get(iIndex)->getCoef()->getReal();
-                double* pdblImgIn = pIn->get(i)->getCoef()->getImg();
-                double* pdblImgOut = pOut->get(iIndex)->getCoef()->getImg();
-                memcpy(pdblTempReal, pdblRealOut, piRankMax[iIndex] * sizeof(double));
-                memcpy(pdblTempImg,  pdblImgOut,  piRankMax[iIndex] * sizeof(double));
-                iMultiComplexPolyByComplexPoly(pdblTempReal, pdblTempImg, piRankMax[iIndex],
-                                               pdblRealIn, pdblImgIn, piRanks[i],
-                                               pdblRealOut, pdblImgOut, piRankMax[iIndex]);
+                double* pdblRealIn = pIn->get(i)->get();
+                double* pdblRealOut = pOut->get(iIndex)->get();
+                double* pdblImgIn = pIn->get(i)->getImg();
+                double* pdblImgOut = pOut->get(iIndex)->getImg();
+                memcpy(pdblTempReal, pdblRealOut, (piRankMax[iIndex] + 1) * sizeof(double));
+                memcpy(pdblTempImg,  pdblImgOut,  (piRankMax[iIndex] + 1) * sizeof(double));
+                iMultiComplexPolyByComplexPoly(pdblTempReal, pdblTempImg, piRankMax[iIndex] + 1,
+                                               pdblRealIn, pdblImgIn, piRanks[i] + 1,
+                                               pdblRealOut, pdblImgOut, piRankMax[iIndex] + 1);
             }
 
             delete pdblTempReal;
@@ -318,15 +318,15 @@ types::Polynom* prod(types::Polynom* pIn, int iOrientation)
         else
         {
             // alloc temporary workspace
-            double* pdblTempReal = new double[iMaxOutputRank];
-            double* pdblTempImg  = new double[iMaxOutputRank];
+            double* pdblTempReal = new double[iMaxOutputRank + 1];
+            double* pdblTempImg  = new double[iMaxOutputRank + 1];
 
             // init output to a matrix of 1 + 0s + 0s²...
             for (int i = 0; i < pOut->getSize(); i++)
             {
-                double* pdblRealOut = pOut->get(i)->getCoef()->getReal();
+                double* pdblRealOut = pOut->get(i)->get();
                 pdblRealOut[0] = 1;
-                for (int iRankN = 1; iRankN < piRankMax[i]; iRankN++)
+                for (int iRankN = 1; iRankN < piRankMax[i] + 1; iRankN++)
                 {
                     pdblRealOut[iRankN] = 0;
                 }
@@ -343,12 +343,12 @@ types::Polynom* prod(types::Polynom* pIn, int iOrientation)
                 int iIndex = pOut->getIndex(piIndex);
 
                 // make sum on each ranks
-                double* pdblRealIn = pIn->get(i)->getCoef()->getReal();
-                double* pdblRealOut = pOut->get(iIndex)->getCoef()->getReal();
-                memcpy(pdblTempReal, pdblRealOut, piRankMax[iIndex] * sizeof(double));
-                iMultiScilabPolynomByScilabPolynom(pdblTempReal, piRankMax[iIndex],
-                                                   pdblRealIn, piRanks[i],
-                                                   pdblRealOut, piRankMax[iIndex]);
+                double* pdblRealIn = pIn->get(i)->get();
+                double* pdblRealOut = pOut->get(iIndex)->get();
+                memcpy(pdblTempReal, pdblRealOut, (piRankMax[iIndex] + 1) * sizeof(double));
+                iMultiScilabPolynomByScilabPolynom(pdblTempReal, piRankMax[iIndex] + 1,
+                                                   pdblRealIn, piRanks[i] + 1,
+                                                   pdblRealOut, piRankMax[iIndex] + 1);
             }
 
             delete pdblTempReal;

@@ -90,34 +90,21 @@ types::Function::ReturnValue sci_imag(types::typed_list &in, int _iRetCount, typ
     }
     else if (in[0]->isPoly())
     {
-        types::Polynom* pPolyIn = in[0]->getAs<types::Polynom>();
-        types::Polynom* pPolyOut = new types::Polynom(pPolyIn->getVariableName(), pPolyIn->getDims(), pPolyIn->getDimsArray());
+        types::Polynom* pPolyIn  = in[0]->getAs<types::Polynom>();
+        types::Polynom* pPolyOut = NULL;
 
-        double* dataReal = NULL;
-
-        if (pPolyIn->isComplex() == false)
+        if (pPolyIn->isComplex())
         {
-            // Create a polynom null of size of input polynom
-            for (int i = 0; i < pPolyIn->getSize(); i++)
-            {
-                types::SinglePoly* pSP = new types::SinglePoly(&dataReal, 1);
-                dataReal[0]  = 0;
-                pPolyOut->set(i, pSP);
-                delete pSP;
-                pSP = NULL;
-            }
-        }
-        else
-        {
+            pPolyOut = new types::Polynom(pPolyIn->getVariableName(), pPolyIn->getDims(), pPolyIn->getDimsArray());
             for (int i = 0; i < pPolyIn->getSize(); i++)
             {
                 int rank = pPolyIn->get(i)->getRank();
                 int iNewRank = rank;
 
                 // Reduce the rank of output polynom if the last ranks are null
-                for (int j = rank - 1 ; j > 0 ; j--)
+                for (int j = rank ; j > 0 ; j--)
                 {
-                    if (pPolyIn->get(i)->getCoefImg()[j] == 0.0)
+                    if (pPolyIn->get(i)->getImg()[j] == 0.0)
                     {
                         iNewRank--;
                     }
@@ -127,11 +114,12 @@ types::Function::ReturnValue sci_imag(types::typed_list &in, int _iRetCount, typ
                     }
                 }
 
+                double* dataReal = NULL;
                 types::SinglePoly* pSP = new types::SinglePoly(&dataReal, iNewRank);
 
-                for (int j = 0; j < iNewRank; j++)
+                for (int j = 0; j < iNewRank + 1; j++)
                 {
-                    dataReal[j]  = pPolyIn->get(i)->getCoefImg()[j];
+                    dataReal[j] = pPolyIn->get(i)->getImg()[j];
                 }
 
                 pPolyOut->set(i, pSP);
@@ -139,6 +127,16 @@ types::Function::ReturnValue sci_imag(types::typed_list &in, int _iRetCount, typ
                 pSP = NULL;
             }
         }
+        else
+        {
+            int iSize = pPolyIn->getSize();
+            int* piRanks = new int[iSize];
+            memset(piRanks, 0x00, iSize * sizeof(int));
+            pPolyOut = new types::Polynom(pPolyIn->getVariableName(), pPolyIn->getDims(), pPolyIn->getDimsArray(), piRanks);
+            pPolyOut->setZeros();
+            delete[] piRanks;
+        }
+
         out.push_back(pPolyOut);
     }
     else

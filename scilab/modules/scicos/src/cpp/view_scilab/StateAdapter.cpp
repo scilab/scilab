@@ -6,7 +6,7 @@
  *  This source file is licensed as described in the file COPYING, which
  *  you should have received as part of this distribution.  The terms
  *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -24,6 +24,10 @@ namespace org_scilab_modules_scicos
 {
 namespace view_scilab
 {
+namespace
+{
+
+} /* namespace */
 
 template<> property<StateAdapter>::props_t property<StateAdapter>::fields = property<StateAdapter>::props_t();
 
@@ -43,12 +47,6 @@ StateAdapter::~StateAdapter()
 {
 }
 
-bool StateAdapter::toString(std::wostringstream& ostr)
-{
-    ostr << L"StateAdapter.hxx: Dunno what to display there";
-    return true;
-}
-
 std::wstring StateAdapter::getTypeStr()
 {
     return getSharedTypeStr();
@@ -58,5 +56,5 @@ std::wstring StateAdapter::getShortTypeStr()
     return getSharedTypeStr();
 }
 
-} /* view_scilab */
+} /* namespace view_scilab */
 } /* namespace org_scilab_modules_scicos */

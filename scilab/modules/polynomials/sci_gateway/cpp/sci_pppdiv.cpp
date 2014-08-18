@@ -34,7 +34,7 @@ types::Function::ReturnValue sci_pppdiv(types::typed_list &in, int _iRetCount, t
     double* pdblInI[2]  = {NULL, NULL};// rimaginary part
     bool bDouble        = false;
     bool pbComplex[2]   = {false, false};
-    int piRank[2]       = {0, 0}; // rank of denominator and numerator
+    int piSize[2]       = {0, 0}; // rank+1 of denominator and numerator
     int iErr            = 0;
     int iOne            = 1;
 
@@ -70,7 +70,7 @@ types::Function::ReturnValue sci_pppdiv(types::typed_list &in, int _iRetCount, t
                 return types::Function::Error;
             }
 
-            piRank[i] = 1;
+            piSize[i] = 1;
             pdblInR[i] = pDblIn->get();
             if (pDblIn->isComplex())
             {
@@ -94,12 +94,12 @@ types::Function::ReturnValue sci_pppdiv(types::typed_list &in, int _iRetCount, t
             }
 
             wstrName = pPolyIn->getVariableName();
-            piRank[i] = pPolyIn->getMaxRank();
-            pdblInR[i] = pPolyIn->get(0)->getCoefReal();
+            piSize[i] = pPolyIn->getMaxRank() + 1;
+            pdblInR[i] = pPolyIn->get(0)->get();
             if (pPolyIn->isComplex())
             {
                 pbComplex[i] = true;
-                pdblInI[i] = pPolyIn->get(0)->getCoefImg();
+                pdblInI[i] = pPolyIn->get(0)->getImg();
             }
         }
         else
@@ -111,7 +111,7 @@ types::Function::ReturnValue sci_pppdiv(types::typed_list &in, int _iRetCount, t
 
     // manage the case where the rank of the denominator
     // is less than the rank of numerator. x / x² = 0 , rest = s.
-    if (piRank[0] < piRank[1])
+    if (piSize[0] < piSize[1])
     {
         if (_iRetCount == 2)
         {
@@ -123,17 +123,17 @@ types::Function::ReturnValue sci_pppdiv(types::typed_list &in, int _iRetCount, t
 
     // perform operation and set the result in pdblInR/I[0]
     double* temp = pdblInR[0];
-    pdblInR[0] = new double[piRank[0]];
-    memcpy(pdblInR[0], temp, piRank[0] * sizeof(double));
+    pdblInR[0] = new double[piSize[0]];
+    memcpy(pdblInR[0], temp, piSize[0] * sizeof(double));
     if (pbComplex[0])
     {
         temp = pdblInI[0];
-        pdblInI[0] = new double[piRank[0]];
-        memcpy(pdblInI[0], temp, piRank[0] * sizeof(double));
+        pdblInI[0] = new double[piSize[0]];
+        memcpy(pdblInI[0], temp, piSize[0] * sizeof(double));
     }
 
-    int iDegreeNum = piRank[0] - 1;
-    int iDegreeDen = piRank[1] - 1;
+    int iDegreeNum = piSize[0] - 1;
+    int iDegreeDen = piSize[1] - 1;
     if (pbComplex[0] == false && pbComplex[1] == false)
     {
         C2F(dpodiv)(pdblInR[0], pdblInR[1], &iDegreeNum, &iDegreeDen, &iErr);
@@ -142,13 +142,13 @@ types::Function::ReturnValue sci_pppdiv(types::typed_list &in, int _iRetCount, t
     {
         if (pbComplex[0] == false)
         {
-            pdblInI[0] = new double[piRank[0]];
-            memset(pdblInI[0], 0x00, piRank[0] * sizeof(double));
+            pdblInI[0] = new double[piSize[0]];
+            memset(pdblInI[0], 0x00, piSize[0] * sizeof(double));
         }
         else if (pbComplex[1] == false)
         {
-            pdblInI[1] = new double[piRank[1]];
-            memset(pdblInI[1], 0x00, piRank[1] * sizeof(double));
+            pdblInI[1] = new double[piSize[1]];
+            memset(pdblInI[1], 0x00, piSize[1] * sizeof(double));
         }
 
         C2F(wpodiv)(pdblInR[0], pdblInI[0], pdblInR[1], pdblInI[1], &iDegreeNum, &iDegreeDen, &iErr);
@@ -235,12 +235,12 @@ types::Function::ReturnValue sci_pppdiv(types::typed_list &in, int _iRetCount, t
             if (bComplex && C2F(dasum)(&iSize, pdblRestI, &iOne) != 0)
             {
                 double* pdblImg = NULL;
-                pSP = new types::SinglePoly(&pdblReal, &pdblImg, iSize);
+                pSP = new types::SinglePoly(&pdblReal, &pdblImg, iSizeRest);
                 memcpy(pdblImg, pdblRestI, iSize * sizeof(double));
             }
             else
             {
-                pSP = new types::SinglePoly(&pdblReal, iSize);
+                pSP = new types::SinglePoly(&pdblReal, iSizeRest);
             }
 
             memcpy(pdblReal, pdblRestR, iSize * sizeof(double));
@@ -271,12 +271,12 @@ types::Function::ReturnValue sci_pppdiv(types::typed_list &in, int _iRetCount, t
         if (bComplex && C2F(dasum)(&iSize, pdblCoeffI, &iOne) != 0)
         {
             double* pdblImg = NULL;
-            pSP = new types::SinglePoly(&pdblReal, &pdblImg, iSize);
+            pSP = new types::SinglePoly(&pdblReal, &pdblImg, iSizeCoeff);
             memcpy(pdblImg, pdblCoeffI, iSize * sizeof(double));
         }
         else
         {
-            pSP = new types::SinglePoly(&pdblReal, iSize);
+            pSP = new types::SinglePoly(&pdblReal, iSizeCoeff);
         }
 
         memcpy(pdblReal, pdblCoeffR, iSize * sizeof(double));

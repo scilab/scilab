@@ -6,7 +6,7 @@
  *  This source file is licensed as described in the file COPYING, which
  *  you should have received as part of this distribution.  The terms
  *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -21,28 +21,6 @@
  * The '0' value is used indicate that BaseObject is not handled by the controller.
  */
 typedef long long ScicosID;
-//struct ScicosID
-//{
-//    ScicosID(const ScicosID& u) : v(u.v) {}
-//    typedef unsigned long long uid_container_type;
-//    ScicosID(uid_container_type u) : v(u) {}
-//
-//    inline bool operator<(const ScicosID& u) const
-//    {
-//        return v < u.v;
-//    }
-//    inline bool operator==(const ScicosID& u) const
-//    {
-//        return v == u.v;
-//    }
-//    inline void operator++(int added)
-//    {
-//        v = v + added;
-//    }
-//    friend std::ostream& operator<< (std::ostream &out, const ScicosID& u);
-//private:
-//    uid_container_type v;
-//};
 
 /**
  * Return status of get and set
@@ -83,21 +61,40 @@ enum object_properties_t
     SIM_FUNCTION_NAME,  //!< model::Descriptor::functionName value (stored into model::Block::sim)
     SIM_FUNCTION_API,   //!< model::Descriptor::functionApi value (stored into model::Block::sim)
     SIM_SCHEDULE,       //!< model::Descriptor::schedulingProperties value (stored into model::Block::sim)
+    SIM_BLOCKTYPE,      //!< model::Descriptor::blocktype value (stored into model::Block::sim)
+    SIM_DEP_UT,         //!< model::Descriptor::dep_ut value (stored into model::Block::sim)
     ANGLE,              //!< model::Block::flip and theta values
     EXPRS,              //!< model::Block::exprs value
     INPUTS,             //!< model::Block::in value
     OUTPUTS,            //!< model::Block::out value
     EVENT_INPUTS,       //!< model::Block::ein value
     EVENT_OUTPUTS,      //!< model::Block::eout value
+    STATE,              //!< model::Block::state value
+    DSTATE,             //!< model::Block::dstate value
+    ODSTATE,            //!< model::Block::odstate value
+    NZCROSS,            //!< model::Block::nzcross value
+    NMODE,              //!< model::Block::nmode value
+    RPAR,               //!< model::Block::rpar value
+    IPAR,               //!< model::Block::ipar value
+    OPAR,               //!< model::Block::opar value
+    EQUATIONS,          //!< model::Block::equations value
+    UID,                //!< model::Block::uid value
     PARENT_BLOCK,       //!< model::Block::parentBlock value
-    CHILDREN,           //!< model::Block::children value
+    CHILDREN,           //!< model::Block::children for superblocks or model::Diagram::children value
     PORT_REFERENCE,     //!< model::Block::portReference value
+    STYLE,              //!< model::Block & Port::style value
+    LABEL,              //!< model::Block & Port::label value
     DESTINATION_PORT,   //!< model::Link::destinationPort value
     SOURCE_PORT,        //!< model::Link::sourcePort value
     CONTROL_POINTS,     //!< model::Link::controlPoints value
     DATATYPE,           //!< model::Port::dataType value
+    DATATYPE_ROWS,      //!< model::Port::dataType adapter helper
+    DATATYPE_COLS,      //!< model::Port::dataType adapter helper
+    DATATYPE_TYPE,      //!< model::Port::dataType adapter helper
+    FIRING,             //!< model::Port::firing value
     SOURCE_BLOCK,       //!< model::Port::sourceBlock value
     PORT_KIND,          //!< model::Port::kind value
+    IMPLICIT,           //!< model::Port::implicit value
     PORT_NUMBER,        //!< model::Port::portNumber value
     CONNECTED_SIGNALS,  //!< model::Port::connectedSignals value
 };

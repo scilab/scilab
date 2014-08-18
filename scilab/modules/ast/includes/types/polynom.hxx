@@ -65,6 +65,8 @@ public :
                : IdPolynom;
     }
 
+    bool isComplex(void);
+
     inline bool             isPoly()
     {
         return true;
@@ -74,15 +76,15 @@ public :
     std::wstring            getVariableName();
     void                    setVariableName(std::wstring);
     bool                    getRank(int *_piRank);
-    bool                    getRealRank(int *_piRank);
     int                     getMaxRank(void);
-    int                     getRealMaxRank(void);
     Double*                 evaluate(Double* _pdblValue);
     void                    updateRank(void);
     Double*                 getCoef(void);
     void                    setCoef(Double *_pCoef);
     Double*                 extractCoef(int _iRank);
     bool                    insertCoef(int _iRank, Double* _pCoef);
+    void                    setZeros();
+
     bool                    set(int _iPos, SinglePoly* _pS);
     bool                    set(int _iRows, int _iCols, SinglePoly* _pS);
     bool                    set(SinglePoly** _pS);

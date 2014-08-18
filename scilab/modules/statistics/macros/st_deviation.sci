@@ -14,7 +14,11 @@ function sd=st_deviation(x,cr)
     warnobsolete("stdev", "5.5.1");
     if argn(2)<2 then cr="*",end
     if x == [] then sd=%nan;return ;end
-    if typeof(x)=="hypermat" then sd=%hm_stdev(x,cr),return,end
+
+    if length(size(x)) > 2 then
+        sd=%hm_stdev(x,cr)
+        return
+    end
     [m,n]=size(x);
     if cr=="*" then
         n=m*n

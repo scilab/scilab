@@ -6,9 +6,13 @@
  *  This source file is licensed as described in the file COPYING, which
  *  you should have received as part of this distribution.  The terms
  *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
+
+#include <string>
+#include <utility>
+#include <algorithm>
 
 #include "Model.hxx"
 #include "utilities.hxx"
@@ -24,7 +28,7 @@ namespace org_scilab_modules_scicos
 {
 
 Model::Model() :
-    lastId(0)
+    lastId(0), allObjects(), datatypes()
 {
 }
 
@@ -104,7 +108,7 @@ void Model::deleteObject(ScicosID uid)
     objects_map_t::iterator iter = allObjects.lower_bound(uid);
     if (iter == allObjects.end() || uid < iter->first)
     {
-        throw "key has not been found";
+        throw std::string("key has not been found");
     }
 
     allObjects.erase(iter);
@@ -116,7 +120,7 @@ model::BaseObject* Model::getObject(ScicosID uid) const
     objects_map_t::const_iterator iter = allObjects.lower_bound(uid);
     if (iter == allObjects.end() || uid < iter->first)
     {
-        throw "key has not been found";
+        throw std::string("key has not been found");
     }
 
     return iter->second;
@@ -127,7 +131,7 @@ update_status_t Model::setObject(model::BaseObject* o)
     objects_map_t::iterator iter = allObjects.lower_bound(o->id());
     if (iter == allObjects.end() || o->id() < iter->first)
     {
-        throw "key has not been found";
+        throw std::string("key has not been found");
     }
 
     if (*iter->second == *o)
@@ -139,6 +143,34 @@ update_status_t Model::setObject(model::BaseObject* o)
     delete iter->second;
     iter->second = o;
     return SUCCESS;
+}
+
+model::Datatype* Model::flyweight(const model::Datatype& d)
+{
+    datatypes_set_t::iterator iter = std::lower_bound(datatypes.begin(), datatypes.end(), &d);
+    if (iter != datatypes.end() && !(d < **iter)) // if d is found
+    {
+        (*iter)->refCount++;
+        return *iter;
+    }
+    else
+    {
+        return *datatypes.insert(iter, new model::Datatype(d));
+    }
+}
+
+void Model::erase(model::Datatype* d)
+{
+    datatypes_set_t::iterator iter = std::lower_bound(datatypes.begin(), datatypes.end(), d);
+    if (iter != datatypes.end() && !(*d < **iter)) // if d is found
+    {
+        (*iter)->refCount--;
+        if ((*iter)->refCount < 0)
+        {
+            datatypes.erase(iter);
+            delete *iter;
+        }
+    }
 }
 
 } /* namespace org_scilab_modules_scicos */

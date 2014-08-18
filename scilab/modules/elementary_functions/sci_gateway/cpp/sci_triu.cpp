@@ -114,8 +114,12 @@ types::Function::ReturnValue sci_triu(types::typed_list &in, int _iRetCount, typ
         types::Polynom* pPolyIn = in[0]->getAs<types::Polynom>();
         int iRows = pPolyIn->getRows();
         int iCols = pPolyIn->getCols();
+        int* piRanks = new int[iRows * iCols];
+        memset(piRanks, 0x00, iRows * iCols * sizeof(int));
+        types::Polynom* pPolyOut = new types::Polynom(pPolyIn->getVariableName(), iRows, iCols, piRanks);
+        delete[] piRanks;
+        pPolyOut->setZeros();
 
-        types::Polynom* pPolyOut = new types::Polynom(pPolyIn->getVariableName(), iRows, iCols);
         for (int i = 0 ; i < iCols ; i++)
         {
             int iSize = min(max(i + 1 - iOffset, 0), iRows);

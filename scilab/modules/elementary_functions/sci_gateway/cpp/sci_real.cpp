@@ -94,7 +94,7 @@ types::Function::ReturnValue sci_real(types::typed_list &in, int _iRetCount, typ
         types::Polynom* pPolyOut = new types::Polynom(pPolyIn->getVariableName(), pPolyIn->getDims(), pPolyIn->getDimsArray(), piRanks);
         for (int i = 0; i < pPolyIn->getSize(); i++)
         {
-            memcpy(pPolyOut->get(i)->getCoef()->get(), pPolyIn->get(i)->getCoef()->get(), (piRanks[i] + 1) * sizeof(double));
+            memcpy(pPolyOut->get(i)->get(), pPolyIn->get(i)->get(), (piRanks[i] + 1) * sizeof(double));
         }
 
         delete[] piRanks;

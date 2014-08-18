@@ -206,6 +206,7 @@ lib /DEF:"$(ProjectDir)cacsd_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\cpp\clean.cpp" />
     <ClCompile Include="..\cpp\cumprod.cpp" />
     <ClCompile Include="..\cpp\cumsum.cpp" />
     <ClCompile Include="..\cpp\diag.cpp" />
@@ -298,6 +299,7 @@ lib /DEF:"$(ProjectDir)cacsd_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
     <ClInclude Include="..\..\includes\unsfdcopy.h" />
     <ClInclude Include="..\..\includes\vfinite.h" />
     <ClInclude Include="..\..\includes\xerhlt.h" />
+    <ClInclude Include="..\cpp\clean.hxx" />
     <ClInclude Include="..\cpp\cumprod.hxx" />
     <ClInclude Include="..\cpp\cumsum.hxx" />
     <ClInclude Include="..\cpp\diag.hxx" />

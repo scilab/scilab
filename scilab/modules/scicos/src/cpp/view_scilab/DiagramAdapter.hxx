@@ -6,7 +6,7 @@
  *  This source file is licensed as described in the file COPYING, which
  *  you should have received as part of this distribution.  The terms
  *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -14,7 +14,6 @@
 #define DIAGRAMADAPTER_HXX_
 
 #include <string>
-#include <sstream>
 
 #include "utilities.hxx"
 #include "BaseAdapter.hxx"
@@ -37,7 +36,6 @@ public:
         return L"Diagram";
     }
 
-    bool toString(std::wostringstream& ostr);
     std::wstring getTypeStr();
     std::wstring getShortTypeStr();
 
@@ -48,7 +46,7 @@ private:
     types::InternalType* contrib;
 };
 
-} /* view_scilab */
+} /* namespace view_scilab */
 } /* namespace org_scilab_modules_scicos */
 
 #endif /* MODELADAPTER_HXX_ */

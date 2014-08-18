@@ -339,7 +339,7 @@ bool FuncManager::CreateModuleList(void)
     m_ModuleMap[L"sound"] = pair<GW_MOD, GW_MOD>(&SoundModule::Load, &SoundModule::Unload);
     m_ModuleMap[L"umfpack"] = pair<GW_MOD, GW_MOD>(&UmfpackModule::Load, &UmfpackModule::Unload);
     m_ModuleMap[L"optimization"] = pair<GW_MOD, GW_MOD>(&OptimizationModule::Load, &OptimizationModule::Unload);
-    m_ModuleMap[L"special_functions"] = pair<GW_MOD, GW_MOD>(&SpecialFunctionModule::Load, &SpecialFunctionModule::Unload);
+    m_ModuleMap[L"special_functions"] = pair<GW_MOD, GW_MOD>(&SpecialFunctionsModule::Load, &SpecialFunctionsModule::Unload);
     m_ModuleMap[L"graphic_export"] = pair<GW_MOD, GW_MOD>(&GraphicExportModule::Load, &GraphicExportModule::Unload);
     m_ModuleMap[L"polynomials"] = pair<GW_MOD, GW_MOD>(&PolynomialsModule::Load, &PolynomialsModule::Unload);
     m_ModuleMap[L"arnoldi"] = pair<GW_MOD, GW_MOD>(&ArnoldiModule::Load, &ArnoldiModule::Unload);

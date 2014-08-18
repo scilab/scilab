@@ -15,13 +15,12 @@
 #include "double.hxx"
 #include "overload.hxx"
 #include "execvisitor.hxx"
-
+#include "clean.hxx"
 
 extern "C"
 {
 #include "Scierror.h"
 #include "localization.h"
-#include "basic_functions.h"
 }
 
 /*--------------------------------------------------------------------------*/
@@ -34,12 +33,9 @@ types::Function::ReturnValue sci_clean(types::typed_list &in, int _iRetCount, ty
     double* pdReal  = NULL;
     double* pdImg   = NULL;
 
-    double dNorm    = 0;
-    double dEps     = 0;
     double dEpsR    = 1E-10;
     double dEpsA    = 1E-10;
 
-    bool bComplex   = false;
     int iSize       = 0;
 
     //Only for types::Sparse case
@@ -67,27 +63,14 @@ types::Function::ReturnValue sci_clean(types::typed_list &in, int _iRetCount, ty
         pdReal = pDblOut->get();
         if (pDblOut->isComplex())
         {
-            bComplex = true;
             pdImg = pDblOut->getImg();
         }
     }
     else if (in[0]->isPoly())
     {
         types::Polynom* pPolyIn = in[0]->getAs<types::Polynom>();
-        int* piRanks = new int[pPolyIn->getSize()];
-        pPolyIn->getRank(piRanks);
-        pPolyOut = new types::Polynom(pPolyIn->getVariableName(), pPolyIn->getDims(), pPolyIn->getDimsArray(), piRanks);
-
-        pDblOut = pPolyIn->getCoef();
-        iSize = pDblOut->getSize();
-        pdReal = pDblOut->get();
-        if (pDblOut->isComplex())
-        {
-            bComplex = true;
-            pdImg = pDblOut->getImg();
-        }
-
-        delete[] piRanks;
+        iSize = pPolyIn->getSize();
+        pPolyOut = pPolyIn->clone()->getAs<types::Polynom>();
     }
     else if (in[0]->isSparse())
     {
@@ -100,13 +83,12 @@ types::Function::ReturnValue sci_clean(types::typed_list &in, int _iRetCount, ty
         pCols = pRows + iSize;
 
         pdReal = new double[iSize];
-        pdImg  = new double[iSize];
-        pSparseIn->outputValues(pdReal, pdImg);
-
         if (pSparseIn->isComplex())
         {
-            bComplex = true;
+            pdImg  = new double[iSize];
         }
+
+        pSparseIn->outputValues(pdReal, pdImg);
     }
     else
     {
@@ -154,32 +136,17 @@ types::Function::ReturnValue sci_clean(types::typed_list &in, int _iRetCount, ty
     }
 
     /***** perform operation *****/
-    if (bComplex)
+    if (in[0]->isPoly())
     {
-        dNorm = wasums(iSize, pdReal, pdImg);
-        dEps = std::max(dEpsA, dEpsR * dNorm);
-
         for (int i = 0 ; i < iSize ; i++)
         {
-            if (dabss(pdImg[i]) <= dEps)
-            {
-                pdImg[i] = 0;
-            }
+            types::SinglePoly* pSP = pPolyOut->get(i);
+            clean(pSP->get(), pSP->getImg(), pSP->getSize(), dEpsA, dEpsR);
         }
     }
     else
     {
-        int iOne = 1;
-        dNorm = C2F(dasum)(&iSize, pdReal, &iOne);
-        dEps = std::max(dEpsA, dEpsR * dNorm);
-    }
-
-    for (int i = 0 ; i < iSize ; i++)
-    {
-        if (dabss(pdReal[i]) <= dEps)
-        {
-            pdReal[i] = 0;
-        }
+        clean(pdReal, pdImg, iSize, dEpsA, dEpsR);
     }
 
     /***** set result *****/
@@ -189,21 +156,20 @@ types::Function::ReturnValue sci_clean(types::typed_list &in, int _iRetCount, ty
     }
     else if (in[0]->isPoly())
     {
-        pPolyOut->setCoef(pDblOut);
         pPolyOut->updateRank();
-        delete pDblOut;
-        pDblOut = NULL;
         out.push_back(pPolyOut);
     }
     else if (in[0]->isSparse())
     {
-        if (bComplex)
+        if (pdImg)
         {
             for (int i = 0 ; i < iSize ; i++)
             {
                 std::complex<double> cplx = complex<double>(pdReal[i], pdImg[i]);
                 pSparseOut->set(pRows[i] - 1, pCols[i] - 1, cplx, false);
             }
+
+            delete[] pdImg;
         }
         else
         {
@@ -216,7 +182,6 @@ types::Function::ReturnValue sci_clean(types::typed_list &in, int _iRetCount, ty
         pSparseOut->finalize();
 
         delete[] pdReal;
-        delete[] pdImg;
         delete[] pRows;
         out.push_back(pSparseOut);
     }

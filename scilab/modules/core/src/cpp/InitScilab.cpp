@@ -741,7 +741,7 @@ static void Add_s(void)
     dblCoef.set(0, 0, 0);
     dblCoef.set(0, 1, 1);
 
-    Add_Poly_Constant(L"%s", L"s", 2, &dblCoef);
+    Add_Poly_Constant(L"%s", L"s", 1, &dblCoef);
 }
 
 static void Add_z(void)
@@ -751,13 +751,13 @@ static void Add_z(void)
     dblCoef.set(0, 0, 0);
     dblCoef.set(0, 1, 1);
 
-    Add_Poly_Constant(L"%z", L"z", 2, &dblCoef);
+    Add_Poly_Constant(L"%z", L"z", 1, &dblCoef);
 }
 
 static void Add_Poly_Constant(wstring _szName, wstring _szPolyVar, int _iRank, Double * _pdbl)
 {
     types::Polynom * pVar = new types::Polynom(_szPolyVar, 1, 1, &_iRank);
-    SinglePoly *poPoly = pVar->get(0, 0);
+    SinglePoly *poPoly = pVar->get(0);
 
     poPoly->setCoef(_pdbl);
     symbol::Context::getInstance()->put(symbol::Symbol(_szName), pVar);

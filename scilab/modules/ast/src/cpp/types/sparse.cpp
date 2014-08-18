@@ -28,6 +28,7 @@
 #include "configvariable.hxx"
 
 #include "sparseOp.hxx"
+
 extern "C"
 {
 #include "elem_common.h"

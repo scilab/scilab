@@ -40,7 +40,7 @@ int sci_datatip_set_interp(char *fname, void* pvApiCtx)
 
     SciErr sciErr;
     CheckInputArgument(pvApiCtx, 2, 2);
-    CheckOutputArgument(pvApiCtx, 0, 0);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
     if (nbInputArgument(pvApiCtx) == 2)
     {

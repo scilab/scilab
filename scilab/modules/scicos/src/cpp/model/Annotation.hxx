@@ -6,15 +6,15 @@
  *  This source file is licensed as described in the file COPYING, which
  *  you should have received as part of this distribution.  The terms
  *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
 #ifndef ANNOTATION_HXX_
 #define ANNOTATION_HXX_
 
-#include <cassert>
 #include <string>
+#include <vector>
 
 #include "Model.hxx"
 #include "model/BaseObject.hxx"

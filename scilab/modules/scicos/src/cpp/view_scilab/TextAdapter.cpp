@@ -6,16 +6,13 @@
  *  This source file is licensed as described in the file COPYING, which
  *  you should have received as part of this distribution.  The terms
  *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
 #include <string>
 
 #include "internal.hxx"
-#include "list.hxx"
-#include "types.hxx"
-#include "user.hxx"
 
 #include "Controller.hxx"
 #include "TextAdapter.hxx"
@@ -24,6 +21,10 @@ namespace org_scilab_modules_scicos
 {
 namespace view_scilab
 {
+namespace
+{
+
+} /* namespace */
 
 template<> property<TextAdapter>::props_t property<TextAdapter>::fields = property<TextAdapter>::props_t();
 
@@ -43,12 +44,6 @@ TextAdapter::~TextAdapter()
 {
 }
 
-bool TextAdapter::toString(std::wostringstream& ostr)
-{
-    ostr << L"TextAdapter.hxx: Dunno what to display there";
-    return true;
-}
-
 std::wstring TextAdapter::getTypeStr()
 {
     return getSharedTypeStr();
@@ -58,5 +53,5 @@ std::wstring TextAdapter::getShortTypeStr()
     return getSharedTypeStr();
 }
 
-} /* view_scilab */
+} /* namespace view_scilab */
 } /* namespace org_scilab_modules_scicos */

@@ -6,7 +6,7 @@
  *  This source file is licensed as described in the file COPYING, which
  *  you should have received as part of this distribution.  The terms
  *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -70,6 +70,9 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, dou
         model::Port* o = static_cast<model::Port*>(getObject(uid));
         switch (p)
         {
+            case FIRING:
+                o->getFiring(v);
+                return true;
             default:
                 break;
         }
@@ -94,6 +97,18 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, int
         model::Block* o = static_cast<model::Block*>(getObject(uid));
         switch (p)
         {
+            case SIM_FUNCTION_API:
+                o->getSimFunctionApi(v);
+                return true;
+            case SIM_BLOCKTYPE:
+                o->getSimBlocktype(v);
+                return true;
+            case NZCROSS:
+                o->getNZcross(v);
+                return true;
+            case NMODE:
+                o->getNMode(v);
+                return true;
             default:
                 break;
         }
@@ -172,6 +187,9 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, boo
         model::Port* o = static_cast<model::Port*>(getObject(uid));
         switch (p)
         {
+            case IMPLICIT:
+                o->getImplicit(v);
+                return true;
             default:
                 break;
         }
@@ -196,6 +214,18 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
         model::Block* o = static_cast<model::Block*>(getObject(uid));
         switch (p)
         {
+            case SIM_FUNCTION_NAME:
+                o->getSimFunctionName(v);
+                return true;
+            case STYLE:
+                o->getStyle(v);
+                return true;
+            case LABEL:
+                o->getLabel(v);
+                return true;
+            case UID:
+                o->getUID(v);
+                return true;
             default:
                 break;
         }
@@ -223,6 +253,12 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
         model::Port* o = static_cast<model::Port*>(getObject(uid));
         switch (p)
         {
+            case STYLE:
+                o->getStyle(v);
+                return true;
+            case LABEL:
+                o->getLabel(v);
+                return true;
             default:
                 break;
         }
@@ -273,6 +309,12 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, Sci
             case PARENT_DIAGRAM:
                 v = o->getParentDiagram();
                 return true;
+            case SOURCE_PORT:
+                v = o->getSourcePort();
+                return true;
+            case DESTINATION_PORT:
+                v = o->getDestinationPort();
+                return true;
             default:
                 break;
         }
@@ -280,6 +322,14 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, Sci
     else if (k == PORT)
     {
         model::Port* o = static_cast<model::Port*>(getObject(uid));
+        switch (p)
+        {
+            case CONNECTED_SIGNALS:
+                v = o->getConnectedSignals().front();
+                return true;
+            default:
+                break;
+        }
     }
     else
     {
@@ -312,6 +362,15 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
                 return true;
             case ANGLE:
                 o->getAngle(v);
+                return true;
+            case STATE:
+                o->getState(v);
+                return true;
+            case DSTATE:
+                o->getDState(v);
+                return true;
+            case RPAR:
+                o->getRpar(v);
                 return true;
             default:
                 break;
@@ -352,6 +411,12 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
         model::Block* o = static_cast<model::Block*>(getObject(uid));
         switch (p)
         {
+            case SIM_DEP_UT:
+                o->getSimDepUT(v);
+                return true;
+            case IPAR:
+                o->getIpar(v);
+                return true;
             default:
                 break;
         }
@@ -379,6 +444,9 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
         model::Port* o = static_cast<model::Port*>(getObject(uid));
         switch (p)
         {
+            case DATATYPE:
+                o->getDataType(v);
+                return true;
             default:
                 break;
         }
@@ -386,7 +454,7 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
     return false;
 }
 
-bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::vector< std::string >& v)
+bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::vector<std::string>& v)
 {
 
     if (k == ANNOTATION)
@@ -458,10 +526,19 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
         switch (p)
         {
             case INPUTS:
-                v = o->getIn();
+                o->getIn(v);
                 return true;
             case OUTPUTS:
-                v = o->getOut();
+                o->getOut(v);
+                return true;
+            case EVENT_INPUTS:
+                o->getEin(v);
+                return true;
+            case EVENT_OUTPUTS:
+                o->getEout(v);
+                return true;
+            case CHILDREN:
+                o->getChildren(v);
                 return true;
             default:
                 break;
@@ -472,6 +549,9 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
         model::Diagram* o = static_cast<model::Diagram*>(getObject(uid));
         switch (p)
         {
+            case CHILDREN:
+                v = o->getChildren();
+                return true;
             default:
                 break;
         }
@@ -490,6 +570,9 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
         model::Port* o = static_cast<model::Port*>(getObject(uid));
         switch (p)
         {
+            case CONNECTED_SIGNALS:
+                v = o->getConnectedSignals();
+                return true;
             default:
                 break;
         }

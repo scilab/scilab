@@ -48,11 +48,11 @@ types::Function::ReturnValue sci_conj(types::typed_list &in, int _iRetCount, typ
 
     if (in[0]->isDouble())
     {
-        pDblOut = in[0]->getAs<types::Double>()->clone()->getAs<types::Double>();
+        pDblOut = in[0]->clone()->getAs<types::Double>();
     }
     else if (in[0]->isPoly())
     {
-        pPolyOut = in[0]->getAs<types::Polynom>()->clone()->getAs<types::Polynom>();
+        pPolyOut = in[0]->clone()->getAs<types::Polynom>();
         pDblOut = pPolyOut->getCoef();
     }
     else

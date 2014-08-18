@@ -72,11 +72,9 @@ types::InternalType* allocDest(types::InternalType* _poSource, int _iRows, int _
         case types::GenericType::ScilabPolynom :
         {
             int* piRank = new int[_iRows * _iCols];
-            for (int i = 0 ; i < _iRows * _iCols ; i++)
-            {
-                piRank[i] = 1;
-            }
+            memset(piRank, 0x00, _iRows * _iCols * sizeof(int));
             poResult = new types::Polynom(_poSource->getAs<types::Polynom>()->getVariableName(), _iRows, _iCols, piRank);
+            delete[] piRank;
             break;
         }
         case types::InternalType::ScilabImplicitList :
@@ -91,9 +89,9 @@ types::InternalType* allocDest(types::InternalType* _poSource, int _iRows, int _
 
 types::InternalType* AddElementToVariableFromCol(types::InternalType* _poDest, types::InternalType* _poSource, int _iRows, int _iCols, int *_piCols)
 {
-    types::InternalType *poResult	            = NULL;
-    types::InternalType::ScilabType TypeSource	= _poSource->getType();
-    types::InternalType::ScilabType TypeDest		= types::InternalType::ScilabInternal;
+    types::InternalType *poResult                = NULL;
+    types::InternalType::ScilabType TypeSource    = _poSource->getType();
+    types::InternalType::ScilabType TypeDest        = types::InternalType::ScilabInternal;
     int iCurRow                                 = _iRows;
     int iCurCol                                 = _iCols;
 
@@ -102,9 +100,9 @@ types::InternalType* AddElementToVariableFromCol(types::InternalType* _poDest, t
     {
         //First call, alloc _poSource
         poResult    = allocDest(_poSource, _iRows, _iCols);
-        TypeDest	= TypeSource;
-        iCurCol	    = 0;
-        iCurRow		= 0;
+        TypeDest    = TypeSource;
+        iCurCol        = 0;
+        iCurRow        = 0;
     }
     else
     {
@@ -140,9 +138,9 @@ types::InternalType* AddElementToVariableFromCol(types::InternalType* _poDest, t
 
 types::InternalType* AddElementToVariableFromRow(types::InternalType* _poDest, types::InternalType* _poSource, int _iRows, int _iCols, int *_piRows)
 {
-    types::InternalType *poResult	            = NULL;
-    types::InternalType::ScilabType TypeSource	= _poSource->getType();
-    types::InternalType::ScilabType TypeDest		= types::InternalType::ScilabInternal;
+    types::InternalType *poResult                = NULL;
+    types::InternalType::ScilabType TypeSource    = _poSource->getType();
+    types::InternalType::ScilabType TypeDest        = types::InternalType::ScilabInternal;
     int iCurRow                                 = _iRows;
     int iCurCol                                 = _iCols;
 
@@ -150,13 +148,13 @@ types::InternalType* AddElementToVariableFromRow(types::InternalType* _poDest, t
     {
         //First call, alloc _poSource
         poResult    = allocDest(_poSource, _iRows, _iCols);
-        iCurCol	    = 0;
-        iCurRow		= 0;
-        TypeDest	= TypeSource;
+        iCurCol        = 0;
+        iCurRow        = 0;
+        TypeDest    = TypeSource;
     }
     else
     {
-        TypeDest	= _poDest->getType();
+        TypeDest    = _poDest->getType();
         poResult    = _poDest;
     }
 
@@ -194,9 +192,9 @@ _iCols : Position if _poDest allready initialized else size of the matrix
 */
 types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::InternalType* _poSource, int _iRows, int _iCols)
 {
-    types::InternalType *poResult	= NULL;
-    types::InternalType::ScilabType TypeSource	= _poSource->getType();
-    types::InternalType::ScilabType TypeDest		=	types::InternalType::ScilabInternal;
+    types::InternalType *poResult = NULL;
+    types::InternalType::ScilabType TypeSource = _poSource->getType();
+    types::InternalType::ScilabType TypeDest = types::InternalType::ScilabInternal;
     int iCurRow = _iRows;
     int iCurCol = _iCols;
 
@@ -246,11 +244,9 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
             case types::GenericType::ScilabPolynom :
             {
                 int* piRank = new int[_iRows * _iCols];
-                for (int i = 0 ; i < _iRows * _iCols ; i++)
-                {
-                    piRank[i] = 1;
-                }
+                memset(piRank, 0x00, _iRows * _iCols * sizeof(int));
                 poResult = new types::Polynom(_poSource->getAs<types::Polynom>()->getVariableName(), _iRows, _iCols, piRank);
+                delete[] piRank;
                 break;
             }
             case types::InternalType::ScilabImplicitList :
@@ -265,7 +261,7 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
         }
         iCurCol = 0;
         iCurRow = 0;
-        TypeDest =	TypeSource;
+        TypeDest =    TypeSource;
     }
     else
     {
@@ -283,42 +279,47 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
                 if (TypeSource == types::GenericType::ScilabPolynom)
                 {
                     types::Double *poDest = _poDest->getAs<types::Double>();
-                    //Convert Dest to ScilabPolynom
-                    int *piRank = new int[poDest->getSize()];
-                    for (int i = 0 ; i < poDest->getSize() ; i++)
-                    {
-                        piRank[i] = 1;
-                    }
+                    Polynom* pPSource = _poSource->getAs<types::Polynom>();
 
-                    poResult = new types::Polynom(_poSource->getAs<types::Polynom>()->getVariableName(), poDest->getRows(), poDest->getCols(),  piRank);
+                    //Convert Dest to ScilabPolynom
+                    int iSize = poDest->getSize();
+                    int *piRank = new int[iSize];
+                    memset(piRank, 0x00, iSize * sizeof(int));
+                    poResult = new types::Polynom(pPSource->getVariableName(), poDest->getRows(), poDest->getCols(), piRank);
+                    delete[] piRank;
+
+                    Polynom* pPResult = poResult->getAs<types::Polynom>();
+                    pPResult->setComplex(poDest->isComplex());
 
                     double *pR = poDest->getReal();
-                    double *pI = poDest->getImg();
-                    for (int i = 0 ; i < poDest->getSize() ; i++)
+                    SinglePoly** pSP = pPResult->get();
+
+                    if (poDest->isComplex())
                     {
-                        types::Double *pdbl = NULL;
-                        if (poDest->isComplex())
+                        double *pI = poDest->getImg();
+                        for (int i = 0 ; i < iSize; i++)
                         {
-                            pdbl = new types::Double(pR[i], pI[i]);
-                        }
-                        else
-                        {
-                            pdbl = new types::Double(pR[i]);
-                        }
-
-                        poResult->getAs<types::Polynom>()->setCoef(i, pdbl);
-                        delete pdbl;
-                    }
-
-                    Polynom* pP = _poSource->getAs<types::Polynom>();
-
-                    for (int i = 0 ; i < pP->getRows() ; i++)
-                    {
-                        for (int j = 0 ; j < pP->getCols() ; j++)
-                        {
-                            poResult->getAs<types::Polynom>()->setCoef(iCurRow + i, iCurCol + j, _poSource->getAs<types::Polynom>()->get(i, j)->getCoef());
+                            pSP[i]->set(0, pR[i]);
+                            pSP[i]->setImg(0, pI[i]);
                         }
                     }
+                    else
+                    {
+                        for (int i = 0 ; i < iSize; i++)
+                        {
+                            pSP[i]->set(0, pR[i]);
+                        }
+                    }
+
+                    for (int i = 0 ; i < pPSource->getRows() ; i++)
+                    {
+                        for (int j = 0 ; j < pPSource->getCols() ; j++)
+                        {
+                            pPResult->set(iCurRow + i, iCurCol + j, pPSource->get(i, j));
+                        }
+                    }
+
+                    return poResult;
                 }
                 break;
             case types::GenericType::ScilabPolynom :
@@ -337,7 +338,7 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
                             {
                                 types::SinglePoly* pSPOut = pPolyOut->get(iCurRow + i, iCurCol + j);
 
-                                pSPOut->setRank(1);
+                                pSPOut->setRank(0);
                                 double pDblR = pD->get(i, j);
                                 double pDblI = pD->getImg(i, j);
                                 pSPOut->setCoef(&pDblR, &pDblI);
@@ -352,12 +353,14 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
                             {
                                 types::SinglePoly* pSPOut = pPolyOut->get(iCurRow + i, iCurCol + j);
 
-                                pSPOut->setRank(1);
+                                pSPOut->setRank(0);
                                 double pDbl = pD->get(i, j);
                                 pSPOut->setCoef(&pDbl, NULL);
                             }
                         }
                     }
+
+                    return poResult;
                 }
                 break;
             case types::GenericType::ScilabSparse :
@@ -422,6 +425,8 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
                             }
                         }
                     }
+
+                    return poResult;
                 }
                 break;
             case types::GenericType::ScilabSparseBool :
@@ -442,12 +447,15 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
                             }
                         }
                     }
+
+                    return poResult;
                 }
                 break;
             default:
                 break;
         }
-        return poResult;
+        // call overload
+        return NULL;
     }
     else
     {
@@ -533,11 +541,11 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
                 poResult->getAs<types::GraphicHandle>()->append(iCurRow, iCurCol, _poSource->getAs<types::GraphicHandle>());
                 break;
             default:
-                break;
+                // call overload
+                return NULL;
         }
         return poResult;
     }
-    return NULL;
 }
 
 const std::wstring* getStructNameFromExp(const ast::Exp* _pExp)
@@ -1207,7 +1215,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                 throw ast::ScilabError(os.str(), 999, _pExp->location_get());
             }
         }
-        else
+        else if (pITCurrent == 0) // implicit struct creation
         {
             InternalType* pIT = new Struct(1, 1);
             pEH->setCurrent(pIT);
@@ -1215,6 +1223,50 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
 
             workFields.push_front(pEH);
             evalFields.pop_back();
+        }
+        else // not a Scilab defined datatype, access field after field
+        {
+            typed_list* pArgs = pEH->getArgs();
+
+            // get string "x"
+            std::wstring pwcsFieldname = L"";
+            ExpHistory* pEHChield = 0;
+
+            if (pArgs)
+            {
+                // a('x')
+                pwcsFieldname = (*pArgs)[0]->getAs<String>()->get(0);
+            }
+            else
+            {
+                // a.x
+                pwcsFieldname = (*iterFields)->getExpAsString();
+            }
+
+            // History management
+            if (pArgs)
+            {
+                if ((*iterFields)->getExp() == NULL)
+                {
+                    // a('x')(y) => a.b(y)
+                    // extract a(x) and push_BACK to extract next level
+                    pEHChield = new ExpHistory(pEH, NULL, (*iterFields)->getArgs(), (*iterFields)->getLevel(), (*iterFields)->isCellExp(), 0);
+                    workFields.push_back(pEHChield);
+                }
+                else
+                {
+                    // a('x').b -> a('x')('b')
+                    // extract a(x) and push_FRONT to extract b from a(x)
+                    pEHChield = new ExpHistory(pEH, pEH->getExp(), NULL, pEH->getLevel(), pEH->isCellExp(), 0);
+                    workFields.push_front(pEHChield);
+                }
+            }
+            else
+            {
+                // a.x
+                pEHChield = new ExpHistory(pEH, (*iterFields)->getExp(), (*iterFields)->getArgs(), (*iterFields)->getLevel(), (*iterFields)->isCellExp(), 0);
+                workFields.push_back(pEHChield);
+            }
         }
 
         if (workFields.front()->getLevel() == (*iterFields)->getLevel())
@@ -1375,6 +1427,11 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                         delete pEH;
                         continue;
                     }
+                }
+                else
+                {
+                    pParentArgs = new typed_list();
+                    pParentArgs->push_back(new String(pEH->getExpAsString().c_str()));
                 }
             }
 
@@ -1544,9 +1601,9 @@ InternalType* insertionCall(const ast::Exp& e, typed_list* _pArgs, InternalType*
 
             if (_pArgs->size() != 1 || pS->isScalar() == false)
             {
-                if (pIL && pIL->isDeletable())
+                if (pIL)
                 {
-                    delete pIL;
+                    pIL->killMe();
                 }
                 //manage error
                 std::wostringstream os;
@@ -1668,29 +1725,28 @@ InternalType* insertionCall(const ast::Exp& e, typed_list* _pArgs, InternalType*
         {
             Double* pDest = _pVar->getAs<Double>();
             Polynom* pIns = _pInsert->getAs<Polynom>();
-            Polynom* pP = new Polynom(pIns->getVariableName(), pDest->getDims(), pDest->getDimsArray());
+            int iSize = pDest->getSize();
+            int* piRanks = new int[iSize];
+            memset(piRanks, 0x00, iSize * sizeof(int));
+            Polynom* pP = new Polynom(pIns->getVariableName(), pDest->getDims(), pDest->getDimsArray(), piRanks);
+            delete[] piRanks;
             pP->setComplex(pDest->isComplex());
 
-            for (int idx = 0 ; idx < pP->getSize() ; idx++)
+            if (pP->isComplex())
             {
-                double* pR = NULL;
-                double* pI = NULL;
-                if (pP->isComplex())
+                for (int idx = 0 ; idx < pP->getSize() ; idx++)
                 {
-                    SinglePoly* pS = new SinglePoly(&pR, &pI, 1);
                     double dblR = pDest->get(idx);
                     double dblI = pDest->getImg(idx);
-                    pS->setCoef(&dblR, &dblI);
-                    pP->set(idx, pS);
-                    delete pS;
+                    pP->get(idx)->setCoef(&dblR, &dblI);
                 }
-                else
+            }
+            else
+            {
+                for (int idx = 0 ; idx < pP->getSize() ; idx++)
                 {
-                    SinglePoly* pS = new SinglePoly(&pR, 1);
                     double dblR = pDest->get(idx);
-                    pS->setCoef(&dblR, NULL);
-                    pP->set(idx, pS);
-                    delete pS;
+                    pP->get(idx)->setCoef(&dblR, NULL);
                 }
             }
 
@@ -1701,31 +1757,31 @@ InternalType* insertionCall(const ast::Exp& e, typed_list* _pArgs, InternalType*
         {
             Polynom* pDest = _pVar->getAs<Polynom>();
             Double* pIns = _pInsert->getAs<Double>();
-            Polynom* pP = new Polynom(pDest->getVariableName(), pIns->getDims(), pIns->getDimsArray());
+            int iSize = pIns->getSize();
+            int* piRanks = new int[iSize];
+            memset(piRanks, 0x00, iSize * sizeof(int));
+            Polynom* pP = new Polynom(pDest->getVariableName(), pIns->getDims(), pIns->getDimsArray(), piRanks);
+            delete[] piRanks;
             pP->setComplex(pIns->isComplex());
 
-            for (int idx = 0 ; idx < pP->getSize() ; idx++)
+            if (pP->isComplex())
             {
-                double* pR = NULL;
-                double* pI = NULL;
-                if (pP->isComplex())
+                for (int idx = 0 ; idx < pP->getSize() ; idx++)
                 {
-                    SinglePoly* pS = new SinglePoly(&pR, &pI, 1);
                     double dblR = pIns->get(idx);
                     double dblI = pIns->getImg(idx);
-                    pS->setCoef(&dblR, &dblI);
-                    pP->set(idx, pS);
-                    delete pS;
-                }
-                else
-                {
-                    SinglePoly* pS = new SinglePoly(&pR, 1);
-                    double dblR = pIns->get(idx);
-                    pS->setCoef(&dblR, NULL);
-                    pP->set(idx, pS);
-                    delete pS;
+                    pP->get(idx)->setCoef(&dblR, &dblI);
                 }
             }
+            else
+            {
+                for (int idx = 0 ; idx < pP->getSize() ; idx++)
+                {
+                    double dblR = pIns->get(idx);
+                    pP->get(idx)->setCoef(&dblR, NULL);
+                }
+            }
+
             pRet = pDest->insert(_pArgs, pP);
             delete pP;
         }
@@ -1775,9 +1831,9 @@ InternalType* insertionCall(const ast::Exp& e, typed_list* _pArgs, InternalType*
                 String *pS = (*_pArgs)[0]->getAs<types::String>();
                 if (pS->isScalar() == false)
                 {
-                    if (pIL && pIL->isDeletable())
+                    if (pIL)
                     {
-                        delete pIL;
+                        pIL->killMe();
                     }
                     //manage error
                     std::wostringstream os;
@@ -1802,31 +1858,35 @@ InternalType* insertionCall(const ast::Exp& e, typed_list* _pArgs, InternalType*
                     String* pStrInsertFieldsName = pStructInsert->getFieldNames();
                     Struct* pStructRet = NULL;
 
-                    // insert fields of pStruct in pStructInsert
-                    for (int i = pStrFieldsName->getSize(); i > 0; i--)
+                    // if not an empty struct
+                    if (pStrFieldsName)
                     {
-                        if (pStructInsert->exists(pStrFieldsName->get(i - 1)) == false)
+                        // insert fields of pStruct in pStructInsert
+                        for (int i = pStrFieldsName->getSize(); i > 0; i--)
                         {
-                            pStructInsert->addFieldFront(pStrFieldsName->get(i - 1));
-                        }
-                        else
-                        {
-                            std::wstring pwcsField = pStrFieldsName->get(i - 1);
-                            List* pLExtract = pStructInsert->extractFieldWithoutClone(pwcsField);
-
-                            for (int i = 0; i < pLExtract->getSize(); i++)
+                            if (pStructInsert->exists(pStrFieldsName->get(i - 1)) == false)
                             {
-                                // protect element wich are not cloned before call removeField.
-                                pLExtract->get(i)->IncreaseRef();
+                                pStructInsert->addFieldFront(pStrFieldsName->get(i - 1));
                             }
-
-                            pStructInsert->removeField(pwcsField);
-                            pStructInsert->addFieldFront(pwcsField);
-
-                            for (int i = 0; i < pLExtract->getSize(); i++)
+                            else
                             {
-                                // set elements in the new position
-                                pStructInsert->get(i)->set(pwcsField, pLExtract->get(i));
+                                std::wstring pwcsField = pStrFieldsName->get(i - 1);
+                                List* pLExtract = pStructInsert->extractFieldWithoutClone(pwcsField);
+
+                                for (int i = 0; i < pLExtract->getSize(); i++)
+                                {
+                                    // protect element wich are not cloned before call removeField.
+                                    pLExtract->get(i)->IncreaseRef();
+                                }
+
+                                pStructInsert->removeField(pwcsField);
+                                pStructInsert->addFieldFront(pwcsField);
+
+                                for (int i = 0; i < pLExtract->getSize(); i++)
+                                {
+                                    // set elements in the new position
+                                    pStructInsert->get(i)->set(pwcsField, pLExtract->get(i));
+                                }
                             }
                         }
                     }
@@ -1861,9 +1921,9 @@ InternalType* insertionCall(const ast::Exp& e, typed_list* _pArgs, InternalType*
                     String *pS = (*_pArgs)[0]->getAs<types::String>();
                     if (pS->isScalar() == false)
                     {
-                        if (pIL && pIL->isDeletable())
+                        if (pIL)
                         {
-                            delete pIL;
+                            pIL->killMe();
                         }
 
                         //manage error
@@ -1983,9 +2043,9 @@ InternalType* insertionCall(const ast::Exp& e, typed_list* _pArgs, InternalType*
         pOut = pRet;
     }
 
-    if (pIL && pIL->isDeletable())
+    if (pIL)
     {
-        delete pIL;
+        pIL->killMe();
     }
 
     return pOut;

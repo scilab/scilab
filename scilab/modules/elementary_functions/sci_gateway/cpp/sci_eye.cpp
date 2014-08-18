@@ -51,6 +51,7 @@ Function::ReturnValue sci_eye(types::typed_list &in, int _iRetCount, types::type
     {
         dimsArray[0] = -1;
         dimsArray[1] = -1;
+
     }
     else if (in.size() == 1)
     {
@@ -86,7 +87,8 @@ Function::ReturnValue sci_eye(types::typed_list &in, int _iRetCount, types::type
     Double* pOut = new Double(dims, dimsArray);
     int* piCoords = new int[pOut->getDims()];
     pOut->setZeros();
-    for (int i = 0 ; i < mint(dimsArray, dims) ; i++)
+    int iMinDims = mint(dimsArray, dims);
+    for (int i = 0; i < iMinDims; i++)
     {
         for (int j = 0 ; j < dims ; j++)
         {
@@ -94,6 +96,11 @@ Function::ReturnValue sci_eye(types::typed_list &in, int _iRetCount, types::type
         }
 
         pOut->set(pOut->getIndex(piCoords), 1);
+    }
+
+    if (iMinDims == -1)
+    {
+        pOut->set(0, 1);
     }
 
     delete[] piCoords;

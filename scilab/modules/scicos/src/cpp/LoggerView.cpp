@@ -6,11 +6,10 @@
  *  This source file is licensed as described in the file COPYING, which
  *  you should have received as part of this distribution.  The terms
  *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
-#include <string>
 #include <iostream>
 #include <sstream>
 #include "scilabWrite.hxx"
@@ -32,7 +31,7 @@ LoggerView::~LoggerView()
 // generated with :
 // awk ' $2 == "//!<" {sub(",","", $1); print "case " $1 ":\n    os << \"" $1 "\";\n    break;" }' ~/work/branches/YaSp/scilab/modules/scicos/includes/utilities.hxx
 
-static std::ostream& operator<<(std::ostream& os, update_status_t u)
+std::ostream& operator<<(std::ostream& os, update_status_t u)
 {
     switch (u)
     {
@@ -49,7 +48,7 @@ static std::ostream& operator<<(std::ostream& os, update_status_t u)
     return os;
 }
 
-static std::ostream& operator<<(std::ostream& os, kind_t k)
+std::ostream& operator<<(std::ostream& os, kind_t k)
 {
     switch (k)
     {
@@ -73,7 +72,7 @@ static std::ostream& operator<<(std::ostream& os, kind_t k)
 }
 
 
-static std::ostream& operator<<(std::ostream& os, object_properties_t p)
+std::ostream& operator<<(std::ostream& os, object_properties_t p)
 {
     switch (p)
     {
@@ -101,6 +100,18 @@ static std::ostream& operator<<(std::ostream& os, object_properties_t p)
         case SIM_SCHEDULE:
             os << "SIM_SCHEDULE";
             break;
+        case SIM_BLOCKTYPE:
+            os << "SIM_BLOCKTYPE";
+            break;
+        case SIM_DEP_UT:
+            os << "SIM_DEP_UT";
+            break;
+        case ANGLE:
+            os << "ANGLE";
+            break;
+        case EXPRS:
+            os << "EXPRS";
+            break;
         case INPUTS:
             os << "INPUTS";
             break;
@@ -113,6 +124,36 @@ static std::ostream& operator<<(std::ostream& os, object_properties_t p)
         case EVENT_OUTPUTS:
             os << "EVENT_OUTPUTS";
             break;
+        case STATE:
+            os << "STATE";
+            break;
+        case DSTATE:
+            os << "DSTATE";
+            break;
+        case ODSTATE:
+            os << "ODSTATE";
+            break;
+        case NZCROSS:
+            os << "NZCROSS";
+            break;
+        case NMODE:
+            os << "NMODE";
+            break;;
+        case RPAR:
+            os << "RPAR";
+            break;
+        case IPAR:
+            os << "IPAR";
+            break;
+        case OPAR:
+            os << "OPAR";
+            break;
+        case EQUATIONS:
+            os << "EQUATIONS";
+            break;
+        case UID:
+            os << "UID";
+            break;
         case PARENT_BLOCK:
             os << "PARENT_BLOCK";
             break;
@@ -121,6 +162,12 @@ static std::ostream& operator<<(std::ostream& os, object_properties_t p)
             break;
         case PORT_REFERENCE:
             os << "PORT_REFERENCE";
+            break;
+        case STYLE:
+            os << "STYLE";
+            break;
+        case LABEL:
+            os << "LABEL";
             break;
         case DESTINATION_PORT:
             os << "DESTINATION_PORT";
@@ -134,11 +181,26 @@ static std::ostream& operator<<(std::ostream& os, object_properties_t p)
         case DATATYPE:
             os << "DATATYPE";
             break;
+        case DATATYPE_ROWS:
+            os << "DATATYPE_ROWS";
+            break;
+        case DATATYPE_COLS:
+            os << "DATATYPE_COLS";
+            break;
+        case DATATYPE_TYPE:
+            os << "DATATYPE_TYPE";
+            break;
+        case FIRING:
+            os << "FIRING";
+            break;
         case SOURCE_BLOCK:
             os << "SOURCE_BLOCK";
             break;
         case PORT_KIND:
             os << "PORT_KIND";
+            break;
+        case IMPLICIT:
+            os << "IMPLICIT";
             break;
         case PORT_NUMBER:
             os << "PORT_NUMBER";
@@ -149,7 +211,6 @@ static std::ostream& operator<<(std::ostream& os, object_properties_t p)
     }
     return os;
 }
-;
 
 static const bool USE_SCILAB_WRITE = true;
 

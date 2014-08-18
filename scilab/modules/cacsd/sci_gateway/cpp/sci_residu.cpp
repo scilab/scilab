@@ -21,9 +21,9 @@ extern "C"
 #include "localization.h"
 #include "elem_common.h"
 
-extern void C2F(residu)(double*, int*, double*, int*, double*, int*, double*, double*, int*);
-extern void C2F(wesidu)(double*, double*, int*, double*, double*, int*,
-                        double*, double*, int*, double*, double*, double*, int*);
+    extern void C2F(residu)(double*, int*, double*, int*, double*, int*, double*, double*, int*);
+    extern void C2F(wesidu)(double*, double*, int*, double*, double*, int*,
+                            double*, double*, int*, double*, double*, double*, int*);
 }
 
 /*--------------------------------------------------------------------------*/
@@ -62,7 +62,7 @@ types::Function::ReturnValue sci_residu(types::typed_list &in, int _iRetCount, t
     try
     {
         /*** get inputs arguments ***/
-        for(int i = 0; i < 3; i++)
+        for (int i = 0; i < 3; i++)
         {
             if (in[i]->isDouble())
             {
@@ -76,7 +76,7 @@ types::Function::ReturnValue sci_residu(types::typed_list &in, int _iRetCount, t
 
                 pdblInR[i]  = new double*[iSize];
                 double* pdbl = pDblIn[i]->get();
-                for(int j = 0; j < iSize; i++)
+                for (int j = 0; j < iSize; i++)
                 {
                     pdblInR[i][j] = pdbl + j;
                 }
@@ -85,7 +85,7 @@ types::Function::ReturnValue sci_residu(types::typed_list &in, int _iRetCount, t
                 {
                     pdblInI[i]  = new double*[iSize];
                     double* pdbl = pDblIn[i]->get();
-                    for(int j = 0; j < iSize; i++)
+                    for (int j = 0; j < iSize; i++)
                     {
                         pdblInI[i][j] = pdbl + j;
                     }
@@ -99,42 +99,46 @@ types::Function::ReturnValue sci_residu(types::typed_list &in, int _iRetCount, t
 
                 iSize = pPoly[i]->getSize();
                 piRank[i] = new int[iSize];
-                pPoly[i]->getRealRank(piRank[i]);
+                pPoly[i]->getRank(piRank[i]);
 
                 pdblInR[i] = new double*[iSize];
-                for(int j = 0; j < iSize; j++)
-                {
-                    pdblInR[i][j] = pPoly[i]->get(j)->getCoef()->get();
-                }
-
                 if (pPoly[i]->isComplex())
                 {
                     pdblInI[i] = new double*[iSize];
-                    for(int j = 0; j < iSize; j++)
+                    for (int j = 0; j < iSize; j++)
                     {
-                        pdblInI[i][j] = pPoly[i]->get(j)->getCoef()->getImg();
+                        pdblInR[i][j] = pPoly[i]->get(j)->get();
+                        pdblInI[i][j] = pPoly[i]->get(j)->getImg();
+                    }
+                }
+                else
+                {
+                    for (int j = 0; j < iSize; j++)
+                    {
+                        pdblInR[i][j] = pPoly[i]->get(j)->get();
                     }
                 }
             }
             else
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d: A Matrix or polynom expected.\n"), "residu", i+1);
+                Scierror(999, _("%s: Wrong type for input argument #%d: A Matrix or polynom expected.\n"), "residu", i + 1);
                 throw 1;
             }
         }
 
-        if(iRows[0] != iRows[1] || iCols[0] != iCols[1] || iRows[0] != iRows[2] || iCols[0] != iCols[2])
+        if (iRows[0] != iRows[1] || iCols[0] != iCols[1] || iRows[0] != iRows[2] || iCols[0] != iCols[2])
         {
             Scierror(999, _("%s: Wrong size for argument: Incompatible dimensions.\n"), "residu");
             throw 1;
         }
 
         /*** perform operations ***/
-        if(pdblInI[0] == NULL && pdblInI[1] == NULL && pdblInI[2] == NULL)
-        {// real case
+        if (pdblInI[0] == NULL && pdblInI[1] == NULL && pdblInI[2] == NULL)
+        {
+            // real case
             pDblOut = new types::Double(iRows[0], iCols[0]);
             double* pdblOut = pDblOut->get();
-            for(int i = 0; i < iRows[0] * iCols[0]; i++)
+            for (int i = 0; i < iRows[0] * iCols[0]; i++)
             {
                 int iErr = 0;
                 double v = 0;
@@ -144,7 +148,7 @@ types::Function::ReturnValue sci_residu(types::typed_list &in, int _iRetCount, t
                 int iSize3 = piRank[2][i] + 1;
                 C2F(residu)(pdblInR[0][i], &iSize1, pdblInR[1][i], &iSize2,
                             pdblInR[2][i], &iSize3, &v, &dblEps, &iErr);
-                if(iErr)
+                if (iErr)
                 {
                     Scierror(78, _("%s: An error occured in '%s'.\n"), "residu", "residu");
                     throw iErr;
@@ -154,17 +158,18 @@ types::Function::ReturnValue sci_residu(types::typed_list &in, int _iRetCount, t
             }
         }
         else
-        {// complex case
+        {
+            // complex case
             pDblOut = new types::Double(iRows[0], iCols[0], true);
             double* pdblOutR = pDblOut->get();
             double* pdblOutI = pDblOut->getImg();
 
-            for(int i= 0; i < 3; i++)
+            for (int i = 0; i < 3; i++)
             {
-                if(pdblInI[i] == NULL)
+                if (pdblInI[i] == NULL)
                 {
                     pdblInI[i] = new double*[iSize];
-                    for(int j = 0; j < iSize; j++)
+                    for (int j = 0; j < iSize; j++)
                     {
                         int iLen = piRank[i][j] + 1;
                         pdblInI[i][j] = new double[iLen];
@@ -175,18 +180,18 @@ types::Function::ReturnValue sci_residu(types::typed_list &in, int _iRetCount, t
                 }
             }
 
-            for(int i = 0; i < iRows[0] * iCols[0]; i++)
+            for (int i = 0; i < iRows[0] * iCols[0]; i++)
             {
                 int iErr    = 0;
                 double real = 0;
                 double imag = 0;
 
-                C2F(wesidu)(pdblInR[0][i], pdblInI[0][i], (piRank[0])+i,
-                            pdblInR[1][i], pdblInI[1][i], (piRank[1])+i,
-                            pdblInR[2][i], pdblInI[2][i], (piRank[2])+i,
+                C2F(wesidu)(pdblInR[0][i], pdblInI[0][i], (piRank[0]) + i,
+                            pdblInR[1][i], pdblInI[1][i], (piRank[1]) + i,
+                            pdblInR[2][i], pdblInI[2][i], (piRank[2]) + i,
                             &real, &imag, &dblEps, &iErr);
 
-                if(iErr)
+                if (iErr)
                 {
                     Scierror(78, _("%s: An error occured in '%s'.\n"), "residu", "wesidu");
                     throw iErr;
@@ -197,50 +202,50 @@ types::Function::ReturnValue sci_residu(types::typed_list &in, int _iRetCount, t
             }
         }
     }
-    catch(int error)
+    catch (int error)
     {
         iError = error;
     }
 
     // free memory
-    for(int i = 0; i < 3; i++)
+    for (int i = 0; i < 3; i++)
     {
-        if(pDblIn[i])
+        if (pDblIn[i])
         {
             delete pDblIn[i];
         }
 
-        if(pPoly[i])
+        if (pPoly[i])
         {
             delete pPoly[i];
         }
 
-        if(piRank[i])
+        if (piRank[i])
         {
             delete[] piRank[i];
         }
 
-        if(pdblInR[i])
+        if (pdblInR[i])
         {
             delete[] pdblInR[i];
         }
 
-        if(isDeletable[i])
+        if (isDeletable[i])
         {
-            for(int j = 0; j < iSize; j++)
+            for (int j = 0; j < iSize; j++)
             {
                 delete[] pdblInI[i][j];
             }
         }
 
-        if(pdblInI[i])
+        if (pdblInI[i])
         {
             delete[] pdblInI[i];
         }
     }
 
     /*** retrun output arguments ***/
-    if(iError)
+    if (iError)
     {
         return types::Function::Error;
     }

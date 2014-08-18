@@ -112,18 +112,18 @@ types::Function::ReturnValue sci_imult(types::typed_list &in, int _iRetCount, ty
 
             if (pPolyIn->isComplex())
             {
-                for (int j = 0; j < rank; j++)
+                for (int j = 0; j < rank + 1; j++)
                 {
-                    dataReal[j] = pPolyIn->get(i)->getCoefImg()[j] * -1;
-                    dataImg[j]  = pPolyIn->get(i)->getCoefReal()[j];
+                    dataReal[j] = pPolyIn->get(i)->getImg()[j] * -1;
+                    dataImg[j]  = pPolyIn->get(i)->get()[j];
                 }
             }
             else
             {
-                for (int j = 0; j < rank; j++)
+                for (int j = 0; j < rank + 1; j++)
                 {
                     dataReal[j] = 0;
-                    dataImg[j]  = pPolyIn->get(i)->getCoefReal()[j];
+                    dataImg[j]  = pPolyIn->get(i)->get()[j];
                 }
             }
 

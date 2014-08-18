@@ -133,11 +133,11 @@ static void DoubleComplexMatrix2String(std::wostringstream *_postr,  double _dbl
     getDoubleFormat(_dblR, &dfR);
     getDoubleFormat(_dblI, &dfI);
 
-    dfR.bPrintPoint = false;
+    dfR.bPrintPoint = dfR.bExp;
     dfR.bPaddSign = false;
     dfR.iSignLen = 0;
 
-    dfI.bPrintPoint = false;
+    dfI.bPrintPoint = dfI.bExp;
     dfI.bPaddSign = false;
     dfI.iSignLen = 0;
 

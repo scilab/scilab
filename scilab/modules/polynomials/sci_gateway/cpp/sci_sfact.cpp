@@ -64,11 +64,10 @@ types::Function::ReturnValue sci_sfact(types::typed_list &in, int _iRetCount, ty
 
     if (pPolyIn->isScalar())
     {
-        double* pdblCoef = pPolyIn->get(0)->getCoefReal();
+        double* pdblCoef = pPolyIn->get(0)->get();
 
         // check symmetry
-        int iRank   = pPolyIn->get(0)->getRank();
-        int iDegree = iRank - 1;
+        int iDegree = pPolyIn->get(0)->getRank();
         int iDegD2  = (int)(iDegree / 2);
         int n       = 1 + iDegD2;
 
@@ -90,7 +89,7 @@ types::Function::ReturnValue sci_sfact(types::typed_list &in, int _iRetCount, ty
         // create result
         pPolyOut = new types::Polynom(pPolyIn->getVariableName(), 1, 1);
         double* pdblCoefOut = NULL;
-        types::SinglePoly* pSP = new types::SinglePoly(&pdblCoefOut, n + 1);
+        types::SinglePoly* pSP = new types::SinglePoly(&pdblCoefOut, iDegD2);
         C2F(dcopy)(&n, pdblCoef, &iOne, pdblCoefOut, &iOne);
 
         // perform operation
@@ -130,8 +129,7 @@ types::Function::ReturnValue sci_sfact(types::typed_list &in, int _iRetCount, ty
 
         int iSize   = pPolyIn->getSize();
         int iRows   = pPolyIn->getRows();
-        int iRank   = pPolyIn->getMaxRank();
-        int iDegree = iRank - 1;
+        int iDegree = pPolyIn->getMaxRank();
         int iDegD2  = (int)(iDegree / 2);
         int n       = 1 + iDegD2;
 
@@ -142,8 +140,8 @@ types::Function::ReturnValue sci_sfact(types::typed_list &in, int _iRetCount, ty
 
         for (int i = 0; i < iSize; i++)
         {
-            double* pdblIn = pPolyIn->get(i)->getCoefReal();
-            int iSizeToCpy = 2 + pPolyIn->get(i)->getRank() - 1 - n;
+            double* pdblIn = pPolyIn->get(i)->get();
+            int iSizeToCpy = 2 + pPolyIn->get(i)->getSize() - 1 - n;
             if (iSizeToCpy > 0)
             {
                 C2F(dcopy)(&iSizeToCpy, pdblIn + n - 1, &iOne, pdblOut + i, &iSize);
@@ -170,7 +168,7 @@ types::Function::ReturnValue sci_sfact(types::typed_list &in, int _iRetCount, ty
         for (int i = 0; i < iSize; i++)
         {
             double* pdblCoefOut = NULL;
-            types::SinglePoly* pSP = new types::SinglePoly(&pdblCoefOut, n);
+            types::SinglePoly* pSP = new types::SinglePoly(&pdblCoefOut, nm1);
             C2F(dcopy)(&n, pdblOut + i, &iSize, pdblCoefOut, &iOne);
             pPolyOut->set(i, pSP);
             delete pSP;
