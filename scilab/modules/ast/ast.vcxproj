@@ -325,7 +325,6 @@ lib /DEF:"$(ProjectDir)fileio_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClInclude Include="includes\operations\matrix_multiplication.h" />
     <ClInclude Include="includes\operations\matrix_power.h" />
     <ClInclude Include="includes\operations\matrix_right_division.h" />
-    <ClInclude Include="includes\operations\matrix_subtraction.h" />
     <ClInclude Include="includes\operations\matrix_transpose.h" />
     <ClInclude Include="includes\operations\operations.hxx" />
     <ClInclude Include="includes\operations\operations_tools.h" />
@@ -335,6 +334,7 @@ lib /DEF:"$(ProjectDir)fileio_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClInclude Include="includes\operations\types_comparison_lt_le_gt_ge.hxx" />
     <ClInclude Include="includes\operations\types_comparison_ne.hxx" />
     <ClInclude Include="includes\operations\types_divide.hxx" />
+    <ClInclude Include="includes\operations\types_dotmultiplication.hxx" />
     <ClInclude Include="includes\operations\types_finite.hxx" />
     <ClInclude Include="includes\operations\types_kronecker.hxx" />
     <ClInclude Include="includes\operations\types_ldivide.hxx" />
@@ -433,6 +433,7 @@ lib /DEF:"$(ProjectDir)fileio_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClCompile Include="src\cpp\operations\types_comparison_lt_le_gt_ge.cpp" />
     <ClCompile Include="src\cpp\operations\types_comparison_ne.cpp" />
     <ClCompile Include="src\cpp\operations\types_divide.cpp" />
+    <ClCompile Include="src\cpp\operations\types_dotmultiplication.cpp" />
     <ClCompile Include="src\cpp\operations\types_finite.cpp" />
     <ClCompile Include="src\cpp\operations\types_kronecker.cpp" />
     <ClCompile Include="src\cpp\operations\types_ldivide.cpp" />
@@ -504,7 +505,6 @@ lib /DEF:"$(ProjectDir)fileio_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClCompile Include="src\c\operations\matrix_kronecker.c" />
     <ClCompile Include="src\c\operations\matrix_multiplication.c" />
     <ClCompile Include="src\c\operations\matrix_power.c" />
-    <ClCompile Include="src\c\operations\matrix_subtraction.c" />
     <ClCompile Include="src\c\operations\matrix_transpose.c" />
     <ClCompile Include="src\c\operations\operations_tools.c" />
   </ItemGroup>

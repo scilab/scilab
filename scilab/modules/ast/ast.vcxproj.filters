@@ -610,7 +610,7 @@
     <ClInclude Include="includes\operations\types_subtraction.hxx">
       <Filter>Header Files\operations</Filter>
     </ClInclude>
-    <ClInclude Include="includes\operations\matrix_subtraction.h">
+    <ClInclude Include="includes\operations\types_dotmultiplication.hxx">
       <Filter>Header Files\operations</Filter>
     </ClInclude>
   </ItemGroup>
@@ -879,7 +879,7 @@
     <ClCompile Include="src\cpp\operations\types_subtraction.cpp">
       <Filter>Source Files\operations</Filter>
     </ClCompile>
-    <ClCompile Include="src\c\operations\matrix_subtraction.c">
+    <ClCompile Include="src\cpp\operations\types_dotmultiplication.cpp">
       <Filter>Source Files\operations</Filter>
     </ClCompile>
   </ItemGroup>

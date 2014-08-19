@@ -23,7 +23,6 @@
 
 extern "C"
 {
-#include "matrix_subtraction.h"
 #include "elem_common.h" //dset
 }
 
@@ -209,7 +208,7 @@ void fillSubtractFunction()
     scilab_fill_sub(Int8, Int64, M_M, Int8, Int64, Int64);
     scilab_fill_sub(Int8, UInt64, M_M, Int8, UInt64, UInt64);
     scilab_fill_sub(Int8, Bool, M_M, Int8, Bool, Int8);
-    scilab_fill_sub(Int8, Empty, M_M, Int8, Double, Int8);
+    scilab_fill_sub(Int8, Empty, M_E, Int8, Double, Int8);
 
     //Matrix - Scalar
     scilab_fill_sub(Int8, ScalarDouble, M_S, Int8, Double, Int8);
@@ -234,7 +233,7 @@ void fillSubtractFunction()
     scilab_fill_sub(ScalarInt8, Int64, S_M, Int8, Int64, Int64);
     scilab_fill_sub(ScalarInt8, UInt64, S_M, Int8, UInt64, UInt64);
     scilab_fill_sub(ScalarInt8, Bool, S_M, Int8, Bool, Int8);
-    scilab_fill_sub(ScalarInt8, Empty, M_M, Int8, Double, Int8);
+    scilab_fill_sub(ScalarInt8, Empty, S_E, Int8, Double, Int8);
 
     //Scalar - Scalar
     scilab_fill_sub(ScalarInt8, ScalarDouble, S_S, Int8, Double, Int8);
@@ -260,7 +259,7 @@ void fillSubtractFunction()
     scilab_fill_sub(UInt8, Int64, M_M, UInt8, Int64, UInt64);
     scilab_fill_sub(UInt8, UInt64, M_M, UInt8, UInt64, UInt64);
     scilab_fill_sub(UInt8, Bool, M_M, UInt8, Bool, UInt8);
-    scilab_fill_sub(UInt8, Empty, M_M, UInt8, Double, UInt8);
+    scilab_fill_sub(UInt8, Empty, M_E, UInt8, Double, UInt8);
 
     //Matrix - Scalar
     scilab_fill_sub(UInt8, ScalarDouble, M_S, UInt8, Double, UInt8);
@@ -285,7 +284,7 @@ void fillSubtractFunction()
     scilab_fill_sub(ScalarUInt8, Int64, S_M, UInt8, Int64, UInt64);
     scilab_fill_sub(ScalarUInt8, UInt64, S_M, UInt8, UInt64, UInt64);
     scilab_fill_sub(ScalarUInt8, Bool, S_M, UInt8, Bool, UInt8);
-    scilab_fill_sub(ScalarUInt8, Empty, S_M, UInt8, Double, UInt8);
+    scilab_fill_sub(ScalarUInt8, Empty, S_E, UInt8, Double, UInt8);
 
     //Scalar - Scalar
     scilab_fill_sub(ScalarUInt8, ScalarDouble, S_S, UInt8, Double, UInt8);
@@ -311,7 +310,7 @@ void fillSubtractFunction()
     scilab_fill_sub(Int16, Int64, M_M, Int16, Int64, Int64);
     scilab_fill_sub(Int16, UInt64, M_M, Int16, UInt64, UInt64);
     scilab_fill_sub(Int16, Bool, M_M, Int16, Bool, Int16);
-    scilab_fill_sub(Int16, Empty, M_M, Int16, Double, Int16);
+    scilab_fill_sub(Int16, Empty, M_E, Int16, Double, Int16);
 
     //Matrix - Scalar
     scilab_fill_sub(Int16, ScalarDouble, M_S, Int16, Double, Int16);
@@ -336,7 +335,7 @@ void fillSubtractFunction()
     scilab_fill_sub(ScalarInt16, Int64, S_M, Int16, Int64, Int64);
     scilab_fill_sub(ScalarInt16, UInt64, S_M, Int16, UInt64, UInt64);
     scilab_fill_sub(ScalarInt16, Bool, S_M, Int16, Bool, Int16);
-    scilab_fill_sub(ScalarInt16, Empty, M_M, Int16, Double, Int16);
+    scilab_fill_sub(ScalarInt16, Empty, S_E, Int16, Double, Int16);
 
     //Scalar - Scalar
     scilab_fill_sub(ScalarInt16, ScalarDouble, S_S, Int16, Double, Int16);
@@ -362,7 +361,7 @@ void fillSubtractFunction()
     scilab_fill_sub(UInt16, Int64, M_M, UInt16, Int64, UInt64);
     scilab_fill_sub(UInt16, UInt64, M_M, UInt16, UInt64, UInt64);
     scilab_fill_sub(UInt16, Bool, M_M, UInt16, Bool, UInt16);
-    scilab_fill_sub(UInt16, Empty, M_M, UInt16, Double, UInt16);
+    scilab_fill_sub(UInt16, Empty, M_E, UInt16, Double, UInt16);
 
     //Matrix - Scalar
     scilab_fill_sub(UInt16, ScalarDouble, M_S, UInt16, Double, UInt16);
@@ -387,7 +386,7 @@ void fillSubtractFunction()
     scilab_fill_sub(ScalarUInt16, Int64, S_M, UInt16, Int64, UInt64);
     scilab_fill_sub(ScalarUInt16, UInt64, S_M, UInt16, UInt64, UInt64);
     scilab_fill_sub(ScalarUInt16, Bool, S_M, UInt16, Bool, UInt16);
-    scilab_fill_sub(ScalarUInt16, Empty, S_M, UInt16, Double, UInt16);
+    scilab_fill_sub(ScalarUInt16, Empty, S_E, UInt16, Double, UInt16);
 
     //Scalar - Scalar
     scilab_fill_sub(ScalarUInt16, ScalarDouble, S_S, UInt16, Double, UInt16);
@@ -413,7 +412,7 @@ void fillSubtractFunction()
     scilab_fill_sub(Int32, Int64, M_M, Int32, Int64, Int64);
     scilab_fill_sub(Int32, UInt64, M_M, Int32, UInt64, UInt64);
     scilab_fill_sub(Int32, Bool, M_M, Int32, Bool, Int32);
-    scilab_fill_sub(Int32, Empty, M_M, Int32, Double, Int32);
+    scilab_fill_sub(Int32, Empty, M_E, Int32, Double, Int32);
 
     //Matrix - Scalar
     scilab_fill_sub(Int32, ScalarDouble, M_S, Int32, Double, Int32);
@@ -438,7 +437,7 @@ void fillSubtractFunction()
     scilab_fill_sub(ScalarInt32, Int64, S_M, Int32, Int64, Int64);
     scilab_fill_sub(ScalarInt32, UInt64, S_M, Int32, UInt64, UInt64);
     scilab_fill_sub(ScalarInt32, Bool, S_M, Int32, Bool, Int32);
-    scilab_fill_sub(ScalarInt32, Empty, M_M, Int32, Double, Int32);
+    scilab_fill_sub(ScalarInt32, Empty, S_E, Int32, Double, Int32);
 
     //Scalar - Scalar
     scilab_fill_sub(ScalarInt32, ScalarDouble, S_S, Int32, Double, Int32);
@@ -464,7 +463,7 @@ void fillSubtractFunction()
     scilab_fill_sub(UInt32, Int64, M_M, UInt32, Int64, UInt64);
     scilab_fill_sub(UInt32, UInt64, M_M, UInt32, UInt64, UInt64);
     scilab_fill_sub(UInt32, Bool, M_M, UInt32, Bool, UInt32);
-    scilab_fill_sub(UInt32, Empty, M_M, UInt32, Double, UInt32);
+    scilab_fill_sub(UInt32, Empty, M_E, UInt32, Double, UInt32);
 
     //Matrix - Scalar
     scilab_fill_sub(UInt32, ScalarDouble, M_S, UInt32, Double, UInt32);
@@ -489,7 +488,7 @@ void fillSubtractFunction()
     scilab_fill_sub(ScalarUInt32, Int64, S_M, UInt32, Int64, UInt64);
     scilab_fill_sub(ScalarUInt32, UInt64, S_M, UInt32, UInt64, UInt64);
     scilab_fill_sub(ScalarUInt32, Bool, S_M, UInt32, Bool, UInt32);
-    scilab_fill_sub(ScalarUInt32, Empty, S_M, UInt32, Double, UInt32);
+    scilab_fill_sub(ScalarUInt32, Empty, S_E, UInt32, Double, UInt32);
 
     //Scalar - Scalar
     scilab_fill_sub(ScalarUInt32, ScalarDouble, S_S, UInt32, Double, UInt32);
@@ -515,7 +514,7 @@ void fillSubtractFunction()
     scilab_fill_sub(Int64, Int64, M_M, Int64, Int64, Int64);
     scilab_fill_sub(Int64, UInt64, M_M, Int64, UInt64, UInt64);
     scilab_fill_sub(Int64, Bool, M_M, Int64, Bool, Int64);
-    scilab_fill_sub(Int64, Empty, M_M, Int64, Double, Int64);
+    scilab_fill_sub(Int64, Empty, M_E, Int64, Double, Int64);
 
     //Matrix - Scalar
     scilab_fill_sub(Int64, ScalarDouble, M_S, Int64, Double, Int64);
@@ -540,7 +539,7 @@ void fillSubtractFunction()
     scilab_fill_sub(ScalarInt64, Int64, S_M, Int64, Int64, Int64);
     scilab_fill_sub(ScalarInt64, UInt64, S_M, Int64, UInt64, UInt64);
     scilab_fill_sub(ScalarInt64, Bool, S_M, Int64, Bool, Int64);
-    scilab_fill_sub(ScalarInt64, Empty, M_M, Int64, Double, Int64);
+    scilab_fill_sub(ScalarInt64, Empty, S_E, Int64, Double, Int64);
 
     //Scalar - Scalar
     scilab_fill_sub(ScalarInt64, ScalarDouble, S_S, Int64, Double, Int64);
@@ -566,7 +565,7 @@ void fillSubtractFunction()
     scilab_fill_sub(UInt64, Int64, M_M, UInt64, Int64, UInt64);
     scilab_fill_sub(UInt64, UInt64, M_M, UInt64, UInt64, UInt64);
     scilab_fill_sub(UInt64, Bool, M_M, UInt64, Bool, UInt64);
-    scilab_fill_sub(UInt64, Empty, M_M, UInt64, Double, UInt64);
+    scilab_fill_sub(UInt64, Empty, M_E, UInt64, Double, UInt64);
 
     //Matrix - Scalar
     scilab_fill_sub(UInt64, ScalarDouble, M_S, UInt64, Double, UInt64);
@@ -591,7 +590,7 @@ void fillSubtractFunction()
     scilab_fill_sub(ScalarUInt64, Int64, S_M, UInt64, Int64, UInt64);
     scilab_fill_sub(ScalarUInt64, UInt64, S_M, UInt64, UInt64, UInt64);
     scilab_fill_sub(ScalarUInt64, Bool, S_M, UInt64, Bool, UInt64);
-    scilab_fill_sub(ScalarUInt64, Empty, S_M, UInt64, Double, UInt64);
+    scilab_fill_sub(ScalarUInt64, Empty, S_E, UInt64, Double, UInt64);
 
     //Scalar - Scalar
     scilab_fill_sub(ScalarUInt64, ScalarDouble, S_S, UInt64, Double, UInt64);
@@ -617,7 +616,7 @@ void fillSubtractFunction()
     scilab_fill_sub(Bool, Int64, M_M, Bool, Int64, Int64);
     scilab_fill_sub(Bool, UInt64, M_M, Bool, UInt64, UInt64);
     scilab_fill_sub(Bool, Bool, M_M, Bool, Bool, Bool);
-    scilab_fill_sub(Bool, Empty, M_M, Bool, Double, Double);
+    scilab_fill_sub(Bool, Empty, M_E, Bool, Double, Double);
 
     //Matrix - Scalar
     scilab_fill_sub(Bool, ScalarDouble, M_S, Bool, Double, Double);
@@ -642,7 +641,7 @@ void fillSubtractFunction()
     scilab_fill_sub(ScalarBool, Int64, S_M, Bool, Int64, Int64);
     scilab_fill_sub(ScalarBool, UInt64, S_M, Bool, UInt64, UInt64);
     scilab_fill_sub(ScalarBool, Bool, S_M, Bool, Bool, Bool);
-    scilab_fill_sub(ScalarBool, Empty, M_M, Bool, Double, Double);
+    scilab_fill_sub(ScalarBool, Empty, S_E, Bool, Double, Double);
 
     //Scalar - Scalar
     scilab_fill_sub(ScalarBool, ScalarDouble, S_S, Bool, Double, Double);
@@ -845,7 +844,7 @@ InternalType* sub_M_M(T *_pL, U *_pR)
 
     O* pOut = new O(iDimsL, piDimsL);
 
-    sub(_pL->get(), (long long)_pL->getSize(), _pR->get(), pOut->get());
+    sub(_pL->get(), (size_t)_pL->getSize(), _pR->get(), pOut->get());
     return pOut;
 }
 
@@ -873,7 +872,7 @@ InternalType* sub_M_MC(T *_pL, U *_pR)
 
     O* pOut = new O(iDimsL, piDimsL, true);
 
-    sub(_pL->get(), (long long)_pL->getSize(), _pR->get(), _pR->getImg(), pOut->get(), pOut->getImg());
+    sub(_pL->get(), (size_t)_pL->getSize(), _pR->get(), _pR->getImg(), pOut->get(), pOut->getImg());
     return pOut;
 }
 
@@ -881,7 +880,7 @@ template<class T, class U, class O>
 InternalType* sub_M_S(T *_pL, U *_pR)
 {
     O* pOut = new O(_pL->getDims(), _pL->getDimsArray());
-    sub(_pL->get(), (long long)_pL->getSize(), _pR->get(0), pOut->get());
+    sub(_pL->get(), (size_t)_pL->getSize(), _pR->get(0), pOut->get());
     return pOut;
 }
 
@@ -889,7 +888,7 @@ template<class T, class U, class O>
 InternalType* sub_M_SC(T *_pL, U *_pR)
 {
     O* pOut = new O(_pL->getDims(), _pL->getDimsArray(), true);
-    sub(_pL->get(), (long long)_pL->getSize(), _pR->get(0), _pR->getImg(0), pOut->get(), pOut->getImg());
+    sub(_pL->get(), (size_t)_pL->getSize(), _pR->get(0), _pR->getImg(0), pOut->get(), pOut->getImg());
     return pOut;
 }
 
@@ -924,7 +923,7 @@ InternalType* sub_MC_M(T *_pL, U *_pR)
 
     O* pOut = new O(iDimsL, piDimsL, true);
 
-    sub(_pL->get(), _pL->getImg(), (long long)_pL->getSize(), _pR->get(), pOut->get(), pOut->getImg());
+    sub(_pL->get(), _pL->getImg(), (size_t)_pL->getSize(), _pR->get(), pOut->get(), pOut->getImg());
     return pOut;
 }
 
@@ -952,7 +951,7 @@ InternalType* sub_MC_MC(T *_pL, U *_pR)
 
     O* pOut = new O(iDimsL, piDimsL, true);
 
-    sub(_pL->get(), _pL->getImg(), (long long)_pL->getSize(), _pR->get(), _pR->getImg(), pOut->get(), pOut->getImg());
+    sub(_pL->get(), _pL->getImg(), (size_t)_pL->getSize(), _pR->get(), _pR->getImg(), pOut->get(), pOut->getImg());
     return pOut;
 }
 
@@ -960,7 +959,7 @@ template<class T, class U, class O>
 InternalType* sub_MC_S(T *_pL, U *_pR)
 {
     O* pOut = new O(_pL->getDims(), _pL->getDimsArray(), true);
-    sub(_pL->get(), _pL->getImg(), (long long)_pL->getSize(), _pR->get(0), pOut->get(), pOut->getImg());
+    sub(_pL->get(), _pL->getImg(), (size_t)_pL->getSize(), _pR->get(0), pOut->get(), pOut->getImg());
     return pOut;
 }
 
@@ -968,7 +967,7 @@ template<class T, class U, class O>
 InternalType* sub_MC_SC(T *_pL, U *_pR)
 {
     O* pOut = new O(_pL->getDims(), _pL->getDimsArray(), true);
-    sub(_pL->get(), _pL->getImg(), (long long)_pL->getSize(), _pR->get(0), _pR->getImg(0), pOut->get(), pOut->getImg());
+    sub(_pL->get(), _pL->getImg(), (size_t)_pL->getSize(), _pR->get(0), _pR->getImg(0), pOut->get(), pOut->getImg());
     return pOut;
 }
 
@@ -983,7 +982,7 @@ template<class T, class U, class O>
 InternalType* sub_S_M(T *_pL, U *_pR)
 {
     O* pOut = new O(_pR->getDims(), _pR->getDimsArray());
-    sub(_pL->get(0), _pR->getSize(), _pR->get(), pOut->get());
+    sub(_pL->get(0), (size_t)_pR->getSize(), _pR->get(), pOut->get());
     return pOut;
 }
 
@@ -991,7 +990,7 @@ template<class T, class U, class O>
 InternalType* sub_S_MC(T *_pL, U *_pR)
 {
     O* pOut = new O(_pR->getDims(), _pR->getDimsArray(), true);
-    sub(_pL->get(0), (long long)_pR->getSize(), _pR->get(), _pR->getImg(), pOut->get(), pOut->getImg());
+    sub(_pL->get(0), (size_t)_pR->getSize(), _pR->get(), _pR->getImg(), pOut->get(), pOut->getImg());
     return pOut;
 }
 
@@ -1007,7 +1006,7 @@ template<class T, class U, class O>
 InternalType* sub_S_SC(T *_pL, U *_pR)
 {
     O* pOut = new O(0.0, 0.0);
-    sub(_pL->get(), 1, _pR->get(0), _pR->getImg(0), pOut->get(), pOut->getImg());
+    sub(_pL->get(), (size_t)1, _pR->get(0), _pR->getImg(0), pOut->get(), pOut->getImg());
     return pOut;
 }
 
@@ -1024,7 +1023,7 @@ template<class T, class U, class O>
 InternalType* sub_SC_M(T *_pL, U *_pR)
 {
     O* pOut = new O(_pR->getDims(), _pR->getDimsArray(), true);
-    sub(_pL->get(0), _pL->getImg(0), (long long)_pR->getSize(), _pR->get(), pOut->get(), pOut->getImg());
+    sub(_pL->get(0), _pL->getImg(0), (size_t)_pR->getSize(), _pR->get(), pOut->get(), pOut->getImg());
     return pOut;
 }
 
@@ -1032,7 +1031,7 @@ template<class T, class U, class O>
 InternalType* sub_SC_MC(T *_pL, U *_pR)
 {
     O* pOut = new O(_pR->getDims(), _pR->getDimsArray(), true);
-    sub(_pL->get(0), _pL->getImg(0), (long long)_pR->getSize(), _pR->get(), _pR->getImg(), pOut->get(), pOut->getImg());
+    sub(_pL->get(0), _pL->getImg(0), (size_t)_pR->getSize(), _pR->get(), _pR->getImg(), pOut->get(), pOut->getImg());
     return pOut;
 }
 
@@ -1040,7 +1039,7 @@ template<class T, class U, class O>
 InternalType* sub_SC_S(T *_pL, U *_pR)
 {
     O* pOut = new O(0.0, 0.0);
-    sub(_pL->get(), _pL->getImg(), 1, _pR->get(0), pOut->get(), pOut->getImg());
+    sub(_pL->get(), _pL->getImg(), (size_t)1, _pR->get(0), pOut->get(), pOut->getImg());
     return pOut;
 }
 
@@ -1193,7 +1192,7 @@ InternalType* sub_IC_M(T *_pL, U *_pR)
         }
 
         int index = _pR->getIndex(piIndex);
-        sub(&dblLeftR, &dblLeftI, 1, pdblRight[index], pdblOutR + index, pdblOutI + index);
+        sub(&dblLeftR, &dblLeftI, (size_t)1, pdblRight[index], pdblOutR + index, pdblOutI + index);
     }
 
     return pOut;
@@ -1296,7 +1295,7 @@ template<class T, class U, class O> InternalType* sub_M_I(T *_pL, U *_pR)
         }
 
         int index = _pL->getIndex(piIndex);
-        sub(pdblLeft[index], 1, &dblRight, pdblOutR + index);
+        sub(pdblLeft[index], (size_t)1, &dblRight, pdblOutR + index);
     }
 
     return pOut;
@@ -1342,7 +1341,7 @@ template<class T, class U, class O> InternalType* sub_M_IC(T *_pL, U *_pR)
         }
 
         int index = _pL->getIndex(piIndex);
-        sub(pdblLeft[index], 1, &dblRightR, &dblRightI, pdblOutR + index, pdblOutI + index);
+        sub(pdblLeft[index], (size_t)1, &dblRightR, &dblRightI, pdblOutR + index, pdblOutI + index);
     }
 
     return pOut;
@@ -1384,7 +1383,7 @@ template<class T, class U, class O> InternalType* sub_MC_IC(T *_pL, U *_pR)
         }
 
         int index = _pL->getIndex(piIndex);
-        sub(pdblLeftR[index], pdblLeftI[index], 1, &dblRightR, &dblRightI, pdblOutR + index, pdblOutI + index);
+        sub(pdblLeftR[index], pdblLeftI[index], (size_t)1, &dblRightR, &dblRightI, pdblOutR + index, pdblOutI + index);
     }
 
     return pOut;
@@ -1421,7 +1420,7 @@ template<class T, class U, class O> InternalType* sub_I_IC(T *_pL, U *_pR)
 {
     O* pOut = types::Double::Identity(-1, -1);
     pOut->setComplex(true);
-    sub(_pL->get(), 1, _pR->get(0), _pR->getImg(0), pOut->get(), pOut->getImg());
+    sub(_pL->get(), (size_t)1, _pR->get(0), _pR->getImg(0), pOut->get(), pOut->getImg());
     return pOut;
 }
 
@@ -1789,7 +1788,7 @@ template<> InternalType* sub_M_M<Polynom, Double, Polynom>(Polynom* _pL, Double*
                 }
 
                 int index = _pL->getIndex(piIndex);
-                sub(pSPLeft[index]->get(0), pSPLeft[index]->getImg(0), 1, &dblRightR, &dblRightI, pSPOut[index]->get(), pSPOut[index]->getImg());
+                sub(pSPLeft[index]->get(0), pSPLeft[index]->getImg(0), (size_t)1, &dblRightR, &dblRightI, pSPOut[index]->get(), pSPOut[index]->getImg());
             }
         }
         else
@@ -1802,7 +1801,7 @@ template<> InternalType* sub_M_M<Polynom, Double, Polynom>(Polynom* _pL, Double*
                 }
 
                 int index = _pL->getIndex(piIndex);
-                sub(pSPLeft[index]->get(0), 1, &dblRightR, pSPOut[index]->get());
+                sub(pSPLeft[index]->get(0), (size_t)1, &dblRightR, pSPOut[index]->get());
             }
         }
         return pOut;
@@ -2063,7 +2062,7 @@ template<> InternalType* sub_IC_M<Double, Polynom, Polynom>(Double* _pL, Polynom
         }
 
         int index = _pR->getIndex(piIndex);
-        sub(&dblLeftR, &dblLeftI, 1, pSP[index]->get(0), pSPOut[index]->get(), pSPOut[index]->getImg());
+        sub(&dblLeftR, &dblLeftI, (size_t)1, pSP[index]->get(0), pSPOut[index]->get(), pSPOut[index]->getImg());
     }
 
     return pOut;
@@ -2112,8 +2111,8 @@ template<> InternalType* sub_IC_MC<Double, Polynom, Polynom>(Double* _pL, Polyno
 template<> InternalType* sub_M_M<Double, Polynom, Polynom>(Double* _pL, Polynom* _pR)
 {
     Polynom* pOut = NULL;
-    bool bComplex1 = _pR->isComplex();
-    bool bComplex2 = _pL->isComplex();
+    bool bComplex1 = _pL->isComplex();
+    bool bComplex2 = _pR->isComplex();
 
     double *pInDblR = _pL->getReal();
     double *pInDblI = _pL->getImg();
@@ -2175,11 +2174,20 @@ template<> InternalType* sub_M_M<Double, Polynom, Polynom>(Double* _pL, Polynom*
 
     if (_pL->isScalar())
     {
-        pOut = (Polynom*)_pR->clone();
+        if (bComplex2)
+        {
+            pOut = (Polynom*)opposite_MC<Polynom, Polynom>(_pR);
+        }
+        else
+        {
+            pOut = (Polynom*)opposite_M<Polynom, Polynom>(_pR);
+        }
+
+        int iSize = pOut->getSize();
 
         if (bComplex1 && bComplex2)
         {
-            for (int i = 0 ; i < pOut->getSize() ; i++)
+            for (int i = 0 ; i < iSize ; i++)
             {
                 SinglePoly *pSPOut   = pOut->get(i);
                 double *pOutPolyR    = pSPOut->get();
@@ -2189,10 +2197,10 @@ template<> InternalType* sub_M_M<Double, Polynom, Polynom>(Double* _pL, Polynom*
                 pOutPolyI[0] += pInDblI[0];
             }
         }
-        else if (bComplex2)
+        else if (bComplex1)
         {
             pOut->setComplex(true);
-            for (int i = 0 ; i < pOut->getSize() ; i++)
+            for (int i = 0 ; i < iSize ; i++)
             {
                 SinglePoly *pSPOut   = pOut->get(i);
                 double *pOutPolyR    = pSPOut->get();
@@ -2204,7 +2212,7 @@ template<> InternalType* sub_M_M<Double, Polynom, Polynom>(Double* _pL, Polynom*
         }
         else
         {
-            for (int i = 0 ; i < pOut->getSize() ; i++)
+            for (int i = 0 ; i < iSize ; i++)
             {
                 SinglePoly *pSPOut = pOut->get(i);
                 double *pOutPolyR  = pSPOut->get();
@@ -2239,7 +2247,15 @@ template<> InternalType* sub_M_M<Double, Polynom, Polynom>(Double* _pL, Polynom*
         }
     }
 
-    pOut = (Polynom*)_pR->clone();
+    if (bComplex2)
+    {
+        pOut = (Polynom*)opposite_MC<Polynom, Polynom>(_pR);
+    }
+    else
+    {
+        pOut = (Polynom*)opposite_M<Polynom, Polynom>(_pR);
+    }
+
     if (bComplex1 && bComplex2)
     {
         for (int i = 0 ; i < pOut->getSize() ; i++)
@@ -2252,7 +2268,7 @@ template<> InternalType* sub_M_M<Double, Polynom, Polynom>(Double* _pL, Polynom*
             pOutPolyI[0] += pInDblI[i];
         }
     }
-    else if (bComplex2)
+    else if (bComplex1)
     {
         pOut->setComplex(true);
         for (int i = 0 ; i < pOut->getSize() ; i++)

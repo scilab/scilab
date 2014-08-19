@@ -156,11 +156,11 @@ void fillAddFunction()
     scilab_fill_add(Empty, UInt8, E_M, Double, UInt8, UInt8);
     scilab_fill_add(Empty, Int16, E_M, Double, Int16, Int16);
     scilab_fill_add(Empty, UInt16, E_M, Double, UInt16, UInt16);
-    //scilab_fill_add(Empty, Int32, E_M, Double, Int32, Int32);
+    scilab_fill_add(Empty, Int32, E_M, Double, Int32, Int32);
     scilab_fill_add(Empty, UInt32, E_M, Double, UInt32, UInt32);
     scilab_fill_add(Empty, Int64, E_M, Double, Int64, Int64);
     scilab_fill_add(Empty, UInt64, E_M, Double, UInt64, UInt64);
-    //scilab_fill_add(Empty, Bool, E_M, Double, Bool, Double);
+    scilab_fill_add(Empty, Bool, E_M, Double, Bool, Double);
     scilab_fill_add(Empty, String, E_M, Double, String, String);
     scilab_fill_add(Empty, Polynom, M_M, Double, Polynom, Polynom);
     scilab_fill_add(Empty, PolynomComplex, M_M, Double, Polynom, Polynom);
@@ -215,7 +215,7 @@ void fillAddFunction()
     scilab_fill_add(Int8, Int64, M_M, Int8, Int64, Int64);
     scilab_fill_add(Int8, UInt64, M_M, Int8, UInt64, UInt64);
     scilab_fill_add(Int8, Bool, M_M, Int8, Bool, Int8);
-    scilab_fill_add(Int8, Empty, M_M, Int8, Double, Int8);
+    scilab_fill_add(Int8, Empty, M_E, Int8, Double, Int8);
 
     //Matrix + Scalar
     scilab_fill_add(Int8, ScalarDouble, M_S, Int8, Double, Int8);
@@ -240,7 +240,7 @@ void fillAddFunction()
     scilab_fill_add(ScalarInt8, Int64, S_M, Int8, Int64, Int64);
     scilab_fill_add(ScalarInt8, UInt64, S_M, Int8, UInt64, UInt64);
     scilab_fill_add(ScalarInt8, Bool, S_M, Int8, Bool, Int8);
-    scilab_fill_add(ScalarInt8, Empty, M_M, Int8, Double, Int8);
+    scilab_fill_add(ScalarInt8, Empty, S_E, Int8, Double, Int8);
 
     //Scalar + Scalar
     scilab_fill_add(ScalarInt8, ScalarDouble, S_S, Int8, Double, Int8);
@@ -266,7 +266,7 @@ void fillAddFunction()
     scilab_fill_add(UInt8, Int64, M_M, UInt8, Int64, UInt64);
     scilab_fill_add(UInt8, UInt64, M_M, UInt8, UInt64, UInt64);
     scilab_fill_add(UInt8, Bool, M_M, UInt8, Bool, UInt8);
-    scilab_fill_add(UInt8, Empty, M_M, UInt8, Double, UInt8);
+    scilab_fill_add(UInt8, Empty, M_E, UInt8, Double, UInt8);
 
     //Matrix + Scalar
     scilab_fill_add(UInt8, ScalarDouble, M_S, UInt8, Double, UInt8);
@@ -291,7 +291,7 @@ void fillAddFunction()
     scilab_fill_add(ScalarUInt8, Int64, S_M, UInt8, Int64, UInt64);
     scilab_fill_add(ScalarUInt8, UInt64, S_M, UInt8, UInt64, UInt64);
     scilab_fill_add(ScalarUInt8, Bool, S_M, UInt8, Bool, UInt8);
-    scilab_fill_add(ScalarUInt8, Empty, S_M, UInt8, Double, UInt8);
+    scilab_fill_add(ScalarUInt8, Empty, S_E, UInt8, Double, UInt8);
 
     //Scalar + Scalar
     scilab_fill_add(ScalarUInt8, ScalarDouble, S_S, UInt8, Double, UInt8);
@@ -317,7 +317,7 @@ void fillAddFunction()
     scilab_fill_add(Int16, Int64, M_M, Int16, Int64, Int64);
     scilab_fill_add(Int16, UInt64, M_M, Int16, UInt64, UInt64);
     scilab_fill_add(Int16, Bool, M_M, Int16, Bool, Int16);
-    scilab_fill_add(Int16, Empty, M_M, Int16, Double, Int16);
+    scilab_fill_add(Int16, Empty, M_E, Int16, Double, Int16);
 
     //Matrix + Scalar
     scilab_fill_add(Int16, ScalarDouble, M_S, Int16, Double, Int16);
@@ -342,7 +342,7 @@ void fillAddFunction()
     scilab_fill_add(ScalarInt16, Int64, S_M, Int16, Int64, Int64);
     scilab_fill_add(ScalarInt16, UInt64, S_M, Int16, UInt64, UInt64);
     scilab_fill_add(ScalarInt16, Bool, S_M, Int16, Bool, Int16);
-    scilab_fill_add(ScalarInt16, Empty, M_M, Int16, Double, Int16);
+    scilab_fill_add(ScalarInt16, Empty, S_E, Int16, Double, Int16);
 
     //Scalar + Scalar
     scilab_fill_add(ScalarInt16, ScalarDouble, S_S, Int16, Double, Int16);
@@ -368,7 +368,7 @@ void fillAddFunction()
     scilab_fill_add(UInt16, Int64, M_M, UInt16, Int64, UInt64);
     scilab_fill_add(UInt16, UInt64, M_M, UInt16, UInt64, UInt64);
     scilab_fill_add(UInt16, Bool, M_M, UInt16, Bool, UInt16);
-    scilab_fill_add(UInt16, Empty, M_M, UInt16, Double, UInt16);
+    scilab_fill_add(UInt16, Empty, M_E, UInt16, Double, UInt16);
 
     //Matrix + Scalar
     scilab_fill_add(UInt16, ScalarDouble, M_S, UInt16, Double, UInt16);
@@ -393,7 +393,7 @@ void fillAddFunction()
     scilab_fill_add(ScalarUInt16, Int64, S_M, UInt16, Int64, UInt64);
     scilab_fill_add(ScalarUInt16, UInt64, S_M, UInt16, UInt64, UInt64);
     scilab_fill_add(ScalarUInt16, Bool, S_M, UInt16, Bool, UInt16);
-    scilab_fill_add(ScalarUInt16, Empty, S_M, UInt16, Double, UInt16);
+    scilab_fill_add(ScalarUInt16, Empty, S_E, UInt16, Double, UInt16);
 
     //Scalar + Scalar
     scilab_fill_add(ScalarUInt16, ScalarDouble, S_S, UInt16, Double, UInt16);
@@ -419,7 +419,7 @@ void fillAddFunction()
     scilab_fill_add(Int32, Int64, M_M, Int32, Int64, Int64);
     scilab_fill_add(Int32, UInt64, M_M, Int32, UInt64, UInt64);
     scilab_fill_add(Int32, Bool, M_M, Int32, Bool, Int32);
-    scilab_fill_add(Int32, Empty, M_M, Int32, Double, Int32);
+    scilab_fill_add(Int32, Empty, M_E, Int32, Double, Int32);
 
     //Matrix + Scalar
     scilab_fill_add(Int32, ScalarDouble, M_S, Int32, Double, Int32);
@@ -444,7 +444,7 @@ void fillAddFunction()
     scilab_fill_add(ScalarInt32, Int64, S_M, Int32, Int64, Int64);
     scilab_fill_add(ScalarInt32, UInt64, S_M, Int32, UInt64, UInt64);
     scilab_fill_add(ScalarInt32, Bool, S_M, Int32, Bool, Int32);
-    scilab_fill_add(ScalarInt32, Empty, M_M, Int32, Double, Int32);
+    scilab_fill_add(ScalarInt32, Empty, S_E, Int32, Double, Int32);
 
     //Scalar + Scalar
     scilab_fill_add(ScalarInt32, ScalarDouble, S_S, Int32, Double, Int32);
@@ -470,7 +470,7 @@ void fillAddFunction()
     scilab_fill_add(UInt32, Int64, M_M, UInt32, Int64, UInt64);
     scilab_fill_add(UInt32, UInt64, M_M, UInt32, UInt64, UInt64);
     scilab_fill_add(UInt32, Bool, M_M, UInt32, Bool, UInt32);
-    scilab_fill_add(UInt32, Empty, M_M, UInt32, Double, UInt32);
+    scilab_fill_add(UInt32, Empty, M_E, UInt32, Double, UInt32);
 
     //Matrix + Scalar
     scilab_fill_add(UInt32, ScalarDouble, M_S, UInt32, Double, UInt32);
@@ -495,7 +495,7 @@ void fillAddFunction()
     scilab_fill_add(ScalarUInt32, Int64, S_M, UInt32, Int64, UInt64);
     scilab_fill_add(ScalarUInt32, UInt64, S_M, UInt32, UInt64, UInt64);
     scilab_fill_add(ScalarUInt32, Bool, S_M, UInt32, Bool, UInt32);
-    scilab_fill_add(ScalarUInt32, Empty, S_M, UInt32, Double, UInt32);
+    scilab_fill_add(ScalarUInt32, Empty, S_E, UInt32, Double, UInt32);
 
     //Scalar + Scalar
     scilab_fill_add(ScalarUInt32, ScalarDouble, S_S, UInt32, Double, UInt32);
@@ -521,7 +521,7 @@ void fillAddFunction()
     scilab_fill_add(Int64, Int64, M_M, Int64, Int64, Int64);
     scilab_fill_add(Int64, UInt64, M_M, Int64, UInt64, UInt64);
     scilab_fill_add(Int64, Bool, M_M, Int64, Bool, Int64);
-    scilab_fill_add(Int64, Empty, M_M, Int64, Double, Int64);
+    scilab_fill_add(Int64, Empty, M_E, Int64, Double, Int64);
 
     //Matrix + Scalar
     scilab_fill_add(Int64, ScalarDouble, M_S, Int64, Double, Int64);
@@ -546,7 +546,7 @@ void fillAddFunction()
     scilab_fill_add(ScalarInt64, Int64, S_M, Int64, Int64, Int64);
     scilab_fill_add(ScalarInt64, UInt64, S_M, Int64, UInt64, UInt64);
     scilab_fill_add(ScalarInt64, Bool, S_M, Int64, Bool, Int64);
-    scilab_fill_add(ScalarInt64, Empty, M_M, Int64, Double, Int64);
+    scilab_fill_add(ScalarInt64, Empty, S_E, Int64, Double, Int64);
 
     //Scalar + Scalar
     scilab_fill_add(ScalarInt64, ScalarDouble, S_S, Int64, Double, Int64);
@@ -572,7 +572,7 @@ void fillAddFunction()
     scilab_fill_add(UInt64, Int64, M_M, UInt64, Int64, UInt64);
     scilab_fill_add(UInt64, UInt64, M_M, UInt64, UInt64, UInt64);
     scilab_fill_add(UInt64, Bool, M_M, UInt64, Bool, UInt64);
-    scilab_fill_add(UInt64, Empty, M_M, UInt64, Double, UInt64);
+    scilab_fill_add(UInt64, Empty, M_E, UInt64, Double, UInt64);
 
     //Matrix + Scalar
     scilab_fill_add(UInt64, ScalarDouble, M_S, UInt64, Double, UInt64);
@@ -597,7 +597,7 @@ void fillAddFunction()
     scilab_fill_add(ScalarUInt64, Int64, S_M, UInt64, Int64, UInt64);
     scilab_fill_add(ScalarUInt64, UInt64, S_M, UInt64, UInt64, UInt64);
     scilab_fill_add(ScalarUInt64, Bool, S_M, UInt64, Bool, UInt64);
-    scilab_fill_add(ScalarUInt64, Empty, S_M, UInt64, Double, UInt64);
+    scilab_fill_add(ScalarUInt64, Empty, S_E, UInt64, Double, UInt64);
 
     //Scalar + Scalar
     scilab_fill_add(ScalarUInt64, ScalarDouble, S_S, UInt64, Double, UInt64);
@@ -623,7 +623,7 @@ void fillAddFunction()
     scilab_fill_add(Bool, Int64, M_M, Bool, Int64, Int64);
     scilab_fill_add(Bool, UInt64, M_M, Bool, UInt64, UInt64);
     scilab_fill_add(Bool, Bool, M_M, Bool, Bool, Bool);
-    scilab_fill_add(Bool, Empty, M_M, Bool, Double, Double);
+    scilab_fill_add(Bool, Empty, M_E, Bool, Double, Double);
 
     //Matrix + Scalar
     scilab_fill_add(Bool, ScalarDouble, M_S, Bool, Double, Double);
@@ -648,7 +648,7 @@ void fillAddFunction()
     scilab_fill_add(ScalarBool, Int64, S_M, Bool, Int64, Int64);
     scilab_fill_add(ScalarBool, UInt64, S_M, Bool, UInt64, UInt64);
     scilab_fill_add(ScalarBool, Bool, S_M, Bool, Bool, Bool);
-    scilab_fill_add(ScalarBool, Empty, M_M, Bool, Double, Double);
+    scilab_fill_add(ScalarBool, Empty, S_E, Bool, Double, Double);
 
     //Scalar + Scalar
     scilab_fill_add(ScalarBool, ScalarDouble, S_S, Bool, Double, Double);
@@ -680,10 +680,10 @@ void fillAddFunction()
     scilab_fill_add(Identity, IdentityComplex, I_IC, Double, Double, Double);
     scilab_fill_add(Identity, Empty, I_E, Double, Double, Double);
 
-    scilab_fill_add(Identity, Polynom, M_M, Double, Polynom, Polynom);
-    scilab_fill_add(Identity, PolynomComplex, M_M, Double, Polynom, Polynom);
-    scilab_fill_add(Identity, ScalarPolynom, M_M, Double, Polynom, Polynom);
-    scilab_fill_add(Identity, ScalarPolynomComplex, M_M, Double, Polynom, Polynom);
+    scilab_fill_add(Identity, Polynom, I_M, Double, Polynom, Polynom);
+    scilab_fill_add(Identity, PolynomComplex, I_M, Double, Polynom, Polynom);
+    scilab_fill_add(Identity, ScalarPolynom, I_M, Double, Polynom, Polynom);
+    scilab_fill_add(Identity, ScalarPolynomComplex, I_M, Double, Polynom, Polynom);
     scilab_fill_add(Identity, Sparse, M_M, Double, Sparse, Sparse);
     scilab_fill_add(Identity, SparseComplex, M_M, Double, Sparse, Sparse);
 
@@ -695,10 +695,10 @@ void fillAddFunction()
     scilab_fill_add(IdentityComplex, IdentityComplex, IC_IC, Double, Double, Double);
     scilab_fill_add(IdentityComplex, Empty, IC_E, Double, Double, Double);
 
-    scilab_fill_add(IdentityComplex, Polynom, M_M, Double, Polynom, Polynom);
-    scilab_fill_add(IdentityComplex, PolynomComplex, M_M, Double, Polynom, Polynom);
-    scilab_fill_add(IdentityComplex, ScalarPolynom, M_M, Double, Polynom, Polynom);
-    scilab_fill_add(IdentityComplex, ScalarPolynomComplex, M_M, Double, Polynom, Polynom);
+    scilab_fill_add(IdentityComplex, Polynom, I_M, Double, Polynom, Polynom);
+    scilab_fill_add(IdentityComplex, PolynomComplex, I_M, Double, Polynom, Polynom);
+    scilab_fill_add(IdentityComplex, ScalarPolynom, I_M, Double, Polynom, Polynom);
+    scilab_fill_add(IdentityComplex, ScalarPolynomComplex, I_M, Double, Polynom, Polynom);
     scilab_fill_add(IdentityComplex, Sparse, M_M, Double, Sparse, Sparse);
     scilab_fill_add(IdentityComplex, SparseComplex, M_M, Double, Sparse, Sparse);
 
@@ -733,10 +733,10 @@ void fillAddFunction()
     scilab_fill_add(PolynomComplex, Empty, M_M, Polynom, Double, Polynom);
 
     //poly + eye
-    scilab_fill_add(Polynom, Identity, M_M, Polynom, Double, Polynom);
-    scilab_fill_add(Polynom, IdentityComplex, M_M, Polynom, Double, Polynom);
-    scilab_fill_add(PolynomComplex, Identity, M_M, Polynom, Double, Polynom);
-    scilab_fill_add(PolynomComplex, IdentityComplex, M_M, Polynom, Double, Polynom);
+    scilab_fill_add(Polynom, Identity, M_I, Polynom, Double, Polynom);
+    scilab_fill_add(Polynom, IdentityComplex, M_I, Polynom, Double, Polynom);
+    scilab_fill_add(PolynomComplex, Identity, M_I, Polynom, Double, Polynom);
+    scilab_fill_add(PolynomComplex, IdentityComplex, M_I, Polynom, Double, Polynom);
 
     //scalar poly + poly
     scilab_fill_add(ScalarPolynom, Polynom, M_M, Polynom, Polynom, Polynom);
@@ -767,10 +767,10 @@ void fillAddFunction()
     scilab_fill_add(ScalarPolynomComplex, Empty, M_M, Polynom, Double, Polynom);
 
     //scalar poly + eye
-    scilab_fill_add(ScalarPolynom, Identity, M_M, Polynom, Double, Polynom);
-    scilab_fill_add(ScalarPolynom, IdentityComplex, M_M, Polynom, Double, Polynom);
-    scilab_fill_add(ScalarPolynomComplex, Identity, M_M, Polynom, Double, Polynom);
-    scilab_fill_add(ScalarPolynomComplex, IdentityComplex, M_M, Polynom, Double, Polynom);
+    scilab_fill_add(ScalarPolynom, Identity, M_I, Polynom, Double, Polynom);
+    scilab_fill_add(ScalarPolynom, IdentityComplex, M_I, Polynom, Double, Polynom);
+    scilab_fill_add(ScalarPolynomComplex, Identity, M_I, Polynom, Double, Polynom);
+    scilab_fill_add(ScalarPolynomComplex, IdentityComplex, M_I, Polynom, Double, Polynom);
 
     //Sparse
     scilab_fill_add(Sparse, Sparse, M_M, Sparse, Sparse, Sparse);
@@ -1087,7 +1087,7 @@ InternalType* add_M_M(T *_pL, U *_pR)
 
     O* pOut = new O(iDimsL, piDimsL);
 
-    add(_pL->get(), (long long)_pL->getSize(), _pR->get(), pOut->get());
+    add(_pL->get(), (size_t)_pL->getSize(), _pR->get(), pOut->get());
     return pOut;
 }
 
@@ -1115,7 +1115,7 @@ InternalType* add_M_MC(T *_pL, U *_pR)
 
     O* pOut = new O(iDimsL, piDimsL, true);
 
-    add(_pL->get(), (long long)_pL->getSize(), _pR->get(), _pR->getImg(), pOut->get(), pOut->getImg());
+    add(_pL->get(), (size_t)_pL->getSize(), _pR->get(), _pR->getImg(), pOut->get(), pOut->getImg());
     return pOut;
 }
 
@@ -1123,7 +1123,7 @@ template<class T, class U, class O>
 InternalType* add_M_S(T *_pL, U *_pR)
 {
     O* pOut = new O(_pL->getDims(), _pL->getDimsArray());
-    add(_pL->get(), (long long)_pL->getSize(), _pR->get(0), pOut->get());
+    add(_pL->get(), (size_t)_pL->getSize(), _pR->get(0), pOut->get());
     return pOut;
 }
 
@@ -1131,7 +1131,7 @@ template<class T, class U, class O>
 InternalType* add_M_SC(T *_pL, U *_pR)
 {
     O* pOut = new O(_pL->getDims(), _pL->getDimsArray(), true);
-    add(_pL->get(), (long long)_pL->getSize(), _pR->get(0), _pR->getImg(0), pOut->get(), pOut->getImg());
+    add(_pL->get(), (size_t)_pL->getSize(), _pR->get(0), _pR->getImg(0), pOut->get(), pOut->getImg());
     return pOut;
 }
 
@@ -1172,7 +1172,7 @@ InternalType* add_MC_MC(T *_pL, U *_pR)
 
     O* pOut = new O(iDimsL, piDimsL, true);
 
-    add(_pL->get(), _pL->getImg(), (long long)_pL->getSize(), _pR->get(), _pR->getImg(), pOut->get(), pOut->getImg());
+    add(_pL->get(), _pL->getImg(), (size_t)_pL->getSize(), _pR->get(), _pR->getImg(), pOut->get(), pOut->getImg());
     return pOut;
 }
 
@@ -1180,7 +1180,7 @@ template<class T, class U, class O>
 InternalType* add_MC_S(T *_pL, U *_pR)
 {
     O* pOut = new O(_pL->getDims(), _pL->getDimsArray(), true);
-    add(_pL->get(), _pL->getImg(), (long long)_pL->getSize(), _pR->get(0), pOut->get(), pOut->getImg());
+    add(_pL->get(), _pL->getImg(), (size_t)_pL->getSize(), _pR->get(0), pOut->get(), pOut->getImg());
     return pOut;
 }
 
@@ -1188,7 +1188,7 @@ template<class T, class U, class O>
 InternalType* add_MC_SC(T *_pL, U *_pR)
 {
     O* pOut = new O(_pL->getDims(), _pL->getDimsArray(), true);
-    add(_pL->get(), _pL->getImg(), (long long)_pL->getSize(), _pR->get(0), _pR->getImg(0), pOut->get(), pOut->getImg());
+    add(_pL->get(), _pL->getImg(), (size_t)_pL->getSize(), _pR->get(0), _pR->getImg(0), pOut->get(), pOut->getImg());
     return pOut;
 }
 
@@ -1196,7 +1196,7 @@ template<class T, class U, class O>
 InternalType* add_MC_E(T *_pL, U *_pR)
 {
     O* pOut = new O(_pL->getDims(), _pL->getDimsArray(), true);
-    add(_pL->get(), _pL->getImg(), (long long)_pL->getSize(), pOut->get(), pOut->getImg());
+    add(_pL->get(), _pL->getImg(), (size_t)_pL->getSize(), pOut->get(), pOut->getImg());
     return pOut;
 }
 
@@ -2102,6 +2102,78 @@ template<> InternalType* add_M_M<Double, Polynom, Polynom>(Double* _pL, Polynom*
     return pOut;
 }
 
+//poly + eye
+template<> InternalType* add_M_I<Polynom, Double, Polynom>(Polynom* _pL, Double* _pR)
+{
+    Polynom* pOut = (Polynom*)_pL->clone();
+    bool isComplex = _pL->isComplex() || _pR->isComplex();
+    pOut->setComplex(isComplex);
+
+    int iDims = _pL->getDims();
+    int* piDims = _pL->getDimsArray();
+    int iLeadDims = piDims[0];
+    int* piIndex = new int[iDims];
+    piIndex[0] = 0;
+
+    //find smaller dims
+    for (int i = 1 ; i < iDims ; ++i)
+    {
+        //init
+        piIndex[i] = 0;
+
+        if (iLeadDims > piDims[i])
+        {
+            iLeadDims = piDims[i];
+        }
+    }
+
+    double dblR = _pR->get(0);
+
+    if (isComplex)
+    {
+        int iSize = pOut->getSize();
+        SinglePoly** pSP = pOut->get();
+
+        double dblI = 0;
+        if (_pR->isComplex())
+        {
+            dblI = _pR->getImg(0);
+        }
+
+        for (int i = 0 ; i < iLeadDims ; ++i)
+        {
+            for (int j = 0 ; j < iDims ; ++j)
+            {
+                piIndex[j] = i;
+            }
+
+            int index = _pL->getIndex(piIndex);
+            add(dblR, dblI, pSP[index]->get(0), pSP[index]->getImg(0), pSP[index]->get(), pSP[index]->getImg());
+        }
+    }
+    else
+    {
+        int iSize = pOut->getSize();
+        SinglePoly** pSP = pOut->get();
+        for (int i = 0 ; i < iLeadDims ; ++i)
+        {
+            for (int j = 0 ; j < iDims ; ++j)
+            {
+                piIndex[j] = i;
+            }
+
+            int index = _pL->getIndex(piIndex);
+            add(dblR, pSP[index]->get(0), pSP[index]->get());
+        }
+    }
+    return pOut;
+}
+
+template<> InternalType* add_I_M<Double, Polynom, Polynom>(Double* _pL, Polynom* _pR)
+{
+    return add_M_I<Polynom, Double, Polynom>(_pR, _pL);
+}
+
 //sp + sp
 template<> InternalType* add_M_M<Sparse, Sparse, Sparse>(Sparse* _pL, Sparse* _pR)
 {
@@ -2337,26 +2409,38 @@ template<> InternalType* add_M_M<Sparse, Double, Sparse>(Sparse* _pL, Double* _p
     if (_pR->isIdentity())
     {
         //convert to _pL
-        Sparse* pS = new Sparse(_pL->getRows(), _pL->getCols(), _pR->isComplex());
-        if (pS->isComplex())
+        pOut = (Sparse*)_pL->clone();
+        bool isComplex = _pL->isComplex() || _pR->isComplex();
+        if (isComplex)
         {
-            int size = std::min(_pL->getRows(), _pL->getCols());
+            pOut->toComplex();
+        }
+
+        int size = std::min(_pL->getRows(), _pL->getCols());
+        double dblR = _pR->get(0);
+
+        if (isComplex)
+        {
+            std::complex<double> cplx_add(dblR, 0);
+            if (_pR->isComplex())
+            {
+                cplx_add.imag(_pR->getImg(0));
+            }
+
             for (int i = 0 ; i < size ; i++)
             {
-                pS->set(i, i, std::complex<double>(_pR->get(0), _pR->getImg(0)));
+                pOut->set(i, i, pOut->get(i, i) + cplx_add, false);
             }
         }
         else
         {
-            int size = std::min(_pL->getRows(), _pL->getCols());
             for (int i = 0 ; i < size ; i++)
             {
-                pS->set(i, i, _pR->get(0));
+                pOut->set(i, i, _pL->get(i, i) + dblR, false);
             }
         }
 
-        AddSparseToSparse(_pL, pS, (Sparse**)pOut);
-        delete pS;
+        pOut->finalize();
         return pOut;
     }
     else

@@ -35,4 +35,5 @@ int DotMultiplySparseByDouble(types::Sparse* _pSparse1, types::Double* _pDouble2
 int DotMultiplyDoubleByPoly(types::Double* _pDouble, types::Polynom* _pPoly, types::Polynom**  _pPolyOut);
 int DotMultiplyPolyByDouble(types::Polynom* _pPoly, types::Double* _pDouble, types::Polynom**  _pPolyOut);
 int DotMultiplyPolyByPoly(types::Polynom* _pPoly1, types::Polynom* _pPoly2, types::Polynom**  _pPolyOut);
+
 #endif /* __TYPES_MULTIPLICATION_HXX__ */

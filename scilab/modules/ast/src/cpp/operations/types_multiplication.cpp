@@ -13,7 +13,11 @@
 
 #include "types_multiplication.hxx"
 #include "types_addition.hxx"
-#include "arrayof.hxx"
+#include "double.hxx"
+#include "int.hxx"
+#include "sparse.hxx"
+#include "polynom.hxx"
+#include "singlepoly.hxx"
 
 #include "scilabexception.hxx"
 
@@ -27,146 +31,8 @@ extern "C"
 #include "elem_common.h"
 }
 
+
 using namespace types;
-
-InternalType *GenericDotTimes(InternalType *_pLeftOperand, InternalType *_pRightOperand)
-{
-    InternalType *pResult = NULL;
-
-    if (_pLeftOperand->isDouble() && _pLeftOperand->getAs<Double>()->isEmpty())
-    {
-        return Double::Empty();
-    }
-
-    if (_pRightOperand->isDouble() && _pRightOperand->getAs<Double>()->isEmpty())
-    {
-        return Double::Empty();
-    }
-
-    /*
-    ** DOUBLE .* DOUBLE
-    */
-    if (_pLeftOperand->isDouble() && _pRightOperand->isDouble())
-    {
-        Double *pL   = _pLeftOperand->getAs<Double>();
-        Double *pR   = _pRightOperand->getAs<Double>();
-
-        int iResult = DotMultiplyDoubleByDouble(pL, pR, (Double**)&pResult);
-        if (iResult)
-        {
-            throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
-        }
-
-        return pResult;
-    }
-
-    /*
-    ** SPARSE .* SPARSE
-    */
-    if (_pLeftOperand->isSparse() && _pRightOperand->isSparse())
-    {
-        Sparse *pL   = _pLeftOperand->getAs<Sparse>();
-        Sparse *pR   = _pRightOperand->getAs<Sparse>();
-
-        int iResult = DotMultiplySparseBySparse(pL, pR, (Sparse**)&pResult);
-        if (iResult)
-        {
-            throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
-        }
-
-        return pResult;
-    }
-
-    /*
-    ** SPARSE .* DOUBLE
-    */
-    if (_pLeftOperand->isSparse() && _pRightOperand->isDouble())
-    {
-        Sparse *pL   = _pLeftOperand->getAs<Sparse>();
-        Double *pR   = _pRightOperand->getAs<Double>();
-
-        int iResult = DotMultiplySparseByDouble(pL, pR, (GenericType**)&pResult);
-        if (iResult)
-        {
-            throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
-        }
-
-        return pResult;
-    }
-
-    /*
-    ** DOUBLE .* SPARSE
-    */
-    if (_pLeftOperand->isDouble() && _pRightOperand->isSparse())
-    {
-        Double *pL   = _pLeftOperand->getAs<Double>();
-        Sparse *pR   = _pRightOperand->getAs<Sparse>();
-
-        int iResult = DotMultiplyDoubleBySparse(pL, pR, (GenericType**)&pResult);
-        if (iResult)
-        {
-            throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
-        }
-
-        return pResult;
-    }
-
-    /*
-    ** DOUBLE .* POLY
-    */
-    if (_pLeftOperand->isDouble() && _pRightOperand->isPoly())
-    {
-        Double *pL   = _pLeftOperand->getAs<Double>();
-        Polynom *pR  = _pRightOperand->getAs<Polynom>();
-
-        int iResult = DotMultiplyDoubleByPoly(pL, pR, (Polynom**)&pResult);
-        if (iResult)
-        {
-            throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
-        }
-
-        return pResult;
-    }
-
-    /*
-    ** POLY .* DOUBLE
-    */
-    if (_pLeftOperand->isPoly() && _pRightOperand->isDouble())
-    {
-        Polynom *pL   = _pLeftOperand->getAs<Polynom>();
-        Double *pR    = _pRightOperand->getAs<Double>();
-
-        int iResult = DotMultiplyPolyByDouble(pL, pR, (Polynom**)&pResult);
-        if (iResult)
-        {
-            throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
-        }
-
-        return pResult;
-    }
-
-    /*
-    ** POLY .* POLY
-    */
-    if (_pLeftOperand->isPoly() && _pRightOperand->isPoly())
-    {
-        Polynom *pL   = _pLeftOperand->getAs<Polynom>();
-        Polynom *pR   = _pRightOperand->getAs<Polynom>();
-
-        int iResult = DotMultiplyPolyByPoly(pL, pR, (Polynom**)&pResult);
-        if (iResult)
-        {
-            throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
-        }
-
-        return pResult;
-    }
-
-    /*
-    ** Default case : Return NULL will Call Overloading.
-    */
-    return NULL;
-}
 
 InternalType *GenericTimes(InternalType *_pLeftOperand, InternalType *_pRightOperand)
 {
@@ -503,6 +369,7 @@ int DotMultiplyDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double**  _p
 
     return 0;
 }
+
 int MultiplyDoubleByPoly(Double* _pDouble, Polynom* _pPoly, Polynom** _pPolyOut)
 {
     bool bComplex1  = _pDouble->isComplex();
@@ -1777,3 +1644,4 @@ int DotMultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOu
 
     return 0;
 }
+

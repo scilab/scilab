@@ -110,6 +110,8 @@ template<> inline types::InternalType* add_E_S<types::Double, types::String, typ
 template<> inline types::InternalType* add_M_M<types::Polynom, types::Polynom, types::Polynom>(types::Polynom* _pL, types::Polynom* _pR);
 template<> inline types::InternalType* add_M_M<types::Polynom, types::Double, types::Polynom>(types::Polynom* _pL, types::Double* _pR);
 template<> inline types::InternalType* add_M_M<types::Double, types::Polynom, types::Polynom>(types::Double* _pL, types::Polynom* _pR);
+template<> inline types::InternalType* add_M_I<types::Polynom, types::Double, types::Polynom>(types::Polynom* _pL, types::Double* _pR);
+template<> inline types::InternalType* add_I_M<types::Double, types::Polynom, types::Polynom>(types::Double* _pL, types::Polynom* _pR);
 
 template<> inline types::InternalType* add_M_M<types::Sparse, types::Sparse, types::Sparse>(types::Sparse* _pL, types::Sparse* _pR);
 template<> inline types::InternalType* add_M_M<types::Double, types::Sparse, types::Double>(types::Double* _pL, types::Sparse* _pR);
@@ -119,27 +121,27 @@ template<> inline types::InternalType* add_M_M<types::Sparse, types::Double, typ
 
 //add matrix + matrix ( double, int, bool )
 //same type
-template<typename T, typename O> inline static void add(T* l, long long size, T* r, O* o)
+template<typename T, typename O> inline static void add(T* l, size_t size, T* r, O* o)
 {
-    for (int i = 0; i < size ; ++i)
+    for (size_t i = 0; i < size ; ++i)
     {
         o[i] = (O)l[i] + (O)r[i];
     }
 }
 
 //string version
-inline static void add(wchar_t** l, long long size, wchar_t** r, int* length , wchar_t** o)
+inline static void add(wchar_t** l, size_t size, wchar_t** r, int* length , wchar_t** o)
 {
-    for (int i = 0; i < size ; ++i)
+    for (size_t i = 0; i < size ; ++i)
     {
         os_swprintf(o[i], length[i], L"%ls%ls", l[i], r[i]);
     }
 }
 
 //x + x
-template<typename T, typename U, typename O> inline static void add(T* l, long long size, U* r, O* o)
+template<typename T, typename U, typename O> inline static void add(T* l, size_t size, U* r, O* o)
 {
-    for (int i = 0; i < size ; ++i)
+    for (size_t i = 0; i < size ; ++i)
     {
         o[i] = (O)l[i] + (O)r[i];
     }
@@ -147,9 +149,9 @@ template<typename T, typename U, typename O> inline static void add(T* l, long l
 
 
 //x + xC
-template<typename T, typename U, typename O> inline static void add(T* l, long long size, U* r, U* rc, O* o, O* oc)
+template<typename T, typename U, typename O> inline static void add(T* l, size_t size, U* r, U* rc, O* o, O* oc)
 {
-    for (int i = 0; i < size ; ++i)
+    for (size_t i = 0; i < size ; ++i)
     {
         o[i] = (O)l[i] + (O)r[i];
         oc[i] = (O)rc[i];
@@ -157,9 +159,9 @@ template<typename T, typename U, typename O> inline static void add(T* l, long l
 }
 
 //xC + x
-template<typename T, typename U, typename O> inline static void add(T* l, T* lc, long long size, U* r, O* o, O* oc)
+template<typename T, typename U, typename O> inline static void add(T* l, T* lc, size_t size, U* r, O* o, O* oc)
 {
-    for (int i = 0; i < size ; ++i)
+    for (size_t i = 0; i < size ; ++i)
     {
         o[i] = (O)l[i] + (O)r[i];
         oc[i] = (O)lc[i];
@@ -167,9 +169,9 @@ template<typename T, typename U, typename O> inline static void add(T* l, T* lc,
 }
 
 // xC + xC
-template<typename T, typename O> inline static void add(T* l, T* lc, long long size, T* r, T* rc, O* o, O* oc)
+template<typename T, typename O> inline static void add(T* l, T* lc, size_t size, T* r, T* rc, O* o, O* oc)
 {
-    for (int i = 0; i < size ; ++i)
+    for (size_t i = 0; i < size ; ++i)
     {
         o[i] = (O)l[i] + (O)r[i];
         oc[i] = (O)lc[i] + (O)rc[i];
@@ -177,18 +179,18 @@ template<typename T, typename O> inline static void add(T* l, T* lc, long long s
 }
 
 // x + [] and [] + x
-template<typename T, typename O> inline static void add(T* l, long long size, O* o)
+template<typename T, typename O> inline static void add(T* l, size_t size, O* o)
 {
-    for (int i = 0; i < size ; ++i)
+    for (size_t i = 0; i < size ; ++i)
     {
         o[i] = (O)l[i];
     }
 }
 
 // xC + [] and [] + xC
-template<typename T, typename O> inline static void add(T* l, T* lc, long long size, O* o, O* oc)
+template<typename T, typename O> inline static void add(T* l, T* lc, size_t size, O* o, O* oc)
 {
-    for (int i = 0; i < size ; ++i)
+    for (size_t i = 0; i < size ; ++i)
     {
         o[i] = (O)l[i];
         oc[i] = (O)lc[i];
@@ -197,27 +199,27 @@ template<typename T, typename O> inline static void add(T* l, T* lc, long long s
 
 //add matrix + scalar ( double, int, bool )
 //x + x1
-template<typename T, typename U, typename O> inline static void add(T* l, long long size, U r, O* o)
+template<typename T, typename U, typename O> inline static void add(T* l, size_t size, U r, O* o)
 {
-    for (int i = 0; i < size ; ++i)
+    for (size_t i = 0; i < size ; ++i)
     {
         o[i] = (O)l[i] + (O)r;
     }
 }
 
 //string version
-inline static void add(wchar_t** l, long long size, wchar_t* r, int* length , wchar_t** o)
+inline static void add(wchar_t** l, size_t size, wchar_t* r, int* length , wchar_t** o)
 {
-    for (int i = 0; i < size ; ++i)
+    for (size_t i = 0; i < size ; ++i)
     {
         os_swprintf(o[i], length[i], L"%ls%ls", l[i], r);
     }
 }
 
 //xC + x1
-template<typename T, typename U, typename O> inline static void add(T* l, T* lc, long long size, U r, O* o, O* oc)
+template<typename T, typename U, typename O> inline static void add(T* l, T* lc, size_t size, U r, O* o, O* oc)
 {
-    for (int i = 0; i < size ; ++i)
+    for (size_t i = 0; i < size ; ++i)
     {
         o[i] = (O)l[i] + (O)r;
         oc[i] = (O)lc[i];
@@ -225,9 +227,9 @@ template<typename T, typename U, typename O> inline static void add(T* l, T* lc,
 }
 
 //x + x1C
-template<typename T, typename U, typename O> inline static void add(T* l, long long size, U r, U rc, O* o, O* oc)
+template<typename T, typename U, typename O> inline static void add(T* l, size_t size, U r, U rc, O* o, O* oc)
 {
-    for (int i = 0; i < size ; ++i)
+    for (size_t i = 0; i < size ; ++i)
     {
         o[i] = (O)l[i] + (O) r;
         oc[i] = (O)rc;
@@ -235,9 +237,9 @@ template<typename T, typename U, typename O> inline static void add(T* l, long l
 }
 
 //xC + x1C )
-template<typename T, typename O> inline static void add(T* l, T* lc, long long size, T r, T rc, O* o, O* oc)
+template<typename T, typename O> inline static void add(T* l, T* lc, size_t size, T r, T rc, O* o, O* oc)
 {
-    for (int i = 0; i < size ; ++i)
+    for (size_t i = 0; i < size ; ++i)
     {
         o[i] = (O)l[i] + (O)r;
         oc[i] = (O)lc[i] + (O)rc;
@@ -246,27 +248,27 @@ template<typename T, typename O> inline static void add(T* l, T* lc, long long s
 
 //add scalar + matrix ( double, int, bool )
 //x1 + x
-template<typename T, typename U, typename O> inline static void add(T l, long long size, U* r, O* o)
+template<typename T, typename U, typename O> inline static void add(T l, size_t size, U* r, O* o)
 {
-    for (int i = 0; i < size ; ++i)
+    for (size_t i = 0; i < size ; ++i)
     {
         o[i] = (O)l + (O)r[i];
     }
 }
 
 //string version
-inline static void add(wchar_t* l, long long size, wchar_t** r, int* length , wchar_t** o)
+inline static void add(wchar_t* l, size_t size, wchar_t** r, int* length , wchar_t** o)
 {
-    for (int i = 0; i < size ; ++i)
+    for (size_t i = 0; i < size ; ++i)
     {
         os_swprintf(o[i], length[i], L"%ls%ls", l, r[i]);
     }
 }
 
 //x1 + xC
-template<typename T, typename U, typename O> inline static void add(T l, long long size, U* r, U* rc, O* o, O* oc)
+template<typename T, typename U, typename O> inline static void add(T l, size_t size, U* r, U* rc, O* o, O* oc)
 {
-    for (int i = 0; i < size ; ++i)
+    for (size_t i = 0; i < size ; ++i)
     {
         o[i] = (O)l + (O)r[i];
         oc[i] = (O)rc[i];
@@ -274,9 +276,9 @@ template<typename T, typename U, typename O> inline static void add(T l, long lo
 }
 
 //x1C + x
-template<typename T, typename U, typename O> inline static void add(T l, T lc, long long size, U* r, O* o, O* oc)
+template<typename T, typename U, typename O> inline static void add(T l, T lc, size_t size, U* r, O* o, O* oc)
 {
-    for (int i = 0; i < size ; ++i)
+    for (size_t i = 0; i < size ; ++i)
     {
         o[i] = (O)l + (O)r[i];
         oc[i] = (O)lc;
@@ -284,9 +286,9 @@ template<typename T, typename U, typename O> inline static void add(T l, T lc, l
 }
 
 //x1C + xC
-template<typename T, typename O> inline static void add(T l, T lc, long long size, T* r, T* rc, O* o, O* oc)
+template<typename T, typename O> inline static void add(T l, T lc, size_t size, T* r, T* rc, O* o, O* oc)
 {
-    for (int i = 0; i < size ; ++i)
+    for (size_t i = 0; i < size ; ++i)
     {
         o[i] = (O)l + (O)r[i];
         oc[i] = (O)rc[i];

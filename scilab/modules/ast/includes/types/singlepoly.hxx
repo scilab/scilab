@@ -87,6 +87,9 @@ private :
     void                    toStringInternal(double *_pdblVal, std::wstring _szVar, std::list<std::wstring>* _pListExp , std::list<std::wstring>* _pListCoef);
 
 };
+
+SinglePoly* operator*(const SinglePoly& lhs, const SinglePoly& rhs);
+
 }
 
 #endif /* !__POLY_HH__ */

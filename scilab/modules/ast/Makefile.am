@@ -30,6 +30,7 @@ libsciast_la_SOURCES = \
     src/cpp/operations/types_ldivide.cpp \
     src/cpp/operations/types_comparison_eq.cpp \
     src/cpp/operations/types_multiplication.cpp \
+    src/cpp/operations/types_dotmultiplication.cpp \
     src/cpp/operations/types_comparison_lt_le_gt_ge.cpp \
     src/cpp/operations/types_or_and.cpp \
     src/cpp/operations/types_comparison_ne.cpp \
@@ -41,7 +42,6 @@ libsciast_la_SOURCES = \
     src/c/operations/matrix_transpose.c \
     src/c/operations/matrix_kronecker.c \
     src/c/operations/operations_tools.c \
-    src/c/operations/matrix_subtraction.c \
     src/c/operations/invert_matrix.c \
     src/c/operations/matrix_power.c \
     src/c/operations/matrix_division.c \
@@ -158,7 +158,6 @@ includes/operations/types_divide.hxx \
 includes/operations/types_finite.hxx \
 includes/operations/types_transposition.hxx \
 includes/operations/matrix_addition.h \
-includes/operations/matrix_subtraction.h \
 includes/operations/doublecomplex.h \
 includes/operations/types_comparison_eq.hxx \
 includes/operations/matrix_transpose.h \

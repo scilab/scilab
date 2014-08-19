@@ -547,6 +547,93 @@ SinglePoly* SinglePoly::conjugate()
         return clone();
     }
 }
+
+SinglePoly* operator*(const SinglePoly& _lhs, const SinglePoly& _rhs)
+{
+    SinglePoly& lhs = const_cast<SinglePoly &>(_lhs);
+    SinglePoly& rhs = const_cast<SinglePoly &>(_rhs);
+    SinglePoly* pOut = NULL;
+
+    bool isComplexL = lhs.isComplex();
+    bool isComplexR = rhs.isComplex();
+    bool isComplexOut = isComplexL || isComplexR;
+
+    int iRankL = lhs.getRank();
+    int iRankR = rhs.getRank();
+    int iRankOut = lhs.getRank() + rhs.getRank();
+
+    double* pdblOutR = NULL;
+    double* pdblOutI = NULL;
+    double* pdblLR = lhs.get();
+    double* pdblLI = lhs.getImg();
+    double* pdblRR = rhs.get();
+    double* pdblRI = rhs.getImg();
+
+    if (isComplexOut)
+    {
+        pOut = new SinglePoly(&pdblOutR, &pdblOutI, iRankOut);
+        memset(pdblOutR, 0x00, sizeof(double) * (iRankOut + 1));
+        memset(pdblOutI, 0x00, sizeof(double) * (iRankOut + 1));
+    }
+    else
+    {
+        pOut = new SinglePoly(&pdblOutR, iRankOut);
+        memset(pdblOutR, 0x00, sizeof(double) * (iRankOut + 1));
+    }
+
+    if (isComplexL)
+    {
+        if (isComplexR)
+        {
+            for (int i = 0 ; i < iRankL + 1; ++i)
+            {
+                for (int j = 0 ; j < iRankR + 1; ++j)
+                {
+                    pdblOutR[i + j]  += pdblLR[i] * pdblRR[j] - pdblLI[i] * pdblRI[j];
+                    pdblOutI[i + j]  += pdblLI[i] * pdblRR[j] + pdblLR[i] * pdblRI[j];
+                }
+            }
+        }
+        else
+        {
+            for (int i = 0 ; i < iRankL + 1 ; ++i)
+            {
+                for (int j = 0 ; j < iRankR + 1 ; ++j)
+                {
+                    pdblOutR[i + j]  += pdblLR[i] * pdblRR[j];
+                    pdblOutI[i + j]  += pdblLI[i] * pdblRR[j];
+                }
+            }
+        }
+    }
+    else
+    {
+        if (isComplexR)
+        {
+            for (int i = 0 ; i < iRankL + 1 ; ++i)
+            {
+                for (int j = 0 ; j < iRankR + 1 ; ++j)
+                {
+                    pdblOutR[i + j]  += pdblLR[i] * pdblRR[j];
+                    pdblOutI[i + j]  += pdblLR[i] * pdblRI[j];
+                }
+            }
+        }
+        else
+        {
+            for (int i = 0 ; i < iRankL + 1 ; ++i)
+            {
+                for (int j = 0 ; j < iRankR + 1 ; ++j)
+                {
+                    pdblOutR[i + j]  += pdblLR[i] * pdblRR[j];
+                }
+            }
+        }
+    }
+
+    return pOut;
 }
+}
+
 
 
