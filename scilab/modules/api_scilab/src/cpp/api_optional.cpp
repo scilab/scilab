@@ -53,10 +53,10 @@ int getOptionals(void* _pvCtx, char* pstFuncName, rhs_opts opts[])
 
         opts[index].iPos = i + 1;
         GenericType* pGT = (GenericType*)opt[i].second;
-        typeOfOpt = pGT->getType();
+        getVarType(_pvCtx, (int*)pGT, &typeOfOpt);
         opts[index].iType = typeOfOpt;
 
-        if (typeOfOpt == GenericType::ScilabImplicitList)
+        if (typeOfOpt == sci_implicit_poly)
         {
             InternalType* pIT = NULL;
             ImplicitList* pIL = pGT->getAs<ImplicitList>();
@@ -65,6 +65,7 @@ int getOptionals(void* _pvCtx, char* pstFuncName, rhs_opts opts[])
             opts[index].iRows = impResult->getRows();
             opts[index].iCols = impResult->getCols();
             opts[index].piAddr = (int*)impResult;
+            opts[index].iType = sci_matrix;
         }
         else
         {
