@@ -348,7 +348,9 @@ public class Datatip extends Text {
             }
         }
 
-        String errMsg =  Messages.gettext("Wrong value for ''%s'' property: A valid function name expected.\n");
+        String errMsg =  Messages.gettext("Wrong value for '%s' property: A valid function name expected.\n");
+        errMsg = errMsg.replace("'", "''");
+        errMsg = errMsg.replace("\n", "\\n");
         String updateCommand = "try;" +
                                "GDZa786XBSq7899SHKp=getcallbackobject(" + getIdentifier() + ");" +
                                "set(GDZa786XBSq7899SHKp,\"text\"," + fnc + "(GDZa786XBSq7899SHKp));" +
