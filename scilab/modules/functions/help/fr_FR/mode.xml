@@ -2,11 +2,11 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -26,7 +26,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            Utilisé 
+            Utilisé
             <emphasis role="bold">
                 <literal>uniquement</literal>
             </emphasis>
@@ -55,7 +55,7 @@
             <varlistentry>
                 <term>k = 2</term>
                 <listitem>
-                    <para>valeur par défaut retourné au prompt de scilab.</para>
+                    <para>valeur par défaut retournée au prompt de scilab.</para>
                     <para>veuillez noter que ce mode ne doit pas etre utilisé au prompt mais seulement via un script ou une fonction.</para>
                 </listitem>
             </varlistentry>
@@ -101,7 +101,7 @@
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="exemple"><![CDATA[ 
+        <programlisting role="exemple"><![CDATA[
 // copier - coller ces lignes dans scilab
 
 function example_mode( level_mode )

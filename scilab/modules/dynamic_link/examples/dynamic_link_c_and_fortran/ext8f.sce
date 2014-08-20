@@ -12,7 +12,7 @@
 
 // builder code for ext8f.c
 link_name = "ext8f";    // functions to be added to the call table
-flag  = "f";		 // ext8f is a C function
+flag  = "f";		 // ext8f is a Fortran function
 files = ["ext8f.f" ];   // objects files for ext8f
 libs  = [];		 // other libs needed for linking
 
