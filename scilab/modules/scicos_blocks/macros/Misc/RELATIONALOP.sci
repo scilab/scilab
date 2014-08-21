@@ -84,7 +84,7 @@ function [x,y,typ] = RELATIONALOP(job,arg1,arg2)
                 elseif rule == 3 then
                     label = "&#8804;"; // <=
                 elseif rule == 4 then
-                    label = "&#61;"; // >
+                    label = "&#62;"; // >
                 elseif rule == 5 then
                     label = "&#8805;"; // >=
                 end
