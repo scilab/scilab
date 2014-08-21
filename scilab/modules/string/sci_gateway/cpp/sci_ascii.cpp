@@ -109,17 +109,16 @@ Function::ReturnValue sci_ascii(typed_list &in, int _iRetCount, typed_list &out)
 
     out.push_back(pOut);
     return Function::OK;
-
 }
 /*--------------------------------------------------------------------------*/
 template <typename Y, class T>
 String* TypeToString(T* _pI)
 {
     String* pOut = NULL;
-    char* pst = NULL;
+    wchar_t* pst = NULL;
     Y* p = _pI->get();
-    pst = (char*)MALLOC(sizeof(char) * _pI->getSize() + 1);
-    memset(pst, 0x00, sizeof(char) * _pI->getSize() + 1);
+    pst = (wchar_t*)MALLOC(sizeof(wchar_t) * (_pI->getSize() + 1));
+    memset(pst, 0x00, sizeof(wchar_t) * (_pI->getSize() + 1));
 
     bool bWarning = getWarningMode() == 0;
     for (int i = 0 ; i < _pI->getSize() ; i++)
@@ -133,15 +132,17 @@ String* TypeToString(T* _pI)
 
         if (p[i] == 0)
         {
-            pst[i] = ' ';
+            pst[i] = L' ';
         }
         else
         {
-            pst[i] = (char)p[i];
+            pst[i] = (wchar_t)p[i];
         }
     }
 
+    pst[wcslen(pst)] = L'\0';
     pOut = new String(pst);
+
     FREE(pst);
     return pOut;
 }
@@ -152,17 +153,20 @@ Double* StringToDouble(String* _pst)
     /*compute total length*/
     int iTotalLen = 0;
     int iSize = _pst->getSize();
-    char** pst = new char*[iSize];
+
+    wchar_t** pst = new wchar_t*[iSize];
     int* pstLen = new int[iSize];
     for (int i = 0 ; i < iSize ; i++)
     {
-        pst[i] = wide_string_to_UTF8(_pst->get(i));
-        pstLen[i] = (int)strlen(pst[i]);
+        pst[i] = _pst->get(i);
+        pstLen[i] = (int)wcslen(pst[i]);
         iTotalLen += pstLen[i];
     }
 
     if (iTotalLen == 0)
     {
+        delete[] pst;
+        delete[] pstLen;
         return Double::Empty();
     }
 
@@ -174,19 +178,14 @@ Double* StringToDouble(String* _pst)
     for (int i = 0 ; i < iSize ; i++)
     {
         //for each character of input string matrix
-        for (int j = 0 ; j < pstLen[i] ; j++)
+        for (int j = 0 ; j < pstLen[i] ; j++, index++)
         {
             //transform character value as double.
-            pdbl[index++] = pst[i][j];
+            pdbl[index] = pst[i][j];
         }
     }
 
     delete[] pstLen;
-    for (int i = 0 ; i < iSize ; i++)
-    {
-        delete pst[i];
-    }
-
     delete[] pst;
     return pOut;
 }
