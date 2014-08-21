@@ -256,6 +256,13 @@ types::Function::ReturnValue sci_spec(types::typed_list &in, int _iRetCount, typ
             return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
         }
         pDblB = in[1]->getAs<types::Double>()->clone()->getAs<types::Double>();
+
+        if (pDblB->getCols() != pDblB->getRows())
+        {
+            Scierror(20, _("%s: Wrong type for input argument #%d: Square matrix expected.\n"), "spec", 2);
+            return types::Function::Error;
+        }
+
         if ((pDblA->getRows() != pDblB->getRows()) && (pDblA->getCols() != pDblB->getCols()))
         {
             Scierror(999, _("%s: Arguments %d and %d must have equal dimensions.\n"), "spec", 1, 2);
