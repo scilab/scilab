@@ -4741,13 +4741,13 @@ C
       DIMENSION WM(*),IWM(*), RPAR(*),IPAR(*)
       DIMENSION PHI(NEQ,*),GAMMA(*)
       EXTERNAL  RES, JACD
+      COMMON /ierode/ierror
 C
       PARAMETER (LNRE=12, LNJE=13)
 C
       SAVE MULDEL, MAXIT, XRATE
       DATA MULDEL/1/, MAXIT/4/, XRATE/0.25D0/
 C
-      COMMON /ierode/ierror
 C
 C
 C     Verify that this is the correct subroutine.
@@ -6026,13 +6026,13 @@ C
       DIMENSION WM(*),IWM(*)
       DIMENSION GAMMA(*),RPAR(*),IPAR(*)
       EXTERNAL  RES, JACK, PSOL
+      COMMON /ierode/ierror
 C
       PARAMETER (LNRE=12, LNJE=13, LLOCWP=29, LLCIWP=30)
 C
       SAVE MULDEL, MAXIT, XRATE
       DATA MULDEL/0/, MAXIT/4/, XRATE/0.25D0/
 C
-      COMMON /ierode/ierror
 C
 C
 C     Verify that this is the correct subroutine.
