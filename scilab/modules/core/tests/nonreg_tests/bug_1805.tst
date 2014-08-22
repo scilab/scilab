@@ -18,9 +18,9 @@
 funcprot(0);
 
 function varargout=test(),varargout="";a=1,endfunction
-if execstr('test()','errcatch')<>140 then pause,end
+if execstr("test()","errcatch")==0 then pause,end
 
 
 function varargout=test();a=1,endfunction
-if execstr('test()','errcatch')<>21 then pause,end
+if execstr("test()","errcatch")==0 then pause,end
 
