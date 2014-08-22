@@ -15,6 +15,7 @@
 // When using grayplot, you cannot have different dimensions in entry.
 // 
 stacksize(1e8);
+[WARNING]: stakcsize: No more need to change Scilab stack size. Function will be remove in version 6.1.
 x=1:2000; y=1:1000; m=rand(1000,2000);
 grayplot(x,y,m');
 // used to crash violently
