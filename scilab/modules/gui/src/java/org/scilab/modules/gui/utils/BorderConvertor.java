@@ -1,3 +1,14 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ */
 package org.scilab.modules.gui.utils;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_LINE_THICKNESS__;
@@ -50,12 +61,17 @@ public class BorderConvertor {
     public static Border getBorder(Integer borderId) {
         GraphicController controller = GraphicController.getController();
         Integer styleInt = (Integer) controller.getProperty(borderId, __GO_UI_FRAME_BORDER_STYLE__);
+        FrameBorderType style;
+        
         if (styleInt == null) {
-            controller.getProperty(borderId, __GO_UI_FRAME_BORDER_STYLE__);
+            // Default border : NONE
+            style = FrameBorderType.NONE;
+        } else {
+            style = FrameBorderType.intToEnum(styleInt);
         }
+        
         Border border = null;
 
-        FrameBorderType style = FrameBorderType.intToEnum(styleInt);
         switch (style) {
             case BEVEL: {
                 BorderType type = BorderType.intToEnum((Integer) controller.getProperty(borderId, __GO_UI_FRAME_BORDER_TYPE__));
