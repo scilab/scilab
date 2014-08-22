@@ -23,15 +23,15 @@ function y = myfunction(x)
 endfunction
 
 x = 1;
-g = numdiff(myfunction, x);
+g = numderivative(myfunction, x);
 expectedJ = 3;
 assert_checkalmostequal(g, expectedJ, [], 1.d-8);
 
-[J, H] = derivative(myfunction, x);
+[J, H] = numderivative(myfunction, x);
 expectedH = 6;
 assert_checkalmostequal(J, expectedJ, [], 1.d-8);
 assert_checkequal(H, expectedH);
 
-[J,H] = numderivative(myfunction, x)
+[J,H] = numderivative(myfunction, x);
 assert_checkalmostequal(J, expectedJ, [], 1.d-8);
 assert_checkequal(H, expectedH);
