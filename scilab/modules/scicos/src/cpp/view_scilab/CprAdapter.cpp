@@ -37,7 +37,7 @@ CprAdapter::CprAdapter(const CprAdapter& o) :
 CprAdapter::CprAdapter(org_scilab_modules_scicos::model::Diagram* o) :
     BaseAdapter<CprAdapter, org_scilab_modules_scicos::model::Diagram>(o)
 {
-    if (property<CprAdapter>::properties_has_not_been_set())
+    if (property<CprAdapter>::properties_have_not_been_set())
     {
         // FIXME: add some properties
     }

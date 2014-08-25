@@ -135,7 +135,7 @@ BlockAdapter::BlockAdapter(const BlockAdapter& o) :
 BlockAdapter::BlockAdapter(org_scilab_modules_scicos::model::Block* o) :
     BaseAdapter<BlockAdapter, org_scilab_modules_scicos::model::Block>(o)
 {
-    if (property<BlockAdapter>::properties_has_not_been_set())
+    if (property<BlockAdapter>::properties_have_not_been_set())
     {
         property<BlockAdapter>::fields.reserve(4);
         property<BlockAdapter>::add_property(L"graphics", &graphics::get, &graphics::set);

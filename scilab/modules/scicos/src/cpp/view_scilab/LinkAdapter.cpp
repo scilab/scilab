@@ -424,7 +424,7 @@ LinkAdapter::LinkAdapter(const LinkAdapter& o) :
 LinkAdapter::LinkAdapter(org_scilab_modules_scicos::model::Link* o) :
     BaseAdapter<LinkAdapter, org_scilab_modules_scicos::model::Link>(o)
 {
-    if (property<LinkAdapter>::properties_has_not_been_set())
+    if (property<LinkAdapter>::properties_have_not_been_set())
     {
         property<LinkAdapter>::fields.reserve(7);
         property<LinkAdapter>::add_property(L"xx", &xx::get, &xx::set);

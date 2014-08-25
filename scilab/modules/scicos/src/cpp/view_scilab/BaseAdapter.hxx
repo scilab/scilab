@@ -69,9 +69,9 @@ public:
     static props_t fields;
 
     /**
-     * @return true if the properties has already been setup, false otherwise.
+     * @return true if the properties have already been setup, false otherwise.
      */
-    static bool properties_has_not_been_set()
+    static bool properties_have_not_been_set()
     {
         return fields.empty();
     }

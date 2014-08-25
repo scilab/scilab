@@ -523,7 +523,7 @@ GraphicsAdapter::GraphicsAdapter(const GraphicsAdapter& o) :
 GraphicsAdapter::GraphicsAdapter(org_scilab_modules_scicos::model::Block* o) :
     BaseAdapter<GraphicsAdapter, org_scilab_modules_scicos::model::Block>(o)
 {
-    if (property<GraphicsAdapter>::properties_has_not_been_set())
+    if (property<GraphicsAdapter>::properties_have_not_been_set())
     {
         property<GraphicsAdapter>::fields.reserve(18);
         property<GraphicsAdapter>::add_property(L"orig", &orig::get, &orig::set);

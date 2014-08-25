@@ -14,7 +14,6 @@
 #define CONTROLLER_HXX_
 
 #include <vector>
-#include <string>
 
 #include "utilities.hxx"
 #include "Model.hxx"

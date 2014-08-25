@@ -37,7 +37,7 @@ StateAdapter::StateAdapter(const StateAdapter& o) :
 StateAdapter::StateAdapter(org_scilab_modules_scicos::model::Diagram* o) :
     BaseAdapter<StateAdapter, org_scilab_modules_scicos::model::Diagram>(o)
 {
-    if (property<StateAdapter>::properties_has_not_been_set())
+    if (property<StateAdapter>::properties_have_not_been_set())
     {
         // FIXME: add some properties
     }

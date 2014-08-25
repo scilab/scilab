@@ -813,7 +813,7 @@ ModelAdapter::ModelAdapter(const ModelAdapter& o) :
 ModelAdapter::ModelAdapter(org_scilab_modules_scicos::model::Block* o) :
     BaseAdapter<ModelAdapter, org_scilab_modules_scicos::model::Block>(o)
 {
-    if (property<ModelAdapter>::properties_has_not_been_set())
+    if (property<ModelAdapter>::properties_have_not_been_set())
     {
         property<ModelAdapter>::fields.reserve(23);
         property<ModelAdapter>::add_property(L"sim", &sim::get, &sim::set);

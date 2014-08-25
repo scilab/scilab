@@ -113,7 +113,7 @@ DiagramAdapter::DiagramAdapter(const DiagramAdapter& o) :
 DiagramAdapter::DiagramAdapter(org_scilab_modules_scicos::model::Diagram* o) :
     BaseAdapter<DiagramAdapter, org_scilab_modules_scicos::model::Diagram>(o), contrib(0)
 {
-    if (property<DiagramAdapter>::properties_has_not_been_set())
+    if (property<DiagramAdapter>::properties_have_not_been_set())
     {
         property<DiagramAdapter>::fields.reserve(4);
         property<DiagramAdapter>::add_property(L"props", &props::get, &props::set);
