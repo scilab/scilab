@@ -39,7 +39,7 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
 {
     // Methode
     types::String* pStrType     = NULL;
-    const wchar_t* wcsType            = L"lsoda";
+    const wchar_t* wcsType      = L"lsoda";
     int meth                    = 0;
 
     // y0
@@ -938,13 +938,35 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
                 rwork[4] = pDblOdeOptions->get(2);      // h0 =0
                 rwork[5] = pDblOdeOptions->get(3);      // hmax = %inf
                 rwork[6] = pDblOdeOptions->get(4);      // hmin = 0
-                iwork[0] = (int)pDblOdeOptions->get(10);// ml = -1
-                iwork[1] = (int)pDblOdeOptions->get(11);// mu = -1
-                iwork[4] = (int)pDblOdeOptions->get(9); // ixpr = 0
+
+                if (jt == 4 || jt == 5)
+                {
+                    iwork[0] = (int)pDblOdeOptions->get(10);// ml = -1
+                    iwork[1] = (int)pDblOdeOptions->get(11);// mu = -1
+                }
+
+                if (meth == 0 || meth == 3)
+                {
+                    // lsoda/lsodar
+                    iwork[4] = (int)pDblOdeOptions->get(9); // ixpr = 0
+                    iwork[7] = (int)pDblOdeOptions->get(7); // mxordn = 12
+                    iwork[8] = (int)pDblOdeOptions->get(8); // mxords = 5
+                }
+                else // 1 or 2
+                {
+                    // lsode
+                    if (meth == 1)
+                    {
+                        iwork[4] = (int)pDblOdeOptions->get(7); // mxordn = 12
+                    }
+                    else // meth == 2
+                    {
+                        iwork[4] = (int)pDblOdeOptions->get(8); // mxords = 5
+                    }
+                }
+
                 iwork[5] = (int)pDblOdeOptions->get(6); // mxstep = 500
                 iwork[6] = 10;  // mxhnil = 10 maximum number of messages printed per problem
-                iwork[7] = (int)pDblOdeOptions->get(7); // mxordn = 12
-                iwork[8] = (int)pDblOdeOptions->get(8); // mxords = 5
             }
         }
     }
@@ -1125,18 +1147,21 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
                 break;
             }
 
-            if (meth == 3 && istate == 3 && getWarningMode())
+            if (meth == 3 && istate == 3)
             {
                 // istate == 3  means the integration was successful, and one or more
                 //              roots were found before satisfying the stop condition
                 //              specified by itask.  see jroot.
-
-                sciprint(_("%s: Warning: At t = %lf, y is a root, jroot = "), "ode", t0);
-                for (int k = 0; k < pDblNg->get(0); k++)
+                if (getWarningMode())
                 {
-                    sciprint("\t%d", jroot[k]);
+                    sciprint(_("%s: Warning: At t = %lf, y is a root, jroot = "), "ode", t0);
+                    for (int k = 0; k < pDblNg->get(0); k++)
+                    {
+                        sciprint("\t%d", jroot[k]);
+                    }
+                    sciprint("\n");
                 }
-                sciprint("\n");
+
                 break;
             }
         }
@@ -1213,7 +1238,7 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
                 else
                 {
         */
-        pDblYOut = new types::Double(pDblY0->getRows(), pDblT->getSize());
+        pDblYOut = new types::Double(pDblY0->getRows(), pDblY0->getCols() * pDblT->getSize());
         //        }
         bool bBreak = false;
         for (int i = 0; i < pDblT->getSize(); i++)
@@ -1359,18 +1384,21 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
                 break;
             }
 
-            if (meth == 3 && istate == 3 && getWarningMode())
+            if (meth == 3 && istate == 3)
             {
                 // istate == 3  means the integration was successful, and one or more
                 //              roots were found before satisfying the stop condition
                 //              specified by itask.  see jroot.
 
-                sciprint(_("%s: Warning: At t = %lf, y is a root, jroot = "), "ode", t0);
-                for (int k = 0; k < pDblNg->get(0); k++)
+                if (getWarningMode())
                 {
-                    sciprint("\t%d", jroot[k]);
+                    sciprint(_("%s: Warning: At t = %lf, y is a root, jroot = "), "ode", t0);
+                    for (int k = 0; k < pDblNg->get(0); k++)
+                    {
+                        sciprint("\t%d", jroot[k]);
+                    }
+                    sciprint("\n");
                 }
-                sciprint("\n");
 
                 types::Double* pDblYOutTemp = pDblYOut;
                 pDblYOut = new types::Double(pDblYOutTemp->getRows(), i + 1);

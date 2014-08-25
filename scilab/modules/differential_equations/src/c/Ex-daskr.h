@@ -11,7 +11,8 @@
 */
 /*--------------------------------------------------------------------------*/
 
-#include "elem_common.h" // dlamch
+#ifndef __EX_DASKR_H__
+#define __EX_DASKR_H__
 
 extern void   C2F(dgefa) (double *A, int *lead_dim_A, int *n, int *ipivots, int *info);
 extern void   C2F(dgesl) (double *A, int *lead_dim_A, int *n, int *ipivots, double *B, int *job);
@@ -26,3 +27,4 @@ void psol1( int *nequations, double *tOld, double *actual, double *actualP,
             double *savr, double *wk, double *cj, double *wght, double *wp,
             int *iwp, double *b, double *eplin, int *ier, double *dummy1, int *dummy2);
 
+#endif // __EX_DASKR_H__

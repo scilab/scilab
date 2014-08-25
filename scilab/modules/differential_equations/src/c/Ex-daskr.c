@@ -3,6 +3,7 @@
 #include "machine.h"
 #include "core_math.h"
 #include "Ex-daskr.h"
+#include "elem_common.h" // dlamch
 
 void pjac1( resfunc res, int *ires, int *nequations, double *tOld, double *actual, double *actualP,
             double *rewt, double *savr, double *wk, double *h, double *cj, double *wp, int *iwp,

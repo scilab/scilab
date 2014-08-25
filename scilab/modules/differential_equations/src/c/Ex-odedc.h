@@ -11,6 +11,9 @@
 */
 /*--------------------------------------------------------------------------*/
 
+#ifndef __EX_ODEDC_H__
+#define __EX_ODEDC_H__
+
 void fexcd(int* jflag, int* nc, int* nd, double* t, double* y, double* ydp);
 void fcd(int* jflag, int* nc, int* nd, double* t, double* x, double* xdp);
 void fc(double t, double* xc, double* u, double* xdot);
@@ -27,3 +30,4 @@ void phis(int* jflag, int* nc, int* nd, double* t, double* x, double* xdp);
 void phit(int* jflag, int* nc, int* nd, double* t, double* x, double* xdp);
 void sbrc(double t, double* x, double* xdot);
 
+#endif // __EX_ODEDC_H__
