@@ -65,7 +65,8 @@ integer			[0-9]+
 number			[0-9]+[\.][0-9]*
 little			\.[0-9]+
 
-floating		({little}|{number}|{integer})[deDE][+-]?{integer}
+floating_D		({little}|{number}|{integer})[dD][+-]?{integer}
+floating_E		({little}|{number}|{integer})[eE][+-]?{integer}
 
 hex             [0]x[0-9a-fA-F]+
 oct             [0]o[0-7]+
@@ -552,8 +553,17 @@ assign			"="
 }
 
 
-<INITIAL,MATRIX>{floating}		{
+<INITIAL,MATRIX>{floating_D}		{
   scan_exponent_convert(yytext);
+  yylval.number = atof(yytext);
+#ifdef TOKENDEV
+  std::cout << "--> [DEBUG] FLOATING : " << yytext << std::endl;
+#endif
+  scan_step();
+  return scan_throw(VARFLOAT);
+}
+
+<INITIAL,MATRIX>{floating_E}		{
   yylval.number = atof(yytext);
 #ifdef TOKENDEV
   std::cout << "--> [DEBUG] FLOATING : " << yytext << std::endl;
@@ -1252,15 +1262,8 @@ void scan_error(std::string msg)
 */
 void scan_exponent_convert(char *in)
 {
-  char *pString;
-  while((pString=strpbrk(in,"d"))!=NULL)
-    {
-      *pString='e';
-    }
-  while((pString=strpbrk(in,"D"))!=NULL)
-    {
-      *pString='e';
-    }
+  for (; *in != 'd' && *in != 'D'; ++in);
+  *in = 'e';
 }
 
 #ifdef _MSC_VER
