@@ -342,7 +342,7 @@ assign			"="
     return scan_throw(RETURN);
 }
 
-^{spaces}*/({id}){spaces}[^(=<>~@] {
+^{spaces}*/({id}){spaces}[^ \t\v\f(=<>~@] {
         BEGIN(BEGINID);
 }
 
@@ -360,8 +360,8 @@ assign			"="
         }
         yylval.str = new std::wstring(pwText);
 	FREE(pwText);
-        if (symbol::Context::getInstance()->get(symbol::Symbol(*yylval.str)) != NULL
-            && symbol::Context::getInstance()->get(symbol::Symbol(*yylval.str))->isCallable())
+	types::InternalType * pIT = symbol::Context::getInstance()->get(symbol::Symbol(*yylval.str));
+        if (pIT && pIT->isCallable())
         {
             scan_throw(ID);
             BEGIN(SHELLMODE);
