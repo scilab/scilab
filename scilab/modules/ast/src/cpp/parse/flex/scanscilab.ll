@@ -91,6 +91,8 @@ newline			("\r"|"\n"|"\r\n")
 blankline		{spaces}+{newline}
 emptyline       {newline}({spaces}|[,;])+{newline}
 next			\.\.+
+char_in_line_comment    [^\r\n]*
+char_in_comment         [^\r\n\/*]*
 
 boolnot			("@"|"~")
 booltrue		("%t"|"%T")
@@ -121,6 +123,7 @@ endblockcomment		"*/"
 
 dquote			"\""
 quote			"'"
+in_string               [^\"\'\r\n\.]*
 
 dot             "."
 dotquote		".'"
@@ -908,12 +911,11 @@ assign			"="
     return scan_throw(COMMENT);
   }
 
-  .         {
-     // Put the char in a temporary CHAR buffer to go through UTF-8 trouble
-     // only translate to WCHAR_T when popping state.
-     *pstBuffer += yytext;
+  {char_in_line_comment}         {
+      // Put the char in a temporary CHAR buffer to go through UTF-8 trouble
+      // only translate to WCHAR_T when popping state.
+      *pstBuffer += yytext;
   }
-
 }
 
 
@@ -940,7 +942,8 @@ assign			"="
     *yylval.comment += L"\n//";
   }
 
-  .						{
+  {char_in_comment}				|
+  .                                             {
       wchar_t *pwText = to_wide_string(yytext);
       *yylval.comment += std::wstring(pwText);
       FREE(pwText);
@@ -1015,7 +1018,8 @@ assign			"="
     scan_error(str);
   }
 
-  .						{
+  {in_string}						|
+  .                                                     {
     scan_step();
     *pstBuffer += yytext;
   }
@@ -1082,7 +1086,8 @@ assign			"="
     scan_error(str);
   }
 
-  .         {
+  {in_string}         |
+  .                   {
    scan_step();
    *pstBuffer += yytext;
   }
