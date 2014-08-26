@@ -22,7 +22,7 @@
 #include "tostring_common.hxx"
 #include "double.hxx"
 #include "matrixiterator.hxx"
-#include "types_substraction.hxx"
+#include "types_subtraction.hxx"
 #include "types_addition.hxx"
 #include "types_multiplication.hxx"
 #include "configvariable.hxx"

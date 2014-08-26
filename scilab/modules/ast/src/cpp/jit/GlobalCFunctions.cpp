@@ -15,7 +15,7 @@
 
 #include "ScilabJITTraits.hxx"
 #include "types_addition.hxx"
-#include "types_substraction.hxx"
+#include "types_subtraction.hxx"
 #include "types_multiplication.hxx"
 #include "dynlib_ast.h"
 

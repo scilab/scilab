@@ -178,6 +178,21 @@ std::ostream& operator<<(std::ostream& os, object_properties_t p)
         case CONTROL_POINTS:
             os << "CONTROL_POINTS";
             break;
+        case THICK:
+            os << "THICK";
+            break;
+        case COLOR:
+            os << "COLOR";
+            break;
+        case KIND:
+            os << "KIND";
+            break;
+        case FROM:
+            os << "FROM";
+            break;
+        case TO:
+            os << "TO";
+            break;
         case DATATYPE:
             os << "DATATYPE";
             break;

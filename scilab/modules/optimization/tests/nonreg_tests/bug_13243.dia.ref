@@ -21,49 +21,12 @@ endfunction
 // Define the cost function:
 function [f, g, ind] = myoptfunc(x, ind)
     f = problem1(x);
-    g = derivative(problem1, x, order=4);
+    g = numderivative(problem1, x, order=4);
 endfunction
 // Initial guess:
 x0 = 1*ones(5, 1);
 // Perform optimization:
 [fopt, xopt] = optim(myoptfunc, x0, "gc", imp=-1);
-WARNING: Feature derivative is obsolete.
-         Please use numderivative instead.
-         This feature will be permanently removed in Scilab 6.0
-
-WARNING: Feature derivative is obsolete.
-         Please use numderivative instead.
-         This feature will be permanently removed in Scilab 6.0
-
-WARNING: Feature derivative is obsolete.
-         Please use numderivative instead.
-         This feature will be permanently removed in Scilab 6.0
-
-WARNING: Feature derivative is obsolete.
-         Please use numderivative instead.
-         This feature will be permanently removed in Scilab 6.0
-
-WARNING: Feature derivative is obsolete.
-         Please use numderivative instead.
-         This feature will be permanently removed in Scilab 6.0
-
-WARNING: Feature derivative is obsolete.
-         Please use numderivative instead.
-         This feature will be permanently removed in Scilab 6.0
-
-WARNING: Feature derivative is obsolete.
-         Please use numderivative instead.
-         This feature will be permanently removed in Scilab 6.0
-
-WARNING: Feature derivative is obsolete.
-         Please use numderivative instead.
-         This feature will be permanently removed in Scilab 6.0
-
-WARNING: Feature derivative is obsolete.
-         Please use numderivative instead.
-         This feature will be permanently removed in Scilab 6.0
-
-Norm of projected gradient lower than   0.0000000D+00.
-
+optim: Norm of projected gradient lower than 0.000000.
 assert_checkequal(fopt, 0);
 assert_checkequal(xopt', 1:5);

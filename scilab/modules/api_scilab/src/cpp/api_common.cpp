@@ -402,17 +402,25 @@ static SciErr getinternalVarAddress(void *_pvCtx, int _iVar, int **_piAddress)
 
     GatewayStruct* pStr = (GatewayStruct*)_pvCtx;
     typed_list in = *pStr->m_pIn;
+    optional_list opt = *pStr->m_pOpt;
     int*    piRetCount = pStr->m_piRetCount;
 
     /* we accept a call to getVarAddressFromPosition after a create... call */
-    if (_iVar > in.size())
+    if (_iVar > in.size() + opt.size())
     {
         //manage case where _iVar > in.size(), then look in out to get recent create variable.
         addErrorMessage(&sciErr, API_ERROR_INVALID_POSITION, _("%s: bad call to %s! (1rst argument).\n"), pStr->m_pstName, "getVarAddressFromPosition");
         return sciErr;
     }
 
-    *_piAddress = (int*)in[_iVar - 1];
+    if (_iVar > in.size())
+    {
+        *_piAddress = (int*)opt[_iVar - 1 - in.size()].second;
+    }
+    else
+    {
+        *_piAddress = (int*)in[_iVar - 1];
+    }
     return sciErr;
 }
 /*--------------------------------------------------------------------------*/

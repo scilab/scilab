@@ -13,15 +13,16 @@
 // <-- Short Description -->
 // Graphic is slow when lack drawlater/drawnow
 stacksize(20000000);
+[WARNING]: stakcsize: No more need to change Scilab stack size. Function will be remove in version 6.1.
 data=ones(30000,100);
 subplot(231)
 plot(data)
 xgrid
-//now
+//now 
 subplot(232)
 plot(data)
 xgrid
-//and then until
+//and then until 
 subplot(236)
 xgrid
 plot(data)

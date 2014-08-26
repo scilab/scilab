@@ -291,7 +291,7 @@ types::SparseBool* cwiseOp(types::Sparse const& op1, types::Sparse const& op2)
         }
         else
         {
-            Sparse temp(op2);
+            types::Sparse temp(op2);
             temp.toComplex();
             res = cwiseOp(*op1.matrixCplx, *temp.matrixCplx, Op<std::complex<double> >());
         }
@@ -301,7 +301,7 @@ types::SparseBool* cwiseOp(types::Sparse const& op1, types::Sparse const& op2)
 
         if (op2.isComplex())
         {
-            Sparse* temp = new Sparse(op1);
+            types::Sparse* temp = new types::Sparse(op1);
             temp->toComplex();
             res = cwiseOp(*temp->matrixCplx, *op2.matrixCplx, Op<std::complex<double> >());
         }

@@ -26,6 +26,7 @@
 
 #include <sstream>
 #include <string>
+#include <limits>       // std::numeric_limits
 #include "tostring_common.hxx"
 
 namespace types
@@ -175,8 +176,16 @@ private :
             _piDims[1]  = 0;
             int iPos    = ArrayOf<T>::getIndex(_piDims);
 
-            getSignedIntFormat(ArrayOf<T>::get(iPos), &iWidth);
-            addSignedIntValue(&ostr, ArrayOf<T>::get(iPos), iWidth);
+            if (isSigned())
+            {
+                getSignedIntFormat(ArrayOf<T>::get(iPos), &iWidth);
+                addSignedIntValue(&ostr, ArrayOf<T>::get(iPos), iWidth);
+            }
+            else
+            {
+                getUnsignedIntFormat(ArrayOf<T>::get(iPos), &iWidth);
+                addUnsignedIntValue(&ostr, ArrayOf<T>::get(iPos), iWidth);
+            }
             ostr << std::endl;
         }
         else if (GenericType::getCols() == 1)
@@ -191,7 +200,14 @@ private :
                 _piDims[0] = i;
                 int iWidth = 0;
                 int iPos = ArrayOf<T>::getIndex(_piDims);
-                getSignedIntFormat(ArrayOf<T>::get(iPos), &iWidth);
+                if (isSigned())
+                {
+                    getSignedIntFormat(ArrayOf<T>::get(iPos), &iWidth);
+                }
+                else
+                {
+                    getUnsignedIntFormat(ArrayOf<T>::get(iPos), &iWidth);
+                }
                 iWidthMax = std::max(iWidthMax, iWidth);
             }
 
@@ -208,7 +224,14 @@ private :
                 _piDims[0]  = i;
                 int iPos    = ArrayOf<T>::getIndex(_piDims);
 
-                addSignedIntValue(&ostr, ArrayOf<T>::get(iPos), iWidthMax);
+                if (isSigned())
+                {
+                    addSignedIntValue(&ostr, ArrayOf<T>::get(iPos), iWidthMax);
+                }
+                else
+                {
+                    addUnsignedIntValue(&ostr, ArrayOf<T>::get(iPos), iWidthMax);
+                }
                 ostr << std::endl;
             }
         }
@@ -226,7 +249,15 @@ private :
                 _piDims[1]  = i;
                 int iPos    = ArrayOf<T>::getIndex(_piDims);
 
-                getSignedIntFormat(ArrayOf<T>::get(iPos), &iWidth);
+                if (isSigned())
+                {
+                    getSignedIntFormat(ArrayOf<T>::get(iPos), &iWidth);
+                }
+                else
+                {
+                    getUnsignedIntFormat(ArrayOf<T>::get(iPos), &iWidth);
+                }
+
                 iLen = iWidth + static_cast<int>(ostemp.str().size());
                 if (iLen > iLineLen)
                 {
@@ -244,7 +275,14 @@ private :
                     iLastVal = i;
                 }
 
-                addSignedIntValue(&ostemp, ArrayOf<T>::get(iPos), iWidth);
+                if (isSigned())
+                {
+                    addSignedIntValue(&ostemp, ArrayOf<T>::get(iPos), iWidth);
+                }
+                else
+                {
+                    addUnsignedIntValue(&ostemp, ArrayOf<T>::get(iPos), iWidth);
+                }
             }
 
             if (iLastVal != 0)
@@ -274,7 +312,14 @@ private :
                     _piDims[1]  = iCols1;
                     int iPos    = ArrayOf<T>::getIndex(_piDims);
 
-                    getSignedIntFormat(ArrayOf<T>::get(iPos), &iWidth);
+                    if (isSigned())
+                    {
+                        getSignedIntFormat(ArrayOf<T>::get(iPos), &iWidth);
+                    }
+                    else
+                    {
+                        getUnsignedIntFormat(ArrayOf<T>::get(iPos), &iWidth);
+                    }
                     piSize[iCols1] = std::max(piSize[iCols1], iWidth);
                 }
 
@@ -306,7 +351,14 @@ private :
                             _piDims[1]  = iCols2;
                             int iPos    = ArrayOf<T>::getIndex(_piDims);
 
-                            addSignedIntValue(&ostemp, ArrayOf<T>::get(iPos), piSize[iCols2]);
+                            if (isSigned())
+                            {
+                                addSignedIntValue(&ostemp, ArrayOf<T>::get(iPos), piSize[iCols2]);
+                            }
+                            else
+                            {
+                                addUnsignedIntValue(&ostemp, ArrayOf<T>::get(iPos), piSize[iCols2]);
+                            }
                         }
                         ostemp << std::endl;
                     }
@@ -353,7 +405,14 @@ private :
                     _piDims[1]  = iCols2;
                     int iPos    = ArrayOf<T>::getIndex(_piDims);
 
-                    addSignedIntValue(&ostemp, ArrayOf<T>::get(iPos), piSize[iCols2]);
+                    if (isSigned())
+                    {
+                        addSignedIntValue(&ostemp, ArrayOf<T>::get(iPos), piSize[iCols2]);
+                    }
+                    else
+                    {
+                        addUnsignedIntValue(&ostemp, ArrayOf<T>::get(iPos), piSize[iCols2]);
+                    }
                 }
                 ostemp << std::endl;
             }
@@ -437,6 +496,16 @@ private :
     bool isUInt64()
     {
         return is_same_int<T, unsigned long long>::value;
+    }
+
+    bool isUnsigned()
+    {
+        return !isSigned();
+    }
+
+    bool isSigned()
+    {
+        return std::numeric_limits<T>::is_signed;
     }
 };
 

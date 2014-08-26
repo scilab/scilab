@@ -10,8 +10,8 @@
 *
 */
 
-#ifndef __MATRIX_SUBSTRACT_H__
-#define __MATRIX_SUBSTRACT_H__
+#ifndef __MATRIX_SUBTRACT_H__
+#define __MATRIX_SUBTRACT_H__
 
 int iSubstractRealIdentityToRealMatrix(double _dblReal1, double* _pdblReal2, int _iRows2, int _iCols2, double* _pdblRealOut);
 int iSubstractRealIdentityToComplexMatrix(double _dblReal1, double* _pdblReal2, double* _pdblImg2, int _iRows2, int _iCols2, double* _pdblRealOut, double* _pdblImgOut);
@@ -33,4 +33,4 @@ int iSubstractComplexMatrixToRealMatrix(double* _pdblReal1, double* _pdblImg1, d
 int iSubstractRealMatrixToComplexMatrix(double* _pdblReal1, double* _pdblReal2, double* _pdblImg2, int* _piDims, int _iDims, double* _pdblRealOut, double* _pdblImgOut);
 int iSubstractComplexMatrixToComplexMatrix(double* _pdblReal1, double* _pdblImg1, double* _pdblReal2, double* _pdblImg2, int* _piDims, int _iDims, double* _pdblRealOut, double* _pdblImgOut);
 
-#endif /* __MATRIX_SUBSTRACT_H__ */
+#endif /* __MATRIX_SUBTRACT_H__ */

@@ -35,7 +35,7 @@ class Port: public BaseObject
 
 private:
     Port() : BaseObject(PORT), dataType(0), sourceBlock(0), kind(UNDEF), implicit(false),
-        style(), label(), connectedSignals() {};
+        style(), label(), connectedSignals(std::vector<ScicosID> (1, 0)) {};
     Port(const Port& o) : BaseObject(PORT), dataType(o.dataType), sourceBlock(o.sourceBlock), kind(o.kind), implicit(o.implicit),
         style(o.style), label(o.label), connectedSignals(o.connectedSignals) {};
     ~Port() {};
@@ -56,7 +56,7 @@ private:
         return SUCCESS;
     }
 
-    void getDataType(std::vector<int> v) const
+    void getDataType(std::vector<int>& v) const
     {
         if (dataType == 0)
         {
@@ -67,7 +67,7 @@ private:
             v.resize(3);
             v[0] = dataType->rows;
             v[1] = dataType->columns;
-            v[3] = dataType->datatype_id;
+            v[2] = dataType->datatype_id;
         }
     }
 
@@ -88,24 +88,40 @@ private:
         return SUCCESS;
     }
 
-    portKind getKind() const
+    void getKind(int& k) const
     {
-        return kind;
+        k = kind;
     }
 
-    void setKind(portKind kind)
+    update_status_t setKind(int k)
     {
-        this->kind = kind;
+        if (k < UNDEF || k > EOUT)
+        {
+            return FAIL;
+        }
+
+        if (k == kind)
+        {
+            return NO_CHANGES;
+        }
+
+        kind = static_cast<portKind>(k);
+        return SUCCESS;
     }
 
-    ScicosID getSourceBlock() const
+    void getSourceBlock(ScicosID& sb) const
     {
-        return sourceBlock;
+        sb = sourceBlock;
     }
 
-    void setSourceBlock(ScicosID sourceBlock)
+    update_status_t setSourceBlock(const ScicosID sb)
     {
-        this->sourceBlock = sourceBlock;
+        if (sb == this->sourceBlock)
+        {
+            return NO_CHANGES;
+        }
+        this->sourceBlock = sb;
+        return SUCCESS;
     }
 
     void getImplicit(bool& v) const

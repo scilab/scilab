@@ -83,7 +83,7 @@ struct Geometry
     double width;
     double height;
 
-    Geometry() : x(0), y(0), width(0), height(0) {};
+    Geometry() : x(0), y(0), width(20), height(20) {};
     Geometry(const Geometry& g) : x(g.x), y(g.y), width(g.width), height(g.height) {};
     Geometry(const std::vector<double>& v) : x(v[0]), y(v[1]), width(v[2]), height(v[3]) {};
 
@@ -110,7 +110,7 @@ struct Datatype
 {
 public:
     Datatype(const std::vector<int>& v) :
-        refCount(0), datatype_id(v[0]), rows(v[1]), columns(v[2])
+        refCount(0), datatype_id(v[2]), rows(v[0]), columns(v[1])
     {
     }
 
