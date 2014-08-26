@@ -1321,7 +1321,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                 if (pIT == NULL)
                 {
                     std::wostringstream os;
-                    os << _W("Error in insertion of Struct.");
+                    os << _W("Submatrix incorrectly defined.");
                     throw ast::ScilabError(os.str(), 999, _pExp->location_get());
                 }
 
@@ -1454,7 +1454,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
             if (pIT == NULL)
             {
                 std::wostringstream os;
-                os << _W("Error in insertion of Struct.");
+                os << _W("Submatrix incorrectly defined.");
                 throw ast::ScilabError(os.str(), 999, _pExp->location_get());
             }
 

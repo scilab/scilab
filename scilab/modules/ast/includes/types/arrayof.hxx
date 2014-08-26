@@ -631,13 +631,18 @@ public :
                     if (pSource->isScalar())
                     {
                         piMaxDim[i]     = 1;
-                        piCountDim[i]   = 1;
+                        //piCountDim[i]   = 1;
+                    }
+                    else if (pSource->isVector())
+                    {
+                        piMaxDim[i] = std::max(piSourceDims[0], piSourceDims[1]);
                     }
                     else
                     {
                         piMaxDim[i]     = piSourceDims[iSource];
-                        piCountDim[i]   = piSourceDims[iSource];
+                        //piCountDim[i]   = piSourceDims[iSource];
                     }
+
                     iSource++;
                     //replace pArg value by the new one
                     pArg[i] = createDoubleVector(piMaxDim[i]);
