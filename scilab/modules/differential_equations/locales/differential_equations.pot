@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2014-04-01 12:32+0100\n"
+"Revision-Date: 2014-08-27 10:50+0100\n"
 
 # File: demos/bike/bike.dem.gateway.sce, line: 10
 msgid "Unstable trajectory"
@@ -82,22 +82,27 @@ msgid "Levitron"
 msgstr ""
 
 #
-# File: demos/flow/blackhole_interface.sci, line: 48
+# File: demos/flow/blackhole_interface.sci, line: 37
 msgid "Blackhole"
 msgstr ""
 
 #
-# File: demos/flow/cylinder_interface.sci, line: 52
+# File: demos/flow/create_interface.sci, line: 58
+msgid "Simulation Parameters"
+msgstr ""
+
+#
+# File: demos/flow/cylinder_interface.sci, line: 47
 msgid "Cylinder"
 msgstr ""
 
 #
-# File: demos/flow/sphere_interface.sci, line: 45
+# File: demos/flow/sphere_interface.sci, line: 40
 msgid "Sphere"
 msgstr ""
 
 #
-# File: demos/ode/ode_1dvect/ode_1dvect.dem.sce, line: 44
+# File: demos/ode/ode_1dvect/ode_1dvect.dem.sce, line: 46
 msgid "ODE 1D vector field"
 msgstr ""
 

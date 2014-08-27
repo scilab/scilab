@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2014-04-01 12:32+0100\n"
+"Revision-Date: 2014-08-27 10:50+0100\n"
 
 # File: sci_gateway/c/gw_csv_helpers.c, line: 72
 # File: sci_gateway/c/gw_csv_helpers.c, line: 137
@@ -380,55 +380,55 @@ msgid "LOGGER-Default: %s%s"
 msgstr ""
 
 #
-# File: src/c/ripole/ole.c, line: 97
+# File: src/c/ripole/ole.c, line: 98
 #, c-format
 msgid "ripOLE: %s\n"
 msgstr ""
 
 #
-# File: src/c/ripole/ole.c, line: 245
+# File: src/c/ripole/ole.c, line: 246
 #, c-format
 msgid "%s:%d:OLE_set_debug: Debug level set to %d"
 msgstr ""
 
 #
-# File: src/c/ripole/ole.c, line: 325
+# File: src/c/ripole/ole.c, line: 326
 #, c-format
 msgid "%s:%d:OLE_get_block:ERROR: Block buffer is NULL"
 msgstr ""
 
 #
-# File: src/c/ripole/ole.c, line: 339
+# File: src/c/ripole/ole.c, line: 340
 #, c-format
 msgid "%s:%d:OLE_get_block:ERROR: Cannot allocate %d bytes for OLE block"
 msgstr ""
 
 #
-# File: src/c/ripole/ole.c, line: 358
+# File: src/c/ripole/ole.c, line: 359
 #, c-format
 msgid "%s:%d:OLE_get_block:ERROR: Seek failure (block=%d:%d)"
 msgstr ""
 
 #
-# File: src/c/ripole/ole.c, line: 373
+# File: src/c/ripole/ole.c, line: 374
 #, c-format
 msgid "%s:%d:Mismatch in bytes read. Requested %d, got %d\n"
 msgstr ""
 
 #
-# File: src/c/ripole/ole.c, line: 396
+# File: src/c/ripole/ole.c, line: 397
 #, c-format
 msgid "%s:%d:OLE_get_block:ERROR: OLE file is closed\n"
 msgstr ""
 
 #
-# File: src/c/ripole/ole.c, line: 984
+# File: src/c/ripole/ole.c, line: 985
 #, c-format
 msgid "%s:%d:OLE_load_FAT:ERROR: Unable to allocate %d bytes\n"
 msgstr ""
 
 #
-# File: src/c/ripole/ole.c, line: 1048
+# File: src/c/ripole/ole.c, line: 1049
 #, c-format
 msgid ""
 "%s:%d:OLE_load_FAT:ERROR: Not able to load block, import sector = 0x%x, fat "
@@ -436,51 +436,51 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/ripole/ole.c, line: 1064
-# File: src/c/ripole/ole.c, line: 1077
+# File: src/c/ripole/ole.c, line: 1065
+# File: src/c/ripole/ole.c, line: 1078
 #, c-format
 msgid "%s:%d:OLE_load_FAT:ERROR: FAT memory boundary limit exceeded %p >= %p"
 msgstr ""
 
 #
-# File: src/c/ripole/ole.c, line: 1087
+# File: src/c/ripole/ole.c, line: 1088
 #, c-format
 msgid "%s:%d:OLE_load_FAT:ERROR: sector request was negative (%d)"
 msgstr ""
 
 #
-# File: src/c/ripole/ole.c, line: 1386
+# File: src/c/ripole/ole.c, line: 1387
 #, c-format
 msgid ""
 "%s:%d:OLE_get_miniblock:ERROR: Failed to allocate enough memory for miniChain"
 msgstr ""
 
 #
-# File: src/c/ripole/ole.c, line: 1472
+# File: src/c/ripole/ole.c, line: 1473
 #, c-format
 msgid "%s:%d:OLE_load_chain:ERROR: Load-chain went over memory boundary"
 msgstr ""
 
 #
-# File: src/c/ripole/ole.c, line: 1526
+# File: src/c/ripole/ole.c, line: 1527
 #, c-format
 msgid "%s:%d:OLE_open_file:ERROR: Cannot locate file '%s' for opening (%s)"
 msgstr ""
 
 #
-# File: src/c/ripole/ole.c, line: 1547
+# File: src/c/ripole/ole.c, line: 1548
 #, c-format
 msgid "%s:%d:OLE_open_file:ERROR:Cannot open %s for reading (%s)\n"
 msgstr ""
 
 #
-# File: src/c/ripole/ole.c, line: 1598
+# File: src/c/ripole/ole.c, line: 1599
 #, c-format
 msgid "%s:%d:OLE_open_directory:ERROR: %s"
 msgstr ""
 
 #
-# File: src/c/ripole/ole.c, line: 1657
+# File: src/c/ripole/ole.c, line: 1658
 #, c-format
 msgid ""
 "%s:%d:OLE_store_stream:ERROR: Cannot compose full filename string from '%s' "
@@ -488,13 +488,13 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/ripole/ole.c, line: 1668
+# File: src/c/ripole/ole.c, line: 1669
 #, c-format
 msgid "%s:%d:OLE_store_stream:ERROR: Cannot open %s for writing (%s)"
 msgstr ""
 
 #
-# File: src/c/ripole/ole.c, line: 1682
+# File: src/c/ripole/ole.c, line: 1683
 #, c-format
 msgid "%s:%d:OLE_store_stream:WARNING: Only wrote %d of %d bytes to file %s"
 msgstr ""

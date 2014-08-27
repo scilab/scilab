@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2014-04-01 12:32+0100\n"
+"Revision-Date: 2014-08-27 10:50+0100\n"
 
 # File: src/cpp/api_boolean.cpp, line: 35
 # File: src/cpp/api_boolean_sparse.cpp, line: 33
@@ -450,21 +450,21 @@ msgstr ""
 # File: src/cpp/api_string.cpp, line: 646
 # File: src/cpp/api_string.cpp, line: 659
 # File: src/cpp/api_string.cpp, line: 670
-# File: src/cpp/api_string.cpp, line: 695
-# File: src/cpp/api_string.cpp, line: 719
-# File: src/cpp/api_string.cpp, line: 729
-# File: src/cpp/api_string.cpp, line: 754
-# File: src/cpp/api_string.cpp, line: 764
-# File: src/cpp/api_string.cpp, line: 777
-# File: src/cpp/api_string.cpp, line: 787
-# File: src/cpp/api_string.cpp, line: 811
-# File: src/cpp/api_string.cpp, line: 828
-# File: src/cpp/api_string.cpp, line: 838
-# File: src/cpp/api_string.cpp, line: 863
-# File: src/cpp/api_string.cpp, line: 876
-# File: src/cpp/api_string.cpp, line: 929
-# File: src/cpp/api_string.cpp, line: 942
-# File: src/cpp/api_string.cpp, line: 955
+# File: src/cpp/api_string.cpp, line: 700
+# File: src/cpp/api_string.cpp, line: 724
+# File: src/cpp/api_string.cpp, line: 734
+# File: src/cpp/api_string.cpp, line: 759
+# File: src/cpp/api_string.cpp, line: 769
+# File: src/cpp/api_string.cpp, line: 782
+# File: src/cpp/api_string.cpp, line: 792
+# File: src/cpp/api_string.cpp, line: 816
+# File: src/cpp/api_string.cpp, line: 833
+# File: src/cpp/api_string.cpp, line: 843
+# File: src/cpp/api_string.cpp, line: 868
+# File: src/cpp/api_string.cpp, line: 881
+# File: src/cpp/api_string.cpp, line: 933
+# File: src/cpp/api_string.cpp, line: 946
+# File: src/cpp/api_string.cpp, line: 959
 #, c-format
 msgid "%s: Unable to get argument data"
 msgstr ""
@@ -843,8 +843,8 @@ msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
 msgstr ""
 
 #
-# File: src/cpp/api_string.cpp, line: 711
-# File: src/cpp/api_string.cpp, line: 746
+# File: src/cpp/api_string.cpp, line: 716
+# File: src/cpp/api_string.cpp, line: 751
 #, c-format
 msgid "%s: Wrong type for input argument \"%s\": A single string expected.\n"
 msgstr ""
