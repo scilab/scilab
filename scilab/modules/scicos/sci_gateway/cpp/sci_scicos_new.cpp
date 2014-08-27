@@ -16,6 +16,7 @@
 
 #include "types.hxx"
 #include "string.hxx"
+#include "mlist.hxx"
 #include "list.hxx"
 #include "function.hxx"
 
@@ -50,9 +51,11 @@ using namespace org_scilab_modules_scicos;
 static const std::string funame = "scicos_new";
 
 template<class Adaptor, class Adaptee>
-Adaptor* alloc_and_set(kind_t k, types::String* type_name, types::typed_list &in)
+types::InternalType * alloc_and_set(kind_t k, types::String* type_name, types::typed_list &in)
 {
     Controller controller = Controller();
+
+    // create the associated object
     ScicosID o = controller.createObject(k);
     Adaptor* adaptor = new Adaptor(static_cast<Adaptee*>(controller.getObject(o)));
 
@@ -69,6 +72,32 @@ Adaptor* alloc_and_set(kind_t k, types::String* type_name, types::typed_list &in
     }
 
     return adaptor;
+}
+
+template<class Adaptor, class Adaptee>
+types::InternalType * alloc_and_set_as_mlist(kind_t k, types::String* type_name, types::typed_list &in)
+{
+    // check header
+    Adaptor adaptor = Adaptor(0);
+    for (size_t i = 1; i < in.size(); i++)
+    {
+        std::wstring name = type_name->get(i);
+        if (!adaptor.hasProperty(name))
+        {
+            Scierror(999, _("%s: Wrong value for input argument #%d: unable to set \"%ls\".\n"), funame.data(), i, name.data());
+            return 0;
+        }
+    }
+
+    // copy the data
+    types::MList* mlist = new types::MList();
+    mlist->set(0, type_name->clone());
+    for (size_t i = 1; i < in.size(); i++)
+    {
+        mlist->set(i, in[i]);
+    }
+
+    return mlist;
 }
 
 types::Function::ReturnValue sci_scicos_new(types::typed_list &in, int _iRetCount, types::typed_list &out)
@@ -141,7 +170,7 @@ types::Function::ReturnValue sci_scicos_new(types::typed_list &in, int _iRetCoun
             out.push_back(returnType);
             break;
         case view_scilab::Adapters::GRAPHIC_ADAPTER:
-            returnType = alloc_and_set<view_scilab::GraphicsAdapter, model::Block>(BLOCK, type_name, in);
+            returnType = alloc_and_set_as_mlist<view_scilab::GraphicsAdapter, model::Block>(BLOCK, type_name, in);
             if (returnType == 0)
             {
                 return types::Function::Error;
@@ -157,7 +186,7 @@ types::Function::ReturnValue sci_scicos_new(types::typed_list &in, int _iRetCoun
             out.push_back(returnType);
             break;
         case view_scilab::Adapters::MODEL_ADAPTER:
-            returnType = alloc_and_set<view_scilab::ModelAdapter, model::Block>(BLOCK, type_name, in);
+            returnType = alloc_and_set_as_mlist<view_scilab::ModelAdapter, model::Block>(BLOCK, type_name, in);
             if (returnType == 0)
             {
                 return types::Function::Error;
@@ -165,7 +194,7 @@ types::Function::ReturnValue sci_scicos_new(types::typed_list &in, int _iRetCoun
             out.push_back(returnType);
             break;
         case view_scilab::Adapters::PARAMS_ADAPTER:
-            returnType = alloc_and_set<view_scilab::ParamsAdapter, model::Diagram>(DIAGRAM, type_name, in);
+            returnType = alloc_and_set_as_mlist<view_scilab::ParamsAdapter, model::Diagram>(DIAGRAM, type_name, in);
             if (returnType == 0)
             {
                 return types::Function::Error;

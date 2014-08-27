@@ -40,7 +40,7 @@ struct sim
     {
         model::Block* adaptee = adaptor.getAdaptee();
 
-        // First, extact the function Name
+        // First, extract the function Name
         std::string name;
         controller.getObjectProperty(adaptee->id(), adaptee->kind(), SIM_FUNCTION_NAME, name);
         types::String* Name = new types::String(1, 1);

@@ -131,7 +131,7 @@ types::InternalType* get_ports_property(const Adaptor& adaptor, object_propertie
 /*
  * Set a Scilab encoded values as a property.
  *
- * \note this method will return false if one of the ports does not exist
+ * \note this method will ignore or return false if one of the ports does not exist, depending on the property setted.
  */
 template<typename Adaptor, object_properties_t p>
 bool set_ports_property(const Adaptor& adaptor, object_properties_t port_kind, Controller& controller, types::InternalType* v)
@@ -145,13 +145,7 @@ bool set_ports_property(const Adaptor& adaptor, object_properties_t port_kind, C
     if (v->getType() == types::InternalType::ScilabString)
     {
         types::String* current = v->getAs<types::String>();
-        if (current->getCols() != 0 && current->getCols() != 1)
-        {
-            return false;
-        }
-
-        size_t rows = current->getRows();
-        if (rows != ids.size())
+        if (current->getSize() != ids.size())
         {
             return false;
         }
@@ -201,16 +195,6 @@ bool set_ports_property(const Adaptor& adaptor, object_properties_t port_kind, C
     else if (v->getType() == types::InternalType::ScilabDouble)
     {
         types::Double* current = v->getAs<types::Double>();
-        if (current->getCols() != 0 && current->getCols() != 1)
-        {
-            return false;
-        }
-
-        size_t rows = current->getRows();
-        if (rows != ids.size())
-        {
-            return false;
-        }
 
         // Translate identifiers: shared variables
         int i = 0;
@@ -219,6 +203,16 @@ bool set_ports_property(const Adaptor& adaptor, object_properties_t port_kind, C
         switch (p)
         {
             case FIRING:
+                if (current->isEmpty())
+                {
+                    return true;
+                }
+
+                if (current->getSize() != ids.size())
+                {
+                    return false;
+                }
+
                 for (std::vector<ScicosID>::iterator it = ids.begin(); it != ids.end(); ++it, ++i)
                 {
                     double firing = current->get(i);
@@ -240,6 +234,12 @@ bool set_ports_property(const Adaptor& adaptor, object_properties_t port_kind, C
             case DATATYPE_ROWS:
             {
                 datatypeIndex++;
+
+                // ignore the set without error
+                if (current->getSize() != ids.size())
+                {
+                    return true;
+                }
 
                 for (std::vector<ScicosID>::iterator it = ids.begin(); it != ids.end(); ++it, ++i)
                 {
@@ -328,8 +328,10 @@ void updateNewPort(ScicosID oldPort, int newPort, Controller& controller,
         {
             case DATATYPE_TYPE:
                 datatypeIndex++;
+                // no break
             case DATATYPE_COLS:
                 datatypeIndex++;
+                // no break
             case DATATYPE_ROWS:
             {
                 datatypeIndex++;
@@ -366,8 +368,10 @@ bool addNewPort(ScicosID newPortID, int newPort, const std::vector<ScicosID>& ch
         {
             case DATATYPE_TYPE:
                 datatypeIndex++;
+                // no break
             case DATATYPE_COLS:
                 datatypeIndex++;
+                // no break
             case DATATYPE_ROWS:
             {
                 datatypeIndex++;

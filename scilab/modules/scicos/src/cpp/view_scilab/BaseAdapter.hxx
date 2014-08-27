@@ -20,6 +20,7 @@
 
 #include "user.hxx"
 #include "internal.hxx"
+#include "mlist.hxx"
 #include "string.hxx"
 
 #include "Controller.hxx"
@@ -129,6 +130,87 @@ public:
             return found->set(*static_cast<Adaptor*>(this), v, controller);
         }
         return false;
+    }
+
+    /**
+     * property as MList accessors
+     */
+
+    types::InternalType* getAsMList(const Controller& controller)
+    {
+        types::MList* mlist = new types::MList();
+
+        typename property<Adaptor>::props_t properties = property<Adaptor>::fields;
+        std::sort(properties.begin(), properties.end(), property<Adaptor>::original_index_cmp);
+
+        // create the header
+        types::String* header = new types::String(1 + properties.size(), 1);
+        header->set(0, Adaptor::getSharedTypeStr().c_str());
+        int index = 1;
+        for (typename property<Adaptor>::props_t_it it = properties.begin(); it != properties.end(); ++it, ++index)
+        {
+            header->set(index, it->name.c_str());
+        }
+
+        // set the mlist field value
+        index = 1;
+        for (typename property<Adaptor>::props_t_it it = properties.begin(); it != properties.end(); ++it, ++index)
+        {
+            mlist->set(index, it->get(*static_cast<Adaptor*>(this), controller));
+        }
+
+        return mlist;
+    }
+
+    bool setAsMList(types::InternalType* v, Controller& controller)
+    {
+        typename property<Adaptor>::props_t properties = property<Adaptor>::fields;
+        std::sort(properties.begin(), properties.end(), property<Adaptor>::original_index_cmp);
+
+        if (v->getType() != types::InternalType::ScilabMList)
+        {
+            return false;
+        }
+        types::MList* current = v->getAs<types::MList>();
+        if (current->getSize() != static_cast<int>(1 + properties.size()))
+        {
+            return false;
+        }
+
+        // check the header
+        types::String* header = current->getFieldNames();
+        if (header->getSize() != static_cast<int>(1 + properties.size()))
+        {
+            return false;
+        }
+        if (header->get(0) != Adaptor::getSharedTypeStr())
+        {
+            return false;
+        }
+        int index = 1;
+        for (typename property<Adaptor>::props_t_it it = properties.begin(); it != properties.end(); ++it, ++index)
+        {
+            if (header->get(index) != it->name)
+            {
+                return false;
+            }
+        }
+
+        // this is a valid mlist, get each mlist field value and pass it to the right property decoder
+        index = 1;
+        for (typename property<Adaptor>::props_t_it it = properties.begin(); it != properties.end(); ++it, ++index)
+        {
+            // DEBUG LOG:
+            // std::wcerr << Adaptor::getSharedTypeStr() << L" set " << it->name << std::endl;
+
+            bool status = it->set(*static_cast<Adaptor*>(this), current->get(index), controller);
+            if (!status)
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     /**
