@@ -246,8 +246,15 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
 
     if (k == ANNOTATION)
     {
+        model::Annotation* o = static_cast<model::Annotation*>(getObject(uid));
         switch (p)
         {
+            case DESCRIPTION:
+                return o->setDescription(v);
+            case FONT:
+                return o->setFont(v);
+            case FONT_SIZE:
+                return o->setFontSize(v);
             default:
                 break;
         }

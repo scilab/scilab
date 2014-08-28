@@ -85,6 +85,12 @@ std::ostream& operator<<(std::ostream& os, object_properties_t p)
         case DESCRIPTION:
             os << "DESCRIPTION";
             break;
+        case FONT:
+            os << "FONT";
+            break;
+        case FONT_SIZE:
+            os << "FONT_SIZE";
+            break;
         case RELATED_TO:
             os << "RELATED_TO";
             break;

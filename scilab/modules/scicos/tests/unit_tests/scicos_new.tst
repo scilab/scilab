@@ -3,7 +3,7 @@
 // Copyright (C) 2014 - Scilab Enterprises - Clement David
 //
 //  This file is distributed under the same license as the Scilab package.
-// =============================================================================+
+// =============================================================================
 
 loadXcosLibs();
 

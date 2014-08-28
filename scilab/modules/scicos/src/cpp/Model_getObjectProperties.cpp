@@ -198,8 +198,18 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
 
     if (k == ANNOTATION)
     {
+        model::Annotation* o = static_cast<model::Annotation*>(getObject(uid));
         switch (p)
         {
+            case DESCRIPTION:
+                o->getDescription(v);
+                return true;
+            case FONT:
+                o->getFont(v);
+                return true;
+            case FONT_SIZE:
+                o->getFontSize(v);
+                return true;
             default:
                 break;
         }

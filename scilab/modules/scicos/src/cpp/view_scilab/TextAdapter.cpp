@@ -11,7 +11,11 @@
  */
 
 #include <string>
+#include <vector>
 
+#include "double.hxx"
+#include "string.hxx"
+#include "mlist.hxx"
 #include "internal.hxx"
 
 #include "Controller.hxx"
@@ -29,6 +33,225 @@ namespace view_scilab
 namespace
 {
 
+const std::wstring Graphics(L"graphics");
+const std::wstring orig(L"orig");
+const std::wstring sz(L"sz");
+const std::wstring exprs(L"exprs");
+
+const std::wstring Model(L"model");
+const std::wstring sim(L"sim");
+const std::wstring rpar(L"rpar");
+const std::wstring ipar(L"ipar");
+
+struct graphics
+{
+    static types::InternalType* get(const TextAdapter& adaptor, const Controller& controller)
+    {
+        model::Annotation* adaptee = adaptor.getAdaptee();
+
+        types::MList* o = new types::MList();
+        types::String* MListFields = new types::String(1, 4);
+        MListFields->set(0, Graphics.c_str());
+        MListFields->set(1, orig.c_str());
+        MListFields->set(2, sz.c_str());
+        MListFields->set(3, exprs.c_str());
+        o->set(0, MListFields);
+
+        // orig and sz
+        std::vector<double> geom;
+        controller.getObjectProperty(adaptee->id(), adaptee->kind(), GEOMETRY, geom);
+
+        double* dataOrig;
+        double* dataSz;
+        types::Double* origField = new types::Double(1, 2, &dataOrig);
+        types::Double* szField   = new types::Double(1, 2, &dataSz);
+        dataOrig[0] = geom[0];
+        dataOrig[1] = geom[1];
+        dataSz[0]   = geom[2];
+        dataSz[1]   = geom[3];
+        o->set(1, origField);
+        o->set(2, szField);
+
+        // exprs
+        std::vector<std::string> Exprs (3);
+        controller.getObjectProperty(adaptee->id(), adaptee->kind(), DESCRIPTION, Exprs[0]);
+        controller.getObjectProperty(adaptee->id(), adaptee->kind(), FONT, Exprs[1]);
+        controller.getObjectProperty(adaptee->id(), adaptee->kind(), FONT_SIZE, Exprs[2]);
+
+        types::String* exprsField = new types::String(3, 1);
+        for (int i = 0; i < (int) Exprs.size(); ++i)
+        {
+            exprsField->set(i, Exprs[i].data());
+        }
+        o->set(3, exprsField);
+
+        return o;
+    }
+
+    static bool set(TextAdapter& adaptor, types::InternalType* v, Controller& controller)
+    {
+        if (v->getType() != types::InternalType::ScilabMList)
+        {
+            return false;
+        }
+
+        types::MList* current = v->getAs<types::MList>();
+        if (current->getSize() < 4)
+        {
+            return false;
+        }
+
+        types::InternalType* currentField;
+        types::Double* currentFieldDouble;
+        types::String* currentFieldString;
+
+        model::Annotation* adaptee = adaptor.getAdaptee();
+
+        // orig
+        if ((currentField = current->getField(orig.c_str())) == NULL)
+        {
+            return false;
+        }
+        if (currentField->getType() != types::InternalType::ScilabDouble)
+        {
+            return false;
+        }
+        currentFieldDouble = currentField->getAs<types::Double>();
+        if (currentFieldDouble->getRows() != 1 || currentFieldDouble->getCols() != 2)
+        {
+            return false;
+        }
+        std::vector<double> origField;
+        controller.getObjectProperty(adaptee->id(), adaptee->kind(), GEOMETRY, origField);
+        origField[0] = currentFieldDouble->get(0);
+        origField[1] = currentFieldDouble->get(1);
+        controller.setObjectProperty(adaptee->id(), adaptee->kind(), GEOMETRY, origField);
+
+        // sz
+        if ((currentField = current->getField(sz.c_str())) == NULL)
+        {
+            return false;
+        }
+        if (currentField->getType() != types::InternalType::ScilabDouble)
+        {
+            return false;
+        }
+        currentFieldDouble = currentField->getAs<types::Double>();
+        if (currentFieldDouble->getRows() != 1 || currentFieldDouble->getCols() != 2)
+        {
+            return false;
+        }
+        std::vector<double> szField;
+        controller.getObjectProperty(adaptee->id(), adaptee->kind(), GEOMETRY, szField);
+        szField[2] = currentFieldDouble->get(0);
+        szField[3] = currentFieldDouble->get(1);
+        controller.setObjectProperty(adaptee->id(), adaptee->kind(), GEOMETRY, szField);
+
+        // exprs
+        if ((currentField = current->getField(exprs.c_str())) == NULL)
+        {
+            return false;
+        }
+        if (currentField->getType() == types::InternalType::ScilabString)
+        {
+            currentFieldString = currentField->getAs<types::String>();
+            if (currentFieldString->getCols() != 1 || currentFieldString->getSize() != 3)
+            {
+                return false;
+            }
+
+            std::vector<std::string> exprsField (3);
+            for (int i = 0; i < (int) exprsField.size(); ++i)
+            {
+                char* c_str = wide_string_to_UTF8(currentFieldString->get(i));
+                exprsField[i] = std::string(c_str);
+                FREE(c_str);
+            }
+            controller.setObjectProperty(adaptee->id(), adaptee->kind(), DESCRIPTION, exprsField[0]);
+            controller.setObjectProperty(adaptee->id(), adaptee->kind(), FONT, exprsField[1]);
+            controller.setObjectProperty(adaptee->id(), adaptee->kind(), FONT_SIZE, exprsField[2]);
+            return true;
+        }
+        else if (currentField->getType() == types::InternalType::ScilabDouble)
+        {
+            currentFieldDouble = currentField->getAs<types::Double>();
+            if (currentFieldDouble->getSize() != 0)
+            {
+                return false;
+            }
+
+            std::vector<std::string> exprsField (3);
+            controller.setObjectProperty(adaptee->id(), adaptee->kind(), DESCRIPTION, exprsField[0]);
+            controller.setObjectProperty(adaptee->id(), adaptee->kind(), FONT, exprsField[1]);
+            controller.setObjectProperty(adaptee->id(), adaptee->kind(), FONT_SIZE, exprsField[2]);
+            return true;
+        }
+
+        return false;
+    }
+};
+
+struct model
+{
+
+    static types::InternalType* get(const TextAdapter& adaptor, const Controller& controller)
+    {
+        // silent unused parameter warnings
+        (void) adaptor;
+        (void) controller;
+
+        // Return an empty "model"-typed mlist because this field isn't used.
+        types::MList* o = new types::MList();
+        types::String* MListFields = new types::String(4, 1);
+
+        MListFields->set(0, Model.c_str());
+        MListFields->set(1, sim.c_str());
+        MListFields->set(2, rpar.c_str());
+        MListFields->set(3, ipar.c_str());
+
+        o->set(0, MListFields);
+        // 'sim' field needs to be defined for the console display.
+        o->set(1, new types::Double(0, 0));
+        return o;
+    }
+
+    static bool set(TextAdapter& adaptor, types::InternalType* v, Controller& controller)
+    {
+        // silent unused parameter warnings
+        (void) adaptor;
+        (void) v;
+        (void) controller;
+
+        // everything should be right as the properties mapped using this adapter do not perform anything
+        return true;
+    }
+};
+
+struct dummy_property
+{
+
+    static types::InternalType* get(const TextAdapter& adaptor, const Controller& controller)
+    {
+        // silent unused parameter warnings
+        (void) adaptor;
+        (void) controller;
+
+        // Return an empty matrix because this field isn't used.
+        return new types::Double(0, 0);
+    }
+
+    static bool set(TextAdapter& adaptor, types::InternalType* v, Controller& controller)
+    {
+        // silent unused parameter warnings
+        (void) adaptor;
+        (void) v;
+        (void) controller;
+
+        // everything should be right as the properties mapped using this adapter do not perform anything
+        return true;
+    }
+};
+
 } /* namespace */
 
 template<> property<TextAdapter>::props_t property<TextAdapter>::fields = property<TextAdapter>::props_t();
@@ -41,7 +264,11 @@ TextAdapter::TextAdapter(org_scilab_modules_scicos::model::Annotation* o) :
 {
     if (property<TextAdapter>::properties_have_not_been_set())
     {
-        // FIXME: add some properties
+        property<TextAdapter>::fields.reserve(4);
+        property<TextAdapter>::add_property(Graphics, &graphics::get, &graphics::set);
+        property<TextAdapter>::add_property(Model, &model::get, &model::set);
+        property<TextAdapter>::add_property(L"void", &dummy_property::get, &dummy_property::set);
+        property<TextAdapter>::add_property(L"gui", &dummy_property::get, &dummy_property::set);
     }
 }
 
