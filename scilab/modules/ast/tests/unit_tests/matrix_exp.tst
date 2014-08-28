@@ -19,7 +19,7 @@ a=[1 2:4;5:7 3];
 a=[1 2:4 [];[] [] 5:7 [] 3];
 a=[1 2;sin(3) 4];
 assert_checkerror("a=[1 2;3 4 5]", "inconsistent row/column dimensions");
-assert_checkerror("a=[1 2;list(3) 4]", ["Function not defined for given argument type(s)," ; "  check arguments or define function %l_c_s for overloading."]);
+assert_checkerror("a=[1 2;list(3) 4]", ["Undefined operation for the given operands." ; "check or define function %l_c_s for overloading."]);
 function y=%l_c_s(l, x);y=[l(1)+1 x];end
 assert_checkequal([1 2;list(3) 4], [1 2;4 4]);
 function y=%l_c_s(l, x);y=[l(1) l(1) x];end
