@@ -211,6 +211,8 @@ Xcos Bug Fixes
 
 * Bug #13318 fixed - Multiplication matrix * vector using MATMUL did not work correctly.
 
+* Bug #13327 fixed - Sawtooth generator icon was not a Sawtooth.
+
 * Bug #13385 fixed - TOWS_c and FROMWSB Xcos blocs needed better examples on how
                      to get or write a Scilab variable.
 
