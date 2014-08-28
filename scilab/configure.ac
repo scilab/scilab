@@ -136,7 +136,7 @@ AC_ARG_ENABLE(compilation-tests,
 AC_ARG_WITH(gui,
     AC_HELP_STRING([--without-gui],[Disable the Scilab Graphical User Interface (GUI). Intended for embedded/clustering/grid Scilab ]))
 
-AC_ARG_WITH(build-swig,
+AC_ARG_ENABLE(build-swig,
     AC_HELP_STRING([--enable-build-swig=path],[Regenerate Java => C and Scilab => C wrappers produces by Swig]),
     [with_build_swig=$withval],
     [with_build_swig=no]
