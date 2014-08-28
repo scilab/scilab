@@ -190,6 +190,10 @@ c     .        ask for result of the same real/complex type
 
       if (m.eq.0.or.n.eq.0) then
          if (.not.cremat(fname,top,0,0,0,lr,lc)) return
+C        switching back to the default randvalue
+         if ( irt.ge.1) then
+            ran(2)=iran1kp
+         endif
          return
       endif
 

@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2014-04-01 12:32+0100\n"
+"Revision-Date: 2014-08-27 10:50+0100\n"
 
 # File: src/c/convert.c, line: 1214
 # File: src/c/convert.c, line: 1239
@@ -1633,26 +1633,6 @@ msgstr ""
 #
 # File: macros/Sources/STEP.sci, line: 46
 msgid "Same sizes expected."
-msgstr ""
-
-#
-# File: macros/Sources/tkscaleblk.sci, line: 49
-msgid "&File"
-msgstr ""
-
-#
-# File: macros/Sources/tkscaleblk.sci, line: 50
-msgid "&Tools"
-msgstr ""
-
-#
-# File: macros/Sources/tkscaleblk.sci, line: 51
-msgid "&Edit"
-msgstr ""
-
-#
-# File: macros/Sources/tkscaleblk.sci, line: 52
-msgid "&?"
 msgstr ""
 
 #

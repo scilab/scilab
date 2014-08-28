@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
- * 
+ *
  * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
  * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  *  (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
- * 
+ *
  * See the file ./license.txt
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="scicos_model">
@@ -62,7 +62,7 @@
                 </para>
                 <para> A list containing two elements. The first element is a string containing the name of the computational function (C, Fortran,or Scilab). The second element is an integer specifying the type of the computational function. Currently type 4 and 5 are used, but older types continue to work to ensure backward compatibility.</para>
                 <para> For some older case, sim can be a single string and that means that the type is supposed to be 0.</para>
-                <para> 
+                <para>
                     Size : 2.
                 </para>
                 <para>
@@ -74,7 +74,7 @@
                     <emphasis role="bold">in</emphasis>
                 </para>
                 <para> A vector specifying the number and size of the first dimension of regular input ports indexed from top to bottom of the block. If no input port exist in==[].</para>
-                <para> 
+                <para>
                     The size can be negative, equal to zero or positive :
                     
                     
@@ -102,11 +102,11 @@
                         </para>
                         <para>
                         </para>
-                        <para>           
+                        <para>
                         </para>
                     </listitem>
                 </itemizedlist>
-                <para> 
+                <para>
                     Size : number of regular input ports.
                 </para>
                 <para>
@@ -149,11 +149,11 @@
                         </para>
                         <para>
                         </para>
-                        <para>           
+                        <para>
                         </para>
                     </listitem>
                 </itemizedlist>
-                <para> 
+                <para>
                     Size : number of regular input ports.
                 </para>
                 <para>
@@ -203,11 +203,11 @@
                         </para>
                         <para>
                         </para>
-                        <para>           
+                        <para>
                         </para>
                     </listitem>
                 </itemizedlist>
-                <para> 
+                <para>
                     Size : number of regular input ports.
                 </para>
                 <para>
@@ -218,12 +218,12 @@
                 <para>
                     <emphasis role="bold">out</emphasis>
                 </para>
-                <para> 
+                <para>
                     A vector specifying the number and size of the first
                     dimension of regular output ports indexed from top to
                     bottom of the block. If no output port exist out==[].
                 </para>
-                <para> 
+                <para>
                     The size can be negative, equal to zero or positive :
                     
                     
@@ -251,11 +251,11 @@
                         </para>
                         <para>
                         </para>
-                        <para>           
+                        <para>
                         </para>
                     </listitem>
                 </itemizedlist>
-                <para> 
+                <para>
                     Size : number of regular output ports.
                 </para>
                 <para>
@@ -297,11 +297,11 @@
                         </para>
                         <para>
                         </para>
-                        <para>           
+                        <para>
                         </para>
                     </listitem>
                 </itemizedlist>
-                <para> 
+                <para>
                     Size : number of regular output ports.
                 </para>
                 <para>
@@ -351,11 +351,11 @@
                         </para>
                         <para>
                         </para>
-                        <para>           
+                        <para>
                         </para>
                     </listitem>
                 </itemizedlist>
-                <para> 
+                <para>
                     Size : number of regular output ports.
                 </para>
                 <para>
@@ -368,7 +368,7 @@
                 </para>
                 <para> A vector specifying the number and sizes of activation inputs. Currently activation ports can be only of size one.</para>
                 <para> If no event input port exists evtin must be equal to [].</para>
-                <para> 
+                <para>
                     Size : number of input event ports.
                 </para>
                 <para>
@@ -382,7 +382,7 @@
                 <para> A vector specifying the number and sizes of activation outputs.</para>
                 <para> Currently activation ports can be only of size one.</para>
                 <para> If no event output port exists evtout must be equal to [].</para>
-                <para> 
+                <para>
                     Size : number of output event ports.
                 </para>
                 <para>
@@ -395,7 +395,7 @@
                 </para>
                 <para> Vector containing initial values of continuous-time state.</para>
                 <para> Must be [] if no continuous state.</para>
-                <para> 
+                <para>
                     Size : number of continuous-time state.
                 </para>
                 <para>
@@ -408,7 +408,7 @@
                 </para>
                 <para> Vector containing initial values of discrete-time state.</para>
                 <para> Must be [] if no discrete state.</para>
-                <para> 
+                <para>
                     Size : number of discrete-time state.
                 </para>
                 <para>
@@ -421,7 +421,7 @@
                 </para>
                 <para> List containing initial values of objects state.</para>
                 <para> Must be list() if no objects state.</para>
-                <para> 
+                <para>
                     Objects state can be any types of scilab variable.
                 </para>
                 <para>
@@ -432,7 +432,7 @@
                 </para>
                 <para>
                 </para>
-                <para> 
+                <para>
                     Size : number of objects state.
                 </para>
                 <para>
@@ -445,7 +445,7 @@
                 </para>
                 <para> The vector of floating point block parameters.</para>
                 <para> Must be [] if no floating point parameters.</para>
-                <para> 
+                <para>
                     Size : number of real parameters.
                 </para>
                 <para>
@@ -458,7 +458,7 @@
                 </para>
                 <para> The vector of integer block parameters.</para>
                 <para> Must be [] if no integer parameters.</para>
-                <para> 
+                <para>
                     Size : number of integer parameters.
                 </para>
                 <para>
@@ -470,7 +470,7 @@
                     <emphasis role="bold">opar</emphasis>
                 </para>
                 <para> List of objects block parameters. Must be list() if no objects parameters.</para>
-                <para> 
+                <para>
                     Objects parameters can be any types of scilab variable.
                 </para>
                 <para>
@@ -481,8 +481,8 @@
                 </para>
                 <para>
                 </para>
-                <para> 
-                    Size : number of objetcs parameters.
+                <para>
+                    Size : number of objects parameters.
                 </para>
                 <para>
                     Type : list of scilab object.
@@ -494,7 +494,7 @@
                 </para>
                 <para> Character that can be set to 'c' or 'd' indifferently for standard blocks. 'x' is used if we want to force the computational function to be called during the simulation phase even if the block does not contribute to computation of the state derivative.</para>
                 <para> 'l', 'm' and 's' are reserved. Not to be used.</para>
-                <para> 
+                <para>
                     Size : 1.
                 </para>
                 <para>
@@ -517,7 +517,7 @@
                     <emphasis role="bold">dep_ut</emphasis>
                 </para>
                 <para> Boolean vector [dep_u, dep_t].</para>
-                <para> 
+                <para>
                     
                 </para>
                 <itemizedlist>
@@ -541,19 +541,19 @@
                             true if block has direct feed-through,
                             i.e., at least one of the outputs depends
                             directly (not through the states) on one
-                            of the inputs.   
+                            of the inputs.
                             In other words, when the computational
-                            function is called with flag 1, the value 
+                            function is called with flag 1, the value
                             of an input is used to compute the output.
                             For instance, the SUM_f block computes <code>y=u1+u2</code> so <code>dep_ut=[%t %f]</code>.
                         </para>
                         <para>
                         </para>
-                        <para>           
+                        <para>
                         </para>
                     </listitem>
                 </itemizedlist>
-                <para> 
+                <para>
                     Size : 2.
                 </para>
                 <para>
@@ -565,7 +565,7 @@
                     <emphasis role="bold">label</emphasis>
                 </para>
                 <para> String that defines a label. It can be used to identify a block in order to access or modify its parameters during simulation.</para>
-                <para> 
+                <para>
                     Size : 1.
                 </para>
                 <para>
@@ -577,7 +577,7 @@
                     <emphasis role="bold">nzcross</emphasis>
                 </para>
                 <para> Number of zero-crossing surfaces.</para>
-                <para> 
+                <para>
                     Size : Number of zero-crossing surfaces.
                 </para>
                 <para>
@@ -589,7 +589,7 @@
                     <emphasis role="bold">nmode</emphasis>
                 </para>
                 <para> Length of the mode register. Note that this gives the size of the vector mode and not the total number of modes in which a block can operate in. Suppose a block has 3 modes and each mode can take two values, then the block can have up to 23=8 modes.</para>
-                <para> 
+                <para>
                     Size : Number of modes.
                 </para>
                 <para>
@@ -622,7 +622,7 @@
                             <emphasis role="bold">inputs</emphasis>
                         </para>
                         <para>
-                            a colunm vector of strings that contains the names of
+                            a column vector of strings that contains the names of
                             the modelica variables used as inputs.
                         </para>
                         <para>
@@ -634,7 +634,7 @@
                             <emphasis role="bold">outputs</emphasis>
                         </para>
                         <para>
-                            a colunm vector of strings that contains the names of
+                            a column vector of strings that contains the names of
                             the modelica variables used as outputs.
                         </para>
                         <para>
@@ -664,11 +664,11 @@
                         </para>
                         <para>
                         </para>
-                        <para>           
+                        <para>
                         </para>
                     </listitem>
                 </itemizedlist>
-                <para> 
+                <para>
                     Size : 5.
                 </para>
                 <para>
@@ -686,7 +686,7 @@
                     juid =  jnewInstance("java.rmi.server.UID");
                     uid = juid.toString()
                 </programlisting>
-                <para> 
+                <para>
                     Size : 1x1.
                 </para>
                 <para>

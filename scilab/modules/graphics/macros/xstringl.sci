@@ -40,12 +40,11 @@ function [rect] = xstringl( varargin )
     // convert corners into position and size
     // position, upper-left point
     rect(1) = corners (1,2); // x
-    rect(2) = corners (2,2); // y
+    rect(2) = corners (2,1); // y
 
     // size width, height
     rect(3) = abs(corners(1,3) - corners(1,1));
     rect(4) = abs(corners(2,3) - corners(2,1));
-
 
 endfunction
 

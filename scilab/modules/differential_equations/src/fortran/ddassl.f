@@ -120,6 +120,11 @@ C     CORRECTOR LOOP.
 C
       CALL RES(X,Y,YPRIME,DELTA,IRES,RPAR,IPAR)
       if(iero.ne.0) return
+C     IERROR indicates if RES had the right prototype
+      if(IERROR.ne.0) then
+         IDID=-12
+         return
+      endif
       IF (IRES.LT.0) GO TO 430
 C
 C
@@ -1697,6 +1702,7 @@ C     COMPUTE TSTOP, IF APPLICABLE
 C
 C     COMPUTE INITIAL DERIVATIVE, UPDATING TN AND Y, IF APPLICABLE
 340   IF (INFO(11) .EQ. 0) GO TO 350
+      iero=0
       CALL DDAINI(TN,Y,YPRIME,NEQ,
      *  RES,JAC,HO,RWORK(LWT),IDID,RPAR,IPAR,
      *  RWORK(LPHI),RWORK(LDELTA),RWORK(LE),
@@ -1860,6 +1866,7 @@ C     TEST H VS. HMAX
          IF (RH .GT. 1.0D0) H = H/RH
 526   CONTINUE
 C
+      iero=0
       CALL DDASTP(TN,Y,YPRIME,NEQ,
      *   RES,JAC,H,RWORK(LWT),INFO(1),IDID,RPAR,IPAR,
      *   RWORK(LPHI),RWORK(LDELTA),RWORK(LE),
@@ -2420,6 +2427,11 @@ C     MODIFIED NEWTON SCHEME.
       IRES = 0
       iero = 0
       CALL RES(X,Y,YPRIME,DELTA,IRES,RPAR,IPAR)
+C     IERROR indicates if RES had the right prototype
+      if(IERROR.ne.0) then
+         IDID=-11
+         return
+      endif
       if(iero.ne.0) return
       IF (IRES .LT. 0) GO TO 380
 C

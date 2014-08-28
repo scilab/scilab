@@ -12,7 +12,7 @@
 
 // builder code for ext5f.c
 link_name = "ext5f";    // functions to be added to the call table
-flag  = "f";  		// ext5f is a C function
+flag  = "f";  		// ext5f is a Fortran function
 files = ["ext5f.f" ];   // objects files for ext5f
 libs  = [];		// other libs needed for linking
 

@@ -26,7 +26,7 @@ function block=tkscaleblk(block,flag)
 
         if slider <> [] then
             // calculate real value
-            value = (block.rpar(1) + block.rpar(2) + get(slider,"value")) / block.rpar(3);
+            value = get(slider,"value") / block.rpar(3);
 
             w = get(block.uid);
             if w <> [] then

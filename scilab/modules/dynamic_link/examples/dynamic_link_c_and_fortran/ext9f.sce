@@ -13,7 +13,7 @@
 // builder code for ext9f.c
 // functions to be added to the call table
 link_name = ["ext9f"];
-flag  = "f";		 // ext9f is a C function
+flag  = "f";		 // ext9f is a Fortran function
 files = ["ext9f.f" ];   // objects files for ext9f
 libs  = [];		 // other libs needed for linking
 

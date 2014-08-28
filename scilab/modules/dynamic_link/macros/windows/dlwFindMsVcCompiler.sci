@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) DIGITEO - 2010 - Allan CORNET
+// Copyright (C) Scilab Enterprises - 2014 - Antoine ELIAS
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -14,21 +15,30 @@ function MSCompiler = dlwFindMsVcCompiler()
     // We use always last version of MS compiler
 
 
-  if dlwIsVc11Express() then
-    MSCompiler = 'msvc110express';     // Microsoft Visual 2012 Express
-    return;
-  end
+    if dlwIsVc12Express() then
+      MSCompiler = 'msvc120express';     // Microsoft Visual 2013 Express
+      return;
+    end
 
-  if dlwIsVc11Pro() then
-    MSCompiler = 'msvc110pro';       // Microsoft Visual 2012 Professional (or more)
-    return;
-  end
+    if dlwIsVc12Pro() then
+      MSCompiler = 'msvc120pro';       // Microsoft Visual 2013 Professional (or more)
+      return;
+    end
 
+    if dlwIsVc11Express() then
+      MSCompiler = 'msvc110express';     // Microsoft Visual 2012 Express
+      return;
+    end
 
-  if dlwIsVc10Pro() & dlwIsVc10Express() then
-    MSCompiler = 'msvc100express';     // Microsoft Visual 2010 Express with SDK extension
-    return;
-  end
+    if dlwIsVc11Pro() then
+      MSCompiler = 'msvc110pro';       // Microsoft Visual 2012 Professional (or more)
+      return;
+    end
+
+    if dlwIsVc10Pro() & dlwIsVc10Express() then
+      MSCompiler = 'msvc100express';     // Microsoft Visual 2010 Express with SDK extension
+      return;
+    end
 
     if dlwIsVc10Express() then
         MSCompiler = "msvc100express";     // Microsoft Visual 2010 Express

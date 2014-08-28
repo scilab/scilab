@@ -1,0 +1,21 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2014 - Scilab Enterprises - Charlotte HECQUET
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+//
+// <-- CLI SHELL MODE -->
+//
+// <-- Non-regression test for bug 10336 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=10336
+//
+// <-- Short Description -->
+// Default key of rand is changed from "uniform" to "normal"
+
+x=rand(100,1);
+assert_checkequal(rand("info"), "uniform");
+x=rand(100,0,"norm");
+assert_checkequal(rand("info"), "uniform");

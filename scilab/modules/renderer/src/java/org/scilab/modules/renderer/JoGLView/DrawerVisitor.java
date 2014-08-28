@@ -1251,6 +1251,10 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         return figure;
     }
 
+    public Axes getAxes() {
+        return currentAxes;
+    }
+
     private Geometry cube;
     public Geometry getCube() {
         if (cube == null) {

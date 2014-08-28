@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2014-04-01 12:32+0100\n"
+"Revision-Date: 2014-08-27 10:50+0100\n"
 
 # File: sci_gateway/c/sci_base2dec.c, line: 41
 # File: sci_gateway/c/sci_base2dec.c, line: 54
@@ -604,34 +604,41 @@ msgstr ""
 #
 # File: macros/bitcmp.sci, line: 75
 # File: macros/bitget.sci, line: 83
-# File: macros/bitset.sci, line: 71
+# File: macros/bitset.sci, line: 74
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
 msgstr ""
 
 #
-# File: macros/bitset.sci, line: 32
-# File: macros/bitset.sci, line: 42
+# File: macros/bitset.sci, line: 31
+# File: macros/bitset.sci, line: 47
 # File: macros/cross.sci, line: 24
 #, c-format
 msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
 msgstr ""
 
 #
-# File: macros/bitset.sci, line: 51
-# File: macros/bitset.sci, line: 58
+# File: macros/bitset.sci, line: 40
+#, c-format
+msgid "%s: Wrong value for input argument #%d: 0 or 1 expected.\n"
+msgstr ""
+
+#
+# File: macros/bitset.sci, line: 55
+# File: macros/bitset.sci, line: 62
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Scalar/matrix/hypermatrix of unsigned "
+"integers expected.\n"
+msgstr ""
+
+#
 # File: macros/bitxor.sci, line: 54
 # File: macros/bitxor.sci, line: 62
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Scalar/matrix of unsigned integers "
 "expected.\n"
-msgstr ""
-
-#
-# File: macros/bitset.sci, line: 80
-#, c-format
-msgid "%s: Wrong value for input argument #%d: 0 or 1 expected\n"
 msgstr ""
 
 #
@@ -1007,6 +1014,13 @@ msgstr ""
 # File: macros/permute.sci, line: 27
 #, c-format
 msgid "%s: Wrong size for argument #%d: Vector expected.\n"
+msgstr ""
+
+#
+# File: macros/permute.sci, line: 30
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Must be a valid permutation vector.\n"
 msgstr ""
 
 #

@@ -129,78 +129,121 @@ public final class HelpOnTypingManager implements KeyListener {
                         int[] ret;
                         String kw;
                         switch (kwe.getType()) {
-                            case ScilabLexerConstants.OSKEYWORD :
-                                kw = doc.getText(kwe.getStart(), kwe.getLength());
-                                if ("if".equals(kw)) {
+                        case ScilabLexerConstants.OSKEYWORD :
+                            kw = doc.getText(kwe.getStart(), kwe.getLength());
+                            if ("if".equals(kw)) {
+                                if (complete("end", textPane, doc, pos)) {
                                     doc.insertString(pos + 1, " then\nend", null);
                                     ret = textPane.getIndentManager().indentDoc(pos + 1, pos + 9);
                                     textPane.setCaretPosition(ret[0]);
-                                } else if (!"end".equals(kw)) {
+                                }
+                            } else if (!"end".equals(kw)) {
+                                if (complete("end", textPane, doc, pos)) {
                                     doc.insertString(pos + 1, "\nend", null);
                                     ret = textPane.getIndentManager().indentDoc(pos + 1, pos + 4);
                                     textPane.setCaretPosition(ret[0]);
                                 }
-                                break;
-                            case ScilabLexerConstants.SKEYWORD :
-                                kw = doc.getText(kwe.getStart(), kwe.getLength());
-                                if ("elseif".equals(kw)) {
-                                    doc.insertString(pos + 1, " then", null);
-                                    textPane.setCaretPosition(pos + 1);
-                                }
-                                break;
-                            case ScilabLexerConstants.FKEYWORD :
-                                /* We have 'function' or 'endfunction' */
-                                if ("f".equals(doc.getText(kwe.getStart(), 1))) {
-                                    doc.insertString(pos + 1, "()\nendfunction", null);
-                                    textPane.getIndentManager().indentDoc(pos + 3, pos + 14);
-                                    textPane.setCaretPosition(pos + 1);
-                                }
-                                break;
-                            default :
+                            }
+                            break;
+                        case ScilabLexerConstants.SKEYWORD :
+                            kw = doc.getText(kwe.getStart(), kwe.getLength());
+                            if ("elseif".equals(kw)) {
+                                doc.insertString(pos + 1, " then", null);
+                                textPane.setCaretPosition(pos + 1);
+                            }
+                            break;
+                        case ScilabLexerConstants.FKEYWORD :
+                            /* We have 'function' or 'endfunction' */
+                            if ("f".equals(doc.getText(kwe.getStart(), 1)) && complete("endfunction", textPane, doc, pos)) {
+                                doc.insertString(pos + 1, "()\nendfunction", null);
+                                textPane.getIndentManager().indentDoc(pos + 3, pos + 14);
+                                textPane.setCaretPosition(pos + 1);
+                            }
+                            break;
+                        default :
                         }
                     } catch (BadLocationException exc) {
                         System.err.println(exc);
                     }
                 }
             } else if (openers) {
-                try {
-                    char ch = doc.getText(pos, 1).charAt(0);
-                    if (c == ch && (c == ')' || c == ']' || c == '}' || c == '\"')) {
-                        e.consume();
-                        textPane.setCaretPosition(pos + 1);
+                if (SciNotesOptions.getSciNotesPreferences().completeAtEOL) {
+                    int end = doc.getDefaultRootElement().getElement(doc.getDefaultRootElement().getElementIndex(pos)).getEndOffset() - 1;
+                    if (pos != end) {
                         return;
                     }
-                } catch (BadLocationException exc) {
-                    System.err.println(exc);
                 }
 
-                String str = null;
-                switch (c) {
+                try {
+                    String str;
+                    switch (c) {
                     case '(' :
-                        str = "()";
+                        if (complete(')', textPane, doc, pos)) {
+                            str = "()";
+                        } else {
+                            return;
+                        }
                         break;
                     case '[' :
-                        str = "[]";
+                        if (complete(']', textPane, doc, pos)) {
+                            str = "[]";
+                        } else {
+                            return;
+                        }
                         break;
                     case '{' :
-                        str = "{}";
+                        if (complete('}', textPane, doc, pos)) {
+                            str = "{}";
+                        } else {
+                            return;
+                        }
                         break;
                     case '\"' :
                         str = "\"\"";
                         break;
                     default :
-                }
-
-                if (str != null) {
-                    try {
-                        doc.insertString(pos, str, null);
-                        e.consume();
-                        textPane.setCaretPosition(pos + 1);
-                    } catch (BadLocationException exc) {
-                        System.err.println(exc);
+                        return;
                     }
+
+                    doc.insertString(pos, str, null);
+                    e.consume();
+                    textPane.setCaretPosition(pos + 1);
+                } catch (BadLocationException exc) {
+                    System.err.println(exc);
                 }
             }
         }
+    }
+
+    private static boolean complete(char next, ScilabEditorPane pane, ScilabDocument doc, int pos) throws BadLocationException {
+        MatchingBlockManager matchLR = pane.getMatchingBlockManager(true);
+        MatchingBlockScanner scanner = matchLR.getScanner();
+        MatchingBlockScanner.MatchingPositions mpos = scanner.getNextBlock(pos, true);
+        if (mpos != null) {
+            char mc = doc.getText(mpos.secondB, 1).charAt(0);
+            if (mc != next) {
+                return true;
+            }
+
+            return false;
+        }
+
+        return true;
+    }
+
+    private static boolean complete(String next, ScilabEditorPane pane, ScilabDocument doc, int pos) throws BadLocationException {
+        MatchingBlockManager matchLR = pane.getMatchingBlockManager(true);
+        MatchingBlockScanner scanner = matchLR.getScanner();
+        MatchingBlockScanner.MatchingPositions mpos = scanner.getNextBlock(pos, true);
+        if (mpos != null) {
+            String ms = doc.getText(mpos.secondB, mpos.secondE - mpos.secondB);
+            if (!next.equals(ms)) {
+                return true;
+            }
+
+            return false;
+        }
+
+        return true;
     }
 }
