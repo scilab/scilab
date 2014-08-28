@@ -618,7 +618,7 @@ libjavasci2_la_etc_DATA = \
 ################ MACROS ######################
 # Rule to build a macro
 # NOT USED  AT THE MOMENT
-@JAVASCI_TRUE@SUFFIXES = .sci 
+@JAVASCI_TRUE@SUFFIXES = .sci
 
 ########### INSTALL DOCUMENTATION ###################
 
@@ -660,7 +660,7 @@ libjavasci2_la_etc_DATA = \
 @JAVASCI_TRUE@JARDIR = jar/
 # JAR files mask
 @JAVASCI_TRUE@JARMASK = *.jar
-# Chapter file 
+# Chapter file
 @JAVASCI_TRUE@HELP_CHAPTERDIR = help/
 @JAVASCI_TRUE@HELP_CHAPTERFILE = addchapter.sce
 @JAVASCI_TRUE@HELP_CHAPTERLANG = en_US fr_FR pt_BR
@@ -995,10 +995,10 @@ maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
 	@echo "it deletes files that may require special tools to rebuild."
 	-test -z "$(BUILT_SOURCES)" || rm -f $(BUILT_SOURCES)
-@JAVASCI_FALSE@install-html-local:
 @JAVASCI_FALSE@clean-local:
 @JAVASCI_FALSE@install-data-local:
 @JAVASCI_FALSE@distclean-local:
+@JAVASCI_FALSE@install-html-local:
 clean: clean-am
 
 clean-am: clean-generic clean-libtool clean-local \
@@ -1122,7 +1122,7 @@ uninstall-am: uninstall-libjavasci2_la_etcDATA \
 @JAVASCI_TRUE@@NEED_JAVA_TRUE@		$(ANT) clean; \
 @JAVASCI_TRUE@@NEED_JAVA_TRUE@	fi;
 
-# If the user request for the SWIG generation of the wrappers Java => C/C++ 
+# If the user request for the SWIG generation of the wrappers Java => C/C++
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
 @JAVASCI_TRUE@@SWIG_TRUE@swig: $(SWIG_WRAPPERS)
@@ -1131,7 +1131,7 @@ uninstall-am: uninstall-libjavasci2_la_etcDATA \
 @JAVASCI_TRUE@@SWIG_TRUE@	if test -n "$(SWIG_WRAPPERS)"; then \
 @JAVASCI_TRUE@@SWIG_TRUE@		for file in $(SWIG_WRAPPERS) ; do \
 @JAVASCI_TRUE@@SWIG_TRUE@			echo "Swig process of $$file (Java) ..."; \
-@JAVASCI_TRUE@@SWIG_TRUE@			$(SWIG_BIN) $(SWIG_JAVA) -package $$SWIG_PACKAGENAME  -outdir $$SWIG_OUTDIR $$file; \
+@JAVASCI_TRUE@@SWIG_TRUE@			$(SWIG_BIN) $(SWIG_JAVA) $(SWIG_OPTIONS) -package $$SWIG_PACKAGENAME  -outdir $$SWIG_OUTDIR $$file; \
 @JAVASCI_TRUE@@SWIG_TRUE@		done; \
 @JAVASCI_TRUE@@SWIG_TRUE@	fi
 
@@ -1140,11 +1140,11 @@ uninstall-am: uninstall-libjavasci2_la_etcDATA \
 @JAVASCI_TRUE@@SWIG_TRUE@	if test -n "$(SWIG_SCILAB_WRAPPERS)"; then \
 @JAVASCI_TRUE@@SWIG_TRUE@		for file in $(SWIG_SCILAB_WRAPPERS) ; do \
 @JAVASCI_TRUE@@SWIG_TRUE@			echo "Swig process of $$file (Scilab) ..."; \
-@JAVASCI_TRUE@@SWIG_TRUE@			$(SWIG_BIN) $(SWIG_SCILAB)  -outdir $$SWIG_OUTDIR $$file; \
+@JAVASCI_TRUE@@SWIG_TRUE@			$(SWIG_BIN) $(SWIG_SCILAB) $(SWIG_OPTIONS) -outdir $$SWIG_OUTDIR $$file; \
 @JAVASCI_TRUE@@SWIG_TRUE@		done; \
 @JAVASCI_TRUE@@SWIG_TRUE@	fi
 
-# If the user request for the SWIG generation of the wrappers Java => C/C++ 
+# If the user request for the SWIG generation of the wrappers Java => C/C++
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
 @GIWS_TRUE@@JAVASCI_TRUE@giws: $(GIWS_WRAPPERS)
@@ -1165,7 +1165,7 @@ uninstall-am: uninstall-libjavasci2_la_etcDATA \
 @GIWS_TRUE@@JAVASCI_TRUE@giws-exception:
 @GIWS_TRUE@@JAVASCI_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
 @GIWS_TRUE@@JAVASCI_TRUE@	echo "GIWS: Generation of exception class ..."; \
-@GIWS_TRUE@@JAVASCI_TRUE@	$(GIWS_BIN) --generate-exception-class --output-dir $$GIWS_OUTPUTDIR 
+@GIWS_TRUE@@JAVASCI_TRUE@	$(GIWS_BIN) --generate-exception-class --output-dir $$GIWS_OUTPUTDIR
 
 @JAVASCI_TRUE@macros:
 @JAVASCI_TRUE@	-@( if test ! -x $(top_builddir)/scilab-bin; then \
