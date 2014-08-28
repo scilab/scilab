@@ -229,7 +229,7 @@ struct exprs
             }
 
             model::Block* adaptee = adaptor.getAdaptee();
-            std::vector<std::string> exprs = std::vector<std::string>(current->getSize());
+            std::vector<std::string> exprs (current->getSize());
             for (size_t i = 0; i < exprs.size(); ++i)
             {
                 char* c_str = wide_string_to_UTF8(current->get(i));

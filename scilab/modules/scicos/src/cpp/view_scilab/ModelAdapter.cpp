@@ -277,7 +277,7 @@ struct state
 
         model::Block* adaptee = adaptor.getAdaptee();
 
-        std::vector<double> state;
+        std::vector<double> state (current->getSize());
         std::copy(current->getReal(), current->getReal() + current->getSize(), state.begin());
 
         controller.setObjectProperty(adaptee->id(), adaptee->kind(), STATE, state);
@@ -319,7 +319,7 @@ struct dstate
 
         model::Block* adaptee = adaptor.getAdaptee();
 
-        std::vector<double> dstate;
+        std::vector<double> dstate (current->getSize());
         std::copy(current->getReal(), current->getReal() + current->getSize(), dstate.begin());
 
         controller.setObjectProperty(adaptee->id(), adaptee->kind(), DSTATE, dstate);
@@ -555,12 +555,12 @@ struct firing
 
     static types::InternalType* get(const ModelAdapter& adaptor, const Controller& controller)
     {
-        return get_ports_property<ModelAdapter, FIRING>(adaptor, OUTPUTS, controller);
+        return get_ports_property<ModelAdapter, FIRING>(adaptor, EVENT_OUTPUTS, controller);
     }
 
     static bool set(ModelAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        return set_ports_property<ModelAdapter, FIRING>(adaptor, OUTPUTS, controller, v);
+        return set_ports_property<ModelAdapter, FIRING>(adaptor, EVENT_OUTPUTS, controller, v);
     }
 };
 

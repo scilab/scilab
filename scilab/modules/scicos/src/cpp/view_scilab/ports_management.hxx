@@ -413,7 +413,7 @@ bool update_ports_property(const Adaptor& adaptor, object_properties_t port_kind
         controller.getObjectProperty(parentDiagram, DIAGRAM, CHILDREN, children);
     }
 
-    std::vector<int> newPorts = std::vector<int>(value->getSize());
+    std::vector<int> newPorts (value->getSize());
 
     // retrieve old data
     std::vector<ScicosID> oldPorts;
