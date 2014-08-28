@@ -15,6 +15,7 @@
 
 #include "internal.hxx"
 #include "list.hxx"
+#include "tlist.hxx"
 #include "string.hxx"
 #include "types.hxx"
 #include "user.hxx"
@@ -39,20 +40,14 @@ struct props
 
     static types::InternalType* get(const DiagramAdapter& adaptor, const Controller& controller)
     {
-
-        return new ParamsAdapter(adaptor.getAdaptee());
+        ParamsAdapter localAdaptor = ParamsAdapter(adaptor.getAdaptee());
+        return localAdaptor.getAsTList(new types::TList(), controller);
     }
 
     static bool set(DiagramAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        if (v->getType() == types::InternalType::ScilabUserType
-                && v->getShortTypeStr() == ParamsAdapter::getSharedTypeStr())
-        {
-            ParamsAdapter* props = v->getAs<ParamsAdapter>();
-            adaptor.setAdaptee(props->getAdaptee());
-            return true;
-        }
-        return false;
+        ParamsAdapter localAdaptor = ParamsAdapter(adaptor.getAdaptee());
+        return localAdaptor.setAsTList(v, controller);
     }
 };
 

@@ -223,6 +223,18 @@ std::ostream& operator<<(std::ostream& os, object_properties_t p)
         case CONNECTED_SIGNALS:
             os << "CONNECTED_SIGNALS";
             break;
+        case TITLE:
+            os << "TITLE";
+            break;
+        case PATH:
+            os << "PATH";
+            break;
+        case PROPERTIES:
+            os << "PROPERTIES";
+            break;
+        case CONTEXT:
+            os << "CONTEXT";
+            break;
     }
     return os;
 }

@@ -21,6 +21,7 @@
 #include "user.hxx"
 #include "internal.hxx"
 #include "mlist.hxx"
+#include "tlist.hxx"
 #include "string.hxx"
 
 #include "Controller.hxx"
@@ -133,13 +134,11 @@ public:
     }
 
     /**
-     * property as MList accessors
+     * property as TList accessors
      */
 
-    types::InternalType* getAsMList(const Controller& controller)
+    types::InternalType* getAsTList(types::TList* tlist, const Controller& controller)
     {
-        types::MList* mlist = new types::MList();
-
         typename property<Adaptor>::props_t properties = property<Adaptor>::fields;
         std::sort(properties.begin(), properties.end(), property<Adaptor>::original_index_cmp);
 
@@ -151,28 +150,28 @@ public:
         {
             header->set(index, it->name.c_str());
         }
-        mlist->set(0, header);
+        tlist->set(0, header);
 
-        // set the mlist field value
+        // set the tlist field value
         index = 1;
         for (typename property<Adaptor>::props_t_it it = properties.begin(); it != properties.end(); ++it, ++index)
         {
-            mlist->set(index, it->get(*static_cast<Adaptor*>(this), controller));
+            tlist->set(index, it->get(*static_cast<Adaptor*>(this), controller));
         }
 
-        return mlist;
+        return tlist;
     }
 
-    bool setAsMList(types::InternalType* v, Controller& controller)
+    bool setAsTList(types::InternalType* v, Controller& controller)
     {
         typename property<Adaptor>::props_t properties = property<Adaptor>::fields;
         std::sort(properties.begin(), properties.end(), property<Adaptor>::original_index_cmp);
 
-        if (v->getType() != types::InternalType::ScilabMList)
+        if (v->getType() != types::InternalType::ScilabTList)
         {
             return false;
         }
-        types::MList* current = v->getAs<types::MList>();
+        types::TList* current = v->getAs<types::TList>();
         if (current->getSize() != static_cast<int>(1 + properties.size()))
         {
             return false;
@@ -197,7 +196,7 @@ public:
             }
         }
 
-        // this is a valid mlist, get each mlist field value and pass it to the right property decoder
+        // this is a valid tlist, get each tlist field value and pass it to the right property decoder
         index = 1;
         for (typename property<Adaptor>::props_t_it it = properties.begin(); it != properties.end(); ++it, ++index)
         {

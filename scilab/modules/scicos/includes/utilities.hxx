@@ -102,6 +102,10 @@ enum object_properties_t
     IMPLICIT,           //!< model::Port::implicit value
     PORT_NUMBER,        //!< model::Port::portNumber value
     CONNECTED_SIGNALS,  //!< model::Port::connectedSignals value
+    TITLE,              //!< model::Diagram::title file name value
+    PATH,               //!< model::Diagram::title file path value
+    PROPERTIES,         //!< model::Diagram::tol & tf values
+    CONTEXT,            //!< model::Diagram::context value
 };
 
 #endif /* UTILITIES_HXX_ */

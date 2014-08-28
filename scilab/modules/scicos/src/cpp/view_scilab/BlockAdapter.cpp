@@ -14,6 +14,7 @@
 
 #include "internal.hxx"
 #include "list.hxx"
+#include "mlist.hxx"
 #include "string.hxx"
 #include "types.hxx"
 #include "user.hxx"
@@ -41,13 +42,13 @@ struct graphics
     static types::InternalType* get(const BlockAdapter& adaptor, const Controller& controller)
     {
         GraphicsAdapter localAdaptor = GraphicsAdapter(adaptor.getAdaptee());
-        return localAdaptor.getAsMList(controller);
+        return localAdaptor.getAsTList(new types::MList(), controller);
     }
 
     static bool set(BlockAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
         GraphicsAdapter localAdaptor = GraphicsAdapter(adaptor.getAdaptee());
-        return localAdaptor.setAsMList(v, controller);
+        return localAdaptor.setAsTList(v, controller);
     }
 };
 
@@ -56,13 +57,13 @@ struct model
     static types::InternalType* get(const BlockAdapter& adaptor, const Controller& controller)
     {
         ModelAdapter localAdaptor = ModelAdapter(adaptor.getAdaptee());
-        return localAdaptor.getAsMList(controller);
+        return localAdaptor.getAsTList(new types::MList(), controller);
     }
 
     static bool set(BlockAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
         ModelAdapter localAdaptor = ModelAdapter(adaptor.getAdaptee());
-        return localAdaptor.setAsMList(v, controller);
+        return localAdaptor.setAsTList(v, controller);
     }
 };
 

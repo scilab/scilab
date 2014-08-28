@@ -247,6 +247,12 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
         model::Diagram* o = static_cast<model::Diagram*>(getObject(uid));
         switch (p)
         {
+            case TITLE:
+                o->getTitle(v);
+                return true;
+            case PATH:
+                o->getPath(v);
+                return true;
             default:
                 break;
         }
@@ -394,6 +400,14 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
     else if (k == DIAGRAM)
     {
         model::Diagram* o = static_cast<model::Diagram*>(getObject(uid));
+        switch (p)
+        {
+            case PROPERTIES:
+                o->getProperties(v);
+                return true;
+            default:
+                break;
+        }
     }
     else if (k == LINK)
     {
@@ -509,6 +523,9 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
         model::Diagram* o = static_cast<model::Diagram*>(getObject(uid));
         switch (p)
         {
+            case CONTEXT:
+                o->getContext(v);
+                return true;
             default:
                 break;
         }

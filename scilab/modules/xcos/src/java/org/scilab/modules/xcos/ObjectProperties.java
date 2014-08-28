@@ -57,6 +57,10 @@ public enum ObjectProperties {
   PORT_KIND,
   IMPLICIT,
   PORT_NUMBER,
-  CONNECTED_SIGNALS;
+  CONNECTED_SIGNALS,
+  TITLE,
+  PATH,
+  PROPERTIES,
+  CONTEXT;
 }
 

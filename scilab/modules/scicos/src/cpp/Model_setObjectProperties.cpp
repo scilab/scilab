@@ -294,6 +294,10 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
         model::Diagram* o = static_cast<model::Diagram*>(getObject(uid));
         switch (p)
         {
+            case TITLE:
+                return o->setTitle(v);
+            case PATH:
+                return o->setPath(v);
             default:
                 break;
         }
@@ -363,6 +367,8 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
         model::Diagram* o = static_cast<model::Diagram*>(getObject(uid));
         switch (p)
         {
+            case PROPERTIES:
+                return o->setProperties(v);
             default:
                 break;
         }
@@ -477,6 +483,8 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
         model::Diagram* o = static_cast<model::Diagram*>(getObject(uid));
         switch (p)
         {
+            case CONTEXT:
+                return o->setContext(v);
             default:
                 break;
         }
