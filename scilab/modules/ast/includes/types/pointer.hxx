@@ -1,6 +1,6 @@
 /*
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-*  Copyright (C) 202 - Scilab Enterprises - Antoine ELIAS
+*  Copyright (C) 2012 - Scilab Enterprises - Antoine ELIAS
 *
 *  This file must be used under the terms of the CeCILL.
 *  This source file is licensed as described in the file COPYING, which
@@ -15,10 +15,9 @@
 
 #include "user.hxx"
 
-
 namespace types
 {
-class Pointer : public User<Pointer>
+class Pointer : public UserType
 {
 public :
     Pointer()
@@ -33,9 +32,19 @@ public :
 
     virtual ~Pointer() {}
 
-    Pointer* getAsPointer()
+    bool hasToString()
     {
-        return this;
+        return false;
+    }
+
+    std::wstring getTypeStr()
+    {
+        return L"pointer";
+    }
+
+    std::wstring getShortTypeStr()
+    {
+        return L"p";
     }
 
     bool isPointer(void)
@@ -50,7 +59,7 @@ public :
 
     InternalType* clone()
     {
-        return new Pointer(get());
+        return new Pointer(m_pvData);
     }
 
     void* get()

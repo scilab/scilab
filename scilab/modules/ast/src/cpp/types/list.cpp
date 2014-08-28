@@ -111,11 +111,6 @@ InternalType *List::clone()
     return new List(this);
 }
 
-GenericType* List::getColumnValues(int /*_iPos*/)
-{
-    return NULL;
-}
-
 /**
 ** toString to display Lists
 ** FIXME : Find a better indentation process
@@ -146,9 +141,9 @@ bool List::toString(std::wostringstream& ostr)
     return true;
 }
 
-std::vector<InternalType*>	List::extract(typed_list* _pArgs)
+InternalType* List::extract(typed_list* _pArgs)
 {
-    std::vector<InternalType*> outList;
+    List* outList = new List();
     //check input param
     if (_pArgs->size() != 1)
     {
@@ -173,11 +168,12 @@ std::vector<InternalType*>	List::extract(typed_list* _pArgs)
         int idx = (int)pArg[0]->getAs<Double>()->get(i);
         if (idx > getSize() || idx < 1)
         {
-            outList.clear();
+            delete outList;
+            outList = new List();
             break;
         }
         InternalType* pIT = (*m_plData)[idx - 1];
-        outList.push_back(pIT);
+        outList->set(i, pIT);
     }
 
     //free pArg content
@@ -328,23 +324,32 @@ bool List::set(const int _iIndex, InternalType* _pIT)
         return false;
     }
 
-    while ((int)m_plData->size() <= _iIndex)
+    while ((int)m_plData->size() < _iIndex)
     {
         //incease list size and fill with "Undefined"
         m_plData->push_back(new ListUndefined());
         m_iSize = getSize();
     }
 
-    InternalType* pOld = (*m_plData)[_iIndex];
-
-    _pIT->IncreaseRef();
-    (*m_plData)[_iIndex] = _pIT;
-
-    //manage ref on the old value
-    if (pOld)
+    if ((int)m_plData->size() == _iIndex)
     {
-        pOld->DecreaseRef();
-        pOld->killMe();
+        _pIT->IncreaseRef();
+        m_plData->push_back(_pIT);
+        m_iSize = getSize();
+    }
+    else
+    {
+        InternalType* pOld = (*m_plData)[_iIndex];
+
+        _pIT->IncreaseRef();
+        (*m_plData)[_iIndex] = _pIT;
+
+        //manage ref on the old value
+        if (pOld)
+        {
+            pOld->DecreaseRef();
+            pOld->killMe();
+        }
     }
 
     return true;

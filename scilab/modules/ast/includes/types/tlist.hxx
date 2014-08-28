@@ -61,7 +61,7 @@ public :
         return true;
     }
 
-    std::vector<InternalType*>      extractStrings(const std::list<std::wstring>& _stFields);
+    InternalType*                   extractStrings(const std::list<std::wstring>& _stFields);
 
     /* return type as string ( double, int, cell, list, ... )*/
     virtual std::wstring            getTypeStr();

@@ -296,11 +296,6 @@ public :
         return transpose(out);
     }
 
-    virtual bool extract(const std::wstring & /*name*/, InternalType *& /*out*/)
-    {
-        return false;
-    }
-
     virtual bool isFieldExtractionOverloadable() const
     {
         return false;
@@ -525,6 +520,10 @@ public :
         return false;
     }
     virtual bool                    isLibrary(void)
+    {
+        return false;
+    }
+    virtual bool                    isUserType(void)
     {
         return false;
     }

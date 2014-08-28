@@ -24,7 +24,7 @@ extern "C" {
 
 using namespace types;
 
-class MyDataType : public User<MyDataType>
+class MyDataType : public UserType
 {
 public:
     MyDataType(std::wstring _shortName, std::wstring _longName) :

@@ -85,17 +85,18 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
         else if (pIT->isString())
         {
             String* pStr = pIT->getAs<String>();
-            if (_pArgsIn->size() != 1 || pStr->isScalar() == false)
-            {
-                bUndefine = true;
-                continue;
-            }
-
-            wchar_t* pFieldName = pStr->get(0);
-
             if (_pRef->isStruct())
             {
                 Struct* pStruct = _pRef->getAs<Struct>();
+
+                if (_pArgsIn->size() != 1 || pStr->isScalar() == false)
+                {
+                    bUndefine = true;
+                    continue;
+                }
+
+                wchar_t* pFieldName = pStr->get(0);
+
                 // pCurrent arg is indexed to 1 unlike the return of "getFieldIndex"
                 int iIndex = pStruct->get(0)->getFieldIndex(pFieldName) + 1;
                 if (iIndex == -1)
@@ -106,19 +107,32 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
 
                 pCurrentArg = new Double((double)iIndex);
             }
-            else if (_pRef->isList())
+            else if (_pRef->isTList())
             {
+                // List cant be extract by field and MList must call overload
+                TList* pTL = _pRef->getAs<TList>();
+                pCurrentArg = new Double(pStr->getDims(), pStr->getDimsArray());
+                double* pdbl = pCurrentArg->get();
+                for (int i = 0; i < pStr->getSize(); i++)
+                {
+                    wchar_t* pFieldName = pStr->get(i);
+                    int iIndex = pTL->getIndexFromString(pFieldName);
+                    if (iIndex == -1)
+                    {
+                        bUndefine = true;
+                        continue;
+                    }
+                    pdbl[i] = (double)(iIndex + 1);
+                }
             }
             else if (_pRef->isCell())
             {
             }
             else
             {
+                bUndefine = true;
+                break;
             }
-
-            //_pArgsOut->push_back(NULL);
-            bUndefine = true;
-            break;
         }
         else if (pIT->isPoly())
         {

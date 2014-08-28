@@ -144,11 +144,25 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                 cleanIn(in, out);
                 cleanOpt(opt);
 
+
                 // In case a.b(), getResult contain pIT ("b").
                 // If out == pIT, do not delete it.
                 if (getResult() != pIT)
                 {
+                    // protect element of out in case where
+                    // out contain elements of pIT
+                    for (int i = 0; i < out.size(); i++)
+                    {
+                        out[i]->IncreaseRef();
+                    }
+
                     pIT->killMe();
+
+                    // unprotect
+                    for (int i = 0; i < out.size(); i++)
+                    {
+                        out[i]->DecreaseRef();
+                    }
                 }
             }
             else

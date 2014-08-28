@@ -86,10 +86,18 @@ bool TList::invoke(typed_list & in, optional_list & /*opt*/, int /*_iRetCount*/,
     else if (in.size() == 1)
     {
         InternalType * arg = in[0];
-        std::vector<InternalType *> _out;
+        InternalType * _out = NULL;
         if (arg->isDouble() || arg->isInt() || arg->isBool() || arg->isImplicitList() || arg->isColon() || arg->isDollar())
         {
             _out = List::extract(&in);
+
+            List* pList = _out->getAs<types::List>();
+            for (int i = 0; i < pList->getSize(); i++)
+            {
+                out.push_back(pList->get(i));
+            }
+
+            delete pList;
         }
         else if (arg->isString())
         {
@@ -101,11 +109,18 @@ bool TList::invoke(typed_list & in, optional_list & /*opt*/, int /*_iRetCount*/,
             }
 
             _out = extractStrings(stFields);
+
+            List* pList = _out->getAs<types::List>();
+            for (int i = 0; i < pList->getSize(); i++)
+            {
+                out.push_back(pList->get(i));
+            }
+
+            delete pList;
         }
 
-        if (!_out.empty())
+        if (!out.empty())
         {
-            out.swap(_out);
             return true;
         }
     }
@@ -172,23 +187,25 @@ int TList::getIndexFromString(const std::wstring& _sKey)
     return -1;
 }
 
-std::vector<InternalType*> TList::extractStrings(const std::list<std::wstring>& _stFields)
+InternalType* TList::extractStrings(const std::list<std::wstring>& _stFields)
 {
-    std::vector<InternalType*> Result;
+    int i = 0;
+    List* pLResult = new List();
     std::list<std::wstring>::const_iterator it;
     for (it = _stFields.begin() ; it != _stFields.end() ; it++)
     {
         if (exists(*it) == false)
         {
-            return Result;
+            return pLResult;
         }
     }
 
-    for (it = _stFields.begin() ; it != _stFields.end() ; it++)
+    for (it = _stFields.begin() ; it != _stFields.end() ; it++, i++)
     {
-        Result.push_back(getField(*it));
+        pLResult->set(i, getField(*it));
     }
-    return Result;
+
+    return pLResult;
 }
 
 std::wstring TList::getTypeStr()

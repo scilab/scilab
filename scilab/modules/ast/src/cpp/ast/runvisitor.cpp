@@ -139,11 +139,14 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
     std::wstring wstField = psvRightMember->getSymbol().getName();
     InternalType * pValue = getResult();
     InternalType * pReturn = NULL;
-    bool ok;
+    bool ok = false;
 
     try
     {
-        ok = pValue->extract(wstField, pReturn);
+        if (pValue->isGenericType())
+        {
+            ok = pValue->getAs<GenericType>()->extract(wstField, pReturn);
+        }
     }
     catch (std::wstring & err)
     {
@@ -348,7 +351,7 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
         e.getBody().isReturnable();
     }
 
-    if (getResult()->isImplicitList())
+    if (pIT->isImplicitList())
     {
         ImplicitList* pVar = pIT->getAs<ImplicitList>();
         for (int i = 0; i < pVar->getSize(); ++i)
@@ -377,7 +380,7 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
             }
         }
     }
-    else if (getResult()->isList())
+    else if (pIT->isList())
     {
         List* pL = pIT->getAs<List>();
         const int size = pL->getSize();
@@ -406,7 +409,7 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
             }
         }
     }
-    else
+    else if (pIT->isGenericType())
     {
         //Matrix i = [1,3,2,6] or other type
         GenericType* pVar = pIT->getAs<GenericType>();
@@ -414,13 +417,20 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
         {
             pIT->DecreaseRef();
             pIT->killMe();
-
             throw ScilabError(_W("for expression can only manage 1 or 2 dimensions variables\n"), 999, e.getVardec().getLocation());
         }
 
         for (int i = 0; i < pVar->getCols(); i++)
         {
             GenericType* pNew = pVar->getColumnValues(i);
+
+            if (pNew == NULL)
+            {
+                pIT->DecreaseRef();
+                pIT->killMe();
+                throw ScilabError(_W("for expression : Wrong type for loop iterator.\n"), 999, e.getVardec().getLocation());
+            }
+
             symbol::Context::getInstance()->put(e.getVardec().getStack(), pNew);
 
             e.getBody().accept(*this);
@@ -442,6 +452,12 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
                 break;
             }
         }
+    }
+    else
+    {
+        pIT->DecreaseRef();
+        pIT->killMe();
+        throw ScilabError(_W("for expression : Wrong type for loop iterator.\n"), 999, e.getVardec().getLocation());
     }
 
     pIT->DecreaseRef();

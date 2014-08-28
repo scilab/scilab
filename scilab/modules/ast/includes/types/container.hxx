@@ -36,7 +36,7 @@ public :
         return true;
     }
 
-    virtual ScilabType        getType(void)
+    virtual ScilabType      getType(void)
     {
         return ScilabContainer;
     }

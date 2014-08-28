@@ -540,14 +540,14 @@ InternalType * Struct::extractField(const std::wstring & wstField)
     {
         if (getSize() == 1)
         {
-            return get(0)->get(wstField)->clone();
+            return get(0)->get(wstField);
         }
         else
         {
             List * pL = new List();
             for (int j = 0 ; j < getSize() ; j++)
             {
-                pL->append(get(j)->get(wstField)->clone());
+                pL->append(get(j)->get(wstField));
             }
 
             return pL;

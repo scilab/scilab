@@ -95,7 +95,7 @@ public:
  * Note that sub-classes are responsible to fill the fields accordingly to theirs interfaces.
  */
 template<typename Adaptor, typename Adaptee>
-class BaseAdapter : public types::User<Adaptor>
+class BaseAdapter : public types::UserType
 {
 
 public:
@@ -233,17 +233,24 @@ public:
      * All following methods should be implemented by each template instance
      */
 
-    virtual std::wstring getTypeStr() = 0;
-    virtual std::wstring getShortTypeStr() = 0;
+    std::wstring getTypeStr()
+    {
+        return L"ba";
+    }
 
-    /*
-     * Implement a specific types::User
-     */
-private:
+    std::wstring getShortTypeStr()
+    {
+        return L"BaseAdapter";
+    }
+
     types::InternalType* clone()
     {
         return new Adaptor(*static_cast<Adaptor*>(this));
     }
+
+    /*
+     * Implement a specific types::User
+     */
 
     bool isAssignable()
     {
@@ -268,9 +275,69 @@ private:
         return false;
     }
 
+    types::InternalType* extract(types::typed_list* _pArgs)
+    {
+        if (_pArgs->size() == 0)
+        {
+            // call overload
+            return NULL;
+        }
+
+        if ((*_pArgs)[0]->isString())
+        {
+            types::String* pStr = (*_pArgs)[0]->getAs<types::String>();
+            types::InternalType* pOut = NULL;
+            extract(std::wstring(pStr->get(0)), pOut);
+            return pOut;
+        }
+        else
+        {
+            // TO DO : management other type for arguments like a scalar or matrix of double
+        }
+
+        return NULL;
+    }
+
+    types::InternalType* insert(types::typed_list* _pArgs, InternalType* _pSource)
+    {
+        for (int i = 0; i < _pArgs->size(); i++)
+        {
+            if ((*_pArgs)[i]->isString())
+            {
+                types::String* pStr = (*_pArgs)[i]->getAs<types::String>();
+                std::wstring name = pStr->get(0);
+                Controller controller = Controller();
+                typename property<Adaptor>::props_t_it found = std::lower_bound(property<Adaptor>::fields.begin(), property<Adaptor>::fields.end(), name);
+                if (found != property<Adaptor>::fields.end() && !(name < found->name))
+                {
+                    found->set(*static_cast<Adaptor*>(this), _pSource, controller);
+                }
+
+                return this;
+            }
+            //else if(_pArgs[i]->isDouble())
+            //{
+            //
+            //}
+            else
+            {
+                return NULL;
+            }
+        }
+
+        // call overload
+        return NULL;
+    }
+
     void whoAmI(void)
     {
         std::cout << "scicos object";
+    }
+
+    bool hasToString()
+    {
+        // allow scilab to call toString of this class
+        return true;
     }
 
     bool toString(std::wostringstream& ostr)

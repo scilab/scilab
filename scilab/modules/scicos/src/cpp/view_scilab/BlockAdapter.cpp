@@ -71,11 +71,11 @@ struct gui
 {
     static types::InternalType* get(const BlockAdapter& adaptor, const Controller& controller)
     {
-        std::string interface;
+        std::string Interface;
         org_scilab_modules_scicos::model::Block* adaptee = adaptor.getAdaptee();
-        controller.getObjectProperty(adaptee->id(), adaptee->kind(), INTERFACE_FUNCTION, interface);
+        controller.getObjectProperty(adaptee->id(), adaptee->kind(), INTERFACE_FUNCTION, Interface);
 
-        return new types::String(interface.data());
+        return new types::String(Interface.data());
     }
 
     static bool set(BlockAdapter& adaptor, types::InternalType* v, Controller& controller)

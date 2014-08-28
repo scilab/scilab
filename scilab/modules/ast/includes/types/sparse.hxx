@@ -125,11 +125,6 @@ struct EXTERN_AST Sparse : GenericType
     **/
     bool zero_set();
 
-    Sparse* getColumnValues(int /*_iPos*/)
-    {
-        return NULL;
-    }
-
     /*
       Config management and GenericType methods overrides
     */
@@ -633,11 +628,6 @@ struct EXTERN_AST SparseBool : GenericType
     virtual int getInvokeNbOut()
     {
         return 1;
-    }
-
-    SparseBool* getColumnValues(int /*_iPos*/)
-    {
-        return NULL;
     }
 
     bool transpose(InternalType *& out)
