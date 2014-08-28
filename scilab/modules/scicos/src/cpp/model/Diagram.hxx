@@ -70,7 +70,7 @@ class Diagram: public BaseObject
 private:
     friend class ::org_scilab_modules_scicos::Model;
 
-    Diagram() : BaseObject(DIAGRAM), title(), path(), properties(), context() {};
+    Diagram() : BaseObject(DIAGRAM), title("Untitled"), path(), properties(), context() {};
     Diagram(const Diagram& o)  : BaseObject(DIAGRAM), title(o.title), path(o.path), properties(o.properties), context(o.context) {};
     ~Diagram() {}
 
