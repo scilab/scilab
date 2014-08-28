@@ -695,7 +695,21 @@ bool getFieldsFromExp(ast::Exp* _pExp, std::list<ExpHistory*>& fields)
         typed_list* pCurrentArgs = execMe.GetArgumentList(pCall->args_get());
 
         bool bErr = getFieldsFromExp(&pCall->name_get(), fields);
-        if (fields.back()->getArgs())
+        if (pCurrentArgs && (*pCurrentArgs)[0]->isString())
+        {
+            // a("b") => a.b or a(x)("b") => a(x).b
+            ExpHistory * pEHParent = fields.back();
+            ast::SimpleVar* pFieldVar = new ast::SimpleVar(pCall->location_get(), *new symbol::Symbol((*pCurrentArgs)[0]->getAs<String>()->get(0)));
+            ExpHistory * pEH = new ExpHistory(pEHParent, pFieldVar);
+            pEH->setLevel(pEHParent->getLevel() + 1);
+            pEH->setExpOwner(true);
+
+            (*pCurrentArgs)[0]->killMe();
+            delete pCurrentArgs;
+
+            fields.push_back(pEH);
+        }
+        else if (fields.back()->getArgs())
         {
             // a(x)(y)(z)
             ExpHistory * pEHParent = fields.back();
@@ -708,6 +722,7 @@ bool getFieldsFromExp(ast::Exp* _pExp, std::list<ExpHistory*>& fields)
         {
             // a(x)
             fields.back()->setArgs(pCurrentArgs);
+            fields.back()->setArgsOwner(true);
         }
 
         if (pCell)
