@@ -151,6 +151,7 @@ public:
         {
             header->set(index, it->name.c_str());
         }
+        mlist->set(0, header);
 
         // set the mlist field value
         index = 1;
