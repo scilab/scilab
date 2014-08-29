@@ -23,6 +23,7 @@
 
 extern "C" {
 #include "sci_malloc.h"
+#include "charEncoding.h"
 }
 
 namespace org_scilab_modules_scicos
@@ -32,7 +33,7 @@ namespace view_scilab
 namespace
 {
 
-static const wchar_t* scsopt = L"scsopt";
+const std::wstring scsopt(L"scsopt");
 
 struct dummy_property
 {
@@ -267,7 +268,7 @@ struct options
         (void) controller;
 
         // Return a dummy 'scsopt'-typed tlist.
-        types::String* header = new types::String(scsopt);
+        types::String* header = new types::String(scsopt.c_str());
 
         types::TList* Scsopt = new types::TList();
         Scsopt->set(0, header);
