@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2014 - Scilab Enterprises - Pierre-Aimé Agnel
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="implicitplot">
+    <refnamediv>
+        <refname>implicitplot</refname>
+        <refpurpose>Implicit plot</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            implicitplot(fun, [x_range, [y_range]])
+            implicitplot(fun, x_range, y_range, [options])
+            implicitplot(f_eval, x_range, y_range, [options])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>fun</term>
+                <listitem>
+                    <para>
+                        a string or a function of variables x and y. The function to plot.
+                        
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>f_eval</term>
+                <listitem>
+                    <para>
+                        a real matrix of size <literal>[length(x_range), length(y_range)]</literal>. The evaluation of the function to plot on all points in <literal>x_range</literal> and <literal>y_range</literal>.
+                        
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x_range</term>
+                <listitem>
+                    <para>
+                        a real vector. The x values over which the function is sampled.
+                        
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y_range</term>
+                <listitem>
+                    <para>
+                        a real vector. The y values over which the function is sampled.
+                        
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>options</term>
+                <listitem>
+                    <para>
+                        a list of options. The plot optional parameters.
+                        
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>implicitplot(fun, x_range, y_range)</literal> draws the implicit function defined by
+            <literal>fun(x, y) = 0</literal> by evaluating <literal>fun</literal> over
+            <varname>x_range</varname> and <varname>y_range</varname>.
+        </para>
+        <para>
+            If <varname>x_range</varname> or <varname>y_range</varname> is omitted, the range chosen is 100 points taken in <latex>$[-1, 1]$</latex>.
+        </para>
+        <para>
+            The function <varname>fun</varname> may be defined as a compiled scilab function, an uncompiled function or a string. The function must
+            take <literal>x</literal> and <literal>y</literal> as input parameters.
+        </para>
+        <para>
+            The options defined by the <varname>options</varname> parameter can be any options of the <link linkend="plot">plot</link> function.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+            // Draw a circle of radius 1
+            implicitplot("x^2 + y^2 - 1")
+ ]]></programlisting>
+        <scilab:image>
+            implicitplot("x^2 + y^2 - 1")
+        </scilab:image>
+        <programlisting role="example"><![CDATA[
+            function z = F(x, y)
+                z = x*(x^2 + y^2) - 5*(x^2 - y^2);
+            endfunction
+
+            x_range = -3:0.1:6;
+            y_range = -5:0.1:5;
+
+            // Draw the curve in the [-3 6] x [-5 5] range
+            implicitplot(F, x_range, y_range)
+ ]]></programlisting>
+        <scilab:image>
+            function z = F(x, y)
+            z = x*(x^2 + y^2) - 5*(x^2 - y^2);
+            endfunction
+            
+            x_range = -3:0.1:6;
+            y_range = -5:0.1:5;
+            
+            implicitplot(F, x_range, y_range)
+        </scilab:image>
+        <programlisting role="example"><![CDATA[
+            function result = fun(x, y)
+                result = 3*x^2*exp(x) - x*y^2 +  exp(y)/(y^2 + 1) - 1
+            endfunction
+
+            x_range = -1:0.1:1;
+            y_range = -10:0.1:10;
+
+            // Draw curve with red dashed line
+            implicitplot(fun, x_range, y_range, "r--")
+ ]]></programlisting>
+        <scilab:image>
+            function result = fun(x, y)
+            result = 3*x^2*exp(x) - x*y^2 +  exp(y)/(y^2 + 1) - 1
+            endfunction
+            
+            x_range = -1:0.1:1;
+            y_range = -10:0.1:10;
+            
+            implicitplot(fun, x_range, y_range, "r--")
+        </scilab:image>
+        <programlisting role="example"><![CDATA[
+        function z = ocho(x, y)
+            z = x*sin(x) - y^2*cos(y);
+        endfunction
+
+        x_range = linspace(-%pi/2, %pi/2, 200);
+        y_range = x_range;
+
+        f_eval = feval(x_range, y_range, ocho);
+
+        // Draws f_eval = 0
+        implicitplot(f_eval, x_range, y_range)
+ ]]></programlisting>
+        <scilab:image>
+            function z = ocho(x, y)
+            z = x*sin(x) - y^2*cos(y);
+            endfunction
+            
+            x_range = linspace(-%pi/2, %pi/2, 200);
+            y_range = x_range;
+            
+            f_eval = feval(x_range, y_range, ocho);
+            
+            // Draws f_eval = 0
+            implicitplot(f_eval, x_range, y_range)
+        </scilab:image>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="plot">plot</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>
