@@ -16,6 +16,7 @@
 
 #include "double.hxx"
 #include "string.hxx"
+#include "list.hxx"
 #include "tlist.hxx"
 
 #include "Controller.hxx"
@@ -44,7 +45,8 @@ struct dummy_property
         (void) adaptor;
         (void) controller;
 
-        return 0;
+        // Return a default empty matrix.
+        return types::Double::Empty();
     }
 
     static bool set(ParamsAdapter& adaptor, types::InternalType* v, Controller& controller)

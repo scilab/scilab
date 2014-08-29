@@ -242,6 +242,9 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
             case PATH:
                 o->getPath(v);
                 return true;
+            case VERSION_NUMBER:
+                o->getVersionNumber(v);
+                return true;
             default:
                 break;
         }
@@ -576,7 +579,7 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
         switch (p)
         {
             case CHILDREN:
-                v = o->getChildren();
+                o->getChildren(v);
                 return true;
             default:
                 break;

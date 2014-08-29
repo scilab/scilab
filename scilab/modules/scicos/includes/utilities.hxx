@@ -106,6 +106,7 @@ enum object_properties_t
     PATH,               //!< model::Diagram::title file path value
     PROPERTIES,         //!< model::Diagram::tol & tf values
     DIAGRAM_CONTEXT,    //!< model::Diagram::context value
+    VERSION_NUMBER,     //!< model::Diagram::version value
 };
 
 #endif /* UTILITIES_HXX_ */

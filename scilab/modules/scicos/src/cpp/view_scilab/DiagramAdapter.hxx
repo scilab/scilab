@@ -39,11 +39,11 @@ public:
     std::wstring getTypeStr();
     std::wstring getShortTypeStr();
 
-    types::InternalType* getContrib() const;
-    void setContrib(types::InternalType* contrib);
+    types::InternalType* getContribContent() const;
+    void setContribContent(types::InternalType* v);
 
 private:
-    types::InternalType* contrib;
+    types::InternalType* contrib_content;
 };
 
 } /* namespace view_scilab */
