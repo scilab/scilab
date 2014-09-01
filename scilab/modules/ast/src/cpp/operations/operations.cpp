@@ -7,6 +7,7 @@
 #include "types_opposite.hxx"
 #include "types_dotmultiplication.hxx"
 #include "types_and.hxx"
+#include "types_or.hxx"
 
 void initOperationArray()
 {
@@ -15,4 +16,5 @@ void initOperationArray()
     fillSubtractFunction();
     fillDotMulFunction();
     fillAndFunction();
+    fillOrFunction();
 }
