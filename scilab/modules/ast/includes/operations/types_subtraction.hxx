@@ -19,7 +19,6 @@
 #include "polynom.hxx"
 #include "sparse.hxx"
 
-// FIXME : remove using namespace
 void fillSubtractFunction();
 
 //define arrays on operation functions

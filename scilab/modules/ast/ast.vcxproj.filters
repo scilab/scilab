@@ -592,9 +592,6 @@
     <ClInclude Include="includes\operations\types_multiplication.hxx">
       <Filter>Header Files\operations</Filter>
     </ClInclude>
-    <ClInclude Include="includes\operations\types_or_and.hxx">
-      <Filter>Header Files\operations</Filter>
-    </ClInclude>
     <ClInclude Include="includes\operations\types_power.hxx">
       <Filter>Header Files\operations</Filter>
     </ClInclude>
@@ -611,6 +608,12 @@
       <Filter>Header Files\operations</Filter>
     </ClInclude>
     <ClInclude Include="includes\operations\types_dotmultiplication.hxx">
+      <Filter>Header Files\operations</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\operations\types_and.hxx">
+      <Filter>Header Files\operations</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\operations\types_or.hxx">
       <Filter>Header Files\operations</Filter>
     </ClInclude>
   </ItemGroup>
@@ -831,9 +834,6 @@
     <ClCompile Include="src\cpp\operations\types_multiplication.cpp">
       <Filter>Source Files\operations</Filter>
     </ClCompile>
-    <ClCompile Include="src\cpp\operations\types_or_and.cpp">
-      <Filter>Source Files\operations</Filter>
-    </ClCompile>
     <ClCompile Include="src\cpp\operations\types_power.cpp">
       <Filter>Source Files\operations</Filter>
     </ClCompile>
@@ -880,6 +880,12 @@
       <Filter>Source Files\operations</Filter>
     </ClCompile>
     <ClCompile Include="src\cpp\operations\types_dotmultiplication.cpp">
+      <Filter>Source Files\operations</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\operations\types_and.cpp">
+      <Filter>Source Files\operations</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\operations\types_or.cpp">
       <Filter>Source Files\operations</Filter>
     </ClCompile>
   </ItemGroup>

@@ -32,7 +32,8 @@ libsciast_la_SOURCES = \
     src/cpp/operations/types_multiplication.cpp \
     src/cpp/operations/types_dotmultiplication.cpp \
     src/cpp/operations/types_comparison_lt_le_gt_ge.cpp \
-    src/cpp/operations/types_or_and.cpp \
+    src/cpp/operations/types_or.cpp \
+    src/cpp/operations/types_and.cpp \
     src/cpp/operations/types_comparison_ne.cpp \
     src/cpp/operations/types_power.cpp \
     src/cpp/operations/types_divide.cpp \
@@ -166,7 +167,8 @@ includes/operations/matrix_right_division.h \
 includes/operations/types_comparison_ne.hxx \
 includes/operations/types_multiplication.hxx \
 includes/operations/types_ldivide.hxx \
-includes/operations/types_or_and.hxx \
+includes/operations/types_and.hxx \
+includes/operations/types_or.hxx \
 includes/operations/matrix_left_division.h \
 includes/operations/types_power.hxx \
 includes/operations/matrix_finite.h \
