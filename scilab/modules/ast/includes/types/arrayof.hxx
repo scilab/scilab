@@ -910,28 +910,27 @@ public :
             }
         }
 
+        if (iNewDimSize == 0)
+        {
+            delete[] piNewDims;
+            return createEmptyDouble();
+        }
+
         if (iDims == 1)
         {
-            if (iNewDimSize == 0)
+            //two cases, depends of original matrix/vector
+            if ((*_pArgs)[0]->isColon() == false && m_iDims == 2 && m_piDims[0] == 1 && m_piDims[1] != 1)
             {
-                return createEmptyDouble();
+                //special case for row vector
+                int piRealDim[2] = {1, iNewDimSize};
+                pOut = createEmpty(2, piRealDim, m_pImgData != NULL);
+                //in this case we have to care of 2nd dimension
+                //iNotEntire = 1;
             }
             else
             {
-                //two cases, depends of original matrix/vector
-                if ((*_pArgs)[0]->isColon() == false && m_iDims == 2 && m_piDims[0] == 1 && m_piDims[1] != 1)
-                {
-                    //special case for row vector
-                    int piRealDim[2] = {1, iNewDimSize};
-                    pOut = createEmpty(2, piRealDim, m_pImgData != NULL);
-                    //in this case we have to care of 2nd dimension
-                    //iNotEntire = 1;
-                }
-                else
-                {
-                    int piRealDim[2] = {iNewDimSize, 1};
-                    pOut = createEmpty(2, piRealDim, m_pImgData != NULL);
-                }
+                int piRealDim[2] = {iNewDimSize, 1};
+                pOut = createEmpty(2, piRealDim, m_pImgData != NULL);
             }
         }
         else
