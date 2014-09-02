@@ -1055,7 +1055,7 @@ template<class T, class U, class O>
 InternalType* sub_SC_E(T *_pL, U *_pR)
 {
     O* pOut = new O(0.0, 0.0);
-    sub(_pL->get(0), _pL->getImg(0), pOut->get(), pOut->getImg());
+    sub(_pL->get(0), _pL->getImg(0), (size_t)1, pOut->get(), pOut->getImg());
     return pOut;
 }
 

@@ -257,7 +257,7 @@ template<typename T, typename O> inline static void sub(T l, O* o)
 }
 
 //x1c - []
-template<typename T, typename O> inline static void sub(T l, T lc, O* o, O* oc)
+template<typename T, typename O> inline static void sub(T l, T lc, size_t /*size*/, O* o, O* oc)
 {
     *o = (O)l;
     *oc = (O)lc;
