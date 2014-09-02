@@ -1520,88 +1520,117 @@ InternalType* insertionCall(const ast::Exp& e, typed_list* _pArgs, InternalType*
     else if (_pInsert->isDouble() && _pInsert->getAs<Double>()->isEmpty() && _pVar->isStruct() == false && _pVar->isList() == false)
     {
         //insert [] so deletion except for Struct and List which can insert []
-        if (_pVar->isDouble())
+        InternalType::ScilabType varType = _pVar->getType();
+        switch (varType)
         {
-            pOut = _pVar->getAs<Double>()->remove(_pArgs);
-        }
-        else if (_pVar->isString())
-        {
-            pOut = _pVar->getAs<String>()->remove(_pArgs);
-        }
-        else if (_pVar->isCell())
-        {
-            pOut = _pVar->getAs<Cell>()->remove(_pArgs);
-        }
-        else if (_pVar->isBool())
-        {
-            pOut = _pVar->getAs<Bool>()->remove(_pArgs);
-        }
-        else if (_pVar->isPoly())
-        {
-            pOut = _pVar->getAs<Polynom>()->remove(_pArgs);
-        }
-        else if (_pVar->isInt8())
-        {
-            pOut = _pVar->getAs<Int8>()->remove(_pArgs);
-        }
-        else if (_pVar->isUInt8())
-        {
-            pOut = _pVar->getAs<UInt8>()->remove(_pArgs);
-        }
-        else if (_pVar->isInt16())
-        {
-            pOut = _pVar->getAs<Int16>()->remove(_pArgs);
-        }
-        else if (_pVar->isUInt16())
-        {
-            pOut = _pVar->getAs<UInt16>()->remove(_pArgs);
-        }
-        else if (_pVar->isInt32())
-        {
-            pOut = _pVar->getAs<Int32>()->remove(_pArgs);
-        }
-        else if (_pVar->isUInt32())
-        {
-            pOut = _pVar->getAs<UInt32>()->remove(_pArgs);
-        }
-        else if (_pVar->isInt64())
-        {
-            pOut = _pVar->getAs<Int64>()->remove(_pArgs);
-        }
-        else if (_pVar->isUInt64())
-        {
-            pOut = _pVar->getAs<UInt64>()->remove(_pArgs);
-        }
-        else if (_pVar->isStruct())
-        {
-            // a("b") = [] is not a deletion !!
-            Struct* pStr = _pVar->getAs<Struct>();
-
-            pOut = _pVar->getAs<Struct>()->insert(_pArgs, _pInsert);
-        }
-        else if (_pVar->isHandle())
-        {
-            InternalType* pRet = NULL;
-
-            types::GraphicHandle* pH = _pVar->getAs<GraphicHandle>();
-            types::String *pS = (*_pArgs)[0]->getAs<types::String>();
-
-            typed_list in;
-            typed_list out;
-            optional_list opt;
-            ast::ExecVisitor exec;
-
-            in.push_back(pH);
-            in.push_back(pS);
-            in.push_back(_pInsert);
-
-            Function* pCall = (Function*)symbol::Context::getInstance()->get(symbol::Symbol(L"set"));
-            Callable::ReturnValue ret =  pCall->call(in, opt, 1, out, &exec);
-            if (ret == Callable::OK)
+            case InternalType::ScilabDouble :
             {
-                pRet = _pVar;
+                pOut = _pVar->getAs<Double>()->remove(_pArgs);
+                break;
             }
-            pOut = pRet;
+            case InternalType::ScilabString :
+            {
+                pOut = _pVar->getAs<String>()->remove(_pArgs);
+                break;
+            }
+            case InternalType::ScilabCell :
+            {
+                pOut = _pVar->getAs<Cell>()->remove(_pArgs);
+                break;
+            }
+            case InternalType::ScilabBool :
+            {
+                pOut = _pVar->getAs<Bool>()->remove(_pArgs);
+                break;
+            }
+            case InternalType::ScilabPolynom :
+            {
+                pOut = _pVar->getAs<Polynom>()->remove(_pArgs);
+                break;
+            }
+            case InternalType::ScilabInt8 :
+            {
+                pOut = _pVar->getAs<Int8>()->remove(_pArgs);
+                break;
+            }
+            case InternalType::ScilabUInt8 :
+            {
+                pOut = _pVar->getAs<UInt8>()->remove(_pArgs);
+                break;
+            }
+            case InternalType::ScilabInt16 :
+            {
+                pOut = _pVar->getAs<Int16>()->remove(_pArgs);
+                break;
+            }
+            case InternalType::ScilabUInt16 :
+            {
+                pOut = _pVar->getAs<UInt16>()->remove(_pArgs);
+                break;
+            }
+            case InternalType::ScilabInt32 :
+            {
+                pOut = _pVar->getAs<Int32>()->remove(_pArgs);
+                break;
+            }
+            case InternalType::ScilabUInt32 :
+            {
+                pOut = _pVar->getAs<UInt32>()->remove(_pArgs);
+                break;
+            }
+            case InternalType::ScilabInt64 :
+            {
+                pOut = _pVar->getAs<Int64>()->remove(_pArgs);
+                break;
+            }
+            case InternalType::ScilabUInt64 :
+            {
+                pOut = _pVar->getAs<UInt64>()->remove(_pArgs);
+                break;
+            }
+            case InternalType::ScilabSparse :
+            {
+                pOut = _pVar->getAs<Sparse>()->remove(_pArgs);
+                break;
+            }
+            case InternalType::ScilabSparseBool :
+            {
+                pOut = _pVar->getAs<SparseBool>()->remove(_pArgs);
+                break;
+            }
+            case InternalType::ScilabStruct :
+            {
+                pOut = _pVar->getAs<Struct>()->insert(_pArgs, _pInsert);
+                break;
+            }
+            case InternalType::ScilabHandle :
+            {
+                types::GraphicHandle* pH = _pVar->getAs<GraphicHandle>();
+                types::String *pS = (*_pArgs)[0]->getAs<types::String>();
+
+                typed_list in;
+                typed_list out;
+                optional_list opt;
+                ast::ExecVisitor exec;
+
+                in.push_back(pH);
+                in.push_back(pS);
+                in.push_back(_pInsert);
+
+                Function* pCall = (Function*)symbol::Context::getInstance()->get(symbol::Symbol(L"set"));
+                Callable::ReturnValue ret =  pCall->call(in, opt, 1, out, &exec);
+                if (ret == Callable::OK)
+                {
+                    pOut = _pVar;
+                }
+                break;
+            }
+            default :
+            {
+                //overload !
+                pOut = callOverload(e, L"i", _pArgs, _pInsert, _pVar);
+                break;
+            }
         }
     }
     else if (_pVar == NULL || (_pVar->isDouble() && _pVar->getAs<Double>()->getSize() == 0))
