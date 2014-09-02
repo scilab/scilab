@@ -61,10 +61,10 @@ types::InternalType* get_ports_property(const Adaptor& adaptor, object_propertie
         }
         case DATATYPE_TYPE:
             datatypeIndex++;
-            // no break
+        // no break
         case DATATYPE_COLS:
             datatypeIndex++;
-            // no break
+        // no break
         case DATATYPE_ROWS:
         {
             datatypeIndex++;
@@ -90,14 +90,12 @@ types::InternalType* get_ports_property(const Adaptor& adaptor, object_propertie
         }
         case IMPLICIT:
         {
-            static const wchar_t E[] = L"E";
-            static const wchar_t I[] = L"I";
             types::String* o = new types::String(ids.size(), 1);
             for (std::vector<ScicosID>::iterator it = ids.begin(); it != ids.end(); ++it, ++i)
             {
                 bool v;
                 controller.getObjectProperty(*it, PORT, p, v);
-                o->set(i, (v == false) ? E : I);
+                o->set(i, (v == false) ? L"E" : L"I");
             }
             return o;
         }
@@ -178,16 +176,13 @@ bool set_ports_property(const Adaptor& adaptor, object_properties_t port_kind, C
             }
             case IMPLICIT:
             {
-                static const std::wstring E = L"E";
-                static const std::wstring I = L"I";
-
                 for (std::vector<ScicosID>::iterator it = ids.begin(); it != ids.end(); ++it, ++i)
                 {
-                    if (current->get(i) == I)
+                    if (current->get(i) == L"I")
                     {
                         controller.setObjectProperty(*it, PORT, p, true);
                     }
-                    else if (current->get(i) == E)
+                    else if (current->get(i) == L"E")
                     {
                         controller.setObjectProperty(*it, PORT, p, false);
                     }
@@ -237,10 +232,10 @@ bool set_ports_property(const Adaptor& adaptor, object_properties_t port_kind, C
 
             case DATATYPE_TYPE:
                 datatypeIndex++;
-                // no break
+            // no break
             case DATATYPE_COLS:
                 datatypeIndex++;
-                // no break
+            // no break
             case DATATYPE_ROWS:
             {
                 datatypeIndex++;
@@ -338,10 +333,10 @@ void updateNewPort(ScicosID oldPort, int newPort, Controller& controller,
         {
             case DATATYPE_TYPE:
                 datatypeIndex++;
-                // no break
+            // no break
             case DATATYPE_COLS:
                 datatypeIndex++;
-                // no break
+            // no break
             case DATATYPE_ROWS:
             {
                 datatypeIndex++;
@@ -378,10 +373,10 @@ bool addNewPort(ScicosID newPortID, int newPort, const std::vector<ScicosID>& ch
         {
             case DATATYPE_TYPE:
                 datatypeIndex++;
-                // no break
+            // no break
             case DATATYPE_COLS:
                 datatypeIndex++;
-                // no break
+            // no break
             case DATATYPE_ROWS:
             {
                 datatypeIndex++;
