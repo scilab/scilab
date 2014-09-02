@@ -2427,7 +2427,7 @@ template<> InternalType* add_M_M<Sparse, Double, Sparse>(Sparse* _pL, Double* _p
 
             for (int i = 0 ; i < size ; i++)
             {
-                pOut->set(i, i, pOut->get(i, i) + cplx_add, false);
+                pOut->set(i, i, pOut->getImg(i, i) + cplx_add, false);
             }
         }
         else

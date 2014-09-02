@@ -2294,62 +2294,18 @@ template<> InternalType* sub_M_M<Double, Polynom, Polynom>(Double* _pL, Polynom*
 //sp - sp
 template<> InternalType* sub_M_M<Sparse, Sparse, Sparse>(Sparse* _pL, Sparse* _pR)
 {
-    Sparse* pOut = NULL;
     //check scalar hidden in a sparse ;)
-    if (_pL->getRows() == 1 && _pL->getCols() == 1)
+    if (_pL->isScalar() || _pR->isScalar())
     {
-        //do scalar - sp
-        Double* pDbl = NULL;
-        if (_pL->isComplex())
-        {
-            std::complex<double> dbl = _pL->getImg(0, 0);
-            pDbl = new Double(dbl.real(), dbl.imag());
-        }
-        else
-        {
-            pDbl = new Double(_pL->get(0, 0));
-        }
-
-        //AddSparseToDouble(_pR, pDbl, (GenericType**)pOut);
-        delete pDbl;
-        return pOut;
-    }
-
-    if (_pR->getRows() == 1 && _pR->getCols() == 1)
-    {
-        //do sp - scalar
-        Double* pDbl = NULL;
-        if (_pR->isComplex())
-        {
-            std::complex<double> dbl = _pR->getImg(0, 0);
-            pDbl = new Double(dbl.real(), dbl.imag());
-        }
-        else
-        {
-            pDbl = new Double(_pR->get(0, 0));
-        }
-
-        //AddSparseToDouble(_pL, pDbl, (GenericType**)pOut);
-        delete pDbl;
-        return 0;
+        // scalar - sp  or  sp - scalar
+        // call Overload
+        return NULL;
     }
 
     if (_pL->getRows() != _pR->getRows() || _pL->getCols() != _pR->getCols())
     {
         //dimensions not match
         throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
-    }
-
-    if (_pL->nonZeros() == 0)
-    {
-        //sp([]) - sp
-        return _pR;
-    }
-
-    if (_pR->nonZeros() == 0)
-    {
-        //sp - sp([])
-        return _pL;
     }
 
     return _pL->substract(*_pR);
@@ -2367,7 +2323,7 @@ template<> InternalType* sub_M_M<Double, Sparse, Double>(Double* _pL, Sparse* _p
     {
         //d - sp
         pOut = (Double*)_pL->clone();
-        pOut->setComplex(bComplex1 | bComplex2);
+        pOut->setComplex(bComplex1 || bComplex2);
         if (bComplex2)
         {
             std::complex<double> dbl = _pR->getImg(0, 0);
@@ -2385,7 +2341,7 @@ template<> InternalType* sub_M_M<Double, Sparse, Double>(Double* _pL, Sparse* _p
     if (_pL->isScalar())
     {
         //d - SP
-        pOut = new Double(_pR->getRows(), _pR->getCols(), bComplex1 | bComplex2);
+        pOut = new Double(_pR->getRows(), _pR->getCols(), bComplex1 || bComplex2);
         int iSize = _pR->getSize();
         double dblVal = _pL->get(0);
         double dblValI = 0;
@@ -2434,11 +2390,11 @@ template<> InternalType* sub_M_M<Double, Sparse, Double>(Double* _pL, Sparse* _p
         return pOut;
     }
 
-    if (_pL->isScalar())
+    if (_pR->isScalar())
     {
         //D - sp
         pOut = (Double*)_pR->clone();
-        pOut->setComplex(bComplex1 | bComplex2);
+        pOut->setComplex(bComplex1 || bComplex2);
 
         if (pOut->isComplex())
         {
@@ -2470,14 +2426,14 @@ template<> InternalType* sub_M_M<Double, Sparse, Double>(Double* _pL, Sparse* _p
     {
         //D - SP
         pOut = (Double*)_pL->clone();
-        pOut->setComplex(bComplex1 | bComplex2);
+        pOut->setComplex(bComplex1 || bComplex2);
 
         int nonZeros = static_cast<int>(_pR->nonZeros());
         int* pRows = new int[nonZeros * 2];
         _pR->outputRowCol(pRows);
         int* pCols = pRows + nonZeros;
 
-        if (bComplex1)
+        if (bComplex1 || bComplex2)
         {
             for (int i = 0 ; i < nonZeros ; i++)
             {
@@ -2515,12 +2471,13 @@ template<> InternalType* sub_M_M<Sparse, Double, Double>(Sparse* _pL, Double* _p
     int iOne = 1; //fortran
     bool bComplex1 = _pL->isComplex();
     bool bComplex2 = _pR->isComplex();
+    bool bComplexOut = bComplex1 || bComplex2;
 
     if (_pL->isScalar() && _pR->isScalar())
     {
         //sp - d
         pOut = (Double*)_pR->clone();
-        pOut->setComplex(bComplex1 | bComplex2);
+        pOut->setComplex(bComplexOut);
         if (bComplex1)
         {
             std::complex<double> dbl = _pL->getImg(0, 0);
@@ -2538,7 +2495,7 @@ template<> InternalType* sub_M_M<Sparse, Double, Double>(Sparse* _pL, Double* _p
     if (_pR->isScalar())
     {
         //SP - d
-        pOut = new Double(_pL->getRows(), _pL->getCols(), bComplex1 | bComplex2);
+        pOut = new Double(_pL->getRows(), _pL->getCols(), bComplexOut);
         int iSize = _pL->getSize();
         double dblVal = -_pR->get(0);
         double dblValI = 0;
@@ -2591,7 +2548,7 @@ template<> InternalType* sub_M_M<Sparse, Double, Double>(Sparse* _pL, Double* _p
     {
         //sp - D
         pOut = (Double*)_pR->clone();
-        pOut->setComplex(bComplex1 | bComplex2);
+        pOut->setComplex(bComplexOut);
 
         if (bComplex1)
         {
@@ -2619,46 +2576,45 @@ template<> InternalType* sub_M_M<Sparse, Double, Double>(Sparse* _pL, Double* _p
     }
 
 
-    if (_pL->getRows() == _pR->getRows() && _pL->getCols() == _pR->getCols())
-    {
-        //SP - D
-        pOut = (Double*)_pR->clone();
-        pOut->setComplex(bComplex1 | bComplex2);
-
-        int nonZeros = static_cast<int>(_pL->nonZeros());
-        int* pRows = new int[nonZeros * 2];
-        _pL->outputRowCol(pRows);
-        int* pCols = pRows + nonZeros;
-
-        if (bComplex1)
-        {
-            for (int i = 0 ; i < nonZeros ; i++)
-            {
-                int iRow = static_cast<int>(pRows[i]) - 1;
-                int iCol = static_cast<int>(pCols[i]) - 1;
-                std::complex<double> dbl = _pL->getImg(iRow, iCol);
-                pOut->set(iRow, iCol, dbl.real() - pOut->get(iRow, iCol));
-                pOut->setImg(iRow, iCol, dbl.imag() - pOut->getImg(iRow, iCol));
-            }
-        }
-        else
-        {
-            for (int i = 0 ; i < nonZeros ; i++)
-            {
-                int iRow = static_cast<int>(pRows[i]) - 1;
-                int iCol = static_cast<int>(pCols[i]) - 1;
-                pOut->set(iRow, iCol, _pL->get(iRow, iCol) - pOut->get(iRow, iCol));
-            }
-        }
-
-        //clear
-        delete[] pRows;
-        return pOut;
-    }
-    else
+    if (_pL->getRows() != _pR->getRows() || _pL->getCols() != _pR->getCols())
     {
         throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
     }
+
+    //SP - D
+    pOut = new types::Double(_pL->getRows(), _pL->getCols(), _pL->isComplex());
+    _pL->fill(*pOut);
+    int iSize = pOut->getSize();
+    pOut->setComplex(bComplexOut);
+    double* pdblOutR = pOut->get();
+    double* pdblOutI = pOut->getImg(); //can be null for non complex output
+    double* pdblRR = _pR->get();
+    double* pdblRI = _pR->getImg(); //can be null for non complex output
+
+    if (bComplex1)
+    {
+        if (bComplex2)
+        {
+            sub(pdblOutR, pdblOutI, iSize, pdblRR, pdblRI, pdblOutR, pdblOutI);
+        }
+        else
+        {
+            sub(pdblOutR, pdblOutI, iSize, pdblRR, pdblOutR, pdblOutI);
+        }
+    }
+    else
+    {
+        if (bComplex2)
+        {
+            sub(pdblOutR, iSize, pdblRR, pdblRI, pdblOutR, pdblOutI);
+        }
+        else
+        {
+            sub(pdblOutR, iSize, pdblRR, pdblOutR);
+        }
+    }
+
+    return pOut;
 }
 
 //[] - sp
