@@ -332,8 +332,10 @@ struct odstate
 
     static types::InternalType* get(const ModelAdapter& adaptor, const Controller& controller)
     {
-        // FIXME: get odstate
-        return 0;
+        model::Block* adaptee = adaptor.getAdaptee();
+
+        // Return a default empty list.
+        return new types::List();
     }
 
     static bool set(ModelAdapter& adaptor, types::InternalType* v, Controller& controller)
@@ -483,8 +485,10 @@ struct opar
 
     static types::InternalType* get(const ModelAdapter& adaptor, const Controller& controller)
     {
-        // FIXME: get opar
-        return 0;
+        model::Block* adaptee = adaptor.getAdaptee();
+
+        // Return a default empty list.
+        return new types::List();
     }
 
     static bool set(ModelAdapter& adaptor, types::InternalType* v, Controller& controller)
@@ -742,8 +746,10 @@ struct equations
 
     static types::InternalType* get(const ModelAdapter& adaptor, const Controller& controller)
     {
-        // FIXME: get equations
-        return 0;
+        model::Block* adaptee = adaptor.getAdaptee();
+
+        // Return a default empty list.
+        return new types::List();
     }
 
     static bool set(ModelAdapter& adaptor, types::InternalType* v, Controller& controller)

@@ -78,6 +78,16 @@ types::InternalType* get_ports_property(const Adaptor& adaptor, object_propertie
             }
             return o;
         }
+        case FIRING:
+        {
+            double* data;
+            types::Double* o = new types::Double(ids.size(), 1, &data);
+            for (std::vector<ScicosID>::iterator it = ids.begin(); it != ids.end(); ++it, ++i)
+            {
+                controller.getObjectProperty(*it, PORT, p, data[i]);
+            }
+            return o;
+        }
         case IMPLICIT:
         {
             static const wchar_t E[] = L"E";
