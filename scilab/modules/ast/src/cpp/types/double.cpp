@@ -405,17 +405,17 @@ bool Double::subMatrixToString(wostringstream& ostr, int* _piDims, int _iDims)
 
         if (isComplex() == false)
         {
+            int iLen = 0;
             for (int i = m_iCols1PrintState ; i < getCols() ; i++)
             {
-                int iLen = 0;
                 _piDims[0] = 0;
                 _piDims[1] = i;
                 int iPos = getIndex(_piDims);
 
                 DoubleFormat df;
                 getDoubleFormat(ZeroIsZero(m_pRealData[iPos]), &df);
-                iLen = df.iWidth + static_cast<int>(ostemp.str().size());
-                if (iLen > iLineLen)
+                iLen = static_cast<int>(ostemp.str().size()) + SIZE_BETWEEN_TWO_VALUES + df.iSignLen + df.iWidth;
+                if (iLen >= iLineLen - 1)
                 {
                     //Max length, new line
                     iCurrentLine += 4; //"column x to Y" + empty line + value + empty line
@@ -445,52 +445,25 @@ bool Double::subMatrixToString(wostringstream& ostr, int* _piDims, int _iDims)
         }
         else //complex case
         {
+            int iTotalLen = 0;
+            int iLen = 0;
+
             for (int i = m_iCols1PrintState ; i < getCols() ; i++)
             {
-                int iLen = 0;
                 _piDims[0] = 0;
                 _piDims[1] = i;
-                int iTotalLen = 0;
                 int iPos = getIndex(_piDims);
 
                 DoubleFormat dfR, dfI;
                 getComplexFormat(ZeroIsZero(m_pRealData[iPos]), ZeroIsZero(m_pImgData[iPos]), &iTotalLen, &dfR, &dfI);
-
-                if (isRealZero(m_pImgData[iPos]))
-                {
-                    if (isRealZero(m_pRealData[iPos]))
-                    {
-                        iLen += 1; //"0"
-                    }
-                    else
-                    {
-                        iLen        += dfR.iWidth;
-                        dfI.iWidth    = 0;
-                    }
-                }
-                else
-                {
-                    if (isRealZero(m_pRealData[iPos]))
-                    {
-                        iLen        += dfI.iWidth;
-                        dfR.iWidth    = 0;
-                    }
-                    else
-                    {
-                        iLen += dfR.iWidth;
-                        iLen += SIZE_BETWEEN_REAL_COMPLEX;
-                        iLen += dfI.iWidth;
-                    }
-                }
-
-                if (iLen > iLineLen)
+                iLen = static_cast<int>(ostemp.str().size()) + SIZE_BETWEEN_TWO_VALUES + iTotalLen;
+                if (iLen >= iLineLen - 1)
                 {
                     //Max length, new line
                     iCurrentLine += 4; //"column x to Y" + empty line + value + empty line
                     if ((iMaxLines == 0 && iCurrentLine >= MAX_LINES) || (iMaxLines != 0 && iCurrentLine >= iMaxLines))
                     {
                         m_iCols1PrintState = iLastVal;
-                        ostr << endl << endl;
                         return false;
                     }
 
@@ -501,7 +474,7 @@ bool Double::subMatrixToString(wostringstream& ostr, int* _piDims, int _iDims)
                 }
 
                 ostemp << SPACE_BETWEEN_TWO_VALUES;
-                addDoubleComplexValue(&ostemp, ZeroIsZero(m_pRealData[iPos]), ZeroIsZero(m_pImgData[iPos]), iLen, &dfR, &dfI);
+                addDoubleComplexValue(&ostemp, ZeroIsZero(m_pRealData[iPos]), ZeroIsZero(m_pImgData[iPos]), iTotalLen, &dfR, &dfI);
             }
 
             if (iLastVal != 0)

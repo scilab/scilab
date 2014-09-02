@@ -743,7 +743,7 @@ wstring Polynom::getRowString(int* _piDims, int _iDims, bool _bComplex)
             get(iPos)->toStringReal(getVariableName(), &listExpR, &listCoefR);
         }
 
-        if (iLen != 0 && static_cast<int>(iLen + listExpR.front().size()) > iLineLen)
+        if (iLen != 0 && static_cast<int>(listExpR.front().size()) + iLen >= iLineLen - 1)
         {
             //flush strean
             if (i == iLastFlush + 1)
@@ -755,12 +755,12 @@ wstring Polynom::getRowString(int* _piDims, int _iDims, bool _bComplex)
                 ostr << endl << L"         Column " << iLastFlush + 1 /* 2 is better than 1, no ? */ << L" to " << i << endl << endl;
             }
 
-            iLastFlush    = i;
-            iLen                = 0;
+            iLastFlush = i;
+            iLen = 0;
             ostr << osExp.str() << endl;
             ostr << osCoef.str() << endl;
-            osExp.str(L"");
-            osCoef.str(L"");
+            osExp.str(L" ");
+            osCoef.str(L" ");
         }
 
         if (listCoefR.size() > 1)

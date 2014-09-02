@@ -175,29 +175,36 @@ void getComplexFormat(double _dblR, double _dblI, int *_piTotalWidth, DoubleForm
     getDoubleFormat(_dblI, _pDFI);
 
     *_piTotalWidth = 0;
-    if (_dblI == 0)
+    if (isRealZero(_dblI))
     {
-        if (_dblR == 0)
+        if (isRealZero(_dblR))
         {
             *_piTotalWidth += 1;    //"0"
+            _pDFI->iWidth = 0;
+            _pDFI->iSignLen = 0;
         }
         else
         {
-            *_piTotalWidth += _pDFR->iWidth;
+            *_piTotalWidth += _pDFR->iWidth + _pDFR->iSignLen;
             _pDFI->iWidth = 0;
+            _pDFI->iSignLen = 0;
         }
     }
     else
     {
-        if (_dblR == 0)
+        if (isRealZero(_dblR))
         {
-            *_piTotalWidth += _pDFI->iWidth;
+            *_piTotalWidth += _pDFI->iWidth + _pDFI->iSignLen;
             _pDFR->iWidth = 0;
         }
         else
         {
-            *_piTotalWidth += _pDFR->iWidth + SIGN_LENGTH + _pDFI->iWidth;
+            *_piTotalWidth += _pDFR->iWidth + _pDFR->iSignLen + _pDFI->iWidth + _pDFI->iSignLen;
         }
+
+        // i character
+        _pDFI->iWidth += 1;
+        *_piTotalWidth += 1;
     }
 }
 
@@ -234,12 +241,12 @@ void addDoubleValue(std::wostringstream * _postr, double _dblVal, DoubleFormat *
         if (ISNAN(_dblVal))
         {
             //NaN
-            os_swprintf(pwstOutput, 32, L"%ls%*ls", pwstSign, _pDF->iPrec, L"Nan");
+            os_swprintf(pwstOutput, 32, L"%ls %*ls", pwstSign, _pDF->iPrec, L"Nan");
         }
         else if (!finite(_dblVal))
         {
             //Inf
-            os_swprintf(pwstOutput, 32, L"%ls%*ls", pwstSign, _pDF->iPrec, L"Inf");
+            os_swprintf(pwstOutput, 32, L"%ls %*ls", pwstSign, _pDF->iPrec, L"Inf");
         }
         else if (_pDF->bExp)
         {
@@ -262,11 +269,11 @@ void addDoubleValue(std::wostringstream * _postr, double _dblVal, DoubleFormat *
 
             if (_pDF->bPrintPoint)
             {
-                os_swprintf(pwstFormat, 32, L"%ls%%#.0f%%0%d.0fD%%+d", pwstSign, _pDF->iPrec);
+                os_swprintf(pwstFormat, 32, L"%ls %%#.0f%%0%d.0fD%%+d", pwstSign, _pDF->iPrec);
             }
             else
             {
-                os_swprintf(pwstFormat, 32, L"%ls%%.0f%%0%d.0fD%%+d", pwstSign, _pDF->iPrec);
+                os_swprintf(pwstFormat, 32, L"%ls %%.0f%%0%d.0fD%%+d", pwstSign, _pDF->iPrec);
             }
 
             os_swprintf(pwstOutput, 32, pwstFormat, dblEnt, dblDec, (int)dblTemp);
@@ -275,11 +282,11 @@ void addDoubleValue(std::wostringstream * _postr, double _dblVal, DoubleFormat *
         {
             if (_pDF->bPrintPoint)
             {
-                os_swprintf(pwstFormat, 32, L"%ls%%#-%d.%df", pwstSign, _pDF->iWidth - 1, _pDF->iPrec);
+                os_swprintf(pwstFormat, 32, L"%ls %%#-%d.%df", pwstSign, _pDF->iWidth - 1, _pDF->iPrec);
             }
             else
             {
-                os_swprintf(pwstFormat, 32, L"%ls%%-%d.%df", pwstSign, _pDF->iWidth - 2, _pDF->iPrec);  //-2 no point needed
+                os_swprintf(pwstFormat, 32, L"%ls %%-%d.%df", pwstSign, _pDF->iWidth - 2, _pDF->iPrec);  //-2 no point needed
             }
 
             os_swprintf(pwstOutput, 32, pwstFormat, fabs(_dblVal));
@@ -289,7 +296,7 @@ void addDoubleValue(std::wostringstream * _postr, double _dblVal, DoubleFormat *
     }
     else if (wcslen(pwstSign) != 0)
     {
-        os_swprintf(pwstOutput, 32, L"%ls", pwstSign);
+        os_swprintf(pwstOutput, 32, L"%ls ", pwstSign);
         *_postr << pwstOutput;
     }
 }
@@ -377,7 +384,6 @@ void addDoubleComplexValue(wostringstream * _postr, double _dblR, double _dblI, 
             df.bExp = _pDFR->bExp;
 
             addDoubleValue(&ostemp, _dblR, &df);
-            ostemp << SPACE_BETWEEN_REAL_COMPLEX;
 
             //I
             df.iPrec = _pDFI->iPrec;

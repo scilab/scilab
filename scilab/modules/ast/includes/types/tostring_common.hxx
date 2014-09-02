@@ -17,18 +17,15 @@
 #include "os_swprintf.h"
 #include "dynlib_ast.h"
 
-#define SIZE_BETWEEN_TWO_VALUES         2
-#define SPACE_BETWEEN_TWO_VALUES        L"  "
-#define SIZE_BETWEEN_REAL_COMPLEX       1
-#define SPACE_BETWEEN_REAL_COMPLEX      L" "
+#define SIZE_BETWEEN_TWO_VALUES         1
+#define SPACE_BETWEEN_TWO_VALUES        L" "
 #define SIZE_BOOL                       1
 #define SIZE_BETWEEN_BOOL               1
 #define SPACE_BETWEEN_BOOL              L" "
 #define SIGN_LENGTH                     2
-#define NO_SIGN                         L" "
-#define MINUS_STRING                    L"-"
-#define PLUS_STRING                     L"+"
-#define MINUS_STRING_INT                L" -"
+#define NO_SIGN                         L"  "
+#define MINUS_STRING                    L" -"
+#define PLUS_STRING                     L" +"
 #define SYMBOL_I                        L"i"
 
 
