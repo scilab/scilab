@@ -209,8 +209,8 @@ struct exprs
         std::vector<std::string> exprs;
         controller.getObjectProperty(adaptee->id(), adaptee->kind(), EXPRS, exprs);
 
-        types::String* o = new types::String(exprs.size(), 1);
-        for (size_t i = 0; i < exprs.size(); ++i)
+        types::String* o = new types::String((int)exprs.size(), 1);
+        for (int i = 0; i < (int)exprs.size(); ++i)
         {
             o->set(i, exprs[i].data());
         }
@@ -230,7 +230,7 @@ struct exprs
 
             model::Block* adaptee = adaptor.getAdaptee();
             std::vector<std::string> exprs (current->getSize());
-            for (size_t i = 0; i < exprs.size(); ++i)
+            for (int i = 0; i < (int)exprs.size(); ++i)
             {
                 char* c_str = wide_string_to_UTF8(current->get(i));
                 exprs[i] = std::string(c_str);

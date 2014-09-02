@@ -56,7 +56,7 @@ struct sim
         }
         else
         {
-            types::Double* Api = new types::Double(1, 1, static_cast<double>(api));
+            types::Double* Api = new types::Double(static_cast<double>(api));
             types::List* o = new types::List();
             o->set(0, Name);
             o->set(1, Api);
@@ -254,7 +254,7 @@ struct state
         controller.getObjectProperty(adaptee->id(), adaptee->kind(), STATE, state);
 
         double* data;
-        types::Double* o = new types::Double(state.size(), 1, &data);
+        types::Double* o = new types::Double((int)state.size(), 1, &data);
 
         std::copy(state.begin(), state.end(), data);
 
@@ -296,7 +296,7 @@ struct dstate
         controller.getObjectProperty(adaptee->id(), adaptee->kind(), DSTATE, dstate);
 
         double* data;
-        types::Double* o = new types::Double(dstate.size(), 1, &data);
+        types::Double* o = new types::Double((int)dstate.size(), 1, &data);
 
         std::copy(dstate.begin(), dstate.end(), data);
 
@@ -375,7 +375,7 @@ struct rpar
             controller.getObjectProperty(adaptee->id(), adaptee->kind(), RPAR, rpar);
 
             double *data;
-            types::Double* o = new types::Double(rpar.size(), 1, &data);
+            types::Double* o = new types::Double((int)rpar.size(), 1, &data);
             std::copy(rpar.begin(), rpar.end(), data);
 
             return o;
@@ -442,7 +442,7 @@ struct ipar
         controller.getObjectProperty(adaptee->id(), adaptee->kind(), IPAR, ipar);
 
         double *data;
-        types::Double* o = new types::Double(ipar.size(), 1, &data);
+        types::Double* o = new types::Double((int)ipar.size(), 1, &data);
 
         std::transform(ipar.begin(), ipar.end(), data, toDouble);
 

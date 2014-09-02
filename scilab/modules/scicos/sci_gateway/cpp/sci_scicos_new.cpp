@@ -60,9 +60,9 @@ types::InternalType * alloc_and_set(kind_t k, types::String* type_name, types::t
     Adaptor* adaptor = new Adaptor(static_cast<Adaptee*>(controller.getObject(o)));
 
     // the first header entry is the type
-    for (size_t i = 1; i < in.size(); i++)
+    for (int i = 1; i < (int)in.size(); i++)
     {
-        std::wstring name = type_name->get(i);
+        std::wstring name (type_name->get(i));
         if (!adaptor->setProperty(name, in[i], controller))
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: unable to set \"%ls\".\n"), funame.data(), i, name.data());
@@ -79,9 +79,9 @@ types::InternalType * alloc_and_set_as_mlist(kind_t k, types::String* type_name,
 {
     // check header
     Adaptor adaptor = Adaptor(0);
-    for (size_t i = 1; i < in.size(); i++)
+    for (int i = 1; i < (int)in.size(); i++)
     {
-        std::wstring name = type_name->get(i);
+        std::wstring name(type_name->get(i));
         if (!adaptor.hasProperty(name))
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: unable to set \"%ls\".\n"), funame.data(), i, name.data());
@@ -92,7 +92,7 @@ types::InternalType * alloc_and_set_as_mlist(kind_t k, types::String* type_name,
     // copy the data
     types::MList* mlist = new types::MList();
     mlist->set(0, type_name->clone());
-    for (size_t i = 1; i < in.size(); i++)
+    for (int i = 1; i < (int)in.size(); i++)
     {
         mlist->set(i, in[i]);
     }
