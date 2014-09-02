@@ -61,6 +61,7 @@ public :
     static Function*        createFunction(std::wstring _wstName, OLDGW_FUNC _pFunc, std::wstring _wstModule);
     static Function*        createFunction(std::wstring _wstName, MEXGW_FUNC _pFunc, std::wstring _wstModule);
     static Function*        createFunction(std::wstring _wstName, GW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, std::wstring _wstModule);
+    static Function*        createFunction(std::wstring _wstName, GW_FUNC_OPT _pFunc, LOAD_DEPS _pLoadDeps, std::wstring _wstModule);
     static Function*        createFunction(std::wstring _wstName, OLDGW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, std::wstring _wstModule);
     static Function*        createFunction(std::wstring _wstName, MEXGW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, std::wstring _wstModule);
 
