@@ -232,7 +232,7 @@ std::ostream& operator<<(std::ostream& os, object_properties_t p)
         case PROPERTIES:
             os << "PROPERTIES";
             break;
-        case CONTEXT:
+        case DIAGRAM_CONTEXT:
             os << "CONTEXT";
             break;
     }

@@ -196,10 +196,10 @@ struct context
         model::Diagram* adaptee = adaptor.getAdaptee();
 
         std::vector<std::string> context;
-        controller.getObjectProperty(adaptee->id(), adaptee->kind(), CONTEXT, context);
+        controller.getObjectProperty(adaptee->id(), adaptee->kind(), DIAGRAM_CONTEXT, context);
 
-        types::String* o = new types::String(context.size(), 1);
-        for (size_t i = 0; i < context.size(); ++i)
+        types::String* o = new types::String((int)context.size(), 1);
+        for (int i = 0; i < (int)context.size(); ++i)
         {
             o->set(i, context[i].data());
         }
@@ -220,14 +220,14 @@ struct context
             model::Diagram* adaptee = adaptor.getAdaptee();
 
             std::vector<std::string> context (current->getSize());
-            for (size_t i = 0; i < context.size(); ++i)
+            for (int i = 0; i < (int)context.size(); ++i)
             {
                 char* c_str = wide_string_to_UTF8(current->get(i));
                 context[i] = std::string(c_str);
                 FREE(c_str);
             }
 
-            controller.setObjectProperty(adaptee->id(), adaptee->kind(), CONTEXT, context);
+            controller.setObjectProperty(adaptee->id(), adaptee->kind(), DIAGRAM_CONTEXT, context);
             return true;
         }
         else if (v->getType() == types::InternalType::ScilabDouble)
@@ -241,7 +241,7 @@ struct context
             model::Diagram* adaptee = adaptor.getAdaptee();
 
             std::vector<std::string> context;
-            controller.setObjectProperty(adaptee->id(), adaptee->kind(), CONTEXT, context);
+            controller.setObjectProperty(adaptee->id(), adaptee->kind(), DIAGRAM_CONTEXT, context);
             return true;
         }
         return false;

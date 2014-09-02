@@ -523,7 +523,7 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
         model::Diagram* o = static_cast<model::Diagram*>(getObject(uid));
         switch (p)
         {
-            case CONTEXT:
+            case DIAGRAM_CONTEXT:
                 o->getContext(v);
                 return true;
             default:

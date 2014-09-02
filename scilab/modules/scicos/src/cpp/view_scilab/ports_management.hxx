@@ -50,7 +50,7 @@ types::InternalType* get_ports_property(const Adaptor& adaptor, object_propertie
         case STYLE:
         case LABEL:
         {
-            types::String* o = new types::String(ids.size(), 1);
+            types::String* o = new types::String((int)ids.size(), 1);
             for (std::vector<ScicosID>::iterator it = ids.begin(); it != ids.end(); ++it, ++i)
             {
                 std::string s;
@@ -61,15 +61,15 @@ types::InternalType* get_ports_property(const Adaptor& adaptor, object_propertie
         }
         case DATATYPE_TYPE:
             datatypeIndex++;
-        // no break
+            // no break
         case DATATYPE_COLS:
             datatypeIndex++;
-        // no break
+            // no break
         case DATATYPE_ROWS:
         {
             datatypeIndex++;
             double* data;
-            types::Double* o = new types::Double(ids.size(), 1, &data);
+            types::Double* o = new types::Double((int)ids.size(), 1, &data);
             for (std::vector<ScicosID>::iterator it = ids.begin(); it != ids.end(); ++it, ++i)
             {
                 std::vector<int> v;
@@ -81,7 +81,7 @@ types::InternalType* get_ports_property(const Adaptor& adaptor, object_propertie
         case FIRING:
         {
             double* data;
-            types::Double* o = new types::Double(ids.size(), 1, &data);
+            types::Double* o = new types::Double((int)ids.size(), 1, &data);
             for (std::vector<ScicosID>::iterator it = ids.begin(); it != ids.end(); ++it, ++i)
             {
                 controller.getObjectProperty(*it, PORT, p, data[i]);
@@ -90,7 +90,7 @@ types::InternalType* get_ports_property(const Adaptor& adaptor, object_propertie
         }
         case IMPLICIT:
         {
-            types::String* o = new types::String(ids.size(), 1);
+            types::String* o = new types::String((int)ids.size(), 1);
             for (std::vector<ScicosID>::iterator it = ids.begin(); it != ids.end(); ++it, ++i)
             {
                 bool v;
@@ -102,7 +102,7 @@ types::InternalType* get_ports_property(const Adaptor& adaptor, object_propertie
         case CONNECTED_SIGNALS:
         {
             double* v;
-            types::Double* o = new types::Double(ids.size(), 1, &v);
+            types::Double* o = new types::Double((int)ids.size(), 1, &v);
 
             ScicosID diagram;
             controller.getObjectProperty(adaptee->id(), adaptee->kind(), PARENT_DIAGRAM, diagram);
@@ -122,7 +122,7 @@ types::InternalType* get_ports_property(const Adaptor& adaptor, object_propertie
 
                 if (found != children.end())
                 {
-                    v[i] = std::distance(found, children.begin());
+                    v[i] = (double)std::distance(found, children.begin());
                 }
                 else
                 {
@@ -232,10 +232,10 @@ bool set_ports_property(const Adaptor& adaptor, object_properties_t port_kind, C
 
             case DATATYPE_TYPE:
                 datatypeIndex++;
-            // no break
+                // no break
             case DATATYPE_COLS:
                 datatypeIndex++;
-            // no break
+                // no break
             case DATATYPE_ROWS:
             {
                 datatypeIndex++;
@@ -333,10 +333,10 @@ void updateNewPort(ScicosID oldPort, int newPort, Controller& controller,
         {
             case DATATYPE_TYPE:
                 datatypeIndex++;
-            // no break
+                // no break
             case DATATYPE_COLS:
                 datatypeIndex++;
-            // no break
+                // no break
             case DATATYPE_ROWS:
             {
                 datatypeIndex++;
@@ -362,7 +362,7 @@ bool addNewPort(ScicosID newPortID, int newPort, const std::vector<ScicosID>& ch
         if (newPort != 0)
         {
             ScicosID signal = children[newPort];
-            status = controller.setObjectProperty(newPortID, PORT, CONNECTED_SIGNALS, signal);
+            status = controller.setObjectProperty(newPortID, PORT, CONNECTED_SIGNALS, signal) != FAIL;
         }
     }
     else
@@ -373,20 +373,20 @@ bool addNewPort(ScicosID newPortID, int newPort, const std::vector<ScicosID>& ch
         {
             case DATATYPE_TYPE:
                 datatypeIndex++;
-            // no break
+                // no break
             case DATATYPE_COLS:
                 datatypeIndex++;
-            // no break
+                // no break
             case DATATYPE_ROWS:
             {
                 datatypeIndex++;
                 std::vector<int> datatype;
                 controller.getObjectProperty(newPortID, PORT, DATATYPE, datatype);
                 datatype[datatypeIndex] = newPort;
-                return controller.setObjectProperty(newPortID, PORT, DATATYPE, datatype);
+                return controller.setObjectProperty(newPortID, PORT, DATATYPE, datatype) != FAIL;
             }
             default:
-                return controller.setObjectProperty(newPortID, PORT, p, newPort);
+                return controller.setObjectProperty(newPortID, PORT, p, newPort) != FAIL;
         }
     }
 
