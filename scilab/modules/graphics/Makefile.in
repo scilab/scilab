@@ -581,7 +581,6 @@ am__objects_3 = sci_gateway/c/libscigraphics_la-sci_swap_handles.lo \
 	sci_gateway/c/libscigraphics_la-sci_xname.lo \
 	sci_gateway/c/libscigraphics_la-sci_xpoly.lo \
 	sci_gateway/c/libscigraphics_la-sci_xchange.lo \
-	sci_gateway/c/libscigraphics_la-sci_matplot.lo \
 	sci_gateway/c/libscigraphics_la-sci_drawaxis.lo \
 	sci_gateway/c/libscigraphics_la-sci_demo.lo \
 	sci_gateway/c/libscigraphics_la-sci_plot2d1.lo \
@@ -623,6 +622,7 @@ am__objects_4 = sci_gateway/cpp/libscigraphics_la-graphics_gw.lo \
 	sci_gateway/cpp/libscigraphics_la-sci_get.lo \
 	sci_gateway/cpp/libscigraphics_la-sci_xget.lo \
 	sci_gateway/cpp/libscigraphics_la-sci_xset.lo \
+	sci_gateway/cpp/libscigraphics_la-sci_matplot.lo \
 	sci_gateway/cpp/libscigraphics_la-sci_winsid.lo
 am_libscigraphics_la_OBJECTS = $(am__objects_3) $(am__objects_4)
 libscigraphics_la_OBJECTS = $(am_libscigraphics_la_OBJECTS)
@@ -1412,7 +1412,6 @@ GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_xname.c \
     sci_gateway/c/sci_xpoly.c \
     sci_gateway/c/sci_xchange.c \
-    sci_gateway/c/sci_matplot.c \
     sci_gateway/c/sci_drawaxis.c \
     sci_gateway/c/sci_demo.c \
     sci_gateway/c/sci_plot2d1.c \
@@ -1456,6 +1455,7 @@ GATEWAY_CXX_SOURCES = \
     sci_gateway/cpp/sci_get.cpp \
     sci_gateway/cpp/sci_xget.cpp \
     sci_gateway/cpp/sci_xset.cpp \
+    sci_gateway/cpp/sci_matplot.cpp \
     sci_gateway/cpp/sci_winsid.cpp
 
 libscigraphics_la_CPPFLAGS = \
@@ -2916,9 +2916,6 @@ sci_gateway/c/libscigraphics_la-sci_xpoly.lo:  \
 sci_gateway/c/libscigraphics_la-sci_xchange.lo:  \
 	sci_gateway/c/$(am__dirstamp) \
 	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
-sci_gateway/c/libscigraphics_la-sci_matplot.lo:  \
-	sci_gateway/c/$(am__dirstamp) \
-	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/c/libscigraphics_la-sci_drawaxis.lo:  \
 	sci_gateway/c/$(am__dirstamp) \
 	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
@@ -3048,6 +3045,9 @@ sci_gateway/cpp/libscigraphics_la-sci_xget.lo:  \
 sci_gateway/cpp/libscigraphics_la-sci_xset.lo:  \
 	sci_gateway/cpp/$(am__dirstamp) \
 	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscigraphics_la-sci_matplot.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/cpp/libscigraphics_la-sci_winsid.lo:  \
 	sci_gateway/cpp/$(am__dirstamp) \
 	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
@@ -3092,7 +3092,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_grayplot.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_is_handle_valid.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_light.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_matplot.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_matplot1.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_move.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_name2rgb.Plo@am__quote@
@@ -3135,6 +3134,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_zoom_rect.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscigraphics_la-graphics_gw.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscigraphics_la-sci_get.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscigraphics_la-sci_matplot.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscigraphics_la-sci_winsid.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscigraphics_la-sci_xget.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscigraphics_la-sci_xset.Plo@am__quote@
@@ -6280,13 +6280,6 @@ sci_gateway/c/libscigraphics_la-sci_xchange.lo: sci_gateway/c/sci_xchange.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscigraphics_la-sci_xchange.lo `test -f 'sci_gateway/c/sci_xchange.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xchange.c
 
-sci_gateway/c/libscigraphics_la-sci_matplot.lo: sci_gateway/c/sci_matplot.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscigraphics_la-sci_matplot.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_matplot.Tpo -c -o sci_gateway/c/libscigraphics_la-sci_matplot.lo `test -f 'sci_gateway/c/sci_matplot.c' || echo '$(srcdir)/'`sci_gateway/c/sci_matplot.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_matplot.Tpo sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_matplot.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_matplot.c' object='sci_gateway/c/libscigraphics_la-sci_matplot.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscigraphics_la-sci_matplot.lo `test -f 'sci_gateway/c/sci_matplot.c' || echo '$(srcdir)/'`sci_gateway/c/sci_matplot.c
-
 sci_gateway/c/libscigraphics_la-sci_drawaxis.lo: sci_gateway/c/sci_drawaxis.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscigraphics_la-sci_drawaxis.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_drawaxis.Tpo -c -o sci_gateway/c/libscigraphics_la-sci_drawaxis.lo `test -f 'sci_gateway/c/sci_drawaxis.c' || echo '$(srcdir)/'`sci_gateway/c/sci_drawaxis.c
 @am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_drawaxis.Tpo sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_drawaxis.Plo
@@ -6618,6 +6611,13 @@ sci_gateway/cpp/libscigraphics_la-sci_xset.lo: sci_gateway/cpp/sci_xset.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xset.cpp' object='sci_gateway/cpp/libscigraphics_la-sci_xset.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscigraphics_la-sci_xset.lo `test -f 'sci_gateway/cpp/sci_xset.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xset.cpp
+
+sci_gateway/cpp/libscigraphics_la-sci_matplot.lo: sci_gateway/cpp/sci_matplot.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscigraphics_la-sci_matplot.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscigraphics_la-sci_matplot.Tpo -c -o sci_gateway/cpp/libscigraphics_la-sci_matplot.lo `test -f 'sci_gateway/cpp/sci_matplot.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_matplot.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscigraphics_la-sci_matplot.Tpo sci_gateway/cpp/$(DEPDIR)/libscigraphics_la-sci_matplot.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_matplot.cpp' object='sci_gateway/cpp/libscigraphics_la-sci_matplot.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscigraphics_la-sci_matplot.lo `test -f 'sci_gateway/cpp/sci_matplot.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_matplot.cpp
 
 sci_gateway/cpp/libscigraphics_la-sci_winsid.lo: sci_gateway/cpp/sci_winsid.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscigraphics_la-sci_winsid.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscigraphics_la-sci_winsid.Tpo -c -o sci_gateway/cpp/libscigraphics_la-sci_winsid.lo `test -f 'sci_gateway/cpp/sci_winsid.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_winsid.cpp

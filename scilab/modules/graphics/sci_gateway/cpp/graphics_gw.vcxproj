@@ -25,6 +25,7 @@
   <ItemGroup>
     <ClCompile Include="graphics_gw.cpp" />
     <ClCompile Include="sci_get.cpp" />
+    <ClCompile Include="sci_matplot.cpp" />
     <ClCompile Include="sci_winsid.cpp" />
     <ClCompile Include="sci_xget.cpp" />
     <ClCompile Include="sci_xset.cpp" />

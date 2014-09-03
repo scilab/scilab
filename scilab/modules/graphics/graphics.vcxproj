@@ -488,7 +488,6 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="sci_gateway\c\sci_grayplot.c" />
     <ClCompile Include="sci_gateway\c\sci_is_handle_valid.c" />
     <ClCompile Include="sci_gateway\c\sci_Legend.c" />
-    <ClCompile Include="sci_gateway\c\sci_matplot.c" />
     <ClCompile Include="sci_gateway\c\sci_matplot1.c" />
     <ClCompile Include="sci_gateway\c\sci_move.c" />
     <ClCompile Include="sci_gateway\c\sci_newaxes.c" />
