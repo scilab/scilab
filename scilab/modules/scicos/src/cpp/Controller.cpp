@@ -30,7 +30,7 @@ Controller::SharedData::SharedData() : model(), allViews()
 
 Controller::SharedData::~SharedData()
 {
-    for (view_set_t::iterator iter = _instance->allViews.begin(); iter != _instance->allViews.end(); iter++)
+    for (view_set_t::iterator iter = _instance->allViews.begin(); iter != _instance->allViews.end(); ++iter)
     {
         delete *iter;
     }
@@ -80,6 +80,14 @@ Controller::Controller()
     }
 }
 
+Controller::Controller(const Controller& c)
+{
+    // _instance is already initialized
+
+    // silent unused parameter warnings
+    (void) c;
+}
+
 Controller::~Controller()
 {
 }
@@ -88,7 +96,7 @@ ScicosID Controller::createObject(kind_t k)
 {
     ScicosID id = _instance->model.createObject(k);
 
-    for (view_set_t::iterator iter = _instance->allViews.begin(); iter != _instance->allViews.end(); iter++)
+    for (view_set_t::iterator iter = _instance->allViews.begin(); iter != _instance->allViews.end(); ++iter)
     {
         (*iter)->objectCreated(id, k);
     }
@@ -100,7 +108,7 @@ void Controller::deleteObject(ScicosID uid)
 {
     _instance->model.deleteObject(uid);
 
-    for (view_set_t::iterator iter = _instance->allViews.begin(); iter != _instance->allViews.end(); iter++)
+    for (view_set_t::iterator iter = _instance->allViews.begin(); iter != _instance->allViews.end(); ++iter)
     {
         (*iter)->objectDeleted(uid);
     }
@@ -117,7 +125,7 @@ update_status_t Controller::setObject(model::BaseObject* o)
 
     if (status == SUCCESS)
     {
-        for (view_set_t::iterator iter = _instance->allViews.begin(); iter != _instance->allViews.end(); iter++)
+        for (view_set_t::iterator iter = _instance->allViews.begin(); iter != _instance->allViews.end(); ++iter)
         {
             (*iter)->objectUpdated(o->id(), o->kind());
         }

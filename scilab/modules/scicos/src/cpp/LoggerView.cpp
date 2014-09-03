@@ -138,7 +138,7 @@ std::ostream& operator<<(std::ostream& os, object_properties_t p)
             break;
         case NMODE:
             os << "NMODE";
-            break;;
+            break;
         case RPAR:
             os << "RPAR";
             break;
@@ -291,6 +291,11 @@ void LoggerView::objectUpdated(const ScicosID& uid, kind_t k)
 
 void LoggerView::propertyUpdated(const ScicosID& uid, kind_t k, object_properties_t p)
 {
+    // silent unused parameter warnings
+    (void) uid;
+    (void) k;
+    (void) p;
+
     // do not log anything on success; the message has already been logged
 }
 

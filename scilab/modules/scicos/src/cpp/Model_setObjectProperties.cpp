@@ -31,7 +31,6 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
 
     if (k == ANNOTATION)
     {
-        model::Annotation* o = static_cast<model::Annotation*>(getObject(uid));
         switch (p)
         {
             default:
@@ -40,7 +39,6 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
     }
     else if (k == BLOCK)
     {
-        model::Block* o = static_cast<model::Block*>(getObject(uid));
         switch (p)
         {
             default:
@@ -49,7 +47,6 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
     }
     else if (k == DIAGRAM)
     {
-        model::Diagram* o = static_cast<model::Diagram*>(getObject(uid));
         switch (p)
         {
             default:
@@ -58,7 +55,6 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
     }
     else if (k == LINK)
     {
-        model::Link* o = static_cast<model::Link*>(getObject(uid));
         switch (p)
         {
             default:
@@ -84,7 +80,6 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
 
     if (k == ANNOTATION)
     {
-        model::Annotation* o = static_cast<model::Annotation*>(getObject(uid));
         switch (p)
         {
             default:
@@ -110,7 +105,6 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
     }
     else if (k == DIAGRAM)
     {
-        model::Diagram* o = static_cast<model::Diagram*>(getObject(uid));
         switch (p)
         {
             default:
@@ -149,7 +143,6 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
 
     if (k == ANNOTATION)
     {
-        model::Annotation* o = static_cast<model::Annotation*>(getObject(uid));
         switch (p)
         {
             default:
@@ -158,7 +151,6 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
     }
     else if (k == BLOCK)
     {
-        model::Block* o = static_cast<model::Block*>(getObject(uid));
         switch (p)
         {
             default:
@@ -167,7 +159,6 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
     }
     else if (k == DIAGRAM)
     {
-        model::Diagram* o = static_cast<model::Diagram*>(getObject(uid));
         switch (p)
         {
             default:
@@ -176,7 +167,6 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
     }
     else if (k == LINK)
     {
-        model::Link* o = static_cast<model::Link*>(getObject(uid));
         switch (p)
         {
             default:
@@ -197,13 +187,11 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
     return FAIL;
 }
 
-update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properties_t p,
-        ScicosID v)
+update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, ScicosID v)
 {
 
     if (k == ANNOTATION)
     {
-        model::Annotation* o = static_cast<model::Annotation*>(getObject(uid));
         switch (p)
         {
             default:
@@ -212,7 +200,6 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
     }
     else if (k == BLOCK)
     {
-        model::Block* o = static_cast<model::Block*>(getObject(uid));
         switch (p)
         {
             default:
@@ -221,7 +208,6 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
     }
     else if (k == DIAGRAM)
     {
-        model::Diagram* o = static_cast<model::Diagram*>(getObject(uid));
         switch (p)
         {
             default:
@@ -257,13 +243,11 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
     return FAIL;
 }
 
-update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properties_t p,
-        std::string v)
+update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::string v)
 {
 
     if (k == ANNOTATION)
     {
-        model::Annotation* o = static_cast<model::Annotation*>(getObject(uid));
         switch (p)
         {
             default:
@@ -388,7 +372,6 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
     }
     else if (k == PORT)
     {
-        model::Port* o = static_cast<model::Port*>(getObject(uid));
         switch (p)
         {
             default:
@@ -403,7 +386,6 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
 
     if (k == ANNOTATION)
     {
-        model::Annotation* o = static_cast<model::Annotation*>(getObject(uid));
         switch (p)
         {
             default:
@@ -425,7 +407,6 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
     }
     else if (k == DIAGRAM)
     {
-        model::Diagram* o = static_cast<model::Diagram*>(getObject(uid));
         switch (p)
         {
             default:
@@ -434,7 +415,6 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
     }
     else if (k == LINK)
     {
-        model::Link* o = static_cast<model::Link*>(getObject(uid));
         switch (p)
         {
             default:
@@ -460,7 +440,6 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
 
     if (k == ANNOTATION)
     {
-        model::Annotation* o = static_cast<model::Annotation*>(getObject(uid));
         switch (p)
         {
             default:
@@ -491,7 +470,6 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
     }
     else if (k == LINK)
     {
-        model::Link* o = static_cast<model::Link*>(getObject(uid));
         switch (p)
         {
             default:
@@ -500,7 +478,6 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
     }
     else if (k == PORT)
     {
-        model::Port* o = static_cast<model::Port*>(getObject(uid));
         switch (p)
         {
             default:
@@ -515,7 +492,6 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
 
     if (k == ANNOTATION)
     {
-        model::Annotation* o = static_cast<model::Annotation*>(getObject(uid));
         switch (p)
         {
             default:
@@ -541,7 +517,6 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
     }
     else if (k == DIAGRAM)
     {
-        model::Diagram* o = static_cast<model::Diagram*>(getObject(uid));
         switch (p)
         {
             default:
@@ -550,7 +525,6 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
     }
     else if (k == LINK)
     {
-        model::Link* o = static_cast<model::Link*>(getObject(uid));
         switch (p)
         {
             default:

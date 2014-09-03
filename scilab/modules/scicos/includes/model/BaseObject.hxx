@@ -34,16 +34,16 @@ public:
     {
     }
 
-    inline bool operator<(BaseObject o)
+    inline bool operator<(BaseObject o) const
     {
         return _id < o._id;
     }
-    inline bool operator==(BaseObject o)
+    inline bool operator==(BaseObject o) const
     {
         return _id == o._id;
     }
 
-    inline ScicosID id()
+    inline ScicosID id() const
     {
         return _id;
     }
@@ -52,7 +52,7 @@ public:
         _id = id;
     }
 
-    inline kind_t kind()
+    inline kind_t kind() const
     {
         return _kind;
     }
@@ -115,7 +115,7 @@ public:
     }
 
     // reference counter for the flyweight pattern
-    size_t refCount;
+    int refCount;
 
     const int datatype_id;
     const int rows;

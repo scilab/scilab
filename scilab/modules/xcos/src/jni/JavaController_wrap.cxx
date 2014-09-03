@@ -792,13 +792,32 @@ SWIGEXPORT void JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_View_1cha
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_new_1Controller(JNIEnv *jenv, jclass jcls) {
+SWIGEXPORT jlong JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_new_1Controller_1_1SWIG_10(JNIEnv *jenv, jclass jcls) {
   jlong jresult = 0 ;
   org_scilab_modules_scicos::Controller *result = 0 ;
   
   (void)jenv;
   (void)jcls;
   result = (org_scilab_modules_scicos::Controller *)new org_scilab_modules_scicos::Controller();
+  *(org_scilab_modules_scicos::Controller **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_new_1Controller_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  org_scilab_modules_scicos::Controller *arg1 = 0 ;
+  org_scilab_modules_scicos::Controller *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(org_scilab_modules_scicos::Controller **)&jarg1;
+  if (!arg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "org_scilab_modules_scicos::Controller const & reference is null");
+    return 0;
+  } 
+  result = (org_scilab_modules_scicos::Controller *)new org_scilab_modules_scicos::Controller((org_scilab_modules_scicos::Controller const &)*arg1);
   *(org_scilab_modules_scicos::Controller **)&jresult = result; 
   return jresult;
 }

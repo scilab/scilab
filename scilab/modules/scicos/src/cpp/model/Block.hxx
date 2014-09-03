@@ -515,6 +515,7 @@ private:
             case DEP_U | DEP_T:
                 data[0] = 1;
                 data[1] = 1;
+                return;
             default:
                 return;
         }

@@ -106,11 +106,17 @@ struct doc
 {
     static types::InternalType* get(const BlockAdapter& adaptor, const Controller& controller)
     {
+        // silent unused parameter warnings
+        (void) controller;
+
         return adaptor.getDocContent();
     }
 
     static bool set(BlockAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
+        // silent unused parameter warnings
+        (void) controller;
+
         adaptor.setDocContent(v->clone());
         return true;
     }

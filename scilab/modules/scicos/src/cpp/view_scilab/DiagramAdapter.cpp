@@ -56,12 +56,24 @@ struct objs
 
     static types::InternalType* get(const DiagramAdapter& adaptor, const Controller& controller)
     {
+        // silent unused parameter warnings
+        (void) adaptor;
+        (void) controller;
+
+        // FIXME implement, get all children of the Diagram and return them as a list
 
         return 0;
     }
 
     static bool set(DiagramAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
+        // silent unused parameter warnings
+        (void) adaptor;
+        (void) v;
+        (void) controller;
+
+        // FIXME implement, decode the list and set all children of the Diagram
+
         return false;
     }
 };
@@ -71,6 +83,10 @@ struct version
 
     static types::InternalType* get(const DiagramAdapter& adaptor, const Controller& controller)
     {
+        // silent unused parameter warnings
+        (void) adaptor;
+        (void) controller;
+
         std::stringstream str;
         str << SCI_VERSION_MAJOR << '.' << SCI_VERSION_MINOR << '.' << SCI_VERSION_MAINTENANCE;
 
@@ -79,6 +95,11 @@ struct version
 
     static bool set(DiagramAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
+        // silent unused parameter warnings
+        (void) adaptor;
+        (void) v;
+        (void) controller;
+
         //FIXME: handle version upgrade of the whole model
         return true;
     }
@@ -89,11 +110,24 @@ struct contrib
 
     static types::InternalType* get(const DiagramAdapter& adaptor, const Controller& controller)
     {
+        // silent unused parameter warnings
+        (void) adaptor;
+        (void) controller;
+
+        // FIXME implement, user defined data stored in the view
+
         return 0;
     }
 
     static bool set(DiagramAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
+        // silent unused parameter warnings
+        (void) adaptor;
+        (void) v;
+        (void) controller;
+
+        // FIXME implement, user defined data stored in the view
+
         return false;
     }
 };

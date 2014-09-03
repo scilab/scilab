@@ -332,7 +332,11 @@ struct odstate
 
     static types::InternalType* get(const ModelAdapter& adaptor, const Controller& controller)
     {
-        model::Block* adaptee = adaptor.getAdaptee();
+        // silent unused parameter warnings
+        (void) adaptor;
+        (void) controller;
+
+        // FIXME: implement as a scicos encoded list of values
 
         // Return a default empty list.
         return new types::List();
@@ -353,7 +357,12 @@ struct odstate
         }
         else
         {
-            // FIXME: get the input list and store it in the odstate field
+            // silent unused parameter warnings
+            (void) adaptor;
+            (void) v;
+            (void) controller;
+
+            // FIXME: implement as a scicos encoded list of values
             return false;
         }
     }
@@ -485,7 +494,11 @@ struct opar
 
     static types::InternalType* get(const ModelAdapter& adaptor, const Controller& controller)
     {
-        model::Block* adaptee = adaptor.getAdaptee();
+        // silent unused parameter warnings
+        (void) adaptor;
+        (void) controller;
+
+        // FIXME: implement as a scicos encoded list of values
 
         // Return a default empty list.
         return new types::List();
@@ -506,7 +519,12 @@ struct opar
         }
         else
         {
-            // FIXME: get the input list and store it in the opar field
+            // silent unused parameter warnings
+            (void) adaptor;
+            (void) v;
+            (void) controller;
+
+            // FIXME: implement as a scicos encoded list of values
             return false;
         }
     }
@@ -746,7 +764,11 @@ struct equations
 
     static types::InternalType* get(const ModelAdapter& adaptor, const Controller& controller)
     {
-        model::Block* adaptee = adaptor.getAdaptee();
+        // silent unused parameter warnings
+        (void) adaptor;
+        (void) controller;
+
+        // FIXME: implement as a stored modelica equations
 
         // Return a default empty list.
         return new types::List();
@@ -767,6 +789,12 @@ struct equations
         }
         else
         {
+            // silent unused parameter warnings
+            (void) adaptor;
+            (void) v;
+            (void) controller;
+
+            // FIXME: implement as a stored modelica equations
             // FIXME: get the input list and store it in the equations field
             return false;
         }

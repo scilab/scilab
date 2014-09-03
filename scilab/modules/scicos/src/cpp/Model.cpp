@@ -167,8 +167,8 @@ void Model::erase(model::Datatype* d)
         (*iter)->refCount--;
         if ((*iter)->refCount < 0)
         {
-            datatypes.erase(iter);
             delete *iter;
+            datatypes.erase(iter);
         }
     }
 }

@@ -38,15 +38,15 @@ public:
     ScicosID createObject(kind_t k);
     void deleteObject(ScicosID uid);
 
-    bool getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, double& v);
-    bool getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, int& v);
-    bool getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, bool& v);
-    bool getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::string& v);
-    bool getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, ScicosID& v);
-    bool getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::vector<double>& v);
-    bool getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::vector<int>& v);
-    bool getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::vector< std::string >& v);
-    bool getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::vector<ScicosID>& v);
+    bool getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, double& v) const;
+    bool getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, int& v) const;
+    bool getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, bool& v) const;
+    bool getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::string& v) const;
+    bool getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, ScicosID& v) const;
+    bool getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::vector<double>& v) const;
+    bool getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::vector<int>& v) const;
+    bool getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::vector< std::string >& v) const;
+    bool getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::vector<ScicosID>& v) const;
 
     update_status_t setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, double v);
     update_status_t setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, int v);

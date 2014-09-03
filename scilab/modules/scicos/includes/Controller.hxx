@@ -38,6 +38,7 @@ public:
     static void unregister_view(View* v);
 
     Controller();
+    Controller(const Controller& c);
     ~Controller();
 
     ScicosID createObject(kind_t k);
@@ -58,12 +59,12 @@ public:
         update_status_t status = _instance->model.setObjectProperty(uid, k, p, v);
         if (status == SUCCESS)
         {
-            for (view_set_t::iterator iter = _instance->allViews.begin(); iter != _instance->allViews.end(); iter++)
+            for (view_set_t::iterator iter = _instance->allViews.begin(); iter != _instance->allViews.end(); ++iter)
             {
                 (*iter)->propertyUpdated(uid, k, p);
             }
         }
-        for (view_set_t::iterator iter = _instance->allViews.begin(); iter != _instance->allViews.end(); iter++)
+        for (view_set_t::iterator iter = _instance->allViews.begin(); iter != _instance->allViews.end(); ++iter)
         {
             (*iter)->propertyUpdated(uid, k, p, status);
         }
