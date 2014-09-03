@@ -405,7 +405,6 @@ GRAPHICS_CXX_SOURCES = \
 GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_swap_handles.c \
     sci_gateway/c/sci_grayplot.c \
-    sci_gateway/c/sci_matplot1.c \
     sci_gateway/c/sci_xfpolys.c \
     sci_gateway/c/sci_newaxes.c \
     sci_gateway/c/sci_xlfont.c \
@@ -469,6 +468,7 @@ GATEWAY_CXX_SOURCES = \
     sci_gateway/cpp/sci_xget.cpp \
     sci_gateway/cpp/sci_xset.cpp \
     sci_gateway/cpp/sci_matplot.cpp \
+    sci_gateway/cpp/sci_matplot1.cpp \
     sci_gateway/cpp/sci_winsid.cpp
 
 

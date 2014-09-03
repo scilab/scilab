@@ -560,9 +560,6 @@
     <ClCompile Include="sci_gateway\c\sci_Legend.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sci_gateway\c\sci_matplot1.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="sci_gateway\c\sci_move.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -1506,6 +1503,7 @@
     <None Include="Elementary_functions_f_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
+    <None Include="locales\graphics.pot" />
     <None Include="locales\graphics.pot" />
     <None Include="locales\graphics.pot" />
     <None Include="locales\graphics.pot" />

@@ -78,7 +78,7 @@ GRAPHICS_IMPEXP int sci_param3d(char *fname, void *pvApiCtx);
 GRAPHICS_IMPEXP int sci_newaxes(char *fname, void *pvApiCtx);
 GRAPHICS_IMPEXP int sci_move(char *fname, void *pvApiCtx);
 GRAPHICS_IMPEXP int sci_matlot1(char *fname, void *pvApiCtx);
-GRAPHICS_IMPEXP int sci_matplot1(char *fname, void *pvApiCtx);
+//GRAPHICS_IMPEXP int sci_matplot1(char *fname, void *pvApiCtx);
 GRAPHICS_IMPEXP int sci_matlot(char *fname, void *pvApiCtx);
 //GRAPHICS_IMPEXP int sci_matplot(char *fname, void *pvApiCtx);
 GRAPHICS_IMPEXP int sci_Legend(char *fname, void *pvApiCtx);
