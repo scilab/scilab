@@ -723,6 +723,7 @@ images/blocks/CLOCK_c.svg \
 images/blocks/CLOCK_f.svg \
 images/blocks/ConstantVoltage.svg \
 images/blocks/CSCOPXY.svg \
+images/blocks/CSCOPXY3D.svg \
 images/blocks/CurrentSensor.svg \
 images/blocks/CVS.svg \
 images/blocks/DEADBAND.svg \

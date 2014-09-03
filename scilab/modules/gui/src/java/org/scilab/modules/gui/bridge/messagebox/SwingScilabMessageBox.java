@@ -66,6 +66,7 @@ import org.scilab.modules.gui.tab.SimpleTab;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.WebBrowser;
+import org.scilab.modules.localization.Messages;
 
 /**
  * Swing implementation of a Scilab MessageBox
@@ -111,8 +112,8 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 
     private Component parentWindow;
 
-    private final JButton btnOK = new JButton("OK");
-    private final JButton btnCancel = new JButton("Cancel");
+    private final JButton btnOK = new JButton(Messages.gettext("OK"));
+    private final JButton btnCancel = new JButton(Messages.gettext("Cancel"));
 
     /**
      * Used for x_dialog

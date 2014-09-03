@@ -240,6 +240,8 @@ public final class ExportAllAction extends DefaultAction {
      */
     private void export(XcosDiagram graph, File filename, String fileFormat)
     throws IOException {
+        filename.getParentFile().mkdirs();
+
         if (fileFormat.equalsIgnoreCase(SVG)) {
             ScilabGraphRenderer.createSvgDocument(graph, null, 1, null, null,
                                                   filename.getCanonicalPath());

@@ -33,7 +33,7 @@
 *         can be all int type or double matrix
 *         can have n,2 or 2,n size
 *
-* rhs 2 : lnktyp, gives the type of scilab objetc in outtb
+* rhs 2 : lnktyp, gives the type of scilab object in outtb
 *         1 : double
 *         2 : complex
 *         3 : int32

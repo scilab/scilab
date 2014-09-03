@@ -154,8 +154,15 @@
                 </Select>
             </Grid>
         </Title>
+	<VSpace height="10"/>
+	<Title text="_(Completion)">
+	    <Checkbox checked="{@complete-at-eol}" selected-value="true" unselected-value="false" listener="ActionListener" text="_(Auto-complete brackets when cursor is at the end of a line)">
+              <actionPerformed choose="complete-at-eol">
+		<xsl:call-template name="context"/>
+              </actionPerformed>
+            </Checkbox>
+	</Title>
     </xsl:template>
-    
     
     
     <xsl:template match="scinotes-display">

@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2014-04-01 12:32+0100\n"
+"Revision-Date: 2014-08-27 10:50+0100\n"
 
 # File: sci_gateway/c/gw_graphics.c, line: 134
 # File: src/nographics/nographics.c, line: 83
@@ -66,7 +66,7 @@ msgstr ""
 # File: sci_gateway/c/sci_xclick.c, line: 154
 # File: sci_gateway/c/sci_xclick.c, line: 170
 # File: sci_gateway/c/sci_xfarcs.c, line: 116
-# File: sci_gateway/c/sci_xfpolys.c, line: 185
+# File: sci_gateway/c/sci_xfpolys.c, line: 188
 # File: sci_gateway/c/sci_xget.c, line: 133
 # File: sci_gateway/c/sci_xgetmouse.c, line: 127
 # File: sci_gateway/c/sci_xgetmouse.c, line: 161
@@ -204,13 +204,13 @@ msgstr ""
 # File: src/c/getHandleProperty/set_y_ticks_property.c, line: 72
 # File: src/c/getHandleProperty/set_z_shift_property.c, line: 79
 # File: src/c/getHandleProperty/set_z_ticks_property.c, line: 72
-# File: src/c/sciCall.c, line: 187
-# File: src/c/sciCall.c, line: 264
-# File: src/c/sciCall.c, line: 314
-# File: src/c/sciCall.c, line: 368
-# File: src/c/sciCall.c, line: 638
-# File: src/c/sciCall.c, line: 697
-# File: src/c/sciCall.c, line: 794
+# File: src/c/sciCall.c, line: 254
+# File: src/c/sciCall.c, line: 331
+# File: src/c/sciCall.c, line: 381
+# File: src/c/sciCall.c, line: 435
+# File: src/c/sciCall.c, line: 705
+# File: src/c/sciCall.c, line: 764
+# File: src/c/sciCall.c, line: 861
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr ""
@@ -300,7 +300,7 @@ msgstr ""
 # File: sci_gateway/c/sci_xarrows.c, line: 79
 # File: sci_gateway/c/sci_xarrows.c, line: 112
 # File: sci_gateway/c/sci_xarrows.c, line: 133
-# File: sci_gateway/c/sci_xarrows.c, line: 177
+# File: sci_gateway/c/sci_xarrows.c, line: 178
 # File: sci_gateway/c/sci_xchange.c, line: 87
 # File: sci_gateway/c/sci_xchange.c, line: 103
 # File: sci_gateway/c/sci_xchange.c, line: 166
@@ -311,9 +311,9 @@ msgstr ""
 # File: sci_gateway/c/sci_xfpoly.c, line: 66
 # File: sci_gateway/c/sci_xfpoly.c, line: 82
 # File: sci_gateway/c/sci_xfpoly.c, line: 108
-# File: sci_gateway/c/sci_xfpolys.c, line: 87
-# File: sci_gateway/c/sci_xfpolys.c, line: 103
-# File: sci_gateway/c/sci_xfpolys.c, line: 136
+# File: sci_gateway/c/sci_xfpolys.c, line: 90
+# File: sci_gateway/c/sci_xfpolys.c, line: 106
+# File: sci_gateway/c/sci_xfpolys.c, line: 139
 # File: sci_gateway/c/sci_xget.c, line: 110
 # File: sci_gateway/c/sci_xgraduate.c, line: 54
 # File: sci_gateway/c/sci_xgraduate.c, line: 77
@@ -439,8 +439,8 @@ msgstr ""
 
 #
 # File: sci_gateway/c/sci_champ.c, line: 165
-# File: sci_gateway/c/sci_drawaxis.c, line: 315
-# File: sci_gateway/c/sci_drawaxis.c, line: 348
+# File: sci_gateway/c/sci_drawaxis.c, line: 318
+# File: sci_gateway/c/sci_drawaxis.c, line: 351
 # File: sci_gateway/c/sci_fec.c, line: 126
 # File: sci_gateway/c/sci_geom3d.c, line: 120
 # File: sci_gateway/c/sci_geom3d.c, line: 127
@@ -452,8 +452,8 @@ msgstr ""
 # File: sci_gateway/c/sci_xchange.c, line: 110
 # File: sci_gateway/c/sci_xchange.c, line: 189
 # File: sci_gateway/c/sci_xfpoly.c, line: 89
-# File: sci_gateway/c/sci_xfpolys.c, line: 110
-# File: sci_gateway/c/sci_xfpolys.c, line: 146
+# File: sci_gateway/c/sci_xfpolys.c, line: 113
+# File: sci_gateway/c/sci_xfpolys.c, line: 149
 # File: sci_gateway/c/sci_xgetmouse.c, line: 103
 # File: sci_gateway/c/sci_xpoly.c, line: 100
 # File: sci_gateway/c/sci_xpolys.c, line: 99
@@ -472,7 +472,7 @@ msgstr ""
 # File: sci_gateway/c/sci_grayplot.c, line: 165
 # File: sci_gateway/c/sci_plot2d.c, line: 245
 # File: sci_gateway/c/sci_plot2d1.c, line: 227
-# File: sci_gateway/c/sci_xfpolys.c, line: 170
+# File: sci_gateway/c/sci_xfpolys.c, line: 173
 # File: sci_gateway/c/sci_xpolys.c, line: 148
 #, c-format
 msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
@@ -517,9 +517,9 @@ msgstr ""
 # File: sci_gateway/c/sci_grayplot.c, line: 103
 # File: sci_gateway/c/sci_grayplot.c, line: 127
 # File: sci_gateway/c/sci_xarcs.c, line: 111
-# File: sci_gateway/c/sci_xarrows.c, line: 184
+# File: sci_gateway/c/sci_xarrows.c, line: 185
 # File: sci_gateway/c/sci_xfarcs.c, line: 98
-# File: sci_gateway/c/sci_xfpolys.c, line: 163
+# File: sci_gateway/c/sci_xfpolys.c, line: 166
 # File: sci_gateway/c/sci_xpolys.c, line: 141
 # File: sci_gateway/c/sci_xrects.c, line: 101
 # File: sci_gateway/c/sci_xsegs.c, line: 157
@@ -574,25 +574,25 @@ msgid "A Label object cannot be deleted.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_drawaxis.c, line: 88
-# File: sci_gateway/c/sci_drawaxis.c, line: 164
-# File: sci_gateway/c/sci_drawaxis.c, line: 277
+# File: sci_gateway/c/sci_drawaxis.c, line: 90
+# File: sci_gateway/c/sci_drawaxis.c, line: 166
+# File: sci_gateway/c/sci_drawaxis.c, line: 279
 # File: sci_gateway/c/sci_matplot1.c, line: 296
 # File: sci_gateway/c/sci_param3d1.c, line: 218
-# File: sci_gateway/c/sci_xarrows.c, line: 194
+# File: sci_gateway/c/sci_xarrows.c, line: 195
 # File: sci_gateway/c/sci_xrect.c, line: 82
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_drawaxis.c, line: 102
-# File: sci_gateway/c/sci_drawaxis.c, line: 121
-# File: sci_gateway/c/sci_drawaxis.c, line: 136
-# File: sci_gateway/c/sci_drawaxis.c, line: 150
-# File: sci_gateway/c/sci_drawaxis.c, line: 179
-# File: sci_gateway/c/sci_drawaxis.c, line: 306
-# File: sci_gateway/c/sci_drawaxis.c, line: 339
+# File: sci_gateway/c/sci_drawaxis.c, line: 104
+# File: sci_gateway/c/sci_drawaxis.c, line: 123
+# File: sci_gateway/c/sci_drawaxis.c, line: 138
+# File: sci_gateway/c/sci_drawaxis.c, line: 152
+# File: sci_gateway/c/sci_drawaxis.c, line: 181
+# File: sci_gateway/c/sci_drawaxis.c, line: 309
+# File: sci_gateway/c/sci_drawaxis.c, line: 342
 # File: sci_gateway/c/sci_xarc.c, line: 79
 # File: sci_gateway/c/sci_xarc.c, line: 102
 # File: sci_gateway/c/sci_xarc.c, line: 125
@@ -619,7 +619,7 @@ msgid "%s: Wrong size for input argument #%d: A real scalar expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_drawaxis.c, line: 268
+# File: sci_gateway/c/sci_drawaxis.c, line: 270
 msgid "%: Wrong value for %s '%c': '%s', '%s' and '%s' expected.\n"
 msgstr ""
 
@@ -1120,13 +1120,13 @@ msgid "%s: Wrong size for arguments #%d and #%d.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_xarrows.c, line: 150
+# File: sci_gateway/c/sci_xarrows.c, line: 151
 #, c-format
 msgid "%s: Wrong number of input arguments: at least %d expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_xarrows.c, line: 158
+# File: sci_gateway/c/sci_xarrows.c, line: 159
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: %d-by-%d matrix or a scalar "
@@ -1134,7 +1134,7 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_xfpolys.c, line: 154
+# File: sci_gateway/c/sci_xfpolys.c, line: 157
 #, c-format
 msgid "%s: Interpolated shading only works for polygons of size %d or %d\n"
 msgstr ""
@@ -1778,13 +1778,13 @@ msgstr ""
 # File: src/c/getHandleProperty/set_data_bounds_property.c, line: 129
 # File: src/c/getHandleProperty/set_data_bounds_property.c, line: 158
 # File: src/c/getHandleProperty/set_data_mapping_property.c, line: 72
-# File: src/c/getHandleProperty/set_datatip_property.c, line: 48
-# File: src/c/getHandleProperty/set_datatip_property.c, line: 72
-# File: src/c/getHandleProperty/set_datatip_property.c, line: 97
-# File: src/c/getHandleProperty/set_datatip_property.c, line: 122
-# File: src/c/getHandleProperty/set_datatip_property.c, line: 146
-# File: src/c/getHandleProperty/set_datatip_property.c, line: 170
-# File: src/c/getHandleProperty/set_datatip_property.c, line: 193
+# File: src/c/getHandleProperty/set_datatip_property.c, line: 50
+# File: src/c/getHandleProperty/set_datatip_property.c, line: 74
+# File: src/c/getHandleProperty/set_datatip_property.c, line: 99
+# File: src/c/getHandleProperty/set_datatip_property.c, line: 124
+# File: src/c/getHandleProperty/set_datatip_property.c, line: 148
+# File: src/c/getHandleProperty/set_datatip_property.c, line: 172
+# File: src/c/getHandleProperty/set_datatip_property.c, line: 195
 # File: src/c/getHandleProperty/set_default_axes_property.c, line: 38
 # File: src/c/getHandleProperty/set_default_values_property.c, line: 63
 # File: src/c/getHandleProperty/set_diffuse_color_property.c, line: 60
@@ -1975,7 +1975,7 @@ msgstr ""
 # File: src/c/getHandleProperty/set_cdata_mapping_property.c, line: 44
 # File: src/c/getHandleProperty/set_clip_state_property.c, line: 43
 # File: src/c/getHandleProperty/set_data_mapping_property.c, line: 46
-# File: src/c/getHandleProperty/set_datatip_property.c, line: 181
+# File: src/c/getHandleProperty/set_datatip_property.c, line: 183
 # File: src/c/getHandleProperty/set_event_handler_property.c, line: 42
 # File: src/c/getHandleProperty/set_figure_closerequestfcn_property.c, line: 30
 # File: src/c/getHandleProperty/set_figure_name_property.c, line: 41
@@ -2674,19 +2674,19 @@ msgid "Wrong size for '%s' property: Row vector expected.\n"
 msgstr ""
 
 #
-# File: src/c/sciCall.c, line: 597
+# File: src/c/sciCall.c, line: 664
 #, c-format
 msgid "%s: x vector is not monotonous.\n"
 msgstr ""
 
 #
-# File: src/c/sciCall.c, line: 627
+# File: src/c/sciCall.c, line: 694
 #, c-format
 msgid "%s: y vector is not monotonous.\n"
 msgstr ""
 
 #
-# File: src/c/sciCall.c, line: 832
+# File: src/c/sciCall.c, line: 899
 msgid "Impossible case when building axis\n"
 msgstr ""
 
@@ -2809,8 +2809,49 @@ msgid "Several curves may be plotted at the same time"
 msgstr ""
 
 #
-# File: demos/cmplxfunc/demo_custom.dem.sce, line: 56
+# File: demos/cmplxfunc/demo_custom.dem.sce, line: 41
 msgid "Customize your complex function"
+msgstr ""
+
+#
+# File: demos/cmplxfunc/demo_custom.dem.sce, line: 68
+msgid "Control panel"
+msgstr ""
+
+#
+# File: demos/cmplxfunc/demo_custom.dem.sce, line: 177
+msgid "Function definition"
+msgstr ""
+
+#
+# File: demos/cmplxfunc/demo_custom.dem.sce, line: 248
+msgid "Domain type"
+msgstr ""
+
+#
+# File: demos/cmplxfunc/demo_custom.dem.sce, line: 307
+msgid "Radius of the domain"
+msgstr ""
+
+#
+# File: demos/cmplxfunc/demo_custom.dem.sce, line: 364
+msgid "Cut on axes"
+msgstr ""
+
+#
+# File: demos/cmplxfunc/demo_custom.dem.sce, line: 467
+msgid "Function should contain z"
+msgstr ""
+
+#
+# File: demos/cmplxfunc/demo_custom.dem.sce, line: 477
+msgid "Wrong definition of f(z)"
+msgstr ""
+
+#
+# File: demos/cmplxfunc/demo_custom.dem.sce, line: 561
+# File: demos/cmplxfunc/demo_custom.dem.sce, line: 566
+msgid "Radius should be real and finite"
 msgstr ""
 
 #
@@ -3415,7 +3456,6 @@ msgstr ""
 #
 # File: macros/colordef.sci, line: 18
 # File: macros/colordef.sci, line: 26
-# File: macros/getfont.sci, line: 19
 # File: macros/legends.sci, line: 25
 # File: macros/titlepage.sci, line: 21
 #, c-format
@@ -3492,13 +3532,12 @@ msgstr ""
 #
 # File: macros/contour.sci, line: 43
 # File: macros/contour2d.sci, line: 21
-# File: macros/datatips/datatipInitStruct.sci, line: 18
 # File: macros/datatips/datatipMove.sci, line: 14
 # File: macros/datatips/datatipSetStyle.sci, line: 17
 # File: macros/errbar.sci, line: 33
 # File: macros/fcontour.sci, line: 49
 # File: macros/fcontour2d.sci, line: 24
-# File: macros/fgrayplot.sci, line: 38
+# File: macros/fgrayplot.sci, line: 35
 # File: macros/fplot2d.sci, line: 27
 # File: macros/fplot3d.sci, line: 30
 # File: macros/fplot3d1.sci, line: 32
@@ -3549,7 +3588,6 @@ msgstr ""
 # File: macros/contourf.sci, line: 67
 # File: macros/contourf.sci, line: 79
 # File: macros/contourf.sci, line: 100
-# File: macros/datatips/datatipInitStruct.sci, line: 40
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
 msgstr ""
@@ -3617,120 +3655,12 @@ msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
 msgstr ""
 
 #
-# File: macros/datatips/datatipContextMenu.sci, line: 17
-# File: macros/datatips/datatipContextMenu.sci, line: 25
-# File: macros/datatips/datatipContextMenu.sci, line: 32
-msgid "Delete all datatips"
-msgstr ""
-
-#
-# File: macros/datatips/datatipContextMenu.sci, line: 18
-# File: macros/datatips/datatipContextMenu.sci, line: 34
-msgid "Delete all datatips for the selected curve"
-msgstr ""
-
-#
-# File: macros/datatips/datatipContextMenu.sci, line: 19
-# File: macros/datatips/datatipContextMenu.sci, line: 36
-msgid "Delete nearest datatip"
-msgstr ""
-
-#
-# File: macros/datatips/datatipContextMenu.sci, line: 20
-# File: macros/datatips/datatipContextMenu.sci, line: 38
-msgid "Delete last datatip"
-msgstr ""
-
-#
-# File: macros/datatips/datatipContextMenu.sci, line: 21
-# File: macros/datatips/datatipContextMenu.sci, line: 26
-# File: macros/datatips/datatipContextMenu.sci, line: 44
-msgid "Delete selected datatip"
-msgstr ""
-
-#
-# File: macros/datatips/datatipContextMenu.sci, line: 22
-# File: macros/datatips/datatipContextMenu.sci, line: 60
-msgid "Open curve tip style editor"
-msgstr ""
-
-#
-# File: macros/datatips/datatipContextMenu.sci, line: 23
-# File: macros/datatips/datatipContextMenu.sci, line: 27
-# File: macros/datatips/datatipContextMenu.sci, line: 58
-msgid "Redraw all datatips"
-msgstr ""
-
-#
-# File: macros/datatips/datatipContextMenu.sci, line: 46
-msgid "Edit the curve tip display function"
-msgstr ""
-
-#
-# File: macros/datatips/datatipContextMenu.sci, line: 48
-msgid "select the curve tip display function"
-msgstr ""
-
-#
-# File: macros/datatips/datatipContextMenu.sci, line: 50
-msgid "Enable interpolation"
-msgstr ""
-
-#
-# File: macros/datatips/datatipContextMenu.sci, line: 52
-msgid "Disable interpolation"
-msgstr ""
-
-#
-# File: macros/datatips/datatipContextMenu.sci, line: 54
-msgid "Multiple datatips mode"
-msgstr ""
-
-#
-# File: macros/datatips/datatipContextMenu.sci, line: 56
-msgid "Unique datatip mode"
-msgstr ""
-
-#
 # File: macros/datatips/datatipCreatePopupMenu.sci, line: 40
 msgid "createPopupItems: found an empty cascading menu."
 msgstr ""
 
 #
-# File: macros/datatips/datatipEventhandler.sci, line: 138
-msgid "automatic"
-msgstr ""
-
-#
-# File: macros/datatips/datatipEventhandler.sci, line: 138
-msgid "lower left"
-msgstr ""
-
-#
-# File: macros/datatips/datatipEventhandler.sci, line: 138
-msgid "lower right"
-msgstr ""
-
-#
-# File: macros/datatips/datatipEventhandler.sci, line: 138
-msgid "upper left"
-msgstr ""
-
-#
-# File: macros/datatips/datatipEventhandler.sci, line: 138
-msgid "upper right"
-msgstr ""
-
-#
-# File: macros/datatips/datatipEventhandler.sci, line: 139
-msgid "Select tip orientation"
-msgstr ""
-
-#
-# File: macros/datatips/datatipEventhandler.sci, line: 200
-# File: macros/datatips/datatipEventhandler.sci, line: 273
 # File: macros/datatips/datatipGetEntities.sci, line: 39
-# File: macros/datatips/datatipInitStruct.sci, line: 21
 # File: macros/datatips/datatipMove.sci, line: 18
 # File: macros/datatips/datatipMove.sci, line: 26
 # File: macros/datatips/datatipSetOrientation.sci, line: 17
@@ -3738,16 +3668,6 @@ msgstr ""
 # File: macros/datatips/datatipSetStyle.sci, line: 24
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A '%s' handle expected.\n"
-msgstr ""
-
-#
-# File: macros/datatips/datatipEventhandler.sci, line: 255
-msgid "The selected file cannot be executed"
-msgstr ""
-
-#
-# File: macros/datatips/datatipEventhandler.sci, line: 261
-msgid "The selected file defines more than one function"
 msgstr ""
 
 #
@@ -3762,24 +3682,6 @@ msgstr ""
 # File: macros/twinkle.sci, line: 19
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Graphic handle expected.\n"
-msgstr ""
-
-#
-# File: macros/datatips/datatipInitStruct.sci, line: 44
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A %d elements array expected.\n"
-msgstr ""
-
-#
-# File: macros/datatips/datatipInitStruct.sci, line: 48
-#, c-format
-msgid "%s: Wrong value for input argument #%d(1): Must be between %d and %d.\n"
-msgstr ""
-
-#
-# File: macros/datatips/datatipInitStruct.sci, line: 52
-#, c-format
-msgid "%s: Wrong value for input argument #%d(2): Must be between %d and %d.\n"
 msgstr ""
 
 #
@@ -3800,7 +3702,6 @@ msgid "Left click on a curve to create a datatip, right opens contextual menu"
 msgstr ""
 
 #
-# File: macros/datatips/datatipRedraw.sci, line: 23
 # File: macros/datatips/datatipRemoveAll.sci, line: 16
 #, c-format
 msgid ""
@@ -3808,7 +3709,6 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/datatips/datatipRedraw.sci, line: 35
 # File: macros/datatips/datatipRemoveAll.sci, line: 28
 #, c-format
 msgid ""
@@ -3817,7 +3717,6 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/datatips/datatipRedraw.sci, line: 40
 # File: macros/datatips/datatipRemoveAll.sci, line: 33
 #, c-format
 msgid ""
@@ -3874,107 +3773,142 @@ msgid "%s: Wrong type for input argument #%d: A boolean scalar expected.\n"
 msgstr ""
 
 #
-# File: macros/datatips/datatipsGUI.sci, line: 53
+# File: macros/datatips/datatipsGUI.sci, line: 50
 # File: macros/getcolor.sci, line: 74
-# File: macros/getfont.sci, line: 43
-# File: macros/getlinestyle.sci, line: 19
-# File: macros/getmark.sci, line: 27
 msgid "&File"
 msgstr ""
 
 #
-# File: macros/datatips/datatipsGUI.sci, line: 54
+# File: macros/datatips/datatipsGUI.sci, line: 51
 # File: macros/getcolor.sci, line: 75
-# File: macros/getfont.sci, line: 42
-# File: macros/getlinestyle.sci, line: 21
-# File: macros/getmark.sci, line: 29
 msgid "&Tools"
 msgstr ""
 
 #
-# File: macros/datatips/datatipsGUI.sci, line: 55
+# File: macros/datatips/datatipsGUI.sci, line: 52
 # File: macros/getcolor.sci, line: 76
-# File: macros/getfont.sci, line: 41
-# File: macros/getlinestyle.sci, line: 20
-# File: macros/getmark.sci, line: 28
 msgid "&Edit"
 msgstr ""
 
 #
-# File: macros/datatips/datatipsGUI.sci, line: 56
+# File: macros/datatips/datatipsGUI.sci, line: 53
 # File: macros/getcolor.sci, line: 77
-# File: macros/getlinestyle.sci, line: 22
-# File: macros/getmark.sci, line: 30
 msgid "&?"
 msgstr ""
 
 #
-# File: macros/datatips/datatipsGUI.sci, line: 62
+# File: macros/datatips/datatipsGUI.sci, line: 59
 msgid "Datatips style"
 msgstr ""
 
 #
-# File: macros/datatips/datatipsGUI.sci, line: 82
+# File: macros/datatips/datatipsGUI.sci, line: 79
 msgid "Marker style:"
 msgstr ""
 
 #
-# File: macros/datatips/datatipsGUI.sci, line: 96
+# File: macros/datatips/datatipsGUI.sci, line: 93
 msgid "Square"
 msgstr ""
 
 #
-# File: macros/datatips/datatipsGUI.sci, line: 119
+# File: macros/datatips/datatipsGUI.sci, line: 116
 msgid "Arrow"
 msgstr ""
 
 #
-# File: macros/datatips/datatipsGUI.sci, line: 146
+# File: macros/datatips/datatipsGUI.sci, line: 143
 msgid "Labeled?"
 msgstr ""
 
 #
-# File: macros/datatips/datatipsGUI.sci, line: 160
-# File: macros/datatips/datatipsGUI.sci, line: 225
-# File: macros/datatips/datatipsGUI.sci, line: 353
+# File: macros/datatips/datatipsGUI.sci, line: 157
+# File: macros/datatips/datatipsGUI.sci, line: 222
+# File: macros/datatips/datatipsGUI.sci, line: 350
 msgid "Yes"
 msgstr ""
 
 #
-# File: macros/datatips/datatipsGUI.sci, line: 183
-# File: macros/datatips/datatipsGUI.sci, line: 248
-# File: macros/datatips/datatipsGUI.sci, line: 376
+# File: macros/datatips/datatipsGUI.sci, line: 180
+# File: macros/datatips/datatipsGUI.sci, line: 245
+# File: macros/datatips/datatipsGUI.sci, line: 373
 msgid "No"
 msgstr ""
 
 #
-# File: macros/datatips/datatipsGUI.sci, line: 211
+# File: macros/datatips/datatipsGUI.sci, line: 208
 msgid "Boxed?"
 msgstr ""
 
 #
-# File: macros/datatips/datatipsGUI.sci, line: 275
+# File: macros/datatips/datatipsGUI.sci, line: 272
 msgid "Positionning?"
 msgstr ""
 
 #
-# File: macros/datatips/datatipsGUI.sci, line: 289
+# File: macros/datatips/datatipsGUI.sci, line: 286
 msgid "Knots"
 msgstr ""
 
 #
-# File: macros/datatips/datatipsGUI.sci, line: 312
+# File: macros/datatips/datatipsGUI.sci, line: 309
 msgid "Interpolated"
 msgstr ""
 
 #
-# File: macros/datatips/datatipsGUI.sci, line: 339
+# File: macros/datatips/datatipsGUI.sci, line: 336
 msgid "Allow multiple datatips?"
 msgstr ""
 
 #
-# File: macros/datatips/datatipsGUI.sci, line: 404
+# File: macros/datatips/datatipsGUI.sci, line: 401
 msgid "Edit label generator"
+msgstr ""
+
+#
+# File: macros/edit_curv.sci, line: 114
+msgid "File"
+msgstr ""
+
+#
+# File: macros/edit_curv.sci, line: 115
+msgid "Tools"
+msgstr ""
+
+#
+# File: macros/edit_curv.sci, line: 116
+msgid "Edit"
+msgstr ""
+
+#
+# File: macros/edit_curv.sci, line: 385
+msgid "Select a file to load"
+msgstr ""
+
+#
+# File: macros/edit_curv.sci, line: 401
+# File: macros/edit_curv.sci, line: 461
+# File: macros/edit_curv.sci, line: 472
+#, c-format
+msgid "%s: The file "
+msgstr ""
+
+#
+# File: macros/edit_curv.sci, line: 406
+# File: macros/edit_curv.sci, line: 414
+# File: macros/edit_curv.sci, line: 422
+#, c-format
+msgid "%s: Cannot open file "
+msgstr ""
+
+#
+# File: macros/edit_curv.sci, line: 427
+msgid "Error in file format."
+msgstr ""
+
+#
+# File: macros/edit_curv.sci, line: 438
+msgid "Select a file to write"
 msgstr ""
 
 #
@@ -4252,20 +4186,20 @@ msgid "%s: Wrong size for input argument #%d: Vector of strings expected.\n"
 msgstr ""
 
 #
-# File: macros/plot.sci, line: 229
+# File: macros/plot.sci, line: 228
 #, c-format
 msgid "%s: Error : unable to evaluate input function '%s'."
 msgstr ""
 
 #
-# File: macros/plot.sci, line: 229
-# File: macros/plot.sci, line: 231
+# File: macros/plot.sci, line: 228
+# File: macros/plot.sci, line: 230
 #, c-format
 msgid "Error %d at line %d of the function: '%s"
 msgstr ""
 
 #
-# File: macros/plot.sci, line: 231
+# File: macros/plot.sci, line: 230
 #, c-format
 msgid "%s: Error : unable to evaluate input function."
 msgstr ""
@@ -4316,14 +4250,14 @@ msgstr ""
 
 #
 # File: macros/rotate.sci, line: 25
-# File: macros/surf.sci, line: 389
-# File: macros/surf.sci, line: 395
-# File: macros/surf.sci, line: 427
-# File: macros/surf.sci, line: 463
-# File: macros/surf.sci, line: 504
-# File: macros/surf.sci, line: 510
-# File: macros/surf.sci, line: 556
-# File: macros/surf.sci, line: 601
+# File: macros/surf.sci, line: 371
+# File: macros/surf.sci, line: 377
+# File: macros/surf.sci, line: 409
+# File: macros/surf.sci, line: 445
+# File: macros/surf.sci, line: 482
+# File: macros/surf.sci, line: 488
+# File: macros/surf.sci, line: 534
+# File: macros/surf.sci, line: 579
 #, c-format
 msgid "%s: Wrong size for input argument '%s': A vector of size %d expected.\n"
 msgstr ""
@@ -4460,14 +4394,14 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/surf.sci, line: 48
+# File: macros/surf.sci, line: 47
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An 'Axes' handle expected.\n"
 msgstr ""
 
 #
-# File: macros/surf.sci, line: 93
-# File: macros/surf.sci, line: 109
+# File: macros/surf.sci, line: 92
+# File: macros/surf.sci, line: 108
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A matrix of size greater than %d-by-"
@@ -4475,8 +4409,8 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/surf.sci, line: 115
-# File: macros/surf.sci, line: 155
+# File: macros/surf.sci, line: 114
+# File: macros/surf.sci, line: 154
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A %d-by-%d or %d-by-%d matrix "
@@ -4484,15 +4418,15 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/surf.sci, line: 189
-# File: macros/surf.sci, line: 201
-# File: macros/surf.sci, line: 213
+# File: macros/surf.sci, line: 186
+# File: macros/surf.sci, line: 198
+# File: macros/surf.sci, line: 210
 #, c-format
 msgid "%s: Wrong type for input argument '%s': A Real matrix expected.\n"
 msgstr ""
 
 #
-# File: macros/surf.sci, line: 218
+# File: macros/surf.sci, line: 215
 #, c-format
 msgid ""
 "%s: Wrong size for input argument '%s': A matrix of size greater than %d-by-"
@@ -4500,15 +4434,15 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/surf.sci, line: 408
-# File: macros/surf.sci, line: 414
-# File: macros/surf.sci, line: 433
-# File: macros/surf.sci, line: 457
-# File: macros/surf.sci, line: 530
-# File: macros/surf.sci, line: 536
-# File: macros/surf.sci, line: 562
-# File: macros/surf.sci, line: 595
-# File: macros/surf.sci, line: 631
+# File: macros/surf.sci, line: 390
+# File: macros/surf.sci, line: 396
+# File: macros/surf.sci, line: 415
+# File: macros/surf.sci, line: 439
+# File: macros/surf.sci, line: 508
+# File: macros/surf.sci, line: 514
+# File: macros/surf.sci, line: 540
+# File: macros/surf.sci, line: 573
+# File: macros/surf.sci, line: 609
 #, c-format
 msgid ""
 "%s: Wrong size for input arguments '%s' and '%s': Matrices of same size "
@@ -4516,7 +4450,7 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/surf.sci, line: 485
+# File: macros/surf.sci, line: 467
 #, c-format
 msgid "%s: Wrong size for input arguments '%s' and '%s': Same size expected.\n"
 msgstr ""

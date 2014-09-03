@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2014-04-01 12:32+0100\n"
+"Revision-Date: 2014-08-27 10:50+0100\n"
 
 # File: macros/atomsAutoload.sci, line: 47
 # File: macros/atomsLoad.sci, line: 38
@@ -914,7 +914,7 @@ msgstr ""
 
 #
 # File: macros/atomsShow.sci, line: 81
-# File: macros/atoms_gui/cbAtomsGui.sci, line: 265
+# File: macros/atoms_gui/cbAtomsGui.sci, line: 269
 msgid "Version"
 msgstr ""
 
@@ -930,7 +930,7 @@ msgstr ""
 
 #
 # File: macros/atomsShow.sci, line: 84
-# File: macros/atoms_gui/cbAtomsGui.sci, line: 218
+# File: macros/atoms_gui/cbAtomsGui.sci, line: 222
 msgid "Author(s)"
 msgstr ""
 
@@ -976,7 +976,7 @@ msgstr ""
 
 #
 # File: macros/atomsShow.sci, line: 98
-# File: macros/atoms_gui/cbAtomsGui.sci, line: 268
+# File: macros/atoms_gui/cbAtomsGui.sci, line: 272
 msgid "Description"
 msgstr ""
 
@@ -1005,179 +1005,179 @@ msgid "%s: '%s' isn't installed.\n"
 msgstr ""
 
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 195
-# File: macros/atoms_gui/atomsGui.sci, line: 197
-# File: macros/atoms_gui/cbAtomsGui.sci, line: 59
-# File: macros/atoms_gui/cbAtomsGui.sci, line: 68
-# File: macros/atoms_gui/cbAtomsGui.sci, line: 80
+# File: macros/atoms_gui/atomsGui.sci, line: 199
+# File: macros/atoms_gui/atomsGui.sci, line: 201
+# File: macros/atoms_gui/cbAtomsGui.sci, line: 63
+# File: macros/atoms_gui/cbAtomsGui.sci, line: 72
+# File: macros/atoms_gui/cbAtomsGui.sci, line: 84
 msgid "ATOMS error"
 msgstr ""
 
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 195
+# File: macros/atoms_gui/atomsGui.sci, line: 199
 msgid ""
 "No ATOMS module is available. Please, check your Internet connection or make "
 "sure that your OS is compatible with ATOMS."
 msgstr ""
 
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 197
+# File: macros/atoms_gui/atomsGui.sci, line: 201
 msgid "No ATOMS module is available: your repository list is empty."
 msgstr ""
 
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 211
+# File: macros/atoms_gui/atomsGui.sci, line: 215
 msgid "File"
 msgstr ""
 
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 212
+# File: macros/atoms_gui/atomsGui.sci, line: 216
 msgid "Installed modules"
 msgstr ""
 
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 213
+# File: macros/atoms_gui/atomsGui.sci, line: 217
 msgid "Update List of Packages"
 msgstr ""
 
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 214
+# File: macros/atoms_gui/atomsGui.sci, line: 218
 msgid "Close"
 msgstr ""
 
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 215
+# File: macros/atoms_gui/atomsGui.sci, line: 219
 msgid "?"
 msgstr ""
 
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 216
+# File: macros/atoms_gui/atomsGui.sci, line: 220
 msgid "Atoms Help..."
 msgstr ""
 
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 225
+# File: macros/atoms_gui/atomsGui.sci, line: 229
 msgid "Back"
 msgstr ""
 
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 226
+# File: macros/atoms_gui/atomsGui.sci, line: 230
 msgid "Remove"
 msgstr ""
 
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 227
-# File: macros/atoms_gui/cbAtomsGui.sci, line: 55
-# File: macros/atoms_gui/cbAtomsGui.sci, line: 295
-# File: macros/atoms_gui/cbAtomsGui.sci, line: 317
+# File: macros/atoms_gui/atomsGui.sci, line: 231
+# File: macros/atoms_gui/cbAtomsGui.sci, line: 59
+# File: macros/atoms_gui/cbAtomsGui.sci, line: 299
+# File: macros/atoms_gui/cbAtomsGui.sci, line: 321
 msgid "Install"
 msgstr ""
 
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 228
+# File: macros/atoms_gui/atomsGui.sci, line: 232
 msgid "Autoload"
 msgstr ""
 
 #
-# File: macros/atoms_gui/atomsGui.sci, line: 232
+# File: macros/atoms_gui/atomsGui.sci, line: 236
 msgid "List of installed modules"
 msgstr ""
 
 #
-# File: macros/atoms_gui/cbAtomsGui.sci, line: 56
+# File: macros/atoms_gui/cbAtomsGui.sci, line: 60
 msgid "Installing"
 msgstr ""
 
 #
-# File: macros/atoms_gui/cbAtomsGui.sci, line: 59
+# File: macros/atoms_gui/cbAtomsGui.sci, line: 63
 msgid "Installation failed!"
 msgstr ""
 
 #
-# File: macros/atoms_gui/cbAtomsGui.sci, line: 62
+# File: macros/atoms_gui/cbAtomsGui.sci, line: 66
 msgid "Installation done! Please restart Scilab to take changes into account."
 msgstr ""
 
 #
-# File: macros/atoms_gui/cbAtomsGui.sci, line: 65
+# File: macros/atoms_gui/cbAtomsGui.sci, line: 69
 msgid "Updating"
 msgstr ""
 
 #
-# File: macros/atoms_gui/cbAtomsGui.sci, line: 68
+# File: macros/atoms_gui/cbAtomsGui.sci, line: 72
 msgid "Update failed!"
 msgstr ""
 
 #
-# File: macros/atoms_gui/cbAtomsGui.sci, line: 71
+# File: macros/atoms_gui/cbAtomsGui.sci, line: 75
 msgid "Update done! Please restart Scilab to take changes into account."
 msgstr ""
 
 #
-# File: macros/atoms_gui/cbAtomsGui.sci, line: 77
+# File: macros/atoms_gui/cbAtomsGui.sci, line: 81
 msgid "Removing"
 msgstr ""
 
 #
-# File: macros/atoms_gui/cbAtomsGui.sci, line: 80
+# File: macros/atoms_gui/cbAtomsGui.sci, line: 84
 msgid "Remove failed!"
 msgstr ""
 
 #
-# File: macros/atoms_gui/cbAtomsGui.sci, line: 83
+# File: macros/atoms_gui/cbAtomsGui.sci, line: 87
 msgid "Remove done! Please restart Scilab to take changes into account. "
 msgstr ""
 
 #
-# File: macros/atoms_gui/cbAtomsGui.sci, line: 91
+# File: macros/atoms_gui/cbAtomsGui.sci, line: 95
 msgid "The module will be automatically loaded at next startup."
 msgstr ""
 
 #
-# File: macros/atoms_gui/cbAtomsGui.sci, line: 95
+# File: macros/atoms_gui/cbAtomsGui.sci, line: 99
 msgid ""
 "Autoload at startup is canceled. The Toolboxes menu or atomsLoad() can be "
 "used to load the module when needed."
 msgstr ""
 
 #
-# File: macros/atoms_gui/cbAtomsGui.sci, line: 203
+# File: macros/atoms_gui/cbAtomsGui.sci, line: 207
 msgid "Download size"
 msgstr ""
 
 #
-# File: macros/atoms_gui/cbAtomsGui.sci, line: 242
+# File: macros/atoms_gui/cbAtomsGui.sci, line: 246
 msgid "See also"
 msgstr ""
 
 #
-# File: macros/atoms_gui/cbAtomsGui.sci, line: 255
+# File: macros/atoms_gui/cbAtomsGui.sci, line: 259
 msgid "Release date"
 msgstr ""
 
 #
-# File: macros/atoms_gui/cbAtomsGui.sci, line: 302
+# File: macros/atoms_gui/cbAtomsGui.sci, line: 306
 msgid "Update"
 msgstr ""
 
 #
-# File: macros/atoms_gui/cbAtomsGui.sci, line: 303
+# File: macros/atoms_gui/cbAtomsGui.sci, line: 307
 #, c-format
 msgid "A new version ('%s') of '%s' is available"
 msgstr ""
 
 #
-# File: macros/atoms_gui/cbAtomsGui.sci, line: 327
+# File: macros/atoms_gui/cbAtomsGui.sci, line: 331
 msgid "Bytes"
 msgstr ""
 
 #
-# File: macros/atoms_gui/cbAtomsGui.sci, line: 329
+# File: macros/atoms_gui/cbAtomsGui.sci, line: 333
 msgid "KB"
 msgstr ""
 
 #
-# File: macros/atoms_gui/cbAtomsGui.sci, line: 331
+# File: macros/atoms_gui/cbAtomsGui.sci, line: 335
 msgid "MB"
 msgstr ""
 

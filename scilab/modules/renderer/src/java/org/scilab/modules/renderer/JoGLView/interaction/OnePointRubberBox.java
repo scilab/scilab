@@ -34,24 +34,13 @@ public class OnePointRubberBox extends RubberBox implements PointRubberBox {
 
     public OnePointRubberBox(DrawerVisitor drawerVisitor, double initialRect[]) {
         super(drawerVisitor);
-        firstPoint = new Vector3d(initialRect[0], initialRect[1], 0);
+        double[][] factors = axes.getScaleTranslateFactors();
+        firstPoint = new Vector3d(initialRect[0] * factors[0][0] + factors[1][0],
+                initialRect[1] * factors[0][1] + factors[1][1],
+                0);
         secondPoint = firstPoint;
         status = Status.WAIT_POINT_B;
         setEnable(true);
-    }
-
-    public double[] getResults() {
-        double result[] = {
-            mouseButton - 1,
-            Math.min(firstPoint.getX(), secondPoint.getX()),
-            Math.max(firstPoint.getY(), secondPoint.getY()),
-            Math.max(firstPoint.getZ(), secondPoint.getZ()),
-            Math.abs(firstPoint.getX() - secondPoint.getX()),
-            Math.abs(firstPoint.getY() - secondPoint.getY()),
-            Math.abs(firstPoint.getZ() - secondPoint.getZ())
-        };
-
-        return result;
     }
 
     @Override

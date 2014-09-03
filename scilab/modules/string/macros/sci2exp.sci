@@ -111,6 +111,7 @@ function t=str2exp(a,lmax)
     a=strsubst(a,quote,quote+quote)
     dquote=""""
     a=strsubst(a,dquote,dquote+dquote)
+    a = strsubst(a, ascii(10), """+ascii(10)+""")
     a=quote(ones(a))+a+quote(ones(a))
 
     for i=1:m

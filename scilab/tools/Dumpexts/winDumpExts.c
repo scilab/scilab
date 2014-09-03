@@ -282,7 +282,8 @@ void DumpExternals(PIMAGE_SYMBOL pSymbolTable, FILE *fout, unsigned cSymbols)
                 if (( stricmp(s, "DllEntryPoint") != 0)
                         && (stricmp(s, "DllMain") != 0))
                 {
-                    if ( s[0] != '?' )
+                    //remove Intel C++ 14 added symbols
+                    if ( s[0] != '?' && strncmp(s, "__sti__?", 8) != 0)
                     {
                         fprintf(fout, "\t%s\n", s);
                     }

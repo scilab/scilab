@@ -21,7 +21,7 @@
 #include "dynlib_graphics.h"
 
 /**
- * Routine creating all needed objetcs for the module
+ * Routine creating all needed objects for the module
  */
 GRAPHICS_IMPEXP void loadGraphicModule(void);
 
