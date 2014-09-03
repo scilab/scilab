@@ -30,8 +30,10 @@ libsciast_la_SOURCES = \
     src/cpp/operations/types_ldivide.cpp \
     src/cpp/operations/types_comparison_eq.cpp \
     src/cpp/operations/types_multiplication.cpp \
+    src/cpp/operations/types_dotmultiplication.cpp \
     src/cpp/operations/types_comparison_lt_le_gt_ge.cpp \
-    src/cpp/operations/types_or_and.cpp \
+    src/cpp/operations/types_or.cpp \
+    src/cpp/operations/types_and.cpp \
     src/cpp/operations/types_comparison_ne.cpp \
     src/cpp/operations/types_power.cpp \
     src/cpp/operations/types_divide.cpp \
@@ -41,7 +43,6 @@ libsciast_la_SOURCES = \
     src/c/operations/matrix_transpose.c \
     src/c/operations/matrix_kronecker.c \
     src/c/operations/operations_tools.c \
-    src/c/operations/matrix_subtraction.c \
     src/c/operations/invert_matrix.c \
     src/c/operations/matrix_power.c \
     src/c/operations/matrix_division.c \
@@ -170,7 +171,6 @@ includes/operations/types_divide.hxx \
 includes/operations/types_finite.hxx \
 includes/operations/types_transposition.hxx \
 includes/operations/matrix_addition.h \
-includes/operations/matrix_subtraction.h \
 includes/operations/doublecomplex.h \
 includes/operations/types_comparison_eq.hxx \
 includes/operations/matrix_transpose.h \
@@ -179,7 +179,8 @@ includes/operations/matrix_right_division.h \
 includes/operations/types_comparison_ne.hxx \
 includes/operations/types_multiplication.hxx \
 includes/operations/types_ldivide.hxx \
-includes/operations/types_or_and.hxx \
+includes/operations/types_and.hxx \
+includes/operations/types_or.hxx \
 includes/operations/matrix_left_division.h \
 includes/operations/types_power.hxx \
 includes/operations/matrix_finite.h \
@@ -344,7 +345,7 @@ LFLAGS = --noline --nounistd -o $(FLEX_SCANSCILAB_CXX)
 FLEX_SCANSCILAB_LL	= src/cpp/parse/flex/scanscilab.ll
 FLEX_SCANSCILAB_CXX	= src/cpp/parse/scanscilab.cpp
 
-BISON_FLAGS = --no-lines -dvy -ra
+BISON_FLAGS = --no-lines -dvy -ra -Werror=conflicts-sr -Werror=conflicts-rr
 BISON_PARSESCILAB_YY	= src/cpp/parse/bison/parsescilab.yy
 BISON_PARSESCILAB_OUTPUT= src/cpp/parse/bison/parsescilab.output
 BISON_PARSESCILAB_HXX	= includes/parse/parsescilab.hxx

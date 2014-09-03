@@ -695,7 +695,21 @@ bool getFieldsFromExp(ast::Exp* _pExp, std::list<ExpHistory*>& fields)
         typed_list* pCurrentArgs = execMe.GetArgumentList(pCall->args_get());
 
         bool bErr = getFieldsFromExp(&pCall->name_get(), fields);
-        if (fields.back()->getArgs())
+        if (pCurrentArgs && (*pCurrentArgs)[0]->isString())
+        {
+            // a("b") => a.b or a(x)("b") => a(x).b
+            ExpHistory * pEHParent = fields.back();
+            ast::SimpleVar* pFieldVar = new ast::SimpleVar(pCall->location_get(), *new symbol::Symbol((*pCurrentArgs)[0]->getAs<String>()->get(0)));
+            ExpHistory * pEH = new ExpHistory(pEHParent, pFieldVar);
+            pEH->setLevel(pEHParent->getLevel() + 1);
+            pEH->setExpOwner(true);
+
+            (*pCurrentArgs)[0]->killMe();
+            delete pCurrentArgs;
+
+            fields.push_back(pEH);
+        }
+        else if (fields.back()->getArgs())
         {
             // a(x)(y)(z)
             ExpHistory * pEHParent = fields.back();
@@ -708,6 +722,7 @@ bool getFieldsFromExp(ast::Exp* _pExp, std::list<ExpHistory*>& fields)
         {
             // a(x)
             fields.back()->setArgs(pCurrentArgs);
+            fields.back()->setArgsOwner(true);
         }
 
         if (pCell)
@@ -1505,88 +1520,117 @@ InternalType* insertionCall(const ast::Exp& e, typed_list* _pArgs, InternalType*
     else if (_pInsert->isDouble() && _pInsert->getAs<Double>()->isEmpty() && _pVar->isStruct() == false && _pVar->isList() == false)
     {
         //insert [] so deletion except for Struct and List which can insert []
-        if (_pVar->isDouble())
+        InternalType::ScilabType varType = _pVar->getType();
+        switch (varType)
         {
-            pOut = _pVar->getAs<Double>()->remove(_pArgs);
-        }
-        else if (_pVar->isString())
-        {
-            pOut = _pVar->getAs<String>()->remove(_pArgs);
-        }
-        else if (_pVar->isCell())
-        {
-            pOut = _pVar->getAs<Cell>()->remove(_pArgs);
-        }
-        else if (_pVar->isBool())
-        {
-            pOut = _pVar->getAs<Bool>()->remove(_pArgs);
-        }
-        else if (_pVar->isPoly())
-        {
-            pOut = _pVar->getAs<Polynom>()->remove(_pArgs);
-        }
-        else if (_pVar->isInt8())
-        {
-            pOut = _pVar->getAs<Int8>()->remove(_pArgs);
-        }
-        else if (_pVar->isUInt8())
-        {
-            pOut = _pVar->getAs<UInt8>()->remove(_pArgs);
-        }
-        else if (_pVar->isInt16())
-        {
-            pOut = _pVar->getAs<Int16>()->remove(_pArgs);
-        }
-        else if (_pVar->isUInt16())
-        {
-            pOut = _pVar->getAs<UInt16>()->remove(_pArgs);
-        }
-        else if (_pVar->isInt32())
-        {
-            pOut = _pVar->getAs<Int32>()->remove(_pArgs);
-        }
-        else if (_pVar->isUInt32())
-        {
-            pOut = _pVar->getAs<UInt32>()->remove(_pArgs);
-        }
-        else if (_pVar->isInt64())
-        {
-            pOut = _pVar->getAs<Int64>()->remove(_pArgs);
-        }
-        else if (_pVar->isUInt64())
-        {
-            pOut = _pVar->getAs<UInt64>()->remove(_pArgs);
-        }
-        else if (_pVar->isStruct())
-        {
-            // a("b") = [] is not a deletion !!
-            Struct* pStr = _pVar->getAs<Struct>();
-
-            pOut = _pVar->getAs<Struct>()->insert(_pArgs, _pInsert);
-        }
-        else if (_pVar->isHandle())
-        {
-            InternalType* pRet = NULL;
-
-            types::GraphicHandle* pH = _pVar->getAs<GraphicHandle>();
-            types::String *pS = (*_pArgs)[0]->getAs<types::String>();
-
-            typed_list in;
-            typed_list out;
-            optional_list opt;
-            ast::ExecVisitor exec;
-
-            in.push_back(pH);
-            in.push_back(pS);
-            in.push_back(_pInsert);
-
-            Function* pCall = (Function*)symbol::Context::getInstance()->get(symbol::Symbol(L"set"));
-            Callable::ReturnValue ret =  pCall->call(in, opt, 1, out, &exec);
-            if (ret == Callable::OK)
+            case InternalType::ScilabDouble :
             {
-                pRet = _pVar;
+                pOut = _pVar->getAs<Double>()->remove(_pArgs);
+                break;
             }
-            pOut = pRet;
+            case InternalType::ScilabString :
+            {
+                pOut = _pVar->getAs<String>()->remove(_pArgs);
+                break;
+            }
+            case InternalType::ScilabCell :
+            {
+                pOut = _pVar->getAs<Cell>()->remove(_pArgs);
+                break;
+            }
+            case InternalType::ScilabBool :
+            {
+                pOut = _pVar->getAs<Bool>()->remove(_pArgs);
+                break;
+            }
+            case InternalType::ScilabPolynom :
+            {
+                pOut = _pVar->getAs<Polynom>()->remove(_pArgs);
+                break;
+            }
+            case InternalType::ScilabInt8 :
+            {
+                pOut = _pVar->getAs<Int8>()->remove(_pArgs);
+                break;
+            }
+            case InternalType::ScilabUInt8 :
+            {
+                pOut = _pVar->getAs<UInt8>()->remove(_pArgs);
+                break;
+            }
+            case InternalType::ScilabInt16 :
+            {
+                pOut = _pVar->getAs<Int16>()->remove(_pArgs);
+                break;
+            }
+            case InternalType::ScilabUInt16 :
+            {
+                pOut = _pVar->getAs<UInt16>()->remove(_pArgs);
+                break;
+            }
+            case InternalType::ScilabInt32 :
+            {
+                pOut = _pVar->getAs<Int32>()->remove(_pArgs);
+                break;
+            }
+            case InternalType::ScilabUInt32 :
+            {
+                pOut = _pVar->getAs<UInt32>()->remove(_pArgs);
+                break;
+            }
+            case InternalType::ScilabInt64 :
+            {
+                pOut = _pVar->getAs<Int64>()->remove(_pArgs);
+                break;
+            }
+            case InternalType::ScilabUInt64 :
+            {
+                pOut = _pVar->getAs<UInt64>()->remove(_pArgs);
+                break;
+            }
+            case InternalType::ScilabSparse :
+            {
+                pOut = _pVar->getAs<Sparse>()->remove(_pArgs);
+                break;
+            }
+            case InternalType::ScilabSparseBool :
+            {
+                pOut = _pVar->getAs<SparseBool>()->remove(_pArgs);
+                break;
+            }
+            case InternalType::ScilabStruct :
+            {
+                pOut = _pVar->getAs<Struct>()->insert(_pArgs, _pInsert);
+                break;
+            }
+            case InternalType::ScilabHandle :
+            {
+                types::GraphicHandle* pH = _pVar->getAs<GraphicHandle>();
+                types::String *pS = (*_pArgs)[0]->getAs<types::String>();
+
+                typed_list in;
+                typed_list out;
+                optional_list opt;
+                ast::ExecVisitor exec;
+
+                in.push_back(pH);
+                in.push_back(pS);
+                in.push_back(_pInsert);
+
+                Function* pCall = (Function*)symbol::Context::getInstance()->get(symbol::Symbol(L"set"));
+                Callable::ReturnValue ret =  pCall->call(in, opt, 1, out, &exec);
+                if (ret == Callable::OK)
+                {
+                    pOut = _pVar;
+                }
+                break;
+            }
+            default :
+            {
+                //overload !
+                pOut = callOverload(e, L"i", _pArgs, _pInsert, _pVar);
+                break;
+            }
         }
     }
     else if (_pVar == NULL || (_pVar->isDouble() && _pVar->getAs<Double>()->getSize() == 0))
@@ -1757,28 +1801,36 @@ InternalType* insertionCall(const ast::Exp& e, typed_list* _pArgs, InternalType*
         {
             Polynom* pDest = _pVar->getAs<Polynom>();
             Double* pIns = _pInsert->getAs<Double>();
+            bool isComplexIns = pIns->isComplex();
             int iSize = pIns->getSize();
             int* piRanks = new int[iSize];
             memset(piRanks, 0x00, iSize * sizeof(int));
+
+            //create a new polynom with Double to insert it into dest polynom
             Polynom* pP = new Polynom(pDest->getVariableName(), pIns->getDims(), pIns->getDimsArray(), piRanks);
             delete[] piRanks;
-            pP->setComplex(pIns->isComplex());
 
-            if (pP->isComplex())
+            if (isComplexIns)
             {
+                double* pR = pIns->get();
+                double* pI = pIns->getImg();
+                SinglePoly** pSP = pP->get();
                 for (int idx = 0 ; idx < pP->getSize() ; idx++)
                 {
-                    double dblR = pIns->get(idx);
-                    double dblI = pIns->getImg(idx);
-                    pP->get(idx)->setCoef(&dblR, &dblI);
+                    double dblR = pR[idx];
+                    double dblI = pI[idx];
+                    pSP[idx]->setComplex(true);
+                    pSP[idx]->setCoef(&dblR, &dblI);
                 }
             }
             else
             {
+                double* pdblR = pIns->get();
+                SinglePoly** pSP = pP->get();
                 for (int idx = 0 ; idx < pP->getSize() ; idx++)
                 {
-                    double dblR = pIns->get(idx);
-                    pP->get(idx)->setCoef(&dblR, NULL);
+                    double dblR = pdblR[idx];
+                    pSP[idx]->setCoef(&dblR, NULL);
                 }
             }
 

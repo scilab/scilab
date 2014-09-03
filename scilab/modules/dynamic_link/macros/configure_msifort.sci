@@ -31,6 +31,8 @@ function bOK = configure_msifort()
             ifpath = getenv("IFORT_COMPILER12", "");
         case "ifort13" then
             ifpath = getenv("IFORT_COMPILER13", "");
+        case "ifort14" then
+            ifpath = getenv("IFORT_COMPILER14", "");
         else
             ifpath = "";
         end
@@ -163,6 +165,8 @@ function bOK = configure_msifort()
                 machinepath = "ia32";
             else
                 select ifortcompiler,
+                case "ifort14" then
+                    machinepath = "intel64";
                 case "ifort13" then
                     machinepath = "intel64";
                 case "ifort12" then
@@ -175,6 +179,8 @@ function bOK = configure_msifort()
             end
 
             select ifortcompiler,
+            case "ifort14" then
+                bOK = set_commons_ifort12(if_path, machinepath);
             case "ifort13" then
                 bOK = set_commons_ifort12(if_path, machinepath);
             case "ifort12" then

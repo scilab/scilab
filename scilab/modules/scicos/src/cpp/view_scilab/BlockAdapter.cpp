@@ -14,6 +14,7 @@
 
 #include "internal.hxx"
 #include "list.hxx"
+#include "mlist.hxx"
 #include "string.hxx"
 #include "types.hxx"
 #include "user.hxx"
@@ -40,19 +41,14 @@ struct graphics
 {
     static types::InternalType* get(const BlockAdapter& adaptor, const Controller& controller)
     {
-        return new GraphicsAdapter(adaptor.getAdaptee());
+        GraphicsAdapter localAdaptor = GraphicsAdapter(adaptor.getAdaptee());
+        return localAdaptor.getAsTList(new types::MList(), controller);
     }
 
     static bool set(BlockAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        if (v->getType() == types::InternalType::ScilabUserType
-                && v->getShortTypeStr() == GraphicsAdapter::getSharedTypeStr())
-        {
-            GraphicsAdapter* graphics = v->getAs<GraphicsAdapter>();
-            adaptor.setAdaptee(graphics->getAdaptee());
-            return true;
-        }
-        return false;
+        GraphicsAdapter localAdaptor = GraphicsAdapter(adaptor.getAdaptee());
+        return localAdaptor.setAsTList(v, controller);
     }
 };
 
@@ -60,19 +56,14 @@ struct model
 {
     static types::InternalType* get(const BlockAdapter& adaptor, const Controller& controller)
     {
-        return new ModelAdapter(adaptor.getAdaptee());
+        ModelAdapter localAdaptor = ModelAdapter(adaptor.getAdaptee());
+        return localAdaptor.getAsTList(new types::MList(), controller);
     }
 
     static bool set(BlockAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        if (v->getType() == types::InternalType::ScilabUserType
-                && v->getShortTypeStr() == ModelAdapter::getSharedTypeStr())
-        {
-            ModelAdapter* model = v->getAs<ModelAdapter>();
-            adaptor.setAdaptee(model->getAdaptee());
-            return true;
-        }
-        return false;
+        ModelAdapter localAdaptor = ModelAdapter(adaptor.getAdaptee());
+        return localAdaptor.setAsTList(v, controller);
     }
 };
 
@@ -135,7 +126,7 @@ BlockAdapter::BlockAdapter(const BlockAdapter& o) :
 BlockAdapter::BlockAdapter(org_scilab_modules_scicos::model::Block* o) :
     BaseAdapter<BlockAdapter, org_scilab_modules_scicos::model::Block>(o)
 {
-    if (property<BlockAdapter>::properties_has_not_been_set())
+    if (property<BlockAdapter>::properties_have_not_been_set())
     {
         property<BlockAdapter>::fields.reserve(4);
         property<BlockAdapter>::add_property(L"graphics", &graphics::get, &graphics::set);

@@ -344,6 +344,11 @@ void addDoubleComplexValue(wostringstream * _postr, double _dblR, double _dblI, 
             df.bPrintOne = false;
             addDoubleValue(&ostemp, _dblI, &df);
             ostemp << left << SYMBOL_I;
+            if (_dblI == 1)
+            {
+                addSpaces(&ostemp, 2);
+            }
+
         }
     }
     else
@@ -382,10 +387,14 @@ void addDoubleComplexValue(wostringstream * _postr, double _dblR, double _dblI, 
 
             addDoubleValue(&ostemp, _dblI, &df);
             ostemp << left << SYMBOL_I;
+            if (_dblI == 1)
+            {
+                addSpaces(&ostemp, 2);
+            }
         }
     }
 
-    configureStream(_postr, _iTotalWidth, 0, ' ');
+    configureStream(_postr, _iTotalWidth - 3, 0, ' ');
     *_postr << left << ostemp.str();
 }
 

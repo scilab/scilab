@@ -15,6 +15,7 @@
 
 #include "internal.hxx"
 #include "list.hxx"
+#include "tlist.hxx"
 #include "string.hxx"
 #include "types.hxx"
 #include "user.hxx"
@@ -39,20 +40,14 @@ struct props
 
     static types::InternalType* get(const DiagramAdapter& adaptor, const Controller& controller)
     {
-
-        return new ParamsAdapter(adaptor.getAdaptee());
+        ParamsAdapter localAdaptor = ParamsAdapter(adaptor.getAdaptee());
+        return localAdaptor.getAsTList(new types::TList(), controller);
     }
 
     static bool set(DiagramAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        if (v->getType() == types::InternalType::ScilabUserType
-                && v->getShortTypeStr() == ParamsAdapter::getSharedTypeStr())
-        {
-            ParamsAdapter* props = v->getAs<ParamsAdapter>();
-            adaptor.setAdaptee(props->getAdaptee());
-            return true;
-        }
-        return false;
+        ParamsAdapter localAdaptor = ParamsAdapter(adaptor.getAdaptee());
+        return localAdaptor.setAsTList(v, controller);
     }
 };
 
@@ -113,7 +108,7 @@ DiagramAdapter::DiagramAdapter(const DiagramAdapter& o) :
 DiagramAdapter::DiagramAdapter(org_scilab_modules_scicos::model::Diagram* o) :
     BaseAdapter<DiagramAdapter, org_scilab_modules_scicos::model::Diagram>(o), contrib(0)
 {
-    if (property<DiagramAdapter>::properties_has_not_been_set())
+    if (property<DiagramAdapter>::properties_have_not_been_set())
     {
         property<DiagramAdapter>::fields.reserve(4);
         property<DiagramAdapter>::add_property(L"props", &props::get, &props::set);

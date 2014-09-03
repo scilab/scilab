@@ -61,6 +61,10 @@ USE_F2C=NO
 !ELSE
 USE_F2C=NO
 !ENDIF
+!IF "$(IFORT_COMPILER14)" == ""
+!ELSE
+USE_F2C=NO
+!ENDIF
 
 #==================================================
 # if USE_F2C is set to NO we will use the following Fortran compiler (i.e Intel Fortran 10.x)

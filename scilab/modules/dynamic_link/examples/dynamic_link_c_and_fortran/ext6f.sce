@@ -12,7 +12,7 @@
 
 // builder code for ext6f.c
 link_name = "ext6f";    // functions to be added to the call table
-flag  = "f";		 // ext6f is a C function
+flag  = "f";		 // ext6f is a Fortran function
 files = ["ext6f.f" ];   // objects files for ext6f
 libs  = [];		 // other libs needed for linking
 

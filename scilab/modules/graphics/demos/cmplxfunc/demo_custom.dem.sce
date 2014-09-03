@@ -134,7 +134,7 @@ function demo_custom()
 
     b_f_expTxt = createBorderFont("", 12);
     b_l_expTxt = createBorder("line", "navy", 1);
-    b_expTxt   = createBorder("titled", b_l_expTxt, _(""), "center", "top", b_f_expTxt, "navy");
+    b_expTxt   = createBorder("titled", b_l_expTxt, "", "center", "top", b_f_expTxt, "navy");
 
     // Border for the explanatory text frame
     c = createConstraints("gridbag", [1 1 1 1], [1 1], "both", "upper");

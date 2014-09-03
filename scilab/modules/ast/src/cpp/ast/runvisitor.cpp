@@ -24,7 +24,8 @@
 
 #include "context.hxx"
 #include "generic_operations.hxx"
-#include "types_or_and.hxx"
+#include "types_or.hxx"
+#include "types_and.hxx"
 #include "localization.hxx"
 
 #include "macrofile.hxx"

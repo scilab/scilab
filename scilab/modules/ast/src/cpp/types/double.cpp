@@ -456,7 +456,6 @@ bool Double::subMatrixToString(wostringstream& ostr, int* _piDims, int _iDims)
                 DoubleFormat dfR, dfI;
                 getComplexFormat(ZeroIsZero(m_pRealData[iPos]), ZeroIsZero(m_pImgData[iPos]), &iTotalLen, &dfR, &dfI);
 
-                iLen = static_cast<int>(ostemp.str().size());
                 if (isRealZero(m_pImgData[iPos]))
                 {
                     if (isRealZero(m_pRealData[iPos]))

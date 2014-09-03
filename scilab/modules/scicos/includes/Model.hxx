@@ -20,10 +20,12 @@
 #include "utilities.hxx"
 #include "model/BaseObject.hxx"
 
+#include "dynlib_scicos.h"
+
 namespace org_scilab_modules_scicos
 {
 
-class Model
+class SCICOS_IMPEXP Model
 {
 public:
     Model();

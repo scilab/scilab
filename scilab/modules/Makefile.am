@@ -83,7 +83,6 @@ matio \
 atoms \
 hdf5 \
 graph \
-xcos \
 ast \
 scinotes \
 parallel \
@@ -100,10 +99,8 @@ SUBDIRS += external_objects_java
 endif
 
 if XCOS
-SUBDIRS += scicos_blocks
+SUBDIRS += scicos_blocks scicos xcos
 endif
-
-SUBDIRS += scicos
 
 if MPI
 SUBDIRS += mpi

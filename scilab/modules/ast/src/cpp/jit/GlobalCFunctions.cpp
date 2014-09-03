@@ -17,6 +17,7 @@
 #include "types_addition.hxx"
 #include "types_subtraction.hxx"
 #include "types_multiplication.hxx"
+#include "types_dotmultiplication.hxx"
 #include "dynlib_ast.h"
 
 extern "C"

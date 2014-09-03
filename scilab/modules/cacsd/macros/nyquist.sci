@@ -166,7 +166,7 @@ function nyquist(varargin)
             xpoly([R(k,:) R(k,$:-1:1)],[I(k,:) -I(k,$:-1:1)]);
             e=gce();e.foreground=k;
             e.display_function = "formatNyquistTip";
-            e.display_function_data = [F(kf,:) F(kf,$:-1:1)];
+            e.display_function_data = [F(kf,:) -1*F(kf,$:-1:1)];
             Curves=[Curves,e];
             kf=kf+ilf;
         end

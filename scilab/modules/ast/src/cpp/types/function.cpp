@@ -60,6 +60,11 @@ Function* Function::createFunction(std::wstring _wstName, GW_FUNC _pFunc, LOAD_D
     return new Function(_wstName, _pFunc, _pLoadDeps, _wstModule);
 }
 
+Function* Function::createFunction(std::wstring _wstName, GW_FUNC_OPT _pFunc, LOAD_DEPS _pLoadDeps, std::wstring _wstModule)
+{
+    return new OptFunction(_wstName, _pFunc, _pLoadDeps, _wstModule);
+}
+
 Function* Function::createFunction(std::wstring _wstName, OLDGW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, std::wstring _wstModule)
 {
     return new WrapFunction(_wstName, _pFunc, _pLoadDeps, _wstModule);

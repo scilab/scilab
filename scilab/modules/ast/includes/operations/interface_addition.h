@@ -14,32 +14,32 @@
 #define __INTERFACE_ADD_H__
 
 /* addition double */
-void add_ll_D_D(double* l, double* r, int size, double* o);
-void add_ll_D_DC(double* l, double* r, double* rc, int size, double* o, double* oc);
-void add_ll_D_D1(double* l, double r, int size, double* o);
-void add_ll_D_D1C(double* l, double r, double rc, int size, double* o, double* oc);
-void add_ll_D_E(double* l, int size, double* o);
+void add_ll_D_D(double* l, double* r, size_t size, double* o);
+void add_ll_D_DC(double* l, double* r, double* rc, size_t size, double* o, double* oc);
+void add_ll_D_D1(double* l, double r, size_t size, double* o);
+void add_ll_D_D1C(double* l, double r, double rc, size_t size, double* o, double* oc);
+void add_ll_D_E(double* l, size_t size, double* o);
 
-void add_ll_DC_D(double* l, double* lc, double* r, int size, double* o, double* oc);
-void add_ll_DC_DC(double* l, double* lc, double* r, double* rc, int size, double* o, double* oc);
-void add_ll_DC_D1(double* l, double* lc, double r, int size, double* o, double* oc);
-void add_ll_DC_D1C(double* l, double* lc, double r, double rc, int size, double* o, double* oc);
-void add_ll_DC_E(double* l, double* lc, int size, double* o, double* oc);
+void add_ll_DC_D(double* l, double* lc, double* r, size_t size, double* o, double* oc);
+void add_ll_DC_DC(double* l, double* lc, double* r, double* rc, size_t size, double* o, double* oc);
+void add_ll_DC_D1(double* l, double* lc, double r, size_t size, double* o, double* oc);
+void add_ll_DC_D1C(double* l, double* lc, double r, double rc, size_t size, double* o, double* oc);
+void add_ll_DC_E(double* l, double* lc, size_t size, double* o, double* oc);
 
-void add_ll_D1_D(double l, double* r, int size, double* o);
-void add_ll_D1_DC(double l, double* r, double* rc, int size, double* o, double* oc);
+void add_ll_D1_D(double l, double* r, size_t size, double* o);
+void add_ll_D1_DC(double l, double* r, double* rc, size_t size, double* o, double* oc);
 void add_ll_D1_D1(double l, double r, double* o);
 void add_ll_D1_D1C(double l, double r, double rc, double* o, double* oc);
 void add_ll_D1_E(double l, double* o);
 
-void add_ll_D1C_D(double l, double lc, double* r, int size, double* o, double* oc);
-void add_ll_D1C_DC(double l, double lc, double* r, double* rc, int size, double* o, double* oc);
+void add_ll_D1C_D(double l, double lc, double* r, size_t size, double* o, double* oc);
+void add_ll_D1C_DC(double l, double lc, double* r, double* rc, size_t size, double* o, double* oc);
 void add_ll_D1C_D1(double l, double lc, double r, double* o, double* oc);
 void add_ll_D1C_D1C(double l, double lc, double r, double rc, double* o, double* oc);
 void add_ll_D1C_E(double l, double lc, double* o, double* oc);
 
-void add_ll_E_D(double* r, int size, double* o);
-void add_ll_E_DC(double* r, double* rc, int size, double* o, double* oc);
+void add_ll_E_D(double* r, size_t size, double* o);
+void add_ll_E_DC(double* r, double* rc, size_t size, double* o, double* oc);
 void add_ll_E_D1(double r, double* o);
 void add_ll_E_D1C(double r, double rc, double* o, double* oc);
 void add_ll_E_E();

@@ -19,13 +19,12 @@
 #include "polynom.hxx"
 #include "sparse.hxx"
 
-// FIXME : remove using namespace
 void fillSubtractFunction();
 
 //define arrays on operation functions
 typedef types::InternalType*(*sub_function)(types::InternalType*, types::InternalType*);
 
-#define DECLARE_SUB_PROTO(x) template<class T, class U, class O> inline types::InternalType* x(T *_pL, U *_pR)
+#define DECLARE_SUB_PROTO(x) template<class T, class U, class O> types::InternalType* x(T *_pL, U *_pR)
 //Double, int , bool
 DECLARE_SUB_PROTO(sub_M_M);
 DECLARE_SUB_PROTO(sub_M_MC);
@@ -87,34 +86,34 @@ DECLARE_SUB_PROTO(sub_IC_E);
 DECLARE_SUB_PROTO(sub_E_I);
 DECLARE_SUB_PROTO(sub_E_IC);
 
-template<> inline types::InternalType* sub_M_M<types::Polynom, types::Polynom, types::Polynom>(types::Polynom* _pL, types::Polynom* _pR);
-template<> inline types::InternalType* sub_M_M<types::Polynom, types::Double, types::Polynom>(types::Polynom* _pL, types::Double* _pR);
-template<> inline types::InternalType* sub_M_M<types::Double, types::Polynom, types::Polynom>(types::Double* _pL, types::Polynom* _pR);
-template<> inline types::InternalType* sub_I_M<types::Double, types::Polynom, types::Polynom>(types::Double* _pL, types::Polynom* _pR);
-template<> inline types::InternalType* sub_IC_M<types::Double, types::Polynom, types::Polynom>(types::Double* _pL, types::Polynom* _pR);
-template<> inline types::InternalType* sub_I_MC<types::Double, types::Polynom, types::Polynom>(types::Double* _pL, types::Polynom* _pR);
-template<> inline types::InternalType* sub_IC_MC<types::Double, types::Polynom, types::Polynom>(types::Double* _pL, types::Polynom* _pR);
+template<> types::InternalType* sub_M_M<types::Polynom, types::Polynom, types::Polynom>(types::Polynom* _pL, types::Polynom* _pR);
+template<> types::InternalType* sub_M_M<types::Polynom, types::Double, types::Polynom>(types::Polynom* _pL, types::Double* _pR);
+template<> types::InternalType* sub_M_M<types::Double, types::Polynom, types::Polynom>(types::Double* _pL, types::Polynom* _pR);
+template<> types::InternalType* sub_I_M<types::Double, types::Polynom, types::Polynom>(types::Double* _pL, types::Polynom* _pR);
+template<> types::InternalType* sub_IC_M<types::Double, types::Polynom, types::Polynom>(types::Double* _pL, types::Polynom* _pR);
+template<> types::InternalType* sub_I_MC<types::Double, types::Polynom, types::Polynom>(types::Double* _pL, types::Polynom* _pR);
+template<> types::InternalType* sub_IC_MC<types::Double, types::Polynom, types::Polynom>(types::Double* _pL, types::Polynom* _pR);
 
-template<> inline types::InternalType* sub_M_M<types::Sparse, types::Sparse, types::Sparse>(types::Sparse* _pL, types::Sparse* _pR);
-template<> inline types::InternalType* sub_M_M<types::Double, types::Sparse, types::Double>(types::Double* _pL, types::Sparse* _pR);
-template<> inline types::InternalType* sub_M_M<types::Sparse, types::Double, types::Double>(types::Sparse* _pL, types::Double* _pR);
-template<> inline types::InternalType* sub_M_M<types::Double, types::Sparse, types::Sparse>(types::Double* _pL, types::Sparse* _pR);
-template<> inline types::InternalType* sub_M_M<types::Sparse, types::Double, types::Sparse>(types::Sparse* _pL, types::Double* _pR);
+template<> types::InternalType* sub_M_M<types::Sparse, types::Sparse, types::Sparse>(types::Sparse* _pL, types::Sparse* _pR);
+template<> types::InternalType* sub_M_M<types::Double, types::Sparse, types::Double>(types::Double* _pL, types::Sparse* _pR);
+template<> types::InternalType* sub_M_M<types::Sparse, types::Double, types::Double>(types::Sparse* _pL, types::Double* _pR);
+template<> types::InternalType* sub_M_M<types::Double, types::Sparse, types::Sparse>(types::Double* _pL, types::Sparse* _pR);
+template<> types::InternalType* sub_M_M<types::Sparse, types::Double, types::Sparse>(types::Sparse* _pL, types::Double* _pR);
 
 //add matrix - matrix ( double, int, bool )
 //same type
-template<typename T, typename O> inline static void sub(T* l, long long size, T* r, O* o)
+template<typename T, typename O> inline static void sub(T* l, size_t size, T* r, O* o)
 {
-    for (int i = 0; i < size ; ++i)
+    for (size_t i = 0; i < size ; ++i)
     {
         o[i] = (O)l[i] - (O)r[i];
     }
 }
 
 //x - x
-template<typename T, typename U, typename O> inline static void sub(T* l, long long size, U* r, O* o)
+template<typename T, typename U, typename O> inline static void sub(T* l, size_t size, U* r, O* o)
 {
-    for (int i = 0; i < size ; ++i)
+    for (size_t i = 0; i < size ; ++i)
     {
         o[i] = (O)l[i] - (O)r[i];
     }
@@ -122,9 +121,9 @@ template<typename T, typename U, typename O> inline static void sub(T* l, long l
 
 
 //x - xC
-template<typename T, typename U, typename O> inline static void sub(T* l, long long size, U* r, U* rc, O* o, O* oc)
+template<typename T, typename U, typename O> inline static void sub(T* l, size_t size, U* r, U* rc, O* o, O* oc)
 {
-    for (int i = 0; i < size ; ++i)
+    for (size_t i = 0; i < size ; ++i)
     {
         o[i] = (O)l[i] - (O)r[i];
         oc[i] = (O) - rc[i];
@@ -132,9 +131,9 @@ template<typename T, typename U, typename O> inline static void sub(T* l, long l
 }
 
 //xC - x
-template<typename T, typename U, typename O> inline static void sub(T* l, T* lc, long long size, U* r, O* o, O* oc)
+template<typename T, typename U, typename O> inline static void sub(T* l, T* lc, size_t size, U* r, O* o, O* oc)
 {
-    for (int i = 0; i < size ; ++i)
+    for (size_t i = 0; i < size ; ++i)
     {
         o[i] = (O)l[i] - (O)r[i];
         oc[i] = (O)lc[i];
@@ -142,9 +141,9 @@ template<typename T, typename U, typename O> inline static void sub(T* l, T* lc,
 }
 
 // xC - xC
-template<typename T, typename O> inline static void sub(T* l, T* lc, long long size, T* r, T* rc, O* o, O* oc)
+template<typename T, typename O> inline static void sub(T* l, T* lc, size_t size, T* r, T* rc, O* o, O* oc)
 {
-    for (int i = 0; i < size ; ++i)
+    for (size_t i = 0; i < size ; ++i)
     {
         o[i] = (O)l[i] - (O)r[i];
         oc[i] = (O)lc[i] - (O)rc[i];
@@ -153,18 +152,18 @@ template<typename T, typename O> inline static void sub(T* l, T* lc, long long s
 
 //add matrix - scalar ( double, int, bool )
 //x - x1
-template<typename T, typename U, typename O> inline static void sub(T* l, long long size, U r, O* o)
+template<typename T, typename U, typename O> inline static void sub(T* l, size_t size, U r, O* o)
 {
-    for (int i = 0; i < size ; ++i)
+    for (size_t i = 0; i < size ; ++i)
     {
         o[i] = (O)l[i] - (O)r;
     }
 }
 
 //xC - x1
-template<typename T, typename U, typename O> inline static void sub(T* l, T* lc, long long size, U r, O* o, O* oc)
+template<typename T, typename U, typename O> inline static void sub(T* l, T* lc, size_t size, U r, O* o, O* oc)
 {
-    for (int i = 0; i < size ; ++i)
+    for (size_t i = 0; i < size ; ++i)
     {
         o[i] = (O)l[i] - (O)r;
         oc[i] = (O)lc[i];
@@ -172,9 +171,9 @@ template<typename T, typename U, typename O> inline static void sub(T* l, T* lc,
 }
 
 //x - x1C
-template<typename T, typename U, typename O> inline static void sub(T* l, long long size, U r, U rc, O* o, O* oc)
+template<typename T, typename U, typename O> inline static void sub(T* l, size_t size, U r, U rc, O* o, O* oc)
 {
-    for (int i = 0; i < size ; ++i)
+    for (size_t i = 0; i < size ; ++i)
     {
         o[i] = (O)l[i] - (O) r;
         oc[i] = (O) - rc;
@@ -182,9 +181,9 @@ template<typename T, typename U, typename O> inline static void sub(T* l, long l
 }
 
 //xC - x1C
-template<typename T, typename O> inline static void sub(T* l, T* lc, long long size, T r, T rc, O* o, O* oc)
+template<typename T, typename O> inline static void sub(T* l, T* lc, size_t size, T r, T rc, O* o, O* oc)
 {
-    for (int i = 0; i < size ; ++i)
+    for (size_t i = 0; i < size ; ++i)
     {
         o[i] = (O)l[i] - (O)r;
         oc[i] = (O)lc[i] - (O)rc;
@@ -193,18 +192,18 @@ template<typename T, typename O> inline static void sub(T* l, T* lc, long long s
 
 //add scalar - matrix ( double, int, bool )
 //x1 - x
-template<typename T, typename U, typename O> inline static void sub(T l, long long size, U* r, O* o)
+template<typename T, typename U, typename O> inline static void sub(T l, size_t size, U* r, O* o)
 {
-    for (int i = 0; i < size ; ++i)
+    for (size_t i = 0; i < size ; ++i)
     {
         o[i] = (O)l - (O)r[i];
     }
 }
 
 //x1 - xC
-template<typename T, typename U, typename O> inline static void sub(T l, long long size, U* r, U* rc, O* o, O* oc)
+template<typename T, typename U, typename O> inline static void sub(T l, size_t size, U* r, U* rc, O* o, O* oc)
 {
-    for (int i = 0; i < size ; ++i)
+    for (size_t i = 0; i < size ; ++i)
     {
         o[i] = (O)l - (O)r[i];
         oc[i] = (O) - rc[i];
@@ -212,9 +211,9 @@ template<typename T, typename U, typename O> inline static void sub(T l, long lo
 }
 
 //x1C - x
-template<typename T, typename U, typename O> inline static void sub(T l, T lc, long long size, U* r, O* o, O* oc)
+template<typename T, typename U, typename O> inline static void sub(T l, T lc, size_t size, U* r, O* o, O* oc)
 {
-    for (int i = 0; i < size ; ++i)
+    for (size_t i = 0; i < size ; ++i)
     {
         o[i] = (O)l - (O)r[i];
         oc[i] = (O)lc;
@@ -222,9 +221,9 @@ template<typename T, typename U, typename O> inline static void sub(T l, T lc, l
 }
 
 //x1C - xC
-template<typename T, typename O> inline static void sub(T l, T lc, long long size, T* r, T* rc, O* o, O* oc)
+template<typename T, typename O> inline static void sub(T l, T lc, size_t size, T* r, T* rc, O* o, O* oc)
 {
-    for (int i = 0; i < size ; ++i)
+    for (size_t i = 0; i < size ; ++i)
     {
         o[i] = (O)l - (O)r[i];
         oc[i] = (O)lc - rc[i];
@@ -258,7 +257,7 @@ template<typename T, typename O> inline static void sub(T l, O* o)
 }
 
 //x1c - []
-template<typename T, typename O> inline static void sub(T l, T lc, O* o, O* oc)
+template<typename T, typename O> inline static void sub(T l, T lc, size_t /*size*/, O* o, O* oc)
 {
     *o = (O)l;
     *oc = (O)lc;

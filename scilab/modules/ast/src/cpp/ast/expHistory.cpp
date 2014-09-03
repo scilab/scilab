@@ -19,16 +19,16 @@
 ** Constructor & Destructor (public)
 */
 
-ExpHistory::ExpHistory() : m_pArgs(NULL), m_piArgsDimsArray(NULL), m_pExp(NULL), m_pParent(NULL), m_pITCurrent(NULL), m_bReinsertMe(false), m_bCellExp(false), m_iArgsDims(0), m_iWhere(-1), m_iLevel(0), m_pArgsOwner(false)
+ExpHistory::ExpHistory() : m_pArgs(NULL), m_piArgsDimsArray(NULL), m_pExp(NULL), m_pParent(NULL), m_pITCurrent(NULL), m_bReinsertMe(false), m_bCellExp(false), m_iArgsDims(0), m_iWhere(-1), m_iLevel(0), m_pArgsOwner(false), m_pExpOwner(false)
 {
 }
 
 
-ExpHistory::ExpHistory(ExpHistory* _pEH, ast::SimpleVar* _pExp) : m_pArgs(NULL), m_piArgsDimsArray(NULL), m_pExp(_pExp), m_pParent(_pEH), m_pITCurrent(NULL), m_bReinsertMe(false), m_bCellExp(false), m_iArgsDims(0), m_iWhere(-1), m_iLevel(0), m_pArgsOwner(false)
+ExpHistory::ExpHistory(ExpHistory* _pEH, ast::SimpleVar* _pExp) : m_pArgs(NULL), m_piArgsDimsArray(NULL), m_pExp(_pExp), m_pParent(_pEH), m_pITCurrent(NULL), m_bReinsertMe(false), m_bCellExp(false), m_iArgsDims(0), m_iWhere(-1), m_iLevel(0), m_pArgsOwner(false), m_pExpOwner(false)
 {
 }
 
-ExpHistory::ExpHistory(ExpHistory* _pParent, types::typed_list* _pArgs) : m_pArgs(_pArgs), m_piArgsDimsArray(NULL), m_pExp(NULL), m_pParent(_pParent), m_pITCurrent(NULL), m_bReinsertMe(false), m_bCellExp(false), m_iArgsDims(0), m_iWhere(-1), m_iLevel(0), m_pArgsOwner(false)
+ExpHistory::ExpHistory(ExpHistory* _pParent, types::typed_list* _pArgs) : m_pArgs(_pArgs), m_piArgsDimsArray(NULL), m_pExp(NULL), m_pParent(_pParent), m_pITCurrent(NULL), m_bReinsertMe(false), m_bCellExp(false), m_iArgsDims(0), m_iWhere(-1), m_iLevel(0), m_pArgsOwner(false), m_pExpOwner(false)
 {
 }
 
@@ -43,12 +43,18 @@ ExpHistory::ExpHistory(ExpHistory* _pParent, ast::SimpleVar* _pExp, types::typed
     m_iArgsDims(0),
     m_iWhere(-1),
     m_iLevel(_iLevel),
-    m_pArgsOwner(false)
+    m_pArgsOwner(false),
+    m_pExpOwner(false)
 {
 }
 
 ExpHistory::~ExpHistory()
 {
+    if (m_pExpOwner)
+    {
+        delete m_pExp;
+    }
+
     if (m_piArgsDimsArray)
     {
         delete[] m_piArgsDimsArray;
@@ -59,10 +65,7 @@ ExpHistory::~ExpHistory()
         types::typed_list::iterator iter = m_pArgs->begin();
         for (; iter != m_pArgs->end(); ++iter)
         {
-            if ((*iter)->isDeletable())
-            {
-                delete *iter;
-            }
+            (*iter)->killMe();
         }
 
         delete m_pArgs;
@@ -108,6 +111,11 @@ void ExpHistory::setArgs(types::typed_list* _pArgs)
 void ExpHistory::setArgsOwner(bool owner)
 {
     m_pArgsOwner = owner;
+}
+
+void ExpHistory::setExpOwner(bool owner)
+{
+    m_pExpOwner = owner;
 }
 
 void ExpHistory::computeArgs()

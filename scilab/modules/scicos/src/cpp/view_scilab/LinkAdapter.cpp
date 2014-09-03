@@ -41,7 +41,7 @@ struct xx
         controller.getObjectProperty(adaptee->id(), adaptee->kind(), CONTROL_POINTS, controlPoints);
 
         double* data;
-        types::Double* o = new types::Double(controlPoints.size() / 2, 1, &data);
+        types::Double* o = new types::Double((int)controlPoints.size() / 2, 1, &data);
 
         std::copy(controlPoints.begin(), controlPoints.begin() + controlPoints.size() / 2, data);
         return o;
@@ -84,7 +84,7 @@ struct yy
         controller.getObjectProperty(adaptee->id(), adaptee->kind(), CONTROL_POINTS, controlPoints);
 
         double* data;
-        types::Double* o = new types::Double(controlPoints.size() / 2, 1, &data);
+        types::Double* o = new types::Double((int)controlPoints.size() / 2, 1, &data);
 
         std::copy(controlPoints.begin() + controlPoints.size() / 2, controlPoints.end(), data);
         return o;
@@ -356,7 +356,7 @@ static bool setLinkEnd(LinkAdapter& adaptor, Controller& controller, object_prop
     int kind = static_cast<int>(current->get(2));
     std::vector<ScicosID> sourceBlockPorts;
     controller.getObjectProperty(blk, BLOCK, portType, sourceBlockPorts);
-    int nBlockPorts = sourceBlockPorts.size();
+    int nBlockPorts = (int)sourceBlockPorts.size();
     // Create as many ports as necessary
     while (nBlockPorts < port)
     {
@@ -424,7 +424,7 @@ LinkAdapter::LinkAdapter(const LinkAdapter& o) :
 LinkAdapter::LinkAdapter(org_scilab_modules_scicos::model::Link* o) :
     BaseAdapter<LinkAdapter, org_scilab_modules_scicos::model::Link>(o)
 {
-    if (property<LinkAdapter>::properties_has_not_been_set())
+    if (property<LinkAdapter>::properties_have_not_been_set())
     {
         property<LinkAdapter>::fields.reserve(7);
         property<LinkAdapter>::add_property(L"xx", &xx::get, &xx::set);

@@ -87,7 +87,7 @@ types::Function::ReturnValue Overload::call(std::wstring _stOverloadingFunctionN
         wchar_t* pwstError = NULL;
         if (_isOperator)
         {
-            sprintf(pstError2, _("  check or define function %s for overloading.\n"), pstFuncName);
+            sprintf(pstError2, _("check or define function %s for overloading.\n"), pstFuncName);
             sprintf(pstError1, "%s%s", _("Undefined operation for the given operands.\n"), pstError2);
             pwstError = to_wide_string(pstError1);
             std::wstring wstError(pwstError);

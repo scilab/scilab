@@ -11,6 +11,9 @@
  *
  */
 /*--------------------------------------------------------------------------*/
+
+#include <iostream>
+
 #include "Xcos.hxx"
 #include "loadStatus.hxx"
 
@@ -224,6 +227,10 @@ static int callXcos(char *fname, char* file, char* var)
     }
     catch (GiwsException::JniCallMethodException &exception)
     {
+        std::cerr << exception.getJavaExceptionName() << std::endl;
+        std::cerr << exception.getJavaDescription() << std::endl;
+        std::cerr << exception.getJavaStackTrace() << std::endl;
+
         Scierror(999, "%s: %s\n", fname,
                  exception.getJavaDescription().c_str());
 
@@ -239,6 +246,10 @@ static int callXcos(char *fname, char* file, char* var)
     }
     catch (GiwsException::JniException &exception)
     {
+        std::cerr << exception.getJavaExceptionName() << std::endl;
+        std::cerr << exception.getJavaDescription() << std::endl;
+        std::cerr << exception.getJavaStackTrace() << std::endl;
+
         Scierror(999, "%s: %s\n", fname, exception.whatStr().c_str());
 
         if (file)

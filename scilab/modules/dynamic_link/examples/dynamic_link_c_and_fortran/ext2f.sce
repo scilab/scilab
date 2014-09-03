@@ -12,7 +12,7 @@
 
 // builder code for ext2f.c
 link_name = "ext2f";    // functions to be added to the call table
-flag  = "f";		// ext2f is a C function
+flag  = "f";		// ext2f is a Fortran function
 files = ["ext2f.f" ];   // objects files for ext2f
 libs  = [];		// other libs needed for linking
 

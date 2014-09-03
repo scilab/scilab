@@ -193,10 +193,10 @@ bool Struct::invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_
                     return true;
                 }
             }
-        }
 
-        out.swap(_out);
-        return true;
+            out.swap(_out);
+            return true;
+        }
     }
 
     return ArrayOf<SingleStruct*>::invoke(in, opt, _iRetCount, out, execFunc, e);

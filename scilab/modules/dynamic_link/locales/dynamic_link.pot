@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2014-04-01 12:32+0100\n"
+"Revision-Date: 2014-08-27 10:50+0100\n"
 
 # File: sci_gateway/c/sci_addinter.c, line: 46
 # File: sci_gateway/c/sci_addinter.c, line: 58
@@ -352,18 +352,18 @@ msgid "Microsoft Visual Studio C x86 Compiler not found."
 msgstr ""
 
 #
-# File: macros/detectmsifort64tools.sci, line: 37
+# File: macros/detectmsifort64tools.sci, line: 40
 msgid "Intel Fortran Compiler 9, 10, 11 or 12 Compiler not found."
 msgstr ""
 
 #
-# File: macros/detectmsvc64tools.sci, line: 68
+# File: macros/detectmsvc64tools.sci, line: 70
 msgid ""
 "Microsoft Visual Studio C 2008 (or more recent) x64 Compiler not installed."
 msgstr ""
 
 #
-# File: macros/detectmsvc64tools.sci, line: 78
+# File: macros/detectmsvc64tools.sci, line: 80
 msgid "Microsoft Visual Studio C 2008 (or more recent) Compiler not found."
 msgstr ""
 
@@ -409,7 +409,7 @@ msgstr ""
 
 #
 # File: macros/ilib_build.sci, line: 38
-# File: macros/ilib_build_jar.sci, line: 144
+# File: macros/ilib_build_jar.sci, line: 147
 # File: macros/ilib_gen_loader.sci, line: 86
 # File: macros/ilib_gen_loader.sci, line: 94
 # File: macros/ilib_gen_loader.sci, line: 102
@@ -419,10 +419,10 @@ msgstr ""
 
 #
 # File: macros/ilib_build.sci, line: 42
-# File: macros/ilib_build_jar.sci, line: 151
-# File: macros/ilib_build_jar.sci, line: 158
-# File: macros/ilib_build_jar.sci, line: 165
-# File: macros/ilib_build_jar.sci, line: 175
+# File: macros/ilib_build_jar.sci, line: 154
+# File: macros/ilib_build_jar.sci, line: 161
+# File: macros/ilib_build_jar.sci, line: 168
+# File: macros/ilib_build_jar.sci, line: 178
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
 msgstr ""
@@ -456,7 +456,7 @@ msgstr ""
 # File: macros/ilib_gen_Make.sci, line: 38
 # File: macros/ilib_gen_Make_unix.sci, line: 169
 # File: macros/ilib_mex_build.sci, line: 34
-# File: macros/windows/dlwGenerateMakefile.sci, line: 177
+# File: macros/windows/dlwGenerateMakefile.sci, line: 181
 #, c-format
 msgid "%s: Wrong value for input argument #%d: existing file(s) expected.\n"
 msgstr ""
@@ -501,31 +501,31 @@ msgid "   Generate a cleaner file\n"
 msgstr ""
 
 #
-# File: macros/ilib_build_jar.sci, line: 128
+# File: macros/ilib_build_jar.sci, line: 131
 #, c-format
 msgid "%s: function not available in NWNI mode.\n"
 msgstr ""
 
 #
-# File: macros/ilib_build_jar.sci, line: 135
+# File: macros/ilib_build_jar.sci, line: 138
 #, c-format
 msgid "%s: Wrong number of input argument(s): 3 to 5 expected.\n"
 msgstr ""
 
 #
-# File: macros/ilib_build_jar.sci, line: 185
+# File: macros/ilib_build_jar.sci, line: 188
 #, c-format
 msgid "   Building JAR library %s\n"
 msgstr ""
 
 #
-# File: macros/ilib_build_jar.sci, line: 191
+# File: macros/ilib_build_jar.sci, line: 194
 #, c-format
 msgid "Cannot create jar build dir %s"
 msgstr ""
 
 #
-# File: macros/ilib_build_jar.sci, line: 198
+# File: macros/ilib_build_jar.sci, line: 201
 #, c-format
 msgid ""
 "   Add dependency class paths:\n"
@@ -533,72 +533,72 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/ilib_build_jar.sci, line: 207
+# File: macros/ilib_build_jar.sci, line: 210
 #, c-format
 msgid "   Build package %s\n"
 msgstr ""
 
 #
-# File: macros/ilib_build_jar.sci, line: 221
+# File: macros/ilib_build_jar.sci, line: 224
 msgid "   Compiling source files:\n"
 msgstr ""
 
 #
-# File: macros/ilib_build_jar.sci, line: 224
+# File: macros/ilib_build_jar.sci, line: 227
 #, c-format
 msgid "   Compiling Java sources in %s\n"
 msgstr ""
 
 #
-# File: macros/ilib_build_jar.sci, line: 229
+# File: macros/ilib_build_jar.sci, line: 232
 #, c-format
 msgid "No Java sources in %s to compile for package %s"
 msgstr ""
 
 #
-# File: macros/ilib_build_jar.sci, line: 239
+# File: macros/ilib_build_jar.sci, line: 242
 #, c-format
 msgid "Cannot create jar package directory %s"
 msgstr ""
 
 #
-# File: macros/ilib_build_jar.sci, line: 243
+# File: macros/ilib_build_jar.sci, line: 246
 #, c-format
 msgid "   Copying compiled package from %s to %s\n"
 msgstr ""
 
 #
-# File: macros/ilib_build_jar.sci, line: 248
+# File: macros/ilib_build_jar.sci, line: 251
 #, c-format
 msgid "Cannot find compilation directory %s for package %s"
 msgstr ""
 
 #
-# File: macros/ilib_build_jar.sci, line: 260
+# File: macros/ilib_build_jar.sci, line: 263
 #, c-format
 msgid "   Creating JAR archive %s\n"
 msgstr ""
 
 #
-# File: macros/ilib_build_jar.sci, line: 264
+# File: macros/ilib_build_jar.sci, line: 267
 #, c-format
 msgid "Cannot create JAR file %s"
 msgstr ""
 
 #
-# File: macros/ilib_build_jar.sci, line: 270
+# File: macros/ilib_build_jar.sci, line: 273
 #, c-format
 msgid "   Creating scripts for JAR relative path %s\n"
 msgstr ""
 
 #
-# File: macros/ilib_build_jar.sci, line: 276
+# File: macros/ilib_build_jar.sci, line: 279
 #, c-format
 msgid "   Create loader script for Java %s\n"
 msgstr ""
 
 #
-# File: macros/ilib_build_jar.sci, line: 283
+# File: macros/ilib_build_jar.sci, line: 286
 #, c-format
 msgid "   Create cleaner script for Java %s\n"
 msgstr ""
@@ -854,7 +854,7 @@ msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
 msgstr ""
 
 #
-# File: macros/windows/dlwGenerateMakefile.sci, line: 261
+# File: macros/windows/dlwGenerateMakefile.sci, line: 265
 msgid "not found."
 msgstr ""
 

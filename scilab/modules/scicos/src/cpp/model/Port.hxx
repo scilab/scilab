@@ -60,7 +60,7 @@ private:
     {
         if (dataType == 0)
         {
-            v.resize(3, 0);
+            v.resize(3, 1);
         }
         else
         {

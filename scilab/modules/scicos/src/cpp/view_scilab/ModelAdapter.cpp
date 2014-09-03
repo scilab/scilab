@@ -40,7 +40,7 @@ struct sim
     {
         model::Block* adaptee = adaptor.getAdaptee();
 
-        // First, extact the function Name
+        // First, extract the function Name
         std::string name;
         controller.getObjectProperty(adaptee->id(), adaptee->kind(), SIM_FUNCTION_NAME, name);
         types::String* Name = new types::String(1, 1);
@@ -56,7 +56,7 @@ struct sim
         }
         else
         {
-            types::Double* Api = new types::Double(1, 1, static_cast<double>(api));
+            types::Double* Api = new types::Double(static_cast<double>(api));
             types::List* o = new types::List();
             o->set(0, Name);
             o->set(1, Api);
@@ -254,7 +254,7 @@ struct state
         controller.getObjectProperty(adaptee->id(), adaptee->kind(), STATE, state);
 
         double* data;
-        types::Double* o = new types::Double(state.size(), 1, &data);
+        types::Double* o = new types::Double((int)state.size(), 1, &data);
 
         std::copy(state.begin(), state.end(), data);
 
@@ -277,7 +277,7 @@ struct state
 
         model::Block* adaptee = adaptor.getAdaptee();
 
-        std::vector<double> state;
+        std::vector<double> state (current->getSize());
         std::copy(current->getReal(), current->getReal() + current->getSize(), state.begin());
 
         controller.setObjectProperty(adaptee->id(), adaptee->kind(), STATE, state);
@@ -296,7 +296,7 @@ struct dstate
         controller.getObjectProperty(adaptee->id(), adaptee->kind(), DSTATE, dstate);
 
         double* data;
-        types::Double* o = new types::Double(dstate.size(), 1, &data);
+        types::Double* o = new types::Double((int)dstate.size(), 1, &data);
 
         std::copy(dstate.begin(), dstate.end(), data);
 
@@ -319,7 +319,7 @@ struct dstate
 
         model::Block* adaptee = adaptor.getAdaptee();
 
-        std::vector<double> dstate;
+        std::vector<double> dstate (current->getSize());
         std::copy(current->getReal(), current->getReal() + current->getSize(), dstate.begin());
 
         controller.setObjectProperty(adaptee->id(), adaptee->kind(), DSTATE, dstate);
@@ -332,8 +332,10 @@ struct odstate
 
     static types::InternalType* get(const ModelAdapter& adaptor, const Controller& controller)
     {
-        // FIXME: get odstate
-        return 0;
+        model::Block* adaptee = adaptor.getAdaptee();
+
+        // Return a default empty list.
+        return new types::List();
     }
 
     static bool set(ModelAdapter& adaptor, types::InternalType* v, Controller& controller)
@@ -373,7 +375,7 @@ struct rpar
             controller.getObjectProperty(adaptee->id(), adaptee->kind(), RPAR, rpar);
 
             double *data;
-            types::Double* o = new types::Double(rpar.size(), 1, &data);
+            types::Double* o = new types::Double((int)rpar.size(), 1, &data);
             std::copy(rpar.begin(), rpar.end(), data);
 
             return o;
@@ -411,6 +413,11 @@ struct rpar
             controller.setObjectProperty(adaptee->id(), adaptee->kind(), RPAR, rpar);
             return true;
         }
+        else if (v->getType() == types::InternalType::ScilabString)
+        {
+            // Allow Text blocs to define strings in rpar
+            return true;
+        }
         else
         {
             // FIXME: set rpar when input is a diagram (MList)
@@ -435,7 +442,7 @@ struct ipar
         controller.getObjectProperty(adaptee->id(), adaptee->kind(), IPAR, ipar);
 
         double *data;
-        types::Double* o = new types::Double(ipar.size(), 1, &data);
+        types::Double* o = new types::Double((int)ipar.size(), 1, &data);
 
         std::transform(ipar.begin(), ipar.end(), data, toDouble);
 
@@ -478,8 +485,10 @@ struct opar
 
     static types::InternalType* get(const ModelAdapter& adaptor, const Controller& controller)
     {
-        // FIXME: get opar
-        return 0;
+        model::Block* adaptee = adaptor.getAdaptee();
+
+        // Return a default empty list.
+        return new types::List();
     }
 
     static bool set(ModelAdapter& adaptor, types::InternalType* v, Controller& controller)
@@ -555,12 +564,12 @@ struct firing
 
     static types::InternalType* get(const ModelAdapter& adaptor, const Controller& controller)
     {
-        return get_ports_property<ModelAdapter, FIRING>(adaptor, OUTPUTS, controller);
+        return get_ports_property<ModelAdapter, FIRING>(adaptor, EVENT_OUTPUTS, controller);
     }
 
     static bool set(ModelAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        return set_ports_property<ModelAdapter, FIRING>(adaptor, OUTPUTS, controller, v);
+        return set_ports_property<ModelAdapter, FIRING>(adaptor, EVENT_OUTPUTS, controller, v);
     }
 };
 
@@ -737,8 +746,10 @@ struct equations
 
     static types::InternalType* get(const ModelAdapter& adaptor, const Controller& controller)
     {
-        // FIXME: get equations
-        return 0;
+        model::Block* adaptee = adaptor.getAdaptee();
+
+        // Return a default empty list.
+        return new types::List();
     }
 
     static bool set(ModelAdapter& adaptor, types::InternalType* v, Controller& controller)
@@ -813,7 +824,7 @@ ModelAdapter::ModelAdapter(const ModelAdapter& o) :
 ModelAdapter::ModelAdapter(org_scilab_modules_scicos::model::Block* o) :
     BaseAdapter<ModelAdapter, org_scilab_modules_scicos::model::Block>(o)
 {
-    if (property<ModelAdapter>::properties_has_not_been_set())
+    if (property<ModelAdapter>::properties_have_not_been_set())
     {
         property<ModelAdapter>::fields.reserve(23);
         property<ModelAdapter>::add_property(L"sim", &sim::get, &sim::set);

@@ -33,7 +33,7 @@ public:
 
     static const std::wstring getSharedTypeStr()
     {
-        return L"Diagram";
+        return L"diagram";
     }
 
     std::wstring getTypeStr();

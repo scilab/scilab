@@ -325,9 +325,6 @@
     <ClInclude Include="..\cpp\LoggerView.hxx">
       <Filter>Header Files\MVC</Filter>
     </ClInclude>
-    <ClInclude Include="..\cpp\Model.hxx">
-      <Filter>Header Files\MVC</Filter>
-    </ClInclude>
     <ClInclude Include="..\cpp\view_scilab\TextAdapter.hxx">
       <Filter>Header Files\MVC\view_scilab</Filter>
     </ClInclude>
@@ -372,6 +369,12 @@
     </ClInclude>
     <ClInclude Include="..\..\includes\View.hxx">
       <Filter>Header Files\MVC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\Model.hxx">
+      <Filter>Header Files\MVC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\model\BaseObject.hxx">
+      <Filter>Header Files\MVC\model</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

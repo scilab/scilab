@@ -12,9 +12,14 @@ function vcPath64 = dlwGet64BitPath();
     vcPath64 = [];
     if win64() then
         MSCompiler = findmsvccompiler();
-        if (MSCompiler == 'msvc110express' | MSCompiler == 'msvc100express' | MSCompiler == 'msvc90express') then
+        if (MSCompiler == 'msvc120express' | MSCompiler == 'msvc110express' | MSCompiler == 'msvc100express' | MSCompiler == 'msvc90express') then
             programFilesx86Path = getenv('ProgramFiles(x86)', '');
             if (programFilesx86Path <> '') then
+                if isfile(programFilesx86Path + '\Microsoft Visual Studio 12.0\VC\bin\cl.exe') then
+                    vcPath64 = programFilesx86Path + '\Microsoft Visual Studio 12.0';
+                    return
+                end
+
                 if isfile(programFilesx86Path + '\Microsoft Visual Studio 11.0\VC\bin\cl.exe') then
                     vcPath64 = programFilesx86Path + '\Microsoft Visual Studio 11.0';
                     return
@@ -31,6 +36,9 @@ function vcPath64 = dlwGet64BitPath();
             end
         else
             select MSCompiler,
+            // Microsoft Visual 2013 Studio Professional
+            case  'msvc120pro' then
+                vcPath64 = dlwGetVc12ProPath(); //same as VS2012
             // Microsoft Visual 2012 Studio Professional
             case  'msvc110pro' then
                 vcPath64 = dlwGetVc11ProPath();

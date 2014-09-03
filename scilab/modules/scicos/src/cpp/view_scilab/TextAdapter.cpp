@@ -34,7 +34,7 @@ TextAdapter::TextAdapter(const TextAdapter& o) :
 TextAdapter::TextAdapter(org_scilab_modules_scicos::model::Annotation* o) :
     BaseAdapter<TextAdapter, org_scilab_modules_scicos::model::Annotation>(o)
 {
-    if (property<TextAdapter>::properties_has_not_been_set())
+    if (property<TextAdapter>::properties_have_not_been_set())
     {
         // FIXME: add some properties
     }

@@ -50,7 +50,7 @@ types::InternalType* get_ports_property(const Adaptor& adaptor, object_propertie
         case STYLE:
         case LABEL:
         {
-            types::String* o = new types::String(ids.size(), 1);
+            types::String* o = new types::String((int)ids.size(), 1);
             for (std::vector<ScicosID>::iterator it = ids.begin(); it != ids.end(); ++it, ++i)
             {
                 std::string s;
@@ -69,7 +69,7 @@ types::InternalType* get_ports_property(const Adaptor& adaptor, object_propertie
         {
             datatypeIndex++;
             double* data;
-            types::Double* o = new types::Double(ids.size(), 1, &data);
+            types::Double* o = new types::Double((int)ids.size(), 1, &data);
             for (std::vector<ScicosID>::iterator it = ids.begin(); it != ids.end(); ++it, ++i)
             {
                 std::vector<int> v;
@@ -78,23 +78,31 @@ types::InternalType* get_ports_property(const Adaptor& adaptor, object_propertie
             }
             return o;
         }
+        case FIRING:
+        {
+            double* data;
+            types::Double* o = new types::Double((int)ids.size(), 1, &data);
+            for (std::vector<ScicosID>::iterator it = ids.begin(); it != ids.end(); ++it, ++i)
+            {
+                controller.getObjectProperty(*it, PORT, p, data[i]);
+            }
+            return o;
+        }
         case IMPLICIT:
         {
-            static const wchar_t E[] = L"E";
-            static const wchar_t I[] = L"I";
-            types::String* o = new types::String(ids.size(), 1);
+            types::String* o = new types::String((int)ids.size(), 1);
             for (std::vector<ScicosID>::iterator it = ids.begin(); it != ids.end(); ++it, ++i)
             {
                 bool v;
                 controller.getObjectProperty(*it, PORT, p, v);
-                o->set(i, (v == false) ? E : I);
+                o->set(i, (v == false) ? L"E" : L"I");
             }
             return o;
         }
         case CONNECTED_SIGNALS:
         {
             double* v;
-            types::Double* o = new types::Double(ids.size(), 1, &v);
+            types::Double* o = new types::Double((int)ids.size(), 1, &v);
 
             ScicosID diagram;
             controller.getObjectProperty(adaptee->id(), adaptee->kind(), PARENT_DIAGRAM, diagram);
@@ -114,7 +122,7 @@ types::InternalType* get_ports_property(const Adaptor& adaptor, object_propertie
 
                 if (found != children.end())
                 {
-                    v[i] = std::distance(found, children.begin());
+                    v[i] = (double)std::distance(found, children.begin());
                 }
                 else
                 {
@@ -131,7 +139,7 @@ types::InternalType* get_ports_property(const Adaptor& adaptor, object_propertie
 /*
  * Set a Scilab encoded values as a property.
  *
- * \note this method will return false if one of the ports does not exist
+ * \note this method will ignore or return false if one of the ports does not exist, depending on the property setted.
  */
 template<typename Adaptor, object_properties_t p>
 bool set_ports_property(const Adaptor& adaptor, object_properties_t port_kind, Controller& controller, types::InternalType* v)
@@ -145,13 +153,7 @@ bool set_ports_property(const Adaptor& adaptor, object_properties_t port_kind, C
     if (v->getType() == types::InternalType::ScilabString)
     {
         types::String* current = v->getAs<types::String>();
-        if (current->getCols() != 0 && current->getCols() != 1)
-        {
-            return false;
-        }
-
-        size_t rows = current->getRows();
-        if (rows != ids.size())
+        if (current->getSize() != ids.size())
         {
             return false;
         }
@@ -174,16 +176,13 @@ bool set_ports_property(const Adaptor& adaptor, object_properties_t port_kind, C
             }
             case IMPLICIT:
             {
-                static const std::wstring E = L"E";
-                static const std::wstring I = L"I";
-
                 for (std::vector<ScicosID>::iterator it = ids.begin(); it != ids.end(); ++it, ++i)
                 {
-                    if (current->get(i) == I)
+                    if (current->get(i) == L"I")
                     {
                         controller.setObjectProperty(*it, PORT, p, true);
                     }
-                    else if (current->get(i) == E)
+                    else if (current->get(i) == L"E")
                     {
                         controller.setObjectProperty(*it, PORT, p, false);
                     }
@@ -201,16 +200,6 @@ bool set_ports_property(const Adaptor& adaptor, object_properties_t port_kind, C
     else if (v->getType() == types::InternalType::ScilabDouble)
     {
         types::Double* current = v->getAs<types::Double>();
-        if (current->getCols() != 0 && current->getCols() != 1)
-        {
-            return false;
-        }
-
-        size_t rows = current->getRows();
-        if (rows != ids.size())
-        {
-            return false;
-        }
 
         // Translate identifiers: shared variables
         int i = 0;
@@ -219,6 +208,16 @@ bool set_ports_property(const Adaptor& adaptor, object_properties_t port_kind, C
         switch (p)
         {
             case FIRING:
+                if (current->isEmpty())
+                {
+                    return true;
+                }
+
+                if (current->getSize() != ids.size())
+                {
+                    return false;
+                }
+
                 for (std::vector<ScicosID>::iterator it = ids.begin(); it != ids.end(); ++it, ++i)
                 {
                     double firing = current->get(i);
@@ -240,6 +239,12 @@ bool set_ports_property(const Adaptor& adaptor, object_properties_t port_kind, C
             case DATATYPE_ROWS:
             {
                 datatypeIndex++;
+
+                // ignore the set without error
+                if (current->getSize() != ids.size())
+                {
+                    return true;
+                }
 
                 for (std::vector<ScicosID>::iterator it = ids.begin(); it != ids.end(); ++it, ++i)
                 {
@@ -328,8 +333,10 @@ void updateNewPort(ScicosID oldPort, int newPort, Controller& controller,
         {
             case DATATYPE_TYPE:
                 datatypeIndex++;
+                // no break
             case DATATYPE_COLS:
                 datatypeIndex++;
+                // no break
             case DATATYPE_ROWS:
             {
                 datatypeIndex++;
@@ -355,7 +362,7 @@ bool addNewPort(ScicosID newPortID, int newPort, const std::vector<ScicosID>& ch
         if (newPort != 0)
         {
             ScicosID signal = children[newPort];
-            status = controller.setObjectProperty(newPortID, PORT, CONNECTED_SIGNALS, signal);
+            status = controller.setObjectProperty(newPortID, PORT, CONNECTED_SIGNALS, signal) != FAIL;
         }
     }
     else
@@ -366,18 +373,20 @@ bool addNewPort(ScicosID newPortID, int newPort, const std::vector<ScicosID>& ch
         {
             case DATATYPE_TYPE:
                 datatypeIndex++;
+                // no break
             case DATATYPE_COLS:
                 datatypeIndex++;
+                // no break
             case DATATYPE_ROWS:
             {
                 datatypeIndex++;
                 std::vector<int> datatype;
                 controller.getObjectProperty(newPortID, PORT, DATATYPE, datatype);
                 datatype[datatypeIndex] = newPort;
-                return controller.setObjectProperty(newPortID, PORT, DATATYPE, datatype);
+                return controller.setObjectProperty(newPortID, PORT, DATATYPE, datatype) != FAIL;
             }
             default:
-                return controller.setObjectProperty(newPortID, PORT, p, newPort);
+                return controller.setObjectProperty(newPortID, PORT, p, newPort) != FAIL;
         }
     }
 
@@ -409,7 +418,7 @@ bool update_ports_property(const Adaptor& adaptor, object_properties_t port_kind
         controller.getObjectProperty(parentDiagram, DIAGRAM, CHILDREN, children);
     }
 
-    std::vector<int> newPorts = std::vector<int>(value->getSize());
+    std::vector<int> newPorts (value->getSize());
 
     // retrieve old data
     std::vector<ScicosID> oldPorts;

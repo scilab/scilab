@@ -13,7 +13,7 @@
 #ifndef UTILITIES_HXX_
 #define UTILITIES_HXX_
 
-#include <iostream>
+//#include <iostream>
 
 /**
  * A unique ID is used to represent a reference to any object in the model.
@@ -102,6 +102,10 @@ enum object_properties_t
     IMPLICIT,           //!< model::Port::implicit value
     PORT_NUMBER,        //!< model::Port::portNumber value
     CONNECTED_SIGNALS,  //!< model::Port::connectedSignals value
+    TITLE,              //!< model::Diagram::title file name value
+    PATH,               //!< model::Diagram::title file path value
+    PROPERTIES,         //!< model::Diagram::tol & tf values
+    DIAGRAM_CONTEXT,    //!< model::Diagram::context value
 };
 
 #endif /* UTILITIES_HXX_ */

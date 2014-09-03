@@ -58,11 +58,12 @@ public class SciNotesOptions {
         public boolean useScinotes;
         public boolean externalCmd;
         public String cmd;
+        public boolean completeAtEOL;
 
         private Preferences() { }
 
-        @XConfAttribute(tag = "scinotes-preferences", attributes = {"restart-reopen", "add-line-termination", "number-of-recently-open", "encoding", "eol", "scinotes", "cmd", "external-cmd"})
-        private void set(boolean restartOpen, boolean addLineTermination, int numberOfRecentlyOpen, String encoding, String eol, boolean useScinotes, String cmd, boolean externalCmd) {
+        @XConfAttribute(tag = "scinotes-preferences", attributes = {"restart-reopen", "add-line-termination", "number-of-recently-open", "encoding", "eol", "scinotes", "cmd", "external-cmd", "complete-at-eol"})
+        private void set(boolean restartOpen, boolean addLineTermination, int numberOfRecentlyOpen, String encoding, String eol, boolean useScinotes, String cmd, boolean externalCmd, boolean completeAtEOL) {
             this.restartOpen = restartOpen;
             this.addLineTermination = addLineTermination;
             this.numberOfRecentlyOpen = numberOfRecentlyOpen > 0 ? numberOfRecentlyOpen : 1;
@@ -70,12 +71,12 @@ public class SciNotesOptions {
 
             if (eol.equals("")) {
                 switch (OS.get()) {
-                    case WINDOWS:
-                        this.eol = ScilabDocument.EOLWIN;
-                        break;
-                    default:
-                        this.eol = ScilabDocument.EOLUNIX;
-                        break;
+                case WINDOWS:
+                    this.eol = ScilabDocument.EOLWIN;
+                    break;
+                default:
+                    this.eol = ScilabDocument.EOLUNIX;
+                    break;
                 }
             } else if (eol.startsWith("Windows")) {
                 this.eol = ScilabDocument.EOLWIN;
@@ -86,6 +87,7 @@ public class SciNotesOptions {
             this.useScinotes = useScinotes;
             this.externalCmd = externalCmd;
             this.cmd = cmd;
+            this.completeAtEOL = completeAtEOL;
         }
     }
 

@@ -43,6 +43,7 @@ public :
     void                    computeArgs();
     bool                    needResize();
     void                    setArgsOwner(bool);
+    void                    setExpOwner(bool);
 
     // current InternalType a
     bool                    setCurrent(types::InternalType*);
@@ -84,6 +85,7 @@ private :
 
     bool                    m_bCellExp;
     bool                    m_pArgsOwner;
+    bool                    m_pExpOwner;
 };
 
 #endif /* __EXPHISTORY_HXX__ */

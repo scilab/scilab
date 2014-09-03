@@ -17,64 +17,64 @@ extern "C"
 }
 
 //D +
-void add_ll_D_D(double* l, long long size, double* r, double* o)
+void add_ll_D_D(double* l, size_t size, double* r, double* o)
 {
     add(l, size, r, o);
 }
 
-void add_ll_D_DC(double* l, long long size, double* r, double* rc, double* o, double* oc)
+void add_ll_D_DC(double* l, size_t size, double* r, double* rc, double* o, double* oc)
 {
     add(l, size, r, rc, o, oc);
 }
 
-void add_ll_D_D1(double* l, long long size, double r, double* o)
+void add_ll_D_D1(double* l, size_t size, double r, double* o)
 {
     add(l, size, r, o);
 }
 
-void add_ll_D_D1C(double* l, long long size, double r, double rc, double* o, double* oc)
+void add_ll_D_D1C(double* l, size_t size, double r, double rc, double* o, double* oc)
 {
     add(l, size, r, rc, o, oc);
 }
 
-void add_ll_D_E(double* l, long long size, double* o)
+void add_ll_D_E(double* l, size_t size, double* o)
 {
     add(l, size, o);
 }
 
 //DC +
-void add_ll_DC_D(double* l, double* lc, long long size, double* r, double* o, double* oc)
+void add_ll_DC_D(double* l, double* lc, size_t size, double* r, double* o, double* oc)
 {
     add(l, lc, size, r, o, oc);
 }
 
-void add_ll_DC_DC(double* l, double* lc, long long size, double* r, double* rc, double* o, double* oc)
+void add_ll_DC_DC(double* l, double* lc, size_t size, double* r, double* rc, double* o, double* oc)
 {
     add(l, lc, size, r , rc, o, oc);
 }
 
-void add_ll_DC_D1(double* l, double* lc, long long size, double r, double* o, double* oc)
+void add_ll_DC_D1(double* l, double* lc, size_t size, double r, double* o, double* oc)
 {
     add(l, lc, size, r, o, oc);
 }
 
-void add_ll_DC_D1C(double* l, double* lc, long long size, double r, double rc, double* o, double* oc)
+void add_ll_DC_D1C(double* l, double* lc, size_t size, double r, double rc, double* o, double* oc)
 {
     add(l, lc, size, r, rc, o, oc);
 }
 
-void add_ll_DC_E(double* l, double* lc, long long size, double* o, double* oc)
+void add_ll_DC_E(double* l, double* lc, size_t size, double* o, double* oc)
 {
     add(l, lc, size, o, oc);
 }
 
 //D1 +
-void add_ll_D1_D(double l, long long size, double* r, double* o)
+void add_ll_D1_D(double l, size_t size, double* r, double* o)
 {
     add(l, size, r, o);
 }
 
-void add_ll_D1_DC(double l, long long size, double* r, double* rc, double* o, double* oc)
+void add_ll_D1_DC(double l, size_t size, double* r, double* rc, double* o, double* oc)
 {
     add(l, size, r, rc, o, oc);
 }
@@ -95,12 +95,12 @@ void add_ll_D1_E(double l, double* o)
 }
 
 //D1C +
-void add_ll_D1C_D(double l, double lc, long long size, double* r, double* o, double* oc)
+void add_ll_D1C_D(double l, double lc, size_t size, double* r, double* o, double* oc)
 {
     add(l, lc, size, r, o, oc);
 }
 
-void add_ll_D1C_DC(double l, double lc, long long size, double* r, double* rc, double* o, double* oc)
+void add_ll_D1C_DC(double l, double lc, size_t size, double* r, double* rc, double* o, double* oc)
 {
     add(l, lc, size, r, rc, o, oc);
 }
@@ -121,12 +121,12 @@ void add_ll_D1C_E(double l, double lc, double* o, double* oc)
 }
 
 //E +
-void add_ll_E_D(double* r, long long size, double* o)
+void add_ll_E_D(double* r, size_t size, double* o)
 {
     add(r, size, o);
 }
 
-void add_ll_E_DC(double* r, double* rc, long long size, double* o, double* oc)
+void add_ll_E_DC(double* r, double* rc, size_t size, double* o, double* oc)
 {
     add(r, rc, size, o, oc);
 }

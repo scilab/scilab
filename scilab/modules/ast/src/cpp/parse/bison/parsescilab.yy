@@ -462,7 +462,8 @@ implicitFunctionCall :
 /* FIXME : Add arguments to call */
 implicitFunctionCall implicitCallable		{
 						  $1->args_get().push_back($2);
-						  $$ = $1;
+						  $1->location_set(@$);
+                          $$ = $1;
 						}
 | ID implicitCallable				{
 						  ast::exps_t *tmp = new ast::exps_t;

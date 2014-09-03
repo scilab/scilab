@@ -38,6 +38,8 @@ Scilab Bug Fixes
 
 * Bug #10168 fixed - kron produced a segfault in some cases.
 
+* Bug #10336 fixed - Default key of rand was changed from "uniform" to "normal".
+
 * Bug #10555 fixed - Scilab failed to build with some configure options.
 
 * Bug #10583 fixed - ./configure --without-xcos did not work.
@@ -85,15 +87,23 @@ Scilab Bug Fixes
 * Bug #13333 fixed - Selecting "Offline mode" in Scilab installer installed
                      Scilab in "Command line mode" (without GUI modules).
 
+* Bug #13336 fixed - In SciNotes it was not possible to complete brackets only at eol.
+
 * Bug #13344 fixed - User defined ticks were not drawn at the right position.
 
 * Bug #13345 fixed - Scilab did not start on Debian Wheezy (GLIBC issue).
+
+* Bug #13346 fixed - Filter did not works for simple delays.
+                     Improved documentation on the function filter.
 
 * Bug #13349 fixed - Double-clicking on a MAT-file in file browser did not load it.
 
 * Bug #13351 fixed - xstringb failed with LaTeX code.
 
 * Bug #13358 fixed - Intersect and unique were slow due to an issue in quicksort implementation.
+
+* Bug #13359 fixed - Nyquist datatip with symetry now displaying properly
+                     negative frequencies
 
 * Bug #13364 fixed - Scilab did not start on CentOS 6.5, RedHat 5.4, RedHat 5.5 (GLIBC issue).
 
@@ -148,6 +158,8 @@ Scilab Bug Fixes
 
 * Bug #13426 fixed - optim help page was written with bad indentation.
 
+* Bug #13432 fixed - xstringl help page was not clear about fonts and Latex-rendered text.
+
 * Bug #13435 fixed - Windows version crashes when calling xmlRemove on the first child.
 
 * Bug #13438 fixed - drawaxis did not return the handle of the created axis.
@@ -169,6 +181,16 @@ Scilab Bug Fixes
 * Bug #13509 fixed - It was not possible to have an empty prefix with xmlNs.
 
 * Bug #13510 fixed - Datatip callback cleared 'd'.
+
+* Bug #13512 fixed - dae crashed if the evaluation function had wrong prototype.
+
+* Bug #13515 fixed - There were wrong results for matrix/hypermatrix with bitset function.
+
+* Bug #13524 fixed - strtod did not ignore the tabs and CR.
+
+* Bug #13527 fixed - hilb did not check correctly the type of first input argument.
+
+* Bug #13554 fixed - rubberbox returns wrong values.
 
 
 Xcos Bug Fixes
@@ -197,10 +219,18 @@ Xcos Bug Fixes
 
 * Bug #13396 fixed - MBLOCK did not work with an external file containing the modelica class.
 
-* Bug #13513 fixed - EXPRESSION block with "u1" as expression failed with a 
+* Bug #13436 fixed - STEP function was not delayed with the Continuous Fix Delay.
+
+* Bug #13443 fixed - There was no image on CSCOPXY3D block.
+
+* Bug #13513 fixed - EXPRESSION block with "u1" as expression failed with a
                      singularity error.
 
 * Bug #13514 fixed - External modules' loader_pal.sce file contained absolute path.
+
+* Bug #13540 fixed - Tkscale block did not respect min and max value.
+
+* Bug #13553 fixed - "Export all diagrams" failed if the directory did not exist.
 
 
 Known issues
@@ -211,7 +241,6 @@ Known issues
 
 Besides these points, do not hesitate to report bugs on:
 http://bugzilla.scilab.org/
-
 
 
                      Changes between version 5.4.1 and 5.5.0

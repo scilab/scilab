@@ -175,8 +175,10 @@ am__libsciast_la_SOURCES_DIST = src/cpp/ast/runvisitor.cpp \
 	src/cpp/operations/types_ldivide.cpp \
 	src/cpp/operations/types_comparison_eq.cpp \
 	src/cpp/operations/types_multiplication.cpp \
+	src/cpp/operations/types_dotmultiplication.cpp \
 	src/cpp/operations/types_comparison_lt_le_gt_ge.cpp \
-	src/cpp/operations/types_or_and.cpp \
+	src/cpp/operations/types_or.cpp \
+	src/cpp/operations/types_and.cpp \
 	src/cpp/operations/types_comparison_ne.cpp \
 	src/cpp/operations/types_power.cpp \
 	src/cpp/operations/types_divide.cpp \
@@ -186,7 +188,6 @@ am__libsciast_la_SOURCES_DIST = src/cpp/ast/runvisitor.cpp \
 	src/c/operations/matrix_transpose.c \
 	src/c/operations/matrix_kronecker.c \
 	src/c/operations/operations_tools.c \
-	src/c/operations/matrix_subtraction.c \
 	src/c/operations/invert_matrix.c \
 	src/c/operations/matrix_power.c \
 	src/c/operations/matrix_division.c \
@@ -248,8 +249,10 @@ am_libsciast_la_OBJECTS = src/cpp/ast/libsciast_la-runvisitor.lo \
 	src/cpp/operations/libsciast_la-types_ldivide.lo \
 	src/cpp/operations/libsciast_la-types_comparison_eq.lo \
 	src/cpp/operations/libsciast_la-types_multiplication.lo \
+	src/cpp/operations/libsciast_la-types_dotmultiplication.lo \
 	src/cpp/operations/libsciast_la-types_comparison_lt_le_gt_ge.lo \
-	src/cpp/operations/libsciast_la-types_or_and.lo \
+	src/cpp/operations/libsciast_la-types_or.lo \
+	src/cpp/operations/libsciast_la-types_and.lo \
 	src/cpp/operations/libsciast_la-types_comparison_ne.lo \
 	src/cpp/operations/libsciast_la-types_power.lo \
 	src/cpp/operations/libsciast_la-types_divide.lo \
@@ -259,7 +262,6 @@ am_libsciast_la_OBJECTS = src/cpp/ast/libsciast_la-runvisitor.lo \
 	src/c/operations/libsciast_la-matrix_transpose.lo \
 	src/c/operations/libsciast_la-matrix_kronecker.lo \
 	src/c/operations/libsciast_la-operations_tools.lo \
-	src/c/operations/libsciast_la-matrix_subtraction.lo \
 	src/c/operations/libsciast_la-invert_matrix.lo \
 	src/c/operations/libsciast_la-matrix_power.lo \
 	src/c/operations/libsciast_la-matrix_division.lo \
@@ -717,8 +719,10 @@ libsciast_la_SOURCES = src/cpp/ast/runvisitor.cpp \
 	src/cpp/operations/types_ldivide.cpp \
 	src/cpp/operations/types_comparison_eq.cpp \
 	src/cpp/operations/types_multiplication.cpp \
+	src/cpp/operations/types_dotmultiplication.cpp \
 	src/cpp/operations/types_comparison_lt_le_gt_ge.cpp \
-	src/cpp/operations/types_or_and.cpp \
+	src/cpp/operations/types_or.cpp \
+	src/cpp/operations/types_and.cpp \
 	src/cpp/operations/types_comparison_ne.cpp \
 	src/cpp/operations/types_power.cpp \
 	src/cpp/operations/types_divide.cpp \
@@ -728,7 +732,6 @@ libsciast_la_SOURCES = src/cpp/ast/runvisitor.cpp \
 	src/c/operations/matrix_transpose.c \
 	src/c/operations/matrix_kronecker.c \
 	src/c/operations/operations_tools.c \
-	src/c/operations/matrix_subtraction.c \
 	src/c/operations/invert_matrix.c \
 	src/c/operations/matrix_power.c \
 	src/c/operations/matrix_division.c \
@@ -826,7 +829,6 @@ includes/operations/types_divide.hxx \
 includes/operations/types_finite.hxx \
 includes/operations/types_transposition.hxx \
 includes/operations/matrix_addition.h \
-includes/operations/matrix_subtraction.h \
 includes/operations/doublecomplex.h \
 includes/operations/types_comparison_eq.hxx \
 includes/operations/matrix_transpose.h \
@@ -835,7 +837,8 @@ includes/operations/matrix_right_division.h \
 includes/operations/types_comparison_ne.hxx \
 includes/operations/types_multiplication.hxx \
 includes/operations/types_ldivide.hxx \
-includes/operations/types_or_and.hxx \
+includes/operations/types_and.hxx \
+includes/operations/types_or.hxx \
 includes/operations/matrix_left_division.h \
 includes/operations/types_power.hxx \
 includes/operations/matrix_finite.h \
@@ -995,7 +998,7 @@ includes/system_env/home.h
 @BUILD_PARSER_TRUE@LFLAGS = --noline --nounistd -o $(FLEX_SCANSCILAB_CXX)
 @BUILD_PARSER_TRUE@FLEX_SCANSCILAB_LL = src/cpp/parse/flex/scanscilab.ll
 @BUILD_PARSER_TRUE@FLEX_SCANSCILAB_CXX = src/cpp/parse/scanscilab.cpp
-@BUILD_PARSER_TRUE@BISON_FLAGS = --no-lines -dvy -ra
+@BUILD_PARSER_TRUE@BISON_FLAGS = --no-lines -dvy -ra -Werror=conflicts-sr -Werror=conflicts-rr
 @BUILD_PARSER_TRUE@BISON_PARSESCILAB_YY = src/cpp/parse/bison/parsescilab.yy
 @BUILD_PARSER_TRUE@BISON_PARSESCILAB_OUTPUT = src/cpp/parse/bison/parsescilab.output
 @BUILD_PARSER_TRUE@BISON_PARSESCILAB_HXX = includes/parse/parsescilab.hxx
@@ -1027,7 +1030,7 @@ TARGETS_ALL = $(am__append_2)
 ################ MACROS ######################
 # Rule to build a macro
 # NOT USED  AT THE MOMENT
-SUFFIXES = .sci 
+SUFFIXES = .sci
 
 ########### INSTALL DOCUMENTATION ###################
 
@@ -1069,7 +1072,7 @@ EXAMPLES_DIR = examples
 JARDIR = jar/
 # JAR files mask
 JARMASK = *.jar
-# Chapter file 
+# Chapter file
 HELP_CHAPTERDIR = help/
 HELP_CHAPTERFILE = addchapter.sce
 HELP_CHAPTERLANG = en_US fr_FR pt_BR
@@ -1199,10 +1202,16 @@ src/cpp/operations/libsciast_la-types_comparison_eq.lo:  \
 src/cpp/operations/libsciast_la-types_multiplication.lo:  \
 	src/cpp/operations/$(am__dirstamp) \
 	src/cpp/operations/$(DEPDIR)/$(am__dirstamp)
+src/cpp/operations/libsciast_la-types_dotmultiplication.lo:  \
+	src/cpp/operations/$(am__dirstamp) \
+	src/cpp/operations/$(DEPDIR)/$(am__dirstamp)
 src/cpp/operations/libsciast_la-types_comparison_lt_le_gt_ge.lo:  \
 	src/cpp/operations/$(am__dirstamp) \
 	src/cpp/operations/$(DEPDIR)/$(am__dirstamp)
-src/cpp/operations/libsciast_la-types_or_and.lo:  \
+src/cpp/operations/libsciast_la-types_or.lo:  \
+	src/cpp/operations/$(am__dirstamp) \
+	src/cpp/operations/$(DEPDIR)/$(am__dirstamp)
+src/cpp/operations/libsciast_la-types_and.lo:  \
 	src/cpp/operations/$(am__dirstamp) \
 	src/cpp/operations/$(DEPDIR)/$(am__dirstamp)
 src/cpp/operations/libsciast_la-types_comparison_ne.lo:  \
@@ -1236,9 +1245,6 @@ src/c/operations/libsciast_la-matrix_kronecker.lo:  \
 	src/c/operations/$(am__dirstamp) \
 	src/c/operations/$(DEPDIR)/$(am__dirstamp)
 src/c/operations/libsciast_la-operations_tools.lo:  \
-	src/c/operations/$(am__dirstamp) \
-	src/c/operations/$(DEPDIR)/$(am__dirstamp)
-src/c/operations/libsciast_la-matrix_subtraction.lo:  \
 	src/c/operations/$(am__dirstamp) \
 	src/c/operations/$(DEPDIR)/$(am__dirstamp)
 src/c/operations/libsciast_la-invert_matrix.lo:  \
@@ -1477,7 +1483,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/operations/$(DEPDIR)/libsciast_la-matrix_kronecker.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/operations/$(DEPDIR)/libsciast_la-matrix_multiplication.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/operations/$(DEPDIR)/libsciast_la-matrix_power.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/c/operations/$(DEPDIR)/libsciast_la-matrix_subtraction.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/operations/$(DEPDIR)/libsciast_la-matrix_transpose.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/operations/$(DEPDIR)/libsciast_la-operations_tools.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/ast/$(DEPDIR)/libsciast_la-debugvisitor.Plo@am__quote@
@@ -1495,16 +1500,18 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/operations/$(DEPDIR)/libsciast_la-interface_addition.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/operations/$(DEPDIR)/libsciast_la-operations.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/operations/$(DEPDIR)/libsciast_la-types_addition.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/operations/$(DEPDIR)/libsciast_la-types_and.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/operations/$(DEPDIR)/libsciast_la-types_comparison_eq.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/operations/$(DEPDIR)/libsciast_la-types_comparison_lt_le_gt_ge.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/operations/$(DEPDIR)/libsciast_la-types_comparison_ne.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/operations/$(DEPDIR)/libsciast_la-types_divide.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/operations/$(DEPDIR)/libsciast_la-types_dotmultiplication.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/operations/$(DEPDIR)/libsciast_la-types_finite.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/operations/$(DEPDIR)/libsciast_la-types_kronecker.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/operations/$(DEPDIR)/libsciast_la-types_ldivide.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/operations/$(DEPDIR)/libsciast_la-types_multiplication.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/operations/$(DEPDIR)/libsciast_la-types_opposite.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/operations/$(DEPDIR)/libsciast_la-types_or_and.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/operations/$(DEPDIR)/libsciast_la-types_or.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/operations/$(DEPDIR)/libsciast_la-types_power.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/operations/$(DEPDIR)/libsciast_la-types_subtraction.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/parse/$(DEPDIR)/libsciast_la-parser.Plo@am__quote@
@@ -1615,13 +1622,6 @@ src/c/operations/libsciast_la-operations_tools.lo: src/c/operations/operations_t
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/operations/operations_tools.c' object='src/c/operations/libsciast_la-operations_tools.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/operations/libsciast_la-operations_tools.lo `test -f 'src/c/operations/operations_tools.c' || echo '$(srcdir)/'`src/c/operations/operations_tools.c
-
-src/c/operations/libsciast_la-matrix_subtraction.lo: src/c/operations/matrix_subtraction.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/operations/libsciast_la-matrix_subtraction.lo -MD -MP -MF src/c/operations/$(DEPDIR)/libsciast_la-matrix_subtraction.Tpo -c -o src/c/operations/libsciast_la-matrix_subtraction.lo `test -f 'src/c/operations/matrix_subtraction.c' || echo '$(srcdir)/'`src/c/operations/matrix_subtraction.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/operations/$(DEPDIR)/libsciast_la-matrix_subtraction.Tpo src/c/operations/$(DEPDIR)/libsciast_la-matrix_subtraction.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/operations/matrix_subtraction.c' object='src/c/operations/libsciast_la-matrix_subtraction.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/operations/libsciast_la-matrix_subtraction.lo `test -f 'src/c/operations/matrix_subtraction.c' || echo '$(srcdir)/'`src/c/operations/matrix_subtraction.c
 
 src/c/operations/libsciast_la-invert_matrix.lo: src/c/operations/invert_matrix.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/operations/libsciast_la-invert_matrix.lo -MD -MP -MF src/c/operations/$(DEPDIR)/libsciast_la-invert_matrix.Tpo -c -o src/c/operations/libsciast_la-invert_matrix.lo `test -f 'src/c/operations/invert_matrix.c' || echo '$(srcdir)/'`src/c/operations/invert_matrix.c
@@ -1801,6 +1801,13 @@ src/cpp/operations/libsciast_la-types_multiplication.lo: src/cpp/operations/type
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/operations/libsciast_la-types_multiplication.lo `test -f 'src/cpp/operations/types_multiplication.cpp' || echo '$(srcdir)/'`src/cpp/operations/types_multiplication.cpp
 
+src/cpp/operations/libsciast_la-types_dotmultiplication.lo: src/cpp/operations/types_dotmultiplication.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/operations/libsciast_la-types_dotmultiplication.lo -MD -MP -MF src/cpp/operations/$(DEPDIR)/libsciast_la-types_dotmultiplication.Tpo -c -o src/cpp/operations/libsciast_la-types_dotmultiplication.lo `test -f 'src/cpp/operations/types_dotmultiplication.cpp' || echo '$(srcdir)/'`src/cpp/operations/types_dotmultiplication.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/operations/$(DEPDIR)/libsciast_la-types_dotmultiplication.Tpo src/cpp/operations/$(DEPDIR)/libsciast_la-types_dotmultiplication.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/operations/types_dotmultiplication.cpp' object='src/cpp/operations/libsciast_la-types_dotmultiplication.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/operations/libsciast_la-types_dotmultiplication.lo `test -f 'src/cpp/operations/types_dotmultiplication.cpp' || echo '$(srcdir)/'`src/cpp/operations/types_dotmultiplication.cpp
+
 src/cpp/operations/libsciast_la-types_comparison_lt_le_gt_ge.lo: src/cpp/operations/types_comparison_lt_le_gt_ge.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/operations/libsciast_la-types_comparison_lt_le_gt_ge.lo -MD -MP -MF src/cpp/operations/$(DEPDIR)/libsciast_la-types_comparison_lt_le_gt_ge.Tpo -c -o src/cpp/operations/libsciast_la-types_comparison_lt_le_gt_ge.lo `test -f 'src/cpp/operations/types_comparison_lt_le_gt_ge.cpp' || echo '$(srcdir)/'`src/cpp/operations/types_comparison_lt_le_gt_ge.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/operations/$(DEPDIR)/libsciast_la-types_comparison_lt_le_gt_ge.Tpo src/cpp/operations/$(DEPDIR)/libsciast_la-types_comparison_lt_le_gt_ge.Plo
@@ -1808,12 +1815,19 @@ src/cpp/operations/libsciast_la-types_comparison_lt_le_gt_ge.lo: src/cpp/operati
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/operations/libsciast_la-types_comparison_lt_le_gt_ge.lo `test -f 'src/cpp/operations/types_comparison_lt_le_gt_ge.cpp' || echo '$(srcdir)/'`src/cpp/operations/types_comparison_lt_le_gt_ge.cpp
 
-src/cpp/operations/libsciast_la-types_or_and.lo: src/cpp/operations/types_or_and.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/operations/libsciast_la-types_or_and.lo -MD -MP -MF src/cpp/operations/$(DEPDIR)/libsciast_la-types_or_and.Tpo -c -o src/cpp/operations/libsciast_la-types_or_and.lo `test -f 'src/cpp/operations/types_or_and.cpp' || echo '$(srcdir)/'`src/cpp/operations/types_or_and.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/operations/$(DEPDIR)/libsciast_la-types_or_and.Tpo src/cpp/operations/$(DEPDIR)/libsciast_la-types_or_and.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/operations/types_or_and.cpp' object='src/cpp/operations/libsciast_la-types_or_and.lo' libtool=yes @AMDEPBACKSLASH@
+src/cpp/operations/libsciast_la-types_or.lo: src/cpp/operations/types_or.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/operations/libsciast_la-types_or.lo -MD -MP -MF src/cpp/operations/$(DEPDIR)/libsciast_la-types_or.Tpo -c -o src/cpp/operations/libsciast_la-types_or.lo `test -f 'src/cpp/operations/types_or.cpp' || echo '$(srcdir)/'`src/cpp/operations/types_or.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/operations/$(DEPDIR)/libsciast_la-types_or.Tpo src/cpp/operations/$(DEPDIR)/libsciast_la-types_or.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/operations/types_or.cpp' object='src/cpp/operations/libsciast_la-types_or.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/operations/libsciast_la-types_or_and.lo `test -f 'src/cpp/operations/types_or_and.cpp' || echo '$(srcdir)/'`src/cpp/operations/types_or_and.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/operations/libsciast_la-types_or.lo `test -f 'src/cpp/operations/types_or.cpp' || echo '$(srcdir)/'`src/cpp/operations/types_or.cpp
+
+src/cpp/operations/libsciast_la-types_and.lo: src/cpp/operations/types_and.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/operations/libsciast_la-types_and.lo -MD -MP -MF src/cpp/operations/$(DEPDIR)/libsciast_la-types_and.Tpo -c -o src/cpp/operations/libsciast_la-types_and.lo `test -f 'src/cpp/operations/types_and.cpp' || echo '$(srcdir)/'`src/cpp/operations/types_and.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/operations/$(DEPDIR)/libsciast_la-types_and.Tpo src/cpp/operations/$(DEPDIR)/libsciast_la-types_and.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/operations/types_and.cpp' object='src/cpp/operations/libsciast_la-types_and.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/operations/libsciast_la-types_and.lo `test -f 'src/cpp/operations/types_and.cpp' || echo '$(srcdir)/'`src/cpp/operations/types_and.cpp
 
 src/cpp/operations/libsciast_la-types_comparison_ne.lo: src/cpp/operations/types_comparison_ne.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/operations/libsciast_la-types_comparison_ne.lo -MD -MP -MF src/cpp/operations/$(DEPDIR)/libsciast_la-types_comparison_ne.Tpo -c -o src/cpp/operations/libsciast_la-types_comparison_ne.lo `test -f 'src/cpp/operations/types_comparison_ne.cpp' || echo '$(srcdir)/'`src/cpp/operations/types_comparison_ne.cpp
@@ -2625,7 +2639,7 @@ check-code:
 @NEED_JAVA_TRUE@		$(ANT) clean; \
 @NEED_JAVA_TRUE@	fi;
 
-# If the user request for the SWIG generation of the wrappers Java => C/C++ 
+# If the user request for the SWIG generation of the wrappers Java => C/C++
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
 @SWIG_TRUE@swig: $(SWIG_WRAPPERS)
@@ -2634,7 +2648,7 @@ check-code:
 @SWIG_TRUE@	if test -n "$(SWIG_WRAPPERS)"; then \
 @SWIG_TRUE@		for file in $(SWIG_WRAPPERS) ; do \
 @SWIG_TRUE@			echo "Swig process of $$file (Java) ..."; \
-@SWIG_TRUE@			$(SWIG_BIN) $(SWIG_JAVA) -package $$SWIG_PACKAGENAME  -outdir $$SWIG_OUTDIR $$file; \
+@SWIG_TRUE@			$(SWIG_BIN) $(SWIG_JAVA) $(SWIG_OPTIONS) -package $$SWIG_PACKAGENAME  -outdir $$SWIG_OUTDIR $$file; \
 @SWIG_TRUE@		done; \
 @SWIG_TRUE@	fi
 
@@ -2643,11 +2657,11 @@ check-code:
 @SWIG_TRUE@	if test -n "$(SWIG_SCILAB_WRAPPERS)"; then \
 @SWIG_TRUE@		for file in $(SWIG_SCILAB_WRAPPERS) ; do \
 @SWIG_TRUE@			echo "Swig process of $$file (Scilab) ..."; \
-@SWIG_TRUE@			$(SWIG_BIN) $(SWIG_SCILAB)  -outdir $$SWIG_OUTDIR $$file; \
+@SWIG_TRUE@			$(SWIG_BIN) $(SWIG_SCILAB) $(SWIG_OPTIONS) -outdir $$SWIG_OUTDIR $$file; \
 @SWIG_TRUE@		done; \
 @SWIG_TRUE@	fi
 
-# If the user request for the SWIG generation of the wrappers Java => C/C++ 
+# If the user request for the SWIG generation of the wrappers Java => C/C++
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
 @GIWS_TRUE@giws: $(GIWS_WRAPPERS)
@@ -2668,7 +2682,7 @@ check-code:
 @GIWS_TRUE@giws-exception:
 @GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
 @GIWS_TRUE@	echo "GIWS: Generation of exception class ..."; \
-@GIWS_TRUE@	$(GIWS_BIN) --generate-exception-class --output-dir $$GIWS_OUTPUTDIR 
+@GIWS_TRUE@	$(GIWS_BIN) --generate-exception-class --output-dir $$GIWS_OUTPUTDIR
 
 macros:
 	-@( if test ! -x $(top_builddir)/scilab-bin; then \

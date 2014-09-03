@@ -37,7 +37,7 @@ ScsAdapter::ScsAdapter(const ScsAdapter& o) :
 ScsAdapter::ScsAdapter(org_scilab_modules_scicos::model::Diagram* o) :
     BaseAdapter<ScsAdapter, org_scilab_modules_scicos::model::Diagram>(o)
 {
-    if (property<ScsAdapter>::properties_has_not_been_set())
+    if (property<ScsAdapter>::properties_have_not_been_set())
     {
         // FIXME: add some properties
     }

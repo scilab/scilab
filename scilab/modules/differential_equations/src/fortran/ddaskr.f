@@ -1431,6 +1431,8 @@ C
 C
       SAVE LID, LENID, NONNEG, NCPHI
 C
+      COMMON /ierode/ierror
+C
 C
 C***FIRST EXECUTABLE STATEMENT  DDASKR
 C
@@ -3445,6 +3447,7 @@ C
      *   NONNEG,NTYPE,IERNLS)
 C
       IF(IERNLS .NE. 0)GO TO 600
+      IF(IDID.eq.-12) RETURN
 C
 C
 C
@@ -4738,11 +4741,14 @@ C
       DIMENSION WM(*),IWM(*), RPAR(*),IPAR(*)
       DIMENSION PHI(NEQ,*),GAMMA(*)
       EXTERNAL  RES, JACD
+      COMMON /ierode/ierror
 C
       PARAMETER (LNRE=12, LNJE=13)
 C
       SAVE MULDEL, MAXIT, XRATE
       DATA MULDEL/1/, MAXIT/4/, XRATE/0.25D0/
+C
+C
 C
 C     Verify that this is the correct subroutine.
 C
@@ -4800,6 +4806,11 @@ C     Call RES to initialize DELTA.
 C
       IWM(LNRE)=IWM(LNRE)+1
       CALL RES(X,Y,YPRIME,DELTA,IRES,RPAR,IPAR)
+C     ierror indicates if RES had the right prototype
+      IF(ierror.ne.0) THEN
+         IDID=-12
+         RETURN
+      ENDIF
       IF (IRES .LT. 0) GO TO 380
 C
 C     If indicated, reevaluate the iteration matrix 
@@ -6015,11 +6026,14 @@ C
       DIMENSION WM(*),IWM(*)
       DIMENSION GAMMA(*),RPAR(*),IPAR(*)
       EXTERNAL  RES, JACK, PSOL
+      COMMON /ierode/ierror
 C
       PARAMETER (LNRE=12, LNJE=13, LLOCWP=29, LLCIWP=30)
 C
       SAVE MULDEL, MAXIT, XRATE
       DATA MULDEL/0/, MAXIT/4/, XRATE/0.25D0/
+C
+C
 C
 C     Verify that this is the correct subroutine.
 C
@@ -6083,6 +6097,12 @@ C     Call RES to initialize DELTA.
 C
       IWM(LNRE)=IWM(LNRE)+1
       CALL RES(X,Y,YPRIME,DELTA,IRES,RPAR,IPAR)
+C     ierror indicates if RES had the right prototype
+      IF(ierror.ne.0) THEN
+         IDID=-12
+         RETURN
+      ENDIF
+
       IF (IRES .LT. 0) GO TO 380
 C
 C
