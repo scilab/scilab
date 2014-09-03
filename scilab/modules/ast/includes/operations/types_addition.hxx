@@ -30,7 +30,7 @@ void fillAddFunction();
 //define arrays on operation functions
 typedef types::InternalType*(*add_function)(types::InternalType*, types::InternalType*);
 
-#define DECLARE_ADD_PROTO(x) template<class T, class U, class O> inline types::InternalType* x(T *_pL, U *_pR)
+#define DECLARE_ADD_PROTO(x) template<class T, class U, class O> types::InternalType* x(T *_pL, U *_pR)
 //Double, int , bool
 DECLARE_ADD_PROTO(add_M_M);
 DECLARE_ADD_PROTO(add_M_MC);
@@ -98,26 +98,26 @@ DECLARE_ADD_PROTO(add_E_IC);
 
 //String specilization
 
-template<> inline types::InternalType* add_M_M<types::String, types::String, types::String>(types::String* _pL, types::String* _pR);
-template<> inline types::InternalType* add_S_M<types::String, types::String, types::String>(types::String* _pL, types::String* _pR);
-template<> inline types::InternalType* add_M_S<types::String, types::String, types::String>(types::String* _pL, types::String* _pR);
-template<> inline types::InternalType* add_S_S<types::String, types::String, types::String>(types::String* _pL, types::String* _pR);
-template<> inline types::InternalType* add_M_E<types::String, types::Double, types::String>(types::String* _pL, types::Double* _pR);
-template<> inline types::InternalType* add_S_E<types::String, types::Double, types::String>(types::String* _pL, types::Double* _pR);
-template<> inline types::InternalType* add_E_M<types::Double, types::String, types::String>(types::Double* _pL, types::String* _pR);
-template<> inline types::InternalType* add_E_S<types::Double, types::String, types::String>(types::Double* _pL, types::String* _pR);
+template<> types::InternalType* add_M_M<types::String, types::String, types::String>(types::String* _pL, types::String* _pR);
+template<> types::InternalType* add_S_M<types::String, types::String, types::String>(types::String* _pL, types::String* _pR);
+template<> types::InternalType* add_M_S<types::String, types::String, types::String>(types::String* _pL, types::String* _pR);
+template<> types::InternalType* add_S_S<types::String, types::String, types::String>(types::String* _pL, types::String* _pR);
+template<> types::InternalType* add_M_E<types::String, types::Double, types::String>(types::String* _pL, types::Double* _pR);
+template<> types::InternalType* add_S_E<types::String, types::Double, types::String>(types::String* _pL, types::Double* _pR);
+template<> types::InternalType* add_E_M<types::Double, types::String, types::String>(types::Double* _pL, types::String* _pR);
+template<> types::InternalType* add_E_S<types::Double, types::String, types::String>(types::Double* _pL, types::String* _pR);
 
-template<> inline types::InternalType* add_M_M<types::Polynom, types::Polynom, types::Polynom>(types::Polynom* _pL, types::Polynom* _pR);
-template<> inline types::InternalType* add_M_M<types::Polynom, types::Double, types::Polynom>(types::Polynom* _pL, types::Double* _pR);
-template<> inline types::InternalType* add_M_M<types::Double, types::Polynom, types::Polynom>(types::Double* _pL, types::Polynom* _pR);
-template<> inline types::InternalType* add_M_I<types::Polynom, types::Double, types::Polynom>(types::Polynom* _pL, types::Double* _pR);
-template<> inline types::InternalType* add_I_M<types::Double, types::Polynom, types::Polynom>(types::Double* _pL, types::Polynom* _pR);
+template<> types::InternalType* add_M_M<types::Polynom, types::Polynom, types::Polynom>(types::Polynom* _pL, types::Polynom* _pR);
+template<> types::InternalType* add_M_M<types::Polynom, types::Double, types::Polynom>(types::Polynom* _pL, types::Double* _pR);
+template<> types::InternalType* add_M_M<types::Double, types::Polynom, types::Polynom>(types::Double* _pL, types::Polynom* _pR);
+template<> types::InternalType* add_M_I<types::Polynom, types::Double, types::Polynom>(types::Polynom* _pL, types::Double* _pR);
+template<> types::InternalType* add_I_M<types::Double, types::Polynom, types::Polynom>(types::Double* _pL, types::Polynom* _pR);
 
-template<> inline types::InternalType* add_M_M<types::Sparse, types::Sparse, types::Sparse>(types::Sparse* _pL, types::Sparse* _pR);
-template<> inline types::InternalType* add_M_M<types::Double, types::Sparse, types::Double>(types::Double* _pL, types::Sparse* _pR);
-template<> inline types::InternalType* add_M_M<types::Sparse, types::Double, types::Double>(types::Sparse* _pL, types::Double* _pR);
-template<> inline types::InternalType* add_M_M<types::Double, types::Sparse, types::Sparse>(types::Double* _pL, types::Sparse* _pR);
-template<> inline types::InternalType* add_M_M<types::Sparse, types::Double, types::Sparse>(types::Sparse* _pL, types::Double* _pR);
+template<> types::InternalType* add_M_M<types::Sparse, types::Sparse, types::Sparse>(types::Sparse* _pL, types::Sparse* _pR);
+template<> types::InternalType* add_M_M<types::Double, types::Sparse, types::Double>(types::Double* _pL, types::Sparse* _pR);
+template<> types::InternalType* add_M_M<types::Sparse, types::Double, types::Double>(types::Sparse* _pL, types::Double* _pR);
+template<> types::InternalType* add_M_M<types::Double, types::Sparse, types::Sparse>(types::Double* _pL, types::Sparse* _pR);
+template<> types::InternalType* add_M_M<types::Sparse, types::Double, types::Sparse>(types::Sparse* _pL, types::Double* _pR);
 
 //add matrix + matrix ( double, int, bool )
 //same type

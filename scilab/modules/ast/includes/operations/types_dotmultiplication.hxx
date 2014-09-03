@@ -22,7 +22,7 @@ void fillDotMulFunction();
 //define arrays on operation functions
 typedef types::InternalType*(*dotmul_function)(types::InternalType*, types::InternalType*);
 
-#define DECLARE_DOTMUL_PROTO(x) template<class T, class U, class O> inline types::InternalType* x(T *_pL, U *_pR)
+#define DECLARE_DOTMUL_PROTO(x) template<class T, class U, class O> types::InternalType* x(T *_pL, U *_pR)
 DECLARE_DOTMUL_PROTO(dotmul_M_M);
 DECLARE_DOTMUL_PROTO(dotmul_M_MC);
 DECLARE_DOTMUL_PROTO(dotmul_M_S);
@@ -72,15 +72,15 @@ DECLARE_DOTMUL_PROTO(dotmul_IC_IC);
 
 #undef DECLARE_DOTMUL_PROTO
 
-template<> inline types::InternalType* dotmul_M_M<types::Sparse, types::Sparse, types::Sparse>(types::Sparse* _pL, types::Sparse* _pR);
-template<> inline types::InternalType* dotmul_M_M<types::Double, types::Sparse, types::Double>(types::Double* _pL, types::Sparse* _pR);
-template<> inline types::InternalType* dotmul_M_M<types::Sparse, types::Double, types::Double>(types::Sparse* _pL, types::Double* _pR);
-template<> inline types::InternalType* dotmul_M_M<types::Double, types::Sparse, types::Sparse>(types::Double* _pL, types::Sparse* _pR);
-template<> inline types::InternalType* dotmul_M_M<types::Sparse, types::Double, types::Sparse>(types::Sparse* _pL, types::Double* _pR);
+template<> types::InternalType* dotmul_M_M<types::Sparse, types::Sparse, types::Sparse>(types::Sparse* _pL, types::Sparse* _pR);
+template<> types::InternalType* dotmul_M_M<types::Double, types::Sparse, types::Double>(types::Double* _pL, types::Sparse* _pR);
+template<> types::InternalType* dotmul_M_M<types::Sparse, types::Double, types::Double>(types::Sparse* _pL, types::Double* _pR);
+template<> types::InternalType* dotmul_M_M<types::Double, types::Sparse, types::Sparse>(types::Double* _pL, types::Sparse* _pR);
+template<> types::InternalType* dotmul_M_M<types::Sparse, types::Double, types::Sparse>(types::Sparse* _pL, types::Double* _pR);
 
-template<> inline types::InternalType* dotmul_M_M<types::Polynom, types::Polynom, types::Polynom>(types::Polynom* _pL, types::Polynom* _pR);
-template<> inline types::InternalType* dotmul_M_M<types::Polynom, types::Double, types::Polynom>(types::Polynom* _pL, types::Double* _pR);
-template<> inline types::InternalType* dotmul_M_M<types::Double, types::Polynom, types::Polynom>(types::Double* _pL, types::Polynom* _pR);
+template<> types::InternalType* dotmul_M_M<types::Polynom, types::Polynom, types::Polynom>(types::Polynom* _pL, types::Polynom* _pR);
+template<> types::InternalType* dotmul_M_M<types::Polynom, types::Double, types::Polynom>(types::Polynom* _pL, types::Double* _pR);
+template<> types::InternalType* dotmul_M_M<types::Double, types::Polynom, types::Polynom>(types::Double* _pL, types::Polynom* _pR);
 
 
 

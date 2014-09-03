@@ -24,7 +24,7 @@ void fillSubtractFunction();
 //define arrays on operation functions
 typedef types::InternalType*(*sub_function)(types::InternalType*, types::InternalType*);
 
-#define DECLARE_SUB_PROTO(x) template<class T, class U, class O> inline types::InternalType* x(T *_pL, U *_pR)
+#define DECLARE_SUB_PROTO(x) template<class T, class U, class O> types::InternalType* x(T *_pL, U *_pR)
 //Double, int , bool
 DECLARE_SUB_PROTO(sub_M_M);
 DECLARE_SUB_PROTO(sub_M_MC);
@@ -86,19 +86,19 @@ DECLARE_SUB_PROTO(sub_IC_E);
 DECLARE_SUB_PROTO(sub_E_I);
 DECLARE_SUB_PROTO(sub_E_IC);
 
-template<> inline types::InternalType* sub_M_M<types::Polynom, types::Polynom, types::Polynom>(types::Polynom* _pL, types::Polynom* _pR);
-template<> inline types::InternalType* sub_M_M<types::Polynom, types::Double, types::Polynom>(types::Polynom* _pL, types::Double* _pR);
-template<> inline types::InternalType* sub_M_M<types::Double, types::Polynom, types::Polynom>(types::Double* _pL, types::Polynom* _pR);
-template<> inline types::InternalType* sub_I_M<types::Double, types::Polynom, types::Polynom>(types::Double* _pL, types::Polynom* _pR);
-template<> inline types::InternalType* sub_IC_M<types::Double, types::Polynom, types::Polynom>(types::Double* _pL, types::Polynom* _pR);
-template<> inline types::InternalType* sub_I_MC<types::Double, types::Polynom, types::Polynom>(types::Double* _pL, types::Polynom* _pR);
-template<> inline types::InternalType* sub_IC_MC<types::Double, types::Polynom, types::Polynom>(types::Double* _pL, types::Polynom* _pR);
+template<> types::InternalType* sub_M_M<types::Polynom, types::Polynom, types::Polynom>(types::Polynom* _pL, types::Polynom* _pR);
+template<> types::InternalType* sub_M_M<types::Polynom, types::Double, types::Polynom>(types::Polynom* _pL, types::Double* _pR);
+template<> types::InternalType* sub_M_M<types::Double, types::Polynom, types::Polynom>(types::Double* _pL, types::Polynom* _pR);
+template<> types::InternalType* sub_I_M<types::Double, types::Polynom, types::Polynom>(types::Double* _pL, types::Polynom* _pR);
+template<> types::InternalType* sub_IC_M<types::Double, types::Polynom, types::Polynom>(types::Double* _pL, types::Polynom* _pR);
+template<> types::InternalType* sub_I_MC<types::Double, types::Polynom, types::Polynom>(types::Double* _pL, types::Polynom* _pR);
+template<> types::InternalType* sub_IC_MC<types::Double, types::Polynom, types::Polynom>(types::Double* _pL, types::Polynom* _pR);
 
-template<> inline types::InternalType* sub_M_M<types::Sparse, types::Sparse, types::Sparse>(types::Sparse* _pL, types::Sparse* _pR);
-template<> inline types::InternalType* sub_M_M<types::Double, types::Sparse, types::Double>(types::Double* _pL, types::Sparse* _pR);
-template<> inline types::InternalType* sub_M_M<types::Sparse, types::Double, types::Double>(types::Sparse* _pL, types::Double* _pR);
-template<> inline types::InternalType* sub_M_M<types::Double, types::Sparse, types::Sparse>(types::Double* _pL, types::Sparse* _pR);
-template<> inline types::InternalType* sub_M_M<types::Sparse, types::Double, types::Sparse>(types::Sparse* _pL, types::Double* _pR);
+template<> types::InternalType* sub_M_M<types::Sparse, types::Sparse, types::Sparse>(types::Sparse* _pL, types::Sparse* _pR);
+template<> types::InternalType* sub_M_M<types::Double, types::Sparse, types::Double>(types::Double* _pL, types::Sparse* _pR);
+template<> types::InternalType* sub_M_M<types::Sparse, types::Double, types::Double>(types::Sparse* _pL, types::Double* _pR);
+template<> types::InternalType* sub_M_M<types::Double, types::Sparse, types::Sparse>(types::Double* _pL, types::Sparse* _pR);
+template<> types::InternalType* sub_M_M<types::Sparse, types::Double, types::Sparse>(types::Sparse* _pL, types::Double* _pR);
 
 //add matrix - matrix ( double, int, bool )
 //same type

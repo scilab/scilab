@@ -26,7 +26,7 @@ typedef types::InternalType*(*and_function)(types::InternalType*, types::Interna
 
 #define DECLARE_AND_PROTO(x) \
     template<class T, class U, class O> \
-    inline types::InternalType* x(T *_pL, U *_pR)
+    types::InternalType* x(T *_pL, U *_pR)
 
 DECLARE_AND_PROTO(and_M_M);
 DECLARE_AND_PROTO(and_M_S);
@@ -49,9 +49,9 @@ DECLARE_AND_PROTO(and_int_S_M);
 DECLARE_AND_PROTO(and_int_S_S);
 
 //boolean sparse specialisation
-template<> inline types::InternalType* and_M_M<types::SparseBool, types::SparseBool, types::SparseBool>(types::SparseBool* _pL, types::SparseBool* _pR);
-template<> inline types::InternalType* and_M_M<types::SparseBool, types::Bool, types::SparseBool>(types::SparseBool* _pL, types::Bool* _pR);
-template<> inline types::InternalType* and_M_M<types::Bool, types::SparseBool, types::SparseBool>(types::Bool* _pL, types::SparseBool* _pR);
+template<> types::InternalType* and_M_M<types::SparseBool, types::SparseBool, types::SparseBool>(types::SparseBool* _pL, types::SparseBool* _pR);
+template<> types::InternalType* and_M_M<types::SparseBool, types::Bool, types::SparseBool>(types::SparseBool* _pL, types::Bool* _pR);
+template<> types::InternalType* and_M_M<types::Bool, types::SparseBool, types::SparseBool>(types::Bool* _pL, types::SparseBool* _pR);
 
 //x & x
 template<typename T, typename U, typename O> inline static void bit_and(T* l, long long size, U* r, O* o)

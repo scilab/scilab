@@ -24,7 +24,7 @@ void fillOppositeFunction();
 //define arrays on operation functions
 typedef types::InternalType*(*opposite_function)(types::InternalType*);
 
-#define DECLARE_OPPOSITE_PROTO(x) template<class T, class O> inline types::InternalType* x(T *_pL)
+#define DECLARE_OPPOSITE_PROTO(x) template<class T, class O> types::InternalType* x(T *_pL)
 DECLARE_OPPOSITE_PROTO(opposite_E);
 DECLARE_OPPOSITE_PROTO(opposite_I);
 DECLARE_OPPOSITE_PROTO(opposite_IC);
@@ -38,13 +38,13 @@ DECLARE_OPPOSITE_PROTO(opposite_MC);
 //do not inline it
 template<> types::InternalType* opposite_M<types::Bool, types::Double>(types::Bool* _pL);
 
-template<> inline types::InternalType* opposite_M<types::Sparse, types::Sparse>(types::Sparse* _pL);
-template<> inline types::InternalType* opposite_MC<types::Sparse, types::Sparse>(types::Sparse* _pL);
+template<> types::InternalType* opposite_M<types::Sparse, types::Sparse>(types::Sparse* _pL);
+template<> types::InternalType* opposite_MC<types::Sparse, types::Sparse>(types::Sparse* _pL);
 
-template<> inline types::InternalType* opposite_S<types::Polynom, types::Polynom>(types::Polynom* _pL);
-template<> inline types::InternalType* opposite_SC<types::Polynom, types::Polynom>(types::Polynom* _pL);
-template<> inline types::InternalType* opposite_M<types::Polynom, types::Polynom>(types::Polynom* _pL);
-template<> inline types::InternalType* opposite_MC<types::Polynom, types::Polynom>(types::Polynom* _pL);
+template<> types::InternalType* opposite_S<types::Polynom, types::Polynom>(types::Polynom* _pL);
+template<> types::InternalType* opposite_SC<types::Polynom, types::Polynom>(types::Polynom* _pL);
+template<> types::InternalType* opposite_M<types::Polynom, types::Polynom>(types::Polynom* _pL);
+template<> types::InternalType* opposite_MC<types::Polynom, types::Polynom>(types::Polynom* _pL);
 
 
 template<typename T, typename O> inline static void opposite(T l, O* o)
