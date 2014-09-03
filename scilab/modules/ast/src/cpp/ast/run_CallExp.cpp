@@ -33,7 +33,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
         // manage case [a,b]=foo() where foo is defined as a=foo()
         if (pIT->getInvokeNbOut() != -1 && pIT->getInvokeNbOut() < iRetCount)
         {
-            pIT->killMe();
+            result_clear();
             std::wostringstream os;
             os << _W("Wrong number of output arguments.\n") << std::endl;
             throw ast::ScilabError(os.str(), 999, e.location_get());
@@ -49,7 +49,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                 Exp* pL = &pAssign->left_exp_get();
                 if (!pL->is_simple_var())
                 {
-                    pIT->killMe();
+                    result_clear();
                     clean_opt(opt);
                     clean_in(in, out);
 
@@ -81,6 +81,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                     in.push_back(pITR);
                 }
 
+                result_clear();
                 continue;
             }
 
@@ -110,6 +111,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
             {
                 in.push_back(result_get());
                 result_get()->IncreaseRef();
+                result_clear();
             }
             else
             {
@@ -119,6 +121,8 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                     pITArg->IncreaseRef();
                     in.push_back(pITArg);
                 }
+
+                result_clear();
             }
         }
 
@@ -126,7 +130,6 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
         {
             expected_setSize(iSaveExpectedSize);
             iRetCount = std::max(1, iRetCount);
-
             if (pIT->invoke(in, opt, iRetCount, out, *this, e))
             {
                 if (iSaveExpectedSize != -1 && iSaveExpectedSize > out.size())
@@ -137,11 +140,16 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                 }
 
                 expected_setSize(iSaveExpectedSize);
-                result_clear();
                 result_set(out);
                 clean_in(in, out);
                 clean_opt(opt);
-                pIT->killMe();
+
+                // In case a.b(), result_get contain pIT ("b").
+                // If out == pIT, do not delete it.
+                if (result_get() != pIT)
+                {
+                    pIT->killMe();
+                }
             }
             else
             {
