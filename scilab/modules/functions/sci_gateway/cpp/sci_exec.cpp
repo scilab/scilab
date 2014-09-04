@@ -637,13 +637,9 @@ std::string printExp(std::ifstream& _File, Exp* _pExp, const std::string& _stPro
             if (*_piCol < loc.first_column)
             {
                 //pickup separator between expressionsfrom file and add to output
-                int iSize = loc.first_column - *_piCol;
-                std::string stTemp(_stPreviousBuffer.c_str() +  (*_piCol - 1), iSize);
-                printLine("", stTemp, false);
+                printLine(_stPrompt, _stPreviousBuffer.c_str(), false);
                 *_piCol = loc.first_column;
             }
-
-            printLine("", _stPreviousBuffer.c_str() + (loc.first_column - 1), false);
         }
 
         //print other full lines
