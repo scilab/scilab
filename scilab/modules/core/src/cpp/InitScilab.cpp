@@ -207,11 +207,15 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
 #endif
     }
 
-    LoadModules(_pSEI->iNoStart);
+    //open "protection" scope to protect all variables after scilab start
+    symbol::Context::getInstance()->scope_begin();
+
+    LoadModules();
 
     //execute scilab.start
     if (_pSEI->iNoStart == 0)
     {
+        StartModules();
         execScilabStartTask(_pSEI->iSerialize != 0);
     }
 
@@ -305,14 +309,21 @@ void StopScilabEngine(ScilabEngineInfo* _pSEI)
     else if (_pSEI->iNoStart == 0)
     {
         execScilabQuitTask(_pSEI->iSerialize != 0);
+        //call all modules.quit
+        EndModules();
     }
 
-    UnloadModules(_pSEI->iNoStart);
-    destroyfunctionManagerInstance();
-    //close main scope
-    //symbol::Context::getInstance()->scope_end();
+    //close "protection" scope
+    symbol::Context::getInstance()->scope_end();
+
+    //clean context
     symbol::Context::getInstance()->clearAll();
+    //destroy context
     symbol::Context::destroyInstance();
+    //destroy function manager
+    destroyfunctionManagerInstance();
+    //Unload dynamic modules
+    UnloadModules();
 
     if (_pSEI->iNoJvm == 0)
     {

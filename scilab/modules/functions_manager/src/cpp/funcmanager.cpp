@@ -401,16 +401,14 @@ bool FuncManager::ExecuteFile(wstring _stFile)
     return true;
 }
 
-bool FuncManager::LoadModules(bool _bNoStart)
+bool FuncManager::LoadModules()
 {
-    m_bNoStart = _bNoStart;
-    bool bRet	= true;
-    list<wstring>::const_iterator itName;
-
+    list<wstring>::const_iterator it = m_ModuleName.begin();
+    list<wstring>::const_iterator itEnd = m_ModuleName.end();
     //load gateways
-    for (itName = m_ModuleName.begin() ; itName != m_ModuleName.end() ; itName++)
+    for (; it != itEnd; ++it)
     {
-        ModuleMap::iterator itModule = m_ModuleMap.find(*itName);
+        ModuleMap::iterator itModule = m_ModuleMap.find(*it);
         if (itModule != m_ModuleMap.end())
         {
             //call ::Load function
@@ -418,47 +416,50 @@ bool FuncManager::LoadModules(bool _bNoStart)
         }
     }
 
-    if (m_bNoStart == false)
-    {
-        //excute .start file
-        for (itName = m_ModuleName.begin() ; itName != m_ModuleName.end() ; itName++)
-        {
-            ExecuteStartFile(*itName);
-        }
-    }
-
-    //protected all variables after scilab start
-    symbol::Context::getInstance()->scope_begin();
-    return bRet;
+    return true;
 }
 
-bool FuncManager::UnloadModules(bool _bNoStart)
+bool FuncManager::StartModules()
 {
-    bool bRet	= true;
-    list<wstring>::const_iterator itName;
-
-    if (m_bNoStart == false)
+    list<wstring>::const_iterator it = m_ModuleName.begin();
+    list<wstring>::const_iterator itEnd = m_ModuleName.end();
+    //excute .start file
+    for (; it != itEnd; ++it)
     {
-        //excute .quit file
-        for (itName = m_ModuleName.begin() ; itName != m_ModuleName.end() ; itName++)
-        {
-            ExecuteQuitFile(*itName);
-        }
+        ExecuteStartFile(*it);
     }
 
-    //load gateways
-    for (itName = m_ModuleName.begin() ; itName != m_ModuleName.end() ; itName++)
+    return true;
+}
+
+bool FuncManager::EndModules()
+{
+    list<wstring>::const_iterator it = m_ModuleName.begin();
+    list<wstring>::const_iterator itEnd = m_ModuleName.end();
+    //excute .start file
+    for (; it != itEnd; ++it)
     {
-        ModuleMap::iterator itModule = m_ModuleMap.find(*itName);
+        ExecuteQuitFile(*it);
+    }
+
+    return true;
+}
+
+
+bool FuncManager::UnloadModules()
+{
+    list<wstring>::const_iterator it = m_ModuleName.begin();
+    list<wstring>::const_iterator itEnd = m_ModuleName.end();
+    //load gateways
+    for (; it != itEnd; ++it)
+    {
+        ModuleMap::iterator itModule = m_ModuleMap.find(*it);
         if (itModule != m_ModuleMap.end())
         {
             //call ::Unload function
             itModule->second.second();
         }
     }
-
-    //protected all variables after scilab start
-    symbol::Context::getInstance()->scope_begin();
 
     //call finalize function on dynamic modules
     int iCount = ConfigVariable::getDynModuleCount();
@@ -475,7 +476,7 @@ bool FuncManager::UnloadModules(bool _bNoStart)
 
     ConfigVariable::cleanDynModule();
     delete[] libs;
-    return bRet;
+    return true;
 }
 
 bool FuncManager::ExecuteStartFile(wstring _stModule)
