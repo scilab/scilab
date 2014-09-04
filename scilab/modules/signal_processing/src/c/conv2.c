@@ -13,6 +13,7 @@
 #include "machine.h"
 #include "core_math.h"
 #include "sci_malloc.h"
+#include "conv2.h"
 /*--------------------------------------------------------------------------*/
 extern double C2F(ddot)(int *n, double *A, int *iA, double *B, int *iB);
 /*--------------------------------------------------------------------------*/

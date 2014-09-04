@@ -413,7 +413,11 @@ static SciErr getinternalVarAddress(void *_pvCtx, int _iVar, int **_piAddress)
         return sciErr;
     }
 
-    if (_iVar > in.size())
+    if (in.size() == 0)
+    {
+        *_piAddress = NULL;
+    }
+    else if (_iVar > in.size())
     {
         *_piAddress = (int*)opt[_iVar - 1 - in.size()].second;
     }

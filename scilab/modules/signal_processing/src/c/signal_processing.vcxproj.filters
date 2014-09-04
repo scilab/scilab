@@ -32,12 +32,15 @@
     <ClCompile Include="..\..\sci_gateway\c\gw_signal.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="conv2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\dynlib_signal_processing.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\gw_signal.h">
+    <ClInclude Include="conv2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
