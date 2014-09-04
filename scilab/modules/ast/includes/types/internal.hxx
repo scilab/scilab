@@ -283,11 +283,17 @@ public :
 
     virtual bool neg(InternalType *& out)
     {
+        // silent unused parameters warnings
+        (void) out;
+
         return false;
     }
 
     virtual bool transpose(InternalType *& out)
     {
+        // silent unused parameters warnings
+        (void) out;
+
         return false;
     }
 
@@ -298,6 +304,10 @@ public :
 
     virtual bool extract(const std::wstring & name, InternalType *& out)
     {
+        // silent unused parameters warnings
+        (void) name;
+        (void) out;
+
         return false;
     }
 
@@ -308,6 +318,14 @@ public :
 
     virtual bool invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_list & out, ast::ConstVisitor & execFunc, const ast::CallExp & e)
     {
+        // silent unused parameters warnings
+        (void) in;
+        (void) opt;
+        (void) _iRetCount;
+        (void) out;
+        (void) execFunc;
+        (void) e;
+
         return false;
     }
 

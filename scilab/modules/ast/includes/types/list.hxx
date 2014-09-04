@@ -76,6 +76,12 @@ public :
         }
         else
         {
+            // silent unused parameters warnings, all values are always extracted at a time.
+            (void) _iRetCount;
+            (void) e;
+            (void) execFunc;
+            (void) opt;
+
             std::vector<InternalType *> _out = extract(&in);
             //if (_out.empty())
             //{

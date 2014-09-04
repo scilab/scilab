@@ -998,6 +998,11 @@ public :
         }
         else
         {
+            // silent unused parameters warnings, only a single value extract is supported at a time.
+            (void) _iRetCount;
+            (void) execFunc;
+            (void) opt;
+
             InternalType * _out = extract(&in);
             if (!_out)
             {
