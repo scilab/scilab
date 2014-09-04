@@ -20,5 +20,5 @@
 //
 
 function m=%s_i_model(i,b,m)
-    setfield(i,b,m)
+    scicos_setfield(i,b,m)
 endfunction

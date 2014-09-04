@@ -20,5 +20,5 @@
 //
 
 function m=%s_i_Link(i,b,L)
-    setfield(i,b,L)
+    scicos_setfield(i,b,L)
 endfunction
