@@ -95,9 +95,6 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, int
             case SIM_FUNCTION_API:
                 o->getSimFunctionApi(v);
                 return true;
-            case SIM_BLOCKTYPE:
-                o->getSimBlocktype(v);
-                return true;
             case NZCROSS:
                 o->getNZcross(v);
                 return true;
@@ -217,6 +214,9 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
                 return true;
             case SIM_FUNCTION_NAME:
                 o->getSimFunctionName(v);
+                return true;
+            case SIM_BLOCKTYPE:
+                o->getSimBlocktype(v);
                 return true;
             case STYLE:
                 o->getStyle(v);

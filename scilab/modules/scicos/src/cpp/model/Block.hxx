@@ -470,19 +470,26 @@ private:
         return SUCCESS;
     }
 
-    void getSimBlocktype(int& data) const
+    void getSimBlocktype(std::string& data) const
     {
-        data = sim.blocktype;
+        data = std::string(1, sim.blocktype);
     }
 
-    update_status_t setSimBlocktype(const int data)
+    update_status_t setSimBlocktype(const std::string data)
     {
-        if (data == sim.blocktype)
+        if (data.size() != 1)
+        {
+            return FAIL;
+        }
+
+        char c = *(data.c_str());
+
+        if (c == sim.blocktype)
         {
             return NO_CHANGES;
         }
 
-        switch (data)
+        switch (c)
         {
             case BLOCKTYPE_C:
             case BLOCKTYPE_D:
@@ -491,7 +498,7 @@ private:
             case BLOCKTYPE_M:
             case BLOCKTYPE_X:
             case BLOCKTYPE_Z:
-                sim.blocktype = data;
+                sim.blocktype = c;
                 return SUCCESS;
             default:
                 return FAIL;

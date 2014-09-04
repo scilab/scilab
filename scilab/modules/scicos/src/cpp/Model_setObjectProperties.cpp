@@ -93,8 +93,6 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
         {
             case SIM_FUNCTION_API:
                 return o->setSimFunctionApi(v);
-            case SIM_BLOCKTYPE:
-                return o->setSimBlocktype(v);
             case NZCROSS:
                 return o->setNZcross(v);
             case NMODE:
@@ -263,6 +261,8 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
                 return o->setInterfaceFunction(v);
             case SIM_FUNCTION_NAME:
                 return o->setSimFunctionName(v);
+            case SIM_BLOCKTYPE:
+                return o->setSimBlocktype(v);
             case STYLE:
                 return o->setStyle(v);
             case LABEL:

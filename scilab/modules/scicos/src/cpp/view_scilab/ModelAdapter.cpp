@@ -542,12 +542,10 @@ struct blocktype
     {
         model::Block* adaptee = adaptor.getAdaptee();
 
-        int type;
+        std::string type;
         controller.getObjectProperty(adaptee->id(), adaptee->kind(), SIM_BLOCKTYPE, type);
 
-        wchar_t Type = type;
-        types::String* o = new types::String(&Type);
-
+        types::String* o = new types::String(type.c_str());
         return o;
     }
 
@@ -565,20 +563,13 @@ struct blocktype
         {
             return false;
         }
-        // The input must be a character
-        if (current->get(0)[0] == '\0')
-        {
-            return false;
-        }
-        if (current->get(0)[1] != '\0')
-        {
-            return false;
-        }
 
-        int type = current->get(0)[0];
+        char* c_str = wide_string_to_UTF8(current->get(0));
+        std::string type (c_str);
+        FREE(c_str);
 
-        controller.setObjectProperty(adaptee->id(), adaptee->kind(), SIM_BLOCKTYPE, type);
-        return true;
+        // the value validation is performed on the model
+        return controller.setObjectProperty(adaptee->id(), adaptee->kind(), SIM_BLOCKTYPE, type) != FAIL;
     }
 };
 
