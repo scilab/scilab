@@ -498,13 +498,6 @@ Callable::ReturnValue DynamicFunction::Init()
         FREE(pstLibName);
         addDynModule(m_wstLibName.c_str(), hLib);
 
-        //call init module function
-        INIT_MODULE pInit = (INIT_MODULE)GetDynLibFuncPtr(hLib, "Initialize");
-        if (pInit)
-        {
-            pInit();
-        }
-
         /*Load deps*/
         if (m_wstLoadDepsName.empty() == false && m_pLoadDeps == NULL)
         {

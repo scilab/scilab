@@ -461,16 +461,11 @@ bool FuncManager::UnloadModules()
         }
     }
 
-    //call finalize function on dynamic modules
+    //Unload shared libraries
     int iCount = ConfigVariable::getDynModuleCount();
     DynLibHandle* libs = ConfigVariable::getAllDynModule();
     for (int i = 0 ; i < iCount ; i++)
     {
-        FINALIZE_MODULE pFinalize = (FINALIZE_MODULE)GetDynLibFuncPtr(libs[i], "Finalize");
-        if (pFinalize)
-        {
-            pFinalize();
-        }
         FreeDynLibrary(libs[i]);
     }
 
