@@ -289,7 +289,7 @@ std::wstring DiagramAdapter::getShortTypeStr()
 
 types::InternalType* DiagramAdapter::getContribContent() const
 {
-    return contrib_content;
+    return contrib_content->clone();
 }
 
 void DiagramAdapter::setContribContent(types::InternalType* v)

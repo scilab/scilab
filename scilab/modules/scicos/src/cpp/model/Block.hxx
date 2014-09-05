@@ -235,12 +235,12 @@ private:
 
     update_status_t setInterfaceFunction(const std::string& fun)
     {
-        if (fun == this->interfaceFunction)
+        if (fun == interfaceFunction)
         {
             return NO_CHANGES;
         }
 
-        this->interfaceFunction = interfaceFunction;
+        interfaceFunction = fun;
         return SUCCESS;
     }
 

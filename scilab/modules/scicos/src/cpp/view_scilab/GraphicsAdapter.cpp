@@ -470,17 +470,7 @@ struct style
         std::string style;
         controller.getObjectProperty(adaptee->id(), adaptee->kind(), STYLE, style);
 
-        types::String* o;
-        if (style.empty())
-        {
-            o = new types::String(0, 0);
-        }
-        else
-        {
-            o = new types::String(1, 1);
-            o->set(0, style.data());
-        }
-        return o;
+        return new types::String(style.c_str());
     }
 
     static bool set(GraphicsAdapter& adaptor, types::InternalType* v, Controller& controller)
@@ -553,7 +543,7 @@ GraphicsAdapter::GraphicsAdapter(org_scilab_modules_scicos::model::Block* o) :
         property<GraphicsAdapter>::add_property(L"style", &style::get, &style::set);
     }
 
-    gr_i_content = new types::List();
+    gr_i_content = types::Double::Empty();
 }
 
 GraphicsAdapter::~GraphicsAdapter()
@@ -573,7 +563,7 @@ std::wstring GraphicsAdapter::getShortTypeStr()
 
 types::InternalType* GraphicsAdapter::getGrIContent() const
 {
-    return gr_i_content;
+    return gr_i_content->clone();
 }
 
 void GraphicsAdapter::setGrIContent(types::InternalType* v)

@@ -351,7 +351,7 @@ std::wstring ParamsAdapter::getShortTypeStr()
 
 types::InternalType* ParamsAdapter::getDocContent() const
 {
-    return doc_content;
+    return doc_content->clone();
 }
 
 void ParamsAdapter::setDocContent(types::InternalType* v)

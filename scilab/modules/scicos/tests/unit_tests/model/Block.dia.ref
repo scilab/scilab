@@ -1,0 +1,399 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2014 - Scilab Enterprises - Paul Bignier
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+loadXcosLibs();
+// Allocate a summation block
+o = BIGSOM_f("define")
+objectCreated( 1 , BLOCK )
+propertyUpdated( 1 , BLOCK , GEOMETRY ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , GEOMETRY ) : SUCCESS
+propertyUpdated( 1 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , EXPRS ) : SUCCESS
+objectCreated( 2 , PORT )
+propertyUpdated( 2 , PORT , SOURCE_BLOCK ) : SUCCESS
+objectCreated( 3 , PORT )
+propertyUpdated( 3 , PORT , SOURCE_BLOCK ) : SUCCESS
+propertyUpdated( 1 , BLOCK , INPUTS ) : SUCCESS
+objectCreated( 4 , PORT )
+propertyUpdated( 4 , PORT , SOURCE_BLOCK ) : SUCCESS
+propertyUpdated( 1 , BLOCK , OUTPUTS ) : SUCCESS
+propertyUpdated( 1 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 2 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 3 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 4 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 2 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 3 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 4 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 2 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 3 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 4 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , STYLE ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
+propertyUpdated( 1 , BLOCK , SIM_FUNCTION_API ) : SUCCESS
+propertyUpdated( 3 , PORT , DATATYPE ) : SUCCESS
+propertyUpdated( 2 , PORT , DATATYPE ) : SUCCESS
+propertyUpdated( 4 , PORT , DATATYPE ) : SUCCESS
+propertyUpdated( 1 , BLOCK , STATE ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , DSTATE ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , RPAR ) : SUCCESS
+propertyUpdated( 1 , BLOCK , IPAR ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , SIM_BLOCKTYPE ) : SUCCESS
+propertyUpdated( 1 , BLOCK , SIM_DEP_UT ) : SUCCESS
+propertyUpdated( 1 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , NZCROSS ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , NMODE ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , UID ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
+o  = 
+scicos_Block type :
+  graphics
+  model
+  gui
+  doc
+o.graphics
+ ans  =
+orig = [0,0]
+sz = [2,3]
+flip = %t
+theta = 0
+exprs = "[1;1]"
+pin = [0;0]
+pout = 0
+pein = []
+peout = []
+gr_i = []
+id = ""
+in_implicit = ["E";"E"]
+out_implicit = "E"
+in_style = ["";""]
+out_style = ""
+in_label = ["";""]
+out_label = ""
+style = ""
+o.model
+ ans  =
+sum type: 2
+in = [-1;-1]
+in2 = [1;1]
+intyp = [1;1]
+out = -1
+out2 = 1
+outtyp = 1
+evtin = []
+evtout = []
+state = []
+dstate = []
+odstate = list()
+rpar = [1;1]
+ipar = []
+opar = list()
+blocktype = "c"
+firing = []
+dep_ut = [%t,%f]
+label = ""
+nzcross = 0
+nmode = 0
+equations = list()
+uid = ""
+o.gui
+ ans  =
+ BIGSOM_f
+o.doc
+ ans  =
+()
+// Set the block to itself without making any modification
+// (scicos_getvalue returns BIGSOM_f default parameters)
+p = funcprot();
+funcprot(0);
+function [ok,sgn,exprs] = scicos_getvalue(title, field, Type, exprs)
+    ok = %t;
+    sgn = [1;1];
+    exprs = sci2exp(sgn);
+endfunction
+o = BIGSOM_f("set", o)
+propertyUpdated( 1 , BLOCK , GEOMETRY ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , GEOMETRY ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , EXPRS ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 2 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 3 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 4 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 2 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 3 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 4 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 2 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 3 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 4 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , STYLE ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , SIM_FUNCTION_NAME ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
+propertyUpdated( 3 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 2 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 2 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 3 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 2 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 3 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 4 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 4 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 4 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , STATE ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , DSTATE ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , RPAR ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , IPAR ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , NZCROSS ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , NMODE ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , UID ) : NO_CHANGES
+o  = 
+scicos_Block type :
+  graphics
+  model
+  gui
+  doc
+o.graphics
+ ans  =
+orig = [0,0]
+sz = [2,3]
+flip = %t
+theta = 0
+exprs = "[1;1]"
+pin = [0;0]
+pout = 0
+pein = []
+peout = []
+gr_i = []
+id = ""
+in_implicit = ["E";"E"]
+out_implicit = "E"
+in_style = ["";""]
+out_style = ""
+in_label = ["";""]
+out_label = ""
+style = ""
+o.model
+ ans  =
+sum type: 2
+in = [-1;-1]
+in2 = [1;1]
+intyp = [1;1]
+out = -1
+out2 = 1
+outtyp = 1
+evtin = []
+evtout = []
+state = []
+dstate = []
+odstate = list()
+rpar = [1;1]
+ipar = []
+opar = list()
+blocktype = "c"
+firing = []
+dep_ut = [%t,%f]
+label = ""
+nzcross = 0
+nmode = 0
+equations = list()
+uid = ""
+// Now use scicos_getvalue to modify the 'exprs' and 'rpar' fields to "[-1;-1]" and '[-1;-1]'
+function [ok,sgn,exprs] = scicos_getvalue(title, field, Type, exprs)
+    ok = %t;
+    sgn = [-1;-1];
+    exprs = sci2exp(sgn);
+endfunction
+o = BIGSOM_f("set", o)
+propertyUpdated( 1 , BLOCK , GEOMETRY ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , GEOMETRY ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , EXPRS ) : SUCCESS
+propertyUpdated( 1 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 2 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 3 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 4 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 2 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 3 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 4 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 2 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 3 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 4 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , STYLE ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , SIM_FUNCTION_NAME ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
+propertyUpdated( 3 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 2 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 2 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 3 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 2 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 3 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 4 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 4 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 4 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , STATE ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , DSTATE ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , RPAR ) : SUCCESS
+propertyUpdated( 1 , BLOCK , IPAR ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , NZCROSS ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , NMODE ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , UID ) : NO_CHANGES
+o  = 
+scicos_Block type :
+  graphics
+  model
+  gui
+  doc
+o.graphics
+ ans  =
+orig = [0,0]
+sz = [2,3]
+flip = %t
+theta = 0
+exprs = "[-1;-1]"
+pin = [0;0]
+pout = 0
+pein = []
+peout = []
+gr_i = []
+id = ""
+in_implicit = ["E";"E"]
+out_implicit = "E"
+in_style = ["";""]
+out_style = ""
+in_label = ["";""]
+out_label = ""
+style = ""
+o.model
+ ans  =
+sum type: 2
+in = [-1;-1]
+in2 = [1;1]
+intyp = [1;1]
+out = -1
+out2 = 1
+outtyp = 1
+evtin = []
+evtout = []
+state = []
+dstate = []
+odstate = list()
+rpar = [-1;-1]
+ipar = []
+opar = list()
+blocktype = "c"
+firing = []
+dep_ut = [%t,%f]
+label = ""
+nzcross = 0
+nmode = 0
+equations = list()
+uid = ""
+// Now modify the block's entry port #2 to '1' and add a new one with value '1'
+function [ok,sgn,exprs] = scicos_getvalue(title, field, Type, exprs)
+    ok = %t;
+    sgn = [-1;1;1];
+    exprs = sci2exp(sgn);
+endfunction
+funcprot(p);
+o = BIGSOM_f("set", o)
+propertyUpdated( 1 , BLOCK , GEOMETRY ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , GEOMETRY ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , EXPRS ) : SUCCESS
+objectCreated( 5 , PORT )
+propertyUpdated( 5 , PORT , SOURCE_BLOCK ) : SUCCESS
+propertyUpdated( 1 , BLOCK , INPUTS ) : SUCCESS
+propertyUpdated( 1 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 2 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 3 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 5 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 4 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 2 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 3 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 5 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 4 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 2 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 3 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 5 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 4 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , STYLE ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , SIM_FUNCTION_NAME ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
+propertyUpdated( 5 , PORT , DATATYPE ) : SUCCESS
+propertyUpdated( 3 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 2 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 4 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 4 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 4 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , STATE ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , DSTATE ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , RPAR ) : SUCCESS
+propertyUpdated( 1 , BLOCK , IPAR ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , NZCROSS ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , NMODE ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , UID ) : NO_CHANGES
+o  = 
+scicos_Block type :
+  graphics
+  model
+  gui
+  doc
+o.graphics
+ ans  =
+orig = [0,0]
+sz = [2,3]
+flip = %t
+theta = 0
+exprs = "[-1;1;1]"
+pin = [0;0;0]
+pout = 0
+pein = []
+peout = []
+gr_i = []
+id = ""
+in_implicit = ["E";"E";"E"]
+out_implicit = "E"
+in_style = ["";"";""]
+out_style = ""
+in_label = ["";"";""]
+out_label = ""
+style = ""
+o.model
+ ans  =
+sum type: 2
+in = [-1;-1;-1]
+in2 = [1;1;1]
+intyp = [1;1;1]
+out = -1
+out2 = 1
+outtyp = 1
+evtin = []
+evtout = []
+state = []
+dstate = []
+odstate = list()
+rpar = [-1;1;1]
+ipar = []
+opar = list()
+blocktype = "c"
+firing = []
+dep_ut = [%t,%f]
+label = ""
+nzcross = 0
+nmode = 0
+equations = list()
+uid = ""

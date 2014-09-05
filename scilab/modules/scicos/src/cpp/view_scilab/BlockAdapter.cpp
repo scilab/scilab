@@ -160,7 +160,7 @@ std::wstring BlockAdapter::getShortTypeStr()
 
 types::InternalType* BlockAdapter::getDocContent() const
 {
-    return doc_content;
+    return doc_content->clone();
 }
 
 void BlockAdapter::setDocContent(types::InternalType* v)

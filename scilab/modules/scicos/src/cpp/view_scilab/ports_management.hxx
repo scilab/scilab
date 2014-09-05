@@ -66,10 +66,10 @@ types::InternalType* get_ports_property(const Adaptor& adaptor, object_propertie
         }
         case DATATYPE_TYPE:
             datatypeIndex++;
-        // no break
+            // no break
         case DATATYPE_COLS:
             datatypeIndex++;
-        // no break
+            // no break
         case DATATYPE_ROWS:
         {
             datatypeIndex++;
@@ -158,10 +158,6 @@ bool set_ports_property(const Adaptor& adaptor, object_properties_t port_kind, C
     if (v->getType() == types::InternalType::ScilabString)
     {
         types::String* current = v->getAs<types::String>();
-        if (current->getSize() != ids.size())
-        {
-            return false;
-        }
 
         // Translate identifiers: shared variables
         int i = 0;
@@ -173,7 +169,16 @@ bool set_ports_property(const Adaptor& adaptor, object_properties_t port_kind, C
             {
                 for (std::vector<ScicosID>::iterator it = ids.begin(); it != ids.end(); ++it, ++i)
                 {
-                    char* c_str = wide_string_to_UTF8(current->get(i));
+                    char* c_str = NULL;
+                    if (i >= current->getSize())
+                    {
+                        // If the input isn't large enough, fill each port with empty strings
+                        c_str = wide_string_to_UTF8(L"");
+                    }
+                    else
+                    {
+                        c_str = wide_string_to_UTF8(current->get(i));
+                    }
                     controller.setObjectProperty(*it, PORT, p, std::string(c_str));
                     FREE(c_str);
                 }
@@ -181,6 +186,11 @@ bool set_ports_property(const Adaptor& adaptor, object_properties_t port_kind, C
             }
             case IMPLICIT:
             {
+                if (current->getSize() != ids.size())
+                {
+                    return false;
+                }
+
                 std::wstring E = L"E";
                 std::wstring I = L"I";
                 for (std::vector<ScicosID>::iterator it = ids.begin(); it != ids.end(); ++it, ++i)
@@ -239,10 +249,10 @@ bool set_ports_property(const Adaptor& adaptor, object_properties_t port_kind, C
 
             case DATATYPE_TYPE:
                 datatypeIndex++;
-            // no break
+                // no break
             case DATATYPE_COLS:
                 datatypeIndex++;
-            // no break
+                // no break
             case DATATYPE_ROWS:
             {
                 datatypeIndex++;
@@ -279,8 +289,16 @@ bool set_ports_property(const Adaptor& adaptor, object_properties_t port_kind, C
     return false;
 }
 
+/**
+ * Fill \a newPorts with \a d values checking content if possible.
+ *
+ * \param newPorts new ports children's index or value to be filled
+ * \param children all object in the current layer (diagram or superblock)
+ * \param d the C-array values to set
+ * \return true on success, false otherwise
+ */
 template<typename Adaptor, object_properties_t p>
-bool fillNewPorts(std::vector<int>& newPorts, const std::vector<ScicosID>& children, double* d)
+inline bool fillNewPorts(std::vector<int>& newPorts, const std::vector<ScicosID>& children, double* d)
 {
     for (std::vector<int>::iterator it = newPorts.begin(); it != newPorts.end(); ++it, ++d)
     {
@@ -298,16 +316,35 @@ bool fillNewPorts(std::vector<int>& newPorts, const std::vector<ScicosID>& child
     return true;
 }
 
+/**
+ * Set the port value
+ *
+ * \param oldPort the old port object ID
+ * \param newPort new port children's index or value
+ * \param controller current transaction instance
+ * \param children all object in the current layer (diagram or superblock)
+ * \param deletedObjects trash used to delete objects
+ */
 template<typename Adaptor, object_properties_t p>
-void updateNewPort(ScicosID oldPort, int newPort, Controller& controller,
-                   std::vector<ScicosID>& children, std::vector<ScicosID>& deletedObjects)
+inline void updateNewPort(ScicosID oldPort, int newPort, Controller& controller,
+                          std::vector<ScicosID>& children, std::vector<ScicosID>& deletedObjects)
 {
     if (p == CONNECTED_SIGNALS)
     {
         // update signal and manage deconnection, using newPort as a children index
         ScicosID oldSignal;
         controller.getObjectProperty(oldPort, PORT, CONNECTED_SIGNALS, oldSignal);
-        ScicosID newSignal = children[newPort];
+
+        ScicosID newSignal;
+        if (children.size() > 0)
+        {
+            newSignal = children[newPort];
+        }
+        else
+        {
+            newSignal = 0;
+        }
+
         if (oldSignal != newSignal)
         {
             // disconnect the old link
@@ -340,10 +377,10 @@ void updateNewPort(ScicosID oldPort, int newPort, Controller& controller,
         {
             case DATATYPE_TYPE:
                 datatypeIndex++;
-            // no break
+                // no break
             case DATATYPE_COLS:
                 datatypeIndex++;
-            // no break
+                // no break
             case DATATYPE_ROWS:
             {
                 datatypeIndex++;
@@ -359,14 +396,23 @@ void updateNewPort(ScicosID oldPort, int newPort, Controller& controller,
     }
 }
 
+/**
+ * Add a new port
+ *
+ * \param newPortID the old port object ID
+ * \param newPort new port children's index or value
+ * \param children all object in the current layer (diagram or superblock)
+ * \param controller current transaction instance
+ * \return true on success, false otherwise
+ */
 template<typename Adaptor, object_properties_t p>
-bool addNewPort(ScicosID newPortID, int newPort, const std::vector<ScicosID>& children,	Controller& controller)
+inline bool addNewPort(ScicosID newPortID, int newPort, const std::vector<ScicosID>& children,	Controller& controller)
 {
     bool status = true;
     if (p == CONNECTED_SIGNALS)
     {
         // set the connected signal if applicable, using newPort as a children index
-        if (newPort != 0)
+        if (children.size() > 0)
         {
             ScicosID signal = children[newPort];
             status = controller.setObjectProperty(newPortID, PORT, CONNECTED_SIGNALS, signal) != FAIL;
@@ -380,10 +426,10 @@ bool addNewPort(ScicosID newPortID, int newPort, const std::vector<ScicosID>& ch
         {
             case DATATYPE_TYPE:
                 datatypeIndex++;
-            // no break
+                // no break
             case DATATYPE_COLS:
                 datatypeIndex++;
-            // no break
+                // no break
             case DATATYPE_ROWS:
             {
                 datatypeIndex++;
