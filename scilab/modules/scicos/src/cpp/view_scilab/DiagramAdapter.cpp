@@ -32,7 +32,8 @@
 #include "model/BaseObject.hxx"
 
 extern "C" {
-#include "version.h"
+#include "sci_malloc.h"
+#include "charEncoding.h"
 }
 
 namespace org_scilab_modules_scicos
@@ -42,9 +43,9 @@ namespace view_scilab
 namespace
 {
 
-static const std::wstring AnnotationStr = L"Text";
-static const std::wstring BlockStr = L"Block";
-static const std::wstring LinkStr = L"Link";
+const std::wstring AnnotationStr (L"Text");
+const std::wstring BlockStr (L"Block");
+const std::wstring LinkStr (L"Link");
 
 struct props
 {

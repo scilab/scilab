@@ -17,6 +17,11 @@
 #include "Controller.hxx"
 #include "TextAdapter.hxx"
 
+extern "C" {
+#include "sci_malloc.h"
+#include "charEncoding.h"
+}
+
 namespace org_scilab_modules_scicos
 {
 namespace view_scilab
