@@ -242,6 +242,8 @@ Scilab Bug Fixes
 
 * Bug #13579 fixed - bar displayed useless warnings.
 
+* Bug #13585 fixed - SuiteSparse 4.3.1 was not supported.
+
 * Bug #13588 fixed - Default values of "event_handler" and "event_handler_enable" properties
                      were not taken into account when creating a new figure.
 

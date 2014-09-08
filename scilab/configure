@@ -4370,7 +4370,7 @@ else
     We can't simply define LARGE_OFF_T to be 9223372036854775807,
     since some C++ compilers masquerading as C compilers
     incorrectly reject 9223372036854775807.  */
-#define LARGE_OFF_T ((((off_t) 1 << 31) << 31) - 1 + (((off_t) 1 << 31) << 31))
+#define LARGE_OFF_T (((off_t) 1 << 62) - 1 + ((off_t) 1 << 62))
   int off_t_is_large[(LARGE_OFF_T % 2147483629 == 721
 		       && LARGE_OFF_T % 2147483647 == 1)
 		      ? 1 : -1];
@@ -4416,7 +4416,7 @@ else
     We can't simply define LARGE_OFF_T to be 9223372036854775807,
     since some C++ compilers masquerading as C compilers
     incorrectly reject 9223372036854775807.  */
-#define LARGE_OFF_T ((((off_t) 1 << 31) << 31) - 1 + (((off_t) 1 << 31) << 31))
+#define LARGE_OFF_T (((off_t) 1 << 62) - 1 + ((off_t) 1 << 62))
   int off_t_is_large[(LARGE_OFF_T % 2147483629 == 721
 		       && LARGE_OFF_T % 2147483647 == 1)
 		      ? 1 : -1];
@@ -4440,7 +4440,7 @@ rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
     We can't simply define LARGE_OFF_T to be 9223372036854775807,
     since some C++ compilers masquerading as C compilers
     incorrectly reject 9223372036854775807.  */
-#define LARGE_OFF_T ((((off_t) 1 << 31) << 31) - 1 + (((off_t) 1 << 31) << 31))
+#define LARGE_OFF_T (((off_t) 1 << 62) - 1 + ((off_t) 1 << 62))
   int off_t_is_large[(LARGE_OFF_T % 2147483629 == 721
 		       && LARGE_OFF_T % 2147483647 == 1)
 		      ? 1 : -1];
@@ -4485,7 +4485,7 @@ else
     We can't simply define LARGE_OFF_T to be 9223372036854775807,
     since some C++ compilers masquerading as C compilers
     incorrectly reject 9223372036854775807.  */
-#define LARGE_OFF_T ((((off_t) 1 << 31) << 31) - 1 + (((off_t) 1 << 31) << 31))
+#define LARGE_OFF_T (((off_t) 1 << 62) - 1 + ((off_t) 1 << 62))
   int off_t_is_large[(LARGE_OFF_T % 2147483629 == 721
 		       && LARGE_OFF_T % 2147483647 == 1)
 		      ? 1 : -1];
@@ -4509,7 +4509,7 @@ rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
     We can't simply define LARGE_OFF_T to be 9223372036854775807,
     since some C++ compilers masquerading as C compilers
     incorrectly reject 9223372036854775807.  */
-#define LARGE_OFF_T ((((off_t) 1 << 31) << 31) - 1 + (((off_t) 1 << 31) << 31))
+#define LARGE_OFF_T (((off_t) 1 << 62) - 1 + ((off_t) 1 << 62))
   int off_t_is_large[(LARGE_OFF_T % 2147483629 == 721
 		       && LARGE_OFF_T % 2147483647 == 1)
 		      ? 1 : -1];
@@ -25218,15 +25218,15 @@ fi
 
 # --with-umfpack-library set then check in this dir
 if test "x$with_umfpack_library" != "xyes"; then
-	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for umf_divcomplex in $with_umfpack_library" >&5
-$as_echo_n "checking for umf_divcomplex in $with_umfpack_library... " >&6; }
+	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for umfpack_di_solve in $with_umfpack_library" >&5
+$as_echo_n "checking for umfpack_di_solve in $with_umfpack_library... " >&6; }
 	save_LIBS="$LIBS"
 	LIBS="$BLAS_LIBS -L$with_umfpack_library -lm $LIBS"
 	# We need -lm because sometime (ubuntu 7.10 for example) does not link libamd against lib math
 
-	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for umf_divcomplex in -lumfpack" >&5
-$as_echo_n "checking for umf_divcomplex in -lumfpack... " >&6; }
-if ${ac_cv_lib_umfpack_umf_divcomplex+:} false; then :
+	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for umfpack_di_solve in -lumfpack" >&5
+$as_echo_n "checking for umfpack_di_solve in -lumfpack... " >&6; }
+if ${ac_cv_lib_umfpack_umfpack_di_solve+:} false; then :
   $as_echo_n "(cached) " >&6
 else
   ac_check_lib_save_LIBS=$LIBS
@@ -25240,7 +25240,7 @@ cat confdefs.h - <<_ACEOF >conftest.$ac_ext
 #ifdef __cplusplus
 extern "C"
 #endif
-char umf_divcomplex ();
+char umfpack_di_solve ();
 #ifdef F77_DUMMY_MAIN
 
 #  ifdef __cplusplus
@@ -25252,31 +25252,31 @@ char umf_divcomplex ();
 int
 main ()
 {
-return umf_divcomplex ();
+return umfpack_di_solve ();
   ;
   return 0;
 }
 _ACEOF
 if ac_fn_c_try_link "$LINENO"; then :
-  ac_cv_lib_umfpack_umf_divcomplex=yes
+  ac_cv_lib_umfpack_umfpack_di_solve=yes
 else
-  ac_cv_lib_umfpack_umf_divcomplex=no
+  ac_cv_lib_umfpack_umfpack_di_solve=no
 fi
 rm -f core conftest.err conftest.$ac_objext \
     conftest$ac_exeext conftest.$ac_ext
 LIBS=$ac_check_lib_save_LIBS
 fi
-{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_umfpack_umf_divcomplex" >&5
-$as_echo "$ac_cv_lib_umfpack_umf_divcomplex" >&6; }
-if test "x$ac_cv_lib_umfpack_umf_divcomplex" = xyes; then :
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_umfpack_umfpack_di_solve" >&5
+$as_echo "$ac_cv_lib_umfpack_umfpack_di_solve" >&6; }
+if test "x$ac_cv_lib_umfpack_umfpack_di_solve" = xyes; then :
   UMFPACK_LIB="-L$with_umfpack_library -lumfpack $UMFPACK_LIB"; UMFPACK_OK=yes
 else
-  as_fn_error $? "libumfpack : Library missing. (Cannot find umf_divcomplex). Check if libumfpack is installed and if the version is correct (also called lib suitesparse)" "$LINENO" 5
+  as_fn_error $? "libumfpack : Library missing. (Cannot find umfpack_di_solve). Check if libumfpack is installed and if the version is correct (also called lib suitesparse)" "$LINENO" 5
 
 fi
 
 
-#	AC_TRY_LINK_FUNC(umf_divcomplex, [UMFPACK_OK=yes; BLAS_TYPE="Using BLAS_LIBS environment variable"], [UMFPACK_LIBS=""])
+#	AC_TRY_LINK_FUNC(umfpack_di_solve, [UMFPACK_OK=yes; BLAS_TYPE="Using BLAS_LIBS environment variable"], [UMFPACK_LIBS=""])
 	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $UMFPACK_OK" >&5
 $as_echo "$UMFPACK_OK" >&6; }
 	LIBS="$save_LIBS"
@@ -25340,9 +25340,9 @@ else
 fi
 
 	LIBS="$UMFPACK_LIB $LIBS"
-	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for umf_divcomplex in -lumfpack" >&5
-$as_echo_n "checking for umf_divcomplex in -lumfpack... " >&6; }
-if ${ac_cv_lib_umfpack_umf_divcomplex+:} false; then :
+	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for umfpack_di_solve in -lumfpack" >&5
+$as_echo_n "checking for umfpack_di_solve in -lumfpack... " >&6; }
+if ${ac_cv_lib_umfpack_umfpack_di_solve+:} false; then :
   $as_echo_n "(cached) " >&6
 else
   ac_check_lib_save_LIBS=$LIBS
@@ -25356,7 +25356,7 @@ cat confdefs.h - <<_ACEOF >conftest.$ac_ext
 #ifdef __cplusplus
 extern "C"
 #endif
-char umf_divcomplex ();
+char umfpack_di_solve ();
 #ifdef F77_DUMMY_MAIN
 
 #  ifdef __cplusplus
@@ -25368,30 +25368,30 @@ char umf_divcomplex ();
 int
 main ()
 {
-return umf_divcomplex ();
+return umfpack_di_solve ();
   ;
   return 0;
 }
 _ACEOF
 if ac_fn_c_try_link "$LINENO"; then :
-  ac_cv_lib_umfpack_umf_divcomplex=yes
+  ac_cv_lib_umfpack_umfpack_di_solve=yes
 else
-  ac_cv_lib_umfpack_umf_divcomplex=no
+  ac_cv_lib_umfpack_umfpack_di_solve=no
 fi
 rm -f core conftest.err conftest.$ac_objext \
     conftest$ac_exeext conftest.$ac_ext
 LIBS=$ac_check_lib_save_LIBS
 fi
-{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_umfpack_umf_divcomplex" >&5
-$as_echo "$ac_cv_lib_umfpack_umf_divcomplex" >&6; }
-if test "x$ac_cv_lib_umfpack_umf_divcomplex" = xyes; then :
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_umfpack_umfpack_di_solve" >&5
+$as_echo "$ac_cv_lib_umfpack_umfpack_di_solve" >&6; }
+if test "x$ac_cv_lib_umfpack_umfpack_di_solve" = xyes; then :
   UMFPACK_LIB="-lumfpack $UMFPACK_LIB"; UMFPACK_OK=yes
 else
-  as_fn_error $? "libumfpack: Library missing. (Cannot find symbol umf_divcomplex). Check if libumfpack is installed and if the version is correct (also called lib suitesparse)" "$LINENO" 5
+  as_fn_error $? "libumfpack: Library missing. (Cannot find symbol umfpack_di_solve). Check if libumfpack is installed and if the version is correct (also called lib suitesparse)" "$LINENO" 5
 
 fi
 
-		LIBS="$save_LIBS"
+	LIBS="$save_LIBS"
 fi
 
 
