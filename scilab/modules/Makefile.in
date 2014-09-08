@@ -97,22 +97,23 @@ build_triplet = @build@
 host_triplet = @host@
 @GUI_TRUE@am__append_1 = external_objects_java
 @XCOS_TRUE@am__append_2 = scicos_blocks scicos xcos
-@MPI_TRUE@am__append_3 = mpi
+@XCOS_FALSE@am__append_3 = xcos
+@MPI_TRUE@am__append_4 = mpi
 
 # javasci should be compile at the end because it needs libscilab.la
 # Don't forget that the order in subdirs does matter !!!
-@JAVASCI_TRUE@am__append_4 = javasci
-@MPI_TRUE@am__append_5 = $(top_builddir)/modules/mpi/libscimpi.la
+@JAVASCI_TRUE@am__append_5 = javasci
+@MPI_TRUE@am__append_6 = $(top_builddir)/modules/mpi/libscimpi.la
 
 # Force the libscijvm to be linked first. Under Debian, this avoid some reordering issues during the link
-@GUI_TRUE@am__append_6 = $(top_builddir)/modules/jvm/libscijvm.la $(GUI_LIBS)
-@GUI_FALSE@am__append_7 = $(NO_GUI_LIBS)
+@GUI_TRUE@am__append_7 = $(top_builddir)/modules/jvm/libscijvm.la $(GUI_LIBS)
+@GUI_FALSE@am__append_8 = $(NO_GUI_LIBS)
 
 # This should never be used in production. It forces the explicit link
 # between libscilab and some "on-the-fly" loaded libraries.
 # It has been added to make sure that the full link is correctly done
 # and all symbols resolved.
-@FORCE_LINK_TRUE@am__append_8 = $(ENGINE_LIBS_DYNAMIC_LOAD)
+@FORCE_LINK_TRUE@am__append_9 = $(ENGINE_LIBS_DYNAMIC_LOAD)
 subdir = modules
 DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/Makefile.am \
 	$(top_srcdir)/config/mkinstalldirs
@@ -182,8 +183,8 @@ libscilab_cli_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC \
 	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CCLD) \
 	$(AM_CFLAGS) $(CFLAGS) $(libscilab_cli_la_LDFLAGS) $(LDFLAGS) \
 	-o $@
-libscilab_la_DEPENDENCIES = $(am__append_6) $(am__append_7) \
-	$(top_builddir)/modules/libscilab-cli.la $(am__append_8) \
+libscilab_la_DEPENDENCIES = $(am__append_7) $(am__append_8) \
+	$(top_builddir)/modules/libscilab-cli.la $(am__append_9) \
 	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1)
 am_libscilab_la_OBJECTS =
 libscilab_la_OBJECTS = $(am_libscilab_la_OBJECTS)
@@ -602,8 +603,8 @@ SUBDIRS = prebuildjava threads output_stream arnoldi \
 	genetic_algorithms simulated_annealing parameters matio atoms \
 	hdf5 graph ast scinotes parallel modules_manager ui_data \
 	history_browser preferences xml types external_objects \
-	$(am__append_1) $(am__append_2) $(am__append_3) . \
-	$(am__append_4)
+	$(am__append_1) $(am__append_2) $(am__append_3) \
+	$(am__append_4) . $(am__append_5)
 
 #### Basic files ####
 libscilab_la_rootdir = $(mydatadir)
@@ -679,7 +680,7 @@ ENGINE_LIBS = $(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/xml/libscixml.la \
 	$(top_builddir)/modules/external_objects/libsciexternal_objects.la \
 	$(top_builddir)/modules/preferences/libscipreferences-cli.la \
-	$(am__append_5)
+	$(am__append_6)
 
 # These libraries are loaded dynamically from Scilab.
 ENGINE_LIBS_DYNAMIC_LOAD = \
@@ -702,9 +703,9 @@ ENGINE_LIBS_DYNAMIC_LOAD = \
 # Core modules
 
 # Core modules
-libscilab_la_LIBADD = $(am__append_6) $(am__append_7) \
+libscilab_la_LIBADD = $(am__append_7) $(am__append_8) \
 	$(top_builddir)/modules/libscilab-cli.la $(OTHER_LIBS) \
-	$(EXTERNAL_LIBS) $(am__append_8) $(LAPACK_LIBS) $(BLAS_LIBS)
+	$(EXTERNAL_LIBS) $(am__append_9) $(LAPACK_LIBS) $(BLAS_LIBS)
 
 ################## libscilab-cli  ##################
 libscilab_cli_la_SOURCES = 

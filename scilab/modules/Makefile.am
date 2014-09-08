@@ -100,6 +100,8 @@ endif
 
 if XCOS
 SUBDIRS += scicos_blocks scicos xcos
+else
+SUBDIRS += xcos
 endif
 
 if MPI
