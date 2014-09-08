@@ -365,6 +365,7 @@ struct EXTERN_AST Sparse : GenericType
 
     int* getNbItemByRow(int* _piNbItemByRows);
     int* getColPos(int* _piColPos);
+    int  getNbItemByCol(int* _piNbItemByCols, int* _piRowPos);
 
     /**
        "in-place" cast into a sparse matrix of comlpex values

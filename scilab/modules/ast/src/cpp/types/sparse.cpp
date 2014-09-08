@@ -1824,22 +1824,22 @@ std::size_t Sparse::nonZeros(std::size_t r) const
 
 int* Sparse::getNbItemByRow(int* _piNbItemByRows)
 {
-    int* piNbItemByRows = new int[getRows() + 1];
+    int* piNbItemByCols = new int[getRows() + 1];
     if (isComplex())
     {
-        mycopy_n(matrixCplx->outerIndexPtr(), getRows() + 1, piNbItemByRows);
+        mycopy_n(matrixCplx->outerIndexPtr(), getRows() + 1, piNbItemByCols);
     }
     else
     {
-        mycopy_n(matrixReal->outerIndexPtr(), getRows() + 1, piNbItemByRows);
+        mycopy_n(matrixReal->outerIndexPtr(), getRows() + 1, piNbItemByCols);
     }
 
     for (int i = 0 ; i < getRows() ; i++)
     {
-        _piNbItemByRows[i] = piNbItemByRows[i + 1] - piNbItemByRows[i];
+        _piNbItemByRows[i] = piNbItemByCols[i + 1] - piNbItemByCols[i];
     }
 
-    delete[] piNbItemByRows;
+    delete[] piNbItemByCols;
     return _piNbItemByRows;
 }
 
@@ -1854,7 +1854,6 @@ int* Sparse::getColPos(int* _piColPos)
         mycopy_n(matrixReal->innerIndexPtr(), nonZeros(), _piColPos);
     }
 
-    // std::transform(_piColPos, _piColPos + nonZeros(), _piColPos, std::bind2nd(std::plus<double>(), 1));
     for (int i = 0; i < nonZeros(); i++)
     {
         _piColPos[i]++;
@@ -1862,7 +1861,6 @@ int* Sparse::getColPos(int* _piColPos)
 
     return _piColPos;
 }
-
 
 namespace
 {

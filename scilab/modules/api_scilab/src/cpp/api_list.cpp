@@ -2664,6 +2664,8 @@ SciErr readComplexSparseMatrixInNamedList(void* _pvCtx, const char* _pstName, in
 *****************************/
 static SciErr fillBooleanSparseMatrixInList(void* _pvCtx, int _iVar, const char* _pstName, int* /*_piParent*/, int _iItemPos, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos)
 {
+    SciErr sciErr = sciErrInit();
+#if 0
     int iNbItem    = 0;
     int* piOffset   = NULL;
     int* piNbItemRow = NULL;
@@ -2717,7 +2719,7 @@ static SciErr fillBooleanSparseMatrixInList(void* _pvCtx, int _iVar, const char*
 
     memcpy(piNbItemRow, _piNbItemRow, _iRows * sizeof(int));
     memcpy(piColPos, _piColPos, _iNbItem * sizeof(int));
-
+#endif
     return sciErr;
 }
 
