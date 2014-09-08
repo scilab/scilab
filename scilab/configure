@@ -25288,6 +25288,60 @@ if test $UMFPACK_OK = no; then
 	LIBS="$BLAS_LIBS $LIBS -lm" # libamd* is mandatory to link umfpack
 	# We need -lm because sometime (ubuntu 7.10 for example) does not link libamd against lib math
 
+	UMFPACK_LIB=""
+	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for SuiteSparse_version in -lsuitesparseconfig" >&5
+$as_echo_n "checking for SuiteSparse_version in -lsuitesparseconfig... " >&6; }
+if ${ac_cv_lib_suitesparseconfig_SuiteSparse_version+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  ac_check_lib_save_LIBS=$LIBS
+LIBS="-lsuitesparseconfig  $LIBS"
+cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+/* Override any GCC internal prototype to avoid an error.
+   Use char because int might match the return type of a GCC
+   builtin and then its argument prototype would still apply.  */
+#ifdef __cplusplus
+extern "C"
+#endif
+char SuiteSparse_version ();
+#ifdef F77_DUMMY_MAIN
+
+#  ifdef __cplusplus
+     extern "C"
+#  endif
+   int F77_DUMMY_MAIN() { return 1; }
+
+#endif
+int
+main ()
+{
+return SuiteSparse_version ();
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"; then :
+  ac_cv_lib_suitesparseconfig_SuiteSparse_version=yes
+else
+  ac_cv_lib_suitesparseconfig_SuiteSparse_version=no
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+LIBS=$ac_check_lib_save_LIBS
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_suitesparseconfig_SuiteSparse_version" >&5
+$as_echo "$ac_cv_lib_suitesparseconfig_SuiteSparse_version" >&6; }
+if test "x$ac_cv_lib_suitesparseconfig_SuiteSparse_version" = xyes; then :
+  UMFPACK_LIB="-lsuitesparseconfig"
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: libsuitesparseconfig: Library missing (Cannot find symbol SuiteSparse_version). Check if suitesparse (sparse matrix software collection) is available and up to date" >&5
+$as_echo "$as_me: WARNING: libsuitesparseconfig: Library missing (Cannot find symbol SuiteSparse_version). Check if suitesparse (sparse matrix software collection) is available and up to date" >&2;}
+
+fi
+
+	LIBS="$UMFPACK_LIB $LIBS"
 	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for amd_info in -lamd" >&5
 $as_echo_n "checking for amd_info in -lamd... " >&6; }
 if ${ac_cv_lib_amd_amd_info+:} false; then :
@@ -25333,16 +25387,16 @@ fi
 { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_amd_amd_info" >&5
 $as_echo "$ac_cv_lib_amd_amd_info" >&6; }
 if test "x$ac_cv_lib_amd_amd_info" = xyes; then :
-  UMFPACK_LIB="-lamd"
+  UMFPACK_LIB="-lamd $UMFPACK_LIB"
 else
   as_fn_error $? "libamd: Library missing (Cannot find symbol amd_info). Check if libamd (sparse matrix minimum degree ordering) is installed and if the version is correct" "$LINENO" 5
 
 fi
 
 	LIBS="$UMFPACK_LIB $LIBS"
-	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for umf_divcomplex in -lumfpack" >&5
-$as_echo_n "checking for umf_divcomplex in -lumfpack... " >&6; }
-if ${ac_cv_lib_umfpack_umf_divcomplex+:} false; then :
+	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for umfpack_di_defaults in -lumfpack" >&5
+$as_echo_n "checking for umfpack_di_defaults in -lumfpack... " >&6; }
+if ${ac_cv_lib_umfpack_umfpack_di_defaults+:} false; then :
   $as_echo_n "(cached) " >&6
 else
   ac_check_lib_save_LIBS=$LIBS
@@ -25356,7 +25410,7 @@ cat confdefs.h - <<_ACEOF >conftest.$ac_ext
 #ifdef __cplusplus
 extern "C"
 #endif
-char umf_divcomplex ();
+char umfpack_di_defaults ();
 #ifdef F77_DUMMY_MAIN
 
 #  ifdef __cplusplus
@@ -25368,26 +25422,26 @@ char umf_divcomplex ();
 int
 main ()
 {
-return umf_divcomplex ();
+return umfpack_di_defaults ();
   ;
   return 0;
 }
 _ACEOF
 if ac_fn_c_try_link "$LINENO"; then :
-  ac_cv_lib_umfpack_umf_divcomplex=yes
+  ac_cv_lib_umfpack_umfpack_di_defaults=yes
 else
-  ac_cv_lib_umfpack_umf_divcomplex=no
+  ac_cv_lib_umfpack_umfpack_di_defaults=no
 fi
 rm -f core conftest.err conftest.$ac_objext \
     conftest$ac_exeext conftest.$ac_ext
 LIBS=$ac_check_lib_save_LIBS
 fi
-{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_umfpack_umf_divcomplex" >&5
-$as_echo "$ac_cv_lib_umfpack_umf_divcomplex" >&6; }
-if test "x$ac_cv_lib_umfpack_umf_divcomplex" = xyes; then :
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_umfpack_umfpack_di_defaults" >&5
+$as_echo "$ac_cv_lib_umfpack_umfpack_di_defaults" >&6; }
+if test "x$ac_cv_lib_umfpack_umfpack_di_defaults" = xyes; then :
   UMFPACK_LIB="-lumfpack $UMFPACK_LIB"; UMFPACK_OK=yes
 else
-  as_fn_error $? "libumfpack: Library missing. (Cannot find symbol umf_divcomplex). Check if libumfpack is installed and if the version is correct (also called lib suitesparse)" "$LINENO" 5
+  as_fn_error $? "libumfpack: Library missing. (Cannot find symbol umfpack_di_defaults). Check if libumfpack is installed and if the version is correct (also called lib suitesparse)" "$LINENO" 5
 
 fi
 
@@ -26957,7 +27011,7 @@ CPPFLAGS="$CPPFLAGS -I$CHK_TCL_INCLUDE_PATH"
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later" >&5
 $as_echo_n "checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later... " >&6; }
 cat > conftest.$ac_ext <<EOF
-#line 26960 "configure"
+#line 27014 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TCL_INCLUDE_PATH/$CHK_TCL_INC_NAME"
@@ -27268,7 +27322,7 @@ CPPFLAGS="$CPPFLAGS $TCL_INC_PATH -I$CHK_TK_INCLUDE_PATH $X_CFLAGS"
 $as_echo_n "checking if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later... " >&6; }
 
 cat > conftest.$ac_ext <<EOF
-#line 27271 "configure"
+#line 27325 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TK_INCLUDE_PATH/$CHK_TK_INC_NAME"
@@ -27852,7 +27906,7 @@ $as_echo_n "checking saxon9he... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 27855 "configure"
+// #line 27909 "configure"
 import java.util.regex.Pattern;
 
 import net.sf.saxon.Version;
@@ -27967,7 +28021,7 @@ $as_echo_n "checking saxon... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 27970 "configure"
+// #line 28024 "configure"
 import java.util.regex.Pattern;
 
 import net.sf.saxon.Version;
@@ -28083,7 +28137,7 @@ $as_echo_n "checking saxon... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 28086 "configure"
+// #line 28140 "configure"
 import java.util.regex.Pattern;
 
 import com.icl.saxon.Loader;

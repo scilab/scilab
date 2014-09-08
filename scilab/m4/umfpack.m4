@@ -81,14 +81,20 @@ if test $UMFPACK_OK = no; then
 	LIBS="$BLAS_LIBS $LIBS -lm" # libamd* is mandatory to link umfpack
 	# We need -lm because sometime (ubuntu 7.10 for example) does not link libamd against lib math
 
+	UMFPACK_LIB=""
+	AC_CHECK_LIB([suitesparseconfig], [SuiteSparse_version],
+			[UMFPACK_LIB="-lsuitesparseconfig"],
+            [AC_MSG_WARN([libsuitesparseconfig: Library missing (Cannot find symbol SuiteSparse_version). Check if suitesparse (sparse matrix software collection) is available and up to date])]
+			)
+	LIBS="$UMFPACK_LIB $LIBS"
 	AC_CHECK_LIB([amd], [amd_info],
-			[UMFPACK_LIB="-lamd"],
+			[UMFPACK_LIB="-lamd $UMFPACK_LIB"],
             [AC_MSG_ERROR([libamd: Library missing (Cannot find symbol amd_info). Check if libamd (sparse matrix minimum degree ordering) is installed and if the version is correct])]
 			)
 	LIBS="$UMFPACK_LIB $LIBS"
-	AC_CHECK_LIB([umfpack], [umf_divcomplex],
+	AC_CHECK_LIB([umfpack], [umfpack_di_defaults],
 			[UMFPACK_LIB="-lumfpack $UMFPACK_LIB"; UMFPACK_OK=yes],
-            [AC_MSG_ERROR([libumfpack: Library missing. (Cannot find symbol umf_divcomplex). Check if libumfpack is installed and if the version is correct (also called lib suitesparse)])]
+            [AC_MSG_ERROR([libumfpack: Library missing. (Cannot find symbol umfpack_di_defaults). Check if libumfpack is installed and if the version is correct (also called lib suitesparse)])]
 			)
 		LIBS="$save_LIBS"
 fi
