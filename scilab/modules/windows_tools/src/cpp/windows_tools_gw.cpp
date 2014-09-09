@@ -23,5 +23,6 @@ int WindowsToolsModule::Load()
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"win64", &sci_win64, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"winqueryreg", &sci_winqueryreg, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"dos", &sci_dos, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"consolebox", &sci_consolebox, MODULE_NAME));
     return 1;
 }

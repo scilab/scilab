@@ -204,6 +204,7 @@ libscicore_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/preferences/includes/ \
     -I$(top_srcdir)/modules/external_objects/includes/ \
     -I$(top_srcdir)/modules/jvm/includes/ \
+    -I$(top_srcdir)/modules/jvm/src/c/ \
     -I$(top_srcdir)/modules/gui/includes/ \
     -I$(top_srcdir)/modules/graphics/includes/ \
     -I$(top_srcdir)/modules/hdf5/includes/ \

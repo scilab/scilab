@@ -25,7 +25,9 @@ BOOL TerminateWindows_tools(void)
     {
         case SCILAB_STD:
         {
-            CloseScilabConsole();
+            //Since Scilab 6 All scilab mode are launch in console mode
+            //So we cannot close owner console
+            //CloseScilabConsole();
             closeInnosetupMutex();
             bOK = TRUE;
         }

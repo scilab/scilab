@@ -54,6 +54,8 @@ extern "C"
 #include "InitScilab.h"
 #include "setenvvar.h"
 #include "getScilabPreference.h"
+#include "saveCWDInPreferences.h"
+
 
 #ifdef _MSC_VER
 #include "InitializeWindows_tools.h"
@@ -62,7 +64,7 @@ extern "C"
 #include "console.h"
 #include "InnosetupMutex.h"
 #include "MutexClosingScilab.h"
-
+#include "WinConsole.h"
 #else
 #include "signal_mgmt.h"
 #include "initConsoleMode.h"
@@ -103,9 +105,12 @@ using namespace ast;
 
 ScilabEngineInfo* InitScilabEngineInfo()
 {
-    // Disable all but AST parsing.
+    // Disable all startup flags.
     ScilabEngineInfo* pSEI = (ScilabEngineInfo*)CALLOC(1, sizeof(ScilabEngineInfo));
-    pSEI->iExecAst      = 1;
+
+    //Active default flags
+    pSEI->iExecAst = 1;
+    pSEI->iNoBanner = 1;
 
     return pSEI;
 }
@@ -113,8 +118,6 @@ ScilabEngineInfo* InitScilabEngineInfo()
 int StartScilabEngine(ScilabEngineInfo* _pSEI)
 {
     int iMainRet = 0;
-
-    InitializeLaunchScilabSignal();
 
     /* This bug only occurs under Linux 32 bits
      * See: http://wiki.scilab.org/Scilab_precision
@@ -139,6 +142,43 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
     Runner::init();
 
     checkForLinkerErrors();
+
+#ifdef _MSC_VER
+    //get current console window and hide it
+    int scilabMode = getScilabMode();
+    if (scilabMode == SCILAB_STD)
+    {
+        CreateScilabHiddenWndThread();
+        //show banner in console window
+        CreateScilabConsole(_pSEI->iNoBanner);
+
+        if (_pSEI->iKeepConsole == 0)
+        {
+            HideScilex(); /* hide console window */
+        }
+        else
+        {
+            ShowScilex();
+        }
+    }
+    else
+    {
+        if (scilabMode == SCILAB_NW || scilabMode == SCILAB_NWNI)
+        {
+            SaveConsoleColors();
+            if (scilabMode == SCILAB_NW)
+            {
+                RenameConsole();
+                UpdateConsoleColors();
+            }
+        }
+    }
+
+    //create a thread for innosetup to allow reinstall during scilab running
+    createInnosetupMutex();
+#endif
+
+    InitializeLaunchScilabSignal();
 
     /* Scilab Startup */
     InitializeEnvironnement();
@@ -176,34 +216,11 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
     {
         /* Initialize console: lines... */
         InitializeConsole();
-
-#ifdef _MSC_VER
-        //get current console window and hide it
-        CreateScilabHiddenWndThread();
-        CreateScilabConsole(0);
-        //create a thread for innosetup to allow reinstall during scilab running
-        createInnosetupMutex();
-#endif
     }
     else
     {
 #ifndef _MSC_VER
         initConsoleMode(RAW);
-#else
-        if (getScilabMode() != SCILAB_NWNI)
-        {
-            CreateScilabHiddenWndThread();
-        }
-
-        if ( (getScilabMode() == SCILAB_NWNI) || (getScilabMode() == SCILAB_NW) )
-        {
-            SaveConsoleColors();
-            if (getScilabMode() == SCILAB_NW)
-            {
-                RenameConsole();
-                UpdateConsoleColors();
-            }
-        }
 #endif
     }
 
@@ -322,8 +339,10 @@ void StopScilabEngine(ScilabEngineInfo* _pSEI)
     symbol::Context::destroyInstance();
     //destroy function manager
     destroyfunctionManagerInstance();
-    //Unload dynamic modules
-    UnloadModules();
+
+    //from ExitScilab()
+    saveCWDInPreferences();
+    clearScilabPreferences();
 
     if (_pSEI->iNoJvm == 0)
     {
@@ -332,6 +351,7 @@ void StopScilabEngine(ScilabEngineInfo* _pSEI)
         TerminateJVM();
     }
 
+    /* TerminateCorePart2 */
 
     //clear opened files
     FileManager::destroy();
@@ -344,6 +364,9 @@ void StopScilabEngine(ScilabEngineInfo* _pSEI)
     /* Remove TMPDIR before exit */
     clearTMPDIR();
 
+    //Unload dynamic modules
+    UnloadModules();
+    /* TerminateCorePart2 end */
 
 #ifdef _MSC_VER
     TerminateWindows_tools();

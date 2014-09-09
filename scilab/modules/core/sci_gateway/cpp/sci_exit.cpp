@@ -19,47 +19,64 @@ extern "C"
 {
 #include "localization.h"
 #include "Scierror.h"
+#include "sciprint.h"
+#include "sci_mode.h"
+#include "createMainScilabObject.h"
 }
 
-types::Function::ReturnValue sci_exit(types::typed_list &in, int _iRetCount, types::typed_list &out)
+using namespace types;
+
+Function::ReturnValue sci_exit(typed_list &in, int _iRetCount, typed_list &out)
 {
     // exit() or exit
     if (in.size() == 0)
     {
         ConfigVariable::setForceQuit(true);
-        return types::Function::OK;
+        return Function::OK;
     }
 
     // More than one input argument => ERROR
     if (in.size() != 1)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected."), "exit", 0, 1);
-        return types::Function::Error;
+        return Function::Error;
     }
 
     // in[0] Should be a scalar double value.
-    if (!in.front()->isDouble())
+    InternalType* pIT = in[0];
+    if (pIT->isDouble() == false)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), "exit", 1);
-        return types::Function::Error;
+        return Function::Error;
     }
 
-    if (in.front()->getAs<types::Double>()->getSize() != 1)
+    Double* pD = pIT->getAs<Double>();
+    if (pD->isScalar() == false)
     {
         Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), "exit", 1);
-        return types::Function::Error;
+        return Function::Error;
     }
 
-    double dExit = in.front()->getAs<types::Double>()->getReal(0, 0);
-    int iExit = (int) in.front()->getAs<types::Double>()->getReal(0, 0);
-
-    if (dExit != (double) iExit)
+    double dExit = pD->get(0);
+    if (dExit != (int) dExit)
     {
-        Scierror(999, _("%s: Wrong value for input argument #%d: A integer expected.\n"), "exit", 1);
-        return types::Function::Error;
+        Scierror(999, _("%s: Wrong value for input argument #%d: An integer value expected.\n"), "exit", 1);
+        return Function::Error;
     }
 
-    ConfigVariable::setExitStatus(iExit);
+    if (ConfigVariable::getScilabMode() != SCILAB_NWNI)
+    {
+        if (in.size() == 0)
+        {
+            //shouldExit = canCloseMainScilabObject();
+        }
+        else
+        {
+            //forceCloseMainScilabObject();
+        }
+    }
+
+    ConfigVariable::setExitStatus((int)dExit);
     ConfigVariable::setForceQuit(true);
-    return types::Function::OK;
+    return Function::OK;
 }

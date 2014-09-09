@@ -15,6 +15,7 @@
 
 
 #include "dynlib_windows_tools.h"
+#include "cpp_gateway_prototype.hxx"
 
 #include "context.hxx"
 
@@ -33,5 +34,6 @@ public :
     }
 };
 
+CPP_GATEWAY_PROTOTYPE(sci_consolebox);
 
 #endif /* !__WINDOWS_TOOLS_GW_HXX__ */
