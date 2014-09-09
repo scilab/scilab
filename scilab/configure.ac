@@ -752,22 +752,23 @@ AM_CONDITIONAL(EXTERNAL_SCIRENDERER, test "$with_external_scirenderer" = yes)
 ## XCOS
 #################
 
-AC_ARG_WITH(xcos,
-    AC_HELP_STRING([--without-xcos],[Disable Xcos]))
+AC_ARG_WITH(xcos, [], [with_jgraphx='no'])
+AC_ARG_WITH(jgraphx,
+    AC_HELP_STRING([--without-jgraphx],[Disable Xcos GUI]))
 
 AC_ARG_WITH(modelica,
     AC_HELP_STRING([--without-modelica],[Disable the OCaml module (modelica)]))
 
 
 if test "$with_gui" = no; then
-   AC_MSG_WARN([GUI is disabled. Disabling then xcos])
-   with_xcos=no
+   AC_MSG_WARN([GUI is disabled. Disabling then Xcos GUI])
+   with_jgraphx=no
 fi
 
 XCOS_ENABLE=no
 
-if test "$with_xcos" != no -a "$with_gui" != no; then
-   AC_DEFINE([WITH_XCOS], [], [With XCOS])
+if test "$with_jgraphx" != no -a "$with_gui" != no; then
+   AC_DEFINE([WITH_JGRAPHX], [], [with JGraphX])
 
    save_LIBS="$LIBS"
 
@@ -850,7 +851,7 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 
         if test "$with_gui" != no; then
 
-                if test $XCOS_ENABLE = yes; then
+                if test "$with_jgraphx" != no; then
                    # jgraphx
                    AC_JAVA_CHECK_PACKAGE([jgraphx],[com.mxgraph.model.mxCell],[Diagram design])
                    JGRAPHX=$PACKAGE_JAR_FILE
