@@ -40,16 +40,16 @@ function [m]=meanf(val,fre,orient)
     end
 
     // If val is not constant, sparse, integer, hypermat
-    if and(type(val) <> [1 5 8]) & typeof(val) <> "hypermat" then
+    if and(type(val) <> [1 5 8]) then
         error(msprintf(gettext("%s: Wrong type for input argument #%d: A full or sparse matrix, or an integer matrix, or an hypermat expected.\n"),"meanf",1));
     end
 
     // If fre is not constant, sparse, integer, hypermat
-    if and(type(fre) <> [1 5 8]) & typeof(fre) <> "hypermat" then
+    if and(type(fre) <> [1 5 8]) then
         error(msprintf(gettext("%s: Wrong type for input argument #%d: A full or sparse matrix, or an integer matrix, or an hypermat expected.\n"),"meanf", 2));
     end
 
-    if or(size(val) <> size(fre)) & (size(val, "*") <> 1 & size(fre, "*") <> 1 & ~isempty(fre)) then
+    if or(size(val) <> size(fre)) && (size(val, "*") <> 1 && size(fre, "*") <> 1 && ~isempty(fre)) then
         error(msprintf(gettext("%s: Wrong size for input arguments #%d and #%d: Same dimensions expected.\n"), "meanf", 1, 2));
     end
 
