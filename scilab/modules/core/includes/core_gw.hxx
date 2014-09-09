@@ -63,5 +63,8 @@ CPP_GATEWAY_PROTOTYPE(sci_where);
 CPP_GATEWAY_PROTOTYPE(sci_getmemory);
 CPP_GATEWAY_PROTOTYPE(sci_errclear);
 CPP_GATEWAY_PROTOTYPE(sci_intppty);
+CPP_GATEWAY_PROTOTYPE(sci_newfun);
+CPP_GATEWAY_PROTOTYPE(sci_clearfun);
+CPP_GATEWAY_PROTOTYPE(sci_funptr);
 
 #endif /* __CORE_GW_HXX__ */

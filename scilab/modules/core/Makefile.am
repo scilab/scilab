@@ -139,6 +139,9 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/core_gw.cpp \
 	sci_gateway/cpp/sci_getmodules.cpp \
 	sci_gateway/cpp/sci_clear.cpp \
+	sci_gateway/cpp/sci_clearfun.cpp \
+	sci_gateway/cpp/sci_newfun.cpp \
+	sci_gateway/cpp/sci_funptr.cpp \
 	sci_gateway/cpp/sci_banner.cpp \
 	sci_gateway/cpp/sci_quit.cpp \
 	sci_gateway/cpp/sci_exit.cpp \

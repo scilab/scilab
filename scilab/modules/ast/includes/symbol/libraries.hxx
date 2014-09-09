@@ -35,6 +35,8 @@ struct ScopedLibrary
 
 struct Library
 {
+    typedef std::stack<ScopedLibrary*> StackLib;
+
     Library(const Symbol& _name) : name(_name) {};
 
     void put(types::Library* _pLib, int _iLevel)
@@ -95,7 +97,6 @@ struct Library
     }
 
 private :
-    typedef std::stack<ScopedLibrary*> StackLib;
     StackLib stack;
     Symbol name;
     bool m_global;
@@ -103,6 +104,8 @@ private :
 
 struct Libraries
 {
+    typedef std::map<Symbol, Library*> MapLibs;
+
     Libraries() {};
 
     Library* getOrCreate(const Symbol& _key)
@@ -203,7 +206,6 @@ struct Libraries
     }
 
 private:
-    typedef std::map<Symbol, Library*> MapLibs;
     MapLibs libs;
 };
 }

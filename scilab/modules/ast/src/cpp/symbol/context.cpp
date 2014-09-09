@@ -275,7 +275,7 @@ bool Context::putInPreviousScope(Variable* _var, types::InternalType* _pIT)
 bool Context::addFunction(types::Function *_info)
 {
     Variable* var = variables.getOrCreate(Symbol(_info->getName()));
-    variables.putInPreviousScope(var, _info, 1);
+    variables.putInPreviousScope(var, _info, 0);
     return true;
 }
 

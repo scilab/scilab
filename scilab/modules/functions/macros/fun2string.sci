@@ -380,7 +380,7 @@ function [stk,txt,ilst]=exp2sci(lst,ilst)
                             stk(top)=list(op(2),"0")
                             m=%f
                         elseif type(stk(top)(1))==10 then
-                            testOK = (op(4)=="1" & ~funptr(op(2)) & ~exists(op(2)))
+                            testOK = (op(4)=="1" & funptr(op(2)) == 0 & ~exists(op(2)))
                             if ~testOK then
                                 testOK = execstr("tmp = evstr(op(2))", "errcatch")==0
                                 if testOK

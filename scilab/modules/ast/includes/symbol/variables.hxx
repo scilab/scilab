@@ -33,6 +33,8 @@ struct ScopedVariable
 
 struct Variable
 {
+    typedef std::stack<ScopedVariable*> StackVar;
+
     Variable(const Symbol& _name) : name(_name), m_Global(false), m_GlobalValue(NULL) {};
     ~Variable()
     {
@@ -183,12 +185,13 @@ private :
     Symbol name;
     types::InternalType* m_GlobalValue;
     bool m_Global;
-    typedef std::stack<ScopedVariable*> StackVar;
     StackVar stack;
 };
 
 struct Variables
 {
+    typedef std::map<Symbol, Variable*> MapVars;
+
     Variables() {};
 
     Variable* getOrCreate(const Symbol& _key)
@@ -451,7 +454,6 @@ struct Variables
     }
 
 private:
-    typedef std::map<Symbol, Variable*> MapVars;
     MapVars vars;
 };
 }
