@@ -22,10 +22,10 @@
 #define SIZE_BOOL                       1
 #define SIZE_BETWEEN_BOOL               1
 #define SPACE_BETWEEN_BOOL              L" "
-#define SIGN_LENGTH                     2
-#define NO_SIGN                         L"  "
-#define MINUS_STRING                    L" -"
-#define PLUS_STRING                     L" +"
+#define SIGN_LENGTH                     1
+#define NO_SIGN                         L" "
+#define MINUS_STRING                    L"-"
+#define PLUS_STRING                     L"+"
 #define SYMBOL_I                        L"i"
 
 
@@ -37,7 +37,7 @@
 
 typedef struct __DOUBLE_FORMAT__
 {
-    __DOUBLE_FORMAT__() : iWidth(0), iPrec(0), bExp(false), bPrintPoint(true), bPrintPlusSign(false), bPrintOne(true), bPaddSign(true), iSignLen(2) {}
+    __DOUBLE_FORMAT__() : iWidth(0), iPrec(0), bExp(false), bPrintPoint(true), bPrintPlusSign(false), bPrintOne(true), bPaddSign(true), iSignLen(SIGN_LENGTH), bPrintBlank(true) {}
     int iWidth;
     int iPrec;
     bool bExp;
@@ -46,6 +46,7 @@ typedef struct __DOUBLE_FORMAT__
     bool bPrintOne;
     bool bPaddSign;
     int iSignLen;
+    bool bPrintBlank;
 } DoubleFormat;
 
 /*double*/

@@ -82,6 +82,8 @@ void getDoubleFormat(double _dblVal, DoubleFormat * _pDF)
     double dblAbs = fabs(_dblVal);
     int iNbDigit = 0;
     int iNbDec = 0;
+    int iBlankSize = _pDF->bPrintBlank ? BLANK_SIZE : 0;
+    _pDF->iSignLen = _pDF->bPrintBlank ? _pDF->iSignLen + 1 : _pDF->iSignLen;
 
     _pDF->bExp |= ConfigVariable::getFormatMode() == 0;
     int iTotalLen = 0;
@@ -106,14 +108,14 @@ void getDoubleFormat(double _dblVal, DoubleFormat * _pDF)
         {
             //exponant
             _pDF->bExp = true;
-            iTotalLen = BLANK_SIZE + 1 /*integer before dot */  + POINT_SIZE + EXPOSANT_SIZE + (int)log10((double)iNbDigit) + 1;
+            iTotalLen = iBlankSize + 1 /*integer before dot */  + POINT_SIZE + EXPOSANT_SIZE + (int)log10((double)iNbDigit) + 1;
             _pDF->iWidth = iPrecNeeded;
             _pDF->iPrec = iPrecNeeded - iTotalLen;
             return;
         }
         else
         {
-            iTotalLen = BLANK_SIZE + 1 /*integer before dot */  + POINT_SIZE;
+            iTotalLen = iBlankSize + 1 /*integer before dot */  + POINT_SIZE;
         }
     }
     else
@@ -128,7 +130,7 @@ void getDoubleFormat(double _dblVal, DoubleFormat * _pDF)
                 dblTemp = 1;    //no incidence on value, just to allow log10(dblTemp)
             }
             _pDF->bExp = true;
-            iTotalLen = BLANK_SIZE + 1 /*integer before dot */  + POINT_SIZE + EXPOSANT_SIZE + (int)log10(dblTemp) + 1;
+            iTotalLen = iBlankSize + 1 /*integer before dot */  + POINT_SIZE + EXPOSANT_SIZE + (int)log10(dblTemp) + 1;
             _pDF->iWidth = iPrecNeeded;
             _pDF->iPrec = iPrecNeeded - iTotalLen;
             return;
@@ -136,7 +138,7 @@ void getDoubleFormat(double _dblVal, DoubleFormat * _pDF)
         else
         {
             //number of digit in integer part
-            iTotalLen = BLANK_SIZE + ((int)dblTemp + 1) + POINT_SIZE;
+            iTotalLen = iBlankSize + ((int)dblTemp + 1) + POINT_SIZE;
         }
     }
 
@@ -219,21 +221,30 @@ void addDoubleValue(std::wostringstream * _postr, double _dblVal, DoubleFormat *
         return;
     }
 
-    if (_pDF->bPrintPlusSign)
+    const wchar_t* pBlank = L"";
+    if (_pDF->bPrintBlank)
     {
-        os_swprintf(pwstSign, 32, L"%-*ls", _pDF->iSignLen, _dblVal < 0 ? MINUS_STRING : PLUS_STRING);
+        pBlank = L" ";
     }
-    else
+
+    const wchar_t* pSign = MINUS_STRING;
+    if (_dblVal >= 0)
     {
-        if (_pDF->bPaddSign)
+        if (_pDF->bPrintPlusSign)
         {
-            os_swprintf(pwstSign, 32, L"%-*ls", _pDF->iSignLen, _dblVal < 0 ? MINUS_STRING : NO_SIGN);
+            pSign = PLUS_STRING;
+        }
+        else if (_pDF->bPaddSign)
+        {
+            pSign = NO_SIGN;
         }
         else
         {
-            os_swprintf(pwstSign, 32, L"%-*ls", _pDF->iSignLen, _dblVal < 0 ? MINUS_STRING : L"");
+            pSign = L"";
         }
     }
+
+    os_swprintf(pwstSign, 32, L"%ls%ls%ls", pBlank, pSign, pBlank);
 
     if ((_pDF->bPrintOne == true) || (isEqual(fabs(_dblVal), 1)) == false)
     {
@@ -241,12 +252,12 @@ void addDoubleValue(std::wostringstream * _postr, double _dblVal, DoubleFormat *
         if (ISNAN(_dblVal))
         {
             //NaN
-            os_swprintf(pwstOutput, 32, L"%ls %*ls", pwstSign, _pDF->iPrec, L"Nan");
+            os_swprintf(pwstOutput, 32, L"%ls%*ls", pwstSign, _pDF->iPrec, L"Nan");
         }
         else if (!finite(_dblVal))
         {
             //Inf
-            os_swprintf(pwstOutput, 32, L"%ls %*ls", pwstSign, _pDF->iPrec, L"Inf");
+            os_swprintf(pwstOutput, 32, L"%ls%*ls", pwstSign, _pDF->iPrec, L"Inf");
         }
         else if (_pDF->bExp)
         {
@@ -269,11 +280,11 @@ void addDoubleValue(std::wostringstream * _postr, double _dblVal, DoubleFormat *
 
             if (_pDF->bPrintPoint)
             {
-                os_swprintf(pwstFormat, 32, L"%ls %%#.0f%%0%d.0fD%%+d", pwstSign, _pDF->iPrec);
+                os_swprintf(pwstFormat, 32, L"%ls%%#.0f%%0%d.0fD%%+d", pwstSign, _pDF->iPrec);
             }
             else
             {
-                os_swprintf(pwstFormat, 32, L"%ls %%.0f%%0%d.0fD%%+d", pwstSign, _pDF->iPrec);
+                os_swprintf(pwstFormat, 32, L"%ls%%.0f%%0%d.0fD%%+d", pwstSign, _pDF->iPrec);
             }
 
             os_swprintf(pwstOutput, 32, pwstFormat, dblEnt, dblDec, (int)dblTemp);
@@ -282,11 +293,11 @@ void addDoubleValue(std::wostringstream * _postr, double _dblVal, DoubleFormat *
         {
             if (_pDF->bPrintPoint)
             {
-                os_swprintf(pwstFormat, 32, L"%ls %%#-%d.%df", pwstSign, _pDF->iWidth - 1, _pDF->iPrec);
+                os_swprintf(pwstFormat, 32, L"%ls%%#-%d.%df", pwstSign, _pDF->iWidth - 1, _pDF->iPrec);
             }
             else
             {
-                os_swprintf(pwstFormat, 32, L"%ls %%-%d.%df", pwstSign, _pDF->iWidth - 2, _pDF->iPrec);  //-2 no point needed
+                os_swprintf(pwstFormat, 32, L"%ls%%-%d.%df", pwstSign, _pDF->iWidth - 2, _pDF->iPrec);  //-2 no point needed
             }
 
             os_swprintf(pwstOutput, 32, pwstFormat, fabs(_dblVal));
@@ -296,7 +307,7 @@ void addDoubleValue(std::wostringstream * _postr, double _dblVal, DoubleFormat *
     }
     else if (wcslen(pwstSign) != 0)
     {
-        os_swprintf(pwstOutput, 32, L"%ls ", pwstSign);
+        os_swprintf(pwstOutput, 32, L"%ls", pwstSign);
         *_postr << pwstOutput;
     }
 }

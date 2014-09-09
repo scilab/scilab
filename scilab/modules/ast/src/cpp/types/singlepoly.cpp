@@ -414,7 +414,8 @@ void SinglePoly::toStringInternal(double *_pdblVal, wstring _szVar, list<wstring
 
         if (ostemp2.str() == L" ")
         {
-            addSpaces(&ostemp2, static_cast<int>(ostemp.str().size()));
+            // -1 because ostemp2 have already a space
+            addSpaces(&ostemp2, static_cast<int>(ostemp.str().size()) - 1);
         }
 
         _pListExp->push_back(ostemp2.str());
