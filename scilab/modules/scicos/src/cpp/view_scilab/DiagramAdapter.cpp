@@ -25,6 +25,7 @@
 #include "utilities.hxx"
 #include "Controller.hxx"
 #include "DiagramAdapter.hxx"
+#include "Adapters.hxx"
 #include "ParamsAdapter.hxx"
 #include "TextAdapter.hxx"
 #include "BlockAdapter.hxx"
@@ -42,10 +43,6 @@ namespace view_scilab
 {
 namespace
 {
-
-const std::wstring AnnotationStr (L"Text");
-const std::wstring BlockStr (L"Block");
-const std::wstring LinkStr (L"Link");
 
 struct props
 {
@@ -76,7 +73,7 @@ struct objs
 
         types::List* o = new types::List();
 
-        for (int i = 0; i < (int)children.size(); ++i)
+        for (int i = 0; i < static_cast<int>(children.size()); ++i)
         {
             model::BaseObject* item = Controller().getObject(children[i]);
             switch (item->kind())
@@ -84,23 +81,23 @@ struct objs
                 case ANNOTATION:
                 {
                     model::Annotation* annotation = static_cast<model::Annotation*>(item);
-                    TextAdapter localAdaptor = TextAdapter(annotation);
-                    o->set(i, localAdaptor.getAsTList(new types::MList(), controller));
-                    break;
+                    TextAdapter* localAdaptor = new TextAdapter(annotation);
+                    o->set(i, localAdaptor);
+                    continue;
                 }
                 case BLOCK:
                 {
                     model::Block* block = static_cast<model::Block*>(item);
-                    BlockAdapter localAdaptor = BlockAdapter(block);
-                    o->set(i, localAdaptor.getAsTList(new types::MList(), controller));
-                    break;
+                    BlockAdapter* localAdaptor = new BlockAdapter(block);
+                    o->set(i, localAdaptor);
+                    continue;
                 }
                 case LINK:
                 {
                     model::Link* link = static_cast<model::Link*>(item);
-                    LinkAdapter localAdaptor = LinkAdapter(link);
-                    o->set(i, localAdaptor.getAsTList(new types::MList(), controller));
-                    break;
+                    LinkAdapter* localAdaptor = new LinkAdapter(link);
+                    o->set(i, localAdaptor);
+                    continue;
                 }
                 default:
                     return 0;
@@ -123,48 +120,48 @@ struct objs
         std::vector<ScicosID> diagramChildren (list->getSize());
         for (int i = 0; i < list->getSize(); ++i)
         {
-            if (list->get(i)->getType() != types::InternalType::ScilabMList)
+            if (list->get(i)->getType() != types::InternalType::ScilabUserType)
             {
                 return false;
             }
-            types::MList* modelElement = list->get(i)->getAs<types::MList>();
 
-            std::wstring modelElementType = modelElement->getTypeStr();
+            // Find the type of the input object through Adapters' mapping.
+            const Adapters::adapters_index_t adapter_index = Adapters::instance().lookup_by_typename(list->get(i)->getShortTypeStr());
+
+            // Then, each adapter gets linked to the diagram through its adaptee (PARENT_DIAGRAM)
+            // and the diagram's adaptee lists its adaptees (CHILDREN).
             ScicosID id;
-
-            if (modelElementType == AnnotationStr)
+            switch (adapter_index)
             {
-                id = controller.createObject(ANNOTATION);
-
-                TextAdapter localAdaptor = TextAdapter(static_cast<model::Annotation*>(controller.getObject(id)));
-                if (!localAdaptor.setAsTList(modelElement, controller))
+                case Adapters::BLOCK_ADAPTER:
                 {
-                    return false;
-                }
-            }
-            else if (modelElementType == BlockStr)
-            {
-                id = controller.createObject(BLOCK);
+                    BlockAdapter* modelElement = list->get(i)->getAs<BlockAdapter>();
+                    model::Block* subAdaptee = modelElement->getAdaptee();
 
-                BlockAdapter localAdaptor = BlockAdapter(static_cast<model::Block*>(controller.getObject(id)));
-                if (!localAdaptor.setAsTList(modelElement, controller))
-                {
-                    return false;
+                    controller.setObjectProperty(subAdaptee->id(), subAdaptee->kind(), PARENT_DIAGRAM, adaptee->id());
+                    id = subAdaptee->id();
+                    break;
                 }
-            }
-            else if (modelElementType == LinkStr)
-            {
-                id = controller.createObject(LINK);
+                case Adapters::LINK_ADAPTER:
+                {
+                    LinkAdapter* modelElement = list->get(i)->getAs<LinkAdapter>();
+                    model::Link* subAdaptee = modelElement->getAdaptee();
 
-                LinkAdapter localAdaptor = LinkAdapter(static_cast<model::Link*>(controller.getObject(id)));
-                if (!localAdaptor.setAsTList(modelElement, controller))
-                {
-                    return false;
+                    controller.setObjectProperty(subAdaptee->id(), subAdaptee->kind(), PARENT_DIAGRAM, adaptee->id());
+                    id = subAdaptee->id();
+                    break;
                 }
-            }
-            else
-            {
-                return false;
+                case Adapters::TEXT_ADAPTER:
+                {
+                    TextAdapter* modelElement = list->get(i)->getAs<TextAdapter>();
+                    model::Annotation* subAdaptee = modelElement->getAdaptee();
+
+                    controller.setObjectProperty(subAdaptee->id(), subAdaptee->kind(), PARENT_DIAGRAM, adaptee->id());
+                    id = subAdaptee->id();
+                    break;
+                }
+                default:
+                    return false;
             }
 
             diagramChildren[i] = id;

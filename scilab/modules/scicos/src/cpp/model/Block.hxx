@@ -312,14 +312,20 @@ private:
         this->parentBlock = parentBlock;
     }
 
-    ScicosID getParentDiagram() const
+    void getParentDiagram(ScicosID& v) const
     {
-        return parentDiagram;
+        v = parentDiagram;
     }
 
-    void setParentDiagram(ScicosID parentDiagram)
+    update_status_t setParentDiagram(const ScicosID v)
     {
-        this->parentDiagram = parentDiagram;
+        if (v == parentDiagram)
+        {
+            return NO_CHANGES;
+        }
+
+        parentDiagram = v;
+        return SUCCESS;
     }
 
     ScicosID getPortReference() const

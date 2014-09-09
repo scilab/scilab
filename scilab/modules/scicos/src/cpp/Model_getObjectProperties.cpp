@@ -298,7 +298,7 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, Sci
         switch (p)
         {
             case PARENT_DIAGRAM:
-                v = o->getParentDiagram();
+                o->getParentDiagram(v);
                 return true;
             case RELATED_TO:
                 v = o->getRelatedTo();
@@ -313,7 +313,7 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, Sci
         switch (p)
         {
             case PARENT_DIAGRAM:
-                v = o->getParentDiagram();
+                o->getParentDiagram(v);
                 return true;
             default:
                 break;
@@ -329,7 +329,7 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, Sci
         switch (p)
         {
             case PARENT_DIAGRAM:
-                v = o->getParentDiagram();
+                o->getParentDiagram(v);
                 return true;
             case SOURCE_PORT:
                 o->getSourcePort(v);

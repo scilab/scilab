@@ -42,3 +42,139 @@ scs_m.version
 scs_m.contrib
  ans  =
 ()
+// Create a diagram containing 2 summation blocks and an empty link
+blk  = BIGSOM_f("define");
+objectCreated( 2 , BLOCK )
+propertyUpdated( 2 , BLOCK , GEOMETRY ) : NO_CHANGES
+propertyUpdated( 2 , BLOCK , GEOMETRY ) : SUCCESS
+propertyUpdated( 2 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 2 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 2 , BLOCK , EXPRS ) : SUCCESS
+objectCreated( 3 , PORT )
+propertyUpdated( 3 , PORT , SOURCE_BLOCK ) : SUCCESS
+objectCreated( 4 , PORT )
+propertyUpdated( 4 , PORT , SOURCE_BLOCK ) : SUCCESS
+propertyUpdated( 2 , BLOCK , INPUTS ) : SUCCESS
+objectCreated( 5 , PORT )
+propertyUpdated( 5 , PORT , SOURCE_BLOCK ) : SUCCESS
+propertyUpdated( 2 , BLOCK , OUTPUTS ) : SUCCESS
+propertyUpdated( 2 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 3 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 4 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 5 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 3 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 4 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 5 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 3 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 4 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 5 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 2 , BLOCK , STYLE ) : NO_CHANGES
+propertyUpdated( 2 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
+propertyUpdated( 2 , BLOCK , SIM_FUNCTION_API ) : SUCCESS
+propertyUpdated( 4 , PORT , DATATYPE ) : SUCCESS
+propertyUpdated( 3 , PORT , DATATYPE ) : SUCCESS
+propertyUpdated( 5 , PORT , DATATYPE ) : SUCCESS
+propertyUpdated( 2 , BLOCK , STATE ) : NO_CHANGES
+propertyUpdated( 2 , BLOCK , DSTATE ) : NO_CHANGES
+propertyUpdated( 2 , BLOCK , RPAR ) : SUCCESS
+propertyUpdated( 2 , BLOCK , IPAR ) : NO_CHANGES
+propertyUpdated( 2 , BLOCK , SIM_BLOCKTYPE ) : SUCCESS
+propertyUpdated( 2 , BLOCK , SIM_DEP_UT ) : SUCCESS
+propertyUpdated( 2 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 2 , BLOCK , NZCROSS ) : NO_CHANGES
+propertyUpdated( 2 , BLOCK , NMODE ) : NO_CHANGES
+propertyUpdated( 2 , BLOCK , UID ) : NO_CHANGES
+propertyUpdated( 2 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
+blk2 = BIGSOM_f("define");
+objectCreated( 6 , BLOCK )
+propertyUpdated( 6 , BLOCK , GEOMETRY ) : NO_CHANGES
+propertyUpdated( 6 , BLOCK , GEOMETRY ) : SUCCESS
+propertyUpdated( 6 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 6 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 6 , BLOCK , EXPRS ) : SUCCESS
+objectCreated( 7 , PORT )
+propertyUpdated( 7 , PORT , SOURCE_BLOCK ) : SUCCESS
+objectCreated( 8 , PORT )
+propertyUpdated( 8 , PORT , SOURCE_BLOCK ) : SUCCESS
+propertyUpdated( 6 , BLOCK , INPUTS ) : SUCCESS
+objectCreated( 9 , PORT )
+propertyUpdated( 9 , PORT , SOURCE_BLOCK ) : SUCCESS
+propertyUpdated( 6 , BLOCK , OUTPUTS ) : SUCCESS
+propertyUpdated( 6 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 7 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 8 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 9 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 7 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 8 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 9 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 7 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 8 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 9 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 6 , BLOCK , STYLE ) : NO_CHANGES
+propertyUpdated( 6 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
+propertyUpdated( 6 , BLOCK , SIM_FUNCTION_API ) : SUCCESS
+propertyUpdated( 8 , PORT , DATATYPE ) : SUCCESS
+propertyUpdated( 7 , PORT , DATATYPE ) : SUCCESS
+propertyUpdated( 9 , PORT , DATATYPE ) : SUCCESS
+propertyUpdated( 6 , BLOCK , STATE ) : NO_CHANGES
+propertyUpdated( 6 , BLOCK , DSTATE ) : NO_CHANGES
+propertyUpdated( 6 , BLOCK , RPAR ) : SUCCESS
+propertyUpdated( 6 , BLOCK , IPAR ) : NO_CHANGES
+propertyUpdated( 6 , BLOCK , SIM_BLOCKTYPE ) : SUCCESS
+propertyUpdated( 6 , BLOCK , SIM_DEP_UT ) : SUCCESS
+propertyUpdated( 6 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 6 , BLOCK , NZCROSS ) : NO_CHANGES
+propertyUpdated( 6 , BLOCK , NMODE ) : NO_CHANGES
+propertyUpdated( 6 , BLOCK , UID ) : NO_CHANGES
+propertyUpdated( 6 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
+lnk  = scicos_link();
+objectCreated( 10 , LINK )
+propertyUpdated( 10 , LINK , CONTROL_POINTS ) : NO_CHANGES
+propertyUpdated( 10 , LINK , CONTROL_POINTS ) : NO_CHANGES
+propertyUpdated( 10 , LINK , LABEL ) : NO_CHANGES
+propertyUpdated( 10 , LINK , THICK ) : NO_CHANGES
+propertyUpdated( 10 , LINK , COLOR ) : NO_CHANGES
+propertyUpdated( 10 , LINK , KIND ) : NO_CHANGES
+propertyUpdated( 10 , LINK , SOURCE_PORT ) : NO_CHANGES
+propertyUpdated( 10 , LINK , DESTINATION_PORT ) : NO_CHANGES
+scs_m = scicos_diagram( objs=list(blk,blk2,lnk) )
+objectCreated( 11 , DIAGRAM )
+propertyUpdated( 11 , DIAGRAM , TITLE ) : NO_CHANGES
+propertyUpdated( 11 , DIAGRAM , PATH ) : NO_CHANGES
+propertyUpdated( 11 , DIAGRAM , PROPERTIES ) : NO_CHANGES
+propertyUpdated( 11 , DIAGRAM , PROPERTIES ) : NO_CHANGES
+propertyUpdated( 11 , DIAGRAM , CONTEXT ) : NO_CHANGES
+propertyUpdated( 2 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+propertyUpdated( 6 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+propertyUpdated( 10 , LINK , PARENT_DIAGRAM ) : SUCCESS
+propertyUpdated( 11 , DIAGRAM , CHILDREN ) : SUCCESS
+propertyUpdated( 11 , DIAGRAM , VERSION_NUMBER ) : NO_CHANGES
+scs_m  = 
+scicos_diagram type :
+  props
+  objs
+  version
+  contrib
+scs_m.objs
+ ans  =
+     (1)
+scicos_Block type :
+  graphics
+  model
+  gui
+  doc
+     (2)
+scicos_Block type :
+  graphics
+  model
+  gui
+  doc
+     (3)
+scicos_Link type :
+  xx
+  yy
+  id
+  thick
+  ct
+  from
+  to

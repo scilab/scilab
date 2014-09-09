@@ -190,16 +190,22 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
 
     if (k == ANNOTATION)
     {
+        model::Annotation* o = static_cast<model::Annotation*>(getObject(uid));
         switch (p)
         {
+            case PARENT_DIAGRAM:
+                return o->setParentDiagram(v);
             default:
                 break;
         }
     }
     else if (k == BLOCK)
     {
+        model::Block* o = static_cast<model::Block*>(getObject(uid));
         switch (p)
         {
+            case PARENT_DIAGRAM:
+                return o->setParentDiagram(v);
             default:
                 break;
         }
@@ -217,6 +223,8 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
         model::Link* o = static_cast<model::Link*>(getObject(uid));
         switch (p)
         {
+            case PARENT_DIAGRAM:
+                return o->setParentDiagram(v);
             case SOURCE_PORT:
                 return o->setSourcePort(v);
             case DESTINATION_PORT:

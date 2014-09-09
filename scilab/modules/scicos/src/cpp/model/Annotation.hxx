@@ -111,19 +111,19 @@ private:
         return SUCCESS;
     }
 
-    ScicosID getParentDiagram() const
+    void getParentDiagram(ScicosID& v) const
     {
-        return parentDiagram;
+        v = parentDiagram;
     }
 
-    update_status_t setParentDiagram(ScicosID parentDiagram)
+    update_status_t setParentDiagram(const ScicosID v)
     {
-        if (this->parentDiagram == parentDiagram)
+        if (v == parentDiagram)
         {
             return NO_CHANGES;
         }
 
-        this->parentDiagram = parentDiagram;
+        parentDiagram = v;
         return SUCCESS;
     }
 

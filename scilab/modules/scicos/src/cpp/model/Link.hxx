@@ -45,14 +45,20 @@ private:
         controlPoints(o.controlPoints), label(o.label), thick(o.thick), color(o.color), linkKind(o.linkKind) {};
     ~Link() {}
 
-    ScicosID getParentDiagram() const
+    void getParentDiagram(ScicosID& v) const
     {
-        return parentDiagram;
+        v = parentDiagram;
     }
 
-    void setParentDiagram(ScicosID parentDiagram)
+    update_status_t setParentDiagram(const ScicosID v)
     {
-        this->parentDiagram = parentDiagram;
+        if (v == parentDiagram)
+        {
+            return NO_CHANGES;
+        }
+
+        parentDiagram = v;
+        return SUCCESS;
     }
 
     void getControlPoints(std::vector<double>& v) const
