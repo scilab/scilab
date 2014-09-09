@@ -7,8 +7,6 @@
 //
 // <-- CLI SHELL MODE -->
 //
-// <-- LONG TIME EXECUTION -->
-//
 // <-- Non-regression test for bug 8824 -->
 //
 // <-- Bugzilla URL -->
