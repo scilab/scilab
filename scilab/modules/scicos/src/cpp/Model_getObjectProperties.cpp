@@ -346,6 +346,9 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, Sci
         model::Port* o = static_cast<model::Port*>(getObject(uid));
         switch (p)
         {
+            case SOURCE_BLOCK:
+                o->getSourceBlock(v);
+                return true;
             case CONNECTED_SIGNALS:
                 v = o->getConnectedSignals().front();
                 return true;

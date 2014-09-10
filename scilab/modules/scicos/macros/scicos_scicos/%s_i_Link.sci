@@ -19,6 +19,6 @@
 // See the file ../license.txt
 //
 
-function m=%s_i_Link(i,b,L)
+function L=%s_i_Link(i,b,L)
     scicos_setfield(i,b,L)
 endfunction

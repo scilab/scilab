@@ -23,6 +23,7 @@
 #include "string.hxx"
 
 #include "Controller.hxx"
+#include "model/Port.hxx"
 
 extern "C" {
 #include "sci_malloc.h"
@@ -127,7 +128,7 @@ types::InternalType* get_ports_property(const Adaptor& adaptor, object_propertie
 
                 if (found != children.end())
                 {
-                    v[i] = (double)std::distance(found, children.begin());
+                    v[i] = (double)std::distance(children.begin(), found) + 1;
                 }
                 else
                 {
@@ -547,6 +548,23 @@ bool update_ports_property(const Adaptor& adaptor, object_properties_t port_kind
 
             ScicosID id = controller.createObject(PORT);
             controller.setObjectProperty(id, PORT, SOURCE_BLOCK, adaptee->id());
+            switch (port_kind)
+            {
+                case INPUTS:
+                    controller.setObjectProperty(id, PORT, PORT_KIND, model::IN);
+                    break;
+                case OUTPUTS:
+                    controller.setObjectProperty(id, PORT, PORT_KIND, model::OUT);
+                    break;
+                case EVENT_INPUTS:
+                    controller.setObjectProperty(id, PORT, PORT_KIND, model::EIN);
+                    break;
+                case EVENT_OUTPUTS:
+                    controller.setObjectProperty(id, PORT, PORT_KIND, model::EOUT);
+                    break;
+                default:
+                    return false;
+            }
             addNewPort<Adaptor, p>(id, newPort, children, controller);
             previousPorts.push_back(id);
         }

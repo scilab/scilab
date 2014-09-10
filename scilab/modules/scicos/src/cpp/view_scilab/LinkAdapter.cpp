@@ -12,6 +12,7 @@
 
 #include <string>
 #include <vector>
+#include <iterator>
 #include <algorithm>
 
 #include "internal.hxx"
@@ -22,6 +23,8 @@
 
 #include "Controller.hxx"
 #include "LinkAdapter.hxx"
+#include "model/Port.hxx"
+#include "model/Link.hxx"
 
 extern "C" {
 #include "sci_malloc.h"
@@ -278,16 +281,54 @@ static types::Double* getLinkEnd(const LinkAdapter& adaptor, const Controller& c
     {
         ScicosID sourceBlock;
         controller.getObjectProperty(endID, PORT, SOURCE_BLOCK, sourceBlock);
-        int kind;
-        controller.getObjectProperty(endID, PORT, PORT_KIND, kind);
 
-        data[0] = static_cast<double>(sourceBlock);
-        data[1] = static_cast<double>(endID);
-        data[2] = static_cast<double>(kind);
+        // Looking for the block number among the block IDs
+        ScicosID parentDiagram;
+        controller.getObjectProperty(adaptee->id(), BLOCK, PARENT_DIAGRAM, parentDiagram);
+        std::vector<ScicosID> children;
+        if (parentDiagram == 0)
+        {
+            return o;
+        }
+        controller.getObjectProperty(parentDiagram, DIAGRAM, CHILDREN, children);
+        data[0] = static_cast<double>(std::distance(children.begin(), std::find(children.begin(), children.end(), sourceBlock)) + 1);
+
+        std::vector<ScicosID> sourceBlockPorts;
+        switch (end)
+        {
+            case SOURCE_PORT:
+                controller.getObjectProperty(sourceBlock, BLOCK, OUTPUTS, sourceBlockPorts);
+                break;
+            case DESTINATION_PORT:
+                controller.getObjectProperty(sourceBlock, BLOCK, INPUTS, sourceBlockPorts);
+                break;
+            default:
+                return 0;
+        }
+        data[1] = static_cast<double>(std::distance(sourceBlockPorts.begin(), std::find(sourceBlockPorts.begin(), sourceBlockPorts.end(), endID)) + 1);
+
+        bool isImplicit;
+        controller.getObjectProperty(endID, PORT, IMPLICIT, isImplicit);
+
+        if (isImplicit == false)
+        {
+            int kind;
+            controller.getObjectProperty(endID, PORT, PORT_KIND, kind);
+            if (kind == model::IN || kind == model::EIN)
+            {
+                data[2] = 1;
+            }
+        }
     }
     // Default case, the property was initialized at [].
     return o;
 }
+
+enum startOrEnd
+{
+    Start = 0,
+    End = 1
+};
 
 static bool setLinkEnd(LinkAdapter& adaptor, Controller& controller, object_properties_t end, types::InternalType* v)
 {
@@ -310,19 +351,19 @@ static bool setLinkEnd(LinkAdapter& adaptor, Controller& controller, object_prop
     ScicosID to;
     controller.getObjectProperty(adaptee->id(), adaptee->kind(), DESTINATION_PORT, to);
     ScicosID concernedPort;
+    ScicosID otherPort;
     object_properties_t otherEnd;
-    object_properties_t portType;
     switch (end)
     {
         case SOURCE_PORT:
             concernedPort = from;
+            otherPort = to;
             otherEnd = DESTINATION_PORT;
-            portType = OUTPUTS;
             break;
         case DESTINATION_PORT:
             concernedPort = to;
+            otherPort = from;
             otherEnd = SOURCE_PORT;
-            portType = INPUTS;
             break;
         default:
             return false;
@@ -351,7 +392,7 @@ static bool setLinkEnd(LinkAdapter& adaptor, Controller& controller, object_prop
 
     if (current->get(2) != 0 && current->get(2) != 1)
     {
-        return false; // "From" port must be output type or implicit.
+        return false;
     }
 
     if (floor(current->get(0)) != current->get(0) || floor(current->get(1)) != current->get(1))
@@ -360,30 +401,207 @@ static bool setLinkEnd(LinkAdapter& adaptor, Controller& controller, object_prop
     }
 
     // Disconnect the old port if it was connected
-    if (from != 0)
+    if (concernedPort != 0)
     {
         controller.setObjectProperty(concernedPort, PORT, CONNECTED_SIGNALS, unconnected);
+    }
+
+    ScicosID parentDiagram;
+    controller.getObjectProperty(adaptee->id(), BLOCK, PARENT_DIAGRAM, parentDiagram);
+    std::vector<ScicosID> children;
+    if (parentDiagram != 0)
+    {
+        controller.getObjectProperty(parentDiagram, DIAGRAM, CHILDREN, children);
     }
 
     // Connect the new one
     int blk  = static_cast<int>(current->get(0));
     int port = static_cast<int>(current->get(1));
     int kind = static_cast<int>(current->get(2));
-    std::vector<ScicosID> sourceBlockPorts;
-    controller.getObjectProperty(blk, BLOCK, portType, sourceBlockPorts);
-    int nBlockPorts = (int)sourceBlockPorts.size();
-    // Create as many ports as necessary
-    while (nBlockPorts < port)
+    if (kind != Start && kind != End)
     {
-        ScicosID createdPort = controller.createObject(PORT);
-        controller.setObjectProperty(createdPort, PORT, SOURCE_BLOCK, blk);
-        controller.setObjectProperty(createdPort, PORT, CONNECTED_SIGNALS, unconnected);
-        nBlockPorts++;
+        return false;
     }
-    controller.getObjectProperty(blk, BLOCK, portType, sourceBlockPorts);
-    ScicosID newPort = sourceBlockPorts[port - 1];
+    // kind == 0: trying to set the start of the link (output port)
+    // kind == 1: trying to set the end of the link (input port)
+
+    if (blk < 0 || blk > static_cast<int>(children.size()))
+    {
+        return false; // Trying to link to a non-existing block
+    }
+    ScicosID blkID = children[blk - 1];
+
+    std::vector<ScicosID> sourceBlockPorts;
+    int nBlockPorts;
+    bool newPortIsImplicit = false;
+    int newPortKind = static_cast<int>(model::UNDEF);
+    int linkType;
+    controller.getObjectProperty(adaptee->id(), adaptee->kind(), KIND, linkType);
+    if (linkType == model::activation)
+    {
+        std::vector<ScicosID> evtin;
+        std::vector<ScicosID> evtout;
+        controller.getObjectProperty(blkID, BLOCK, EVENT_INPUTS, evtin);
+        controller.getObjectProperty(blkID, BLOCK, EVENT_OUTPUTS, evtout);
+
+        if (kind == Start)
+        {
+            if (otherPort != 0)
+            {
+                // The other end must be an input
+                int otherPortKind;
+                controller.getObjectProperty(otherPort, PORT, PORT_KIND, otherPortKind);
+                if (otherPortKind != model::EIN)
+                {
+                    return false;
+                }
+            }
+            newPortKind = static_cast<int>(model::EOUT);
+            sourceBlockPorts = evtout;
+        }
+        else
+        {
+            if (otherPort != 0)
+            {
+                // The other end must be an output
+                int otherPortKind;
+                controller.getObjectProperty(otherPort, PORT, PORT_KIND, otherPortKind);
+                if (otherPortKind != model::EOUT)
+                {
+                    return false;
+                }
+            }
+            newPortKind = static_cast<int>(model::EIN);
+            sourceBlockPorts = evtin;
+        }
+
+    }
+    else if (linkType == model::regular || linkType == model::implicit)
+    {
+        std::vector<ScicosID> in;
+        std::vector<ScicosID> out;
+        controller.getObjectProperty(blkID, BLOCK, INPUTS, in);
+        controller.getObjectProperty(blkID, BLOCK, OUTPUTS, out);
+
+        if (linkType == model::regular)
+        {
+            if (kind == Start)
+            {
+                if (otherPort != 0)
+                {
+                    // The other end must be an input
+                    int otherPortKind;
+                    controller.getObjectProperty(otherPort, PORT, PORT_KIND, otherPortKind);
+                    if (otherPortKind != model::IN)
+                    {
+                        return false;
+                    }
+                }
+                newPortKind = static_cast<int>(model::OUT);
+                sourceBlockPorts = out;
+            }
+            else
+            {
+                if (otherPort != 0)
+                {
+                    // The other end must be an output
+                    int otherPortKind = 1;
+                    controller.getObjectProperty(otherPort, PORT, PORT_KIND, otherPortKind);
+                    if (otherPortKind != model::OUT)
+                    {
+                        return false;
+                    }
+                }
+                newPortKind = static_cast<int>(model::IN);
+                sourceBlockPorts = in;
+            }
+
+            // Rule out the implicit ports
+            for (std::vector<ScicosID>::iterator it = sourceBlockPorts.begin(); it != sourceBlockPorts.end(); ++it)
+            {
+                bool isImplicit;
+                controller.getObjectProperty(*it, PORT, IMPLICIT, isImplicit);
+                if (isImplicit == true)
+                {
+                    sourceBlockPorts.erase(it);
+                }
+            }
+        }
+        else // model::implicit
+        {
+            newPortIsImplicit = true;
+            sourceBlockPorts.insert(sourceBlockPorts.begin(), in.begin(), in.end());
+            sourceBlockPorts.insert(sourceBlockPorts.begin(), out.begin(), out.end());
+
+            // Rule out the explicit ports
+            for (std::vector<ScicosID>::iterator it = sourceBlockPorts.begin(); it != sourceBlockPorts.end(); ++it)
+            {
+                bool isImplicit;
+                controller.getObjectProperty(*it, PORT, IMPLICIT, isImplicit);
+                if (isImplicit == false)
+                {
+                    sourceBlockPorts.erase(it);
+                }
+            }
+        }
+    }
+
+    nBlockPorts = static_cast<int>(sourceBlockPorts.size());
+    if (nBlockPorts >= port)
+    {
+        concernedPort = sourceBlockPorts[port - 1];
+    }
+    else
+    {
+        while (nBlockPorts < port) // Create as many ports as necessary
+        {
+            concernedPort = controller.createObject(PORT);
+            controller.setObjectProperty(concernedPort, PORT, IMPLICIT, newPortIsImplicit);
+            controller.setObjectProperty(concernedPort, PORT, PORT_KIND, newPortKind);
+            controller.setObjectProperty(concernedPort, PORT, SOURCE_BLOCK, blkID);
+            controller.setObjectProperty(concernedPort, PORT, CONNECTED_SIGNALS, unconnected);
+            std::vector<int> dataType;
+            controller.getObjectProperty(concernedPort, PORT, DATATYPE, dataType);
+            dataType[0] = -1; // Default number of rows for new ports
+            controller.setObjectProperty(concernedPort, PORT, DATATYPE, dataType);
+
+            std::vector<ScicosID> concernedPorts;
+            if (linkType == model::activation)
+            {
+                if (kind == Start)
+                {
+                    controller.getObjectProperty(blkID, BLOCK, EVENT_OUTPUTS, concernedPorts);
+                    concernedPorts.push_back(concernedPort);
+                    controller.setObjectProperty(blkID, BLOCK, EVENT_OUTPUTS, concernedPorts);
+                }
+                else
+                {
+                    controller.getObjectProperty(blkID, BLOCK, EVENT_INPUTS, concernedPorts);
+                    concernedPorts.push_back(concernedPort);
+                    controller.setObjectProperty(blkID, BLOCK, EVENT_INPUTS, concernedPorts);
+                }
+            }
+            else // model::regular || model::implicit
+            {
+                if (kind == Start)
+                {
+                    controller.getObjectProperty(blkID, BLOCK, OUTPUTS, concernedPorts);
+                    concernedPorts.push_back(concernedPort);
+                    controller.setObjectProperty(blkID, BLOCK, OUTPUTS, concernedPorts);
+                }
+                else
+                {
+                    controller.getObjectProperty(blkID, BLOCK, INPUTS, concernedPorts);
+                    concernedPorts.push_back(concernedPort);
+                    controller.setObjectProperty(blkID, BLOCK, INPUTS, concernedPorts);
+                }
+            }
+
+            nBlockPorts++;
+        }
+    }
     ScicosID oldLink;
-    controller.getObjectProperty(newPort, PORT, CONNECTED_SIGNALS, oldLink);
+    controller.getObjectProperty(concernedPort, PORT, CONNECTED_SIGNALS, oldLink);
     if (oldLink != 0)
     {
         // Disconnect the old other end port and delete the old link
@@ -394,10 +612,8 @@ static bool setLinkEnd(LinkAdapter& adaptor, Controller& controller, object_prop
     }
 
     // Connect the new source and destination ports together
-    controller.setObjectProperty(newPort, PORT, PORT_KIND, kind);
-    controller.setObjectProperty(newPort, PORT, CONNECTED_SIGNALS, adaptee->id());
     controller.setObjectProperty(concernedPort, PORT, CONNECTED_SIGNALS, adaptee->id());
-    controller.setObjectProperty(adaptee->id(), adaptee->kind(), end, newPort);
+    controller.setObjectProperty(adaptee->id(), adaptee->kind(), end, concernedPort);
     return true;
 }
 

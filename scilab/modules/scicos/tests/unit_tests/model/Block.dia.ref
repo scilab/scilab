@@ -15,11 +15,14 @@ propertyUpdated( 1 , BLOCK , ANGLE ) : NO_CHANGES
 propertyUpdated( 1 , BLOCK , EXPRS ) : SUCCESS
 objectCreated( 2 , PORT )
 propertyUpdated( 2 , PORT , SOURCE_BLOCK ) : SUCCESS
+propertyUpdated( 2 , PORT , PORT_KIND ) : SUCCESS
 objectCreated( 3 , PORT )
 propertyUpdated( 3 , PORT , SOURCE_BLOCK ) : SUCCESS
+propertyUpdated( 3 , PORT , PORT_KIND ) : SUCCESS
 propertyUpdated( 1 , BLOCK , INPUTS ) : SUCCESS
 objectCreated( 4 , PORT )
 propertyUpdated( 4 , PORT , SOURCE_BLOCK ) : SUCCESS
+propertyUpdated( 4 , PORT , PORT_KIND ) : SUCCESS
 propertyUpdated( 1 , BLOCK , OUTPUTS ) : SUCCESS
 propertyUpdated( 1 , BLOCK , LABEL ) : NO_CHANGES
 propertyUpdated( 2 , PORT , IMPLICIT ) : NO_CHANGES
@@ -313,6 +316,7 @@ propertyUpdated( 1 , BLOCK , ANGLE ) : NO_CHANGES
 propertyUpdated( 1 , BLOCK , EXPRS ) : SUCCESS
 objectCreated( 5 , PORT )
 propertyUpdated( 5 , PORT , SOURCE_BLOCK ) : SUCCESS
+propertyUpdated( 5 , PORT , PORT_KIND ) : SUCCESS
 propertyUpdated( 1 , BLOCK , INPUTS ) : SUCCESS
 propertyUpdated( 1 , BLOCK , LABEL ) : NO_CHANGES
 propertyUpdated( 2 , PORT , IMPLICIT ) : NO_CHANGES
