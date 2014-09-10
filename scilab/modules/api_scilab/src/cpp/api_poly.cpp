@@ -59,10 +59,10 @@ SciErr getPolyVariableName(void* _pvCtx, int* _piAddress, char* _pstVarName, int
         return sciErr;
     }
 
-    if (_pstVarName == NULL || *_piVarNameLen == 0)
+    if (*_piVarNameLen == 0)
     {
         *_piVarNameLen = (int)((InternalType*)_piAddress)->getAs<types::Polynom>()->getVariableName().size();
-        return sciErr; //No error
+        //No error
     }
 
     char* pstTemp = wide_string_to_UTF8(((InternalType*)_piAddress)->getAs<types::Polynom>()->getVariableName().c_str());
@@ -130,7 +130,7 @@ SciErr getCommonMatrixOfPoly(void* _pvCtx, int* _piAddress, int _iComplex, int* 
     }
 
     Polynom *pMP = ((InternalType*)_piAddress)->getAs<types::Polynom>();
-    pMP->getRank(_piNbCoef);
+    pMP->getSizes(_piNbCoef);
 
     if (_pdblReal == NULL)
     {
@@ -143,7 +143,7 @@ SciErr getCommonMatrixOfPoly(void* _pvCtx, int* _piAddress, int _iComplex, int* 
         for (int i = 0 ; i < iSize ; i++)
         {
             memcpy(_pdblReal[i], pSP[i]->get(),    sizeof(double) * pSP[i]->getSize());
-            memcpy(_pdblImg[i],  pSP[i]->getImg(), sizeof(double) * (_piNbCoef[i] + 1));
+            memcpy(_pdblImg[i],  pSP[i]->getImg(), sizeof(double) * _piNbCoef[i]);
         }
     }
     else

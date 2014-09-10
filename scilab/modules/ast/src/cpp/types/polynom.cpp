@@ -152,6 +152,21 @@ void Polynom::setZeros()
     }
 }
 
+bool Polynom::getSizes(int *_piSizes)
+{
+    if (_piSizes == NULL || m_pRealData == NULL)
+    {
+        return false;
+    }
+
+    for (int i = 0 ; i < getSize() ; i++)
+    {
+        _piSizes[i] = m_pRealData[i]->getSize();
+    }
+
+    return true;
+}
+
 bool Polynom::getRank(int *_piRank)
 {
     if (_piRank == NULL || m_pRealData == NULL)
