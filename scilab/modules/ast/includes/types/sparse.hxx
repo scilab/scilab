@@ -331,6 +331,12 @@ struct EXTERN_AST Sparse : GenericType
      */
     Sparse* dotMultiply(Sparse SPARSE_CONST& o) const;
 
+    /* create a new matrix containing the result of an ./
+      @param o sparse matrix to ./
+      @return ptr to the new matrix, 0 in case of failure
+    */
+    Sparse* dotDivide(Sparse SPARSE_CONST& o) const;
+
     bool neg(InternalType *& out);
 
     bool transpose(InternalType *& out)

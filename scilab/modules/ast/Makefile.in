@@ -175,6 +175,7 @@ am__libsciast_la_SOURCES_DIST = src/cpp/ast/runvisitor.cpp \
 	src/cpp/operations/types_comparison_eq.cpp \
 	src/cpp/operations/types_multiplication.cpp \
 	src/cpp/operations/types_dotmultiplication.cpp \
+	src/cpp/operations/types_dotdivide.cpp \
 	src/cpp/operations/types_comparison_lt_le_gt_ge.cpp \
 	src/cpp/operations/types_or.cpp \
 	src/cpp/operations/types_and.cpp \
@@ -247,6 +248,7 @@ am_libsciast_la_OBJECTS = src/cpp/ast/libsciast_la-runvisitor.lo \
 	src/cpp/operations/libsciast_la-types_comparison_eq.lo \
 	src/cpp/operations/libsciast_la-types_multiplication.lo \
 	src/cpp/operations/libsciast_la-types_dotmultiplication.lo \
+	src/cpp/operations/libsciast_la-types_dotdivide.lo \
 	src/cpp/operations/libsciast_la-types_comparison_lt_le_gt_ge.lo \
 	src/cpp/operations/libsciast_la-types_or.lo \
 	src/cpp/operations/libsciast_la-types_and.lo \
@@ -706,6 +708,7 @@ libsciast_la_SOURCES = src/cpp/ast/runvisitor.cpp \
 	src/cpp/operations/types_comparison_eq.cpp \
 	src/cpp/operations/types_multiplication.cpp \
 	src/cpp/operations/types_dotmultiplication.cpp \
+	src/cpp/operations/types_dotdivide.cpp \
 	src/cpp/operations/types_comparison_lt_le_gt_ge.cpp \
 	src/cpp/operations/types_or.cpp \
 	src/cpp/operations/types_and.cpp \
@@ -1179,6 +1182,9 @@ src/cpp/operations/libsciast_la-types_multiplication.lo:  \
 src/cpp/operations/libsciast_la-types_dotmultiplication.lo:  \
 	src/cpp/operations/$(am__dirstamp) \
 	src/cpp/operations/$(DEPDIR)/$(am__dirstamp)
+src/cpp/operations/libsciast_la-types_dotdivide.lo:  \
+	src/cpp/operations/$(am__dirstamp) \
+	src/cpp/operations/$(DEPDIR)/$(am__dirstamp)
 src/cpp/operations/libsciast_la-types_comparison_lt_le_gt_ge.lo:  \
 	src/cpp/operations/$(am__dirstamp) \
 	src/cpp/operations/$(DEPDIR)/$(am__dirstamp)
@@ -1455,6 +1461,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/operations/$(DEPDIR)/libsciast_la-types_comparison_lt_le_gt_ge.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/operations/$(DEPDIR)/libsciast_la-types_comparison_ne.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/operations/$(DEPDIR)/libsciast_la-types_divide.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/operations/$(DEPDIR)/libsciast_la-types_dotdivide.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/operations/$(DEPDIR)/libsciast_la-types_dotmultiplication.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/operations/$(DEPDIR)/libsciast_la-types_finite.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/operations/$(DEPDIR)/libsciast_la-types_kronecker.Plo@am__quote@
@@ -1756,6 +1763,13 @@ src/cpp/operations/libsciast_la-types_dotmultiplication.lo: src/cpp/operations/t
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/operations/types_dotmultiplication.cpp' object='src/cpp/operations/libsciast_la-types_dotmultiplication.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/operations/libsciast_la-types_dotmultiplication.lo `test -f 'src/cpp/operations/types_dotmultiplication.cpp' || echo '$(srcdir)/'`src/cpp/operations/types_dotmultiplication.cpp
+
+src/cpp/operations/libsciast_la-types_dotdivide.lo: src/cpp/operations/types_dotdivide.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/operations/libsciast_la-types_dotdivide.lo -MD -MP -MF src/cpp/operations/$(DEPDIR)/libsciast_la-types_dotdivide.Tpo -c -o src/cpp/operations/libsciast_la-types_dotdivide.lo `test -f 'src/cpp/operations/types_dotdivide.cpp' || echo '$(srcdir)/'`src/cpp/operations/types_dotdivide.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/operations/$(DEPDIR)/libsciast_la-types_dotdivide.Tpo src/cpp/operations/$(DEPDIR)/libsciast_la-types_dotdivide.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/operations/types_dotdivide.cpp' object='src/cpp/operations/libsciast_la-types_dotdivide.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/operations/libsciast_la-types_dotdivide.lo `test -f 'src/cpp/operations/types_dotdivide.cpp' || echo '$(srcdir)/'`src/cpp/operations/types_dotdivide.cpp
 
 src/cpp/operations/libsciast_la-types_comparison_lt_le_gt_ge.lo: src/cpp/operations/types_comparison_lt_le_gt_ge.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/operations/libsciast_la-types_comparison_lt_le_gt_ge.lo -MD -MP -MF src/cpp/operations/$(DEPDIR)/libsciast_la-types_comparison_lt_le_gt_ge.Tpo -c -o src/cpp/operations/libsciast_la-types_comparison_lt_le_gt_ge.lo `test -f 'src/cpp/operations/types_comparison_lt_le_gt_ge.cpp' || echo '$(srcdir)/'`src/cpp/operations/types_comparison_lt_le_gt_ge.cpp

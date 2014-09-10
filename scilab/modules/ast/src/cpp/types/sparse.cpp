@@ -1740,6 +1740,30 @@ Sparse* Sparse::dotMultiply(Sparse SPARSE_CONST& o) const
     return new Sparse(realSp, cplxSp);
 }
 
+Sparse* Sparse::dotDivide(Sparse SPARSE_CONST& o) const
+{
+    RealSparse_t* realSp(0);
+    CplxSparse_t* cplxSp(0);
+    if (isComplex() == false && o.isComplex() == false)
+    {
+        realSp = new RealSparse_t(matrixReal->cwiseQuotient(*(o.matrixReal)));
+    }
+    else if (isComplex() == false && o.isComplex() == true)
+    {
+        cplxSp = new CplxSparse_t(matrixReal->cast<std::complex<double> >().cwiseQuotient( *(o.matrixCplx)));
+    }
+    else if (isComplex() == true && o.isComplex() == false)
+    {
+        cplxSp = new CplxSparse_t(matrixCplx->cwiseQuotient(o.matrixReal->cast<std::complex<double> >()));
+    }
+    else if (isComplex() == true && o.isComplex() == true)
+    {
+        cplxSp = new CplxSparse_t(matrixCplx->cwiseQuotient(*(o.matrixCplx)));
+    }
+
+    return new Sparse(realSp, cplxSp);
+}
+
 struct BoolCast
 {
     BoolCast(std::complex<double> const& c): b(c.real() || c.imag()) {}
