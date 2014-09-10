@@ -111,6 +111,8 @@ bool TList::invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_l
     }
 
     Callable::ReturnValue ret;
+    // Overload of extraction need
+    // the tlist from where we extract
     this->IncreaseRef();
     in.push_back(this);
 
@@ -122,6 +124,10 @@ bool TList::invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_l
     {
         ret = Overload::call(L"%l_e", in, 1, out, &execFunc);
     }
+
+    // Remove this from "in" for keep "in" unchanged.
+    this->DecreaseRef();
+    in.pop_back();
 
     if (ret == Callable::Error)
     {
