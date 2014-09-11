@@ -648,7 +648,7 @@ void ConfigVariable::setEntryPointName(ConfigVariable::EntryPointStr* _pEntryPoi
 /* Dynamic libraries functions */
 int ConfigVariable::addDynamicLibrary(ConfigVariable::DynamicLibraryStr* _pDynamicLibrary)
 {
-    for (int i = 0 ; i < m_DynLibList.size() ; i++)
+    for (int i = 0 ; i < (int)m_DynLibList.size() ; i++)
     {
         if (m_DynLibList[i] == NULL)
         {
@@ -663,7 +663,7 @@ int ConfigVariable::addDynamicLibrary(ConfigVariable::DynamicLibraryStr* _pDynam
 
 void ConfigVariable::removeDynamicLibrary(int _iDynamicLibraryIndex)
 {
-    if (_iDynamicLibraryIndex < m_DynLibList.size())
+    if (_iDynamicLibraryIndex < (int)m_DynLibList.size())
     {
         std::list<EntryPointStr*>::const_iterator it;
         for (it = m_EntryPointList.begin() ; it != m_EntryPointList.end() ; it++)
@@ -692,7 +692,7 @@ void ConfigVariable::removeDynamicLibrary(int _iDynamicLibraryIndex)
 
 ConfigVariable::DynamicLibraryStr* ConfigVariable::getDynamicLibrary(int _iDynamicLibraryIndex)
 {
-    if (_iDynamicLibraryIndex < m_DynLibList.size())
+    if (_iDynamicLibraryIndex < (int)m_DynLibList.size())
     {
         return m_DynLibList[_iDynamicLibraryIndex];
     }
@@ -701,7 +701,7 @@ ConfigVariable::DynamicLibraryStr* ConfigVariable::getDynamicLibrary(int _iDynam
 
 bool ConfigVariable::isDynamicLibrary(int _iDynamicLibraryIndex)
 {
-    if (_iDynamicLibraryIndex < m_DynLibList.size())
+    if (_iDynamicLibraryIndex < (int)m_DynLibList.size())
     {
         if (m_DynLibList[_iDynamicLibraryIndex] != NULL)
         {
@@ -824,7 +824,7 @@ void ConfigVariable::setCommandLineArgs(int _iArgs, char** _pstArgs)
 wchar_t** ConfigVariable::getCommandLineArgs(int* _piCount)
 {
     wchar_t** pwstArgs = (wchar_t**)MALLOC(m_Args.size() * sizeof(wchar_t*));
-    for (int i = 0 ; i < m_Args.size() ; i++)
+    for (int i = 0 ; i < (int)m_Args.size() ; i++)
     {
         pwstArgs[i] = os_wcsdup(m_Args[i].c_str());
     }

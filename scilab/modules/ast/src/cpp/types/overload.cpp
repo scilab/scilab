@@ -25,7 +25,7 @@ extern "C"
 #include "context.hxx"
 #include "scilabexception.hxx"
 
-std::wstring Overload::buildOverloadName(std::wstring _stFunctionName, types::typed_list &in, int _iRetCount, bool _isOperator, bool _truncated)
+std::wstring Overload::buildOverloadName(std::wstring _stFunctionName, types::typed_list &in, int /*_iRetCount*/, bool _isOperator, bool _truncated)
 {
     std::wstring stType0 = in[0]->getShortTypeStr();
 

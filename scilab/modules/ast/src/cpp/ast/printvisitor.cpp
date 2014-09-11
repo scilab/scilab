@@ -161,7 +161,7 @@ void PrintVisitor::visit (const BoolExp  &e)
     }
 }
 
-void PrintVisitor::visit (const NilExp &e)
+void PrintVisitor::visit (const NilExp &/*e*/)
 {
     /* Do Nothing */
 }
@@ -174,12 +174,12 @@ void PrintVisitor::visit (const SimpleVar &e)
     *ostr << e.name_get().name_get();
 }
 
-void PrintVisitor::visit (const ColonVar &e)
+void PrintVisitor::visit (const ColonVar &/*e*/)
 {
     *ostr << SCI_COLON;
 }
 
-void PrintVisitor::visit (const DollarVar &e)
+void PrintVisitor::visit (const DollarVar &/*e*/)
 {
     *ostr << SCI_DOLLAR;
 }
@@ -469,12 +469,12 @@ void PrintVisitor::visit (const ForExp  &e)
     *ostr << SCI_ENDFOR;
 }
 
-void PrintVisitor::visit (const BreakExp &e)
+void PrintVisitor::visit (const BreakExp &/*e*/)
 {
     *ostr << SCI_BREAK;
 }
 
-void PrintVisitor::visit (const ContinueExp &e)
+void PrintVisitor::visit (const ContinueExp &/*e*/)
 {
     *ostr << SCI_CONTINUE;
 }

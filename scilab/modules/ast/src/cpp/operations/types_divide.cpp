@@ -466,10 +466,6 @@ int RDividePolyByDouble(Polynom* _pPoly, Double* _pDouble, Polynom** _pPolyOut)
     }
     else if (bScalar1)
     {
-        Double *pResultCoef = new Double(iRowResult, iColResult, (*_pPolyOut)->isComplex());
-        double *pReal    = pResultCoef->getReal();
-        double *pImg    = pResultCoef->getImg();
-
         for (int i = 0 ; i < pTemp->get(0)->getSize() ; i++)
         {
             Double *pCoef    = pTemp->extractCoef(i);
@@ -496,13 +492,13 @@ int RDividePolyByDouble(Polynom* _pPoly, Double* _pDouble, Polynom** _pPolyOut)
 
             (*_pPolyOut)->insertCoef(i, pResultCoef);
             delete pCoef;
+            delete pResultCoef;
         }
-        delete pResultCoef;
     }
     return 0;
 }
 
-int RDivideDoubleByPoly(Double* _pDouble, Polynom* _pPoly, Polynom** _pPolyOut)
+int RDivideDoubleByPoly(Double* /*_pDouble*/, Polynom* /*_pPoly*/, Polynom** /*_pPolyOut*/)
 {
     return 0;
 }
@@ -625,7 +621,6 @@ int DotRDivideDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDo
 
         (*_pDoubleOut) = new Double(iDims2, piDims2, bComplex1 || bComplex2);
 
-        int iErr        = 0;
         int iInc1       = 1;
         int iInc2       = 1;
         int iIncOut     = 1;

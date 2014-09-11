@@ -26,10 +26,10 @@ namespace ast
 class SerializeVisitor : public DummyVisitor
 {
 private :
+    ast::Exp* ast;
     unsigned char *buf;
     int buflen;
     int bufsize;
-    ast::Exp* ast;
     bool saveNodeNumber;
 
     unsigned char* get_buf(void)
@@ -58,7 +58,6 @@ private :
     }
     void add_ast(unsigned int code, const ast::Exp& e)
     {
-        Location loc = e.location_get();
         add_uint8(code);
         if (saveNodeNumber)
         {

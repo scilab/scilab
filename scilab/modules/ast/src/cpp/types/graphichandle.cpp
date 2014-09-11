@@ -125,7 +125,7 @@ bool GraphicHandle::operator!=(const InternalType& it)
     return !(*this == it);
 }
 
-bool GraphicHandle::subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims)
+bool GraphicHandle::subMatrixToString(std::wostringstream& /*ostr*/, int* /*_piDims*/, int /*_iDims*/)
 {
     //call %h_p(h)
     //GraphicHandle* pTemp = new GraphicHandle(_iDims, _piDims);
@@ -155,7 +155,7 @@ long long GraphicHandle::getNullValue()
     return 0;
 }
 
-GraphicHandle* GraphicHandle::createEmpty(int _iDims, int* _piDims, bool _bComplex)
+GraphicHandle* GraphicHandle::createEmpty(int _iDims, int* _piDims, bool /*_bComplex*/)
 {
     return new GraphicHandle(_iDims, _piDims);
 }

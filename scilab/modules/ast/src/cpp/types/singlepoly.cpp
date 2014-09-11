@@ -73,7 +73,7 @@ double SinglePoly::getNullValue()
     return 0;
 }
 
-SinglePoly* SinglePoly::createEmpty(int _iDims, int* _piDims, bool _bComplex)
+SinglePoly* SinglePoly::createEmpty(int /*_iDims*/, int* _piDims, bool _bComplex)
 {
     double* pdblData = NULL;
     SinglePoly* pSP = new SinglePoly(&pdblData, _piDims[0] - 1);
@@ -102,7 +102,7 @@ double* SinglePoly::allocData(int _iSize)
             pDbl = new double[_iSize];
         }
     }
-    catch (std::bad_alloc &e)
+    catch (std::bad_alloc &/*e*/)
     {
         char message[bsiz];
         sprintf(message, _("Can not allocate %.2f MB memory.\n"),  (double) (_iSize * sizeof(double)) / 1.e6);
@@ -335,14 +335,13 @@ void SinglePoly::toStringImg(wstring _szVar, list<wstring>* _pListExp , list<wst
     toStringInternal(m_pImgData, _szVar, _pListExp, _pListCoef);
 }
 
-bool SinglePoly::subMatrixToString(wostringstream& ostr, int* _piDims, int _iDims)
+bool SinglePoly::subMatrixToString(wostringstream& /*ostr*/, int* /*_piDims*/, int /*_iDims*/)
 {
     return false;
 }
 
 void SinglePoly::toStringInternal(double *_pdblVal, wstring _szVar, list<wstring>* _pListExp , list<wstring>* _pListCoef)
 {
-    int iPrecision = ConfigVariable::getFormatSize();
     int iLineLen = ConfigVariable::getConsoleWidth();
 
     wostringstream ostemp;
@@ -512,7 +511,6 @@ SinglePoly* SinglePoly::clone()
 
 SinglePoly* SinglePoly::conjugate()
 {
-    SinglePoly* pPoly = NULL;
     if (isComplex())
     {
         double *pR = NULL;

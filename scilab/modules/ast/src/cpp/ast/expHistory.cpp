@@ -128,7 +128,7 @@ void ExpHistory::computeArgs()
         m_piArgsDimsArray  = new int[m_iArgsDims];
 
         types::typed_list* pNewArgs = new types::typed_list();
-        int iCount = types::checkIndexesArguments(m_pITCurrent, m_pArgs, pNewArgs, m_piArgsDimsArray, NULL);
+        types::checkIndexesArguments(m_pITCurrent, m_pArgs, pNewArgs, m_piArgsDimsArray, NULL);
 
         // Delete pArgs only if i'm the owner
         // else it will be deleted by the expHistory
@@ -146,8 +146,8 @@ void ExpHistory::computeArgs()
         {
             if (m_pITCurrent->getAs<types::GenericType>()->getDims() == 2)
             {
-                if ( piDimsArray[1] == 1 ||
-                        piDimsArray[0] == 0 && piDimsArray[1] == 0)
+                if (piDimsArray[1] == 1 ||
+                        (piDimsArray[0] == 0 && piDimsArray[1] == 0))
                 {
                     int iTemp = m_piArgsDimsArray[0];
                     delete[] m_piArgsDimsArray;

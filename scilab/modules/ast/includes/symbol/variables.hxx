@@ -27,8 +27,8 @@ struct ScopedVariable
         : m_iLevel(_iLevel), m_pIT(_pIT), m_globalVisible(false) {}
 
     int m_iLevel;
-    bool m_globalVisible;
     types::InternalType* m_pIT;
+    bool m_globalVisible;
 };
 
 struct Variable
@@ -183,8 +183,8 @@ struct Variable
 
 private :
     Symbol name;
-    types::InternalType* m_GlobalValue;
     bool m_Global;
+    types::InternalType* m_GlobalValue;
     StackVar stack;
 };
 
@@ -423,7 +423,7 @@ struct Variables
         return getOrCreate(_key)->isGlobalVisible(_iLevel);
     }
 
-    bool isGlobal(const Symbol& _key, int _iLevel)
+    bool isGlobal(const Symbol& _key, int /*_iLevel*/)
     {
         return getOrCreate(_key)->isGlobal();
     }

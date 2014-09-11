@@ -231,8 +231,8 @@ bool ImplicitList::compute()
             // no finite values
             if ( finite(dblStart) == 0 || finite(dblStep) == 0 || finite(dblEnd) == 0)
             {
-                if (dblStep > 0 && dblStart < dblEnd ||
-                        dblStep < 0 && dblStart > dblEnd)
+                if ((dblStep > 0 && dblStart < dblEnd) ||
+                        (dblStep < 0 && dblStart > dblEnd))
                 {
                     // return nan
                     m_iSize = -1;
@@ -602,7 +602,7 @@ bool ImplicitList::neg(InternalType *& out)
     return false;
 }
 
-bool ImplicitList::invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_list & out, ast::ConstVisitor & execFunc, const ast::CallExp & e)
+bool ImplicitList::invoke(typed_list & in, optional_list & /*opt*/, int /*_iRetCount*/, typed_list & out, ast::ConstVisitor & /*execFunc*/, const ast::CallExp & e)
 {
     if (in.size() == 0)
     {
@@ -691,7 +691,7 @@ InternalType* ImplicitList::extract(typed_list* _pArgs)
     }
 
     //free pArg content
-    for (int iArg = 0 ; iArg < pArg.size() ; iArg++)
+    for (int iArg = 0 ; iArg < (int)pArg.size() ; iArg++)
     {
         if (pArg[iArg] != (*_pArgs)[iArg] && pArg[iArg]->isDeletable())
         {

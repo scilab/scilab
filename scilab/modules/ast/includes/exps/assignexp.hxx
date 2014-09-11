@@ -133,8 +133,8 @@ protected:
     Exp* _left_exp;
     /** \brief Right expression which affect var. */
     Exp* _right_exp;
-    types::InternalType* _pIT;
     bool lr_owner;
+    types::InternalType* _pIT;
 };
 } // namespace ast
 

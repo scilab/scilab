@@ -48,43 +48,43 @@ void MuteVisitor::visit (const CellExp &e)
     }
 }
 
-void MuteVisitor::visit (const StringExp &e)
+void MuteVisitor::visit (const StringExp &/*e*/)
 {
 }
 
-void MuteVisitor::visit (const CommentExp &e)
+void MuteVisitor::visit (const CommentExp &/*e*/)
 {
 }
 
-void MuteVisitor::visit (const IntExp  &e)
+void MuteVisitor::visit (const IntExp  &/*e*/)
 {
 }
 
-void MuteVisitor::visit (const FloatExp  &e)
+void MuteVisitor::visit (const FloatExp  &/*e*/)
 {
 }
 
-void MuteVisitor::visit (const DoubleExp  &e)
+void MuteVisitor::visit (const DoubleExp  &/*e*/)
 {
 }
 
-void MuteVisitor::visit (const BoolExp  &e)
+void MuteVisitor::visit (const BoolExp  &/*e*/)
 {
 }
 
-void MuteVisitor::visit (const NilExp &e)
+void MuteVisitor::visit (const NilExp &/*e*/)
 {
 }
 
-void MuteVisitor::visit (const SimpleVar &e)
+void MuteVisitor::visit (const SimpleVar &/*e*/)
 {
 }
 
-void MuteVisitor::visit (const ColonVar &e)
+void MuteVisitor::visit (const ColonVar &/*e*/)
 {
 }
 
-void MuteVisitor::visit (const DollarVar &e)
+void MuteVisitor::visit (const DollarVar &/*e*/)
 {
 }
 
@@ -207,23 +207,23 @@ void MuteVisitor::visit (const ForExp  &e)
     e.body_get().accept(mute);
 }
 
-void MuteVisitor::visit (const BreakExp &e)
+void MuteVisitor::visit (const BreakExp &/*e*/)
 {
 }
 
-void MuteVisitor::visit (const ContinueExp &e)
+void MuteVisitor::visit (const ContinueExp &/*e*/)
 {
 }
 
-void MuteVisitor::visit (const ReturnExp &e)
+void MuteVisitor::visit (const ReturnExp &/*e*/)
 {
 }
 
-void MuteVisitor::visit (const SelectExp &e)
+void MuteVisitor::visit (const SelectExp &/*e*/)
 {
 }
 
-void MuteVisitor::visit (const CaseExp &e)
+void MuteVisitor::visit (const CaseExp &/*e*/)
 {
 }
 
@@ -249,19 +249,19 @@ void MuteVisitor::visit (const ArrayListExp  &e)
     }
 }
 
-void MuteVisitor::visit (const AssignListExp  &e)
+void MuteVisitor::visit (const AssignListExp  &/*e*/)
 {
 }
 
-void MuteVisitor::visit (const NotExp &e)
+void MuteVisitor::visit (const NotExp &/*e*/)
 {
 }
 
-void MuteVisitor::visit (const TransposeExp &e)
+void MuteVisitor::visit (const TransposeExp &/*e*/)
 {
 }
 
-void MuteVisitor::visit (const VarDec  &e)
+void MuteVisitor::visit (const VarDec  &/*e*/)
 {
 }
 
@@ -273,7 +273,7 @@ void MuteVisitor::visit (const FunctionDec  &e)
     e.body_get().accept(mute);
 }
 
-void MuteVisitor::visit(const ListExp &e)
+void MuteVisitor::visit(const ListExp &/*e*/)
 {
 }
 }

@@ -62,37 +62,37 @@ protected:
 
     /** \name Visit Constant Expressions nodes.
      ** \{ */
-    virtual void visit (const StringExp &e)
+    virtual void visit (const StringExp &/*e*/)
     {
         // Nothing to follow up ...
     }
 
-    virtual void visit (const CommentExp &e)
+    virtual void visit (const CommentExp &/*e*/)
     {
         // Nothing to follow up ...
     }
 
-    virtual void visit (const IntExp  &e)
+    virtual void visit (const IntExp  &/*e*/)
     {
         // Nothing to follow up ...
     }
 
-    virtual void visit (const FloatExp  &e)
+    virtual void visit (const FloatExp  &/*e*/)
     {
         // Nothing to follow up ...
     }
 
-    virtual void visit (const DoubleExp  &e)
+    virtual void visit (const DoubleExp  &/*e*/)
     {
         // Nothing to follow up ...
     }
 
-    virtual void visit (const BoolExp  &e)
+    virtual void visit (const BoolExp  &/*e*/)
     {
         // Nothing to follow up ...
     }
 
-    virtual void visit (const NilExp &e)
+    virtual void visit (const NilExp &/*e*/)
     {
         // Nothing to follow up ...
     }
@@ -100,17 +100,17 @@ protected:
 
     /** \name Visit Variable related nodes.
      ** \{ */
-    virtual void visit (const SimpleVar &e)
+    virtual void visit (const SimpleVar &/*e*/)
     {
         // Nothing to follow up ...
     }
 
-    virtual void visit (const ColonVar &e)
+    virtual void visit (const ColonVar &/*e*/)
     {
         // Nothing to follow up ...
     }
 
-    virtual void visit (const DollarVar &e)
+    virtual void visit (const DollarVar &/*e*/)
     {
         // Nothing to follow up ...
     }
@@ -204,12 +204,12 @@ protected:
         e.body_get().accept (*this);
     }
 
-    virtual void visit (const BreakExp &e)
+    virtual void visit (const BreakExp &/*e*/)
     {
         // Nothing to follow up ...
     }
 
-    virtual void visit (const ContinueExp &e)
+    virtual void visit (const ContinueExp &/*e*/)
     {
         // Nothing to follow up ...
     }

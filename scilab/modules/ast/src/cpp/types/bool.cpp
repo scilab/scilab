@@ -102,7 +102,7 @@ bool Bool::setTrue()
     return true;
 }
 
-bool Bool::subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims)
+bool Bool::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_iDims*/)
 {
     int iCurrentLine = 0;
     int iLineLen = ConfigVariable::getConsoleWidth();
@@ -307,7 +307,7 @@ int Bool::getNullValue()
     return 0;
 }
 
-Bool* Bool::createEmpty(int _iDims, int* _piDims, bool _bComplex)
+Bool* Bool::createEmpty(int _iDims, int* _piDims, bool /*_bComplex*/)
 {
     return new Bool(_iDims, _piDims);
 }

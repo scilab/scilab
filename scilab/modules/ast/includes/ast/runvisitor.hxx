@@ -405,7 +405,7 @@ public :
     }
 
 
-    void visitprivate(const NilExp &e)
+    void visitprivate(const NilExp &/*e*/)
     {
         result_set(new types::Void());
     }
@@ -444,14 +444,14 @@ public :
     }
 
 
-    void visitprivate(const ColonVar &e)
+    void visitprivate(const ColonVar &/*e*/)
     {
         Colon *pC = new Colon();
         result_set(pC);
     }
 
 
-    void visitprivate(const DollarVar &e)
+    void visitprivate(const DollarVar &/*e*/)
     {
         Dollar* pVar = new Dollar();
         result_set(pVar);

@@ -33,10 +33,6 @@ extern "C"
 {
 #include "elem_common.h"
 }
-void dbg()
-{
-    volatile int a = 1;
-}
 namespace
 {
 
@@ -122,7 +118,6 @@ template<typename T> std::wstring toString(T const& m, int precision)
 
     int iWidthRows  = 0;
     int iWidthCols  = 0;
-    int iWidth      = 0;
     getSignedIntFormat(m.rows(), &iWidthRows);
     getSignedIntFormat(m.cols(), &iWidthCols);
 
@@ -226,7 +221,6 @@ template<typename Scalar1, typename Scalar2>
 void doAppend(Eigen::SparseMatrix<Scalar1> SPARSE_CONST& src, int r, int c, Eigen::SparseMatrix<Scalar2>& dest)
 {
     typedef typename Eigen::SparseMatrix<Scalar1>::InnerIterator srcIt_t;
-    typedef Eigen::SparseMatrix<Scalar2> dest_t;
     for (std::size_t k = 0; k != src.outerSize(); ++k)
     {
         for (srcIt_t it(src, (int)k); it; ++it)
@@ -527,7 +521,6 @@ Sparse* Sparse::clone(void) const
 
 bool Sparse::zero_set()
 {
-    bool res = false;
     if (matrixReal)
     {
         matrixReal->setZero();
@@ -827,7 +820,7 @@ InternalType* Sparse::insertNew(typed_list* _pArgs, InternalType* _pSource)
     }
 
     //free pArg content
-    for (int iArg = 0 ; iArg < pArg.size() ; iArg++)
+    for (int iArg = 0 ; iArg < (int)pArg.size() ; iArg++)
     {
         if (pArg[iArg] != (*_pArgs)[iArg] && pArg[iArg]->isDeletable())
         {
@@ -964,7 +957,6 @@ Sparse* Sparse::insert(typed_list* _pArgs, InternalType* _pSource)
         double* pIdxRow = pArg[0]->getAs<Double>()->get();
         int iRowSize    = pArg[0]->getAs<Double>()->getSize();
         double* pIdxCol = pArg[1]->getAs<Double>()->get();
-        int iColSize    = pArg[1]->getAs<Double>()->getSize();
 
         for (int i = 0 ; i < iSeqCount ; i++)
         {
@@ -999,7 +991,7 @@ Sparse* Sparse::insert(typed_list* _pArgs, InternalType* _pSource)
     finalize();
 
     //free pArg content
-    for (int iArg = 0 ; iArg < pArg.size() ; iArg++)
+    for (int iArg = 0 ; iArg < (int)pArg.size() ; iArg++)
     {
         if (pArg[iArg] != (*_pArgs)[iArg] && pArg[iArg]->isDeletable())
         {
@@ -1135,7 +1127,6 @@ Sparse* Sparse::insert(typed_list* _pArgs, Sparse* _pSource)
         double* pIdxRow = pArg[0]->getAs<Double>()->get();
         int iRowSize    = pArg[0]->getAs<Double>()->getSize();
         double* pIdxCol = pArg[1]->getAs<Double>()->get();
-        int iColSize    = pArg[1]->getAs<Double>()->getSize();
 
         for (int i = 0 ; i < iSeqCount ; i++)
         {
@@ -1169,7 +1160,7 @@ Sparse* Sparse::insert(typed_list* _pArgs, Sparse* _pSource)
     finalize();
 
     //free pArg content
-    for (int iArg = 0 ; iArg < pArg.size() ; iArg++)
+    for (int iArg = 0 ; iArg < (int)pArg.size() ; iArg++)
     {
         if (pArg[iArg] != (*_pArgs)[iArg] && pArg[iArg]->isDeletable())
         {
@@ -1194,10 +1185,6 @@ Sparse* Sparse::remove(typed_list* _pArgs)
 
     int piMaxDim[2];
     int piCountDim[2];
-
-    //on case of resize
-    int iNewRows    = 0;
-    int iNewCols    = 0;
 
     //evaluate each argument and replace by appropriate value and compute the count of combinations
     int iSeqCount = checkIndexesArguments(this, _pArgs, &pArg, piMaxDim, piCountDim);
@@ -1404,7 +1391,7 @@ Sparse* Sparse::remove(typed_list* _pArgs)
     delete[] piViewDims;
 
     //free pArg content
-    for (int iArg = 0 ; iArg < pArg.size() ; iArg++)
+    for (int iArg = 0 ; iArg < (int)pArg.size() ; iArg++)
     {
         if (pArg[iArg] != (*_pArgs)[iArg] && pArg[iArg]->isDeletable())
         {
@@ -1572,7 +1559,7 @@ InternalType* Sparse::extract(typed_list* _pArgs)
     finalize();
 
     //free pArg content
-    for (int iArg = 0 ; iArg < pArg.size() ; iArg++)
+    for (int iArg = 0 ; iArg < (int)pArg.size() ; iArg++)
     {
         if (pArg[iArg] != (*_pArgs)[iArg] && pArg[iArg]->isDeletable())
         {
@@ -1610,7 +1597,7 @@ Sparse* Sparse::extract(int nbCoords, int SPARSE_CONST* coords, int SPARSE_CONST
     , *pSp, RowWiseFullIterator(pSp->getRows(), pSp->getCols()))))
     {
         delete pSp;
-        pSp = 0;
+        pSp = NULL;
     }
     return pSp;
 }
@@ -2352,7 +2339,6 @@ SparseBool* SparseBool::insert(typed_list* _pArgs, SparseBool* _pSource)
         double* pIdxRow = pArg[0]->getAs<Double>()->get();
         int iRowSize    = pArg[0]->getAs<Double>()->getSize();
         double* pIdxCol = pArg[1]->getAs<Double>()->get();
-        int iColSize    = pArg[1]->getAs<Double>()->getSize();
 
         for (int i = 0 ; i < iSeqCount ; i++)
         {
@@ -2372,7 +2358,7 @@ SparseBool* SparseBool::insert(typed_list* _pArgs, SparseBool* _pSource)
     finalize();
 
     //free pArg content
-    for (int iArg = 0 ; iArg < pArg.size() ; iArg++)
+    for (int iArg = 0 ; iArg < (int)pArg.size() ; iArg++)
     {
         if (pArg[iArg] != (*_pArgs)[iArg] && pArg[iArg]->isDeletable())
         {
@@ -2487,7 +2473,6 @@ SparseBool* SparseBool::insert(typed_list* _pArgs, InternalType* _pSource)
         double* pIdxRow = pArg[0]->getAs<Double>()->get();
         int iRowSize    = pArg[0]->getAs<Double>()->getSize();
         double* pIdxCol = pArg[1]->getAs<Double>()->get();
-        int iColSize    = pArg[1]->getAs<Double>()->getSize();
 
         for (int i = 0 ; i < iSeqCount ; i++)
         {
@@ -2508,7 +2493,7 @@ SparseBool* SparseBool::insert(typed_list* _pArgs, InternalType* _pSource)
     finalize();
 
     //free pArg content
-    for (int iArg = 0 ; iArg < pArg.size() ; iArg++)
+    for (int iArg = 0 ; iArg < (int)pArg.size() ; iArg++)
     {
         if (pArg[iArg] != (*_pArgs)[iArg] && pArg[iArg]->isDeletable())
         {
@@ -2533,10 +2518,6 @@ SparseBool* SparseBool::remove(typed_list* _pArgs)
 
     int piMaxDim[2];
     int piCountDim[2];
-
-    //on case of resize
-    int iNewRows    = 0;
-    int iNewCols    = 0;
 
     //evaluate each argument and replace by appropriate value and compute the count of combinations
     int iSeqCount = checkIndexesArguments(this, _pArgs, &pArg, piMaxDim, piCountDim);
@@ -2736,7 +2717,7 @@ SparseBool* SparseBool::remove(typed_list* _pArgs)
     delete[] piViewDims;
 
     //free pArg content
-    for (int iArg = 0 ; iArg < pArg.size() ; iArg++)
+    for (int iArg = 0 ; iArg < (int)pArg.size() ; iArg++)
     {
         if (pArg[iArg] != (*_pArgs)[iArg] && pArg[iArg]->isDeletable())
         {
@@ -2859,7 +2840,7 @@ InternalType* SparseBool::insertNew(typed_list* _pArgs, InternalType* _pSource)
     }
 
     //free pArg content
-    for (int iArg = 0 ; iArg < pArg.size() ; iArg++)
+    for (int iArg = 0 ; iArg < (int)pArg.size() ; iArg++)
     {
         if (pArg[iArg] != (*_pArgs)[iArg] && pArg[iArg]->isDeletable())
         {
@@ -3006,7 +2987,7 @@ InternalType* SparseBool::extract(typed_list* _pArgs)
     finalize();
 
     //free pArg content
-    for (int iArg = 0 ; iArg < pArg.size() ; iArg++)
+    for (int iArg = 0 ; iArg < (int)pArg.size() ; iArg++)
     {
         if (pArg[iArg] != (*_pArgs)[iArg] && pArg[iArg]->isDeletable())
         {

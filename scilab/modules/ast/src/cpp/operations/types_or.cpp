@@ -355,7 +355,7 @@ int BoolLogicalOrBool(Bool* _pL, Bool*  _pR, Bool** _pOut)
 int SparseBoolOrSparseBool(InternalType* _pL, Bool** _pOut)
 {
     SparseBool* pL = _pL->getAs<SparseBool>();
-    if (pL->nbTrue() == pL->getSize())
+    if (pL->nbTrue() == (size_t)pL->getSize())
     {
         *_pOut = new Bool(1);
         return 0;

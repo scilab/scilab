@@ -1136,7 +1136,7 @@ InternalType* add_M_SC(T *_pL, U *_pR)
 }
 
 template<class T, class U, class O>
-InternalType* add_M_E(T *_pL, U *_pR)
+InternalType* add_M_E(T *_pL, U * /*_pR*/)
 {
     return _pL;
 }
@@ -1193,7 +1193,7 @@ InternalType* add_MC_SC(T *_pL, U *_pR)
 }
 
 template<class T, class U, class O>
-InternalType* add_MC_E(T *_pL, U *_pR)
+InternalType* add_MC_E(T *_pL, U * /*_pR*/)
 {
     O* pOut = new O(_pL->getDims(), _pL->getDimsArray(), true);
     add(_pL->get(), _pL->getImg(), (size_t)_pL->getSize(), pOut->get(), pOut->getImg());
@@ -1230,7 +1230,7 @@ InternalType* add_S_SC(T *_pL, U *_pR)
 }
 
 template<class T, class U, class O>
-InternalType* add_S_E(T *_pL, U *_pR)
+InternalType* add_S_E(T *_pL, U * /*_pR*/)
 {
     O* pOut = new O(0);
     add(_pL->get(0), pOut->get());
@@ -1265,7 +1265,7 @@ InternalType* add_SC_SC(T *_pL, U *_pR)
 }
 
 template<class T, class U, class O>
-InternalType* add_SC_E(T *_pL, U *_pR)
+InternalType* add_SC_E(T *_pL, U * /*_pR*/)
 {
     O* pOut = new O(0.0, 0.0);
     add(_pL->get(0), _pL->getImg(0), pOut->get(), pOut->getImg());
@@ -1298,7 +1298,7 @@ InternalType* add_E_SC(T *_pL, U *_pR)
 }
 
 template<class T, class U, class O>
-InternalType* add_E_E(T *_pL, U *_pR)
+InternalType* add_E_E(T * /*_pL*/, U * /*_pR*/)
 {
     Double* pOut = Double::Empty();
     add();
@@ -1520,25 +1520,25 @@ template<class T, class U, class O> InternalType* add_IC_IC(T *_pL, U *_pR)
     return pOut;
 }
 
-template<class T, class U, class O> types::InternalType* add_I_E(T *_pL, U *_pR)
+template<class T, class U, class O> types::InternalType* add_I_E(T *_pL, U * /*_pR*/)
 {
     O* pOut = (O*)_pL->clone();
     return pOut;
 }
 
-template<class T, class U, class O> types::InternalType* add_IC_E(T *_pL, U *_pR)
+template<class T, class U, class O> types::InternalType* add_IC_E(T *_pL, U * /*_pR*/)
 {
     O* pOut = (O*)_pL->clone();
     return pOut;
 }
 
-template<class T, class U, class O> types::InternalType* add_E_I(T *_pL, U *_pR)
+template<class T, class U, class O> types::InternalType* add_E_I(T * /*_pL*/, U *_pR)
 {
     O* pOut = (O*)_pR->clone();
     return pOut;
 }
 
-template<class T, class U, class O> types::InternalType* add_E_IC(T *_pL, U *_pR)
+template<class T, class U, class O> types::InternalType* add_E_IC(T * /*_pL*/, U *_pR)
 {
     O* pOut = (O*)_pR->clone();
     return pOut;
@@ -1659,25 +1659,25 @@ InternalType* add_S_S<String, String, String>(String* _pL, String* _pR)
 }
 
 template<>
-InternalType* add_M_E<String, Double, String>(String* _pL, Double* _pR)
+InternalType* add_M_E<String, Double, String>(String* _pL, Double* /*_pR*/)
 {
     return _pL;
 }
 
 template<>
-InternalType* add_S_E<String, Double, String>(String* _pL, Double* _pR)
+InternalType* add_S_E<String, Double, String>(String* _pL, Double* /*_pR*/)
 {
     return _pL;
 }
 
 template<>
-InternalType* add_E_M<Double, String, String>(Double* _pL, String* _pR)
+InternalType* add_E_M<Double, String, String>(Double* /*_pL*/, String* _pR)
 {
     return _pR;
 }
 
 template<>
-InternalType* add_E_S<Double, String, String>(Double* _pL, String* _pR)
+InternalType* add_E_S<Double, String, String>(Double* /*_pL*/, String* _pR)
 {
     return _pR;
 }
@@ -2131,7 +2131,6 @@ template<> InternalType* add_M_I<Polynom, Double, Polynom>(Polynom* _pL, Double*
 
     if (isComplex)
     {
-        int iSize = pOut->getSize();
         SinglePoly** pSP = pOut->get();
 
         double dblI = 0;
@@ -2153,7 +2152,6 @@ template<> InternalType* add_M_I<Polynom, Double, Polynom>(Polynom* _pL, Double*
     }
     else
     {
-        int iSize = pOut->getSize();
         SinglePoly** pSP = pOut->get();
         for (int i = 0 ; i < iLeadDims ; ++i)
         {

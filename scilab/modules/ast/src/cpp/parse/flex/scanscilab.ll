@@ -22,7 +22,6 @@ extern "C"
 #include "sci_malloc.h"
 }
 
-static int matrix_level = 0;
 static int comment_level = 0;
 static int last_token = 0;
 static int exit_status = PARSE_ERROR;
@@ -30,8 +29,6 @@ static std::string current_file;
 static std::string program_name;
 
 static std::string *pstBuffer;
-
-static bool rejected = false;
 
 #define YY_USER_ACTION                          \
  yylloc.last_column += yyleng;

@@ -143,11 +143,12 @@ public:
     }
 
 protected:
-    symbol::Symbol&    _name;
-    symbol::Variable*    _stack;
-    ArrayListVar*	_args;
-    ArrayListVar*	_returns;
-    Exp*		_body;
+    symbol::Symbol&     _name;
+    ArrayListVar*       _args;
+    ArrayListVar*       _returns;
+    Exp*                _body;
+    symbol::Variable*   _stack;
+
 };
 
 } // namespace ast

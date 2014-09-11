@@ -68,7 +68,7 @@ public :
     InternalType*                   insert(typed_list* _pArgs, InternalType* _pSource);
     std::vector<InternalType*>      extract(typed_list* _pArgs);
 
-    virtual bool invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_list & out, ast::ConstVisitor & execFunc, const ast::CallExp & e)
+    virtual bool invoke(typed_list & in, optional_list & /*opt*/, int /*_iRetCount*/, typed_list & out, ast::ConstVisitor & /*execFunc*/, const ast::CallExp & /*e*/)
     {
         if (in.size() == 0)
         {
@@ -76,19 +76,7 @@ public :
         }
         else
         {
-            // silent unused parameters warnings, all values are always extracted at a time.
-            (void) _iRetCount;
-            (void) e;
-            (void) execFunc;
-            (void) opt;
-
             std::vector<InternalType *> _out = extract(&in);
-            //if (_out.empty())
-            //{
-            //    std::wostringstream os;
-            //    os << _W("Invalid index.\n");
-            //    throw ast::ScilabError(os.str(), 999, (*e.args_get().begin())->location_get());
-            //}
             out.swap(_out);
         }
 

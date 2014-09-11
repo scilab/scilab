@@ -81,7 +81,7 @@ InternalType* createDoubleVector(int _iSize)
 
 bool checkArgValidity(typed_list& _Arg)
 {
-    for (int i = 0 ; i < _Arg.size() ; i++)
+    for (int i = 0 ; i < (int)_Arg.size() ; i++)
     {
         if ( _Arg[i]->isDouble() == false)
         {

@@ -332,6 +332,8 @@ bool createdirectory(const char *path)
 
 bool isDrive(const char *strname)
 {
+    // avoid warning -Werror=unused-parameter
+    (void)strname;
 #ifdef _MSC_VER
     if (strname)
     {

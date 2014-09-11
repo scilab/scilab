@@ -73,17 +73,14 @@ private :
 
     types::typed_list*      m_pArgs;
     int*                    m_piArgsDimsArray;
-    int                     m_iArgsDims;
-
     ast::SimpleVar*         m_pExp;
     ExpHistory*             m_pParent;
     types::InternalType*    m_pITCurrent;
-
     bool                    m_bReinsertMe;
+    bool                    m_bCellExp;
+    int                     m_iArgsDims;
     int                     m_iWhere;
     int                     m_iLevel;
-
-    bool                    m_bCellExp;
     bool                    m_pArgsOwner;
     bool                    m_pExpOwner;
 };

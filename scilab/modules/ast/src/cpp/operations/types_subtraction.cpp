@@ -893,7 +893,7 @@ InternalType* sub_M_SC(T *_pL, U *_pR)
 }
 
 template<class T, class U, class O>
-InternalType* sub_M_E(T *_pL, U *_pR)
+InternalType* sub_M_E(T *_pL, U * /*_pR*/)
 {
     return _pL;
 }
@@ -972,7 +972,7 @@ InternalType* sub_MC_SC(T *_pL, U *_pR)
 }
 
 template<class T, class U, class O>
-InternalType* sub_MC_E(T *_pL, U *_pR)
+InternalType* sub_MC_E(T *_pL, U * /*_pR*/)
 {
     return _pL;
 }
@@ -1011,7 +1011,7 @@ InternalType* sub_S_SC(T *_pL, U *_pR)
 }
 
 template<class T, class U, class O>
-InternalType* sub_S_E(T *_pL, U *_pR)
+InternalType* sub_S_E(T *_pL, U * /*_pR*/)
 {
     O* pOut = new O(0);
     sub(_pL->get(0), pOut->get());
@@ -1052,7 +1052,7 @@ InternalType* sub_SC_SC(T *_pL, U *_pR)
 }
 
 template<class T, class U, class O>
-InternalType* sub_SC_E(T *_pL, U *_pR)
+InternalType* sub_SC_E(T *_pL, U * /*_pR*/)
 {
     O* pOut = new O(0.0, 0.0);
     sub(_pL->get(0), _pL->getImg(0), (size_t)1, pOut->get(), pOut->getImg());
@@ -1061,19 +1061,19 @@ InternalType* sub_SC_E(T *_pL, U *_pR)
 
 
 template<class T, class U, class O>
-InternalType* sub_E_M(T *_pL, U *_pR)
+InternalType* sub_E_M(T * /*_pL*/, U *_pR)
 {
     return opposite_M<U, O>(_pR);
 }
 
 template<class T, class U, class O>
-InternalType* sub_E_MC(T *_pL, U *_pR)
+InternalType* sub_E_MC(T * /*_pL*/, U *_pR)
 {
     return opposite_MC<U, O>(_pR);
 }
 
 template<class T, class U, class O>
-InternalType* sub_E_E(T *_pL, U *_pR)
+InternalType* sub_E_E(T * /*_pL*/, U * /*_pR*/)
 {
     Double* pOut = Double::Empty();
     sub();
@@ -1440,22 +1440,22 @@ template<class T, class U, class O> InternalType* sub_IC_IC(T *_pL, U *_pR)
     return pOut;
 }
 
-template<class T, class U, class O> types::InternalType* sub_I_E(T *_pL, U *_pR)
+template<class T, class U, class O> types::InternalType* sub_I_E(T *_pL, U * /*_pR*/)
 {
     return (O*)_pL;
 }
 
-template<class T, class U, class O> types::InternalType* sub_IC_E(T *_pL, U *_pR)
+template<class T, class U, class O> types::InternalType* sub_IC_E(T *_pL, U * /*_pR*/)
 {
     return (O*)_pL;
 }
 
-template<class T, class U, class O> types::InternalType* sub_E_I(T *_pL, U *_pR)
+template<class T, class U, class O> types::InternalType* sub_E_I(T * /*_pL*/, U *_pR)
 {
     return opposite_I<U, O>(_pR);
 }
 
-template<class T, class U, class O> types::InternalType* sub_E_IC(T *_pL, U *_pR)
+template<class T, class U, class O> types::InternalType* sub_E_IC(T * /*_pL*/, U *_pR)
 {
     return opposite_IC<U, O>(_pR);
 }
@@ -1955,7 +1955,6 @@ template<> InternalType* sub_I_M<Double, Polynom, Polynom>(Double* _pL, Polynom*
 
     int iDims = _pR->getDims();
     int* piDims = _pR->getDimsArray();
-    int iSize = _pR->getSize();
     int iLeadDims = piDims[0];
     int* piIndex = new int[iDims];
     SinglePoly** pSP = _pR->get();
@@ -1995,7 +1994,6 @@ template<> InternalType* sub_I_MC<Double, Polynom, Polynom>(Double* _pL, Polynom
 
     int iDims = _pR->getDims();
     int* piDims = _pR->getDimsArray();
-    int iSize = _pR->getSize();
     int iLeadDims = piDims[0];
     int* piIndex = new int[iDims];
     SinglePoly** pSP = _pR->get();
@@ -2036,7 +2034,6 @@ template<> InternalType* sub_IC_M<Double, Polynom, Polynom>(Double* _pL, Polynom
 
     int iDims = _pR->getDims();
     int* piDims = _pR->getDimsArray();
-    int iSize = _pR->getSize();
     int iLeadDims = piDims[0];
     int* piIndex = new int[iDims];
     SinglePoly** pSP = _pR->get();
@@ -2076,7 +2073,6 @@ template<> InternalType* sub_IC_MC<Double, Polynom, Polynom>(Double* _pL, Polyno
 
     int iDims = _pR->getDims();
     int* piDims = _pR->getDimsArray();
-    int iSize = _pR->getSize();
     int iLeadDims = piDims[0];
     int* piIndex = new int[iDims];
     SinglePoly** pSP = _pR->get();

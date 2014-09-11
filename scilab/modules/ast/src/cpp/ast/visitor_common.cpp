@@ -89,25 +89,20 @@ types::InternalType* allocDest(types::InternalType* _poSource, int _iRows, int _
 
 types::InternalType* AddElementToVariableFromCol(types::InternalType* _poDest, types::InternalType* _poSource, int _iRows, int _iCols, int *_piCols)
 {
-    types::InternalType *poResult                = NULL;
-    types::InternalType::ScilabType TypeSource    = _poSource->getType();
-    types::InternalType::ScilabType TypeDest        = types::InternalType::ScilabInternal;
-    int iCurRow                                 = _iRows;
-    int iCurCol                                 = _iCols;
-
+    types::InternalType *poResult               = NULL;
+    types::InternalType::ScilabType TypeSource  = _poSource->getType();
+    types::InternalType::ScilabType TypeDest    = types::InternalType::ScilabInternal;
 
     if (_poDest == NULL)
     {
         //First call, alloc _poSource
-        poResult    = allocDest(_poSource, _iRows, _iCols);
-        TypeDest    = TypeSource;
-        iCurCol        = 0;
-        iCurRow        = 0;
+        poResult = allocDest(_poSource, _iRows, _iCols);
+        TypeDest = TypeSource;
     }
     else
     {
-        TypeDest    = _poDest->getType();
-        poResult    = _poDest;
+        TypeDest = _poDest->getType();
+        poResult = _poDest;
     }
 
     if (TypeDest != TypeSource)
@@ -138,24 +133,20 @@ types::InternalType* AddElementToVariableFromCol(types::InternalType* _poDest, t
 
 types::InternalType* AddElementToVariableFromRow(types::InternalType* _poDest, types::InternalType* _poSource, int _iRows, int _iCols, int *_piRows)
 {
-    types::InternalType *poResult                = NULL;
-    types::InternalType::ScilabType TypeSource    = _poSource->getType();
-    types::InternalType::ScilabType TypeDest        = types::InternalType::ScilabInternal;
-    int iCurRow                                 = _iRows;
-    int iCurCol                                 = _iCols;
+    types::InternalType *poResult               = NULL;
+    types::InternalType::ScilabType TypeSource  = _poSource->getType();
+    types::InternalType::ScilabType TypeDest    = types::InternalType::ScilabInternal;
 
     if (_poDest == NULL)
     {
         //First call, alloc _poSource
-        poResult    = allocDest(_poSource, _iRows, _iCols);
-        iCurCol        = 0;
-        iCurRow        = 0;
-        TypeDest    = TypeSource;
+        poResult = allocDest(_poSource, _iRows, _iCols);
+        TypeDest = TypeSource;
     }
     else
     {
-        TypeDest    = _poDest->getType();
-        poResult    = _poDest;
+        TypeDest = _poDest->getType();
+        poResult = _poDest;
     }
 
 
@@ -590,7 +581,7 @@ types::InternalType* callOverload(const ast::Exp& e, std::wstring _strType, type
     std::wstring function_name;
     function_name = L"%" + _source->getShortTypeStr() + L"_" + _strType;
 
-    for (int i = 0; i < _pArgs->size(); i++)
+    for (int i = 0; i < (int)_pArgs->size(); i++)
     {
         (*_pArgs)[i]->IncreaseRef();
         in.push_back((*_pArgs)[i]);
@@ -627,7 +618,7 @@ types::InternalType* callOverload(const ast::Exp& e, std::wstring _strType, type
         }
     }
 
-    for (int i = 0; i < _pArgs->size(); i++)
+    for (int i = 0; i < (int)_pArgs->size(); i++)
     {
         (*_pArgs)[i]->DecreaseRef();
     }
@@ -645,7 +636,7 @@ types::InternalType* callOverload(const ast::Exp& e, std::wstring _strType, type
     else if (out.size() > 1)
     {
         List* pListOut = new List();
-        for (int i = 0; i < out.size(); i++)
+        for (int i = 0; i < (int)out.size(); i++)
         {
             pListOut->append(out[i]);
         }
@@ -810,7 +801,6 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
         {
             Struct* pStruct = pITCurrent->getAs<Struct>();
             std::wstring pwcsFieldname = (*iterFields)->getExpAsString();
-            int iSizeStuct = pStruct->getSize();
 
             if (pEH->needResize())
             {

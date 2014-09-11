@@ -52,7 +52,7 @@ bool Library::toString(std::wostringstream& ostr)
 
     ostr << output << std::endl;
 
-    int iLineLen = ConfigVariable::getConsoleWidth();
+    size_t iLineLen = (size_t)ConfigVariable::getConsoleWidth();
 
     size_t iCurrentLen = 0;
     MacroMap::iterator it = m_macros.begin();

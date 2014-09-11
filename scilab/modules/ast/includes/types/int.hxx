@@ -162,7 +162,7 @@ protected :
     inline InternalType::ScilabId   getId(void);
 
 private :
-    virtual bool subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims)
+    virtual bool subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_iDims*/)
     {
         int iCurrentLine = 0;
         int iLineLen = ConfigVariable::getConsoleWidth();
@@ -346,7 +346,6 @@ private :
 
                         for (int iCols2 = iLastCol ; iCols2 < iCols1 ; iCols2++)
                         {
-                            int iWidth  = 0;
                             _piDims[0]  = iRows2;
                             _piDims[1]  = iCols2;
                             int iPos    = ArrayOf<T>::getIndex(_piDims);
@@ -400,7 +399,6 @@ private :
 
                 for (int iCols2 = iLastCol ; iCols2 < GenericType::getCols() ; iCols2++)
                 {
-                    int iWidth  = 0;
                     _piDims[0]  = iRows2;
                     _piDims[1]  = iCols2;
                     int iPos    = ArrayOf<T>::getIndex(_piDims);
@@ -574,6 +572,88 @@ template<> inline InternalType::ScilabId Int<unsigned long long>::getId()
 {
     return isScalar() ? IdScalarUInt64 : IdUInt64;
 }
+
+// Specializations
+template<> inline std::wstring Int<char>::getTypeStr()
+{
+    return L"int8";
+}
+
+template<> inline std::wstring Int<short>::getTypeStr()
+{
+    return L"int16";
+}
+
+template<> inline std::wstring Int<int>::getTypeStr()
+{
+    return L"int32";
+}
+
+template<> inline std::wstring Int<long long>::getTypeStr()
+{
+    return L"int64";
+}
+
+template<> inline std::wstring Int<unsigned char>::getTypeStr()
+{
+    return L"uint8";
+}
+
+template<> inline std::wstring Int<unsigned short>::getTypeStr()
+{
+    return L"uint16";
+}
+
+template<> inline std::wstring Int<unsigned int>::getTypeStr()
+{
+    return L"uint32";
+}
+
+template<> inline std::wstring Int<unsigned long long>::getTypeStr()
+{
+    return L"uint64";
+}
+
+template<> inline void Int<char>::whoAmI()
+{
+    std::cout << "types::Int8";
+}
+
+template<> inline void Int<short>::whoAmI()
+{
+    std::cout << "types::Int16";
+}
+
+template<> inline void Int<int>::whoAmI()
+{
+    std::cout << "types::Int32";
+}
+
+template<> inline void Int<long long>::whoAmI()
+{
+    std::cout << "types::Int64";
+}
+
+template<> inline void Int<unsigned char>::whoAmI()
+{
+    std::cout << "types::UInt8";
+}
+
+template<> inline void Int<unsigned short>::whoAmI()
+{
+    std::cout << "types::UInt16";
+}
+
+template<> inline void Int<unsigned int>::whoAmI()
+{
+    std::cout << "types::UInt32";
+}
+
+template<> inline void Int<unsigned long long>::whoAmI()
+{
+    std::cout << "types::UInt64";
+}
+
 
 typedef Int<char> Int8;
 typedef Int<short> Int16;

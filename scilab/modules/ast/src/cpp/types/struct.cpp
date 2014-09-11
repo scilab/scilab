@@ -343,7 +343,7 @@ SingleStruct* Struct::getNullValue()
     return new SingleStruct();
 }
 
-Struct* Struct::createEmpty(int _iDims, int* _piDims, bool _bComplex)
+Struct* Struct::createEmpty(int _iDims, int* _piDims, bool /*_bComplex*/)
 {
     Struct* pStr = new Struct(_iDims, _piDims);
     pStr->setCloneInCopyValue(!m_bDisableCloneInCopyValue);
@@ -396,7 +396,7 @@ SingleStruct** Struct::allocData(int _iSize)
     return pData;
 }
 
-bool Struct::subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims)
+bool Struct::subMatrixToString(std::wostringstream& /*ostr*/, int* /*_piDims*/, int /*_iDims*/)
 {
     return true;
 }
@@ -516,7 +516,7 @@ std::vector<InternalType*> Struct::extractFields(std::vector<std::wstring> _wstF
 {
     std::vector<InternalType*> ResultList;
 
-    for (int i = 0 ; i < _wstFields.size() ; i++)
+    for (int i = 0 ; i < (int)_wstFields.size() ; i++)
     {
         ResultList.push_back(extractField(_wstFields[i]));
     }
@@ -611,7 +611,7 @@ std::vector<InternalType*> Struct::extractFields(typed_list* _pArgs)
         {
             break;
         }
-        else if (iIndex > get(0)->getData().size() + 2)
+        else if (iIndex > (int)get(0)->getData().size() + 2)
         {
             break;
         }
@@ -642,7 +642,7 @@ std::vector<InternalType*> Struct::extractFields(typed_list* _pArgs)
     }
 
     //free pArg content
-    for (int iArg = 0 ; iArg < pArg.size() ; iArg++)
+    for (int iArg = 0 ; iArg < (int)pArg.size() ; iArg++)
     {
         if (pArg[iArg] != (*_pArgs)[iArg] && pArg[iArg]->isDeletable())
         {

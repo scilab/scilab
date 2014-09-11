@@ -61,7 +61,7 @@ int File::getFileModeAsInt()
     int iPlus  = 0;
     int iBin   = 0;
 
-    for (int i = 0 ; i < wcslen(m_pstMode.c_str()) ; i++)
+    for (int i = 0 ; i < (int)wcslen(m_pstMode.c_str()) ; i++)
     {
         if (m_pstMode[i] == L'r')
         {

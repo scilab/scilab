@@ -876,19 +876,19 @@ InternalType* dotmul_M_SC(T *_pL, U *_pR)
 }
 
 template<class T, class U, class O>
-InternalType* dotmul_M_I(T *_pL, U *_pR)
+InternalType* dotmul_M_I(T * /*_pL*/, U * /*_pR*/)
 {
     return NULL;
 }
 
 template<class T, class U, class O>
-InternalType* dotmul_M_IC(T *_pL, U *_pR)
+InternalType* dotmul_M_IC(T * /*_pL*/, U * /*_pR*/)
 {
     return NULL;
 }
 
 template<class T, class U, class O>
-InternalType* dotmul_M_E(T *_pL, U *_pR)
+InternalType* dotmul_M_E(T * /*_pL*/, U *_pR)
 {
     return _pR;
 }
@@ -971,13 +971,13 @@ InternalType* dotmul_MC_SC(T *_pL, U *_pR)
 }
 
 template<class T, class U, class O>
-InternalType* dotmul_MC_I(T *_pL, U *_pR)
+InternalType* dotmul_MC_I(T * /*_pL*/, U * /*_pR*/)
 {
     return NULL;
 }
 
 template<class T, class U, class O>
-InternalType* dotmul_MC_IC(T *_pL, U *_pR)
+InternalType* dotmul_MC_IC(T * /*_pL*/, U * /*_pR*/)
 {
     return NULL;
 }
@@ -1073,13 +1073,13 @@ InternalType* dotmul_SC_IC(T *_pL, U *_pR)
 
 //Identity .* x
 template<class T, class U, class O>
-InternalType* dotmul_I_M(T *_pL, U *_pR)
+InternalType* dotmul_I_M(T * /*_pL*/, U * /*_pR*/)
 {
     return NULL;
 }
 
 template<class T, class U, class O>
-InternalType* dotmul_I_MC(T *_pL, U *_pR)
+InternalType* dotmul_I_MC(T * /*_pL*/, U * /*_pR*/)
 {
     return NULL;
 }
@@ -1114,13 +1114,13 @@ InternalType* dotmul_I_IC(T *_pL, U *_pR)
 
 //Identity complex .* x
 template<class T, class U, class O>
-InternalType* dotmul_IC_M(T *_pL, U *_pR)
+InternalType* dotmul_IC_M(T * /*_pL*/, U * /*_pR*/)
 {
     return NULL;
 }
 
 template<class T, class U, class O>
-InternalType* dotmul_IC_MC(T *_pL, U *_pR)
+InternalType* dotmul_IC_MC(T * /*_pL*/, U * /*_pR*/)
 {
     return NULL;
 }
@@ -1155,7 +1155,7 @@ InternalType* dotmul_IC_IC(T *_pL, U *_pR)
 
 //Empty .* x
 template<class T, class U, class O>
-InternalType* dotmul_E_M(T *_pL, U *_pR)
+InternalType* dotmul_E_M(T *_pL, U * /*_pR*/)
 {
     return _pL;
 }
@@ -1211,14 +1211,14 @@ InternalType* dotmul_M_M<Sparse, Sparse, Sparse>(Sparse* _pL, Sparse* _pR)
 
 //[] .* SP
 template<>
-InternalType* dotmul_M_M<Double, Sparse, Double>(Double* _pL, Sparse* _pR)
+InternalType* dotmul_M_M<Double, Sparse, Double>(Double* _pL, Sparse* /*_pR*/)
 {
     return _pL;
 }
 
 //SP .* []
 template<>
-InternalType* dotmul_M_M<Sparse, Double, Double>(Sparse* _pL, Double* _pR)
+InternalType* dotmul_M_M<Sparse, Double, Double>(Sparse* /*_pL*/, Double* _pR)
 {
     return _pR;
 }
@@ -1230,7 +1230,6 @@ InternalType* dotmul_M_M<Double, Sparse, Sparse>(Double* _pL, Sparse* _pR)
     if (_pL->isScalar())
     {
         //d * SP -> SP
-        Sparse* pOut = NULL;
         if (_pL->isComplex())
         {
             std::complex<double> dbl(_pL->get(0), _pL->getImg(0));
@@ -1382,7 +1381,7 @@ InternalType* dotmul_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polynom* _pR)
 
         for (int i = 0 ; i < iSize ; ++i)
         {
-            pSPOut[i] = *pSPL * *pSPR[i];
+            pSPOut[i] = *pSPL **pSPR[i];
         }
 
         return pOut;
@@ -1398,7 +1397,7 @@ InternalType* dotmul_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polynom* _pR)
 
         for (int i = 0 ; i < iSize ; ++i)
         {
-            pSPOut[i] = *pSPL[i] * *pSPR;
+            pSPOut[i] = *pSPL[i] **pSPR;
         }
 
         return pOut;
@@ -1426,7 +1425,7 @@ InternalType* dotmul_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polynom* _pR)
 
     for (int i = 0 ; i < iSize ; ++i)
     {
-        pSPOut[i] = *pSPL[i] * *pSPR[i];
+        pSPOut[i] = *pSPL[i] **pSPR[i];
     }
 
     return pOut;

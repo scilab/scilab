@@ -125,7 +125,7 @@ struct EXTERN_AST Sparse : GenericType
     **/
     bool zero_set();
 
-    Sparse* getColumnValues(int _iPos)
+    Sparse* getColumnValues(int /*_iPos*/)
     {
         return NULL;
     }
@@ -199,7 +199,7 @@ struct EXTERN_AST Sparse : GenericType
      */
     InternalType* extract(typed_list* _pArgs);
 
-    virtual bool invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_list & out, ast::ConstVisitor & execFunc, const ast::CallExp & e)
+    virtual bool invoke(typed_list & in, optional_list & /*opt*/, int /*_iRetCount*/, typed_list & out, ast::ConstVisitor & /*execFunc*/, const ast::CallExp & e)
     {
         if (in.size() == 0)
         {
@@ -588,7 +588,7 @@ struct EXTERN_AST SparseBool : GenericType
     SparseBool* extract(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, int* _piDimSize, bool _bAsVector) SPARSE_CONST;
     InternalType* extract(typed_list* _pArgs);
 
-    virtual bool invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_list & out, ast::ConstVisitor & execFunc, const ast::CallExp & e)
+    virtual bool invoke(typed_list & in, optional_list &/*opt*/, int /*_iRetCount*/, typed_list & out, ast::ConstVisitor & /*execFunc*/, const ast::CallExp & e)
     {
         if (in.size() == 0)
         {
@@ -629,7 +629,7 @@ struct EXTERN_AST SparseBool : GenericType
         return 1;
     }
 
-    SparseBool* getColumnValues(int _iPos)
+    SparseBool* getColumnValues(int /*_iPos*/)
     {
         return NULL;
     }

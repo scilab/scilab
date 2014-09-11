@@ -58,13 +58,10 @@ bool MacroFile::toString(std::wostringstream& ostr)
 
 Callable::ReturnValue MacroFile::call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc)
 {
-    ReturnValue RetVal = Callable::OK;
-
     parse();
     if (m_pMacro)
     {
-        ReturnValue Val =  m_pMacro->call(in, opt, _iRetCount, out, execFunc);
-        return Val;
+        return m_pMacro->call(in, opt, _iRetCount, out, execFunc);
     }
     else
     {

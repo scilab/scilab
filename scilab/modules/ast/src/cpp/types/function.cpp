@@ -97,7 +97,7 @@ Function::~Function()
 }
 
 
-Function::ReturnValue Function::call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc)
+Function::ReturnValue Function::call(typed_list &in, optional_list &/*opt*/, int _iRetCount, typed_list &out, ast::ConstVisitor* /*execFunc*/)
 {
     if (m_pLoadDeps != NULL)
     {
@@ -146,7 +146,7 @@ InternalType* OptFunction::clone()
     return new OptFunction(this);
 }
 
-Function::ReturnValue OptFunction::call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc)
+Function::ReturnValue OptFunction::call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out, ast::ConstVisitor* /*execFunc*/)
 {
     if (m_pLoadDeps != NULL)
     {
@@ -184,7 +184,6 @@ Function::ReturnValue WrapFunction::call(typed_list &in, optional_list &opt, int
     }
 
     ReturnValue retVal = Callable::OK;
-    int iRet ;
     GatewayStruct gStr;
     _iRetCount = std::max(1, _iRetCount);
     gStr.m_iIn = (int)in.size() + (int)opt.size();
@@ -195,14 +194,14 @@ Function::ReturnValue WrapFunction::call(typed_list &in, optional_list &opt, int
 
     if (checkReferenceModule(m_wstModule.c_str()) == false)
     {
-        for (int i = 0 ; i < in.size() ; i++)
+        for (int i = 0 ; i < (int)in.size() ; i++)
         {
             inCopy.push_back(in[i]->clone());
         }
     }
     else
     {
-        for (int i = 0 ; i < in.size() ; i++)
+        for (int i = 0 ; i < (int)in.size() ; i++)
         {
             inCopy.push_back(in[i]);
         }
@@ -222,7 +221,7 @@ Function::ReturnValue WrapFunction::call(typed_list &in, optional_list &opt, int
     char* pFunctionName = wide_string_to_UTF8(m_wstName.c_str());
 
     //call gateway
-    iRet = m_pOldFunc(pFunctionName, reinterpret_cast<int*>(&gStr));
+    m_pOldFunc(pFunctionName, reinterpret_cast<int*>(&gStr));
     FREE(pFunctionName);
     if (ConfigVariable::isError())
     {
@@ -231,7 +230,7 @@ Function::ReturnValue WrapFunction::call(typed_list &in, optional_list &opt, int
     }
     else
     {
-        for (std::size_t i(0); i != _iRetCount && outOrder[i] != -1 && outOrder[i] != 0 ; ++i)
+        for (std::size_t i(0); i != (size_t)_iRetCount && outOrder[i] != -1 && outOrder[i] != 0 ; ++i)
         {
             if (outOrder[i] - 1 < gStr.m_iIn)
             {
@@ -279,7 +278,7 @@ Function::ReturnValue WrapFunction::call(typed_list &in, optional_list &opt, int
     }
 
     //protect outputs
-    for (int i = 0 ; i < out.size() ; i++)
+    for (int i = 0 ; i < (int)out.size() ; i++)
     {
         out[i]->IncreaseRef();
     }
@@ -287,7 +286,7 @@ Function::ReturnValue WrapFunction::call(typed_list &in, optional_list &opt, int
     //clean input copy
     if (checkReferenceModule(m_wstModule.c_str()) == false)
     {
-        for (int i = 0 ; i < in.size() ; i++)
+        for (int i = 0 ; i < (int)in.size() ; i++)
         {
             if (inCopy[i]->isDeletable())
             {
@@ -296,7 +295,7 @@ Function::ReturnValue WrapFunction::call(typed_list &in, optional_list &opt, int
         }
     }
     //unprotect outputs
-    for (int i = 0 ; i < out.size() ; i++)
+    for (int i = 0 ; i < (int)out.size() ; i++)
     {
         out[i]->DecreaseRef();
     }
@@ -326,7 +325,7 @@ InternalType* WrapMexFunction::clone()
     return new WrapMexFunction(this);
 }
 
-Function::ReturnValue WrapMexFunction::call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc)
+Function::ReturnValue WrapMexFunction::call(typed_list &in, optional_list &/*opt*/, int _iRetCount, typed_list &out, ast::ConstVisitor* /*execFunc*/)
 {
     if (m_pLoadDeps != NULL)
     {
@@ -398,7 +397,6 @@ DynamicFunction::DynamicFunction(std::wstring _wstName, std::wstring _wstEntryPo
 
 Function::ReturnValue DynamicFunction::call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc)
 {
-    ReturnValue ret = OK;
     if (m_pFunction == NULL)
     {
         if (Init() != OK)
@@ -432,7 +430,6 @@ DynamicFunction::~DynamicFunction()
 
 Callable::ReturnValue DynamicFunction::Init()
 {
-    DynLibFuncPtr pFunc = 0;
     /*Load library*/
     if (m_wstLibName.empty())
     {

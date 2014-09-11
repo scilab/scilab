@@ -95,7 +95,7 @@ public :
         return false;
     }
 
-    virtual bool neg(InternalType *& out)
+    virtual bool neg(InternalType *& /*out*/)
     {
         return false;
     }

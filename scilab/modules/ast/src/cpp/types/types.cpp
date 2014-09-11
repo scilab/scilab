@@ -69,7 +69,6 @@ bool GenericType::hasAllIndexesOfRow(int _iRow, int* _piCoord, int _iCoordCount)
     bool bAll = true;
     for (int i = 0 ; i < getCols() ; i++)
     {
-        bool bFind = false;
         //+1 to keep 1 based index
         int iIdx = _iRow + i * getCols() + 1;
 
@@ -88,7 +87,6 @@ bool GenericType::hasAllIndexesOfCol(int _iCol, int* _piCoord, int _iCoordCount)
     bool bAll = true;
     for (int i = 0 ; i < getRows() ; i++)
     {
-        bool bFind = false;
         //+1 to keep 1 based index
         int iIdx = i + _iCol * getRows() + 1;
 

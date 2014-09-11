@@ -120,9 +120,10 @@ public:
 protected:
     /** \brief Name of the declared variable. */
     symbol::Symbol& _name;
-    symbol::Variable* _stack;
     /** \brief The initial value (expression) assigned to the variable. */
     Exp* _init;
+
+    symbol::Variable* _stack;
 };
 
 } // namespace ast
