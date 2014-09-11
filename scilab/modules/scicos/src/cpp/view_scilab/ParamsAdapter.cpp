@@ -129,8 +129,11 @@ struct tol
 
         std::vector<double> tol;
         controller.getObjectProperty(adaptee->id(), adaptee->kind(), PROPERTIES, tol);
-
+#ifdef _MSC_VER
+        std::copy(tol.begin() + 1, tol.end(), stdext::checked_array_iterator<double*>( data, 7 ));
+#else
         std::copy(tol.begin() + 1, tol.end(), data);
+#endif
 
         return o;
     }

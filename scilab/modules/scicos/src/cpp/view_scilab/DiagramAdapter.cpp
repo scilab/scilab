@@ -76,7 +76,7 @@ struct objs
 
         types::List* o = new types::List();
 
-        for (size_t i = 0; i < children.size(); ++i)
+        for (int i = 0; i < (int)children.size(); ++i)
         {
             model::BaseObject* item = Controller().getObject(children[i]);
             switch (item->kind())

@@ -46,9 +46,14 @@ struct xx
         controller.getObjectProperty(adaptee->id(), adaptee->kind(), CONTROL_POINTS, controlPoints);
 
         double* data;
-        types::Double* o = new types::Double((int)controlPoints.size() / 2, 1, &data);
+        int size = (int)controlPoints.size() / 2;
+        types::Double* o = new types::Double(size, 1, &data);
 
-        std::copy(controlPoints.begin(), controlPoints.begin() + controlPoints.size() / 2, data);
+#ifdef _MSC_VER
+        std::copy(controlPoints.begin(), controlPoints.begin() + size, stdext::checked_array_iterator<double*>(data, size));
+#else
+        std::copy(controlPoints.begin(), controlPoints.begin() + size, data);
+#endif
         return o;
     }
 
@@ -89,9 +94,14 @@ struct yy
         controller.getObjectProperty(adaptee->id(), adaptee->kind(), CONTROL_POINTS, controlPoints);
 
         double* data;
-        types::Double* o = new types::Double((int)controlPoints.size() / 2, 1, &data);
+        int size = (int)controlPoints.size() / 2;
+        types::Double* o = new types::Double(size, 1, &data);
 
-        std::copy(controlPoints.begin() + controlPoints.size() / 2, controlPoints.end(), data);
+#ifdef _MSC_VER
+        std::copy(controlPoints.begin(), controlPoints.begin() + size, stdext::checked_array_iterator<double*>(data, size));
+#else
+        std::copy(controlPoints.begin(), controlPoints.begin() + size, data);
+#endif
         return o;
     }
 

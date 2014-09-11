@@ -261,8 +261,11 @@ struct state
         double* data;
         types::Double* o = new types::Double((int)state.size(), 1, &data);
 
+#ifdef _MSC_VER
+        std::copy(state.begin(), state.end(), stdext::checked_array_iterator<double*>(data, state.size()));
+#else
         std::copy(state.begin(), state.end(), data);
-
+#endif
         return o;
     }
 
@@ -303,8 +306,11 @@ struct dstate
         double* data;
         types::Double* o = new types::Double((int)dstate.size(), 1, &data);
 
+#ifdef _MSC_VER
+        std::copy(dstate.begin(), dstate.end(), stdext::checked_array_iterator<double*>(data, dstate.size()));
+#else
         std::copy(dstate.begin(), dstate.end(), data);
-
+#endif
         return o;
     }
 
@@ -390,8 +396,11 @@ struct rpar
 
             double *data;
             types::Double* o = new types::Double((int)rpar.size(), 1, &data);
+#ifdef _MSC_VER
+            std::copy(rpar.begin(), rpar.end(), stdext::checked_array_iterator<double*>(data, rpar.size()));
+#else
             std::copy(rpar.begin(), rpar.end(), data);
-
+#endif
             return o;
         }
         else
@@ -457,8 +466,11 @@ struct ipar
         double *data;
         types::Double* o = new types::Double((int)ipar.size(), 1, &data);
 
+#ifdef _MSC_VER
+        std::transform(ipar.begin(), ipar.end(), stdext::checked_array_iterator<double*>(data, ipar.size()), toDouble);
+#else
         std::transform(ipar.begin(), ipar.end(), data, toDouble);
-
+#endif
         return o;
     }
 
