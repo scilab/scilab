@@ -64,11 +64,7 @@
 #define DEG2RAD(x) ((x) * PI_OVER_180  )
 #define RAD2DEG(x) ((x) * _180_OVER_PI )
 
-#ifdef round
-#undef round
-#endif
-
-#define		round(a)	(int)(((a)<0.0)?(a)-.5:(a)+.5)
+#define scilab_round(a)	(int)(((a)<0.0)?(a)-.5:(a)+.5)
 #define EPSILON 1.0e-13
 
 

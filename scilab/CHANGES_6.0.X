@@ -1,6 +1,10 @@
             Changes between version 5.4.X and 6.0.0 of Scilab
             =================================================
 
+Compilation
+===========
+
+ * Scilab requires conforming C++11 compilers
 
 File input/output
 ==================
