@@ -425,8 +425,8 @@ bool Macro::operator==(const InternalType& it)
     unsigned char* macroSerial = serialMacro.serialize(false);
 
     //check buffer length
-    unsigned int oldSize = ((unsigned int*)oldSerial)[0] + sizeof(unsigned int);
-    unsigned int macroSize = ((unsigned int*)macroSerial)[0] + sizeof(unsigned int);
+    unsigned int oldSize = *((unsigned int*)oldSerial);
+    unsigned int macroSize = *((unsigned int*)macroSerial);
     if (oldSize != macroSize)
     {
         free(oldSerial);
@@ -434,7 +434,7 @@ bool Macro::operator==(const InternalType& it)
         return false;
     }
 
-    bool ret = (memcmp(oldSerial, macroSerial, oldSize + sizeof(unsigned int)) == 0);
+    bool ret = (memcmp(oldSerial, macroSerial, oldSize) == 0);
 
     free(oldSerial);
     free(macroSerial);

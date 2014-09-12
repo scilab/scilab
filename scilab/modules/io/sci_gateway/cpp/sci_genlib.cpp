@@ -185,8 +185,8 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
             ast::SerializeVisitor* s = new ast::SerializeVisitor(parser.getTree());
 
             unsigned char* serialAst = s->serialize();
-            //buffer size is store size + lenght of size
-            unsigned int size = ((unsigned int*)serialAst)[0] + sizeof(unsigned int);
+            // Header is : buffer size (4 bytes) + scilab version (4 bytes)
+            unsigned int size = *((unsigned int*)serialAst);
 
             FILE* f = os_wfopen(stFullPathBin.c_str(), L"wb");
             fwrite(serialAst, 1, size, f);

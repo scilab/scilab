@@ -34,20 +34,40 @@ private :
 
     unsigned char* get_buf(void)
     {
-        need(1);
+        // set buffer size
         set_uint32(0, buflen);
-        //add scilab version
-        add_version();
+        // set scilab version
+        set_version();
         return buf;
     }
 
-    void add_version()
+    /** @{ Set the file header without modifying the file size. */
+
+    void set_version()
     {
         set_byte(4, (unsigned char)SCI_VERSION_MAJOR);
         set_byte(5, (unsigned char)SCI_VERSION_MINOR);
         set_byte(6, (unsigned char)SCI_VERSION_MAINTENANCE);
         set_byte(7, (unsigned char)0);
     }
+
+    void set_uint32(unsigned int pos, unsigned int n)
+    {
+        buf[pos++] = (n & 0xff);
+        n >>= 8;
+        buf[pos++] = (n & 0xff);
+        n >>= 8;
+        buf[pos++] = (n & 0xff);
+        n >>= 8;
+        buf[pos++] = (n & 0xff);
+    }
+
+    void set_byte(unsigned int pos, unsigned char n)
+    {
+        buf[pos] = n;
+    }
+
+    /** @} */
 
     void add_location(const Location& loc)
     {
@@ -77,6 +97,8 @@ private :
         add_uint8(e.is_continuable());
     }
 
+    /** @{ Low-level append to the buffer functions */
+
     /* ensure that we have [size] bytes in the buffer */
     void need(int size)
     {
@@ -84,20 +106,25 @@ private :
         {
             bufsize = 2 * bufsize + size + FAGMENT_SIZE;
             unsigned char *newbuf = (unsigned char*) malloc(bufsize * sizeof(unsigned char));
+            // std::cerr << "malloc " << (void*) newbuf << " " << bufsize << " " << (void*) buf << " " << buflen << std::endl;
             if ( buflen > 0 )
             {
+                // std::cerr << "memcpy " << (void*) newbuf << " " << bufsize << " " << (void*) buf << " " << buflen << std::endl;
                 memcpy(newbuf, buf, buflen);
             }
             if ( buf != NULL)
             {
+                // std::cerr << "free " << (void*) newbuf << " " << bufsize << " " << (void*) buf << " " << buflen << std::endl;
                 free(buf);
             }
             else
             {
-                buflen = 8;    /* space for final size of buf ( 4 bytes ) + scilab version ( 4 bytes )*/
+                buflen = 8;    /* Header length. Header =  final size of buf ( 4 bytes ) + scilab version ( 4 bytes )*/
             }
             buf = newbuf;
         }
+
+        // std::cerr << "need " << size << " " << bufsize << " " << (void*) buf << " " << buflen << std::endl;
     }
 
     void add_byte(unsigned char n)
@@ -140,22 +167,6 @@ private :
         buflen += 8;
     }
 
-    void set_uint32(unsigned int pos, unsigned int n)
-    {
-        buf[pos++] = (n & 0xff);
-        n >>= 8;
-        buf[pos++] = (n & 0xff);
-        n >>= 8;
-        buf[pos++] = (n & 0xff);
-        n >>= 8;
-        buf[pos++] = (n & 0xff);
-    }
-
-    void set_byte(unsigned int pos, unsigned char n)
-    {
-        buf[pos] = n;
-    }
-
     void add_wstring(const std::wstring &w)
     {
         int size = (int)w.size();
@@ -167,6 +178,7 @@ private :
         buflen += final_size;
     }
 
+    /** @} */
 
     void add_exps(const std::list<Exp *> exps)
     {
