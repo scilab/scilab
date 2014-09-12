@@ -50,6 +50,7 @@ public:
     {
         return val;
     }
+
     inline llvm::Type * get_type() const
     {
         return type;

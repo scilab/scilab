@@ -97,7 +97,7 @@ public:
         nodeNumber = _nodeNumber;
     }
 
-    analysis::Decorator decorator_get() const
+    const analysis::Decorator & decorator_get() const
     {
         return decorator;
     }

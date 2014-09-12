@@ -168,6 +168,9 @@ JITVisitor::JITVisitor(const analysis::AnalysisVisitor & _analysis) : ast::Const
             }
         }
     }
+
+
+
 }
 
 void JITVisitor::run()
@@ -177,18 +180,24 @@ void JITVisitor::run()
     llvm::Value * llvmCtxt = getPointer(ctxt);
     llvm::Value * toCall_M = module.getOrInsertFunction("putInContext_M_D_ds", getLLVMFuncTy<void, char *, char *, double *, int , int>(context));
     llvm::Value * toCall_S = module.getOrInsertFunction("putInContext_S_D_d", getLLVMFuncTy<void, char *, char *, double>(context));
+    const analysis::AnalysisVisitor::MapSymInfo & info = analysis.get_infos();
 
     for (JITSymbolMap::const_iterator i = symMap3.begin(), end = symMap3.end(); i != end; ++i)
     {
-        symbol::Variable * var = ctxt->getOrCreate(i->first);
-        llvm::Value * llvmVar = getPointer(var);
-        if (i->second.get()->is_scalar())
+        analysis::AnalysisVisitor::MapSymInfo::const_iterator it = info.find(i->first);
+        if (it != info.end() && !it->second.is_just_read())
         {
-            builder.CreateCall3(toCall_S, llvmCtxt, llvmVar, i->second.get()->load(*this));
-        }
-        else
-        {
-            builder.CreateCall5(toCall_M, llvmCtxt, llvmVar, i->second.get()->load(*this), i->second.get()->loadR(*this), i->second.get()->loadC(*this));
+            std::wcout << L"push in context: " << i->first.name_get() << std::endl;
+            symbol::Variable * var = ctxt->getOrCreate(i->first);
+            llvm::Value * llvmVar = getPointer(var);
+            if (i->second.get()->is_scalar())
+            {
+                builder.CreateCall3(toCall_S, llvmCtxt, llvmVar, i->second.get()->load(*this));
+            }
+            else
+            {
+                builder.CreateCall5(toCall_M, llvmCtxt, llvmVar, i->second.get()->load(*this), i->second.get()->loadR(*this), i->second.get()->loadC(*this));
+            }
         }
     }
 
@@ -344,7 +353,6 @@ void JITVisitor::visit(const ast::OpExp &e)
     e.left_get().accept(*this);
     std::shared_ptr<JITVal> pITL = result_get();
 
-    /*getting what to assign*/
     e.right_get().accept(*this);
     std::shared_ptr<JITVal> & pITR = result_get();
 
@@ -354,7 +362,10 @@ void JITVisitor::visit(const ast::OpExp &e)
     {
         case ast::OpExp::plus:
         {
-            if (pITL.get()->is_scalar())
+            //const analysis::TIType & LT = e.left_get().decorator_get().res.get_type();
+            //const analysis::TIType & RT = e.right_get().decorator_get().res.get_type();
+
+            if (pITL.get()->is_scalar() && pITR.get()->is_scalar())
             {
                 result_set(add_D_D(pITL, pITR, *this));
             }
@@ -464,6 +475,7 @@ void JITVisitor::visit(const ast::ForExp &e)
         bool use_uint = false;
         bool inc = true;
         bool known_step = false;
+        bool it_read_in_loop = list_info.is_read_in_loop();
 
         if (list_info.is_constant())
         {
@@ -559,9 +571,12 @@ void JITVisitor::visit(const ast::ForExp &e)
 
         // TODO: the call to uitofp is not removed even if it use mainly useless...
         // a=1;b=1;jit("for i=1:21;c=a+b;a=b;b=c;end;")
-        JITSymbolMap::const_iterator i = symMap3.find(varName);
-        tmp = use_int ? (use_uint ? builder.CreateUIToFP(phi, getLLVMTy<double>(context)) : builder.CreateSIToFP(phi, getLLVMTy<double>(context))) : phi;
-        i->second.get()->store(tmp, *this);
+        if (it_read_in_loop)
+        {
+            JITSymbolMap::const_iterator i = symMap3.find(varName);
+            tmp = use_int ? (use_uint ? builder.CreateUIToFP(phi, getLLVMTy<double>(context)) : builder.CreateSIToFP(phi, getLLVMTy<double>(context))) : phi;
+            i->second.get()->store(tmp, *this);
+        }
 
         phi->addIncoming(start, cur_block);
 

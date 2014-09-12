@@ -71,6 +71,11 @@ struct SymInfo
         set(k2);
     }
 
+    inline bool is_just_read() const
+    {
+        return !write && !replace && read;
+    }
+
     friend std::wostream & operator<<(std::wostream & out, const SymInfo & si)
     {
         out << L"Symbol use { w: " << (si.write ? L'T' : L'F')

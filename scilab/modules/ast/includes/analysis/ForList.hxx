@@ -32,6 +32,7 @@ template<typename T>
 class ForList
 {
     bool constant;
+    bool read_in_loop;
     double min;
     double step;
     double max;
@@ -42,9 +43,9 @@ class ForList
 
 public:
 
-    ForList() : constant(false) { }
+    ForList() : constant(false), read_in_loop(false) { }
 
-    ForList(const double m, const double s, const double M) : constant(true), min(m), step(s), max(M)
+    ForList(const double m, const double s, const double M) : constant(true), read_in_loop(false), min(m), step(s), max(M)
     {
         if (!isempty())
         {
@@ -71,71 +72,83 @@ public:
         }
     }
 
-    bool is_constant() const
+    inline bool is_read_in_loop() const
+    {
+        return read_in_loop;
+    }
+
+    inline void set_read_in_loop(const bool read)
+    {
+        read_in_loop = read;
+    }
+
+    inline bool is_constant() const
     {
         return constant;
     }
 
-    bool is_int() const
+    inline bool is_int() const
     {
         return _int;
     }
 
-    bool is_uint() const
+    inline bool is_uint() const
     {
         return _unsigned;
     }
 
     template<typename U>
-    U get_min() const
+    inline U get_min() const
     {
         return std::is_integral<U>::value ? TRUNC(min) : min;
     }
 
     template<typename U>
-    U get_step() const
+    inline U get_step() const
     {
         return std::is_integral<U>::value ? TRUNC(step) : step;
     }
 
     template<typename U>
-    U get_max() const
+    inline U get_max() const
     {
         return std::is_integral<U>::value ? TRUNC(max) : max;
     }
 
-    TIType get_type() const
+    inline TIType get_type() const
     {
-        if (isempty())
-        {
-            return TIType(TIType::EMPTY);
-        }
+        /*
+            if (isempty())
+            {
+                return TIType(TIType::EMPTY);
+            }
 
-        if (is_int())
-        {
-            if (is_uint())
+            if (is_int())
             {
-                if (std::is_same<T, int32_t>::value)
+                if (is_uint())
                 {
-                    return TIType(TIType::UINT32);
+                    if (std::is_same<T, int32_t>::value)
+                    {
+                        return TIType(TIType::UINT32);
+                    }
+                    else
+                    {
+                        return TIType(TIType::UINT64);
+                    }
                 }
                 else
                 {
-                    return TIType(TIType::UINT64);
+                    if (std::is_same<T, int64_t>::value)
+                    {
+                        return TIType(TIType::INT32);
+                    }
+                    else
+                    {
+                        return TIType(TIType::INT64);
+                    }
                 }
             }
-            else
-            {
-                if (std::is_same<T, int64_t>::value)
-                {
-                    return TIType(TIType::INT32);
-                }
-                else
-                {
-                    return TIType(TIType::INT64);
-                }
-            }
-        }
+        */
 
         return TIType(TIType::DOUBLE);
     }

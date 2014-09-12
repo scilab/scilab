@@ -32,7 +32,7 @@ struct TIType
 
     inline bool isscalar() const
     {
-        return type != EMPTY && rows == 1 && cols == 1;
+        return rows == 1 && cols == 1;
     }
 
     inline bool isknown() const
@@ -43,6 +43,56 @@ struct TIType
     inline bool operator==(const TIType & r) const
     {
         return type == r.type && rows == r.rows && cols == r.cols;
+    }
+
+    inline std::string get_mangling() const
+    {
+        const bool sc = rows == 1 && cols == 1;
+        switch (type)
+        {
+            case EMPTY :
+                return "E";
+            case BOOLEAN :
+                return sc ? "S_b" : "M_b";
+            case COMPLEX :
+                return sc ? "S_c" : "M_c";
+            case DOUBLE :
+                return sc ? "S_d" : "M_d";
+            case INT16 :
+                return sc ? "S_i16" : "M_i16";
+            case INT32 :
+                return sc ? "S_i32" : "M_i32";
+            case INT64 :
+                return sc ? "S_i64" : "M_i64";
+            case INT8 :
+                return sc ? "S_i8" : "M_i8";
+            case POLYNOMIAL :
+                return sc ? "S_p" : "M_p";
+            case STRING :
+                return sc ? "S_s" : "M_s";
+            case SPARSE :
+                return sc ? "S_sp" : "M_sp";
+            case UINT16 :
+                return sc ? "S_ui16" : "M_ui16";
+            case UINT32 :
+                return sc ? "S_ui32" : "M_ui32";
+            case UINT64 :
+                return sc ? "S_ui64" : "M_ui64";
+            case UINT8 :
+                return sc ? "S_ui8" : "M_ui8";
+            default :
+                return "??";
+        }
+    }
+
+    inline static std::string get_unary_mangling(const std::string & pre, const TIType & l)
+    {
+        return pre + "_" + l.get_mangling();
+    }
+
+    inline static std::string get_binary_mangling(const std::string & pre, const TIType & l, const TIType & r)
+    {
+        return pre + "_" + l.get_mangling() + "_" + r.get_mangling();
     }
 
     friend std::wostream & operator<<(std::wostream & out, const TIType & type)

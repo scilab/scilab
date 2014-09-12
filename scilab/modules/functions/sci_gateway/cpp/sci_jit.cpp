@@ -33,12 +33,8 @@
 
 extern "C"
 {
-#include "sci_malloc.h"
-#include "os_wcsicmp.h"
 #include "Scierror.h"
-#include "sciprint.h"
 #include "localization.h"
-#include "os_swprintf.h"
 }
 
 using namespace std;
@@ -101,5 +97,5 @@ Function::ReturnValue sci_jit(types::typed_list &in, int _iRetCount, types::type
 
     delete pExp;
 
-    return Function::OK;
+    return Function::OK;//a=[1 2;3 4];b=[5 6; 7 8];jit("for i=1:21;c=a+b;a=b;b=c;end;"),a,b
 }

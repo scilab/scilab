@@ -14,9 +14,10 @@
 #define __ANALYSIS_VISITOR_HXX__
 
 #include <algorithm>
-#include <memory>
+#include <chrono>
 #include <limits>
 #include <map>
+#include <memory>
 
 #include "visitor.hxx"
 #include "allexp.hxx"
@@ -43,10 +44,14 @@ private:
     unsigned int scalars_tmp[TIType::COUNT][2];
     unsigned int arrays_tmp[TIType::COUNT][2];
 
+    std::chrono::steady_clock::time_point start;
+    std::chrono::steady_clock::time_point end;
+
 public:
 
     AnalysisVisitor()
     {
+        start_chrono();
         std::fill(&scalars_tmp[0][0], &scalars_tmp[0][0] + TIType::COUNT * 2, 0);
         std::fill(&arrays_tmp[0][0], &arrays_tmp[0][0] + TIType::COUNT * 2, 0);
     }
@@ -57,9 +62,12 @@ public:
     }
 
     // Only for debug use
-    inline void print_info() const
+    inline void print_info()
     {
-        std::wcout << L"Scalars:" << std::endl;
+        stop_chrono();
+        std::wcout << L"Analysis duration: " << get_duration() << L" s" << std::endl;
+
+        std::wcout << L"Temporary scalars:" << std::endl;
         for (unsigned int i = 0; i < TIType::COUNT; ++i)
         {
             if (scalars_tmp[i][0] || scalars_tmp[i][1])
@@ -70,7 +78,7 @@ public:
 
         std::wcout << std::endl;
 
-        std::wcout << L"Arrays:" << std::endl;
+        std::wcout << L"Temporary arrays:" << std::endl;
         for (unsigned int i = 0; i < TIType::COUNT; ++i)
         {
             if (arrays_tmp[i][0] || arrays_tmp[i][1])
@@ -87,6 +95,21 @@ public:
         }
 
         std::wcout << std::endl;
+    }
+
+    void start_chrono()
+    {
+        start = std::chrono::steady_clock::now();
+    }
+
+    void stop_chrono()
+    {
+        end = std::chrono::steady_clock::now();
+    }
+
+    double get_duration() const
+    {
+        return (double)std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count() * 1e-9d;
     }
 
 private:
@@ -430,6 +453,12 @@ private:
     {
         e.vardec_get().accept(*this);
         e.body_get().accept(*this);
+
+        MapSymInfo::const_iterator it = symsinfo.find(e.vardec_get().name_get());
+        if (it->second.read)
+        {
+            e.vardec_get().list_info_get().set_read_in_loop(true);
+        }
     }
 
     void visit(ast::BreakExp & e)

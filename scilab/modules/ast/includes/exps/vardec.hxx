@@ -123,7 +123,7 @@ public:
         return list_info;
     }
 
-    analysis::ForList64 & ForList_get()
+    analysis::ForList64 & list_info_get()
     {
         return list_info;
     }
