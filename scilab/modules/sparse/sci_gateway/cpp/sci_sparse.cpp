@@ -146,6 +146,12 @@ Function::ReturnValue sci_sparse(typed_list &in, int _piRetCount, typed_list &ou
                     return types::Function::OK;
                 }
 
+                if (in[0]->getAs<Double>()->isIdentity())
+                {
+                    out.push_back(in[0]);
+                    return types::Function::OK;
+                }
+
                 pRetVal = new types::Sparse(*in[0]->getAs<Double>());
                 break;
             }

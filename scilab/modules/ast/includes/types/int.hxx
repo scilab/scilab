@@ -168,7 +168,23 @@ private :
         int iLineLen = ConfigVariable::getConsoleWidth();
         int iMaxLines = ConfigVariable::getConsoleLines();
 
-        if (ArrayOf<T>::isScalar())
+        if (isIdentity())
+        {
+            ostr << L"eye *" << std::endl << std::endl;
+            int iWidth = 0;
+            if (isSigned())
+            {
+                getSignedIntFormat(ArrayOf<T>::get(0), &iWidth);
+                addSignedIntValue(&ostr, ArrayOf<T>::get(0), iWidth);
+            }
+            else
+            {
+                getUnsignedIntFormat(ArrayOf<T>::get(0), &iWidth);
+                addUnsignedIntValue(&ostr, ArrayOf<T>::get(0), iWidth);
+            }
+            ostr << std::endl;
+        }
+        else if (ArrayOf<T>::isScalar())
         {
             //scalar
             int iWidth  = 0;
