@@ -259,6 +259,12 @@ lib /DEF:"$(ProjectDir)fileio_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\analysis\AnalysisVisitor.hxx" />
+    <ClInclude Include="includes\analysis\Checkers.hxx" />
+    <ClInclude Include="includes\analysis\Decorator.hxx" />
+    <ClInclude Include="includes\analysis\ForList.hxx" />
+    <ClInclude Include="includes\analysis\Result.hxx" />
+    <ClInclude Include="includes\analysis\SymInfo.hxx" />
+    <ClInclude Include="includes\analysis\TIType.hxx" />
     <ClInclude Include="includes\ast\debugvisitor.hxx" />
     <ClInclude Include="includes\ast\deserializervisitor.hxx" />
     <ClInclude Include="includes\ast\dummyvisitor.hxx" />

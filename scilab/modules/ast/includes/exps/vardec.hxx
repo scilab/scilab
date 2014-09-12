@@ -22,6 +22,7 @@
 
 #include "dec.hxx"
 #include "context.hxx"
+#include "ForList.hxx"
 
 namespace ast
 {
@@ -117,7 +118,28 @@ public:
         return *_init;
     }
 
+    analysis::ForList64 list_info_get() const
+    {
+        return list_info;
+    }
+
+    analysis::ForList64 & ForList_get()
+    {
+        return list_info;
+    }
+
+    void list_info_set(analysis::ForList64 & _list_info)
+    {
+        list_info = _list_info;
+    }
+
+    void list_info_set(analysis::ForList64 && _list_info)
+    {
+        list_info = _list_info;
+    }
+
 protected:
+    analysis::ForList64 list_info;
     /** \brief Name of the declared variable. */
     symbol::Symbol& _name;
     symbol::Variable* _stack;

@@ -19,6 +19,7 @@
 #include "functions_gw.hxx"
 #include "execvisitor.hxx"
 #include "mutevisitor.hxx"
+#include "debugvisitor.hxx"
 #include "printvisitor.hxx"
 #include "visitor_common.hxx"
 #include "scilabWrite.hxx"
@@ -185,6 +186,10 @@ Function::ReturnValue sci_jit(types::typed_list &in, int _iRetCount, types::type
 
     analysis::AnalysisVisitor analysis;
     pExp->accept(analysis);
+    analysis.print_info();
+
+    ast::DebugVisitor debugMe;
+    pExp->accept(debugMe);
 
     jit::JITVisitor jit(analysis);
     try

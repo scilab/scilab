@@ -15,10 +15,6 @@
 #include "jit_operations.hxx"
 
 #ifdef _MSC_VER
-double trunc(double d)
-{
-    return (d > 0) ? floor(d) : ceil(d);
-}
 
 //#pragma comment(lib, ".lib")
 #pragma comment(lib, "LLVMLinker.lib")
@@ -151,34 +147,27 @@ JITVisitor::JITVisitor(const analysis::AnalysisVisitor & _analysis) : ast::Const
     builder.SetInsertPoint(BB);
 
     symbol::Context * ctxt = symbol::Context::getInstance();
-    const std::set<symbol::Symbol> & SymRead = analysis.get_read();
-    for (std::set<symbol::Symbol>::const_iterator it = SymRead.cbegin(), end = SymRead.cend(); it != end; ++it)
-    {
-        const std::wstring & name = it->name_get();
-        const std::string _name(name.begin(), name.end());
-        symbol::Variable * var = ctxt->getOrCreate(*it);
-        types::InternalType * pIT = symbol::Context::getInstance()->get(var);
+    const analysis::AnalysisVisitor::MapSymInfo & info = analysis.get_infos();
 
-        if (pIT)
+    for (analysis::AnalysisVisitor::MapSymInfo::const_iterator it = info.begin(), end = info.end(); it != end; ++it)
+    {
+        if (it->second.read || it->second.write || it->second.replace)
         {
-            symMap3.emplace(*it, std::shared_ptr<JITVal>(JITVal::get(*this, pIT, false, _name)));
+            const std::wstring & name = it->first.name_get();
+            const std::string _name(name.begin(), name.end());
+            symbol::Variable * var = ctxt->getOrCreate(it->first);
+            types::InternalType * pIT = symbol::Context::getInstance()->get(var);
+
+            if (pIT)
+            {
+                symMap3.emplace(it->first, std::shared_ptr<JITVal>(JITVal::get(*this, pIT, it->second.write || it->second.replace, _name)));
+            }
+            else
+            {
+                symMap3.emplace(it->first, std::shared_ptr<JITVal>(JITVal::get(*this, it->second.current_type, it->second.write || it->second.replace, _name)));
+            }
         }
     }
-
-    const std::set<symbol::Symbol> & SymWrite = analysis.get_write();
-    for (std::set<symbol::Symbol>::const_iterator it = SymWrite.cbegin(), end = SymWrite.cend(); it != end; ++it)
-    {
-        const std::wstring & name = it->name_get();
-        const std::string _name(name.begin(), name.end());
-        symbol::Variable * var = ctxt->getOrCreate(*it);
-        types::InternalType * pIT = symbol::Context::getInstance()->get(var);
-
-        if (pIT)
-        {
-            symMap3.emplace(*it, std::shared_ptr<JITVal>(JITVal::get(*this, pIT, true, _name)));
-        }
-    }
-
 }
 
 void JITVisitor::run()
@@ -186,10 +175,7 @@ void JITVisitor::run()
     // on reinjecte les resultats ds l'environnement a=1;jit("a=2");
     symbol::Context * ctxt = symbol::Context::getInstance();
     llvm::Value * llvmCtxt = getPointer(ctxt);
-    //llvm::Value * toCall_S = getPointer(reinterpret_cast<void *>(&jit::putInContext_S<Double, double>), getLLVMPtrFuncTy<void, char *, char *, double>(context));
     llvm::Value * toCall_M = module.getOrInsertFunction("putInContext_M_D_ds", getLLVMFuncTy<void, char *, char *, double *, int , int>(context));
-    //llvm::Value * toCall_M = getPointer(reinterpret_cast<void *>(&jit::putInContext_M<Double, double*>), getLLVMPtrFuncTy<void, char *, char *, double *, int, int>(context));
-
     llvm::Value * toCall_S = module.getOrInsertFunction("putInContext_S_D_d", getLLVMFuncTy<void, char *, char *, double>(context));
 
     for (JITSymbolMap::const_iterator i = symMap3.begin(), end = symMap3.end(); i != end; ++i)
@@ -202,28 +188,22 @@ void JITVisitor::run()
         }
         else
         {
-            i->second.get()->load(*this)->dump();
             builder.CreateCall5(toCall_M, llvmCtxt, llvmVar, i->second.get()->load(*this), i->second.get()->loadR(*this), i->second.get()->loadC(*this));
         }
     }
 
     builder.CreateRetVoid();
 
-    //dump();
+    dump();
 
     for (llvm::Module::iterator it = module.begin(), end = module.end(); it != end; ++it)
     {
         FPM.run(*it);
     }
 
-    //dump();
+    dump();
 
     engine->finalizeObject();
-
-    //getLLVMTy<const char * const>(context)->dump();
-    //getLLVMTy<int (*)(double)>(context)->dump();
-
-    //foo<int (*) (double)>(context)->dump();
 
     reinterpret_cast<void (*)()>(engine->getFunctionAddress("jit_main"))();
 }
@@ -294,7 +274,7 @@ void JITVisitor::visit(const ast::SimpleVar &e)
         const std::string _name(name.begin(), name.end());
         /*types::InternalType * pIT = symbol::Context::getInstance()->get(((ast::SimpleVar&)e).stack_get());
 
-        result_set(std::shared_ptr<JITVal>(JITVal::get(*this, pIT, _name)));*/
+          result_set(std::shared_ptr<JITVal>(JITVal::get(*this, pIT, _name)));*/
         throw ast::ScilabError("Variable not declared before JIT: " + _name);
     }
 }
@@ -394,7 +374,7 @@ void JITVisitor::visit(const ast::OpExp &e)
             {
                 result_set(sub_M_M(pITL, pITR, *this));
             }
-            return;//a=1;b=1;for i=1:2:23;a=a+i*3+b;b=b-i*a;end;
+            return;
         }
         case ast::OpExp::times:
         {
@@ -477,6 +457,7 @@ void JITVisitor::visit(const ast::ForExp &e)
     if (init.is_list_exp())
     {
         const ast::ListExp & list = static_cast<const ast::ListExp &>(init);
+        const analysis::ForList64 & list_info = vardec.list_info_get();
         const double * list_values = list.get_values();
         llvm::Value * start = nullptr, * step, * end;
         bool use_int = false;
@@ -484,58 +465,34 @@ void JITVisitor::visit(const ast::ForExp &e)
         bool inc = true;
         bool known_step = false;
 
-        if (!ISNAN(list_values[0]) && !ISNAN(list_values[1]) && !ISNAN(list_values[2]))
+        if (list_info.is_constant())
         {
-#ifdef _MSC_VER
-            const double tstart = trunc(list_values[0]);
-            const double tstep = trunc(list_values[1]);
-            const double tend = trunc(list_values[2]);
-#else
-            const double tstart = std::trunc(list_values[0]);
-            const double tstep = std::trunc(list_values[1]);
-            const double tend = std::trunc(list_values[2]);
-#endif
-
-            inc = list_values[1] >= 0;
-            known_step = true;
-
-            if ((tstart == list_values[0]) && (tstep == list_values[1]))
+            if (list_info.is_int())
             {
-                if (tstart >= 0 && tstep >= 0 && tstart <= list_values[2])
+                use_int = true;
+                if (list_info.is_uint())
                 {
-                    // we can use an unsigned int but take care to overflow...
-                    double k = std::floor(((double)std::numeric_limits<uint64_t>::max() - tstart) / tstep);
-                    if ((k * tstep + tstart) >= tend)
-                    {
-                        // no overflow
-                        start = getConstant((uint64_t)tstart);
-                        step = getConstant((uint64_t)tstep);
-                        end = getConstant((uint64_t)tend);
-
-                        use_int = true;
-                        use_uint = true;
-                    }
+                    use_uint = true;
+                    start = getConstant(list_info.get_min<uint64_t>());
+                    step = getConstant(list_info.get_step<uint64_t>());
+                    end = getConstant(list_info.get_max<uint64_t>());
                 }
                 else
                 {
-                    double k = std::floor(((double)(inc ? std::numeric_limits<int64_t>::max() : std::numeric_limits<int64_t>::min()) - tstart) / tstep);
-                    if ((inc && (k * tstep + tstart) >= tend) || (!inc && (k * tstep + tstart) <= tend))
-                    {
-                        // no overflow
-                        start = getConstant((int64_t)tstart);
-                        step = getConstant((int64_t)tstep);
-                        end = getConstant((int64_t)tend);
-
-                        use_int = true;
-                    }
+                    start = getConstant(list_info.get_min<int64_t>());
+                    step = getConstant(list_info.get_step<int64_t>());
+                    end = getConstant(list_info.get_max<int64_t>());
                 }
             }
             else
             {
-                start = getConstant(list_values[0]);
-                step = getConstant(list_values[1]);
-                end = getConstant(list_values[2]);
+                start = getConstant(list_info.get_min<double>());
+                step = getConstant(list_info.get_step<double>());
+                end = getConstant(list_info.get_max<double>());
             }
+
+            inc = list_info.get_step<double>() > 0;
+            known_step = true;
         }
 
         if (!start)
@@ -600,6 +557,8 @@ void JITVisitor::visit(const ast::ForExp &e)
         builder.SetInsertPoint(BBBody);
         llvm::PHINode * phi = use_int ? builder.CreatePHI(getLLVMTy<int64_t>(context), 2) : builder.CreatePHI(getLLVMTy<double>(context), 2);
 
+        // TODO: the call to uitofp is not removed even if it use mainly useless...
+        // a=1;b=1;jit("for i=1:21;c=a+b;a=b;b=c;end;")
         JITSymbolMap::const_iterator i = symMap3.find(varName);
         tmp = use_int ? (use_uint ? builder.CreateUIToFP(phi, getLLVMTy<double>(context)) : builder.CreateSIToFP(phi, getLLVMTy<double>(context))) : phi;
         i->second.get()->store(tmp, *this);

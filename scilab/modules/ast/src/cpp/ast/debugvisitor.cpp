@@ -55,7 +55,8 @@ static void DEBUG(wstring str, const Exp &e)
 
     Location loc = e.location_get();
     wcerr << L" @(" << loc.first_line << L"." << loc.first_column << L" -> ";
-    wcerr << loc.last_line << L"." << loc.last_column << L")" << endl;
+    wcerr << loc.last_line << L"." << loc.last_column << L")";
+    wcerr << L" Deco(" << e.decorator_get() << L")" << endl;
 }
 
 

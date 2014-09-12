@@ -20,6 +20,7 @@
 
 #include "internal.hxx"
 #include "JITVisitor.hxx"
+#include "TIType.hxx"
 
 namespace jit
 {
@@ -74,6 +75,7 @@ public:
     }
 
     static JITVal * get(JITVisitor & visitor, types::InternalType * const pIT, const bool alloc = false, const std::string & name = "");
+    static JITVal * get(JITVisitor & visitor, const analysis::TIType & t, const bool alloc = false, const std::string & name = "");
 
 protected:
 
@@ -102,7 +104,7 @@ protected:
         }
         else
         {
-            throw ast::ScilabError("Cannot store a value !");
+            throw ast::ScilabError("Scilab: Cannot store a value !");
         }
     }
 };

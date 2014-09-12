@@ -20,6 +20,7 @@
 
 #include "location.hxx"
 #include "visitor.hxx"
+#include "Decorator.hxx"
 
 namespace ast
 {
@@ -32,7 +33,7 @@ class Ast
 public:
     /** \brief Construct an Ast node.
     ** \param location scanner position informations */
-    Ast (const Location& location) : _location (location)
+    Ast (const Location& location) : _location (location), decorator()
     {
         nodeNumber = globalNodeNumber++;
     }
@@ -96,8 +97,25 @@ public:
         nodeNumber = _nodeNumber;
     }
 
+    analysis::Decorator decorator_get() const
+    {
+        return decorator;
+    }
+
+    analysis::Decorator & decorator_get()
+    {
+        return decorator;
+    }
+
+    void decorator_set(analysis::Decorator & _decorator)
+    {
+        decorator = _decorator;
+    }
+
+
 private:
     /** \brief Construct an Ast by copy. */
+    analysis::Decorator decorator;
     Ast (const Ast&);
     /** \brief Assign an Ast to this. */
     Ast& operator= (const Ast&);

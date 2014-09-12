@@ -48,6 +48,7 @@
 #include "llvm/IR/Module.h"
 #include "llvm/Support/TargetSelect.h"
 #include "llvm/Transforms/Scalar.h"
+#include "llvm/Transforms/Vectorize.h"
 
 namespace jit
 {
@@ -110,6 +111,10 @@ inline static llvm::FunctionPassManager initFPM(llvm::Module * module, llvm::Exe
 
     // Simplify the control flow graph (deleting unreachable blocks, etc).
     FPM.add(llvm::createCFGSimplificationPass());
+
+    FPM.add(llvm::createDeadInstEliminationPass());
+    FPM.add(llvm::createDeadCodeEliminationPass());
+    FPM.add(llvm::createLoopVectorizePass());
 
     FPM.doInitialization();
 
