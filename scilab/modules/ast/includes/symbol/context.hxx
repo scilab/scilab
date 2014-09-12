@@ -118,6 +118,8 @@ public :
     bool addMacro(types::Macro *_info);
     bool addMacroFile(types::MacroFile *_info);
     void print(std::wostream& ostr) const;
+    int getScopeLevel();
+
 private :
 
     types::InternalType* get(const Symbol& key, int _iLevel);

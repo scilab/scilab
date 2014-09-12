@@ -471,9 +471,9 @@ void RunVisitorT<T>::visitprivate(const ReturnExp &e)
 {
     if (e.isGlobal())
     {
-        //return or resume
-        if (ConfigVariable::getPauseLevel() != 0)
+        if (ConfigVariable::getPauseLevel() != 0 && symbol::Context::getInstance()->getScopeLevel() == 1)
         {
+            //return or resume
             ThreadId* pThreadId = ConfigVariable::getLastPausedThread();
             if (pThreadId == NULL)
             {
@@ -504,35 +504,6 @@ void RunVisitorT<T>::visitprivate(const ReturnExp &e)
         setExpectedSize(1);
         e.getExp().accept(*this);
         setExpectedSize(iSaveExpectedSize);
-
-        if (getResultSize() == 1)
-        {
-            //protect variable
-            getResult()->IncreaseRef();
-        }
-        else
-        {
-            for (int i = 0 ; i < getResultSize() ; i++)
-            {
-                //protect variable
-                getResult(i)->IncreaseRef();
-            }
-        }
-
-        if (getResultSize() == 1)
-        {
-            //unprotect variable
-            getResult()->DecreaseRef();
-        }
-        else
-        {
-            for (int i = 0 ; i < getResultSize() ; i++)
-            {
-                //unprotect variable
-                getResult(i)->DecreaseRef();
-            }
-        }
-
         const_cast<ReturnExp*>(&e)->setReturn();
     }
 }
