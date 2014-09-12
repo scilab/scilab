@@ -9,5 +9,8 @@ allowptr_
 funs_
 isbyref_
 ref2val_
-
-
+cha1_
+stack_
+vstk_
+ierode_
+recu_
