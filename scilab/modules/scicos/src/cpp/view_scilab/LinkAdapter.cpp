@@ -98,9 +98,9 @@ struct yy
         types::Double* o = new types::Double(size, 1, &data);
 
 #ifdef _MSC_VER
-        std::copy(controlPoints.begin(), controlPoints.begin() + size, stdext::checked_array_iterator<double*>(data, size));
+        std::copy(controlPoints.begin() + size, controlPoints.end(), stdext::checked_array_iterator<double*>(data, size));
 #else
-        std::copy(controlPoints.begin(), controlPoints.begin() + size, data);
+        std::copy(controlPoints.begin() + size, controlPoints.end(), data);
 #endif
         return o;
     }
