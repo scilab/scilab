@@ -9,6 +9,12 @@ Obsolete & Removed Functions
 * Second output argument of add_param removed (See SEP #132).
 
 
+Compilation
+============
+
+* Required version of Arpack-ng updated to 3.1.5 (See bug #13058).
+
+
 Scilab Bug Fixes
 ================
 
@@ -66,6 +72,9 @@ Scilab Bug Fixes
 * Bug #12986 fixed - Scilab did not start on CentOS 5.9 (GLIBC issue).
 
 * Bug #12987 fixed - Scilab did not start on Ubuntu 10.04 (GLIBC issue).
+
+* Bug #13058 fixed - eigs produced wrong results in some cases.
+                     Arpack-ng library has been updated to fix this bug.
 
 * Bug #13180 fixed - surf did not handle degenerate cases.
 
