@@ -400,12 +400,6 @@ static bool setLinkEnd(LinkAdapter& adaptor, Controller& controller, object_prop
         return false; // Must be an integer value
     }
 
-    // Disconnect the old port if it was connected
-    if (concernedPort != 0)
-    {
-        controller.setObjectProperty(concernedPort, PORT, CONNECTED_SIGNALS, unconnected);
-    }
-
     ScicosID parentDiagram;
     controller.getObjectProperty(adaptee->id(), BLOCK, PARENT_DIAGRAM, parentDiagram);
     std::vector<ScicosID> children;
@@ -544,6 +538,12 @@ static bool setLinkEnd(LinkAdapter& adaptor, Controller& controller, object_prop
                 }
             }
         }
+    }
+
+    // Disconnect the old port if it was connected. After that, concernedPort will be reused to designate the new port
+    if (concernedPort != 0)
+    {
+        controller.setObjectProperty(concernedPort, PORT, CONNECTED_SIGNALS, unconnected);
     }
 
     nBlockPorts = static_cast<int>(sourceBlockPorts.size());

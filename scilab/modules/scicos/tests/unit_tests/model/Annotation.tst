@@ -31,6 +31,7 @@ o.gui
 
 // Modify it
 o = TEXT_f("set", o)
+close;
 o.graphics
 o.model
 o.void

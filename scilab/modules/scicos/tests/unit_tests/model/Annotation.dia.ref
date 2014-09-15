@@ -62,6 +62,7 @@ scicos_Text type :
   model
   void
   gui
+close;
 o.graphics
  ans  =
 orig = [0,0]

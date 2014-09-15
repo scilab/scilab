@@ -401,3 +401,148 @@ nzcross = 0
 nmode = 0
 equations = list()
 uid = ""
+// Try with another block containing event inputs
+o = CSCOPE("define")
+objectCreated( 6 , BLOCK )
+propertyUpdated( 6 , BLOCK , GEOMETRY ) : NO_CHANGES
+propertyUpdated( 6 , BLOCK , GEOMETRY ) : SUCCESS
+propertyUpdated( 6 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 6 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 6 , BLOCK , EXPRS ) : SUCCESS
+objectCreated( 7 , PORT )
+propertyUpdated( 7 , PORT , SOURCE_BLOCK ) : SUCCESS
+propertyUpdated( 7 , PORT , PORT_KIND ) : SUCCESS
+propertyUpdated( 6 , BLOCK , INPUTS ) : SUCCESS
+objectCreated( 8 , PORT )
+propertyUpdated( 8 , PORT , SOURCE_BLOCK ) : SUCCESS
+propertyUpdated( 8 , PORT , PORT_KIND ) : SUCCESS
+propertyUpdated( 6 , BLOCK , EVENT_INPUTS ) : SUCCESS
+propertyUpdated( 6 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 7 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 7 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 7 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 6 , BLOCK , STYLE ) : NO_CHANGES
+propertyUpdated( 6 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
+propertyUpdated( 6 , BLOCK , SIM_FUNCTION_API ) : SUCCESS
+propertyUpdated( 7 , PORT , DATATYPE ) : SUCCESS
+propertyUpdated( 7 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 8 , PORT , DATATYPE ) : SUCCESS
+propertyUpdated( 6 , BLOCK , STATE ) : NO_CHANGES
+propertyUpdated( 6 , BLOCK , DSTATE ) : NO_CHANGES
+propertyUpdated( 6 , BLOCK , RPAR ) : SUCCESS
+propertyUpdated( 6 , BLOCK , IPAR ) : SUCCESS
+propertyUpdated( 6 , BLOCK , SIM_BLOCKTYPE ) : SUCCESS
+propertyUpdated( 6 , BLOCK , SIM_DEP_UT ) : SUCCESS
+propertyUpdated( 6 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 6 , BLOCK , NZCROSS ) : NO_CHANGES
+propertyUpdated( 6 , BLOCK , NMODE ) : NO_CHANGES
+propertyUpdated( 6 , BLOCK , UID ) : NO_CHANGES
+propertyUpdated( 6 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
+o  = 
+scicos_Block type :
+  graphics
+  model
+  gui
+  doc
+o.graphics
+ ans  =
+orig = [0,0]
+sz = [2,2]
+flip = %t
+theta = 0
+exprs = ["1 3 5 7 9 11 13 15";"-1";"[]";"[600;400]";"-15";"15";"30";"20";"0";""]
+pin = 0
+pout = []
+pein = 0
+peout = []
+gr_i = []
+id = ""
+in_implicit = "E"
+out_implicit = 
+in_style = ""
+out_style = 
+in_label = ""
+out_label = 
+style = ""
+o.model
+ ans  =
+cscope type: 4
+in = -1
+in2 = 1
+intyp = 1
+out = []
+out2 = []
+outtyp = 1
+evtin = -1
+evtout = []
+state = []
+dstate = []
+odstate = list()
+rpar = [0;-15;15;30]
+ipar = [-1;1;20;1;3;5;7;9;11;13;15;-1;-1;600;400]
+opar = list()
+blocktype = "c"
+firing = []
+dep_ut = [%t,%f]
+label = ""
+nzcross = 0
+nmode = 0
+equations = list()
+uid = ""
+o.gui
+ ans  =
+ CSCOPE
+o.doc
+ ans  =
+()
+// Set the block to itself without making any modification
+// (scicos_getvalue returns CSCOPE_f default parameters)
+p = funcprot();
+funcprot(0);
+function [ok,clrs,win,wpos,wdim,ymin,ymax,per,N,heritance,nom,exprs] = scicos_getvalue(title, fields, Type, exprs)
+    ok = %t;
+    clrs = model.ipar(4:11)
+    win = model.ipar(1)
+    wpos = model.ipar(12:13)
+    wdim = model.ipar(14:15)
+    ymin = model.rpar(2)
+    ymax = model.rpar(3)
+    per = model.rpar(4)
+    N = model.ipar(3)
+    heritance = 0
+    nom = model.label
+    exprs = graphics.exprs;
+endfunction
+o = CSCOPE("set", o)
+propertyUpdated( 6 , BLOCK , GEOMETRY ) : NO_CHANGES
+propertyUpdated( 6 , BLOCK , GEOMETRY ) : NO_CHANGES
+propertyUpdated( 6 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 6 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 6 , BLOCK , EXPRS ) : NO_CHANGES
+propertyUpdated( 6 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 7 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 7 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 7 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 6 , BLOCK , STYLE ) : NO_CHANGES
+propertyUpdated( 6 , BLOCK , SIM_FUNCTION_NAME ) : NO_CHANGES
+propertyUpdated( 6 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
+propertyUpdated( 7 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 7 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 7 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 8 , PORT , DATATYPE ) : SUCCESS
+propertyUpdated( 6 , BLOCK , STATE ) : NO_CHANGES
+propertyUpdated( 6 , BLOCK , DSTATE ) : NO_CHANGES
+propertyUpdated( 6 , BLOCK , RPAR ) : NO_CHANGES
+propertyUpdated( 6 , BLOCK , IPAR ) : NO_CHANGES
+propertyUpdated( 6 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
+propertyUpdated( 6 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
+propertyUpdated( 6 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 6 , BLOCK , NZCROSS ) : NO_CHANGES
+propertyUpdated( 6 , BLOCK , NMODE ) : NO_CHANGES
+propertyUpdated( 6 , BLOCK , UID ) : NO_CHANGES
+o  = 
+scicos_Block type :
+  graphics
+  model
+  gui
+  doc

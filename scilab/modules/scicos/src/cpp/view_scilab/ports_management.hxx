@@ -66,6 +66,11 @@ types::InternalType* get_ports_property(const Adaptor& adaptor, object_propertie
             return o;
         }
         case DATATYPE_TYPE:
+            // The type defaults to [1] if no port has been defined
+            if (ids.empty())
+            {
+                return new types::Double(1);
+            }
             datatypeIndex++;
             // no break
         case DATATYPE_COLS:

@@ -28,12 +28,20 @@ namespace org_scilab_modules_scicos
 {
 
 Model::Model() :
-    lastId(0), allObjects(), datatypes()
+    lastId(0), allObjects()
 {
+    std::vector<int> datatypeDefault (3, 1);
+    datatypeDefault[0] = -1;
+    datatypes.push_back(new model::Datatype(datatypeDefault));
 }
 
 Model::~Model()
 {
+    while (!datatypes.empty())
+    {
+        Model::erase(datatypes[0]);
+    }
+    datatypes.clear();
 }
 
 ScicosID Model::createObject(kind_t k)

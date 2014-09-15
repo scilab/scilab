@@ -50,3 +50,30 @@ funcprot(p);
 o = BIGSOM_f("set", o)
 o.graphics
 o.model
+
+// Try with another block containing event inputs
+o = CSCOPE("define")
+o.graphics
+o.model
+o.gui
+o.doc
+
+// Set the block to itself without making any modification
+// (scicos_getvalue returns CSCOPE_f default parameters)
+p = funcprot();
+funcprot(0);
+function [ok,clrs,win,wpos,wdim,ymin,ymax,per,N,heritance,nom,exprs] = scicos_getvalue(title, fields, Type, exprs)
+    ok = %t;
+    clrs = model.ipar(4:11)
+    win = model.ipar(1)
+    wpos = model.ipar(12:13)
+    wdim = model.ipar(14:15)
+    ymin = model.rpar(2)
+    ymax = model.rpar(3)
+    per = model.rpar(4)
+    N = model.ipar(3)
+    heritance = 0
+    nom = model.label
+    exprs = graphics.exprs;
+endfunction
+o = CSCOPE("set", o)
