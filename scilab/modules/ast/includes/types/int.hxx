@@ -136,7 +136,7 @@ public :
             }
         }
 
-        if (memcmp(ArrayOf<T>::get(), pb->get(), GenericType::getSize() * sizeof(int)) != 0)
+        if (memcmp(ArrayOf<T>::get(), pb->get(), GenericType::getSize() * sizeof(T)) != 0)
         {
             return false;
         }
