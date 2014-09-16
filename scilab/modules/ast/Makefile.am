@@ -117,6 +117,7 @@ libsciast_la_CPPFLAGS = \
 	-Iincludes/symbol \
 	-Iincludes/system_env \
 	-Iincludes/types \
+	-Iincludes/analysis \
 	-Isrc/cpp \
     -I$(top_srcdir)/modules/dynamic_link/includes \
 	-I$(top_srcdir)/modules/functions_manager/includes \

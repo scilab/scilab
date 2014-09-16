@@ -645,6 +645,7 @@ libsciumfpack_la_etc_DATA = \
 @UMFPACK_TRUE@    -I$(top_srcdir)/modules/ast/includes/symbol/ \
 @UMFPACK_TRUE@    -I$(top_srcdir)/modules/ast/includes/system_env/ \
 @UMFPACK_TRUE@    -I$(top_srcdir)/modules/ast/includes/types/ \
+@UMFPACK_TRUE@    -I$(top_srcdir)/modules/ast/includes/analysis/ \
 @UMFPACK_TRUE@    -I$(top_srcdir)/modules/dynamic_link/includes/ \
 @UMFPACK_TRUE@    -I$(top_srcdir)/modules/output_stream/includes/ \
 @UMFPACK_TRUE@    -I$(top_srcdir)/modules/api_scilab/includes/ \

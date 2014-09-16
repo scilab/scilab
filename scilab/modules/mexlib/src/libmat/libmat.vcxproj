@@ -77,7 +77,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../includes;../../../../libs/intl;../../../../libs/Eigen/includes;../../../core/includes;../../../string/includes;../../../elementary_functions/includes;../../../output_stream/includes;../../../call_scilab/includes;../../../localization/includes;../../../api_scilab/includes;../../../threads/includes;../../../console/includes;../../../dynamic_link/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;../../../ast/includes/parse;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../../../libs/intl;../../../../libs/Eigen/includes;../../../core/includes;../../../string/includes;../../../elementary_functions/includes;../../../output_stream/includes;../../../call_scilab/includes;../../../localization/includes;../../../api_scilab/includes;../../../threads/includes;../../../console/includes;../../../dynamic_link/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;../../../ast/includes/parse;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>mexFunction=mex_libmx;mexfunction_=mexlibmx_;FORDLL;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <AssemblerListingLocation>$(Configuration)/</AssemblerListingLocation>
@@ -118,7 +118,7 @@ cd ..
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../includes;../../../../libs/intl;../../../../libs/Eigen/includes;../../../core/includes;../../../string/includes;../../../elementary_functions/includes;../../../output_stream/includes;../../../call_scilab/includes;../../../localization/includes;../../../api_scilab/includes;../../../threads/includes;../../../console/includes;../../../dynamic_link/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;../../../ast/includes/parse;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../../../libs/intl;../../../../libs/Eigen/includes;../../../core/includes;../../../string/includes;../../../elementary_functions/includes;../../../output_stream/includes;../../../call_scilab/includes;../../../localization/includes;../../../api_scilab/includes;../../../threads/includes;../../../console/includes;../../../dynamic_link/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;../../../ast/includes/parse;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>mexFunction=mex_libmx;mexfunction_=mexlibmx_;FORDLL;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <AssemblerListingLocation>$(Configuration)/</AssemblerListingLocation>
@@ -155,7 +155,7 @@ cd ..
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>../../includes;../../../../libs/intl;../../../../libs/Eigen/includes;../../../core/includes;../../../string/includes;../../../elementary_functions/includes;../../../output_stream/includes;../../../call_scilab/includes;../../../localization/includes;../../../api_scilab/includes;../../../threads/includes;../../../console/includes;../../../dynamic_link/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;../../../ast/includes/parse;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../../../libs/intl;../../../../libs/Eigen/includes;../../../core/includes;../../../string/includes;../../../elementary_functions/includes;../../../output_stream/includes;../../../call_scilab/includes;../../../localization/includes;../../../api_scilab/includes;../../../threads/includes;../../../console/includes;../../../dynamic_link/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;../../../ast/includes/parse;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>mexFunction=mex_libmx;mexfunction_=mexlibmx_;FORDLL;_CRT_SECURE_NO_DEPRECATE;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <ObjectFileName>$(Configuration)/</ObjectFileName>
@@ -196,7 +196,7 @@ cd ..
       <TargetEnvironment>X64</TargetEnvironment>
     </Midl>
     <ClCompile>
-      <AdditionalIncludeDirectories>../../includes;../../../../libs/intl;../../../../libs/Eigen/includes;../../../core/includes;../../../string/includes;../../../elementary_functions/includes;../../../output_stream/includes;../../../call_scilab/includes;../../../localization/includes;../../../api_scilab/includes;../../../threads/includes;../../../console/includes;../../../dynamic_link/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;../../../ast/includes/parse;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../../../libs/intl;../../../../libs/Eigen/includes;../../../core/includes;../../../string/includes;../../../elementary_functions/includes;../../../output_stream/includes;../../../call_scilab/includes;../../../localization/includes;../../../api_scilab/includes;../../../threads/includes;../../../console/includes;../../../dynamic_link/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;../../../ast/includes/parse;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>mexFunction=mex_libmx;mexfunction_=mexlibmx_;FORDLL;_CRT_SECURE_NO_DEPRECATE;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <ObjectFileName>$(Configuration)/</ObjectFileName>

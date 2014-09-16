@@ -54,6 +54,9 @@
     <Filter Include="Source Files\operations">
       <UniqueIdentifier>{cc482308-cd44-4b1f-b6e7-c807532f307d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\analysis">
+      <UniqueIdentifier>{86c0db79-0efd-47e5-b679-e5d4faef469b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="core_Import.def">
@@ -615,6 +618,27 @@
     </ClInclude>
     <ClInclude Include="includes\operations\types_or.hxx">
       <Filter>Header Files\operations</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\AnalysisVisitor.hxx">
+      <Filter>Header Files\analysis</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\Checkers.hxx">
+      <Filter>Header Files\analysis</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\Decorator.hxx">
+      <Filter>Header Files\analysis</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\ForList.hxx">
+      <Filter>Header Files\analysis</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\Result.hxx">
+      <Filter>Header Files\analysis</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\SymInfo.hxx">
+      <Filter>Header Files\analysis</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\TIType.hxx">
+      <Filter>Header Files\analysis</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -81,7 +81,7 @@
     <ClCompile>
       <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;includes;includes/tcltk;includes/tcltk/X11;src/c;../../libs/intl;../core/includes;../action_binding/includes;../output_stream/includes;../localization/includes;../windows_tools/includes;../fileio/includes;../api_scilab/includes;../string/includes;../threads/includes;../ast/includes/types;../ast/includes/ast;../ast/includes/exps;../ast/includes/operations;../ast/includes/symbol;../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;includes;includes/tcltk;includes/tcltk/X11;src/c;../../libs/intl;../core/includes;../action_binding/includes;../output_stream/includes;../localization/includes;../windows_tools/includes;../fileio/includes;../api_scilab/includes;../string/includes;../threads/includes;../ast/includes/types;../ast/includes/ast;../ast/includes/analysis;../ast/includes/exps;../ast/includes/operations;../ast/includes/symbol;../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;TCLSCI_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -116,7 +116,7 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;includes;includes/tcltk;includes/tcltk/X11;src/c;../../libs/intl;../core/includes;../action_binding/includes;../output_stream/includes;../localization/includes;../windows_tools/includes;../fileio/includes;../api_scilab/includes;../string/includes;../threads/includes;../ast/includes/types;../ast/includes/ast;../ast/includes/exps;../ast/includes/operations;../ast/includes/symbol;../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;includes;includes/tcltk;includes/tcltk/X11;src/c;../../libs/intl;../core/includes;../action_binding/includes;../output_stream/includes;../localization/includes;../windows_tools/includes;../fileio/includes;../api_scilab/includes;../string/includes;../threads/includes;../ast/includes/types;../ast/includes/ast;../ast/includes/analysis;../ast/includes/exps;../ast/includes/operations;../ast/includes/symbol;../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;TCLSCI_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -152,7 +152,7 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;includes;includes/tcltk;includes/tcltk/X11;src/c;../../libs/intl;../core/includes;../action_binding/includes;../output_stream/includes;../localization/includes;../windows_tools/includes;../fileio/includes;../api_scilab/includes;../string/includes;../threads/includes;../ast/includes/types;../ast/includes/ast;../ast/includes/exps;../ast/includes/operations;../ast/includes/symbol;../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;includes;includes/tcltk;includes/tcltk/X11;src/c;../../libs/intl;../core/includes;../action_binding/includes;../output_stream/includes;../localization/includes;../windows_tools/includes;../fileio/includes;../api_scilab/includes;../string/includes;../threads/includes;../ast/includes/types;../ast/includes/ast;../ast/includes/analysis;../ast/includes/exps;../ast/includes/operations;../ast/includes/symbol;../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;TCLSCI_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -196,7 +196,7 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;includes;includes/tcltk;includes/tcltk/X11;src/c;../../libs/intl;../core/includes;../action_binding/includes;../output_stream/includes;../localization/includes;../windows_tools/includes;../fileio/includes;../api_scilab/includes;../string/includes;../threads/includes;../ast/includes/types;../ast/includes/ast;../ast/includes/exps;../ast/includes/operations;../ast/includes/symbol;../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;includes;includes/tcltk;includes/tcltk/X11;src/c;../../libs/intl;../core/includes;../action_binding/includes;../output_stream/includes;../localization/includes;../windows_tools/includes;../fileio/includes;../api_scilab/includes;../string/includes;../threads/includes;../ast/includes/types;../ast/includes/ast;../ast/includes/analysis;../ast/includes/exps;../ast/includes/operations;../ast/includes/symbol;../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;TCLSCI_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>

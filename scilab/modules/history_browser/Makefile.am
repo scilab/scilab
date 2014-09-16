@@ -57,6 +57,7 @@ libscihistory_browser_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
     -I$(top_srcdir)/modules/ast/includes/symbol/ \
     -I$(top_srcdir)/modules/ast/includes/system_env/ \
     -I$(top_srcdir)/modules/ast/includes/types/ \
+    -I$(top_srcdir)/modules/ast/includes/analysis/ \
     -I$(top_srcdir)/modules/jvm/includes/ \
     -I$(top_srcdir)/modules/commons/src/jni/ \
     -I$(top_srcdir)/modules/localization/includes/ \

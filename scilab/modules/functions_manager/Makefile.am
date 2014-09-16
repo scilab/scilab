@@ -29,6 +29,7 @@ libscifunctions_manager_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/ast/includes/symbol/ \
     -I$(top_srcdir)/modules/ast/includes/system_env/ \
     -I$(top_srcdir)/modules/ast/includes/types/ \
+    -I$(top_srcdir)/modules/ast/includes/analysis/ \
     -I$(top_srcdir)/modules/dynamic_link/includes \
 	-I$(top_builddir)/modules/api_scilab/includes/ \
 	-I$(top_builddir)/modules/console/includes/ \
@@ -77,3 +78,4 @@ testFunctionManager_LDADD	= \
     $(top_builddir)/modules/types/libsciTypes.la \
     $(top_builddir)/modules/functions_manager/libscifunctions_manager.la
     
+include $(top_srcdir)/Makefile.incl.am    

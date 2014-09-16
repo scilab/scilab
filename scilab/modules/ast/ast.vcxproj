@@ -80,7 +80,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes/ast;includes/parse;includes/exps;includes/symbol;includes/types;includes/system_env;includes/operations;../../libs/intl;../../libs/Eigen/includes;../functions_manager/includes;../core/includes;../elementary_functions/includes;../ast/includes/operations;../localization/includes;../output_stream/includes;../string/includes;../api_scilab/includes;../threads/includes;../console/includes;../graphic_objects/includes;../dynamic_link/includes;../io/includes;../fileio/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes/ast;includes/parse;includes/exps;includes/symbol;includes/types;includes/system_env;includes/operations;includes/analysis;../../libs/intl;../../libs/Eigen/includes;../functions_manager/includes;../core/includes;../elementary_functions/includes;../ast/includes/operations;../localization/includes;../output_stream/includes;../string/includes;../api_scilab/includes;../threads/includes;../console/includes;../graphic_objects/includes;../dynamic_link/includes;../io/includes;../fileio/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;AST_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -118,7 +118,7 @@ lib /DEF:"$(ProjectDir)fileio_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes/ast;includes/parse;includes/exps;includes/symbol;includes/types;includes/system_env;includes/operations;../../libs/intl;../../libs/Eigen/includes;../functions_manager/includes;../core/includes;../elementary_functions/includes;../ast/includes/operations;../localization/includes;../output_stream/includes;../string/includes;../api_scilab/includes;../threads/includes;../console/includes;../graphic_objects/includes;../dynamic_link/includes;../io/includes;../fileio/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes/ast;includes/parse;includes/exps;includes/symbol;includes/types;includes/system_env;includes/operations;includes/analysis;../../libs/intl;../../libs/Eigen/includes;../functions_manager/includes;../core/includes;../elementary_functions/includes;../ast/includes/operations;../localization/includes;../output_stream/includes;../string/includes;../api_scilab/includes;../threads/includes;../console/includes;../graphic_objects/includes;../dynamic_link/includes;../io/includes;../fileio/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;AST_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -154,7 +154,7 @@ lib /DEF:"$(ProjectDir)fileio_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>includes/ast;includes/parse;includes/exps;includes/symbol;includes/types;includes/system_env;includes/operations;../../libs/intl;../../libs/Eigen/includes;../functions_manager/includes;../core/includes;../elementary_functions/includes;../ast/includes/operations;../localization/includes;../output_stream/includes;../string/includes;../api_scilab/includes;../threads/includes;../console/includes;../graphic_objects/includes;../dynamic_link/includes;../io/includes;../fileio/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes/ast;includes/parse;includes/exps;includes/symbol;includes/types;includes/system_env;includes/operations;includes/analysis;../../libs/intl;../../libs/Eigen/includes;../functions_manager/includes;../core/includes;../elementary_functions/includes;../ast/includes/operations;../localization/includes;../output_stream/includes;../string/includes;../api_scilab/includes;../threads/includes;../console/includes;../graphic_objects/includes;../dynamic_link/includes;../io/includes;../fileio/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;AST_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -192,7 +192,7 @@ lib /DEF:"$(ProjectDir)fileio_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>includes/ast;includes/parse;includes/exps;includes/symbol;includes/types;includes/system_env;includes/operations;../../libs/intl;../../libs/Eigen/includes;../functions_manager/includes;../core/includes;../elementary_functions/includes;../ast/includes/operations;../localization/includes;../output_stream/includes;../string/includes;../api_scilab/includes;../threads/includes;../console/includes;../graphic_objects/includes;../dynamic_link/includes;../io/includes;../fileio/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes/ast;includes/parse;includes/exps;includes/symbol;includes/types;includes/system_env;includes/operations;includes/analysis;../../libs/intl;../../libs/Eigen/includes;../functions_manager/includes;../core/includes;../elementary_functions/includes;../ast/includes/operations;../localization/includes;../output_stream/includes;../string/includes;../api_scilab/includes;../threads/includes;../console/includes;../graphic_objects/includes;../dynamic_link/includes;../io/includes;../fileio/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;AST_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -242,6 +242,13 @@ lib /DEF:"$(ProjectDir)fileio_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <None Include="threads_Import.def" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="includes\analysis\AnalysisVisitor.hxx" />
+    <ClInclude Include="includes\analysis\Checkers.hxx" />
+    <ClInclude Include="includes\analysis\Decorator.hxx" />
+    <ClInclude Include="includes\analysis\ForList.hxx" />
+    <ClInclude Include="includes\analysis\Result.hxx" />
+    <ClInclude Include="includes\analysis\SymInfo.hxx" />
+    <ClInclude Include="includes\analysis\TIType.hxx" />
     <ClInclude Include="includes\ast\debugvisitor.hxx" />
     <ClInclude Include="includes\ast\deserializervisitor.hxx" />
     <ClInclude Include="includes\ast\dummyvisitor.hxx" />
