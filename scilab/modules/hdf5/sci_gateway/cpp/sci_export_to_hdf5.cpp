@@ -11,6 +11,9 @@
 */
 
 #include <hdf5.h>
+#include "internal.hxx"
+#include "types.hxx"
+
 extern "C"
 {
 #include <string.h>
@@ -40,6 +43,7 @@ static bool isVarExist(int* pvCtx, int _iFile, char* _pstVarName);
 
 static bool export_data(int* pvCtx, int _iH5File, int *_piVar, char* _pstName);
 static bool export_list(int* pvCtx, int _iH5File, int *_piVar, char* _pstName, int _iVarType);
+static bool export_hypermat(int* pvCtx, int _iH5File, int *_piVar, char* _pstName);
 static bool export_double(int* pvCtx, int _iH5File, int *_piVar, char* _pstName);
 static bool export_poly(int* pvCtx, int _iH5File, int *_piVar, char* _pstName);
 static bool export_boolean(int* pvCtx, int _iH5File, int *_piVar, char* _pstName);
@@ -259,6 +263,8 @@ static bool export_data(int* pvCtx, int _iH5File, int* _piVar, char* _pstName)
 {
     bool bReturn = false;
     int iType = 0;
+    int iDims = 0;
+    types::InternalType* pIT = (types::InternalType*)_piVar;
 
     SciErr sciErr = getVarType(pvCtx, _piVar, &iType);
     if (sciErr.iErr)
@@ -267,91 +273,105 @@ static bool export_data(int* pvCtx, int _iH5File, int* _piVar, char* _pstName)
         return false;
     }
 
-    switch (iType)
+    if (pIT->isGenericType())
     {
-        case sci_matrix :
+        types::GenericType* pGT = pIT->getAs<types::GenericType>();
+        iDims = pGT->getDims();
+    }
+
+    if (iDims > 2)
+    {
+        bReturn = export_hypermat(pvCtx, _iH5File, _piVar, _pstName);
+    }
+    else
+    {
+        switch (iType)
         {
-            bReturn = export_double(pvCtx, _iH5File, _piVar, _pstName);
-            break;
-        }
-        case sci_poly :
-        {
-            bReturn = export_poly(pvCtx, _iH5File, _piVar, _pstName);
-            break;
-        }
-        case sci_boolean :
-        {
-            bReturn = export_boolean(pvCtx, _iH5File, _piVar, _pstName);
-            break;
-        }
-        case sci_sparse :
-        {
-            bReturn = export_sparse(pvCtx, _iH5File, _piVar, _pstName);
-            break;
-        }
-        case sci_boolean_sparse :
-        {
-            bReturn = export_boolean_sparse(pvCtx, _iH5File, _piVar, _pstName);
-            break;
-        }
-        case sci_matlab_sparse :
-        {
-            bReturn = export_matlab_sparse(pvCtx, _piVar, _pstName);
-            break;
-        }
-        case sci_ints :
-        {
-            bReturn = export_ints(pvCtx, _iH5File, _piVar, _pstName);
-            break;
-        }
-        case sci_handles :
-        {
-            bReturn = export_handles(pvCtx, _piVar, _pstName);
-            break;
-        }
-        case sci_strings :
-        {
-            bReturn = export_strings(pvCtx, _iH5File, _piVar, _pstName);
-            break;
-        }
-        case sci_u_function :
-        {
-            bReturn = export_u_function(pvCtx, _piVar, _pstName);
-            break;
-        }
-        case sci_c_function :
-        {
-            bReturn = export_c_function(pvCtx, _piVar, _pstName);
-            break;
-        }
-        case sci_lib :
-        {
-            bReturn = export_lib(pvCtx, _piVar, _pstName);
-            break;
-        }
-        case sci_list :
-        case sci_tlist :
-        case sci_mlist :
-        {
-            bReturn = export_list(pvCtx, _iH5File, _piVar, _pstName, iType);
-            break;
-        }
-        case sci_lufact_pointer :
-        {
-            bReturn = export_lufact_pointer(pvCtx, _piVar, _pstName);
-            break;
-        }
-        case 0 : //void case to "null" items in list
-        {
-            bReturn = export_void(pvCtx, _iH5File, _piVar, _pstName);
-            break;
-        }
-        default :
-        {
-            bReturn = false;
-            break;
+            case sci_matrix :
+            {
+                bReturn = export_double(pvCtx, _iH5File, _piVar, _pstName);
+                break;
+            }
+            case sci_poly :
+            {
+                bReturn = export_poly(pvCtx, _iH5File, _piVar, _pstName);
+                break;
+            }
+            case sci_boolean :
+            {
+                bReturn = export_boolean(pvCtx, _iH5File, _piVar, _pstName);
+                break;
+            }
+            case sci_sparse :
+            {
+                bReturn = export_sparse(pvCtx, _iH5File, _piVar, _pstName);
+                break;
+            }
+            case sci_boolean_sparse :
+            {
+                bReturn = export_boolean_sparse(pvCtx, _iH5File, _piVar, _pstName);
+                break;
+            }
+            case sci_matlab_sparse :
+            {
+                bReturn = export_matlab_sparse(pvCtx, _piVar, _pstName);
+                break;
+            }
+            case sci_ints :
+            {
+                bReturn = export_ints(pvCtx, _iH5File, _piVar, _pstName);
+                break;
+            }
+            case sci_handles :
+            {
+                bReturn = export_handles(pvCtx, _piVar, _pstName);
+                break;
+            }
+            case sci_strings :
+            {
+                bReturn = export_strings(pvCtx, _iH5File, _piVar, _pstName);
+                break;
+            }
+            case sci_u_function :
+            {
+                bReturn = export_u_function(pvCtx, _piVar, _pstName);
+                break;
+            }
+            case sci_c_function :
+            {
+                bReturn = export_c_function(pvCtx, _piVar, _pstName);
+                break;
+            }
+            case sci_lib :
+            {
+                bReturn = export_lib(pvCtx, _piVar, _pstName);
+                break;
+            }
+            case sci_list :
+            case sci_tlist :
+            case sci_mlist :
+            {
+                bReturn = export_list(pvCtx, _iH5File, _piVar, _pstName, iType);
+                break;
+            }
+            case sci_lufact_pointer :
+            {
+                bReturn = export_lufact_pointer(pvCtx, _piVar, _pstName);
+                break;
+            }
+            case 0 : //void case to "null" items in list
+            {
+                bReturn = export_void(pvCtx, _iH5File, _piVar, _pstName);
+                break;
+            }
+            default :
+            {
+                bReturn = false;
+                break;
+            }
         }
     }
+
     return bReturn;
 }
 
@@ -431,6 +451,84 @@ static bool export_list(int* pvCtx, int _iH5File, int *_piVar, char* _pstName, i
     closeList(_iH5File, pvList, _pstName, iItemNumber, _iVarType);
     FREE(pstGroupName);
     //close list
+    return true;
+}
+
+static bool export_hypermat(int* pvCtx, int _iH5File, int *_piVar, char* _pstName)
+{
+    char* strHypermat[] = {"hm", "dims", "entries"};
+
+    int iVarType    = sci_mlist;
+    int iRet        = 0;
+    bool bReturn    = false;
+    types::GenericType* pGT = (types::GenericType*)_piVar;
+
+    //create groupe name
+    char* pstGroupName = createGroupName(_pstName);
+    iLevel++;
+
+    //open list
+    void *pvList = openList(_iH5File, pstGroupName, 3);
+
+    //export string ["hm" "dims" "entries"]
+    int piStrDims[2] = {1, 3};
+    char* pstPathName = createPathName(pstGroupName, 0);
+    iRet = writeStringMatrix(_iH5File, pstPathName, 2, piStrDims, strHypermat);
+    if (iRet)
+    {
+        return false;
+    }
+
+    iRet = addItemInList(_iH5File, pvList, 0, pstPathName);
+    FREE(pstPathName);
+    if (iRet)
+    {
+        return false;
+    }
+
+    // export size
+    int piSizeDims[2] = {1, 0};
+    piSizeDims[1] = pGT->getDims();
+    pstPathName = createPathName(pstGroupName, 1);
+    iRet = writeInteger32Matrix(_iH5File, pstPathName, 2, piSizeDims, pGT->getDimsArray());
+    if (iRet)
+    {
+        return false;
+    }
+
+    iRet = addItemInList(_iH5File, pvList, 1, pstPathName);
+    FREE(pstPathName);
+    if (iRet)
+    {
+        return false;
+    }
+
+    // export data
+    int iDims = pGT->getDims();
+    int* piDimsArray = new int[iDims];
+    memcpy(piDimsArray, pGT->getDimsArray(), iDims * sizeof(int));
+
+    pstPathName = createPathName(pstGroupName, 2);
+    // reshape to prevent infinite call of export_hypermat
+    // we have to export a colon vector
+    pGT->reshape(pGT->getSize(), 1);
+    bReturn = export_data(pvCtx, _iH5File, _piVar, pstPathName);
+    // after export reshape again to keep variable unchainged.
+    pGT->reshape(piDimsArray, iDims);
+    delete[] piDimsArray;
+
+    iRet = addItemInList(_iH5File, pvList, 2, pstPathName);
+    FREE(pstPathName);
+    if (bReturn == false || iRet)
+    {
+        return false;
+    }
+
+    //close list
+    iLevel--;
+    closeList(_iH5File, pvList, _pstName, 3, iVarType);
+    FREE(pstGroupName);
+
     return true;
 }
 

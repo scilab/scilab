@@ -11,6 +11,8 @@
 */
 
 #include <hdf5.h>
+#include "context.hxx"
+
 extern "C"
 {
 #include <string.h>
@@ -41,6 +43,7 @@ static bool import_sparse(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAd
 static bool import_boolean_sparse(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddress, char *_pstVarname);
 static bool import_poly(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddress, char *_pstVarname);
 static bool import_list(int* pvCtx, int _iDatasetId, int _iVarType, int _iItemPos, int *_piAddress, char *_pstVarname);
+static bool import_hypermat(int* pvCtx, int _iDatasetId, int _iVarType, int _iItemPos, int *_piAddress, char *_pstVarname);
 static bool import_void(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddress, char *_pstVarname);
 static bool import_undefined(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddress, char *_pstVarname);
 
@@ -232,7 +235,11 @@ static bool import_data(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddr
         case sci_tlist:
         case sci_mlist:
         {
-            bRet = import_list(pvCtx, _iDatasetId, iVarType, _iItemPos, _piAddress, _pstVarname);
+            bRet = import_hypermat(pvCtx, _iDatasetId, iVarType, _iItemPos, _piAddress, _pstVarname);
+            if (bRet == false)
+            {
+                bRet = import_list(pvCtx, _iDatasetId, iVarType, _iItemPos, _piAddress, _pstVarname);
+            }
             break;
         }
         case sci_boolean:
@@ -1125,5 +1132,146 @@ static bool import_list(int* pvCtx, int _iDatasetId, int _iVarType, int _iItemPo
 
     return true;
 }
+
+static bool import_hypermat(int* pvCtx, int _iDatasetId, int _iVarType, int _iItemPos, int *_piAddress, char *_pstVarname)
+{
+    int iRet = 0;
+    int iComplex = 0;
+    int iDims = 0;
+    int iItems = 0;
+    int *piListAddr = NULL;
+    hobj_ref_t *piItemRef = NULL;
+
+    // an hypermatrix is stored in an mlist
+    if (_iVarType != sci_mlist)
+    {
+        return false;
+    }
+
+    iRet = getListDims(_iDatasetId, &iItems);
+    if (iRet)
+    {
+        return false;
+    }
+
+    if (iItems != 3)
+    {
+        // hypermatrix have 3 elements
+        return false;
+    }
+
+    iRet = getListItemReferences(_iDatasetId, &piItemRef);
+    if (iRet)
+    {
+        return false;
+    }
+
+    // get first item
+    int iItemDataset = 0;
+    iRet = getListItemDataset(_iDatasetId, piItemRef, 0, &iItemDataset);
+    if (iRet || iItemDataset == 0)
+    {
+        return false;
+    }
+
+    // get first item type
+    int iItemType = getScilabTypeFromDataSet(iItemDataset);
+    if (iItemType != sci_strings)
+    {
+        return false;
+    }
+
+    // get size of first item
+    iRet = getDatasetInfo(iItemDataset, &iComplex, &iDims, NULL);
+    if (iRet < 0 || iDims != 2)
+    {
+        return false;
+    }
+
+    int* piDims = new int[2];
+    int iSize = getDatasetInfo(iItemDataset, &iComplex, &iDims, piDims);
+    if (iSize != 3)
+    {
+        delete[] piDims;
+        return false;
+    }
+
+    delete[] piDims;
+    piDims = NULL;
+
+    // get data of first item for check the type of mlist
+    char** pstData = new char*[iSize];
+    iRet = readStringMatrix(iItemDataset, pstData);
+    if (iRet || strcmp(pstData[0], "hm") != 0)
+    {
+        delete[] pstData;
+        return false;
+    }
+
+    delete[] pstData;
+    pstData = NULL;
+
+    // get second item, the Size of hypermatrix
+    iRet = getListItemDataset(_iDatasetId, piItemRef, 1, &iItemDataset);
+    if (iRet)
+    {
+        return false;
+    }
+
+    iRet = getDatasetInfo(iItemDataset, &iComplex, &iDims, NULL);
+    if (iRet < 0 || iDims != 2)
+    {
+        return false;
+    }
+
+    piDims = new int[2];
+    iSize = getDatasetInfo(iItemDataset, &iComplex, &iDims, piDims);
+    if (piDims[0] != 1)
+    {
+        delete[] piDims;
+        return false;
+    }
+
+    int* piDimsArray = new int[piDims[1]];
+    iRet = readInteger32Matrix(iItemDataset, piDimsArray);
+    if (iRet)
+    {
+        delete[] piDims;
+        delete[] piDimsArray;
+        return false;
+    }
+
+    // get third item, the Data of hypermatrix
+    // import data like a "type" (Double, Int, ...) instead of mlist
+    iRet = getListItemDataset(_iDatasetId, piItemRef, 2, &iItemDataset);
+    bool bRet = import_data(pvCtx, iItemDataset, 0 /* unused */ , NULL, _pstVarname);
+    if (bRet == false)
+    {
+        delete[] piDims;
+        delete[] piDimsArray;
+        return false;
+    }
+
+    // reshape data with size of hypermatrix
+    wchar_t* pwcsName = to_wide_string(_pstVarname);
+    types::InternalType* pIT = symbol::Context::getInstance()->getCurrentLevel(symbol::Symbol(pwcsName));
+    FREE(pwcsName);
+
+    types::GenericType* pGT = pIT->getAs<types::GenericType>();
+    pGT->reshape(piDimsArray, piDims[1]);
+
+    delete[] piDims;
+    delete[] piDimsArray;
+
+
+    iRet = deleteListItemReferences(_iDatasetId, piItemRef);
+    if (iRet)
+    {
+        return false;
+    }
+
+    return true;
+}
+
 
 /*--------------------------------------------------------------------------*/
