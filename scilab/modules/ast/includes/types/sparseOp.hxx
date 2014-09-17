@@ -158,11 +158,11 @@ template<typename Scalar> struct OperatorTraits<std::logical_or<Scalar> > : With
  * @return ptr to the new Eigen::Sparse result containing the cwise binary op with the scalar.
  */
 template<typename Sp1, typename Scalar2, typename Op>
-Eigen::SparseMatrix<typename Op::result_type>* scalarOp(Eigen::EigenBase<Sp1> const& op1, Scalar2 op2, Op op)
+Eigen::SparseMatrix<typename Op::result_type, Eigen::RowMajor>* scalarOp(Eigen::EigenBase<Sp1> const& op1, Scalar2 op2, Op op)
 {
     typedef typename Eigen::internal::traits<Sp1>::Scalar Scalar1;
     typedef typename Op::result_type result_scalar;
-    typedef Eigen::SparseMatrix<result_scalar> result_t;
+    typedef Eigen::SparseMatrix<result_scalar, Eigen::RowMajor> result_t;
     result_t* res;
     if (op(Scalar1(), op2) == result_scalar())
     {
@@ -188,11 +188,11 @@ Eigen::SparseMatrix<typename Op::result_type>* scalarOp(Eigen::EigenBase<Sp1> co
  * @return ptr to the new Eigen::Sparse result containing the cwise binary op with the scalar.
  */
 template<typename Scalar1, typename Sp2, typename Op>
-Eigen::SparseMatrix<typename Op::result_type>* scalarOp(Scalar1 op1, Eigen::EigenBase<Sp2> const& op2, Op op)
+Eigen::SparseMatrix<typename Op::result_type, Eigen::RowMajor>* scalarOp(Scalar1 op1, Eigen::EigenBase<Sp2> const& op2, Op op)
 {
     typedef typename Eigen::internal::traits<Sp2>::Scalar Scalar2;
     typedef typename Op::result_type result_scalar;
-    typedef Eigen::SparseMatrix<result_scalar> result_t;
+    typedef Eigen::SparseMatrix<result_scalar, Eigen::RowMajor> result_t;
     result_t* res;
     if (op(op1, Scalar2()) == result_scalar())
     {
@@ -217,7 +217,7 @@ Eigen::SparseMatrix<typename Op::result_type>* scalarOp(Scalar1 op1, Eigen::Eige
  * @return ptr to the new Eigen::Sparse result containing the cwise binary op with the two matrices.
  */
 template< typename Sp1, typename Sp2 , typename Op>
-Eigen::SparseMatrix<typename Op::result_type>* cwiseOp(Eigen::EigenBase<Sp1> const& op1, Eigen::EigenBase<Sp2> const& op2, Op op)
+Eigen::SparseMatrix<typename Op::result_type, Eigen::RowMajor>* cwiseOp(Eigen::EigenBase<Sp1> const& op1, Eigen::EigenBase<Sp2> const& op2, Op op)
 {
     if (op1.rows() == 1 && op1.cols() == 1)
     {
@@ -239,10 +239,10 @@ Eigen::SparseMatrix<typename Op::result_type>* cwiseOp(Eigen::EigenBase<Sp1> con
  * @return ptr to the new Eigen::Sparse result containing the cwise binary op between the two matrices
  */
 template< typename Sp1, typename Sp2 , typename Op>
-Eigen::SparseMatrix<typename Op::result_type>* cwiseOp(Eigen::EigenBase<Sp1> const& op1, Eigen::EigenBase<Sp2> const& op2, Op op, FullTraversal /*unused*/)
+Eigen::SparseMatrix<typename Op::result_type, Eigen::RowMajor>* cwiseOp(Eigen::EigenBase<Sp1> const& op1, Eigen::EigenBase<Sp2> const& op2, Op op, FullTraversal /*unused*/)
 {
     typedef typename Op::result_type result_scalar;
-    typedef Eigen::SparseMatrix<result_scalar> result_t;
+    typedef Eigen::SparseMatrix<result_scalar, Eigen::RowMajor> result_t;
     typedef typename Eigen::internal::traits<Sp1>::Scalar Scalar1;
     typedef typename Eigen::internal::traits<Sp2>::Scalar Scalar2;
     // TODO remove dense temp when Eigen provides sparse full traversal API
@@ -261,10 +261,10 @@ Eigen::SparseMatrix<typename Op::result_type>* cwiseOp(Eigen::EigenBase<Sp1> con
  * @return ptr to the new Eigen::Sparse result containing the cwise binary op with the scalar.
  */
 template< typename Sp1, typename Sp2 , typename Op>
-Eigen::SparseMatrix<typename Op::result_type>* cwiseOp(Eigen::EigenBase<Sp1> const& op1, Eigen::EigenBase<Sp2> const& op2, Op op, UnionTraversal /*unused*/)
+Eigen::SparseMatrix<typename Op::result_type, Eigen::RowMajor>* cwiseOp(Eigen::EigenBase<Sp1> const& op1, Eigen::EigenBase<Sp2> const& op2, Op op, UnionTraversal /*unused*/)
 {
     typedef typename Op::result_type result_scalar;
-    typedef Eigen::SparseMatrix<result_scalar> result_t;
+    typedef Eigen::SparseMatrix<result_scalar, Eigen::RowMajor> result_t;
     result_t* res(new result_t(op1.derived().binaryExpr(op2.derived(), op)));
     res->prune(&keepForSparse<result_scalar>);
     return res;

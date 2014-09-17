@@ -495,8 +495,8 @@ struct EXTERN_AST Sparse : GenericType
 
     SparseBool* newLesserThan(Sparse const&o);
 
-    typedef Eigen::SparseMatrix<double >   RealSparse_t;
-    typedef Eigen::SparseMatrix<std::complex<double > >    CplxSparse_t;
+    typedef Eigen::SparseMatrix<double, Eigen::RowMajor>                 RealSparse_t;
+    typedef Eigen::SparseMatrix<std::complex<double>, Eigen::RowMajor>   CplxSparse_t;
     /**
        One and only one of the args should be 0.
        @param realSp ptr to an Eigen sparse matrix of double values
@@ -709,7 +709,7 @@ struct EXTERN_AST SparseBool : GenericType
     SparseBool* newLogicalOr(SparseBool const&o) const;
     SparseBool* newLogicalAnd(SparseBool const&o) const;
 
-    typedef Eigen::SparseMatrix<bool> BoolSparse_t;
+    typedef Eigen::SparseMatrix<bool, Eigen::RowMajor> BoolSparse_t;
     SparseBool(BoolSparse_t* o);
     BoolSparse_t* matrixBool;
 
