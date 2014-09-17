@@ -34,8 +34,8 @@ public:
 
     virtual NilExp* clone()
     {
-        NilExp* cloned = new NilExp(location_get());
-        cloned->set_verbose(is_verbose());
+        NilExp* cloned = new NilExp(getLocation());
+        cloned->setVerbose(isVerbose());
         return cloned;
     }
     /** \name Visitors entry point.
@@ -53,6 +53,14 @@ public:
     }
     /** \} */
 
+    virtual ExpType getType()
+    {
+        return NILEXP;
+    }
+    inline bool isNilExp() const
+    {
+        return true;
+    }
 };
 } // namespace ast
 

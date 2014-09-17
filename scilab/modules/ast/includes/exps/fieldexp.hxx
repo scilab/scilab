@@ -62,8 +62,8 @@ public:
 
     virtual FieldExp* clone()
     {
-        FieldExp* cloned = new FieldExp(location_get(), *head_get()->clone(), *tail_get()->clone());
-        cloned->set_verbose(is_verbose());
+        FieldExp* cloned = new FieldExp(getLocation(), *getHead()->clone(), *getTail()->clone());
+        cloned->setVerbose(isVerbose());
         return cloned;
     }
 
@@ -87,30 +87,38 @@ public:
     ** \{ */
 public:
     /** \brief Return the name of the field (read only). */
-    const Exp* head_get() const
+    const Exp* getHead() const
     {
         return _head;
     }
 
     /** \brief Return the initial value of the field (read only). */
-    const Exp* tail_get() const
+    const Exp* getTail() const
     {
         return _tail;
     }
 
     /** \brief Return the initial value of the field (read and write). */
-    Exp* head_get()
+    Exp* getHead()
     {
         return _head;
     }
 
     /** \brief Return the initial value of the field (read and write). */
-    Exp* tail_get()
+    Exp* getTail()
     {
         return _tail;
     }
     /** \} */
 
+    virtual ExpType getType()
+    {
+        return FIELDEXP;
+    }
+    inline bool isFieldExp() const
+    {
+        return true;
+    }
 protected:
     /** \brief Name of the field. */
     Exp* _head;

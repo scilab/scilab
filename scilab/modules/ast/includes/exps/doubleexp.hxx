@@ -48,8 +48,8 @@ public:
 
     virtual DoubleExp* clone()
     {
-        DoubleExp* cloned = new DoubleExp(location_get(), value_get());
-        cloned->set_verbose(is_verbose());
+        DoubleExp* cloned = new DoubleExp(getLocation(), getValue());
+        cloned->setVerbose(isVerbose());
         return cloned;
     }
     /** \name Visitors entry point.
@@ -72,7 +72,7 @@ public:
     ** \{ */
 public:
     /** \brief Return the value */
-    double value_get() const
+    double getValue() const
     {
         return _value;
     }
@@ -93,6 +93,15 @@ public:
 
         _bigDouble = pdbl;
         _bigDouble->IncreaseRef();
+    }
+
+    virtual ExpType getType()
+    {
+        return DOUBLEEXP;
+    }
+    inline bool isDoubleExp() const
+    {
+        return true;
     }
 
 protected:

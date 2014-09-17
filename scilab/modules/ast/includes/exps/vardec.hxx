@@ -22,6 +22,7 @@
 
 #include "dec.hxx"
 #include "context.hxx"
+#include "ForList.hxx"
 
 namespace ast
 {
@@ -67,8 +68,8 @@ public:
 
     virtual VarDec* clone()
     {
-        VarDec* cloned = new VarDec(location_get(), *new symbol::Symbol(name_get().name_get()), *init_get().clone());
-        cloned->set_verbose(is_verbose());
+        VarDec* cloned = new VarDec(getLocation(), *new symbol::Symbol(getSymbol().getName()), *getInit().clone());
+        cloned->setVerbose(isVerbose());
         return cloned;
     }
     /** \name Visitors entry point.
@@ -91,12 +92,12 @@ public:
     ** \{ */
 public:
     /** \brief Return the variable name (read only). */
-    symbol::Symbol& name_get (void) const
+    symbol::Symbol& getSymbol (void) const
     {
         return _name;
     }
 
-    symbol::Variable* stack_get()
+    symbol::Variable* getStack()
     {
         if (_stack == NULL)
         {
@@ -107,25 +108,54 @@ public:
     }
 
     /** \brief Return the initial expression value (read only). */
-    const Exp& init_get (void) const
+    const Exp& getInit (void) const
     {
         return *_init;
     }
     /** \brief Return the initial expression value (read and write). */
-    Exp& init_get (void)
+    Exp& getInit (void)
     {
         return *_init;
     }
 
+    analysis::ForList64 getListInfo() const
+    {
+        return list_info;
+    }
+
+    analysis::ForList64 & getListInfo()
+    {
+        return list_info;
+    }
+
+    void setListInfo(analysis::ForList64 & _list_info)
+    {
+        list_info = _list_info;
+    }
+
+    void setListInfo(analysis::ForList64 && _list_info)
+    {
+        list_info = _list_info;
+    }
+
+    virtual ExpType getType()
+    {
+        return VARDEC;
+    }
+    inline bool isVarDec() const
+    {
+        return true;
+    }
 protected:
+    analysis::ForList64 list_info;
     /** \brief Name of the declared variable. */
     symbol::Symbol& _name;
+    symbol::Variable* _stack;
     /** \brief The initial value (expression) assigned to the variable. */
     Exp* _init;
-
-    symbol::Variable* _stack;
 };
 
 } // namespace ast
 
 #endif // !AST_VARDEC_HXX
+

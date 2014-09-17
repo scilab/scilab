@@ -175,24 +175,6 @@ private :
         exit(2);
     }
 
-    IntExp::Prec get_IntExp_Prec(void)
-    {
-        int code = get_uint8();
-        switch (code)
-        {
-            case 1:
-                return IntExp::_8_;
-            case 2:
-                return IntExp::_16_;
-            case 3:
-                return IntExp::_32_;
-            case 4:
-                return IntExp::_64_;
-        }
-        std::cerr << "Unknown get_IntExp_Prec code " << code << std::endl;
-        exit(2);
-    }
-
     TransposeExp::Kind get_TransposeExp_Kind(void)
     {
         int code = get_uint8();
@@ -246,13 +228,13 @@ private :
         int code = get_uint8();
         size_t nodeNumber = get_uint64();
         Location loc = get_location();
-        bool is_verbose = get_bool();
-        int is_break = get_bool();
-        int is_breakable = get_bool();
-        int is_return = get_bool();
-        int is_returnable = get_bool();
-        int is_continue = get_bool();
-        int is_continuable = get_bool();
+        bool isVerbose = get_bool();
+        int isBreak = get_bool();
+        int isBreakable = get_bool();
+        int isReturn = get_bool();
+        int isReturnable = get_bool();
+        int isContinue = get_bool();
+        int isContinuable = get_bool();
 
 
         switch (code)
@@ -325,11 +307,11 @@ private :
             }
             case 14:
             {
-                bool has_else = get_bool();
+                bool hasElse = get_bool();
                 Exp* test = get_exp();
                 Exp* _then = get_exp();
                 IfExp* ifexp;
-                if ( has_else )
+                if ( hasElse )
                 {
                     Exp* _else = get_exp();
                     ifexp = new IfExp(loc, *test, *_then, *_else);
@@ -550,35 +532,35 @@ private :
                 exit(2);
         }
 
-        exp->set_verbose(is_verbose);
-        if (is_break)
+        exp->setVerbose(isVerbose);
+        if (isBreak)
         {
-            exp->break_set();
+            exp->setBreak();
         }
-        if (is_breakable)
+        if (isBreakable)
         {
-            exp->breakable_set();
+            exp->setBreakable();
         }
-        if (is_return)
+        if (isReturn)
         {
-            exp->return_set();
+            exp->setReturn();
         }
-        if (is_returnable)
+        if (isReturnable)
         {
-            exp->returnable_set();
+            exp->setReturnable();
         }
-        if (is_continue)
+        if (isContinue)
         {
-            exp->continue_set();
+            exp->setContinue();
         }
-        if (is_continuable)
+        if (isContinuable)
         {
-            exp->continuable_set();
+            exp->setContinuable();
         }
 
         if (nodeNumber != 0)
         {
-            exp->nodeNumber_set(nodeNumber);
+            exp->setNodeNumber(nodeNumber);
         }
 
         return exp;
@@ -595,10 +577,14 @@ public :
         /*unsigned int size = */get_uint32();
         // serialization version
         /*unsigned char scilabVersion[4];
-        scilabVersion[0] = */get_uint8();
-        /*scilabVersion[1] = */get_uint8();
-        /*scilabVersion[2] = */get_uint8();
-        /*scilabVersion[3] = */get_uint8();
+        scilabVersion[0] = */
+        get_uint8();
+        /*scilabVersion[1] = */
+        get_uint8();
+        /*scilabVersion[2] = */
+        get_uint8();
+        /*scilabVersion[3] = */
+        get_uint8();
 
         return get_exp();
     }

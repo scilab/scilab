@@ -181,8 +181,6 @@ includes/operations/invert_matrix.h \
 includes/operations/interface_addition.h \
 includes/operations/matrix_multiplication.h \
 includes/operations/matrix_division.h \
-includes/exps/floatexp.hxx \
-includes/exps/intexp.hxx \
 includes/exps/returnexp.hxx \
 includes/exps/doubleexp.hxx \
 includes/exps/dollarvar.hxx \
@@ -199,7 +197,6 @@ includes/exps/boolexp.hxx \
 includes/exps/dec.hxx \
 includes/exps/logicalopexp.hxx \
 includes/exps/decls.hxx \
-includes/exps/decs.hxx \
 includes/exps/transposeexp.hxx \
 includes/exps/ifexp.hxx \
 includes/exps/whileexp.hxx \
@@ -222,7 +219,6 @@ includes/exps/selectexp.hxx \
 includes/exps/stepvisitor.hxx \
 includes/exps/controlexp.hxx \
 includes/exps/assignlistexp.hxx \
-includes/exps/anydecs.hxx \
 includes/exps/matrixexp.hxx \
 includes/exps/allexp.hxx \
 includes/exps/allvar.hxx \

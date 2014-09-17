@@ -49,16 +49,6 @@ class EXTERN_AST ExecVisitor : public RunVisitorT<ExecVisitor>
         visitprivate(e);
     }
 
-    void visit (const IntExp &e)
-    {
-        visitprivate(e);
-    }
-
-    void visit (const FloatExp &e)
-    {
-        visitprivate(e);
-    }
-
     void visit (const DoubleExp &e)
     {
         visitprivate(e);

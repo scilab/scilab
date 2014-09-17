@@ -46,8 +46,6 @@ public :
 public :
     virtual void visit (const StringExp &e);
     virtual void visit (const CommentExp &e);
-    virtual void visit (const IntExp  &e);
-    virtual void visit (const FloatExp  &e);
     virtual void visit (const DoubleExp  &e);
     virtual void visit (const BoolExp  &e);
     virtual void visit (const NilExp &e);

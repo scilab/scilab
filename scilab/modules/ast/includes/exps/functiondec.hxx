@@ -71,8 +71,8 @@ public:
 
     virtual FunctionDec* clone()
     {
-        FunctionDec* cloned = new FunctionDec(location_get(), *new symbol::Symbol(name_get().name_get()), *args_get().clone(), *returns_get().clone(), *body_get().clone());
-        cloned->set_verbose(is_verbose());
+        FunctionDec* cloned = new FunctionDec(getLocation(), *new symbol::Symbol(getSymbol().getName()), *getArgs().clone(), *getReturns().clone(), *getBody().clone());
+        cloned->setVerbose(isVerbose());
         return cloned;
     }
 
@@ -92,47 +92,47 @@ public:
 
     // \name Accessors.
 public:
-    symbol::Symbol& name_get (void) const
+    symbol::Symbol& getSymbol(void) const
     {
         return _name;
     }
 
-    const Exp& body_get (void) const
+    const Exp& getBody(void) const
     {
         return *_body;
     }
 
-    Exp& body_get (void)
+    Exp& getBody (void)
     {
         return *_body;
     }
 
-    const ArrayListVar& args_get () const
+    const ArrayListVar& getArgs() const
     {
         return *_args;
     }
 
-    ArrayListVar& args_get ()
+    ArrayListVar& getArgs()
     {
         return *_args;
     }
 
-    const ArrayListVar& returns_get () const
+    const ArrayListVar& getReturns() const
     {
         return *_returns;
     }
 
-    ArrayListVar& returns_get ()
+    ArrayListVar& getReturns()
     {
         return *_returns;
     }
 
-    void body_set(Exp *body)
+    void setBody(Exp *body)
     {
         _body = body;
     }
 
-    symbol::Variable* stack_get()
+    symbol::Variable* getStack()
     {
         if (_stack == NULL)
         {
@@ -142,6 +142,14 @@ public:
         return _stack;
     }
 
+    virtual ExpType getType()
+    {
+        return FUNCTIONDEC;
+    }
+    inline bool isFunctionDec() const
+    {
+        return true;
+    }
 protected:
     symbol::Symbol&     _name;
     ArrayListVar*       _args;

@@ -17,18 +17,18 @@ namespace ast
 void ShortCutVisitor::visit(const LogicalOpExp &e)
 {
     ShortCutVisitor SCLeft;
-    e.left_get().accept(SCLeft);
+    e.getLeft().accept(SCLeft);
 
     ShortCutVisitor SCRight;
-    e.right_get().accept(SCRight);
+    e.getRight().accept(SCRight);
 
-    switch (e.oper_get())
+    switch (e.getOper())
     {
         case LogicalOpExp::logicalOr :
-            const_cast<LogicalOpExp&>(e).oper_set(LogicalOpExp::logicalShortCutOr);
+            const_cast<LogicalOpExp&>(e).setOper(LogicalOpExp::logicalShortCutOr);
             break;
         case LogicalOpExp::logicalAnd :
-            const_cast<LogicalOpExp&>(e).oper_set(LogicalOpExp::logicalShortCutAnd);
+            const_cast<LogicalOpExp&>(e).setOper(LogicalOpExp::logicalShortCutAnd);
             break;
         default :
             // Do Nothing !

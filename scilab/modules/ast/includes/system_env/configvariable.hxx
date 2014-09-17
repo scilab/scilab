@@ -208,7 +208,7 @@ private :
     static int m_iPromptMode;
     static int m_iSilentError;
 
-    //set before function call to know status of e.is_verbose in functions
+    //set before function call to know status of e.isVerbose in functions
     static bool m_bVerbose;
 
 public :

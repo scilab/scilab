@@ -26,7 +26,7 @@ struct ScopedLibrary
 
     types::MacroFile* getMacroFile(const Symbol& _key)
     {
-        return m_pLib->get(_key.name_get());
+        return m_pLib->get(_key.getName());
     }
 
     int m_iLevel;

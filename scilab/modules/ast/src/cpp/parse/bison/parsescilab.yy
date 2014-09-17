@@ -345,25 +345,25 @@ recursiveExpression                             {
                                                   $$ = new ast::SeqExp(@$, *$1);
                                                 }
 | recursiveExpression expression                {
-                                                  $2->set_verbose(true);
+                                                  $2->setVerbose(true);
                                                   $1->push_back($2);
                                                   $$ = new ast::SeqExp(@$, *$1);
                                                 }
 | recursiveExpression expression COMMENT        {
-                                                  $2->set_verbose(true);
+                                                  $2->setVerbose(true);
                                                   $1->push_back($2);
                                                   $1->push_back(new ast::CommentExp(@3, $3));
                                                   $$ = new ast::SeqExp(@$, *$1);
                                                 }
 | expression                                    {
                                                   ast::exps_t *tmp = new ast::exps_t;
-                                                  $1->set_verbose(true);
+                                                  $1->setVerbose(true);
                                                   tmp->push_front($1);
                                                   $$ = new ast::SeqExp(@$, *tmp);
                                                 }
 | expression COMMENT                            {
                                                   ast::exps_t *tmp = new ast::exps_t;
-                                                  $1->set_verbose(true);
+                                                  $1->setVerbose(true);
                                                   tmp->push_front(new ast::CommentExp(@2, $2));
                                                   tmp->push_front($1);
                                                   $$ = new ast::SeqExp(@$, *tmp);
@@ -376,17 +376,17 @@ recursiveExpression                             {
 /* List of instructions. _MUST_BE_ left recursive Rule */
 recursiveExpression :
 recursiveExpression expression expressionLineBreak	{
-							  $2->set_verbose($3->bVerbose);
+							  $2->setVerbose($3->bVerbose);
 							  $1->push_back($2);
 							  $$ = $1;
                               if ($3->iNbBreaker != 0)
                               {
-                                  $2->location_get().last_column = $3->iNbBreaker;
+                                  $2->getLocation().last_column = $3->iNbBreaker;
                               }
 			      delete $3;
 							}
 | recursiveExpression expression COMMENT expressionLineBreak {
-							  $2->set_verbose($4->bVerbose);
+							  $2->setVerbose($4->bVerbose);
 							  $1->push_back($2);
                               @3.columns($4->iNbBreaker);
 							  $1->push_back(new ast::CommentExp(@3, $3));
@@ -397,19 +397,19 @@ recursiveExpression expression expressionLineBreak	{
 							  ast::exps_t *tmp = new ast::exps_t;
                               @2.columns($3->iNbBreaker);
 							  tmp->push_front(new ast::CommentExp(@2, $2));
-							  $1->set_verbose($3->bVerbose);
+							  $1->setVerbose($3->bVerbose);
 							  tmp->push_front($1);
 							  $$ = tmp;
 							  delete $3;
 							}
 | expression expressionLineBreak			{
 							  ast::exps_t *tmp = new ast::exps_t;
-							  $1->set_verbose($2->bVerbose);
+							  $1->setVerbose($2->bVerbose);
 							  tmp->push_front($1);
 							  $$ = tmp;
                               if ($2->iNbBreaker != 0)
                               {
-                                  $1->location_get().last_column = $2->iNbBreaker;
+                                  $1->getLocation().last_column = $2->iNbBreaker;
                               }
 			      delete $2;
 							}
@@ -461,8 +461,8 @@ functionDeclaration				{ $$ = $1; }
 implicitFunctionCall :
 /* FIXME : Add arguments to call */
 implicitFunctionCall implicitCallable		{
-						  $1->args_get().push_back($2);
-						  $1->location_set(@$);
+						  $1->getArgs().push_back($2);
+						  $1->setLocation(@$);
                           $$ = $1;
 						}
 | ID implicitCallable				{
@@ -503,7 +503,7 @@ ID						{ $$ = new ast::StringExp(@$, *$1); delete $1;}
 | BOOLFALSE					{ $$ = new ast::StringExp(@$, std::wstring(L"%f")); }
 | implicitCallable DOT ID			{
 						  std::wstringstream tmp;
-						  tmp << $1->value_get() << "." << *$3;
+						  tmp << $1->getValue() << "." << *$3;
 						  $$ = new ast::StringExp(@$, tmp.str());
 						  delete $3;
 						}
@@ -934,13 +934,13 @@ functionCall	%prec HIGHLEVEL		{ $$ = $1; }
 /* a way to compare two expressions */
 comparison :
 variable rightComparable		{
-					  delete &($2->left_get());
-					  $2->left_set(*$1);
+					  delete &($2->getLeft());
+					  $2->setLeft(*$1);
 					  $$ = $2;
 					}
 | functionCall rightComparable		{
-					  delete &($2->left_get());
-					  $2->left_set(*$1);
+					  delete &($2->getLeft());
+					  $2->setLeft(*$1);
 					  $$ = $2;
 					}
 ;
@@ -998,15 +998,15 @@ AND variable				{ $$ = new ast::LogicalOpExp(@$, *new ast::CommentExp(@$, new st
 /* Operations */
 operation :
 variable rightOperand			{
-					  delete &($2->left_get());
-					  $2->left_set(*$1);
-					  $2->location_set(@$);
+					  delete &($2->getLeft());
+					  $2->setLeft(*$1);
+					  $2->setLocation(@$);
 					  $$ = $2;
 					}
 | functionCall rightOperand		{
-					  delete &($2->left_get());
-					  $2->left_set(*$1);
-					  $2->location_set(@$);
+					  delete &($2->getLeft());
+					  $2->setLeft(*$1);
+					  $2->setLocation(@$);
 					  $$ = $2;
 					}
 | MINUS variable			{ $$ = new ast::OpExp(@$, *new ast::DoubleExp(@$, 0.0), ast::OpExp::unaryMinus, *$2); }
@@ -1096,23 +1096,23 @@ NOT variable				%prec NOT	{ $$ = new ast::NotExp(@$, *$2); }
 | variable DOT ID			%prec UPLEVEL	{ $$ = new ast::FieldExp(@$, *$1, *new ast::SimpleVar(@$, *new symbol::Symbol(*$3))); delete $3;}
 | variable DOT keywords 	%prec UPLEVEL	{ $$ = new ast::FieldExp(@$, *$1, *$3); }
 | variable DOT functionCall				{
-							  $3->name_set(new ast::FieldExp(@$, *$1, $3->name_get()));
-							  $3->location_set(@$);
+							  $3->setName(new ast::FieldExp(@$, *$1, $3->getName()));
+							  $3->setLocation(@$);
 							  $$ = $3;
 }
 | functionCall DOT variable				{ $$ = new ast::FieldExp(@$, *$1, *$3); }
 | functionCall DOT keywords				{ $$ = new ast::FieldExp(@$, *$1, *$3); }
 | functionCall DOT functionCall				{
-							  $3->name_set(new ast::FieldExp(@$, *$1, $3->name_get()));
-							  $3->location_set(@$);
+							  $3->setName(new ast::FieldExp(@$, *$1, $3->getName()));
+							  $3->setLocation(@$);
 							  $$ = $3;
 }
 | variable listableEnd					{
-    $$ = new ast::ListExp(@$, *$1, *($2->step_get().clone()), *($2->end_get().clone()), $2->hasExplicitStep());
+    $$ = new ast::ListExp(@$, *$1, *($2->getStep().clone()), *($2->getEnd().clone()), $2->hasExplicitStep());
     delete($2);
 }
 | functionCall listableEnd		%prec UPLEVEL	{
-    $$ = new ast::ListExp(@$, *$1, *($2->step_get().clone()), *($2->end_get().clone()), $2->hasExplicitStep());
+    $$ = new ast::ListExp(@$, *$1, *($2->getStep().clone()), *($2->getEnd().clone()), $2->hasExplicitStep());
     delete($2);
 }
 | matrix						{ $$ = $1; }
@@ -1139,11 +1139,11 @@ NOT variable				%prec NOT	{ $$ = new ast::NotExp(@$, *$2); }
 /* variable (, variable)+ */
 variableFields :
 variableFields COMMA variable		{
-					  $1->exps_get().push_back($3);
+					  $1->getExps().push_back($3);
 					  $$ = $1;
 					}
 | variableFields COMMA functionCall	{
-					  $1->exps_get().push_back($3);
+					  $1->getExps().push_back($3);
 					  $$ = $1;
 					}
 | variable COMMA variable		{
@@ -1341,15 +1341,15 @@ assignable :
 variable DOT ID			%prec UPLEVEL		{ $$ = new ast::FieldExp(@$, *$1, *new ast::SimpleVar(@$, *new symbol::Symbol(*$3))); delete $3;}
 | variable DOT keywords	%prec UPLEVEL		{ $$ = new ast::FieldExp(@$, *$1, *$3); }
 | variable DOT functionCall                 {
-                                                $3->name_set(new ast::FieldExp(@$, *$1, $3->name_get()));
-                                                $3->location_set(@$);
+                                                $3->setName(new ast::FieldExp(@$, *$1, $3->getName()));
+                                                $3->setLocation(@$);
                                                 $$ = $3;
                                             }
 | functionCall DOT variable				{ $$ = new ast::FieldExp(@$, *$1, *$3); }
 | functionCall DOT keywords				{ $$ = new ast::FieldExp(@$, *$1, *$3); }
 | functionCall DOT functionCall				{
-							  $3->name_set(new ast::FieldExp(@$, *$1, $3->name_get()));
-							  $3->location_set(@$);
+							  $3->setName(new ast::FieldExp(@$, *$1, $3->getName()));
+							  $3->setLocation(@$);
 							  $$ = $3;
                                             }
 | ID					%prec LISTABLE	{ $$ = new ast::SimpleVar(@$, *new symbol::Symbol(*$1)); delete $1;}

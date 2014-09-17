@@ -33,7 +33,7 @@ class Ast
 public:
     /** \brief Construct an Ast node.
     ** \param location scanner position informations */
-    Ast (const Location& location) : _location (location), decorator()
+    Ast (const Location& location) : _location (location), decorator(), parent(NULL)
     {
         nodeNumber = globalNodeNumber++;
     }
@@ -55,19 +55,19 @@ public:
     **
     ** Return a reference to this.
     */
-    Ast& location_set (const Location& location)
+    Ast& setLocation(const Location& location)
     {
         _location = location;
         return *this;
     }
     /** \brief Get scanner position informations stored. */
-    inline const Location& location_get () const
+    inline const Location& getLocation() const
     {
         return _location;
     }
 
     /** \brief Get scanner position informations stored. */
-    inline Location& location_get ()
+    inline Location& getLocation()
     {
         return _location;
     }
@@ -82,40 +82,55 @@ public:
     virtual void accept (Visitor& v) = 0;
     /** \} */
 
-    void elapsedtime_set(double _dblElapsedTime)
+    void setElapsedtime(double _dblElapsedTime)
     {
         m_dblElapsedTime = _dblElapsedTime;
     }
 
-    size_t nodeNumber_get() const
+    size_t getNodeNumber() const
     {
         return nodeNumber;
     }
 
-    void nodeNumber_set(size_t _nodeNumber)
+    void setNodeNumber(size_t _nodeNumber)
     {
         nodeNumber = _nodeNumber;
     }
 
-    const analysis::Decorator & decorator_get() const
+    const analysis::Decorator & getDecorator() const
     {
         return decorator;
     }
 
-    analysis::Decorator & decorator_get()
+    analysis::Decorator & getDecorator()
     {
         return decorator;
     }
 
-    void decorator_set(analysis::Decorator & _decorator)
+    void setDecorator(analysis::Decorator & _decorator)
     {
         decorator = _decorator;
     }
 
+    Ast* getParent() const
+    {
+        return parent;
+    }
+
+    Ast* getParent()
+    {
+        return parent;
+    }
+
+    void setParent(Ast* _ast)
+    {
+        parent = _ast;
+    }
 
 private:
     /** \brief Construct an Ast by copy. */
     analysis::Decorator decorator;
+    Ast* parent;
     Ast (const Ast&);
     /** \brief Assign an Ast to this. */
     Ast& operator= (const Ast&);

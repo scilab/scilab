@@ -44,14 +44,11 @@ public:
 
     virtual DollarVar* clone()
     {
-        DollarVar* cloned = new DollarVar(location_get());
-        cloned->set_verbose(is_verbose());
+        DollarVar* cloned = new DollarVar(getLocation());
+        cloned->setVerbose(isVerbose());
         return cloned;
     }
 
-    /** \name Visitors entry point.
-    ** \{ */
-public:
     /** \brief Accept a const visitor \a v. */
     virtual void accept (Visitor& v)
     {
@@ -62,7 +59,15 @@ public:
     {
         v.visit (*this);
     }
-    /** \} */
+
+    virtual ExpType getType()
+    {
+        return DOLLARVAR;
+    }
+    inline bool isDollarVar() const
+    {
+        return true;
+    }
 };
 
 } // namespace ast

@@ -60,8 +60,8 @@ public:
             vars->push_back(static_cast<Var*>((*it)->clone()));
         }
 
-        ArrayListVar* cloned = new ArrayListVar(location_get(), *vars);
-        cloned->set_verbose(is_verbose());
+        ArrayListVar* cloned = new ArrayListVar(getLocation(), *vars);
+        cloned->setVerbose(isVerbose());
         return cloned;
     }
 
@@ -84,17 +84,25 @@ public:
     /** \name Accessors.
     ** \{ */
 public:
-    const std::list<Var *>&	vars_get() const
+    const std::list<Var *>&	getVars() const
     {
         return *_vars;
     }
 
-    std::list<Var *>&	vars_get()
+    std::list<Var *>& getVars()
     {
         return *_vars;
     }
     /** \} */
 
+    virtual ExpType getType()
+    {
+        return ARRAYLISTVAR;
+    }
+    inline bool isArrayListVar()
+    {
+        return true;
+    }
 
 protected:
     std::list<Var *>* _vars;

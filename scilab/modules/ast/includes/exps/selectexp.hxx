@@ -69,7 +69,7 @@ public :
     virtual SelectExp* clone()
     {
         cases_t* cases = new cases_t;
-        for (cases_t::const_iterator it = cases_get()->begin() ; it != cases_get()->end() ; it++)
+        for (cases_t::const_iterator it = getCases()->begin() ; it != getCases()->end() ; it++)
         {
             cases->push_back((*it)->clone());
         }
@@ -77,27 +77,27 @@ public :
         SelectExp* cloned = NULL;
         if (_default != NULL)
         {
-            cloned = new SelectExp(location_get(), *select_get()->clone(), *cases, *default_case_get()->clone());
+            cloned = new SelectExp(getLocation(), *getSelect()->clone(), *cases, *getDefaultCase()->clone());
         }
         else
         {
-            cloned = new SelectExp(location_get(), *select_get()->clone(), *cases);
+            cloned = new SelectExp(getLocation(), *getSelect()->clone(), *cases);
         }
 
-        cloned->set_verbose(is_verbose());
+        cloned->setVerbose(isVerbose());
         return cloned;
     }
 
 public :
-    Exp* select_get() const
+    Exp* getSelect() const
     {
         return _selectme;
     }
-    cases_t* cases_get() const
+    cases_t* getCases() const
     {
         return _cases;
     }
-    SeqExp* default_case_get() const
+    SeqExp* getDefaultCase() const
     {
         return _default;
     }
@@ -117,6 +117,14 @@ public:
     }
     /** \} */
 
+    virtual ExpType getType()
+    {
+        return SELECTEXP;
+    }
+    inline bool isSelectExp() const
+    {
+        return true;
+    }
 private :
     Exp* _selectme;
     cases_t* _cases;

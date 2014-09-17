@@ -117,7 +117,7 @@ struct Variable
         stack.pop();
     }
 
-    inline Symbol name_get() const
+    inline Symbol getSymbol() const
     {
         return name;
     }
@@ -305,7 +305,7 @@ struct Variables
                 types::InternalType* pIT = it->second->top()->m_pIT;
                 if (pIT && (pIT->isMacro() || pIT->isMacroFile()))
                 {
-                    plOut->push_back(it->first.name_get().c_str());
+                    plOut->push_back(it->first.getName().c_str());
                 }
             }
         }
@@ -327,7 +327,7 @@ struct Variables
                         pIT->isMacroFile() == false &&
                         pIT->isFunction() == false)
                 {
-                    plOut->push_back(it->first.name_get().c_str());
+                    plOut->push_back(it->first.getName().c_str());
                 }
             }
         }
@@ -346,7 +346,7 @@ struct Variables
                 types::InternalType* pIT = it->second->top()->m_pIT;
                 if (pIT && pIT->isFunction())
                 {
-                    plOut->push_back(it->first.name_get().c_str());
+                    plOut->push_back(it->first.getName().c_str());
                 }
             }
         }

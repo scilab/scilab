@@ -21,7 +21,7 @@ using namespace types;
 Function::ReturnValue sci_funclist(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     symbol::Context* pContext = symbol::Context::getInstance();
-;
+    ;
     if (in.size() > 1)
     {
         return Function::Error;
@@ -59,7 +59,7 @@ Function::ReturnValue sci_funclist(types::typed_list &in, int _iRetCount, types:
     int i = 0;
     for (it = FuncList->begin() ; it != FuncList->end() ; ++it)
     {
-        pS->set(i++, 0, it->name_get().c_str());
+        pS->set(i++, 0, it->getName().c_str());
     }
 
     delete FuncList;

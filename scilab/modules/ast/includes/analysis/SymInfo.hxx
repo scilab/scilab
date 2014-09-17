@@ -71,7 +71,7 @@ struct SymInfo
         set(k2);
     }
 
-    inline bool is_just_read() const
+    inline bool isJustRead() const
     {
         return !write && !replace && read;
     }

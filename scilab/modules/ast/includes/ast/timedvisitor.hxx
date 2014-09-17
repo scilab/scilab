@@ -34,7 +34,7 @@ public :
         Timer timer;
         timer.start();
         visitprivate(e);
-        const_cast<SeqExp&>(e).elapsedtime_set(timer.elapsed_time());
+        const_cast<SeqExp&>(e).setElapsedtime(timer.elapsed_time());
     }
 
     void visit (const MatrixExp &e)
@@ -58,16 +58,6 @@ public :
     }
 
     void visit (const CommentExp &e)
-    {
-        visitprivate(e);
-    }
-
-    void visit (const IntExp &e)
-    {
-        visitprivate(e);
-    }
-
-    void visit (const FloatExp &e)
     {
         visitprivate(e);
     }

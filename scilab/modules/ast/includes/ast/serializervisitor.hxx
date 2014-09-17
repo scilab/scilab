@@ -81,20 +81,20 @@ private :
         add_uint8(code);
         if (saveNodeNumber)
         {
-            add_uint64(e.nodeNumber_get());
+            add_uint64(e.getNodeNumber());
         }
         else
         {
             add_uint64((unsigned long long)0);
         }
-        add_location(e.location_get());
-        add_uint8(e.is_verbose());
-        add_uint8(e.is_break());
-        add_uint8(e.is_breakable());
-        add_uint8(e.is_return());
-        add_uint8(e.is_returnable());
-        add_uint8(e.is_continue());
-        add_uint8(e.is_continuable());
+        add_location(e.getLocation());
+        add_uint8(e.isVerbose());
+        add_uint8(e.isBreak());
+        add_uint8(e.isBreakable());
+        add_uint8(e.isReturn());
+        add_uint8(e.isReturnable());
+        add_uint8(e.isContinue());
+        add_uint8(e.isContinuable());
     }
 
     /** @{ Low-level append to the buffer functions */
@@ -192,9 +192,9 @@ private :
 
     void add_vars(const ast::ArrayListVar& var)
     {
-        add_uint32((unsigned int)var.vars_get().size());
+        add_uint32((unsigned int)var.getVars().size());
         std::list<Var *>::const_iterator it;
-        for (it = var.vars_get().begin() ; it != var.vars_get().end() ; it++)
+        for (it = var.getVars().begin() ; it != var.getVars().end() ; it++)
         {
             (*it)->accept(*this);
         }
@@ -202,7 +202,7 @@ private :
 
     void add_Symbol(const symbol::Symbol& e)
     {
-        add_wstring(e.name_get());
+        add_wstring(e.getName());
     }
 
     void add_exp(const ast::Exp* e)
@@ -311,27 +311,6 @@ private :
         add_uint8(code);
     }
 
-    void add_IntExp_Prec(const ast::IntExp::Prec prec)
-    {
-        int code = 251;
-        switch (prec)
-        {
-            case ast::IntExp::_8_ :
-                code = (1);
-                break;
-            case ast::IntExp::_16_:
-                code = (2);
-                break;
-            case ast::IntExp::_32_:
-                code = (3);
-                break;
-            case ast::IntExp::_64_:
-                code = (4);
-                break;
-        }
-        add_uint8(code);
-    }
-
     void add_TransposeExp_Kind(const ast::TransposeExp::Kind kind)
     {
         int code = 249;
@@ -354,8 +333,8 @@ private :
 
     void add_varDec(const ast::VarDec& varDec)
     {
-        add_Symbol(varDec.name_get());
-        add_exp(varDec.init_get());
+        add_Symbol(varDec.getSymbol());
+        add_exp(varDec.getInit());
     }
 
     void add_MatrixLines(const  std::list<ast::MatrixLineExp*> *lines)
@@ -364,35 +343,35 @@ private :
         std::list<MatrixLineExp *>::const_iterator it;
         for (it = lines->begin() ; it != lines->end() ; it++)
         {
-            add_location((*it)->location_get());
-            add_exps((*it)->columns_get());
+            add_location((*it)->getLocation());
+            add_exps((*it)->getColumns());
         }
     }
 
     virtual void visit (const SeqExp &e)  /* done */
     {
         add_ast(1, e);
-        add_exps(e.exps_get());
+        add_exps(e.getExps());
     }
     void visit(const StringExp& e)  /* done */
     {
         add_ast(2, e);
-        add_wstring(e.value_get());
+        add_wstring(e.getValue());
     }
     void visit(const CommentExp& e)  /* done */
     {
         add_ast(3, e);
-        add_wstring(e.comment_get());
+        add_wstring(e.getComment());
     }
     void visit(const DoubleExp& e)  /* done */
     {
         add_ast(6, e);
-        add_double(e.value_get());
+        add_double(e.getValue());
     }
     void visit(const BoolExp& e)  /* done */
     {
         add_ast(7, e);
-        add_bool(e.value_get());
+        add_bool(e.getValue());
     }
     void visit(const NilExp& e)  /* done */
     {
@@ -401,7 +380,7 @@ private :
     void visit(const SimpleVar& e)  /* done */
     {
         add_ast(9, e);
-        add_Symbol(e.name_get());
+        add_Symbol(e.getSymbol());
     }
     void visit(const ColonVar& e)  /* done */
     {
@@ -419,41 +398,41 @@ private :
     void visit(const FieldExp& e)  /* done */
     {
         add_ast(13, e);
-        add_exp(e.head_get());
-        add_exp(e.tail_get());
+        add_exp(e.getHead());
+        add_exp(e.getTail());
     }
     void visit(const IfExp& e)  /* done */
     {
         add_ast(14, e);
-        bool has_else = e.has_else();
-        add_bool(has_else);
-        add_exp(& e.test_get());
-        add_exp(& e.then_get());
-        if ( has_else )
+        bool hasElse = e.hasElse();
+        add_bool(hasElse);
+        add_exp(& e.getTest());
+        add_exp(& e.getThen());
+        if ( hasElse )
         {
-            add_exp(& e.else_get());
+            add_exp(& e.getElse());
         }
     }
     void visit(const TryCatchExp& e)  /* done */
     {
         add_ast(15, e);
-        add_location(e.try_get().location_get());
-        add_location(e.catch_get().location_get());
-        add_exps(e.try_get().exps_get());
-        add_exps(e.catch_get().exps_get());
+        add_location(e.getTry().getLocation());
+        add_location(e.getCatch().getLocation());
+        add_exps(e.getTry().getExps());
+        add_exps(e.getCatch().getExps());
     }
     void visit(const WhileExp& e)  /* done */
     {
         add_ast(16, e);
-        add_exp(& e.test_get());
-        add_exp(& e.body_get());
+        add_exp(& e.getTest());
+        add_exp(& e.getBody());
     }
     void visit(const ForExp& e)   /* done */
     {
         add_ast(17, e);
-        add_location(e.vardec_get().location_get());
-        add_varDec(e.vardec_get());
-        add_exp(& e.body_get());
+        add_location(e.getVardec().getLocation());
+        add_varDec(e.getVardec());
+        add_exp(& e.getBody());
     }
     void visit(const BreakExp& e)  /* done */
     {
@@ -466,62 +445,62 @@ private :
     void visit(const ReturnExp& e)  /* done */
     {
         add_ast(20, e);
-        bool is_global = e.is_global();
+        bool is_global = e.isGlobal();
         add_bool(is_global);
         if ( !is_global ) /* otherwise exp is NULL */
         {
-            add_exp(& e.exp_get());
+            add_exp(& e.getExp());
         }
     }
     void visit(const SelectExp& e)
     {
         add_ast(21, e);
-        ast::SeqExp *default_case = e.default_case_get();
+        ast::SeqExp *default_case = e.getDefaultCase();
         bool has_default = default_case != NULL;
         add_bool( has_default );
         if ( has_default )
         {
-            add_location(default_case->location_get());
-            add_exps(default_case->exps_get());
+            add_location(default_case->getLocation());
+            add_exps(default_case->getExps());
         }
-        add_exp(e.select_get());
+        add_exp(e.getSelect());
 
-        add_uint32((unsigned int)e.cases_get()->size());
+        add_uint32((unsigned int)e.getCases()->size());
         cases_t::const_iterator it;
-        for (it = e.cases_get()->begin() ; it != e.cases_get()->end() ; it++)
+        for (it = e.getCases()->begin() ; it != e.getCases()->end() ; it++)
         {
             const ast::CaseExp *ce = *it;
-            add_location(ce->location_get() );
-            add_location(ce->body_get()->location_get() );
-            add_exp(ce->test_get());
-            add_exps(ce->body_get()->exps_get() );
+            add_location(ce->getLocation() );
+            add_location(ce->getBody()->getLocation() );
+            add_exp(ce->getTest());
+            add_exps(ce->getBody()->getExps() );
         }
     }
     void visit(const CellExp& e)  /* done */
     {
         add_ast(23, e);
-        add_MatrixLines(& e.lines_get());
+        add_MatrixLines(& e.getLines());
     }
     void visit(const ArrayListExp& e)  /* done */
     {
         add_ast(24, e);
-        add_exps(e.exps_get());
+        add_exps(e.getExps());
     }
     void visit(const AssignListExp& e)  /* done */
     {
         add_ast(25, e);
-        add_exps(e.exps_get());
+        add_exps(e.getExps());
     }
     void visit(const NotExp& e)  /* done */
     {
         add_ast(26, e);
-        add_exp(e.exp_get() );
+        add_exp(e.getExp() );
     }
     void visit(const TransposeExp& e)  /* done */
     {
         add_ast(27, e);
-        add_TransposeExp_Kind(e.conjugate_get());
-        add_exp(e.exp_get());
+        add_TransposeExp_Kind(e.getConjugate());
+        add_exp(e.getExp());
     }
     void visit(const VarDec& e)
     {
@@ -531,50 +510,50 @@ private :
     void visit(const FunctionDec& e)  /* done */
     {
         add_ast(29, e);
-        add_Symbol(e.name_get());
-        add_location(e.args_get().location_get());
-        add_location(e.returns_get().location_get());
-        add_exp(e.body_get());
-        add_vars(e.args_get());
-        add_vars(e.returns_get());
+        add_Symbol(e.getSymbol());
+        add_location(e.getArgs().getLocation());
+        add_location(e.getReturns().getLocation());
+        add_exp(e.getBody());
+        add_vars(e.getArgs());
+        add_vars(e.getReturns());
     }
     void visit(const ListExp& e)  /* done */
     {
         add_ast(30, e);
-        add_exp(e.start_get() );
-        add_exp(e.step_get() );
-        add_exp(e.end_get() );
+        add_exp(e.getStart() );
+        add_exp(e.getStep() );
+        add_exp(e.getEnd() );
     }
     void visit(const AssignExp& e)
     {
         add_ast(31, e);
-        add_exp(e.left_exp_get());
-        add_exp(e.right_exp_get());
+        add_exp(e.getLeftExp());
+        add_exp(e.getRightExp());
     }
     void visit(const OpExp& e)  /* done */
     {
         add_ast(32, e);
-        add_OpExp_Oper(e.oper_get());
-        e.left_get().accept(*this);
-        e.right_get().accept(*this);
+        add_OpExp_Oper(e.getOper());
+        e.getLeft().accept(*this);
+        e.getRight().accept(*this);
     }
     void visit(const LogicalOpExp& e)  /* done */
     {
         add_ast(33, e);
-        add_OpExp_Oper(e.oper_get());
-        e.left_get().accept(*this);
-        e.right_get().accept(*this);
+        add_OpExp_Oper(e.getOper());
+        e.getLeft().accept(*this);
+        e.getRight().accept(*this);
     }
     void visit(const MatrixExp& e) /* done */
     {
         add_ast(34, e);
-        add_MatrixLines(& e.lines_get());
+        add_MatrixLines(& e.getLines());
     }
     void visit(const CallExp& e)  /* done */
     {
         add_ast(35, e);
-        add_exp( e.name_get());
-        add_exps(e.args_get());
+        add_exp( e.getName());
+        add_exps(e.getArgs());
     }
     void visit(const MatrixLineExp& e)  /* SHOULD NEVER HAPPEN */
     {
@@ -583,8 +562,8 @@ private :
     void visit(const CellCallExp& e)  /* done */
     {
         add_ast(37, e);
-        add_exp( e.name_get());
-        add_exps(e.args_get());
+        add_exp( e.getName());
+        add_exps(e.getArgs());
     }
 
 public :

@@ -33,8 +33,6 @@ public:
     virtual void visit (const DollarVar &/*e*/) {}
     virtual void visit (const ColonVar &/*e*/) {}
     virtual void visit (const ArrayListVar &/*e*/) {}
-    virtual void visit (const IntExp &/*e*/) {}
-    virtual void visit (const FloatExp &/*e*/) {}
     virtual void visit (const DoubleExp &/*e*/) {}
     virtual void visit (const BoolExp &/*e*/) {}
     virtual void visit (const StringExp &/*e*/) {}

@@ -106,9 +106,6 @@
     <ClInclude Include="includes\exps\allvar.hxx">
       <Filter>Header Files\exps</Filter>
     </ClInclude>
-    <ClInclude Include="includes\exps\anydecs.hxx">
-      <Filter>Header Files\exps</Filter>
-    </ClInclude>
     <ClInclude Include="includes\exps\arraylistexp.hxx">
       <Filter>Header Files\exps</Filter>
     </ClInclude>
@@ -163,9 +160,6 @@
     <ClInclude Include="includes\exps\decls.hxx">
       <Filter>Header Files\exps</Filter>
     </ClInclude>
-    <ClInclude Include="includes\exps\decs.hxx">
-      <Filter>Header Files\exps</Filter>
-    </ClInclude>
     <ClInclude Include="includes\exps\dollarvar.hxx">
       <Filter>Header Files\exps</Filter>
     </ClInclude>
@@ -178,9 +172,6 @@
     <ClInclude Include="includes\exps\fieldexp.hxx">
       <Filter>Header Files\exps</Filter>
     </ClInclude>
-    <ClInclude Include="includes\exps\floatexp.hxx">
-      <Filter>Header Files\exps</Filter>
-    </ClInclude>
     <ClInclude Include="includes\exps\forexp.hxx">
       <Filter>Header Files\exps</Filter>
     </ClInclude>
@@ -188,9 +179,6 @@
       <Filter>Header Files\exps</Filter>
     </ClInclude>
     <ClInclude Include="includes\exps\ifexp.hxx">
-      <Filter>Header Files\exps</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\exps\intexp.hxx">
       <Filter>Header Files\exps</Filter>
     </ClInclude>
     <ClInclude Include="includes\exps\listexp.hxx">
@@ -230,9 +218,6 @@
       <Filter>Header Files\exps</Filter>
     </ClInclude>
     <ClInclude Include="includes\exps\simplevar.hxx">
-      <Filter>Header Files\exps</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\exps\stepvisitor.hxx">
       <Filter>Header Files\exps</Filter>
     </ClInclude>
     <ClInclude Include="includes\exps\stringexp.hxx">

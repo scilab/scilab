@@ -50,8 +50,8 @@ public:
 
     virtual NotExp* clone()
     {
-        NotExp* cloned = new NotExp(location_get(), *exp_get().clone());
-        cloned->set_verbose(is_verbose());
+        NotExp* cloned = new NotExp(getLocation(), *getExp().clone());
+        cloned->setVerbose(isVerbose());
         return cloned;
     }
 
@@ -75,16 +75,24 @@ public:
     ** \{ */
 public:
     /** \brief Return the expression of the operation (read only) */
-    const Exp& exp_get () const
+    const Exp& getExp() const
     {
         return *_exp;
     }
     /** \brief Return the expression of the operation (read and write) */
-    Exp& exp_get ()
+    Exp& getExp()
     {
         return *_exp;
     }
 
+    virtual ExpType getType()
+    {
+        return NOTEXP;
+    }
+    inline bool isNotExp() const
+    {
+        return true;
+    }
 protected:
     /** \brief Left expression of the operation. */
     Exp* _exp;

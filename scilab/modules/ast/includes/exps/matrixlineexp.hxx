@@ -57,13 +57,13 @@ public:
     virtual MatrixLineExp* clone()
     {
         std::list<Exp *>* columns = new std::list<Exp *>;
-        for (std::list<Exp *>::const_iterator it = columns_get().begin() ; it != columns_get().end() ; ++it)
+        for (std::list<Exp *>::const_iterator it = getColumns().begin() ; it != getColumns().end() ; ++it)
         {
             columns->push_back((*it)->clone());
         }
 
-        MatrixLineExp* cloned = new MatrixLineExp(location_get(), *columns);
-        cloned->set_verbose(is_verbose());
+        MatrixLineExp* cloned = new MatrixLineExp(getLocation(), *columns);
+        cloned->setVerbose(isVerbose());
         return cloned;
     }
 
@@ -86,18 +86,26 @@ public:
     /** \name Accessors.
     ** \{ */
 public:
-    const std::list<Exp *>&	columns_get() const
+    const std::list<Exp *>&	getColumns() const
     {
         return *_columns;
     }
 
-    std::list<Exp *>&	columns_get()
+    std::list<Exp *>& getColumns()
     {
         return *_columns;
     }
     /** \} */
 
 
+    virtual ExpType getType()
+    {
+        return MATRIXLINEEXP;
+    }
+    inline bool isMatrixLineExp() const
+    {
+        return true;
+    }
 protected:
     std::list<Exp *>* _columns;
 };

@@ -38,8 +38,8 @@ public :
 
     virtual CaseExp* clone()
     {
-        CaseExp* cloned = new CaseExp(location_get(), *test_get()->clone(), *body_get()->clone());
-        cloned->set_verbose(is_verbose());
+        CaseExp* cloned = new CaseExp(getLocation(), *getTest()->clone(), *getBody()->clone());
+        cloned->setVerbose(isVerbose());
         return cloned;
     }
     /** \name Visitors entry point.
@@ -58,15 +58,23 @@ public:
     /** \} */
 
 public :
-    Exp* test_get() const
+    Exp* getTest() const
     {
         return _test;
     }
-    SeqExp* body_get() const
+    SeqExp* getBody() const
     {
         return _body;
     }
 
+    virtual ExpType getType()
+    {
+        return CASEEXP;
+    }
+    inline bool isCaseExp() const
+    {
+        return true;
+    }
 private :
     Exp* _test;
     SeqExp *_body;

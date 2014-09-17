@@ -47,14 +47,14 @@ public:
 
     ForList(const double m, const double s, const double M) : constant(true), read_in_loop(false), min(m), step(s), max(M)
     {
-        if (!isempty())
+        if (!isEmpty())
         {
-            if (min >= 0 && step > 0 && is_int<typename std::make_unsigned<T>::type>(min) && is_int<typename std::make_unsigned<T>::type>(step) && !overflow<typename std::make_unsigned<T>::type>(min, step, max))
+            if (min >= 0 && step > 0 && isInt<typename std::make_unsigned<T>::type>(min) && isInt<typename std::make_unsigned<T>::type>(step) && !overflow<typename std::make_unsigned<T>::type>(min, step, max))
             {
                 _int = true;
                 _unsigned = true;
             }
-            else if (is_int<typename std::make_signed<T>::type>(min) && is_int<typename std::make_signed<T>::type>(step) && !overflow<typename std::make_signed<T>::type>(min, step, max))
+            else if (isInt<typename std::make_signed<T>::type>(min) && isInt<typename std::make_signed<T>::type>(step) && !overflow<typename std::make_signed<T>::type>(min, step, max))
             {
                 _int = true;
                 _unsigned = false;
@@ -72,50 +72,50 @@ public:
         }
     }
 
-    inline bool is_read_in_loop() const
+    inline bool isReadInLoop() const
     {
         return read_in_loop;
     }
 
-    inline void set_read_in_loop(const bool read)
+    inline void setReadInLoop(const bool read)
     {
         read_in_loop = read;
     }
 
-    inline bool is_constant() const
+    inline bool isConstant() const
     {
         return constant;
     }
 
-    inline bool is_int() const
+    inline bool isInt() const
     {
         return _int;
     }
 
-    inline bool is_uint() const
+    inline bool isUInt() const
     {
         return _unsigned;
     }
 
     template<typename U>
-    inline U get_min() const
+    inline U getMin() const
     {
         return std::is_integral<U>::value ? TRUNC(min) : min;
     }
 
     template<typename U>
-    inline U get_step() const
+    inline U getStep() const
     {
         return std::is_integral<U>::value ? TRUNC(step) : step;
     }
 
     template<typename U>
-    inline U get_max() const
+    inline U getMax() const
     {
         return std::is_integral<U>::value ? TRUNC(max) : max;
     }
 
-    inline TIType get_type() const
+    inline TIType getType() const
     {
         /*
             if (isempty())
@@ -161,19 +161,19 @@ public:
 
 private:
 
-    inline bool isempty() const
+    inline bool isEmpty() const
     {
         return step == 0 || ISNAN(min) || ISNAN(step) || ISNAN(max) || !finite(min) || !finite(step) || !finite(max) || (min < max && step < 0) || (min > max && step > 0);
     }
 
     template<typename U>
-    inline static bool is_int(const double x)
+    inline static bool isInt(const double x)
     {
         return x == TRUNC(x) && x <= std::numeric_limits<U>::max() && x >= std::numeric_limits<U>::min();
     }
 
     template<typename U>
-    inline static U to_int(const double x)
+    inline static U toInt(const double x)
     {
         return TRUNC(x);
     }

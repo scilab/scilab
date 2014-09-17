@@ -27,8 +27,6 @@ namespace ast
 class Var : public Exp
 {
 
-    /** \name Ctor & dtor.
-    ** \{ */
 public:
     /** \brief Construct a Declaration node.
     ** \param location scanner position informations */
@@ -40,13 +38,6 @@ public:
     virtual ~Var()
     {
     }
-    /** \} */
-
-    //virtual Var* clone()
-    //{
-    //    Location* newloc = const_cast<Location*>(&location_get())->clone();
-    //    return new Var(*newloc);
-    //}
 };
 
 /** \brief Define a shorthand for list of Exp* manipulation. */

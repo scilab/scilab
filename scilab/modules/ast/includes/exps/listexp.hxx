@@ -39,7 +39,7 @@ public:
     ** \li "stop" is the end of the list (the max value)
     */
     ListExp (const Location& location,
-             Exp& start, Exp& step, Exp& end, bool explicitStep=false)
+             Exp& start, Exp& step, Exp& end, bool explicitStep = false)
         : Exp (location),
           _start (&start),
           _step (&step),
@@ -61,8 +61,8 @@ public:
 
     virtual ListExp* clone()
     {
-        ListExp* cloned = new ListExp(location_get(), *start_get().clone(), *step_get().clone(), *end_get().clone());
-        cloned->set_verbose(is_verbose());
+        ListExp* cloned = new ListExp(getLocation(), *getStart().clone(), *getStep().clone(), *getEnd().clone());
+        cloned->setVerbose(isVerbose());
         return cloned;
     }
 
@@ -86,34 +86,34 @@ public:
     ** \{ */
 public:
     /** \brief Return the expression (read only) */
-    const Exp& start_get () const
+    const Exp& getStart () const
     {
         return *_start;
     }
     /** \brief Return the expression (read and write) */
-    Exp& start_get ()
+    Exp& getStart ()
     {
         return *_start;
     }
 
     /** \brief Return the expression (read only) */
-    const Exp& step_get () const
+    const Exp& getStep () const
     {
         return *_step;
     }
     /** \brief Return the expression (read and write) */
-    Exp& step_get ()
+    Exp& getStep ()
     {
         return *_step;
     }
 
     /** \brief Return the expression (read only) */
-    const Exp& end_get () const
+    const Exp& getEnd () const
     {
         return *_end;
     }
     /** \brief Return the expression (read and write) */
-    Exp& end_get ()
+    Exp& getEnd ()
     {
         return *_end;
     }
@@ -125,6 +125,14 @@ public:
     }
 
     /** \} */
+    virtual ExpType getType()
+    {
+        return LISTEXP;
+    }
+    inline bool isListExp() const
+    {
+        return true;
+    }
 
 protected:
     /** \brief start expression of the list. */

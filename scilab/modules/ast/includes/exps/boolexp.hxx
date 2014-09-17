@@ -46,8 +46,8 @@ public:
 
     virtual BoolExp* clone()
     {
-        BoolExp* cloned = new BoolExp(location_get(), value_get());
-        cloned->set_verbose(is_verbose());
+        BoolExp* cloned = new BoolExp(getLocation(), getValue());
+        cloned->setVerbose(isVerbose());
         return cloned;
     }
 
@@ -71,7 +71,7 @@ public:
     ** \{ */
 public:
     /** \brief Return the value */
-    bool value_get() const
+    bool getValue() const
     {
         return _value;
     }
@@ -95,6 +95,16 @@ public:
         _bigBool->IncreaseRef();
     }
     /** \} */
+
+    virtual ExpType getType()
+    {
+        return BOOLEXP;
+    }
+    inline bool isBoolExp() const
+    {
+        return true;
+    }
+
 protected:
     bool            _value;
     types::Bool*    _bigBool;

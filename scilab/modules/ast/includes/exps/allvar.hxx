@@ -19,11 +19,8 @@
 #define AST_ALLVAR_HXX
 
 #include "var.hxx"
-
 #include "simplevar.hxx"
-
 #include "arraylistvar.hxx"
-
 #include "dollarvar.hxx"
 #include "colonvar.hxx"
 

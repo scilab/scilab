@@ -17,58 +17,58 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
 {
     std::list<Exp *>::const_iterator itExp;
 
-    e.name_get().accept(*this);
+    e.getName().accept(*this);
 
-    if (result_get() != NULL && result_get()->isInvokable())
+    if (getResult() != NULL && getResult()->isInvokable())
     {
         //function call
-        types::InternalType* pIT = result_get();
+        types::InternalType* pIT = getResult();
         types::typed_list out;
         types::typed_list in;
         types::optional_list opt;
 
-        int iRetCount = expected_getSize();
+        int iRetCount = getExpectedSize();
         int iSaveExpectedSize = iRetCount;
 
         // manage case [a,b]=foo() where foo is defined as a=foo()
         if (pIT->getInvokeNbOut() != -1 && pIT->getInvokeNbOut() < iRetCount)
         {
-            result_clear();
+            clearResult();
             std::wostringstream os;
             os << _W("Wrong number of output arguments.\n") << std::endl;
-            throw ast::ScilabError(os.str(), 999, e.location_get());
+            throw ast::ScilabError(os.str(), 999, e.getLocation());
         }
 
         //get function arguments
-        for (itExp = e.args_get().begin (); itExp != e.args_get().end (); ++itExp)
+        for (itExp = e.getArgs().begin (); itExp != e.getArgs().end (); ++itExp)
         {
-            if ((*itExp)->is_assign_exp())
+            if ((*itExp)->isAssignExp())
             {
                 AssignExp* pAssign = static_cast<AssignExp*>(*itExp);
                 //optional parameter
-                Exp* pL = &pAssign->left_exp_get();
-                if (!pL->is_simple_var())
+                Exp* pL = &pAssign->getLeftExp();
+                if (!pL->isSimpleVar())
                 {
-                    result_clear();
-                    clean_opt(opt);
-                    clean_in(in, out);
+                    clearResult();
+                    cleanOpt(opt);
+                    cleanIn(in, out);
 
                     std::wostringstream os;
                     os << _W("left side of optional parameter must be a variable") << std::endl;
-                    throw ast::ScilabError(os.str(), 999, e.location_get());
+                    throw ast::ScilabError(os.str(), 999, e.getLocation());
                 }
 
                 SimpleVar* pVar = static_cast<SimpleVar*>(pL);
-                Exp* pR = &pAssign->right_exp_get();
+                Exp* pR = &pAssign->getRightExp();
                 pR->accept(*this);
-                InternalType* pITR = result_get();
+                InternalType* pITR = getResult();
                 // IncreaseRef to protect opt argument of scope_end delete
                 // It will be deleted by clear_opt
                 pITR->IncreaseRef();
 
                 if (pIT->hasInvokeOption())
                 {
-                    opt.push_back(std::pair<std::wstring, InternalType*>(pVar->name_get().name_get(), pITR));
+                    opt.push_back(std::pair<std::wstring, InternalType*>(pVar->getSymbol().getName(), pITR));
                     //in case of macro/macrofile, we have to shift input param
                     //so add NULL item in in list to keep initial order
                     if (pIT->isMacro() || pIT->isMacroFile())
@@ -81,54 +81,54 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                     in.push_back(pITR);
                 }
 
-                result_clear();
+                clearResult();
                 continue;
             }
 
-            int iSize = expected_getSize();
-            expected_setSize(-1);
+            int iSize = getExpectedSize();
+            setExpectedSize(-1);
             (*itExp)->accept(*this);
-            expected_setSize(iSize);
+            setExpectedSize(iSize);
 
-            if (result_get() == NULL)
+            if (getResult() == NULL)
             {
                 //special case for empty extraction of list ( list()(:) )
                 continue;
             }
 
-            InternalType * pITArg = result_get();
+            InternalType * pITArg = getResult();
             if (pITArg->isImplicitList())
             {
                 types::ImplicitList* pIL = pITArg->getAs<types::ImplicitList>();
                 if (pIL->isComputable())
                 {
-                    result_set(pIL->extractFullMatrix());
+                    setResult(pIL->extractFullMatrix());
                     pITArg->killMe();
                 }
             }
 
-            if (is_single_result())
+            if (isSingleResult())
             {
-                in.push_back(result_get());
-                result_get()->IncreaseRef();
-                result_clear();
+                in.push_back(getResult());
+                getResult()->IncreaseRef();
+                clearResult();
             }
             else
             {
-                for (int i = 0 ; i < result_getSize() ; i++)
+                for (int i = 0 ; i < getResultSize() ; i++)
                 {
-                    InternalType * pITArg = result_get(i);
+                    InternalType * pITArg = getResult(i);
                     pITArg->IncreaseRef();
                     in.push_back(pITArg);
                 }
 
-                result_clear();
+                clearResult();
             }
         }
 
         try
         {
-            expected_setSize(iSaveExpectedSize);
+            setExpectedSize(iSaveExpectedSize);
             iRetCount = std::max(1, iRetCount);
             if (pIT->invoke(in, opt, iRetCount, out, *this, e))
             {
@@ -136,17 +136,17 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                 {
                     std::wostringstream os;
                     os << _W("bad lhs, expected : ") << iRetCount << _W(" returned : ") << out.size() << std::endl;
-                    throw ScilabError(os.str(), 999, e.location_get());
+                    throw ScilabError(os.str(), 999, e.getLocation());
                 }
 
-                expected_setSize(iSaveExpectedSize);
-                result_set(out);
-                clean_in(in, out);
-                clean_opt(opt);
+                setExpectedSize(iSaveExpectedSize);
+                setResult(out);
+                cleanIn(in, out);
+                cleanOpt(opt);
 
-                // In case a.b(), result_get contain pIT ("b").
+                // In case a.b(), getResult contain pIT ("b").
                 // If out == pIT, do not delete it.
-                if (result_get() != pIT)
+                if (getResult() != pIT)
                 {
                     pIT->killMe();
                 }
@@ -155,35 +155,35 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
             {
                 std::wostringstream os;
                 os << _W("Invalid index.\n");
-                throw ast::ScilabError(os.str(), 999, (*e.args_get().begin())->location_get());
+                throw ast::ScilabError(os.str(), 999, (*e.getArgs().begin())->getLocation());
             }
         }
         catch (ScilabMessage & sm)
         {
-            expected_setSize(iSaveExpectedSize);
-            result_clear();
-            clean_in_out(in, out);
-            clean_opt(opt);
+            setExpectedSize(iSaveExpectedSize);
+            clearResult();
+            cleanInOut(in, out);
+            cleanOpt(opt);
             pIT->killMe();
 
             throw sm;
         }
         catch (InternalAbort & ia)
         {
-            expected_setSize(iSaveExpectedSize);
-            result_clear();
-            clean_in_out(in, out);
-            clean_opt(opt);
+            setExpectedSize(iSaveExpectedSize);
+            clearResult();
+            cleanInOut(in, out);
+            cleanOpt(opt);
             pIT->killMe();
 
             throw ia;
         }
         catch (ScilabError & se)
         {
-            expected_setSize(iSaveExpectedSize);
-            result_clear();
-            clean_in_out(in, out);
-            clean_opt(opt);
+            setExpectedSize(iSaveExpectedSize);
+            clearResult();
+            cleanInOut(in, out);
+            cleanOpt(opt);
             pIT->killMe();
 
             throw se;
@@ -203,24 +203,24 @@ void RunVisitorT<T>::visitprivate(const CellCallExp &e)
 {
     //get head
     T execMeCell;
-    e.name_get().accept(execMeCell);
+    e.getName().accept(execMeCell);
 
-    if (execMeCell.result_get() != NULL)
+    if (execMeCell.getResult() != NULL)
     {
         //a{xxx} with a variable, extraction
         types::InternalType *pIT = NULL;
 
-        pIT = execMeCell.result_get();
+        pIT = execMeCell.getResult();
 
         if (pIT)
         {
 
             if (pIT->isCell() == false)
             {
-                throw ast::ScilabError(_W("[error] Cell contents reference from a non-cell array object.\n"), 999, (*e.args_get().begin())->location_get());
+                throw ast::ScilabError(_W("[error] Cell contents reference from a non-cell array object.\n"), 999, (*e.getArgs().begin())->getLocation());
             }
             //Create list of indexes
-            types::typed_list *pArgs = GetArgumentList(e.args_get());
+            types::typed_list *pArgs = GetArgumentList(e.getArgs());
 
             types::List* pList = pIT->getAs<types::Cell>()->extractCell(pArgs);
 
@@ -229,17 +229,17 @@ void RunVisitorT<T>::visitprivate(const CellCallExp &e)
                 delete pArgs;
                 std::wostringstream os;
                 os << _W("inconsistent row/column dimensions\n");
-                //os << ((*e.args_get().begin())->location_get()).location_getString() << std::endl;
-                throw ast::ScilabError(os.str(), 999, (*e.args_get().begin())->location_get());
+                //os << ((*e.args_get().begin())->getLocation()).getLocationString() << std::endl;
+                throw ast::ScilabError(os.str(), 999, (*e.getArgs().begin())->getLocation());
             }
 
             if (pList->getSize() == 1)
             {
-                result_set(pList->get(0));
+                setResult(pList->get(0));
             }
             else
             {
-                result_set(pList);
+                setResult(pList);
             }
 
             //clean pArgs return by GetArgumentList

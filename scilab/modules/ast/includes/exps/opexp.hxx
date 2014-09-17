@@ -106,8 +106,8 @@ public:
 
     virtual OpExp* clone()
     {
-        OpExp* cloned = new OpExp(location_get(), *left_get().clone(), oper_get(), *right_get().clone());
-        cloned->set_verbose(is_verbose());
+        OpExp* cloned = new OpExp(getLocation(), *getLeft().clone(), getOper(), *getRight().clone());
+        cloned->setVerbose(isVerbose());
         return cloned;
     }
 
@@ -130,7 +130,7 @@ public:
     /** \name Setters.
     ** \{ */
 public :
-    virtual void left_set(Exp& left)
+    virtual void setLeft(Exp& left)
     {
         _left = &left;
     }
@@ -141,33 +141,41 @@ public :
     ** \{ */
 public:
     /** \brief Return the left expression of the operation (read only) */
-    const Exp& left_get () const
+    const Exp& getLeft() const
     {
         return *_left;
     }
     /** \brief Return the left expression of the operation (read and write) */
-    Exp& left_get ()
+    Exp& getLeft()
     {
         return *_left;
     }
 
     /** \brief Return the operator description (read only) */
-    Oper oper_get () const
+    Oper getOper() const
     {
         return _oper;
     }
 
     /** \brief Return the right expression of the operation (read only) */
-    const Exp& right_get () const
+    const Exp& getRight() const
     {
         return *_right;
     }
     /** \brief Return the right expression of the operation (read and write) */
-    Exp& right_get ()
+    Exp& getRight()
     {
         return *_right;
     }
 
+    virtual ExpType getType()
+    {
+        return OPEXP;
+    }
+    inline bool isOpExp() const
+    {
+        return true;
+    }
 
 protected:
     /** \brief Left expression of the operation. */

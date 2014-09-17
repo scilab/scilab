@@ -31,12 +31,6 @@ public:
     virtual ~ControlExp ()
     {
     }
-
-    //virtual ControlExp* clone()
-    //{
-    //    Location* newloc = const_cast<Location*>(&location_get())->clone();
-    //    return new ControlExp(location_get());
-    //}
 };
 } // namespace ast
 #endif /* !AST_CONTROLEXP_HXX */

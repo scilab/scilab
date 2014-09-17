@@ -547,22 +547,22 @@ const std::wstring* getStructNameFromExp(const ast::Exp* _pExp)
 
     if (pField)
     {
-        return getStructNameFromExp(pField->head_get());
+        return getStructNameFromExp(pField->getHead());
     }
     else if (pVar)
     {
-        return &(pVar->name_get().name_get());
+        return &(pVar->getSymbol().getName());
     }
     else if (pCall)
     {
-        return getStructNameFromExp(&(pCall->name_get()));
+        return getStructNameFromExp(&(pCall->getName()));
     }
     else
     {
         std::wostringstream os;
         os << _W("Unknow expression");
-        //os << ((Location)e.right_exp_get().location_get()).location_getString() << std::endl;
-        throw ast::ScilabError(os.str(), 999, _pExp->location_get());
+        //os << ((Location)e.getRightExp().getLocation()).getLocationString() << std::endl;
+        throw ast::ScilabError(os.str(), 999, _pExp->getLocation());
     }
     return NULL;
 }
@@ -614,7 +614,7 @@ types::InternalType* callOverload(const ast::Exp& e, std::wstring _strType, type
             //manage error
             std::wostringstream os;
             os << _W("Error in overload function: ") << function_name << std::endl;
-            throw ast::ScilabError(os.str(), 999, e.location_get());
+            throw ast::ScilabError(os.str(), 999, e.getLocation());
         }
     }
 
@@ -657,9 +657,9 @@ bool getFieldsFromExp(ast::Exp* _pExp, std::list<ExpHistory*>& fields)
 
     if (pField)
     {
-        if (getFieldsFromExp(pField->head_get(), fields))
+        if (getFieldsFromExp(pField->getHead(), fields))
         {
-            return getFieldsFromExp(pField->tail_get(), fields);
+            return getFieldsFromExp(pField->getTail(), fields);
         }
 
         return false;
@@ -683,14 +683,14 @@ bool getFieldsFromExp(ast::Exp* _pExp, std::list<ExpHistory*>& fields)
     else if (pCall)
     {
         ast::ExecVisitor execMe;
-        typed_list* pCurrentArgs = execMe.GetArgumentList(pCall->args_get());
+        typed_list* pCurrentArgs = execMe.GetArgumentList(pCall->getArgs());
 
-        bool bErr = getFieldsFromExp(&pCall->name_get(), fields);
+        bool bErr = getFieldsFromExp(&pCall->getName(), fields);
         if (pCurrentArgs && (*pCurrentArgs)[0]->isString())
         {
             // a("b") => a.b or a(x)("b") => a(x).b
             ExpHistory * pEHParent = fields.back();
-            ast::SimpleVar* pFieldVar = new ast::SimpleVar(pCall->location_get(), *new symbol::Symbol((*pCurrentArgs)[0]->getAs<String>()->get(0)));
+            ast::SimpleVar* pFieldVar = new ast::SimpleVar(pCall->getLocation(), *new symbol::Symbol((*pCurrentArgs)[0]->getAs<String>()->get(0)));
             ExpHistory * pEH = new ExpHistory(pEHParent, pFieldVar);
             pEH->setLevel(pEHParent->getLevel() + 1);
             pEH->setExpOwner(true);
@@ -737,14 +737,14 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
     //*** get main variable ***//
     std::list<ExpHistory*>::iterator iterFields = fields.begin();
     ExpHistory* pFirstField = *iterFields;
-    InternalType* pIT = symbol::Context::getInstance()->getCurrentLevel(pFirstField->getExp()->name_get());
+    InternalType* pIT = symbol::Context::getInstance()->getCurrentLevel(pFirstField->getExp()->getSymbol());
     if (pIT == NULL)
     {
         if (pFirstField->isCellExp())
         {
             // a{x}, where "a" doesn't exists
             pIT = new Cell(1, 1);
-            symbol::Context::getInstance()->put(pFirstField->getExp()->stack_get(), pIT);
+            symbol::Context::getInstance()->put(pFirstField->getExp()->getStack(), pIT);
         }
         else if (fields.size() > 1)
         {
@@ -752,7 +752,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
             //"a" does not exist or it is another type, create it with size 1,1 and return it
             //create new structure variable
             pIT = new Struct(1, 1);
-            symbol::Context::getInstance()->put(pFirstField->getExp()->stack_get(), pIT);
+            symbol::Context::getInstance()->put(pFirstField->getExp()->getStack(), pIT);
         }
         // else
         // is a call exp
@@ -762,7 +762,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
     else if (pIT->getRef() > 1 && pIT->isHandle() == false)
     {
         pIT = pIT->clone();
-        symbol::Context::getInstance()->put(pFirstField->getExp()->stack_get(), pIT);
+        symbol::Context::getInstance()->put(pFirstField->getExp()->getStack(), pIT);
     }
     else if (pIT == _pAssignValue)
     {
@@ -794,7 +794,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
         {
             std::wostringstream os;
             os << _W("Wrong insertion : use extraction with {} only on a Cell.");
-            throw ast::ScilabError(os.str(), 999, _pExp->location_get());
+            throw ast::ScilabError(os.str(), 999, _pExp->getLocation());
         }
 
         if (pITCurrent->isStruct())
@@ -808,7 +808,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                 {
                     std::wostringstream os;
                     os << _W("Invalid index.");
-                    throw ast::ScilabError(os.str(), 999, _pExp->location_get());
+                    throw ast::ScilabError(os.str(), 999, _pExp->getLocation());
                 }
 
                 // resize current struct
@@ -1170,7 +1170,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                             {
                                 std::wostringstream os;
                                 os << _W("Invalid index.");
-                                throw ast::ScilabError(os.str(), 999, _pExp->location_get());
+                                throw ast::ScilabError(os.str(), 999, _pExp->getLocation());
                             }
 
                             // resize current Cell
@@ -1193,7 +1193,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                             {
                                 std::wostringstream os;
                                 os << _W("Invalid index.");
-                                throw ast::ScilabError(os.str(), 999, _pExp->location_get());
+                                throw ast::ScilabError(os.str(), 999, _pExp->getLocation());
                             }
 
                             // resize current Cell
@@ -1209,7 +1209,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                         // only a(x)
                         std::wostringstream os;
                         os << _W("Wrong insertion in a Cell.");
-                        throw ast::ScilabError(os.str(), 999, _pExp->location_get());
+                        throw ast::ScilabError(os.str(), 999, _pExp->getLocation());
                     }
                 }
             }
@@ -1217,7 +1217,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
             {
                 std::wostringstream os;
                 os << _W("Wrong insertion in a Cell.");
-                throw ast::ScilabError(os.str(), 999, _pExp->location_get());
+                throw ast::ScilabError(os.str(), 999, _pExp->getLocation());
             }
         }
         else if (pITCurrent == 0) // implicit struct creation
@@ -1299,7 +1299,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                 {
                     std::wostringstream os;
                     os << _W("Wrong insertion in a Cell.");
-                    throw ast::ScilabError(os.str(), 999, _pExp->location_get());
+                    throw ast::ScilabError(os.str(), 999, _pExp->getLocation());
                 }
 
                 pCell->insertCell(pArgs, _pAssignValue);
@@ -1312,7 +1312,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                 {
                     std::wostringstream os;
                     os << _W("Submatrix incorrectly defined.");
-                    throw ast::ScilabError(os.str(), 999, _pExp->location_get());
+                    throw ast::ScilabError(os.str(), 999, _pExp->getLocation());
                 }
 
                 if (pEH->setCurrent(pIT))
@@ -1348,7 +1348,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                     {
                         std::wostringstream os;
                         os << _W("Error in insertion of TList.");
-                        throw ast::ScilabError(os.str(), 999, _pExp->location_get());
+                        throw ast::ScilabError(os.str(), 999, _pExp->getLocation());
                     }
 
                     if (pEH->getParent()->setCurrent(pIT))
@@ -1380,7 +1380,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
 
             if (pEHParent == NULL)
             {
-                symbol::Context::getInstance()->put(pEH->getExp()->stack_get(), pEH->getCurrent());
+                symbol::Context::getInstance()->put(pEH->getExp()->getStack(), pEH->getCurrent());
                 break;
             }
 
@@ -1445,7 +1445,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
             {
                 std::wostringstream os;
                 os << _W("Submatrix incorrectly defined.");
-                throw ast::ScilabError(os.str(), 999, _pExp->location_get());
+                throw ast::ScilabError(os.str(), 999, _pExp->getLocation());
             }
 
             if (pEHParent->setCurrent(pIT))
@@ -1471,7 +1471,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
         }
     }
 
-    return symbol::Context::getInstance()->getCurrentLevel(pFirstField->getExp()->name_get());
+    return symbol::Context::getInstance()->getCurrentLevel(pFirstField->getExp()->getSymbol());
 }
 
 InternalType* insertionCall(const ast::Exp& e, typed_list* _pArgs, InternalType* _pVar, InternalType* _pInsert)
@@ -1642,7 +1642,7 @@ InternalType* insertionCall(const ast::Exp& e, typed_list* _pArgs, InternalType*
                 //manage error
                 std::wostringstream os;
                 os << _W("Invalid Index.\n");
-                throw ast::ScilabError(os.str(), 999, e.location_get());
+                throw ast::ScilabError(os.str(), 999, e.getLocation());
             }
 
             pStr->addField(pS->get(0));
@@ -1880,7 +1880,7 @@ InternalType* insertionCall(const ast::Exp& e, typed_list* _pArgs, InternalType*
                     //manage error
                     std::wostringstream os;
                     os << _W("Invalid Index.\n");
-                    throw ast::ScilabError(os.str(), 999, e.location_get());
+                    throw ast::ScilabError(os.str(), 999, e.getLocation());
                 }
 
                 pStruct->addField(pS->get(0));
@@ -1971,7 +1971,7 @@ InternalType* insertionCall(const ast::Exp& e, typed_list* _pArgs, InternalType*
                         //manage error
                         std::wostringstream os;
                         os << _W("Invalid Index.\n");
-                        throw ast::ScilabError(os.str(), 999, e.location_get());
+                        throw ast::ScilabError(os.str(), 999, e.getLocation());
                     }
 
                     if (_pInsert->isListDelete())
@@ -2121,7 +2121,7 @@ List* getPropertyTree(ast::Exp* e, List* pList)
     ast::SimpleVar* pVar = dynamic_cast<ast::SimpleVar*>(e);
     if (pVar)
     {
-        pList->append(new String(pVar->name_get().name_get().c_str()));
+        pList->append(new String(pVar->getSymbol().getName().c_str()));
         return pList;
     }
 
@@ -2129,9 +2129,9 @@ List* getPropertyTree(ast::Exp* e, List* pList)
     ast::CallExp* pCall = dynamic_cast<ast::CallExp*>(e);
     if (pCall)
     {
-        pList = getPropertyTree(&pCall->name_get(), pList);
+        pList = getPropertyTree(&pCall->getName(), pList);
         ast::ExecVisitor exec;
-        std::list<ast::Exp*> l = pCall->args_get();
+        std::list<ast::Exp*> l = pCall->getArgs();
         std::list<ast::Exp*>::const_iterator it;
         for (it = l.begin() ; it != l.end() ; it++)
         {
@@ -2139,8 +2139,8 @@ List* getPropertyTree(ast::Exp* e, List* pList)
             try
             {
                 pArg->accept(exec);
-                pList->append(exec.result_get());
-                exec.result_clear();
+                pList->append(exec.getResult());
+                exec.clearResult();
             }
             catch (ast::ScilabException e)
             {
@@ -2155,8 +2155,8 @@ List* getPropertyTree(ast::Exp* e, List* pList)
     ast::FieldExp* pField = dynamic_cast<ast::FieldExp*>(e);
     if (pField)
     {
-        pList = getPropertyTree(pField->head_get(), pList);
-        pList = getPropertyTree(pField->tail_get(), pList);
+        pList = getPropertyTree(pField->getHead(), pList);
+        pList = getPropertyTree(pField->getTail(), pList);
         return pList;
     }
 

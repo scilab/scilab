@@ -47,12 +47,12 @@ public:
 
     ~RunVisitor()
     {
-        result_clear();
+        clearResult();
     }
 
-    void result_clear_except_first()
+    void clearResultButFirst()
     {
-        if (!is_single_result() && _resultVect.size() > 1)
+        if (!isSingleResult() && _resultVect.size() > 1)
         {
             for (vector<types::InternalType*>::iterator rv = _resultVect.begin() + 1, end = _resultVect.end(); rv != end; ++rv)
             {
@@ -65,9 +65,9 @@ public:
         }
     }
 
-    void result_clear()
+    void clearResult()
     {
-        if (is_single_result())
+        if (isSingleResult())
         {
             if (_result != NULL)
             {
@@ -92,14 +92,19 @@ public:
     }
 
 public:
-    int expected_getSize(void)
+    int getExpectedSize(void)
     {
         return _excepted_result;
     }
 
-    int result_getSize(void)
+    void setExpectedSize(int _iSize)
     {
-        if (is_single_result())
+        _excepted_result = _iSize;
+    }
+
+    int getResultSize(void)
+    {
+        if (isSingleResult())
         {
             if (_result == NULL)
             {
@@ -116,14 +121,9 @@ public:
         }
     }
 
-    void expected_setSize(int _iSize)
+    inline types::InternalType* getResult(void)
     {
-        _excepted_result = _iSize;
-    }
-
-    inline types::InternalType* result_get(void)
-    {
-        if (is_single_result())
+        if (isSingleResult())
         {
             return _result;
         }
@@ -133,9 +133,9 @@ public:
         }
     }
 
-    types::InternalType* result_get(int _iPos)
+    types::InternalType* getResult(int _iPos)
     {
-        if (is_single_result() && _iPos == 0)
+        if (isSingleResult() && _iPos == 0)
         {
             return _result;
         }
@@ -147,11 +147,11 @@ public:
         return _resultVect[_iPos];
     }
 
-    vector<types::InternalType*>* result_list_get()
+    vector<types::InternalType*>* getResultList()
     {
         // TODO: this function is not used but it could lead to a memleak
         // (in the first case the vector is allocated and so must be freed)
-        if (result_getSize() == 1)
+        if (getResultSize() == 1)
         {
             vector<types::InternalType*>* pList = new vector<types::InternalType*>;
             pList->push_back(_result);
@@ -163,7 +163,7 @@ public:
         }
     }
 
-    void result_set(int _iPos, const types::InternalType *gtVal)
+    void setResult(int _iPos, const types::InternalType *gtVal)
     {
         m_bSingleResult = false;
         if (_iPos < static_cast<int>(_resultVect.size()))
@@ -181,27 +181,27 @@ public:
         _resultVect[_iPos] = const_cast<types::InternalType *>(gtVal);
     }
 
-    inline void result_set(const types::InternalType *gtVal)
+    inline void setResult(const types::InternalType *gtVal)
     {
         m_bSingleResult = true;
         _result = const_cast<types::InternalType *>(gtVal);
     }
 
-    inline void result_set(const types::typed_list & out)
+    inline void setResult(const types::typed_list & out)
     {
         if (out.size() == 0)
         {
-            result_set(NULL);
+            setResult(NULL);
         }
         else if (out.size() == 1)
         {
-            result_set(out[0]);
+            setResult(out[0]);
         }
         else
         {
             /*for (int i = 0 ; i < static_cast<int>(out.size()) ; i++)
             {
-            result_set(i, out[i]);
+            setResult(i, out[i]);
             }*/
 
             m_bSingleResult = false;
@@ -221,12 +221,12 @@ public:
         }
     }
 
-    inline bool is_single_result()
+    inline bool isSingleResult()
     {
         return m_bSingleResult;
     }
 
-    void clean_in(const types::typed_list & in, const types::typed_list & out)
+    void cleanIn(const types::typed_list & in, const types::typed_list & out)
     {
         // Check if in contains entries which are in out too.
         // When an entry is in in and not in out, then in is killed.
@@ -259,13 +259,13 @@ public:
         }
     }
 
-    inline void clean_in_out(const types::typed_list & in, const types::typed_list & out)
+    inline void cleanInOut(const types::typed_list & in, const types::typed_list & out)
     {
-        clean_in(in, out);
-        clean_out(out);
+        cleanIn(in, out);
+        cleanOut(out);
     }
 
-    void clean_out(const types::typed_list & out)
+    void cleanOut(const types::typed_list & out)
     {
         if (!out.empty())
         {
@@ -279,7 +279,7 @@ public:
         }
     }
 
-    void clean_opt(const types::optional_list & opt)
+    void cleanOpt(const types::optional_list & opt)
     {
         if (!opt.empty())
         {
@@ -320,29 +320,25 @@ public :
         for (std::list<Exp *>::const_iterator it = _plstArg.begin() ; it != _plstArg.end() ; ++it)
         {
             (*it)->accept(*this);
-            if (result_getSize() > 1)
+            if (getResultSize() > 1)
             {
-                const int size = result_getSize();
+                const int size = getResultSize();
                 for (int i = 0 ; i < size; i++)
                 {
-                    pArgs->push_back(result_get(i));
+                    pArgs->push_back(getResult(i));
                 }
             }
             else
             {
-                pArgs->push_back(result_get());
+                pArgs->push_back(getResult());
             }
         }
         //to be sure, delete operation does not delete result
-        result_set(NULL);
+        setResult(NULL);
         return pArgs;
     }
 
 public :
-    //not use
-    void visitprivate(const IntExp  &/*e*/) {}
-    void visitprivate(const FloatExp  &/*e*/) {}
-
     //process in another node
     void visitprivate(const MatrixLineExp &/*e*/) {}
     void visitprivate(const CommentExp &/*e*/) {}
@@ -373,11 +369,11 @@ public :
     {
         if (e.getBigString() == NULL)
         {
-            types::String *psz = new types::String(e.value_get().c_str());
+            types::String *psz = new types::String(e.getValue().c_str());
             (const_cast<StringExp *>(&e))->setBigString(psz);
 
         }
-        result_set(e.getBigString());
+        setResult(e.getBigString());
     }
 
 
@@ -385,11 +381,11 @@ public :
     {
         if (e.getBigDouble() == NULL)
         {
-            Double *pdbl = new Double(e.value_get());
+            Double *pdbl = new Double(e.getValue());
             (const_cast<DoubleExp *>(&e))->setBigDouble(pdbl);
 
         }
-        result_set(e.getBigDouble());
+        setResult(e.getBigDouble());
     }
 
 
@@ -397,33 +393,33 @@ public :
     {
         if (e.getBigBool() == NULL)
         {
-            Bool *pB = new Bool(e.value_get());
+            Bool *pB = new Bool(e.getValue());
             (const_cast<BoolExp *>(&e))->setBigBool(pB);
 
         }
-        result_set(e.getBigBool());
+        setResult(e.getBigBool());
     }
 
 
     void visitprivate(const NilExp &/*e*/)
     {
-        result_set(new types::Void());
+        setResult(new types::Void());
     }
 
 
     void visitprivate(const SimpleVar &e)
     {
-        InternalType *pI = symbol::Context::getInstance()->get(((SimpleVar&)e).stack_get());
-        result_set(pI);
+        InternalType *pI = symbol::Context::getInstance()->get(((SimpleVar&)e).getStack());
+        setResult(pI);
         if (pI != NULL)
         {
-            if (e.is_verbose() && pI->isCallable() == false && ConfigVariable::isPromptShow())
+            if (e.isVerbose() && pI->isCallable() == false && ConfigVariable::isPromptShow())
             {
                 std::wostringstream ostr;
-                ostr << e.name_get().name_get() << L"  = " << L"(" << pI->getRef() << L")" << std::endl;
+                ostr << e.getSymbol().getName() << L"  = " << L"(" << pI->getRef() << L")" << std::endl;
                 ostr << std::endl;
                 scilabWriteW(ostr.str().c_str());
-                VariableToString(pI, e.name_get().name_get().c_str());
+                VariableToString(pI, e.getSymbol().getName().c_str());
             }
         }
         else
@@ -431,14 +427,14 @@ public :
             char pstError[bsiz];
             wchar_t* pwstError;
 
-            char* strErr =  wide_string_to_UTF8(e.name_get().name_get().c_str());
+            char* strErr =  wide_string_to_UTF8(e.getSymbol().getName().c_str());
 
             sprintf(pstError, _("Undefined variable: %s\n"), strErr);
             pwstError = to_wide_string(pstError);
             FREE(strErr);
             std::wstring wstError(pwstError);
             FREE(pwstError);
-            throw ScilabError(wstError, 999, e.location_get());
+            throw ScilabError(wstError, 999, e.getLocation());
             //Err, SimpleVar doesn't exist in Scilab scopes.
         }
     }
@@ -447,14 +443,14 @@ public :
     void visitprivate(const ColonVar &/*e*/)
     {
         Colon *pC = new Colon();
-        result_set(pC);
+        setResult(pC);
     }
 
 
     void visitprivate(const DollarVar &/*e*/)
     {
         Dollar* pVar = new Dollar();
-        result_set(pVar);
+        setResult(pVar);
     }
 
     void visitprivate(const TryCatchExp  &e)
@@ -465,7 +461,7 @@ public :
         ConfigVariable::setSilentError(1);
         try
         {
-            e.try_get().accept(*this);
+            e.getTry().accept(*this);
             //restore previous prompt mode
             ConfigVariable::setSilentError(oldVal);
         }
@@ -475,18 +471,18 @@ public :
             ConfigVariable::setSilentError(oldVal);
             //to lock lasterror
             ConfigVariable::setLastErrorCall();
-            e.catch_get().accept(*this);
+            e.getCatch().accept(*this);
         }
     }
 
     void visitprivate(const BreakExp &e)
     {
-        const_cast<BreakExp*>(&e)->break_set();
+        const_cast<BreakExp*>(&e)->setBreak();
     }
 
     void visitprivate(const ContinueExp &e)
     {
-        const_cast<ContinueExp*>(&e)->continue_set();
+        const_cast<ContinueExp*>(&e)->setContinue();
     }
 
     void visitprivate(const ArrayListExp  &e)
@@ -495,16 +491,16 @@ public :
         int i = 0;
 
         std::list<InternalType*> lstIT;
-        for (it = e.exps_get().begin() ; it != e.exps_get().end() ; it++)
+        for (it = e.getExps().begin() ; it != e.getExps().end() ; it++)
         {
             (*it)->accept(*this);
-            lstIT.push_back(result_get()->clone());
+            lstIT.push_back(getResult()->clone());
         }
 
         std::list<InternalType*>::iterator itIT = lstIT.begin();
         for (; itIT != lstIT.end(); itIT++)
         {
-            result_set(i++, *itIT);
+            setResult(i++, *itIT);
         }
     }
 
@@ -513,8 +509,8 @@ public :
         try
         {
             /*getting what to assign*/
-            e.init_get().accept(*this);
-            result_get()->IncreaseRef();
+            e.getInit().accept(*this);
+            getResult()->IncreaseRef();
         }
         catch (ScilabError error)
         {

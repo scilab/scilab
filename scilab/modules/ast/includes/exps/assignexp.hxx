@@ -61,8 +61,8 @@ public:
 
     virtual AssignExp* clone()
     {
-        AssignExp* cloned = new AssignExp(location_get(), *left_exp_get().clone(), *right_exp_get().clone());
-        cloned->set_verbose(is_verbose());
+        AssignExp* cloned = new AssignExp(getLocation(), *getLeftExp().clone(), *getRightExp().clone());
+        cloned->setVerbose(isVerbose());
         return cloned;
     }
     /** \name Visitors entry point.
@@ -85,48 +85,52 @@ public:
     ** \{ */
 public:
     /** \brief Return the name of the size (read only). */
-    Exp& left_exp_get() const
+    Exp& getLeftExp() const
     {
         return *_left_exp;
     }
     /** \brief Return the name of the size */
-    Exp& left_exp_get()
+    Exp& getLeftExp()
     {
         return *_left_exp;
     }
 
     /** \brief Return the name of the init (read only). */
-    Exp& right_exp_get() const
+    Exp& getRightExp() const
     {
         return *_right_exp;
     }
     /** \brief Return the name of the init */
-    Exp& right_exp_get()
+    Exp& getRightExp()
     {
         return *_right_exp;
     }
 
-    types::InternalType* right_val_get()
+    types::InternalType* getRightVal()
     {
         return _pIT;
     }
 
-    types::InternalType* right_val_get() const
+    types::InternalType* getRightVal() const
     {
         return _pIT;
     }
 
-    inline bool is_assign_exp() const
-    {
-        return true;
-    }
-
-    void set_lr_owner(const bool b)
+    void setLrOwner(const bool b)
     {
         lr_owner = b;
     }
 
     /** \} */
+
+    virtual ExpType getType()
+    {
+        return ASSIGNEXP;
+    }
+    inline bool isAssignExp() const
+    {
+        return true;
+    }
 
 protected:
     /** \brief Left variable which is affected. */

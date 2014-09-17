@@ -41,8 +41,8 @@ public:
 
     virtual ContinueExp* clone()
     {
-        ContinueExp* cloned = new ContinueExp(location_get());
-        cloned->set_verbose(is_verbose());
+        ContinueExp* cloned = new ContinueExp(getLocation());
+        cloned->setVerbose(isVerbose());
         return cloned;
     }
     /** \name Visitors entry point.
@@ -59,6 +59,14 @@ public:
         v.visit (*this);
     }
     /** \} */
+    virtual ExpType getType()
+    {
+        return CONTINUEEXP;
+    }
+    inline bool isContinueExp() const
+    {
+        return true;
+    }
 };
 
 } // namespace ast

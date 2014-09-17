@@ -192,20 +192,20 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
             fwrite(serialAst, 1, size, f);
             fclose(f);
             std::list<ast::Exp *>::iterator j;
-            std::list<ast::Exp *>LExp = ((ast::SeqExp*)parser.getTree())->exps_get();
+            std::list<ast::Exp *>LExp = ((ast::SeqExp*)parser.getTree())->getExps();
 
             for (j = LExp.begin() ; j != LExp.end() ; j++)
             {
                 ast::FunctionDec* pFD = dynamic_cast<ast::FunctionDec*>(*j);
                 if (pFD)
                 {
-                    if (AddMacroToXML(pWriter, pair<wstring, wstring>(pFD->name_get().name_get(), pstPathBin)) == false)
+                    if (AddMacroToXML(pWriter, pair<wstring, wstring>(pFD->getSymbol().getName(), pstPathBin)) == false)
                     {
-                        os_swprintf(pstVerbose, 65535, _W("%ls: Warning: %ls information cannot be added to file %ls. File ignored\n").c_str(), L"genlib", pFD->name_get().name_get().c_str(), pstPath[k]);
+                        os_swprintf(pstVerbose, 65535, _W("%ls: Warning: %ls information cannot be added to file %ls. File ignored\n").c_str(), L"genlib", pFD->getSymbol().getName().c_str(), pstPath[k]);
                         scilabWriteW(pstVerbose);
                     }
 
-                    pLib->add(pFD->name_get().name_get(), new types::MacroFile(pFD->name_get().name_get(), stFullPathBin, pstLibName));
+                    pLib->add(pFD->getSymbol().getName(), new types::MacroFile(pFD->getSymbol().getName(), stFullPathBin, pstLibName));
                 }
             }
 

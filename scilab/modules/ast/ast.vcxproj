@@ -270,7 +270,6 @@ lib /DEF:"$(ProjectDir)fileio_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClInclude Include="includes\exps\alldec.hxx" />
     <ClInclude Include="includes\exps\allexp.hxx" />
     <ClInclude Include="includes\exps\allvar.hxx" />
-    <ClInclude Include="includes\exps\anydecs.hxx" />
     <ClInclude Include="includes\exps\arraylistexp.hxx" />
     <ClInclude Include="includes\exps\arraylistvar.hxx" />
     <ClInclude Include="includes\exps\assignexp.hxx" />
@@ -289,16 +288,13 @@ lib /DEF:"$(ProjectDir)fileio_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClInclude Include="includes\exps\controlexp.hxx" />
     <ClInclude Include="includes\exps\dec.hxx" />
     <ClInclude Include="includes\exps\decls.hxx" />
-    <ClInclude Include="includes\exps\decs.hxx" />
     <ClInclude Include="includes\exps\dollarvar.hxx" />
     <ClInclude Include="includes\exps\doubleexp.hxx" />
     <ClInclude Include="includes\exps\exp.hxx" />
     <ClInclude Include="includes\exps\fieldexp.hxx" />
-    <ClInclude Include="includes\exps\floatexp.hxx" />
     <ClInclude Include="includes\exps\forexp.hxx" />
     <ClInclude Include="includes\exps\functiondec.hxx" />
     <ClInclude Include="includes\exps\ifexp.hxx" />
-    <ClInclude Include="includes\exps\intexp.hxx" />
     <ClInclude Include="includes\exps\listexp.hxx" />
     <ClInclude Include="includes\exps\location.hxx" />
     <ClInclude Include="includes\exps\logicalopexp.hxx" />
@@ -312,7 +308,6 @@ lib /DEF:"$(ProjectDir)fileio_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClInclude Include="includes\exps\selectexp.hxx" />
     <ClInclude Include="includes\exps\seqexp.hxx" />
     <ClInclude Include="includes\exps\simplevar.hxx" />
-    <ClInclude Include="includes\exps\stepvisitor.hxx" />
     <ClInclude Include="includes\exps\stringexp.hxx" />
     <ClInclude Include="includes\exps\token.hxx" />
     <ClInclude Include="includes\exps\transposeexp.hxx" />

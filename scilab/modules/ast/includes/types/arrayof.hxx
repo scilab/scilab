@@ -1010,7 +1010,7 @@ public :
             {
                 std::wostringstream os;
                 os << _W("Invalid index.\n");
-                throw ast::ScilabError(os.str(), 999, (*e.args_get().begin())->location_get());
+                throw ast::ScilabError(os.str(), 999, (*e.getArgs().begin())->getLocation());
             }
             out.push_back(_out);
         }

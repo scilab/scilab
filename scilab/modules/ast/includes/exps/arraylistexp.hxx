@@ -60,8 +60,8 @@ public:
             exps->push_back((*it)->clone());
         }
 
-        ArrayListExp* cloned = new ArrayListExp(location_get(), *exps);
-        cloned->set_verbose(is_verbose());
+        ArrayListExp* cloned = new ArrayListExp(getLocation(), *exps);
+        cloned->setVerbose(isVerbose());
         return cloned;
     }
     /** \name Visitors entry point.
@@ -83,18 +83,26 @@ public:
     /** \name Accessors.
     ** \{ */
 public:
-    const std::list<Exp *>&	exps_get() const
+    const std::list<Exp *>&	getExps() const
     {
         return *_exps;
     }
 
-    std::list<Exp *>&	exps_get()
+    std::list<Exp *>&	getExps()
     {
         return *_exps;
     }
     /** \} */
 
 
+    virtual ExpType getType()
+    {
+        return ARRAYLISTEXP;
+    }
+    inline bool isArrayListExp() const
+    {
+        return true;
+    }
 protected:
     std::list<Exp *>* _exps;
 };

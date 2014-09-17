@@ -33,7 +33,7 @@ protected:
     virtual void visit (const MatrixExp &e)
     {
         std::list<MatrixLineExp *>::const_iterator i;
-        for (i = e.lines_get().begin() ; i != e.lines_get().end() ; ++i )
+        for (i = e.getLines().begin() ; i != e.getLines().end() ; ++i )
         {
             (*i)->accept (*this);
         }
@@ -42,7 +42,7 @@ protected:
     virtual void visit (const MatrixLineExp &e)
     {
         std::list<Exp *>::const_iterator i;
-        for (i = e.columns_get().begin() ; i != e.columns_get().end() ; ++i)
+        for (i = e.getColumns().begin() ; i != e.getColumns().end() ; ++i)
         {
             (*i)->accept (*this);
         }
@@ -52,7 +52,7 @@ protected:
     virtual void visit (const CellExp &e)
     {
         std::list<MatrixLineExp *>::const_iterator i;
-        for (i = e.lines_get().begin() ; i != e.lines_get().end() ; ++i )
+        for (i = e.getLines().begin() ; i != e.getLines().end() ; ++i )
         {
             (*i)->accept (*this);
         }
@@ -68,16 +68,6 @@ protected:
     }
 
     virtual void visit (const CommentExp &/*e*/)
-    {
-        // Nothing to follow up ...
-    }
-
-    virtual void visit (const IntExp  &/*e*/)
-    {
-        // Nothing to follow up ...
-    }
-
-    virtual void visit (const FloatExp  &/*e*/)
     {
         // Nothing to follow up ...
     }
@@ -118,7 +108,7 @@ protected:
     virtual void visit (const ArrayListVar &e)
     {
         std::list<Var *>::const_iterator i;
-        for (i = e.vars_get().begin() ; i != e.vars_get().end() ; ++i)
+        for (i = e.getVars().begin() ; i != e.getVars().end() ; ++i)
         {
             (*i)->accept (*this);
         }
@@ -130,36 +120,36 @@ protected:
 
     virtual void visit (const FieldExp &e)
     {
-        e.head_get()->accept(*this);
-        e.tail_get()->accept(*this);
+        e.getHead()->accept(*this);
+        e.getTail()->accept(*this);
     }
 
     virtual void visit(const OpExp &e)
     {
-        e.left_get().accept(*this);
+        e.getLeft().accept(*this);
         //e.oper_get();
-        e.right_get().accept(*this);
+        e.getRight().accept(*this);
     }
 
     virtual void visit(const LogicalOpExp &e)
     {
-        e.left_get().accept(*this);
+        e.getLeft().accept(*this);
         //e.oper_get();
-        e.right_get().accept(*this);
+        e.getRight().accept(*this);
     }
 
     virtual void visit (const AssignExp  &e)
     {
-        e.left_exp_get().accept (*this);
-        e.right_exp_get().accept (*this);
+        e.getLeftExp().accept (*this);
+        e.getRightExp().accept (*this);
     }
 
     virtual void visit(const CellCallExp &e)
     {
-        e.name_get().accept (*this);
+        e.getName().accept (*this);
 
         std::list<Exp *>::const_iterator i;
-        for (i = e.args_get().begin (); i != e.args_get().end (); ++i)
+        for (i = e.getArgs().begin (); i != e.getArgs().end (); ++i)
         {
             (*i)->accept (*this);
         }
@@ -167,10 +157,10 @@ protected:
 
     virtual void visit(const CallExp &e)
     {
-        e.name_get().accept (*this);
+        e.getName().accept (*this);
 
         std::list<Exp *>::const_iterator i;
-        for (i = e.args_get().begin (); i != e.args_get().end (); ++i)
+        for (i = e.getArgs().begin (); i != e.getArgs().end (); ++i)
         {
             (*i)->accept (*this);
         }
@@ -178,30 +168,30 @@ protected:
 
     virtual void visit (const IfExp  &e)
     {
-        e.test_get().accept(*this);
-        e.then_get().accept(*this);
-        if (e.has_else())
+        e.getTest().accept(*this);
+        e.getThen().accept(*this);
+        if (e.hasElse())
         {
-            e.else_get().accept(*this);
+            e.getElse().accept(*this);
         }
     }
 
     virtual void visit (const TryCatchExp  &e)
     {
-        e.try_get ().accept(*this);
-        e.catch_get ().accept(*this);
+        e.getTry().accept(*this);
+        e.getCatch().accept(*this);
     }
 
     virtual void visit (const WhileExp  &e)
     {
-        e.test_get().accept (*this);
-        e.body_get().accept (*this);
+        e.getTest().accept (*this);
+        e.getBody().accept (*this);
     }
 
     virtual void visit (const ForExp  &e)
     {
-        e.vardec_get().accept(*this);
-        e.body_get().accept (*this);
+        e.getVardec().accept(*this);
+        e.getBody().accept (*this);
     }
 
     virtual void visit (const BreakExp &/*e*/)
@@ -216,37 +206,37 @@ protected:
 
     virtual void visit (const ReturnExp &e)
     {
-        if (!e.is_global())
+        if (!e.isGlobal())
         {
-            e.exp_get().accept(*this);
+            e.getExp().accept(*this);
         }
     }
 
     virtual void visit (const SelectExp &e)
     {
-        e.select_get()->accept(*this);
+        e.getSelect()->accept(*this);
 
         ast::cases_t::iterator it;
-        for (it = e.cases_get()->begin() ; it !=  e.cases_get()->end() ; ++it)
+        for (it = e.getCases()->begin() ; it !=  e.getCases()->end() ; ++it)
         {
             (*it)->accept(*this);
         }
-        if (e.default_case_get() != NULL)
+        if (e.getDefaultCase() != NULL)
         {
-            e.default_case_get()->accept(*this);
+            e.getDefaultCase()->accept(*this);
         }
     }
 
     virtual void visit (const CaseExp &e)
     {
-        e.test_get()->accept(*this);
-        e.body_get()->accept(*this);
+        e.getTest()->accept(*this);
+        e.getBody()->accept(*this);
     }
 
     virtual void visit (const SeqExp  &e)
     {
         std::list<Exp *>::const_iterator i;
-        for (i = e.exps_get().begin (); i != e.exps_get().end (); ++i)
+        for (i = e.getExps().begin (); i != e.getExps().end (); ++i)
         {
             (*i)->accept (*this);
         }
@@ -255,7 +245,7 @@ protected:
     virtual void visit (const ArrayListExp  &e)
     {
         std::list<Exp *>::const_iterator i;
-        for (i = e.exps_get().begin (); i != e.exps_get().end (); ++i)
+        for (i = e.getExps().begin (); i != e.getExps().end (); ++i)
         {
             (*i)->accept (*this);
         }
@@ -264,7 +254,7 @@ protected:
     virtual void visit (const AssignListExp  &e)
     {
         std::list<Exp *>::const_iterator i;
-        for (i = e.exps_get().begin (); i != e.exps_get().end (); ++i)
+        for (i = e.getExps().begin (); i != e.getExps().end (); ++i)
         {
             (*i)->accept (*this);
         }
@@ -275,12 +265,12 @@ protected:
      ** \{ */
     virtual void visit (const NotExp &e)
     {
-        e.exp_get().accept (*this);
+        e.getExp().accept (*this);
     }
 
     virtual void visit (const TransposeExp &e)
     {
-        e.exp_get().accept (*this);
+        e.getExp().accept (*this);
     }
     /** \} */
 
@@ -289,14 +279,14 @@ protected:
     /** \brief Visit Var declarations. */
     virtual void visit (const VarDec  &e)
     {
-        e.init_get().accept(*this);
+        e.getInit().accept(*this);
     }
 
     virtual void visit (const FunctionDec  &e)
     {
-        e.args_get().accept(*this);
-        e.returns_get().accept(*this);
-        e.body_get().accept(*this);
+        e.getArgs().accept(*this);
+        e.getReturns().accept(*this);
+        e.getBody().accept(*this);
     }
     /** \} */
 
@@ -304,9 +294,9 @@ protected:
      ** \{ */
     virtual void visit(const ListExp &e)
     {
-        e.start_get().accept(*this);
-        e.step_get().accept(*this);
-        e.end_get().accept(*this);
+        e.getStart().accept(*this);
+        e.getStep().accept(*this);
+        e.getEnd().accept(*this);
     }
     /** \} */
 };

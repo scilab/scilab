@@ -197,7 +197,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
     }
 
     std::list<Exp *>::iterator j;
-    std::list<Exp *>LExp = ((SeqExp*)pExp)->exps_get();
+    std::list<Exp *>LExp = ((SeqExp*)pExp)->getExps();
 
     char pstPrompt[64];
     //get prompt
@@ -227,14 +227,14 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
             //mode == 0, print new variable but not command
             if (ConfigVariable::getPromptMode() != 0 && ConfigVariable::getPromptMode() != 2)
             {
-                int iLastLine = (*j)->location_get().last_line;
+                int iLastLine = (*j)->getLocation().last_line;
                 do
                 {
                     str = printExp(file, *k, stPrompt, &iCurrentLine, &iCurrentCol, str);
-                    iLastLine = (*k)->location_get().last_line;
+                    iLastLine = (*k)->getLocation().last_line;
                     k++;
                 }
-                while (k != LExp.end() && (*k)->location_get().first_line == iLastLine);
+                while (k != LExp.end() && (*k)->getLocation().first_line == iLastLine);
 
                 // In case where the line ends by spaces, iCurrentCol is not reset
                 // by printExp because we don't know if that's the end of the expression
@@ -266,9 +266,9 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
 
 
                 //to manage call without ()
-                if (execMe.result_get() != NULL && execMe.result_get()->isCallable())
+                if (execMe.getResult() != NULL && execMe.getResult()->isCallable())
                 {
-                    Callable *pCall = execMe.result_get()->getAs<Callable>();
+                    Callable *pCall = execMe.getResult()->getAs<Callable>();
                     types::typed_list out;
                     types::typed_list in;
                     types::optional_list opt;
@@ -277,19 +277,19 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
                     {
                         //in this case of calling, we can return only one values
                         ExecVisitor execCall;
-                        execCall.expected_setSize(1);
+                        execCall.setExpectedSize(1);
                         Function::ReturnValue Ret = pCall->call(in, opt, 1, out, &execCall);
 
                         if (Ret == Callable::OK)
                         {
                             if (out.size() == 0)
                             {
-                                execMe.result_set(NULL);
+                                execMe.setResult(NULL);
                             }
                             else if (out.size() == 1)
                             {
                                 out[0]->DecreaseRef();
-                                execMe.result_set(out[0]);
+                                execMe.setResult(out[0]);
                                 bImplicitCall = true;
                             }
                             else
@@ -297,7 +297,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
                                 for (int i = 0 ; i < static_cast<int>(out.size()) ; i++)
                                 {
                                     out[i]->DecreaseRef();
-                                    execMe.result_set(i, out[i]);
+                                    execMe.setResult(i, out[i]);
                                 }
                             }
                         }
@@ -311,7 +311,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
                             if (pCall->isMacro() || pCall->isMacroFile())
                             {
                                 wchar_t szError[bsiz];
-                                os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n").c_str(), (*j)->location_get().first_line, pCall->getName().c_str());
+                                os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n").c_str(), (*j)->getLocation().first_line, pCall->getName().c_str());
                                 throw ast::ScilabMessage(szError);
                             }
                             else
@@ -337,7 +337,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
                             wchar_t szError[bsiz];
                             os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n").c_str(), sm.GetErrorLocation().first_line, pCall->getName().c_str());
                             szAllError = szError + os.str();
-                            os_swprintf(szError, bsiz, _W("at line % 5d of exec file called by :\n").c_str(), (*j)->location_get().first_line);
+                            os_swprintf(szError, bsiz, _W("at line % 5d of exec file called by :\n").c_str(), (*j)->getLocation().first_line);
                             szAllError += szError;
                             throw ast::ScilabMessage(szAllError);
                         }
@@ -352,11 +352,11 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
                 //update ans variable
                 SimpleVar* pVar = dynamic_cast<SimpleVar*>(*j);
                 //don't output Simplevar and empty result
-                if (execMe.result_get() != NULL && (pVar == NULL || bImplicitCall))
+                if (execMe.getResult() != NULL && (pVar == NULL || bImplicitCall))
                 {
-                    InternalType* pITAns = execMe.result_get();
+                    InternalType* pITAns = execMe.getResult();
                     symbol::Context::getInstance()->put(symbol::Symbol(L"ans"), pITAns);
-                    if ( (*j)->is_verbose() && bErrCatch == false)
+                    if ( (*j)->isVerbose() && bErrCatch == false)
                     {
                         //TODO manage multiple returns
                         scilabWriteW(L" ans  =\n\n");
@@ -374,10 +374,10 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
             {
                 //to print call expression only of it is a macro
                 ExecVisitor execFunc;
-                pCall->name_get().accept(execFunc);
+                pCall->getName().accept(execFunc);
 
-                if (execFunc.result_get() != NULL &&
-                        (execFunc.result_get()->isMacro() || execFunc.result_get()->isMacroFile()))
+                if (execFunc.getResult() != NULL &&
+                        (execFunc.getResult()->isMacro() || execFunc.getResult()->isMacroFile()))
                 {
                     wostringstream os;
 
@@ -388,24 +388,24 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
 
                     //add info on file failed
                     wchar_t szError[bsiz];
-                    os_swprintf(szError, bsiz, _W("at line % 5d of exec file called by :\n").c_str(), (*j)->location_get().first_line);
+                    os_swprintf(szError, bsiz, _W("at line % 5d of exec file called by :\n").c_str(), (*j)->getLocation().first_line);
                     os << szError;
 
                     if (ConfigVariable::getLastErrorFunction() == L"")
                     {
-                        ConfigVariable::setLastErrorFunction(execFunc.result_get()->getAs<Callable>()->getName());
+                        ConfigVariable::setLastErrorFunction(execFunc.getResult()->getAs<Callable>()->getName());
                     }
 
 
                     mclose(iID);
                     //restore previous prompt mode
                     ConfigVariable::setPromptMode(oldVal);
-                    throw ast::ScilabMessage(os.str(), 0, (*j)->location_get());
+                    throw ast::ScilabMessage(os.str(), 0, (*j)->getLocation());
                 }
             }
 
             mclose(iID);
-            throw ast::ScilabMessage((*j)->location_get());
+            throw ast::ScilabMessage((*j)->getLocation());
         }
         catch (const ast::ScilabError& se)
         {
@@ -431,12 +431,12 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
 
                 //write position
                 wchar_t szError[bsiz];
-                os_swprintf(szError, bsiz, _W("at line % 5d of exec file called by :\n").c_str(), (*j)->location_get().first_line);
+                os_swprintf(szError, bsiz, _W("at line % 5d of exec file called by :\n").c_str(), (*j)->getLocation().first_line);
                 scilabErrorW(szError);
                 mclose(iID);
                 //restore previous prompt mode
                 ConfigVariable::setPromptMode(oldVal);
-                //throw ast::ScilabMessage(szError, 1, (*j)->location_get());
+                //throw ast::ScilabMessage(szError, 1, (*j)->getLocation());
                 //print already done, so just foward exception but with message
                 throw ast::ScilabError();
             }
@@ -467,7 +467,7 @@ std::string getExpression(const std::string& _stFile, Exp* _pExp)
     std::string out;
     std::string stBuffer;
     int iLine = 0;
-    Location loc = _pExp->location_get();
+    Location loc = _pExp->getLocation();
     std::ifstream file(_stFile.c_str());
 
     //bypass previous lines
@@ -528,7 +528,7 @@ std::string printExp(std::ifstream& _File, Exp* _pExp, const std::string& _stPro
     //	a
     //end, b = 1;
 
-    Location loc = _pExp->location_get();
+    Location loc = _pExp->getLocation();
 
     //positionning file curser at loc.first_line
     {

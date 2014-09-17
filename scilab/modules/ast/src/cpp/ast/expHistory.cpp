@@ -92,7 +92,7 @@ std::wstring ExpHistory::getExpAsString()
     std::wstring wcsExp = L"";
     if (m_pExp)
     {
-        wcsExp = m_pExp->name_get().name_get();
+        wcsExp = m_pExp->getSymbol().getName();
     }
 
     return wcsExp;

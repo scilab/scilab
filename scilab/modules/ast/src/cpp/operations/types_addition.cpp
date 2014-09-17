@@ -1689,7 +1689,7 @@ template<> InternalType* add_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polyno
     {
         std::wostringstream os;
         os << _W("variables don't have the same formal variable");
-        //os << ((Location)e.right_get().location_get()).location_getString() << std::endl;
+        //os << ((Location)e.right_get().getLocation()).getLocationString() << std::endl;
         throw ast::ScilabError(os.str());
     }
 

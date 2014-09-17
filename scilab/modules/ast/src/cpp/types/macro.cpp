@@ -118,7 +118,7 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
     // but not more execpts with varargin
 
     // varargin management
-    if (m_inputArgs->size() > 0 && m_inputArgs->back()->name_get().name_get() == L"varargin")
+    if (m_inputArgs->size() > 0 && m_inputArgs->back()->getSymbol().getName() == L"varargin")
     {
         int iVarPos = static_cast<int>(in.size());
         if (iVarPos > static_cast<int>(m_inputArgs->size()) - 1)
@@ -204,7 +204,7 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
     // varargout is a list
     // varargout can containt more items than caller need
     // varargout must containt at leat caller needs
-    if (m_outputArgs->size() == 1 && m_outputArgs->back()->name_get().name_get() == L"varargout")
+    if (m_outputArgs->size() == 1 && m_outputArgs->back()->getSymbol().getName() == L"varargout")
     {
         bVarargout = true;
         List* pL = new List();
@@ -242,13 +242,13 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
         //m_body->accept(mute);
 
         ConfigVariable::setPromptMode(-1);
-        m_body->returnable_set();
+        m_body->setReturnable();
         m_body->accept(*execFunc);
         //restore previous prompt mode
         ConfigVariable::setPromptMode(oldVal);
-        if (m_body->is_return())
+        if (m_body->isReturn())
         {
-            m_body->returnable_set();
+            m_body->setReturnable();
         }
     }
     catch (ast::ScilabMessage & sm)
@@ -325,7 +325,7 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
                 out.clear();
                 cleanCall(pContext, oldVal);
 
-                char* pst = wide_string_to_UTF8((*i)->name_get().name_get().c_str());
+                char* pst = wide_string_to_UTF8((*i)->getSymbol().getName().c_str());
                 Scierror(999, _("Undefined variable %s.\n"), pst);
                 FREE(pst);
                 return Callable::Error;
@@ -361,7 +361,7 @@ int Macro::getNbInputArgument(void)
 
 int Macro::getNbOutputArgument(void)
 {
-    if (m_outputArgs->size() == 1 && m_outputArgs->back()->name_get().name_get() == L"varargout")
+    if (m_outputArgs->size() == 1 && m_outputArgs->back()->getSymbol().getName() == L"varargout")
     {
         return -1;
     }
@@ -393,7 +393,7 @@ bool Macro::operator==(const InternalType& it)
 
     for (; itOld != itEndOld ; ++itOld, ++itMacro)
     {
-        if ((*itOld)->name_get() != (*itMacro)->name_get())
+        if ((*itOld)->getSymbol() != (*itMacro)->getSymbol())
         {
             return false;
         }
@@ -412,7 +412,7 @@ bool Macro::operator==(const InternalType& it)
 
     for (; itOld != itEndOld ; ++itOld, ++itMacro)
     {
-        if ((*itOld)->name_get() != (*itMacro)->name_get())
+        if ((*itOld)->getSymbol() != (*itMacro)->getSymbol())
         {
             return false;
         }

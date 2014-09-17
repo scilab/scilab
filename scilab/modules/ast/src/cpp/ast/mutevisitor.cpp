@@ -18,7 +18,7 @@ namespace ast
 void MuteVisitor::visit (const MatrixExp &e)
 {
     std::list<MatrixLineExp *>::const_iterator	row;
-    for (row = e.lines_get().begin() ; row != e.lines_get().end() ; ++row )
+    for (row = e.getLines().begin() ; row != e.getLines().end() ; ++row )
     {
         (*row)->mute();
         MuteVisitor mute;
@@ -29,7 +29,7 @@ void MuteVisitor::visit (const MatrixExp &e)
 void MuteVisitor::visit (const MatrixLineExp &e)
 {
     std::list<Exp *>::const_iterator	col;
-    for (col = e.columns_get().begin() ; col != e.columns_get().end() ; ++col)
+    for (col = e.getColumns().begin() ; col != e.getColumns().end() ; ++col)
     {
         (*col)->mute();
         MuteVisitor mute;
@@ -40,7 +40,7 @@ void MuteVisitor::visit (const MatrixLineExp &e)
 void MuteVisitor::visit (const CellExp &e)
 {
     std::list<MatrixLineExp *>::const_iterator	row;
-    for (row = e.lines_get().begin() ; row != e.lines_get().end() ; ++row )
+    for (row = e.getLines().begin() ; row != e.getLines().end() ; ++row )
     {
         (*row)->mute();
         MuteVisitor mute;
@@ -53,14 +53,6 @@ void MuteVisitor::visit (const StringExp &/*e*/)
 }
 
 void MuteVisitor::visit (const CommentExp &/*e*/)
-{
-}
-
-void MuteVisitor::visit (const IntExp  &/*e*/)
-{
-}
-
-void MuteVisitor::visit (const FloatExp  &/*e*/)
 {
 }
 
@@ -91,7 +83,7 @@ void MuteVisitor::visit (const DollarVar &/*e*/)
 void MuteVisitor::visit (const ArrayListVar &e)
 {
     std::list<Var *>::const_iterator var;
-    for (var = e.vars_get().begin() ; var != e.vars_get().end() ; var++)
+    for (var = e.getVars().begin() ; var != e.getVars().end() ; var++)
     {
         (*var)->mute();
         MuteVisitor mute;
@@ -101,48 +93,48 @@ void MuteVisitor::visit (const ArrayListVar &e)
 
 void MuteVisitor::visit (const FieldExp &e)
 {
-    const_cast<Exp*>(e.head_get())->mute();
-    const_cast<Exp*>(e.tail_get())->mute();
+    const_cast<Exp*>(e.getHead())->mute();
+    const_cast<Exp*>(e.getTail())->mute();
 
     MuteVisitor mute;
-    e.head_get()->accept(mute);
-    e.tail_get()->accept(mute);
+    e.getHead()->accept(mute);
+    e.getTail()->accept(mute);
 }
 
 void MuteVisitor::visit(const OpExp &e)
 {
-    const_cast<Exp&>(e.left_get()).mute();
-    const_cast<Exp&>(e.right_get()).mute();
+    const_cast<Exp&>(e.getLeft()).mute();
+    const_cast<Exp&>(e.getRight()).mute();
 
     MuteVisitor mute;
-    e.left_get().accept(mute);
-    e.right_get().accept(mute);
+    e.getLeft().accept(mute);
+    e.getRight().accept(mute);
 }
 
 void MuteVisitor::visit(const LogicalOpExp &e)
 {
-    const_cast<Exp&>(e.left_get()).mute();
-    const_cast<Exp&>(e.right_get()).mute();
+    const_cast<Exp&>(e.getLeft()).mute();
+    const_cast<Exp&>(e.getRight()).mute();
 
     MuteVisitor mute;
-    e.left_get().accept(mute);
-    e.right_get().accept(mute);
+    e.getLeft().accept(mute);
+    e.getRight().accept(mute);
 }
 
 void MuteVisitor::visit (const AssignExp  &e)
 {
-    const_cast<Exp&>(e.left_exp_get()).mute();
-    const_cast<Exp&>(e.right_exp_get()).mute();
+    const_cast<Exp&>(e.getLeftExp()).mute();
+    const_cast<Exp&>(e.getRightExp()).mute();
 
     MuteVisitor mute;
-    e.left_exp_get().accept(mute);
-    e.right_exp_get().accept(mute);
+    e.getLeftExp().accept(mute);
+    e.getRightExp().accept(mute);
 }
 
 void MuteVisitor::visit(const CallExp &e)
 {
     std::list<Exp *>::const_iterator arg;
-    for (arg = e.args_get().begin() ; arg != e.args_get().end() ; arg++)
+    for (arg = e.getArgs().begin() ; arg != e.getArgs().end() ; arg++)
     {
         (*arg)->mute();
         MuteVisitor mute;
@@ -153,7 +145,7 @@ void MuteVisitor::visit(const CallExp &e)
 void MuteVisitor::visit(const CellCallExp &e)
 {
     std::list<Exp *>::const_iterator arg;
-    for (arg = e.args_get().begin() ; arg != e.args_get().end() ; arg++)
+    for (arg = e.getArgs().begin() ; arg != e.getArgs().end() ; arg++)
     {
         (*arg)->mute();
         MuteVisitor mute;
@@ -163,48 +155,48 @@ void MuteVisitor::visit(const CellCallExp &e)
 
 void MuteVisitor::visit (const IfExp  &e)
 {
-    const_cast<Exp&>(e.test_get()).mute();
-    const_cast<Exp&>(e.then_get()).mute();
-    if (e.has_else())
+    const_cast<Exp&>(e.getTest()).mute();
+    const_cast<Exp&>(e.getThen()).mute();
+    if (e.hasElse())
     {
-        const_cast<Exp&>(e.else_get()).mute();
+        const_cast<Exp&>(e.getElse()).mute();
     }
 
     MuteVisitor mute;
-    e.test_get().accept(mute);
-    e.then_get().accept(mute);
-    if (e.has_else())
+    e.getTest().accept(mute);
+    e.getThen().accept(mute);
+    if (e.hasElse())
     {
-        e.else_get().accept(mute);
+        e.getElse().accept(mute);
     }
 }
 
 void MuteVisitor::visit (const TryCatchExp  &e)
 {
-    const_cast<SeqExp&>(e.try_get()).mute();
-    const_cast<SeqExp&>(e.catch_get()).mute();
+    const_cast<SeqExp&>(e.getTry()).mute();
+    const_cast<SeqExp&>(e.getCatch()).mute();
 
     MuteVisitor mute;
-    e.try_get().accept(mute);
-    e.catch_get().accept(mute);
+    e.getTry().accept(mute);
+    e.getCatch().accept(mute);
 }
 
 void MuteVisitor::visit (const WhileExp  &e)
 {
-    const_cast<Exp&>(e.test_get()).mute();
-    const_cast<Exp&>(e.body_get()).mute();
+    const_cast<Exp&>(e.getTest()).mute();
+    const_cast<Exp&>(e.getBody()).mute();
 
     MuteVisitor mute;
-    e.test_get().accept(mute);
-    e.body_get().accept(mute);
+    e.getTest().accept(mute);
+    e.getBody().accept(mute);
 }
 
 void MuteVisitor::visit (const ForExp  &e)
 {
-    const_cast<Exp&>(e.body_get()).mute();
+    const_cast<Exp&>(e.getBody()).mute();
 
     MuteVisitor mute;
-    e.body_get().accept(mute);
+    e.getBody().accept(mute);
 }
 
 void MuteVisitor::visit (const BreakExp &/*e*/)
@@ -230,7 +222,7 @@ void MuteVisitor::visit (const CaseExp &/*e*/)
 void MuteVisitor::visit (const SeqExp  &e)
 {
     std::list<Exp *>::const_iterator seq;
-    for (seq = e.exps_get().begin() ; seq != e.exps_get().end() ; seq++)
+    for (seq = e.getExps().begin() ; seq != e.getExps().end() ; seq++)
     {
         (*seq)->mute();
         MuteVisitor mute;
@@ -241,7 +233,7 @@ void MuteVisitor::visit (const SeqExp  &e)
 void MuteVisitor::visit (const ArrayListExp  &e)
 {
     std::list<Exp *>::const_iterator exp;
-    for (exp = e.exps_get().begin() ; exp != e.exps_get().end() ; exp++)
+    for (exp = e.getExps().begin() ; exp != e.getExps().end() ; exp++)
     {
         (*exp)->mute();
         MuteVisitor mute;
@@ -267,10 +259,10 @@ void MuteVisitor::visit (const VarDec  &/*e*/)
 
 void MuteVisitor::visit (const FunctionDec  &e)
 {
-    const_cast<Exp&>(e.body_get()).mute();
+    const_cast<Exp&>(e.getBody()).mute();
 
     MuteVisitor mute;
-    e.body_get().accept(mute);
+    e.getBody().accept(mute);
 }
 
 void MuteVisitor::visit(const ListExp &/*e*/)

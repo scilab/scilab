@@ -1178,8 +1178,8 @@ void mxFreeMatrix(mxArray *ptr)
 bool mexIsGlobal(const mxArray *ptr)
 {
     symbol::Context *context = symbol::Context::getInstance();
-    int size = symbol::Symbol::map_size();
-    wchar_t **keys = symbol::Symbol::get_all();
+    int size = symbol::Symbol::getSize();
+    wchar_t **keys = symbol::Symbol::getAll();
 
     for (int i = 0; i < size; i++)
     {
@@ -1513,7 +1513,7 @@ int mexEvalString(const char *name)
         ConfigVariable::setPromptMode(-1);
     }
     std::list<Exp *>::iterator j;
-    std::list<Exp *>LExp = ((SeqExp*)pExp)->exps_get();
+    std::list<Exp *>LExp = ((SeqExp*)pExp)->getExps();
 
     for (j = LExp.begin() ; j != LExp.end() ; j++)
     {
@@ -1524,9 +1524,9 @@ int mexEvalString(const char *name)
             (*j)->accept(execMe);
 
             //to manage call without ()
-            if (execMe.result_get() != NULL && execMe.result_get()->getAs<Callable>())
+            if (execMe.getResult() != NULL && execMe.getResult()->getAs<Callable>())
             {
-                Callable *pCall = execMe.result_get()->getAs<Callable>();
+                Callable *pCall = execMe.getResult()->getAs<Callable>();
                 types::typed_list out;
                 types::typed_list in;
                 types::optional_list opt;
@@ -1538,19 +1538,19 @@ int mexEvalString(const char *name)
                     {
                         if (out.size() == 0)
                         {
-                            execMe.result_set(NULL);
+                            execMe.setResult(NULL);
                         }
                         else if (out.size() == 1)
                         {
                             out[0]->DecreaseRef();
-                            execMe.result_set(out[0]);
+                            execMe.setResult(out[0]);
                         }
                         else
                         {
                             for (int i = 0 ; i < static_cast<int>(out.size()) ; i++)
                             {
                                 out[i]->DecreaseRef();
-                                execMe.result_set(i, out[i]);
+                                execMe.setResult(i, out[i]);
                             }
                         }
                     }
@@ -1564,7 +1564,7 @@ int mexEvalString(const char *name)
                         if (pCall->isMacro() || pCall->isMacroFile())
                         {
                             wchar_t szError[bsiz];
-                            os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n").c_str(), (*j)->location_get().first_line, pCall->getName().c_str());
+                            os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n").c_str(), (*j)->getLocation().first_line, pCall->getName().c_str());
                             throw ast::ScilabMessage(szError);
                         }
                         else
@@ -1603,15 +1603,15 @@ int mexEvalString(const char *name)
             }
 
             //update ans variable.
-            if (execMe.result_get() != NULL && execMe.result_get()->isDeletable())
+            if (execMe.getResult() != NULL && execMe.getResult()->isDeletable())
             {
-                symbol::Context::getInstance()->put(symbol::Symbol(L"ans"), execMe.result_get());
-                if ((*j)->is_verbose() && bErrCatch == false)
+                symbol::Context::getInstance()->put(symbol::Symbol(L"ans"), execMe.getResult());
+                if ((*j)->isVerbose() && bErrCatch == false)
                 {
                     std::wostringstream ostr;
                     ostr << L"ans = " << std::endl;
                     ostr << std::endl;
-                    execMe.result_get()->toString(ostr);
+                    execMe.getResult()->toString(ostr);
                     ostr << std::endl;
                     scilabWriteW(ostr.str().c_str());
                 }
@@ -1628,10 +1628,10 @@ int mexEvalString(const char *name)
                 {
                     //to print call expression only of it is a macro
                     ExecVisitor execFunc;
-                    pCall->name_get().accept(execFunc);
+                    pCall->getName().accept(execFunc);
 
-                    if (execFunc.result_get() != NULL &&
-                            (execFunc.result_get()->isMacro() || execFunc.result_get()->isMacroFile()))
+                    if (execFunc.getResult() != NULL &&
+                            (execFunc.getResult()->isMacro() || execFunc.getResult()->isMacroFile()))
                     {
                         wostringstream os;
 
@@ -1642,20 +1642,20 @@ int mexEvalString(const char *name)
 
                         //add info on file failed
                         wchar_t szError[bsiz];
-                        os_swprintf(szError, bsiz, _W("at line % 5d of exec file called by :\n").c_str(), (*j)->location_get().first_line);
+                        os_swprintf(szError, bsiz, _W("at line % 5d of exec file called by :\n").c_str(), (*j)->getLocation().first_line);
                         os << szError;
 
                         if (ConfigVariable::getLastErrorFunction() == L"")
                         {
-                            ConfigVariable::setLastErrorFunction(execFunc.result_get()->getAs<Callable>()->getName());
+                            ConfigVariable::setLastErrorFunction(execFunc.getResult()->getAs<Callable>()->getName());
                         }
 
                         //restore previous prompt mode
                         ConfigVariable::setPromptMode(oldVal);
-                        throw ast::ScilabMessage(os.str(), 0, (*j)->location_get());
+                        throw ast::ScilabMessage(os.str(), 0, (*j)->getLocation());
                     }
                 }
-                throw ast::ScilabMessage((*j)->location_get());
+                throw ast::ScilabMessage((*j)->getLocation());
             }
             else
             {
@@ -1685,10 +1685,10 @@ int mexEvalString(const char *name)
 
                 //write positino
                 wchar_t szError[bsiz];
-                os_swprintf(szError, bsiz, _W("at line % 5d of exec file called by :\n").c_str(), (*j)->location_get().first_line);
+                os_swprintf(szError, bsiz, _W("at line % 5d of exec file called by :\n").c_str(), (*j)->getLocation().first_line);
                 //restore previous prompt mode
                 ConfigVariable::setPromptMode(oldVal);
-                throw ast::ScilabMessage(szError, 1, (*j)->location_get());
+                throw ast::ScilabMessage(szError, 1, (*j)->getLocation());
             }
             break;
         }

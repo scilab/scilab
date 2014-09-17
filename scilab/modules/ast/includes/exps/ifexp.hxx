@@ -39,7 +39,7 @@ public:
           _test (&test),
           _then (&t),
           _else (&e),
-          _has_else (true)
+          _hasElse (true)
     {
     }
 
@@ -50,7 +50,7 @@ public:
           _then (&t),
           _else (new ast::CommentExp(location, new std::wstring(L"No else !!"))),
           // For first display in order to see what appends
-          _has_else (false)
+          _hasElse (false)
     {
     }
 
@@ -63,8 +63,8 @@ public:
 
     virtual IfExp* clone()
     {
-        IfExp* cloned = new IfExp(location_get(), *test_get().clone(), *then_get().clone(), *else_get().clone());
-        cloned->set_verbose(is_verbose());
+        IfExp* cloned = new IfExp(getLocation(), *getTest().clone(), *getThen().clone(), *getElse().clone());
+        cloned->setVerbose(isVerbose());
         return cloned;
     }
 
@@ -82,55 +82,63 @@ public:
     // \brief Accessors.
 public:
     // \brief Return the select condition of the loop (read only).
-    const Exp&	test_get() const
+    const Exp&	getTest() const
     {
         return *_test;
     }
     // \brief Return the select condition of the loop (read and write).
-    Exp&	test_get()
+    Exp& getTest()
     {
         return *_test;
     }
 
     // \brief Return the intructions if test is true (read only).
-    const Exp&	then_get() const
+    const Exp&	getThen() const
     {
         return *_then;
     }
     // \brief Return the instructions if test is true (read and write).
-    Exp& then_get()
+    Exp& getThen()
     {
         return *_then;
     }
 
     // \brief Return the instruction if test is false (read only).
-    const Exp&	else_get() const
+    const Exp& getElse() const
     {
         return *_else;
     }
     // \brief Return the instruction if test is false (read and write).
-    Exp&	else_get()
+    Exp& getElse()
     {
         return *_else;
     }
 
     // \brief Return if there is an else body
-    bool	has_else()
+    bool	hasElse()
     {
-        return _has_else;
+        return _hasElse;
     }
     // \brief Return if there is an else body
-    bool	has_else() const
+    bool	hasElse() const
     {
-        return _has_else;
+        return _hasElse;
     }
 
+    virtual ExpType getType()
+    {
+        return IFEXP;
+    }
+    inline bool isIfExp() const
+    {
+        return true;
+    }
 protected:
     // \brief "has a value" qualifier.
     Exp*	_test;
     Exp*	_then;
     Exp*	_else;
-    bool	_has_else;
+    bool	_hasElse;
 };
 
 } // namespace ast
