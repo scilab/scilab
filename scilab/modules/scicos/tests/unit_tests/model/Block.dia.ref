@@ -473,7 +473,7 @@ intyp = 1
 out = []
 out2 = []
 outtyp = 1
-evtin = -1
+evtin = 1
 evtout = []
 state = []
 dstate = []
@@ -529,7 +529,7 @@ propertyUpdated( 6 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
 propertyUpdated( 7 , PORT , DATATYPE ) : NO_CHANGES
 propertyUpdated( 7 , PORT , DATATYPE ) : NO_CHANGES
 propertyUpdated( 7 , PORT , DATATYPE ) : NO_CHANGES
-propertyUpdated( 8 , PORT , DATATYPE ) : SUCCESS
+propertyUpdated( 8 , PORT , DATATYPE ) : NO_CHANGES
 propertyUpdated( 6 , BLOCK , STATE ) : NO_CHANGES
 propertyUpdated( 6 , BLOCK , DSTATE ) : NO_CHANGES
 propertyUpdated( 6 , BLOCK , RPAR ) : NO_CHANGES

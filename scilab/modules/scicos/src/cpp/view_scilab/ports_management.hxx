@@ -236,7 +236,7 @@ bool set_ports_property(const Adaptor& adaptor, object_properties_t port_kind, C
                     return true;
                 }
 
-                if (current->getSize() != ids.size())
+                if (current->getSize() < ids.size())
                 {
                     return false;
                 }

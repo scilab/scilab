@@ -42,7 +42,7 @@ scs_m.version
 scs_m.contrib
  ans  =
 ()
-// Create a diagram containing 2 summation blocks and an empty link
+// Create a diagram containing 2 summation blocks and two links
 Sum    = BIGSOM_f("define");
 objectCreated( 2 , BLOCK )
 propertyUpdated( 2 , BLOCK , GEOMETRY ) : NO_CHANGES
@@ -88,7 +88,7 @@ propertyUpdated( 2 , BLOCK , NZCROSS ) : NO_CHANGES
 propertyUpdated( 2 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 2 , BLOCK , UID ) : NO_CHANGES
 propertyUpdated( 2 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
-Scope1  = CSCOPE("define");
+Scope1 = CSCOPE("define");
 objectCreated( 6 , BLOCK )
 propertyUpdated( 6 , BLOCK , GEOMETRY ) : NO_CHANGES
 propertyUpdated( 6 , BLOCK , GEOMETRY ) : SUCCESS
@@ -160,7 +160,7 @@ propertyUpdated( 9 , BLOCK , NZCROSS ) : NO_CHANGES
 propertyUpdated( 9 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 9 , BLOCK , UID ) : NO_CHANGES
 propertyUpdated( 9 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
-lnk    = scicos_link();          // Data link
+lnk1   = scicos_link();          // Data link
 objectCreated( 12 , LINK )
 propertyUpdated( 12 , LINK , CONTROL_POINTS ) : NO_CHANGES
 propertyUpdated( 12 , LINK , CONTROL_POINTS ) : NO_CHANGES
@@ -180,7 +180,7 @@ propertyUpdated( 13 , LINK , COLOR ) : NO_CHANGES
 propertyUpdated( 13 , LINK , KIND ) : SUCCESS
 propertyUpdated( 13 , LINK , SOURCE_PORT ) : NO_CHANGES
 propertyUpdated( 13 , LINK , DESTINATION_PORT ) : NO_CHANGES
-scs_m = scicos_diagram( objs=list(Sum,Scope1,Scope2,lnk,lnk2) )
+scs_m = scicos_diagram( objs=list(Sum,Scope1,Scope2,lnk1,lnk2) )
 objectCreated( 14 , DIAGRAM )
 propertyUpdated( 14 , DIAGRAM , TITLE ) : NO_CHANGES
 propertyUpdated( 14 , DIAGRAM , PATH ) : NO_CHANGES
@@ -238,12 +238,12 @@ scicos_Link type :
   ct
   from
   to
-// Link output port #1 of block #1 with input port #1 of block #2
+// Link output port #1 of block #1 with input port #1 of block #2 thanks to lnk1
 l = scs_m.objs;
 l(4).from = [1 1 0]; // Link block #1
 propertyUpdated( 5 , PORT , CONNECTED_SIGNALS ) : SUCCESS
 propertyUpdated( 12 , LINK , SOURCE_PORT ) : SUCCESS
-l(1).graphics.pout   // Check that block #1 is connected to the link
+l(1).graphics.pout   // Check that block #1 is connected to lnk1
  ans  =
     4.
 l(1).model.out       // "
@@ -258,7 +258,7 @@ l(4).from
 l(4).to
  ans  =
     2.    1.    1.
-l(2).graphics.pin    // Check that block #2 is connected to the link
+l(2).graphics.pin    // Check that block #2 is connected to lnk1
  ans  =
     4.
 l(2).model.in        // "
@@ -282,11 +282,11 @@ l(4).from
 l(4).to
  ans  =
     2.    2.    1.
-l(2).graphics.pin  // Check that block #2 is connected to the link
+l(2).graphics.pin    // Check that block #2 is connected to lnk1
  ans  =
     0.
     4.
-l(2).model.in      // "
+l(2).model.in        // "
  ans  =
   - 1.
   - 1.
@@ -302,14 +302,14 @@ l(4).from
 l(4).to
  ans  =
     0.    0.    0.
-l(1).graphics.pout // Check that both blocks are unconnected
+l(1).graphics.pout   // Check that both blocks are unconnected
  ans  =
     0.
-l(2).graphics.pin  // "
+l(2).graphics.pin    // "
  ans  =
     0.
     0.
-// Now link the two Scope blocks together by adding an event output port to block #3
+// Now link the two Scope blocks together by adding an event output port to block #3 thanks to lnk2
 l(5).from = [2 1 1]; // Link the input of block #2
 propertyUpdated( 8 , PORT , CONNECTED_SIGNALS ) : SUCCESS
 propertyUpdated( 13 , LINK , SOURCE_PORT ) : SUCCESS
@@ -329,16 +329,16 @@ l(5).from
 l(5).to
  ans  =
     3.    2.    0.
-l(2).graphics.pein
+l(2).graphics.pein   // Check that block #2 is connected to lnk2
  ans  =
     5.
-l(2).model.evtin
+l(2).model.evtin     // "
  ans  =
-  - 1.
-l(3).graphics.peout
+    1.
+l(3).graphics.peout  // Check that block #3 is connected to lnk2
  ans  =
     5.
-l(3).model.evtout
+l(3).model.evtout    // "
  ans  =
   - 1.
 // Verify that it is impossible to link two inputs or two outputs together

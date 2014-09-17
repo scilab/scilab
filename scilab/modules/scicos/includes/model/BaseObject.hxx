@@ -128,7 +128,10 @@ public:
 
     bool operator<(const Datatype& d) const
     {
-        return datatype_id < d.datatype_id && rows < d.rows && columns < d.columns;
+        // Lexicographical order
+        return datatype_id < d.datatype_id ||
+               (datatype_id == d.datatype_id && rows < d.rows) ||
+               (datatype_id == d.datatype_id && rows == d.rows && columns < d.columns);
     }
 };
 
