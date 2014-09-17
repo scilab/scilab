@@ -114,47 +114,101 @@ p = funcprot();
 funcprot(0);
 function [ok,sgn,exprs] = scicos_getvalue(title, field, Type, exprs)
     ok = %t;
-    sgn = [1;1];
+    sgn = [1; 1];
     exprs = sci2exp(sgn);
 endfunction
+funcprot(p);
 o = BIGSOM_f("set", o)
-propertyUpdated( 1 , BLOCK , GEOMETRY ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , GEOMETRY ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , ANGLE ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , ANGLE ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , EXPRS ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , LABEL ) : NO_CHANGES
-propertyUpdated( 2 , PORT , IMPLICIT ) : NO_CHANGES
-propertyUpdated( 3 , PORT , IMPLICIT ) : NO_CHANGES
-propertyUpdated( 4 , PORT , IMPLICIT ) : NO_CHANGES
-propertyUpdated( 2 , PORT , STYLE ) : NO_CHANGES
-propertyUpdated( 3 , PORT , STYLE ) : NO_CHANGES
-propertyUpdated( 4 , PORT , STYLE ) : NO_CHANGES
-propertyUpdated( 2 , PORT , LABEL ) : NO_CHANGES
-propertyUpdated( 3 , PORT , LABEL ) : NO_CHANGES
-propertyUpdated( 4 , PORT , LABEL ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , STYLE ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , SIM_FUNCTION_NAME ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
-propertyUpdated( 3 , PORT , DATATYPE ) : NO_CHANGES
-propertyUpdated( 2 , PORT , DATATYPE ) : NO_CHANGES
-propertyUpdated( 2 , PORT , DATATYPE ) : NO_CHANGES
-propertyUpdated( 3 , PORT , DATATYPE ) : NO_CHANGES
-propertyUpdated( 2 , PORT , DATATYPE ) : NO_CHANGES
-propertyUpdated( 3 , PORT , DATATYPE ) : NO_CHANGES
-propertyUpdated( 4 , PORT , DATATYPE ) : NO_CHANGES
-propertyUpdated( 4 , PORT , DATATYPE ) : NO_CHANGES
-propertyUpdated( 4 , PORT , DATATYPE ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , STATE ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , DSTATE ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , RPAR ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , IPAR ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , LABEL ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , NZCROSS ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , NMODE ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , UID ) : NO_CHANGES
+objectCreated( 5 , BLOCK )
+propertyUpdated( 5 , BLOCK , SIM_FUNCTION_API ) : SUCCESS
+propertyUpdated( 5 , BLOCK , NZCROSS ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , NMODE ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
+propertyUpdated( 5 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
+propertyUpdated( 5 , BLOCK , SIM_BLOCKTYPE ) : SUCCESS
+propertyUpdated( 5 , BLOCK , UID ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , STYLE ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , GEOMETRY ) : SUCCESS
+propertyUpdated( 5 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , STATE ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , DSTATE ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , RPAR ) : SUCCESS
+propertyUpdated( 5 , BLOCK , SIM_DEP_UT ) : SUCCESS
+propertyUpdated( 5 , BLOCK , IPAR ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , EXPRS ) : SUCCESS
+propertyUpdated( 5 , BLOCK , PARENT_DIAGRAM ) : NO_CHANGES
+objectCreated( 6 , PORT )
+propertyUpdated( 6 , PORT , FIRING ) : NO_CHANGES
+propertyUpdated( 6 , PORT , PORT_KIND ) : SUCCESS
+propertyUpdated( 6 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 6 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 6 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 6 , PORT , DATATYPE ) : SUCCESS
+propertyUpdated( 6 , PORT , SOURCE_BLOCK ) : SUCCESS
+propertyUpdated( 6 , PORT , CONNECTED_SIGNALS ) : NO_CHANGES
+objectCreated( 7 , PORT )
+propertyUpdated( 7 , PORT , FIRING ) : NO_CHANGES
+propertyUpdated( 7 , PORT , PORT_KIND ) : SUCCESS
+propertyUpdated( 7 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 7 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 7 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 7 , PORT , DATATYPE ) : SUCCESS
+propertyUpdated( 7 , PORT , SOURCE_BLOCK ) : SUCCESS
+propertyUpdated( 7 , PORT , CONNECTED_SIGNALS ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , INPUTS ) : SUCCESS
+objectCreated( 8 , PORT )
+propertyUpdated( 8 , PORT , FIRING ) : NO_CHANGES
+propertyUpdated( 8 , PORT , PORT_KIND ) : SUCCESS
+propertyUpdated( 8 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 8 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 8 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 8 , PORT , DATATYPE ) : SUCCESS
+propertyUpdated( 8 , PORT , SOURCE_BLOCK ) : SUCCESS
+propertyUpdated( 8 , PORT , CONNECTED_SIGNALS ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , OUTPUTS ) : SUCCESS
+propertyUpdated( 5 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , PARENT_BLOCK ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , CHILDREN ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , GEOMETRY ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , GEOMETRY ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , EXPRS ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 6 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 7 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 8 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 6 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 7 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 8 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 6 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 7 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 8 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , STYLE ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , SIM_FUNCTION_NAME ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
+propertyUpdated( 7 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 6 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 6 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 7 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 6 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 7 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 8 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 8 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 8 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , STATE ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , DSTATE ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , RPAR ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , IPAR ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , NZCROSS ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , NMODE ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , UID ) : NO_CHANGES
+objectDeleted( 1 )
 o  = 
 scicos_Block type :
   graphics
@@ -207,49 +261,104 @@ nmode = 0
 equations = list()
 uid = ""
 // Now use scicos_getvalue to modify the 'exprs' and 'rpar' fields to "[-1;-1]" and '[-1;-1]'
+p = funcprot();
+funcprot(0);
 function [ok,sgn,exprs] = scicos_getvalue(title, field, Type, exprs)
     ok = %t;
-    sgn = [-1;-1];
+    sgn = [-1; -1];
     exprs = sci2exp(sgn);
 endfunction
+funcprot(p);
 o = BIGSOM_f("set", o)
-propertyUpdated( 1 , BLOCK , GEOMETRY ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , GEOMETRY ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , ANGLE ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , ANGLE ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , EXPRS ) : SUCCESS
-propertyUpdated( 1 , BLOCK , LABEL ) : NO_CHANGES
-propertyUpdated( 2 , PORT , IMPLICIT ) : NO_CHANGES
-propertyUpdated( 3 , PORT , IMPLICIT ) : NO_CHANGES
-propertyUpdated( 4 , PORT , IMPLICIT ) : NO_CHANGES
-propertyUpdated( 2 , PORT , STYLE ) : NO_CHANGES
-propertyUpdated( 3 , PORT , STYLE ) : NO_CHANGES
-propertyUpdated( 4 , PORT , STYLE ) : NO_CHANGES
-propertyUpdated( 2 , PORT , LABEL ) : NO_CHANGES
-propertyUpdated( 3 , PORT , LABEL ) : NO_CHANGES
-propertyUpdated( 4 , PORT , LABEL ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , STYLE ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , SIM_FUNCTION_NAME ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
-propertyUpdated( 3 , PORT , DATATYPE ) : NO_CHANGES
-propertyUpdated( 2 , PORT , DATATYPE ) : NO_CHANGES
-propertyUpdated( 2 , PORT , DATATYPE ) : NO_CHANGES
-propertyUpdated( 3 , PORT , DATATYPE ) : NO_CHANGES
-propertyUpdated( 2 , PORT , DATATYPE ) : NO_CHANGES
-propertyUpdated( 3 , PORT , DATATYPE ) : NO_CHANGES
-propertyUpdated( 4 , PORT , DATATYPE ) : NO_CHANGES
-propertyUpdated( 4 , PORT , DATATYPE ) : NO_CHANGES
-propertyUpdated( 4 , PORT , DATATYPE ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , STATE ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , DSTATE ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , RPAR ) : SUCCESS
-propertyUpdated( 1 , BLOCK , IPAR ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , LABEL ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , NZCROSS ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , NMODE ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , UID ) : NO_CHANGES
+objectCreated( 9 , BLOCK )
+propertyUpdated( 9 , BLOCK , SIM_FUNCTION_API ) : SUCCESS
+propertyUpdated( 9 , BLOCK , NZCROSS ) : NO_CHANGES
+propertyUpdated( 9 , BLOCK , NMODE ) : NO_CHANGES
+propertyUpdated( 9 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
+propertyUpdated( 9 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
+propertyUpdated( 9 , BLOCK , SIM_BLOCKTYPE ) : SUCCESS
+propertyUpdated( 9 , BLOCK , UID ) : NO_CHANGES
+propertyUpdated( 9 , BLOCK , STYLE ) : NO_CHANGES
+propertyUpdated( 9 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 9 , BLOCK , GEOMETRY ) : SUCCESS
+propertyUpdated( 9 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 9 , BLOCK , STATE ) : NO_CHANGES
+propertyUpdated( 9 , BLOCK , DSTATE ) : NO_CHANGES
+propertyUpdated( 9 , BLOCK , RPAR ) : SUCCESS
+propertyUpdated( 9 , BLOCK , SIM_DEP_UT ) : SUCCESS
+propertyUpdated( 9 , BLOCK , IPAR ) : NO_CHANGES
+propertyUpdated( 9 , BLOCK , EXPRS ) : SUCCESS
+propertyUpdated( 9 , BLOCK , PARENT_DIAGRAM ) : NO_CHANGES
+objectCreated( 10 , PORT )
+propertyUpdated( 10 , PORT , FIRING ) : NO_CHANGES
+propertyUpdated( 10 , PORT , PORT_KIND ) : SUCCESS
+propertyUpdated( 10 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 10 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 10 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 10 , PORT , DATATYPE ) : SUCCESS
+propertyUpdated( 10 , PORT , SOURCE_BLOCK ) : SUCCESS
+propertyUpdated( 10 , PORT , CONNECTED_SIGNALS ) : NO_CHANGES
+objectCreated( 11 , PORT )
+propertyUpdated( 11 , PORT , FIRING ) : NO_CHANGES
+propertyUpdated( 11 , PORT , PORT_KIND ) : SUCCESS
+propertyUpdated( 11 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 11 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 11 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 11 , PORT , DATATYPE ) : SUCCESS
+propertyUpdated( 11 , PORT , SOURCE_BLOCK ) : SUCCESS
+propertyUpdated( 11 , PORT , CONNECTED_SIGNALS ) : NO_CHANGES
+propertyUpdated( 9 , BLOCK , INPUTS ) : SUCCESS
+objectCreated( 12 , PORT )
+propertyUpdated( 12 , PORT , FIRING ) : NO_CHANGES
+propertyUpdated( 12 , PORT , PORT_KIND ) : SUCCESS
+propertyUpdated( 12 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 12 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 12 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 12 , PORT , DATATYPE ) : SUCCESS
+propertyUpdated( 12 , PORT , SOURCE_BLOCK ) : SUCCESS
+propertyUpdated( 12 , PORT , CONNECTED_SIGNALS ) : NO_CHANGES
+propertyUpdated( 9 , BLOCK , OUTPUTS ) : SUCCESS
+propertyUpdated( 9 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+propertyUpdated( 9 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+propertyUpdated( 9 , BLOCK , PARENT_BLOCK ) : NO_CHANGES
+propertyUpdated( 9 , BLOCK , CHILDREN ) : NO_CHANGES
+propertyUpdated( 9 , BLOCK , GEOMETRY ) : NO_CHANGES
+propertyUpdated( 9 , BLOCK , GEOMETRY ) : NO_CHANGES
+propertyUpdated( 9 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 9 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 9 , BLOCK , EXPRS ) : SUCCESS
+propertyUpdated( 9 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 10 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 11 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 12 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 10 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 11 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 12 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 10 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 11 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 12 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 9 , BLOCK , STYLE ) : NO_CHANGES
+propertyUpdated( 9 , BLOCK , SIM_FUNCTION_NAME ) : NO_CHANGES
+propertyUpdated( 9 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
+propertyUpdated( 11 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 10 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 10 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 11 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 10 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 11 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 12 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 12 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 12 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 9 , BLOCK , STATE ) : NO_CHANGES
+propertyUpdated( 9 , BLOCK , DSTATE ) : NO_CHANGES
+propertyUpdated( 9 , BLOCK , RPAR ) : SUCCESS
+propertyUpdated( 9 , BLOCK , IPAR ) : NO_CHANGES
+propertyUpdated( 9 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
+propertyUpdated( 9 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
+propertyUpdated( 9 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 9 , BLOCK , NZCROSS ) : NO_CHANGES
+propertyUpdated( 9 , BLOCK , NMODE ) : NO_CHANGES
+propertyUpdated( 9 , BLOCK , UID ) : NO_CHANGES
 o  = 
 scicos_Block type :
   graphics
@@ -302,54 +411,108 @@ nmode = 0
 equations = list()
 uid = ""
 // Now modify the block's entry port #2 to '1' and add a new one with value '1'
+p = funcprot();
+funcprot(0);
 function [ok,sgn,exprs] = scicos_getvalue(title, field, Type, exprs)
     ok = %t;
-    sgn = [-1;1;1];
+    sgn = [-1; 1; 1];
     exprs = sci2exp(sgn);
 endfunction
 funcprot(p);
 o = BIGSOM_f("set", o)
-propertyUpdated( 1 , BLOCK , GEOMETRY ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , GEOMETRY ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , ANGLE ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , ANGLE ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , EXPRS ) : SUCCESS
-objectCreated( 5 , PORT )
-propertyUpdated( 5 , PORT , SOURCE_BLOCK ) : SUCCESS
-propertyUpdated( 5 , PORT , PORT_KIND ) : SUCCESS
-propertyUpdated( 1 , BLOCK , INPUTS ) : SUCCESS
-propertyUpdated( 1 , BLOCK , LABEL ) : NO_CHANGES
-propertyUpdated( 2 , PORT , IMPLICIT ) : NO_CHANGES
-propertyUpdated( 3 , PORT , IMPLICIT ) : NO_CHANGES
-propertyUpdated( 5 , PORT , IMPLICIT ) : NO_CHANGES
-propertyUpdated( 4 , PORT , IMPLICIT ) : NO_CHANGES
-propertyUpdated( 2 , PORT , STYLE ) : NO_CHANGES
-propertyUpdated( 3 , PORT , STYLE ) : NO_CHANGES
-propertyUpdated( 5 , PORT , STYLE ) : NO_CHANGES
-propertyUpdated( 4 , PORT , STYLE ) : NO_CHANGES
-propertyUpdated( 2 , PORT , LABEL ) : NO_CHANGES
-propertyUpdated( 3 , PORT , LABEL ) : NO_CHANGES
-propertyUpdated( 5 , PORT , LABEL ) : NO_CHANGES
-propertyUpdated( 4 , PORT , LABEL ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , STYLE ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , SIM_FUNCTION_NAME ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
-propertyUpdated( 5 , PORT , DATATYPE ) : SUCCESS
-propertyUpdated( 3 , PORT , DATATYPE ) : NO_CHANGES
-propertyUpdated( 2 , PORT , DATATYPE ) : NO_CHANGES
-propertyUpdated( 4 , PORT , DATATYPE ) : NO_CHANGES
-propertyUpdated( 4 , PORT , DATATYPE ) : NO_CHANGES
-propertyUpdated( 4 , PORT , DATATYPE ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , STATE ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , DSTATE ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , RPAR ) : SUCCESS
-propertyUpdated( 1 , BLOCK , IPAR ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , LABEL ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , NZCROSS ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , NMODE ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , UID ) : NO_CHANGES
+objectCreated( 13 , BLOCK )
+propertyUpdated( 13 , BLOCK , SIM_FUNCTION_API ) : SUCCESS
+propertyUpdated( 13 , BLOCK , NZCROSS ) : NO_CHANGES
+propertyUpdated( 13 , BLOCK , NMODE ) : NO_CHANGES
+propertyUpdated( 13 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
+propertyUpdated( 13 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
+propertyUpdated( 13 , BLOCK , SIM_BLOCKTYPE ) : SUCCESS
+propertyUpdated( 13 , BLOCK , UID ) : NO_CHANGES
+propertyUpdated( 13 , BLOCK , STYLE ) : NO_CHANGES
+propertyUpdated( 13 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 13 , BLOCK , GEOMETRY ) : SUCCESS
+propertyUpdated( 13 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 13 , BLOCK , STATE ) : NO_CHANGES
+propertyUpdated( 13 , BLOCK , DSTATE ) : NO_CHANGES
+propertyUpdated( 13 , BLOCK , RPAR ) : SUCCESS
+propertyUpdated( 13 , BLOCK , SIM_DEP_UT ) : SUCCESS
+propertyUpdated( 13 , BLOCK , IPAR ) : NO_CHANGES
+propertyUpdated( 13 , BLOCK , EXPRS ) : SUCCESS
+propertyUpdated( 13 , BLOCK , PARENT_DIAGRAM ) : NO_CHANGES
+objectCreated( 14 , PORT )
+propertyUpdated( 14 , PORT , FIRING ) : NO_CHANGES
+propertyUpdated( 14 , PORT , PORT_KIND ) : SUCCESS
+propertyUpdated( 14 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 14 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 14 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 14 , PORT , DATATYPE ) : SUCCESS
+propertyUpdated( 14 , PORT , SOURCE_BLOCK ) : SUCCESS
+propertyUpdated( 14 , PORT , CONNECTED_SIGNALS ) : NO_CHANGES
+objectCreated( 15 , PORT )
+propertyUpdated( 15 , PORT , FIRING ) : NO_CHANGES
+propertyUpdated( 15 , PORT , PORT_KIND ) : SUCCESS
+propertyUpdated( 15 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 15 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 15 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 15 , PORT , DATATYPE ) : SUCCESS
+propertyUpdated( 15 , PORT , SOURCE_BLOCK ) : SUCCESS
+propertyUpdated( 15 , PORT , CONNECTED_SIGNALS ) : NO_CHANGES
+propertyUpdated( 13 , BLOCK , INPUTS ) : SUCCESS
+objectCreated( 16 , PORT )
+propertyUpdated( 16 , PORT , FIRING ) : NO_CHANGES
+propertyUpdated( 16 , PORT , PORT_KIND ) : SUCCESS
+propertyUpdated( 16 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 16 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 16 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 16 , PORT , DATATYPE ) : SUCCESS
+propertyUpdated( 16 , PORT , SOURCE_BLOCK ) : SUCCESS
+propertyUpdated( 16 , PORT , CONNECTED_SIGNALS ) : NO_CHANGES
+propertyUpdated( 13 , BLOCK , OUTPUTS ) : SUCCESS
+propertyUpdated( 13 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+propertyUpdated( 13 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+propertyUpdated( 13 , BLOCK , PARENT_BLOCK ) : NO_CHANGES
+propertyUpdated( 13 , BLOCK , CHILDREN ) : NO_CHANGES
+propertyUpdated( 13 , BLOCK , GEOMETRY ) : NO_CHANGES
+propertyUpdated( 13 , BLOCK , GEOMETRY ) : NO_CHANGES
+propertyUpdated( 13 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 13 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 13 , BLOCK , EXPRS ) : SUCCESS
+objectCreated( 17 , PORT )
+propertyUpdated( 17 , PORT , SOURCE_BLOCK ) : SUCCESS
+propertyUpdated( 17 , PORT , PORT_KIND ) : SUCCESS
+propertyUpdated( 13 , BLOCK , INPUTS ) : SUCCESS
+propertyUpdated( 13 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 14 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 15 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 17 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 16 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 14 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 15 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 17 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 16 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 14 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 15 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 17 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 16 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 13 , BLOCK , STYLE ) : NO_CHANGES
+propertyUpdated( 13 , BLOCK , SIM_FUNCTION_NAME ) : NO_CHANGES
+propertyUpdated( 13 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
+propertyUpdated( 17 , PORT , DATATYPE ) : SUCCESS
+propertyUpdated( 15 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 14 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 16 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 16 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 16 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 13 , BLOCK , STATE ) : NO_CHANGES
+propertyUpdated( 13 , BLOCK , DSTATE ) : NO_CHANGES
+propertyUpdated( 13 , BLOCK , RPAR ) : SUCCESS
+propertyUpdated( 13 , BLOCK , IPAR ) : NO_CHANGES
+propertyUpdated( 13 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
+propertyUpdated( 13 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
+propertyUpdated( 13 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 13 , BLOCK , NZCROSS ) : NO_CHANGES
+propertyUpdated( 13 , BLOCK , NMODE ) : NO_CHANGES
+propertyUpdated( 13 , BLOCK , UID ) : NO_CHANGES
 o  = 
 scicos_Block type :
   graphics
@@ -403,41 +566,41 @@ equations = list()
 uid = ""
 // Try with another block containing event inputs
 o = CSCOPE("define")
-objectCreated( 6 , BLOCK )
-propertyUpdated( 6 , BLOCK , GEOMETRY ) : NO_CHANGES
-propertyUpdated( 6 , BLOCK , GEOMETRY ) : SUCCESS
-propertyUpdated( 6 , BLOCK , ANGLE ) : NO_CHANGES
-propertyUpdated( 6 , BLOCK , ANGLE ) : NO_CHANGES
-propertyUpdated( 6 , BLOCK , EXPRS ) : SUCCESS
-objectCreated( 7 , PORT )
-propertyUpdated( 7 , PORT , SOURCE_BLOCK ) : SUCCESS
-propertyUpdated( 7 , PORT , PORT_KIND ) : SUCCESS
-propertyUpdated( 6 , BLOCK , INPUTS ) : SUCCESS
-objectCreated( 8 , PORT )
-propertyUpdated( 8 , PORT , SOURCE_BLOCK ) : SUCCESS
-propertyUpdated( 8 , PORT , PORT_KIND ) : SUCCESS
-propertyUpdated( 6 , BLOCK , EVENT_INPUTS ) : SUCCESS
-propertyUpdated( 6 , BLOCK , LABEL ) : NO_CHANGES
-propertyUpdated( 7 , PORT , IMPLICIT ) : NO_CHANGES
-propertyUpdated( 7 , PORT , STYLE ) : NO_CHANGES
-propertyUpdated( 7 , PORT , LABEL ) : NO_CHANGES
-propertyUpdated( 6 , BLOCK , STYLE ) : NO_CHANGES
-propertyUpdated( 6 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
-propertyUpdated( 6 , BLOCK , SIM_FUNCTION_API ) : SUCCESS
-propertyUpdated( 7 , PORT , DATATYPE ) : SUCCESS
-propertyUpdated( 7 , PORT , DATATYPE ) : NO_CHANGES
-propertyUpdated( 8 , PORT , DATATYPE ) : SUCCESS
-propertyUpdated( 6 , BLOCK , STATE ) : NO_CHANGES
-propertyUpdated( 6 , BLOCK , DSTATE ) : NO_CHANGES
-propertyUpdated( 6 , BLOCK , RPAR ) : SUCCESS
-propertyUpdated( 6 , BLOCK , IPAR ) : SUCCESS
-propertyUpdated( 6 , BLOCK , SIM_BLOCKTYPE ) : SUCCESS
-propertyUpdated( 6 , BLOCK , SIM_DEP_UT ) : SUCCESS
-propertyUpdated( 6 , BLOCK , LABEL ) : NO_CHANGES
-propertyUpdated( 6 , BLOCK , NZCROSS ) : NO_CHANGES
-propertyUpdated( 6 , BLOCK , NMODE ) : NO_CHANGES
-propertyUpdated( 6 , BLOCK , UID ) : NO_CHANGES
-propertyUpdated( 6 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
+objectCreated( 18 , BLOCK )
+propertyUpdated( 18 , BLOCK , GEOMETRY ) : NO_CHANGES
+propertyUpdated( 18 , BLOCK , GEOMETRY ) : SUCCESS
+propertyUpdated( 18 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 18 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 18 , BLOCK , EXPRS ) : SUCCESS
+objectCreated( 19 , PORT )
+propertyUpdated( 19 , PORT , SOURCE_BLOCK ) : SUCCESS
+propertyUpdated( 19 , PORT , PORT_KIND ) : SUCCESS
+propertyUpdated( 18 , BLOCK , INPUTS ) : SUCCESS
+objectCreated( 20 , PORT )
+propertyUpdated( 20 , PORT , SOURCE_BLOCK ) : SUCCESS
+propertyUpdated( 20 , PORT , PORT_KIND ) : SUCCESS
+propertyUpdated( 18 , BLOCK , EVENT_INPUTS ) : SUCCESS
+propertyUpdated( 18 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 19 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 19 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 19 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 18 , BLOCK , STYLE ) : NO_CHANGES
+propertyUpdated( 18 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
+propertyUpdated( 18 , BLOCK , SIM_FUNCTION_API ) : SUCCESS
+propertyUpdated( 19 , PORT , DATATYPE ) : SUCCESS
+propertyUpdated( 19 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 20 , PORT , DATATYPE ) : SUCCESS
+propertyUpdated( 18 , BLOCK , STATE ) : NO_CHANGES
+propertyUpdated( 18 , BLOCK , DSTATE ) : NO_CHANGES
+propertyUpdated( 18 , BLOCK , RPAR ) : SUCCESS
+propertyUpdated( 18 , BLOCK , IPAR ) : SUCCESS
+propertyUpdated( 18 , BLOCK , SIM_BLOCKTYPE ) : SUCCESS
+propertyUpdated( 18 , BLOCK , SIM_DEP_UT ) : SUCCESS
+propertyUpdated( 18 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 18 , BLOCK , NZCROSS ) : NO_CHANGES
+propertyUpdated( 18 , BLOCK , NMODE ) : NO_CHANGES
+propertyUpdated( 18 , BLOCK , UID ) : NO_CHANGES
+propertyUpdated( 18 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
 o  = 
 scicos_Block type :
   graphics
@@ -513,33 +676,78 @@ function [ok,clrs,win,wpos,wdim,ymin,ymax,per,N,heritance,nom,exprs] = scicos_ge
     nom = model.label
     exprs = graphics.exprs;
 endfunction
+funcprot(p);
 o = CSCOPE("set", o)
-propertyUpdated( 6 , BLOCK , GEOMETRY ) : NO_CHANGES
-propertyUpdated( 6 , BLOCK , GEOMETRY ) : NO_CHANGES
-propertyUpdated( 6 , BLOCK , ANGLE ) : NO_CHANGES
-propertyUpdated( 6 , BLOCK , ANGLE ) : NO_CHANGES
-propertyUpdated( 6 , BLOCK , EXPRS ) : NO_CHANGES
-propertyUpdated( 6 , BLOCK , LABEL ) : NO_CHANGES
-propertyUpdated( 7 , PORT , IMPLICIT ) : NO_CHANGES
-propertyUpdated( 7 , PORT , STYLE ) : NO_CHANGES
-propertyUpdated( 7 , PORT , LABEL ) : NO_CHANGES
-propertyUpdated( 6 , BLOCK , STYLE ) : NO_CHANGES
-propertyUpdated( 6 , BLOCK , SIM_FUNCTION_NAME ) : NO_CHANGES
-propertyUpdated( 6 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
-propertyUpdated( 7 , PORT , DATATYPE ) : NO_CHANGES
-propertyUpdated( 7 , PORT , DATATYPE ) : NO_CHANGES
-propertyUpdated( 7 , PORT , DATATYPE ) : NO_CHANGES
-propertyUpdated( 8 , PORT , DATATYPE ) : NO_CHANGES
-propertyUpdated( 6 , BLOCK , STATE ) : NO_CHANGES
-propertyUpdated( 6 , BLOCK , DSTATE ) : NO_CHANGES
-propertyUpdated( 6 , BLOCK , RPAR ) : NO_CHANGES
-propertyUpdated( 6 , BLOCK , IPAR ) : NO_CHANGES
-propertyUpdated( 6 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
-propertyUpdated( 6 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
-propertyUpdated( 6 , BLOCK , LABEL ) : NO_CHANGES
-propertyUpdated( 6 , BLOCK , NZCROSS ) : NO_CHANGES
-propertyUpdated( 6 , BLOCK , NMODE ) : NO_CHANGES
-propertyUpdated( 6 , BLOCK , UID ) : NO_CHANGES
+objectCreated( 21 , BLOCK )
+propertyUpdated( 21 , BLOCK , SIM_FUNCTION_API ) : SUCCESS
+propertyUpdated( 21 , BLOCK , NZCROSS ) : NO_CHANGES
+propertyUpdated( 21 , BLOCK , NMODE ) : NO_CHANGES
+propertyUpdated( 21 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
+propertyUpdated( 21 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
+propertyUpdated( 21 , BLOCK , SIM_BLOCKTYPE ) : SUCCESS
+propertyUpdated( 21 , BLOCK , UID ) : NO_CHANGES
+propertyUpdated( 21 , BLOCK , STYLE ) : NO_CHANGES
+propertyUpdated( 21 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 21 , BLOCK , GEOMETRY ) : SUCCESS
+propertyUpdated( 21 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 21 , BLOCK , STATE ) : NO_CHANGES
+propertyUpdated( 21 , BLOCK , DSTATE ) : NO_CHANGES
+propertyUpdated( 21 , BLOCK , RPAR ) : SUCCESS
+propertyUpdated( 21 , BLOCK , SIM_DEP_UT ) : SUCCESS
+propertyUpdated( 21 , BLOCK , IPAR ) : SUCCESS
+propertyUpdated( 21 , BLOCK , EXPRS ) : SUCCESS
+propertyUpdated( 21 , BLOCK , PARENT_DIAGRAM ) : NO_CHANGES
+objectCreated( 22 , PORT )
+propertyUpdated( 22 , PORT , FIRING ) : NO_CHANGES
+propertyUpdated( 22 , PORT , PORT_KIND ) : SUCCESS
+propertyUpdated( 22 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 22 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 22 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 22 , PORT , DATATYPE ) : SUCCESS
+propertyUpdated( 22 , PORT , SOURCE_BLOCK ) : SUCCESS
+propertyUpdated( 22 , PORT , CONNECTED_SIGNALS ) : NO_CHANGES
+propertyUpdated( 21 , BLOCK , INPUTS ) : SUCCESS
+propertyUpdated( 21 , BLOCK , OUTPUTS ) : NO_CHANGES
+objectCreated( 23 , PORT )
+propertyUpdated( 23 , PORT , FIRING ) : NO_CHANGES
+propertyUpdated( 23 , PORT , PORT_KIND ) : SUCCESS
+propertyUpdated( 23 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 23 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 23 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 23 , PORT , DATATYPE ) : SUCCESS
+propertyUpdated( 23 , PORT , SOURCE_BLOCK ) : SUCCESS
+propertyUpdated( 23 , PORT , CONNECTED_SIGNALS ) : NO_CHANGES
+propertyUpdated( 21 , BLOCK , EVENT_INPUTS ) : SUCCESS
+propertyUpdated( 21 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+propertyUpdated( 21 , BLOCK , PARENT_BLOCK ) : NO_CHANGES
+propertyUpdated( 21 , BLOCK , CHILDREN ) : NO_CHANGES
+propertyUpdated( 21 , BLOCK , GEOMETRY ) : NO_CHANGES
+propertyUpdated( 21 , BLOCK , GEOMETRY ) : NO_CHANGES
+propertyUpdated( 21 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 21 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 21 , BLOCK , EXPRS ) : NO_CHANGES
+propertyUpdated( 21 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 22 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 22 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 22 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 21 , BLOCK , STYLE ) : NO_CHANGES
+propertyUpdated( 21 , BLOCK , SIM_FUNCTION_NAME ) : NO_CHANGES
+propertyUpdated( 21 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
+propertyUpdated( 22 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 22 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 22 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 23 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 21 , BLOCK , STATE ) : NO_CHANGES
+propertyUpdated( 21 , BLOCK , DSTATE ) : NO_CHANGES
+propertyUpdated( 21 , BLOCK , RPAR ) : NO_CHANGES
+propertyUpdated( 21 , BLOCK , IPAR ) : NO_CHANGES
+propertyUpdated( 21 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
+propertyUpdated( 21 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
+propertyUpdated( 21 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 21 , BLOCK , NZCROSS ) : NO_CHANGES
+propertyUpdated( 21 , BLOCK , NMODE ) : NO_CHANGES
+propertyUpdated( 21 , BLOCK , UID ) : NO_CHANGES
+objectDeleted( 18 )
 o  = 
 scicos_Block type :
   graphics

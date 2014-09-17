@@ -126,14 +126,20 @@ private:
         children(o.children), portReference(o.portReference) {};
     ~Block() {}
 
-    void getChildren(std::vector<ScicosID>& c) const
+    void getChildren(std::vector<ScicosID>& v) const
     {
-        c = children;
+        v = this->children;
     }
 
-    void setChildren(const std::vector<ScicosID>& children)
+    update_status_t setChildren(const std::vector<ScicosID>& children)
     {
+        if (children == this->children)
+        {
+            return NO_CHANGES;
+        }
+
         this->children = children;
+        return SUCCESS;
     }
 
     void getGeometry(std::vector<double>& v) const

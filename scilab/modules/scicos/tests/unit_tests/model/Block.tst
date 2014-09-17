@@ -20,29 +20,35 @@ p = funcprot();
 funcprot(0);
 function [ok,sgn,exprs] = scicos_getvalue(title, field, Type, exprs)
     ok = %t;
-    sgn = [1;1];
+    sgn = [1; 1];
     exprs = sci2exp(sgn);
 endfunction
+funcprot(p);
 
 o = BIGSOM_f("set", o)
 o.graphics
 o.model
 
 // Now use scicos_getvalue to modify the 'exprs' and 'rpar' fields to "[-1;-1]" and '[-1;-1]'
+p = funcprot();
+funcprot(0);
 function [ok,sgn,exprs] = scicos_getvalue(title, field, Type, exprs)
     ok = %t;
-    sgn = [-1;-1];
+    sgn = [-1; -1];
     exprs = sci2exp(sgn);
 endfunction
+funcprot(p);
 
 o = BIGSOM_f("set", o)
 o.graphics
 o.model
 
 // Now modify the block's entry port #2 to '1' and add a new one with value '1'
+p = funcprot();
+funcprot(0);
 function [ok,sgn,exprs] = scicos_getvalue(title, field, Type, exprs)
     ok = %t;
-    sgn = [-1;1;1];
+    sgn = [-1; 1; 1];
     exprs = sci2exp(sgn);
 endfunction
 funcprot(p);
@@ -76,4 +82,5 @@ function [ok,clrs,win,wpos,wdim,ymin,ymax,per,N,heritance,nom,exprs] = scicos_ge
     nom = model.label
     exprs = graphics.exprs;
 endfunction
+funcprot(p);
 o = CSCOPE("set", o)

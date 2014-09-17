@@ -21,7 +21,9 @@
 #include "string.hxx"
 
 #include "Controller.hxx"
+#include "Adapters.hxx"
 #include "ModelAdapter.hxx"
+#include "DiagramAdapter.hxx"
 #include "ports_management.hxx"
 
 extern "C" {
@@ -35,8 +37,6 @@ namespace view_scilab
 {
 namespace
 {
-
-const std::wstring diagram (L"diagram");
 
 struct sim
 {
@@ -386,10 +386,10 @@ struct rpar
     {
         model::Block* adaptee = adaptor.getAdaptee();
 
-        std::vector<ScicosID> children;
-        controller.getObjectProperty(adaptee->id(), adaptee->kind(), CHILDREN, children);
+        ScicosID parentBlock;
+        controller.getObjectProperty(adaptee->id(), adaptee->kind(), PARENT_BLOCK, parentBlock);
 
-        if (children.empty())
+        if (parentBlock == 0)
         {
             std::vector<double> rpar;
             controller.getObjectProperty(adaptee->id(), adaptee->kind(), RPAR, rpar);
@@ -403,13 +403,10 @@ struct rpar
 #endif
             return o;
         }
-        else
+        else // SuperBlock, return the contained diagram
         {
-            types::MList* o = new types::MList();
-            types::String* Diagram = new types::String(diagram.c_str());
-            o->set(0, Diagram);
-
-            // FIXME: return the full diagram contained in children
+            model::Diagram* diagram = static_cast<model::Diagram*>(Controller().getObject(parentBlock));
+            DiagramAdapter* o = new DiagramAdapter(false, diagram);
             return o;
         }
     }
@@ -421,10 +418,6 @@ struct rpar
         if (v->getType() == types::InternalType::ScilabDouble)
         {
             types::Double* current = v->getAs<types::Double>();
-            if (current->getCols() != 0 && current->getCols() != 1)
-            {
-                return false;
-            }
 
             std::vector<double> rpar (current->getSize());
             for (int i = 0; i < current->getSize(); ++i)
@@ -437,12 +430,31 @@ struct rpar
         }
         else if (v->getType() == types::InternalType::ScilabString)
         {
-            // Allow Text blocs to define strings in rpar
+            // Allow Text blocks to define strings in rpar
+            return true;
+        }
+        else if (v->getType() == types::InternalType::ScilabUserType)
+        {
+            // Make sure the input describes a Diagram
+            const Adapters::adapters_index_t adapter_index = Adapters::instance().lookup_by_typename(v->getShortTypeStr());
+            if (adapter_index != Adapters::DIAGRAM_ADAPTER)
+            {
+                return false;
+            }
+
+            // Extract its informations and stock them in the Block
+            DiagramAdapter* diagram = v->getAs<DiagramAdapter>();
+            model::Diagram* subAdaptee = diagram->getAdaptee();
+
+            std::vector<ScicosID> children;
+            controller.getObjectProperty(subAdaptee->id(), subAdaptee->kind(), CHILDREN, children);
+
+            controller.setObjectProperty(adaptee->id(), adaptee->kind(), PARENT_BLOCK, subAdaptee->id());
+            controller.setObjectProperty(adaptee->id(), adaptee->kind(), CHILDREN, children);
             return true;
         }
         else
         {
-            // FIXME: set rpar when input is a diagram (MList)
             return false;
         }
     }

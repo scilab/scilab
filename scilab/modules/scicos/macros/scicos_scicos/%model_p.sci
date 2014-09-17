@@ -34,7 +34,35 @@ function %model_p(model)
     mprintf("%s\n", txt)
 
     fn=getfield(1,model)
+    if size(fn, "*") > 4 then // Rule out the Annotations
+        if or(fn == "rpar") && typeof(model("rpar")) == "diagram" && type(model("rpar")) == 128 then // Do nothing if model("rpar") is already a mlist
+            model("rpar") = diagram2mlist(model("rpar"));
+        end
+    end
     for k=3:size(fn,"*")
         mprintf("%s\n", sci2exp(model(fn(k)),fn(k)))
     end
+endfunction
+
+function ml = diagram2mlist(d)
+    ml = mlist(["diagram", "props", "objs", "version", "contrib"], d.props, d.objs, d.version, d.contrib);
+
+    // Also convert the sub-blocks and sub-links
+    objs = ml.objs;
+    for k=1:size(objs)
+        select typeof(objs(k))
+        case "Block" then
+            b = objs(k);
+            objs(k) = mlist(["Block", "graphics", "model", "gui", "doc"], b.graphics, b.model, b.gui, b.doc);
+        case "Link" then
+            l = objs(k);
+            objs(k) = mlist(["Link", "xx", "yy", "id", "thick", "ct", "from", "to"], l.xx, l.yy, l.id, l.thick, l.ct, l.from, l.to);
+        case "Annotation" then
+            t = objs(k);
+            objs(k) = mlist(["Annotation", "graphics", "model", "void", "gui"], t.graphics, t.model, t.void, t.gui);
+        else
+            error(msprintf(_("Wrong type for diagram element #%d: %s %s or %s expected.\n"), k, "Block", "Link", "Annotation"));
+        end
+    end
+    ml.objs = objs;
 endfunction

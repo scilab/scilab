@@ -206,6 +206,8 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
         {
             case PARENT_DIAGRAM:
                 return o->setParentDiagram(v);
+            case PARENT_BLOCK:
+                return o->setParentBlock(v);
             default:
                 break;
         }
@@ -528,6 +530,8 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
                 return o->setEin(v);
             case EVENT_OUTPUTS:
                 return o->setEout(v);
+            case CHILDREN:
+                return o->setChildren(v);
             default:
                 break;
         }

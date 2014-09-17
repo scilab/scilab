@@ -211,7 +211,9 @@ struct model
 
         o->set(0, MListFields);
         // 'sim' field needs to be defined for the console display.
-        o->set(1, new types::Double(0, 0));
+        o->set(1, types::Double::Empty());
+        o->set(2, types::Double::Empty());
+        o->set(3, types::Double::Empty());
         return o;
     }
 
