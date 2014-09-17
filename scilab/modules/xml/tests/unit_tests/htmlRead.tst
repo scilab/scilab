@@ -5,6 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // ===========================================================================
 
+// <-- CLI SHELL MODE -->
+
 doc = htmlRead(SCI + "/modules/helptools/data/pages/homepage-en_US.html");
 xp = xmlXPath(doc,"//a/@href");
 assert_checktrue(xp.size > 0);

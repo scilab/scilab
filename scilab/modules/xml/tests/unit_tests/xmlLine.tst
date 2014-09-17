@@ -5,6 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // ===========================================================================
 
+// <-- CLI SHELL MODE -->
+
 XMLStream="<?xml version=""1.0""?>";
 XMLStream=XMLStream+"<root attr=""value""><a>hello</a>";
 XMLStream=XMLStream+"<b id=""123""> world</b></root>";

@@ -5,6 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // ===========================================================================
 
+// <-- CLI SHELL MODE -->
+
 doc = xmlRead("SCI/modules/xml/tests/unit_tests/library.xml");
 dtd = xmlDTD("SCI/modules/xml/tests/unit_tests/library.dtd");
 schema = xmlSchema("SCI/modules/xml/tests/unit_tests/library.xsd");

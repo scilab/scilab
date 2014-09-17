@@ -5,6 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // ===========================================================================
 
+// <-- CLI SHELL MODE -->
+
 doc = xmlReadStr("<root><a att=""foo"" rib=""bar""><b>Hello</b></a></root>");
 xmlWrite(doc, TMPDIR+"/foo.xml");
 
@@ -32,7 +34,7 @@ fd_w = mopen(TMPDIR+'/plop.xml','w+');
 mputl(XMLStream, fd_w);
 mclose(fd_w);
 
-doc2 = xmlRead("TMPDIR/plop.xml"); 
+doc2 = xmlRead("TMPDIR/plop.xml");
 a2 = doc2.root.children(2).attributes;
 assert_checkequal(a2(1),"123");
 assert_checkequal(a2(2),[]);
@@ -52,6 +54,3 @@ a2.id="";
 doc2.root.children(2).attributes=a2;
 assert_checkequal(doc2.root.children(2).attributes.id,"");
 xmlDelete(doc2);
-
-
-
