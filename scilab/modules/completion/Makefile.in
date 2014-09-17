@@ -176,8 +176,7 @@ am__libscicompletion_algo_la_SOURCES_DIST = src/jni/Completion_wrap.c \
 	src/c/getfilesdictionary.c src/c/toolsdictionary.c \
 	src/c/completion_wrap_java.c src/c/getPartLine.c \
 	src/c/getCommonPart.c src/c/completeLine.c \
-	src/c/completeLine_wrap_java.c \
-	src/cpp/completionDictionary.cpp src/cpp/FieldsManager.cpp \
+	src/c/completeLine_wrap_java.c src/cpp/FieldsManager.cpp \
 	src/cpp/XMLFieldsGetter.cpp src/cpp/getfields.cpp \
 	src/cpp/getfieldsdictionary.cpp src/cpp/XMLDocFieldsGetter.cpp \
 	src/cpp/XMLElemFieldsGetter.cpp \
@@ -198,9 +197,7 @@ am__objects_2 = src/c/libscicompletion_algo_la-completion.lo \
 	src/c/libscicompletion_algo_la-getCommonPart.lo \
 	src/c/libscicompletion_algo_la-completeLine.lo \
 	src/c/libscicompletion_algo_la-completeLine_wrap_java.lo
-am__objects_3 =  \
-	src/cpp/libscicompletion_algo_la-completionDictionary.lo \
-	src/cpp/libscicompletion_algo_la-FieldsManager.lo \
+am__objects_3 = src/cpp/libscicompletion_algo_la-FieldsManager.lo \
 	src/cpp/libscicompletion_algo_la-XMLFieldsGetter.lo \
 	src/cpp/libscicompletion_algo_la-getfields.lo \
 	src/cpp/libscicompletion_algo_la-getfieldsdictionary.lo \
@@ -618,7 +615,6 @@ COMPLETION_C_SOURCES = \
 
 # List of the c++ file
 COMPLETION_CPP_SOURCES = \
-    src/cpp/completionDictionary.cpp \
     src/cpp/FieldsManager.cpp \
     src/cpp/XMLFieldsGetter.cpp \
     src/cpp/getfields.cpp \
@@ -920,8 +916,6 @@ src/cpp/$(am__dirstamp):
 src/cpp/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) src/cpp/$(DEPDIR)
 	@: > src/cpp/$(DEPDIR)/$(am__dirstamp)
-src/cpp/libscicompletion_algo_la-completionDictionary.lo:  \
-	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscicompletion_algo_la-FieldsManager.lo:  \
 	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscicompletion_algo_la-XMLFieldsGetter.lo:  \
@@ -1002,7 +996,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscicompletion_algo_la-XMLListFieldsGetter.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscicompletion_algo_la-XMLNsFieldsGetter.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscicompletion_algo_la-XMLSetFieldsGetter.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscicompletion_algo_la-completionDictionary.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscicompletion_algo_la-getfields.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscicompletion_algo_la-getfieldsdictionary.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libscicompletion_algo_la-Completion_wrap.Plo@am__quote@
@@ -1124,13 +1117,6 @@ src/c/libscicompletion_algo_la-completeLine_wrap_java.lo: src/c/completeLine_wra
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LTCXXCOMPILE) -c -o $@ $<
-
-src/cpp/libscicompletion_algo_la-completionDictionary.lo: src/cpp/completionDictionary.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscicompletion_algo_la-completionDictionary.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscicompletion_algo_la-completionDictionary.Tpo -c -o src/cpp/libscicompletion_algo_la-completionDictionary.lo `test -f 'src/cpp/completionDictionary.cpp' || echo '$(srcdir)/'`src/cpp/completionDictionary.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscicompletion_algo_la-completionDictionary.Tpo src/cpp/$(DEPDIR)/libscicompletion_algo_la-completionDictionary.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/completionDictionary.cpp' object='src/cpp/libscicompletion_algo_la-completionDictionary.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscicompletion_algo_la-completionDictionary.lo `test -f 'src/cpp/completionDictionary.cpp' || echo '$(srcdir)/'`src/cpp/completionDictionary.cpp
 
 src/cpp/libscicompletion_algo_la-FieldsManager.lo: src/cpp/FieldsManager.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscicompletion_algo_la-FieldsManager.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscicompletion_algo_la-FieldsManager.Tpo -c -o src/cpp/libscicompletion_algo_la-FieldsManager.lo `test -f 'src/cpp/FieldsManager.cpp' || echo '$(srcdir)/'`src/cpp/FieldsManager.cpp
