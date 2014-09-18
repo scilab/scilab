@@ -13,6 +13,7 @@
 // The function loadmatfile does not ignore comments found in ASCII files while loading them, resulting in an error message.
 // Moreover, for Matlab compatibility, when this function is called with one input argument load(filename), it must look for filename (as a binary file), filename.mat (as a binary file) or as an ASCII file otherwise.
 // Check that comment are ignored
+// <-- CLI SHELL MODE -->
 loadmatfile("SCI/modules/matio/tests/nonreg_tests/bug_3780.txt", "-ascii");
 if ~exists("bug_3780", "local") then bugmes();quit;end
 refvalue = [0,1,2,3,4;
