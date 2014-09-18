@@ -236,7 +236,7 @@ public:
 
 private:
 
-    types::InternalType* clone()
+    virtual types::InternalType* clone()
     {
         Controller controller = Controller();
         ScicosID clone = controller.cloneObject(getAdaptee()->id());
@@ -345,6 +345,10 @@ private:
         return true;
     }
 
+    bool getOwn()
+    {
+        return ownAdaptee;
+    };
 
 private:
     const bool ownAdaptee;

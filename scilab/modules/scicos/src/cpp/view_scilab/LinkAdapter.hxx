@@ -37,6 +37,15 @@ public:
 
     std::wstring getTypeStr();
     std::wstring getShortTypeStr();
+    types::InternalType* clone();
+
+    std::vector<double> getFrom() const;
+    bool setFrom(ScicosID id, const std::vector<double>& v, Controller& controller);
+    std::vector<double> getTo() const;
+    bool setTo(ScicosID id, const std::vector<double>& v, Controller& controller);
+private:
+    std::vector<double> from_content;
+    std::vector<double> to_content;
 };
 
 } /* namespace view_scilab */

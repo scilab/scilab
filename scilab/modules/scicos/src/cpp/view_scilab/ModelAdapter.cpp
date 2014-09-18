@@ -15,10 +15,10 @@
 #include <algorithm>
 #include <sstream>
 
-#include "list.hxx"
-#include "mlist.hxx"
 #include "double.hxx"
 #include "string.hxx"
+#include "list.hxx"
+#include "user.hxx"
 
 #include "Controller.hxx"
 #include "Adapters.hxx"
@@ -355,25 +355,48 @@ struct odstate
 
     static bool set(ModelAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        if (v->getType() != types::InternalType::ScilabList)
+        // For the moment, odstate can only either be an empty matrix or list
+
+        if (v->getType() == types::InternalType::ScilabList)
         {
-            return false;
+            types::List* current = v->getAs<types::List>();
+
+            if (current->getSize() == 0)
+            {
+                return true;
+            }
+            else
+            {
+                // silent unused parameter warnings
+                (void) adaptor;
+                (void) v;
+                (void) controller;
+
+                // FIXME: implement as a scicos encoded list of values
+                return false;
+            }
         }
-
-        types::List* current = v->getAs<types::List>();
-
-        if (current->getSize() == 0)
+        else if (v->getType() == types::InternalType::ScilabDouble)
         {
-            return true;
+            types::Double* current = v->getAs<types::Double>();
+
+            if (current->getSize() == 0)
+            {
+                return true;
+            }
+            else
+            {
+                // silent unused parameter warnings
+                (void) adaptor;
+                (void) v;
+                (void) controller;
+
+                // FIXME: implement as a scicos encoded list of values
+                return false;
+            }
         }
         else
         {
-            // silent unused parameter warnings
-            (void) adaptor;
-            (void) v;
-            (void) controller;
-
-            // FIXME: implement as a scicos encoded list of values
             return false;
         }
     }
@@ -711,6 +734,7 @@ struct nzcross
 
     static bool set(ModelAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
+        model::Block* adaptee = adaptor.getAdaptee();
 
         if (v->getType() != types::InternalType::ScilabDouble)
         {
@@ -718,18 +742,21 @@ struct nzcross
         }
 
         types::Double* current = v->getAs<types::Double>();
-        if (current->getSize() != 1)
-        {
-            return false;
-        }
-        if (floor(current->get(0)) != current->get(0))
-        {
-            return false;
-        }
 
-        model::Block* adaptee = adaptor.getAdaptee();
+        int nzcross = 0; // Default value
+        if (current->getSize() != 0)
+        {
+            if (current->getSize() != 1)
+            {
+                return false;
+            }
+            if (floor(current->get(0)) != current->get(0))
+            {
+                return false;
+            }
 
-        int nzcross = static_cast<int>(current->get(0));
+            nzcross = static_cast<int>(current->get(0));
+        }
 
         controller.setObjectProperty(adaptee->id(), adaptee->kind(), NZCROSS, nzcross);
         return true;
@@ -753,6 +780,7 @@ struct nmode
 
     static bool set(ModelAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
+        model::Block* adaptee = adaptor.getAdaptee();
 
         if (v->getType() != types::InternalType::ScilabDouble)
         {
@@ -760,18 +788,21 @@ struct nmode
         }
 
         types::Double* current = v->getAs<types::Double>();
-        if (current->getSize() != 1)
-        {
-            return false;
-        }
-        if (floor(current->get(0)) != current->get(0))
-        {
-            return false;
-        }
 
-        model::Block* adaptee = adaptor.getAdaptee();
+        int nmode = 0; // Default value
+        if (current->getSize() != 0)
+        {
+            if (current->getSize() != 1)
+            {
+                return false;
+            }
+            if (floor(current->get(0)) != current->get(0))
+            {
+                return false;
+            }
 
-        int nmode = static_cast<int>(current->get(0));
+            nmode = static_cast<int>(current->get(0));
+        }
 
         controller.setObjectProperty(adaptee->id(), adaptee->kind(), NMODE, nmode);
         return true;

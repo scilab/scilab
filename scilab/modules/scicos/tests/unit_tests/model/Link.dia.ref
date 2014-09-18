@@ -14,8 +14,6 @@ propertyUpdated( 1 , LINK , LABEL ) : NO_CHANGES
 propertyUpdated( 1 , LINK , THICK ) : NO_CHANGES
 propertyUpdated( 1 , LINK , COLOR ) : NO_CHANGES
 propertyUpdated( 1 , LINK , KIND ) : NO_CHANGES
-propertyUpdated( 1 , LINK , SOURCE_PORT ) : NO_CHANGES
-propertyUpdated( 1 , LINK , DESTINATION_PORT ) : NO_CHANGES
 lnk  = 
 scicos_Link type :
   xx

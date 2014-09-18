@@ -117,7 +117,11 @@ struct objs
         model::Diagram* adaptee = adaptor.getAdaptee();
 
         types::List* list = v->getAs<types::List>();
-        std::vector<ScicosID> diagramChildren (list->getSize());
+
+        // Clear the children list before the loop to reset the diagram children
+        std::vector<ScicosID> diagramChildren;
+        controller.setObjectProperty(adaptee->id(), adaptee->kind(), CHILDREN, diagramChildren);
+
         for (int i = 0; i < list->getSize(); ++i)
         {
             if (list->get(i)->getType() != types::InternalType::ScilabUserType)
@@ -138,8 +142,12 @@ struct objs
                     BlockAdapter* modelElement = list->get(i)->getAs<BlockAdapter>();
                     model::Block* subAdaptee = modelElement->getAdaptee();
 
-                    controller.setObjectProperty(id, subAdaptee->kind(), PARENT_DIAGRAM, adaptee->id());
                     id = subAdaptee->id();
+
+                    controller.setObjectProperty(id, subAdaptee->kind(), PARENT_DIAGRAM, adaptee->id());
+                    controller.getObjectProperty(adaptee->id(), adaptee->kind(), CHILDREN, diagramChildren);
+                    diagramChildren.push_back(id);
+                    controller.setObjectProperty(adaptee->id(), adaptee->kind(), CHILDREN, diagramChildren);
                     break;
                 }
                 case Adapters::LINK_ADAPTER:
@@ -147,8 +155,25 @@ struct objs
                     LinkAdapter* modelElement = list->get(i)->getAs<LinkAdapter>();
                     model::Link* subAdaptee = modelElement->getAdaptee();
 
-                    controller.setObjectProperty(subAdaptee->id(), subAdaptee->kind(), PARENT_DIAGRAM, adaptee->id());
                     id = subAdaptee->id();
+
+                    controller.setObjectProperty(id, subAdaptee->kind(), PARENT_DIAGRAM, adaptee->id());
+
+                    // Trigger 'from' and 'to' properties to be stored at model-level
+                    std::vector<double> from_content = modelElement->getFrom();
+                    if (!modelElement->setFrom(id, from_content, controller))
+                    {
+                        return false;
+                    }
+                    std::vector<double> to_content = modelElement->getTo();
+                    if (!modelElement->setTo(id, to_content, controller))
+                    {
+                        return false;
+                    }
+
+                    controller.getObjectProperty(adaptee->id(), adaptee->kind(), CHILDREN, diagramChildren);
+                    diagramChildren.push_back(id);
+                    controller.setObjectProperty(adaptee->id(), adaptee->kind(), CHILDREN, diagramChildren);
                     break;
                 }
                 case Adapters::TEXT_ADAPTER:
@@ -156,18 +181,19 @@ struct objs
                     TextAdapter* modelElement = list->get(i)->getAs<TextAdapter>();
                     model::Annotation* subAdaptee = modelElement->getAdaptee();
 
-                    controller.setObjectProperty(subAdaptee->id(), subAdaptee->kind(), PARENT_DIAGRAM, adaptee->id());
                     id = subAdaptee->id();
+
+                    controller.setObjectProperty(id, subAdaptee->kind(), PARENT_DIAGRAM, adaptee->id());
+                    controller.getObjectProperty(adaptee->id(), adaptee->kind(), CHILDREN, diagramChildren);
+                    diagramChildren.push_back(id);
+                    controller.setObjectProperty(adaptee->id(), adaptee->kind(), CHILDREN, diagramChildren);
                     break;
                 }
                 default:
                     return false;
             }
-
-            diagramChildren[i] = id;
         }
 
-        controller.setObjectProperty(adaptee->id(), adaptee->kind(), CHILDREN, diagramChildren);
         return true;
     }
 };

@@ -25,40 +25,81 @@ scs_m = scicos_diagram( objs=list(Sum,Scope1,Scope2,lnk1,lnk2) )
 scs_m.objs
 
 // Link output port #1 of block #1 with input port #1 of block #2 thanks to lnk1
-l = scs_m.objs;
-l(4).from = [1 1 0]; // Link block #1
-l(1).graphics.pout   // Check that block #1 is connected to lnk1
-l(1).model.out       // "
-l(4).to = [2 1 1];   // Link block #2
-l(4).from
-l(4).to
-l(2).graphics.pin    // Check that block #2 is connected to lnk1
-l(2).model.in        // "
+scs_m.objs(4).from = [1 1 0]; // Link block #1
+scs_m.objs(1).graphics.pout   // Check that block #1 is connected to lnk1
+scs_m.objs(1).model.out       // "
+scs_m.objs(4).to = [2 1 1];   // Link block #2
+scs_m.objs(4).from
+scs_m.objs(4).to
+scs_m.objs(2).graphics.pin    // Check that block #2 is connected to lnk1
+scs_m.objs(2).model.in        // "
 
 // Change the end of the link to input port #2 of block #2
-l(4).to = [2 2 1];
-l(4).from
-l(4).to
-l(2).graphics.pin    // Check that block #2 is connected to lnk1
-l(2).model.in        // "
+scs_m.objs(4).to = [2 2 1];
+scs_m.objs(4).from
+scs_m.objs(4).to
+scs_m.objs(2).graphics.pin    // Check that block #2 is connected to lnk1
+scs_m.objs(2).model.in        // "
 
-// Disconnect the source, the destination is also disconnected
-l(4).from = [0 0 0];
-l(4).from
-l(4).to
-l(1).graphics.pout   // Check that both blocks are unconnected
-l(2).graphics.pin    // "
+// Disconnect the source
+scs_m.objs(4).from = [0 0 0];
+scs_m.objs(4).from
+scs_m.objs(4).to
+scs_m.objs(1).graphics.pout   // Check that block #1 is not connected
+scs_m.objs(2).graphics.pin    // But block #2 is still connected to the link
+
+// Disconnect the destination
+scs_m.objs(4).to = [0 0 0];
+scs_m.objs(2).graphics.pin    // Check that block #2 is not connected
 
 // Now link the two Scope blocks together by adding an event output port to block #3 thanks to lnk2
-l(5).from = [2 1 1]; // Link the input of block #2
-l(5).to = [3 1 0];   // Add an event output to block #3 and link it to the previous
-l(5).from
-l(5).to
-l(2).graphics.pein   // Check that block #2 is connected to lnk2
-l(2).model.evtin     // "
-l(3).graphics.peout  // Check that block #3 is connected to lnk2
-l(3).model.evtout    // "
+scs_m.objs(5).from = [2 1 1]; // Link the input of block #2
+scs_m.objs(5).to = [3 1 0];   // Add an event output to block #3 and link it to the previous
+scs_m.objs(5).from
+scs_m.objs(5).to
+scs_m.objs(2).graphics.pein   // Check that block #2 is connected to lnk2
+scs_m.objs(2).model.evtin     // "
+scs_m.objs(3).graphics.peout  // Check that block #3 is connected to lnk2
+scs_m.objs(3).model.evtout    // "
 
 // Verify that it is impossible to link two inputs or two outputs together
-l(5).from = [2 1 0]; // Two outputs
-l(5).to = [3 1 1];   // Two inputs
+scs_m.objs(5).from = [2 1 0]; // Two outputs
+scs_m.objs(5).to = [3 1 1];   // Two inputs
+
+
+//===================================================================================================
+// Test predefined link at diagram creation
+clear scs_m;
+
+lnk   = scicos_link( from=[1 1 0],to=[2 1 1] );
+scs_m = scicos_diagram( objs=list(Sum,Scope1,lnk) );
+
+scs_m.objs(3).from
+scs_m.objs(3).to
+scs_m.objs(1).graphics.pout   // Check that block #1 is connected to lnk
+scs_m.objs(1).model.out       // "
+scs_m.objs(2).graphics.pin    // Check that block #2 is connected to lnk
+scs_m.objs(2).model.in        // "
+
+
+//===================================================================================================
+// Test predefined link insertion
+clear scs_m;
+
+lnk   = scicos_link( from=[1 1 0],to=[2 1 1] );
+scs_m = scicos_diagram( objs=list(Sum,Scope1) );
+
+scs_m.objs(1).graphics.pout   // Check that block #1 is not connected
+scs_m.objs(1).model.out       // "
+scs_m.objs(2).graphics.pin    // Check that block #2 is not connected
+scs_m.objs(2).model.in        // "
+
+scs_m.objs(3) = lnk;          // Add the predefined Link
+
+scs_m.objs
+scs_m.objs(3).from
+scs_m.objs(3).to
+scs_m.objs(1).graphics.pout   // Check that block #1 is connected to lnk
+scs_m.objs(1).model.out       // "
+scs_m.objs(2).graphics.pin    // Check that block #2 is connected to lnk
+scs_m.objs(2).model.in        // "
