@@ -207,8 +207,6 @@ Scilab Bug Fixes
 
 * Bug #13554 fixed - rubberbox returned wrong values.
 
-* Bug #13585 fixed - suitesparse 4.3.1 was not supported.
-
 
 Xcos Bug Fixes
 ==============
