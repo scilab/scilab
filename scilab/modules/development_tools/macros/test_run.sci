@@ -27,7 +27,7 @@ function test_run_result = test_run(varargin)
     end
 
     status.detailled_failures     = "";
-    //status.testsuites             = [];
+    status.testsuites             = [];
     status.test_count             = 0;
     status.test_passed_count      = 0;
     status.test_failed_count      = 0;
@@ -160,8 +160,7 @@ function test_run_result = test_run(varargin)
 
             if params.reference <> "list" then
                 status.detailled_failures   = [status.detailled_failures; result.detailled_failures];
-                //status.testsuites(size(status.testsuites,"*")+1) = result.testsuite
-
+                status.testsuites(size(status.testsuites,"*")+1) = result.testsuite
                 status.test_skipped_count   = status.test_skipped_count + result.test_skipped_count;
 
                 // Do not take in account skipped tests
@@ -203,7 +202,7 @@ function test_run_result = test_run(varargin)
             status.test_count   = status.test_count + result.test_count;
             if params.reference <> "list" then
                 status.detailled_failures       = [status.detailled_failures; result.detailled_failures];
-                //status.testsuites(size(status.testsuites,"*")+1) = result.testsuite
+                status.testsuites(size(status.testsuites,"*")+1) = result.testsuite
 
                 status.test_skipped_count   = status.test_skipped_count + result.test_skipped_count;
                 status.test_passed_count    = status.test_passed_count + result.test_passed_count;
@@ -241,7 +240,7 @@ function test_run_result = test_run(varargin)
         if params.reference <> "list" then
             status.totalTime            = result.totalTime;
             status.detailled_failures   = [status.detailled_failures; result.detailled_failures];
-            status.test_count           = status.test_count + result.test_count;
+            status.testsuites(size(status.testsuites,"*")+1) = result.testsuite
             status.test_skipped_count   = status.test_skipped_count + result.test_skipped_count;
 
             // Do not take in account skipped tests
@@ -274,7 +273,7 @@ function test_run_result = test_run(varargin)
     end
 
     if isfield(params, "exportFile") then
-        //exportToXUnitFormat(params.exportFile, status.testsuites);
+        exportToXUnitFormat(params.exportFile, status.testsuites);
     end
 
     if params.full_summary then
@@ -323,8 +322,7 @@ function status = test_module(_params)
     if with_module(name(1)) then
         // It's a scilab internal module
         module.path = pathconvert(SCI + "/modules/" + name(1), %F);
-        //no have librarieslist in scilab 6 yet
-        //  elseif or(librarieslist() == "atomslib") & atomsIsLoaded(name(1)) then
+        //elseif or(librarieslist() == "atomslib") & atomsIsLoaded(name(1)) then //no have librarieslist in scilab 6 yet
         // It's an ATOMS module
         //module.path = pathconvert(atomsGetLoadedPath(name(1)) , %F, %T);
     elseif isdir(name(1)) then
@@ -401,10 +399,10 @@ function status = test_module(_params)
     end
 
     // For the XML export
-    //testsuite.name=moduleName
-    //testsuite.time=0
-    //testsuite.tests=0
-    //testsuite.errors=0
+    testsuite.name=moduleName
+    testsuite.time=0
+    testsuite.tests=0
+    testsuite.errors=0
 
     //don't test only return list of tests.
     if _params.reference == "list" then
@@ -448,9 +446,10 @@ function status = test_module(_params)
 
         result = test_single(_params, tests(i,1), tests(i,2));
 
-        //testsuite.tests = testsuite.tests + 1
-        //testsuite.testcase(i).name=tests(i,2);
-        ////    testsuite.testcase(i).time= DONT HAVE YET
+        testsuite.tests = testsuite.tests + 1
+
+        testsuite.testcase(i).name=tests(i,2);
+        //    testsuite.testcase(i).time= DONT HAVE YET
 
         if result.id == 0 then
             printf("passed\n");
@@ -470,9 +469,9 @@ function status = test_module(_params)
                 detailled_failures = [ detailled_failures ; result.details ];
                 detailled_failures = [ detailled_failures ; "" ];
 
-                //testsuite.errors = testsuite.errors + 1
-                //testsuite.testcase(i).failure.type=result.message
-                //testsuite.testcase(i).failure.content=result.details
+                testsuite.errors = testsuite.errors + 1
+                testsuite.testcase(i).failure.type=result.message
+                testsuite.testcase(i).failure.content=result.details
 
             elseif (result.id >= 10) & (result.id < 20) then
                 // skipped
@@ -483,7 +482,7 @@ function status = test_module(_params)
 
     status.totalTime = toc();
 
-    //testsuite.time=status.totalTime;
+    testsuite.time=status.totalTime;
 
     clearglobal TICTOC;
     status.test_passed_count  = test_passed_count;
@@ -493,7 +492,7 @@ function status = test_module(_params)
     // Summary
     status.test_count     = test_count;
     status.detailled_failures   = detailled_failures;
-    //status.testsuite   = testsuite;
+    status.testsuite   = testsuite;
 endfunction
 
 function status = test_single(_module, _testPath, _testName)
@@ -584,15 +583,15 @@ function status = test_single(_module, _testPath, _testName)
         return;
     end
 
-    if ~isempty(grep(sciFile, "<-- LINUX ONLY -->")) & getos() <> "Linux" then
-        status.id = 10;
-        status.message = "skipped: Linux only";
-        return;
-    end
-
     if ~isempty(grep(sciFile, "<-- UNIX ONLY -->")) & getos() == "Windows" then
         status.id = 10;
         status.message = "skipped: Unix only";
+        return;
+    end
+
+    if ~isempty(grep(sciFile, "<-- LINUX ONLY -->")) & getos() <> "Linux" then
+        status.id = 10;
+        status.message = "skipped: Linux only";
         return;
     end
 
@@ -829,7 +828,6 @@ function status = test_single(_module, _testPath, _testName)
 
     //create tmp test file
     mputl(sciFile, tmp_tst);
-
 
     //execute test
     returnStatus = host(test_cmd);
