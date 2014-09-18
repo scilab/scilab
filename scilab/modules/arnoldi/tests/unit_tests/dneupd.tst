@@ -5,6 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- CLI SHELL MODE -->
+
 // The following sets dimensions for this problem.
 
 nx    = 10;
@@ -56,14 +58,14 @@ while(ido <> 99)
   // either convergence is indicated or maxitr has been exceeded.
 
   [ido, resid, v, iparam, ipntr, workd, workl, info_dnaupd] = dnaupd(ido, bmat, nx, which, nev, tol, resid, ncv, v, iparam, ipntr, workd, workl, info_dnaupd);
-  
+
   if(info_dnaupd < 0)
     printf('\nError with dnaupd, info = %d\n',info_dnaupd);
     printf('Check the documentation of dnaupd\n\n');
   end
-  
+
   if(ido == -1 | ido == 1)
-    // Perform matrix vector multiplication 
+    // Perform matrix vector multiplication
     workd(ipntr(2):ipntr(2) + nx -1) = A * workd(ipntr(1):ipntr(1) + nx - 1);
   end
 end
@@ -89,5 +91,4 @@ end
 z(:,[c1, c2]) = [z(:,c1) + z(:,c2) * %i z(:,c1) - z(:,c2) * %i];
 z(:,$) = [];
 
-assert_checkalmostequal(A * z, z * d, sqrt(%eps), 1.e-10); 
-
+assert_checkalmostequal(A * z, z * d, sqrt(%eps), 1.e-10);
