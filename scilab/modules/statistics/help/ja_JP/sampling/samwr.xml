@@ -2,11 +2,11 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2000 - INRIA - Carlos Klimann
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -44,7 +44,7 @@
                 <term>s</term>
                 <listitem>
                     <para>
-                        sizsam  x numsampの行列. 
+                        sizsam  x numsampの行列.
                         各(列)が列ベクトルXから置換をせずに
                         siznam (size(X,'*'))回の抽出を行った
                         numsamp  組のランダム標本を有します.
@@ -61,7 +61,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 a=[0.33 1.24 2.1 1.03]
 s=samwr(4,12,a)
  ]]></programlisting>

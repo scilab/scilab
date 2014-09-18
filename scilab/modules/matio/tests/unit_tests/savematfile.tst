@@ -5,6 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- CLI SHELL MODE -->
+
 // This Scilab script saves MAT-files to test the MATIO module
 
 chdir("SCI/modules/matio/tests/unit_tests/")

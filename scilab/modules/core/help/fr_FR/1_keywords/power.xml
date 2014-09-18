@@ -66,6 +66,11 @@
             -
             Les opérateurs <literal>**</literal> et <literal>^</literal> sont synonymes.
         </para>
+        <para>
+            <warning>
+                L'élévation à la puissance est associative à droite dans Scilab contrairement à Matlab&#174; et Octave. Par exemple 2^3^4 est égal à 2^(3^4) dans Scilab mais est égal à (2^3)^4 dans Matlab&#174; et Octave.
+            </warning>
+        </para>
     </refsection>
     <refsection>
         <title>Exemples</title>

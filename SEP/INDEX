@@ -127,3 +127,4 @@ SEP #128: nanreglin.
 SEP #129: HTLM parsing functions.
 SEP #130: Replace obsolete numdiff and derivative with new function numderivative.
 SEP #131: Modified matfile2sci to have an new input argument overwrite to overwrite the output file
+SEP #132: Remove useless output argument err of add_param function.

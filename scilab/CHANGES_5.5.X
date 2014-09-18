@@ -6,6 +6,8 @@ Obsolete & Removed Functions
 
 * datatipContextMenu() and datatipEventhandler() removed (See bug #8646).
 
+* Second output argument of add_param removed (See SEP #132).
+
 
 Scilab Bug Fixes
 ================
@@ -89,6 +91,9 @@ Scilab Bug Fixes
 
 * Bug #13336 fixed - In SciNotes it was not possible to complete brackets only at eol.
 
+* Bug #13343 fixed - In console popup menu, 'help about a selected text' moved
+                     from bottom to top for consistency with Scinotes.
+
 * Bug #13344 fixed - User defined ticks were not drawn at the right position.
 
 * Bug #13345 fixed - Scilab did not start on Debian Wheezy (GLIBC issue).
@@ -97,6 +102,8 @@ Scilab Bug Fixes
                      Improved documentation on the function filter.
 
 * Bug #13349 fixed - Double-clicking on a MAT-file in file browser did not load it.
+
+* Bug #13350 fixed - There was a buffer overrun with "call" function.
 
 * Bug #13351 fixed - xstringb failed with LaTeX code.
 
@@ -110,6 +117,10 @@ Scilab Bug Fixes
 * Bug #13365 fixed - Data bounds were not correctly updated in 3-D.
 
 * Bug #13367 fixed - ATOMS default repository was 5.4 one instead of 5.5.
+
+* Bug #13369 fixed - Function samplef now works with 0 frequencies input values
+                     and normalized frequencies. sample and samplef now consistently
+                     return a row vector.
 
 * Bug #13378 fixed - The "Console" handle display was not homogeneous with others.
 
@@ -164,6 +175,8 @@ Scilab Bug Fixes
 
 * Bug #13438 fixed - drawaxis did not return the handle of the created axis.
 
+* Bug #13441 fixed - Scilab crashed when uicontrol was called with a string for border property.
+
 * Bug #13459 fixed - A warning message about libcurl.so version was displayed at Scilab startup.
 
 * Bug #13471 fixed - ilib_build_jar infinite loop when used on an empty directory fixed.
@@ -182,6 +195,8 @@ Scilab Bug Fixes
 
 * Bug #13510 fixed - Datatip callback cleared 'd'.
 
+* Bug #13511 fixed - lcm returned incorrect results when used with doubles.
+
 * Bug #13512 fixed - dae crashed if the evaluation function had wrong prototype.
 
 * Bug #13515 fixed - There were wrong results for matrix/hypermatrix with bitset function.
@@ -190,7 +205,7 @@ Scilab Bug Fixes
 
 * Bug #13527 fixed - hilb did not check correctly the type of first input argument.
 
-* Bug #13554 fixed - rubberbox returns wrong values.
+* Bug #13554 fixed - rubberbox returned wrong values.
 
 
 Xcos Bug Fixes
@@ -210,6 +225,8 @@ Xcos Bug Fixes
                      on the help page.
 
 * Bug #13318 fixed - Multiplication matrix * vector using MATMUL did not work correctly.
+
+* Bug #13327 fixed - Sawtooth generator icon was not a Sawtooth.
 
 * Bug #13385 fixed - TOWS_c and FROMWSB Xcos blocs needed better examples on how
                      to get or write a Scilab variable.

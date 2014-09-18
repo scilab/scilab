@@ -46,6 +46,11 @@
                 <literal>x2</literal> the value of  <literal>x1^x2</literal> is the "principal value"
                 determined by <literal>x1^x2 = exp(x2*log(x1))</literal>.
             </para>
+            <para>
+                <warning>
+                    Exponentiation is right-associative in Scilab contrarily to Matlab&#174; and Octave. For example 2^3^4 is equal to 2^(3^4) in Scilab but is equal to (2^3)^4 in Matlab&#174; and Octave.
+                </warning>
+            </para>
         </refsection>
     </refsection>
     <refsection>

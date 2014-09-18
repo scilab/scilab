@@ -71,19 +71,19 @@ assert_checkerror(func_call, err_msg);
 z = 0;
 B = %s^3 + %s + 1;
 A = [1 0];
-err_msg = msprintf(_("%s: Incompatible input arguments #%d and #%d: a polynomial and 1-by-1 matrix or two polynomials expected"), fname, 1, 2);
+err_msg = msprintf(_("%s: Incompatible input arguments #%d and #%d: a polynomial and 1-by-1 matrix or two polynomials expected.\n"), fname, 1, 2);
 assert_checkerror(func_call, err_msg);
 A = B;
 B = [1 1];
-err_msg = msprintf(_("%s: Incompatible input arguments #%d and #%d: a polynomial and 1-by-1 matrix or two polynomials expected"), fname, 1, 2);
+err_msg = msprintf(_("%s: Incompatible input arguments #%d and #%d: a polynomial and 1-by-1 matrix or two polynomials expected.\n"), fname, 1, 2);
 assert_checkerror(func_call, err_msg);
 // Denominator must have first coefficient not equal to 0
 A = [0 0 1];
-err_msg = msprintf(_("%s: Wrong input for input argument #%d: First element must not be %s"), fname, 2, "0");
+err_msg = msprintf(_("%s: Wrong value for input argument #%d: First element must not be %s.\n"), fname, 2, "0");
 assert_checkerror(func_call, err_msg);
 B = %s^3 + %s + 1;
 A = %s;
-err_msg = msprintf(_("%s: Wrong input for input argument #%d: First element must not be %s"), fname, 2, "0");
+err_msg = msprintf(_("%s: Wrong value for input argument #%d: First element must not be %s.\n"), fname, 2, "0");
 assert_checkerror(func_call, err_msg);
 //==============================================================================
 // Nominal behaviour

@@ -179,6 +179,10 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
         };
         evalWithEchoMenu.addPropertyChangeListener(listener);
 
+        menu.add(helpMenu);
+
+        menu.addSeparator();
+
         menu.add(cutMenu);
         menu.add(copyMenu);
         menu.add(pasteMenu);
@@ -195,9 +199,6 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 
         menu.add(evalWithEchoMenu);
         menu.add(evalWithNoEchoMenu);
-        menu.addSeparator();
-
-        menu.add(helpMenu);
 
         ((JEditorPane) getConfiguration().getOutputView()).setComponentPopupMenu(menu);
         ((JTextPane) getConfiguration().getInputCommandView()).setComponentPopupMenu(menu);

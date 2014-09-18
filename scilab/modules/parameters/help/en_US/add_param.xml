@@ -17,7 +17,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>[param_list,err] = add_param(list_name,param_name,param_value)</synopsis>
+        <synopsis>param_list = add_param(list_name,param_name,param_value)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -48,16 +48,6 @@
                 <listitem>
                     <para>the updated list of parameters.
                     </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>err</term>
-                <listitem>
-                    <para>an error flag which is set to %T if list_name is not of type plist (this list has not been initialized by a call to init_param).
-                    </para>
-                    <caution>
-                        This argument is obsolete and will be removed in Scilab 5.5.1.
-                    </caution>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -101,6 +91,10 @@ mylist = add_param(mylist,'minbound',[0 0 0]);
             <revision>
                 <revnumber>5.5.0</revnumber>
                 <revremark>Second output argument (err) tagged as obsolete.</revremark>
+            </revision>
+            <revision>
+                <revnumber>5.5.1</revnumber>
+                <revremark>Second output argument removed.</revremark>
             </revision>
         </revhistory>
     </refsection>

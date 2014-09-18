@@ -4,6 +4,9 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+
+// <-- CLI SHELL MODE -->
+
 filename=TMPDIR+"/test_matfile.mat";
 
 A = rand(10,10);

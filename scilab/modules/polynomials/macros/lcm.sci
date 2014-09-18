@@ -14,8 +14,17 @@ function [p, fact] = lcm(p)
     //such that  p.*fact=pp*ones(p)
     //!
 
-    if (type(p)<>2 & type(p)<>8) then
+    if type(p)<>1 & type(p)<>2 & type(p)<>8 then
         error(msprintf(_("%s: Wrong type for argument #%d: Integer array or Polynomial expected.\n"), "lcm", 1));
+    end
+
+    if type(p)==1 then
+        if floor(p)<>p then
+            error(msprintf(_("%s: Wrong type for argument #%d: Integer array or Polynomial expected.\n"), "lcm", 1));
+        else
+            if argn(1)==2 then [p, fact] = %s_lcm(p), else p = %s_lcm(p), end
+            return
+        end
     end
 
     if type(p)==8 then

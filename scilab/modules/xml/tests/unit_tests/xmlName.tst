@@ -5,6 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // ===========================================================================
 
+// <-- CLI SHELL MODE -->
 
 doc = xmlReadStr("<root><foo a=""123"" b=""456"" c=""789""/></root>")
 
