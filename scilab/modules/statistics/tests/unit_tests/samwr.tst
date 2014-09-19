@@ -1,0 +1,56 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2014 - Scilab Enterprises - Pierre-Aime Agnel
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
+// <-- CLI SHELL MODE -->
+// <-- unit test for sample.sci-->
+//
+
+//==============================================================================
+// checking error messages
+//==============================================================================
+fname = "samwr";
+err_msg_glob = msprintf(_("%s: Wrong number of input argument: %d expected.\n"), fname, 3);
+err_msg_sizam = msprintf(_("%s: Wrong value of input argument #%d: Lower than or equal to size of input argument #%d expected.\n"), fname, 1, 3);
+
+//========================================
+// error for the number of input arguments
+sizam = 3;
+numsamp = 10;
+X = 1:10;
+
+func_str = "samwr(sizam)";
+
+grand("setsd",0); //sets the randum number to seed 0 for reproductibility
+assert_checkerror(func_str, err_msg_glob);
+
+//========================================
+// error if sizam is greater than the size of X
+sizam = 11;
+numsamp = 10;
+X = 1:10;
+
+func_str = "samwr(sizam, numsamp, X)";
+
+grand("setsd",0); //sets the randum number to seed 0 for reproductibility
+assert_checkerror(func_str, err_msg_sizam);
+
+//==============================================================================
+// checking normal behaviour
+//==============================================================================
+
+//========================================
+// Normal call of samwr on a population
+sizam = 3;
+numsamp = 15;
+X = 1:10;
+
+grand("setsd", 0); //sets the randum number to seed 0 for reproductibility
+samples = samwr(sizam, numsamp, X);
+
+//Checks the size of the output is sizam * numsamp
+assert_checkequal(size(samples, "r"), 3);
+assert_checkequal(size(samples, "c"), 15);

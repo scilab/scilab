@@ -4,6 +4,9 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // ===========================================================================
+
+// <-- CLI SHELL MODE -->
+
 doc = xmlReadStr("<root><a att=""foo"" rib=""bar""><b>Hello</b></a></root>");
 xmlWrite(doc, TMPDIR+"/foo.xml");
 

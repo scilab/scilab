@@ -5,13 +5,15 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- CLI SHELL MODE -->
+
 // <-- Non-regression test for bug 5081 -->
 //
 // <-- Bugzilla URL -->
 // http://bugzilla.scilab.org/show_bug.cgi?id=5081
 //
 // <-- Short Description -->
-// 
+//
 // demo "Signal Processing" --> "Spectral Estimation" fails (Windows)
 
  rand('normal');
@@ -30,6 +32,3 @@
  y = real(fft(yf,1));
  ierr = execstr("[sm2] = cspect(100,200,''tr'',y);","errcatch");
  if ierr <> 0 then pause,end
- 
-
- 

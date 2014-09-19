@@ -76,13 +76,13 @@ function [y, z] = filter(b, a, x, z)
     end
 
     // User mixes polynomial and vector notation
-    if type_b == "polynomial" & size(a, '*') <> 1
-        error(msprintf(_("%s: Incompatible input arguments #%d and #%d: a polynomial and 1-by-1 matrix or two polynomials expected"), fname, 1, 2));
+    if type_b == "polynomial" & size(a, "*") <> 1
+        error(msprintf(_("%s: Incompatible input arguments #%d and #%d: a polynomial and 1-by-1 matrix or two polynomials expected.\n"), fname, 1, 2));
     end
 
     // User mixes polynomial and vector notation
-    if type_a == "polynomial" & size(b, '*') <> 1
-        error(msprintf(_("%s: Incompatible input arguments #%d and #%d: a polynomial and 1-by-1 matrix or two polynomials expected"), fname, 1, 2));
+    if type_a == "polynomial" & size(b, "*") <> 1
+        error(msprintf(_("%s: Incompatible input arguments #%d and #%d: a polynomial and 1-by-1 matrix or two polynomials expected.\n"), fname, 1, 2));
     end
 
     if type_b == "polynomial" | type_a == "polynomial"
@@ -105,7 +105,7 @@ function [y, z] = filter(b, a, x, z)
     //a = a(i:$);
 
     if a(1) == 0
-        error(msprintf(_("%s: Wrong input for input argument #%d: First element must not be %s"), fname, 2, "0"));
+        error(msprintf(_("%s: Wrong value for input argument #%d: First element must not be %s.\n"), fname, 2, "0"));
     end
 
     //force vector orientation

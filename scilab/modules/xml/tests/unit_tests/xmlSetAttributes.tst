@@ -5,6 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,=
 
+// <-- CLI SHELL MODE -->
+
 doc = xmlReadStr("<root><a><b><c></c></b></a><b></b></root>");
 
 // Retrieve all the nodes

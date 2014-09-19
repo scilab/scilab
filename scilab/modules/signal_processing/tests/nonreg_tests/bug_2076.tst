@@ -17,9 +17,9 @@
 
 
 a=[0 0 0 0 0 0 6 6];
-p=pspect(2,4,'re',a,a)
+p=pspect(2,4,"re",a,a);
 if or(p<>[0 6 0 6]) then pause,end
 
-p=pspect(2,4,'re', a)
+p=pspect(2,4,"re", a);
 if or(p<>[0 6 0 6]) then pause,end
 

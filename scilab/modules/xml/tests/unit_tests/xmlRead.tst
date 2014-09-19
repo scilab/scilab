@@ -6,7 +6,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // ===========================================================================
 
-
+// <-- CLI SHELL MODE -->
 
 xmlFile=xmlRead(SCI+"/etc/modules.xml");
 assert_checktrue(xmlIsValidObject(xmlFile));
@@ -47,7 +47,7 @@ assert_checkerror("xmlDelete(xmlFile)", msgerr);
 
 // Work with the structure
 xmlFile=xmlRead(SCI+"/etc/modules.xml");
-assert_checkequal(xmlFile.root.name,"modules");       
+assert_checkequal(xmlFile.root.name,"modules");
 assert_checkequal(xmlFile.root.type,"XML_ELEMENT_NODE");
 elements=xmlFile.root.children;
 assert_checktrue(xmlIsValidObject(elements));

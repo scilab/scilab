@@ -28,7 +28,7 @@ root: XML Element
 ns=xmlNs(doc.root,"","http://name.space");
 xmlAddNs(doc.root.children(1),ns);
 xmlAddNs(doc.root.children(2),ns);
-out = xmlDump(doc); 
+out = xmlDump(doc);
 assert_checkequal(out(3), "  <a xmlns:=""http://name.space""/>");
 xmlDelete(doc)
 s = "<root><a/><b/></root>"
@@ -44,6 +44,6 @@ root: XML Element
 ns=xmlNs(doc.root,[],"http://name.space");
 xmlAddNs(doc.root.children(1),ns);
 xmlAddNs(doc.root.children(2),ns);
-out = xmlDump(doc); 
+out = xmlDump(doc);
 assert_checkequal(out(3), "  <a xmlns=""http://name.space""/>");
 xmlDelete(doc)
