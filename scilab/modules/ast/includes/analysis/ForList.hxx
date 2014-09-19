@@ -23,7 +23,11 @@
 #include "stdint.h"
 #define TRUNC(x) ((x) > 0 ? floor(x) : ceil(x))
 #else
+#ifdef __APPLE__
+#define TRUNC(x) ((x) > 0 ? floor(x) : ceil(x))
+#else
 #define TRUNC(x) (std::trunc(x))
+#endif
 #endif
 
 namespace analysis
