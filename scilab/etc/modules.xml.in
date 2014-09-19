@@ -76,7 +76,7 @@
 <module name="matio" activate="@MATIO_ENABLE@"/>
 <module name="types" activate="@JAVA_ENABLE@"/>
 <module name="hdf5" activate="yes"/>
-<module name="xcos" activate="@GUI_ENABLE@"/>
+<module name="xcos" activate="@XCOS_ENABLE@"/>
 <module name="mpi" activate="@MPI_ENABLE@"/>
 <module name="graphic_objects" activate="@GUI_ENABLE@"/>
 <module name="scinotes" activate="@GUI_ENABLE@"/>
@@ -92,4 +92,3 @@
 <module name="external_objects" activate="yes"/>
 <module name="external_objects_java" activate="@JAVA_ENABLE@"/>
 </modules>
-
