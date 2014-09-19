@@ -44,7 +44,7 @@ propertyUpdated( 1 , BLOCK , STATE ) : NO_CHANGES
 propertyUpdated( 1 , BLOCK , DSTATE ) : NO_CHANGES
 propertyUpdated( 1 , BLOCK , RPAR ) : SUCCESS
 propertyUpdated( 1 , BLOCK , IPAR ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , SIM_BLOCKTYPE ) : SUCCESS
+propertyUpdated( 1 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
 propertyUpdated( 1 , BLOCK , SIM_DEP_UT ) : SUCCESS
 propertyUpdated( 1 , BLOCK , LABEL ) : NO_CHANGES
 propertyUpdated( 1 , BLOCK , NZCROSS ) : NO_CHANGES
@@ -125,7 +125,7 @@ propertyUpdated( 5 , BLOCK , NZCROSS ) : NO_CHANGES
 propertyUpdated( 5 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 5 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
 propertyUpdated( 5 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
-propertyUpdated( 5 , BLOCK , SIM_BLOCKTYPE ) : SUCCESS
+propertyUpdated( 5 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
 propertyUpdated( 5 , BLOCK , UID ) : NO_CHANGES
 propertyUpdated( 5 , BLOCK , STYLE ) : NO_CHANGES
 propertyUpdated( 5 , BLOCK , LABEL ) : NO_CHANGES
@@ -276,7 +276,7 @@ propertyUpdated( 9 , BLOCK , NZCROSS ) : NO_CHANGES
 propertyUpdated( 9 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 9 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
 propertyUpdated( 9 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
-propertyUpdated( 9 , BLOCK , SIM_BLOCKTYPE ) : SUCCESS
+propertyUpdated( 9 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
 propertyUpdated( 9 , BLOCK , UID ) : NO_CHANGES
 propertyUpdated( 9 , BLOCK , STYLE ) : NO_CHANGES
 propertyUpdated( 9 , BLOCK , LABEL ) : NO_CHANGES
@@ -426,7 +426,7 @@ propertyUpdated( 13 , BLOCK , NZCROSS ) : NO_CHANGES
 propertyUpdated( 13 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 13 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
 propertyUpdated( 13 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
-propertyUpdated( 13 , BLOCK , SIM_BLOCKTYPE ) : SUCCESS
+propertyUpdated( 13 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
 propertyUpdated( 13 , BLOCK , UID ) : NO_CHANGES
 propertyUpdated( 13 , BLOCK , STYLE ) : NO_CHANGES
 propertyUpdated( 13 , BLOCK , LABEL ) : NO_CHANGES
@@ -594,7 +594,7 @@ propertyUpdated( 18 , BLOCK , STATE ) : NO_CHANGES
 propertyUpdated( 18 , BLOCK , DSTATE ) : NO_CHANGES
 propertyUpdated( 18 , BLOCK , RPAR ) : SUCCESS
 propertyUpdated( 18 , BLOCK , IPAR ) : SUCCESS
-propertyUpdated( 18 , BLOCK , SIM_BLOCKTYPE ) : SUCCESS
+propertyUpdated( 18 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
 propertyUpdated( 18 , BLOCK , SIM_DEP_UT ) : SUCCESS
 propertyUpdated( 18 , BLOCK , LABEL ) : NO_CHANGES
 propertyUpdated( 18 , BLOCK , NZCROSS ) : NO_CHANGES
@@ -684,7 +684,7 @@ propertyUpdated( 21 , BLOCK , NZCROSS ) : NO_CHANGES
 propertyUpdated( 21 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 21 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
 propertyUpdated( 21 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
-propertyUpdated( 21 , BLOCK , SIM_BLOCKTYPE ) : SUCCESS
+propertyUpdated( 21 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
 propertyUpdated( 21 , BLOCK , UID ) : NO_CHANGES
 propertyUpdated( 21 , BLOCK , STYLE ) : NO_CHANGES
 propertyUpdated( 21 , BLOCK , LABEL ) : NO_CHANGES

@@ -477,6 +477,18 @@ static bool setLinkEnd(ScicosID id, Controller& controller, object_properties_t 
     {
         controller.getObjectProperty(parentDiagram, DIAGRAM, CHILDREN, children);
     }
+    // Only keep the Blocks of 'children'
+    for (std::vector<ScicosID>::iterator it = children.begin(); it != children.end();)
+    {
+        if (controller.getObject(*it)->kind() != BLOCK)
+        {
+            children.erase(it);
+        }
+        else
+        {
+            ++it;
+        }
+    }
 
     // Connect the new one
     int blk  = static_cast<int>(v[0]);

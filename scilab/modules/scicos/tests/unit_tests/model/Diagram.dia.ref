@@ -81,7 +81,7 @@ propertyUpdated( 2 , BLOCK , STATE ) : NO_CHANGES
 propertyUpdated( 2 , BLOCK , DSTATE ) : NO_CHANGES
 propertyUpdated( 2 , BLOCK , RPAR ) : SUCCESS
 propertyUpdated( 2 , BLOCK , IPAR ) : NO_CHANGES
-propertyUpdated( 2 , BLOCK , SIM_BLOCKTYPE ) : SUCCESS
+propertyUpdated( 2 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
 propertyUpdated( 2 , BLOCK , SIM_DEP_UT ) : SUCCESS
 propertyUpdated( 2 , BLOCK , LABEL ) : NO_CHANGES
 propertyUpdated( 2 , BLOCK , NZCROSS ) : NO_CHANGES
@@ -117,7 +117,7 @@ propertyUpdated( 6 , BLOCK , STATE ) : NO_CHANGES
 propertyUpdated( 6 , BLOCK , DSTATE ) : NO_CHANGES
 propertyUpdated( 6 , BLOCK , RPAR ) : SUCCESS
 propertyUpdated( 6 , BLOCK , IPAR ) : SUCCESS
-propertyUpdated( 6 , BLOCK , SIM_BLOCKTYPE ) : SUCCESS
+propertyUpdated( 6 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
 propertyUpdated( 6 , BLOCK , SIM_DEP_UT ) : SUCCESS
 propertyUpdated( 6 , BLOCK , LABEL ) : NO_CHANGES
 propertyUpdated( 6 , BLOCK , NZCROSS ) : NO_CHANGES
@@ -153,7 +153,7 @@ propertyUpdated( 9 , BLOCK , STATE ) : NO_CHANGES
 propertyUpdated( 9 , BLOCK , DSTATE ) : NO_CHANGES
 propertyUpdated( 9 , BLOCK , RPAR ) : SUCCESS
 propertyUpdated( 9 , BLOCK , IPAR ) : SUCCESS
-propertyUpdated( 9 , BLOCK , SIM_BLOCKTYPE ) : SUCCESS
+propertyUpdated( 9 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
 propertyUpdated( 9 , BLOCK , SIM_DEP_UT ) : SUCCESS
 propertyUpdated( 9 , BLOCK , LABEL ) : NO_CHANGES
 propertyUpdated( 9 , BLOCK , NZCROSS ) : NO_CHANGES
@@ -183,7 +183,7 @@ propertyUpdated( 14 , BLOCK , NZCROSS ) : NO_CHANGES
 propertyUpdated( 14 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 14 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
 propertyUpdated( 14 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
-propertyUpdated( 14 , BLOCK , SIM_BLOCKTYPE ) : SUCCESS
+propertyUpdated( 14 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
 propertyUpdated( 14 , BLOCK , UID ) : NO_CHANGES
 propertyUpdated( 14 , BLOCK , STYLE ) : NO_CHANGES
 propertyUpdated( 14 , BLOCK , LABEL ) : NO_CHANGES
@@ -235,7 +235,7 @@ propertyUpdated( 18 , BLOCK , NZCROSS ) : NO_CHANGES
 propertyUpdated( 18 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 18 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
 propertyUpdated( 18 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
-propertyUpdated( 18 , BLOCK , SIM_BLOCKTYPE ) : SUCCESS
+propertyUpdated( 18 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
 propertyUpdated( 18 , BLOCK , UID ) : NO_CHANGES
 propertyUpdated( 18 , BLOCK , STYLE ) : NO_CHANGES
 propertyUpdated( 18 , BLOCK , LABEL ) : NO_CHANGES
@@ -278,7 +278,7 @@ propertyUpdated( 21 , BLOCK , NZCROSS ) : NO_CHANGES
 propertyUpdated( 21 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 21 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
 propertyUpdated( 21 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
-propertyUpdated( 21 , BLOCK , SIM_BLOCKTYPE ) : SUCCESS
+propertyUpdated( 21 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
 propertyUpdated( 21 , BLOCK , UID ) : NO_CHANGES
 propertyUpdated( 21 , BLOCK , STYLE ) : NO_CHANGES
 propertyUpdated( 21 , BLOCK , LABEL ) : NO_CHANGES
@@ -676,7 +676,7 @@ propertyUpdated( 30 , BLOCK , NZCROSS ) : NO_CHANGES
 propertyUpdated( 30 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 30 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
 propertyUpdated( 30 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
-propertyUpdated( 30 , BLOCK , SIM_BLOCKTYPE ) : SUCCESS
+propertyUpdated( 30 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
 propertyUpdated( 30 , BLOCK , UID ) : NO_CHANGES
 propertyUpdated( 30 , BLOCK , STYLE ) : NO_CHANGES
 propertyUpdated( 30 , BLOCK , LABEL ) : NO_CHANGES
@@ -728,7 +728,7 @@ propertyUpdated( 34 , BLOCK , NZCROSS ) : NO_CHANGES
 propertyUpdated( 34 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 34 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
 propertyUpdated( 34 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
-propertyUpdated( 34 , BLOCK , SIM_BLOCKTYPE ) : SUCCESS
+propertyUpdated( 34 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
 propertyUpdated( 34 , BLOCK , UID ) : NO_CHANGES
 propertyUpdated( 34 , BLOCK , STYLE ) : NO_CHANGES
 propertyUpdated( 34 , BLOCK , LABEL ) : NO_CHANGES
@@ -830,7 +830,7 @@ propertyUpdated( 40 , BLOCK , NZCROSS ) : NO_CHANGES
 propertyUpdated( 40 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 40 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
 propertyUpdated( 40 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
-propertyUpdated( 40 , BLOCK , SIM_BLOCKTYPE ) : SUCCESS
+propertyUpdated( 40 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
 propertyUpdated( 40 , BLOCK , UID ) : NO_CHANGES
 propertyUpdated( 40 , BLOCK , STYLE ) : NO_CHANGES
 propertyUpdated( 40 , BLOCK , LABEL ) : NO_CHANGES
@@ -882,7 +882,7 @@ propertyUpdated( 44 , BLOCK , NZCROSS ) : NO_CHANGES
 propertyUpdated( 44 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 44 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
 propertyUpdated( 44 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
-propertyUpdated( 44 , BLOCK , SIM_BLOCKTYPE ) : SUCCESS
+propertyUpdated( 44 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
 propertyUpdated( 44 , BLOCK , UID ) : NO_CHANGES
 propertyUpdated( 44 , BLOCK , STYLE ) : NO_CHANGES
 propertyUpdated( 44 , BLOCK , LABEL ) : NO_CHANGES

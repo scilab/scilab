@@ -117,9 +117,12 @@ private:
     friend class ::org_scilab_modules_scicos::Model;
 
 private:
-    Block() : BaseObject(BLOCK), parentDiagram(0), interfaceFunction(), geometry(),
-        angle(), exprs(), label(), style(), nzcross(0), nmode(0), equations(), uid(), sim(), in(), out(), ein(), eout(),
-        parameter(), state(), parentBlock(0), children(), portReference(0) {};
+    Block() : BaseObject(BLOCK), parentDiagram(0), interfaceFunction(), geometry(), angle(),
+        exprs(), label(), style(), nzcross(0), nmode(0), equations(), uid(), sim(), in(), out(), ein(), eout(),
+        parameter(), state(), parentBlock(0), children(), portReference(0)
+    {
+        sim.blocktype = BLOCKTYPE_C;
+    };
     Block(const Block& o) : BaseObject(BLOCK), parentDiagram(o.parentDiagram), interfaceFunction(o.interfaceFunction), geometry(o.geometry),
         angle(o.angle), exprs(o.exprs), label(o.label), style(o.style), nzcross(o.nzcross), nmode(o.nmode), equations(o.equations), uid(o.uid),
         sim(o.sim), in(o.in), out(o.out), ein(o.ein), eout(o.eout), parameter(o.parameter), state(o.state), parentBlock(o.parentBlock),
