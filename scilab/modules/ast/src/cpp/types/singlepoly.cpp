@@ -133,7 +133,7 @@ bool SinglePoly::setRank(int _iRank, bool bSave)
         if (getRank() != _iRank)
         {
             int piDims[2] = {_iRank + 1, 1};
-            if (m_pImgData == false)
+            if (m_pImgData == NULL)
             {
                 deleteAll();
                 create(piDims, 2, &pR, NULL);
@@ -156,7 +156,7 @@ bool SinglePoly::setRank(int _iRank, bool bSave)
         int iMinSize = Min(m_iSize, _iRank + 1);
         int piDims[2] = {_iRank + 1, 1};
 
-        if (m_pImgData == false)
+        if (m_pImgData == NULL)
         {
             create(piDims, 2, &pR, NULL);
         }
