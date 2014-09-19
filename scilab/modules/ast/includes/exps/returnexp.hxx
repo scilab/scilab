@@ -19,6 +19,7 @@
 #define AST_RETURNEXP_HXX
 
 #include "controlexp.hxx"
+#include "commentexp.hxx"
 
 namespace ast
 {
@@ -34,30 +35,27 @@ public:
     ** \param location scanner position informations
     ** \param exp the returned exp
     */
-    ReturnExp (const Location& location, Exp  *exp)
+    ReturnExp (const Location& location, Exp* exp = NULL)
         : ControlExp (location),
-          _exp (exp),
           _is_global(true)
     {
         if (exp)
         {
             _is_global = false;
+            exp->setParent(this);
+            _exps[0] = exp;
         }
-    }
+        else
+        {
+            _exps[0] = new ast::CommentExp(location, new std::wstring(L"No return !!"));
+            _exps[0]->setParent(this);
+        }
 
-    ReturnExp (const Location& location)
-        : ControlExp (location),
-          _exp (NULL),
-          _is_global(true)
-    {
     }
 
     virtual ~ReturnExp ()
     {
-        if (_exp != NULL)
-        {
-            delete _exp;
-        }
+        delete _exps[0];
     }
 
     virtual ReturnExp* clone()
@@ -96,12 +94,12 @@ public:
 public:
     const Exp &	getExp() const
     {
-        return *_exp;
+        return *_exps[0];
     }
 
     Exp &	getExp()
     {
-        return *_exp;
+        return *_exps[0];
     }
 
     bool isGlobal() const
@@ -118,7 +116,6 @@ public:
         return true;
     }
 protected:
-    Exp		*_exp;
     bool	_is_global;
 };
 

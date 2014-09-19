@@ -1,5 +1,5 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ *  Scilab (http://www.scilab.org/) - This file is part of Scilab
  *  Copyright (C) 2012-2013 - OCAMLPRO INRIA - Fabrice LE FESSANT
  *  Copyright (C) 2014 - Scilab Enterprises - Antoine ELIAS
  *
@@ -26,7 +26,7 @@ namespace ast
 class SerializeVisitor : public DummyVisitor
 {
 private :
-    ast::Exp* ast;
+    Exp* ast;
     unsigned char *buf;
     int buflen;
     int bufsize;
@@ -76,7 +76,7 @@ private :
         add_uint32(loc.last_line);
         add_uint32(loc.last_column);
     }
-    void add_ast(unsigned int code, const ast::Exp& e)
+    void add_ast(unsigned int code, const Exp& e)
     {
         add_uint8(code);
         if (saveNodeNumber)
@@ -102,24 +102,24 @@ private :
     /* ensure that we have [size] bytes in the buffer */
     void need(int size)
     {
-        if ( bufsize - buflen < size )
+        if (bufsize - buflen < size)
         {
             bufsize = 2 * bufsize + size + FAGMENT_SIZE;
             unsigned char *newbuf = (unsigned char*) malloc(bufsize * sizeof(unsigned char));
             // std::cerr << "malloc " << (void*) newbuf << " " << bufsize << " " << (void*) buf << " " << buflen << std::endl;
-            if ( buflen > 0 )
+            if (buflen > 0)
             {
                 // std::cerr << "memcpy " << (void*) newbuf << " " << bufsize << " " << (void*) buf << " " << buflen << std::endl;
                 memcpy(newbuf, buf, buflen);
             }
-            if ( buf != NULL)
+            if (buf != NULL)
             {
                 // std::cerr << "free " << (void*) newbuf << " " << bufsize << " " << (void*) buf << " " << buflen << std::endl;
                 free(buf);
             }
             else
             {
-                buflen = 8;    /* Header length. Header =  final size of buf ( 4 bytes ) + scilab version ( 4 bytes )*/
+                buflen = 8;    /* Header length. Header =  final size of buf (4 bytes) + scilab version (4 bytes)*/
             }
             buf = newbuf;
         }
@@ -180,21 +180,20 @@ private :
 
     /** @} */
 
-    void add_exps(const std::list<Exp *> exps)
+    void add_exps(const exps_t& exps)
     {
         add_uint32((unsigned int)exps.size());
-        std::list<Exp *>::const_iterator it;
-        for (it = exps.begin() ; it != exps.end() ; it++)
+        for (exps_t::const_iterator it = exps.begin(), itEnd = exps.end(); it != itEnd ; ++it)
         {
             (*it)->accept(*this);
         }
     }
 
-    void add_vars(const ast::ArrayListVar& var)
+    void add_vars(const ArrayListVar& var)
     {
-        add_uint32((unsigned int)var.getVars().size());
-        std::list<Var *>::const_iterator it;
-        for (it = var.getVars().begin() ; it != var.getVars().end() ; it++)
+        exps_t vars = var.getVars();
+        add_uint32((unsigned int)vars.size());
+        for (exps_t::const_iterator it = vars.begin (), itEnd = vars.end(); it != itEnd; ++it)
         {
             (*it)->accept(*this);
         }
@@ -205,121 +204,121 @@ private :
         add_wstring(e.getName());
     }
 
-    void add_exp(const ast::Exp* e)
+    void add_exp(const Exp* e)
     {
         e->accept(*this);
     }
 
-    void add_exp(const ast::Exp& e)
+    void add_exp(const Exp& e)
     {
         e.accept(*this);
     }
 
-    void add_OpExp_Oper(const ast::OpExp::Oper oper)
+    void add_OpExp_Oper(const OpExp::Oper oper)
     {
         int code = 253;
         switch (oper)
         {
-            case ast::OpExp::plus :
+            case OpExp::plus :
                 code = (1);
                 break;
-            case ast::OpExp::minus:
+            case OpExp::minus:
                 code = (2);
                 break;
-            case ast::OpExp::times:
+            case OpExp::times:
                 code = (3);
                 break;
-            case ast::OpExp::rdivide:
+            case OpExp::rdivide:
                 code = (4);
                 break;
-            case ast::OpExp::ldivide:
+            case OpExp::ldivide:
                 code = (5);
                 break;
-            case ast::OpExp::power:
+            case OpExp::power:
                 code = (6);
                 break;
 
-            case ast::OpExp::dottimes:
+            case OpExp::dottimes:
                 code = (7);
                 break;
-            case ast::OpExp::dotrdivide:
+            case OpExp::dotrdivide:
                 code = (8);
                 break;
-            case ast::OpExp::dotldivide:
+            case OpExp::dotldivide:
                 code = (9);
                 break;
-            case ast::OpExp::dotpower:
+            case OpExp::dotpower:
                 code = (10);
                 break;
 
-            case ast::OpExp::krontimes:
+            case OpExp::krontimes:
                 code = (11);
                 break;
-            case ast::OpExp::kronrdivide:
+            case OpExp::kronrdivide:
                 code = (12);
                 break;
-            case ast::OpExp::kronldivide:
+            case OpExp::kronldivide:
                 code = (13);
                 break;
 
-            case ast::OpExp::controltimes:
+            case OpExp::controltimes:
                 code = (14);
                 break;
-            case ast::OpExp::controlrdivide:
+            case OpExp::controlrdivide:
                 code = (15);
                 break;
-            case ast::OpExp::controlldivide:
+            case OpExp::controlldivide:
                 code = (16);
                 break;
 
-            case ast::OpExp::eq:
+            case OpExp::eq:
                 code = (17);
                 break;
-            case ast::OpExp::ne:
+            case OpExp::ne:
                 code = (18);
                 break;
-            case ast::OpExp::lt:
+            case OpExp::lt:
                 code = (19);
                 break;
-            case ast::OpExp::le:
+            case OpExp::le:
                 code = (20);
                 break;
-            case ast::OpExp::gt:
+            case OpExp::gt:
                 code = (21);
                 break;
-            case ast::OpExp::ge:
+            case OpExp::ge:
                 code = (22);
                 break;
 
-            case ast::OpExp::unaryMinus:
+            case OpExp::unaryMinus:
                 code = (23);
                 break;
 
-            case ast::OpExp::logicalAnd:
+            case OpExp::logicalAnd:
                 code = (24);
                 break;
-            case ast::OpExp::logicalOr:
+            case OpExp::logicalOr:
                 code = (25);
                 break;
-            case ast::OpExp::logicalShortCutAnd:
+            case OpExp::logicalShortCutAnd:
                 code = (26);
                 break;
-            case ast::OpExp::logicalShortCutOr:
+            case OpExp::logicalShortCutOr:
                 code = (27);
                 break;
         }
         add_uint8(code);
     }
 
-    void add_TransposeExp_Kind(const ast::TransposeExp::Kind kind)
+    void add_TransposeExp_Kind(const TransposeExp::Kind kind)
     {
         int code = 249;
         switch (kind)
         {
-            case ast::TransposeExp::_Conjugate_ :
+            case TransposeExp::_Conjugate_ :
                 code = (1);
                 break;
-            case ast::TransposeExp::_NonConjugate_:
+            case TransposeExp::_NonConjugate_:
                 code = (2);
                 break;
         }
@@ -331,20 +330,19 @@ private :
         add_uint8(b);
     }
 
-    void add_varDec(const ast::VarDec& varDec)
+    void add_varDec(const VarDec& varDec)
     {
         add_Symbol(varDec.getSymbol());
         add_exp(varDec.getInit());
     }
 
-    void add_MatrixLines(const  std::list<ast::MatrixLineExp*> *lines)
+    void add_MatrixLines(const exps_t* lines)
     {
         add_uint32((unsigned int)lines->size());
-        std::list<MatrixLineExp *>::const_iterator it;
-        for (it = lines->begin() ; it != lines->end() ; it++)
+        for (exps_t::const_iterator it = lines->begin(), itEnd = lines->end(); it != itEnd ; ++it)
         {
             add_location((*it)->getLocation());
-            add_exps((*it)->getColumns());
+            add_exps((*it)->getAs<MatrixLineExp>()->getColumns());
         }
     }
 
@@ -408,7 +406,7 @@ private :
         add_bool(hasElse);
         add_exp(& e.getTest());
         add_exp(& e.getThen());
-        if ( hasElse )
+        if (hasElse)
         {
             add_exp(& e.getElse());
         }
@@ -418,8 +416,8 @@ private :
         add_ast(15, e);
         add_location(e.getTry().getLocation());
         add_location(e.getCatch().getLocation());
-        add_exps(e.getTry().getExps());
-        add_exps(e.getCatch().getExps());
+        add_exps(e.getTry().getAs<SeqExp>()->getExps());
+        add_exps(e.getCatch().getAs<SeqExp>()->getExps());
     }
     void visit(const WhileExp& e)  /* done */
     {
@@ -431,8 +429,8 @@ private :
     {
         add_ast(17, e);
         add_location(e.getVardec().getLocation());
-        add_varDec(e.getVardec());
-        add_exp(& e.getBody());
+        add_varDec(*e.getAs<ForExp>()->getVardec().getAs<VarDec>());
+        add_exp(&e.getBody());
     }
     void visit(const BreakExp& e)  /* done */
     {
@@ -447,7 +445,7 @@ private :
         add_ast(20, e);
         bool is_global = e.isGlobal();
         add_bool(is_global);
-        if ( !is_global ) /* otherwise exp is NULL */
+        if (!is_global) /* otherwise exp is NULL */
         {
             add_exp(& e.getExp());
         }
@@ -455,25 +453,24 @@ private :
     void visit(const SelectExp& e)
     {
         add_ast(21, e);
-        ast::SeqExp *default_case = e.getDefaultCase();
-        bool has_default = default_case != NULL;
-        add_bool( has_default );
-        if ( has_default )
+        Exp *default_case = e.getDefaultCase();
+        add_bool(e.hasDefault());
+        if (e.hasDefault())
         {
             add_location(default_case->getLocation());
-            add_exps(default_case->getExps());
+            add_exps(default_case->getAs<SeqExp>()->getExps());
         }
         add_exp(e.getSelect());
 
         add_uint32((unsigned int)e.getCases()->size());
-        cases_t::const_iterator it;
-        for (it = e.getCases()->begin() ; it != e.getCases()->end() ; it++)
+        exps_t* cases = e.getCases();
+        for (exps_t::iterator it = cases->begin(), itEnd = cases->end(); it !=  itEnd ; ++it)
         {
-            const ast::CaseExp *ce = *it;
-            add_location(ce->getLocation() );
-            add_location(ce->getBody()->getLocation() );
+            const CaseExp *ce = (*it)->getAs<CaseExp>();
+            add_location(ce->getLocation());
+            add_location(ce->getBody()->getLocation());
             add_exp(ce->getTest());
-            add_exps(ce->getBody()->getExps() );
+            add_exps(ce->getBody()->getAs<SeqExp>()->getExps());
         }
     }
     void visit(const CellExp& e)  /* done */
@@ -494,7 +491,7 @@ private :
     void visit(const NotExp& e)  /* done */
     {
         add_ast(26, e);
-        add_exp(e.getExp() );
+        add_exp(e.getExp());
     }
     void visit(const TransposeExp& e)  /* done */
     {
@@ -514,15 +511,15 @@ private :
         add_location(e.getArgs().getLocation());
         add_location(e.getReturns().getLocation());
         add_exp(e.getBody());
-        add_vars(e.getArgs());
-        add_vars(e.getReturns());
+        add_vars(*e.getArgs().getAs<ArrayListVar>());
+        add_vars(*e.getReturns().getAs<ArrayListVar>());
     }
     void visit(const ListExp& e)  /* done */
     {
         add_ast(30, e);
-        add_exp(e.getStart() );
-        add_exp(e.getStep() );
-        add_exp(e.getEnd() );
+        add_exp(e.getStart());
+        add_exp(e.getStep());
+        add_exp(e.getEnd());
     }
     void visit(const AssignExp& e)
     {
@@ -552,7 +549,7 @@ private :
     void visit(const CallExp& e)  /* done */
     {
         add_ast(35, e);
-        add_exp( e.getName());
+        add_exp(e.getName());
         add_exps(e.getArgs());
     }
     void visit(const MatrixLineExp& e)  /* SHOULD NEVER HAPPEN */
@@ -562,12 +559,12 @@ private :
     void visit(const CellCallExp& e)  /* done */
     {
         add_ast(37, e);
-        add_exp( e.getName());
+        add_exp(e.getName());
         add_exps(e.getArgs());
     }
 
 public :
-    SerializeVisitor(ast::Exp* _ast) : ast(_ast), buf(NULL), buflen(0), bufsize(0), saveNodeNumber(true) {}
+    SerializeVisitor(Exp* _ast) : ast(_ast), buf(NULL), buflen(0), bufsize(0), saveNodeNumber(true) {}
 
     unsigned char* serialize(bool _saveNodeNumber = true)
     {

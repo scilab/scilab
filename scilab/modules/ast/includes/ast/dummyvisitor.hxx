@@ -32,36 +32,31 @@ protected:
 
     virtual void visit (const MatrixExp &e)
     {
-        std::list<MatrixLineExp *>::const_iterator i;
-        for (i = e.getLines().begin() ; i != e.getLines().end() ; ++i )
+        exps_t lines = e.getLines();
+        for (exps_t::const_iterator it = lines.begin(), itEnd = lines.end(); it != itEnd ; ++it)
         {
-            (*i)->accept (*this);
+            (*it)->accept (*this);
         }
     }
 
     virtual void visit (const MatrixLineExp &e)
     {
-        std::list<Exp *>::const_iterator i;
-        for (i = e.getColumns().begin() ; i != e.getColumns().end() ; ++i)
+        exps_t columns = e.getColumns();
+        for (exps_t::const_iterator it = columns.begin(), itEnd = columns.end(); it != itEnd ; ++it)
         {
-            (*i)->accept (*this);
+            (*it)->accept (*this);
         }
     }
-    /** \} */
 
     virtual void visit (const CellExp &e)
     {
-        std::list<MatrixLineExp *>::const_iterator i;
-        for (i = e.getLines().begin() ; i != e.getLines().end() ; ++i )
+        exps_t lines = e.getLines();
+        for (exps_t::const_iterator it = lines.begin(), itEnd = lines.end(); it != itEnd ; ++it)
         {
-            (*i)->accept (*this);
+            (*it)->accept (*this);
         }
     }
 
-    /** \} */
-
-    /** \name Visit Constant Expressions nodes.
-     ** \{ */
     virtual void visit (const StringExp &/*e*/)
     {
         // Nothing to follow up ...
@@ -86,10 +81,7 @@ protected:
     {
         // Nothing to follow up ...
     }
-    /** \} */
 
-    /** \name Visit Variable related nodes.
-     ** \{ */
     virtual void visit (const SimpleVar &/*e*/)
     {
         // Nothing to follow up ...
@@ -107,16 +99,12 @@ protected:
 
     virtual void visit (const ArrayListVar &e)
     {
-        std::list<Var *>::const_iterator i;
-        for (i = e.getVars().begin() ; i != e.getVars().end() ; ++i)
+        exps_t vars = e.getVars();
+        for (exps_t::const_iterator it = vars.begin (), itEnd = vars.end(); it != itEnd; ++it)
         {
-            (*i)->accept (*this);
+            (*it)->accept(*this);
         }
     }
-    /** \} */
-
-    /** \name Visit Control Expressions or Instructions nodes.
-     ** \{ */
 
     virtual void visit (const FieldExp &e)
     {
@@ -127,14 +115,12 @@ protected:
     virtual void visit(const OpExp &e)
     {
         e.getLeft().accept(*this);
-        //e.oper_get();
         e.getRight().accept(*this);
     }
 
     virtual void visit(const LogicalOpExp &e)
     {
         e.getLeft().accept(*this);
-        //e.oper_get();
         e.getRight().accept(*this);
     }
 
@@ -148,10 +134,10 @@ protected:
     {
         e.getName().accept (*this);
 
-        std::list<Exp *>::const_iterator i;
-        for (i = e.getArgs().begin (); i != e.getArgs().end (); ++i)
+        exps_t args = e.getArgs();
+        for (exps_t::const_iterator it = args.begin (), itEnd = args.end(); it != itEnd; ++it)
         {
-            (*i)->accept (*this);
+            (*it)->accept(*this);
         }
     }
 
@@ -159,10 +145,10 @@ protected:
     {
         e.getName().accept (*this);
 
-        std::list<Exp *>::const_iterator i;
-        for (i = e.getArgs().begin (); i != e.getArgs().end (); ++i)
+        exps_t args = e.getArgs();
+        for (exps_t::const_iterator it = args.begin (), itEnd = args.end(); it != itEnd; ++it)
         {
-            (*i)->accept (*this);
+            (*it)->accept (*this);
         }
     }
 
@@ -216,11 +202,12 @@ protected:
     {
         e.getSelect()->accept(*this);
 
-        ast::cases_t::iterator it;
-        for (it = e.getCases()->begin() ; it !=  e.getCases()->end() ; ++it)
+        exps_t* cases = e.getCases();
+        for (exps_t::iterator it = cases->begin(), itEnd = cases->end(); it !=  itEnd ; ++it)
         {
             (*it)->accept(*this);
         }
+
         if (e.getDefaultCase() != NULL)
         {
             e.getDefaultCase()->accept(*this);
@@ -235,28 +222,25 @@ protected:
 
     virtual void visit (const SeqExp  &e)
     {
-        std::list<Exp *>::const_iterator i;
-        for (i = e.getExps().begin (); i != e.getExps().end (); ++i)
+        for (exps_t::const_iterator it = e.getExps().begin (), itEnd = e.getExps().end(); it != itEnd; ++it)
         {
-            (*i)->accept (*this);
+            (*it)->accept(*this);
         }
     }
 
     virtual void visit (const ArrayListExp  &e)
     {
-        std::list<Exp *>::const_iterator i;
-        for (i = e.getExps().begin (); i != e.getExps().end (); ++i)
+        for (exps_t::const_iterator it = e.getExps().begin (), itEnd = e.getExps().end(); it != itEnd; ++it)
         {
-            (*i)->accept (*this);
+            (*it)->accept (*this);
         }
     }
 
     virtual void visit (const AssignListExp  &e)
     {
-        std::list<Exp *>::const_iterator i;
-        for (i = e.getExps().begin (); i != e.getExps().end (); ++i)
+        for (exps_t::const_iterator it = e.getExps().begin (), itEnd = e.getExps().end(); it != itEnd; ++it)
         {
-            (*i)->accept (*this);
+            (*it)->accept (*this);
         }
     }
     /** \} */

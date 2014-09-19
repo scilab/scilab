@@ -2109,14 +2109,13 @@ List* getPropertyTree(ast::Exp* e, List* pList)
     {
         pList = getPropertyTree(&pCall->getName(), pList);
         ast::ExecVisitor exec;
-        std::list<ast::Exp*> l = pCall->getArgs();
-        std::list<ast::Exp*>::const_iterator it;
-        for (it = l.begin() ; it != l.end() ; it++)
+        ast::exps_t l = pCall->getArgs();
+        ast::exps_t::const_iterator it;
+        for (ast::exps_t::const_iterator it = l.begin(), itEnd = l.end() ; it != itEnd ; ++it)
         {
-            ast::Exp* pArg = (*it);
             try
             {
-                pArg->accept(exec);
+                (*it)->accept(exec);
                 pList->append(exec.getResult());
                 exec.clearResult();
             }

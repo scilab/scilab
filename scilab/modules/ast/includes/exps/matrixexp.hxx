@@ -36,30 +36,33 @@ public:
     ** \param body EXP LIST intruction
     */
     MatrixExp (const Location& location,
-               std::list<MatrixLineExp *>& lines)
-        : MathExp (location),
-          _lines (&lines)
+               exps_t& lines)
+        : MathExp (location)
     {
+        for (exps_t::const_iterator it = lines.begin(), itEnd = lines.end(); it != itEnd ; ++it)
+        {
+            (*it)->setParent(this);
+            _exps.push_back(*it);
+        }
     }
 
     virtual ~MatrixExp ()
     {
-        for (std::list<MatrixLineExp *>::const_iterator i = _lines->begin() ; i != _lines->end() ; ++i)
+        for (exps_t::const_iterator it = _exps.begin(), itEnd = _exps.end(); it != itEnd ; ++it)
         {
-            delete *i;
+            delete *it;
         }
-        delete _lines;
     }
 
     virtual MatrixExp* clone()
     {
-        std::list<MatrixLineExp *>* lines = new std::list<MatrixLineExp *>;
-        for (std::list<MatrixLineExp *>::const_iterator it = getLines().begin(), end = getLines().end(); it != end; ++it)
+        exps_t lines;
+        for (exps_t::const_iterator it = getLines().begin(), itEnd = getLines().end(); it != itEnd; ++it)
         {
-            lines->push_back((*it)->clone());
+            lines.push_back((*it)->clone());
         }
 
-        MatrixExp* cloned = new MatrixExp(getLocation(), *lines);
+        MatrixExp* cloned = new MatrixExp(getLocation(), lines);
         cloned->setVerbose(isVerbose());
         return cloned;
     }
@@ -82,14 +85,14 @@ public:
     /** \name Accessors.
     ** \{ */
 public:
-    const std::list<MatrixLineExp *>& getLines() const
+    const exps_t& getLines() const
     {
-        return *_lines;
+        return _exps;
     }
 
-    std::list<MatrixLineExp *>& getLines()
+    exps_t& getLines()
     {
-        return *_lines;
+        return _exps;
     }
     /** \} */
 
@@ -102,8 +105,6 @@ public:
     {
         return true;
     }
-protected:
-    std::list<MatrixLineExp *>* _lines;
 };
 
 } // namespace ast

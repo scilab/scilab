@@ -23,11 +23,12 @@ class Result
 {
     TIType type;
     bool temp;
+    bool constant;
 
 public:
 
     Result() : type(), temp(false) { }
-    Result(const TIType & _type, const bool _temp) : type(_type), temp(_temp) { }
+    Result(const TIType & _type, const bool _temp, const bool constant) : type(_type), temp(_temp), constant(constant) { }
     Result(TIType && _type, const bool _temp) : type(_type), temp(_temp) { }
 
     inline bool isTemp() const

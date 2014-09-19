@@ -30,58 +30,71 @@ class SelectExp : public ControlExp
 public :
     SelectExp(const Location& location,
               Exp& select,
-              cases_t& cases,
-              SeqExp& defaultCase)
+              exps_t& cases,
+              Exp& defaultCase)
         : ControlExp (location),
-          _selectme (&select),
-          _cases (&cases),
-          _default (&defaultCase)
+          _hasDefault(true)
     {
+        select.setParent(this);
+        _exps.push_back(&select);
+
+        for (exps_t::const_iterator it = cases.begin(), itEnd = cases.end(); it != itEnd ; ++it)
+        {
+            (*it)->setParent(this);
+            _exps.push_back(*it);
+        }
+
+        defaultCase.setParent(this);
+        _exps.push_back(&defaultCase);
     }
 
     SelectExp(const Location& location,
               Exp& select,
-              cases_t& cases)
+              exps_t& cases)
         : ControlExp (location),
-          _selectme (&select),
-          _cases (&cases),
-          _default(NULL)
+          _hasDefault(false)
     {
+        select.setParent(this);
+        _exps.push_back(&select);
+
+        for (exps_t::const_iterator it = cases.begin(), itEnd = cases.end(); it != itEnd ; ++it)
+        {
+            (*it)->setParent(this);
+            _exps.push_back(*it);
+        }
     }
 
     ~SelectExp()
     {
-        delete _selectme;
-
-        for (cases_t::const_iterator it = _cases->begin(), itEnd = _cases->end(); it != itEnd ; ++it)
+        for (exps_t::const_iterator it = _exps.begin(), itEnd = _exps.end(); it != itEnd ; ++it)
         {
             delete *it;
-        }
-
-        delete _cases;
-
-        if (_default != NULL)
-        {
-            delete _default;
         }
     }
 
     virtual SelectExp* clone()
     {
-        cases_t* cases = new cases_t;
-        for (cases_t::const_iterator it = getCases()->begin() ; it != getCases()->end() ; it++)
+        exps_t cases;
+        exps_t::const_iterator it = ++(_exps.begin());
+        exps_t::const_iterator itEnd = _exps.end();
+        if (_hasDefault)
         {
-            cases->push_back((*it)->clone());
+            --itEnd;
+        }
+
+        for (; it != itEnd ; ++it)
+        {
+            cases.push_back((*it)->clone());
         }
 
         SelectExp* cloned = NULL;
-        if (_default != NULL)
+        if (_hasDefault)
         {
-            cloned = new SelectExp(getLocation(), *getSelect()->clone(), *cases, *getDefaultCase()->clone());
+            cloned = new SelectExp(getLocation(), *getSelect()->clone(), cases, *getDefaultCase()->clone());
         }
         else
         {
-            cloned = new SelectExp(getLocation(), *getSelect()->clone(), *cases);
+            cloned = new SelectExp(getLocation(), *getSelect()->clone(), cases);
         }
 
         cloned->setVerbose(isVerbose());
@@ -91,15 +104,37 @@ public :
 public :
     Exp* getSelect() const
     {
-        return _selectme;
+        return _exps[0];
     }
-    cases_t* getCases() const
+
+    exps_t* getCases() const
     {
-        return _cases;
+        exps_t* cases = new exps_t;
+        exps_t::const_iterator it = ++(_exps.begin());
+        exps_t::const_iterator itEnd = _exps.end();
+        if (_hasDefault)
+        {
+            --itEnd;
+        }
+
+        for (; it != itEnd ; ++it)
+        {
+            cases->push_back((*it)->clone());
+        }
+
+        return cases;
     }
-    SeqExp* getDefaultCase() const
+
+    Exp* getDefaultCase() const
     {
-        return _default;
+        if (_hasDefault)
+        {
+            return _exps.back();
+        }
+        else
+        {
+            return NULL;
+        }
     }
 
     /** \name Visitors entry point.
@@ -121,14 +156,23 @@ public:
     {
         return SELECTEXP;
     }
+
     inline bool isSelectExp() const
     {
         return true;
     }
-private :
-    Exp* _selectme;
-    cases_t* _cases;
-    SeqExp* _default;
+
+    bool hasDefault()
+    {
+        return _hasDefault;
+    }
+
+    bool hasDefault() const
+    {
+        return _hasDefault;
+    }
+
+    bool _hasDefault;
 };
 
 }

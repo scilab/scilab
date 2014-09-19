@@ -314,10 +314,10 @@ public :
     {
     }
 
-    types::typed_list* GetArgumentList(std::list<Exp *>const& _plstArg)
+    types::typed_list* GetArgumentList(exps_t const & _plstArg)
     {
         types::typed_list* pArgs = new types::typed_list();
-        for (std::list<Exp *>::const_iterator it = _plstArg.begin() ; it != _plstArg.end() ; ++it)
+        for (exps_t::const_iterator it = _plstArg.begin() ; it != _plstArg.end() ; ++it)
         {
             (*it)->accept(*this);
             if (getResultSize() > 1)
@@ -489,7 +489,7 @@ public :
 
     void visitprivate(const ArrayListExp  &e)
     {
-        std::list<Exp *>::const_iterator it;
+        exps_t::const_iterator it;
         int i = 0;
 
         std::list<InternalType*> lstIT;

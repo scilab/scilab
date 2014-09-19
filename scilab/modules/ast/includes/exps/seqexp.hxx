@@ -37,30 +37,33 @@ public:
     ** \param body EXP LIST intruction
     */
     SeqExp (const Location& location,
-            std::list<Exp *>& l_body)
-        : Exp (location),
-          _l_body (&l_body)
+            exps_t& body)
+        : Exp (location)
     {
+        for (exps_t::const_iterator it = body.begin(), itEnd = body.end(); it != itEnd ; ++it)
+        {
+            (*it)->setParent(this);
+            _exps.push_back(*it);
+        }
     }
 
     virtual ~SeqExp ()
     {
-        for (std::list<Exp *>::const_iterator i = _l_body->begin() ; i != _l_body->end() ; ++i)
+        for (exps_t::const_iterator it = _exps.begin(), itEnd = _exps.end(); it != itEnd ; ++it)
         {
-            delete *i;
+            delete *it;
         }
-        delete _l_body;
     }
 
     virtual SeqExp* clone()
     {
-        std::list<Exp *>* exp = new std::list<Exp *>;
-        for (std::list<Exp *>::const_iterator it = getExps().begin() ; it != getExps().end() ; ++it)
+        exps_t exp;
+        for (exps_t::const_iterator it = _exps.begin(), itEnd = _exps.end(); it != itEnd; ++it)
         {
-            exp->push_back((*it)->clone());
+            exp.push_back((*it)->clone());
         }
 
-        SeqExp* cloned = new SeqExp(getLocation(), *exp);
+        SeqExp* cloned = new SeqExp(getLocation(), exp);
         cloned->setVerbose(isVerbose());
         return cloned;
     }
@@ -83,19 +86,20 @@ public:
     /** \name Accessors.
     ** \{ */
 public:
-    const std::list<Exp *>&	getExps() const
+    const exps_t& getExps() const
     {
-        return *_l_body;
+        return _exps;
     }
 
-    std::list<Exp *>& gExps()
+    exps_t& getExps()
     {
-        return *_l_body;
+        return _exps;
     }
 
     void clearExps()
     {
-        _l_body->clear();
+        //no delete ?
+        _exps.clear();
     }
     /** \} */
 
@@ -108,8 +112,6 @@ public:
     {
         return true;
     }
-protected:
-    std::list<Exp *>* _l_body;
 };
 
 } // namespace ast

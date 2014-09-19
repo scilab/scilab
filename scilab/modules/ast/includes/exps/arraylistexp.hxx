@@ -36,31 +36,25 @@ public:
     ** \param body EXP LIST intruction
     */
     ArrayListExp (const Location& location,
-                  std::list<Exp *>& exps)
-        : Exp (location),
-          _exps (&exps)
+                  exps_t& exps)
+        : Exp (location)
     {
-    }
-
-    virtual ~ArrayListExp ()
-    {
-        for (std::list<Exp *>::const_iterator it = _exps->begin(), itEnd = _exps->end(); it != itEnd ; ++it)
+        for (exps_t::const_iterator it = exps.begin(), itEnd = exps.end(); it != itEnd ; ++it)
         {
-            delete *it;
+            _exps.push_back(*it);
+            (*it)->setParent(this);
         }
-
-        delete _exps;
     }
 
     virtual ArrayListExp* clone()
     {
-        std::list<Exp *>* exps = new std::list<Exp *>;
-        for (std::list<Exp *>::const_iterator it = _exps->begin(), itEnd = _exps->end(); it != itEnd ; ++it)
+        exps_t exps;
+        for (exps_t::const_iterator it = _exps.begin(), itEnd = _exps.end(); it != itEnd ; ++it)
         {
-            exps->push_back((*it)->clone());
+            exps.push_back((*it)->clone());
         }
 
-        ArrayListExp* cloned = new ArrayListExp(getLocation(), *exps);
+        ArrayListExp* cloned = new ArrayListExp(getLocation(), exps);
         cloned->setVerbose(isVerbose());
         return cloned;
     }
@@ -83,14 +77,14 @@ public:
     /** \name Accessors.
     ** \{ */
 public:
-    const std::list<Exp *>&	getExps() const
+    const exps_t& getExps() const
     {
-        return *_exps;
+        return _exps;
     }
 
-    std::list<Exp *>&	getExps()
+    exps_t&	getExps()
     {
-        return *_exps;
+        return _exps;
     }
     /** \} */
 
@@ -103,8 +97,6 @@ public:
     {
         return true;
     }
-protected:
-    std::list<Exp *>* _exps;
 };
 
 } // namespace ast

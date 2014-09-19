@@ -41,11 +41,23 @@ public:
     ListExp (const Location& location,
              Exp& start, Exp& step, Exp& end, bool explicitStep = false)
         : Exp (location),
-          _start (&start),
-          _step (&step),
-          _end (&end),
           _explicitStep(explicitStep)
     {
+        start.setParent(this);
+        step.setParent(this);
+        end.setParent(this);
+        _exps[0] = &start;
+        _exps[1] = &step;
+        _exps[2] = &end;
+
+        values[0] = std::numeric_limits<double>::quiet_NaN();
+        values[1] = std::numeric_limits<double>::quiet_NaN();
+        values[2] = std::numeric_limits<double>::quiet_NaN();
+
+        is_values_int[0] = false;
+        is_values_int[1] = false;
+        is_values_int[2] = false;
+
     }
 
     /** \brief Destroy a Operation Expression node.
@@ -53,9 +65,9 @@ public:
     ** Delete left and right, see constructor. */
     virtual ~ListExp ()
     {
-        delete _start;
-        delete _step;
-        delete _end;
+        delete _exps[0];
+        delete _exps[1];
+        delete _exps[2];
     }
     /** \} */
 
@@ -88,34 +100,46 @@ public:
     /** \brief Return the expression (read only) */
     const Exp& getStart () const
     {
-        return *_start;
+        return *_exps[0];
     }
     /** \brief Return the expression (read and write) */
     Exp& getStart ()
     {
-        return *_start;
+        return *_exps[0];
     }
 
     /** \brief Return the expression (read only) */
     const Exp& getStep () const
     {
-        return *_step;
+        return *_exps[1];
     }
     /** \brief Return the expression (read and write) */
     Exp& getStep ()
     {
-        return *_step;
+        return *_exps[1];
     }
 
     /** \brief Return the expression (read only) */
     const Exp& getEnd () const
     {
-        return *_end;
+        return *_exps[2];
     }
     /** \brief Return the expression (read and write) */
     Exp& getEnd ()
     {
-        return *_end;
+        return *_exps[2];
+    }
+
+    inline void setValues(double start, double step, double end)
+    {
+        values[0] = start;
+        values[1] = step;
+        values[2] = end;
+    }
+
+    inline const double * getValues() const
+    {
+        return values;
     }
 
     /** \brief Return if expression has explicit step defined */
@@ -135,12 +159,8 @@ public:
     }
 
 protected:
-    /** \brief start expression of the list. */
-    Exp* _start;
-    /** \brief step expression of the list. */
-    Exp* _step;
-    /** \brief end expression of the list. */
-    Exp* _end;
+    double values[3];
+    bool is_values_int[3];
     /** \brief has list explicit step. */
     bool _explicitStep;
 };

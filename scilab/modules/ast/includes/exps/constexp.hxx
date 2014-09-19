@@ -31,6 +31,11 @@ public:
     virtual ~ConstExp ()
     {
     }
+
+    inline bool isConstExp() const
+    {
+        return true;
+    }
 };
 } // namespace ast
 #endif

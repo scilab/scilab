@@ -1512,10 +1512,9 @@ int mexEvalString(const char *name)
     {
         ConfigVariable::setPromptMode(-1);
     }
-    std::list<Exp *>::iterator j;
-    std::list<Exp *>LExp = ((SeqExp*)pExp)->getExps();
+    ast::exps_t LExp = pExp->getAs<SeqExp>()->getExps();
 
-    for (j = LExp.begin() ; j != LExp.end() ; j++)
+    for (ast::exps_t::iterator j = LExp.begin(), itEnd = LExp.end() ;j != itEnd ; ++j)
     {
         try
         {

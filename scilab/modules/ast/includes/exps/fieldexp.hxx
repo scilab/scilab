@@ -44,10 +44,12 @@ public:
     ** \li "2097" is the initial value of the field */
     FieldExp (const Location& location,
               Exp& head, Exp& tail)
-        : Exp (location),
-          _head (&head),
-          _tail (&tail)
+        : Exp (location)
     {
+        head.setParent(this);
+        tail.setParent(this);
+        _exps[0] = &head;
+        _exps[1] = &tail;
     }
 
     /** \brief Destroy a Field Expression node.
@@ -55,8 +57,8 @@ public:
     ** Delete name and init (see constructor). */
     virtual ~FieldExp()
     {
-        delete _head;
-        delete _tail;
+        delete _exps[0];
+        delete _exps[1];
     }
     /** \}*/
 
@@ -89,25 +91,25 @@ public:
     /** \brief Return the name of the field (read only). */
     const Exp* getHead() const
     {
-        return _head;
+        return _exps[0];
     }
 
     /** \brief Return the initial value of the field (read only). */
     const Exp* getTail() const
     {
-        return _tail;
+        return _exps[1];
     }
 
     /** \brief Return the initial value of the field (read and write). */
     Exp* getHead()
     {
-        return _head;
+        return _exps[0];
     }
 
     /** \brief Return the initial value of the field (read and write). */
     Exp* getTail()
     {
-        return _tail;
+        return _exps[1];
     }
     /** \} */
 
@@ -115,15 +117,12 @@ public:
     {
         return FIELDEXP;
     }
+
     inline bool isFieldExp() const
     {
         return true;
     }
 protected:
-    /** \brief Name of the field. */
-    Exp* _head;
-    /** \brief Initial value of the field. */
-    Exp* _tail;
 };
 
 /** \brief Define shortand type for Field Expression list. */

@@ -23,17 +23,19 @@ class CaseExp : public ControlExp
 public :
     CaseExp(const Location& location,
             Exp& test,
-            SeqExp& body) :
-        ControlExp (location),
-        _test (&test),
-        _body (&body)
+            Exp& body) :
+        ControlExp (location)
     {
+        test.setParent(this);
+        body.setParent(this);
+        _exps.push_back(&test);
+        _exps.push_back(&body);
     }
 
     ~CaseExp()
     {
-        delete _test;
-        delete _body;
+        delete _exps[0];
+        delete _exps[1];
     }
 
     virtual CaseExp* clone()
@@ -60,28 +62,24 @@ public:
 public :
     Exp* getTest() const
     {
-        return _test;
+        return _exps[0];
     }
-    SeqExp* getBody() const
+
+    Exp* getBody() const
     {
-        return _body;
+        return _exps[1];
     }
 
     virtual ExpType getType()
     {
         return CASEEXP;
     }
+
     inline bool isCaseExp() const
     {
         return true;
     }
-private :
-    Exp* _test;
-    SeqExp *_body;
 };
-
-/** \brief Define a shorthand for list of CaseExp* manipulation. */
-typedef std::list<CaseExp *> cases_t;
 }
 
 #endif /* !__AST_CASE_EXP_HXX__ */

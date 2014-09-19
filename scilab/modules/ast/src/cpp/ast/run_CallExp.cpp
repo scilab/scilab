@@ -15,7 +15,7 @@
 template<class T>
 void RunVisitorT<T>::visitprivate(const CallExp &e)
 {
-    std::list<Exp *>::const_iterator itExp;
+    exps_t::const_iterator itExp;
 
     e.getName().accept(*this);
 
@@ -40,7 +40,8 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
         }
 
         //get function arguments
-        for (itExp = e.getArgs().begin (); itExp != e.getArgs().end (); ++itExp)
+        exps_t args = e.getArgs();
+        for (itExp = args.begin (); itExp != args.end (); ++itExp)
         {
             if ((*itExp)->isAssignExp())
             {
@@ -58,7 +59,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                     throw ast::ScilabError(os.str(), 999, e.getLocation());
                 }
 
-                SimpleVar* pVar = static_cast<SimpleVar*>(pL);
+                SimpleVar* pVar = pL->getAs<SimpleVar>();
                 Exp* pR = &pAssign->getRightExp();
                 pR->accept(*this);
                 InternalType* pITR = getResult();

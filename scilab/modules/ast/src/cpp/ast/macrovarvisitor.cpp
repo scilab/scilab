@@ -28,10 +28,10 @@ void MacrovarVisitor::visit(const CallExp &e)
     e.getName().accept (*this);
     add();
 
-    std::list<Exp *>::const_iterator i;
-    for (i = e.getArgs().begin (); i != e.getArgs().end (); ++i)
+    exps_t args = e.getArgs();
+    for (exps_t::const_iterator it = args.begin (), itEnd = args.end(); it != itEnd; ++it)
     {
-        (*i)->accept (*this);
+        (*it)->accept (*this);
         add();
     }
 }

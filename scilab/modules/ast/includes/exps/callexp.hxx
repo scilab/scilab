@@ -35,33 +35,28 @@ public:
     */
     CallExp (const Location& location,
              Exp& name,
-             std::list<Exp *>& args) :
-        Exp (location),
-        _name (&name),
-        _args (&args)
+             exps_t& args) :
+        Exp (location)
     {
-    }
+        _exps.push_back(&name);
+        name.setParent(this);
 
-    virtual ~CallExp ()
-    {
-        for (std::list<Exp *>::const_iterator it = _args->begin(), itEnd = _args->end(); it != itEnd; ++it)
+        for (exps_t::const_iterator it = args.begin(), itEnd = args.end(); it != itEnd; ++it)
         {
-            delete *it;
+            (*it)->setParent(this);
+            _exps.push_back(*it);
         }
-
-        delete _args;
-        delete _name;
     }
 
     virtual CallExp* clone()
     {
-        std::list<Exp *>* args = new std::list<Exp *>;
-        for (std::list<Exp *>::const_iterator it = _args->begin() ; it != _args->end() ; ++it)
+        exps_t args;
+        for (exps_t::const_iterator it = ++(_exps.begin()); it != _exps.end() ; ++it)
         {
-            args->push_back((*it)->clone());
+            args.push_back((*it)->clone());
         }
 
-        CallExp* cloned = new CallExp(getLocation(), *getName().clone(), *args);
+        CallExp* cloned = new CallExp(getLocation(), *getName().clone(), args);
         cloned->setVerbose(isVerbose());
         return cloned;
     }
@@ -82,29 +77,33 @@ public:
 
     // \brief Accessors.
 public:
-    const Exp&	getName() const
+    const Exp& getName() const
     {
-        return *_name;
+        return *_exps[0];
     }
 
-    Exp&	getName()
+    Exp& getName()
     {
-        return *_name;
+        return *_exps[0];
     }
 
-    void setName (Exp *name)
+    void setName(Exp *name)
     {
-        _name = name;
+        _exps[0] = name;
     }
 
-    const std::list<Exp *>&	getArgs() const
+    const exps_t& getArgs() const
     {
-        return *_args;
+        exps_t* args = new exps_t;
+        std::copy(++(_exps.begin()), _exps.end(), args->begin());
+        return *args;
     }
 
-    std::list<Exp *>&	getArgs()
+    exps_t& getArgs()
     {
-        return *_args;
+        exps_t* args = new exps_t;
+        std::copy(++(_exps.begin()), _exps.end(), args->begin());
+        return *args;
     }
 
     virtual ExpType getType()
@@ -117,8 +116,6 @@ public:
     }
 
 protected:
-    Exp* _name;
-    std::list<Exp *>* _args;
 };
 
 } // namespace ast

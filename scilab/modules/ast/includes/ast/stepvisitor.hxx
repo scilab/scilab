@@ -25,14 +25,11 @@ class EXTERN_AST StepVisitor : public RunVisitorT<StepVisitor>
 {
     void visit(const SeqExp &e)
     {
-        std::list<Exp*>::const_iterator it;
-        for (it = e.getExps().begin() ; it != e.getExps().end() ; ++it)
+        for (exps_t::const_iterator it = e.getExps().begin (), itEnd = e.getExps().end(); it != itEnd; ++it)
         {
             PrintVisitor *pv = new PrintVisitor(std::wcerr);
             (*it)->accept(*pv);
             std::wcerr << std::endl;
-            //ExecVisitor *pe = new ast::ExecVisitor();
-            //(*it)->accept(*pe);
         }
         visitprivate(e);
     }

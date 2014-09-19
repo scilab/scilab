@@ -19,11 +19,15 @@
 #define AST_EXP_HXX
 
 #include <list>
+#include <vector>
 
 #include "ast.hxx"
 
 namespace ast
 {
+
+/** \brief Define a shorthand for list of Exp* manipulation. */
+typedef std::vector<Exp *> exps_t;
 
 /** \brief Abstract an Expression node. */
 class Exp : public Ast
@@ -48,6 +52,10 @@ public:
     /** \brief Destroys an Expression node. */
     virtual ~Exp ()
     {
+        for (exps_t::const_iterator it = _exps.begin(), itEnd = _exps.end(); it != itEnd; ++it)
+        {
+            delete *it;
+        }
     }
     /** \} */
 
@@ -173,6 +181,7 @@ public:
         BOOLEXP,
         STRINGEXP,
         COMMENTEXP,
+        CONSTEXP,
         NILEXP,
         CALLEXP,
         CELLCALLEXP,
@@ -211,6 +220,12 @@ public:
         return static_cast<T*>(this);
     }
 
+    template <class T>
+    inline const T* getAs(void) const
+    {
+        return static_cast<const T*>(this);
+    }
+
     inline virtual bool isSimpleVar() const
     {
         return false;
@@ -247,6 +262,11 @@ public:
     }
 
     inline virtual bool isCommentExp() const
+    {
+        return false;
+    }
+
+    inline virtual bool isConstExp() const
     {
         return false;
     }
@@ -394,11 +414,10 @@ private:
     bool _bReturnable;
     bool _bContinue;
     bool _bContinuable;
+protected:
+    exps_t _exps;
+    Exp* _original;
 };
-
-/** \brief Define a shorthand for list of Exp* manipulation. */
-typedef std::list<Exp *> exps_t;
-
 } // namespace ast
 
 #endif // !AST_EXP_HXX

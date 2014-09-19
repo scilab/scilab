@@ -42,11 +42,13 @@ public:
     ** \li "print("WipeOut")" is the body
     */
     ForExp (const Location& location,
-            VarDec& vardec, Exp& body)
-        : ControlExp (location),
-          _vardec (&vardec),
-          _body (&body)
+            Exp& vardec, Exp& body)
+        : ControlExp (location)
     {
+        vardec.setParent(this);
+        body.setParent(this);
+        _exps[0] = &vardec;
+        _exps[1] = &body;
     }
 
     /** \brief Destroy a For Expression node.
@@ -54,8 +56,8 @@ public:
     ** Delete vardec, hi and body (see constructor). */
     virtual ~ForExp ()
     {
-        delete  _vardec;
-        delete  _body;
+        delete _exps[0];
+        delete _exps[1];
     }
     /** \} */
 
@@ -86,25 +88,25 @@ public:
     ** \{ */
 public:
     /** \brief Return the implicit variable declaration (read only) */
-    VarDec& getVardec() const
+    Exp& getVardec() const
     {
-        return *_vardec;
+        return *_exps[0];
     }
     /** \brief Return the implicit variable declaration (read and write) */
-    VarDec& getVardec()
+    Exp& getVardec()
     {
-        return *_vardec;
+        return *_exps[0];
     }
 
     /** \brief Return the body of the loop (read only) */
     const Exp& getBody() const
     {
-        return *_body;
+        return *_exps[1];
     }
     /** \brief Return the body of the loop (read and write) */
     Exp& getBody()
     {
-        return *_body;
+        return *_exps[1];
     }
     /** \} */
 
@@ -116,12 +118,6 @@ public:
     {
         return true;
     }
-
-protected:
-    /** \brief Implicit variable declaration. */
-    VarDec* _vardec;
-    /** \brief Instructions executed in the loop. */
-    Exp* _body;
 };
 
 } // namespace ast

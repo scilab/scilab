@@ -39,20 +39,20 @@ public:
     */
     CellCallExp (const Location& location,
                  Exp& name,
-                 std::list<Exp *>& args)
+                 exps_t& args)
         : CallExp(location, name, args)
     {
     }
 
     virtual CellCallExp* clone()
     {
-        std::list<Exp *>* args = new std::list<Exp *>;
-        for (std::list<Exp *>::const_iterator it = _args->begin() ; it != _args->end() ; ++it)
+        exps_t args;
+        for (exps_t::const_iterator it = ++(_exps.begin()); it != _exps.end() ; ++it)
         {
-            args->push_back((*it)->clone());
+            args.push_back((*it)->clone());
         }
 
-        CellCallExp* cloned = new CellCallExp(getLocation(), *getName().clone(), *args);
+        CellCallExp* cloned = new CellCallExp(getLocation(), *getName().clone(), args);
         cloned->setVerbose(isVerbose());
         return cloned;
     }

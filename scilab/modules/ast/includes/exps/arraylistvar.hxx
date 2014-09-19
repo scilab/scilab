@@ -36,31 +36,25 @@ public:
     ** \param body VAR LIST intruction
     */
     ArrayListVar (const Location& location,
-                  std::list<Var *>& vars)
-        : Var (location),
-          _vars (&vars)
+                  exps_t& vars)
+        : Var (location)
     {
-    }
-
-    virtual ~ArrayListVar ()
-    {
-        for (std::list<Var *>::iterator it = _vars->begin(), itEnd = _vars->end(); it != itEnd ; ++it)
+        for (exps_t::iterator it = vars.begin(), itEnd = vars.end(); it != itEnd ; ++it)
         {
-            delete *it;
+            (*it)->setParent(this);
+            _exps.push_back(*it);
         }
-
-        delete _vars;
     }
 
     virtual ArrayListVar* clone()
     {
-        std::list<Var *>* vars = new std::list<Var *>;
-        for (std::list<Var *>::const_iterator it = _vars->begin(), itEnd = _vars->end(); it != itEnd ; ++it)
+        exps_t exps;
+        for (exps_t::const_iterator it = _exps.begin(), itEnd = _exps.end(); it != itEnd ; ++it)
         {
-            vars->push_back(static_cast<Var*>((*it)->clone()));
+            exps.push_back((*it)->clone());
         }
 
-        ArrayListVar* cloned = new ArrayListVar(getLocation(), *vars);
+        ArrayListVar* cloned = new ArrayListVar(getLocation(), exps);
         cloned->setVerbose(isVerbose());
         return cloned;
     }
@@ -84,14 +78,14 @@ public:
     /** \name Accessors.
     ** \{ */
 public:
-    const std::list<Var *>&	getVars() const
+    const exps_t& getVars() const
     {
-        return *_vars;
+        return _exps;
     }
 
-    std::list<Var *>& getVars()
+    exps_t& getVars()
     {
-        return *_vars;
+        return _exps;
     }
     /** \} */
 
@@ -105,7 +99,6 @@ public:
     }
 
 protected:
-    std::list<Var *>* _vars;
 };
 
 } // namespace ast

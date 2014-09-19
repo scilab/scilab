@@ -191,14 +191,13 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
             FILE* f = os_wfopen(stFullPathBin.c_str(), L"wb");
             fwrite(serialAst, 1, size, f);
             fclose(f);
-            std::list<ast::Exp *>::iterator j;
-            std::list<ast::Exp *>LExp = ((ast::SeqExp*)parser.getTree())->getExps();
 
-            for (j = LExp.begin() ; j != LExp.end() ; j++)
+            ast::exps_t LExp = parser.getTree()->getAs<ast::SeqExp>()->getExps();
+            for (ast::exps_t::iterator j = LExp.begin(), itEnd = LExp.end() ; j != itEnd ; ++j)
             {
-                ast::FunctionDec* pFD = dynamic_cast<ast::FunctionDec*>(*j);
-                if (pFD)
+                if ((*j)->isFunctionDec())
                 {
+                    ast::FunctionDec* pFD = (*j)->getAs<ast::FunctionDec>();
                     if (AddMacroToXML(pWriter, pair<wstring, wstring>(pFD->getSymbol().getName(), pstPathBin)) == false)
                     {
                         os_swprintf(pstVerbose, 65535, _W("%ls: Warning: %ls information cannot be added to file %ls. File ignored\n").c_str(), L"genlib", pFD->getSymbol().getName().c_str(), pstPath[k]);

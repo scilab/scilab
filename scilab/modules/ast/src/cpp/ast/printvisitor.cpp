@@ -19,11 +19,12 @@ namespace ast
  ** \{ */
 void PrintVisitor::visit (const MatrixExp &e)
 {
-    std::list<MatrixLineExp *>::const_iterator	i, j;
+    ast::exps_t::const_iterator	i, j;
     *ostr << SCI_OPEN_MATRIX;
     ++indent;
     this->is_last_matrix_line = false;
-    for (i = e.getLines().begin() ; i != e.getLines().end() ; )
+    ast::exps_t lines = e.getLines();
+    for (i = lines.begin() ; i != lines.end() ; )
     {
         j = i;
         if (++j == e.getLines().end())
@@ -45,10 +46,11 @@ void PrintVisitor::visit (const MatrixExp &e)
 
 void PrintVisitor::visit (const MatrixLineExp &e)
 {
-    std::list<Exp *>::const_iterator        i;
-    bool                                    last_column_is_comment = false;
+    ast::exps_t::const_iterator	i, j;
+    bool last_column_is_comment = false;
 
-    for (i = e.getColumns().begin() ; i != e.getColumns().end() ; )
+    ast::exps_t cols = e.getColumns();
+    for (i = cols.begin() ; i != cols.end() ; )
     {
         (*i)->accept (*this);
         if (dynamic_cast<ast::CommentExp*>(*i) != NULL)
@@ -75,10 +77,12 @@ void PrintVisitor::visit (const MatrixLineExp &e)
  ** \{ */
 void PrintVisitor::visit (const CellExp &e)
 {
-    std::list<MatrixLineExp *>::const_iterator	i;
+    ast::exps_t::const_iterator	i, j;
+
     *ostr << SCI_OPEN_CELL;
     ++indent;
-    for (i = e.getLines().begin() ; i != e.getLines().end() ; )
+    ast::exps_t lines = e.getLines();
+    for (i = lines.begin() ; i != lines.end() ; )
     {
         (*i)->accept (*this);
         if (++i != e.getLines().end())
@@ -161,11 +165,11 @@ void PrintVisitor::visit (const DollarVar &/*e*/)
 
 void PrintVisitor::visit (const ArrayListVar &e)
 {
-    std::list<Var *>::const_iterator	i;
-    for (i = e.getVars().begin() ; i != e.getVars().end() ; )
+    exps_t vars = e.getVars();
+    for (exps_t::const_iterator it = vars.begin (), itEnd = vars.end(); it != itEnd; ++it)
     {
-        (*i)->accept (*this);
-        if (++i != e.getVars().end())
+        (*it)->accept (*this);
+        if (++it != e.getVars().end())
         {
             *ostr << ", ";
         }
@@ -350,12 +354,11 @@ void PrintVisitor::visit(const CellCallExp &e)
 {
     e.getName().accept (*this);
     *ostr << SCI_OPEN_CELL;
-    std::list<Exp *>::const_iterator	i;
-
-    for (i = e.getArgs().begin (); i != e.getArgs().end ();)
+    exps_t args = e.getArgs();
+    for (exps_t::const_iterator it = args.begin (), itEnd = args.end(); it != itEnd; ++it)
     {
-        (*i)->accept (*this);
-        if (++i != e.getArgs().end ())
+        (*it)->accept (*this);
+        if (++it != e.getArgs().end ())
         {
             *ostr << SCI_COMMA << " ";
         }
@@ -369,10 +372,11 @@ void PrintVisitor::visit(const CallExp &e)
     *ostr << SCI_OPEN_CALL;
     std::list<Exp *>::const_iterator	i;
 
-    for (i = e.getArgs().begin(); i != e.getArgs().end();)
+    exps_t args = e.getArgs();
+    for (exps_t::const_iterator it = args.begin (), itEnd = args.end(); it != itEnd; ++it)
     {
-        (*i)->accept (*this);
-        if (++i != e.getArgs().end())
+        (*it)->accept (*this);
+        if (++it != e.getArgs().end())
         {
             *ostr << SCI_COMMA << " ";
         }
@@ -471,12 +475,12 @@ void PrintVisitor::visit (const SelectExp &e)
     e.getSelect()->accept(*this);
     *ostr << SCI_CLOSE_TEST << std::endl;
     ++indent;
-    cases_t::const_iterator it;
-    for (it = e.getCases()->begin() ; it != e.getCases()->end() ; ++it)
+    exps_t* cases = e.getCases();
+    for (exps_t::iterator it = cases->begin(), itEnd = cases->end(); it !=  itEnd ; ++it)
     {
         (*it)->accept (*this);
     }
-    if (e.getDefaultCase() != NULL)
+    if (e.hasDefault())
     {
         this->apply_indent();
         *ostr << SCI_DEFAULT_CASE << std::endl;
@@ -503,12 +507,11 @@ void PrintVisitor::visit (const CaseExp &e)
 
 void PrintVisitor::visit (const SeqExp  &e)
 {
-    std::list<Exp *>::const_iterator	i;
-    for (i = e.getExps().begin (); i != e.getExps().end (); ++i)
+    for (exps_t::const_iterator it = e.getExps().begin (), itEnd = e.getExps().end(); it != itEnd; ++it)
     {
         this->apply_indent();
-        (*i)->accept (*this);
-        if (!(*i)->isVerbose())
+        (*it)->accept (*this);
+        if (!(*it)->isVerbose())
         {
             *ostr << ";";
         }
@@ -518,12 +521,11 @@ void PrintVisitor::visit (const SeqExp  &e)
 
 void PrintVisitor::visit (const ArrayListExp  &e)
 {
-    std::list<Exp *>::const_iterator	i;
     *ostr << SCI_LPAREN;
-    for (i = e.getExps().begin (); i != e.getExps().end ();)
+    for (exps_t::const_iterator it = e.getExps().begin (), itEnd = e.getExps().end(); it != itEnd; ++it)
     {
-        (*i)->accept (*this);
-        if (++i != e.getExps().end ())
+        (*it)->accept (*this);
+        if (++it != e.getExps().end ())
         {
             *ostr << SCI_COMMA << " ";
         }
@@ -533,12 +535,11 @@ void PrintVisitor::visit (const ArrayListExp  &e)
 
 void PrintVisitor::visit (const AssignListExp  &e)
 {
-    std::list<Exp *>::const_iterator	i;
     *ostr << SCI_LBRACK;
-    for (i = e.getExps().begin (); i != e.getExps().end ();)
+    for (exps_t::const_iterator it = e.getExps().begin (), itEnd = e.getExps().end(); it != itEnd; ++it)
     {
-        (*i)->accept (*this);
-        if (++i != e.getExps().end ())
+        (*it)->accept (*this);
+        if (++it != e.getExps().end ())
         {
             *ostr << SCI_COMMA << " ";
         }
@@ -588,20 +589,20 @@ void PrintVisitor::visit (const FunctionDec  &e)
     *ostr << SCI_FUNCTION << " ";
 
     // First ask if there are some return values.
-    if (e.getReturns().getVars().size() > 1)
+    if (e.getReturns().getAs<ArrayListVar>()->getVars().size() > 1)
     {
         *ostr << SCI_OPEN_RETURNS;
     }
 
-    visit(e.getReturns());
+    e.getReturns().accept(*this);
 
-    if (e.getReturns().getVars().size() > 1)
+    if (e.getReturns().getAs<ArrayListVar>()->getVars().size() > 1)
     {
         *ostr << SCI_CLOSE_RETURNS;
     }
 
     *ostr << " ";
-    if (e.getReturns().getVars().size() > 0)
+    if (e.getReturns().getAs<ArrayListVar>()->getVars().size() > 0)
     {
         *ostr << SCI_ASSIGN << " ";
     }
@@ -611,7 +612,7 @@ void PrintVisitor::visit (const FunctionDec  &e)
 
     // Then get function args
     *ostr << SCI_OPEN_ARGS;
-    visit(e.getArgs());
+    e.getArgs().accept(*this);
     *ostr << SCI_CLOSE_ARGS << std::endl;
 
     // Now print function body
@@ -642,7 +643,7 @@ void PrintVisitor::visit(const ListExp &e)
 }
 /** \} */
 
-void       	PrintVisitor::apply_indent()
+void PrintVisitor::apply_indent()
 {
     int i;
     for (i = 0; i < indent; ++i)
@@ -651,12 +652,12 @@ void       	PrintVisitor::apply_indent()
     }
 }
 
-void	PrintVisitor::enable_force_parenthesis()
+void PrintVisitor::enable_force_parenthesis()
 {
     force_parenthesis = true;
 }
 
-void	PrintVisitor::set_force_parenthesis(bool new_state)
+void PrintVisitor::set_force_parenthesis(bool new_state)
 {
     force_parenthesis = new_state;
 }

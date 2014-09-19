@@ -51,9 +51,10 @@ public:
             symbol::Symbol& name, Exp& init)
         : Dec (location),
           _name (name),
-          _init (&init),
           _stack(NULL)
     {
+        init.setParent(this);
+        _exps[0] = &init;
     }
 
     /** \brief Destroy a Variable Declaration node.
@@ -62,7 +63,7 @@ public:
     virtual ~VarDec()
     {
         delete &_name;
-        delete _init;
+        delete _exps[0];
     }
     /** \} */
 
@@ -110,12 +111,12 @@ public:
     /** \brief Return the initial expression value (read only). */
     const Exp& getInit (void) const
     {
-        return *_init;
+        return *_exps[0];
     }
     /** \brief Return the initial expression value (read and write). */
     Exp& getInit (void)
     {
-        return *_init;
+        return *_exps[0];
     }
 
     analysis::ForList64 getListInfo() const
@@ -151,8 +152,6 @@ protected:
     /** \brief Name of the declared variable. */
     symbol::Symbol& _name;
     symbol::Variable* _stack;
-    /** \brief The initial value (expression) assigned to the variable. */
-    Exp* _init;
 };
 
 } // namespace ast

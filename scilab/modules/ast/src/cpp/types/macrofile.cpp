@@ -92,12 +92,17 @@ bool MacroFile::parse(void)
         //find FunctionDec
         ast::FunctionDec* pFD = NULL;
 
-        std::list<ast::Exp *>::iterator j;
-        std::list<ast::Exp *>LExp = ((ast::SeqExp*)tree)->getExps();
+        ast::exps_t::iterator j;
+        ast::exps_t LExp = tree->getAs<ast::SeqExp>()->getExps();
 
         for (j = LExp.begin() ; j != LExp.end() ; j++)
         {
-            pFD = dynamic_cast<ast::FunctionDec*>(*j);
+            if ((*j)->isFunctionDec() == false)
+            {
+                continue;
+            }
+
+            pFD = (*j)->getAs<ast::FunctionDec>();
             if (pFD) // &&	pFD->getName() == m_stName
             {
                 symbol::Context* pContext = symbol::Context::getInstance();
@@ -107,22 +112,23 @@ bool MacroFile::parse(void)
                     MacroFile* pMacro = pContext->getFunction(pFD->getSymbol())->getAs<MacroFile>();
                     if (pMacro->m_pMacro == NULL)
                     {
-                        std::list<ast::Var *>::const_iterator i;
 
                         //get input parameters list
                         std::list<symbol::Variable*> *pVarList = new std::list<symbol::Variable*>();
-                        ast::ArrayListVar *pListVar = (ast::ArrayListVar *)&pFD->getArgs();
-                        for (i = pListVar->getVars().begin() ; i != pListVar->getVars().end() ; i++)
+                        ast::ArrayListVar *pListVar = pFD->getArgs().getAs<ast::ArrayListVar>();
+                        ast::exps_t vars = pListVar->getVars();
+                        for (ast::exps_t::const_iterator it = vars.begin(), itEnd = vars.end() ; it != itEnd ; ++it)
                         {
-                            pVarList->push_back(((ast::SimpleVar*)(*i))->getStack());
+                            pVarList->push_back((*it)->getAs<ast::SimpleVar>()->getStack());
                         }
 
                         //get output parameters list
                         std::list<symbol::Variable*> *pRetList = new std::list<symbol::Variable*>();
-                        ast::ArrayListVar *pListRet = (ast::ArrayListVar *)&pFD->getReturns();
-                        for (i = pListRet->getVars().begin() ; i != pListRet->getVars().end() ; i++)
+                        ast::ArrayListVar *pListRet = pFD->getReturns().getAs<ast::ArrayListVar>();
+                        ast::exps_t recs = pListRet->getVars();
+                        for (ast::exps_t::const_iterator it = recs.begin(), itEnd = recs.end(); it != itEnd ; ++it)
                         {
-                            pRetList->push_back(((ast::SimpleVar*)(*i))->getStack());
+                            pRetList->push_back((*it)->getAs<ast::SimpleVar>()->getStack());
                         }
 
                         pMacro->m_pMacro = new Macro(m_wstName, *pVarList, *pRetList, (ast::SeqExp&)pFD->getBody(), m_wstModule);

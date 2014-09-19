@@ -237,9 +237,9 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
             return;
         }
 
-        AssignListExp *pList = dynamic_cast<AssignListExp*>(&e.getLeftExp());
-        if (pList)
+        if (e.getLeftExp().isAssignListExp())
         {
+            AssignListExp *pList = e.getLeftExp().getAs<AssignListExp>();
             //[x,y] = ?
             int iLhsCount = (int)pList->getExps().size();
 
@@ -256,9 +256,10 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                 throw ast::ScilabError(os.str(), 999, e.getRightExp().getLocation());
             }
 
-            std::list<Exp *>::const_reverse_iterator it;
+            exps_t::const_reverse_iterator it;
             int i = (int)iLhsCount - 1;
-            for (it = pList->getExps().rbegin() ; it != pList->getExps().rend() ; it++, i--)
+            exps_t exps = pList->getExps();
+            for (it = exps.rbegin() ; it != exps.rend() ; it++, i--)
             {
                 //create a new AssignExp and run it
                 types::InternalType* pIT = exec.getResult(i);

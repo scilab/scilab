@@ -19,6 +19,7 @@
 #include "timedvisitor.hxx"
 #include "debugvisitor.hxx"
 #include "stepvisitor.hxx"
+#include "AnalysisVisitor.hxx"
 #include "visitor_common.hxx"
 
 #include "scilabWrite.hxx"
@@ -140,6 +141,25 @@ void execAstTask(ast::Exp* tree, bool serialize, bool timed, bool ASTtimed, bool
         return;
     }
 
+    ast::Exp* newTree = NULL;
+    if (serialize)
+    {
+        if (timed)
+        {
+            newTree = callTyper(tree, L"tasks");
+        }
+        else
+        {
+            newTree = callTyper(tree);
+        }
+
+        delete tree;
+    }
+    else
+    {
+        newTree = tree;
+    }
+
     ast::ExecVisitor *exec;
     if (timed)
     {
@@ -158,26 +178,10 @@ void execAstTask(ast::Exp* tree, bool serialize, bool timed, bool ASTtimed, bool
 
     if (!execVerbose && !ASTtimed)
     {
+        //call analyzer visitor before exec visitor
+        analysis::AnalysisVisitor analysis;
+        newTree->accept(analysis);
         exec = new ast::ExecVisitor();
-    }
-
-    ast::Exp* newTree = NULL;
-    if (serialize)
-    {
-        if (timed)
-        {
-            newTree = callTyper(tree, L"tasks");
-        }
-        else
-        {
-            newTree = callTyper(tree);
-        }
-
-        delete tree;
-    }
-    else
-    {
-        newTree = tree;
     }
 
     Runner::execAndWait(newTree, exec);

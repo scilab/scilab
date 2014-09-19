@@ -42,19 +42,21 @@ namespace ast
 template <class T>
 void RunVisitorT<T>::visitprivate(const CellExp &e)
 {
-    std::list<MatrixLineExp *>::const_iterator row;
-    std::list<Exp *>::const_iterator col;
+    exps_t::const_iterator row;
+    exps_t::const_iterator col;
     int iColMax = 0;
 
+    exps_t lines = e.getLines();
     //check dimmension
-    for (row = e.getLines().begin() ; row != e.getLines().end() ; ++row )
+    for (row = lines.begin() ; row != lines.end() ; ++row )
     {
+        exps_t cols = (*row)->getAs<MatrixLineExp>()->getColumns();
         if (iColMax == 0)
         {
-            iColMax = static_cast<int>((*row)->getColumns().size());
+            iColMax = static_cast<int>(cols.size());
         }
 
-        if (iColMax != static_cast<int>((*row)->getColumns().size()))
+        if (iColMax != static_cast<int>(cols.size()))
         {
             std::wostringstream os;
             os << _W("inconsistent row/column dimensions\n");
@@ -64,15 +66,16 @@ void RunVisitorT<T>::visitprivate(const CellExp &e)
     }
 
     //alloc result cell
-    types::Cell *pC = new types::Cell(static_cast<int>(e.getLines().size()), iColMax);
+    types::Cell *pC = new types::Cell(static_cast<int>(lines.size()), iColMax);
 
     int i = 0;
     int j = 0;
 
     //insert items in cell
-    for (i = 0, row = e.getLines().begin() ; row != e.getLines().end() ; ++row, ++i)
+    for (i = 0, row = lines.begin() ; row != lines.end() ; ++row, ++i)
     {
-        for (j = 0, col = (*row)->getColumns().begin() ; col != (*row)->getColumns().end() ; ++col, ++j)
+        exps_t cols = (*row)->getAs<MatrixLineExp>()->getColumns();
+        for (j = 0, col = cols.begin() ; col != cols.end() ; ++col, ++j)
         {
             (*col)->accept(*this);
             InternalType *pIT = getResult();
@@ -382,7 +385,7 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
         {
             //TODO : maybe it would be interesting here to reuse the same InternalType (to avoid delete/new)
             InternalType * pIL = pVar->extractValue(i);
-            symbol::Context::getInstance()->put(e.getVardec().getStack(), pIL);
+            symbol::Context::getInstance()->put(e.getVardec().getAs<VarDec>()->getStack(), pIL);
 
             e.getBody().accept(*this);
             if (e.getBody().isBreak())
@@ -411,7 +414,7 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
         for (int i = 0; i < size; ++i)
         {
             InternalType* pNew = pL->get(i);
-            symbol::Context::getInstance()->put(e.getVardec().getStack(), pNew);
+            symbol::Context::getInstance()->put(e.getVardec().getAs<VarDec>()->getStack(), pNew);
 
             e.getBody().accept(*this);
             if (e.getBody().isBreak())
@@ -447,7 +450,6 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
         for (int i = 0; i < pVar->getCols(); i++)
         {
             GenericType* pNew = pVar->getColumnValues(i);
-
             if (pNew == NULL)
             {
                 pIT->DecreaseRef();
@@ -455,7 +457,7 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
                 throw ScilabError(_W("for expression : Wrong type for loop iterator.\n"), 999, e.getVardec().getLocation());
             }
 
-            symbol::Context::getInstance()->put(e.getVardec().getStack(), pNew);
+            symbol::Context::getInstance()->put(e.getVardec().getAs<VarDec>()->getStack(), pNew);
 
             e.getBody().accept(*this);
             if (e.getBody().isBreak())
@@ -545,10 +547,11 @@ void RunVisitorT<T>::visitprivate(const SelectExp &e)
     if (pIT)
     {
         //find good case
-        cases_t::iterator it;
-        for (it = e.getCases()->begin(); it != e.getCases()->end() ; it++)
+        exps_t::iterator it;
+        exps_t* cases = e.getCases();
+        for (it = cases->begin(); it != cases->end() ; it++)
         {
-            CaseExp* pCase = *it;
+            CaseExp* pCase = (*it)->getAs<CaseExp>();
             pCase->getTest()->accept(*this);
             InternalType *pITCase = getResult();
             setResult(NULL);
@@ -655,9 +658,10 @@ template <class T>
 void RunVisitorT<T>::visitprivate(const SeqExp  &e)
 {
     //T execMe;
-    std::list<Exp *>::const_iterator        itExp;
+    exps_t::const_iterator itExp;
+    exps_t exps = e.getExps();
 
-    for (itExp = e.getExps().begin (); itExp != e.getExps().end (); ++itExp)
+    for (itExp = exps.begin (); itExp != exps.end (); ++itExp)
     {
         if (e.isBreakable())
         {
@@ -981,18 +985,20 @@ void RunVisitorT<T>::visitprivate(const FunctionDec & e)
     // funcprot(1) && warning(on) : warning
     //get input parameters list
     std::list<symbol::Variable*> *pVarList = new std::list<symbol::Variable*>();
-    const ArrayListVar *pListVar = &e.getArgs();
-    for (std::list<Var *>::const_iterator i = pListVar->getVars().begin(), end = pListVar->getVars().end(); i != end; ++i)
+    const ArrayListVar* pListVar = e.getArgs().getAs<ArrayListVar>();
+    exps_t vars = pListVar->getVars();
+    for (exps_t::const_iterator it = vars.begin(), end = vars.end(); it != end; ++it)
     {
-        pVarList->push_back(static_cast<SimpleVar*>(*i)->getStack());
+        pVarList->push_back((*it)->getAs<SimpleVar>()->getStack());
     }
 
     //get output parameters list
     std::list<symbol::Variable*> *pRetList = new std::list<symbol::Variable*>();
-    const ArrayListVar *pListRet = &e.getReturns();
-    for (std::list<Var *>::const_iterator i = pListRet->getVars().begin(), end = pListRet->getVars().end(); i != end; ++i)
+    const ArrayListVar *pListRet = e.getReturns().getAs<ArrayListVar>();
+    exps_t rets = pListRet->getVars();
+    for (exps_t::const_iterator it = rets.begin(), end = rets.end(); it != end; ++it)
     {
-        pRetList->push_back(static_cast<SimpleVar*>(*i)->getStack());
+        pRetList->push_back((*it)->getAs<SimpleVar>()->getStack());
     }
 
     types::Macro *pMacro = new types::Macro(e.getSymbol().getName(), *pVarList, *pRetList,

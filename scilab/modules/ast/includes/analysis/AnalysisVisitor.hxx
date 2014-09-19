@@ -279,11 +279,11 @@ private:
 
     void visit(ast::SimpleVar & e)
     {
-        symbol::Symbol & sym = e.getName();
+        symbol::Symbol & sym = e.getSymbol();
         TIType typ = get_ti(sym);
-        e.getDecorator().res = Result(typ, false);
+        e.getDecorator().res = Result(typ, false, false);
         setResult(e.getDecorator().res);
-        set_sym_use(e.getName(), SymInfo::READ);
+        set_sym_use(e.getSymbol(), SymInfo::READ);
     }
 
     void visit(ast::DollarVar & e)
@@ -298,8 +298,8 @@ private:
 
     void visit(ast::ArrayListVar & e)
     {
-        const std::list<ast::Var *> & vars = e.getVars();
-        for (std::list<ast::Var *>::const_iterator i = vars.begin(), end = vars.end(); i != end ; ++i)
+        const ast::exps_t vars = e.getVars();
+        for (ast::exps_t::const_iterator i = vars.begin(), end = vars.end(); i != end ; ++i)
         {
             (*i)->accept(*this);
         }
@@ -336,8 +336,8 @@ private:
     void visit(ast::CallExp & e)
     {
         e.getName().accept(*this);
-        const std::list<ast::Exp *> & args = e.args_get();
-        for (std::list<ast::Exp *>::const_iterator i = args.begin(), end = args.end(); i != end; ++i)
+        const ast::exps_t args = e.getArgs();
+        for (ast::exps_t::const_iterator i = args.begin(), end = args.end(); i != end; ++i)
         {
             (*i)->accept(*this);
         }
@@ -350,39 +350,40 @@ private:
 
     void visit(ast::OpExp & e)
     {
-        e.left_get().accept(*this);
+        e.getLeft().accept(*this);
         Result LR = getResult();
-        e.right_get().accept(*this);
+        e.getRight().accept(*this);
         Result & RR = getResult();
-        const TIType & LT = LR.get_type();
-        const TIType & RT = RR.get_type();
+        const TIType & LType = LR.getType();
+        const TIType & RType = RR.getType();
         TIType resT;
         bool allocTmp = false;
+        bool constant = false;
 
         // We can released the temp vars
-        if (LR.istemp())
+        if (LR.isTemp())
         {
-            add_tmp(LT, -1);
+            add_tmp(LType, -1);
         }
-        if (RR.istemp())
+        if (RR.isTemp())
         {
-            add_tmp(RT, -1);
+            add_tmp(RType, -1);
         }
 
-        switch (e.oper_get())
+        switch (e.getOper())
         {
             case ast::OpExp::plus :
             case ast::OpExp::minus :
             case ast::OpExp::dottimes :
             {
                 // TODO: check if the rules for addition and subtraction are the same
-                resT = check_add(LT, RT);
+                resT = check_add(LType, RType);
                 break;
             }
             case ast::OpExp::times :
             {
                 // multiplication is not commutative for matrice pxq
-                resT = check_times(LT, RT);
+                resT = check_times(LType, RType);
                 break;
             }
         }
@@ -394,14 +395,19 @@ private:
             allocTmp = true;
         }
 
-        e.getDecorator().res = Result(resT, allocTmp);
+        if (e.getLeft().isConstExp() && e.getRight().isConstExp())
+        {
+            constant = true;
+        }
+
+        e.getDecorator().res = Result(resT, allocTmp, true);
         setResult(e.getDecorator().res);
     }
 
     void visit(ast::LogicalOpExp & e)
     {
-        e.left_get().accept(*this);
-        e.right_get().accept(*this);
+        e.getLeft().accept(*this);
+        e.getRight().accept(*this);
     }
 
     void visit(ast::AssignExp & e)
@@ -409,13 +415,13 @@ private:
         if (e.getLeftExp().isSimpleVar())
         {
             ast::SimpleVar & var = static_cast<ast::SimpleVar &>(e.getLeftExp());
-            symbol::Symbol & sym = var.getName();
+            symbol::Symbol & sym = var.getSymbol();
 
             e.getRightExp().accept(*this);
             var.getDecorator().res = getResult();
 
             set_sym_use(sym, SymInfo::REPLACE);
-            set_sym_type(sym, getResult().get_type());
+            set_sym_type(sym, getResult().getType());
         }
         else
         {
@@ -444,10 +450,10 @@ private:
         e.getVardec().accept(*this);
         e.getBody().accept(*this);
 
-        MapSymInfo::const_iterator it = symsinfo.find(e.getVardec().getName());
+        MapSymInfo::const_iterator it = symsinfo.find(e.getVardec().getAs<ast::VarDec>()->getSymbol());
         if (it->second.read)
         {
-            e.getVardec().list_info_get().set_read_in_loop(true);
+            e.getVardec().getAs<ast::VarDec>()->getListInfo().setReadInLoop(true);
         }
     }
 
@@ -463,19 +469,19 @@ private:
 
     void visit(ast::TryCatchExp & e)
     {
-        e.try_get().accept(*this);
-        e.catch_get().accept(*this);
+        e.getTry().accept(*this);
+        e.getCatch().accept(*this);
     }
 
     void visit(ast::SelectExp & e)
     {
         e.getSelect()->accept(*this);
-        ast::cases_t * cases = e.getCases();
-        for (ast::cases_t::const_iterator i = cases->begin(), end = cases->end(); i != end; ++i)
+        ast::exps_t* cases = e.getCases();
+        for (ast::exps_t::const_iterator i = cases->begin(), end = cases->end(); i != end; ++i)
         {
             (*i)->accept(*this);
         }
-        e.default_case_get()->accept(*this);
+        e.getDefaultCase()->accept(*this);
     }
 
     void visit(ast::CaseExp & e)
@@ -486,7 +492,7 @@ private:
 
     void visit(ast::ReturnExp & e)
     {
-        e.exp_get().accept(*this);
+        e.getExp().accept(*this);
     }
 
     void visit(ast::FieldExp & e)
@@ -499,18 +505,18 @@ private:
 
     void visit(ast::NotExp & e)
     {
-        e.exp_get().accept(*this);
+        e.getExp().accept(*this);
     }
 
     void visit(ast::TransposeExp & e)
     {
-        e.exp_get().accept(*this);
+        e.getExp().accept(*this);
     }
 
     void visit(ast::MatrixExp & e)
     {
-        const std::list<ast::MatrixLineExp *> & lines = e.lines_get();
-        for (std::list<ast::MatrixLineExp *>::const_iterator i = lines.begin(), end = lines.end(); i != end; ++i)
+        const ast::exps_t lines = e.getLines();
+        for (ast::exps_t::const_iterator i = lines.begin(), itEnd = lines.end(); i != itEnd; ++i)
         {
             (*i)->accept(*this);
         }
@@ -518,8 +524,8 @@ private:
 
     void visit(ast::MatrixLineExp & e)
     {
-        const std::list<ast::Exp *> & columns = e.columns_get();
-        for (std::list<ast::Exp *>::const_iterator i = columns.begin(), end = columns.end(); i != end; ++i)
+        const ast::exps_t columns = e.getColumns();
+        for (ast::exps_t::const_iterator i = columns.begin(), itEnd = columns.end(); i != itEnd; ++i)
         {
             (*i)->accept(*this);
         }
@@ -532,7 +538,8 @@ private:
 
     void visit(ast::SeqExp & e)
     {
-        for (std::list<ast::Exp *>::const_iterator i = e.getExps().begin(), end = e.getExps().end(); i != end; ++i)
+        const ast::exps_t exps = e.getExps();
+        for (ast::exps_t::const_iterator i = exps.begin(), itEnd = exps.end(); i != itEnd; ++i)
         {
             (*i)->accept(*this);
         }
@@ -540,8 +547,8 @@ private:
 
     void visit(ast::ArrayListExp & e)
     {
-        const std::list<ast::Exp *> & exps = e.getExps();
-        for (std::list<ast::Exp *>::const_iterator i = exps.begin(), end = exps.end(); i != end; ++i)
+        const ast::exps_t exps = e.getExps();
+        for (ast::exps_t::const_iterator i = exps.begin(), itEnd = exps.end(); i != itEnd; ++i)
         {
             (*i)->accept(*this);
         }
@@ -559,14 +566,14 @@ private:
         if (e.getInit().isListExp())
         {
             ast::ListExp & le = static_cast<ast::ListExp &>(e.getInit());
-            if (le.start_get().isDoubleExp() && le.step_get().isDoubleExp() && le.end_get().isDoubleExp())
+            if (le.getStart().isDoubleExp() && le.getStep().isDoubleExp() && le.getEnd().isDoubleExp())
             {
-                ForList64 fl(static_cast<const ast::DoubleExp &>(le.start_get()).value_get(),
-                             static_cast<const ast::DoubleExp &>(le.step_get()).value_get(),
-                             static_cast<const ast::DoubleExp &>(le.end_get()).value_get());
+                ForList64 fl(static_cast<const ast::DoubleExp &>(le.getStart()).getValue(),
+                             static_cast<const ast::DoubleExp &>(le.getStep()).getValue(),
+                             static_cast<const ast::DoubleExp &>(le.getEnd()).getValue());
                 e.setListInfo(fl);
                 set_sym_use(sym, SymInfo::REPLACE, SymInfo::FOR_IT);
-                set_sym_type(sym, fl.get_type());
+                set_sym_type(sym, fl.getType());
                 // No need to visit the list (it has been visited just before)
             }
             else
@@ -579,8 +586,8 @@ private:
 
     void visit(ast::FunctionDec & e)
     {
-        e.args_get().accept(*this);
-        e.returns_get().accept(*this);
+        e.getArgs().accept(*this);
+        e.getReturns().accept(*this);
         e.getBody().accept(*this);
     }
 
@@ -590,22 +597,22 @@ private:
         double step = std::numeric_limits<double>::quiet_NaN();
         double end = std::numeric_limits<double>::quiet_NaN();
 
-        if (e.start_get().isDoubleExp())
+        if (e.getStart().isDoubleExp())
         {
-            start = static_cast<const ast::DoubleExp &>(e.start_get()).value_get();
+            start = static_cast<const ast::DoubleExp &>(e.getStart()).getValue();
         }
 
-        if (e.step_get().isDoubleExp())
+        if (e.getStep().isDoubleExp())
         {
-            step = static_cast<ast::DoubleExp &>(e.step_get()).value_get();
+            step = static_cast<ast::DoubleExp &>(e.getStep()).getValue();
         }
 
-        if (e.end_get().isDoubleExp())
+        if (e.getEnd().isDoubleExp())
         {
-            end = static_cast<ast::DoubleExp &>(e.end_get()).value_get();
+            end = static_cast<ast::DoubleExp &>(e.getEnd()).getValue();
         }
 
-        const_cast<ast::ListExp &>(e).set_values(start, step, end);
+        const_cast<ast::ListExp &>(e).setValues(start, step, end);
     }
 };
 

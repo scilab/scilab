@@ -34,9 +34,10 @@ public:
     */
     NotExp (const Location& location,
             Exp& exp)
-        : MathExp (location),
-          _exp (&exp)
+        : MathExp (location)
     {
+        exp.setParent(this);
+        _exps[0] = &exp;
     }
 
     /** \brief Destroy a Not Operation Expression node.
@@ -44,7 +45,7 @@ public:
     ** Delete expression, see constructor. */
     virtual ~NotExp ()
     {
-        delete _exp;
+        delete _exps[0];
     }
     /** \} */
 
@@ -77,12 +78,12 @@ public:
     /** \brief Return the expression of the operation (read only) */
     const Exp& getExp() const
     {
-        return *_exp;
+        return *_exps[0];
     }
     /** \brief Return the expression of the operation (read and write) */
     Exp& getExp()
     {
-        return *_exp;
+        return *_exps[0];
     }
 
     virtual ExpType getType()
@@ -93,9 +94,6 @@ public:
     {
         return true;
     }
-protected:
-    /** \brief Left expression of the operation. */
-    Exp* _exp;
 };
 
 } // namespace ast

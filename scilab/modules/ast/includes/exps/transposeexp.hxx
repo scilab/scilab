@@ -43,9 +43,10 @@ public:
                   Exp& exp,
                   Kind kind)
         : MathExp (location),
-          _exp (&exp),
           _conjugate (kind)
     {
+        exp.setParent(this);
+        _exps[0] = &exp;
     }
 
     /** \brief Destroy a Transpose Operation Expression node.
@@ -53,7 +54,7 @@ public:
     ** Delete expression, see constructor. */
     virtual ~TransposeExp ()
     {
-        delete _exp;
+        delete _exps[0];
     }
     /** \} */
 
@@ -86,12 +87,12 @@ public:
     /** \brief Return the expression of the operation (read only) */
     const Exp& getExp() const
     {
-        return *_exp;
+        return *_exps[0];
     }
     /** \brief Return the expression of the operation (read and write) */
     Exp& getExp()
     {
-        return *_exp;
+        return *_exps[0];
     }
     /** \brief Return the conjugate kind of the transposition */
     Kind getConjugate() const
@@ -108,8 +109,6 @@ public:
         return true;
     }
 protected:
-    /** \brief Left expression of the operation. */
-    Exp* _exp;
     Kind _conjugate;
 };
 

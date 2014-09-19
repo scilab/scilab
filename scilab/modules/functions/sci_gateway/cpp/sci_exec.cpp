@@ -197,8 +197,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
         return Function::Error;
     }
 
-    std::list<Exp *>::iterator j;
-    std::list<Exp *>LExp = ((SeqExp*)pExp)->getExps();
+    ast::exps_t LExp = pExp->getAs<SeqExp>()->getExps();
 
     char pstPrompt[64];
     //get prompt
@@ -220,11 +219,11 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
 
     ConfigVariable::setPromptMode(promptMode);
 
-    for (j = LExp.begin() ; j != LExp.end() ; j++)
+    for (ast::exps_t::iterator j = LExp.begin(), itEnd = LExp.end() ; j != itEnd ; ++j)
     {
         try
         {
-            std::list<Exp *>::iterator k = j;
+            ast::exps_t::iterator k = j;
             //mode == 0, print new variable but not command
             if (ConfigVariable::getPromptMode() != 0 && ConfigVariable::getPromptMode() != 2)
             {
@@ -253,7 +252,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
             }
 
 
-            std::list<Exp *>::iterator p = j;
+            ast::exps_t::iterator p = j;
             for (; p != k; p++)
             {
                 bool bImplicitCall = false;

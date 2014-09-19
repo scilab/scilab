@@ -36,29 +36,35 @@ public:
     IfExp(const Location& location,
           Exp& test, Exp& t, Exp& e)
         : ControlExp (location),
-          _test (&test),
-          _then (&t),
-          _else (&e),
           _hasElse (true)
     {
+        test.setParent(this);
+        t.setParent(this);
+        e.setParent(this);
+        _exps[0] = &test;
+        _exps[1] = &t;
+        _exps[2] = &e;
     }
 
     IfExp(const Location& location,
           Exp& test, Exp& t)
         : ControlExp (location),
-          _test (&test),
-          _then (&t),
-          _else (new ast::CommentExp(location, new std::wstring(L"No else !!"))),
-          // For first display in order to see what appends
           _hasElse (false)
     {
+        test.setParent(this);
+        t.setParent(this);
+
+        _exps[0] = &test;
+        _exps[1] = &t;
+        _exps[2] = new ast::CommentExp(location, new std::wstring(L"No else !!"));
+        _exps[2]->setParent(this);
     }
 
     virtual ~IfExp()
     {
-        delete _test;
-        delete _then;
-        delete _else;
+        delete _exps[0];
+        delete _exps[1];
+        delete _exps[2];
     }
 
     virtual IfExp* clone()
@@ -84,43 +90,43 @@ public:
     // \brief Return the select condition of the loop (read only).
     const Exp&	getTest() const
     {
-        return *_test;
+        return *_exps[0];
     }
     // \brief Return the select condition of the loop (read and write).
     Exp& getTest()
     {
-        return *_test;
+        return *_exps[0];
     }
 
     // \brief Return the intructions if test is true (read only).
     const Exp&	getThen() const
     {
-        return *_then;
+        return *_exps[1];
     }
     // \brief Return the instructions if test is true (read and write).
     Exp& getThen()
     {
-        return *_then;
+        return *_exps[1];
     }
 
     // \brief Return the instruction if test is false (read only).
     const Exp& getElse() const
     {
-        return *_else;
+        return *_exps[2];
     }
     // \brief Return the instruction if test is false (read and write).
     Exp& getElse()
     {
-        return *_else;
+        return *_exps[2];
     }
 
     // \brief Return if there is an else body
-    bool	hasElse()
+    bool hasElse()
     {
         return _hasElse;
     }
     // \brief Return if there is an else body
-    bool	hasElse() const
+    bool hasElse() const
     {
         return _hasElse;
     }
@@ -135,10 +141,7 @@ public:
     }
 protected:
     // \brief "has a value" qualifier.
-    Exp*	_test;
-    Exp*	_then;
-    Exp*	_else;
-    bool	_hasElse;
+    bool _hasElse;
 };
 
 } // namespace ast
