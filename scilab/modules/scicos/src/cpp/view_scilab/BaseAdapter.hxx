@@ -99,9 +99,15 @@ class BaseAdapter : public types::UserType
 {
 
 public:
-    BaseAdapter(Adaptee* o) : adaptee(o) {};
-    BaseAdapter(const BaseAdapter& o) : adaptee(o.adaptee) {};
-    virtual ~BaseAdapter() {};
+    BaseAdapter(bool ownAdaptee, Adaptee* adaptee) : ownAdaptee(ownAdaptee), adaptee(adaptee) {};
+    virtual ~BaseAdapter()
+    {
+        if (ownAdaptee)
+        {
+            Controller controller;
+            controller.deleteObject(getAdaptee()->id());
+        }
+    };
 
     /*
      * property accessors
@@ -219,33 +225,22 @@ public:
     Adaptee* getAdaptee() const
     {
         return adaptee;
-    };
-
-    /**
-     * set the adaptee
-     */
-    void setAdaptee(Adaptee* adaptee)
-    {
-        this->adaptee = adaptee;
     }
 
     /*
      * All following methods should be implemented by each template instance
      */
 
-    std::wstring getTypeStr()
-    {
-        return L"ba";
-    }
+    virtual std::wstring getTypeStr() = 0;
+    virtual std::wstring getShortTypeStr() = 0;
 
-    std::wstring getShortTypeStr()
-    {
-        return L"BaseAdapter";
-    }
+private:
 
     types::InternalType* clone()
     {
-        return new Adaptor(*static_cast<Adaptor*>(this));
+        Controller controller = Controller();
+        ScicosID clone = controller.cloneObject(getAdaptee()->id());
+        return new Adaptor(false, static_cast<Adaptee*>(controller.getObject(clone)));
     }
 
     /*
@@ -306,6 +301,7 @@ public:
             {
                 types::String* pStr = (*_pArgs)[i]->getAs<types::String>();
                 std::wstring name = pStr->get(0);
+
                 Controller controller = Controller();
                 typename property<Adaptor>::props_t_it found = std::lower_bound(property<Adaptor>::fields.begin(), property<Adaptor>::fields.end(), name);
                 if (found != property<Adaptor>::fields.end() && !(name < found->name))
@@ -315,10 +311,6 @@ public:
 
                 return this;
             }
-            //else if(_pArgs[i]->isDouble())
-            //{
-            //
-            //}
             else
             {
                 return NULL;
@@ -355,6 +347,7 @@ public:
 
 
 private:
+    const bool ownAdaptee;
     Adaptee* adaptee;
 };
 

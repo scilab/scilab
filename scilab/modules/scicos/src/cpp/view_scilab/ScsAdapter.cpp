@@ -31,11 +31,8 @@ namespace
 
 template<> property<ScsAdapter>::props_t property<ScsAdapter>::fields = property<ScsAdapter>::props_t();
 
-ScsAdapter::ScsAdapter(const ScsAdapter& o) :
-    BaseAdapter<ScsAdapter, org_scilab_modules_scicos::model::Diagram>(o) {}
-
-ScsAdapter::ScsAdapter(org_scilab_modules_scicos::model::Diagram* o) :
-    BaseAdapter<ScsAdapter, org_scilab_modules_scicos::model::Diagram>(o)
+ScsAdapter::ScsAdapter(bool ownAdaptee, org_scilab_modules_scicos::model::Diagram* adaptee) :
+    BaseAdapter<ScsAdapter, org_scilab_modules_scicos::model::Diagram>(ownAdaptee, adaptee)
 {
     if (property<ScsAdapter>::properties_have_not_been_set())
     {

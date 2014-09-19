@@ -853,11 +853,8 @@ struct uid
 
 template<> property<ModelAdapter>::props_t property<ModelAdapter>::fields = property<ModelAdapter>::props_t();
 
-ModelAdapter::ModelAdapter(const ModelAdapter& o) :
-    BaseAdapter<ModelAdapter, org_scilab_modules_scicos::model::Block>(o) { }
-
-ModelAdapter::ModelAdapter(org_scilab_modules_scicos::model::Block* o) :
-    BaseAdapter<ModelAdapter, org_scilab_modules_scicos::model::Block>(o)
+ModelAdapter::ModelAdapter(bool ownAdaptee, org_scilab_modules_scicos::model::Block* adaptee) :
+    BaseAdapter<ModelAdapter, org_scilab_modules_scicos::model::Block>(ownAdaptee, adaptee)
 {
     if (property<ModelAdapter>::properties_have_not_been_set())
     {

@@ -27,8 +27,7 @@ namespace view_scilab
 class DiagramAdapter : public BaseAdapter<DiagramAdapter, org_scilab_modules_scicos::model::Diagram>
 {
 public:
-    DiagramAdapter(const DiagramAdapter& o);
-    DiagramAdapter(org_scilab_modules_scicos::model::Diagram* o);
+    DiagramAdapter(bool ownAdaptee, org_scilab_modules_scicos::model::Diagram* adaptee);
     ~DiagramAdapter();
 
     static const std::wstring getSharedTypeStr()

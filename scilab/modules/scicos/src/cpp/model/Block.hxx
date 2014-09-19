@@ -302,14 +302,20 @@ private:
         this->parameter = parameter;
     }
 
-    ScicosID getParentBlock() const
+    void getParentBlock(ScicosID& v) const
     {
-        return parentBlock;
+        v = parentBlock;
     }
 
-    void setParentBlock(ScicosID parentBlock)
+    update_status_t setParentBlock(ScicosID parentBlock)
     {
+        if (parentBlock == this->parentBlock)
+        {
+            return NO_CHANGES;
+        }
+
         this->parentBlock = parentBlock;
+        return SUCCESS;
     }
 
     void getParentDiagram(ScicosID& v) const

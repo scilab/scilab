@@ -27,9 +27,7 @@ namespace view_scilab
 class BlockAdapter : public BaseAdapter<BlockAdapter, org_scilab_modules_scicos::model::Block>
 {
 public:
-    BlockAdapter(const BlockAdapter& o);
-    BlockAdapter(org_scilab_modules_scicos::model::Block* o);
-    BlockAdapter(ScicosID uid, kind_t k);
+    BlockAdapter(bool ownAdaptee, org_scilab_modules_scicos::model::Block* adaptee);
     ~BlockAdapter();
 
     static const std::wstring getSharedTypeStr()

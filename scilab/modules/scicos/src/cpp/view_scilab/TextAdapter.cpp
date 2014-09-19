@@ -256,11 +256,8 @@ struct dummy_property
 
 template<> property<TextAdapter>::props_t property<TextAdapter>::fields = property<TextAdapter>::props_t();
 
-TextAdapter::TextAdapter(const TextAdapter& o) :
-    BaseAdapter<TextAdapter, org_scilab_modules_scicos::model::Annotation>(o) {}
-
-TextAdapter::TextAdapter(org_scilab_modules_scicos::model::Annotation* o) :
-    BaseAdapter<TextAdapter, org_scilab_modules_scicos::model::Annotation>(o)
+TextAdapter::TextAdapter(bool ownAdaptee, org_scilab_modules_scicos::model::Annotation* adaptee) :
+    BaseAdapter<TextAdapter, org_scilab_modules_scicos::model::Annotation>(ownAdaptee, adaptee)
 {
     if (property<TextAdapter>::properties_have_not_been_set())
     {

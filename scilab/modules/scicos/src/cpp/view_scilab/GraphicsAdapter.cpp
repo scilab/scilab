@@ -512,13 +512,8 @@ struct style
 
 template<> property<GraphicsAdapter>::props_t property<GraphicsAdapter>::fields = property<GraphicsAdapter>::props_t();
 
-GraphicsAdapter::GraphicsAdapter(const GraphicsAdapter& o) :
-    BaseAdapter<GraphicsAdapter, org_scilab_modules_scicos::model::Block>(o),
-    gr_i_content(o.gr_i_content->clone())
-{}
-
-GraphicsAdapter::GraphicsAdapter(org_scilab_modules_scicos::model::Block* o) :
-    BaseAdapter<GraphicsAdapter, org_scilab_modules_scicos::model::Block>(o)
+GraphicsAdapter::GraphicsAdapter(bool ownAdaptee, org_scilab_modules_scicos::model::Block* adaptee) :
+    BaseAdapter<GraphicsAdapter, org_scilab_modules_scicos::model::Block>(ownAdaptee, adaptee)
 {
     if (property<GraphicsAdapter>::properties_have_not_been_set())
     {

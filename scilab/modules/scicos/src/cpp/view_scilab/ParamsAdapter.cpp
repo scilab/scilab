@@ -311,14 +311,8 @@ struct doc
 
 template<> property<ParamsAdapter>::props_t property<ParamsAdapter>::fields = property<ParamsAdapter>::props_t();
 
-ParamsAdapter::ParamsAdapter(const ParamsAdapter& o) :
-    BaseAdapter<ParamsAdapter, org_scilab_modules_scicos::model::Diagram>(o)
-{
-    doc_content = new types::List();
-}
-
-ParamsAdapter::ParamsAdapter(org_scilab_modules_scicos::model::Diagram* o) :
-    BaseAdapter<ParamsAdapter, org_scilab_modules_scicos::model::Diagram>(o)
+ParamsAdapter::ParamsAdapter(bool ownAdaptee, org_scilab_modules_scicos::model::Diagram* adaptee) :
+    BaseAdapter<ParamsAdapter, org_scilab_modules_scicos::model::Diagram>(ownAdaptee, adaptee)
 {
     if (property<ParamsAdapter>::properties_have_not_been_set())
     {

@@ -649,11 +649,8 @@ struct to
 
 template<> property<LinkAdapter>::props_t property<LinkAdapter>::fields = property<LinkAdapter>::props_t();
 
-LinkAdapter::LinkAdapter(const LinkAdapter& o) :
-    BaseAdapter<LinkAdapter, org_scilab_modules_scicos::model::Link>(o) {}
-
-LinkAdapter::LinkAdapter(org_scilab_modules_scicos::model::Link* o) :
-    BaseAdapter<LinkAdapter, org_scilab_modules_scicos::model::Link>(o)
+LinkAdapter::LinkAdapter(bool ownAdaptee, org_scilab_modules_scicos::model::Link* adaptee) :
+    BaseAdapter<LinkAdapter, org_scilab_modules_scicos::model::Link>(ownAdaptee, adaptee)
 {
     if (property<LinkAdapter>::properties_have_not_been_set())
     {

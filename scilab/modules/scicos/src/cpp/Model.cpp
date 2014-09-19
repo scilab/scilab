@@ -119,8 +119,8 @@ void Model::deleteObject(ScicosID uid)
         throw std::string("key has not been found");
     }
 
-    allObjects.erase(iter);
     delete iter->second;
+    allObjects.erase(iter);
 }
 
 model::BaseObject* Model::getObject(ScicosID uid) const

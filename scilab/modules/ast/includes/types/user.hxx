@@ -65,7 +65,7 @@ public :
     // insertion by value
     // _pArs is a list of scilab types:: of where we want to extract
     // _pSource is what we wan to insert
-    virtual InternalType*   insert(typed_list* /*_pArgs*/, InternalType* /*_pSource*/)
+    virtual InternalType* insert(typed_list* /*_pArgs*/, InternalType* /*_pSource*/)
     {
         return NULL;
     }
@@ -82,7 +82,7 @@ public :
     // _pArs is a list of scilab types:: of where we want to extract
     // return all element extracted, in case when multiple elements returned
     // these elements must be stored in a types::List
-    virtual InternalType*   extract(typed_list* /*_pArgs*/)
+    virtual InternalType* extract(typed_list* /*_pArgs*/)
     {
         return NULL;
     }

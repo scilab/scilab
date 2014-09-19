@@ -26,8 +26,7 @@ namespace view_scilab
 class GraphicsAdapter : public BaseAdapter<GraphicsAdapter, org_scilab_modules_scicos::model::Block>
 {
 public:
-    GraphicsAdapter(const GraphicsAdapter& o);
-    GraphicsAdapter(org_scilab_modules_scicos::model::Block* o);
+    GraphicsAdapter(bool ownAdaptee, org_scilab_modules_scicos::model::Block* adaptee);
     ~GraphicsAdapter();
 
     static const std::wstring getSharedTypeStr()

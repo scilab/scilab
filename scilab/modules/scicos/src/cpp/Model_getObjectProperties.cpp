@@ -315,6 +315,9 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, Sci
             case PARENT_DIAGRAM:
                 o->getParentDiagram(v);
                 return true;
+            case PARENT_BLOCK:
+                o->getParentBlock(v);
+                return true;
             default:
                 break;
         }

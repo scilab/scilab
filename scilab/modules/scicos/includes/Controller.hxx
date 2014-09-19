@@ -14,6 +14,7 @@
 #define CONTROLLER_HXX_
 
 #include <vector>
+#include <map>
 
 #include "utilities.hxx"
 #include "Model.hxx"
@@ -94,6 +95,32 @@ private:
      * This will be allocated on-demand be Controller::get_instance()
      */
     static SharedData* _instance;
+
+    /*
+     * Methods
+     */
+
+    ScicosID cloneObject(std::map<ScicosID, ScicosID>& mapped, ScicosID uid);
+
+    template<typename T>
+    void cloneProperties(model::BaseObject* initial, ScicosID clone)
+    {
+        for (int i = 0; i < MAX_OBJECT_PROPERTIES; ++i)
+        {
+            enum object_properties_t p = static_cast<enum object_properties_t>(i);
+
+            T value;
+            bool status = getObjectProperty(initial->id(), initial->kind(), p, value);
+            if (status)
+            {
+                setObjectProperty(clone, initial->kind(), p, value);
+            }
+        }
+
+    };
+
+    void deepClone(std::map<ScicosID, ScicosID>& mapped, ScicosID uid, ScicosID clone, kind_t k, object_properties_t p, bool cloneIfNotFound);
+    void deepCloneVector(std::map<ScicosID, ScicosID>& mapped, ScicosID uid, ScicosID clone, kind_t k, object_properties_t p, bool cloneIfNotFound);
 };
 
 } /* namespace org_scilab_modules_scicos */

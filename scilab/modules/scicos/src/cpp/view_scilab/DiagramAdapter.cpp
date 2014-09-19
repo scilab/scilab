@@ -49,13 +49,13 @@ struct props
 
     static types::InternalType* get(const DiagramAdapter& adaptor, const Controller& controller)
     {
-        ParamsAdapter localAdaptor = ParamsAdapter(adaptor.getAdaptee());
+        ParamsAdapter localAdaptor = ParamsAdapter(false, adaptor.getAdaptee());
         return localAdaptor.getAsTList(new types::TList(), controller);
     }
 
     static bool set(DiagramAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        ParamsAdapter localAdaptor = ParamsAdapter(adaptor.getAdaptee());
+        ParamsAdapter localAdaptor = ParamsAdapter(false, adaptor.getAdaptee());
         return localAdaptor.setAsTList(v, controller);
     }
 };
@@ -81,21 +81,21 @@ struct objs
                 case ANNOTATION:
                 {
                     model::Annotation* annotation = static_cast<model::Annotation*>(item);
-                    TextAdapter* localAdaptor = new TextAdapter(annotation);
+                    TextAdapter* localAdaptor = new TextAdapter(false, annotation);
                     o->set(i, localAdaptor);
                     continue;
                 }
                 case BLOCK:
                 {
                     model::Block* block = static_cast<model::Block*>(item);
-                    BlockAdapter* localAdaptor = new BlockAdapter(block);
+                    BlockAdapter* localAdaptor = new BlockAdapter(false, block);
                     o->set(i, localAdaptor);
                     continue;
                 }
                 case LINK:
                 {
                     model::Link* link = static_cast<model::Link*>(item);
-                    LinkAdapter* localAdaptor = new LinkAdapter(link);
+                    LinkAdapter* localAdaptor = new LinkAdapter(false, link);
                     o->set(i, localAdaptor);
                     continue;
                 }
@@ -138,7 +138,7 @@ struct objs
                     BlockAdapter* modelElement = list->get(i)->getAs<BlockAdapter>();
                     model::Block* subAdaptee = modelElement->getAdaptee();
 
-                    controller.setObjectProperty(subAdaptee->id(), subAdaptee->kind(), PARENT_DIAGRAM, adaptee->id());
+                    controller.setObjectProperty(id, subAdaptee->kind(), PARENT_DIAGRAM, adaptee->id());
                     id = subAdaptee->id();
                     break;
                 }
@@ -249,14 +249,8 @@ struct contrib
 
 template<> property<DiagramAdapter>::props_t property<DiagramAdapter>::fields = property<DiagramAdapter>::props_t();
 
-DiagramAdapter::DiagramAdapter(const DiagramAdapter& o) :
-    BaseAdapter<DiagramAdapter, org_scilab_modules_scicos::model::Diagram>(o)
-{
-    contrib_content = new types::List();
-}
-
-DiagramAdapter::DiagramAdapter(org_scilab_modules_scicos::model::Diagram* o) :
-    BaseAdapter<DiagramAdapter, org_scilab_modules_scicos::model::Diagram>(o)
+DiagramAdapter::DiagramAdapter(bool ownAdaptee, org_scilab_modules_scicos::model::Diagram* adaptee) :
+    BaseAdapter<DiagramAdapter, org_scilab_modules_scicos::model::Diagram>(ownAdaptee, adaptee)
 {
     if (property<DiagramAdapter>::properties_have_not_been_set())
     {
