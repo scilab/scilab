@@ -12,6 +12,7 @@
 
 #include <hdf5.h>
 #include "context.hxx"
+#include "list.hxx"
 
 extern "C"
 {
@@ -1139,7 +1140,6 @@ static bool import_hypermat(int* pvCtx, int _iDatasetId, int _iVarType, int _iIt
     int iComplex = 0;
     int iDims = 0;
     int iItems = 0;
-    int *piListAddr = NULL;
     hobj_ref_t *piItemRef = NULL;
 
     // an hypermatrix is stored in an mlist
@@ -1245,7 +1245,7 @@ static bool import_hypermat(int* pvCtx, int _iDatasetId, int _iVarType, int _iIt
     // get third item, the Data of hypermatrix
     // import data like a "type" (Double, Int, ...) instead of mlist
     iRet = getListItemDataset(_iDatasetId, piItemRef, 2, &iItemDataset);
-    bool bRet = import_data(pvCtx, iItemDataset, 0 /* unused */ , NULL, _pstVarname);
+    bool bRet = import_data(pvCtx, iItemDataset, _iItemPos, _piAddress, _pstVarname);
     if (bRet == false)
     {
         delete[] piDims;
@@ -1253,12 +1253,23 @@ static bool import_hypermat(int* pvCtx, int _iDatasetId, int _iVarType, int _iIt
         return false;
     }
 
-    // reshape data with size of hypermatrix
-    wchar_t* pwcsName = to_wide_string(_pstVarname);
-    types::InternalType* pIT = symbol::Context::getInstance()->getCurrentLevel(symbol::Symbol(pwcsName));
-    FREE(pwcsName);
+    // get imported hypermatrix from List or Context
+    types::GenericType* pGT = NULL;
+    types::InternalType* pIT = NULL;
+    if (_piAddress)
+    {
+        types::List* pL = (types::List*)_piAddress;
+        pIT = pL->get(_iItemPos - 1);
+    }
+    else
+    {
+        wchar_t* pwcsName = to_wide_string(_pstVarname);
+        pIT = symbol::Context::getInstance()->getCurrentLevel(symbol::Symbol(pwcsName));
+        FREE(pwcsName);
+    }
 
-    types::GenericType* pGT = pIT->getAs<types::GenericType>();
+    // reshape data with size of hypermatrix
+    pGT = pIT->getAs<types::GenericType>();
     pGT->reshape(piDimsArray, piDims[1]);
 
     delete[] piDims;
@@ -1273,6 +1284,4 @@ static bool import_hypermat(int* pvCtx, int _iDatasetId, int _iVarType, int _iIt
 
     return true;
 }
-
-
 /*--------------------------------------------------------------------------*/
