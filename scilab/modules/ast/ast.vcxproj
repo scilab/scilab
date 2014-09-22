@@ -458,6 +458,7 @@ lib /DEF:"$(ProjectDir)fileio_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClCompile Include="src\cpp\jit\JITValues.cpp" />
     <ClCompile Include="src\cpp\jit\JITVisitor.cpp" />
     <ClCompile Include="src\cpp\jit\jit_operations.cpp" />
+    <ClCompile Include="src\cpp\jit\jit_windows.cpp" />
     <ClCompile Include="src\cpp\operations\interface_addition.cpp" />
     <ClCompile Include="src\cpp\operations\operations.cpp" />
     <ClCompile Include="src\cpp\operations\types_addition.cpp" />

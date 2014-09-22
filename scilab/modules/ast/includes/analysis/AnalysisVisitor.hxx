@@ -109,7 +109,7 @@ public:
 
     double get_duration() const
     {
-        return (double)std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count() * 1e-9d;
+        return (double)std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count() * 1e-9;
     }
 
 private:

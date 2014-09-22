@@ -945,5 +945,8 @@
     <ClCompile Include="src\cpp\operations\types_or.cpp">
       <Filter>Source Files\operations</Filter>
     </ClCompile>
+    <ClCompile Include="src\cpp\jit\jit_windows.cpp">
+      <Filter>Source Files\jit</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
