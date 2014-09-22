@@ -1,6 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
-//               Samuel GOUGEON - 2013 : scores moved in heading columns
+// Copyright (C) 2013 - Samuel GOUGEON
+// Copyright (C) 2014 - Scilab Enterprises
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -12,20 +13,23 @@ function showprofile(fun)
     if argn(2) < 1 then
         error(sprintf(_("%s: Wrong number of input argument(s): %d expected.\n"), "showprofile", 1));
     end
-    lst = macr2lst(fun)
-    count = profile(lst)
-    count(:,2) = round(100*count(:,2))/100
-    count = string(count)
 
-    txt = fun2string(lst,"fun")
-    m = min(size(count,1),size(txt,1))
-    txt = txt(1:m);
-    count = count(1:m,:)
-    txt = part(txt,1:max(length(txt)))
-    txt2 = []
-    for k = 1:3
-        txt2 = txt2 + part(count(:,k),1:max(length(count(:,k))))+"|"
-    end
-    txt = "|"+txt2+txt
-    write(%io(2),txt,"(a)")
+    // get profiling results
+    lst = macr2lst(fun);
+    prof = profile(lst);
+
+    // convert to string profiling results
+    nb_calls = string(prof(:,1));
+    cpu_time = string(round(100*prof(:,2))/100);
+    effort = string(prof(:,3));
+
+    // get function code
+    code = fun2string(lst, "fun");
+
+    // left justify
+    nb_calls = justify(nb_calls, "l");
+    cpu_time = justify(cpu_time, "l");
+    effort = justify(effort, "l");
+
+    printf("|%s|%s|%s|%s\n", nb_calls, cpu_time, effort, code);
 endfunction
