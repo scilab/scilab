@@ -691,7 +691,7 @@ static void GradFixedlog(double minVal, double maxVal, double* outTicks, int nbG
         /* i=0..nbReg-1 should do the thing */
         for (i = 0 ; i < nbRemove ; i++)
         {
-            int remIndex = 1 + (int) round( i  * ((double) initSize - 2) / ((double) nbRemove));
+            int remIndex = 1 + (int) scilab_round( i  * ((double) initSize - 2) / ((double) nbRemove));
             removedTicks[remIndex] = TRUE;
         }
 

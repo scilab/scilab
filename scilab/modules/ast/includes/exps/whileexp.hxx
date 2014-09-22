@@ -59,8 +59,8 @@ public:
 
     virtual WhileExp* clone()
     {
-        WhileExp* cloned = new WhileExp(location_get(), *test_get().clone(), *body_get().clone());
-        cloned->set_verbose(is_verbose());
+        WhileExp* cloned = new WhileExp(getLocation(), *getTest().clone(), *getBody().clone());
+        cloned->setVerbose(isVerbose());
         return cloned;
     }
 
@@ -84,28 +84,36 @@ public:
     ** \{ */
 public:
     /** \brief Return the exit condition of the loop (read only). */
-    const Exp& test_get() const
+    const Exp& getTest() const
     {
         return *_test;
     }
     /** \brief Return the exit condition of the loop (read and write). */
-    Exp& test_get()
+    Exp& getTest()
     {
         return *_test;
     }
 
     /** \brief Return the body of the loop (read only). */
-    const Exp& body_get() const
+    const Exp& getBody() const
     {
         return *_body;
     }
     /** \brief Return the body of the loop (read and write). */
-    Exp& body_get()
+    Exp& getBody()
     {
         return *_body;
     }
     /** \} */
 
+    virtual ExpType getType()
+    {
+        return WHILEEXP;
+    }
+    inline bool isWhileExp() const
+    {
+        return true;
+    }
 protected:
     /** \brief Exit condition of the loop. */
     Exp* _test;

@@ -235,12 +235,12 @@ private:
 
     update_status_t setInterfaceFunction(const std::string& fun)
     {
-        if (fun == this->interfaceFunction)
+        if (fun == interfaceFunction)
         {
             return NO_CHANGES;
         }
 
-        this->interfaceFunction = interfaceFunction;
+        interfaceFunction = fun;
         return SUCCESS;
     }
 
@@ -312,14 +312,20 @@ private:
         this->parentBlock = parentBlock;
     }
 
-    ScicosID getParentDiagram() const
+    void getParentDiagram(ScicosID& v) const
     {
-        return parentDiagram;
+        v = parentDiagram;
     }
 
-    void setParentDiagram(ScicosID parentDiagram)
+    update_status_t setParentDiagram(const ScicosID v)
     {
-        this->parentDiagram = parentDiagram;
+        if (v == parentDiagram)
+        {
+            return NO_CHANGES;
+        }
+
+        parentDiagram = v;
+        return SUCCESS;
     }
 
     ScicosID getPortReference() const
@@ -470,19 +476,26 @@ private:
         return SUCCESS;
     }
 
-    void getSimBlocktype(int& data) const
+    void getSimBlocktype(std::string& data) const
     {
-        data = sim.blocktype;
+        data = std::string(1, sim.blocktype);
     }
 
-    update_status_t setSimBlocktype(const int data)
+    update_status_t setSimBlocktype(const std::string data)
     {
-        if (data == sim.blocktype)
+        if (data.size() != 1)
+        {
+            return FAIL;
+        }
+
+        char c = *(data.c_str());
+
+        if (c == sim.blocktype)
         {
             return NO_CHANGES;
         }
 
-        switch (data)
+        switch (c)
         {
             case BLOCKTYPE_C:
             case BLOCKTYPE_D:
@@ -491,7 +504,7 @@ private:
             case BLOCKTYPE_M:
             case BLOCKTYPE_X:
             case BLOCKTYPE_Z:
-                sim.blocktype = data;
+                sim.blocktype = c;
                 return SUCCESS;
             default:
                 return FAIL;
@@ -505,18 +518,19 @@ private:
         {
             case DEP_U & DEP_T:
                 // data is already set to [0 0] here.
-                return;
+                break;
             case DEP_U:
                 data[0] = 1;
-                return;
+                break;
             case DEP_T:
                 data[1] = 1;
-                return;
+                break;
             case DEP_U | DEP_T:
                 data[0] = 1;
                 data[1] = 1;
+                break;
             default:
-                return;
+                break;
         }
     }
 

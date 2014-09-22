@@ -19,7 +19,7 @@ static int level = -1;
 
 static void DEBUG_START_NODE(const ast::Ast& e)
 {
-    wcerr << L"(" << e.nodeNumber_get() << L") ";
+    wcerr << L"(" << e.getNodeNumber() << L") ";
     ++level;
 }
 
@@ -53,10 +53,10 @@ static void DEBUG(wstring str, const Exp &e)
     }
     wcerr << str;
 
-    Location loc = e.location_get();
+    Location loc = e.getLocation();
     wcerr << L" @(" << loc.first_line << L"." << loc.first_column << L" -> ";
     wcerr << loc.last_line << L"." << loc.last_column << L")";
-    wcerr << L" Deco(" << e.decorator_get() << L")" << endl;
+    wcerr << L" Deco(" << e.getDecorator() << L")" << endl;
 }
 
 
@@ -65,7 +65,7 @@ void DebugVisitor::visit (const MatrixExp &e)
     DEBUG_START_NODE(e);
     DEBUG(L"Exec MatrixExp", e);
     list<MatrixLineExp *>::const_iterator	i;
-    for (i = e.lines_get().begin() ; i != e.lines_get().end() ; ++i )
+    for (i = e.getLines().begin() ; i != e.getLines().end() ; ++i )
     {
         (*i)->accept (*this);
     }
@@ -77,7 +77,7 @@ void DebugVisitor::visit (const MatrixLineExp &e)
     DEBUG_START_NODE(e);
     DEBUG(L"Exec MatrixLineExp", e);
     list<Exp *>::const_iterator	i;
-    for (i = e.columns_get().begin() ; i != e.columns_get().end() ; ++i)
+    for (i = e.getColumns().begin() ; i != e.getColumns().end() ; ++i)
     {
         (*i)->accept (*this);
     }
@@ -90,7 +90,7 @@ void DebugVisitor::visit (const CellExp &e)
     DEBUG_START_NODE(e);
     DEBUG(L"Exec CellExp", e);
     list<MatrixLineExp *>::const_iterator	i;
-    for (i = e.lines_get().begin() ; i != e.lines_get().end() ; ++i )
+    for (i = e.getLines().begin() ; i != e.getLines().end() ; ++i )
     {
         (*i)->accept (*this);
     }
@@ -104,30 +104,14 @@ void DebugVisitor::visit (const CellExp &e)
 void DebugVisitor::visit (const StringExp &e)
 {
     DEBUG_START_NODE(e);
-    DEBUG(L"Exec StringExp : " + e.value_get(), e);
+    DEBUG(L"Exec StringExp : " + e.getValue(), e);
     DEBUG_END_NODE();
 }
 
 void DebugVisitor::visit (const CommentExp &e)
 {
     DEBUG_START_NODE(e);
-    DEBUG(L"Exec CommentExp : " + e.comment_get(), e);
-    DEBUG_END_NODE();
-}
-
-void DebugVisitor::visit (const IntExp  &e)
-{
-    DEBUG_START_NODE(e);
-    DEBUG(L"Exec IntExp : " + e.value_get(), e);
-    DEBUG_END_NODE();
-}
-
-void DebugVisitor::visit (const FloatExp  &e)
-{
-    DEBUG_START_NODE(e);
-    wostringstream stream;
-    stream << e.value_get();
-    DEBUG(L"Exec FloatExp : " + stream.str(), e);
+    DEBUG(L"Exec CommentExp : " + e.getComment(), e);
     DEBUG_END_NODE();
 }
 
@@ -135,7 +119,7 @@ void DebugVisitor::visit (const DoubleExp  &e)
 {
     DEBUG_START_NODE(e);
     wostringstream stream;
-    stream << e.value_get();
+    stream << e.getValue();
     DEBUG(L"Exec DoubleExp : " + stream.str(), e);
     DEBUG_END_NODE();
 }
@@ -144,8 +128,8 @@ void DebugVisitor::visit (const BoolExp  &e)
 {
     DEBUG_START_NODE(e);
     wostringstream stream;
-    stream << e.value_get();
-    DEBUG(L"Exec BoolExp : " + stream.str(), e);
+    stream << e.getValue();
+    DEBUG(L"Exec getv    : " + stream.str(), e);
     DEBUG_END_NODE();
 }
 
@@ -162,7 +146,7 @@ void DebugVisitor::visit (const NilExp &e)
 void DebugVisitor::visit (const SimpleVar &e)
 {
     DEBUG_START_NODE(e);
-    DEBUG(L"Exec SimpleVar : " + e.name_get().name_get(), e);
+    DEBUG(L"Exec SimpleVar : " + e.getSymbol().getName(), e);
     DEBUG_END_NODE();
 }
 
@@ -185,7 +169,7 @@ void DebugVisitor::visit (const ArrayListVar &e)
     DEBUG_START_NODE(e);
     DEBUG(L"Exec ArrayListVar", e);
     list<Var *>::const_iterator	i;
-    for (i = e.vars_get().begin() ; i != e.vars_get().end() ; ++i)
+    for (i = e.getVars().begin() ; i != e.getVars().end() ; ++i)
     {
         (*i)->accept (*this);
     }
@@ -202,8 +186,8 @@ void DebugVisitor::visit (const FieldExp &e)
     DEBUG(L"Exec FieldExp", e);
     // FIXME
     {
-        e.head_get()->accept(*this);
-        e.tail_get()->accept(*this);
+        e.getHead()->accept(*this);
+        e.getTail()->accept(*this);
     }
     DEBUG_END_NODE();
 }
@@ -214,9 +198,9 @@ void DebugVisitor::visit(const OpExp &e)
     DEBUG(L"Exec OpExp", e);
     // FIXME
     {
-        e.left_get().accept(*this);
+        e.getLeft().accept(*this);
         //e.oper_get();
-        e.right_get().accept(*this);
+        e.getRight().accept(*this);
     }
     DEBUG_END_NODE();
 }
@@ -227,9 +211,9 @@ void DebugVisitor::visit(const LogicalOpExp &e)
     DEBUG(L"Exec LogicalOpExp", e);
     // FIXME
     {
-        e.left_get().accept(*this);
+        e.getLeft().accept(*this);
         //e.oper_get();
-        e.right_get().accept(*this);
+        e.getRight().accept(*this);
     }
     DEBUG_END_NODE();
 }
@@ -240,8 +224,8 @@ void DebugVisitor::visit (const AssignExp  &e)
     DEBUG(L"Exec AssignExp", e);
     //FIXME
     {
-        e.left_exp_get().accept (*this);
-        e.right_exp_get().accept (*this);
+        e.getLeftExp().accept (*this);
+        e.getRightExp().accept (*this);
     }
     DEBUG_END_NODE();
 }
@@ -250,12 +234,12 @@ void DebugVisitor::visit(const CellCallExp &e)
 {
     DEBUG_START_NODE(e);
     DEBUG(L"Exec CellCallExp", e);
-    e.name_get().accept (*this);
+    e.getName().accept (*this);
     // FIXME
     {
         list<Exp *>::const_iterator	i;
 
-        for (i = e.args_get().begin (); i != e.args_get().end (); ++i)
+        for (i = e.getArgs().begin (); i != e.getArgs().end (); ++i)
         {
             (*i)->accept (*this);
         }
@@ -267,12 +251,12 @@ void DebugVisitor::visit(const CallExp &e)
 {
     DEBUG_START_NODE(e);
     DEBUG(L"Exec CallExp", e);
-    e.name_get().accept (*this);
+    e.getName().accept (*this);
     // FIXME
     {
         list<Exp *>::const_iterator	i;
 
-        for (i = e.args_get().begin (); i != e.args_get().end (); ++i)
+        for (i = e.getArgs().begin (); i != e.getArgs().end (); ++i)
         {
             (*i)->accept (*this);
         }
@@ -286,11 +270,11 @@ void DebugVisitor::visit (const IfExp  &e)
     DEBUG(L"Exec IfExp", e);
     // FIXME
     {
-        e.test_get ().accept(*this);
-        e.then_get ().accept(*this);
-        if (e.has_else())
+        e.getTest ().accept(*this);
+        e.getThen ().accept(*this);
+        if (e.hasElse())
         {
-            e.else_get ().accept(*this);
+            e.getElse ().accept(*this);
         }
     }
     DEBUG_END_NODE();
@@ -302,8 +286,8 @@ void DebugVisitor::visit (const TryCatchExp  &e)
     DEBUG(L"Exec TryCatchExp", e);
     // FIXME
     {
-        e.try_get ().accept(*this);
-        e.catch_get ().accept(*this);
+        e.getTry ().accept(*this);
+        e.getCatch ().accept(*this);
     }
     DEBUG_END_NODE();
 }
@@ -313,8 +297,8 @@ void DebugVisitor::visit (const WhileExp  &e)
     DEBUG_START_NODE(e);
     DEBUG(L"Exec WhileExp", e);
     // FIMXE
-    e.test_get().accept (*this);
-    e.body_get().accept (*this);
+    e.getTest().accept (*this);
+    e.getBody().accept (*this);
     DEBUG_END_NODE();
 }
 
@@ -322,8 +306,8 @@ void DebugVisitor::visit (const ForExp  &e)
 {
     DEBUG_START_NODE(e);
     DEBUG(L"Exec ForExp", e);
-    e.vardec_get().accept(*this);
-    e.body_get().accept (*this);
+    e.getVardec().accept(*this);
+    e.getBody().accept (*this);
     DEBUG_END_NODE();
 }
 
@@ -345,9 +329,9 @@ void DebugVisitor::visit (const ReturnExp &e)
 {
     DEBUG_START_NODE(e);
     DEBUG(L"Exec ReturnExp", e);
-    if (!e.is_global())
+    if (!e.isGlobal())
     {
-        e.exp_get().accept(*this);
+        e.getExp().accept(*this);
     }
     DEBUG_END_NODE();
 }
@@ -356,15 +340,15 @@ void DebugVisitor::visit (const SelectExp &e)
 {
     DEBUG_START_NODE(e);
     DEBUG(L"Exec SelectExp", e);
-    e.select_get()->accept(*this);
+    e.getSelect()->accept(*this);
     ast::cases_t::iterator it;
-    for (it = e.cases_get()->begin() ; it !=  e.cases_get()->end() ; ++it)
+    for (it = e.getCases()->begin() ; it !=  e.getCases()->end() ; ++it)
     {
         (*it)->accept(*this);
     }
-    if (e.default_case_get() != NULL)
+    if (e.getDefaultCase() != NULL)
     {
-        e.default_case_get()->accept(*this);
+        e.getDefaultCase()->accept(*this);
     }
     DEBUG_END_NODE();
 }
@@ -373,8 +357,8 @@ void DebugVisitor::visit (const CaseExp &e)
 {
     DEBUG_START_NODE(e);
     DEBUG(L"Exec CaseExp", e);
-    e.test_get()->accept(*this);
-    e.body_get()->accept(*this);
+    e.getTest()->accept(*this);
+    e.getBody()->accept(*this);
     DEBUG_END_NODE();
 }
 
@@ -383,9 +367,9 @@ void DebugVisitor::visit (const SeqExp  &e)
     DEBUG_START_NODE(e);
     DEBUG(L"Exec SeqExp", e);
     list<Exp *>::const_iterator	i;
-    for (i = e.exps_get().begin (); i != e.exps_get().end (); ++i)
+    for (i = e.getExps().begin (); i != e.getExps().end (); ++i)
     {
-        if (!(*i)->is_verbose())
+        if (!(*i)->isVerbose())
         {
             DEBUG(L"__MUTE__");
         }
@@ -399,7 +383,7 @@ void DebugVisitor::visit (const ArrayListExp  &e)
     DEBUG_START_NODE(e);
     DEBUG(L"Exec ArrayListExp", e);
     list<Exp *>::const_iterator	i;
-    for (i = e.exps_get().begin (); i != e.exps_get().end (); ++i)
+    for (i = e.getExps().begin (); i != e.getExps().end (); ++i)
     {
         (*i)->accept (*this);
     }
@@ -411,7 +395,7 @@ void DebugVisitor::visit (const AssignListExp  &e)
     DEBUG_START_NODE(e);
     DEBUG(L"Exec AssignListExp", e);
     list<Exp *>::const_iterator	i;
-    for (i = e.exps_get().begin (); i != e.exps_get().end (); ++i)
+    for (i = e.getExps().begin (); i != e.getExps().end (); ++i)
     {
         (*i)->accept (*this);
     }
@@ -425,7 +409,7 @@ void DebugVisitor::visit (const NotExp &e)
 {
     DEBUG_START_NODE(e);
     DEBUG(L"Exec NotExp", e);
-    e.exp_get().accept (*this);
+    e.getExp().accept (*this);
     DEBUG_END_NODE();
 }
 
@@ -433,7 +417,7 @@ void DebugVisitor::visit (const TransposeExp &e)
 {
     DEBUG_START_NODE(e);
     DEBUG(L"Exec TransposeExp", e);
-    e.exp_get().accept (*this);
+    e.getExp().accept (*this);
     DEBUG_END_NODE();
 }
 /** \} */
@@ -447,10 +431,10 @@ void DebugVisitor::visit (const VarDec  &e)
     DEBUG(L"Exec VarDec", e);
     {
         DEBUG_START_NODE(e);
-        DEBUG(L"Exec Symbol : " + e.name_get().name_get(), e);
+        DEBUG(L"Exec Symbol : " + e.getSymbol().getName(), e);
         DEBUG_END_NODE();
     }
-    e.init_get().accept(*this);
+    e.getInit().accept(*this);
     DEBUG_END_NODE();
 }
 
@@ -464,13 +448,13 @@ void DebugVisitor::visit (const FunctionDec  &e)
     //visit(e.returns_get());
 
     // Then get the function name
-    //visit(e.name_get());
+    //visit(e.getName());
 
     // Then get function args
     //visit(e.args_get());
 
     // Now debug function body
-    e.body_get().accept(*this);
+    e.getBody().accept(*this);
 
     DEBUG_END_NODE();
 }
@@ -482,9 +466,9 @@ void DebugVisitor::visit(const ListExp &e)
 {
     DEBUG_START_NODE(e);
     DEBUG(L"Exec ListExp", e);
-    e.start_get().accept(*this);
-    e.step_get().accept(*this);
-    e.end_get().accept(*this);
+    e.getStart().accept(*this);
+    e.getStep().accept(*this);
+    e.getEnd().accept(*this);
     DEBUG_END_NODE();
 }
 /** \} */

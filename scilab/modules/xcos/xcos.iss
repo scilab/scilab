@@ -18,7 +18,7 @@
 ;
 #define XCOS "xcos"
 ;
-Source: bin\{#XCOS}.dll; DestDir: {app}\bin; Components: {#COMPN_XCOS}
+Source: bin\sci{#XCOS}.dll; DestDir: {app}\bin; Components: {#COMPN_XCOS}
 ;
 Source: modules\{#XCOS}\jar\org.scilab.modules.{#XCOS}.jar; DestDir: {app}\modules\{#XCOS}\jar; Components: {#COMPN_XCOS}
 ;

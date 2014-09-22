@@ -21,6 +21,9 @@
     <ClInclude Include="..\..\includes\signal_gw.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\includes\gw_signal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="sci_rpem.cpp">
@@ -42,6 +45,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\c\sci_remez.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\c\sci_conv2.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

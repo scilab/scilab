@@ -2736,7 +2736,7 @@ yyreduce:
   case 7:
 
     {
-                                                  (yyvsp[0].t_exp)->set_verbose(true);
+                                                  (yyvsp[0].t_exp)->setVerbose(true);
                                                   (yyvsp[-1].t_list_exp)->push_back((yyvsp[0].t_exp));
                                                   (yyval.t_seq_exp) = new ast::SeqExp((yyloc), *(yyvsp[-1].t_list_exp));
                                                 }
@@ -2746,7 +2746,7 @@ yyreduce:
   case 8:
 
     {
-                                                  (yyvsp[-1].t_exp)->set_verbose(true);
+                                                  (yyvsp[-1].t_exp)->setVerbose(true);
                                                   (yyvsp[-2].t_list_exp)->push_back((yyvsp[-1].t_exp));
                                                   (yyvsp[-2].t_list_exp)->push_back(new ast::CommentExp((yylsp[0]), (yyvsp[0].comment)));
                                                   (yyval.t_seq_exp) = new ast::SeqExp((yyloc), *(yyvsp[-2].t_list_exp));
@@ -2758,7 +2758,7 @@ yyreduce:
 
     {
                                                   ast::exps_t *tmp = new ast::exps_t;
-                                                  (yyvsp[0].t_exp)->set_verbose(true);
+                                                  (yyvsp[0].t_exp)->setVerbose(true);
                                                   tmp->push_front((yyvsp[0].t_exp));
                                                   (yyval.t_seq_exp) = new ast::SeqExp((yyloc), *tmp);
                                                 }
@@ -2769,7 +2769,7 @@ yyreduce:
 
     {
                                                   ast::exps_t *tmp = new ast::exps_t;
-                                                  (yyvsp[-1].t_exp)->set_verbose(true);
+                                                  (yyvsp[-1].t_exp)->setVerbose(true);
                                                   tmp->push_front(new ast::CommentExp((yylsp[0]), (yyvsp[0].comment)));
                                                   tmp->push_front((yyvsp[-1].t_exp));
                                                   (yyval.t_seq_exp) = new ast::SeqExp((yyloc), *tmp);
@@ -2780,12 +2780,12 @@ yyreduce:
   case 11:
 
     {
-							  (yyvsp[-1].t_exp)->set_verbose((yyvsp[0].mute)->bVerbose);
+							  (yyvsp[-1].t_exp)->setVerbose((yyvsp[0].mute)->bVerbose);
 							  (yyvsp[-2].t_list_exp)->push_back((yyvsp[-1].t_exp));
 							  (yyval.t_list_exp) = (yyvsp[-2].t_list_exp);
                               if ((yyvsp[0].mute)->iNbBreaker != 0)
                               {
-                                  (yyvsp[-1].t_exp)->location_get().last_column = (yyvsp[0].mute)->iNbBreaker;
+                                  (yyvsp[-1].t_exp)->getLocation().last_column = (yyvsp[0].mute)->iNbBreaker;
                               }
 			      delete (yyvsp[0].mute);
 							}
@@ -2795,7 +2795,7 @@ yyreduce:
   case 12:
 
     {
-							  (yyvsp[-2].t_exp)->set_verbose((yyvsp[0].mute)->bVerbose);
+							  (yyvsp[-2].t_exp)->setVerbose((yyvsp[0].mute)->bVerbose);
 							  (yyvsp[-3].t_list_exp)->push_back((yyvsp[-2].t_exp));
                               (yylsp[-1]).columns((yyvsp[0].mute)->iNbBreaker);
 							  (yyvsp[-3].t_list_exp)->push_back(new ast::CommentExp((yylsp[-1]), (yyvsp[-1].comment)));
@@ -2811,7 +2811,7 @@ yyreduce:
 							  ast::exps_t *tmp = new ast::exps_t;
                               (yylsp[-1]).columns((yyvsp[0].mute)->iNbBreaker);
 							  tmp->push_front(new ast::CommentExp((yylsp[-1]), (yyvsp[-1].comment)));
-							  (yyvsp[-2].t_exp)->set_verbose((yyvsp[0].mute)->bVerbose);
+							  (yyvsp[-2].t_exp)->setVerbose((yyvsp[0].mute)->bVerbose);
 							  tmp->push_front((yyvsp[-2].t_exp));
 							  (yyval.t_list_exp) = tmp;
 							  delete (yyvsp[0].mute);
@@ -2823,12 +2823,12 @@ yyreduce:
 
     {
 							  ast::exps_t *tmp = new ast::exps_t;
-							  (yyvsp[-1].t_exp)->set_verbose((yyvsp[0].mute)->bVerbose);
+							  (yyvsp[-1].t_exp)->setVerbose((yyvsp[0].mute)->bVerbose);
 							  tmp->push_front((yyvsp[-1].t_exp));
 							  (yyval.t_list_exp) = tmp;
                               if ((yyvsp[0].mute)->iNbBreaker != 0)
                               {
-                                  (yyvsp[-1].t_exp)->location_get().last_column = (yyvsp[0].mute)->iNbBreaker;
+                                  (yyvsp[-1].t_exp)->getLocation().last_column = (yyvsp[0].mute)->iNbBreaker;
                               }
 			      delete (yyvsp[0].mute);
 							}
@@ -2967,8 +2967,8 @@ yyreduce:
   case 36:
 
     {
-						  (yyvsp[-1].t_call_exp)->args_get().push_back((yyvsp[0].t_string_exp));
-						  (yyvsp[-1].t_call_exp)->location_set((yyloc));
+						  (yyvsp[-1].t_call_exp)->getArgs().push_back((yyvsp[0].t_string_exp));
+						  (yyvsp[-1].t_call_exp)->setLocation((yyloc));
                           (yyval.t_call_exp) = (yyvsp[-1].t_call_exp);
 						}
 
@@ -3049,7 +3049,7 @@ yyreduce:
 
     {
 						  std::wstringstream tmp;
-						  tmp << (yyvsp[-2].t_string_exp)->value_get() << "." << *(yyvsp[0].str);
+						  tmp << (yyvsp[-2].t_string_exp)->getValue() << "." << *(yyvsp[0].str);
 						  (yyval.t_string_exp) = new ast::StringExp((yyloc), tmp.str());
 						  delete (yyvsp[0].str);
 						}
@@ -3714,8 +3714,8 @@ yyreduce:
   case 115:
 
     {
-					  delete &((yyvsp[0].t_op_exp)->left_get());
-					  (yyvsp[0].t_op_exp)->left_set(*(yyvsp[-1].t_exp));
+					  delete &((yyvsp[0].t_op_exp)->getLeft());
+					  (yyvsp[0].t_op_exp)->setLeft(*(yyvsp[-1].t_exp));
 					  (yyval.t_op_exp) = (yyvsp[0].t_op_exp);
 					}
 
@@ -3724,8 +3724,8 @@ yyreduce:
   case 116:
 
     {
-					  delete &((yyvsp[0].t_op_exp)->left_get());
-					  (yyvsp[0].t_op_exp)->left_set(*(yyvsp[-1].t_call_exp));
+					  delete &((yyvsp[0].t_op_exp)->getLeft());
+					  (yyvsp[0].t_op_exp)->setLeft(*(yyvsp[-1].t_call_exp));
 					  (yyval.t_op_exp) = (yyvsp[0].t_op_exp);
 					}
 
@@ -3914,9 +3914,9 @@ yyreduce:
   case 147:
 
     {
-					  delete &((yyvsp[0].t_op_exp)->left_get());
-					  (yyvsp[0].t_op_exp)->left_set(*(yyvsp[-1].t_exp));
-					  (yyvsp[0].t_op_exp)->location_set((yyloc));
+					  delete &((yyvsp[0].t_op_exp)->getLeft());
+					  (yyvsp[0].t_op_exp)->setLeft(*(yyvsp[-1].t_exp));
+					  (yyvsp[0].t_op_exp)->setLocation((yyloc));
 					  (yyval.t_exp) = (yyvsp[0].t_op_exp);
 					}
 
@@ -3925,9 +3925,9 @@ yyreduce:
   case 148:
 
     {
-					  delete &((yyvsp[0].t_op_exp)->left_get());
-					  (yyvsp[0].t_op_exp)->left_set(*(yyvsp[-1].t_call_exp));
-					  (yyvsp[0].t_op_exp)->location_set((yyloc));
+					  delete &((yyvsp[0].t_op_exp)->getLeft());
+					  (yyvsp[0].t_op_exp)->setLeft(*(yyvsp[-1].t_call_exp));
+					  (yyvsp[0].t_op_exp)->setLocation((yyloc));
 					  (yyval.t_exp) = (yyvsp[0].t_op_exp);
 					}
 
@@ -4254,8 +4254,8 @@ yyreduce:
   case 202:
 
     {
-							  (yyvsp[0].t_call_exp)->name_set(new ast::FieldExp((yyloc), *(yyvsp[-2].t_exp), (yyvsp[0].t_call_exp)->name_get()));
-							  (yyvsp[0].t_call_exp)->location_set((yyloc));
+							  (yyvsp[0].t_call_exp)->setName(new ast::FieldExp((yyloc), *(yyvsp[-2].t_exp), (yyvsp[0].t_call_exp)->getName()));
+							  (yyvsp[0].t_call_exp)->setLocation((yyloc));
 							  (yyval.t_exp) = (yyvsp[0].t_call_exp);
 }
 
@@ -4276,8 +4276,8 @@ yyreduce:
   case 205:
 
     {
-							  (yyvsp[0].t_call_exp)->name_set(new ast::FieldExp((yyloc), *(yyvsp[-2].t_call_exp), (yyvsp[0].t_call_exp)->name_get()));
-							  (yyvsp[0].t_call_exp)->location_set((yyloc));
+							  (yyvsp[0].t_call_exp)->setName(new ast::FieldExp((yyloc), *(yyvsp[-2].t_call_exp), (yyvsp[0].t_call_exp)->getName()));
+							  (yyvsp[0].t_call_exp)->setLocation((yyloc));
 							  (yyval.t_exp) = (yyvsp[0].t_call_exp);
 }
 
@@ -4286,7 +4286,7 @@ yyreduce:
   case 206:
 
     {
-    (yyval.t_exp) = new ast::ListExp((yyloc), *(yyvsp[-1].t_exp), *((yyvsp[0].t_implicit_list)->step_get().clone()), *((yyvsp[0].t_implicit_list)->end_get().clone()), (yyvsp[0].t_implicit_list)->hasExplicitStep());
+    (yyval.t_exp) = new ast::ListExp((yyloc), *(yyvsp[-1].t_exp), *((yyvsp[0].t_implicit_list)->getStep().clone()), *((yyvsp[0].t_implicit_list)->getEnd().clone()), (yyvsp[0].t_implicit_list)->hasExplicitStep());
     delete((yyvsp[0].t_implicit_list));
 }
 
@@ -4295,7 +4295,7 @@ yyreduce:
   case 207:
 
     {
-    (yyval.t_exp) = new ast::ListExp((yyloc), *(yyvsp[-1].t_call_exp), *((yyvsp[0].t_implicit_list)->step_get().clone()), *((yyvsp[0].t_implicit_list)->end_get().clone()), (yyvsp[0].t_implicit_list)->hasExplicitStep());
+    (yyval.t_exp) = new ast::ListExp((yyloc), *(yyvsp[-1].t_call_exp), *((yyvsp[0].t_implicit_list)->getStep().clone()), *((yyvsp[0].t_implicit_list)->getEnd().clone()), (yyvsp[0].t_implicit_list)->hasExplicitStep());
     delete((yyvsp[0].t_implicit_list));
 }
 
@@ -4400,7 +4400,7 @@ yyreduce:
   case 224:
 
     {
-					  (yyvsp[-2].t_arraylist_exp)->exps_get().push_back((yyvsp[0].t_exp));
+					  (yyvsp[-2].t_arraylist_exp)->getExps().push_back((yyvsp[0].t_exp));
 					  (yyval.t_arraylist_exp) = (yyvsp[-2].t_arraylist_exp);
 					}
 
@@ -4409,7 +4409,7 @@ yyreduce:
   case 225:
 
     {
-					  (yyvsp[-2].t_arraylist_exp)->exps_get().push_back((yyvsp[0].t_call_exp));
+					  (yyvsp[-2].t_arraylist_exp)->getExps().push_back((yyvsp[0].t_call_exp));
 					  (yyval.t_arraylist_exp) = (yyvsp[-2].t_arraylist_exp);
 					}
 
@@ -4784,8 +4784,8 @@ yyreduce:
   case 274:
 
     {
-                                                (yyvsp[0].t_call_exp)->name_set(new ast::FieldExp((yyloc), *(yyvsp[-2].t_exp), (yyvsp[0].t_call_exp)->name_get()));
-                                                (yyvsp[0].t_call_exp)->location_set((yyloc));
+                                                (yyvsp[0].t_call_exp)->setName(new ast::FieldExp((yyloc), *(yyvsp[-2].t_exp), (yyvsp[0].t_call_exp)->getName()));
+                                                (yyvsp[0].t_call_exp)->setLocation((yyloc));
                                                 (yyval.t_exp) = (yyvsp[0].t_call_exp);
                                             }
 
@@ -4806,8 +4806,8 @@ yyreduce:
   case 277:
 
     {
-							  (yyvsp[0].t_call_exp)->name_set(new ast::FieldExp((yyloc), *(yyvsp[-2].t_call_exp), (yyvsp[0].t_call_exp)->name_get()));
-							  (yyvsp[0].t_call_exp)->location_set((yyloc));
+							  (yyvsp[0].t_call_exp)->setName(new ast::FieldExp((yyloc), *(yyvsp[-2].t_call_exp), (yyvsp[0].t_call_exp)->getName()));
+							  (yyvsp[0].t_call_exp)->setLocation((yyloc));
 							  (yyval.t_exp) = (yyvsp[0].t_call_exp);
                                             }
 

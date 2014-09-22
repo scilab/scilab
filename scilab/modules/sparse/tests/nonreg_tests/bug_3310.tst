@@ -19,7 +19,7 @@
 A=[10,1;1,10];
 // Suppose that the rhs is in myrhs instead of b
 myrhs=[11;11];
-[xcomputed, flag, err, iter, res]=pcg(A,myrhs);
+[xcomputed, flag, err, iter, res]=conjgrad(A,myrhs);
 xexpected=[1;1];
 assert_checkequal(xcomputed, xexpected);
 

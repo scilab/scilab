@@ -17,7 +17,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>[param_list,err] = add_param(list_name,param_name,param_value)</synopsis>
+        <synopsis>param_list = add_param(list_name,param_name,param_value)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>引数</title>
@@ -53,15 +53,6 @@
                     </para>
                 </listitem>
             </varlistentry>
-            <varlistentry>
-                <term>err</term>
-                <listitem>
-                    <para>エラーフラグで,list_nameがplist型でない
-                        (このリストはinit_paramをコールすることにより初期化されていない)
-                        場合 %T に設定されます.
-                    </para>
-                </listitem>
-            </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
@@ -74,7 +65,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 mylist = init_param();
 mylist = add_param(mylist,'minbound',[0 0 0]);
  ]]></programlisting>

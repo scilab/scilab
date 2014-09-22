@@ -85,6 +85,12 @@ std::ostream& operator<<(std::ostream& os, object_properties_t p)
         case DESCRIPTION:
             os << "DESCRIPTION";
             break;
+        case FONT:
+            os << "FONT";
+            break;
+        case FONT_SIZE:
+            os << "FONT_SIZE";
+            break;
         case RELATED_TO:
             os << "RELATED_TO";
             break;
@@ -138,7 +144,7 @@ std::ostream& operator<<(std::ostream& os, object_properties_t p)
             break;
         case NMODE:
             os << "NMODE";
-            break;;
+            break;
         case RPAR:
             os << "RPAR";
             break;
@@ -235,6 +241,9 @@ std::ostream& operator<<(std::ostream& os, object_properties_t p)
         case DIAGRAM_CONTEXT:
             os << "CONTEXT";
             break;
+        case VERSION_NUMBER:
+            os << "VERSION_NUMBER";
+            break;
     }
     return os;
 }
@@ -291,6 +300,11 @@ void LoggerView::objectUpdated(const ScicosID& uid, kind_t k)
 
 void LoggerView::propertyUpdated(const ScicosID& uid, kind_t k, object_properties_t p)
 {
+    // silent unused parameter warnings
+    (void) uid;
+    (void) k;
+    (void) p;
+
     // do not log anything on success; the message has already been logged
 }
 

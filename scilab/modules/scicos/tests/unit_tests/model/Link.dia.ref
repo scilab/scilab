@@ -1,0 +1,48 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2014 - Scilab Enterprises - Paul Bignier
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+loadXcosLibs();
+// Allocate a Link and access its fields
+lnk = scicos_link()
+objectCreated( 1 , LINK )
+propertyUpdated( 1 , LINK , CONTROL_POINTS ) : NO_CHANGES
+propertyUpdated( 1 , LINK , CONTROL_POINTS ) : NO_CHANGES
+propertyUpdated( 1 , LINK , LABEL ) : NO_CHANGES
+propertyUpdated( 1 , LINK , THICK ) : NO_CHANGES
+propertyUpdated( 1 , LINK , COLOR ) : NO_CHANGES
+propertyUpdated( 1 , LINK , KIND ) : NO_CHANGES
+propertyUpdated( 1 , LINK , SOURCE_PORT ) : NO_CHANGES
+propertyUpdated( 1 , LINK , DESTINATION_PORT ) : NO_CHANGES
+lnk  = 
+scicos_Link type :
+  xx
+  yy
+  id
+  thick
+  ct
+  from
+  to
+lnk.xx
+ ans  =
+    []
+lnk.yy
+ ans  =
+    []
+lnk.id
+ ans  =
+ 
+lnk.thick
+ ans  =
+    0.    0.
+lnk.ct
+ ans  =
+    1.    1.
+lnk.from
+ ans  =
+    0.    0.    0.
+lnk.to
+ ans  =
+    0.    0.    0.

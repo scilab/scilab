@@ -13,13 +13,7 @@
 // <-- Short Description -->
 // pspect does not use the last data window
 a=[0 0 0 0 0 0 6 6];
-p=pspect(2,4,'re',a,a)
- p  =
- 
-    0    6.    0    6.  
+p=pspect(2,4,"re",a,a);
 if or(p<>[0 6 0 6]) then bugmes();quit;end
-p=pspect(2,4,'re', a)
- p  =
- 
-    0.    6.    0.    6.  
+p=pspect(2,4,"re", a);
 if or(p<>[0 6 0 6]) then bugmes();quit;end

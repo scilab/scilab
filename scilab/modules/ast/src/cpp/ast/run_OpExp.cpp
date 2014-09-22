@@ -19,28 +19,28 @@ void RunVisitorT<T>::visitprivate(const OpExp &e)
     try
     {
         /*getting what to assign*/
-        e.left_get().accept(*this);
-        if (is_single_result() == false)
+        e.getLeft().accept(*this);
+        if (isSingleResult() == false)
         {
-            result_clear();
+            clearResult();
             std::wostringstream os;
             os << _W("Incompatible output argument.\n");
-            //os << ((Location)e.right_get().location_get()).location_getString() << std::endl;
-            throw ast::ScilabError(os.str(), 999, e.right_get().location_get());
+            //os << ((Location)e.right_get().getLocation()).getLocationString() << std::endl;
+            throw ast::ScilabError(os.str(), 999, e.getRight().getLocation());
         }
-        pITL = result_get();
+        pITL = getResult();
 
         /*getting what to assign*/
-        e.right_get().accept(*this);
-        if (is_single_result() == false)
+        e.getRight().accept(*this);
+        if (isSingleResult() == false)
         {
-            result_clear();
+            clearResult();
             std::wostringstream os;
             os << _W("Incompatible output argument.\n");
-            //os << ((Location)e.right_get().location_get()).location_getString() << std::endl;
-            throw ast::ScilabError(os.str(), 999, e.right_get().location_get());
+            //os << ((Location)e.right_get().getLocation()).getLocationString() << std::endl;
+            throw ast::ScilabError(os.str(), 999, e.getRight().getLocation());
         }
-        pITR = result_get();
+        pITR = getResult();
 
         if (pITL->getType() == GenericType::ScilabImplicitList)
         {
@@ -62,7 +62,7 @@ void RunVisitorT<T>::visitprivate(const OpExp &e)
             }
         }
 
-        switch (e.oper_get())
+        switch (e.getOper())
         {
             case OpExp::plus :
             {
@@ -172,10 +172,10 @@ void RunVisitorT<T>::visitprivate(const OpExp &e)
         if (pResult == NULL)
         {
             // We did not have any algorithm matching, so we try to call OverLoad
-            pResult = callOverloadOpExp(e.oper_get(), pITL, pITR);
+            pResult = callOverloadOpExp(e.getOper(), pITL, pITR);
         }
 
-        result_set(pResult);
+        setResult(pResult);
 
         //clear left and/or right operands
         if (pResult != pITL)
@@ -190,7 +190,7 @@ void RunVisitorT<T>::visitprivate(const OpExp &e)
     }
     catch (ast::ScilabError & error)
     {
-        result_set(NULL);
+        setResult(NULL);
         if (pResult)
         {
             pResult->killMe();
@@ -204,7 +204,7 @@ void RunVisitorT<T>::visitprivate(const OpExp &e)
             pITR->killMe();
         }
 
-        error.SetErrorLocation(e.location_get());
+        error.SetErrorLocation(e.getLocation());
         throw error;
     }
 
@@ -218,17 +218,17 @@ void RunVisitorT<T>::visitprivate(const LogicalOpExp &e)
         InternalType *pITR = NULL; //assign only in non shortcut operations.
 
         /*getting what to assign*/
-        e.left_get().accept(*this);
-        InternalType *pITL = result_get();
-        if (is_single_result() == false)
+        e.getLeft().accept(*this);
+        InternalType *pITL = getResult();
+        if (isSingleResult() == false)
         {
             std::wostringstream os;
             os << _W("Incompatible output argument.\n");
-            //os << ((Location)e.right_get().location_get()).location_getString() << std::endl;
-            throw ast::ScilabError(os.str(), 999, e.right_get().location_get());
+            //os << ((Location)e.right_get().getLocation()).getLocationString() << std::endl;
+            throw ast::ScilabError(os.str(), 999, e.getRight().getLocation());
         }
 
-        result_set(NULL);
+        setResult(NULL);
 
         if (pITL->getType() == GenericType::ScilabImplicitList)
         {
@@ -242,7 +242,7 @@ void RunVisitorT<T>::visitprivate(const LogicalOpExp &e)
 
         InternalType *pResult   = NULL;
 
-        switch (e.oper_get())
+        switch (e.getOper())
         {
             case LogicalOpExp::logicalShortCutAnd :
             {
@@ -257,14 +257,14 @@ void RunVisitorT<T>::visitprivate(const LogicalOpExp &e)
             case LogicalOpExp::logicalAnd :
             {
                 /*getting what to assign*/
-                e.right_get().accept(*this);
-                pITR = result_get();
-                if (is_single_result() == false)
+                e.getRight().accept(*this);
+                pITR = getResult();
+                if (isSingleResult() == false)
                 {
                     std::wostringstream os;
                     os << _W("Incompatible output argument.\n");
-                    //os << ((Location)e.right_get().location_get()).location_getString() << std::endl;
-                    throw ast::ScilabError(os.str(), 999, e.right_get().location_get());
+                    //os << ((Location)e.right_get().getLocation()).getLocationString() << std::endl;
+                    throw ast::ScilabError(os.str(), 999, e.getRight().getLocation());
                 }
 
                 if (pITR->getType() == GenericType::ScilabImplicitList)
@@ -292,14 +292,14 @@ void RunVisitorT<T>::visitprivate(const LogicalOpExp &e)
             case LogicalOpExp::logicalOr :
             {
                 /*getting what to assign*/
-                e.right_get().accept(*this);
-                pITR = result_get();
-                if (is_single_result() == false)
+                e.getRight().accept(*this);
+                pITR = getResult();
+                if (isSingleResult() == false)
                 {
                     std::wostringstream os;
                     os << _W("Incompatible output argument.\n");
-                    //os << ((Location)e.right_get().location_get()).location_getString() << std::endl;
-                    throw ast::ScilabError(os.str(), 999, e.right_get().location_get());
+                    //os << ((Location)e.right_get().getLocation()).getLocationString() << std::endl;
+                    throw ast::ScilabError(os.str(), 999, e.getRight().getLocation());
                 }
 
                 if (pITR->getType() == GenericType::ScilabImplicitList)
@@ -321,10 +321,10 @@ void RunVisitorT<T>::visitprivate(const LogicalOpExp &e)
         if (pResult == NULL)
         {
             // We did not have any algorithm matching, so we try to call OverLoad
-            pResult = callOverloadOpExp(e.oper_get(), pITL, pITR);
+            pResult = callOverloadOpExp(e.getOper(), pITL, pITR);
         }
 
-        result_set(pResult);
+        setResult(pResult);
 
         //clear left and/or right operands
         pITL->killMe();
@@ -335,8 +335,8 @@ void RunVisitorT<T>::visitprivate(const LogicalOpExp &e)
     }
     catch (ast::ScilabError error)
     {
-        result_clear();
-        error.SetErrorLocation(e.location_get());
+        clearResult();
+        error.SetErrorLocation(e.getLocation());
         throw error;
     }
 

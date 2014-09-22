@@ -17,21 +17,39 @@ extern "C"
 #include "functions_manager.h"
 }
 
-void LoadModules(int _iNoStart)
+void LoadModules()
 {
     FuncManager* pFM = FuncManager::getInstance();
     if (pFM)
     {
-        pFM->LoadModules(_iNoStart != 0);
+        pFM->LoadModules();
     }
 }
 
-void UnloadModules(int _iNoStart)
+void StartModules()
 {
     FuncManager* pFM = FuncManager::getInstance();
     if (pFM)
     {
-        pFM->UnloadModules(_iNoStart != 0);
+        pFM->StartModules();
+    }
+}
+
+void EndModules()
+{
+    FuncManager* pFM = FuncManager::getInstance();
+    if (pFM)
+    {
+        pFM->EndModules();
+    }
+}
+
+void UnloadModules()
+{
+    FuncManager* pFM = FuncManager::getInstance();
+    if (pFM)
+    {
+        pFM->UnloadModules();
     }
 }
 

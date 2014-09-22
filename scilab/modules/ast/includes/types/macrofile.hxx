@@ -72,8 +72,8 @@ public :
     bool operator==(const InternalType& it);
 
 private :
-    Macro*                  m_pMacro;
     std::wstring            m_stPath;
+    Macro*                  m_pMacro;
 };
 }
 

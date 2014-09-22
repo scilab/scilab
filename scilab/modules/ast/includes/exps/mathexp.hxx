@@ -31,12 +31,6 @@ public:
     virtual ~MathExp ()
     {
     }
-
-    //virtual MathExp* clone()
-    //{
-    //    Location* newloc = const_cast<Location*>(&location_get())->clone();
-    //    return new MathExp(*newloc);
-    //}
 };
 } // namespace ast
 #endif /* !__AST_MATHEXP_HXX__ */

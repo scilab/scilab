@@ -48,8 +48,8 @@ public:
 
     virtual SimpleVar* clone()
     {
-        SimpleVar* cloned = new SimpleVar(location_get(), *new symbol::Symbol(name_get().name_get()));
-        cloned->set_verbose(is_verbose());
+        SimpleVar* cloned = new SimpleVar(getLocation(), *new symbol::Symbol(getSymbol().getName()));
+        cloned->setVerbose(isVerbose());
         return cloned;
     }
 
@@ -73,12 +73,12 @@ public:
     ** \{ */
 public:
     /** \brief Return the Variable's name. */
-    symbol::Symbol& name_get () const
+    symbol::Symbol& getSymbol () const
     {
         return _name;
     }
 
-    symbol::Variable* stack_get()
+    symbol::Variable* getStack()
     {
         if (_stack == NULL)
         {
@@ -92,14 +92,18 @@ public:
 
     bool operator== (const SimpleVar &rhs) const
     {
-        return _name == rhs.name_get();
+        return _name == rhs.getSymbol();
     }
 
-    inline bool is_simple_var() const
+
+    virtual ExpType getType()
+    {
+        return SIMPLEVAR;
+    }
+    inline bool isSimpleVar() const
     {
         return true;
     }
-
 protected:
     /** \brief Variable's name */
     symbol::Symbol& _name;

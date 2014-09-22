@@ -57,11 +57,11 @@ public:
      ** \{ */
 public:
     /** \brief Return the wstring referenced by this Symbol. */
-    const std::wstring& name_get () const;
+    const std::wstring& getName () const;
     /** \brief Return the number of referenced strings. */
-    static size_type map_size ();
+    static size_type getSize ();
     /** \brief Return all symbols. */
-    static wchar_t** get_all ();
+    static wchar_t** getAll ();
     /** \} */
 
 
@@ -79,7 +79,7 @@ public:
     bool operator<  (const Symbol &rhs) const;
     /** \} */
 
-    const string_set_type::const_iterator get_node() const
+    const string_set_type::const_iterator getNode() const
     {
         return _set_node;
     }

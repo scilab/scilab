@@ -25,8 +25,6 @@ extern "C"
 InternalType *GenericPower(InternalType *_pLeftOperand, InternalType *_pRightOperand)
 {
     InternalType *pResult = NULL;
-    GenericType::ScilabType TypeL = _pLeftOperand->getType();
-    GenericType::ScilabType TypeR = _pRightOperand->getType();
 
     /*
     ** DOUBLE ^ DOUBLE
@@ -312,9 +310,6 @@ int PowerPolyByDouble(Polynom* _pPoly, Double* _pDouble, InternalType** _pOut)
     bool bComplex1  = _pPoly->isComplex();
     bool bComplex2  = _pDouble->isComplex();
     bool bScalar1   = _pPoly->isScalar();
-    bool bScalar2   = _pDouble->isScalar();
-
-    int iComplex = 1;
 
     if (bComplex2)
     {

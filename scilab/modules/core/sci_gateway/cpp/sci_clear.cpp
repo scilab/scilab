@@ -50,10 +50,9 @@ Function::ReturnValue sci_clear(types::typed_list &in, int _iRetCount, types::ty
             Scierror(999, _("%s: Wrong size for input argument #%d: Single string expected.\n"), "clear", iWrongType);
             return Function::Error;
         }
-        iWrongType++;
     }
 
-    for (inIterator = in.begin() ; inIterator != in.end() ; iWrongType++, inIterator++)
+    for (inIterator = in.begin() ; inIterator != in.end() ; inIterator++)
     {
         symbol::Context::getInstance()->remove(symbol::Symbol((*inIterator)->getAs<types::String>()->get(0, 0)));
     }

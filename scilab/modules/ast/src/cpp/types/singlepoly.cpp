@@ -73,7 +73,7 @@ double SinglePoly::getNullValue()
     return 0;
 }
 
-SinglePoly* SinglePoly::createEmpty(int _iDims, int* _piDims, bool _bComplex)
+SinglePoly* SinglePoly::createEmpty(int /*_iDims*/, int* _piDims, bool _bComplex)
 {
     double* pdblData = NULL;
     SinglePoly* pSP = new SinglePoly(&pdblData, _piDims[0] - 1);
@@ -102,7 +102,7 @@ double* SinglePoly::allocData(int _iSize)
             pDbl = new double[_iSize];
         }
     }
-    catch (std::bad_alloc &e)
+    catch (std::bad_alloc &/*e*/)
     {
         char message[bsiz];
         sprintf(message, _("Can not allocate %.2f MB memory.\n"),  (double) (_iSize * sizeof(double)) / 1.e6);
@@ -133,7 +133,7 @@ bool SinglePoly::setRank(int _iRank, bool bSave)
         if (getRank() != _iRank)
         {
             int piDims[2] = {_iRank + 1, 1};
-            if (m_pImgData == false)
+            if (m_pImgData == NULL)
             {
                 deleteAll();
                 create(piDims, 2, &pR, NULL);
@@ -156,7 +156,7 @@ bool SinglePoly::setRank(int _iRank, bool bSave)
         int iMinSize = Min(m_iSize, _iRank + 1);
         int piDims[2] = {_iRank + 1, 1};
 
-        if (m_pImgData == false)
+        if (m_pImgData == NULL)
         {
             create(piDims, 2, &pR, NULL);
         }
@@ -335,112 +335,92 @@ void SinglePoly::toStringImg(wstring _szVar, list<wstring>* _pListExp , list<wst
     toStringInternal(m_pImgData, _szVar, _pListExp, _pListCoef);
 }
 
-bool SinglePoly::subMatrixToString(wostringstream& ostr, int* _piDims, int _iDims)
+bool SinglePoly::subMatrixToString(wostringstream& /*ostr*/, int* /*_piDims*/, int /*_iDims*/)
 {
     return false;
 }
 
 void SinglePoly::toStringInternal(double *_pdblVal, wstring _szVar, list<wstring>* _pListExp , list<wstring>* _pListCoef)
 {
-    int iPrecision = ConfigVariable::getFormatSize();
     int iLineLen = ConfigVariable::getConsoleWidth();
 
     wostringstream ostemp;
     wostringstream ostemp2;
 
-    ostemp << L"  ";
-    ostemp2 << L"";
-
-    //to add exponant value a the good place
-    int *piIndexExp = new int[m_iSize];
+    ostemp << L" ";
+    ostemp2 << L" ";
 
     int iLen = 0;
     int iLastFlush = 2;
     for (int i = 0 ; i < m_iSize ; i++)
     {
-        piIndexExp[i] = 0;
         if (isRealZero(_pdblVal[i]) == false)
         {
             DoubleFormat df;
             getDoubleFormat(_pdblVal[i], &df);
 
-            if (iLen + df.iWidth + 2 >= iLineLen)
+            if (iLen + df.iWidth + df.iSignLen >= iLineLen - 1)
             {
-                //flush
-                for (int j = iLastFlush ; j < i ; j++)
-                {
-                    if (piIndexExp[j] == 0)
-                    {
-                        continue;
-                    }
-
-                    addSpaces(&ostemp2, piIndexExp[j] - static_cast<int>(ostemp2.str().size()));
-                    if (isRealZero(_pdblVal[j]) == false)
-                    {
-                        ostemp2 << j;
-                    }
-                }
                 iLastFlush = i;
                 _pListExp->push_back(ostemp2.str());
                 ostemp2.str(L""); //reset stream
-                addSpaces(&ostemp2, 12); //take from scilab ... why not ...
+                addSpaces(&ostemp2, 11); //take from scilab ... why not ...
 
                 _pListCoef->push_back(ostemp.str());
                 ostemp.str(L""); //reset stream
-                addSpaces(&ostemp, 12); //take from scilab ... why not ...
+                addSpaces(&ostemp, 11); //take from scilab ... why not ...
             }
 
-            bool bFirst = ostemp.str().size() == 2;
+            bool bFirst = ostemp.str().size() == 1;
 
             // In scientific notation case bExp == true, so we have to print point (2.000D+10s)
             // In other case don't print point (2s)
             df.bPrintPoint = df.bExp;
-            df.bPrintPlusSign = ostemp.str().size() != 2;
+            df.bPrintPlusSign = bFirst == false;
             df.bPrintOne = i == 0;
             addDoubleValue(&ostemp, _pdblVal[i], &df);
 
-            if (i != 0)
+            if (i == 0)
             {
-                ostemp << _szVar;
-                piIndexExp[i] = static_cast<int>(ostemp.str().size());
+                iLen = static_cast<int>(ostemp.str().size());
             }
-            ostemp << L" ";
-            iLen = static_cast<int>(ostemp.str().size());
+            else if (i == 1)
+            {
+                // add polynom name
+                ostemp << _szVar;
+                iLen = static_cast<int>(ostemp.str().size());
+            }
+            else
+            {
+                // add polynom name and exponent
+                ostemp << _szVar;
+                iLen = static_cast<int>(ostemp.str().size());
+                addSpaces(&ostemp2, iLen - static_cast<int>(ostemp2.str().size()));
+                ostemp2 << i;
+                int iSize = static_cast<int>(ostemp2.str().size()) - iLen;
+                addSpaces(&ostemp, iSize);
+            }
         }
     }
 
     if (iLastFlush != 0)
     {
-        for (int j = iLastFlush ; j < m_iSize ; j++)
-        {
-            if (piIndexExp[j] == 0)
-            {
-                continue;
-            }
-
-            addSpaces(&ostemp2, piIndexExp[j] - static_cast<int>(ostemp2.str().size()));
-            if (isRealZero(_pdblVal[j]) == false)
-            {
-                ostemp2 << j;
-            }
-        }
-
-        if (ostemp.str() == L"  ")
+        if (ostemp.str() == L" ")
         {
             ostemp << L"  0";
             addSpaces(&ostemp2, static_cast<int>(ostemp.str().size()));
         }
 
-        if (ostemp2.str() == L"")
+        if (ostemp2.str() == L" ")
         {
-            addSpaces(&ostemp2, static_cast<int>(ostemp.str().size()));
+            // -1 because ostemp2 have already a space
+            addSpaces(&ostemp2, static_cast<int>(ostemp.str().size()) - 1);
         }
 
         _pListExp->push_back(ostemp2.str());
         _pListCoef->push_back(ostemp.str());
     }
 
-    delete[] piIndexExp;
     return;
 }
 
@@ -531,7 +511,6 @@ SinglePoly* SinglePoly::clone()
 
 SinglePoly* SinglePoly::conjugate()
 {
-    SinglePoly* pPoly = NULL;
     if (isComplex())
     {
         double *pR = NULL;

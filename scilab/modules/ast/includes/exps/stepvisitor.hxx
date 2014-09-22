@@ -62,16 +62,6 @@ class StepVisitor : public RunVisitorT<StepVisitor>
         visitprivate(e);
     }
 
-    void visit (const IntExp &e)
-    {
-        visitprivate(e);
-    }
-
-    void visit (const FloatExp &e)
-    {
-        visitprivate(e);
-    }
-
     void visit (const DoubleExp &e)
     {
         visitprivate(e);

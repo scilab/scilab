@@ -48,8 +48,8 @@ public:
             exps->push_back((*it)->clone());
         }
 
-        AssignListExp* cloned = new AssignListExp(location_get(), *exps);
-        cloned->set_verbose(is_verbose());
+        AssignListExp* cloned = new AssignListExp(getLocation(), *exps);
+        cloned->setVerbose(isVerbose());
         return cloned;
     }
 
@@ -68,6 +68,14 @@ public:
     }
     /** \} */
 
+    virtual ExpType getType()
+    {
+        return ASSIGNLISTEXP;
+    }
+    inline bool isAssignListExp() const
+    {
+        return true;
+    }
 };
 
 } // namespace ast

@@ -54,13 +54,13 @@ public:
     virtual MatrixExp* clone()
     {
         std::list<MatrixLineExp *>* lines = new std::list<MatrixLineExp *>;
-        for (std::list<MatrixLineExp *>::const_iterator it = lines_get().begin(), end = lines_get().end(); it != end; ++it)
+        for (std::list<MatrixLineExp *>::const_iterator it = getLines().begin(), end = getLines().end(); it != end; ++it)
         {
             lines->push_back((*it)->clone());
         }
 
-        MatrixExp* cloned = new MatrixExp(location_get(), *lines);
-        cloned->set_verbose(is_verbose());
+        MatrixExp* cloned = new MatrixExp(getLocation(), *lines);
+        cloned->setVerbose(isVerbose());
         return cloned;
     }
     /** \name Visitors entry point.
@@ -82,18 +82,26 @@ public:
     /** \name Accessors.
     ** \{ */
 public:
-    const std::list<MatrixLineExp *>&    lines_get() const
+    const std::list<MatrixLineExp *>& getLines() const
     {
         return *_lines;
     }
 
-    std::list<MatrixLineExp *>&    lines_get()
+    std::list<MatrixLineExp *>& getLines()
     {
         return *_lines;
     }
     /** \} */
 
 
+    virtual ExpType getType()
+    {
+        return MATRIXEXP;
+    }
+    inline bool isMatrixExp() const
+    {
+        return true;
+    }
 protected:
     std::list<MatrixLineExp *>* _lines;
 };

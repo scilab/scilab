@@ -53,8 +53,8 @@ public:
 
     virtual TryCatchExp* clone()
     {
-        TryCatchExp* cloned = new TryCatchExp(location_get(), *try_get().clone(), *catch_get().clone());
-        cloned->set_verbose(is_verbose());
+        TryCatchExp* cloned = new TryCatchExp(getLocation(), *getTry().clone(), *getCatch().clone());
+        cloned->setVerbose(isVerbose());
         return cloned;
     }
     /** \name Visitors entry point.
@@ -76,26 +76,34 @@ public:
     /** \name Accessors.
     ** \{ */
 public:
-    const SeqExp&	try_get() const
+    const SeqExp& getTry() const
     {
         return *_tryme;
     }
 
-    SeqExp&		try_get()
+    SeqExp& getTry()
     {
         return *_tryme;
     }
-    const SeqExp&	catch_get() const
+    const SeqExp& getCatch() const
     {
         return *_catchme;
     }
 
-    SeqExp&		catch_get()
+    SeqExp& getCatch()
     {
         return *_catchme;
     }
     /** \} */
 
+    virtual ExpType getType()
+    {
+        return TRYCATCHEXP;
+    }
+    inline bool isTryCatchExp() const
+    {
+        return true;
+    }
 
 protected:
     SeqExp* _tryme;

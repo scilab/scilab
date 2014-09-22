@@ -82,6 +82,8 @@ void getDoubleFormat(double _dblVal, DoubleFormat * _pDF)
     double dblAbs = fabs(_dblVal);
     int iNbDigit = 0;
     int iNbDec = 0;
+    int iBlankSize = _pDF->bPrintBlank ? BLANK_SIZE : 0;
+    _pDF->iSignLen = _pDF->bPrintBlank ? _pDF->iSignLen + 1 : _pDF->iSignLen;
 
     _pDF->bExp |= ConfigVariable::getFormatMode() == 0;
     int iTotalLen = 0;
@@ -106,14 +108,14 @@ void getDoubleFormat(double _dblVal, DoubleFormat * _pDF)
         {
             //exponant
             _pDF->bExp = true;
-            iTotalLen = BLANK_SIZE + 1 /*integer before dot */  + POINT_SIZE + EXPOSANT_SIZE + (int)log10((double)iNbDigit) + 1;
+            iTotalLen = iBlankSize + 1 /*integer before dot */  + POINT_SIZE + EXPOSANT_SIZE + (int)log10((double)iNbDigit) + 1;
             _pDF->iWidth = iPrecNeeded;
             _pDF->iPrec = iPrecNeeded - iTotalLen;
             return;
         }
         else
         {
-            iTotalLen = BLANK_SIZE + 1 /*integer before dot */  + POINT_SIZE;
+            iTotalLen = iBlankSize + 1 /*integer before dot */  + POINT_SIZE;
         }
     }
     else
@@ -128,7 +130,7 @@ void getDoubleFormat(double _dblVal, DoubleFormat * _pDF)
                 dblTemp = 1;    //no incidence on value, just to allow log10(dblTemp)
             }
             _pDF->bExp = true;
-            iTotalLen = BLANK_SIZE + 1 /*integer before dot */  + POINT_SIZE + EXPOSANT_SIZE + (int)log10(dblTemp) + 1;
+            iTotalLen = iBlankSize + 1 /*integer before dot */  + POINT_SIZE + EXPOSANT_SIZE + (int)log10(dblTemp) + 1;
             _pDF->iWidth = iPrecNeeded;
             _pDF->iPrec = iPrecNeeded - iTotalLen;
             return;
@@ -136,7 +138,7 @@ void getDoubleFormat(double _dblVal, DoubleFormat * _pDF)
         else
         {
             //number of digit in integer part
-            iTotalLen = BLANK_SIZE + ((int)dblTemp + 1) + POINT_SIZE;
+            iTotalLen = iBlankSize + ((int)dblTemp + 1) + POINT_SIZE;
         }
     }
 
@@ -175,29 +177,36 @@ void getComplexFormat(double _dblR, double _dblI, int *_piTotalWidth, DoubleForm
     getDoubleFormat(_dblI, _pDFI);
 
     *_piTotalWidth = 0;
-    if (_dblI == 0)
+    if (isRealZero(_dblI))
     {
-        if (_dblR == 0)
+        if (isRealZero(_dblR))
         {
             *_piTotalWidth += 1;    //"0"
+            _pDFI->iWidth = 0;
+            _pDFI->iSignLen = 0;
         }
         else
         {
-            *_piTotalWidth += _pDFR->iWidth;
+            *_piTotalWidth += _pDFR->iWidth + _pDFR->iSignLen;
             _pDFI->iWidth = 0;
+            _pDFI->iSignLen = 0;
         }
     }
     else
     {
-        if (_dblR == 0)
+        if (isRealZero(_dblR))
         {
-            *_piTotalWidth += _pDFI->iWidth;
+            *_piTotalWidth += _pDFI->iWidth + _pDFI->iSignLen;
             _pDFR->iWidth = 0;
         }
         else
         {
-            *_piTotalWidth += _pDFR->iWidth + SIGN_LENGTH + _pDFI->iWidth;
+            *_piTotalWidth += _pDFR->iWidth + _pDFR->iSignLen + _pDFI->iWidth + _pDFI->iSignLen;
         }
+
+        // i character
+        _pDFI->iWidth += 1;
+        *_piTotalWidth += 1;
     }
 }
 
@@ -212,21 +221,30 @@ void addDoubleValue(std::wostringstream * _postr, double _dblVal, DoubleFormat *
         return;
     }
 
-    if (_pDF->bPrintPlusSign)
+    const wchar_t* pBlank = L"";
+    if (_pDF->bPrintBlank)
     {
-        os_swprintf(pwstSign, 32, L"%-*ls", _pDF->iSignLen, _dblVal < 0 ? MINUS_STRING : PLUS_STRING);
+        pBlank = L" ";
     }
-    else
+
+    const wchar_t* pSign = MINUS_STRING;
+    if (_dblVal >= 0)
     {
-        if (_pDF->bPaddSign)
+        if (_pDF->bPrintPlusSign)
         {
-            os_swprintf(pwstSign, 32, L"%-*ls", _pDF->iSignLen, _dblVal < 0 ? MINUS_STRING : NO_SIGN);
+            pSign = PLUS_STRING;
+        }
+        else if (_pDF->bPaddSign)
+        {
+            pSign = NO_SIGN;
         }
         else
         {
-            os_swprintf(pwstSign, 32, L"%-*ls", _pDF->iSignLen, _dblVal < 0 ? MINUS_STRING : L"");
+            pSign = L"";
         }
     }
+
+    os_swprintf(pwstSign, 32, L"%ls%ls%ls", pBlank, pSign, pBlank);
 
     if ((_pDF->bPrintOne == true) || (isEqual(fabs(_dblVal), 1)) == false)
     {
@@ -377,7 +395,6 @@ void addDoubleComplexValue(wostringstream * _postr, double _dblR, double _dblI, 
             df.bExp = _pDFR->bExp;
 
             addDoubleValue(&ostemp, _dblR, &df);
-            ostemp << SPACE_BETWEEN_REAL_COMPLEX;
 
             //I
             df.iPrec = _pDFI->iPrec;

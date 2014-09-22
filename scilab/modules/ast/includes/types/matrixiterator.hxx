@@ -478,7 +478,7 @@ private:
  */
 template<bool AsVector = false> struct Coords : Coords2DIterator
 {
-    Coords(int SPARSE_CONST* coords, int unused = 0): coords(coords)
+    Coords(int SPARSE_CONST* coords, int unused = 0): coords(coords), unused(unused)
     {
     }
 
@@ -502,6 +502,7 @@ template<bool AsVector = false> struct Coords : Coords2DIterator
 
 private:
     int const* coords;
+    int unused;
 };
 /**
    explicit specialization for 2D from 1D int* sequences

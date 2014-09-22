@@ -179,9 +179,17 @@ static int get_option(const int argc, char *argv[], ScilabEngineInfo* _pSEI)
         {
             _pSEI->iNoStart = 1;
         }
+        else if (!strcmp("-nb", argv[i]))
+        {
+            _pSEI->iNoBanner = 0;
+        }
         else if (!strcmp("--exec-verbose", argv[i]))
         {
             _pSEI->iExecVerbose = 1;
+        }
+        else if (!strcmp("-keepconsole", argv[i]))
+        {
+            _pSEI->iKeepConsole = 1;
         }
     }
 

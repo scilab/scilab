@@ -193,7 +193,7 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
     }
 
     std::list<Exp *>::iterator j;
-    std::list<Exp *>LExp = ((SeqExp*)pExp)->exps_get();
+    std::list<Exp *>LExp = ((SeqExp*)pExp)->getExps();
 
     for (j = LExp.begin() ; j != LExp.end() ; j++)
     {
@@ -204,9 +204,9 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
             (*j)->accept(execMe);
 
             //to manage call without ()
-            if (execMe.result_get() != NULL && execMe.result_get()->isCallable())
+            if (execMe.getResult() != NULL && execMe.getResult()->isCallable())
             {
-                Callable *pCall = execMe.result_get()->getAs<Callable>();
+                Callable *pCall = execMe.getResult()->getAs<Callable>();
                 types::typed_list out;
                 types::typed_list in;
                 types::optional_list opt;
@@ -220,19 +220,19 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
                     {
                         if (out.size() == 0)
                         {
-                            execMe.result_set(NULL);
+                            execMe.setResult(NULL);
                         }
                         else if (out.size() == 1)
                         {
                             out[0]->DecreaseRef();
-                            execMe.result_set(out[0]);
+                            execMe.setResult(out[0]);
                         }
                         else
                         {
                             for (int i = 0 ; i < static_cast<int>(out.size()) ; i++)
                             {
                                 out[i]->DecreaseRef();
-                                execMe.result_set(i, out[i]);
+                                execMe.setResult(i, out[i]);
                             }
                         }
                     }
@@ -247,7 +247,7 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
                         if (pCall->isMacro() || pCall->isMacroFile())
                         {
                             wchar_t szError[bsiz];
-                            os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n").c_str(), (*j)->location_get().first_line, pCall->getName().c_str());
+                            os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n").c_str(), (*j)->getLocation().first_line, pCall->getName().c_str());
                             throw ast::ScilabMessage(szError);
                         }
                         else
@@ -287,11 +287,11 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
             }
 
             //update ans variable.
-            if (execMe.result_get() != NULL && execMe.result_get()->isDeletable())
+            if (execMe.getResult() != NULL && execMe.getResult()->isDeletable())
             {
-                InternalType* pITAns = execMe.result_get();
+                InternalType* pITAns = execMe.getResult();
                 symbol::Context::getInstance()->put(symbol::Symbol(L"ans"), pITAns);
-                if ( (*j)->is_verbose() && bErrCatch == false)
+                if ( (*j)->isVerbose() && bErrCatch == false)
                 {
                     std::wostringstream ostr;
                     ostr << L" ans  =" << std::endl;
@@ -320,10 +320,10 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
                 {
                     //to print call expression only of it is a macro
                     ExecVisitor execFunc;
-                    pCall->name_get().accept(execFunc);
+                    pCall->getName().accept(execFunc);
 
-                    if (execFunc.result_get() != NULL &&
-                            (execFunc.result_get()->isMacro() || execFunc.result_get()->isMacroFile()))
+                    if (execFunc.getResult() != NULL &&
+                            (execFunc.getResult()->isMacro() || execFunc.getResult()->isMacroFile()))
                     {
                         wostringstream os;
 
@@ -334,20 +334,20 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
 
                         //add info on file failed
                         wchar_t szError[bsiz];
-                        os_swprintf(szError, bsiz, _W("at line % 5d of exec file called by :\n").c_str(), (*j)->location_get().first_line);
+                        os_swprintf(szError, bsiz, _W("at line % 5d of exec file called by :\n").c_str(), (*j)->getLocation().first_line);
                         os << szError;
 
                         if (ConfigVariable::getLastErrorFunction() == L"")
                         {
-                            ConfigVariable::setLastErrorFunction(execFunc.result_get()->getAs<Callable>()->getName());
+                            ConfigVariable::setLastErrorFunction(execFunc.getResult()->getAs<Callable>()->getName());
                         }
 
                         //restore previous prompt mode
                         ConfigVariable::setPromptMode(oldVal);
-                        throw ast::ScilabMessage(os.str(), 0, (*j)->location_get());
+                        throw ast::ScilabMessage(os.str(), 0, (*j)->getLocation());
                     }
                 }
-                throw ast::ScilabMessage((*j)->location_get());
+                throw ast::ScilabMessage((*j)->getLocation());
             }
             else
             {
@@ -377,10 +377,10 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
                 scilabErrorW(se.GetErrorMessage().c_str());
 
                 //write positino
-               // sciprint(_("in  execstr instruction    called by :\n"));
+                // sciprint(_("in  execstr instruction    called by :\n"));
                 //restore previous prompt mode
                 ConfigVariable::setPromptMode(oldVal);
-                //throw ast::ScilabMessage(szError, 1, (*j)->location_get());
+                //throw ast::ScilabMessage(szError, 1, (*j)->getLocation());
                 //print already done, so just foward exception but with message
                 //throw ast::ScilabError();
                 return Function::Error;

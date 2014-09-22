@@ -184,7 +184,7 @@ protected :
     InternalType() : m_iRef(0), m_bAllowDelete(true), m_bPrintFromStart(true), m_iSavePrintState(0), m_iRows1PrintState(0), m_iCols1PrintState(0), m_iRows2PrintState(0), m_iCols2PrintState(0)
     {
 #ifdef _SCILAB_DEBUGREF_
-        std::cout << "new IT =" << (void*)this << std::endl;
+        std::cout << "new_IT " << m_iRef << " " << (void*)this << std::endl;
 #endif
     }
 
@@ -220,7 +220,7 @@ public :
 #ifdef _SCILAB_DEBUGREF_
     inline void _killme(const char * f, int l)
     {
-        std::cout << "killme (" << m_iRef << ")=" << (void*)this << " in " << f << " at line " << l << std::endl;
+        std::cout << "killme " << m_iRef << " " << (void*)this << " in " << f << " at line " << l << std::endl;
         if (isDeletable())
         {
             delete this;
@@ -230,7 +230,7 @@ public :
     inline void _increaseref(const char * f, int l)
     {
         m_iRef++;
-        std::cout << "incref (" << m_iRef << ")=" << (void*)this << " in " << f << " at line " << l << std::endl;
+        std::cout << "incref " << m_iRef << " " << (void*)this << " in " << f << " at line " << l << std::endl;
     }
 
     inline void _decreaseref(const char * f, int l)
@@ -239,7 +239,7 @@ public :
         {
             m_iRef--;
         }
-        std::cout << "decref (" << m_iRef << ")=" << (void*)this << " in " << f << " at line " << l << std::endl;
+        std::cout << "decref " << m_iRef << " " << (void*)this << " in " << f << " at line " << l << std::endl;
     }
 #else
 
@@ -285,12 +285,12 @@ public :
         return false;
     }
 
-    virtual bool neg(InternalType *& out)
+    virtual bool neg(InternalType *& /*out*/)
     {
         return false;
     }
 
-    virtual bool transpose(InternalType *& out)
+    virtual bool transpose(InternalType *& /*out*/)
     {
         return false;
     }
@@ -300,7 +300,7 @@ public :
         return transpose(out);
     }
 
-    virtual bool extract(const std::wstring & name, InternalType *& out)
+    virtual bool extract(const std::wstring & /*name*/, InternalType *& /*out*/)
     {
         return false;
     }
@@ -310,7 +310,7 @@ public :
         return false;
     }
 
-    virtual bool invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_list & out, ast::ConstVisitor & execFunc, const ast::CallExp & e)
+    virtual bool invoke(typed_list & /*in*/, optional_list & /*opt*/, int /*_iRetCount*/, typed_list & /*out*/, ast::ConstVisitor & /*execFunc*/, const ast::CallExp & /*e*/)
     {
         return false;
     }

@@ -55,7 +55,9 @@ enum object_properties_t
 {
     PARENT_DIAGRAM,     //!< model::Annotation::parentDiagram or model::Block::parentDiagram or model::Link::parentDiagram value
     GEOMETRY,           //!< model::Annotation::geometry or model::Block::geometry value
-    DESCRIPTION,        //!< model::Annotation::description
+    DESCRIPTION,        //!< model::Annotation::description text
+    FONT,               //!< model::Annotation::description font
+    FONT_SIZE,          //!< model::Annotation::description font size
     RELATED_TO,         //!< model::Annotation::relatedTo
     INTERFACE_FUNCTION, //!< model::Block::interfaceFunction value
     SIM_FUNCTION_NAME,  //!< model::Descriptor::functionName value (stored into model::Block::sim)
@@ -106,6 +108,8 @@ enum object_properties_t
     PATH,               //!< model::Diagram::title file path value
     PROPERTIES,         //!< model::Diagram::tol & tf values
     DIAGRAM_CONTEXT,    //!< model::Diagram::context value
+    VERSION_NUMBER,     //!< model::Diagram::version value
+    MAX_OBJECT_PROPERTIES //!< last valid value of the object_properties_t enum
 };
 
 #endif /* UTILITIES_HXX_ */

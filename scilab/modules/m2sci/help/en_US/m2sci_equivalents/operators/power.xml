@@ -47,5 +47,10 @@
                 Note that Matlab seems to have a bug for <emphasis role="bold">X^(Y)</emphasis> when <emphasis role="bold">X</emphasis> is a character and that in Scilab operations such as <emphasis role="bold">X^(Y)</emphasis> with <emphasis role="bold">X</emphasis> a scalar and <emphasis role="bold">Y</emphasis> a matrix is equivalent to <emphasis role="bold">X.^(Y)</emphasis> (Will change in next Scilab versions...).
             </note>
         </para>
+        <para>
+            <warning>
+                Exponentiation is right-associative in Scilab contrarily to Matlab&#174; and Octave. For example 2^3^4 is equal to 2^(3^4) in Scilab but is equal to (2^3)^4 in Matlab&#174; and Octave.
+            </warning>
+        </para>
     </refsection>
 </refentry>

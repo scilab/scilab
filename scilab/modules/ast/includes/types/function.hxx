@@ -109,11 +109,12 @@ public :
         return m_pLoadDeps;
     }
 
+private :
+    GW_FUNC                 m_pFunc;
+
 protected:
     LOAD_DEPS               m_pLoadDeps;
 
-private :
-    GW_FUNC                 m_pFunc;
 };
 
 class OptFunction : public Function

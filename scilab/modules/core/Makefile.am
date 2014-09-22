@@ -139,6 +139,9 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/core_gw.cpp \
 	sci_gateway/cpp/sci_getmodules.cpp \
 	sci_gateway/cpp/sci_clear.cpp \
+	sci_gateway/cpp/sci_clearfun.cpp \
+	sci_gateway/cpp/sci_newfun.cpp \
+	sci_gateway/cpp/sci_funptr.cpp \
 	sci_gateway/cpp/sci_banner.cpp \
 	sci_gateway/cpp/sci_quit.cpp \
 	sci_gateway/cpp/sci_exit.cpp \
@@ -202,6 +205,7 @@ libscicore_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/preferences/includes/ \
     -I$(top_srcdir)/modules/external_objects/includes/ \
     -I$(top_srcdir)/modules/jvm/includes/ \
+    -I$(top_srcdir)/modules/jvm/src/c/ \
     -I$(top_srcdir)/modules/gui/includes/ \
     -I$(top_srcdir)/modules/graphics/includes/ \
     -I$(top_srcdir)/modules/hdf5/includes/ \

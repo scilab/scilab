@@ -95,7 +95,7 @@ static void getMacroString(Macro* _pM, InternalType** _pOut, InternalType** _pIn
         list<symbol::Variable*>::iterator itIn = pIn->begin();
         for (int i = 0 ; i < pIn->size() ; i++, itIn++)
         {
-            pSIn->set(i, (*itIn)->name_get().name_get().c_str());
+            pSIn->set(i, (*itIn)->getSymbol().getName().c_str());
         }
 
         *_pIn = pSIn;
@@ -114,7 +114,7 @@ static void getMacroString(Macro* _pM, InternalType** _pOut, InternalType** _pIn
         list<symbol::Variable*>::iterator itOut = pOut->begin();
         for (int i = 0 ; i < pOut->size() ; i++, itOut++)
         {
-            pSOut->set(i, (*itOut)->name_get().name_get().c_str());
+            pSOut->set(i, (*itOut)->getSymbol().getName().c_str());
         }
 
         *_pOut = pSOut;
@@ -130,16 +130,17 @@ static void DoubleComplexMatrix2String(std::wostringstream *_postr,  double _dbl
     if(!R aa C	-> Ci
     */
     DoubleFormat dfR, dfI;
+    dfR.bPrintBlank = false;
+    dfI.bPrintBlank = false;
+
     getDoubleFormat(_dblR, &dfR);
     getDoubleFormat(_dblI, &dfI);
 
     dfR.bPrintPoint = dfR.bExp;
     dfR.bPaddSign = false;
-    dfR.iSignLen = 0;
 
     dfI.bPrintPoint = dfI.bExp;
     dfI.bPaddSign = false;
-    dfI.iSignLen = 0;
 
 
     if (_dblR == 0)

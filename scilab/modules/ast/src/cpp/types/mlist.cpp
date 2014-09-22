@@ -21,7 +21,7 @@
 
 namespace types
 {
-bool MList::invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_list & out, ast::ConstVisitor & execFunc, const ast::CallExp & e)
+bool MList::invoke(typed_list & in, optional_list & /*opt*/, int /*_iRetCount*/, typed_list & out, ast::ConstVisitor & execFunc, const ast::CallExp & /*e*/)
 {
     if (in.size() == 0)
     {
@@ -52,6 +52,8 @@ bool MList::invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_l
     }
 
     Callable::ReturnValue ret;
+    // Overload of extraction need
+    // the mlist from where we extract
     this->IncreaseRef();
     in.push_back(this);
 
@@ -59,10 +61,14 @@ bool MList::invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_l
     {
         ret = Overload::call(L"%" + getShortTypeStr() + L"_e", in, 1, out, &execFunc);
     }
-    catch (ast::ScilabError & se)
+    catch (ast::ScilabError & /*se*/)
     {
         ret = Overload::call(L"%l_e", in, 1, out, &execFunc);
     }
+
+    // Remove this from "in" for keep "in" unchanged.
+    this->DecreaseRef();
+    in.pop_back();
 
     if (ret == Callable::Error)
     {

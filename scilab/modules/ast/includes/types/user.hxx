@@ -44,7 +44,8 @@ public :
 public :
     virtual bool            toString(std::wostringstream& ostr)
     {
-        return L"";
+        ostr << L"";
+        return true;
     }
     std::wstring            getTypeStr()
     {

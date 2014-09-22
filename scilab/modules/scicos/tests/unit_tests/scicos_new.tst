@@ -3,16 +3,9 @@
 // Copyright (C) 2014 - Scilab Enterprises - Clement David
 //
 //  This file is distributed under the same license as the Scilab package.
-// =============================================================================+
+// =============================================================================
 
 loadXcosLibs();
-
-p = funcprot();
-funcprot(0);
-mlist = scicos_new;
-tlist = scicos_new;
-setfield = scicos_setfield;
-funcprot(p);
 
 // sub-objects not mapped to the model
 

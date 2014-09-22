@@ -110,7 +110,7 @@ function [x,y,typ]=TEXT_f(job,arg1,arg2)
         graphics.exprs = exprs
 
 
-        x = mlist(["Text","graphics","model","void","gui"],graphics,model," ","TEXT_f")
+        x = scicos_new(["Text","graphics","model","void","gui"],graphics,model," ","TEXT_f")
 
     end
 

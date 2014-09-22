@@ -714,7 +714,11 @@ fi
 AM_CONDITIONAL(IS_64_BITS_CPU, test $IS_64_BITS_CPU = true)
 
 # check if the compiler supports c++11
+saved_cppflags="$CXXFLAGS"
+CXXFLAGS=""
 AX_CXX_COMPILE_STDCXX_11(noext,mandatory)
+STDCXX_11_CXXFLAGS="$CXXFLAGS"
+CXXFLAGS="$saved_cppflags"
 
 ################
 ## SSE
@@ -792,22 +796,23 @@ AM_CONDITIONAL(EXTERNAL_SCIRENDERER, test "$with_external_scirenderer" = yes)
 ## XCOS
 #################
 
-AC_ARG_WITH(xcos,
-    AC_HELP_STRING([--without-xcos],[Disable Xcos]))
+AC_ARG_WITH(xcos, [], [with_jgraphx='no'])
+AC_ARG_WITH(jgraphx,
+    AC_HELP_STRING([--without-jgraphx],[Disable Xcos GUI]))
 
 AC_ARG_WITH(modelica,
     AC_HELP_STRING([--without-modelica],[Disable the OCaml module (modelica)]))
 
 
 if test "$with_gui" = no; then
-   AC_MSG_WARN([GUI is disabled. Disabling then xcos])
-   with_xcos=no
+   AC_MSG_WARN([GUI is disabled. Disabling then Xcos GUI])
+   with_jgraphx=no
 fi
 
 XCOS_ENABLE=no
 
-if test "$with_xcos" != no -a "$with_gui" != no; then
-   AC_DEFINE([WITH_XCOS], [], [With XCOS])
+if test "$with_jgraphx" != no -a "$with_gui" != no; then
+   AC_DEFINE([WITH_JGRAPHX], [], [with JGraphX])
 
    save_LIBS="$LIBS"
 
@@ -890,7 +895,7 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 
         if test "$with_gui" != no; then
 
-                if test $XCOS_ENABLE = yes; then
+                if test "$with_jgraphx" != no; then
                    # jgraphx
                    AC_JAVA_CHECK_PACKAGE([jgraphx],[com.mxgraph.model.mxCell],[Diagram design])
                    JGRAPHX=$PACKAGE_JAR_FILE
@@ -1946,10 +1951,10 @@ if test "$enable_stop_on_warning" = yes; then
 fi
 
 # SCI_*FLAGS contains all defaults values detected on configure
-SCI_CFLAGS=$(echo   $LARGEFILE_CFLAGS   $CODECOVERAGE_CFLAGS   $DEBUG_CFLAGS   $ARCH_CFLAGS   $COMPILER_CFLAGS   $SCILIBS_CFLAGS   $SSE_CFLAGS   $BACKTRACE_CFLAGS   $WARNING_CFLAGS)
-SCI_CXXFLAGS=$(echo $LARGEFILE_CXXFLAGS $CODECOVERAGE_CXXFLAGS $DEBUG_CXXFLAGS $ARCH_CXXFLAGS $COMPILER_CXXFLAGS $SCILIBS_CXXFLAGS $SSE_CXXFLAGS $BACKTRACE_CXXFLAGS $WARNING_CXXFLAGS)
-SCI_FFLAGS=$(echo   $LARGEFILE_FFLAGS   $CODECOVERAGE_FFLAGS   $DEBUG_FFLAGS   $ARCH_FFLAGS   $COMPILER_FFLAGS   $SCILIBS_FFLAGS   $SSE_FFLAGS   $BACKTRACE_FFLAGS   $WARNING_FFLAGS)
-SCI_LDFLAGS=$(echo  $LARGEFILE_LDFLAGS  $CODECOVERAGE_LDFLAGS  $DEBUG_LDFLAGS  $ARCH_LDFLAGS  $SCILIBS_LDFLAGS  $SSE_LDFLAGS  $BACKTRACE_LDFLAGS  $WARNING_LDFLAGS)
+SCI_CFLAGS=$(echo                       $LARGEFILE_CFLAGS   $CODECOVERAGE_CFLAGS   $DEBUG_CFLAGS   $ARCH_CFLAGS   $COMPILER_CFLAGS   $SCILIBS_CFLAGS   $SSE_CFLAGS   $BACKTRACE_CFLAGS   $WARNING_CFLAGS)
+SCI_CXXFLAGS=$(echo $STDCXX_11_CXXFLAGS $LARGEFILE_CXXFLAGS $CODECOVERAGE_CXXFLAGS $DEBUG_CXXFLAGS $ARCH_CXXFLAGS $COMPILER_CXXFLAGS $SCILIBS_CXXFLAGS $SSE_CXXFLAGS $BACKTRACE_CXXFLAGS $WARNING_CXXFLAGS)
+SCI_FFLAGS=$(echo                       $LARGEFILE_FFLAGS   $CODECOVERAGE_FFLAGS   $DEBUG_FFLAGS   $ARCH_FFLAGS   $COMPILER_FFLAGS   $SCILIBS_FFLAGS   $SSE_FFLAGS   $BACKTRACE_FFLAGS   $WARNING_FFLAGS)
+SCI_LDFLAGS=$(echo                      $LARGEFILE_LDFLAGS  $CODECOVERAGE_LDFLAGS  $DEBUG_LDFLAGS  $ARCH_LDFLAGS  $COMPILER_LDFLAGS  $SCILIBS_LDFLAGS  $SSE_LDFLAGS  $BACKTRACE_LDFLAGS  $WARNING_LDFLAGS)
 AC_SUBST(SCI_CFLAGS)
 AC_SUBST(SCI_CXXFLAGS)
 AC_SUBST(SCI_FFLAGS)

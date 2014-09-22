@@ -29,9 +29,7 @@ typedef std::list<Exp *> exps_t;
 // Low Level Expressions.
 
 // Const Exp
-class IntExp;
 class StringExp;
-class FloatExp;
 class DoubleExp;
 class BoolExp;
 class CommentExp;

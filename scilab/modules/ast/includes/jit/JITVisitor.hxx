@@ -193,22 +193,22 @@ public:
 
 private:
 
-    inline void result_set(std::shared_ptr<JITVal> & val)
+    inline void setResult(std::shared_ptr<JITVal> & val)
     {
         _result = val;
     }
 
-    inline void result_set(std::shared_ptr<JITVal> && val)
+    inline void setResult(std::shared_ptr<JITVal> && val)
     {
         _result = val;
     }
 
-    inline std::shared_ptr<JITVal> & result_get()
+    inline std::shared_ptr<JITVal> & getResult()
     {
         return  _result;
     }
 
-    inline void call_throw(const char * msg)
+    inline void callThrow(const char * msg)
     {
         llvm::Value * _msg = builder.CreateGlobalStringPtr(llvm::StringRef(msg));
         llvm::Value * v = llvm::ConstantInt::get(uintptrType, reinterpret_cast<uintptr_t>(&jit::jit_throw));
@@ -220,8 +220,6 @@ private:
     void visit(const ast::DollarVar & e);
     void visit(const ast::ColonVar & e);
     void visit(const ast::ArrayListVar & e);
-    void visit(const ast::IntExp & e);
-    void visit(const ast::FloatExp & e);
     void visit(const ast::DoubleExp & e);
     void visit(const ast::BoolExp & e);
     void visit(const ast::StringExp & e);

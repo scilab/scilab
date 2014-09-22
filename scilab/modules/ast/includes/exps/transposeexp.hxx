@@ -59,8 +59,8 @@ public:
 
     virtual TransposeExp* clone()
     {
-        TransposeExp* cloned = new TransposeExp(location_get(), *exp_get().clone(), conjugate_get());
-        cloned->set_verbose(is_verbose());
+        TransposeExp* cloned = new TransposeExp(getLocation(), *getExp().clone(), getConjugate());
+        cloned->setVerbose(isVerbose());
         return cloned;
     }
 
@@ -84,21 +84,29 @@ public:
     ** \{ */
 public:
     /** \brief Return the expression of the operation (read only) */
-    const Exp& exp_get () const
+    const Exp& getExp() const
     {
         return *_exp;
     }
     /** \brief Return the expression of the operation (read and write) */
-    Exp& exp_get ()
+    Exp& getExp()
     {
         return *_exp;
     }
     /** \brief Return the conjugate kind of the transposition */
-    Kind conjugate_get () const
+    Kind getConjugate() const
     {
         return _conjugate;
     }
 
+    virtual ExpType getType()
+    {
+        return TRANSPOSEEXP;
+    }
+    inline bool isTransposeExp() const
+    {
+        return true;
+    }
 protected:
     /** \brief Left expression of the operation. */
     Exp* _exp;

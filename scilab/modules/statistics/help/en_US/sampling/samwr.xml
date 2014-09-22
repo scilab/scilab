@@ -2,11 +2,11 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2000 - INRIA - Carlos Klimann
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -17,7 +17,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>s = samwr(sizam,numsamp,X)</synopsis>
+        <synopsis>s = samwr(sizam, numsamp, X)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -25,8 +25,7 @@
             <varlistentry>
                 <term>sizam</term>
                 <listitem>
-                    <para>integer. Size of a sample. It must be less or equal than
-                        size of X.
+                    <para>integer. Size of a sample. It must be lower than or equal to the size of <literal>X</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -45,10 +44,9 @@
             <varlistentry>
                 <term>s</term>
                 <listitem>
-                    <para>matrix of type sizsam  x numsamp. It contains
-                        numsamp  random samples  (the  columns) each  of
-                        sizam  (size(X,'*'))  extractions,  without
-                        replacement, from the column vector X.
+                    <para>matrix of size <literal>sizsam * numsamp</literal>. It contains
+                        <literal>numsamp</literal>  random samples  (the  columns) each  of
+                        <literal>sizam</literal> extractions without replacement from <literal>X</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -59,10 +57,22 @@
         <para>Gives samples without replacement from a column vector.</para>
     </refsection>
     <refsection>
+        <title> Random number generator </title>
+        <para> <literal>samwr</literal> is based on <link linkend="grand">grand</link> for generating the random samples. Use <literal>grand("setsd", seed)</literal> to change the seed for <literal>samwr</literal>.</para>
+        <programlisting role="example"><![CDATA[
+            seed = getdate("s");
+            grand("setsd", seed); //sets the seed to current date
+
+            seed = 0;
+            grand("setsd", seed); //sets the seed to default value
+            ]]>
+        </programlisting>
+    </refsection>
+    <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-a=[0.33 1.24 2.1 1.03]
-s=samwr(4,12,a)
+        <programlisting role="example"><![CDATA[
+a = [0.33 1.24 2.1 1.03]
+s = samwr(4, 12, a)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -73,6 +83,9 @@ s=samwr(4,12,a)
             </member>
             <member>
                 <link linkend="samplef">samplef</link>
+            </member>
+            <member>
+                <link linkend="grand">grand</link>
             </member>
         </simplelist>
     </refsection>

@@ -116,7 +116,7 @@ types::Callable::ReturnValue commonInt(types::typed_list &in, int _iRetCount, ty
     }
 
     types::GenericType* pGT = in[0]->getAs<types::GenericType>();
-    if (pGT->getDims() == 2 && pGT->getRows() == 0 && pGT->getCols() == 2)
+    if (pGT->getDims() == 2 && pGT->getRows() == 0 && pGT->getCols() == 0)
     {
         out.push_back(types::Double::Empty());
         return types::Function::OK;

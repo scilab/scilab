@@ -58,5 +58,8 @@ int CoreModule::Load()
     symbol::Context::getInstance()->addFunction(Function::createFunction(L"getmemory", &sci_getmemory, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(Function::createFunction(L"errclear", &sci_errclear, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(Function::createFunction(L"intppty", &sci_intppty, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(Function::createFunction(L"newfun", &sci_newfun, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(Function::createFunction(L"clearfun", &sci_clearfun, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(Function::createFunction(L"funptr", &sci_funptr, MODULE_NAME));
     return 1;
 }

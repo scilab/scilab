@@ -24,6 +24,11 @@
 #include "ModelAdapter.hxx"
 #include "ports_management.hxx"
 
+extern "C" {
+#include "sci_malloc.h"
+#include "charEncoding.h"
+}
+
 namespace org_scilab_modules_scicos
 {
 namespace view_scilab
@@ -31,7 +36,7 @@ namespace view_scilab
 namespace
 {
 
-static const wchar_t* diagram = L"diagram";
+const std::wstring diagram (L"diagram");
 
 struct sim
 {
@@ -256,8 +261,11 @@ struct state
         double* data;
         types::Double* o = new types::Double((int)state.size(), 1, &data);
 
+#ifdef _MSC_VER
+        std::copy(state.begin(), state.end(), stdext::checked_array_iterator<double*>(data, state.size()));
+#else
         std::copy(state.begin(), state.end(), data);
-
+#endif
         return o;
     }
 
@@ -298,8 +306,11 @@ struct dstate
         double* data;
         types::Double* o = new types::Double((int)dstate.size(), 1, &data);
 
+#ifdef _MSC_VER
+        std::copy(dstate.begin(), dstate.end(), stdext::checked_array_iterator<double*>(data, dstate.size()));
+#else
         std::copy(dstate.begin(), dstate.end(), data);
-
+#endif
         return o;
     }
 
@@ -332,7 +343,11 @@ struct odstate
 
     static types::InternalType* get(const ModelAdapter& adaptor, const Controller& controller)
     {
-        model::Block* adaptee = adaptor.getAdaptee();
+        // silent unused parameter warnings
+        (void) adaptor;
+        (void) controller;
+
+        // FIXME: implement as a scicos encoded list of values
 
         // Return a default empty list.
         return new types::List();
@@ -353,7 +368,12 @@ struct odstate
         }
         else
         {
-            // FIXME: get the input list and store it in the odstate field
+            // silent unused parameter warnings
+            (void) adaptor;
+            (void) v;
+            (void) controller;
+
+            // FIXME: implement as a scicos encoded list of values
             return false;
         }
     }
@@ -376,15 +396,17 @@ struct rpar
 
             double *data;
             types::Double* o = new types::Double((int)rpar.size(), 1, &data);
+#ifdef _MSC_VER
+            std::copy(rpar.begin(), rpar.end(), stdext::checked_array_iterator<double*>(data, rpar.size()));
+#else
             std::copy(rpar.begin(), rpar.end(), data);
-
+#endif
             return o;
         }
         else
         {
             types::MList* o = new types::MList();
-            types::String* Diagram = new types::String(1, 1);
-            Diagram->set(0, diagram);
+            types::String* Diagram = new types::String(diagram.c_str());
             o->set(0, Diagram);
 
             // FIXME: return the full diagram contained in children
@@ -444,8 +466,11 @@ struct ipar
         double *data;
         types::Double* o = new types::Double((int)ipar.size(), 1, &data);
 
+#ifdef _MSC_VER
+        std::transform(ipar.begin(), ipar.end(), stdext::checked_array_iterator<double*>(data, ipar.size()), toDouble);
+#else
         std::transform(ipar.begin(), ipar.end(), data, toDouble);
-
+#endif
         return o;
     }
 
@@ -485,7 +510,11 @@ struct opar
 
     static types::InternalType* get(const ModelAdapter& adaptor, const Controller& controller)
     {
-        model::Block* adaptee = adaptor.getAdaptee();
+        // silent unused parameter warnings
+        (void) adaptor;
+        (void) controller;
+
+        // FIXME: implement as a scicos encoded list of values
 
         // Return a default empty list.
         return new types::List();
@@ -506,7 +535,12 @@ struct opar
         }
         else
         {
-            // FIXME: get the input list and store it in the opar field
+            // silent unused parameter warnings
+            (void) adaptor;
+            (void) v;
+            (void) controller;
+
+            // FIXME: implement as a scicos encoded list of values
             return false;
         }
     }
@@ -519,12 +553,10 @@ struct blocktype
     {
         model::Block* adaptee = adaptor.getAdaptee();
 
-        int type;
+        std::string type;
         controller.getObjectProperty(adaptee->id(), adaptee->kind(), SIM_BLOCKTYPE, type);
 
-        wchar_t Type = type;
-        types::String* o = new types::String(&Type);
-
+        types::String* o = new types::String(type.c_str());
         return o;
     }
 
@@ -542,20 +574,13 @@ struct blocktype
         {
             return false;
         }
-        // The input must be a character
-        if (current->get(0)[0] == '\0')
-        {
-            return false;
-        }
-        if (current->get(0)[1] != '\0')
-        {
-            return false;
-        }
 
-        int type = current->get(0)[0];
+        char* c_str = wide_string_to_UTF8(current->get(0));
+        std::string type (c_str);
+        FREE(c_str);
 
-        controller.setObjectProperty(adaptee->id(), adaptee->kind(), SIM_BLOCKTYPE, type);
-        return true;
+        // the value validation is performed on the model
+        return controller.setObjectProperty(adaptee->id(), adaptee->kind(), SIM_BLOCKTYPE, type) != FAIL;
     }
 };
 
@@ -746,7 +771,11 @@ struct equations
 
     static types::InternalType* get(const ModelAdapter& adaptor, const Controller& controller)
     {
-        model::Block* adaptee = adaptor.getAdaptee();
+        // silent unused parameter warnings
+        (void) adaptor;
+        (void) controller;
+
+        // FIXME: implement as a stored modelica equations
 
         // Return a default empty list.
         return new types::List();
@@ -767,6 +796,12 @@ struct equations
         }
         else
         {
+            // silent unused parameter warnings
+            (void) adaptor;
+            (void) v;
+            (void) controller;
+
+            // FIXME: implement as a stored modelica equations
             // FIXME: get the input list and store it in the equations field
             return false;
         }

@@ -194,13 +194,14 @@ lib /DEF:"$(ProjectDir)signal_processing_f_Import.def" /SUBSYSTEM:WINDOWS /MACHI
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="conv2.c" />
     <ClCompile Include="corrtable.c" />
     <ClCompile Include="DllmainSignal_processing.c" />
     <ClCompile Include="..\..\sci_gateway\c\gw_signal.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\dynlib_signal_processing.h" />
-    <ClInclude Include="..\..\includes\gw_signal.h" />
+    <ClInclude Include="conv2.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\locales\signal_processing.pot" />

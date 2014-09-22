@@ -14,17 +14,114 @@
 #define __TYPES_OR_H__
 
 #include "generic_operations.hxx"
-#include "types.hxx"
 #include "bool.hxx"
+#include "sparse.hxx"
+
+void fillOrFunction();
+
+//define arrays on operation functions
+typedef types::InternalType*(*or_function)(types::InternalType*, types::InternalType*);
+
+#define DECLARE_OR_PROTO(x) \
+    template<class T, class U, class O> \
+    inline types::InternalType* x(T *_pL, U *_pR)
+
+DECLARE_OR_PROTO(or_M_M);
+DECLARE_OR_PROTO(or_M_S);
+DECLARE_OR_PROTO(or_M_E);
+
+DECLARE_OR_PROTO(or_S_M);
+DECLARE_OR_PROTO(or_S_S);
+DECLARE_OR_PROTO(or_S_E);
+
+//[]
+DECLARE_OR_PROTO(or_E_M);
+
+//eye
+DECLARE_OR_PROTO(or_I_M);
+DECLARE_OR_PROTO(or_I_S);
+
+DECLARE_OR_PROTO(or_int_M_M);
+DECLARE_OR_PROTO(or_int_M_S);
+DECLARE_OR_PROTO(or_int_S_M);
+DECLARE_OR_PROTO(or_int_S_S);
+
+//boolean sparse specialisation
+template<> inline types::InternalType* or_M_M<types::SparseBool, types::SparseBool, types::SparseBool>(types::SparseBool* _pL, types::SparseBool* _pR);
+template<> inline types::InternalType* or_M_M<types::SparseBool, types::Bool, types::SparseBool>(types::SparseBool* _pL, types::Bool* _pR);
+template<> inline types::InternalType* or_M_M<types::Bool, types::SparseBool, types::SparseBool>(types::Bool* _pL, types::SparseBool* _pR);
+
+//x & x
+template<typename T, typename U, typename O> inline static void bit_or(T* l, long long size, U* r, O* o)
+{
+    for (int i = 0; i < size ; ++i)
+    {
+        o[i] = (((O)l[i] != (O)0) || ((O)r[i] != (O)0)) ? (O)1 : (O)0;
+    }
+}
+
+//x1 & x
+template<typename T, typename U, typename O> inline static void bit_or(T l, long long size, U* r, O* o)
+{
+    for (int i = 0; i < size ; ++i)
+    {
+        o[i] = (((O)l != (O)0) || ((O)r[i] != (O)0)) ? (O)1 : (O)0;
+    }
+}
+
+//x & x1
+template<typename T, typename U, typename O> inline static void bit_or(T* l, long long size, U r, O* o)
+{
+    for (int i = 0; i < size ; ++i)
+    {
+        o[i] = (((O)l[i] != (O)0) || ((O)r != (O)0)) ? (O)1 : (O)0;
+    }
+}
+
+//x1 & x1
+template<typename T, typename U, typename O> inline static void bit_or(T l, U r, O* o)
+{
+    *o = (((O)l != (O)0) || ((O)r != (O)0)) ? (O)1 : (O)0;
+}
+
+
+//int, real & operation,
+//x & x
+template<typename T, typename U, typename O> inline static void int_or(T* l, long long size, U* r, O* o)
+{
+    for (int i = 0; i < size ; ++i)
+    {
+        o[i] = (O)l[i] | (O)r[i];
+    }
+}
+
+//x1 & x
+template<typename T, typename U, typename O> inline static void int_or(T l, long long size, U* r, O* o)
+{
+    for (int i = 0; i < size ; ++i)
+    {
+        o[i] = (O)l | (O)r[i];
+    }
+}
+
+//x & x1
+template<typename T, typename U, typename O> inline static void int_or(T* l, long long size, U r, O* o)
+{
+    for (int i = 0; i < size ; ++i)
+    {
+        o[i] = (O)l[i] | (O)r;
+    }
+}
+
+//x1 & x1
+template<typename T, typename U, typename O> inline static void int_or(T l, U r, O* o)
+{
+    *o = (O)l | (O)r;
+}
 
 // ||
 int IntOrInt(types::InternalType* _pL, types::Bool** _pOut);
 int BoolOrBool(types::Bool* _pI1, types::Bool** _pOut);
 int SparseBoolOrSparseBool(types::InternalType* _pL, types::Bool** _pOut);
-
-// |
-int IntLogicalOrInt(types::InternalType* _pL, types::InternalType*  _pR, types::InternalType** _pOut);
-int BoolLogicalOrBool(types::Bool* _pL, types::Bool*  _pR, types::Bool** _pOut);
-int SparseBoolLogicalOrSparseBool(types::InternalType* _pL, types::InternalType*  _pR, types::InternalType** _pOut);
 
 #endif /* __TYPES_OR_H__ */

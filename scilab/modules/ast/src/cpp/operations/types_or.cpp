@@ -17,11 +17,383 @@ extern "C"
 }
 
 #include "types_or.hxx"
+#include "double.hxx"
 #include "int.hxx"
 #include "bool.hxx"
 #include "sparse.hxx"
 
 using namespace types;
+
+//define arrays on operation functions
+static or_function pOrfunction[types::InternalType::IdLast][types::InternalType::IdLast] = {NULL};
+
+void fillOrFunction()
+{
+#define scilab_fill_or(id1, id2, func, typeIn1, typeIn2, typeOut) \
+    pOrfunction[types::InternalType::Id ## id1][types::InternalType::Id ## id2] = (or_function)&or_##func<typeIn1, typeIn2, typeOut>
+
+    //Double
+    scilab_fill_or(Double, Double, M_M, Double, Double, Bool);
+    scilab_fill_or(Double, Bool, M_M, Double, Bool, Bool);
+
+    scilab_fill_or(Double, ScalarDouble, M_S, Double, Double, Bool);
+    scilab_fill_or(Double, ScalarBool, M_S, Double, Bool, Bool);
+
+    scilab_fill_or(Double, Empty, M_E, Double, Double, Double);
+    scilab_fill_or(Double, Identity, M_S, Double, Double, Bool);
+
+    scilab_fill_or(ScalarDouble, Double, S_M, Double, Double, Bool);
+    scilab_fill_or(ScalarDouble, Bool, S_M, Double, Bool, Bool);
+
+    scilab_fill_or(ScalarDouble, ScalarDouble, S_S, Double, Double, Bool);
+    scilab_fill_or(ScalarDouble, ScalarBool, S_S, Double, Bool, Bool);
+
+    scilab_fill_or(ScalarDouble, Empty, M_E, Double, Double, Double);
+    scilab_fill_or(ScalarDouble, Identity, S_S, Double, Double, Bool);
+
+    //Bool
+    scilab_fill_or(Bool, Double, M_M, Bool, Double, Bool);
+    scilab_fill_or(Bool, Bool, M_M, Bool, Bool, Bool);
+
+    scilab_fill_or(Bool, ScalarDouble, M_S, Bool, Double, Bool);
+    scilab_fill_or(Bool, ScalarBool, M_S, Bool, Bool, Bool);
+
+    scilab_fill_or(Bool, Empty, M_E, Bool, Double, Double);
+    scilab_fill_or(Bool, Identity, M_S, Bool, Double, Bool);
+
+    scilab_fill_or(ScalarBool, Double, S_M, Bool, Double, Bool);
+    scilab_fill_or(ScalarBool, Bool, S_M, Bool, Bool, Bool);
+
+    scilab_fill_or(ScalarBool, ScalarDouble, S_S, Bool, Double, Bool);
+    scilab_fill_or(ScalarBool, ScalarBool, S_S, Bool, Bool, Bool);
+
+    scilab_fill_or(ScalarBool, Empty, M_E, Bool, Double, Double);
+    scilab_fill_or(ScalarBool, Identity, S_S, Bool, Double, Bool);
+
+    // []
+    scilab_fill_or(Empty, Double, E_M, Double, Double, Double);
+    scilab_fill_or(Empty, Bool, E_M, Double, Bool, Double);
+    scilab_fill_or(Empty, ScalarDouble, E_M, Double, Double, Double);
+    scilab_fill_or(Empty, ScalarBool, E_M, Double, Bool, Double);
+    scilab_fill_or(Empty, Empty, E_M, Double, Double, Double);
+    scilab_fill_or(Empty, Identity, E_M, Double, Double, Double);
+
+    // Identity
+    scilab_fill_or(Identity, Double, I_M, Double, Double, Bool);
+    scilab_fill_or(Identity, Bool, I_M, Double, Bool, Bool);
+
+    scilab_fill_or(Identity, ScalarDouble, I_S, Double, Double, Bool);
+    scilab_fill_or(Identity, ScalarBool, I_S, Double, Bool, Bool);
+
+    scilab_fill_or(Identity, Empty, M_E, Double, Double, Bool);
+    scilab_fill_or(Identity, Identity, I_S, Double, Double, Bool);
+
+
+    //int8
+    scilab_fill_or(Int8, Int8, int_M_M, Int8, Int8, Int8);
+    scilab_fill_or(Int8, UInt8, int_M_M, Int8, UInt8, UInt8);
+    scilab_fill_or(Int8, Int16, int_M_M, Int8, Int16, Int16);
+    scilab_fill_or(Int8, UInt16, int_M_M, Int8, UInt16, UInt16);
+    scilab_fill_or(Int8, Int32, int_M_M, Int8, Int32, Int32);
+    scilab_fill_or(Int8, UInt32, int_M_M, Int8, UInt32, UInt32);
+    scilab_fill_or(Int8, Int64, int_M_M, Int8, Int64, Int64);
+    scilab_fill_or(Int8, UInt64, int_M_M, Int8, UInt64, UInt64);
+
+    scilab_fill_or(Int8, ScalarInt8, int_M_S, Int8, Int8, Int8);
+    scilab_fill_or(Int8, ScalarUInt8, int_M_S, Int8, UInt8, UInt8);
+    scilab_fill_or(Int8, ScalarInt16, int_M_S, Int8, Int16, Int16);
+    scilab_fill_or(Int8, ScalarUInt16, int_M_S, Int8, UInt16, UInt16);
+    scilab_fill_or(Int8, ScalarInt32, int_M_S, Int8, Int32, Int32);
+    scilab_fill_or(Int8, ScalarUInt32, int_M_S, Int8, UInt32, UInt32);
+    scilab_fill_or(Int8, ScalarInt64, int_M_S, Int8, Int64, Int64);
+    scilab_fill_or(Int8, ScalarUInt64, int_M_S, Int8, UInt64, UInt64);
+
+    scilab_fill_or(ScalarInt8, Int8, int_S_M, Int8, Int8, Int8);
+    scilab_fill_or(ScalarInt8, UInt8, int_S_M, Int8, UInt8, UInt8);
+    scilab_fill_or(ScalarInt8, Int16, int_S_M, Int8, Int16, Int16);
+    scilab_fill_or(ScalarInt8, UInt16, int_S_M, Int8, UInt16, UInt16);
+    scilab_fill_or(ScalarInt8, Int32, int_S_M, Int8, Int32, Int32);
+    scilab_fill_or(ScalarInt8, UInt32, int_S_M, Int8, UInt32, UInt32);
+    scilab_fill_or(ScalarInt8, Int64, int_S_M, Int8, Int64, Int64);
+    scilab_fill_or(ScalarInt8, UInt64, int_S_M, Int8, UInt64, UInt64);
+
+    scilab_fill_or(ScalarInt8, ScalarInt8, int_S_S, Int8, Int8, Int8);
+    scilab_fill_or(ScalarInt8, ScalarUInt8, int_S_S, Int8, UInt8, UInt8);
+    scilab_fill_or(ScalarInt8, ScalarInt16, int_S_S, Int8, Int16, Int16);
+    scilab_fill_or(ScalarInt8, ScalarUInt16, int_S_S, Int8, UInt16, UInt16);
+    scilab_fill_or(ScalarInt8, ScalarInt32, int_S_S, Int8, Int32, Int32);
+    scilab_fill_or(ScalarInt8, ScalarUInt32, int_S_S, Int8, UInt32, UInt32);
+    scilab_fill_or(ScalarInt8, ScalarInt64, int_S_S, Int8, Int64, Int64);
+    scilab_fill_or(ScalarInt8, ScalarUInt64, int_S_S, Int8, UInt64, UInt64);
+
+    //uint8
+    scilab_fill_or(UInt8, Int8, int_M_M, UInt8, Int8, UInt8);
+    scilab_fill_or(UInt8, UInt8, int_M_M, UInt8, UInt8, UInt8);
+    scilab_fill_or(UInt8, Int16, int_M_M, UInt8, Int16, UInt16);
+    scilab_fill_or(UInt8, UInt16, int_M_M, UInt8, UInt16, UInt16);
+    scilab_fill_or(UInt8, Int32, int_M_M, UInt8, Int32, UInt32);
+    scilab_fill_or(UInt8, UInt32, int_M_M, UInt8, UInt32, UInt32);
+    scilab_fill_or(UInt8, Int64, int_M_M, UInt8, Int64, UInt64);
+    scilab_fill_or(UInt8, UInt64, int_M_M, UInt8, UInt64, UInt64);
+
+    scilab_fill_or(UInt8, ScalarInt8, int_M_S, UInt8, Int8, UInt8);
+    scilab_fill_or(UInt8, ScalarUInt8, int_M_S, UInt8, UInt8, UInt8);
+    scilab_fill_or(UInt8, ScalarInt16, int_M_S, UInt8, Int16, UInt16);
+    scilab_fill_or(UInt8, ScalarUInt16, int_M_S, UInt8, UInt16, UInt16);
+    scilab_fill_or(UInt8, ScalarInt32, int_M_S, UInt8, Int32, UInt32);
+    scilab_fill_or(UInt8, ScalarUInt32, int_M_S, UInt8, UInt32, UInt32);
+    scilab_fill_or(UInt8, ScalarInt64, int_M_S, UInt8, Int64, UInt64);
+    scilab_fill_or(UInt8, ScalarUInt64, int_M_S, UInt8, UInt64, UInt64);
+
+    scilab_fill_or(ScalarUInt8, Int8, int_S_M, UInt8, Int8, UInt8);
+    scilab_fill_or(ScalarUInt8, UInt8, int_S_M, UInt8, UInt8, UInt8);
+    scilab_fill_or(ScalarUInt8, Int16, int_S_M, UInt8, Int16, UInt16);
+    scilab_fill_or(ScalarUInt8, UInt16, int_S_M, UInt8, UInt16, UInt16);
+    scilab_fill_or(ScalarUInt8, Int32, int_S_M, UInt8, Int32, UInt32);
+    scilab_fill_or(ScalarUInt8, UInt32, int_S_M, UInt8, UInt32, UInt32);
+    scilab_fill_or(ScalarUInt8, Int64, int_S_M, UInt8, Int64, UInt64);
+    scilab_fill_or(ScalarUInt8, UInt64, int_S_M, UInt8, UInt64, UInt64);
+
+    scilab_fill_or(ScalarUInt8, ScalarInt8, int_S_S, UInt8, Int8, UInt8);
+    scilab_fill_or(ScalarUInt8, ScalarUInt8, int_S_S, UInt8, UInt8, UInt8);
+    scilab_fill_or(ScalarUInt8, ScalarInt16, int_S_S, UInt8, Int16, UInt16);
+    scilab_fill_or(ScalarUInt8, ScalarUInt16, int_S_S, UInt8, UInt16, UInt16);
+    scilab_fill_or(ScalarUInt8, ScalarInt32, int_S_S, UInt8, Int32, UInt32);
+    scilab_fill_or(ScalarUInt8, ScalarUInt32, int_S_S, UInt8, UInt32, UInt32);
+    scilab_fill_or(ScalarUInt8, ScalarInt64, int_S_S, UInt8, Int64, UInt64);
+    scilab_fill_or(ScalarUInt8, ScalarUInt64, int_S_S, UInt8, UInt64, UInt64);
+
+    //int16
+    scilab_fill_or(Int16, Int8, int_M_M, Int16, Int8, Int16);
+    scilab_fill_or(Int16, UInt8, int_M_M, Int16, UInt8, UInt16);
+    scilab_fill_or(Int16, Int16, int_M_M, Int16, Int16, Int16);
+    scilab_fill_or(Int16, UInt16, int_M_M, Int16, UInt16, UInt16);
+    scilab_fill_or(Int16, Int32, int_M_M, Int16, Int32, Int32);
+    scilab_fill_or(Int16, UInt32, int_M_M, Int16, UInt32, UInt32);
+    scilab_fill_or(Int16, Int64, int_M_M, Int16, Int64, Int64);
+    scilab_fill_or(Int16, UInt64, int_M_M, Int16, UInt64, UInt64);
+
+    scilab_fill_or(Int16, ScalarInt8, int_M_S, Int16, Int8, Int16);
+    scilab_fill_or(Int16, ScalarUInt8, int_M_S, Int16, UInt8, UInt16);
+    scilab_fill_or(Int16, ScalarInt16, int_M_S, Int16, Int16, Int16);
+    scilab_fill_or(Int16, ScalarUInt16, int_M_S, Int16, UInt16, UInt16);
+    scilab_fill_or(Int16, ScalarInt32, int_M_S, Int16, Int32, Int32);
+    scilab_fill_or(Int16, ScalarUInt32, int_M_S, Int16, UInt32, UInt32);
+    scilab_fill_or(Int16, ScalarInt64, int_M_S, Int16, Int64, Int64);
+    scilab_fill_or(Int16, ScalarUInt64, int_M_S, Int16, UInt64, UInt64);
+
+    scilab_fill_or(ScalarInt16, Int8, int_S_M, Int16, Int8, Int16);
+    scilab_fill_or(ScalarInt16, UInt8, int_S_M, Int16, UInt8, UInt16);
+    scilab_fill_or(ScalarInt16, Int16, int_S_M, Int16, Int16, Int16);
+    scilab_fill_or(ScalarInt16, UInt16, int_S_M, Int16, UInt16, UInt16);
+    scilab_fill_or(ScalarInt16, Int32, int_S_M, Int16, Int32, Int32);
+    scilab_fill_or(ScalarInt16, UInt32, int_S_M, Int16, UInt32, UInt32);
+    scilab_fill_or(ScalarInt16, Int64, int_S_M, Int16, Int64, Int64);
+    scilab_fill_or(ScalarInt16, UInt64, int_S_M, Int16, UInt64, UInt64);
+
+    scilab_fill_or(ScalarInt16, ScalarInt8, int_S_S, Int16, Int8, Int16);
+    scilab_fill_or(ScalarInt16, ScalarUInt8, int_S_S, Int16, UInt8, UInt16);
+    scilab_fill_or(ScalarInt16, ScalarInt16, int_S_S, Int16, Int16, Int16);
+    scilab_fill_or(ScalarInt16, ScalarUInt16, int_S_S, Int16, UInt16, UInt16);
+    scilab_fill_or(ScalarInt16, ScalarInt32, int_S_S, Int16, Int32, Int32);
+    scilab_fill_or(ScalarInt16, ScalarUInt32, int_S_S, Int16, UInt32, UInt32);
+    scilab_fill_or(ScalarInt16, ScalarInt64, int_S_S, Int16, Int64, Int64);
+    scilab_fill_or(ScalarInt16, ScalarUInt64, int_S_S, Int16, UInt64, UInt64);
+
+    //uint16
+    scilab_fill_or(UInt16, Int8, int_M_M, UInt16, Int8, UInt16);
+    scilab_fill_or(UInt16, UInt8, int_M_M, UInt16, UInt8, UInt16);
+    scilab_fill_or(UInt16, Int16, int_M_M, UInt16, Int16, UInt16);
+    scilab_fill_or(UInt16, UInt16, int_M_M, UInt16, UInt16, UInt16);
+    scilab_fill_or(UInt16, Int32, int_M_M, UInt16, Int32, UInt32);
+    scilab_fill_or(UInt16, UInt32, int_M_M, UInt16, UInt32, UInt32);
+    scilab_fill_or(UInt16, Int64, int_M_M, UInt16, Int64, UInt64);
+    scilab_fill_or(UInt16, UInt64, int_M_M, UInt16, UInt64, UInt64);
+
+    scilab_fill_or(UInt16, ScalarInt8, int_M_S, UInt16, Int8, UInt16);
+    scilab_fill_or(UInt16, ScalarUInt8, int_M_S, UInt16, UInt8, UInt16);
+    scilab_fill_or(UInt16, ScalarInt16, int_M_S, UInt16, Int16, UInt16);
+    scilab_fill_or(UInt16, ScalarUInt16, int_M_S, UInt16, UInt16, UInt16);
+    scilab_fill_or(UInt16, ScalarInt32, int_M_S, UInt16, Int32, UInt32);
+    scilab_fill_or(UInt16, ScalarUInt32, int_M_S, UInt16, UInt32, UInt32);
+    scilab_fill_or(UInt16, ScalarInt64, int_M_S, UInt16, Int64, UInt64);
+    scilab_fill_or(UInt16, ScalarUInt64, int_M_S, UInt16, UInt64, UInt64);
+
+    scilab_fill_or(ScalarUInt16, Int8, int_S_M, UInt16, Int8, UInt16);
+    scilab_fill_or(ScalarUInt16, UInt8, int_S_M, UInt16, UInt8, UInt16);
+    scilab_fill_or(ScalarUInt16, Int16, int_S_M, UInt16, Int16, UInt16);
+    scilab_fill_or(ScalarUInt16, UInt16, int_S_M, UInt16, UInt16, UInt16);
+    scilab_fill_or(ScalarUInt16, Int32, int_S_M, UInt16, Int32, UInt32);
+    scilab_fill_or(ScalarUInt16, UInt32, int_S_M, UInt16, UInt32, UInt32);
+    scilab_fill_or(ScalarUInt16, Int64, int_S_M, UInt16, Int64, UInt64);
+    scilab_fill_or(ScalarUInt16, UInt64, int_S_M, UInt16, UInt64, UInt64);
+
+    scilab_fill_or(ScalarUInt16, ScalarInt8, int_S_S, UInt16, Int8, UInt16);
+    scilab_fill_or(ScalarUInt16, ScalarUInt8, int_S_S, UInt16, UInt8, UInt16);
+    scilab_fill_or(ScalarUInt16, ScalarInt16, int_S_S, UInt16, Int16, UInt16);
+    scilab_fill_or(ScalarUInt16, ScalarUInt16, int_S_S, UInt16, UInt16, UInt16);
+    scilab_fill_or(ScalarUInt16, ScalarInt32, int_S_S, UInt16, Int32, UInt32);
+    scilab_fill_or(ScalarUInt16, ScalarUInt32, int_S_S, UInt16, UInt32, UInt32);
+    scilab_fill_or(ScalarUInt16, ScalarInt64, int_S_S, UInt16, Int64, UInt64);
+    scilab_fill_or(ScalarUInt16, ScalarUInt64, int_S_S, UInt16, UInt64, UInt64);
+
+    //int32
+    scilab_fill_or(Int32, Int8, int_M_M, Int32, Int8, Int32);
+    scilab_fill_or(Int32, UInt8, int_M_M, Int32, UInt8, UInt32);
+    scilab_fill_or(Int32, Int16, int_M_M, Int32, Int16, Int32);
+    scilab_fill_or(Int32, UInt16, int_M_M, Int32, UInt16, UInt32);
+    scilab_fill_or(Int32, Int32, int_M_M, Int32, Int32, Int32);
+    scilab_fill_or(Int32, UInt32, int_M_M, Int32, UInt32, UInt32);
+    scilab_fill_or(Int32, Int64, int_M_M, Int32, Int64, Int64);
+    scilab_fill_or(Int32, UInt64, int_M_M, Int32, UInt64, UInt64);
+
+    scilab_fill_or(Int32, ScalarInt8, int_M_S, Int32, Int8, Int32);
+    scilab_fill_or(Int32, ScalarUInt8, int_M_S, Int32, UInt8, UInt32);
+    scilab_fill_or(Int32, ScalarInt16, int_M_S, Int32, Int16, Int32);
+    scilab_fill_or(Int32, ScalarUInt16, int_M_S, Int32, UInt16, UInt32);
+    scilab_fill_or(Int32, ScalarInt32, int_M_S, Int32, Int32, Int32);
+    scilab_fill_or(Int32, ScalarUInt32, int_M_S, Int32, UInt32, UInt32);
+    scilab_fill_or(Int32, ScalarInt64, int_M_S, Int32, Int64, Int64);
+    scilab_fill_or(Int32, ScalarUInt64, int_M_S, Int32, UInt64, UInt64);
+
+    scilab_fill_or(ScalarInt32, Int8, int_S_M, Int32, Int8, Int32);
+    scilab_fill_or(ScalarInt32, UInt8, int_S_M, Int32, UInt8, UInt32);
+    scilab_fill_or(ScalarInt32, Int16, int_S_M, Int32, Int16, Int32);
+    scilab_fill_or(ScalarInt32, UInt16, int_S_M, Int32, UInt16, UInt32);
+    scilab_fill_or(ScalarInt32, Int32, int_S_M, Int32, Int32, Int32);
+    scilab_fill_or(ScalarInt32, UInt32, int_S_M, Int32, UInt32, UInt32);
+    scilab_fill_or(ScalarInt32, Int64, int_S_M, Int32, Int64, Int64);
+    scilab_fill_or(ScalarInt32, UInt64, int_S_M, Int32, UInt64, UInt64);
+
+    scilab_fill_or(ScalarInt32, ScalarInt8, int_S_S, Int32, Int8, Int32);
+    scilab_fill_or(ScalarInt32, ScalarUInt8, int_S_S, Int32, UInt8, UInt32);
+    scilab_fill_or(ScalarInt32, ScalarInt16, int_S_S, Int32, Int16, Int32);
+    scilab_fill_or(ScalarInt32, ScalarUInt16, int_S_S, Int32, UInt16, UInt32);
+    scilab_fill_or(ScalarInt32, ScalarInt32, int_S_S, Int32, Int32, Int32);
+    scilab_fill_or(ScalarInt32, ScalarUInt32, int_S_S, Int32, UInt32, UInt32);
+    scilab_fill_or(ScalarInt32, ScalarInt64, int_S_S, Int32, Int64, Int64);
+    scilab_fill_or(ScalarInt32, ScalarUInt64, int_S_S, Int32, UInt64, UInt64);
+
+    //uint32
+    scilab_fill_or(UInt32, Int8, int_M_M, UInt32, Int8, UInt32);
+    scilab_fill_or(UInt32, UInt8, int_M_M, UInt32, UInt8, UInt32);
+    scilab_fill_or(UInt32, Int16, int_M_M, UInt32, Int16, UInt32);
+    scilab_fill_or(UInt32, UInt16, int_M_M, UInt32, UInt16, UInt32);
+    scilab_fill_or(UInt32, Int32, int_M_M, UInt32, Int32, UInt32);
+    scilab_fill_or(UInt32, UInt32, int_M_M, UInt32, UInt32, UInt32);
+    scilab_fill_or(UInt32, Int64, int_M_M, UInt32, Int64, UInt64);
+    scilab_fill_or(UInt32, UInt64, int_M_M, UInt32, UInt64, UInt64);
+
+    scilab_fill_or(UInt32, ScalarInt8, int_M_S, UInt32, Int8, UInt32);
+    scilab_fill_or(UInt32, ScalarUInt8, int_M_S, UInt32, UInt8, UInt32);
+    scilab_fill_or(UInt32, ScalarInt16, int_M_S, UInt32, Int16, UInt32);
+    scilab_fill_or(UInt32, ScalarUInt16, int_M_S, UInt32, UInt16, UInt32);
+    scilab_fill_or(UInt32, ScalarInt32, int_M_S, UInt32, Int32, UInt32);
+    scilab_fill_or(UInt32, ScalarUInt32, int_M_S, UInt32, UInt32, UInt32);
+    scilab_fill_or(UInt32, ScalarInt64, int_M_S, UInt32, Int64, UInt64);
+    scilab_fill_or(UInt32, ScalarUInt64, int_M_S, UInt32, UInt64, UInt64);
+
+    scilab_fill_or(ScalarUInt32, Int8, int_S_M, UInt32, Int8, UInt32);
+    scilab_fill_or(ScalarUInt32, UInt8, int_S_M, UInt32, UInt8, UInt32);
+    scilab_fill_or(ScalarUInt32, Int16, int_S_M, UInt32, Int16, UInt32);
+    scilab_fill_or(ScalarUInt32, UInt16, int_S_M, UInt32, UInt16, UInt32);
+    scilab_fill_or(ScalarUInt32, Int32, int_S_M, UInt32, Int32, UInt32);
+    scilab_fill_or(ScalarUInt32, UInt32, int_S_M, UInt32, UInt32, UInt32);
+    scilab_fill_or(ScalarUInt32, Int64, int_S_M, UInt32, Int64, UInt64);
+    scilab_fill_or(ScalarUInt32, UInt64, int_S_M, UInt32, UInt64, UInt64);
+
+    scilab_fill_or(ScalarUInt32, ScalarInt8, int_S_S, UInt32, Int8, UInt32);
+    scilab_fill_or(ScalarUInt32, ScalarUInt8, int_S_S, UInt32, UInt8, UInt32);
+    scilab_fill_or(ScalarUInt32, ScalarInt16, int_S_S, UInt32, Int16, UInt32);
+    scilab_fill_or(ScalarUInt32, ScalarUInt16, int_S_S, UInt32, UInt16, UInt32);
+    scilab_fill_or(ScalarUInt32, ScalarInt32, int_S_S, UInt32, Int32, UInt32);
+    scilab_fill_or(ScalarUInt32, ScalarUInt32, int_S_S, UInt32, UInt32, UInt32);
+    scilab_fill_or(ScalarUInt32, ScalarInt64, int_S_S, UInt32, Int64, UInt64);
+    scilab_fill_or(ScalarUInt32, ScalarUInt64, int_S_S, UInt32, UInt64, UInt64);
+
+    //int64
+    scilab_fill_or(Int64, Int8, int_M_M, Int64, Int8, Int64);
+    scilab_fill_or(Int64, UInt8, int_M_M, Int64, UInt8, UInt64);
+    scilab_fill_or(Int64, Int16, int_M_M, Int64, Int16, Int64);
+    scilab_fill_or(Int64, UInt16, int_M_M, Int64, UInt16, UInt64);
+    scilab_fill_or(Int64, Int32, int_M_M, Int64, Int32, Int64);
+    scilab_fill_or(Int64, UInt32, int_M_M, Int64, UInt32, UInt64);
+    scilab_fill_or(Int64, Int64, int_M_M, Int64, Int64, Int64);
+    scilab_fill_or(Int64, UInt64, int_M_M, Int64, UInt64, UInt64);
+
+    scilab_fill_or(Int64, ScalarInt8, int_M_S, Int64, Int8, Int64);
+    scilab_fill_or(Int64, ScalarUInt8, int_M_S, Int64, UInt8, UInt64);
+    scilab_fill_or(Int64, ScalarInt16, int_M_S, Int64, Int16, Int64);
+    scilab_fill_or(Int64, ScalarUInt16, int_M_S, Int64, UInt16, UInt64);
+    scilab_fill_or(Int64, ScalarInt32, int_M_S, Int64, Int32, Int64);
+    scilab_fill_or(Int64, ScalarUInt32, int_M_S, Int64, UInt32, UInt64);
+    scilab_fill_or(Int64, ScalarInt64, int_M_S, Int64, Int64, Int64);
+    scilab_fill_or(Int64, ScalarUInt64, int_M_S, Int64, UInt64, UInt64);
+
+    scilab_fill_or(ScalarInt64, Int8, int_S_M, Int64, Int8, Int64);
+    scilab_fill_or(ScalarInt64, UInt8, int_S_M, Int64, UInt8, UInt64);
+    scilab_fill_or(ScalarInt64, Int16, int_S_M, Int64, Int16, Int64);
+    scilab_fill_or(ScalarInt64, UInt16, int_S_M, Int64, UInt16, UInt64);
+    scilab_fill_or(ScalarInt64, Int32, int_S_M, Int64, Int32, Int64);
+    scilab_fill_or(ScalarInt64, UInt32, int_S_M, Int64, UInt32, UInt64);
+    scilab_fill_or(ScalarInt64, Int64, int_S_M, Int64, Int64, Int64);
+    scilab_fill_or(ScalarInt64, UInt64, int_S_M, Int64, UInt64, UInt64);
+
+    scilab_fill_or(ScalarInt64, ScalarInt8, int_S_S, Int64, Int8, Int64);
+    scilab_fill_or(ScalarInt64, ScalarUInt8, int_S_S, Int64, UInt8, UInt64);
+    scilab_fill_or(ScalarInt64, ScalarInt16, int_S_S, Int64, Int16, Int64);
+    scilab_fill_or(ScalarInt64, ScalarUInt16, int_S_S, Int64, UInt16, UInt64);
+    scilab_fill_or(ScalarInt64, ScalarInt32, int_S_S, Int64, Int32, Int64);
+    scilab_fill_or(ScalarInt64, ScalarUInt32, int_S_S, Int64, UInt32, UInt64);
+    scilab_fill_or(ScalarInt64, ScalarInt64, int_S_S, Int64, Int64, Int64);
+    scilab_fill_or(ScalarInt64, ScalarUInt64, int_S_S, Int64, UInt64, UInt64);
+
+    //uint64
+    scilab_fill_or(UInt64, Int8, int_M_M, UInt64, Int8, UInt64);
+    scilab_fill_or(UInt64, UInt8, int_M_M, UInt64, UInt8, UInt64);
+    scilab_fill_or(UInt64, Int16, int_M_M, UInt64, Int16, UInt64);
+    scilab_fill_or(UInt64, UInt16, int_M_M, UInt64, UInt16, UInt64);
+    scilab_fill_or(UInt64, Int32, int_M_M, UInt64, Int32, UInt64);
+    scilab_fill_or(UInt64, UInt32, int_M_M, UInt64, UInt32, UInt64);
+    scilab_fill_or(UInt64, Int64, int_M_M, UInt64, Int64, UInt64);
+    scilab_fill_or(UInt64, UInt64, int_M_M, UInt64, UInt64, UInt64);
+
+    scilab_fill_or(UInt64, ScalarInt8, int_M_S, UInt64, Int8, UInt64);
+    scilab_fill_or(UInt64, ScalarUInt8, int_M_S, UInt64, UInt8, UInt64);
+    scilab_fill_or(UInt64, ScalarInt16, int_M_S, UInt64, Int16, UInt64);
+    scilab_fill_or(UInt64, ScalarUInt16, int_M_S, UInt64, UInt16, UInt64);
+    scilab_fill_or(UInt64, ScalarInt32, int_M_S, UInt64, Int32, UInt64);
+    scilab_fill_or(UInt64, ScalarUInt32, int_M_S, UInt64, UInt32, UInt64);
+    scilab_fill_or(UInt64, ScalarInt64, int_M_S, UInt64, Int64, UInt64);
+    scilab_fill_or(UInt64, ScalarUInt64, int_M_S, UInt64, UInt64, UInt64);
+
+    scilab_fill_or(ScalarUInt64, Int8, int_S_M, UInt64, Int8, UInt64);
+    scilab_fill_or(ScalarUInt64, UInt8, int_S_M, UInt64, UInt8, UInt64);
+    scilab_fill_or(ScalarUInt64, Int16, int_S_M, UInt64, Int16, UInt64);
+    scilab_fill_or(ScalarUInt64, UInt16, int_S_M, UInt64, UInt16, UInt64);
+    scilab_fill_or(ScalarUInt64, Int32, int_S_M, UInt64, Int32, UInt64);
+    scilab_fill_or(ScalarUInt64, UInt32, int_S_M, UInt64, UInt32, UInt64);
+    scilab_fill_or(ScalarUInt64, Int64, int_S_M, UInt64, Int64, UInt64);
+    scilab_fill_or(ScalarUInt64, UInt64, int_S_M, UInt64, UInt64, UInt64);
+
+    scilab_fill_or(ScalarUInt64, ScalarInt8, int_S_S, UInt64, Int8, UInt64);
+    scilab_fill_or(ScalarUInt64, ScalarUInt8, int_S_S, UInt64, UInt8, UInt64);
+    scilab_fill_or(ScalarUInt64, ScalarInt16, int_S_S, UInt64, Int16, UInt64);
+    scilab_fill_or(ScalarUInt64, ScalarUInt16, int_S_S, UInt64, UInt16, UInt64);
+    scilab_fill_or(ScalarUInt64, ScalarInt32, int_S_S, UInt64, Int32, UInt64);
+    scilab_fill_or(ScalarUInt64, ScalarUInt32, int_S_S, UInt64, UInt32, UInt64);
+    scilab_fill_or(ScalarUInt64, ScalarInt64, int_S_S, UInt64, Int64, UInt64);
+    scilab_fill_or(ScalarUInt64, ScalarUInt64, int_S_S, UInt64, UInt64, UInt64);
+
+    //boolean sparse
+    scilab_fill_or(SparseBool, SparseBool, M_M, SparseBool, SparseBool, SparseBool);
+    scilab_fill_or(Bool, SparseBool, M_M, Bool, SparseBool, SparseBool);
+    scilab_fill_or(SparseBool, Bool, M_M, SparseBool, Bool, SparseBool);
+    scilab_fill_or(ScalarBool, SparseBool, M_M, Bool, SparseBool, SparseBool);
+    scilab_fill_or(SparseBool, ScalarBool, M_M, SparseBool, Bool, SparseBool);
+
+#undef scilab_fill_or
+}
 
 // ||
 InternalType* GenericShortcutOr(InternalType* _pL)
@@ -49,51 +421,21 @@ InternalType* GenericShortcutOr(InternalType* _pL)
 // |
 InternalType* GenericLogicalOr(InternalType* _pL, InternalType* _pR)
 {
-    InternalType* pResult = NULL;
+    InternalType *pResult = NULL;
 
-    if (_pL->isBool() && _pR->isBool())
+    or_function bit_or = pOrfunction[_pL->getId()][_pR->getId()];
+    if (bit_or)
     {
-        Bool *pL = (Bool*)_pL;
-        Bool *pR = (Bool*)_pR;
-
-        int iResult = BoolLogicalOrBool(pL, pR, (Bool**)&pResult);
-        if (iResult != 0)
+        pResult = bit_or(_pL, _pR);
+        if (pResult)
         {
-            wchar_t pMsg[bsiz];
-            os_swprintf(pMsg, bsiz, _W("Error: operator %ls: Matrix dimensions must agree (op1 is %ls, op2 is %ls).\n").c_str(), L"|", pL->DimToString().c_str(), pR->DimToString().c_str());
-            throw ast::ScilabError(pMsg);
+            return pResult;
         }
-        return pResult;
     }
 
-    if (_pL->isInt() && _pR->isInt())
-    {
-        int iResult = IntLogicalOrInt(_pL, _pR, &pResult);
-        if (iResult != 0)
-        {
-            GenericType* pL = _pL->getAs<GenericType>();
-            GenericType* pR = _pR->getAs<GenericType>();
-            wchar_t pMsg[bsiz];
-            os_swprintf(pMsg, bsiz, _W("Error: operator %ls: Matrix dimensions must agree (op1 is %ls, op2 is %ls).\n").c_str(), L"|", pL->DimToString().c_str(), pR->DimToString().c_str());
-            throw ast::ScilabError(pMsg);
-        }
-        return pResult;
-    }
-
-    if (_pL->isSparseBool() && _pR->isSparseBool())
-    {
-        int iResult = SparseBoolLogicalOrSparseBool(_pL, _pR, &pResult);
-        if (iResult != 0)
-        {
-            GenericType* pL = _pL->getAs<GenericType>();
-            GenericType* pR = _pR->getAs<GenericType>();
-            wchar_t pMsg[bsiz];
-            os_swprintf(pMsg, bsiz, _W("Error: operator %ls: Matrix dimensions must agree (op1 is %ls, op2 is %ls).\n").c_str(), L"|", pL->DimToString().c_str(), pR->DimToString().c_str());
-            throw ast::ScilabError(pMsg);
-        }
-        return pResult;
-    }
-
+    /*
+    ** Default case : Return NULL will Call Overloading.
+    */
     return NULL;
 }
 
@@ -109,7 +451,7 @@ int BoolOrBool(Bool* _pL, Bool** _pOut)
         }
     }
 
-    *_pOut = new Bool(1); //true && something -> true
+    *_pOut = new Bool(1); //true || something -> true
     return 0;
 }
 
@@ -126,7 +468,7 @@ static int IntOrInt(K* _pL, Bool** _pOut)
         }
     }
 
-    *_pOut = new Bool(1); //true && something -> true
+    *_pOut = new Bool(1); //true || something -> true
     return 0;
 }
 
@@ -173,185 +515,6 @@ int IntOrInt(InternalType* _pL, Bool** _pOut)
     }
 }
 
-template <class K>
-static int IntLogicalOrInt(K* _pL, K* _pR, InternalType** _pOut)
-{
-    // left scalar bitwise or right matrix
-    if (_pL->isScalar())
-    {
-        K *pI = new K(_pR->getDims(), _pR->getDimsArray());
-        const typename K::type x = _pL->get(0);
-
-        for (int i = 0 ; i < pI->getSize() ; i++)
-        {
-            pI->set(i, x | _pR->get(i));
-        }
-
-        *_pOut = pI;
-        return 0;
-    }
-
-    // right scalar bitwise or left matrix
-    if (_pR->isScalar())
-    {
-        K *pI = new K(_pL->getDims(), _pL->getDimsArray());
-        const typename K::type x = _pL->get(0);
-
-        for (int i = 0 ; i < pI->getSize() ; i++)
-        {
-            pI->set(i, x | _pL->get(i));
-        }
-
-        *_pOut = pI;
-        return 0;
-    }
-
-    // check dims
-    if (_pL->getDims() != _pR->getDims())
-    {
-        return 1;
-    }
-
-    int* piDimsL = _pL->getDimsArray();
-    int* piDimsR = _pR->getDimsArray();
-
-    for (int i = 0 ; i < _pL->getDims() ; i++)
-    {
-        if (piDimsL[i] != piDimsR[i])
-        {
-            return 1;
-        }
-    }
-
-    // left matrix bitwise or right matrix
-    K* pI = new K(_pR->getDims(), _pR->getDimsArray());
-    for (int i = 0 ; i < _pL->getSize() ; i++)
-    {
-        pI->set(i, _pL->get(i) | _pR->get(i));
-    }
-
-    *_pOut = pI;
-    return 0;
-}
-
-int IntLogicalOrInt(InternalType* _pL, InternalType*  _pR, InternalType** _pOut)
-{
-    switch (_pL->getType())
-    {
-        case InternalType::ScilabInt8 :
-        {
-            Int8* pI1 = _pL->getAs<Int8>();
-            Int8* pI2 = _pR->getAs<Int8>();
-            return IntLogicalOrInt(pI1, pI2, _pOut);
-        }
-        case InternalType::ScilabUInt8 :
-        {
-            UInt8* pI1 = _pL->getAs<UInt8>();
-            UInt8* pI2 = _pR->getAs<UInt8>();
-            return IntLogicalOrInt(pI1, pI2, _pOut);
-        }
-        case InternalType::ScilabInt16 :
-        {
-            Int16* pI1 = _pL->getAs<Int16>();
-            Int16* pI2 = _pR->getAs<Int16>();
-            return IntLogicalOrInt(pI1, pI2, _pOut);
-        }
-        case InternalType::ScilabUInt16 :
-        {
-            UInt16* pI1 = _pL->getAs<UInt16>();
-            UInt16* pI2 = _pR->getAs<UInt16>();
-            return IntLogicalOrInt(pI1, pI2, _pOut);
-        }
-        case InternalType::ScilabInt32 :
-        {
-            Int32* pI1 = _pL->getAs<Int32>();
-            Int32* pI2 = _pR->getAs<Int32>();
-            return IntLogicalOrInt(pI1, pI2, _pOut);
-        }
-        case InternalType::ScilabUInt32 :
-        {
-            UInt32* pI1 = _pL->getAs<UInt32>();
-            UInt32* pI2 = _pR->getAs<UInt32>();
-            return IntLogicalOrInt(pI1, pI2, _pOut);
-        }
-        case InternalType::ScilabInt64 :
-        {
-            Int64* pI1 = _pL->getAs<Int64>();
-            Int64* pI2 = _pR->getAs<Int64>();
-            return IntLogicalOrInt(pI1, pI2, _pOut);
-        }
-        case InternalType::ScilabUInt64 :
-        {
-            UInt64* pI1 = _pL->getAs<UInt64>();
-            UInt64* pI2 = _pR->getAs<UInt64>();
-            return IntLogicalOrInt(pI1, pI2, _pOut);
-        }
-        default:
-        {
-            return 3;
-        }
-    }
-}
-
-int BoolLogicalOrBool(Bool* _pL, Bool*  _pR, Bool** _pOut)
-{
-    int* piR = _pR->get();
-    int* piL = _pL->get();
-    int* piB = NULL;
-
-    // M | scalar
-    if (_pR->getSize() == 1)
-    {
-        *_pOut = new Bool(_pL->getDims(), _pL->getDimsArray());
-        piB = (*_pOut)->get();
-        for (int i = 0 ; i < _pL->getSize(); i++)
-        {
-            piB[i] = (piR[0] == 1) || (piL[i] == 1);
-        }
-
-        return 0;
-    }
-
-    if (_pL->getSize() == 1)
-    {
-        // scalar | M
-        *_pOut = new Bool(_pR->getDims(), _pR->getDimsArray());
-        piB = (*_pOut)->get();
-        for (int i = 0 ; i < _pR->getSize(); i++)
-        {
-            piB[i] = (piR[i] == 1) || (piL[0] == 1);
-        }
-
-        return 0;
-    }
-
-    if (_pL->getDims() != _pR->getDims())
-    {
-        return 1;
-    }
-
-    int* piDimsL = _pL->getDimsArray();
-    int* piDimsR = _pR->getDimsArray();
-
-    for (int i = 0; i < _pL->getDims(); i++)
-    {
-        if (piDimsL[i] != piDimsR[i])
-        {
-            return 1;
-        }
-    }
-
-    // M | N (generic case)
-    *_pOut = new Bool(_pR->getDims(), piDimsR);
-    piB = (*_pOut)->get();
-    for (int i = 0 ; i < _pR->getSize(); i++)
-    {
-        piB[i] = (piR[i] == 1) || (piL[i] == 1);
-    }
-
-    return 0;
-}
-
 int SparseBoolOrSparseBool(InternalType* _pL, Bool** _pOut)
 {
     SparseBool* pL = _pL->getAs<SparseBool>();
@@ -365,43 +528,209 @@ int SparseBoolOrSparseBool(InternalType* _pL, Bool** _pOut)
     return 0;
 }
 
-int SparseBoolLogicalOrSparseBool(InternalType* _pL, InternalType*  _pR, InternalType** _pOut)
+template<class T, class U, class O>
+InternalType* or_M_M(T *_pL, U *_pR)
 {
-    SparseBool *pL = (SparseBool*)_pL;
-    SparseBool *pR = (SparseBool*)_pR;
+    int iDimsL = _pL->getDims();
+    int iDimsR = _pR->getDims();
 
-    if (pL->isScalar())
+    if (iDimsL != iDimsR)
     {
-        if (pL->get(0, 0))
-        {
-            *_pOut = _pR->clone();
-        }
-        else
-        {
-            *_pOut = new SparseBool(pR->getRows(), pR->getCols());
-        }
-
-        return 0;
+        throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
     }
 
-    if (pR->isScalar())
-    {
-        if (pR->get(0, 0))
-        {
-            *_pOut = _pL->clone();
-        }
-        else
-        {
-            *_pOut = new SparseBool(pL->getRows(), pL->getCols());
-        }
+    int* piDimsL = _pL->getDimsArray();
+    int* piDimsR = _pR->getDimsArray();
 
-        return 0;
+    for (int i = 0 ; i < iDimsL ; ++i)
+    {
+        if (piDimsL[i] != piDimsR[i])
+        {
+            throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
+        }
     }
 
-    if (pL->getRows() == pR->getRows() && pL->getCols() == pR->getCols())
-    {
-        *_pOut = pL->newLogicalOr(*pR);
-        return 0;
-    }
-    return 1;
+    O* pOut = new O(iDimsL, piDimsL);
+
+    bit_or(_pL->get(), (long long)_pL->getSize(), _pR->get(), pOut->get());
+    return pOut;
 }
+
+template<class T, class U, class O>
+InternalType* or_S_M(T *_pL, U *_pR)
+{
+    O* pOut = new O(_pR->getDims(), _pR->getDimsArray());
+    bit_or(_pL->get(0), (size_t)_pR->getSize(), _pR->get(), pOut->get());
+    return pOut;
+}
+
+template<class T, class U, class O>
+InternalType* or_M_S(T *_pL, U *_pR)
+{
+    O* pOut = new O(_pL->getDims(), _pL->getDimsArray());
+    bit_or(_pL->get(), (size_t)_pL->getSize(), _pR->get(0), pOut->get());
+    return pOut;
+}
+
+template<class T, class U, class O>
+InternalType* or_S_S(T *_pL, U *_pR)
+{
+    O* pOut = new O(_pL->getDims(), _pL->getDimsArray());
+    bit_or(_pL->get(0), _pR->get(0), pOut->get());
+    return pOut;
+}
+
+template<class T, class U, class O>
+InternalType* or_M_E(T *_pL, U *_pR)
+{
+    return _pR;
+}
+
+template<class T, class U, class O>
+InternalType* or_E_M(T *_pL, U *_pR)
+{
+    return _pL;
+}
+
+template<class T, class U, class O>
+InternalType* or_I_S(T *_pL, U *_pR)
+{
+    return or_S_S<U, T, O>(_pR, _pL);
+}
+
+template<class T, class U, class O>
+InternalType* or_I_M(T *_pL, U *_pR)
+{
+    return or_M_S<U, T, O>(_pR, _pL);
+}
+
+
+template<class T, class U, class O>
+InternalType* or_int_M_M(T *_pL, U *_pR)
+{
+    int iDimsL = _pL->getDims();
+    int iDimsR = _pR->getDims();
+
+    if (iDimsL != iDimsR)
+    {
+        throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
+    }
+
+    int* piDimsL = _pL->getDimsArray();
+    int* piDimsR = _pR->getDimsArray();
+
+    for (int i = 0 ; i < iDimsL ; ++i)
+    {
+        if (piDimsL[i] != piDimsR[i])
+        {
+            throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
+        }
+    }
+
+    O* pOut = new O(iDimsL, piDimsL);
+
+    int_or(_pL->get(), (long long)_pL->getSize(), _pR->get(), pOut->get());
+    return pOut;
+}
+
+template<class T, class U, class O>
+InternalType* or_int_S_M(T *_pL, U *_pR)
+{
+    O* pOut = new O(_pR->getDims(), _pR->getDimsArray());
+    int_or(_pL->get(0), (size_t)_pR->getSize(), _pR->get(), pOut->get());
+    return pOut;
+}
+
+template<class T, class U, class O>
+InternalType* or_int_M_S(T *_pL, U *_pR)
+{
+    O* pOut = new O(_pL->getDims(), _pL->getDimsArray());
+    int_or(_pL->get(), (size_t)_pL->getSize(), _pR->get(0), pOut->get());
+    return pOut;
+}
+
+template<class T, class U, class O>
+InternalType* or_int_S_S(T *_pL, U *_pR)
+{
+    O* pOut = new O(_pL->getDims(), _pL->getDimsArray());
+    int_or(_pL->get(0), _pR->get(0), pOut->get());
+    return pOut;
+}
+
+//boolean sparse
+template<>
+InternalType* or_M_M<SparseBool, SparseBool, SparseBool>(SparseBool* _pL, SparseBool* _pR)
+{
+    SparseBool* pOut = NULL;
+    if (_pL->isScalar())
+    {
+        if (_pL->get(0, 0))
+        {
+            pOut = new SparseBool(_pR->getRows(), _pR->getCols());
+            int iCols = pOut->getCols();
+            int iRows = pOut->getRows();
+            for (int i = 0 ; i < iRows ; i++)
+            {
+                for (int j = 0 ; j < iCols ; j++)
+                {
+                    pOut->set(i, j, true);
+                }
+            }
+        }
+        else
+        {
+            pOut = _pR;
+        }
+
+        return pOut;
+    }
+
+    if (_pR->isScalar())
+    {
+        if (_pR->get(0, 0))
+        {
+            pOut = new SparseBool(_pL->getRows(), _pL->getCols());
+            int iCols = pOut->getCols();
+            int iRows = pOut->getRows();
+            for (int i = 0 ; i < iRows ; i++)
+            {
+                for (int j = 0 ; j < iCols ; j++)
+                {
+                    pOut->set(i, j, true);
+                }
+            }
+        }
+        else
+        {
+            pOut = _pL;
+        }
+
+        return pOut;
+    }
+
+    if (_pL->getRows() != _pR->getRows() || _pL->getCols() != _pR->getCols())
+    {
+        throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
+    }
+
+    return _pL->newLogicalOr(*_pR);
+}
+
+template<>
+InternalType* or_M_M<SparseBool, Bool, SparseBool>(SparseBool* _pL, Bool* _pR)
+{
+    SparseBool* pR = new SparseBool(*_pR);
+    InternalType* pOut = or_M_M<SparseBool, SparseBool, SparseBool>(_pL, pR);
+    delete pR;
+    return pOut;
+}
+
+template<>
+InternalType* or_M_M<Bool, SparseBool, SparseBool>(Bool* _pL, SparseBool* _pR)
+{
+    SparseBool* pL = new SparseBool(*_pL);
+    InternalType* pOut = or_M_M<SparseBool, SparseBool, SparseBool>(pL, _pR);
+    delete pL;
+    return pOut;
+}
+

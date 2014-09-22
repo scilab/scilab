@@ -22,7 +22,6 @@
 #include "internal.hxx"
 #include "tlist.hxx"
 #include "mlist.hxx"
-#include "tlist.hxx"
 #include "string.hxx"
 
 #include "Controller.hxx"
@@ -168,7 +167,7 @@ public:
         typename property<Adaptor>::props_t properties = property<Adaptor>::fields;
         std::sort(properties.begin(), properties.end(), property<Adaptor>::original_index_cmp);
 
-        if (v->getType() != types::InternalType::ScilabTList)
+        if (v->getType() != types::InternalType::ScilabTList && v->getType() != types::InternalType::ScilabMList)
         {
             return false;
         }

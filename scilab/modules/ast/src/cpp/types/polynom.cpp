@@ -328,7 +328,6 @@ Double* Polynom::getCoef(void)
 {
     int iMaxRank = getMaxRank();
     int iColsOut = getCols() * (iMaxRank + 1);
-    int iSize    = getRows() * iColsOut;
 
     Double *pCoef = new Double(getRows(), iColsOut, isComplex());
     pCoef->setZeros();
@@ -370,7 +369,6 @@ Double* Polynom::getCoef(void)
 
 void Polynom::setCoef(Double *_pCoef)
 {
-    int iMaxRank = getMaxRank();
     setComplex(_pCoef->isComplex());
     double *pR = _pCoef->getReal();
 
@@ -409,9 +407,6 @@ void Polynom::setCoef(Double *_pCoef)
 
 bool Polynom::subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims)
 {
-    int iPrecision = ConfigVariable::getFormatSize();
-    int iLineLen = ConfigVariable::getConsoleWidth();
-
     wostringstream osExp;
     wostringstream osCoef;
 
@@ -493,7 +488,7 @@ bool Polynom::subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iD
     return true;
 }
 
-wstring Polynom::getMatrixString(int* _piDims, int _iDims, bool _bComplex)
+wstring Polynom::getMatrixString(int* _piDims, int /*_iDims*/, bool _bComplex)
 {
     int iLineLen = ConfigVariable::getConsoleWidth();
 
@@ -712,7 +707,7 @@ wstring Polynom::getMatrixString(int* _piDims, int _iDims, bool _bComplex)
     return ostr.str();
 }
 
-wstring Polynom::getRowString(int* _piDims, int _iDims, bool _bComplex)
+wstring Polynom::getRowString(int* _piDims, int /*_iDims*/, bool _bComplex)
 {
     int iLineLen = ConfigVariable::getConsoleWidth();
 
@@ -743,7 +738,7 @@ wstring Polynom::getRowString(int* _piDims, int _iDims, bool _bComplex)
             get(iPos)->toStringReal(getVariableName(), &listExpR, &listCoefR);
         }
 
-        if (iLen != 0 && static_cast<int>(iLen + listExpR.front().size()) > iLineLen)
+        if (iLen != 0 && static_cast<int>(listExpR.front().size()) + iLen >= iLineLen - 1)
         {
             //flush strean
             if (i == iLastFlush + 1)
@@ -755,12 +750,12 @@ wstring Polynom::getRowString(int* _piDims, int _iDims, bool _bComplex)
                 ostr << endl << L"         Column " << iLastFlush + 1 /* 2 is better than 1, no ? */ << L" to " << i << endl << endl;
             }
 
-            iLastFlush    = i;
-            iLen                = 0;
+            iLastFlush = i;
+            iLen = 0;
             ostr << osExp.str() << endl;
             ostr << osCoef.str() << endl;
-            osExp.str(L"");
-            osCoef.str(L"");
+            osExp.str(L" ");
+            osCoef.str(L" ");
         }
 
         if (listCoefR.size() > 1)
@@ -806,7 +801,7 @@ wstring Polynom::getRowString(int* _piDims, int _iDims, bool _bComplex)
     return ostr.str();
 }
 
-wstring Polynom::getColString(int* _piDims, int _iDims, bool _bComplex)
+wstring Polynom::getColString(int* _piDims, int /*_iDims*/, bool _bComplex)
 {
     wostringstream ostr;
     wostringstream osExp;
@@ -953,7 +948,7 @@ SinglePoly* Polynom::getNullValue()
     return new SinglePoly();
 }
 
-Polynom* Polynom::createEmpty(int _iDims, int* _piDims, bool _bComplex)
+Polynom* Polynom::createEmpty(int _iDims, int* _piDims, bool /*_bComplex*/)
 {
     return new Polynom(getVariableName(), _iDims, _piDims, NULL);
 }

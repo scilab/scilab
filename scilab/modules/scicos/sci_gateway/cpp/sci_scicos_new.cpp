@@ -75,7 +75,7 @@ types::InternalType * alloc_and_set(kind_t k, types::String* type_name, types::t
 }
 
 template<class Adaptor, class Adaptee>
-types::InternalType * alloc_and_set_as_mlist(kind_t k, types::String* type_name, types::typed_list &in)
+types::InternalType * alloc_and_set_as_mlist(types::String* type_name, types::typed_list &in)
 {
     // check header
     Adaptor adaptor = Adaptor(0);
@@ -170,7 +170,7 @@ types::Function::ReturnValue sci_scicos_new(types::typed_list &in, int _iRetCoun
             out.push_back(returnType);
             break;
         case view_scilab::Adapters::GRAPHIC_ADAPTER:
-            returnType = alloc_and_set_as_mlist<view_scilab::GraphicsAdapter, model::Block>(BLOCK, type_name, in);
+            returnType = alloc_and_set_as_mlist<view_scilab::GraphicsAdapter, model::Block>(type_name, in);
             if (returnType == 0)
             {
                 return types::Function::Error;
@@ -186,7 +186,7 @@ types::Function::ReturnValue sci_scicos_new(types::typed_list &in, int _iRetCoun
             out.push_back(returnType);
             break;
         case view_scilab::Adapters::MODEL_ADAPTER:
-            returnType = alloc_and_set_as_mlist<view_scilab::ModelAdapter, model::Block>(BLOCK, type_name, in);
+            returnType = alloc_and_set_as_mlist<view_scilab::ModelAdapter, model::Block>(type_name, in);
             if (returnType == 0)
             {
                 return types::Function::Error;
@@ -194,7 +194,7 @@ types::Function::ReturnValue sci_scicos_new(types::typed_list &in, int _iRetCoun
             out.push_back(returnType);
             break;
         case view_scilab::Adapters::PARAMS_ADAPTER:
-            returnType = alloc_and_set_as_mlist<view_scilab::ParamsAdapter, model::Diagram>(DIAGRAM, type_name, in);
+            returnType = alloc_and_set_as_mlist<view_scilab::ParamsAdapter, model::Diagram>(type_name, in);
             if (returnType == 0)
             {
                 return types::Function::Error;

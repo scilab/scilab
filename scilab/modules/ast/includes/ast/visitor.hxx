@@ -96,8 +96,6 @@ public:
     /** \name Visit Constant Expressions related nodes.
      ** \{ */
 public:
-    virtual void visit (typename select_const<K, IntExp>::t & e) = 0;
-    virtual void visit (typename select_const<K, FloatExp>::t & e) = 0;
     virtual void visit (typename select_const<K, DoubleExp>::t & e) = 0;
     virtual void visit (typename select_const<K, BoolExp>::t & e) = 0;
     virtual void visit (typename select_const<K, StringExp>::t & e) = 0;

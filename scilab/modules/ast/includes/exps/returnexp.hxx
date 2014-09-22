@@ -63,16 +63,16 @@ public:
     virtual ReturnExp* clone()
     {
         ReturnExp* cloned = NULL;
-        if (is_global())
+        if (isGlobal())
         {
-            cloned = new ReturnExp(location_get());
+            cloned = new ReturnExp(getLocation());
         }
         else
         {
-            cloned = new ReturnExp(location_get(), exp_get().clone());
+            cloned = new ReturnExp(getLocation(), getExp().clone());
         }
 
-        cloned->set_verbose(is_verbose());
+        cloned->setVerbose(isVerbose());
         return cloned;
     }
 
@@ -94,29 +94,29 @@ public:
     /** \name Accessors.
     ** \{ */
 public:
-    const Exp &	exp_get() const
+    const Exp &	getExp() const
     {
         return *_exp;
     }
 
-    Exp &	exp_get()
+    Exp &	getExp()
     {
         return *_exp;
     }
 
-    bool is_global() const
+    bool isGlobal() const
     {
         return _is_global;
     }
 
-    inline virtual bool is_return_exp() const
+    virtual ExpType getType()
+    {
+        return RETURNEXP;
+    }
+    inline virtual bool isReturnExp() const
     {
         return true;
     }
-
-    /** \} */
-
-
 protected:
     Exp		*_exp;
     bool	_is_global;

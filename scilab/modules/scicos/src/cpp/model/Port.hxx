@@ -35,9 +35,9 @@ class Port: public BaseObject
 
 private:
     Port() : BaseObject(PORT), dataType(0), sourceBlock(0), kind(UNDEF), implicit(false),
-        style(), label(), connectedSignals(std::vector<ScicosID> (1, 0)) {};
+        style(), label(), firing(0), connectedSignals(std::vector<ScicosID> (1, 0)) {};
     Port(const Port& o) : BaseObject(PORT), dataType(o.dataType), sourceBlock(o.sourceBlock), kind(o.kind), implicit(o.implicit),
-        style(o.style), label(o.label), connectedSignals(o.connectedSignals) {};
+        style(o.style), label(o.label), firing(0), connectedSignals(o.connectedSignals) {};
     ~Port() {};
 
     const std::vector<ScicosID>& getConnectedSignals() const
@@ -60,7 +60,9 @@ private:
     {
         if (dataType == 0)
         {
+            // By default, size is set to [-1,1] and type to real (1)
             v.resize(3, 1);
+            v[0] = -1;
         }
         else
         {

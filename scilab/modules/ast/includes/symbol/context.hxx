@@ -36,6 +36,9 @@ namespace symbol
 class EXTERN_AST Context
 {
 public :
+    typedef std::map<Symbol, Variable*> VarList;
+    typedef std::stack<VarList*> VarStack;
+
     static Context* getInstance(void);
 
     static void destroyInstance(void);
@@ -120,8 +123,6 @@ private :
     types::InternalType* get(const Symbol& key, int _iLevel);
     bool clearCurrentScope(bool _bClose);
 
-    typedef std::map<Symbol, Variable*> VarList;
-    typedef std::stack<VarList*> VarStack;
     std::list<Symbol>* globals;
     VarStack varStack;
     Variables variables;

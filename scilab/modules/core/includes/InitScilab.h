@@ -33,6 +33,8 @@ typedef struct
     char* pstExec;
     char* pstLang;
     int iSerialize;
+    int iKeepConsole;
+    int iNoBanner;
 } ScilabEngineInfo;
 
 ScilabEngineInfo* InitScilabEngineInfo();

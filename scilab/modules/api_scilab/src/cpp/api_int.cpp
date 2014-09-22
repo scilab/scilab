@@ -778,28 +778,52 @@ SciErr createCommonNamedMatrixOfInteger(void* _pvCtx, const char* _pstName, int 
     switch (_iPrecision)
     {
         case SCI_INT8 :
-            pIT = new Int8(_iRows, _iCols, (char**)_pvData);
+            Int8 *pInt8;
+            pInt8 = new Int8(_iRows, _iCols);
+            pInt8->set((char*)_pvData);
+            pIT = pInt8;
             break;
         case SCI_UINT8 :
-            pIT = new UInt8(_iRows, _iCols, (unsigned char**)_pvData);
+            UInt8 *pUInt8;
+            pUInt8 = new UInt8(_iRows, _iCols);
+            pUInt8->set((unsigned char*)_pvData);
+            pIT = pUInt8;
             break;
         case SCI_INT16 :
-            pIT = new Int16(_iRows, _iCols, (short**)_pvData);
+            Int16 *pInt16;
+            pInt16 = new Int16(_iRows, _iCols);
+            pInt16->set((short*)_pvData);
+            pIT = pInt16;
             break;
         case SCI_UINT16 :
-            pIT = new UInt16(_iRows, _iCols, (unsigned short**)_pvData);
+            UInt16 *pUInt16;
+            pUInt16 = new UInt16(_iRows, _iCols);
+            pUInt16->set((unsigned short*)_pvData);
+            pIT = pUInt16;
             break;
         case SCI_INT32 :
-            pIT = new Int32(_iRows, _iCols, (int**)_pvData);
+            Int32 *pInt32;
+            pInt32 = new Int32(_iRows, _iCols);
+            pInt32->set((int*)_pvData);
+            pIT = pInt32;
             break;
         case SCI_UINT32 :
-            pIT = new UInt32(_iRows, _iCols, (unsigned int**)_pvData);
+            UInt32 *pUInt32;
+            pUInt32 = new UInt32(_iRows, _iCols);
+            pUInt32->set((unsigned int*)_pvData);
+            pIT = pUInt32;
             break;
         case SCI_INT64 :
-            pIT = new Int64(_iRows, _iCols, (long long**)_pvData);
+            Int64 *pInt64;
+            pInt64 = new Int64(_iRows, _iCols);
+            pInt64->set((long long*)_pvData);
+            pIT = pInt64;
             break;
         case SCI_UINT64 :
-            pIT = new UInt64(_iRows, _iCols, (unsigned long long**)_pvData);
+            UInt64 *pUInt64;
+            pUInt64 = new UInt64(_iRows, _iCols);
+            pUInt64->set((unsigned long long*)_pvData);
+            pIT = pUInt64;
             break;
     }
 

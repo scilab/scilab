@@ -374,8 +374,6 @@ int MultiplyDoubleByPoly(Double* _pDouble, Polynom* _pPoly, Polynom** _pPolyOut)
 {
     bool bComplex1  = _pDouble->isComplex();
     bool bComplex2  = _pPoly->isComplex();
-    bool bScalar1   = _pDouble->isScalar();
-    bool bScalar2   = _pPoly->isScalar();
 
     if (_pDouble->isScalar())
     {

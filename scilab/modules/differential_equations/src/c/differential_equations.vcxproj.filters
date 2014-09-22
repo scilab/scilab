@@ -53,6 +53,9 @@
     <ClCompile Include="Ex-daskr.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Ex-ode.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="arnol.h">
@@ -85,6 +88,9 @@
     <ClInclude Include="Ex-daskr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Ex-ode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="differential_equations_f_Import.def">
@@ -98,6 +104,9 @@
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\locales\differential_equations.pot">
       <Filter>localization</Filter>
+    </None>
+    <None Include="elementary_functions_f_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

@@ -61,123 +61,327 @@ public:
     }
 
     /** \brief Return if an expression should be displayed or not. */
-    inline void set_verbose(bool verbose)
+    inline void setVerbose(bool verbose)
     {
         _verbose = verbose;
     }
 
     /** \brief Return if an expression should be displayed or not. */
-    inline bool is_verbose(void) const
+    inline virtual bool isVerbose(void) const
     {
         return _verbose;
     }
 
-    inline void break_set(void)
+    inline void setBreak(void)
     {
         _bBreak = true;
     }
 
-    inline void break_reset(void)
+    inline void resetBreak(void)
     {
         _bBreak = false;
     }
 
-    inline bool is_break(void) const
+    inline virtual bool isBreak(void) const
     {
         return _bBreak;
     }
 
-    inline void breakable_set(void)
+    inline void setBreakable(void)
     {
         _bBreakable = true;
     }
 
-    inline void breakable_reset(void)
+    inline void resetBreakable(void)
     {
         _bBreakable = false;
     }
 
-    inline bool is_breakable(void) const
+    inline virtual bool isBreakable(void) const
     {
         return _bBreakable;
     }
 
-    inline void return_set(void)
+    inline void setReturn(void)
     {
         _bReturn = true;
     }
 
-    inline void return_reset(void)
+    inline void resetReturn(void)
     {
         _bReturn = false;
     }
 
-    inline bool is_return(void) const
+    inline virtual bool isReturn(void) const
     {
         return _bReturn;
     }
 
-    inline void returnable_set(void)
+    inline void setReturnable(void)
     {
         _bReturnable = true;
     }
 
-    inline void returnable_reset(void)
+    inline void resetReturnable(void)
     {
         _bReturnable = false;
     }
 
-    inline bool is_returnable(void) const
+    inline virtual bool isReturnable(void) const
     {
         return _bReturnable;
     }
 
-    inline void continue_set(void)
+    inline void setContinue(void)
     {
         _bContinue = true;
     }
 
-    inline void continue_reset(void)
+    inline void resetContinue(void)
     {
         _bContinue = false;
     }
 
-    inline bool is_continue(void) const
+    inline virtual bool isContinue(void) const
     {
         return _bContinue;
     }
 
-    inline void continuable_set(void)
+    inline void setContinuable(void)
     {
         _bContinuable = true;
     }
 
-    inline void continuable_reset(void)
+    inline void resetContinuable(void)
     {
         _bContinuable = false;
     }
 
-    inline bool is_continuable(void) const
+    inline virtual bool isContinuable(void) const
     {
         return _bContinuable;
     }
 
-    inline virtual bool is_simple_var() const
+    //manage derived exp
+    enum ExpType
+    {
+        SIMPLEVAR,
+        DOLLARVAR,
+        COLONVAR,
+        ARRAYLISTVAR,
+        DOUBLEEXP,
+        BOOLEXP,
+        STRINGEXP,
+        COMMENTEXP,
+        NILEXP,
+        CALLEXP,
+        CELLCALLEXP,
+        OPEXP,
+        LOGICALOPEXP,
+        ASSIGNEXP,
+        IFEXP,
+        WHILEEXP,
+        FOREXP,
+        BREAKEXP,
+        CONTINUEEXP,
+        TRYCATCHEXP,
+        SELECTEXP,
+        CASEEXP,
+        RETURNEXP,
+        FIELDEXP,
+        NOTEXP,
+        TRANSPOSEEXP,
+        MATRIXEXP,
+        MATRIXLINEEXP,
+        CELLEXP,
+        SEQEXP,
+        ARRAYLISTEXP,
+        ASSIGNLISTEXP,
+        VARDEC,
+        FUNCTIONDEC,
+        LISTEXP,
+        OPTIMIZEDEXP
+    };
+
+    virtual ExpType getType() = 0;
+
+    template <class T>
+    inline T* getAs(void)
+    {
+        return static_cast<T*>(this);
+    }
+
+    inline virtual bool isSimpleVar() const
     {
         return false;
     }
 
-    inline virtual bool is_assign_exp() const
+    inline virtual bool isDollarVar() const
     {
         return false;
     }
 
-    inline virtual bool is_return_exp() const
+    inline virtual bool isColonVar() const
     {
         return false;
     }
 
-    inline virtual bool is_cellcall_exp() const
+    inline virtual bool isArrayListVar() const
+    {
+        return false;
+    }
+
+    inline virtual bool isDoubleExp() const
+    {
+        return false;
+    }
+
+    inline virtual bool isBoolExp() const
+    {
+        return false;
+    }
+
+    inline virtual bool isStringExp() const
+    {
+        return false;
+    }
+
+    inline virtual bool isCommentExp() const
+    {
+        return false;
+    }
+
+    inline virtual bool isNilExp() const
+    {
+        return false;
+    }
+
+    inline virtual bool isCallExp() const
+    {
+        return false;
+    }
+
+    inline virtual bool isCellCallExp() const
+    {
+        return false;
+    }
+
+    inline virtual bool isOpExp() const
+    {
+        return false;
+    }
+
+    inline virtual bool isLogicalOpExp() const
+    {
+        return false;
+    }
+
+    inline virtual bool isAssignExp() const
+    {
+        return false;
+    }
+
+    inline virtual bool isIfExp() const
+    {
+        return false;
+    }
+
+    inline virtual bool isWhileExp() const
+    {
+        return false;
+    }
+
+    inline virtual bool isForExp() const
+    {
+        return false;
+    }
+
+    inline virtual bool isBreakExp() const
+    {
+        return false;
+    }
+
+    inline virtual bool isContinueExp() const
+    {
+        return false;
+    }
+
+    inline virtual bool isTryCatchExp() const
+    {
+        return false;
+    }
+
+    inline virtual bool isSelectExp() const
+    {
+        return false;
+    }
+
+    inline virtual bool isCaseExp() const
+    {
+        return false;
+    }
+
+    inline virtual bool isReturnExp() const
+    {
+        return false;
+    }
+
+    inline virtual bool isFieldExp() const
+    {
+        return false;
+    }
+
+    inline virtual bool isNotExp() const
+    {
+        return false;
+    }
+
+    inline virtual bool isTransposeExp() const
+    {
+        return false;
+    }
+
+    inline virtual bool isMatrixExp() const
+    {
+        return false;
+    }
+
+    inline virtual bool isMatrixLineExp() const
+    {
+        return false;
+    }
+
+    inline virtual bool isCellExp() const
+    {
+        return false;
+    }
+
+    inline virtual bool isSeqExp() const
+    {
+        return false;
+    }
+
+    inline virtual bool isArrayListExp() const
+    {
+        return false;
+    }
+
+    inline virtual bool isAssignListExp() const
+    {
+        return false;
+    }
+
+    inline virtual bool isVarDec() const
+    {
+        return false;
+    }
+
+    inline virtual bool isFunctionDec() const
+    {
+        return false;
+    }
+
+    inline virtual bool isListExp() const
     {
         return false;
     }

@@ -41,8 +41,8 @@ public:
 
     virtual BreakExp* clone()
     {
-        BreakExp* cloned = new BreakExp(location_get());
-        cloned->set_verbose(is_verbose());
+        BreakExp* cloned = new BreakExp(getLocation());
+        cloned->setVerbose(isVerbose());
         return cloned;
     }
     /** \name Visitors entry point.
@@ -59,6 +59,14 @@ public:
         v.visit (*this);
     }
     /** \} */
+    virtual ExpType getType()
+    {
+        return BREAKEXP;
+    }
+    inline bool isBreakExp() const
+    {
+        return true;
+    }
 };
 
 } // namespace ast

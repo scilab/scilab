@@ -34,8 +34,8 @@ InternalType *GenericComparisonNonEqual(InternalType *_pLeftOperand, InternalTyp
 
         return pResult;
     }
-    else if (_pLeftOperand->isTList() && _pRightOperand->isTList() ||
-             _pLeftOperand->isMList() && _pRightOperand->isMList())
+    else if ((_pLeftOperand->isTList() && _pRightOperand->isTList()) ||
+             (_pLeftOperand->isMList() && _pRightOperand->isMList()))
     {
         TList* pLL = _pLeftOperand->getAs<TList>();
         TList* pLR = _pRightOperand->getAs<TList>();
@@ -95,7 +95,6 @@ InternalType *GenericComparisonNonEqual(InternalType *_pLeftOperand, InternalTyp
             {
                 for (int j = 0 ; j < pSB->getCols() ; j++)
                 {
-                    bool b = !pSB->get(i, j);
                     pSB->set(i, j, !pSB->get(i, j));
                 }
             }

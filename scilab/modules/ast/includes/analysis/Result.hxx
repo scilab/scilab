@@ -30,12 +30,12 @@ public:
     Result(const TIType & _type, const bool _temp) : type(_type), temp(_temp) { }
     Result(TIType && _type, const bool _temp) : type(_type), temp(_temp) { }
 
-    inline bool istemp() const
+    inline bool isTemp() const
     {
         return temp;
     }
 
-    inline const TIType & get_type() const
+    inline const TIType & getType() const
     {
         return type;
     }

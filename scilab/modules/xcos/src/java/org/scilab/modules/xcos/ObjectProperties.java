@@ -12,6 +12,8 @@ public enum ObjectProperties {
     PARENT_DIAGRAM,
     GEOMETRY,
     DESCRIPTION,
+    FONT,
+    FONT_SIZE,
     RELATED_TO,
     INTERFACE_FUNCTION,
     SIM_FUNCTION_NAME,
@@ -61,6 +63,8 @@ public enum ObjectProperties {
     TITLE,
     PATH,
     PROPERTIES,
-    DIAGRAM_CONTEXT;
+    DIAGRAM_CONTEXT,
+    VERSION_NUMBER,
+    MAX_OBJECT_PROPERTIES;
 }
 

@@ -119,7 +119,7 @@ void addOut(MacrovarVisitor& visit, std::list<symbol::Variable*>* pSym)
     std::list<symbol::Variable*>::iterator it = pSym->begin();
     for (int i = 0 ; it != pSym->end() ; it++, i++)
     {
-        visit.addOut((*it)->name_get().name_get().c_str());
+        visit.addOut((*it)->getSymbol().getName().c_str());
     }
 }
 
@@ -133,6 +133,6 @@ void addIn(MacrovarVisitor& visit, std::list<symbol::Variable*>* pSym)
     std::list<symbol::Variable*>::iterator it = pSym->begin();
     for (int i = 0 ; it != pSym->end() ; it++, i++)
     {
-        visit.addIn((*it)->name_get().name_get().c_str());
+        visit.addIn((*it)->getSymbol().getName().c_str());
     }
 }

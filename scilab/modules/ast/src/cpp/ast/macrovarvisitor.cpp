@@ -20,16 +20,16 @@ namespace ast
 {
 void MacrovarVisitor::visit (const SimpleVar &e)
 {
-    m_current = e.name_get().name_get();
+    m_current = e.getSymbol().getName();
 }
 
 void MacrovarVisitor::visit(const CallExp &e)
 {
-    e.name_get().accept (*this);
+    e.getName().accept (*this);
     add();
 
     std::list<Exp *>::const_iterator i;
-    for (i = e.args_get().begin (); i != e.args_get().end (); ++i)
+    for (i = e.getArgs().begin (); i != e.getArgs().end (); ++i)
     {
         (*i)->accept (*this);
         add();
@@ -38,15 +38,15 @@ void MacrovarVisitor::visit(const CallExp &e)
 
 void MacrovarVisitor::visit(const AssignExp &e)
 {
-    e.left_exp_get().accept (*this);
+    e.getLeftExp().accept (*this);
     add();
-    e.right_exp_get().accept (*this);
+    e.getRightExp().accept (*this);
     add();
 }
 
 void MacrovarVisitor::visit (const VarDec  &e)
 {
-    e.init_get().accept(*this);
+    e.getInit().accept(*this);
     add(m_local);
 }
 

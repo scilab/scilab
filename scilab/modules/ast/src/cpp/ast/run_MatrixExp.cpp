@@ -25,29 +25,29 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
         InternalType *poResult = NULL;
         list<InternalType*> rowList;
 
-        if (e.lines_get().size() == 0)
+        if (e.getLines().size() == 0)
         {
-            result_set(Double::Empty());
+            setResult(Double::Empty());
             return;
         }
 
         //do all [x,x]
-        for (row = e.lines_get().begin() ; row != e.lines_get().end() ; row++)
+        for (row = e.getLines().begin() ; row != e.getLines().end() ; row++)
         {
             InternalType* poRow = NULL;
-            for (col = (*row)->columns_get().begin() ; col != (*row)->columns_get().end() ; col++)
+            for (col = (*row)->getColumns().begin() ; col != (*row)->getColumns().end() ; col++)
             {
-                result_set(NULL); // Reset value on loop re-start
+                setResult(NULL); // Reset value on loop re-start
                 (*col)->accept(*this);
 
-                InternalType *pIT = result_get();
+                InternalType *pIT = getResult();
                 if (pIT == NULL)
                 {
                     continue;
                 }
 
                 //reset result but whitout delete the value
-                result_clear_except_first();
+                clearResultButFirst();
 
                 if (pIT->isImplicitList())
                 {
@@ -79,7 +79,7 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                     pIT->killMe();
                     std::wostringstream os;
                     os << _W("unable to concatenate\n");
-                    throw ast::ScilabError(os.str(), 999, (*col)->location_get());
+                    throw ast::ScilabError(os.str(), 999, (*col)->getLocation());
                 }
 
                 GenericType* pGT = pIT->getAs<GenericType>();
@@ -117,7 +117,7 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                     }
                     std::wostringstream os;
                     os << _W("inconsistent row/column dimensions\n");
-                    throw ast::ScilabError(os.str(), 999, (*row)->location_get());
+                    throw ast::ScilabError(os.str(), 999, (*row)->getLocation());
                 }
 
                 // if we concatenate [Double Sparse], transform the Double to Sparse and perform [Sparse Sparse]
@@ -201,7 +201,7 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                 }
                 std::wostringstream os;
                 os << _W("inconsistent row/column dimensions\n");
-                throw ast::ScilabError(os.str(), 999, (*e.lines_get().begin())->location_get());
+                throw ast::ScilabError(os.str(), 999, (*e.getLines().begin())->getLocation());
             }
 
             // if we concatenate [Double Sparse], transform the Double to Sparse and perform [Sparse Sparse]
@@ -240,11 +240,11 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
 
         if (poResult)
         {
-            result_set(poResult);
+            setResult(poResult);
         }
         else
         {
-            result_set(Double::Empty());
+            setResult(Double::Empty());
         }
     }
     catch (ast::ScilabError error)
@@ -277,11 +277,11 @@ types::InternalType* RunVisitorT<T>::callOverloadMatrixExp(std::wstring strType,
 
     if (Ret != Callable::OK)
     {
-        clean_in_out(in, out);
+        cleanInOut(in, out);
         throw ScilabError();
     }
 
-    clean_in(in, out);
+    cleanIn(in, out);
 
     if (out.empty())
     {

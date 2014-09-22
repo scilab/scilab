@@ -55,13 +55,13 @@ public:
     virtual SeqExp* clone()
     {
         std::list<Exp *>* exp = new std::list<Exp *>;
-        for (std::list<Exp *>::const_iterator it = exps_get().begin() ; it != exps_get().end() ; ++it)
+        for (std::list<Exp *>::const_iterator it = getExps().begin() ; it != getExps().end() ; ++it)
         {
             exp->push_back((*it)->clone());
         }
 
-        SeqExp* cloned = new SeqExp(location_get(), *exp);
-        cloned->set_verbose(is_verbose());
+        SeqExp* cloned = new SeqExp(getLocation(), *exp);
+        cloned->setVerbose(isVerbose());
         return cloned;
     }
     /** \name Visitors entry point.
@@ -83,23 +83,31 @@ public:
     /** \name Accessors.
     ** \{ */
 public:
-    const std::list<Exp *>&	exps_get() const
+    const std::list<Exp *>&	getExps() const
     {
         return *_l_body;
     }
 
-    std::list<Exp *>&	exps_get()
+    std::list<Exp *>& gExps()
     {
         return *_l_body;
     }
 
-    void exps_clear()
+    void clearExps()
     {
         _l_body->clear();
     }
     /** \} */
 
 
+    virtual ExpType getType()
+    {
+        return SEQEXP;
+    }
+    inline bool isSeqExp() const
+    {
+        return true;
+    }
 protected:
     std::list<Exp *>* _l_body;
 };

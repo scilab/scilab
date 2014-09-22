@@ -521,6 +521,9 @@
 /* With the HDF5 library */
 #undef WITH_HDF5
 
+/* with JGraphX */
+#undef WITH_JGRAPHX
+
 /* With llvm-config */
 #undef WITH_LLVM_CONFIG
 
@@ -535,9 +538,6 @@
 
 /* With the UMFPACK library */
 #undef WITH_UMFPACK
-
-/* With XCOS */
-#undef WITH_XCOS
 
 /* If leading underscores */
 #undef WLU

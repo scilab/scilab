@@ -14,8 +14,6 @@
 #define __TYPES_AND_H__
 
 #include "generic_operations.hxx"
-#include "double.hxx"
-#include "polynom.hxx"
 #include "bool.hxx"
 #include "sparse.hxx"
 

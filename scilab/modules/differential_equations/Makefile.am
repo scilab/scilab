@@ -15,6 +15,7 @@ DIFFERENTIAL_EQUATIONS_C_SOURCES = \
     src/c/arnol.c \
     src/c/rk4.c \
     src/c/Ex-odedc.c \
+    src/c/Ex-ode.c \
     src/c/Ex-daskr.c
 
 DIFFERENTIAL_EQUATIONS_FORTRAN_SOURCES = \
@@ -78,7 +79,6 @@ DIFFERENTIAL_EQUATIONS_FORTRAN_SOURCES = \
     src/fortran/writbufode.f
 
 GATEWAY_FORTRAN_SOURCES = \
-    sci_gateway/fortran/Ex-ode.f \
     sci_gateway/fortran/Ex-impl.f \
     sci_gateway/fortran/Ex-int2d.f \
     sci_gateway/fortran/Ex-int3d.f \

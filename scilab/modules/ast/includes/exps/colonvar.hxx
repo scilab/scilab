@@ -43,14 +43,11 @@ public:
 
     virtual ColonVar* clone()
     {
-        ColonVar* cloned = new ColonVar(location_get());
-        cloned->set_verbose(is_verbose());
+        ColonVar* cloned = new ColonVar(getLocation());
+        cloned->setVerbose(isVerbose());
         return cloned;
     }
 
-    /** \name Visitors entry point.
-    ** \{ */
-public:
     /** \brief Accept a const visitor \a v. */
     virtual void accept (Visitor& v)
     {
@@ -61,7 +58,15 @@ public:
     {
         v.visit (*this);
     }
-    /** \} */
+
+    virtual ExpType getType()
+    {
+        return COLONVAR;
+    }
+    inline bool isColonVar() const
+    {
+        return true;
+    }
 
 };
 

@@ -11,7 +11,8 @@
 #ifndef SWIG_JavaController_WRAP_H_
 #define SWIG_JavaController_WRAP_H_
 
-class SwigDirector_View : public org_scilab_modules_scicos::View, public Swig::Director {
+class SwigDirector_View : public org_scilab_modules_scicos::View, public Swig::Director
+{
 
 public:
     void swig_connect_director(JNIEnv *jenv, jobject jself, jclass jcls, bool swig_mem_own, bool weak_global);
@@ -22,8 +23,9 @@ public:
     virtual void objectUpdated(ScicosID const &uid, kind_t k);
     virtual void propertyUpdated(ScicosID const &uid, kind_t k, object_properties_t p);
 public:
-    bool swig_overrides(int n) {
-      return (n < 4 ? swig_override[n] : false);
+    bool swig_overrides(int n)
+    {
+        return (n < 4 ? swig_override[n] : false);
     }
 protected:
     bool swig_override[4];

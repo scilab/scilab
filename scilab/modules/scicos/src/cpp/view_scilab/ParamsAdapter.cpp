@@ -16,6 +16,7 @@
 
 #include "double.hxx"
 #include "string.hxx"
+#include "list.hxx"
 #include "tlist.hxx"
 
 #include "Controller.hxx"
@@ -23,6 +24,7 @@
 
 extern "C" {
 #include "sci_malloc.h"
+#include "charEncoding.h"
 }
 
 namespace org_scilab_modules_scicos
@@ -32,19 +34,29 @@ namespace view_scilab
 namespace
 {
 
-static const wchar_t* scsopt = L"scsopt";
+const std::wstring scsopt(L"scsopt");
 
-struct wpar
+struct dummy_property
 {
 
     static types::InternalType* get(const ParamsAdapter& adaptor, const Controller& controller)
     {
-        return 0;
+        // silent unused parameter warnings
+        (void) adaptor;
+        (void) controller;
+
+        // Return a default empty matrix.
+        return types::Double::Empty();
     }
 
     static bool set(ParamsAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        // The model does not stock wpar.
+        // silent unused parameter warnings
+        (void) adaptor;
+        (void) v;
+        (void) controller;
+
+        // everything should be right as the properties mapped using this adapter do not perform anything
         return true;
     }
 };
@@ -117,8 +129,11 @@ struct tol
 
         std::vector<double> tol;
         controller.getObjectProperty(adaptee->id(), adaptee->kind(), PROPERTIES, tol);
-
+#ifdef _MSC_VER
+        std::copy(tol.begin() + 1, tol.end(), stdext::checked_array_iterator<double*>( data, 7 ));
+#else
         std::copy(tol.begin() + 1, tol.end(), data);
+#endif
 
         return o;
     }
@@ -253,10 +268,12 @@ struct options
 
     static types::InternalType* get(const ParamsAdapter& adaptor, const Controller& controller)
     {
-        model::Diagram* adaptee = adaptor.getAdaptee();
+        // silent unused parameter warnings
+        (void) adaptor;
+        (void) controller;
 
         // Return a dummy 'scsopt'-typed tlist.
-        types::String* header = new types::String(scsopt);
+        types::String* header = new types::String(scsopt.c_str());
 
         types::TList* Scsopt = new types::TList();
         Scsopt->set(0, header);
@@ -266,7 +283,7 @@ struct options
     static bool set(ParamsAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
         // The model does not store 'options'.
-        return true;
+        return dummy_property::set(adaptor, v, controller);
     }
 };
 
@@ -274,11 +291,17 @@ struct doc
 {
     static types::InternalType* get(const ParamsAdapter& adaptor, const Controller& controller)
     {
+        // silent unused parameter warnings
+        (void) controller;
+
         return adaptor.getDocContent();
     }
 
     static bool set(ParamsAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
+        // silent unused parameter warnings
+        (void) controller;
+
         adaptor.setDocContent(v->clone());
         return true;
     }
@@ -289,7 +312,10 @@ struct doc
 template<> property<ParamsAdapter>::props_t property<ParamsAdapter>::fields = property<ParamsAdapter>::props_t();
 
 ParamsAdapter::ParamsAdapter(const ParamsAdapter& o) :
-    BaseAdapter<ParamsAdapter, org_scilab_modules_scicos::model::Diagram>(o) {}
+    BaseAdapter<ParamsAdapter, org_scilab_modules_scicos::model::Diagram>(o)
+{
+    doc_content = new types::List();
+}
 
 ParamsAdapter::ParamsAdapter(org_scilab_modules_scicos::model::Diagram* o) :
     BaseAdapter<ParamsAdapter, org_scilab_modules_scicos::model::Diagram>(o)
@@ -297,15 +323,15 @@ ParamsAdapter::ParamsAdapter(org_scilab_modules_scicos::model::Diagram* o) :
     if (property<ParamsAdapter>::properties_have_not_been_set())
     {
         property<ParamsAdapter>::fields.reserve(10);
-        property<ParamsAdapter>::add_property(L"wpar", &wpar::get, &wpar::set);
+        property<ParamsAdapter>::add_property(L"wpar", &dummy_property::get, &dummy_property::set);
         property<ParamsAdapter>::add_property(L"title", &title::get, &title::set);
         property<ParamsAdapter>::add_property(L"tol", &tol::get, &tol::set);
         property<ParamsAdapter>::add_property(L"tf", &tf::get, &tf::set);
         property<ParamsAdapter>::add_property(L"context", &context::get, &context::set);
-        property<ParamsAdapter>::add_property(L"void1", &wpar::get, &wpar::set);
+        property<ParamsAdapter>::add_property(L"void1", &dummy_property::get, &dummy_property::set);
         property<ParamsAdapter>::add_property(L"options", &options::get, &options::set);
-        property<ParamsAdapter>::add_property(L"void2", &wpar::get, &wpar::set);
-        property<ParamsAdapter>::add_property(L"void3", &wpar::get, &wpar::set);
+        property<ParamsAdapter>::add_property(L"void2", &dummy_property::get, &dummy_property::set);
+        property<ParamsAdapter>::add_property(L"void3", &dummy_property::get, &dummy_property::set);
         property<ParamsAdapter>::add_property(L"doc", &doc::get, &doc::set);
     }
 
@@ -328,7 +354,7 @@ std::wstring ParamsAdapter::getShortTypeStr()
 
 types::InternalType* ParamsAdapter::getDocContent() const
 {
-    return doc_content;
+    return doc_content->clone();
 }
 
 void ParamsAdapter::setDocContent(types::InternalType* v)

@@ -26,13 +26,13 @@ Symbol::Symbol (const std::wstring &s):
 }
 
 // Accessor
-const std::wstring& Symbol::name_get () const
+const std::wstring& Symbol::getName () const
 {
     return (*_set_node);
 }
 
 // Return the size of the Symbol map.
-Symbol::size_type Symbol::map_size ()
+Symbol::size_type Symbol::getSize()
 {
     return _set.size();
 }
@@ -40,7 +40,7 @@ Symbol::size_type Symbol::map_size ()
 // Operators for better performances.
 bool Symbol::operator== (const Symbol &rhs) const
 {
-    return &(*_set_node) == &(*rhs.get_node());
+    return &(*_set_node) == &(*rhs.getNode());
 }
 
 bool Symbol::operator!= (const Symbol &rhs) const
@@ -50,18 +50,18 @@ bool Symbol::operator!= (const Symbol &rhs) const
 
 bool Symbol::operator<(const Symbol &rhs) const
 {
-    return (&(*_set_node) < & (*rhs.get_node()));
+    return (&(*_set_node) < & (*rhs.getNode()));
 }
 
 std::wostream& operator<< (std::wostream &ostr, const Symbol &the)
 {
-    return ostr << the.name_get();
+    return ostr << the.getName();
 }
 
-wchar_t **Symbol::get_all()
+wchar_t **Symbol::getAll()
 {
     string_set_type::const_iterator it;
-    wchar_t **resultVector = new wchar_t*[map_size()];
+    wchar_t **resultVector = new wchar_t*[getSize()];
     int i = 0;
 
     for (it = _set.begin() ; it != _set.end() ; ++it, ++i)

@@ -47,7 +47,7 @@ JITVisitor::JITVisitor(const analysis::AnalysisVisitor & _analysis) : ast::Const
     {
         if (it->second.read || it->second.write || it->second.replace)
         {
-            const std::wstring & name = it->first.name_get();
+            const std::wstring & name = it->first.getName();
             const std::string _name(name.begin(), name.end());
             symbol::Variable * var = ctxt->getOrCreate(it->first);
             types::InternalType * pIT = symbol::Context::getInstance()->get(var);
@@ -79,9 +79,9 @@ void JITVisitor::run()
     for (JITSymbolMap::const_iterator i = symMap3.begin(), end = symMap3.end(); i != end; ++i)
     {
         analysis::AnalysisVisitor::MapSymInfo::const_iterator it = info.find(i->first);
-        if (it != info.end() && !it->second.is_just_read())
+        if (it != info.end() && !it->second.isJustRead())
         {
-            std::wcout << L"push in context: " << i->first.name_get() << std::endl;
+            std::wcout << L"push in context: " << i->first.getName() << std::endl;
             symbol::Variable * var = ctxt->getOrCreate(i->first);
             llvm::Value * llvmVar = getPointer(var);
             if (i->second.get()->is_scalar())
@@ -126,7 +126,7 @@ llvm::Value * JITVisitor::getConstant<double>(const double val)
 
 void JITVisitor::visit(const ast::SimpleVar &e)
 {
-    /*                symbol::Symbol & sym = e.name_get();
+    /*                symbol::Symbol & sym = e.getName();
                       std::map<symbol::Symbol, llvm::Value *>::iterator i = symMap.find(sym);
                       if (i != symMap.end())
                       {
@@ -134,24 +134,24 @@ void JITVisitor::visit(const ast::SimpleVar &e)
                       {
                       llvm::LoadInst * tmp = builder.CreateLoad(llvm::cast<llvm::AllocaInst>(i->second));
                       tmp->setAlignment(sizeof(double));
-                      result_set(tmp);
+                      setResult(tmp);
                       }
                       else
                       {
-                      result_set(i->second);
+                      setResult(i->second);
                       }
                       }
                       else
                       {
-                      std::wcout << L"que faire...=" << sym.name_get() << std::endl;
+                      std::wcout << L"que faire...=" << sym.getName() << std::endl;
                       }
     */
-    /*              symbol::Symbol & sym = e.name_get();
+    /*              symbol::Symbol & sym = e.getName();
                     std::map<symbol::Symbol, JITVal>::iterator i = symMap2.find(sym);
                     if (i != symMap2.end())
                     {
                     llvm::Value * r = llvm::ConstantInt::get(getLLVMTy<int>(context), 1);
-                    result_set(JITVal(r, r, i->second.load(builder)));
+                    setResult(JITVal(r, r, i->second.load(builder)));
                     }
                     else
                     {
@@ -160,24 +160,24 @@ void JITVisitor::visit(const ast::SimpleVar &e)
                     llvm::Value * c = llvm::Cou onstantInt::get(getLLVMTy<int>(context), pIT->getCols());
                     llvm::Value * ptr = getPointer(pIT->get(), getLLVMTy<double *>(context));
 
-                    result_set(JITVal(r, c, ptr));
+                    setResult(JITVal(r, c, ptr));
 
-                    //std::wcout << L"que faire...=" << sym.name_get() << std::endl;
+                    //std::wcout << L"que faire...=" << sym.getName() << std::endl;
                     }
     */
-    symbol::Symbol & sym = e.name_get();
+    symbol::Symbol & sym = e.getSymbol();
     JITSymbolMap::iterator i = symMap3.find(sym);
     if (i != symMap3.end())
     {
-        result_set(i->second);
+        setResult(i->second);
     }
     else
     {
-        const std::wstring & name = sym.name_get();
+        const std::wstring & name = sym.getName();
         const std::string _name(name.begin(), name.end());
         /*types::InternalType * pIT = symbol::Context::getInstance()->get(((ast::SimpleVar&)e).stack_get());
 
-          result_set(std::shared_ptr<JITVal>(JITVal::get(*this, pIT, _name)));*/
+          setResult(std::shared_ptr<JITVal>(JITVal::get(*this, pIT, _name)));*/
         throw ast::ScilabError("Variable not declared before JIT: " + _name);
     }
 }
@@ -197,19 +197,9 @@ void JITVisitor::visit(const ast::ArrayListVar &e)
 
 }
 
-void JITVisitor::visit(const ast::IntExp &e)
-{
-
-}
-
-void JITVisitor::visit(const ast::FloatExp &e)
-{
-
-}
-
 void JITVisitor::visit(const ast::DoubleExp &e)
 {
-    result_set(std::shared_ptr<JITVal>(new JITScalarVal<double>(*this, e.value_get(), false)));
+    setResult(std::shared_ptr<JITVal>(new JITScalarVal<double>(*this, e.getValue(), false)));
 }
 
 void JITVisitor::visit(const ast::BoolExp &e)
@@ -244,15 +234,15 @@ void JITVisitor::visit(const ast::CellCallExp &e)
 
 void JITVisitor::visit(const ast::OpExp &e)
 {
-    e.left_get().accept(*this);
-    std::shared_ptr<JITVal> pITL = result_get();
+    e.getLeft().accept(*this);
+    std::shared_ptr<JITVal> pITL = getResult();
 
-    e.right_get().accept(*this);
-    std::shared_ptr<JITVal> & pITR = result_get();
+    e.getRight().accept(*this);
+    std::shared_ptr<JITVal> & pITR = getResult();
 
     llvm::Value * pResult = NULL;
 
-    switch (e.oper_get())
+    switch (e.getOper())
     {
         case ast::OpExp::plus:
         {
@@ -261,11 +251,11 @@ void JITVisitor::visit(const ast::OpExp &e)
 
             if (pITL.get()->is_scalar() && pITR.get()->is_scalar())
             {
-                result_set(add_D_D(pITL, pITR, *this));
+                setResult(add_D_D(pITL, pITR, *this));
             }
             else
             {
-                result_set(add_M_M(pITL, pITR, *this));
+                setResult(add_M_M(pITL, pITR, *this));
             }
             return;
         }
@@ -273,11 +263,11 @@ void JITVisitor::visit(const ast::OpExp &e)
         {
             if (pITL.get()->is_scalar())
             {
-                result_set(sub_D_D(pITL, pITR, *this));
+                setResult(sub_D_D(pITL, pITR, *this));
             }
             else
             {
-                result_set(sub_M_M(pITL, pITR, *this));
+                setResult(sub_M_M(pITL, pITR, *this));
             }
             return;
         }
@@ -285,28 +275,28 @@ void JITVisitor::visit(const ast::OpExp &e)
         {
             if (pITL.get()->is_scalar())
             {
-                result_set(dotmul_D_D(pITL, pITR, *this));
+                setResult(dotmul_D_D(pITL, pITR, *this));
             }
             else
             {
-                result_set(dotmul_M_M(pITL, pITR, *this));
+                setResult(dotmul_M_M(pITL, pITR, *this));
             }
             return;
         }
         default:
             if (pITL.get()->is_scalar())
             {
-                result_set(add_D_D(pITL, pITR, *this));
+                setResult(add_D_D(pITL, pITR, *this));
             }
             else
             {
-                result_set(add_M_M(pITL, pITR, *this));
+                setResult(add_M_M(pITL, pITR, *this));
             }
             return;
     }
 
     //llvm::Value * r = llvm::ConstantInt::get(getLLVMTy<int>(context), 1);
-    //result_set(JITVal(r, r, pResult));
+    //setResult(JITVal(r, r, pResult));
 }
 
 void JITVisitor::visit(const ast::LogicalOpExp &e)
@@ -316,14 +306,14 @@ void JITVisitor::visit(const ast::LogicalOpExp &e)
 
 void JITVisitor::visit(const ast::AssignExp &e)
 {
-    if (e.left_exp_get().is_simple_var())
+    if (e.getLeftExp().isSimpleVar())
     {
-        ast::SimpleVar & pVar = static_cast<ast::SimpleVar &>(e.left_exp_get());
+        ast::SimpleVar & pVar = static_cast<ast::SimpleVar &>(e.getLeftExp());
 
-        e.right_exp_get().accept(*this);
-        std::shared_ptr<JITVal> & pITR = result_get();
+        e.getRightExp().accept(*this);
+        std::shared_ptr<JITVal> & pITR = getResult();
         llvm::Value * alloca = nullptr;
-        JITSymbolMap::const_iterator i = symMap3.find(pVar.name_get());
+        JITSymbolMap::const_iterator i = symMap3.find(pVar.getSymbol());
 
         if (i != symMap3.end())
         {
@@ -331,14 +321,14 @@ void JITVisitor::visit(const ast::AssignExp &e)
         }
         else
         {
-            const std::wstring & name = pVar.name_get().name_get();
+            const std::wstring & name = pVar.getSymbol().getName();
             const std::string _name(name.begin(), name.end());
             // TODO: virer ce truc... le param <double> est force...
             JITVal * jitV = new JITScalarVal<double>(*this, pITR.get(), _name);
-            symMap3.emplace(pVar.name_get(), std::shared_ptr<JITVal>(jitV));
+            symMap3.emplace(pVar.getSymbol(), std::shared_ptr<JITVal>(jitV));
         }
 
-        result_set(std::shared_ptr<JITVal>(nullptr));
+        setResult(std::shared_ptr<JITVal>(nullptr));
     }
 }
 
@@ -355,49 +345,49 @@ void JITVisitor::visit(const ast::WhileExp &e)
 void JITVisitor::visit(const ast::ForExp &e)
 {
     //e.vardec_get().accept(*this);
-    const ast::VarDec & vardec = e.vardec_get();
-    symbol::Symbol & varName = vardec.name_get();
-    const ast::Exp & init = vardec.init_get();
+    const ast::VarDec & vardec = e.getVardec();
+    symbol::Symbol & varName = vardec.getSymbol();
+    const ast::Exp & init = vardec.getInit();
 
     if (init.is_list_exp())
     {
         const ast::ListExp & list = static_cast<const ast::ListExp &>(init);
-        const analysis::ForList64 & list_info = vardec.list_info_get();
+        const analysis::ForList64 & list_info = vardec.getListInfo();
         const double * list_values = list.get_values();
         llvm::Value * start = nullptr, * step, * end;
         bool use_int = false;
         bool use_uint = false;
         bool inc = true;
         bool known_step = false;
-        bool it_read_in_loop = list_info.is_read_in_loop();
+        bool it_read_in_loop = list_info.isReadInLoop();
 
-        if (list_info.is_constant())
+        if (list_info.isConstant())
         {
-            if (list_info.is_int())
+            if (list_info.isInt())
             {
                 use_int = true;
-                if (list_info.is_uint())
+                if (list_info.isUInt())
                 {
                     use_uint = true;
-                    start = getConstant(list_info.get_min<uint64_t>());
-                    step = getConstant(list_info.get_step<uint64_t>());
-                    end = getConstant(list_info.get_max<uint64_t>());
+                    start = getConstant(list_info.getMin<uint64_t>());
+                    step = getConstant(list_info.getStep<uint64_t>());
+                    end = getConstant(list_info.getMax<uint64_t>());
                 }
                 else
                 {
-                    start = getConstant(list_info.get_min<int64_t>());
-                    step = getConstant(list_info.get_step<int64_t>());
-                    end = getConstant(list_info.get_max<int64_t>());
+                    start = getConstant(list_info.getMin<int64_t>());
+                    step = getConstant(list_info.getStep<int64_t>());
+                    end = getConstant(list_info.getMax<int64_t>());
                 }
             }
             else
             {
-                start = getConstant(list_info.get_min<double>());
-                step = getConstant(list_info.get_step<double>());
-                end = getConstant(list_info.get_max<double>());
+                start = getConstant(list_info.getMin<double>());
+                step = getConstant(list_info.getStep<double>());
+                end = getConstant(list_info.getMax<double>());
             }
 
-            inc = list_info.get_step<double>() > 0;
+            inc = list_info.getStep<double>() > 0;
             known_step = true;
         }
 
@@ -409,8 +399,8 @@ void JITVisitor::visit(const ast::ForExp &e)
             }
             else
             {
-                list.start_get().accept(*this);
-                start = result_get().get()->load(*this);
+                list.getStart().accept(*this);
+                start = getResult().get()->load(*this);
             }
 
             if (!ISNAN(list_values[1]))
@@ -421,8 +411,8 @@ void JITVisitor::visit(const ast::ForExp &e)
             }
             else
             {
-                list.step_get().accept(*this);
-                step = result_get().get()->load(*this);
+                list.getStep().accept(*this);
+                step = getResult().get()->load(*this);
             }
 
             if (!ISNAN(list_values[2]))
@@ -431,8 +421,8 @@ void JITVisitor::visit(const ast::ForExp &e)
             }
             else
             {
-                list.end_get().accept(*this);
-                end = result_get().get()->load(*this);
+                list.getEnd().accept(*this);
+                end = getResult().get()->load(*this);
             }
         }
 
@@ -475,7 +465,7 @@ void JITVisitor::visit(const ast::ForExp &e)
         phi->addIncoming(start, cur_block);
 
         builder.SetInsertPoint(BBBody);
-        e.body_get().accept(*this);
+        e.getBody().accept(*this);
 
         tmp = use_int ? builder.CreateAdd(phi, step) : builder.CreateFAdd(phi, step);
         phi->addIncoming(tmp, builder.GetInsertBlock());
@@ -577,9 +567,9 @@ void JITVisitor::visit(const ast::CellExp &e)
 
 void JITVisitor::visit(const ast::SeqExp &e)
 {
-    for (std::list<ast::Exp *>::const_iterator i = e.exps_get().begin(), end = e.exps_get().end(); i != end; ++i)
+    for (std::list<ast::Exp *>::const_iterator i = e.getExps().begin(), end = e.getExps().end(); i != end; ++i)
     {
-        result_set(std::shared_ptr<JITVal>(nullptr));
+        setResult(std::shared_ptr<JITVal>(nullptr));
         (*i)->accept(*this);
     }
 }
@@ -596,7 +586,7 @@ void JITVisitor::visit(const ast::AssignListExp &e)
 
 void JITVisitor::visit(const ast::VarDec &e)
 {
-    e.init_get().accept(*this);
+    e.getInit().accept(*this);
 }
 
 void JITVisitor::visit(const ast::FunctionDec &e)

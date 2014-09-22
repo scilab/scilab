@@ -517,7 +517,7 @@ int IntAndInt(InternalType* _pL, Bool** _pOut)
 int SparseBoolAndSparseBool(InternalType* _pL, Bool** _pOut)
 {
     SparseBool* pL = _pL->getAs<SparseBool>();
-    if (pL->nbTrue() != pL->getSize())
+    if (pL->nbTrue() != (size_t)pL->getSize())
     {
         *_pOut = new Bool(0);
         return 0;
@@ -581,13 +581,13 @@ InternalType* and_S_S(T *_pL, U *_pR)
 }
 
 template<class T, class U, class O>
-InternalType* and_M_E(T *_pL, U *_pR)
+InternalType* and_M_E(T * /*_pL*/, U *_pR)
 {
     return _pR;
 }
 
 template<class T, class U, class O>
-InternalType* and_E_M(T *_pL, U *_pR)
+InternalType* and_E_M(T *_pL, U * /*_pR*/)
 {
     return _pL;
 }

@@ -140,7 +140,6 @@ void Parser::parse(wchar_t *command)
 /** \brief parse the given file command */
 void ParserSingleInstance::parse(char *command)
 {
-    char *codeLine = NULL;
     size_t len = strlen(command);
 
     yylloc.first_line = yylloc.last_line = 1;
@@ -208,7 +207,6 @@ void ParserSingleInstance::parse(char *command)
 /** \brief put the asked line in codeLine */
 char *ParserSingleInstance::getCodeLine(int line, char **codeLine)
 {
-    size_t len = 0;
     int i = 0;
 
     rewind(yyin);

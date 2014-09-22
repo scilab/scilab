@@ -5,6 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- CLI SHELL MODE -->
+
 nx    = 10;
 
 nev   = 3;
@@ -61,7 +63,7 @@ while(ido <> 99)
     end
 
     if(ido == -1 | ido == 1)
-        // Perform matrix vector multiplication 
+        // Perform matrix vector multiplication
         workd(ipntr(2):ipntr(2) + nx -1) = A * workd(ipntr(1):ipntr(1) + nx - 1);
     end
 end
@@ -88,4 +90,3 @@ z(:,[c1, c2]) = [z(:,c1) + z(:,c2) * %i z(:,c1) - z(:,c2) * %i];
 z(:,$) = [];
 
 assert_checkalmostequal(A * z, z * d, sqrt(%eps), 1.e-10);
-

@@ -130,21 +130,21 @@ template<typename T, typename U, typename O> inline static void dotmul(T l, U r,
 }
 
 //x1 .* x1c
-template<typename T, typename U, typename O> inline static void dotmul(T l, size_t size, U r, U rc, O* o, O* oc)
+template<typename T, typename U, typename O> inline static void dotmul(T l, size_t /*size*/, U r, U rc, O* o, O* oc)
 {
     *o = (O)l * (O)r;
     *oc = (O)l * (O)rc;
 }
 
 //x1c .* x1
-template<typename T, typename U, typename O> inline static void dotmul(T l, T lc, size_t size, U r, O* o, O* oc)
+template<typename T, typename U, typename O> inline static void dotmul(T l, T lc, size_t /*size*/, U r, O* o, O* oc)
 {
     *o = (O)l * (O)r;
     *oc = (O)lc * (O)r;
 }
 
 //x1c .* x1c
-template<typename T, typename U, typename O> inline static void dotmul(T l, T lc, size_t size, U r, U rc, O* o, O* oc)
+template<typename T, typename U, typename O> inline static void dotmul(T l, T lc, size_t /*size*/, U r, U rc, O* o, O* oc)
 {
     *o = (O)l * (O)r - (O)lc * (O)rc;
     *oc = (O)lc * (O)r + (O)l * (O)rc;

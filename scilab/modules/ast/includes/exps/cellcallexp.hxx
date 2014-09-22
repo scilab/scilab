@@ -52,8 +52,8 @@ public:
             args->push_back((*it)->clone());
         }
 
-        CellCallExp* cloned = new CellCallExp(location_get(), *name_get().clone(), *args);
-        cloned->set_verbose(is_verbose());
+        CellCallExp* cloned = new CellCallExp(getLocation(), *getName().clone(), *args);
+        cloned->setVerbose(isVerbose());
         return cloned;
     }
 
@@ -71,11 +71,16 @@ public:
         v.visit (*this);
     }
 
-    inline virtual bool is_cellcall_exp() const
+    /** \} */
+
+    virtual ExpType getType()
+    {
+        return CELLCALLEXP;
+    }
+    inline bool isCellCallExp() const
     {
         return true;
     }
-    /** \} */
 
 };
 

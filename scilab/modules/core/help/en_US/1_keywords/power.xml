@@ -104,6 +104,11 @@
         <para>
             6. <literal>**</literal> and <literal>^</literal> operators are synonyms.
         </para>
+        <para>
+            <warning>
+                Exponentiation is right-associative in Scilab contrarily to Matlab&#174; and Octave. For example 2^3^4 is equal to 2^(3^4) in Scilab but is equal to (2^3)^4 in Matlab&#174; and Octave.
+            </warning>
+        </para>
     </refsection>
     <refsection>
         <title>Examples</title>

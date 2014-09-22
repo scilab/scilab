@@ -286,7 +286,7 @@ template<typename T, typename U, typename O> inline static void add(T l, T lc, s
 }
 
 //x1C + xC
-template<typename T, typename O> inline static void add(T l, T lc, size_t size, T* r, T* rc, O* o, O* oc)
+template<typename T, typename O> inline static void add(T l, T /*lc*/, size_t size, T* r, T* rc, O* o, O* oc)
 {
     for (size_t i = 0; i < size ; ++i)
     {

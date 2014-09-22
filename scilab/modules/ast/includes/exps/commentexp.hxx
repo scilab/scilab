@@ -40,8 +40,8 @@ public:
 
     virtual CommentExp* clone()
     {
-        CommentExp* cloned = new CommentExp(location_get(), new std::wstring(comment_get()));
-        cloned->set_verbose(is_verbose());
+        CommentExp* cloned = new CommentExp(getLocation(), new std::wstring(getComment()));
+        cloned->setVerbose(isVerbose());
         return cloned;
     }
 
@@ -65,11 +65,20 @@ public:
     ** \{ */
 public:
     /** \brief Return the comment (read only). */
-    std::wstring &comment_get () const
+    std::wstring &getComment() const
     {
         return *_comment;
     }
     /** \} */
+
+    virtual ExpType getType()
+    {
+        return COMMENTEXP;
+    }
+    inline bool isCommentExp() const
+    {
+        return true;
+    }
 protected:
     std::wstring* _comment;
 };

@@ -45,13 +45,9 @@ public:
     virtual CellExp* clone()
     {
         std::list<MatrixLineExp *>* lines = new std::list<MatrixLineExp *>;
-        for (std::list<MatrixLineExp *>::const_iterator it = lines_get().begin() ; it != lines_get().end() ; ++it)
-        {
-            lines->push_back((*it)->clone());
-        }
-
-        CellExp* cloned = new CellExp(location_get(), *lines);
-        cloned->set_verbose(is_verbose());
+        std::copy(getLines().begin(), getLines().end(), lines->begin());
+        CellExp* cloned = new CellExp(getLocation(), *lines);
+        cloned->setVerbose(isVerbose());
         return cloned;
     }
     /** \name Visitors entry point.
@@ -69,6 +65,14 @@ public:
     }
     /** \} */
 
+    virtual ExpType getType()
+    {
+        return CELLEXP;
+    }
+    inline bool isCallExp() const
+    {
+        return true;
+    }
 };
 
 } // namespace ast

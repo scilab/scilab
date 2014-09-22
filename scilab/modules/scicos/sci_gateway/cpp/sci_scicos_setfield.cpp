@@ -50,7 +50,7 @@ using namespace org_scilab_modules_scicos;
 static const std::string funame = "scicos_setfield";
 
 template<class Adaptor, class Adaptee>
-types::InternalType* set(kind_t k, types::InternalType* adaptor_type, const std::wstring& field, types::InternalType* value)
+types::InternalType* set(types::InternalType* adaptor_type, const std::wstring& field, types::InternalType* value)
 {
     Adaptor* adaptor = adaptor_type->getAs<Adaptor>();
 
@@ -103,7 +103,7 @@ types::Function::ReturnValue sci_scicos_setfield(types::typed_list &in, int _iRe
     switch (adapter_index)
     {
         case view_scilab::Adapters::BLOCK_ADAPTER:
-            returnType = set<view_scilab::BlockAdapter, model::Block>(BLOCK, adaptor, field, value);
+            returnType = set<view_scilab::BlockAdapter, model::Block>(adaptor, field, value);
             if (returnType == 0)
             {
                 return types::Function::Error;
@@ -111,7 +111,7 @@ types::Function::ReturnValue sci_scicos_setfield(types::typed_list &in, int _iRe
             out.push_back(returnType);
             break;
         case view_scilab::Adapters::CPR_ADAPTER:
-            returnType = set<view_scilab::CprAdapter, model::Diagram>(DIAGRAM, adaptor, field, value);
+            returnType = set<view_scilab::CprAdapter, model::Diagram>(adaptor, field, value);
             if (returnType == 0)
             {
                 return types::Function::Error;
@@ -123,7 +123,7 @@ types::Function::ReturnValue sci_scicos_setfield(types::typed_list &in, int _iRe
             out.push_back(returnType);
             break;
         case view_scilab::Adapters::DIAGRAM_ADAPTER:
-            returnType = set<view_scilab::DiagramAdapter, model::Diagram>(DIAGRAM, adaptor, field, value);
+            returnType = set<view_scilab::DiagramAdapter, model::Diagram>(adaptor, field, value);
             if (returnType == 0)
             {
                 return types::Function::Error;
@@ -131,7 +131,7 @@ types::Function::ReturnValue sci_scicos_setfield(types::typed_list &in, int _iRe
             out.push_back(returnType);
             break;
         case view_scilab::Adapters::GRAPHIC_ADAPTER:
-            returnType = set<view_scilab::GraphicsAdapter, model::Block>(BLOCK, adaptor, field, value);
+            returnType = set<view_scilab::GraphicsAdapter, model::Block>(adaptor, field, value);
             if (returnType == 0)
             {
                 return types::Function::Error;
@@ -139,7 +139,7 @@ types::Function::ReturnValue sci_scicos_setfield(types::typed_list &in, int _iRe
             out.push_back(returnType);
             break;
         case view_scilab::Adapters::LINK_ADAPTER:
-            returnType = set<view_scilab::LinkAdapter, model::Link>(LINK, adaptor, field, value);
+            returnType = set<view_scilab::LinkAdapter, model::Link>(adaptor, field, value);
             if (returnType == 0)
             {
                 return types::Function::Error;
@@ -147,7 +147,7 @@ types::Function::ReturnValue sci_scicos_setfield(types::typed_list &in, int _iRe
             out.push_back(returnType);
             break;
         case view_scilab::Adapters::MODEL_ADAPTER:
-            returnType = set<view_scilab::ModelAdapter, model::Block>(BLOCK, adaptor, field, value);
+            returnType = set<view_scilab::ModelAdapter, model::Block>(adaptor, field, value);
             if (returnType == 0)
             {
                 return types::Function::Error;
@@ -155,7 +155,7 @@ types::Function::ReturnValue sci_scicos_setfield(types::typed_list &in, int _iRe
             out.push_back(returnType);
             break;
         case view_scilab::Adapters::PARAMS_ADAPTER:
-            returnType = set<view_scilab::ParamsAdapter, model::Diagram>(DIAGRAM, adaptor, field, value);
+            returnType = set<view_scilab::ParamsAdapter, model::Diagram>(adaptor, field, value);
             if (returnType == 0)
             {
                 return types::Function::Error;
@@ -163,7 +163,7 @@ types::Function::ReturnValue sci_scicos_setfield(types::typed_list &in, int _iRe
             out.push_back(returnType);
             break;
         case view_scilab::Adapters::SCS_ADAPTER:
-            returnType = set<view_scilab::ScsAdapter, model::Diagram>(DIAGRAM, adaptor, field, value);
+            returnType = set<view_scilab::ScsAdapter, model::Diagram>(adaptor, field, value);
             if (returnType == 0)
             {
                 return types::Function::Error;
@@ -171,7 +171,7 @@ types::Function::ReturnValue sci_scicos_setfield(types::typed_list &in, int _iRe
             out.push_back(returnType);
             break;
         case view_scilab::Adapters::STATE_ADAPTER:
-            returnType = set<view_scilab::StateAdapter, model::Diagram>(DIAGRAM, adaptor, field, value);
+            returnType = set<view_scilab::StateAdapter, model::Diagram>(adaptor, field, value);
             if (returnType == 0)
             {
                 return types::Function::Error;
@@ -179,7 +179,7 @@ types::Function::ReturnValue sci_scicos_setfield(types::typed_list &in, int _iRe
             out.push_back(returnType);
             break;
         case view_scilab::Adapters::TEXT_ADAPTER:
-            returnType = set<view_scilab::TextAdapter, model::Annotation>(ANNOTATION, adaptor, field, value);
+            returnType = set<view_scilab::TextAdapter, model::Annotation>(adaptor, field, value);
             if (returnType == 0)
             {
                 return types::Function::Error;

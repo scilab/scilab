@@ -61,8 +61,8 @@ public:
             args->push_back((*it)->clone());
         }
 
-        CallExp* cloned = new CallExp(location_get(), *name_get().clone(), *args);
-        cloned->set_verbose(is_verbose());
+        CallExp* cloned = new CallExp(getLocation(), *getName().clone(), *args);
+        cloned->setVerbose(isVerbose());
         return cloned;
     }
 
@@ -82,34 +82,43 @@ public:
 
     // \brief Accessors.
 public:
-    const Exp&	name_get() const
+    const Exp&	getName() const
     {
         return *_name;
     }
 
-    Exp&	name_get()
+    Exp&	getName()
     {
         return *_name;
     }
 
-    void name_set (Exp *name)
+    void setName (Exp *name)
     {
         _name = name;
     }
 
-    const std::list<Exp *>&	args_get() const
+    const std::list<Exp *>&	getArgs() const
     {
         return *_args;
     }
 
-    std::list<Exp *>&	args_get()
+    std::list<Exp *>&	getArgs()
     {
         return *_args;
+    }
+
+    virtual ExpType getType()
+    {
+        return CALLEXP;
+    }
+    inline bool isCallExp() const
+    {
+        return true;
     }
 
 protected:
-    Exp*		_name;
-    std::list<Exp *>*	_args;
+    Exp* _name;
+    std::list<Exp *>* _args;
 };
 
 } // namespace ast

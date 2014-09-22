@@ -14,5 +14,7 @@
 //    On 64bit linux, the loadmatfile function does not work with v4 MAT files,
 //    complaining about exceeded stacksize.
 
+// <-- CLI SHELL MODE -->
+
 ierr = execstr('loadmatfile(SCI+''/modules/matio/tests/nonreg_tests/t-circle.mat'')', 'errcatch');
 if ierr <> 0 then pause,end

@@ -58,8 +58,10 @@ public:
     static FuncManager* getInstance();
     static void destroyInstance();
 
-    bool LoadModules(bool _bNoStart);
-    bool UnloadModules(bool _bNoStart);
+    bool LoadModules();
+    bool UnloadModules();
+    bool StartModules();
+    bool EndModules();
 
 private :
     FuncManager(void);

@@ -46,8 +46,8 @@ public:
 
     virtual StringExp* clone()
     {
-        StringExp* cloned = new StringExp(location_get(), value_get());
-        cloned->set_verbose(is_verbose());
+        StringExp* cloned = new StringExp(getLocation(), getValue());
+        cloned->setVerbose(isVerbose());
         return cloned;
     }
     /** \name Visitors entry point.
@@ -86,11 +86,21 @@ public:
     ** \{ */
 public:
     /** \brief Return the name of the type name (read only). */
-    const std::wstring value_get () const
+    const std::wstring getValue() const
     {
         return _value;
     }
     /** \} */
+
+    virtual ExpType getType()
+    {
+        return STRINGEXP;
+    }
+    inline bool isStringExp() const
+    {
+        return true;
+    }
+
 protected:
     const std::wstring _value;
     types::String* _bigString;

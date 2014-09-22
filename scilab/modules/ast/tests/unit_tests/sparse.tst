@@ -339,8 +339,8 @@ cc=c+rand(6,6)*%i;
 assert_checkequal(full(ac.*c), full(ac).*c);
 assert_checkequal(full(cc.*a), cc.*full(a));
 // sparse sparse
-assert_checkequal(full(ac.*zer), full(zer));
-assert_checkequal(full(zer.*ac), full(zer));
+assert_checkequal(full(ac.*zer), full(zer)*%i);
+assert_checkequal(full(zer.*ac), full(zer)*%i);
 assert_checkequal(full(ac.*a), full(ac).*full(a));
 assert_checkequal(full(bc.*b), full(bc).*full(b));
 assert_checkequal(full(a.*bc), full(a).*full(bc));

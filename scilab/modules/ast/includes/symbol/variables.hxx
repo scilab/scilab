@@ -27,12 +27,14 @@ struct ScopedVariable
         : m_iLevel(_iLevel), m_pIT(_pIT), m_globalVisible(false) {}
 
     int m_iLevel;
-    bool m_globalVisible;
     types::InternalType* m_pIT;
+    bool m_globalVisible;
 };
 
 struct Variable
 {
+    typedef std::stack<ScopedVariable*> StackVar;
+
     Variable(const Symbol& _name) : name(_name), m_Global(false), m_GlobalValue(NULL) {};
     ~Variable()
     {
@@ -115,7 +117,7 @@ struct Variable
         stack.pop();
     }
 
-    inline Symbol name_get() const
+    inline Symbol getSymbol() const
     {
         return name;
     }
@@ -181,14 +183,15 @@ struct Variable
 
 private :
     Symbol name;
-    types::InternalType* m_GlobalValue;
     bool m_Global;
-    typedef std::stack<ScopedVariable*> StackVar;
+    types::InternalType* m_GlobalValue;
     StackVar stack;
 };
 
 struct Variables
 {
+    typedef std::map<Symbol, Variable*> MapVars;
+
     Variables() {};
 
     Variable* getOrCreate(const Symbol& _key)
@@ -302,7 +305,7 @@ struct Variables
                 types::InternalType* pIT = it->second->top()->m_pIT;
                 if (pIT && (pIT->isMacro() || pIT->isMacroFile()))
                 {
-                    plOut->push_back(it->first.name_get().c_str());
+                    plOut->push_back(it->first.getName().c_str());
                 }
             }
         }
@@ -324,7 +327,7 @@ struct Variables
                         pIT->isMacroFile() == false &&
                         pIT->isFunction() == false)
                 {
-                    plOut->push_back(it->first.name_get().c_str());
+                    plOut->push_back(it->first.getName().c_str());
                 }
             }
         }
@@ -343,7 +346,7 @@ struct Variables
                 types::InternalType* pIT = it->second->top()->m_pIT;
                 if (pIT && pIT->isFunction())
                 {
-                    plOut->push_back(it->first.name_get().c_str());
+                    plOut->push_back(it->first.getName().c_str());
                 }
             }
         }
@@ -420,7 +423,7 @@ struct Variables
         return getOrCreate(_key)->isGlobalVisible(_iLevel);
     }
 
-    bool isGlobal(const Symbol& _key, int _iLevel)
+    bool isGlobal(const Symbol& _key, int /*_iLevel*/)
     {
         return getOrCreate(_key)->isGlobal();
     }
@@ -451,7 +454,6 @@ struct Variables
     }
 
 private:
-    typedef std::map<Symbol, Variable*> MapVars;
     MapVars vars;
 };
 }

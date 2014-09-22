@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -250,6 +250,7 @@ lib /DEF:"$(ProjectDir)Call_scilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_consolebox.cpp" />
     <ClCompile Include="createGUID.c" />
     <ClCompile Include="DllmainWindows_Tools.c" />
     <ClCompile Include="FindFileAssociation.c" />
@@ -257,7 +258,6 @@ lib /DEF:"$(ProjectDir)Call_scilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
     <ClCompile Include="httpdownloadfile.c" />
     <ClCompile Include="InitializeWindows_tools.c" />
     <ClCompile Include="registry.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_consolebox.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_createGUID.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_dos.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_findfileassociation.c" />

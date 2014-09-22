@@ -28,12 +28,20 @@ namespace org_scilab_modules_scicos
 {
 
 Model::Model() :
-    lastId(0), allObjects(), datatypes()
+    lastId(0), allObjects()
 {
+    std::vector<int> datatypeDefault (3, 1);
+    datatypeDefault[0] = -1;
+    datatypes.push_back(new model::Datatype(datatypeDefault));
 }
 
 Model::~Model()
 {
+    while (!datatypes.empty())
+    {
+        Model::erase(datatypes[0]);
+    }
+    datatypes.clear();
 }
 
 ScicosID Model::createObject(kind_t k)
@@ -145,9 +153,15 @@ update_status_t Model::setObject(model::BaseObject* o)
     return SUCCESS;
 }
 
+// datatypes being a vector of Datatype pointers, we need a dereferencing comparison operator to use std::lower_bound()
+static bool isInferior(const model::Datatype* d1, const model::Datatype* d2)
+{
+    return *d1 < *d2;
+}
+
 model::Datatype* Model::flyweight(const model::Datatype& d)
 {
-    datatypes_set_t::iterator iter = std::lower_bound(datatypes.begin(), datatypes.end(), &d);
+    datatypes_set_t::iterator iter = std::lower_bound(datatypes.begin(), datatypes.end(), &d, isInferior);
     if (iter != datatypes.end() && !(d < **iter)) // if d is found
     {
         (*iter)->refCount++;
@@ -161,14 +175,14 @@ model::Datatype* Model::flyweight(const model::Datatype& d)
 
 void Model::erase(model::Datatype* d)
 {
-    datatypes_set_t::iterator iter = std::lower_bound(datatypes.begin(), datatypes.end(), d);
+    datatypes_set_t::iterator iter = std::lower_bound(datatypes.begin(), datatypes.end(), d, isInferior);
     if (iter != datatypes.end() && !(*d < **iter)) // if d is found
     {
         (*iter)->refCount--;
         if ((*iter)->refCount < 0)
         {
-            datatypes.erase(iter);
             delete *iter;
+            datatypes.erase(iter);
         }
     }
 }

@@ -7,6 +7,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 // <-- CLI SHELL MODE -->
+warning("off")
 ilib_verbose(0);
 version = getversion("scilab");
  // to check that ode works
@@ -309,6 +310,9 @@ assert_checkalmostequal(rd1(1), 2.64d-01, 1d-4);
 [yout2,rd2,w,iw] = ode("root", y, t0, tout, 'fex1', 2, 'gex', w, iw);
 assert_checkalmostequal(rd2(1), 2.0795776d+07, 4d-5);
 err = execstr("[yout3,rd,w,iw] = ode(""root"", y, t0, tout, ""fex1"", 2, ""gex"", w, iw);","errcatch");
+      t n est pas entre tcur - hu (= r1) et tcur (=r2)
+      where r1 is :   0.2033607066275D+08   and r2 :   0.2109164231072D+08      
+Illegal input detected (see printed message).
 assert_checkequal( err == 0 , %f);
 // check results
 assert_checkalmostequal(resDocRoot(:,1), yout1, 2.0D-8, [], "matrix");
@@ -331,3 +335,4 @@ rkfRes(18:32) = [    0.99166478935902302    0.97384760697150774    0.94630006094
 assert_checkalmostequal(rkRes, rk, %eps * 20, [], "matrix");
 assert_checkalmostequal(rkfRes, rkf, %eps, [], "matrix");
 assert_checkalmostequal(rkf, fixx, %eps, [], "matrix");
+warning("on")

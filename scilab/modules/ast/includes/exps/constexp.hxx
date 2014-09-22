@@ -31,12 +31,6 @@ public:
     virtual ~ConstExp ()
     {
     }
-
-    //virtual ConstExp* clone()
-    //{
-    //    Location* newloc = const_cast<Location*>(&location_get())->clone();
-    //    return new ConstExp(*newloc);
-    //}
 };
 } // namespace ast
 #endif

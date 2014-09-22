@@ -69,16 +69,16 @@ begin
     ModulesXmlFileLines[i] := '<module name="overloading" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="polynomials" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="signal_processing" activate="yes"/>'; i := i + 1;
-    //ModulesXmlFileLines[i] := '<module name="sparse" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '<module name="sparse" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="special_functions" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="string" activate="yes"/>'; i := i + 1;
-    //ModulesXmlFileLines[i] := '<module name="symbolic" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '<module name="symbolic" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="time" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="windows_tools" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="statistics" activate="yes"/>'; i := i + 1;
-    //ModulesXmlFileLines[i] := '<module name="arnoldi" activate="yes"/>'; i := i + 1;
-    //ModulesXmlFileLines[i] := '<module name="compatibility_functions" activate="yes"/>'; i := i + 1;
-    //ModulesXmlFileLines[i] := '<module name="m2sci" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '<module name="arnoldi" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '<module name="compatibility_functions" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '<module name="m2sci" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="mexlib" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="sound" activate="yes"/>'; i := i + 1;
     //ModulesXmlFileLines[i] := '<module name="external_objects" activate="yes"/>'; i := i + 1;
@@ -87,12 +87,12 @@ begin
     ModulesXmlFileLines[i] := '<module name="spreadsheet" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="call_scilab" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="umfpack" activate="yes"/>'; i := i + 1;
-    //ModulesXmlFileLines[i] := '<module name="genetic_algorithms" activate="yes"/>'; i := i + 1;
-    //ModulesXmlFileLines[i] := '<module name="simulated_annealing" activate="yes"/>'; i := i + 1;
-    //ModulesXmlFileLines[i] := '<module name="parameters" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '<module name="genetic_algorithms" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '<module name="simulated_annealing" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '<module name="parameters" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="matio" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="atoms" activate="yes"/>'; i := i + 1;
-    //ModulesXmlFileLines[i] := '<module name="xml" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '<module name="xml" activate="yes"/>'; i := i + 1;
     //ModulesXmlFileLines[i] := '<module name="tclsci" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="hdf5" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="types" activate="yes"/>'; i := i + 1;
@@ -113,10 +113,10 @@ begin
         ModulesXmlFileLines[i] := '<module name="jvm" activate="yes"/>'; i := i + 1;
         ModulesXmlFileLines[i] := '<module name="commons" activate="yes"/>'; i := i + 1;
         ModulesXmlFileLines[i] := '<module name="history_browser" activate="yes"/>'; i := i + 1;
-        //ModulesXmlFileLines[i] := '<module name="graph" activate="yes"/>'; i := i + 1;
+        ModulesXmlFileLines[i] := '<module name="graph" activate="yes"/>'; i := i + 1;
         ModulesXmlFileLines[i] := '<module name="javasci" activate="yes"/>'; i := i + 1;
         ModulesXmlFileLines[i] := '<module name="types" activate="yes"/>'; i := i + 1;
-        ModulesXmlFileLines[i] := '<module name="external_objects_java" activate="yes"/>'; i := i + 1;
+        //ModulesXmlFileLines[i] := '<module name="external_objects_java" activate="yes"/>'; i := i + 1;
     end;
 
     ModulesXmlFileLines[i] := '<!-- Scinotes dependencies -->'; i := i + 1;
@@ -139,9 +139,9 @@ begin
     ModulesXmlFileLines[i] := '<!-- Xcos dependencies -->'; i := i + 1;
     if IsComponentSelected( ExpandConstant('{#COMPN_XCOS}') ) then
     begin
-        //ModulesXmlFileLines[i] := '<module name="xcos" activate="yes"/>'; i := i + 1;
-        //ModulesXmlFileLines[i] := '<module name="scicos" activate="yes"/>'; i := i + 1;
-        //ModulesXmlFileLines[i] := '<module name="scicos_blocks" activate="yes"/>'; i := i + 1;
+        ModulesXmlFileLines[i] := '<module name="xcos" activate="yes"/>'; i := i + 1;
+        ModulesXmlFileLines[i] := '<module name="scicos" activate="yes"/>'; i := i + 1;
+        ModulesXmlFileLines[i] := '<module name="scicos_blocks" activate="yes"/>'; i := i + 1;
     end;
 
     ModulesXmlFileLines[i] := '<!-- Dev tools dependencies -->'; i := i + 1;

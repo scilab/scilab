@@ -22,23 +22,16 @@
 
 /*
 ** Constant Expressions
-** \{
 */
 #include "constexp.hxx"
 #include "boolexp.hxx"
-#include "intexp.hxx"
-#include "floatexp.hxx"
 #include "doubleexp.hxx"
 #include "stringexp.hxx"
 #include "commentexp.hxx"
 #include "nilexp.hxx"
-/*
-** \}
-*/
 
 /*
 ** Control Expressions
-** \{
 */
 #include "controlexp.hxx"
 #include "ifexp.hxx"
@@ -50,13 +43,9 @@
 #include "returnexp.hxx"
 #include "selectexp.hxx"
 #include "caseexp.hxx"
-/*
-** \}
-*/
 
 /*
 ** Mathematical Expressions
-** \{
 */
 #include "mathexp.hxx"
 #include "notexp.hxx"
@@ -68,9 +57,6 @@
 #include "matrixlineexp.hxx"
 // Cell Expressions
 #include "cellexp.hxx"
-/*
-** \}
-*/
 
 
 #include "callexp.hxx"

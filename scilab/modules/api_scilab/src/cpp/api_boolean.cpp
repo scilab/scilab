@@ -17,6 +17,7 @@
 #include <stdlib.h>
 
 #include "bool.hxx"
+#include "context.hxx"
 #include "gatewaystruct.hxx"
 
 extern "C"
@@ -129,15 +130,8 @@ SciErr createMatrixOfBoolean(void* _pvCtx, int _iVar, int _iRows, int _iCols, co
 SciErr createNamedMatrixOfBoolean(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, const int* _piBool)
 {
     SciErr sciErr = sciErrInit();
-#if 0
+    wchar_t* pwstName = to_wide_string(_pstName);
 
-    int iVarID[nsiz];
-    int iSaveRhs			= Rhs;
-    int iSaveTop			= Top;
-    int* piBool				= NULL;
-    int *piAddr				= NULL;
-
-    //return named empty matrix
     if (_iRows == 0 && _iCols == 0)
     {
         double dblReal = 0;
@@ -148,46 +142,23 @@ SciErr createNamedMatrixOfBoolean(void* _pvCtx, const char* _pstName, int _iRows
         }
         return sciErr;
     }
-
+    
     if (!checkNamedVarFormat(_pvCtx, _pstName))
     {
         addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name: %s."), "createNamedMatrixOfBoolean", _pstName);
         return sciErr;
     }
 
-    C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
-    Top = Top + Nbvars + 1;
-
-    int iMemSize = (int)(((double)(_iRows * _iCols) / 2) + 2);
-    int iFreeSpace = iadr(*Lstk(Bot)) - (iadr(*Lstk(Top)));
-    if (iMemSize > iFreeSpace)
-    {
-        addStackSizeError(&sciErr, ((StrCtx*)_pvCtx)->pstName, iMemSize);
-        return sciErr;
-    }
-
-    getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
-
-    //write matrix information
-    sciErr = fillMatrixOfBoolean(_pvCtx, piAddr, _iRows, _iCols, &piBool);
-    if (sciErr.iErr)
+    types::Bool* pBool = new types::Bool(_iRows, _iCols);
+    if (pBool == NULL)
     {
         addErrorMessage(&sciErr, API_ERROR_CREATE_NAMED_BOOLEAN, _("%s: Unable to create %s named \"%s\""), "createNamedMatrixOfBoolean", _("matrix of boolean"), _pstName);
         return sciErr;
     }
-
-    //copy data in stack
-    memcpy(piBool, _piBool, sizeof(int) * _iRows * _iCols);
-
-    updateLstk(Top, *Lstk(Top) + sadr(3), (_iRows * _iCols) / (sizeof(double) / sizeof(int)));
-
-    Rhs = 0;
-    //Add name in stack reference list
-    createNamedVariable(iVarID);
-
-    Top = iSaveTop;
-    Rhs = iSaveRhs;
-#endif
+    
+    pBool->set(_piBool);
+    symbol::Context::getInstance()->put(symbol::Symbol(pwstName), pBool);
+    FREE(pwstName);
     return sciErr;
 }
 

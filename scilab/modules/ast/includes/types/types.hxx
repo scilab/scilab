@@ -40,7 +40,7 @@ protected :
     int                         m_iDims;
 
 
-    GenericType() : InternalType(), m_iRows(0), m_iCols(0), m_iSize(0), m_iDims(0) {}
+    GenericType() : InternalType(), m_iRows(0), m_iCols(0), m_iSize(0), m_iSizeMax(0), m_iDims(0) {}
 
     bool                        hasAllIndexesOfRow(int _iRow, int* _piCoord, int _iCoordCount);
     bool                        hasAllIndexesOfCol(int _iCol, int* _piCoord, int _iCoordCount);
@@ -129,37 +129,38 @@ public :
 
     virtual bool                resize(int* _piDims, int _iDims)
     {
+        // silent unused parameters warnings
+        (void) _piDims;
+        (void) _iDims;
+
         return false;
     }
     virtual bool                resize(int _iNewRows, int _iNewCols)
     {
+        // silent unused parameters warnings
+        (void) _iNewRows;
+        (void) _iNewCols;
+
         return false;
     }
 
     virtual bool                reshape(int* _piDims, int _iDims)
     {
+        // silent unused parameters warnings
+        (void) _piDims;
+        (void) _iDims;
+
         return false;
     }
     virtual bool                reshape(int _iNewRows, int _iNewCols)
     {
+        // silent unused parameters warnings
+        (void) _iNewRows;
+        (void) _iNewCols;
+
         return false;
     }
 
 };
-
-static int get_max_size(int* _piDims, int _iDims)
-{
-    if (_iDims == 0)
-    {
-        return 0;
-    }
-
-    int iMax = 1;
-    for (int i = 0 ; i < _iDims ; i++)
-    {
-        iMax *= _piDims[i];
-    }
-    return iMax;
-}
 }
 #endif /* !__TYPES_HXX__ */

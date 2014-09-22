@@ -20,5 +20,5 @@
 //
 
 function o=%s_i_block(i,b,o)
-    setfield(i,b,o)
+    scicos_setfield(i,b,o)
 endfunction

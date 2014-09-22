@@ -70,18 +70,25 @@ class Diagram: public BaseObject
 private:
     friend class ::org_scilab_modules_scicos::Model;
 
-    Diagram() : BaseObject(DIAGRAM), title("Untitled"), path(), properties(), context() {};
-    Diagram(const Diagram& o)  : BaseObject(DIAGRAM), title(o.title), path(o.path), properties(o.properties), context(o.context) {};
+    Diagram() : BaseObject(DIAGRAM), title("Untitled"), path(), properties(), context(), children(), version() {};
+    Diagram(const Diagram& o) : BaseObject(DIAGRAM), title(o.title), path(o.path), properties(o.properties),
+        context(o.context), children(o.children), version(o.version) {};
     ~Diagram() {}
 
-    const std::vector<ScicosID>& getChildren() const
+    void getChildren(std::vector<ScicosID>& c) const
     {
-        return children;
+        c = children;
     }
 
-    void setChildren(const std::vector<ScicosID>& children)
+    update_status_t setChildren(const std::vector<ScicosID>& c)
     {
-        this->children = children;
+        if (c == children)
+        {
+            return NO_CHANGES;
+        }
+
+        children = c;
+        return SUCCESS;
     }
 
     void getContext(std::vector<std::string>& data) const
@@ -164,14 +171,20 @@ private:
         return SUCCESS;
     }
 
-    const std::string& getVersion() const
+    void getVersionNumber(std::string& data) const
     {
-        return version;
+        data = version;
     }
 
-    void setVersion(const std::string& version)
+    update_status_t setVersionNumber(const std::string& data)
     {
-        this->version = version;
+        if (data == version)
+        {
+            return NO_CHANGES;
+        }
+
+        version = data;
+        return SUCCESS;
     }
 
 private:

@@ -119,7 +119,7 @@ types::Function::ReturnValue sci_fft(types::typed_list &in, int _iRetCount, type
     pOut->setComplex(true);
 
     //alloc workspace required by dfft2
-    iWS = 8 * maxfactor(iSize) + 24;
+    iWS = 8 * maxfactor(iDimLength == 0 ? iSize : iDimLength) + 24;
     piWS = (int*)MALLOC(iWS * sizeof(int));
     if (piWS == NULL)
     {

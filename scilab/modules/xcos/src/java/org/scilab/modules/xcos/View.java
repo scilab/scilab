@@ -9,70 +9,70 @@
 package org.scilab.modules.xcos;
 
 public class View {
-  private long swigCPtr;
-  protected boolean swigCMemOwn;
+    private long swigCPtr;
+    protected boolean swigCMemOwn;
 
-  protected View(long cPtr, boolean cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = cPtr;
-  }
-
-  protected static long getCPtr(View obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
-
-  protected void finalize() {
-    delete();
-  }
-
-  public synchronized void delete() {
-    if (swigCPtr != 0) {
-      if (swigCMemOwn) {
-        swigCMemOwn = false;
-        JavaControllerJNI.delete_View(swigCPtr);
-      }
-      swigCPtr = 0;
+    protected View(long cPtr, boolean cMemoryOwn) {
+        swigCMemOwn = cMemoryOwn;
+        swigCPtr = cPtr;
     }
-  }
 
-  protected void swigDirectorDisconnect() {
-    swigCMemOwn = false;
-    delete();
-  }
+    protected static long getCPtr(View obj) {
+        return (obj == null) ? 0 : obj.swigCPtr;
+    }
 
-  public void swigReleaseOwnership() {
-    swigCMemOwn = false;
-    JavaControllerJNI.View_change_ownership(this, swigCPtr, false);
-  }
+    protected void finalize() {
+        delete();
+    }
 
-  public void swigTakeOwnership() {
-    swigCMemOwn = true;
-    JavaControllerJNI.View_change_ownership(this, swigCPtr, true);
-  }
+    public synchronized void delete() {
+        if (swigCPtr != 0) {
+            if (swigCMemOwn) {
+                swigCMemOwn = false;
+                JavaControllerJNI.delete_View(swigCPtr);
+            }
+            swigCPtr = 0;
+        }
+    }
 
-  public View() {
-    this(JavaControllerJNI.new_View(), true);
-    JavaControllerJNI.View_director_connect(this, swigCPtr, swigCMemOwn, true);
-  }
+    protected void swigDirectorDisconnect() {
+        swigCMemOwn = false;
+        delete();
+    }
 
-  public void objectCreated(long uid, Kind k) {
-    JavaControllerJNI.View_objectCreated(swigCPtr, this, uid, k.ordinal());
-  }
+    public void swigReleaseOwnership() {
+        swigCMemOwn = false;
+        JavaControllerJNI.View_change_ownership(this, swigCPtr, false);
+    }
 
-  public void objectDeleted(long uid) {
-    JavaControllerJNI.View_objectDeleted(swigCPtr, this, uid);
-  }
+    public void swigTakeOwnership() {
+        swigCMemOwn = true;
+        JavaControllerJNI.View_change_ownership(this, swigCPtr, true);
+    }
 
-  public void objectUpdated(long uid, Kind k) {
-    JavaControllerJNI.View_objectUpdated(swigCPtr, this, uid, k.ordinal());
-  }
+    public View() {
+        this(JavaControllerJNI.new_View(), true);
+        JavaControllerJNI.View_director_connect(this, swigCPtr, swigCMemOwn, true);
+    }
 
-  public void propertyUpdated(long uid, Kind k, ObjectProperties p) {
-    JavaControllerJNI.View_propertyUpdated__SWIG_0(swigCPtr, this, uid, k.ordinal(), p.ordinal());
-  }
+    public void objectCreated(long uid, Kind k) {
+        JavaControllerJNI.View_objectCreated(swigCPtr, this, uid, k.ordinal());
+    }
 
-  public void propertyUpdated(long uid, Kind k, ObjectProperties p, UpdateStatus u) {
-    JavaControllerJNI.View_propertyUpdated__SWIG_1(swigCPtr, this, uid, k.ordinal(), p.ordinal(), u.ordinal());
-  }
+    public void objectDeleted(long uid) {
+        JavaControllerJNI.View_objectDeleted(swigCPtr, this, uid);
+    }
+
+    public void objectUpdated(long uid, Kind k) {
+        JavaControllerJNI.View_objectUpdated(swigCPtr, this, uid, k.ordinal());
+    }
+
+    public void propertyUpdated(long uid, Kind k, ObjectProperties p) {
+        JavaControllerJNI.View_propertyUpdated__SWIG_0(swigCPtr, this, uid, k.ordinal(), p.ordinal());
+    }
+
+    public void propertyUpdated(long uid, Kind k, ObjectProperties p, UpdateStatus u) {
+        JavaControllerJNI.View_propertyUpdated__SWIG_1(swigCPtr, this, uid, k.ordinal(), p.ordinal(), u.ordinal());
+    }
 
 }

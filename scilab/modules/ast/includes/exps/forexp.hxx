@@ -61,8 +61,8 @@ public:
 
     virtual ForExp* clone()
     {
-        ForExp* cloned = new ForExp(location_get(), *vardec_get().clone(), *body_get().clone());
-        cloned->set_verbose(is_verbose());
+        ForExp* cloned = new ForExp(getLocation(), *getVardec().clone(), *getBody().clone());
+        cloned->setVerbose(isVerbose());
         return cloned;
     }
 
@@ -86,28 +86,36 @@ public:
     ** \{ */
 public:
     /** \brief Return the implicit variable declaration (read only) */
-    VarDec& vardec_get () const
+    VarDec& getVardec() const
     {
         return *_vardec;
     }
     /** \brief Return the implicit variable declaration (read and write) */
-    VarDec& vardec_get ()
+    VarDec& getVardec()
     {
         return *_vardec;
     }
 
     /** \brief Return the body of the loop (read only) */
-    const Exp& body_get () const
+    const Exp& getBody() const
     {
         return *_body;
     }
     /** \brief Return the body of the loop (read and write) */
-    Exp& body_get ()
+    Exp& getBody()
     {
         return *_body;
     }
     /** \} */
 
+    virtual ExpType getType()
+    {
+        return FOREXP;
+    }
+    inline bool isForExp() const
+    {
+        return true;
+    }
 
 protected:
     /** \brief Implicit variable declaration. */

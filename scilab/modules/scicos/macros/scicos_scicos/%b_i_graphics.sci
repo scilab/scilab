@@ -20,5 +20,5 @@
 //
 
 function g=%b_i_graphics(i,b,g)
-    setfield(i,b,g)
+    scicos_setfield(i,b,g)
 endfunction

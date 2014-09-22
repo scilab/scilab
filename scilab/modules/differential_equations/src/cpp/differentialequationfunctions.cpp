@@ -20,6 +20,7 @@ extern "C"
 #include "elem_common.h"
 #include "scifunctions.h"
 #include "Ex-odedc.h"
+#include "Ex-ode.h"
 #include "Ex-daskr.h"
 #include "localization.h"
 }
@@ -117,15 +118,15 @@ DifferentialEquationFunctions::DifferentialEquationFunctions(std::wstring caller
     if (callerName == L"ode")
     {
         m_staticFunctionMap[L"arnol"]   = (void*) C2F(arnol);
-        m_staticFunctionMap[L"fex"]     = (void*) C2F(fex);
-        //m_staticFunctionMap[L"fex2"]    = (void*) C2F(fex2);
-        //m_staticFunctionMap[L"fex3"]    = (void*) C2F(fex3);
-        //m_staticFunctionMap[L"fexab"]   = (void*) C2F(fexab);
+        m_staticFunctionMap[L"fex"]     = (void*) fex;
+        m_staticFunctionMap[L"fex2"]    = (void*) fex2;
+        m_staticFunctionMap[L"fex3"]    = (void*) fex3;
+        m_staticFunctionMap[L"fexab"]   = (void*) fexab;
         m_staticFunctionMap[L"loren"]   = (void*) C2F(loren);
         m_staticFunctionMap[L"bcomp"]   = (void*) C2F(bcomp);
         m_staticFunctionMap[L"lcomp"]   = (void*) C2F(lcomp);
 
-        m_staticFunctionMap[L"jex"]     = (void*) C2F(jex);
+        m_staticFunctionMap[L"jex"]     = (void*) jex;
     }
     else if (callerName == L"odedc")
     {
@@ -135,7 +136,7 @@ DifferentialEquationFunctions::DifferentialEquationFunctions(std::wstring caller
         m_staticFunctionMap[L"phis"]    = (void*) phis;
         m_staticFunctionMap[L"phit"]    = (void*) phit;
 
-        m_staticFunctionMap[L"jex"]     = (void*) C2F(jex);
+        m_staticFunctionMap[L"jex"]     = (void*) jex;
     }
     else if (callerName == L"intg")
     {

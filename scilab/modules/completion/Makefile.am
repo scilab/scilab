@@ -29,7 +29,6 @@ COMPLETION_C_SOURCES = \
 
 # List of the c++ file
 COMPLETION_CPP_SOURCES = \
-    src/cpp/completionDictionary.cpp \
     src/cpp/FieldsManager.cpp \
     src/cpp/XMLFieldsGetter.cpp \
     src/cpp/getfields.cpp \

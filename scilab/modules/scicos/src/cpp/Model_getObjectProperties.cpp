@@ -26,12 +26,11 @@
 namespace org_scilab_modules_scicos
 {
 
-bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, double& v)
+bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, double& v)  const
 {
 
     if (k == ANNOTATION)
     {
-        model::Annotation* o = static_cast<model::Annotation*>(getObject(uid));
         switch (p)
         {
             default:
@@ -40,7 +39,6 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, dou
     }
     else if (k == BLOCK)
     {
-        model::Block* o = static_cast<model::Block*>(getObject(uid));
         switch (p)
         {
             default:
@@ -49,7 +47,6 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, dou
     }
     else if (k == DIAGRAM)
     {
-        model::Diagram* o = static_cast<model::Diagram*>(getObject(uid));
         switch (p)
         {
             default:
@@ -58,7 +55,6 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, dou
     }
     else if (k == LINK)
     {
-        model::Link* o = static_cast<model::Link*>(getObject(uid));
         switch (p)
         {
             default:
@@ -80,12 +76,11 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, dou
     return false;
 }
 
-bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, int& v)
+bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, int& v) const
 {
 
     if (k == ANNOTATION)
     {
-        model::Annotation* o = static_cast<model::Annotation*>(getObject(uid));
         switch (p)
         {
             default:
@@ -100,9 +95,6 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, int
             case SIM_FUNCTION_API:
                 o->getSimFunctionApi(v);
                 return true;
-            case SIM_BLOCKTYPE:
-                o->getSimBlocktype(v);
-                return true;
             case NZCROSS:
                 o->getNZcross(v);
                 return true;
@@ -115,7 +107,6 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, int
     }
     else if (k == DIAGRAM)
     {
-        model::Diagram* o = static_cast<model::Diagram*>(getObject(uid));
         switch (p)
         {
             default:
@@ -152,12 +143,11 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, int
     return false;
 }
 
-bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, bool& v)
+bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, bool& v) const
 {
 
     if (k == ANNOTATION)
     {
-        model::Annotation* o = static_cast<model::Annotation*>(getObject(uid));
         switch (p)
         {
             default:
@@ -166,7 +156,6 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, boo
     }
     else if (k == BLOCK)
     {
-        model::Block* o = static_cast<model::Block*>(getObject(uid));
         switch (p)
         {
             default:
@@ -175,7 +164,6 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, boo
     }
     else if (k == DIAGRAM)
     {
-        model::Diagram* o = static_cast<model::Diagram*>(getObject(uid));
         switch (p)
         {
             default:
@@ -184,7 +172,6 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, boo
     }
     else if (k == LINK)
     {
-        model::Link* o = static_cast<model::Link*>(getObject(uid));
         switch (p)
         {
             default:
@@ -206,7 +193,7 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, boo
     return false;
 }
 
-bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::string& v)
+bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::string& v) const
 {
 
     if (k == ANNOTATION)
@@ -214,6 +201,15 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
         model::Annotation* o = static_cast<model::Annotation*>(getObject(uid));
         switch (p)
         {
+            case DESCRIPTION:
+                o->getDescription(v);
+                return true;
+            case FONT:
+                o->getFont(v);
+                return true;
+            case FONT_SIZE:
+                o->getFontSize(v);
+                return true;
             default:
                 break;
         }
@@ -228,6 +224,9 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
                 return true;
             case SIM_FUNCTION_NAME:
                 o->getSimFunctionName(v);
+                return true;
+            case SIM_BLOCKTYPE:
+                o->getSimBlocktype(v);
                 return true;
             case STYLE:
                 o->getStyle(v);
@@ -253,6 +252,9 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
             case PATH:
                 o->getPath(v);
                 return true;
+            case VERSION_NUMBER:
+                o->getVersionNumber(v);
+                return true;
             default:
                 break;
         }
@@ -287,7 +289,7 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
     return false;
 }
 
-bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, ScicosID& v)
+bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, ScicosID& v) const
 {
 
     if (k == ANNOTATION)
@@ -296,7 +298,7 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, Sci
         switch (p)
         {
             case PARENT_DIAGRAM:
-                v = o->getParentDiagram();
+                o->getParentDiagram(v);
                 return true;
             case RELATED_TO:
                 v = o->getRelatedTo();
@@ -311,7 +313,7 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, Sci
         switch (p)
         {
             case PARENT_DIAGRAM:
-                v = o->getParentDiagram();
+                o->getParentDiagram(v);
                 return true;
             default:
                 break;
@@ -319,7 +321,6 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, Sci
     }
     else if (k == DIAGRAM)
     {
-        model::Diagram* o = static_cast<model::Diagram*>(getObject(uid));
 
     }
     else if (k == LINK)
@@ -328,7 +329,7 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, Sci
         switch (p)
         {
             case PARENT_DIAGRAM:
-                v = o->getParentDiagram();
+                o->getParentDiagram(v);
                 return true;
             case SOURCE_PORT:
                 o->getSourcePort(v);
@@ -345,6 +346,9 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, Sci
         model::Port* o = static_cast<model::Port*>(getObject(uid));
         switch (p)
         {
+            case SOURCE_BLOCK:
+                o->getSourceBlock(v);
+                return true;
             case CONNECTED_SIGNALS:
                 v = o->getConnectedSignals().front();
                 return true;
@@ -358,7 +362,7 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, Sci
     return false;
 }
 
-bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::vector<double>& v)
+bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::vector<double>& v) const
 {
 
     if (k == ANNOTATION)
@@ -426,20 +430,21 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
     }
     else if (k == PORT)
     {
-        model::Port* o = static_cast<model::Port*>(getObject(uid));
+        switch (p)
+        {
+            default:
+                break;
+        }
     }
-    else
-    {
-    }
+
     return false;
 }
 
-bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::vector<int>& v)
+bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::vector<int>& v) const
 {
 
     if (k == ANNOTATION)
     {
-        model::Annotation* o = static_cast<model::Annotation*>(getObject(uid));
         switch (p)
         {
             default:
@@ -463,7 +468,6 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
     }
     else if (k == DIAGRAM)
     {
-        model::Diagram* o = static_cast<model::Diagram*>(getObject(uid));
         switch (p)
         {
             default:
@@ -472,7 +476,6 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
     }
     else if (k == LINK)
     {
-        model::Link* o = static_cast<model::Link*>(getObject(uid));
         switch (p)
         {
             default:
@@ -494,12 +497,11 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
     return false;
 }
 
-bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::vector<std::string>& v)
+bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::vector<std::string>& v) const
 {
 
     if (k == ANNOTATION)
     {
-        model::Annotation* o = static_cast<model::Annotation*>(getObject(uid));
         switch (p)
         {
             default:
@@ -532,7 +534,6 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
     }
     else if (k == LINK)
     {
-        model::Link* o = static_cast<model::Link*>(getObject(uid));
         switch (p)
         {
             default:
@@ -541,7 +542,6 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
     }
     else if (k == PORT)
     {
-        model::Port* o = static_cast<model::Port*>(getObject(uid));
         switch (p)
         {
             default:
@@ -551,12 +551,11 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
     return false;
 }
 
-bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::vector<ScicosID>& v)
+bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::vector<ScicosID>& v) const
 {
 
     if (k == ANNOTATION)
     {
-        model::Annotation* o = static_cast<model::Annotation*>(getObject(uid));
         switch (p)
         {
             default:
@@ -593,7 +592,7 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
         switch (p)
         {
             case CHILDREN:
-                v = o->getChildren();
+                o->getChildren(v);
                 return true;
             default:
                 break;
@@ -601,7 +600,6 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
     }
     else if (k == LINK)
     {
-        model::Link* o = static_cast<model::Link*>(getObject(uid));
         switch (p)
         {
             default:

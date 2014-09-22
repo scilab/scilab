@@ -25,8 +25,8 @@ extern "C"
 
 using namespace std;
 
-#define SIZE_BETWEEN_TWO_VALUES			2
-#define SPACE_BETWEEN_TWO_VALUES		L"  "
+#define SIZE_BETWEEN_TWO_STRING_VALUES  2
+#define SPACE_BETWEEN_TWO_STRING_VALUES L"  "
 
 namespace types
 {
@@ -137,7 +137,7 @@ void String::deleteImg()
     return;
 }
 
-bool String::subMatrixToString(wostringstream& ostr, int* _piDims, int _iDims)
+bool String::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*/)
 {
     int iPrecision = ConfigVariable::getFormatSize();
     int iLineLen = ConfigVariable::getConsoleWidth();
@@ -204,7 +204,7 @@ bool String::subMatrixToString(wostringstream& ostr, int* _piDims, int _iDims)
 
             int iLen = 0;
             int iCurLen = static_cast<int>(wcslen(get(iPos)));
-            iLen = iCurLen + SIZE_BETWEEN_TWO_VALUES + static_cast<int>(ostemp.str().size());
+            iLen = iCurLen + SIZE_BETWEEN_TWO_STRING_VALUES + static_cast<int>(ostemp.str().size());
             if (iLen > iLineLen)
             {
                 //Max length, new line
@@ -279,7 +279,7 @@ bool String::subMatrixToString(wostringstream& ostr, int* _piDims, int _iDims)
                         _piDims[1] = iCols2;
                         int iPos = getIndex(_piDims);
                         configureStream(&ostemp, piSize[iCols2], iPrecision, ' ');
-                        ostemp << left << get(iPos) << SPACE_BETWEEN_TWO_VALUES;
+                        ostemp << left << get(iPos) << SPACE_BETWEEN_TWO_STRING_VALUES;
                     }
 
                     ostemp << L"!" << endl;
@@ -305,7 +305,7 @@ bool String::subMatrixToString(wostringstream& ostr, int* _piDims, int _iDims)
                 m_iRows2PrintState = 0;
                 m_iCols1PrintState = 0;
             }
-            iLen += piSize[iCols1] + SIZE_BETWEEN_TWO_VALUES;
+            iLen += piSize[iCols1] + SIZE_BETWEEN_TWO_STRING_VALUES;
         }
 
         for (int iRows2 = m_iRows2PrintState ; iRows2 < getRows() ; iRows2++)
@@ -334,8 +334,8 @@ bool String::subMatrixToString(wostringstream& ostr, int* _piDims, int _iDims)
                 int iPos = getIndex(_piDims);
 
                 configureStream(&ostemp, piSize[iCols2], iPrecision, ' ');
-                ostemp << left << get(iPos) << SPACE_BETWEEN_TWO_VALUES;
-                iLen += piSize[iCols2] + SIZE_BETWEEN_TWO_VALUES;
+                ostemp << left << get(iPos) << SPACE_BETWEEN_TWO_STRING_VALUES;
+                iLen += piSize[iCols2] + SIZE_BETWEEN_TWO_STRING_VALUES;
             }
             ostemp << L"!" << endl;
             if ((iRows2 + 1) != m_iRows)
@@ -394,7 +394,7 @@ wchar_t* String::getNullValue()
     return os_wcsdup(L"");
 }
 
-String* String::createEmpty(int _iDims, int* _piDims, bool _bComplex)
+String* String::createEmpty(int _iDims, int* _piDims, bool /*_bComplex*/)
 {
     return new String(_iDims, _piDims);
 }

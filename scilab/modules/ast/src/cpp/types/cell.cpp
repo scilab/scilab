@@ -212,7 +212,7 @@ InternalType* Cell::getNullValue()
     return Double::Empty();
 }
 
-Cell* Cell::createEmpty(int _iDims, int* _piDims, bool _bComplex)
+Cell* Cell::createEmpty(int _iDims, int* _piDims, bool /*_bComplex*/)
 {
     return new Cell(_iDims, _piDims);
 }
@@ -255,7 +255,7 @@ bool Cell::isEmpty()
 ** toString to display Structs
 ** FIXME : Find a better indentation process
 */
-bool Cell::subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims)
+bool Cell::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_iDims*/)
 {
     int iPrecision = ConfigVariable::getFormatSize();
 

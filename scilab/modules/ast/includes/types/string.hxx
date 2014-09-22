@@ -88,6 +88,9 @@ public :
 
     virtual bool neg(InternalType *& out)
     {
+        // silent unused parameters warnings
+        (void) out;
+
         return false;
     }
 

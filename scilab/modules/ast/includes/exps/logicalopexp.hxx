@@ -55,8 +55,8 @@ public:
 
     virtual LogicalOpExp* clone()
     {
-        LogicalOpExp* cloned = new LogicalOpExp(location_get(), *left_get().clone(), oper_get(), *right_get().clone());
-        cloned->set_verbose(is_verbose());
+        LogicalOpExp* cloned = new LogicalOpExp(getLocation(), *getLeft().clone(), getOper(), *getRight().clone());
+        cloned->setVerbose(isVerbose());
         return cloned;
     }
 
@@ -76,11 +76,19 @@ public:
     /** \} */
 
     /** \brief set the operator description (read only) */
-    void oper_set(Oper oper)
+    void setOper(Oper oper)
     {
         _oper = oper;
     }
 
+    virtual ExpType getType()
+    {
+        return LOGICALOPEXP;
+    }
+    inline bool isLogicalOpExp() const
+    {
+        return true;
+    }
 };
 
 } // namespace ast

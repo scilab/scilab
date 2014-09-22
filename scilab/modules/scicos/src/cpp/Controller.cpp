@@ -30,7 +30,7 @@ Controller::SharedData::SharedData() : model(), allViews()
 
 Controller::SharedData::~SharedData()
 {
-    for (view_set_t::iterator iter = _instance->allViews.begin(); iter != _instance->allViews.end(); iter++)
+    for (view_set_t::iterator iter = _instance->allViews.begin(); iter != _instance->allViews.end(); ++iter)
     {
         delete *iter;
     }
@@ -80,6 +80,14 @@ Controller::Controller()
     }
 }
 
+Controller::Controller(const Controller& c)
+{
+    // _instance is already initialized
+
+    // silent unused parameter warnings
+    (void) c;
+}
+
 Controller::~Controller()
 {
 }
@@ -88,7 +96,7 @@ ScicosID Controller::createObject(kind_t k)
 {
     ScicosID id = _instance->model.createObject(k);
 
-    for (view_set_t::iterator iter = _instance->allViews.begin(); iter != _instance->allViews.end(); iter++)
+    for (view_set_t::iterator iter = _instance->allViews.begin(); iter != _instance->allViews.end(); ++iter)
     {
         (*iter)->objectCreated(id, k);
     }
@@ -100,10 +108,46 @@ void Controller::deleteObject(ScicosID uid)
 {
     _instance->model.deleteObject(uid);
 
-    for (view_set_t::iterator iter = _instance->allViews.begin(); iter != _instance->allViews.end(); iter++)
+    for (view_set_t::iterator iter = _instance->allViews.begin(); iter != _instance->allViews.end(); ++iter)
     {
         (*iter)->objectDeleted(uid);
     }
+}
+
+template<typename T>
+void cloneProperties(Controller* controller, model::BaseObject* initial, ScicosID clone)
+{
+    for (int i = 0; i < MAX_OBJECT_PROPERTIES; ++i)
+    {
+        enum object_properties_t p = static_cast<enum object_properties_t>(i);
+
+        T value;
+        bool status = controller->getObjectProperty(initial->id(), initial->kind(), p, value);
+        if (status)
+        {
+            controller->setObjectProperty(clone, initial->kind(), p, value);
+        }
+    }
+
+};
+
+ScicosID Controller::cloneObject(ScicosID uid)
+{
+    model::BaseObject* initial = getObject(uid);
+    ScicosID o = createObject(initial->kind());
+
+    // Get then set all properties per type
+    cloneProperties<double>(this, initial, o);
+    cloneProperties<int>(this, initial, o);
+    cloneProperties<bool>(this, initial, o);
+    cloneProperties<std::string>(this, initial, o);
+    cloneProperties<ScicosID>(this, initial, o);
+    cloneProperties< std::vector<double> >(this, initial, o);
+    cloneProperties< std::vector<int> >(this, initial, o);
+    cloneProperties< std::vector<std::string> >(this, initial, o);
+    cloneProperties< std::vector<ScicosID> >(this, initial, o);
+
+    return o;
 }
 
 model::BaseObject* Controller::getObject(ScicosID uid)
@@ -117,7 +161,7 @@ update_status_t Controller::setObject(model::BaseObject* o)
 
     if (status == SUCCESS)
     {
-        for (view_set_t::iterator iter = _instance->allViews.begin(); iter != _instance->allViews.end(); iter++)
+        for (view_set_t::iterator iter = _instance->allViews.begin(); iter != _instance->allViews.end(); ++iter)
         {
             (*iter)->objectUpdated(o->id(), o->kind());
         }

@@ -34,16 +34,16 @@ public:
     {
     }
 
-    inline bool operator<(BaseObject o)
+    inline bool operator<(BaseObject o) const
     {
         return _id < o._id;
     }
-    inline bool operator==(BaseObject o)
+    inline bool operator==(BaseObject o) const
     {
         return _id == o._id;
     }
 
-    inline ScicosID id()
+    inline ScicosID id() const
     {
         return _id;
     }
@@ -52,7 +52,7 @@ public:
         _id = id;
     }
 
-    inline kind_t kind()
+    inline kind_t kind() const
     {
         return _kind;
     }
@@ -109,13 +109,13 @@ struct Geometry
 struct Datatype
 {
 public:
+    Datatype(const Datatype& d) :
+        refCount(0), datatype_id(d.datatype_id), rows(d.rows), columns(d.columns) {};
     Datatype(const std::vector<int>& v) :
-        refCount(0), datatype_id(v[2]), rows(v[0]), columns(v[1])
-    {
-    }
+        refCount(0), datatype_id(v[2]), rows(v[0]), columns(v[1]) {};
 
     // reference counter for the flyweight pattern
-    size_t refCount;
+    int refCount;
 
     const int datatype_id;
     const int rows;
@@ -128,7 +128,10 @@ public:
 
     bool operator<(const Datatype& d) const
     {
-        return datatype_id < d.datatype_id && rows < d.rows && columns < d.columns;
+        // Lexicographical order
+        return datatype_id < d.datatype_id ||
+               (datatype_id == d.datatype_id && rows < d.rows) ||
+               (datatype_id == d.datatype_id && rows == d.rows && columns < d.columns);
     }
 };
 

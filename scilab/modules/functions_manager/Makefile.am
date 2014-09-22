@@ -78,3 +78,4 @@ testFunctionManager_LDADD	= \
     $(top_builddir)/modules/types/libsciTypes.la \
     $(top_builddir)/modules/functions_manager/libscifunctions_manager.la
     
+include $(top_srcdir)/Makefile.incl.am    

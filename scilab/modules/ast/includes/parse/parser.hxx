@@ -157,12 +157,12 @@ private :
     const std::wstring _file_name;
     const std::wstring _prog_name;
     std::wstring _error_message;
-    bool _parse_trace;
-    bool _strict_mode;
     bool _stop_on_first_error;
-    ast::Exp* _the_program;
+    bool _strict_mode;
+    bool _parse_trace;
     ParserStatus _exit_status;
     ControlStatus _control_status;
+    ast::Exp* _the_program;
 };
 
 #endif /* !__PARSER_HXX__ */

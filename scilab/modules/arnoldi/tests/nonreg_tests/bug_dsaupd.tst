@@ -5,6 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- CLI SHELL MODE -->
+
 // Tests for function dsaupd (added after a bug in the gateway: PutLhsVar missing)
 
 stacksize(300000);

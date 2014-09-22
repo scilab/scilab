@@ -66,7 +66,7 @@ List::List(List *_oListCopyMe)
     std::vector<InternalType *>::iterator itValues;
     m_plData = new std::vector<InternalType *>;
 
-    for (int i = 0 ; i < _oListCopyMe->getData()->size() ; i++)
+    for (int i = 0 ; i < (int)_oListCopyMe->getData()->size() ; i++)
     {
         append((*_oListCopyMe->getData())[i]);
     }
@@ -111,7 +111,7 @@ InternalType *List::clone()
     return new List(this);
 }
 
-GenericType* List::getColumnValues(int _iPos)
+GenericType* List::getColumnValues(int /*_iPos*/)
 {
     return NULL;
 }
@@ -137,7 +137,7 @@ bool List::toString(std::wostringstream& ostr)
         {
             ostr << "     " << wcsVarName << L"(" << iPosition << L")" << std::endl;
             //maange lines
-            bool bFinish = (*itValues)->toString(ostr);
+            (*itValues)->toString(ostr);
             ostr << std::endl;
         }
     }
@@ -181,7 +181,7 @@ std::vector<InternalType*>	List::extract(typed_list* _pArgs)
     }
 
     //free pArg content
-    for (int iArg = 0 ; iArg < pArg.size() ; iArg++)
+    for (int iArg = 0 ; iArg < (int)pArg.size() ; iArg++)
     {
         if (pArg[iArg] != (*_pArgs)[iArg])
         {
@@ -232,7 +232,7 @@ InternalType* List::insert(typed_list* _pArgs, InternalType* _pSource)
             //do nothing
             return this;
         }
-        else if (idx <= m_plData->size())
+        else if (idx <= (int)m_plData->size())
         {
             InternalType* pIT = (*m_plData)[idx - 1];
             if (pIT)
@@ -254,10 +254,10 @@ InternalType* List::insert(typed_list* _pArgs, InternalType* _pSource)
 
         InternalType* pInsert = _pSource->getAs<ListInsert>()->getInsert()->clone();
         pInsert->IncreaseRef();
-        if (idx > m_plData->size())
+        if (idx > (int)m_plData->size())
         {
             //try to insert after the last index, increase list size and assign value
-            while (m_plData->size() < idx)
+            while ((int)m_plData->size() < idx)
             {
                 //incease list size and fill with "Undefined"
                 m_plData->push_back(new ListUndefined());
@@ -279,7 +279,7 @@ InternalType* List::insert(typed_list* _pArgs, InternalType* _pSource)
     }
     else
     {
-        while (m_plData->size() < idx)
+        while ((int)m_plData->size() < idx)
         {
             //incease list size and fill with "Undefined"
             InternalType* pLU = new ListUndefined();
@@ -301,7 +301,7 @@ InternalType* List::insert(typed_list* _pArgs, InternalType* _pSource)
     m_iSize = (int)m_plData->size();
 
     //free pArg content
-    for (int iArg = 0 ; iArg < pArg.size() ; iArg++)
+    for (int iArg = 0 ; iArg < (int)pArg.size() ; iArg++)
     {
         if (pArg[iArg] != (*_pArgs)[iArg])
         {
@@ -314,7 +314,7 @@ InternalType* List::insert(typed_list* _pArgs, InternalType* _pSource)
 
 InternalType* List::get(const int _iIndex)
 {
-    if (_iIndex >= 0 && _iIndex < m_plData->size())
+    if (_iIndex >= 0 && _iIndex < (int)m_plData->size())
     {
         return (*m_plData)[_iIndex];
     }
@@ -328,7 +328,7 @@ bool List::set(const int _iIndex, InternalType* _pIT)
         return false;
     }
 
-    while (m_plData->size() <= _iIndex)
+    while ((int)m_plData->size() <= _iIndex)
     {
         //incease list size and fill with "Undefined"
         m_plData->push_back(new ListUndefined());

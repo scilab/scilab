@@ -18,7 +18,7 @@ SUBDIRS= modules \
 	contrib \
 	desktop
 
-ACLOCAL_AMFLAGS = -I m4/
+ACLOCAL_AMFLAGS = -I m4
 
 # Set AM_* SCI detected settings
 AM_CPPFLAGS = $(SCI_CPPFLAGS)
