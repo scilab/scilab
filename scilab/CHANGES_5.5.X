@@ -122,6 +122,8 @@ Scilab Bug Fixes
                      and normalized frequencies. sample and samplef now consistently
                      return a row vector.
 
+* Bug #13377 fixed - showprofile now displays lines numbers.
+
 * Bug #13378 fixed - The "Console" handle display was not homogeneous with others.
 
 * Bug #13381 fixed - eigs was failing when using a function as first input argument.

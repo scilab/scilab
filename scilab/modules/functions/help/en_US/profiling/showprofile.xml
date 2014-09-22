@@ -51,18 +51,27 @@
         <para>
             Once the function has been executed, calling <literal>showprofile</literal> outputs to the console the profiling results.
         </para>
-        <para>Each printed line contains the profiling results for the corresponding function line (including the header line of the function). That includes the number of calls, the total CPU time spent in that line, a measurement of the interpretor effort to interpret the line, and the source code of that line. An example of output:
+        <para>For each function line (including the header of function), are printed the following informations, in order:
+            <itemizedlist>
+                <listitem><para>the total number of times the line was called</para></listitem>
+                <listitem><para>the total CPU time spent in the line (in seconds)</para></listitem>
+                <listitem><para>a measurement of the interpretor effort to interpret the line</para></listitem>
+                <listitem><para>the number and source code of the line</para></listitem>
+            </itemizedlist>
+        </para>
+        <para>
+            An example of output:
         </para>
         <screen>
-            |1   |0    |0| function x=fun(n)
-            |1   |0    |0|   if n > 0 then
-            |1   |0    |2|     x = 0;
-            |200 |0.01 |0|     for k = 1:n
-            |200 |3.99 |5|       s = svd(rand(n, n));
-            |... |...  |.| ...
+            |1  |0   |0| 1: function x=fun(n)
+            |1  |0   |0| 2:   if n > 0 then
+            |1  |0   |2| 3:     x = 0;
+            |200|0.01|0| 4:     for k = 1:n
+            |200|3.99|5| 5:       s = svd(rand(n, n));
+            |...|... |.| ...
         </screen>
         <para>
-            Here we can see that the 5th line of the function has been called 200 times, for a total CPU time of 3.99 seconds.
+            Here we can see that the 5th line of the function has been called 200 times, for a total CPU time of 3.99 seconds (and an effort of 5 to interpret the line).
         </para>
         <para>
             <literal>show_profile</literal> looks like to <link linkend="profile">profile</link>, but <link linkend="profile">profile</link> returns a matrix with the profiling results, while <literal>show_profile</literal> only prints that results to the console.
@@ -73,7 +82,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // Function to be profiled
 function x = foo(n)
   if n > 0 then

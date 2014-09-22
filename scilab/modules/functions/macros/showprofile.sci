@@ -26,10 +26,14 @@ function showprofile(fun)
     // get function code
     code = fun2string(lst, "fun");
 
+    // line numbers, right justified
+    line_numbers = string(1:size(code, "r"))';
+    line_numbers = justify(line_numbers, "r");
+
     // left justify
     nb_calls = justify(nb_calls, "l");
     cpu_time = justify(cpu_time, "l");
     effort = justify(effort, "l");
 
-    printf("|%s|%s|%s|%s\n", nb_calls, cpu_time, effort, code);
+    printf("|%s|%s|%s| %s: %s\n", nb_calls, cpu_time, effort, line_numbers, code);
 endfunction
