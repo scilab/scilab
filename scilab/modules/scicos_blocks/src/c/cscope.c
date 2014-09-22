@@ -254,10 +254,10 @@ SCICOS_BLOCKS_IMPEXP void cscope(scicos_block * block, scicos_flag flag)
             sco = reallocHistoryBuffer(block, sco->internal.maxNumberOfPoints + sco->internal.numberOfPoints);
             sco->scope.disableBufferUpdate = FALSE;
             sco->scope.historyUpdateCounter = 0;
-            #if WITH_GUI
-                pushHistory(block, 0, sco->internal.maxNumberOfPoints);
-                deleteBufferPolylines(block);
-            #endif
+#ifdef WITH_GUI
+            pushHistory(block, 0, sco->internal.maxNumberOfPoints);
+            deleteBufferPolylines(block);
+#endif
             freeScoData(block);
             break;
 
@@ -695,7 +695,7 @@ static void setFigureSettings(int iFigureUID, scicos_block * block)
 
 static int getFigure(scicos_block * block)
 {
-#if WITH_GUI
+#ifdef WITH_GUI
     signed int figNum;
     int iFigureUID = 0;
     int iAxe = 0;
