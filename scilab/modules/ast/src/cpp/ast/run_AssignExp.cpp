@@ -70,7 +70,7 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                 return;
             }
 
-            if (e.getLeftExp().isReturnExp())
+            if (e.getRightExp().isReturnExp())
             {
                 //ReturnExp so, put the value in the previous scope
                 symbol::Context::getInstance()->putInPreviousScope(pVar->getStack(), pIT);
