@@ -343,14 +343,20 @@ private:
         return SUCCESS;
     }
 
-    ScicosID getPortReference() const
+    void getPortReference(ScicosID& v) const
     {
-        return portReference;
+        v = portReference;
     }
 
-    void setPortReference(ScicosID portReference)
+    update_status_t setPortReference(const ScicosID v)
     {
-        this->portReference = portReference;
+        if (v == portReference)
+        {
+            return NO_CHANGES;
+        }
+
+        portReference = v;
+        return SUCCESS;
     }
 
     const Descriptor& getSim() const

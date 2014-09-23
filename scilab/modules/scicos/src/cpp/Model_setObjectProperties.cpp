@@ -208,6 +208,8 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
                 return o->setParentDiagram(v);
             case PARENT_BLOCK:
                 return o->setParentBlock(v);
+            case PORT_REFERENCE:
+                return o->setPortReference(v);
             default:
                 break;
         }

@@ -38,6 +38,11 @@ namespace view_scilab
 namespace
 {
 
+const std::string input ("input");
+const std::string output ("output");
+const std::string inimpl ("inimpl");
+const std::string outimpl ("outimpl");
+
 struct sim
 {
 
@@ -402,6 +407,95 @@ struct odstate
     }
 };
 
+// When setting a diagram in 'rpar', the Superblock's ports must be consistent with the "port blocks" inside it.
+// By "port blocks", we mean IN_f, OUT_f, CLKIN_f, CLKOUT_f, CLKINV_f, CLKOUTV_f, INIMPL_f and OUTIMPL_f.
+static bool setInnerBlocksRefs(ModelAdapter& adaptor, std::vector<ScicosID>& children, Controller& controller)
+{
+    model::Block* adaptee = adaptor.getAdaptee();
+
+    for (std::vector<ScicosID>::iterator it = children.begin(); it != children.end(); ++it)
+    {
+        if (controller.getObject(*it)->kind() == BLOCK) // Rule out Annotations and Links
+        {
+            std::string name;
+            controller.getObjectProperty(*it, BLOCK, SIM_FUNCTION_NAME, name);
+
+            // Find the "port blocks"
+            if (name == input || name == inimpl || name == output || name == outimpl)
+            {
+                std::vector<int> ipar;
+                controller.getObjectProperty(*it, BLOCK, IPAR, ipar);
+                if (ipar.size() != 1)
+                {
+                    return false;
+                }
+                int portIndex = ipar[0];
+
+                // "input" and "output" are not enough to tell the event and data ports apart, so check the block's port.
+                object_properties_t kind;
+                std::vector<ScicosID> innerPort;
+                if (name == input || name == inimpl)
+                {
+                    controller.getObjectProperty(*it, BLOCK, OUTPUTS, innerPort);
+                    if (!innerPort.empty())
+                    {
+                        kind = INPUTS;
+                    }
+                    else
+                    {
+                        kind = EVENT_INPUTS;
+                    }
+                }
+                else
+                {
+                    controller.getObjectProperty(*it, BLOCK, INPUTS, innerPort);
+                    if (!innerPort.empty())
+                    {
+                        kind = OUTPUTS;
+                    }
+                    else
+                    {
+                        kind = EVENT_OUTPUTS;
+                    }
+                }
+
+                std::vector<ScicosID> superPorts;
+                controller.getObjectProperty(adaptee->id(), adaptee->kind(), kind, superPorts);
+                if (static_cast<int>(superPorts.size()) < portIndex)
+                {
+                    return false;
+                }
+
+                ScicosID port = superPorts[portIndex - 1];
+
+                // Check consistency of the implicitness between the inner and outer ports
+                bool isImplicit;
+                controller.getObjectProperty(port, PORT, IMPLICIT, isImplicit);
+                if (name == input || name == output)
+                {
+                    if (isImplicit)
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    if (!isImplicit)
+                    {
+                        return false;
+                    }
+                }
+
+                controller.setObjectProperty(*it, BLOCK, PORT_REFERENCE, port);
+            }
+
+            // Regardless of the ports, use the loop to set each Block's 'parent_block' property
+            controller.setObjectProperty(*it, BLOCK, PARENT_BLOCK, adaptee->id());
+        }
+    }
+    return true;
+}
+
 struct rpar
 {
 
@@ -409,10 +503,10 @@ struct rpar
     {
         model::Block* adaptee = adaptor.getAdaptee();
 
-        ScicosID parentBlock;
-        controller.getObjectProperty(adaptee->id(), adaptee->kind(), PARENT_BLOCK, parentBlock);
+        std::vector<ScicosID> children;
+        controller.getObjectProperty(adaptee->id(), adaptee->kind(), CHILDREN, children);
 
-        if (parentBlock == 0)
+        if (children.empty())
         {
             std::vector<double> rpar;
             controller.getObjectProperty(adaptee->id(), adaptee->kind(), RPAR, rpar);
@@ -426,9 +520,9 @@ struct rpar
 #endif
             return o;
         }
-        else // SuperBlock, return the contained diagram
+        else // SuperBlock, return the contained diagram, whose ID is stored in children[0]
         {
-            model::Diagram* diagram = static_cast<model::Diagram*>(Controller().getObject(parentBlock));
+            model::Diagram* diagram = static_cast<model::Diagram*>(Controller().getObject(children[0]));
             DiagramAdapter* o = new DiagramAdapter(false, diagram);
             return o;
         }
@@ -469,12 +563,14 @@ struct rpar
             DiagramAdapter* diagram = v->getAs<DiagramAdapter>();
             model::Diagram* subAdaptee = diagram->getAdaptee();
 
+            // Save the children list, adding the diagram ID at the beginning
             std::vector<ScicosID> children;
             controller.getObjectProperty(subAdaptee->id(), subAdaptee->kind(), CHILDREN, children);
-
-            controller.setObjectProperty(adaptee->id(), adaptee->kind(), PARENT_BLOCK, subAdaptee->id());
+            children.insert(children.begin(), subAdaptee->id());
             controller.setObjectProperty(adaptee->id(), adaptee->kind(), CHILDREN, children);
-            return true;
+
+            // Link the Superblock ports to their inner "port blocks"
+            return setInnerBlocksRefs(adaptor, children, controller);
         }
         else
         {

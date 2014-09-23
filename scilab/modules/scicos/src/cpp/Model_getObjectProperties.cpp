@@ -318,6 +318,9 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, Sci
             case PARENT_BLOCK:
                 o->getParentBlock(v);
                 return true;
+            case PORT_REFERENCE:
+                o->getPortReference(v);
+                return true;
             default:
                 break;
         }
