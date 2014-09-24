@@ -125,7 +125,7 @@ struct tol
         model::Diagram* adaptee = adaptor.getAdaptee();
 
         double* data;
-        types::Double* o = new types::Double(7, 1, &data);
+        types::Double* o = new types::Double(1, 7, &data);
 
         std::vector<double> tol;
         controller.getObjectProperty(adaptee->id(), adaptee->kind(), PROPERTIES, tol);

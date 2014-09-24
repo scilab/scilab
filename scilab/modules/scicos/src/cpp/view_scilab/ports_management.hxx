@@ -315,9 +315,12 @@ inline bool fillNewPorts(std::vector<int>& newPorts, const std::vector<ScicosID>
             {
                 return false;
             }
+            *it = static_cast<int>(*d - 1); // 'd' contains indexes
         } // no check is performed for other properties as newPorts will contains value not index
-
-        *it = static_cast<int>(*d);
+        else
+        {
+            *it = static_cast<int>(*d);
+        }
     }
     return true;
 }
@@ -332,7 +335,7 @@ inline bool fillNewPorts(std::vector<int>& newPorts, const std::vector<ScicosID>
  * \param deletedObjects trash used to delete objects
  */
 template<typename Adaptor, object_properties_t p>
-inline void updateNewPort(ScicosID oldPort, int newPort, Controller& controller,
+inline bool updateNewPort(ScicosID oldPort, int newPort, Controller& controller,
                           std::vector<ScicosID>& children, std::vector<ScicosID>& deletedObjects)
 {
     if (p == CONNECTED_SIGNALS)
@@ -342,7 +345,7 @@ inline void updateNewPort(ScicosID oldPort, int newPort, Controller& controller,
         controller.getObjectProperty(oldPort, PORT, CONNECTED_SIGNALS, oldSignal);
 
         ScicosID newSignal;
-        if (children.size() > 0)
+        if (children.size() > 0 && newPort >= 0)
         {
             newSignal = children[newPort];
         }
@@ -353,6 +356,11 @@ inline void updateNewPort(ScicosID oldPort, int newPort, Controller& controller,
 
         if (oldSignal != newSignal)
         {
+            if (oldSignal == 0)
+            {
+                // FIXME: The port was not linked, check if Link #newSignal has an unconnected end that is connectable to the port (Link kind)
+                return false;
+            }
             // disconnect the old link
             ScicosID oldSignalSrc;
             controller.getObjectProperty(oldSignal, LINK, SOURCE_PORT, oldSignalSrc);
@@ -394,12 +402,13 @@ inline void updateNewPort(ScicosID oldPort, int newPort, Controller& controller,
                 controller.getObjectProperty(oldPort, PORT, DATATYPE, datatype);
                 datatype[datatypeIndex] = newPort;
                 controller.setObjectProperty(oldPort, PORT, DATATYPE, datatype);
-                return;
+                return true;
             }
             default:
                 controller.setObjectProperty(oldPort, PORT, p, newPort);
         }
     }
+    return true;
 }
 
 /**
@@ -500,7 +509,10 @@ bool update_ports_property(const Adaptor& adaptor, object_properties_t port_kind
         int newPort = newPorts.back();
         newPorts.pop_back();
 
-        updateNewPort<Adaptor, p>(oldPort, newPort, controller, children, deletedObjects);
+        if (!updateNewPort<Adaptor, p>(oldPort, newPort, controller, children, deletedObjects))
+        {
+            return false;
+        }
     }
 
     // removed ports

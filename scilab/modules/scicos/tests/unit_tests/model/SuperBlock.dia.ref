@@ -1,0 +1,506 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2014 - Scilab Enterprises - Paul Bignier
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+loadXcosLibs();
+// Allocate a SuperBlock and access its fields
+sb = SUPER_f("define")
+objectCreated( 1 , DIAGRAM )
+propertyUpdated( 1 , DIAGRAM , TITLE ) : NO_CHANGES
+propertyUpdated( 1 , DIAGRAM , PATH ) : NO_CHANGES
+propertyUpdated( 1 , DIAGRAM , PROPERTIES ) : NO_CHANGES
+propertyUpdated( 1 , DIAGRAM , PROPERTIES ) : NO_CHANGES
+propertyUpdated( 1 , DIAGRAM , CONTEXT ) : NO_CHANGES
+propertyUpdated( 1 , DIAGRAM , CHILDREN ) : NO_CHANGES
+propertyUpdated( 1 , DIAGRAM , VERSION_NUMBER ) : NO_CHANGES
+propertyUpdated( 1 , DIAGRAM , TITLE ) : SUCCESS
+propertyUpdated( 1 , DIAGRAM , PATH ) : NO_CHANGES
+propertyUpdated( 1 , DIAGRAM , PROPERTIES ) : NO_CHANGES
+propertyUpdated( 1 , DIAGRAM , PROPERTIES ) : NO_CHANGES
+propertyUpdated( 1 , DIAGRAM , CONTEXT ) : NO_CHANGES
+objectCreated( 2 , BLOCK )
+propertyUpdated( 2 , BLOCK , GEOMETRY ) : NO_CHANGES
+propertyUpdated( 2 , BLOCK , GEOMETRY ) : SUCCESS
+propertyUpdated( 2 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 2 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 2 , BLOCK , EXPRS ) : SUCCESS
+objectCreated( 3 , PORT )
+propertyUpdated( 3 , PORT , SOURCE_BLOCK ) : SUCCESS
+propertyUpdated( 3 , PORT , PORT_KIND ) : SUCCESS
+propertyUpdated( 2 , BLOCK , OUTPUTS ) : SUCCESS
+propertyUpdated( 2 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 3 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 3 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 3 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 2 , BLOCK , STYLE ) : NO_CHANGES
+propertyUpdated( 2 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
+propertyUpdated( 2 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
+propertyUpdated( 3 , PORT , DATATYPE ) : SUCCESS
+propertyUpdated( 3 , PORT , DATATYPE ) : SUCCESS
+propertyUpdated( 3 , PORT , DATATYPE ) : SUCCESS
+propertyUpdated( 2 , BLOCK , STATE ) : NO_CHANGES
+propertyUpdated( 2 , BLOCK , DSTATE ) : NO_CHANGES
+propertyUpdated( 2 , BLOCK , RPAR ) : NO_CHANGES
+propertyUpdated( 2 , BLOCK , IPAR ) : SUCCESS
+propertyUpdated( 2 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
+propertyUpdated( 2 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
+propertyUpdated( 2 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 2 , BLOCK , NZCROSS ) : NO_CHANGES
+propertyUpdated( 2 , BLOCK , NMODE ) : NO_CHANGES
+propertyUpdated( 2 , BLOCK , UID ) : NO_CHANGES
+propertyUpdated( 2 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
+propertyUpdated( 2 , BLOCK , GEOMETRY ) : SUCCESS
+propertyUpdated( 2 , BLOCK , GEOMETRY ) : NO_CHANGES
+propertyUpdated( 2 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 2 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 2 , BLOCK , EXPRS ) : NO_CHANGES
+propertyUpdated( 2 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 3 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 3 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 3 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 2 , BLOCK , STYLE ) : NO_CHANGES
+propertyUpdated( 2 , BLOCK , GEOMETRY ) : NO_CHANGES
+propertyUpdated( 2 , BLOCK , GEOMETRY ) : SUCCESS
+propertyUpdated( 2 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 2 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 2 , BLOCK , EXPRS ) : NO_CHANGES
+propertyUpdated( 2 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 3 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 3 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 3 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 2 , BLOCK , STYLE ) : NO_CHANGES
+objectCreated( 4 , BLOCK )
+propertyUpdated( 4 , BLOCK , GEOMETRY ) : NO_CHANGES
+propertyUpdated( 4 , BLOCK , GEOMETRY ) : SUCCESS
+propertyUpdated( 4 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 4 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 4 , BLOCK , EXPRS ) : SUCCESS
+objectCreated( 5 , PORT )
+propertyUpdated( 5 , PORT , SOURCE_BLOCK ) : SUCCESS
+propertyUpdated( 5 , PORT , PORT_KIND ) : SUCCESS
+propertyUpdated( 4 , BLOCK , INPUTS ) : SUCCESS
+propertyUpdated( 4 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 5 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 5 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 5 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 4 , BLOCK , STYLE ) : NO_CHANGES
+propertyUpdated( 4 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
+propertyUpdated( 4 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
+propertyUpdated( 5 , PORT , DATATYPE ) : SUCCESS
+propertyUpdated( 5 , PORT , DATATYPE ) : SUCCESS
+propertyUpdated( 5 , PORT , DATATYPE ) : SUCCESS
+propertyUpdated( 4 , BLOCK , STATE ) : NO_CHANGES
+propertyUpdated( 4 , BLOCK , DSTATE ) : NO_CHANGES
+propertyUpdated( 4 , BLOCK , RPAR ) : NO_CHANGES
+propertyUpdated( 4 , BLOCK , IPAR ) : SUCCESS
+propertyUpdated( 4 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
+propertyUpdated( 4 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
+propertyUpdated( 4 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 4 , BLOCK , NZCROSS ) : NO_CHANGES
+propertyUpdated( 4 , BLOCK , NMODE ) : NO_CHANGES
+propertyUpdated( 4 , BLOCK , UID ) : NO_CHANGES
+propertyUpdated( 4 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
+propertyUpdated( 4 , BLOCK , GEOMETRY ) : SUCCESS
+propertyUpdated( 4 , BLOCK , GEOMETRY ) : NO_CHANGES
+propertyUpdated( 4 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 4 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 4 , BLOCK , EXPRS ) : NO_CHANGES
+propertyUpdated( 4 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 5 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 5 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 5 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 4 , BLOCK , STYLE ) : NO_CHANGES
+propertyUpdated( 4 , BLOCK , GEOMETRY ) : NO_CHANGES
+propertyUpdated( 4 , BLOCK , GEOMETRY ) : SUCCESS
+propertyUpdated( 4 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 4 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 4 , BLOCK , EXPRS ) : NO_CHANGES
+propertyUpdated( 4 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 5 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 5 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 5 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 4 , BLOCK , STYLE ) : NO_CHANGES
+objectCreated( 6 , BLOCK )
+propertyUpdated( 6 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
+propertyUpdated( 6 , BLOCK , NZCROSS ) : NO_CHANGES
+propertyUpdated( 6 , BLOCK , NMODE ) : NO_CHANGES
+propertyUpdated( 6 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
+propertyUpdated( 6 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
+propertyUpdated( 6 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
+propertyUpdated( 6 , BLOCK , UID ) : NO_CHANGES
+propertyUpdated( 6 , BLOCK , STYLE ) : NO_CHANGES
+propertyUpdated( 6 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 6 , BLOCK , GEOMETRY ) : SUCCESS
+propertyUpdated( 6 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 6 , BLOCK , STATE ) : NO_CHANGES
+propertyUpdated( 6 , BLOCK , DSTATE ) : NO_CHANGES
+propertyUpdated( 6 , BLOCK , RPAR ) : NO_CHANGES
+propertyUpdated( 6 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
+propertyUpdated( 6 , BLOCK , IPAR ) : SUCCESS
+propertyUpdated( 6 , BLOCK , EXPRS ) : SUCCESS
+propertyUpdated( 6 , BLOCK , PARENT_DIAGRAM ) : NO_CHANGES
+propertyUpdated( 6 , BLOCK , INPUTS ) : NO_CHANGES
+objectCreated( 7 , PORT )
+propertyUpdated( 7 , PORT , FIRING ) : NO_CHANGES
+propertyUpdated( 7 , PORT , PORT_KIND ) : SUCCESS
+propertyUpdated( 7 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 7 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 7 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 7 , PORT , DATATYPE ) : SUCCESS
+propertyUpdated( 7 , PORT , SOURCE_BLOCK ) : SUCCESS
+propertyUpdated( 7 , PORT , CONNECTED_SIGNALS ) : NO_CHANGES
+propertyUpdated( 6 , BLOCK , OUTPUTS ) : SUCCESS
+propertyUpdated( 6 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+propertyUpdated( 6 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+propertyUpdated( 6 , BLOCK , PARENT_BLOCK ) : NO_CHANGES
+propertyUpdated( 6 , BLOCK , CHILDREN ) : NO_CHANGES
+propertyUpdated( 1 , DIAGRAM , CHILDREN ) : NO_CHANGES
+propertyUpdated( 6 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+propertyUpdated( 1 , DIAGRAM , CHILDREN ) : SUCCESS
+objectCreated( 8 , BLOCK )
+propertyUpdated( 8 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
+propertyUpdated( 8 , BLOCK , NZCROSS ) : NO_CHANGES
+propertyUpdated( 8 , BLOCK , NMODE ) : NO_CHANGES
+propertyUpdated( 8 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
+propertyUpdated( 8 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
+propertyUpdated( 8 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
+propertyUpdated( 8 , BLOCK , UID ) : NO_CHANGES
+propertyUpdated( 8 , BLOCK , STYLE ) : NO_CHANGES
+propertyUpdated( 8 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 8 , BLOCK , GEOMETRY ) : SUCCESS
+propertyUpdated( 8 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 8 , BLOCK , STATE ) : NO_CHANGES
+propertyUpdated( 8 , BLOCK , DSTATE ) : NO_CHANGES
+propertyUpdated( 8 , BLOCK , RPAR ) : NO_CHANGES
+propertyUpdated( 8 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
+propertyUpdated( 8 , BLOCK , IPAR ) : SUCCESS
+propertyUpdated( 8 , BLOCK , EXPRS ) : SUCCESS
+propertyUpdated( 8 , BLOCK , PARENT_DIAGRAM ) : NO_CHANGES
+objectCreated( 9 , PORT )
+propertyUpdated( 9 , PORT , FIRING ) : NO_CHANGES
+propertyUpdated( 9 , PORT , PORT_KIND ) : SUCCESS
+propertyUpdated( 9 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 9 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 9 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 9 , PORT , DATATYPE ) : SUCCESS
+propertyUpdated( 9 , PORT , SOURCE_BLOCK ) : SUCCESS
+propertyUpdated( 9 , PORT , CONNECTED_SIGNALS ) : NO_CHANGES
+propertyUpdated( 8 , BLOCK , INPUTS ) : SUCCESS
+propertyUpdated( 8 , BLOCK , OUTPUTS ) : NO_CHANGES
+propertyUpdated( 8 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+propertyUpdated( 8 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+propertyUpdated( 8 , BLOCK , PARENT_BLOCK ) : NO_CHANGES
+propertyUpdated( 8 , BLOCK , CHILDREN ) : NO_CHANGES
+propertyUpdated( 1 , DIAGRAM , CHILDREN ) : SUCCESS
+propertyUpdated( 6 , BLOCK , PARENT_DIAGRAM ) : NO_CHANGES
+propertyUpdated( 1 , DIAGRAM , CHILDREN ) : SUCCESS
+propertyUpdated( 8 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+propertyUpdated( 1 , DIAGRAM , CHILDREN ) : SUCCESS
+objectCreated( 10 , BLOCK )
+propertyUpdated( 10 , BLOCK , GEOMETRY ) : NO_CHANGES
+propertyUpdated( 10 , BLOCK , GEOMETRY ) : SUCCESS
+propertyUpdated( 10 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 10 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 10 , BLOCK , EXPRS ) : NO_CHANGES
+objectCreated( 11 , PORT )
+propertyUpdated( 11 , PORT , SOURCE_BLOCK ) : SUCCESS
+propertyUpdated( 11 , PORT , PORT_KIND ) : SUCCESS
+propertyUpdated( 10 , BLOCK , INPUTS ) : SUCCESS
+objectCreated( 12 , PORT )
+propertyUpdated( 12 , PORT , SOURCE_BLOCK ) : SUCCESS
+propertyUpdated( 12 , PORT , PORT_KIND ) : SUCCESS
+propertyUpdated( 10 , BLOCK , OUTPUTS ) : SUCCESS
+propertyUpdated( 10 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 11 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 12 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 11 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 12 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 11 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 12 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 10 , BLOCK , STYLE ) : NO_CHANGES
+propertyUpdated( 10 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
+propertyUpdated( 10 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
+propertyUpdated( 11 , PORT , DATATYPE ) : SUCCESS
+propertyUpdated( 12 , PORT , DATATYPE ) : SUCCESS
+propertyUpdated( 10 , BLOCK , STATE ) : NO_CHANGES
+propertyUpdated( 10 , BLOCK , DSTATE ) : NO_CHANGES
+objectCreated( 13 , DIAGRAM )
+propertyUpdated( 13 , DIAGRAM , TITLE ) : SUCCESS
+propertyUpdated( 13 , DIAGRAM , PATH ) : NO_CHANGES
+propertyUpdated( 13 , DIAGRAM , VERSION_NUMBER ) : NO_CHANGES
+propertyUpdated( 13 , DIAGRAM , PROPERTIES ) : NO_CHANGES
+propertyUpdated( 13 , DIAGRAM , CONTEXT ) : NO_CHANGES
+objectCreated( 14 , BLOCK )
+propertyUpdated( 14 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
+propertyUpdated( 14 , BLOCK , NZCROSS ) : NO_CHANGES
+propertyUpdated( 14 , BLOCK , NMODE ) : NO_CHANGES
+propertyUpdated( 14 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
+propertyUpdated( 14 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
+propertyUpdated( 14 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
+propertyUpdated( 14 , BLOCK , UID ) : NO_CHANGES
+propertyUpdated( 14 , BLOCK , STYLE ) : NO_CHANGES
+propertyUpdated( 14 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 14 , BLOCK , GEOMETRY ) : SUCCESS
+propertyUpdated( 14 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 14 , BLOCK , STATE ) : NO_CHANGES
+propertyUpdated( 14 , BLOCK , DSTATE ) : NO_CHANGES
+propertyUpdated( 14 , BLOCK , RPAR ) : NO_CHANGES
+propertyUpdated( 14 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
+propertyUpdated( 14 , BLOCK , IPAR ) : SUCCESS
+propertyUpdated( 14 , BLOCK , EXPRS ) : SUCCESS
+propertyUpdated( 14 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+propertyUpdated( 14 , BLOCK , INPUTS ) : NO_CHANGES
+objectCreated( 15 , PORT )
+propertyUpdated( 15 , PORT , FIRING ) : NO_CHANGES
+propertyUpdated( 15 , PORT , PORT_KIND ) : SUCCESS
+propertyUpdated( 15 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 15 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 15 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 15 , PORT , DATATYPE ) : SUCCESS
+propertyUpdated( 15 , PORT , SOURCE_BLOCK ) : SUCCESS
+propertyUpdated( 15 , PORT , CONNECTED_SIGNALS ) : NO_CHANGES
+propertyUpdated( 14 , BLOCK , OUTPUTS ) : SUCCESS
+propertyUpdated( 14 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+propertyUpdated( 14 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+propertyUpdated( 14 , BLOCK , PARENT_BLOCK ) : NO_CHANGES
+propertyUpdated( 14 , BLOCK , CHILDREN ) : NO_CHANGES
+objectCreated( 16 , BLOCK )
+propertyUpdated( 16 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
+propertyUpdated( 16 , BLOCK , NZCROSS ) : NO_CHANGES
+propertyUpdated( 16 , BLOCK , NMODE ) : NO_CHANGES
+propertyUpdated( 16 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
+propertyUpdated( 16 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
+propertyUpdated( 16 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
+propertyUpdated( 16 , BLOCK , UID ) : NO_CHANGES
+propertyUpdated( 16 , BLOCK , STYLE ) : NO_CHANGES
+propertyUpdated( 16 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 16 , BLOCK , GEOMETRY ) : SUCCESS
+propertyUpdated( 16 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 16 , BLOCK , STATE ) : NO_CHANGES
+propertyUpdated( 16 , BLOCK , DSTATE ) : NO_CHANGES
+propertyUpdated( 16 , BLOCK , RPAR ) : NO_CHANGES
+propertyUpdated( 16 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
+propertyUpdated( 16 , BLOCK , IPAR ) : SUCCESS
+propertyUpdated( 16 , BLOCK , EXPRS ) : SUCCESS
+propertyUpdated( 16 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+objectCreated( 17 , PORT )
+propertyUpdated( 17 , PORT , FIRING ) : NO_CHANGES
+propertyUpdated( 17 , PORT , PORT_KIND ) : SUCCESS
+propertyUpdated( 17 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 17 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 17 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 17 , PORT , DATATYPE ) : SUCCESS
+propertyUpdated( 17 , PORT , SOURCE_BLOCK ) : SUCCESS
+propertyUpdated( 17 , PORT , CONNECTED_SIGNALS ) : NO_CHANGES
+propertyUpdated( 16 , BLOCK , INPUTS ) : SUCCESS
+propertyUpdated( 16 , BLOCK , OUTPUTS ) : NO_CHANGES
+propertyUpdated( 16 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+propertyUpdated( 16 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+propertyUpdated( 16 , BLOCK , PARENT_BLOCK ) : NO_CHANGES
+propertyUpdated( 16 , BLOCK , CHILDREN ) : NO_CHANGES
+propertyUpdated( 13 , DIAGRAM , CHILDREN ) : SUCCESS
+propertyUpdated( 10 , BLOCK , CHILDREN ) : SUCCESS
+propertyUpdated( 14 , BLOCK , PORT_REFERENCE ) : SUCCESS
+propertyUpdated( 14 , BLOCK , PARENT_BLOCK ) : SUCCESS
+propertyUpdated( 16 , BLOCK , PORT_REFERENCE ) : SUCCESS
+propertyUpdated( 16 , BLOCK , PARENT_BLOCK ) : SUCCESS
+propertyUpdated( 10 , BLOCK , IPAR ) : NO_CHANGES
+propertyUpdated( 10 , BLOCK , SIM_BLOCKTYPE ) : SUCCESS
+propertyUpdated( 10 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
+propertyUpdated( 10 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 10 , BLOCK , NZCROSS ) : NO_CHANGES
+propertyUpdated( 10 , BLOCK , NMODE ) : NO_CHANGES
+propertyUpdated( 10 , BLOCK , UID ) : NO_CHANGES
+propertyUpdated( 10 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
+objectDeleted( 1 )
+objectDeleted( 2 )
+objectDeleted( 4 )
+sb  = 
+scicos_Block type :
+  graphics
+  model
+  gui
+  doc
+sb.graphics
+ ans  =
+orig = [0,0]
+sz = [2,2]
+flip = %t
+theta = 0
+exprs = 
+pin = 0
+pout = 0
+pein = []
+peout = []
+gr_i = []
+id = ""
+in_implicit = "E"
+out_implicit = "E"
+in_style = ""
+out_style = ""
+in_label = ""
+out_label = ""
+style = ""
+sb.model
+ ans  =
+super type: 0
+in = 1
+in2 = 1
+intyp = 1
+out = 1
+out2 = 1
+outtyp = 1
+evtin = []
+evtout = []
+state = []
+dstate = []
+odstate = list()
+rpar = mlist(["diagram","props","objs","version","contrib"],tlist(["params","wpar","title","tol","tf","context","void1","options","void2","void3","doc"],[],["Super Block";""],[0.000001,0.000001,1.0000D-10,100001,0,1,0],100000,..,[],tlist("scsopt"),[],[],list()),list(mlist(["Block","graphics","model","gui","doc"],mlist(["graphics","orig","sz","flip","theta","exprs","pin","pout","pein","peout","gr_i","id","in_implicit","out_implicit","in_style","out_style","in_label","out_label","style"],[40,40],[20,20],%t,0,"1",[],0,[],[],[],"",..,"E",..,"",..,"",""),mlist(["model","sim","in","in2","intyp","out","out2","outtyp","evtin","evtout","state","dstate","odstate","rpar","ipar","opar","blocktype","firing","dep_ut","label","nzcross","nmode","equations","uid"],"input",[],[],1,-1,-2,-1,[],[],[],[],list(),[],1,list(),"c",[],[%f,%f],"",0,0,list(),""),"IN_f",list()),mlist(["Block","graphics","model","gui","doc"],mlist(["graphics","orig","sz","flip","theta","exprs","pin","pout","pein","peout","gr_i","id","in_implicit","out_implicit","in_style","out_style","in_label","out_label","style"],[240,40],[20,20],%t,0,"1",0,[],[],[],[],"","E",..,"",..,"",..,""),mlist(["model","sim","in","in2","intyp","out","out2","outtyp","evtin","evtout","state","dstate","odstate","rpar","ipar","opar","blocktype","firing","dep_ut","label","nzcross","nmode","equations","uid"],"output",-1,-2,-1,[],[],1,[],[],[],[],list(),[],1,list(),"c",[],[%f,%f],"",0,0,list(),""),"OUT_f",list())),"",list())
+ipar = []
+opar = list()
+blocktype = "h"
+firing = []
+dep_ut = [%f,%f]
+label = ""
+nzcross = 0
+nmode = 0
+equations = list()
+uid = ""
+sb.gui
+ ans  =
+ SUPER_f
+sb.doc
+ ans  =
+()
+// Access the contained diagram's fields
+diag = sb.model.rpar
+diag  = 
+scicos_diagram type :
+  props
+  objs
+  version
+  contrib
+diag.props
+ ans  =
+wpar = []
+title = ["Super Block";""]
+tol = [0.000001,0.000001,1.0000D-10,100001,0,1,0]
+tf = 100000
+context = 
+void1 = []
+options = tlist("scsopt")
+void2 = []
+void3 = []
+doc = list()
+objs = diag.objs
+objs  = 
+     (1)
+scicos_Block type :
+  graphics
+  model
+  gui
+  doc
+     (2)
+scicos_Block type :
+  graphics
+  model
+  gui
+  doc
+objs(1).graphics
+ ans  =
+orig = [40,40]
+sz = [20,20]
+flip = %t
+theta = 0
+exprs = "1"
+pin = []
+pout = 0
+pein = []
+peout = []
+gr_i = []
+id = ""
+in_implicit = 
+out_implicit = "E"
+in_style = 
+out_style = ""
+in_label = 
+out_label = ""
+style = ""
+objs(1).model
+ ans  =
+input type: 0
+in = []
+in2 = []
+intyp = 1
+out = -1
+out2 = -2
+outtyp = -1
+evtin = []
+evtout = []
+state = []
+dstate = []
+odstate = list()
+rpar = []
+ipar = 1
+opar = list()
+blocktype = "c"
+firing = []
+dep_ut = [%f,%f]
+label = ""
+nzcross = 0
+nmode = 0
+equations = list()
+uid = ""
+objs(2).graphics
+ ans  =
+orig = [240,40]
+sz = [20,20]
+flip = %t
+theta = 0
+exprs = "1"
+pin = 0
+pout = []
+pein = []
+peout = []
+gr_i = []
+id = ""
+in_implicit = "E"
+out_implicit = 
+in_style = ""
+out_style = 
+in_label = ""
+out_label = 
+style = ""
+objs(2).model
+ ans  =
+output type: 0
+in = -1
+in2 = -2
+intyp = -1
+out = []
+out2 = []
+outtyp = 1
+evtin = []
+evtout = []
+state = []
+dstate = []
+odstate = list()
+rpar = []
+ipar = 1
+opar = list()
+blocktype = "c"
+firing = []
+dep_ut = [%f,%f]
+label = ""
+nzcross = 0
+nmode = 0
+equations = list()
+uid = ""
+diag.version
+ ans  =
+ 
+diag.contrib
+ ans  =
+()

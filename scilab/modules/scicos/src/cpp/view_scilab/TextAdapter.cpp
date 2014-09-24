@@ -202,7 +202,7 @@ struct model
 
         // Return an empty "model"-typed mlist because this field isn't used.
         types::MList* o = new types::MList();
-        types::String* MListFields = new types::String(4, 1);
+        types::String* MListFields = new types::String(1, 4);
 
         MListFields->set(0, Model.c_str());
         MListFields->set(1, sim.c_str());
@@ -239,7 +239,7 @@ struct dummy_property
         (void) controller;
 
         // Return an empty matrix because this field isn't used.
-        return new types::Double(0, 0);
+        return types::Double::Empty();
     }
 
     static bool set(TextAdapter& adaptor, types::InternalType* v, Controller& controller)

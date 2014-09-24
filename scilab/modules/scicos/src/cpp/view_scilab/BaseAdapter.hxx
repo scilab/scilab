@@ -149,7 +149,7 @@ public:
         std::sort(properties.begin(), properties.end(), property<Adaptor>::original_index_cmp);
 
         // create the header
-        types::String* header = new types::String(1 + (int)properties.size(), 1);
+        types::String* header = new types::String(1, 1 + (int)properties.size());
         header->set(0, Adaptor::getSharedTypeStr().c_str());
         int index = 1;
         for (typename property<Adaptor>::props_t_it it = properties.begin(); it != properties.end(); ++it, ++index)
