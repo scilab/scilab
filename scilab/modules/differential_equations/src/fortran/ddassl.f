@@ -116,10 +116,10 @@ C
 C     CORRECTOR LOOP.
 300   IWM(LNRE)=IWM(LNRE)+1
       IRES=0
-      iero = 0
+      ierror = 0
 C
       CALL RES(X,Y,YPRIME,DELTA,IRES,RPAR,IPAR)
-      if(iero.ne.0) return
+      if(ierror.ne.0) return
 C     IERROR indicates if RES had the right prototype
       if(IERROR.ne.0) then
          IDID=-12
@@ -135,7 +135,7 @@ C     EVALUATE THE ITERATION MATRIX
       CALL DDAJAC(NEQ,X,Y,YPRIME,DELTA,CJ,H,
      *   IER,WT,E,WM,IWM,RES,IRES,
      *   UROUND,JAC,RPAR,IPAR,NTEMP)
-      if(iero.ne.0) return
+      if(ierror.ne.0) return
 C
       S=1000000.D0
       IF (IRES.LT.0) GO TO 430
@@ -355,7 +355,7 @@ C     DENSE USER-SUPPLIED MATRIX
       DO 110 I=1,LENPD
 110      WM(NPDM1+I)=0.0D0
       CALL JAC(X,Y,YPRIME,WM(NPD),CJ,RPAR,IPAR)
-      if(iero.ne.0) return
+      if(ierror.ne.0) return
       GO TO 230
 C
 C
@@ -372,7 +372,7 @@ C     DENSE FINITE-DIFFERENCE-GENERATED MATRIX
          Y(I)=Y(I)+DEL
          YPRIME(I)=YPRIME(I)+CJ*DEL
          CALL RES(X,Y,YPRIME,E,IRES,RPAR,IPAR)
-         if(iero.ne.0) return
+         if(ierror.ne.0) return
          IF (IRES .LT. 0) RETURN
          DELINV=1.0D0/DEL
          DO 220 L=1,NEQ
@@ -397,7 +397,7 @@ C     BANDED USER-SUPPLIED MATRIX
       DO 410 I=1,LENPD
 410      WM(NPDM1+I)=0.0D0
       CALL JAC(X,Y,YPRIME,WM(NPD),CJ,RPAR,IPAR)
-      if(iero.ne.0) return
+      if(ierror.ne.0) return
       MEBAND=2*IWM(LML)+IWM(LMU)+1
       GO TO 550
 C
@@ -423,7 +423,7 @@ C     BANDED FINITE-DIFFERENCE-GENERATED MATRIX
           Y(N)=Y(N)+DEL
 510       YPRIME(N)=YPRIME(N)+CJ*DEL
       CALL RES(X,Y,YPRIME,E,IRES,RPAR,IPAR)
-      if(iero.ne.0) return
+      if(ierror.ne.0) return
       IF (IRES .LT. 0) RETURN
       DO 530 N=J,NEQ,MBAND
           K= (N-J)/MBAND + 1
@@ -1702,13 +1702,13 @@ C     COMPUTE TSTOP, IF APPLICABLE
 C
 C     COMPUTE INITIAL DERIVATIVE, UPDATING TN AND Y, IF APPLICABLE
 340   IF (INFO(11) .EQ. 0) GO TO 350
-      iero=0
+      ierror=0
       CALL DDAINI(TN,Y,YPRIME,NEQ,
      *  RES,JAC,HO,RWORK(LWT),IDID,RPAR,IPAR,
      *  RWORK(LPHI),RWORK(LDELTA),RWORK(LE),
      *  RWORK(LWM),IWORK(LIWM),HMIN,RWORK(LROUND),
      *  INFO(10),NTEMP)
-      if(iero.ne.0) return
+      if(ierror.ne.0) return
       IF (IDID .LT. 0) GO TO 390
 C
 C     LOAD H WITH HO.  STORE H IN RWORK(LH)
@@ -1866,7 +1866,7 @@ C     TEST H VS. HMAX
          IF (RH .GT. 1.0D0) H = H/RH
 526   CONTINUE
 C
-      iero=0
+      ierror=0
       CALL DDASTP(TN,Y,YPRIME,NEQ,
      *   RES,JAC,H,RWORK(LWT),INFO(1),IDID,RPAR,IPAR,
      *   RWORK(LPHI),RWORK(LDELTA),RWORK(LE),
@@ -1877,7 +1877,7 @@ C
      *   RWORK(LS),HMIN,RWORK(LROUND),
      *   IWORK(LPHASE),IWORK(LJCALC),IWORK(LK),
      *   IWORK(LKOLD),IWORK(LNS),INFO(10),NTEMP)
-      if(iero.ne.0) return
+      if(ierror.ne.0) return
 527   IF(IDID.LT.0)GO TO 600
 C
 C--------------------------------------------------------
@@ -2425,14 +2425,14 @@ C     MODIFIED NEWTON SCHEME.
       M=0
       IWM(LNRE)=IWM(LNRE)+1
       IRES = 0
-      iero = 0
+      ierror = 0
       CALL RES(X,Y,YPRIME,DELTA,IRES,RPAR,IPAR)
 C     IERROR indicates if RES had the right prototype
       if(IERROR.ne.0) then
          IDID=-11
          return
       endif
-      if(iero.ne.0) return
+      if(ierror.ne.0) return
       IF (IRES .LT. 0) GO TO 380
 C
 C
@@ -2447,7 +2447,7 @@ C     THIS HAS BEEN DONE.
       CALL DDAJAC(NEQ,X,Y,YPRIME,DELTA,CJ,H,
      * IER,WT,E,WM,IWM,RES,IRES,UROUND,JAC,RPAR,
      * IPAR,NTEMP)
-      if(iero.ne.0) return
+      if(ierror.ne.0) return
       CJOLD=CJ
       S = 100.D0
       IF (IRES .LT. 0) GO TO 380
@@ -2503,7 +2503,7 @@ C     AND GO BACK TO DO ANOTHER ITERATION
       IRES = 0
       CALL RES(X,Y,YPRIME,DELTA,IRES,
      *  RPAR,IPAR)
-      if(iero.ne.0) return
+      if(ierror.ne.0) return
       IF (IRES .LT. 0) GO TO 380
       GO TO 350
 C
