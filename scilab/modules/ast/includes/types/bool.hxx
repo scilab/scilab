@@ -79,6 +79,8 @@ protected :
         return isScalar() ? IdScalarBool : IdBool;
     }
 
+    virtual ast::Exp*       getExp(const Location& loc);
+
 private :
     virtual bool            subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims);
 

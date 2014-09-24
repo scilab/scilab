@@ -95,14 +95,20 @@ public:
     const exps_t& getArgs() const
     {
         exps_t* args = new exps_t;
-        std::copy(++(_exps.begin()), _exps.end(), args->begin());
+        for (exps_t::const_iterator it = ++(_exps.begin()), itEnd = _exps.end(); it != itEnd ; ++it)
+        {
+            args->push_back(*it);
+        }
         return *args;
     }
 
     exps_t& getArgs()
     {
         exps_t* args = new exps_t;
-        std::copy(++(_exps.begin()), _exps.end(), args->begin());
+        for (exps_t::const_iterator it = ++(_exps.begin()), itEnd = _exps.end(); it != itEnd ; ++it)
+        {
+            args->push_back(*it);
+        }
         return *args;
     }
 

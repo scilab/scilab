@@ -185,7 +185,7 @@ private :
         add_uint32((unsigned int)exps.size());
         for (exps_t::const_iterator it = exps.begin(), itEnd = exps.end(); it != itEnd ; ++it)
         {
-            (*it)->accept(*this);
+            (*it)->getOriginal()->accept(*this);
         }
     }
 
@@ -195,7 +195,7 @@ private :
         add_uint32((unsigned int)vars.size());
         for (exps_t::const_iterator it = vars.begin (), itEnd = vars.end(); it != itEnd; ++it)
         {
-            (*it)->accept(*this);
+            (*it)->getOriginal()->accept(*this);
         }
     }
 
@@ -206,12 +206,12 @@ private :
 
     void add_exp(const Exp* e)
     {
-        e->accept(*this);
+        e->getOriginal()->accept(*this);
     }
 
     void add_exp(const Exp& e)
     {
-        e.accept(*this);
+        e.getOriginal()->accept(*this);
     }
 
     void add_OpExp_Oper(const OpExp::Oper oper)
@@ -531,15 +531,15 @@ private :
     {
         add_ast(32, e);
         add_OpExp_Oper(e.getOper());
-        e.getLeft().accept(*this);
-        e.getRight().accept(*this);
+        e.getLeft().getOriginal()->accept(*this);
+        e.getRight().getOriginal()->accept(*this);
     }
     void visit(const LogicalOpExp& e)  /* done */
     {
         add_ast(33, e);
         add_OpExp_Oper(e.getOper());
-        e.getLeft().accept(*this);
-        e.getRight().accept(*this);
+        e.getLeft().getOriginal()->accept(*this);
+        e.getRight().getOriginal()->accept(*this);
     }
     void visit(const MatrixExp& e) /* done */
     {
@@ -563,13 +563,24 @@ private :
         add_exps(e.getArgs());
     }
 
+    /* optimized */
+    void visit(const OptimizedExp& e)
+    {
+        e.getOriginal()->accept(*this);
+    }
+
+    void visit(const DAXPYExp& e)
+    {
+        e.getOriginal()->accept(*this);
+    }
+
 public :
     SerializeVisitor(Exp* _ast) : ast(_ast), buf(NULL), buflen(0), bufsize(0), saveNodeNumber(true) {}
 
     unsigned char* serialize(bool _saveNodeNumber = true)
     {
         saveNodeNumber = _saveNodeNumber;
-        ast->accept(*this);
+        ast->getOriginal()->accept(*this);
         return get_buf();
     }
 };

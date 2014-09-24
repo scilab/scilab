@@ -54,7 +54,7 @@ public:
           _stack(NULL)
     {
         init.setParent(this);
-        _exps[0] = &init;
+        _exps.push_back(&init);
     }
 
     /** \brief Destroy a Variable Declaration node.
@@ -63,7 +63,6 @@ public:
     virtual ~VarDec()
     {
         delete &_name;
-        delete _exps[0];
     }
     /** \} */
 

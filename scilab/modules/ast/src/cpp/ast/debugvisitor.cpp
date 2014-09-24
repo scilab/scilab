@@ -414,4 +414,15 @@ void DebugVisitor::visit(const ListExp &e)
     e.getEnd().accept(*this);
     DEBUG_END_NODE();
 }
+
+void DebugVisitor::visit(const OptimizedExp &e)
+{
+    e.getOriginal()->accept(*this);
+}
+
+void DebugVisitor::visit(const DAXPYExp &e)
+{
+    e.getOriginal()->accept(*this);
+}
+
 }

@@ -34,8 +34,6 @@ public :
 
     ~CaseExp()
     {
-        delete _exps[0];
-        delete _exps[1];
     }
 
     virtual CaseExp* clone()

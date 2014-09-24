@@ -1127,3 +1127,28 @@ std::list<std::wstring> ConfigVariable::getReferenceModules()
     std::list<std::wstring> l(m_ReferenceModules);
     return l;
 }
+
+/*
+** \}
+*/
+
+/*
+** analyzer options
+** \{
+*/
+
+int ConfigVariable::m_analyzerOptions = 0;
+void ConfigVariable::setAnalyzerOptions(int _val)
+{
+    m_analyzerOptions = _val;
+}
+
+int ConfigVariable::getAnalyzerOptions(void)
+{
+    return m_analyzerOptions;
+}
+
+
+/*
+** \}
+*/

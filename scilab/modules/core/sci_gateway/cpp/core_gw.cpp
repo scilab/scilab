@@ -61,5 +61,6 @@ int CoreModule::Load()
     symbol::Context::getInstance()->addFunction(Function::createFunction(L"newfun", &sci_newfun, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(Function::createFunction(L"clearfun", &sci_clearfun, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(Function::createFunction(L"funptr", &sci_funptr, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(Function::createFunction(L"analyzerOptions", &sci_analyzeroptions, MODULE_NAME));
     return 1;
 }

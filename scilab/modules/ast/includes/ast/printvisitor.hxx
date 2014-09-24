@@ -110,6 +110,10 @@ public :
     ** \{ */
 public:
     virtual void visit(const ListExp &e);
+
+    /* optimized */
+    virtual void visit(const OptimizedExp &e);
+    virtual void visit(const DAXPYExp &e);
     /** \} */
 
 

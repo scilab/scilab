@@ -48,10 +48,6 @@ public:
 
     virtual ~MatrixLineExp ()
     {
-        for (exps_t::const_iterator it = _exps.begin(), itEnd = _exps.end(); it != itEnd ; ++it)
-        {
-            delete *it;
-        }
     }
 
     virtual MatrixLineExp* clone()

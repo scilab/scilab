@@ -386,6 +386,15 @@ public :
     static void addReferenceModule(std::wstring _module);
     static void removeReferenceModule(std::wstring _module);
     static std::list<std::wstring> getReferenceModules();
+
+    //analyzer options
+
+private :
+    static int m_analyzerOptions;
+public :
+    static void setAnalyzerOptions(int _val);
+    static int getAnalyzerOptions(void);
+
 };
 
 #endif /* !__CONFIGVARIABLE_HXX__ */

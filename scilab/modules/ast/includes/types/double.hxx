@@ -25,6 +25,7 @@
 #include "arrayof.hxx"
 #include "bool.hxx"
 #include "types_transposition.hxx"
+#include "doubleexp.hxx"
 
 namespace types
 {
@@ -266,6 +267,8 @@ public :
 
         return false;
     }
+
+    virtual ast::Exp*           getExp(const Location& loc);
 
 private :
     virtual bool                subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims);

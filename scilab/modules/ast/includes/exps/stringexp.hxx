@@ -14,7 +14,6 @@
 #define AST_STRINGEXP_HXX
 
 #include "constexp.hxx"
-#include "string.hxx"
 
 namespace ast
 {
@@ -24,23 +23,24 @@ namespace ast
 class StringExp : public ConstExp
 {
 public:
-    StringExp (const Location& location,
-               std::wstring value)
+    StringExp (const Location& location, std::wstring value)
         : ConstExp (location),
-          _value (value),
-          _bigString (NULL)
+          _value (value)
     {
     }
+
+    StringExp (const Location& location, types::InternalType* value)
+        : ConstExp (location),
+          _value (L"")
+    {
+        setConstant(value);
+    }
+
     /** \brief Destroy an string Exp node.
     **
     ** Delete value (see constructor). */
     virtual ~StringExp ()
     {
-        if (_bigString)
-        {
-            _bigString->DecreaseRef();
-            _bigString->killMe();
-        }
     }
     /** \} */
 
@@ -65,25 +65,6 @@ public:
     }
     /** \} */
 
-    types::String* getBigString() const
-    {
-        return _bigString;
-    }
-
-
-    void setBigString(types::String *_pS)
-    {
-        if (_bigString)
-        {
-            _bigString->DecreaseRef();
-            _bigString->killMe();
-        }
-        _bigString = _pS;
-        _bigString->IncreaseRef();
-    }
-
-    /** \name Accessors.
-    ** \{ */
 public:
     /** \brief Return the name of the type name (read only). */
     const std::wstring getValue() const
@@ -103,7 +84,6 @@ public:
 
 protected:
     const std::wstring _value;
-    types::String* _bigString;
 };
 
 } // namespace ast

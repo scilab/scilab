@@ -46,7 +46,7 @@ public:
           _conjugate (kind)
     {
         exp.setParent(this);
-        _exps[0] = &exp;
+        _exps.push_back(&exp);
     }
 
     /** \brief Destroy a Transpose Operation Expression node.
@@ -54,7 +54,6 @@ public:
     ** Delete expression, see constructor. */
     virtual ~TransposeExp ()
     {
-        delete _exps[0];
     }
     /** \} */
 

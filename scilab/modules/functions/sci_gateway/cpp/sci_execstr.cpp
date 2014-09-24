@@ -16,6 +16,7 @@
 #include "execvisitor.hxx"
 #include "mutevisitor.hxx"
 #include "printvisitor.hxx"
+#include "AnalysisVisitor.hxx"
 #include "visitor_common.hxx"
 #include "scilabWrite.hxx"
 #include "scilabexception.hxx"
@@ -190,6 +191,12 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
     if (bErrCatch)
     {
         ConfigVariable::setSilentError(1);
+    }
+
+    if (ConfigVariable::getAnalyzerOptions() == 1)
+    {
+        analysis::AnalysisVisitor analysis;
+        pExp->accept(analysis);
     }
 
     ast::exps_t LExp = pExp->getAs<SeqExp>()->getExps();

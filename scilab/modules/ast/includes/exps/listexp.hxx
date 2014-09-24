@@ -46,9 +46,9 @@ public:
         start.setParent(this);
         step.setParent(this);
         end.setParent(this);
-        _exps[0] = &start;
-        _exps[1] = &step;
-        _exps[2] = &end;
+        _exps.push_back(&start);
+        _exps.push_back(&step);
+        _exps.push_back(&end);
 
         values[0] = std::numeric_limits<double>::quiet_NaN();
         values[1] = std::numeric_limits<double>::quiet_NaN();
@@ -65,9 +65,6 @@ public:
     ** Delete left and right, see constructor. */
     virtual ~ListExp ()
     {
-        delete _exps[0];
-        delete _exps[1];
-        delete _exps[2];
     }
     /** \} */
 

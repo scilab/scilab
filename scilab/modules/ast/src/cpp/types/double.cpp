@@ -13,6 +13,7 @@
 #include <sstream>
 #include <math.h>
 #include "double.hxx"
+#include "doubleexp.hxx"
 #include "tostring_common.hxx"
 #include "scilabexception.hxx"
 #include "configvariable.hxx"
@@ -1193,4 +1194,10 @@ void Double::convertToZComplex()
     m_pRealData = (double*)pdblZ;
     setViewAsZComplex(true);
 }
+
+ast::Exp* Double::getExp(const Location& loc)
+{
+    return new ast::DoubleExp(loc, this);
+}
+
 }

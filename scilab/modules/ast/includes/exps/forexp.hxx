@@ -47,8 +47,8 @@ public:
     {
         vardec.setParent(this);
         body.setParent(this);
-        _exps[0] = &vardec;
-        _exps[1] = &body;
+        _exps.push_back(&vardec);
+        _exps.push_back(&body);
     }
 
     /** \brief Destroy a For Expression node.
@@ -56,8 +56,6 @@ public:
     ** Delete vardec, hi and body (see constructor). */
     virtual ~ForExp ()
     {
-        delete _exps[0];
-        delete _exps[1];
     }
     /** \} */
 

@@ -48,8 +48,8 @@ public:
     {
         head.setParent(this);
         tail.setParent(this);
-        _exps[0] = &head;
-        _exps[1] = &tail;
+        _exps.push_back(&head);
+        _exps.push_back(&tail);
     }
 
     /** \brief Destroy a Field Expression node.
@@ -57,8 +57,6 @@ public:
     ** Delete name and init (see constructor). */
     virtual ~FieldExp()
     {
-        delete _exps[0];
-        delete _exps[1];
     }
     /** \}*/
 

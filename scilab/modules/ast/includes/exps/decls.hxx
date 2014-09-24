@@ -81,6 +81,9 @@ class FunctionDec;
 // Type dedicated Exp
 class ListExp;
 
+class OptimizedExp;
+class DAXPYExp;
+
 } // namespace ast
 
 #endif // !AST_DECLS_HXX

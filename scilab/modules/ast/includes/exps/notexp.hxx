@@ -37,7 +37,7 @@ public:
         : MathExp (location)
     {
         exp.setParent(this);
-        _exps[0] = &exp;
+        _exps.push_back(&exp);
     }
 
     /** \brief Destroy a Not Operation Expression node.
@@ -45,7 +45,6 @@ public:
     ** Delete expression, see constructor. */
     virtual ~NotExp ()
     {
-        delete _exps[0];
     }
     /** \} */
 

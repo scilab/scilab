@@ -92,8 +92,8 @@ public:
     {
         left.setParent(this);
         right.setParent(this);
-        _exps[0] = &left;
-        _exps[1] = &right;
+        _exps.push_back(&left);
+        _exps.push_back(&right);
     }
 
     /** \brief Destroy a Operation Expression node.
@@ -101,8 +101,6 @@ public:
     ** Delete left and right, see constructor. */
     virtual ~OpExp ()
     {
-        delete _exps[0];
-        delete _exps[1];
     }
     /** \} */
 

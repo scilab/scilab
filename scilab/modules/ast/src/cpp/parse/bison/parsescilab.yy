@@ -321,7 +321,7 @@ expressions                     { ParserSingleInstance::setTree($1); }
 | expressionLineBreak           {
                                   ast::exps_t tmp;
                                   #ifdef BUILD_DEBUG_AST
-                                      tmp[0] = new ast::CommentExp(@$, new std::wstring(L"Empty body"));
+                                      tmp.push_back(new ast::CommentExp(@$, new std::wstring(L"Empty body");
                                   #endif
                                   ParserSingleInstance::setTree(new ast::SeqExp(@$, tmp));
 				  delete $1;
@@ -329,7 +329,7 @@ expressions                     { ParserSingleInstance::setTree($1); }
 | /* Epsilon */                 {
                                   ast::exps_t tmp;
                                   #ifdef BUILD_DEBUG_AST
-                                      tmp[0] = new ast::CommentExp(@$, new std::wstring(L"Empty body"));
+                                      tmp.push_back(new ast::CommentExp(@$, new std::wstring(L"Empty body")));
                                   #endif
                                   ParserSingleInstance::setTree(new ast::SeqExp(@$, tmp));
                                 }
@@ -357,14 +357,14 @@ recursiveExpression                             {
 | expression                                    {
                                                   ast::exps_t tmp;
                                                   $1->setVerbose(true);
-                                                  tmp[0] = $1;
+                                                  tmp.push_back($1);
                                                   $$ = new ast::SeqExp(@$, tmp);
                                                 }
 | expression COMMENT                            {
                                                   ast::exps_t tmp;
                                                   $1->setVerbose(true);
-                                                  tmp[0] = $1;
-                                                  tmp[1] = new ast::CommentExp(@2, $2);
+                                                  tmp.push_back($1);
+                                                  tmp.push_back(new ast::CommentExp(@2, $2));
                                                   $$ = new ast::SeqExp(@$, tmp);
                                                 }
 ;
@@ -466,7 +466,7 @@ implicitFunctionCall implicitCallable		{
 						}
 | ID implicitCallable				{
 						  ast::exps_t tmp;
-						  tmp[0] = $2;
+						  tmp.push_back($2);
 						  $$ = new ast::CallExp(@$, *new ast::SimpleVar(@1, *new symbol::Symbol(*$1)), tmp);
 						  delete $1;
 						}
@@ -646,7 +646,7 @@ variable			{
 functionDeclaration :
 FUNCTION ID ASSIGN ID functionDeclarationArguments functionDeclarationBreak functionBody ENDFUNCTION {
 				  ast::exps_t tmp;
-				  tmp[0] = new ast::SimpleVar(@2, *new symbol::Symbol(*$2));
+				  tmp.push_back(new ast::SimpleVar(@2, *new symbol::Symbol(*$2)));
 				  $$ = new ast::FunctionDec(@$,
 							    *new symbol::Symbol(*$4),
 							    *new ast::ArrayListVar(@5, *$5),
@@ -683,7 +683,7 @@ FUNCTION ID ASSIGN ID functionDeclarationArguments functionDeclarationBreak func
 				}
 | FUNCTION ID ASSIGN ID functionDeclarationArguments functionDeclarationBreak functionBody END {
 				  ast::exps_t tmp;
-				  tmp[0] = new ast::SimpleVar(@2, *new symbol::Symbol(*$2));
+				  tmp.push_back(new ast::SimpleVar(@2, *new symbol::Symbol(*$2)));
 				  $$ = new ast::FunctionDec(@$,
 							    *new symbol::Symbol(*$4),
 							    *new ast::ArrayListVar(@5, *$5),
@@ -720,7 +720,7 @@ FUNCTION ID ASSIGN ID functionDeclarationArguments functionDeclarationBreak func
 				}
 | HIDDENFUNCTION ID ASSIGN ID functionDeclarationArguments functionDeclarationBreak functionBody ENDFUNCTION {
 				  ast::exps_t tmp;
-				  tmp[0] = new ast::SimpleVar(@2, *new symbol::Symbol(*$2));
+				  tmp.push_back(new ast::SimpleVar(@2, *new symbol::Symbol(*$2)));
 				  $$ = new ast::FunctionDec(@$,
 							    *new symbol::Symbol(*$4),
 							    *new ast::ArrayListVar(@5, *$5),
@@ -757,7 +757,7 @@ FUNCTION ID ASSIGN ID functionDeclarationArguments functionDeclarationBreak func
 				}
 | HIDDENFUNCTION ID ASSIGN ID functionDeclarationArguments functionDeclarationBreak functionBody END {
 				  ast::exps_t tmp;
-				  tmp[0] = new ast::SimpleVar(@2, *new symbol::Symbol(*$2));
+				  tmp.push_back(new ast::SimpleVar(@2, *new symbol::Symbol(*$2)));
 				  $$ = new ast::FunctionDec(@$,
 							    *new symbol::Symbol(*$4),
 							    *new ast::ArrayListVar(@5, *$5),
@@ -794,7 +794,7 @@ FUNCTION ID ASSIGN ID functionDeclarationArguments functionDeclarationBreak func
 				}
 | HIDDEN FUNCTION ID ASSIGN ID functionDeclarationArguments functionDeclarationBreak functionBody ENDFUNCTION {
 				  ast::exps_t tmp;
-				  tmp[0] = new ast::SimpleVar(@2, *new symbol::Symbol(*$3));
+				  tmp.push_back(new ast::SimpleVar(@2, *new symbol::Symbol(*$3)));
 				  $$ = new ast::FunctionDec(@$,
 							    *new symbol::Symbol(*$5),
 							    *new ast::ArrayListVar(@6, *$6),
@@ -831,7 +831,7 @@ FUNCTION ID ASSIGN ID functionDeclarationArguments functionDeclarationBreak func
 				}
 | HIDDEN FUNCTION ID ASSIGN ID functionDeclarationArguments functionDeclarationBreak functionBody END {
 				  ast::exps_t tmp;
-				  tmp[0] = new ast::SimpleVar(@3, *new symbol::Symbol(*$3));
+				  tmp.push_back(new ast::SimpleVar(@3, *new symbol::Symbol(*$3)));
 				  $$ = new ast::FunctionDec(@$,
 							    *new symbol::Symbol(*$5),
 							    *new ast::ArrayListVar(@6, *$6),
@@ -924,7 +924,7 @@ expressions			{ $$ = $1; }
 | /* Epsilon */			{
 				  ast::exps_t tmp;
 				  #ifdef BUILD_DEBUG_AST
-				    tmp[0] = new ast::CommentExp(@$, new std::wstring(L"Empty function body"));
+				    tmp.push_back(new ast::CommentExp(@$, new std::wstring(L"Empty function body")));
 				  #endif
 				  $$ = new ast::SeqExp(@$, tmp);
 				}
@@ -1199,12 +1199,12 @@ LBRACE matrixOrCellLines RBRACE					{ $$ = new ast::CellExp(@$, *$2); }
 								}
 | LBRACE matrixOrCellColumns RBRACE					{
 								  ast::exps_t tmp;
-								  tmp[0] = new ast::MatrixLineExp(@2, *$2);
+								  tmp.push_back(new ast::MatrixLineExp(@2, *$2));
 								  $$ = new ast::CellExp(@$, tmp);
 								}
 | LBRACE EOL matrixOrCellColumns RBRACE				{
 								  ast::exps_t tmp;
-								  tmp[0] = new ast::MatrixLineExp(@3, *$3);
+								  tmp.push_back(new ast::MatrixLineExp(@3, *$3));
 								  $$ = new ast::CellExp(@$, tmp);
                                 }
 | LBRACE EOL RBRACE						{ ast::exps_t tmp;$$ = new ast::CellExp(@$, tmp); }
@@ -1229,12 +1229,12 @@ LBRACK matrixOrCellLines RBRACK					{ $$ = new ast::MatrixExp(@$, *$2); }
 								}
 | LBRACK matrixOrCellColumns RBRACK					{
 								  ast::exps_t tmp;
-								  tmp[0] = new ast::MatrixLineExp(@2, *$2);
+								  tmp.push_back(new ast::MatrixLineExp(@2, *$2));
 								  $$ = new ast::MatrixExp(@$, tmp);
 								}
 | LBRACK EOL matrixOrCellColumns RBRACK				{
 								  ast::exps_t tmp;
-								  tmp[0] = new ast::MatrixLineExp(@3, *$3);
+								  tmp.push_back(new ast::MatrixLineExp(@3, *$3));
 								  $$ = new ast::MatrixExp(@$, tmp);
 								}
 | LBRACK EOL RBRACK						{ ast::exps_t tmp;$$ = new ast::MatrixExp(@$, tmp); }
@@ -1405,7 +1405,7 @@ expressions                             { $$ = $1; }
 | /* Epsilon */                         {
     ast::exps_t tmp;
     #ifdef BUILD_DEBUG_AST
-    tmp[0] = new ast::CommentExp(@$, new std::wstring(L"Empty then body"));
+    tmp.push_back(new ast::CommentExp(@$, new std::wstring(L"Empty then body")));
     #endif
     $$ = new ast::SeqExp(@$, tmp);
                                         }
@@ -1420,7 +1420,7 @@ expressions                             { $$ = $1; }
 | /* Epsilon */                         {
                                          #ifdef BUILD_DEBUG_AST
                                            ast::exps_t tmp;
-                                           tmp[0] = new ast::CommentExp(@$, new std::wstring(L"Empty else body"));
+                                           tmp.push_back(new ast::CommentExp(@$, new std::wstring(L"Empty else body")));
                                            $$ = new ast::SeqExp(@$, tmp);
                                          #else
                                            $$ = NULL;
@@ -1473,25 +1473,25 @@ ELSE							{ /* !! Do Nothing !! */ }
 elseIfControl :
 ELSEIF condition then thenBody						{
 										ast::exps_t tmp;
-										tmp[0] = new ast::IfExp(@$, *$2, *$4);
+										tmp.push_back(new ast::IfExp(@$, *$2, *$4));
 										$$ = new ast::SeqExp(@$, tmp);
 									}
 | ELSEIF condition then thenBody else elseBody				{
 										ast::exps_t tmp;
 										if( $6 == NULL)
                                         {
-                                            tmp[0] = new ast::IfExp(@$, *$2, *$4);
+                                            tmp.push_back(new ast::IfExp(@$, *$2, *$4));
                                         }
                                         else
                                         {
-                                            tmp[0] = new ast::IfExp(@$, *$2, *$4, *$6);
+                                            tmp.push_back(new ast::IfExp(@$, *$2, *$4, *$6));
                                         }
 										$$ = new ast::SeqExp(@$, tmp);
 
 									}
 | ELSEIF condition then thenBody elseIfControl				{
 										ast::exps_t tmp;
-										tmp[0] = new ast::IfExp(@$, *$2, *$4, *$5);
+										tmp.push_back(new ast::IfExp(@$, *$2, *$4, *$5));
 										$$ = new ast::SeqExp(@$, tmp);
 									}
 ;
@@ -1590,7 +1590,7 @@ expressions				{ $$ = $1; }
 | /* Epsilon */			{
 						  ast::exps_t tmp;
 						#ifdef BUILD_DEBUG_AST
-						  tmp[0] = new ast::CommentExp(@$, new std::wstring(L"Empty case body"));
+						  tmp.push_back(new ast::CommentExp(@$, new std::wstring(L"Empty case body")));
 						#endif
 						  $$ = new ast::SeqExp(@$, tmp);
 						}
@@ -1654,7 +1654,7 @@ expressions			{ $$ = $1; }
 | /* Epsilon */			{
 				  ast::exps_t tmp;
 				  #ifdef BUILD_DEBUG_AST
-				    tmp[0] = new ast::CommentExp(@$, new std::wstring(L"Empty for body"));
+				    tmp.push_back(new ast::CommentExp(@$, new std::wstring(L"Empty for body")));
 				  #endif
 				  $$ = new ast::SeqExp(@$, tmp);
 				}
@@ -1677,7 +1677,7 @@ expressions             { $$ = $1; }
 | /* Epsilon */			{
                           ast::exps_t tmp;
                           #ifdef BUILD_DEBUG_AST
-                            tmp[0] = new ast::CommentExp(@$, new std::wstring(L"Empty while body"));
+                            tmp.push_back(new ast::CommentExp(@$, new std::wstring(L"Empty while body")));
                           #endif
                           $$ = new ast::SeqExp(@$, tmp);
                         }
@@ -1717,7 +1717,7 @@ TRY catchBody CATCH catchBody END                 { $$ =new ast::TryCatchExp(@$,
 | TRY catchBody END                               {
                                                     ast::exps_t tmp;
                                                     #ifdef BUILD_DEBUG_AST
-                                                      tmp[0] = new ast::CommentExp(@$, new std::wstring(L"Empty catch body"));
+                                                      tmp.push_back(new ast::CommentExp(@$, new std::wstring(L"Empty catch body")));
                                                     #endif
                                                     $$ =new ast::TryCatchExp(@$, *$2, *new ast::SeqExp(@$, tmp));
                                                   }
@@ -1742,7 +1742,7 @@ expressions                     { $$ = $1; }
 | /* Epsilon */                 {
                                   ast::exps_t tmp;
                                   #ifdef BUILD_DEBUG_AST
-                                    tmp[0] = new ast::CommentExp(@$, new std::wstring(L"Empty catch body"));
+                                    tmp.push_back(new ast::CommentExp(@$, new std::wstring(L"Empty catch body")));
                                   #endif
                                   $$ = new ast::SeqExp(@$, tmp);
                                 }

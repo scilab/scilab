@@ -735,8 +735,8 @@ static void Add_All_Variables(void)
 
 static void Add_Nan(void)
 {
-    double dbl1 = 1.0;
-    double dbl0 = dbl1 - dbl1;
+    double dbl1 = -1.0;
+    double dbl0 = fabs(dbl1 - dbl1);
 
     Add_Double_Constant(L"%nan", dbl0 / dbl0, 0, false);
 }

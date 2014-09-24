@@ -25,6 +25,7 @@ extern "C"
 #include "dynlib_ast.h"
 }
 
+#include "exp.hxx" // for invoke
 #include "visitor.hxx" // for invoke
 #include "callexp.hxx"
 #include "localization.hxx"
@@ -212,6 +213,10 @@ public :
         return getTypeStr();
     }
     virtual InternalType*           clone(void) = 0;
+    virtual ast::Exp*               getExp(const Location &loc)
+    {
+        return NULL;
+    }
 
 #ifdef _SCILAB_DEBUGREF_
     inline void _killme(const char * f, int l)

@@ -364,40 +364,42 @@ public :
     void visitprivate(const MatrixExp &e);
     void visitprivate(const CallExp &e);
     void visitprivate(const CellCallExp &e);
+    void visitprivate(const OptimizedExp &e);
+    void visitprivate(const DAXPYExp &e);
 
     void visitprivate(const StringExp &e)
     {
-        if (e.getBigString() == NULL)
+        if (e.getConstant() == NULL)
         {
             types::String *psz = new types::String(e.getValue().c_str());
-            (const_cast<StringExp *>(&e))->setBigString(psz);
+            (const_cast<StringExp *>(&e))->setConstant(psz);
 
         }
-        setResult(e.getBigString());
+        setResult(e.getConstant());
     }
 
 
     void visitprivate(const DoubleExp  &e)
     {
-        if (e.getBigDouble() == NULL)
+        if (e.getConstant() == NULL)
         {
             Double *pdbl = new Double(e.getValue());
-            (const_cast<DoubleExp *>(&e))->setBigDouble(pdbl);
+            (const_cast<DoubleExp *>(&e))->setConstant(pdbl);
 
         }
-        setResult(e.getBigDouble());
+        setResult(e.getConstant());
     }
 
 
     void visitprivate(const BoolExp  &e)
     {
-        if (e.getBigBool() == NULL)
+        if (e.getConstant() == NULL)
         {
             Bool *pB = new Bool(e.getValue());
-            (const_cast<BoolExp *>(&e))->setBigBool(pB);
+            (const_cast<BoolExp *>(&e))->setConstant(pB);
 
         }
-        setResult(e.getBigBool());
+        setResult(e.getConstant());
     }
 
 

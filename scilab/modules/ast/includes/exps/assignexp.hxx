@@ -42,10 +42,11 @@ public:
     ** Delete var and exp (see constructor). */
     virtual ~AssignExp ()
     {
-        if (lr_owner)
+        if (lr_owner == false)
         {
-            delete _exps[0];
-            delete _exps[1];
+            //set to NULL to avoid delete in ~Exp()
+            _exps[0] = NULL;
+            _exps[1] = NULL;
         }
     }
     /** \} */

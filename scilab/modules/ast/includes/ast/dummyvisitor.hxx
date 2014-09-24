@@ -283,6 +283,17 @@ protected:
         e.getEnd().accept(*this);
     }
     /** \} */
+
+    /* optimized */
+    virtual void visit(const OptimizedExp &e)
+    {
+        e.getOriginal()->accept(*this);
+    }
+
+    virtual void visit (const DAXPYExp &e)
+    {
+        e.getOriginal()->accept(*this);
+    }
 };
 }
 

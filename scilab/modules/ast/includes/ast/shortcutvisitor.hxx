@@ -65,6 +65,7 @@ public:
     virtual void visit (const ListExp &/*e*/) {}
 
     virtual void visit (const LogicalOpExp &e);
+
 };
 }
 #endif // !AST_SHORTCUTVISITOR_HXX

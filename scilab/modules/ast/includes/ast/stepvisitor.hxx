@@ -203,6 +203,17 @@ class EXTERN_AST StepVisitor : public RunVisitorT<StepVisitor>
     {
         visitprivate(e);
     }
+
+    /* optimized */
+    void visit(const OptimizedExp &e)
+    {
+        visitprivate(e);
+    }
+
+    void visit(const DAXPYExp &e)
+    {
+        visitprivate(e);
+    }
 };
 }
 

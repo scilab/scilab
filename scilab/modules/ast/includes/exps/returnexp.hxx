@@ -43,11 +43,11 @@ public:
         {
             _is_global = false;
             exp->setParent(this);
-            _exps[0] = exp;
+            _exps.push_back(exp);
         }
         else
         {
-            _exps[0] = new ast::CommentExp(location, new std::wstring(L"No return !!"));
+            _exps.push_back(new ast::CommentExp(location, new std::wstring(L"No return !!")));
             _exps[0]->setParent(this);
         }
 
@@ -55,7 +55,6 @@ public:
 
     virtual ~ReturnExp ()
     {
-        delete _exps[0];
     }
 
     virtual ReturnExp* clone()

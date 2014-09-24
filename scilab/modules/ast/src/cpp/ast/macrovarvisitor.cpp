@@ -31,22 +31,22 @@ void MacrovarVisitor::visit(const CallExp &e)
     exps_t args = e.getArgs();
     for (exps_t::const_iterator it = args.begin (), itEnd = args.end(); it != itEnd; ++it)
     {
-        (*it)->accept (*this);
+        (*it)->getOriginal()->accept (*this);
         add();
     }
 }
 
 void MacrovarVisitor::visit(const AssignExp &e)
 {
-    e.getLeftExp().accept (*this);
+    e.getLeftExp().getOriginal()->accept (*this);
     add();
-    e.getRightExp().accept (*this);
+    e.getRightExp().getOriginal()->accept (*this);
     add();
 }
 
 void MacrovarVisitor::visit (const VarDec  &e)
 {
-    e.getInit().accept(*this);
+    e.getInit().getOriginal()->accept(*this);
     add(m_local);
 }
 

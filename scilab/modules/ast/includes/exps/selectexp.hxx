@@ -44,8 +44,15 @@ public :
             _exps.push_back(*it);
         }
 
-        defaultCase.setParent(this);
-        _exps.push_back(&defaultCase);
+        if (&defaultCase != NULL)
+        {
+            defaultCase.setParent(this);
+            _exps.push_back(&defaultCase);
+        }
+        else
+        {
+            _hasDefault = false;
+        }
     }
 
     SelectExp(const Location& location,
@@ -66,10 +73,6 @@ public :
 
     ~SelectExp()
     {
-        for (exps_t::const_iterator it = _exps.begin(), itEnd = _exps.end(); it != itEnd ; ++it)
-        {
-            delete *it;
-        }
     }
 
     virtual SelectExp* clone()

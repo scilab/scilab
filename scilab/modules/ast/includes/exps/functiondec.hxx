@@ -58,18 +58,16 @@ public:
         args.setParent(this);
         returns.setParent(this);
         body.setParent(this);
-        _exps[0] = &args;
-        _exps[1] = &returns;
-        _exps[2] = &body;
+        _exps.push_back(&args);
+        _exps.push_back(&returns);
+        _exps.push_back(&body);
     }
 
     virtual ~FunctionDec ()
     {
         //body will be deleted by types::Macro
-        //delete _exps[2];
-        delete _exps[0];
-        delete _exps[1];
-
+        //so replace by NULL to avoir delete in ~Exp()
+        _exps[2] = NULL;
     }
 
     virtual FunctionDec* clone()

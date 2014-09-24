@@ -45,8 +45,8 @@ public:
     {
         test.setParent(this);
         body.setParent(this);
-        _exps[0] = &test;
-        _exps[1] = &body;
+        _exps.push_back(&test);
+        _exps.push_back(&body);
     }
 
     /** \brief Destroy a While Expression node.
@@ -54,8 +54,6 @@ public:
     ** Delete test and body (see constructor). */
     virtual ~WhileExp ()
     {
-        delete _exps[0];
-        delete _exps[1];
     }
     /** \}*/
 

@@ -193,6 +193,16 @@ class EXTERN_AST ExecVisitor : public RunVisitorT<ExecVisitor>
     {
         visitprivate(e);
     }
+
+    void visit(const OptimizedExp &e)
+    {
+        visitprivate(e);
+    }
+
+    void visit(const DAXPYExp &e)
+    {
+        visitprivate(e);
+    }
 };
 }
 #endif // !AST_EXECVISITOR_HXX

@@ -13,6 +13,7 @@
 #include <sstream>
 #include "core_math.h"
 #include "string.hxx"
+#include "stringexp.hxx"
 #include "tostring_common.hxx"
 #include "configvariable.hxx"
 
@@ -481,5 +482,11 @@ wchar_t** String::allocData(int _iSize)
     memset(pStr, 0x00, _iSize * sizeof(wchar_t*));
     return pStr;
 }
+
+ast::Exp* String::getExp(const Location& loc)
+{
+    return new ast::StringExp(loc, this);
+}
+
 }
 

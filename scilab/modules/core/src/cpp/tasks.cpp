@@ -179,8 +179,12 @@ void execAstTask(ast::Exp* tree, bool serialize, bool timed, bool ASTtimed, bool
     if (!execVerbose && !ASTtimed)
     {
         //call analyzer visitor before exec visitor
-        analysis::AnalysisVisitor analysis;
-        newTree->accept(analysis);
+        if (ConfigVariable::getAnalyzerOptions() == 1)
+        {
+            analysis::AnalysisVisitor analysis;
+            newTree->accept(analysis);
+        }
+
         exec = new ast::ExecVisitor();
     }
 

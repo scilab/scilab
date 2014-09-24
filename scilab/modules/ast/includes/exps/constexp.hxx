@@ -14,6 +14,7 @@
 #define AST_CONSTEXP_HXX
 
 #include "exp.hxx"
+#include "internal.hxx"
 
 namespace ast
 {
@@ -24,18 +25,48 @@ class ConstExp : public Exp
 {
 public:
     ConstExp (const Location& location)
-        : Exp (location)
+        : Exp (location), constant(NULL)
     {
     }
 
     virtual ~ConstExp ()
     {
+        if (constant)
+        {
+            constant->DecreaseRef();
+            constant->killMe();
+        }
     }
 
     inline bool isConstExp() const
     {
         return true;
     }
+
+    types::InternalType* getConstant() const
+    {
+        return constant;
+    }
+
+    types::InternalType* getConstant()
+    {
+        return constant;
+    }
+
+    void setConstant(types::InternalType* _const)
+    {
+        if (constant)
+        {
+            constant->DecreaseRef();
+            constant->killMe();
+        }
+
+        constant = _const;
+        constant->IncreaseRef();
+    }
+
+protected :
+    types::InternalType* constant;
 };
 } // namespace ast
 #endif

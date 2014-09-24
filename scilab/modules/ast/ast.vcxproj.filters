@@ -628,6 +628,12 @@
     <ClInclude Include="includes\operations\types_dotdivide.hxx">
       <Filter>Header Files\operations</Filter>
     </ClInclude>
+    <ClInclude Include="includes\exps\optimizedexp.hxx">
+      <Filter>Header Files\exps</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\exps\daxpyexp.hxx">
+      <Filter>Header Files\exps</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\cpp\ast\debugvisitor.cpp">

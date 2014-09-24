@@ -41,9 +41,9 @@ public:
         test.setParent(this);
         t.setParent(this);
         e.setParent(this);
-        _exps[0] = &test;
-        _exps[1] = &t;
-        _exps[2] = &e;
+        _exps.push_back(&test);
+        _exps.push_back(&t);
+        _exps.push_back(&e);
     }
 
     IfExp(const Location& location,
@@ -54,17 +54,14 @@ public:
         test.setParent(this);
         t.setParent(this);
 
-        _exps[0] = &test;
-        _exps[1] = &t;
-        _exps[2] = new ast::CommentExp(location, new std::wstring(L"No else !!"));
+        _exps.push_back(&test);
+        _exps.push_back(&t);
+        _exps.push_back(new ast::CommentExp(location, new std::wstring(L"No else !!")));
         _exps[2]->setParent(this);
     }
 
     virtual ~IfExp()
     {
-        delete _exps[0];
-        delete _exps[1];
-        delete _exps[2];
     }
 
     virtual IfExp* clone()

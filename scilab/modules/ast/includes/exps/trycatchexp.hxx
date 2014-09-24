@@ -43,14 +43,12 @@ public:
     {
         tryme.setParent(this);
         catchme.setParent(this);
-        _exps[0] = &tryme;
-        _exps[1] = &catchme;
+        _exps.push_back(&tryme);
+        _exps.push_back(&catchme);
     }
 
     virtual ~TryCatchExp ()
     {
-        delete _exps[0];
-        delete _exps[1];
     }
 
     virtual TryCatchExp* clone()
