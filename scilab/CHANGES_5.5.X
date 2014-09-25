@@ -207,6 +207,8 @@ Scilab Bug Fixes
 
 * Bug #13554 fixed - rubberbox returned wrong values.
 
+* Bug #13579 fixed - bar displayed useless warnings.
+
 
 Xcos Bug Fixes
 ==============
