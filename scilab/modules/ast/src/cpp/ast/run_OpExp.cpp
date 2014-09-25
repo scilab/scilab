@@ -326,12 +326,18 @@ void RunVisitorT<T>::visitprivate(const LogicalOpExp &e)
 
         setResult(pResult);
 
+        // protect pResult in case where pITL or pITR equal pResult
+        pResult->IncreaseRef();
+
         //clear left and/or right operands
         pITL->killMe();
         if (pITR)
         {
             pITR->killMe();
         }
+
+        // unprotect pResult
+        pResult->DecreaseRef();
     }
     catch (ast::ScilabError error)
     {
