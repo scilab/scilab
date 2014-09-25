@@ -80,7 +80,15 @@ Function::ReturnValue sci_eye(types::typed_list &in, int _iRetCount, types::type
                 Scierror(999, _("%s: Wrong type for input argument #%d: Real scalar expected.\n"), "eye", i + 1);
                 return Function::Error;
             }
-            dimsArray[i] = (int)in[i]->getAs<types::Double>()->get()[0];
+
+            double dValue = in[i]->getAs<types::Double>()->get(0);
+            if (dValue >= INT_MAX)
+            {
+                Scierror(999, _("%s: variable size exceeded : less than %d expected.\n"), "eye", INT_MAX);
+                return types::Function::Error;
+            }
+
+            dimsArray[i] = (int)dValue;
         }
     }
 

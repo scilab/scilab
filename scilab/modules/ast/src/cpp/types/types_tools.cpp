@@ -14,6 +14,10 @@
 #include "types_tools.hxx"
 #include "overload.hxx"
 #include "execvisitor.hxx"
+extern "C"
+{
+#include "os_swprintf.h"
+}
 
 namespace types
 {
@@ -192,6 +196,14 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
             _piMaxDim[i] = 0;
             for (int j = 0 ; j < iCountDim ; j++)
             {
+                //checks if size < size(int)
+                if (pCurrentArg->get(j) >= INT_MAX)
+                {
+                    wchar_t szError[bsiz];
+                    os_swprintf(szError, bsiz, _W("variable size exceeded : less than %d expected.\n").c_str(), INT_MAX);
+                    throw ast::ScilabError(szError);
+                }
+
                 const int d = static_cast<int>(pCurrentArg->get(j));
                 if (d > _piMaxDim[i])
                 {

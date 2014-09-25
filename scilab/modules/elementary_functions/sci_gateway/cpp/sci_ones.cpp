@@ -3,6 +3,7 @@
  * Copyright (C) 2006 - INRIA - Allan CORNET
  * Copyright (C) 2011 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2013 - Scilab Enterprises - Cedric Delamarre
+ * Copyright (C) 2014 - Scilab Enterprises - Anais Aubert
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -84,8 +85,16 @@ types::Function::ReturnValue sci_ones(types::typed_list &in, int _iRetCount, typ
             switch (in[i]->getType())
             {
                 case types::InternalType::ScilabDouble :
-                    piDims[i] = static_cast<int>(in[i]->getAs<types::Double>()->get()[0]);
-                    break;
+                {
+                    double dValue = in[i]->getAs<types::Double>()->get(0);
+                    if (dValue >= INT_MAX)
+                    {
+                        Scierror(999, _("%s: variable size exceeded : less than %d expected.\n"), "ones", INT_MAX);
+                        return types::Function::Error;
+                    }
+                    piDims[i] = static_cast<int>(dValue);
+                }
+                break;
                 case types::InternalType::ScilabInt8 :
                     piDims[i] = static_cast<int>(in[i]->getAs<types::Int8>()->get()[0]);
                     break;
@@ -105,11 +114,27 @@ types::Function::ReturnValue sci_ones(types::typed_list &in, int _iRetCount, typ
                     piDims[i] = static_cast<int>(in[i]->getAs<types::UInt32>()->get()[0]);
                     break;
                 case types::InternalType::ScilabInt64 :
-                    piDims[i] = static_cast<int>(in[i]->getAs<types::Int64>()->get()[0]);
-                    break;
+                {
+                    long long llValue = in[i]->getAs<types::Int64>()->get(0);
+                    if (llValue >= INT_MAX)
+                    {
+                        Scierror(999, _("%s: variable size exceeded : less than %d expected.\n"), "ones", INT_MAX);
+                        return types::Function::Error;
+                    }
+                    piDims[i] = static_cast<int>(llValue);
+                }
+                break;
                 case types::InternalType::ScilabUInt64 :
-                    piDims[i] = static_cast<int>(in[i]->getAs<types::UInt64>()->get()[0]);
-                    break;
+                {
+                    unsigned long long ullValue = in[i]->getAs<types::UInt64>()->get(0);
+                    if (ullValue >= INT_MAX)
+                    {
+                        Scierror(999, _("%s: variable size exceeded : less than %d expected.\n"), "ones", INT_MAX);
+                        return types::Function::Error;
+                    }
+                    piDims[i] = static_cast<int>(ullValue);
+                }
+                break;
                 default :
                     Scierror(999, _("%s: Wrong type for input argument #%d: Real scalar expected.\n"), "ones", i + 1);
                     return Function::Error;

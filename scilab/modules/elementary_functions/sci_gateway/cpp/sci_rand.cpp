@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - DIGITEO - Antoine ELIAS
+ * Copyright (C) 2014 - Scilab Enterprises - Anais Aubert
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -24,8 +25,8 @@ extern "C"
 #include "basic_functions.h"
 }
 
-#define Ran1		siRandSave		//old C2F(com).ran[0]
-#define Ran2		siRandType		//old C2F(com).ran[1]
+#define Ran1 siRandSave //old C2F(com).ran[0]
+#define Ran2 siRandType //old C2F(com).ran[1]
 
 const wchar_t g_pwstConfigInfo[] = {L"info"};
 const wchar_t g_pwstConfigSeed[] = {L"seed"};
@@ -44,7 +45,6 @@ types::Function::ReturnValue sci_rand(types::typed_list &in, int _iRetCount, typ
     static int iForceInit	= 0;
 
     int iSizeIn = (int)in.size();
-
     if (iSizeIn == 0 || iSizeIn == -1)
     {
         //rand or rand()
@@ -175,11 +175,20 @@ types::Function::ReturnValue sci_rand(types::typed_list &in, int _iRetCount, typ
             {
                 if (in[i]->isDouble() == false || in[i]->getAs<types::Double>()->isScalar() == false)
                 {
+                    delete[] piDims;
                     Scierror(999, _("%s: Wrong type for input argument #%d: Real scalar expected.\n"), "rand" , i + 1);
                     return types::Function::Error;
                 }
 
-                piDims[i] = (int)in[i]->getAs<types::Double>()->get(0);
+                double dValue = in[i]->getAs<types::Double>()->get(0);
+                if (dValue >= INT_MAX)
+                {
+                    delete[] piDims;
+                    Scierror(999, _("%s: variable size exceeded : less than %d expected.\n"), "rand", INT_MAX);
+                    return types::Function::Error;
+                }
+
+                piDims[i] = (int)dValue;
             }
 
             types::Double* pOut = new types::Double(iDims, piDims);
