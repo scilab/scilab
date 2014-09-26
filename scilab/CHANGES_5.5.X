@@ -69,6 +69,8 @@ Scilab Bug Fixes
 * Bug #12580 fixed - Demonstration GUI now displays an arrow if a selected item
                      has sub-categories.
 
+* Bug #12620 fixed - uicontextmenus size was wrong when children were created invisible.
+
 * Bug #12700 fixed - edit_curv (used by CURV_f) was broken.
 
 * Bug #12834 fixed - Graphics did not work under Fedora (GLIBC issue).

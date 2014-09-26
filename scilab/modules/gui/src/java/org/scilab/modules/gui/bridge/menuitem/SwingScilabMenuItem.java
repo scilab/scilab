@@ -28,6 +28,7 @@ import org.scilab.modules.console.utils.ScilabSpecialTextUtilities;
 import org.scilab.modules.gui.SwingViewMenu;
 import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.bridge.checkboxmenuitem.SwingScilabCheckBoxMenuItem;
+import org.scilab.modules.gui.bridge.contextmenu.SwingScilabContextMenu;
 import org.scilab.modules.gui.bridge.menu.SwingScilabMenu;
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
 import org.scilab.modules.gui.checkboxmenuitem.ScilabCheckBoxMenuItem;
@@ -454,6 +455,11 @@ public class SwingScilabMenuItem extends JMenuItem implements SwingViewObject, S
      */
     public void setVisible(boolean status) {
         super.setVisible(status);
+
+        if (getParent() instanceof SwingScilabContextMenu) { // See bug #12620
+            ((SwingScilabContextMenu) getParent()).pack();
+        }
+
         if (meAsACheckBoxMenuItem != null) {
             meAsACheckBoxMenuItem.setVisible(status);
         }
