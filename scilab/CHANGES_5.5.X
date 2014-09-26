@@ -225,6 +225,8 @@ Scilab Bug Fixes
 
 * Bug #13515 fixed - There were wrong results for matrix/hypermatrix with bitset.
 
+* Bug #13516 fixed - Russian and Japanese help pages were missing.
+
 * Bug #13524 fixed - strtod did not ignore the tabs and CR.
 
 * Bug #13527 fixed - hilb did not check properly the type of the first input argument.
