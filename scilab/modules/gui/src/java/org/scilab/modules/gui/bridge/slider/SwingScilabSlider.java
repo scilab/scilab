@@ -20,6 +20,8 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
 
 import javax.swing.AbstractAction;
 import javax.swing.JScrollBar;
@@ -166,6 +168,19 @@ public class SwingScilabSlider extends JSlider implements SwingViewObject, Simpl
             }
         };
         addChangeListener(changeListener);
+
+        // Fix for bug #13543
+        this.addMouseWheelListener(new MouseWheelListener() {
+            public void mouseWheelMoved(MouseWheelEvent e) {
+                int notches = e.getWheelRotation();
+                int step = (e.isControlDown() ? getMajorTickSpacing() : getMinorTickSpacing());
+                if (notches < 0) {
+                    setValue(getValue() + step);
+                } else {
+                    setValue(getValue() - step);
+                }
+            }
+        });
     }
 
     /**
