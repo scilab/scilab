@@ -84,6 +84,9 @@ Scilab Bug Fixes
 
 * Bug #13180 fixed - surf did not handle degenerate cases.
 
+* Bug #13221 fixed - Default figure "visible" property was ignored when creating
+                     a new figure.
+
 * Bug #13291 fixed - xmltojar([],[],'ja_JP') might lead to a crash when the
                      locale was not system-wide available.
 

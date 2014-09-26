@@ -217,7 +217,7 @@ public final class SwingView implements GraphicView {
     public static int getSize() {
         return me.allObjects.size();
     }
-    
+
     private enum UielementType {
         Console, CheckBox, Edit, Spinner, Frame, Figure, Axes, Image, ListBox, PopupMenu, Progressbar, PushButton, RadioButton, Slider, Table, Text, Uimenu, UiParentMenu, UiChildMenu, UiCheckedMenu, UiContextMenu, Waitbar, Tab, Layer
     }
@@ -749,7 +749,8 @@ public final class SwingView implements GraphicView {
                 final Runnable r = new Runnable() {
                     @Override
                     public void run() {
-                        ((SwingScilabDockablePanel) registeredObject.getValue()).getParentWindow().setVisible(true);
+                        boolean figVis = (Boolean) GraphicController.getController().getProperty(id, __GO_VISIBLE__);
+                        ((SwingScilabDockablePanel) registeredObject.getValue()).getParentWindow().setVisible(figVis);
                         ((SwingScilabDockablePanel) registeredObject.getValue()).setVisible(true);
                         Integer[] figureSize = (Integer[]) GraphicController.getController().getProperty(id, __GO_SIZE__);
                         ((SwingScilabDockablePanel) registeredObject.getValue()).getParentWindow().setDims(new Size(figureSize[0], figureSize[1]));
@@ -828,33 +829,33 @@ public final class SwingView implements GraphicView {
             final Integer[] newChildren = (Integer[]) GraphicController.getController().getProperty(id, __GO_CHILDREN__);
 
             switch (type) {
-                    /*
-                     * FIGURE CHILDREN UPDATE
-                     */
+                /*
+                 * FIGURE CHILDREN UPDATE
+                 */
                 case __GO_FIGURE__:
                     updateFigureChildren(registeredObject, newChildren);
                     break;
-                    /*
-                     * CONSOLE CHILDREN UPDATE
-                     */
+                /*
+                 * CONSOLE CHILDREN UPDATE
+                 */
                 case __GO_CONSOLE__:
                     updateConsoleChildren(registeredObject, newChildren);
                     break;
-                    /*
-                     * MENU CHILDREN UPDATE
-                     */
+                /*
+                 * MENU CHILDREN UPDATE
+                 */
                 case __GO_UIMENU__:
                     updateMenuChildren(registeredObject, id, newChildren);
                     break;
-                    /*
-                     * CONTEXTMENU CHILDREN UPDATE
-                     */
+                /*
+                 * CONTEXTMENU CHILDREN UPDATE
+                 */
                 case __GO_UICONTEXTMENU__:
                     updateContextMenuChildren(registeredObject, newChildren);
                     break;
-                    /*
-                     * UICONTROL "FRAME" CHILDREN UPDATE
-                     */
+                /*
+                 * UICONTROL "FRAME" CHILDREN UPDATE
+                 */
                 case __GO_UICONTROL__:
 
                     int style = (Integer) GraphicController.getController().getProperty(id, __GO_STYLE__);
