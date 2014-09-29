@@ -3241,8 +3241,6 @@ Scilab Bug Fixes
 * Bug #8234 fixed - strtod did not return an empty matrix when the input argument was an
                     empty matrix.
 
-* Bug #8667 fixed - Handling of %nan in functions min,max,median is not correctly documented.
-
 * Bug #8264 fixed - Matlab to Scilab dictionary help page updated for atan2.
 
 * Bug #8319 fixed - dbphi(hypermat) and phasemag(hypermat) returned a matrix instead of
