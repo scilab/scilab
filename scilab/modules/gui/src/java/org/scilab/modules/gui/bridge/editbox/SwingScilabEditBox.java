@@ -695,4 +695,9 @@ public class SwingScilabEditBox extends JScrollPane implements SwingViewObject, 
             setForeground(color);
         }
     }
+
+    public void requestFocus() {
+        super.requestFocus();
+        textPane.requestFocus();
+    }
 }
