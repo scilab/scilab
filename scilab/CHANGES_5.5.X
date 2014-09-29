@@ -86,9 +86,6 @@ Scilab Bug Fixes
 
 * Bug #13180 fixed - surf did not handle degenerate cases.
 
-* Bug #13221 fixed - Default figure "visible" property was ignored when creating
-                     a new figure.
-
 * Bug #13291 fixed - xmltojar([],[],'ja_JP') might lead to a crash when the
                      locale was not system-wide available.
 
@@ -98,6 +95,9 @@ Scilab Bug Fixes
                      auto_orientation mode.
 
 * Bug #13316 fixed - There were missing tooltips on File Browser buttons.
+
+* Bug #13321 fixed - Default figure "visible" property was ignored when creating
+                     a new figure.
 
 * Bug #13324 fixed - Legends display were completely modified when an item was clicked 
                      and modified.
