@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2014-03-29 18:40+0000\n"
+"PO-Revision-Date: 2014-04-03 05:51+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16967)\n"
+"X-Generator: Launchpad (build 17196)\n"
 "Language: uk\n"
 
 #, c-format
@@ -592,7 +592,7 @@ msgstr "Не вдалося визначити поточний вигляд і 
 
 #, c-format
 msgid "%s: This file %s does not exist.\n"
-msgstr ""
+msgstr "%s: файла %s не існує.\n"
 
 #, c-format
 msgid ""
@@ -1464,9 +1464,6 @@ msgstr "Вбудоване зображення PostScript (EPS)"
 msgid "PostScript image (PS)"
 msgstr "Зображення PostScript (PS)"
 
-msgid "FIG image"
-msgstr "Зображення FIG"
-
 msgid "PDF image"
 msgstr "Зображення PDF"
 
@@ -1553,6 +1550,9 @@ msgstr "Назад"
 msgid "Forward"
 msgstr "Вперед"
 
+msgid "OK"
+msgstr "Гаразд"
+
 msgid "Tree Overview"
 msgstr "Огляд відомостей"
 
@@ -1586,9 +1586,6 @@ msgstr "Вимкнути інтерполяцію"
 
 msgid "Display function name"
 msgstr "Показати назву функції"
-
-msgid "OK"
-msgstr "Гаразд"
 
 msgid "Insert"
 msgstr "Вставити"
@@ -2529,13 +2526,13 @@ msgid "Please enter a color name first."
 msgstr "Будь ласка, спочатку введіть назву кольору."
 
 msgid "Unknown color."
-msgstr ""
+msgstr "Невідомий колір."
 
 msgid "No color selected."
 msgstr "Не вибрано жодного кольору."
 
 msgid "Color selection"
-msgstr ""
+msgstr "Вибір кольору"
 
 #, c-format
 msgid "Selected colors are: %s."
@@ -2543,7 +2540,7 @@ msgstr "Вибрані кольори: %s."
 
 #, c-format
 msgid "Deleted colors are: %s."
-msgstr ""
+msgstr "Вилучені кольори: %s."
 
 #, c-format
 msgid "You clicked on menu '%s'."
@@ -2588,7 +2585,7 @@ msgid "Application"
 msgstr "Програма"
 
 msgid "Close figure"
-msgstr ""
+msgstr "Закрити рисунок"
 
 msgid "Scilab Graphics"
 msgstr "Графічні дані Scilab"
@@ -2618,7 +2615,7 @@ msgid "item1|item2|item3|item4"
 msgstr "елемент1|елемент2|елемент3|елемент4"
 
 msgid "Pop-up menu"
-msgstr ""
+msgstr "Контекстне меню"
 
 msgid "Slider demo"
 msgstr "Демонстрація роботи повзунка"
@@ -2630,7 +2627,7 @@ msgid "Add color in listbox"
 msgstr "Додати колір з панелі списку"
 
 msgid "Delete color in listbox"
-msgstr ""
+msgstr "Вилучити колір з панелі списку"
 
 msgid "blue"
 msgstr "синій"
@@ -2648,10 +2645,10 @@ msgid "Display selection"
 msgstr "Показ позначеного"
 
 msgid "Delete selection"
-msgstr ""
+msgstr "Вилучити позначені"
 
 msgid "Default"
-msgstr ""
+msgstr "Типово"
 
 msgid "Quit demonstration"
 msgstr "Закрити вікно демонстрації"
@@ -2817,14 +2814,6 @@ msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A 'Figure' handle or a real "
-"expected.\n"
-msgstr ""
-"%s: помилковий розмір вхідного параметра №%d: слід використовувати елемент "
-"керування «Figure» або дійсне число.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: uitree expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: мало бути використано тип "
@@ -2931,9 +2920,3 @@ msgstr "%s: помилковий тип для %s: слід використов
 #, c-format
 msgid "%s: Wrong size for %s: A real expected.\n"
 msgstr "%s: помилковий розмір для %s: слід використовувати дійсне число.\n"
-
-#~ msgid "Exit figure"
-#~ msgstr "Закрити вікно рисунка"
-
-#~ msgid "Selected colors"
-#~ msgstr "Вибрані кольори"

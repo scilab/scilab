@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16967)\n"
+"X-Generator: Launchpad (build 17196)\n"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
@@ -111,7 +111,8 @@ msgid "%s: Wrong type for input argument #%d: Real vector nx3 expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Must be between 0.0 and 1.0.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: Must be between 0.0 and 1.0.\n"
 msgstr ""
 
 #, c-format
@@ -841,6 +842,10 @@ msgid "Wrong type for '%s' property: Integer expected.\n"
 msgstr "Špatný typ vlastnosti '%s': Očekáváno celé číslo.\n"
 
 #, c-format
+msgid "Wrong type for '%s' property: An empty matrix or a tlist expected.\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "WARNING !!!\n"
 "In '%s' property: '%s' is deprecated use '%s' instead.\n"
@@ -1234,6 +1239,30 @@ msgstr "Několik křivek může být vykresleno najednou"
 
 msgid "Customize your complex function"
 msgstr "Přizpůosbit Vaši komlexní funkci"
+
+msgid "Control panel"
+msgstr ""
+
+msgid "Function definition"
+msgstr ""
+
+msgid "Domain type"
+msgstr ""
+
+msgid "Radius of the domain"
+msgstr ""
+
+msgid "Cut on axes"
+msgstr ""
+
+msgid "Function should contain z"
+msgstr ""
+
+msgid "Wrong definition of f(z)"
+msgstr ""
+
+msgid "Radius should be real and finite"
+msgstr ""
 
 msgid "datatips on 2D curves"
 msgstr "datové popisky v 2D křivkách"
@@ -1644,76 +1673,13 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
 msgstr ""
 
-msgid "Delete all datatips"
-msgstr "Smazat všechny popisky dat"
-
-msgid "Delete all datatips for the selected curve"
-msgstr "Smazat všechny popisky dat ve zvolené křivce"
-
-msgid "Delete nearest datatip"
-msgstr "Smazat nejbližší popisek dat"
-
-msgid "Delete last datatip"
-msgstr "Smazat poslední popisek dat"
-
-msgid "Delete selected datatip"
-msgstr "Smazat vybraný datový popisek"
-
-msgid "Open curve tip style editor"
-msgstr "Otevřít editor stylu vrcholu křivky"
-
-msgid "Redraw all datatips"
-msgstr "Znovu vykreslit všechny datové popisky"
-
-msgid "Edit the curve tip display function"
-msgstr "Upravit funkci zobrazení vrcholu křivky"
-
-msgid "select the curve tip display function"
-msgstr "vyberte funkci zobrazení vrcholu křivky"
-
-msgid "Enable interpolation"
-msgstr "Povolit interpolaci"
-
-msgid "Disable interpolation"
-msgstr "Zakázat interpolaci"
-
-msgid "Multiple datatips mode"
-msgstr "Režim mnoha datových popisků"
-
-msgid "Unique datatip mode"
-msgstr "Režim jedinečného datového popisku"
-
 msgid "createPopupItems: found an empty cascading menu."
 msgstr "createPopupItems: nalezeno prázdné kaskádové menu"
-
-msgid "automatic"
-msgstr "automaticky"
-
-msgid "lower left"
-msgstr "vlevo dole"
-
-msgid "lower right"
-msgstr "vpravo dole"
-
-msgid "upper left"
-msgstr "vlevo nahoře"
-
-msgid "upper right"
-msgstr "vpravo nahoře"
-
-msgid "Select tip orientation"
-msgstr "Vyberte orientaci vrcholu"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A '%s' handle expected.\n"
 msgstr ""
 "%s: Špatný typ vstupního argumentu #%d: Očekávána obslužná rutina '%s'.\n"
-
-msgid "The selected file cannot be executed"
-msgstr "Vybraný soubor nelze spustit"
-
-msgid "The selected file defines more than one function"
-msgstr "Vybraný soubor určuje více než jednu funkci"
 
 msgid "'datatips' property"
 msgstr ""
@@ -1722,24 +1688,6 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: Graphic handle expected.\n"
 msgstr ""
 "%s: Špatný typ vstupního argumentu #%d: Očekávána grafická obslužná rutina.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A %d elements array expected.\n"
-msgstr ""
-"%s: Špatná velikost vstupního argumentu #%d: Očekáváno pole %d prvků.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d(1): Must be between %d and %d.\n"
-msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d(1): Musí být mezi %d a %d.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d(2): Must be between %d and %d.\n"
-msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d(2): Musí být mezi %d a %d.\n"
 
 #, c-format
 msgid "%s: too many input arguments"
@@ -1859,6 +1807,32 @@ msgstr "Povolit mnoho datových popisků?"
 
 msgid "Edit label generator"
 msgstr "Upravit generátor štítků"
+
+msgid "File"
+msgstr ""
+
+msgid "Tools"
+msgstr ""
+
+msgid "Edit"
+msgstr ""
+
+msgid "Select a file to load"
+msgstr ""
+
+#, c-format
+msgid "%s: The file "
+msgstr ""
+
+#, c-format
+msgid "%s: Cannot open file "
+msgstr ""
+
+msgid "Error in file format."
+msgstr ""
+
+msgid "Select a file to write"
+msgstr ""
 
 #, c-format
 msgid ""

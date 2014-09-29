@@ -14,12 +14,18 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16967)\n"
+"X-Generator: Launchpad (build 17196)\n"
 "Language: it\n"
 
 #, c-format
 msgid "-- Creation of [%s] (Macros) --\n"
 msgstr "-- Creazione di [%s] (Macro) --\n"
+
+msgid "Input file"
+msgstr "File di ingresso"
+
+msgid "Input directory"
+msgstr "Directory di origine"
 
 msgid "Select the directory to convert"
 msgstr "Selezionare la directory ca convertire"
@@ -398,18 +404,6 @@ msgstr "il tipo %d non è sviluppato."
 msgid "Matlab to Scilab conversion tool"
 msgstr "Strumento di conversione da Matlab a Scilab"
 
-msgid "&File"
-msgstr "&File"
-
-msgid "&Tools"
-msgstr "&Strumenti"
-
-msgid "&Edit"
-msgstr "&Modifica"
-
-msgid "&?"
-msgstr "&?"
-
 msgid "File"
 msgstr "File"
 
@@ -475,12 +469,6 @@ msgstr "Nome della directory: "
 
 msgid "Browse"
 msgstr "Esplora"
-
-msgid "Input directory"
-msgstr "Directory di origine"
-
-msgid "Input file"
-msgstr "File di ingresso"
 
 msgid "File name: "
 msgstr "Nome del file: "

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16967)\n"
+"X-Generator: Launchpad (build 17196)\n"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
@@ -368,6 +368,12 @@ msgstr "Výchozí kódování souboru: "
 msgid "Default End-Of-Line: "
 msgstr "Výchozí konec řádku: "
 
+msgid "Completion"
+msgstr ""
+
+msgid "Auto-complete brackets when cursor is at the end of a line"
+msgstr ""
+
 msgid "General display options"
 msgstr "Obecné možnosti zobrazení"
 
@@ -377,8 +383,8 @@ msgstr "Zvýraznit současný řádek: "
 msgid "Show line numbers: "
 msgstr "Zobrazit čísla řádku: "
 
-msgid "Whereami compatible"
-msgstr "Kompatibilní s whereami"
+msgid "Local numbering"
+msgstr ""
 
 msgid "Normal"
 msgstr "Normální"

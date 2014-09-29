@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16967)\n"
+"X-Generator: Launchpad (build 17196)\n"
 "Language: es\n"
 
 #, c-format
@@ -327,17 +327,22 @@ msgstr ""
 "mismo tamaño.\n"
 
 #, c-format
+msgid "%s: Wrong value for input argument #%d: 0 or 1 expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Scalar/matrix/hypermatrix of unsigned "
+"integers expected.\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Scalar/matrix of unsigned integers "
 "expected.\n"
 msgstr ""
 "%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un escalar o "
 "una matriz de enteros positivos.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: 0 or 1 expected\n"
-msgstr ""
-"%s: Valor incorrecto de argumento de entrada #%d: Se esperaba 0 o 1.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A positive real expected.\n"
@@ -619,6 +624,11 @@ msgstr ""
 msgid "%s: Wrong size for argument #%d: Vector expected.\n"
 msgstr ""
 "%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un vector.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Must be a valid permutation vector.\n"
+msgstr ""
 
 #, c-format
 msgid ""

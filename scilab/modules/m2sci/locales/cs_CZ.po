@@ -14,11 +14,17 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16967)\n"
+"X-Generator: Launchpad (build 17196)\n"
 
 #, c-format
 msgid "-- Creation of [%s] (Macros) --\n"
 msgstr "-- Vytváření [%s] (Makra) --\n"
+
+msgid "Input file"
+msgstr "Vstupní soubor"
+
+msgid "Input directory"
+msgstr "Vstupní adresář"
 
 msgid "Select the directory to convert"
 msgstr "Vyberte adresář k převodu"
@@ -384,18 +390,6 @@ msgstr "typ %d není zaveden."
 msgid "Matlab to Scilab conversion tool"
 msgstr "Nástroj převodu Matlab na Scilab"
 
-msgid "&File"
-msgstr "&Soubor"
-
-msgid "&Tools"
-msgstr "&Nástroje"
-
-msgid "&Edit"
-msgstr "&Upravit"
-
-msgid "&?"
-msgstr "&?"
-
 msgid "File"
 msgstr "Soubor"
 
@@ -461,12 +455,6 @@ msgstr "Jméno adresáře: "
 
 msgid "Browse"
 msgstr "Procházet"
-
-msgid "Input directory"
-msgstr "Vstupní adresář"
-
-msgid "Input file"
-msgstr "Vstupní soubor"
 
 msgid "File name: "
 msgstr "Název souboru: "

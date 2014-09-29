@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2014-03-17 16:24+0000\n"
+"PO-Revision-Date: 2014-05-12 13:37+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16967)\n"
+"X-Generator: Launchpad (build 17196)\n"
 "Language: ru\n"
 
 #, c-format
@@ -561,7 +561,7 @@ msgid "Atoms Help..."
 msgstr "Справка по Atoms"
 
 msgid "Back"
-msgstr ""
+msgstr "Назад"
 
 msgid "Remove"
 msgstr "Удалить"
@@ -570,7 +570,7 @@ msgid "Install"
 msgstr "Установить"
 
 msgid "Autoload"
-msgstr ""
+msgstr "Автозагрузка"
 
 msgid "List of installed modules"
 msgstr "Список установленных модулей"
@@ -604,12 +604,14 @@ msgid "Remove done! Please restart Scilab to take changes into account. "
 msgstr "Удаление завершено! Перезапустите Scilab для применения изменений. "
 
 msgid "The module will be automatically loaded at next startup."
-msgstr ""
+msgstr "Модуль будет автоматически загружен при следующем запуске."
 
 msgid ""
 "Autoload at startup is canceled. The Toolboxes menu or atomsLoad() can be "
 "used to load the module when needed."
 msgstr ""
+"Автозагрузка при запуске отменена. При необходимости можно использовать меню "
+"Toolboxes или atomsLoad()."
 
 msgid "Download size"
 msgstr "Размер загрузки"
@@ -966,7 +968,7 @@ msgid "Image Processing"
 msgstr "Обработка изображений"
 
 msgid "Instruments Control"
-msgstr ""
+msgstr "Управление инструментами"
 
 msgid "Linear algebra"
 msgstr "Линейная алгебра"
@@ -1075,7 +1077,7 @@ msgstr ""
 "URL.\n"
 
 msgid "Loaded<br>at startup"
-msgstr ""
+msgstr "Загружено<br>при запуске"
 
 #, c-format
 msgid "%s: the package '%s' does not exist.\n"
