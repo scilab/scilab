@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16967)\n"
+"X-Generator: Launchpad (build 17196)\n"
 "Language: \n"
 
 #, c-format
@@ -285,14 +285,20 @@ msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
 msgstr "%s：输入参数的大小错误：应该为相同大小。\n"
 
 #, c-format
+msgid "%s: Wrong value for input argument #%d: 0 or 1 expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Scalar/matrix/hypermatrix of unsigned "
+"integers expected.\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Scalar/matrix of unsigned integers "
 "expected.\n"
 msgstr "%s：第%d个输入参数的类型错误：应该为无符号整数标量或矩阵。\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: 0 or 1 expected\n"
-msgstr "%s：第%d个输入参数的值错误：应该为0或1。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A positive real expected.\n"
@@ -534,6 +540,11 @@ msgstr "%s：第%d个输入参数的大小错误：应该为向量。\n"
 #, c-format
 msgid "%s: Wrong size for argument #%d: Vector expected.\n"
 msgstr "%s：第%d个输入参数的大小错误：应该为向量。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Must be a valid permutation vector.\n"
+msgstr ""
 
 #, c-format
 msgid ""

@@ -28,7 +28,7 @@ t  = 1;
 // The evaluation function purposely lacks the output argument 'ires'
 deff("ydot = f1(t, y)", "ydot = y^2 - y*sin(t) + cos(t)")
 
-refMsg = msprintf(_("Wrong number of output arguments."));
+refMsg = msprintf(_("Wrong number of output arguments.\n"));
 assert_checkerror("y = dae(y0, t0, t, f1);", refMsg);
 
 // The evaluation function purposely lacks the input argument 'ydot'
@@ -41,7 +41,7 @@ assert_checkerror("y = dae(y0, t0, t, f2);", refMsg);
 // Without initial yprime computation
 
 // The evaluation function purposely lacks the output argument 'ires'
-refMsg = msprintf(_("Wrong number of output arguments."));
+refMsg = msprintf(_("Wrong number of output arguments.\n"));
 assert_checkerror("y = dae([y0; 0], t0, t, f1);", refMsg);
 
 // The evaluation function purposely lacks the input argument 'ydot'
@@ -58,7 +58,7 @@ deff("r = g(t, y)", "r = ones(y)");
 // With initial yprime computation
 
 // The evaluation function purposely lacks the output argument 'ires'
-refMsg = msprintf(_("Wrong number of output arguments."));
+refMsg = msprintf(_("Wrong number of output arguments.\n"));
 assert_checkerror("[y, r] = dae(""root"", y0, t0, t, f1, 1, g);", refMsg);
 
 // The evaluation function purposely lacks the input argument 'ydot'
@@ -69,7 +69,7 @@ assert_checkerror("[y, r] = dae(""root"", y0, t0, t, f2, 1, g);", refMsg);
 // Without initial yprime computation
 
 // The evaluation function purposely lacks the output argument 'ires'
-refMsg = msprintf(_("Wrong number of output arguments."));
+refMsg = msprintf(_("Wrong number of output arguments.\n"));
 assert_checkerror("[y, r] = dae(""root"", [y0; 0], t0, t, f1, 1, g);", refMsg);
 
 // The evaluation function purposely lacks the input argument 'ydot'
@@ -84,7 +84,7 @@ assert_checkerror("[y, r] = dae(""root"", [y0; 0], t0, t, f2, 1, g);", refMsg);
 // With initial yprime computation
 
 // The evaluation function purposely lacks the output argument 'ires'
-refMsg = msprintf(_("Wrong number of output arguments."));
+refMsg = msprintf(_("Wrong number of output arguments.\n"));
 assert_checkerror("[y, r] = dae(""root2"", y0, t0, t, f1, 1, g);", refMsg);
 
 // The evaluation function purposely lacks the input argument 'ydot'
@@ -95,7 +95,7 @@ assert_checkerror("[y, r] = dae(""root2"", y0, t0, t, f2, 1, g);", refMsg);
 // Without initial yprime computation
 
 // The evaluation function purposely lacks the output argument 'ires'
-refMsg = msprintf(_("Variable returned by scilab argument function is incorrect."));
+refMsg = msprintf(_("Variable returned by scilab argument function is incorrect.\n"));
 assert_checkerror("[y, r] = dae(""root2"", [y0; 0], t0, t, f1, 1, g);", refMsg);
 
 // The evaluation function purposely lacks the input argument 'ydot'

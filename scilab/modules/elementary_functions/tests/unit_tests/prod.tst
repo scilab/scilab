@@ -195,7 +195,7 @@ for typ=T
     assert_checkequal(prod(i, "*", typ(:)), uint8(76));
     assert_checkequal(prod(i, 1, typ(:)), uint8([254 90]));
     assert_checkequal(prod(i, 2, typ(:)), uint8([10;238]));
-    assert_checkequal(prod(i, 3, typ(:)), double(i));
+    assert_checkequal(prod(i, 3, typ(:)), i);
 end
 
 assert_checkequal(prod(i, "double"), 22860);

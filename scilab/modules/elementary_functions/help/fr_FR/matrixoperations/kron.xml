@@ -1,4 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C)
+ * Copyright (C) 2014 - Samuel Gougeon : extension to hypermatrices
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="kron" xml:lang="fr">
     <refnamediv>
         <refname>kron</refname>
@@ -6,28 +18,99 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
-        <synopsis>kron(x,y)
-            x.*.y
+        <synopsis>kron(A, B)
+            A.*.B
         </synopsis>
     </refsynopsisdiv>
     <refsection>
+        <title>Paramètres</title>
+        <variablelist>
+            <varlistentry>
+                <term>A</term>
+                <listitem>
+                    <para>matrice ou hypermatrice.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>B</term>
+                <listitem>
+                    <para>matrice ou hypermatrice</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
         <title>Description</title>
         <para>
-            Produit tensoriel de Kronecker de deux matrices <literal>x</literal>
-            et <literal>y</literal>. Identique à <literal>x.*.y</literal>.
-            <literal>x</literal> et <literal>y</literal> peuvent être des matrices
-            creuses.
+            <literal>kron(A,B)</literal> ou <literal>A.*.B</literal> calcule et fournit le produit
+            tensoriel de Kronecker de deux matrices ou hypermatrices <literal>A</literal>
+            et <literal>B</literal>. La matrice résultante a la forme suivante :
+        </para>
+        <informalequation>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="../../mml/kron_equation_1.mml"/>
+                </imageobject>
+            </mediaobject>
+        </informalequation>
+        <para>
+            Si <literal>A</literal> est une matrice <literal>m x n</literal> et
+            <literal>B</literal> une hypermatrice <literal>p x q x r</literal>, alors
+            <literal>A.*.B</literal> est une hypermatrice <literal>(m*p) x (n*q) x (1*r)</literal>.
+        </para>
+        <para>
+            <literal>A</literal> et <literal>B</literal> peuvent être des matrices creuses. Cependant le produit de Kronecker n'est pas défini entre une matrice creuse et une hypermatrice.
         </para>
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
-A=[1,2;3,4];
+        <programlisting role="example"><![CDATA[
+A = [1,2;3,4];
 kron(A,A)
 A.*.A
 sparse(A).*.sparse(A)
-A(1,1)=%i;
+A(1,1) = %i;
 kron(A,A)
+
+// avec des hypermatrices
+// ----------------------
+b = hypermat([4 3 2], 1:24);
+
+// row .*. hypermat
+clc
+a = 1:2, b
+a.*.b
+
+// hypermat .*. row
+clc
+b,a
+b .*. a
+
+// column .*. hypermat
+clc
+a = [1;2], b
+a.*.b
+
+// matrix .*. hypermat
+clc
+a = [-1 -2; 2 1], b
+a.*.b
+
+// hypermat .*. hypermat
+clc
+a = hypermat([1 2 2],[-1,-2, 1 2]), b
+a.*.b
  ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>Historique</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.1</revnumber>
+                <revdescription>
+                    <para>Extension aux hypermatrices</para>
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

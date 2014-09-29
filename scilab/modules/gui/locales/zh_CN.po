@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2014-03-20 13:12+0000\n"
+"PO-Revision-Date: 2014-04-20 06:41+0000\n"
 "Last-Translator: Wesh <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16967)\n"
+"X-Generator: Launchpad (build 17196)\n"
 "Language: \n"
 
 #, c-format
@@ -657,7 +657,7 @@ msgid "&Open a file..."
 msgstr "打开文件...(&O)"
 
 msgid "&Load environment..."
-msgstr "装载运行环境...(&L)"
+msgstr "加载运行环境(&L)..."
 
 msgid "&Save environment..."
 msgstr "保存运行环境(&S)"
@@ -1234,9 +1234,6 @@ msgstr ""
 msgid "PostScript image (PS)"
 msgstr ""
 
-msgid "FIG image"
-msgstr "FIG图像"
-
 msgid "PDF image"
 msgstr "PDF图像"
 
@@ -1321,6 +1318,9 @@ msgstr "后退"
 msgid "Forward"
 msgstr "前进"
 
+msgid "OK"
+msgstr "确认"
+
 msgid "Tree Overview"
 msgstr ""
 
@@ -1352,9 +1352,6 @@ msgstr ""
 
 msgid "Display function name"
 msgstr ""
-
-msgid "OK"
-msgstr "确认"
 
 msgid "Insert"
 msgstr ""
@@ -2545,12 +2542,6 @@ msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A 'Figure' handle or a real "
-"expected.\n"
-msgstr "%s：输入参数#%d的大小错误：应该为一个Figure句柄或者一个实数。\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: uitree expected.\n"
 msgstr ""
 
@@ -2640,9 +2631,3 @@ msgstr "%s：%s的类型错误：应该为一个实数。\n"
 #, c-format
 msgid "%s: Wrong size for %s: A real expected.\n"
 msgstr "%s：%s的大小错误：应该为一个实数。\n"
-
-#~ msgid "Exit figure"
-#~ msgstr "退出Figure"
-
-#~ msgid "Selected colors"
-#~ msgstr "所选颜色"

@@ -82,21 +82,25 @@ c     .  should never be used.
       endif
       if (sel.gt.2) then
 c     prod(a,sel)-->a
-         lr=sadr(il0+4)
-         err=lr+mn-lstk(bot)
-         if(err.gt.0) then
-            call error(17)
+         if(type.ne.native) then
+            lr=sadr(il0+4)
+            err=lr+mn-lstk(bot)
+            if(err.gt.0) then
+               call error(17)
+               return
+            endif
+            call tpconv(it,0, mn,istk(l1),-1,stk(lr),-1)
+            istk(ilr)=1
+            istk(ilr+1)=m
+            istk(ilr+2)=n
+            istk(ilr+3)=0
+            lstk(top+1)=lr+mn
             return
+         else
+            mr=m
+            nr=n
          endif
-         call tpconv(it,0, mn,istk(l1),-1,stk(lr),-1)
-         istk(ilr)=1
-         istk(ilr+1)=m
-         istk(ilr+2)=n
-         istk(ilr+3)=0
-         lstk(top+1)=lr+mn
-         return
-      endif
-      if(sel.eq.0) then
+      elseif(sel.eq.0) then
          mr=1
          nr=1
       elseif(sel.eq.1) then

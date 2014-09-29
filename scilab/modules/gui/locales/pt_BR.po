@@ -10,13 +10,13 @@ msgstr ""
 "Project-Id-Version: _gui-pt_BR\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2012-07-16 15:57+0000\n"
+"PO-Revision-Date: 2014-04-03 07:44+0000\n"
 "Last-Translator: Thiago de Melo <tmelo.mat@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <ldp-br@bazar.conectiva.com.br>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16967)\n"
+"X-Generator: Launchpad (build 17196)\n"
 "Language: pt_BR\n"
 
 #, c-format
@@ -1379,9 +1379,6 @@ msgstr "Imagem Encapsulated PostScript (EPS)"
 msgid "PostScript image (PS)"
 msgstr ""
 
-msgid "FIG image"
-msgstr "Imagem FIG"
-
 msgid "PDF image"
 msgstr "Imagem PDF"
 
@@ -1466,6 +1463,9 @@ msgstr "Voltar"
 msgid "Forward"
 msgstr "Próximo"
 
+msgid "OK"
+msgstr "Ok"
+
 msgid "Tree Overview"
 msgstr "Visão geral de árvore"
 
@@ -1497,9 +1497,6 @@ msgstr ""
 
 msgid "Display function name"
 msgstr ""
-
-msgid "OK"
-msgstr "Ok"
 
 msgid "Insert"
 msgstr ""
@@ -2699,14 +2696,6 @@ msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A 'Figure' handle or a real "
-"expected.\n"
-msgstr ""
-"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um "
-"manipulador de 'Figura' ou um número real.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: uitree expected.\n"
 msgstr ""
 
@@ -2808,9 +2797,3 @@ msgstr "%s: Tipo incorreto para %s: esperava-se um número real.\n"
 #, c-format
 msgid "%s: Wrong size for %s: A real expected.\n"
 msgstr "%s: Tamanho incorreto para %s: esperava-se um número real.\n"
-
-#~ msgid "Exit figure"
-#~ msgstr "Sair da figura"
-
-#~ msgid "Selected colors"
-#~ msgstr "Cores selecionadas"

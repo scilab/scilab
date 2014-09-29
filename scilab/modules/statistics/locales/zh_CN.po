@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16967)\n"
+"X-Generator: Launchpad (build 17196)\n"
 "Language: \n"
 
 msgid "X,Y,A and B"
@@ -450,6 +450,11 @@ msgid "%s: Wrong size for input argument #%d: Must be > %d.\n"
 msgstr "%s：输入参数#%d的大小错误：必须 > %d。\n"
 
 #, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Non-negative values expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d and #%d: Same size expected.\n"
 msgstr "%s：输入参数#%d和参数#%d的大小错误：应该为同样大小。\n"
 
@@ -467,9 +472,9 @@ msgstr "%s：输入参数#%d的大小错误：列数应该跟第二个输入参�
 
 #, c-format
 msgid ""
-"%s: Wrong value of input argument #%d: Less or equal than length of last "
-"input argument expected.\n"
-msgstr "%s：输入参数#%d的值错误：长度应该小于或等于最后一个参数的长度。\n"
+"%s: Wrong value of input argument #%d: Lower than or equal to size of input "
+"argument #%d expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Size %s expected.\n"

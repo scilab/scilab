@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16967)\n"
+"X-Generator: Launchpad (build 17196)\n"
 "Language: ru\n"
 
 #, c-format
@@ -1156,8 +1156,8 @@ msgstr ""
 "точности).\n"
 
 #, c-format
-msgid "%s: %s is a uneditable hard coded function.\n"
-msgstr "%s: %s является нередактируемой жёстко заданной функцией .\n"
+msgid "%s: %s is an uneditable hard coded function.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Unable to find Perl file: %s"

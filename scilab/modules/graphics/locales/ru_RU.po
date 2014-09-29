@@ -16,7 +16,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16967)\n"
+"X-Generator: Launchpad (build 17196)\n"
 "Language: ru\n"
 
 #, c-format
@@ -120,7 +120,8 @@ msgid "%s: Wrong type for input argument #%d: Real vector nx3 expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Must be between 0.0 and 1.0.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: Must be between 0.0 and 1.0.\n"
 msgstr ""
 
 #, c-format
@@ -897,6 +898,10 @@ msgid "Wrong type for '%s' property: Integer expected.\n"
 msgstr "Неверный тип свойства «%s»:  ожидалось целое число.\n"
 
 #, c-format
+msgid "Wrong type for '%s' property: An empty matrix or a tlist expected.\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "WARNING !!!\n"
 "In '%s' property: '%s' is deprecated use '%s' instead.\n"
@@ -1302,6 +1307,30 @@ msgstr "Несколько кривых могут быть построены �
 
 msgid "Customize your complex function"
 msgstr "Настройте вашу комплексную функцию"
+
+msgid "Control panel"
+msgstr ""
+
+msgid "Function definition"
+msgstr ""
+
+msgid "Domain type"
+msgstr ""
+
+msgid "Radius of the domain"
+msgstr ""
+
+msgid "Cut on axes"
+msgstr ""
+
+msgid "Function should contain z"
+msgstr ""
+
+msgid "Wrong definition of f(z)"
+msgstr ""
+
+msgid "Radius should be real and finite"
+msgstr ""
 
 msgid "datatips on 2D curves"
 msgstr "ярлыки данных на двумерных кривых"
@@ -1754,75 +1783,12 @@ msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
 msgstr ""
 "%s: Неверный тип входного аргумента №%d: ожидалась вещественная матрица.\n"
 
-msgid "Delete all datatips"
-msgstr "Удалить все подсказки данных"
-
-msgid "Delete all datatips for the selected curve"
-msgstr "Удалить все подсказки данных для выделенной кривой"
-
-msgid "Delete nearest datatip"
-msgstr "Удалить ближайшую подсказку данных"
-
-msgid "Delete last datatip"
-msgstr "Удалить последнюю подсказку данных"
-
-msgid "Delete selected datatip"
-msgstr "Удалить выбранный ярлык данных"
-
-msgid "Open curve tip style editor"
-msgstr "Открыть редактор стиля ярлыка кривой"
-
-msgid "Redraw all datatips"
-msgstr "Перерисовать все подсказки данных"
-
-msgid "Edit the curve tip display function"
-msgstr "Изменить функцию отображения подсказок"
-
-msgid "select the curve tip display function"
-msgstr "Выбрать функцию отображения подсказок"
-
-msgid "Enable interpolation"
-msgstr "Включить интерполяцию"
-
-msgid "Disable interpolation"
-msgstr "Выключить интерполяцию"
-
-msgid "Multiple datatips mode"
-msgstr "Режим с несколькими подсказками данных"
-
-msgid "Unique datatip mode"
-msgstr "Режим с одной подсказкой данных"
-
 msgid "createPopupItems: found an empty cascading menu."
 msgstr "createPopupItems: найдено пустое выпадающее меню."
-
-msgid "automatic"
-msgstr "Автоматическое"
-
-msgid "lower left"
-msgstr "Снизу слева"
-
-msgid "lower right"
-msgstr "Снизу справа"
-
-msgid "upper left"
-msgstr "Сверху слева"
-
-msgid "upper right"
-msgstr "Сверху справа"
-
-msgid "Select tip orientation"
-msgstr "Выберите расположение подсказок:"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A '%s' handle expected.\n"
 msgstr "%s: Неверный тип входного аргумента №%d: Ожидался дескриптор '%s'.\n"
-
-msgid "The selected file cannot be executed"
-msgstr "Не удалось выполнить выбранный файл"
-
-msgid "The selected file defines more than one function"
-msgstr "Выбранный файл определяет более чем одну функцию"
 
 msgid "'datatips' property"
 msgstr "свойство 'datatips'"
@@ -1831,27 +1797,6 @@ msgstr "свойство 'datatips'"
 msgid "%s: Wrong type for input argument #%d: Graphic handle expected.\n"
 msgstr ""
 "%s: Неверный тип входного параметра №%d: ожидался графический дескриптор.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A %d elements array expected.\n"
-msgstr ""
-"%s: Неверный размер входного аргумента №%d: ожидался массив из %d "
-"элементов.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d(1): Must be between %d and %d.\n"
-msgstr ""
-"%s: Неверное значение входного аргумента №%d(1): оно должно быть между %d и "
-"%d.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d(2): Must be between %d and %d.\n"
-msgstr ""
-"%s: Неверное значение входного аргумента №%d(2): оно должно быть между %d и "
-"%d.\n"
 
 #, c-format
 msgid "%s: too many input arguments"
@@ -1972,6 +1917,32 @@ msgstr "Разрешено множество ярлыков данных?"
 
 msgid "Edit label generator"
 msgstr "Править параметры формирования меток"
+
+msgid "File"
+msgstr ""
+
+msgid "Tools"
+msgstr ""
+
+msgid "Edit"
+msgstr ""
+
+msgid "Select a file to load"
+msgstr ""
+
+#, c-format
+msgid "%s: The file "
+msgstr ""
+
+#, c-format
+msgid "%s: Cannot open file "
+msgstr ""
+
+msgid "Error in file format."
+msgstr ""
+
+msgid "Select a file to write"
+msgstr ""
 
 #, c-format
 msgid ""

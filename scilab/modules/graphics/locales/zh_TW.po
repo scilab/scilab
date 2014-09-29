@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16967)\n"
+"X-Generator: Launchpad (build 17196)\n"
 "Language: \n"
 "Revision-Date: 2011-04-04 22:09+0100\n"
 
@@ -109,7 +109,8 @@ msgid "%s: Wrong type for input argument #%d: Real vector nx3 expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Must be between 0.0 and 1.0.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: Must be between 0.0 and 1.0.\n"
 msgstr ""
 
 #, c-format
@@ -774,6 +775,10 @@ msgid "Wrong type for '%s' property: Integer expected.\n"
 msgstr "'%s' 屬性之型態錯誤:應該為一整數.\n"
 
 #, c-format
+msgid "Wrong type for '%s' property: An empty matrix or a tlist expected.\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "WARNING !!!\n"
 "In '%s' property: '%s' is deprecated use '%s' instead.\n"
@@ -1141,6 +1146,30 @@ msgid "Several curves may be plotted at the same time"
 msgstr ""
 
 msgid "Customize your complex function"
+msgstr ""
+
+msgid "Control panel"
+msgstr ""
+
+msgid "Function definition"
+msgstr ""
+
+msgid "Domain type"
+msgstr ""
+
+msgid "Radius of the domain"
+msgstr ""
+
+msgid "Cut on axes"
+msgstr ""
+
+msgid "Function should contain z"
+msgstr ""
+
+msgid "Wrong definition of f(z)"
+msgstr ""
+
+msgid "Radius should be real and finite"
 msgstr ""
 
 msgid "datatips on 2D curves"
@@ -1536,74 +1565,11 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
 msgstr ""
 
-msgid "Delete all datatips"
-msgstr ""
-
-msgid "Delete all datatips for the selected curve"
-msgstr ""
-
-msgid "Delete nearest datatip"
-msgstr ""
-
-msgid "Delete last datatip"
-msgstr ""
-
-msgid "Delete selected datatip"
-msgstr ""
-
-msgid "Open curve tip style editor"
-msgstr ""
-
-msgid "Redraw all datatips"
-msgstr ""
-
-msgid "Edit the curve tip display function"
-msgstr ""
-
-msgid "select the curve tip display function"
-msgstr ""
-
-msgid "Enable interpolation"
-msgstr ""
-
-msgid "Disable interpolation"
-msgstr ""
-
-msgid "Multiple datatips mode"
-msgstr ""
-
-msgid "Unique datatip mode"
-msgstr ""
-
 msgid "createPopupItems: found an empty cascading menu."
-msgstr ""
-
-msgid "automatic"
-msgstr ""
-
-msgid "lower left"
-msgstr ""
-
-msgid "lower right"
-msgstr ""
-
-msgid "upper left"
-msgstr ""
-
-msgid "upper right"
-msgstr ""
-
-msgid "Select tip orientation"
 msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A '%s' handle expected.\n"
-msgstr ""
-
-msgid "The selected file cannot be executed"
-msgstr ""
-
-msgid "The selected file defines more than one function"
 msgstr ""
 
 msgid "'datatips' property"
@@ -1612,21 +1578,6 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Graphic handle expected.\n"
 msgstr "%s: 第 #%d 個輸入參數型態錯誤: 應該是 Graphic 代碼(handle).\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A %d elements array expected.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d(1): Must be between %d and %d.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d(2): Must be between %d and %d.\n"
-msgstr ""
 
 #, c-format
 msgid "%s: too many input arguments"
@@ -1735,6 +1686,32 @@ msgid "Allow multiple datatips?"
 msgstr ""
 
 msgid "Edit label generator"
+msgstr ""
+
+msgid "File"
+msgstr ""
+
+msgid "Tools"
+msgstr ""
+
+msgid "Edit"
+msgstr ""
+
+msgid "Select a file to load"
+msgstr ""
+
+#, c-format
+msgid "%s: The file "
+msgstr ""
+
+#, c-format
+msgid "%s: Cannot open file "
+msgstr ""
+
+msgid "Error in file format."
+msgstr ""
+
+msgid "Select a file to write"
 msgstr ""
 
 #, c-format

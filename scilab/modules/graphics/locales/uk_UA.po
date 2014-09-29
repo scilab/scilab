@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2014-03-29 18:24+0000\n"
+"PO-Revision-Date: 2014-04-03 05:57+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16967)\n"
+"X-Generator: Launchpad (build 17196)\n"
 "Language: uk\n"
 
 #, c-format
@@ -124,14 +124,21 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real vector 1x3 expected.\n"
 msgstr ""
+"%s: помилковий тип вхідного параметра №%d: мало бути використано вектор 1x3 "
+"дійсних значень.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real vector nx3 expected.\n"
 msgstr ""
+"%s: помилковий тип вхідного параметра №%d: мало бути використано вектор nx3 "
+"дійсних значень.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Must be between 0.0 and 1.0.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: Must be between 0.0 and 1.0.\n"
 msgstr ""
+"%s: помилкове значення вхідного параметра №%d: значення має належати "
+"діапазону від 0.0 до 1.0.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
@@ -968,6 +975,10 @@ msgstr ""
 "значення.\n"
 
 #, c-format
+msgid "Wrong type for '%s' property: An empty matrix or a tlist expected.\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "WARNING !!!\n"
 "In '%s' property: '%s' is deprecated use '%s' instead.\n"
@@ -1435,6 +1446,30 @@ msgstr "Можна поєднувати на одному кресленні д�
 
 msgid "Customize your complex function"
 msgstr "Налаштування вашої комплексної функції"
+
+msgid "Control panel"
+msgstr ""
+
+msgid "Function definition"
+msgstr ""
+
+msgid "Domain type"
+msgstr ""
+
+msgid "Radius of the domain"
+msgstr ""
+
+msgid "Cut on axes"
+msgstr ""
+
+msgid "Function should contain z"
+msgstr ""
+
+msgid "Wrong definition of f(z)"
+msgstr ""
+
+msgid "Radius should be real and finite"
+msgstr ""
 
 msgid "datatips on 2D curves"
 msgstr "позначки даних на плоских кривих"
@@ -1919,77 +1954,14 @@ msgstr ""
 "%s: помилкове значення вхідного параметра №%d: мало бути вказано матрицю з "
 "дійсними елементами.\n"
 
-msgid "Delete all datatips"
-msgstr "Вилучити всі позначки даних"
-
-msgid "Delete all datatips for the selected curve"
-msgstr "Вилучити всі позначки даних для вказаної кривої"
-
-msgid "Delete nearest datatip"
-msgstr "Вилучити найближчу позначку даних"
-
-msgid "Delete last datatip"
-msgstr "Вилучити останню позначку даних"
-
-msgid "Delete selected datatip"
-msgstr "Вилучити позначену позначку даних"
-
-msgid "Open curve tip style editor"
-msgstr "Відкрити редактор стилів позначок кривих"
-
-msgid "Redraw all datatips"
-msgstr "Оновити всі позначки даних"
-
-msgid "Edit the curve tip display function"
-msgstr "Змінити функцію показу позначок на кривій"
-
-msgid "select the curve tip display function"
-msgstr "вибір функції показу поначок на кривій"
-
-msgid "Enable interpolation"
-msgstr "Увімкнути інтерполяцію"
-
-msgid "Disable interpolation"
-msgstr "Вимкнути інтерполяцію"
-
-msgid "Multiple datatips mode"
-msgstr "Режим декільокх позначок даних"
-
-msgid "Unique datatip mode"
-msgstr "Режим єдиної системи позначок даних"
-
 msgid "createPopupItems: found an empty cascading menu."
 msgstr "createPopupItems: знайдено порожнє ієрархічне меню."
-
-msgid "automatic"
-msgstr "автоматично"
-
-msgid "lower left"
-msgstr "внизу ліворуч"
-
-msgid "lower right"
-msgstr "внизу праворуч"
-
-msgid "upper left"
-msgstr "вгорі ліворуч"
-
-msgid "upper right"
-msgstr "вгорі праворуч"
-
-msgid "Select tip orientation"
-msgstr "Вибрати орієнтацію позначки"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A '%s' handle expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати елемент "
 "керування «%s».\n"
-
-msgid "The selected file cannot be executed"
-msgstr "Вказаний файл неможливо виконати"
-
-msgid "The selected file defines more than one function"
-msgstr "У вказаному файлі визначено декілька функцій"
 
 msgid "'datatips' property"
 msgstr "властивість «datatips»"
@@ -1999,27 +1971,6 @@ msgid "%s: Wrong type for input argument #%d: Graphic handle expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати елемент "
 "керування графічним об’єктом.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A %d elements array expected.\n"
-msgstr ""
-"%s: помилкова розмірність вхідного параметра №%d: слід використовувати масив "
-"з %d елементами.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d(1): Must be between %d and %d.\n"
-msgstr ""
-"%s: помилкове значення вхідного параметра №%d(1): слід використовувати "
-"значення між %d та %d.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d(2): Must be between %d and %d.\n"
-msgstr ""
-"%s: помилкове значення вхідного параметра №%d(2): слід використовувати "
-"значення між %d та %d.\n"
 
 #, c-format
 msgid "%s: too many input arguments"
@@ -2143,6 +2094,32 @@ msgstr "Дозволити декілька позначок даних?"
 
 msgid "Edit label generator"
 msgstr "Змінити параметри створення міток"
+
+msgid "File"
+msgstr ""
+
+msgid "Tools"
+msgstr ""
+
+msgid "Edit"
+msgstr ""
+
+msgid "Select a file to load"
+msgstr ""
+
+#, c-format
+msgid "%s: The file "
+msgstr ""
+
+#, c-format
+msgid "%s: Cannot open file "
+msgstr ""
+
+msgid "Error in file format."
+msgstr ""
+
+msgid "Select a file to write"
+msgstr ""
 
 #, c-format
 msgid ""
