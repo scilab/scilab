@@ -2,15 +2,15 @@
                      =======================================
 
 Removed Functions
-==================
+=================
 
-* datatipContextMenu() and datatipEventhandler() removed (See Bug #8646).
+* datatipContextMenu and datatipEventhandler removed (See Bug #8646).
 
 * Second output argument of add_param removed (See SEP #132).
 
 
 Compilation
-============
+===========
 
 * Required version of Arpack-ng updated to 3.1.5 (See Bug #13058).
 
