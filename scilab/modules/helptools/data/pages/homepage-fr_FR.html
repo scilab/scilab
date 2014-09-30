@@ -1,34 +1,72 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<style type="text/css" media="all">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Page d'Accueil de l'Aide Scilab</title>
+    <style type="text/css" media="all">
       @import url("scilab_code.css");
       @import url("xml_code.css");
       @import url("c_code.css");
       @import url("style.css");
     </style>
-</head>
-<body>
-  <div class="manualnavbar" align="left">
-    <img src="jarsci:ban_en_US.png"><br/>
-    <a href="http://www.scilab.org/" class="ulink">Portail Scilab</a> | <a href="http://help.scilab.org/" class="ulink">Aide en ligne</a> | <a href="http://wiki.scilab.org/" class="ulink">Wiki</a> | <a href="http://bugzilla.scilab.org/" class="ulink">Suivi de bugs</a> | <a href="http://forge.scilab.org/" class="ulink">Forge</a> | <a href="http://lists.scilab.org/" class="ulink">Archives de la liste de diffusion</a> | <a href="http://atoms.scilab.org/" class="ulink">ATOMS</a> | <a href="http://fileexchange.scilab.org/" class="ulink">File exchange</a>
-    <hr>
+  </head>
+
+  <body>
+
+    <div class="manualnavbar" align="left">
+      <img src="jarsci:ban_en_US.png" alt="ban_en_US.png"/>
+      <br/>
+      <a href="http://www.scilab.org/" class="ulink">Portail Scilab</a> | 
+      <a href="http://help.scilab.org/" class="ulink">Aide en ligne</a> | 
+      <a href="http://wiki.scilab.org/" class="ulink">Wiki</a> | 
+      <a href="http://bugzilla.scilab.org/" class="ulink">Suivi de bugs</a> | 
+      <a href="http://forge.scilab.org/" class="ulink">Forge</a> | 
+      <a href="http://lists.scilab.org/" class="ulink">Archives de la liste de diffusion</a> | 
+      <a href="http://atoms.scilab.org/" class="ulink">ATOMS</a> | 
+      <a href="http://fileexchange.scilab.org/" class="ulink">File exchange</a>
+      <hr/>
     </div>
+
     <span class="path"><a href="index.html">Aide Scilab</a> &gt;&gt; Page d'accueil</span>
-    <br><br><div class="refsection">
+
+    <br/>
+    <br/>
+
+    <!-- Scilab 5.5.1 -->
+    <div class="refsection">
       <h3 class="title">Nouveautés de Scilab 5.5.1</h3>
       <p class="para">
-      Les possibilités de création d'interface utilisateur (IHM) ont été remaniées :
+        Scilab 5.5.1 est une version mineure corrigeant en particulier trois bugs sérieux :
+      </p>
+      <ul>
+        <li>Scilab ne pouvait pas être utilisé sur les plateformes Linux utilisant une ancienne version de la GLIBC (CentOS, RedHat, etc).</li>
+        <li>La mise à jour des modules ATOMS échouait avec certaines configurations.</li>
+        <li>Les versions japonaise and russe de l'aide n'étaient pas disponibles sur les versions Linux.</li>
+      </ul>
+      <p class="para">
+        <a href="http://www.scilab.org/community/news/20141002/release_notes">Voir les notes de version de Scilab 5.5.1 (en anglais).</a>
+      </p>
+      <br/>
+    </div>
+
+    <hr/>
+    <br/>
+
+    <!-- Scilab 5.5.0 -->
+    <div class="refsection">
+      <h3 class="title">Nouveautés de Scilab 5.5.0</h3>
+      <p class="para">
+        Les possibilités de création d'interface utilisateur (IHM) ont été remaniées :
+      </p>
       <ul>
         <li>Des améliorations des fonctions de création de <a href="figure.html">figures</a> avec de nouvelles <a href="figure_properties.html">propriétés</a>.</li>
         <li>De nouveaux styles d'<a href="uicontrol.html">uicontrols</a> : tab, layer, spinner.</li>
         <li>De nouvelles <a href="uicontrol_properties.html">propriétés d'uicontrols</a>.</li>
         <li>Le positionnement et le redimensionnement des uicontrols peuvent être gérés en utilisant des <a href="layout.html">layouts</a>.</li>
       </ul>
-      </p>
       <p class="para">
-      Cette version inclut de nouveaux ensembles de fonctions :
+        Cette version inclut de nouveaux ensembles de fonctions :
+      </p>
       <ul>
         <li>Un module HDF5 permettant de <a href="h5objects.html">lire/écrire</a> des fichiers et des ensembles de données HDF5.</li>
         <li>Une interface pour interagir directement avec des objets externes Java depuis Scilab. Pour plus d'information, consulter <a href="jims-getting-started.html">le tutoriel</a> (anglais).</li>
@@ -38,36 +76,45 @@
         <li>De nouvelles fonctions spéciales : <a href="erfi.html">erfi</a> et <a href="dawson.html">dawson</a>.</li>
         <li>Un nouveau solveur <a href="daskr.html">daskr</a> dans Scilab et Xcos.</li>
       </ul>
-      </p>
       <p class="para">
-      De nouvelles fonctionnalités graphiques améliorant l'utilisabilité et les capacités de Scilab ont été intégrées :
+        De nouvelles fonctionnalités graphiques améliorant l'utilisabilité et les capacités de Scilab ont été intégrées :
+      </p>
       <ul>
         <li>Des améliorations de la fonction <a href="Matplot.html">Matplot</a> pour afficher des images en vraies couleurs.</li>
-        <li>La gestion de l'<a href="lighting.html">éclairage dans les graphiques 3D</a></a>.</li>
+        <li>La gestion de l'<a href="lighting.html">éclairage dans les graphiques 3D</a>.</li>
         <li>De nouvelles interactions sur les graphiques permettant d'éditer les objets graphiques directement sur les figures à l'aide de la souris.</li>
         <li>Des <a href="datatips.html">fonctionnalités datatips </a> réécrites en code natif Java.</li>
         <li>Des possibilités de personnalisation des axes et des graduations avec des <a href="axes_properties.html">propriétés</a> dédiées.</li>
       </ul>
-      </p>
-      <p class="para">Scilab est passé en version 2.1 de la licence CeCILL.
+      <p class="para">
+        Scilab est passé en version 2.1 de la licence CeCILL.
       </p>
       <p class="para">
-      De nombreuses corrections de bugs et améliorations de l'aide sont également disponibles dans cette version.
+        De nombreuses corrections de bugs et améliorations de l'aide sont également disponibles dans cette version.
       </p>
       <p class="para">
-        <a href="http://www.scilab.org/community/news/20140411/release_notes">Voir les notes de version de Scilab 5.5.1 (anglais)</a>
+        <a href="http://www.scilab.org/community/news/20140411/release_notes">Voir les notes de version de Scilab 5.5.0 (en anglais).</a>
       </p>
+      <br/>
     </div>
-    <hr width="50%" align="left">
-<div class="refsection">
+
+    <hr/>
+    <br/>
+
+    <div class="refsection">
       <h3 class="title">Documentation et aide</h3>
       <p class="para">Cette aide est aussi consultable sur <a href="http://help.scilab.org">http://help.scilab.org</a>, avec des fonctionnalit&eacute;s avanc&eacute;es telles que les commentaires, favoris, moteur de recherche, etc.</p>
       <p class="para">Si vous d&eacute;butez avec Scilab, vous pouvez consulter la liste des <a href="scilab_keywords.html">mots-cl&eacute;s Scilab</a>.</p>
       <p class="para">Scilab Enterprises propose aussi des <a href="http://www.scilab.org/support/documentation/tutorials">documentations et tutoriaux</a>.</p>
       <p class="para">De nombreuses documentations sont aussi disponibles sur le <a href="http://www.scilab.org/support/documentation">site internet de Scilab</a>.</p>
+      <br/>
     </div>
-    <hr width="50%" align="left">
-<div class="refsection">
+
+
+    <hr/>
+    <br/>
+
+    <div class="refsection">
       <h3 class="title">Autres ressources</h3>
       <p class="para"><a href="http://www.scilab.org/" class="ulink">Portail Scilab</a> - Consulter le site internet de Scilab</p>
       <p class="para"><a href="http://wiki.scilab.org/" class="ulink">Wiki</a> - Consulter les nombreuses documentations, astuces, etc</p>
@@ -76,6 +123,7 @@
       <p class="para"><a href="http://www.scilab.org/communities/developer_zone/tools/mailing_list" class="ulink">Listes de diffusion</a> - Communiquer et &eacute;changer avec la communaut&eacute;</p>
       <p class="para"><a href="http://atoms.scilab.org/" class="ulink">ATOMS</a> - Acc&eacute;der aux modules externes packag&eacute;s dans Scilab</p>
       <p class="para"><a href="http://fileexchange.scilab.org/" class="ulink">File exchange</a> - Echanger vos scripts, r&eacute;sultats et fichiers.</p>
+      <br/>
     </div>
   </body>
 </html>
