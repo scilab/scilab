@@ -240,7 +240,6 @@ static void getKey(wchar_t ** commandLine, unsigned int *cursorLocation)
         case CTRL_D:
             rmChar(*commandLine, SCI_DELETE, cursorLocation);
             updateTokenInScilabHistory(commandLine);
-            exit(0);
             break;
         case CTRL_E:
             endLine(*commandLine, cursorLocation);
