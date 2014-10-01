@@ -57,23 +57,21 @@ void* get_constraints_property(void* _pvCtx, int iObjUID)
         case LAYOUT_NONE :
         {
             char * variable_tlist[] = {"NoLayoutConstraint"};
-            returnedList * tList = createReturnedList(0, variable_tlist);
-            destroyReturnedList(tList);
+            void * tList = createReturnedList(0, variable_tlist);
             return tList;
         }
         break;
         case LAYOUT_GRID :
         {
             char * variable_tlist[] = {"GridConstraints"};
-            returnedList * tList = createReturnedList(0, variable_tlist);
-            destroyReturnedList(tList);
+            void * tList = createReturnedList(0, variable_tlist);
             return tList;
         }
         break;
         case LAYOUT_BORDER :
         {
             char * variable_tlist[] = {"BorderConstraint", "position", "preferredsize"};
-            returnedList * tList = createReturnedList(2, variable_tlist);
+            void * tList = createReturnedList(2, variable_tlist);
 
             int iBorder = 0;
             int* piBorder = &iBorder;
@@ -120,15 +118,13 @@ void* get_constraints_property(void* _pvCtx, int iObjUID)
             pdblPreferredSize[1] = (double)piPreferredSize[1];
 
             addRowVectorToReturnedList(tList, pdblPreferredSize, 2);
-
-            destroyReturnedList(tList);
             return tList;
         }
         break;
         case LAYOUT_GRIDBAG :
         {
             char * variable_tlist[] = {"GridBagConstraints", "grid", "weight", "fill", "anchor", "padding", "preferredsize"};
-            returnedList * tList = createReturnedList(6, variable_tlist);
+            void * tList = createReturnedList(6, variable_tlist);
             int* piGrid = NULL;
             double pdblGrid[4];
             double* pdblWeight = NULL;
@@ -253,8 +249,6 @@ void* get_constraints_property(void* _pvCtx, int iObjUID)
 
             addRowVectorToReturnedList(tList, pdblPadding, 2);
             addRowVectorToReturnedList(tList, pdblPreferredSize, 2);
-            destroyReturnedList(tList);
-
             return tList;
         }
         break;
