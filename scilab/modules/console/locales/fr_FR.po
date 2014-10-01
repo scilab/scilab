@@ -320,7 +320,7 @@ msgid "File Browser"
 msgstr "Navigateur de fichiers"
 
 msgid "Demonstrations"
-msgstr "Demonstrations"
+msgstr "Démonstrations"
 
 msgid "Open Scilab website"
 msgstr "Lien vers le site web de Scilab"
