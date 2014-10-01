@@ -525,8 +525,11 @@ detect_java_vm() {
                                 proc="mips"
                             fi
                             ;;
-                        "ppc"|"powerpc"|"ppc64")
+                        "ppc"|"powerpc"
                             proc="ppc"
+                            ;;
+                        "ppc64"|"ppc64el")
+                            proc="ppc64"
                             ;;
                         "s390")
                             proc="s390"
