@@ -69,7 +69,7 @@ public class SwingScilabStaticPanel extends SwingScilabScrollPane implements Swi
     private SwingScilabCanvas contentCanvas;
     protected boolean hasLayout;
     private Dimension deltaSize = null;
-    
+
     private CommonCallBack callback;
 
     public SwingScilabStaticPanel(String figureTitle, Integer figureId, Figure figure) {
@@ -264,6 +264,9 @@ public class SwingScilabStaticPanel extends SwingScilabScrollPane implements Swi
         if (member instanceof SwingScilabAxes) {
             if (contentCanvas == null) {
                 contentCanvas = new SwingScilabCanvas((Figure) GraphicController.getController().getObjectFromId(((SwingScilabAxes) member).getFigureId()));
+                contentCanvas.addEventHandlerKeyListener(editorEventHandler);
+                contentCanvas.addEventHandlerMouseListener(editorEventHandler);
+                contentCanvas.addEventHandlerMouseMotionListener(editorEventHandler);
                 if (eventEnabled) {
                     editorEventHandler.setEnable(false);
                     enableEventHandler();
@@ -297,7 +300,7 @@ public class SwingScilabStaticPanel extends SwingScilabScrollPane implements Swi
     public CommonCallBack getCallback() {
         return callback;
     }
-    
+
     public Container getContentPane() {
         return this.getAsContainer();
     }

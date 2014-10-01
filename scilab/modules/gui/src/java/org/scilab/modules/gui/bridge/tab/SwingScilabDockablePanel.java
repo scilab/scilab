@@ -635,6 +635,9 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
         if (member instanceof SwingScilabAxes) {
             if (contentCanvas == null) {
                 contentCanvas = new SwingScilabCanvas((Figure) GraphicController.getController().getObjectFromId(((SwingScilabAxes) member).getFigureId()));
+                contentCanvas.addEventHandlerKeyListener(editorEventHandler);
+                contentCanvas.addEventHandlerMouseListener(editorEventHandler);
+                contentCanvas.addEventHandlerMouseMotionListener(editorEventHandler);
                 if (eventEnabled) {
                     editorEventHandler.setEnable(false);
                     enableEventHandler();
