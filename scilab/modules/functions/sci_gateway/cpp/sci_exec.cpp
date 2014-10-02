@@ -647,7 +647,11 @@ std::string printExp(std::ifstream& _File, Exp* _pExp, const std::string& _stPro
         {
             (*_piLine)++;
             std::getline(_File, _stPreviousBuffer);
-            printLine(_stPrompt, _stPreviousBuffer.c_str(), false);
+            // dont print empty line of function body
+            if (_stPreviousBuffer.size() != 0)
+            {
+                printLine(_stPrompt, _stPreviousBuffer.c_str(), false);
+            }
         }
 
         //last line
