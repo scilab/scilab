@@ -60,17 +60,17 @@ fi
 
 # --with-umfpack-library set then check in this dir
 if test "x$with_umfpack_library" != "xyes"; then
-	AC_MSG_CHECKING([for umf_divcomplex in $with_umfpack_library])
+	AC_MSG_CHECKING([for umfpack_di_solve in $with_umfpack_library])
 	save_LIBS="$LIBS"
 	LIBS="$BLAS_LIBS -L$with_umfpack_library -lm $LIBS"
 	# We need -lm because sometime (ubuntu 7.10 for example) does not link libamd against lib math
 
-	AC_CHECK_LIB([umfpack], [umf_divcomplex],
+	AC_CHECK_LIB([umfpack], [umfpack_di_solve],
 			[UMFPACK_LIB="-L$with_umfpack_library -lumfpack $UMFPACK_LIB"; UMFPACK_OK=yes],
-            [AC_MSG_ERROR([libumfpack : Library missing. (Cannot find umf_divcomplex). Check if libumfpack is installed and if the version is correct (also called lib suitesparse)])]
+            [AC_MSG_ERROR([libumfpack : Library missing. (Cannot find umfpack_di_solve). Check if libumfpack is installed and if the version is correct (also called lib suitesparse)])]
 			)
 
-#	AC_TRY_LINK_FUNC(umf_divcomplex, [UMFPACK_OK=yes; BLAS_TYPE="Using BLAS_LIBS environment variable"], [UMFPACK_LIBS=""])
+#	AC_TRY_LINK_FUNC(umfpack_di_solve, [UMFPACK_OK=yes; BLAS_TYPE="Using BLAS_LIBS environment variable"], [UMFPACK_LIBS=""])
 	AC_MSG_RESULT($UMFPACK_OK)
 	LIBS="$save_LIBS"
 fi
@@ -86,11 +86,11 @@ if test $UMFPACK_OK = no; then
             [AC_MSG_ERROR([libamd: Library missing (Cannot find symbol amd_info). Check if libamd (sparse matrix minimum degree ordering) is installed and if the version is correct])]
 			)
 	LIBS="$UMFPACK_LIB $LIBS"
-	AC_CHECK_LIB([umfpack], [umf_divcomplex],
+	AC_CHECK_LIB([umfpack], [umfpack_di_solve],
 			[UMFPACK_LIB="-lumfpack $UMFPACK_LIB"; UMFPACK_OK=yes],
-            [AC_MSG_ERROR([libumfpack: Library missing. (Cannot find symbol umf_divcomplex). Check if libumfpack is installed and if the version is correct (also called lib suitesparse)])]
+            [AC_MSG_ERROR([libumfpack: Library missing. (Cannot find symbol umfpack_di_solve). Check if libumfpack is installed and if the version is correct (also called lib suitesparse)])]
 			)
-		LIBS="$save_LIBS"
+	LIBS="$save_LIBS"
 fi
 
 AC_SUBST(UMFPACK_LIB)

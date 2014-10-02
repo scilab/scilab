@@ -1,16 +1,21 @@
+                     Changes between version 5.5.1 and 5.5.2
+                     =======================================
+
+
+
                      Changes between version 5.5.0 and 5.5.1
                      =======================================
 
 Removed Functions
-==================
+=================
 
-* datatipContextMenu() and datatipEventhandler() removed (See Bug #8646).
+* datatipContextMenu and datatipEventhandler removed (See Bug #8646).
 
 * Second output argument of add_param removed (See SEP #132).
 
 
 Compilation
-============
+===========
 
 * Required version of Arpack-ng updated to 3.1.5 (See Bug #13058).
 
@@ -241,6 +246,11 @@ Scilab Bug Fixes
 * Bug #13554 fixed - rubberbox returned wrong values.
 
 * Bug #13579 fixed - bar displayed useless warnings.
+
+* Bug #13585 fixed - SuiteSparse 4.3.1 was not supported.
+
+* Bug #13588 fixed - Default values of "event_handler" and "event_handler_enable" properties
+                     were not taken into account when creating a new figure.
 
 
 Xcos Bug Fixes
