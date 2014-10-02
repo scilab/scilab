@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16967)\n"
+"X-Generator: Launchpad (build 17196)\n"
 
 msgid "overflow error"
 msgstr "erro de overflow"
@@ -835,18 +835,6 @@ msgstr "'Valor inicial' e 'Valor final': tamanhos incompatíveis: %d e %d."
 
 msgid "Same sizes expected."
 msgstr "Esperava-se o mesmo tamanho."
-
-msgid "&File"
-msgstr "&Arquivo"
-
-msgid "&Tools"
-msgstr "&Ferramenta"
-
-msgid "&Edit"
-msgstr "&Editar"
-
-msgid "&?"
-msgstr "&?"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: At most %d expected.\n"

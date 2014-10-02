@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-09-24 19:20+0000\n"
-"Last-Translator: Zbyněk Schwarz <Unknown>\n"
+"PO-Revision-Date: 2014-04-03 07:29+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16967)\n"
+"X-Generator: Launchpad (build 17196)\n"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
@@ -1327,9 +1327,6 @@ msgstr "Zapouzdřený obrázek PostScript (EPS)"
 msgid "PostScript image (PS)"
 msgstr ""
 
-msgid "FIG image"
-msgstr "Obrázek FIG"
-
 msgid "PDF image"
 msgstr "Obrázek PDF"
 
@@ -1414,6 +1411,9 @@ msgstr "Zpět"
 msgid "Forward"
 msgstr "Další"
 
+msgid "OK"
+msgstr "OK"
+
 msgid "Tree Overview"
 msgstr "Stromový Přehled"
 
@@ -1445,9 +1445,6 @@ msgstr ""
 
 msgid "Display function name"
 msgstr ""
-
-msgid "OK"
-msgstr "OK"
 
 msgid "Insert"
 msgstr ""
@@ -2645,14 +2642,6 @@ msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A 'Figure' handle or a real "
-"expected.\n"
-msgstr ""
-"%s: Špatná velikost vstupního argumentu #%d: Očekávána obslužná rutina "
-"'Čísla' nebo reálné číslo.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: uitree expected.\n"
 msgstr ""
 "%s: Špatný typ vstupního argumentu #%d: Očekáván strom grafického rozhraní.\n"
@@ -2750,9 +2739,3 @@ msgstr "%s: Špatný typ %s: Očekáváno reálné číslo.\n"
 #, c-format
 msgid "%s: Wrong size for %s: A real expected.\n"
 msgstr "%s: Špatná velikost %s: Očekáváno reálné číslo.\n"
-
-#~ msgid "Exit figure"
-#~ msgstr "Výstupní číslo"
-
-#~ msgid "Selected colors"
-#~ msgstr "Vybrané barvy"

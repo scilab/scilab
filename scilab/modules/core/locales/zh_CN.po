@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16967)\n"
+"X-Generator: Launchpad (build 17196)\n"
 "Language: zh_CN\n"
 
 #, c-format
@@ -1077,8 +1077,8 @@ msgid "%s: Wrong type for input argument #%d: Double expected.\n"
 msgstr "%s：第%d个输入参数的类型错误：应该为双精度型。\n"
 
 #, c-format
-msgid "%s: %s is a uneditable hard coded function.\n"
-msgstr "%s：%s 是一个不可编辑的 hard coded 函数。\n"
+msgid "%s: %s is an uneditable hard coded function.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Unable to find Perl file: %s"

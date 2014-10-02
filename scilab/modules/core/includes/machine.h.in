@@ -521,9 +521,6 @@
 /* With the HDF5 library */
 #undef WITH_HDF5
 
-/* with JGraphX */
-#undef WITH_JGRAPHX
-
 /* With the MATIO library */
 #undef WITH_MATIO
 
@@ -535,6 +532,9 @@
 
 /* With the UMFPACK library */
 #undef WITH_UMFPACK
+
+/* with XCos */
+#undef WITH_XCOS
 
 /* If leading underscores */
 #undef WLU

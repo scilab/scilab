@@ -21,25 +21,38 @@
 
 function num=message(strings ,buttons, modal)
     //interface to message primitive to allow simple overloading for live demo
+
+    function consoleDisplay(strings, modal, boxTitle, buttons)
+        for i = 1:size(strings, '*')
+            mprintf("%s\n", strings(i));
+        end
+    endfunction
+
+    if getscilabmode() <> "NWNI" then
+        warnUser = messagebox
+    else
+        warnUser = consoleDisplay
+    end
+
     [lhs,rhs]=argn(0)
     if rhs==3 then
         if modal == %t then
             if buttons == "" then
-                num=messagebox(strings, "modal", "scilab");
+                num=warnUser(strings, "modal", "scilab");
             else
-                num=messagebox(strings, "modal", "scilab", buttons);
+                num=warnUser(strings, "modal", "scilab", buttons);
             end
         else //non modal messagebox
             if buttons == "" then
-                num=messagebox(strings,"scilab");
+                num=warnUser(strings,"scilab");
             else
-                num=messagebox(strings, "scilab", buttons);
+                num=warnUser(strings, "scilab", buttons);
             end
         end
     elseif rhs==2 then
-        num=messagebox(strings, "modal", "scilab", buttons);
+        num=warnUser(strings, "modal", "scilab", buttons);
     else
         num=1
-        messagebox(strings, "modal", "scilab");
+        warnUser(strings, "modal", "scilab");
     end
 endfunction

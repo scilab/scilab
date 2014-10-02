@@ -474,8 +474,11 @@ AC_DEFUN([AC_JAVA_JNI_LIBS], [
        # Sun
           machine=sparc
           ;;
-        powerpc|ppc64)
+        powerpc)
           machine=ppc
+          ;;
+        ppc64|ppc64le)
+          machine=ppc64
           ;;
         armv*)
           machine=arm

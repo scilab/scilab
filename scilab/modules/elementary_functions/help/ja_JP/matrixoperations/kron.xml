@@ -2,11 +2,12 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
+ * Copyright (C) 2014 - Samuel Gougeon : extension to hypermatrices
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -49,13 +50,54 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
-A=[1,2;3,4];
+        <programlisting role="example"><![CDATA[
+A = [1,2;3,4];
 kron(A,A)
 A.*.A
 sparse(A).*.sparse(A)
-A(1,1)=%i;
+A(1,1) = %i;
 kron(A,A)
+
+// With hypermatrices
+// ------------------
+b = hypermat([4 3 2], 1:24);
+
+// row .*. hypermat
+clc
+a = 1:2, b
+a.*.b
+
+// hypermat .*. row
+clc
+b,a
+b .*. a
+
+// column .*. hypermat
+clc
+a = [1;2], b
+a.*.b
+
+// matrix .*. hypermat
+clc
+a = [-1 -2; 2 1], b
+a.*.b
+
+// hypermat .*. hypermat
+clc
+a = hypermat([1 2 2],[-1,-2, 1 2]), b
+a.*.b
  ]]></programlisting>
     </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.1</revnumber>
+                <revdescription>
+                    <para>Extension to hypermatrices</para>
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+
 </refentry>

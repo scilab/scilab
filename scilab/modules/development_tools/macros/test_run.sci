@@ -703,8 +703,8 @@ function status = test_single(_module, _testPath, _testName)
     "   quit;" ;
     "endfunction" ;
     "function []=bugmes(), printf(''error on test'');endfunction"
-    "//predef(''all'');";
-    "tmpdirToPrint = msprintf(''TMPDIR1=''''%s''''\n'',TMPDIR);"
+    "predef(''all'');";
+    "tmpdirToPrint = msprintf(''TMPDIR1=''''%s'''';//\n'',TMPDIR);"
     ];
 
     if xcosNeeded then

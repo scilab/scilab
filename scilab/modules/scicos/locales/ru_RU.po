@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16967)\n"
+"X-Generator: Launchpad (build 17196)\n"
 "Language: ru\n"
 
 #, c-format
@@ -1001,8 +1001,8 @@ msgstr "Проблема выполнения: Неизвестный блок"
 
 #, c-format
 msgid ""
-"%s: Error while calling block %s [uid='%s']: invalid parameter (ier=%f, \\"
-"%scicos_prob=%%%s).\n"
+"%s: Error while calling block %s [uid='%s']: invalid parameter (ier=%f, "
+"%%scicos_prob=%%%s).\n"
 msgstr ""
 
 msgid "Cannot load dynamic library: "

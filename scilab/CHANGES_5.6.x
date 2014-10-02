@@ -6,5 +6,5 @@
 Compilation
 ============
 
-* --without-xcos was renamed to --without-jgraphx to better reflect the direct
-  dependency.
+* --without-xcos now only disable Xcos compilation. Xcos Graphic interface is disabled
+using --without-gui.

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2014-04-02 07:26+0000\n"
+"PO-Revision-Date: 2014-09-29 08:22+0000\n"
 "Last-Translator: Vincent Couvert <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16967)\n"
+"X-Generator: Launchpad (build 17196)\n"
 "Language: fr\n"
 
 #, c-format
@@ -128,8 +128,10 @@ msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Un vecteur réel nx3 attendu.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Must be between 0.0 and 1.0.\n"
-msgstr "%s : Valeur erronée de l'argument d'entrée n°%d : Doit être comprise entre "
+msgid ""
+"%s: Wrong value for input argument #%d: Must be between 0.0 and 1.0.\n"
+msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d : Doit être comprise entre "
 "0.0 et 1.0.\n"
 
 #, c-format
@@ -944,6 +946,12 @@ msgid "Wrong type for '%s' property: Integer expected.\n"
 msgstr "Type erroné de la propriété de '%s' : Un entier attendu.\n"
 
 #, c-format
+msgid "Wrong type for '%s' property: An empty matrix or a tlist expected.\n"
+msgstr ""
+"Type erroné pour la propriété '%s' : Une matrice vide ou une tlist "
+"attendue.\n"
+
+#, c-format
 msgid ""
 "WARNING !!!\n"
 "In '%s' property: '%s' is deprecated use '%s' instead.\n"
@@ -1375,6 +1383,30 @@ msgstr "Plusieurs courbes peuvent être tracées en même temps"
 
 msgid "Customize your complex function"
 msgstr "Personnalisez votre fonction complexe"
+
+msgid "Control panel"
+msgstr "Panneau de configuration"
+
+msgid "Function definition"
+msgstr "Définition de fonction"
+
+msgid "Domain type"
+msgstr "Type de domaine"
+
+msgid "Radius of the domain"
+msgstr "Rayon de domaine"
+
+msgid "Cut on axes"
+msgstr "Couper suivant l'axe"
+
+msgid "Function should contain z"
+msgstr "La fonction doit contenir z"
+
+msgid "Wrong definition of f(z)"
+msgstr "Définition erronée de f(z)"
+
+msgid "Radius should be real and finite"
+msgstr "Le rayon doit être réel et fini"
 
 msgid "datatips on 2D curves"
 msgstr "Datatips sur des courbes 2D"
@@ -1847,78 +1879,14 @@ msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une matrice réelle attendue.\n"
 
-msgid "Delete all datatips"
-msgstr "Supprimer tous les datatips"
-
-msgid "Delete all datatips for the selected curve"
-msgstr "Supprimer tous les datatips sur la courbe sélectionnée"
-
-msgid "Delete nearest datatip"
-msgstr "Supprimer le datatip le plus proche"
-
-msgid "Delete last datatip"
-msgstr "Supprimer le dernier datatip"
-
-msgid "Delete selected datatip"
-msgstr "Supprimer le datatip sélectionné"
-
-msgid "Open curve tip style editor"
-msgstr "Ouvrir l'éditeur de style de datatips"
-
-msgid "Redraw all datatips"
-msgstr "Redessiner tous les datatips"
-
-msgid "Edit the curve tip display function"
-msgstr ""
-"Éditer la fonction d'affichage de l'étiquette de données de la courbe"
-
-msgid "select the curve tip display function"
-msgstr "Sélectionner la fonction d'affichage d'étiquette de courbe"
-
-msgid "Enable interpolation"
-msgstr "Activer l'interpolation"
-
-msgid "Disable interpolation"
-msgstr "Désactiver l'interpolation"
-
-msgid "Multiple datatips mode"
-msgstr "Mode datatips multiples"
-
-msgid "Unique datatip mode"
-msgstr "Mode datatip unique"
-
 msgid "createPopupItems: found an empty cascading menu."
 msgstr "createPopupItems : un menu déroulant vide a été trouvé."
-
-msgid "automatic"
-msgstr "automatique"
-
-msgid "lower left"
-msgstr "en bas à gauche"
-
-msgid "lower right"
-msgstr "en bas à droite"
-
-msgid "upper left"
-msgstr "en haut à gauche"
-
-msgid "upper right"
-msgstr "en haut à droite"
-
-msgid "Select tip orientation"
-msgstr "Sélectionner l'orientation de l'étiquette"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A '%s' handle expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Un handle de type '%s' "
 "attendu.\n"
-
-msgid "The selected file cannot be executed"
-msgstr "Le fichier sélectionné ne peut pas être exécuté"
-
-msgid "The selected file defines more than one function"
-msgstr "Le fichier sélectionné définit plus d'une fonction"
 
 msgid "'datatips' property"
 msgstr "Propriété des 'datatips'"
@@ -1928,27 +1896,6 @@ msgid "%s: Wrong type for input argument #%d: Graphic handle expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Un handle vers un graphique "
 "attendu.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A %d elements array expected.\n"
-msgstr ""
-"%s : Dimension erronée de l'argument d'entrée n°%d : Un tableau de %d "
-"éléments attendu.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d(1): Must be between %d and %d.\n"
-msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d(1) : Doit être compris entre "
-"%d et %d.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d(2): Must be between %d and %d.\n"
-msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d(2) : Doit être compris entre "
-"%d et %d.\n"
 
 #, c-format
 msgid "%s: too many input arguments"
@@ -2071,6 +2018,32 @@ msgstr "Autoriser les datatips multiples ?"
 
 msgid "Edit label generator"
 msgstr "Éditer le générateur de labels"
+
+msgid "File"
+msgstr "Fichier"
+
+msgid "Tools"
+msgstr "Outils"
+
+msgid "Edit"
+msgstr "Édition"
+
+msgid "Select a file to load"
+msgstr "Sélectionner un fichier à charger"
+
+#, c-format
+msgid "%s: The file "
+msgstr "%s : Le fichier "
+
+#, c-format
+msgid "%s: Cannot open file "
+msgstr "%s : Impossible d'ouvrir le fichier "
+
+msgid "Error in file format."
+msgstr "Erreur de format de fichier."
+
+msgid "Select a file to write"
+msgstr "Sélectionner un fichier à écrire"
 
 #, c-format
 msgid ""

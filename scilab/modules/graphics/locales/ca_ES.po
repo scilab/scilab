@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16967)\n"
+"X-Generator: Launchpad (build 17196)\n"
 "Language: ca\n"
 
 #, c-format
@@ -122,7 +122,8 @@ msgid "%s: Wrong type for input argument #%d: Real vector nx3 expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Must be between 0.0 and 1.0.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: Must be between 0.0 and 1.0.\n"
 msgstr ""
 
 #, c-format
@@ -891,6 +892,10 @@ msgid "Wrong type for '%s' property: Integer expected.\n"
 msgstr "La propietat '%s' és d'un tipus incorrecte: Ha de ser un enter.\n"
 
 #, c-format
+msgid "Wrong type for '%s' property: An empty matrix or a tlist expected.\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "WARNING !!!\n"
 "In '%s' property: '%s' is deprecated use '%s' instead.\n"
@@ -1286,6 +1291,30 @@ msgstr ""
 
 msgid "Customize your complex function"
 msgstr "Personalitzeu la vostra funció complexa"
+
+msgid "Control panel"
+msgstr ""
+
+msgid "Function definition"
+msgstr ""
+
+msgid "Domain type"
+msgstr ""
+
+msgid "Radius of the domain"
+msgstr ""
+
+msgid "Cut on axes"
+msgstr ""
+
+msgid "Function should contain z"
+msgstr ""
+
+msgid "Wrong definition of f(z)"
+msgstr ""
+
+msgid "Radius should be real and finite"
+msgstr ""
 
 msgid "datatips on 2D curves"
 msgstr ""
@@ -1694,75 +1723,12 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
 msgstr ""
 
-msgid "Delete all datatips"
-msgstr "Elimina tots els datatips"
-
-msgid "Delete all datatips for the selected curve"
-msgstr "Elimina tots els datatips d'aquesta corba"
-
-msgid "Delete nearest datatip"
-msgstr "Elimina el datatip més proper"
-
-msgid "Delete last datatip"
-msgstr "Elimina el darrer datatip"
-
-msgid "Delete selected datatip"
-msgstr ""
-
-msgid "Open curve tip style editor"
-msgstr ""
-
-msgid "Redraw all datatips"
-msgstr "Torna a dibuixar tots els datatips"
-
-msgid "Edit the curve tip display function"
-msgstr "Edita la funció de visualització de la corba"
-
-msgid "select the curve tip display function"
-msgstr "seleccioneu la funció de visualització de la corba"
-
-msgid "Enable interpolation"
-msgstr "Habilita la interpolació"
-
-msgid "Disable interpolation"
-msgstr "Inhabilita la interpolació"
-
-msgid "Multiple datatips mode"
-msgstr "Mode per múltiples datatips"
-
-msgid "Unique datatip mode"
-msgstr "Mode de datatip únic"
-
 msgid "createPopupItems: found an empty cascading menu."
 msgstr ""
-
-msgid "automatic"
-msgstr "automàtic"
-
-msgid "lower left"
-msgstr "inferior esquerre"
-
-msgid "lower right"
-msgstr "inferior esquerra"
-
-msgid "upper left"
-msgstr "superior esquerra"
-
-msgid "upper right"
-msgstr "superior dreta"
-
-msgid "Select tip orientation"
-msgstr "Seleccioneu la orientació"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A '%s' handle expected.\n"
 msgstr ""
-
-msgid "The selected file cannot be executed"
-msgstr "No es pot executar el fitxer seleccionat"
-
-msgid "The selected file defines more than one function"
-msgstr "El fitxer seleccionat defineix més d'una funció"
 
 msgid "'datatips' property"
 msgstr ""
@@ -1772,21 +1738,6 @@ msgid "%s: Wrong type for input argument #%d: Graphic handle expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un "
 "tractament gràfic.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A %d elements array expected.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d(1): Must be between %d and %d.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d(2): Must be between %d and %d.\n"
-msgstr ""
 
 #, c-format
 msgid "%s: too many input arguments"
@@ -1897,6 +1848,32 @@ msgid "Allow multiple datatips?"
 msgstr ""
 
 msgid "Edit label generator"
+msgstr ""
+
+msgid "File"
+msgstr ""
+
+msgid "Tools"
+msgstr ""
+
+msgid "Edit"
+msgstr ""
+
+msgid "Select a file to load"
+msgstr ""
+
+#, c-format
+msgid "%s: The file "
+msgstr ""
+
+#, c-format
+msgid "%s: Cannot open file "
+msgstr ""
+
+msgid "Error in file format."
+msgstr ""
+
+msgid "Select a file to write"
 msgstr ""
 
 #, c-format

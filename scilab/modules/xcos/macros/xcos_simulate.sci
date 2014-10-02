@@ -1,5 +1,5 @@
 //
-// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Scilab ( httzp://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) Scilab Enterprises - 2013 - Bruno JOFRET
 // Copyright (C) 2009-2009 - DIGITEO - Bruno JOFRET
 //
@@ -11,7 +11,7 @@
 //
 //
 
-function %cpr = xcos_simulate(scs_m, needcompile)
+function [%cpr, ok] = xcos_simulate(scs_m, needcompile)
 
     // Load the block libs if not defined
     prot = funcprot();
@@ -118,7 +118,9 @@ function %cpr = xcos_simulate(scs_m, needcompile)
     [scs_m,%cpr,needcompile,ok] = do_eval(scs_m, %cpr, %scicos_context);
     if ~ok then
         msg = msprintf(gettext("%s: Error during block parameters evaluation.\n"), "Xcos");
-        messagebox(msg, "Xcos", "error");
+        if getscilabmode() <> "NWNI" then
+            messagebox(msg, "Xcos", "error");
+        end
         error(msprintf(gettext("%s: Error during block parameters evaluation.\n"), "xcos_simulate"));
     end
 
@@ -298,7 +300,9 @@ function %cpr = xcos_simulate(scs_m, needcompile)
     tf = scs_m.props.tf
 
     // Inform Xcos the simulator is going to run
-    xcosSimulationStarted();
+    if getscilabmode() <> "NWNI"
+        xcosSimulationStarted();
+    end
 
     //** run scicosim via 'start' flag
     ierr = execstr("[state,t]=scicosim(%cpr.state,%tcur,tf,%cpr.sim,"+..
@@ -453,4 +457,3 @@ function %cpr = xcos_simulate(scs_m, needcompile)
     end
 
 endfunction
-
