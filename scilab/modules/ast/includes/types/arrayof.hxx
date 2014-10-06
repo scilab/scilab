@@ -204,15 +204,6 @@ public :
         return m_pImgData != NULL;
     }
 
-    inline virtual bool isScalar() //2 dims and each dim == 1
-    {
-        if (m_iDims == 2 && m_piDims[0] == 1 && m_piDims[1] == 1)
-        {
-            return true;
-        }
-        return false;
-    }
-
     virtual void setComplex(bool _bComplex)
     {
         if (_bComplex == false)

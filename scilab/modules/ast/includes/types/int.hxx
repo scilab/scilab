@@ -168,7 +168,7 @@ private :
         int iLineLen = ConfigVariable::getConsoleWidth();
         int iMaxLines = ConfigVariable::getConsoleLines();
 
-        if (this->isIdentity())
+        if (GenericType::isIdentity())
         {
             ostr << L"eye *" << std::endl << std::endl;
             int iWidth = 0;
@@ -184,7 +184,7 @@ private :
             }
             ostr << std::endl;
         }
-        else if (ArrayOf<T>::isScalar())
+        else if (GenericType::isScalar())
         {
             //scalar
             int iWidth  = 0;

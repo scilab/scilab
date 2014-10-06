@@ -57,10 +57,7 @@ public :
         return false;
     }
 
-    virtual bool                isScalar()
-    {
-        return false;
-    }
+    bool                        isScalar();
 
     /*commun functions*/
     inline int                  getCols()
