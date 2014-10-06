@@ -38,6 +38,12 @@ extern "C"
 extern FILE*    yyin;
 extern int      yyparse();
 extern int      yydebug;
+extern int      yylex_destroy();
+
+void Parser::cleanup()
+{
+    yylex_destroy();
+}
 
 void Parser::parseFile(const std::wstring& fileName, const std::wstring& progName)
 {
