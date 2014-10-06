@@ -19,6 +19,7 @@
 #include <algorithm>
 
 #include "internal.hxx"
+#include "bool.hxx"
 #include "double.hxx"
 #include "string.hxx"
 
@@ -291,6 +292,23 @@ bool set_ports_property(const Adaptor& adaptor, object_properties_t port_kind, C
                 return true;
         }
 
+    }
+    else if (v->getType() == types::InternalType::ScilabBool)
+    {
+        types::Bool* current = v->getAs<types::Bool>();
+
+        switch (p)
+        {
+            case FIRING:
+                // firing=%f is interpreted as "no initial event on the corresponding port", so set a negative value.
+                for (std::vector<ScicosID>::iterator it = ids.begin(); it != ids.end(); ++it)
+                {
+                    controller.setObjectProperty(*it, PORT, p, -1);
+                }
+                return true;
+            default:
+                return false;
+        }
     }
     return false;
 }

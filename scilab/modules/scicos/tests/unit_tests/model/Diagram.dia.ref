@@ -645,6 +645,10 @@ propertyUpdated( 24 , LINK , SOURCE_PORT ) : NO_CHANGES
 propertyUpdated( 24 , LINK , DESTINATION_PORT ) : NO_CHANGES
 propertyUpdated( 26 , DIAGRAM , CHILDREN ) : SUCCESS
 propertyUpdated( 25 , LINK , PARENT_DIAGRAM ) : NO_CHANGES
+propertyUpdated( 28 , PORT , CONNECTED_SIGNALS ) : SUCCESS
+propertyUpdated( 28 , PORT , CONNECTED_SIGNALS ) : SUCCESS
+propertyUpdated( 25 , LINK , DESTINATION_PORT ) : NO_CHANGES
+propertyUpdated( 26 , DIAGRAM , CHILDREN ) : SUCCESS
 scs_m.objs(5).to = [3 1 1];   // Two inputs
 propertyUpdated( 26 , DIAGRAM , CHILDREN ) : SUCCESS
 propertyUpdated( 14 , BLOCK , PARENT_DIAGRAM ) : NO_CHANGES
@@ -656,6 +660,11 @@ propertyUpdated( 26 , DIAGRAM , CHILDREN ) : SUCCESS
 propertyUpdated( 24 , LINK , PARENT_DIAGRAM ) : NO_CHANGES
 propertyUpdated( 24 , LINK , SOURCE_PORT ) : NO_CHANGES
 propertyUpdated( 24 , LINK , DESTINATION_PORT ) : NO_CHANGES
+propertyUpdated( 26 , DIAGRAM , CHILDREN ) : SUCCESS
+propertyUpdated( 25 , LINK , PARENT_DIAGRAM ) : NO_CHANGES
+propertyUpdated( 20 , PORT , CONNECTED_SIGNALS ) : SUCCESS
+propertyUpdated( 20 , PORT , CONNECTED_SIGNALS ) : SUCCESS
+propertyUpdated( 25 , LINK , SOURCE_PORT ) : NO_CHANGES
 propertyUpdated( 26 , DIAGRAM , CHILDREN ) : SUCCESS
 //===================================================================================================
 // Test predefined link at diagram creation
