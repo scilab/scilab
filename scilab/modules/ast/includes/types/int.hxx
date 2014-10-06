@@ -168,7 +168,7 @@ private :
         int iLineLen = ConfigVariable::getConsoleWidth();
         int iMaxLines = ConfigVariable::getConsoleLines();
 
-        if (isIdentity())
+        if (this->isIdentity())
         {
             ostr << L"eye *" << std::endl << std::endl;
             int iWidth = 0;
