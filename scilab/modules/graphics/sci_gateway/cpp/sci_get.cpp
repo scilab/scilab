@@ -240,9 +240,12 @@ types::Function::ReturnValue sci_get(types::typed_list &in, int _iRetCount, type
             Scierror(999, _("%s: The handle is not or no more valid.\n"), "get");
             return types::Function::Error;
         }
+        pOut = (types::InternalType*)callGetProperty(NULL, iObjUID, pstProperty);
     }
-
-    pOut = (types::InternalType*)callGetProperty(NULL, iObjUID, pstProperty);
+    else
+    {
+        pOut = (types::InternalType*)callGetProperty(NULL, 0, pstProperty);
+    }
 
     if (pOut == NULL)
     {

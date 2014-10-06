@@ -952,7 +952,7 @@ function %_sodload(%__filename__, varargin)
         %__loadFunction__ = import_from_hdf5;
         //fileVersion = getScilabFileVersion(%__filename__); // Not needed for the moment
     else
-        %__loadFunction__ = %_load;
+        %__loadFunction__ = load;
     end
 
     //multiple output variables to prevent listinfile prints

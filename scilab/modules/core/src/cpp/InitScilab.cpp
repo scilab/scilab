@@ -55,6 +55,7 @@ extern "C"
 #include "setenvvar.h"
 #include "getScilabPreference.h"
 #include "saveCWDInPreferences.h"
+#include "h5_fileManagement.h"
 
 
 #ifdef _MSC_VER
@@ -377,6 +378,9 @@ void StopScilabEngine(ScilabEngineInfo* _pSEI)
     * Cleanup function for the XML library.
     */
     xmlCleanupParser();
+
+    /* cleanup HDF5 */
+    HDF5cleanup();
 
     /* Cleanup the parser state */
     Parser::cleanup();

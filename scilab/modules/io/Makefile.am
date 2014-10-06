@@ -61,6 +61,8 @@ libsciio_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/localization/includes/ \
     -I$(top_srcdir)/modules/threads/includes/ \
     -I$(top_srcdir)/modules/dynamic_link/includes \
+    -I$(top_srcdir)/modules/console/includes \
+    -I$(top_srcdir)/modules/hdf5/includes \
     $(EIGEN_CPPFLAGS) \
     $(XML_FLAGS) \
     $(AM_CPPFLAGS)
@@ -90,7 +92,7 @@ modulename=io
 
 #### io : Conf files ####
 libsciio_la_rootdir = $(mydatadir)
-libsciio_la_root_DATA =  license.txt 
+libsciio_la_root_DATA =  license.txt
 
 
 ####io : init scripts ####
