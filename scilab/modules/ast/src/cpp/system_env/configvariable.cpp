@@ -11,6 +11,7 @@
 */
 #include <list>
 #include "configvariable.hxx"
+#include "context.hxx"
 
 extern "C"
 {
@@ -574,15 +575,23 @@ void ConfigVariable::deleteThread(__threadKey _key)
 */
 
 int ConfigVariable::m_iPauseLevel = 0;
+std::list<int> ConfigVariable::m_listScope;
 
 void ConfigVariable::IncreasePauseLevel()
 {
     m_iPauseLevel++;
+    m_listScope.push_back(symbol::Context::getInstance()->getScopeLevel());
 }
 
 void ConfigVariable::DecreasePauseLevel()
 {
     m_iPauseLevel--;
+    m_listScope.pop_back();
+}
+
+int ConfigVariable::getActivePauseLevel()
+{
+    return m_listScope.back();
 }
 
 int ConfigVariable::getPauseLevel()

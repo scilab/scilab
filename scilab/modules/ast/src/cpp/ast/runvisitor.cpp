@@ -471,7 +471,7 @@ void RunVisitorT<T>::visitprivate(const ReturnExp &e)
 {
     if (e.isGlobal())
     {
-        if (ConfigVariable::getPauseLevel() != 0 && symbol::Context::getInstance()->getScopeLevel() == 1)
+        if (ConfigVariable::getPauseLevel() != 0 && symbol::Context::getInstance()->getScopeLevel() == ConfigVariable::getActivePauseLevel())
         {
             //return or resume
             ThreadId* pThreadId = ConfigVariable::getLastPausedThread();

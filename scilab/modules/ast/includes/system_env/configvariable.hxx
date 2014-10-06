@@ -239,12 +239,13 @@ public :
     // Pause level
 private :
     static int m_iPauseLevel;
+    static std::list<int> m_listScope;
 
 public :
     static void IncreasePauseLevel();
     static void DecreasePauseLevel();
     static int getPauseLevel();
-
+    static int getActivePauseLevel();
     // Dynamic Libraries
 
     typedef struct
