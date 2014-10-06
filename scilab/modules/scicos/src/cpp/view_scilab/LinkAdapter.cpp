@@ -84,23 +84,14 @@ struct xx
 
         if (newXSize == oldXSize)
         {
-#ifdef _MSC_VER
-            std::copy(current->getReal(), current->getReal() + newXSize, stdext::checked_array_iterator<double*>( newControlPoints.begin(), newXSize ));
-#else
             std::copy(current->getReal(), current->getReal() + newXSize, newControlPoints.begin());
-#endif
         }
         else
         {
             newControlPoints.resize(2 * current->getSize(), 0);
 
-#ifdef _MSC_VER
-            std::copy(current->getReal(), current->getReal() + newXSize, stdext::checked_array_iterator<double*>( newControlPoints.begin(), newXSize ));
-            std::copy(controlPoints.begin() + oldXSize, controlPoints.begin() + oldXSize + std::min(newXSize, oldXSize), stdext::checked_array_iterator<double*>( newControlPoints.begin() + newXSize, std::min(newXSize, oldXSize) ));
-#else
             std::copy(current->getReal(), current->getReal() + newXSize, newControlPoints.begin());
             std::copy(controlPoints.begin() + oldXSize, controlPoints.begin() + oldXSize + std::min(newXSize, oldXSize), newControlPoints.begin() + newXSize);
-#endif
         }
 
         controller.setObjectProperty(adaptee->id(), adaptee->kind(), CONTROL_POINTS, newControlPoints);
@@ -150,21 +141,13 @@ struct yy
 
         if (newYSize == oldYSize)
         {
-#ifdef _MSC_VER
-            std::copy(current->getReal(), current->getReal() + newYSize, stdext::checked_array_iterator<double*>( newControlPoints.begin() + newYSize, newYSize ));
-#else
             std::copy(current->getReal(), current->getReal() + newYSize, newControlPoints.begin() + newYSize);
-#endif
         }
         else
         {
             newControlPoints.resize(2 * current->getSize());
 
-#ifdef _MSC_VER
-            std::copy(current->getReal(), current->getReal() + newYSize, stdext::checked_array_iterator<double*>( newControlPoints.begin() + newYSize, newYSize ));
-#else
             std::copy(current->getReal(), current->getReal() + newYSize, newControlPoints.begin() + newYSize);
-#endif
             if (newYSize > oldYSize)
             {
                 std::fill(newControlPoints.begin() + oldYSize, newControlPoints.begin() + oldYSize + newYSize, 0);
