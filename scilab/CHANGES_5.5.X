@@ -28,6 +28,8 @@ Removed Functions
 
 * regress removed. Please use reglin instead.
 
+* st_deviation removed. Please use stdev instead.
+
 
 Compilation
 ===========

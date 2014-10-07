@@ -698,7 +698,6 @@ msgstr ""
 # File: macros/nanmeanf.sci, line: 48
 # File: macros/sample.sci, line: 51
 # File: macros/samplef.sci, line: 100
-# File: macros/st_deviation.sci, line: 40
 # File: macros/variancef.sci, line: 132
 #, c-format
 msgid ""
