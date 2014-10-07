@@ -30,6 +30,8 @@ Removed Functions
 
 * st_deviation removed. Please use stdev instead.
 
+* xsetm removed. Please use ged instead.
+
 
 Compilation
 ===========

@@ -1888,7 +1888,6 @@ xnumb
 xrpoly
 xsave
 xsetech
-xsetm
 xstringl
 ylabel
 zlabel
