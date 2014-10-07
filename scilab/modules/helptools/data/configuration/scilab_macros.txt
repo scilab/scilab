@@ -424,7 +424,6 @@ perctl
 princomp
 quart
 reglin
-regress
 sample
 samplef
 samwr

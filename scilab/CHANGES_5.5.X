@@ -26,6 +26,8 @@ Removed Functions
 
 * nfreq removed. Please use tabul instead.
 
+* regress removed. Please use reglin instead.
+
 
 Compilation
 ===========
