@@ -15,6 +15,7 @@
 #include "core_math.h"
 #include "threadId.hxx"
 #include "tostring_common.hxx"
+#include "scilabWrite.hxx"
 
 extern "C"
 {
@@ -140,6 +141,7 @@ bool ThreadId::toString(std::wostringstream& ostr)
 {
     ostr << L"ThreadId : " << this << std::endl;
     ostr << L"Status : " << StatusToString(this->getStatus());
+    scilabWriteW(ostr.str().c_str());
     return true;
 }
 }

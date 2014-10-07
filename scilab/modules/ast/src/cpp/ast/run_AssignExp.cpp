@@ -83,10 +83,13 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
 
             if (e.isVerbose() && ConfigVariable::isPromptShow())
             {
+                std::wstring wstrName = pVar->getSymbol().getName();
                 std::wostringstream ostr;
-                ostr << pVar->getSymbol().getName() << L"  = " << std::endl << std::endl;
+                ostr << wstrName << L"  = " << std::endl << std::endl;
                 scilabWriteW(ostr.str().c_str());
-                VariableToString(pIT, pVar->getSymbol().getName().c_str());
+                std::wostringstream ostrName;
+                ostrName << SPACES_LIST << wstrName;
+                VariableToString(pIT, ostrName.str().c_str());
             }
             return;
         }
@@ -144,20 +147,16 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                 if (e.isVerbose() && ConfigVariable::isPromptShow())
                 {
                     std::wostringstream ostr;
-                    const wchar_t* wcsVarName;
                     if (pVar)
                     {
-                        ostr << pVar->getSymbol().getName() << L"  = " << std::endl;
-                        wcsVarName = pVar->getSymbol().getName().c_str();
+                        ostr << SPACES_LIST << pVar->getSymbol().getName();
                     }
                     else
                     {
-                        ostr << L"???" << L"  = " << std::endl;
-                        wcsVarName = L"???";
+                        ostr << SPACES_LIST << L"???";
                     }
 
-                    ostr << std::endl;
-                    VariableToString(pOut, wcsVarName);
+                    VariableToString(pOut, ostr.str().c_str());
                 }
             }
             else
@@ -223,14 +222,13 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
             if (e.isVerbose() && ConfigVariable::isPromptShow())
             {
                 std::wostringstream ostr;
-                const wchar_t* wcsVarName;
-
                 ostr << *getStructNameFromExp(&pCall->getName()) << L"  = " << std::endl;
-                wcsVarName = getStructNameFromExp(&pCall->getName())->c_str();
-
                 ostr << std::endl;
                 scilabWriteW(ostr.str().c_str());
-                VariableToString(pOut, wcsVarName);
+
+                std::wostringstream ostrName;
+                ostrName << SPACES_LIST << *getStructNameFromExp(&pCall->getName());
+                VariableToString(pOut, ostrName.str().c_str());
             }
 
             pITR->killMe();
@@ -335,7 +333,10 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                 std::wostringstream ostr;
                 ostr << *pstName << L"  = " << std::endl << std::endl;
                 scilabWriteW(ostr.str().c_str());
-                VariableToString(pPrint, pstName->c_str());
+
+                std::wostringstream ostrName;
+                ostrName << SPACES_LIST << *pstName;
+                VariableToString(pPrint, ostrName.str().c_str());
             }
 
             clearResult();

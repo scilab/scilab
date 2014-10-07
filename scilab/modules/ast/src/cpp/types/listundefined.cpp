@@ -15,6 +15,7 @@
 
 #include "listundefined.hxx"
 #include "localization.h"
+#include "scilabWrite.hxx"
 
 namespace types
 {
@@ -40,6 +41,7 @@ InternalType::ScilabType ListUndefined::getType(void)
 bool ListUndefined::toString(std::wostringstream& ostr)
 {
     ostr << L"    Undefined" << std::endl;
+    scilabWriteW(ostr.str().c_str());
     return true;
 }
 }

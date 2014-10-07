@@ -17,6 +17,7 @@
 #include "double.hxx"
 #include "scilabexception.hxx"
 #include "localization.hxx"
+#include "scilabWrite.hxx"
 
 namespace types
 {
@@ -279,6 +280,8 @@ bool SingleStruct::toString(std::wostringstream& ostr)
             ostr << *iterFieldNames << L" : " << (*iterFieldData)->getTypeStr() << std::endl;
         }
     }
+
+    scilabWriteW(ostr.str().c_str());
     return true;
 }
 

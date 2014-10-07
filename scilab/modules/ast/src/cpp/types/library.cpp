@@ -15,6 +15,7 @@
 #include "library.hxx"
 #include "localization.hxx"
 #include "configvariable.hxx"
+#include "scilabWrite.hxx"
 
 extern "C"
 {
@@ -68,6 +69,7 @@ bool Library::toString(std::wostringstream& ostr)
     }
 
     ostr << std::endl;
+    scilabWriteW(ostr.str().c_str());
     return true;
 }
 

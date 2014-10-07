@@ -24,6 +24,7 @@
 #include "scilabexception.hxx"
 #include "inspector.hxx"
 #include "type_traits.hxx"
+#include "scilabWrite.hxx"
 
 extern "C"
 {
@@ -1512,6 +1513,7 @@ public :
         int* piDims = new int[m_iDims];
         bool bFinish = parseSubMatrix(ostr, piDims, m_iDims, m_iDims - 1);
         delete[] piDims;
+        scilabWriteW(ostr.str().c_str());
         return bFinish;
     }
 

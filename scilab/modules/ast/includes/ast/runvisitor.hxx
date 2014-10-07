@@ -419,7 +419,9 @@ public :
                 ostr << e.getSymbol().getName() << L"  = " << L"(" << pI->getRef() << L")" << std::endl;
                 ostr << std::endl;
                 scilabWriteW(ostr.str().c_str());
-                VariableToString(pI, e.getSymbol().getName().c_str());
+                std::wostringstream ostrName;
+                ostrName << SPACES_LIST << e.getSymbol().getName();
+                VariableToString(pI, ostrName.str().c_str());
             }
         }
         else
@@ -515,60 +517,6 @@ public :
         catch (ScilabError error)
         {
             throw error;
-        }
-    }
-
-    void VariableToString(types::InternalType* pIT, const wchar_t* wcsVarName)
-    {
-        std::wostringstream ostr;
-
-        if (pIT->isMList() || pIT->isTList() || pIT->hasToString() == false)
-        {
-            //call overload %type_p
-            types::typed_list in;
-            types::typed_list out;
-
-            pIT->IncreaseRef();
-            in.push_back(pIT);
-
-            try
-            {
-                if (Overload::generateNameAndCall(L"p", in, 1, out, this) != Function::OK)
-                    //if (Overload::call(L"%" + pIT->getAs<TList>()->getShortTypeStr() + L"_p", in, 1, out, this) != Function::OK)
-                {
-                    throw ScilabError();
-                }
-            }
-            catch (ScilabError /*&e*/)
-            {
-                ostr << wcsVarName;
-                pIT->toString(ostr);
-                scilabWriteW(ostr.str().c_str());
-            }
-
-            pIT->DecreaseRef();
-        }
-        else
-        {
-            //to manage lines information
-            int iLines = ConfigVariable::getConsoleLines();
-
-            bool bFinish = false;
-            do
-            {
-                //block by block
-                bFinish = pIT->toString(ostr);
-                scilabWriteW(ostr.str().c_str());
-                if (bFinish == false && iLines != 0)
-                {
-                    //show message on prompt
-                    bFinish = linesmore() == 1;
-                }
-                ostr.str(L"");
-            }
-            while (bFinish == false);
-
-            pIT->clearPrintState();
         }
     }
 

@@ -23,6 +23,7 @@
 #include "scilabWrite.hxx"
 #include "scilabexception.hxx"
 #include "configvariable.hxx"
+#include "types_tools.hxx"
 
 #include <iostream>
 #include <fstream>
@@ -360,7 +361,9 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
                     {
                         //TODO manage multiple returns
                         scilabWriteW(L" ans  =\n\n");
-                        execMe.VariableToString(pITAns, L"ans");
+                        std::wostringstream ostrName;
+                        ostrName << SPACES_LIST << L"ans";
+                        VariableToString(pITAns, ostrName.str().c_str());
                     }
                 }
             }

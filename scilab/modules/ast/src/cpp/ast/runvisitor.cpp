@@ -748,7 +748,9 @@ void RunVisitorT<T>::visitprivate(const SeqExp  &e)
                     {
                         //TODO manage multiple returns
                         scilabWriteW(L" ans  =\n\n");
-                        VariableToString(pITAns, L"ans");
+                        std::wostringstream ostrName;
+                        ostrName << SPACES_LIST << L"ans";
+                        VariableToString(pITAns, ostrName.str().c_str());
                     }
                 }
 

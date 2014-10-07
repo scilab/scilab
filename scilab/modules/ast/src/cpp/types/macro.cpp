@@ -99,6 +99,7 @@ ast::SeqExp* Macro::getBody(void)
 bool Macro::toString(std::wostringstream& ostr)
 {
     ostr << L"FIXME : Implement Macro::toString" << std::endl;
+    scilabWriteW(ostr.str().c_str());
     return true;
 }
 

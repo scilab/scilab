@@ -12,6 +12,8 @@
 
 #include "alltypes.hxx"
 #include "types_tools.hxx"
+#include "overload.hxx"
+#include "execvisitor.hxx"
 
 namespace types
 {
@@ -261,5 +263,59 @@ int getIndexWithDims(int* _piIndexes, int* _piDims, int _iDims)
         iMult *= _piDims[i];
     }
     return idx;
+}
+
+void VariableToString(types::InternalType* pIT, const wchar_t* wcsVarName)
+{
+    std::wostringstream ostr;
+    if (pIT->hasToString() == false)
+    {
+        //call overload %type_p
+        types::typed_list in;
+        types::typed_list out;
+        ast::ExecVisitor* exec = new ast::ExecVisitor();
+
+        pIT->IncreaseRef();
+        in.push_back(pIT);
+
+        try
+        {
+            Overload::generateNameAndCall(L"p", in, 1, out, exec);
+            delete exec;
+            pIT->DecreaseRef();
+        }
+        catch (ast::ScilabError &e)
+        {
+            delete exec;
+            pIT->DecreaseRef();
+            throw e;
+        }
+    }
+    else
+    {
+        if (pIT->isList())
+        {
+            ostr << wcsVarName;
+        }
+
+        //to manage lines information
+        int iLines = ConfigVariable::getConsoleLines();
+
+        bool bFinish = false;
+        do
+        {
+            //block by block
+            bFinish = pIT->toString(ostr);
+            if (bFinish == false && iLines != 0)
+            {
+                //show message on prompt
+                bFinish = linesmore() == 1;
+            }
+            ostr.str(L"");
+        }
+        while (bFinish == false);
+
+        pIT->clearPrintState();
+    }
 }
 }

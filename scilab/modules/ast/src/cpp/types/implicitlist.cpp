@@ -16,6 +16,7 @@
 #include "implicitlist.hxx"
 #include "int.hxx"
 #include "configvariable.hxx"
+#include "scilabWrite.hxx"
 
 #ifndef NDEBUG
 #include "inspector.hxx"
@@ -368,7 +369,9 @@ bool ImplicitList::toString(std::wostringstream& ostr)
 {
     if (isComputable())
     {
-        return extractFullMatrix()->toString(ostr);
+        bool ret = extractFullMatrix()->toString(ostr);
+        scilabWriteW(ostr.str().c_str());
+        return ret;
     }
     else
     {
@@ -410,6 +413,7 @@ bool ImplicitList::toString(std::wostringstream& ostr)
             ostr << printInLinePoly(pMP->get(0), pMP->getVariableName());
         }
         ostr << std::endl;
+        scilabWriteW(ostr.str().c_str());
         return true;
     }
 }

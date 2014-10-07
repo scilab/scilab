@@ -21,6 +21,7 @@
 #include "parser.hxx"
 #include "configvariable.hxx"
 #include "deserializervisitor.hxx"
+#include "scilabWrite.hxx"
 
 namespace types
 {
@@ -53,6 +54,7 @@ void MacroFile::whoAmI()
 bool MacroFile::toString(std::wostringstream& ostr)
 {
     ostr << L"FIXME : Implement MacroFile::toString" << std::endl;
+    scilabWriteW(ostr.str().c_str());
     return true;
 }
 

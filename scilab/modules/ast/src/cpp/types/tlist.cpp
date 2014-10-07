@@ -18,6 +18,7 @@
 #include "listundefined.hxx"
 #include "callable.hxx"
 #include "overload.hxx"
+#include "execvisitor.hxx"
 
 #ifndef NDEBUG
 #include "inspector.hxx"
@@ -240,46 +241,60 @@ String* TList::getFieldNames()
 
 /**
 ** toString to display TLists
-** FIXME : Find a better indentation process
 */
 bool TList::toString(std::wostringstream& ostr)
 {
-    wchar_t* wcsVarName = os_wcsdup(ostr.str().c_str());
-    ostr.str(L"");
+    //call overload %type_p if exists
+    types::typed_list in;
+    types::typed_list out;
+    ast::ExecVisitor* exec = new ast::ExecVisitor();
 
-    if (getSize() == 0)
+    IncreaseRef();
+    in.push_back(this);
+
+    try
     {
-        ostr << wcsVarName << L"()" << std::endl;
+        if (Overload::generateNameAndCall(L"p", in, 1, out, exec) == Function::OK)
+        {
+            ostr.str(L"");
+            DecreaseRef();
+            delete exec;
+            return true;
+        }
     }
-    else if ((*m_plData)[0]->isString() &&
-             (*m_plData)[0]->getAs<types::String>()->getSize() > 0 &&
-             wcscmp((*m_plData)[0]->getAs<types::String>()->get(0), L"lss") == 0)
+    catch (ast::ScilabError /* &e */)
     {
+        // avoid error message about undefined overload %type_p
+    }
+
+    DecreaseRef();
+    delete exec;
+
+    // special case for lss
+    if (getSize() != 0 &&
+            (*m_plData)[0]->isString() &&
+            (*m_plData)[0]->getAs<types::String>()->getSize() > 0 &&
+            wcscmp((*m_plData)[0]->getAs<types::String>()->get(0), L"lss") == 0)
+    {
+        wchar_t* wcsVarName = os_wcsdup(ostr.str().c_str());
         int iPosition = 1;
         const wchar_t * wcsDesc[7] = {L"  (state-space system:)", L"= A matrix =", L"= B matrix =", L"= C matrix =", L"= D matrix =", L"= X0 (initial state) =", L"= Time domain ="};
         std::vector<InternalType *>::iterator itValues;
         for (itValues = m_plData->begin() ; itValues != m_plData->end() ; ++itValues, ++iPosition)
         {
-            ostr << "     " << wcsVarName << L"(" << iPosition << L") " << wcsDesc[iPosition - 1] << std::endl;
-            //maange lines
-            (*itValues)->toString(ostr);
-            ostr << std::endl;
+            std::wostringstream nextVarName;
+            ostr.str(L"");
+            nextVarName << " " << wcsVarName << L"(" << iPosition << L")";
+            ostr << std::endl << nextVarName.str() << wcsDesc[iPosition - 1] << std::endl << std::endl;
+            scilabWriteW(ostr.str().c_str());
+            VariableToString(*itValues, nextVarName.str().c_str());
         }
-    }
-    else
-    {
-        int iPosition = 1;
-        std::vector<InternalType *>::iterator itValues;
-        for (itValues = m_plData->begin() ; itValues != m_plData->end() ; ++itValues, ++iPosition)
-        {
-            ostr << "     " << wcsVarName << L"(" << iPosition << L")" << std::endl;
-            //maange lines
-            (*itValues)->toString(ostr);
-            ostr << std::endl;
-        }
+
+        free(wcsVarName);
+        return true;
     }
 
-    free(wcsVarName);
-    return true;
+    // call normal toString
+    return List::toString(ostr);
 }
 } // end namespace types

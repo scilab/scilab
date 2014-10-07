@@ -20,6 +20,7 @@ namespace types
 EXTERN_AST int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list* _pArgsOut, int* _piMaxDim, int* _piCountDim);
 EXTERN_AST void getIndexesWithDims(int _iIndex, int* _piIndexes, int* _piDims, int _iDims);
 EXTERN_AST int getIndexWithDims(int* _piIndexes, int* _piDims, int _iDims);
+EXTERN_AST void VariableToString(types::InternalType* pIT, const wchar_t* wcsVarName);
 }
 
 #endif /* !__TYPES_TOOLS_HXX__ */

@@ -15,6 +15,7 @@
 #include "list.hxx"
 #include "int.hxx"
 #include "localization.hxx"
+#include "scilabWrite.hxx"
 
 namespace types
 {
@@ -498,6 +499,7 @@ bool Struct::toString(std::wostringstream& ostr)
         delete pwstFields;
     }
 
+    scilabWriteW(ostr.str().c_str());
     return true;
 }
 

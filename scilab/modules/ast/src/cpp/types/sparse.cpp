@@ -26,6 +26,7 @@
 #include "types_addition.hxx"
 #include "types_multiplication.hxx"
 #include "configvariable.hxx"
+#include "scilabWrite.hxx"
 
 #include "sparseOp.hxx"
 
@@ -535,6 +536,7 @@ bool Sparse::toString(std::wostringstream& ostr) const
     }
 
     ostr << res;
+    scilabWriteW(ostr.str().c_str());
     return true;
 }
 
