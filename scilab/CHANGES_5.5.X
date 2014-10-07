@@ -10,6 +10,9 @@ Removed Functions
 
 * %asn removed. Please use delip instead.
 
+* mfft removed. Please use fft instead.
+
+
                      Changes between version 5.5.0 and 5.5.1
                      =======================================
 

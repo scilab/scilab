@@ -541,7 +541,6 @@ lev
 levin
 lindquist
 mese
-mfft
 mrfit
 phc
 pspect
