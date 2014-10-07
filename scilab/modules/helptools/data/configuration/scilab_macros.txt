@@ -419,7 +419,6 @@ nanmin
 nanreglin
 nanstdev
 nansum
-nfreq
 pca
 perctl
 princomp

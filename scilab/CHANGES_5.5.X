@@ -24,6 +24,8 @@ Removed Functions
 
 * chart removed. Please use nicholschart instead.
 
+* nfreq removed. Please use tabul instead.
+
 
 Compilation
 ===========
