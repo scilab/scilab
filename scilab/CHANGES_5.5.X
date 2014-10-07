@@ -6,6 +6,7 @@ Removed Functions
 
 * xmltochm removed.
 
+* jmat removed.
 
 
                      Changes between version 5.5.0 and 5.5.1
